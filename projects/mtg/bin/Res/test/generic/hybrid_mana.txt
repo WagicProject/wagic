@@ -1,0 +1,18 @@
+#Testing Hybrid Mana
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:157201
+manapool:{W}{R}{W}
+[PLAYER2]
+[DO]
+157201
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:157201
+manapool:{0}
+life:20
+[PLAYER2]
+life:20
+[END]

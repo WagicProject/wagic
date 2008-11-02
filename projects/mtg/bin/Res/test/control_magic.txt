@@ -1,0 +1,41 @@
+#Testing Control Magic on a fire elemental in opponent's play, then testing if the elemental can be killed
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1194
+manapool:{2}{U}{U}
+[PLAYER2]
+inplay:1239,1290
+[DO]
+1194
+1290
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main 1
+next
+#cbt begins
+next
+#attackers
+1239
+next
+#defensers
+1290
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:1194
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:1290,1239
+life:20
+[END]

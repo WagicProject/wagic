@@ -1,0 +1,46 @@
+#Testing That a Paralysed creature doesn't untap if nothing's done
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:1171
+manapool:{B}
+[PLAYER2]
+life:20
+inplay:1250
+[DO]
+1171
+1250
+next
+#eot
+next
+#cleanup
+next
+#untap 2
+next
+#upkeep 2
+next
+#draw 2
+next
+#main 2
+next
+#combatbegin 2
+next
+#attackers 2
+1250
+next
+#blockers 2
+next
+#combatdamage 2
+next
+#endofcombat 2
+1250
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1171
+manapool:{0}
+life:20
+[PLAYER2]
+inplay:1250
+life:20
+[END]

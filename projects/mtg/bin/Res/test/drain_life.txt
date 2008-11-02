@@ -1,0 +1,22 @@
+#Testing Drain life on a brass man
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1156
+manapool:{B}{B}{B}{B}{B}
+[PLAYER2]
+inplay:1099
+life:20
+[DO]
+1156
+1099
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1156
+life:23
+manapool:{0}
+[PLAYER2]
+graveyard:1099
+life:20
+[END]

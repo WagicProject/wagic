@@ -1,0 +1,18 @@
+#TestingLegendary with Ascendant Evincar
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:106525
+inplay:106525
+manapool:{4}{B}{B}
+[PLAYER2]
+[DO]
+106525
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:106525,106525
+manapool:{0}
+[PLAYER2]
+life:20
+[END]

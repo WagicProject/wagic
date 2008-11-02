@@ -1,0 +1,24 @@
+#Testing First Strike : white knight and grizzly bears attacksavannah lions
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1370, 1250
+[PLAYER2]
+life:20
+inplay:1365
+[DO]
+1370
+1250
+next
+1365
+next
+next
+1370
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1370,1250
+[PLAYER2]
+graveyard:1365
+life:18
+[END]

@@ -1,0 +1,37 @@
+#If Castle goes to graveyard, creatures should lose their bonus
+#Player one plays a disenchent on castle, then attacks with a 3/3 creature (hill giant)
+# will the grizzly bears (2/2, 2/4 with castle) survive ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1299
+hand:1343
+manapool:{1}{W}
+[PLAYER2]
+inplay:1334,1250
+[DO]
+1343
+1334
+next
+#combat beong
+next
+#attackers
+1299
+next
+#blockers
+1250
+next
+#combatdamage
+next
+#combatend
+1334
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1299
+graveyard:1343
+life:20
+[PLAYER2]
+graveyard:1334,1250
+life:20
+[END]

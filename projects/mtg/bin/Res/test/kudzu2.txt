@@ -1,0 +1,35 @@
+#Testing Kudzu's effects
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1254
+inplay:1386
+manapool:{1}{G}{G}
+[PLAYER2]
+inplay:1391
+hand:1308
+[DO]
+1254
+1391
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main 1
+1391
+1386
+1308
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1386,1254
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:1391
+inplay:1308
+life:20
+[END]

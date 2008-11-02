@@ -1,0 +1,21 @@
+#Does lord of the pit deal damage only during my untap phases ?
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1166,1144
+[PLAYER2]
+[DO]
+eot
+#player2's turn
+eot
+#player 1's turn
+eot
+#player2's turn
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:1166,1144
+life:13
+[PLAYER2]
+life:20
+[END]

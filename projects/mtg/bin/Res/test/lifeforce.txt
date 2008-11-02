@@ -1,0 +1,27 @@
+#Testing lifeforce on bad moon
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1144
+manapool:{1}{B}
+[PLAYER2]
+inplay:1256
+manapool:{G}{G}
+[DO]
+1144
+no
+yes
+1256
+1144
+endinterrupt
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1144
+manapool:{0}
+life:20
+[PLAYER2]
+inplay:1256
+manapool:{0}
+life:20
+[END]

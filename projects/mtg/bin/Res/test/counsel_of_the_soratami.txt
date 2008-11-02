@@ -1,0 +1,19 @@
+#Does Counsel of the soratami draw 2 cards ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:134757
+library:134758,135185,129882
+manapool:{2}{U}
+[PLAYER2]
+[DO]
+134757
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:134757
+hand:129882,135185
+library:134758
+manapool:{0}
+[PLAYER2]
+[END]

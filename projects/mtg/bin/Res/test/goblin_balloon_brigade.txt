@@ -1,0 +1,23 @@
+#Testing That Goblin Balloon brigade doesn't have flight by default
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1295
+[PLAYER2]
+life:20
+inplay:1302
+[DO]
+1295
+next
+1302
+next
+next
+1302
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:1295
+[PLAYER2]
+graveyard:1302
+life:20
+[END]

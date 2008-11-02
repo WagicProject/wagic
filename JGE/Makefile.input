@@ -1,0 +1,17 @@
+PSPSDK=$(shell psp-config --pspsdk-path)
+PSPDIR=$(shell psp-config --psp-prefix)
+TARGET_LIB = libjinput.a
+OBJS = src/JInputSystem.o
+
+INCDIR = include/psp include/psp/freetype2
+LIBDIR = lib/psp
+
+CFLAGS = -O2 -G0 -Wall
+
+LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
+
+include $(PSPSDK)/lib/build.mak
+
+install: $(TARGET_LIB)
+	@cp libjinput.a  lib/psp
+	@echo "Done"

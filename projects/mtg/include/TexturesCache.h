@@ -1,0 +1,58 @@
+#ifndef _TEXTURES_CACHE_H
+#define _TEXTURES_CACHE_H
+
+#define MAX_CACHE_OBJECTS 100
+#define CACHE_SIZE_PIXELS 1000000
+
+#define CACHE_CARD 1
+#define CACHE_THUMB 2
+
+#include <JGE.h>
+#include <JTypes.h>
+
+
+#include "MTGDeck.h"
+
+class MTGCard;
+
+class CardTexture{
+ protected:
+  int mtgid;
+
+  JTexture* tex;
+  JQuad* quad;
+ public:
+	int lastTime;
+	int type;
+	int nbpixels;
+  int getId();
+
+  JQuad * getQuad();
+
+  CardTexture(MTGCard * card, int type);
+  ~CardTexture();
+};
+
+
+class TexturesCache{
+ protected:
+  int lastTime;
+  int nb_textures;
+  int delete_previous;
+	int totalsize;
+  CardTexture * cache[MAX_CACHE_OBJECTS];
+ public:
+  int isInCache(MTGCard * card, int type=CACHE_CARD);
+  TexturesCache();
+	~TexturesCache();
+	int getOldestQuad();
+	void removeQuad(int id);
+	int cleanup();
+  int getCacheById(int id, int type=CACHE_CARD);
+  JQuad * getQuad(MTGCard * card, int type=CACHE_CARD);
+	JQuad * getThumb(MTGCard * card){return getQuad(card, CACHE_THUMB);};
+
+};
+
+
+#endif

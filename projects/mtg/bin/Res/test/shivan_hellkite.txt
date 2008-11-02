@@ -1,0 +1,34 @@
+#Does Shivan Hellkite ability tap it ? It shouldn't
+#trying its ability on a flying 2/2 creature
+[INIT]
+COMBATBEGIN
+[PLAYER1]
+inplay:130538
+manapool:{R}{R}{R}{R}
+[PLAYER2]
+inplay:129471
+[DO]
+130538
+129471
+130538
+129471
+next
+#attackers
+130538
+next
+#combat blockers
+129471
+#Actually this one should be dead...
+next
+#damages
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:130538
+manapool:{0}
+[PLAYER2]
+life:15
+graveyard:129471
+[END]

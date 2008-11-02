@@ -1,0 +1,20 @@
+#Testing Animate dead on a brass man in opponent's graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1143
+manapool:{B}{R}
+[PLAYER2]
+graveyard:1099
+[DO]
+1143
+1099
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1143,1099
+manapool:{0}
+life:20
+[PLAYER2]
+life:20
+[END]

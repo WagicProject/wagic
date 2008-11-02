@@ -1,0 +1,142 @@
+#include "../include/debug.h"
+#include "../include/Damage.h"
+#include "../include/MTGCardInstance.h"
+#include "../include/Counters.h"
+
+Damage::Damage(int id, MTGCardInstance * _source, Damageable * _target): Interruptible(id){
+	init(_source, _target, _source->getPower());
+}
+
+Damage::Damage(int id, MTGCardInstance * _source, Damageable * _target, int _damage): Interruptible(id){
+	init(_source, _target, _damage);
+}
+
+void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage){
+	target = _target;
+	source = _source;
+
+	
+	if (_damage < 0) _damage = 0; //Negative damages cannot happen
+	damage = _damage;
+	mHeight = 40;
+	type = ACTION_DAMAGE;
+}
+
+int Damage::resolve(){
+	if (damage <0) damage = 0; //Negative damages cannot happen
+	if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
+		MTGCardInstance * _target = (MTGCardInstance *)target;
+		if ((_target)->protectedAgainst(source)) return 0;
+		// Damage for WITHER on creatures
+		if (source->has(WITHER)){
+			for (int i = 0; i < damage; i++){
+				_target->counters->addCounter(-1, -1);
+			}
+			return 1;
+		}
+		_target->doDamageTest = 1;
+	}
+	
+	int a = target->dealDamage(damage);
+	return a;
+}
+
+void Damage::Render(){
+		JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+		mFont->SetBase(0);	
+		mFont->SetScale(0.75);
+		char buffer[200];
+		sprintf(buffer, "Does %i damage to", damage);
+		mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+ JRenderer * renderer = JRenderer::GetInstance();
+  JQuad * quad = source->getThumb();
+	if (quad){
+		float scale = 30 / quad->mHeight;
+		renderer->RenderQuad(quad, x  , y , 0,scale,scale);
+	}else{
+		//TODO
+	}
+  quad = target->getIcon();
+	if (quad){
+		float scale = 30 / quad->mHeight;
+		renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
+	}else{
+		//TODO
+	}
+
+}
+
+DamageStack::DamageStack(int id, GameObserver * _game):GuiLayer(id, _game), Interruptible(id){
+	currentState = -1;
+	type = ACTION_DAMAGES;
+}
+
+int DamageStack::CombatDamages(){
+	CombatDamages(1);
+	CombatDamages(0);
+	return 1;
+}
+
+int DamageStack::CombatDamages(int strike){
+	mHeight = 0;
+	MTGInPlay * attackers = game->currentPlayer->game->inPlay;
+	MTGInPlay * defensers = game->opponent()->game->inPlay;
+
+	MTGCardInstance * attacker = attackers->getNextAttacker(NULL);
+	while (attacker != NULL){
+		int nbdefensers = defensers->nbDefensers(attacker);
+		if ((!strike && !attacker->has(FIRSTSTRIKE)) || (strike && attacker->has(FIRSTSTRIKE)) || attacker->has(DOUBLESTRIKE)){
+			if (nbdefensers == 0){
+				Damage * damage = NEW Damage (mCount, attacker, game->opponent());
+				Add(damage);
+			}else if (nbdefensers == 1){
+				Damage * damage = NEW Damage (mCount, attacker, defensers->getNextDefenser(NULL, attacker));
+				Add(damage);
+			}else{
+				//TODO Fetch list of defensers and allow user to choose targets
+				Damage * damage = NEW Damage (mCount, attacker, defensers->getNextDefenser(NULL, attacker));
+				Add(damage);
+			}
+		}
+		MTGCardInstance * defenser = defensers->getNextDefenser(NULL, attacker);
+		while (defenser != NULL){
+			if ((!strike && !defenser->has(FIRSTSTRIKE)) || (strike && defenser->has(FIRSTSTRIKE)) || defenser->has(DOUBLESTRIKE)){
+				Damage * damage = NEW Damage (mCount,defenser, attacker);
+				Add(damage);
+			}
+			defenser = defensers->getNextDefenser(defenser, attacker);
+		}
+		attacker = attackers->getNextAttacker(attacker);
+	}
+
+	for (int i = 0; i < mCount; i++){
+		Damage * damage = (Damage*)mObjects[i];
+		mHeight += damage->mHeight;
+	}
+
+	return mCount;
+}
+
+int DamageStack::resolve(){
+	for (int i = mCount-1; i>= 0; i--){
+		Damage * damage = (Damage*)mObjects[i];
+		damage->resolve();
+	}
+	for (int i = mCount-1; i>= 0; i--){
+		Damage * damage = (Damage*)mObjects[i];
+		damage->target->afterDamage();
+	}
+	return 1;
+}
+
+void DamageStack::Render(){
+	int currenty = y;
+	for (int i= 0; i < mCount; i++){
+		Damage * damage = (Damage*)mObjects[i];
+		damage->x = x;
+		damage->y = currenty;
+		currenty += damage->mHeight;
+		damage->Render();
+	}
+}
+

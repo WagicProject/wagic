@@ -1,0 +1,24 @@
+#Testing Volcanic Island
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1231
+manapool:{U}{U}{U}{W}{W}
+[PLAYER2]
+inplay:1389,1390,1391
+[DO]
+1231
+1389
+1390
+1231
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1231
+manapool:{0}
+life:18
+[PLAYER2]
+graveyard:1390,1389
+inplay:1391
+life:18
+[END]

@@ -1,0 +1,23 @@
+#Testing That Force of nature does 8 damage if GGGG is not paid
+[INIT]
+UNTAP
+[PLAYER1]
+life:20
+inplay:1245
+[PLAYER2]
+life:20
+[DO]
+next
+#upkeep 1
+next
+#draw 1
+next
+#main 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1245
+life:12
+[PLAYER2]
+life:20
+[END]

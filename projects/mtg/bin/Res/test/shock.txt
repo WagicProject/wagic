@@ -1,0 +1,19 @@
+#Testing Does shock really do 2 damages (against a /2 creature) ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:129732
+manapool:{R}
+[PLAYER2]
+inplay:129471
+[DO]
+129732
+129471
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:129732
+manapool:{0}
+[PLAYER2]
+graveyard:129471
+[END]

@@ -1,0 +1,17 @@
+#Testing That Ascendant Evincar and Goblin King don't conflict
+#we put 1/1 red goblins in play, they should stay 1/1
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1296,106525
+hand:1308
+manapool:{R}
+[PLAYER2]
+[DO]
+1308
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1296,106525,1308
+[PLAYER2]
+[END]

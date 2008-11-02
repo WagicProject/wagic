@@ -1,0 +1,26 @@
+#Testing That Force of nature accept GGGG to be paid
+[INIT]
+UNTAP
+[PLAYER1]
+life:20
+inplay:1245
+manapool:{G}{G}{G}{G}
+[PLAYER2]
+life:20
+[DO]
+next
+#upkeep
+1245
+next
+#draw
+next
+#firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1245
+life:20
+manapool:{0}
+[PLAYER2]
+life:20
+[END]

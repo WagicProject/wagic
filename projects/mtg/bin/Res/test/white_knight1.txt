@@ -1,0 +1,25 @@
+#Testing First Strike : erg raiders and grizzly attack white kinght.
+# White knight has protection from black and gets no damage
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1159, 1250
+[PLAYER2]
+life:20
+inplay:1370
+[DO]
+1159
+1250
+next
+1370
+next
+next
+1370
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1159,1250
+[PLAYER2]
+inplay:1370
+life:18
+[END]

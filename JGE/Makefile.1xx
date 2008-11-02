@@ -1,0 +1,32 @@
+PSPSDK=$(shell psp-config --pspsdk-path)
+PSPDIR=$(shell psp-config --psp-prefix)
+TARGET_LIB = libjge100.a
+OBJS = src/JApp.o src/JGBKFont.o \
+	src/JGE.o src/JGfx.o src/JGui.o src/JLBFont.o src/JSfx.o \
+	src/JGameObject.o src/JSpline.o src/JAnimator.o \
+	src/JResourceManager.o \
+	src/JFileSystem.o \
+	src/JParticle.o src/JParticleEmitter.o src/JParticleEffect.o src/JParticleSystem.o \
+	src/unzip/ioapi.o src/unzip/mztools.o src/unzip/unzip.o \
+	src/JSprite.o src/Vector2D.o \
+	src/tinyxml/tinystr.o src/tinyxml/tinyxml.o \
+	src/tinyxml/tinyxmlparser.o src/tinyxml/tinyxmlerror.o \
+	src/main.o src/vram.o \
+	src/JAudio.o src/JCooleyesMP3.o \
+	src/decoder_prx.o \
+	src/Encoding.o src/JTTFont.o \
+	src/JMD2Model.o src/JOBJModel.o \
+	
+	
+INCDIR = include/psp include/psp/freetype2
+LIBDIR = lib/psp
+
+CFLAGS = -O2 -G0 -Wall
+
+LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
+
+include $(PSPSDK)/lib/build.mak
+
+install: $(TARGET_LIB)
+	@cp libjge100.a  lib/psp
+	@echo "Done"

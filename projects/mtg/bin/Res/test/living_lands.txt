@@ -1,0 +1,17 @@
+#Do Living Land give summoning sickness to lands ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1259
+hand:1386
+[PLAYER2]
+[DO]
+1386
+1386
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1259,1386
+manapool:{G}
+[PLAYER2]
+[END]

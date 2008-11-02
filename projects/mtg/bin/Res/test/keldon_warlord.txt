@@ -1,0 +1,81 @@
+#Testing That Keldon Warlord's power and toughness change as expected
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1308,1301
+[PLAYER2]
+life:20
+hand:1229
+inplay:1393
+[DO]
+1308
+1301
+next
+#blockers 
+next
+#combatdamage
+next
+#endofcombat
+next
+#main phase II 
+next
+#eot 
+next
+#cleanup
+next
+#untap 2
+next
+#upkeep 2
+next
+#draw 2
+next
+#firstmain 2
+1393
+1229
+1308
+next
+#combatbegin 2
+next
+#combatattackers 2
+next
+#combatblockers 2
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#main phase II  2
+next
+#eot  2
+next
+#cleanup 2
+next
+#untap 
+next
+#upkeep 
+next
+#draw 
+next
+#firstmain 
+next
+#combatbegin 
+next
+#combatattackers
+1301
+next
+#combat blocker
+next
+#combat damage
+next
+#combat end
+1308
+[ASSERT]
+COMBATEND
+[PLAYER1]
+hand:1308
+inplay:1301
+[PLAYER2]
+graveyard:1229
+inplay:1393
+life:16
+[END]

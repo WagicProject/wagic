@@ -1,0 +1,20 @@
+#Is Lord of the pit a black creature ?
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1166,1144
+[PLAYER2]
+[DO]
+1166
+next
+next
+next
+1166
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1166,1144
+life:20
+[PLAYER2]
+life:12
+[END]

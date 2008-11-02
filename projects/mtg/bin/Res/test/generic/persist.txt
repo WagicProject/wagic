@@ -1,0 +1,41 @@
+#Testing Persist
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand: 1241
+manapool:{4}{G}{G}
+[PLAYER2]
+inplay:147437
+[DO]
+1241
+147437
+eot
+#untap 2
+next
+#upkeep 2
+next
+#draw2
+next
+#main2
+next
+#comba begins 2
+next
+#attackers
+147437
+next
+#blockers
+next
+#damages
+next
+#endofcombat
+1241
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:19
+graveyard:1241
+manapool:{0}
+[PLAYER2]
+inplay:147437
+life:20
+[END]

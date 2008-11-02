@@ -1,0 +1,88 @@
+/*
+*  Wagic, The Homebrew ?! is licensed under the BSD license
+*  See LICENSE in the Folder's root
+*  http://wololo.net/wagic/
+*/
+
+
+
+
+
+#ifndef _GAMEAPP_H_
+#define _GAMEAPP_H_
+
+ 
+#include "../include/Logger.h"
+
+
+#include <JApp.h>
+#include <JGE.h>
+#include <JSprite.h>
+#include <JLBFont.h>
+#include <hge/hgeparticle.h>
+
+
+#include <JResourceManager.h>
+
+
+#include "../include/GameState.h"
+
+#include "../include/MTGDeck.h"
+#include "../include/MTGCard.h"
+#include "../include/MTGGameZones.h"
+
+#include "../include/TexturesCache.h"
+
+#define MAX_STATE			6
+
+
+#define PLAYER_TYPE_CPU 0
+#define PLAYER_TYPE_HUMAN 1
+#define PLAYER_TYPE_TESTSUITE 2
+
+
+class MTGAllCards;
+class TexturesCache;
+
+
+
+
+
+class GameApp:	public JApp
+{
+
+private:
+  bool mShowDebugInfo;
+  int mScreenShotCount;
+
+  GameState* mCurrentState;
+  GameState* mNextState;
+  GameState* mGameStates[MAX_STATE];
+  
+
+public:
+	int players[2];
+  MTGAllCards * collection;
+  TexturesCache *  cache; 
+
+	GameApp();
+	virtual ~GameApp();
+	
+	virtual void Create();
+	virtual void Destroy();
+	virtual void Update();
+	virtual void Render();
+	virtual void Pause();
+	virtual void Resume();
+
+	void LoadGameStates();
+	void SetNextState(int state);
+	static JResourceManager * CommonRes;
+	static hgeParticleSystem * Particles[6];
+	static int HasMusic;
+
+};
+
+
+
+#endif

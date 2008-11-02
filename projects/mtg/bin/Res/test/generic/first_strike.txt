@@ -1,0 +1,21 @@
+#Testing First Strike : white knight against grizzly bears
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1370
+[PLAYER2]
+inplay:1250
+[DO]
+1370
+next
+1250
+next
+next
+1370
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1370
+[PLAYER2]
+graveyard:1250
+[END]

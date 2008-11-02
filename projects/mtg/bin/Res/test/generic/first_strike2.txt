@@ -1,0 +1,21 @@
+#Testing First Strike : white knight against Fire Elemental : the white knight souldn't survive
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1370
+[PLAYER2]
+inplay:1290
+[DO]
+1370
+next
+1290
+next
+next
+1370
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:1370
+[PLAYER2]
+inplay:1290
+[END]

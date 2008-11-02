@@ -1,0 +1,62 @@
+#Testing That Goblin Balloon brigade doesn't have flight by default after one turn
+[INIT]
+CLEANUP
+[PLAYER1]
+inplay:1295
+[PLAYER2]
+life:20
+inplay:1302
+[DO]
+next
+#untap 2
+next
+#upkeep 2
+next
+#draw 2
+next
+#main 2
+next
+#combatbegin 2
+next
+#attackers 2
+next
+#blockers 2
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#main phase II 2
+next
+#eot 2
+next
+#cleanup2
+next
+#untap
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combatbegin
+next
+#combatattackers
+1295
+next
+#blockers
+1302
+next
+#damage
+next
+#end
+1302
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:1295
+[PLAYER2]
+graveyard:1302
+life:20
+[END]

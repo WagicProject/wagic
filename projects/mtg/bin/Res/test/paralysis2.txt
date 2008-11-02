@@ -1,0 +1,59 @@
+#Testing That a Paralysed creature untaps if paralysis is removed
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1171
+manapool:{B}
+[PLAYER2]
+life:20
+hand:1343
+inplay:1250,129682,129681
+[DO]
+#Player 1 turn
+1171
+1250
+eot
+#Player 2 turn
+#untap 2
+next
+#upkeep 2
+next
+#draw 2
+next
+#main 2
+129682
+129681
+1343
+1171
+eot
+eot
+#Player2 turn
+#untap 2
+next
+#upkeep 2
+next
+#draw 2
+next
+#main 2
+next
+#combatbegin
+next
+#attackers
+1250
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:1171
+manapool:{0}
+life:18
+[PLAYER2]
+graveyard:1343
+inplay:1250,129682,129681
+life:20
+[END]

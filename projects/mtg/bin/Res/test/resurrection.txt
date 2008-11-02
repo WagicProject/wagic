@@ -1,0 +1,21 @@
+#Testing resurrection on a brass man in my graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1360
+graveyard:1099
+manapool:{2}{W}{W}
+[PLAYER2]
+[DO]
+1360
+1099
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1099
+graveyard:1360
+manapool:{0}
+life:20
+[PLAYER2]
+life:20
+[END]
