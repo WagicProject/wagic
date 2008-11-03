@@ -64,9 +64,9 @@ void AIStats::updateStats(){
 	save();
 }
 
-bool AIStats::isInTop(MTGCardInstance * card,int max, bool tooSmallCountsForTrue ){
+bool AIStats::isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue ){
 	if (stats.size()<max) return tooSmallCountsForTrue;
-	int n = 0;
+	unsigned int n = 0;
 	MTGCard * source = card->model;
   int id = source->getMTGId();
 	list<AIStat *>::iterator it;

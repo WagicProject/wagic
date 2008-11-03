@@ -35,7 +35,7 @@ public:
 	void load(char * filename);
 	void save();
 	AIStat * find(MTGCard * card);
-	bool isInTop(MTGCardInstance * card,int max, bool tooSmallCountsForTrue = true );
+	bool isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue = true );
 	void updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, float multiplier = 1.0);
 };
 
