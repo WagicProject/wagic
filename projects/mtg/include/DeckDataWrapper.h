@@ -13,7 +13,7 @@ class MTGDeck;
 
 class Cmp1 { // compares cards by their name
    public:
-      bool operator()(MTGCard * card1, MTGCard * card2) {
+      bool operator()(MTGCard * card1, MTGCard * card2) const {
 				if (!card2) return true;
 				if (!card1) return false;
 				string name1 = card1->name;

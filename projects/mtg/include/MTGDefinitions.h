@@ -69,6 +69,7 @@ static int _b[7] = {20,	0,		140,15,	50,255,128};
 #define SHROUD 14
 #define VIGILANCE 15
 #define DEFENSER 16
+#define DEFENDER 16
 #define BANDING 17
 #define PROTECTIONGREEN 18
 #define PROTECTIONBLUE 19

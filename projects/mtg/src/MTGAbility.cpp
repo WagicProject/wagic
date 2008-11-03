@@ -70,6 +70,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
 		TargetChooser * tc = NULL;
 		int doTap = 0;
+		string lordType = "";
 
 		//Tap in the cost ?
 		if (s.find("{t}") != string::npos) doTap = 1;
@@ -84,6 +85,16 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
 		}
 
+		//Lord
+		found = s.find("lord(");
+		if (found != string::npos){
+			if (dryMode) return BAKA_EFFECT_GOOD;
+			unsigned int end = s.find(")", found+5);
+			if (end != string::npos){ 
+				lordType = s.substr(found+5,end-found-5).c_str();
+			}
+		}
+
 		//Champion. Very basic, needs to be improved !
 		found = s.find("champion(name:");
 		if (found != string::npos){
@@ -96,16 +107,24 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 				continue;
 			}
 		}
+
+
 		//Regeneration
 		found = s.find("}:regenerate");
 		if (found != string::npos){
 					if (dryMode) return BAKA_EFFECT_GOOD;
 					ManaCost * cost = ManaCost::parseManaCost(s);
-					if (tc){
-						//TODO
+
+					if (lordType.size() > 0){
+						game->addObserver(NEW ALord(id,card,lordType.c_str(),0,0,-1,cost));
 					}else{
-						game->addObserver(NEW AStandardRegenerate(id, card, target, cost));
-						//TODO death ward !
+
+						if (tc){
+							//TODO
+						}else{
+							game->addObserver(NEW AStandardRegenerate(id, card, target, cost));
+							//TODO death ward !
+						}
 					}
 					result++;
 					continue;
@@ -172,10 +191,14 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 					}
 					if (dryMode) return BAKA_EFFECT_GOOD;
 					if (tc){
-						//TODO
+						//TODO ?
 					}else{
-						delete cost;
-						game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);
+						if (cost->getConvertedCost() == 0){
+							delete cost;
+							game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);
+						}else{
+							game->addObserver(NEW ADrawer(id,card,cost,nbcards,doTap));
+						}
 					}
 					result++;
 					continue;
@@ -205,18 +228,22 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 					}		 
 					ManaCost * cost = ManaCost::parseManaCost(s);
 
-					if(tc){
-						game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc));
+					if (lordType.size() > 0){
+						game->addObserver(NEW ALord(id,card,lordType.c_str(),power,toughness));
 					}else{
-						if (cost->getConvertedCost() == 0){
-							delete cost;
-							if(card->hasType("enchantment")){
-								game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
-							}else{
-								game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
-							}
+						if(tc){
+							game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc));
 						}else{
-							game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
+							if (cost->getConvertedCost() == 0){
+								delete cost;
+								if(card->hasType("enchantment")){
+									game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
+								}else{
+									game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
+								}
+							}else{
+								game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
+							}
 						}
 					}
 					result++;
@@ -239,26 +266,40 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 			continue;
 		}
 
-		//Gain Ability
+		//Gain/loose Ability
 		for (int j = 0; j < NB_BASIC_ABILITIES; j++){
 			found = s.find(MTGBasicAbilities[j]);
 			if (found!= string::npos){
+				int modifier = 1;
+				if (found > 0 && s[found-1] == '-') modifier = 0;
 				if (dryMode){
-					return BAKA_EFFECT_GOOD; //TODO improve with walls
+					if (j == DEFENDER){
+						if (modifier == 1) return BAKA_EFFECT_BAD;
+						return BAKA_EFFECT_GOOD;
+					}else{
+						if (modifier == 1) return BAKA_EFFECT_GOOD;
+						return BAKA_EFFECT_BAD;
+					}
 				}
 					ManaCost * cost = ManaCost::parseManaCost(s);
-					if (tc){
-						game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc));
+
+					if (lordType.size() > 0){
+						game->addObserver(NEW ALord(id,card,lordType.c_str(),0,0,j));
 					}else{
-						if (cost->getConvertedCost() == 0){
-							delete cost;
-							if(card->hasType("enchantment")){
-								game->addObserver(NEW ABasicAbilityModifier(id, card,target, j));
-							}else{
-								game->addObserver(NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,1));
-							}
+
+						if (tc){
+							game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc, modifier));
 						}else{
-							game->addObserver(NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, cost,j));
+							if (cost->getConvertedCost() == 0){
+								delete cost;
+								if(card->hasType("enchantment")){
+									game->addObserver(NEW ABasicAbilityModifier(id, card,target, j,modifier));
+								}else{
+									game->addObserver(NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier));
+								}
+							}else{
+								game->addObserver(NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, cost,j,modifier));
+							}
 						}
 					}
 					result++;
@@ -285,13 +326,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	case 1092: //Aladdin's lamp
 		{
 			AAladdinsLamp * ability = NEW AAladdinsLamp(_id, card);
-			game->addObserver(ability);
-			break;
-		}
-	case 1093: //Aladdin's Ring
-		{
-			int cost[] = {MTG_COLOR_ARTIFACT, 8};
-			ADamager * ability = NEW ADamager(_id, card, NEW ManaCost(cost,1), 4);
 			game->addObserver(ability);
 			break;
 		}
@@ -502,12 +536,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(ability);
 			break;
     }
-	case 1111: //HelmOfChtazuk
-		{
-			int cost[] = {MTG_COLOR_ARTIFACT, 1};
-			game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, BANDING, NEW ManaCost(cost, 1)));
-			break;
-		}
 	case 1112: //Howling Mine
 		{
 			game->addObserver(NEW AHowlingMine(_id, card));
@@ -550,11 +578,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	case 1118: //Jandors Sandlebag
 		{
 			game->addObserver(NEW AJandorsSandlebag( _id, card));
-			break;
-		}
-	case 1119: //Jayemdae Tome
-		{
-			game->addObserver(NEW AJayemdaeTome(_id, card));
 			break;
 		}
 	case 1121: //Kormus Bell
@@ -668,12 +691,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(ability);
 			break;
 		}
-	case 1188: //Zombie Master
-		{
-			int cost[] = {MTG_COLOR_BLACK, 1};
-			game->addObserver( NEW ALord(_id, card, "zombie", 0 ,0, SWAMPWALK, NEW ManaCost(cost, 1)));
-			break;
-		}
 	case 1143: //Animate Dead
 		{
 			game->addObserver(NEW AAnimateDead(_id, card, card->target));
@@ -707,11 +724,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		{
 			AErgRaiders* ability = NEW AErgRaiders(_id, card);
 			game->addObserver(ability);
-			break;
-		}
-	case 1296: //Goblin King
-		{
-			game->addObserver( NEW ALord(_id, card, "goblin", 1 ,1, MOUNTAINWALK));
 			break;
 		}
 	case 1164: //Howl from beyond
@@ -958,11 +970,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AUntaper(_id, card, NEW ManaCost(), tc));
 			break;
 		}
-	case 1206: //Lord Of Atlantis
-		{
-			game->addObserver( NEW ALord(_id, card, "merfolk", 1 , 1, ISLANDWALK));
-			break;
-		}
 	case 1262: //Regeneration
 		{
 			int cost[] = {MTG_COLOR_GREEN, 1};
@@ -1112,11 +1119,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			}
 			break;
 		}
-	case 1327: //Animate Wall
-		{
-			game->addObserver(NEW ABasicAbilityModifier( _id,card, card->target, DEFENSER, 0));
-			break;
-		}
 	case 1328: //Armageddon
 		{
 			destroyAllFromTypeInPlay("land", card);
@@ -1151,11 +1153,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	case 1346: //Green Ward
 		{
 			game->addObserver(NEW AProtectionFrom( _id,card, card->target, MTG_COLOR_GREEN));
-			break;
-		}
-	case 1349: //Holy Armor
-		{
-			game->addObserver(NEW APowerToughnessModifier(_id, card, card->target, 0, 2));
 			break;
 		}
 	case 1352: //Karma

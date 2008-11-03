@@ -1,9 +1,12 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
+#if defined (WIN32) || defined (LINUX)
+#define TESTSUITE 1
+#endif
+
 #ifdef _DEBUG
 #define NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
-#define TESTSUITE 1
 #else
 #define NEW new
 #endif

@@ -22,6 +22,20 @@ Generic classes
 */
 
 
+//Drawer, allows to draw a card for a cost:
+
+class ADrawer:public ActivatedAbility{
+public:
+	int nbcards;
+	ADrawer(int _id, MTGCardInstance * card,ManaCost * _cost, int _nbcards = 1, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),nbcards(_nbcards){
+	}
+
+	int resolve(){
+		game->mLayers->stackLayer()->addDraw(source->controller(),nbcards);
+		return 1;
+	}
+};
+
 
 //Destroyer. TargetAbility
 class ADestroyer:public TargetAbility{
@@ -86,9 +100,10 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
 	public:
 	MTGCardInstance * mTargets[50];
 	int nbTargets;
+	int modifier;
 	int stateBeforeActivation[50];
 	int ability;
-	ABasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, int _ability, ManaCost * _cost, TargetChooser * _tc = NULL): TargetAbility(_id,_source,_cost),ability(_ability){
+	ABasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, int _ability, ManaCost * _cost, TargetChooser * _tc = NULL, int _modifier = 1): TargetAbility(_id,_source,_cost),ability(_ability), modifier(_modifier){
 		nbTargets = 0;
 		tc = _tc;
 		if (!tc) tc = NEW CreatureTargetChooser(_source);
@@ -113,7 +128,7 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
 		if (mTarget){
 			mTargets[nbTargets] = mTarget;
 			stateBeforeActivation[nbTargets] = mTarget->basicAbilities[ability];
-			mTarget->basicAbilities[ability] = 1;
+			mTarget->basicAbilities[ability] = modifier;
 			nbTargets++;
 		}
 		return 1;

@@ -1,0 +1,2525 @@
+[card]
+text=If you would draw a card, you may instead choose land or nonland and reveal cards from the top of your library until you reveal a card of the chosen kind. Put that card into your hand and put all other cards revealed this way on the bottom of your library in any order.
+id=130483
+name=Abundance
+rarity=R
+color=Green
+type=Enchantment
+mana={2}{G}{G}
+[/card]
+[card]
+text=When Academy Researchers comes into play, you may put an Aura card from your hand into play attached to Academy Researchers.
+id=132072
+name=Academy Researchers
+rarity=U
+color=Blue
+type=Creature
+mana={1}{U}{U}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {W} or {U} to your mana pool. Adarkar Wastes deals 1 damage to you.
+id=129458
+name=Adarkar Wastes
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Look at target player's hand and choose two cards from it. Put them on top of that player's library in any order.
+id=135228
+name=Agonizing Memories
+rarity=U
+color=Black
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text={3}: Target player puts the top three cards of his or her library into his or her graveyard.
+id=129913
+name=Ambassador Laquatus
+rarity=R
+color=Blue
+type=Legendary Creature
+mana={1}{U}{U}
+power=1
+subtype=Merfolk Wizard
+toughness=3
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy comes into play, you gain 3 life.
+id=129465
+name=Angel of Mercy
+rarity=U
+color=White
+type=Creature
+mana={4}{W}
+power=3
+subtype=Angel
+toughness=3
+[/card]
+[card]
+text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
+id=129710
+name=Angelic Chorus
+rarity=R
+color=White
+type=Enchantment
+mana={3}{W}{W}
+[/card]
+[card]
+text=Whenever a player plays a white spell, you may gain 1 life.
+id=129466
+name=Angel's Feather
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;
+id=130530
+name=Arcane Teachings
+rarity=U
+color=Red
+type=Enchantment
+mana={2}{R}
+subtype=Aura
+[/card]
+[card]
+text={T}: Draw three cards.     {2}{U}{U}: Return Arcanis the Omnipotent to its owner's hand.
+id=106426
+name=Arcanis the Omnipotent
+rarity=R
+color=Blue
+type=Legendary Creature
+mana={3}{U}{U}{U}
+power=3
+subtype=Wizard
+toughness=4
+[/card]
+[card]
+text=Destroy target tapped creature.
+id=135194
+name=Assassinate
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Gain control of target Aura that's attached to a permanent. Attach it to another permanent it can enchant.
+id=130976
+name=Aura Graft
+rarity=U
+color=Blue
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Artifact and enchantment spells your opponents play cost {2} more to play.     Sacrifice Aura of Silence: Destroy target artifact or enchantment.
+id=132127
+name=Aura of Silence
+rarity=U
+color=White
+type=Enchantment
+mana={1}{W}{W}
+[/card]
+[card]
+text=If an opponent controls at least four more creatures than you, Avatar of Might costs {6} less to play.     Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=135249
+name=Avatar of Might
+rarity=R
+color=Green
+type=Creature
+mana={6}{G}{G}
+power=8
+subtype=Avatar
+toughness=8
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)   When Aven Cloudchaser comes into play, destroy target enchantment.
+id=129470
+name=Aven Cloudchaser
+rarity=C
+color=White
+type=Creature
+mana={3}{W}
+power=2
+subtype=Bird Soldier
+toughness=2
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Aven Fisher is put into a graveyard from play, you may draw a card.
+id=130985
+name=Aven Fisher
+rarity=C
+color=Blue
+type=Creature
+mana={3}{U}
+power=2
+subtype=Bird Soldier
+toughness=2
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{U}: Target player reveals the top card of his or her library.
+id=129473
+name=Aven Windreader
+rarity=C
+color=Blue
+type=Creature
+mana={3}{U}{U}
+power=3
+subtype=Bird Soldier Wizard
+toughness=3
+[/card]
+[card]
+text={X}{W}, {T}: Ballista Squad deals X damage to target attacking or blocking creature.
+id=129477
+name=Ballista Squad
+rarity=U
+color=White
+type=Creature
+mana={3}{W}
+power=2
+subtype=Human Rebel
+toughness=2
+[/card]
+[card]
+text=Prevent the next 1 damage that would be dealt to target creature or player this turn.     Draw a card.
+id=132106
+name=Bandage
+rarity=C
+color=White
+type=Instant
+mana={W}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {R} or {W} to your mana pool. Battlefield Forge deals 1 damage to you.
+id=129479
+name=Battlefield Forge
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Beacon of Destruction deals 5 damage to target creature or player. Shuffle Beacon of Destruction into its owner's library.
+id=135262
+name=Beacon of Destruction
+rarity=R
+color=Red
+type=Instant
+mana={3}{R}{R}
+[/card]
+[card]
+text=Double target player's life total. Shuffle Beacon of Immortality into its owner's library.
+id=130553
+name=Beacon of Immortality
+rarity=R
+color=White
+type=Instant
+mana={5}{W}
+[/card]
+[card]
+text=Put target artifact or creature card in a graveyard into play under your control. Shuffle Beacon of Unrest into its owner's library.
+id=135270
+name=Beacon of Unrest
+rarity=R
+color=Black
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
+id=135267
+name=Blanchwood Armor
+rarity=U
+color=Green
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+[/card]
+[card]
+text=Blaze deals X damage to target creature or player.
+id=129484
+name=Blaze
+rarity=U
+color=Red
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
+id=129709
+name=Bloodfire Colossus
+rarity=R
+color=Red
+type=Creature
+mana={6}{R}{R}
+power=6
+subtype=Giant
+toughness=6
+[/card]
+[card]
+text=Bloodrock Cyclops attacks each turn if able.
+id=130384
+name=Bloodrock Cyclops
+rarity=C
+color=Red
+type=Creature
+mana={2}{R}
+power=3
+subtype=Cyclops
+toughness=3
+[/card]
+[card]
+text=When Bogardan Firefiend is put into a graveyard from play, it deals 2 damage to target creature.
+id=130534
+name=Bogardan Firefiend
+rarity=C
+color=Red
+type=Creature
+mana={2}{R}
+power=2
+subtype=Elemental Spirit
+toughness=1
+[/card]
+[card]
+text=Sacrifice Bottle Gnomes: You gain 3 life.
+id=129495
+name=Bottle Gnomes
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={3}
+power=1
+subtype=Gnome
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
+id=129496
+name=Brushland
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {W} or {B} to your mana pool. Caves of Koilos deals 1 damage to you.
+id=129497
+name=Caves of Koilos
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
+id=135261
+name=Cephalid Constable
+rarity=R
+color=Blue
+type=Creature
+mana={1}{U}{U}
+power=1
+subtype=Cephalid Wizard
+toughness=1
+[/card]
+[card]
+text={X}: Chimeric Staff becomes an X/X Construct artifact creature until end of turn.
+id=135254
+name=Chimeric Staff
+rarity=R
+color=Artifact
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Prevent all damage that would be dealt to Cho-Manno, Revolutionary.
+id=130554
+name=Cho-Manno, Revolutionary
+rarity=R
+color=White
+type=Legendary Creature
+mana={2}{W}{W}
+power=2
+subtype=Human Rebel
+toughness=2
+[/card]
+[card]
+text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool.     When Chromatic Star is put into a graveyard from play, draw a card.
+id=135279
+name=Chromatic Star
+rarity=U
+color=Artifact
+type=Artifact
+mana={1}
+[/card]
+[card]
+text={X}, {T}: Search your library for a creature card with converted mana cost X or less, reveal it, and put it into your hand. Then shuffle your library.
+id=135244
+name=Citanul Flute
+rarity=R
+color=Artifact
+type=Artifact
+mana={5}
+[/card]
+[card]
+text=When Civic Wayfinder comes into play, you may search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.
+id=130522
+name=Civic Wayfinder
+rarity=C
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Warrior Druid
+toughness=2
+[/card]
+[card]
+text=As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
+id=129501
+name=Clone
+rarity=R
+color=Blue
+type=Creature
+mana={3}{U}
+power=0
+subtype=Shapeshifter
+toughness=0
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Cloud Elemental can block only creatures with flying.
+id=129804
+name=Cloud Elemental
+rarity=C
+color=Blue
+type=Creature
+mana={2}{U}
+power=2
+subtype=Elemental
+toughness=3
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Cloud Sprite can block only creatures with flying.
+id=132069
+name=Cloud Sprite
+rarity=C
+color=Blue
+type=Creature
+mana={U}
+power=1
+subtype=Faerie
+toughness=1
+[/card]
+[card]
+text=Each creature gets +1/+1 for each other creature in play that shares a creature type with it. (For example, if a Goblin Warrior, a Goblin Scout, and a Zombie Goblin are in play, each gets +2/+2.)
+id=129502
+name=Coat of Arms
+rarity=R
+color=Artifact
+type=Artifact
+mana={5}
+[/card]
+[card]
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Colossus of Sardia doesn't untap during your untap step.     {9}: Untap Colossus of Sardia. Play this ability only during your upkeep.
+id=135268
+name=Colossus of Sardia
+rarity=R
+color=Artifact
+type=Artifact Creature
+mana={9}
+power=9
+subtype=Golem
+toughness=9
+[/card]
+[card]
+text=Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+id=130521
+name=Commune with Nature
+rarity=C
+color=Green
+type=Sorcery
+mana={G}
+[/card]
+[card]
+text=Sacrifice Composite Golem: Add {W}{U}{B}{R}{G} to your mana pool.
+id=135275
+name=Composite Golem
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={6}
+power=4
+subtype=Golem
+toughness=4
+[/card]
+[card]
+text=Put target attacking creature on the bottom of its owner's library. Its controller gains life equal to its toughness.
+id=130528
+name=Condemn
+rarity=U
+color=White
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Cone of Flame deals 1 damage to target creature or player, 2 damage to another target creature or player, and 3 damage to a third target creature or player.
+id=130535
+name=Cone of Flame
+rarity=U
+color=Red
+type=Sorcery
+mana={3}{R}{R}
+[/card]
+[card]
+text=Spend only black mana on X.     Consume Spirit deals X damage to target creature or player and you gain X life.
+id=129505
+name=Consume Spirit
+rarity=U
+color=Black
+type=Sorcery
+mana={X}{1}{B}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Whenever enchanted creature attacks or blocks, its controller loses 3 life.
+id=129590
+name=Contaminated Bond
+rarity=C
+color=Black
+type=Enchantment
+mana={1}{B}
+subtype=Aura
+[/card]
+[card]
+text=You may play land cards from your graveyard.
+id=129480
+name=Crucible of Worlds
+rarity=R
+color=Artifact
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Target opponent sacrifices a creature.
+id=129514
+name=Cruel Edict
+rarity=U
+color=Black
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
+text=Destroy target Plains or Island. Cryoclasm deals 3 damage to that land's controller.
+id=129909
+name=Cryoclasm
+rarity=U
+color=Red
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Destroy target green or white creature.
+id=129910
+name=Deathmark
+rarity=U
+color=Black
+type=Sorcery
+mana={B}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature doesn't untap during its controller's untap step.
+id=129521
+name=Dehydration
+rarity=C
+color=Blue
+type=Enchantment
+mana={3}{U}
+subtype=Aura
+[/card]
+[card]
+text=Tap all creatures without flying.
+id=135223
+name=Deluge
+rarity=U
+color=Blue
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=Whenever a player plays a black spell, you may gain 1 life.
+id=129523
+name=Demon's Horn
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=When Denizen of the Deep comes into play, return each other creature you control to its owner's hand.
+id=135250
+name=Denizen of the Deep
+rarity=R
+color=Blue
+type=Creature
+mana={6}{U}{U}
+power=11
+subtype=Serpent
+toughness=11
+[/card]
+[card]
+text=Search your library for a card and put that card into your hand. Then shuffle your library.
+id=129525
+name=Diabolic Tutor
+rarity=U
+color=Black
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text=Counter target spell. Look at the top four cards of your library, then put them back in any order.
+id=134749
+name=Discombobulate
+rarity=U
+color=Blue
+type=Instant
+mana={2}{U}{U}
+[/card]
+[card]
+text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
+id=135219
+name=Distress
+rarity=C
+color=Black
+type=Sorcery
+mana={B}{B}
+[/card]
+[card]
+text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from your graveyard to play.
+id=129880
+name=Doomed Necromancer
+rarity=R
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Human Cleric Mercenary
+toughness=2
+[/card]
+[card]
+text={3}, {T}: Double the amount of each type of mana in your mana pool.
+id=135243
+name=Doubling Cube
+rarity=R
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying into play. (It can't be blocked except by creatures with flying or reach.)
+id=143024
+name=Dragon Roost
+rarity=R
+color=Red
+type=Enchantment
+mana={4}{R}{R}
+[/card]
+[card]
+text=Whenever a player plays a red spell, you may gain 1 life.
+id=129527
+name=Dragon's Claw
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
+id=135246
+name=Dreamborn Muse
+rarity=R
+color=Blue
+type=Creature
+mana={2}{U}{U}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text={1}{R}: Target creature can't block Duct Crawler this turn.
+id=129579
+name=Duct Crawler
+rarity=C
+color=Red
+type=Creature
+mana={R}
+power=1
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
+id=135266
+name=Elven Riders
+rarity=U
+color=Green
+type=Creature
+mana={3}{G}{G}
+power=3
+subtype=Elf
+toughness=3
+[/card]
+[card]
+text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=129533
+name=Elvish Berserker
+rarity=C
+color=Green
+type=Creature
+mana={G}
+power=1
+subtype=Elf Berserker
+toughness=1
+[/card]
+[card]
+text={G}, {T}: You may put a creature card from your hand into play.
+id=129535
+name=Elvish Piper
+rarity=R
+color=Green
+type=Creature
+mana={3}{G}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
+text=Essence Drain deals 3 damage to target creature or player and you gain 3 life.
+id=135191
+name=Essence Drain
+rarity=C
+color=Black
+type=Sorcery
+mana={4}{B}
+[/card]
+[card]
+text=Return all creatures to their owners' hands.
+id=129541
+name=Evacuation
+rarity=R
+color=Blue
+type=Instant
+mana={3}{U}{U}
+[/card]
+[card]
+text=Faerie Conclave comes into play tapped.     {T}: Add {U} to your mana pool.     {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
+id=106531
+name=Faerie Conclave
+rarity=U
+color=Land
+type=Land
+[/card]
+[card]
+text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.
+id=135186
+name=Femeref Archers
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Archer
+toughness=2
+[/card]
+[card]
+text=When Festering Goblin is put into a graveyard from play, target creature gets -1/-1 until end of turn.
+id=129546
+name=Festering Goblin
+rarity=C
+color=Black
+type=Creature
+mana={B}
+power=1
+subtype=Zombie Goblin
+toughness=1
+[/card]
+[card]
+text=Counter target red or green spell.
+id=129908
+name=Flashfreeze
+rarity=U
+color=Blue
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=All creatures get +X/-X until end of turn.
+id=130542
+name=Flowstone Slide
+rarity=R
+color=Red
+type=Sorcery
+mana={X}{2}{R}{R}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Fog Elemental attacks or blocks, sacrifice it at end of combat.
+id=132073
+name=Fog Elemental
+rarity=U
+color=Blue
+type=Creature
+mana={2}{U}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Forbidding Watchtower comes into play tapped.     {T}: Add {W} to your mana pool.     {1}{W}: Forbidding Watchtower becomes a 1/5 white Soldier creature until end of turn. It's still a land.
+id=106428
+name=Forbidding Watchtower
+rarity=U
+color=Land
+type=Land
+[/card]
+[card]
+text={2}, {T}: You gain 1 life.
+id=135273
+name=Fountain of Youth
+rarity=U
+color=Artifact
+type=Artifact
+mana={0}
+[/card]
+[card]
+text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+id=129566
+name=Furnace of Rath
+rarity=R
+color=Red
+type=Enchantment
+mana={1}{R}{R}{R}
+[/card]
+[card]
+text=Creature spells can't be countered.
+id=129789
+name=Gaea's Herald
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}
+power=1
+subtype=Elf
+toughness=1
+[/card]
+[card]
+text=Ghitu Encampment comes into play tapped.     {T}: Add {R} to your mana pool.     {1}{R}: Ghitu Encampment becomes a 2/1 red Warrior creature with first strike until end of turn. It's still a land. (It deals combat damage before creatures without first strike.)
+id=106564
+name=Ghitu Encampment
+rarity=U
+color=Land
+type=Land
+[/card]
+[card]
+text=Creatures you control get +1/+1.
+id=129572
+name=Glorious Anthem
+rarity=R
+color=White
+type=Enchantment
+mana={1}{W}{W}
+[/card]
+[card]
+text=Whenever Goblin Elite Infantry blocks or becomes blocked, it gets -1/-1 until end of turn.
+id=130380
+name=Goblin Elite Infantry
+rarity=C
+color=Red
+type=Creature
+mana={1}{R}
+power=2
+subtype=Goblin Warrior
+toughness=2
+[/card]
+[card]
+text=Draw four cards, then discard three cards at random.
+id=135221
+name=Goblin Lore
+rarity=U
+color=Red
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=Whenever a creature you control is put into a graveyard from play, each other player sacrifices a creature.
+id=129583
+name=Grave Pact
+rarity=R
+color=Black
+type=Enchantment
+mana={1}{B}{B}{B}
+[/card]
+[card]
+text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
+id=135256
+name=Graveborn Muse
+rarity=R
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=3
+subtype=Zombie Spirit
+toughness=3
+[/card]
+[card]
+text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+id=129584
+name=Gravedigger
+rarity=C
+color=Black
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text=Guerrilla Tactics deals 2 damage to target creature or player.     When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
+id=129588
+name=Guerrilla Tactics
+rarity=U
+color=Red
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Hail of Arrows deals X damage divided as you choose among any number of target attacking creatures.
+id=132107
+name=Hail of Arrows
+rarity=U
+color=White
+type=Instant
+mana={X}{W}
+[/card]
+[card]
+text={2}: Target blue or red creature gets +1/+0 until end of turn.
+id=130995
+name=Hate Weaver
+rarity=U
+color=Black
+type=Creature
+mana={1}{B}
+power=2
+subtype=Zombie Wizard
+toughness=1
+[/card]
+[card]
+text=Target opponent puts the cards from his or her hand on top of his or her library. Search that player's library for that many cards. The player puts those cards into his or her hand, then shuffles his or her library.
+id=135255
+name=Head Games
+rarity=R
+color=Black
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Prevent all damage that would be dealt to and dealt by enchanted creature.
+id=132090
+name=Heart of Light
+rarity=C
+color=White
+type=Enchantment
+mana={2}{W}
+subtype=Aura
+[/card]
+[card]
+text=When Hidden Horror comes into play, sacrifice it unless you discard a creature card.
+id=135234
+name=Hidden Horror
+rarity=U
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=4
+subtype=Horror
+toughness=4
+[/card]
+[card]
+text=Each creature you control can block an additional creature.
+id=132145
+name=High Ground
+rarity=U
+color=White
+type=Enchantment
+mana={W}
+[/card]
+[card]
+text=When Highway Robber comes into play, target opponent loses 2 life and you gain 2 life.
+id=129564
+name=Highway Robber
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Human Rogue Mercenary
+toughness=2
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt this turn.
+id=129593
+name=Holy Day
+rarity=C
+color=White
+type=Instant
+mana={W}
+[/card]
+[card]
+text={U}: Untap Horseshoe Crab.
+id=129596
+name=Horseshoe Crab
+rarity=C
+color=Blue
+type=Creature
+mana={2}{U}
+power=1
+subtype=Crab
+toughness=3
+[/card]
+[card]
+text=When Hunted Wumpus comes into play, each other player may put a creature card from his or her hand into play.
+id=129599
+name=Hunted Wumpus
+rarity=U
+color=Green
+type=Creature
+mana={3}{G}
+power=6
+subtype=Beast
+toughness=6
+[/card]
+[card]
+text=Incinerate deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn.
+id=134751
+name=Incinerate
+rarity=C
+color=Red
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Lands you control have &quot;{T}: Add one mana of any color to your mana pool.&quot;
+id=130500
+name=Joiner Adept
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}
+power=2
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text=Juggernaut attacks each turn if able.     Juggernaut can't be blocked by Walls.
+id=135240
+name=Juggernaut
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={4}
+power=5
+subtype=Juggernaut
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
+id=129614
+name=Karplusan Forest
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Karplusan Strider can't be the target of blue or black spells.
+id=129911
+name=Karplusan Strider
+rarity=U
+color=Green
+type=Creature
+mana={3}{G}
+power=3
+subtype=Yeti
+toughness=4
+[/card]
+[card]
+text={T}: All combat damage that would be dealt to you by unblocked creatures this turn is dealt to Kjeldoran Royal Guard instead.
+id=130551
+name=Kjeldoran Royal Guard
+rarity=R
+color=White
+type=Creature
+mana={3}{W}{W}
+power=2
+subtype=Human Soldier
+toughness=5
+[/card]
+[card]
+text={B}{B}: Destroy target creature blocking Knight of Dusk.
+id=129574
+name=Knight of Dusk
+rarity=U
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Whenever a player plays a blue spell, you may gain 1 life.
+id=129619
+name=Kraken's Eye
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
+id=130373
+name=Lavaborn Muse
+rarity=R
+color=Red
+type=Creature
+mana={3}{R}
+power=3
+subtype=Spirit
+toughness=3
+[/card]
+[card]
+text={W}{U}{B}{R}{G}: Remove target permanent from the game.     If Legacy Weapon would be put into a graveyard from anywhere, reveal Legacy Weapon and shuffle it into its owner's library instead.
+id=135242
+name=Legacy Weapon
+rarity=R
+color=Artifact
+type=Legendary Artifact
+mana={7}
+[/card]
+[card]
+text=Equipped creature gets +1/+1.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+id=135277
+name=Leonin Scimitar
+rarity=U
+color=Artifact
+type=Artifact
+mana={1}
+subtype=Equipment
+[/card]
+[card]
+text=When Llanowar Sentinel comes into play, you may pay {1}{G}. If you do, search your library for a card named Llanowar Sentinel and put that card into play. Then shuffle your library.
+id=129536
+name=Llanowar Sentinel
+rarity=C
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {B} or {G} to your mana pool. Llanowar Wastes deals 1 damage to you.
+id=129627
+name=Llanowar Wastes
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Other Zombie creatures get +1/+1.     {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
+id=129629
+name=Lord of the Undead
+rarity=R
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text={W}, {T}: Tap target creature.
+id=129638
+name=Loxodon Mystic
+rarity=C
+color=White
+type=Creature
+mana={3}{W}{W}
+power=3
+subtype=Elephant Cleric
+toughness=3
+[/card]
+[card]
+text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals damage, you gain that much life. If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+id=129630
+name=Loxodon Warhammer
+rarity=R
+color=Artifact
+type=Artifact
+mana={3}
+subtype=Equipment
+[/card]
+[card]
+text=When Loyal Sentry blocks a creature, destroy that creature and Loyal Sentry.
+id=129798
+name=Loyal Sentry
+rarity=R
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text=Prevent all damage that black sources and red sources would deal this turn.
+id=129912
+name=Luminesce
+rarity=U
+color=White
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  All creatures able to block enchanted creature do so.
+id=135226
+name=Lure
+rarity=U
+color=Green
+type=Enchantment
+mana={1}{G}{G}
+subtype=Aura
+[/card]
+[card]
+text=Whenever a player taps a land for mana, Manabarbs deals 1 damage to that player.
+id=130367
+name=Manabarbs
+rarity=R
+color=Red
+type=Enchantment
+mana={3}{R}
+[/card]
+[card]
+text=Each noncreature artifact is an artifact creature with power and toughness each equal to its converted mana cost. (Equipment that's a creature can't equip a creature.)
+id=106555
+name=March of the Machines
+rarity=R
+color=Blue
+type=Enchantment
+mana={3}{U}
+[/card]
+[card]
+text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
+id=129640
+name=Megrim
+rarity=U
+color=Black
+type=Enchantment
+mana={2}{B}
+[/card]
+[card]
+text={T}: Draw a card, then discard a card.
+id=130900
+name=Merfolk Looter
+rarity=C
+color=Blue
+type=Creature
+mana={1}{U}
+power=1
+subtype=Merfolk Rogue
+toughness=1
+[/card]
+[card]
+text=Remove X target creature cards in your graveyard from the game. For each creature card removed this way, put a 2/2 black Zombie creature token into play.
+id=135272
+name=Midnight Ritual
+rarity=R
+color=Black
+type=Sorcery
+mana={X}{2}{B}
+[/card]
+[card]
+text={2}: Target red or white creature gains trample until end of turn. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=130996
+name=Might Weaver
+rarity=U
+color=Green
+type=Creature
+mana={1}{G}
+power=2
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change &quot;nonblack creature&quot; to &quot;nongreen creature&quot; or &quot;forestwalk&quot; to &quot;islandwalk.&quot; This effect doesn't end at end of turn.)
+id=129644
+name=Mind Bend
+rarity=R
+color=Blue
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Target player discards two cards.
+id=129645
+name=Mind Rot
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Mind Stone: Draw a card.
+id=135280
+name=Mind Stone
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.)  {2}{W}: Put a 1/1 white Soldier creature token into play.
+id=129716
+name=Mobilization
+rarity=R
+color=White
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
+text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
+id=134748
+name=Mogg Fanatic
+rarity=U
+color=Red
+type=Creature
+mana={R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
+id=106368
+name=Molimo, Maro-Sorcerer
+rarity=R
+color=Green
+type=Legendary Creature
+mana={4}{G}{G}{G}
+power=*
+subtype=Elemental
+toughness=*
+[/card]
+[card]
+text=At the beginning of your upkeep, if twenty or more creature cards are in your graveyard, you win the game.
+id=135259
+name=Mortal Combat
+rarity=R
+color=Black
+type=Enchantment
+mana={2}{B}{B}
+[/card]
+[card]
+text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards.     {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=129648
+name=Mortivore
+rarity=R
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=*
+subtype=Lhurgoyf
+toughness=*
+[/card]
+[card]
+text=Sacrifice a creature: Nantuko Husk gets +2/+2 until end of turn.
+id=129653
+name=Nantuko Husk
+rarity=U
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Zombie Insect
+toughness=2
+[/card]
+[card]
+text=Target player gains 8 life.
+id=129655
+name=Natural Spring
+rarity=C
+color=Green
+type=Sorcery
+mana={3}{G}{G}
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)  When Nekrataal comes into play, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
+id=129658
+name=Nekrataal
+rarity=U
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Human Assassin
+toughness=1
+[/card]
+[card]
+text=Sacrifice No Rest for the Wicked: Return to your hand all creature cards that were put into your graveyard from play this turn.
+id=136283
+name=No Rest for the Wicked
+rarity=U
+color=Black
+type=Enchantment
+mana={1}{B}
+[/card]
+[card]
+text={W}, {T}: Put target Aura card in a graveyard into play attached to a creature you control. (You control that Aura.)
+id=130547
+name=Nomad Mythmaker
+rarity=R
+color=White
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Nomad Cleric
+toughness=2
+[/card]
+[card]
+text=Enchant land (Target a land as you play this. This card comes into play attached to that land.)  Whenever enchanted land is tapped for mana, its controller adds {G}{G} to his or her mana pool.
+id=135282
+name=Overgrowth
+rarity=C
+color=Green
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+[/card]
+[card]
+text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=130506
+name=Overrun
+rarity=U
+color=Green
+type=Sorcery
+mana={2}{G}{G}{G}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
+id=129667
+name=Pacifism
+rarity=C
+color=White
+type=Enchantment
+mana={1}{W}
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  All damage that would be dealt to you is dealt to enchanted creature instead.
+id=135248
+name=Pariah
+rarity=R
+color=White
+type=Enchantment
+mana={2}{W}
+subtype=Aura
+[/card]
+[card]
+text=Look at target player's hand.     Draw a card.
+id=130903
+name=Peek
+rarity=C
+color=Blue
+type=Instant
+mana={U}
+[/card]
+[card]
+text=When Phage the Untouchable comes into play, if you didn't play it from your hand, you lose the game.      Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated.      Whenever Phage deals combat damage to a player, that player loses the game.
+id=106427
+name=Phage the Untouchable
+rarity=R
+color=Black
+type=Legendary Creature
+mana={3}{B}{B}{B}{B}
+power=4
+subtype=Zombie Minion
+toughness=4
+[/card]
+[card]
+text=Phantom Warrior is unblockable.
+id=132064
+name=Phantom Warrior
+rarity=U
+color=Blue
+type=Creature
+mana={1}{U}{U}
+power=2
+subtype=Illusion Warrior
+toughness=2
+[/card]
+[card]
+text=When Phyrexian Rager comes into play, you draw a card and you lose 1 life.
+id=135189
+name=Phyrexian Rager
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Horror
+toughness=2
+[/card]
+[card]
+text={2}, {T}, Sacrifice a creature: Draw a card.
+id=135281
+name=Phyrexian Vault
+rarity=U
+color=Artifact
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Shroud (This creature can't be the target of spells or abilities.)
+id=130526
+name=Pincher Beetles
+rarity=C
+color=Green
+type=Creature
+mana={2}{G}
+power=3
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text=As Pithing Needle comes into play, name a card.     Activated abilities of sources with the chosen name can't be played unless they're mana abilities.
+id=129526
+name=Pithing Needle
+rarity=R
+color=Artifact
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Until end of turn, if target player would draw a card, instead that player skips that draw and you draw a card.
+id=129883
+name=Plagiarize
+rarity=R
+color=Blue
+type=Instant
+mana={3}{U}
+[/card]
+[card]
+text=Destroy all creatures you don't control. They can't be regenerated.
+id=129679
+name=Plague Wind
+rarity=R
+color=Black
+type=Sorcery
+mana={7}{B}{B}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  You can't lose the game and your opponents can't win the game.
+id=106537
+name=Platinum Angel
+rarity=R
+color=Artifact
+type=Artifact Creature
+mana={7}
+power=4
+subtype=Angel
+toughness=4
+[/card]
+[card]
+text=Creatures you control have trample. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=136288
+name=Primal Rage
+rarity=U
+color=Green
+type=Enchantment
+mana={1}{G}
+[/card]
+[card]
+text={U}, {T}: You may tap or untap target creature.
+id=129685
+name=Puppeteer
+rarity=U
+color=Blue
+type=Creature
+mana={2}{U}
+power=1
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Pyroclasm deals 2 damage to each creature.
+id=129801
+name=Pyroclasm
+rarity=U
+color=Red
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}, Sacrifice Quicksand: Target attacking creature without flying gets -1/-2 until end of turn.
+id=129687
+name=Quicksand
+rarity=U
+color=Land
+type=Land
+[/card]
+[card]
+text=Whenever you play a white, blue, black, or red spell, put a +1/+1 counter on Quirion Dryad.
+id=130489
+name=Quirion Dryad
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}
+power=1
+subtype=Dryad
+toughness=1
+[/card]
+[card]
+text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
+id=130997
+name=Rage Weaver
+rarity=U
+color=Red
+type=Creature
+mana={1}{R}
+power=2
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
+id=129690
+name=Rampant Growth
+rarity=C
+color=Green
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=When Ravenous Rats comes into play, target opponent discards a card.
+id=129692
+name=Ravenous Rats
+rarity=C
+color=Black
+type=Creature
+mana={1}{B}
+power=1
+subtype=Rat
+toughness=1
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)  At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card.     At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
+id=106552
+name=Razormane Masticore
+rarity=R
+color=Artifact
+type=Artifact Creature
+mana={5}
+power=5
+subtype=Masticore
+toughness=5
+[/card]
+[card]
+text=Return target creature card from your graveyard to your hand.     Draw a card.
+id=135188
+name=Recover
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase.
+id=129697
+name=Relentless Assault
+rarity=R
+color=Red
+type=Sorcery
+mana={2}{R}{R}
+[/card]
+[card]
+text=Target player shuffles his or her graveyard into his or her library.
+id=129698
+name=Reminisce
+rarity=U
+color=Blue
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Counter target creature spell.
+id=129699
+name=Remove Soul
+rarity=C
+color=Blue
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=You gain 3 life.     Draw a card.
+id=132089
+name=Reviving Dose
+rarity=C
+color=White
+type=Instant
+mana={2}{W}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard to play.
+id=106384
+name=Reya Dawnbringer
+rarity=R
+color=White
+type=Legendary Creature
+mana={6}{W}{W}{W}
+power=4
+subtype=Angel
+toughness=6
+[/card]
+[card]
+text=You may have Rhox assign its combat damage as though it weren't blocked.     {2}{G}: Regenerate Rhox. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=106504
+name=Rhox
+rarity=R
+color=Green
+type=Creature
+mana={4}{G}{G}
+power=5
+subtype=Rhino Beast
+toughness=5
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+id=134764
+name=Robe of Mirrors
+rarity=C
+color=Blue
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text=Artifacts and lands come into play tapped.
+id=135251
+name=Root Maze
+rarity=R
+color=Green
+type=Enchantment
+mana={G}
+[/card]
+[card]
+text={T}: Gain control of target creature as long as that creature is enchanted.
+id=135252
+name=Rootwater Matriarch
+rarity=R
+color=Blue
+type=Creature
+mana={2}{U}{U}
+power=2
+subtype=Merfolk
+toughness=3
+[/card]
+[card]
+text=Each player can't play more than one spell each turn.
+id=136291
+name=Rule of Law
+rarity=U
+color=White
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Sage Owl comes into play, look at the top four cards of your library, then put them back in any order.
+id=135217
+name=Sage Owl
+rarity=C
+color=Blue
+type=Creature
+mana={1}{U}
+power=1
+subtype=Bird
+toughness=1
+[/card]
+[card]
+text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
+id=132101
+name=Samite Healer
+rarity=C
+color=White
+type=Creature
+mana={1}{W}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Scalpelexis deals combat damage to a player, that player removes the top four cards of his or her library from the game. If two or more of those cards have the same name, repeat this process.
+id=130818
+name=Scalpelexis
+rarity=R
+color=Blue
+type=Creature
+mana={4}{U}
+power=1
+subtype=Beast
+toughness=5
+[/card]
+[card]
+text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
+id=130504
+name=Scion of the Wild
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=*
+subtype=Avatar
+toughness=*
+[/card]
+[card]
+text=At the beginning of your upkeep, flip a coin. If you lose the flip, return Scoria Wurm to its owner's hand.
+id=130374
+name=Scoria Wurm
+rarity=R
+color=Red
+type=Creature
+mana={4}{R}
+power=7
+subtype=Wurm
+toughness=7
+[/card]
+[card]
+text=As Sculpting Steel comes into play, you may choose an artifact in play. If you do, Sculpting Steel comes into play as a copy of that artifact.
+id=135241
+name=Sculpting Steel
+rarity=R
+color=Artifact
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Sea Monster can't attack unless defending player controls an Island.
+id=129719
+name=Sea Monster
+rarity=C
+color=Blue
+type=Creature
+mana={4}{U}{U}
+power=6
+subtype=Serpent
+toughness=6
+[/card]
+[card]
+text=Untap all permanents you control during each other player's untap step.
+id=129722
+name=Seedborn Muse
+rarity=R
+color=Green
+type=Creature
+mana={3}{G}{G}
+power=2
+subtype=Spirit
+toughness=4
+[/card]
+[card]
+text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
+id=129884
+name=Seismic Assault
+rarity=R
+color=Red
+type=Enchantment
+mana={R}{R}{R}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever a creature dealt damage by Sengir Vampire this turn is put into a graveyard, put a +1/+1 counter on Sengir Vampire.
+id=129724
+name=Sengir Vampire
+rarity=R
+color=Black
+type=Creature
+mana={3}{B}{B}
+power=4
+subtype=Vampire
+toughness=4
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
+id=129553
+name=Shimmering Wings
+rarity=C
+color=Blue
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {U} or {R} to your mana pool. Shivan Reef deals 1 damage to you.
+id=129731
+name=Shivan Reef
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Change the target of target spell with a single target.
+id=130362
+name=Shunt
+rarity=R
+color=Red
+type=Instant
+mana={1}{R}{R}
+[/card]
+[card]
+text=When Siege-Gang Commander comes into play, put three 1/1 red Goblin creature tokens into play.     {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
+id=130539
+name=Siege-Gang Commander
+rarity=R
+color=Red
+type=Creature
+mana={3}{R}{R}
+power=2
+subtype=Goblin
+toughness=2
+[/card]
+[card]
+text=Draw three cards, then discard a card.
+id=136217
+name=Sift
+rarity=C
+color=Blue
+type=Sorcery
+mana={3}{U}
+[/card]
+[card]
+text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
+id=130998
+name=Sky Weaver
+rarity=U
+color=Blue
+type=Creature
+mana={1}{U}
+power=2
+subtype=Metathran Wizard
+toughness=1
+[/card]
+[card]
+text={T}: You may put a land card from your hand into play. Play this ability only any time you could play a sorcery.
+id=135182
+name=Skyshroud Ranger
+rarity=C
+color=Green
+type=Creature
+mana={G}
+power=1
+subtype=Elf
+toughness=1
+[/card]
+[card]
+text=When Sleeper Agent comes into play, target opponent gains control of it.      At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
+id=129803
+name=Sleeper Agent
+rarity=R
+color=Black
+type=Creature
+mana={B}
+power=3
+subtype=Minion
+toughness=3
+[/card]
+[card]
+text=Target player loses 4 life and you gain 4 life.
+id=129739
+name=Soul Feast
+rarity=U
+color=Black
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=Whenever another creature comes into play, you gain 1 life.
+id=129740
+name=Soul Warden
+rarity=U
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+[card]
+text=As an additional cost to play Soulblast, sacrifice all creatures you control.      Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.
+id=130369
+name=Soulblast
+rarity=R
+color=Red
+type=Instant
+mana={3}{R}{R}{R}
+[/card]
+[card]
+text=Spawning Pool comes into play tapped.     {T}: Add {B} to your mana pool.     {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with &quot;{B}: Regenerate this creature&quot; until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=106556
+name=Spawning Pool
+rarity=U
+color=Land
+type=Land
+[/card]
+[card]
+text=You have no maximum hand size.
+id=129741
+name=Spellbook
+rarity=U
+color=Artifact
+type=Artifact
+mana={0}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Sacrifice Spiketail Hatchling: Counter target spell unless its controller pays {1}.
+id=129901
+name=Spiketail Hatchling
+rarity=U
+color=Blue
+type=Creature
+mana={1}{U}
+power=1
+subtype=Drake
+toughness=1
+[/card]
+[card]
+text=Spineless Thug can't block.
+id=129743
+name=Spineless Thug
+rarity=C
+color=Black
+type=Creature
+mana={1}{B}
+power=2
+subtype=Zombie Mercenary
+toughness=2
+[/card]
+[card]
+text={2}: Target green or blue creature gets +0/+1 until end of turn.
+id=130999
+name=Spirit Weaver
+rarity=U
+color=White
+type=Creature
+mana={1}{W}
+power=2
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
+id=136509
+name=Spitting Earth
+rarity=C
+color=Red
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=At the beginning of your upkeep, you may return Squee, Goblin Nabob from your graveyard to your hand.
+id=106473
+name=Squee, Goblin Nabob
+rarity=R
+color=Red
+type=Legendary Creature
+mana={2}{R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
+text=Stalking Tiger can't be blocked by more than one creature.
+id=135184
+name=Stalking Tiger
+rarity=C
+color=Green
+type=Creature
+mana={3}{G}
+power=3
+subtype=Cat
+toughness=3
+[/card]
+[card]
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, return a green creature you control to its owner's hand.
+id=135264
+name=Stampeding Wildebeests
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}{G}
+power=5
+subtype=Antelope Beast
+toughness=4
+[/card]
+[card]
+text={7}{W}: You gain 5 life.
+id=130385
+name=Starlight Invoker
+rarity=U
+color=White
+type=Creature
+mana={1}{W}
+power=1
+subtype=Human Cleric Mutant
+toughness=3
+[/card]
+[card]
+text=You can't play creature spells.
+id=135235
+name=Steel Golem
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={3}
+power=3
+subtype=Golem
+toughness=4
+[/card]
+[card]
+text=As Story Circle comes into play, choose a color.     {W}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
+id=129748
+name=Story Circle
+rarity=R
+color=White
+type=Enchantment
+mana={1}{W}{W}
+[/card]
+[card]
+text=Each player loses 1 life for each creature he or she controls.
+id=135197
+name=Stronghold Discipline
+rarity=U
+color=Black
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text=Target creature can't block this turn.     Draw a card.
+id=134755
+name=Stun
+rarity=C
+color=Red
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
+id=129750
+name=Sudden Impact
+rarity=U
+color=Red
+type=Instant
+mana={3}{R}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.
+id=129751
+name=Sulfurous Springs
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=At the beginning of each player's upkeep, that player returns a creature he or she controls to its owner's hand.
+id=129509
+name=Sunken Hope
+rarity=R
+color=Blue
+type=Enchantment
+mana={3}{U}{U}
+[/card]
+[card]
+text=Whenever Sylvan Basilisk becomes blocked by a creature, destroy that creature.
+id=135215
+name=Sylvan Basilisk
+rarity=U
+color=Green
+type=Creature
+mana={3}{G}{G}
+power=2
+subtype=Basilisk
+toughness=4
+[/card]
+[card]
+text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
+id=130513
+name=Sylvan Scrying
+rarity=U
+color=Green
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Your opponents play with their hands revealed.
+id=129761
+name=Telepathy
+rarity=U
+color=Blue
+type=Enchantment
+mana={U}
+[/card]
+[card]
+text=Look at the top three cards of your library. Put one of those cards into your hand, one on top of your library, and one on the bottom of your library.
+id=132071
+name=Telling Time
+rarity=U
+color=Blue
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
+id=129881
+name=Terramorphic Expanse
+rarity=C
+color=Land
+type=Land
+[/card]
+[card]
+text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
+id=135253
+name=The Hive
+rarity=R
+color=Artifact
+type=Artifact
+mana={5}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.
+id=129764
+name=Thieving Magpie
+rarity=U
+color=Blue
+type=Creature
+mana={2}{U}{U}
+power=1
+subtype=Bird
+toughness=3
+[/card]
+[card]
+text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn. (It can attack and {T} this turn.)
+id=129767
+name=Threaten
+rarity=U
+color=Red
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a card from it. That player discards that card. Play this ability only any time you could play a sorcery.
+id=136282
+name=Thrull Surgeon
+rarity=U
+color=Black
+type=Creature
+mana={1}{B}
+power=1
+subtype=Thrull
+toughness=1
+[/card]
+[card]
+text=End the turn. (Remove all spells and abilities on the stack from the game, including this card. The player whose turn it is discards down to his or her maximum hand size. Damage wears off, and &quot;this turn&quot; and &quot;until end of turn&quot; effects end.)
+id=129898
+name=Time Stop
+rarity=R
+color=Blue
+type=Instant
+mana={4}{U}{U}
+[/card]
+[card]
+text=Target player takes two extra turns after this one.
+id=129677
+name=Time Stretch
+rarity=R
+color=Blue
+type=Sorcery
+mana={8}{U}{U}
+[/card]
+[card]
+text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
+id=129774
+name=Traumatize
+rarity=R
+color=Blue
+type=Sorcery
+mana={3}{U}{U}
+[/card]
+[card]
+text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
+id=135232
+name=Treasure Hunter
+rarity=U
+color=White
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human
+toughness=2
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
+id=129777
+name=Treetop Bracers
+rarity=C
+color=Green
+type=Enchantment
+mana={1}{G}
+subtype=Aura
+[/card]
+[card]
+text=Treetop Village comes into play tapped.     {T}: Add {G} to your mana pool.     {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=106455
+name=Treetop Village
+rarity=U
+color=Land
+type=Land
+[/card]
+[card]
+text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=130498
+name=Troll Ascetic
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=3
+subtype=Troll Shaman
+toughness=2
+[/card]
+[card]
+text=You have shroud. (You can't be the target of spells or abilities.)
+id=129610
+name=True Believer
+rarity=R
+color=White
+type=Creature
+mana={W}{W}
+power=2
+subtype=Human Cleric
+toughness=2
+[/card]
+[card]
+text=Copy target instant or sorcery spell. You may choose new targets for the copy.
+id=129887
+name=Twincast
+rarity=R
+color=Blue
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text=You may tap or untap target artifact, creature, or land.     Draw a card.
+id=136286
+name=Twitch
+rarity=C
+color=Blue
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=Flash (You may play this spell any time you could play an instant.)  Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and attacks each turn if able.
+id=134756
+name=Uncontrollable Anger
+rarity=C
+color=Red
+type=Enchantment
+mana={2}{R}{R}
+subtype=Aura
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Underground River deals 1 damage to you.
+id=129778
+name=Underground River
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
+id=129779
+name=Underworld Dreams
+rarity=R
+color=Black
+type=Enchantment
+mana={B}{B}{B}
+[/card]
+[card]
+text=Mana pools don't empty at the end of phases or turns. (This effect stops mana burn.)
+id=130494
+name=Upwelling
+rarity=R
+color=Green
+type=Enchantment
+mana={3}{G}
+[/card]
+[card]
+text={U}, {T}: Return target permanent you control to its owner's hand.
+id=130834
+name=Vedalken Mastermind
+rarity=U
+color=Blue
+type=Creature
+mana={U}{U}
+power=1
+subtype=Vedalken Wizard
+toughness=2
+[/card]
+[card]
+text=When Venerable Monk comes into play, you gain 2 life.
+id=129786
+name=Venerable Monk
+rarity=C
+color=White
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Monk Cleric
+toughness=2
+[/card]
+[card]
+text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
+id=129788
+name=Verdant Force
+rarity=R
+color=Green
+type=Creature
+mana={5}{G}{G}{G}
+power=7
+subtype=Elemental
+toughness=7
+[/card]
+[card]
+text=Viashino Runner can't be blocked except by two or more creatures.
+id=130531
+name=Viashino Runner
+rarity=C
+color=Red
+type=Creature
+mana={3}{R}
+power=3
+subtype=Viashino
+toughness=2
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)  At end of turn, return Viashino Sandscout to its owner's hand. (Return it only if it's in play.)
+id=130387
+name=Viashino Sandscout
+rarity=C
+color=Red
+type=Creature
+mana={1}{R}
+power=2
+subtype=Viashino Scout
+toughness=1
+[/card]
+[card]
+text=When Viridian Shaman comes into play, destroy target artifact.
+id=129792
+name=Viridian Shaman
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  As Voice of All comes into play, choose a color.      Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
+id=136290
+name=Voice of All
+rarity=R
+color=White
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Angel
+toughness=2
+[/card]
+[card]
+text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way into play, then puts all enchantment cards revealed this way into play, then puts all cards revealed this way that weren't put into play on the bottom of his or her library in any order.
+id=130364
+name=Warp World
+rarity=R
+color=Red
+type=Sorcery
+mana={5}{R}{R}{R}
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+id=129797
+name=Warrior's Honor
+rarity=C
+color=White
+type=Instant
+mana={2}{W}
+[/card]
+[card]
+text=Equipped creature is unblockable and has shroud. (It can't be the target of spells or abilities.)  Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+id=135278
+name=Whispersilk Cloak
+rarity=U
+color=Artifact
+type=Artifact
+mana={3}
+subtype=Equipment
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+id=130549
+name=Windborn Muse
+rarity=R
+color=White
+type=Creature
+mana={3}{W}
+power=2
+subtype=Spirit
+toughness=3
+[/card]
+[card]
+text=Whenever a player plays a green spell, you may gain 1 life.
+id=129809
+name=Wurm's Tooth
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {G} or {U} to your mana pool. Yavimaya Coast deals 1 damage to you.
+id=129810
+name=Yavimaya Coast
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Yavimaya Enchantress gets +1/+1 for each enchantment in play.
+id=130515
+name=Yavimaya Enchantress
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Druid
+toughness=2
+[/card]

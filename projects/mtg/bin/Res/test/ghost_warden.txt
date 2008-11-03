@@ -1,0 +1,28 @@
+#ghost warden's ability on grizzly bear
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:132105, 1250
+[PLAYER2]
+life:20
+[DO]
+132105
+1250
+next
+#begin
+next
+#attackers
+1250
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:132105, 1250
+[PLAYER2]
+life:17
+[END]

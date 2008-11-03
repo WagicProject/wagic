@@ -1,0 +1,19 @@
+#Testing Terror on Grizzly bears
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:135199
+manapool:{B}{B}
+[PLAYER2]
+inplay:1250
+[DO]
+135199
+1250
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:135199
+manapool:{0}
+[PLAYER2]
+graveyard:1250
+[END]

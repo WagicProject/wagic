@@ -1,0 +1,1651 @@
+[card]
+text=Target creature gets -1/-1 until end of turn.     Draw a card.
+target=creature
+auto=-1/-1
+auto=draw:1
+id=135206
+name=Afflict
+rarity=C
+color=Black
+type=Instant
+mana={2}{B}
+[/card]
+[card]
+text=Target creature gets +1/+1 until end of turn.     Draw a card.
+target=creature
+auto=1/1
+auto=draw:1
+id=130525
+name=Aggressive Urge
+rarity=C
+color=Green
+type=Instant
+mana={1}{G}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=flying
+id=129459
+name=Air Elemental
+rarity=U
+color=Blue
+type=Creature
+mana={3}{U}{U}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)
+abilities=first strike
+id=134753
+name=Anaba Bodyguard
+rarity=C
+color=Red
+type=Creature
+mana={3}{R}
+power=2
+subtype=Minotaur
+toughness=3
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)  When Ancestor's Chosen comes into play, you gain 1 life for each card in your graveyard.
+id=130550
+name=Ancestor's Chosen
+rarity=U
+color=White
+type=Creature
+mana={5}{W}{W}
+power=4
+subtype=Human Cleric
+toughness=4
+[/card]
+[card]
+text=Target creature gets +3/+3 and gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
+target=creature
+auto=:3/3
+auto=flying
+id=129711
+name=Angelic Blessing
+rarity=C
+color=White
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
+text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
+abilities=Defender, flying
+id=129671
+name=Angelic Wall
+rarity=C
+color=White
+type=Creature
+mana={1}{W}
+power=0
+subtype=Wall
+toughness=4
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Other black creatures get +1/+1.      Nonblack creatures get -1/-1.
+abilities=Legendary, flying
+id=106525
+name=Ascendant Evincar
+rarity=R
+color=Black
+type=Creature
+mana={4}{B}{B}
+power=3
+subtype=Vampire
+toughness=3
+[/card]
+[card]
+text=Flash (You may play this spell any time you could play an instant.)  First strike (This creature deals combat damage before creatures without first strike.)
+abilities=flash,first strike
+id=136279
+name=Benalish Knight
+rarity=C
+color=White
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
+abilities=Flying
+alias=1236
+id=129906
+name=Birds of Paradise
+rarity=R
+color=Green
+type=Creature
+mana={G}
+power=0
+subtype=Bird
+toughness=1
+[/card]
+[card]
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+abilities=swampwalk
+id=129491
+name=Bog Wraith
+rarity=U
+color=Black
+type=Creature
+mana={3}{B}
+power=3
+subtype=Wraith
+toughness=3
+[/card]
+[card]
+text=Return target permanent to its owner's hand.
+target=*
+alias=1229
+id=129494
+name=Boomerang
+rarity=C
+color=Blue
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text=Counter target spell.
+alias=1196
+id=129882
+name=Cancel
+rarity=C
+color=Blue
+type=Instant
+mana={1}{U}{U}
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+abilities=Reach
+id=135185
+name=Canopy Spider
+rarity=C
+color=Green
+type=Creature
+mana={1}{G}
+power=1
+subtype=Spider
+toughness=3
+[/card]
+[card]
+text=Draw two cards.
+auto=draw:2
+id=134757
+name=Counsel of the Soratami
+rarity=C
+color=Blue
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text={T}: Target creature with power 2 or less is unblockable this turn.
+id=134758
+alias=1285
+name=Crafty Pathmage
+rarity=C
+color=Blue
+type=Creature
+mana={2}{U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=
+id=130527
+name=Craw Wurm
+rarity=C
+color=Green
+type=Creature
+mana={4}{G}{G}
+power=6
+subtype=Wurm
+toughness=4
+[/card]
+[card]
+text=Destroy target artifact, enchantment, or land.
+target=artifact,enchantment,land
+auto=destroy
+id=129512
+name=Creeping Mold
+rarity=U
+color=Green
+type=Sorcery
+mana={2}{G}{G}
+[/card]
+[card]
+text=Destroy target artifact or land.
+target=artifact,land
+auto=destroy
+id=129522
+name=Demolish
+rarity=C
+color=Red
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=Destroy target enchantment.
+target=enchantment
+auto=destroy
+id=129524
+name=Demystify
+rarity=C
+color=White
+type=Instant
+mana={W}
+[/card]
+[card]
+text=
+id=135216
+name=Dross Crocodile
+rarity=C
+color=Black
+type=Creature
+mana={3}{B}
+power=5
+subtype=Zombie Crocodile
+toughness=1
+[/card]
+[card]
+text={B}: Regenerate Drudge Skeletons. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+auto={B}:regenerate
+id=129529
+name=Drudge Skeletons
+rarity=U
+color=Black
+type=Creature
+mana={1}{B}
+power=1
+subtype=Skeleton
+toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=Flying
+id=129490
+name=Dusk Imp
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Imp
+toughness=1
+[/card]
+[card]
+text=
+id=129554
+name=Earth Elemental
+rarity=U
+color=Red
+type=Creature
+mana={3}{R}{R}
+power=4
+subtype=Elemental
+toughness=5
+[/card]
+[card]
+text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
+id=129534
+auto=lord(elf) 1/1 forestwalk
+name=Elvish Champion
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Elf
+toughness=2
+[/card]
+[card]
+text=
+id=135263
+name=Enormous Baloth
+rarity=U
+color=Green
+type=Creature
+mana={6}{G}
+power=7
+subtype=Beast
+toughness=7
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
+id=129544
+target=creature
+auto=Fear
+name=Fear
+rarity=C
+color=Black
+type=Enchantment
+mana={B}{B}
+subtype=Aura
+[/card]
+[card]
+text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
+id=135258
+auto=lord(soldier) 1/1 first strike
+name=Field Marshal
+rarity=R
+color=White
+type=Creature
+mana={1}{W}{W}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  {R}: Enchanted creature gets +1/+0 until end of turn.
+target=creature
+auto={R}:1/0
+id=129548
+name=Firebreathing
+rarity=C
+color=Red
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
+text=Target creature gets +4/+0 until end of turn.
+target=creature
+auto=:4/0
+id=130379
+name=Fists of the Anvil
+rarity=C
+color=Red
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=129562
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={7}{R}: Flamewave Invoker deals 5 damage to target player.
+id=130378
+auto={7}{R}:Damage:5 target(player)
+name=Flamewave Invoker
+rarity=U
+color=Red
+type=Creature
+mana={2}{R}
+power=2
+subtype=Goblin Mutant
+toughness=2
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=129561
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=129560
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=129559
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=
+id=134762
+name=Fugitive Wizard
+rarity=C
+color=Blue
+type=Creature
+mana={U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {R}: Furnace Whelp gets +1/+0 until end of turn.
+abilities=Flying
+auto={R}:1/0
+id=130386
+name=Furnace Whelp
+rarity=U
+color=Red
+type=Creature
+mana={2}{R}{R}
+power=2
+subtype=Dragon
+toughness=2
+[/card]
+[card]
+text={T}: Target creature gets +1/+1 until end of turn.
+id=132105
+auto={T}:1/1 target(creature)
+name=Ghost Warden
+rarity=C
+color=White
+type=Creature
+mana={1}{W}
+power=1
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text=Target creature gets +3/+3 until end of turn.
+target=creature
+auto=:3/3
+id=129568
+name=Giant Growth
+rarity=C
+color=Green
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+abilities=Reach
+id=129570
+name=Giant Spider
+rarity=C
+color=Green
+type=Creature
+mana={3}{G}
+power=2
+subtype=Spider
+toughness=4
+[/card]
+[card]
+text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
+id=129578
+alias=1296
+name=Goblin King
+rarity=R
+color=Red
+type=Creature
+mana={1}{R}{R}
+power=2
+subtype=Goblin
+toughness=2
+[/card]
+[card]
+text=
+id=129580
+name=Goblin Piker
+rarity=C
+color=Red
+type=Creature
+mana={1}{R}
+power=2
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=Flying
+id=129582
+name=Goblin Sky Raider
+rarity=C
+color=Red
+type=Creature
+mana={2}{R}
+power=1
+subtype=Goblin Warrior
+toughness=2
+[/card]
+[card]
+text=
+id=129586
+name=Grizzly Bears
+rarity=C
+color=Green
+type=Creature
+mana={1}{G}
+power=2
+subtype=Bear
+toughness=2
+[/card]
+[card]
+text=
+id=129591
+name=Hill Giant
+rarity=C
+color=Red
+type=Creature
+mana={3}{R}
+power=3
+subtype=Giant
+toughness=3
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+2.
+target=creature
+auto=:1/2
+id=129594
+name=Holy Strength
+rarity=C
+color=White
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text={W}: Honor Guard gets +0/+1 until end of turn.
+auto={W}:0/1
+id=129595
+name=Honor Guard
+rarity=C
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text=At the beginning of each player's draw step, if Howling Mine is untapped, that player draws a card.
+id=129598
+alias=1112
+name=Howling Mine
+rarity=R
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Return all artifacts target player owns to his or her hand.
+id=135260
+target=player;
+alias=1202
+name=Hurkyl's Recall
+rarity=R
+color=Blue
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Hurricane deals X damage to each creature with flying and each player.
+id=129885
+alias=1251
+name=Hurricane
+rarity=R
+color=Green
+type=Sorcery
+mana={X}{G}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Hypnotic Specter deals damage to an opponent, that player discards a card at random.
+abilities=flying
+id=129600
+alias=1165
+name=Hypnotic Specter
+rarity=R
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Specter
+toughness=2
+[/card]
+[card]
+text={1}{W}{W}: Target creature gets +1/+1 until end of turn.
+auto={1}{W}{W}:1/1 target(creature)
+id=132123
+name=Icatian Priest
+rarity=U
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+[card]
+text={1}, {T}: Tap target artifact, creature, or land.
+id=129601
+name=Icy Manipulator
+rarity=U
+color=Artifact
+type=Artifact
+mana={4}
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=129607
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=129606
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=129609
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=129608
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={4}, {T}: Draw a card.
+id=106478
+alias=1119
+name=Jayemdae Tome
+rarity=R
+color=Artifact
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)  {T}: Kamahl, Pit Fighter deals 3 damage to target creature or player.
+abilities=haste, legendary
+auto={T}:Damage:3 target(creature,player)
+id=106398
+name=Kamahl, Pit Fighter
+rarity=R
+color=Red
+type=Creature
+mana={4}{R}{R}
+power=6
+subtype=Human Barbarian
+toughness=1
+[/card]
+[card]
+text=When Kavu Climber comes into play, draw a card.
+id=129511
+name=Kavu Climber
+auto=draw:1
+rarity=C
+color=Green
+type=Creature
+mana={3}{G}{G}
+power=3
+subtype=Kavu
+toughness=3
+[/card]
+[card]
+text=Lava Axe deals 5 damage to target player.
+target=player
+auto=Damage 5
+id=129620
+name=Lava Axe
+rarity=C
+color=Red
+type=Sorcery
+mana={4}{R}
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+abilities=Haste
+id=129624
+name=Lightning Elemental
+rarity=C
+color=Red
+type=Creature
+mana={3}{R}
+power=4
+subtype=Elemental
+toughness=1
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto=auto={T}: Add {G}
+id=129626
+name=Llanowar Elves
+rarity=C
+color=Green
+type=Creature
+mana={G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text={B}: Looming Shade gets +1/+1 until end of turn.
+auto={B}:1/1
+id=129628
+name=Looming Shade
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}
+power=1
+subtype=Shade
+toughness=1
+[/card]
+[card]
+text=Flying, trample (This creature can't be blocked except by creatures with flying or reach. If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
+id=135271
+alias=1166
+name=Lord of the Pit
+rarity=R
+color=Black
+type=Creature
+mana={4}{B}{B}{B}
+power=7
+subtype=Demon
+toughness=7
+[/card]
+[card]
+text=
+id=129631
+name=Lumengrid Warden
+rarity=C
+color=Blue
+type=Creature
+mana={1}{U}
+power=1
+subtype=Human Wizard
+toughness=3
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=Flying
+id=129633
+name=Mahamoti Djinn
+rarity=R
+color=Blue
+type=Creature
+mana={4}{U}{U}
+power=5
+subtype=Djinn
+toughness=6
+[/card]
+[card]
+text={2}: Mantis Engine gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)  {2}: Mantis Engine gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
+auto={2}:Flying
+auto={2}:first strike
+id=136289
+name=Mantis Engine
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={5}
+power=3
+subtype=Insect
+toughness=3
+[/card]
+[card]
+text=
+id=135218
+name=Mass of Ghouls
+rarity=C
+color=Black
+type=Creature
+mana={3}{B}{B}
+power=5
+subtype=Zombie Warrior
+toughness=3
+[/card]
+[card]
+text=Target creature gets +7/+7 until end of turn.
+target=creature
+auto=:7/7
+id=129642
+name=Might of Oaks
+rarity=R
+color=Green
+type=Instant
+mana={3}{G}
+[/card]
+[card]
+text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
+id=129643
+alias=1126
+name=Millstone
+rarity=R
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
+abilities=First strike, forestwalk, vigilance, legendary 
+id=106405
+name=Mirri, Cat Warrior
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Cat Warrior
+toughness=3
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=129652
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=129649
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=129651
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=129650
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Destroy target artifact or enchantment.
+target=artifact,enchantment
+id=129656
+auto=destroy
+name=Naturalize
+rarity=C
+color=Green
+type=Instant
+mana={1}{G}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
+id=129659
+alias=1170
+name=Nightmare
+rarity=R
+color=Black
+type=Creature
+mana={5}{B}
+power=*
+subtype=Nightmare Horse
+toughness=*
+[/card]
+[card]
+text={T}: Orcish Artillery deals 2 damage to target creature or player and 3 damage to you.
+id=129663
+alias=1309
+name=Orcish Artillery
+rarity=U
+color=Red
+type=Creature
+mana={1}{R}{R}
+power=1
+subtype=Orc Warrior
+toughness=3
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=Flying
+id=129665
+name=Ornithopter
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={0}
+power=0
+subtype=Thopter
+toughness=2
+[/card]
+[card]
+text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
+abilities=First strike, protection from black, protection from red
+id=129668
+name=Paladin en-Vec
+rarity=R
+color=White
+type=Creature
+mana={1}{W}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  You control enchanted creature.
+target=creature
+id=129900
+alias=1194
+name=Persuasion
+rarity=U
+color=Blue
+type=Enchantment
+mana={3}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+abilities=swampwalk
+id=129678
+name=Plague Beetle
+rarity=C
+color=Black
+type=Creature
+mana={B}
+power=1
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=129682
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=129681
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=129683
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=129680
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Prodigal Pyromancer deals 1 damage to target creature or player.
+id=134752
+alias=1217
+name=Prodigal Pyromancer
+rarity=C
+color=Red
+type=Creature
+mana={2}{R}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+abilities=haste
+id=129688
+name=Raging Goblin
+rarity=C
+color=Red
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Berserker
+toughness=1
+[/card]
+[card]
+text=Destroy target land.
+target=land
+id=135220
+auto=destroy
+name=Rain of Tears
+rarity=U
+color=Black
+type=Sorcery
+mana={1}{B}{B}
+[/card]
+[card]
+text=Return target card from your graveyard to your hand.
+target=*|myGraveyard
+alias=1263
+id=130507
+name=Recollect
+rarity=U
+color=Green
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+target=creature
+auto={G}:regenerate
+id=129696
+name=Regeneration
+rarity=U
+color=Green
+type=Enchantment
+mana={1}{G}
+subtype=Aura
+[/card]
+[card]
+text=Relentless Rats gets +1/+1 for each other creature in play named Relentless Rats.     A deck can have any number of cards named Relentless Rats.
+id=135236
+auto=champion(name:Relentless Rats)
+name=Relentless Rats
+rarity=U
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Rat
+toughness=2
+[/card]
+[card]
+text=Target blocking creature gets +7/+7 until end of turn.
+target=creature
+auto=:7/7
+id=130552
+name=Righteousness
+rarity=R
+color=White
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Mountainwalk (This creature is unblockable as long as defending player controls a Mountain.)
+abilities=mountainwalk
+id=129715
+name=Rock Badger
+rarity=C
+color=Red
+type=Creature
+mana={4}{R}
+power=3
+subtype=Badger Beast
+toughness=3
+[/card]
+[card]
+text={3}, {T}: Rod of Ruin deals 1 damage to target creature or player.
+id=129704
+alias=1134
+name=Rod of Ruin
+rarity=U
+color=Artifact
+type=Artifact
+mana={4}
+[/card]
+[card]
+text={1}{G}: Rootwalla gets +2/+2 until end of turn. Play this ability only once each turn.
+auto={1}{G}:2/2 limit:1
+id=129707
+name=Rootwalla
+rarity=C
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Lizard
+toughness=2
+[/card]
+[card]
+text=Islandwalk (This creature is unblockable as long as defending player controls an Island.)
+abilities=islandwalk
+id=129733
+name=Rootwater Commando
+rarity=C
+color=Blue
+type=Creature
+mana={2}{U}
+power=2
+subtype=Merfolk
+toughness=2
+[/card]
+[card]
+text={T}: Destroy target tapped creature.
+id=129708
+alias=1175
+name=Royal Assassin
+rarity=R
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Human Assassin
+toughness=1
+[/card]
+[card]
+text=Forestwalk (This creature is unblockable as long as defending player controls a Forest.)
+abilities=forestwalk
+id=136285
+name=Rushwood Dryad
+rarity=C
+color=Green
+type=Creature
+mana={1}{G}
+power=2
+subtype=Dryad
+toughness=1
+[/card]
+[card]
+text=
+id=129718
+name=Scathe Zombies
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
+abilities=flying,vigilance
+id=129726
+name=Serra Angel
+rarity=R
+color=White
+type=Creature
+mana={3}{W}{W}
+power=4
+subtype=Angel
+toughness=4
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has flying and vigilance. (It can't be blocked except by creatures with flying or reach, and attacking doesn't cause it to tap.)
+target=creature
+auto=:2/2
+auto=flying
+auto=vigilance
+id=135214
+name=Serra's Embrace
+rarity=U
+color=White
+type=Enchantment
+mana={2}{W}{W}
+subtype=Aura
+[/card]
+[card]
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+abilities=fear
+id=129693
+name=Severed Legion
+rarity=C
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text=Destroy all artifacts. They can't be regenerated.
+id=130370
+alias=1317
+name=Shatterstorm
+rarity=U
+color=Red
+type=Sorcery
+mana={2}{R}{R}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {R}: Shivan Dragon gets +1/+0 until end of turn.
+abilities=flying
+auto={R}:1/0
+id=129730
+name=Shivan Dragon
+rarity=R
+color=Red
+type=Creature
+mana={4}{R}{R}
+power=5
+subtype=Dragon
+toughness=5
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{R}: Shivan Hellkite deals 1 damage to target creature or player.
+abilities=flying
+auto={1}{R}: Damage:1 target(creature,player)
+id=130538
+name=Shivan Hellkite
+rarity=R
+color=Red
+type=Creature
+mana={5}{R}{R}
+power=5
+subtype=Dragon
+toughness=5
+[/card]
+[card]
+text=Shock deals 2 damage to target creature or player.
+target=creature,player
+auto=Damage:2
+id=129732
+name=Shock
+rarity=C
+color=Red
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Flying, first strike (This creature can't be blocked except by creatures with flying or reach, and it deals combat damage before creatures without first strike.)
+abilities=Flying, first strike
+id=129735
+name=Skyhunter Patrol
+rarity=C
+color=White
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Cat Knight
+toughness=3
+[/card]
+[card]
+text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
+abilities=flying,vigilance
+id=132102
+name=Skyhunter Prowler
+rarity=C
+color=White
+type=Creature
+mana={2}{W}
+power=1
+subtype=Cat Knight
+toughness=3
+[/card]
+[card]
+text=Flying, double strike (This creature can't be blocked except by creatures with flying or reach, and it deals both first-strike and regular combat damage.)
+abilities=flying,double strike
+id=129513
+name=Skyhunter Skirmisher
+rarity=U
+color=White
+type=Creature
+mana={1}{W}{W}
+power=1
+subtype=Cat Knight
+toughness=1
+[/card]
+[card]
+text=Destroy target artifact.     Draw a card.
+target=artifact
+auto=destroy
+auto=draw:1
+id=130532
+name=Smash
+rarity=C
+color=Red
+type=Instant
+mana={2}{R}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=flying
+id=129471
+name=Snapping Drake
+rarity=C
+color=Blue
+type=Creature
+mana={3}{U}
+power=3
+subtype=Drake
+toughness=2
+[/card]
+[card]
+text=Trample, haste (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player. This creature can attack and {T} as soon as it comes under your control.)  At end of turn, sacrifice Spark Elemental.
+abilities=trample,haste
+id=129577
+name=Spark Elemental
+rarity=U
+color=Red
+type=Creature
+mana={R}
+power=3
+subtype=Elemental
+toughness=1
+[/card]
+[card]
+text=
+id=129742
+name=Spined Wurm
+rarity=C
+color=Green
+type=Creature
+mana={4}{G}
+power=5
+subtype=Wurm
+toughness=4
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Whenever enchanted creature deals damage, you gain that much life.
+target=creature
+auto=lifelink
+id=129744
+name=Spirit Link
+rarity=U
+color=White
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Vigilance (Attacking doesn't cause this creature to tap.)
+abilities=vigilance
+id=132111
+name=Steadfast Guard
+rarity=C
+color=White
+type=Creature
+mana={W}{W}
+power=2
+subtype=Human Rebel
+toughness=2
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=flying
+id=129753
+name=Suntail Hawk
+rarity=C
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Bird
+toughness=1
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=129754
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=129756
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=129755
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=129757
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Flash (You may play this spell any time you could play an instant.)  Reach (This creature can block creatures with flying.)
+abilities=flash,reach
+id=135231
+name=Tangle Spider
+rarity=U
+color=Green
+type=Creature
+mana={4}{G}{G}
+power=3
+subtype=Spider
+toughness=4
+[/card]
+[card]
+text=Destroy all enchantments.
+id=132131
+alias=1270
+name=Tempest of Light
+rarity=U
+color=White
+type=Instant
+mana={2}{W}
+[/card]
+[card]
+text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
+target=creature
+alias=1182
+id=135199
+name=Terror
+rarity=C
+color=Black
+type=Instant
+mana={1}{B}
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+abilities=haste
+id=130381
+name=Thundering Giant
+rarity=U
+color=Red
+type=Creature
+mana={3}{R}{R}
+power=4
+subtype=Giant
+toughness=3
+[/card]
+[card]
+text=Draw four cards.
+auto=draw:4
+id=129770
+name=Tidings
+rarity=U
+color=Blue
+type=Sorcery
+mana={3}{U}{U}
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)
+abilities=first strike
+id=129604
+name=Tundra Wolves
+rarity=C
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Wolf
+toughness=1
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+1.
+target=creature
+auto=:2/1
+id=129780
+name=Unholy Strength
+rarity=C
+color=Black
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=Return target creature to its owner's hand.
+target=creature
+id=136218
+alias=1229
+name=Unsummon
+rarity=C
+color=Blue
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {B}: Vampire Bats gets +1/+0 until end of turn. Play this ability no more than twice each turn.
+abilities=flying
+auto={B}:1/0 limit 2
+id=135195
+name=Vampire Bats
+rarity=C
+color=Black
+type=Creature
+mana={B}
+power=0
+subtype=Bat
+toughness=1
+[/card]
+[card]
+text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
+abilities=defender,flying
+id=135274
+name=Wall of Air
+rarity=U
+color=Blue
+type=Creature
+mana={1}{U}{U}
+power=1
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Defender (This creature can't attack.)  {R}: Wall of Fire gets +1/+0 until end of turn.
+abilities=defender
+auto={R}:1/0
+id=136284
+name=Wall of Fire
+rarity=U
+color=Red
+type=Creature
+mana={1}{R}{R}
+power=0
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
+abilities=defender,flying
+id=132120
+name=Wall of Swords
+rarity=U
+color=White
+type=Creature
+mana={3}{W}
+power=3
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Defender (This creature can't attack.)
+abilities=defender
+id=129773
+name=Wall of Wood
+rarity=C
+color=Green
+type=Creature
+mana={G}
+power=0
+subtype=Wall
+toughness=3
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+abilities=flying
+id=129557
+name=Wild Griffin
+rarity=C
+color=White
+type=Creature
+mana={2}{W}
+power=2
+subtype=Griffin
+toughness=2
+[/card]
+[card]
+text=Destroy all creatures. They can't be regenerated.
+id=129808
+alias=1372
+name=Wrath of God
+rarity=R
+color=White
+type=Sorcery
+mana={2}{W}{W}
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)
+abilities=first strike
+id=129790
+name=Youthful Knight
+rarity=C
+color=White
+type=Creature
+mana={1}{W}
+power=2
+subtype=Human Knight
+toughness=1
+[/card]
