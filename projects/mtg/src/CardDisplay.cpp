@@ -106,9 +106,9 @@ void CardDisplay::CheckUserInput(float dt){
 		{
 			int n = mCurr;
 			n++;
+			if (n>= mCount){n = mCount-1;}
 			if (n>= start_item + nb_displayed_items){
-				if (n>= mCount){n = mCount-1;}
-				else{ rotateRight();}
+				rotateRight();
 			}
 			if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_RIGHT)){
 				mCurr = n;

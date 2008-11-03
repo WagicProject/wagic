@@ -848,7 +848,7 @@ public:
 		if (ability != -1 && card->basicAbilities[ability]) card->basicAbilities[ability] -=1;
 		if (regenCost){
 			if(regenerations.find(card) != regenerations.end()){
-				game->removeObserver(regenerations[card]);
+				if (game->isInPlay(card)) game->removeObserver(regenerations[card]);
 				regenerations.erase(card);
 			}
 		}

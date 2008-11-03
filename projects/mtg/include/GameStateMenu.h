@@ -19,7 +19,7 @@
 #define STATE_FIRST_TIME 4
 #define STATE_WARNING 5
 
-#define GAME_VERSION "WTH?! 0.2.1 - by WilLoW"
+#define GAME_VERSION "WTH?! 0.2.2 - by WilLoW"
 #define ALPHA_WARNING 0
 
 class GameStateMenu:	public GameState, public JGuiListener
