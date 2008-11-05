@@ -3,15 +3,17 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #ifndef _JTYPES_H
 #define _JTYPES_H
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
+
+#include <sys/types.h>
 
 #else
 
@@ -19,7 +21,7 @@
 #include <pspgum.h>
 #include <pspkernel.h>
 #include <pspdisplay.h>
-#include <pspdebug.h> 
+#include <pspdebug.h>
 #include <pspctrl.h>
 #include <time.h>
 #include <string.h>
@@ -64,12 +66,19 @@
 	#define BLEND_OPTION_BLEND	GU_TFX_BLEND
 #endif
 
-
-#if defined (WIN32)
-
+#ifdef WIN32
 	#include <windows.h>
-	#include <gl/gl.h>
-	#include <gl/glu.h>
+#endif
+#ifdef LINUX
+        typedef unsigned char byte;
+        typedef unsigned long DWORD;
+        typedef unsigned char BYTE;
+        typedef bool BOOL;
+#endif
+#if defined (WIN32) || defined (LINUX)
+
+	#include <GL/gl.h>
+	#include <GL/glu.h>
 
 	#include "../Dependencies/include/fmod.h"
 
@@ -79,13 +88,20 @@
 	//#define u8				BYTE
 	//#define u16				WORD
 	//#define u32				DWORD
+/*
 	typedef signed char s8;
 	typedef signed short s16;
 	typedef signed long s32;
 	typedef unsigned char u8;
 	typedef unsigned short u16;
-//Long ?
-	typedef unsigned int u32;
+	typedef unsigned long u32;
+*/
+typedef int8_t s8;
+typedef int16_t s16;
+typedef int32_t s32;
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
 
 
 	#define BLEND_ZERO					GL_ZERO
@@ -103,7 +119,7 @@
 	#define ARGB(a, r, g, b)		((a << 24) | (r << 16) | (g << 8) | b)
 	#define RGBA(r, g, b, a)		((a << 24) | (b << 16) | (g << 8) | r)
 
-	enum PspCtrlButtons
+        typedef enum PspCtrlButtons
 	{
 		PSP_CTRL_SELECT     = 0x000001,
 		PSP_CTRL_START      = 0x000008,
@@ -119,8 +135,8 @@
 		PSP_CTRL_SQUARE     = 0x008000,
 		PSP_CTRL_HOME       = 0x010000,
 		PSP_CTRL_HOLD       = 0x020000,
-		PSP_CTRL_NOTE       = 0x800000,
-	};
+		PSP_CTRL_NOTE       = 0x800000
+	} PspCtrlButtons;
 
 
 	#define PIXEL_TYPE				DWORD
@@ -191,11 +207,10 @@
 	#define FRAME_BUFFER_SIZE		FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*PIXEL_SIZE
 
 	#define SLICE_SIZE_F			64.0f
-//LONG ???
-	typedef unsigned int DWORD;
+	typedef unsigned long DWORD;
 
 	#define BLEND_ZERO					0x1000
-	#define BLEND_ONE					0x1002 
+	#define BLEND_ONE					0x1002
 	#define BLEND_SRC_COLOR				GU_SRC_COLOR
 	#define BLEND_ONE_MINUS_SRC_COLOR	GU_ONE_MINUS_SRC_COLOR
 	#define BLEND_SRC_ALPHA				GU_SRC_ALPHA
@@ -212,7 +227,7 @@
 		//PIXEL_TYPE color;
 		//ScePspFVector3 normal;
 		ScePspFVector3 pos;
-	} PSPVertex3D; 
+	} PSPVertex3D;
 
 
 #endif
@@ -304,7 +319,7 @@ public:
 
 	int mFilter;
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 	GLuint mTexId;
 #else
 
@@ -316,10 +331,10 @@ public:
 
 
 //////////////////////////////////////////////////////////////////////////
-/// Custom filter for processing the texture image while loading. You 
+/// Custom filter for processing the texture image while loading. You
 /// can change the pixels by using a custom filter before the image is
 /// created as a texture.
-/// 
+///
 //////////////////////////////////////////////////////////////////////////
 class JImageFilter
 {
@@ -339,7 +354,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 /// Image quad.
-/// 
+///
 //////////////////////////////////////////////////////////////////////////
 class JQuad
 {
@@ -347,74 +362,74 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Constructor.
-	/// 
+	///
 	/// @param tex - Texture of the quad.
 	/// @param x - X position of the quad in texture.
 	/// @param y - Y position of the quad in texture.
 	/// @param width - Width of the quad.
 	/// @param height - Height of the quad.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	JQuad(JTexture *tex, float x, float y, float width, float height);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set blending color of the quad.
-	/// 
+	///
 	/// @param color - Color.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetColor(PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set anchor point of the quad.
-	/// 
+	///
 	/// @param x - X position of the anchor point.
 	/// @param y - Y position of the anchor point.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetHotSpot(float x, float y);
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	/// Set UV positions of the quad.
-	/// 
+	///
 	/// @param x - X position of the quad in texture.
 	/// @param y - Y position of the quad in texture.
 	/// @param w - Width of the quad.
 	/// @param h - Height of the quad.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetTextureRect(float x, float y, float w, float h);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Get UV positions of the quad.
-	/// 
+	///
 	/// @return x - X position of the quad in texture.
 	/// @return y - Y position of the quad in texture.
 	/// @return w - Width of the quad.
 	/// @return h - Height of the quad.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void GetTextureRect(float *x, float *y, float *w, float *h);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set horizontal flipping.
-	/// 
+	///
 	/// @param hflip - flipping flag;
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetHFlip(bool hflip) { mHFlipped = hflip; }
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set vetical flipping.
-	/// 
+	///
 	/// @param hflip - flipping flag;
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetVFlip(bool vflip) { mVFlipped = vflip; }
 
 	JTexture* mTex;
-	
-#ifdef WIN32
+
+#if defined (WIN32) || defined(LINUX)
 	float mTX0;
 	float mTY0;
 	float mTX1;
@@ -441,9 +456,9 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 /// \enum JFONT_TEXT_ALIGNMENT
-/// 
+///
 /// Font alignment.
-/// 
+///
 //////////////////////////////////////////////////////////////////////////
 enum JFONT_TEXT_ALIGNMENT
 {

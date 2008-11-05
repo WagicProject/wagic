@@ -34,7 +34,7 @@ int JOBJModel::ReadLine(char *output, const char *buffer, int start, int size)
 	while (start < size && buffer[start] != '\n' && buffer[start] != '\r')
 		output[index++] = buffer[start++];
 
-	while (start < size && buffer[start] == '\n' || buffer[start] == '\r')
+	while ((start < size && buffer[start] == '\n') || buffer[start] == '\r')
 		start++;
 
 	output[index] = 0;

@@ -3,15 +3,17 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #ifndef _VECTOR2D_H
 #define _VECTOR2D_H
 
 #ifdef WIN32
+#include <math.h>
+#elif defined LINUX
 #include <math.h>
 #else
 #include <fastmath.h>
@@ -31,7 +33,7 @@ struct Vector2D
 	inline Vector2D &operator /=(const float scalar)	{ x /= scalar; y /= scalar;		return *this; }
 
 	inline Vector2D &operator *=(const float scalar)	{ x *= scalar; y *= scalar;		return *this; }
-	
+
 	inline Vector2D &operator +=(const Vector2D &v) { x += v.x;	y += v.y;	return *this; }
 
 	inline Vector2D &operator -=(const Vector2D &v) { x -= v.x;	y -= v.y;	return *this;	}
@@ -41,14 +43,14 @@ struct Vector2D
 
 
 	// cross product
-	inline float operator ^ (const Vector2D &v)	const	{ return (x * v.y) - (y * v.x); } 
+	inline float operator ^ (const Vector2D &v)	const	{ return (x * v.y) - (y * v.x); }
 
 	// dot product
-	inline float operator * (const Vector2D &v)	const	{ return (x*v.x) + (y*v.y); } 
+	inline float operator * (const Vector2D &v)	const	{ return (x*v.x) + (y*v.y); }
 
-	inline float Dot(const Vector2D &v)	const	{ return (x * v.x) + (y * v.y); } 
-	inline float Cross(const Vector2D &v) const	{ return (x * v.y) - (y * v.x); } 
-	
+	inline float Dot(const Vector2D &v)	const	{ return (x * v.x) + (y * v.y); }
+	inline float Cross(const Vector2D &v) const	{ return (x * v.y) - (y * v.x); }
+
 
 	inline Vector2D operator * (float s)			const	{	return Vector2D(x*s, y*s); }
 	inline Vector2D operator / (float s)			const	{	return Vector2D(x/s, y/s); }
@@ -68,4 +70,4 @@ struct Vector2D
 };
 
 
-#endif 
+#endif

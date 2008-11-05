@@ -109,7 +109,7 @@ void JParticleEmitter::SetQuad(JQuad *quad)
 
 void JParticleEmitter::Update(float dt)
 {
-	JParticleSystem* particleSys = mParent->GetParticleSystem();
+  //	JParticleSystem* particleSys = mParent->GetParticleSystem();
 
 	mActiveParticleCount = 0;
 
@@ -185,7 +185,7 @@ void JParticleEmitter::Update(float dt)
 
 void JParticleEmitter::EmitParticles(int count)
 {
-	JParticleSystem* particleSys = mParent->GetParticleSystem();
+  //	JParticleSystem* particleSys = mParent->GetParticleSystem();
 
 	JParticleData *dataPtr;
 	JParticle* particle;

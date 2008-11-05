@@ -1,0 +1,34 @@
+TARGET_LIB = libjge300.a
+OBJS = src/JApp.o src/JGBKFont.o \
+	src/linux/JGfx.o \
+	src/JGui.o \
+	src/JGE.o \
+	src/JLBFont.o \
+	src/linux/JSfx.o \
+	src/JGameObject.o src/JSpline.o src/JAnimator.o \
+	src/JResourceManager.o \
+	src/JFileSystem.o \
+	src/JParticle.o src/JParticleEmitter.o src/JParticleEffect.o src/JParticleSystem.o \
+	src/unzip/ioapi.o src/unzip/mztools.o src/unzip/unzip.o \
+	src/JSprite.o src/Vector2D.o \
+	src/tinyxml/tinystr.o src/tinyxml/tinyxml.o \
+	src/tinyxml/tinyxmlparser.o src/tinyxml/tinyxmlerror.o \
+	src/linuxmain.o src/vram.o \
+	src/Encoding.o src/JTTFont.o \
+	src/JMD2Model.o src/JOBJModel.o
+
+INCDIR = -I /usr/include/freetype2
+LIBDIR = lib/psp
+
+CXXFLAGS = $(INCDIR) -W -Wall -Werror -DDEVHOOK -DLINUX -ggdb3
+
+LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
+
+#include $(PSPSDK)/lib/build.mak
+
+install: $(TARGET_LIB)
+	@cp libjge300.a  lib/linux
+	@echo "Done"
+
+$(TARGET_LIB): $(OBJS)
+	ar r $(TARGET_LIB) $(OBJS)

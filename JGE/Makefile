@@ -1,20 +1,118 @@
-all:
-	$(MAKE) -f Makefile.1xx install
-	$(MAKE) -f Makefile.hge install
-	$(MAKE) -f Makefile.input install
+ifeq ($(MAKECMDGOALS),debug)
+DEBUG = true
+endif
 
-1xx:
-	$(MAKE) -f Makefile.1xx install
-	$(MAKE) -f Makefile.hge install
-	$(MAKE) -f Makefile.input install
 
-3xx:
-	$(MAKE) -f Makefile.3xx install
-	$(MAKE) -f Makefile.hge install
-	$(MAKE) -f Makefile.input install
+GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
+	src/JGE.o src/JGui.o src/JLBFont.o \
+	src/JGameObject.o src/JSpline.o src/JAnimator.o \
+	src/JResourceManager.o src/JFileSystem.o \
+	src/JParticle.o src/JParticleEmitter.o src/JParticleEffect.o \
+	src/JParticleSystem.o \
+	src/unzip/ioapi.o src/unzip/mztools.o src/unzip/unzip.o \
+	src/JSprite.o src/Vector2D.o \
+	src/tinyxml/tinystr.o src/tinyxml/tinyxml.o \
+	src/tinyxml/tinyxmlparser.o src/tinyxml/tinyxmlerror.o \
+	src/Encoding.o src/JTTFont.o \
+	src/JMD2Model.o src/JOBJModel.o src/vram.o
+PSP_OBJS = src/JGfx.o src/JSfx.o src/main.o
+LINUX_OBJS = src/linux/JGfx.o src/linux/JSfx.o src/linuxmain.o
+
+
+HGE_OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
+       src/hge/hgerect.o src/hge/hgevector.o \
+       src/hge/hgedistort.o src/hge/hgefont.o
+
+
+CXXFLAGS = -W -Wall -Werror
+
+ifdef DEBUG
+CXXFLAGS += -ggdb3
+endif
+
+# Determination of target.
+# TARGET_ARCHITECTURE variable will then be set to either linux or psp.
+
+RESULT = $(shell which psp-config)
+ifeq ($(RESULT),)
+DEFAULT_RULE = linux
+TARGET_ARCHITECTURE = linux
+else
+DEFAULT_RULE = 3xx
+TARGET_ARCHITECTURE = psp
+TARGET_LIB = libjge300.a
+endif
+
+ifeq ($(MAKECMDGOALS),linux)
+DEFAULT_RULE = linux
+TARGET_ARCHITECTURE = linux
+endif
+ifeq ($(MAKECMDGOALS),3xx)
+DEFAULT_RULE = 3xx
+TARGET_ARCHITECTURE = psp
+TARGET_LIB = libjge300.a
+endif
+ifeq ($(MAKECMDGOALS),1xx)
+DEFAULT_RULE = 1xx
+OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
+TARGET_LIB = libjge100.a
+TARGET_ARCHITECTURE = psp
+CXXFLAGS += -DDEVHOOK -DPSPFW3XX
+endif
+
+ifeq ($(TARGET_ARCHITECTURE),psp)
+PSPSDK = $(shell psp-config --pspsdk-path)
+PSPDIR = $(shell psp-config --psp-prefix)
+OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
+TARGET_HGE = libhgetools.a
+INCDIR = -I include/psp include/psp/freetype2
+CXXFLAGS += -G0
+LIBDIR = lib/psp
+LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
+endif
+ifeq ($(TARGET_ARCHITECTURE),linux)
+OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
+TARGET_LIB = libjge.a
+TARGET_HGE = libhgetools.a
+INCDIR = $(shell freetype-config --cflags)
+CXXFLAGS += -DLINUX
+LIBDIR = lib/linux
+endif
+
+# Set definitive values for variables.
+CXXFLAGS := $(INCDIR) $(CXXFLAGS)
+LDFLAGS := $(LIBS)
+TARGET_LIB := $(LIBDIR)/$(TARGET_LIB)
+TARGET_HGE := $(LIBDIR)/$(TARGET_HGE)
+
+ifeq ($(TARGET_ARCHITECTURE),psp)
+include $(PSPSDK)/lib/build.mak
+endif
+
+all: $(DEFAULT_RULE) hge
+
+debug: $(DEFAULT_RULE) hge
+
+linux: $(TARGET_LIB)
+	@echo Making for Linux.
+
+3xx: $(TARGET_LIB)
+	@echo Making for 3xx.
+
+1xx: $(TARGET_LIB)
+	@echo Making for 1xx.
+
+install: $(TARGET_LIB) hge
+
+hge: $(TARGET_HGE)
 
 clean:
-	$(MAKE) -f Makefile.1xx clean
-	$(MAKE) -f Makefile.3xx clean
-	$(MAKE) -f Makefile.hge clean
-	$(MAKE) -f Makefile.input clean
+	rm -f $(OBJS) $(HGE_OBJS)
+
+ifeq ($(TARGET_ARCHITECTURE),linux)
+$(TARGET_LIB): $(OBJS)
+	ar r $(TARGET_LIB) $(OBJS)
+
+$(TARGET_HGE): $(HGE_OBJS)
+	ar r $(TARGET_HGE) $(HGE_OBJS)
+endif

@@ -3186,7 +3186,7 @@ static int _gbk_mbtowc(ucs4_t *pwc, const u8 *s, int n)
 	return RET_ILSEQ;
 }
 
-static int ascii_mbtowc ( ucs4_t *pwc, const u8 *s, int n)
+static int ascii_mbtowc ( ucs4_t *pwc, const u8 *s, int n __attribute__((unused)))
 {
 	u8 c = *s;
 	if (c < 0x80) {

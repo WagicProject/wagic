@@ -90,7 +90,7 @@ bool JParticleEffect::Load(const char* filename)
 // 		FIELD_COUNT
 // 	};
 
-	char* lifeValues[] =
+	const char* lifeValues[] =
 	{
 		"speed",
 		"size",
@@ -104,7 +104,7 @@ bool JParticleEffect::Load(const char* filename)
 		"gravity"
 	};
 
-	char* typeNames[] =
+	const char* typeNames[] =
 	{
 		"POINT",
 		"AREA",
@@ -113,7 +113,7 @@ bool JParticleEffect::Load(const char* filename)
 		"CIRCLE"
 	};
 
-	char* modeNames[] =
+	const char* modeNames[] =
 	{
 		"REPEAT",
 		"ONCE",
@@ -121,8 +121,6 @@ bool JParticleEffect::Load(const char* filename)
 		"CONTINUOUS"
 	};
 
-	int i;
-	
 	//////////////////////////////////////////////////////////////////////////
 	// One effect per file only, well, we may extend it later to permit 
 	// multiple effect definitions:
@@ -159,7 +157,7 @@ bool JParticleEffect::Load(const char* filename)
 					else if (strcmp(element->Attribute("blend"), "ADDITIVE")==0)
 						mParticleEmitters[mEmitterCount]->SetBlending(BLEND_SRC_ALPHA, BLEND_ONE);
 					
-					for (i=0;i<sizeof(modeNames)/sizeof(char*);i++)
+					for (unsigned int i=0;i<sizeof(modeNames)/sizeof(char*);i++)
 					{
 						if (strcmp(element->Attribute("mode"), modeNames[i])==0)
 						{
@@ -170,7 +168,7 @@ bool JParticleEffect::Load(const char* filename)
 							break;
 						}
 					}
-					for (i=0;i<sizeof(typeNames)/sizeof(char*);i++)
+					for (unsigned i=0;i<sizeof(typeNames)/sizeof(char*);i++)
 					{
 						if (strcmp(element->Attribute("type"), typeNames[i])==0)
 						{

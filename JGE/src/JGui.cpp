@@ -25,10 +25,10 @@ JGuiObject::JGuiObject(int id): mId(id)
 JGuiObject::~JGuiObject() 
 { 
 //	JGERelease(); 
-};
+}
 
 
-bool JGuiObject::Leaving(u32 key) 
+bool JGuiObject::Leaving(u32 key __attribute__((unused))) 
 {
 	return true; 
 }
@@ -52,7 +52,7 @@ int JGuiObject::GetId()
 }
 
 
-void JGuiObject::Update(float dt) 
+void JGuiObject::Update(float dt __attribute__((unused))) 
 {
 }
 

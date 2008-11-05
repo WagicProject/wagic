@@ -3,9 +3,9 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 
@@ -23,7 +23,7 @@ JRenderer* JLBFont::mRenderer = NULL;
 JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 {
 	mRenderer = JRenderer::GetInstance();
-	 
+
 	mHeight = 0;
 	mScale = 1.0f;
 	mRotation = mSpacing = 0.0f;
@@ -33,27 +33,27 @@ JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 	mTexture = NULL;
 	mQuad = NULL;
 	mBase = 0;
-	
+
 	char filename[256];
 	short buffer[1024];
-	 
-      
+
+
 	sprintf(filename, "%s.dat", fontname);
-	 
+
 	//FILE *file;
 	JFileSystem *fileSys = JFileSystem::GetInstance();
 	if (!fileSys->OpenFile(filename)) return;
 
 	fileSys->ReadFile((u8 *)buffer, 2048);
 	fileSys->CloseFile();
- 	
+
     sprintf(filename, "%s.png", fontname);
 	mTexture = mRenderer->LoadTexture(filename, useVideoRAM);
 
 	if (mTexture == NULL) return;
-	
+
 	mHeight = (float) lineheight;
-	
+
 	mQuad = new JQuad(mTexture, 0.0f, 0.0f, 16.0f, mHeight);
 
 	float a, b, c;
@@ -63,7 +63,7 @@ JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 
 	// there are 16x16 characters in the texture map.
 	float cellHeight = mTexture->mHeight/16.0f;
-	
+
 	int n = 0;
 	for (int i=0;i<16;i++)
 	{
@@ -73,7 +73,7 @@ JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 			a = (float)buffer[n*4+1];		// character width
 			b = (float)buffer[n*4+2];
 			c = (float)buffer[n*4+3];
-		  
+
 			mXPos[n] = x;
 			mYPos[n] = y;
 			mCharWidth[n] = a+b+c;
@@ -83,18 +83,18 @@ JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 
 		y += cellHeight;
 	}
-      
+
 }
- 					    
- 					    
+
+
 JLBFont::~JLBFont()
 {
 	if (mQuad)
 		delete mQuad;
 
-	if (mTexture) 
+	if (mTexture)
 		delete mTexture;
-	
+
 //	JGERelease();
 }
 
@@ -105,9 +105,9 @@ void JLBFont::DrawString(const char *string, float x, float y, int align)
 	float dx = x, dy = y;
 
 	if (mQuad == NULL) return;
-	
+
 	float width = GetStringWidth(string);
-			  
+
 	if (align == JGETEXT_RIGHT)
 		dx -= width;
 	else if (align == JGETEXT_CENTER)
@@ -123,7 +123,7 @@ void JLBFont::DrawString(const char *string, float x, float y, int align)
 		p++;
 
    }
-  
+
 }
 
 
@@ -131,11 +131,11 @@ void JLBFont::printf(float x, float y, const char *format, ...)
 {
 	char buffer[PRINTF_BUFFER_SIZE];
 	va_list list;
-	
+
 	va_start(list, format);
 	vsprintf(buffer, format, list);
 	va_end(list);
-	
+
 	DrawString(buffer, x, y);
 }
 
@@ -151,10 +151,10 @@ void JLBFont::SetColor(PIXEL_TYPE color)
 float JLBFont::GetStringWidth(const char *string) const
 {
 	 float len = 0.0f;
-	 
+
 	 const char *p = string;
 	 char ch;
-	 
+
 	 while (*p)
 	 {
 		  ch = *p - 32;
@@ -162,7 +162,7 @@ float JLBFont::GetStringWidth(const char *string) const
 		  if (ch < 0) continue;
 		  len += mCharWidth[ch+mBase];
       }
-      
+
       return len*mScale;
 }
 
@@ -175,7 +175,7 @@ float JLBFont::GetRotation() const { return mRotation; }
 float JLBFont::GetTracking() const { return mTracking; }
 float JLBFont::GetHeight() const { return mHeight; }
 
-void JLBFont::SetBase(int base) 
-{ 
-	mBase = (base==0)?0:128; 
+void JLBFont::SetBase(int base)
+{
+	mBase = (base==0)?0:128;
 }

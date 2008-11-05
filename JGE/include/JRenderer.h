@@ -3,9 +3,9 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #ifndef _JRENDERER_H_
@@ -21,16 +21,18 @@
 #include "JTypes.h"
 
 
-#ifdef WIN32
+#if defined (WIN32)
 
 	#include <windows.h>
+
+#elif defined (LINUX)
 
 #else
 
 	#include <pspgu.h>
 	#include <pspkernel.h>
 	#include <pspdisplay.h>
-	#include <pspdebug.h> 
+	#include <pspdebug.h>
 	#include <pspctrl.h>
 	#include <time.h>
 	#include <string.h>
@@ -54,7 +56,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-/// A collection of core rendering functions. 
+/// A collection of core rendering functions.
 ///
 //////////////////////////////////////////////////////////////////////////
 class JRenderer
@@ -108,81 +110,81 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Taking a screen shot.
-	/// 
-	/// @note This function works on PSP only. A PNG file will be saved in 
+	///
+	/// @note This function works on PSP only. A PNG file will be saved in
 	/// the current folder of the game applicaton.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void ScreenShot(const char* filename);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Load a texture from file.
-	/// 
+	///
 	/// @param filename - Name of file.
 	/// @param mode - Choose to put texture in VRAM (PSP only).
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	JTexture* LoadTexture(const char* filename, int mode = 0);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.
-	/// 
+	///
 	/// @param width - Width of texture.
 	/// @param height - Height of texture.
 	/// @param mode - Choose to put texture in VRAM (PSP only)
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	JTexture* CreateTexture(int width, int height, int mode = 0);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Clear entire screen to a particular color.
-	/// 
+	///
 	/// @param color - Color to fill the screen.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void ClearScreen(PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Enable VSync for the smoothness of moving objects. (PSP only)
-	/// 
+	///
 	/// @param flag - true to enable, false to disable.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void EnableVSync(bool flag);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Enable bi-linear filtering for better looking on-screen images.
-	/// 
+	///
 	/// @param flag - true to enable, false to disable.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void EnableTextureFilter(bool flag);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Remove all textures from VRAM (PSP only)
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void ResetPrivateVRAM();
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Enable/disable swizzle optimization. (PSP only)
-	/// 
+	///
 	/// @param s - 1 to enable, 0 to disable.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetSwizzle(int s) { mSwizzle = s; }
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Bind texture to be used for the rendering followed.
-	/// 
+	///
 	/// @param tex - Texture to use.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void BindTexture(JTexture *tex);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set texture blending options.
-	/// 
+	///
 	/// @par Blending options:
 	///
 	/// @code
@@ -193,9 +195,9 @@ public:
 	///		BLEND_ONE_MINUS_SRC_COLOR
 	///		BLEND_SRC_ALPHA
 	///		BLEND_ONE_MINUS_SRC_ALPHA
-	///		BLEND_DST_ALPHA	
+	///		BLEND_DST_ALPHA
 	///		BLEND_ONE_MINUS_DST_ALPHA
-	///		BLEND_DST_COLOR	
+	///		BLEND_DST_COLOR
 	///		BLEND_ONE_MINUS_DST_COLOR
 	///		BLEND_SRC_ALPHA_SATURATE
 	///
@@ -203,29 +205,29 @@ public:
 	///
 	/// @param src - Blending option for source image.
 	/// @param dest - Blending option for destination image.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetTexBlend(int src, int dest);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set texture blending option for source image.
-	/// 
+	///
 	/// @param src - Blending option for source image.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetTexBlendSrc(int src);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set texture blending option for destination image.
-	/// 
+	///
 	/// @param dest - Blending option for destination image.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetTexBlendDest(int dest);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Enable rendering in 2D mode.
-	/// 
+	///
 	/// @note To be implemented.
 	///
 	//////////////////////////////////////////////////////////////////////////
@@ -236,7 +238,7 @@ public:
 	/// Enable rendering in 3D mode.
 	///
 	/// @note To be implemented.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void Enable3D();
 
@@ -244,12 +246,12 @@ public:
 	/// Restrict all rendering to a rectangular area.
 	///
 	/// @note This is just the glScissor() function of OpenGL.
-	/// 
+	///
 	/// @param x - Left of the clipping area.
 	/// @param y - Top of the clipping area.
 	/// @param width - Width of the clipping area.
 	/// @param height - Height of the clipping area.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetClip(int x, int y, int width, int height);
 
@@ -271,52 +273,52 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Rotate along X axis.
-	/// 
+	///
 	/// @param angle - Angle to rotate ( in radians).
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void RotateX(float angle);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Rotate along Y axis.
-	/// 
+	///
 	/// @param angle - Angle to rotate ( in radians).
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void RotateY(float angle);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Rotate along Z axis.
-	/// 
+	///
 	/// @param angle - Angle to rotate ( in radians).
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void RotateZ(float angle);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Push matrix.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void PushMatrix();
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Pop matrix.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void PopMatrix();
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set the field of view angle (in degrees), effective at the next
 	/// Enable3D() call.
-	/// 
+	///
 	/// @param fov - The field of view angle (in degrees).
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetFOV(float fov);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Render triangles.
-	/// 
+	///
 	/// @param texture - Texture for the triangles.
 	/// @param tris - List of triangles.
 	/// @param start - starting index (Note: Index of triangles, NOT vertices).
@@ -370,7 +372,7 @@ public:
 	/// @param x2 - Ending vertex, x.
 	/// @param y2 - Ending vertex, y.
 	/// @param color - Filling color.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE color);
 
@@ -383,23 +385,23 @@ public:
 	/// @param y2 - Ending vertex, y.
 	/// @param lineWidth - Line width.
 	/// @param color - Filling color.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void DrawLine(float x1, float y1, float x2, float y2, float lineWidth, PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Plot a pixel on screen.
-	/// 
+	///
 	/// @param x - X position of the pixel.
 	/// @param y - Y position of the pixel.
 	/// @param color - Draw colour.
-	/// 
+	///
 	//////////////////////////////////////////////////////////////////////////
 	void Plot(float x, float y, PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Plot an array of pixels.
-	/// 
+	///
 	/// @param x - Array of X positions.
 	/// @param y - Array of Y positions.
 	/// @param count - Number of pixels to plot.
@@ -410,7 +412,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw polygon with filled colour.
-	/// 
+	///
 	/// @param x - Array of X positions.
 	/// @param y - Array of Y positions.
 	/// @param count - Side count of the polygon.
@@ -421,7 +423,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw polygon.
-	/// 
+	///
 	/// @param x - Array of X positions.
 	/// @param y - Array of Y positions.
 	/// @param count - Side count of the polygon.
@@ -429,10 +431,10 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color);
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw symmetric polygon with certain number of sides.
-	/// 
+	///
 	/// @param x - X positions of center of the polygon.
 	/// @param y - Y positions of center of the polygon.
 	/// @param size - Size of polygon.
@@ -445,7 +447,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw solid symmetric polygon with certain number of sides.
-	/// 
+	///
 	/// @param x - X positions of center of the polygon.
 	/// @param y - Y positions of center of the polygon.
 	/// @param size - Size of polygon.
@@ -455,10 +457,10 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void FillPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color);
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw circle with filled colour.
-	/// 
+	///
 	/// @param x - X positions of center of the circle.
 	/// @param y - Y positions of center of the circle.
 	/// @param radius - Radius of circle.
@@ -469,7 +471,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw circle.
-	/// 
+	///
 	/// @param x - X positions of center of the circle.
 	/// @param y - Y positions of center of the circle.
 	/// @param radius - Radius of circle.
@@ -533,11 +535,11 @@ private:
 	static JRenderer* mInstance;
 
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 
 	GLuint mCurrentTex;
 
-	
+
 #else
 
 	u32 mVideoBufferStart;
@@ -545,7 +547,7 @@ private:
 	PIXEL_TYPE* mVRAM;
 	int mCurrentTex;
 	int mCurrentBlend;
-	
+
 #endif
 
 	bool mVsync;
@@ -563,7 +565,7 @@ private:
 	JImageFilter* mImageFilter;
 
 	int mCurrentRenderMode;
-	
+
 	float mFOV;
 
 #ifdef USING_MATH_TABLE

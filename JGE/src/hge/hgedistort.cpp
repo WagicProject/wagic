@@ -20,7 +20,7 @@
 hgeDistortionMesh::hgeDistortionMesh(int cols, int rows)
 {
 	int i;
-	
+
 	//hge=hgeCreate(HGE_VERSION);
 
 	nRows=rows;
@@ -39,7 +39,7 @@ hgeDistortionMesh::hgeDistortionMesh(int cols, int rows)
 		disp_array[i].y=0.0f;
 		disp_array[i].u=0.0f;
 		disp_array[i].v=0.0f;
-		
+
 		disp_array[i].z=0.5f;
 		disp_array[i].color=ARGB(0xFF,0xFF,0xFF,0xFF);
 	}
@@ -89,7 +89,7 @@ hgeDistortionMesh& hgeDistortionMesh::operator= (const hgeDistortionMesh &dm)
 	}
 
 	return *this;
-	
+
 }
 
 void hgeDistortionMesh::SetTexture(JTexture* tex)
@@ -133,7 +133,7 @@ void hgeDistortionMesh::SetTextureRect(float x, float y, float w, float h)
 		}
 }
 
-void hgeDistortionMesh::SetBlendMode(int blend)
+void hgeDistortionMesh::SetBlendMode(int blend __attribute__((unused)))
 {
 //	quad.blend=blend;
 }

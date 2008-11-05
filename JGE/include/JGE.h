@@ -3,9 +3,9 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #ifndef _JGE_H_
@@ -32,12 +32,19 @@
 	bool JGEGetButtonState(u32 button);
 	bool JGEGetButtonClick(u32 button);
 
+#elif LINUX
+
+	void JGEControl();
+	BOOL JGEGetKeyState(int key);
+	bool JGEGetButtonState(uint32_t button);
+	bool JGEGetButtonClick(uint32_t button);
+
 #else
 
 	#include <pspgu.h>
 	#include <pspkernel.h>
 	#include <pspdisplay.h>
-	#include <pspdebug.h> 
+	#include <pspdebug.h>
 	#include <pspctrl.h>
 	#include <time.h>
 	#include <string.h>
@@ -73,11 +80,11 @@ private:
 //	JMotionSystem* mMotionSystem;
 
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 	float mDeltaTime;
 
 	JMusic *mCurrentMusic;
-	
+
 #else
 	SceCtrlData mCtrlPad;
 	u32 mOldButtons;
@@ -92,7 +99,7 @@ private:
 	float mDelta;
 
 	bool mDebug;
-	
+
 	bool mPaused;
 
 	char mDebuggingMsg[256];
@@ -103,7 +110,7 @@ private:
 
 
 	static JGE* mInstance;
-	
+
 
 public:
 
@@ -187,7 +194,7 @@ public:
 	/// @return Status of the system.
 	//////////////////////////////////////////////////////////////////////////
 	bool IsDone() { return mDone; }
-	
+
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set the user's core application class.
@@ -195,7 +202,7 @@ public:
 	/// @param app - User defined application class.
 	//////////////////////////////////////////////////////////////////////////
 	void SetApp(JApp *app);
-	
+
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Print debug message.
@@ -206,7 +213,7 @@ public:
 
 	void Assert(const char *filename, long lineNumber);
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 	void SetDelta(int delta);
 #endif
 

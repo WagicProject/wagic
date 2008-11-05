@@ -219,7 +219,7 @@ bool JMD2Model::Load(char *filename, char *textureName)
 
 //-------------------------------------------------------------------------------------------------
 // given 3 points, calculates the normal to the points
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 void JMD2Model::CalculateNormal(float *p1, float *p2, float *p3)
 #else
 void JMD2Model::CalculateNormal(ScePspFVector3 *normal, float *p1, float *p2, float *p3)
@@ -243,7 +243,7 @@ void JMD2Model::CalculateNormal(ScePspFVector3 *normal, float *p1, float *p2, fl
    // calculate the length of the normal
    length = (float)sqrt(result[0]*result[0] + result[1]*result[1] + result[2]*result[2]);
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
    // normalize and specify the normal
    glNormal3f(result[0]/length, result[1]/length, result[2]/length);
 
@@ -273,7 +273,7 @@ void JMD2Model::Render(int frameNum)
 	mRenderer->BindTexture(mModel->modelTex);
 
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 
 
 	// display the textured model with proper lighting normals
@@ -465,7 +465,7 @@ void JMD2Model::Render()
 	
 	mRenderer->BindTexture(mModel->modelTex);
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 
 
 	glBegin(GL_TRIANGLES);

@@ -25,7 +25,7 @@ CFLAGS = -O2 -G0 -Wall -DDEVHOOK -DPSPFW3XX
 
 LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
 
-include $(PSPSDK)/lib/build.mak
+#include $(PSPSDK)/lib/build.mak
 
 install: $(TARGET_LIB)
 	@cp libjge300.a  lib/psp

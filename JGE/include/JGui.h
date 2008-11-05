@@ -12,8 +12,6 @@
 #ifndef _JGUI_H
 #define _JGUI_H
 
-
-
 #include "JGE.h"
 #include "JSprite.h"
 

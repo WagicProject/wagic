@@ -3,12 +3,14 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
-#pragma warning(disable : 4786)
+#ifndef LINUX
+        #pragma warning(disable : 4786)
+#endif
 
 #include "../include/JGE.h"
 #include "../include/JFileSystem.h"
@@ -47,7 +49,7 @@ void JFileSystem::Destroy()
 JFileSystem::JFileSystem()
 {
 	mZipAvailable = false;
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 	mFile = NULL;
 #else
 	mFile = -1;
@@ -56,7 +58,7 @@ JFileSystem::JFileSystem()
 	mZipFile = NULL;
 	mFileSize = 0;
 
-	mResourceRoot = "Res/";				// default root folder 
+	mResourceRoot = "Res/";				// default root folder
 }
 
 
@@ -74,7 +76,7 @@ bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL 
 		if (mZipFileName != zipfile)
 			unzCloseCurrentFile(mZipFile);		// close the previous zip file
 	}
-	
+
 	mZipFileName = zipfile;
 	mPassword = password;
 
@@ -96,7 +98,7 @@ void JFileSystem::DetachZipFile()
 	{
 		unzCloseCurrentFile(mZipFile);
 	}
-	
+
 	mZipFile = NULL;
 	mZipAvailable = false;
 }
@@ -119,12 +121,12 @@ bool JFileSystem::OpenFile(const string &filename)
 			mFileSize = fileInfo.uncompressed_size;
 		else
 			mFileSize = 0;
-		
+
 		return (unzOpenCurrentFilePassword(mZipFile, mPassword) == UNZ_OK);
 	}
 	else
 	{
-		#ifdef WIN32
+		#if defined (WIN32) || defined (LINUX)
 			mFile = fopen(path.c_str(), "rb");
 			if (mFile != NULL)
 			{
@@ -141,13 +143,13 @@ bool JFileSystem::OpenFile(const string &filename)
 				sceIoLseek(mFile, 0, PSP_SEEK_SET);
 				return true;
 			}
-		#endif		
-		
-			
+		#endif
+
+
 	}
-	
+
 	return false;
-			
+
 }
 
 
@@ -156,7 +158,7 @@ void JFileSystem::CloseFile()
 	if (mZipAvailable && mZipFile != NULL)
 		return;
 
-	#ifdef WIN32
+	#if defined (WIN32) || defined (LINUX)
 		if (mFile != NULL)
 			fclose(mFile);
 	#else
@@ -174,7 +176,7 @@ int JFileSystem::ReadFile(void *buffer, int size)
 	}
 	else
 	{
-		#ifdef WIN32
+		#if defined (WIN32) || defined (LINUX)
 			return fread(buffer, 1, size, mFile);
 		#else
 			return sceIoRead(mFile, buffer, size);

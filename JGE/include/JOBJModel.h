@@ -15,7 +15,7 @@
 
 using namespace std;
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 
 #else
 

@@ -3,9 +3,9 @@
 // JGE is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #include <malloc.h>
@@ -64,15 +64,15 @@ JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 }
 
 
-void JQuad::GetTextureRect(float *x, float *y, float *w, float *h)  
-{ 
-	*x=mX; *y=mY; *w=mWidth; *h=mHeight; 
+void JQuad::GetTextureRect(float *x, float *y, float *w, float *h)
+{
+	*x=mX; *y=mY; *w=mWidth; *h=mHeight;
 }
 
 
-void JQuad::SetTextureRect(float x, float y, float w, float h) 
-{ 
-	mX = x; mY = y; mWidth = w; mHeight = h; 
+void JQuad::SetTextureRect(float x, float y, float w, float h)
+{
+	mX = x; mY = y; mWidth = w; mHeight = h;
 }
 
 
@@ -147,7 +147,7 @@ JRenderer* JRenderer::GetInstance()
 		mInstance = new JRenderer();
 		mInstance->InitRenderer();
 	}
-	
+
 	return mInstance;
 }
 
@@ -169,13 +169,13 @@ JRenderer::JRenderer()
 
 JRenderer::~JRenderer()
 {
-	
+
 }
 
 
-void JRenderer::ResetPrivateVRAM() 
-{ 
-	//mCurrentPointer = mVideoBufferStart; 
+void JRenderer::ResetPrivateVRAM()
+{
+	//mCurrentPointer = mVideoBufferStart;
 }
 
 
@@ -195,11 +195,11 @@ void JRenderer::InitRenderer()
 
 	mSwizzle = 1;
 	mVsync = false;
-	
+
 	mTexCounter = 0;
 	mCurrentTex = -1;
 	mCurrentBlend = -1;
-	
+
 	mFOV = 75.0f;
 
 	mImageFilter = NULL;
@@ -227,7 +227,7 @@ void JRenderer::InitRenderer()
 	}
 
 	//mCurrentPointer = mVideoBufferStart;
-	
+
 	sceGuOffset(2048 - (SCREEN_WIDTH/2), 2048 - (SCREEN_HEIGHT/2));
 	sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
 	sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -235,15 +235,15 @@ void JRenderer::InitRenderer()
 	//sceGuFrontFace(GU_CW);
 	sceGuFrontFace(GU_CCW);
 	sceGuEnable(GU_TEXTURE_2D);
-	
+
 	sceGuShadeModel(GU_SMOOTH);
-	
+
 	sceGuTexWrap(GU_REPEAT, GU_REPEAT);
 
 	// enable alpha channel
 	sceGuEnable(GU_BLEND);
 	sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
-	
+
 	sceGuTexFilter(GU_LINEAR,GU_LINEAR);
 
 	if (m3DEnabled)
@@ -260,7 +260,7 @@ void JRenderer::InitRenderer()
 		sceGuClearDepth(0);
 
 		sceGuTexEnvColor(0xffffffff);
-		
+
 		sceGuTexScale(1.0f,1.0f);
 		sceGuTexOffset(0.0f,0.0f);
 		sceGuAmbientColor(0xffffffff);
@@ -288,7 +288,7 @@ void JRenderer::SetTexBlend(int src, int dest)
 	{
 		mCurrTexBlendSrc = src;
 		mCurrTexBlendDest = dest;
-		
+
 		int fixSrc = 0;
 		int fixDest = 0;
 		if (src == BLEND_ZERO)
@@ -305,7 +305,7 @@ void JRenderer::SetTexBlend(int src, int dest)
 			dest = GU_FIX;
 			fixDest = 0x00FFFFFF;
 		}
-		
+
 		//glBlendFunc(src, dest);
 		sceGuBlendFunc(GU_ADD, src, dest, fixSrc, fixDest);
 	}
@@ -343,9 +343,9 @@ void JRenderer::BeginScene()
 		//if (mMode3D)
 		sceGuClear(GU_DEPTH_BUFFER_BIT|GU_COLOR_BUFFER_BIT);
 	}
-	
 
-	sceGuTexMode(TEXTURE_FORMAT, 0, 0, mSwizzle);	
+
+	sceGuTexMode(TEXTURE_FORMAT, 0, 0, mSwizzle);
 
 	if (mCurrentTextureFilter == TEX_FILTER_NEAREST)
 		sceGuTexFilter(GU_NEAREST, GU_NEAREST);				// GU_NEAREST good for tile-map
@@ -362,7 +362,7 @@ void JRenderer::EndScene()
 
 	if (mVsync)
 		sceDisplayWaitVblankStart();
-	
+
 	sceGuSwapBuffers();
 
 	mCurrentTex = -1;
@@ -371,8 +371,8 @@ void JRenderer::EndScene()
 
 
 void JRenderer::EnableVSync(bool flag)
-{ 
-	mVsync = flag; 
+{
+	mVsync = flag;
 }
 
 
@@ -390,13 +390,13 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	struct VertexColor* vertices = (struct VertexColor*)sceGuGetMemory(2 * sizeof(struct VertexColor));
 
 	vertices[0].color = color;
-	vertices[0].x = x; 
-	vertices[0].y = y; 
+	vertices[0].x = x;
+	vertices[0].y = y;
 	vertices[0].z = 0.0f;
 
 	vertices[1].color = color;
-	vertices[1].x = x + width; 
-	vertices[1].y = y + height; 
+	vertices[1].x = x + width;
+	vertices[1].y = y + height;
 	vertices[1].z = 0.0f;
 
 	sceGuDisable(GU_TEXTURE_2D);
@@ -414,44 +414,44 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 
 
 	vertices[0].color = colors[0];
-	vertices[0].x = x; 
-	vertices[0].y = y; 
+	vertices[0].x = x;
+	vertices[0].y = y;
 	vertices[0].z = 0.0f;
 
 	vertices[1].color = colors[1];
-	vertices[1].x = x + width; 
-	vertices[1].y = y; 
+	vertices[1].x = x + width;
+	vertices[1].y = y;
 	vertices[1].z = 0.0f;
 
 	vertices[2].color = colors[2];
-	vertices[2].x = x; 
-	vertices[2].y = y + height; 
+	vertices[2].x = x;
+	vertices[2].y = y + height;
 	vertices[2].z = 0.0f;
 
 	vertices[3].color = colors[3];
-	vertices[3].x = x + width; 
-	vertices[3].y = y + height; 
+	vertices[3].x = x + width;
+	vertices[3].y = y + height;
 	vertices[3].z = 0.0f;
 /*
 
 	vertices[0].color = colors[0];
-	vertices[0].x = x; 
-	vertices[0].y = y; 
+	vertices[0].x = x;
+	vertices[0].y = y;
 	vertices[0].z = 0.0f;
 
 	vertices[1].color = colors[1];
-	vertices[1].x = x; 
-	vertices[1].y = y + height; 
+	vertices[1].x = x;
+	vertices[1].y = y + height;
 	vertices[1].z = 0.0f;
 
 	vertices[2].color = colors[2];
-	vertices[2].x = x + width; 
-	vertices[2].y = y + height; 
+	vertices[2].x = x + width;
+	vertices[2].y = y + height;
 	vertices[2].z = 0.0f;
 
 	vertices[3].color = colors[3];
-	vertices[3].x = x + width; 
-	vertices[3].y = y; 
+	vertices[3].x = x + width;
+	vertices[3].y = y;
 	vertices[3].z = 0.0f;
 */
 	sceGuDisable(GU_TEXTURE_2D);
@@ -468,28 +468,28 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 	struct VertexColor* vertices = (struct VertexColor*)sceGuGetMemory(5 * sizeof(struct VertexColor));
 
 	vertices[0].color = color;
-	vertices[0].x = x; 
-	vertices[0].y = y; 
+	vertices[0].x = x;
+	vertices[0].y = y;
 	vertices[0].z = 0.0f;
 
 	vertices[1].color = color;
-	vertices[1].x = x; 
-	vertices[1].y = y + height; 
+	vertices[1].x = x;
+	vertices[1].y = y + height;
 	vertices[1].z = 0.0f;
 
 	vertices[2].color = color;
-	vertices[2].x = x + width; 
-	vertices[2].y = y + height; 
+	vertices[2].x = x + width;
+	vertices[2].y = y + height;
 	vertices[2].z = 0.0f;
 
 	vertices[3].color = color;
-	vertices[3].x = x + width; 
-	vertices[3].y = y; 
+	vertices[3].x = x + width;
+	vertices[3].y = y;
 	vertices[3].z = 0.0f;
 
 	vertices[4].color = color;
-	vertices[4].x = x; 
-	vertices[4].y = y; 
+	vertices[4].x = x;
+	vertices[4].y = y;
 	vertices[4].z = 0.0f;
 
 	sceGuDisable(GU_TEXTURE_2D);
@@ -506,13 +506,13 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 	struct VertexColor* vertices = (struct VertexColor*)sceGuGetMemory(2 * sizeof(struct VertexColor));
 
 	vertices[0].color = color;
-	vertices[0].x = x1; 
-	vertices[0].y = y1; 
+	vertices[0].x = x1;
+	vertices[0].y = y1;
 	vertices[0].z = 0.0f;
 
 	vertices[1].color = color;
-	vertices[1].x = x2; 
-	vertices[1].y = y2; 
+	vertices[1].x = x2;
+	vertices[1].y = y2;
 	vertices[1].z = 0.0f;
 
 	sceGuDisable(GU_TEXTURE_2D);
@@ -529,8 +529,8 @@ void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
 	struct VertexColor* vertices = (struct VertexColor*)sceGuGetMemory(1 * sizeof(struct VertexColor));
 
 	vertices[0].color = color;
-	vertices[0].x = x; 
-	vertices[0].y = y; 
+	vertices[0].x = x;
+	vertices[0].y = y;
 	vertices[0].z = 0.0f;
 
 	sceGuDisable(GU_TEXTURE_2D);
@@ -549,8 +549,8 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 	for (int i=0;i<count;i++)
 	{
 		vertices[i].color = color;
-		vertices[i].x = x[i]; 
-		vertices[i].y = y[i]; 
+		vertices[i].x = x[i];
+		vertices[i].y = y[i];
 		vertices[i].z = 0.0f;
 	}
 
@@ -579,7 +579,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 
 	if (mCurrentBlend != quad->mBlend)
 	{
-		sceGuTexFunc(quad->mBlend, GU_TCC_RGBA); 
+		sceGuTexFunc(quad->mBlend, GU_TCC_RGBA);
 		mCurrentBlend = quad->mBlend;
 	}
 
@@ -599,7 +599,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 
 	if (quad->mHFlipped)// || quad->mVFlipped)
 	{
-		
+
 		for (end = quad->mX, start = quad->mX+quad->mWidth; start > end; start -= SLICE_SIZE_F)
 		{
 			// allocate memory on the current display list for temporary storage
@@ -616,32 +616,32 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 				destWidth = width*xScale;
 			}
 
-			vertices[0].u = start; 
+			vertices[0].u = start;
 			vertices[0].v = quad->mY;
 			vertices[0].color = quad->mColor[0];//.color;
-			vertices[0].x = x; 
-			vertices[0].y = y; 
+			vertices[0].x = x;
+			vertices[0].y = y;
 			vertices[0].z = 0.0f;
 
-			vertices[2].u = start - width; 
+			vertices[2].u = start - width;
 			vertices[2].v = quad->mY;
 			vertices[2].color = quad->mColor[2];//.color;
-			vertices[2].x = x + destWidth; 
-			vertices[2].y = y; 
+			vertices[2].x = x + destWidth;
+			vertices[2].y = y;
 			vertices[2].z = 0.0f;
 
-			vertices[1].u = start; 
+			vertices[1].u = start;
 			vertices[1].v = quad->mY + quad->mHeight;
 			vertices[1].color = quad->mColor[1];//.color;
-			vertices[1].x = x; 
-			vertices[1].y = y + destHeight; 
+			vertices[1].x = x;
+			vertices[1].y = y + destHeight;
 			vertices[1].z = 0.0f;
 
-			vertices[3].u = start - width; 
+			vertices[3].u = start - width;
 			vertices[3].v = quad->mY + quad->mHeight;
 			vertices[3].color = quad->mColor[3];//.color;
-			vertices[3].x = x + destWidth; 
-			vertices[3].y = y + destHeight; 
+			vertices[3].x = x + destWidth;
+			vertices[3].y = y + destHeight;
 			vertices[3].z = 0.0f;
 
 			if (quad->mVFlipped)
@@ -655,7 +655,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 				for (int i=0;i<4;i++)
 				{
 					xx = (cosAngle*(vertices[i].x-xo) - sinAngle*(vertices[i].y-yo) + xo);
-					yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo); 
+					yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo);
 					vertices[i].x = xx;
 					vertices[i].y = yy;
 				}
@@ -684,32 +684,32 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 				destWidth = width*xScale;
 			}
 
-			vertices[0].u = start; 
+			vertices[0].u = start;
 			vertices[0].v = quad->mY;
 			vertices[0].color = quad->mColor[0];//.color;
-			vertices[0].x = x; 
-			vertices[0].y = y; 
+			vertices[0].x = x;
+			vertices[0].y = y;
 			vertices[0].z = 0.0f;
 
-			vertices[2].u = start + width; 
+			vertices[2].u = start + width;
 			vertices[2].v = quad->mY;
 			vertices[2].color = quad->mColor[2];//.color;
-			vertices[2].x = x + destWidth; 
-			vertices[2].y = y; 
+			vertices[2].x = x + destWidth;
+			vertices[2].y = y;
 			vertices[2].z = 0.0f;
 
-			vertices[1].u = start; 
+			vertices[1].u = start;
 			vertices[1].v = quad->mY + quad->mHeight;
 			vertices[1].color = quad->mColor[1];//.color;
-			vertices[1].x = x; 
-			vertices[1].y = y + destHeight; 
+			vertices[1].x = x;
+			vertices[1].y = y + destHeight;
 			vertices[1].z = 0.0f;
 
-			vertices[3].u = start + width; 
+			vertices[3].u = start + width;
 			vertices[3].v = quad->mY + quad->mHeight;
 			vertices[3].color = quad->mColor[3];//.color;
-			vertices[3].x = x + destWidth; 
-			vertices[3].y = y + destHeight; 
+			vertices[3].x = x + destWidth;
+			vertices[3].y = y + destHeight;
 			vertices[3].z = 0.0f;
 
 			if (quad->mVFlipped)
@@ -717,13 +717,13 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 				Swap(&vertices[0].v, &vertices[2].v);
 				Swap(&vertices[1].v, &vertices[3].v);
 			}
-			
+
 			if (angle != 0.0f)
 			{
 				for (int i=0;i<4;i++)
 				{
 					xx = (cosAngle*(vertices[i].x-xo) - sinAngle*(vertices[i].y-yo) + xo);
-					yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo); 
+					yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo);
 					vertices[i].x = xx;
 					vertices[i].y = yy;
 				}
@@ -747,7 +747,7 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* points)
 
 	if (mCurrentBlend != quad->mBlend)
 	{
-		sceGuTexFunc(quad->mBlend, GU_TCC_RGBA); 
+		sceGuTexFunc(quad->mBlend, GU_TCC_RGBA);
 		mCurrentBlend = quad->mBlend;
 	}
 
@@ -755,49 +755,49 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* points)
 	// in order to rotate, we use 4 vertices this time
 	struct Vertex* vertices = (struct Vertex*)sceGuGetMemory(4 * sizeof(struct Vertex));
 
-	vertices[0].u = quad->mX; 
+	vertices[0].u = quad->mX;
 	vertices[0].v = quad->mY;
 
-	vertices[1].u = quad->mX; 
+	vertices[1].u = quad->mX;
 	vertices[1].v = quad->mY + quad->mHeight;
 
-	vertices[2].u = quad->mX + quad->mWidth; 
+	vertices[2].u = quad->mX + quad->mWidth;
 	vertices[2].v = quad->mY;
 
-	vertices[3].u = quad->mX + quad->mWidth; 
+	vertices[3].u = quad->mX + quad->mWidth;
 	vertices[3].v = quad->mY + quad->mHeight;
 
 // 	for (int i=0;i<4;i++)
 // 	{
 // 		vertices[i].color = points[i].color;
-// 		vertices[i].x = points[i].x; 
-// 		vertices[i].y = points[i].y; 
+// 		vertices[i].x = points[i].x;
+// 		vertices[i].y = points[i].y;
 // 		vertices[i].z = points[i].z;
 // 	}
 
 	vertices[0].color = points[3].color;
-	vertices[0].x = points[3].x; 
-	vertices[0].y = points[3].y; 
+	vertices[0].x = points[3].x;
+	vertices[0].y = points[3].y;
 	vertices[0].z = points[3].z;
 
 	vertices[1].color = points[0].color;
-	vertices[1].x = points[0].x; 
-	vertices[1].y = points[0].y; 
+	vertices[1].x = points[0].x;
+	vertices[1].y = points[0].y;
 	vertices[1].z = points[0].z;
 
 	vertices[2].color = points[2].color;
-	vertices[2].x = points[2].x; 
-	vertices[2].y = points[2].y; 
+	vertices[2].x = points[2].x;
+	vertices[2].y = points[2].y;
 	vertices[2].z = points[2].z;
 
 	vertices[3].color = points[1].color;
-	vertices[3].x = points[1].x; 
-	vertices[3].y = points[1].y; 
+	vertices[3].x = points[1].x;
+	vertices[3].y = points[1].y;
 	vertices[3].z = points[1].z;
 
-	
+
 	sceGuDrawArray(GU_TRIANGLE_STRIP,GU_TEXTURE_32BITF|TEXTURE_COLOR_FORMAT|GU_VERTEX_32BITF|GU_TRANSFORM_2D, 4, 0, vertices);
-		
+
 
 }
 
@@ -820,7 +820,7 @@ void JRenderer::ScreenShot(const char* filename)
         png_infop info_ptr;
         FILE* fp;
         u8* line;
-        
+
         fp = fopen(filename, "wb");
         if (!fp) return;
         png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
@@ -849,25 +849,25 @@ void JRenderer::ScreenShot(const char* filename)
                         switch (pixelformat) {
                                 case PSP_DISPLAY_PIXEL_FORMAT_565:
                                         color = vram16[x + y * bufferwidth];
-                                        r = (color & 0x1f) << 3; 
+                                        r = (color & 0x1f) << 3;
                                         g = ((color >> 5) & 0x3f) << 2 ;
                                         b = ((color >> 11) & 0x1f) << 3 ;
                                         break;
                                 case PSP_DISPLAY_PIXEL_FORMAT_5551:
                                         color = vram16[x + y * bufferwidth];
-                                        r = (color & 0x1f) << 3; 
+                                        r = (color & 0x1f) << 3;
                                         g = ((color >> 5) & 0x1f) << 3 ;
                                         b = ((color >> 10) & 0x1f) << 3 ;
                                         break;
                                 case PSP_DISPLAY_PIXEL_FORMAT_4444:
                                         color = vram16[x + y * bufferwidth];
-                                        r = (color & 0xf) << 4; 
+                                        r = (color & 0xf) << 4;
                                         g = ((color >> 4) & 0xf) << 4 ;
                                         b = ((color >> 8) & 0xf) << 4 ;
                                         break;
                                 case PSP_DISPLAY_PIXEL_FORMAT_8888:
                                         color = vram32[x + y * bufferwidth];
-                                        r = color & 0xff; 
+                                        r = color & 0xff;
                                         g = (color >> 8) & 0xff;
                                         b = (color >> 16) & 0xff;
                                         break;
@@ -921,16 +921,16 @@ static void swizzle_fast(u8* out, const u8* in, unsigned int width, unsigned int
 {
    unsigned int blockx, blocky;
    unsigned int j;
- 
+
    unsigned int width_blocks = (width / 16);
    unsigned int height_blocks = (height / 8);
- 
+
    unsigned int src_pitch = (width-16)/4;
    unsigned int src_row = width * 8;
- 
+
    const u8* ysrc = in;
    u32* dst = (u32*)out;
- 
+
    for (blocky = 0; blocky < height_blocks; ++blocky)
    {
       const u8* xsrc = ysrc;
@@ -1110,7 +1110,7 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 
 
 	textureInfo.mBits = (u8 *)bits;
-	textureInfo.mWidth = cinfo.output_width; 
+	textureInfo.mWidth = cinfo.output_width;
 	textureInfo.mHeight = cinfo.output_height;
 	textureInfo.mTexWidth = tw;
 	textureInfo.mTexHeight = th;
@@ -1126,7 +1126,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode)
 	TextureInfo textureInfo;
 	textureInfo.mVRAM = false;
 	textureInfo.mBits = NULL;
-	
+
 	if (strstr(filename, ".jpg")!=NULL || strstr(filename, ".JPG")!=NULL)
 		LoadJPG(textureInfo, filename, mode);
 	else if(strstr(filename, ".gif")!=NULL || strstr(filename, ".GIF")!=NULL)
@@ -1134,7 +1134,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode)
 	else
 		LoadPNG(textureInfo, filename, mode);
 
-	if (textureInfo.mBits == NULL) 
+	if (textureInfo.mBits == NULL)
 		return NULL;
 
 
@@ -1192,7 +1192,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
 	if (!fileSystem->OpenFile(filename)) return;
-	
+
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (png_ptr == NULL) {
             //fclose(fp);
@@ -1226,7 +1226,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
             png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
             return;
     }
-    
+
 	int texWidth = getNextPower2(width);
 	int texHeight = getNextPower2(height);
 
@@ -1236,7 +1236,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 	int size = texWidth * texHeight * sizeof(PIXEL_TYPE);
 
     {
-	
+
 		if (useVideoRAM)// && (mCurrentPointer+size)<0x200000)
 		{
 			//bits = (PIXEL_TYPE*) (0x04000000+0x40000000+mCurrentPointer);
@@ -1251,7 +1251,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 			videoRAMUsed = false;
 			bits = (PIXEL_TYPE*) memalign(16, size);
 		}
-		
+
 		PIXEL_TYPE* buffer = bits;
 
 		if (mSwizzle)
@@ -1262,10 +1262,10 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 	        p32 = (u32*) buffer;
 	        p16 = (u16*) p32;
 
-	        for (y = 0; y < (int)height; y++) 
+	        for (y = 0; y < (int)height; y++)
 	        {
                 png_read_row(png_ptr, (u8*) line, png_bytep_NULL);
-                for (x = 0; x < (int)width; x++) 
+                for (x = 0; x < (int)width; x++)
                 {
                     u32 color32 = line[x];
                     u16 color16;
@@ -1309,9 +1309,9 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
     free (line);
     png_read_end(png_ptr, info_ptr);
     png_destroy_read_struct(&png_ptr, &info_ptr, png_infopp_NULL);
-    
+
 	fileSystem->CloseFile();
-    
+
 	if (done)
 	{
 		textureInfo.mBits = (u8 *)bits;
@@ -1321,7 +1321,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 		textureInfo.mTexHeight = texHeight;
 		textureInfo.mVRAM = videoRAMUsed;
 
-		
+
 	}
 	else
 	{
@@ -1375,7 +1375,7 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 
 		switch (RecordType) {
 			case IMAGE_DESC_RECORD_TYPE:
-				{		
+				{
 					if (DGifGetImageDesc(GifFileIn) == GIF_ERROR)
 					{
 						DGifCloseFile(GifFileIn);
@@ -1401,7 +1401,7 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 
 					bool done = false;
 					PIXEL_TYPE* bits = NULL;
-					
+
 					size = textureInfo.mTexWidth * textureInfo.mTexHeight * sizeof(PIXEL_TYPE);
 
 					if (useVideoRAM)// && (mCurrentPointer+size)<0x200000)
@@ -1440,7 +1440,7 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 
 					DWORD * curr = p32;
 					DWORD * imgdata = p32;
-					for (i = 0; i < GifFileIn->Image.Height; i ++) 
+					for (i = 0; i < GifFileIn->Image.Height; i ++)
 					{
 						imgdata = curr;
 						if (DGifGetLine(GifFileIn, LineIn, GifFileIn->Image.Width) == GIF_ERROR)
@@ -1554,7 +1554,7 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
 	//FILE * fp = fopen(filename, "rb");
 	//if(fp == NULL)
 	//	return;
-	
+
 	JFileSystem *fileSys = JFileSystem::GetInstance();
 	if (!fileSys->OpenFile(filename))
 		return;
@@ -1592,7 +1592,7 @@ JTexture* JRenderer::CreateTexture(int width, int height, int mode)
 
 		tex->mTexWidth = getNextPower2(width);
 		tex->mTexHeight = getNextPower2(height);
-		
+
 		int size = tex->mTexWidth * tex->mTexHeight * sizeof(PIXEL_TYPE);
 		if (useVideoRAM)// && (mCurrentPointer+size)<0x200000)
 		{
@@ -1623,7 +1623,7 @@ JTexture* JRenderer::CreateTexture(int width, int height, int mode)
 // 	{
 // 		if (tex->mBits && !tex->mInVideoRAM)
 // 			free(tex->mBits);
-// 
+//
 // 		delete tex;
 // 		tex = NULL;
 // 	}
@@ -2036,7 +2036,7 @@ void JRenderer::DrawRoundRect( float x1,float y1, float w,float h,float radius,P
 		  JRenderer::GetInstance()->DrawLine(x1+(radius-q),y1+i+radius,x1+(radius-nextq),y1+i+radius,color);
 		  JRenderer::GetInstance()->DrawLine(x2+radius+q,y1+i+radius,x2+radius+nextq,y1+i+radius,color);
 		}
-	}       
+	}
 }
 
 
@@ -2077,7 +2077,7 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
 			angle = 0;
 	}
 
-	y+=h;	
+	y+=h;
 	for(int i=90; i<135; i++)
 	{
 		vertices[i+1].color = color;

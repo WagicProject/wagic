@@ -3,7 +3,7 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 // Copyright (c) 2007 Sijiu Duan (a.k.a. Chi80) <sijiu49@gmail.com>
 //
@@ -89,7 +89,7 @@ bool JGBKFont::Init(const char* engFileName, const char* chnFileName, int fontsi
 	mSprites = new JQuad*[mCacheSize];
 	mGBCode = new int[mCacheSize];
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 	mCharBuffer = new DWORD[mFontSize*mFontSize];
 #endif
 
@@ -104,7 +104,7 @@ bool JGBKFont::Init(const char* engFileName, const char* chnFileName, int fontsi
 
 			mSprites[index] = new JQuad(mTexture, x*mFontSize, y*mFontSize, mFontSize, mFontSize);
 			mSprites[index]->SetHotSpot(mFontSize/2, mFontSize/2);
-		
+
 			index++;
 		}
 	}
@@ -136,7 +136,7 @@ bool JGBKFont::Init(const char* engFileName, const char* chnFileName, int fontsi
 }
 
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 #else
 void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width, unsigned int height)
 {
@@ -171,24 +171,24 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 		code = ((DWORD)*ch)|0x10000;
 		isChinese = false;
 	}
-	
+
 	if (mGBCode[mCurr] != -1)
 	{
-		
+
 		for (int i=0;i<mCacheSize;i++)
 		{
 			if (mGBCode[i] == code)
 				return i;
 		}
 	}
-	
+
 	mCount++;
 
 	int index = mCurr++;
 	if (mCurr >= mCacheSize)
 		mCurr = 0;
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 	int x = 0;
 	int y = 0;
 
@@ -206,14 +206,14 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 
 	if (isChinese)
 	{
-	
+
 		src = mChnFont +  code * mBytesPerChar;
 		for (int i=0;i<mBytesPerChar;)
 		{
 
 			bitCount = mFontSize;
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 			x = 0;
 #else
 			x = (int)mSprites[index]->mX;
@@ -225,7 +225,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 				BYTE bitMask = 0x80;
 				for (int z=0;z<8&&bitCount;z++)
 				{
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 					if ((bits & bitMask) != 0)
 						mCharBuffer[y*mFontSize+x] = ARGB(255,255,255,255);
 					else
@@ -240,9 +240,9 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 					x++;
 
 					bitCount--;
-					
+
 				}
-				
+
 			}
 			y++;
 		}
@@ -257,7 +257,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 		for (int i=0;i<size;)
 		{
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 			x = 0;
 #else
 			x = (int)mSprites[index]->mX;
@@ -266,10 +266,10 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 			// put char in the middle
 			if (mFontSize <= 16)
 			{
-		
+
 				for (n=0;n<(mFontSize-8)/2;n++)
 				{
-	#ifdef WIN32
+	#if defined (WIN32) || defined (LINUX)
 					mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 	#else
 					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
@@ -286,7 +286,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 				BYTE bitMask = 0x80;
 				for (int z=0;z<8&&bitCount;z++)
 				{
-				#ifdef WIN32
+				#if defined (WIN32) || defined (LINUX)
 					if ((bits & bitMask) != 0)
 						mCharBuffer[y*mFontSize+x] = ARGB(255,255,255,255);
 					else
@@ -296,7 +296,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 						SwizzlePlot(pTexture, ARGB(255,255,255,255), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
 					else
 						SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
-				#endif			
+				#endif
 					x++;
 					bitMask >>= 1;
 					bitCount--;
@@ -305,10 +305,10 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 
 			if (mFontSize <= 16)
 			{
-				
+
 				for (n=0;n<(mFontSize-8)/2;n++)
 				{
-				#ifdef WIN32
+				#if defined (WIN32) || defined (LINUX)
 					mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 				#else
 					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
@@ -321,15 +321,15 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 
 		}
 	}
-	
+
 	mGBCode[index] = code;
 
-#ifdef WIN32
+#if defined (WIN32) || defined (LINUX)
 	x = (int)mSprites[index]->mX;
 	y = (int)mSprites[index]->mY;
 
 	glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, mFontSize, mFontSize, GL_RGBA, GL_UNSIGNED_BYTE, mCharBuffer);
-	
+
 #else
 	sceKernelDcacheWritebackAll();
 	//sceKernelDcacheWritebackInvalidateAll();
@@ -383,7 +383,7 @@ void JGBKFont::RenderEncodedString(const int* text, int count, float x, float y)
 		}
 		else if (text[n] == 0x8000d)
 		{
-			
+
 		}
 		else
 		{
@@ -441,7 +441,7 @@ void JGBKFont::GetStringArea( BYTE* str,  int *w, int *h)
 				}
 				src += 1;
 			}
-			else 
+			else
 			{
 				if (*src > 0x80)
 				{
@@ -467,7 +467,7 @@ void JGBKFont::GetStringArea( BYTE* str,  int *w, int *h)
 		{
 			break;
 		}
-		else 
+		else
 		{
 
 			if (*src < ' ')			// control characters
@@ -481,7 +481,7 @@ void JGBKFont::GetStringArea( BYTE* str,  int *w, int *h)
 				}
 				src += 1;
 			}
-			else 
+			else
 			{
 				if (*src > 0x80)
 				{
@@ -512,8 +512,8 @@ void JGBKFont::GetStringArea( BYTE* str,  int *w, int *h)
 					yy += (mFontSize*mScale);
 				}
 			}
-		}	
-		
+		}
+
 	}
 	if (xx>len)
 	{
@@ -528,7 +528,7 @@ void JGBKFont::RenderString(BYTE* str, float x, float y, int alignment)
 {
 	int w=0;
 	int h=0;
-	
+
 	switch(alignment)
 	{
 	case JGETEXT_RIGHT:
@@ -551,9 +551,9 @@ void JGBKFont::RenderString(BYTE* str, float x, float y, int alignment)
 	float xx = x;
 	float yy = y;
 	int index;
-	
+
 	bool isChinese=true;
-	
+
 	while (*src != 0)
 	{
 		if (yy + mFontSize < 0.0f)		// don't render when outside viewport
@@ -567,7 +567,7 @@ void JGBKFont::RenderString(BYTE* str, float x, float y, int alignment)
 				}
 				src += 1;
 			}
-			else 
+			else
 			{
 				if (*src > 0x80)
 				{
@@ -591,7 +591,7 @@ void JGBKFont::RenderString(BYTE* str, float x, float y, int alignment)
 		{
 			return;
 		}
-		else 
+		else
 		{
 
 			if (*src < ' ')			// control characters
@@ -603,7 +603,7 @@ void JGBKFont::RenderString(BYTE* str, float x, float y, int alignment)
 				}
 				src += 1;
 			}
-			else 
+			else
 			{
 				if (*src > 0x80)
 				{
@@ -621,7 +621,7 @@ void JGBKFont::RenderString(BYTE* str, float x, float y, int alignment)
 						xx-=3*(mFontSize*mScale)/16;
 					isChinese = false;
 				}
-				
+
 				mSprites[index]->SetColor(mColor);
 				mRenderer->RenderQuad(mSprites[index], xx, yy, mRotation, mScale, mScale);
 				if (mSmallEnglishFont && !isChinese)

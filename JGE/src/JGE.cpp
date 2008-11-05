@@ -3,9 +3,9 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #include "../include/JGE.h"
@@ -19,16 +19,71 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-#ifdef WIN32
-
+#if defined (WIN32)    // WIN32 specific code
 #include "../../Dependencies/include/png.h"
 #include "../../Dependencies/include/fmod.h"
 
+int JGE::GetTime(void)
+{
+	return (int)GetTickCount();
+}
+
+u8 JGE::GetAnalogX()
+{
+	if (JGEGetKeyState(VK_LEFT)) return 0;
+	if (JGEGetKeyState(VK_RIGHT)) return 0xff;
+
+	return 0x80;
+}
+
+
+u8 JGE::GetAnalogY()
+{
+	if (JGEGetKeyState(VK_UP)) return 0;
+	if (JGEGetKeyState(VK_DOWN)) return 0xff;
+
+	return 0x80;
+}
+
+#elif defined (LINUX)    // Unix specific code
+#include "png.h"
+#include "../Dependencies/include/fmod.h"
+
+int JGE::GetTime(void)
+{
+	return (int)time(NULL);
+}
+
+u8 JGE::GetAnalogX()
+{
+  /* FIXME
+	if (JGEGetKeyState(VK_LEFT)) return 0;
+	if (JGEGetKeyState(VK_RIGHT)) return 0xff;
+  */
+	return 0x80;
+}
+
+
+u8 JGE::GetAnalogY()
+{
+  /* FIXME
+	if (JGEGetKeyState(VK_UP)) return 0;
+	if (JGEGetKeyState(VK_DOWN)) return 0xff;
+  */
+
+	return 0x80;
+}
+
+#endif
+
+
+
+#if defined (WIN32) || defined (LINUX) // Non-PSP code
 
 JGE::JGE()
 {
 	mApp = NULL;
-	
+
 	strcpy(mDebuggingMsg, "");
 	mCurrentMusic = NULL;
 	Init();
@@ -54,25 +109,25 @@ JGE::~JGE()
 
 //	if (mResourceManager != NULL)
 //		delete mResourceManager;
-// 
+//
 // 	if (mFileSystem != NULL)
 // 		delete mFileSystem;
-// 
+//
 // 	if (mParticleSystem != NULL)
 // 		delete mParticleSystem;
-// 
+//
 // 	if (mMotionSystem != NULL)
 // 		delete mMotionSystem;
 }
 
 
-	
+
 void JGE::Init()
 {
 	mDone = false;
 	mPaused = false;
 	mCriticalAssert = false;
-	
+
 	JRenderer::GetInstance();
 	JFileSystem::GetInstance();
 	JSoundSystem::GetInstance();
@@ -83,19 +138,13 @@ void JGE::Init()
 
 void JGE::Run()
 {
-	
+
 }
 
 void JGE::SetDelta(int delta)
 {
 	mDeltaTime = (float)delta / 1000.0f;		// change to second
 }
-
-int JGE::GetTime(void)
-{
-	return (int)GetTickCount();
-}
-
 
 float JGE::GetDelta()
 {
@@ -125,23 +174,6 @@ bool JGE::GetButtonClick(u32 button)
 }
 
 
-u8 JGE::GetAnalogX()
-{
-	if (JGEGetKeyState(VK_LEFT)) return 0;
-	if (JGEGetKeyState(VK_RIGHT)) return 0xff;
-
-	return 0x80;
-}
-
-
-u8 JGE::GetAnalogY()
-{
-	if (JGEGetKeyState(VK_UP)) return 0;
-	if (JGEGetKeyState(VK_DOWN)) return 0xff;
-
-	return 0x80;
-}
-
 
 //////////////////////////////////////////////////////////////////////////
 #else		///// PSP specified code
@@ -149,7 +181,7 @@ u8 JGE::GetAnalogY()
 
 
 // include all the following so we only have one .o file
-//#include "../src/JGfx.cpp"	
+//#include "../src/JGfx.cpp"
 //#include "../src/JSfx.cpp"
 
 
@@ -193,7 +225,7 @@ JGE::~JGE()
 void JGE::Init()
 {
 
-#ifdef DEBUG_PRINT	
+#ifdef DEBUG_PRINT
 	mDebug = true;
 #else
 	mDebug = false;
@@ -201,12 +233,12 @@ void JGE::Init()
 
 	if (mDebug)
 		pspDebugScreenInit();	// do this so that we can use pspDebugScreenPrintf
-	
+
 	strcpy(mDebuggingMsg, "");
 
 	sceCtrlSetSamplingCycle(0);
 	sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
-	
+
 	JRenderer::GetInstance();
 	JFileSystem::GetInstance();
 	JSoundSystem::GetInstance();
@@ -218,7 +250,7 @@ void JGE::Init()
 	//InitSfx();
 
 	//Create();
-	
+
 //	mCurrMS = 1.0f;
 //	mFPSSlice = 0;
 
@@ -228,9 +260,9 @@ void JGE::Init()
 
 	//mLastTime = GetTime();
 
-	
+
 	mTickFrequency = sceRtcGetTickResolution();
-	sceRtcGetCurrentTick(&mLastTime); 
+	sceRtcGetCurrentTick(&mLastTime);
 }
 
 
@@ -240,7 +272,7 @@ int JGE::GetTime(void)
 
 	u64 curr;
 	sceRtcGetCurrentTick(&curr);
- 
+
 	return (int)(curr / mTickFrequency);
 }
 
@@ -257,28 +289,28 @@ float JGE::GetFPS()
 }
 
 
-bool JGE::GetButtonState(u32 button) 
-{ 
-	return (mCtrlPad.Buttons&button)==button; 
+bool JGE::GetButtonState(u32 button)
+{
+	return (mCtrlPad.Buttons&button)==button;
 
 }
 
 
-bool JGE::GetButtonClick(u32 button) 
-{ 
-	return (mCtrlPad.Buttons&button)==button && (mOldButtons&button)!=button; 
+bool JGE::GetButtonClick(u32 button)
+{
+	return (mCtrlPad.Buttons&button)==button && (mOldButtons&button)!=button;
 }
 
 
-u8 JGE::GetAnalogX() 
-{ 
-	return mCtrlPad.Lx; 
+u8 JGE::GetAnalogX()
+{
+	return mCtrlPad.Lx;
 }
 
 
-u8 JGE::GetAnalogY() 
-{ 
-	return mCtrlPad.Ly; 
+u8 JGE::GetAnalogY()
+{
+	return mCtrlPad.Ly;
 }
 
 
@@ -292,14 +324,14 @@ void JGE::Run()
 		if (!mPaused)
 		{
 			sceRtcGetCurrentTick(&curr);
-			
-			
-			mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f; 
+
+
+			mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
 			mLastTime = curr;
-			
+
 			sceCtrlPeekBufferPositive(&mCtrlPad, 1);	// using sceCtrlPeekBufferPositive is faster than sceCtrlReadBufferPositive
 														// because sceCtrlReadBufferPositive waits for vsync internally
-		
+
 			Update();
 
 			Render();
@@ -314,13 +346,13 @@ void JGE::Run()
 			}
 
 			mOldButtons = mCtrlPad.Buttons;
-		
+
 
 
 		}
 
 	}
-	
+
 }
 
 #endif		///// PSP specified code
@@ -336,7 +368,7 @@ JGE* JGE::GetInstance()
 	{
 		mInstance = new JGE();
 	}
-	
+
 	//gCount++;
 	return mInstance;
 }
@@ -388,7 +420,7 @@ void JGE::End()
 void JGE::printf(const char *format, ...)
 {
 	va_list list;
-	
+
 	va_start(list, format);
 	vsprintf(mDebuggingMsg, format, list);
 	va_end(list);

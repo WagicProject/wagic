@@ -3,9 +3,9 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #include "../include/JGE.h"
@@ -18,7 +18,7 @@
 
 JResourceManager::JResourceManager()
 {
-	//mResourceRoot = "Res/";				// default root folder 
+	//mResourceRoot = "Res/";				// default root folder
 
 	mTextureList.clear();
 	mTextureList.reserve(16);
@@ -43,7 +43,7 @@ JResourceManager::JResourceManager()
 // 	mParticleEffectList.clear();
 // 	mParticleEffectList.reserve(8);
 // 	mParticleEffectMap.clear();
-// 
+//
 // 	mMotionEmitterList.clear();
 // 	mMotionEmitterList.reserve(16);
 // 	mMotionEmitterMap.clear();
@@ -52,7 +52,7 @@ JResourceManager::JResourceManager()
 
 JResourceManager::~JResourceManager()
 {
-	
+
 	RemoveAll();
 }
 
@@ -91,13 +91,13 @@ void JResourceManager::RemoveAll()
 
 // 	for (vector<JParticleEffect *>::iterator effect = mParticleEffectList.begin(); effect != mParticleEffectList.end(); ++effect)
 // 		delete *effect;
-// 
+//
 // 	mParticleEffectList.clear();
 // 	mParticleEffectMap.clear();
-// 
+//
 // 	for (vector<JMotionEmitter *>::iterator emitter = mMotionEmitterList.begin(); emitter != mMotionEmitterList.end(); ++emitter)
 // 		delete *emitter;
-// 
+//
 // 	mMotionEmitterList.clear();
 // 	mMotionEmitterMap.clear();
 
@@ -109,7 +109,7 @@ bool JResourceManager::LoadResource(const string& resourceName)
 	string path = /*mResourceRoot + */resourceName;
 
 //	TiXmlDocument doc(path.c_str());
-//	
+//
 //	if (!doc.LoadFile()) return false;
 
 
@@ -135,7 +135,7 @@ bool JResourceManager::LoadResource(const string& resourceName)
 	TiXmlNode* node = 0;
 	TiXmlElement* element = 0;
 
-	resource = doc.FirstChild("resource"); 
+	resource = doc.FirstChild("resource");
 	if (resource)
 	{
 		element = resource->ToElement();
@@ -161,10 +161,10 @@ bool JResourceManager::LoadResource(const string& resourceName)
 					float value;
 					float hotspotX = 0.0f;
 					float hotspotY = 0.0f;
-					
+
 					if (element->QueryFloatAttribute("x", &value) == TIXML_SUCCESS)
 						x = value;
-					
+
 					if (element->QueryFloatAttribute("y", &value) == TIXML_SUCCESS)
 						y = value;
 
@@ -192,10 +192,10 @@ bool JResourceManager::LoadResource(const string& resourceName)
 
 // 					if (element->QueryFloatAttribute("regx", &value) == TIXML_SUCCESS)
 // 						hotspotX = width/2;
-// 
+//
 // 					if (element->QueryFloatAttribute("regy", &value) == TIXML_SUCCESS)
 // 						hotspotY = height/2;
-				
+
 					int id = CreateQuad(quadName, textureName, x, y, width, height);
 					if (id != INVALID_ID)
 					{
@@ -223,9 +223,9 @@ bool JResourceManager::LoadResource(const string& resourceName)
 // 				}
 			}
 		}
-		
+
 	}
-	
+
 	fileSystem->CloseFile();
 	delete[] xmlBuffer;
 //	JGERelease();
@@ -243,7 +243,7 @@ int JResourceManager::CreateTexture(const string &textureName)
 		string path = /*mResourceRoot + */textureName;
 
 		printf("creating texture:%s\n", path.c_str());
-		
+
 		JTexture *tex = JRenderer::GetInstance()->LoadTexture(path.c_str());
 
 		if (tex == NULL)
@@ -252,7 +252,7 @@ int JResourceManager::CreateTexture(const string &textureName)
 		int id = mTextureList.size();
 		mTextureList.push_back(tex);
 		mTextureMap[textureName] = id;
-		
+
 		return id;
 	}
 	else
@@ -286,7 +286,7 @@ int JResourceManager::CreateQuad(const string &quadName, const string &textureNa
 
 	if (itr == mQuadMap.end())
 	{
-		JTexture *tex = GetTexture(textureName);	
+		JTexture *tex = GetTexture(textureName);
 		if (tex == NULL)
 		{
 			int texId = CreateTexture(textureName);		// load texture if necessary
@@ -302,7 +302,7 @@ int JResourceManager::CreateQuad(const string &quadName, const string &textureNa
 		mQuadList.push_back(new JQuad(tex, x, y, width, height));
 
 		mQuadMap[quadName] = id;
-		
+
 		return id;
 
 	}
@@ -340,13 +340,13 @@ int JResourceManager::LoadJLBFont(const string &fontName, int height)
 		string path = /*mResourceRoot + */fontName;
 
 		printf("creating font:%s\n", path.c_str());
-		
+
 		int id = mFontList.size();
 		///////////////////////////////////////
-		mFontList.push_back(new JLBFont(path.c_str(), height, true));	
+		mFontList.push_back(new JLBFont(path.c_str(), height, true));
 
 		mFontMap[fontName] = id;
-		
+
 		return id;
 	}
 	else
@@ -383,16 +383,16 @@ int JResourceManager::LoadMusic(const string &musicName)
 		string path = /*mResourceRoot + */musicName;
 
 		printf("creating music:%s\n", path.c_str());
-		
+
 		JMusic *music = JSoundSystem::GetInstance()->LoadMusic(path.c_str());
 		if (music == NULL)
 			return INVALID_ID;
 
 		int id = mMusicList.size();
-		mMusicList.push_back(music);	
+		mMusicList.push_back(music);
 
 		mMusicMap[musicName] = id;
-		
+
 		return id;
 	}
 	else
@@ -429,16 +429,16 @@ int JResourceManager::LoadSample(const string &sampleName)
 		string path = /*mResourceRoot + */sampleName;
 
 		printf("creating sample:%s\n", path.c_str());
-		
+
 		JSample *sample = JSoundSystem::GetInstance()->LoadSample(path.c_str());
 		if (sample == NULL)
 			return INVALID_ID;
 
 		int id = mSampleList.size();
-		mSampleList.push_back(sample);	
+		mSampleList.push_back(sample);
 
 		mSampleMap[sampleName] = id;
-		
+
 		return id;
 	}
 	else
@@ -465,46 +465,46 @@ JSample *JResourceManager::GetSample(int id)
 		return NULL;
 }
 
-// 
-// 
+//
+//
 // int JResourceManager::RegisterParticleEffect(const string &effectName)
 // {
 // 	map<string, int>::iterator itr = mParticleEffectMap.find(effectName);
-// 
+//
 // 	if (itr == mParticleEffectMap.end())
 // 	{
 // 		string path = mResourceRoot + effectName;
 // 		printf("creating effect:%s\n", path.c_str());
 // 		JParticleEffect *effect = new JParticleEffect(path.c_str());
-// 
+//
 // 		if (effect == NULL)
 // 			return INVALID_ID;
-// 
-// 
+//
+//
 // 		int id = mParticleEffectList.size();
 // 		mParticleEffectList.push_back(effect);
-// 
+//
 // 		mParticleEffectMap[effectName] = id;
-// 		
+//
 // 		return id;
-// 
+//
 // 	}
 // 	else
 // 		return itr->second;
 // }
-// 
-// 
+//
+//
 // JParticleEffect *JResourceManager::GetParticleEffect(const string &effectName)
 // {
 // 	map<string, int>::iterator itr = mParticleEffectMap.find(effectName);
-// 
+//
 // 	if (itr == mParticleEffectMap.end())
 // 		return NULL;
 // 	else
 // 		return mParticleEffectList[itr->second];
 // }
-// 
-// 
+//
+//
 // JParticleEffect *JResourceManager::GetParticleEffect(int id)
 // {
 // 	if (id >=0 && id < (int)mParticleEffectList.size())
@@ -512,48 +512,48 @@ JSample *JResourceManager::GetSample(int id)
 // 	else
 // 		return NULL;
 // }
-// 
-// 
-// 
+//
+//
+//
 // int JResourceManager::RegisterMotionEmitter(const string &emitterName)
 // {
 // 	map<string, int>::iterator itr = mMotionEmitterMap.find(emitterName);
-// 
+//
 // 	if (itr == mMotionEmitterMap.end())
 // 	{
 // 		string path = mResourceRoot + emitterName;
 // 		printf("creating effect:%s\n", path.c_str());
 // 		JMotionEmitter *emitter = new JMotionEmitter();
-// 
+//
 // 		if (emitter == NULL)
 // 			return INVALID_ID;
-// 
+//
 // 		emitter->LoadMotionML(path.c_str());
-// 
+//
 // 		int id = mMotionEmitterList.size();
 // 		mMotionEmitterList.push_back(emitter);
-// 
+//
 // 		mMotionEmitterMap[emitterName] = id;
-// 		
+//
 // 		return id;
-// 
+//
 // 	}
 // 	else
 // 		return itr->second;
 // }
-// 
-// 
+//
+//
 // JMotionEmitter *JResourceManager::GetMotionEmitter(const string &emitterName)
 // {
 // 	map<string, int>::iterator itr = mMotionEmitterMap.find(emitterName);
-// 
+//
 // 	if (itr == mMotionEmitterMap.end())
 // 		return NULL;
 // 	else
 // 		return mMotionEmitterList[itr->second];
 // }
-// 
-// 
+//
+//
 // JMotionEmitter *JResourceManager::GetMotionEmitter(int id)
 // {
 // 	if (id >=0 && id < (int)mMotionEmitterList.size())
