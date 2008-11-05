@@ -32,6 +32,10 @@
 
 #endif
 
+#ifndef LINUX
+#define __attribute__(arg)
+#endif
+
 
 #define MAX_CHANNEL		128
 
