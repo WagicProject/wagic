@@ -32,7 +32,7 @@
 
 #endif
 
-#ifndef LINUX
+#ifndef __GNUC__
 #define __attribute__(arg)
 #endif
 
