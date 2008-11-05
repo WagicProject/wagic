@@ -13,7 +13,7 @@
 
 #if defined (WIN32) || defined (LINUX)
 
-#include <sys/types.h>
+#include <stdint.h>
 
 #else
 
