@@ -2747,4 +2747,114 @@ public:
 	}
 };
 
+
+
+//--------------Addon Abra------------------
+//ShieldOfTheAge
+class AShieldOfTheAge: public TargetAbility{
+public:
+	AShieldOfTheAge(int _id, MTGCardInstance * card):TargetAbility(_id,card,NEW DamageTargetChooser(card,_id),NEW ManaCost(),0,0){
+		cost->add(MTG_COLOR_ARTIFACT,2);
+	}
+
+	int resolve(){
+		Damage * damage = tc->getNextDamageTarget();
+		if (!damage) return 0;
+		game->mLayers->stackLayer()->Fizzle(damage);
+		return 1;
+	}
+};
+
+//2593 Thoughtleech
+class AThoughtleech:public MTGAbility{
+public:
+	int nbIslandstapped;
+
+	int countIslandsTapped(){
+		int result = 0;
+		MTGInPlay * inplay = source->controller()->opponent()->game->inPlay;
+		for (int i = 0; i < inplay->nb_cards; i++){
+			MTGCardInstance * card = inplay->cards[i];
+			if (card->tapped && card->hasType("island")) result++;
+		}
+		return result;
+	}
+
+	AThoughtleech(int _id, MTGCardInstance * source):MTGAbility(_id, source){
+		nbIslandstapped = countIslandsTapped();
+	}
+
+	void Update(float dt){
+		int newcount = countIslandsTapped();
+		for (int i=0; i < newcount - nbIslandstapped; i++){
+			source->controller()->life++;
+		}
+		nbIslandstapped = newcount;
+	}
+
+};
+
+//Minion of Leshrac
+class AMinionofLeshrac: public TargetAbility{
+public:
+	int paidThisTurn;
+	AMinionofLeshrac(int _id, MTGCardInstance * source):TargetAbility(_id, source, NEW CreatureTargetChooser(),0,1,0){
+		paidThisTurn = 1;
+	}
+
+	void Update(float dt){
+		if (newPhase != currentPhase && source->controller() == game->currentPlayer){
+			if (newPhase == MTG_PHASE_UNTAP){
+				paidThisTurn = 0;
+			}else if( newPhase == MTG_PHASE_UPKEEP + 1 && !paidThisTurn){
+				game->mLayers->stackLayer()->addDamage(source,source->controller(), 5);
+				source->tapped = 1;
+			}
+		}
+		TargetAbility::Update(dt);
+	}
+
+	int isReactingToClick(MTGCardInstance * card){
+		if (currentPhase != MTG_PHASE_UPKEEP || paidThisTurn) return 0;
+		return TargetAbility::isReactingToClick(card);
+	}
+
+	int resolve(){
+		MTGCardInstance * card = tc->getNextCardTarget();
+		if (card && card != source && card->controller() == source->controller()){
+			card->controller()->game->putInGraveyard(card);
+			paidThisTurn = 1;
+			return 1;
+		}
+		return 0;
+	}
+
+};
+
+//2703 Lost Order of Jarkeld
+class ALostOrderofJarkeld:public ListMaintainerAbility{
+public:	
+	ALostOrderofJarkeld(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
+	}
+
+	int canBeInList(MTGCardInstance * card){
+		if (card==source || (game->currentPlayer->game->inPlay->hasCard(card) && card->isACreature()) ) return 1;
+		return 0;
+	}
+
+	int added(MTGCardInstance * card){
+		source->power += 1;
+		source->addToToughness(1);
+		return 1;
+	}
+
+	int removed(MTGCardInstance * card){
+		source->power -= 1;
+		source->addToToughness(-1);
+		return 1;
+	}
+
+};
+
+
 #endif

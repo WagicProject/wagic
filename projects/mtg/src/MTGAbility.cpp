@@ -25,6 +25,23 @@ int AbilityFactory::destroyAllFromTypeInPlay(const char * type, MTGCardInstance 
 	return 1;
 }
 
+int AbilityFactory::destroyAllFromColorInPlay(int color, MTGCardInstance * source, int bury){
+	GameObserver * game = GameObserver::GetInstance();
+	for (int i = 0; i < 2 ; i++){
+		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+			if (current->hasColor(color)){
+				if (bury){
+					game->players[i]->game->putInGraveyard(current);
+				}else{
+					game->mLayers->stackLayer()->addPutInGraveyard(current);
+				}
+			}
+		}
+	}
+	return 1;
+}
+
 int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
 					Spell * spell = NEW Spell(card);
 					p->game->putInZone(card,  zone, p->game->stack);
@@ -107,6 +124,21 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 				continue;
 			}
 		}
+	
+		//Untapper (Ley Druid...)
+		found = s.find("untap");
+		if (found != string::npos){
+			if (dryMode) return BAKA_EFFECT_GOOD;
+			ManaCost * cost = ManaCost::parseManaCost(s);
+			if (tc){
+				game->addObserver(NEW AUntaper(id, card, cost, tc));
+			}else{
+				target->tapped = 0;
+			}
+
+			result++;
+			continue;
+		}
 
 
 		//Regeneration
@@ -175,6 +207,33 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 					}
 					result++;
 					continue;
+		}
+
+		//gainlife
+		found = s.find("gainlife");
+		if (found != string::npos){ 
+			unsigned int start = s.find(":",found);
+			unsigned int end = s.find(" ",start);
+			int life;
+			ManaCost * cost = ManaCost::parseManaCost(s);
+			if (end != string::npos){ 
+				life = atoi(s.substr(start+1,end-start-1).c_str());
+			}else{
+				life = atoi(s.substr(start+1).c_str());
+			}
+			if (dryMode) return BAKA_EFFECT_GOOD;
+			if (tc){
+				//TODO ?
+			}else{
+				if (cost->getConvertedCost() == 0 && !doTap){
+					delete cost;
+					card->controller()->life+=life;
+				}else{
+					//TODO;
+				}
+			}
+			result++;
+			continue;
 		}
 
 		//Draw
@@ -260,7 +319,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 				game->addObserver(NEW AManaProducer(id, target, output, cost));
 			}else{
 				delete cost;
-				game->addObserver(NEW AManaProducer(id, target, output));
+				if (doTap){
+					game->addObserver(NEW AManaProducer(id, target, output));
+				}else{
+					card->controller()->getManaPool()->add(output);
+					delete output;
+				}
+
 			}
 			result++;
 			continue;
@@ -706,11 +771,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AWanderlust(_id, card, card->target));
 			break;
 		}
-	case 1149: // Dark Ritual
-		{
-			game->currentlyActing()->getManaPool()->add(MTG_COLOR_BLACK, 3);
-			break;
-		}
 	case 1156: //Drain Life
 		{
 			Damageable * target = spell->getNextDamageableTarget();
@@ -962,12 +1022,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 					}
 				}
 			}
-			break;
-		}
-	case 1255: //Ley Druid
-		{
-			TargetChooser * tc = NEW TypeTargetChooser("land", card);
-			game->addObserver(NEW AUntaper(_id, card, NEW ManaCost(), tc));
 			break;
 		}
 	case 1262: //Regeneration
@@ -1232,6 +1286,107 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	case 1372: //Wrath of God
 		{
 			destroyAllFromTypeInPlay("creature", card); //TODO -> bury !!!
+			break;
+		}
+
+//Addons Abra
+	case 2631: //Jokulhaups
+		{
+			destroyAllFromTypeInPlay("artifact", card);
+			destroyAllFromTypeInPlay("creature", card);
+			destroyAllFromTypeInPlay("land", card);
+			break;
+		}
+
+	case 2491: //Touch of Death
+		{
+			game->currentlyActing()->life+=1;
+			break;
+		}
+	case 2650: //Pyroclasm
+		{
+			int x = 2; 
+			for (int i = 0; i < 2 ; i++){
+				game->mLayers->stackLayer()->addDamage(card, game->players[i], 0);
+				for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+					MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+					if (current->isACreature()){
+						game->mLayers->stackLayer()->addDamage(card, current, x);
+					}
+				}
+			}
+			break;
+		}
+	case 2660: //Word of Blasting
+		{
+			card->target->controller()->game->putInGraveyard(card->target);
+			card->target->controller()->life-= card->target->getManaCost()->getConvertedCost();
+			break;
+		}
+	case 2443: //Dark Banishing
+		{
+			if (card->target->hasColor(MTG_COLOR_BLACK)){
+			}else{
+				card->target->controller()->game->putInGraveyard(card->target);
+			}
+			break;
+		}
+	case 2593: //Thoughtleech
+		{
+			game->addObserver(NEW AThoughtleech(_id, card));
+			break;
+		}
+	case 2667: //Blessed Wine
+		{
+			game->currentlyActing()->life+=1;
+			break;
+		}
+	case 2571: //Gorilla Pack
+		{
+			game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
+			break;
+		}
+	case 2484: //Songs of the Damned
+		{
+			int mana = card->controller()->game->graveyard->countByType("creature");
+			game->currentlyActing()->getManaPool()->add(MTG_COLOR_BLACK, mana);
+			break;
+		}
+	case 2606: //Anarchy
+		{
+			destroyAllFromColorInPlay(MTG_COLOR_WHITE, card);
+			break;
+		}
+	case 2474: //Minion of Leshrac
+		{
+			game->addObserver(NEW AMinionofLeshrac( _id, card));
+			break;
+		}
+	case 2421: //Shield of the Age
+		{
+			game->addObserver(NEW AShieldOfTheAge( _id, card));
+			break;
+		}
+	case 2487: //Spoil of Evil
+		{
+			int mana_cr = game->opponent()->game->graveyard->countByType("creature");
+			int mana_ar = game->opponent()->game->graveyard->countByType("artifact");
+			int spoil = mana_ar + mana_cr;
+			game->currentlyActing()->getManaPool()->add(MTG_COLOR_ARTIFACT, spoil);
+			game->currentlyActing()->life+= spoil;
+			break;
+		}
+	case 2435: //Whalebone Glider
+		{
+			int cost[] = {MTG_COLOR_ARTIFACT,2};
+			CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
+			tc->maxpower = 3;
+			game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, FLYING, NEW ManaCost(cost,1),tc));
+			break;	
+		}
+	case 2703: // Lost Order of Jarkeld
+		{
+			game->addObserver(NEW ALostOrderofJarkeld(_id, card));
 			break;
 		}
   default:

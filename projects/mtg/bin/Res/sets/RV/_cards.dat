@@ -455,6 +455,7 @@ toughness=5
 [/card]
 [card]
 text=Add {B}{B}{B} to your mana pool.
+auto=Add{B}{B}{B}
 id=1149
 name=Dark Ritual
 rarity=C
@@ -1193,6 +1194,7 @@ subtype=Aura
 [/card]
 [card]
 text={T}: Untap target land.
+auto={T}:untap target(land)
 id=1255
 name=Ley Druid
 rarity=U
