@@ -1368,25 +1368,21 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		game->addObserver(NEW AExalted(_id, card));
 	}
 	
-	// Tested the two variant none is working properly I don't know why ??
+	// Tested works the first r10 did not function because of the mistake in the array of the definition 
 	if (card->basicAbilities[FORESTHOME]){
 		game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
 	}
 	if (card->basicAbilities[ISLANDHOME]){
-		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"island");
-		game->addObserver(ability);
+		game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
 	}
 	if (card->basicAbilities[MOUNTAINHOME]){
-		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"moutain");
-		game->addObserver(ability);
+		game->addObserver(NEW AStrongLandLinkCreature(_id, card,"moutain"));
 	}
 	if (card->basicAbilities[SWAMPHOME]){
-		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"swamp");
-		game->addObserver(ability);
+		game->addObserver(NEW AStrongLandLinkCreature(_id, card,"swamp"));
 	}
 	if (card->basicAbilities[PLAINSHOME]){
-		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"plains");
-		game->addObserver(ability);
+		game->addObserver(NEW AStrongLandLinkCreature(_id, card,"plains"));
 	}
 	//Instants are put in the graveyard automatically if that's not already done
 	if (!putSourceInGraveyard){

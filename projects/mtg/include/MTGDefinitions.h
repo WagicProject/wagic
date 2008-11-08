@@ -83,14 +83,14 @@ static int _b[7] = {20,	0,		140,15,	50,255,128};
 #define EXALTED 27
 #define LEGENDARY 28
 #define SHADOW 29
-#define REACHSHADOW 29
-#define FORESTHOME 30
-#define ISLANDHOME 31
-#define MOUNTAINHOME 32
-#define SWAMPHOME 33
-#define PLAINSHOME 34
+#define REACHSHADOW 30
+#define FORESTHOME 31
+#define ISLANDHOME 32
+#define MOUNTAINHOME 33
+#define SWAMPHOME 34
+#define PLAINSHOME 35
 
-#define NB_BASIC_ABILITIES 35
+#define NB_BASIC_ABILITIES 36
 
 static const char * MTGBasicAbilities[] = {
 "trample",
