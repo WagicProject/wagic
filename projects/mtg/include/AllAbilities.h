@@ -1543,47 +1543,6 @@ public:
 
 };
 
-//1109 flying Carpet
-class AFlyingCarpet:public ABasicAbilityModifierUntilEOT{
-
-	public:
-	AFlyingCarpet(int _id, MTGCardInstance * _source): ABasicAbilityModifierUntilEOT(_id,_source,FLYING, NEW ManaCost()){
-		cost->add(MTG_COLOR_ARTIFACT,2);
-	}
-
-	void Update(float dt){
-		ABasicAbilityModifierUntilEOT::Update(dt);
-	
-		if (nbTargets){
-			MTGCardInstance * mTarget = mTargets[0];
-			for (int i = 0; i < 2; i++){
-				if(game->players[i]->game->graveyard->hasCard(mTarget)){
-					game->players[i]->game->putInGraveyard(source);
-					mTarget = NULL;
-				}
-			}
-		}
-	}
-
-
-
-	int destroy(){
-		if (!nbTargets) return 0;
-		MTGCardInstance * mTarget = mTargets[0];
-		if (mTarget && mTarget->basicAbilities[FLYING]){
-				mTarget->basicAbilities[FLYING] = stateBeforeActivation[0];
-				mTarget = NULL;
-			return 1;
-		}else{
-			//BUG !!!
-			return 0;
-		}
-	}
-
-};
-
-
-
 //1110 Glasses of Urza
 class AGlassesOfUrza:public MTGAbility{
 public:
@@ -1644,25 +1603,6 @@ public:
 	}
 };
 
-//1118 Jandors Sandlebag
-class AJandorsSandlebag:public TargetAbility{
-public:
-	AJandorsSandlebag(int _id, MTGCardInstance * card):TargetAbility(_id, card){
-		int _cost[] = {MTG_COLOR_ARTIFACT, 3};
-		cost = NEW ManaCost(_cost,1);
-		tc = NEW CreatureTargetChooser();
-	}
-
-	int resolve(){
-		MTGCardInstance * card = tc->getNextCardTarget();
-		if (card->tapped){
-			card->tapped = 0;
-			return 1;
-		}
-	return 0;
-	}
-};
-
 //1119 Jayemdae Tome
 class AJayemdaeTome:public ActivatedAbility{
 public:
@@ -1675,36 +1615,6 @@ public:
 		game->mLayers->stackLayer()->addDraw(source->controller());
 		return 1;
 	}
-};
-
-
-//1205 Lifetap
-class ALifetap:public MTGAbility{
-public:
-	int nbforeststapped;
-
-	int countForestsTapped(){
-		int result = 0;
-		MTGInPlay * inplay = source->controller()->opponent()->game->inPlay;
-		for (int i = 0; i < inplay->nb_cards; i++){
-			MTGCardInstance * card = inplay->cards[i];
-			if (card->tapped && card->hasType("forest")) result++;
-		}
-		return result;
-	}
-
-	ALifetap(int _id, MTGCardInstance * source):MTGAbility(_id, source){
-		nbforeststapped = countForestsTapped();
-	}
-
-	void Update(float dt){
-		int newcount = countForestsTapped();
-		for (int i=0; i < newcount - nbforeststapped; i++){
-			source->controller()->life++;
-		}
-		nbforeststapped = newcount;
-	}
-
 };
 
 
@@ -2733,22 +2643,6 @@ public:
 		}
 };
 
-//Sunglasses of Urza
-class ASunglassesOfUrza:public ActivatedAbility{
-public:
-	ASunglassesOfUrza(int _id, MTGCardInstance * card):ActivatedAbility(_id, card,NEW ManaCost(),0,0){
-		cost->add(MTG_COLOR_WHITE, 1);
-	}
-
-
-	int resolve(){
-		source->controller()->getManaPool()->add(MTG_COLOR_RED, 1);
-		return 1;
-	}
-};
-
-
-
 //--------------Addon Abra------------------
 //ShieldOfTheAge
 class AShieldOfTheAge: public TargetAbility{
@@ -2765,33 +2659,36 @@ public:
 	}
 };
 
-//2593 Thoughtleech
-class AThoughtleech:public MTGAbility{
-public:
-	int nbIslandstapped;
+// GiveLifeForTappedType
 
-	int countIslandsTapped(){
+class AGiveLifeForTappedType:public MTGAbility{
+public:
+	char type[20];
+	int nbtypestapped;
+
+	int counttypesTapped(){
 		int result = 0;
 		MTGInPlay * inplay = source->controller()->opponent()->game->inPlay;
 		for (int i = 0; i < inplay->nb_cards; i++){
 			MTGCardInstance * card = inplay->cards[i];
-			if (card->tapped && card->hasType("island")) result++;
+			if (card->tapped && card->hasType(type)) result++;
 		}
 		return result;
 	}
 
-	AThoughtleech(int _id, MTGCardInstance * source):MTGAbility(_id, source){
-		nbIslandstapped = countIslandsTapped();
+	AGiveLifeForTappedType(int _id, MTGCardInstance * source, const char * _type):MTGAbility(_id, source){
+		sprintf(type,"%s",_type);{
+		nbtypestapped = counttypesTapped();
+		}
 	}
 
 	void Update(float dt){
-		int newcount = countIslandsTapped();
-		for (int i=0; i < newcount - nbIslandstapped; i++){
+		int newcount = counttypesTapped();
+		for (int i=0; i < newcount - nbtypestapped; i++){
 			source->controller()->life++;
 		}
-		nbIslandstapped = newcount;
+		nbtypestapped = newcount;
 	}
-
 };
 
 //Minion of Leshrac

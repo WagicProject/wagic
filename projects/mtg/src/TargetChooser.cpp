@@ -284,6 +284,7 @@ CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxta
 	MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
 	init(default_zones,2);
 	maxpower=  -1;
+	maxtoughness=  -1;
 }
 
 CreatureTargetChooser::CreatureTargetChooser(MTGGameZone ** _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
@@ -295,6 +296,7 @@ CreatureTargetChooser::CreatureTargetChooser(MTGGameZone ** _zones, int nbzones,
 			init(_zones, nbzones);
 		}
 		maxpower = -1;
+		maxtoughness=  -1;
 }
 
 
@@ -303,6 +305,7 @@ int CreatureTargetChooser::canTarget(Targetable * target){
 	if (target->typeAsTarget() == TARGET_CARD){
 		MTGCardInstance * card = (MTGCardInstance *) target;
 		if (maxpower != -1 && card->power > maxpower) return 0;
+		if (maxtoughness != -1 && card->toughness > maxtoughness) return 0;
 		return card->isACreature();
 	}
 	return 0;

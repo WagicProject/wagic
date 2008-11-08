@@ -166,7 +166,7 @@ toughness=1
 [/card]
 [card]
 text=First strike, protection from white
-abilities=First strike, protection from white
+abilities=First strike,protection from white
 id=1145
 name=Black Knight
 rarity=U
@@ -277,6 +277,11 @@ mana={3}{W}
 text={2}, {T}: Add one mana of any color to your mana pool.
 id=1100
 name=Celestial Prism
+auto={2}{T}: add {B}
+auto={2}{T}: add {U}
+auto={2}{T}: add {G}
+auto={2}{T}: add {R}
+auto={2}{T}: add {W}
 rarity=U
 type=Artifact
 mana={3}
@@ -751,6 +756,7 @@ subtype=Aura
 [card]
 text={2}, {T}: Target creature gains flying until end of turn.
 id=1109
+auto={2}{T}:flying target(creature)
 name=Flying Carpet
 rarity=R
 type=Artifact
@@ -1109,6 +1115,7 @@ mana={6}
 [card]
 text={3}, {T}: Untap target creature.
 id=1118
+auto={3}{T}:untap target(creature)
 name=Jandor's Saddlebags
 rarity=R
 type=Artifact
@@ -1116,7 +1123,7 @@ mana={2}
 [/card]
 [card]
 text={4}, {T}: Draw a card.
-auto={4},{T}:Draw:1
+auto={4}{T}:Draw:1
 id=1119
 name=Jayemdae Tome
 rarity=R
@@ -1295,7 +1302,7 @@ toughness=2
 [/card]
 [card]
 text=Flying, trample (This creature can't be blocked except by creatures with flying or reach. If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
-abilities=Flying, trample
+abilities=flying,trample
 id=1166
 name=Lord of the Pit
 rarity=R
@@ -1522,6 +1529,8 @@ toughness=3
 text=Pirate Ship can't attack unless defending player controls an Island.     {T}: Pirate Ship deals 1 damage to target creature or player.     When you control no Islands, sacrifice Pirate Ship.
 id=1214
 name=Pirate Ship
+abilities=islandhome
+auto={T}:damage target(creature,player)
 rarity=R
 type=Creature
 mana={4}{U}
@@ -1601,6 +1610,7 @@ mana={R}{R}
 text={T}: Prodigal Sorcerer deals 1 damage to target creature or player.
 id=1217
 name=Prodigal Sorcerer
+auto={T}:damage:1 target(creature,player)
 rarity=C
 type=Creature
 mana={2}{U}
@@ -1639,6 +1649,7 @@ mana={B}
 text=Return target artifact card from your graveyard to your hand.
 target=artifact|myGraveyard
 id=1219
+alias=1174
 name=Reconstruction
 rarity=C
 type=Sorcery
@@ -1724,6 +1735,7 @@ toughness=3
 text={3}, {T}: Rod of Ruin deals 1 damage to target creature or player.
 id=1134
 name=Rod of Ruin
+auto={3}{T}:damage:1 target(creature,player)
 rarity=U
 type=Artifact
 mana={4}
@@ -1838,7 +1850,7 @@ toughness=4
 [/card]
 [card]
 text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
-abilities=Flying, vigilance
+abilities=flying,vigilance
 id=1366
 name=Serra Angel
 rarity=U
@@ -1958,6 +1970,7 @@ mana={X}{G}
 text={W}: Add {R} to your mana pool.
 id=1137
 name=Sunglasses of Urza
+auto={W}: add {R}
 rarity=R
 type=Artifact
 mana={3}
@@ -2182,7 +2195,7 @@ subtype=Island Mountain
 [/card]
 [card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
-abilities=Defender, flying
+abilities=Defender,flying
 id=1232
 name=Wall of Air
 rarity=U
@@ -2296,6 +2309,7 @@ toughness=3
 text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, Wanderlust deals 1 damage to that player.
 target=creature
 id=1276
+alias=1200
 name=Wanderlust
 rarity=U
 type=Enchantment
@@ -2367,7 +2381,7 @@ mana={2}{R}
 [/card]
 [card]
 text=First strike, protection from black
-abilities=First strike, protection from black
+abilities=first strike,protection from black
 id=1370
 name=White Knight
 rarity=U

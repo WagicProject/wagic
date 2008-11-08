@@ -8,7 +8,7 @@
 #include "../include/CardGui.h"
 #include "../include/MTGDeck.h"
 
-int AbilityFactory::destroyAllFromTypeInPlay(const char * type, MTGCardInstance * source, int bury){
+int AbilityFactory::destroyAllFromTypeInPlay(char * type, MTGCardInstance * source, int bury){
 	GameObserver * game = GameObserver::GetInstance();
 	for (int i = 0; i < 2 ; i++){
 		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
@@ -140,6 +140,20 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 			continue;
 		}
 
+		//Tapper (icy manipulator)
+		found = s.find("tap");
+		if (found != string::npos){
+			if (dryMode) return BAKA_EFFECT_GOOD;
+			ManaCost * cost = ManaCost::parseManaCost(s);
+			if (tc){
+				game->addObserver(NEW ATapper(id, card, cost, tc));
+			}else{
+				target->tapped = 1;
+			}
+
+			result++;
+			continue;
+		}	
 
 		//Regeneration
 		found = s.find("}:regenerate");
@@ -458,15 +472,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
 			break;
 		}
-	case 1100: //Celestial Prism
-		{
-			for (int i = MTG_COLOR_GREEN; i <= MTG_COLOR_WHITE; i++){
-				int cost[] = {MTG_COLOR_ARTIFACT, 2};
-				int cost2[] = {i + MTG_COLOR_GREEN,1};
-				game->addObserver(NEW AManaProducer(_id + i, card, NEW ManaCost(cost2, 1), NEW ManaCost(cost, 1)));
-			}
-			break;
-		}
 	case 1237: //Channel
 		{
 			game->addObserver(NEW AChannel(_id, card));
@@ -585,11 +590,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AFireball(_id, card,spell, x));
 			break;
     }
-	case 1109: //Flying Carpet
-		{
-			game->addObserver(NEW AFlyingCarpet(_id,card));
-			break;
-    }
 	case 1245: //Force of Nature
 		{
 			game->addObserver(NEW AForceOfNature(_id,card));
@@ -640,11 +640,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AJandorsRing( _id, card));
 			break;
 		}
-	case 1118: //Jandors Sandlebag
-		{
-			game->addObserver(NEW AJandorsSandlebag( _id, card));
-			break;
-		}
 	case 1121: //Kormus Bell
 		{
 			game->addObserver(NEW AConvertLandToCreatures(id, card, "swamp"));
@@ -673,7 +668,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		}
 	case 1205: //Lifetap
 		{
-			game->addObserver(NEW ALifetap(_id, card));
+			game->addObserver(NEW AGiveLifeForTappedType(_id, card, "forest"));
 			break;
 		}
 	case 1259: //Living lands
@@ -723,13 +718,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 				Spell * starget = spell->getNextSpellTarget();
 				game->mLayers->stackLayer()->Fizzle(starget);
 			}
-			break;
-		}
-	case 1134: //Rod of Ruin
-		{
-			int cost[] = {MTG_COLOR_ARTIFACT, 3};
-			ADamager * ability = NEW ADamager(_id, card, NEW ManaCost(cost,1), 1);
-			game->addObserver(ability);
 			break;
 		}
 	case 1136: //Soul Net
@@ -941,21 +929,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW ADamager(_id+1, card, NEW ManaCost(), 1));
 			break;
 		}
-	case 1217: // Prodigal sorcerer
-		{
-			ADamager * ability = NEW ADamager(_id, card, NEW ManaCost(), 1);
-			game->addObserver(ability);
-			break;
-		}
 	case 1218: //Psychic Venom
 		{
 			game->addObserver(NEW APsychicVenom(_id, card, card->target));
-			break;
-		}
-	case 1219: //Reconstruction
-		{
-			MTGPlayerCards * zones = game->currentlyActing()->game;
-			zones->putInZone(card->target,zones->graveyard,zones->hand);
 			break;
 		}
 	case 1220: //Sea Serpent
@@ -1072,11 +1048,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 					}
 				}
 			}
-			break;
-		}
-	case 1276: //Wanderlust
-		{
-			game->addObserver(NEW AWanderlust(_id, card, card->target));
 			break;
 		}
 	case 1278: //Web
@@ -1244,11 +1215,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			}
 			break;
 		}
-	case 1137: //Sunglasses of Urza
-		{
-			game->addObserver(NEW ASunglassesOfUrza(_id, card));
-			break;
-		}
 	case 1367: //Sword to Plowshares
 		{
 			card->target->controller()->life+= card->target->power;
@@ -1289,7 +1255,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			break;
 		}
 
-//Addons Abra
+//Addons ICE-AGE Cards
 	case 2631: //Jokulhaups
 		{
 			destroyAllFromTypeInPlay("artifact", card);
@@ -1298,16 +1264,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			break;
 		}
 
-	case 2491: //Touch of Death
-		{
-			game->currentlyActing()->life+=1;
-			break;
-		}
-	case 2650: //Pyroclasm
+	case 2650: //Pyroclasm Need to be improved copied from hurricane with does 0 dammage to player and does 2 dammage to each creature
 		{
 			int x = 2; 
 			for (int i = 0; i < 2 ; i++){
-				game->mLayers->stackLayer()->addDamage(card, game->players[i], 0);
+				game->mLayers->stackLayer()->addDamage(card, game->players[i], 0);// To be removed ?
 				for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
 					MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
 					if (current->isACreature()){
@@ -1333,17 +1294,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		}
 	case 2593: //Thoughtleech
 		{
-			game->addObserver(NEW AThoughtleech(_id, card));
-			break;
-		}
-	case 2667: //Blessed Wine
-		{
-			game->currentlyActing()->life+=1;
-			break;
-		}
-	case 2571: //Gorilla Pack
-		{
-			game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
+			game->addObserver(NEW AGiveLifeForTappedType (_id, card, "island"));
 			break;
 		}
 	case 2484: //Songs of the Damned
@@ -1384,6 +1335,15 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, FLYING, NEW ManaCost(cost,1),tc));
 			break;	
 		}
+	case 2393: //Aegis of the Meek work but work also for 0/1 creatures... :D
+		{
+			int cost[] = {MTG_COLOR_ARTIFACT,1};
+			CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
+			tc->maxpower = 1;
+			tc->maxtoughness =1;
+			game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(cost,1),tc));
+			break;	
+		}
 	case 2703: // Lost Order of Jarkeld
 		{
 			game->addObserver(NEW ALostOrderofJarkeld(_id, card));
@@ -1407,7 +1367,27 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	if (card->basicAbilities[EXALTED]){
 		game->addObserver(NEW AExalted(_id, card));
 	}
-
+	
+	// Tested the two variant none is working properly I don't know why ??
+	if (card->basicAbilities[FORESTHOME]){
+		game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
+	}
+	if (card->basicAbilities[ISLANDHOME]){
+		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"island");
+		game->addObserver(ability);
+	}
+	if (card->basicAbilities[MOUNTAINHOME]){
+		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"moutain");
+		game->addObserver(ability);
+	}
+	if (card->basicAbilities[SWAMPHOME]){
+		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"swamp");
+		game->addObserver(ability);
+	}
+	if (card->basicAbilities[PLAINSHOME]){
+		AStrongLandLinkCreature * ability = NEW AStrongLandLinkCreature(_id, card,"plains");
+		game->addObserver(ability);
+	}
 	//Instants are put in the graveyard automatically if that's not already done
 	if (!putSourceInGraveyard){
 		if (card->hasType("instant") || card->hasType("sorcery")){

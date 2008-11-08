@@ -1213,7 +1213,7 @@ subtype=Pyknite
 toughness=1
 [/card]
 [card]
-text=Counts as a wall {1}: +1/+0 until end of turn1: +0/+1 until end of turn3: Snow Fortress deals 1 damage to target creature without flying that is attacking you.
+text=Counts as a wall {1}: +1/+0 until end of turn {1}: +0/+1 until end of turn3: Snow Fortress deals 1 damage to target creature without flying that is attacking you.
 id=2423
 abilities=defender
 auto={1}:1/0
@@ -1260,8 +1260,7 @@ toughness=3
 [card]
 text=If at any time you control no islands, bury Skeleton Ship.{T}: Put a -1/-1 counter on target creature.
 id=2737
-abilities=wither
-alias=1214
+abilities=wither,islandhome
 name=Skeleton Ship
 rarity=R
 type=Creature 
@@ -1292,6 +1291,7 @@ text=Gain 1 life. Draw a card at the beginning of the next turn's upkeep.
 id=2667
 name=Blessed Wine
 auto=draw:1
+auto=gainlife:1
 rarity=C
 type=Instant
 mana={1}{W}
@@ -1311,6 +1311,7 @@ name=Touch of Death
 target=player
 auto=damage:1
 auto=draw:1
+auto=gainlife:1
 rarity=C
 type=Sorcery
 mana={2}{B}
@@ -1319,6 +1320,7 @@ mana={2}{B}
 text=Gorilla Pack cannot attack if defending player controls no forests.Bury Gorilla Pack if you control no forests.
 id=2571
 name=Gorilla Pack
+abilities=foresthome
 rarity=C
 type=Creature 
 mana={2}{G}
@@ -1346,6 +1348,7 @@ mana={2}{R}{R}
 text={2}{G}{T}: Untap target creature.
 id=2566
 name=Fyndhorn Brownie
+auto={2}{G}{T}:untap target(creature)
 rarity=C
 type=Creature 
 mana={2}{G}
@@ -1400,6 +1403,48 @@ mana={2}{W}{W}
 power=1
 subtype=Knights
 toughness=1
+[/card]
+[card]
+text=Lhurgoyf has power equal to the total number of creatures in all graveyards and toughness equal to 1 plus the total number of creatures in all graveyards.
+id=2576
+name=Lhurgoyf
+rarity=R
+type=Creature 
+mana={2}{G}{G}
+power=*
+subtype=Lhurgoyf
+toughness=1
+[/card]
+[card]
+text={T} target artifact, creature, or land. Draw a card at the beginning of the next turn's upkeep.
+id=2503
+target=artifact,creature,land
+auto=tap
+auto=draw:1
+name=Enervate
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Target creature may untap one additional time this turn.That creature may attack or use abilities that require {T} as part of the activation cost this turn. Draw a card at the beginning of the next turn's upkeep.
+id=2595
+target=creature
+auto=untap
+alias=1252
+name=Touch of Vitae
+auto=draw:1
+rarity=U
+type=Instant
+mana={2}{G}
+[/card]
+[card]
+text={1}{T}: Target 1/1 creature gets +1/+2 until end of turn.
+id=2393
+name=Aegis of the Meek
+rarity=R
+type=Artifact
+mana={3}
 [/card]
 
 #End of file

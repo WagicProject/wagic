@@ -232,8 +232,8 @@ int MTGCardInstance::setToughness(int value){
 }
 
 int MTGCardInstance::canBlock(){
-	if (!tapped && isACreature())
-		return 1;
+	if (!tapped && isACreature())return 1;
+	if (!basicAbilities[SHADOW]&& isACreature()) return 1; // Try to add shadow
 	return 0;
 }
 
@@ -249,6 +249,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
 	if (opponent->basicAbilities[UNBLOCKABLE]) return 0;
 	if (opponent->basicAbilities[FEAR] && !(hasColor(MTG_COLOR_ARTIFACT) || hasColor(MTG_COLOR_BLACK))) return 0;
 	if (opponent->basicAbilities[FLYING] && !( basicAbilities[FLYING] || basicAbilities[REACH])) return 0;
+	if (opponent->basicAbilities[SHADOW] && !( basicAbilities[SHADOW] || basicAbilities[REACHSHADOW])) return 0;
 	if (opponent->basicAbilities[SWAMPWALK] && controller()->game->inPlay->hasType("swamp")) return 0;
 	if (opponent->basicAbilities[FORESTWALK] && controller()->game->inPlay->hasType("forest")) return 0;
 	if (opponent->basicAbilities[ISLANDWALK] && controller()->game->inPlay->hasType("island")) return 0;

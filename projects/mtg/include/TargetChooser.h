@@ -63,6 +63,7 @@ public:
 class CreatureTargetChooser:public TargetZoneChooser{
 public:
 		int maxpower;
+		int maxtoughness;
 		CreatureTargetChooser(MTGGameZone ** _zones, int _nbzones,MTGCardInstance * card = NULL, int _maxtargets = 1);
 		CreatureTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1);
 		virtual int canTarget(Targetable * _card);

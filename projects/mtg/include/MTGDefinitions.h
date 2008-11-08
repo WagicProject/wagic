@@ -82,8 +82,15 @@ static int _b[7] = {20,	0,		140,15,	50,255,128};
 #define RETRACE 26
 #define EXALTED 27
 #define LEGENDARY 28
+#define SHADOW 29
+#define REACHSHADOW 29
+#define FORESTHOME 30
+#define ISLANDHOME 31
+#define MOUNTAINHOME 32
+#define SWAMPHOME 33
+#define PLAINSHOME 34
 
-#define NB_BASIC_ABILITIES 29
+#define NB_BASIC_ABILITIES 35
 
 static const char * MTGBasicAbilities[] = {
 "trample",
@@ -114,7 +121,14 @@ static const char * MTGBasicAbilities[] = {
 "persist",
 "retrace",
 "exalted",
-"legendary"
+"legendary",
+"shadow",
+"reachshadow",
+"foresthome",
+"islandhome",
+"moutainhome",
+"swamphome",
+"plainshome"
 };
 
 
