@@ -93,6 +93,19 @@ subtype=Elf Scout
 toughness=2
 [/card]
 [card]
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {W}, {T}: Dawnray Archer deals 1 damage to target attacking or blocking creature.
+abilities=exalted
+auto={W}{T}:damage:1 target(creature[attacking;blocking])
+id=175085
+name=Dawnray Archer
+rarity=U
+type=Creature
+mana={2}{U}
+power=1
+subtype=Human Archer
+toughness=1
+[/card]
+[card]
 text=First strike     Shroud (This creature can't be the target of spells or abilities.)
 abilities=first strike, shroud
 id=175121
@@ -140,6 +153,18 @@ mana={1}{G}
 power=1
 subtype=Elf Shaman
 toughness=1
+[/card]
+[card]
+text={2}{U}: Untap target artifact.
+auto={2}{U}:untap target(artifact)
+id=174888
+name=Filigree Sages
+rarity=U
+type=Artifact Creature
+mana={3}{U}
+power=2
+subtype=Vedalken Wizard
+toughness=3
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
@@ -307,6 +332,15 @@ rarity=C
 type=Enchantment
 mana={2}{R}
 subtype=Aura
+[/card]
+[card]
+text={T}: You gain 1 life.
+auto={T}:life:1
+id=175249
+name=Marble Chalice
+rarity=C
+type=Artifact
+mana={2}{W}
 [/card]
 [card]
 text={W}, {T}: Regenerate target artifact.

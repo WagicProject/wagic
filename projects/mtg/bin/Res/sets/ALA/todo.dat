@@ -342,17 +342,6 @@ subtype=Human Wizard
 toughness=2
 [/card]
 [card]
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {W}, {T}: Dawnray Archer deals 1 damage to target attacking or blocking creature.
-id=175085
-name=Dawnray Archer
-rarity=U
-type=Creature
-mana={2}{U}
-power=1
-subtype=Human Archer
-toughness=1
-[/card]
-[card]
 text=Skeleton creatures you control and other Zombie creatures you control get +1/+1 and have deathtouch.
 id=176430
 name=Death Baron
@@ -559,17 +548,6 @@ mana={X}{G}
 power=0
 subtype=Hydra Beast
 toughness=0
-[/card]
-[card]
-text={2}{U}: Untap target artifact.
-id=174888
-name=Filigree Sages
-rarity=U
-type=Artifact Creature
-mana={3}{U}
-power=2
-subtype=Vedalken Wizard
-toughness=3
 [/card]
 [card]
 text=First strike     Unearth {U}{B}{R} ({U}{B}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
@@ -927,14 +905,6 @@ mana={2}{G}
 power=1
 subtype=Ooze
 toughness=1
-[/card]
-[card]
-text={T}: You gain 1 life.
-id=175249
-name=Marble Chalice
-rarity=C
-type=Artifact
-mana={2}{W}
 [/card]
 [card]
 text=Master of Etherium's power and toughness are each equal to the number of artifacts you control.     Other artifact creatures you control get +1/+1.
