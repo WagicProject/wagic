@@ -1,4 +1,16 @@
 [card]
+text={2}: Target white creature gains persist until end of turn. (When it's put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+auto={2}:persist target(creature)
+id=158293
+name=Antler Skulkin
+rarity=C
+type=Artifact Creature
+mana={5}
+power=3
+subtype=Scarecrow
+toughness=3
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {UR}, {T}: Add {U}{U}, {U}{R}, or {R}{R} to your mana pool.
 auto={T}: Add {1}
 auto={UR}{T}: Add {U}{U}
@@ -30,6 +42,17 @@ type=Instant
 mana={1}{RW}
 [/card]
 [card]
+text=Destroy target land. You gain 2 life.
+target=land
+auto=destroy
+auto=life:2
+id=151079
+name=Drain the Well
+rarity=C
+type=Sorcery
+mana={2}{BG}{BG}
+[/card]
+[card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  {RW}: Duergar Cave-Guard gets +1/+0 until end of turn.
 abilities=wither
 auto={RW}:1/0
@@ -53,6 +76,18 @@ mana={5}{G}{G}
 power=7
 subtype=Wurm
 toughness=7
+[/card]
+[card]
+text={2}: Target black creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
+auto={2}:wither target(creature[black])
+id=158296
+name=Fang Skulkin
+rarity=C
+type=Artifact Creature
+mana={2}
+power=2
+subtype=Scarecrow
+toughness=1
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {WB}, {T}: Add {W}{W}, {W}{B}, or {B}{B} to your mana pool.
@@ -122,6 +157,30 @@ mana={2}{RW}
 power=1
 subtype=Goblin Knight
 toughness=2
+[/card]
+[card]
+text={3}: Target green creature gets +1/+1 until end of turn.
+auto={3}:1/1 target(creature[green])
+id=158294
+name=Hoof Skulkin
+rarity=C
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text={2}: Target red creature gains haste until end of turn.
+auto={2}:haste target(creature[red])
+id=158295
+name=Jawbone Skulkin
+rarity=C
+type=Artifact Creature
+mana={1}
+power=1
+subtype=Scarecrow
+toughness=1
 [/card]
 [card]
 text=Fear     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
@@ -216,6 +275,18 @@ id=153434
 name=Rugged Prairie
 rarity=R
 type=Land
+[/card]
+[card]
+text={3}: Target blue creature gains shroud until end of turn.
+auto={3}:shroud target(creature[blue])
+id=158297
+name=Shell Skulkin
+rarity=C
+type=Artifact Creature
+mana={4}
+power=3
+subtype=Scarecrow
+toughness=2
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
@@ -329,4 +400,28 @@ mana={G}
 power=1
 subtype=Elf Warrior
 toughness=1
+[/card]
+[card]
+text={T}: Target red or green creature gets -2/-0 until end of turn.
+auto={T}:-2/0 target(creature[red])
+id=153476
+name=Wilderness Hypnotist
+rarity=C
+type=Creature
+mana={2}{U}{U}
+power=1
+subtype=Merfolk Wizard
+toughness=3
+[/card]
+[card]
+text=When Wistful Selkie comes into play, draw a card.
+auto=draw:1
+id=151143
+name=Wistful Selkie
+rarity=U
+type=Creature
+mana={GU}{GU}{GU}
+power=2
+subtype=Merfolk Wizard
+toughness=2
 [/card]

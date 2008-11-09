@@ -1605,18 +1605,6 @@ subtype=Mammoths
 toughness=2
 [/card]
 [card]
-text={T}: Centaur Archer deals 1 damage to target creature with flying.
-id=2718
-name=Centaur Archer
-rarity=U
-auto={T}:damage:1 target(creature)
-type=Creature 
-mana={1}{R}{G}
-power=3
-subtype=Centaur
-toughness=2
-[/card]
-[card]
 text=Cannot be declared as a blocking creature.{B}: Pay 1 life to return Foul Familiar to owner's hand.Effects that prevent or redirect damage cannot be used to counter this loss of life.
 id=2450
 name=Foul Familiar

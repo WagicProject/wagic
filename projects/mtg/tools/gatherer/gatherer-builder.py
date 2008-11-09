@@ -19,7 +19,7 @@ import os
 import os.path
 from mtgCommon import *
 
-setinfo=sets['EVE']
+setinfo=sets['SHM']
 stripReminderText = False
 conffile = open(setinfo['dir'] + ".conf", 'w')
 
@@ -61,7 +61,7 @@ for cardRow in soup.find(id="_gridResults").findAll('tr',onmouseover="this.style
     name = cardRow('b')[0].string
     name = name.replace('"','')
     name = name.replace(u'\xe2', 'a')
-    
+    name = name.replace(u'\xc6', 'AE')
 
     manaCost = replaceSymbols(cardRow('td')[1]('font')[0])
     manaCost = ''.join(manaCost.contents)

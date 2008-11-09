@@ -1,0 +1,2364 @@
+[card]
+text=({2U} can be paid with any two mana or with {U}. This card's converted mana cost is 6.)  Look at the top five cards of your library. If you control more creatures than any other player, put two of those cards into your hand. Otherwise, put one of them into your hand. Then put the rest on the bottom of your library in any order.
+id=154408
+name=Advice from the Fae
+rarity=U
+type=Sorcery
+mana={2U}{2U}{2U}
+[/card]
+[card]
+text=Put target attacking or blocking creature on top of its owner's library.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158750
+name=AEthertow
+rarity=C
+type=Instant
+mana={3}{WU}
+[/card]
+[card]
+text=Target creature becomes black and gains fear until end of turn.     Draw a card.
+id=154392
+name=Aphotic Wisps
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Whenever a player plays a white spell, you may pay {1}. If you do, you gain 1 life.
+id=141929
+name=Apothecary Initiate
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Kithkin Cleric
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +1/+1 for each Plains you control and has flying.
+id=146041
+name=Armored Ascension
+rarity=U
+type=Enchantment
+mana={3}{W}
+subtype=Aura
+[/card]
+[card]
+text=Ashenmoor Cohort gets +1/+1 as long as you control another black creature.
+id=142060
+name=Ashenmoor Cohort
+rarity=C
+type=Creature
+mana={5}{B}
+power=4
+subtype=Elemental Warrior
+toughness=3
+[/card]
+[card]
+text=Ashenmoor Gouger can't block.
+id=153981
+name=Ashenmoor Gouger
+rarity=U
+type=Creature
+mana={BR}{BR}{BR}
+power=4
+subtype=Elemental Warrior
+toughness=4
+[/card]
+[card]
+text=Other black creatures you control get +1/+1.     Other red creatures you control get +1/+1.     Whenever Ashenmoor Liege becomes the target of a spell or ability an opponent controls, that player loses 4 life.
+id=146065
+name=Ashenmoor Liege
+rarity=R
+type=Creature
+mana={1}{BR}{BR}{BR}
+power=4
+subtype=Elemental Knight
+toughness=1
+[/card]
+[card]
+text=Whenever Augury Adept deals combat damage to a player, reveal the top card of your library and put that card into your hand. You gain life equal to its converted mana cost.
+id=147407
+name=Augury Adept
+rarity=R
+type=Creature
+mana={1}{WU}{WU}
+power=2
+subtype=Kithkin Wizard
+toughness=2
+[/card]
+[card]
+text=First strike     Ballynock Cohort gets +1/+1 as long as you control another white creature.
+id=142045
+name=Ballynock Cohort
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Kithkin Soldier
+toughness=2
+[/card]
+[card]
+text=Target creature gets +2/+2 until end of turn.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158772
+name=Barkshell Blessing
+rarity=C
+type=Instant
+mana={GW}
+[/card]
+[card]
+text=Barrenton Cragtreads can't be blocked by red creatures.
+id=142000
+name=Barrenton Cragtreads
+rarity=C
+type=Creature
+mana={2}{WU}{WU}
+power=3
+subtype=Kithkin Scout
+toughness=3
+[/card]
+[card]
+text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.     Put a -1/-1 counter on Barrenton Medic: Untap Barrenton Medic.
+id=135451
+name=Barrenton Medic
+rarity=C
+type=Creature
+mana={4}{W}
+power=0
+subtype=Kithkin Cleric
+toughness=4
+[/card]
+[card]
+text=({2B} can be paid with any two mana or with {B}. This card's converted mana cost is 6.)  Search your library for a card with converted mana cost less than or equal to the number of lands you control, reveal it, and put it into your hand. Then shuffle your library.
+id=152079
+name=Beseech the Queen
+rarity=U
+type=Sorcery
+mana={2B}{2B}{2B}
+[/card]
+[card]
+text=Enchant creature     You control enchanted creature.     At the beginning of your upkeep, put a -1/-1 counter on enchanted creature.
+id=135485
+name=Biting Tether
+rarity=U
+type=Enchantment
+mana={4}{U}
+subtype=Aura
+[/card]
+[card]
+text=Blazethorn Scarecrow has haste as long as you control a red creature.     Blazethorn Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)
+id=151632
+name=Blazethorn Scarecrow
+rarity=C
+type=Artifact Creature
+mana={5}
+power=3
+subtype=Scarecrow
+toughness=3
+[/card]
+[card]
+text=Equipped creature gets +1/+0 and has wither. (It deals damage to creatures in the form of -1/-1 counters.)  Equip {2}
+id=129135
+name=Blight Sickle
+rarity=C
+type=Artifact
+mana={2}
+subtype=Equipment
+[/card]
+[card]
+text=Red creatures you control have first strike.
+id=142062
+name=Bloodmark Mentor
+rarity=U
+type=Creature
+mana={1}{R}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Enchanted creature attacks each turn if able.
+id=159395
+name=Bloodshed Fever
+rarity=C
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
+text=Whenever a creature is put into a graveyard from play, if it had a -1/-1 counter on it, put a -1/-1 counter on target creature.
+id=135429
+name=Blowfly Infestation
+rarity=U
+type=Enchantment
+mana={2}{B}
+[/card]
+[card]
+text=Trample     Other red creatures you control get +1/+1.     Other green creatures you control get +1/+1.
+id=147428
+name=Boartusk Liege
+rarity=R
+type=Creature
+mana={1}{RG}{RG}{RG}
+power=3
+subtype=Goblin Knight
+toughness=4
+[/card]
+[card]
+text=Plainswalk     {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
+id=158684
+name=Boggart Arsonists
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Goblin Rogue
+toughness=1
+[/card]
+[card]
+text=If you would gain life, you gain twice that much life instead.
+id=146751
+name=Boon Reflection
+rarity=R
+type=Enchantment
+mana={4}{W}
+[/card]
+[card]
+text=Flying     Briarberry Cohort gets +1/+1 as long as you control another blue creature.
+id=146043
+name=Briarberry Cohort
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Faerie Soldier
+toughness=1
+[/card]
+[card]
+text=Burn Trail deals 3 damage to target creature or player.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158688
+name=Burn Trail
+rarity=C
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text={T}: Choose any number of target creatures. Each of those creatures gains persist until end of turn. (When it's put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=152065
+name=Cauldron of Souls
+rarity=R
+type=Artifact
+mana={5}
+[/card]
+[card]
+text=Whenever a creature is put into a graveyard from play, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
+id=158767
+name=Cemetery Puca
+rarity=R
+type=Creature
+mana={1}{UB}{UB}
+power=1
+subtype=Shapeshifter
+toughness=2
+[/card]
+[card]
+text=Target creature becomes blue until end of turn. Untap that creature.     Draw a card.
+id=158683
+name=Cerulean Wisps
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Chainbreaker comes into play with two -1/-1 counters on it.     {3}, {T}: Remove a -1/-1 counter from target creature.
+id=147419
+name=Chainbreaker
+rarity=C
+type=Artifact Creature
+mana={2}
+power=3
+subtype=Scarecrow
+toughness=3
+[/card]
+[card]
+text={T}: Target player discards a card. Play this ability only during your turn.     Put a -1/-1 counter on Cinderhaze Wretch: Untap Cinderhaze Wretch.
+id=135439
+name=Cinderhaze Wretch
+rarity=C
+type=Creature
+mana={4}{B}
+power=3
+subtype=Elemental Shaman
+toughness=2
+[/card]
+[card]
+text=Return target permanent to its owner's hand. If that permanent is red or green, put it on top of its owner's library instead.
+id=142032
+name=Consign to Dream
+rarity=C
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=Black creatures you control have wither. (They deal damage to creatures in the form of -1/-1 counters.)
+id=142034
+name=Corrosive Mentor
+rarity=U
+type=Creature
+mana={2}{B}
+power=1
+subtype=Elemental Rogue
+toughness=3
+[/card]
+[card]
+text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
+id=146013
+name=Corrupt
+rarity=U
+type=Sorcery
+mana={5}{B}
+[/card]
+[card]
+text=Counter target spell. Search its controller's graveyard, hand, and library for all cards with the same name as that spell and remove them from the game. Then that player shuffles his or her library.
+id=153966
+name=Counterbore
+rarity=R
+type=Instant
+mana={3}{U}{U}
+[/card]
+[card]
+text=Crabapple Cohort gets +1/+1 as long as you control another green creature.
+id=146009
+name=Crabapple Cohort
+rarity=C
+type=Creature
+mana={4}{G}
+power=4
+subtype=Treefolk Warrior
+toughness=4
+[/card]
+[card]
+text=When Cragganwick Cremator comes into play, discard a card at random. If you discard a creature card this way, Cragganwick Cremator deals damage equal to that card's power to target player.
+id=159402
+name=Cragganwick Cremator
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=5
+subtype=Giant Shaman
+toughness=4
+[/card]
+[card]
+text=Target creature becomes red and gains haste until end of turn.     Draw a card.
+id=146060
+name=Crimson Wisps
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Fear     Crowd of Cinders's power and toughness are each equal to the number of black permanents you control.
+id=146051
+name=Crowd of Cinders
+rarity=U
+type=Creature
+mana={3}{B}
+power=*
+subtype=Elemental
+toughness=*
+[/card]
+[card]
+text=When Cultbrand Cinder comes into play, put a -1/-1 counter on target creature.
+id=142068
+name=Cultbrand Cinder
+rarity=C
+type=Creature
+mana={4}{BR}
+power=3
+subtype=Elemental Shaman
+toughness=3
+[/card]
+[card]
+text=Enchant creature     At the beginning of each upkeep, tap enchanted creature.
+id=146079
+name=Curse of Chains
+rarity=C
+type=Enchantment
+mana={1}{WU}
+subtype=Aura
+[/card]
+[card]
+text=Sacrifice Cursecatcher: Counter target instant or sorcery spell unless its controller pays {1}.
+id=158763
+name=Cursecatcher
+rarity=U
+type=Creature
+mana={U}
+power=1
+subtype=Merfolk Wizard
+toughness=1
+[/card]
+[card]
+text=You gain X life if {G} was spent to play Dawnglow Infusion and X life if {W} was spent to play it. (Do both if {G}{W} was spent.)
+id=158747
+name=Dawnglow Infusion
+rarity=U
+type=Sorcery
+mana={X}{GW}
+[/card]
+[card]
+text=Blue creatures you control are unblockable.
+id=141981
+name=Deepchannel Mentor
+rarity=U
+type=Creature
+mana={5}{U}
+power=2
+subtype=Merfolk Rogue
+toughness=2
+[/card]
+[card]
+text=Deep-Slumber Titan comes into play tapped.     Deep-Slumber Titan doesn't untap during your untap step.     Whenever Deep-Slumber Titan is dealt damage, untap it.
+id=159396
+name=Deep-Slumber Titan
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=7
+subtype=Giant Warrior
+toughness=7
+[/card]
+[card]
+text=Flying, haste     When you play Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to play.
+id=153972
+name=Demigod of Revenge
+rarity=R
+type=Creature
+mana={BR}{BR}{BR}{BR}{BR}
+power=5
+subtype=Spirit Avatar
+toughness=4
+[/card]
+[card]
+text=Trample     Whenever Deus of Calamity deals 6 or more damage to an opponent, destroy target land that player controls.
+id=146773
+name=Deus of Calamity
+rarity=R
+type=Creature
+mana={RG}{RG}{RG}{RG}{RG}
+power=6
+subtype=Spirit Avatar
+toughness=6
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.     Put a -1/-1 counter on Devoted Druid: Untap Devoted Druid.
+id=135500
+name=Devoted Druid
+rarity=C
+type=Creature
+mana={1}{G}
+power=0
+subtype=Elf Druid
+toughness=2
+[/card]
+[card]
+text=Put a 5/5 black and red Elemental creature token into play. Target opponent sacrifices a creature for each black creature you control, then sacrifices a land for each red creature you control.
+id=146733
+name=Din of the Fireherd
+rarity=R
+type=Sorcery
+mana={5}{BR}{BR}{BR}
+[/card]
+[card]
+text=Whenever a blue creature comes into play under your control, you may have target player draw a card.     Whenever a black creature comes into play under your control, you may have target player discard a card.
+id=153311
+name=Dire Undercurrents
+rarity=R
+type=Enchantment
+mana={3}{UB}{UB}
+[/card]
+[card]
+text=Return target creature card in a graveyard to its owner's hand.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158689
+name=Disturbing Plot
+rarity=C
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
+text=You may put a green creature card from your hand into play.
+id=154003
+name=Dramatic Entrance
+rarity=R
+type=Instant
+mana={3}{G}{G}
+[/card]
+[card]
+text=Draw cards equal to the number of cards target opponent discarded this turn.
+id=158774
+name=Dream Salvage
+rarity=U
+type=Instant
+mana={UB}
+[/card]
+[card]
+text=Drove of Elves's power and toughness are each equal to the number of green permanents you control.     Drove of Elves can't be the target of spells or abilities your opponents control.
+id=157878
+name=Drove of Elves
+rarity=U
+type=Creature
+mana={3}{G}
+power=*
+subtype=Elf
+toughness=*
+[/card]
+[card]
+text=Whenever a player plays a blue spell, you may pay {1}. If you do, target player puts the top two cards of his or her library into his or her graveyard.
+id=142005
+name=Drowner Initiate
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Merfolk Wizard
+toughness=1
+[/card]
+[card]
+text=Whenever Dusk Urchins attacks or blocks, put a -1/-1 counter on it.     When Dusk Urchins is put into a graveyard from play, draw a card for each -1/-1 counter on it.
+id=146002
+name=Dusk Urchins
+rarity=R
+type=Creature
+mana={2}{B}
+power=4
+subtype=Ouphe
+toughness=3
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has &quot;{T}: Put X 1/1 red Elemental creature tokens with haste into play, where X is this creature's power. Remove them from the game at end of turn.&quot;
+id=146087
+name=Elemental Mastery
+rarity=R
+type=Enchantment
+mana={3}{R}
+subtype=Aura
+[/card]
+[card]
+text=When Elsewhere Flask comes into play, draw a card.     Sacrifice Elsewhere Flask: Choose a basic land type. Each land you control becomes that type until end of turn.
+id=142004
+name=Elsewhere Flask
+rarity=C
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={GW}, {T}, Sacrifice Elvish Hexhunter: Destroy target enchantment.
+id=141958
+name=Elvish Hexhunter
+rarity=C
+type=Creature
+mana={GW}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
+text=Creatures target player controls can't block this turn. Ember Gale deals 1 damage to each white and/or blue creature that player controls.
+id=158766
+name=Ember Gale
+rarity=C
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=Whenever you play a black spell, Emberstrike Duo gets +1/+1 until end of turn.     Whenever you play a red spell, Emberstrike Duo gains first strike until end of turn.
+id=153307
+name=Emberstrike Duo
+rarity=C
+type=Creature
+mana={1}{BR}
+power=1
+subtype=Elemental Warrior Shaman
+toughness=1
+[/card]
+[card]
+text=All permanents are enchantments in addition to their other types.
+id=151979
+name=Enchanted Evening
+rarity=R
+type=Enchantment
+mana={3}{WU}{WU}
+[/card]
+[card]
+text=Players can't gain life.     Damage can't be prevented.     All damage is dealt as though its source had wither. (A source with wither deals damage to creatures in the form of -1/-1 counters.)
+id=142036
+name=Everlasting Torment
+rarity=R
+type=Enchantment
+mana={2}{BR}
+[/card]
+[card]
+text=Flying     Discard Faerie Macabre: Remove up to two target cards in graveyards from the game.
+id=153964
+name=Faerie Macabre
+rarity=C
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Faerie Rogue
+toughness=2
+[/card]
+[card]
+text=Flying     Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
+id=158685
+name=Faerie Swarm
+rarity=U
+type=Creature
+mana={3}{U}
+power=*
+subtype=Faerie
+toughness=*
+[/card]
+[card]
+text=When Farhaven Elf comes into play, you may search your library for a basic land card and put it into play tapped. If you do, shuffle your library.
+id=153289
+name=Farhaven Elf
+rarity=C
+type=Creature
+mana={2}{G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text=Move all counters from target creature onto another target creature.
+id=147411
+name=Fate Transfer
+rarity=C
+type=Instant
+mana={1}{UB}
+[/card]
+[card]
+text=Firespout deals 3 damage to each creature without flying if {R} was spent to play Firespout and 3 damage to each creature with flying if {G} was spent to play it. (Do both if {R}{G} was spent.)
+id=153314
+name=Firespout
+rarity=U
+type=Sorcery
+mana={2}{RG}
+[/card]
+[card]
+text=Enchant creature     As long as enchanted creature is black, it gets +1/+1 and has wither. (It deals damage to creatures in the form of -1/-1 counters.)  As long as enchanted creature is red, it gets +1/+1 and has first strike.
+id=158753
+name=Fists of the Demigod
+rarity=C
+type=Enchantment
+mana={1}{BR}
+subtype=Aura
+[/card]
+[card]
+text=Whenever a -1/-1 counter is placed on a creature, you may put a 1/1 green Elf Warrior creature token into play.
+id=158764
+name=Flourishing Defenses
+rarity=U
+type=Enchantment
+mana={4}{G}
+[/card]
+[card]
+text=Draw a card for each Island you control.
+id=158692
+name=Flow of Ideas
+rarity=U
+type=Sorcery
+mana={5}{U}
+[/card]
+[card]
+text=Return a card at random from your graveyard to your hand, then reorder your graveyard as you choose.
+id=146736
+name=Fossil Find
+rarity=U
+type=Sorcery
+mana={RG}
+[/card]
+[card]
+text=Destroy all artifacts and enchantments. You gain 2 life for each permanent destroyed this way.
+id=146759
+name=Fracturing Gust
+rarity=R
+type=Instant
+mana={2}{GW}{GW}{GW}
+[/card]
+[card]
+text=Sacrifice Fulminator Mage: Destroy target nonbasic land.
+id=142009
+name=Fulminator Mage
+rarity=R
+type=Creature
+mana={1}{BR}{BR}
+power=2
+subtype=Elemental Shaman
+toughness=2
+[/card]
+[card]
+text=When Furystoke Giant comes into play, other creatures you control gain &quot;{T}: This creature deals 2 damage to target creature or player&quot; until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=152069
+name=Furystoke Giant
+rarity=R
+type=Creature
+mana={3}{R}{R}
+power=3
+subtype=Giant Warrior
+toughness=3
+[/card]
+[card]
+text=Ghastlord of Fugue is unblockable.     Whenever Ghastlord of Fugue deals combat damage to a player, that player reveals his or her hand. Choose a card from it. That player removes that card from the game.
+id=153297
+name=Ghastlord of Fugue
+rarity=R
+type=Creature
+mana={UB}{UB}{UB}{UB}{UB}
+power=4
+subtype=Spirit Avatar
+toughness=4
+[/card]
+[card]
+text=Draw two cards, then discard a card.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
+id=158682
+name=Ghastly Discovery
+rarity=C
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Put a 4/4 red and green Giant Warrior creature token with haste into play. Remove it from the game at end of turn.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
+id=158693
+name=Giantbaiting
+rarity=C
+type=Sorcery
+mana={2}{RG}
+[/card]
+[card]
+text=Flash     Flying     When Glamer Spinners comes into play, attach all Auras enchanting target permanent to another permanent with the same controller.
+id=142031
+name=Glamer Spinners
+rarity=U
+type=Creature
+mana={4}{WU}
+power=2
+subtype=Faerie Wizard
+toughness=4
+[/card]
+[card]
+text=Destroy target artifact or enchantment.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158681
+name=Gleeful Sabotage
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
+id=146743
+name=Glen Elendra Liege
+rarity=R
+type=Creature
+mana={1}{UB}{UB}{UB}
+power=2
+subtype=Faerie Knight
+toughness=3
+[/card]
+[card]
+text=Destroy target creature. If that creature was green or white, its controller discards a card.
+id=158757
+name=Gloomlance
+rarity=C
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=Reach     Gloomwidow can't block creatures without flying.
+id=147375
+name=Gloomwidow
+rarity=U
+type=Creature
+mana={2}{G}
+power=3
+subtype=Spider
+toughness=3
+[/card]
+[card]
+text=Destroy target creature with flying. If that creature was blue or black, put a 1/2 green Spider creature token with reach into play. (It can block creatures with flying.)
+id=154394
+name=Gloomwidow's Feast
+rarity=C
+type=Instant
+mana={3}{G}
+[/card]
+[card]
+text={4}, {T}: Put a -1/-1 counter on target creature.
+id=146015
+name=Gnarled Effigy
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Flying     Other creatures are 1/1.
+id=142019
+name=Godhead of Awe
+rarity=R
+type=Creature
+mana={WU}{WU}{WU}{WU}{WU}
+power=4
+subtype=Spirit Avatar
+toughness=4
+[/card]
+[card]
+text=Flying     Whenever Goldenglow Moth blocks, you may gain 4 life.
+id=159413
+name=Goldenglow Moth
+rarity=C
+type=Creature
+mana={W}
+power=0
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text=Whenever you play a blue spell, Gravelgill Duo gets +1/+1 until end of turn.     Whenever you play a black spell, Gravelgill Duo gains fear until end of turn.
+id=153308
+name=Gravelgill Duo
+rarity=C
+type=Creature
+mana={2}{UB}
+power=2
+subtype=Merfolk Rogue Warrior
+toughness=1
+[/card]
+[card]
+text=Other enchantments you control have shroud.     Enchanted creatures you control have shroud.
+id=147425
+name=Greater Auramancy
+rarity=R
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text=Grief Tyrant comes into play with four -1/-1 counters on it.     When Grief Tyrant is put into a graveyard from play, put a -1/-1 counter on target creature for each -1/-1 counter on Grief Tyrant.
+id=146035
+name=Grief Tyrant
+rarity=U
+type=Creature
+mana={5}{BR}
+power=8
+subtype=Horror
+toughness=8
+[/card]
+[card]
+text=Grim Poppet comes into play with three -1/-1 counters on it.     Remove a -1/-1 counter from Grim Poppet: Put a -1/-1 counter on another target creature.
+id=146739
+name=Grim Poppet
+rarity=R
+type=Artifact Creature
+mana={7}
+power=4
+subtype=Scarecrow
+toughness=4
+[/card]
+[card]
+text=Counter target blue instant spell.
+id=158773
+name=Guttural Response
+rarity=U
+type=Instant
+mana={RG}
+[/card]
+[card]
+text=Sacrifice Heap Doll: Remove target card in a graveyard from the game.
+id=154395
+name=Heap Doll
+rarity=U
+type=Artifact Creature
+mana={1}
+power=1
+subtype=Scarecrow
+toughness=1
+[/card]
+[card]
+text=At the beginning of your upkeep, remove a -1/-1 counter from each creature you control.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=153312
+name=Heartmender
+rarity=R
+type=Creature
+mana={2}{GW}{GW}
+power=2
+subtype=Elemental
+toughness=2
+[/card]
+[card]
+text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has &quot;Whenever this creature deals damage to an opponent, draw a card.&quot;     As long as enchanted creature is black, it gets +1/+1 and has &quot;Whenever this creature deals damage to an opponent, that player discards a card.&quot;
+id=158769
+name=Helm of the Ghastlord
+rarity=C
+type=Enchantment
+mana={3}{UB}
+subtype=Aura
+[/card]
+[card]
+text=At the beginning of your upkeep, if you have no cards in hand, each opponent loses 2 life.     At the beginning of each opponent's upkeep, if that player has no cards in hand, he or she loses 2 life.
+id=146095
+name=Hollowborn Barghest
+rarity=R
+type=Creature
+mana={5}{B}{B}
+power=7
+subtype=Demon Hound
+toughness=6
+[/card]
+[card]
+text=Whenever Hollowsage becomes untapped, you may have target player discard a card.
+id=158234
+name=Hollowsage
+rarity=U
+type=Creature
+mana={3}{B}
+power=2
+subtype=Merfolk Wizard
+toughness=2
+[/card]
+[card]
+text=Horde of Boggarts's power and toughness are each equal to the number of red permanents you control.     Horde of Boggarts can't be blocked except by two or more creatures.
+id=154409
+name=Horde of Boggarts
+rarity=U
+type=Creature
+mana={3}{R}
+power=*
+subtype=Goblin
+toughness=*
+[/card]
+[card]
+text=Put a 2/2 green Wolf creature token into play for each Forest you control.
+id=153996
+name=Howl of the Night Pack
+rarity=U
+type=Sorcery
+mana={6}{G}
+[/card]
+[card]
+text=Trample     Whenever Hungry Spriggan attacks, it gets +3/+3 until end of turn.
+id=153997
+name=Hungry Spriggan
+rarity=C
+type=Creature
+mana={2}{G}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text={1}, {T}, Reveal two cards from your hand that share a color: Draw a card.
+id=146040
+name=Illuminated Folio
+rarity=U
+type=Artifact
+mana={5}
+[/card]
+[card]
+text={2}{RG}: Reveal the top card of your library. If it isn't a creature card, put it into your graveyard. Otherwise, put that card into play. That creature has haste. Sacrifice it at end of turn.
+id=146097
+name=Impromptu Raid
+rarity=R
+type=Enchantment
+mana={3}{RG}
+[/card]
+[card]
+text=Put a -1/-1 counter on target creature, two -1/-1 counters on another target creature, and three -1/-1 counters on a third target creature.
+id=147433
+name=Incremental Blight
+rarity=U
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Inescapable Brute must be blocked if able.
+id=147429
+name=Inescapable Brute
+rarity=C
+type=Creature
+mana={5}{R}
+power=3
+subtype=Giant Warrior
+toughness=3
+[/card]
+[card]
+text=Inkfathom Infiltrator can't block and is unblockable.
+id=154401
+name=Inkfathom Infiltrator
+rarity=U
+type=Creature
+mana={UB}{UB}
+power=2
+subtype=Merfolk Rogue
+toughness=1
+[/card]
+[card]
+text=Fear     {2}{U}{B}: Each unblocked creature becomes 4/1 until end of turn.
+id=157879
+name=Inkfathom Witch
+rarity=U
+type=Creature
+mana={1}{UB}
+power=1
+subtype=Merfolk Wizard
+toughness=1
+[/card]
+[card]
+text=Prevent all damage target attacking or blocking creature would deal this turn. If that creature is black or red, destroy it.
+id=158765
+name=Inquisitor's Snare
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Whenever a player plays a red spell, you may pay {1}. If you do, target creature can't block this turn.
+id=142026
+name=Intimidator Initiate
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Shaman
+toughness=1
+[/card]
+[card]
+text=Shroud     Isleback Spawn gets +4/+8 as long as a library has twenty or fewer cards in it.
+id=147370
+name=Isleback Spawn
+rarity=R
+type=Creature
+mana={5}{U}{U}
+power=4
+subtype=Kraken
+toughness=8
+[/card]
+[card]
+text=Jaws of Stone deals X damage divided as you choose among any number of target creatures and/or players, where X is the number of Mountains you control as you play Jaws of Stone.
+id=146070
+name=Jaws of Stone
+rarity=U
+type=Sorcery
+mana={5}{R}
+[/card]
+[card]
+text=Flying     Whenever Kinscaer Harpoonist attacks, you may have target creature lose flying until end of turn.
+id=157876
+name=Kinscaer Harpoonist
+rarity=C
+type=Creature
+mana={3}{U}
+power=2
+subtype=Kithkin Soldier
+toughness=2
+[/card]
+[card]
+text=Vigilance     Kithkin Rabble's power and toughness are each equal to the number of white permanents you control.
+id=158695
+name=Kithkin Rabble
+rarity=U
+type=Creature
+mana={3}{W}
+power=*
+subtype=Kithkin
+toughness=*
+[/card]
+[card]
+text=Flying     {1}{U}, {T}: Target opponent removes the top card of his or her library from the game. Until end of turn, you may play that card. ({T} is the untap symbol.)
+id=146036
+name=Knacksaw Clique
+rarity=R
+type=Creature
+mana={3}{U}
+power=1
+subtype=Faerie Rogue
+toughness=4
+[/card]
+[card]
+text=Flying     When Knollspine Dragon comes into play, you may discard your hand and draw cards equal to the damage dealt to target opponent this turn.
+id=147398
+name=Knollspine Dragon
+rarity=R
+type=Creature
+mana={5}{R}{R}
+power=7
+subtype=Dragon
+toughness=5
+[/card]
+[card]
+text={X}, Discard a card with converted mana cost X: Knollspine Invocation deals X damage to target creature or player.
+id=153977
+name=Knollspine Invocation
+rarity=R
+type=Enchantment
+mana={1}{R}{R}
+[/card]
+[card]
+text=Flying     Wither (This deals damage to creatures in the form of -1/-1 counters.)  Creatures your opponents control with counters on them can't attack or block.
+id=147423
+name=Kulrath Knight
+rarity=U
+type=Creature
+mana={3}{BR}{BR}
+power=3
+subtype=Elemental Knight
+toughness=3
+[/card]
+[card]
+text=Remove target creature with power 2 or less from the game. Its controller gains 4 life.
+id=147424
+name=Last Breath
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Leech Bonder comes into play with two -1/-1 counters on it.     {U}, {T}: Move a counter from target creature onto another target creature. ({T} is the untap symbol.)
+id=147406
+name=Leech Bonder
+rarity=U
+type=Creature
+mana={2}{U}
+power=3
+subtype=Merfolk Soldier
+toughness=3
+[/card]
+[card]
+text=({T}: Add {B} to your mana pool.)  Leechridden Swamp comes into play tapped.     {B}, {T}: Each opponent loses 1 life. Play this ability only if you control two or more black permanents.
+id=142020
+name=Leechridden Swamp
+rarity=U
+type=Land
+subtype=Swamp
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  When Lockjaw Snapper is put into a graveyard from play, put a -1/-1 counter on each creature with a -1/-1 counter on it.
+id=154411
+name=Lockjaw Snapper
+rarity=U
+type=Artifact Creature
+mana={4}
+power=2
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text=As Lurebound Scarecrow comes into play, choose a color.     When you control no permanents of the chosen color, sacrifice Lurebound Scarecrow.
+id=154397
+name=Lurebound Scarecrow
+rarity=U
+type=Artifact Creature
+mana={3}
+power=4
+subtype=Scarecrow
+toughness=4
+[/card]
+[card]
+text=({T}: Add {R} to your mana pool.)  Madblind Mountain comes into play tapped.     {R}, {T}: Shuffle your library. Play this ability only if you control two or more red permanents.
+id=141959
+name=Madblind Mountain
+rarity=U
+type=Land
+subtype=Mountain
+[/card]
+[card]
+text=If you tap a permanent for mana, it produces twice as much of that mana instead.
+id=146750
+name=Mana Reflection
+rarity=R
+type=Enchantment
+mana={4}{G}{G}
+[/card]
+[card]
+text={1}: Add {B} or {R} to your mana pool. Play this ability no more than three times each turn.
+id=141978
+name=Manaforge Cinder
+rarity=C
+type=Creature
+mana={BR}
+power=1
+subtype=Elemental Shaman
+toughness=1
+[/card]
+[card]
+text=Add two mana in any combination of colors to your mana pool.     Draw a card.
+id=153968
+name=Manamorphose
+rarity=C
+type=Instant
+mana={1}{RG}
+[/card]
+[card]
+text=Destroy all nonwhite creatures.
+id=146053
+name=Mass Calcify
+rarity=R
+type=Sorcery
+mana={5}{W}{W}
+[/card]
+[card]
+text=When Medicine Runner comes into play, you may remove a counter from target permanent.
+id=141977
+name=Medicine Runner
+rarity=C
+type=Creature
+mana={1}{GW}
+power=2
+subtype=Elf Cleric
+toughness=1
+[/card]
+[card]
+text=You may play target instant or sorcery card in an opponent's graveyard without paying its mana cost.
+id=146742
+name=Memory Plunder
+rarity=R
+type=Instant
+mana={UB}{UB}{UB}{UB}
+[/card]
+[card]
+text=Target player puts the top four cards of his or her library into his or her graveyard.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158759
+name=Memory Sluice
+rarity=C
+type=Sorcery
+mana={UB}
+[/card]
+[card]
+text=Target creature's controller sacrifices it, then puts X 1/1 green and white Elf Warrior creature tokens into play, where X is that creature's power.
+id=158771
+name=Mercy Killing
+rarity=U
+type=Instant
+mana={2}{GW}
+[/card]
+[card]
+text={1}{UB}, {Q}: Target creature gets -2/-0 until end of turn. ({Q} is the untap symbol.)
+id=141937
+name=Merrow Grimeblotter
+rarity=U
+type=Creature
+mana={3}{UB}
+power=2
+subtype=Merfolk Wizard
+toughness=2
+[/card]
+[card]
+text={1}{U}, {Q}: Merrow Wavebreakers gains flying until end of turn. ({Q} is the untap symbol.)
+id=153319
+name=Merrow Wavebreakers
+rarity=C
+type=Creature
+mana={4}{U}
+power=3
+subtype=Merfolk Soldier
+toughness=3
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  At the beginning of your upkeep, put a -1/-1 counter on each nonblack creature.
+id=147431
+name=Midnight Banshee
+rarity=R
+type=Creature
+mana={3}{B}{B}{B}
+power=5
+subtype=Spirit
+toughness=5
+[/card]
+[card]
+text=Return target artifact or enchantment card in a graveyard to its owner's hand.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158756
+name=Mine Excavation
+rarity=C
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
+text=Each other creature becomes a copy of target nonlegendary creature until end of turn.
+id=153973
+name=Mirrorweave
+rarity=R
+type=Instant
+mana={2}{WU}{WU}
+[/card]
+[card]
+text=Lifelink, protection from converted mana cost 3 or greater
+id=158690
+name=Mistmeadow Skulk
+rarity=U
+type=Creature
+mana={1}{W}
+power=1
+subtype=Kithkin Rogue
+toughness=1
+[/card]
+[card]
+text={2}{W}{U}: Remove target creature from the game. Return that card to play under its owner's control at end of turn.
+id=157881
+name=Mistmeadow Witch
+rarity=U
+type=Creature
+mana={1}{WU}
+power=1
+subtype=Kithkin Wizard
+toughness=1
+[/card]
+[card]
+text=({T}: Add {W} to your mana pool.)  Mistveil Plains comes into play tapped.     {W}, {T}: Put target card in your graveyard on the bottom of your library. Play this ability only if you control two or more white permanents.
+id=142014
+name=Mistveil Plains
+rarity=U
+type=Land
+subtype=Plains
+[/card]
+[card]
+text=({T}: Add {U} to your mana pool.)  Moonring Island comes into play tapped.     {U}, {T}: Look at the top card of target player's library. Play this ability only if you control two or more blue permanents.
+id=141943
+name=Moonring Island
+rarity=U
+type=Land
+subtype=Island
+[/card]
+[card]
+text=Morselhoarder comes into play with two -1/-1 counters on it.     Remove a -1/-1 counter from Morselhoarder: Add one mana of any color to your mana pool.
+id=159407
+name=Morselhoarder
+rarity=C
+type=Creature
+mana={4}{RG}{RG}
+power=6
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=If Mossbridge Troll would be destroyed, regenerate it.     Tap any number of untapped creatures you control other than Mossbridge Troll with total power 10 or greater: Mossbridge Troll gets +20/+20 until end of turn.
+id=146021
+name=Mossbridge Troll
+rarity=R
+type=Creature
+mana={5}{G}{G}
+power=5
+subtype=Troll
+toughness=5
+[/card]
+[card]
+text=Haste     Mudbrawler Cohort gets +1/+1 as long as you control another red creature.
+id=146062
+name=Mudbrawler Cohort
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=Mudbrawler Raiders can't be blocked by blue creatures.
+id=141992
+name=Mudbrawler Raiders
+rarity=C
+type=Creature
+mana={2}{RG}{RG}
+power=3
+subtype=Goblin Warrior
+toughness=3
+[/card]
+[card]
+text=When Murderous Redcap comes into play, it deals damage equal to its power to target creature or player.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=153298
+name=Murderous Redcap
+rarity=U
+type=Creature
+mana={2}{BR}{BR}
+power=2
+subtype=Goblin Assassin
+toughness=2
+[/card]
+[card]
+text=Target creature becomes white until end of turn. Tap that creature.     Draw a card.
+id=158694
+name=Niveous Wisps
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Whenever a player plays a green spell, you may pay {1}. If you do, target creature gets +1/+1 until end of turn.
+id=142035
+name=Nurturer Initiate
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
+text=Flying     {X}{UB}: Choose a color. Target opponent removes the top X cards of his or her library from the game. For each card of the chosen color removed this way, put a 1/1 blue and black Faerie Rogue creature token with flying into play.
+id=152063
+name=Oona, Queen of the Fae
+rarity=R
+type=Legendary Creature
+mana={3}{UB}{UB}{UB}
+power=5
+subtype=Faerie Wizard
+toughness=5
+[/card]
+[card]
+text={X}, {T}: You gain X life.
+id=159414
+name=Oracle of Nectars
+rarity=R
+type=Creature
+mana={2}{GW}
+power=2
+subtype=Elf Cleric
+toughness=2
+[/card]
+[card]
+text={1}{W}{W}, {T}: Return target creature card with converted mana cost 3 or less from your graveyard to play. ({T} is the untap symbol.)
+id=146007
+name=Order of Whiteclay
+rarity=R
+type=Creature
+mana={1}{W}{W}
+power=1
+subtype=Kithkin Cleric
+toughness=4
+[/card]
+[card]
+text=As Painter's Servant comes into play, choose a color.     All cards that aren't in play, spells, and permanents are the chosen color in addition to their other colors.
+id=146022
+name=Painter's Servant
+rarity=R
+type=Artifact Creature
+mana={2}
+power=1
+subtype=Scarecrow
+toughness=3
+[/card]
+[card]
+text={2}{W}{W}, {T}: Target creature gains protection from the color of its controller's choice until end of turn. ({T} is the untap symbol.)
+id=153310
+name=Pale Wayfarer
+rarity=U
+type=Creature
+mana={5}{W}{W}
+power=4
+subtype=Spirit Giant
+toughness=4
+[/card]
+[card]
+text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token into play for each 1 life he or she paid this way.
+id=159406
+name=Plague of Vermin
+rarity=R
+type=Sorcery
+mana={6}{B}
+[/card]
+[card]
+text=Destroy target land. Poison the Well deals 2 damage to that land's controller.
+id=147427
+name=Poison the Well
+rarity=C
+type=Sorcery
+mana={2}{BR}{BR}
+[/card]
+[card]
+text=Whenever a land comes into play under an opponent's control, that player loses 2 life and you gain 2 life.
+id=146766
+name=Polluted Bonds
+rarity=R
+type=Enchantment
+mana={3}{B}{B}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;
+id=152159
+name=Power of Fire
+rarity=C
+type=Enchantment
+mana={1}{R}
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has &quot;{T}: Put a 1/1 green Elf Warrior creature token into play.&quot;
+id=158768
+name=Presence of Gond
+rarity=C
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+[/card]
+[card]
+text=Lands you control are every basic land type in addition to their other types.
+id=151989
+name=Prismatic Omen
+rarity=R
+type=Enchantment
+mana={1}{G}
+[/card]
+[card]
+text=Flash     When Prismwake Merrow comes into play, target permanent becomes the color or colors of your choice until end of turn.
+id=154402
+name=Prismwake Merrow
+rarity=C
+type=Creature
+mana={2}{U}
+power=2
+subtype=Merfolk Wizard
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Enchanted creature can't attack or block and its activated abilities can't be played.     Whenever a creature comes into play under an opponent's control, you may attach Prison Term to that creature.
+id=146001
+name=Prison Term
+rarity=U
+type=Enchantment
+mana={1}{W}{W}
+subtype=Aura
+[/card]
+[card]
+text=At the beginning of your upkeep, you may exchange control of target nonland permanent you control and target nonland permanent an opponent controls with an equal or lesser converted mana cost.
+id=141996
+name=Puca's Mischief
+rarity=R
+type=Enchantment
+mana={3}{U}
+[/card]
+[card]
+text=Puncture Bolt deals 1 damage to target creature. Put a -1/-1 counter on that creature.
+id=146071
+name=Puncture Bolt
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Flying     When Puppeteer Clique comes into play, put target creature card in an opponent's graveyard into play under your control. It has haste. At the end of your turn, remove it from the game.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=146761
+name=Puppeteer Clique
+rarity=R
+type=Creature
+mana={3}{B}{B}
+power=3
+subtype=Faerie Wizard
+toughness=2
+[/card]
+[card]
+text={WU}, {T}: Look at the top card of your library. You may remove that card from the game. ({T} is the untap symbol.)
+id=158745
+name=Puresight Merrow
+rarity=U
+type=Creature
+mana={WU}{WU}
+power=2
+subtype=Merfolk Wizard
+toughness=2
+[/card]
+[card]
+text=Counter target spell. You may shuffle up to one target card from your graveyard into your library.
+id=159398
+name=Put Away
+rarity=C
+type=Instant
+mana={2}{U}{U}
+[/card]
+[card]
+text=Creatures you control have double strike.
+id=146727
+name=Rage Reflection
+rarity=R
+type=Enchantment
+mana={4}{R}{R}
+[/card]
+[card]
+text=Whenever a creature with flying attacks you, Raking Canopy deals 4 damage to it.
+id=158691
+name=Raking Canopy
+rarity=U
+type=Enchantment
+mana={1}{G}{G}
+[/card]
+[card]
+text=Rattleblaze Scarecrow has persist as long as you control a black creature. (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)  Rattleblaze Scarecrow has haste as long as you control a red creature.
+id=151631
+name=Rattleblaze Scarecrow
+rarity=C
+type=Artifact Creature
+mana={6}
+power=5
+subtype=Scarecrow
+toughness=3
+[/card]
+[card]
+text=Raven's Run Dragoon can't be blocked by black creatures.
+id=142037
+name=Raven's Run Dragoon
+rarity=C
+type=Creature
+mana={2}{GW}{GW}
+power=3
+subtype=Elf Knight
+toughness=3
+[/card]
+[card]
+text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 10.)  Other Scarecrow creatures you control get +1/+1.     Whenever another Scarecrow comes into play under your control, destroy target permanent.
+id=159408
+name=Reaper King
+rarity=R
+type=Legendary Artifact Creature
+mana={2W}{2U}{2B}{2R}{2G}
+power=6
+subtype=Scarecrow
+toughness=6
+[/card]
+[card]
+text={T}: Add to your mana pool one mana of any type that a land you control could produce.
+id=152158
+name=Reflecting Pool
+rarity=R
+type=Land
+[/card]
+[card]
+text=Put two 1/1 white Kithkin Soldier creature tokens into play if {W} was spent to play Repel Intruders. Counter up to one target creature spell if {U} was spent to play Repel Intruders. (Do both if {W}{U} was spent.)
+id=158761
+name=Repel Intruders
+rarity=U
+type=Instant
+mana={3}{WU}
+[/card]
+[card]
+text=White creatures you control have &quot;{T}: You gain 1 life.&quot;
+id=141930
+name=Resplendent Mentor
+rarity=U
+type=Creature
+mana={4}{W}
+power=2
+subtype=Kithkin Cleric
+toughness=2
+[/card]
+[card]
+text={1}, {T}, Tap an untapped creature you control: Target creature gets +1/+1 until end of turn.
+id=146047
+name=Revelsong Horn
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={2}{GW}, {T}: Put a 1/1 green and white Elf Warrior creature token into play.     {4}{GW}{GW}, {T}: For each creature token you control, put a token into play that's a copy of that creature.
+id=147393
+name=Rhys the Redeemed
+rarity=R
+type=Legendary Creature
+mana={GW}
+power=1
+subtype=Elf Warrior
+toughness=1
+[/card]
+[card]
+text=As an additional cost to play Rite of Consumption, sacrifice a creature.     Rite of Consumption deals damage equal to the sacrificed creature's power to target player. You gain life equal to the damage dealt this way.
+id=159400
+name=Rite of Consumption
+rarity=C
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
+text=Whenever River Kelpie or another permanent is put into play from a graveyard, draw a card.     Whenever a spell is played from a graveyard, draw a card.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=146094
+name=River Kelpie
+rarity=R
+type=Creature
+mana={3}{U}{U}
+power=3
+subtype=Beast
+toughness=3
+[/card]
+[card]
+text=If {U} was spent to play River's Grasp, return up to one target creature to its owner's hand. If {B} was spent to play River's Grasp, target player reveals his or her hand, you choose a nonland card from it, then that player discards that card. (Do both if {U}{B} was spent.)
+id=158755
+name=River's Grasp
+rarity=U
+type=Sorcery
+mana={3}{UB}
+[/card]
+[card]
+text={T}: Add {4} to your mana pool. Spend this mana only on costs that contain {X}.
+id=159412
+name=Rosheen Meanderer
+rarity=R
+type=Legendary Creature
+mana={3}{RG}
+power=4
+subtype=Giant Shaman
+toughness=4
+[/card]
+[card]
+text=Green creatures you control have trample.
+id=141972
+name=Roughshod Mentor
+rarity=U
+type=Creature
+mana={5}{G}
+power=5
+subtype=Giant Warrior
+toughness=4
+[/card]
+[card]
+text=As Runed Halo comes into play, name a card.     You have protection from the chosen name. (You can't be targeted, dealt damage, or enchanted by anything with that name.)
+id=154005
+name=Runed Halo
+rarity=R
+type=Enchantment
+mana={W}{W}
+[/card]
+[card]
+text=Enchant creature     As long as enchanted creature is red, it gets +1/+1 and has double strike. (It deals both first-strike and regular combat damage.)  As long as enchanted creature is green, it gets +1/+1 and has trample.
+id=158754
+name=Runes of the Deus
+rarity=C
+type=Enchantment
+mana={4}{RG}
+subtype=Aura
+[/card]
+[card]
+text=Whenever you play a green spell, Safehold Duo gets +1/+1 until end of turn.     Whenever you play a white spell, Safehold Duo gains vigilance until end of turn.
+id=153963
+name=Safehold Duo
+rarity=C
+type=Creature
+mana={3}{GW}
+power=2
+subtype=Elf Warrior Shaman
+toughness=4
+[/card]
+[card]
+text={2}{W}, {Q}: Safehold Sentry gets +0/+2 until end of turn. ({Q} is the untap symbol.)
+id=147394
+name=Safehold Sentry
+rarity=C
+type=Creature
+mana={1}{W}
+power=2
+subtype=Elf Warrior
+toughness=2
+[/card]
+[card]
+text=Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.
+id=142038
+name=Safewright Quest
+rarity=C
+type=Sorcery
+mana={GW}
+[/card]
+[card]
+text=({T}: Add {G} to your mana pool.)  Sapseep Forest comes into play tapped.     {G}, {T}: You gain 1 life. Play this ability only if you control two or more green permanents.
+id=142048
+name=Sapseep Forest
+rarity=U
+type=Land
+subtype=Forest
+[/card]
+[card]
+text=Take an extra turn after this one. Skip the untap step of that turn.
+id=159404
+name=Savor the Moment
+rarity=R
+type=Sorcery
+mana={1}{U}{U}
+[/card]
+[card]
+text=Put a -1/-1 counter on target creature.
+id=142049
+name=Scar
+rarity=C
+type=Instant
+mana={BR}
+[/card]
+[card]
+text=As an additional cost to play Scarscale Ritual, put a -1/-1 counter on a creature you control.     Draw two cards.
+id=154396
+name=Scarscale Ritual
+rarity=C
+type=Sorcery
+mana={1}{UB}
+[/card]
+[card]
+text={1}: Scrapbasket becomes all colors until end of turn.
+id=147435
+name=Scrapbasket
+rarity=C
+type=Artifact Creature
+mana={4}
+power=3
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text={T}: Add one mana of any color to your mana pool.     {T}: Target creature becomes the color or colors of your choice until end of turn.
+id=142067
+name=Scuttlemutt
+rarity=C
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text={2}{G}{W}: Target creature gets +3/+3 until end of turn. Untap that creature.
+id=157872
+name=Seedcradle Witch
+rarity=U
+type=Creature
+mana={GW}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
+text=Enchant creature     As long as enchanted creature is green, it gets +1/+1 and is indestructible. (Lethal damage and effects that say &quot;destroy&quot; don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.)  As long as enchanted creature is white, it gets +1/+1 and has flying.
+id=158762
+name=Shield of the Oversoul
+rarity=C
+type=Enchantment
+mana={2}{GW}
+subtype=Aura
+[/card]
+[card]
+text=Flying     {1}{WU}, {T}: Tap target creature. ({T} is the untap symbol.)
+id=142027
+name=Silkbind Faerie
+rarity=C
+type=Creature
+mana={2}{WU}
+power=1
+subtype=Faerie Rogue
+toughness=3
+[/card]
+[card]
+text=Enchant creature     Enchanted creature doesn't untap during its controller's untap step.     Enchanted creature has &quot;{1}, Put a -1/-1 counter on this creature: Untap this creature.&quot;
+id=158760
+name=Sinking Feeling
+rarity=C
+type=Enchantment
+mana={2}{U}
+subtype=Aura
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever Slinking Giant blocks or becomes blocked, it gets -3/-0 until end of turn.
+id=153995
+name=Slinking Giant
+rarity=U
+type=Creature
+mana={2}{R}{R}
+power=4
+subtype=Giant Rogue
+toughness=4
+[/card]
+[card]
+text=Destroy target artifact. Smash to Smithereens deals 3 damage to that artifact's controller.
+id=158243
+name=Smash to Smithereens
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Whenever a player plays a black spell, you may pay {1}. If you do, target player loses 1 life.
+id=147376
+name=Smolder Initiate
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Elemental Shaman
+toughness=1
+[/card]
+[card]
+text=When Somnomancer comes into play, you may tap target creature.
+id=147399
+name=Somnomancer
+rarity=C
+type=Creature
+mana={1}{WU}
+power=2
+subtype=Kithkin Wizard
+toughness=1
+[/card]
+[card]
+text=Sootwalkers can't be blocked by white creatures.
+id=141936
+name=Sootwalkers
+rarity=C
+type=Creature
+mana={2}{BR}{BR}
+power=3
+subtype=Elemental Rogue
+toughness=3
+[/card]
+[card]
+text=Trample     Whenever Spawnwrithe deals combat damage to a player, put a token into play that's a copy of Spawnwrithe.
+id=158687
+name=Spawnwrithe
+rarity=R
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elemental
+toughness=2
+[/card]
+[card]
+text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 6.)  Put three 1/1 white Spirit creature tokens with flying into play.
+id=152070
+name=Spectral Procession
+rarity=U
+type=Sorcery
+mana={2W}{2W}{2W}
+[/card]
+[card]
+text=Counter target spell unless its controller pays {1} for each blue permanent you control.
+id=153999
+name=Spell Syphon
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text={B}{R}: Each player loses 1 life.
+id=157880
+name=Spiteflame Witch
+rarity=U
+type=Creature
+mana={1}{BR}
+power=2
+subtype=Elemental Shaman
+toughness=1
+[/card]
+[card]
+text=At the beginning of each player's draw step, that player draws an additional card.     Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
+id=146089
+name=Spiteful Visions
+rarity=R
+type=Enchantment
+mana={2}{BR}{BR}
+[/card]
+[card]
+text=Choose one - Target player discards two cards; or target player reveals his or her hand, you choose a card from it, then that player discards that card.
+id=147378
+name=Splitting Headache
+rarity=C
+type=Sorcery
+mana={3}{B}
+[/card]
+[card]
+text=Enchant creature     As long as enchanted creature is white, it gets +1/+1 and has lifelink. (Whenever it deals damage, its controller gains that much life.)  As long as enchanted creature is blue, it gets +1/+1 and is unblockable.
+id=158749
+name=Steel of the Godhead
+rarity=C
+type=Enchantment
+mana={2}{WU}
+subtype=Aura
+[/card]
+[card]
+text=Destroy all Auras and Equipment attached to target creature.
+id=159409
+name=Strip Bare
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Flying     If a source would deal damage to Swans of Bryn Argoll, prevent that damage. The source's controller draws cards equal to the damage prevented this way.
+id=146754
+name=Swans of Bryn Argoll
+rarity=R
+type=Creature
+mana={2}{WU}{WU}
+power=4
+subtype=Bird Spirit
+toughness=3
+[/card]
+[card]
+text=At end of turn, if an opponent lost 3 or more life this turn, you may draw a card. (Damage causes loss of life.)
+id=147377
+name=Sygg, River Cutthroat
+rarity=R
+type=Legendary Creature
+mana={UB}{UB}
+power=1
+subtype=Merfolk Rogue
+toughness=3
+[/card]
+[card]
+text=Flying     Tatterkite can't have counters placed on it.
+id=142030
+name=Tatterkite
+rarity=U
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Scarecrow
+toughness=1
+[/card]
+[card]
+text=Whenever you play a red spell, Tattermunge Duo gets +1/+1 until end of turn.     Whenever you play a green spell, Tattermunge Duo gains forestwalk until end of turn.
+id=153282
+name=Tattermunge Duo
+rarity=C
+type=Creature
+mana={2}{RG}
+power=2
+subtype=Goblin Warrior Shaman
+toughness=3
+[/card]
+[card]
+text=Tattermunge Maniac attacks each turn if able.
+id=142013
+name=Tattermunge Maniac
+rarity=U
+type=Creature
+mana={RG}
+power=2
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text={R}{G}: Each blocked creature gets +1/+0 and gains trample until end of turn.
+id=157884
+name=Tattermunge Witch
+rarity=U
+type=Creature
+mana={1}{RG}
+power=2
+subtype=Goblin Shaman
+toughness=1
+[/card]
+[card]
+text=Whenever you play a white spell, Thistledown Duo gets +1/+1 until end of turn.     Whenever you play a blue spell, Thistledown Duo gains flying until end of turn.
+id=153301
+name=Thistledown Duo
+rarity=C
+type=Creature
+mana={2}{WU}
+power=2
+subtype=Kithkin Soldier Wizard
+toughness=2
+[/card]
+[card]
+text=Flash     Other white creatures you control get +1/+1.     Other blue creatures you control get +1/+1.
+id=147409
+name=Thistledown Liege
+rarity=R
+type=Creature
+mana={1}{WU}{WU}{WU}
+power=1
+subtype=Kithkin Knight
+toughness=3
+[/card]
+[card]
+text=Thornwatch Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)  Thornwatch Scarecrow has vigilance as long as you control a white creature.
+id=151634
+name=Thornwatch Scarecrow
+rarity=C
+type=Artifact Creature
+mana={6}
+power=4
+subtype=Scarecrow
+toughness=4
+[/card]
+[card]
+text=If you would draw a card, draw two cards instead.
+id=146728
+name=Thought Reflection
+rarity=R
+type=Enchantment
+mana={4}{U}{U}{U}
+[/card]
+[card]
+text=Tap all creatures your opponents control and untap all creatures you control.
+id=146024
+name=Thoughtweft Gambit
+rarity=U
+type=Instant
+mana={4}{WU}{WU}
+[/card]
+[card]
+text=You gain 1 life for each tapped artifact, creature, and land you control.
+id=159410
+name=Toil to Renown
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Return up to one target creature card from your graveyard to play if {B} was spent to play Torrent of Souls. Creatures target player controls get +2/+0 and gain haste until end of turn if {R} was spent to play Torrent of Souls. (Do both if {B}{R} was spent.)
+id=158751
+name=Torrent of Souls
+rarity=U
+type=Sorcery
+mana={4}{BR}
+[/card]
+[card]
+text=Enchant creature     {1}{B}: Put a -1/-1 counter on enchanted creature.
+id=142070
+name=Torture
+rarity=C
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.)  Until end of turn, target creature gets +4/+4 and gains trample, wither, and &quot;When this creature attacks, target creature blocks it this turn if able.&quot; (It deals damage to creatures in the form of -1/-1 counters.)
+id=152075
+name=Tower Above
+rarity=U
+type=Sorcery
+mana={2G}{2G}{2G}
+[/card]
+[card]
+text=Tap target untapped creature. It deals damage equal to its power to its controller.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+id=158746
+name=Traitor's Roar
+rarity=C
+type=Sorcery
+mana={4}{BR}
+[/card]
+[card]
+text={2}, {T}: Tap target creature.
+id=147420
+name=Trip Noose
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Remove target creature from the game. Return that card to play under its owner's control at end of turn.
+id=158752
+name=Turn to Mist
+rarity=C
+type=Instant
+mana={1}{WU}
+[/card]
+[card]
+text=Flying, vigilance     When Twilight Shepherd comes into play, return to your hand all cards in your graveyard put there from play this turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=152060
+name=Twilight Shepherd
+rarity=R
+type=Creature
+mana={3}{W}{W}{W}
+power=5
+subtype=Angel
+toughness=5
+[/card]
+[card]
+text=Target player discards his or her hand unless he or she pays 7 life.
+id=146767
+name=Tyrannize
+rarity=R
+type=Sorcery
+mana={3}{BR}{BR}
+[/card]
+[card]
+text=Equipped creature has &quot;{3}, {T}: This creature gets +2/+2 until end of turn.&quot; ({T} is the untap symbol.)  Equip {0}
+id=153317
+name=Umbral Mantle
+rarity=U
+type=Artifact
+mana={3}
+subtype=Equipment
+[/card]
+[card]
+text={T}, Sacrifice a Mountain: Valleymaker deals 3 damage to target creature.     {T}, Sacrifice a Forest: Choose a player. That player adds {G}{G}{G} to his or her mana pool.
+id=159397
+name=Valleymaker
+rarity=R
+type=Creature
+mana={5}{RG}
+power=5
+subtype=Giant Shaman
+toughness=5
+[/card]
+[card]
+text=Vexing Shusher can't be countered.     {RG}: Target spell can't be countered by spells or abilities.
+id=146016
+name=Vexing Shusher
+rarity=R
+type=Creature
+mana={RG}{RG}
+power=2
+subtype=Goblin Shaman
+toughness=2
+[/card]
+[card]
+text=Target creature becomes green and gets +1/+0 until end of turn.     Draw a card.
+id=158758
+name=Viridescent Wisps
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Wanderbrine Rootcutters can't be blocked by green creatures.
+id=142012
+name=Wanderbrine Rootcutters
+rarity=C
+type=Creature
+mana={2}{UB}{UB}
+power=3
+subtype=Merfolk Rogue
+toughness=3
+[/card]
+[card]
+text=Watchwing Scarecrow has vigilance as long as you control a white creature.     Watchwing Scarecrow has flying as long as you control a blue creature.
+id=151630
+name=Watchwing Scarecrow
+rarity=C
+type=Artifact Creature
+mana={4}
+power=2
+subtype=Scarecrow
+toughness=4
+[/card]
+[card]
+text=Enchant player     If a card would be put into enchanted player's graveyard from anywhere, instead that card is revealed and put on the bottom of that player's library.
+id=146740
+name=Wheel of Sun and Moon
+rarity=R
+type=Enchantment
+mana={GW}{GW}
+subtype=Aura
+[/card]
+[card]
+text=Whimwader can't attack unless defending player controls a blue permanent.
+id=141957
+name=Whimwader
+rarity=C
+type=Creature
+mana={4}{U}
+power=6
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Whenever Wicker Warcrawler attacks or blocks, put a -1/-1 counter on it at end of combat.
+id=154410
+name=Wicker Warcrawler
+rarity=U
+type=Artifact Creature
+mana={5}
+power=6
+subtype=Scarecrow
+toughness=6
+[/card]
+[card]
+text=Choose three target nonenchantment permanents. Destroy one of them at random.
+id=158686
+name=Wild Swing
+rarity=U
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=Other green creatures you control get +1/+1.     Other white creatures you control get +1/+1.     If a spell or ability an opponent controls causes you to discard Wilt-Leaf Liege, put it into play instead of putting it into your graveyard.
+id=147439
+name=Wilt-Leaf Liege
+rarity=R
+type=Creature
+mana={1}{GW}{GW}{GW}
+power=4
+subtype=Elf Knight
+toughness=4
+[/card]
+[card]
+text=Flying     Attacking creatures you control have lifelink.
+id=146090
+name=Windbrisk Raptor
+rarity=R
+type=Creature
+mana={5}{W}{W}
+power=5
+subtype=Bird
+toughness=7
+[/card]
+[card]
+text=Wingrattle Scarecrow has flying as long as you control a blue creature.     Wingrattle Scarecrow has persist as long as you control a black creature. (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=151633
+name=Wingrattle Scarecrow
+rarity=C
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text=Whenever Witherscale Wurm blocks or becomes blocked by a creature, that creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)  Whenever Witherscale Wurm deals damage to an opponent, remove all -1/-1 counters from it.
+id=152068
+name=Witherscale Wurm
+rarity=R
+type=Creature
+mana={4}{G}{G}
+power=9
+subtype=Wurm
+toughness=9
+[/card]
+[card]
+text={W}, {T}: Remove a -1/-1 counter from target creature. If you do, you gain 2 life.
+id=153985
+name=Woeleecher
+rarity=C
+type=Creature
+mana={5}{W}
+power=3
+subtype=Elemental
+toughness=5
+[/card]
+[card]
+text=Trample     When Woodfall Primus comes into play, destroy target noncreature permanent.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+id=151987
+name=Woodfall Primus
+rarity=R
+type=Creature
+mana={5}{G}{G}{G}
+power=6
+subtype=Treefolk Shaman
+toughness=6
+[/card]
+[card]
+text=Return all permanents to their owners' hands. Each player chooses up to seven cards in his or her hand, then shuffles the rest into his or her library. Empty all mana pools.
+id=141991
+name=Worldpurge
+rarity=R
+type=Sorcery
+mana={4}{WU}{WU}{WU}{WU}
+[/card]
+[card]
+text=When Wort, the Raidmother comes into play, put two 1/1 red and green Goblin Warrior creature tokens into play.     Each red or green instant or sorcery spell you play has conspire. (As you play the spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose new targets for the copy.)
+id=147379
+name=Wort, the Raidmother
+rarity=R
+type=Legendary Creature
+mana={4}{RG}{RG}
+power=3
+subtype=Goblin Shaman
+toughness=3
+[/card]
+[card]
+text=At the end of each turn, each opponent loses life equal to the life he or she lost this turn. (Damage causes loss of life.)
+id=146762
+name=Wound Reflection
+rarity=R
+type=Enchantment
+mana={5}{B}
+[/card]

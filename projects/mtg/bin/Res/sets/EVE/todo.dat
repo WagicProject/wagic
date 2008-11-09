@@ -21,17 +21,6 @@ subtype=Golem
 toughness=*
 [/card]
 [card]
-text={2}: Target white creature gains persist until end of turn. (When it's put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-id=158293
-name=Antler Skulkin
-rarity=C
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Scarecrow
-toughness=3
-[/card]
-[card]
 text=Flying     When Archon of Justice is put into a graveyard from play, remove target permanent from the game.
 abilities=flying
 id=146006
@@ -356,15 +345,6 @@ subtype=Elemental
 toughness=10
 [/card]
 [card]
-text=Destroy target land. You gain 2 life.
-target=land
-id=151079
-name=Drain the Well
-rarity=C
-type=Sorcery
-mana={2}{BG}{BG}
-[/card]
-[card]
 text=Counter target spell. Its controller draws a card.     Draw a card.
 id=153036
 name=Dream Fracture
@@ -462,17 +442,6 @@ name=Fable of Wolf and Owl
 rarity=R
 type=Enchantment
 mana={3}{GU}{GU}{GU}
-[/card]
-[card]
-text={2}: Target black creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
-id=158296
-name=Fang Skulkin
-rarity=C
-type=Artifact Creature
-mana={2}
-power=2
-subtype=Scarecrow
-toughness=1
 [/card]
 [card]
 text=Enchant creature     As long as enchanted creature is green, it gets +1/+1 and has vigilance.     As long as enchanted creature is blue, it gets +1/+1 and has flying.
@@ -662,17 +631,6 @@ type=Enchantment
 mana={G}
 [/card]
 [card]
-text={3}: Target green creature gets +1/+1 until end of turn.
-id=158294
-name=Hoof Skulkin
-rarity=C
-type=Artifact Creature
-mana={3}
-power=2
-subtype=Scarecrow
-toughness=2
-[/card]
-[card]
 text=Haste     Hotheaded Giant comes into play with two -1/-1 counters on it unless you played another red spell this turn.
 abilities=haste
 id=153426
@@ -739,17 +697,6 @@ name=Invert the Skies
 rarity=U
 type=Instant
 mana={3}{GU}
-[/card]
-[card]
-text={2}: Target red creature gains haste until end of turn.
-id=158295
-name=Jawbone Skulkin
-rarity=C
-type=Artifact Creature
-mana={1}
-power=1
-subtype=Scarecrow
-toughness=1
 [/card]
 [card]
 text=Flying     {1}{W}, Sacrifice Kithkin Spellduster: Destroy target enchantment.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
@@ -1222,17 +1169,6 @@ subtype=Merfolk Wizard
 toughness=2
 [/card]
 [card]
-text={3}: Target blue creature gains shroud until end of turn.
-id=158297
-name=Shell Skulkin
-rarity=C
-type=Artifact Creature
-mana={4}
-power=3
-subtype=Scarecrow
-toughness=2
-[/card]
-[card]
 text=Whenever you play a spell that's both green and blue, Shorecrasher Mimic becomes 5/3 and gains trample until end of turn.
 id=151147
 name=Shorecrasher Mimic
@@ -1533,28 +1469,6 @@ mana={3}{G}
 power=4
 subtype=Treefolk Shaman
 toughness=4
-[/card]
-[card]
-text={T}: Target red or green creature gets -2/-0 until end of turn.
-id=153476
-name=Wilderness Hypnotist
-rarity=C
-type=Creature
-mana={2}{U}{U}
-power=1
-subtype=Merfolk Wizard
-toughness=3
-[/card]
-[card]
-text=When Wistful Selkie comes into play, draw a card.
-id=151143
-name=Wistful Selkie
-rarity=U
-type=Creature
-mana={GU}{GU}{GU}
-power=2
-subtype=Merfolk Wizard
-toughness=2
 [/card]
 [card]
 text=Whenever you play a spell that's both black and green, Woodlurker Mimic becomes 4/5 and gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)

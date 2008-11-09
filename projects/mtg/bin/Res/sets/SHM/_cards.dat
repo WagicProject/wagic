@@ -1,0 +1,611 @@
+[card]
+text=Flying     {BR}: Blistering Dieflyn gets +1/+0 until end of turn.
+abilities=flying
+auto={BR}:1/0
+id=141988
+name=Blistering Dieflyn
+rarity=C
+type=Creature
+mana={3}{R}
+power=0
+subtype=Imp
+toughness=1
+[/card]
+[card]
+text=Haste     Wither (This deals damage to creatures in the form of -1/-1 counters.)
+abilities=haste,wither
+id=153970
+name=Boggart Ram-Gang
+rarity=U
+type=Creature
+mana={RG}{RG}{RG}
+power=3
+subtype=Goblin Warrior
+toughness=3
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  {1}{B}: Regenerate Cinderbones.
+abilities=wither
+auto={1}{B}:regenerate
+id=142051
+name=Cinderbones
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Elemental Skeleton
+toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {RG}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
+auto={T}:Add{1}
+auto={RG}{T}:Add{R}{R}
+auto={RG}{T}:Add{R}{G}
+auto={RG}{T}:Add{G}{G}
+id=146753
+name=Fire-Lit Thicket
+rarity=R
+type=Land
+[/card]
+[card]
+text=({2R} can be paid with any two mana or with {R}. This card's converted mana cost is 6.)  Flame Javelin deals 4 damage to target creature or player.
+target=creature,player
+auto=damage:4
+id=146017
+name=Flame Javelin
+rarity=U
+type=Instant
+mana={2R}{2R}{2R}
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add{G}
+id=157877
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add{G}
+id=158241
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add{G}
+id=157870
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add{G}
+id=158242
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={RG}{RG}{RG}: Foxfire Oak gets +3/+0 until end of turn.
+auto={RG}{RG}{RG}:3/0
+id=141998
+name=Foxfire Oak
+rarity=C
+type=Creature
+mana={5}{G}
+power=3
+subtype=Treefolk Shaman
+toughness=6
+[/card]
+[card]
+text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+abilities=persist
+id=141935
+name=Gravelgill Axeshark
+rarity=C
+type=Creature
+mana={4}{UB}
+power=3
+subtype=Merfolk Soldier
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
+auto={T}:Add{1}
+auto={RB}{T}:Add{B}{B}
+auto={RB}{T}:Add{B}{R}
+auto={RB}{T}:Add{R}{R}
+id=146764
+name=Graven Cairns
+rarity=R
+type=Land
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add{U}
+id=158237
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add{U}
+id=157875
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add{U}
+id=157883
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add{U}
+id=157874
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=Reach (This can block creatures with flying.)  Wither (This deals damage to creatures in the form of -1/-1 counters.)
+abilities=reach,wither
+id=153976
+name=Juvenile Gloomwidow
+rarity=C
+type=Creature
+mana={G}{G}
+power=1
+subtype=Spider
+toughness=3
+[/card]
+[card]
+text=When Kitchen Finks comes into play, you gain 2 life.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+abilities=persist
+auto=life:2
+id=141976
+name=Kitchen Finks
+rarity=U
+type=Creature
+mana={1}{GW}{GW}
+power=3
+subtype=Ouphe
+toughness=2
+[/card]
+[card]
+text={W}, {T}: Target blocking creature gets +2/+2 until end of turn.
+auto={W}{T}:2/2 target(creature[blocking])
+id=158238
+name=Kithkin Shielddare
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Kithkin Soldier
+toughness=1
+[/card]
+[card]
+text=
+id=142001
+name=Loamdragger Giant
+rarity=C
+type=Creature
+mana={4}{RG}{RG}{RG}
+power=7
+subtype=Giant Warrior
+toughness=6
+[/card]
+[card]
+text={UB}: Loch Korrigan gets +1/+1 until end of turn.
+auto={UB}:1/1
+id=147414
+name=Loch Korrigan
+rarity=C
+type=Creature
+mana={3}{B}
+power=1
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add{R}
+id=157888
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add{R}
+id=157885
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add{R}
+id=157882
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add{R}
+id=158240
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {WU}, {T}: Add {W}{W}, {W}{U}, or {U}{U} to your mana pool.
+auto={T}:Add{1}
+auto={WU}{T}:Add{W}{W}
+auto={WU}{T}:Add{W}{U}
+auto={WU}{T}:Add{U}{U}
+id=146746
+name=Mystic Gate
+rarity=R
+type=Land
+[/card]
+[card]
+text=
+id=142007
+name=Old Ghastbark
+rarity=C
+type=Creature
+mana={3}{GW}{GW}
+power=3
+subtype=Treefolk Warrior
+toughness=6
+[/card]
+[card]
+text=Flying, defender     Wither (This deals damage to creatures in the form of -1/-1 counters.)
+abilities=flying,defender,wither
+id=141975
+name=Oona's Gatewarden
+rarity=C
+type=Creature
+mana={UB}
+power=2
+subtype=Faerie Soldier
+toughness=1
+[/card]
+[card]
+text=Protection from blue, from black, and from red
+abilities=protection from blue, protection from black, protection from red
+id=146735
+name=Oversoul of Dusk
+rarity=R
+type=Creature
+mana={GW}{GW}{GW}{GW}{GW}
+power=5
+subtype=Spirit Avatar
+toughness=5
+[/card]
+[card]
+text={WU}: Parapet Watchers gets +0/+1 until end of turn.
+auto={WU}:0/1
+id=152059
+name=Parapet Watchers
+rarity=C
+type=Creature
+mana={2}{U}
+power=2
+subtype=Kithkin Soldier
+toughness=2
+[/card]
+[card]
+text=Flying     {2}, {T}: Add one mana of any color to your mana pool. ({T} is the untap symbol.)
+abilities=flying
+auto={2}{T}:Add{R}
+auto={2}{T}:Add{G}
+auto={2}{T}:Add{B}
+auto={2}{T}:Add{U}
+auto={2}{T}:Add{W}
+id=147381
+name=Pili-Pala
+rarity=C
+type=Artifact Creature
+mana={2}
+power=1
+subtype=Scarecrow
+toughness=1
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:Add{W}
+id=158236
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:Add{W}
+id=157887
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:Add{W}
+id=157873
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:Add{W}
+id=158235
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text=Flash     Flying, defender
+abilities=flash,flying,defender
+id=153980
+name=Plumeveil
+rarity=U
+type=Creature
+mana={WU}{WU}{WU}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Haste     {R}: Pyre Charger gets +1/+0 until end of turn.
+abilities=haste
+auto={R}:1/0
+id=159399
+name=Pyre Charger
+rarity=U
+type=Creature
+mana={R}{R}
+power=1
+subtype=Elemental Warrior
+toughness=1
+[/card]
+[card]
+text=Regenerate target permanent.
+target=*
+auto=regenerate
+id=154403
+name=Reknit
+rarity=U
+type=Instant
+mana={1}{GW}
+[/card]
+[card]
+text=Flying     {GW}{GW}: Rune-Cervin Rider gets +1/+1 until end of turn.
+abilities=flying
+auto={GW}{GW}:1/1
+id=142003
+name=Rune-Cervin Rider
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Elf Knight
+toughness=2
+[/card]
+[card]
+text=First strike     Wither (This deals damage to creatures in the form of -1/-1 counters.)
+abilities=first strike, wither
+id=147389
+name=Rustrazor Butcher
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Goblin Warrior
+toughness=2
+[/card]
+[card]
+text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+abilities=persist
+id=146077
+name=Safehold Elite
+rarity=C
+type=Creature
+mana={1}{GW}
+power=2
+subtype=Elf Scout
+toughness=2
+[/card]
+[card]
+text=Trample     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+abilities=trample,persist
+id=152078
+name=Scuzzback Marauders
+rarity=C
+type=Creature
+mana={4}{RG}
+power=5
+subtype=Goblin Warrior
+toughness=2
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
+abilities=wither
+id=142052
+name=Scuzzback Scrapper
+rarity=C
+type=Creature
+mana={RG}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
+abilities=wither
+id=154010
+name=Sickle Ripper
+rarity=C
+type=Creature
+mana={1}{B}
+power=2
+subtype=Elemental Warrior
+toughness=1
+[/card]
+[card]
+text=Haste     {T}: Target black or red creature gains haste until end of turn.
+abilities=haste
+auto={T}:haste target(creature[black;red])
+id=153989
+name=Sootstoke Kindler
+rarity=C
+type=Creature
+mana={1}{BR}
+power=1
+subtype=Elemental Shaman
+toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {UB}, {T}: Add {U}{U}, {U}{B}, or {B}{B} to your mana pool.
+auto={T}:Add{1}
+auto={UB}{T}:Add{U}{U}
+auto={UB}{T}:Add{U}{B}
+auto={UB}{T}:Add{B}{B}
+id=146729
+name=Sunken Ruins
+rarity=R
+type=Land
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add{B}
+id=157886
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add{B}
+id=157871
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add{B}
+id=158239
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add{B}
+id=157889
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Flash     Enchant creature     Enchanted creature gets -3/-0.
+abilities=flash
+auto=-3/0
+id=142053
+name=Torpor Dust
+rarity=C
+type=Enchantment
+mana={2}{UB}
+subtype=Aura
+[/card]
+[card]
+text=Flying
+abilities=flying
+id=153967
+name=Wasp Lancer
+rarity=U
+type=Creature
+mana={UB}{UB}{UB}
+power=3
+subtype=Faerie Soldier
+toughness=2
+[/card]
+[card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
+abilities=wither
+id=135436
+name=Wildslayer Elves
+rarity=C
+type=Creature
+mana={3}{G}
+power=3
+subtype=Elf Warrior
+toughness=3
+[/card]
+[card]
+text=Vigilance
+abilities=vigilance
+id=153962
+name=Wilt-Leaf Cavaliers
+rarity=U
+type=Creature
+mana={GW}{GW}{GW}
+power=3
+subtype=Elf Knight
+toughness=4
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {GW}, {T}: Add {G}{G}, {G}{W}, or {W}{W} to your mana pool.
+auto={T}:Add{1}
+auto={GW}{T}:Add{G}{G}
+auto={GW}{T}:Add{G}{W}
+auto={GW}{T}:Add{G}{W}
+id=146747
+name=Wooded Bastion
+rarity=R
+type=Land
+[/card]
+[card]
+text=Flash
+abilities=flash
+id=142028
+name=Zealous Guardian
+rarity=C
+type=Creature
+mana={WU}
+power=1
+subtype=Kithkin Soldier
+toughness=1
+[/card]
