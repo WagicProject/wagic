@@ -1,6 +1,6 @@
 #include "../include/debug.h"
 #include "../include/TargetChooser.h"
-
+#include "../include/CardDescriptor.h"
 #include "../include/MTGGameZones.h"
 #include "../include/GameObserver.h"
 #include "../include/Subtypes.h"
@@ -75,8 +75,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 				zones[1]= game->players[1]->game->inPlay;
 			}
 
-			TypeTargetChooser * tc = NULL;
+			TargetChooser * tc = NULL;
 			int maxtargets = 1;
+			CardDescriptor * cd = NULL;
 
 			while(s1.size()){
 				found = s1.find(",");
@@ -88,20 +89,128 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 					typeName = s1;
 					s1 = "";
 				}
+
+				//Advanced cards caracteristics ?
+				found = typeName.find("[");
+				if (found != string::npos){
+					int nbminuses = 0;
+					int end = typeName.find("]");
+#ifdef WIN32
+					OutputDebugString("Advanced Attributes 1 \n");
+#endif
+					string attributes = typeName.substr(found+1,end-found-1);
+#ifdef WIN32
+					OutputDebugString(attributes.c_str());
+					OutputDebugString("\n");
+#endif
+					cd = NEW CardDescriptor();
+					while(attributes.size()){
+						int found2 = attributes.find(";");
+						string attribute;
+						if (found2 != string::npos){
+							attribute = attributes.substr(0,found2);
+							attributes = attributes.substr(found2+1);
+						}else{
+							attribute = attributes;
+							attributes = "";
+						}
+						int minus = 0;
+						if (attribute[0] == '-'){
+#ifdef WIN32
+					OutputDebugString("MINUS\n");
+#endif
+							minus = 1;
+							nbminuses++;
+						}
+#ifdef WIN32
+					OutputDebugString(attribute.c_str());
+					OutputDebugString("\n");
+#endif
+						//Attacker
+						if (attribute.find("attacking") != string::npos){
+							if (minus){
+								cd->attacker = -1;
+							}else{
+								cd->attacker = 1;
+							}
+
+						//Blocker
+						}else if (attribute.find("blocking") != string::npos){
+							if (minus){
+								cd->defenser = (MTGCardInstance *)-1; //Oh yeah, that's ugly....
+							}else{
+								cd->defenser = (MTGCardInstance *)1;
+							}
+
+						//Tapped, untapped
+						}else if (attribute.find("tapped") != string::npos){
+							if (minus){
+								cd->tapped = -1;
+							}else{
+								cd->tapped = 1;
+							}
+						}else{
+							int attributefound = 0;
+							//Colors
+							for (int cid = 0; cid < MTG_NB_COLORS; cid++){
+								if (attribute.find(MTGColorStrings[cid]) != string::npos){
+									attributefound = 1;
+									if (minus){
+										cd->colors[cid] = -1;
+									}else{
+										cd->colors[cid] = 1;
+									}
+								}
+							}
+							if (!attributefound){
+								//Abilities
+								for (int j = 0; j < NB_BASIC_ABILITIES; j++){
+									if (attribute.find(MTGBasicAbilities[j]) != string::npos){
+										attributefound = 1;
+										if (minus){
+											cd->basicAbilities[j] = -1;
+										}else{
+											cd->basicAbilities[j] = 1;
+										}
+									}
+								}
+							}
+						}
+					}
+						if (nbminuses < 2){
+#ifdef WIN32
+					OutputDebugString("Switching to OR\n");
+#endif
+							cd->mode = CD_OR;
+						}
+					typeName = typeName.substr(0,found);
+				}
 				//X targets allowed ?
 				if (typeName.at(typeName.length()-1) == 's'){
 					typeName = typeName.substr(0,typeName.length()-1);
 					maxtargets = -1;
 				}
-				if (!tc){
-					if (typeName.compare("*")==0){
-						return NEW TargetZoneChooser(zones, nbzones,card, maxtargets);
+				if (cd){
+					if (!tc){
+						if (typeName.compare("*")!=0) cd->setSubtype(typeName);
+						tc = NEW DescriptorTargetChooser(cd,zones,nbzones,card,maxtargets);
+#ifdef WIN32
+					OutputDebugString("Advanced Attributes 2 \n");
+#endif
 					}else{
-						tc =  NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card,maxtargets);
+						return NULL;
 					}
 				}else{
-					tc->addType(typeName.c_str());
-					tc->maxtargets = maxtargets;
+					if (!tc){
+						if (typeName.compare("*")==0){
+							return NEW TargetZoneChooser(zones, nbzones,card, maxtargets);
+						}else{
+							tc =  NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card,maxtargets);
+						}
+					}else{
+						((TypeTargetChooser *)tc)->addType(typeName.c_str());
+						tc->maxtargets = maxtargets;
+					}
 				}
 			}
 			return tc;
@@ -275,8 +384,41 @@ int TypeTargetChooser::canTarget(Targetable * target ){
 	return 0;
 }
 
+
+/** 
+A Target Chooser associated to a Card Descriptor object, for fine tuning of targets description
+**/
+DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+		GameObserver * game = GameObserver::GetInstance(); 
+		MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+		init(default_zones,2);
+		cd = _cd;
+}
+
+DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGGameZone ** _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+	GameObserver * game = GameObserver::GetInstance(); 
+	if (nbzones == 0){
+		MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+		init(default_zones,2);
+	}else{
+		init(_zones, nbzones);
+	}
+	cd = _cd;
+}
+
+int DescriptorTargetChooser::canTarget(Targetable * target){
+	if (target->typeAsTarget() == TARGET_CARD){
+		MTGCardInstance * card = (MTGCardInstance *) target;
+		if (!TargetZoneChooser::canTarget(card)) return 0;
+		if (cd->match(card)) return 1;
+	}
+	return 0;
+}
+
+
+
 /**
-Choose a creature anywhere. This is actually not enough as a zone should be selected
+Choose a creature
 **/
 
 CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){

@@ -49,18 +49,6 @@ subtype=Merfolk Wizard
 toughness=3
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy comes into play, you gain 3 life.
-id=129465
-name=Angel of Mercy
-rarity=U
-color=White
-type=Creature
-mana={4}{W}
-power=3
-subtype=Angel
-toughness=3
-[/card]
-[card]
 text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
 id=129710
 name=Angelic Chorus
@@ -99,15 +87,6 @@ mana={3}{U}{U}{U}
 power=3
 subtype=Wizard
 toughness=4
-[/card]
-[card]
-text=Destroy target tapped creature.
-id=135194
-name=Assassinate
-rarity=C
-color=Black
-type=Sorcery
-mana={2}{B}
 [/card]
 [card]
 text=Gain control of target Aura that's attached to a permanent. Attach it to another permanent it can enchant.
@@ -520,15 +499,6 @@ type=Sorcery
 mana={2}{R}
 [/card]
 [card]
-text=Destroy target green or white creature.
-id=129910
-name=Deathmark
-rarity=U
-color=Black
-type=Sorcery
-mana={B}
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature doesn't untap during its controller's untap step.
 id=129521
 name=Dehydration
@@ -695,15 +665,6 @@ subtype=Elf Shaman
 toughness=1
 [/card]
 [card]
-text=Essence Drain deals 3 damage to target creature or player and you gain 3 life.
-id=135191
-name=Essence Drain
-rarity=C
-color=Black
-type=Sorcery
-mana={4}{B}
-[/card]
-[card]
 text=Return all creatures to their owners' hands.
 id=129541
 name=Evacuation
@@ -719,18 +680,6 @@ name=Faerie Conclave
 rarity=U
 color=Land
 type=Land
-[/card]
-[card]
-text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.
-id=135186
-name=Femeref Archers
-rarity=U
-color=Green
-type=Creature
-mana={2}{G}
-power=2
-subtype=Human Archer
-toughness=2
 [/card]
 [card]
 text=When Festering Goblin is put into a graveyard from play, target creature gets -1/-1 until end of turn.
@@ -900,18 +849,6 @@ rarity=U
 color=White
 type=Instant
 mana={X}{W}
-[/card]
-[card]
-text={2}: Target blue or red creature gets +1/+0 until end of turn.
-id=130995
-name=Hate Weaver
-rarity=U
-color=Black
-type=Creature
-mana={1}{B}
-power=2
-subtype=Zombie Wizard
-toughness=1
 [/card]
 [card]
 text=Target opponent puts the cards from his or her hand on top of his or her library. Search that player's library for that many cards. The player puts those cards into his or her hand, then shuffles his or her library.
@@ -1249,18 +1186,6 @@ type=Sorcery
 mana={X}{2}{B}
 [/card]
 [card]
-text={2}: Target red or white creature gains trample until end of turn. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-id=130996
-name=Might Weaver
-rarity=U
-color=Green
-type=Creature
-mana={1}{G}
-power=2
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
 text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change &quot;nonblack creature&quot; to &quot;nongreen creature&quot; or &quot;forestwalk&quot; to &quot;islandwalk.&quot; This effect doesn't end at end of turn.)
 id=129644
 name=Mind Bend
@@ -1468,18 +1393,6 @@ subtype=Illusion Warrior
 toughness=2
 [/card]
 [card]
-text=When Phyrexian Rager comes into play, you draw a card and you lose 1 life.
-id=135189
-name=Phyrexian Rager
-rarity=C
-color=Black
-type=Creature
-mana={2}{B}
-power=2
-subtype=Horror
-toughness=2
-[/card]
-[card]
 text={2}, {T}, Sacrifice a creature: Draw a card.
 id=135281
 name=Phyrexian Vault
@@ -1590,18 +1503,6 @@ subtype=Dryad
 toughness=1
 [/card]
 [card]
-text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
-id=130997
-name=Rage Weaver
-rarity=U
-color=Red
-type=Creature
-mana={1}{R}
-power=2
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
 text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
 id=129690
 name=Rampant Growth
@@ -1669,15 +1570,6 @@ rarity=C
 color=Blue
 type=Instant
 mana={1}{U}
-[/card]
-[card]
-text=You gain 3 life.     Draw a card.
-id=132089
-name=Reviving Dose
-rarity=C
-color=White
-type=Instant
-mana={2}{W}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard to play.
@@ -1906,18 +1798,6 @@ type=Sorcery
 mana={3}{U}
 [/card]
 [card]
-text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
-id=130998
-name=Sky Weaver
-rarity=U
-color=Blue
-type=Creature
-mana={1}{U}
-power=2
-subtype=Metathran Wizard
-toughness=1
-[/card]
-[card]
 text={T}: You may put a land card from your hand into play. Play this ability only any time you could play a sorcery.
 id=135182
 name=Skyshroud Ranger
@@ -2013,18 +1893,6 @@ subtype=Zombie Mercenary
 toughness=2
 [/card]
 [card]
-text={2}: Target green or blue creature gets +0/+1 until end of turn.
-id=130999
-name=Spirit Weaver
-rarity=U
-color=White
-type=Creature
-mana={1}{W}
-power=2
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
 id=136509
 name=Spitting Earth
@@ -2068,18 +1936,6 @@ mana={2}{G}{G}
 power=5
 subtype=Antelope Beast
 toughness=4
-[/card]
-[card]
-text={7}{W}: You gain 5 life.
-id=130385
-name=Starlight Invoker
-rarity=U
-color=White
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Cleric Mutant
-toughness=3
 [/card]
 [card]
 text=You can't play creature spells.
@@ -2380,18 +2236,6 @@ type=Creature
 mana={U}{U}
 power=1
 subtype=Vedalken Wizard
-toughness=2
-[/card]
-[card]
-text=When Venerable Monk comes into play, you gain 2 life.
-id=129786
-name=Venerable Monk
-rarity=C
-color=White
-type=Creature
-mana={2}{W}
-power=2
-subtype=Human Monk Cleric
 toughness=2
 [/card]
 [card]

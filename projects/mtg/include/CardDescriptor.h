@@ -8,10 +8,15 @@ A Filter/Mask system for Card Instances to find cards matching specific settings
 #include "MTGCardInstance.h"
 #include "MTGGameZones.h"
 
+#define CD_OR 1
+#define CD_AND 2
+
 class CardDescriptor: public MTGCardInstance{
 protected:
-
+	MTGCardInstance * match_or(MTGCardInstance * card);
+	MTGCardInstance * match_and(MTGCardInstance * card);
 public:
+	int mode;
 	int init();
 	CardDescriptor();
 	MTGCardInstance * match(MTGCardInstance * card);

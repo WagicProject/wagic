@@ -36,7 +36,7 @@ public:
 	virtual ~AIPlayer();
 	virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
 	virtual int chooseTarget(TargetChooser * tc = NULL);
-	virtual int Act();
+	virtual int Act(float dt);
 	int isAI(){return 1;};
 
 };
@@ -49,7 +49,7 @@ protected:
 	MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
 public:
 	AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile);
-	virtual int Act();
+	virtual int Act(float dt);
 	void initTimer();
 };
 

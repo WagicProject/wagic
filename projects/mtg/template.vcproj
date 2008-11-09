@@ -413,6 +413,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\PhaseRing.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Player.cpp"
 				>
 			</File>
@@ -683,6 +687,10 @@
 			</File>
 			<File
 				RelativePath=".\include\OptionItem.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\PhaseRing.h"
 				>
 			</File>
 			<File

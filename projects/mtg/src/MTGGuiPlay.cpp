@@ -306,7 +306,7 @@ void MTGGuiPlay::RenderPhaseBar(){
 	int currentPhase = game->getCurrentGamePhase();
 	for (int i=0; i < 12; i++){
 		int index = 2*i + 1 ;
-		if (i==currentPhase){
+		if (i==currentPhase-1){
 			index-=1;
 		}
 		renderer->RenderQuad(phaseIcons[index], 200 + 14*i,0,0,0.5,0.5);

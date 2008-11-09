@@ -449,6 +449,13 @@ public:
 //That means the player has to choose one. although that is perfect for cards such as birds of paradise or badlands, 
 other solutions need to be provided for abilities that add mana (ex: mana flare)
 */
+/*
+Currently the mana is added to the pool AFTER the animation
+This is VERY BAD, since we don't have any control on the duration of the animation. This can lead to bugs with
+the AI, who is expecting to have the mana in its manapool right after clicking the land card !!!
+The sum of "dt" has to be 0.25 for the mana to be in the manapool currently
+*/
+
 class AManaProducer: public MTGAbility{
 protected:
 	ManaCost * cost;
@@ -2642,6 +2649,54 @@ public:
 			return 1;
 		}
 };
+
+
+//Stasis
+class AStasis:public ActivatedAbility{
+public:
+	int paidThisTurn;
+	AStasis(int _id, MTGCardInstance * card):ActivatedAbility(_id,card, NEW ManaCost(),1,0){
+		paidThisTurn = 1;
+		cost->add(MTG_COLOR_BLUE,1);
+	}
+
+	void Update(float dt){
+		//Upkeep Cost
+		if (newPhase !=currentPhase){
+			if (newPhase == MTG_PHASE_UPKEEP){
+				paidThisTurn = 0;
+			}else if (!paidThisTurn && newPhase > MTG_PHASE_UPKEEP &&  game->currentPlayer==source->controller() ){
+				game->currentPlayer->game->putInGraveyard(source);
+				paidThisTurn = 1;
+			}
+		}
+		//Stasis Effect
+		for (int i = 0; i < 2; i++){
+			game->phaseRing->removePhase(MTG_PHASE_UNTAP,game->players[i]);
+		}
+
+		//Parent Class Method Call
+		ActivatedAbility::Update(dt);
+	}
+
+	int isReactingToClick(MTGCardInstance * card){
+		return (!paidThisTurn && currentPhase == MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card));
+	}
+
+	int resolve(){
+		paidThisTurn = 1;
+		return 1;
+	}
+
+	int destroy(){
+		for (int i = 0; i < 2; i++){
+			game->phaseRing->addPhaseBefore(MTG_PHASE_UNTAP,game->players[i],MTG_PHASE_UPKEEP,game->players[i]);
+		}
+		return 1;
+	}
+};
+
+
 
 //--------------Addon Abra------------------
 //ShieldOfTheAge

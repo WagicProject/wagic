@@ -1346,6 +1346,7 @@ mana={2}{R}{R}
 [/card]
 [card]
 text={2}{G}{T}: Untap target creature.
+auto={2}{G}{T}:untap target(creature)
 id=2566
 name=Fyndhorn Brownie
 auto={2}{G}{T}:untap target(creature)
@@ -1446,5 +1447,3 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
-#End of file

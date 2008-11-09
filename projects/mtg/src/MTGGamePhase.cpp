@@ -12,10 +12,6 @@ MTGGamePhase::MTGGamePhase(int id):ActionElement(id){
 
 
 void MTGGamePhase::Render(){
-  /*if (animation){
-    RenderMessageBackground(10, 100);
-    mFont->DrawString(MTGPhaseNames[currentState], SCREEN_WIDTH_F/2, 30, JGETEXT_CENTER);
-  }*/
 }
 
 
@@ -37,7 +33,7 @@ void MTGGamePhase::Update(float dt){
   
  if (animation > 0){
     fprintf(stderr, "animation = %f", animation);
-    animation -= 0.05;
+    animation -= dt *5 ;
   }else{
 	activeState = INACTIVE;
     animation = 0;

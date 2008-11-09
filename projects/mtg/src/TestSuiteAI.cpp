@@ -41,11 +41,14 @@ Interruptible * TestSuite::getActionByMTGId(int mtgid){
 	return NULL;
 }
 
-int TestSuiteAI::Act(){
+int TestSuiteAI::Act(float dt){
 	GameObserver * g = GameObserver::GetInstance();
 	g->gameOver = NULL; // Prevent draw rule from losing the game
-	timer++;
-	if (timer < 20) return 1;
+	timer+= dt;
+char buf[4096];
+sprintf(buf, "%f\n", timer);
+OutputDebugString (buf);
+	if (timer < suite->timerLimit) return 1;
 	timer = 0;
 	string action = suite->getNextAction();
 	if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
@@ -193,9 +196,19 @@ MTGPlayerCards * TestSuite::buildDeck(MTGAllCards * collection, int playerId){
 }
 
 void TestSuite::initGame(){
+	//The first test runs slowly, the other ones run faster.
+	//This way a human can see what happens when testing a specific file,
+	// or go faster when it comes to the whole test suite.
+	//Warning, putting this value too low (< 0.25) will give unexpected results
+	if (!timerLimit){
+		timerLimit = 0.3;
+	}else{
+		timerLimit = 0.26;
+	}
 //Put the GameObserver in the initial state	
 	GameObserver * g = GameObserver::GetInstance();
 	OutputDebugString("Init Game\n");
+	g->phaseRing->goToPhase(initState.phase, g->players[0]);
 	g->currentGamePhase = initState.phase;
 	for (int i = 0; i < 2; i++){
 		Player * p = g->players[i];
@@ -296,6 +309,7 @@ int TestSuite::assertGame(){
 }
 
 TestSuite::TestSuite(const char * filename){
+	timerLimit = 0;
 	std::ifstream file(filename);
   std::string s;
 	nbfiles = 0;

@@ -51,7 +51,7 @@ def fetchImage(id, filename):
         os.mkdir(setinfo['abbrev'])
       else:
         assert os.path.isdir(setinfo['abbrev'])
-      f = open(setinfo['abbrev'] + "/" + filename, 'w')
+      f = open(setinfo['abbrev'] + "/" + filename, 'wb')
       f.write(pic.read())
       f.close()
 

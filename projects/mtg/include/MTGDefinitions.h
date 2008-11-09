@@ -16,6 +16,8 @@
 
 
 static char MTGColorChars[] = {'x','g','u','r','b','w','l'};
+static const char * MTGColorStrings[] = {"artifact", "green", "blue", "red", "black", "white", "land"};
+
 static int _r[7] = {75,	20,		20,	200,50,255,128};
 static int _g[7] = {30,	140,	30,	15,	50,255,128};
 static int _b[7] = {20,	0,		140,15,	50,255,128};
@@ -37,20 +39,22 @@ static int _b[7] = {20,	0,		140,15,	50,255,128};
 
 
 
-#define MTG_PHASE_UNTAP 0
-#define MTG_PHASE_UPKEEP 1
-#define MTG_PHASE_DRAW 2
-#define MTG_PHASE_FIRSTMAIN 3
-#define MTG_PHASE_COMBATBEGIN 4
-#define MTG_PHASE_COMBATATTACKERS 5
-#define MTG_PHASE_COMBATBLOCKERS 6
-#define MTG_PHASE_COMBATDAMAGE 7
-#define MTG_PHASE_COMBATEND 8
-#define MTG_PHASE_SECONDMAIN 9
-#define MTG_PHASE_ENDOFTURN 10
-#define MTG_PHASE_EOT 10
-#define MTG_PHASE_CLEANUP 11
-
+#define MTG_PHASE_BEFORE_BEGIN 0
+#define MTG_PHASE_UNTAP 1
+#define MTG_PHASE_UPKEEP 2
+#define MTG_PHASE_DRAW 3
+#define MTG_PHASE_FIRSTMAIN 4
+#define MTG_PHASE_COMBATBEGIN 5
+#define MTG_PHASE_COMBATATTACKERS 6
+#define MTG_PHASE_COMBATBLOCKERS 7
+#define MTG_PHASE_COMBATDAMAGE 8
+#define MTG_PHASE_COMBATEND 9
+#define MTG_PHASE_SECONDMAIN 10
+#define MTG_PHASE_ENDOFTURN 11
+#define MTG_PHASE_EOT 11
+#define MTG_PHASE_CLEANUP 12
+#define MTG_PHASE_AFTER_EOT 13
+#define NB_MTG_PHASES 14
 
 #define TRAMPLE 0
 #define FORESTWALK 1
@@ -145,6 +149,7 @@ static const char * MTGBasicAbilities[] = {
 
 static const char *MTGPhaseNames[] =
 {
+	"---",
 	"Untap",
 	"Upkeep",
 	"Draw",
@@ -156,7 +161,8 @@ static const char *MTGPhaseNames[] =
 	"Combat ends",
 	"Main phase 2",
 	"End of turn",
-	"cleanup"
+	"cleanup",
+	"---"
 };
 
 

@@ -132,7 +132,7 @@ void GuiLayers::Update(float dt, Player * currentPlayer){
     }
   }
 	if (isAI){
-		currentPlayer->Act();
+		currentPlayer->Act(dt);
 	}
 }
 

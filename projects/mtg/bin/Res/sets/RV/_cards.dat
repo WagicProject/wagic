@@ -1712,7 +1712,7 @@ mana={W}{W}
 [card]
 text=Target blocking creature gets +7/+7 until end of turn.
 auto=:7/7
-target=creature
+target=creature[blocking]
 id=1363
 name=Righteousness
 rarity=R
@@ -1742,6 +1742,7 @@ mana={4}
 [/card]
 [card]
 text={T}: Destroy target tapped creature.
+auto={T}:destroy target(creature[tapped])
 id=1175
 name=Royal Assassin
 rarity=R
@@ -1938,6 +1939,15 @@ type=Instant
 mana={X}{U}
 [/card]
 [card]
+text=Players skip their untap steps.       At the beginning of your upkeep, sacrifice Stasis unless you pay {U}.
+id=1225
+name=Stasis
+rarity=R
+color=Blue
+type=Enchantment
+mana={1}{U}
+[/card]
+[card]
 text=Enchant artifact     You control enchanted artifact.
 target=artifact
 id=1226
@@ -2023,12 +2033,12 @@ subtype=Mountain Forest
 [/card]
 [card]
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
-target=creature
+target=creature[-black;-artifact]
 id=1182
 name=Terror
 rarity=C
 type=Instant
-mana={1}{B}
+mana={0}
 [/card]
 [card]
 text=As The Rack comes into play, choose an opponent.     At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand.

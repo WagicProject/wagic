@@ -8,6 +8,7 @@
 #include "PlayGuiObject.h"
 #include "DuelLayers.h"
 #include "TargetChooser.h"
+#include "PhaseRing.h"
 
 #define MAX_GAME_OBSERVERS 500
 
@@ -33,6 +34,7 @@ class GameObserver{
 	
 	int targetListIsSet(MTGCardInstance * card);
  public:
+  PhaseRing * phaseRing;
   int cancelCurrentAction();
   int currentGamePhase;
 	int oldGamePhase;

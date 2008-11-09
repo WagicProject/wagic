@@ -27,7 +27,7 @@ MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * sou
 	return NULL;
 }
 
-int AIPlayer::Act(){
+int AIPlayer::Act(float dt){
 	GameObserver * gameObs = GameObserver::GetInstance();
 	if (gameObs->currentPlayer == this){
 		gameObs->userRequestNextGamePhase();
@@ -486,7 +486,7 @@ void AIPlayerBaka::initTimer(){
 	timer = 20;
 }
 
-int AIPlayerBaka::Act(){
+int AIPlayerBaka::Act(float dt){
 	GameObserver * gameObs = GameObserver::GetInstance();
 	int currentGamePhase = gameObs->getCurrentGamePhase();
 

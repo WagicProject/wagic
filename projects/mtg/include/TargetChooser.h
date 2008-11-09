@@ -18,6 +18,7 @@ class MTGGameZone;
 class Player;
 class Damageable;
 class Targetable;
+class CardDescriptor;
 
 
 
@@ -94,6 +95,14 @@ public:
 	void addType(int type);
 	void addType(const char * type);
 	virtual int canTarget(Targetable * targe);
+};
+
+class DescriptorTargetChooser:public TargetZoneChooser{
+public:
+	CardDescriptor  * cd;
+	DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card = NULL, int _maxtargets = 1);
+	DescriptorTargetChooser(CardDescriptor * _cd, MTGGameZone ** _zones, int nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
+	virtual int canTarget(Targetable * target);
 };
 
 

@@ -48,6 +48,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
 	cardWaitingForTargets = NULL;
 	reaction = 0;
 	gameOver = NULL;
+	phaseRing = NEW PhaseRing(_players,_nb_players);
 }
 
 void GameObserver::setGamePhaseManager(MTGGamePhase * _phases){
@@ -73,11 +74,21 @@ void GameObserver::nextPlayer(){
 	currentPlayerId = (currentPlayerId+1)%nbPlayers;
 	currentPlayer = players[currentPlayerId];
 	currentActionPlayer = currentPlayer;
-	currentPlayer->canPutLandsIntoPlay = 1; //TODO more useful function
+
 }
 void GameObserver::nextGamePhase(){
-	currentGamePhase++;
+	phaseRing->forward();
+	Phase * cPhase = phaseRing->getCurrentPhase();
+	currentGamePhase = cPhase->id;
+	if (currentPlayer != cPhase->player) nextPlayer();
 
+	//init begin of turn
+	if (currentGamePhase == MTG_PHASE_BEFORE_BEGIN){
+		cleanupPhase();
+		currentPlayer->canPutLandsIntoPlay = 1;
+		mLayers->actionLayer()->Update(0);
+		return nextGamePhase();
+	}
 	//manaBurn
 	if (currentGamePhase == MTG_PHASE_UNTAP ||
 			currentGamePhase == MTG_PHASE_FIRSTMAIN ||
@@ -88,21 +99,20 @@ void GameObserver::nextGamePhase(){
 		currentPlayer->manaBurn();
 	}
 
-	//Next Player ?
-	if (currentGamePhase > MTG_PHASE_CLEANUP){
+	//After End of turn
+	if (currentGamePhase == MTG_PHASE_AFTER_EOT){
 		//Auto Hand cleaning, in case the player didn't do it himself
 		while(currentPlayer->game->hand->nb_cards > 7){
 			currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
 		}
 		mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
-		nextPlayer();
-		currentGamePhase = MTG_PHASE_UNTAP;
+		mLayers->actionLayer()->Update(0);
+		return nextGamePhase();
 	}
 
 	//Phase Specific actions
 	switch(currentGamePhase){
 		case MTG_PHASE_UNTAP:
-			cleanupPhase();
 			untapPhase();
 			break;
 		case MTG_PHASE_DRAW:
@@ -137,7 +147,8 @@ void GameObserver::startGame(int shuffle, int draw){
   for (i=0; i<nbPlayers; i++){
     players[i]->game->initGame(shuffle, draw);
   }
-  currentGamePhase = MTG_PHASE_FIRSTMAIN;
+	phaseRing->goToPhase(MTG_PHASE_FIRSTMAIN, players[0]);
+	currentGamePhase = MTG_PHASE_FIRSTMAIN;
 }
 
 void GameObserver::addObserver(MTGAbility * observer){
@@ -158,6 +169,7 @@ GameObserver::~GameObserver(){
 	LOG("==Destroying GameObserver==");
 	SAFE_DELETE(targetChooser);
 	SAFE_DELETE(mLayers);
+	SAFE_DELETE(phaseRing);
 	LOG("==GameObserver Destroyed==");
 
 }

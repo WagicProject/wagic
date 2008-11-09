@@ -86,6 +86,20 @@ subtype=Wall
 toughness=4
 [/card]
 [card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy comes into play, you gain 3 life.
+abilities=flying
+auto=gainlife:3
+id=129465
+name=Angel of Mercy
+rarity=U
+color=White
+type=Creature
+mana={4}{W}
+power=3
+subtype=Angel
+toughness=3
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Other black creatures get +1/+1.      Nonblack creatures get -1/-1.
 abilities=Legendary, flying
 id=106525
@@ -97,6 +111,17 @@ mana={4}{B}{B}
 power=3
 subtype=Vampire
 toughness=3
+[/card]
+[card]
+text=Destroy target tapped creature.
+target=creature[tapped]
+auto=destroy
+id=135194
+name=Assassinate
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}
 [/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.)  First strike (This creature deals combat damage before creatures without first strike.)
@@ -219,6 +244,17 @@ type=Sorcery
 mana={2}{G}{G}
 [/card]
 [card]
+text=Destroy target green or white creature.
+target=creature[green;white]
+auto=destroy
+id=129910
+name=Deathmark
+rarity=U
+color=Black
+type=Sorcery
+mana={B}
+[/card]
+[card]
 text=Destroy target artifact or land.
 target=artifact,land
 auto=destroy
@@ -316,6 +352,18 @@ subtype=Beast
 toughness=7
 [/card]
 [card]
+text=Essence Drain deals 3 damage to target creature or player and you gain 3 life.
+target=creature,player
+auto=damage:3
+auto=gainlife:3
+id=135191
+name=Essence Drain
+rarity=C
+color=Black
+type=Sorcery
+mana={4}{B}
+[/card]
+[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
 id=129544
 target=creature
@@ -326,6 +374,19 @@ color=Black
 type=Enchantment
 mana={B}{B}
 subtype=Aura
+[/card]
+[card]
+text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.
+auto={T}:damage:4 target(creature[attacking;flying])
+id=135186
+name=Femeref Archers
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Archer
+toughness=2
 [/card]
 [card]
 text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
@@ -528,6 +589,19 @@ mana={1}{G}
 power=2
 subtype=Bear
 toughness=2
+[/card]
+[card]
+text={2}: Target blue or red creature gets +1/+0 until end of turn.
+auto={2}:1/0 target(creature[blue;red])
+id=130995
+name=Hate Weaver
+rarity=U
+color=Black
+type=Creature
+mana={1}{B}
+power=2
+subtype=Zombie Wizard
+toughness=1
 [/card]
 [card]
 text=
@@ -836,6 +910,19 @@ type=Instant
 mana={3}{G}
 [/card]
 [card]
+text={2}: Target red or white creature gains trample until end of turn. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+auto={2}:trample target(creature[red;white])
+id=130996
+name=Might Weaver
+rarity=U
+color=Green
+type=Creature
+mana={1}{G}
+power=2
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
 text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
 id=129643
 alias=1126
@@ -974,6 +1061,20 @@ mana={3}{U}{U}
 subtype=Aura
 [/card]
 [card]
+text=When Phyrexian Rager comes into play, you draw a card and you lose 1 life.
+auto=draw:1
+auto=life:-1
+id=135189
+name=Phyrexian Rager
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Horror
+toughness=2
+[/card]
+[card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
 abilities=swampwalk
 id=129678
@@ -1040,6 +1141,19 @@ subtype=Human Wizard
 toughness=1
 [/card]
 [card]
+text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
+auto={2}:haste target(creature[green;black])
+id=130997
+name=Rage Weaver
+rarity=U
+color=Red
+type=Creature
+mana={1}{R}
+power=2
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
 abilities=haste
 id=129688
@@ -1100,8 +1214,19 @@ subtype=Rat
 toughness=2
 [/card]
 [card]
+text=You gain 3 life.     Draw a card.
+auto=life:3
+auto=draw:1
+id=132089
+name=Reviving Dose
+rarity=C
+color=White
+type=Instant
+mana={2}{W}
+[/card]
+[card]
 text=Target blocking creature gets +7/+7 until end of turn.
-target=creature
+target=creature[blocking]
 auto=:7/7
 id=130552
 name=Righteousness
@@ -1326,6 +1451,19 @@ subtype=Cat Knight
 toughness=1
 [/card]
 [card]
+text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
+auto={2}:flying target(creature[white;black])
+id=130998
+name=Sky Weaver
+rarity=U
+color=Blue
+type=Creature
+mana={1}{U}
+power=2
+subtype=Metathran Wizard
+toughness=1
+[/card]
+[card]
 text=Destroy target artifact.     Draw a card.
 target=artifact
 auto=destroy
@@ -1386,6 +1524,32 @@ color=White
 type=Enchantment
 mana={W}
 subtype=Aura
+[/card]
+[card]
+text={2}: Target green or blue creature gets +0/+1 until end of turn.
+auto={2}:0/1 target(creature[green;blue])
+id=130999
+name=Spirit Weaver
+rarity=U
+color=White
+type=Creature
+mana={1}{W}
+power=2
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text={7}{W}: You gain 5 life.
+auto={7}{W}:life:5
+id=130385
+name=Starlight Invoker
+rarity=U
+color=White
+type=Creature
+mana={1}{W}
+power=1
+subtype=Human Cleric Mutant
+toughness=3
 [/card]
 [card]
 text=Vigilance (Attacking doesn't cause this creature to tap.)
@@ -1478,7 +1642,7 @@ mana={2}{W}
 [/card]
 [card]
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
-target=creature
+target=creature[-artifact;-black]
 alias=1182
 id=135199
 name=Terror
@@ -1559,6 +1723,19 @@ mana={B}
 power=0
 subtype=Bat
 toughness=1
+[/card]
+[card]
+text=When Venerable Monk comes into play, you gain 2 life.
+auto=life:2
+id=129786
+name=Venerable Monk
+rarity=C
+color=White
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Monk Cleric
+toughness=2
 [/card]
 [card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)

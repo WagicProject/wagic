@@ -223,8 +223,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 					continue;
 		}
 
-		//gainlife
-		found = s.find("gainlife");
+		//gain/lose life
+		found = s.find("life");
 		if (found != string::npos){ 
 			unsigned int start = s.find(":",found);
 			unsigned int end = s.find(" ",start);
@@ -861,11 +861,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			MTGPlayerCards * zones = game->currentlyActing()->game;
 			zones->putInZone(card->target,zones->graveyard,zones->hand);
 		}
-	case 1175: //Royal Assassin
-		{
-			game->addObserver(NEW ARoyalAssassin(_id, card));
-			break;
-		}
 	case 1176: //Sacrifice
 		{
 			ASacrifice * ability = NEW ASacrifice(_id, card, card->target);
@@ -1215,6 +1210,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			}
 			break;
 		}
+	case 1225: //Stasis
+		{
+			game->addObserver(NEW AStasis(_id, card));
+			break;
+		}
+
 	case 1367: //Sword to Plowshares
 		{
 			card->target->controller()->life+= card->target->power;

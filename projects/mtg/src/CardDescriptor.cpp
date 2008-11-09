@@ -3,30 +3,107 @@
 
 CardDescriptor::CardDescriptor(): MTGCardInstance(){
 	init();
+	mode = CD_AND;
 }
 
 int CardDescriptor::init(){
 	return MTGCardInstance::init();
 }
 
-MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
+MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
+	int found = 1;
+	for (int i = 0; i< nb_types; i++){
+		found = 0;
+		if (card->hasSubtype(types[i])){
+			found = 1;
+			break;
+		}
+	}
+	if (!found) return NULL;
+
+	for (int i = 0; i< MTG_NB_COLORS; i++){
+		found = 0;
+		if (colors[i] == 1 && card->hasColor(i)){
+			found = 1;
+			break;
+		}
+	}
+	if (!found) return NULL;
+	return card;
+}
+
+MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
+#ifdef WIN32
+					OutputDebugString("Match AND\n");
+#endif
 
 	MTGCardInstance * match = card;
 	for (int i = 0; i< nb_types; i++){
 
 		if (!card->hasSubtype(types[i])){
-
+#ifdef WIN32
+			OutputDebugString(card->name.c_str());
+					OutputDebugString("Subtype No Match\n");
+#endif
 			match = NULL;
 		}
 	}
 	for (int i = 0; i< MTG_NB_COLORS; i++){
 		if ((colors[i] == 1 && !card->hasColor(i))||(colors[i] == -1 && card->hasColor(i))){
 			match = NULL;
+#ifdef WIN32
+			OutputDebugString(card->name.c_str());
+					OutputDebugString("Color No Match\n");
+#endif
 		}
 	}
+	return match;
+}
+
+MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
+
+	MTGCardInstance * match = card;
+	
+	if (mode == CD_AND){
+		match = match_and(card);
+	}else{
+		match=match_or(card);
+	}
+
+	//Abilities
+	for (int j = 0; j < NB_BASIC_ABILITIES; j++){
+		if ((basicAbilities[j] == 1 && !card->basicAbilities[j]) || (basicAbilities[j] == -1 && card->basicAbilities[j])){
+			match = NULL;
+		}
+	}
+
 	if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped())){
 		match = NULL;
 	}
+
+	if (attacker == 1){
+		if ((int)defenser == 1){
+			if (!card->attacker && !card->defenser) match = NULL;
+		}else{
+			if (!card->attacker) match = NULL;
+		}
+	}else if (attacker == -1){
+		if ((int)defenser == -1){
+			if (card->attacker || card->defenser) match = NULL;
+		}else{
+			if (card->attacker) match = NULL;
+		}
+	}else{
+		if ((int)defenser == -1){
+			if (card->defenser) match = NULL;
+		}else if ((int)defenser == 1){
+			if (!card->defenser) match = NULL;
+		}else{
+			// we don't care about the attack/blocker state
+		}
+	}
+
+
 	return match;
 }
 

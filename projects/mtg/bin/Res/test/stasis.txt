@@ -1,0 +1,35 @@
+#Stasis : will my grizzly bears attack twice, or will they stay untapped ?
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay: 1250,1225
+[PLAYER2]
+[DO]
+1250
+eot
+eot
+#untap player 1
+next
+#draw
+next
+#main 1
+next
+#combat begins
+next
+#attackers
+1250
+next
+#blockers
+next
+#damages
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1250
+graveyard:1225
+manapool:{0}
+[PLAYER2]
+life:18
+[END]

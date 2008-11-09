@@ -528,15 +528,6 @@ subtype=Sorceress
 toughness=1
 [/card]
 [card]
-text=Players skip their untap steps.       At the beginning of your upkeep, sacrifice Stasis unless you pay {U}.
-id=1225
-name=Stasis
-rarity=R
-color=Blue
-type=Enchantment
-mana={1}{U}
-[/card]
-[card]
 text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. At end of turn, destroy that creature.
 id=1320
 name=Stone Giant

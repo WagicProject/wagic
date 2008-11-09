@@ -30,7 +30,7 @@ class Player: public Damageable, public Targetable{
   ManaCost * getManaPool();
 	int manaBurn();
 	void cleanupPhase();
-	virtual int Act(){return 0;};
+	virtual int Act(float dt){return 0;};
 	virtual int isAI(){return 0;};
 	Player * opponent();
 	int getId();

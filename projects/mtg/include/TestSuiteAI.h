@@ -47,6 +47,7 @@ public:
 };
 class TestSuite{
 public:
+	float timerLimit;
 	int currentAction;
 	TestSuiteState initState;
 	TestSuiteState endState;
@@ -72,9 +73,9 @@ public:
 class TestSuiteAI:public AIPlayer{
 public:
 	TestSuite * suite;
-	int timer;
+	float timer;
 	TestSuiteAI(MTGAllCards * collection,TestSuite * suite, int playerId);	
-	virtual int Act();
+	virtual int Act(float dt);
 	virtual int displayStack(){return 1;}
 	
 };
