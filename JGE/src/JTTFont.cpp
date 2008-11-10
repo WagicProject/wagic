@@ -19,7 +19,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#ifndef LINUX
+#ifdef WIN32
         #pragma comment( lib, "freetype.lib" )
 #endif
 
@@ -30,7 +30,7 @@
 #ifndef WIN32
 
 // in JGBKFont.cpp
-extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width, unsigned int height);
+extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width);
 
 #endif
 
@@ -288,7 +288,7 @@ int JTTFont::PreCacheChar(u16 ch, u16 cachedCode)
 			{
 				for (int j=0;j<mMaxCharWidth;j++)
 				{
-					SwizzlePlot(pTexture, ARGB(0,0,0,0), (x+j)*PIXEL_SIZE, y+i, mTexWidth*PIXEL_SIZE, mTexHeight);
+					SwizzlePlot(pTexture, ARGB(0,0,0,0), (x+j)*PIXEL_SIZE, y+i, mTexWidth*PIXEL_SIZE);
 				}
 			}
 		#endif
@@ -306,7 +306,7 @@ int JTTFont::PreCacheChar(u16 ch, u16 cachedCode)
 					#if defined (WIN32) || defined (LINUX)
 						texBuffer[i*mMaxCharWidth+j+offset] = RGBA(255, 255, 255, grey);
 					#else
-						SwizzlePlot(pTexture, ARGB(grey,255,255,255), (xx+j)*PIXEL_SIZE, yy+i, mTexWidth*PIXEL_SIZE, mTexHeight);
+						SwizzlePlot(pTexture, ARGB(grey,255,255,255), (xx+j)*PIXEL_SIZE, yy+i, mTexWidth*PIXEL_SIZE);
 					#endif
 				}
 				rows--;
@@ -329,7 +329,7 @@ int JTTFont::PreCacheChar(u16 ch, u16 cachedCode)
 							#if defined (WIN32) || defined (LINUX)
 							texBuffer[i*mMaxCharWidth+j*8+k+offset] = RGBA(255, 255, 255, 255);
 							#else
-							SwizzlePlot(pTexture, ARGB(255,255,255,255), (xx+j*8+k)*PIXEL_SIZE, yy+i, mTexWidth*PIXEL_SIZE, mTexHeight);
+							SwizzlePlot(pTexture, ARGB(255,255,255,255), (xx+j*8+k)*PIXEL_SIZE, yy+i, mTexWidth*PIXEL_SIZE);
 							#endif
 						}
 

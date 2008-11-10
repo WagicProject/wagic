@@ -138,7 +138,7 @@ bool JGBKFont::Init(const char* engFileName, const char* chnFileName, int fontsi
 
 #if defined (WIN32) || defined (LINUX)
 #else
-void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width, unsigned int height)
+void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width)
 {
 	unsigned int rowblocks = (width >> 4);
 
@@ -232,9 +232,9 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 						mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 #else
 					if ((bits & bitMask) != 0)
-						SwizzlePlot(pTexture, ARGB(255,255,255,255), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
+						SwizzlePlot(pTexture, ARGB(255,255,255,255), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
 					else
-						SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
+						SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
 #endif
 					bitMask >>= 1;
 					x++;
@@ -272,7 +272,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 	#if defined (WIN32) || defined (LINUX)
 					mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 	#else
-					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
+					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
 	#endif
 					x++;
 				}
@@ -293,9 +293,9 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 						mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 				#else
 					if ((bits & bitMask) != 0)
-						SwizzlePlot(pTexture, ARGB(255,255,255,255), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
+						SwizzlePlot(pTexture, ARGB(255,255,255,255), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
 					else
-						SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
+						SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
 				#endif
 					x++;
 					bitMask >>= 1;
@@ -311,7 +311,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 				#if defined (WIN32) || defined (LINUX)
 					mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 				#else
-					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE, mCacheImageHeight);
+					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
 				#endif
 					x++;
 				}

@@ -38,7 +38,7 @@ extern "C" {
 static unsigned int __attribute__((aligned(16))) list[262144];
 
 
-extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width, unsigned int height);
+extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width);
 
 
 void Swap(float *a, float *b)
@@ -119,11 +119,12 @@ JTexture::~JTexture()
 void JTexture::UpdateBits(int x, int y, int width, int height, PIXEL_TYPE* bits)
 {
 
+	//TODO: Is this normal that width is not used ??
 	for (int i=0;i<height;i++)
 	{
 		for (int j=0;j<height;j++)
 		{
-			SwizzlePlot((u8*)mBits, *(bits++), (x+j)*PIXEL_SIZE, y+i, mTexWidth*PIXEL_SIZE, mTexHeight);
+			SwizzlePlot((u8*)mBits, *(bits++), (x+j)*PIXEL_SIZE, y+i, mTexWidth*PIXEL_SIZE);
 		}
 	}
 
@@ -814,7 +815,6 @@ void JRenderer::ScreenShot(const char* filename)
         void* temp;
         int bufferwidth;
         int pixelformat;
-        int unknown;
         int i, x, y;
         png_structp png_ptr;
         png_infop info_ptr;
@@ -1347,7 +1347,6 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 	bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);
 	//	pixel ** image_data=NULL;
 	DWORD *p32=NULL;
-	DWORD *buff=NULL;
 	//#define gif_color(c) RGB(palette->Colors[c].Red, palette->Colors[c].Green, palette->Colors[c].Blue)
 #define gif_color32(c) ARGB(255,palette->Colors[c].Red,palette->Colors[c].Green,  palette->Colors[c].Blue)
 	GifRecordType RecordType;

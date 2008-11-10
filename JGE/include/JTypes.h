@@ -211,7 +211,7 @@ typedef uint32_t u32;
 	#define FRAME_BUFFER_SIZE		FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*PIXEL_SIZE
 
 	#define SLICE_SIZE_F			64.0f
-	typedef unsigned long DWORD;
+	typedef unsigned int DWORD;
 
 	#define BLEND_ZERO					0x1000
 	#define BLEND_ONE					0x1002
