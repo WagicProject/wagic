@@ -33,7 +33,7 @@ endif
 # Determination of target.
 # TARGET_ARCHITECTURE variable will then be set to either linux or psp.
 
-RESULT = $(shell which psp-config)
+RESULT = $(shell psp-config 2> /dev/null)
 ifeq ($(RESULT),)
 DEFAULT_RULE = linux
 TARGET_ARCHITECTURE = linux
@@ -74,7 +74,7 @@ ifeq ($(TARGET_ARCHITECTURE),linux)
 OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
 TARGET_LIB = libjge.a
 TARGET_HGE = libhgetools.a
-INCDIR = $(shell freetype-config --cflags)
+INCDIR = $(shell freetype-config --cflags 2> /dev/null)
 CXXFLAGS += -DLINUX
 LIBDIR = lib/linux
 endif
