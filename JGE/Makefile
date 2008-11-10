@@ -33,7 +33,7 @@ endif
 # Determination of target.
 # TARGET_ARCHITECTURE variable will then be set to either linux or psp.
 
-RESULT = $(shell psp-config 2> /dev/null)
+RESULT = $(shell psp-config --psp-prefix 2> Makefile.cache)
 ifeq ($(RESULT),)
 DEFAULT_RULE = linux
 TARGET_ARCHITECTURE = linux
