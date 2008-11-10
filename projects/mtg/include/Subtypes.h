@@ -1,20 +1,20 @@
 #ifndef _SUBTYPES_H_
 #define _SUBTYPES_H_
 
-#define MAX_SUBTYPES 1000
 
 #include <string>
+#include <map>
 using std::string;
+using std::map;
 
 class Subtypes{
 protected:
-		int nb_items;
-		string values[MAX_SUBTYPES];
+	  int nb_items;
+		map<string,int> values;
 
 public:
 	static Subtypes * subtypesList;
 	Subtypes();
-	int offset;
 	int Add(const char * subtype);
 	int find(const char * subtype);
 	int Add(string subtype);

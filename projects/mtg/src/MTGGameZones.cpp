@@ -134,6 +134,7 @@ void MTGGameZone::setOwner(Player * player){
 
 MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card){
   int i;
+	cardsMap.erase(card);
   for (i=0; i<(nb_cards); i++) {
     if (cards[i] == card){
       cards[i] = cards[nb_cards -1];
@@ -146,11 +147,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card){
 }
 
 MTGCardInstance * MTGGameZone::hasCard(MTGCardInstance * card){
-  for (int i=0; i<(nb_cards); i++) {
-    if (cards[i] == card){
-      return cards[i];
-    }
-  }
+	if (cardsMap.find(card) != cardsMap.end()) return card;
   return NULL;
 
 }
@@ -196,6 +193,7 @@ void MTGGameZone::addCard(MTGCardInstance * card){
 	if (!card) return;
   cards[nb_cards] = card;
   nb_cards++;
+	cardsMap[card] = 1;
 
 }
 
@@ -203,6 +201,7 @@ MTGCardInstance * MTGGameZone::draw(){
 	if (!nb_cards) return NULL;
   nb_cards--;
 	lastCardDrawn = cards[nb_cards];
+	cardsMap.erase(cards[nb_cards]);
   return cards[nb_cards];
 }
 

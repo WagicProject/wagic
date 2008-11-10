@@ -1,6 +1,9 @@
 #ifndef _MTGGAMEZONES_H_
 #define _MTGGAMEZONES_H_
 
+#include <map>
+using std::map;
+
 #include "MTGDeck.h"
 #include "MTGCardInstance.h"
 
@@ -14,7 +17,9 @@ class MTGGameZone {
  protected:
 	 Player * owner;
  public:
+		//Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
   MTGCardInstance * cards[MTG_MAX_PLAYER_CARDS];
+	map<MTGCardInstance *,int> cardsMap;
   int nb_cards;
   MTGGameZone();
 	~MTGGameZone();

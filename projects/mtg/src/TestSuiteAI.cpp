@@ -45,9 +45,6 @@ int TestSuiteAI::Act(float dt){
 	GameObserver * g = GameObserver::GetInstance();
 	g->gameOver = NULL; // Prevent draw rule from losing the game
 	timer+= dt;
-char buf[4096];
-sprintf(buf, "%f\n", timer);
-OutputDebugString (buf);
 	if (timer < suite->timerLimit) return 1;
 	timer = 0;
 	string action = suite->getNextAction();
@@ -241,7 +238,7 @@ void TestSuite::initGame(){
 }
 
 int TestSuite::Log(const char * text){
-	ofstream file ("Res/test/results.txt",ios_base::app);
+	ofstream file ("Res/test/results.html",ios_base::app);
 	if (file){
 		file << text;
 		file << "\n";
@@ -256,30 +253,31 @@ int TestSuite::Log(const char * text){
 }
 int TestSuite::assertGame(){
 //compare the game state with the results
-	Log("=============================");
-	Log(files[currentfile-1].c_str());
 	char result[4096];
+	sprintf(result,"<h3>%s</h3>",files[currentfile-1].c_str()); 
+	Log(result);
+	
 	int error = 0;
 	GameObserver * g = GameObserver::GetInstance();
 	if (g->currentGamePhase != endState.phase){
-		sprintf(result, "==phase problem. Expected %i, got %i==",endState.phase, g->currentGamePhase);
+		sprintf(result, "<span class=\"error\">==phase problem. Expected %i, got %i==</span><br />",endState.phase, g->currentGamePhase);
 		Log(result);
 		error++;
 	}
 	for (int i = 0; i < 2; i++){
 		Player * p = g->players[i];
 		if (p->life != endState.playerData[i].life){
-			sprintf(result, "==life problem for player %i. Expected %i, got %i==",i,endState.playerData[i].life, p->life);
+			sprintf(result, "<span class=\"error\">==life problem for player %i. Expected %i, got %i==</span><br />",i,endState.playerData[i].life, p->life);
 			Log(result);
 			error++;
 		}
 		if (! p->getManaPool()->canAfford(endState.playerData[i].manapool)){
-			sprintf(result, "==Mana problem. Was expecting %i but got %i for player %i==",endState.playerData[i].manapool->getConvertedCost(),p->getManaPool()->getConvertedCost(),i);
+			sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",endState.playerData[i].manapool->getConvertedCost(),p->getManaPool()->getConvertedCost(),i);
 			Log(result);
 			error++;
 		}
 		if(! endState.playerData[i].manapool->canAfford(p->getManaPool())){
-			sprintf(result, "==Mana problem. Was expecting %i but got %i for player %i==",endState.playerData[i].manapool->getConvertedCost(),p->getManaPool()->getConvertedCost(),i);
+			sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",endState.playerData[i].manapool->getConvertedCost(),p->getManaPool()->getConvertedCost(),i);
 			Log(result);
 			error++;
 
@@ -288,7 +286,7 @@ int TestSuite::assertGame(){
 		for (int j = 0; j < 4; j++){
 			MTGGameZone * zone = playerZones[j];
 			if (zone->nb_cards != endState.playerData[i].zones[j].nbitems){
-				Log("==Card number not the same==");
+				Log("<span class=\"error\">==Card number not the same==</span><br />");
 				error++;
 				return 0;
 			}
@@ -296,7 +294,7 @@ int TestSuite::assertGame(){
 				int cardid = endState.playerData[i].zones[j].cards[k];
 				int realcardid = zone->cards[k]->getMTGId();
 				if ( realcardid!= cardid){
-					sprintf(result, "==Card ID not the same. Expected %i, got %i==", cardid, realcardid);
+					sprintf(result, "<span class=\"error\">==Card ID not the same. Expected %i, got %i==</span><br />", cardid, realcardid);
 					Log(result);
 					error++;
 				}
@@ -304,7 +302,7 @@ int TestSuite::assertGame(){
 		}
 	}
 	if (error) return 0;
-	Log("==Test Succesful !==");
+	Log("<span class=\"success\">==Test Succesful !==</span>");
 	return 1;
 }
 
@@ -327,9 +325,14 @@ TestSuite::TestSuite(const char * filename){
 		file.close();
 	}
 
-	ofstream file2 ("Res/test/results.txt");
+	ofstream file2 ("Res/test/results.html");
 	if (file2){
-		file2 << "\n";
+		file2 << "<html><head>";
+		file2 << "<meta http-equiv=\"refresh\" content=\"10\" >";
+		file2 << "<STYLE type='text/css'>";
+		file2 << ".success {color:green}\n";
+		file2 << ".error {color:red}\n";
+		file2 << "</STYLE></head><body>\n";
 		file2.close();
 	}
 

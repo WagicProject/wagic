@@ -8,8 +8,7 @@ Subtypes * Subtypes::subtypesList = NEW Subtypes();
 
 
 Subtypes::Subtypes(){
- nb_items = 0;
- offset = 100;
+ nb_items = 100;
 }
 
 int Subtypes::Add(string value){
@@ -21,9 +20,9 @@ int Subtypes::Add(string value){
 	OutputDebugString(buf);
 #endif
 	std::transform( value.begin(), value.end(), value.begin(), ::tolower );
-	values[nb_items] = value;
 	nb_items++;
-	return nb_items + offset - 1;
+	values[value] = nb_items;
+	return nb_items;
 }
 
 int Subtypes::Add(const char * subtype){
@@ -34,11 +33,8 @@ int Subtypes::Add(const char * subtype){
 
 int Subtypes::find(string value){
 	std::transform( value.begin(), value.end(), value.begin(), ::tolower );
-	for (int i = 0; i < nb_items; i++){
-		if(values[i].compare(value) == 0){
-			return i + offset;
-		}
-	}
+	map<string,int>::iterator it = values.find(value);
+	if (it != values.end()) return it->second;
 	return 0;
 }
 
