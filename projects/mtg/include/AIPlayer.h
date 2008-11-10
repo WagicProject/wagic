@@ -32,7 +32,7 @@ public:
 	virtual int displayStack(){return 0;}
 	AIStats * stats;
 	ManaCost * getPotentialMana();
-	AIPlayer(MTGPlayerCards * _deck, char * deckFile);
+	AIPlayer(MTGPlayerCards * _deck, string deckFile);
 	virtual ~AIPlayer();
 	virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
 	virtual int chooseTarget(TargetChooser * tc = NULL);

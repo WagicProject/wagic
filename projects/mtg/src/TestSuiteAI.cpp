@@ -33,7 +33,7 @@ MTGCardInstance * TestSuite::getCardByMTGId(int mtgid){
 Interruptible * TestSuite::getActionByMTGId(int mtgid){
 	ActionStack * as= GameObserver::GetInstance()->mLayers->stackLayer();
 	Interruptible * action = NULL;
-	while (action = as->getNext(action,0,0,1)){
+	while ((action = as->getNext(action,0,0,1))){
 		if (action->source && action->source->getMTGId() == mtgid){
 			return action;
 		}
@@ -128,7 +128,7 @@ TestSuiteState::TestSuiteState(){
 }
 
 void TestSuiteState::parsePlayerState(int playerId, string s){
-	int limiter = s.find(":");
+        unsigned int limiter = s.find(":");
 	string areaS;
 	int area;
 	if (limiter != string::npos){ 
@@ -148,10 +148,12 @@ void TestSuiteState::parsePlayerState(int playerId, string s){
 					SAFE_DELETE(playerData[playerId].manapool);
 					playerData[playerId].manapool = ManaCost::parseManaCost(s.substr(limiter+1));
 					return;
+				}else{
+				  return; // ERROR
 				}
 				s = s.substr(limiter+1);
 				while (s.size()){
-					int value;
+					unsigned int value;
 					limiter = s.find(",");
 					if (limiter != string::npos){ 
 							value = atoi(s.substr(0,limiter).c_str());

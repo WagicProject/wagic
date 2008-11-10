@@ -4,7 +4,7 @@
 
 
 
-Player::Player(MTGPlayerCards * _deck, char * file): Damageable(20){
+Player::Player(MTGPlayerCards * _deck, string file): Damageable(20){
 	deckFile = file;
   game = _deck;
 	game->setOwner(this);

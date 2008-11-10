@@ -103,7 +103,7 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
 	int modifier;
 	int stateBeforeActivation[50];
 	int ability;
-	ABasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, int _ability, ManaCost * _cost, TargetChooser * _tc = NULL, int _modifier = 1): TargetAbility(_id,_source,_cost),ability(_ability), modifier(_modifier){
+        ABasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, int _ability, ManaCost * _cost, TargetChooser * _tc = NULL, int _modifier = 1): TargetAbility(_id,_source,_cost),modifier(_modifier), ability(_ability){
 		nbTargets = 0;
 		tc = _tc;
 		if (!tc) tc = NEW CreatureTargetChooser(_source);

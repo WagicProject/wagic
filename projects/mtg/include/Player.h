@@ -1,7 +1,7 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-#include <JGE.h>
+#include "JGE.h"
 #include "ManaCost.h"
 #include "MTGGameZones.h"
 #include "Damage.h"
@@ -23,7 +23,7 @@ class Player: public Damageable, public Targetable{
   MTGPlayerCards * game;	
 	int testLife();
 	int afterDamage();
-  Player(MTGPlayerCards * _deck, char * deckFile);
+  Player(MTGPlayerCards * _deck, string deckFile);
 	virtual ~Player();
   void unTapPhase();
   MTGInPlay * inPlay();

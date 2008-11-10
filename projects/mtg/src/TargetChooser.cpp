@@ -105,7 +105,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 #endif
 					cd = NEW CardDescriptor();
 					while(attributes.size()){
-						int found2 = attributes.find(";");
+						unsigned int found2 = attributes.find(";");
 						string attribute;
 						if (found2 != string::npos){
 							attribute = attributes.substr(0,found2);

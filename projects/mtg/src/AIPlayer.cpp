@@ -7,7 +7,7 @@
 
 const char * const MTG_LAND_TEXTS[] = {"artifact","forest","island","mountain","swamp","plains","other lands"};
 
-AIPlayer::AIPlayer(MTGPlayerCards * _deck, char * file): Player(_deck, file){
+AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file): Player(_deck, file){
 	potentialMana = NEW ManaCost();
 	nextCardToPlay = NULL;
 	stats = NULL;

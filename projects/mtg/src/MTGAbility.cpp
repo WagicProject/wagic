@@ -8,7 +8,7 @@
 #include "../include/CardGui.h"
 #include "../include/MTGDeck.h"
 
-int AbilityFactory::destroyAllFromTypeInPlay(char * type, MTGCardInstance * source, int bury){
+int AbilityFactory::destroyAllFromTypeInPlay(const char * type, MTGCardInstance * source, int bury){
 	GameObserver * game = GameObserver::GetInstance();
 	for (int i = 0; i < 2 ; i++){
 		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){

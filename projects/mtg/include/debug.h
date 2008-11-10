@@ -15,7 +15,7 @@
   #ifdef _DEBUG
     #define OutputDebugString(val) (std::cerr << val);
   #else
-    #define OutputDebugString(val)
+    #define OutputDebugString(val) {}
   #endif
 #endif
 
