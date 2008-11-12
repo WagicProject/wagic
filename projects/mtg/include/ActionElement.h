@@ -29,7 +29,6 @@ class ActionElement: public JGuiObject{
   int newPhase;
   int modal;
   int waitingForAnswer;
-  void RenderMessageBackground(float y0, int height);
   int getActivity();
   virtual void Update(float dt){};
   virtual void Render(){};

@@ -93,50 +93,46 @@ static int _b[7] = {20,	0,		140,15,	50,255,128};
 #define MOUNTAINHOME 33
 #define SWAMPHOME 34
 #define PLAINSHOME 35
-#define FLANKING 36
-#define RAMPAGE1 37
 
-#define NB_BASIC_ABILITIES 38
+#define NB_BASIC_ABILITIES 36
 
 static const char * MTGBasicAbilities[] = {
-  "trample",
-  "forestwalk",
-  "islandwalk",
-  "mountainwalk",
-  "swampwalk",
-  "plainwalk",
-  "flying",
-  "first strike",
-  "double strike",
-  "fear",
-  "flash",
-  "haste",
-  "lifelink",
-  "reach",
-  "shroud",
-  "vigilance",
-  "defender",
-  "banding",
-  "protection from green",
-  "protection from blue",
-  "protection from red",
-  "protection from black",
-  "protection from white",
-  "unblockable",
-  "wither",
-  "persist",
-  "retrace",
-  "exalted",
-  "legendary",
-  "shadow",
-  "reachshadow",
-  "foresthome",
-  "islandhome",
-  "moutainhome",
-  "swamphome",
-  "plainshome",
-  "flanking",
-  "rampage",
+"trample",
+"forestwalk",
+"islandwalk",
+"mountainwalk",
+"swampwalk",
+"plainwalk",
+"flying",
+"first strike",
+"double strike",
+"fear",
+"flash",
+"haste",
+"lifelink",
+"reach",
+"shroud",
+"vigilance",
+"defender",
+"banding",
+"protection from green",
+"protection from blue",
+"protection from red",
+"protection from black",
+"protection from white",
+"unblockable",
+"wither",
+"persist",
+"retrace",
+"exalted",
+"legendary",
+"shadow",
+"reachshadow",
+"foresthome",
+"islandhome",
+"moutainhome",
+"swamphome",
+"plainshome"
 };
 
 
@@ -152,22 +148,40 @@ static const char * MTGBasicAbilities[] = {
 
 
 static const char *MTGPhaseNames[] =
-  {
-    "---",
-    "Untap",
-    "Upkeep",
-    "Draw",
-    "Main phase 1",
-    "Combat begins",
-    "Attackers",
-    "Blockers",
-    "Combat damage",
-    "Combat ends",
-    "Main phase 2",
-    "End of turn",
-    "cleanup",
-    "---"
-  };
+{
+	"---",
+	"Untap",
+	"Upkeep",
+	"Draw",
+	"Main phase 1",
+	"Combat begins",
+	"Attackers",
+	"Blockers",
+	"Combat damage",
+	"Combat ends",
+	"Main phase 2",
+	"End of turn",
+	"cleanup",
+	"---"
+};
+
+static const char *MTGPhaseCodeNames[] =
+{
+	"beginofturn",
+	"untap",
+	"upkeep",
+	"draw",
+	"firstmain",
+	"combatbegins",
+	"attackers",
+	"blockers",
+	"combatdamage",
+	"combatends",
+	"secondmain",
+	"endofturn",
+	"cleanup",
+	"beforenextturn"
+};
 
 
 
