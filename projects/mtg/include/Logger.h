@@ -13,8 +13,8 @@
 #define LOG_FILE "Res/debug.txt"
 
 class Logger{
-public:
-	static void Log(char * text);
+ public:
+  static void Log(char * text);
 };
 
 #endif

@@ -10,7 +10,7 @@ void MTGSpellStack::addSpell(Ability * ability){
 }
 
 int MTGSpellStack::resolve(){
-  if (cursor < 0) 
+  if (cursor < 0)
     return 0;
   int result = cursor;
   cursor--;

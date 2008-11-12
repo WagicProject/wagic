@@ -14,30 +14,30 @@
 
 class GameStateShop: public GameState, public JGuiListener
 {
-private:
+ private:
 
-	ShopItems * shop;
-	JLBFont * mFont;
-	JQuad * mBg;
-	JTexture * bgTexture;
-	JQuad * mBack;
-	JTexture * backTexture;
-	SimpleMenu * menu;
-	int mStage;
-	char starterBuffer[128], boosterBuffer[128];
-	int setId;
+  ShopItems * shop;
+  JLBFont * mFont;
+  JQuad * mBg;
+  JTexture * bgTexture;
+  JQuad * mBack;
+  JTexture * backTexture;
+  SimpleMenu * menu;
+  int mStage;
+  char starterBuffer[128], boosterBuffer[128];
+  int setId;
 
-public:
-	GameStateShop(GameApp* parent);
-	virtual ~GameStateShop();
+ public:
+  GameStateShop(GameApp* parent);
+  virtual ~GameStateShop();
 
-	virtual void Start();
-	virtual void End();
-	virtual void Create();
-	virtual void Destroy();
-	virtual void Update(float dt);
-	virtual void Render(); 
-	virtual void ButtonPressed(int controllerId, int controlId);
+  virtual void Start();
+  virtual void End();
+  virtual void Create();
+  virtual void Destroy();
+  virtual void Update(float dt);
+  virtual void Render();
+  virtual void ButtonPressed(int controllerId, int controlId);
 
 };
 

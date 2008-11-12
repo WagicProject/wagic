@@ -20,9 +20,9 @@ class GuiLayer: public JGuiController{
   GameObserver * game;
  public:
   virtual void resetObjects();
-	int hasFocus;
-	int getMaxId();
-	void RenderMessageBackground(float x0, float y0, float width, int height);
+  int hasFocus;
+  int getMaxId();
+  void RenderMessageBackground(float x0, float y0, float width, int height);
   void RenderMessageBackground(float y0, int height);
   GuiLayer(int id, GameObserver* _game);
   virtual int isModal();
@@ -34,10 +34,10 @@ class GuiLayer: public JGuiController{
   int getIndexOf(JGuiObject * object);
   JGuiObject * getByIndex (int index);
   virtual void Render(){JGuiController::Render();};
-	int empty(){
-		if (mCount) return 0;
-		return 1;
-	};
+  int empty(){
+    if (mCount) return 0;
+    return 1;
+  };
 };
 
 class GuiLayers{

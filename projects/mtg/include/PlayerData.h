@@ -6,13 +6,13 @@
 #include "../include/MTGDeck.h"
 
 class PlayerData{
-protected:
-public:
-	int credits;
-	MTGDeck * collection;
-	PlayerData(MTGAllCards * allcards);
-	~PlayerData();
-	int save();
+ protected:
+ public:
+  int credits;
+  MTGDeck * collection;
+  PlayerData(MTGAllCards * allcards);
+  ~PlayerData();
+  int save();
 };
 
 #endif

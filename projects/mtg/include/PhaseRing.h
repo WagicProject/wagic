@@ -5,30 +5,30 @@
 using std::list;
 
 /*
-The class that handles the phases of a turn
+  The class that handles the phases of a turn
 */
 
 class Player;
 
 class Phase{
-public:
-	int id;
-	Player * player;
-	Phase(int _id, Player * _player):id(_id),player(_player){};
+ public:
+  int id;
+  Player * player;
+ Phase(int _id, Player * _player):id(_id),player(_player){};
 };
 
 class PhaseRing{
-public:
-	list<Phase *> ring;
-	list<Phase *>::iterator current;
-	Phase * getCurrentPhase();
-	Phase * forward();
-	Phase * goToPhase(int id, Player * player);
-	PhaseRing(Player* players[], int nbPlayers=2);
-	~PhaseRing();
-	int addPhase(Phase * phase);
-	int addPhaseBefore(int id, Player* player,int after_id, Player * after_player, int allOccurences = 1);
-	int removePhase (int id, Player * player, int allOccurences = 1);
+ public:
+  list<Phase *> ring;
+  list<Phase *>::iterator current;
+  Phase * getCurrentPhase();
+  Phase * forward();
+  Phase * goToPhase(int id, Player * player);
+  PhaseRing(Player* players[], int nbPlayers=2);
+  ~PhaseRing();
+  int addPhase(Phase * phase);
+  int addPhaseBefore(int id, Player* player,int after_id, Player * after_player, int allOccurences = 1);
+  int removePhase (int id, Player * player, int allOccurences = 1);
 };
 
 #endif

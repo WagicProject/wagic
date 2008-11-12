@@ -23,21 +23,21 @@ hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 int GameApp::HasMusic = 1;
 
 GameState::GameState(GameApp* parent): mParent(parent)
-{ 
-	mEngine = JGE::GetInstance(); 
+{
+  mEngine = JGE::GetInstance();
 }
 
 
 GameApp::GameApp(): JApp()
 {
-	mScreenShotCount = 0;
+  mScreenShotCount = 0;
 
-	for (int i=0; i < MAX_STATE	; i++)
-		mGameStates[i] = NULL;
+  for (int i=0; i < MAX_STATE	; i++)
+    mGameStates[i] = NULL;
 
-	mShowDebugInfo = false;
-	players[0] = 0;
-	players[1] = 0;
+  mShowDebugInfo = false;
+  players[0] = 0;
+  players[1] = 0;
 
 
 
@@ -53,88 +53,88 @@ GameApp::~GameApp()
 void GameApp::Create()
 {
 #if defined (WIN32)
-	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+  _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #elif not defined (LINUX)
-	pspfpu_set_enable(0); //disable FPU Exceptions until we find where the FPU errors come from
+  pspfpu_set_enable(0); //disable FPU Exceptions until we find where the FPU errors come from
 #endif
-	//_CrtSetBreakAlloc(368);
-	LOG("starting Game");
-	
-//Test for Music files presence
-	std::ifstream file("Res/sound/Track0.mp3");
-	if(file){
-		file.close();
-	}else{
-		HasMusic = 0;
-	}
-	std::ifstream file2("Res/sound/Track1.mp3");
-	if(file2){
-		file2.close();
-	}else{
-		HasMusic = 0;
-	}
+  //_CrtSetBreakAlloc(368);
+  LOG("starting Game");
+
+  //Test for Music files presence
+  std::ifstream file("Res/sound/Track0.mp3");
+  if(file){
+    file.close();
+  }else{
+    HasMusic = 0;
+  }
+  std::ifstream file2("Res/sound/Track1.mp3");
+  if(file2){
+    file2.close();
+  }else{
+    HasMusic = 0;
+  }
 
 
-CommonRes->CreateTexture("graphics/menuicons.png");
-//Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
-CommonRes->CreateQuad("c_artifact", "graphics/menuicons.png", 10 + 6*32, 32, 32, 32);
-CommonRes->CreateQuad("c_green", "graphics/menuicons.png", 10 + 0*32, 32, 32, 32);
-CommonRes->CreateQuad("c_blue", "graphics/menuicons.png", 10 + 1*32, 32, 32, 32);
-CommonRes->CreateQuad("c_red", "graphics/menuicons.png", 10 + 3*32, 32, 32, 32);
-CommonRes->CreateQuad("c_black", "graphics/menuicons.png", 10 + 2*32, 32, 32, 32);
-CommonRes->CreateQuad("c_white", "graphics/menuicons.png", 10 + 4*32, 32, 32, 32);
-CommonRes->CreateQuad("c_land", "graphics/menuicons.png", 10 + 5*32, 32, 32, 32);
+  CommonRes->CreateTexture("graphics/menuicons.png");
+  //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
+  CommonRes->CreateQuad("c_artifact", "graphics/menuicons.png", 10 + 6*32, 32, 32, 32);
+  CommonRes->CreateQuad("c_green", "graphics/menuicons.png", 10 + 0*32, 32, 32, 32);
+  CommonRes->CreateQuad("c_blue", "graphics/menuicons.png", 10 + 1*32, 32, 32, 32);
+  CommonRes->CreateQuad("c_red", "graphics/menuicons.png", 10 + 3*32, 32, 32, 32);
+  CommonRes->CreateQuad("c_black", "graphics/menuicons.png", 10 + 2*32, 32, 32, 32);
+  CommonRes->CreateQuad("c_white", "graphics/menuicons.png", 10 + 4*32, 32, 32, 32);
+  CommonRes->CreateQuad("c_land", "graphics/menuicons.png", 10 + 5*32, 32, 32, 32);
 
 
-CommonRes->CreateTexture("sets/back.jpg");
-CommonRes->CreateQuad("back", "sets/back.jpg", 0, 0, 200, 285);
-CommonRes->CreateTexture("sets/back_thumb.jpg");
-CommonRes->CreateQuad("back_thumb", "sets/back_thumb.jpg", 0, 0, 45, 64);
+  CommonRes->CreateTexture("sets/back.jpg");
+  CommonRes->CreateQuad("back", "sets/back.jpg", 0, 0, 200, 285);
+  CommonRes->CreateTexture("sets/back_thumb.jpg");
+  CommonRes->CreateQuad("back_thumb", "sets/back_thumb.jpg", 0, 0, 45, 64);
 
-CommonRes->CreateTexture("graphics/particles.png");
-CommonRes->CreateQuad("particles", "graphics/particles.png", 0, 0, 32, 32);
-CommonRes->GetQuad("particles")->SetHotSpot(16,16);
+  CommonRes->CreateTexture("graphics/particles.png");
+  CommonRes->CreateQuad("particles", "graphics/particles.png", 0, 0, 32, 32);
+  CommonRes->GetQuad("particles")->SetHotSpot(16,16);
 
-CommonRes->LoadJLBFont("graphics/f3",16);
-CommonRes->LoadJLBFont("graphics/magic",16);
+  CommonRes->LoadJLBFont("graphics/f3",16);
+  CommonRes->LoadJLBFont("graphics/magic",16);
 
 
-//CommonRes->CreateTexture("graphics/interrupt.png");
-//CommonRes->CreateQuad("interrupt", "graphics/interrupt.png", 0, 0, 256, 128);
+  //CommonRes->CreateTexture("graphics/interrupt.png");
+  //CommonRes->CreateQuad("interrupt", "graphics/interrupt.png", 0, 0, 256, 128);
 
   cache = NEW TexturesCache();
   collection = NEW MTGAllCards(cache);
 
 
-Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", CommonRes->GetQuad("particles"));
-Particles[1] = NEW hgeParticleSystem("graphics/particle2.psi", CommonRes->GetQuad("particles"));
-Particles[2] = NEW hgeParticleSystem("graphics/particle3.psi", CommonRes->GetQuad("particles"));
-Particles[3] = NEW hgeParticleSystem("graphics/particle4.psi", CommonRes->GetQuad("particles"));
-Particles[4] = NEW hgeParticleSystem("graphics/particle5.psi", CommonRes->GetQuad("particles"));
-Particles[5] = NEW hgeParticleSystem("graphics/particle7.psi", CommonRes->GetQuad("particles"));
+  Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", CommonRes->GetQuad("particles"));
+  Particles[1] = NEW hgeParticleSystem("graphics/particle2.psi", CommonRes->GetQuad("particles"));
+  Particles[2] = NEW hgeParticleSystem("graphics/particle3.psi", CommonRes->GetQuad("particles"));
+  Particles[3] = NEW hgeParticleSystem("graphics/particle4.psi", CommonRes->GetQuad("particles"));
+  Particles[4] = NEW hgeParticleSystem("graphics/particle5.psi", CommonRes->GetQuad("particles"));
+  Particles[5] = NEW hgeParticleSystem("graphics/particle7.psi", CommonRes->GetQuad("particles"));
 
-	mGameStates[GAME_STATE_DECK_VIEWER] = NEW GameStateDeckViewer(this);
-	mGameStates[GAME_STATE_DECK_VIEWER]->Create();
+  mGameStates[GAME_STATE_DECK_VIEWER] = NEW GameStateDeckViewer(this);
+  mGameStates[GAME_STATE_DECK_VIEWER]->Create();
 
-	mGameStates[GAME_STATE_MENU] = NEW GameStateMenu(this);
-	mGameStates[GAME_STATE_MENU]->Create();
+  mGameStates[GAME_STATE_MENU] = NEW GameStateMenu(this);
+  mGameStates[GAME_STATE_MENU]->Create();
 
 
-	mGameStates[GAME_STATE_DUEL] = NEW GameStateDuel(this);
-	mGameStates[GAME_STATE_DUEL]->Create();
+  mGameStates[GAME_STATE_DUEL] = NEW GameStateDuel(this);
+  mGameStates[GAME_STATE_DUEL]->Create();
 
-	mGameStates[GAME_STATE_SHOP] = NEW GameStateShop(this);
-	mGameStates[GAME_STATE_SHOP]->Create();
+  mGameStates[GAME_STATE_SHOP] = NEW GameStateShop(this);
+  mGameStates[GAME_STATE_SHOP]->Create();
 
-	mGameStates[GAME_STATE_OPTIONS] = NEW GameStateOptions(this);
-	mGameStates[GAME_STATE_OPTIONS]->Create();
+  mGameStates[GAME_STATE_OPTIONS] = NEW GameStateOptions(this);
+  mGameStates[GAME_STATE_OPTIONS]->Create();
 
-	
 
-	//mGameStates[GAME_STATE_GAME] = NEW GameStateGAME(this);
-	
-	mCurrentState = NULL;
-	mNextState = mGameStates[GAME_STATE_MENU];
+
+  //mGameStates[GAME_STATE_GAME] = NEW GameStateGAME(this);
+
+  mCurrentState = NULL;
+  mNextState = mGameStates[GAME_STATE_MENU];
 
 
 
@@ -152,32 +152,32 @@ void GameApp::LoadGameStates()
 
 void GameApp::Destroy()
 {
-	LOG("==Destroying GameApp==");
-	for (int i=GAME_STATE_MENU;i<=MAX_STATE-1;i++)
-	{
-	  if (mGameStates[i]){
-	    mGameStates[i]->Destroy();
-	    delete mGameStates[i];
-	  }
-	}
+  LOG("==Destroying GameApp==");
+  for (int i=GAME_STATE_MENU;i<=MAX_STATE-1;i++)
+    {
+      if (mGameStates[i]){
+	mGameStates[i]->Destroy();
+	delete mGameStates[i];
+      }
+    }
 
-	for (int i= 0; i < 6; i++){
-		delete Particles[i];
-	}
+  for (int i= 0; i < 6; i++){
+    delete Particles[i];
+  }
 
-	if (collection){
-		collection->destroyAllCards();
-		delete collection;
-	}
-		if (cache) delete cache;
+  if (collection){
+    collection->destroyAllCards();
+    delete collection;
+  }
+  if (cache) delete cache;
 
-		if (CommonRes) delete CommonRes;
+  if (CommonRes) delete CommonRes;
 
-		GameOptions::Destroy();
+  GameOptions::Destroy();
 
-		if (Subtypes::subtypesList) delete Subtypes::subtypesList;
-		if (MtgSets::SetsList) delete MtgSets::SetsList;
-		LOG("==Destroying GameApp Successful==");
+  if (Subtypes::subtypesList) delete Subtypes::subtypesList;
+  if (MtgSets::SetsList) delete MtgSets::SetsList;
+  LOG("==Destroying GameApp Successful==");
 
 }
 
@@ -186,39 +186,39 @@ void GameApp::Destroy()
 void GameApp::Update()
 {
 
-  	JGE* mEngine = JGE::GetInstance();
-	if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonClick(PSP_CTRL_TRIANGLE))
-	{
-		char s[80];
-		sprintf(s, "ms0:/psp/photo/MTG%d.png", mScreenShotCount++);
-		JRenderer::GetInstance()->ScreenShot(s);
-	}
-	//Exit when START and X ARE PRESSED SIMULTANEOUSLY
-	if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_CROSS)){
-		mEngine->End();
-		return;
-	}
+  JGE* mEngine = JGE::GetInstance();
+  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonClick(PSP_CTRL_TRIANGLE))
+    {
+      char s[80];
+      sprintf(s, "ms0:/psp/photo/MTG%d.png", mScreenShotCount++);
+      JRenderer::GetInstance()->ScreenShot(s);
+    }
+  //Exit when START and X ARE PRESSED SIMULTANEOUSLY
+  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_CROSS)){
+    mEngine->End();
+    return;
+  }
 
 
 
-	float dt = mEngine->GetDelta();
-	if (dt > 35.0f)		// min 30 FPS ;)
-		dt = 35.0f;
+  float dt = mEngine->GetDelta();
+  if (dt > 35.0f)		// min 30 FPS ;)
+    dt = 35.0f;
 
-	if (mCurrentState != NULL)
-		mCurrentState->Update(dt);
+  if (mCurrentState != NULL)
+    mCurrentState->Update(dt);
 
-	if (mNextState != NULL)
-	{
-		if (mCurrentState != NULL)
-			mCurrentState->End();
+  if (mNextState != NULL)
+    {
+      if (mCurrentState != NULL)
+	mCurrentState->End();
 
-		mCurrentState = mNextState;
-		mCurrentState->Start();
+      mCurrentState = mNextState;
+      mCurrentState->Start();
 
-		mNextState = NULL;
-	}
-	
+      mNextState = NULL;
+    }
+
 
 
 }
@@ -227,17 +227,17 @@ void GameApp::Update()
 void GameApp::Render()
 {
 
-	if (mCurrentState != NULL)
-	{
-		mCurrentState->Render();
-	}
-	
+  if (mCurrentState != NULL)
+    {
+      mCurrentState->Render();
+    }
+
 
 }
 
 void GameApp::SetNextState(int state)
 {
-	mNextState = mGameStates[state];
+  mNextState = mGameStates[state];
 }
 
 void GameApp::Pause(){

@@ -24,59 +24,59 @@ MTGCard::MTGCard(){
 MTGCard::MTGCard(TexturesCache * cache, int set_id){
   init();
   mCache = cache;
-	setId = set_id;
+  setId = set_id;
 }
 
 const char * MTGCard::getSetName(){
-	return MtgSets::SetsList->values[setId].c_str();
+  return MtgSets::SetsList->values[setId].c_str();
 }
 
 MTGCard::MTGCard(MTGCard * source){
-	mCache = source->mCache;
-	for (int i = 0; i< NB_BASIC_ABILITIES; i++){
-		basicAbilities[i] = source->basicAbilities[i];
-	}
-	for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
-		types[i] = source->types[i];
-	}
-	nb_types = source->nb_types;
-	for (int i = 0; i< MTG_NB_COLORS; i++){
-		colors[i] = source->colors[i];
-	}
-	manaCost.copy(source->getManaCost());
+  mCache = source->mCache;
+  for (int i = 0; i< NB_BASIC_ABILITIES; i++){
+    basicAbilities[i] = source->basicAbilities[i];
+  }
+  for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
+    types[i] = source->types[i];
+  }
+  nb_types = source->nb_types;
+  for (int i = 0; i< MTG_NB_COLORS; i++){
+    colors[i] = source->colors[i];
+  }
+  manaCost.copy(source->getManaCost());
 
   text = source->text;
-	name = source->name;
+  name = source->name;
   strcpy(image_name, source->image_name);
 
   rarity = source->rarity;
-	power = source->power;
-	toughness = source->toughness;
-	mtgid = source->mtgid;
-	setId = source->setId;
-	formattedTextInit = 0;
-	magicText = source->magicText;
-	spellTargetType = source->spellTargetType;
-	alias = source->alias;
+  power = source->power;
+  toughness = source->toughness;
+  mtgid = source->mtgid;
+  setId = source->setId;
+  formattedTextInit = 0;
+  magicText = source->magicText;
+  spellTargetType = source->spellTargetType;
+  alias = source->alias;
 }
 
 int MTGCard::init(){
   nb_types = 0;
-	for (int i = 0; i< NB_BASIC_ABILITIES; i++){
-		basicAbilities[i] = 0;
-	}
-	for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
-		types[i] = 0;
-	}
-	for (int i = 0; i< MTG_NB_COLORS; i++){
-		colors[i] = 0;
-	}
-	setId = 0;
-	formattedTextInit = 0;
-	magicText = "";
-	spellTargetType = "";
-	alias = 0;
-	return 1;
+  for (int i = 0; i< NB_BASIC_ABILITIES; i++){
+    basicAbilities[i] = 0;
+  }
+  for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
+    types[i] = 0;
+  }
+  for (int i = 0; i< MTG_NB_COLORS; i++){
+    colors[i] = 0;
+  }
+  setId = 0;
+  formattedTextInit = 0;
+  magicText = "";
+  spellTargetType = "";
+  alias = 0;
+  return 1;
 }
 
 JQuad * MTGCard::getQuad(int type){
@@ -103,42 +103,42 @@ int MTGCard::isACreature(){
 }
 
 void MTGCard::setColor(int _color, int removeAllOthers){
-	if (removeAllOthers){
-		for (int i=0; i<MTG_NB_COLORS; i++){
-			colors[i] = 0;
-		}
-	}
+  if (removeAllOthers){
+    for (int i=0; i<MTG_NB_COLORS; i++){
+      colors[i] = 0;
+    }
+  }
   colors[_color] = 1;
 }
 
 int MTGCard::getColor(){
-	int i = 0;
-	for (int i=0; i<MTG_NB_COLORS; i++){
-		if (colors[i]){
-			return i;
-		}
-	}
-	return 0;
+  int i = 0;
+  for (int i=0; i<MTG_NB_COLORS; i++){
+    if (colors[i]){
+      return i;
+    }
+  }
+  return 0;
 }
 
 
 int MTGCard::hasColor(int color){
-	return (colors[color]);
+  return (colors[color]);
 }
 
 void MTGCard::setManaCost(string s){
-	ManaCost::parseManaCost(s, &manaCost);
-	for (int i = MTG_COLOR_GREEN; i <=MTG_COLOR_WHITE; i++){
-		if (manaCost.hasColor(i)){
-			setColor(i);
-		}
-	}
-  
+  ManaCost::parseManaCost(s, &manaCost);
+  for (int i = MTG_COLOR_GREEN; i <=MTG_COLOR_WHITE; i++){
+    if (manaCost.hasColor(i)){
+      setColor(i);
+    }
+  }
+
 }
 
 
 const char * MTGCard::colorToString(){
-	int color = getColor();
+  int color = getColor();
   if (color>=0 && color <=5){
     return Colors_To_Text[color];
   }
@@ -159,7 +159,7 @@ int MTGCard::getId(){
 }
 
 char MTGCard::getRarity(){
-	return rarity;
+  return rarity;
 }
 
 void MTGCard::setRarity(char _rarity){
@@ -167,27 +167,27 @@ void MTGCard::setRarity(char _rarity){
 }
 
 void MTGCard::setType(const char * _type_text){
-   setSubtype(_type_text);
+  setSubtype(_type_text);
 }
 
 void MTGCard::addType(char * _type_text){
-   setSubtype(_type_text);
+  setSubtype(_type_text);
 }
 
 void MTGCard::setSubtype( string value){
-	string s = value;
-	while (s.size()){
-		unsigned int found = s.find(" ");
-		if (found != string::npos){ 
-				int id = Subtypes::subtypesList->Add(s.substr(0,found));
-				addType(id);
-				s = s.substr(found+1);
-		}else{
-			int id = Subtypes::subtypesList->Add(s);
-			addType(id);
-			s = "";
-		}	
-	}
+  string s = value;
+  while (s.size()){
+    unsigned int found = s.find(" ");
+    if (found != string::npos){
+      int id = Subtypes::subtypesList->Add(s.substr(0,found));
+      addType(id);
+      s = s.substr(found+1);
+    }else{
+      int id = Subtypes::subtypesList->Add(s);
+      addType(id);
+      s = "";
+    }
+  }
 }
 
 void MTGCard::addType(int id){
@@ -200,20 +200,20 @@ void MTGCard::addType(int id){
 //If removeAll is true, removes all occurences of this type, otherwise only removes the first occurence
 int MTGCard::removeType(string value, int removeAll){
 
-	int id = Subtypes::subtypesList->Add(value);
-	return removeType(id, removeAll);
+  int id = Subtypes::subtypesList->Add(value);
+  return removeType(id, removeAll);
 }
 
 int MTGCard::removeType(int id, int removeAll){
-	int result = 0;
-	for (int i = nb_types -1 ; i >=0; i--){ 
-		if (types[i] == id){
-			types[i] = types[nb_types -1];
-			nb_types--;
-			result++;
-			if (!removeAll) return result;
-		}
-	}
+  int result = 0;
+  for (int i = nb_types -1 ; i >=0; i--){
+    if (types[i] == id){
+      types[i] = types[nb_types -1];
+      nb_types--;
+      result++;
+      if (!removeAll) return result;
+    }
+  }
   return result;
 }
 
@@ -224,7 +224,7 @@ char * MTGCard::getImageName(){
 
 
 void MTGCard::setText( string value){
-    text = value; 
+  text = value;
 }
 
 const char * MTGCard::getText(){
@@ -232,13 +232,13 @@ const char * MTGCard::getText(){
 }
 
 void MTGCard::addMagicText(string value){
-	std::transform( value.begin(), value.end(), value.begin(),::tolower );
-	if (magicText.size()) magicText.append("\n");
-	magicText.append(value);
+  std::transform( value.begin(), value.end(), value.begin(),::tolower );
+  if (magicText.size()) magicText.append("\n");
+  magicText.append(value);
 }
 
 void MTGCard::setName( string value){
-    name = value;
+  name = value;
 }
 
 const char * MTGCard::getName(){
@@ -266,28 +266,28 @@ int MTGCard::hasType(int _type){
 }
 
 int MTGCard::hasSubtype(int _subtype){
-	return(hasType(_subtype));
+  return(hasType(_subtype));
 }
 
 int MTGCard::hasType(const char * _type){
-	int id = Subtypes::subtypesList->Add(_type);
-	return(hasType(id));
+  int id = Subtypes::subtypesList->Add(_type);
+  return(hasType(id));
 }
 
 
 int MTGCard::hasSubtype(const char * _subtype){
-	int id = Subtypes::subtypesList->Add(_subtype);
-	return(hasType(id));
+  int id = Subtypes::subtypesList->Add(_subtype);
+  return(hasType(id));
 }
 
 int MTGCard::hasSubtype(string _subtype){
-	int id = Subtypes::subtypesList->Add(_subtype);
-	return(hasType(id));
+  int id = Subtypes::subtypesList->Add(_subtype);
+  return(hasType(id));
 }
 
 
 int MTGCard::has(int basicAbility){
-	return basicAbilities[basicAbility];
+  return basicAbilities[basicAbility];
 }
 
 //---------------------------------------------
@@ -298,7 +298,7 @@ void MTGCard::setPower(int _power){
 }
 
 int MTGCard::getPower(){
-	return power;
+  return power;
 }
 
 void MTGCard::setToughness(int _toughness){
@@ -306,5 +306,5 @@ void MTGCard::setToughness(int _toughness){
 }
 
 int MTGCard::getToughness(){
-	return toughness;
+  return toughness;
 }

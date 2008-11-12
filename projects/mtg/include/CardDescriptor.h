@@ -1,5 +1,5 @@
 /*
-A Filter/Mask system for Card Instances to find cards matching specific settings such as color, type, etc...
+  A Filter/Mask system for Card Instances to find cards matching specific settings such as color, type, etc...
 */
 
 #ifndef _CARDDESCRIPTOR_H_
@@ -12,16 +12,16 @@ A Filter/Mask system for Card Instances to find cards matching specific settings
 #define CD_AND 2
 
 class CardDescriptor: public MTGCardInstance{
-protected:
-	MTGCardInstance * match_or(MTGCardInstance * card);
-	MTGCardInstance * match_and(MTGCardInstance * card);
-public:
-	int mode;
-	int init();
-	CardDescriptor();
-	MTGCardInstance * match(MTGCardInstance * card);
-	MTGCardInstance * match(MTGGameZone * zone);
-	MTGCardInstance * nextmatch(MTGGameZone * zone, MTGCardInstance * previous);
+ protected:
+  MTGCardInstance * match_or(MTGCardInstance * card);
+  MTGCardInstance * match_and(MTGCardInstance * card);
+ public:
+  int mode;
+  int init();
+  CardDescriptor();
+  MTGCardInstance * match(MTGCardInstance * card);
+  MTGCardInstance * match(MTGGameZone * zone);
+  MTGCardInstance * nextmatch(MTGGameZone * zone, MTGCardInstance * previous);
 };
 
 #endif

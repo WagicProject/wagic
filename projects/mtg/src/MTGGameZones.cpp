@@ -16,35 +16,35 @@ MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idLi
   int i;
   collection = _collection;
   for (i=0;i<idListSize;i++){
-    MTGCard * card =  collection->getCardById(idList[i]); 
-		if (card){
-			MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
-			library->addCard(newCard);
-		}
+    MTGCard * card =  collection->getCardById(idList[i]);
+    if (card){
+      MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+      library->addCard(newCard);
+    }
   }
 
-  
+
 }
 
 MTGPlayerCards::~MTGPlayerCards(){
-	  if(library) delete library;
-		if(graveyard) delete graveyard;
-		if(hand) delete hand;
-		if(inPlay) delete inPlay;
-		if(stack) delete stack;
+  if(library) delete library;
+  if(graveyard) delete graveyard;
+  if(hand) delete hand;
+  if(inPlay) delete inPlay;
+  if(stack) delete stack;
 }
 
 void MTGPlayerCards::setOwner(Player * player){
-	library->setOwner(player);
+  library->setOwner(player);
 }
 
 void MTGPlayerCards::initGame(int shuffle, int draw){
   if (shuffle) library->shuffle();
-	if (draw){
-		for (int i=0;i<7;i++){
-			drawFromLibrary();
-		}
-	}
+  if (draw){
+    for (int i=0;i<7;i++){
+      drawFromLibrary();
+    }
+  }
 }
 
 void MTGPlayerCards::drawFromLibrary(){
@@ -57,7 +57,7 @@ void MTGPlayerCards::init(){
   graveyard = NEW MTGGraveyard();
   hand = NEW MTGHand();
   inPlay = NEW MTGInPlay();
-	stack = NEW MTGStack();
+  stack = NEW MTGStack();
 }
 
 
@@ -68,39 +68,39 @@ void MTGPlayerCards::showHand(){
 
 void MTGPlayerCards::putInPlay(MTGCardInstance * card){
   hand->removeCard(card);
-	stack->removeCard(card); //Which one is it ???
+  stack->removeCard(card); //Which one is it ???
 
   inPlay->addCard(card);
   card->summoningSickness = 1;
-	card->changedZoneRecently = 1.f;
+  card->changedZoneRecently = 1.f;
 }
 
 void MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
-	if (inPlay->hasCard(card)){
-		putInZone(card,inPlay, graveyard);
-	}else if (stack->hasCard(card)){
-		putInZone(card,stack, graveyard);
-	}else{
-		putInZone(card,hand, graveyard);
-	}
+  if (inPlay->hasCard(card)){
+    putInZone(card,inPlay, graveyard);
+  }else if (stack->hasCard(card)){
+    putInZone(card,stack, graveyard);
+  }else{
+    putInZone(card,hand, graveyard);
+  }
 
 }
 
 void MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
-	if (from->removeCard(card)){
-		to->addCard(card);
-		card->changedZoneRecently = 1.f;
-		//if (to == graveyard){
-			card->reset();
-		//}
-	}
+  if (from->removeCard(card)){
+    to->addCard(card);
+    card->changedZoneRecently = 1.f;
+    //if (to == graveyard){
+    card->reset();
+    //}
+  }
 }
 
 void MTGPlayerCards::discardRandom(MTGGameZone * from){
-	if (!from->nb_cards)
-			return;
-	int r = rand() % (from->nb_cards);
-	putInZone(from->cards[r],from, graveyard);
+  if (!from->nb_cards)
+    return;
+  int r = rand() % (from->nb_cards);
+  putInZone(from->cards[r],from, graveyard);
 }
 
 int MTGPlayerCards::isInPlay(MTGCardInstance * card){
@@ -116,25 +116,25 @@ int MTGPlayerCards::isInPlay(MTGCardInstance * card){
 
 MTGGameZone::MTGGameZone(){
   nb_cards= 0;
-	lastCardDrawn = NULL;
+  lastCardDrawn = NULL;
 }
 
 MTGGameZone::~MTGGameZone(){
-	for (int i=0; i<nb_cards; i++) {
-		delete cards[i];
-	}
+  for (int i=0; i<nb_cards; i++) {
+    delete cards[i];
+  }
 }
 
 void MTGGameZone::setOwner(Player * player){
   for (int i=0; i<nb_cards; i++) {
-		cards[i]->owner = player;
+    cards[i]->owner = player;
   }
-	owner = player;
+  owner = player;
 }
 
 MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card){
   int i;
-	cardsMap.erase(card);
+  cardsMap.erase(card);
   for (i=0; i<(nb_cards); i++) {
     if (cards[i] == card){
       cards[i] = cards[nb_cards -1];
@@ -147,7 +147,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card){
 }
 
 MTGCardInstance * MTGGameZone::hasCard(MTGCardInstance * card){
-	if (cardsMap.find(card) != cardsMap.end()) return card;
+  if (cardsMap.find(card) != cardsMap.end()) return card;
   return NULL;
 
 }
@@ -174,8 +174,8 @@ int MTGGameZone::hasType(const char * value){
 
 
 void MTGGameZone::cleanupPhase(){
-	 for (int i=0; i<(nb_cards); i++)
-		 (cards[i])->cleanup();
+  for (int i=0; i<(nb_cards); i++)
+    (cards[i])->cleanup();
 }
 
 void MTGGameZone::shuffle(){
@@ -184,32 +184,32 @@ void MTGGameZone::shuffle(){
     int r = i + (rand() % (nb_cards-i)); // Random remaining position.
     MTGCardInstance * temp = cards[i]; cards[i] = cards[r]; cards[r] = temp;
   }
-	  srand(time(0));  // initialize seed "randomly" TODO :improve
+  srand(time(0));  // initialize seed "randomly" TODO :improve
 }
 
 
 
 void MTGGameZone::addCard(MTGCardInstance * card){
-	if (!card) return;
+  if (!card) return;
   cards[nb_cards] = card;
   nb_cards++;
-	cardsMap[card] = 1;
+  cardsMap[card] = 1;
 
 }
 
 MTGCardInstance * MTGGameZone::draw(){
-	if (!nb_cards) return NULL;
+  if (!nb_cards) return NULL;
   nb_cards--;
-	lastCardDrawn = cards[nb_cards];
-	cardsMap.erase(cards[nb_cards]);
+  lastCardDrawn = cards[nb_cards];
+  cardsMap.erase(cards[nb_cards]);
   return cards[nb_cards];
 }
 
 MTGCardInstance * MTGLibrary::draw(){
-	if (!nb_cards) {
-		GameObserver::GetInstance()->gameOver = this->owner;
-	}
-	return MTGGameZone::draw();
+  if (!nb_cards) {
+    GameObserver::GetInstance()->gameOver = this->owner;
+  }
+  return MTGGameZone::draw();
 }
 
 void MTGGameZone::debugPrint(){
@@ -226,89 +226,89 @@ void MTGGameZone::debugPrint(){
 
 //------------------------------
 int MTGInPlay::nbDefensers( MTGCardInstance * attacker){
-	int result = 0;
-	MTGCardInstance * defenser = getNextDefenser(NULL, attacker);
-	while (defenser){
-		result++;
-		defenser = getNextDefenser(defenser, attacker);
-	}
-	return result;
+  int result = 0;
+  MTGCardInstance * defenser = getNextDefenser(NULL, attacker);
+  while (defenser){
+    result++;
+    defenser = getNextDefenser(defenser, attacker);
+  }
+  return result;
 }
 
 //Return the number of creatures this card is banded with
 //Number of creatures in the band is n+1 !!!
 int MTGInPlay::nbPartners(MTGCardInstance * attacker){
-	int result = 0;
-	if (!attacker->banding) return 0;
-	for (int i = 0; i < nb_cards; i ++){
-		if (cards[i]->banding == attacker->banding) result++;
-	}
-	return result;
+  int result = 0;
+  if (!attacker->banding) return 0;
+  for (int i = 0; i < nb_cards; i ++){
+    if (cards[i]->banding == attacker->banding) result++;
+  }
+  return result;
 }
 
 MTGCardInstance *  MTGInPlay::getNextDefenser(MTGCardInstance * previous, MTGCardInstance * attacker){
-	int foundprevious = 0;
-	if (previous == NULL){
-		foundprevious = 1;
-	}
-	for (int i = 0; i < nb_cards; i ++){
-		MTGCardInstance * current = cards[i];
-		if (current == previous){
-			foundprevious = 1;
-		}else if (foundprevious && current->isDefenser() == attacker){
-			return current;
-		}
-	}
-	return NULL;
+  int foundprevious = 0;
+  if (previous == NULL){
+    foundprevious = 1;
+  }
+  for (int i = 0; i < nb_cards; i ++){
+    MTGCardInstance * current = cards[i];
+    if (current == previous){
+      foundprevious = 1;
+    }else if (foundprevious && current->isDefenser() == attacker){
+      return current;
+    }
+  }
+  return NULL;
 }
 
 MTGCardInstance *  MTGInPlay::getNextAttacker(MTGCardInstance * previous){
-	int foundprevious = 0;
-	if (previous == NULL){
-		foundprevious = 1;
-	}
-	for (int i = 0; i < nb_cards; i ++){
-		MTGCardInstance * current = cards[i];
-		if (current == previous){
-			foundprevious = 1;
-		}else if (foundprevious && current->isAttacker()){
-			return current;
-		}
-	}
-	return NULL;
+  int foundprevious = 0;
+  if (previous == NULL){
+    foundprevious = 1;
+  }
+  for (int i = 0; i < nb_cards; i ++){
+    MTGCardInstance * current = cards[i];
+    if (current == previous){
+      foundprevious = 1;
+    }else if (foundprevious && current->isAttacker()){
+      return current;
+    }
+  }
+  return NULL;
 }
 
 void MTGInPlay::untapAll(){
   int i;
   for (i = 0; i < nb_cards; i ++){
     cards[i]->setUntapping();
-		if (cards[i]->getBlockers()->isEmpty()){
+    if (cards[i]->getBlockers()->isEmpty()){
 #if defined (WIN32) || defined (LINUX)
-char buf[4096];
-sprintf(buf, "Can untap %s\n", cards[i]->getName());
-OutputDebugString(buf);
+      char buf[4096];
+      sprintf(buf, "Can untap %s\n", cards[i]->getName());
+      OutputDebugString(buf);
 #endif
-			cards[i]->untap();
-		}
+      cards[i]->untap();
+    }
   }
 }
 
 
 //--------------------------
 void MTGLibrary::shuffleTopToBottom(int nbcards){
-	if (nbcards>nb_cards) nbcards = nb_cards;
-	MTGCardInstance * _cards[MTG_MAX_PLAYER_CARDS];
-	for (int i= nb_cards-nbcards; i<(nb_cards); i++) {
+  if (nbcards>nb_cards) nbcards = nb_cards;
+  MTGCardInstance * _cards[MTG_MAX_PLAYER_CARDS];
+  for (int i= nb_cards-nbcards; i<(nb_cards); i++) {
     int r = i + (rand() % (nbcards-i)); // Random remaining position.
     MTGCardInstance * temp = cards[i]; cards[i] = cards[r]; cards[r] = temp;
   }
-	for (int i= 0; i < nbcards; i++){
-		_cards[i] = cards[nb_cards - 1 - i];
-	}
-	for (int i = nbcards; i < nb_cards; i++){
-		_cards[i] = cards[i - nb_cards];
-	}
-	for (int i=0 ; i < nb_cards; i++){
-		cards[i] = _cards[i];
-	}
+  for (int i= 0; i < nbcards; i++){
+    _cards[i] = cards[nb_cards - 1 - i];
+  }
+  for (int i = nbcards; i < nb_cards; i++){
+    _cards[i] = cards[i - nb_cards];
+  }
+  for (int i=0 ; i < nb_cards; i++){
+    cards[i] = _cards[i];
+  }
 }

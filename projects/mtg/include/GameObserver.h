@@ -23,49 +23,49 @@ class TargetChooser;
 
 class GameObserver{
  protected:
- int reaction;
-	static GameObserver * mInstance;
-	MTGCardInstance * cardWaitingForTargets;
+  int reaction;
+  static GameObserver * mInstance;
+  MTGCardInstance * cardWaitingForTargets;
 
   int nbPlayers;
   int currentPlayerId;
   int currentRound;
 
-	
-	int targetListIsSet(MTGCardInstance * card);
+
+  int targetListIsSet(MTGCardInstance * card);
  public:
   PhaseRing * phaseRing;
   int cancelCurrentAction();
   int currentGamePhase;
-	int oldGamePhase;
-	TargetChooser * targetChooser;
-	DuelLayers * mLayers;
-	Player * gameOver;
-	Player * players[2]; //created outside
+  int oldGamePhase;
+  TargetChooser * targetChooser;
+  DuelLayers * mLayers;
+  Player * gameOver;
+  Player * players[2]; //created outside
   MTGGamePhase * gamePhaseManager; //Created Outside ?
 
-	 TargetChooser * getCurrentTargetChooser();
-	 void stackObjectClicked(Interruptible * action);
+  TargetChooser * getCurrentTargetChooser();
+  void stackObjectClicked(Interruptible * action);
 
- void cardClick(MTGCardInstance * card,Targetable * _object = NULL );
-	int enteringPhase(int phase);
-	int getCurrentGamePhase();
-	void userRequestNextGamePhase();
-	void nextGamePhase();
-	void cleanupPhase();
-	void nextPlayer();
-	 static void Init(Player * _players[], int _nbplayers);
- 	static GameObserver * GetInstance();
-	static void EndInstance();
+  void cardClick(MTGCardInstance * card,Targetable * _object = NULL );
+  int enteringPhase(int phase);
+  int getCurrentGamePhase();
+  void userRequestNextGamePhase();
+  void nextGamePhase();
+  void cleanupPhase();
+  void nextPlayer();
+  static void Init(Player * _players[], int _nbplayers);
+  static GameObserver * GetInstance();
+  static void EndInstance();
   Player * currentPlayer;
-	Player * currentActionPlayer;
-	Player * isInterrupting;
-	Player * opponent();
-	Player * currentlyActing();
+  Player * currentActionPlayer;
+  Player * isInterrupting;
+  Player * opponent();
+  Player * currentlyActing();
   GameObserver(Player * _players[], int _nbplayers);
-	~GameObserver();
+  ~GameObserver();
   void setGamePhaseManager(MTGGamePhase * _phases);
-	void stateEffects();
+  void stateEffects();
   void eventOccured();
   void addObserver(MTGAbility * observer);
   void removeObserver(ActionElement * observer);
@@ -73,7 +73,7 @@ class GameObserver{
   void nextStep();
   void untapPhase();
   void draw();
-	int canPutInPlay(MTGCardInstance *  card);
+  int canPutInPlay(MTGCardInstance *  card);
   void putInPlay(MTGCardInstance *  card);
   int isInPlay(MTGCardInstance *  card);
   int isACreature(MTGCardInstance *  card);

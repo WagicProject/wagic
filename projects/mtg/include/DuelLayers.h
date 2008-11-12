@@ -12,13 +12,13 @@ class DamageResolverLayer;
 
 class DuelLayers: public GuiLayers{
 
-public:
-	ActionLayer * actionLayer();
-	MTGGuiHand * handLayer();
-	MTGGuiPlay * playLayer();
-	ActionStack * stackLayer();
-	DamageResolverLayer * combatLayer(); 
-	void init();
+ public:
+  ActionLayer * actionLayer();
+  MTGGuiHand * handLayer();
+  MTGGuiPlay * playLayer();
+  ActionStack * stackLayer();
+  DamageResolverLayer * combatLayer();
+  void init();
 
 };
 

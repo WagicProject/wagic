@@ -15,32 +15,32 @@ class Player;
 
 class MTGGameZone {
  protected:
-	 Player * owner;
+  Player * owner;
  public:
-		//Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
+  //Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
   MTGCardInstance * cards[MTG_MAX_PLAYER_CARDS];
-	map<MTGCardInstance *,int> cardsMap;
+  map<MTGCardInstance *,int> cardsMap;
   int nb_cards;
   MTGGameZone();
-	~MTGGameZone();
+  ~MTGGameZone();
   void shuffle();
   virtual MTGCardInstance * draw();
   void addCard(MTGCardInstance * card);
   void debugPrint();
   MTGCardInstance * removeCard(MTGCardInstance * card);
   MTGCardInstance * hasCard(MTGCardInstance * card);
-	void cleanupPhase();
-	int countByType(const char * value);
-	int hasType(const char * value);
-	void setOwner(Player * player);
-	MTGCardInstance * lastCardDrawn;
+  void cleanupPhase();
+  int countByType(const char * value);
+  int hasType(const char * value);
+  void setOwner(Player * player);
+  MTGCardInstance * lastCardDrawn;
 };
 
 class MTGLibrary: public MTGGameZone {
  public:
   //  MTGLibrary();
-	 void shuffleTopToBottom(int nbcards);
-	 MTGCardInstance * draw();
+  void shuffleTopToBottom(int nbcards);
+  MTGCardInstance * draw();
 };
 
 class MTGGraveyard: public MTGGameZone {
@@ -54,7 +54,7 @@ class MTGHand: public MTGGameZone {
 
 
 class MTGStack: public MTGGameZone {
-public:
+ public:
 };
 
 class MTGInPlay: public MTGGameZone {
@@ -62,9 +62,9 @@ class MTGInPlay: public MTGGameZone {
   //MTGInPlay();
   void untapAll();
   MTGCardInstance * getNextAttacker(MTGCardInstance * previous);
-	MTGCardInstance * getNextDefenser(MTGCardInstance * previous, MTGCardInstance * attacker);
-	int nbDefensers( MTGCardInstance * attacker);
-	int nbPartners(MTGCardInstance * attacker);
+  MTGCardInstance * getNextDefenser(MTGCardInstance * previous, MTGCardInstance * attacker);
+  int nbDefensers( MTGCardInstance * attacker);
+  int nbPartners(MTGCardInstance * attacker);
 };
 
 
@@ -77,18 +77,18 @@ class MTGPlayerCards {
   MTGGraveyard * graveyard;
   MTGHand * hand;
   MTGInPlay * inPlay;
-	MTGStack * stack;
-	MTGAllCards * collection;
+  MTGStack * stack;
+  MTGAllCards * collection;
 
   MTGPlayerCards(MTGAllCards * _collection, int * idList, int idListSize);
-	~MTGPlayerCards();
+  ~MTGPlayerCards();
   void initGame(int shuffle = 1, int draw = 1);
-	void setOwner(Player * player);
-	void discardRandom(MTGGameZone * from);
+  void setOwner(Player * player);
+  void discardRandom(MTGGameZone * from);
   void drawFromLibrary();
   void showHand();
-	void putInGraveyard(MTGCardInstance * card);
-	void putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
+  void putInGraveyard(MTGCardInstance * card);
+  void putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
   void putInPlay(MTGCardInstance * card);
   int isInPlay(MTGCardInstance * card);
 

@@ -12,11 +12,11 @@
 #endif
 
 #ifdef LINUX
-  #ifdef _DEBUG
-    #define OutputDebugString(val) (std::cerr << val);
-  #else
-    #define OutputDebugString(val) {}
-  #endif
+#ifdef _DEBUG
+#define OutputDebugString(val) (std::cerr << val);
+#else
+#define OutputDebugString(val) {}
+#endif
 #endif
 
 #endif

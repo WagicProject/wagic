@@ -8,17 +8,17 @@ using std::string;
 using std::map;
 
 class Subtypes{
-protected:
-	  int nb_items;
-		map<string,int> values;
+ protected:
+  int nb_items;
+  map<string,int> values;
 
-public:
-	static Subtypes * subtypesList;
-	Subtypes();
-	int Add(const char * subtype);
-	int find(const char * subtype);
-	int Add(string subtype);
-	int find(string subtype);
+ public:
+  static Subtypes * subtypesList;
+  Subtypes();
+  int Add(const char * subtype);
+  int find(const char * subtype);
+  int Add(string subtype);
+  int find(string subtype);
 };
 
 

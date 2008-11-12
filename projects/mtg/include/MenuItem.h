@@ -12,31 +12,31 @@ class hgeParticleSystem;
 
 class MenuItem: public JGuiObject
 {
-private:
-	bool mHasFocus;
-	JLBFont *mFont;
-	const char* const mText;
-	int mX;
-	int mY;
-	int updatedSinceLastRender;
-	float lastDt;
+ private:
+  bool mHasFocus;
+  JLBFont *mFont;
+  const char* const mText;
+  int mX;
+  int mY;
+  int updatedSinceLastRender;
+  float lastDt;
 
-	float mScale;
-	float mTargetScale;
-	JQuad * onQuad;
-	JQuad * offQuad;
-	hgeParticleSystem*	mParticleSys;
+  float mScale;
+  float mTargetScale;
+  JQuad * onQuad;
+  JQuad * offQuad;
+  hgeParticleSystem*	mParticleSys;
 
 
-public:
-	MenuItem(int id, JLBFont *font, const char* text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleQuad, bool hasFocus = false);
-	~MenuItem();
-	virtual void Render();
-	virtual void Update(float dt);
+ public:
+  MenuItem(int id, JLBFont *font, const char* text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleQuad, bool hasFocus = false);
+  ~MenuItem();
+  virtual void Render();
+  virtual void Update(float dt);
 
-	virtual void Entering();
-	virtual bool Leaving(u32 key);
-	virtual bool ButtonPressed();
+  virtual void Entering();
+  virtual bool Leaving(u32 key);
+  virtual bool ButtonPressed();
 };
 
 #endif

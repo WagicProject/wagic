@@ -22,9 +22,9 @@ class CardTexture{
   JTexture* tex;
   JQuad* quad;
  public:
-	int lastTime;
-	int type;
-	int nbpixels;
+  int lastTime;
+  int type;
+  int nbpixels;
   int getId();
 
   JQuad * getQuad();
@@ -39,18 +39,18 @@ class TexturesCache{
   int lastTime;
   int nb_textures;
   int delete_previous;
-	int totalsize;
+  int totalsize;
   CardTexture * cache[MAX_CACHE_OBJECTS];
  public:
   int isInCache(MTGCard * card, int type=CACHE_CARD);
   TexturesCache();
-	~TexturesCache();
-	int getOldestQuad();
-	void removeQuad(int id);
-	int cleanup();
+  ~TexturesCache();
+  int getOldestQuad();
+  void removeQuad(int id);
+  int cleanup();
   int getCacheById(int id, int type=CACHE_CARD);
   JQuad * getQuad(MTGCard * card, int type=CACHE_CARD);
-	JQuad * getThumb(MTGCard * card){return getQuad(card, CACHE_THUMB);};
+  JQuad * getThumb(MTGCard * card){return getQuad(card, CACHE_THUMB);};
 
 };
 

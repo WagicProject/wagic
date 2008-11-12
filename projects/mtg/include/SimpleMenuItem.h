@@ -10,27 +10,27 @@
 
 class SimpleMenuItem: public JGuiObject
 {
-private:
-	bool mHasFocus;
-	JLBFont *mFont;
-	const char* mText;
-	int mX;
-	int mY;
+ private:
+  bool mHasFocus;
+  JLBFont *mFont;
+  const char* mText;
+  int mX;
+  int mY;
 
-	float mScale;
-	float mTargetScale;
+  float mScale;
+  float mTargetScale;
 
 
 
-public:
-	SimpleMenuItem(int id, JLBFont *font, const char* text, int x, int y, bool hasFocus = false);
-	
-	virtual void Render();
-	virtual void Update(float dt);
+ public:
+  SimpleMenuItem(int id, JLBFont *font, const char* text, int x, int y, bool hasFocus = false);
 
-	virtual void Entering();
-	virtual bool Leaving(u32 key);
-	virtual bool ButtonPressed();
+  virtual void Render();
+  virtual void Update(float dt);
+
+  virtual void Entering();
+  virtual bool Leaving(u32 key);
+  virtual bool ButtonPressed();
 };
 
 #endif

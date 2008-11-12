@@ -17,7 +17,7 @@ class GuiCardscontroller;
 
 class MTGGuiHand: public GuiCardsController{
  protected:
-	int currentId[2];
+  int currentId[2];
   Player * currentPlayer;
   int mShowHand;
   float mAnimState;

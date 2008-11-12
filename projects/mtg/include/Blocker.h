@@ -13,36 +13,36 @@ class GameObserver;
 class MTGAbility;
 
 class Blocker : public MTGAbility {
-protected:
-	ManaCost * manaCost;
-	int currentPhase;
-	void init(ManaCost * _cost);
-public:	
-	virtual ManaCost * untapManaCost(){return manaCost;};
-	virtual int unblock(){return 1;};
-	Blocker(int id, MTGCardInstance * card, ManaCost * _cost);
-	Blocker(int id, MTGCardInstance * card);
-	Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target, ManaCost * _cost);
-	~Blocker();
-	virtual void Update(float dt);
-	virtual int destroy();
+ protected:
+  ManaCost * manaCost;
+  int currentPhase;
+  void init(ManaCost * _cost);
+ public:
+  virtual ManaCost * untapManaCost(){return manaCost;};
+  virtual int unblock(){return 1;};
+  Blocker(int id, MTGCardInstance * card, ManaCost * _cost);
+  Blocker(int id, MTGCardInstance * card);
+  Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target, ManaCost * _cost);
+  ~Blocker();
+  virtual void Update(float dt);
+  virtual int destroy();
 };
 
 
 class Blockers {
-protected:
-	int cursor;
-	int blockers[MAX_BLOCKERS];
-	GameObserver * game;
-public:
-	Blockers();
-	~Blockers();
-	int Add (Blocker * ability);
-	int Remove (Blocker * ability);
-	int init();
-	Blocker * next();
-	int rewind();
-	int isEmpty();
+ protected:
+  int cursor;
+  int blockers[MAX_BLOCKERS];
+  GameObserver * game;
+ public:
+  Blockers();
+  ~Blockers();
+  int Add (Blocker * ability);
+  int Remove (Blocker * ability);
+  int init();
+  Blocker * next();
+  int rewind();
+  int isEmpty();
 };
 
 

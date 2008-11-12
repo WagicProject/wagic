@@ -7,26 +7,26 @@ MTGGuiHand::MTGGuiHand(int id, GameObserver * _game):GuiCardsController(id, _gam
   mAnimState = 0;
   currentPlayer = NULL;
   mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
-	for (int i = 0; i < 2; i++){
-		currentId[i] = 0;
-	}
+  for (int i = 0; i < 2; i++){
+    currentId[i] = 0;
+  }
 
 }
 
 
 void MTGGuiHand::updateCards(){
-	Player * player = GameObserver::GetInstance()->currentlyActing();
-	if (player->isAI()) player = GameObserver::GetInstance()->players[0];
+  Player * player = GameObserver::GetInstance()->currentlyActing();
+  if (player->isAI()) player = GameObserver::GetInstance()->players[0];
   int nb_cards = player->game->hand->nb_cards;
   if (mCount != nb_cards || player != currentPlayer ){ //if the number of cards has changed, then an update occured (is this test engouh ?)
-	resetObjects();
-	if (currentId[player->getId()] >= nb_cards) currentId[player->getId()] = nb_cards - 1;
-	for (int i = 0;i<nb_cards; i++){
-		CardGui * object = NEW CardGui(i, player->game->hand->cards[i],(float)40, (float)450 - (nb_cards-i) *35, SCREEN_HEIGHT_F - mAnimState*60, i == currentId[player->getId()]);
-		Add(object);
-		if ( i == currentId[player->getId()]) mCurr = i;
-	}
-	currentPlayer = player;
+    resetObjects();
+    if (currentId[player->getId()] >= nb_cards) currentId[player->getId()] = nb_cards - 1;
+    for (int i = 0;i<nb_cards; i++){
+      CardGui * object = NEW CardGui(i, player->game->hand->cards[i],(float)40, (float)450 - (nb_cards-i) *35, SCREEN_HEIGHT_F - mAnimState*60, i == currentId[player->getId()]);
+      Add(object);
+      if ( i == currentId[player->getId()]) mCurr = i;
+    }
+    currentPlayer = player;
   }
 
 
@@ -35,14 +35,14 @@ void MTGGuiHand::updateCards(){
 
 void MTGGuiHand::Update(float dt){
   updateCards();
-    for (int i=0;i<mCount;i++){
+  for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){
       ((CardGui *)mObjects[i])->y= SCREEN_HEIGHT - mAnimState*60;
     }
-   }
+  }
 
   GuiCardsController::Update(dt);
-	currentId[game->currentlyActing()->getId()] = mCurr;
+  currentId[game->currentlyActing()->getId()] = mCurr;
 }
 
 
@@ -72,7 +72,7 @@ void MTGGuiHand::CheckUserInput(float dt){
       mShowHand = HAND_HIDE;
     }
   }
-    
+
   if (mShowHand == HAND_HIDE || currentPlayer->isAI()){
     modal = 0;
   }else{
@@ -85,17 +85,17 @@ void MTGGuiHand::CheckUserInput(float dt){
 
 
 void MTGGuiHand::Render(){
-	if (mShowHand != HAND_HIDE){  
-	//	if (currentPlayer && !currentPlayer->isAI()){
-			RenderMessageBackground(440-mCount * 35 , SCREEN_HEIGHT - mAnimState*60 - 10, mCount * 35 + 20, 70);
-			for (int i=0;i<mCount;i++){
-				if (mObjects[i]!=NULL && i!=mCurr){
-					mObjects[i]->Render();
-				}
-			}
-			if (mCount && mObjects[mCurr] != NULL){
-				mObjects[mCurr]->Render();
-				if (showBigCards) ((CardGui *)mObjects[mCurr])->RenderBig(10);
-			}
-  }	
+  if (mShowHand != HAND_HIDE){
+    //	if (currentPlayer && !currentPlayer->isAI()){
+    RenderMessageBackground(440-mCount * 35 , SCREEN_HEIGHT - mAnimState*60 - 10, mCount * 35 + 20, 70);
+    for (int i=0;i<mCount;i++){
+      if (mObjects[i]!=NULL && i!=mCurr){
+	mObjects[i]->Render();
+      }
+    }
+    if (mCount && mObjects[mCurr] != NULL){
+      mObjects[mCurr]->Render();
+      if (showBigCards) ((CardGui *)mObjects[mCurr])->RenderBig(10);
+    }
+  }
 }

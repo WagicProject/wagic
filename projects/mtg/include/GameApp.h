@@ -1,8 +1,8 @@
 /*
-*  Wagic, The Homebrew ?! is licensed under the BSD license
-*  See LICENSE in the Folder's root
-*  http://wololo.net/wagic/
-*/
+ *  Wagic, The Homebrew ?! is licensed under the BSD license
+ *  See LICENSE in the Folder's root
+ *  http://wololo.net/wagic/
+ */
 
 
 
@@ -11,7 +11,7 @@
 #ifndef _GAMEAPP_H_
 #define _GAMEAPP_H_
 
- 
+
 #include "../include/Logger.h"
 
 
@@ -51,35 +51,35 @@ class TexturesCache;
 class GameApp:	public JApp
 {
 
-private:
+ private:
   bool mShowDebugInfo;
   int mScreenShotCount;
 
   GameState* mCurrentState;
   GameState* mNextState;
   GameState* mGameStates[MAX_STATE];
-  
 
-public:
-	int players[2];
+
+ public:
+  int players[2];
   MTGAllCards * collection;
-  TexturesCache *  cache; 
+  TexturesCache *  cache;
 
-	GameApp();
-	virtual ~GameApp();
-	
-	virtual void Create();
-	virtual void Destroy();
-	virtual void Update();
-	virtual void Render();
-	virtual void Pause();
-	virtual void Resume();
+  GameApp();
+  virtual ~GameApp();
 
-	void LoadGameStates();
-	void SetNextState(int state);
-	static JResourceManager * CommonRes;
-	static hgeParticleSystem * Particles[6];
-	static int HasMusic;
+  virtual void Create();
+  virtual void Destroy();
+  virtual void Update();
+  virtual void Render();
+  virtual void Pause();
+  virtual void Resume();
+
+  void LoadGameStates();
+  void SetNextState(int state);
+  static JResourceManager * CommonRes;
+  static hgeParticleSystem * Particles[6];
+  static int HasMusic;
 
 };
 

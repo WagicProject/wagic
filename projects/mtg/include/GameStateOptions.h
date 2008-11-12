@@ -14,18 +14,18 @@ class SimpleMenu;
 class GameStateOptions: public GameState, public JGuiListener
 {
 
-public:
-	SimpleMenu * optionsMenu;
-	int mState;
-	OptionsList * optionsList;
-	GameStateOptions(GameApp* parent);
-	virtual ~GameStateOptions();
+ public:
+  SimpleMenu * optionsMenu;
+  int mState;
+  OptionsList * optionsList;
+  GameStateOptions(GameApp* parent);
+  virtual ~GameStateOptions();
 
-	virtual void Start();
-	virtual void End();
-	virtual void Update(float dt);
-	virtual void Render(); 
-	void ButtonPressed(int controllerId, int ControlId);
+  virtual void Start();
+  virtual void End();
+  virtual void Update(float dt);
+  virtual void Render();
+  void ButtonPressed(int controllerId, int ControlId);
 
 };
 

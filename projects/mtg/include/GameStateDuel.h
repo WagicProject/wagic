@@ -22,31 +22,31 @@ class TestSuite;
 
 class GameStateDuel: public GameState, public JGuiListener
 {
-private:
+ private:
 #ifdef TESTSUITE
-	TestSuite * testSuite;
+  TestSuite * testSuite;
 #endif
-	int mGamePhase;
-	Player * mCurrentPlayer;
-	Player * mPlayers[2];
-	MTGPlayerCards * deck[2];
-	GameObserver * game;
-	SimpleMenu * deckmenu;
-	SimpleMenu * menu;
-	JLBFont* mFont;
-	
-	void loadPlayer(int playerId, int decknb = 0);
-public:
-	GameStateDuel(GameApp* parent);
-	virtual ~GameStateDuel();
+  int mGamePhase;
+  Player * mCurrentPlayer;
+  Player * mPlayers[2];
+  MTGPlayerCards * deck[2];
+  GameObserver * game;
+  SimpleMenu * deckmenu;
+  SimpleMenu * menu;
+  JLBFont* mFont;
+
+  void loadPlayer(int playerId, int decknb = 0);
+ public:
+  GameStateDuel(GameApp* parent);
+  virtual ~GameStateDuel();
 #ifdef TESTSUITE
   void loadTestSuitePlayers();
 #endif
-	virtual void ButtonPressed(int ControllerId, int ControlId);
-	virtual void Start();
-	virtual void End();
-	virtual void Update(float dt);
-	virtual void Render(); 
+  virtual void ButtonPressed(int ControllerId, int ControlId);
+  virtual void Start();
+  virtual void End();
+  virtual void Update(float dt);
+  virtual void Render();
 
 };
 

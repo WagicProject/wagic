@@ -1,8 +1,8 @@
 /*
-*  Wagic, The Homebrew ?! is licensed under the BSD license
-*  See LICENSE in the Folder's root
-*  http://wololo.net/wagic/
-*/
+ *  Wagic, The Homebrew ?! is licensed under the BSD license
+ *  See LICENSE in the Folder's root
+ *  http://wololo.net/wagic/
+ */
 
 #ifndef _IAPLAYER_H
 #define _IAPLAYER_H
@@ -17,40 +17,40 @@
 class AIStats;
 
 class AIPlayer: public Player{
-protected:
-	MTGCardInstance * nextCardToPlay;
-	ManaCost * potentialMana;
-	void tapLandsForMana(ManaCost * potentialMana, ManaCost * cost);
-	int checkInterrupt();
-	int combatDamages();
-	int chooseAttackers();
-	int chooseBlockers();
-	int effectBadOrGood(MTGCardInstance * card);
-	int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
-	AIStats * getStats();
-public:
-	virtual int displayStack(){return 0;}
-	AIStats * stats;
-	ManaCost * getPotentialMana();
-	AIPlayer(MTGPlayerCards * _deck, string deckFile);
-	virtual ~AIPlayer();
-	virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
-	virtual int chooseTarget(TargetChooser * tc = NULL);
-	virtual int Act(float dt);
-	int isAI(){return 1;};
+ protected:
+  MTGCardInstance * nextCardToPlay;
+  ManaCost * potentialMana;
+  void tapLandsForMana(ManaCost * potentialMana, ManaCost * cost);
+  int checkInterrupt();
+  int combatDamages();
+  int chooseAttackers();
+  int chooseBlockers();
+  int effectBadOrGood(MTGCardInstance * card);
+  int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
+  AIStats * getStats();
+ public:
+  virtual int displayStack(){return 0;}
+  AIStats * stats;
+  ManaCost * getPotentialMana();
+  AIPlayer(MTGPlayerCards * _deck, string deckFile);
+  virtual ~AIPlayer();
+  virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
+  virtual int chooseTarget(TargetChooser * tc = NULL);
+  virtual int Act(float dt);
+  int isAI(){return 1;};
 
 };
 
 
 class AIPlayerBaka: public AIPlayer{
-protected:
-	int oldGamePhase;
-	int timer;
-	MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
-public:
-	AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile);
-	virtual int Act(float dt);
-	void initTimer();
+ protected:
+  int oldGamePhase;
+  int timer;
+  MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
+ public:
+  AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile);
+  virtual int Act(float dt);
+  void initTimer();
 };
 
 class AIPlayerFactory{

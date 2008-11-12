@@ -6,8 +6,8 @@
 #define TARGET_STACKACTION 3
 
 class Targetable{
-public:
-	virtual int typeAsTarget() = 0;
+ public:
+  virtual int typeAsTarget() = 0;
 };
 
 #endif

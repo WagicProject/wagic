@@ -13,59 +13,59 @@
 using std::string;
 
 class ShopItem:public JGuiObject{
-private:
-	bool mHasFocus;
-	JLBFont *mFont;
-	string mText;
-	int mX;
-	int mY;
-	JQuad * quad;
-	JQuad * thumb;
-	float mScale;
-	float mTargetScale;
+ private:
+  bool mHasFocus;
+  JLBFont *mFont;
+  string mText;
+  int mX;
+  int mY;
+  JQuad * quad;
+  JQuad * thumb;
+  float mScale;
+  float mTargetScale;
 
-public:
-	int quantity;
-	MTGCard * card;
-	int price;
-	ShopItem(int id, JLBFont * font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price);
-	ShopItem(int id, JLBFont * font, char* text, JQuad * _quad, JQuad * _thumb,int x, int y, bool hasFocus, int _price);
-	~ShopItem();
-	
-	virtual void Render();
-	virtual void Update(float dt);
+ public:
+  int quantity;
+  MTGCard * card;
+  int price;
+  ShopItem(int id, JLBFont * font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price);
+  ShopItem(int id, JLBFont * font, char* text, JQuad * _quad, JQuad * _thumb,int x, int y, bool hasFocus, int _price);
+  ~ShopItem();
 
-	virtual void Entering();
-	virtual bool Leaving(u32 key);
-	virtual bool ButtonPressed();
+  virtual void Render();
+  virtual void Update(float dt);
 
-	const char * getText();
+  virtual void Entering();
+  virtual bool Leaving(u32 key);
+  virtual bool ButtonPressed();
+
+  const char * getText();
 };
 
 class ShopItems:public JGuiController,public JGuiListener{
-private:
-	PlayerData * playerdata;
-	PriceList * pricelist;
-	int  mX, mY, mHeight;
-	JLBFont* mFont;
-	MTGAllCards * collection;
-	SimpleMenu * dialog;
-	int showPriceDialog;
-	int setId;
-	MTGCardInstance * displayCards[100];
-	CardDisplay * display;
-	void safeDeleteDisplay();
-public:
-	ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int setId);
-	~ShopItems();
-	void Render();
-	virtual void Update(float dt);
-	void Add(int cardid);
-	void Add(char * text, JQuad * quad, JQuad * thumb,int _price);
-	void pricedialog(int id, int mode=1);
-	virtual void ButtonPressed(int controllerId, int controlId);
-	void savePriceList();
-	void saveAll();
+ private:
+  PlayerData * playerdata;
+  PriceList * pricelist;
+  int  mX, mY, mHeight;
+  JLBFont* mFont;
+  MTGAllCards * collection;
+  SimpleMenu * dialog;
+  int showPriceDialog;
+  int setId;
+  MTGCardInstance * displayCards[100];
+  CardDisplay * display;
+  void safeDeleteDisplay();
+ public:
+  ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int setId);
+  ~ShopItems();
+  void Render();
+  virtual void Update(float dt);
+  void Add(int cardid);
+  void Add(char * text, JQuad * quad, JQuad * thumb,int _price);
+  void pricedialog(int id, int mode=1);
+  virtual void ButtonPressed(int controllerId, int controlId);
+  void savePriceList();
+  void saveAll();
 };
 
 #endif

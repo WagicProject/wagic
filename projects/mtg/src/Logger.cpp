@@ -5,19 +5,19 @@
 using namespace std;
 
 #if defined (WIN32)
-	#include <windows.h>
+#include <windows.h>
 #endif
 
 void Logger::Log(char * text){
-	ofstream file (LOG_FILE,ios_base::app);
-	if (file){
-		file << text;
-		file << "\n";
-		file.close();
-	}
+  ofstream file (LOG_FILE,ios_base::app);
+  if (file){
+    file << text;
+    file << "\n";
+    file.close();
+  }
 #if defined (WIN32) || defined (LINUX)
-	OutputDebugString(text);
-	OutputDebugString("\n");
+  OutputDebugString(text);
+  OutputDebugString("\n");
 #endif
 
 }

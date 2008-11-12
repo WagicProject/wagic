@@ -10,29 +10,29 @@ class ManaCostHybrid;
 class ManaCost{
  protected:
   int cost[MTG_NB_COLORS+1];
-	ManaCostHybrid * hybrids[10];
-	int nbhybrids;
+  ManaCostHybrid * hybrids[10];
+  int nbhybrids;
  public:
-	static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL);
+  static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL);
   void init();
-	void x();
+  void x();
   ManaCost(int _cost[], int nb_elems);
   ManaCost();
-	~ManaCost();
+  ~ManaCost();
   ManaCost(ManaCost * _manaCost);
-	void copy (ManaCost * _manaCost);
-	int getConvertedCost();
+  void copy (ManaCost * _manaCost);
+  int getConvertedCost();
   string toString();
   int getCost(int color);
-	int getMainColor();
-	int hasColor(int color);
-	int remove (int color, int value);
+  int getMainColor();
+  int hasColor(int color);
+  int remove (int color, int value);
   int add(int color, int value);
-	int addHybrid(int c1, int v1, int c2, int v2);
-	int tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[]);
-	void randomDiffHybrids(ManaCost * _cost, int diff[]);
-	int add(ManaCost * _cost);
-	int pay (ManaCost * _cost);
+  int addHybrid(int c1, int v1, int c2, int v2);
+  int tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[]);
+  void randomDiffHybrids(ManaCost * _cost, int diff[]);
+  int add(ManaCost * _cost);
+  int pay (ManaCost * _cost);
 
   //return 1 if _cost can be paid with current data, 0 otherwise
   int canAfford(ManaCost * _cost);

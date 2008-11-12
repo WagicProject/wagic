@@ -5,7 +5,7 @@
 GuiLayer::GuiLayer(int id, GameObserver* _game):JGuiController(id, NULL){
   game = _game;
   modal = 0;
-	hasFocus = 0;
+  hasFocus = 0;
 }
 
 GuiLayer::~GuiLayer(){
@@ -13,7 +13,7 @@ GuiLayer::~GuiLayer(){
 }
 
 int GuiLayer::getMaxId(){
-	return mCount;
+  return mCount;
 }
 
 void GuiLayer::Update(float dt){
@@ -24,16 +24,16 @@ void GuiLayer::Update(float dt){
 
 
 void GuiLayer::resetObjects(){
- for (int i=0;i<mCount;i++)
+  for (int i=0;i<mCount;i++)
     if (mObjects[i])
       delete mObjects[i];
 
- mCount = 0;
- mCurr = 0;
+  mCount = 0;
+  mCurr = 0;
 }
 
 void GuiLayer::RenderMessageBackground(float x0, float y0, float width, int height){
-	  PIXEL_TYPE colors_up[] =
+  PIXEL_TYPE colors_up[] =
     {
       ARGB(0,255,255,255),
       ARGB(0,255,255,255),
@@ -52,13 +52,13 @@ void GuiLayer::RenderMessageBackground(float x0, float y0, float width, int heig
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->FillRect(x0,y0,width,height/2,colors_up);
   renderer->FillRect(x0,y0+height/2,width,height/2,colors_down);
-	
+
   //  mEngine->DrawLine(0,y0,SCREEN_WIDTH,y0,ARGB(128,255,255,255));
   //  mEngine->DrawLine(0,y0+height,SCREEN_WIDTH,y0+height,ARGB(128,255,255,255));
 }
 
 void GuiLayer::RenderMessageBackground(float y0, int height){
-	RenderMessageBackground(0,y0,SCREEN_WIDTH, height);
+  RenderMessageBackground(0,y0,SCREEN_WIDTH, height);
 
 }
 
@@ -73,14 +73,14 @@ void GuiLayer::setModal(int _modal){
 
 int GuiLayer::getIndexOf(JGuiObject * object){
   for (int i=0; i<mCount; i++){
-		if (mObjects[i] == object)
-				return i;
-	}
-	return -1;
+    if (mObjects[i] == object)
+      return i;
+  }
+  return -1;
 }
 
 JGuiObject * GuiLayer::getByIndex(int index){
-	return mObjects[index];
+  return mObjects[index];
 }
 
 
@@ -89,27 +89,27 @@ GuiLayers::GuiLayers(){
 }
 
 GuiLayers::~GuiLayers(){
-	LOG("==Destroying GuiLayers==");
-	for (int i=0; i<nbitems; i++){
-		delete objects[i];
-	}
-	LOG("==Destroying GuiLayers Successful==");
+  LOG("==Destroying GuiLayers==");
+  for (int i=0; i<nbitems; i++){
+    delete objects[i];
+  }
+  LOG("==Destroying GuiLayers Successful==");
 }
 int GuiLayers::unstopableRenderInProgress(){
   for (int i=0; i<nbitems; i++){
     if (objects[i]->unstopableRenderInProgress())
-		return 1;
+      return 1;
   }
-	return 0;
+  return 0;
 }
 
 
 
 void GuiLayers::Add(GuiLayer * layer){
-	if (nbitems >=MAX_GUI_LAYERS || nbitems < 0){
-		LOG("OUT OF BOUND IN GuiLayers Add !!!");
-		return;
-	}
+  if (nbitems >=MAX_GUI_LAYERS || nbitems < 0){
+    LOG("OUT OF BOUND IN GuiLayers Add !!!");
+    return;
+  }
   objects[nbitems] = layer;
   nbitems++;
 }
@@ -121,23 +121,23 @@ void GuiLayers::Remove(){
 void GuiLayers::Update(float dt, Player * currentPlayer){
   int i;
   int modal = 0;
-	int isAI = currentPlayer->isAI();
+  int isAI = currentPlayer->isAI();
   for (i=0; i<nbitems; i++){
-		objects[i]->hasFocus = 0;
+    objects[i]->hasFocus = 0;
     objects[i]->Update(dt);
     if (!isAI && !modal){
-			objects[i]->hasFocus = 1;
+      objects[i]->hasFocus = 1;
       objects[i]->CheckUserInput(dt);
       modal = objects[i]->isModal();
     }
   }
-	if (isAI){
-		currentPlayer->Act(dt);
-	}
+  if (isAI){
+    currentPlayer->Act(dt);
+  }
 }
 
 void GuiLayers::Render(){
   for (int i=nbitems-1; i>=0; i--){
-      objects[i]->Render();
+    objects[i]->Render();
   }
 }

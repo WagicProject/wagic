@@ -5,8 +5,8 @@
 #include "PlayGuiObjectController.h"
 
 class GuiCardsController : public PlayGuiObjectController{
-public:
-	  GuiCardsController(int id, GameObserver* _game):PlayGuiObjectController(id, _game){};
+ public:
+ GuiCardsController(int id, GameObserver* _game):PlayGuiObjectController(id, _game){};
 };
 
 

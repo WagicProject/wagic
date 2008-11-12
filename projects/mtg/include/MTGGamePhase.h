@@ -14,10 +14,10 @@ class MTGGamePhase: public ActionElement {
   int currentState;
   JLBFont * mFont;
  public:
-MTGGamePhase(int id);
+  MTGGamePhase(int id);
   virtual void Render();
   virtual void Update(float dt);
-	void CheckUserInput(float dt);
+  void CheckUserInput(float dt);
 };
 
 

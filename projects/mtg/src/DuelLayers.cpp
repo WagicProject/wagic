@@ -8,55 +8,55 @@
 void DuelLayers::init(){
 
 
-	//0 Stack Layer
-	ActionStack * mActionStack = NEW ActionStack(0, GameObserver::GetInstance());
+  //0 Stack Layer
+  ActionStack * mActionStack = NEW ActionStack(0, GameObserver::GetInstance());
 
-	//Damage Resolver
-	DamageResolverLayer * mDamageResolver = NEW DamageResolverLayer(1, GameObserver::GetInstance());
+  //Damage Resolver
+  DamageResolverLayer * mDamageResolver = NEW DamageResolverLayer(1, GameObserver::GetInstance());
 
-	//1 Action Layer
-	GuiLayer * actionLayer = NEW ActionLayer(2, GameObserver::GetInstance());
-	MTGGamePhase * phaseManager = NEW MTGGamePhase(actionLayer->getMaxId());
-	actionLayer->Add(phaseManager);
-	//Add Magic Specific Rules
-	actionLayer->Add(NEW MTGAttackRule(-1));
-	actionLayer->Add(NEW MTGBlockRule(-1));
-	actionLayer->Add(NEW MTGLegendRule(-1));
-	actionLayer->Add(NEW MTGPersistRule(-1));
+  //1 Action Layer
+  GuiLayer * actionLayer = NEW ActionLayer(2, GameObserver::GetInstance());
+  MTGGamePhase * phaseManager = NEW MTGGamePhase(actionLayer->getMaxId());
+  actionLayer->Add(phaseManager);
+  //Add Magic Specific Rules
+  actionLayer->Add(NEW MTGAttackRule(-1));
+  actionLayer->Add(NEW MTGBlockRule(-1));
+  actionLayer->Add(NEW MTGLegendRule(-1));
+  actionLayer->Add(NEW MTGPersistRule(-1));
 
-	//2 Hand Layer
-	MTGGuiHand * mGuiHand = NEW MTGGuiHand(3, GameObserver::GetInstance());
+  //2 Hand Layer
+  MTGGuiHand * mGuiHand = NEW MTGGuiHand(3, GameObserver::GetInstance());
 
-	//3 Game
-	MTGGuiPlay * play = NEW MTGGuiPlay(4, GameObserver::GetInstance());
+  //3 Game
+  MTGGuiPlay * play = NEW MTGGuiPlay(4, GameObserver::GetInstance());
 
-	Add(mActionStack);
-	Add(mDamageResolver);
-	Add(actionLayer);
-	Add(mGuiHand);
-	Add(play);
+  Add(mActionStack);
+  Add(mDamageResolver);
+  Add(actionLayer);
+  Add(mGuiHand);
+  Add(play);
 
 
 }
 
 
 ActionStack * DuelLayers::stackLayer(){
-	return ((ActionStack *) (objects[0]));
+  return ((ActionStack *) (objects[0]));
 }
 
 DamageResolverLayer * DuelLayers::combatLayer(){
-	return ((DamageResolverLayer *) (objects[1]));
+  return ((DamageResolverLayer *) (objects[1]));
 }
 
 ActionLayer * DuelLayers::actionLayer(){
-	return ((ActionLayer *) (objects[2]));
+  return ((ActionLayer *) (objects[2]));
 }
 
 MTGGuiHand * DuelLayers::handLayer(){
-	return ((MTGGuiHand *) (objects[3]));
+  return ((MTGGuiHand *) (objects[3]));
 }
 MTGGuiPlay * DuelLayers::playLayer(){
-	return ((MTGGuiPlay *) (objects[4]));
+  return ((MTGGuiPlay *) (objects[4]));
 }
 
 

@@ -7,34 +7,34 @@
 using std::string;
 
 class OptionItem:public JGuiObject{
-public:
-	string displayValue;
-	int id, value;
-	int hasFocus;
-	int maxValue, increment;
-	float x, y;
-	OptionItem(int id, string _displayValue, int _maxValue = 1, int _increment = 1);
-	
-	~OptionItem();
-	virtual void Render();
-	virtual void Update(float dt);	
-	virtual void Entering();
-	virtual bool Leaving();
-	void setData();
-	virtual void updateValue(){value+=increment; if (value>maxValue) value=0;};
+ public:
+  string displayValue;
+  int id, value;
+  int hasFocus;
+  int maxValue, increment;
+  float x, y;
+  OptionItem(int id, string _displayValue, int _maxValue = 1, int _increment = 1);
+
+  ~OptionItem();
+  virtual void Render();
+  virtual void Update(float dt);
+  virtual void Entering();
+  virtual bool Leaving();
+  void setData();
+  virtual void updateValue(){value+=increment; if (value>maxValue) value=0;};
 };
 
 class OptionsList{
-public:
-	OptionItem * options[20];
-	int nbitems;
-	int current;
-	OptionsList();
-	~OptionsList();
-	void Render();
-	void Update(float dt);
-	void Add(OptionItem * item);
-	void save();
+ public:
+  OptionItem * options[20];
+  int nbitems;
+  int current;
+  OptionsList();
+  ~OptionsList();
+  void Render();
+  void Update(float dt);
+  void Add(OptionItem * item);
+  void save();
 };
 
 #endif

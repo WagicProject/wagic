@@ -14,29 +14,29 @@ class MTGCard;
 class Damage;
 
 class AIStat{
-public:
-	int source; //MTGId of the card
-	int value;
-	int occurences;
-	bool direct;
-	AIStat(int _source, int _value, int _occurences, bool _direct):source(_source), value(_value),occurences(_occurences),direct(_direct){};
+ public:
+  int source; //MTGId of the card
+  int value;
+  int occurences;
+  bool direct;
+ AIStat(int _source, int _value, int _occurences, bool _direct):source(_source), value(_value),occurences(_occurences),direct(_direct){};
 };
 
 
 
 class AIStats{
-public:
-	Player * player;
-	string filename;
-	list<AIStat *> stats;
-	AIStats(Player * _player, char * filename);
-	~AIStats();
-	void updateStats();
-	void load(char * filename);
-	void save();
-	AIStat * find(MTGCard * card);
-	bool isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue = true );
-	void updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, float multiplier = 1.0);
+ public:
+  Player * player;
+  string filename;
+  list<AIStat *> stats;
+  AIStats(Player * _player, char * filename);
+  ~AIStats();
+  void updateStats();
+  void load(char * filename);
+  void save();
+  AIStat * find(MTGCard * card);
+  bool isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue = true );
+  void updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, float multiplier = 1.0);
 };
 
 #endif

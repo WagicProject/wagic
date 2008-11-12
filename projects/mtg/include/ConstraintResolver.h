@@ -6,9 +6,9 @@
 
 
 class ConstraintResolver {
-protected:
-public:
-	static int untap(GameObserver * game, MTGCardInstance * card);
+ protected:
+ public:
+  static int untap(GameObserver * game, MTGCardInstance * card);
 };
 
 #endif

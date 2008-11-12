@@ -1,5 +1,5 @@
-/* 
-A class for all interactive objects in the play area (cards, avatars, etc...) 
+/*
+   A class for all interactive objects in the play area (cards, avatars, etc...)
 */
 
 #ifndef _PLAYGUIOBJECT_H_
@@ -23,55 +23,55 @@ class PlayGuiObject: public JGuiObject, public JGuiListener{
   int wave;
   float mHeight;
   float defaultHeight;
-	bool mHasFocus;
-	int x;
+  bool mHasFocus;
+  int x;
   int y;
-	int type;
-	virtual void Entering(){mHasFocus = true;};
-	virtual bool Leaving(u32 key){mHasFocus = false;return true;};
-	virtual bool ButtonPressed(){return true;};
-	virtual void Render(){};
-	virtual void Update(float dt);
-	PlayGuiObject(int id, float desiredHeight,float _x, float _y, bool hasFocus);
-	virtual void ButtonPressed(int controllerId, int controlId){};
-	virtual ~PlayGuiObject(){};
+  int type;
+  virtual void Entering(){mHasFocus = true;};
+  virtual bool Leaving(u32 key){mHasFocus = false;return true;};
+  virtual bool ButtonPressed(){return true;};
+  virtual void Render(){};
+  virtual void Update(float dt);
+  PlayGuiObject(int id, float desiredHeight,float _x, float _y, bool hasFocus);
+  virtual void ButtonPressed(int controllerId, int controlId){};
+  virtual ~PlayGuiObject(){};
 
 };
 
 class GuiAvatar: public PlayGuiObject{
-protected:
+ protected:
 
-	int avatarRed;
-	int currentLife;
-public:
-		Player * player;
-	virtual void Render();
-	GuiAvatar(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * _player);
+  int avatarRed;
+  int currentLife;
+ public:
+  Player * player;
+  virtual void Render();
+  GuiAvatar(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * _player);
 };
 
 class GuiGameZone: public PlayGuiObject{
-protected:
-	MTGGameZone * zone;
+ protected:
+  MTGGameZone * zone;
 
-public:
-	CardDisplay * cd;
-	int showCards;
-	virtual void Render();
-	virtual void Update(float dt);
-	GuiGameZone(int id, float desiredHeight,float _x, float _y, bool hasFocus,MTGGameZone * _zone);
-	~GuiGameZone();
-	virtual void ButtonPressed(int controllerId, int controlId);
-	void toggleDisplay();
+ public:
+  CardDisplay * cd;
+  int showCards;
+  virtual void Render();
+  virtual void Update(float dt);
+  GuiGameZone(int id, float desiredHeight,float _x, float _y, bool hasFocus,MTGGameZone * _zone);
+  ~GuiGameZone();
+  virtual void ButtonPressed(int controllerId, int controlId);
+  void toggleDisplay();
 };
 
 class GuiGraveyard: public GuiGameZone{
-public:
-	GuiGraveyard(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
+ public:
+  GuiGraveyard(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
 };
 
 class GuiLibrary: public GuiGameZone{
-public:
-	GuiLibrary(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
+ public:
+  GuiLibrary(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
 };
 
 

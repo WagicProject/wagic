@@ -15,33 +15,33 @@ class Player: public Damageable, public Targetable{
   ManaCost * manaPool;
 
  public:
-	int typeAsTarget(){return TARGET_PLAYER;}
-	virtual int displayStack(){return 1;}
+  int typeAsTarget(){return TARGET_PLAYER;}
+  virtual int displayStack(){return 1;}
   JTexture * mAvatarTex;
   JQuad * mAvatar;
   int canPutLandsIntoPlay;
-  MTGPlayerCards * game;	
-	int testLife();
-	int afterDamage();
+  MTGPlayerCards * game;
+  int testLife();
+  int afterDamage();
   Player(MTGPlayerCards * _deck, string deckFile);
-	virtual ~Player();
+  virtual ~Player();
   void unTapPhase();
   MTGInPlay * inPlay();
   ManaCost * getManaPool();
-	int manaBurn();
-	void cleanupPhase();
-	virtual int Act(float dt){return 0;};
-	virtual int isAI(){return 0;};
-	Player * opponent();
-	int getId();
-	JQuad * getIcon();
-	string deckFile;
+  int manaBurn();
+  void cleanupPhase();
+  virtual int Act(float dt){return 0;};
+  virtual int isAI(){return 0;};
+  Player * opponent();
+  int getId();
+  JQuad * getIcon();
+  string deckFile;
 };
 
 class HumanPlayer: public Player{
  public:
   HumanPlayer(MTGPlayerCards * _deck, char * _deckFile);
-  
+
 };
 
 

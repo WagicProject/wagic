@@ -1,5 +1,5 @@
 /*
-The Action Stack contains all information for Game Events that can be interrupted (Interruptible)
+  The Action Stack contains all information for Game Events that can be interrupted (Interruptible)
 */
 #include "../include/debug.h"
 #include "../include/ActionStack.h"
@@ -9,148 +9,148 @@ The Action Stack contains all information for Game Events that can be interrupte
 #include "../include/ManaCost.h"
 
 /*
-NextGamePhase requested by user
+  NextGamePhase requested by user
 */
 
 int NextGamePhase::resolve(){
-	GameObserver::GetInstance()->nextGamePhase();
-	return 1;
+  GameObserver::GetInstance()->nextGamePhase();
+  return 1;
 }
 
 void NextGamePhase::Render(){
-	int nextPhase = (GameObserver::GetInstance()->getCurrentGamePhase() + 1) % MTG_PHASE_CLEANUP;
-	JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-		mFont->SetBase(0);	
-		mFont->SetScale(0.75);
-		char buffer[200];
-		int playerId = 1;
-		if (GameObserver::GetInstance()->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
-		sprintf(buffer, "Player %i : -> %s", playerId, MTGPhaseNames[nextPhase]);
-		mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+  int nextPhase = (GameObserver::GetInstance()->getCurrentGamePhase() + 1) % MTG_PHASE_CLEANUP;
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  mFont->SetBase(0);
+  mFont->SetScale(0.75);
+  char buffer[200];
+  int playerId = 1;
+  if (GameObserver::GetInstance()->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
+  sprintf(buffer, "Player %i : -> %s", playerId, MTGPhaseNames[nextPhase]);
+  mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
 }
 
 NextGamePhase::NextGamePhase(int id): Interruptible(id){
-	mHeight = 40;
-	type = ACTION_NEXTGAMEPHASE;
+  mHeight = 40;
+  type = ACTION_NEXTGAMEPHASE;
 }
 
 
 /* Ability */
 int StackAbility::resolve(){
-	return (ability->resolve());
+  return (ability->resolve());
 }
 void StackAbility::Render(){
-	JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-	mFont->SetBase(0);	
-	mFont->SetScale(0.75);
-	char buffer[200];
-	sprintf(buffer, "%s", ability->getMenuText());
-	mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
-	JRenderer * renderer = JRenderer::GetInstance();
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  mFont->SetBase(0);
+  mFont->SetScale(0.75);
+  char buffer[200];
+  sprintf(buffer, "%s", ability->getMenuText());
+  mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+  JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = ability->source->getThumb();
-	if (quad){
-		float scale = 30 / quad->mHeight;
-		renderer->RenderQuad(quad, x  , y , 0,scale,scale);
-	}else{
-		//TODO
-	}
+  if (quad){
+    float scale = 30 / quad->mHeight;
+    renderer->RenderQuad(quad, x  , y , 0,scale,scale);
+  }else{
+    //TODO
+  }
 }
 StackAbility::StackAbility(int id,MTGAbility * _ability): Interruptible(id),ability(_ability){
-	type=ACTION_ABILITY;
+  type=ACTION_ABILITY;
 }
 
 
 /* Spell Cast */
 
 Spell::Spell(MTGCardInstance * _source): Interruptible(0), TargetsList(){
-	source = _source;
-	mHeight= 40;
-	type = ACTION_SPELL;
-	cost = NEW ManaCost();
+  source = _source;
+  mHeight= 40;
+  type = ACTION_SPELL;
+  cost = NEW ManaCost();
 }
 
 
 Spell::Spell(int id, MTGCardInstance * _source, Targetable * _targets[], int nb_targets, ManaCost * _cost): Interruptible(id), TargetsList(_targets, nb_targets),cost(_cost){
-	source = _source;
-	mHeight = 40;
-	type = ACTION_SPELL;
+  source = _source;
+  mHeight = 40;
+  type = ACTION_SPELL;
 }
 
 
 Spell::~Spell(){
-	SAFE_DELETE(cost);
+  SAFE_DELETE(cost);
 }
 
 int Spell::resolve(){
-	GameObserver * game = GameObserver::GetInstance();
-	//TODO Remove target if it's not targettable anymore
-	source->controller()->game->putInPlay(source);
-	AbilityFactory af;
+  GameObserver * game = GameObserver::GetInstance();
+  //TODO Remove target if it's not targettable anymore
+  source->controller()->game->putInPlay(source);
+  AbilityFactory af;
   af.addAbilities(game->mLayers->actionLayer()->getMaxId(), this);
-	return 1;
+  return 1;
 }
 
 void Spell::Render(){
-		JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-		mFont->SetBase(0);	
-		mFont->SetScale(0.75);
-		char buffer[200];
-		sprintf(buffer, "%s", source->model->getName());
-		mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
-	 JRenderer * renderer = JRenderer::GetInstance();
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  mFont->SetBase(0);
+  mFont->SetScale(0.75);
+  char buffer[200];
+  sprintf(buffer, "%s", source->model->getName());
+  mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+  JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();
-	if (quad){
-		float scale = mHeight  / quad->mHeight;
-		renderer->RenderQuad(quad, x  , y , 0,scale,scale);
-	}else{
-		//TODO
-	}
-	Damageable * target = getNextDamageableTarget();
-	if (target){
-	  quad = target->getIcon();
-		if (quad){
-			float scale = 30 / quad->mHeight;
-			renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
-		}
-	}
+  if (quad){
+    float scale = mHeight  / quad->mHeight;
+    renderer->RenderQuad(quad, x  , y , 0,scale,scale);
+  }else{
+    //TODO
+  }
+  Damageable * target = getNextDamageableTarget();
+  if (target){
+    quad = target->getIcon();
+    if (quad){
+      float scale = 30 / quad->mHeight;
+      renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
+    }
+  }
 }
 
 
 /* Put a card in graveyard */
 
 PutInGraveyard::PutInGraveyard(int id, MTGCardInstance * _card):Interruptible(id){
-	card = _card;
-	removeFromGame = 0;
-	type = ACTION_PUTINGRAVEYARD;
+  card = _card;
+  removeFromGame = 0;
+  type = ACTION_PUTINGRAVEYARD;
 }
 
 int PutInGraveyard::resolve(){
-	GameObserver * g = GameObserver::GetInstance();
-	MTGGameZone * zone = card->getCurrentZone();
-	if (zone == g->players[0]->game->inPlay || zone == g->players[1]->game->inPlay){
-		card->owner->game->putInZone(card,zone,card->owner->game->graveyard);
-		return 1;
-	}
-	return 0;
+  GameObserver * g = GameObserver::GetInstance();
+  MTGGameZone * zone = card->getCurrentZone();
+  if (zone == g->players[0]->game->inPlay || zone == g->players[1]->game->inPlay){
+    card->owner->game->putInZone(card,zone,card->owner->game->graveyard);
+    return 1;
+  }
+  return 0;
 }
 
 void PutInGraveyard::Render(){
-		JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-		mFont->SetBase(0);	
-		mFont->SetScale(0.75);
-		if (!removeFromGame){
-			mFont->DrawString("goes to graveyard", x + 20 , y, JGETEXT_LEFT);
-		}else{
-			mFont->DrawString("is removed from game", x + 20 , y, JGETEXT_LEFT);
-		}
- JRenderer * renderer = JRenderer::GetInstance();
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  mFont->SetBase(0);
+  mFont->SetScale(0.75);
+  if (!removeFromGame){
+    mFont->DrawString("goes to graveyard", x + 20 , y, JGETEXT_LEFT);
+  }else{
+    mFont->DrawString("is removed from game", x + 20 , y, JGETEXT_LEFT);
+  }
+  JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = card->getThumb();
-	if (quad){
-		float scale = 30 / quad->mHeight;
-		renderer->RenderQuad(quad, x  , y , 0,scale,scale);
-	}else{
-		//TODO
-	}
+  if (quad){
+    float scale = 30 / quad->mHeight;
+    renderer->RenderQuad(quad, x  , y , 0,scale,scale);
+  }else{
+    //TODO
+  }
 }
 
 
@@ -159,532 +159,532 @@ DrawAction::DrawAction(int id, Player * _player, int _nbcards):Interruptible(id)
 }
 
 int DrawAction::resolve(){
-	for (int i = 0 ; i < nbcards ; i++){
-		player->game->drawFromLibrary();
-	}
-	return 1;
+  for (int i = 0 ; i < nbcards ; i++){
+    player->game->drawFromLibrary();
+  }
+  return 1;
 }
 
 void DrawAction::Render(){
-		JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-		mFont->SetBase(0);	
-		mFont->SetScale(0.75);
-		char buffer[200];
-		int playerId = 1;
-		if (player ==  GameObserver::GetInstance()->players[1]) playerId = 2;
-		sprintf(buffer, "Player %i draws %i card", playerId, nbcards);
-		mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  mFont->SetBase(0);
+  mFont->SetScale(0.75);
+  char buffer[200];
+  int playerId = 1;
+  if (player ==  GameObserver::GetInstance()->players[1]) playerId = 2;
+  sprintf(buffer, "Player %i draws %i card", playerId, nbcards);
+  mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
 }
 
 /* The Action Stack itself */
 int ActionStack::addPutInGraveyard(MTGCardInstance * card){
-	PutInGraveyard * death = NEW PutInGraveyard(mCount,card);
-	addAction(death);
-	return 1;
+  PutInGraveyard * death = NEW PutInGraveyard(mCount,card);
+  addAction(death);
+  return 1;
 }
 
 int ActionStack::addAbility(MTGAbility * ability){
-	StackAbility * stackAbility = NEW StackAbility(mCount,ability);
-	addAction(stackAbility);
-	return 1;
+  StackAbility * stackAbility = NEW StackAbility(mCount,ability);
+  addAction(stackAbility);
+  return 1;
 }
 
 int ActionStack::addDraw(Player * player, int nb_cards){
-	DrawAction * draw = NEW DrawAction(mCount,player, nb_cards);
-	addAction(draw);
-	return 1;
+  DrawAction * draw = NEW DrawAction(mCount,player, nb_cards);
+  addAction(draw);
+  return 1;
 }
 
 int ActionStack::addDamage(MTGCardInstance * _source, Damageable * _target, int _damage){
   Damage * damage = NEW Damage(mCount, _source, _target, _damage);
-	addAction(damage);
-	return 1;
+  addAction(damage);
+  return 1;
 }
 
 int ActionStack::AddNextGamePhase(){
-	if (getNext(NULL,NOT_RESOLVED)) return 0;
-	NextGamePhase * next = NEW NextGamePhase(mCount);
-	addAction(next);
-	int playerId = 0;
-	if (game->currentActionPlayer == game->players[1]) playerId = 1;
-	interruptDecision[playerId] = 1;
-	return 1;
+  if (getNext(NULL,NOT_RESOLVED)) return 0;
+  NextGamePhase * next = NEW NextGamePhase(mCount);
+  addAction(next);
+  int playerId = 0;
+  if (game->currentActionPlayer == game->players[1]) playerId = 1;
+  interruptDecision[playerId] = 1;
+  return 1;
 }
 
 int ActionStack::setIsInterrupting(Player * player){
-	if (player == game->players[0]){
-		interruptDecision[0] = -1;
-	}else{
-		interruptDecision[1] = -1;
-	}
-	game->isInterrupting = player;
-	askIfWishesToInterrupt = NULL;
-	return 1;
+  if (player == game->players[0]){
+    interruptDecision[0] = -1;
+  }else{
+    interruptDecision[1] = -1;
+  }
+  game->isInterrupting = player;
+  askIfWishesToInterrupt = NULL;
+  return 1;
 }
 
 
 int ActionStack::addAction(Interruptible * action){
-	for (int i=0; i<2; i++){
-		interruptDecision[i] = 0;
-	}
-	Add(action);
-	return 1;
+  for (int i=0; i<2; i++){
+    interruptDecision[i] = 0;
+  }
+  Add(action);
+  return 1;
 }
 
 int ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[], int _nbtargets, ManaCost * mana){
 #if defined (WIN32) || defined (LINUX)
-char    buf[4096], *p = buf;
-sprintf(buf, "Add spell\n");
-OutputDebugString(buf);
+  char    buf[4096], *p = buf;
+  sprintf(buf, "Add spell\n");
+  OutputDebugString(buf);
 #endif
-	Spell * spell = NEW Spell(mCount,_source,_targets,_nbtargets, mana);
-	return addAction(spell);
+  Spell * spell = NEW Spell(mCount,_source,_targets,_nbtargets, mana);
+  return addAction(spell);
 }
 
 
 Interruptible * ActionStack::_(int id){
-	if (id < 0) id = mCount + id;
-	if (id > mCount -1) return NULL;
-	return (Interruptible *)mObjects[id];
+  if (id < 0) id = mCount + id;
+  if (id > mCount -1) return NULL;
+  return (Interruptible *)mObjects[id];
 }
 
 ActionStack::ActionStack(int id, GameObserver* _game):GuiLayer(id, _game){
-		for (int i=0; i<2; i++){
-		interruptDecision[i] = 0;
-	}
-	askIfWishesToInterrupt = NULL;
-	timer = -1;
-	currentState = -1;
-	mode = ACTIONSTACK_STANDARD;
-	checked = 0;
+  for (int i=0; i<2; i++){
+    interruptDecision[i] = 0;
+  }
+  askIfWishesToInterrupt = NULL;
+  timer = -1;
+  currentState = -1;
+  mode = ACTIONSTACK_STANDARD;
+  checked = 0;
 
 }
 
 int ActionStack::has(Interruptible * action){
-	for (int i = 0; i < mCount ; i++){
-		if (mObjects[i] == action) return 1;
-	}
-	return 0;
+  for (int i = 0; i < mCount ; i++){
+    if (mObjects[i] == action) return 1;
+  }
+  return 0;
 }
 
 int ActionStack::resolve(){
-	Interruptible * action = getLatest(NOT_RESOLVED);
+  Interruptible * action = getLatest(NOT_RESOLVED);
 
-	if (!action)
-			return 0;
+  if (!action)
+    return 0;
 
 
-	if (action->resolve()){
-		action->state = RESOLVED_OK;
-	}else{
-		action->state = RESOLVED_NOK;
-	}
-	if (action->type == ACTION_DAMAGE) ((Damage * )action)->target->afterDamage();
-	if (action->type == ACTION_DAMAGES){
-		DamageStack * ds = (DamageStack *) action;
-		for (int i = 0; i < ds->mCount; i++){
-			Damage * damage = ((Damage *) ds->mObjects[i]);
-			damage->state = ds->state;
-		}
-		unpackDamageStack(ds);
-		ds->mCount = 0;
-	}
+  if (action->resolve()){
+    action->state = RESOLVED_OK;
+  }else{
+    action->state = RESOLVED_NOK;
+  }
+  if (action->type == ACTION_DAMAGE) ((Damage * )action)->target->afterDamage();
+  if (action->type == ACTION_DAMAGES){
+    DamageStack * ds = (DamageStack *) action;
+    for (int i = 0; i < ds->mCount; i++){
+      Damage * damage = ((Damage *) ds->mObjects[i]);
+      damage->state = ds->state;
+    }
+    unpackDamageStack(ds);
+    ds->mCount = 0;
+  }
 
-	if (!getNext(NULL,NOT_RESOLVED)){
-		for (int i = 0; i< 2 ; i++){
-			interruptDecision[i] = 0;
-		}
-	}else{
-		for (int i = 0; i< 2 ; i++){
-			if (interruptDecision[i] != 2) interruptDecision[i] = 0;
-		}
-	}
+  if (!getNext(NULL,NOT_RESOLVED)){
+    for (int i = 0; i< 2 ; i++){
+      interruptDecision[i] = 0;
+    }
+  }else{
+    for (int i = 0; i< 2 ; i++){
+      if (interruptDecision[i] != 2) interruptDecision[i] = 0;
+    }
+  }
 
-	return 1;
+  return 1;
 
 }
 
 Interruptible * ActionStack::getPrevious(Interruptible * next, int type, int state, int display){
-	int n = getPreviousIndex( next,  type, state, display);
-	if (n==-1) return NULL;
-	return ((Interruptible *) mObjects[n]);
+  int n = getPreviousIndex( next,  type, state, display);
+  if (n==-1) return NULL;
+  return ((Interruptible *) mObjects[n]);
 }
 
 int ActionStack::getPreviousIndex(Interruptible * next, int type, int state, int display){
-	int found = 0;
-	if (!next) found = 1;
-	for (int i = mCount -1; i >= 0 ; i--){
-		Interruptible * current = (Interruptible *)mObjects[i];
-		if (found && (type == 0 || current->type == type) && (state == 0 || current->state == state) && (display == -1 || current->display == display)){
-			return i;
-		}
-		if (current == next) found = 1;
-	}
-	if (!found) return getPreviousIndex(NULL,type, state, display);
-	return -1;
+  int found = 0;
+  if (!next) found = 1;
+  for (int i = mCount -1; i >= 0 ; i--){
+    Interruptible * current = (Interruptible *)mObjects[i];
+    if (found && (type == 0 || current->type == type) && (state == 0 || current->state == state) && (display == -1 || current->display == display)){
+      return i;
+    }
+    if (current == next) found = 1;
+  }
+  if (!found) return getPreviousIndex(NULL,type, state, display);
+  return -1;
 }
 
 int ActionStack::count( int type, int state, int display){
-	int result = 0;
-	for (int i = 0; i < mCount ; i++){
-		Interruptible * current = (Interruptible *)mObjects[i];
-		if((type == 0 || current->type == type) && (state == 0 || current->state == state) && (display == -1 || current->display == display)){
-				result++;
-		}
-	}
-	return result;
+  int result = 0;
+  for (int i = 0; i < mCount ; i++){
+    Interruptible * current = (Interruptible *)mObjects[i];
+    if((type == 0 || current->type == type) && (state == 0 || current->state == state) && (display == -1 || current->display == display)){
+      result++;
+    }
+  }
+  return result;
 }
 
 Interruptible * ActionStack::getNext(Interruptible * previous, int type, int state, int display){
-	int n = getNextIndex( previous,  type, state, display);
-	if (n==-1) return NULL;
-	return ((Interruptible *) mObjects[n]);
+  int n = getNextIndex( previous,  type, state, display);
+  if (n==-1) return NULL;
+  return ((Interruptible *) mObjects[n]);
 }
 
 int ActionStack::getNextIndex(Interruptible * previous, int type, int state, int display){
-	int found = 0;
-	if (!previous) found = 1;
-	for (int i = 0; i < mCount ; i++){
-		Interruptible * current = (Interruptible *)mObjects[i];
-		if (found && (type == 0 || current->type == type) && (state == 0 || current->state == state) && (display == -1 || current->display == display)){
-			return i;
-		}
-		if (current == previous) found = 1;
-	}
-	if (!found) return getNextIndex(NULL,type, state, display);
-	return -1;
+  int found = 0;
+  if (!previous) found = 1;
+  for (int i = 0; i < mCount ; i++){
+    Interruptible * current = (Interruptible *)mObjects[i];
+    if (found && (type == 0 || current->type == type) && (state == 0 || current->state == state) && (display == -1 || current->display == display)){
+      return i;
+    }
+    if (current == previous) found = 1;
+  }
+  if (!found) return getNextIndex(NULL,type, state, display);
+  return -1;
 }
 
 
 Interruptible * ActionStack::getLatest(int state){
-	for (int i = mCount-1; i >=0; i--){
-		Interruptible * action = ((Interruptible *)mObjects[i]);
-		if (action->state == state) return action;
-	}
-	return NULL;
+  for (int i = mCount-1; i >=0; i--){
+    Interruptible * action = ((Interruptible *)mObjects[i]);
+    if (action->state == state) return action;
+  }
+  return NULL;
 }
 
 void ActionStack::unpackDamageStack(DamageStack * ds){
-	for (int j = 0; j < ds->mCount; j++){
-		Damage * damage = ((Damage *)ds->mObjects[j]);
-		Add(damage);
-	}
+  for (int j = 0; j < ds->mCount; j++){
+    Damage * damage = ((Damage *)ds->mObjects[j]);
+    Add(damage);
+  }
 }
 
 void ActionStack::unpackDamageStacks(){
-	for (int i = mCount-1; i >=0; i--){
-		Interruptible * action = ((Interruptible *)mObjects[i]);
-		if (action->type == ACTION_DAMAGES){
-			DamageStack * ds = (DamageStack *) action;
-			unpackDamageStack(ds);
-		}
-	}	
+  for (int i = mCount-1; i >=0; i--){
+    Interruptible * action = ((Interruptible *)mObjects[i]);
+    if (action->type == ACTION_DAMAGES){
+      DamageStack * ds = (DamageStack *) action;
+      unpackDamageStack(ds);
+    }
+  }
 }
 
 void ActionStack::repackDamageStacks(){
-	for (int i = mCount-1; i >=0; i--){
-		Interruptible * action = ((Interruptible *)mObjects[i]);
-		if (action->type == ACTION_DAMAGE){
-			Damage * damage = (Damage *) action;
-			for (int j = 0; j < mCount; j++){
-				Interruptible * action2 = ((Interruptible *)mObjects[j]);
-				if (action->type == ACTION_DAMAGES){
-					DamageStack * ds = (DamageStack *) action2;
-					for (int k = 0; k< ds->mCount; k++){
-						Damage * dsdamage = ((Damage *)ds->mObjects[k]);
-						if (dsdamage==damage) Remove(damage);
-					}
-				}
-			}
-		}
-	}	
+  for (int i = mCount-1; i >=0; i--){
+    Interruptible * action = ((Interruptible *)mObjects[i]);
+    if (action->type == ACTION_DAMAGE){
+      Damage * damage = (Damage *) action;
+      for (int j = 0; j < mCount; j++){
+	Interruptible * action2 = ((Interruptible *)mObjects[j]);
+	if (action->type == ACTION_DAMAGES){
+	  DamageStack * ds = (DamageStack *) action2;
+	  for (int k = 0; k< ds->mCount; k++){
+	    Damage * dsdamage = ((Damage *)ds->mObjects[k]);
+	    if (dsdamage==damage) Remove(damage);
+	  }
+	}
+      }
+    }
+  }
 }
 
 void ActionStack::Update(float dt){
-	askIfWishesToInterrupt = NULL;
-	//modal = 0;
-	GameObserver * game = GameObserver::GetInstance();
-	TargetChooser * tc = game->getCurrentTargetChooser();
-		int newState = game->getCurrentGamePhase();
-		currentState = newState;
+  askIfWishesToInterrupt = NULL;
+  //modal = 0;
+  GameObserver * game = GameObserver::GetInstance();
+  TargetChooser * tc = game->getCurrentTargetChooser();
+  int newState = game->getCurrentGamePhase();
+  currentState = newState;
 
-		//Select Stack's display mode
-		if (mode==ACTIONSTACK_STANDARD && tc && !checked){
-			checked = 1;
-			unpackDamageStacks();
-			for (int i = 0; i < mCount ; i++){
-				Interruptible * current = (Interruptible *)mObjects[i];
-				if (tc->canTarget(current)){
-					if (mObjects[mCurr]) mObjects[mCurr]->Leaving(PSP_CTRL_UP);
-					current->display = 1;
-					mCurr = i;
-					mObjects[mCurr]->Entering();
-					mode=ACTIONSTACK_TARGET;
-					modal = 1;
-				}else{
-					current->display = 0;
-				}
-			}
-			if (mode != ACTIONSTACK_TARGET){
-				repackDamageStacks();
-			}
-		}else if (mode==ACTIONSTACK_TARGET && !tc){
-			mode = ACTIONSTACK_STANDARD;
-			checked = 0;
-			repackDamageStacks();
-		}
+  //Select Stack's display mode
+  if (mode==ACTIONSTACK_STANDARD && tc && !checked){
+    checked = 1;
+    unpackDamageStacks();
+    for (int i = 0; i < mCount ; i++){
+      Interruptible * current = (Interruptible *)mObjects[i];
+      if (tc->canTarget(current)){
+	if (mObjects[mCurr]) mObjects[mCurr]->Leaving(PSP_CTRL_UP);
+	current->display = 1;
+	mCurr = i;
+	mObjects[mCurr]->Entering();
+	mode=ACTIONSTACK_TARGET;
+	modal = 1;
+      }else{
+	current->display = 0;
+      }
+    }
+    if (mode != ACTIONSTACK_TARGET){
+      repackDamageStacks();
+    }
+  }else if (mode==ACTIONSTACK_TARGET && !tc){
+    mode = ACTIONSTACK_STANDARD;
+    checked = 0;
+    repackDamageStacks();
+  }
 
-		if (mode == ACTIONSTACK_STANDARD){
-			modal = 0;
-			if (getLatest(NOT_RESOLVED)){
-				int currentPlayerId = 0;
-				int otherPlayerId = 1;
-				if (game->currentPlayer != game->players[0]){
-					currentPlayerId = 1;
-					otherPlayerId = 0;
-				}
-				if (interruptDecision[currentPlayerId] == 0){
-					askIfWishesToInterrupt = game->players[currentPlayerId];
-					game->isInterrupting = game->players[currentPlayerId];
-					modal = 1;
-				}else if (interruptDecision[currentPlayerId] == -1){
-					game->isInterrupting = game->players[currentPlayerId];
+  if (mode == ACTIONSTACK_STANDARD){
+    modal = 0;
+    if (getLatest(NOT_RESOLVED)){
+      int currentPlayerId = 0;
+      int otherPlayerId = 1;
+      if (game->currentPlayer != game->players[0]){
+	currentPlayerId = 1;
+	otherPlayerId = 0;
+      }
+      if (interruptDecision[currentPlayerId] == 0){
+	askIfWishesToInterrupt = game->players[currentPlayerId];
+	game->isInterrupting = game->players[currentPlayerId];
+	modal = 1;
+      }else if (interruptDecision[currentPlayerId] == -1){
+	game->isInterrupting = game->players[currentPlayerId];
 
-				}else{
-					if (interruptDecision[otherPlayerId] == 0){
-						askIfWishesToInterrupt = game->players[otherPlayerId];
-						game->isInterrupting = game->players[otherPlayerId];
-						modal = 1;
-					}else if (interruptDecision[otherPlayerId] == -1){
-						game->isInterrupting = game->players[otherPlayerId];
-					}else{
-						resolve();
-					}
-				}
-			}
-		}else if (mode == ACTIONSTACK_TARGET){
-			GuiLayer::Update(dt);
-		}
+      }else{
+	if (interruptDecision[otherPlayerId] == 0){
+	  askIfWishesToInterrupt = game->players[otherPlayerId];
+	  game->isInterrupting = game->players[otherPlayerId];
+	  modal = 1;
+	}else if (interruptDecision[otherPlayerId] == -1){
+	  game->isInterrupting = game->players[otherPlayerId];
+	}else{
+	  resolve();
+	}
+      }
+    }
+  }else if (mode == ACTIONSTACK_TARGET){
+    GuiLayer::Update(dt);
+  }
 }
 
 void ActionStack::cancelInterruptOffer(int cancelMode){
-	if (askIfWishesToInterrupt == game->players[0]){
-		interruptDecision[0] = cancelMode;
-	}else{
-		interruptDecision[1] = cancelMode;
-	}
-	askIfWishesToInterrupt = NULL;
-	game->isInterrupting = NULL;
-	timer = -1;
+  if (askIfWishesToInterrupt == game->players[0]){
+    interruptDecision[0] = cancelMode;
+  }else{
+    interruptDecision[1] = cancelMode;
+  }
+  askIfWishesToInterrupt = NULL;
+  game->isInterrupting = NULL;
+  timer = -1;
 }
 
 void ActionStack::endOfInterruption(){
-	if (game->isInterrupting == game->players[0]){
-		interruptDecision[0] = 0;
-	}else{
-		interruptDecision[1] = 0;
-	}
-	game->isInterrupting = NULL;
+  if (game->isInterrupting == game->players[0]){
+    interruptDecision[0] = 0;
+  }else{
+    interruptDecision[1] = 0;
+  }
+  game->isInterrupting = NULL;
 }
 
 
 void ActionStack::CheckUserInput(float dt){
-	if (mode == ACTIONSTACK_STANDARD){
-		if (askIfWishesToInterrupt){
-			if (timer < 0) timer = 300;
-			if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
-				setIsInterrupting(askIfWishesToInterrupt);
-			}else if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE) ||mEngine->GetButtonClick(PSP_CTRL_RTRIGGER) ){
-				cancelInterruptOffer();
-			}else if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
-				cancelInterruptOffer(2);
-			}else{
-				timer --;
-				if (timer < 0){
-					cancelInterruptOffer();
-				}
-			}
-		}else if (game->isInterrupting){
-			if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
-				endOfInterruption();
-			}
-		}
-	}else if (mode == ACTIONSTACK_TARGET){
-		if (modal){
-			if (mEngine->GetButtonState(PSP_CTRL_UP)){
-				if (KeyRepeated(PSP_CTRL_UP, dt))
-				{
-					if( mObjects[mCurr]){
-						int n = getPreviousIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-						if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
-						{
-							mCurr = n;
-							mObjects[mCurr]->Entering();
-#if defined (WIN32) || defined (LINUX)
-				char buf[4096];
-				sprintf(buf, "Stack UP TO mCurr = %i\n", mCurr);
-				OutputDebugString(buf);
-#endif
-						}
-					}
-				}
-			}else if (mEngine->GetButtonState(PSP_CTRL_DOWN)){
-				if (KeyRepeated(PSP_CTRL_DOWN, dt))
-				{
-					if( mObjects[mCurr]){
-						int n = getNextIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-						if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
-						{
-							mCurr = n;
-							mObjects[mCurr]->Entering();
-#if defined (WIN32) || defined (LINUX)
-				char buf[4096];
-				sprintf(buf, "Stack DOWN TO mCurr = %i\n", mCurr);
-				OutputDebugString(buf);
-#endif
-						}
-					}
-				}
-			}else if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){
-#if defined (WIN32) || defined (LINUX)
-				char buf[4096];
-				sprintf(buf, "Stack CLIKED mCurr = %i\n", mCurr);
-				OutputDebugString(buf);
-#endif
-				game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
-			}
-		}
-		if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)){
-			if (modal) {modal = 0;} else {modal = 1;}
-		}
+  if (mode == ACTIONSTACK_STANDARD){
+    if (askIfWishesToInterrupt){
+      if (timer < 0) timer = 300;
+      if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
+	setIsInterrupting(askIfWishesToInterrupt);
+      }else if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE) ||mEngine->GetButtonClick(PSP_CTRL_RTRIGGER) ){
+	cancelInterruptOffer();
+      }else if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
+	cancelInterruptOffer(2);
+      }else{
+	timer --;
+	if (timer < 0){
+	  cancelInterruptOffer();
 	}
+      }
+    }else if (game->isInterrupting){
+      if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
+	endOfInterruption();
+      }
+    }
+  }else if (mode == ACTIONSTACK_TARGET){
+    if (modal){
+      if (mEngine->GetButtonState(PSP_CTRL_UP)){
+	if (KeyRepeated(PSP_CTRL_UP, dt))
+	  {
+	    if( mObjects[mCurr]){
+	      int n = getPreviousIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
+	      if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+		{
+		  mCurr = n;
+		  mObjects[mCurr]->Entering();
+#if defined (WIN32) || defined (LINUX)
+		  char buf[4096];
+		  sprintf(buf, "Stack UP TO mCurr = %i\n", mCurr);
+		  OutputDebugString(buf);
+#endif
+		}
+	    }
+	  }
+      }else if (mEngine->GetButtonState(PSP_CTRL_DOWN)){
+	if (KeyRepeated(PSP_CTRL_DOWN, dt))
+	  {
+	    if( mObjects[mCurr]){
+	      int n = getNextIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
+	      if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+		{
+		  mCurr = n;
+		  mObjects[mCurr]->Entering();
+#if defined (WIN32) || defined (LINUX)
+		  char buf[4096];
+		  sprintf(buf, "Stack DOWN TO mCurr = %i\n", mCurr);
+		  OutputDebugString(buf);
+#endif
+		}
+	    }
+	  }
+      }else if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){
+#if defined (WIN32) || defined (LINUX)
+	char buf[4096];
+	sprintf(buf, "Stack CLIKED mCurr = %i\n", mCurr);
+	OutputDebugString(buf);
+#endif
+	game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
+      }
+    }
+    if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)){
+      if (modal) {modal = 0;} else {modal = 1;}
+    }
+  }
 }
 
 
 
 
 int ActionStack::CombatDamages(){
-	CombatDamages(1);
-	CombatDamages(0);
-	return 1;
+  CombatDamages(1);
+  CombatDamages(0);
+  return 1;
 }
 
 int ActionStack::CombatDamages(int strike){
-	DamageStack * damages = NEW DamageStack(mCount,game);
-	int damageitems = damages->CombatDamages(strike);
-	if (damageitems){
-		addAction(damages);
-	}else{
-		delete damages;
-	}
-	return damageitems;
+  DamageStack * damages = NEW DamageStack(mCount,game);
+  int damageitems = damages->CombatDamages(strike);
+  if (damageitems){
+    addAction(damages);
+  }else{
+    delete damages;
+  }
+  return damageitems;
 }
 
 //Cleans history of last turn
 int ActionStack::garbageCollect(){
-	for (int i=mCount-1;i>=0; i--){
-		Interruptible * current = ((Interruptible *)mObjects[i]);
-		if (current->state != NOT_RESOLVED){
-			mObjects[i] = mObjects[mCount-1];
-			mCount--;
-			delete current;
-		}
-	}
-	return 1;
+  for (int i=mCount-1;i>=0; i--){
+    Interruptible * current = ((Interruptible *)mObjects[i]);
+    if (current->state != NOT_RESOLVED){
+      mObjects[i] = mObjects[mCount-1];
+      mCount--;
+      delete current;
+    }
+  }
+  return 1;
 }
 
 void ActionStack::Fizzle(Interruptible * action){
-	if (action->type == ACTION_SPELL){
-		Spell * spell = (Spell *) action;
-		spell->source->controller()->game->putInGraveyard(spell->source);
-	}
-	action->state = RESOLVED_NOK;
+  if (action->type == ACTION_SPELL){
+    Spell * spell = (Spell *) action;
+    spell->source->controller()->game->putInGraveyard(spell->source);
+  }
+  action->state = RESOLVED_NOK;
 }
 
 void ActionStack::Render(){
-	int x0 = 250;
-	int y0 = 30;
-	int width = 200;
-	int height = 90;
-	int currenty = y0 + 5 ;
+  int x0 = 250;
+  int y0 = 30;
+  int width = 200;
+  int height = 90;
+  int currenty = y0 + 5 ;
 
-	if (mode == ACTIONSTACK_STANDARD){
-		if (!askIfWishesToInterrupt || !askIfWishesToInterrupt->displayStack()) return;
-
-
-		for (int i=0;i<mCount ;i++){
-			Interruptible * current = (Interruptible *)mObjects[i];
-			if (current->state==NOT_RESOLVED) height += current->mHeight;
-		}
-
-		JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-		mFont->SetBase(0);	
-		mFont->SetScale(0.75);
-
-		JRenderer * renderer = JRenderer::GetInstance();
-
-		//JQuad * back = GameApp::CommonRes->GetQuad("interrupt");
-		//float xScale = width / back->mWidth;
-		//float yScale = height / back->mHeight;
-		renderer->FillRoundRect(x0 + 16 ,y0 + 16 ,width +2 ,height +2  , 10, ARGB(128,0,0,0));
-		renderer->FillRoundRect(x0 - 5 ,y0 - 5 ,width + 2,height +2  , 10, ARGB(200,0,0,0));
-		//renderer->RenderQuad(back,x0,y0,0,xScale, yScale);
-		renderer->DrawRoundRect(x0 - 5 ,y0 - 5 ,width + 2,height +2  , 10, ARGB(255,255,255,255));
+  if (mode == ACTIONSTACK_STANDARD){
+    if (!askIfWishesToInterrupt || !askIfWishesToInterrupt->displayStack()) return;
 
 
-		for (int i=0;i<mCount ;i++){
-			Interruptible * current = (Interruptible *)mObjects[i];
-			if (current && current->state==NOT_RESOLVED){
-				current->x = x0 + 5;
-				if (i != mCount -1){
-					current->y = currenty;
-					currenty += current->mHeight;
-				}else{
-					current->y = currenty + 40 ;
-					currenty += current->mHeight + 40;
-				}
-				current->Render();
-			}
-		}
+    for (int i=0;i<mCount ;i++){
+      Interruptible * current = (Interruptible *)mObjects[i];
+      if (current->state==NOT_RESOLVED) height += current->mHeight;
+    }
 
-		char buffer[200];
-		sprintf(buffer, "interrupt ? %i", timer/100);
-		mFont->DrawString(buffer, x0 + 5 , currenty - 40 - ((Interruptible *)mObjects[mCount-1])->mHeight);
+    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+    mFont->SetBase(0);
+    mFont->SetScale(0.75);
 
-		if (mCount > 1){
-			sprintf(buffer, "X Interrupt - 0 No - [] No to All");
-		}else{
-			sprintf(buffer, "X Interrupt - 0 No");
-		}
-		mFont->DrawString(buffer, x0 + 5 , currenty);	
-	}else if (mode == ACTIONSTACK_TARGET && modal){
-		for (int i=0;i<mCount ;i++){
-			Interruptible * current = (Interruptible *)mObjects[i];
-			if (current->display) height += current->mHeight;
-		}
+    JRenderer * renderer = JRenderer::GetInstance();
 
-		JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-		mFont->SetBase(0);	
-		mFont->SetScale(0.75);
-
-		JRenderer * renderer = JRenderer::GetInstance();
-		renderer->FillRect(x0 ,y0 , width ,height , ARGB(200,0,0,0));
-		renderer->DrawRect(x0 - 1 ,y0 - 1 ,width + 2 ,height +2  , ARGB(255,255,255,255));
+    //JQuad * back = GameApp::CommonRes->GetQuad("interrupt");
+    //float xScale = width / back->mWidth;
+    //float yScale = height / back->mHeight;
+    renderer->FillRoundRect(x0 + 16 ,y0 + 16 ,width +2 ,height +2  , 10, ARGB(128,0,0,0));
+    renderer->FillRoundRect(x0 - 5 ,y0 - 5 ,width + 2,height +2  , 10, ARGB(200,0,0,0));
+    //renderer->RenderQuad(back,x0,y0,0,xScale, yScale);
+    renderer->DrawRoundRect(x0 - 5 ,y0 - 5 ,width + 2,height +2  , 10, ARGB(255,255,255,255));
 
 
-		for (int i=0;i<mCount ;i++){
-			Interruptible * current = (Interruptible *)mObjects[i];
-			if (mObjects[i]!=NULL && current->display){
-				((Interruptible *)mObjects[i])->x = x0 + 5;
-				if (i != mCount -1){
-					((Interruptible *)mObjects[i])->y = currenty;
-					currenty += ((Interruptible *)mObjects[i])->mHeight;
-				}else{
-					((Interruptible *)mObjects[i])->y = currenty + 40 ;
-					currenty += ((Interruptible *)mObjects[i])->mHeight + 40;
-				}
-				mObjects[i]->Render();
-			}
-		}
+    for (int i=0;i<mCount ;i++){
+      Interruptible * current = (Interruptible *)mObjects[i];
+      if (current && current->state==NOT_RESOLVED){
+	current->x = x0 + 5;
+	if (i != mCount -1){
+	  current->y = currenty;
+	  currenty += current->mHeight;
+	}else{
+	  current->y = currenty + 40 ;
+	  currenty += current->mHeight + 40;
 	}
+	current->Render();
+      }
+    }
+
+    char buffer[200];
+    sprintf(buffer, "interrupt ? %i", timer/100);
+    mFont->DrawString(buffer, x0 + 5 , currenty - 40 - ((Interruptible *)mObjects[mCount-1])->mHeight);
+
+    if (mCount > 1){
+      sprintf(buffer, "X Interrupt - 0 No - [] No to All");
+    }else{
+      sprintf(buffer, "X Interrupt - 0 No");
+    }
+    mFont->DrawString(buffer, x0 + 5 , currenty);
+  }else if (mode == ACTIONSTACK_TARGET && modal){
+    for (int i=0;i<mCount ;i++){
+      Interruptible * current = (Interruptible *)mObjects[i];
+      if (current->display) height += current->mHeight;
+    }
+
+    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+    mFont->SetBase(0);
+    mFont->SetScale(0.75);
+
+    JRenderer * renderer = JRenderer::GetInstance();
+    renderer->FillRect(x0 ,y0 , width ,height , ARGB(200,0,0,0));
+    renderer->DrawRect(x0 - 1 ,y0 - 1 ,width + 2 ,height +2  , ARGB(255,255,255,255));
+
+
+    for (int i=0;i<mCount ;i++){
+      Interruptible * current = (Interruptible *)mObjects[i];
+      if (mObjects[i]!=NULL && current->display){
+	((Interruptible *)mObjects[i])->x = x0 + 5;
+	if (i != mCount -1){
+	  ((Interruptible *)mObjects[i])->y = currenty;
+	  currenty += ((Interruptible *)mObjects[i])->mHeight;
+	}else{
+	  ((Interruptible *)mObjects[i])->y = currenty + 40 ;
+	  currenty += ((Interruptible *)mObjects[i])->mHeight + 40;
+	}
+	mObjects[i]->Render();
+      }
+    }
+  }
 }
