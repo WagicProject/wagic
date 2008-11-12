@@ -154,6 +154,17 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 			result++;
 			continue;
 		}	
+		//Tentative Destroyall not working char is not compatible with string variable
+		//found = s.find("destroyall(");
+		//if (found != string::npos){
+		//	if (dryMode) return BAKA_EFFECT_GOOD;
+		//	unsigned int end = s.find(")", found+11);
+		//	if (end != string::npos){ 
+		//		string type = s.substr(found+11,end-found-11).c_str();
+		//		destroyAllFromTypeInPlay(type.c_str(), card);
+		//		result++;
+		//		continue;
+		//}	
 
 		//Regeneration
 		found = s.find("}:regenerate");
@@ -199,6 +210,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 					result++;
 					continue;
 		}
+
+		//Summon
+
+		//Reveal Take Target and put in in hand (should be also able to target hand since some card needs you to reveal a card in your hand
 
 		//Damage
 		found = s.find("damage");
@@ -959,8 +974,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		{
 			MTGPlayerCards * zones = card->target->controller()->game;
 			zones->putInZone(card->target,zones->inPlay,zones->hand);
-			break;
-			
+			break;	
 		}
 	case 1235: //Aspect of Wolf
 		{
@@ -1256,6 +1270,77 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			break;
 		}
 
+
+// Addons ALA
+
+	case 175114: // Master of Etherium
+		{
+		game->addObserver(NEW ACreaturePowerToughnessModifierForAllTypeControlled(_id,card,"artifact"));
+		break;
+		}
+
+	case 174989: // Wild Nacatl
+		{
+		game->addObserver(NEW AGenericKirdApe(_id,card,"plains",1,1));
+		game->addObserver(NEW AGenericKirdApe(_id,card,"moutain",1,1));
+		break;
+		}
+
+//Addons The Dark
+
+	case 1797: //Inferno does 6 damage to all players and all creatures.
+		{
+			for (int i = 0; i < 2 ; i++){
+				game->mLayers->stackLayer()->addDamage(card, game->players[i], 6);
+				for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+					MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+					if (current->isACreature()){
+						game->mLayers->stackLayer()->addDamage(card, current, 6);
+					}
+				}
+			}
+			break;
+		}
+
+	case 1773 : //People of the Woods 
+		{
+			game->addObserver(NEW APeopleOfTheWoods(_id, card));
+			break;
+		}
+
+	case 1818: //Tivadar's Crusade
+		{
+			destroyAllFromTypeInPlay("goblin", card);
+			break;
+		}	
+
+//Addons Legends
+	case 1470: //Acid Rain
+		{
+			destroyAllFromTypeInPlay("forest", card);
+			break;
+		}
+	case 1427: //Abomination
+		{
+			game->addObserver(NEW AAbomination(_id,card));
+			break;
+		}
+	case 1533: //Livingplane
+		{
+			game->addObserver(NEW AConvertLandToCreatures(id, card, "land"));
+			break;
+		}
+	case 1607: //Divine Offering
+		{
+			card->target->controller()->game->putInGraveyard(card->target);
+			game->currentlyActing()->life+= card->target->getManaCost()->getConvertedCost();
+			break;
+		}
+	case 1625: //Lifeblood
+		{
+			game->addObserver(NEW AGiveLifeForTappedType (_id, card, "island"));
+			break;
+		}
 //Addons ICE-AGE Cards
 	case 2631: //Jokulhaups
 		{
@@ -1385,6 +1470,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	if (card->basicAbilities[PLAINSHOME]){
 		game->addObserver(NEW AStrongLandLinkCreature(_id, card,"plains"));
 	}
+	// New Abilities Flanking and Rampage
+
+	if (card->basicAbilities [RAMPAGE1]){
+		game->addObserver (NEW ARampageAbility(_id, card, 1, 1));
+	}
+
 	//Instants are put in the graveyard automatically if that's not already done
 	if (!putSourceInGraveyard){
 		if (card->hasType("instant") || card->hasType("sorcery")){

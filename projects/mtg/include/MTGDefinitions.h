@@ -93,8 +93,10 @@ static int _b[7] = {20,	0,		140,15,	50,255,128};
 #define MOUNTAINHOME 33
 #define SWAMPHOME 34
 #define PLAINSHOME 35
+#define FLANKING 36
+#define RAMPAGE1 37
 
-#define NB_BASIC_ABILITIES 36
+#define NB_BASIC_ABILITIES 38
 
 static const char * MTGBasicAbilities[] = {
 "trample",
@@ -132,7 +134,9 @@ static const char * MTGBasicAbilities[] = {
 "islandhome",
 "moutainhome",
 "swamphome",
-"plainshome"
+"plainshome",
+"flanking",
+"rampage",
 };
 
 
