@@ -63,13 +63,6 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-text=Arcane Sanctum comes into play tapped.     {T}: Add {W}, {U}, or {B} to your mana pool.
-id=175128
-name=Arcane Sanctum
-rarity=U
-type=Land
-[/card]
-[card]
 text=Flying, trample     At the beginning of your upkeep, sacrifice a non-Zombie creature, then put a 2/2 black Zombie creature token into play.
 id=174847
 name=Archdemon of Unx
@@ -322,13 +315,6 @@ name=Cruel Ultimatum
 rarity=R
 type=Sorcery
 mana={U}{U}{B}{B}{B}{R}{R}
-[/card]
-[card]
-text=Crumbling Necropolis comes into play tapped.     {T}: Add {U}, {B}, or {R} to your mana pool.
-id=175112
-name=Crumbling Necropolis
-rarity=U
-type=Land
 [/card]
 [card]
 text=At the beginning of your upkeep, each player discards a card.
@@ -765,13 +751,6 @@ text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Jund Panorama: Sear
 id=179425
 name=Jund Panorama
 rarity=C
-type=Land
-[/card]
-[card]
-text=Jungle Shrine comes into play tapped.     {T}: Add {R}, {G}, or {W} to your mana pool.
-id=175060
-name=Jungle Shrine
-rarity=U
 type=Land
 [/card]
 [card]
@@ -1287,13 +1266,6 @@ mana={2}{G}
 subtype=Aura
 [/card]
 [card]
-text=Savage Lands comes into play tapped.     {T}: Add {B}, {R}, or {G} to your mana pool.
-id=174877
-name=Savage Lands
-rarity=U
-type=Land
-[/card]
-[card]
 text=Flying     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Scavenger Drake.
 id=174987
 name=Scavenger Drake
@@ -1322,13 +1294,6 @@ name=Scourglass
 rarity=R
 type=Artifact
 mana={3}{W}{W}
-[/card]
-[card]
-text=Seaside Citadel comes into play tapped.     {T}: Add {G}, {W}, or {U} to your mana pool.
-id=174950
-name=Seaside Citadel
-rarity=U
-type=Land
 [/card]
 [card]
 text=Flying     Whenever Sedraxis Specter deals combat damage to a player, that player discards a card.     Unearth {1}{B} ({1}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)

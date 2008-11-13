@@ -11,6 +11,17 @@ subtype=Human Soldier
 toughness=1
 [/card]
 [card]
+text=Arcane Sanctum comes into play tapped.     {T}: Add {W}, {U}, or {B} to your mana pool.
+auto=tap
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+id=175128
+name=Arcane Sanctum
+rarity=U
+type=Land
+[/card]
+[card]
 text={G}, {T}: Target creature gains trample until end of turn.     {U}, {T}: Target creature gains flying until end of turn.
 auto={G},{T}:trample target(creature)
 auto={U},{T}:flying target(creature)
@@ -80,6 +91,17 @@ mana={2}{G}
 power=1
 subtype=Human Archer
 toughness=3
+[/card]
+[card]
+text=Crumbling Necropolis comes into play tapped.     {T}: Add {U}, {B}, or {R} to your mana pool.
+auto=tap
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+id=175112
+name=Crumbling Necropolis
+rarity=U
+type=Land
 [/card]
 [card]
 text=
@@ -308,6 +330,17 @@ mana={1}{U}
 power=2
 subtype=Human Scout
 toughness=1
+[/card]
+[card]
+text=Jungle Shrine comes into play tapped.     {T}: Add {R}, {G}, or {W} to your mana pool.
+auto=tap
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
+id=175060
+name=Jungle Shrine
+rarity=U
+type=Land
 [/card]
 [card]
 text={3}{G}: Knight of the Skyward Eye gets +3/+3 until end of turn. Play this ability only once each turn.
@@ -549,6 +582,28 @@ name=Sangrite Surge
 rarity=U
 type=Sorcery
 mana={4}{R}{G}
+[/card]
+[card]
+text=Savage Lands comes into play tapped.     {T}: Add {B}, {R}, or {G} to your mana pool.
+auto=tap
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+id=174877
+name=Savage Lands
+rarity=U
+type=Land
+[/card]
+[card]
+text=Seaside Citadel comes into play tapped.     {T}: Add {G}, {W}, or {U} to your mana pool.
+auto=tap
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+id=174950
+name=Seaside Citadel
+rarity=U
+type=Land
 [/card]
 [card]
 text={U}: Shore Snapper gains islandwalk until end of turn.
