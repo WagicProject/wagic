@@ -159,6 +159,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 		    cd->colors[cid] = -1;
 		  }else{
 		    cd->colors[cid] = 1;
+#ifdef WIN32
+OutputDebugString("COLOR FOUND !!!");
+#endif
 		  }
 		}
 	      }

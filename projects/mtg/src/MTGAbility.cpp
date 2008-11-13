@@ -8,12 +8,14 @@
 #include "../include/CardGui.h"
 #include "../include/MTGDeck.h"
 
-int AbilityFactory::destroyAllFromTypeInPlay(const char * type, MTGCardInstance * source, int bury){
+
+int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
+  tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
 	GameObserver * game = GameObserver::GetInstance();
 	for (int i = 0; i < 2 ; i++){
 		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
 			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-			if (current->hasType(type)){
+      if (tc->canTarget(current)){
 				if (bury){
 					game->players[i]->game->putInGraveyard(current);
 				}else{
@@ -25,22 +27,6 @@ int AbilityFactory::destroyAllFromTypeInPlay(const char * type, MTGCardInstance 
 	return 1;
 }
 
-int AbilityFactory::destroyAllFromColorInPlay(int color, MTGCardInstance * source, int bury){
-	GameObserver * game = GameObserver::GetInstance();
-	for (int i = 0; i < 2 ; i++){
-		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-			if (current->hasColor(color)){
-				if (bury){
-					game->players[i]->game->putInGraveyard(current);
-				}else{
-					game->mLayers->stackLayer()->addPutInGraveyard(current);
-				}
-			}
-		}
-	}
-	return 1;
-}
 
 int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
 					Spell * spell = NEW Spell(card);
@@ -122,9 +108,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 		found = s.find("target(");
 		if (found != string::npos){
 			int end = s.find(")");
-			string target = s.substr(found + 7,end - found - 7);
+			string starget = s.substr(found + 7,end - found - 7);
 			TargetChooserFactory tcf;
-			tc = tcf.createTargetChooser(target, card);
+			tc = tcf.createTargetChooser(starget, card);
 
 		}
 
@@ -205,23 +191,43 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 		found = s.find("bury");
 		if (found != string::npos){ 
 					if (dryMode) return BAKA_EFFECT_BAD;
-					if (tc){
-						game->addObserver(NEW ABurier(id, card,tc));
-					}else{
-						target->controller()->game->putInGraveyard(target);
-					}
+          found = s.find("all(");
+          if (found != string::npos){
+            int end = s.find(")");
+			      string starget = s.substr(found + 4,end - found - 4);
+			      TargetChooserFactory tcf;
+			      TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+            this->destroyAllInPlay(targetAll,1);
+            delete targetAll;
+          }else{
+					  if (tc){
+						  game->addObserver(NEW ABurier(id, card,tc));
+					  }else{
+						  target->controller()->game->putInGraveyard(target);
+					  }
+          }
 					result++;
 					continue;
 		}
 		//Destroy
 		found = s.find("destroy");
 		if (found != string::npos){ 
-					if (dryMode) return BAKA_EFFECT_BAD;
-					if (tc){
-						game->addObserver(NEW ADestroyer(id, card,tc));
-					}else{
-						game->mLayers->stackLayer()->addPutInGraveyard(target);
-					}
+					if (dryMode) return BAKA_EFFECT_BAD; //TODO compute according to nb in case of destroy all
+          found = s.find("all(");
+          if (found != string::npos){
+            int end = s.find(")");
+			      string starget = s.substr(found + 4,end - found - 4);
+			      TargetChooserFactory tcf;
+			      TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+            this->destroyAllInPlay(targetAll);
+            delete targetAll;
+          }else{
+					  if (tc){
+						  game->addObserver(NEW ADestroyer(id, card,tc));
+					  }else{
+						  game->mLayers->stackLayer()->addPutInGraveyard(target);
+					  }
+          }
 					result++;
 					continue;
 		}
@@ -1044,16 +1050,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			spell->getNextPlayerTarget()->life += x;
 			break;
 		}
-	case 1270: //tranquility
-		{
-			destroyAllFromTypeInPlay("enchantment", card);
-			break;
-		}
-	case 1271: //Tsunami
-		{
-			destroyAllFromTypeInPlay("island", card);
-			break;
-		}
+
+
 	case 1231: //Volcanic Eruption
 		{	
 			int x = spell->cost->getConvertedCost() - 3;
@@ -1126,11 +1124,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AFastbond(_id, card));
 			break;
 		}
-	case 1293: //FlashFires
-		{
-			destroyAllFromTypeInPlay("plains", card);
-			break;
-		}
+
 	case 1301: // Keldon Warlord
 		{
 			game->addObserver(NEW AKeldonWarlord(_id, card));
@@ -1151,11 +1145,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AOrcishOriflame(_id, card));
 			break;
 		}
-	case 1317: //ShatterStorm
-		{
-			destroyAllFromTypeInPlay("artifact", card, 1);
-			break;
-		}
 	case 1326: //Wheel of fortune
 		{
 			for (int i = 0; i < 2; i++){
@@ -1168,11 +1157,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 					game->players[i]->game->drawFromLibrary();
 				}
 			}
-			break;
-		}
-	case 1328: //Armageddon
-		{
-			destroyAllFromTypeInPlay("land", card);
 			break;
 		}
 	case 1331: //Black Ward
@@ -1281,11 +1265,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW AProtectionFrom( _id,card, card->target, MTG_COLOR_WHITE));
 			break;
 		}
-	case 1372: //Wrath of God
-		{
-			destroyAllFromTypeInPlay("creature", card); //TODO -> bury !!!
-			break;
-		}
+
 //Addons The Dark
 
 	case 1797: //Inferno does 6 damage to all players and all creatures.
@@ -1308,18 +1288,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			break;
 		}
 
-	case 1818: //Tivadar's Crusade
-		{
-			destroyAllFromTypeInPlay("goblin", card);
-			break;
-		}	
 
 //Addons Legends
-	case 1470: //Acid Rain
-		{
-			destroyAllFromTypeInPlay("forest", card);
-			break;
-		}
 	case 1427: //Abomination
 		{
 			game->addObserver(NEW AAbomination(_id,card));
@@ -1342,13 +1312,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			break;
 		}
 //Addons ICE-AGE Cards
-	case 2631: //Jokulhaups
-		{
-			destroyAllFromTypeInPlay("artifact", card);
-			destroyAllFromTypeInPlay("creature", card);
-			destroyAllFromTypeInPlay("land", card);
-			break;
-		}
 
 	case 2650: //Pyroclasm Need to be improved copied from hurricane with does 0 dammage to player and does 2 dammage to each creature
 		{
@@ -1389,11 +1352,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->currentlyActing()->getManaPool()->add(MTG_COLOR_BLACK, mana);
 			break;
 		}
-	case 2606: //Anarchy
-		{
-			destroyAllFromColorInPlay(MTG_COLOR_WHITE, card);
-			break;
-		}
+
 	case 2474: //Minion of Leshrac
 		{
 			game->addObserver(NEW AMinionofLeshrac( _id, card));

@@ -1292,7 +1292,7 @@ mana={G}{G}
 [card]
 text=Bury all artifacts, creatures, and lands.
 id=2631
-auto=destroy
+auto=bury all(artifact,creature,land)
 name=Jokulhaups
 rarity=R
 type=Sorcery
@@ -1350,6 +1350,7 @@ mana={B}
 [/card]
 [card]
 text=Destroy all white permanents.
+auto=destroy all(*[white])
 id=2606
 name=Anarchy
 rarity=U

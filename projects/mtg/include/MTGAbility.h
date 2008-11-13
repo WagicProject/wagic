@@ -178,8 +178,7 @@ public:
 /* Ability Factory */
 class AbilityFactory{
 private:
-	int destroyAllFromTypeInPlay(const char * type, MTGCardInstance * source, int bury = 0);
-	int destroyAllFromColorInPlay(int color, MTGCardInstance * source, int bury = 0);
+  int destroyAllInPlay(TargetChooser * tc, int bury = 0);
 	int putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p);
 	Trigger * parseTrigger(string magicText);
  public:

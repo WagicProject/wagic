@@ -69,6 +69,7 @@ mana={2}
 [/card]
 [card]
 text=Destroy all lands.
+auto=destroy all(land)
 id=1328
 name=Armageddon
 rarity=R
@@ -737,6 +738,7 @@ subtype=Aura
 [card]
 text=Destroy all Plains.
 id=1293
+auto=destroy all(plains)
 name=Flashfires
 rarity=U
 type=Sorcery
@@ -1885,6 +1887,7 @@ mana={1}{R}
 [/card]
 [card]
 text=Destroy all artifacts. They can't be regenerated.
+auto=bury all(artifact)
 id=1317
 name=Shatterstorm
 rarity=U
@@ -2089,6 +2092,7 @@ toughness=1
 [card]
 text=Destroy all enchantments.
 id=1270
+auto=destroy all(enchantment)
 name=Tranquility
 rarity=C
 type=Sorcery
@@ -2107,6 +2111,7 @@ subtype=Island Forest
 [card]
 text=Destroy all Islands.
 id=1271
+auto=destroy all(island)
 name=Tsunami
 rarity=U
 type=Sorcery
@@ -2434,6 +2439,7 @@ mana={1}
 [/card]
 [card]
 text=Destroy all creatures. They can't be regenerated.
+auto=bury all(creature)
 id=1372
 name=Wrath of God
 rarity=R
