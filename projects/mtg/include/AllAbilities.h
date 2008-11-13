@@ -2759,8 +2759,66 @@ public:
 	}
 };
 
-// GiveLifeForTappedType
+// People of the Woods
+class APeopleOfTheWoods:public ListMaintainerAbility{
+public:
+	APeopleOfTheWoods(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
+	}
 
+	int canBeInList(MTGCardInstance * card){
+		if (source->controller()->game->inPlay->hasCard(card) && card->hasType("forest") ) return 1;
+		return 0;
+	}
+
+	int added(MTGCardInstance * card){
+		source->addToToughness(1);
+		return 1;
+	}
+
+	int removed(MTGCardInstance * card){
+		source->addToToughness(-1);
+		return 1;
+	}
+
+};
+
+//Abomination Kill blocking creature if white or green
+class AAbomination :public MTGAbility{
+public:
+	MTGCardInstance * opponents[20]; 
+	int nbOpponents;
+	AAbomination (int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
+		nbOpponents = 0;
+	}
+
+	void Update(float dt){
+		if (newPhase != currentPhase){
+			if( newPhase == MTG_PHASE_COMBATDAMAGE){
+				nbOpponents = 0;
+				MTGCardInstance * opponent = source->getNextOpponent();
+				while (opponent && opponent->hasColor(MTG_COLOR_GREEN) || opponent->hasColor(MTG_COLOR_WHITE)){
+					opponents[nbOpponents] = opponent;
+					nbOpponents ++;
+					opponent = source->getNextOpponent(opponent);
+				}
+			}else if (newPhase == MTG_PHASE_COMBATEND){
+				for (int i = 0; i < nbOpponents ; i++){
+					game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
+				}
+			}
+		}
+	}
+
+	int testDestroy(){
+		if(!game->isInPlay(source) && currentPhase != MTG_PHASE_UNTAP){
+				return 0;
+		}else{
+			return MTGAbility::testDestroy();
+		}
+	}
+};
+
+// GiveLifeForTappedType
 class AGiveLifeForTappedType:public MTGAbility{
 public:
 	char type[20];
@@ -2853,5 +2911,117 @@ public:
 
 };
 
+
+
+//CreaturePowerToughnessModifierForAllTypeControlled
+class ACreaturePowerToughnessModifierForAllTypeControlled:public ListMaintainerAbility{
+public:	
+	char type[20];
+	ACreaturePowerToughnessModifierForAllTypeControlled(int _id, MTGCardInstance * _source, const char * _type):ListMaintainerAbility(_id, _source){
+	}
+
+	int canBeInList(MTGCardInstance * card){
+		if (source->controller()->game->inPlay->hasCard(card) && card->hasType(type) ) return 1;
+		return 0;
+	}
+
+	int added(MTGCardInstance * card){
+		source->power += 1;
+		source->addToToughness(1);
+		return 1;
+	}
+
+	int removed(MTGCardInstance * card){
+		source->power -= 1;
+		source->addToToughness(-1);
+		return 1;
+	}
+
+};
+
+//GenericKirdApe
+class AGenericKirdApe:public MTGAbility{
+public:
+	int init;
+	char type [20];
+	int power;
+	int toughness;
+	AGenericKirdApe(int _id, MTGCardInstance * _source, const char * _type, int _power, int _toughness):MTGAbility(_id, _source){
+		init = 0;
+	}
+
+	void Update(float dt){
+		if (source->controller()->game->inPlay->hasType(type)){
+			if(!init){
+				init = 1;
+				source->power+=power;
+				source->addToToughness(toughness);
+			}
+		}else{
+			if (init){
+				init = 0;
+				source->power-=power;
+				source->addToToughness(-toughness);
+			}
+		}
+	}
+};
+
+
+//Rampage ability Tentative 2
+class ARampageAbility:public MTGAbility{
+public:
+	int nbOpponents;
+	int PowerModifier;
+	int ToughnessModifier;
+	int modifier;
+	ARampageAbility(int _id, MTGCardInstance * _source,int _PowerModifier, int _ToughnessModifier):MTGAbility(_id, _source){
+	modifier=0;
+	}
+	void Update(float dt){
+		if (source->isAttacker()){
+			MTGInPlay * inPlay = game->opponent()->game->inPlay;
+				for (int i = 0; i < inPlay->nb_cards; i ++){
+					MTGCardInstance * current = inPlay->cards[i];
+							if (current->isDefenser()){
+							modifier++;
+							}
+				}
+			source->power+= (PowerModifier * modifier);
+			source->addToToughness(ToughnessModifier * modifier);
+		}
+	}
+};
+
+
+//Rampage ability Tentative 1 - Did not work as expected
+class A1RampageAbility:public MTGAbility{
+public:
+	MTGCardInstance * opponents[20]; 
+	int nbOpponents;
+	int PowerModifier;
+	int ToughnessModifier;
+	A1RampageAbility(int _id, MTGCardInstance * _source,int _PowerModifier, int _ToughnessModifier):MTGAbility(_id, _source){
+			nbOpponents = 0;
+	 }
+
+	void Update(float dt){
+		if (source->isAttacker()){
+		if (newPhase != currentPhase){
+			if( newPhase == MTG_PHASE_COMBATDAMAGE){
+				nbOpponents = 0;
+				MTGCardInstance * opponent = source->getNextOpponent();
+				while (opponent){
+					opponents[nbOpponents] = opponent;
+					nbOpponents ++;
+					source->power+= PowerModifier;
+					source->addToToughness(ToughnessModifier);
+					opponent = source->getNextOpponent(opponent);
+					}
+				}
+			}
+		}
+	}
+};
 
 #endif

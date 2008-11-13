@@ -1286,7 +1286,61 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			destroyAllFromTypeInPlay("creature", card); //TODO -> bury !!!
 			break;
 		}
+//Addons The Dark
 
+	case 1797: //Inferno does 6 damage to all players and all creatures.
+		{
+			for (int i = 0; i < 2 ; i++){
+				game->mLayers->stackLayer()->addDamage(card, game->players[i], 6);
+				for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+					MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+					if (current->isACreature()){
+						game->mLayers->stackLayer()->addDamage(card, current, 6);
+					}
+				}
+			}
+			break;
+		}
+
+	case 1773 : //People of the Woods 
+		{
+			game->addObserver(NEW APeopleOfTheWoods(_id, card));
+			break;
+		}
+
+	case 1818: //Tivadar's Crusade
+		{
+			destroyAllFromTypeInPlay("goblin", card);
+			break;
+		}	
+
+//Addons Legends
+	case 1470: //Acid Rain
+		{
+			destroyAllFromTypeInPlay("forest", card);
+			break;
+		}
+	case 1427: //Abomination
+		{
+			game->addObserver(NEW AAbomination(_id,card));
+			break;
+		}
+	case 1533: //Livingplane
+		{
+			game->addObserver(NEW AConvertLandToCreatures(id, card, "land"));
+			break;
+		}
+	case 1607: //Divine Offering
+		{
+			card->target->controller()->game->putInGraveyard(card->target);
+			game->currentlyActing()->life+= card->target->getManaCost()->getConvertedCost();
+			break;
+		}
+	case 1625: //Lifeblood
+		{
+			game->addObserver(NEW AGiveLifeForTappedType (_id, card, "island"));
+			break;
+		}
 //Addons ICE-AGE Cards
 	case 2631: //Jokulhaups
 		{
@@ -1385,6 +1439,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     break;
   }
 
+  /* Erwan - 2008/11/13: We want to get rid of these basicAbility things.
+   * basicAbilities themselves are alright, but creating new object depending on them is dangerous
+   * The main reason is that classes that add an ability to a card do NOT create these objects, and therefore do NOT
+   * Work.
+   * For example, setting LIFELINK for a creature is not enough right now...
+   * It shouldn't be necessary to add an object. State based abilities could do the trick
+   */
 	if (card->basicAbilities[LIFELINK]){
 		ALifeLink * ability = NEW ALifeLink(_id, card);
 		game->addObserver(ability);
@@ -1416,6 +1477,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	if (card->basicAbilities[PLAINSHOME]){
 		game->addObserver(NEW AStrongLandLinkCreature(_id, card,"plains"));
 	}
+
+	// New Abilities Flanking and Rampage
+
+	if (card->basicAbilities [RAMPAGE1]){
+		game->addObserver (NEW ARampageAbility(_id, card, 1, 1));
+	}
+
 	//Instants are put in the graveyard automatically if that's not already done
 	if (!putSourceInGraveyard){
 		if (card->hasType("instant") || card->hasType("sorcery")){
