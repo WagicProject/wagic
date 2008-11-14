@@ -23,6 +23,7 @@ counsel_of_the_soratami.txt
 counterspell.txt
 counterspell2.txt
 drain_life.txt
+flare.txt
 force_of_nature.txt
 force_of_nature2.txt
 force_of_nature3.txt
@@ -30,6 +31,7 @@ ghost_warden.txt
 giant_growth.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
+goblin_king.txt
 keldon_warlord.txt
 kudzu.txt
 kudzu2.txt

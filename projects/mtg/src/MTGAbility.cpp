@@ -318,7 +318,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 		found = s.find("/");
 		if (found != string::npos){ 
 					unsigned int start = s.find(":");
-					if (start == string::npos) start = -1;
+					if (start == string::npos) start = found-2;
 					int power = atoi(s.substr(start+1,size-found).c_str());
 					unsigned int end = s.find(" ",start);
 					int toughness;
@@ -1654,9 +1654,6 @@ void TriggeredAbility::Update(float dt){
 				}
 			}
 			if (doDelete || !canBeInList(card)){
-#if defined (WIN32) || defined (LINUX)
-OutputDebugString("DELETE FRO LISTMAINTAINER\n");
-#endif
 				cards.erase(card);
 				removed(card);
 			}
@@ -1709,7 +1706,7 @@ OutputDebugString("DELETE FRO LISTMAINTAINER\n");
 
 	TriggerAtPhase::TriggerAtPhase(int _phaseId):Trigger(),phaseId(_phaseId){
 		currentPhase = game->getCurrentGamePhase();
-		newPhase = -1;
+		newPhase = game->getCurrentGamePhase();
 	}
 
 	int TriggerAtPhase::trigger(){

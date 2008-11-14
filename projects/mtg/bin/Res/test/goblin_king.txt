@@ -1,0 +1,21 @@
+#does goblin king (10E) give +1/+1 to goblins ? (Goblin piker 2/1 VS canopy spider 1/3)
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:129578,129580
+[PLAYER2]
+inplay:135185
+[DO]
+129580
+next
+135185
+next
+next
+135185
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:129578,129580
+[PLAYER2]
+graveyard:135185
+[END]
