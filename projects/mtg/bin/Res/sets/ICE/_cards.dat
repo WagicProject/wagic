@@ -1,6 +1,7 @@
 #SET: ICE AGE
-#VERSION: 1.6
-#Number of playable cards: 132
+#VERSION: 1.6.1
+#Number of playable cards: >132
+#Note : please try to keep cards in alphabetical order of the name if possible
 [card]
 text={T}: Centaur Archer deals 1 damage to target creature with flying.
 id=2718
@@ -1459,4 +1460,15 @@ name=Aegis of the Meek
 rarity=R
 type=Artifact
 mana={3}
+[/card]
+[card]
+text=Vertigo deals 2 damage to target creature with flying; that creature loses flying until end of turn.
+id=2658
+name=Vertigo
+target=creature[flying]
+auto=damage:2
+auto=-flying
+rarity=U
+type=Instant
+mana={R}
 [/card]

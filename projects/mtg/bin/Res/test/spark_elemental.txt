@@ -1,0 +1,24 @@
+#Is Spark elemental destroyed at end of turn ? Does it have haste ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:129577
+manapool:{R}
+[PLAYER2]
+[DO]
+129577
+next
+#combat begin
+next
+#attackers
+129577
+eot
+129577
+[ASSERT]
+UNTAP
+[PLAYER1]
+graveyard:129577
+manapool:{0}
+[PLAYER2]
+life:17
+[END]

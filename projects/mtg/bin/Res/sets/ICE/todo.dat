@@ -1068,16 +1068,6 @@ type=Instant
 mana={3}{G}
 [/card]
 [card]
-text=Vertigo deals 2 damage to target creature with flying; that creature loses flying until end of turn.
-id=2658
-name=Vertigo
-target=creature
-auto=damage:2
-rarity=U
-type=Instant
-mana={R}
-[/card]
-[card]
 text=All creatures with flying lose flying until end of turn. If Whiteout is in your graveyard, you may sacrifice a snow-covered land to return Whiteout to your hand.
 id=2599
 name=Whiteout

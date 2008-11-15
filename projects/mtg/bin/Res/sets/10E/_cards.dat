@@ -998,6 +998,7 @@ mana={1}{G}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
+abilities=flying
 id=129659
 alias=1170
 name=Nightmare
@@ -1491,6 +1492,7 @@ toughness=2
 [card]
 text=Trample, haste (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player. This creature can attack and {T} as soon as it comes under your control.)  At end of turn, sacrifice Spark Elemental.
 abilities=trample,haste
+auto=@next endofturn:bury
 id=129577
 name=Spark Elemental
 rarity=U

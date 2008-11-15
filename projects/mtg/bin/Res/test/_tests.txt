@@ -45,6 +45,7 @@ resurrection.txt
 rootwalla.txt
 shivan_hellkite.txt
 shock.txt
+spark_elemental.txt
 stasis.txt
 terror.txt
 volcanic_island.txt

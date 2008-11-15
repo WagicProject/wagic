@@ -56,6 +56,14 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
 }
 
 //Some basic functionalities that can be added automatically in the text file
+/*
+ * Several objects are computed from the text string, and have a direct influence on what action we should take
+ * (direct impact on the game such as draw a card immediately, or create a new GameObserver and add it to the Abilities,etc..)
+ * These objects are: 
+ *   - trigger (if there is an "@" in the string, this is a triggered ability)
+ *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
+ *   - doTap (a dirty way to know if tapping is included in the cost...
+ */
 int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	int dryMode = 0;
 	if (!spell) dryMode = 1;
@@ -187,28 +195,35 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 					result++;
 					continue;
 		}
+
 		//Bury
 		found = s.find("bury");
 		if (found != string::npos){ 
 					if (dryMode) return BAKA_EFFECT_BAD;
-          found = s.find("all(");
-          if (found != string::npos){
-            int end = s.find(")");
-			      string starget = s.substr(found + 4,end - found - 4);
-			      TargetChooserFactory tcf;
-			      TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
-            this->destroyAllInPlay(targetAll,1);
-            delete targetAll;
+          if (trigger){
+            BuryEvent * action = NEW BuryEvent();
+						game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
           }else{
-					  if (tc){
-						  game->addObserver(NEW ABurier(id, card,tc));
-					  }else{
-						  target->controller()->game->putInGraveyard(target);
-					  }
+            found = s.find("all(");
+            if (found != string::npos){
+              int end = s.find(")");
+			        string starget = s.substr(found + 4,end - found - 4);
+			        TargetChooserFactory tcf;
+			        TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+              this->destroyAllInPlay(targetAll,1);
+              delete targetAll;
+            }else{
+					    if (tc){
+						    game->addObserver(NEW ABurier(id, card,tc));
+					    }else{
+						    target->controller()->game->putInGraveyard(target);
+					    }
+            }
           }
 					result++;
 					continue;
 		}
+
 		//Destroy
 		found = s.find("destroy");
 		if (found != string::npos){ 
@@ -1742,6 +1757,11 @@ void TriggeredAbility::Update(float dt){
 		return nbcards;
 	}
 
+  int BuryEvent::resolve(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    _target->controller()->game->putInGraveyard(_target);
+    return 1;
+  }
 
  int DestroyCondition::testDestroy(){
 	if (!game->isInPlay(source)){
@@ -1762,9 +1782,9 @@ void TriggeredAbility::Update(float dt){
 		te = _te;
 		dc = _dc;
 
-		t->init(_source,_target);
-		te->init(_source,_target);
-		if (dc) dc->init(_source,_target);
+		t->init(source,target);
+		te->init(source,target);
+		if (dc) dc->init(source,target);
 	}
 
 	int GenericTriggeredAbility::trigger(){

@@ -157,6 +157,11 @@ public:
 	int resolve();
 };
 
+class BuryEvent: public TriggeredEvent{
+public:
+  int resolve();
+};
+
 class DestroyCondition:public MTGAbilityBasicFeatures{
 public:
 	virtual int testDestroy();
