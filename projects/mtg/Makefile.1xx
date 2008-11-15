@@ -1,5 +1,5 @@
 TARGET = temp
-OBJS = src/ActionElement.o src/ActionLayer.o src/AIPlaer.o src/Blocker.o src/CardGui.o src/CardDescriptor.o src/ConstraintResolver.o src/Damage.o src/DuelLayers.o src/GameApp.o src/GameLauncher.o src/GameObserver.o src/GameStateDuel.o src/GroupOfCards.o src/GuiCardsController.o src/GuiLayers.o src/ManaCost.o src/MenuItem.o src/MTGAbility.o src/MTGCardInstance.o src/MTGCard.o src/MTGDeck.o src/MTGGamePhase.o src/MTGGameZones.o src/MTGGuiHand.o src/MTGGuiPlay.o src/Player.o src/SimpleMenuItem.o src/ActionStack.o src/Subtypes.o src/TargetChooser.o src/TexturesCache.o src/utils.o 
+OBJS = src/ActionElement.o src/ActionLayer.o src/AIPlaer.o src/Blocker.o src/CardGui.o src/CardDescriptor.o src/ConstraintResolver.o src/Damage.o src/DuelLayers.o src/GameApp.o src/GameLauncher.o src/GameObserver.o src/GameStateDuel.o src/GuiCardsController.o src/GuiLayers.o src/ManaCost.o src/MenuItem.o src/MTGAbility.o src/MTGCardInstance.o src/MTGCard.o src/MTGDeck.o src/MTGGamePhase.o src/MTGGameZones.o src/MTGGuiHand.o src/MTGGuiPlay.o src/Player.o src/SimpleMenuItem.o src/ActionStack.o src/Subtypes.o src/TargetChooser.o src/TexturesCache.o src/utils.o 
 
 
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src

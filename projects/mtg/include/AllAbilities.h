@@ -3,7 +3,6 @@
 #define _CARDS_H_
 
 #include "MTGAbility.h"
-#include "GroupOfCards.h"
 #include "ManaCost.h"
 #include "CardDescriptor.h"
 #include "AIPlayer.h"
@@ -2940,6 +2939,7 @@ public:
 };
 
 //GenericKirdApe
+//Erwan 2008/11/15 : this cannot work as type is never initialized...
 class AGenericKirdApe:public MTGAbility{
 public:
 	int init;
