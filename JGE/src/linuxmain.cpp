@@ -12,6 +12,9 @@
 
 #include "../../JGE/include/JGameLauncher.h"
 
+#define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
+#define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
+#define ACTUAL_RATIO ((GLfloat)ACTUAL_SCREEN_WIDTH / (GLfloat)ACTUAL_SCREEN_HEIGHT)
 struct window_state_t
 {
   bool	fullscreen;
@@ -19,7 +22,7 @@ struct window_state_t
   unsigned int height;
   unsigned int x;
   unsigned int y;
-} window_state = { false, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0 };
+} window_state = { false, ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT, 0, 0 };
 
 
 uint64_t	lastTickCount;
@@ -110,7 +113,17 @@ static const unsigned char gNonGlutKeyCodes[] =
     KEY_ESCAPE
   };
 
-GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize And Initialize The GL Window
+
+GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
+{
+
+  if ((GLfloat)width / (GLfloat)height < ACTUAL_RATIO)
+    glViewport(0, -((width/ACTUAL_RATIO)-height)/2, width, width / ACTUAL_RATIO);			// Reset The Current Viewport
+  else
+    glViewport(-(height*ACTUAL_RATIO-width)/2, 0, height * ACTUAL_RATIO, height);
+}
+
+GLvoid SizeGLScene(GLsizei width, GLsizei height)	// Initialize The GL Window
 {
   if (0 == height)					// Prevent A Divide By Zero By
     height=1;						// Making Height Equal One
@@ -121,20 +134,23 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize And Initialize The
   glLoadIdentity();					// Reset The Projection Matrix
 
   // Calculate The Aspect Ratio Of The Window
-  gluPerspective(75.0f, (GLfloat)width / (GLfloat)height, 0.5f, 1000.0f);
+  gluPerspective(75.0f, ACTUAL_RATIO, 0.5f, 1000.0f);
 
   glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix
   glLoadIdentity();					// Reset The Modelview Matrix
+
+  glutReshapeWindow(width, height);
+  ReSizeGLScene(width, height);
 }
 
 int InitGL(void)					// All Setup For OpenGL Goes Here
 {
-  glClearColor (0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
-  glClearDepth (1.0f);					// Depth Buffer Setup
-  glDepthFunc (GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
-  glEnable (GL_DEPTH_TEST);				// Enable Depth Testing
-  glShadeModel (GL_SMOOTH);				// Select Smooth Shading
-  glHint (GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Set Perspective Calculations To Most Accurate
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
+  glClearDepth(1.0f);					// Depth Buffer Setup
+  glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
+  glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
+  glShadeModel(GL_SMOOTH);				// Select Smooth Shading
+  glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Set Perspective Calculations To Most Accurate
 
   glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);		// Set Line Antialiasing
   glEnable(GL_LINE_SMOOTH);				// Enable it!
@@ -204,7 +220,7 @@ void KillGLWindow(void) // Properly Kill The Window
 BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((unused)), bool fullscreenflag __attribute__((unused)))
 {
   glWindowID = glutCreateWindow(title);
-  ReSizeGLScene(width, height);
+  SizeGLScene(width, height);
   if (!InitGL())
     {
       KillGLWindow();
@@ -312,7 +328,10 @@ void initGlut(int* argc, char* argv[])
 {
   glutInit(argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-  glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+  //  glutInitWindowSize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+  // I do not know why, but obviously the thing won't draw outside of whatever size the window
+  // has been CREATED with, regardless of what resize calls are made later
+  glutInitWindowSize(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
 }
 
 void specialKey(int key, int x __attribute__((unused)), int y __attribute((unused)))
@@ -334,7 +353,6 @@ void normalKey(unsigned char key, int x __attribute__((unused)), int y __attribu
 	  glutReshapeWindow(window_state.width, window_state.height);
 	  glutPositionWindow(window_state.x, window_state.y);
 	  window_state.fullscreen = false;
-	  ReSizeGLScene(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
 	}
       else
 	{
@@ -344,7 +362,7 @@ void normalKey(unsigned char key, int x __attribute__((unused)), int y __attribu
 	  window_state.width = glutGet(GLUT_WINDOW_WIDTH);
 	  window_state.height = glutGet(GLUT_WINDOW_HEIGHT);
 	  glutFullScreen();
-	  ReSizeGLScene(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+	  glutPositionWindow(0, 0);
 	}
     }
   for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i > 0; --i)
@@ -373,7 +391,7 @@ int main(int argc, char* argv[])
   initGlut(&argc, argv);
 
   // Create Our OpenGL Window
-  if (!CreateGLWindow(g_launcher->GetName(), SCREEN_WIDTH, SCREEN_HEIGHT, 32, window_state.fullscreen))
+  if (!CreateGLWindow(g_launcher->GetName(), ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT, 32, window_state.fullscreen))
     return 0;								// Quit If Window Was Not Created
 
   glutIdleFunc(&idleCallBack);
@@ -383,7 +401,7 @@ int main(int argc, char* argv[])
   glutKeyboardFunc(&normalKey);
   glutSpecialUpFunc(&specialUp);
   glutKeyboardUpFunc(&normalUp);
-  //  glutReshapeFunc(&reshapeFunc);
+  glutReshapeFunc(&reshapeFunc);
   glutMainLoop();
 
   return 0;
