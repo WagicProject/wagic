@@ -83,7 +83,7 @@ class GameStateMenu:	public GameState, public JGuiListener
       {
 	for (int j=0;j<2;j++)
 	  {
-	    mIcons[n] = NEW JQuad(mIconsTexture, 10 + i*32, j*32, 32, 32);
+	    mIcons[n] = NEW JQuad(mIconsTexture, 2 + i*36, 2 + j*36, 32, 32);
 	    mIcons[n]->SetHotSpot(16,16);
 	    n++;
 	  }
