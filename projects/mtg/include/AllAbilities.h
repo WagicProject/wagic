@@ -2794,7 +2794,7 @@ class AAbomination :public MTGAbility{
       if( newPhase == MTG_PHASE_COMBATDAMAGE){
 	nbOpponents = 0;
 	MTGCardInstance * opponent = source->getNextOpponent();
-	while (opponent && opponent->hasColor(MTG_COLOR_GREEN) || opponent->hasColor(MTG_COLOR_WHITE)){
+	while ((opponent && opponent->hasColor(MTG_COLOR_GREEN)) || opponent->hasColor(MTG_COLOR_WHITE)){
 	  opponents[nbOpponents] = opponent;
 	  nbOpponents ++;
 	  opponent = source->getNextOpponent(opponent);

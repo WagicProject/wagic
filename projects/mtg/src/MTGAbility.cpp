@@ -38,7 +38,7 @@ int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone
 
 
 Trigger * AbilityFactory::parseTrigger(string magicText){
-  int found = magicText.find("@");
+  size_t found = magicText.find("@");
   if (found == string::npos) return NULL;
 
   //Next Time...
@@ -1707,7 +1707,7 @@ int ListMaintainerAbility::destroy(){
 MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(){
   game = GameObserver::GetInstance();
 }
-MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(MTGCardInstance * _source, Damageable * _target):source(_source),target(_target){
+MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(MTGCardInstance * _source, Damageable * _target):target(_target),source(_source){
   if (!target) target = source;
   game = GameObserver::GetInstance();
 }
