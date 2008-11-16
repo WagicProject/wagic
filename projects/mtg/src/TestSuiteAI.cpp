@@ -294,9 +294,9 @@ int TestSuite::assertGame(){
       }
       for (int k = 0; k < endState.playerData[i].zones[j].nbitems; k++){
 	int cardid = endState.playerData[i].zones[j].cards[k];
-	int realcardid = zone->cards[k]->getMTGId();
-	if ( realcardid!= cardid){
-	  sprintf(result, "<span class=\"error\">==Card ID not the same. Expected %i, got %i==</span><br />", cardid, realcardid);
+	MTGCardInstance * card = getCardByMTGId(cardid);
+  if (!card || !zone->hasCard(card)){
+	  sprintf(result, "<span class=\"error\">==Card ID not the same. Didn't find %i</span><br />", cardid);
 	  Log(result);
 	  error++;
 	}

@@ -22,10 +22,11 @@ using std::map;
 
 //Two stupid variables used to give a hint to the AI:
 // Should I cast a spell on an enemy or friendly unit ?
-#define BAKA_EFFECT_GOOD 10
-#define BAKA_EFFECT_BAD 11
+#define BAKA_EFFECT_GOOD 1
+#define BAKA_EFFECT_BAD -1
+#define BAKA_EFFECT_DONTKNOW 0
 
-
+#define COUNT_POWER 1
 
 class MTGAbility: public ActionElement{
  protected:
@@ -183,6 +184,7 @@ class GenericTriggeredAbility:public TriggeredAbility{
 /* Ability Factory */
 class AbilityFactory{
  private:
+  int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
   int destroyAllInPlay(TargetChooser * tc, int bury = 0);
   int putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p);
   Trigger * parseTrigger(string magicText);
@@ -195,3 +197,4 @@ class AbilityFactory{
 #include "MTGCardInstance.h"
 
 #endif
+

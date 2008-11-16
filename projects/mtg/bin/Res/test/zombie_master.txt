@@ -1,0 +1,24 @@
+#Testing Zombie Master crash ?
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1188,129693,135216
+[PLAYER2]
+inplay:1299
+[DO]
+129693
+1188
+next
+1299
+next
+next
+129693
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:135216,129693
+graveyard:1188
+[PLAYER2]
+life:18
+inplay:1299
+[END]

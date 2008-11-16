@@ -76,31 +76,7 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
 
   delete(diff);
 
-  /*
 
-    for (int i=MTG_NB_COLORS-1; i>= 0; i--){
-    #if defined (WIN32) || defined (LINUX)
-    char buf[4096];
-    sprintf(buf,"Testing %s \n" ,MTG_LAND_TEXTS[i]);
-    OutputDebugString(buf);
-    #endif
-    currentCost = cost->getCost(i);
-    while(currentCost){
-    #if defined (WIN32) || defined (LINUX)
-    sprintf(buf,"Cost for %s is %i \n" ,MTG_LAND_TEXTS[i], currentCost);
-    OutputDebugString(buf);
-    #endif
-    MTGCardInstance * card = NULL;
-    while(currentCost && (card = cd.nextmatch(game->inPlay, card))){
-    if (i==MTG_COLOR_ARTIFACT || card->hasSubtype(MTG_LAND_TEXTS[i]) ){
-    currentCost--;
-    gameObs->cardClick(card);
-    }
-    }
-    }
-    }
-
-  */
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("ok land tapped");
 #endif
@@ -167,7 +143,7 @@ int AIPlayer::effectBadOrGood(MTGCardInstance * card){
   int autoGuess = af->magicText(id,NULL,card);
   delete af;
   if (autoGuess) return autoGuess;
-  return BAKA_EFFECT_BAD;
+  return BAKA_EFFECT_DONTKNOW;
 }
 
 int AIPlayer::chooseTarget(TargetChooser * tc){
@@ -184,7 +160,7 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
   if (!(gameObs->currentlyActing() == this)) return 0;
   Player * target = this;
   int cardEffect = effectBadOrGood(tc->source);
-  if (cardEffect == BAKA_EFFECT_BAD){
+  if (cardEffect != BAKA_EFFECT_GOOD){
     target = this->opponent();
   }
 
@@ -464,9 +440,18 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
       TargetChooser * tc = tcf->createTargetChooser(card);
       delete tcf;
       if (tc){
-	int hasTarget = (chooseTarget(tc));
-	delete tc;
-	if (!hasTarget)continue;
+	      int hasTarget = (chooseTarget(tc));
+	      delete tc;
+	      if (!hasTarget)continue;
+      }else{
+        int shouldPlayPercentage = 10;
+        int shouldPlay = effectBadOrGood(card);
+        if (shouldPlay == BAKA_EFFECT_GOOD){
+          shouldPlayPercentage = 90;
+        }else if(BAKA_EFFECT_DONTKNOW == shouldPlay){
+          shouldPlayPercentage = 70;
+        }
+        if (rand() % 100 > shouldPlayPercentage) continue;
       }
       nextCardToPlay = card;
       maxCost = currentCost;

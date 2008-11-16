@@ -882,7 +882,8 @@ class ALord:public ListMaintainerAbility{
     card->addToToughness(toughness);
     if (ability != -1) card->basicAbilities[ability] +=1;
     if (regenCost){
-      AStandardRegenerate * regen = NEW AStandardRegenerate(0, card, card, regenCost);
+      ManaCost * _regenCost = NEW ManaCost(regenCost);
+      AStandardRegenerate * regen = NEW AStandardRegenerate(0, card, card, _regenCost);
       regenerations[card] = regen;
       game->addObserver(regen);
     }

@@ -51,3 +51,4 @@ terror.txt
 volcanic_island.txt
 white_knight1.txt
 wrath_of_god.txt
+zombie_master.txt
