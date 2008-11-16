@@ -64,7 +64,7 @@ static u32 gPSPKeyMasks[] =
 
 #define KEY_BACKSPACE 8
 #define KEY_RETURN 10
-#define KEY_DELETE 4
+#define KEY_DELETE 127
 #define KEY_SPACE ' '
 #define KEY_ESCAPE 27
 
@@ -237,9 +237,9 @@ void JGEControl()
 
 void Update(int dt)
 {
-  JGEControl();
   g_engine->SetDelta(dt);
   g_engine->Update();
+  JGEControl();
 }
 
 
