@@ -194,7 +194,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     welcome_menu->Add(10, "Cancel");
 
     if (GameApp::HasMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
-      if (!bgMusic) bgMusic = JSoundSystem::GetInstance()->LoadMusic("sound/track1.mp3");
+      if (!bgMusic) bgMusic = JSoundSystem::GetInstance()->LoadMusic("sound/Track1.mp3");
       if (bgMusic){
 	JSoundSystem::GetInstance()->PlayMusic(bgMusic, true);
       }
@@ -265,13 +265,13 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       return;
     }
     if (mStage == STAGE_WAITING || mStage == STAGE_ONSCREEN_MENU){
-      if (mEngine->GetButtonClick(PSP_CTRL_LEFT)){
+      if (mEngine->GetButtonState(PSP_CTRL_LEFT)){
 	last_user_activity = 0;
 	currentCard = displayed_deck->getNext(currentCard,colorFilter);
 	mStage = STAGE_TRANSITION_LEFT;
       }
 
-      else if (mEngine->GetButtonClick(PSP_CTRL_RIGHT))
+      else if (mEngine->GetButtonState(PSP_CTRL_RIGHT))
 	{
 	  last_user_activity = 0;
 	  currentCard = displayed_deck->getPrevious(currentCard,colorFilter);

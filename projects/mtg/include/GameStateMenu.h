@@ -140,7 +140,7 @@ class GameStateMenu:	public GameState, public JGuiListener
     JRenderer::GetInstance()->EnableVSync(true);
 
     if (GameApp::HasMusic && !bgMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
-      bgMusic = JSoundSystem::GetInstance()->LoadMusic("sound/track0.mp3");
+      bgMusic = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
     }
 
     if (bgMusic){
