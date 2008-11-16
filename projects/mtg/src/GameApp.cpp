@@ -77,13 +77,13 @@ void GameApp::Create()
 
   CommonRes->CreateTexture("graphics/menuicons.png");
   //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
-  CommonRes->CreateQuad("c_artifact", "graphics/menuicons.png", 10 + 6*32, 32, 32, 32);
-  CommonRes->CreateQuad("c_green", "graphics/menuicons.png", 10 + 0*32, 32, 32, 32);
-  CommonRes->CreateQuad("c_blue", "graphics/menuicons.png", 10 + 1*32, 32, 32, 32);
-  CommonRes->CreateQuad("c_red", "graphics/menuicons.png", 10 + 3*32, 32, 32, 32);
-  CommonRes->CreateQuad("c_black", "graphics/menuicons.png", 10 + 2*32, 32, 32, 32);
-  CommonRes->CreateQuad("c_white", "graphics/menuicons.png", 10 + 4*32, 32, 32, 32);
-  CommonRes->CreateQuad("c_land", "graphics/menuicons.png", 10 + 5*32, 32, 32, 32);
+  CommonRes->CreateQuad("c_artifact", "graphics/menuicons.png", 2 + 6*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_green", "graphics/menuicons.png", 2 + 0*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_blue", "graphics/menuicons.png", 2 + 1*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_red", "graphics/menuicons.png", 2 + 3*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_black", "graphics/menuicons.png", 2 + 2*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_white", "graphics/menuicons.png", 2 + 4*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_land", "graphics/menuicons.png", 2 + 5*36, 38, 32, 32);
 
 
   CommonRes->CreateTexture("sets/back.jpg");

@@ -40,13 +40,13 @@ MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id,
 
   mIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/menuicons.png", TEX_TYPE_USE_VRAM);
   //load all the icon images
-  mIcons[MTG_COLOR_ARTIFACT] = NEW JQuad(mIconsTexture, 10 + 6*32, 32, 32, 32);
-  mIcons[MTG_COLOR_LAND] = NEW JQuad(mIconsTexture, 10 + 5*32, 32, 32, 32);
-  mIcons[MTG_COLOR_WHITE] = NEW JQuad(mIconsTexture, 10 + 4*32, 32, 32, 32);
-  mIcons[MTG_COLOR_RED] = NEW JQuad(mIconsTexture, 10 + 3*32, 32, 32, 32);
-  mIcons[MTG_COLOR_BLACK] = NEW JQuad(mIconsTexture, 10 + 2*32, 32, 32, 32);
-  mIcons[MTG_COLOR_BLUE] = NEW JQuad(mIconsTexture, 10 + 1*32, 32, 32, 32);
-  mIcons[MTG_COLOR_GREEN] = NEW JQuad(mIconsTexture, 10 + 0*32, 32, 32, 32);
+  mIcons[MTG_COLOR_ARTIFACT] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[MTG_COLOR_LAND] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[MTG_COLOR_WHITE] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[MTG_COLOR_RED] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[MTG_COLOR_BLACK] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[MTG_COLOR_BLUE] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[MTG_COLOR_GREEN] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
   for (int i=0; i < 7; i++){
     mIcons[i]->SetHotSpot(16,16);
   }
