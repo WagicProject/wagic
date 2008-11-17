@@ -14,283 +14,283 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
   GameObserver * game = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
     if (player && player!= game->players[i]) continue;
-		for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+    for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
       if (tc->canTarget(current)){
         switch (option){
-          case COUNT_POWER:
-            result+= current->power;
-            break;
-          default:
-            result++;
-            break;
+	case COUNT_POWER:
+	  result+= current->power;
+	  break;
+	default:
+	  result++;
+	  break;
         }
-			}
-		}
-	}
+      }
+    }
+  }
   return result;
 }
 
 int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
   tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
-	GameObserver * game = GameObserver::GetInstance();
-	for (int i = 0; i < 2 ; i++){
-		for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+  GameObserver * game = GameObserver::GetInstance();
+  for (int i = 0; i < 2 ; i++){
+    for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
       if (tc->canTarget(current)){
-				if (bury){
-					game->players[i]->game->putInGraveyard(current);
-				}else{
-					game->mLayers->stackLayer()->addPutInGraveyard(current);
-				}
-			}
-		}
+	if (bury){
+	  game->players[i]->game->putInGraveyard(current);
+	}else{
+	  game->mLayers->stackLayer()->addPutInGraveyard(current);
 	}
-	return 1;
+      }
+    }
+  }
+  return 1;
 }
 
 
 int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
-					Spell * spell = NEW Spell(card);
-					p->game->putInZone(card,  zone, p->game->stack);
-					spell->resolve();
-					delete spell;
-					return 1;
+  Spell * spell = NEW Spell(card);
+  p->game->putInZone(card,  zone, p->game->stack);
+  spell->resolve();
+  delete spell;
+  return 1;
 }
 
 
 Trigger * AbilityFactory::parseTrigger(string magicText){
-	int found = magicText.find("@");
-	if (found == string::npos) return NULL;
+  size_t found = magicText.find("@");
+  if (found == string::npos) return NULL;
 
-	//Next Time...
-	found = magicText.find("next");
-	if (found != string::npos){
-		for (int i = 0; i < NB_MTG_PHASES; i++){
-			found = magicText.find(MTGPhaseCodeNames[i]);
-			if (found != string::npos){
-				return NEW TriggerNextPhase(i);
-			}
-		}
-	}
+  //Next Time...
+  found = magicText.find("next");
+  if (found != string::npos){
+    for (int i = 0; i < NB_MTG_PHASES; i++){
+      found = magicText.find(MTGPhaseCodeNames[i]);
+      if (found != string::npos){
+	return NEW TriggerNextPhase(i);
+      }
+    }
+  }
 
-	return NULL;
+  return NULL;
 }
 
 //Some basic functionalities that can be added automatically in the text file
 /*
  * Several objects are computed from the text string, and have a direct influence on what action we should take
  * (direct impact on the game such as draw a card immediately, or create a new GameObserver and add it to the Abilities,etc..)
- * These objects are: 
+ * These objects are:
  *   - trigger (if there is an "@" in the string, this is a triggered ability)
  *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
  *   - doTap (a dirty way to know if tapping is included in the cost...
  */
 int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
-	int dryMode = 0;
-	if (!spell) dryMode = 1;
-	GameObserver * game = GameObserver::GetInstance();
-	if (!card) card = spell->source;
-	MTGCardInstance * target = card->target;
-	if (!target) target = card;
-	string magicText = card->magicText;
-	if (card->alias && magicText.size() == 0){
-		//An awful way to get access to the aliasedcard
-		magicText = GameObserver::GetInstance()->players[0]->game->collection->getCardById(card->alias)->magicText;
-	}
-	string s;
-	int size = magicText.size();
-	if (size == 0) return 0;
-	unsigned int found;
-	int result = id;
-	
+  int dryMode = 0;
+  if (!spell) dryMode = 1;
+  GameObserver * game = GameObserver::GetInstance();
+  if (!card) card = spell->source;
+  MTGCardInstance * target = card->target;
+  if (!target) target = card;
+  string magicText = card->magicText;
+  if (card->alias && magicText.size() == 0){
+    //An awful way to get access to the aliasedcard
+    magicText = GameObserver::GetInstance()->players[0]->game->collection->getCardById(card->alias)->magicText;
+  }
+  string s;
+  int size = magicText.size();
+  if (size == 0) return 0;
+  unsigned int found;
+  int result = id;
 
-	while (magicText.size()){
-		found = magicText.find("\n");
-		if (found != string::npos){ 
-				s = magicText.substr(0,found);
-				magicText = magicText.substr(found+1);
-		}else{
-			s = magicText;
-			magicText = "";
-		}
+
+  while (magicText.size()){
+    found = magicText.find("\n");
+    if (found != string::npos){
+      s = magicText.substr(0,found);
+      magicText = magicText.substr(found+1);
+    }else{
+      s = magicText;
+      magicText = "";
+    }
 #if defined (WIN32) || defined (LINUX)
-		char buf[4096];
-		sprintf(buf, "AUTO ACTION: %s\n", s.c_str());
-	OutputDebugString(buf);
+    char buf[4096];
+    sprintf(buf, "AUTO ACTION: %s\n", s.c_str());
+    OutputDebugString(buf);
 #endif
 
-		TargetChooser * tc = NULL;
-		int doTap = 0;
-		string lordType = "";
+    TargetChooser * tc = NULL;
+    int doTap = 0;
+    string lordType = "";
 
-		Trigger * trigger = parseTrigger(s);
-		//Dirty way to remove the trigger text (could get in the way)
-		if (trigger){
-			found = s.find(":");
-			s = s.substr(found+1);
-		}
+    Trigger * trigger = parseTrigger(s);
+    //Dirty way to remove the trigger text (could get in the way)
+    if (trigger){
+      found = s.find(":");
+      s = s.substr(found+1);
+    }
 
-		//Tap in the cost ?
-		if (s.find("{t}") != string::npos) doTap = 1;
+    //Tap in the cost ?
+    if (s.find("{t}") != string::npos) doTap = 1;
 
-		//Target Abilities
-		found = s.find("target(");
-		if (found != string::npos){
-			int end = s.find(")");
-			string starget = s.substr(found + 7,end - found - 7);
-			TargetChooserFactory tcf;
-			tc = tcf.createTargetChooser(starget, card);
+    //Target Abilities
+    found = s.find("target(");
+    if (found != string::npos){
+      int end = s.find(")");
+      string starget = s.substr(found + 7,end - found - 7);
+      TargetChooserFactory tcf;
+      tc = tcf.createTargetChooser(starget, card);
 
-		}
+    }
 
-		//Lord
-		found = s.find("lord(");
-		if (found != string::npos){
-			if (dryMode) return BAKA_EFFECT_GOOD;
-			unsigned int end = s.find(")", found+5);
-			if (end != string::npos){ 
-				lordType = s.substr(found+5,end-found-5).c_str();
-			}
-		}
+    //Lord
+    found = s.find("lord(");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_GOOD;
+      unsigned int end = s.find(")", found+5);
+      if (end != string::npos){
+	lordType = s.substr(found+5,end-found-5).c_str();
+      }
+    }
 
-		//Champion. Very basic, needs to be improved !
-		found = s.find("champion(name:");
-		if (found != string::npos){
-			if (dryMode) return BAKA_EFFECT_GOOD;
-			unsigned int end = s.find(")", found+14);
-			if (end != string::npos){ 
-				string type = s.substr(found+14,end-found-14).c_str();
-				game->addObserver(NEW APlagueRats(id,card,type.c_str()));
-				result++;
-				continue;
-			}
-		}
-	
-		//Untapper (Ley Druid...)
-		found = s.find("untap");
-		if (found != string::npos){
-			if (dryMode) return BAKA_EFFECT_GOOD;
-			ManaCost * cost = ManaCost::parseManaCost(s);
-			if (tc){
-				game->addObserver(NEW AUntaper(id, card, cost, tc));
-			}else{
-				target->tapped = 0;
-			}
+    //Champion. Very basic, needs to be improved !
+    found = s.find("champion(name:");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_GOOD;
+      unsigned int end = s.find(")", found+14);
+      if (end != string::npos){
+	string type = s.substr(found+14,end-found-14).c_str();
+	game->addObserver(NEW APlagueRats(id,card,type.c_str()));
+	result++;
+	continue;
+      }
+    }
 
-			result++;
-			continue;
-		}
+    //Untapper (Ley Druid...)
+    found = s.find("untap");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_GOOD;
+      ManaCost * cost = ManaCost::parseManaCost(s);
+      if (tc){
+	game->addObserver(NEW AUntaper(id, card, cost, tc));
+      }else{
+	target->tapped = 0;
+      }
 
-		//Tapper (icy manipulator)
-		found = s.find("tap");
-		if (found != string::npos){
-			if (dryMode) return BAKA_EFFECT_GOOD;
-			ManaCost * cost = ManaCost::parseManaCost(s);
-			if (tc){
-				game->addObserver(NEW ATapper(id, card, cost, tc));
-			}else{
-				target->tapped = 1;
-			}
+      result++;
+      continue;
+    }
 
-			result++;
-			continue;
-		}	
+    //Tapper (icy manipulator)
+    found = s.find("tap");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_GOOD;
+      ManaCost * cost = ManaCost::parseManaCost(s);
+      if (tc){
+	game->addObserver(NEW ATapper(id, card, cost, tc));
+      }else{
+	target->tapped = 1;
+      }
 
-		//Regeneration
-		found = s.find("}:regenerate");
-		if (found != string::npos){
-					if (dryMode) return BAKA_EFFECT_GOOD;
-					ManaCost * cost = ManaCost::parseManaCost(s);
+      result++;
+      continue;
+    }
 
-					if (lordType.size() > 0){
-						game->addObserver(NEW ALord(id,card,lordType.c_str(),0,0,-1,cost));
-					}else{
+    //Regeneration
+    found = s.find("}:regenerate");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_GOOD;
+      ManaCost * cost = ManaCost::parseManaCost(s);
 
-						if (tc){
-							//TODO
-						}else{
-							game->addObserver(NEW AStandardRegenerate(id, card, target, cost));
-							//TODO death ward !
-						}
-					}
-					result++;
-					continue;
-		}
+      if (lordType.size() > 0){
+	game->addObserver(NEW ALord(id,card,lordType.c_str(),0,0,-1,cost));
+      }else{
 
-		//Bury
-		found = s.find("bury");
-		if (found != string::npos){ 
-          if (trigger){
-            if (dryMode) return BAKA_EFFECT_BAD;
-            BuryEvent * action = NEW BuryEvent();
-						game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
-          }else{
-            found = s.find("all(");
-            if (found != string::npos){
-              int end = s.find(")");
-			        string starget = s.substr(found + 4,end - found - 4);
-			        TargetChooserFactory tcf;
-			        TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
-              if (dryMode){
-                int myNbCards = countCards(targetAll,card->controller());
-                int opponentNbCards = countCards(targetAll, card->controller()->opponent());
-                int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
-                int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
-                delete targetAll;
-                if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
-                return BAKA_EFFECT_BAD;
-              }else{
-                this->destroyAllInPlay(targetAll,1);
-                delete targetAll;
-              }
-              
-            }else{
-              if (dryMode) return BAKA_EFFECT_BAD;
-					    if (tc){
-						    game->addObserver(NEW ABurier(id, card,tc));
-					    }else{
-						    target->controller()->game->putInGraveyard(target);
-					    }
-            }
-          }
-					result++;
-					continue;
-		}
+	if (tc){
+	  //TODO
+	}else{
+	  game->addObserver(NEW AStandardRegenerate(id, card, target, cost));
+	  //TODO death ward !
+	}
+      }
+      result++;
+      continue;
+    }
 
-		//Destroy
-		found = s.find("destroy");
-		if (found != string::npos){ 
-					
-          found = s.find("all(");
-          if (found != string::npos){
-            int end = s.find(")");
-			      string starget = s.substr(found + 4,end - found - 4);
-			      TargetChooserFactory tcf;
-			      TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
-            if (dryMode){
-              int myNbCards = countCards(targetAll,card->controller());
-              int opponentNbCards = countCards(targetAll, card->controller()->opponent());
-              int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
-              int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
-              delete targetAll;
-              if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
-              return BAKA_EFFECT_BAD;
-            }else{
-              this->destroyAllInPlay(targetAll);
-              delete targetAll;
-            }
-          }else{
-            if (dryMode) return BAKA_EFFECT_BAD;
-					  if (tc){
-						  game->addObserver(NEW ADestroyer(id, card,tc));
-					  }else{
-						  game->mLayers->stackLayer()->addPutInGraveyard(target);
-					  }
-          }
-					result++;
-					continue;
-		}
+    //Bury
+    found = s.find("bury");
+    if (found != string::npos){
+      if (trigger){
+	if (dryMode) return BAKA_EFFECT_BAD;
+	BuryEvent * action = NEW BuryEvent();
+	game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
+      }else{
+	found = s.find("all(");
+	if (found != string::npos){
+	  int end = s.find(")");
+	  string starget = s.substr(found + 4,end - found - 4);
+	  TargetChooserFactory tcf;
+	  TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+	  if (dryMode){
+	    int myNbCards = countCards(targetAll,card->controller());
+	    int opponentNbCards = countCards(targetAll, card->controller()->opponent());
+	    int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
+	    int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
+	    delete targetAll;
+	    if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
+	    return BAKA_EFFECT_BAD;
+	  }else{
+	    this->destroyAllInPlay(targetAll,1);
+	    delete targetAll;
+	  }
+
+	}else{
+	  if (dryMode) return BAKA_EFFECT_BAD;
+	  if (tc){
+	    game->addObserver(NEW ABurier(id, card,tc));
+	  }else{
+	    target->controller()->game->putInGraveyard(target);
+	  }
+	}
+      }
+      result++;
+      continue;
+    }
+
+    //Destroy
+    found = s.find("destroy");
+    if (found != string::npos){
+
+      found = s.find("all(");
+      if (found != string::npos){
+	int end = s.find(")");
+	string starget = s.substr(found + 4,end - found - 4);
+	TargetChooserFactory tcf;
+	TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+	if (dryMode){
+	  int myNbCards = countCards(targetAll,card->controller());
+	  int opponentNbCards = countCards(targetAll, card->controller()->opponent());
+	  int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
+	  int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
+	  delete targetAll;
+	  if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
+	  return BAKA_EFFECT_BAD;
+	}else{
+	  this->destroyAllInPlay(targetAll);
+	  delete targetAll;
+	}
+      }else{
+	if (dryMode) return BAKA_EFFECT_BAD;
+	if (tc){
+	  game->addObserver(NEW ADestroyer(id, card,tc));
+	}else{
+	  game->mLayers->stackLayer()->addPutInGraveyard(target);
+	}
+      }
+      result++;
+      continue;
+    }
 
     //Damage
     found = s.find("damage");
