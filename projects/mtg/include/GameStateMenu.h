@@ -3,6 +3,7 @@
 
 #include <JGui.h>
 #include <dirent.h>
+#include <math.h>
 
 #include "GameState.h"
 #include "MenuItem.h"
@@ -32,7 +33,9 @@ class GameStateMenu:	public GameState, public JGuiListener
   JQuad * mIcons[10];
   JTexture * mIconsTexture;
   JTexture * bgTexture;
+  JTexture * movingWTexture;
   JQuad * mBg;
+  JQuad * mMovingW;
   float mCreditsYPos;
   int currentState;
   JMusic * bgMusic;
@@ -45,6 +48,7 @@ class GameStateMenu:	public GameState, public JGuiListener
   char mCurrentSetFileName[512];
 
   int mReadConf;
+  float timeIndex;
 
 
  public:
@@ -54,6 +58,7 @@ class GameStateMenu:	public GameState, public JGuiListener
     subMenuController = NULL;
     mIconsTexture = NULL;
     bgMusic = NULL;
+    timeIndex = 0;
   }
 
   virtual ~GameStateMenu()
@@ -75,8 +80,11 @@ class GameStateMenu:	public GameState, public JGuiListener
 
     mIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/menuicons.png", TEX_TYPE_USE_VRAM);
     bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/menutitle.png", TEX_TYPE_USE_VRAM);
-    mBg = NEW JQuad(bgTexture, 10, 0, 220, 80);		// Create background quad for rendering.
-    mBg->SetHotSpot(105,32);
+    movingWTexture = JRenderer::GetInstance()->LoadTexture("graphics/movingW.png", TEX_TYPE_USE_VRAM);
+    mBg = NEW JQuad(bgTexture, 0, 0, 256, 167);		// Create background quad for rendering.
+    mMovingW = NEW JQuad(movingWTexture, 2, 2, 84, 62);
+    mBg->SetHotSpot(105,50);
+    mMovingW->SetHotSpot(72,16);
     //load all the icon images
     int n = 0;
     for (int i=0;i<5;i++)
@@ -97,11 +105,11 @@ class GameStateMenu:	public GameState, public JGuiListener
     //mGuiController->SetShadingBackground(10, 45, 80, 100, ARGB(255,0,0,0));
     if (mGuiController)
       {
-	mGuiController->Add(NEW MenuItem(1, mFont, "Play", 80, SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",GameApp::CommonRes->GetQuad("particles"),  true));
-	mGuiController->Add(NEW MenuItem(2, mFont, "Deck Editor", 160, SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"graphics/particle2.psi",GameApp::CommonRes->GetQuad("particles")));
-	mGuiController->Add(NEW MenuItem(3, mFont, "Shop", 240, SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"graphics/particle3.psi",GameApp::CommonRes->GetQuad("particles")));
-	mGuiController->Add(NEW MenuItem(4, mFont, "Options", 320, SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"graphics/particle4.psi",GameApp::CommonRes->GetQuad("particles")));
-	mGuiController->Add(NEW MenuItem(5, mFont, "Exit", 400, SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"graphics/particle5.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(1, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",GameApp::CommonRes->GetQuad("particles"),  true));
+	mGuiController->Add(NEW MenuItem(2, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"graphics/particle2.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(3, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"graphics/particle3.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(4, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"graphics/particle4.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(5, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"graphics/particle5.psi",GameApp::CommonRes->GetQuad("particles")));
       }
 
 
@@ -130,6 +138,7 @@ class GameStateMenu:	public GameState, public JGuiListener
     }
 
     if (mBg) delete mBg;
+    if (mMovingW) delete mMovingW;
 
     SAFE_DELETE (bgMusic);
   }
@@ -195,6 +204,7 @@ class GameStateMenu:	public GameState, public JGuiListener
       JSoundSystem::GetInstance()->SetVolume(mVolume/2);
     }
 
+    timeIndex += dt * 2;
     if (currentState == STATE_LOADING_CARDS){
       if (mReadConf){
 	mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
@@ -317,16 +327,17 @@ class GameStateMenu:	public GameState, public JGuiListener
 
       PIXEL_TYPE colors[] =
 	{
-	  ARGB(255,17,17,17),
-	  ARGB(255,17,17,17),
-	  ARGB(255,62,62,62),
-	  ARGB(255,62,62,62)
+	  ARGB(255, 3, 2, 0),
+	  ARGB(255, 8, 3, 0),
+	  ARGB(255,21,12, 0),
+	  ARGB(255,50,34, 0)
 	};
 
 
 
       renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);
-      renderer->RenderQuad(mBg, SCREEN_WIDTH/2  , 50);
+      renderer->RenderQuad(mBg, SCREEN_WIDTH/2, 50);
+      renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, 55, cos(timeIndex)/2.5 - M_PI/3 - 0.1);
       if (mGuiController!=NULL)
 	mGuiController->Render();
 
