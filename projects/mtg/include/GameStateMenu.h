@@ -23,6 +23,11 @@
 #define GAME_VERSION "WTH?! 0.2.2 - by WilLoW"
 #define ALPHA_WARNING 0
 
+#define DEFAULT_ANGLE_MULTIPLIER 0.4
+#define MAX_ANGLE_MULTIPLIER (3*M_PI)
+#define MIN_ANGLE_MULTIPLIER 0.4
+#define STEP_ANGLE_MULTIPLIER 0.0002
+
 class GameStateMenu:	public GameState, public JGuiListener
 
 {
@@ -49,6 +54,7 @@ class GameStateMenu:	public GameState, public JGuiListener
 
   int mReadConf;
   float timeIndex;
+  float angleMultiplier;
 
 
  public:
@@ -59,6 +65,7 @@ class GameStateMenu:	public GameState, public JGuiListener
     mIconsTexture = NULL;
     bgMusic = NULL;
     timeIndex = 0;
+    angleMultiplier = 0.4;
   }
 
   virtual ~GameStateMenu()
@@ -263,6 +270,10 @@ class GameStateMenu:	public GameState, public JGuiListener
       }
     }
     if (currentState == STATE_WARNING && !ALPHA_WARNING) currentState = STATE_MENU;
+    if (mEngine->GetButtonState(PSP_CTRL_SQUARE)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
+    else angleMultiplier *= 0.9999;
+    if (angleMultiplier > MAX_ANGLE_MULTIPLIER) angleMultiplier = MAX_ANGLE_MULTIPLIER;
+    else if (angleMultiplier < MIN_ANGLE_MULTIPLIER) angleMultiplier = MIN_ANGLE_MULTIPLIER;
   }
 
   void createUsersFirstDeck(int setId){
@@ -337,7 +348,7 @@ class GameStateMenu:	public GameState, public JGuiListener
 
       renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);
       renderer->RenderQuad(mBg, SCREEN_WIDTH/2, 50);
-      renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, 55, cos(timeIndex)/2.5 - M_PI/3 - 0.1);
+      renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, 55, cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1);
       if (mGuiController!=NULL)
 	mGuiController->Render();
 
