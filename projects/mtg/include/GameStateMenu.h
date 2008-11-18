@@ -55,7 +55,8 @@ class GameStateMenu:	public GameState, public JGuiListener
   int mReadConf;
   float timeIndex;
   float angleMultiplier;
-
+  float angleW;
+  float yW;
 
  public:
  GameStateMenu(GameApp* parent): GameState(parent)
@@ -65,7 +66,8 @@ class GameStateMenu:	public GameState, public JGuiListener
     mIconsTexture = NULL;
     bgMusic = NULL;
     timeIndex = 0;
-    angleMultiplier = 0.4;
+    angleMultiplier = MIN_ANGLE_MULTIPLIER;
+    yW = 55;
   }
 
   virtual ~GameStateMenu()
@@ -270,10 +272,26 @@ class GameStateMenu:	public GameState, public JGuiListener
       }
     }
     if (currentState == STATE_WARNING && !ALPHA_WARNING) currentState = STATE_MENU;
-    if (mEngine->GetButtonState(PSP_CTRL_SQUARE)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
-    else angleMultiplier *= 0.9999;
-    if (angleMultiplier > MAX_ANGLE_MULTIPLIER) angleMultiplier = MAX_ANGLE_MULTIPLIER;
-    else if (angleMultiplier < MIN_ANGLE_MULTIPLIER) angleMultiplier = MIN_ANGLE_MULTIPLIER;
+    if (yW <= 55)
+      {
+	if (mEngine->GetButtonState(PSP_CTRL_SQUARE)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
+	else angleMultiplier *= 0.9999;
+	if (angleMultiplier > MAX_ANGLE_MULTIPLIER) angleMultiplier = MAX_ANGLE_MULTIPLIER;
+	else if (angleMultiplier < MIN_ANGLE_MULTIPLIER) angleMultiplier = MIN_ANGLE_MULTIPLIER;
+
+	if (mEngine->GetButtonState(PSP_CTRL_TRIANGLE) && (dt != 0))
+	  {
+	    angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1 - angleW) / dt;
+	    yW = yW + 0.001 + (yW - 55) / 1000;
+	  }
+	else
+	  angleW = cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1;
+      }
+    else
+      {
+	angleW += angleMultiplier * dt;
+	yW = yW + 0.001 + (yW - 55) / 1000;
+      }
   }
 
   void createUsersFirstDeck(int setId){
@@ -348,7 +366,7 @@ class GameStateMenu:	public GameState, public JGuiListener
 
       renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);
       renderer->RenderQuad(mBg, SCREEN_WIDTH/2, 50);
-      renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, 55, cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1);
+      if (yW < 2*SCREEN_HEIGHT) renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, yW, angleW);
       if (mGuiController!=NULL)
 	mGuiController->Render();
 
