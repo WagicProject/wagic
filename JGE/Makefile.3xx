@@ -12,7 +12,7 @@ OBJS = src/JApp.o src/JGBKFont.o \
 	src/tinyxml/tinystr.o src/tinyxml/tinyxml.o \
 	src/tinyxml/tinyxmlparser.o src/tinyxml/tinyxmlerror.o \
 	src/main.o src/vram.o \
-	src/JAudio.o src/JCooleyesMP3.o \
+	src/JAudio.o src/JMP3.o \
 	src/decoder_prx.o \
 	src/Encoding.o src/JTTFont.o \
 	src/JMD2Model.o src/JOBJModel.o \
@@ -23,7 +23,7 @@ LIBDIR = lib/psp
 
 CFLAGS = -O2 -G0 -Wall -DDEVHOOK -DPSPFW3XX
 
-LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
+LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspmp3 -lpspgum -lpspgu -lpsprtc -lm -lstdc++
 
 include $(PSPSDK)/lib/build.mak
 

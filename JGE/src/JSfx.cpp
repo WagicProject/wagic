@@ -10,8 +10,9 @@
 
 #include "../include/JSoundSystem.h"
 #include "../include/JAudio.h"
-#include "../include/JCooleyesMP3.h"
-
+#include "../include/JMP3.h"
+#include <string>
+using std::string;
 
 JMusic::JMusic()
 {
@@ -24,6 +25,10 @@ JMusic::~JMusic()
 
 	if (mTrack)
 		delete mTrack;
+}
+
+void JMusic::Update(){
+  //if (mTrack) mTrack->update();
 }
 
 JSample::JSample()
@@ -93,29 +98,17 @@ void JSoundSystem::DestroySoundSystem()
 
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
-	//char s[strlen(fileName)+1];
-	//strcpy(s, fileName);
-
+  string s = "Res/";
+  s.append(fileName);
 	JMusic *music = new JMusic();
 	if (music)
 	{
-		music->mTrack = new JCooleyesMP3();
-		if (music->mTrack)
-			music->mTrack->Load(fileName);
+		music->mTrack = new JMP3(s);
 	}
-
+  JMP3::mInstance = music->mTrack;
 	return music;
 }
 
-// void JSoundSystem::FreeMusic(JMusic *music)
-// {
-// 	if (music)
-// 	{
-// 		if (music->mTrack)
-// 			delete music->mTrack;
-// 
-// 	}
-// }
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {
@@ -132,29 +125,7 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 	return sample;
 }
 
-// 
-// void JSoundSystem::FreeMusic(JMusic *music)
-// {
-// 	if (music)
-// 	{
-// 		if (music->mTrack)
-// 		{
-// 			music->mTrack->Release();
-// 			delete music->mTrack;
-// 		}
-// 		delete music;
-// 	}
-// }
 
-
-// void JSoundSystem::FreeSample(JSample *sample)
-// {
-// 	if (sample)
-// 	{
-// 		releaseWaveData(sample->mSample);
-// 		delete sample;
-// 	}
-// }
 
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
@@ -174,8 +145,8 @@ void JSoundSystem::PlaySample(JSample *sample)
 
 void JSoundSystem::SetVolume(int volume)
 {
-
-	mVolume = volume;
+  JMP3 * mp3 = JMP3::mInstance;
+	if (mp3) mp3->setVolume(volume);
 }
 
 
@@ -188,7 +159,7 @@ void JSoundSystem::StopMusic(JMusic *music)
 
 void JSoundSystem::ResumeMusic(JMusic *music)
 {
-	ResumeMP3();
+	ResumeMP3(music->mTrack);
 
 }
 

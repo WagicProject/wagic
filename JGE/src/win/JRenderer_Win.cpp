@@ -10,6 +10,8 @@
 
 #ifdef WIN32
 	#pragma warning(disable : 4786)
+extern int actualWidth;
+extern int actualHeight;
 #endif
 
 #include "../../Dependencies/include/png.h"
@@ -192,13 +194,16 @@ void JRenderer::DestroyRenderer()
 void JRenderer::BeginScene()
 {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear Screen And Depth Buffer
-	glLoadIdentity ();											// Reset The Modelview Matrix
-
+	glLoadIdentity ();// Reset The Modelview Matrix
+  float scaleH = (float)actualHeight/SCREEN_HEIGHT_F;
+  float scaleW = (float)actualWidth/SCREEN_WIDTH_F;
+  glScalef(scaleW,scaleW,1.f);
 }
 
 
 void JRenderer::EndScene()
 {
+
 	glFlush ();
 }
 

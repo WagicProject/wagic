@@ -181,6 +181,11 @@ void GameStateDuel::Update(float dt)
     }
 
   }else if (mGamePhase == DUEL_PLAY){
+    //Stop the music before starting the game
+    if (GameApp::music){
+      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+      SAFE_DELETE(GameApp::music);
+    }
     if (!game){
       GameObserver::Init(mPlayers, 2);
       game = GameObserver::GetInstance();
@@ -209,11 +214,13 @@ void GameStateDuel::Update(float dt)
 	}else{
 	  mGamePhase = DUEL_END;
 	}
-      }else if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU){
+      }else
+#endif        
+        if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU){
 	End();
 	Start();
       }
-#endif
+
       mFont->SetColor(ARGB(255,255,255,255));
     }
     if (mEngine->GetButtonClick(PSP_CTRL_START)){

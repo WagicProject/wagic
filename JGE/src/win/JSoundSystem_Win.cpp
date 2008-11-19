@@ -21,6 +21,9 @@ JMusic::JMusic()
 
 }
 
+void JMusic::Update(){
+}
+
 JMusic::~JMusic()
 {
 	JSoundSystem::GetInstance()->StopMusic(this);

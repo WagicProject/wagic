@@ -43,7 +43,7 @@ class GameStateMenu:	public GameState, public JGuiListener
   JQuad * mMovingW;
   float mCreditsYPos;
   int currentState;
-  JMusic * bgMusic;
+  //JMusic * bgMusic;
   int mVolume;
   char nbcardsStr[400];
 
@@ -64,10 +64,11 @@ class GameStateMenu:	public GameState, public JGuiListener
     mGuiController = NULL;
     subMenuController = NULL;
     mIconsTexture = NULL;
-    bgMusic = NULL;
+    //bgMusic = NULL;
     timeIndex = 0;
     angleMultiplier = MIN_ANGLE_MULTIPLIER;
     yW = 55;
+          mVolume = 0;
   }
 
   virtual ~GameStateMenu()
@@ -90,7 +91,7 @@ class GameStateMenu:	public GameState, public JGuiListener
     mIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/menuicons.png", TEX_TYPE_USE_VRAM);
     bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/menutitle.png", TEX_TYPE_USE_VRAM);
     movingWTexture = JRenderer::GetInstance()->LoadTexture("graphics/movingW.png", TEX_TYPE_USE_VRAM);
-    mBg = NEW JQuad(bgTexture, 0, 0, 256, 167);		// Create background quad for rendering.
+    mBg = NEW JQuad(bgTexture, 0, 0, 256, 166);		// Create background quad for rendering.
     mMovingW = NEW JQuad(movingWTexture, 2, 2, 84, 62);
     mBg->SetHotSpot(105,50);
     mMovingW->SetHotSpot(72,16);
@@ -149,7 +150,7 @@ class GameStateMenu:	public GameState, public JGuiListener
     if (mBg) delete mBg;
     if (mMovingW) delete mMovingW;
 
-    SAFE_DELETE (bgMusic);
+    //SAFE_DELETE (bgMusic);
   }
 
 
@@ -157,15 +158,17 @@ class GameStateMenu:	public GameState, public JGuiListener
     JRenderer::GetInstance()->ResetPrivateVRAM();
     JRenderer::GetInstance()->EnableVSync(true);
 
-    if (GameApp::HasMusic && !bgMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
-      bgMusic = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
+
+      if (GameApp::HasMusic && !GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
+      GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
+      JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
     }
 
-    if (bgMusic){
-      mVolume = 0;
-      JSoundSystem::GetInstance()->SetVolume(mVolume);
-      JSoundSystem::GetInstance()->PlayMusic(bgMusic, true);
-    }
+    if (GameApp::HasMusic && GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] == 0){
+      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+      SAFE_DELETE(GameApp::music);
+    } 
+
 
   }
 
@@ -198,19 +201,23 @@ class GameStateMenu:	public GameState, public JGuiListener
   {
     //mEngine->EnableVSync(false);
 
-    if (bgMusic)
-      {
-	JSoundSystem::GetInstance()->StopMusic(bgMusic);
-      }
+  //  if (bgMusic)
+  //    {
+	//JSoundSystem::GetInstance()->StopMusic(bgMusic);
+  //SAFE_DELETE(bgMusic);
+  //    }
     JRenderer::GetInstance()->EnableVSync(false);
   }
 
 
   virtual void Update(float dt)
   {
-    if (bgMusic && mVolume < 2*GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME]){
-      mVolume++;
-      JSoundSystem::GetInstance()->SetVolume(mVolume/2);
+
+    if (GameApp::music){ 
+      /*if (mVolume < 2*GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME]){
+        mVolume++;
+        JSoundSystem::GetInstance()->SetVolume(mVolume/2);
+      }*/
     }
 
     timeIndex += dt * 2;
@@ -282,7 +289,7 @@ class GameStateMenu:	public GameState, public JGuiListener
 	if (mEngine->GetButtonState(PSP_CTRL_TRIANGLE) && (dt != 0))
 	  {
 	    angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1 - angleW) / dt;
-	    yW = yW + 0.001 + (yW - 55) / 1000;
+	    yW = yW + 5*dt + (yW - 55) *5*  dt;
 	  }
 	else
 	  angleW = cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1;
@@ -290,7 +297,7 @@ class GameStateMenu:	public GameState, public JGuiListener
     else
       {
 	angleW += angleMultiplier * dt;
-	yW = yW + 0.001 + (yW - 55) / 1000;
+	yW = yW + 5*dt + (yW - 55) *5*dt;
       }
   }
 

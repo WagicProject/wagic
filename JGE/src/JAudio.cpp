@@ -16,7 +16,7 @@
 
 #include "../include/JGE.h"
 #include "../include/JAudio.h"
-#include "../include/JCooleyesMP3.h"
+#include "../include/JMP3.h"
 #include "../include/JFileSystem.h"
 #include "../include/decoder_prx.h"
 
@@ -29,7 +29,7 @@ short g_DecodedDataOutputBuffer[SAMPLE_PER_FRAME<<2] __attribute__((aligned(64))
 bool g_MP3DecoderOK = false;
 bool g_GotEDRAM; 
 
-JCooleyesMP3* g_CurrentMP3;
+JMP3* g_CurrentMP3;
 //////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ WAVDATA currentWav[NUMBER_WAV_CHANNELS];		// 各通道当前的播放
 
 
 ///////////////////////////////////////////////////////////////////
-char loadWaveData(WAVDATA* p_wav, char* fileName, char memLoad)  // WAVE加载, memLoad-是否加载至内存
+char loadWaveData(WAVDATA* p_wav, char* fileName, char memLoad)  // WAVE加载, memLoad-是否加载至内磥E
 {
 
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
@@ -172,7 +172,7 @@ void releaseWaveData(WAVDATA* p_wav)  // WAVE释放
 }
 
 ///////////////////////////////////////////////////////////////////
-void audioOutCallback(int channel, void* buf, unsigned int length)  // 各通道回调
+void audioOutCallback(int channel, void* buf, unsigned int length)  // 各通道回祦E
 {
 	WAVDATA* p_wav = NULL;
 	memset(buf, 0, 4096);
@@ -387,122 +387,67 @@ void audioInit()  // 初始化
 		memset(&currentWav[i], 0, sizeof(WAVDATA));
 		p_currentWav[i] = NULL;
 	}
-	pspAudioInit();
-	pspAudioSetChannelCallback(0, audioOutCallback_0, NULL);
-	pspAudioSetChannelCallback(1, audioOutCallback_1, NULL);
-	pspAudioSetChannelCallback(2, audioOutCallback_2, NULL);
-	//pspAudioSetChannelCallback(3, audioOutCallback_3, NULL);
-
-	pspAudioSetChannelCallback(3, MP3AudioOutCallback, NULL);
-	InitMP3Decoder();
+  JMP3::init();
 }
 
 void audioDestroy()
 {
-	ReleaseMP3Decoder();
-	pspAudioEnd();
-}
-
-
-//////////////////////////////////////////////////////////////////////////
-void MP3AudioOutCallback(void* buf, unsigned int length, void *userdata)
-{
-	
-	// PSP_NUM_AUDIO_SAMPLES is 1024, 16bit samples (short), 2 channels for stereo sound
-	memset(buf, 0, PSP_NUM_AUDIO_SAMPLES<<2);		
-	
-	if (g_CurrentMP3 != NULL)
-		g_CurrentMP3->FeedAudioData(buf, length);
 	
 }
 
 
+
+int mp3thread = 0;
+
 //////////////////////////////////////////////////////////////////////////
-void PlayMP3(JCooleyesMP3 *mp3, bool looping)
+void PlayMP3(JMP3 *mp3, bool looping)
 {
-	if (g_MP3DecoderOK)
-	{
-		g_CurrentMP3 = mp3;
-		mp3->InitBuffers(g_MP3CodecBuffer, g_DecoderBuffer, g_DecodedDataOutputBuffer);
-		mp3->Play(looping);
-	}
+  if (mp3thread) StopMP3();
+  JMP3::mInstance = mp3;
+  mp3->setLoop(looping);
+  mp3->play();
+  mp3thread = sceKernelCreateThread("decodeThread2", decodeThread2, 0x12, 0xFA0, 0, 0);
+  printf("thread id : %i\n", mp3thread);
+  sceKernelStartThread(mp3thread, 0, NULL);
 }
 
 
 //////////////////////////////////////////////////////////////////////////
 void StopMP3()
 {
-	if (g_CurrentMP3 != NULL)
-	{
-		g_CurrentMP3->Stop();
-	}
+  printf("stop 1\n");
+  JMP3 * mp3 = JMP3::mInstance;
+  printf("stop 2\n");
+  if (mp3){
+    printf("stop 3\n");
+    mp3->pause();
+    printf("stop 4\n");
+    sceKernelWaitThreadEnd(mp3thread, NULL);
+    printf("stop 5\n");
+    sceKernelDeleteThread(mp3thread); 
+    printf("stop 6\n");
+    mp3->unload();
+    printf("stop 7\n");
+    JMP3::mInstance = NULL;
+    mp3thread = 0;
+  }
+  printf("stop 8\n");
 }
 
 
 //////////////////////////////////////////////////////////////////////////
-void ResumeMP3()
+void ResumeMP3(JMP3 * mp3)
 {
-	if (g_CurrentMP3 != NULL)
-	{
-		g_CurrentMP3->Resume();
-	}
+	mp3->play();
 }
 
 
-//////////////////////////////////////////////////////////////////////////
-bool InitMP3Decoder()
-{
-	int result;
-	
-// 	if (sceKernelDevkitVersion() == 0x01050001)
-// 	{
-// 		LoadStartModule("flash0:/kd/me_for_vsh.prx", PSP_MEMORY_PARTITION_KERNEL);   
-// 		LoadStartModule("flash0:/kd/audiocodec.prx", PSP_MEMORY_PARTITION_KERNEL);
-// 	}
-// 	else
-// 	{
-// 		sceUtilityLoadAvModule(PSP_AV_MODULE_AVCODEC);
-// 	}
+int decodeThread2(SceSize args, void *argp){
+  JMP3 * mp3 = NULL;
+  while((mp3 = JMP3::mInstance) && !mp3->m_paused){
+    mp3->update();
 
-// 	result = pspSdkLoadStartModule("flash0:/kd/me_for_vsh.prx", PSP_MEMORY_PARTITION_KERNEL); 
-// 	result = pspSdkLoadStartModule("flash0:/kd/videocodec.prx", PSP_MEMORY_PARTITION_KERNEL); 
-// 	result = pspSdkLoadStartModule("flash0:/kd/audiocodec.prx", PSP_MEMORY_PARTITION_KERNEL); 
-// 	result = pspSdkLoadStartModule("flash0:/kd/mpegbase.prx", PSP_MEMORY_PARTITION_KERNEL); 
-// 	result = pspSdkLoadStartModule("flash0:/kd/mpeg_vsh.prx", PSP_MEMORY_PARTITION_USER); 
-// 	
-// 	pspSdkFixupImports(result); 
-	
-	prx_static_init();
-
-	sceMpegInit(); 
-	
-	memset(g_MP3CodecBuffer, 0, sizeof(g_MP3CodecBuffer)); 
-	
-	if ( sceAudiocodecCheckNeedMem(g_MP3CodecBuffer, 0x1002) < 0 ) 
-		return false;
-	
-	if ( sceAudiocodecGetEDRAM(g_MP3CodecBuffer, 0x1002) < 0 ) 
-		return false;
-	
-	g_GotEDRAM = true; 
-	
-	if ( sceAudiocodecInit(g_MP3CodecBuffer, 0x1002) < 0 ) 
-		return false;
-	
-	g_MP3DecoderOK = true;
-	
-	return true;
-	
-}
-
-
-
-//////////////////////////////////////////////////////////////////////////
-void ReleaseMP3Decoder()
-{
-	if ( g_GotEDRAM )  
-		sceAudiocodecReleaseEDRAM(g_MP3CodecBuffer); 
-	
-}
-
-
+   //sceKernelDelayThread(10000);
+  }
+  return 0;
+} 

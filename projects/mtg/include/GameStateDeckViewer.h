@@ -194,9 +194,13 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     welcome_menu->Add(10, "Cancel");
 
     if (GameApp::HasMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
-      if (!bgMusic) bgMusic = JSoundSystem::GetInstance()->LoadMusic("sound/Track1.mp3");
-      if (bgMusic){
-	JSoundSystem::GetInstance()->PlayMusic(bgMusic, true);
+      if (GameApp::music){
+         JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+          SAFE_DELETE(GameApp::music);
+      }
+      GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/track1.mp3");
+      if (GameApp::music){
+	JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
       }
     }
     colorFilter = ALL_COLORS;
@@ -219,7 +223,10 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   virtual void End()
   {
     //mEngine->EnableVSync(false);
-    if (bgMusic) JSoundSystem::GetInstance()->StopMusic(bgMusic);
+    if (GameApp::music){
+      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+      SAFE_DELETE(GameApp::music);
+    }
     SAFE_DELETE(backTex);
     SAFE_DELETE(backQuad);
     SAFE_DELETE(welcome_menu);

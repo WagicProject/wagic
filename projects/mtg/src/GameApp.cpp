@@ -21,6 +21,7 @@ const char * const GameState::menuTexts[]= {"--NEW--","Deck 1", "Deck 2", "Deck 
 JResourceManager* GameApp::CommonRes = NEW JResourceManager();
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 int GameApp::HasMusic = 1;
+JMusic * GameApp::music = NULL;
 
 GameState::GameState(GameApp* parent): mParent(parent)
 {
@@ -73,6 +74,7 @@ void GameApp::Create()
   }else{
     HasMusic = 0;
   }
+
 
 
   CommonRes->CreateTexture("graphics/menuicons.png");

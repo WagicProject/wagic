@@ -36,7 +36,7 @@
 	#include <psprtc.h>
 
 	#include "JAudio.h"
-	#include "JCooleyesMP3.h"
+	#include "JMP3.h"
 
 #endif
 
@@ -47,11 +47,12 @@ class JMusic
 public:
 	JMusic();
 	~JMusic();
+  void Update();
 
 #if defined (WIN32) || defined (LINUX)
 	FSOUND_SAMPLE *mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
 #else
-	JCooleyesMP3* mTrack;
+	JMP3* mTrack;
 #endif
 
 };

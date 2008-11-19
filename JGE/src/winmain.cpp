@@ -10,7 +10,8 @@
  *		Visit My Site At nehe.gamedev.net
  */
 
-
+int actualWidth;
+int actualHeight;
 
 #include <windows.h>		// Header File For Windows
 #include <gl\gl.h>			// Header File For The OpenGL32 Library
@@ -41,6 +42,7 @@ HINSTANCE	hInstance;		// Holds The Instance Of The Application
 
 bool	active=TRUE;			// Window Active Flag Set To TRUE By Default
 bool	fullscreen=FALSE;		// Windowed Mode By Default
+
 
 DWORD	lastTickCount;
 
@@ -142,17 +144,20 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize Th
 		height=1;										// Making Height Equal One
 	}
 
-	glViewport(0,0,width,height);						// Reset The Current Viewport
+actualWidth = width;
+actualHeight = height;
 
-	glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
-	glLoadIdentity();									// Reset The Projection Matrix
+glScissor(0, 0, width, height);
+	glViewport (0, 0, width, height);	// Reset The Current Viewport
+	glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
+	glLoadIdentity ();													// Reset The Projection Matrix
+	
+	gluOrtho2D(0.0f, (float) width-1.0f, 0.0f, (float) height -1.0f);
 
-	// Calculate The Aspect Ratio Of The Window
-	gluPerspective(75.0f,(GLfloat)width/(GLfloat)height,0.5f,1000.0f);
+	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
+	glLoadIdentity ();													// Reset The Modelview Matrix
 
-	glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
-	glLoadIdentity();									// Reset The Modelview Matrix
-
+	glDisable (GL_DEPTH_TEST);
 }
 
 int InitGL(GLvoid)												// All Setup For OpenGL Goes Here
@@ -303,6 +308,11 @@ GLvoid KillGLWindow(GLvoid)								// Properly Kill The Window
  
 BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscreenflag)
 {
+
+actualWidth = width;
+actualHeight = height;
+
+
 	GLuint		PixelFormat;			// Holds The Results After Searching For A Match
 	WNDCLASS	wc;						// Windows Class Structure
 	DWORD		dwExStyle;				// Window Extended Style
@@ -373,6 +383,8 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscree
 		dwStyle= WS_OVERLAPPED     | \
                  WS_CAPTION        | \
 				 WS_MINIMIZEBOX	   |
+          WS_SIZEBOX	   |
+          WS_MAXIMIZEBOX	   |
 				 //WS_MINIMIZE		|
                  WS_SYSMENU;//        | \
                  //WS_THICKFRAME ;
@@ -565,6 +577,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 
 		case WM_SIZE:								// Resize The OpenGL Window
 		{
+
 			ReSizeGLScene(LOWORD(lParam),HIWORD(lParam));  // LoWord=Width, HiWord=Height
 			return 0;								// Jump Back
 		}

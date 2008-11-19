@@ -6,6 +6,8 @@
 #endif
 
 #ifdef _DEBUG
+//if you get the following error :'_NORMAL_BLOCK' : undeclared identifier,
+// try to add #include "crtdbg.h" somewhere in your code before including this file
 #define NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #else
 #define NEW new

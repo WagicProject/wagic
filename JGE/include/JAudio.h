@@ -73,15 +73,15 @@ void setChannelFlag(int channel, int flag);
 #define SAMPLE_PER_FRAME			1152
 #define MAX_MP3_FILE				2
 
-class JCooleyesMP3;
+class JMP3;
 
-void PlayMP3(JCooleyesMP3 *mp3, bool looping = false);
+void PlayMP3(JMP3 *mp3, bool looping = false);
 void StopMP3();
-void ResumeMP3();
-bool InitMP3Decoder();
+void ResumeMP3(JMP3 *mp3);
+
 void ReleaseMP3Decoder();
 void MP3AudioOutCallback(void* buf, unsigned int length, void *userdata);
-
+int decodeThread2(SceSize args, void *argp);
 extern bool g_MP3DecoderOK;
 
 #endif
