@@ -265,7 +265,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   virtual void Update(float dt)
   {
-
     hudAlpha = 255-(last_user_activity * 500);
     if (hudAlpha < 0) hudAlpha = 0;
     if (sellMenu){
@@ -356,11 +355,11 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }else if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT) {
       //mAlpha = 128;
       if (mStage == STAGE_TRANSITION_RIGHT){
-	mRotation -= 0.05f;
+	mRotation -= dt * 10;
       }else if(mStage == STAGE_TRANSITION_LEFT){
-	mRotation += 0.05f;
+	mRotation += dt * 10;
       }
-      if (fabs(mRotation) > 1.0f){
+      while (fabs(mRotation) > 1.0f){
 	rotateCards(mStage);
 	mRotation = 0;
 	mStage = STAGE_WAITING;
