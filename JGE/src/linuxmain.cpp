@@ -360,7 +360,7 @@ void initGlut(int* argc, char* argv[])
 
 void specialKey(int key, int x __attribute__((unused)), int y __attribute((unused)))
 {
-  for (signed int i = sizeof(gGlutKeyCodes)/sizeof(gGlutKeyCodes[0]); i > 0; --i)
+  for (signed int i = sizeof(gGlutKeyCodes)/sizeof(gGlutKeyCodes[0]) - 1; i > 0; --i)
     if (gGlutKeyCodes[i] == key)
       {
 	if (false == gThisFrame[i])
@@ -375,14 +375,10 @@ void specialKey(int key, int x __attribute__((unused)), int y __attribute((unuse
 }
 void specialUp(int key, int x __attribute__((unused)), int y __attribute((unused)))
 {
-  for (signed int i = sizeof(gGlutKeyCodes)/sizeof(gGlutKeyCodes[0]); i > 0; --i)
+  for (signed int i = sizeof(gGlutKeyCodes)/sizeof(gGlutKeyCodes[0]) - 1; i > 0; --i)
     if (gGlutKeyCodes[i] == key)
       {
-	if (false == gThisFrame[i])
-	  {
-	    gThisFrame[i] = true;
-	    gButtons &= ~gPSPKeyMasks[i];
-	  }
+	gButtons &= ~gPSPKeyMasks[i];
 	return;
       }
 }
@@ -408,7 +404,17 @@ void normalKey(unsigned char key, int x __attribute__((unused)), int y __attribu
 	}
     }
   for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i > 0; --i)
-    if (gNonGlutKeyCodes[i] == key) { gButtons |= gPSPKeyMasks[i]; gKeyPresses |= gPSPKeyMasks[i]; gKeyBuffer.push(make_pair(gPSPKeyMasks[i],key)); return; }
+    if (gNonGlutKeyCodes[i] == key)
+      {
+	if (false == gThisFrame[i])
+	  {
+ 	    gThisFrame[i] = true;
+	    gButtons |= gPSPKeyMasks[i];
+	    gKeyPresses |= gPSPKeyMasks[i];
+	    gKeyBuffer.push(make_pair(gPSPKeyMasks[i],key));
+	  }
+	return;
+      }
 }
 void normalUp(unsigned char key, int x __attribute__((unused)), int y __attribute((unused)))
 {
