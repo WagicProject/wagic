@@ -217,6 +217,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
     onScreenTransition = 0;
 
+    mEngine->ResetInput();
   }
 
 
@@ -272,97 +273,85 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       return;
     }
     if (mStage == STAGE_WAITING || mStage == STAGE_ONSCREEN_MENU){
-      if (mEngine->GetButtonState(PSP_CTRL_LEFT)){
-	last_user_activity = 0;
-	currentCard = displayed_deck->getNext(currentCard,colorFilter);
-	mStage = STAGE_TRANSITION_LEFT;
-      }
-
-      else if (mEngine->GetButtonState(PSP_CTRL_RIGHT))
+      switch (mEngine->ReadButton())
 	{
+	case PSP_CTRL_LEFT :
+	  last_user_activity = 0;
+	  currentCard = displayed_deck->getNext(currentCard,colorFilter);
+	  mStage = STAGE_TRANSITION_LEFT;
+	  break;
+	case PSP_CTRL_RIGHT :
 	  last_user_activity = 0;
 	  currentCard = displayed_deck->getPrevious(currentCard,colorFilter);
 	  mStage = STAGE_TRANSITION_RIGHT;
-	}
-      else if (mEngine->GetButtonClick(PSP_CTRL_UP))
-	{
+	  break;
+	case PSP_CTRL_UP :
 	  last_user_activity = 0;
 	  mStage = STAGE_TRANSITION_UP;
 	  colorFilter --;
 	  if (colorFilter < -1) colorFilter = MTG_COLOR_LAND;
-	}
-
-      else if (mEngine->GetButtonClick(PSP_CTRL_DOWN))
-	{
+	  break;
+	case PSP_CTRL_DOWN :
 	  last_user_activity = 0;
 	  mStage = STAGE_TRANSITION_DOWN;
 	  colorFilter ++;
 	  if (colorFilter >  MTG_COLOR_LAND) colorFilter =-1;
-
-	}
-      else if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE) && last_user_activity > 0.2)
-
-	{
-	  last_user_activity = 0;
-	  switchDisplay();
-
-	}
-      else if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE))
-	{
+	  break;
+	case PSP_CTRL_TRIANGLE :
+	  if (last_user_activity > 0.2)
+	    {
+	      last_user_activity = 0;
+	      switchDisplay();
+	    }
+	  break;
+	case PSP_CTRL_CIRCLE :
 	  last_user_activity = 0;
 	  addRemove(cardIndex[2]);
-
-	}
-      else if (mEngine->GetButtonClick(PSP_CTRL_CROSS))
-	{
+	  break;
+	case PSP_CTRL_CROSS :
 	  last_user_activity = 0;
 	  SAFE_DELETE(sellMenu);
 	  char buffer[4096];
-	  MTGCard * card  = cardIndex[2];
-	  if (card){
-	    int rnd = (rand() % 20);
-	    price = pricelist->getPrice(card->getMTGId()) / 2;
-	    price = price - price * (rnd -10)/100;
-	    sprintf(buffer,"%s : %i credits",card->getName(),price);
-	    sellMenu = NEW SimpleMenu(2,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,270,buffer);
-	    sellMenu->Add(20,"Yes");
-	    sellMenu->Add(21,"No");
+	  {
+	    MTGCard * card  = cardIndex[2];
+	    if (card){
+	      int rnd = (rand() % 20);
+	      price = pricelist->getPrice(card->getMTGId()) / 2;
+	      price = price - price * (rnd -10)/100;
+	      sprintf(buffer,"%s : %i credits",card->getName(),price);
+	      sellMenu = NEW SimpleMenu(2,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,270,buffer);
+	      sellMenu->Add(20,"Yes");
+	      sellMenu->Add(21,"No");
+	    }
 	  }
-
-	}
-      else if (mEngine->GetButtonClick(PSP_CTRL_SQUARE))
-	{
+	  break;
+	case PSP_CTRL_SQUARE :
 	  if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY){
 	    last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
 	  }else{
 	    last_user_activity = 0;
 	    mStage = STAGE_WAITING;
 	  }
-
-	}
-      else if (mEngine->GetButtonClick(PSP_CTRL_START))
-	{
+	  break;
+	case PSP_CTRL_START :
 	  mStage = STAGE_MENU;
-
-	}
-      else{
-
-	if (last_user_activity > NO_USER_ACTIVITY_HELP_DELAY){
-	  if  (mStage != STAGE_ONSCREEN_MENU){
-	    mStage = STAGE_ONSCREEN_MENU;
-	    onScreenTransition = 1;
-	  }else{
-	    if (onScreenTransition >0){
-	      onScreenTransition-= 0.05f;
+	  break;
+	default :  // no keypress
+	  if (last_user_activity > NO_USER_ACTIVITY_HELP_DELAY){
+	    if  (mStage != STAGE_ONSCREEN_MENU){
+	      mStage = STAGE_ONSCREEN_MENU;
+	      onScreenTransition = 1;
 	    }else{
-	      onScreenTransition = 0;
+	      if (onScreenTransition >0){
+		onScreenTransition-= 0.05f;
+	      }else{
+		onScreenTransition = 0;
+	      }
 	    }
+	  }else{
+	    last_user_activity+= dt;
 	  }
-	}else{
-	  last_user_activity+= dt;
 	}
-
-      }
 
     }else if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT) {
       //mAlpha = 128;
