@@ -17,6 +17,7 @@ int actualHeight;
 #include <gl\gl.h>			// Header File For The OpenGL32 Library
 #include <gl\glu.h>			// Header File For The GLu32 Library
 #include <gl\glaux.h>		// Header File For The Glaux Library
+#include <queue>
 
 #include "..\..\JGE\include\JGE.h"
 #include "..\..\JGE\include\JTypes.h"
@@ -60,7 +61,7 @@ JGameLauncher* g_launcher = NULL;
 
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
-
+static queue< pair<u32, u32> > gKeyBuffer;
 
 static u32 gPSPKeyMasks[17] =
   {
