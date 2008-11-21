@@ -25,24 +25,24 @@
 
 int JGE::GetTime(void)
 {
-	return (int)GetTickCount();
+  return (int)GetTickCount();
 }
 
 u8 JGE::GetAnalogX()
 {
-	if (JGEGetKeyState(VK_LEFT)) return 0;
-	if (JGEGetKeyState(VK_RIGHT)) return 0xff;
+  if (JGEGetKeyState(VK_LEFT)) return 0;
+  if (JGEGetKeyState(VK_RIGHT)) return 0xff;
 
-	return 0x80;
+  return 0x80;
 }
 
 
 u8 JGE::GetAnalogY()
 {
-	if (JGEGetKeyState(VK_UP)) return 0;
-	if (JGEGetKeyState(VK_DOWN)) return 0xff;
+  if (JGEGetKeyState(VK_UP)) return 0;
+  if (JGEGetKeyState(VK_DOWN)) return 0xff;
 
-	return 0x80;
+  return 0x80;
 }
 
 #elif defined (LINUX)    // Unix specific code
@@ -51,27 +51,27 @@ u8 JGE::GetAnalogY()
 
 int JGE::GetTime(void)
 {
-	return (int)time(NULL);
+  return (int)time(NULL);
 }
 
 u8 JGE::GetAnalogX()
 {
   /* FIXME
-	if (JGEGetKeyState(VK_LEFT)) return 0;
-	if (JGEGetKeyState(VK_RIGHT)) return 0xff;
+     if (JGEGetKeyState(VK_LEFT)) return 0;
+     if (JGEGetKeyState(VK_RIGHT)) return 0xff;
   */
-	return 0x80;
+  return 0x80;
 }
 
 
 u8 JGE::GetAnalogY()
 {
   /* FIXME
-	if (JGEGetKeyState(VK_UP)) return 0;
-	if (JGEGetKeyState(VK_DOWN)) return 0xff;
+     if (JGEGetKeyState(VK_UP)) return 0;
+     if (JGEGetKeyState(VK_DOWN)) return 0xff;
   */
 
-	return 0x80;
+  return 0x80;
 }
 
 #endif
@@ -82,58 +82,58 @@ u8 JGE::GetAnalogY()
 
 JGE::JGE()
 {
-	mApp = NULL;
+  mApp = NULL;
 
-	strcpy(mDebuggingMsg, "");
-	mCurrentMusic = NULL;
-	Init();
+  strcpy(mDebuggingMsg, "");
+  mCurrentMusic = NULL;
+  Init();
 
-//	mResourceManager = new JResourceManager();
-//	mFileSystem = new JFileSystem();
+  //	mResourceManager = new JResourceManager();
+  //	mFileSystem = new JFileSystem();
 
-//	mParticleSystem = NULL;//new JParticleSystem(500);
-//	mMotionSystem = NULL;//new JMotionSystem();
+  //	mParticleSystem = NULL;//new JParticleSystem(500);
+  //	mMotionSystem = NULL;//new JMotionSystem();
 
 }
 
 
 JGE::~JGE()
 {
-	JRenderer::Destroy();
-	JFileSystem::Destroy();
-	JSoundSystem::Destroy();
-	//JParticleSystem::Destroy();
+  JRenderer::Destroy();
+  JFileSystem::Destroy();
+  JSoundSystem::Destroy();
+  //JParticleSystem::Destroy();
 
-	//DestroyGfx();
-	//DestroySfx();
+  //DestroyGfx();
+  //DestroySfx();
 
-//	if (mResourceManager != NULL)
-//		delete mResourceManager;
-//
-// 	if (mFileSystem != NULL)
-// 		delete mFileSystem;
-//
-// 	if (mParticleSystem != NULL)
-// 		delete mParticleSystem;
-//
-// 	if (mMotionSystem != NULL)
-// 		delete mMotionSystem;
+  //	if (mResourceManager != NULL)
+  //		delete mResourceManager;
+  //
+  // 	if (mFileSystem != NULL)
+  // 		delete mFileSystem;
+  //
+  // 	if (mParticleSystem != NULL)
+  // 		delete mParticleSystem;
+  //
+  // 	if (mMotionSystem != NULL)
+  // 		delete mMotionSystem;
 }
 
 
 
 void JGE::Init()
 {
-	mDone = false;
-	mPaused = false;
-	mCriticalAssert = false;
+  mDone = false;
+  mPaused = false;
+  mCriticalAssert = false;
 
-	JRenderer::GetInstance();
-	JFileSystem::GetInstance();
-	JSoundSystem::GetInstance();
-	//JParticleSystem::GetInstance();
+  JRenderer::GetInstance();
+  JFileSystem::GetInstance();
+  JSoundSystem::GetInstance();
+  //JParticleSystem::GetInstance();
 
-	//InitSfx();
+  //InitSfx();
 }
 
 void JGE::Run()
@@ -143,34 +143,34 @@ void JGE::Run()
 
 void JGE::SetDelta(int delta)
 {
-	mDeltaTime = (float)delta / 1000.0f;		// change to second
+  mDeltaTime = (float)delta / 1000.0f;		// change to second
 }
 
 float JGE::GetDelta()
 {
-	return mDeltaTime;
-	//return hge->Timer_GetDelta()*1000;
+  return mDeltaTime;
+  //return hge->Timer_GetDelta()*1000;
 }
 
 
 float JGE::GetFPS()
 {
-	//return (float)hge->Timer_GetFPS();
-	return 0.0f;
+  //return (float)hge->Timer_GetFPS();
+  return 0.0f;
 }
 
 
 bool JGE::GetButtonState(u32 button)
 {
-	//return (gButtons&button)==button;
-	return JGEGetButtonState(button);
+  //return (gButtons&button)==button;
+  return JGEGetButtonState(button);
 }
 
 
 bool JGE::GetButtonClick(u32 button)
 {
-	//return (gButtons&button)==button && (gOldButtons&button)!=button;
-	return JGEGetButtonClick(button);
+  //return (gButtons&button)==button && (gOldButtons&button)!=button;
+  return JGEGetButtonClick(button);
 }
 
 u32 JGE::ReadButton()
@@ -195,38 +195,38 @@ void JGE::ResetInput()
 
 JGE::JGE()
 {
-	mApp = NULL;
+  mApp = NULL;
 
-	Init();
+  Init();
 
-//	mResourceManager = new JResourceManager();
-//	mFileSystem = new JFileSystem();
-//
-//	mParticleSystem = new JParticleSystem(500);
-//	mMotionSystem = new JMotionSystem();
+  //	mResourceManager = new JResourceManager();
+  //	mFileSystem = new JFileSystem();
+  //
+  //	mParticleSystem = new JParticleSystem(500);
+  //	mMotionSystem = new JMotionSystem();
 
 }
 
 JGE::~JGE()
 {
-	JRenderer::Destroy();
-	JSoundSystem::Destroy();
-	JFileSystem::Destroy();
+  JRenderer::Destroy();
+  JSoundSystem::Destroy();
+  JFileSystem::Destroy();
 
-	//DestroyGfx();
-	//DestroySfx();
+  //DestroyGfx();
+  //DestroySfx();
 
-//	delete mResourceManager;
-//	delete mFileSystem;
-//	delete mParticleSystem;
-//	delete mMotionSystem;
+  //	delete mResourceManager;
+  //	delete mFileSystem;
+  //	delete mParticleSystem;
+  //	delete mMotionSystem;
 
-// 	if (mApp != NULL)
-// 	{
-// 		mApp->Destroy();
-// 		delete mApp;
-// 		mApp = NULL;
-// 	}
+  // 	if (mApp != NULL)
+  // 	{
+  // 		mApp->Destroy();
+  // 		delete mApp;
+  // 		mApp = NULL;
+  // 	}
 }
 
 
@@ -234,43 +234,43 @@ void JGE::Init()
 {
 
 #ifdef DEBUG_PRINT
-	mDebug = true;
+  mDebug = true;
 #else
-	mDebug = false;
+  mDebug = false;
 #endif
 
-	if (mDebug)
-		pspDebugScreenInit();	// do this so that we can use pspDebugScreenPrintf
+  if (mDebug)
+    pspDebugScreenInit();	// do this so that we can use pspDebugScreenPrintf
 
-	strcpy(mDebuggingMsg, "");
+  strcpy(mDebuggingMsg, "");
 
-	sceCtrlSetSamplingCycle(0);
-	sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
+  sceCtrlSetSamplingCycle(0);
+  sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
 
-	JRenderer::GetInstance();
-	JFileSystem::GetInstance();
-	JSoundSystem::GetInstance();
+  JRenderer::GetInstance();
+  JFileSystem::GetInstance();
+  JSoundSystem::GetInstance();
 
-	mDone = false;
-	mPaused = false;
-	mCriticalAssert = false;
+  mDone = false;
+  mPaused = false;
+  mCriticalAssert = false;
 
-	//InitSfx();
+  //InitSfx();
 
-	//Create();
+  //Create();
 
-//	mCurrMS = 1.0f;
-//	mFPSSlice = 0;
+  //	mCurrMS = 1.0f;
+  //	mFPSSlice = 0;
 
-	//struct timeval tp;
-	//gettimeofday(&tp, NULL);
-	//mTimeBase = tp.tv_sec;
+  //struct timeval tp;
+  //gettimeofday(&tp, NULL);
+  //mTimeBase = tp.tv_sec;
 
-	//mLastTime = GetTime();
+  //mLastTime = GetTime();
 
 
-	mTickFrequency = sceRtcGetTickResolution();
-	sceRtcGetCurrentTick(&mLastTime);
+  mTickFrequency = sceRtcGetTickResolution();
+  sceRtcGetCurrentTick(&mLastTime);
 }
 
 
@@ -278,35 +278,35 @@ void JGE::Init()
 int JGE::GetTime(void)
 {
 
-	u64 curr;
-	sceRtcGetCurrentTick(&curr);
+  u64 curr;
+  sceRtcGetCurrentTick(&curr);
 
-	return (int)(curr / mTickFrequency);
+  return (int)(curr / mTickFrequency);
 }
 
 
 float JGE::GetDelta()
 {
-	return mDelta;
+  return mDelta;
 }
 
 
 float JGE::GetFPS()
 {
-	return 1.0f / mDelta;
+  return 1.0f / mDelta;
 }
 
 
 bool JGE::GetButtonState(u32 button)
 {
-	return (mCtrlPad.Buttons&button)==button;
+  return (mCtrlPad.Buttons&button)==button;
 
 }
 
 
 bool JGE::GetButtonClick(u32 button)
 {
-	return (mCtrlPad.Buttons&button)==button && (mOldButtons&button)!=button;
+  return (mCtrlPad.Buttons&button)==button && (mOldButtons&button)!=button;
 }
 
 u32 JGE::ReadButton()
@@ -320,54 +320,54 @@ void JGE::ResetInput()
 
 u8 JGE::GetAnalogX()
 {
-	return mCtrlPad.Lx;
+  return mCtrlPad.Lx;
 }
 
 
 u8 JGE::GetAnalogY()
 {
-	return mCtrlPad.Ly;
+  return mCtrlPad.Ly;
 }
 
 
 void JGE::Run()
 {
 
-	u64 curr;
+  u64 curr;
 
-	while (!mDone)
+  while (!mDone)
+    {
+      if (!mPaused)
 	{
-		if (!mPaused)
+	  sceRtcGetCurrentTick(&curr);
+
+
+	  mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
+	  mLastTime = curr;
+
+	  sceCtrlPeekBufferPositive(&mCtrlPad, 1);	// using sceCtrlPeekBufferPositive is faster than sceCtrlReadBufferPositive
+	  // because sceCtrlReadBufferPositive waits for vsync internally
+
+	  Update();
+
+	  Render();
+
+	  if (mDebug)
+	    {
+	      if (strlen(mDebuggingMsg)>0)
 		{
-			sceRtcGetCurrentTick(&curr);
-
-
-			mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
-			mLastTime = curr;
-
-			sceCtrlPeekBufferPositive(&mCtrlPad, 1);	// using sceCtrlPeekBufferPositive is faster than sceCtrlReadBufferPositive
-														// because sceCtrlReadBufferPositive waits for vsync internally
-
-			Update();
-
-			Render();
-
-			if (mDebug)
-			{
-				if (strlen(mDebuggingMsg)>0)
-				{
-					pspDebugScreenSetXY(0, 0);
-					pspDebugScreenPrintf(mDebuggingMsg);
-				}
-			}
-
-			mOldButtons = mCtrlPad.Buttons;
-
-
-
+		  pspDebugScreenSetXY(0, 0);
+		  pspDebugScreenPrintf(mDebuggingMsg);
 		}
+	    }
+
+	  mOldButtons = mCtrlPad.Buttons;
+
+
 
 	}
+
+    }
 
 }
 
@@ -380,100 +380,100 @@ JGE* JGE::mInstance = NULL;
 
 JGE* JGE::GetInstance()
 {
-	if (mInstance == NULL)
-	{
-		mInstance = new JGE();
-	}
+  if (mInstance == NULL)
+    {
+      mInstance = new JGE();
+    }
 
-	//gCount++;
-	return mInstance;
+  //gCount++;
+  return mInstance;
 }
 
 
 void JGE::Destroy()
 {
-	//gCount--;
-	if (mInstance)
-	{
-		delete mInstance;
-		mInstance = NULL;
-	}
+  //gCount--;
+  if (mInstance)
+    {
+      delete mInstance;
+      mInstance = NULL;
+    }
 }
 
 
 void JGE::SetApp(JApp *app)
 {
-	mApp = app;
+  mApp = app;
 }
 
 
 void JGE::Update()
 {
-	if (mApp != NULL)
-		mApp->Update();
+  if (mApp != NULL)
+    mApp->Update();
 }
 
 void JGE::Render()
 {
-	JRenderer* renderer = JRenderer::GetInstance();
+  JRenderer* renderer = JRenderer::GetInstance();
 
-	renderer->BeginScene();
+  renderer->BeginScene();
 
-	if (mApp != NULL)
-		mApp->Render();
+  if (mApp != NULL)
+    mApp->Render();
 
-	renderer->EndScene();
+  renderer->EndScene();
 }
 
 
 void JGE::End()
 {
-	mDone = true;
+  mDone = true;
 }
 
 
 
 void JGE::printf(const char *format, ...)
 {
-	va_list list;
+  va_list list;
 
-	va_start(list, format);
-	vsprintf(mDebuggingMsg, format, list);
-	va_end(list);
+  va_start(list, format);
+  vsprintf(mDebuggingMsg, format, list);
+  va_end(list);
 
-//	FILE *f = fopen("jge.log", "a+");
-//	fprintf(f, "%s\n", mDebuggingMsg);
-//	fclose(f);
+  //	FILE *f = fopen("jge.log", "a+");
+  //	fprintf(f, "%s\n", mDebuggingMsg);
+  //	fclose(f);
 
 }
 
 
 void JGE::Pause()
 {
-	if (mPaused) return;
+  if (mPaused) return;
 
-	mPaused = true;
-	if (mApp != NULL)
-		mApp->Pause();
+  mPaused = true;
+  if (mApp != NULL)
+    mApp->Pause();
 }
 
 
 void JGE::Resume()
 {
-	if (mPaused)
-	{
-		mPaused = false;
-		if (mApp != NULL)
-			mApp->Resume();
-	}
+  if (mPaused)
+    {
+      mPaused = false;
+      if (mApp != NULL)
+	mApp->Resume();
+    }
 }
 
 
 void JGE::Assert(const char *filename, long lineNumber)
 {
-	mAssertFile = filename;
-	mAssertLine = lineNumber;
-	mCriticalAssert = true;
+  mAssertFile = filename;
+  mAssertLine = lineNumber;
+  mCriticalAssert = true;
 
 
 }

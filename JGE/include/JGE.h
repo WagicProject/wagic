@@ -25,31 +25,35 @@
 
 #ifdef WIN32
 
-	#include <windows.h>
+#include <windows.h>
 
-	void JGEControl();
-	BOOL JGEGetKeyState(int key);
-	bool JGEGetButtonState(u32 button);
-	bool JGEGetButtonClick(u32 button);
+void JGEControl();
+BOOL JGEGetKeyState(int key);
+bool JGEGetButtonState(u32 button);
+bool JGEGetButtonClick(u32 button);
+u32  JGEReadKey();
+void JGEResetInput();
 
 #elif LINUX
 
-	void JGEControl();
-	BOOL JGEGetKeyState(int key);
-	bool JGEGetButtonState(uint32_t button);
-	bool JGEGetButtonClick(uint32_t button);
+void JGEControl();
+BOOL JGEGetKeyState(int key);
+bool JGEGetButtonState(u32 button);
+bool JGEGetButtonClick(u32 button);
+u32  JGEReadKey();
+void JGEResetInput();
 
 #else
 
-	#include <pspgu.h>
-	#include <pspkernel.h>
-	#include <pspdisplay.h>
-	#include <pspdebug.h>
-	#include <pspctrl.h>
-	#include <time.h>
-	#include <string.h>
-	#include <pspaudiolib.h>
-	#include <psprtc.h>
+#include <pspgu.h>
+#include <pspkernel.h>
+#include <pspdisplay.h>
+#include <pspdebug.h>
+#include <pspctrl.h>
+#include <time.h>
+#include <string.h>
+#include <pspaudiolib.h>
+#include <psprtc.h>
 
 #endif
 
@@ -71,155 +75,171 @@ class JMusic;
 //////////////////////////////////////////////////////////////////////////
 class JGE
 {
-private:
-	JApp *mApp;
-//	JResourceManager *mResourceManager;
-//	JFileSystem* mFileSystem;
+ private:
+  JApp *mApp;
+  //	JResourceManager *mResourceManager;
+  //	JFileSystem* mFileSystem;
 
-//	JParticleSystem* mParticleSystem;
-//	JMotionSystem* mMotionSystem;
+  //	JParticleSystem* mParticleSystem;
+  //	JMotionSystem* mMotionSystem;
 
 
 #if defined (WIN32) || defined (LINUX)
-	float mDeltaTime;
+  float mDeltaTime;
 
-	JMusic *mCurrentMusic;
+  JMusic *mCurrentMusic;
 
 #else
-	SceCtrlData mCtrlPad;
-	u32 mOldButtons;
+  SceCtrlData mCtrlPad;
+  u32 mOldButtons;
 
-	u64 mLastTime;
-	u32 mTickFrequency;
+  u64 mLastTime;
+  u32 mTickFrequency;
 
 #endif
 
-	bool mDone;
+  bool mDone;
 
-	float mDelta;
+  float mDelta;
 
-	bool mDebug;
+  bool mDebug;
 
-	bool mPaused;
+  bool mPaused;
 
-	char mDebuggingMsg[256];
+  char mDebuggingMsg[256];
 
-	bool mCriticalAssert;
-	const char *mAssertFile;
-	int mAssertLine;
-
-
-	static JGE* mInstance;
+  bool mCriticalAssert;
+  const char *mAssertFile;
+  int mAssertLine;
 
 
-public:
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Get JGE instance.
-	///
-	/// @return JGE instance.
-	//////////////////////////////////////////////////////////////////////////
-	static JGE* GetInstance();
-	static void Destroy();
-
-	void Init();
-	void Run();
-	void End();
-
-	void Update();
-	void Render();
-
-	void Pause();
-	void Resume();
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Return system timer in milliseconds.
-	///
-	/// @return System time in milliseconds.
-	//////////////////////////////////////////////////////////////////////////
-	int GetTime(void);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Return elapsed time since last frame update.
-	///
-	/// @return Elapsed time in seconds.
-	//////////////////////////////////////////////////////////////////////////
-	float GetDelta();
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Return frame rate.
-	///
-	/// @note This is just 1.0f/GetDelat().
-	///
-	/// @return Number of frames per second.
-	//////////////////////////////////////////////////////////////////////////
-	float GetFPS();
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Check the current state of a button.
-	///
-	/// @param button - Button id.
-	///
-	/// @return Button state.
-	//////////////////////////////////////////////////////////////////////////
-	bool GetButtonState(u32 button);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Check if a button is down the first time.
-	///
-	/// @param button - Button id.
-	///
-	/// @return Button state.
-	//////////////////////////////////////////////////////////////////////////
-	bool GetButtonClick(u32 button);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Get x value of the analog pad.
-	///
-	/// @return X value (0 to 255).
-	//////////////////////////////////////////////////////////////////////////
-	u8 GetAnalogX();
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Get y value of the analog pad.
-	///
-	/// @return Y value (0 to 255).
-	//////////////////////////////////////////////////////////////////////////
-	u8 GetAnalogY();
+  static JGE* mInstance;
 
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Get if the system is ended or not.
-	///
-	/// @return Status of the system.
-	//////////////////////////////////////////////////////////////////////////
-	bool IsDone() { return mDone; }
+ public:
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Get JGE instance.
+  ///
+  /// @return JGE instance.
+  //////////////////////////////////////////////////////////////////////////
+  static JGE* GetInstance();
+  static void Destroy();
+
+  void Init();
+  void Run();
+  void End();
+
+  void Update();
+  void Render();
+
+  void Pause();
+  void Resume();
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Return system timer in milliseconds.
+  ///
+  /// @return System time in milliseconds.
+  //////////////////////////////////////////////////////////////////////////
+  int GetTime(void);
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Return elapsed time since last frame update.
+  ///
+  /// @return Elapsed time in seconds.
+  //////////////////////////////////////////////////////////////////////////
+  float GetDelta();
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Return frame rate.
+  ///
+  /// @note This is just 1.0f/GetDelat().
+  ///
+  /// @return Number of frames per second.
+  //////////////////////////////////////////////////////////////////////////
+  float GetFPS();
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Check the current state of a button.
+  ///
+  /// @param button - Button id.
+  ///
+  /// @return Button state.
+  //////////////////////////////////////////////////////////////////////////
+  bool GetButtonState(u32 button);
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Check if a button is down the first time.
+  ///
+  /// @param button - Button id.
+  ///
+  /// @return Button state.
+  //////////////////////////////////////////////////////////////////////////
+  bool GetButtonClick(u32 button);
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Get the next keypress.
+  ///
+  /// @return Next pressed button, or 0 if none.
+  //////////////////////////////////////////////////////////////////////////
+  u32 ReadButton();
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Reset the input buffer.
+  /// This is necessary because there might be phases when GetButtonState
+  /// or GetButtonClick are used, thereby accumulating keypresses in the
+  /// key buffer.
+  ///
+  //////////////////////////////////////////////////////////////////////////
+  void ResetInput();
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Get x value of the analog pad.
+  ///
+  /// @return X value (0 to 255).
+  //////////////////////////////////////////////////////////////////////////
+  u8 GetAnalogX();
+
+  //////////////////////////////////////////////////////////////////////////
+  /// Get y value of the analog pad.
+  ///
+  /// @return Y value (0 to 255).
+  //////////////////////////////////////////////////////////////////////////
+  u8 GetAnalogY();
 
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Set the user's core application class.
-	///
-	/// @param app - User defined application class.
-	//////////////////////////////////////////////////////////////////////////
-	void SetApp(JApp *app);
+  //////////////////////////////////////////////////////////////////////////
+  /// Get if the system is ended or not.
+  ///
+  /// @return Status of the system.
+  //////////////////////////////////////////////////////////////////////////
+  bool IsDone() { return mDone; }
 
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Print debug message.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void printf(const char *format, ...);
+  //////////////////////////////////////////////////////////////////////////
+  /// Set the user's core application class.
+  ///
+  /// @param app - User defined application class.
+  //////////////////////////////////////////////////////////////////////////
+  void SetApp(JApp *app);
 
 
-	void Assert(const char *filename, long lineNumber);
+  //////////////////////////////////////////////////////////////////////////
+  /// Print debug message.
+  ///
+  //////////////////////////////////////////////////////////////////////////
+  void printf(const char *format, ...);
+
+
+  void Assert(const char *filename, long lineNumber);
 
 #if defined (WIN32) || defined (LINUX)
-	void SetDelta(int delta);
+  void SetDelta(int delta);
 #endif
 
-protected:
-	JGE();
-	~JGE();
+ protected:
+  JGE();
+  ~JGE();
 
 
 };
