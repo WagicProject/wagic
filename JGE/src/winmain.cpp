@@ -583,7 +583,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
       if ((wParam >= 0) && (wParam <= 255))						// Is Key (wParam) In A Valid Range?
 	{
 	  g_keys[wParam] = TRUE;					// Set The Selected Key (wParam) To True
-	  for (signed int i = sizeof(gWinKeyCodes)/sizeof(gWinKeyCodes[0]) - 1; i > 0; --i)
+	  for (signed int i = sizeof(gWinKeyCodes)/sizeof(gWinKeyCodes[0]) - 1; i >= 0; --i)
 	    if (gWinKeyCodes[i] == wParam)
 	      if (false == gThisFrame[i])
 		{
