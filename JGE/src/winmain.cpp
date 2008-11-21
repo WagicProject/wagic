@@ -586,15 +586,18 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
     case WM_KEYDOWN:												// Update Keyboard Buffers For Keys Pressed
       if ((wParam >= 0) && (wParam <= 255))						// Is Key (wParam) In A Valid Range?
 	{
-	  g_keys[wParam] = TRUE;					// Set The Selected Key (wParam) To True
-	  g_holds[wParam] = TRUE;
-	  for (signed int i = sizeof(gWinKeyCodes)/sizeof(gWinKeyCodes[0]) - 1; i >= 0; --i)
-	    if (gWinKeyCodes[i] == wParam)
-	      if (false == gThisFrame[i])
-		{
-		  gThisFrame[i] = true;
-		  gKeyBuffer.push(make_pair(gPSPKeyMasks[i], wParam));
-		}
+	  g_keys[wParam] = true;					// Set The Selected Key (wParam) To True
+	  if (false == g_holds[wParam])
+	    {
+	      g_holds[wParam] = true;
+	      for (signed int i = sizeof(gWinKeyCodes)/sizeof(gWinKeyCodes[0]) - 1; i >= 0; --i)
+		if (gWinKeyCodes[i] == wParam)
+		  if (false == gThisFrame[i])
+		    {
+		      gThisFrame[i] = true;
+		      gKeyBuffer.push(make_pair(gPSPKeyMasks[i], wParam));
+		    }
+	    }
 	  return 0;
 	}
       break;															// Break
