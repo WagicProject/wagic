@@ -42,6 +42,7 @@ int glWindowID = 0;
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
 static u32 gKeyPresses = 0;
+static queue< pair<u32,u32> > gKeyBuffer;
 
 static u32 gPSPKeyMasks[] =
 {
@@ -113,6 +114,26 @@ static const unsigned char gNonGlutKeyCodes[] =
     KEY_ESCAPE
   };
 
+static bool gThisFrame[17] =
+  {
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  };
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
 {
@@ -121,6 +142,7 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
     glViewport(0, -((width/ACTUAL_RATIO)-height)/2, width, width / ACTUAL_RATIO);			// Reset The Current Viewport
   else
     glViewport(-(height*ACTUAL_RATIO-width)/2, 0, height * ACTUAL_RATIO, height);
+  glScissor(0, 0, width, height);
 }
 
 GLvoid SizeGLScene(GLsizei width, GLsizei height)	// Initialize The GL Window
@@ -164,7 +186,6 @@ int InitGL(void)					// All Setup For OpenGL Goes Here
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   glEnable(GL_SCISSOR_TEST);				// Enable Clipping
-  //glScissor(20, 20, 320, 240);
 
   return true;						// Initialization Went OK
 }
@@ -246,6 +267,8 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((
 
 void JGEControl()
 {
+  for (int i=0;i<17;i++)
+    gThisFrame[i] = false;
   gOldButtons = gButtons;
 }
 
@@ -331,18 +354,37 @@ void initGlut(int* argc, char* argv[])
   //  glutInitWindowSize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
   // I do not know why, but obviously the thing won't draw outside of whatever size the window
   // has been CREATED with, regardless of what resize calls are made later
-  glutInitWindowSize(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
+  //  glutInitWindowSize(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
+  glutInitWindowSize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
 }
 
 void specialKey(int key, int x __attribute__((unused)), int y __attribute((unused)))
 {
   for (signed int i = sizeof(gGlutKeyCodes)/sizeof(gGlutKeyCodes[0]); i > 0; --i)
-    if (gGlutKeyCodes[i] == key) { gButtons |= gPSPKeyMasks[i]; gKeyPresses |= gPSPKeyMasks[i]; return; }
+    if (gGlutKeyCodes[i] == key)
+      {
+	if (false == gThisFrame[i])
+	  {
+	    gThisFrame[i] = true;
+	    gButtons |= gPSPKeyMasks[i];
+	    gKeyPresses |= gPSPKeyMasks[i];
+	    gKeyBuffer.push(make_pair(gPSPKeyMasks[i],0x8000+key));
+	  }
+	return;
+      }
 }
 void specialUp(int key, int x __attribute__((unused)), int y __attribute((unused)))
 {
   for (signed int i = sizeof(gGlutKeyCodes)/sizeof(gGlutKeyCodes[0]); i > 0; --i)
-    if (gGlutKeyCodes[i] == key) { gButtons &= ~gPSPKeyMasks[i]; return; }
+    if (gGlutKeyCodes[i] == key)
+      {
+	if (false == gThisFrame[i])
+	  {
+	    gThisFrame[i] = true;
+	    gButtons &= ~gPSPKeyMasks[i];
+	  }
+	return;
+      }
 }
 void normalKey(unsigned char key, int x __attribute__((unused)), int y __attribute((unused)))
 {
@@ -366,12 +408,33 @@ void normalKey(unsigned char key, int x __attribute__((unused)), int y __attribu
 	}
     }
   for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i > 0; --i)
-    if (gNonGlutKeyCodes[i] == key) { gButtons |= gPSPKeyMasks[i]; gKeyPresses |= gPSPKeyMasks[i]; return; }
+    if (gNonGlutKeyCodes[i] == key) { gButtons |= gPSPKeyMasks[i]; gKeyPresses |= gPSPKeyMasks[i]; gKeyBuffer.push(make_pair(gPSPKeyMasks[i],key)); return; }
 }
 void normalUp(unsigned char key, int x __attribute__((unused)), int y __attribute((unused)))
 {
   for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i > 0; --i)
     if (gNonGlutKeyCodes[i] == key) { gButtons &= ~gPSPKeyMasks[i]; return; }
+}
+
+u32 JGEReadKey()
+{
+  if (gKeyBuffer.empty()) return 0;
+  u32 val = gKeyBuffer.front().first;
+  gKeyBuffer.pop();
+  return val;
+}
+
+u32 JGEReadLocalKey()
+{
+  if (gKeyBuffer.empty()) return 0;
+  u32 val = gKeyBuffer.front().second;
+  gKeyBuffer.pop();
+  return val;
+}
+
+void JGEResetInput()
+{
+  while (!gKeyBuffer.empty()) gKeyBuffer.pop();
 }
 
 void reshapeFunc(int width, int height)
@@ -396,7 +459,7 @@ int main(int argc, char* argv[])
 
   glutIdleFunc(&idleCallBack);
   glutDisplayFunc(&displayCallBack);
-  glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+  //  glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
   glutSpecialFunc(&specialKey);
   glutKeyboardFunc(&normalKey);
   glutSpecialUpFunc(&specialUp);

@@ -107,14 +107,38 @@ static u32 gWinKeyCodes[17] =
 
   };
 
+static bool gThisFrame[17] =
+  {
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  };
+
 void JGEControl()
 {
   gOldButtons = gButtons;
 
   gButtons = 0;
   for (int i=0;i<17;i++)
-    if (g_keys[gWinKeyCodes[i]])
-      gButtons |= gPSPKeyMasks[i];
+    {
+      gThisFrame[i] = false;
+      if (g_keys[gWinKeyCodes[i]])
+	gButtons |= gPSPKeyMasks[i];
+    }
 }
 
 
@@ -560,7 +584,15 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 	{
 	  g_keys[wParam] = TRUE;					// Set The Selected Key (wParam) To True
 	  for (signed int i = sizeof(gWinKeyCodes)/sizeof(gWinKeyCodes[0]); i > 0; --i)
-	    if (gWinKeyCodes[i] == wParam) { gKeyBuffer.push(make_pair(gPSPKeyMasks[i],0x8000+wParam)); return 0; }
+	    if (gWinKeyCodes[i] == wParam)
+	      {
+		if (false == gThisFrame[i])
+		  {
+		    gThisFrame[i] = true;
+		    gKeyBuffer.push(make_pair(gPSPKeyMasks[i],0x8000+wParam));
+		  }
+		return 0;
+	      }
 	  return 0;
 	}
       break;															// Break
