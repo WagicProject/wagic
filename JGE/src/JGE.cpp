@@ -173,7 +173,15 @@ bool JGE::GetButtonClick(u32 button)
 	return JGEGetButtonClick(button);
 }
 
+u32 JGE::ReadButton()
+{
+  return JGEReadKey();
+}
 
+void JGE::ResetInput()
+{
+  JGEResetInput();
+}
 
 //////////////////////////////////////////////////////////////////////////
 #else		///// PSP specified code
@@ -301,6 +309,14 @@ bool JGE::GetButtonClick(u32 button)
 	return (mCtrlPad.Buttons&button)==button && (mOldButtons&button)!=button;
 }
 
+u32 JGE::ReadButton()
+{
+  return 0;
+}
+
+void JGE::ResetInput()
+{
+}
 
 u8 JGE::GetAnalogX()
 {
