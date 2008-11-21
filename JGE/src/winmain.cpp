@@ -521,10 +521,10 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscree
 u32 JGEReadKey()
 {
   if (gKeyBuffer.empty()) return 0;
-  u32 val = gKeyBuffer.front().first;
-  g_holds[val] = false;
+  pair<u32, u32> val = gKeyBuffer.front();
+  g_holds[val.second] = false;
   gKeyBuffer.pop();
-  return val;
+  return val.first;
 }
 
 u32 JGEReadLocalKey()
