@@ -1355,7 +1355,7 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 	GifFileType *GifFileIn = NULL;
 	ColorMapObject *palette;
 	int ExtCode;
-	DWORD i, j;
+	int i, j;
 	if ((GifFileIn = DGifOpen(handle, readFunc)) == NULL)
 		return 1;
 	*bgcolor = 0;
