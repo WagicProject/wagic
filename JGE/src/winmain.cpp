@@ -48,6 +48,7 @@ bool	fullscreen=FALSE;		// Windowed Mode By Default
 DWORD	lastTickCount;
 
 BOOL	g_keys[256];
+BOOL	g_holds[256];
 
 
 //------------------------------------------------------------------------
@@ -225,7 +226,8 @@ int InitGame(GLvoid)
 
   lastTickCount = GetTickCount();
 
-  ZeroMemory (g_keys, 256);
+  ZeroMemory(g_keys, 256);
+  ZeroMemory(g_holds, 256);
 
   //delete launcher;
 
@@ -520,6 +522,7 @@ u32 JGEReadKey()
 {
   if (gKeyBuffer.empty()) return 0;
   u32 val = gKeyBuffer.front().first;
+  g_holds[val] = false;
   gKeyBuffer.pop();
   return val;
 }
@@ -528,6 +531,7 @@ u32 JGEReadLocalKey()
 {
   if (gKeyBuffer.empty()) return 0;
   u32 val = gKeyBuffer.front().second;
+  g_holds[val] = false;
   gKeyBuffer.pop();
   return val;
 }
@@ -583,6 +587,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
       if ((wParam >= 0) && (wParam <= 255))						// Is Key (wParam) In A Valid Range?
 	{
 	  g_keys[wParam] = TRUE;					// Set The Selected Key (wParam) To True
+	  g_holds[wParam] = TRUE;
 	  for (signed int i = sizeof(gWinKeyCodes)/sizeof(gWinKeyCodes[0]) - 1; i >= 0; --i)
 	    if (gWinKeyCodes[i] == wParam)
 	      if (false == gThisFrame[i])
@@ -598,6 +603,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
       if ((wParam >= 0) && (wParam <= 255))						// Is Key (wParam) In A Valid Range?
 	{
 	  g_keys[wParam] = FALSE;					// Set The Selected Key (wParam) To False
+	  g_holds[wParam] = FALSE;
 	  return 0;												// Return
 	}
       break;
