@@ -67,10 +67,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   MTGCard * currentCard;
   MTGCard *  cardIndex[7];
   int hudAlpha;
+  float scrollSpeed;
  public:
 
  GameStateDeckViewer(GameApp* parent): GameState(parent) {
     bgMusic = NULL;
+    scrollSpeed = 10.0;
   }
   virtual ~GameStateDeckViewer() {
     SAFE_DELETE(bgMusic);
@@ -335,7 +337,16 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	case PSP_CTRL_START :
 	  mStage = STAGE_MENU;
 	  break;
-	default :  // no keypress
+	case PSP_CTRL_SELECT :
+	  printf("%f\n", scrollSpeed);
+	  if (scrollSpeed == 10.0)
+	    scrollSpeed = 5.0;
+	  else if (scrollSpeed == 5.0)
+	    scrollSpeed = 1.0;
+	  else
+	    scrollSpeed = 10.0;
+	  break;
+ 	default :  // no keypress
 	  if (last_user_activity > NO_USER_ACTIVITY_HELP_DELAY){
 	    if  (mStage != STAGE_ONSCREEN_MENU){
 	      mStage = STAGE_ONSCREEN_MENU;
@@ -355,9 +366,9 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }else if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT) {
       //mAlpha = 128;
       if (mStage == STAGE_TRANSITION_RIGHT){
-	mRotation -= dt * 10;
+	mRotation -= dt * scrollSpeed;
       }else if(mStage == STAGE_TRANSITION_LEFT){
-	mRotation += dt * 10;
+	mRotation += dt * scrollSpeed;
       }
       while (fabs(mRotation) > 1.0f){
 	rotateCards(mStage);
