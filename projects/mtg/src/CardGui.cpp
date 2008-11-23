@@ -77,34 +77,34 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
     mFont->DrawString(buf,x+v.x,y+v.y);
   }
 
-
   if (!card->formattedTextInit){
     std::string s(card->getText());
-    unsigned int found=s.find_first_of("{}");
+    std::string::size_type found=s.find_first_of("{}");
+
     while (found!=string::npos)
       {
 	s[found]='/';
 	found=s.find_first_of("{}",found+1);
       }
-    int len = 24;
+    std::string::size_type len = 24;
     while (s.length() > 0){
-      int cut = s.find_first_of("., \t)", 0);
-      if (cut >= len || cut == -1){
+      std::string::size_type cut = s.find_first_of("., \t)", 0);
+      if (cut >= len || cut == string::npos){
 	card->formattedText.push_back(s.substr(0,len));
-	if ((signed int)s.length() > len){
+	if (s.length() > len){
 	  s = s.substr(len,s.length()-len);
 	}else{
 	  s = "";
 	}
       }else{
-	int newcut = cut;
-	while (newcut < len && newcut != -1){
+	std::string::size_type newcut = cut;
+	while (newcut < len && newcut != string::npos){
 	  cut = newcut;
 	  newcut = s.find_first_of("., \t)", newcut + 1);
 	}
 	card->formattedText.push_back(s.substr(0,cut+1));
-	if ((signed int)s.length() > cut+1){
-	  s = s.substr(cut+1,s.length()- cut - 1);
+	if (s.length() > cut+1){
+	  s = s.substr(cut+1,s.length() - cut - 1);
 	}else{
 	  s = "";
 	}
@@ -115,10 +115,10 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
 
 
 
-  for (unsigned int i=0; i < card->formattedText.size(); i++){
+  for (std::vector<string>::size_type i=0; i < card->formattedText.size(); i++){
     sprintf(buf, "%s", card->formattedText[i].c_str());
     v.x = (-width/2 + 12 )*scale;
-    v.y = ((-height/2) + 50 + 16*i) * scale;
+    v.y = (50 + static_cast<signed int>(16*i - height/2)) * scale;
     v.Rotate(rotation);
     mFont->DrawString(buf,x+v.x,y+v.y);
   }
