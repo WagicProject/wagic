@@ -15,6 +15,7 @@ class Player: public Damageable, public Targetable{
   ManaCost * manaPool;
 
  public:
+  virtual void End();
   int typeAsTarget(){return TARGET_PLAYER;}
   virtual int displayStack(){return 1;}
   JTexture * mAvatarTex;

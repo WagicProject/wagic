@@ -46,5 +46,5 @@ int filesize(const char * filename);
 int read_file (const char * filename, char * buffer, int filesize);
 int readline (char * in_buffer, char * out_buffer, int cursor);
 int readfile_to_ints(const char * filename, int * out_buffer);
-
+int fileExists(const char * filename);
 #endif

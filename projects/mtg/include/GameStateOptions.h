@@ -13,6 +13,8 @@ class SimpleMenu;
 
 class GameStateOptions: public GameState, public JGuiListener
 {
+private:
+  float timer;
 
  public:
   SimpleMenu * optionsMenu;

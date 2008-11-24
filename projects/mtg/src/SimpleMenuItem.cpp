@@ -2,10 +2,10 @@
 #include "../include/SimpleMenuItem.h"
 
 
-SimpleMenuItem::SimpleMenuItem(int id, JLBFont *font, const char* text, int x, int y, bool hasFocus): JGuiObject(id), mFont(font), mText(text), mX(x), mY(y)
+SimpleMenuItem::SimpleMenuItem(int id, JLBFont *font, const char* text, int x, int y, bool hasFocus): JGuiObject(id), mFont(font), mX(x), mY(y)
 {
 
-
+  mText = text;
   mHasFocus = hasFocus;
 
   mScale = 1.0f;
@@ -20,7 +20,7 @@ SimpleMenuItem::SimpleMenuItem(int id, JLBFont *font, const char* text, int x, i
 }
 
 
-void SimpleMenuItem::Render()
+void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
 
   mFont->SetScale(mScale);
@@ -29,8 +29,14 @@ void SimpleMenuItem::Render()
     {
       mFont->SetColor(ARGB(255,255,255,0));
     }
-  mFont->DrawString(mText, mX, mY, JGETEXT_CENTER);
+  mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
   mFont->SetScale(1.0f);
+}
+
+void SimpleMenuItem::Render()
+{
+
+ RenderWithOffset(0);
 }
 
 void SimpleMenuItem::Update(float dt)

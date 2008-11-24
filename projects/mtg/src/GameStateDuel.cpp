@@ -3,6 +3,8 @@
 #include "../include/utils.h"
 #include "../include/AIPlayer.h"
 #include "../include/PlayerData.h"
+#include "../include/DeckStats.h"
+
 
 #ifdef TESTSUITE
 #include "../include/TestSuiteAI.h"
@@ -16,6 +18,7 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
 
   game = NULL;
   deckmenu = NULL;
+  opponentMenu = NULL;
   menu = NULL;
 #ifdef TESTSUITE
   testSuite = NULL;
@@ -43,6 +46,7 @@ void GameStateDuel::Start()
 
   mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
   mFont->SetBase(0);	// using 2nd font
+  opponentMenuFont = NEW JLBFont("graphics/f3",16);
 
 
   menu = NEW SimpleMenu(11,this,mFont,SCREEN_WIDTH/2-100,20,200);
@@ -79,16 +83,22 @@ void GameStateDuel::Start()
 }
 
 
-void GameStateDuel::loadPlayer(int playerId, int decknb){
-  if (decknb){ //Human Player
-    char deckFile[255];
-    sprintf(deckFile, "Res/player/deck%i.txt",decknb);
-    char deckFileSmall[255];
-    sprintf(deckFileSmall, "player_deck%i",decknb);
-    int deck_cards_ids[100];
-    int nb_elements = readfile_to_ints(deckFile, deck_cards_ids);
-    deck[playerId] = NEW MTGPlayerCards(mParent->collection,deck_cards_ids, nb_elements);
-    mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFileSmall);
+void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
+  if (decknb){
+    if (!isAI){ //Human Player
+      char deckFile[255];
+      sprintf(deckFile, "Res/player/deck%i.txt",decknb);
+      char deckFileSmall[255];
+      sprintf(deckFileSmall, "player_deck%i",decknb);
+      int deck_cards_ids[100];
+      int nb_elements = readfile_to_ints(deckFile, deck_cards_ids);
+      deck[playerId] = NEW MTGPlayerCards(mParent->collection,deck_cards_ids, nb_elements);
+      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFileSmall);
+    }else{ //AI Player, chose deck
+          AIPlayerFactory playerCreator;
+          mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection,NULL,decknb);
+          deck[playerId] = mPlayers[playerId]->game;
+    }
   }else{
     AIPlayerFactory playerCreator;
     mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection,NULL);
@@ -127,15 +137,21 @@ void GameStateDuel::End()
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("Ending GamestateDuel\n");
 #endif
-  GameObserver::EndInstance();
-  game = NULL;
+
   SAFE_DELETE(deckmenu);
   JRenderer::GetInstance()->EnableVSync(false);
+  if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();
+  GameObserver::EndInstance();
+  game = NULL;
+
   for (int i = 0; i < 2; i++){
     SAFE_DELETE(mPlayers[i]);
     SAFE_DELETE(deck[i]);
   }
+
   SAFE_DELETE(menu);
+  SAFE_DELETE(opponentMenu);
+  SAFE_DELETE(opponentMenuFont);
 #ifdef TESTSUITE
   SAFE_DELETE(testSuite);
 #endif
@@ -176,8 +192,43 @@ void GameStateDuel::Update(float dt)
     }
 
     else{
-      loadPlayer(1);
-      mGamePhase = DUEL_PLAY;
+      if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
+        if (!opponentMenu){
+          opponentMenu = NEW SimpleMenu(13,this,opponentMenuFont,10,10,SCREEN_WIDTH/2,"choose Opponent");
+          opponentMenu->Add(0,"Random");
+          nbAIDecks = 0;
+          int found = 1;
+          while (found){
+            found = 0;
+            char buffer[512];
+            char aiSmallDeckName[512];
+            char deckDesc[512];
+            sprintf(buffer, "Res/ai/baka/deck%i.txt",nbAIDecks+1);     
+            if(fileExists(buffer)){
+              found = 1;
+              nbAIDecks++;
+              sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks);
+              DeckStats * stats = DeckStats::GetInstance();
+              stats->load(mPlayers[0]);
+              int percentVictories = stats->percentVictories(string(aiSmallDeckName));
+              string difficulty;
+              if (percentVictories < 34){
+                difficulty = "(hard)";
+              }else if (percentVictories < 67){
+                difficulty = "";
+              }else{
+                difficulty = "(easy)";
+              }
+              sprintf(deckDesc, "Deck %i %s",nbAIDecks, difficulty.c_str());
+              opponentMenu->Add(nbAIDecks,deckDesc);    
+            }
+          }
+        }
+        opponentMenu->Update(dt);
+      }else{
+        loadPlayer(1);
+        mGamePhase = DUEL_PLAY;
+      }
     }
 
   }else if (mGamePhase == DUEL_PLAY){
@@ -259,14 +310,17 @@ void GameStateDuel::Render()
     }else{
       int winner = 2;
       if (game->gameOver !=mPlayers[0]){
-	winner = 1;
+	      winner = 1;
       }
       sprintf(buffer, "Player %i wins (%i)", winner, p0life );
     }
     mFont->DrawString(buffer, 10, 150);
   }else if (mGamePhase == DUEL_CHOOSE_DECK1 || mGamePhase == DUEL_CHOOSE_DECK2){
-    if (deckmenu)
+    if (opponentMenu){
+      opponentMenu->Render();
+    }else if (deckmenu){
       deckmenu->Render();
+    }
   }else if (mGamePhase == ERROR_NO_DECK){
     mFont->DrawString("NO DECK AVAILABLE,",0,SCREEN_HEIGHT/2);
     mFont->DrawString("PRESS CIRCLE TO GO TO THE DECK EDITOR!",0,SCREEN_HEIGHT/2 + 20);
@@ -278,30 +332,50 @@ void GameStateDuel::Render()
 
 void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 {
-  switch (controlId)
-    {
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-      {
-	if (mGamePhase == DUEL_CHOOSE_DECK1){
-	  loadPlayer(0,controlId);
-	  mGamePhase = DUEL_CHOOSE_DECK2;
-	}else{
-	  loadPlayer(1,controlId);
-	  mGamePhase = DUEL_PLAY;
-	}
-	break;
-      }
-    case 12:
-      mParent->SetNextState(GAME_STATE_MENU);
-      break;
+  switch (controllerId){
     case 13:
-      mGamePhase = DUEL_PLAY;
-      break;
-    }
+      {
+        switch(controlId){
+          case 0:
+            loadPlayer(1);
+            mGamePhase = DUEL_PLAY;
+            break;
+          default:
+            loadPlayer(1,controlId,1);
+            mGamePhase = DUEL_PLAY;
+            break;
+
+        }
+        break;
+      }
+    default:
+      {
+      switch (controlId)
+        {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+            {
+	            if (mGamePhase == DUEL_CHOOSE_DECK1){
+	              loadPlayer(0,controlId);
+	              mGamePhase = DUEL_CHOOSE_DECK2;
+	            }else{
+	              loadPlayer(1,controlId);
+	              mGamePhase = DUEL_PLAY;
+	            }
+	            break;
+            }
+          case 12:
+            mParent->SetNextState(GAME_STATE_MENU);
+            break;
+          case 13:
+            mGamePhase = DUEL_PLAY;
+            break;
+        }
+      }
+  }
 }
 
 

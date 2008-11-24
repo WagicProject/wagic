@@ -31,6 +31,7 @@ void OptionItem::Render(){
     mFont->SetColor(ARGB(255,255,255,255));
   }
   JRenderer * renderer = JRenderer::GetInstance();
+  renderer->FillRoundRect(x-5,y-2,SCREEN_WIDTH -x - 5,20,2,ARGB(150,50,50,50));
   mFont->DrawString(displayValue.c_str(),x,y);
   char buf[512];
   sprintf(buf, "%i", value);

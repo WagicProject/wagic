@@ -95,7 +95,7 @@ void MTGGuiHand::Render(){
     }
     if (mCount && mObjects[mCurr] != NULL){
       mObjects[mCurr]->Render();
-      if (showBigCards) ((CardGui *)mObjects[mCurr])->RenderBig(10);
+      if (showBigCards) ((CardGui *)mObjects[mCurr])->RenderBig(10,-1,showBigCards-1);
     }
   }
 }

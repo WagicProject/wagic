@@ -27,7 +27,7 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
  protected:
   int untapping;
   int nb_damages;
-
+  string sample;
 
   int lifeOrig;
   Blockers * blockers;
@@ -94,6 +94,7 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
   void tap();
   int isInPlay();
   void resetAllDamage();
+  JSample * getSample();
 };
 
 

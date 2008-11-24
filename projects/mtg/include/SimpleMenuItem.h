@@ -13,7 +13,7 @@ class SimpleMenuItem: public JGuiObject
  private:
   bool mHasFocus;
   JLBFont *mFont;
-  const char* mText;
+  string mText;
   int mX;
   int mY;
 
@@ -25,6 +25,7 @@ class SimpleMenuItem: public JGuiObject
  public:
   SimpleMenuItem(int id, JLBFont *font, const char* text, int x, int y, bool hasFocus = false);
 
+  void RenderWithOffset(float yOffset);
   virtual void Render();
   virtual void Update(float dt);
 

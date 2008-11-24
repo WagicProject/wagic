@@ -61,7 +61,6 @@ void AIStats::updateStats(){
     damage = ((Damage * )as->getNext(damage,ACTION_DAMAGE, RESOLVED_OK));
   }
   stats.sort(compare_aistats);
-  save();
 }
 
 bool AIStats::isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue ){

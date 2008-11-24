@@ -15,7 +15,7 @@
 #include "../include/GameStateDuel.h"
 #include "../include/GameStateOptions.h"
 #include "../include/GameStateShop.h"
-
+#include "../include/DeckStats.h"
 
 const char * const GameState::menuTexts[]= {"--NEW--","Deck 1", "Deck 2", "Deck 3", "Deck 4", "Deck 5", "Deck 6"} ;
 JResourceManager* GameApp::CommonRes = NEW JResourceManager();
@@ -179,6 +179,10 @@ void GameApp::Destroy()
 
   if (Subtypes::subtypesList) delete Subtypes::subtypesList;
   if (MtgSets::SetsList) delete MtgSets::SetsList;
+
+  SAFE_DELETE(music);
+
+  delete(DeckStats::GetInstance());
   LOG("==Destroying GameApp Successful==");
 
 }

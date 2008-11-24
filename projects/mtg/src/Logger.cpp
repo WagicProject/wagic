@@ -8,7 +8,7 @@ using namespace std;
 #include <windows.h>
 #endif
 
-void Logger::Log(char * text){
+void Logger::Log(const char * text){
   ofstream file (LOG_FILE,ios_base::app);
   if (file){
     file << text;

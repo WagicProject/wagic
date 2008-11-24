@@ -10,6 +10,9 @@
 #include <JGE.h>
 #include <JTypes.h>
 
+#include <map>
+
+using std::map;
 
 #include "MTGDeck.h"
 
@@ -54,5 +57,17 @@ class TexturesCache{
 
 };
 
+
+class SampleCache{
+protected:
+  map<string, JSample *> cache;
+  static SampleCache * mInstance;
+  void cleanCache();
+  ~SampleCache();
+public:
+  static SampleCache * GetInstance();
+  JSample * getSample(string filename);
+
+};
 
 #endif

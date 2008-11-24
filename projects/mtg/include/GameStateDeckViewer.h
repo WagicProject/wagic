@@ -202,7 +202,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       }
       GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/track1.mp3");
       if (GameApp::music){
-	JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
+	      JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
       }
     }
     colorFilter = ALL_COLORS;

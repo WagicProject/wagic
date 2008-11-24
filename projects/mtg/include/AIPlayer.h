@@ -29,7 +29,8 @@ class AIPlayer: public Player{
   int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
   AIStats * getStats();
  public:
-  virtual int displayStack(){return 0;}
+   void End(){};
+  virtual int displayStack(){return 0;};
   AIStats * stats;
   ManaCost * getPotentialMana();
   AIPlayer(MTGPlayerCards * _deck, string deckFile);
@@ -48,14 +49,14 @@ class AIPlayerBaka: public AIPlayer{
   int timer;
   MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
  public:
-  AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile);
+  AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile, char * avatarFile);
   virtual int Act(float dt);
   void initTimer();
 };
 
 class AIPlayerFactory{
  public:
-  AIPlayer * createAIPlayer(MTGAllCards * collection, MTGPlayerCards * oponents_deck);
+  AIPlayer * createAIPlayer(MTGAllCards * collection, MTGPlayerCards * oponents_deck, int deckid = 0);
 };
 
 

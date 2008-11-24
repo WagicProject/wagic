@@ -1,6 +1,7 @@
 #include "../include/debug.h"
 #include "../include/MTGGameZones.h"
 #include "../include/Player.h"
+#include "../include/GameOptions.h"
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -90,9 +91,16 @@ void MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGa
   if (from->removeCard(card)){
     to->addCard(card);
     card->changedZoneRecently = 1.f;
-    //if (to == graveyard){
+    
     card->reset();
-    //}
+    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0){
+      if (to == graveyard){
+        if (card->isACreature()){
+          JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/graveyard.wav");
+          if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
+        }
+      }
+    }
   }
 }
 

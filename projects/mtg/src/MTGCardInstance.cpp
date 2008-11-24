@@ -8,6 +8,7 @@
 #include "../include/MTGCardInstance.h"
 #include "../include/CardDescriptor.h"
 #include "../include/Counters.h"
+#include "../include/Subtypes.h"
 
 MTGCardInstance::MTGCardInstance(): MTGCard(), Damageable(0){
   LOG("==Creating MTGCardInstance==");
@@ -33,6 +34,7 @@ MTGCardInstance::~MTGCardInstance(){
   LOG("==Deleting MTGCardInstance Succesfull==");
 }
 void MTGCardInstance::initMTGCI(){
+  sample = "";
   model=NULL;
   lifeOrig = 0;
   doDamageTest = 0;
@@ -404,4 +406,43 @@ int MTGCardInstance::protectedAgainst(MTGCardInstance * card){
     if (protections[i]->match(card)) return 1;
   }
   return 0;
+}
+
+/* Choose a sound sample to associate to that card */
+JSample * MTGCardInstance::getSample(){
+  if (!sample.size()){
+    for (int i = nb_types-1; i>0; i--){
+      string type = Subtypes::subtypesList->find(types[i]);
+      type = "sound/sfx/" + type + ".wav";
+#ifdef WIN32
+      OutputDebugString(type.c_str());
+#endif
+      if (fileExists(type.c_str())){
+        sample = string(type);
+        break;
+      }
+    }
+  }
+  if (!sample.size()){
+    for (int i = 0; i < NB_BASIC_ABILITIES; i++){
+      if (!basicAbilities[i]) continue;
+      string type = MTGBasicAbilities[i];
+      type = "sound/sfx/" + type + ".wav";
+      if (fileExists(type.c_str())){
+        sample = type;
+        break;
+      }
+    }
+  }
+  if (!sample.size()){
+    string type = Subtypes::subtypesList->find(types[0]);
+    type = "sound/sfx/" + type + ".wav";
+    if (fileExists(type.c_str())){
+      sample = type;
+    }
+  }
+
+  if (sample.size()) return SampleCache::GetInstance()->getSample(sample);
+  
+  return NULL;
 }

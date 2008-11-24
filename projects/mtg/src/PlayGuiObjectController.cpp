@@ -4,7 +4,7 @@
 #include "../include/PlayGuiObject.h"
 #include "../include/GameObserver.h"
 
-bool PlayGuiObjectController::showBigCards = true;
+int PlayGuiObjectController::showBigCards = 1;
 
 int PlayGuiObjectController::getClosestItem(int direction){
   return getClosestItem(direction, 35);
@@ -177,6 +177,7 @@ void PlayGuiObjectController::Update(float dt){
 
 
 void PlayGuiObjectController::CheckUserInput(float dt){
+  last_user_move +=dt;
   if (!mCount)
     return;
   if (game != NULL){
@@ -193,6 +194,8 @@ void PlayGuiObjectController::CheckUserInput(float dt){
 
   if (mEngine->GetButtonState(PSP_CTRL_LEFT))
     {
+
+      last_user_move = 0;
       if (KeyRepeated(PSP_CTRL_LEFT, dt))
 	{
 	  int n = getClosestItem(DIR_LEFT);
@@ -205,6 +208,7 @@ void PlayGuiObjectController::CheckUserInput(float dt){
     }
   else if (mEngine->GetButtonState(PSP_CTRL_RIGHT))
     {
+      last_user_move = 0;
       if (KeyRepeated(PSP_CTRL_RIGHT, dt))
 	{
 	  int n = getClosestItem(DIR_RIGHT);
@@ -217,6 +221,7 @@ void PlayGuiObjectController::CheckUserInput(float dt){
     }
   else if (mEngine->GetButtonState(PSP_CTRL_UP))
     {
+      last_user_move = 0;
       if (KeyRepeated(PSP_CTRL_UP, dt))
 	{
 	  int n = getClosestItem(DIR_UP);
@@ -229,6 +234,7 @@ void PlayGuiObjectController::CheckUserInput(float dt){
     }
   else if (mEngine->GetButtonState(PSP_CTRL_DOWN))
     {
+      last_user_move = 0;
       if (KeyRepeated(PSP_CTRL_DOWN, dt))
 	{
 	  int n = getClosestItem(DIR_DOWN);
@@ -239,7 +245,7 @@ void PlayGuiObjectController::CheckUserInput(float dt){
 	    }
 	}
     }else if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)){
-    showBigCards = !showBigCards;
+    showBigCards = (++showBigCards) %3;
   }
 
   else{

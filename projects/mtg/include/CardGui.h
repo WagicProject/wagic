@@ -21,7 +21,7 @@ class CardGui: public PlayGuiObject{
   virtual void Render();
   virtual void Update(float dt);
 
-  void RenderBig(float x=-1, float y = -1);
+  void RenderBig(float x=-1, float y = -1, int alternate = 0);
   static void alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcons, float x, float y, float rotation= 0, float scale=1);
   ~CardGui();
 };

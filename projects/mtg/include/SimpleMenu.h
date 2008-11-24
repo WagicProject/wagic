@@ -14,9 +14,11 @@ class SimpleMenu:public JGuiController{
   JLBFont* mFont;
   std::string title;
   int displaytitle;
+  int maxItems,startId;
  public:
-  SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int y, int width, const char * _title = NULL);
+  SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int y, int width, const char * _title = NULL, int _maxItems = 10);
   void Render();
+  void Update(float dt);
   void Add(int id, const char * Text);
 };
 

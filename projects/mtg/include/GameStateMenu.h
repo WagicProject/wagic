@@ -134,8 +134,10 @@ class GameStateMenu:	public GameState, public JGuiListener
 
   virtual void Destroy()
   {
+  
     if (mGuiController)
       delete mGuiController;
+
 
     if (subMenuController)
       delete subMenuController;
@@ -147,8 +149,10 @@ class GameStateMenu:	public GameState, public JGuiListener
       delete mIcons[i];
     }
 
-    if (mBg) delete mBg;
-    if (mMovingW) delete mMovingW;
+    SAFE_DELETE(mBg);
+    SAFE_DELETE(mMovingW);
+    SAFE_DELETE(movingWTexture);
+    SAFE_DELETE(bgTexture);
 
     //SAFE_DELETE (bgMusic);
   }
@@ -265,15 +269,18 @@ class GameStateMenu:	public GameState, public JGuiListener
 	if( subMenuController != NULL){
 	  subMenuController->Update(dt);
 	}else{
+
 	  subMenuController = NEW SimpleMenu(102, this,mFont, 50,170,SCREEN_WIDTH-120);
+
 	  if (subMenuController){
-	    subMenuController->Add(11,"1 Player");
+      subMenuController->Add(11,"1 Player");
 	    subMenuController->Add(12, "2 Players");
 	    subMenuController->Add(13,"Demo");
 	    subMenuController->Add(14, "Cancel");
 #ifdef TESTSUITE
 	    subMenuController->Add(666, "Test Suite");
 #endif
+     
 	  }
 	}
       }

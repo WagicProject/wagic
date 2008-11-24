@@ -14,6 +14,7 @@
 #define ERROR_NO_DECK 4
 #define DUEL_PLAY 5
 #define DUEL_MENU 6
+#define CHOOSE_OPPONENT 7
 
 
 #ifdef TESTSUITE
@@ -32,10 +33,12 @@ class GameStateDuel: public GameState, public JGuiListener
   MTGPlayerCards * deck[2];
   GameObserver * game;
   SimpleMenu * deckmenu;
+  SimpleMenu * opponentMenu;
   SimpleMenu * menu;
-  JLBFont* mFont;
+  JLBFont* mFont, *opponentMenuFont;
+  int nbAIDecks;
 
-  void loadPlayer(int playerId, int decknb = 0);
+  void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
  public:
   GameStateDuel(GameApp* parent);
   virtual ~GameStateDuel();

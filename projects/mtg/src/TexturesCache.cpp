@@ -117,3 +117,37 @@ CardTexture::~CardTexture(){
   LOG("CardTexture Object deletion Succesful");
 }
 
+
+SampleCache * SampleCache::mInstance = NULL;
+
+SampleCache * SampleCache::GetInstance(){
+  if (!mInstance) mInstance = NEW SampleCache();
+  return mInstance;
+}
+
+JSample * SampleCache::getSample(string filename){
+  map<string,JSample *>::iterator it = cache.find(filename);
+  if (it == cache.end()){
+    if (cache.size() >10) cleanCache(); //Poor man's limit
+    JSample * sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
+    if (!sample && fileExists(filename.c_str())){ //Out of Ram ??
+      cleanCache();
+      sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
+    }
+    return sample;
+  }else{
+    return (it->second);
+  }
+}
+
+void SampleCache::cleanCache(){
+  map<string,JSample *>::iterator it;
+  for (it = cache.begin(); it != cache.end(); it++){
+    delete(it->second);
+  }
+  cache.clear();
+}
+
+SampleCache::~SampleCache(){
+  cleanCache();
+}

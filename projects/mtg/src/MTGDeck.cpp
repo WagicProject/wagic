@@ -77,7 +77,7 @@ int MTGAllCards::processConfLine(char *buffer, MTGCard *card){
       card->setType( "Artifact");
       card->setColor(MTG_COLOR_ARTIFACT);
       if (value.c_str()[8] == ' ' && value.c_str()[9] == 'C')
-	card->setSubtype("Creature");
+	      card->setSubtype("Creature");
       break;
     case 'E':
       card->setType( "Enchantment");

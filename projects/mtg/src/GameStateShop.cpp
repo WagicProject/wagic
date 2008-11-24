@@ -26,14 +26,19 @@ void GameStateShop::Start()
 {
   menu = NULL;
   mFont = GameApp::CommonRes->GetJLBFont("graphics/magic");
+
+
   mStage = STAGE_SHOP_SHOP;
+  
   bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/shop.jpg", TEX_TYPE_USE_VRAM);
   mBg = NEW JQuad(bgTexture, 0, 0, 400, 280);		// Create background quad for rendering.
   backTexture = JRenderer::GetInstance()->LoadTexture("sets/back.jpg", TEX_TYPE_USE_VRAM);
   mBack = NEW JQuad(backTexture, 0, 0, 200, 285);		// Create background quad for rendering.
+  
   JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
 
+  
   int sets[500];
   int nbsets = 0;
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
@@ -48,6 +53,9 @@ void GameStateShop::Start()
     setId = (rand() % MtgSets::SetsList->nb_items);
   }
   JQuad * mBackThumb = GameApp::CommonRes->GetQuad("back_thumb");
+  
+  shop = NULL;
+  
   shop = NEW ShopItems(10, this, mFont, 10, 10, mParent->collection, setId);
   sprintf(starterBuffer, "%s Starter (60 cards)",MtgSets::SetsList->values[setId].c_str());
   sprintf(boosterBuffer, "%s Booster (15 cards)",MtgSets::SetsList->values[setId].c_str());
@@ -63,9 +71,9 @@ void GameStateShop::Start()
 void GameStateShop::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
-  if (shop)
-    SAFE_DELETE(shop);
+  SAFE_DELETE(shop);
   SAFE_DELETE(mBack);
+  SAFE_DELETE(backTexture);
   if(bgTexture)
     SAFE_DELETE(bgTexture);
   if(mBg)
@@ -115,11 +123,11 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
 {
   switch (controllerId){
   case 10:
-    shop->pricedialog(controlId);
+    if (shop) shop->pricedialog(controlId);
     break;
   case 11:
     if (controlId == 12){
-      shop->saveAll();
+      if (shop) shop->saveAll();
       mParent->SetNextState(GAME_STATE_MENU);
     }else{
       mStage = STAGE_SHOP_SHOP;

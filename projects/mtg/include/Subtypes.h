@@ -19,6 +19,7 @@ class Subtypes{
   int find(const char * subtype);
   int Add(string subtype);
   int find(string subtype);
+  string find(int id);
 };
 
 

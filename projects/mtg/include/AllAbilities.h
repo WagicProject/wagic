@@ -8,6 +8,7 @@
 #include "CardDisplay.h"
 #include "Subtypes.h"
 #include "CardGui.h"
+#include "GameOptions.h"
 
 #include <JGui.h>
 #include <hge/hgeparticle.h>
@@ -570,6 +571,11 @@ class AManaProducer: public MTGAbility{
       y0 = cardg->y + 20;
     }
     controller = source->controller();
+
+    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0){
+      JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/mana.wav");
+      if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
+    }
     return 1;
   }
 

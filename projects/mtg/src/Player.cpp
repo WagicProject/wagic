@@ -1,7 +1,7 @@
 #include "../include/debug.h"
 #include "../include/Player.h"
 #include "../include/GameObserver.h"
-
+#include "../include/DeckStats.h"
 
 
 Player::Player(MTGPlayerCards * _deck, string file): Damageable(20){
@@ -12,6 +12,11 @@ Player::Player(MTGPlayerCards * _deck, string file): Damageable(20){
   canPutLandsIntoPlay = 1;
   mAvatar = NULL;
   type_as_damageable = DAMAGEABLE_PLAYER;
+}
+
+/*Method to call at the end of a game, before all objects involved in the game are destroyed */
+void Player::End(){
+  DeckStats::GetInstance()->saveStats(this, opponent(),GameObserver::GetInstance());
 }
 
 Player::~Player(){

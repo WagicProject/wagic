@@ -15,7 +15,10 @@ AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file): Player(_deck, file){
 
 AIPlayer::~AIPlayer(){
   if (potentialMana) delete potentialMana;
-  SAFE_DELETE(stats);
+  if (stats){
+    stats->save();
+    delete stats;
+  }
 }
 MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random){
   for (int i = 0; i < game->hand->nb_cards; i++){
@@ -392,24 +395,29 @@ AIStats * AIPlayer::getStats(){
   return stats;
 }
 
-AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCards * oponents_deck){
-  int nbdecks = 0;
-  int found = 1;
-  while (found){
-    found = 0;
-    char buffer[512];
-    sprintf(buffer, "Res/ai/baka/deck%i.txt",nbdecks+1);
-    std::ifstream file(buffer);
-    if(file){
-      found = 1;
-      file.close();
-      nbdecks++;
+AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCards * oponents_deck, int deckid){
+  if (!deckid){
+    int nbdecks = 0;
+    int found = 1;
+    while (found){
+      found = 0;
+      char buffer[512];
+      sprintf(buffer, "Res/ai/baka/deck%i.txt",nbdecks+1);
+      std::ifstream file(buffer);
+      if(file){
+        found = 1;
+        file.close();
+        nbdecks++;
+      }
     }
+    if (!nbdecks) return NULL;
+    deckid = 1 + rand() % (nbdecks);
   }
-  if (!nbdecks) return NULL;
-  int deckid = 1 + rand() % (nbdecks);
   char deckFile[512];
   sprintf(deckFile, "Res/ai/baka/deck%i.txt",deckid);
+  char avatarFile[512];
+  sprintf(avatarFile, "ai/baka/avatars/avatar%i.jpg",deckid);
+    
   char deckFileSmall[512];
   sprintf(deckFileSmall, "ai_baka_deck%i",deckid);
 #if defined (WIN32) || defined (LINUX)
@@ -420,7 +428,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCa
   int deck_cards_ids[100];
   int nb_elements = readfile_to_ints(deckFile, deck_cards_ids);
   MTGPlayerCards * deck = NEW MTGPlayerCards(collection,deck_cards_ids, nb_elements);
-  AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFileSmall);
+  AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFileSmall, avatarFile);
   return baka;
 }
 
@@ -460,8 +468,12 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
   return nextCardToPlay;
 }
 
-AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file): AIPlayer(_deck,file){
-  mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);
+AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, char * avatarFile): AIPlayer(_deck,file){
+  if (fileExists(avatarFile)){
+    mAvatarTex = JRenderer::GetInstance()->LoadTexture(avatarFile, TEX_TYPE_USE_VRAM);
+  }else{
+    mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);
+  }
   if (mAvatarTex)
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
   initTimer();

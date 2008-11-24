@@ -43,3 +43,12 @@ int Subtypes::find(const char * subtype){
   return (find(value));
 
 }
+
+/*This will be slow... */
+string Subtypes::find(int id){
+  map<string,int>::iterator it;
+  for (it = values.begin(); it != values.end(); it++){
+    if (it->second == id) return it->first;
+  }
+  return NULL;
+}

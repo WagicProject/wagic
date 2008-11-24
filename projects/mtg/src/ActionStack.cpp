@@ -7,6 +7,7 @@
 #include "../include/GameObserver.h"
 #include "../include/Damage.h"
 #include "../include/ManaCost.h"
+#include "../include/GameOptions.h"
 
 /*
   NextGamePhase requested by user
@@ -85,6 +86,15 @@ int Spell::resolve(){
   GameObserver * game = GameObserver::GetInstance();
   //TODO Remove target if it's not targettable anymore
   source->controller()->game->putInPlay(source);
+
+  //Play SFX
+  if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0){
+    JSample * sample = source->getSample();
+    if (sample){
+      JSoundSystem::GetInstance()->PlaySample(sample);
+    }
+  }
+
   AbilityFactory af;
   af.addAbilities(game->mLayers->actionLayer()->getMaxId(), this);
   return 1;

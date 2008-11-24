@@ -17,12 +17,15 @@ GameStateOptions::~GameStateOptions() {
 
 void GameStateOptions::Start()
 {
+
+  timer =  0;
   mState = SHOW_OPTIONS;
   JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
 
   optionsList = NEW OptionsList();
   if (GameApp::HasMusic) optionsList->Add(NEW OptionItem(OPTIONS_MUSICVOLUME, "Music volume", 100, 10));
+  optionsList->Add(NEW OptionItem(OPTIONS_SFXVOLUME, "SFX volume", 100, 10));
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
   optionsMenu = NEW SimpleMenu(102, this,mFont, 50,170,SCREEN_WIDTH-120);
   optionsMenu->Add(1, "Save & Back to Main Menu");
@@ -41,6 +44,8 @@ void GameStateOptions::End()
 
 void GameStateOptions::Update(float dt)
 {
+
+  timer+= dt;
   if (mState == SHOW_OPTIONS){
     if (mEngine->GetButtonClick(PSP_CTRL_START)){
       mState = SHOW_OPTIONS_MENU;
@@ -59,17 +64,18 @@ void GameStateOptions::Render()
 {
   //Erase
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
-  optionsList->Render();
 
   const char * const CreditsText[] = {
     "Wagic, The Homebrew ?! by WilLoW",
     "This is a work in progress and it contains bugs, deal with it",
     "updates on http://www.wololo.net/wagic",
+    "Many thanks to Abrasax and J for their help in this release",
     "",
-    "Developped with the JGE++ Library",
-    "http://jge.khors.com",
+    "Developped with the JGE++ Library (http://jge.khors.com)",
     "",
     "this freeware app is not endorsed by Wizards of the Coast, Inc",
+    "",
+    "SFX From www.soundsnap.com",
 
   };
 
@@ -80,23 +86,34 @@ void GameStateOptions::Render()
   };
 
 
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/magic");
   mFont->SetColor(ARGB(255,200,200,200));
-  mFont->SetScale(0.80);
-  for (int i = 0; i < 8; i++){
-    mFont->DrawString(CreditsText[i],SCREEN_WIDTH/2, 40 +18*i,JGETEXT_CENTER);
+  mFont->SetScale(1.0);
+  float startpos = 272 - timer * 10;
+  float pos = startpos;
+  for (int i = 0; i < 10; i++){
+    pos = startpos +20*i;
+    if (pos > -20){
+      mFont->DrawString(CreditsText[i],SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
+    }
   }
 
   if (GameApp::HasMusic){
     for (int i = 0; i < 3; i++){
-      mFont->DrawString(MusicText[i],SCREEN_WIDTH/2, 40 +18*(8+i),JGETEXT_CENTER);
+      pos = startpos +20*(10+i);
+      if (pos > -20){
+        mFont->DrawString(MusicText[i],SCREEN_WIDTH/2, pos,JGETEXT_CENTER);
+      }
     }
   }
+  if (pos < -20) timer = 0;
   mFont->SetScale(1.f);
 
   if (mState == SHOW_OPTIONS_MENU){
     optionsMenu->Render();
   }
+
+  optionsList->Render();
 
 }
 

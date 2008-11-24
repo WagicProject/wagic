@@ -142,3 +142,20 @@ int readfile_to_ints(const char * filename, int * out_buffer){
   return count;
 
 }
+
+int fileExists(const char * filename){
+ std::ifstream fichier(filename);
+if(fichier){
+  fichier.close();
+  return 1;
+}
+
+char alternateFilename[512];
+sprintf(alternateFilename, "Res/%s",filename);
+ std::ifstream fichier2(alternateFilename);
+if(fichier2){
+  fichier2.close();
+  return 1;
+}
+return 0;
+}

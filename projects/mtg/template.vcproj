@@ -277,6 +277,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\DeckStats.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\DuelLayers.cpp"
 				>
 			</File>
@@ -563,6 +567,10 @@
 			</File>
 			<File
 				RelativePath=".\include\DeckDataWrapper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DeckStats.h"
 				>
 			</File>
 			<File

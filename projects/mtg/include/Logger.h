@@ -3,7 +3,6 @@
 
 
 
-
 #ifdef DOLOG
 #define LOG(x) Logger::Log(x);
 #else
@@ -14,7 +13,7 @@
 
 class Logger{
  public:
-  static void Log(char * text);
+  static void Log(const char * text);
 };
 
 #endif

@@ -59,6 +59,7 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
   ManaCost * manacost = card->getManaCost();
   int nbicons = 0;
   for (int i = 1; i < MTG_NB_COLORS - 1; i++){
+
     int cost = manacost->getCost(i);
     for (int j=0; j < cost; j++){
       v.x = (width/2 - 20 - 16*nbicons)*scale;
@@ -74,13 +75,13 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
     v.y = ((-height/2) + 14) * scale;
     v.Rotate(rotation);
     sprintf(buf,"%i",cost);
+    mFont->SetColor(ARGB(255,255,255,255));
     mFont->DrawString(buf,x+v.x,y+v.y);
   }
 
   if (!card->formattedTextInit){
     std::string s(card->getText());
     std::string::size_type found=s.find_first_of("{}");
-
     while (found!=string::npos)
       {
 	s[found]='/';
@@ -201,9 +202,7 @@ void CardGui::Update(float dt){
   PlayGuiObject::Update(dt);
 }
 
-void CardGui::RenderBig(float xpos, float ypos){
-  JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = card->getQuad();
+void CardGui::RenderBig(float xpos, float ypos, int alternate){
   if (xpos == -1){
     xpos = 300;
     if (x > SCREEN_WIDTH / 2)
@@ -211,10 +210,19 @@ void CardGui::RenderBig(float xpos, float ypos){
   }
   if(ypos == -1)
     ypos = 20;
-  if (quad){
-    quad->SetColor(ARGB(220,255,255,255));
-    renderer->RenderQuad(quad, xpos   , ypos , 0.0f,0.9f,0.9f);
-  }else{
+  if (!alternate){
+    JRenderer * renderer = JRenderer::GetInstance();
+    JQuad * quad = card->getQuad();
+    if (quad){
+      quad->SetColor(ARGB(220,255,255,255));
+      renderer->RenderQuad(quad, xpos   , ypos , 0.0f,0.9f,0.9f);
+    }else{
+      alternate = 1;
+    }
+  }
+
+
+  if (alternate){
     MTGCard * mtgcard = card->model;
     JLBFont * font = GameApp::CommonRes->GetJLBFont("graphics/magic");
     CardGui::alternateRender(mtgcard, font, NULL, xpos + 90  , ypos + 130, 0.0f,0.9f);
