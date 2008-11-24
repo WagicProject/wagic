@@ -601,6 +601,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 				WPARAM	wParam,			// Additional Message Information
 				LPARAM	lParam)			// Additional Message Information
 {
+  gKeyCodes.reserve(sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]));
   for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
     gKeyCodes[i] = make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode);
 
