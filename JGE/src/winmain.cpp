@@ -13,28 +13,126 @@
 int actualWidth;
 int actualHeight;
 
+#ifdef WIN32
 #include <windows.h>		// Header File For Windows
-#include <gl\gl.h>			// Header File For The OpenGL32 Library
-#include <gl\glu.h>			// Header File For The GLu32 Library
-#include <gl\glaux.h>		// Header File For The Glaux Library
+#else
+typedef struct _HDC {} *HDC;
+typedef struct _HGLRC {} *HGLRC;
+typedef struct _HWND {} *HWND;
+typedef struct _HINSTANCE {} *HINSTANCE;
+typedef struct _WNDCLASS
+{
+  int wc;
+  int style;
+  int* lpfnWndProc;
+  int cbClsExtra;
+  int cbWndExtra;
+  HINSTANCE hInstance;
+  int* hIcon;
+  int* hCursor;
+  int hbrBackground;
+  char* lpszMenuName;
+  const char* lpszClassName;
+} WNDCLASS;
+typedef struct
+{
+  unsigned short dmSize;
+  unsigned int dmFields;
+  unsigned int dmBitsPerPel;
+  unsigned int dmPelsWidth;
+  unsigned int dmPelsHeight;
+} DEVMODE;
+
+typedef HINSTANCE HMODULE;
+typedef struct _RECT { int left; int right; int top; int bottom; } RECT;
+typedef struct _MSG { int wParam; int message; } MSG;
+typedef unsigned int LRESULT;
+typedef unsigned int UINT;
+typedef signed int WPARAM;
+typedef unsigned int LPARAM;
+typedef int* WNDPROC;
+typedef int* HCURSOR;
+typedef HCURSOR HICON;
+typedef HCURSOR HMENU;
+typedef struct _PIXELFORMATDESCRIPTOR {
+  int a;int b;int c;int d;int e;int f;int g;int h;int i;int j;int k;int l;int m;int n;int o;int p;int q;int r;int s;int t;int u;int v;int w;int x;int y;int z; } PIXELFORMATDESCRIPTOR;
+typedef char* LPSTR;
+
+enum { VK_CONTROL, VK_RETURN, VK_ESCAPE, VK_SPACE, VK_F1, VK_F2, VK_F3 };
+enum { MB_OK, MB_ICONINFORMATION, MB_ICONSTOP, MB_YESNO, MB_ICONEXCLAMATION, IDYES };
+enum { CS_HREDRAW, CS_VREDRAW, CS_OWNDC };
+enum { WS_EX_APPWINDOW, WS_POPUP, WS_EX_WINDOWEDGE, WS_OVERLAPPED, WS_CAPTION, WS_MINIMIZEBOX, WS_MAXIMIZEBOX, WS_SIZEBOX, WS_SYSMENU, WS_CLIPSIBLINGS, WS_CLIPCHILDREN };
+enum { WM_ACTIVATE, WM_SYSCOMMAND, WM_CLOSE, WM_KEYDOWN, WM_KEYUP, WM_LBUTTONDOWN, WM_LBUTTONUP, WM_RBUTTONDOWN, WM_RBUTTONUP, WM_MOUSEMOVE, WM_SIZE, WM_QUIT };
+enum { DM_BITSPERPEL, DM_PELSWIDTH, DM_PELSHEIGHT };
+enum { CDS_FULLSCREEN };
+enum { DISP_CHANGE_SUCCESSFUL };
+enum { SC_SCREENSAVE, SC_MONITORPOWER };
+enum { PFD_DRAW_TO_WINDOW, PFD_SUPPORT_OPENGL, PFD_DOUBLEBUFFER, PFD_TYPE_RGBA, PFD_MAIN_PLANE };
+enum { SW_SHOW };
+enum { IDC_ARROW };
+enum { PM_REMOVE };
+
+static const char* IDI_WINLOGO = "";
+#define CALLBACK
+#define WINAPI
+#define ZeroMemory bzero
+int GetTickCount() { return 0; }
+long ChangeDisplaySettings(DEVMODE*, unsigned int);
+int ShowCursor(bool);
+HGLRC wglCreateContext(HDC);
+bool wglMakeCurrent(HDC, HGLRC);
+bool wglDeleteContext(HGLRC);
+int ReleaseDC(HWND, HDC);
+int MessageBox(HWND, const char*, const char*, unsigned int);
+bool DestroyWindow(HWND);
+bool UnregisterClass(const char*, HINSTANCE);
+HMODULE GetModuleHandle(char*);
+HCURSOR LoadCursor(HINSTANCE, int);
+HICON LoadIcon(HINSTANCE, const char*);
+int* RegisterClass(const WNDCLASS*);
+bool AdjustWindowRectEx(RECT*, unsigned int, bool, unsigned int);
+HWND CreateWindowEx(unsigned int, const char*, const char*, unsigned int, int, int, int, int, HWND, HMENU, HINSTANCE, void*);
+HDC GetDC(HWND);
+int ChoosePixelFormat(HDC, const PIXELFORMATDESCRIPTOR*);
+bool SetPixelFormat(HDC, int, PIXELFORMATDESCRIPTOR*);
+bool ShowWindow(HWND, int);
+bool SetForegroundWindow(HWND);
+HWND SetFocus(HWND);
+unsigned short HIWORD(unsigned int);
+unsigned short LOWORD(unsigned int);
+LRESULT DefWindowProc(HWND, unsigned int, WPARAM, LPARAM);
+void PostQuitMessage(int);
+bool PeekMessage(MSG*, HWND, unsigned int, unsigned int, unsigned int);
+bool TranslateMessage(const MSG*);
+LRESULT DispatchMessage(const MSG*);
+bool SwapBuffers(HDC);
+#endif
+
+
+
+#include <GL/gl.h>			// Header File For The OpenGL32 Library
+#include <GL/glu.h>			// Header File For The GLu32 Library
+#include <GL/glaux.h>		// Header File For The Glaux Library
 #include <queue>
 
-#include "..\..\JGE\include\JGE.h"
-#include "..\..\JGE\include\JTypes.h"
-#include "..\..\JGE\include\JApp.h"
-#include "..\..\JGE\include\JFileSystem.h"
-#include "..\..\JGE\include\JRenderer.h"
+#include "../../JGE/include/JGE.h"
+#include "../../JGE/include/JTypes.h"
+#include "../../JGE/include/JApp.h"
+#include "../../JGE/include/JFileSystem.h"
+#include "../../JGE/include/JRenderer.h"
 
-#include "..\..\JGE\include\JGameLauncher.h"
+#include "../../JGE/include/JGameLauncher.h"
 
 //#include "..\src\GameApp.h"
 
+#ifdef WIN32
 #pragma comment( lib, "opengl32.lib" )	// Search For OpenGL32.lib While Linking
 #pragma comment( lib, "glu32.lib" )		// Search For GLu32.lib While Linking
 #pragma comment( lib, "glaux.lib" )		// Search For GLaux.lib While Linking
 #pragma comment( lib, "User32.lib" )
 #pragma comment( lib, "Gdi32.lib" )
 #pragma comment( lib, "Comdlg32.lib" )
+#endif
 
 HDC			hDC=NULL;		// Private GDI Device Context
 HGLRC		hRC=NULL;		// Permanent Rendering Context
@@ -64,81 +162,38 @@ static u32 gButtons = 0;
 static u32 gOldButtons = 0;
 static queue< pair<u32, u32> > gKeyBuffer;
 
-static u32 gPSPKeyMasks[17] =
+static const struct { WPARAM keysym; u32 pspCode; } gDefaultBindings[] =
   {
-    PSP_CTRL_SELECT,
-    PSP_CTRL_START,
-    PSP_CTRL_UP,
-    PSP_CTRL_RIGHT,
-    PSP_CTRL_DOWN,
-    PSP_CTRL_LEFT,
-    PSP_CTRL_LTRIGGER,
-    PSP_CTRL_RTRIGGER,
-    PSP_CTRL_TRIANGLE,
-    PSP_CTRL_CIRCLE,
-    PSP_CTRL_CROSS,
-    PSP_CTRL_SQUARE,
-    PSP_CTRL_HOME,
-    PSP_CTRL_HOLD,
-    PSP_CTRL_NOTE,
-    PSP_CTRL_CIRCLE,
-    PSP_CTRL_START,
+    { VK_CONTROL,	PSP_CTRL_SELECT },
+    { VK_RETURN,	PSP_CTRL_START },
+    { VK_ESCAPE,	PSP_CTRL_START },
+    { 'Z',		PSP_CTRL_UP },
+    { 'D',		PSP_CTRL_RIGHT },
+    { 'S',		PSP_CTRL_DOWN },
+    { 'Q',		PSP_CTRL_LEFT },
+    { 'A',		PSP_CTRL_LTRIGGER },
+    { 'E',		PSP_CTRL_RTRIGGER },
+    { 'I',		PSP_CTRL_TRIANGLE },
+    { 'L',		PSP_CTRL_CIRCLE },
+    { VK_SPACE,		PSP_CTRL_CIRCLE },
+    { 'K',		PSP_CTRL_CROSS },
+    { 'J',		PSP_CTRL_SQUARE },
+    { VK_F1,		PSP_CTRL_HOME },
+    { VK_F2,		PSP_CTRL_HOLD },
+    { VK_F3,		PSP_CTRL_NOTE }
   };
 
-
-static u32 gWinKeyCodes[17] =
-  {
-    VK_CONTROL,
-    VK_RETURN,
-    'Z',
-    'D',
-    'S',
-    'Q',
-    'A',
-    'E',
-    'I',
-    'L',
-    'K',
-    'J',
-    VK_F1,
-    VK_F2,
-    VK_F3,
-    VK_SPACE,
-    VK_ESCAPE
-
-  };
-
-static bool gThisFrame[17] =
-  {
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  };
+static vector< pair<WPARAM, u32> > gKeyCodes;
 
 void JGEControl()
 {
   gOldButtons = gButtons;
 
   gButtons = 0;
-  for (int i=0;i<17;i++)
+  for (int i = gKeyCodes.size() - 1; i >= 0; --i)
     {
-      gThisFrame[i] = false;
-      if (g_keys[gWinKeyCodes[i]])
-	gButtons |= gPSPKeyMasks[i];
+      if (g_keys[gKeyCodes[i].first])
+	gButtons |= gKeyCodes[i].second;
     }
 }
 
@@ -186,7 +241,7 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize Th
   glDisable (GL_DEPTH_TEST);
 }
 
-int InitGL(GLvoid)												// All Setup For OpenGL Goes Here
+int InitGL(void)												// All Setup For OpenGL Goes Here
 {
   glClearColor (0.0f, 0.0f, 0.0f, 0.0f);						// Black Background
   glClearDepth (1.0f);										// Depth Buffer Setup
@@ -213,7 +268,7 @@ int InitGL(GLvoid)												// All Setup For OpenGL Goes Here
 }
 
 
-int InitGame(GLvoid)
+int InitGame(void)
 {
   g_engine = JGE::GetInstance();
 
@@ -235,7 +290,7 @@ int InitGame(GLvoid)
 }
 
 
-void DestroyGame(GLvoid)
+void DestroyGame(void)
 {
   //	JParticleSystem::Destroy();
   //	JMotionSystem::Destroy();
@@ -255,7 +310,7 @@ void DestroyGame(GLvoid)
 }
 
 
-int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
+int DrawGLScene(void)									// Here's Where We Do All The Drawing
 {
 
   // 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear Screen And Depth Buffer
@@ -283,7 +338,7 @@ void Update(int dt)
 
 }
 
-GLvoid KillGLWindow(GLvoid)								// Properly Kill The Window
+void KillGLWindow(void)								// Properly Kill The Window
 {
   DestroyGame();
 
@@ -413,7 +468,7 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscree
 	WS_SIZEBOX	   |
 	WS_MAXIMIZEBOX	   |
 	//WS_MINIMIZE		|
-	WS_SYSMENU;//        | \
+	WS_SYSMENU;//        |
       //WS_THICKFRAME ;
     }
 
@@ -546,6 +601,9 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 				WPARAM	wParam,			// Additional Message Information
 				LPARAM	lParam)			// Additional Message Information
 {
+  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
+    gKeyCodes[i] = make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode);
+
   switch (uMsg)									// Check For Windows Messages
     {
     case WM_ACTIVATE:							// Watch For Window Activate Message
@@ -590,13 +648,9 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 	  if (false == g_holds[wParam])
 	    {
 	      g_holds[wParam] = true;
-	      for (signed int i = sizeof(gWinKeyCodes)/sizeof(gWinKeyCodes[0]) - 1; i >= 0; --i)
-		if (gWinKeyCodes[i] == wParam)
-		  if (false == gThisFrame[i])
-		    {
-		      gThisFrame[i] = true;
-		      gKeyBuffer.push(make_pair(gPSPKeyMasks[i], wParam));
-		    }
+	      for (signed int i = gKeyCodes.size() - 1; i >= 0; --i)
+		if (gKeyCodes[i].first == wParam)
+		  gKeyBuffer.push(gKeyCodes[i]);
 	    }
 	  return 0;
 	}
