@@ -16,7 +16,7 @@ GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/Encoding.o src/JTTFont.o \
 	src/JMD2Model.o src/JOBJModel.o src/vram.o
 PSP_OBJS = src/JGfx.o src/JSfx.o src/main.o
-LINUX_OBJS = src/linux/JGfx.o src/linux/JSfx.o src/linuxmain.o
+LINUX_OBJS = src/linux/JGfx.o src/linux/JSfx.o src/Xmain.o
 
 
 HGE_OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
@@ -94,13 +94,10 @@ all: $(DEFAULT_RULE) hge
 debug: $(DEFAULT_RULE) hge
 
 linux: $(TARGET_LIB)
-	@echo Making for Linux.
 
 3xx: $(TARGET_LIB)
-	@echo Making for 3xx.
 
 1xx: $(TARGET_LIB)
-	@echo Making for 1xx.
 
 install: $(TARGET_LIB) hge
 

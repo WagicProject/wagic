@@ -42,6 +42,7 @@ int glWindowID = 0;
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
 static u32 gKeyPresses = 0;
+static u32 gHolds = 0;
 static queue< pair<u32,u32> > gKeyBuffer;
 
 static u32 gPSPKeyMasks[] =
@@ -112,27 +113,6 @@ static const unsigned char gNonGlutKeyCodes[] =
     0,
     KEY_SPACE,
     KEY_ESCAPE
-  };
-
-static bool gThisFrame[17] =
-  {
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
   };
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
@@ -267,8 +247,6 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((
 
 void JGEControl()
 {
-  for (int i=0;i<17;i++)
-    gThisFrame[i] = false;
   gOldButtons = gButtons;
 }
 
@@ -363,11 +341,11 @@ void specialKey(int key, int x __attribute__((unused)), int y __attribute((unuse
   for (signed int i = sizeof(gGlutKeyCodes)/sizeof(gGlutKeyCodes[0]) - 1; i >= 0; --i)
     if (gGlutKeyCodes[i] == key)
       {
-	if (false == gThisFrame[i])
+	gButtons |= gPSPKeyMasks[i];
+	gKeyPresses |= gPSPKeyMasks[i];
+	if (!(gHolds & gPSPKeyMasks[i]))
 	  {
-	    gThisFrame[i] = true;
-	    gButtons |= gPSPKeyMasks[i];
-	    gKeyPresses |= gPSPKeyMasks[i];
+	    gHolds |= gPSPKeyMasks[i];
 	    gKeyBuffer.push(make_pair(gPSPKeyMasks[i],0x8000+key));
 	  }
 	return;
@@ -379,6 +357,7 @@ void specialUp(int key, int x __attribute__((unused)), int y __attribute((unused
     if (gGlutKeyCodes[i] == key)
       {
 	gButtons &= ~gPSPKeyMasks[i];
+	gHolds &= ~gPSPKeyMasks[i];
 	return;
       }
 }
@@ -403,14 +382,14 @@ void normalKey(unsigned char key, int x __attribute__((unused)), int y __attribu
 	  glutPositionWindow(0, 0);
 	}
     }
-  for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i > 0; --i)
+  for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i >= 0; --i)
     if (gNonGlutKeyCodes[i] == key)
       {
-	if (false == gThisFrame[i])
+	gButtons |= gPSPKeyMasks[i];
+	gKeyPresses |= gPSPKeyMasks[i];
+	if (!(gHolds & gPSPKeyMasks[i]))
 	  {
- 	    gThisFrame[i] = true;
-	    gButtons |= gPSPKeyMasks[i];
-	    gKeyPresses |= gPSPKeyMasks[i];
+	    gHolds |= gPSPKeyMasks[i];
 	    gKeyBuffer.push(make_pair(gPSPKeyMasks[i],key));
 	  }
 	return;
@@ -418,14 +397,20 @@ void normalKey(unsigned char key, int x __attribute__((unused)), int y __attribu
 }
 void normalUp(unsigned char key, int x __attribute__((unused)), int y __attribute((unused)))
 {
-  for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i > 0; --i)
-    if (gNonGlutKeyCodes[i] == key) { gButtons &= ~gPSPKeyMasks[i]; return; }
+  for (signed int i = sizeof(gNonGlutKeyCodes)/sizeof(gNonGlutKeyCodes[0]); i >= 0; --i)
+    if (gNonGlutKeyCodes[i] == key)
+      {
+	gButtons &= ~gPSPKeyMasks[i];
+	gHolds &= ~gPSPKeyMasks[i];
+	return;
+      }
 }
 
 u32 JGEReadKey()
 {
   if (gKeyBuffer.empty()) return 0;
   u32 val = gKeyBuffer.front().first;
+  gHolds = gHolds & ~val;
   gKeyBuffer.pop();
   return val;
 }
@@ -433,9 +418,10 @@ u32 JGEReadKey()
 u32 JGEReadLocalKey()
 {
   if (gKeyBuffer.empty()) return 0;
-  u32 val = gKeyBuffer.front().second;
+  pair <u32, u32> val = gKeyBuffer.front();
+  gHolds = gHolds & ~val.first;
   gKeyBuffer.pop();
-  return val;
+  return val.second;
 }
 
 void JGEResetInput()
@@ -465,7 +451,7 @@ int main(int argc, char* argv[])
 
   glutIdleFunc(&idleCallBack);
   glutDisplayFunc(&displayCallBack);
-  //  glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+  //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
   glutSpecialFunc(&specialKey);
   glutKeyboardFunc(&normalKey);
   glutSpecialUpFunc(&specialUp);
