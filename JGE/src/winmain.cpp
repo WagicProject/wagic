@@ -190,11 +190,9 @@ void JGEControl()
   gOldButtons = gButtons;
 
   gButtons = 0;
-  for (int i = gKeyCodes.size() - 1; i >= 0; --i)
-    {
-      if (g_keys[gKeyCodes[i].first])
-	gButtons |= gKeyCodes[i].second;
-    }
+  for (vector< pair<WPARAM, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
+    if (g_keys[it->first])
+      gButtons |= it->second;
 }
 
 
@@ -601,9 +599,8 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 				WPARAM	wParam,			// Additional Message Information
 				LPARAM	lParam)			// Additional Message Information
 {
-  gKeyCodes.reserve(sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]));
   for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-    gKeyCodes[i] = make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode);
+    gKeyCodes.push_back(make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode));
 
   switch (uMsg)									// Check For Windows Messages
     {
@@ -649,9 +646,9 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 	  if (false == g_holds[wParam])
 	    {
 	      g_holds[wParam] = true;
-	      for (signed int i = gKeyCodes.size() - 1; i >= 0; --i)
-		if (gKeyCodes[i].first == wParam)
-		  gKeyBuffer.push(gKeyCodes[i]);
+	      for (vector< pair<WPARAM, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
+		if (it->first == wParam)
+		  gKeyBuffer.push(*it);
 	    }
 	  return 0;
 	}

@@ -210,7 +210,7 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((
     }
 
   for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-    gKeyCodes[i] = make_pair(XKeysymToKeycode(gXDisplay, gDefaultBindings[i].keysym), gDefaultBindings[i].pspCode);
+    gKeyCodes.push_back(make_pair(XKeysymToKeycode(gXDisplay, gDefaultBindings[i].keysym), gDefaultBindings[i].pspCode));
 
   // Get a suitable framebuffer config
   int numReturned;
@@ -436,22 +436,22 @@ int main(int argc, char* argv[])
 	  case KeyPress:
 	    if (XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1) == XK_F)
 	      fullscreen();
-	    for (signed int i = gKeyCodes.size() - 1; i >= 0; --i)
-	      if (event.xkey.keycode == gKeyCodes[i].first)
+	    for (vector< pair<KeyCode, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
+	      if (event.xkey.keycode == it->first)
 		{
-		  if (!(gHolds & gKeyCodes[i].second))
-		    gKeyBuffer.push(gKeyCodes[i]);
-		  gControllerState |= gKeyCodes[i].second;
-		  gHolds |= gKeyCodes[i].second;
+		  if (!(gHolds & it->second))
+		    gKeyBuffer.push(*it);
+		  gControllerState |= it->second;
+		  gHolds |= it->second;
 		  break;
 		}
 	    break;
 	  case KeyRelease:
-	    for (signed int i = sizeof(gKeyCodes)/sizeof(gKeyCodes[0]) - 1; i >= 0; --i)
-	      if (event.xkey.keycode == gKeyCodes[i].first)
+	    for (vector< pair<KeyCode, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
+	      if (event.xkey.keycode == it->first)
 		{
-		  gControllerState &= ~gKeyCodes[i].second;
-		  gHolds &= ~gKeyCodes[i].second;
+		  gControllerState &= ~it->second;
+		  gHolds &= ~it->second;
 		  break;
 		}
 	    break;
