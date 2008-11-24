@@ -47,7 +47,7 @@ void GameStateOptions::Update(float dt)
 
   timer+= dt;
   if (mState == SHOW_OPTIONS){
-    if (mEngine->GetButtonClick(PSP_CTRL_START)){
+    if (PSP_CTRL_START == mEngine->ReadButton()){
       mState = SHOW_OPTIONS_MENU;
     }
 

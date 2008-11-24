@@ -168,6 +168,7 @@ int PlayGuiObjectController::getClosestItem(int direction, float tolerance){
   }
 */
 void PlayGuiObjectController::Update(float dt){
+  last_user_move +=dt;
   for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){
       mObjects[i]->Update(dt);
@@ -176,84 +177,68 @@ void PlayGuiObjectController::Update(float dt){
 }
 
 
-void PlayGuiObjectController::CheckUserInput(float dt){
-  last_user_move +=dt;
+bool PlayGuiObjectController::CheckUserInput(u32 key){
   if (!mCount)
-    return;
+    return false;
   if (game != NULL){
-    if (mEngine->GetButtonClick(mActionButton)){
+    if (mActionButton == key){
       if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed()){
 	game->ButtonPressed(mId, (PlayGuiObject *)mObjects[mCurr]);
-	return;
+	return true;
       }
     }
-    if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
+    if (PSP_CTRL_CROSS == key){
       game->cancelCurrentAction();
+      return true;
     }
   }
 
-  if (mEngine->GetButtonState(PSP_CTRL_LEFT))
+  last_user_move = 0;
+  switch (key)
     {
-
-      last_user_move = 0;
-      if (KeyRepeated(PSP_CTRL_LEFT, dt))
-	{
-	  int n = getClosestItem(DIR_LEFT);
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_LEFT))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
-	    }
-	}
+    case PSP_CTRL_LEFT:
+      {
+	int n = getClosestItem(DIR_LEFT);
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_LEFT))
+	  {
+	    mCurr = n;
+	    mObjects[mCurr]->Entering();
+	  }
+	return true;
+      }
+    case PSP_CTRL_RIGHT:
+      {
+	int n = getClosestItem(DIR_RIGHT);
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_RIGHT))
+	  {
+	    mCurr = n;
+	    mObjects[mCurr]->Entering();
+	  }
+	return true;
+      }
+    case PSP_CTRL_UP:
+      {
+	int n = getClosestItem(DIR_UP);
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+	  {
+	    mCurr = n;
+	    mObjects[mCurr]->Entering();
+	  }
+	return true;
+      }
+    case PSP_CTRL_DOWN:
+      {
+	int n = getClosestItem(DIR_DOWN);
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+	  {
+	    mCurr = n;
+	    mObjects[mCurr]->Entering();
+	  }
+	return true;
+      }
+    case PSP_CTRL_TRIANGLE:
+      showBigCards = (showBigCards + 1) % 3;
+      return true;
     }
-  else if (mEngine->GetButtonState(PSP_CTRL_RIGHT))
-    {
-      last_user_move = 0;
-      if (KeyRepeated(PSP_CTRL_RIGHT, dt))
-	{
-	  int n = getClosestItem(DIR_RIGHT);
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_RIGHT))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
-	    }
-	}
-    }
-  else if (mEngine->GetButtonState(PSP_CTRL_UP))
-    {
-      last_user_move = 0;
-      if (KeyRepeated(PSP_CTRL_UP, dt))
-	{
-	  int n = getClosestItem(DIR_UP);
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
-	    }
-	}
-    }
-  else if (mEngine->GetButtonState(PSP_CTRL_DOWN))
-    {
-      last_user_move = 0;
-      if (KeyRepeated(PSP_CTRL_DOWN, dt))
-	{
-	  int n = getClosestItem(DIR_DOWN);
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
-	    }
-	}
-    }else if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)){
-    showBigCards = (++showBigCards) %3;
-  }
-
-  else{
-    mLastKey = 0;
-  }
-
-
-
+  return false;
 }
-
-

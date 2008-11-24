@@ -34,7 +34,7 @@ class ActionElement: public JGuiObject{
   virtual void Render(){};
   virtual int testDestroy(){return 0;};
   virtual int destroy(){return 0;};
-  virtual void CheckUserInput(float dt){};
+  virtual bool CheckUserInput(u32 key){return false;};
   ActionElement(int id);
   virtual int isReactingToTargetClick(Targetable * card);
   virtual int reactToTargetClick(Targetable * card);

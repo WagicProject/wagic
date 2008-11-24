@@ -17,22 +17,23 @@ int ActionLayer::unstopableRenderInProgress(){
 }
 
 
-void ActionLayer::CheckUserInput(float dt){
+bool ActionLayer::CheckUserInput(u32 key){
   if (menuObject){
-    abilitiesMenu->Update(dt);
-    return;
+    return false;
   }
   for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];
-      currentAction->CheckUserInput(dt);
+      if (currentAction->CheckUserInput(key)) return true;
     }
   }
+  return false;
 }
 
 
 void ActionLayer::Update(float dt){
   if (menuObject){
+    abilitiesMenu->Update(dt);
     return;
   }
   modal = 0;
@@ -154,17 +155,6 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
     result += currentAction->reactToClick(card);
   }
   return result;
-}
-
-
-int ActionLayer::isModal(){
-  if (modal) return 1;
-  if (menuObject) return 1;
-  for (int i=0; i<mCount; i++){
-    ActionElement * currentAction = (ActionElement *)mObjects[i];
-    if (currentAction->modal) return 1;
-  }
-  return 0;
 }
 
 

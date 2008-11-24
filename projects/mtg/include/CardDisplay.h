@@ -17,7 +17,7 @@ class CardDisplay:public PlayGuiObjectController{
   void AddCard(MTGCardInstance * _card);
   void rotateLeft();
   void rotateRight();
-  void CheckUserInput(float dt);
+  bool CheckUserInput(u32 key);
   void Render();
   void init(MTGGameZone * zone);
 };

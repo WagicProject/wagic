@@ -160,132 +160,132 @@ void GameStateDuel::End()
 
 void GameStateDuel::Update(float dt)
 {
-  if (mGamePhase == ERROR_NO_DECK){
-    if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){
-      mParent->SetNextState(GAME_STATE_DECK_VIEWER);
-    }
-  }else if (mGamePhase == DUEL_CHOOSE_DECK1){
-    if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
-      deckmenu->Update(dt);
-    }
+  switch (mGamePhase)
+    {
+    case ERROR_NO_DECK:
+      if (PSP_CTRL_CIRCLE == mEngine->ReadButton())
+	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
+      break;
+    case DUEL_CHOOSE_DECK1:
+      if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
+	deckmenu->Update(dt);
 #ifdef TESTSUITE
-    else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
-      if (testSuite && testSuite->loadNext()){
-	loadTestSuitePlayers();
-	mGamePhase = DUEL_PLAY;
-	testSuite->initGame();
-	char buf[4096];
-	sprintf(buf, "nb cards in player2's graveyard : %i\n",mPlayers[1]->game->graveyard->nb_cards);
-	LOG(buf);
-      }else{
-	mGamePhase = DUEL_END;
-      }
-    }
-#endif
-    else{
-      loadPlayer(0);
-      mGamePhase = DUEL_CHOOSE_DECK2;
-    }
-  }else if(mGamePhase == DUEL_CHOOSE_DECK2){
-    if (mParent->players[1] ==  PLAYER_TYPE_HUMAN){
-      deckmenu->Update(dt);
-    }
-
-    else{
-      if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
-        if (!opponentMenu){
-          opponentMenu = NEW SimpleMenu(13,this,opponentMenuFont,10,10,SCREEN_WIDTH/2,"choose Opponent");
-          opponentMenu->Add(0,"Random");
-          nbAIDecks = 0;
-          int found = 1;
-          while (found){
-            found = 0;
-            char buffer[512];
-            char aiSmallDeckName[512];
-            char deckDesc[512];
-            sprintf(buffer, "Res/ai/baka/deck%i.txt",nbAIDecks+1);     
-            if(fileExists(buffer)){
-              found = 1;
-              nbAIDecks++;
-              sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks);
-              DeckStats * stats = DeckStats::GetInstance();
-              stats->load(mPlayers[0]);
-              int percentVictories = stats->percentVictories(string(aiSmallDeckName));
-              string difficulty;
-              if (percentVictories < 34){
-                difficulty = "(hard)";
-              }else if (percentVictories < 67){
-                difficulty = "";
-              }else{
-                difficulty = "(easy)";
-              }
-              sprintf(deckDesc, "Deck %i %s",nbAIDecks, difficulty.c_str());
-              opponentMenu->Add(nbAIDecks,deckDesc);    
-            }
-          }
-        }
-        opponentMenu->Update(dt);
-      }else{
-        loadPlayer(1);
-        mGamePhase = DUEL_PLAY;
-      }
-    }
-
-  }else if (mGamePhase == DUEL_PLAY){
-    //Stop the music before starting the game
-    if (GameApp::music){
-      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-      SAFE_DELETE(GameApp::music);
-    }
-    if (!game){
-      GameObserver::Init(mPlayers, 2);
-      game = GameObserver::GetInstance();
-      game->startGame();
-    }
-    game->Update(dt);
-    if (game->gameOver){
-      if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() && mPlayers[0]!= game->gameOver){
-#if defined (WIN32) || defined (LINUX)
-	char buf[4096];
-	sprintf(buf, "%p - %p", mPlayers[0], game->gameOver);
-	OutputDebugString(buf);
-#endif
-	PlayerData * playerdata = NEW PlayerData(mParent->collection);
-	playerdata->credits+= 500;
-	playerdata->save();
-	delete playerdata;
-      }
-      mGamePhase = DUEL_END;
-#ifdef TESTSUITE
-      if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
-	if (testSuite->loadNext()){
+      else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
+	if (testSuite && testSuite->loadNext()){
 	  loadTestSuitePlayers();
 	  mGamePhase = DUEL_PLAY;
 	  testSuite->initGame();
+	  char buf[4096];
+	  sprintf(buf, "nb cards in player2's graveyard : %i\n",mPlayers[1]->game->graveyard->nb_cards);
+	  LOG(buf);
 	}else{
 	  mGamePhase = DUEL_END;
 	}
-      }else
-#endif        
-        if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU){
-	End();
-	Start();
       }
-
-      mFont->SetColor(ARGB(255,255,255,255));
+#endif
+      else{
+	loadPlayer(0);
+	mGamePhase = DUEL_CHOOSE_DECK2;
+      }
+      break;
+    case DUEL_CHOOSE_DECK2:
+      if (mParent->players[1] ==  PLAYER_TYPE_HUMAN){
+	deckmenu->Update(dt);
+      }
+      else{
+	if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
+	  if (!opponentMenu){
+	    opponentMenu = NEW SimpleMenu(13,this,opponentMenuFont,10,10,SCREEN_WIDTH/2,"choose Opponent");
+	    opponentMenu->Add(0,"Random");
+	    nbAIDecks = 0;
+	    int found = 1;
+	    while (found){
+	      found = 0;
+	      char buffer[512];
+	      char aiSmallDeckName[512];
+	      char deckDesc[512];
+	      sprintf(buffer, "Res/ai/baka/deck%i.txt",nbAIDecks+1);
+	      if(fileExists(buffer)){
+		found = 1;
+		nbAIDecks++;
+		sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks);
+		DeckStats * stats = DeckStats::GetInstance();
+		stats->load(mPlayers[0]);
+		int percentVictories = stats->percentVictories(string(aiSmallDeckName));
+		string difficulty;
+		if (percentVictories < 34){
+		  difficulty = "(hard)";
+		}else if (percentVictories < 67){
+		  difficulty = "";
+		}else{
+		  difficulty = "(easy)";
+		}
+		sprintf(deckDesc, "Deck %i %s",nbAIDecks, difficulty.c_str());
+		opponentMenu->Add(nbAIDecks,deckDesc);
+	      }
+	    }
+	  }
+	  opponentMenu->Update(dt);
+	}else{
+	  loadPlayer(1);
+	  mGamePhase = DUEL_PLAY;
+	}
+      }
+      break;
+    case DUEL_PLAY:
+    //Stop the music before starting the game
+      if (GameApp::music){
+	JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+	SAFE_DELETE(GameApp::music);
+      }
+      if (!game){
+	GameObserver::Init(mPlayers, 2);
+	game = GameObserver::GetInstance();
+	game->startGame();
+      }
+      game->Update(dt);
+      if (game->gameOver){
+	if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() && mPlayers[0]!= game->gameOver){
+#if defined (WIN32) || defined (LINUX)
+	  char buf[4096];
+	  sprintf(buf, "%p - %p", mPlayers[0], game->gameOver);
+	  OutputDebugString(buf);
+#endif
+	  PlayerData * playerdata = NEW PlayerData(mParent->collection);
+	  playerdata->credits+= 500;
+	  playerdata->save();
+	  delete playerdata;
+	}
+	mGamePhase = DUEL_END;
+#ifdef TESTSUITE
+	if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
+	  if (testSuite->loadNext()){
+	    loadTestSuitePlayers();
+	    mGamePhase = DUEL_PLAY;
+	    testSuite->initGame();
+	  }else{
+	    mGamePhase = DUEL_END;
+	  }
+	}else
+#endif
+	  if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU){
+	    End();
+	    Start();
+	  }
+	mFont->SetColor(ARGB(255,255,255,255));
+      }
+      if (mEngine->GetButtonClick(PSP_CTRL_START)){
+	mGamePhase = DUEL_MENU;
+      }
+      break;
+    case DUEL_MENU:
+      menu->Update(dt);
+      break;
+    default:
+      if (PSP_CTRL_CIRCLE == mEngine->ReadButton()){
+	mParent->SetNextState(GAME_STATE_MENU);
+      }
     }
-    if (mEngine->GetButtonClick(PSP_CTRL_START)){
-      mGamePhase = DUEL_MENU;
-    }
-  }else if (mGamePhase == DUEL_MENU){
-    menu->Update(dt);
-  }else{
-    if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){
-      mParent->SetNextState(GAME_STATE_MENU);
-    }
-  }
-
-
 }
 
 
@@ -377,10 +377,3 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
       }
   }
 }
-
-
-
-
-
-
-

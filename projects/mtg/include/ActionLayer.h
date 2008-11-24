@@ -21,14 +21,13 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   virtual void Render();
   virtual void Update(float dt);
   int unstopableRenderInProgress();
-  void CheckUserInput(float dt);
+  bool CheckUserInput(u32 key);
  ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL;};
   int isWaitingForAnswer();
   int isReactingToTargetClick(Targetable * card);
   int reactToTargetClick(Targetable * card);
   int isReactingToClick(MTGCardInstance  * card);
   int reactToClick(MTGCardInstance * card);
-  int isModal();
   void setMenuObject(Targetable * object);
   void ButtonPressed(int controllerid, int controlid);
   TargetChooser * getCurrentTargetChooser();

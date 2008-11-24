@@ -17,14 +17,17 @@
 #define NO_USER_ACTIVITY_HELP_DELAY 10
 #define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
 
-#define STAGE_WAITING 2
-#define STAGE_TRANSITION_LEFT 1
-#define STAGE_TRANSITION_RIGHT 0
-#define STAGE_TRANSITION_UP 3
-#define STAGE_TRANSITION_DOWN 4
-#define STAGE_ONSCREEN_MENU 5
-#define STAGE_WELCOME 6
-#define STAGE_MENU 7
+enum
+  {
+    STAGE_TRANSITION_RIGHT = 0,
+    STAGE_TRANSITION_LEFT = 1,
+    STAGE_WAITING = 2,
+    STAGE_TRANSITION_UP = 3,
+    STAGE_TRANSITION_DOWN = 4,
+    STAGE_ONSCREEN_MENU = 5,
+    STAGE_WELCOME = 6,
+    STAGE_MENU = 7
+  };
 
 
 #define ALL_COLORS -1
@@ -32,7 +35,9 @@
 #define ROTATE_LEFT 1;
 #define ROTATE_RIGHT 0;
 
-
+#define HIGH_SPEED 15.0
+#define MED_SPEED 5.0
+#define LOW_SPEED 1.5
 
 
 class GameStateDeckViewer: public GameState, public JGuiListener
@@ -72,7 +77,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
  GameStateDeckViewer(GameApp* parent): GameState(parent) {
     bgMusic = NULL;
-    scrollSpeed = 10.0;
+    scrollSpeed = HIGH_SPEED;
   }
   virtual ~GameStateDeckViewer() {
     SAFE_DELETE(bgMusic);
@@ -289,7 +294,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	case PSP_CTRL_UP :
 	  last_user_activity = 0;
 	  mStage = STAGE_TRANSITION_UP;
-	  colorFilter --;
+	  colorFilter--;
 	  if (colorFilter < -1) colorFilter = MTG_COLOR_LAND;
 	  break;
 	case PSP_CTRL_DOWN :
@@ -338,13 +343,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  mStage = STAGE_MENU;
 	  break;
 	case PSP_CTRL_SELECT :
-	  printf("%f\n", scrollSpeed);
-	  if (scrollSpeed == 10.0)
-	    scrollSpeed = 5.0;
-	  else if (scrollSpeed == 5.0)
-	    scrollSpeed = 1.0;
+	  if (scrollSpeed == HIGH_SPEED)
+	    scrollSpeed = MED_SPEED;
+	  else if (scrollSpeed == MED_SPEED)
+	    scrollSpeed = LOW_SPEED;
 	  else
-	    scrollSpeed = 10.0;
+	    scrollSpeed = HIGH_SPEED;
 	  break;
  	default :  // no keypress
 	  if (last_user_activity > NO_USER_ACTIVITY_HELP_DELAY){
@@ -790,7 +794,4 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 };
 
 
-
-
 #endif
-

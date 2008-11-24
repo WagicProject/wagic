@@ -153,7 +153,7 @@ void ShopItems::Add(char * text, JQuad * quad,JQuad * thumb, int price){
 
 void ShopItems::Update(float dt){
   if (display){
-    display->CheckUserInput(dt);
+    //    display->CheckUserInput(dt);
     if (display) display->Update(dt);
   }else{
     if (showPriceDialog!=-1){

@@ -1,61 +1,55 @@
 #include "GuiMessageBox.h"
 
-
-void GuiMessageBox::CheckUserInput(){
-  if (mEngine->GetButtonClick(mActionButton))
+bool GuiMessageBox::CheckUserInput(u32 key){
+  if (mActionButton == key)
     {
       if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed())
 	{
 	  if (mListener != NULL)
 	    {
 	      mListener->ButtonPressed(mId, mObjects[mCurr]->GetId());
-	      return;
+	      return true;
 	    }
 	}
     }
 
-  if (mEngine->GetButtonState(PSP_CTRL_LEFT) || mEngine->GetButtonState(PSP_CTRL_UP) || mEngine->GetAnalogY()<64)
+  if ((PSP_CTRL_LEFT == key) || (PSP_CTRL_UP == key)) // || mEngine->GetAnalogY()<64)
     {
-      if (KeyRepeated(PSP_CTRL_UP, dt))
+      int n = mCurr;
+      n--;
+      if (n<0)
 	{
-	  int n = mCurr;
-	  n--;
-	  if (n<0)
-	    {
-	      if ((mStyle&JGUI_STYLE_WRAPPING))
-		n = mCount-1;
-	      else
-		n = 0;
-	    }
-
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
-	    }
+	  if ((mStyle&JGUI_STYLE_WRAPPING))
+	    n = mCount-1;
+	  else
+	    n = 0;
 	}
+
+      if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+	{
+	  mCurr = n;
+	  mObjects[mCurr]->Entering();
+	}
+      return true;
     }
-  else if (mEngine->GetButtonState(PSP_CTRL_RIGHT) || mEngine->GetButtonState(PSP_CTRL_DOWN) || mEngine->GetAnalogY()>192)
+  else if ((PSP_CTRL_RIGHT == key) || (PSP_CTRL_DOWN == key)) // || mEngine->GetAnalogY()>192)
     {
-      if (KeyRepeated(PSP_CTRL_DOWN, dt))
+      int n = mCurr;
+      n++;
+      if (n>mCount-1)
 	{
-	  int n = mCurr;
-	  n++;
-	  if (n>mCount-1)
-	    {
-	      if ((mStyle&JGUI_STYLE_WRAPPING))
-		n = 0;
-	      else
-		n = mCount-1;
-	    }
-
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
-	    }
+	  if ((mStyle&JGUI_STYLE_WRAPPING))
+	    n = 0;
+	  else
+	    n = mCount-1;
 	}
+
+      if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+	{
+	  mCurr = n;
+	  mObjects[mCurr]->Entering();
+	}
+      return true;
     }
-  else
-    mLastKey = 0;
+  return false;
 }

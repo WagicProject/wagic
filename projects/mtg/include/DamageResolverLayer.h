@@ -31,7 +31,7 @@ class DamageResolverLayer:public PlayGuiObjectController{
   int isOpponent(DamagerDamaged * a, DamagerDamaged * b);
   void nextPlayer();
   virtual void Update(float dt);
-  virtual void CheckUserInput(float dt);
+  virtual bool CheckUserInput(u32 key);
   virtual void Render();
 };
 

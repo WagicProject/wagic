@@ -62,15 +62,6 @@ void GuiLayer::RenderMessageBackground(float y0, int height){
 
 }
 
-int GuiLayer::isModal(){
-  return modal;
-}
-
-void GuiLayer::setModal(int _modal){
-  modal=_modal;
-}
-
-
 int GuiLayer::getIndexOf(JGuiObject * object){
   for (int i=0; i<mCount; i++){
     if (mObjects[i] == object)
@@ -120,17 +111,25 @@ void GuiLayers::Remove(){
 
 void GuiLayers::Update(float dt, Player * currentPlayer){
   int i;
-  int modal = 0;
   int isAI = currentPlayer->isAI();
   for (i=0; i<nbitems; i++){
-    objects[i]->hasFocus = 0;
     objects[i]->Update(dt);
-    if (!isAI && !modal){
-      objects[i]->hasFocus = 1;
-      objects[i]->CheckUserInput(dt);
-      modal = objects[i]->isModal();
-    }
   }
+  u32 key;
+  while ((key = JGE::GetInstance()->ReadButton()))
+    {
+      for (i=0; i<nbitems; i++){
+	if (!isAI){
+	  if (0 != key)
+	    {
+	      objects[i]->hasFocus = 1;
+	      if (objects[i]->CheckUserInput(key))
+		break;
+	    }
+	}
+      }
+    }
+  for (++i; i<nbitems; ++i) objects[i]->hasFocus = 0;
   if (isAI){
     currentPlayer->Act(dt);
   }

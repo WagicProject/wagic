@@ -25,11 +25,9 @@ class GuiLayer: public JGuiController{
   void RenderMessageBackground(float x0, float y0, float width, int height);
   void RenderMessageBackground(float y0, int height);
   GuiLayer(int id, GameObserver* _game);
-  virtual int isModal();
-  void setModal(int _modal);
   virtual ~GuiLayer();
   virtual void Update(float dt);
-  virtual void CheckUserInput(float dt){};
+  virtual bool CheckUserInput(u32 key){ return false; };
   virtual int unstopableRenderInProgress(){return 0;};
   int getIndexOf(JGuiObject * object);
   JGuiObject * getByIndex (int index);

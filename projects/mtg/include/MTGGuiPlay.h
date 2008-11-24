@@ -47,7 +47,7 @@ class MTGGuiPlay: public PlayGuiObjectController {
   MTGGuiPlay(int id, GameObserver * game);
   ~MTGGuiPlay();
   void Update(float dt);
-  void CheckUserInput(float dt);
+  bool CheckUserInput(u32 key);
   virtual void Render();
   void updateCards();
 };

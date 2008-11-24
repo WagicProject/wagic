@@ -259,17 +259,14 @@ void MTGGuiPlay::Update(float dt){
 
 
 
-void MTGGuiPlay::CheckUserInput(float dt){
+bool MTGGuiPlay::CheckUserInput(u32 key){
   for (int i = 2; i<6;i++){
     GuiGameZone * zone = (GuiGameZone *)mObjects[i];
     if (zone->showCards){
-      zone->cd->CheckUserInput(dt);
-      return;
+      return zone->cd->CheckUserInput(key);
     }
   }
-  PlayGuiObjectController::CheckUserInput(dt);
-
-
+  return PlayGuiObjectController::CheckUserInput(key);
 }
 
 

@@ -17,7 +17,7 @@ class MTGGamePhase: public ActionElement {
   MTGGamePhase(int id);
   virtual void Render();
   virtual void Update(float dt);
-  void CheckUserInput(float dt);
+  bool CheckUserInput(u32 key);
 };
 
 

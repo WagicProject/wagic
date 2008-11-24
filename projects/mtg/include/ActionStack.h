@@ -104,7 +104,7 @@ class DrawAction: public Interruptible {
 class ActionStack :public GuiLayer{
  protected:
   int interruptDecision[2];
-  int timer;
+  float timer;
   int currentState;
   int mode;
   int checked;
@@ -135,7 +135,7 @@ class ActionStack :public GuiLayer{
   int addDamage(MTGCardInstance * _source, Damageable * target, int _damage);
   int addAbility(MTGAbility * ability);
   void Update(float dt);
-  void CheckUserInput(float dt);
+  bool CheckUserInput(u32 key);
   virtual void Render();
   ActionStack(int id, GameObserver* _game);
   int resolve();

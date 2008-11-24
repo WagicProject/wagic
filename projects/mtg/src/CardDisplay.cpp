@@ -54,73 +54,68 @@ void CardDisplay::rotateRight(){
 }
 
 
-void CardDisplay::CheckUserInput(float dt){
-  if (mEngine->GetButtonClick(PSP_CTRL_CROSS))
+bool CardDisplay::CheckUserInput(u32 key){
+  if (PSP_CTRL_CROSS == key)
     {
       if (listener != NULL)
 	{
 	  listener->ButtonPressed(mId, 0);
-	  return;
+	  return true;
 	}
     }
 
-
   if (!mCount)
-    return;
+    return false;
 
-  if (mEngine->GetButtonClick(mActionButton))
+  if (mActionButton == key)
     {
       if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
 	CardGui * cardg = (CardGui *)mObjects[mCurr];
 	if (tc)
 	  {
 	    tc->toggleTarget(cardg->card);
-	    return;
+	    return true;
 	  }else{
 	  if (game) game->ButtonPressed(mId, cardg);
-	  return;
+	  return true;
 	}
       }
+      return true;
     }
 
 
-  if (mEngine->GetButtonState(PSP_CTRL_LEFT))
+  switch(key)
     {
-      if (KeyRepeated(PSP_CTRL_LEFT, dt))
-	{
-	  int n = mCurr;
-	  n--;
-	  if (n<start_item){
-	    if (n< 0){n = 0;}
-	    else{ rotateLeft();}
-	  }
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_LEFT)){
-	    mCurr = n;
-	    mObjects[mCurr]->Entering();
-	  }
+    case PSP_CTRL_LEFT :
+      {
+	int n = mCurr;
+	n--;
+	if (n<start_item){
+	  if (n< 0){n = 0;}
+	  else{ rotateLeft();}
 	}
-    }
-  else if (mEngine->GetButtonState(PSP_CTRL_RIGHT))
-    {
-      if (KeyRepeated(PSP_CTRL_RIGHT, dt))
-	{
-	  int n = mCurr;
-	  n++;
-	  if (n>= mCount){n = mCount-1;}
-	  if (n>= start_item + nb_displayed_items){
-	    rotateRight();
-	  }
-	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_RIGHT)){
-	    mCurr = n;
-	    mObjects[mCurr]->Entering();
-	  }
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_LEFT)){
+	  mCurr = n;
+	  mObjects[mCurr]->Entering();
 	}
+	return true;
+      }
+    case PSP_CTRL_RIGHT :
+      {
+	int n = mCurr;
+	n++;
+	if (n>= mCount){n = mCount-1;}
+	if (n>= start_item + nb_displayed_items){
+	  rotateRight();
+	}
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_RIGHT)){
+	  mCurr = n;
+	  mObjects[mCurr]->Entering();
+	}
+      }
+      return true;
     }
-
-  else{
-    mLastKey = 0;
-  }
-
+  return false;
 }
 
 

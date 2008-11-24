@@ -1,6 +1,7 @@
 #ifndef _SIMPLEMENU_ITEM_H
 #define _SIMPLEMENU_ITEM_H
 
+#include <string>
 #include <JLBFont.h>
 #include <JGui.h>
 

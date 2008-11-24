@@ -281,9 +281,9 @@ void DamageResolverLayer::nextPlayer(){
   }
 
 }
-void DamageResolverLayer::CheckUserInput(float dt){
-  if (!mCount) return;
-  if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){
+bool DamageResolverLayer::CheckUserInput(u32 key){
+  if (!mCount) return false;
+  if (PSP_CTRL_CIRCLE == key){
     if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
       DamagerDamaged * current = (DamagerDamaged *) mObjects[mCurr];
       if (!currentSource || !isOpponent(current,currentSource)){
@@ -311,21 +311,25 @@ void DamageResolverLayer::CheckUserInput(float dt){
       buttonOk = 0;
       if (canStopDealDamages()) buttonOk = 1;
     }
-  }else if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
+    return true;
+  }else if (PSP_CTRL_CROSS == key){
     if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
       DamagerDamaged * current = (DamagerDamaged *) mObjects[mCurr];
       if (current->damageSelecter == currentChoosingPlayer){
 	currentSource = current;
       }
+      return true;
     }
-  }else if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
+  }else if (PSP_CTRL_SQUARE == key){
     if (canStopDealDamages()){
       nextPlayer();
       //switch to next player or end of selection
     }
+    return true;
   }else{
-    PlayGuiObjectController::CheckUserInput(dt);
+    return PlayGuiObjectController::CheckUserInput(key);
   }
+  return false;
 }
 
 void DamageResolverLayer::Render(){

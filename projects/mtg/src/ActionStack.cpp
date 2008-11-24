@@ -475,6 +475,14 @@ void ActionStack::Update(float dt){
   }else if (mode == ACTIONSTACK_TARGET){
     GuiLayer::Update(dt);
   }
+  if (askIfWishesToInterrupt)
+    {
+      if (timer < 0) timer = 3;
+      timer -= dt;
+      if (timer < 0){
+	cancelInterruptOffer();
+      }
+    }
 }
 
 void ActionStack::cancelInterruptOffer(int cancelMode){
@@ -498,76 +506,73 @@ void ActionStack::endOfInterruption(){
 }
 
 
-void ActionStack::CheckUserInput(float dt){
+bool ActionStack::CheckUserInput(u32 key){
   if (mode == ACTIONSTACK_STANDARD){
     if (askIfWishesToInterrupt){
-      if (timer < 0) timer = 300;
-      if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
+      if (PSP_CTRL_CROSS == key){
 	setIsInterrupting(askIfWishesToInterrupt);
-      }else if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE) ||mEngine->GetButtonClick(PSP_CTRL_RTRIGGER) ){
+	return true;
+      }else if ((PSP_CTRL_CIRCLE == key) || (PSP_CTRL_RTRIGGER == key) ){
 	cancelInterruptOffer();
-      }else if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
+	return true;
+      }else if ((PSP_CTRL_SQUARE == key)){
 	cancelInterruptOffer(2);
-      }else{
-	timer --;
-	if (timer < 0){
-	  cancelInterruptOffer();
-	}
+	return true;
       }
     }else if (game->isInterrupting){
-      if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
+      if (PSP_CTRL_CROSS == key){
 	endOfInterruption();
+	return true;
       }
     }
   }else if (mode == ACTIONSTACK_TARGET){
     if (modal){
-      if (mEngine->GetButtonState(PSP_CTRL_UP)){
-	if (KeyRepeated(PSP_CTRL_UP, dt))
-	  {
-	    if( mObjects[mCurr]){
-	      int n = getPreviousIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-	      if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
-		{
-		  mCurr = n;
-		  mObjects[mCurr]->Entering();
+      if (PSP_CTRL_UP == key){
+	if( mObjects[mCurr]){
+	  int n = getPreviousIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
+	  if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+	    {
+	      mCurr = n;
+	      mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
-		  char buf[4096];
-		  sprintf(buf, "Stack UP TO mCurr = %i\n", mCurr);
-		  OutputDebugString(buf);
+	      char buf[4096];
+	      sprintf(buf, "Stack UP TO mCurr = %i\n", mCurr);
+	      OutputDebugString(buf);
 #endif
-		}
 	    }
-	  }
-      }else if (mEngine->GetButtonState(PSP_CTRL_DOWN)){
-	if (KeyRepeated(PSP_CTRL_DOWN, dt))
-	  {
-	    if( mObjects[mCurr]){
-	      int n = getNextIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-	      if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
-		{
-		  mCurr = n;
-		  mObjects[mCurr]->Entering();
+	}
+	return true;
+      }else if (PSP_CTRL_DOWN == key){
+	if( mObjects[mCurr]){
+	  int n = getNextIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
+	  if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+	    {
+	      mCurr = n;
+	      mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
-		  char buf[4096];
-		  sprintf(buf, "Stack DOWN TO mCurr = %i\n", mCurr);
-		  OutputDebugString(buf);
+	      char buf[4096];
+	      sprintf(buf, "Stack DOWN TO mCurr = %i\n", mCurr);
+	      OutputDebugString(buf);
 #endif
-		}
 	    }
-	  }
-      }else if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){
+	}
+	return true;
+      }else if (PSP_CTRL_CIRCLE == key){
 #if defined (WIN32) || defined (LINUX)
 	char buf[4096];
 	sprintf(buf, "Stack CLIKED mCurr = %i\n", mCurr);
 	OutputDebugString(buf);
 #endif
 	game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
+	return true;
       }
     }
-    if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)){
+    if (PSP_CTRL_TRIANGLE == key){
       if (modal) {modal = 0;} else {modal = 1;}
+      return true;
     }
   }
+  return false;
 }
 
 
@@ -658,7 +663,7 @@ void ActionStack::Render(){
     }
 
     char buffer[200];
-    sprintf(buffer, "interrupt ? %i", timer/100);
+    sprintf(buffer, "interrupt ? %i", static_cast<int>(timer));
     mFont->DrawString(buffer, x0 + 5 , currenty - 40 - ((Interruptible *)mObjects[mCount-1])->mHeight);
 
     if (mCount > 1){

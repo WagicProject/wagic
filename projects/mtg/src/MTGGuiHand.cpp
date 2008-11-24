@@ -41,24 +41,6 @@ void MTGGuiHand::Update(float dt){
     }
   }
 
-  GuiCardsController::Update(dt);
-  currentId[game->currentlyActing()->getId()] = mCurr;
-}
-
-
-
-void MTGGuiHand::CheckUserInput(float dt){
-  if (mEngine->GetButtonClick(PSP_CTRL_LTRIGGER)) {
-    if (mShowHand == HAND_HIDE){
-      mShowHand = HAND_SHOW_ANIMATION;
-    }
-    if (mShowHand == HAND_SHOW){
-      mShowHand = HAND_HIDE_ANIMATION;
-    }
-  }else if (mEngine->GetButtonState(PSP_CTRL_LEFT)){
-    //mGamePhase = NO_USER_INPUT;
-  }
-
   if (mShowHand == HAND_SHOW_ANIMATION){
     mAnimState +=7 *dt;
     if (mAnimState > 1){
@@ -73,11 +55,30 @@ void MTGGuiHand::CheckUserInput(float dt){
     }
   }
 
+  GuiCardsController::Update(dt);
+  currentId[game->currentlyActing()->getId()] = mCurr;
+}
+
+
+
+bool MTGGuiHand::CheckUserInput(u32 key){
+  if (PSP_CTRL_LTRIGGER == key) {
+    if (mShowHand == HAND_HIDE){
+      mShowHand = HAND_SHOW_ANIMATION;
+    }
+    if (mShowHand == HAND_SHOW){
+      mShowHand = HAND_HIDE_ANIMATION;
+    }
+    return true;
+  }else if (PSP_CTRL_LEFT == key){
+    //mGamePhase = NO_USER_INPUT;
+  }
+
   if (mShowHand == HAND_HIDE || currentPlayer->isAI()){
-    modal = 0;
+    return false;
   }else{
-    modal = 1;
-    GuiCardsController::CheckUserInput(dt);
+    GuiCardsController::CheckUserInput(key);
+    return true;
   }
 }
 

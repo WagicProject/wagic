@@ -25,7 +25,7 @@ class MTGGuiHand: public GuiCardsController{
  public:
   MTGGuiHand(int id, GameObserver * _game);
   void Update(float dt);
-  void CheckUserInput(float dt);
+  bool CheckUserInput(u32 key);
   virtual void Render();
   void updateCards();
 

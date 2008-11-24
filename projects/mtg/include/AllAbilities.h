@@ -1228,7 +1228,7 @@ class AAladdinsLamp: public TargetAbility{
 	init = 1;
       }
       cd.Update(dt);
-      cd.CheckUserInput(dt);
+      //      cd.CheckUserInput(dt);
     }
   }
 
@@ -1604,28 +1604,30 @@ class AFarmstead:public ActivatedAbility{
 class AGlassesOfUrza:public MTGAbility{
  public:
   CardDisplay * display;
- AGlassesOfUrza(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
+  bool isActive;
+ AGlassesOfUrza(int _id, MTGCardInstance * _source):MTGAbility(_id, _source),isActive(false){
     display = NEW CardDisplay(0, game,SCREEN_WIDTH/2, SCREEN_HEIGHT/2,NULL);
   }
 
   void Update(float dt){
-    if(modal){
+    if(isActive){
       display->Update(dt);
     }
   }
 
-  void CheckUserInput(float dt){
-    if (modal){
-      display->CheckUserInput(dt);
-      JGE * mEngine = JGE::GetInstance();
-      if (mEngine->GetButtonClick(PSP_CTRL_CROSS)){
-	modal = 0;
+  bool CheckUserInput(u32 key){
+    if (isActive){
+      if (display->CheckUserInput(key)) return true;
+      if (PSP_CTRL_CROSS == key){
+	isActive = false;
+	return true;
       }
     }
+    return false;
   }
 
   void Render(float dt){
-    if (modal){
+    if (isActive){
       display->Render();
     }
 
@@ -1642,7 +1644,7 @@ class AGlassesOfUrza:public MTGAbility{
   int reactToClick(MTGCardInstance * card){
     if (!isReactingToClick(card)) return 0;
     source->tapped = 1;
-    modal = 1;
+    isActive = true;
     return 1;
   }
 

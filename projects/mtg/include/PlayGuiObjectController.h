@@ -13,7 +13,7 @@ class PlayGuiObjectController : public GuiLayer{
   static int showBigCards;// 0 hide, 1 show, 2 show text
  public:
   virtual void Update(float dt);
-  virtual void CheckUserInput(float dt);
+  virtual bool CheckUserInput(u32 key);
  PlayGuiObjectController(int id, GameObserver* _game):GuiLayer(id, _game){last_user_move=0;};
   virtual void Render(){GuiLayer::Render();};
 };
