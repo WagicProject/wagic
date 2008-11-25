@@ -281,6 +281,7 @@ void JGE::Init()
   mDone = false;
   mPaused = false;
   mCriticalAssert = false;
+  mOldButtons = mVeryOldButtons = 0;
 
   //InitSfx();
 
@@ -333,7 +334,7 @@ bool JGE::GetButtonState(u32 button)
 
 bool JGE::GetButtonClick(u32 button)
 {
-  return (mCtrlPad.Buttons&button)==button && (mOldButtons&button)!=button;
+  return (mCtrlPad.Buttons&button)==button && (mVeryOldButtons&button)!=button;
 }
 
 u32 JGE::ReadButton()
@@ -380,20 +381,23 @@ void JGE::Run()
 	  mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
 
 	  while (0 != sceCtrlPeekBufferPositive(&mCtrlPad, 1))
-	    for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
-	      if (gKeyCodeList[i] & mCtrlPad.Buttons)
-		{
-		  if (!(gKeyCodeList[i] & mOldButtons))
-		    {
-		      gKeyBuffer.push(gKeyCodeList[i]);
-		      nextInput = repeatDelay;
-		    }
-		  else if (nextInput < 0)
+	    {
+	      for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
+		if (gKeyCodeList[i] & mCtrlPad.Buttons)
+		  {
+		    if (!(gKeyCodeList[i] & mOldButtons))
+		      {
+			gKeyBuffer.push(gKeyCodeList[i]);
+			nextInput = repeatDelay;
+		      }
+		    else if (nextInput < 0)
 		    {
 		      gKeyBuffer.push(gKeyCodeList[i]);
 		      nextInput = repeatPeriod;
 		    }
-		}
+		  }
+	      mOldButtons = mCtrlPad.Buttons;
+	    }
 
 	  nextInput -= (curr - mLastTime);
 	  mLastTime = curr;
@@ -409,7 +413,7 @@ void JGE::Run()
 		  pspDebugScreenPrintf(mDebuggingMsg);
 		}
 	    }
-	  mOldButtons = mCtrlPad.Buttons;
+	  mVeryOldButtons = mCtrlPad.Buttons;
 	}
     }
 }
