@@ -360,11 +360,16 @@ u8 JGE::GetAnalogY()
   return mCtrlPad.Ly;
 }
 
-
+#define REPEAT_DELAY 1
+#define REPEAT_FREQUENCY 2
 void JGE::Run()
 {
-
   u64 curr;
+  long long int nextInput;
+
+  const u32 ticksPerSecond = sceRtcGetTickResolution();
+  const u64 repeatDelay = REPEAT_DELAY * ticksPerSecond;
+  const u64 repeatPeriod = ticksPerSecond / REPEAT_FREQUENCY;
 
   while (!mDone)
     {
@@ -372,15 +377,26 @@ void JGE::Run()
 	{
 	  sceRtcGetCurrentTick(&curr);
 
-
 	  mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
-	  mLastTime = curr;
 
 	  while (0 != sceCtrlPeekBufferPositive(&mCtrlPad, 1))
-	    if (mCtrlPad.Buttons != mOldButtons)
-	      for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
-		if (gKeyCodeList[i] & (mCtrlPad.Buttons ^ mOldButtons))
-		  gKeyBuffer.push(gKeyCodeList[i]);
+	    for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
+	      if (gKeyCodeList[i] & mCtrlPad.Buttons)
+		{
+		  if (!(gKeyCodeList[i] & mOldButtons))
+		    {
+		      gKeyBuffer.push(gKeyCodeList[i]);
+		      nextInput = repeatDelay;
+		    }
+		  else if (nextInput < 0)
+		    {
+		      gKeyBuffer.push(gKeyCodeList[i]);
+		      nextInput = repeatPeriod;
+		    }
+		}
+
+	  nextInput -= (curr - mLastTime);
+	  mLastTime = curr;
 
 	  Update();
 	  Render();
