@@ -191,7 +191,34 @@ void JGE::ResetInput()
 // include all the following so we only have one .o file
 //#include "../src/JGfx.cpp"
 //#include "../src/JSfx.cpp"
-
+#include <queue>
+static queue<u32> gKeyBuffer;
+static const int gKeyCodeList[] = {
+  PSP_CTRL_SELECT, // Select button.
+  PSP_CTRL_START, // Start button.
+  PSP_CTRL_UP, // Up D-Pad button.
+  PSP_CTRL_RIGHT, // Right D-Pad button.
+  PSP_CTRL_DOWN, // Down D-Pad button.
+  PSP_CTRL_LEFT, // Left D-Pad button.
+  PSP_CTRL_LTRIGGER, // Left trigger.
+  PSP_CTRL_RTRIGGER, // Right trigger.
+  PSP_CTRL_TRIANGLE, // Triangle button.
+  PSP_CTRL_CIRCLE, // Circle button.
+  PSP_CTRL_CROSS, // Cross button.
+  PSP_CTRL_SQUARE, // Square button.
+  PSP_CTRL_HOLD, // Hold button.
+  /* Do not test keys we cannot get anyway, that's just wasted proc time
+  PSP_CTRL_HOME, // Home button.
+  PSP_CTRL_NOTE, // Music Note button.
+  PSP_CTRL_SCREEN, // Screen button.
+  PSP_CTRL_VOLUP, // Volume up button.
+  PSP_CTRL_VOLDOWN, // Volume down button.
+  PSP_CTRL_WLAN, // _UP    Wlan switch up.
+  PSP_CTRL_REMOTE, // Remote hold position.
+  PSP_CTRL_DISC, // Disc present.
+  PSP_CTRL_MS // Memory stick present.
+  */
+};
 
 JGE::JGE()
 {
@@ -311,11 +338,15 @@ bool JGE::GetButtonClick(u32 button)
 
 u32 JGE::ReadButton()
 {
-  return 0;
+  if (gKeyBuffer.empty()) return 0;
+  u32 val = gKeyBuffer.front();
+  gKeyBuffer.pop();
+  return val;
 }
 
 void JGE::ResetInput()
 {
+  while (!gKeyBuffer.empty()) gKeyBuffer.pop();
 }
 
 u8 JGE::GetAnalogX()
@@ -345,11 +376,13 @@ void JGE::Run()
 	  mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
 	  mLastTime = curr;
 
-	  sceCtrlPeekBufferPositive(&mCtrlPad, 1);	// using sceCtrlPeekBufferPositive is faster than sceCtrlReadBufferPositive
-	  // because sceCtrlReadBufferPositive waits for vsync internally
+	  while (0 != sceCtrlPeekBufferPositive(&mCtrlPad, 1))
+	    if (mCtrlPad.Buttons != mOldButtons)
+	      for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
+		if (gKeyCodeList[i] & (mCtrlPad.Buttons ^ mOldButtons))
+		  gKeyBuffer.push(gKeyCodeList[i]);
 
 	  Update();
-
 	  Render();
 
 	  if (mDebug)
@@ -360,15 +393,9 @@ void JGE::Run()
 		  pspDebugScreenPrintf(mDebuggingMsg);
 		}
 	    }
-
 	  mOldButtons = mCtrlPad.Buttons;
-
-
-
 	}
-
     }
-
 }
 
 #endif		///// PSP specified code
