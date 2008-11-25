@@ -92,6 +92,7 @@ class JGE
 #else
   SceCtrlData mCtrlPad;
   u32 mOldButtons;
+  u32 mVeryOldButtons;
 
   u64 mLastTime;
   u32 mTickFrequency;
