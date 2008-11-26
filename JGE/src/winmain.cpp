@@ -575,15 +575,15 @@ u32 JGEReadKey()
 {
   if (gKeyBuffer.empty()) return 0;
   pair<u32, u32> val = gKeyBuffer.front();
-  g_holds[val.second] = false;
+  g_holds[val.first] = false;
   gKeyBuffer.pop();
-  return val.first;
+  return val.second;
 }
 
 u32 JGEReadLocalKey()
 {
   if (gKeyBuffer.empty()) return 0;
-  u32 val = gKeyBuffer.front().second;
+  u32 val = gKeyBuffer.front().first;
   g_holds[val] = false;
   gKeyBuffer.pop();
   return val;
@@ -599,9 +599,6 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 				WPARAM	wParam,			// Additional Message Information
 				LPARAM	lParam)			// Additional Message Information
 {
-  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-    gKeyCodes.push_back(make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode));
-
   switch (uMsg)									// Check For Windows Messages
     {
     case WM_ACTIVATE:							// Watch For Window Activate Message
@@ -721,6 +718,9 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
   g_launcher = new JGameLauncher();
 
   u32 flags = g_launcher->GetInitFlags();
+
+  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
+    gKeyCodes.push_back(make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode));
 
   if ((flags&JINIT_FLAG_ENABLE3D)!=0)
     JRenderer::Set3DFlag(true);
