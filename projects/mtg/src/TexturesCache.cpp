@@ -126,22 +126,40 @@ SampleCache * SampleCache::GetInstance(){
 }
 
 JSample * SampleCache::getSample(string filename){
-  map<string,JSample *>::iterator it = cache.find(filename);
+  map<string,SampleCached *>::iterator it = cache.find(filename);
   if (it == cache.end()){
-    if (cache.size() >10) cleanCache(); //Poor man's limit
+    if (cache.size() >10) cleanOldest(); //Poor man's limit
     JSample * sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
     if (!sample && fileExists(filename.c_str())){ //Out of Ram ??
       cleanCache();
       sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
     }
+    lastTime++;
+    cache[filename] = NEW SampleCached(lastTime, sample);
     return sample;
   }else{
-    return (it->second);
+    return (it->second->sample);
+  }
+}
+
+void SampleCache::cleanOldest(){
+  int smallest = lastTime;
+  map<string,SampleCached *>::iterator found = cache.end();
+  map<string,SampleCached *>::iterator it;
+  for (it = cache.begin(); it != cache.end(); it++){
+    if(it->second->lastTime <= smallest){
+      smallest = it->second->lastTime;
+      found = it;
+    }
+  }
+  if (found != cache.end()){
+    delete (found->second);
+    cache.erase(found);
   }
 }
 
 void SampleCache::cleanCache(){
-  map<string,JSample *>::iterator it;
+  map<string,SampleCached *>::iterator it;
   for (it = cache.begin(); it != cache.end(); it++){
     delete(it->second);
   }

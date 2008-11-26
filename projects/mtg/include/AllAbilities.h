@@ -480,6 +480,7 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
 
 class AManaProducer: public MTGAbility{
  protected:
+  static int currentlyTapping;
   ManaCost * cost;
   ManaCost * output;
   string menutext;
@@ -533,9 +534,10 @@ class AManaProducer: public MTGAbility{
       if (mParticleSys && animation == 1.f) mParticleSys->Fire();
       animation -= 4 *dt;
       if (animation < 0){
-	animation = 0;
-	controller->getManaPool()->add(output);
-	if (mParticleSys) mParticleSys->Stop();
+	      animation = 0;
+        currentlyTapping--;
+	      controller->getManaPool()->add(output);
+	      if (mParticleSys) mParticleSys->Stop();
       }
     }
 
@@ -563,6 +565,7 @@ class AManaProducer: public MTGAbility{
   int reactToClick(MTGCardInstance *  _card){
     if (!isReactingToClick( _card)) return 0;
     source->tapped = 1;
+    currentlyTapping++;
     if (cost) GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
     animation = 1.f;
     CardGui * cardg = game->mLayers->playLayer()->getByCard(source);
@@ -572,7 +575,7 @@ class AManaProducer: public MTGAbility{
     }
     controller = source->controller();
 
-    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0){
+    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0 && currentlyTapping < 3){
       JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/mana.wav");
       if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
     }
@@ -630,7 +633,7 @@ class AManaProducer: public MTGAbility{
   }
 
 };
-
+int AManaProducer::currentlyTapping = 0;
 
 /* Lifelink Ability */
 class ALifeLink:public MTGAbility{

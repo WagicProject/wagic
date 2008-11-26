@@ -55,34 +55,22 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
 
   MTGCardInstance * card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("Found mana card\n");
-#endif
+
     int doTap = 1;
     for (int i=MTG_NB_COLORS-1; i>= 0; i--){
       if (diff->getCost(i) &&  card->hasSubtype(MTG_LAND_TEXTS[i]) ){
-#if defined (WIN32) || defined (LINUX)
-	OutputDebugString("Not Gonna Tap\n");
-#endif
-	diff->remove(i,1);
-	doTap = 0;
-	break;
+	      diff->remove(i,1);
+	      doTap = 0;
+	      break;
       }
     }
     if (doTap){
       gameObs->cardClick(card);
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Tapped\n");
-#endif
     }
   }
 
   delete(diff);
 
-
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("ok land tapped");
-#endif
 }
 //TODO a better function that does not take into account only basic lands
 ManaCost * AIPlayer::getPotentialMana(){
@@ -95,24 +83,12 @@ ManaCost * AIPlayer::getPotentialMana(){
   while((card = cd.nextmatch(game->inPlay, card))){
 
     if (card->hasSubtype("plains")){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Found Potential plain\n");
-#endif
       potentialMana->add(MTG_COLOR_WHITE,1);
     }else if(card->hasSubtype("swamp")){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Found Potential swamp\n");
-#endif
       potentialMana->add(MTG_COLOR_BLACK,1);
     }else if(card->hasSubtype("forest")){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Found Potential forestn\n");
-#endif
       potentialMana->add(MTG_COLOR_GREEN,1);
     }else if(card->hasSubtype("mountain")){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Found Potential Mountain\n");
-#endif
       potentialMana->add(MTG_COLOR_RED,1);
     }else if(card->hasSubtype("island")){
       potentialMana->add(MTG_COLOR_BLUE,1);
@@ -504,21 +480,7 @@ int AIPlayerBaka::Act(float dt){
     return 0;
   }
   initTimer();
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("==========\nNew Act CALL\n================\n");
-#endif
-
-
-
-
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("==========\nCombat Damages ?\n================\n");
-#endif
   if (combatDamages()) return 0;
-
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("==========\nChoose Target ?\n================\n");
-#endif
   if (chooseTarget()) return 0;
 
 
@@ -552,12 +514,6 @@ int AIPlayerBaka::Act(float dt){
 
 	  //No mana, try to get some
 	  getPotentialMana();
-#if defined (WIN32) || defined (LINUX)
-	  char buffe[4096];
-
-	  sprintf(buffe,"potentail mana %i\n",potentialMana->getConvertedCost() );
-	  OutputDebugString(buffe);
-#endif
 	  if (potentialMana->getConvertedCost() > 0){
 
 
@@ -570,6 +526,7 @@ int AIPlayerBaka::Act(float dt){
 	    if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "sorcery");
 	    if (nextCardToPlay){
 #if defined (WIN32) || defined (LINUX)
+        char buffe[4096];
 	      sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName());
 	      OutputDebugString(buffe);
 #endif

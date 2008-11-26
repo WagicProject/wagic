@@ -33,28 +33,16 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
 }
 
 MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
-#ifdef WIN32
-  OutputDebugString("Match AND\n");
-#endif
-
   MTGCardInstance * match = card;
   for (int i = 0; i< nb_types; i++){
 
     if (!card->hasSubtype(types[i])){
-#ifdef WIN32
-      OutputDebugString(card->name.c_str());
-      OutputDebugString("Subtype No Match\n");
-#endif
       match = NULL;
     }
   }
   for (int i = 0; i< MTG_NB_COLORS; i++){
     if ((colors[i] == 1 && !card->hasColor(i))||(colors[i] == -1 && card->hasColor(i))){
       match = NULL;
-#ifdef WIN32
-      OutputDebugString(card->name.c_str());
-      OutputDebugString("Color No Match\n");
-#endif
     }
   }
   return match;
@@ -116,11 +104,6 @@ MTGCardInstance * CardDescriptor::nextmatch(MTGGameZone * zone, MTGCardInstance 
   if (NULL == previous) found = 1;
   for(int i=0; i < zone->nb_cards; i++){
     if(found && match(zone->cards[i])){
-#if defined (WIN32) || defined (LINUX)
-      char buf[4096];
-      sprintf(buf,"Card Descriptor MATCH!: %s \n" ,(zone->cards[i])->getName());
-      OutputDebugString(buf);
-#endif
       return zone->cards[i];
     }
     if (zone->cards[i] == previous){

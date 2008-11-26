@@ -58,14 +58,25 @@ class TexturesCache{
 };
 
 
+class SampleCached{
+public:
+  int lastTime;
+  JSample * sample;
+  SampleCached(int _lastTime, JSample * _sample):lastTime(_lastTime),sample(_sample){};
+  ~SampleCached(){delete sample;};
+};
+
 class SampleCache{
 protected:
-  map<string, JSample *> cache;
+  int lastTime;
+  map<string,  SampleCached *> cache;
   static SampleCache * mInstance;
   void cleanCache();
+  void cleanOldest();
   ~SampleCache();
 public:
   static SampleCache * GetInstance();
+  SampleCache(){lastTime = 0;};
   JSample * getSample(string filename);
 
 };
