@@ -19,6 +19,7 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
   game = NULL;
   deckmenu = NULL;
   opponentMenu = NULL;
+  opponentMenuFont = NULL;
   menu = NULL;
 #ifdef TESTSUITE
   testSuite = NULL;

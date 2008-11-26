@@ -4,6 +4,9 @@
 #include <string>
 #include <JLBFont.h>
 #include <JGui.h>
+#include <string>
+
+using std::string;
 
 #define SCALE_SELECTED		1.2f
 #define SCALE_NORMAL		1.0f

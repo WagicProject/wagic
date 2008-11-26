@@ -388,11 +388,15 @@ void audioInit()  // ≥ı ºªØ
 		p_currentWav[i] = NULL;
 	}
   JMP3::init();
+  pspAudioInit();
+	pspAudioSetChannelCallback(0, audioOutCallback_0, NULL);
+	pspAudioSetChannelCallback(1, audioOutCallback_1, NULL);
+	pspAudioSetChannelCallback(2, audioOutCallback_2, NULL);
 }
 
 void audioDestroy()
 {
-	
+	pspAudioEnd();
 }
 
 
