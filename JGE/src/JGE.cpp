@@ -380,7 +380,7 @@ void JGE::Run()
 
 	  mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
 
-	  while (0 != sceCtrlPeekBufferPositive(&mCtrlPad, 1))
+	  while (0 >= sceCtrlPeekBufferPositive(&mCtrlPad, 1))
 	    {
 	      for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
 		if (gKeyCodeList[i] & mCtrlPad.Buttons)
