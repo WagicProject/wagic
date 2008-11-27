@@ -3,9 +3,9 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
+//
 //-------------------------------------------------------------------------------------
 
 #include "../include/JGE.h"
@@ -16,231 +16,196 @@ JGE* JGuiObject::mEngine = NULL;
 JGE* JGuiController::mEngine = NULL;
 
 
-JGuiObject::JGuiObject(int id): mId(id) 
-{ 
-	mEngine = JGE::GetInstance(); 
-}
-
-
-JGuiObject::~JGuiObject() 
-{ 
-//	JGERelease(); 
-}
-
-
-bool JGuiObject::Leaving(u32 key __attribute__((unused))) 
+JGuiObject::JGuiObject(int id): mId(id)
 {
-	return true; 
+  mEngine = JGE::GetInstance();
 }
 
 
-bool JGuiObject::ButtonPressed() 
-{ 
-	return false; 
+JGuiObject::~JGuiObject()
+{
+  //	JGERelease();
+}
+
+
+bool JGuiObject::Leaving(u32 key __attribute__((unused)))
+{
+  return true;
+}
+
+
+bool JGuiObject::ButtonPressed()
+{
+  return false;
 }
 
 
 void JGuiObject::Entering()
 {
-	
+
 }
 
 
 int JGuiObject::GetId()
 {
-	return mId;
+  return mId;
 }
 
 
-void JGuiObject::Update(float dt __attribute__((unused))) 
+void JGuiObject::Update(float dt __attribute__((unused)))
 {
 }
 
 JGuiController::JGuiController(int id, JGuiListener* listener) : mId(id), mListener(listener)
 {
-	mEngine = JGE::GetInstance();
-	
-	mBg = NULL;
-	mShadingBg = NULL;
+  mEngine = JGE::GetInstance();
 
-	mCount = 0;
-	mCurr = 0;
+  mBg = NULL;
+  mShadingBg = NULL;
 
-	mCursorX = SCREEN_WIDTH/2;
-	mCursorY = SCREEN_HEIGHT/2;
-	mShowCursor = false;
+  mCount = 0;
+  mCurr = 0;
 
-	mActionButton = PSP_CTRL_CIRCLE;
-	mLastKey = 0;
+  mCursorX = SCREEN_WIDTH/2;
+  mCursorY = SCREEN_HEIGHT/2;
+  mShowCursor = false;
 
-	mStyle = JGUI_STYLE_WRAPPING;
+  mActionButton = PSP_CTRL_CIRCLE;
 
-	mActive = true;
+  mStyle = JGUI_STYLE_WRAPPING;
+
+  mActive = true;
 }
 
 
 JGuiController::~JGuiController()
 {
-	for (int i=0;i<mCount;i++)
-		if (mObjects[i]!=NULL)
-			delete mObjects[i];
+  for (int i=0;i<mCount;i++)
+    if (mObjects[i]!=NULL)
+      delete mObjects[i];
 
-//	JGERelease();
+  //	JGERelease();
 }
 
 
 void JGuiController::Render()
 {
-//	if (mShadingBg != NULL)
-//		jge->Gfx_BlendRect(mShadingBg, mShadingColor);
+  //	if (mShadingBg != NULL)
+  //		jge->Gfx_BlendRect(mShadingBg, mShadingColor);
 
-//	if (mBg != NULL)
-//		jge->Gfx_DrawImage(mBg, mBgX, mBgY);
+  //	if (mBg != NULL)
+  //		jge->Gfx_DrawImage(mBg, mBgX, mBgY);
 
-	for (int i=0;i<mCount;i++)
-		if (mObjects[i]!=NULL)
-			mObjects[i]->Render();
+  for (int i=0;i<mCount;i++)
+    if (mObjects[i]!=NULL)
+      mObjects[i]->Render();
 }
-
-
-bool JGuiController::KeyRepeated(u32 key, float dt)
-{
-
-	bool doKey = false;
-	if (mLastKey != key)
-	{
-		mLastKey = key;
-		doKey = true;
-		mKeyRepeatDelay = JGUI_INITIAL_DELAY;
-	}
-	else
-	{
-		mKeyRepeatDelay -= dt;
-		if (mKeyRepeatDelay <= 0.0f)
-		{
-			mKeyRepeatDelay = JGUI_REPEAT_DELAY;
-			doKey = true;
-		}
-	}
-
-	return doKey;
-}
-
 
 void JGuiController::Update(float dt)
 {
-	for (int i=0;i<mCount;i++)
-		if (mObjects[i]!=NULL)
-			mObjects[i]->Update(dt);
+  for (int i=0;i<mCount;i++)
+    if (mObjects[i]!=NULL)
+      mObjects[i]->Update(dt);
 
-	if (mEngine->GetButtonClick(mActionButton))
+  u32 key = mEngine->ReadButton();
+  if (key == mActionButton)
+    {
+      if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed())
 	{
-		if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed())
-		{
-			if (mListener != NULL)
-			{
-				mListener->ButtonPressed(mId, mObjects[mCurr]->GetId());
-				return;
-			}
-		}
+	  if (mListener != NULL)
+	    {
+	      mListener->ButtonPressed(mId, mObjects[mCurr]->GetId());
+	      return;
+	    }
 	}
-	
-	if (mEngine->GetButtonState(PSP_CTRL_LEFT) || mEngine->GetButtonState(PSP_CTRL_UP) || mEngine->GetAnalogY()<64 || mEngine->GetAnalogX()<64)
+    }
+  else if ((PSP_CTRL_LEFT == key) || (PSP_CTRL_UP == key)) // || mEngine->GetAnalogY() < 64 || mEngine->GetAnalogX() < 64)
+    {
+      int n = mCurr;
+      n--;
+      if (n<0)
 	{
-		if (KeyRepeated(PSP_CTRL_UP, dt))
-		{
-			int n = mCurr;
-			n--;
-			if (n<0)
-			{
-				if ((mStyle&JGUI_STYLE_WRAPPING))
-					n = mCount-1;
-				else
-					n = 0;
-			}
-
-			if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
-			{
-				mCurr = n;
-				mObjects[mCurr]->Entering();
-			}
-		}
+	  if ((mStyle&JGUI_STYLE_WRAPPING))
+	    n = mCount-1;
+	  else
+	    n = 0;
 	}
-	else if (mEngine->GetButtonState(PSP_CTRL_RIGHT) || mEngine->GetButtonState(PSP_CTRL_DOWN) || mEngine->GetAnalogY()>192 || mEngine->GetAnalogX()>192)
+
+      if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
 	{
-		if (KeyRepeated(PSP_CTRL_DOWN, dt))
-		{
-			int n = mCurr;
-			n++;
-			if (n>mCount-1)
-			{
-				if ((mStyle&JGUI_STYLE_WRAPPING))
-					n = 0;
-				else
-					n = mCount-1;
-			}
-
-			if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
-			{
-				mCurr = n;
-				mObjects[mCurr]->Entering();
-			}
-		}
+	  mCurr = n;
+	  mObjects[mCurr]->Entering();
 	}
-	else
-		mLastKey = 0;
+    }
+  else if ((PSP_CTRL_RIGHT == key) || (PSP_CTRL_DOWN == key)) // || mEngine->GetAnalogY()>192 || mEngine->GetAnalogX()>192)
+    {
+      int n = mCurr;
+      n++;
+      if (n>mCount-1)
+	{
+	  if ((mStyle&JGUI_STYLE_WRAPPING))
+	    n = 0;
+	  else
+	    n = mCount-1;
+	}
 
+      if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+	{
+	  mCurr = n;
+	  mObjects[mCurr]->Entering();
+	}
+    }
 }
 
 
 void JGuiController::Add(JGuiObject* ctrl)
 {
-	if (mCount<MAX_GUIOBJECT)
-	{
-		mObjects[mCount++] = ctrl;
-	}
+  if (mCount<MAX_GUIOBJECT)
+    {
+      mObjects[mCount++] = ctrl;
+    }
 }
 
 
 void JGuiController::Remove(int id)
 {
-	for (int i=0;i<mCount;i++)
+  for (int i=0;i<mCount;i++)
+    {
+      if (mObjects[i] != NULL && mObjects[i]->GetId()==id)
 	{
-		if (mObjects[i] != NULL && mObjects[i]->GetId()==id)
-		{
-			delete mObjects[i];
-			for (int j=i;j<mCount-1;j++)
-			{
-				mObjects[j] = mObjects[j+1];
-			}
-			mObjects[mCount-1] = NULL;
-			mCount--;
-			if (mCurr == mCount)
-				mCurr = 0;
-			return;
-		}
+	  delete mObjects[i];
+	  for (int j=i;j<mCount-1;j++)
+	    {
+	      mObjects[j] = mObjects[j+1];
+	    }
+	  mObjects[mCount-1] = NULL;
+	  mCount--;
+	  if (mCurr == mCount)
+	    mCurr = 0;
+	  return;
 	}
+    }
 }
 
 
 void JGuiController::Remove(JGuiObject* ctrl)
 {
-	for (int i=0;i<mCount;i++)
+  for (int i=0;i<mCount;i++)
+    {
+      if (mObjects[i] != NULL && mObjects[i]==ctrl)
 	{
-		if (mObjects[i] != NULL && mObjects[i]==ctrl)
-		{
-			delete mObjects[i];
-			for (int j=i;j<mCount-1;j++)
-			{
-				mObjects[j] = mObjects[j+1];
-			}
-			mObjects[mCount-1] = NULL;
-			mCount--;
-			if (mCurr == mCount)
-				mCurr = 0;
-			return;
-		}
+	  delete mObjects[i];
+	  for (int j=i;j<mCount-1;j++)
+	    {
+	      mObjects[j] = mObjects[j+1];
+	    }
+	  mObjects[mCount-1] = NULL;
+	  mCount--;
+	  if (mCurr == mCount)
+	    mCurr = 0;
+	  return;
 	}
+    }
 }
 
 
@@ -249,6 +214,3 @@ void JGuiController::SetStyle(int style) { mStyle = style;	}
 void JGuiController::SetCursor(JSprite* cursor) { mCursor = cursor; }
 bool JGuiController::IsActive() { return mActive; }
 void JGuiController::SetActive(bool flag) { mActive = flag; }
-
-
-
