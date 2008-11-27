@@ -362,7 +362,7 @@ u8 JGE::GetAnalogY()
 }
 
 #define REPEAT_DELAY 1
-#define REPEAT_FREQUENCY 2
+#define REPEAT_FREQUENCY 60
 void JGE::Run()
 {
   u64 curr;
@@ -380,24 +380,22 @@ void JGE::Run()
 
 	  mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
 
-	  while (0 >= sceCtrlPeekBufferPositive(&mCtrlPad, 1))
-	    {
-	      for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
-		if (gKeyCodeList[i] & mCtrlPad.Buttons)
+	  sceCtrlPeekBufferPositive(&mCtrlPad, 1);
+	  for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
+	    if (gKeyCodeList[i] & mCtrlPad.Buttons)
+	      {
+		if (!(gKeyCodeList[i] & mOldButtons))
 		  {
-		    if (!(gKeyCodeList[i] & mOldButtons))
-		      {
-			gKeyBuffer.push(gKeyCodeList[i]);
-			nextInput = repeatDelay;
-		      }
-		    else if (nextInput < 0)
-		    {
-		      gKeyBuffer.push(gKeyCodeList[i]);
-		      nextInput = repeatPeriod;
-		    }
+		    gKeyBuffer.push(gKeyCodeList[i]);
+		    nextInput = repeatDelay;
 		  }
-	      mOldButtons = mCtrlPad.Buttons;
-	    }
+		else if (nextInput < 0)
+		  {
+		    gKeyBuffer.push(gKeyCodeList[i]);
+		    nextInput = repeatPeriod;
+		  }
+	      }
+	  mOldButtons = mCtrlPad.Buttons;
 
 	  nextInput -= (curr - mLastTime);
 	  mLastTime = curr;
