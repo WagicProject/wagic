@@ -364,8 +364,8 @@ u8 JGE::GetAnalogY()
   return mCtrlPad.Ly;
 }
 
-#define REPEAT_DELAY 1
-#define REPEAT_FREQUENCY 60
+#define REPEAT_DELAY 0.5
+#define REPEAT_FREQUENCY 5
 void JGE::Run()
 {
   u64 curr;
@@ -392,13 +392,14 @@ void JGE::Run()
 		    {
 		      if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
 		      nextInput = repeatDelay;
+		      gHolds |= gKeyCodeList[i];
 		    }
 		  else if (nextInput < 0)
 		    {
 		      if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
 		      nextInput = repeatPeriod;
+		      gHolds |= gKeyCodeList[i];
 		    }
-		  gHolds |= gKeyCodeList[i];
 		}
 	      if (!(gKeyCodeList[i] & mCtrlPad.Buttons))
 		if (gKeyCodeList[i] & mOldButtons)
