@@ -343,7 +343,7 @@ u32 JGE::ReadButton()
 {
   if (gKeyBuffer.empty()) return 0;
   u32 val = gKeyBuffer.front();
-  gHolds &= val;
+  gHolds &= ~val;
   gKeyBuffer.pop();
   return val;
 }
@@ -385,20 +385,25 @@ void JGE::Run()
 
 	  sceCtrlPeekBufferPositive(&mCtrlPad, 1);
 	  for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
-	    if (gKeyCodeList[i] & mCtrlPad.Buttons)
-	      {
+	    {
+	      if (gKeyCodeList[i] & mCtrlPad.Buttons)
+		{
+		  if (!(gKeyCodeList[i] & mOldButtons))
+		    {
+		      if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
+		      nextInput = repeatDelay;
+		    }
+		  else if (nextInput < 0)
+		    {
+		      if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
+		      nextInput = repeatPeriod;
+		    }
+		  gHolds |= gKeyCodeList[i];
+		}
+	      if (!(gKeyCodeList[i] & mCtrlPad.Buttons))
 		if (!(gKeyCodeList[i] & mOldButtons))
-		  {
-		    if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
-		    nextInput = repeatDelay;
-		  }
-		else if (nextInput < 0)
-		  {
-		    if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
-		    nextInput = repeatPeriod;
-		  }
-		gHolds |= gKeyCodeList[i];
-	      }
+		  gHolds &= ~gKeyCodeList[i];
+	    }
 	  mOldButtons = mCtrlPad.Buttons;
 
 	  nextInput -= (curr - mLastTime);
