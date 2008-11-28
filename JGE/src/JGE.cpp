@@ -219,6 +219,8 @@ static const int gKeyCodeList[] = {
   PSP_CTRL_MS // Memory stick present.
   */
 };
+static u32 gHolds = 0;
+
 
 JGE::JGE()
 {
@@ -341,6 +343,7 @@ u32 JGE::ReadButton()
 {
   if (gKeyBuffer.empty()) return 0;
   u32 val = gKeyBuffer.front();
+  gHolds &= val;
   gKeyBuffer.pop();
   return val;
 }
@@ -386,14 +389,15 @@ void JGE::Run()
 	      {
 		if (!(gKeyCodeList[i] & mOldButtons))
 		  {
-		    gKeyBuffer.push(gKeyCodeList[i]);
+		    if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
 		    nextInput = repeatDelay;
 		  }
 		else if (nextInput < 0)
 		  {
-		    gKeyBuffer.push(gKeyCodeList[i]);
+		    if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
 		    nextInput = repeatPeriod;
 		  }
+		gHolds |= gKeyCodeList[i];
 	      }
 	  mOldButtons = mCtrlPad.Buttons;
 
