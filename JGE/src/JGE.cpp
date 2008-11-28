@@ -401,7 +401,7 @@ void JGE::Run()
 		  gHolds |= gKeyCodeList[i];
 		}
 	      if (!(gKeyCodeList[i] & mCtrlPad.Buttons))
-		if (!(gKeyCodeList[i] & mOldButtons))
+		if (gKeyCodeList[i] & mOldButtons)
 		  gHolds &= ~gKeyCodeList[i];
 	    }
 	  mOldButtons = mCtrlPad.Buttons;
