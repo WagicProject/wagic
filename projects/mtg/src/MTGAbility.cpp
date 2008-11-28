@@ -182,20 +182,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       continue;
     }
 
-    //Tapper (icy manipulator)
-    found = s.find("tap");
-    if (found != string::npos){
-      if (dryMode) return BAKA_EFFECT_GOOD;
-      ManaCost * cost = ManaCost::parseManaCost(s);
-      if (tc){
-	game->addObserver(NEW ATapper(id, card, cost, tc));
-      }else{
-	target->tapped = 1;
-      }
-
-      result++;
-      continue;
-    }
 
     //Regeneration
     found = s.find("}:regenerate");
@@ -264,29 +250,29 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
       found = s.find("all(");
       if (found != string::npos){
-	int end = s.find(")");
-	string starget = s.substr(found + 4,end - found - 4);
-	TargetChooserFactory tcf;
-	TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
-	if (dryMode){
-	  int myNbCards = countCards(targetAll,card->controller());
-	  int opponentNbCards = countCards(targetAll, card->controller()->opponent());
-	  int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
-	  int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
-	  delete targetAll;
-	  if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
-	  return BAKA_EFFECT_BAD;
-	}else{
-	  this->destroyAllInPlay(targetAll);
-	  delete targetAll;
-	}
+	      int end = s.find(")");
+	      string starget = s.substr(found + 4,end - found - 4);
+	      TargetChooserFactory tcf;
+	      TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+	      if (dryMode){
+	        int myNbCards = countCards(targetAll,card->controller());
+	        int opponentNbCards = countCards(targetAll, card->controller()->opponent());
+	        int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
+	        int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
+	        delete targetAll;
+	        if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
+	        return BAKA_EFFECT_BAD;
+	      }else{
+	        this->destroyAllInPlay(targetAll);
+	        delete targetAll;
+	      }
       }else{
-	if (dryMode) return BAKA_EFFECT_BAD;
-	if (tc){
-	  game->addObserver(NEW ADestroyer(id, card,tc));
-	}else{
-	  game->mLayers->stackLayer()->addPutInGraveyard(target);
-	}
+	      if (dryMode) return BAKA_EFFECT_BAD;
+	      if (tc){
+	        game->addObserver(NEW ADestroyer(id, card,tc));
+	      }else{
+	        game->mLayers->stackLayer()->addPutInGraveyard(target);
+	      }
       }
       result++;
       continue;
@@ -481,8 +467,30 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	result++;
 	continue;
       }
+
+
+          //Tapper (icy manipulator)
+    found = s.find("tap");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_GOOD;
+      ManaCost * cost = ManaCost::parseManaCost(s);
+      if (tc){
+	game->addObserver(NEW ATapper(id, card, cost, tc));
+      }else{
+	target->tapped = 1;
+      }
+
+      result++;
+      continue;
+    }
+
+
     }
   }
+
+
+
+
   return result;
 
 

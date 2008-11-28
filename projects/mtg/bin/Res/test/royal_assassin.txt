@@ -1,0 +1,21 @@
+#Testing Icy Manipulator + Royal assassin on serra angel
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1175,129601
+manapool:{B}
+[PLAYER2]
+inplay:129726
+[DO]
+129601
+129726
+1175
+129726
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1175,129601
+manapool:{0}
+[PLAYER2]
+graveyard:129726
+[END]

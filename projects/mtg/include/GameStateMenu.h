@@ -463,8 +463,7 @@ class GameStateMenu:	public GameState, public JGuiListener
 	  break;
 	case 14:
 	  currentState = STATE_MENU;
-	  delete subMenuController;
-	  subMenuController = NULL;
+	  SAFE_DELETE(subMenuController);
 	  break;
 #ifdef TESTSUITE
 	case 666:

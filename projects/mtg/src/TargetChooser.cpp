@@ -411,9 +411,9 @@ DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGGameZo
 
 int DescriptorTargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
-    MTGCardInstance * card = (MTGCardInstance *) target;
-    if (!TargetZoneChooser::canTarget(card)) return 0;
-    if (cd->match(card)) return 1;
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (!TargetZoneChooser::canTarget(_target)) return 0;
+    if (cd->match(_target)) return 1;
   }
   return 0;
 }

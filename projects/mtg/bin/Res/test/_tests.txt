@@ -43,6 +43,7 @@ paralysis.txt
 paralysis2.txt
 resurrection.txt
 rootwalla.txt
+royal_assassin.txt
 shivan_hellkite.txt
 shock.txt
 spark_elemental.txt

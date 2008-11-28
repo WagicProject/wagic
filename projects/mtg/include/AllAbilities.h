@@ -47,7 +47,7 @@ class ADrawer:public ActivatedAbility{
 class ADestroyer:public TargetAbility{
  public:
   int bury;
- ADestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL, int _bury = 0):TargetAbility(_id,_source, tc),bury(_bury){
+ ADestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL, int _bury = 0):TargetAbility(_id,_source, _tc),bury(_bury){
     if (!tc) tc = NEW CreatureTargetChooser();
   }
 
