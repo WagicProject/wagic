@@ -24,7 +24,7 @@ JApp* JGameLauncher::GetGameApp()
 //-------------------------------------------------------------------------------------
 char *JGameLauncher::GetName()
 {
-  return strdup("Wagic");
+  return "Wagic";
 }
 
 

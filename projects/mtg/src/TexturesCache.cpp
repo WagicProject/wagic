@@ -126,6 +126,7 @@ SampleCache * SampleCache::GetInstance(){
 }
 
 JSample * SampleCache::getSample(string filename){
+  lastTime++;
   map<string,SampleCached *>::iterator it = cache.find(filename);
   if (it == cache.end()){
     if (cache.size() >10) cleanOldest(); //Poor man's limit
@@ -134,10 +135,11 @@ JSample * SampleCache::getSample(string filename){
       cleanCache();
       sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
     }
-    lastTime++;
+    
     cache[filename] = NEW SampleCached(lastTime, sample);
     return sample;
   }else{
+    it->second->lastTime = lastTime;
     return (it->second->sample);
   }
 }

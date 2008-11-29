@@ -25,8 +25,9 @@ void SimpleMenu::Render(){
   renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(70,0,0,0));
   renderer->FillRoundRect(mX,mY,mWidth,mHeight,10,ARGB(255,17,17,17));
   renderer->FillRoundRect(mX+2,mY+2,mWidth - 4,mHeight-4,10,ARGB(255,62,62,62));
-  if (displaytitle)
+  if (displaytitle){
     mFont->DrawString(title.c_str(), mX+10, mY+10);
+  }
   for (int i = startId; i < startId + maxItems ; i++){
     if (i > mCount-1) break;
     ((SimpleMenuItem * )mObjects[i])->RenderWithOffset(-20*startId);
@@ -48,3 +49,5 @@ void SimpleMenu::Add(int id, const char * text){
   JGuiController::Add(NEW SimpleMenuItem(id, mFont, text, mWidth/2 + mX + 10, mY + 10 + y, (mCount == 0)));
   if (mCount <= maxItems) mHeight += 20;
 }
+
+

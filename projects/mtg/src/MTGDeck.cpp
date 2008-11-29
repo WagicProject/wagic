@@ -31,8 +31,7 @@ int MtgSets::Add(const char * name){
 }
 
 
-int MTGAllCards::processConfLine(char *buffer, MTGCard *card){
-  string s = buffer;
+int MTGAllCards::processConfLine(string s, MTGCard *card){
   unsigned int i = s.find_first_of("=");
   if (i == string::npos) return 0;
   string key = s.substr(0,i);
@@ -132,15 +131,14 @@ void MTGAllCards::init(){
 
 int MTGAllCards::load(const char * config_file, const char * set_name,int autoload){
   conf_read_mode = 0;
-  int file_size = filesize(config_file);
-  conf_buffer = (char *) malloc(file_size);
-  read_cursor = 0;
-  //  conf_fd = sceIoOpen(config_file, PSP_O_RDONLY, 0777);
-  read_file(config_file, conf_buffer, file_size );
   int set_id = MtgSets::SetsList->Add(set_name);
-  if (autoload){
-    while(readConfLine(set_id)){};
+
+  std::ifstream setFile(config_file);
+
+  if (setFile){
+    while(readConfLine(setFile, set_id)){};
   }
+
   return total_cards;
 }
 
@@ -153,6 +151,11 @@ MTGAllCards::~MTGAllCards(){
 
 void MTGAllCards::destroyAllCards(){
   for (int i= 0; i < total_cards; i++){
+#ifdef WIN32
+char buf[4096];
+sprintf(buf,"deleting %s\n", collection[i]->getName());
+    OutputDebugString(buf);
+#endif
     delete collection[i];
   };
 
@@ -227,33 +230,33 @@ int MTGAllCards::totalCards(){
   return (total_cards);
 }
 
-int MTGAllCards::readConfLine(int set_id){
-  char buffer[BUFSIZE];
-  read_cursor = readline(conf_buffer, buffer,  read_cursor);
-  if (read_cursor){
+int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
+
+  string s;
+  int result = 0;
+  if(std::getline(file,s)) result = 1;
     switch(conf_read_mode) {
     case 0:
-      conf_read_mode = 1;
-      collection[total_cards] =  NEW MTGCard(mCache,set_id);
+      if (s.find("[card]") != string::npos){
+        collection[total_cards] =  NEW MTGCard(mCache,set_id);
+        conf_read_mode = 1;
+      }
       break;
     case 1:
-      if (buffer[0] == '[' && buffer[1] == '/'){
-	conf_read_mode = 0;
-	total_cards++;
+      if (s.find("[/card]") != string::npos){
+	      conf_read_mode = 0;
+	      total_cards++;
       }else{
-	processConfLine(buffer, collection[total_cards]);
+	      processConfLine(s, collection[total_cards]);
       }
       break;
     default:
       break;
     }
 
-  }else{
-    free (conf_buffer);
-  }
+ 
 
-  return read_cursor;
-
+  return result;
 
 }
 

@@ -26,23 +26,13 @@
 #include <algorithm>
 #include <stdlib.h>
 
-#define BUFSIZE 600
-
-
 
 using std::string;
-
-template <typename T, size_t N>
-  char ( &_ArraySizeHelper( T (&array)[N] ))[N];
-#define countof( array ) (sizeof( _ArraySizeHelper( array ) ))
-
 
 
 int lowercase(string  source);
 
 int filesize(const char * filename);
-int read_file (const char * filename, char * buffer, int filesize);
-int readline (char * in_buffer, char * out_buffer, int cursor);
 int readfile_to_ints(const char * filename, int * out_buffer);
 int fileExists(const char * filename);
 #endif

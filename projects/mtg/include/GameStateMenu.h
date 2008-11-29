@@ -141,6 +141,7 @@ class GameStateMenu:	public GameState, public JGuiListener
 
     SAFE_DELETE(subMenuController);
 
+
     SAFE_DELETE(mIconsTexture);
 
     for (int i = 0; i < 10 ; i++){

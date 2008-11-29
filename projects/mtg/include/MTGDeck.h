@@ -13,7 +13,9 @@
 #include "../include/GameApp.h"
 #include "../include/TexturesCache.h"
 #include <string>
+
 using std::string;
+
 
 class GameApp;
 class MTGCard;
@@ -40,9 +42,6 @@ class MtgSets{
 class MTGAllCards {
  protected:
   int conf_read_mode;
-  int conf_fd;
-  char * conf_buffer;
-  int read_cursor;
   int colorsCount[MTG_NB_COLORS];
   int total_cards;
   GameApp * parent;
@@ -64,11 +63,11 @@ class MTGAllCards {
   int countByType(const char * _type);
   int countByColor(int color);
   int countBySet(int setId);
-  int readConfLine(int set_id);
+  int readConfLine(ifstream &file, int set_id);
   int totalCards();
   int randomCardId();
  private:
-  int processConfLine(char* file, MTGCard* card);
+  int processConfLine(string s, MTGCard* card);
 };
 
 
