@@ -71,3 +71,18 @@ if(fichier2){
 }
 return 0;
 }
+
+
+#ifdef LINUX
+
+#include <execinfo.h>
+void dumpStack()
+{
+  void* buffer[50];
+  int s = backtrace(buffer, 50);
+  char** tab = backtrace_symbols(buffer, s);
+  for (int i = 1; i < s; ++i) printf("%s\n", tab[i]);
+  printf("\n");
+  free(tab);
+}
+#endif
