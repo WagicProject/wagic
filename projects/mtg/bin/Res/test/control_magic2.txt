@@ -1,0 +1,35 @@
+#Testing Control Magic on a serra angel in opponent's play, then testing what happens with sword to plowshares
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1194
+manapool:{2}{U}{U}
+[PLAYER2]
+hand:1367
+inplay:1366,1397
+[DO]
+1194
+1366
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main 1
+1397
+1367
+1366
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1194
+manapool:{0}
+life:24
+[PLAYER2]
+graveyard:1367
+inplay:1397
+manapool:{0}
+life:20
+[END]

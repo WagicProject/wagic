@@ -40,8 +40,6 @@ template <typename T, size_t N>
 
 int lowercase(string  source);
 
-int substr_copy(char *source, char *target, int start, int len);
-int append_str(char * s1, char * s2, char * target);
 int filesize(const char * filename);
 int read_file (const char * filename, char * buffer, int filesize);
 int readline (char * in_buffer, char * out_buffer, int cursor);

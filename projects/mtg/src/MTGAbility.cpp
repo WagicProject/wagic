@@ -1299,7 +1299,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
-  case 1367: //Sword to Plowshares
+  case 1367: //Swords to Plowshares
     {
       card->target->controller()->life+= card->target->power;
       card->target->controller()->game->inPlay->removeCard(card->target);

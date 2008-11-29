@@ -1131,8 +1131,9 @@ class ATakeControlAura:public MTGAbility{
 
   int destroy(){
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (_target->controller()->game->inPlay->hasCard(_target)){
-      _target->controller()->game->putInZone(_target, _target->controller()->game->inPlay, previousController->game->inPlay);
+    Player * p = _target->controller();
+    if (p && p->game->inPlay->hasCard(_target)){
+      p->game->putInZone(_target, p->game->inPlay, previousController->game->inPlay);
     }
     return 1;
   }

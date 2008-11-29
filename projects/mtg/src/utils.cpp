@@ -9,28 +9,6 @@ int lowercase(string sBuffer) {
 }
 
 
-int substr_copy(char *source, char *target, int start, int len){
-  int i=0;
-  int not_over = 1;
-  while (not_over){
-    if (source[i+start] == 0 || i == len-1){
-      not_over = 0;
-    }
-    target[i] = source[i + start];
-    i++;
-    if (i == len){
-      target[i] = 0;
-    }
-  }
-  return i;
-}
-
-
-int append_str(char * s1, char * s2, char * target){
-  int len = substr_copy(s1,target, 0,0);
-  substr_copy(s2,target+len-1,0,0);
-  return 0;
-}
 
 
 
@@ -69,7 +47,7 @@ int read_file (const char * filename, char * buffer, int file_size){
   sceIoClose(file);
 #endif
 
-  fprintf(stderr, "The first string in the file is %d characters long.\n", strlen(&buffer[0]) );
+  fprintf(stderr, "%s is %d characters long.\n", filename, strlen(&buffer[0]) );
   return a;
 
 }

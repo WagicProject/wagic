@@ -19,6 +19,7 @@ ascendant_evincar2.txt
 brass_man.txt
 castle.txt
 control_magic.txt
+control_magic2.txt
 counsel_of_the_soratami.txt
 counterspell.txt
 counterspell2.txt
