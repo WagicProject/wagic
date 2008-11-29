@@ -135,18 +135,16 @@ class GameStateMenu:	public GameState, public JGuiListener
   virtual void Destroy()
   {
   
-    if (mGuiController)
-      delete mGuiController;
+
+      SAFE_DELETE(mGuiController);
 
 
-    if (subMenuController)
-      delete subMenuController;
+    SAFE_DELETE(subMenuController);
 
-    if (mIconsTexture)
-      delete mIconsTexture;
+    SAFE_DELETE(mIconsTexture);
 
     for (int i = 0; i < 10 ; i++){
-      delete mIcons[i];
+      SAFE_DELETE(mIcons[i]);
     }
 
     SAFE_DELETE(mBg);
@@ -161,7 +159,7 @@ class GameStateMenu:	public GameState, public JGuiListener
   virtual void Start(){
     JRenderer::GetInstance()->ResetPrivateVRAM();
     JRenderer::GetInstance()->EnableVSync(true);
-
+subMenuController = NULL;
 
       if (GameApp::HasMusic && !GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
       GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
@@ -266,7 +264,7 @@ class GameStateMenu:	public GameState, public JGuiListener
       if (currentState == STATE_MENU && mGuiController!=NULL)
 	mGuiController->Update(dt);
       if (currentState == STATE_SUBMENU){
-	if( subMenuController != NULL){
+	if( subMenuController){
 	  subMenuController->Update(dt);
 	}else{
 
@@ -390,7 +388,7 @@ class GameStateMenu:	public GameState, public JGuiListener
       mFont->DrawString(nbcardsStr,10, SCREEN_HEIGHT-15);
       mFont->SetScale(1.f);
       mFont->SetColor(ARGB(255,255,255,255));
-      if (currentState == STATE_SUBMENU && subMenuController != NULL){
+      if (currentState == STATE_SUBMENU && subMenuController){
 	subMenuController->Render();
       }
 
