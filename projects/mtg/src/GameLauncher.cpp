@@ -13,6 +13,7 @@
 
 #include "../include/GameApp.h"
 
+static char GameName[] = "Wagic";
 
 //-------------------------------------------------------------------------------------
 JApp* JGameLauncher::GetGameApp()
@@ -24,7 +25,7 @@ JApp* JGameLauncher::GetGameApp()
 //-------------------------------------------------------------------------------------
 char *JGameLauncher::GetName()
 {
-  return "Wagic";
+  return GameName;
 }
 
 
