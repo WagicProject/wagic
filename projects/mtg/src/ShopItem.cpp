@@ -153,7 +153,7 @@ void ShopItems::Add(char * text, JQuad * quad,JQuad * thumb, int price){
 
 void ShopItems::Update(float dt){
   if (display){
-    //    display->CheckUserInput(dt);
+    while (u32 key = JGE::GetInstance()->ReadButton()) display->CheckUserInput(key);
     if (display) display->Update(dt);
   }else{
     if (showPriceDialog!=-1){

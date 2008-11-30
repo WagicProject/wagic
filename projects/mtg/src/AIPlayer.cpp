@@ -14,10 +14,10 @@ AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file): Player(_deck, file){
 }
 
 AIPlayer::~AIPlayer(){
-  if (potentialMana) delete potentialMana;
+  SAFE_DELETE(potentialMana);
   if (stats){
     stats->save();
-    delete stats;
+    SAFE_DELETE(stats);
   }
 }
 MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random){

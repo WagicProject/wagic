@@ -160,9 +160,9 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
 
 void ActionLayer::setMenuObject(Targetable * object){
   menuObject = object;
-  if (abilitiesMenu){
-    delete abilitiesMenu;
-  }
+
+  SAFE_DELETE(abilitiesMenu);
+
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
   abilitiesMenu = NEW SimpleMenu(10, this, mFont, 100, 100, 200);
 

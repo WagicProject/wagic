@@ -159,26 +159,26 @@ void GameApp::Destroy()
     {
       if (mGameStates[i]){
 	mGameStates[i]->Destroy();
-	delete mGameStates[i];
+	SAFE_DELETE(mGameStates[i]);
       }
     }
 
   for (int i= 0; i < 6; i++){
-    delete Particles[i];
+    SAFE_DELETE(Particles[i]);
   }
 
   if (collection){
     collection->destroyAllCards();
-    delete collection;
+    SAFE_DELETE(collection);
   }
-  if (cache) delete cache;
+  SAFE_DELETE(cache);
 
-  if (CommonRes) delete CommonRes;
+  SAFE_DELETE(CommonRes);
 
-  GameOptions::Destroy();
+  GameOptions::Destroy(); //No delete ???
 
-  if (Subtypes::subtypesList) delete Subtypes::subtypesList;
-  if (MtgSets::SetsList) delete MtgSets::SetsList;
+  SAFE_DELETE(Subtypes::subtypesList);
+  SAFE_DELETE(MtgSets::SetsList);
 
   SAFE_DELETE(music);
 

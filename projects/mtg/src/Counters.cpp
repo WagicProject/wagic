@@ -50,7 +50,7 @@ Counters::Counters(MTGCardInstance * _target):target(_target){
 }
 Counters::~Counters(){
   for (int i = 0; i < mCount; i++){
-    delete counters[i];
+    SAFE_DELETE(counters[i]);
   }
 }
 

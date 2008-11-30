@@ -626,9 +626,9 @@ class AManaProducer: public MTGAbility{
 
   ~AManaProducer(){
     LOG("==Destroying ManaProducer Object");
-    if (cost) delete cost;
+    SAFE_DELETE(cost);
     SAFE_DELETE(output);
-    if (mParticleSys) delete mParticleSys;
+    SAFE_DELETE(mParticleSys);
     LOG("==Destroying ManaProducer Object Successful!");
   }
 
@@ -2377,7 +2377,7 @@ class AAtog:public TargetAbility{
     TargetAbility::Update(dt);
     Player * newController = source->controller();
     if (newController != currentController){
-      delete tc;
+      SAFE_DELETE(tc);
       MTGGameZone * zones[] = {newController->game->inPlay};  //In case Atog's controller changes
       tc = NEW TypeTargetChooser("artifact", zones, 1, source);
       currentController = newController;

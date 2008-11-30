@@ -14,7 +14,7 @@ Blocker::Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target, ManaC
 }
 
 Blocker::~Blocker(){
-  delete manaCost;
+  SAFE_DELETE(manaCost);
 }
 
 void Blocker::init(ManaCost * _cost){

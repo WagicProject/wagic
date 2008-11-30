@@ -151,12 +151,7 @@ MTGAllCards::~MTGAllCards(){
 
 void MTGAllCards::destroyAllCards(){
   for (int i= 0; i < total_cards; i++){
-#ifdef WIN32
-char buf[4096];
-sprintf(buf,"deleting %s\n", collection[i]->getName());
-    OutputDebugString(buf);
-#endif
-    delete collection[i];
+    SAFE_DELETE(collection[i]);
   };
 
 }
@@ -235,6 +230,8 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
   string s;
   int result = 0;
   if(std::getline(file,s)) result = 1;
+  if (!s.size()) return 0;
+  if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
     switch(conf_read_mode) {
     case 0:
       if (s.find("[card]") != string::npos){

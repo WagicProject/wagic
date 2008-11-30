@@ -12,8 +12,8 @@ DamagerDamaged::DamagerDamaged(CardGui * cardg, Player * _damageSelecter, bool _
 
 DamagerDamaged::~DamagerDamaged(){
   for (int i = 0; i < mCount; i++){
-    delete damages[i];
-    damages[i] = NULL;
+    SAFE_DELETE(damages[i]);
+    
   }
 }
 
@@ -62,8 +62,7 @@ int DamagerDamaged::removeDamagesFrom(DamagerDamaged * source){
   for (int i = 0; i < mCount; i++){
     if (damages[i]->source == source->card){
       int damage = damages[i]->damage;
-      delete(damages[i]);
-      damages[i] = NULL;
+      SAFE_DELETE(damages[i]);
       damages[i] = damages[mCount-1];
       mCount--;
       return damage;

@@ -63,7 +63,7 @@ public:
   int lastTime;
   JSample * sample;
   SampleCached(int _lastTime, JSample * _sample):lastTime(_lastTime),sample(_sample){};
-  ~SampleCached(){delete sample;};
+  ~SampleCached(){SAFE_DELETE(sample);};
 };
 
 class SampleCache{

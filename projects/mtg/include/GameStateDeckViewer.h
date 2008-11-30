@@ -77,7 +77,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
  GameStateDeckViewer(GameApp* parent): GameState(parent) {
     bgMusic = NULL;
-    scrollSpeed = HIGH_SPEED;
+    scrollSpeed = MED_SPEED;
   }
   virtual ~GameStateDeckViewer() {
     SAFE_DELETE(bgMusic);
@@ -241,7 +241,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     SAFE_DELETE(menu);
     SAFE_DELETE(pspIconsTexture);
     for (int i=0; i < 8; i++){
-      delete pspIcons[i];
+      SAFE_DELETE(pspIcons[i]);
     }
     SAFE_DELETE(myCollection);
     SAFE_DELETE(myDeck);

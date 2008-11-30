@@ -17,7 +17,7 @@ DeckStats * DeckStats::GetInstance(){
 void DeckStats::cleanStats(){
   map<string,DeckStat *>::iterator it;
   for (it = stats.begin(); it != stats.end(); it++){
-    delete(it->second);
+    SAFE_DELETE(it->second);
   }
   stats.clear();
 }

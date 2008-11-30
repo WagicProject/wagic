@@ -590,7 +590,7 @@ int ActionStack::CombatDamages(int strike){
   if (damageitems){
     addAction(damages);
   }else{
-    delete damages;
+    SAFE_DELETE(damages);
   }
   return damageitems;
 }
@@ -602,7 +602,7 @@ int ActionStack::garbageCollect(){
     if (current->state != NOT_RESOLVED){
       mObjects[i] = mObjects[mCount-1];
       mCount--;
-      delete current;
+      SAFE_DELETE(current);
     }
   }
   return 1;
