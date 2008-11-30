@@ -262,8 +262,10 @@ subMenuController = NULL;
 	if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) currentState = STATE_MENU;
       }
     }else{
-      if (currentState == STATE_MENU && mGuiController!=NULL)
-	mGuiController->Update(dt);
+      if (currentState == STATE_MENU && mGuiController!=NULL){
+	      mGuiController->Update(dt);
+        SAFE_DELETE(subMenuController);
+      }
       if (currentState == STATE_SUBMENU){
 	if( subMenuController){
 	  subMenuController->Update(dt);
@@ -351,7 +353,7 @@ subMenuController = NULL;
       mCollection->addRandomCards(11, setId,RARITY_C);
     }
     mCollection->save();
-    delete mCollection;
+    SAFE_DELETE(mCollection);
   }
 
   virtual void Render()
@@ -425,7 +427,6 @@ subMenuController = NULL;
     case 101:
       createUsersFirstDeck(controlId);
       currentState = STATE_MENU;
-      SAFE_DELETE(subMenuController);
       break;
     default:
       switch (controlId)
@@ -462,7 +463,6 @@ subMenuController = NULL;
 	  break;
 	case 14:
 	  currentState = STATE_MENU;
-	  SAFE_DELETE(subMenuController);
 	  break;
 #ifdef TESTSUITE
 	case 666:
