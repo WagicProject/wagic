@@ -282,6 +282,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     found = s.find("damage");
     if (found != string::npos){
       unsigned int start = s.find(":",found);
+      if (start == string::npos) start = s.find(" ",found);
       unsigned int end = s.find(" ",start);
       int damage;
       ManaCost * cost = ManaCost::parseManaCost(s);
