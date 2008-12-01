@@ -1,0 +1,37 @@
+#Make sure afflict does -1/-1 and makes you draw a card
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:135206
+inplay:2455
+library:129580
+manapool:{B}{2}
+[PLAYER2]
+inplay:129586
+[DO]
+135206
+129586
+next
+#combat begin
+next
+#attackers
+2455
+next
+#blockers
+129586
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+hand:129580
+graveyard:135206
+inplay:2455
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:129586
+life:20
+[END]

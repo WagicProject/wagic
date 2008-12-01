@@ -358,7 +358,7 @@ void MTGGuiPlay::Render(){
 
   if (mCount && mObjects[mCurr] != NULL){
     mObjects[mCurr]->Render();
-    if (hasFocus && mCurr >= offset && showBigCards && last_user_move > BIG_CARD_RENDER_TIME){
+    if (hasFocus && mCurr >= offset && showBigCards){
         ((CardGui *)mObjects[mCurr])->RenderBig(-1,-1,showBigCards-1);
     }
   }

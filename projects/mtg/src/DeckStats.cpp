@@ -84,7 +84,12 @@ void DeckStats::save(const char * filename){
 
 void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game){
   int victory = 1;
-  if (game->gameOver == player) victory = 0;
+  if (!game->gameOver){
+    if (player->life == opponent->life) return;
+    if (player->life < opponent->life) victory = 0;
+  }else if (game->gameOver == player) {
+    victory = 0;
+  }
   load(player);
   map<string,DeckStat *>::iterator it = stats.find(opponent->deckFile);
   if (it == stats.end()){

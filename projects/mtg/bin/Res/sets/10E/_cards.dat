@@ -1204,7 +1204,7 @@ subtype=Aura
 [card]
 text=Relentless Rats gets +1/+1 for each other creature in play named Relentless Rats.     A deck can have any number of cards named Relentless Rats.
 id=135236
-auto=champion(name:Relentless Rats)
+auto=foreach(name:Relentless Rats)
 name=Relentless Rats
 rarity=U
 color=Black

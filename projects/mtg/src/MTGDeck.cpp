@@ -234,13 +234,13 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
   if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
     switch(conf_read_mode) {
     case 0:
-      if (s.find("[card]") != string::npos){
+      if (s[0] == '['){
         collection[total_cards] =  NEW MTGCard(mCache,set_id);
         conf_read_mode = 1;
       }
       break;
     case 1:
-      if (s.find("[/card]") != string::npos){
+      if (s[0] == '[' && s[1] == '/'){
 	      conf_read_mode = 0;
 	      total_cards++;
       }else{

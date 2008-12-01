@@ -229,11 +229,11 @@ int AIPlayer::chooseAttackers(){
   int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES);
   int myForce = getCreaturesInfo(this,INFO_CREATURESPOWER,-1,1);
   int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1,1);
-  bool attack = (myCreatures > opponentCreatures || myForce > opponentForce || myForce > 2*opponent()->life);
+  bool attack = ((myCreatures > opponentCreatures) || (myForce > opponentForce) || (myForce > 2*opponent()->life));
   if (attack){
     CardDescriptor cd;
     cd.init();
-    cd.setType("Creature");
+    cd.setType("creature");
     MTGCardInstance * card = NULL;
     while((card = cd.nextmatch(game->inPlay, card))){
       GameObserver::GetInstance()->cardClick(card);
@@ -433,7 +433,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
         if (shouldPlay == BAKA_EFFECT_GOOD){
           shouldPlayPercentage = 90;
         }else if(BAKA_EFFECT_DONTKNOW == shouldPlay){
-          shouldPlayPercentage = 70;
+          shouldPlayPercentage = 80;
         }
         if (rand() % 100 > shouldPlayPercentage) continue;
       }

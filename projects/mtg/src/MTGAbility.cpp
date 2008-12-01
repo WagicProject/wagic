@@ -154,13 +154,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       }
     }
 
-    //Champion. Very basic, needs to be improved !
-    found = s.find("champion(name:");
+    //foreach. Very basic, needs to be improved !
+    found = s.find("foreach(name:");
     if (found != string::npos){
       if (dryMode) return BAKA_EFFECT_GOOD;
-      unsigned int end = s.find(")", found+14);
+      unsigned int end = s.find(")", found+13);
       if (end != string::npos){
-	string type = s.substr(found+14,end-found-14).c_str();
+	string type = s.substr(found+13,end-found-13).c_str();
 	game->addObserver(NEW APlagueRats(id,card,type.c_str()));
 	result++;
 	continue;
@@ -365,7 +365,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     found = s.find("/");
     if (found != string::npos){
       unsigned int start = s.find(":");
-      if (start == string::npos) start = found-2;
+      if (start == string::npos) start = s.find(" ");
+      if (start == string::npos) start = -1;
       int power = atoi(s.substr(start+1,size-found).c_str());
       unsigned int end = s.find(" ",start);
       int toughness;
