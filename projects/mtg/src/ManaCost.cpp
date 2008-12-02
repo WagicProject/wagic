@@ -185,6 +185,7 @@ int ManaCost::add(int color, int value){
 }
 
 int ManaCost::add(ManaCost * _cost){
+  if(!_cost) return 0;
   for (int i=0; i< MTG_NB_COLORS; i++){
     cost[i]+= _cost->getCost(i);
   }

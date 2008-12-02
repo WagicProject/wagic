@@ -20,7 +20,7 @@
 #define STATE_FIRST_TIME 4
 #define STATE_WARNING 5
 
-#define GAME_VERSION "WTH?! 0.2.2 - by WilLoW"
+#define GAME_VERSION "WTH?! 0.3.0 - by WilLoW"
 #define ALPHA_WARNING 0
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4

@@ -7,7 +7,9 @@ CardDescriptor::CardDescriptor(): MTGCardInstance(){
 }
 
 int CardDescriptor::init(){
-  return MTGCardInstance::init();
+  int result = MTGCardInstance::init();
+  initAttackersDefensers();
+  return result;
 }
 
 MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
