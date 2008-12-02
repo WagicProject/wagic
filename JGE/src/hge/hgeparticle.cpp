@@ -141,7 +141,8 @@ void hgeParticleSystem::Update(float fDeltaTime)
 		if(par->fAge >= par->fTerminalAge)
 		{
 			nParticlesAlive--;
-			memcpy(par, &particles[nParticlesAlive], sizeof(hgeParticle));
+			if (par != &particles[nParticlesAlive])
+			  memcpy(par, &particles[nParticlesAlive], sizeof(hgeParticle));
 			i--;
 			continue;
 		}
