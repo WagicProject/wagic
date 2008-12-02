@@ -367,7 +367,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  }
 	}
 
-    }else if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT) {
+    } if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT) {
       //mAlpha = 128;
       if (mStage == STAGE_TRANSITION_RIGHT){
 	mRotation -= dt * scrollSpeed;
@@ -379,7 +379,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	mRotation = 0;
 	mStage = STAGE_WAITING;
       }
-    }else if (mStage == STAGE_TRANSITION_DOWN || mStage == STAGE_TRANSITION_UP){
+    } if (mStage == STAGE_TRANSITION_DOWN || mStage == STAGE_TRANSITION_UP){
       if (mStage == STAGE_TRANSITION_DOWN){
 	mSlide -= 0.05f;
 	if (mSlide < -1.0f){
@@ -389,7 +389,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  mStage = STAGE_WAITING;
 	  mSlide = 0;
 	}
-      }else if (mStage == STAGE_TRANSITION_UP){
+      } if (mStage == STAGE_TRANSITION_UP){
 	mSlide += 0.05f;
 	if (mSlide > 1.0f){
 	  loadIndexes(currentCard);
