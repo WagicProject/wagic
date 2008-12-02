@@ -365,7 +365,7 @@ u8 JGE::GetAnalogY()
 }
 
 #define REPEAT_DELAY 0.5
-#define REPEAT_FREQUENCY 5
+#define REPEAT_FREQUENCY 7
 void JGE::Run()
 {
   u64 curr;
