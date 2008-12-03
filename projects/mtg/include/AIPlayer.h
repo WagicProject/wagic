@@ -46,7 +46,7 @@ class AIPlayer: public Player{
 class AIPlayerBaka: public AIPlayer{
  protected:
   int oldGamePhase;
-  int timer;
+  float timer;
   MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
  public:
   AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile, char * avatarFile);

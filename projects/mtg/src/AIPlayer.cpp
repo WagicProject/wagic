@@ -456,7 +456,7 @@ AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, char * avatarFil
 }
 
 void AIPlayerBaka::initTimer(){
-  timer = 20;
+  timer = 0.3;
 }
 
 int AIPlayerBaka::Act(float dt){
@@ -475,7 +475,7 @@ int AIPlayerBaka::Act(float dt){
 
   if (checkInterrupt()) return 0;
 
-  timer--;
+  timer-= dt;
   if (timer>0){
     return 0;
   }
