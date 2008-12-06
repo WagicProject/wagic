@@ -615,13 +615,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
     int alpha = (int) (255 * (scale + 1.0 - max_scale));
 
-    if (!card){
-      /*int scaleBackup = mFont->GetScale();
-	mFont->SetScale(scale);
-	mFont->DrawString("empty slot", x, y);
-	mFont->SetScale(scaleBackup);*/
-      return;
-    }
+    if (!card) return;
     JQuad * quad = backQuad;
 
     int showName = 1;
@@ -648,6 +642,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       }
     }else{
       CardGui::alternateRender(card, mFont, mIcons, x_center, y + 142.5*scale, 0, scale);
+      quad = card->getThumb();
+      if (quad){
+         float _scale = 285 * scale / quad->mHeight;
+         quad->SetColor(ARGB(40,255,255,255));
+         JRenderer::GetInstance()->RenderQuad(quad,x,y,0,_scale,_scale);
+      }
     }
     if (last_user_activity < 3){
       int fontAlpha = alpha;

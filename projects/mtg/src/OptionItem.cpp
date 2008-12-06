@@ -45,6 +45,8 @@ void OptionItem::Update(float dt){
   }
 }
 
+
+
 void OptionItem::Entering(){
   hasFocus = true;
 }

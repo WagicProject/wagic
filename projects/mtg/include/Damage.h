@@ -31,7 +31,6 @@ class Damage: public Interruptible {
   void init(MTGCardInstance * _source, Damageable * _target, int _damage);
  public:
   Damageable * target;
-  MTGCardInstance * source;
   int damage;
   void Render();
   Damage(int id, MTGCardInstance* _source, Damageable * _target);

@@ -24,13 +24,19 @@ void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage){
 
 int Damage::resolve(){
   if (damage <0) damage = 0; //Negative damages cannot happen
+  state = RESOLVED_OK;
   if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
     MTGCardInstance * _target = (MTGCardInstance *)target;
-    if ((_target)->protectedAgainst(source)) return 0;
+    if ((_target)->protectedAgainst(source)) damage = 0;
     // Damage for WITHER on creatures
+
+    if (!damage){
+      state = RESOLVED_NOK;
+      return 0;
+    }
     if (source->has(WITHER)){
       for (int i = 0; i < damage; i++){
-	_target->counters->addCounter(-1, -1);
+	      _target->counters->addCounter(-1, -1);
       }
       return 1;
     }
@@ -120,11 +126,13 @@ int DamageStack::CombatDamages(int strike){
 int DamageStack::resolve(){
   for (int i = mCount-1; i>= 0; i--){
     Damage * damage = (Damage*)mObjects[i];
-    damage->resolve();
+    if (damage->state == NOT_RESOLVED) damage->resolve();
+    //damage->resolve();
   }
   for (int i = mCount-1; i>= 0; i--){
     Damage * damage = (Damage*)mObjects[i];
-    damage->target->afterDamage();
+    if (damage->state == RESOLVED_OK) damage->target->afterDamage();
+    //damage->target->afterDamage();
   }
   return 1;
 }
@@ -133,10 +141,12 @@ void DamageStack::Render(){
   int currenty = y;
   for (int i= 0; i < mCount; i++){
     Damage * damage = (Damage*)mObjects[i];
-    damage->x = x;
-    damage->y = currenty;
-    currenty += damage->mHeight;
-    damage->Render();
+    if (damage->state == NOT_RESOLVED){
+      damage->x = x;
+      damage->y = currenty;
+      currenty += damage->mHeight;
+      damage->Render();
+    }
   }
 }
 

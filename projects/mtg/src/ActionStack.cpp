@@ -397,14 +397,18 @@ void ActionStack::repackDamageStacks(){
     if (action->type == ACTION_DAMAGE){
       Damage * damage = (Damage *) action;
       for (int j = 0; j < mCount; j++){
-	Interruptible * action2 = ((Interruptible *)mObjects[j]);
-	if (action->type == ACTION_DAMAGES){
-	  DamageStack * ds = (DamageStack *) action2;
-	  for (int k = 0; k< ds->mCount; k++){
-	    Damage * dsdamage = ((Damage *)ds->mObjects[k]);
-	    if (dsdamage==damage) Remove(damage);
-	  }
-	}
+	      Interruptible * action2 = ((Interruptible *)mObjects[j]);
+	      if (action2->type == ACTION_DAMAGES){
+	        DamageStack * ds = (DamageStack *) action2;
+	        for (int k = 0; k< ds->mCount; k++){
+	          Damage * dsdamage = ((Damage *)ds->mObjects[k]);
+            if (dsdamage==damage){
+              //Remove(damage);
+              mObjects[i] = mObjects[mCount-1];
+              mCount--;
+            }
+	        }
+	      }
       }
     }
   }
@@ -510,62 +514,62 @@ bool ActionStack::CheckUserInput(u32 key){
   if (mode == ACTIONSTACK_STANDARD){
     if (askIfWishesToInterrupt){
       if (PSP_CTRL_CROSS == key){
-	setIsInterrupting(askIfWishesToInterrupt);
-	return true;
+	      setIsInterrupting(askIfWishesToInterrupt);
+	      return true;
       }else if ((PSP_CTRL_CIRCLE == key) || (PSP_CTRL_RTRIGGER == key) ){
-	cancelInterruptOffer();
-	return true;
+	      cancelInterruptOffer();
+	      return true;
       }else if ((PSP_CTRL_SQUARE == key)){
-	cancelInterruptOffer(2);
-	return true;
+	      cancelInterruptOffer(2);
+	      return true;
       }
+      return true;
     }else if (game->isInterrupting){
       if (PSP_CTRL_CROSS == key){
-	endOfInterruption();
-	return true;
+	      endOfInterruption();
+	      return true;
       }
     }
   }else if (mode == ACTIONSTACK_TARGET){
     if (modal){
       if (PSP_CTRL_UP == key){
-	if( mObjects[mCurr]){
-	  int n = getPreviousIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-	  if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
+	      if( mObjects[mCurr]){
+	        int n = getPreviousIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
+	        if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_UP)){
+	          mCurr = n;
+	          mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
-	      char buf[4096];
-	      sprintf(buf, "Stack UP TO mCurr = %i\n", mCurr);
-	      OutputDebugString(buf);
+	          char buf[4096];
+	          sprintf(buf, "Stack UP TO mCurr = %i\n", mCurr);
+	          OutputDebugString(buf);
 #endif
-	    }
-	}
-	return true;
+	        }
+	      }
+	      return true;
       }else if (PSP_CTRL_DOWN == key){
-	if( mObjects[mCurr]){
-	  int n = getNextIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-	  if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
-	    {
-	      mCurr = n;
-	      mObjects[mCurr]->Entering();
+	      if( mObjects[mCurr]){
+	        int n = getNextIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
+	        if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN)){
+	          mCurr = n;
+	          mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
-	      char buf[4096];
-	      sprintf(buf, "Stack DOWN TO mCurr = %i\n", mCurr);
-	      OutputDebugString(buf);
+	          char buf[4096];
+	          sprintf(buf, "Stack DOWN TO mCurr = %i\n", mCurr);
+	          OutputDebugString(buf);
 #endif
-	    }
-	}
-	return true;
+	        }
+	      }
+	      return true;
       }else if (PSP_CTRL_CIRCLE == key){
 #if defined (WIN32) || defined (LINUX)
-	char buf[4096];
-	sprintf(buf, "Stack CLIKED mCurr = %i\n", mCurr);
-	OutputDebugString(buf);
+	      char buf[4096];
+	      sprintf(buf, "Stack CLIKED mCurr = %i\n", mCurr);
+	      OutputDebugString(buf);
 #endif
-	game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
-	return true;
+	      game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
+	      return true;
       }
+      return true; //Steal the input to other layers if we're visible
     }
     if (PSP_CTRL_TRIANGLE == key){
       if (modal) {modal = 0;} else {modal = 1;}
@@ -703,3 +707,65 @@ void ActionStack::Render(){
     }
   }
 }
+
+#if defined (WIN32) || defined (LINUX)
+
+void Interruptible::Dump(){
+  string stype, sstate, sdisplay = "";
+  switch (type){
+    case ACTION_SPELL:
+      stype = "spell";
+      break;
+    case ACTION_DAMAGE:
+      stype = "damage";
+      break;
+    case ACTION_DAMAGES:
+      stype = "damages";
+      break;
+    case ACTION_NEXTGAMEPHASE:
+      stype = "next phase";
+      break;
+    case ACTION_DRAW:
+      stype = "draw";
+      break;
+    case ACTION_PUTINGRAVEYARD:
+      stype = "put in graveyard";
+      break;
+    case ACTION_ABILITY:
+      stype = "ability";
+      break;
+    default:
+      stype = "unknown";
+      break;
+  }
+
+  switch(state){
+    case NOT_RESOLVED:
+      sstate = "not resolved";
+      break;
+    case RESOLVED_OK:
+      sstate = "resolved";
+      break;
+    case RESOLVED_NOK:
+      sstate = "fizzled";
+      break;
+    default:
+      sstate = "unknown";
+      break;
+  }
+  
+  char buf[4096];
+  sprintf(buf, "    type %s(%i) - state %s(%i) - display %i\n", stype.c_str(), type,  sstate.c_str(),state, display);
+    OutputDebugString(buf);
+}
+
+void ActionStack::Dump(){
+   OutputDebugString("=====\nDumping Action Stack=====\n");
+  for (int i=0;i<mCount ;i++){
+    Interruptible * current = (Interruptible *)mObjects[i];
+    current->Dump();
+  }
+}
+
+
+#endif

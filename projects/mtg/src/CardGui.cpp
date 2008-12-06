@@ -203,6 +203,8 @@ void CardGui::Update(float dt){
 }
 
 void CardGui::RenderBig(float xpos, float ypos, int alternate){
+  JQuad * quad = NULL;
+  JRenderer * renderer = JRenderer::GetInstance();
   if (xpos == -1){
     xpos = 300;
     if (x > SCREEN_WIDTH / 2)
@@ -211,12 +213,12 @@ void CardGui::RenderBig(float xpos, float ypos, int alternate){
   if(ypos == -1)
     ypos = 20;
   if (!alternate){
-    JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * quad = card->getQuad();
+    quad = card->getQuad();
     if (quad){
       quad->SetColor(ARGB(220,255,255,255));
       renderer->RenderQuad(quad, xpos   , ypos , 0.0f,0.9f,0.9f);
     }else{
+      quad = card->getThumb();
       alternate = 1;
     }
   }
@@ -226,6 +228,11 @@ void CardGui::RenderBig(float xpos, float ypos, int alternate){
     MTGCard * mtgcard = card->model;
     JLBFont * font = GameApp::CommonRes->GetJLBFont("graphics/magic");
     CardGui::alternateRender(mtgcard, font, NULL, xpos + 90  , ypos + 130, 0.0f,0.9f);
+    if (quad){
+      float scale = 250 / quad->mHeight;
+      quad->SetColor(ARGB(40,255,255,255));
+      renderer->RenderQuad(quad,xpos,ypos,0,scale,scale);
+    }
   }
 }
 

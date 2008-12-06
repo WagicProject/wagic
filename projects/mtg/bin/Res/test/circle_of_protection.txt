@@ -1,0 +1,34 @@
+#Testing circle of protection (black) with a lord of the pit attack
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:1166
+[PLAYER2]
+inplay:1335
+manapool:{1}
+[DO]
+1166
+next
+#blockers
+next
+no
+#damage phase
+no
+#interrupt the actual damage
+yes
+1335
+1166
+endinterrupt
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:1166
+manapool:{0}
+life:20
+[PLAYER2]
+inplay:1335
+manapool:{0}
+life:20
+[END]

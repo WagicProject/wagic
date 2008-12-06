@@ -53,6 +53,9 @@ class Interruptible: public PlayGuiObject, public Targetable{
   virtual void Render(){};
   int typeAsTarget(){return TARGET_STACKACTION;};
  Interruptible(int id,bool hasFocus = false):PlayGuiObject(id,40,x,y,hasFocus){state=NOT_RESOLVED;display=0;source=NULL;};
+#if defined (WIN32) || defined (LINUX)
+  virtual void Dump();
+#endif
 };
 
 class NextGamePhase: public Interruptible {
@@ -142,6 +145,10 @@ class ActionStack :public GuiLayer{
   int CombatDamages();
   int CombatDamages(int firststrike);
   int has(Interruptible * action);
+#if defined (WIN32) || defined (LINUX)
+   void Dump();
+#endif
+
 };
 
 

@@ -47,7 +47,13 @@ int TestSuiteAI::Act(float dt){
   timer+= dt;
   if (timer < suite->timerLimit) return 1;
   timer = 0;
+
   string action = suite->getNextAction();
+  g->mLayers->stackLayer()->Dump();
+  OutputDebugString(action.c_str());
+  OutputDebugString("\n");
+
+    
   if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
     if(action.compare("no") != 0 && action.compare("yes") != 0){
       g->mLayers->stackLayer()->cancelInterruptOffer();
@@ -56,12 +62,13 @@ int TestSuiteAI::Act(float dt){
     }
   }
 
-  if (action == ""){
+    if (action == ""){
     //end of game
     suite->assertGame();
     g->gameOver = g->players[0];
     return 1;
   }
+
   if (action.compare("eot")== 0){
     if (g->getCurrentGamePhase() != MTG_PHASE_CLEANUP) suite->currentAction--;
     g->userRequestNextGamePhase();
@@ -79,14 +86,14 @@ int TestSuiteAI::Act(float dt){
   }else{
     int mtgid = atoi(action.c_str());
     if (mtgid){
-      MTGCardInstance * card = suite->getCardByMTGId(mtgid);
-      if (card) {
-	g->cardClick(card);
-      }else{
-	Interruptible * action = suite->getActionByMTGId(mtgid);
-	if (action){
-	  g->stackObjectClicked(action);
-	}
+      Interruptible * toInterrupt = suite->getActionByMTGId(mtgid);
+	    if (toInterrupt){
+	      g->stackObjectClicked(toInterrupt);
+	    }else{
+        MTGCardInstance * card = suite->getCardByMTGId(mtgid);
+        if (card) {
+	        g->cardClick(card);
+        }
       }
     }else{
       return 0;
@@ -171,8 +178,8 @@ void TestSuiteState::parsePlayerState(int playerId, string s){
 
 
 string TestSuite::getNextAction(){
-  if (actions.nbitems && currentAction < actions.nbitems){
-    currentAction++;
+  currentAction++;
+  if (actions.nbitems && currentAction <= actions.nbitems){
     return actions.actions[currentAction-1];
   }
   return "";
@@ -407,6 +414,7 @@ void TestSuite::load(const char * _filename){
   if(file){
     cleanup();
     while(std::getline(file,s)){
+      if (s[0] == '#') continue;
       std::transform( s.begin(), s.end(), s.begin(),::tolower );
       switch(state){
       case -1:
