@@ -1108,12 +1108,12 @@ class AControlStealAura: public MTGAbility{
 
   int destroy(){
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (_target->controller()->game->inPlay->hasCard(_target)){ //if the target is still in game -> spell was destroyed
+    Player * p = _target->controller();
+    if (p && p->game->inPlay->hasCard(_target)){ //if the target is still in game -> spell was destroyed
       _target->changeController(originalController);
     }
     return 1;
   }
-  //TODO put it back into owners's graveyard if needed...
 };
 
 
@@ -1481,15 +1481,20 @@ class AConservator: public MTGAbility{
 //Creature bond
 class ACreatureBond:public TriggeredAbility{
  public:
+  int mTriggered;
   int resolved;
  ACreatureBond(int _id, MTGCardInstance * _source, MTGCardInstance * _target):TriggeredAbility(_id,_source,_target){
-    resolved = 1;
+    mTriggered = 0;
+    resolved = 0;
   }
 
   int trigger(){
     MTGCardInstance * _target = (MTGCardInstance *) target;
     for (int i = 0; i < 2; i++){
-      if (game->players[i]->game->graveyard->hasCard(_target)) return 1;
+      if (!mTriggered && game->players[i]->game->graveyard->hasCard(_target)){
+        mTriggered = 1;
+        return 1;
+      }
     }
     return 0;
   }

@@ -25,6 +25,7 @@ control_magic2.txt
 counsel_of_the_soratami.txt
 counterspell.txt
 counterspell2.txt
+creature_bond.txt
 drain_life.txt
 flare.txt
 force_of_nature.txt

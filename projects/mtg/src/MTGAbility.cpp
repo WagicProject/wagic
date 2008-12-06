@@ -999,7 +999,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1194: //Control Magic
     {
-      game->addObserver(NEW ATakeControlAura(_id, card, card->target));
+      game->addObserver(NEW AControlStealAura(_id, card, card->target));
       break;
     }
 

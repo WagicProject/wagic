@@ -1,0 +1,43 @@
+#Testing Creature Bond on a fire elemental in opponent's play, then testing what happens when the elemental gets killed.
+#opponent should lose life
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1197
+inplay:1239
+manapool:{1}{U}
+[PLAYER2]
+inplay:1290
+[DO]
+1197
+1290
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main 1
+next
+#cbt begins
+next
+#attackers
+1290
+next
+#defensers
+1239
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:1197,1239
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:1290
+life:16
+[END]
