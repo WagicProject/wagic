@@ -371,13 +371,24 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       //mAlpha = 128;
       if (mStage == STAGE_TRANSITION_RIGHT){
 	mRotation -= dt * scrollSpeed;
+	if (mRotation < -1.0f){
+	  do {
+	    rotateCards(mStage);
+	    mRotation += 1;
+	  } while (mRotation < -1.0f);
+	  mStage = STAGE_WAITING;
+	  mRotation = 0;
+	}
       }else if(mStage == STAGE_TRANSITION_LEFT){
 	mRotation += dt * scrollSpeed;
-      }
-      while (fabs(mRotation) > 1.0f){
-	rotateCards(mStage);
-	mRotation = 0;
-	mStage = STAGE_WAITING;
+	if (mRotation > 1.0f){
+	  do {
+	    rotateCards(mStage);
+	    mRotation -= 1;
+	  } while (mRotation > 1.0f);
+	  mStage = STAGE_WAITING;
+	  mRotation = 0;
+	}
       }
     } if (mStage == STAGE_TRANSITION_DOWN || mStage == STAGE_TRANSITION_UP){
       if (mStage == STAGE_TRANSITION_DOWN){
