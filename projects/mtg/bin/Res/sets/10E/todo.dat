@@ -733,6 +733,7 @@ type=Land
 [/card]
 [card]
 text={2}, {T}: You gain 1 life.
+aut={2},{T}:life:+1
 id=135273
 name=Fountain of Youth
 rarity=U
@@ -1085,18 +1086,6 @@ subtype=Zombie
 toughness=2
 [/card]
 [card]
-text={W}, {T}: Tap target creature.
-id=129638
-name=Loxodon Mystic
-rarity=C
-color=White
-type=Creature
-mana={3}{W}{W}
-power=3
-subtype=Elephant Cleric
-toughness=3
-[/card]
-[card]
 text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals damage, you gain that much life. If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
 id=129630
 name=Loxodon Warhammer
@@ -1402,18 +1391,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Shroud (This creature can't be the target of spells or abilities.)
-id=130526
-name=Pincher Beetles
-rarity=C
-color=Green
-type=Creature
-mana={2}{G}
-power=3
-subtype=Insect
-toughness=1
-[/card]
-[card]
 text=As Pithing Needle comes into play, name a card.     Activated abilities of sources with the chosen name can't be played unless they're mana abilities.
 id=129526
 name=Pithing Needle
@@ -1430,15 +1407,6 @@ rarity=R
 color=Blue
 type=Instant
 mana={3}{U}
-[/card]
-[card]
-text=Destroy all creatures you don't control. They can't be regenerated.
-id=129679
-name=Plague Wind
-rarity=R
-color=Black
-type=Sorcery
-mana={7}{B}{B}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  You can't lose the game and your opponents can't win the game.
@@ -1594,16 +1562,6 @@ mana={4}{G}{G}
 power=5
 subtype=Rhino Beast
 toughness=5
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has shroud. (It can't be the target of spells or abilities.)
-id=134764
-name=Robe of Mirrors
-rarity=C
-color=Blue
-type=Enchantment
-mana={U}
-subtype=Aura
 [/card]
 [card]
 text=Artifacts and lands come into play tapped.

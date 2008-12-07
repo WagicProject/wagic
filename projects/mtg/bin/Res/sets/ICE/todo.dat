@@ -439,6 +439,18 @@ type=Enchantment
 mana={1}{B}{B}
 [/card]
 [card]
+text={0}: Flying and -1/-0 until end of turn
+id=2457
+name=Hyalopterous Lemure
+auto={0}:flying,-1/0
+rarity=U
+type=Creature 
+mana={4}{B}
+power=4
+subtype=Lemure
+toughness=3
+[/card]
+[card]
 text=When Iceberg comes into play, put X ice counters on it.{3}: Put an ice counter on Iceberg. {0}: Remove an ice counter from Iceberg to add one colorless mana to your mana pool. Play this ability as an interrupt.
 id=2509
 name=Iceberg

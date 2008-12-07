@@ -848,6 +848,19 @@ subtype=Demon
 toughness=7
 [/card]
 [card]
+text={W}, {T}: Tap target creature.
+auto={W},{T}:tap target(creature)
+id=129638
+name=Loxodon Mystic
+rarity=C
+color=White
+type=Creature
+mana={3}{W}{W}
+power=3
+subtype=Elephant Cleric
+toughness=3
+[/card]
+[card]
 text=
 id=129631
 name=Lumengrid Warden
@@ -1076,6 +1089,19 @@ subtype=Horror
 toughness=2
 [/card]
 [card]
+text=Shroud (This creature can't be the target of spells or abilities.)
+abilities=shroud
+id=130526
+name=Pincher Beetles
+rarity=C
+color=Green
+type=Creature
+mana={2}{G}
+power=3
+subtype=Insect
+toughness=1
+[/card]
+[card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
 abilities=swampwalk
 id=129678
@@ -1087,6 +1113,16 @@ mana={B}
 power=1
 subtype=Insect
 toughness=1
+[/card]
+[card]
+text=Destroy all creatures you don't control. They can't be regenerated.
+auto=bury all(creature|opponentinplay)
+id=129679
+name=Plague Wind
+rarity=R
+color=Black
+type=Sorcery
+mana={7}{B}{B}
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -1235,6 +1271,18 @@ rarity=R
 color=White
 type=Instant
 mana={W}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+target=creature
+auto=shroud
+id=134764
+name=Robe of Mirrors
+rarity=C
+color=Blue
+type=Enchantment
+mana={U}
+subtype=Aura
 [/card]
 [card]
 text=Mountainwalk (This creature is unblockable as long as defending player controls a Mountain.)

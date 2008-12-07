@@ -281,10 +281,11 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets): TargetsLi
 }
 
 //Default targetter : every card can be targetted, unless it is protected from the source card
+// For spells that do not "target" a specific card, set source to NULL
 int TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    if (source && card->protectedAgainst(source)) return 0;
+    if (source && (card->protectedAgainst(source) || card->has(SHROUD))) return 0;
     return 1;
   }
   return 0;
