@@ -36,6 +36,7 @@ giant_growth.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
 goblin_king.txt
+hymn_of_rebirth.txt
 keldon_warlord.txt
 kudzu.txt
 kudzu2.txt

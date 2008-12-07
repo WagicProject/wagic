@@ -1278,8 +1278,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1360: //Resurrection
     {
       Player * p = card->controller();
+      Player * p2 = card->target->controller();
       AbilityFactory af;
-      af.putInPlayFromZone(card->target, p->game->graveyard,  p);
+      af.putInPlayFromZone(card->target, p2->game->graveyard,  p);
       break;
     }
   case 1362: //Reverse polarity

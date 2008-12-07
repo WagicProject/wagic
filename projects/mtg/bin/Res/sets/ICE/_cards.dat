@@ -882,7 +882,7 @@ toughness=1
 [/card]
 [card]
 text=Mountainwalk
-abilities=moutainwalk
+abilities=mountainwalk
 id=2639
 name=Mountain Goat
 rarity=C
