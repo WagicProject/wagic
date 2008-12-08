@@ -2909,7 +2909,7 @@ class ALostOrderofJarkeld:public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card==source || (game->currentPlayer->game->inPlay->hasCard(card) && card->isACreature()) ) return 1;
+    if (source->controller()->opponent()->game->inPlay->hasCard(card) && card->isACreature() ) return 1;
     return 0;
   }
 

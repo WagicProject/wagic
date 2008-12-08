@@ -824,6 +824,18 @@ mana={R}
 subtype=aura
 [/card]
 [card]
+text={T}: Target creature gets +2/+2 until end of turn. If that creature leaves play this turn, bury Kjeldoran Elite Guard. Use this ability only when attack or defense is announced.
+id=2694
+auto={T}:2/2 target(creature)
+name=Kjeldoran Elite Guard
+rarity=U
+type=Creature 
+mana={3}{W}
+power=2
+subtype=Soldier
+toughness=2
+[/card]
+[card]
 text=All creatures able to block target creature must do so. Lure does not prevent a creature from blocking more than one creature if blocker has that ability. If blocker is forced to block more creatures than it is allowed to, defender chooses which of these creatures to block, but must block as many creatures as allowed.
 id=2577
 name=Lure
@@ -860,6 +872,15 @@ name=Mystic Might
 rarity=R
 type=Enchantment 
 mana={U}
+subtype=aura
+[/card]
+[card]
+text=When Prismatic Ward comes into play, choose a color; all damage dealt to target creature by sources of that color is reduced to 0.
+id=2707
+target=creature
+rarity=C
+type=Enchantment 
+mana={1}{W}
 subtype=aura
 [/card]
 [card]

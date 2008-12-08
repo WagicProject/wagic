@@ -105,21 +105,6 @@ mana={B}
 subtype=aura
 [/card]
 [card]
-text=When Prismatic Ward comes into play, choose a color; all damage dealt to target creature by sources of that color is reduced to 0.
-id=2707
-target=creature
-auto=:protection from blue
-auto=:protection from green
-auto=:protection from black
-auto=:protection from red
-auto=:protection from white
-name=Prismatic Ward
-rarity=C
-type=Enchantment 
-mana={1}{W}
-subtype=aura
-[/card]
-[card]
 text=When Regeneration comes into play, choose target creature.{G}: Regenerate creature Regeneration enchants.
 target=creature
 auto={G}:regenerate
@@ -1160,6 +1145,7 @@ mana={1}{W}
 [/card]
 [card]
 text=Target creature gains first strike until end of turn. Draw a card at the beginning of the next turn's upkeep.
+target=creature
 id=2702
 auto=:first strike
 auto=@next upkeep:draw:1
@@ -1179,21 +1165,9 @@ type=Instant
 mana={1}{U}
 [/card]
 [card]
-text={T}: Target creature gets +2/+2 until end of turn. If that creature leaves play this turn, bury Kjeldoran Elite Guard. Use this ability only when attack or defense is announced.
-id=2694
-auto={T}:2/2 target(creature)
-name=Kjeldoran Elite Guard
-rarity=U
-type=Creature 
-mana={3}{W}
-power=2
-subtype=Soldier
-toughness=2
-[/card]
-[card]
 text={1}{W}: Target green creature gains first strike until end of turn.
 id=2693
-auto={1}{W}:first strike target(creature)
+auto={1}{W}:first strike target(creature[green])
 name=Kelsinko Ranger
 rarity=C
 type=Creature 
@@ -1405,7 +1379,7 @@ rarity=R
 type=Creature 
 mana={2}{W}{W}
 power=1
-subtype=Knights
+subtype=human knight
 toughness=1
 [/card]
 [card]
@@ -1420,11 +1394,11 @@ subtype=Lhurgoyf
 toughness=1
 [/card]
 [card]
-text={T} target artifact, creature, or land. Draw a card at the beginning of the next turn's upkeep.
+text=Tap target artifact, creature, or land. Draw a card at the beginning of the next turn's upkeep.
 id=2503
 target=artifact,creature,land
 auto=tap
-auto=draw:1
+auto=@next upkeep:draw:1
 name=Enervate
 rarity=C
 type=Instant
