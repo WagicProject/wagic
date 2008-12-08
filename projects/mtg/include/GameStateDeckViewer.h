@@ -423,6 +423,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
 
   void renderOnScreenBasicInfo(){
+    mFont->SetScale(1.0);
     char buffer[30], buffer2[30];
 
     float y = 0;
@@ -508,6 +509,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   void renderOnScreenMenu(){
     mFont->SetColor(ARGB(255,255,255,255));
+    mFont->SetScale(1.0);
     JRenderer * r = JRenderer::GetInstance();
     float pspIconsSize = 0.5;
 
@@ -796,7 +798,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  }
 	}
       case 21:
-	SAFE_DELETE(sellMenu);
+	SAFE_DELETE(sellMenu); //TODO, stop deleting this object while it's being used !!!
 	break;
       }
 
