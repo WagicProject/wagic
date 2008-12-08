@@ -50,6 +50,7 @@ void StackAbility::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = ability->source->getThumb();
   if (quad){
+    quad->SetColor(ARGB(255,255,255,255));
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
@@ -110,6 +111,7 @@ void Spell::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();
   if (quad){
+    quad->SetColor(ARGB(255,255,255,255));
     float scale = mHeight  / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
@@ -119,6 +121,7 @@ void Spell::Render(){
   if (target){
     quad = target->getIcon();
     if (quad){
+      quad->SetColor(ARGB(255,255,255,255));
       float scale = 30 / quad->mHeight;
       renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
     }
@@ -156,6 +159,7 @@ void PutInGraveyard::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = card->getThumb();
   if (quad){
+    quad->SetColor(ARGB(255,255,255,255));
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{

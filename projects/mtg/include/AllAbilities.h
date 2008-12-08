@@ -533,6 +533,7 @@ class AManaProducer: public MTGAbility{
       if (mParticleSys) mParticleSys->MoveTo(x, y);
       if (mParticleSys && animation == 1.f) mParticleSys->Fire();
       animation -= 4 *dt;
+      if (!animation) animation = -1;
       if (animation < 0){
 	      animation = 0;
         currentlyTapping--;
