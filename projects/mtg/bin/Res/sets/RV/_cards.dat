@@ -2037,6 +2037,7 @@ subtype=Mountain Forest
 [card]
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
 target=creature[-black;-artifact]
+auto=bury
 id=1182
 name=Terror
 rarity=C
