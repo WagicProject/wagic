@@ -135,7 +135,7 @@ JSample * SampleCache::getSample(string filename){
       cleanCache();
       sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
     }
-    
+
     cache[filename] = NEW SampleCached(lastTime, sample);
     return sample;
   }else{

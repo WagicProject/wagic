@@ -443,6 +443,6 @@ JSample * MTGCardInstance::getSample(){
   }
 
   if (sample.size()) return SampleCache::GetInstance()->getSample(sample);
-  
+
   return NULL;
 }
