@@ -1197,14 +1197,6 @@ type=Instant
 mana={1}{RG}
 [/card]
 [card]
-text=Destroy all nonwhite creatures.
-id=146053
-name=Mass Calcify
-rarity=R
-type=Sorcery
-mana={5}{W}{W}
-[/card]
-[card]
 text=When Medicine Runner comes into play, you may remove a counter from target permanent.
 id=141977
 name=Medicine Runner
@@ -1572,14 +1564,6 @@ type=Instant
 mana={2}{U}{U}
 [/card]
 [card]
-text=Creatures you control have double strike.
-id=146727
-name=Rage Reflection
-rarity=R
-type=Enchantment
-mana={4}{R}{R}
-[/card]
-[card]
 text=Whenever a creature with flying attacks you, Raking Canopy deals 4 damage to it.
 id=158691
 name=Raking Canopy
@@ -1704,17 +1688,6 @@ subtype=Giant Shaman
 toughness=4
 [/card]
 [card]
-text=Green creatures you control have trample.
-id=141972
-name=Roughshod Mentor
-rarity=U
-type=Creature
-mana={5}{G}
-power=5
-subtype=Giant Warrior
-toughness=4
-[/card]
-[card]
 text=As Runed Halo comes into play, name a card.     You have protection from the chosen name. (You can't be targeted, dealt damage, or enchanted by anything with that name.)
 id=154005
 name=Runed Halo
@@ -1836,7 +1809,7 @@ mana={2}{GW}
 subtype=Aura
 [/card]
 [card]
-text=Flying     {1}{WU}, {T}: Tap target creature. ({T} is the untap symbol.)
+text=Flying     {1}{WU}, {Q}: Tap target creature. ({Q} is the untap symbol.)
 id=142027
 name=Silkbind Faerie
 rarity=C
@@ -2056,17 +2029,6 @@ subtype=Kithkin Soldier Wizard
 toughness=2
 [/card]
 [card]
-text=Flash     Other white creatures you control get +1/+1.     Other blue creatures you control get +1/+1.
-id=147409
-name=Thistledown Liege
-rarity=R
-type=Creature
-mana={1}{WU}{WU}{WU}
-power=1
-subtype=Kithkin Knight
-toughness=3
-[/card]
-[card]
 text=Thornwatch Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)  Thornwatch Scarecrow has vigilance as long as you control a white creature.
 id=151634
 name=Thornwatch Scarecrow
@@ -2133,14 +2095,6 @@ name=Traitor's Roar
 rarity=C
 type=Sorcery
 mana={4}{BR}
-[/card]
-[card]
-text={2}, {T}: Tap target creature.
-id=147420
-name=Trip Noose
-rarity=U
-type=Artifact
-mana={2}
 [/card]
 [card]
 text=Remove target creature from the game. Return that card to play under its owner's control at end of turn.
@@ -2271,6 +2225,8 @@ mana={3}{R}
 [/card]
 [card]
 text=Other green creatures you control get +1/+1.     Other white creatures you control get +1/+1.     If a spell or ability an opponent controls causes you to discard Wilt-Leaf Liege, put it into play instead of putting it into your graveyard.
+auto=lord(creature[green]) 1/1
+auto=lord(creature[white]) 1/1
 id=147439
 name=Wilt-Leaf Liege
 rarity=R

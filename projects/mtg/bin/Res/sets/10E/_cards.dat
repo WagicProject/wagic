@@ -102,6 +102,8 @@ toughness=3
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Other black creatures get +1/+1.      Nonblack creatures get -1/-1.
 abilities=Legendary, flying
+auto=lord(creature[black]) 1/1
+auto=lord(creature[-black]) -1/-1 includeself
 id=106525
 name=Ascendant Evincar
 rarity=R
@@ -149,6 +151,17 @@ mana={G}
 power=0
 subtype=Bird
 toughness=1
+[/card]
+[card]
+text=Blaze deals X damage to target creature or player.
+target=creature,player
+alias=1291
+id=129484
+name=Blaze
+rarity=U
+color=Red
+type=Sorcery
+mana={X}{R}
 [/card]
 [card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
@@ -329,7 +342,8 @@ toughness=5
 [card]
 text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
 id=129534
-auto=lord(elf) 1/1 forestwalk
+auto=lord(elf) 1/1 
+auto=lord(elf) forestwalk
 name=Elvish Champion
 rarity=R
 color=Green
@@ -391,7 +405,8 @@ toughness=2
 [card]
 text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
 id=135258
-auto=lord(soldier) 1/1 first strike
+auto=lord(soldier) 1/1 
+auto=lord(soldier)  first strike
 name=Field Marshal
 rarity=R
 color=White
@@ -541,9 +556,20 @@ subtype=Spider
 toughness=4
 [/card]
 [card]
+text=Creatures you control get +1/+1.
+auto=lord(creature|myinplay) 1/1 includeself
+id=129572
+name=Glorious Anthem
+rarity=R
+color=White
+type=Enchantment
+mana={1}{W}{W}
+[/card]
+[card]
 text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
 id=129578
-alias=1296
+auto=lord(goblin) 1/1
+auto=lord(goblin) mountainwalk
 name=Goblin King
 rarity=R
 color=Red
@@ -848,6 +874,20 @@ subtype=Demon
 toughness=7
 [/card]
 [card]
+text=Other Zombie creatures get +1/+1.     {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
+auto=lord(zombie) 1/1
+auto={1}{B}{T}:moveTo(myhand) target(zombie|mygraveyard)
+id=129629
+name=Lord of the Undead
+rarity=R
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
 text={W}, {T}: Tap target creature.
 auto={W},{T}:tap target(creature)
 id=129638
@@ -1075,6 +1115,19 @@ mana={3}{U}{U}
 subtype=Aura
 [/card]
 [card]
+text=Phantom Warrior is unblockable.
+abilities=unblockable
+id=132064
+name=Phantom Warrior
+rarity=U
+color=Blue
+type=Creature
+mana={1}{U}{U}
+power=2
+subtype=Illusion Warrior
+toughness=2
+[/card]
+[card]
 text=When Phyrexian Rager comes into play, you draw a card and you lose 1 life.
 auto=draw:1
 auto=life:-1
@@ -1165,6 +1218,16 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text=Creatures you control have trample. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+auto=lord(creature|myinplay) trample includeself
+id=136288
+name=Primal Rage
+rarity=U
+color=Green
+type=Enchantment
+mana={1}{G}
+[/card]
+[card]
 text={T}: Prodigal Pyromancer deals 1 damage to target creature or player.
 id=134752
 alias=1217
@@ -1224,6 +1287,18 @@ rarity=U
 color=Green
 type=Sorcery
 mana={2}{G}
+[/card]
+[card]
+text=Return target creature card from your graveyard to your hand.     Draw a card.
+target=creature|mygraveyard
+auto=moveTo(myhand)
+auto=Draw:1
+id=135188
+name=Recover
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -1773,6 +1848,19 @@ mana={B}
 power=0
 subtype=Bat
 toughness=1
+[/card]
+[card]
+text={U}, {T}: Return target permanent you control to its owner's hand.
+auto={U}{T}:moveTo(ownerhand) target(*|myinplay)
+id=130834
+name=Vedalken Mastermind
+rarity=U
+color=Blue
+type=Creature
+mana={U}{U}
+power=1
+subtype=Vedalken Wizard
+toughness=2
 [/card]
 [card]
 text=When Venerable Monk comes into play, you gain 2 life.

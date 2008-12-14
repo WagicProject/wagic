@@ -107,6 +107,7 @@ toughness=2
 [/card]
 [card]
 text=Black creatures get +1/+1.
+auto=lord(creature[black]) 1/1 includeself
 id=1144
 name=Bad Moon
 rarity=R
@@ -423,6 +424,7 @@ mana={G}
 [/card]
 [card]
 text=White creatures get +1/+1.
+auto=lord(creature[white]) 1/1 includeself
 id=1341
 name=Crusade
 rarity=R
@@ -860,7 +862,8 @@ toughness=1
 [card]
 text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
 id=1296
-auto=lord(goblin) 1/1 mountainwalk
+auto=lord(goblin) 1/1 
+auto=lord(goblin)  mountainwalk
 name=Goblin King
 rarity=R
 type=Creature
@@ -1292,7 +1295,8 @@ toughness=1
 [/card]
 [card]
 text=Other Merfolk creatures get +1/+1 and have islandwalk.
-auto=lord(merfolk) 1/1 islandwalk
+auto=lord(merfolk) 1/1 
+auto=lord(merfolk)  islandwalk
 id=1206
 name=Lord of Atlantis
 rarity=R
@@ -2448,7 +2452,8 @@ mana={2}{W}{W}
 [/card]
 [card]
 text=Zombie creatures have swampwalk.     All Zombies have &quot;{B}: Regenerate this permanent.&quot;
-auto=lord(zombie) swampwalk {B}:regenerate
+auto=lord(zombie) swampwalk
+auto=lord(zombie)  {B}:regenerate
 id=1188
 name=Zombie Master
 rarity=R

@@ -34,6 +34,7 @@ class MTGGameZone {
   int hasType(const char * value);
   void setOwner(Player * player);
   MTGCardInstance * lastCardDrawn;
+  static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source);
 };
 
 class MTGLibrary: public MTGGameZone {
@@ -52,6 +53,9 @@ class MTGHand: public MTGGameZone {
  public:
 };
 
+class MTGRemovedFromGame: public MTGGameZone {
+ public:
+};
 
 class MTGStack: public MTGGameZone {
  public:
@@ -78,6 +82,8 @@ class MTGPlayerCards {
   MTGHand * hand;
   MTGInPlay * inPlay;
   MTGStack * stack;
+  MTGRemovedFromGame * removedFromGame;
+
   MTGAllCards * collection;
 
   MTGPlayerCards(MTGAllCards * _collection, int * idList, int idListSize);

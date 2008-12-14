@@ -225,6 +225,15 @@ subtype=Spirit
 toughness=1
 [/card]
 [card]
+text=Destroy all nonwhite creatures.
+auto=destroy all(creature[-white])
+id=146053
+name=Mass Calcify
+rarity=R
+type=Sorcery
+mana={5}{W}{W}
+[/card]
+[card]
 text={T}: Add {R} to your mana pool.
 auto={T}:Add{R}
 id=157888
@@ -293,6 +302,27 @@ mana={UB}
 power=2
 subtype=Faerie Soldier
 toughness=1
+[/card]
+[card]
+text=Creatures you control have double strike.
+auto=lord(creature|myinplay) double strike
+id=146727
+name=Rage Reflection
+rarity=R
+type=Enchantment
+mana={4}{R}{R}
+[/card]
+[card]
+text=Green creatures you control have trample.
+auto=lord(creature[green]|myinplay) trample
+id=141972
+name=Roughshod Mentor
+rarity=U
+type=Creature
+mana={5}{G}
+power=5
+subtype=Giant Warrior
+toughness=4
 [/card]
 [card]
 text=Protection from blue, from black, and from red
@@ -540,6 +570,20 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
+text=Flash     Other white creatures you control get +1/+1.     Other blue creatures you control get +1/+1.
+abilities=flash
+auto=lord(creature[white]|myinplay) 1/1
+auto=lord(creature[blue]|myinplay) 1/1
+id=147409
+name=Thistledown Liege
+rarity=R
+type=Creature
+mana={1}{WU}{WU}{WU}
+power=1
+subtype=Kithkin Knight
+toughness=3
+[/card]
+[card]
 text=Flash     Enchant creature     Enchanted creature gets -3/-0.
 abilities=flash
 auto=-3/0
@@ -549,6 +593,15 @@ rarity=C
 type=Enchantment
 mana={2}{UB}
 subtype=Aura
+[/card]
+[card]
+text={2}, {T}: Tap target creature.
+auto={2},[T}:tap target(creature)
+id=147420
+name=Trip Noose
+rarity=U
+type=Artifact
+mana={2}
 [/card]
 [card]
 text=Flying

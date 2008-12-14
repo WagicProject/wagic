@@ -320,3 +320,23 @@ void MTGLibrary::shuffleTopToBottom(int nbcards){
     cards[i] = _cards[i];
   }
 }
+
+MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source){
+  Player * p = source->controller();
+  if(zoneName.compare("mygraveyard") == 0)return p->game->graveyard;
+  if(zoneName.compare("opponentgraveyard") == 0) return p->opponent()->game->graveyard;
+  if(zoneName.compare("ownergraveyard") == 0) return source->owner->game->graveyard;
+
+  if(zoneName.compare("myinplay") == 0)return p->game->inPlay;
+  if(zoneName.compare("opponentinplay") == 0) return p->opponent()->game->inPlay;
+  if(zoneName.compare("ownerinplay") == 0) return source->owner->game->inPlay;
+
+  if(zoneName.compare("myhand") == 0)return p->game->hand;
+  if(zoneName.compare("opponenthand") == 0) return p->opponent()->game->hand;
+  if(zoneName.compare("ownerhand") == 0) return source->owner->game->hand;
+
+  if(zoneName.compare("myremovedfromgame") == 0)return p->game->removedFromGame;
+  if(zoneName.compare("opponentremovedfromgame") == 0) return p->opponent()->game->removedFromGame;
+  if(zoneName.compare("ownerhremovedfromgame") == 0) return source->owner->game->removedFromGame;
+
+}

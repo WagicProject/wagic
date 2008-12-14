@@ -201,6 +201,7 @@ int MTGCardInstance::reset(){
   return 1;
 }
 
+
 Player * MTGCardInstance::controller(){
   GameObserver * game = GameObserver::GetInstance();
   if (!game) return NULL;

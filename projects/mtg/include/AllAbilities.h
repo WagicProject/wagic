@@ -43,11 +43,36 @@ class ADrawer:public ActivatedAbility{
 };
 
 
+//Moves Cards from a zone to another
+class AZoneMover:public TargetAbility{
+
+public:
+  string destinationZone;
+
+   AZoneMover(int _id, MTGCardInstance * _source, TargetChooser * _tc,string destZone, ManaCost * _cost = NULL):TargetAbility(_id,_source, _tc,_cost){
+    destinationZone = destZone;
+  }
+
+  int resolve(){
+    MTGCardInstance * _target = tc->getNextCardTarget();
+    if(_target){
+      Player* p = _target->controller();
+      if (p){
+        MTGGameZone * fromZone = _target->getCurrentZone();
+        MTGGameZone * destZone = MTGGameZone::stringToZone(destinationZone, source);
+        p->game->putInZone(_target,fromZone,destZone);
+      }
+      return 1;
+    }
+    return 0;
+  }
+};
+
 //Destroyer. TargetAbility
 class ADestroyer:public TargetAbility{
  public:
   int bury;
- ADestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL, int _bury = 0):TargetAbility(_id,_source, _tc),bury(_bury){
+ ADestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL, int _bury = 0, ManaCost * _cost=NULL):TargetAbility(_id,_source, _tc,_cost),bury(_bury){
     if (!tc) tc = NEW CreatureTargetChooser();
   }
 
@@ -73,7 +98,7 @@ class ADestroyer:public TargetAbility{
 //Destroyer. TargetAbility
 class ABurier:public ADestroyer{
  public:
- ABurier(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL):ADestroyer(_id,_source, tc,1){
+ ABurier(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL,ManaCost * _cost=NULL):ADestroyer(_id,_source, _tc,1,_cost){
   }
 
   const char * getMenuText(){
@@ -869,13 +894,16 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
 //Lords (Merfolk lord...) give power and toughness to OTHER creatures of their type, they can give them special abilities, regeneration
 class ALord:public ListMaintainerAbility{
  public:
-  string type;
+  TargetChooser * tc;
   int power, toughness;
   int ability;
   ManaCost * regenCost;
+  int includeSelf;
   map<MTGCardInstance *, MTGAbility *> regenerations;
- ALord(int _id, MTGCardInstance * card, const char * _type, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL):ListMaintainerAbility(_id,card){
-    type = _type;
+ ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL):ListMaintainerAbility(_id,card){
+    tc = _tc;
+    tc->source = NULL;
+    includeSelf = _includeSelf;
     power = _power;
     toughness = _toughness;
     ability = _ability;
@@ -883,7 +911,7 @@ class ALord:public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card!=source && card->isACreature() && card->hasSubtype(type)) return 1;
+    if ( (includeSelf || card!=source) && tc->canTarget(card)) return 1;
     return 0;
   }
 
@@ -915,59 +943,6 @@ class ALord:public ListMaintainerAbility{
 
 };
 
-//Lords (Merfolk lord...) give power and toughness to OTHER creatures of a given color, they can give them special abilities, regeneration
-class AColorLord:public ListMaintainerAbility{
- public:
-  int color;
-  int notcolor;
-  int power, toughness;
-  int ability;
-  ManaCost * regenCost;
-  map<MTGCardInstance *, MTGAbility *> regenerations;
- AColorLord(int _id, MTGCardInstance * card, int _color, int _notcolor = -1, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL):ListMaintainerAbility(_id,card){
-    color = _color;
-    notcolor = _notcolor;
-    power = _power;
-    toughness = _toughness;
-    ability = _ability;
-    regenCost = _regenCost;
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (notcolor > -1){
-      if (card!=source && card->isACreature() && !card->hasColor(notcolor)) return 1;
-    }else{
-      if (card!=source && card->isACreature() && card->hasColor(color)) return 1;
-    }
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    card->power += power;
-    card->addToToughness(toughness);
-    if (ability != -1) card->basicAbilities[ability] +=1;
-    if (regenCost){
-      AStandardRegenerate * regen = NEW AStandardRegenerate(0, card, card, regenCost);
-      regenerations[card] = regen;
-      game->addObserver(regen);
-    }
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    card->power -= power;
-    card->addToToughness(-toughness);
-    if (ability != -1 && card->basicAbilities[ability]) card->basicAbilities[ability] -=1;
-    if (regenCost){
-      if(regenerations.find(card) != regenerations.end()){
-	game->removeObserver(regenerations[card]);
-	regenerations.erase(card);
-      }
-    }
-    return 1;
-  }
-
-};
 
 
 /* Standard Damager, can choose a NEW target each time the price is paid */
@@ -1783,32 +1758,6 @@ class AAnimateDead:public MTGAbility{
     card->power++;
     return 1;
   }
-};
-
-//1144 Bad Moon, 1341 Crusade
-class ABadMoon:public ListMaintainerAbility{
- public:
-  int color;
- ABadMoon(int _id, MTGCardInstance * _source, int _color = MTG_COLOR_BLACK):ListMaintainerAbility(_id, _source),color(_color){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (card->isACreature() && card->hasColor(color)) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    card->power += 1;
-    card->addToToughness(1);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    card->power -= 1;
-    card->addToToughness(-1);
-    return 1;
-  }
-
 };
 
 

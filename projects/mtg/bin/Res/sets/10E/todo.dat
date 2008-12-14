@@ -78,6 +78,8 @@ subtype=Aura
 [/card]
 [card]
 text={T}: Draw three cards.     {2}{U}{U}: Return Arcanis the Omnipotent to its owner's hand.
+abilities=legendary
+auto={T}:Draw:3
 id=106426
 name=Arcanis the Omnipotent
 rarity=R
@@ -219,15 +221,6 @@ color=Green
 type=Enchantment
 mana={2}{G}
 subtype=Aura
-[/card]
-[card]
-text=Blaze deals X damage to target creature or player.
-id=129484
-name=Blaze
-rarity=U
-color=Red
-type=Sorcery
-mana={X}{R}
 [/card]
 [card]
 text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
@@ -771,15 +764,6 @@ color=Land
 type=Land
 [/card]
 [card]
-text=Creatures you control get +1/+1.
-id=129572
-name=Glorious Anthem
-rarity=R
-color=White
-type=Enchantment
-mana={1}{W}{W}
-[/card]
-[card]
 text=Whenever Goblin Elite Infantry blocks or becomes blocked, it gets -1/-1 until end of turn.
 id=130380
 name=Goblin Elite Infantry
@@ -1074,18 +1058,6 @@ color=Land
 type=Land
 [/card]
 [card]
-text=Other Zombie creatures get +1/+1.     {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
-id=129629
-name=Lord of the Undead
-rarity=R
-color=Black
-type=Creature
-mana={1}{B}{B}
-power=2
-subtype=Zombie
-toughness=2
-[/card]
-[card]
 text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals damage, you gain that much life. If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
 id=129630
 name=Loxodon Warhammer
@@ -1203,6 +1175,7 @@ mana={2}
 [/card]
 [card]
 text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.)  {2}{W}: Put a 1/1 white Soldier creature token into play.
+auto=lord(soldier) vigilance includeself
 id=129716
 name=Mobilization
 rarity=R
@@ -1370,18 +1343,6 @@ subtype=Zombie Minion
 toughness=4
 [/card]
 [card]
-text=Phantom Warrior is unblockable.
-id=132064
-name=Phantom Warrior
-rarity=U
-color=Blue
-type=Creature
-mana={1}{U}{U}
-power=2
-subtype=Illusion Warrior
-toughness=2
-[/card]
-[card]
 text={2}, {T}, Sacrifice a creature: Draw a card.
 id=135281
 name=Phyrexian Vault
@@ -1419,15 +1380,6 @@ mana={7}
 power=4
 subtype=Angel
 toughness=4
-[/card]
-[card]
-text=Creatures you control have trample. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-id=136288
-name=Primal Rage
-rarity=U
-color=Green
-type=Enchantment
-mana={1}{G}
 [/card]
 [card]
 text={U}, {T}: You may tap or untap target creature.
@@ -1502,15 +1454,6 @@ mana={5}
 power=5
 subtype=Masticore
 toughness=5
-[/card]
-[card]
-text=Return target creature card from your graveyard to your hand.     Draw a card.
-id=135188
-name=Recover
-rarity=C
-color=Black
-type=Sorcery
-mana={2}{B}
 [/card]
 [card]
 text=Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase.
@@ -1709,6 +1652,8 @@ toughness=4
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
+target=creature
+auto=flying
 id=129553
 name=Shimmering Wings
 rarity=C
@@ -2183,18 +2128,6 @@ rarity=R
 color=Green
 type=Enchantment
 mana={3}{G}
-[/card]
-[card]
-text={U}, {T}: Return target permanent you control to its owner's hand.
-id=130834
-name=Vedalken Mastermind
-rarity=U
-color=Blue
-type=Creature
-mana={U}{U}
-power=1
-subtype=Vedalken Wizard
-toughness=2
 [/card]
 [card]
 text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.

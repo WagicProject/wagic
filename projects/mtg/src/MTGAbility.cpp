@@ -9,6 +9,8 @@
 #include "../include/MTGDeck.h"
 
 
+
+
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
   int result = 0;
   GameObserver * game = GameObserver::GetInstance();
@@ -122,7 +124,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
     TargetChooser * tc = NULL;
     int doTap = 0;
-    string lordType = "";
+    TargetChooser * lordTargets = NULL;
+    int lordIncludeSelf = 0;
 
     Trigger * trigger = parseTrigger(s);
     //Dirty way to remove the trigger text (could get in the way)
@@ -150,8 +153,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       if (dryMode) return BAKA_EFFECT_GOOD;
       unsigned int end = s.find(")", found+5);
       if (end != string::npos){
-	lordType = s.substr(found+5,end-found-5).c_str();
+	      string lordType = s.substr(found+5,end-found-5).c_str();
+        TargetChooserFactory tcf;
+        lordTargets = tcf.createTargetChooser(lordType, card);
       }
+      if (s.find("includeself") != string::npos) lordIncludeSelf = 1;
     }
 
     //foreach. Very basic, needs to be improved !
@@ -189,8 +195,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       if (dryMode) return BAKA_EFFECT_GOOD;
       ManaCost * cost = ManaCost::parseManaCost(s);
 
-      if (lordType.size() > 0){
-	game->addObserver(NEW ALord(id,card,lordType.c_str(),0,0,-1,cost));
+      if (lordTargets){
+	      game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,-1,cost));
       }else{
 
 	if (tc){
@@ -204,6 +210,27 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       continue;
     }
 
+    //MoveTo Move a card from a zone to another
+    found = s.find("moveto(");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_BAD; //TODO : depends on where from, where to...
+	    int end = s.find(")");
+	    string szone = s.substr(found + 7,end - found - 7);
+      if (tc){
+        ManaCost * cost = ManaCost::parseManaCost(s);
+        if (cost->getConvertedCost() == 0){
+          delete cost;
+          cost = NULL;
+        }
+        game->addObserver(NEW AZoneMover(id,card,tc,szone,cost));
+      }else{
+        MTGGameZone * fromZone = target->getCurrentZone();
+        MTGGameZone * destZone = MTGGameZone::stringToZone(szone, target);
+        target->controller()->game->putInZone(target,fromZone,destZone);
+      }
+      result++;
+      continue;
+    }
     //Bury
     found = s.find("bury");
     if (found != string::npos){
@@ -371,38 +398,38 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       unsigned int end = s.find(" ",start);
       int toughness;
       if (end != string::npos){
-	toughness = atoi(s.substr(found+1,end-found-1).c_str());
+	      toughness = atoi(s.substr(found+1,end-found-1).c_str());
       }else{
-	toughness = atoi(s.substr(found+1).c_str());
+	      toughness = atoi(s.substr(found+1).c_str());
       }
       if (dryMode){
-	if (power >=0 && toughness >= 0 ) return BAKA_EFFECT_GOOD;
-	return BAKA_EFFECT_BAD;
+	      if (power >=0 && toughness >= 0 ) return BAKA_EFFECT_GOOD;
+	      return BAKA_EFFECT_BAD;
       }
       int limit = 0;
       unsigned int limit_str = s.find("limit:");
       if (limit_str != string::npos){
-	limit = atoi(s.substr(limit_str+6).c_str());
+	      limit = atoi(s.substr(limit_str+6).c_str());
       }
       ManaCost * cost = ManaCost::parseManaCost(s);
 
-      if (lordType.size() > 0){
-	game->addObserver(NEW ALord(id,card,lordType.c_str(),power,toughness));
+      if (lordTargets){
+	      game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,power,toughness));
       }else{
-	if(tc){
-	  game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc));
-	}else{
-	  if (cost->getConvertedCost() == 0){
-	    delete cost;
-	    if(card->hasType("enchantment")){
-	      game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
-	    }else{
-	      game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
-	    }
-	  }else{
-	    game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
-	  }
-	}
+	      if(tc){
+	        game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc));
+	      }else{
+	        if (cost->getConvertedCost() == 0){
+	          delete cost;
+	          if(card->hasType("enchantment")){
+	            game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
+	          }else{
+	            game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
+	          }
+	        }else{
+	          game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
+	        }
+	      }
       }
       result++;
       continue;
@@ -447,8 +474,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	}
 	ManaCost * cost = ManaCost::parseManaCost(s);
 
-	if (lordType.size() > 0){
-	  game->addObserver(NEW ALord(id,card,lordType.c_str(),0,0,j));
+	if (lordTargets){
+	  game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,j));
 	}else{
 
 	  if (tc){
@@ -537,12 +564,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       AArmageddonClock * ability = NEW AArmageddonClock(_id,card);
       game->addObserver(ability);
-      break;
-    }
-  case 106525: //Ascendant Evincar
-    {
-      game->addObserver(NEW AColorLord(_id, card,MTG_COLOR_BLACK,-1,1,1));
-      game->addObserver(NEW AColorLord(_id + 1, card,0,MTG_COLOR_BLACK,-1,-1));
       break;
     }
 
@@ -854,11 +875,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1143: //Animate Dead
     {
       game->addObserver(NEW AAnimateDead(_id, card, card->target));
-      break;
-    }
-  case 1144: //Bad moon
-    {
-      game->addObserver(NEW ABadMoon(_id,card));
       break;
     }
   case 1148 : //Cursed lands
@@ -1248,12 +1264,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       game->addObserver(NEW AOldSchoolDeathtouch(_id,card));
       break;
-    }
-  case 1341: //Crusade:
-    {
-      game->addObserver(NEW ABadMoon(_id,card, MTG_COLOR_WHITE));
-      break;
-
     }
   case 1346: //Green Ward
     {
