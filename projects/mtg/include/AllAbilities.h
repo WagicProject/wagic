@@ -9,6 +9,7 @@
 #include "Subtypes.h"
 #include "CardGui.h"
 #include "GameOptions.h"
+#include "Token.h"
 
 #include <JGui.h>
 #include <hge/hgeparticle.h>
@@ -42,6 +43,70 @@ class ADrawer:public ActivatedAbility{
 
 };
 
+class ATokenCreator:public ActivatedAbility{
+public:
+  list<int>abilities;
+  list<int>types;
+  list<int>colors;
+  int power, toughness;
+  string name;
+  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap):ActivatedAbility(_id,_source,_cost,0,_doTap){
+    power = _power;
+    toughness = _toughness;
+    name = sname;
+
+//TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
+
+    for (int j = 0; j < NB_BASIC_ABILITIES; j++){
+      unsigned int found = sabilities.find(MTGBasicAbilities[j]);
+      if (found != string::npos){
+        abilities.push_back(j);
+      }
+    }
+
+    for (int j = 0; j < MTG_NB_COLORS; j++){
+      unsigned int found = sabilities.find(MTGColorStrings[j]);
+      if (found != string::npos){
+        colors.push_back(j);
+      }
+    }
+
+    string s = stypes;
+    while (s.size()){
+      unsigned int found = s.find(" ");
+      if (found != string::npos){
+        int id = Subtypes::subtypesList->Add(s.substr(0,found));
+        types.push_back(id);
+        s = s.substr(found+1);
+      }else{
+        int id = Subtypes::subtypesList->Add(s);
+        types.push_back(id);
+        s = "";
+      }
+    }
+  }
+
+  int resolve(){
+    Token * myToken = NEW Token(name,source,power,toughness);
+    list<int>::iterator it;
+    for ( it=types.begin() ; it != types.end(); it++ ){
+      myToken->addType(*it);
+    }
+    for ( it=colors.begin() ; it != colors.end(); it++ ){
+      myToken->setColor(*it);
+    }
+    for ( it=abilities.begin() ; it != abilities.end(); it++ ){
+      myToken->basicAbilities[*it] = 1;
+    }  
+    Spell * spell = NEW Spell(myToken);
+
+    source->controller()->game->stack->addCard(myToken);
+    spell->resolve();
+    delete spell;
+    return 1;
+  }
+
+};
 
 //Moves Cards from a zone to another
 class AZoneMover:public TargetAbility{

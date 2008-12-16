@@ -37,6 +37,7 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
   MTGCardInstance * getNextPartner();
   void initMTGCI();
  public:
+  bool isToken;
   MTGGameZone * getCurrentZone();
   int doDamageTest;
   int summoningSickness;

@@ -89,10 +89,7 @@ void MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
 
 void MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
   if (from->removeCard(card)){
-    to->addCard(card);
-    card->changedZoneRecently = 1.f;
-    
-    card->reset();
+
     if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0){
       if (to == graveyard){
         if (card->isACreature()){
@@ -101,6 +98,20 @@ void MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGa
         }
       }
     }
+
+    if (card->isToken){
+      GameObserver *g = GameObserver::GetInstance();
+      if (to != g->players[0]->game->inPlay && to != g->players[1]->game->inPlay){
+        //Token leaves play: we destroy it
+        //TODO DELETE Object
+        return;
+      }
+    }
+    
+    to->addCard(card);
+    card->changedZoneRecently = 1.f;
+
+    card->reset();
   }
 }
 
@@ -223,7 +234,7 @@ MTGCardInstance * MTGLibrary::draw(){
 void MTGGameZone::debugPrint(){
   int i;
   for (i=0;i<nb_cards;i++){
-    MTGCard * card = cards[i]->model;
+    MTGCard * card = cards[i];
     fprintf(stderr, "%s", card->getName());
   }
 }

@@ -35,6 +35,19 @@ subtype=Human Wizard
 toughness=2
 [/card]
 [card]
+text=Flying     When Broodmate Dragon comes into play, put a 4/4 red Dragon creature token with flying into play.
+abilities=flying
+auto=token(Dragon,creature dragon, 4/4,flying red)
+id=178101
+name=Broodmate Dragon
+rarity=R
+type=Creature
+mana={3}{B}{R}{G}
+power=4
+subtype=Dragon
+toughness=4
+[/card]
+[card]
 text=Vigilance, haste
 abilities=Vigilance, haste
 id=174952
@@ -138,6 +151,15 @@ mana={W}{U}
 power=2
 subtype=Human Rogue
 toughness=1
+[/card]
+[card]
+text=Put two 1/1 red Goblin creature tokens into play.
+auto=token(Goblin,creature goblin, 1/1,red)*2
+id=174936
+name=Dragon Fodder
+rarity=C
+type=Sorcery
+mana={1}{R}
 [/card]
 [card]
 text=
@@ -246,6 +268,19 @@ mana={R}
 power=1
 subtype=Goblin Scout
 toughness=1
+[/card]
+[card]
+text=Vigilance     {T}: Put an 8/8 Beast creature token into play that's red, green, and white.
+abilities=vigilance
+auto={T}:token(Beast,creature beast, 8/8,red green white)
+id=175105
+name=Godsire
+rarity=M
+type=Creature
+mana={4}{R}{G}{G}{W}
+power=8
+subtype=Beast
+toughness=8
 [/card]
 [card]
 text=Defender     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)

@@ -196,17 +196,7 @@ rarity=R
 type=Sorcery
 mana={W}{W}{U}{U}{U}{B}{B}
 [/card]
-[card]
-text=Flying     When Broodmate Dragon comes into play, put a 4/4 red Dragon creature token with flying into play.
-id=178101
-name=Broodmate Dragon
-rarity=R
-type=Creature
-mana={3}{B}{R}{G}
-power=4
-subtype=Dragon
-toughness=4
-[/card]
+
 [card]
 text=Devour 1 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with that many +1/+1 counters on it.)  When Caldera Hellion comes into play, it deals 3 damage to each creature.
 id=175072
@@ -368,14 +358,7 @@ rarity=C
 type=Artifact
 mana={W}
 [/card]
-[card]
-text=Put two 1/1 red Goblin creature tokens into play.
-id=174936
-name=Dragon Fodder
-rarity=C
-type=Sorcery
-mana={1}{R}
-[/card]
+
 [card]
 text={2}{R}, {T}, Sacrifice a black creature, a red creature, and a green creature: Search your library for a card named Hellkite Overlord and put it into play. Then shuffle your library.
 id=175239
@@ -602,17 +585,6 @@ name=Goblin Assault
 rarity=R
 type=Enchantment
 mana={2}{R}
-[/card]
-[card]
-text=Vigilance     {T}: Put an 8/8 Beast creature token into play that's red, green, and white.
-id=175105
-name=Godsire
-rarity=M
-type=Creature
-mana={4}{R}{G}{G}{W}
-power=8
-subtype=Beast
-toughness=8
 [/card]
 [card]
 text={1}{W}, {T}: Prevent all damage that would be dealt to target creature with power 5 or greater this turn.

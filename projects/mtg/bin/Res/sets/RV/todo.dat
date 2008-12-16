@@ -540,15 +540,6 @@ subtype=Giant
 toughness=4
 [/card]
 [card]
-text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
-id=1138
-name=The Hive
-rarity=R
-color=Artifact
-type=Artifact
-mana={5}
-[/card]
-[card]
 text=Each noncreature artifact loses its abilities and becomes an artifact creature with power and toughness each equal to its converted mana cost. If Titania's Song leaves play, this effect continues until end of turn.
 id=1269
 name=Titania's Song

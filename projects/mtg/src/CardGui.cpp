@@ -216,7 +216,8 @@ void CardGui::RenderBig(float xpos, float ypos, int alternate){
     quad = card->getQuad();
     if (quad){
       quad->SetColor(ARGB(220,255,255,255));
-      renderer->RenderQuad(quad, xpos   , ypos , 0.0f,0.9f,0.9f);
+      float scale = 257.f / quad->mHeight;
+      renderer->RenderQuad(quad, xpos   , ypos , 0.0f,scale,scale);
     }else{
       quad = card->getThumb();
       alternate = 1;

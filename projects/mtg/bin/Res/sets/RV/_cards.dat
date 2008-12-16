@@ -2048,6 +2048,16 @@ type=Instant
 mana={1}{B}
 [/card]
 [card]
+text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
+auto={5},{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
+id=1138
+name=The Hive
+rarity=R
+color=Artifact
+type=Artifact
+mana={5}
+[/card]
+[card]
 text=As The Rack comes into play, choose an opponent.     At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
 id=1139
 name=The Rack

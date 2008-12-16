@@ -61,6 +61,24 @@ int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone
 }
 
 
+int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
+    int found = s.find("/");
+    if (found != string::npos){
+      unsigned int start = s.find(":");
+      if (start == string::npos) start = s.find(" ");
+      if (start == string::npos) start = -1;
+      *power = atoi(s.substr(start+1,s.size()-found).c_str());
+      unsigned int end = s.find(" ",start);
+      if (end != string::npos){
+	      *toughness = atoi(s.substr(found+1,end-found-1).c_str());
+      }else{
+	      *toughness = atoi(s.substr(found+1).c_str());
+      }
+      return 1;
+    }
+    return 0;
+}
+
 Trigger * AbilityFactory::parseTrigger(string magicText){
   size_t found = magicText.find("@");
   if (found == string::npos) return NULL;
@@ -210,6 +228,40 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       continue;
     }
 
+
+    //Token creator. Name, type, p/t, abilities
+    found = s.find("token(");
+    if (found != string::npos){
+      if (dryMode) return BAKA_EFFECT_GOOD;
+      int end = s.find(",", found);
+      string sname = s.substr(found + 6,end - found - 6);
+      int previous = end+1;
+      end = s.find(",",previous);
+      string stypes = s.substr(previous,end - previous);
+      previous = end+1;
+      end = s.find(",",previous);
+      string spt = s.substr(previous,end - previous);
+      int power, toughness;
+      int havePowertoughness = parsePowerToughness(spt,&power, &toughness);
+      string sabilities = s.substr(end+1);
+      ManaCost * cost = ManaCost::parseManaCost(s);
+      int multiplier = 1;
+      found = s.find("*");
+      if (found != string::npos)multiplier = atoi(s.substr(found+1).c_str());
+      if(cost->getConvertedCost() || doTap){
+        game->addObserver(NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap));
+      }else{
+        delete cost;
+        cost = NULL;
+        ATokenCreator * tok = NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap);
+        for (int i=0; i < multiplier; i++){
+          tok->resolve();
+        }
+        delete tok;
+      }
+      result++;
+      continue;
+    }
     //MoveTo Move a card from a zone to another
     found = s.find("moveto(");
     if (found != string::npos){
@@ -389,19 +441,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     }
 
     //Change Power/Toughness
-    found = s.find("/");
-    if (found != string::npos){
-      unsigned int start = s.find(":");
-      if (start == string::npos) start = s.find(" ");
-      if (start == string::npos) start = -1;
-      int power = atoi(s.substr(start+1,size-found).c_str());
-      unsigned int end = s.find(" ",start);
-      int toughness;
-      if (end != string::npos){
-	      toughness = atoi(s.substr(found+1,end-found-1).c_str());
-      }else{
-	      toughness = atoi(s.substr(found+1).c_str());
-      }
+    int power, toughness;
+    if ( parsePowerToughness(s,&power, &toughness)){
       if (dryMode){
 	      if (power >=0 && toughness >= 0 ) return BAKA_EFFECT_GOOD;
 	      return BAKA_EFFECT_BAD;
@@ -533,7 +574,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
   GameObserver * game = GameObserver::GetInstance();
-  int id = card->model->getId();
+  int id = card->getId();
   if (card->alias) id = card->alias;
   switch (id){
   case 1092: //Aladdin's lamp

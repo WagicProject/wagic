@@ -523,6 +523,15 @@ subtype=Elemental Shaman
 toughness=1
 [/card]
 [card]
+text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 6.)  Put three 1/1 white Spirit creature tokens with flying into play.
+auto=token(Spirit,creature spirit, 1/1,flying white)*3
+id=152070
+name=Spectral Procession
+rarity=U
+type=Sorcery
+mana={2W}{2W}{2W}
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {UB}, {T}: Add {U}{U}, {U}{B}, or {B}{B} to your mana pool.
 auto={T}:Add{1}
 auto={UB}{T}:Add{U}{U}

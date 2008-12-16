@@ -148,7 +148,14 @@ const char * MTGCard::colorToString(){
 
 void MTGCard::setMTGId(int id){
   mtgid = id;
-  sprintf(image_name, "%d.jpg", mtgid);
+  if (id < 0){
+    sprintf(image_name, "%dt.jpg", -mtgid);
+  }else{
+    sprintf(image_name, "%d.jpg", mtgid);
+  }
+#ifdef WIN32
+  OutputDebugString(image_name);
+#endif
 }
 
 int MTGCard::getMTGId(){

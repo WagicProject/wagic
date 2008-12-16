@@ -580,15 +580,6 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying into play. (It can't be blocked except by creatures with flying or reach.)
-id=143024
-name=Dragon Roost
-rarity=R
-color=Red
-type=Enchantment
-mana={4}{R}{R}
-[/card]
-[card]
 text=Whenever a player plays a red spell, you may gain 1 life.
 id=129527
 name=Dragon's Claw
@@ -1173,16 +1164,7 @@ color=Artifact
 type=Artifact
 mana={2}
 [/card]
-[card]
-text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.)  {2}{W}: Put a 1/1 white Soldier creature token into play.
-auto=lord(soldier) vigilance includeself
-id=129716
-name=Mobilization
-rarity=R
-color=White
-type=Enchantment
-mana={2}{W}
-[/card]
+
 [card]
 text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
 id=134748
@@ -1951,15 +1933,6 @@ name=Terramorphic Expanse
 rarity=C
 color=Land
 type=Land
-[/card]
-[card]
-text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
-id=135253
-name=The Hive
-rarity=R
-color=Artifact
-type=Artifact
-mana={5}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.

@@ -1892,14 +1892,6 @@ subtype=Elemental
 toughness=2
 [/card]
 [card]
-text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 6.)  Put three 1/1 white Spirit creature tokens with flying into play.
-id=152070
-name=Spectral Procession
-rarity=U
-type=Sorcery
-mana={2W}{2W}{2W}
-[/card]
-[card]
 text=Counter target spell unless its controller pays {1} for each blue permanent you control.
 id=153999
 name=Spell Syphon

@@ -29,7 +29,6 @@ class MTGCard {
 
 
   int mtgid;
-  TexturesCache * mCache;
   ManaCost manaCost;
 
 
@@ -40,6 +39,7 @@ class MTGCard {
   int init();
 
  public:
+  TexturesCache * mCache;
   string text;
   string name;
   int colors[MTG_NB_COLORS];

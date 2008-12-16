@@ -36,6 +36,7 @@ MTGCardInstance::~MTGCardInstance(){
 void MTGCardInstance::initMTGCI(){
   sample = "";
   model=NULL;
+  isToken = false;
   lifeOrig = 0;
   doDamageTest = 0;
   belongs_to=NULL;
@@ -73,11 +74,6 @@ int MTGCardInstance::isInPlay(){
 
 int MTGCardInstance::afterDamage(){
   if (!doDamageTest) return 0;
-#if defined (WIN32) || defined (LINUX)
-  char    buf[4096], *p = buf;
-  sprintf(buf,"After Damage Test, life is %i for %s \n",life,model->getName());
-  OutputDebugString(buf);
-#endif
   doDamageTest = 0;
   if (life <=0 && isInPlay()){
     GameObserver * game = GameObserver::GetInstance();

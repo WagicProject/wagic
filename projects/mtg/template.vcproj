@@ -469,6 +469,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Token.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\utils.cpp"
 				>
 			</File>
@@ -743,6 +747,10 @@
 			</File>
 			<File
 				RelativePath=".\include\TexturesCache.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Token.h"
 				>
 			</File>
 			<File

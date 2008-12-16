@@ -96,7 +96,9 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
   }else{
     sprintf(filename, "sets/%s/%s", card->getSetName(), card->getImageName());
   }
-
+#ifdef WIN32
+  OutputDebugString(filename);
+#endif
   tex = JRenderer::GetInstance()->LoadTexture(filename, false);
   if (tex){
     quad = NEW JQuad(tex, 0.0f, 0.0f, tex->mWidth, tex->mHeight);

@@ -223,7 +223,7 @@ OutputDebugString("COLOR FOUND !!!");
 }
 
 TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card){
-  int id = card->model->getId();
+  int id = card->getId();
   string s = card->spellTargetType;
   if (card->alias){
     id = card->alias;

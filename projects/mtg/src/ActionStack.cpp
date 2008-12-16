@@ -106,7 +106,7 @@ void Spell::Render(){
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   char buffer[200];
-  sprintf(buffer, "%s", source->model->getName());
+  sprintf(buffer, "%s", source->getName());
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();

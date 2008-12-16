@@ -291,6 +291,16 @@ type=Instant
 mana={W}
 [/card]
 [card]
+text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying into play. (It can't be blocked except by creatures with flying or reach.)
+auto={5}{R}{R}:token(Dragon,creature dragon, 5/5,flying red)
+id=143024
+name=Dragon Roost
+rarity=R
+color=Red
+type=Enchantment
+mana={4}{R}{R}
+[/card]
+[card]
 text=
 id=135216
 name=Dross Crocodile
@@ -998,6 +1008,17 @@ mana={1}{G}{G}
 power=2
 subtype=Cat Warrior
 toughness=3
+[/card]
+[card]
+text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.)  {2}{W}: Put a 1/1 white Soldier creature token into play.
+auto={2}{W:}token(Soldier,creature soldier, 1/1,white)
+auto=lord(soldier) vigilance includeself
+id=129716
+name=Mobilization
+rarity=R
+color=White
+type=Enchantment
+mana={2}{W}
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -1776,6 +1797,16 @@ rarity=C
 color=Black
 type=Instant
 mana={1}{B}
+[/card]
+[card]
+text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
+auto={5},{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
+id=135253
+name=The Hive
+rarity=R
+color=Artifact
+type=Artifact
+mana={5}
 [/card]
 [card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
