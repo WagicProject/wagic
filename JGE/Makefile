@@ -93,7 +93,7 @@ all: $(DEFAULT_RULE) hge
 
 debug: $(DEFAULT_RULE) hge
 
-linux: $(TARGET_LIB)
+linux: $(TARGET_LIB) hge
 
 3xx: $(TARGET_LIB)
 
