@@ -63,7 +63,7 @@ else
 
 
 
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) ../../JGE/lib/linux/libjge.a
 	g++ -o $(TARGET) $(OBJS) $(LIBS) $(LIBDIR)
 
 linux: $(TARGET)
@@ -71,17 +71,17 @@ linux: $(TARGET)
 debug: linux
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS)
 
 
 $(OBJS): objs/%.o: src/%.cpp
 	$(CXX) -c -o $@ $(CXXFLAGS) $<
 
 $(DEPS): deps/%.d: src/%.cpp
-	@set -e; rm -f $@; \
+	@set -e; $(RM) $@; \
 	$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,objs/\1.o $@ : ,g' < $@.$$$$ > $@; \
-	rm -f $@.$$$$
+	$(RM) $@.$$$$
 
 include $(DEPS)
 

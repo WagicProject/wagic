@@ -3,7 +3,7 @@
 //-------------------------------------------------
 //TODO Fill BasicAbilities
 
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGCard.h"
 
 #include "../include/TexturesCache.h"

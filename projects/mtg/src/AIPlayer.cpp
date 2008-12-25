@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/AIPlayer.h"
 #include "../include/CardDescriptor.h"
 #include "../include/DamageResolverLayer.h"
@@ -230,6 +230,7 @@ int AIPlayer::chooseAttackers(){
   int myForce = getCreaturesInfo(this,INFO_CREATURESPOWER,-1,1);
   int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1,1);
   bool attack = ((myCreatures > opponentCreatures) || (myForce > opponentForce) || (myForce > 2*opponent()->life));
+  printf("Choose attackers : %i %i %i %i -> %i\n", opponentForce, opponentCreatures, myForce, myCreatures, attack);
   if (attack){
     CardDescriptor cd;
     cd.init();
@@ -365,7 +366,7 @@ int AIPlayer::combatDamages(){
 AIStats * AIPlayer::getStats(){
   if (!stats){
     char statFile[512];
-    sprintf(statFile, "Res/ai/baka/stats/%s.stats", opponent()->deckFile.c_str());
+    sprintf(statFile, RESPATH"/ai/baka/stats/%s.stats", opponent()->deckFile.c_str());
     stats = new AIStats(this, statFile);
   }
   return stats;
@@ -378,7 +379,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCa
     while (found){
       found = 0;
       char buffer[512];
-      sprintf(buffer, "Res/ai/baka/deck%i.txt",nbdecks+1);
+      sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbdecks+1);
       std::ifstream file(buffer);
       if(file){
         found = 1;
@@ -390,10 +391,10 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCa
     deckid = 1 + rand() % (nbdecks);
   }
   char deckFile[512];
-  sprintf(deckFile, "Res/ai/baka/deck%i.txt",deckid);
+  sprintf(deckFile, RESPATH"/ai/baka/deck%i.txt",deckid);
   char avatarFile[512];
   sprintf(avatarFile, "ai/baka/avatars/avatar%i.jpg",deckid);
-    
+
   char deckFileSmall[512];
   sprintf(deckFileSmall, "ai_baka_deck%i",deckid);
 #if defined (WIN32) || defined (LINUX)

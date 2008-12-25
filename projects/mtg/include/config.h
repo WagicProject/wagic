@@ -21,4 +21,8 @@
 #endif
 #endif
 
+#ifndef RESPATH
+#define RESPATH "Res"
+#endif
+
 #endif

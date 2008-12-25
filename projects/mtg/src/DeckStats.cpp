@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/DeckStats.h"
 #include "../include/Player.h"
 
@@ -37,7 +37,7 @@ int DeckStats::percentVictories(string opponentsFile){
 
 void DeckStats::load(Player * player){
   char filename[512];
-  sprintf(filename, "Res/player/stats/%s.txt",player->deckFile.c_str());
+  sprintf(filename, RESPATH"/player/stats/%s.txt",player->deckFile.c_str());
   load(filename);
 }
 
@@ -55,13 +55,13 @@ void DeckStats::load(const char * filename){
       int victories = atoi(s.c_str());
       stats[deckfile] = NEW DeckStat(games,victories);
     }
-    file.close(); 
+    file.close();
   }
 }
 
 void DeckStats::save(Player * player){
   char filename[512];
-  sprintf(filename, "Res/player/stats/%s.txt",player->deckFile.c_str());
+  sprintf(filename, RESPATH"/player/stats/%s.txt",player->deckFile.c_str());
   save(filename);
 }
 
@@ -99,5 +99,4 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
     it->second->nbgames+=1;
   }
   save(player);
-
 }

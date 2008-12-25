@@ -4,7 +4,7 @@
   Although there is only one MTGCard of each type, there can be as much Instances of it as needed in the game
   --------------------------------------------
 */
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGCardInstance.h"
 #include "../include/CardDescriptor.h"
 #include "../include/Counters.h"
@@ -19,6 +19,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to): 
   LOG("==Creating MTGCardInstance==");
   initMTGCI();
   model = card;
+  attacker = 0;
   lifeOrig = life;
   belongs_to=_belongs_to;
   initAttackersDefensers();

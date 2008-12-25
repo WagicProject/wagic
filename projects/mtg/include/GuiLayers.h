@@ -16,11 +16,11 @@ class Player;
 
 class GuiLayer: public JGuiController{
  protected:
-  int modal;
   GameObserver * game;
  public:
+  int modal;
+  bool hasFocus;
   virtual void resetObjects();
-  int hasFocus;
   int getMaxId();
   void RenderMessageBackground(float x0, float y0, float width, int height);
   void RenderMessageBackground(float y0, int height);

@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/TargetChooser.h"
 #include "../include/CardDescriptor.h"
 #include "../include/MTGGameZones.h"

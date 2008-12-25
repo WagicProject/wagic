@@ -1,5 +1,5 @@
 #include "../include/Counters.h"
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGCardInstance.h"
 
 Counter::Counter(MTGCardInstance * _target, int _power, int _toughness){

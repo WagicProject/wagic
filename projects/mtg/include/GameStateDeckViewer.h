@@ -141,10 +141,10 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   virtual void Start()
   {
     hudAlpha = 0;
-    pricelist = NEW PriceList("Res/settings/prices.dat",mParent->collection);
+    pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
     playerdata = NEW PlayerData(mParent->collection);
     sellMenu = NULL;
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck("Res/player/collection.dat", mParent->cache,mParent->collection));
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
     displayed_deck =  myCollection;
     myDeck = NULL;
     menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
@@ -188,7 +188,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20,200);
     char buffer[100];
     for (int i=1; i < 6; i++){
-      sprintf(buffer, "Res/player/deck%i.txt",i);
+      sprintf(buffer, RESPATH"/player/deck%i.txt",i);
       std::ifstream file(buffer);
       if(file){
 	welcome_menu->Add(i, GameState::menuTexts[i]);
@@ -733,10 +733,10 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   int loadDeck(int deckid){
     SAFE_DELETE(myCollection);
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck("Res/player/collection.dat", mParent->cache,mParent->collection));
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
     displayed_deck = myCollection;
     char filename[4096];
-    sprintf(filename, "Res/player/deck%i.txt", deckid);
+    sprintf(filename, RESPATH"/player/deck%i.txt", deckid);
     SAFE_DELETE(myDeck);
     myDeck = NEW DeckDataWrapper(NEW MTGDeck(filename, mParent->cache,mParent->collection));
     MTGCard * current = myDeck->getNext();

@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/Blocker.h"
 
 Blocker::Blocker(int id, MTGCardInstance * card):MTGAbility(id, card){

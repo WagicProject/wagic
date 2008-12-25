@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/Damage.h"
 #include "../include/MTGCardInstance.h"
 #include "../include/Counters.h"

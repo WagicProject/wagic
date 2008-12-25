@@ -6,7 +6,7 @@
 #define OPTIONS_MUSICVOLUME 0
 #define OPTIONS_SFXVOLUME 1
 #define OPTIONS_INTERRUPTATENDOFPHASE_OFFSET 2
-#define OPTIONS_SAVEFILE "Res/settings/options.txt"
+#define OPTIONS_SAVEFILE RESPATH"/settings/options.txt"
 class GameOptions {
  public:
   int values[MAX_OPTIONS];

@@ -1,7 +1,7 @@
 /*
   The Action Stack contains all information for Game Events that can be interrupted (Interruptible)
 */
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/ActionStack.h"
 #include "../include/MTGAbility.h"
 #include "../include/GameObserver.h"

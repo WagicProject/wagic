@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGRules.h"
 
 MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){

@@ -1,5 +1,5 @@
 #include "../include/TestSuiteAI.h"
-#include "../include/debug.h"
+#include "../include/config.h"
 
 #include <string>
 using std::string;
@@ -247,7 +247,7 @@ void TestSuite::initGame(){
 }
 
 int TestSuite::Log(const char * text){
-  ofstream file ("Res/test/results.html",ios_base::app);
+  ofstream file (RESPATH"/test/results.html",ios_base::app);
   if (file){
     file << text;
     file << "\n";
@@ -334,7 +334,7 @@ TestSuite::TestSuite(const char * filename){
     file.close();
   }
 
-  ofstream file2 ("Res/test/results.html");
+  ofstream file2 (RESPATH"/test/results.html");
   if (file2){
     file2 << "<html><head>";
     file2 << "<meta http-equiv=\"refresh\" content=\"10\" >";
@@ -405,7 +405,7 @@ void TestSuite::cleanup(){
 
 void TestSuite::load(const char * _filename){
   char filename[4096];
-  sprintf(filename, "Res/test/%s", _filename);
+  sprintf(filename, RESPATH"/test/%s", _filename);
   std::ifstream file(filename);
   std::string s;
 

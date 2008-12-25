@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/GameStateOptions.h"
 #include "../include/GameApp.h"
 #include "../include/OptionItem.h"

@@ -9,7 +9,7 @@
 #define LOG(x)
 #endif
 
-#define LOG_FILE "Res/debug.txt"
+#define LOG_FILE RESPATH"/debug.txt"
 
 class Logger{
  public:

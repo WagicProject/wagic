@@ -10,7 +10,7 @@
 #include <pspdisplay.h>
 #include <pspctrl.h>
 #include <pspiofilemgr.h>
-#include <pspdebug.h>
+#include <pspconfig.h>
 #include <psputility.h>
 #include <pspgu.h>
 #include <psprtc.h>
@@ -35,4 +35,10 @@ int lowercase(string  source);
 int filesize(const char * filename);
 int readfile_to_ints(const char * filename, int * out_buffer);
 int fileExists(const char * filename);
+
+#ifdef LINUX
+void dumpStack();
 #endif
+
+#endif
+

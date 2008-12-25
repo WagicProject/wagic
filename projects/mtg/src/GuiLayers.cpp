@@ -1,11 +1,11 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/GuiLayers.h"
 #include "../include/Player.h"
 
 GuiLayer::GuiLayer(int id, GameObserver* _game):JGuiController(id, NULL){
   game = _game;
   modal = 0;
-  hasFocus = 0;
+  hasFocus = false;
 }
 
 GuiLayer::~GuiLayer(){
@@ -121,21 +121,22 @@ void GuiLayers::Update(float dt, Player * currentPlayer){
       for (i=0; i<nbitems; i++){
 	if (!isAI){
 	  if (0 != key)
-	    {
-	      objects[i]->hasFocus = 1;
-	      if (objects[i]->CheckUserInput(key))
-		break;
-	    }
+	    if (objects[i]->CheckUserInput(key))
+	      break;
 	}
       }
     }
-  for (++i; i<nbitems; ++i) objects[i]->hasFocus = 0;
-  if (isAI){
+  if (isAI)
     currentPlayer->Act(dt);
-  }
 }
 
 void GuiLayers::Render(){
+  bool focusMakesItThrough = true;
+  for (int i = 0; i < nbitems; ++i)
+    {
+      objects[i]->hasFocus = focusMakesItThrough;
+      if (objects[i]->modal) focusMakesItThrough = false;
+    }
   for (int i=nbitems-1; i>=0; i--){
     objects[i]->Render();
   }

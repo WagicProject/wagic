@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/Logger.h"
 #include "../include/ManaCost.h"
 #include "../include/ManaCostHybrid.h"

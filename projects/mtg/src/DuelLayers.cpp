@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/DuelLayers.h"
 #include "../include/MTGRules.h"
 #include "../include/DamageResolverLayer.h"

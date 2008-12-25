@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGGamePhase.h"
 
 
@@ -32,7 +32,7 @@ void MTGGamePhase::Update(float dt){
 
 
   if (animation > 0){
-    fprintf(stderr, "animation = %f", animation);
+    //    fprintf(stderr, "animation = %f", animation);
     animation -= dt *5 ;
   }else{
     activeState = INACTIVE;

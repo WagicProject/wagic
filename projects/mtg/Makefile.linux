@@ -12,7 +12,7 @@ ASFLAGS = $(CXXFLAGS)
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lglut -lhgetools -lfmod-3.75
 # -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lpspfpu
 
-LDFLAGS = $(LIBDIR) $(LIBS)
+LDFLAGS = $(LIBDIR) $(LIBS) -rdynamic
 
 all: $(OBJS)
 	$(CXX) -o bin/mtg $(OBJS) $(LDFLAGS)

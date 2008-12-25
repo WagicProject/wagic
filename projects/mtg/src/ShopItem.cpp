@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/ShopItem.h"
 #include "../include/CardGui.h"
 
@@ -131,7 +131,7 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   mHeight = 0;
   showPriceDialog = -1;
   dialog = NULL;
-  pricelist = NEW PriceList("Res/settings/prices.dat",_collection);
+  pricelist = NEW PriceList(RESPATH"/settings/prices.dat",_collection);
   playerdata = NEW PlayerData(_collection);
   display = NULL;
 }

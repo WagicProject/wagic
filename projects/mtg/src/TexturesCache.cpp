@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/TexturesCache.h"
 
 TexturesCache::TexturesCache(){
@@ -27,8 +27,7 @@ int TexturesCache::isInCache(MTGCard * card, int type){
 }
 
 int TexturesCache::getCacheById(int id, int type){
-  int i;
-  for (i=0; i<nb_textures;i++){
+  for (int i=0; i<nb_textures;i++){
     if (cache[i]->type == type && cache[i]->getId() == id){
       return i;
     }
@@ -68,7 +67,7 @@ int TexturesCache::cleanup(){
 JQuad * TexturesCache::getQuad(MTGCard * card, int type){
   int cache_id = getCacheById(card->getId(), type);
   if (cache_id == -1){
-    fprintf(stderr, "not found %d\n", card->getId());
+    fprintf(stderr, "not found %d %i\n", card->getId(), type);
     //Not found in the cache, we have to load the file and put it in the cache
     if (cleanup()){
       cache_id = nb_textures;

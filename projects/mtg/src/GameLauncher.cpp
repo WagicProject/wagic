@@ -7,7 +7,7 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
-#include "../include/debug.h"
+#include "../include/config.h"
 #include <string.h>
 #include <JGameLauncher.h>
 

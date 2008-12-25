@@ -1,5 +1,5 @@
 
-#include "../include/debug.h"
+#include "../include/config.h"
 #include <JGE.h>
 #include <JRenderer.h>
 #if defined (WIN32) || defined (LINUX)
@@ -62,13 +62,13 @@ void GameApp::Create()
   LOG("starting Game");
 
   //Test for Music files presence
-  std::ifstream file("Res/sound/Track0.mp3");
+  std::ifstream file(RESPATH"/sound/Track0.mp3");
   if(file){
     file.close();
   }else{
     HasMusic = 0;
   }
-  std::ifstream file2("Res/sound/Track1.mp3");
+  std::ifstream file2(RESPATH"/sound/Track1.mp3");
   if(file2){
     file2.close();
   }else{

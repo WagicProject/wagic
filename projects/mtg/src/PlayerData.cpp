@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/PlayerData.h"
 
 #include <string.h>
@@ -19,7 +19,7 @@ PlayerData::PlayerData(MTGAllCards * allcards){
   }
 
   //COLLECTION
-  collection = NEW MTGDeck("Res/player/collection.dat", allcards->mCache , allcards);
+  collection = NEW MTGDeck(RESPATH"/player/collection.dat", allcards->mCache , allcards);
 }
 
 

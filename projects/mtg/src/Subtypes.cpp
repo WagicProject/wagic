@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/Subtypes.h"
 #include <JGE.h>
 #include <algorithm>

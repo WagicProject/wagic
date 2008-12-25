@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGGuiHand.h"
 #include "../include/CardGui.h"
 
@@ -52,6 +52,7 @@ void MTGGuiHand::Update(float dt){
     if (mAnimState < 0){
       mAnimState = 0;
       mShowHand = HAND_HIDE;
+      modal = false;
     }
   }
 
@@ -65,6 +66,7 @@ bool MTGGuiHand::CheckUserInput(u32 key){
   if (PSP_CTRL_LTRIGGER == key) {
     if (mShowHand == HAND_HIDE){
       mShowHand = HAND_SHOW_ANIMATION;
+      modal = true;
     }
     if (mShowHand == HAND_SHOW){
       mShowHand = HAND_HIDE_ANIMATION;

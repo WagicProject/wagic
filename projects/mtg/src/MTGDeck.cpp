@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGDeck.h"
 #include "../include/utils.h"
 #include <algorithm>

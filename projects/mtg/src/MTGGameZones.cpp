@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGGameZones.h"
 #include "../include/Player.h"
 #include "../include/GameOptions.h"

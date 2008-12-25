@@ -134,7 +134,7 @@ class GameStateMenu:	public GameState, public JGuiListener
 
   virtual void Destroy()
   {
-  
+
 
       SAFE_DELETE(mGuiController);
 
@@ -170,7 +170,7 @@ subMenuController = NULL;
     if (GameApp::HasMusic && GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] == 0){
       JSoundSystem::GetInstance()->StopMusic(GameApp::music);
       SAFE_DELETE(GameApp::music);
-    } 
+    }
 
 
   }
@@ -181,11 +181,11 @@ subMenuController = NULL;
   int nextCardSet(){
     int found = 0;
     if (!mDip){
-      mDip = opendir("Res/sets/");
+      mDip = opendir(RESPATH"/sets/");
     }
 
     while (!found && (mDit = readdir(mDip))){
-      sprintf(mCurrentSetFileName, "Res/sets/%s/_cards.dat", mDit->d_name);
+      sprintf(mCurrentSetFileName, RESPATH"/sets/%s/_cards.dat", mDit->d_name);
       std::ifstream file(mCurrentSetFileName);
       if(file){
 	sprintf(mCurrentSetName, "%s", mDit->d_name);
@@ -216,7 +216,7 @@ subMenuController = NULL;
   virtual void Update(float dt)
   {
 
-    if (GameApp::music){ 
+    if (GameApp::music){
       /*if (mVolume < 2*GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME]){
         mVolume++;
         JSoundSystem::GetInstance()->SetVolume(mVolume/2);
@@ -234,7 +234,7 @@ subMenuController = NULL;
 	//How many cards total ?
 	sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
 	//Check for first time comer
-	std::ifstream file("Res/player/collection.dat");
+	std::ifstream file(RESPATH"/player/collection.dat");
 	if(file){
 	  file.close();
 	  currentState = STATE_WARNING;
@@ -281,7 +281,7 @@ subMenuController = NULL;
 #ifdef TESTSUITE
 	    subMenuController->Add(666, "Test Suite");
 #endif
-     
+
 	  }
 	}
       }
@@ -315,7 +315,7 @@ subMenuController = NULL;
     sprintf(buf, "setID: %i", setId);
     OutputDebugString(buf);
 #endif
-    MTGDeck *mCollection = NEW MTGDeck("Res/player/collection.dat", mParent->cache, mParent->collection);
+    MTGDeck *mCollection = NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache, mParent->collection);
     //10 lands of each
     if (!mCollection->addRandomCards(10, setId,RARITY_L,"Forest")){
       mCollection->addRandomCards(10, -1,RARITY_L,"Forest");

@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/PlayGuiObject.h"
 
 #include "../include/Player.h"
@@ -20,7 +20,7 @@ void PlayGuiObject::Update(float dt){
   if (mHasFocus && mHeight < defaultHeight * 1.2)
     {
       mHeight += defaultHeight*0.8f*dt;
-      fprintf(stderr, "increasing size to %f - %d", mHeight, GetId() );
+      //      fprintf(stderr, "increasing size to %f - %d", mHeight, GetId() );
 
       if (mHeight > defaultHeight * 1.2)
 	mHeight = defaultHeight * 1.2;

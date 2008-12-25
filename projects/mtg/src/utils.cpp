@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/utils.h"
 
 
@@ -63,7 +63,7 @@ if(fichier){
 }
 
 char alternateFilename[512];
-sprintf(alternateFilename, "Res/%s",filename);
+sprintf(alternateFilename, RESPATH"/%s",filename);
  std::ifstream fichier2(alternateFilename);
 if(fichier2){
   fichier2.close();

@@ -1,7 +1,7 @@
 /*
   The shop is where the player can buy cards, decks...
 */
-#include "../include/debug.h"
+#include "../include/config.h"
 #include <JRenderer.h>
 #include "../include/GameStateShop.h"
 #include "../include/GameApp.h"

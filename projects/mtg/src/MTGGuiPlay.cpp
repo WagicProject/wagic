@@ -2,7 +2,7 @@
    cards in play, graveyard, library, games phases, Players avatars
 */
 
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/MTGGuiPlay.h"
 #include "../include/MTGCardInstance.h"
 #include "../include/CardGui.h"

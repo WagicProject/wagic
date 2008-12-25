@@ -1,7 +1,7 @@
 #include "../include/PhaseRing.h"
 #include "../include/MTGDefinitions.h"
 #include "../include/Player.h"
-#include "../include/debug.h"
+#include "../include/config.h"
 
 
 

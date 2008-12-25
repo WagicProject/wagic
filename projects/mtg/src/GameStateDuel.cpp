@@ -1,4 +1,4 @@
-#include "../include/debug.h"
+#include "../include/config.h"
 #include "../include/GameStateDuel.h"
 #include "../include/utils.h"
 #include "../include/AIPlayer.h"
@@ -39,7 +39,7 @@ void GameStateDuel::Start()
 
 #ifdef TESTSUITE
   if (testSuite) delete testSuite;
-  testSuite = NEW TestSuite("Res/test/_tests.txt");
+  testSuite = NEW TestSuite(RESPATH"/test/_tests.txt");
 #endif
 
 
@@ -64,7 +64,7 @@ void GameStateDuel::Start()
 	deckmenu = NEW SimpleMenu(1,this,mFont, 10 , 10, 100, "Choose a Deck");
 	char buffer[100];
 	for (int j=1; j<6; j++){
-	  sprintf(buffer, "Res/player/deck%i.txt",j);
+	  sprintf(buffer, RESPATH"/player/deck%i.txt",j);
 	  std::ifstream file(buffer);
 	  if(file){
 	    deckmenu->Add(j, GameState::menuTexts[j]);
@@ -88,7 +88,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
   if (decknb){
     if (!isAI){ //Human Player
       char deckFile[255];
-      sprintf(deckFile, "Res/player/deck%i.txt",decknb);
+      sprintf(deckFile, RESPATH"/player/deck%i.txt",decknb);
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
       int deck_cards_ids[100];
@@ -205,7 +205,7 @@ void GameStateDuel::Update(float dt)
 	      char buffer[512];
 	      char aiSmallDeckName[512];
 	      char deckDesc[512];
-	      sprintf(buffer, "Res/ai/baka/deck%i.txt",nbAIDecks+1);
+	      sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbAIDecks+1);
 	      if(fileExists(buffer)){
 		found = 1;
 		nbAIDecks++;
