@@ -349,5 +349,5 @@ MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * sourc
   if(zoneName.compare("myremovedfromgame") == 0)return p->game->removedFromGame;
   if(zoneName.compare("opponentremovedfromgame") == 0) return p->opponent()->game->removedFromGame;
   if(zoneName.compare("ownerhremovedfromgame") == 0) return source->owner->game->removedFromGame;
-
+  return NULL;
 }

@@ -62,13 +62,13 @@ int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone
 
 
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
-    int found = s.find("/");
+    size_t found = s.find("/");
     if (found != string::npos){
-      unsigned int start = s.find(":");
+      size_t start = s.find(":");
       if (start == string::npos) start = s.find(" ");
       if (start == string::npos) start = -1;
       *power = atoi(s.substr(start+1,s.size()-found).c_str());
-      unsigned int end = s.find(" ",start);
+      size_t end = s.find(" ",start);
       if (end != string::npos){
 	      *toughness = atoi(s.substr(found+1,end-found-1).c_str());
       }else{
