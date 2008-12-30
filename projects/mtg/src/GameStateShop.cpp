@@ -92,7 +92,7 @@ void GameStateShop::Update(float dt)
     if (menu){
       menu->Update(dt);
     }else{
-      menu = NEW SimpleMenu(11,this,mFont,SCREEN_WIDTH/2-100,20,200);
+      menu = NEW SimpleMenu(11,this,mFont,SCREEN_WIDTH/2-100,20);
       menu->Add(12,"Save & Back to main menu");
       menu->Add(13, "Cancel");
     }

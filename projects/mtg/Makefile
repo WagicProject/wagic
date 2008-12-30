@@ -13,6 +13,10 @@ PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDIR = $(shell psp-config --psp-prefix)
 TARGET = template
 endif
+ifeq ($(MAKECMDGOALS),debug)
+DEFAULT_RULE = debug
+TARGET_ARCHITECTURE = linux
+endif
 ifeq ($(MAKECMDGOALS),linux)
 DEFAULT_RULE = linux
 TARGET_ARCHITECTURE = linux
@@ -52,9 +56,12 @@ CXXFLAGS := $(INCDIR) $(CXXFLAGS)
 LDFLAGS := $(LIBS)
 
 
+
 all: $(DEFAULT_RULE)
 
-debug: CXXFLAGS += -ggdb3 -D_DEBUG -DDEBUG
+debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -fno-exceptions -fno-rtti -ggdb3 -D_DEBUG -DDEBUG -DLINUX $(INCDIR)
+
+
 
 
 ifeq ($(TARGET_ARCHITECTURE),psp)

@@ -50,7 +50,7 @@ void GameStateDuel::Start()
   opponentMenuFont = NEW JLBFont("graphics/f3",16);
 
 
-  menu = NEW SimpleMenu(11,this,mFont,SCREEN_WIDTH/2-100,20,200);
+  menu = NEW SimpleMenu(11,this,mFont,SCREEN_WIDTH/2-100,20);
   menu->Add(12,"Back to main menu");
   menu->Add(13, "Cancel");
 
@@ -61,7 +61,7 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       if (!deckmenu){
 	decksneeded = 1;
-	deckmenu = NEW SimpleMenu(1,this,mFont, 10 , 10, 100, "Choose a Deck");
+	deckmenu = NEW SimpleMenu(1,this,mFont, 10 , 10, "Choose a Deck");
 	char buffer[100];
 	for (int j=1; j<6; j++){
 	  sprintf(buffer, RESPATH"/player/deck%i.txt",j);
@@ -196,7 +196,7 @@ void GameStateDuel::Update(float dt)
       else{
 	if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
 	  if (!opponentMenu){
-	    opponentMenu = NEW SimpleMenu(13,this,opponentMenuFont,10,10,SCREEN_WIDTH/2,"choose Opponent");
+	    opponentMenu = NEW SimpleMenu(13,this,opponentMenuFont,10,10,"Choose Opponent");
 	    opponentMenu->Add(0,"Random");
 	    nbAIDecks = 0;
 	    int found = 1;

@@ -164,7 +164,7 @@ void ActionLayer::setMenuObject(Targetable * object){
   SAFE_DELETE(abilitiesMenu);
 
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
-  abilitiesMenu = NEW SimpleMenu(10, this, mFont, 100, 100, 200);
+  abilitiesMenu = NEW SimpleMenu(10, this, mFont, 100, 100);
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];

@@ -5,6 +5,7 @@
 #include <JLBFont.h>
 #include <JGui.h>
 #include <string>
+#include "SimpleMenu.h"
 
 using std::string;
 
@@ -16,18 +17,20 @@ class SimpleMenuItem: public JGuiObject
 {
  private:
   bool mHasFocus;
+  SimpleMenu* parent;
   JLBFont *mFont;
   string mText;
-  int mX;
-  int mY;
-
   float mScale;
   float mTargetScale;
 
-
-
  public:
-  SimpleMenuItem(int id, JLBFont *font, const char* text, int x, int y, bool hasFocus = false);
+  SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, const char* text, int x, int y, bool hasFocus = false);
+
+  int mX;
+  int mY;
+
+  void Relocate(int x, int y);
+  int GetWidth();
 
   void RenderWithOffset(float yOffset);
   virtual void Render();
@@ -39,4 +42,3 @@ class SimpleMenuItem: public JGuiObject
 };
 
 #endif
-

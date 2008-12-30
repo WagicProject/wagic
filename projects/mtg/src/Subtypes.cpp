@@ -14,7 +14,7 @@ Subtypes::Subtypes(){
 int Subtypes::Add(string value){
   int result = find(value);
   if (result) return result;
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32)
   char buf[4096];
   sprintf(buf, "Adding new type: *%s*\n",value.c_str());
   OutputDebugString(buf);

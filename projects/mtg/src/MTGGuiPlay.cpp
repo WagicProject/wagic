@@ -356,13 +356,6 @@ void MTGGuiPlay::Render(){
   RenderPlayerInfo(0);
   RenderPlayerInfo(1);
 
-  if (mCount && mObjects[mCurr] != NULL){
-    mObjects[mCurr]->Render();
-    if (hasFocus && mCurr >= offset && showBigCards){
-        ((CardGui *)mObjects[mCurr])->RenderBig(-1,-1,showBigCards-1);
-    }
-  }
-
   if (mGlitterAlpha < 0){
     mGlitterAlpha = 510;
     int position = rand() % 2;
@@ -378,6 +371,12 @@ void MTGGuiPlay::Render(){
   renderer->RenderQuad(mGlitter,mGlitterX,mGlitterY, (float)(mGlitterAlpha)/(float)255, 1.2*float(mGlitterAlpha)/float(255),1.2*float(mGlitterAlpha)/float(255));
   mGlitterAlpha-=10;
 
+  if (mCount && mObjects[mCurr] != NULL){
+    mObjects[mCurr]->Render();
+    if (hasFocus && mCurr >= offset && showBigCards){
+        ((CardGui *)mObjects[mCurr])->RenderBig(-1,-1,showBigCards-1);
+    }
+  }
 }
 
 MTGGuiPlay::~MTGGuiPlay(){

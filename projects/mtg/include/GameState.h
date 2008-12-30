@@ -7,15 +7,14 @@ class JGE;
 
 #include <JSoundSystem.h>
 
-enum _gameSates
+enum ENUM_GAME_STATE
   {
-    GAME_STATE_MENU,
-    GAME_STATE_DUEL,
-    GAME_STATE_DECK_VIEWER,
-    GAME_STATE_SHOP,
-    GAME_STATE_OPTIONS
+    GAME_STATE_MENU = 0x01,
+    GAME_STATE_DUEL = 0x02,
+    GAME_STATE_DECK_VIEWER = 0x03,
+    GAME_STATE_SHOP = 0x04,
+    GAME_STATE_OPTIONS = 0x05,
   };
-
 
 class GameApp;
 

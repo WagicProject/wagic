@@ -1,4 +1,3 @@
-
 #include "../include/config.h"
 #include <JGE.h>
 #include <JRenderer.h>
@@ -97,6 +96,9 @@ void GameApp::Create()
   CommonRes->CreateQuad("particles", "graphics/particles.png", 0, 0, 32, 32);
   CommonRes->GetQuad("particles")->SetHotSpot(16,16);
 
+  CommonRes->CreateQuad("stars", "graphics/particles.png", 64, 0, 32, 32);
+  CommonRes->GetQuad("stars")->SetHotSpot(16,16);
+
   CommonRes->LoadJLBFont("graphics/f3",16);
   CommonRes->LoadJLBFont("graphics/magic",16);
 
@@ -121,7 +123,6 @@ void GameApp::Create()
   mGameStates[GAME_STATE_MENU] = NEW GameStateMenu(this);
   mGameStates[GAME_STATE_MENU]->Create();
 
-
   mGameStates[GAME_STATE_DUEL] = NEW GameStateDuel(this);
   mGameStates[GAME_STATE_DUEL]->Create();
 
@@ -131,15 +132,10 @@ void GameApp::Create()
   mGameStates[GAME_STATE_OPTIONS] = NEW GameStateOptions(this);
   mGameStates[GAME_STATE_OPTIONS]->Create();
 
-
-
   //mGameStates[GAME_STATE_GAME] = NEW GameStateGAME(this);
 
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
-
-
-
 }
 
 

@@ -35,9 +35,9 @@ void MenuItem::Render()
 
   if (mHasFocus)
     {
-      if (!updatedSinceLastRender){
+      /*      if (!updatedSinceLastRender){
 	mParticleSys->Update(lastDt);
-      }
+	}*/
       // set additive blending
       renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
       mParticleSys->Render();
@@ -75,10 +75,7 @@ void MenuItem::Update(float dt)
 	mScale = mTargetScale;
     }
 
-  if (mHasFocus){
     mParticleSys->Update(dt);
-  }
-
 }
 
 

@@ -12,21 +12,51 @@
 #include "../include/GameOptions.h"
 
 
-
-#define STATE_MENU			0
-#define STATE_SUBMENU			1
-#define STATE_LOADING_MENU 2
-#define STATE_LOADING_CARDS 3
-#define STATE_FIRST_TIME 4
-#define STATE_WARNING 5
-
-#define GAME_VERSION "WTH?! 0.3.1 - by WilLoW"
+static const char* GAME_VERSION = "WTH?! 0.3.1 - by WilLoW";
 #define ALPHA_WARNING 0
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
 #define MIN_ANGLE_MULTIPLIER 0.4
-#define STEP_ANGLE_MULTIPLIER 0.0002
+static const double STEP_ANGLE_MULTIPLIER = 0.0002;
+
+
+enum ENUM_MENU_STATE_MAJOR
+  {
+    MENU_STATE_MAJOR_MAINMENU = 0x01,
+    MENU_STATE_MAJOR_SUBMENU = 0x02,
+    MENU_STATE_MAJOR_LOADING_MENU = 0x03,
+    MENU_STATE_MAJOR_LOADING_CARDS = 0x04,
+    MENU_STATE_MAJOR_FIRST_TIME = 0x05,
+    MENU_STATE_MAJOR_WARNING = 0x06,
+    MENU_STATE_MAJOR_DUEL = 0x07,
+
+    MENU_STATE_MAJOR = 0xFF
+  };
+
+enum ENUM_MENU_STATE_MINOR
+  {
+    MENU_STATE_MINOR_NONE = 0,
+    MENU_STATE_MINOR_SUBMENU_CLOSING = 0x100,
+
+    MENU_STATE_MINOR = 0xF00
+  };
+
+
+enum
+{
+  MENUITEM_PLAY,
+  MENUITEM_DECKEDITOR,
+  MENUITEM_SHOP,
+  MENUITEM_OPTIONS,
+  MENUITEM_EXIT,
+  SUBMENUITEM_1PLAYER,
+  SUBMENUITEM_2PLAYER,
+  SUBMENUITEM_DEMO,
+  SUBMENUITEM_CANCEL,
+  SUBMENUITEM_TESTSUITE
+};
+
 
 class GameStateMenu:	public GameState, public JGuiListener
 
@@ -107,28 +137,21 @@ class GameStateMenu:	public GameState, public JGuiListener
 	  }
       }
 
-
-
     mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
     //mFont->SetBase(0);	// using 2nd font
     mGuiController = NEW JGuiController(100, this);
     //mGuiController->SetShadingBackground(10, 45, 80, 100, ARGB(255,0,0,0));
     if (mGuiController)
       {
-	mGuiController->Add(NEW MenuItem(1, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",GameApp::CommonRes->GetQuad("particles"),  true));
-	mGuiController->Add(NEW MenuItem(2, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"graphics/particle2.psi",GameApp::CommonRes->GetQuad("particles")));
-	mGuiController->Add(NEW MenuItem(3, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"graphics/particle3.psi",GameApp::CommonRes->GetQuad("particles")));
-	mGuiController->Add(NEW MenuItem(4, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"graphics/particle4.psi",GameApp::CommonRes->GetQuad("particles")));
-	mGuiController->Add(NEW MenuItem(5, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"graphics/particle5.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",GameApp::CommonRes->GetQuad("particles"),  true));
+	mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"graphics/particle2.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"graphics/particle3.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"graphics/particle4.psi",GameApp::CommonRes->GetQuad("particles")));
+	mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"graphics/particle5.psi",GameApp::CommonRes->GetQuad("particles")));
       }
 
 
-    currentState = STATE_LOADING_CARDS;
-
-
-
-
-
+    currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
   }
 
 
@@ -160,7 +183,7 @@ class GameStateMenu:	public GameState, public JGuiListener
   virtual void Start(){
     JRenderer::GetInstance()->ResetPrivateVRAM();
     JRenderer::GetInstance()->EnableVSync(true);
-subMenuController = NULL;
+    subMenuController = NULL;
 
       if (GameApp::HasMusic && !GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
       GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
@@ -224,69 +247,80 @@ subMenuController = NULL;
     }
 
     timeIndex += dt * 2;
-    if (currentState == STATE_LOADING_CARDS){
-      if (mReadConf){
-	mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
-      }else{
-	mReadConf = 1;
-      }
-      if (!nextCardSet()){
-	//How many cards total ?
-	sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
-	//Check for first time comer
-	std::ifstream file(RESPATH"/player/collection.dat");
-	if(file){
-	  file.close();
-	  currentState = STATE_WARNING;
+    switch (MENU_STATE_MAJOR & currentState)
+      {
+      case MENU_STATE_MAJOR_LOADING_CARDS :
+	if (mReadConf){
+	  mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
 	}else{
-	  currentState = STATE_FIRST_TIME;
+	  mReadConf = 1;
 	}
-      }
-    }else if (currentState == STATE_FIRST_TIME){
-      //Give the player cards from the set for which we have the most variety
-      int setId = 0;
-      int maxcards = 0;
-      for (int i=0; i< MtgSets::SetsList->nb_items; i++){
-	int value = mParent->collection->countBySet(i);
-	if (value > maxcards){
-	  maxcards = value;
-	  setId = i;
-	}
-      }
-      createUsersFirstDeck(setId);
-      currentState = STATE_WARNING;
-    }else if (currentState == STATE_WARNING){
-      if (!ALPHA_WARNING){
-	currentState = STATE_MENU;
-      }else{
-	if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) currentState = STATE_MENU;
-      }
-    }else{
-      if (currentState == STATE_MENU && mGuiController!=NULL){
-	      mGuiController->Update(dt);
-        SAFE_DELETE(subMenuController);
-      }
-      if (currentState == STATE_SUBMENU){
-	if( subMenuController){
-	  subMenuController->Update(dt);
-	}else{
-
-	  subMenuController = NEW SimpleMenu(102, this,mFont, 50,170,SCREEN_WIDTH-120);
-
-	  if (subMenuController){
-      subMenuController->Add(11,"1 Player");
-	    subMenuController->Add(12, "2 Players");
-	    subMenuController->Add(13,"Demo");
-	    subMenuController->Add(14, "Cancel");
-#ifdef TESTSUITE
-	    subMenuController->Add(666, "Test Suite");
-#endif
-
+	if (!nextCardSet()){
+	  //How many cards total ?
+	  sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
+	  //Check for first time comer
+	  std::ifstream file(RESPATH"/player/collection.dat");
+	  if(file){
+	    file.close();
+	    currentState = MENU_STATE_MAJOR_WARNING | MENU_STATE_MINOR_NONE;
+	  }else{
+	    currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
 	  }
 	}
+	break;
+      case MENU_STATE_MAJOR_FIRST_TIME :
+	{
+	  //Give the player cards from the set for which we have the most variety
+	  int setId = 0;
+	  int maxcards = 0;
+	  for (int i=0; i< MtgSets::SetsList->nb_items; i++){
+	    int value = mParent->collection->countBySet(i);
+	    if (value > maxcards){
+	      maxcards = value;
+	      setId = i;
+	    }
+	  }
+	  createUsersFirstDeck(setId);
+	}
+	currentState = MENU_STATE_MAJOR_WARNING | MENU_STATE_MINOR_NONE;
+	break;
+      case MENU_STATE_MAJOR_WARNING :
+	if (!ALPHA_WARNING){
+	  currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
+	}else{
+	  if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
+	}
+	break;
+      case MENU_STATE_MAJOR_MAINMENU :
+	if (mGuiController!=NULL){
+	  mGuiController->Update(dt);
+	}
+	break;
+      case MENU_STATE_MAJOR_SUBMENU :
+	subMenuController->Update(dt);
+	mGuiController->Update(dt);
+	break;
+      case MENU_STATE_MAJOR_DUEL :
+	if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
+	  {
+	    mParent->SetNextState(GAME_STATE_DUEL);
+	    currentState = MENU_STATE_MAJOR_MAINMENU;
+	  }
       }
-    }
-    if (currentState == STATE_WARNING && !ALPHA_WARNING) currentState = STATE_MENU;
+    switch (MENU_STATE_MINOR & currentState)
+      {
+      case MENU_STATE_MINOR_SUBMENU_CLOSING :
+	if (subMenuController->closed)
+	  {
+	    SAFE_DELETE(subMenuController);
+	    currentState &= ~MENU_STATE_MINOR_SUBMENU_CLOSING;
+	  }
+	else
+	  subMenuController->Update(dt);
+	break;
+      case MENU_STATE_MINOR_NONE :
+	;// Nothing to do.
+      }
     if (yW <= 55)
       {
 	if (mEngine->GetButtonState(PSP_CTRL_SQUARE)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
@@ -362,7 +396,7 @@ subMenuController = NULL;
     JRenderer * renderer = JRenderer::GetInstance();
     renderer->ClearScreen(ARGB(0,0,0,0));
 
-    if (currentState == STATE_LOADING_CARDS){
+    if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
       char text[512];
       sprintf(text, "LOADING SET: %s", mCurrentSetName);
       mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
@@ -391,11 +425,11 @@ subMenuController = NULL;
       mFont->DrawString(nbcardsStr,10, SCREEN_HEIGHT-15);
       mFont->SetScale(1.f);
       mFont->SetColor(ARGB(255,255,255,255));
-      if (currentState == STATE_SUBMENU && subMenuController){
+      if (subMenuController){
 	subMenuController->Render();
       }
 
-      if (currentState == STATE_WARNING){
+      if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_WARNING){
 	renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(128,0,0,0));
 
 	mFont->DrawString("IMPORTANT NOTE" ,SCREEN_WIDTH/2,10,JGETEXT_CENTER);
@@ -426,49 +460,68 @@ subMenuController = NULL;
     switch (controllerId){
     case 101:
       createUsersFirstDeck(controlId);
-      currentState = STATE_MENU;
+      currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
       break;
     default:
       switch (controlId)
 	{
-	case 1:
-	  currentState = STATE_SUBMENU;
+	case MENUITEM_PLAY:
+#ifdef TESTSUITE
+	  subMenuController = NEW SimpleMenu(102, this, mFont, 180,110);
+#else
+	  subMenuController = NEW SimpleMenu(102, this, mFont, 180,110);
+#endif
+	  if (subMenuController){
+	    subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
+	    subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players");
+	    subMenuController->Add(SUBMENUITEM_DEMO,"Demo");
+	    subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+#ifdef TESTSUITE
+	    subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
+#endif
+	    currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
+	  }
 	  break;
-	case 2:
+	case MENUITEM_DECKEDITOR:
 	  mParent->SetNextState(GAME_STATE_DECK_VIEWER);
 	  break;
-	case 3:
+	case MENUITEM_SHOP:
 	  mParent->SetNextState(GAME_STATE_SHOP);
 	  break;
-	case 4:
+	case MENUITEM_OPTIONS:
 	  mParent->SetNextState(GAME_STATE_OPTIONS);
 	  break;
-	case 5:
+	case MENUITEM_EXIT:
 	  mEngine->End();
 	  break;
-	case 11:
+	case SUBMENUITEM_1PLAYER:
 	  mParent->players[0] = PLAYER_TYPE_HUMAN;
 	  mParent->players[1] = PLAYER_TYPE_CPU;
-	  mParent->SetNextState(GAME_STATE_DUEL);
+	  subMenuController->Close();
+	  currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	  break;
-	case 12:
+	case SUBMENUITEM_2PLAYER:
 	  mParent->players[0] = PLAYER_TYPE_HUMAN;
 	  mParent->players[1] = PLAYER_TYPE_HUMAN;
-	  mParent->SetNextState(GAME_STATE_DUEL);
+	  subMenuController->Close();
+	  currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	  break;
-	case 13:
+	case SUBMENUITEM_DEMO:
 	  mParent->players[0] = PLAYER_TYPE_CPU;
 	  mParent->players[1] = PLAYER_TYPE_CPU;
-	  mParent->SetNextState(GAME_STATE_DUEL);
+	  subMenuController->Close();
+	  currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	  break;
-	case 14:
-	  currentState = STATE_MENU;
+	case SUBMENUITEM_CANCEL:
+	  subMenuController->Close();
+	  currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	  break;
 #ifdef TESTSUITE
-	case 666:
+	case SUBMENUITEM_TESTSUITE:
 	  mParent->players[0] = PLAYER_TYPE_TESTSUITE;
 	  mParent->players[1] = PLAYER_TYPE_TESTSUITE;
-	  mParent->SetNextState(GAME_STATE_DUEL);
+	  subMenuController->Close();
+	  currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	  break;
 #endif
 	}
@@ -481,4 +534,3 @@ subMenuController = NULL;
 
 
 #endif
-

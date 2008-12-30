@@ -153,7 +153,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
 
 
-    menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20,200);
+    menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
     menu->Add(11,"Save");
     menu->Add(12,"Back to main menu");
     menu->Add(13, "Cancel");
@@ -185,7 +185,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
     //menuFont = NEW JLBFont("graphics/f3",16);
     menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
-    welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20,200);
+    welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
     char buffer[100];
     for (int i=1; i < 6; i++){
       sprintf(buffer, RESPATH"/player/deck%i.txt",i);
@@ -325,7 +325,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	      price = pricelist->getPrice(card->getMTGId()) / 2;
 	      price = price - price * (rnd -10)/100;
 	      sprintf(buffer,"%s : %i credits",card->getName(),price);
-	      sellMenu = NEW SimpleMenu(2,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,270,buffer);
+	      sellMenu = NEW SimpleMenu(2,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
 	      sellMenu->Add(20,"Yes");
 	      sellMenu->Add(21,"No");
 	    }
