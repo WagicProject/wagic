@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <GL/gl.h>			// Header File For The OpenGL32 Library
 #include <GL/glu.h>			// Header File For The GLu32 Library
 #include <GL/glx.h>
@@ -393,6 +394,12 @@ void fullscreen()
 
 int main(int argc, char* argv[])
 {
+  char* path = argv[0];
+  while (*path) ++path;
+  while ((*path != '/') && (path > argv[0])) --path;
+  if ('/' == *path) *path = 0;
+  if (strlen(argv[0]) != 0) chdir(argv[0]);
+
   g_launcher = new JGameLauncher();
 
   u32 flags = g_launcher->GetInitFlags();
