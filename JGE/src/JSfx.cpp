@@ -3,7 +3,7 @@
 // JGE is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ JSoundSystem* JSoundSystem::GetInstance()
 		mInstance = new JSoundSystem();
 		mInstance->InitSoundSystem();
 	}
-	
+
 	return mInstance;
 }
 
@@ -84,7 +84,7 @@ void JSoundSystem::InitSoundSystem()
 {
 
 	audioInit();
-	
+
 }
 
 
@@ -98,7 +98,11 @@ void JSoundSystem::DestroySoundSystem()
 
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
+#ifdef RESPATH
+  string s = RESPATH"/";
+#else
   string s = "Res/";
+#endif
   s.append(fileName);
 	JMusic *music = new JMusic();
 	if (music)
