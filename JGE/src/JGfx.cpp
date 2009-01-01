@@ -118,18 +118,14 @@ JTexture::~JTexture()
 
 void JTexture::UpdateBits(int x, int y, int width, int height, PIXEL_TYPE* bits)
 {
-
-	//TODO: Is this normal that width is not used ??
 	for (int i=0;i<height;i++)
 	{
-		for (int j=0;j<height;j++)
+		for (int j=0;j<width;j++)
 		{
 			SwizzlePlot((u8*)mBits, *(bits++), (x+j)*PIXEL_SIZE, y+i, mTexWidth*PIXEL_SIZE);
 		}
 	}
-
 	sceKernelDcacheWritebackAll();
-
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -986,7 +982,11 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 {
 	textureInfo.mBits = NULL;
 	char filenamenew[4096];
+#ifdef RESPATH
+	sprintf(filenamenew, RESPATH"/%s", filename);
+#else
 	sprintf(filenamenew, "Res/%s", filename);
+#endif
 
 	bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);
 
