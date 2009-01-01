@@ -1212,7 +1212,7 @@ JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__
 		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 
-		delete buffer;
+		delete[] buffer;
 
 		return tex;
 	}
@@ -1285,7 +1285,7 @@ void JRenderer::Enable2D()
 	glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
 	glLoadIdentity ();													// Reset The Projection Matrix
 
-	gluOrtho2D(0.0f, SCREEN_WIDTH_F-1.0f, 0.0f, SCREEN_HEIGHT_F-1.0f);
+	gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f);
 
 	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
 	glLoadIdentity ();													// Reset The Modelview Matrix
