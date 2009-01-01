@@ -58,7 +58,11 @@ JFileSystem::JFileSystem()
 	mZipFile = NULL;
 	mFileSize = 0;
 
+#ifdef RESPATH
+	mResourceRoot = RESPATH"/";
+#else
 	mResourceRoot = "Res/";				// default root folder
+#endif
 }
 
 
