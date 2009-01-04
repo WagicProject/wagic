@@ -19,7 +19,7 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, const
 void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
   //  mFont->SetScale(mScale);
-  mFont->SetColor(ARGB(255,255,255,255));
+  //mFont->SetColor(ARGB(255,255,255,255));
   mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
   //  mFont->SetScale(1.0f);
 }
