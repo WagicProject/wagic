@@ -66,6 +66,11 @@ debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -fno-excepti
 
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
+
+3xx: $(TARGET)
+
+1xx: $(TARGET)
+
 else
 
 
@@ -74,10 +79,6 @@ $(TARGET): $(OBJS) ../../JGE/lib/linux/libjge.a
 	g++ -o $(TARGET) $(OBJS) $(LIBS) $(LIBDIR)
 
 linux: $(TARGET)
-
-3xx: $(TARGET)
-
-1xx: $(TARGET)
 
 debug: linux
 
