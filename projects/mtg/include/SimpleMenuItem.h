@@ -31,6 +31,7 @@ class SimpleMenuItem: public JGuiObject
 
   void Relocate(int x, int y);
   int GetWidth();
+  bool hasFocus();
 
   void RenderWithOffset(float yOffset);
   virtual void Render();

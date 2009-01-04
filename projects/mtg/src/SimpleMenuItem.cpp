@@ -75,3 +75,8 @@ int SimpleMenuItem::GetWidth()
 {
   return mFont->GetStringWidth(mText.c_str());
 }
+
+bool SimpleMenuItem::hasFocus()
+{
+  return mHasFocus;
+}

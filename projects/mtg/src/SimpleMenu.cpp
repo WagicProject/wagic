@@ -61,24 +61,6 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
   stars->MoveTo(mX, mY);
 }
 
-inline void SimpleMenu::MogrifyJewel()
-{
-  PIXEL_TYPE tmpBuf[sizeof(jewelGraphics)/sizeof(jewelGraphics[0])];
-  if (!(random() & 0x7E))
-    for (int i = sizeof(jewelGraphics) / sizeof(jewelGraphics[0]) - 1; i >= 0; --i)
-      {
-	unsigned int v = jewelGraphics[i];
-	if (v & 0x80) tmpBuf[i] = 0xFF; else tmpBuf[i] = v & 0xFF;
-	if (v & 0x8000) tmpBuf[i] += 0xFF00; else tmpBuf[i] += (v & 0x7F00) << 1;
-	if (v & 0x800000) tmpBuf[i] += 0xFF0000; else tmpBuf[i] += (v & 0x7F0000) << 1;
-	tmpBuf[i] += v & 0xFF000000;
-      }
-  else
-    for (int i = sizeof(jewelGraphics) / sizeof(jewelGraphics[0]) - 1; i >= 0; --i)
-      tmpBuf[i] = jewelGraphics[i];
-  jewel->mTex->UpdateBits(1, 1, 3, 3, tmpBuf);
-}
-
 void SimpleMenu::drawHorzPole(int x, int y, int width)
 {
   JRenderer* renderer = JRenderer::GetInstance();
@@ -88,8 +70,6 @@ void SimpleMenu::drawHorzPole(int x, int y, int width)
   spadeL->SetHFlip(false);
   renderer->RenderQuad(spadeR, x - 9, y - 6);
   renderer->RenderQuad(spadeL, x + width - 5, y - 6);
-
-  MogrifyJewel();
 
   renderer->RenderQuad(jewel, x, y - 1);
   renderer->RenderQuad(jewel, x + width - 1, y - 1);
@@ -103,8 +83,6 @@ void SimpleMenu::drawVertPole(int x, int y, int height)
   spadeL->SetHFlip(true);
   renderer->RenderQuad(spadeR, x - 6, y + 7, -M_PI/2);
   renderer->RenderQuad(spadeL, x - 6, y + height + 11, -M_PI/2);
-
-  MogrifyJewel();
 
   renderer->RenderQuad(jewel, x - 1, y - 1);
   renderer->RenderQuad(jewel, x - 1, y + height - 1);
@@ -149,7 +127,13 @@ void SimpleMenu::Render(){
   for (int i = startId; i < startId + maxItems ; i++){
     if (i > mCount-1) break;
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7)
-      (static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
+      {
+	if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus())
+	  mFont->SetColor(ARGB(255,255,255,0));
+	else
+	  mFont->SetColor(ARGB(255,255,255,255));
+	(static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
+      }
   }
 
   drawHorzPole(mX - 25, mY + height, mWidth + 50);
