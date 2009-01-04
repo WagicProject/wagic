@@ -4,13 +4,9 @@
 
 MenuItem::MenuItem(int id, JLBFont *font, const char* text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mText(text), mX(x), mY(y)
 {
-
-
-
   updatedSinceLastRender = 1;
   mParticleSys = NEW hgeParticleSystem(particle, particleTex);
   mParticleSys->MoveTo(mX, mY);
-
 
   mHasFocus = hasFocus;
   lastDt = 0.001f;
@@ -22,7 +18,7 @@ MenuItem::MenuItem(int id, JLBFont *font, const char* text, int x, int y, JQuad 
 
   if (hasFocus)
     Entering();
-  mFont->SetScale(1.2f);
+  //  mFont->SetScale(1.2f);
 
 }
 

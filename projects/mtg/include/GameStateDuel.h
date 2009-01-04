@@ -6,17 +6,6 @@
 #include "_includeAll.h"
 #include "../include/SimpleMenu.h"
 
-enum
-  {
-    DUEL_START,
-    DUEL_END,
-    DUEL_CHOOSE_DECK1,
-    DUEL_CHOOSE_DECK2,
-    ERROR_NO_DECK,
-    DUEL_PLAY,
-    DUEL_MENU
-  };
-
 #define CHOOSE_OPPONENT 7
 
 #ifdef TESTSUITE

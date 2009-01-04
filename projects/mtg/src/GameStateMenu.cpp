@@ -90,7 +90,7 @@ void GameStateMenu::Create()
 	}
     }
 
-  mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  mFont = GameApp::CommonRes->GetJLBFont("graphics/simon");
   //mFont->SetBase(0);	// using 2nd font
   mGuiController = NEW JGuiController(100, this);
   //mGuiController->SetShadingBackground(10, 45, 80, 100, ARGB(255,0,0,0));
@@ -366,7 +366,7 @@ void GameStateMenu::Render()
     if (mGuiController!=NULL)
       mGuiController->Render();
 
-    mFont->SetScale(0.7);
+    //    mFont->SetScale(0.7);
     mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,SCREEN_HEIGHT-15,JGETEXT_RIGHT);
     mFont->DrawString(nbcardsStr,10, SCREEN_HEIGHT-15);

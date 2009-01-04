@@ -34,9 +34,7 @@ MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id,
   mGlitter = NEW JQuad(mPhaseBarTexture, 392, 0, 5, 5);
   mGlitter->SetHotSpot(2.5,2.5);
   mGlitterAlpha = -1;
-  mFont= GameApp::CommonRes->GetJLBFont("graphics/f3");
-  mFont->SetScale(0.75);
-
+  mFont= GameApp::CommonRes->GetJLBFont("graphics/simon");
 
   mIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/menuicons.png", TEX_TYPE_USE_VRAM);
   //load all the icon images
@@ -308,7 +306,6 @@ void MTGGuiPlay::RenderPhaseBar(){
     }
     renderer->RenderQuad(phaseIcons[index], 200 + 14*i,0,0,0.5,0.5);
   }
-  mFont->SetScale(0.70);
   if (game->currentlyActing()->isAI()){
     mFont->SetColor(ARGB(255,128,128,128));
   }else{

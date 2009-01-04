@@ -10,6 +10,29 @@
 #include "../include/TestSuiteAI.h"
 #endif
 
+enum ENUM_DUEL_STATE
+  {
+    DUEL_STATE_START,
+    DUEL_STATE_END,
+    DUEL_STATE_CHOOSE_DECK1,
+    DUEL_STATE_CHOOSE_DECK1_TO_2,
+    DUEL_STATE_CHOOSE_DECK2,
+    DUEL_STATE_CHOOSE_DECK2_TO_PLAY,
+    DUEL_STATE_ERROR_NO_DECK,
+    DUEL_STATE_CANCEL,
+    DUEL_STATE_PLAY,
+    DUEL_STATE_BACK_TO_MAIN_MENU,
+    DUEL_STATE_MENU
+  };
+
+enum ENUM_DUEL_MENUS
+  {
+    DUEL_MENU_GAME_MENU,
+    DUEL_MENU_CHOOSE_DECK,
+    DUEL_MENU_CHOOSE_OPPONENT
+  };
+
+
 GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
   for (int i = 0; i<2; i ++){
     deck[i]=NULL;
@@ -43,14 +66,14 @@ void GameStateDuel::Start()
 #endif
 
 
-  mGamePhase = DUEL_CHOOSE_DECK1;
+  mGamePhase = DUEL_STATE_CHOOSE_DECK1;
 
-  mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  mFont = GameApp::CommonRes->GetJLBFont("graphics/simon");
   mFont->SetBase(0);	// using 2nd font
-  opponentMenuFont = NEW JLBFont("graphics/f3",16);
+  opponentMenuFont = mFont; //NEW JLBFont("graphics/simon",11);
 
 
-  menu = NEW SimpleMenu(11,this,mFont,SCREEN_WIDTH/2-100,20);
+  menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
   menu->Add(12,"Back to main menu");
   menu->Add(13, "Cancel");
 
@@ -61,7 +84,7 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       if (!deckmenu){
 	decksneeded = 1;
-	deckmenu = NEW SimpleMenu(1,this,mFont, 10 , 10, "Choose a Deck");
+	deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
 	char buffer[100];
 	for (int j=1; j<6; j++){
 	  sprintf(buffer, RESPATH"/player/deck%i.txt",j);
@@ -77,10 +100,7 @@ void GameStateDuel::Start()
   }
 
   if (decksneeded)
-    mGamePhase = ERROR_NO_DECK;
-
-
-
+    mGamePhase = DUEL_STATE_ERROR_NO_DECK;
 }
 
 
@@ -152,7 +172,6 @@ void GameStateDuel::End()
 
   SAFE_DELETE(menu);
   SAFE_DELETE(opponentMenu);
-  SAFE_DELETE(opponentMenuFont);
 #ifdef TESTSUITE
   SAFE_DELETE(testSuite);
 #endif
@@ -163,40 +182,44 @@ void GameStateDuel::Update(float dt)
 {
   switch (mGamePhase)
     {
-    case ERROR_NO_DECK:
+    case DUEL_STATE_ERROR_NO_DECK:
       if (PSP_CTRL_CIRCLE == mEngine->ReadButton())
 	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
       break;
-    case DUEL_CHOOSE_DECK1:
+    case DUEL_STATE_CHOOSE_DECK1:
       if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
 	deckmenu->Update(dt);
 #ifdef TESTSUITE
       else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
 	if (testSuite && testSuite->loadNext()){
 	  loadTestSuitePlayers();
-	  mGamePhase = DUEL_PLAY;
+	  mGamePhase = DUEL_STATE_PLAY;
 	  testSuite->initGame();
 	  char buf[4096];
 	  sprintf(buf, "nb cards in player2's graveyard : %i\n",mPlayers[1]->game->graveyard->nb_cards);
 	  LOG(buf);
 	}else{
-	  mGamePhase = DUEL_END;
+	  mGamePhase = DUEL_STATE_END;
 	}
       }
 #endif
       else{
 	loadPlayer(0);
-	mGamePhase = DUEL_CHOOSE_DECK2;
+	mGamePhase = DUEL_STATE_CHOOSE_DECK2;
       }
       break;
-    case DUEL_CHOOSE_DECK2:
+    case DUEL_STATE_CHOOSE_DECK1_TO_2:
+      if (deckmenu->closed) mGamePhase = DUEL_STATE_CHOOSE_DECK2;
+      else deckmenu->Update(dt);
+      break;
+    case DUEL_STATE_CHOOSE_DECK2:
       if (mParent->players[1] ==  PLAYER_TYPE_HUMAN){
 	deckmenu->Update(dt);
       }
       else{
 	if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
 	  if (!opponentMenu){
-	    opponentMenu = NEW SimpleMenu(13,this,opponentMenuFont,10,10,"Choose Opponent");
+	    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, opponentMenuFont, 35, 25, "Choose Opponent");
 	    opponentMenu->Add(0,"Random");
 	    nbAIDecks = 0;
 	    int found = 1;
@@ -229,11 +252,22 @@ void GameStateDuel::Update(float dt)
 	  opponentMenu->Update(dt);
 	}else{
 	  loadPlayer(1);
-	  mGamePhase = DUEL_PLAY;
+	  mGamePhase = DUEL_STATE_PLAY;
 	}
       }
       break;
-    case DUEL_PLAY:
+    case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
+      if (mParent->players[1] ==  PLAYER_TYPE_HUMAN){
+	if (deckmenu->closed) mGamePhase = DUEL_STATE_PLAY;
+	else deckmenu->Update(dt);
+      }
+      else
+	{
+	  if (opponentMenu->closed) mGamePhase = DUEL_STATE_PLAY;
+	  else opponentMenu->Update(dt);
+	}
+      break;
+    case DUEL_STATE_PLAY:
     //Stop the music before starting the game
       if (GameApp::music){
 	JSoundSystem::GetInstance()->StopMusic(GameApp::music);
@@ -257,15 +291,15 @@ void GameStateDuel::Update(float dt)
 	  playerdata->save();
 	  delete playerdata;
 	}
-	mGamePhase = DUEL_END;
+	mGamePhase = DUEL_STATE_END;
 #ifdef TESTSUITE
 	if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
 	  if (testSuite->loadNext()){
 	    loadTestSuitePlayers();
-	    mGamePhase = DUEL_PLAY;
+	    mGamePhase = DUEL_STATE_PLAY;
 	    testSuite->initGame();
 	  }else{
-	    mGamePhase = DUEL_END;
+	    mGamePhase = DUEL_STATE_END;
 	  }
 	}else
 #endif
@@ -276,11 +310,21 @@ void GameStateDuel::Update(float dt)
 	mFont->SetColor(ARGB(255,255,255,255));
       }
       if (mEngine->GetButtonClick(PSP_CTRL_START)){
-	mGamePhase = DUEL_MENU;
+	mGamePhase = DUEL_STATE_MENU;
       }
       break;
-    case DUEL_MENU:
+    case DUEL_STATE_MENU:
       menu->Update(dt);
+      break;
+    case DUEL_STATE_CANCEL:
+      menu->Update(dt);
+      if (menu->closed)
+	mGamePhase = DUEL_STATE_PLAY;
+      break;
+    case DUEL_STATE_BACK_TO_MAIN_MENU:
+      menu->Update(dt);
+      if (menu->closed)
+	mParent->SetNextState(GAME_STATE_MENU);
       break;
     default:
       if (PSP_CTRL_CIRCLE == mEngine->ReadButton()){
@@ -295,55 +339,67 @@ void GameStateDuel::Render()
   //Erase
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 
-
   if (game)
     game->Render();
-  if (mGamePhase == DUEL_END){
-    JRenderer::GetInstance()->ClearScreen(ARGB(200,0,0,0));
-    char buffer[50];
-    int p0life = mPlayers[0]->life;
-    if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
-      if (game->gameOver !=mPlayers[0]){
-	sprintf (buffer, "Victory! Congratulations, You earn 500 credits");
-      }else{
-	sprintf (buffer, "You have been defeated");
+  switch (mGamePhase)
+    {
+    case DUEL_STATE_END:
+      {
+	JRenderer::GetInstance()->ClearScreen(ARGB(200,0,0,0));
+	char buffer[50];
+	int p0life = mPlayers[0]->life;
+	if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
+	  if (game->gameOver !=mPlayers[0]){
+	    sprintf (buffer, "Victory! Congratulations, You earn 500 credits");
+	  }else{
+	    sprintf (buffer, "You have been defeated");
+	  }
+	}else{
+	  int winner = 2;
+	  if (game->gameOver !=mPlayers[0]){
+	    winner = 1;
+	  }
+	  sprintf(buffer, "Player %i wins (%i)", winner, p0life );
+	}
+	mFont->DrawString(buffer, 10, 150);
+	break;
       }
-    }else{
-      int winner = 2;
-      if (game->gameOver !=mPlayers[0]){
-	      winner = 1;
+    case DUEL_STATE_CHOOSE_DECK1:
+    case DUEL_STATE_CHOOSE_DECK1_TO_2:
+    case DUEL_STATE_CHOOSE_DECK2:
+    case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
+      if (opponentMenu){
+	opponentMenu->Render();
+      }else if (deckmenu){
+	deckmenu->Render();
       }
-      sprintf(buffer, "Player %i wins (%i)", winner, p0life );
-    }
-    mFont->DrawString(buffer, 10, 150);
-  }else if (mGamePhase == DUEL_CHOOSE_DECK1 || mGamePhase == DUEL_CHOOSE_DECK2){
-    if (opponentMenu){
-      opponentMenu->Render();
-    }else if (deckmenu){
-      deckmenu->Render();
-    }
-  }else if (mGamePhase == ERROR_NO_DECK){
-    mFont->DrawString("NO DECK AVAILABLE,",0,SCREEN_HEIGHT/2);
-    mFont->DrawString("PRESS CIRCLE TO GO TO THE DECK EDITOR!",0,SCREEN_HEIGHT/2 + 20);
-  }else if (mGamePhase == DUEL_MENU){
-    menu->Render();
+      break;
+    case DUEL_STATE_ERROR_NO_DECK:
+      mFont->DrawString("NO DECK AVAILABLE,",0,SCREEN_HEIGHT/2);
+      mFont->DrawString("PRESS CIRCLE TO GO TO THE DECK EDITOR!",0,SCREEN_HEIGHT/2 + 20);
+      break;
+    case DUEL_STATE_MENU:
+    case DUEL_STATE_CANCEL:
+    case DUEL_STATE_BACK_TO_MAIN_MENU:
+      menu->Render();
   }
-
 }
 
 void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 {
   switch (controllerId){
-    case 13:
+    case DUEL_MENU_CHOOSE_OPPONENT:
       {
         switch(controlId){
           case 0:
             loadPlayer(1);
-            mGamePhase = DUEL_PLAY;
+	    opponentMenu->Close();
+	    mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
           default:
             loadPlayer(1,controlId,1);
-            mGamePhase = DUEL_PLAY;
+	    opponentMenu->Close();
+	    mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
 
         }
@@ -359,20 +415,24 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
           case 4:
           case 5:
             {
-	            if (mGamePhase == DUEL_CHOOSE_DECK1){
+	            if (mGamePhase == DUEL_STATE_CHOOSE_DECK1){
 	              loadPlayer(0,controlId);
-	              mGamePhase = DUEL_CHOOSE_DECK2;
+		      deckmenu->Close();
+	              mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
 	            }else{
 	              loadPlayer(1,controlId);
-	              mGamePhase = DUEL_PLAY;
+		      deckmenu->Close();
+	              mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
 	            }
 	            break;
             }
           case 12:
-            mParent->SetNextState(GAME_STATE_MENU);
+	    menu->Close();
+	    mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
             break;
           case 13:
-            mGamePhase = DUEL_PLAY;
+	    menu->Close();
+            mGamePhase = DUEL_STATE_CANCEL;
             break;
         }
       }

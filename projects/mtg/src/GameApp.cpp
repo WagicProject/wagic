@@ -99,6 +99,8 @@ void GameApp::Create()
   CommonRes->CreateQuad("stars", "graphics/particles.png", 64, 0, 32, 32);
   CommonRes->GetQuad("stars")->SetHotSpot(16,16);
 
+  CommonRes->LoadJLBFont("graphics/simon",11);
+  CommonRes->GetJLBFont("graphics/simon")->SetTracking(-1);
   CommonRes->LoadJLBFont("graphics/f3",16);
   CommonRes->LoadJLBFont("graphics/magic",16);
 

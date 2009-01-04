@@ -15,7 +15,7 @@ class SimpleMenu:public JGuiController{
   static const unsigned SIDE_SIZE;
   static const unsigned VMARGIN;
   static const unsigned HMARGIN;
-  static const unsigned LINE_HEIGHT;
+  static const signed LINE_HEIGHT;
   static const char* spadeLPath;
   static const char* spadeRPath;
   static const char* jewelPath;
@@ -28,12 +28,17 @@ class SimpleMenu:public JGuiController{
   std::string title;
   int displaytitle;
   int maxItems,startId;
-  hgeParticleSystem* stars;
   float selectionT, selectionY;
   float timeOpen;
+  static unsigned int refCount;
 
   static JQuad *spadeR, *spadeL, *jewel, *side;
   static JLBFont* titleFont;
+  static hgeParticleSystem* stars;
+  // This works only because of no multithreading
+  static PIXEL_TYPE jewelGraphics[9];
+
+  inline void MogrifyJewel();
   void drawHorzPole(int x, int y, int width);
   void drawVertPole(int x, int y, int height);
 
