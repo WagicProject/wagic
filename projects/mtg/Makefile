@@ -75,6 +75,10 @@ $(TARGET): $(OBJS) ../../JGE/lib/linux/libjge.a
 
 linux: $(TARGET)
 
+3xx: $(TARGET)
+
+1xx: $(TARGET)
+
 debug: linux
 
 clean:
