@@ -341,6 +341,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GameStateMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GameStateOptions.cpp"
 				>
 			</File>
