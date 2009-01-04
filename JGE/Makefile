@@ -103,13 +103,13 @@ install: $(TARGET_LIB) hge
 
 hge: $(TARGET_HGE)
 
-clean:
-	rm -f $(OBJS) $(HGE_OBJS)
-
 ifeq ($(TARGET_ARCHITECTURE),linux)
 $(TARGET_LIB): $(OBJS)
 	ar r $(TARGET_LIB) $(OBJS)
 
 $(TARGET_HGE): $(HGE_OBJS)
 	ar r $(TARGET_HGE) $(HGE_OBJS)
+
+clean:
+	rm -f $(OBJS) $(HGE_OBJS)
 endif
