@@ -10,7 +10,7 @@
 #include <pspdisplay.h>
 #include <pspctrl.h>
 #include <pspiofilemgr.h>
-#include <pspconfig.h>
+#include <pspdebug.h>
 #include <psputility.h>
 #include <pspgu.h>
 #include <psprtc.h>

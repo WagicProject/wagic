@@ -11,7 +11,7 @@ DEFAULT_RULE = 3xx
 TARGET_ARCHITECTURE = psp
 PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDIR = $(shell psp-config --psp-prefix)
-TARGET = template
+TARGET = wagic
 endif
 ifeq ($(MAKECMDGOALS),debug)
 DEFAULT_RULE = debug
@@ -21,20 +21,13 @@ ifeq ($(MAKECMDGOALS),linux)
 DEFAULT_RULE = linux
 TARGET_ARCHITECTURE = linux
 endif
-ifeq ($(MAKECMDGOALS),3xx)
+
+ifeq ($(TARGET_ARCHITECTURE),psp)
 DEFAULT_RULE = 3xx
 TARGET_ARCHITECTURE = psp
 PSP_PW_VERSION=371
 BUILD_PRX = 1
 LIBS = -ljge300 -lhgetools -lfreetype -ljpeg -lgif -lpng -lz -lm -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspmp3 -lpspgum -lpspgu -lpsprtc -lstdc++ -lpspfpu
-endif
-ifeq ($(MAKECMDGOALS),1xx)
-DEFAULT_RULE = 1xx
-TARGET_ARCHITECTURE = psp
-LIBS = -ljge100 -lfreetype -lpng -lz -lm -lmikmod -lmmio -lpsppower -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lstdc++ -ljpeg -lgif -lpspaudiocodec -lpspmpeg
-endif
-
-ifeq ($(TARGET_ARCHITECTURE),psp)
 LDFLAGS =
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = WTH?!
@@ -52,8 +45,8 @@ CXXFLAGS += $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CXXFLAGS)
 endif
 
-CXXFLAGS := $(INCDIR) $(CXXFLAGS)
-LDFLAGS := $(LIBS)
+CXXFLAGS += $(INCDIR)
+LDFLAGS = $(LIBS)
 
 
 
@@ -67,9 +60,9 @@ debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -fno-excepti
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
 
-3xx: $(TARGET)
+3xx: $(TARGET).elf
 
-1xx: $(TARGET)
+1xx: $(TARGET).elf
 
 else
 
@@ -85,6 +78,7 @@ debug: linux
 clean:
 	$(RM) $(OBJS)
 
+endif
 
 $(OBJS): objs/%.o: src/%.cpp
 	$(CXX) -c -o $@ $(CXXFLAGS) $<
@@ -96,5 +90,3 @@ $(DEPS): deps/%.d: src/%.cpp
 	$(RM) $@.$$$$
 
 include $(DEPS)
-
-endif
