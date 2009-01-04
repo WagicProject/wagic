@@ -113,6 +113,8 @@ void JLBFont::DrawString(const char *string, float x, float y, int align)
 	else if (align == JGETEXT_CENTER)
 		dx -= width/2;
 
+	dx = floorf(dx) + 0.1;
+	dy = floorf(dy);
 	int index;
 	while (*p)
 	{

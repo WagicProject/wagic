@@ -172,7 +172,6 @@ void DestroyGame(void)
 
 void KillGLWindow(void) // Properly Kill The Window
 {
-  DestroyGame();
   if (gXWindow && gXDisplay)
     XDestroyWindow(gXDisplay, gXWindow);
   gXWindow = NULL;
@@ -252,17 +251,14 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((
   // Bind the GLX context to the Window
   glXMakeContextCurrent(gXDisplay, glxWin, glxWin, context);
 
+  free(vInfo);
+  free(fbConfigs);
+
   SizeGLScene(width, height);
   if (!InitGL())
     {
       KillGLWindow();
       printf("Initializing GL failed.");
-      return false;
-    }
-  if (!InitGame())
-    {
-      KillGLWindow();
-      printf("Initializing game failed.");
       return false;
     }
   return true;
@@ -474,6 +470,7 @@ int main(int argc, char* argv[])
     delete g_launcher;
 
   // Shutdown
+  DestroyGame();
   KillGLWindow();							// Kill The Window
   return 0;
 }

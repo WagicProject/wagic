@@ -80,6 +80,7 @@ hgeParticleSystem::hgeParticleSystem(const char *filename, JQuad *sprite)
 	fEmissionResidue=0.0f;
 	nParticlesAlive=0;
 	fAge=-2.0;
+	mTimer = 0.0f;
 
 	rectBoundingBox.Clear();
 	bUpdateBoundingBox=false;
@@ -98,6 +99,7 @@ hgeParticleSystem::hgeParticleSystem(hgeParticleSystemInfo *psi)
 	fEmissionResidue=0.0f;
 	nParticlesAlive=0;
 	fAge=-2.0;
+	mTimer = 0.0f;
 
 	rectBoundingBox.Clear();
 	bUpdateBoundingBox=false;
