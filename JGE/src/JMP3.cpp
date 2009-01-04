@@ -19,7 +19,7 @@ void JMP3::init() {
 }
 
 JMP3::JMP3(const std::string& filename, int inBufferSize, int outBufferSize) :
-   m_volume(PSP_AUDIO_VOLUME_MAX), m_paused(true), m_samplesPlayed(0) {
+  m_volume(PSP_AUDIO_VOLUME_MAX), m_samplesPlayed(0), m_paused(true) {
    load(filename, inBufferSize,outBufferSize);
 }
 
@@ -180,7 +180,7 @@ bool JMP3::update() {
       }
 
       // Okay, let's see if we can't get something outputted :/
-      if (numDecoded == 0 || numDecoded == 0x80671402) {
+      if (numDecoded == 0 || ((unsigned)numDecoded == 0x80671402)) {
          sceMp3ResetPlayPosition(m_mp3Handle);
          if (!m_loop)
             m_paused = true;
@@ -230,4 +230,4 @@ int JMP3::playTimeMinutes() {
 
 int JMP3::playTimeSeconds() {
    return m_playTime % 60;
-} 
+}
