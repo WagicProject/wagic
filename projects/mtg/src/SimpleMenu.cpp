@@ -50,7 +50,7 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
   if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
   if (NULL == spadeR) spadeR = NEW JQuad(spadeRTex, 2, 1, 16, 13);
   if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
-  if (NULL == side)   side   = NEW JQuad(sideTex, 0, 1, 1, 7);
+  if (NULL == side)   side   = NEW JQuad(sideTex, 1, 1, 1, 7);
   if (NULL == titleFont)
     {
       GameApp::CommonRes->LoadJLBFont(titleFontPath, 7);
@@ -65,7 +65,7 @@ void SimpleMenu::drawHorzPole(int x, int y, int width)
 {
   JRenderer* renderer = JRenderer::GetInstance();
 
-  renderer->RenderQuad(side, x + 5, y - SIDE_SIZE / 2, 0, width - 10);
+  renderer->RenderQuad(side, x + 5 , y - SIDE_SIZE / 2, 0, width - 10);
   spadeR->SetHFlip(true);
   spadeL->SetHFlip(false);
   renderer->RenderQuad(spadeR, x - 9, y - 6);
