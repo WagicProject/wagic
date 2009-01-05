@@ -25,7 +25,7 @@ endif
 ifeq ($(TARGET_ARCHITECTURE),psp)
 DEFAULT_RULE = 3xx
 TARGET_ARCHITECTURE = psp
-PSP_PW_VERSION=371
+PSP_FW_VERSION=371
 BUILD_PRX = 1
 LIBS = -ljge300 -lhgetools -lfreetype -ljpeg -lgif -lpng -lz -lm -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspmp3 -lpspgum -lpspgu -lpsprtc -lstdc++ -lpspfpu
 LDFLAGS =
@@ -45,7 +45,6 @@ CXXFLAGS += $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CXXFLAGS)
 endif
 
-CXXFLAGS += $(INCDIR)
 LDFLAGS = $(LIBS)
 
 
@@ -61,8 +60,6 @@ ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
 
 3xx: $(TARGET).elf
-
-1xx: $(TARGET).elf
 
 else
 
