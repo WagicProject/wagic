@@ -49,15 +49,22 @@ TARGET_ARCHITECTURE = linux
 endif
 ifeq ($(MAKECMDGOALS),3xx)
 DEFAULT_RULE = 3xx
-TARGET_ARCHITECTURE = psp
-TARGET_LIB = libjge300.a
-CXXFLAGS += -DDEVHOOK -DPSPFW3XX
 endif
 ifeq ($(MAKECMDGOALS),1xx)
 DEFAULT_RULE = 1xx
+endif
+
+ifeq ($(DEFAULT_RULE),3xx)
+TARGET_ARCHITECTURE = psp
+TARGET_LIB = libjge300.a
+CXXFLAGS += -DDEVHOOK -DPSPFW3XX
+PSP_FW_VERSION=371
+endif
+ifeq ($(DEFAULT_RULE),1xx)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
 TARGET_LIB = libjge100.a
 TARGET_ARCHITECTURE = psp
+PSP_FW_VERSION=150
 endif
 
 ifeq ($(TARGET_ARCHITECTURE),psp)
@@ -65,7 +72,7 @@ PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDIR = $(shell psp-config --psp-prefix)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
 TARGET_HGE = libhgetools.a
-INCDIR = -I include/psp include/psp/freetype2
+INCDIR = include/psp include/psp/freetype2
 CXXFLAGS += -G0
 LIBDIR = lib/psp
 LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
@@ -76,11 +83,11 @@ TARGET_LIB = libjge.a
 TARGET_HGE = libhgetools.a
 INCDIR = $(shell freetype-config --cflags 2> /dev/null)
 CXXFLAGS += -DLINUX
+CXXFLAGS += $(INCDIR)
 LIBDIR = lib/linux
 endif
 
 # Set definitive values for variables.
-CXXFLAGS += $(INCDIR)
 LDFLAGS = $(LIBS)
 TARGET_LIB := $(LIBDIR)/$(TARGET_LIB)
 TARGET_HGE := $(LIBDIR)/$(TARGET_HGE)
@@ -111,5 +118,5 @@ $(TARGET_HGE): $(HGE_OBJS)
 	ar r $(TARGET_HGE) $(HGE_OBJS)
 
 clean:
-	rm -f $(OBJS) $(HGE_OBJS)
+	$(RM) -f $(OBJS) $(HGE_OBJS)
 endif
