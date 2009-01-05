@@ -117,7 +117,7 @@ void SimpleMenu::Render(){
   drawVertPole(mX + mWidth, mY - 16, height + 32);
   drawHorzPole(mX - 16, mY, mWidth + 32);
 
-  renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_DST_ALPHA);
+  renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
   stars->Render();
   renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
 
