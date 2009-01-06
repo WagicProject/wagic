@@ -28,7 +28,7 @@ TARGET_ARCHITECTURE = psp
 PSP_FW_VERSION=371
 BUILD_PRX = 1
 LIBS = -ljge300 -lhgetools -lfreetype -ljpeg -lgif -lpng -lz -lm -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspmp3 -lpspgum -lpspgu -lpsprtc -lstdc++ -lpspfpu
-LDFLAGS =
+
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = WTH?!
 PSP_EBOOT_ICON = icon.png
@@ -81,6 +81,6 @@ $(OBJS): objs/%.o: src/%.cpp
 	$(CXX) -c -o $@ $(CXXFLAGS) $<
 
 $(DEPS): deps/%.d: src/%.cpp
-	$(CXX) -MM $(CXXFLAGS) -MQ $(patsubst deps/%.d, objs/%.o, $(@)) -MQ $@ $< > $@
+	@$(CXX) -MM $(CXXFLAGS) -MQ $(patsubst deps/%.d, objs/%.o, $(@)) -MQ $@ $< > $@
 
-include $(DEPS)
+-include $(DEPS)
