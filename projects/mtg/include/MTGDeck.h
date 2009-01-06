@@ -42,7 +42,7 @@ class MtgSets{
 class MTGAllCards {
  protected:
   int conf_read_mode;
-  int colorsCount[MTG_NB_COLORS];
+  int colorsCount[Constants::MTG_NB_COLORS];
   int total_cards;
   GameApp * parent;
   void init();
@@ -51,7 +51,7 @@ class MTGAllCards {
 
   TexturesCache * mCache;
   MTGCard * _(int i);
-  MTGCard * collection[TOTAL_NUMBER_OF_CARDS];
+  MTGCard * collection[Constants::TOTAL_NUMBER_OF_CARDS];
   MTGAllCards();
   ~MTGAllCards();
   MTGAllCards(TexturesCache * cache);

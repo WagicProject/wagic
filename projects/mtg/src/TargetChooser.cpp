@@ -152,8 +152,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 	    }else{
 	      int attributefound = 0;
 	      //Colors
-	      for (int cid = 0; cid < MTG_NB_COLORS; cid++){
-		if (attribute.find(MTGColorStrings[cid]) != string::npos){
+	      for (int cid = 0; cid < Constants::MTG_NB_COLORS; cid++){
+		if (attribute.find(Constants::MTGColorStrings[cid]) != string::npos){
 		  attributefound = 1;
 		  if (minus){
 		    cd->colors[cid] = -1;
@@ -167,8 +167,8 @@ OutputDebugString("COLOR FOUND !!!");
 	      }
 	      if (!attributefound){
 		//Abilities
-		for (int j = 0; j < NB_BASIC_ABILITIES; j++){
-		  if (attribute.find(MTGBasicAbilities[j]) != string::npos){
+		for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+		  if (attribute.find(Constants::MTGBasicAbilities[j]) != string::npos){
 		    attributefound = 1;
 		    if (minus){
 		      cd->basicAbilities[j] = -1;
@@ -254,12 +254,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card
     //Red Spell or Permanent
   case 1191: //Blue Elemental Blast
     {
-      return NEW SpellOrPermanentTargetChooser(card,MTG_COLOR_RED);
+      return NEW SpellOrPermanentTargetChooser(card,Constants::MTG_COLOR_RED);
     }
     //Blue Spell or Permanent
   case 1312: //Red Elemental Blast
     {
-      return NEW SpellOrPermanentTargetChooser(card,MTG_COLOR_BLUE);
+      return NEW SpellOrPermanentTargetChooser(card,Constants::MTG_COLOR_BLUE);
     }
     //Damage History
   case 1344: //Eye for an Eye
@@ -285,7 +285,7 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets): TargetsLi
 int TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    if (source && (card->protectedAgainst(source) || card->has(SHROUD))) return 0;
+    if (source && (card->protectedAgainst(source) || card->has(Constants::SHROUD))) return 0;
     return 1;
   }
   return 0;

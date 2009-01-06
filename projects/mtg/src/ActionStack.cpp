@@ -19,14 +19,14 @@ int NextGamePhase::resolve(){
 }
 
 void NextGamePhase::Render(){
-  int nextPhase = (GameObserver::GetInstance()->getCurrentGamePhase() + 1) % MTG_PHASE_CLEANUP;
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  int nextPhase = (GameObserver::GetInstance()->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   char buffer[200];
   int playerId = 1;
   if (GameObserver::GetInstance()->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
-  sprintf(buffer, "Player %i : -> %s", playerId, MTGPhaseNames[nextPhase]);
+  sprintf(buffer, "Player %i : -> %s", playerId, Constants::MTGPhaseNames[nextPhase]);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
 }
 
@@ -41,7 +41,7 @@ int StackAbility::resolve(){
   return (ability->resolve());
 }
 void StackAbility::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   char buffer[200];
@@ -102,7 +102,7 @@ int Spell::resolve(){
 }
 
 void Spell::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   char buffer[200];
@@ -148,7 +148,7 @@ int PutInGraveyard::resolve(){
 }
 
 void PutInGraveyard::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   if (!removeFromGame){
@@ -180,7 +180,7 @@ int DrawAction::resolve(){
 }
 
 void DrawAction::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   char buffer[200];
@@ -640,7 +640,7 @@ void ActionStack::Render(){
       if (current->state==NOT_RESOLVED) height += current->mHeight;
     }
 
-    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(0.75);
 
@@ -686,7 +686,7 @@ void ActionStack::Render(){
       if (current->display) height += current->mHeight;
     }
 
-    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(0.75);
 

@@ -57,15 +57,15 @@ public:
 
 //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
-    for (int j = 0; j < NB_BASIC_ABILITIES; j++){
-      unsigned int found = sabilities.find(MTGBasicAbilities[j]);
+    for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+      unsigned int found = sabilities.find(Constants::MTGBasicAbilities[j]);
       if (found != string::npos){
         abilities.push_back(j);
       }
     }
 
-    for (int j = 0; j < MTG_NB_COLORS; j++){
-      unsigned int found = sabilities.find(MTGColorStrings[j]);
+    for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+      unsigned int found = sabilities.find(Constants::MTGColorStrings[j]);
       if (found != string::npos){
         colors.push_back(j);
       }
@@ -214,7 +214,7 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
       for (int i = 0; i < nbTargets; i++){
 	MTGCardInstance * mTarget = mTargets[i];
 	if(mTarget && mTarget->basicAbilities[ability]){
@@ -239,7 +239,7 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
   }
 
   const char * getMenuText(){
-    return MTGBasicAbilities[ability];
+    return Constants::MTGBasicAbilities[ability];
   }
 
 
@@ -274,7 +274,7 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
       MTGCardInstance * _target = (MTGCardInstance *) target;
       _target->basicAbilities[ability] = stateBeforeActivation;
     }
@@ -289,7 +289,7 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
   }
 
   const char * getMenuText(){
-    return MTGBasicAbilities[ability];
+    return Constants::MTGBasicAbilities[ability];
   }
 
 };
@@ -372,7 +372,7 @@ class AUntaperOnceDuringTurn:public AUnBlocker{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP) untappedThisTurn = 0;
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) untappedThisTurn = 0;
     AUnBlocker::Update(dt);
   }
 
@@ -437,7 +437,7 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
 
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
       for (int i = 0; i < nbTargets; i++){
 	MTGCardInstance * mTarget = mTargets[i];
 	if(mTarget){
@@ -478,7 +478,7 @@ class APowerToughnessModifierUntilEndOfTurn: public MTGAbility{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
       while(counters){
 	((MTGCardInstance *)target)->power -= power;
 	((MTGCardInstance *)target)->addToToughness(-toughness);
@@ -596,15 +596,15 @@ class AManaProducer: public MTGAbility{
 
     int landColor = output->getMainColor();
 
-    if (landColor == MTG_COLOR_RED){
+    if (landColor == Constants::MTG_COLOR_RED){
       mParticleSys = NEW hgeParticleSystem("graphics/manared.psi",GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == MTG_COLOR_BLUE){
+    }else if (landColor == Constants::MTG_COLOR_BLUE){
       mParticleSys = NEW hgeParticleSystem("graphics/manablue.psi", GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == MTG_COLOR_GREEN){
+    }else if (landColor == Constants::MTG_COLOR_GREEN){
       mParticleSys = NEW hgeParticleSystem("graphics/managreen.psi", GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == MTG_COLOR_BLACK){
+    }else if (landColor == Constants::MTG_COLOR_BLACK){
       mParticleSys = NEW hgeParticleSystem("graphics/manablack.psi", GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == MTG_COLOR_WHITE){
+    }else if (landColor == Constants::MTG_COLOR_WHITE){
       mParticleSys = NEW hgeParticleSystem("graphics/manawhite.psi", GameApp::CommonRes->GetQuad("particles"));
     }else{
       mParticleSys = NEW hgeParticleSystem("graphics/mana.psi", GameApp::CommonRes->GetQuad("particles"));
@@ -685,19 +685,19 @@ class AManaProducer: public MTGAbility{
 	sprintf(buffer, "%i ", value);
 	menutext.append(buffer);
 	switch (i){
-	case MTG_COLOR_RED:
+	case Constants::MTG_COLOR_RED:
 	  menutext.append("red");
 	  break;
-	case MTG_COLOR_BLUE:
+	case Constants::MTG_COLOR_BLUE:
 	  menutext.append("blue");
 	  break;
-	case MTG_COLOR_GREEN:
+	case Constants::MTG_COLOR_GREEN:
 	  menutext.append("green");
 	  break;
-	case MTG_COLOR_WHITE:
+	case Constants::MTG_COLOR_WHITE:
 	  menutext.append("white");
 	  break;
-	case MTG_COLOR_BLACK:
+	case Constants::MTG_COLOR_BLACK:
 	  menutext.append("black");
 	  break;
 	default:
@@ -761,7 +761,7 @@ class ALifeLink:public MTGAbility{
 class ACircleOfProtection: public TargetAbility{
  public:
  ACircleOfProtection(int _id, MTGCardInstance * source, int _color):TargetAbility(_id,source,NEW DamageTargetChooser(source,_color),NEW ManaCost(),0,0){
-    cost->add(MTG_COLOR_ARTIFACT,1);
+    cost->add(Constants::MTG_COLOR_ARTIFACT,1);
   }
 
   int resolve(){
@@ -1193,7 +1193,7 @@ class AOldSchoolDeathtouch:public MTGAbility{
 
   void Update(float dt){
     if (newPhase != currentPhase){
-      if( newPhase == MTG_PHASE_COMBATDAMAGE){
+      if( newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
 	nbOpponents = 0;
 	MTGCardInstance * opponent = source->getNextOpponent();
 	while (opponent && !opponent->hasSubtype("wall")){
@@ -1201,7 +1201,7 @@ class AOldSchoolDeathtouch:public MTGAbility{
 	  nbOpponents ++;
 	  opponent = source->getNextOpponent(opponent);
 	}
-      }else if (newPhase == MTG_PHASE_COMBATEND){
+      }else if (newPhase == Constants::MTG_PHASE_COMBATEND){
 	for (int i = 0; i < nbOpponents ; i++){
 	  game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
 	}
@@ -1210,7 +1210,7 @@ class AOldSchoolDeathtouch:public MTGAbility{
   }
 
   int testDestroy(){
-    if(!game->isInPlay(source) && currentPhase != MTG_PHASE_UNTAP){
+    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
       return 0;
     }else{
       return MTGAbility::testDestroy();
@@ -1332,22 +1332,22 @@ class AArmageddonClock:public MTGAbility{
   ManaCost cost;
  AArmageddonClock(int id, MTGCardInstance * _source):MTGAbility(id, _source){
     counters = 0;
-    int _cost[] = {MTG_COLOR_ARTIFACT, 4};
+    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
     cost = ManaCost(_cost,1);
   }
 
   void Update(float dt){
     if (newPhase != currentPhase){
-      if (newPhase == MTG_PHASE_UPKEEP && game->currentPlayer->game->inPlay->hasCard(source)){
+      if (newPhase == Constants::MTG_PHASE_UPKEEP && game->currentPlayer->game->inPlay->hasCard(source)){
 	counters ++;
-      }else if (newPhase == MTG_PHASE_DRAW && counters > 0 && game->currentPlayer->game->inPlay->hasCard(source)){ //End of upkeep = beginning of draw
+      }else if (newPhase == Constants::MTG_PHASE_DRAW && counters > 0 && game->currentPlayer->game->inPlay->hasCard(source)){ //End of upkeep = beginning of draw
 	GameObserver::GetInstance()->mLayers->stackLayer()->addDamage(source,GameObserver::GetInstance()->players[0], counters);
 	GameObserver::GetInstance()->mLayers->stackLayer()->addDamage(source,GameObserver::GetInstance()->players[1], counters);
       }
     }
   }
   int isReactingToClick(MTGCardInstance *   _card){
-    if (counters > 0 && _card == source && currentPhase == MTG_PHASE_UPKEEP){
+    if (counters > 0 && _card == source && currentPhase == Constants::MTG_PHASE_UPKEEP){
       if (game->currentlyActing()->getManaPool()->canAfford( & cost)){
 	return 1;
       }
@@ -1373,10 +1373,10 @@ class ABlackVise: public MTGAbility{
   }
 
   void Update(float dt){
-    if (newPhase == MTG_PHASE_UPKEEP && GameObserver::GetInstance()->opponent()->game->inPlay->hasCard(source)){
+    if (newPhase == Constants::MTG_PHASE_UPKEEP && GameObserver::GetInstance()->opponent()->game->inPlay->hasCard(source)){
       nbcards = game->currentPlayer->game->hand->nb_cards;
     }
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_DRAW && GameObserver::GetInstance()->opponent()->game->inPlay->hasCard(source)){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && GameObserver::GetInstance()->opponent()->game->inPlay->hasCard(source)){
       if ( nbcards > 4) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, nbcards - 4);
     }
   }
@@ -1400,12 +1400,12 @@ class AChannel:public ActivatedAbility{
 
   int resolve(){
     source->controller()->life--;
-    source->controller()->getManaPool()->add(MTG_COLOR_ARTIFACT, 1);
+    source->controller()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, 1);
     return 1;
   }
 
   int testDestroy(){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP) return 1;
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) return 1;
     currentPhase = newPhase;
     return 0;
   }
@@ -1420,12 +1420,12 @@ class AClockworkBeast:public MTGAbility{
  AClockworkBeast(int id, MTGCardInstance * _source):MTGAbility(id, _source){
     counters = 7;
     ((MTGCardInstance *)target)->power+=7;
-    int _cost[] = {MTG_COLOR_ARTIFACT, 1};
+    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
     cost = ManaCost(_cost,1);
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_COMBATEND){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_COMBATEND){
       if (((MTGCardInstance *)source)->isAttacker() || ((MTGCardInstance *)source)->isDefenser()){
 	counters--;
 	((MTGCardInstance *)target)->power-=1;
@@ -1433,7 +1433,7 @@ class AClockworkBeast:public MTGAbility{
     }
   }
   int isReactingToClick(MTGCardInstance *  _card){
-    if (counters < 7  && _card == source && currentPhase == MTG_PHASE_UPKEEP && game->currentPlayer->game->inPlay->hasCard(source)){
+    if (counters < 7  && _card == source && currentPhase == Constants::MTG_PHASE_UPKEEP && game->currentPlayer->game->inPlay->hasCard(source)){
       if (game->currentlyActing()->getManaPool()->canAfford( & cost)){
 	return 1;
       }
@@ -1458,7 +1458,7 @@ class AConservator: public MTGAbility{
   ManaCost cost;
  AConservator(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
     canprevent = 0;
-    int _cost[] = {MTG_COLOR_ARTIFACT, 2};
+    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 2};
     cost = ManaCost(_cost, 1);
   }
 
@@ -1586,7 +1586,7 @@ class ADisruptingScepter:public TargetAbility{
  ADisruptingScepter(int id, MTGCardInstance * _source):TargetAbility(id,_source){
     MTGGameZone * zones[] = {GameObserver::GetInstance()->opponent()->game->hand};
     tc = NEW TargetZoneChooser(zones,1,_source);
-    int _cost[] = {MTG_COLOR_ARTIFACT, 3};
+    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 3};
     cost = NEW ManaCost(_cost,1);
   }
 
@@ -1617,7 +1617,7 @@ class AEbonyHorse:public TargetAbility{
  public:
 
  AEbonyHorse(int _id, MTGCardInstance * _source):TargetAbility(_id,_source, NEW CreatureTargetChooser()){
-    int _cost[] = {MTG_COLOR_ARTIFACT, 2};
+    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 2};
     cost = NEW ManaCost(_cost,1);
   }
 
@@ -1632,14 +1632,14 @@ class AEbonyHorse:public TargetAbility{
 class AFarmstead:public ActivatedAbility{
  public:
  AFarmstead(int _id, MTGCardInstance * source, MTGCardInstance * _target):ActivatedAbility(_id, source,0,1,0){
-    int _cost[] = {MTG_COLOR_WHITE, 2};
+    int _cost[] = {Constants::MTG_COLOR_WHITE, 2};
     cost = NEW ManaCost(_cost,1);
     target = _target;
   }
 
   int isReactingToClick(MTGCardInstance * card){
     if (!ActivatedAbility::isReactingToClick(card)) return 0;
-    if (currentPhase == MTG_PHASE_UPKEEP) return 1;
+    if (currentPhase == Constants::MTG_PHASE_UPKEEP) return 1;
     return 0;
   }
 
@@ -1706,7 +1706,7 @@ class AHowlingMine:public MTGAbility{
  AHowlingMine(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){}
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_DRAW && !source->tapped){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && !source->tapped){
       game->mLayers->stackLayer()->addDraw(game->currentPlayer);
     }
   }
@@ -1716,7 +1716,7 @@ class AHowlingMine:public MTGAbility{
 class AJayemdaeTome:public ActivatedAbility{
  public:
  AJayemdaeTome(int _id, MTGCardInstance * card):ActivatedAbility(_id, card){
-    int _cost[] = {MTG_COLOR_ARTIFACT, 4};
+    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
     cost = NEW ManaCost(_cost,1);
   }
 
@@ -1740,7 +1740,7 @@ class ALivingArtifact:public MTGAbility{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP) usedThisTurn = 0;
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) usedThisTurn = 0;
     Damage * damage = ((Damage *)game->mLayers->stackLayer()->getNext(latest,ACTION_DAMAGE,RESOLVED_OK));
     while (damage){
       if (damage->target == source->controller()){
@@ -1752,7 +1752,7 @@ class ALivingArtifact:public MTGAbility{
   }
 
   int isReactingtoclick(MTGCardInstance * card){
-    if (currentPhase == MTG_PHASE_UPKEEP && card == source && game->currentPlayer == source->controller() && counters && !usedThisTurn){
+    if (currentPhase == Constants::MTG_PHASE_UPKEEP && card == source && game->currentPlayer == source->controller() && counters && !usedThisTurn){
       return 1;
     }
     return 0;
@@ -1777,9 +1777,9 @@ class ALordOfThePit: public TargetAbility{
 
   void Update(float dt){
     if (newPhase != currentPhase && source->controller() == game->currentPlayer){
-      if (newPhase == MTG_PHASE_UNTAP){
+      if (newPhase == Constants::MTG_PHASE_UNTAP){
 	paidThisTurn = 0;
-      }else if( newPhase == MTG_PHASE_UPKEEP + 1 && !paidThisTurn){
+      }else if( newPhase == Constants::MTG_PHASE_UPKEEP + 1 && !paidThisTurn){
 	game->mLayers->stackLayer()->addDamage(source,source->controller(), 7);
       }
     }
@@ -1787,7 +1787,7 @@ class ALordOfThePit: public TargetAbility{
   }
 
   int isReactingToClick(MTGCardInstance * card){
-    if (currentPhase != MTG_PHASE_UPKEEP || paidThisTurn) return 0;
+    if (currentPhase != Constants::MTG_PHASE_UPKEEP || paidThisTurn) return 0;
     return TargetAbility::isReactingToClick(card);
   }
 
@@ -1839,11 +1839,11 @@ class AErgRaiders:public MTGAbility{
   void Update(float dt){
     if (newPhase != currentPhase){
       Player * controller =  source->controller();
-      if (newPhase == MTG_PHASE_COMBATDAMAGE && game->currentPlayer == controller){
+      if (newPhase == Constants::MTG_PHASE_COMBATDAMAGE && game->currentPlayer == controller){
 	if (!source->isAttacker() && init){
 	  dealDamage = 1;
 	}
-      }else if (newPhase == MTG_PHASE_UNTAP && game->currentPlayer != controller){
+      }else if (newPhase == Constants::MTG_PHASE_UNTAP && game->currentPlayer != controller){
 	if (dealDamage){
 	  game->mLayers->stackLayer()->addDamage(source, controller,2);
 	}
@@ -1864,7 +1864,7 @@ class AFastbond:public TriggeredAbility{
   }
 
   void Update(float dt){
-    if (newPhase!=currentPhase && newPhase == MTG_PHASE_UNTAP){
+    if (newPhase!=currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
       alreadyPlayedALand = 0;
     }
     TriggeredAbility::Update(dt);
@@ -1899,7 +1899,7 @@ class AHypnoticSpecter:public MTGAbility{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
       for (int i = 0; i < 2; i++){
 	nbdamagesthisturn[i] = 0;
       }
@@ -1938,7 +1938,7 @@ class AHypnoticSpecter:public MTGAbility{
 class AJandorsRing:public ActivatedAbility{
  public:
  AJandorsRing(int _id, MTGCardInstance * _source):ActivatedAbility(_id,_source, NEW ManaCost()){
-    cost->add(MTG_COLOR_ARTIFACT, 2);
+    cost->add(Constants::MTG_COLOR_ARTIFACT, 2);
   }
 
   int isReactingToClick(MTGCardInstance * card){
@@ -2013,7 +2013,6 @@ class AKudzu: public TargetAbility{
   }
 
   int testDestroy(){
-    GameObserver * g = GameObserver::GetInstance();
     int stillLandsInPlay = 0;
     for (int i = 0; i < 2; i++){
       if (game->players[i]->game->inPlay->hasType("land")) stillLandsInPlay = 1;
@@ -2037,7 +2036,7 @@ class AKudzu: public TargetAbility{
 class AMillstone:public TargetAbility{
  public:
  AMillstone(int _id, MTGCardInstance * card):TargetAbility(_id,card, NEW PlayerTargetChooser(), NEW ManaCost()){
-    cost->add(MTG_COLOR_ARTIFACT, 2);
+    cost->add(Constants::MTG_COLOR_ARTIFACT, 2);
   }
 
   int resolve(){
@@ -2084,11 +2083,11 @@ class ANightmare:public ListMaintainerAbility{
 class APestilence: public ActivatedAbility{
  public:
  APestilence(int _id, MTGCardInstance * card):ActivatedAbility(_id, card, NEW ManaCost(), 0,0){
-    cost->add(MTG_COLOR_BLACK, 1);
+    cost->add(Constants::MTG_COLOR_BLACK, 1);
   }
 
   void Update(float dt){
-    if (newPhase !=currentPhase && newPhase == MTG_PHASE_EOT){
+    if (newPhase !=currentPhase && newPhase == Constants::MTG_PHASE_EOT){
       if (!game->players[0]->game->inPlay->hasType("creature") && !game->players[1]->game->inPlay->hasType("creature")){
 	source->controller()->game->putInGraveyard(source);
       }
@@ -2145,13 +2144,13 @@ class APowerLeak:public TriggeredAbility{
   int damagesToDealThisTurn;
   ManaCost cost;
  APowerLeak(int _id, MTGCardInstance * _source, MTGCardInstance * _target):TriggeredAbility(_id, _source, _target){
-    cost.add(MTG_COLOR_ARTIFACT, 1);
+    cost.add(Constants::MTG_COLOR_ARTIFACT, 1);
     damagesToDealThisTurn = 0;
   }
 
   void Update(float dt){
     MTGCardInstance * _target  = (MTGCardInstance *) target;
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UPKEEP && _target->controller() == game->currentPlayer){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && _target->controller() == game->currentPlayer){
       damagesToDealThisTurn = 2;
     }
     TriggeredAbility::Update(dt);
@@ -2159,7 +2158,7 @@ class APowerLeak:public TriggeredAbility{
 
   int isReactingToClick(MTGCardInstance * card){
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (damagesToDealThisTurn && currentPhase == MTG_PHASE_UPKEEP && card==source && _target->controller() == game->currentPlayer){
+    if (damagesToDealThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && card==source && _target->controller() == game->currentPlayer){
       if (game->currentPlayer->getManaPool()->canAfford(& cost)) return 1;
     }
     return 0;
@@ -2173,7 +2172,7 @@ class APowerLeak:public TriggeredAbility{
 
   int trigger(){
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_DRAW && _target->controller() == game->currentPlayer){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && _target->controller() == game->currentPlayer){
       if (damagesToDealThisTurn) return 1;
     }
     return 0;
@@ -2195,7 +2194,7 @@ class APowerSurge:public TriggeredAbility{
   }
 
   int trigger(){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_EOT){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_EOT){
       //That's ugly but untapped land at the beginning of the turn are opponent's untapped lands at the end of the turn
       totalLands = 0;
       MTGInPlay * inPlay = game->opponent()->game->inPlay;
@@ -2206,7 +2205,7 @@ class APowerSurge:public TriggeredAbility{
 	}
       }
     }
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UPKEEP && totalLands){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && totalLands){
       return 1;
     }
     return 0;
@@ -2250,7 +2249,7 @@ class ASacrifice:public InstantAbility{
     if (_target->isInPlay()){
       game->currentlyActing()->game->putInGraveyard(_target);
       int x = _target->getManaCost()->getConvertedCost();
-      game->currentlyActing()->getManaPool()->add(MTG_COLOR_BLACK, x);
+      game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_BLACK, x);
     }
     return 1;
   }
@@ -2312,7 +2311,7 @@ class ASerendibEfreet:public MTGAbility{
   }
 
   void Update(float dt){
-    if (newPhase == MTG_PHASE_UPKEEP && newPhase != currentPhase && game->currentPlayer == source->controller()){
+    if (newPhase == Constants::MTG_PHASE_UPKEEP && newPhase != currentPhase && game->currentPlayer == source->controller()){
       game->mLayers->stackLayer()->addDamage(source,game->currentPlayer,1);
     }
   }
@@ -2362,7 +2361,7 @@ class AWanderlust:public TriggeredAbility{
  AWanderlust(int _id, MTGCardInstance * _source, MTGCardInstance * _target):TriggeredAbility(_id,_source, _target){}
 
   int trigger(){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UPKEEP && ((MTGCardInstance *) target)->controller()==game->currentPlayer){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && ((MTGCardInstance *) target)->controller()==game->currentPlayer){
       return 1;
     }
     return 0;
@@ -2387,7 +2386,7 @@ class AAtog:public TargetAbility{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
       for (int i = 0; i < counters; i++){
 	source->power-=2;
 	source->addToToughness(-2);
@@ -2420,11 +2419,11 @@ class AAtog:public TargetAbility{
 class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
  public:
  ADragonWhelp(int id, MTGCardInstance * card):APowerToughnessModifierUntilEndOfTurn(id, card, card, 1, 0, NEW ManaCost()){
-    cost->add(MTG_COLOR_RED, 1);
+    cost->add(Constants::MTG_COLOR_RED, 1);
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP && counters > 3){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP && counters > 3){
       source->controller()->game->putInGraveyard(source);
     }
     APowerToughnessModifierUntilEndOfTurn::Update(dt);
@@ -2435,7 +2434,7 @@ class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
 //1288 EarthBind
 class AEarthbind:public ABasicAbilityModifier{
  public:
- AEarthbind(int _id, MTGCardInstance * _source, MTGCardInstance * _target):ABasicAbilityModifier(_id,_source,_target,FLYING,0){
+ AEarthbind(int _id, MTGCardInstance * _source, MTGCardInstance * _target):ABasicAbilityModifier(_id,_source,_target,Constants::FLYING,0){
     if (value_before_modification) game->mLayers->stackLayer()->addDamage(source,target,2);
   }
 };
@@ -2461,14 +2460,14 @@ class AForceOfNature:public ActivatedAbility{
   int dealDamageThisTurn;
  AForceOfNature(int _id, MTGCardInstance * card):ActivatedAbility(_id,card, NEW ManaCost(),1,0){
     dealDamageThisTurn = 0;
-    cost->add(MTG_COLOR_GREEN,4);
+    cost->add(Constants::MTG_COLOR_GREEN,4);
   }
 
   void Update(float dt){
     if (newPhase !=currentPhase){
-      if (newPhase == MTG_PHASE_UNTAP){
+      if (newPhase == Constants::MTG_PHASE_UNTAP){
 	dealDamageThisTurn = 1;
-      }else if (newPhase == MTG_PHASE_DRAW && dealDamageThisTurn && game->currentPlayer==source->controller() ){
+      }else if (newPhase == Constants::MTG_PHASE_DRAW && dealDamageThisTurn && game->currentPlayer==source->controller() ){
 	game->mLayers->stackLayer()->addDamage(source,source->controller(),8);
       }
     }
@@ -2476,7 +2475,7 @@ class AForceOfNature:public ActivatedAbility{
   }
 
   int isReactingToClick(MTGCardInstance * card){
-    return (dealDamageThisTurn && currentPhase == MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card));
+    return (dealDamageThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card));
   }
 
   int resolve(){
@@ -2605,19 +2604,19 @@ class AIslandSanctuary:public MTGAbility{
   }
 
   void Update(float dt){
-    if (currentPhase == MTG_PHASE_UNTAP && game->currentPlayer == source->controller()) initThisTurn = 0;
+    if (currentPhase == Constants::MTG_PHASE_UNTAP && game->currentPlayer == source->controller()) initThisTurn = 0;
 
-    if (initThisTurn && currentPhase == MTG_PHASE_COMBATATTACKERS && game->currentPlayer != source->controller()){
+    if (initThisTurn && currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && game->currentPlayer != source->controller()){
       MTGGameZone *  zone = game->currentPlayer->game->inPlay;
       for (int i = 0; i < zone->nb_cards; i++){
 	MTGCardInstance * card =  zone->cards[i];
-	if (card->isAttacker() && !card->basicAbilities[FLYING] && !card->basicAbilities[ISLANDWALK]) card->attacker=0;
+	if (card->isAttacker() && !card->basicAbilities[Constants::FLYING] && !card->basicAbilities[Constants::ISLANDWALK]) card->attacker=0;
       }
     }
   }
 
   int isReactingToClick(MTGCardInstance * card){
-    if (card==source && game->currentPlayer == card->controller() && currentPhase == MTG_PHASE_DRAW){
+    if (card==source && game->currentPlayer == card->controller() && currentPhase == Constants::MTG_PHASE_DRAW){
       Interruptible * action = game->mLayers->stackLayer()->_(-1);
       if (action->type == ACTION_DRAW) return 1;
     }
@@ -2640,7 +2639,7 @@ class AKarma: public TriggeredAbility{
   }
 
   int trigger(){
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_UPKEEP) return 1;
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
     return 0;
   }
 
@@ -2659,14 +2658,14 @@ class AKarma: public TriggeredAbility{
 class ANorthernPaladin:public TargetAbility{
  public:
  ANorthernPaladin(int _id, MTGCardInstance * card):TargetAbility(_id, card){
-    int _cost[] = {MTG_COLOR_WHITE, 2};
+    int _cost[] = {Constants::MTG_COLOR_WHITE, 2};
     cost = NEW ManaCost(_cost,1);
     tc = NEW TargetChooser();
   }
 
   int resolve(){
     MTGCardInstance * card = tc->getNextCardTarget();
-    if (card->hasColor(MTG_COLOR_BLACK)){
+    if (card->hasColor(Constants::MTG_COLOR_BLACK)){
       card->controller()->game->putInGraveyard(card);
       return 1;
     }
@@ -2707,7 +2706,7 @@ class ASoulNet:public ActivatedAbility{
   PutInGraveyard * latest;
   PutInGraveyard * newDead;
  ASoulNet(int _id, MTGCardInstance * card):ActivatedAbility(_id, card,0,0,0){
-    int _cost[] = {MTG_COLOR_ARTIFACT, 1};
+    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
     cost = NEW ManaCost(_cost,1);
     latest = ((PutInGraveyard *) GameObserver::GetInstance()->mLayers->stackLayer()->getPrevious(NULL,ACTION_PUTINGRAVEYARD,RESOLVED_OK));
     newDead = latest;
@@ -2733,22 +2732,22 @@ class AStasis:public ActivatedAbility{
   int paidThisTurn;
  AStasis(int _id, MTGCardInstance * card):ActivatedAbility(_id,card, NEW ManaCost(),1,0){
     paidThisTurn = 1;
-    cost->add(MTG_COLOR_BLUE,1);
+    cost->add(Constants::MTG_COLOR_BLUE,1);
   }
 
   void Update(float dt){
     //Upkeep Cost
     if (newPhase !=currentPhase){
-      if (newPhase == MTG_PHASE_UPKEEP){
+      if (newPhase == Constants::MTG_PHASE_UPKEEP){
 	paidThisTurn = 0;
-      }else if (!paidThisTurn && newPhase > MTG_PHASE_UPKEEP &&  game->currentPlayer==source->controller() ){
+      }else if (!paidThisTurn && newPhase > Constants::MTG_PHASE_UPKEEP &&  game->currentPlayer==source->controller() ){
 	game->currentPlayer->game->putInGraveyard(source);
 	paidThisTurn = 1;
       }
     }
     //Stasis Effect
     for (int i = 0; i < 2; i++){
-      game->phaseRing->removePhase(MTG_PHASE_UNTAP,game->players[i]);
+      game->phaseRing->removePhase(Constants::MTG_PHASE_UNTAP,game->players[i]);
     }
 
     //Parent Class Method Call
@@ -2756,7 +2755,7 @@ class AStasis:public ActivatedAbility{
   }
 
   int isReactingToClick(MTGCardInstance * card){
-    return (!paidThisTurn && currentPhase == MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card));
+    return (!paidThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card));
   }
 
   int resolve(){
@@ -2766,7 +2765,7 @@ class AStasis:public ActivatedAbility{
 
   int destroy(){
     for (int i = 0; i < 2; i++){
-      game->phaseRing->addPhaseBefore(MTG_PHASE_UNTAP,game->players[i],MTG_PHASE_UPKEEP,game->players[i]);
+      game->phaseRing->addPhaseBefore(Constants::MTG_PHASE_UNTAP,game->players[i],Constants::MTG_PHASE_UPKEEP,game->players[i]);
     }
     return 1;
   }
@@ -2779,7 +2778,7 @@ class AStasis:public ActivatedAbility{
 class AShieldOfTheAge: public TargetAbility{
  public:
  AShieldOfTheAge(int _id, MTGCardInstance * card):TargetAbility(_id,card,NEW DamageTargetChooser(card,_id),NEW ManaCost(),0,0){
-    cost->add(MTG_COLOR_ARTIFACT,2);
+    cost->add(Constants::MTG_COLOR_ARTIFACT,2);
   }
 
   int resolve(){
@@ -2824,15 +2823,15 @@ class AAbomination :public MTGAbility{
 
   void Update(float dt){
     if (newPhase != currentPhase){
-      if( newPhase == MTG_PHASE_COMBATDAMAGE){
+      if( newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
 	nbOpponents = 0;
 	MTGCardInstance * opponent = source->getNextOpponent();
-	while ((opponent && opponent->hasColor(MTG_COLOR_GREEN)) || opponent->hasColor(MTG_COLOR_WHITE)){
+	while ((opponent && opponent->hasColor(Constants::MTG_COLOR_GREEN)) || opponent->hasColor(Constants::MTG_COLOR_WHITE)){
 	  opponents[nbOpponents] = opponent;
 	  nbOpponents ++;
 	  opponent = source->getNextOpponent(opponent);
 	}
-      }else if (newPhase == MTG_PHASE_COMBATEND){
+      }else if (newPhase == Constants::MTG_PHASE_COMBATEND){
 	for (int i = 0; i < nbOpponents ; i++){
 	  game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
 	}
@@ -2841,7 +2840,7 @@ class AAbomination :public MTGAbility{
   }
 
   int testDestroy(){
-    if(!game->isInPlay(source) && currentPhase != MTG_PHASE_UNTAP){
+    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
       return 0;
     }else{
       return MTGAbility::testDestroy();
@@ -2890,9 +2889,9 @@ class AMinionofLeshrac: public TargetAbility{
 
   void Update(float dt){
     if (newPhase != currentPhase && source->controller() == game->currentPlayer){
-      if (newPhase == MTG_PHASE_UNTAP){
+      if (newPhase == Constants::MTG_PHASE_UNTAP){
 	paidThisTurn = 0;
-      }else if( newPhase == MTG_PHASE_UPKEEP + 1 && !paidThisTurn){
+      }else if( newPhase == Constants::MTG_PHASE_UPKEEP + 1 && !paidThisTurn){
 	game->mLayers->stackLayer()->addDamage(source,source->controller(), 5);
 	source->tapped = 1;
       }
@@ -2901,7 +2900,7 @@ class AMinionofLeshrac: public TargetAbility{
   }
 
   int isReactingToClick(MTGCardInstance * card){
-    if (currentPhase != MTG_PHASE_UPKEEP || paidThisTurn) return 0;
+    if (currentPhase != Constants::MTG_PHASE_UPKEEP || paidThisTurn) return 0;
     return TargetAbility::isReactingToClick(card);
   }
 
@@ -3040,7 +3039,7 @@ class A1RampageAbility:public MTGAbility{
   void Update(float dt){
     if (source->isAttacker()){
       if (newPhase != currentPhase){
-	if( newPhase == MTG_PHASE_COMBATDAMAGE){
+	if( newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
 	  nbOpponents = 0;
 	  MTGCardInstance * opponent = source->getNextOpponent();
 	  while (opponent){

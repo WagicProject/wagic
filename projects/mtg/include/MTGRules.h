@@ -61,7 +61,7 @@ class MTGPersistRule:public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card->basicAbilities[PERSIST] && !card->counters->hasCounter(-1,-1) ){
+    if (card->basicAbilities[Constants::PERSIST] && !card->counters->hasCounter(-1,-1) ){
 #if defined (WIN32) || defined (LINUX)
       OutputDebugString("yay, persist !\n");
 #endif
@@ -90,7 +90,7 @@ class MTGLegendRule:public ListMaintainerAbility{
  MTGLegendRule(int _id):ListMaintainerAbility(_id){};
 
   int canBeInList(MTGCardInstance * card){
-    if (card->basicAbilities[LEGENDARY]){
+    if (card->basicAbilities[Constants::LEGENDARY]){
       return 1;
     }
     return 0;

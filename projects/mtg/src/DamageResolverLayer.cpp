@@ -15,7 +15,7 @@ DamageResolverLayer::DamageResolverLayer(int id, GameObserver * _game):PlayGuiOb
 }
 void DamageResolverLayer::Update(float dt){
   int newPhase = game->getCurrentGamePhase();
-  if (newPhase == MTG_PHASE_COMBATDAMAGE){
+  if (newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
     if (!game->mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)){
 
       if (newPhase != currentPhase){
@@ -38,10 +38,10 @@ Player * DamageResolverLayer::whoSelectsDamagesDealtBy(MTGCardInstance * card){
     MTGInPlay * defensers = game->opponent()->game->inPlay;
     int nbdefensers = defensers->nbDefensers(card);
     if (nbdefensers == 0) return NULL;
-    if(nbdefensers == 1 && !card->has(TRAMPLE)) return NULL;
+    if(nbdefensers == 1 && !card->has(Constants::TRAMPLE)) return NULL;
     MTGCardInstance * defenser = defensers->getNextDefenser(NULL, card);
     while (defenser != NULL){
-      if (defenser->has(BANDING)) return game->opponent();
+      if (defenser->has(Constants::BANDING)) return game->opponent();
       defenser = defensers->getNextDefenser(defenser, card);
     }
     return game->currentPlayer;
@@ -143,7 +143,7 @@ int DamageResolverLayer::initResolve(){
     sprintf(buf, "attacker : %s \n", attacker->getName());
     OutputDebugString(buf);
 #endif
-    if ((!strike && !attacker->has(FIRSTSTRIKE)) || (strike && attacker->has(FIRSTSTRIKE)) || attacker->has(DOUBLESTRIKE)){
+    if ((!strike && !attacker->has(Constants::FIRSTSTRIKE)) || (strike && attacker->has(Constants::FIRSTSTRIKE)) || attacker->has(Constants::DOUBLESTRIKE)){
       Player * selecter = whoSelectsDamagesDealtBy(attacker);
       if (!selecter){
 	addAutoDamageToOpponents(attacker);
@@ -153,7 +153,7 @@ int DamageResolverLayer::initResolve(){
     }
     MTGCardInstance * defenser = defensers->getNextDefenser(NULL, attacker);
     while (defenser != NULL){
-      if ((!strike && !defenser->has(FIRSTSTRIKE)) || (strike && defenser->has(FIRSTSTRIKE)) || defenser->has(DOUBLESTRIKE)){
+      if ((!strike && !defenser->has(Constants::FIRSTSTRIKE)) || (strike && defenser->has(Constants::FIRSTSTRIKE)) || defenser->has(Constants::DOUBLESTRIKE)){
 	Player * selecterb = whoSelectsDamagesDealtBy(defenser);
 	if (!selecterb){
 	  addAutoDamageToOpponents(defenser);
@@ -201,7 +201,7 @@ int DamageResolverLayer::canStopDealDamages(){
     if (current->damageSelecter==currentChoosingPlayer && current->damageToDeal > 0){
       MTGCardInstance * card = current->card;
       if (card->controller() == game->currentPlayer){ //Attacker
-	if (card->has(TRAMPLE)){
+	if (card->has(Constants::TRAMPLE)){
 	  MTGInPlay * defensers = game->opponent()->game->inPlay;
 	  MTGCardInstance * defenser = defensers->getNextDefenser(NULL, card);
 	  while (defenser != NULL){
@@ -226,7 +226,7 @@ int DamageResolverLayer::trampleDamage(){
     if (current->damageToDeal > 0){
       MTGCardInstance * card = current->card;
       if (card->controller() == game->currentPlayer){ //Attacker
-	if (card->has(TRAMPLE)){
+	if (card->has(Constants::TRAMPLE)){
 	  Damage * damage = NEW Damage(0, card, game->opponent(), current->damageToDeal);
 	  damageStack->Add(damage);
 	}
@@ -334,7 +334,7 @@ bool DamageResolverLayer::CheckUserInput(u32 key){
 
 void DamageResolverLayer::Render(){
   if (!mCount) return;
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
 

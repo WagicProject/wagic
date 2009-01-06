@@ -8,7 +8,7 @@
 /* Creates a new phase ring with the default rules */
 PhaseRing::PhaseRing(Player* players[], int nbPlayers){
   for (int i = 0; i < nbPlayers; i++){
-    for (int j = 0; j <NB_MTG_PHASES; j++){
+    for (int j = 0; j < Constants::NB_MTG_PHASES; j++){
       Phase * phase = NEW Phase(j,players[i]);
       addPhase(phase);
     }

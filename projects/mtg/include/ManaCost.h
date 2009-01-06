@@ -9,7 +9,7 @@ class ManaCostHybrid;
 
 class ManaCost{
  protected:
-  int cost[MTG_NB_COLORS+1];
+  int cost[Constants::MTG_NB_COLORS+1];
   ManaCostHybrid * hybrids[10];
   int nbhybrids;
  public:

@@ -83,24 +83,24 @@ void GameObserver::nextGamePhase(){
   if (currentPlayer != cPhase->player) nextPlayer();
 
   //init begin of turn
-  if (currentGamePhase == MTG_PHASE_BEFORE_BEGIN){
+  if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN){
     cleanupPhase();
     currentPlayer->canPutLandsIntoPlay = 1;
     mLayers->actionLayer()->Update(0);
     return nextGamePhase();
   }
   //manaBurn
-  if (currentGamePhase == MTG_PHASE_UNTAP ||
-      currentGamePhase == MTG_PHASE_FIRSTMAIN ||
-      currentGamePhase == MTG_PHASE_COMBATBEGIN ||
-      currentGamePhase == MTG_PHASE_SECONDMAIN ||
-      currentGamePhase == MTG_PHASE_ENDOFTURN
+  if (currentGamePhase == Constants::MTG_PHASE_UNTAP ||
+      currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN ||
+      currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN ||
+      currentGamePhase == Constants::MTG_PHASE_SECONDMAIN ||
+      currentGamePhase == Constants::MTG_PHASE_ENDOFTURN
       ){
     currentPlayer->manaBurn();
   }
 
   //After End of turn
-  if (currentGamePhase == MTG_PHASE_AFTER_EOT){
+  if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT){
     //Auto Hand cleaning, in case the player didn't do it himself
     while(currentPlayer->game->hand->nb_cards > 7){
       currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
@@ -112,10 +112,10 @@ void GameObserver::nextGamePhase(){
 
   //Phase Specific actions
   switch(currentGamePhase){
-  case MTG_PHASE_UNTAP:
+  case Constants::MTG_PHASE_UNTAP:
     untapPhase();
     break;
-  case MTG_PHASE_DRAW:
+  case Constants::MTG_PHASE_DRAW:
     mLayers->stackLayer()->addDraw(currentPlayer,1);
     break;
   default:
@@ -147,8 +147,8 @@ void GameObserver::startGame(int shuffle, int draw){
   for (i=0; i<nbPlayers; i++){
     players[i]->game->initGame(shuffle, draw);
   }
-  phaseRing->goToPhase(MTG_PHASE_FIRSTMAIN, players[0]);
-  currentGamePhase = MTG_PHASE_FIRSTMAIN;
+  phaseRing->goToPhase(Constants::MTG_PHASE_FIRSTMAIN, players[0]);
+  currentGamePhase = Constants::MTG_PHASE_FIRSTMAIN;
 }
 
 void GameObserver::addObserver(MTGAbility * observer){
@@ -176,9 +176,9 @@ GameObserver::~GameObserver(){
 
 void GameObserver::Update(float dt){
   Player * player =  currentPlayer;
-  if (currentGamePhase == MTG_PHASE_COMBATBLOCKERS){
+  if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS){
     player = opponent();
-  }else	if (currentGamePhase == MTG_PHASE_COMBATDAMAGE){
+  }else	if (currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE){
     DamageResolverLayer *  drl = mLayers->combatLayer();
     if (drl->currentChoosingPlayer && drl->mCount) player = drl->currentChoosingPlayer;
   }
@@ -315,7 +315,7 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
 	  currentPlayer->canPutLandsIntoPlay--;
 	}
       }else if (currentPlayer->game->hand->hasCard(card)){ 		//Current player's hand
-	if (currentGamePhase == MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7){
+	if (currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7){
 	  currentPlayer->game->putInGraveyard(card);
 	}
       }
@@ -326,7 +326,7 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
 	mLayers->actionLayer()->setMenuObject(object);
       }
     }else if (card->isTapped() && card->controller() == currentPlayer){
-      int a = ConstraintResolver::untap(this, card);
+      //      int a = ConstraintResolver::untap(this, card);
     }
   }
 
@@ -349,11 +349,11 @@ int GameObserver::canPutInPlay(MTGCardInstance *  card){
   LOG("CANPUTINPLAY- check if card is land or can be played\n");
   if (card->hasType("land")){
     LOG("CANPUTINPLAY- card is land - check if can be played\n");
-    if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (currentGamePhase == MTG_PHASE_FIRSTMAIN || currentGamePhase == MTG_PHASE_SECONDMAIN)){
+    if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)){
       LOG("CANPUTINPLAY- Land, ok\n");
       return 1;
     }
-  }else if ((card->hasType("instant")) || card->has(FLASH) || (player == currentPlayer && (currentGamePhase == MTG_PHASE_FIRSTMAIN || currentGamePhase == MTG_PHASE_SECONDMAIN))){
+  }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && (currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
     LOG("CANPUTINPLAY- correct time to play\n");
     if (checkManaCost(card)){
       LOG("CANPUTINPLAY- ManaCost ok\n");

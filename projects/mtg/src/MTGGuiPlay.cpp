@@ -38,13 +38,13 @@ MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id,
 
   mIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/menuicons.png", TEX_TYPE_USE_VRAM);
   //load all the icon images
-  mIcons[MTG_COLOR_ARTIFACT] = NEW JQuad(mIconsTexture, 2+6*36, 38, 32, 32);
-  mIcons[MTG_COLOR_LAND] = NEW JQuad(mIconsTexture, 2+5*36, 38, 32, 32);
-  mIcons[MTG_COLOR_WHITE] = NEW JQuad(mIconsTexture, 2+4*36, 38, 32, 32);
-  mIcons[MTG_COLOR_RED] = NEW JQuad(mIconsTexture, 2+3*36, 38, 32, 32);
-  mIcons[MTG_COLOR_BLACK] = NEW JQuad(mIconsTexture, 2+2*36, 38, 32, 32);
-  mIcons[MTG_COLOR_BLUE] = NEW JQuad(mIconsTexture, 2+1*36, 38, 32, 32);
-  mIcons[MTG_COLOR_GREEN] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_ARTIFACT] = NEW JQuad(mIconsTexture, 2+6*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_LAND] = NEW JQuad(mIconsTexture, 2+5*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_WHITE] = NEW JQuad(mIconsTexture, 2+4*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_RED] = NEW JQuad(mIconsTexture, 2+3*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_BLACK] = NEW JQuad(mIconsTexture, 2+2*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_BLUE] = NEW JQuad(mIconsTexture, 2+1*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_GREEN] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
   for (int i=0; i < 7; i++){
     mIcons[i]->SetHotSpot(16,16);
   }
@@ -311,7 +311,7 @@ void MTGGuiPlay::RenderPhaseBar(){
   }else{
     mFont->SetColor(ARGB(255,255,255,255));
   }
-  mFont->DrawString(MTGPhaseNames[currentPhase], 375, 0);
+  mFont->DrawString(Constants::MTGPhaseNames[currentPhase], 375, 0);
 }
 
 void MTGGuiPlay::Render(){
@@ -323,7 +323,7 @@ void MTGGuiPlay::Render(){
   //mBg2->SetColor(ARGB(alphaBg[0], alphaBg[1],alphaBg[2],alphaBg[3]));
   renderer->RenderQuad(mBg2,0,17);
 
-  if (game->currentGamePhase >=MTG_PHASE_COMBATBEGIN && game->currentGamePhase < MTG_PHASE_COMBATEND){
+  if (game->currentGamePhase >= Constants::MTG_PHASE_COMBATBEGIN && game->currentGamePhase < Constants::MTG_PHASE_COMBATEND){
     if (alphaBg[0] < 50){
       alphaBg[3]-=12;
       alphaBg[2]-=12;

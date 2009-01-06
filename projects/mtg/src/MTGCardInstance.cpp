@@ -175,7 +175,7 @@ int MTGCardInstance::cleanup(){
  */
 int MTGCardInstance::hasSummoningSickness(){
   if (!summoningSickness) return 0;
-  if (basicAbilities[HASTE]) return 0;
+  if (basicAbilities[Constants::HASTE]) return 0;
   if (!isACreature()) return 0;
   return 1;
 }
@@ -211,7 +211,7 @@ Player * MTGCardInstance::controller(){
 }
 
 int MTGCardInstance::canAttack(){
-  if (!hasSummoningSickness() && !tapped && isACreature() && basicAbilities[DEFENSER] !=1)
+  if (!hasSummoningSickness() && !tapped && isACreature() && basicAbilities[Constants::DEFENSER] !=1)
     return 1;
   return 0;
 }
@@ -242,18 +242,18 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   if (!opponent->isAttacker()) return 0;
   // Comprehensive rule 502.7f : If a creature with protection attacks, it can't be blocked by creatures that have the stated quality.
   if (opponent->protectedAgainst(this)) return 0;
-  if (opponent->basicAbilities[UNBLOCKABLE]) return 0;
-  if (opponent->basicAbilities[FEAR] && !(hasColor(MTG_COLOR_ARTIFACT) || hasColor(MTG_COLOR_BLACK))) return 0;
-  if (opponent->basicAbilities[FLYING] && !( basicAbilities[FLYING] || basicAbilities[REACH])) return 0;
+  if (opponent->basicAbilities[Constants::UNBLOCKABLE]) return 0;
+  if (opponent->basicAbilities[Constants::FEAR] && !(hasColor(Constants::MTG_COLOR_ARTIFACT) || hasColor(Constants::MTG_COLOR_BLACK))) return 0;
+  if (opponent->basicAbilities[Constants::FLYING] && !( basicAbilities[Constants::FLYING] || basicAbilities[Constants::REACH])) return 0;
   // If opponent has shadow and a creature does not have either shadow or reachshadow it cannot be blocked
-  if (opponent->basicAbilities[SHADOW] && !( basicAbilities[SHADOW] || basicAbilities[REACHSHADOW])) return 0;
+  if (opponent->basicAbilities[Constants::SHADOW] && !( basicAbilities[Constants::SHADOW] || basicAbilities[Constants::REACHSHADOW])) return 0;
   // If opponent does not have shadow and a creature has shadow it cannot be blocked
-  if (!opponent->basicAbilities[SHADOW] && basicAbilities[SHADOW]) return 0;
-  if (opponent->basicAbilities[SWAMPWALK] && controller()->game->inPlay->hasType("swamp")) return 0;
-  if (opponent->basicAbilities[FORESTWALK] && controller()->game->inPlay->hasType("forest")) return 0;
-  if (opponent->basicAbilities[ISLANDWALK] && controller()->game->inPlay->hasType("island")) return 0;
-  if (opponent->basicAbilities[MOUNTAINWALK] && controller()->game->inPlay->hasType("mountain")) return 0;
-  if (opponent->basicAbilities[PLAINSWALK] && controller()->game->inPlay->hasType("plains")) return 0;
+  if (!opponent->basicAbilities[Constants::SHADOW] && basicAbilities[Constants::SHADOW]) return 0;
+  if (opponent->basicAbilities[Constants::SWAMPWALK] && controller()->game->inPlay->hasType("swamp")) return 0;
+  if (opponent->basicAbilities[Constants::FORESTWALK] && controller()->game->inPlay->hasType("forest")) return 0;
+  if (opponent->basicAbilities[Constants::ISLANDWALK] && controller()->game->inPlay->hasType("island")) return 0;
+  if (opponent->basicAbilities[Constants::MOUNTAINWALK] && controller()->game->inPlay->hasType("mountain")) return 0;
+  if (opponent->basicAbilities[Constants::PLAINSWALK] && controller()->game->inPlay->hasType("plains")) return 0;
   return 1;
 }
 
@@ -261,7 +261,7 @@ MTGCardInstance * MTGCardInstance::getNextPartner(){
   MTGInPlay * inplay = controller()->game->inPlay;
   MTGCardInstance * bandingPartner = inplay->getNextAttacker(banding);
   while (bandingPartner){
-    if (basicAbilities[BANDING] || bandingPartner->basicAbilities[BANDING]) return bandingPartner;
+    if (basicAbilities[Constants::BANDING] || bandingPartner->basicAbilities[Constants::BANDING]) return bandingPartner;
     bandingPartner = inplay->getNextAttacker(bandingPartner);
   }
   return NULL;
@@ -422,9 +422,9 @@ JSample * MTGCardInstance::getSample(){
     }
   }
   if (!sample.size()){
-    for (int i = 0; i < NB_BASIC_ABILITIES; i++){
+    for (int i = 0; i < Constants::NB_BASIC_ABILITIES; i++){
       if (!basicAbilities[i]) continue;
-      string type = MTGBasicAbilities[i];
+      string type = Constants::MTGBasicAbilities[i];
       type = "sound/sfx/" + type + ".wav";
       if (fileExists(type.c_str())){
         sample = type;

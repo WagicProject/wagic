@@ -300,20 +300,20 @@ void GameStateMenu::createUsersFirstDeck(int setId){
 #endif
   MTGDeck *mCollection = NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache, mParent->collection);
   //10 lands of each
-  if (!mCollection->addRandomCards(10, setId,RARITY_L,"Forest")){
-    mCollection->addRandomCards(10, -1,RARITY_L,"Forest");
+  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Forest")){
+    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Forest");
   }
-  if (!mCollection->addRandomCards(10, setId,RARITY_L,"Plains")){
-    mCollection->addRandomCards(10, -1,RARITY_L,"Plains");
+  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Plains")){
+    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Plains");
   }
-  if (!mCollection->addRandomCards(10, setId,RARITY_L,"Swamp")){
-    mCollection->addRandomCards(10, -1,RARITY_L,"Swamp");
+  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Swamp")){
+    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Swamp");
   }
-  if (!mCollection->addRandomCards(10, setId,RARITY_L,"Mountain")){
-    mCollection->addRandomCards(10, -1,RARITY_L,"Mountain");
+  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Mountain")){
+    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Mountain");
   }
-  if (!mCollection->addRandomCards(10, setId,RARITY_L,"Island")){
-    mCollection->addRandomCards(10, -1,RARITY_L,"Island");
+  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Island")){
+    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Island");
   }
 
 
@@ -322,18 +322,18 @@ void GameStateMenu::createUsersFirstDeck(int setId){
 #endif
 
   //Starter Deck
-  mCollection->addRandomCards(3, setId,RARITY_R,NULL);
-  mCollection->addRandomCards(9, setId,RARITY_U,NULL);
-  mCollection->addRandomCards(48, setId,RARITY_C,NULL);
+  mCollection->addRandomCards(3, setId,Constants::RARITY_R,NULL);
+  mCollection->addRandomCards(9, setId,Constants::RARITY_U,NULL);
+  mCollection->addRandomCards(48, setId,Constants::RARITY_C,NULL);
 
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("2\n");
 #endif
   //Boosters
   for (int i = 0; i< 2; i++){
-    mCollection->addRandomCards(1, setId,RARITY_R);
-    mCollection->addRandomCards(3, setId,RARITY_U);
-    mCollection->addRandomCards(11, setId,RARITY_C);
+    mCollection->addRandomCards(1, setId,Constants::RARITY_R);
+    mCollection->addRandomCards(3, setId,Constants::RARITY_U);
+    mCollection->addRandomCards(11, setId,Constants::RARITY_C);
   }
   mCollection->save();
   SAFE_DELETE(mCollection);

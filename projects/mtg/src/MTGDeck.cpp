@@ -52,8 +52,8 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
   }else if (key.compare("abilities")==0){
     //Specific Abilities
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    for (int j = 0; j < NB_BASIC_ABILITIES; j++){
-      unsigned int found = value.find(MTGBasicAbilities[j]);
+    for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+      unsigned int found = value.find(Constants::MTGBasicAbilities[j]);
       if (found != string::npos){
 	card->basicAbilities[j] = 1;
       }
@@ -74,7 +74,7 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
       break;
     case 'A':
       card->setType( "Artifact");
-      card->setColor(MTG_COLOR_ARTIFACT);
+      card->setColor(Constants::MTG_COLOR_ARTIFACT);
       if (value.c_str()[8] == ' ' && value.c_str()[9] == 'C')
 	      card->setSubtype("Creature");
       break;
@@ -85,11 +85,11 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
       card->setType( "Sorcery");
       break;
     case 'B'://Basic Land
-      card->setColor(MTG_COLOR_LAND);
+      card->setColor(Constants::MTG_COLOR_LAND);
       card->setType("Land");
       break;
     case 'L':
-      card->setColor(MTG_COLOR_LAND);
+      card->setColor(Constants::MTG_COLOR_LAND);
       card->setType( "Land");
       break;
     case 'I':
@@ -115,7 +115,7 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
 }
 
 void MTGAllCards::initCounters(){
-  for (int i=0; i< MTG_NB_COLORS; i++){
+  for (int i=0; i < Constants::MTG_NB_COLORS; i++){
     colorsCount[i] = NULL;
   }
 }
@@ -209,7 +209,7 @@ int MTGAllCards::countByType(const char * _type){
 
 int MTGAllCards::countByColor(int color){
   if (colorsCount[color] == 0){
-    for (int i=0; i< MTG_NB_COLORS; i++){
+    for (int i=0; i< Constants::MTG_NB_COLORS; i++){
       colorsCount[i] = 0;
     }
     for (int i=0; i< total_cards; i++){
@@ -309,7 +309,7 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
     sprintf(subtype, _subtype);
 
 
-  int subcollection[TOTAL_NUMBER_OF_CARDS];
+  int subcollection[Constants::TOTAL_NUMBER_OF_CARDS];
   int subtotal = 0;
   for (int i = 0; i < collectionTotal; i++){
     MTGCard * card = allcards->_(i);

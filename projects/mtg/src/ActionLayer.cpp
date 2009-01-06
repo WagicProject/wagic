@@ -163,7 +163,7 @@ void ActionLayer::setMenuObject(Targetable * object){
 
   SAFE_DELETE(abilitiesMenu);
 
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   abilitiesMenu = NEW SimpleMenu(10, this, mFont, 100, 100);
 
   for (int i=0;i<mCount;i++){

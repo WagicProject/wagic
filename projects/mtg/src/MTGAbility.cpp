@@ -86,8 +86,8 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
   //Next Time...
   found = magicText.find("next");
   if (found != string::npos){
-    for (int i = 0; i < NB_MTG_PHASES; i++){
-      found = magicText.find(MTGPhaseCodeNames[i]);
+    for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
+      found = magicText.find(Constants::MTGPhaseCodeNames[i]);
       if (found != string::npos){
 	return NEW TriggerNextPhase(i);
       }
@@ -242,7 +242,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       end = s.find(",",previous);
       string spt = s.substr(previous,end - previous);
       int power, toughness;
-      int havePowertoughness = parsePowerToughness(spt,&power, &toughness);
+      //int havePowertoughness = parsePowerToughness(spt,&power, &toughness);
       string sabilities = s.substr(end+1);
       ManaCost * cost = ManaCost::parseManaCost(s);
       int multiplier = 1;
@@ -499,13 +499,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     }
 
     //Gain/loose Ability
-    for (int j = 0; j < NB_BASIC_ABILITIES; j++){
-      found = s.find(MTGBasicAbilities[j]);
+    for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+      found = s.find(Constants::MTGBasicAbilities[j]);
       if (found!= string::npos){
 	int modifier = 1;
 	if (found > 0 && s[found-1] == '-') modifier = 0;
 	if (dryMode){
-	  if (j == DEFENDER){
+	  if (j == Constants::DEFENDER){
 	    if (modifier == 1) return BAKA_EFFECT_BAD;
 	    return BAKA_EFFECT_GOOD;
 	  }else{
@@ -610,7 +610,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   case 1096: //Basalt Monolith
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 3};
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 3};
       AManaProducer * ability = NEW AManaProducer(_id, card, NEW ManaCost(cost,1));
       AUntapManaBlocker * ability2 = NEW AUntapManaBlocker(_id+1, card, NEW ManaCost(cost,1));
       AUnBlocker * ability3 = NEW AUnBlocker(_id+1, card,card, NEW ManaCost(cost,1));
@@ -622,7 +622,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1097: //Black Vise
     {
-      game->addObserver( NEW ALifeZoneLink(_id ,card, MTG_PHASE_UPKEEP, 4));
+      game->addObserver( NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, 4));
       break;
     }
   case 1191: //Blue Elemental Blast
@@ -637,7 +637,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1099: //Brass Man
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 1};
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
       game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
       break;
     }
@@ -649,36 +649,36 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1282: //Chaoslace
     {
       if (card->target){
-	card->target->setColor(MTG_COLOR_RED, 1);
+	card->target->setColor(Constants::MTG_COLOR_RED, 1);
       }else{
 	Spell * starget = spell->getNextSpellTarget();
-	starget->source->setColor(MTG_COLOR_RED, 1);
+	starget->source->setColor(Constants::MTG_COLOR_RED, 1);
       }
       break;
     }
   case 1335: //Circle of protection : black
     {
-      game->addObserver(NEW ACircleOfProtection( _id,card, MTG_COLOR_BLACK));
+      game->addObserver(NEW ACircleOfProtection( _id,card, Constants::MTG_COLOR_BLACK));
       break;
     }
   case 1336: //Circle of protection : blue
     {
-      game->addObserver(NEW ACircleOfProtection( _id,card, MTG_COLOR_BLUE));
+      game->addObserver(NEW ACircleOfProtection( _id,card, Constants::MTG_COLOR_BLUE));
       break;
     }
   case 1337: //Circle of protection : green
     {
-      game->addObserver(NEW ACircleOfProtection( _id,card, MTG_COLOR_GREEN));
+      game->addObserver(NEW ACircleOfProtection( _id,card, Constants::MTG_COLOR_GREEN));
       break;
     }
   case 1338: //Circle of protection : red
     {
-      game->addObserver(NEW ACircleOfProtection( _id,card, MTG_COLOR_RED));
+      game->addObserver(NEW ACircleOfProtection( _id,card, Constants::MTG_COLOR_RED));
       break;
     }
   case 1339: //Circle of protection : white
     {
-      game->addObserver(NEW ACircleOfProtection( _id,card, MTG_COLOR_WHITE));
+      game->addObserver(NEW ACircleOfProtection( _id,card, Constants::MTG_COLOR_WHITE));
       break;
     }
   case 1101: //clockwork Beast
@@ -704,24 +704,24 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1103: //Crystal Rod
     {
-      int cost[] = {MTG_COLOR_BLUE, 1};
-      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, MTG_COLOR_WHITE,NEW ManaCost(cost,1) , 1);
+      int cost[] = {Constants::MTG_COLOR_BLUE, 1};
+      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE,NEW ManaCost(cost,1) , 1);
       game->addObserver(ability);
       break;
     }
   case 1151: //Deathgrip
     {
-      int _cost[] = {MTG_COLOR_BLACK, 2};
-      game->addObserver(NEW ASpellCounterEnchantment(_id, card, NEW ManaCost(_cost, 1),MTG_COLOR_GREEN));
+      int _cost[] = {Constants::MTG_COLOR_BLACK, 2};
+      game->addObserver(NEW ASpellCounterEnchantment(_id, card, NEW ManaCost(_cost, 1),Constants::MTG_COLOR_GREEN));
       break;
     }
   case 1152: //Deathlace
     {
       if (card->target){
-	card->target->setColor(MTG_COLOR_BLACK, 1);
+	card->target->setColor(Constants::MTG_COLOR_BLACK, 1);
       }else{
 	Spell * starget = spell->getNextSpellTarget();
-	starget->source->setColor(MTG_COLOR_BLACK, 1);
+	starget->source->setColor(Constants::MTG_COLOR_BLACK, 1);
       }
       break;
     }
@@ -782,8 +782,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1113: //Iron Star
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 1};
-      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, MTG_COLOR_RED,NEW ManaCost(cost,1) , 1);
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
+      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_RED,NEW ManaCost(cost,1) , 1);
       game->addObserver(ability);
       break;
     }
@@ -794,14 +794,14 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1114: //Ivory cup
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 1};
-      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, MTG_COLOR_WHITE,NEW ManaCost(cost,1) , 1);
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
+      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE,NEW ManaCost(cost,1) , 1);
       game->addObserver(ability);
       break;
     }
   case 1115: //Ivory Tower
     {
-      game->addObserver(NEW ALifeZoneLink(_id ,card, MTG_PHASE_UPKEEP, 4, 1, 1));
+      game->addObserver(NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, 4, 1, 1));
       break;
     }
   case 1117: //Jandors Ring
@@ -821,17 +821,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1256: //LifeForce
     {
-      int _cost[] = {MTG_COLOR_GREEN, 2};
-      game->addObserver(NEW ASpellCounterEnchantment(_id, card, NEW ManaCost(_cost, 1),MTG_COLOR_BLACK));
+      int _cost[] = {Constants::MTG_COLOR_GREEN, 2};
+      game->addObserver(NEW ASpellCounterEnchantment(_id, card, NEW ManaCost(_cost, 1),Constants::MTG_COLOR_BLACK));
       break;
     }
   case 1257: //Lifelace
     {
       if (card->target){
-	card->target->setColor(MTG_COLOR_GREEN, 1);
+	card->target->setColor(Constants::MTG_COLOR_GREEN, 1);
       }else{
 	Spell * starget = spell->getNextSpellTarget();
-	starget->source->setColor(MTG_COLOR_GREEN, 1);
+	starget->source->setColor(Constants::MTG_COLOR_GREEN, 1);
       }
       break;
     }
@@ -847,11 +847,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1124: //Mana Vault
     {
-      int output[] = {MTG_COLOR_ARTIFACT, 3};
+      int output[] = {Constants::MTG_COLOR_ARTIFACT, 3};
       game->addObserver(NEW AManaProducer(_id,card,NEW ManaCost(output,1)));
-      int cost[] = {MTG_COLOR_ARTIFACT, 4};
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
       game->addObserver(NEW AUntapManaBlocker(_id+1, card, NEW ManaCost(cost,1)));
-      game->addObserver(NEW ARegularLifeModifierAura(_id+2, card, card, MTG_PHASE_DRAW, -1, 1));
+      game->addObserver(NEW ARegularLifeModifierAura(_id+2, card, card, Constants::MTG_PHASE_DRAW, -1, 1));
       break;
     }
   case 1126:// Millstone
@@ -872,10 +872,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1358: //Purelace
     {
       if (card->target){
-	card->target->setColor(MTG_COLOR_WHITE, 1);
+	card->target->setColor(Constants::MTG_COLOR_WHITE, 1);
       }else{
 	Spell * starget = spell->getNextSpellTarget();
-	starget->source->setColor(MTG_COLOR_WHITE, 1);
+	starget->source->setColor(Constants::MTG_COLOR_WHITE, 1);
       }
       break;
     }
@@ -896,20 +896,20 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1139: //The Rack
     {
-      game->addObserver( NEW ALifeZoneLink(_id ,card, MTG_PHASE_UPKEEP, -3));
+      game->addObserver( NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, -3));
       break;
     }
   case 1140: //Throne of bones
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 1};
-      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, MTG_COLOR_BLACK,NEW ManaCost(cost,1) , 1);
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
+      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLACK,NEW ManaCost(cost,1) , 1);
       game->addObserver(ability);
       break;
     }
   case 1142: //Wooden Sphere
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 1};
-      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, MTG_COLOR_GREEN,NEW ManaCost(cost,1) , 1);
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
+      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_GREEN,NEW ManaCost(cost,1) , 1);
       game->addObserver(ability);
       break;
     }
@@ -1004,7 +1004,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1171: //Paralysis
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 4};
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
       game->addObserver(NEW AUntapManaBlocker(_id, card,card->target, NEW ManaCost(cost,1)));
       card->target->tapped = 1;
       break;
@@ -1042,7 +1042,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1185: //Warp Artifact
     {
-      game->addObserver(NEW ARegularLifeModifierAura(_id, card, card->target, MTG_PHASE_UPKEEP, -1));
+      game->addObserver(NEW ARegularLifeModifierAura(_id, card, card->target, Constants::MTG_PHASE_UPKEEP, -1));
       break;
     }
   case 1192:	//BrainGeyser
@@ -1067,7 +1067,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 129601: //Icy Manipulator
     {
-      int cost[] = {MTG_COLOR_ARTIFACT, 1};
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
       TypeTargetChooser * tc = new TypeTargetChooser("artifact",card);
       tc->addType("land");
       tc->addType("creature");
@@ -1077,7 +1077,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   case 1203: //Island Fish
     {
-      int cost[] = {MTG_COLOR_BLUE, 3};
+      int cost[] = {Constants::MTG_COLOR_BLUE, 3};
       game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
       game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
       break;
@@ -1116,7 +1116,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1228: //Unstable mutation
     {
       game->addObserver(NEW APowerToughnessModifier(_id, card, card->target, 3, 3));
-      game->addObserver(NEW APowerToughnessModifierRegularCounter(_id, card, card->target, MTG_PHASE_UPKEEP, -1, -1));
+      game->addObserver(NEW APowerToughnessModifierRegularCounter(_id, card, card->target, Constants::MTG_PHASE_UPKEEP, -1, -1));
       break;
     }
   case 1229: //Unsummon
@@ -1133,7 +1133,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1236: //Birds of Paradise
     {
-      for (int i = MTG_COLOR_GREEN; i <= MTG_COLOR_WHITE; i++){
+      for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; i++){
 	int output[]={i,1};
 	game->addObserver(NEW AManaProducer(_id + i, card, NEW ManaCost(output,1)));
       }
@@ -1152,7 +1152,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
 	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
 	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (current->basicAbilities[FLYING] && current->isACreature()){
+	  if (current->basicAbilities[Constants::FLYING] && current->isACreature()){
 	    game->mLayers->stackLayer()->addDamage(card, current, x);
 	  }
 	}
@@ -1161,7 +1161,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1262: //Regeneration
     {
-      int cost[] = {MTG_COLOR_GREEN, 1};
+      int cost[] = {Constants::MTG_COLOR_GREEN, 1};
       game->addObserver(NEW AStandardRegenerate(_id,card,card->target,NEW ManaCost(cost,1)));
       break;
     }
@@ -1204,7 +1204,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1278: //Web
     {
       game->addObserver(NEW APowerToughnessModifier(_id, card, card->target, 0,2));
-      game->addObserver(NEW ABasicAbilityModifier(_id + 1, card, card->target, REACH));
+      game->addObserver(NEW ABasicAbilityModifier(_id + 1, card, card->target, Constants::REACH));
       break;
     }
   case 1280: //Atog
@@ -1216,7 +1216,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
       tc->maxpower = 2;
-      game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, UNBLOCKABLE, NULL,tc));
+      game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, Constants::UNBLOCKABLE, NULL,tc));
       break;
     }
   case 1288: //EarthBind
@@ -1231,7 +1231,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
 	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
 	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (!current->basicAbilities[FLYING] && current->isACreature()){
+	  if (!current->basicAbilities[Constants::FLYING] && current->isACreature()){
 	    game->mLayers->stackLayer()->addDamage(card, current, x);
 	  }
 	}
@@ -1275,7 +1275,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1326: //Wheel of fortune
     {
       for (int i = 0; i < 2; i++){
-	MTGLibrary * library = game->players[i]->game->library;
+	//	MTGLibrary * library = game->players[i]->game->library;
 	MTGHand * hand = game->players[i]->game->hand;
 	for (int j = hand->nb_cards-1; j>=0; j--){
 	  game->players[i]->game->putInGraveyard(hand->cards[j]);
@@ -1288,12 +1288,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1331: //Black Ward
     {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, MTG_COLOR_BLACK));
+      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_BLACK));
       break;
     }
   case 1333: //Blue  Ward
     {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, MTG_COLOR_BLUE));
+      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_BLUE));
       break;
     }
   case 1334: //Castle
@@ -1308,7 +1308,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1346: //Green Ward
     {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, MTG_COLOR_GREEN));
+      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_GREEN));
       break;
     }
   case 1352: //Karma
@@ -1323,7 +1323,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1359: //Red Ward
     {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, MTG_COLOR_RED));
+      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_RED));
       break;
     }
   case 1360: //Resurrection
@@ -1361,7 +1361,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1182: //Terror
     {
-      if (card->target->hasColor(MTG_COLOR_BLACK) || card->target->hasSubtype("artifact")){
+      if (card->target->hasColor(Constants::MTG_COLOR_BLACK) || card->target->hasSubtype("artifact")){
       }else{
 	card->target->controller()->game->putInGraveyard(card->target);
       }
@@ -1375,16 +1375,16 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1227: //Toughtlace
     {
       if (card->target){
-	card->target->setColor(MTG_COLOR_BLUE, 1);
+	card->target->setColor(Constants::MTG_COLOR_BLUE, 1);
       }else{
 	Spell * starget = spell->getNextSpellTarget();
-	starget->source->setColor(MTG_COLOR_BLUE, 1);
+	starget->source->setColor(Constants::MTG_COLOR_BLUE, 1);
       }
       break;
     }
   case 1371: //White Ward
     {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, MTG_COLOR_WHITE));
+      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_WHITE));
       break;
     }
 
@@ -1457,7 +1457,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 2443: //Dark Banishing
     {
-      if (card->target->hasColor(MTG_COLOR_BLACK)){
+      if (card->target->hasColor(Constants::MTG_COLOR_BLACK)){
       }else{
 	card->target->controller()->game->putInGraveyard(card->target);
       }
@@ -1471,7 +1471,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 2484: //Songs of the Damned
     {
       int mana = card->controller()->game->graveyard->countByType("creature");
-      game->currentlyActing()->getManaPool()->add(MTG_COLOR_BLACK, mana);
+      game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_BLACK, mana);
       break;
     }
 
@@ -1490,21 +1490,21 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       int mana_cr = game->opponent()->game->graveyard->countByType("creature");
       int mana_ar = game->opponent()->game->graveyard->countByType("artifact");
       int spoil = mana_ar + mana_cr;
-      game->currentlyActing()->getManaPool()->add(MTG_COLOR_ARTIFACT, spoil);
+      game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, spoil);
       game->currentlyActing()->life+= spoil;
       break;
     }
   case 2435: //Whalebone Glider
     {
-      int cost[] = {MTG_COLOR_ARTIFACT,2};
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT,2};
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
       tc->maxpower = 3;
-      game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, FLYING, NEW ManaCost(cost,1),tc));
+      game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, Constants::FLYING, NEW ManaCost(cost,1),tc));
       break;
     }
   case 2393: //Aegis of the Meek work but work also for 0/1 creatures... :D
     {
-      int cost[] = {MTG_COLOR_ARTIFACT,1};
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT,1};
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
       tc->maxpower = 1;
       tc->maxtoughness =1;
@@ -1527,41 +1527,41 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
    * For example, setting LIFELINK for a creature is not enough right now...
    * It shouldn't be necessary to add an object. State based abilities could do the trick
    */
-  if (card->basicAbilities[LIFELINK]){
+  if (card->basicAbilities[Constants::LIFELINK]){
     ALifeLink * ability = NEW ALifeLink(_id, card);
     game->addObserver(ability);
   }
 
-  for (int i=PROTECTIONGREEN; i <= PROTECTIONWHITE; i++){
+  for (int i=Constants::PROTECTIONGREEN; i <= Constants::PROTECTIONWHITE; i++){
     if (card->basicAbilities[i]){
-      game->addObserver(NEW AProtectionFrom(_id, card, card, i - PROTECTIONGREEN + MTG_COLOR_GREEN));
+      game->addObserver(NEW AProtectionFrom(_id, card, card, i - Constants::PROTECTIONGREEN + Constants::MTG_COLOR_GREEN));
     }
   }
 
-  if (card->basicAbilities[EXALTED]){
+  if (card->basicAbilities[Constants::EXALTED]){
     game->addObserver(NEW AExalted(_id, card));
   }
 
   // Tested works the first r10 did not function because of the mistake in the array of the definition
-  if (card->basicAbilities[FORESTHOME]){
+  if (card->basicAbilities[Constants::FORESTHOME]){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
   }
-  if (card->basicAbilities[ISLANDHOME]){
+  if (card->basicAbilities[Constants::ISLANDHOME]){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
   }
-  if (card->basicAbilities[MOUNTAINHOME]){
+  if (card->basicAbilities[Constants::MOUNTAINHOME]){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card,"moutain"));
   }
-  if (card->basicAbilities[SWAMPHOME]){
+  if (card->basicAbilities[Constants::SWAMPHOME]){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card,"swamp"));
   }
-  if (card->basicAbilities[PLAINSHOME]){
+  if (card->basicAbilities[Constants::PLAINSHOME]){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card,"plains"));
   }
 
   // New Abilities Flanking and Rampage
 
-  if (card->basicAbilities [RAMPAGE1]){
+  if (card->basicAbilities [Constants::RAMPAGE1]){
     game->addObserver (NEW ARampageAbility(_id, card, 1, 1));
   }
 
@@ -1751,7 +1751,7 @@ InstantAbility::InstantAbility(int _id, MTGCardInstance * source, Damageable * _
 //Instant abilities last generally until the end of the turn
 int InstantAbility::testDestroy(){
   int newPhase = game->getCurrentGamePhase();
-  if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP) return 1;
+  if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) return 1;
   currentPhase = newPhase;
   return 0;
 

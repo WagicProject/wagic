@@ -50,14 +50,14 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
   int currentCost = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
   CardDescriptor cd;
-  cd.setColor(MTG_COLOR_LAND);
+  cd.setColor(Constants::MTG_COLOR_LAND);
   cd.tapped = -1;
 
   MTGCardInstance * card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
 
     int doTap = 1;
-    for (int i=MTG_NB_COLORS-1; i>= 0; i--){
+    for (int i=Constants::MTG_NB_COLORS-1; i>= 0; i--){
       if (diff->getCost(i) &&  card->hasSubtype(MTG_LAND_TEXTS[i]) ){
 	      diff->remove(i,1);
 	      doTap = 0;
@@ -77,21 +77,21 @@ ManaCost * AIPlayer::getPotentialMana(){
   SAFE_DELETE(potentialMana);
   potentialMana = NEW ManaCost();
   CardDescriptor cd;
-  cd.setColor(MTG_COLOR_LAND);
+  cd.setColor(Constants::MTG_COLOR_LAND);
   cd.tapped = -1;
   MTGCardInstance * card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
 
     if (card->hasSubtype("plains")){
-      potentialMana->add(MTG_COLOR_WHITE,1);
+      potentialMana->add(Constants::MTG_COLOR_WHITE,1);
     }else if(card->hasSubtype("swamp")){
-      potentialMana->add(MTG_COLOR_BLACK,1);
+      potentialMana->add(Constants::MTG_COLOR_BLACK,1);
     }else if(card->hasSubtype("forest")){
-      potentialMana->add(MTG_COLOR_GREEN,1);
+      potentialMana->add(Constants::MTG_COLOR_GREEN,1);
     }else if(card->hasSubtype("mountain")){
-      potentialMana->add(MTG_COLOR_RED,1);
+      potentialMana->add(Constants::MTG_COLOR_RED,1);
     }else if(card->hasSubtype("island")){
-      potentialMana->add(MTG_COLOR_BLUE,1);
+      potentialMana->add(Constants::MTG_COLOR_BLUE,1);
     }else{
 #if defined (WIN32) || defined (LINUX)
       OutputDebugString("WTF ????\n");
@@ -309,7 +309,7 @@ int AIPlayer::combatDamages(){
   GameObserver * gameObs = GameObserver::GetInstance();
   Player * currentPlayer = gameObs->currentPlayer;
   int currentGamePhase = gameObs->getCurrentGamePhase();
-  if (currentGamePhase != MTG_PHASE_COMBATDAMAGE) return 0;
+  if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
   DamageResolverLayer *  drl = gameObs->mLayers->combatLayer();
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("AI Combat Phase START\n");
@@ -345,7 +345,7 @@ int AIPlayer::combatDamages(){
 	    }
 	  }
 	}
-	if (canardEmissaire && !current->card->has(TRAMPLE)){
+	if (canardEmissaire && !current->card->has(Constants::TRAMPLE)){
 	  while(current->dealOneDamage(canardEmissaire)){
 #if defined (WIN32) || defined (LINUX)
 	    OutputDebugString("==========\nDealing damage to Canard Emissaire\n================\n");
@@ -464,7 +464,7 @@ int AIPlayerBaka::Act(float dt){
   GameObserver * gameObs = GameObserver::GetInstance();
   int currentGamePhase = gameObs->getCurrentGamePhase();
 
-  if (currentGamePhase == MTG_PHASE_CLEANUP && currentGamePhase != oldGamePhase){
+  if (currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentGamePhase != oldGamePhase){
 #if defined (WIN32) || defined (LINUX)
     OutputDebugString("updating stats\n");
 #endif
@@ -496,13 +496,13 @@ int AIPlayerBaka::Act(float dt){
   if (currentPlayer == this){
     MTGCardInstance * card = NULL;
     switch(currentGamePhase){
-    case MTG_PHASE_FIRSTMAIN:
-    case MTG_PHASE_SECONDMAIN:
+    case Constants::MTG_PHASE_FIRSTMAIN:
+    case Constants::MTG_PHASE_SECONDMAIN:
       if (canPutLandsIntoPlay){
 
 	//Attempt to put land into play
 	cd.init();
-	cd.setColor(MTG_COLOR_LAND);
+	cd.setColor(Constants::MTG_COLOR_LAND);
 	card = cd.match(game->hand);
 	if (card){
 	  gameObs->cardClick(card);
@@ -556,7 +556,7 @@ int AIPlayerBaka::Act(float dt){
 	gameObs->userRequestNextGamePhase();
       }
       break;
-    case MTG_PHASE_COMBATATTACKERS:
+    case Constants::MTG_PHASE_COMBATATTACKERS:
       chooseAttackers();
       gameObs->userRequestNextGamePhase();
       break;
@@ -566,7 +566,7 @@ int AIPlayerBaka::Act(float dt){
     }
   }else{
     switch(currentGamePhase){
-    case MTG_PHASE_COMBATBLOCKERS:
+    case Constants::MTG_PHASE_COMBATBLOCKERS:
       chooseBlockers();
       gameObs->userRequestNextGamePhase();
       break;

@@ -34,7 +34,7 @@ int Damage::resolve(){
       state = RESOLVED_NOK;
       return 0;
     }
-    if (source->has(WITHER)){
+    if (source->has(Constants::WITHER)){
       for (int i = 0; i < damage; i++){
 	      _target->counters->addCounter(-1, -1);
       }
@@ -48,7 +48,7 @@ int Damage::resolve(){
 }
 
 void Damage::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   char buffer[200];
@@ -91,7 +91,7 @@ int DamageStack::CombatDamages(int strike){
   MTGCardInstance * attacker = attackers->getNextAttacker(NULL);
   while (attacker != NULL){
     int nbdefensers = defensers->nbDefensers(attacker);
-    if ((!strike && !attacker->has(FIRSTSTRIKE)) || (strike && attacker->has(FIRSTSTRIKE)) || attacker->has(DOUBLESTRIKE)){
+    if ((!strike && !attacker->has(Constants::FIRSTSTRIKE)) || (strike && attacker->has(Constants::FIRSTSTRIKE)) || attacker->has(Constants::DOUBLESTRIKE)){
       if (nbdefensers == 0){
 	Damage * damage = NEW Damage (mCount, attacker, game->opponent());
 	Add(damage);
@@ -106,7 +106,7 @@ int DamageStack::CombatDamages(int strike){
     }
     MTGCardInstance * defenser = defensers->getNextDefenser(NULL, attacker);
     while (defenser != NULL){
-      if ((!strike && !defenser->has(FIRSTSTRIKE)) || (strike && defenser->has(FIRSTSTRIKE)) || defenser->has(DOUBLESTRIKE)){
+      if ((!strike && !defenser->has(Constants::FIRSTSTRIKE)) || (strike && defenser->has(Constants::FIRSTSTRIKE)) || defenser->has(Constants::DOUBLESTRIKE)){
 	Damage * damage = NEW Damage (mCount,defenser, attacker);
 	Add(damage);
       }

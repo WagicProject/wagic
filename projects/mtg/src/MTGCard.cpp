@@ -33,14 +33,14 @@ const char * MTGCard::getSetName(){
 
 MTGCard::MTGCard(MTGCard * source){
   mCache = source->mCache;
-  for (int i = 0; i< NB_BASIC_ABILITIES; i++){
+  for (int i = 0; i< Constants::NB_BASIC_ABILITIES; i++){
     basicAbilities[i] = source->basicAbilities[i];
   }
   for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
     types[i] = source->types[i];
   }
   nb_types = source->nb_types;
-  for (int i = 0; i< MTG_NB_COLORS; i++){
+  for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
     colors[i] = source->colors[i];
   }
   manaCost.copy(source->getManaCost());
@@ -62,13 +62,13 @@ MTGCard::MTGCard(MTGCard * source){
 
 int MTGCard::init(){
   nb_types = 0;
-  for (int i = 0; i< NB_BASIC_ABILITIES; i++){
+  for (int i = 0; i< Constants::NB_BASIC_ABILITIES; i++){
     basicAbilities[i] = 0;
   }
   for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
     types[i] = 0;
   }
-  for (int i = 0; i< MTG_NB_COLORS; i++){
+  for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
     colors[i] = 0;
   }
   setId = 0;
@@ -104,7 +104,7 @@ int MTGCard::isACreature(){
 
 void MTGCard::setColor(int _color, int removeAllOthers){
   if (removeAllOthers){
-    for (int i=0; i<MTG_NB_COLORS; i++){
+    for (int i=0; i<Constants::MTG_NB_COLORS; i++){
       colors[i] = 0;
     }
   }
@@ -113,7 +113,7 @@ void MTGCard::setColor(int _color, int removeAllOthers){
 
 int MTGCard::getColor(){
   int i = 0;
-  for (int i=0; i<MTG_NB_COLORS; i++){
+  for (int i=0; i<Constants::MTG_NB_COLORS; i++){
     if (colors[i]){
       return i;
     }
@@ -128,7 +128,7 @@ int MTGCard::hasColor(int color){
 
 void MTGCard::setManaCost(string s){
   ManaCost::parseManaCost(s, &manaCost);
-  for (int i = MTG_COLOR_GREEN; i <=MTG_COLOR_WHITE; i++){
+  for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; i++){
     if (manaCost.hasColor(i)){
       setColor(i);
     }

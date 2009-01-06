@@ -34,7 +34,7 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFoc
 
   card = collection->getCardById(_cardid);
   quantity = 1;
-  if (card->getRarity() == RARITY_L) quantity = 50;
+  if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
   thumb = NULL;
 }
@@ -229,14 +229,14 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	int curNbcards = playerdata->collection->totalCards();
 	if (showPriceDialog == 0){
 	  //Starter Deck
-	  playerdata->collection->addRandomCards(3,setId,RARITY_R,NULL);
-	  playerdata->collection->addRandomCards(9, setId,RARITY_U,NULL);
-	  playerdata->collection->addRandomCards(48, setId,RARITY_C,NULL);
+	  playerdata->collection->addRandomCards(3,setId,Constants::RARITY_R,NULL);
+	  playerdata->collection->addRandomCards(9, setId,Constants::RARITY_U,NULL);
+	  playerdata->collection->addRandomCards(48, setId,Constants::RARITY_C,NULL);
 	}else{
 	  //Booster
-	  playerdata->collection->addRandomCards(1, setId,RARITY_R);
-	  playerdata->collection->addRandomCards(3, setId,RARITY_U);
-	  playerdata->collection->addRandomCards(11, setId,RARITY_C);
+	  playerdata->collection->addRandomCards(1, setId,Constants::RARITY_R);
+	  playerdata->collection->addRandomCards(3, setId,Constants::RARITY_U);
+	  playerdata->collection->addRandomCards(11, setId,Constants::RARITY_C);
 	}
 	int newNbCards = playerdata->collection->totalCards();;
 	for (int i = curNbcards; i < newNbCards ; i++){

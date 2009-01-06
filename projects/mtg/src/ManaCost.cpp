@@ -38,15 +38,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
       }else{
 	string value = s.substr(start+1,  end - 1 - start);
 	if (value == "u"){
-	  manaCost->add(MTG_COLOR_BLUE, 1);
+	  manaCost->add(Constants::MTG_COLOR_BLUE, 1);
 	}else if (value == "b"){
-	  manaCost->add(MTG_COLOR_BLACK, 1);
+	  manaCost->add(Constants::MTG_COLOR_BLACK, 1);
 	}else if (value == "w"){
-	  manaCost->add(MTG_COLOR_WHITE, 1);
+	  manaCost->add(Constants::MTG_COLOR_WHITE, 1);
 	}else if (value == "g"){
-	  manaCost->add(MTG_COLOR_GREEN, 1);
+	  manaCost->add(Constants::MTG_COLOR_GREEN, 1);
 	}else if (value == "r"){
-	  manaCost->add(MTG_COLOR_RED, 1);
+	  manaCost->add(Constants::MTG_COLOR_RED, 1);
 	}else if (value == "x"){
 	  manaCost->x();
 	}else if (value == "t"){
@@ -61,11 +61,11 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
 	    for (int i = 0; i < 2; i++){
 	      char c = value[i];
 	      if (c >='0' && c <='9'){
-		colors[i] = MTG_COLOR_ARTIFACT;
+		colors[i] = Constants::MTG_COLOR_ARTIFACT;
 		values[i] = c - '0';
 	      }else{
-		for (int j = 0; j < MTG_NB_COLORS; j++){
-		  if (c == MTGColorChars[j]){
+		for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+		  if (c == Constants::MTGColorChars[j]){
 		    colors[i] = j;
 		    values[i] = 1;
 		  }
@@ -74,7 +74,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
 	    }
 	    manaCost->addHybrid(colors[0], values[0], colors[1], values[1]);
 	  }else{
-	    manaCost->add(MTG_COLOR_ARTIFACT, intvalue);
+	    manaCost->add(Constants::MTG_COLOR_ARTIFACT, intvalue);
 	  }
 	}
 	s = s.substr(end + 1);
@@ -109,7 +109,7 @@ ManaCost::ManaCost(int _cost[], int nb_elems){
 ManaCost::ManaCost(ManaCost * _manaCost){
   init();
   int i;
-  for (i=0; i<= MTG_NB_COLORS; i++){
+  for (i=0; i<= Constants::MTG_NB_COLORS; i++){
     cost[i] = _manaCost->getCost(i);
   }
 }
@@ -122,12 +122,12 @@ ManaCost::~ManaCost(){
 }
 
 void ManaCost::x(){
-  cost[MTG_NB_COLORS] = 1;
+  cost[Constants::MTG_NB_COLORS] = 1;
 }
 
 void ManaCost::init(){
   int i;
-  for (i=0; i<= MTG_NB_COLORS; i++){
+  for (i=0; i<= Constants::MTG_NB_COLORS; i++){
     cost[i] = 0;
   }
   nbhybrids = 0;
@@ -135,7 +135,7 @@ void ManaCost::init(){
 
 
 void ManaCost::copy(ManaCost * _manaCost){
-  for (int i=0; i<= MTG_NB_COLORS; i++){
+  for (int i=0; i<= Constants::MTG_NB_COLORS; i++){
     cost[i] = _manaCost->getCost(i);
   }
   for (int i=0; i< _manaCost->nbhybrids; i++){
@@ -149,7 +149,7 @@ int ManaCost::getCost(int color){
 }
 
 int ManaCost::getMainColor(){
-  for (int i=0; i< MTG_NB_COLORS; i++){
+  for (int i=0; i< Constants::MTG_NB_COLORS; i++){
     if (cost[i]) return i;
   }
   return 0;
@@ -165,7 +165,7 @@ int ManaCost::hasColor(int color){
 
 int ManaCost::getConvertedCost(){
   int result = 0;
-  for (int i=0; i< MTG_NB_COLORS; i++){
+  for (int i=0; i< Constants::MTG_NB_COLORS; i++){
     result += cost[i];
   }
   for (int i = 0; i < nbhybrids; i++){
@@ -186,7 +186,7 @@ int ManaCost::add(int color, int value){
 
 int ManaCost::add(ManaCost * _cost){
   if(!_cost) return 0;
-  for (int i=0; i< MTG_NB_COLORS; i++){
+  for (int i=0; i< Constants::MTG_NB_COLORS; i++){
     cost[i]+= _cost->getCost(i);
   }
   for (int i=0; i< _cost->nbhybrids; i++){
@@ -210,7 +210,7 @@ int ManaCost::addHybrid(int c1, int v1, int c2, int v2){
 
 int ManaCost::pay(ManaCost * _cost){
   ManaCost * diff = Diff(_cost);
-  for (int i=0; i < MTG_NB_COLORS; i++){
+  for (int i=0; i < Constants::MTG_NB_COLORS; i++){
     cost[i] = diff->getCost(i);
   }
   delete diff;
@@ -233,7 +233,7 @@ int ManaCost::canAfford(ManaCost * _cost){
 }
 
 int ManaCost::isPositive(){
-  for (int i=0; i < MTG_NB_COLORS; i++){
+  for (int i=0; i < Constants::MTG_NB_COLORS; i++){
 
     if (cost[i] < 0){
       return 0;
@@ -273,9 +273,9 @@ int ManaCost::tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int d
 
 //compute the difference between two mana costs
 ManaCost * ManaCost::Diff(ManaCost * _cost){
-  int diff[(MTG_NB_COLORS + 1 )* 2];
-  diff[MTG_NB_COLORS * 2] = MTG_NB_COLORS;
-  for (int i=0; i < MTG_NB_COLORS; i++){
+  int diff[(Constants::MTG_NB_COLORS + 1 )* 2];
+  diff[Constants::MTG_NB_COLORS * 2] = Constants::MTG_NB_COLORS;
+  for (int i=0; i < Constants::MTG_NB_COLORS; i++){
     diff[i*2] = i;
     diff[i*2 +1] = cost[i] - _cost->getCost(i);
   }
@@ -283,14 +283,14 @@ ManaCost * ManaCost::Diff(ManaCost * _cost){
   if (!hybridResult) randomDiffHybrids(_cost,diff);
 
   //Colorless mana, special case
-  int colorless_idx = MTG_COLOR_ARTIFACT * 2 + 1;
+  int colorless_idx = Constants::MTG_COLOR_ARTIFACT * 2 + 1;
   if (diff[colorless_idx] < 0){
 #if defined (WIN32) || defined (LINUX)
     //char    buf[4096], *p = buf;
     //sprintf(buf, "--Diff color TEST %i : %i\n", i, cost[i]);
     OutputDebugString("Colorless mana not enough\n");
 #endif
-    for (int i=0; i < MTG_NB_COLORS; i++){
+    for (int i=0; i < Constants::MTG_NB_COLORS; i++){
       if (diff[i*2 + 1] > 0){
 	if (diff[i*2 + 1] + diff[colorless_idx] > 0){
 	  diff[i*2 + 1] += diff[colorless_idx];
@@ -305,17 +305,17 @@ ManaCost * ManaCost::Diff(ManaCost * _cost){
   }
 
   //Cost X
-  if (_cost->getCost(MTG_NB_COLORS)){
-    diff[MTG_NB_COLORS * 2 + 1] = 0;
-    for (int i=0; i < MTG_NB_COLORS; i++){
+  if (_cost->getCost(Constants::MTG_NB_COLORS)){
+    diff[Constants::MTG_NB_COLORS * 2 + 1] = 0;
+    for (int i=0; i < Constants::MTG_NB_COLORS; i++){
       if (diff[i*2 + 1] > 0){
-	diff[MTG_NB_COLORS * 2 + 1] += diff[i*2 + 1];
+	diff[Constants::MTG_NB_COLORS * 2 + 1] += diff[i*2 + 1];
 	diff[i*2 + 1] = 0;
       }
     }
   }
 
-  ManaCost * result = NEW ManaCost(diff, MTG_NB_COLORS +1);
+  ManaCost * result = NEW ManaCost(diff, Constants::MTG_NB_COLORS +1);
   return result;
 
 }

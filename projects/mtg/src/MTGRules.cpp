@@ -5,7 +5,7 @@ MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){
 }
 
 int MTGAttackRule::isReactingToClick(MTGCardInstance * card){
-  if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && !card->isAttacker()){
+  if (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && !card->isAttacker()){
     if (card->canAttack()) return 1;
   }
   return 0;
@@ -14,7 +14,7 @@ int MTGAttackRule::isReactingToClick(MTGCardInstance * card){
 int MTGAttackRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
   card->attacker = 1;
-  if (!card->basicAbilities[VIGILANCE]) card->tapped = 1;
+  if (!card->basicAbilities[Constants::VIGILANCE]) card->tapped = 1;
   return 1;
 }
 
@@ -29,7 +29,7 @@ MTGBlockRule::MTGBlockRule(int _id):MTGAbility(_id,NULL){
 }
 
 int MTGBlockRule::isReactingToClick(MTGCardInstance * card){
-  if (currentPhase == MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting && card->controller() == game->opponent()){
+  if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting && card->controller() == game->opponent()){
     if (card->canBlock()) return 1;
   }
   return 0;

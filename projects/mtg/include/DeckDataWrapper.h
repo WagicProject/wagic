@@ -26,7 +26,7 @@ class Cmp1 { // compares cards by their name
 
 class DeckDataWrapper{
  public:
-  int colors[MTG_NB_COLORS+1];
+  int colors[Constants::MTG_NB_COLORS+1];
   int currentColor;
   map<MTGCard *, int,Cmp1> cards;
   int currentposition;

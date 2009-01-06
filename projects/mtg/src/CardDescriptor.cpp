@@ -23,7 +23,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
   }
   if (!found) return NULL;
 
-  for (int i = 0; i< MTG_NB_COLORS; i++){
+  for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
     if (colors[i] == 1){
       found = 0;
       if(card->hasColor(i)){
@@ -44,7 +44,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
       match = NULL;
     }
   }
-  for (int i = 0; i< MTG_NB_COLORS; i++){
+  for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
     if ((colors[i] == 1 && !card->hasColor(i))||(colors[i] == -1 && card->hasColor(i))){
       match = NULL;
     }
@@ -65,14 +65,14 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
 
 
   //Abilities
-  for (int j = 0; j < NB_BASIC_ABILITIES; j++){
+  for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
     if ((basicAbilities[j] == 1 && !card->basicAbilities[j]) || (basicAbilities[j] == -1 && card->basicAbilities[j])){
       match = NULL;
     }
   }
 
 
-  if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped())){ 
+  if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped())){
     match = NULL;
   }
 

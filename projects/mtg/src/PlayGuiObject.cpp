@@ -45,7 +45,7 @@ void GuiAvatar::Render(){
   GameObserver * game = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
   int life = player->life;
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(0.75);
 
   //Avatar
@@ -111,7 +111,7 @@ void GuiGameZone::Render(){
     JRenderer::GetInstance()->FillRect(x,y,quad->mWidth*scale,quad->mHeight*scale,ARGB(abs(wave-128), 255,255,255));
   }
   //Number of cards
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   char buffer[512];
   sprintf(buffer,"%i", zone->nb_cards);
   mFont->SetScale(0.75);

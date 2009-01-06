@@ -13,7 +13,7 @@ DamagerDamaged::DamagerDamaged(CardGui * cardg, Player * _damageSelecter, bool _
 DamagerDamaged::~DamagerDamaged(){
   for (int i = 0; i < mCount; i++){
     SAFE_DELETE(damages[i]);
-    
+
   }
 }
 
@@ -72,7 +72,7 @@ int DamagerDamaged::removeDamagesFrom(DamagerDamaged * source){
 }
 
 void DamagerDamaged::Render(Player * currentPlayer){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(0.75);
   CardGui::Render();

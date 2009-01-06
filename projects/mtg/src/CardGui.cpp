@@ -5,13 +5,13 @@
 void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcons, float x, float y, float rotation, float scale){
   JQuad * mIcons[7];
   if (!manaIcons){
-    mIcons[MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
-    mIcons[MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
-    mIcons[MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
-    mIcons[MTG_COLOR_RED] = GameApp::CommonRes->GetQuad("c_red");
-    mIcons[MTG_COLOR_BLACK] = GameApp::CommonRes->GetQuad("c_black");
-    mIcons[MTG_COLOR_BLUE] = GameApp::CommonRes->GetQuad("c_blue");
-    mIcons[MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
+    mIcons[Constants::MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
+    mIcons[Constants::MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
+    mIcons[Constants::MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
+    mIcons[Constants::MTG_COLOR_RED] = GameApp::CommonRes->GetQuad("c_red");
+    mIcons[Constants::MTG_COLOR_BLACK] = GameApp::CommonRes->GetQuad("c_black");
+    mIcons[Constants::MTG_COLOR_BLUE] = GameApp::CommonRes->GetQuad("c_blue");
+    mIcons[Constants::MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
     for (int i=0; i < 7; i++){
       mIcons[i]->SetHotSpot(16,16);
     }
@@ -47,7 +47,7 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
   }
 
   if (rotation == 0){
-    renderer->FillRoundRect(x+points[0].x + 2  ,y+points[0].y +2 ,width*scale-8,height*scale-8,2,ARGB(255,_r[color],_g[color],_b[color]));
+    renderer->FillRoundRect(x+points[0].x + 2  ,y+points[0].y +2 ,width*scale-8,height*scale-8,2,ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
     renderer->FillRect(x+points[0].x + 6 ,y+points[0].y + 6 ,width*scale-12,height*scale-12,bgcolor2);
   }else{
     for (int i=0; i < 4; i++){
@@ -58,7 +58,7 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
 
   ManaCost * manacost = card->getManaCost();
   int nbicons = 0;
-  for (int i = 1; i < MTG_NB_COLORS - 1; i++){
+  for (int i = 1; i < Constants::MTG_NB_COLORS - 1; i++){
 
     int cost = manacost->getCost(i);
     for (int j=0; j < cost; j++){
@@ -135,7 +135,7 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
     multiply = 1.1;
   }
   mFont->SetScale(scale * multiply);
-  mFont->SetColor(ARGB(255,_r[color],_g[color],_b[color]));
+  mFont->SetColor(ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
   mFont->DrawString(card->getName(),x+v.x,y+v.y);
   mFont->SetScale(scale);
   mFont->SetColor(ARGB(255,255,255,255));
@@ -162,15 +162,15 @@ CardGui::CardGui(int id, MTGCardInstance * _card, float desiredHeight,float _x, 
   alpha = 255;
   mParticleSys = NULL;
 
-  if (card->hasColor(MTG_COLOR_RED)){
+  if (card->hasColor(Constants::MTG_COLOR_RED)){
     mParticleSys = GameApp::Particles[3];
-  }else if (card->hasColor(MTG_COLOR_BLUE)){
+  }else if (card->hasColor(Constants::MTG_COLOR_BLUE)){
     mParticleSys = GameApp::Particles[1];
-  }else if (card->hasColor(MTG_COLOR_GREEN)){
+  }else if (card->hasColor(Constants::MTG_COLOR_GREEN)){
     mParticleSys = GameApp::Particles[2];
-  }else if (card->hasColor(MTG_COLOR_BLACK)){
+  }else if (card->hasColor(Constants::MTG_COLOR_BLACK)){
     mParticleSys = GameApp::Particles[4];
-  }else if (card->hasColor(MTG_COLOR_WHITE)){
+  }else if (card->hasColor(Constants::MTG_COLOR_WHITE)){
     mParticleSys = GameApp::Particles[0];
   }else{
     mParticleSys = GameApp::Particles[5];
@@ -239,7 +239,7 @@ void CardGui::RenderBig(float xpos, float ypos, int alternate){
 
 void CardGui::Render(){
 
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(MAIN_FONT);
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
 
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = card->getThumb();
@@ -289,15 +289,15 @@ void CardGui::Render(){
 
     char buffer[200];
     sprintf(buffer, "%s",card->getName());
-    mFont->SetColor(ARGB(255,_r[color],_g[color],_b[color]));
+    mFont->SetColor(ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
     if (card->isTapped()){
       renderer->FillRect(myX  - 64 * mScale , myY  , 64 * mScale, 40 * mScale,   ARGB(255,0,0,0));
-      renderer->DrawRect(myX  - 64 * mScale , myY  , 64 * mScale, 40 * mScale,   ARGB(255,_r[color],_g[color],_b[color]));
+      renderer->DrawRect(myX  - 64 * mScale , myY  , 64 * mScale, 40 * mScale,   ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
       mFont->SetScale(0.20);
       mFont->DrawString(buffer,myX - (64 * mScale)+4,myY + 1);
     }else{
       renderer->FillRect(myX   , myY , 40 * mScale,  64 * mScale, ARGB(255,0,0,0));
-      renderer->DrawRect(myX   , myY , 40 * mScale,  64 * mScale, ARGB(255,_r[color],_g[color],_b[color]));
+      renderer->DrawRect(myX   , myY , 40 * mScale,  64 * mScale, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
       mFont->SetScale(0.40);
       mFont->DrawString(buffer,myX+4,myY + 1);
     }

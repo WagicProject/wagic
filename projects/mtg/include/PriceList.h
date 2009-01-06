@@ -17,7 +17,7 @@ class PriceList{
  private:
   MTGAllCards * collection;
   string filename;
-  Price * prices[TOTAL_NUMBER_OF_CARDS];
+  Price * prices[Constants::TOTAL_NUMBER_OF_CARDS];
   int nbprices;
  public:
   PriceList(const char * file, MTGAllCards * _collection);

@@ -160,13 +160,13 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
 
     //icon images
-    mIcons[MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
-    mIcons[MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
-    mIcons[MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
-    mIcons[MTG_COLOR_RED] = GameApp::CommonRes->GetQuad("c_red");
-    mIcons[MTG_COLOR_BLACK] = GameApp::CommonRes->GetQuad("c_black");
-    mIcons[MTG_COLOR_BLUE] = GameApp::CommonRes->GetQuad("c_blue");
-    mIcons[MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
+    mIcons[Constants::MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
+    mIcons[Constants::MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
+    mIcons[Constants::MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
+    mIcons[Constants::MTG_COLOR_RED] = GameApp::CommonRes->GetQuad("c_red");
+    mIcons[Constants::MTG_COLOR_BLACK] = GameApp::CommonRes->GetQuad("c_black");
+    mIcons[Constants::MTG_COLOR_BLUE] = GameApp::CommonRes->GetQuad("c_blue");
+    mIcons[Constants::MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
     for (int i=0; i < 7; i++){
       mIcons[i]->SetHotSpot(16,16);
     }
@@ -295,13 +295,13 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  last_user_activity = 0;
 	  mStage = STAGE_TRANSITION_UP;
 	  colorFilter--;
-	  if (colorFilter < -1) colorFilter = MTG_COLOR_LAND;
+	  if (colorFilter < -1) colorFilter = Constants::MTG_COLOR_LAND;
 	  break;
 	case PSP_CTRL_DOWN :
 	  last_user_activity = 0;
 	  mStage = STAGE_TRANSITION_DOWN;
 	  colorFilter ++;
-	  if (colorFilter >  MTG_COLOR_LAND) colorFilter =-1;
+	  if (colorFilter > Constants::MTG_COLOR_LAND) colorFilter =-1;
 	  break;
 	case PSP_CTRL_TRIANGLE :
 	  if (last_user_activity > 0.2)
@@ -473,7 +473,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     int max2 = 0;
     int maxC2 = 4;
 
-    for (int i= 0; i< MTG_NB_COLORS -1; i++){
+    for (int i= 0; i < Constants::MTG_NB_COLORS -1; i++){
       int value = myDeck->getCount(i);
       if (value > max1){
 	max2 = max1;
@@ -489,18 +489,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       maxC2 = maxC1;
     }
 
-    int _a[6] = {255,	255,	255,255,255,255};
-    int _r[6] = {75,	0,		0,	255,50,255};
-    int _g[6] = {30,	255,	0,	0,	50,255};
-    int _b[6] = {20,	0,		255,0,	50,255};
-
-
     PIXEL_TYPE colors[] =
       {
-	ARGB(255,_r[maxC1],_g[maxC1],_b[maxC1]),
-	ARGB(255,_r[maxC1],_g[maxC1],_b[maxC1]),
-	ARGB(255,_r[maxC2],_g[maxC2],_b[maxC2]),
-	ARGB(255,_r[maxC2],_g[maxC2],_b[maxC2]),
+	ARGB(255, Constants::_r[maxC1], Constants::_g[maxC1], Constants::_b[maxC1]),
+	ARGB(255, Constants::_r[maxC1], Constants::_g[maxC1], Constants::_b[maxC1]),
+	ARGB(255, Constants::_r[maxC2], Constants::_g[maxC2], Constants::_b[maxC2]),
+	ARGB(255, Constants::_r[maxC2], Constants::_g[maxC2], Constants::_b[maxC2]),
       };
 
     JRenderer::GetInstance()->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);
@@ -566,7 +560,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     //Your Deck Information
     char buffer[300];
     int nb_letters = 0;
-    for (int j=0; j<MTG_NB_COLORS;j++){
+    for (int j=0; j<Constants::MTG_NB_COLORS;j++){
       int value = myDeck->getCount(j);
       if (value > 0){
 	sprintf(buffer, "%i", value);
