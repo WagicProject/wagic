@@ -53,7 +53,7 @@ int TestSuiteAI::Act(float dt){
   OutputDebugString(action.c_str());
   OutputDebugString("\n");
 
-    
+
   if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
     if(action.compare("no") != 0 && action.compare("yes") != 0){
       g->mLayers->stackLayer()->cancelInterruptOffer();

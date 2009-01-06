@@ -112,7 +112,6 @@ void MTGCard::setColor(int _color, int removeAllOthers){
 }
 
 int MTGCard::getColor(){
-  int i = 0;
   for (int i=0; i<Constants::MTG_NB_COLORS; i++){
     if (colors[i]){
       return i;

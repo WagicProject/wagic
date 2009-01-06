@@ -47,7 +47,6 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
 #endif
 
   ManaCost * diff = potentialMana->Diff(cost);
-  int currentCost = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
   CardDescriptor cd;
   cd.setColor(Constants::MTG_COLOR_LAND);
@@ -246,9 +245,9 @@ int AIPlayer::chooseAttackers(){
 int AIPlayer::chooseBlockers(){
   map<MTGCardInstance *, int> opponentsToughness;
   int opponentForce = getCreaturesInfo(opponent(),INFO_CREATURESPOWER);
-  int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES, -1);
-  int myForce = getCreaturesInfo(this,INFO_CREATURESPOWER);
-  int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1);
+  //int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES, -1);
+  //int myForce = getCreaturesInfo(this,INFO_CREATURESPOWER);
+  //int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1);
   CardDescriptor cd;
   cd.init();
   cd.setType("Creature");
@@ -307,7 +306,6 @@ int AIPlayer::chooseBlockers(){
 int AIPlayer::combatDamages(){
   int result = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
-  Player * currentPlayer = gameObs->currentPlayer;
   int currentGamePhase = gameObs->getCurrentGamePhase();
   if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
   DamageResolverLayer *  drl = gameObs->mLayers->combatLayer();

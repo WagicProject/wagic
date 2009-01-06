@@ -242,7 +242,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       end = s.find(",",previous);
       string spt = s.substr(previous,end - previous);
       int power, toughness;
-      //int havePowertoughness = parsePowerToughness(spt,&power, &toughness);
+      parsePowerToughness(spt,&power, &toughness);
       string sabilities = s.substr(end+1);
       ManaCost * cost = ManaCost::parseManaCost(s);
       int multiplier = 1;

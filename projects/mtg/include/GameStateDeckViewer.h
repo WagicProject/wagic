@@ -599,7 +599,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
 
     float max_scale = 0.96;
-    float min_scale = 0.2;
     float x_center_0 = 180;
     float right_border = SCREEN_WIDTH - 20 ;
 

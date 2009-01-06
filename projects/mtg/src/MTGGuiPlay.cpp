@@ -252,7 +252,6 @@ void MTGGuiPlay::AddPlayersGuiInfo(){
 void MTGGuiPlay::Update(float dt){
   updateCards();
   PlayGuiObjectController::Update(dt);
-  GameObserver * game = GameObserver::GetInstance();
 }
 
 
@@ -269,10 +268,8 @@ bool MTGGuiPlay::CheckUserInput(u32 key){
 
 
 void MTGGuiPlay::RenderPlayerInfo(int playerid){
-  GameObserver * game = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
   Player * player = GameObserver::GetInstance()->players[playerid];
-  int life = player->life;
 
   //Avatar
   GuiAvatar * avatar = (GuiAvatar *)mObjects[3*playerid];
