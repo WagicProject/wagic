@@ -60,6 +60,9 @@ debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -fno-excepti
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
 
+3xx:
+	@echo Rule 3xx is deprecated. Did you want to use just "make" ?
+
 else
 
 
