@@ -43,13 +43,14 @@ LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lglut -lhgetools -l
 CFLAGS = $(INCDIR) -O2 -Wall -W -Werror -Wno-unused -DDEVHOOK -DLINUX
 CXXFLAGS += $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CXXFLAGS)
+
+all: $(DEFAULT_RULE)
+
 endif
 
 LDFLAGS = $(LIBS)
 
 
-
-all: $(DEFAULT_RULE)
 
 debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -fno-exceptions -fno-rtti -ggdb3 -D_DEBUG -DDEBUG -DLINUX $(INCDIR)
 
@@ -58,8 +59,6 @@ debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -fno-excepti
 
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
-
-3xx: $(TARGET).elf
 
 else
 
