@@ -70,7 +70,7 @@ int TestSuiteAI::Act(float dt){
   }
 
   if (action.compare("eot")== 0){
-    if (g->getCurrentGamePhase() != MTG_PHASE_CLEANUP) suite->currentAction--;
+    if (g->getCurrentGamePhase() != Constants::MTG_PHASE_CLEANUP) suite->currentAction--;
     g->userRequestNextGamePhase();
   }
   else if (action.compare("next")==0){
@@ -187,7 +187,6 @@ string TestSuite::getNextAction(){
 
 
 MTGPlayerCards * TestSuite::buildDeck(MTGAllCards * collection, int playerId){
-  char buf[4096];
   int list[100];
   int nbcards = 0;
   for (int j = 0; j < 4; j++){
@@ -357,18 +356,18 @@ int TestSuite::loadNext(){
 
 //TODO PArses a string and gives phase numer
 int TestSuite::phaseStrToInt(string s){
-  if (s.compare("untap") == 0) return MTG_PHASE_UNTAP;
-  if (s.compare("upkeep") == 0)return MTG_PHASE_UPKEEP;
-  if (s.compare("draw") == 0)return MTG_PHASE_DRAW;
-  if (s.compare("firstmain") == 0)return MTG_PHASE_FIRSTMAIN;
-  if (s.compare("combatbegin") == 0)return MTG_PHASE_COMBATBEGIN;
-  if (s.compare("combatattackers") == 0)return MTG_PHASE_COMBATATTACKERS;
-  if (s.compare("combatblockers") == 0)return MTG_PHASE_COMBATBLOCKERS;
-  if (s.compare("combatdamage") == 0)return MTG_PHASE_COMBATDAMAGE;
-  if (s.compare("combatend") == 0)return MTG_PHASE_COMBATEND;
-  if (s.compare("secondmain") == 0)return MTG_PHASE_SECONDMAIN;
-  if (s.compare("endofturn") == 0)return MTG_PHASE_ENDOFTURN;
-  if (s.compare("cleanup") == 0)return MTG_PHASE_CLEANUP;
+  if (s.compare("untap") == 0) return Constants::MTG_PHASE_UNTAP;
+  if (s.compare("upkeep") == 0)return Constants::MTG_PHASE_UPKEEP;
+  if (s.compare("draw") == 0)return Constants::MTG_PHASE_DRAW;
+  if (s.compare("firstmain") == 0)return Constants::MTG_PHASE_FIRSTMAIN;
+  if (s.compare("combatbegin") == 0)return Constants::MTG_PHASE_COMBATBEGIN;
+  if (s.compare("combatattackers") == 0)return Constants::MTG_PHASE_COMBATATTACKERS;
+  if (s.compare("combatblockers") == 0)return Constants::MTG_PHASE_COMBATBLOCKERS;
+  if (s.compare("combatdamage") == 0)return Constants::MTG_PHASE_COMBATDAMAGE;
+  if (s.compare("combatend") == 0)return Constants::MTG_PHASE_COMBATEND;
+  if (s.compare("secondmain") == 0)return Constants::MTG_PHASE_SECONDMAIN;
+  if (s.compare("endofturn") == 0)return Constants::MTG_PHASE_ENDOFTURN;
+  if (s.compare("cleanup") == 0)return Constants::MTG_PHASE_CLEANUP;
   return -1;
 }
 
@@ -404,7 +403,7 @@ void TestSuite::cleanup(){
 }
 
 void TestSuite::load(const char * _filename){
-  char filename[4096];
+  char filename[50096];
   sprintf(filename, RESPATH"/test/%s", _filename);
   std::ifstream file(filename);
   std::string s;

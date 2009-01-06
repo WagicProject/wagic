@@ -393,6 +393,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\MTGDefinitions.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\MTGGamePhase.cpp"
 				>
 			</File>
