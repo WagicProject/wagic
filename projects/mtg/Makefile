@@ -81,9 +81,6 @@ $(OBJS): objs/%.o: src/%.cpp
 	$(CXX) -c -o $@ $(CXXFLAGS) $<
 
 $(DEPS): deps/%.d: src/%.cpp
-	@set -e; $(RM) $@; \
-	$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$; \
-	sed 's,\($*\)\.o[ :]*,objs/\1.o $@ : ,g' < $@.$$$$ > $@; \
-	$(RM) $@.$$$$
+	$(CXX) -MM $(CXXFLAGS) -MQ $(patsubst deps/%.d, objs/%.o, $(@)) -MQ $@ $< > $@
 
 include $(DEPS)
