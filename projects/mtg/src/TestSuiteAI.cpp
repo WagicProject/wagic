@@ -323,6 +323,8 @@ TestSuite::TestSuite(const char * filename){
   int comment = 0;
   if(file){
     while(std::getline(file,s)){
+      if (!s.size()) continue;
+      if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
       if (s[0] == '/' && s[1] == '*') comment = 1;
       if (s[0] && s[0] != '#' && !comment){
 	files[nbfiles] = s;
@@ -413,6 +415,8 @@ void TestSuite::load(const char * _filename){
   if(file){
     cleanup();
     while(std::getline(file,s)){
+      if (!s.size()) continue;
+      if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
       if (s[0] == '#') continue;
       std::transform( s.begin(), s.end(), s.begin(),::tolower );
       switch(state){
