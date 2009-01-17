@@ -113,7 +113,7 @@ void JLBFont::DrawString(const char *string, float x, float y, int align)
 	else if (align == JGETEXT_CENTER)
 		dx -= width/2;
 
-	dx = floorf(dx) + 0.1;
+	dx = floorf(dx);
 	dy = floorf(dy);
 	int index;
 	while (*p)
@@ -145,27 +145,27 @@ void JLBFont::printf(float x, float y, const char *format, ...)
 void JLBFont::SetColor(PIXEL_TYPE color)
 {
     mColor = color;
-	mQuad->SetColor(mColor);
+    mQuad->SetColor(mColor);
 }
 
 
 
 float JLBFont::GetStringWidth(const char *string) const
 {
-	 float len = 0.0f;
+  float len = 0.0f;
 
-	 const char *p = string;
-	 char ch;
+  const char *p = string;
+  char ch;
 
-	 while (*p)
-	 {
-		  ch = *p - 32;
-		  p++;
-		  if (ch < 0) continue;
-		  len += mCharWidth[ch+mBase];
-      }
-
-      return len*mScale;
+  while (*p)
+    {
+      ch = *p - 32;
+      p++;
+      if (ch < 0) continue;
+      len += mCharWidth[ch+mBase] + mTracking;
+    }
+  len -= mTracking;
+  return len*mScale;
 }
 
 void JLBFont::SetScale(float scale) { mScale = scale; }
