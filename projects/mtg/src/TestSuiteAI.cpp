@@ -242,7 +242,7 @@ void TestSuite::initGame(){
 	          p->game->putInZone(card,p->game->library,zone);
 	        }
         }else{
-          if (!card) LOG ("ERROR, card is NULL\n");
+	if (!card) { LOG ("ERROR, card is NULL\n"); }
         }
       }
     }
@@ -412,11 +412,13 @@ void TestSuite::cleanup(){
 void TestSuite::load(const char * _filename){
   char filename[4096];
   sprintf(filename, RESPATH"/test/%s", _filename);
+  printf(filename);
   std::ifstream file(filename);
   std::string s;
 
   int state = -1;
 
+  std::cout << std::endl << std::endl << "!!!" << file << std::endl << std::endl;
   if(file){
     cleanup();
     while(std::getline(file,s)){
