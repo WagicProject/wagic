@@ -137,8 +137,11 @@ void CardDisplay::Render(){
       }
     }
   }
-  if (mObjects[mCurr]){
+
+  if (mCount && mObjects[mCurr] != NULL){
     mObjects[mCurr]->Render();
+    CardGui * cardg = ((CardGui *)mObjects[mCurr]);
+    cardg->RenderBig(-1,-1,showBigCards-1);
   }
 }
 

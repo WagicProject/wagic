@@ -145,6 +145,11 @@ int ManaCost::getCost(int color){
   return cost[color];
 }
 
+ManaCostHybrid * ManaCost::getHybridCost(unsigned int i){
+  if (nbhybrids <= i) return NULL;
+  return hybrids[i];
+}
+
 int ManaCost::getMainColor(){
   for (int i=0; i< Constants::MTG_NB_COLORS; i++){
     if (cost[i]) return i;
@@ -203,7 +208,7 @@ int ManaCost::addHybrid(int c1, int v1, int c2, int v2){
   hybrids[nbhybrids] = h;
   nbhybrids++;
   return nbhybrids;
-}
+} 
 
 int ManaCost::pay(ManaCost * _cost){
   ManaCost * diff = Diff(_cost);

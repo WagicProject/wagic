@@ -24,6 +24,8 @@ class ManaCost{
   int getConvertedCost();
   string toString();
   int getCost(int color);
+  //Returns NULL if i is greater than nbhybrids
+  ManaCostHybrid * getHybridCost(unsigned int i);
   int getMainColor();
   int hasColor(int color);
   int remove (int color, int value);

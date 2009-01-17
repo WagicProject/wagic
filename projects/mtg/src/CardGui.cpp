@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/CardGui.h"
+#include "../include/ManaCostHybrid.h"
 #include <Vector2D.h>
 
 void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcons, float x, float y, float rotation, float scale){
@@ -58,6 +59,34 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
 
   ManaCost * manacost = card->getManaCost();
   int nbicons = 0;
+  ManaCostHybrid * h;
+  
+  unsigned int j = 0;
+  while (h = manacost->getHybridCost(j)){
+    OutputDebugString("Hybrid\n");
+    for (int i = 0; i < 2; i++){
+      int color = h->color1;
+      int value = h->value1;
+      if (i) {
+        color = h->color2;
+        value = h->value2;
+      }
+      int offset = 2*i-1;
+      v.x = (width/2 - 24 - 16*nbicons + 8*i)*scale;
+      v.y = ((-height/2) + 16 + 8*i) * scale;
+      v.Rotate(rotation);
+      if (color == 0){
+        sprintf(buf,"%i",value);
+        mFont->SetColor(ARGB(255,255,255,255));
+        mFont->DrawString(buf,x+v.x,y+v.y);
+      }else{
+        renderer->RenderQuad(manaIcons[color],x+v.x,y+v.y,rotation,0.4*scale, 0.4*scale);
+      }
+    }
+    nbicons++;
+    j++;
+  }
+
   for (int i = 1; i < Constants::MTG_NB_COLORS - 1; i++){
 
     int cost = manacost->getCost(i);
@@ -251,60 +280,96 @@ void CardGui::Render(){
 
   float tap = (float)(card->isTapped());
   float rotation = M_PI_2 * tap;
+  float mScale = mHeight / 64;
+  float myW = 45 * mScale;
+  float myH = 60*mScale;
+  GameObserver * game = GameObserver::GetInstance();
+  TargetChooser * tc = NULL;
+  if (game) tc = game->getCurrentTargetChooser();
+  float myX = x + (32 * tap * mScale);
+  float myY = y+(20 * tap * mScale);
   if (quad){
-    float mScale = mHeight / quad->mHeight;
-    float myX = x + (quad->mHeight/2 * tap * mScale);
-    float myY = y+(quad->mWidth/2 * tap * mScale);
+    mScale = mHeight / quad->mHeight;
+    myH = mHeight;
+    myW = quad->mWidth * mScale;
+    myX = x + (quad->mHeight/2 * tap * mScale);
+    myY = y+(quad->mWidth/2 * tap * mScale);
     if (mHeight-defaultHeight){
       if (card->isTapped()){
-	renderer->FillRect(myX + 1*(mHeight-defaultHeight) - quad->mHeight * mScale , myY + 1*(mHeight-defaultHeight) , quad->mHeight * mScale, quad->mWidth * mScale,   ARGB(128,0,0,0));
+	      renderer->FillRect(myX + 1*(mHeight-defaultHeight) - quad->mHeight * mScale , myY + 1*(mHeight-defaultHeight) , quad->mHeight * mScale, quad->mWidth * mScale,   ARGB(128,0,0,0));
       }else{
-	renderer->FillRect(myX + 1*(mHeight-defaultHeight)  , myY + 1*(mHeight-defaultHeight) , quad->mWidth * mScale,  quad->mHeight * mScale, ARGB(128,0,0,0));
+	      renderer->FillRect(myX + 1*(mHeight-defaultHeight)  , myY + 1*(mHeight-defaultHeight) , quad->mWidth * mScale,  quad->mHeight * mScale, ARGB(128,0,0,0));
       }
     }
 
     quad->SetColor(ARGB( alpha,255,255,255));
-    GameObserver * game = GameObserver::GetInstance();
-    TargetChooser * tc = NULL;
-    if (game) tc = game->getCurrentTargetChooser();
+
     if (tc){
       if (!tc->canTarget(card)){
-	quad->SetColor(ARGB( alpha,50,50,50));
+	      quad->SetColor(ARGB( alpha,50,50,50));
       }
     }
     renderer->RenderQuad(quad,  myX , myY , rotation,mScale,mScale);
-    if (tc && tc->alreadyHasTarget(card)){
-      if (card->isTapped()){
-	renderer->FillRect(myX- quad->mHeight * mScale , myY  , quad->mHeight * mScale, quad->mWidth * mScale,   ARGB(128,255,0,0));
-      }else{
-	renderer->FillRect(myX   , myY  , quad->mWidth * mScale,  quad->mHeight * mScale, ARGB(128,255,0,0));
-      }
-    }
     quad->SetColor(ARGB( alpha,255,255,255));
   }else{
     int color = card->getColor();
-    float mScale = mHeight / 64;
-    float myX = x + (32 * tap * mScale);
-    float myY = y+(20 * tap * mScale);
+
+
+
 
     char buffer[200];
     sprintf(buffer, "%s",card->getName());
     mFont->SetColor(ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-    if (card->isTapped()){
-      renderer->FillRect(myX  - 64 * mScale , myY  , 64 * mScale, 40 * mScale,   ARGB(255,0,0,0));
-      renderer->DrawRect(myX  - 64 * mScale , myY  , 64 * mScale, 40 * mScale,   ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-      mFont->SetScale(0.20);
-      mFont->DrawString(buffer,myX - (64 * mScale)+4,myY + 1);
-    }else{
-      renderer->FillRect(myX   , myY , 40 * mScale,  64 * mScale, ARGB(255,0,0,0));
-      renderer->DrawRect(myX   , myY , 40 * mScale,  64 * mScale, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-      mFont->SetScale(0.40);
-      mFont->DrawString(buffer,myX+4,myY + 1);
-    }
 
+    JQuad * mIcon = NULL;
+    if (card->hasSubtype("plains")){
+      mIcon = GameApp::CommonRes->GetQuad("c_white");
+    }else if(card->hasSubtype("swamp")){
+      mIcon = GameApp::CommonRes->GetQuad("c_black");
+    }else if(card->hasSubtype("forest")){
+      mIcon = GameApp::CommonRes->GetQuad("c_green");
+    }else if(card->hasSubtype("mountain")){
+      mIcon = GameApp::CommonRes->GetQuad("c_red");
+    }else if(card->hasSubtype("island")){
+      mIcon = GameApp::CommonRes->GetQuad("c_blue");
+    }
+    if (mIcon) mIcon->SetHotSpot(16,16);
+    if (card->isTapped()){
+      renderer->FillRect(myX  - myH , myY  , myH, myW,   ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
+      renderer->DrawRect(myX  - myH , myY  , myH, myW,   ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
+      mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.8 * mScale);
+      mFont->DrawString(buffer,myX - (myH)+4,myY + 1);
+      if (mIcon) renderer->RenderQuad(mIcon,myX - myH/2, myY + myW/2,M_PI_2,mScale,mScale);
+      if (tc){
+        if (!tc->canTarget(card)){
+	        renderer->DrawRect(myX  - myH , myY  , myH, myW,   ARGB(128,0,0,0));
+        }
+      }
+    }else{
+      renderer->FillRect(myX   , myY , myW,  myH, ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
+      renderer->DrawRect(myX   , myY , myW,  myH, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
+      mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * mScale);
+      mFont->DrawString(buffer,myX+4,myY + 1);
+      if (mIcon) renderer->RenderQuad(mIcon,myX + myW/2, myY + myH/2,0,mScale, mScale);
+      if (tc){
+        if (!tc->canTarget(card)){
+	        renderer->DrawRect(myX   , myY , myW,  myH,   ARGB(128,0,0,0));
+        }
+      }
+    }
+    
 
     mFont->SetScale(1.0);
   }
+
+  if (tc && tc->alreadyHasTarget(card)){
+    if (card->isTapped()){
+      renderer->FillRect(myX- myH , myY  , myH, myW,   ARGB(128,255,0,0));
+    }else{
+      renderer->FillRect(myX   , myY  , myW,  myH, ARGB(128,255,0,0));
+    }
+  }
+
   if (card->isACreature()){
     mFont->SetScale(1.0);
     char buffer[200];

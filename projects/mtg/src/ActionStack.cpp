@@ -643,7 +643,7 @@ void ActionStack::Render(){
     JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-
+    mFont->SetColor(ARGB(255,255,255,255));
     JRenderer * renderer = JRenderer::GetInstance();
 
     //JQuad * back = GameApp::CommonRes->GetQuad("interrupt");
