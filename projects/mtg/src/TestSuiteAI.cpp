@@ -223,22 +223,27 @@ void TestSuite::initGame(){
     for (int j = 0; j < 4; j++){
       MTGGameZone * zone = playerZones[j];
       for (int k = 0; k < initState.playerData[i].zones[j].nbitems; k++){
-	MTGCardInstance * card = getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
-	if (card && zone != p->game->library){
-	  if (zone == p->game->inPlay){
-	    p->game->putInZone(card,  p->game->library, p->game->hand);
-	    Spell * spell = NEW Spell(card);
-	    p->game->putInZone(card,  p->game->hand, p->game->stack);
-	    spell->resolve();
-	    card->summoningSickness = 0;
-	    delete spell;
-	  }else{
-	    if (!p->game->library->hasCard(card)){
-	      LOG ("ERROR, CARD NOT FOUND IN LIBRARY\n");
-	    }
-	    p->game->putInZone(card,p->game->library,zone);
-	  }
-	}
+	      MTGCardInstance * card = getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
+        char buf[4096];
+        sprintf(buf, "QUAD : %p\n", card->getQuad());
+        OutputDebugString(buf);
+	      if (card && zone != p->game->library){
+	        if (zone == p->game->inPlay){
+	          p->game->putInZone(card,  p->game->library, p->game->hand);
+	          Spell * spell = NEW Spell(card);
+	          p->game->putInZone(card,  p->game->hand, p->game->stack);
+	          spell->resolve();
+	          card->summoningSickness = 0;
+	          delete spell;
+	        }else{
+	          if (!p->game->library->hasCard(card)){
+	            LOG ("ERROR, CARD NOT FOUND IN LIBRARY\n");
+	          }
+	          p->game->putInZone(card,p->game->library,zone);
+	        }
+        }else{
+          if (!card) LOG ("ERROR, card is NULL\n");
+        }
       }
     }
   }
@@ -405,7 +410,7 @@ void TestSuite::cleanup(){
 }
 
 void TestSuite::load(const char * _filename){
-  char filename[50096];
+  char filename[4096];
   sprintf(filename, RESPATH"/test/%s", _filename);
   std::ifstream file(filename);
   std::string s;

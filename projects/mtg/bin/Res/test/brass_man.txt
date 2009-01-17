@@ -7,43 +7,8 @@ inplay:1099,1387,1388
 life:20
 [DO]
 1099
-next
-#blockers
-next
-#combatdamage
-next
-#endofcombat
-next
-#main phase 2
-next
-#eot
-next
-#cleanup
-next
-#untap 2
-next
-#upkeep 2
-next
-#draw 2
-next
-#main 2
-next
-#combatbegin 2
-next
-#attackers 2
-next
-#blockers 2
-next
-#combatdamage 2
-next
-#endofcombat 2
-next
-#main phase II 2
-next
-#eot 2
-next
-#cleanup 1
-next
+eot
+eot
 #untap 1
 next
 #upkeep 1

@@ -188,24 +188,24 @@ void GameStateDuel::Update(float dt)
       break;
     case DUEL_STATE_CHOOSE_DECK1:
       if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
-	deckmenu->Update(dt);
+	      deckmenu->Update(dt);
 #ifdef TESTSUITE
       else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
-	if (testSuite && testSuite->loadNext()){
-	  loadTestSuitePlayers();
-	  mGamePhase = DUEL_STATE_PLAY;
-	  testSuite->initGame();
-	  char buf[4096];
-	  sprintf(buf, "nb cards in player2's graveyard : %i\n",mPlayers[1]->game->graveyard->nb_cards);
-	  LOG(buf);
-	}else{
-	  mGamePhase = DUEL_STATE_END;
-	}
+	      if (testSuite && testSuite->loadNext()){
+	        loadTestSuitePlayers();
+	        mGamePhase = DUEL_STATE_PLAY;
+	        testSuite->initGame();
+	        char buf[4096];
+	        sprintf(buf, "nb cards in player2's graveyard : %i\n",mPlayers[1]->game->graveyard->nb_cards);
+	        LOG(buf);
+	      }else{
+	        mGamePhase = DUEL_STATE_END;
+	      }
       }
 #endif
       else{
-	loadPlayer(0);
-	mGamePhase = DUEL_STATE_CHOOSE_DECK2;
+	      loadPlayer(0);
+	      mGamePhase = DUEL_STATE_CHOOSE_DECK2;
       }
       break;
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
@@ -337,6 +337,7 @@ void GameStateDuel::Update(float dt)
 void GameStateDuel::Render()
 {
   //Erase
+  LOG("Start Render\n");
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 
   if (game)
@@ -345,33 +346,33 @@ void GameStateDuel::Render()
     {
     case DUEL_STATE_END:
       {
-	JRenderer::GetInstance()->ClearScreen(ARGB(200,0,0,0));
-	char buffer[50];
-	int p0life = mPlayers[0]->life;
-	if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
-	  if (game->gameOver !=mPlayers[0]){
-	    sprintf (buffer, "Victory! Congratulations, You earn 500 credits");
-	  }else{
-	    sprintf (buffer, "You have been defeated");
-	  }
-	}else{
-	  int winner = 2;
-	  if (game->gameOver !=mPlayers[0]){
-	    winner = 1;
-	  }
-	  sprintf(buffer, "Player %i wins (%i)", winner, p0life );
-	}
-	mFont->DrawString(buffer, 10, 150);
-	break;
+	      JRenderer::GetInstance()->ClearScreen(ARGB(200,0,0,0));
+	      char buffer[50];
+	      int p0life = mPlayers[0]->life;
+	      if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
+	        if (game->gameOver !=mPlayers[0]){
+	          sprintf (buffer, "Victory! Congratulations, You earn 500 credits");
+	        }else{
+	          sprintf (buffer, "You have been defeated");
+	        }
+	      }else{
+	        int winner = 2;
+	        if (game->gameOver !=mPlayers[0]){
+	          winner = 1;
+	        }
+	        sprintf(buffer, "Player %i wins (%i)", winner, p0life );
+	      }
+	      mFont->DrawString(buffer, 10, 150);
+	      break;
       }
     case DUEL_STATE_CHOOSE_DECK1:
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
     case DUEL_STATE_CHOOSE_DECK2:
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
       if (opponentMenu){
-	opponentMenu->Render();
+	      opponentMenu->Render();
       }else if (deckmenu){
-	deckmenu->Render();
+	      deckmenu->Render();
       }
       break;
     case DUEL_STATE_ERROR_NO_DECK:
@@ -383,6 +384,7 @@ void GameStateDuel::Render()
     case DUEL_STATE_BACK_TO_MAIN_MENU:
       menu->Render();
   }
+  LOG("End Render\n");
 }
 
 void GameStateDuel::ButtonPressed(int controllerId, int controlId)

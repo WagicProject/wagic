@@ -306,7 +306,7 @@ void CardGui::Render(){
     mFont->SetScale(1.0);
   }
   if (card->isACreature()){
-    mFont->SetScale(0.75);
+    mFont->SetScale(1.0);
     char buffer[200];
     sprintf(buffer, "%i/%i",card->power,card->life);
     renderer->FillRect(x+2,y + mHeight - 12, 25 , 12 ,ARGB(128,0,0,0));

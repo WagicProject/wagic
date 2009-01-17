@@ -22,7 +22,7 @@ void NextGamePhase::Render(){
   int nextPhase = (GameObserver::GetInstance()->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  mFont->SetScale(0.75);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   int playerId = 1;
   if (GameObserver::GetInstance()->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
@@ -43,7 +43,7 @@ int StackAbility::resolve(){
 void StackAbility::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  mFont->SetScale(0.75);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   sprintf(buffer, "%s", ability->getMenuText());
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
@@ -104,7 +104,7 @@ int Spell::resolve(){
 void Spell::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  mFont->SetScale(0.75);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   sprintf(buffer, "%s", source->getName());
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
@@ -150,7 +150,7 @@ int PutInGraveyard::resolve(){
 void PutInGraveyard::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  mFont->SetScale(0.75);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   if (!removeFromGame){
     mFont->DrawString("goes to graveyard", x + 20 , y, JGETEXT_LEFT);
   }else{
@@ -182,7 +182,7 @@ int DrawAction::resolve(){
 void DrawAction::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  mFont->SetScale(0.75);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   int playerId = 1;
   if (player ==  GameObserver::GetInstance()->players[1]) playerId = 2;
@@ -642,7 +642,7 @@ void ActionStack::Render(){
 
     JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
-    mFont->SetScale(0.75);
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 
     JRenderer * renderer = JRenderer::GetInstance();
 
@@ -688,7 +688,7 @@ void ActionStack::Render(){
 
     JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
-    mFont->SetScale(0.75);
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 
     JRenderer * renderer = JRenderer::GetInstance();
     renderer->FillRect(x0 ,y0 , width ,height , ARGB(200,0,0,0));

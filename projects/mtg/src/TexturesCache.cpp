@@ -9,6 +9,11 @@ TexturesCache::TexturesCache(){
   for (int i=0; i<MAX_CACHE_OBJECTS;i++){
     cache[i] = NULL;
   }
+#ifdef WIN32
+  char buf [4096];
+  sprintf(buf, " Init TextureCache : %p\n", this);
+  OutputDebugString(buf);
+#endif
 }
 
 TexturesCache::~TexturesCache(){

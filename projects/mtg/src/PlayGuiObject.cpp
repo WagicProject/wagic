@@ -46,8 +46,7 @@ void GuiAvatar::Render(){
   JRenderer * r = JRenderer::GetInstance();
   int life = player->life;
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
-  mFont->SetScale(0.75);
-
+  mFont->SetScale(1.0);
   //Avatar
   int lifeDiff = life - currentLife;
   if (lifeDiff < 0 && currentLife >0 ){
@@ -112,9 +111,9 @@ void GuiGameZone::Render(){
   }
   //Number of cards
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  mFont->SetScale(1.0);
   char buffer[512];
   sprintf(buffer,"%i", zone->nb_cards);
-  mFont->SetScale(0.75);
   mFont->SetColor(ARGB(128,0,0,0));
   mFont->DrawString(buffer, x+2, y+2);
   mFont->SetColor(ARGB(255,255,255,255));

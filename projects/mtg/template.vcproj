@@ -554,6 +554,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\config.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\ConstraintResolver.h"
 				>
 			</File>
@@ -571,10 +575,6 @@
 			</File>
 			<File
 				RelativePath=".\include\DamageResolverLayer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\debug.h"
 				>
 			</File>
 			<File

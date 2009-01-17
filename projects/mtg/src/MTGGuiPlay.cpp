@@ -308,10 +308,12 @@ void MTGGuiPlay::RenderPhaseBar(){
   }else{
     mFont->SetColor(ARGB(255,255,255,255));
   }
+  mFont->SetScale(1.0);
   mFont->DrawString(Constants::MTGPhaseNames[currentPhase], 375, 0);
 }
 
 void MTGGuiPlay::Render(){
+  LOG("Start MTGGuiPlay Render\n");
   JRenderer * renderer = JRenderer::GetInstance();
 
   //alphaBg[1] = 255;
@@ -367,10 +369,13 @@ void MTGGuiPlay::Render(){
 
   if (mCount && mObjects[mCurr] != NULL){
     mObjects[mCurr]->Render();
-    if (hasFocus && mCurr >= offset && showBigCards){
-        ((CardGui *)mObjects[mCurr])->RenderBig(-1,-1,showBigCards-1);
+    if (hasFocus && mCurr >= offset && showBigCards && !game->currentlyActing()->isAI() ){
+        //For some reason RenderBig crashes when the testsuite is playing, so we add a "isAI()" test...which was supposed to be there at some point anyways...
+        CardGui * cardg = ((CardGui *)mObjects[mCurr]);
+        cardg->RenderBig(-1,-1,showBigCards-1);
     }
   }
+  LOG("End MTGGuiPlay Render\n");
 }
 
 MTGGuiPlay::~MTGGuiPlay(){

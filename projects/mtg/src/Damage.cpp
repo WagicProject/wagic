@@ -50,7 +50,7 @@ int Damage::resolve(){
 void Damage::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  mFont->SetScale(0.75);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   sprintf(buffer, "Does %i damage to", damage);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);

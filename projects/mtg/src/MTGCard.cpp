@@ -152,9 +152,6 @@ void MTGCard::setMTGId(int id){
   }else{
     sprintf(image_name, "%d.jpg", mtgid);
   }
-#ifdef WIN32
-  OutputDebugString(image_name);
-#endif
 }
 
 int MTGCard::getMTGId(){

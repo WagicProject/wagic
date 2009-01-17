@@ -55,9 +55,6 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
 	  int colors[2];
 	  int values[2];
 	  if (!intvalue && value.size() > 1){
-#if defined (WIN32) || defined (LINUX)
-	    OutputDebugString("Hybrid Mana ???\n");
-#endif
 	    for (int i = 0; i < 2; i++){
 	      char c = value[i];
 	      if (c >='0' && c <='9'){

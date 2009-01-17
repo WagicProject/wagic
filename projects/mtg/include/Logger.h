@@ -2,7 +2,6 @@
 #define _LOGGER_H_
 
 
-
 #ifdef DOLOG
 #define LOG(x) Logger::Log(x);
 #else

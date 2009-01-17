@@ -1,6 +1,8 @@
 #ifndef _MTGDEFINITION_H_
 #define _MTGDEFINITION_H_
 
+#define DEFAULT_MAIN_FONT_SCALE 1.0
+
 class Constants
 {
  public:

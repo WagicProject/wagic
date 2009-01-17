@@ -1,4 +1,4 @@
-########################
+/*########################
 #Generic engine features
 ########################
 generic/first_strike.txt
@@ -17,7 +17,9 @@ animate_dead.txt
 animate_dead2.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
+*/
 brass_man.txt
+/*
 castle.txt
 circle_of_protection.txt
 control_magic.txt
@@ -58,3 +60,4 @@ volcanic_island.txt
 white_knight1.txt
 wrath_of_god.txt
 zombie_master.txt
+*/
