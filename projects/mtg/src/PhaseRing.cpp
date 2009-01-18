@@ -39,7 +39,7 @@ Phase * PhaseRing::forward(){
 
 Phase * PhaseRing::goToPhase(int id, Player * player){
   Phase * currentPhase = *current;
-  while(currentPhase->id !=id || currentPhase->player !=player){ //Dangerous, risk for inifinte loop !
+  while(currentPhase->id !=id || currentPhase->player != player){ //Dangerous, risk for inifinte loop !
 #ifdef WIN32
     OutputDebugString("goto");
 #endif

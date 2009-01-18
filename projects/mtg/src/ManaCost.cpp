@@ -113,7 +113,7 @@ ManaCost::ManaCost(ManaCost * _manaCost){
 
 ManaCost::~ManaCost(){
   LOG("==Deleting ManaCost==");
-  for (int i = 0;  i < nbhybrids ; i++){
+  for (unsigned int i = 0;  i < nbhybrids ; i++){
     SAFE_DELETE(hybrids[i]);
   }
 }
@@ -132,10 +132,10 @@ void ManaCost::init(){
 
 
 void ManaCost::copy(ManaCost * _manaCost){
-  for (int i=0; i<= Constants::MTG_NB_COLORS; i++){
+  for (unsigned int i = 0; i <= Constants::MTG_NB_COLORS; i++){
     cost[i] = _manaCost->getCost(i);
   }
-  for (int i=0; i< _manaCost->nbhybrids; i++){
+  for (unsigned int i = 0; i < _manaCost->nbhybrids; i++){
     hybrids[i] = NEW ManaCostHybrid((*_manaCost->hybrids[i]));
   }
   nbhybrids = _manaCost->nbhybrids;
@@ -159,7 +159,7 @@ int ManaCost::getMainColor(){
 
 int ManaCost::hasColor(int color){
   if (cost[color]) return 1;
-  for (int i = 0; i < nbhybrids; i++){
+  for (unsigned int i = 0; i < nbhybrids; i++){
     if (hybrids[i]->hasColor(color)) return 1;
   }
   return 0;
@@ -167,10 +167,10 @@ int ManaCost::hasColor(int color){
 
 int ManaCost::getConvertedCost(){
   int result = 0;
-  for (int i=0; i< Constants::MTG_NB_COLORS; i++){
+  for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++){
     result += cost[i];
   }
-  for (int i = 0; i < nbhybrids; i++){
+  for (unsigned int i = 0; i < nbhybrids; i++){
     result+= hybrids[i]->getConvertedCost();
   }
   return result;
@@ -188,10 +188,10 @@ int ManaCost::add(int color, int value){
 
 int ManaCost::add(ManaCost * _cost){
   if(!_cost) return 0;
-  for (int i=0; i< Constants::MTG_NB_COLORS; i++){
+  for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++){
     cost[i]+= _cost->getCost(i);
   }
-  for (int i=0; i< _cost->nbhybrids; i++){
+  for (unsigned int i = 0; i < _cost->nbhybrids; i++){
     hybrids[nbhybrids] = NEW ManaCostHybrid((*_cost->hybrids[i]));
     nbhybrids++;
   }
@@ -208,7 +208,7 @@ int ManaCost::addHybrid(int c1, int v1, int c2, int v2){
   hybrids[nbhybrids] = h;
   nbhybrids++;
   return nbhybrids;
-} 
+}
 
 int ManaCost::pay(ManaCost * _cost){
   ManaCost * diff = Diff(_cost);

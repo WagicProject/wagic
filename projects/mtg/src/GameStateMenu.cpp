@@ -411,9 +411,9 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
       {
       case MENUITEM_PLAY:
 #ifdef TESTSUITE
-	subMenuController = NEW SimpleMenu(102, this, mFont, 180,110);
+	subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
 #else
-	subMenuController = NEW SimpleMenu(102, this, mFont, 180,110);
+	subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
 #endif
 	if (subMenuController){
 	  subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");

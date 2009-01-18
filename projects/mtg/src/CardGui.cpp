@@ -60,9 +60,9 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
   ManaCost * manacost = card->getManaCost();
   int nbicons = 0;
   ManaCostHybrid * h;
-  
+
   unsigned int j = 0;
-  while (h = manacost->getHybridCost(j)){
+  while ((h = manacost->getHybridCost(j))){
     OutputDebugString("Hybrid\n");
     for (int i = 0; i < 2; i++){
       int color = h->color1;
@@ -357,7 +357,7 @@ void CardGui::Render(){
         }
       }
     }
-    
+
 
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   }

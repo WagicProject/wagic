@@ -143,9 +143,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     OutputDebugString(buf);
 #endif
 
-    
+
     MultiAbility * multi = NULL;
-    int delimiter = line.find("}:");
+    unsigned int delimiter = line.find("}:");
     ManaCost * cost = NULL;
     if (delimiter!= string::npos){
       cost = ManaCost::parseManaCost(line.substr(0,delimiter+1));
@@ -522,7 +522,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             multi->Add(a);
           }else{
 	          game->addObserver(a);
-          } 
+          }
         }else{
           OutputDebugString ("uh oh\n");
           card->controller()->getManaPool()->add(output);
