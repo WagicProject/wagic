@@ -83,6 +83,10 @@ int TestSuiteAI::Act(float dt){
     if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
       g->mLayers->stackLayer()->cancelInterruptOffer();
     }
+  }else if(action.find("choice ")!=string::npos){
+    OutputDebugString("choice !!!\n");
+    int choice = atoi(action.substr(action.find("choice ") + 7).c_str());
+    g->mLayers->actionLayer()->doReactTo(choice);
   }else{
     int mtgid = atoi(action.c_str());
     if (mtgid){
@@ -92,7 +96,7 @@ int TestSuiteAI::Act(float dt){
 	    }else{
         MTGCardInstance * card = suite->getCardByMTGId(mtgid);
         if (card) {
-	        g->cardClick(card);
+	        g->cardClick(card,card);
         }
       }
     }else{

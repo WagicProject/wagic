@@ -176,10 +176,22 @@ void ActionLayer::setMenuObject(Targetable * object){
   modal = 1;
 }
 
+void ActionLayer::doReactTo(int menuIndex){
+
+  if (menuObject){
+    int controlid = abilitiesMenu->mObjects[menuIndex]->GetId();
+    char buf[4096];
+    sprintf(buf, "doReact To %i\n",controlid);
+    OutputDebugString(buf);
+    ActionElement * currentAction = (ActionElement *)mObjects[controlid];
+    currentAction->reactToTargetClick(menuObject);
+    menuObject = 0;
+  }
+}
 
 void ActionLayer::ButtonPressed(int controllerid, int controlid){
   if (controlid == -1){
-
+    
   }else{
     ActionElement * currentAction = (ActionElement *)mObjects[controlid];
     currentAction->reactToTargetClick(menuObject);

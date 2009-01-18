@@ -12,6 +12,32 @@ subtype=Imp
 toughness=1
 [/card]
 [card]
+text=Red creatures you control have first strike.
+auto=lord(creature[red]|myinplay) first strike includeself
+id=142062
+name=Bloodmark Mentor
+rarity=U
+type=Creature
+mana={1}{R}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=Trample     Other red creatures you control get +1/+1.     Other green creatures you control get +1/+1.
+abilities=trample
+auto=lord(creature[red]|myinplay) 1/1
+auto=lord(creature[green]|myinplay) 1/1
+id=147428
+name=Boartusk Liege
+rarity=R
+type=Creature
+mana={1}{RG}{RG}{RG}
+power=3
+subtype=Goblin Knight
+toughness=4
+[/card]
+[card]
 text=Haste     Wither (This deals damage to creatures in the form of -1/-1 counters.)
 abilities=haste,wither
 id=153970
@@ -35,6 +61,30 @@ mana={2}{B}
 power=1
 subtype=Elemental Skeleton
 toughness=1
+[/card]
+[card]
+text=Black creatures you control have wither. (They deal damage to creatures in the form of -1/-1 counters.)
+auto=lord(creature[black]|myinplay) wither includeself
+id=142034
+name=Corrosive Mentor
+rarity=U
+type=Creature
+mana={2}{B}
+power=1
+subtype=Elemental Rogue
+toughness=3
+[/card]
+[card]
+text=Blue creatures you control are unblockable.
+auto=lord(creature[blue]|myinplay) unblockable includeself
+id=141981
+name=Deepchannel Mentor
+rarity=U
+type=Creature
+mana={5}{U}
+power=2
+subtype=Merfolk Rogue
+toughness=2
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {RG}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
@@ -104,6 +154,20 @@ mana={5}{G}
 power=3
 subtype=Treefolk Shaman
 toughness=6
+[/card]
+[card]
+text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
+abilities=flying
+auto=lord(creature[blue]|myinplay) 1/1
+auto=lord(creature[black]|myinplay) 1/1
+id=146743
+name=Glen Elendra Liege
+rarity=R
+type=Creature
+mana={1}{UB}{UB}{UB}
+power=2
+subtype=Faerie Knight
+toughness=3
 [/card]
 [card]
 text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)

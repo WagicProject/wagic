@@ -321,9 +321,9 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
       }
     }else if (reaction){
       if (reaction == 1){
-	mLayers->actionLayer()->reactToClick(card);
+	      mLayers->actionLayer()->reactToClick(card);
       }else{
-	mLayers->actionLayer()->setMenuObject(object);
+	      mLayers->actionLayer()->setMenuObject(object);
       }
     }else if (card->isTapped() && card->controller() == currentPlayer){
       //      int a = ConstraintResolver::untap(this, card);

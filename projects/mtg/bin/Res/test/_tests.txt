@@ -15,6 +15,7 @@ afflict.txt
 anarchy.txt
 animate_dead.txt
 animate_dead2.txt
+ardakar_wastes.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
 brass_man.txt

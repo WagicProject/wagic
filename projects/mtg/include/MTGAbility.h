@@ -147,6 +147,8 @@ class TriggerNextPhase:public TriggerAtPhase{
 
 class TriggeredEvent:public MTGAbilityBasicFeatures{
  public:
+   TriggeredEvent();
+   TriggeredEvent(MTGCardInstance * source, Damageable * target = NULL);
   virtual int resolve()=0;
 };
 
@@ -162,6 +164,15 @@ class BuryEvent: public TriggeredEvent{
  public:
   int resolve();
 };
+
+class DamageEvent:public TriggeredEvent{
+  public:
+    int damage;
+    DamageEvent(MTGCardInstance * _source, Damageable * _target, int _damage);
+    int resolve();
+};
+
+
 
 class DestroyCondition:public MTGAbilityBasicFeatures{
  public:
@@ -189,6 +200,7 @@ class AbilityFactory{
   int putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p);
   int parsePowerToughness(string s, int *power, int *toughness);
   Trigger * parseTrigger(string magicText);
+  Damageable * parseCollateralTarget(MTGCardInstance * card, string s);
  public:
   int magicText(int id, Spell * spell, MTGCardInstance * card = NULL);
   void addAbilities(int _id, Spell * spell);

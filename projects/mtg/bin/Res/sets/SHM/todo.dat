@@ -165,17 +165,6 @@ mana={2}
 subtype=Equipment
 [/card]
 [card]
-text=Red creatures you control have first strike.
-id=142062
-name=Bloodmark Mentor
-rarity=U
-type=Creature
-mana={1}{R}
-power=1
-subtype=Goblin Warrior
-toughness=1
-[/card]
-[card]
 text=Enchant creature     Enchanted creature attacks each turn if able.
 id=159395
 name=Bloodshed Fever
@@ -191,17 +180,6 @@ name=Blowfly Infestation
 rarity=U
 type=Enchantment
 mana={2}{B}
-[/card]
-[card]
-text=Trample     Other red creatures you control get +1/+1.     Other green creatures you control get +1/+1.
-id=147428
-name=Boartusk Liege
-rarity=R
-type=Creature
-mana={1}{RG}{RG}{RG}
-power=3
-subtype=Goblin Knight
-toughness=4
 [/card]
 [card]
 text=Plainswalk     {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
@@ -299,17 +277,6 @@ type=Instant
 mana={2}{U}
 [/card]
 [card]
-text=Black creatures you control have wither. (They deal damage to creatures in the form of -1/-1 counters.)
-id=142034
-name=Corrosive Mentor
-rarity=U
-type=Creature
-mana={2}{B}
-power=1
-subtype=Elemental Rogue
-toughness=3
-[/card]
-[card]
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
 id=146013
 name=Corrupt
@@ -404,17 +371,6 @@ name=Dawnglow Infusion
 rarity=U
 type=Sorcery
 mana={X}{GW}
-[/card]
-[card]
-text=Blue creatures you control are unblockable.
-id=141981
-name=Deepchannel Mentor
-rarity=U
-type=Creature
-mana={5}{U}
-power=2
-subtype=Merfolk Rogue
-toughness=2
 [/card]
 [card]
 text=Deep-Slumber Titan comes into play tapped.     Deep-Slumber Titan doesn't untap during your untap step.     Whenever Deep-Slumber Titan is dealt damage, untap it.
@@ -753,17 +709,6 @@ name=Gleeful Sabotage
 rarity=C
 type=Sorcery
 mana={1}{G}
-[/card]
-[card]
-text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
-id=146743
-name=Glen Elendra Liege
-rarity=R
-type=Creature
-mana={1}{UB}{UB}{UB}
-power=2
-subtype=Faerie Knight
-toughness=3
 [/card]
 [card]
 text=Destroy target creature. If that creature was green or white, its controller discards a card.

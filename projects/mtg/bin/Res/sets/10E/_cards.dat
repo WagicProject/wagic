@@ -101,6 +101,17 @@ subtype=Angel
 toughness=3
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {T}: Add {W} or {U} to your mana pool. Adarkar Wastes deals 1 damage to you.
+auto={T}:Add {1}
+auto={T}:Add {W} && Damage 1 controller
+auto={T}:Add {B} && Damage 1 controller
+id=129458
+name=Adarkar Wastes
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Other black creatures get +1/+1.      Nonblack creatures get -1/-1.
 abilities=Legendary, flying
 auto=lord(creature[black]) 1/1
@@ -125,6 +136,17 @@ rarity=C
 color=Black
 type=Sorcery
 mana={2}{B}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {R} or {W} to your mana pool. Battlefield Forge deals 1 damage to you.
+id=129479
+auto={T}:Add {1}
+auto={T}:Add {R} && Damage 1 controller
+auto={T}:Add {W} && Damage 1 controller
+name=Battlefield Forge
+rarity=R
+color=Land
+type=Land
 [/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.)  First strike (This creature deals combat damage before creatures without first strike.)
@@ -187,6 +209,28 @@ rarity=C
 color=Blue
 type=Instant
 mana={U}{U}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
+auto={T}:Add {1}
+auto={T}:Add {G} && Damage 1 controller
+auto={T}:Add {W} && Damage 1 controller
+id=129496
+name=Brushland
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {W} or {B} to your mana pool. Caves of Koilos deals 1 damage to you.
+auto={T}:Add {1}
+auto={T}:Add {W} && Damage 1 controller
+auto={T}:Add {B} && Damage 1 controller
+id=129497
+name=Caves of Koilos
+rarity=R
+color=Land
+type=Land
 [/card]
 [card]
 text=Counter target spell.
@@ -809,6 +853,17 @@ subtype=Human Barbarian
 toughness=1
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
+auto={T}:Add {1}
+auto={T}:Add {R} && Damage 1 controller
+auto={T}:Add {G} && Damage 1 controller
+id=129614
+name=Karplusan Forest
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
 text=When Kavu Climber comes into play, draw a card.
 id=129511
 name=Kavu Climber
@@ -857,6 +912,17 @@ mana={G}
 power=1
 subtype=Elf Druid
 toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {B} or {G} to your mana pool. Llanowar Wastes deals 1 damage to you.
+id=129627
+auto={T}:Add {1}
+auto={T}:Add {B} && Damage 1 controller
+auto={T}:Add {G} && Damage 1 controller
+name=Llanowar Wastes
+rarity=R
+color=Land
+type=Land
 [/card]
 [card]
 text={B}: Looming Shade gets +1/+1 until end of turn.
@@ -1547,6 +1613,17 @@ subtype=Dragon
 toughness=5
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {T}: Add {U} or {R} to your mana pool. Shivan Reef deals 1 damage to you.
+id=129731
+auto={T}:Add {1}
+auto={T}:Add {U} && Damage 1 controller
+auto={T}:Add {R} && Damage 1 controller
+name=Shivan Reef
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
 text=Shock deals 2 damage to target creature or player.
 target=creature,player
 auto=Damage:2
@@ -1712,6 +1789,17 @@ subtype=Human Rebel
 toughness=2
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.
+id=129751
+auto={T}:Add {1}
+auto={T}:Add {B} && Damage 1 controller
+auto={T}:Add {R} && Damage 1 controller
+name=Sulfurous Springs
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
 abilities=flying
 id=129753
@@ -1843,6 +1931,17 @@ mana={W}
 power=1
 subtype=Wolf
 toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Underground River deals 1 damage to you.
+id=129778
+auto={T}:Add {1}
+auto={T}:Add {U} && Damage 1 controller
+auto={T}:Add {B} && Damage 1 controller
+name=Underground River
+rarity=R
+color=Land
+type=Land
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+1.
@@ -1982,6 +2081,17 @@ rarity=R
 color=White
 type=Sorcery
 mana={2}{W}{W}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Add {G} or {U} to your mana pool. Yavimaya Coast deals 1 damage to you.
+id=129810
+auto={T}:Add {1}
+auto={T}:Add {G} && Damage 1 controller
+auto={T}:Add {U} && Damage 1 controller
+name=Yavimaya Coast
+rarity=R
+color=Land
+type=Land
 [/card]
 [card]
 text=First strike (This creature deals combat damage before creatures without first strike.)

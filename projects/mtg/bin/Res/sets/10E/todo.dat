@@ -20,14 +20,6 @@ subtype=Human Wizard
 toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {W} or {U} to your mana pool. Adarkar Wastes deals 1 damage to you.
-id=129458
-name=Adarkar Wastes
-rarity=R
-color=Land
-type=Land
-[/card]
-[card]
 text=Look at target player's hand and choose two cards from it. Put them on top of that player's library in any order.
 id=135228
 name=Agonizing Memories
@@ -178,14 +170,6 @@ type=Instant
 mana={W}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {R} or {W} to your mana pool. Battlefield Forge deals 1 damage to you.
-id=129479
-name=Battlefield Forge
-rarity=R
-color=Land
-type=Land
-[/card]
-[card]
 text=Beacon of Destruction deals 5 damage to target creature or player. Shuffle Beacon of Destruction into its owner's library.
 id=135262
 name=Beacon of Destruction
@@ -269,22 +253,6 @@ mana={3}
 power=1
 subtype=Gnome
 toughness=3
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
-id=129496
-name=Brushland
-rarity=R
-color=Land
-type=Land
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {W} or {B} to your mana pool. Caves of Koilos deals 1 damage to you.
-id=129497
-name=Caves of Koilos
-rarity=R
-color=Land
-type=Land
 [/card]
 [card]
 text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
@@ -945,14 +913,6 @@ subtype=Juggernaut
 toughness=3
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
-id=129614
-name=Karplusan Forest
-rarity=R
-color=Land
-type=Land
-[/card]
-[card]
 text=Karplusan Strider can't be the target of blue or black spells.
 id=129911
 name=Karplusan Strider
@@ -1039,14 +999,6 @@ mana={2}{G}
 power=2
 subtype=Elf
 toughness=3
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {B} or {G} to your mana pool. Llanowar Wastes deals 1 damage to you.
-id=129627
-name=Llanowar Wastes
-rarity=R
-color=Land
-type=Land
 [/card]
 [card]
 text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals damage, you gain that much life. If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
@@ -1645,14 +1597,6 @@ mana={U}
 subtype=Aura
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {U} or {R} to your mana pool. Shivan Reef deals 1 damage to you.
-id=129731
-name=Shivan Reef
-rarity=R
-color=Land
-type=Land
-[/card]
-[card]
 text=Change the target of target spell with a single target.
 id=130362
 name=Shunt
@@ -1870,14 +1814,7 @@ color=Red
 type=Instant
 mana={3}{R}
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.
-id=129751
-name=Sulfurous Springs
-rarity=R
-color=Land
-type=Land
-[/card]
+
 [card]
 text=At the beginning of each player's upkeep, that player returns a creature he or she controls to its owner's hand.
 id=129509
@@ -2077,14 +2014,6 @@ mana={2}{R}{R}
 subtype=Aura
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Underground River deals 1 damage to you.
-id=129778
-name=Underground River
-rarity=R
-color=Land
-type=Land
-[/card]
-[card]
 text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
 id=129779
 name=Underworld Dreams
@@ -2210,14 +2139,6 @@ rarity=U
 color=Artifact
 type=Artifact
 mana={2}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {G} or {U} to your mana pool. Yavimaya Coast deals 1 damage to you.
-id=129810
-name=Yavimaya Coast
-rarity=R
-color=Land
-type=Land
 [/card]
 [card]
 text=Yavimaya Enchantress gets +1/+1 for each enchantment in play.

@@ -23,6 +23,51 @@ using std::map;
 */
 
 
+//MultiAbility : triggers several actions for a cost
+class MultiAbility:public ActivatedAbility{
+public:
+  vector<MTGAbility *> abilities;
+  vector<TriggeredEvent *> events;
+
+  MultiAbility(int _id, MTGCardInstance * card,ManaCost * _cost, int _tap):ActivatedAbility(_id, card,_cost,0,_tap){
+  }
+
+
+  int Add(TriggeredEvent * event){
+    events.push_back(event);
+    return 1;
+  }
+
+  int Add(MTGAbility * ability){
+    abilities.push_back(ability);
+    return 1;
+  }
+
+  int resolve(){
+    vector<int>::size_type sz = abilities.size();
+    for (unsigned int i = 0; i < sz; i++){
+      abilities[i]->resolve();
+    }
+    sz = events.size();
+    for (unsigned int i = 0; i < sz; i++){
+      events[i]->resolve();
+    }
+    return 1;
+  }
+
+  ~MultiAbility(){
+    vector<int>::size_type sz = abilities.size();
+    for (unsigned int i = 0; i < sz; i++){
+      delete abilities[i];
+    }
+    sz = events.size();
+    for (unsigned int i = 0; i < sz; i++){
+      delete events[i];
+    }
+  }
+};
+
+
 //Drawer, allows to draw a card for a cost:
 
 class ADrawer:public ActivatedAbility{
@@ -627,7 +672,7 @@ class AManaProducer: public MTGAbility{
       if (animation < 0){
 	      animation = 0;
         currentlyTapping--;
-	      controller->getManaPool()->add(output);
+	      resolve();
 	      if (mParticleSys) mParticleSys->Stop();
       }
     }
@@ -653,6 +698,12 @@ class AManaProducer: public MTGAbility{
     return result;
   }
 
+  int resolve(){
+    controller = source->controller();
+    controller->getManaPool()->add(output);
+    return 1;
+  }
+
   int reactToClick(MTGCardInstance *  _card){
     if (!isReactingToClick( _card)) return 0;
     source->tapped = 1;
@@ -664,7 +715,7 @@ class AManaProducer: public MTGAbility{
       x0 = cardg->x + 15;
       y0 = cardg->y + 20;
     }
-    controller = source->controller();
+
 
     if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0 && currentlyTapping < 3){
       JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/mana.wav");

@@ -3,6 +3,8 @@
 
 #if defined (WIN32) || defined (LINUX)
 #define TESTSUITE 1
+#else
+#define OutputDebugString(val) {}
 #endif
 
 #if defined (_DEBUG) && defined (WIN32)

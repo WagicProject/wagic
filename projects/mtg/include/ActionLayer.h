@@ -30,6 +30,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   int reactToClick(MTGCardInstance * card);
   void setMenuObject(Targetable * object);
   void ButtonPressed(int controllerid, int controlid);
+  void doReactTo(int menuIndex);
   TargetChooser * getCurrentTargetChooser();
 };
 
