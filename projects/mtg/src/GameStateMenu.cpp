@@ -366,7 +366,7 @@ void GameStateMenu::Render()
     if (mGuiController!=NULL)
       mGuiController->Render();
 
-    //    mFont->SetScale(0.7);
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,SCREEN_HEIGHT-15,JGETEXT_RIGHT);
     mFont->DrawString(nbcardsStr,10, SCREEN_HEIGHT-15);

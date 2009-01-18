@@ -308,7 +308,7 @@ void MTGGuiPlay::RenderPhaseBar(){
   }else{
     mFont->SetColor(ARGB(255,255,255,255));
   }
-  mFont->SetScale(1.0);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   mFont->DrawString(Constants::MTGPhaseNames[currentPhase], 375, 0);
 }
 

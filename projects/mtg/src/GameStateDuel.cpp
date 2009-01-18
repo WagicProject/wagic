@@ -70,7 +70,7 @@ void GameStateDuel::Start()
 
   mFont = GameApp::CommonRes->GetJLBFont("graphics/simon");
   mFont->SetBase(0);	// using 2nd font
-  opponentMenuFont = mFont; //NEW JLBFont("graphics/simon",11);
+  opponentMenuFont = mFont; //NEW JLBFont("graphics/simon",22);
 
 
   menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
