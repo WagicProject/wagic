@@ -100,7 +100,7 @@ void GameApp::Create()
   CommonRes->GetQuad("stars")->SetHotSpot(16,16);
 
   CommonRes->LoadJLBFont("graphics/simon",22);
-  CommonRes->GetJLBFont("graphics/simon")->SetTracking(-1);
+  CommonRes->GetJLBFont("graphics/simon")->SetTracking(-2);
   CommonRes->LoadJLBFont("graphics/f3",16);
   CommonRes->LoadJLBFont("graphics/magic",16);
 
