@@ -7,7 +7,7 @@
 const unsigned SimpleMenu::SIDE_SIZE = 7;
 const unsigned SimpleMenu::VMARGIN = 16;
 const unsigned SimpleMenu::HMARGIN = 30;
-const signed SimpleMenu::LINE_HEIGHT = 28;
+const signed SimpleMenu::LINE_HEIGHT = 20;
 const char* SimpleMenu::spadeLPath = "graphics/spade_ul.png";
 const char* SimpleMenu::spadeRPath = "graphics/spade_ur.png";
 const char* SimpleMenu::jewelPath = "graphics/jewel.png";

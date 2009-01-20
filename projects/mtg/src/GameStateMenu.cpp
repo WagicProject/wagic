@@ -90,7 +90,7 @@ void GameStateMenu::Create()
 	}
     }
 
-  mFont = GameApp::CommonRes->GetJLBFont("graphics/simon");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   //mFont->SetBase(0);	// using 2nd font
   mGuiController = NEW JGuiController(100, this);
   //mGuiController->SetShadingBackground(10, 45, 80, 100, ARGB(255,0,0,0));
@@ -345,13 +345,13 @@ void GameStateMenu::Render()
 {
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->ClearScreen(ARGB(0,0,0,0));
-
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
     char text[512];
     sprintf(text, "LOADING SET: %s", mCurrentSetName);
     mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
   }else{
-
+    mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     PIXEL_TYPE colors[] =
       {
 	ARGB(255, 3, 2, 0),
@@ -365,7 +365,7 @@ void GameStateMenu::Render()
     if (yW < 2*SCREEN_HEIGHT) renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, yW, angleW);
     if (mGuiController!=NULL)
       mGuiController->Render();
-
+    
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,SCREEN_HEIGHT-15,JGETEXT_RIGHT);
@@ -396,6 +396,7 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
+JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
 #if defined (WIN32) || defined (LINUX)
   char buf[4096];
   sprintf(buf, "cnotrollerId: %i", controllerId);
@@ -410,6 +411,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
     switch (controlId)
       {
       case MENUITEM_PLAY:
+
 #ifdef TESTSUITE
 	subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
 #else

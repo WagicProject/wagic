@@ -106,6 +106,15 @@ subtype=Human Archer
 toughness=3
 [/card]
 [card]
+text=Dragon creatures you control get +3/+3.
+auto=lord(dragon|myinplay) 3/3
+id=179426
+name=Crucible of Fire
+rarity=R
+type=Enchantment
+mana={3}{R}
+[/card]
+[card]
 text=Crumbling Necropolis comes into play tapped.     {T}: Add {U}, {B}, or {R} to your mana pool.
 auto=tap
 auto={T}:Add{U}
@@ -356,6 +365,18 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
+text=Jhessian Infiltrator is unblockable.
+abilities=unblockable
+id=175392
+name=Jhessian Infiltrator
+rarity=U
+type=Creature
+mana={G}{U}
+power=2
+subtype=Human Rogue
+toughness=2
+[/card]
+[card]
 text=
 id=176428
 name=Jhessian Lookout
@@ -467,6 +488,19 @@ name=Naturalize
 rarity=C
 type=Instant
 mana={1}{G}
+[/card]
+[card]
+text={R}, {T}: Target creature gets +2/+0 until end of turn.     {W}, {T}: Tap target creature.
+auto={R},{T}:2/0 target(creature)
+auto={W},{T}:tap target(creature)
+id=174944
+name=Naya Battlemage
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Shaman
+toughness=2
 [/card]
 [card]
 text={T}: Add {G}, {W}, or {U} to your mana pool.
@@ -639,6 +673,16 @@ id=174950
 name=Seaside Citadel
 rarity=U
 type=Land
+[/card]
+[card]
+text=Remove target card in a graveyard from the game. You gain 3 life.
+target=*|graveyard
+auto=moveto(removedfromgame)
+id=177473
+name=Shadowfeed
+rarity=C
+type=Instant
+mana={B}
 [/card]
 [card]
 text={U}: Shore Snapper gains islandwalk until end of turn.

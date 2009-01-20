@@ -11,7 +11,6 @@ class GameStateMenu: public GameState, public JGuiListener
  private:
   JGuiController* mGuiController;
   SimpleMenu* subMenuController;
-  JLBFont* mFont;
   JQuad * mIcons[10];
   JTexture * mIconsTexture;
   JTexture * bgTexture;

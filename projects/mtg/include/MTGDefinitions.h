@@ -1,7 +1,9 @@
 #ifndef _MTGDEFINITION_H_
 #define _MTGDEFINITION_H_
 
-#define DEFAULT_MAIN_FONT_SCALE 0.5
+#define DEFAULT_MENU_FONT_SCALE 1.0
+#define DEFAULT_MAIN_FONT_SCALE 1.0
+#define DEFAULT_TEXT_FONT_SCALE 1.0
 
 class Constants
 {
@@ -106,7 +108,8 @@ class Constants
 
 
     MAIN_FONT = 0,
-    MAGIC_FONT = 1,
+    MENU_FONT = 1,
+    MAGIC_FONT = 2,
   };
 
   static char MTGColorChars[];

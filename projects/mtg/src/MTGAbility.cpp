@@ -301,7 +301,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             game->addObserver(NEW AZoneMover(id,card,tc,szone,cost));
           }
         }else{
-          MTGGameZone * fromZone = target->getCurrentZone();
+          MTGGameZone * fromZone = target->getCurrentZone();//this is technically incorrect. The initial zone should be as described in the targetchooser
           MTGGameZone * destZone = MTGGameZone::stringToZone(szone, target);
           target->controller()->game->putInZone(target,fromZone,destZone);
         }
