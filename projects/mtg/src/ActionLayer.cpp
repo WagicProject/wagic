@@ -152,7 +152,9 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
+    OutputDebugString(currentAction->getMenuText());
     result += currentAction->reactToClick(card);
+    if (result) return result;
   }
   return result;
 }

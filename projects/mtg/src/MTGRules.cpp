@@ -1,6 +1,76 @@
 #include "../include/config.h"
 #include "../include/MTGRules.h"
 
+MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
+
+}
+
+int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card){
+    Player * player = game->currentlyActing();
+    Player * currentPlayer = game->currentPlayer;
+  LOG("CANPUTINPLAY- check if card belongs to current player\n");
+  if (!player->game->hand->hasCard(card)) return 0;
+  LOG("CANPUTINPLAY- check if card is land or can be played\n");
+  if (card->hasType("land")){
+    LOG("CANPUTINPLAY- card is land - check if can be played\n");
+    if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)){
+      LOG("CANPUTINPLAY- Land, ok\n");
+      return 1;
+    }
+  }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
+    LOG("CANPUTINPLAY- correct time to play\n");
+    ManaCost * playerMana = player->getManaPool();
+    ManaCost * cost = card->getManaCost();
+    if (playerMana->canAfford(cost)){
+      LOG("CANPUTINPLAY- ManaCost ok\n");
+      if (game->targetListIsSet(card)){
+#ifdef LOG
+	LOG("CANPUTINPLAY- Targets chosen -> OK\n");
+#endif
+	return 1;
+      }else{
+#ifdef LOG
+	LOG("CANPUTINPLAY- Targets not chosen yet\n");
+#endif
+	return 0;
+      }
+    }
+  }
+  return 0;
+}
+
+int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
+  if (!isReactingToClick(card)) return 0;
+  Player * player = game->currentlyActing();
+  ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+  player->getManaPool()->pay(card->getManaCost());
+  ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
+  delete previousManaPool;
+  if (card->hasType("land")){
+    Spell * spell = NEW Spell(card);
+    player->game->putInZone(card,  player->game->hand, player->game->stack);
+    spell->resolve();
+    delete spellCost;
+    delete spell;
+    player->canPutLandsIntoPlay--;
+  }else{
+    if (game->targetChooser){
+      game->mLayers->stackLayer()->addSpell(card,game->targetChooser->targets,game->targetChooser->cursor, spellCost);
+      SAFE_DELETE(game->targetChooser);
+    }else{
+      game->mLayers->stackLayer()->addSpell(card,NULL,0, spellCost);
+    }
+    player->game->putInZone(card,  player->game->hand, player->game->stack);
+
+  }
+  return 1;
+}
+
+//The Put into play rule is never destroyed
+int MTGPutInPlayRule::testDestroy(){
+  return 0;
+}
+
 MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){
 }
 

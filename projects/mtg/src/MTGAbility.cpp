@@ -1712,18 +1712,20 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
     if (isReactingToClick(card)){
       waitingForAnswer = 1;
       tc->initTargets();
+      return 1;
     }
   }else{
     if (card == source){
       if (tc->targetsReadyCheck() == TARGET_OK){
-	waitingForAnswer = 0;
-	ActivatedAbility::reactToClick(source);
+	      waitingForAnswer = 0;
+	      return ActivatedAbility::reactToClick(source);
       }
     }else{
       tc->toggleTarget(card);
+      return 1;
     }
   }
-  return 1;
+  return 0;
 }
 
 void TargetAbility::Render(){

@@ -307,26 +307,17 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
 
   if (reaction != -1){
     if (!card) return;
-    if (currentlyActing()->game->hand->hasCard(card)){
-      //Current player's hand
-      if (canPutInPlay(card)){
-	putInPlay(card);
-	if (card->hasType("land")){
-	  currentPlayer->canPutLandsIntoPlay--;
-	}
-      }else if (currentPlayer->game->hand->hasCard(card)){ 		//Current player's hand
-	if (currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7){
-	  currentPlayer->game->putInGraveyard(card);
-	}
-      }
-    }else if (reaction){
+		//Current player's hand
+	  if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7){
+	    currentPlayer->game->putInGraveyard(card);
+	  }else if (reaction){
       if (reaction == 1){
 	      mLayers->actionLayer()->reactToClick(card);
       }else{
 	      mLayers->actionLayer()->setMenuObject(object);
       }
     }else if (card->isTapped() && card->controller() == currentPlayer){
-      //      int a = ConstraintResolver::untap(this, card);
+      ConstraintResolver::untap(this, card);
     }
   }
 

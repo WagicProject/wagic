@@ -8,6 +8,16 @@
 #include "../include/Counters.h"
 
 
+class MTGPutInPlayRule:public MTGAbility{
+ public:
+  int isReactingToClick(MTGCardInstance * card);
+  int reactToClick(MTGCardInstance * card);
+  int testDestroy();
+  MTGPutInPlayRule(int _id);
+  const char * getMenuText(){return "Put into play";}
+
+};
+
 class MTGAttackRule:public MTGAbility{
  public:
   int isReactingToClick(MTGCardInstance * card);

@@ -32,8 +32,9 @@ class GameObserver{
   int currentRound;
 
 
-  int targetListIsSet(MTGCardInstance * card);
+  
  public:
+  int targetListIsSet(MTGCardInstance * card);
   PhaseRing * phaseRing;
   int cancelCurrentAction();
   int currentGamePhase;

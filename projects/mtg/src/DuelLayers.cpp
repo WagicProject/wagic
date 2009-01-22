@@ -19,6 +19,7 @@ void DuelLayers::init(){
   MTGGamePhase * phaseManager = NEW MTGGamePhase(actionLayer->getMaxId());
   actionLayer->Add(phaseManager);
   //Add Magic Specific Rules
+  actionLayer->Add(NEW MTGPutInPlayRule(-1));
   actionLayer->Add(NEW MTGAttackRule(-1));
   actionLayer->Add(NEW MTGBlockRule(-1));
   actionLayer->Add(NEW MTGLegendRule(-1));
