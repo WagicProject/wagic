@@ -347,15 +347,6 @@ subtype=Imp
 toughness=1
 [/card]
 [card]
-text=Nevinyrral's Disk comes into play tapped.       {1}, {T}: Destroy all artifacts, creatures, and enchantments.
-id=1128
-name=Nevinyrral's Disk
-rarity=R
-color=Artifact
-type=Artifact
-mana={4}
-[/card]
-[card]
 text=When Onulet is put into a graveyard from play, you gain 2 life.
 id=1130
 name=Onulet

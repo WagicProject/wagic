@@ -1426,6 +1426,17 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
+text=Nevinyrral's Disk comes into play tapped.       {1}, {T}: Destroy all artifacts, creatures, and enchantments.
+auto=tap
+auto={1},{T}:destroy all(artifact,creature,enchantment)
+id=1128
+name=Nevinyrral's Disk
+rarity=R
+color=Artifact
+type=Artifact
+mana={4}
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
 abilities=flying
 id=1170
