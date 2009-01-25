@@ -1,0 +1,2085 @@
+[card]
+text=Flying     When Alabaster Dragon is put into a graveyard from play, shuffle Alabaster Dragon into its owner's library.
+id=4369
+name=Alabaster Dragon
+rarity=R
+type=Creature
+mana={4}{W}{W}
+power=4
+subtype=Dragon
+toughness=4
+[/card]
+[card]
+text=All creatures able to block target creature this turn do so.
+id=4286
+name=Alluring Scent
+rarity=R
+type=Sorcery
+mana={1}{G}{G}
+[/card]
+[card]
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+id=4288
+name=Anaconda
+rarity=U
+type=Creature
+mana={3}{G}
+power=3
+subtype=Snake
+toughness=3
+[/card]
+[card]
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+id=4287
+name=Anaconda
+rarity=U
+type=Creature
+mana={3}{G}
+power=3
+subtype=Snake
+toughness=3
+[/card]
+[card]
+text=Look at the top seven cards of your library. Put two of them into your hand and the rest into your graveyard.
+id=4247
+name=Ancestral Memories
+rarity=R
+type=Sorcery
+mana={2}{U}{U}{U}
+[/card]
+[card]
+text=Target creature gets +3/+3 and gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
+id=4370
+name=Angelic Blessing
+rarity=C
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
+text=Flying, vigilance
+id=4371
+name=Archangel
+rarity=R
+type=Creature
+mana={5}{W}{W}
+power=5
+subtype=Angel
+toughness=5
+[/card]
+[card]
+text=Vigilance
+id=4372
+name=Ardent Militia
+rarity=U
+type=Creature
+mana={4}{W}
+power=2
+subtype=Human Soldier
+toughness=5
+[/card]
+[card]
+text=Destroy all lands.
+id=4373
+name=Armageddon
+rarity=R
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
+text=Flying
+id=4374
+name=Armored Pegasus
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Pegasus
+toughness=2
+[/card]
+[card]
+text=Flying
+id=4207
+name=Arrogant Vampire
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=4
+subtype=Vampire
+toughness=3
+[/card]
+[card]
+text=Play Assassin's Blade only during the declare attackers step and only if you are the defending player.       Destroy target nonblack attacking creature.
+id=4208
+name=Assassin's Blade
+rarity=U
+type=Instant
+mana={1}{B}
+[/card]
+[card]
+text=If target opponent has more cards in hand than you, draw cards equal to the difference.
+id=4248
+name=Balance of Power
+rarity=R
+type=Sorcery
+mana={3}{U}{U}
+[/card]
+[card]
+text=Target opponent reveals his or her hand. You draw a card for each Mountain and red card in it.
+id=4249
+name=Baleful Stare
+rarity=U
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Bee Sting deals 2 damage to target creature or player.
+id=4289
+name=Bee Sting
+rarity=U
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+text=Blaze deals X damage to target creature or player.
+id=4329
+name=Blaze
+rarity=U
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text=Blaze deals X damage to target creature or player.
+id=4328
+name=Blaze
+rarity=U
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text=You gain 3 life for each creature attacking you.
+id=4375
+name=Blessed Reversal
+rarity=R
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Tap all nonwhite creatures.
+id=4376
+name=Blinding Light
+rarity=R
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=4209
+name=Bog Imp
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Imp
+toughness=1
+[/card]
+[card]
+text=Swampwalk
+id=4210
+name=Bog Raiders
+rarity=C
+type=Creature
+mana={2}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+id=4211
+name=Bog Wraith
+rarity=U
+type=Creature
+mana={3}{B}
+power=3
+subtype=Wraith
+toughness=3
+[/card]
+[card]
+text=Destroy all Islands.
+id=4330
+name=Boiling Seas
+rarity=U
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=
+id=4377
+name=Border Guard
+rarity=C
+type=Creature
+mana={2}{W}
+power=1
+subtype=Human Soldier
+toughness=4
+[/card]
+[card]
+text=Return target creature card from your graveyard to play.
+id=4378
+name=Breath of Life
+rarity=C
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
+text=Islandwalk
+id=4290
+name=Bull Hippo
+rarity=U
+type=Creature
+mana={3}{G}
+power=3
+subtype=Hippo
+toughness=3
+[/card]
+[card]
+text=Target creature gets +2/+0 until end of turn. Burning Cloak deals 2 damage to that creature.
+id=4331
+name=Burning Cloak
+rarity=C
+type=Sorcery
+mana={R}
+[/card]
+[card]
+text={T}: Capricious Sorcerer deals 1 damage to target creature or player. Play this ability only during your turn, before attackers are declared.
+id=4250
+name=Capricious Sorcerer
+rarity=R
+type=Creature
+mana={2}{U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Whenever Charging Bandits attacks, it gets +2/+0 until end of turn.
+id=4212
+name=Charging Bandits
+rarity=U
+type=Creature
+mana={4}{B}
+power=3
+subtype=Human Rogue
+toughness=3
+[/card]
+[card]
+text=Whenever Charging Paladin attacks, it gets +0/+3 until end of turn.
+id=4379
+name=Charging Paladin
+rarity=U
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Charging Rhino can't be blocked by more than one creature.
+id=4291
+name=Charging Rhino
+rarity=R
+type=Creature
+mana={3}{G}{G}
+power=4
+subtype=Rhino
+toughness=4
+[/card]
+[card]
+text=Target creature gains flying until end of turn.       Draw a card.
+id=4251
+name=Cloak of Feathers
+rarity=C
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Flying     Cloud Dragon can block only creatures with flying.
+id=4252
+name=Cloud Dragon
+rarity=R
+type=Creature
+mana={5}{U}
+power=5
+subtype=Illusion Dragon
+toughness=4
+[/card]
+[card]
+text=Flying     Cloud Pirates can block only creatures with flying.
+id=4253
+name=Cloud Pirates
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Human Pirate
+toughness=1
+[/card]
+[card]
+text=Flying     Cloud Spirit can block only creatures with flying.
+id=4254
+name=Cloud Spirit
+rarity=U
+type=Creature
+mana={2}{U}
+power=3
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text=Play Command of Unsummoning only during the declare attackers step and only if you are the defending player.       Return one or two target attacking creatures to their owner's hand.
+id=4255
+name=Command of Unsummoning
+rarity=U
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=
+id=4256
+name=Coral Eel
+rarity=C
+type=Creature
+mana={1}{U}
+power=2
+subtype=Fish
+toughness=1
+[/card]
+[card]
+text=Craven Giant can't block.
+id=4332
+name=Craven Giant
+rarity=C
+type=Creature
+mana={2}{R}
+power=4
+subtype=Giant
+toughness=1
+[/card]
+[card]
+text=Craven Knight can't block.
+id=4213
+name=Craven Knight
+rarity=C
+type=Creature
+mana={1}{B}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Draw four cards. You lose half your life, rounded up.
+id=4214
+name=Cruel Bargain
+rarity=R
+type=Sorcery
+mana={B}{B}{B}
+[/card]
+[card]
+text=Look at the top five cards of target opponent's library. Put one of those cards into that player's graveyard, and the rest on top of his or her library in any order.
+id=4257
+name=Cruel Fate
+rarity=R
+type=Sorcery
+mana={4}{U}
+[/card]
+[card]
+text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
+id=4215
+name=Cruel Tutor
+rarity=R
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Play Deep Wood only during the declare attackers step and only if you are the defending player.     Prevent all damage that would be dealt to you this turn by attacking creatures.
+id=4292
+name=Deep Wood
+rarity=U
+type=Instant
+mana={1}{G}
+[/card]
+[card]
+text=Deep-Sea Serpent can't attack unless defending player controls an Island.
+id=4258
+name=Deep-Sea Serpent
+rarity=U
+type=Creature
+mana={4}{U}{U}
+power=5
+subtype=Serpent
+toughness=5
+[/card]
+[card]
+text=Play Defiant Stand only during the declare attackers step and only if you are the defending player.     Target creature gets +1/+3 until the end of the turn. If that creature is tapped, untap it.
+id=4380
+name=Defiant Stand
+rarity=U
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Return target sorcery card from your graveyard to your hand.
+id=4259
+name=Deja Vu
+rarity=C
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Flying
+id=4333
+name=Desert Drake
+rarity=U
+type=Creature
+mana={3}{R}
+power=2
+subtype=Drake
+toughness=2
+[/card]
+[card]
+text=Destroy all creatures and lands.
+id=4334
+name=Devastation
+rarity=R
+type=Sorcery
+mana={5}{R}{R}
+[/card]
+[card]
+text=
+id=4381
+name=Devoted Hero
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Elf Soldier
+toughness=2
+[/card]
+[card]
+text=Flying
+id=4260
+name=Djinn of the Lamp
+rarity=R
+type=Creature
+mana={5}{U}{U}
+power=5
+subtype=Djinn
+toughness=6
+[/card]
+[card]
+text=Until end of turn, black creatures you control can be blocked only by black creatures.
+id=4216
+name=Dread Charge
+rarity=R
+type=Sorcery
+mana={3}{B}
+[/card]
+[card]
+text=Flying       When Dread Reaper comes into play, you lose 5 life.
+id=4217
+name=Dread Reaper
+rarity=R
+type=Creature
+mana={3}{B}{B}{B}
+power=6
+subtype=Horror
+toughness=5
+[/card]
+[card]
+text=Dry Spell deals 1 damage to each creature and each player.
+id=4218
+name=Dry Spell
+rarity=U
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
+text=Earthquake deals X damage to each creature without flying and each player.
+id=4335
+name=Earthquake
+rarity=R
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text=Flying     When Ebon Dragon comes into play, you may have target opponent discard a card.
+id=4219
+name=Ebon Dragon
+rarity=R
+type=Creature
+mana={5}{B}{B}
+power=5
+subtype=Dragon
+toughness=4
+[/card]
+[card]
+text=Forestwalk
+id=4294
+name=Elite Cat Warrior
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Cat Warrior
+toughness=3
+[/card]
+[card]
+text=Forestwalk
+id=4293
+name=Elite Cat Warrior
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Cat Warrior
+toughness=3
+[/card]
+[card]
+text=Return target card from your graveyard to your hand.
+id=4295
+name=Elven Cache
+rarity=C
+type=Sorcery
+mana={2}{G}{G}
+[/card]
+[card]
+text=
+id=4296
+name=Elvish Ranger
+rarity=C
+type=Creature
+mana={2}{G}
+power=4
+subtype=Elf
+toughness=1
+[/card]
+[card]
+text=When Endless Cockroaches is put into to a graveyard from play, return Endless Cockroaches to its owner's hand.
+id=4220
+name=Endless Cockroaches
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text=Creatures and lands target opponent controls don't untap during his or her next untap step.
+id=4261
+name=Exhaustion
+rarity=R
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Target player skips all combat phases of his or her next turn.
+id=4382
+name=False Peace
+rarity=C
+type=Sorcery
+mana={W}
+[/card]
+[card]
+text=Flying
+id=4221
+name=Feral Shadow
+rarity=C
+type=Creature
+mana={2}{B}
+power=2
+subtype=Nightstalker
+toughness=1
+[/card]
+[card]
+text=As an additional cost to play Final Strike, sacrifice a creature.     Final Strike deals damage to target opponent equal to the sacrificed creature's power.
+id=4222
+name=Final Strike
+rarity=R
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text=Flying     When Fire Dragon comes into play, it deals damage equal to the number of Mountains you control to target creature.
+id=4336
+name=Fire Dragon
+rarity=R
+type=Creature
+mana={6}{R}{R}{R}
+power=6
+subtype=Dragon
+toughness=6
+[/card]
+[card]
+text=When Fire Imp comes into play, it deals 2 damage to target creature.
+id=4337
+name=Fire Imp
+rarity=U
+type=Creature
+mana={2}{R}
+power=2
+subtype=Imp
+toughness=1
+[/card]
+[card]
+text=When Fire Snake is put into a graveyard from play, destroy target land.
+id=4338
+name=Fire Snake
+rarity=C
+type=Creature
+mana={4}{R}
+power=3
+subtype=Snake
+toughness=1
+[/card]
+[card]
+text=Fire Tempest deals 6 damage to each creature and each player.
+id=4339
+name=Fire Tempest
+rarity=R
+type=Sorcery
+mana={5}{R}{R}
+[/card]
+[card]
+text=Destroy all Plains.
+id=4340
+name=Flashfires
+rarity=U
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=Fleet-Footed Monk can't be blocked by creatures with power 2 or greater.
+id=4383
+name=Fleet-Footed Monk
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Human Monk
+toughness=1
+[/card]
+[card]
+text=Each player discards any number of cards, then draws that many cards.     Draw a card.
+id=4262
+name=Flux
+rarity=U
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=
+id=4384
+name=Foot Soldiers
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Human Soldier
+toughness=4
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=4413
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=4416
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=4414
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=4415
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Forked Lightning deals 4 damage divided as you choose among one, two, or three target creatures.
+id=4341
+name=Forked Lightning
+rarity=R
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=You gain 1 life for each Forest in play.
+id=4297
+name=Fruition
+rarity=C
+type=Sorcery
+mana={G}
+[/card]
+[card]
+text=
+id=4263
+name=Giant Octopus
+rarity=C
+type=Creature
+mana={3}{U}
+power=3
+subtype=Octopus
+toughness=3
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=4298
+name=Giant Spider
+rarity=C
+type=Creature
+mana={3}{G}
+power=2
+subtype=Spider
+toughness=4
+[/card]
+[card]
+text=If an opponent controls more lands than you, search your library for up to three Plains cards, reveal them, and put them into your hand. Then shuffle your library.
+id=4385
+name=Gift of Estates
+rarity=R
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
+text=
+id=4342
+name=Goblin Bully
+rarity=C
+type=Creature
+mana={1}{R}
+power=2
+subtype=Goblin
+toughness=1
+[/card]
+[card]
+text=
+id=4299
+name=Gorilla Warrior
+rarity=C
+type=Creature
+mana={2}{G}
+power=3
+subtype=Ape Warrior
+toughness=2
+[/card]
+[card]
+text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+id=4223
+name=Gravedigger
+rarity=U
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text=
+id=4300
+name=Grizzly Bears
+rarity=C
+type=Creature
+mana={1}{G}
+power=2
+subtype=Bear
+toughness=2
+[/card]
+[card]
+text=Destroy target nonblack creature.
+id=4224
+name=Hand of Death
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Destroy target nonblack creature.
+id=4225
+name=Hand of Death
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Play Harsh Justice only during the declare attackers step and only if you are the defending player.       This turn, whenever an attacking creature deals combat damage to you, it deals that much damage to its controller.
+id=4386
+name=Harsh Justice
+rarity=R
+type=Instant
+mana={2}{W}
+[/card]
+[card]
+text=
+id=4343
+name=Highland Giant
+rarity=C
+type=Creature
+mana={2}{R}{R}
+power=3
+subtype=Giant
+toughness=4
+[/card]
+[card]
+text=
+id=4344
+name=Hill Giant
+rarity=C
+type=Creature
+mana={3}{R}
+power=3
+subtype=Giant
+toughness=3
+[/card]
+[card]
+text=
+id=4264
+name=Horned Turtle
+rarity=C
+type=Creature
+mana={2}{U}
+power=1
+subtype=Turtle
+toughness=4
+[/card]
+[card]
+text=Target creature gets +4/+0 until end of turn.
+id=4226
+name=Howling Fury
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Hulking Cyclops can't block.
+id=4345
+name=Hulking Cyclops
+rarity=U
+type=Creature
+mana={3}{R}{R}
+power=5
+subtype=Cyclops
+toughness=5
+[/card]
+[card]
+text=Hulking Goblin can't block.
+id=4346
+name=Hulking Goblin
+rarity=C
+type=Creature
+mana={1}{R}
+power=2
+subtype=Goblin
+toughness=2
+[/card]
+[card]
+text=Hurricane deals X damage to each creature with flying and each player.
+id=4301
+name=Hurricane
+rarity=R
+type=Sorcery
+mana={X}{G}
+[/card]
+[card]
+text=Flying     When Ingenious Thief comes into play, look at target player's hand.
+id=4265
+name=Ingenious Thief
+rarity=U
+type=Creature
+mana={1}{U}
+power=1
+subtype=Human Rogue
+toughness=1
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=4424
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=4422
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=4421
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=4423
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=Jungle Lion can't block.
+id=4302
+name=Jungle Lion
+rarity=C
+type=Creature
+mana={G}
+power=2
+subtype=Cat
+toughness=1
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=4387
+name=Keen-Eyed Archers
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Elf Archer
+toughness=2
+[/card]
+[card]
+text={T}: Destroy target tapped creature. Play this ability only during your turn, before attackers are declared.
+id=4227
+name=King's Assassin
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Human Assassin
+toughness=1
+[/card]
+[card]
+text=
+id=4388
+name=Knight Errant
+rarity=C
+type=Creature
+mana={1}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Take an extra turn after this one. At the end of that turn, you lose the game.
+id=4347
+name=Last Chance
+rarity=R
+type=Sorcery
+mana={R}{R}
+[/card]
+[card]
+text=Lava Axe deals 5 damage to target player.
+id=4348
+name=Lava Axe
+rarity=C
+type=Sorcery
+mana={4}{R}
+[/card]
+[card]
+text=Destroy target creature or land.
+id=4349
+name=Lava Flow
+rarity=U
+type=Sorcery
+mana={3}{R}{R}
+[/card]
+[card]
+text=
+id=4350
+name=Lizard Warrior
+rarity=C
+type=Creature
+mana={3}{R}
+power=4
+subtype=Lizard Warrior
+toughness=2
+[/card]
+[card]
+text=When Man-o'-War comes into play, return target creature to its owner's hand.
+id=4266
+name=Man-o'-War
+rarity=U
+type=Creature
+mana={2}{U}
+power=2
+subtype=Jellyfish
+toughness=2
+[/card]
+[card]
+text=When Mercenary Knight comes into play, sacrifice it unless you discard a creature card.
+id=4228
+name=Mercenary Knight
+rarity=R
+type=Creature
+mana={2}{B}
+power=4
+subtype=Human Mercenary Knight
+toughness=4
+[/card]
+[card]
+text=
+id=4267
+name=Merfolk of the Pearl Trident
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Merfolk
+toughness=1
+[/card]
+[card]
+text=Target opponent discards a card at random.
+id=4229
+name=Mind Knives
+rarity=C
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
+text=Target player discards two cards.
+id=4230
+name=Mind Rot
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=
+id=4351
+name=Minotaur Warrior
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Minotaur Warrior
+toughness=3
+[/card]
+[card]
+text=Untap all creatures you control.
+id=4303
+name=Mobilize
+rarity=C
+type=Sorcery
+mana={G}
+[/card]
+[card]
+text=Target creature gets +4/+4 until end of turn.
+id=4304
+name=Monstrous Growth
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Target creature gets +4/+4 until end of turn.
+id=4305
+name=Monstrous Growth
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Flying
+id=4306
+name=Moon Sprite
+rarity=U
+type=Creature
+mana={1}{G}
+power=1
+subtype=Faerie
+toughness=1
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=4420
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=4418
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=4417
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=4419
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Mountainwalk
+id=4352
+name=Mountain Goat
+rarity=U
+type=Creature
+mana={R}
+power=1
+subtype=Goat
+toughness=1
+[/card]
+[card]
+text=
+id=4231
+name=Muck Rats
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Rat
+toughness=1
+[/card]
+[card]
+text=Counter target creature or sorcery spell.
+id=4268
+name=Mystic Denial
+rarity=U
+type=Instant
+mana={1}{U}{U}
+[/card]
+[card]
+text=As an additional cost to play Natural Order, sacrifice a green creature.     Search your library for a green creature card and put it into play. Then shuffle your library.
+id=4307
+name=Natural Order
+rarity=R
+type=Sorcery
+mana={2}{G}{G}
+[/card]
+[card]
+text=Target player gains 8 life.
+id=4308
+name=Natural Spring
+rarity=U
+type=Sorcery
+mana={3}{G}{G}
+[/card]
+[card]
+text=Green creatures you control gain forestwalk until end of turn.
+id=4309
+name=Nature's Cloak
+rarity=R
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text=Search your library for a Forest card and put that card into play. Then shuffle your library.
+id=4310
+name=Nature's Lore
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Destroy all green creatures.
+id=4232
+name=Nature's Ruin
+rarity=U
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Needle Storm deals 4 damage to each creature with flying.
+id=4311
+name=Needle Storm
+rarity=U
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text=When Noxious Toad is put into a graveyard from play, each opponent discards a card.
+id=4233
+name=Noxious Toad
+rarity=U
+type=Creature
+mana={2}{B}
+power=1
+subtype=Frog
+toughness=1
+[/card]
+[card]
+text=Look at the top three cards of your library, then put them back in any order. You may shuffle your library.      Draw a card.
+id=4269
+name=Omen
+rarity=C
+type=Sorcery
+mana={1}{U}
+[/card]
+[card]
+text=Flying     When Owl Familiar comes into play, draw a card, then discard a card.
+id=4270
+name=Owl Familiar
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Bird
+toughness=1
+[/card]
+[card]
+text=
+id=9845
+name=Panther Warriors
+rarity=C
+type=Creature
+mana={4}{G}
+power=6
+subtype=Cat Warrior
+toughness=3
+[/card]
+[card]
+text=Destroy target creature. Its owner gains 4 life.
+id=4389
+name=Path of Peace
+rarity=C
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
+text=Search your library for a sorcery card and reveal that card. Shuffle your library, then put the card on top of it.
+id=4271
+name=Personal Tutor
+rarity=U
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Phantom Warrior is unblockable.
+id=4272
+name=Phantom Warrior
+rarity=R
+type=Creature
+mana={1}{U}{U}
+power=2
+subtype=Illusion Warrior
+toughness=2
+[/card]
+[card]
+text=When Pillaging Horde comes into play, sacrifice it unless you discard a card at random.
+id=4353
+name=Pillaging Horde
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=5
+subtype=Human Barbarian
+toughness=5
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=4425
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=4427
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=4426
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=4428
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text=When Plant Elemental comes into play, sacrifice it unless you sacrifice a Forest.
+id=4313
+name=Plant Elemental
+rarity=U
+type=Creature
+mana={1}{G}
+power=3
+subtype=Plant Elemental
+toughness=4
+[/card]
+[card]
+text=When Primeval Force comes into play, sacrifice it unless you sacrifice three Forests.
+id=4314
+name=Primeval Force
+rarity=R
+type=Creature
+mana={2}{G}{G}{G}
+power=8
+subtype=Elemental
+toughness=8
+[/card]
+[card]
+text=Each player draws X cards.
+id=4273
+name=Prosperity
+rarity=R
+type=Sorcery
+mana={X}{U}
+[/card]
+[card]
+text=Pyroclasm deals 2 damage to each creature.
+id=4354
+name=Pyroclasm
+rarity=R
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=
+id=4234
+name=Python
+rarity=C
+type=Creature
+mana={1}{B}{B}
+power=3
+subtype=Snake
+toughness=2
+[/card]
+[card]
+text=Haste
+id=4355
+name=Raging Cougar
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Cat
+toughness=2
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+id=4356
+name=Raging Goblin
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Berserker
+toughness=1
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+id=4357
+name=Raging Goblin
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Berserker
+toughness=1
+[/card]
+[card]
+text=Haste
+id=4358
+name=Raging Minotaur
+rarity=C
+type=Creature
+mana={2}{R}{R}
+power=3
+subtype=Minotaur Berserker
+toughness=3
+[/card]
+[card]
+text=Destroy two target lands.
+id=4359
+name=Rain of Salt
+rarity=U
+type=Sorcery
+mana={4}{R}{R}
+[/card]
+[card]
+text=Destroy target land.
+id=4235
+name=Rain of Tears
+rarity=U
+type=Sorcery
+mana={1}{B}{B}
+[/card]
+[card]
+text=Return target creature card from your graveyard to your hand.
+id=4236
+name=Raise Dead
+rarity=C
+type=Sorcery
+mana={B}
+[/card]
+[card]
+text=
+id=4315
+name=Redwood Treefolk
+rarity=C
+type=Creature
+mana={4}{G}
+power=3
+subtype=Treefolk
+toughness=6
+[/card]
+[card]
+text=
+id=4390
+name=Regal Unicorn
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Unicorn
+toughness=3
+[/card]
+[card]
+text=You gain 2 life for each Mountain target opponent controls.
+id=4391
+name=Renewing Dawn
+rarity=U
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
+text=
+id=4316
+name=Rowan Treefolk
+rarity=C
+type=Creature
+mana={3}{G}
+power=3
+subtype=Treefolk
+toughness=4
+[/card]
+[card]
+text=Sacred Knight can't be blocked by black and/or red creatures.
+id=4392
+name=Sacred Knight
+rarity=C
+type=Creature
+mana={3}{W}
+power=3
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=You gain 4 life.
+id=4393
+name=Sacred Nectar
+rarity=C
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
+text=Scorching Spear deals 1 damage to target creature or player.
+id=4360
+name=Scorching Spear
+rarity=C
+type=Sorcery
+mana={R}
+[/card]
+[card]
+text=Play Scorching Winds only during the declare attackers step and only if you are the defending player.       Scorching Winds deals 1 damage to each attacking creature.
+id=4361
+name=Scorching Winds
+rarity=U
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Whenever Seasoned Marshal attacks, you may tap target creature.
+id=4394
+name=Seasoned Marshal
+rarity=U
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+text=When Serpent Assassin comes into play, you may destroy target nonblack creature.
+id=4237
+name=Serpent Assassin
+rarity=R
+type=Creature
+mana={3}{B}{B}
+power=2
+subtype=Snake Assassin
+toughness=2
+[/card]
+[card]
+text=When Serpent Warrior comes into play, you lose 3 life.
+id=4238
+name=Serpent Warrior
+rarity=C
+type=Creature
+mana={2}{B}
+power=3
+subtype=Snake Warrior
+toughness=3
+[/card]
+[card]
+text=
+id=4239
+name=Skeletal Crocodile
+rarity=C
+type=Creature
+mana={3}{B}
+power=5
+subtype=Crocodile Skeleton
+toughness=1
+[/card]
+[card]
+text=
+id=4240
+name=Skeletal Snake
+rarity=C
+type=Creature
+mana={1}{B}
+power=2
+subtype=Snake Skeleton
+toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=4274
+name=Snapping Drake
+rarity=C
+type=Creature
+mana={3}{U}
+power=3
+subtype=Drake
+toughness=2
+[/card]
+[card]
+text=Look at target opponent's hand.       Draw a card.
+id=4275
+name=Sorcerous Sight
+rarity=C
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Soul Shred deals 3 damage to target nonblack creature. You gain 3 life.
+id=4241
+name=Soul Shred
+rarity=C
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=
+id=4317
+name=Spined Wurm
+rarity=C
+type=Creature
+mana={4}{G}
+power=5
+subtype=Wurm
+toughness=4
+[/card]
+[card]
+text=When Spiritual Guardian comes into play, you gain 4 life.
+id=4395
+name=Spiritual Guardian
+rarity=R
+type=Creature
+mana={3}{W}{W}
+power=3
+subtype=Spirit
+toughness=4
+[/card]
+[card]
+text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
+id=4362
+name=Spitting Earth
+rarity=C
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=Flying
+id=4396
+name=Spotted Griffin
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Griffin
+toughness=3
+[/card]
+[card]
+text=Stalking Tiger can't be blocked by more than one creature.
+id=4318
+name=Stalking Tiger
+rarity=C
+type=Creature
+mana={3}{G}
+power=3
+subtype=Cat
+toughness=3
+[/card]
+[card]
+text=You gain 3 life for each black creature target opponent controls.
+id=4397
+name=Starlight
+rarity=U
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
+text=Flying
+id=4398
+name=Starlit Angel
+rarity=U
+type=Creature
+mana={3}{W}{W}
+power=3
+subtype=Angel
+toughness=4
+[/card]
+[card]
+text=Creatures you control get +0/+3 until end of turn.
+id=4399
+name=Steadfastness
+rarity=C
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
+text={T}: Target creature gets +2/+2 until end of turn. Play this ability only during your turn, before attackers are declared.
+id=4400
+name=Stern Marshal
+rarity=R
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+text=Destroy target land.
+id=4363
+name=Stone Rain
+rarity=C
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=4276
+name=Storm Crow
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Bird
+toughness=2
+[/card]
+[card]
+text=You may play up to three additional lands this turn.
+id=4319
+name=Summer Bloom
+rarity=R
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=4411
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=4409
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=4412
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=4410
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Search your library for a creature card and reveal that card. Shuffle your library, then put the card on top of it.
+id=4320
+name=Sylvan Tutor
+rarity=R
+type=Sorcery
+mana={G}
+[/card]
+[card]
+text=Return target creature to its owner's hand.       Draw a card.
+id=4277
+name=Symbol of Unsummoning
+rarity=C
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=During target player's next turn, each creature he or she controls attacks you if able.
+id=4278
+name=Taunt
+rarity=R
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Each player may draw up to two cards. For each card less than two a player draws this way, that player gains 2 life.
+id=4401
+name=Temporary Truce
+rarity=R
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
+text=Draw a card for each tapped creature target opponent controls.
+id=4279
+name=Theft of Dreams
+rarity=U
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Whenever Thing from the Deep attacks, sacrifice it unless you sacrifice an Island.
+id=4280
+name=Thing from the Deep
+rarity=R
+type=Creature
+mana={6}{U}{U}{U}
+power=9
+subtype=Leviathan
+toughness=9
+[/card]
+[card]
+text=When Thundering Wurm comes into play, sacrifice it unless you discard a land card.
+id=4321
+name=Thundering Wurm
+rarity=R
+type=Creature
+mana={2}{G}
+power=4
+subtype=Wurm
+toughness=4
+[/card]
+[card]
+text=Haste (This creature can attack the turn it comes under your control.)  When Thundermare comes into play, tap all other creatures.
+id=4364
+name=Thundermare
+rarity=R
+type=Creature
+mana={5}{R}
+power=5
+subtype=Elemental Horse
+toughness=5
+[/card]
+[card]
+text=Tap up to three target creatures without flying.
+id=4281
+name=Tidal Surge
+rarity=C
+type=Sorcery
+mana={1}{U}
+[/card]
+[card]
+text=Put target creature on top of its owner's library.
+id=4282
+name=Time Ebb
+rarity=C
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Draw two cards.
+id=4283
+name=Touch of Brilliance
+rarity=C
+type=Sorcery
+mana={3}{U}
+[/card]
+[card]
+text=Play Treetop Defense only during the declare attackers step and only if you are the defending player.     Creatures you control gain reach until end of turn. (They can block creatures with flying.)
+id=4322
+name=Treetop Defense
+rarity=R
+type=Instant
+mana={1}{G}
+[/card]
+[card]
+text=When Undying Beast is put into a graveyard from play, put Undying Beast on top of its owner's library.
+id=4242
+name=Undying Beast
+rarity=C
+type=Creature
+mana={3}{B}
+power=3
+subtype=Beast
+toughness=2
+[/card]
+[card]
+text=Search your library for a basic land card and put that card into play. Then shuffle your library.
+id=4323
+name=Untamed Wilds
+rarity=U
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text=White creatures get +2/+0 until end of turn.
+id=4402
+name=Valorous Charge
+rarity=U
+type=Sorcery
+mana={1}{W}{W}
+[/card]
+[card]
+text=Vampiric Feast deals 4 damage to target creature or player and you gain 4 life.
+id=4243
+name=Vampiric Feast
+rarity=U
+type=Sorcery
+mana={5}{B}{B}
+[/card]
+[card]
+text=Vampiric Touch deals 2 damage to target opponent and you gain 2 life.
+id=4244
+name=Vampiric Touch
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=When Venerable Monk comes into play, you gain 2 life.
+id=4403
+name=Venerable Monk
+rarity=U
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Monk Cleric
+toughness=2
+[/card]
+[card]
+text=Destroy target tapped creature.
+id=4404
+name=Vengeance
+rarity=U
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
+text=Destroy all white creatures.
+id=4245
+name=Virtue's Ruin
+rarity=U
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Flying, haste
+id=4365
+name=Volcanic Dragon
+rarity=R
+type=Creature
+mana={4}{R}{R}
+power=4
+subtype=Dragon
+toughness=4
+[/card]
+[card]
+text=Volcanic Hammer deals 3 damage to target creature or player.
+id=4366
+name=Volcanic Hammer
+rarity=C
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=Defender (This creature can't attack.)
+id=4367
+name=Wall of Granite
+rarity=U
+type=Creature
+mana={2}{R}
+power=0
+subtype=Wall
+toughness=7
+[/card]
+[card]
+text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
+id=4405
+name=Wall of Swords
+rarity=U
+type=Creature
+mana={3}{W}
+power=3
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+id=4406
+name=Warrior's Charge
+rarity=C
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+id=4407
+name=Warrior's Charge
+rarity=C
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
+text=
+id=4324
+name=Whiptail Wurm
+rarity=U
+type=Creature
+mana={6}{G}
+power=8
+subtype=Wurm
+toughness=5
+[/card]
+[card]
+text=Destroy two target nonblack creatures. You lose 5 life.
+id=4246
+name=Wicked Pact
+rarity=R
+type=Sorcery
+mana={1}{B}{B}
+[/card]
+[card]
+text=Forestwalk
+id=4325
+name=Willow Dryad
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Dryad
+toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=4284
+name=Wind Drake
+rarity=C
+type=Creature
+mana={2}{U}
+power=2
+subtype=Drake
+toughness=2
+[/card]
+[card]
+text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
+id=4368
+name=Winds of Change
+rarity=R
+type=Sorcery
+mana={R}
+[/card]
+[card]
+text=Destroy target land.
+id=4326
+name=Winter's Grasp
+rarity=U
+type=Sorcery
+mana={1}{G}{G}
+[/card]
+[card]
+text=Target opponent reveals his or her hand. You draw a card for each Forest and green card in it.
+id=4285
+name=Withering Gaze
+rarity=U
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
+id=4327
+name=Wood Elves
+rarity=R
+type=Creature
+mana={2}{G}
+power=1
+subtype=Elf Scout
+toughness=1
+[/card]
+[card]
+text=Destroy all creatures. They can't be regenerated.
+id=4408
+name=Wrath of God
+rarity=R
+type=Sorcery
+mana={2}{W}{W}
+[/card]
