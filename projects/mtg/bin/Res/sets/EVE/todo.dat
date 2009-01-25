@@ -370,17 +370,7 @@ power=2
 subtype=Faerie Rogue
 toughness=1
 [/card]
-[card]
-text=Sacrifice Duergar Assailant: Duergar Assailant deals 1 damage to target attacking or blocking creature.
-id=150975
-name=Duergar Assailant
-rarity=C
-type=Creature
-mana={RW}
-power=1
-subtype=Dwarf Soldier
-toughness=1
-[/card]
+
 [card]
 text=When Duergar Hedge-Mage comes into play, if you control two or more Mountains, you may destroy target artifact.     When Duergar Hedge-Mage comes into play, if you control two or more Plains, you may destroy target enchantment.
 id=159068
@@ -703,18 +693,6 @@ name=Invert the Skies
 rarity=U
 type=Instant
 mana={3}{GU}
-[/card]
-[card]
-text=Flying     {1}{W}, Sacrifice Kithkin Spellduster: Destroy target enchantment.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=flying
-id=152096
-name=Kithkin Spellduster
-rarity=C
-type=Creature
-mana={4}{W}
-power=2
-subtype=Kithkin Wizard
-toughness=3
 [/card]
 [card]
 text=When Kithkin Zealot comes into play, you gain 1 life for each black and/or red permanent target opponent controls.
@@ -1148,6 +1126,8 @@ mana={3}{G}{G}
 [/card]
 [card]
 text={1}, Sacrifice a Scarecrow: Draw a card.     {4}, {T}: Return target artifact creature card from your graveyard to play.
+auto={1}{S(scarecrow|myinplay)}:draw:1
+auto={4}{T}:moveTo(myinplay) target(artifact|mygraveyard)
 id=157979
 name=Scarecrone
 rarity=R

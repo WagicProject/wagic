@@ -285,6 +285,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\ExtraCost.cpp"
+				>
+			</File>
+			<File
 				RelativePath="src\GameApp.cpp"
 				>
 				<FileConfiguration
@@ -587,6 +591,10 @@
 			</File>
 			<File
 				RelativePath=".\include\DuelLayers.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\ExtraCost.h"
 				>
 			</File>
 			<File

@@ -1,5 +1,4 @@
 #SET: ICE AGE
-#VERSION: 1.6.1
 #Number of playable cards: >132
 #Note : please try to keep cards in alphabetical order of the name if possible
 [card]
@@ -300,6 +299,7 @@ rarity=C
 type=Instant
 mana={B}
 [/card]
+[card]
 text=Counter target spell if it is red or destroy target permanent if it is red.
 id=2508
 alias=1191
@@ -307,6 +307,15 @@ name=Hydroblast
 rarity=C
 type=Instant
 mana={U}
+[/card]
+[card]
+text={2}{T}: Sacrifice Pit Trap to bury target creature without flying that is attacking you.
+auto={2}{T}{S}:bury target(creature[-flying;attacking]|opponentinplay)
+id=2419
+name=Pit Trap
+rarity=U
+type=Artifact
+mana={2}
 [/card]
 [card]
 text=Counter target spell if it is blue or destroy target permanent if it is blue.
@@ -714,6 +723,21 @@ mana={3}{U}
 power=2
 subtype=Erne
 toughness=2
+[/card]
+[card]
+text={T}: Sacrifice a forest to add three mana in any combination of red and/or green to your mana pool. Play this ability as an interrupt.
+id=2646
+auto={T}{S(forest|myinplay)}: add {G}{G}{G}
+auto={T}{S(forest|myinplay)}: add {G}{G}{R}
+auto={T}{S(forest|myinplay)}: add {G}{R}{R}
+auto={T}{S(forest|myinplay)}: add {R}{R}{R}
+name=Orcish Lumberjack
+rarity=C
+type=Creature 
+mana={R}
+power=1
+subtype=Orc
+toughness=1
 [/card]
 [card]
 text=Swampwalk
@@ -1189,6 +1213,15 @@ subtype=Pyknite
 toughness=1
 [/card]
 [card]
+text={1}{T}: Sacrifice a creature to have Skull Catapult deal 2 damage to target creature or player.
+id=2422
+name=Skull Catapult
+auto={1}{T}{S(creature|myinplay)}:Damage:2 target(creature,player)
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
 text=Counts as a wall {1}: +1/+0 until end of turn {1}: +0/+1 until end of turn3: Snow Fortress deals 1 damage to target creature without flying that is attacking you.
 id=2423
 abilities=defender
@@ -1434,4 +1467,13 @@ auto=-flying
 rarity=U
 type=Instant
 mana={R}
+[/card]
+[card]
+text={0}: Sacrifice a land to gain 2 life.
+auto={S(land|myinplay)}:life:2
+id=2436
+name=Zuran Orb
+rarity=U
+type=Artifact
+mana={0}
 [/card]

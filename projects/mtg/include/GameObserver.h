@@ -38,6 +38,7 @@ class GameObserver{
   PhaseRing * phaseRing;
   int cancelCurrentAction();
   int currentGamePhase;
+  ExtraCosts * waitForExtraPayment;
   int oldGamePhase;
   TargetChooser * targetChooser;
   DuelLayers * mLayers;

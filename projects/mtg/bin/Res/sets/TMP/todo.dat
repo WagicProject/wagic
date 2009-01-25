@@ -1,0 +1,82 @@
+[card]
+text=Each Sliver gains,{2}:This creature gets +0/+1 until end of turn.
+auto={2}:0/1
+auto=lord(sliver) {2}:0/1
+id=4689
+name=Armor Sliver
+rarity=U
+type=Creature
+mana={2}{W}
+power=2
+subtype=Sliver
+toughness=2
+[/card]
+[card]
+text=Target attacking or blocking creature gets +4/+0 until end of turn. Destroy that creature at end of turn.
+target=creature[attacking,blocking]
+auto=4/0
+auto=@next endofturn:destroy
+id=4804
+name=Blood Frenzy
+rarity=C
+color=Red
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=When Cloudchaser Eagle comes into play, destroy target enchantment.
+target=enchantment
+auto=destroy
+id=4871
+name=Cloudchaser Eagle
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Legendary       Fear      When Commander Greven il-Vec comes into play, sacrifice a creature.
+target=creature|myinplay
+auto=bury
+id=4643
+name=Commander Greven il-Vec
+colour=Black
+rarity=R
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Human Warrior
+power=7
+toughness=5
+abilities=fear,legendary
+[/card]
+[card]
+text={R}: Flowstone Salamander deals 1 damage to target creature blocking it.
+id=4817
+name=Flowstone Salamander
+colour=Red
+rarity=U
+mana={3}{R}{R}
+type=Creature
+subtype=Salamander
+auto={R}:damage:1 target(creature[blocking])
+power=3
+toughness=4
+[/card]
+ [card]
+text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+target=creature|myGraveyard
+alias=1174
+id=4665
+name=Gravedigger
+rarity=U
+colour=Black
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]

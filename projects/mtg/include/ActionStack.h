@@ -145,6 +145,7 @@ class ActionStack :public GuiLayer{
   int CombatDamages();
   int CombatDamages(int firststrike);
   int has(Interruptible * action);
+  int has(MTGAbility * ability);
 #if defined (WIN32) || defined (LINUX)
    void Dump();
 #endif

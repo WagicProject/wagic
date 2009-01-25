@@ -244,18 +244,7 @@ power=2
 subtype=Elemental Spirit
 toughness=1
 [/card]
-[card]
-text=Sacrifice Bottle Gnomes: You gain 3 life.
-id=129495
-name=Bottle Gnomes
-rarity=U
-color=Artifact
-type=Artifact Creature
-mana={3}
-power=1
-subtype=Gnome
-toughness=3
-[/card]
+
 [card]
 text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
 id=135261
@@ -384,18 +373,6 @@ rarity=C
 color=Green
 type=Sorcery
 mana={G}
-[/card]
-[card]
-text=Sacrifice Composite Golem: Add {W}{U}{B}{R}{G} to your mana pool.
-id=135275
-name=Composite Golem
-rarity=U
-color=Artifact
-type=Artifact Creature
-mana={6}
-power=4
-subtype=Golem
-toughness=4
 [/card]
 [card]
 text=Put target attacking creature on the bottom of its owner's library. Its controller gains life equal to its toughness.
@@ -527,18 +504,6 @@ rarity=C
 color=Black
 type=Sorcery
 mana={B}{B}
-[/card]
-[card]
-text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from your graveyard to play.
-id=129880
-name=Doomed Necromancer
-rarity=R
-color=Black
-type=Creature
-mana={2}{B}
-power=2
-subtype=Human Cleric Mercenary
-toughness=2
 [/card]
 [card]
 text={3}, {T}: Double the amount of each type of mana in your mana pool.
@@ -1110,28 +1075,6 @@ type=Sorcery
 mana={2}{B}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Mind Stone: Draw a card.
-id=135280
-name=Mind Stone
-rarity=U
-color=Artifact
-type=Artifact
-mana={2}
-[/card]
-
-[card]
-text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
-id=134748
-name=Mogg Fanatic
-rarity=U
-color=Red
-type=Creature
-mana={R}
-power=1
-subtype=Goblin
-toughness=1
-[/card]
-[card]
 text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
 id=106368
 name=Molimo, Maro-Sorcerer
@@ -1163,18 +1106,6 @@ mana={2}{B}{B}
 power=*
 subtype=Lhurgoyf
 toughness=*
-[/card]
-[card]
-text=Sacrifice a creature: Nantuko Husk gets +2/+2 until end of turn.
-id=129653
-name=Nantuko Husk
-rarity=U
-color=Black
-type=Creature
-mana={2}{B}
-power=2
-subtype=Zombie Insect
-toughness=2
 [/card]
 [card]
 text=Target player gains 8 life.
@@ -1278,15 +1209,7 @@ power=4
 subtype=Zombie Minion
 toughness=4
 [/card]
-[card]
-text={2}, {T}, Sacrifice a creature: Draw a card.
-id=135281
-name=Phyrexian Vault
-rarity=U
-color=Artifact
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=As Pithing Needle comes into play, name a card.     Activated abilities of sources with the chosen name can't be played unless they're mana abilities.
 id=129526
@@ -1607,18 +1530,7 @@ color=Red
 type=Instant
 mana={1}{R}{R}
 [/card]
-[card]
-text=When Siege-Gang Commander comes into play, put three 1/1 red Goblin creature tokens into play.     {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
-id=130539
-name=Siege-Gang Commander
-rarity=R
-color=Red
-type=Creature
-mana={3}{R}{R}
-power=2
-subtype=Goblin
-toughness=2
-[/card]
+
 [card]
 text=Draw three cards, then discard a card.
 id=136217

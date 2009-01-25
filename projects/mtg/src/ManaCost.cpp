@@ -2,6 +2,9 @@
 #include "../include/Logger.h"
 #include "../include/ManaCost.h"
 #include "../include/ManaCostHybrid.h"
+#include "../include/ExtraCost.h"
+#include "../include/TargetChooser.h"
+#include "../include/Targetable.h"
 
 #if defined (WIN32)
 
@@ -50,6 +53,19 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
 	}else if (value == "x"){
 	  manaCost->x();
 	}else if (value == "t"){
+    //Tap is handled outside of Manacost
+	}else if (value[0] == 's'){
+    //sacrifice
+    OutputDebugString("Sacrifice\n");
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    int target_start = value.find("(");
+    int target_end = value.find(")");
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,NULL);
+    }
+    manaCost->addExtraCost(NEW SacrificeCost(tc));
 	}else{
 	  int intvalue = atoi(value.c_str());
 	  int colors[2];
@@ -128,6 +144,7 @@ void ManaCost::init(){
     cost[i] = 0;
   }
   nbhybrids = 0;
+  extraCosts = NULL;
 }
 
 
@@ -139,6 +156,11 @@ void ManaCost::copy(ManaCost * _manaCost){
     hybrids[i] = NEW ManaCostHybrid((*_manaCost->hybrids[i]));
   }
   nbhybrids = _manaCost->nbhybrids;
+
+  if (_manaCost->extraCosts){
+    //TODO Deep copy ?
+    extraCosts = _manaCost->extraCosts;
+  }
 }
 
 int ManaCost::getCost(int color){
@@ -163,6 +185,12 @@ int ManaCost::hasColor(int color){
     if (hybrids[i]->hasColor(color)) return 1;
   }
   return 0;
+}
+
+int ManaCost::isNull(){
+  if (getConvertedCost()) return 0;
+  if (extraCosts) return 0;
+  return 1;
 }
 
 int ManaCost::getConvertedCost(){
@@ -208,6 +236,35 @@ int ManaCost::addHybrid(int c1, int v1, int c2, int v2){
   hybrids[nbhybrids] = h;
   nbhybrids++;
   return nbhybrids;
+}
+
+int ManaCost::addExtraCost(ExtraCost * _cost){
+  if (!extraCosts) extraCosts = NEW ExtraCosts();
+  extraCosts->costs.push_back(_cost);
+  OutputDebugString("Adding Sacrifice\n");
+  return 1;
+}
+
+
+int ManaCost::isExtraPaymentSet(){
+  if (!extraCosts) return 1;
+  OutputDebugString("Checking costs\n");
+  return extraCosts->isPaymentSet();
+}
+
+int ManaCost::resetExtraPayment(){
+  if (!extraCosts) return 1;
+  return extraCosts->reset();
+}
+
+int ManaCost::doPayExtra(){
+  if (!extraCosts) return 0;
+  return extraCosts->doPay(); //TODO reset ?
+}
+
+int ManaCost::setExtraCostsAction(MTGAbility * action, MTGCardInstance * card){
+  if (extraCosts) extraCosts->setAction(action, card);
+  return 1;
 }
 
 int ManaCost::pay(ManaCost * _cost){

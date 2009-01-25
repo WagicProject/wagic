@@ -151,7 +151,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       cost = ManaCost::parseManaCost(line.substr(0,delimiter+1));
     }
     OutputDebugString("Pqrsing cost\n");
-    if (cost && !cost->getConvertedCost()){
+    if (cost && cost->isNull()){
       OutputDebugString("Cost is null\n");
       SAFE_DELETE(cost);
     }
@@ -1040,12 +1040,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW APestilence(_id, card));
       break;
     }
-    /*case 1173: //Plague Rats
-      {
-      game->addObserver(NEW APlagueRats(_id, card, "Plague Rats"));
-      break;
-      }
-    */
+
   case 1174: //Raise Dead
     {
       MTGPlayerCards * zones = game->currentlyActing()->game;
@@ -1621,7 +1616,9 @@ MTGAbility::~MTGAbility(){
 
 //returns 1 if this ability needs to be removed from the list of active abilities
 int MTGAbility::testDestroy(){
-  if (!game->isInPlay(source)){
+  if (game->mLayers->stackLayer()->has(this)) return 0;
+  if (!game->isInPlay(source) ){
+    OutputDebugString("Destroying Ability !!!\n");
     return 1;
   }
   if (target && !game->isInPlay((MTGCardInstance *)target)){
@@ -1647,16 +1644,32 @@ ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _c
 int ActivatedAbility::isReactingToClick(MTGCardInstance * card){
   Player * player = game->currentPlayer;
   if (!playerturnonly) player = game->currentlyActing();
-  if (card == source && (!cost || player->getManaPool()->canAfford(cost)) && source->controller()==player && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness())) && player==game->currentlyActing())
+  if (card == source && source->controller()==player && player==game->currentlyActing() && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness()))){
+    if (!cost) return 1;
+    if (!player->getManaPool()->canAfford(cost)) return 0;
     return 1;
+  }
   return 0;
 }
 
 int ActivatedAbility::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
+  OutputDebugString("React To click 1\n");
+  if (cost){
+    cost->setExtraCostsAction(this, card);
+    OutputDebugString("React To click 2\n");
+    if (!cost->isExtraPaymentSet()){
+      OutputDebugString("React To click 3\n");
+      
+      game->waitForExtraPayment = cost->extraCosts;
+      return 0;
+    }
+    game->currentlyActing()->getManaPool()->pay(cost);
+    cost->doPayExtra();
+  }
   if (needsTapping) source->tapped = 1;
-  if (cost) game->currentlyActing()->getManaPool()->pay(cost);
   fireAbility();
+
   return 1;
 
 }
@@ -1664,7 +1677,17 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
 int ActivatedAbility::reactToTargetClick(Targetable * object){
   if (!isReactingToTargetClick(object)) return 0;
   if (needsTapping) source->tapped = 1;
-  if (cost) game->currentlyActing()->getManaPool()->pay(cost);
+  if (cost){
+    if (object->typeAsTarget() == TARGET_CARD) cost->setExtraCostsAction(this, (MTGCardInstance *) object);
+    OutputDebugString("React To click 2\n");
+    if (!cost->isExtraPaymentSet()){
+      OutputDebugString("React To click 3\n");   
+      game->waitForExtraPayment = cost->extraCosts;
+      return 0;
+    }
+    game->currentlyActing()->getManaPool()->pay(cost);
+    cost->doPayExtra();    
+  }
   fireAbility();
   return 1;
 

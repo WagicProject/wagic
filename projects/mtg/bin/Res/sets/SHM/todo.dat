@@ -181,17 +181,7 @@ rarity=U
 type=Enchantment
 mana={2}{B}
 [/card]
-[card]
-text=Plainswalk     {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
-id=158684
-name=Boggart Arsonists
-rarity=C
-type=Creature
-mana={2}{R}
-power=2
-subtype=Goblin Rogue
-toughness=1
-[/card]
+
 [card]
 text=If you would gain life, you gain twice that much life instead.
 id=146751
@@ -506,17 +496,7 @@ rarity=C
 type=Artifact
 mana={2}
 [/card]
-[card]
-text={GW}, {T}, Sacrifice Elvish Hexhunter: Destroy target enchantment.
-id=141958
-name=Elvish Hexhunter
-rarity=C
-type=Creature
-mana={GW}
-power=1
-subtype=Elf Shaman
-toughness=1
-[/card]
+
 [card]
 text=Creatures target player controls can't block this turn. Ember Gale deals 1 damage to each white and/or blue creature that player controls.
 id=158766
@@ -642,17 +622,7 @@ rarity=R
 type=Instant
 mana={2}{GW}{GW}{GW}
 [/card]
-[card]
-text=Sacrifice Fulminator Mage: Destroy target nonbasic land.
-id=142009
-name=Fulminator Mage
-rarity=R
-type=Creature
-mana={1}{BR}{BR}
-power=2
-subtype=Elemental Shaman
-toughness=2
-[/card]
+
 [card]
 text=When Furystoke Giant comes into play, other creatures you control gain &quot;{T}: This creature deals 2 damage to target creature or player&quot; until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=152069
@@ -816,17 +786,7 @@ rarity=U
 type=Instant
 mana={RG}
 [/card]
-[card]
-text=Sacrifice Heap Doll: Remove target card in a graveyard from the game.
-id=154395
-name=Heap Doll
-rarity=U
-type=Artifact Creature
-mana={1}
-power=1
-subtype=Scarecrow
-toughness=1
-[/card]
+
 [card]
 text=At the beginning of your upkeep, remove a -1/-1 counter from each creature you control.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=153312
@@ -2069,17 +2029,7 @@ type=Artifact
 mana={3}
 subtype=Equipment
 [/card]
-[card]
-text={T}, Sacrifice a Mountain: Valleymaker deals 3 damage to target creature.     {T}, Sacrifice a Forest: Choose a player. That player adds {G}{G}{G} to his or her mana pool.
-id=159397
-name=Valleymaker
-rarity=R
-type=Creature
-mana={5}{RG}
-power=5
-subtype=Giant Shaman
-toughness=5
-[/card]
+
 [card]
 text=Vexing Shusher can't be countered.     {RG}: Target spell can't be countered by spells or abilities.
 id=146016

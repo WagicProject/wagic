@@ -38,6 +38,18 @@ subtype=Goblin Knight
 toughness=4
 [/card]
 [card]
+text=Plainswalk     {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
+auto={2}{R}{S}:destroy target(scarecrow,plains)
+id=158684
+name=Boggart Arsonists
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Goblin Rogue
+toughness=1
+[/card]
+[card]
 text=Haste     Wither (This deals damage to creatures in the form of -1/-1 counters.)
 abilities=haste,wither
 id=153970
@@ -85,6 +97,18 @@ mana={5}{U}
 power=2
 subtype=Merfolk Rogue
 toughness=2
+[/card]
+[card]
+text={GW}, {T}, Sacrifice Elvish Hexhunter: Destroy target enchantment.
+auto={GW}{T}{S}:destroy target(enchantment)
+id=141958
+name=Elvish Hexhunter
+rarity=C
+type=Creature
+mana={GW}
+power=1
+subtype=Elf Shaman
+toughness=1
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {RG}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
@@ -156,6 +180,18 @@ subtype=Treefolk Shaman
 toughness=6
 [/card]
 [card]
+text=Sacrifice Fulminator Mage: Destroy target nonbasic land.
+auto={S}:destroy target(land[-plains;-mountain;-swamp;-forest;-island])
+id=142009
+name=Fulminator Mage
+rarity=R
+type=Creature
+mana={1}{BR}{BR}
+power=2
+subtype=Elemental Shaman
+toughness=2
+[/card]
+[card]
 text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
 abilities=flying
 auto=lord(creature[blue]|myinplay) 1/1
@@ -191,6 +227,18 @@ id=146764
 name=Graven Cairns
 rarity=R
 type=Land
+[/card]
+[card]
+text=Sacrifice Heap Doll: Remove target card in a graveyard from the game.
+auto={S}:moveTo(removedfromgame) target(*|graveyard)
+id=154395
+name=Heap Doll
+rarity=U
+type=Artifact Creature
+mana={1}
+power=1
+subtype=Scarecrow
+toughness=1
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -666,6 +714,19 @@ rarity=C
 type=Enchantment
 mana={2}{UB}
 subtype=Aura
+[/card]
+[card]
+text={T}, Sacrifice a Mountain: Valleymaker deals 3 damage to target creature.     {T}, Sacrifice a Forest: Choose a player. That player adds {G}{G}{G} to his or her mana pool.
+auto={T}{S(mountain|myinplay)}:Damage:3 target(creature)
+auto={T}{S(forest|myinplay)}:Add{G}{G}{G}
+id=159397
+name=Valleymaker
+rarity=R
+type=Creature
+mana={5}{RG}
+power=5
+subtype=Giant Shaman
+toughness=5
 [/card]
 [card]
 text={2}, {T}: Tap target creature.

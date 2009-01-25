@@ -211,6 +211,19 @@ type=Instant
 mana={U}{U}
 [/card]
 [card]
+text=Sacrifice Bottle Gnomes: You gain 3 life.
+auto={s}:life:3
+id=129495
+name=Bottle Gnomes
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={3}
+power=1
+subtype=Gnome
+toughness=3
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
 auto={T}:Add {1}
 auto={T}:Add {G} && Damage 1 controller
@@ -254,6 +267,19 @@ mana={1}{G}
 power=1
 subtype=Spider
 toughness=3
+[/card]
+[card]
+text=Sacrifice Composite Golem: Add {W}{U}{B}{R}{G} to your mana pool.
+auto={s}:Add {W}{U}{B}{R}{G}
+id=135275
+name=Composite Golem
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={6}
+power=4
+subtype=Golem
+toughness=4
 [/card]
 [card]
 text=Draw two cards.
@@ -333,6 +359,19 @@ rarity=C
 color=White
 type=Instant
 mana={W}
+[/card]
+[card]
+text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from your graveyard to play.
+auto={B},{T},{S}:moveTo(myinplay) target(creature|mygraveyard)
+id=129880
+name=Doomed Necromancer
+rarity=R
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Human Cleric Mercenary
+toughness=2
 [/card]
 [card]
 text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying into play. (It can't be blocked except by creatures with flying or reach.)
@@ -1063,6 +1102,17 @@ type=Artifact
 mana={2}
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Mind Stone: Draw a card.
+auto={T}:Add{1}
+auto={1}{T}{S}:draw:1
+id=135280
+name=Mind Stone
+rarity=U
+color=Artifact
+type=Artifact
+mana={0}
+[/card]
+[card]
 text=First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
 abilities=First strike, forestwalk, vigilance, legendary 
 id=106405
@@ -1085,6 +1135,19 @@ rarity=R
 color=White
 type=Enchantment
 mana={2}{W}
+[/card]
+[card]
+text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
+auto={s}:Damage:1 target(creature,player)
+id=134748
+name=Mogg Fanatic
+rarity=U
+color=Red
+type=Creature
+mana={R}
+power=1
+subtype=Goblin
+toughness=1
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -1125,6 +1188,19 @@ rarity=L
 color=Land
 type=Basic Land
 subtype=Mountain
+[/card]
+[card]
+text=Sacrifice a creature: Nantuko Husk gets +2/+2 until end of turn.
+auto={s(creature|myinplay)}:2/2
+id=129653
+name=Nantuko Husk
+rarity=U
+color=Black
+type=Creature
+mana={2}{B}
+power=2
+subtype=Zombie Insect
+toughness=2
 [/card]
 [card]
 text=Destroy target artifact or enchantment.
@@ -1228,6 +1304,16 @@ mana={2}{B}
 power=2
 subtype=Horror
 toughness=2
+[/card]
+[card]
+text={2}, {T}, Sacrifice a creature: Draw a card.
+auto={2},{T},{S(creature|myinplay)}:draw:1
+id=135281
+name=Phyrexian Vault
+rarity=U
+color=Artifact
+type=Artifact
+mana={3}
 [/card]
 [card]
 text=Shroud (This creature can't be the target of spells or abilities.)
@@ -1633,6 +1719,20 @@ rarity=C
 color=Red
 type=Instant
 mana={R}
+[/card]
+[card]
+text=When Siege-Gang Commander comes into play, put three 1/1 red Goblin creature tokens into play.     {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
+auto=token(Goblin,creature goblin, 1/1,red)*3
+auto={1},{R},{S(goblin|myinplay)}:Damage:2 target(creature,player)
+id=130539
+name=Siege-Gang Commander
+rarity=R
+color=Red
+type=Creature
+mana={3}{R}{R}
+power=2
+subtype=Goblin
+toughness=2
 [/card]
 [card]
 text=Flying, first strike (This creature can't be blocked except by creatures with flying or reach, and it deals combat damage before creatures without first strike.)

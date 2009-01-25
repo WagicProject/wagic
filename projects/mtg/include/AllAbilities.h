@@ -81,10 +81,15 @@ class ADrawer:public ActivatedAbility{
     return 1;
   }
 
+
+
   const char * getMenuText(){
     return "Draw";
   }
 
+  ~ADrawer(){
+    OutputDebugString("Deleting ADrawer\n");
+  }
 
 };
 
@@ -170,6 +175,17 @@ public:
       if (p){
         MTGGameZone * fromZone = _target->getCurrentZone();
         MTGGameZone * destZone = MTGGameZone::stringToZone(destinationZone, source);
+
+        //inplay is a special zone !
+        for (int i=0; i < 2; i++){
+          if (destZone == game->players[i]->game->inPlay){
+              Spell * spell = NEW Spell(_target);
+              game->players[i]->game->putInZone(_target,  fromZone, game->players[i]->game->stack);
+              spell->resolve();
+              delete spell;
+              return 1;
+          }
+        }
         p->game->putInZone(_target,fromZone,destZone);
       }
       return 1;

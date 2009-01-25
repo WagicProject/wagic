@@ -274,6 +274,16 @@ ActionStack::ActionStack(int id, GameObserver* _game):GuiLayer(id, _game){
 
 }
 
+int ActionStack::has(MTGAbility * ability){
+  for (int i = 0; i < mCount ; i++){
+    if (((Interruptible *)mObjects[i])->type==ACTION_ABILITY){
+      StackAbility * action = ((StackAbility *)mObjects[i]);
+      if (action->state == NOT_RESOLVED && action->ability == ability) return 1;
+    }
+  }
+  return 0;
+}
+
 int ActionStack::has(Interruptible * action){
   for (int i = 0; i < mCount ; i++){
     if (mObjects[i] == action) return 1;
@@ -658,15 +668,15 @@ void ActionStack::Render(){
     for (int i=0;i<mCount ;i++){
       Interruptible * current = (Interruptible *)mObjects[i];
       if (current && current->state==NOT_RESOLVED){
-	current->x = x0 + 5;
-	if (i != mCount -1){
-	  current->y = currenty;
-	  currenty += current->mHeight;
-	}else{
-	  current->y = currenty + 40 ;
-	  currenty += current->mHeight + 40;
-	}
-	current->Render();
+	      current->x = x0 + 5;
+	      if (i != mCount -1){
+	        current->y = currenty;
+	        currenty += current->mHeight;
+	      }else{
+	        current->y = currenty + 40 ;
+	        currenty += current->mHeight + 40;
+	      }
+	      current->Render();
       }
     }
 
@@ -698,15 +708,15 @@ void ActionStack::Render(){
     for (int i=0;i<mCount ;i++){
       Interruptible * current = (Interruptible *)mObjects[i];
       if (mObjects[i]!=NULL && current->display){
-	((Interruptible *)mObjects[i])->x = x0 + 5;
-	if (i != mCount -1){
-	  ((Interruptible *)mObjects[i])->y = currenty;
-	  currenty += ((Interruptible *)mObjects[i])->mHeight;
-	}else{
-	  ((Interruptible *)mObjects[i])->y = currenty + 40 ;
-	  currenty += ((Interruptible *)mObjects[i])->mHeight + 40;
-	}
-	mObjects[i]->Render();
+	      ((Interruptible *)mObjects[i])->x = x0 + 5;
+	      if (i != mCount -1){
+	        ((Interruptible *)mObjects[i])->y = currenty;
+	        currenty += ((Interruptible *)mObjects[i])->mHeight;
+	      }else{
+	        ((Interruptible *)mObjects[i])->y = currenty + 40 ;
+	        currenty += ((Interruptible *)mObjects[i])->mHeight + 40;
+	      }
+	      mObjects[i]->Render();
       }
     }
   }

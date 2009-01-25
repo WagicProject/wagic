@@ -174,11 +174,13 @@ toughness=1
 [/card]
 [card]
 text=As an additional cost to play Bone Splinters, sacrifice a creature.     Destroy target creature.
+target=creature
+auto=destroy
 id=174967
 name=Bone Splinters
 rarity=C
 type=Sorcery
-mana={B}
+mana={B},{S(creature|myinplay)}
 [/card]
 [card]
 text=Choose one or both - Branching Bolt deals 3 damage to target creature with flying; and/or Branching Bolt deals 3 damage to target creature without flying.
@@ -266,14 +268,7 @@ power=3
 subtype=Zombie Wizard
 toughness=3
 [/card]
-[card]
-text={1}{U}, {T}, Sacrifice Courier's Capsule: Draw two cards.
-id=174800
-name=Courier's Capsule
-rarity=C
-type=Artifact
-mana={1}{U}
-[/card]
+
 [card]
 text=Reveal the top three cards of your library. Target opponent may choose to put those cards into your hand. If he or she doesn't, put those cards into your graveyard and draw five cards.
 id=178091
@@ -343,14 +338,7 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
-[card]
-text={2}{W}, {T}, Sacrifice Dispeller's Capsule: Destroy target artifact or enchantment.
-id=174830
-name=Dispeller's Capsule
-rarity=C
-type=Artifact
-mana={W}
-[/card]
+
 
 [card]
 text={2}{R}, {T}, Sacrifice a black creature, a red creature, and a green creature: Search your library for a card named Hellkite Overlord and put it into play. Then shuffle your library.
@@ -432,14 +420,7 @@ name=Esper Panorama
 rarity=C
 type=Land
 [/card]
-[card]
-text=Flash     {B}, {T}, Sacrifice an artifact: Draw a card.
-id=175138
-name=Etherium Astrolabe
-rarity=U
-type=Artifact
-mana={2}{U}
-[/card]
+
 [card]
 text=Artifact spells you play cost {1} less to play.
 id=176435
@@ -469,14 +450,6 @@ name=Excommunicate
 rarity=C
 type=Sorcery
 mana={2}{W}
-[/card]
-[card]
-text={1}{B}, {T}, Sacrifice Executioner's Capsule: Destroy target nonblack creature.
-id=174895
-name=Executioner's Capsule
-rarity=C
-type=Artifact
-mana={B}
 [/card]
 [card]
 text=At the end of your turn, if you control a creature with power 5 or greater, you may have Exuberant Firestoker deal 2 damage to target player.     {T}: Add {1} to your mana pool.
@@ -986,14 +959,7 @@ power=7
 subtype=Demon
 toughness=7
 [/card]
-[card]
-text={4}{W}, {T}, Sacrifice Protomatter Powder: Return target artifact card from your graveyard to play.
-id=174833
-name=Protomatter Powder
-rarity=U
-type=Artifact
-mana={2}{U}
-[/card]
+
 [card]
 text=Counter target spell. Its controller loses 3 life and you gain 3 life.
 id=176450
@@ -1301,17 +1267,7 @@ type=Artifact
 mana={X}
 subtype=Equipment
 [/card]
-[card]
-text=Flying     {B}, Sacrifice a creature: Regenerate Skeletal Kathari.
-id=175119
-name=Skeletal Kathari
-rarity=C
-type=Creature
-mana={4}{B}
-power=3
-subtype=Bird Skeleton
-toughness=2
-[/card]
+
 [card]
 text=Skeletonize deals 3 damage to target creature. When a creature dealt damage this way is put into a graveyard this turn, put a 1/1 black Skeleton creature token into play with &quot;{B}: Regenerate this creature.&quot;
 id=175070

@@ -6,13 +6,19 @@
 
 
 class ManaCostHybrid;
+class ExtraCosts;
+class ExtraCost;
+class MTGAbility;
+class MTGCardInstance;
 
 class ManaCost{
  protected:
   int cost[Constants::MTG_NB_COLORS+1];
   ManaCostHybrid * hybrids[10];
   int nbhybrids;
+  
  public:
+  ExtraCosts * extraCosts;
   static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL);
   void init();
   void x();
@@ -21,6 +27,7 @@ class ManaCost{
   ~ManaCost();
   ManaCost(ManaCost * _manaCost);
   void copy (ManaCost * _manaCost);
+  int isNull();
   int getConvertedCost();
   string toString();
   int getCost(int color);
@@ -30,6 +37,16 @@ class ManaCost{
   int hasColor(int color);
   int remove (int color, int value);
   int add(int color, int value);
+
+  //
+  // Extra Costs (sacrifice...)
+  //
+  int addExtraCost(ExtraCost * _cost);
+  int setExtraCostsAction(MTGAbility * action, MTGCardInstance * card);
+  int isExtraPaymentSet();
+  int resetExtraPayment();
+  int doPayExtra();
+
   int addHybrid(int c1, int v1, int c2, int v2);
   int tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[]);
   void randomDiffHybrids(ManaCost * _cost, int diff[]);

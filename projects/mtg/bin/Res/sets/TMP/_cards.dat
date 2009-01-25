@@ -1,0 +1,1322 @@
+#TEMPEST
+#Initial Release by Dr. Solomat
+[card]
+text=First strike    {W}: Target creature gains first strike until end of turn.
+auto={W}:first strike target(creature)
+id=4857
+name=Advance Scout
+rarity=C
+color=White
+mana={1}{W}
+type=Creature
+subtype=Human Soldier Scout
+power=1
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text=Destroy target artifact, creature, or land. Aftershock deals 3 damage to you.
+target=artifact,creature,land
+auto=destroy
+auto=life:-3
+id=4800
+name=Aftershock
+color=Black
+rarity=C
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text=Flying
+id=4861
+name=Armored Pegasus
+rarity=C
+color=White
+mana={1}{W}
+type=Creature
+subtype=Pegasus
+power=1
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Flying, swampwalk
+id=4749
+name=Bayou Dragonfly
+rarity=C
+color=Green
+mana={1}{G}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+abilities=flying,swampwalk
+[/card]
+[card]
+text=Isalndwalk
+id=4690
+name=Benthic Behemoth
+rarity=R
+color=Blue
+mana={5}{U}{U}{U}
+type=Creature
+subtype=Serpent
+power=7
+toughness=6
+abilities=islandwalk
+[/card]
+[card]
+text=Destroy all islands.
+auto=destroy all(island)
+id=4805
+name=Boil
+colour=Red
+rarity=U
+mana={3}{R}
+type=Instant
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=4751
+name=Canopy Spider
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Spider
+power=1
+toughness=3
+abilities=Reach
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=4807
+name=Canyon Wildcat
+color=Red
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Cat
+power=2
+toughness=1
+abilities=Mountainwalk
+[/card]
+[card]
+text={1}: Prevent all damage against you from one black source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+id=4864
+alias=1335
+name=Circle of Protection: Black
+colour=White
+rarity=C
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text={1}: Prevent all damage against you from one blue source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+id=4865
+alias=1336
+name=Circle of Protection: Blue
+colour=White
+rarity=C
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text={1}: Prevent all damage against you from one green source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+id=4866
+alias=1337
+name=Circle of Protection: Green
+colour=White
+rarity=C
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text={1}: Prevent all damage against you from one red source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+id=4867
+alias=1338
+name=Circle of Protection: Red
+colour=White
+rarity=C
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text={1}: Prevent all damage against you from one white source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+id=4869
+alias=1339
+name=Circle of Protection: White
+colour=White
+rarity=C
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text=All Sliver creatures gain "{2}:regenerate"
+auto=lord(sliver) {2}:regenerate
+id=4640
+name=Clot Sliver
+colour=Black
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+abilities={2}:regenerate
+[/card]
+[card]
+text=First strike
+id=4599
+name=Coiled Tinviper
+color=Artifact
+rarity=C
+mana={3}
+type=Artifact Creature
+subtype=Snake
+power=2
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text=Counter target spell.
+id=4693
+alias=1196
+name=Counterspell
+Colour=Blue
+rarity=C
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+text=Destroy target nonblack creature. It can't be regenerated.
+target=creature[-black]
+auto=bury
+id=4645
+name=Dark Banishing
+color=Black
+rarity=C
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+text=Add {B}{B}{B} to your mana pool.
+auto=Add {B}{B}{B}
+id=4646
+name=Dark Ritual
+colour=Black
+rarity=C
+mana={B}
+type=Instant
+[/card]
+[card]
+text={B}: Regenerate Darkling Stalker.       {B}: Darkling Stalker gets +1/+1 until end of turn.
+id=4647
+name=Darkling Stalker
+colour=Black
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Shade Spirit
+auto={B}:regenerate
+auto={B}:1/1
+power=1
+toughness=1
+[/card]
+[card]
+text={B}{B}: Target creature gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
+auto={B}{B}:shadow target(creature)
+id=4648
+name=Dauthi Embrace
+color=Black
+rarity=U
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)
+id=4651
+name=Dauthi Marauder
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Dauthi Minion
+power=3
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)    {1}{B}: Dauthi Mercenary gets +1/+0 until end of turn.
+id=4652
+name=Dauthi Mercenary
+color=Black
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Dauthi Knight Mercenary
+auto={1}{B}:1/0
+power=2
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text=Destroy target artifact or enchantment.
+target=artifact,enchantment
+auto=destroy
+id=4872
+name=Disenchant
+colour=White
+rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text=Counter target spell.     Draw a card.
+id=4695
+alias=1196
+auto=draw:1
+name=Dismiss
+colour=Blue
+rarity=U
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+text=Legendary       Other Elf creatures have forestwalk.   Other Elves have shroud. (They can't be the targets of spells or abilities.)
+id=4757
+name=Eladamri, Lord of Leaves
+auto=lord(elf) forestwalk
+auto=lord(elf) shroud
+colour=Green
+rarity=R
+mana={G}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)     Enchanted creature gets -2/-2.
+id=4661
+target=creature
+auto=:-2/-2
+name=Enfeeblement
+color=Black
+rarity=C
+mana={B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Flying
+id=4700
+name=Fighting Drake
+colour=Blue
+rarity=U
+mana={2}{U}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=4
+abilities=flying
+[/card]
+[card]
+text=Flying     {R}: Firefly gets +1/+0 until end of turn.
+id=4813
+name=Firefly
+colour=Red
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Insect
+auto={R}:1/0
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={R}: Flowstone Giant gets +2/-2 until end of turn.
+id=4816
+name=Flowstone Giant
+colour=Red
+rarity=C
+mana={2}{R}{R}
+type=Creature
+subtype=Giant
+auto={R}:2/-2
+power=3
+toughness=3
+[/card]
+[card]
+text=Flying     {R}: Flowstone Wyvern gets +2/-2 until end of turn.
+id=4818
+name=Flowstone Wyvern
+colour=Red
+rarity=R
+mana={3}{R}{R}
+type=Creature
+subtype=Drake
+auto={R}:2/-2
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=4927
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=4928
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=4929
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=4926
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Enchant creature       When Frog Tongue comes into play, draw a card.       Enchanted creature has reach. (It can block creatures with flying.)
+target=creature
+auto=reach
+auto=draw:1
+id=4762
+name=Frog Tongue
+colour=C
+rarity=U
+mana={1}{G
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Target blocking creature gets +4/+4 until end of turn.        Draw a card.
+target=creature[blocking]
+auto=:4/4
+auto=draw:1
+id=4876
+name=Gallantry
+color=White
+rarity=U
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text={U}: Giant Crab gains shroud until end of turn. (It can't be the target of spells or abilities.)
+id=4703
+name=Giant Crab
+colour=Blue
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Crab
+auto={U}:shroud
+power=3
+toughness=3
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)     Enchanted creature gets +2/+2.
+id=4820
+target=creature
+auto=:2/2
+name=Giant Strength
+color=Red
+rarity=C
+mana={R}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Artifacts have shroud. (They can't be the targets of spells or abilities.)
+auto=lord(artifact) shroud
+id=4878
+name=Hanna's Custody
+color=White
+rarity=R
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+text=All Sliver creatures have haste.
+id=4824
+auto=lord(sliver) Haste
+name=Heart Sliver
+colour=Red
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+abilities=Haste
+[/card]
+[card]
+text=Reachshadow (This creature can block creatures with shadow as though they didn't have shadow.
+id=4765
+name=Heartwood Dryad
+rarity=C
+color=Green
+mana={1}{G}
+type=Creature
+subtype=Dryad
+power=2
+toughness=1
+abilities=reachshadow
+[/card]
+[card]
+text=Forestwalk
+id=4767
+name=Heartwood Treefolk
+rarity=U
+color=Green
+mana={2}{G}{G}
+type=Creature
+subtype=Treefolk
+power=2
+toughness=3
+abilities=forestwalk
+[/card]
+[card]
+text=Enchant creature      Enchanted creature gets +1/+5.
+target=creature
+auto=:1/5
+id=4879
+name=Hero's Resolve
+color=White
+rarity=C
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=All Sliver creatures have trample.
+auto=lord(sliver) Trample
+id=4768
+name=Horned Sliver
+colour=Green
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+abilities=trample
+[/card]
+[card]
+id=4704
+name=Horned Turtle
+colour=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Turtle
+power=1
+toughness=4
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=4949
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=4951
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=4950
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=4952
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=First strike      {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
+id=4883
+name=Knight of Dawn
+colour=White
+rarity=U
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+auto={W}{W}:protection from white
+auto={W}{W}:protection from blue
+auto={W}{W}:protection from black
+auto={W}{W}:protection from red
+auto={W}{W}:protection from green
+power=2
+toughness=2
+abilites=first strike
+[/card]
+[card]
+text=Lightning Blast deals 4 damage to target creature or player.
+target=creature,player
+auto=Damage:4
+id=4827
+name=Lightning Blast
+color=Red
+rarity=C
+mana={3}{R}
+type=Instant
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+id=4828
+name=Lightning Elemental
+color=Red
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=1
+abilities=Haste
+[/card]
+[card]
+id=4829
+name=Lowland Giant
+colour=Red
+rarity=C
+mana={2}{R}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.
+auto={T}: Add {1} 
+id=4616
+name=Manakin
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+text={U}: Manta Riders gains flying until end of turn.
+id=4711
+name=Manta Riders
+colour=Blue
+rarity=C
+mana={U}
+type=Creature
+subtype=Merfolk
+auto={U}:flying
+power=1
+toughness=1
+[/card]
+[card]
+text={W}, {T}: Tap target creature.
+auto={W}{T}:tap target(creature)
+id=4887
+name=Master Decoy
+rarity=C
+color=White
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+[card]
+text=Flying       {T}: Mawcor deals 1 damage to target creature or player.
+auto={T}:damage:1 target(creature,player)
+id=4712
+name=Mawcor
+colour=Blue
+rarity=R
+mana={3}{U}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+id=4617
+name=Metallic Sliver
+colour=Artifact
+rarity=C
+mana={1}
+type=Artifact Creature
+subtype=Sliver
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=4945
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=4946
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=4947
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=4948
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=All Sliver creatures get +1/+1.
+id=4772
+auto=lord(sliver) 1/1
+name=Muscle Sliver
+colour=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=2
+subtype=Sliver
+toughness=2
+[/card]
+[card]
+text=Target player gains 8 life.
+target=player
+auto=life:8
+id=4773
+name=Natural Spring
+color=Green
+rarity=C
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+text=Destroy all green creatures. Those creatures cannot be regenerated.
+auto=bury all(creature[green])
+id=4676
+name=Perish
+rarity=U
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+id=4622
+name=Phyrexian Hulk
+color=Artifact
+rarity=U
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=5
+toughness=4
+[/card]
+[card]
+text=Shroud (This creature can't be the target of spells or abilities.)
+id=4778
+name=Pincher Beetles
+color=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Insect
+power=3
+toughness=1
+abilities=shroud
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=4955
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=4953
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=4954
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=4956
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={2}, {T}: Tap or untap target creature.
+auto={2}{T}:tap target(creature)
+auto={2}{T}:untap target(creature)
+id=4624
+name=Puppet Strings
+color=Artifact
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Destroy target land.
+target=land
+auto=destroy
+id=4678
+name=Rain of Tears
+rarity=U
+color=Black
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=First strike       {G}: Regenerate Ranger en-Vec.
+id=4914
+name=Ranger en-Vec
+rarity=U
+color=White,Green
+mana={1}{W}{G}
+type=Creature
+subtype=Human Soldier Archer
+auto={G}:regenerate
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
+text={B}: Destroy target artifact, creature, or land you control.
+id=4679
+name=Rats of Rath
+colour=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Rat
+auto={B}:destroy target(artifact,creature,land|myinplay)
+power=2
+toughness=1
+[/card]
+[card]
+text=Target creature loses shadow until end of turn.     Draw a card.
+target=creature
+auto=-shadow
+auto=draw:1
+id=4780
+name=Reality Anchor
+color=Green
+rarity=C
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=4785
+name=Rootbreaker Wurm
+rarity=C
+color=Green
+mana={5}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
+abilities=trample
+[/card]
+[card]
+text={1}{G}: Rootwalla gets +2/+2 until end of turn. Play this ability only once each turn.
+auto={1}{G}:2/2 limit:1
+id=4786
+name=Rootwalla
+color=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Lizard
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Rootwater Hunter deals 1 damage to target creature or player.
+id=4721
+name=Rootwater Hunter
+auto={T}:damage:1 target(creature,player)
+colour=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Merfolk
+power=1
+toughness=1
+[/card]
+[card]
+text=(This creature deals combat damage before creatures without first strike.)       {R}: Sandstone Warrior gets +1/+0 until end of turn.
+id=4841
+name=Sandstone Warrior
+colour=Red
+rarity=C
+mana={2}{R}{R}
+type=Creature
+subtype=Human Soldier Warrior
+auto={R}:1/0
+power=3
+toughness=3
+abilities=first strike
+[/card]
+[card]
+text=Flying     {1}{B}: Regenerate Screeching Harpy.
+id=4684
+name=Screeching Harpy
+color=Black
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Harpy Beast
+auto={1}{B}:regenerate
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text={T}: Untap target creature.
+id=4788
+name=Seeker of Skybreak
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf
+auto={T}:untap target(creature)
+power=2
+toughness=1
+[/card]
+[card]
+text=Target creature gains shadow until end of turn.    Draw a card.
+target=creature
+auto=shadow
+auto=draw:1
+id=4725
+name=Shadow Rift
+color=Blue
+rarity=C
+mana={U}
+type=Instant
+[/card]
+[card]
+text=Flying, first strike
+id=4917
+name=Sky Spirit
+rarity=U
+color=White,Blue
+mana={1}{W}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+abilities=flying,first strike
+[/card]
+[card]
+text=Flying
+id=4927
+name=Skyshroud Condor
+rarity=U
+color=Blue
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.    {1}: Add {W} or {R} to your mana pool.
+id=4789
+name=Skyshroud Elf
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf
+auto={T}:Add {G}
+auto={1}:Add {W}
+auto={1}:Add {R}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{G}: Regenerate Skyshroud Troll.
+id=4791
+name=Skyshroud Troll
+color=Green
+rarity=C
+mana={2}{G}{G}
+type=Creature
+subtype=Troll Giant
+auto={1}{G}:regenerate
+power=3
+toughness=3
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)    {1}{W}: Soltari Crusader gets +1/+0 until end of turn.
+id=4899
+name=Soltari Crusader
+color=White
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Soltari Knight
+auto={1}{W}:1/0
+power=2
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text={W}: Soltari Emissary gains shadow until end of turn.
+id=4900
+name=Soltari Emissary
+color=White
+rarity=R
+mana={1}{W}
+type=Creature
+subtype=Soltari Soldier
+auto={W}:shadow
+power=2
+toughness=1
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)
+id=4901
+name=Soltari Foot Soldier
+color=White
+rarity=C
+mana={W}
+type=Creature
+subtype=Soltari Soldier
+power=1
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text=Protection from black        Shadow (This creature can block or be blocked by only creatures with shadow.)
+id=4903
+name=Soltari Monk
+color=White
+rarity=U
+mana={W}{W}
+type=Creature
+subtype=Soltari Monk Cleric
+power=2
+toughness=1
+abilities=shadow,protection from black
+[/card]
+[card]
+text=Protection from red       Shadow (This creature can block or be blocked by only creatures with shadow.)
+id=4904
+name=Soltari Priest
+color=White
+rarity=U
+mana={W}{W}
+type=Creature
+subtype=Soltari Cleric
+power=2
+toughness=1
+abilities=shadow,protection from red
+[/card]
+[card]
+text=Counter target spell with converted mana cost X.
+id=4728
+alias=1224
+name=Spell Blast
+colour=Blue
+rarity=C
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+text=When Staunch Defenders comes into play, you gain 4 life.
+id=4907
+name=Staunch Defenders
+color=White
+rarity=U
+mana={3}{W}{W}
+type=Creature
+subtype=Human Soldier
+auto=life:4
+power=3
+toughness=4
+[/card]
+[card]
+text=Enchant enchantment      You control enchanted enchantment.
+target=enchantment
+alias=1194
+id=4729
+name=Steal Enchantment
+colour=Blue
+rarity=U
+mana={U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Destroy target land.
+target=land
+auto=destroy
+id=4850
+name=Stone Rain
+colour=Red
+rarity=C
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+text={G}{G}: Tap target creature with flying.
+id=4793
+auto={G}{G}:tap target(creature[flying])
+name=Storm Front
+colour=Green
+rarity=U
+mana={G}
+type=Enchantment
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=4925
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=4922
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=4923
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=4924
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=All Sliver creatures have first strike.
+id=4908
+auto=lord(sliver) first strike
+name=Talon Sliver
+colour=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+abilities=First Strike
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow)
+id=4735
+name=Thalakos Sentry
+color=Blue
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Thalakos Soldier
+power=1
+toughness=2
+abilities=shadow
+[/card]
+[card]
+id=4794
+name=Trained Armodon
+color=Green
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Elephant
+power=3
+toughness=3
+[/card]
+[card]
+text=Destroy all enchantments.
+id=4795
+auto=destroy all(enchantment)
+name=Tranquility
+colour=Green
+rarity=C
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+text=Destroy target artifact.
+id=4798
+target=artifact
+auto=destroy
+name=Verdigris
+colour=Green
+rarity=U
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+text=Defender (This creature can't attack.)      Wall of Diffusion can block creatures with shadow as though they didn't have shadow.
+id=4855
+name=Wall of Diffusion
+colour=Red
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
+abilities=defender, reachshadow
+[/card]
+[card]
+text={T}: Target creature gains flying until end of turn.
+id=4744
+name=Wind Dancer
+colour=Blue
+rarity=U
+mana={1}{U}
+type=Creature
+subtype=Faerie
+auto={T}:flying target(creature)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Flying
+id=4745
+name=Wind Drake
+colour=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=All Sliver creatures have flying.
+id=4746
+name=Winged Sliver
+colour=Blue
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Sliver
+auto=lord(Sliver) flying
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Destroy target land.
+id=4799
+target=land
+auto=destroy
+name=Winter's Grasp
+colour=Green
+rarity=U
+mana={1}{G}{G}
+type=Sorcery
+[/card]

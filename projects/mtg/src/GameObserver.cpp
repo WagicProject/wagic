@@ -6,6 +6,7 @@
 #include "../include/CardGui.h"
 #include "../include/Damage.h"
 #include "../include/DamageResolverLayer.h"
+#include "../include/ExtraCost.h"
 
 #include <JRenderer.h>
 
@@ -46,6 +47,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   currentGamePhase = -1;
   targetChooser = NULL;
   cardWaitingForTargets = NULL;
+  waitForExtraPayment = NULL;
   reaction = 0;
   gameOver = NULL;
   phaseRing = NEW PhaseRing(_players,_nb_players);
@@ -213,6 +215,9 @@ void GameObserver::Render(){
   if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()){
     JRenderer::GetInstance()->DrawRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(255,255,0,0));
   }
+  if (waitForExtraPayment){
+    waitForExtraPayment->Render();
+  }
 
 }
 
@@ -275,17 +280,17 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
     int result;
     if (card) {
       if (card == cardWaitingForTargets){
-	LOG("attempt to close targetting");
-	int _result = targetChooser->ForceTargetListReady();
-	if (_result){
-	  result = TARGET_OK_FULL;
-	}else{
+	      LOG("attempt to close targetting");
+	      int _result = targetChooser->ForceTargetListReady();
+	      if (_result){
+	        result = TARGET_OK_FULL;
+	      }else{
 
-	  LOG("...but we cant!\n");
-	  result = targetChooser->targetsReadyCheck();
-	}
+	        LOG("...but we cant!\n");
+	        result = targetChooser->targetsReadyCheck();
+	      }
       }else{
-	result = targetChooser->toggleTarget(card);
+	      result = targetChooser->toggleTarget(card);
       }
     }else{
       result = targetChooser->toggleTarget(clickedPlayer);
@@ -295,6 +300,17 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
     }else{
       return;
     }
+  }
+
+  if (waitForExtraPayment){
+    if (card){
+      waitForExtraPayment->tryToSetPayment(card);
+    }
+    if (waitForExtraPayment->isPaymentSet()){
+      waitForExtraPayment->action->reactToClick(waitForExtraPayment->source);
+      waitForExtraPayment = NULL;
+    }
+    return;
   }
 
   if (card){

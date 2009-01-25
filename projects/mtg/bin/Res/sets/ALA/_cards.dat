@@ -94,6 +94,15 @@ subtype=Drake
 toughness=3
 [/card]
 [card]
+text={1}{U}, {T}, Sacrifice Courier's Capsule: Draw two cards.
+auto={1}{U}, {T}, {S}: Draw:2
+id=174800
+name=Courier's Capsule
+rarity=C
+type=Artifact
+mana={1}{U}
+[/card]
+[card]
 text=Reach (This can block creatures with flying.)  Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 abilities=reach,exalted
 id=174960
@@ -162,6 +171,15 @@ subtype=Human Rogue
 toughness=1
 [/card]
 [card]
+text={2}{W}, {T}, Sacrifice Dispeller's Capsule: Destroy target artifact or enchantment.
+auto={2}{W},{T},{S}:destroy target(artifact,enchantment)
+id=174830
+name=Dispeller's Capsule
+rarity=C
+type=Artifact
+mana={W}
+[/card]
+[card]
 text=Put two 1/1 red Goblin creature tokens into play.
 auto=token(Goblin,creature goblin, 1/1,red)*2
 id=174936
@@ -206,6 +224,25 @@ mana={1}{G}
 power=1
 subtype=Elf Shaman
 toughness=1
+[/card]
+[card]
+text=Flash     {B}, {T}, Sacrifice an artifact: Draw a card.
+abilities=flash
+auto={B},{T},{S(artifact|myinplay)}:draw:1
+id=175138
+name=Etherium Astrolabe
+rarity=U
+type=Artifact
+mana={2}{U}
+[/card]
+[card]
+text={1}{B}, {T}, Sacrifice Executioner's Capsule: Destroy target nonblack creature.
+auto={1}{B}{T}{S}:destroy target(creature[-black])
+id=174895
+name=Executioner's Capsule
+rarity=C
+type=Artifact
+mana={B}
 [/card]
 [card]
 text={2}{U}: Untap target artifact.
@@ -606,6 +643,15 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text={4}{W}, {T}, Sacrifice Protomatter Powder: Return target artifact card from your graveyard to play.
+auto={4}{W}{T}{S}:moveTo(myInPlay) target(artifact|mygraveyard)
+id=174833
+name=Protomatter Powder
+rarity=U
+type=Artifact
+mana={2}{U}
+[/card]
+[card]
 text=Trample     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 abilities=trample,exalted
 id=174959
@@ -719,6 +765,19 @@ type=Creature
 mana={W}{W}
 power=2
 subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Flying     {B}, Sacrifice a creature: Regenerate Skeletal Kathari.
+abilities=flying
+auto={B},{S(creature|myinplay)}:regenerate
+id=175119
+name=Skeletal Kathari
+rarity=C
+type=Creature
+mana={4}{B}
+power=3
+subtype=Bird Skeleton
 toughness=2
 [/card]
 [card]

@@ -6,8 +6,8 @@ MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
 }
 
 int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card){
-    Player * player = game->currentlyActing();
-    Player * currentPlayer = game->currentPlayer;
+  Player * player = game->currentlyActing();
+  Player * currentPlayer = game->currentPlayer;
   LOG("CANPUTINPLAY- check if card belongs to current player\n");
   if (!player->game->hand->hasCard(card)) return 0;
   LOG("CANPUTINPLAY- check if card is land or can be played\n");
@@ -23,17 +23,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card){
     ManaCost * cost = card->getManaCost();
     if (playerMana->canAfford(cost)){
       LOG("CANPUTINPLAY- ManaCost ok\n");
-      if (game->targetListIsSet(card)){
-#ifdef LOG
-	LOG("CANPUTINPLAY- Targets chosen -> OK\n");
-#endif
-	return 1;
-      }else{
-#ifdef LOG
-	LOG("CANPUTINPLAY- Targets not chosen yet\n");
-#endif
-	return 0;
-      }
+      return 1;
     }
   }
   return 0;
@@ -42,8 +32,20 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card){
 int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
   Player * player = game->currentlyActing();
+  ManaCost * cost = card->getManaCost();
+  if (cost->isExtraPaymentSet()){
+    if (!game->targetListIsSet(card)){
+      LOG("CANPUTINPLAY- Targets not chosen yet\n");
+      return 0;
+    }
+  }else{
+    cost->setExtraCostsAction(this, card);
+    game->waitForExtraPayment = cost->extraCosts;
+    return 0;
+  }
   ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
   player->getManaPool()->pay(card->getManaCost());
+  card->getManaCost()->doPayExtra();
   ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
   delete previousManaPool;
   if (card->hasType("land")){
