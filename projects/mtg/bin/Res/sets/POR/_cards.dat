@@ -101,16 +101,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-text=Blaze deals X damage to target creature or player.
-id=4329
-target=creature,player
-auto=damage:X
-name=Blaze
-rarity=U
-mana={X}{R}
-type=sorcery
-[/card]
-[card]
 text=Flying
 id=4209
 name=Bog Imp
@@ -135,16 +125,16 @@ toughness=2
 abilites=swampwalk
 [/card]
 [card]
-text=Swampwalk
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+abilities=swampwalk
 id=4211
-name=Bog Raiders
+name=Bog Wraith
 rarity=U
-mana={3}{B}
 type=Creature
-subtype=Wraith
+mana={3}{B}
 power=3
+subtype=Wraith
 toughness=3
-abilites=swampwalk
 [/card]
 [card]
 text=Destroy all Islands.
@@ -166,6 +156,16 @@ power=1
 toughness=4
 [/card]
 [card]
+text=Return target creature card from your graveyard to play.
+target=creature|mygraveyard
+auto=moveTo(myinplay)
+id=4378
+name=Breath of Life
+rarity=C
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
 text=Islandwalk
 id=4290
 name=Bull Hippo
@@ -176,6 +176,17 @@ subtype=Hippo
 power=3
 toughness=3
 abilities=Islandwalk
+[/card]
+[card]
+text=Target creature gets +2/+0 until end of turn. Burning Cloak deals 2 damage to that creature.
+target=creature
+auto=2/0
+auto=damage:2
+id=4331
+name=Burning Cloak
+rarity=C
+type=Sorcery
+mana={R}
 [/card]
 [card]
 text=Capricious Sorcerer deals 1 damage to target creature or player. Play this ability only during your turn, before attackers are declared.
@@ -199,15 +210,6 @@ name=Cloak of Feathers
 rarity=C
 mana={U}
 type=Sorcery
-[/card]
-[card]
-text=Play Command of Unsummoning only during the declare attackers step and only if you are the defending player.Return one or two target attacking creatures to their owner's hand.
-target=creatures [attacking]
-alias=1229
-name=Command of Unsummoning
-rarity=U
-mana={2}{U}
-type=Instant
 [/card]
 [card]
 id=4256
@@ -235,7 +237,7 @@ text=Return target sorcery card from your graveyard to your hand.
 target=sorcery|myGraveyard
 alias=1263
 id=4259
-name=DÈjÅEVu
+name=Deja vu
 rarity=C
 mana={2}{B}
 type=sorcery
@@ -459,21 +461,8 @@ power=3
 toughness=2
 [/card]
 [card]
-text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
-target=creature|myGraveyard
-alias=1174
-id=4223
-name=Gravedigger
-rarity=U
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-[/card]
-[card]
 id=4300
-name=Grizzly Bear
+name=Grizzly Bears
 rarity=C
 mana={1}{G}
 type=Creature
@@ -510,16 +499,6 @@ type=Creature
 subtype=Giant
 power=3
 toughness=3
-[/card]
-[card]
-id=4264
-name=Horned Turtle
-rarity=C
-mana={2}{U}
-type=Creature
-subtype=Turtle
-power=1
-toughness=4
 [/card]
 [card]
 id=4264
@@ -600,16 +579,6 @@ mana={1}{B}{B}
 power=1
 subtype=Human Assassin
 toughness=1
-[/card]
-[card]
-id=4388
-name=Knight Errant
-rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
 [/card]
 [card]
 id=4388
@@ -779,6 +748,16 @@ subtype=Goat
 power=1
 toughness=1
 abilities=mountainwalk
+[/card]
+[card]
+text=Target player gains 8 life.
+target=player
+auto=life:8
+id=4308
+name=Natural Spring
+rarity=U
+type=Sorcery
+mana={3}{G}{G}
 [/card]
 [card]
 text=Destroy all green creatures.
@@ -988,19 +967,6 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
-text=When Serpent Assassin comes into play, you may destroy target nonblack creature.
-target=creature[-black]
-auto=destroy
-id=4237
-name=Serpent Assassin
-rarity=R
-mana={3}{B}{B}
-type=Creature
-subtype=Snake Assassin
-power=2
-toughness=2
-[/card]
-[card]
 text=When Serpent Warrior comes into play, you lose 3 life.
 auto=life:-3
 id=4238
@@ -1164,13 +1130,23 @@ subtype=Swamp
 [card]
 text=Return target creature to its owner's hand.      Draw a card.
 target=creature
+auto=moveTo(ownerhand)
 auto=draw:1
 id=4277
-alias=1229
 name=Symbol of Unsummoning
 rarity=C
 mana={2}{U}
 type=Sorcery
+[/card]
+[card]
+text=Put target creature on top of its owner's library.
+target=creature
+auto=moveTo(ownerLibrary)
+id=4282
+name=Time Ebb
+rarity=C
+type=Sorcery
+mana={2}{U}
 [/card]
 [card]
 text=Draw two cards.
@@ -1218,7 +1194,7 @@ toughness=2
 [/card]
 [card]
 text=Destroy target tapped creature.
-target=creature(tapped)
+target=creature[tapped]
 auto=destroy
 id=4404
 name=Vengeance
