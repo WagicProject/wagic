@@ -294,14 +294,17 @@ void CardGui::Render(){
     myW = quad->mWidth * mScale;
     myX = x + (quad->mHeight/2 * tap * mScale);
     myY = y+(quad->mWidth/2 * tap * mScale);
-    if (mHeight-defaultHeight){
-      if (card->isTapped()){
-	      renderer->FillRect(myX + 1*(mHeight-defaultHeight) - quad->mHeight * mScale , myY + 1*(mHeight-defaultHeight) , quad->mHeight * mScale, quad->mWidth * mScale,   ARGB(128,0,0,0));
-      }else{
-	      renderer->FillRect(myX + 1*(mHeight-defaultHeight)  , myY + 1*(mHeight-defaultHeight) , quad->mWidth * mScale,  quad->mHeight * mScale, ARGB(128,0,0,0));
-      }
-    }
+  }
 
+  if (mHeight-defaultHeight){
+    if (card->isTapped()){
+      renderer->FillRect(myX + 1*(mHeight-defaultHeight) - myH , myY + 1*(mHeight-defaultHeight) , myH, myW,   ARGB(128,0,0,0));
+    }else{
+      renderer->FillRect(myX + 1*(mHeight-defaultHeight)  , myY + 1*(mHeight-defaultHeight) , myW,  myH, ARGB(128,0,0,0));
+    }
+  }
+
+   if(quad){
     quad->SetColor(ARGB( alpha,255,255,255));
 
     if (tc){
@@ -342,7 +345,7 @@ void CardGui::Render(){
       if (mIcon) renderer->RenderQuad(mIcon,myX - myH/2, myY + myW/2,M_PI_2,mScale,mScale);
       if (tc){
         if (!tc->canTarget(card)){
-	        renderer->DrawRect(myX  - myH , myY  , myH, myW,   ARGB(128,0,0,0));
+	        renderer->FillRect(myX  - myH , myY  , myH, myW,   ARGB(200,0,0,0));
         }
       }
     }else{
@@ -353,7 +356,7 @@ void CardGui::Render(){
       if (mIcon) renderer->RenderQuad(mIcon,myX + myW/2, myY + myH/2,0,mScale, mScale);
       if (tc){
         if (!tc->canTarget(card)){
-	        renderer->DrawRect(myX   , myY , myW,  myH,   ARGB(128,0,0,0));
+	        renderer->FillRect(myX   , myY , myW,  myH,   ARGB(200,0,0,0));
         }
       }
     }

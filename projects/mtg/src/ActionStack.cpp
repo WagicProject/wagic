@@ -54,7 +54,7 @@ void StackAbility::Render(){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
-    //TODO
+    mFont->DrawString(ability->source->getName(),x,y-15);
   }
 }
 StackAbility::StackAbility(int id,MTGAbility * _ability): Interruptible(id),ability(_ability){
@@ -105,9 +105,7 @@ void Spell::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  char buffer[200];
-  sprintf(buffer, "%s", source->getName());
-  mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+  mFont->DrawString(source->getName(), x + 25 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();
   if (quad){
@@ -115,7 +113,7 @@ void Spell::Render(){
     float scale = mHeight  / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
-    //TODO
+    //
   }
   Damageable * target = getNextDamageableTarget();
   if (target){
@@ -124,6 +122,9 @@ void Spell::Render(){
       quad->SetColor(ARGB(255,255,255,255));
       float scale = 30 / quad->mHeight;
       renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
+    }else{
+      if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        mFont->DrawString(((MTGCardInstance *)target)->getName(),x+120,y);
     }
   }
 }
@@ -163,7 +164,7 @@ void PutInGraveyard::Render(){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
-    //TODO
+    mFont->DrawString(card->getName(),x,y-15);
   }
 }
 

@@ -60,14 +60,15 @@ void Damage::Render(){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
-    //TODO
+    mFont->DrawString(source->getName(),x,y-15);
   }
   quad = target->getIcon();
   if (quad){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
   }else{
-    //TODO
+    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        mFont->DrawString(((MTGCardInstance *)target)->getName(),x+120,y);
   }
 
 }
