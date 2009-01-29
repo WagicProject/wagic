@@ -21,9 +21,6 @@ OptionItem::~OptionItem(){
 
 void OptionItem::setData(){
   GameOptions::GetInstance()->values[id] = GameOption(value);
-  char buf[4096];
-  sprintf(buf, "Option: %s => %i\n", id.c_str(), GameOptions::GetInstance()->values[id].getIntValue());
-  OutputDebugString(buf);
 }
 
 void OptionItem::Render(){

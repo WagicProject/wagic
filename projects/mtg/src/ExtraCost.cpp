@@ -16,7 +16,6 @@ int ExtraCost::setSource(MTGCardInstance * _source){
 
 SacrificeCost::SacrificeCost(TargetChooser *_tc):ExtraCost(_tc){
   target = NULL;
-  if (!tc) OutputDebugString("Self Sacrifice\n");
 }
 
 int SacrificeCost::setSource(MTGCardInstance * card){
@@ -111,8 +110,10 @@ int ExtraCosts::doPay(){
   return result; 
 }
 void ExtraCosts::Dump(){
+#ifdef WIN32
   char buf[4096];
   OutputDebugString("=====\nDumping ExtraCosts=====\n");
   sprintf(buf, "NbElements : %i\n", costs.size());
   OutputDebugString(buf);
+#endif
 }
