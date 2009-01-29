@@ -135,7 +135,7 @@ void GameObserver::userRequestNextGamePhase(){
   if (getCurrentTargetChooser()) return;
   if (mLayers->combatLayer()->remainingDamageSteps) return;
   //TODO CHECK POSSIBILITY
-  if (opponent()->isAI() || GameOptions::GetInstance()->values[OPTIONS_INTERRUPTATENDOFPHASE_OFFSET+currentGamePhase]){
+  if (opponent()->isAI() || GameOptions::GetInstance()->values[GameOptions::phaseInterrupts[currentGamePhase]].getIntValue()){
     mLayers->stackLayer()->AddNextGamePhase();
   }else{
     nextGamePhase();

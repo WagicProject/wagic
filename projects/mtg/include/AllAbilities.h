@@ -733,7 +733,7 @@ class AManaProducer: public MTGAbility{
     }
 
 
-    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0 && currentlyTapping < 3){
+    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0 && currentlyTapping < 3){
       JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/mana.wav");
       if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
     }

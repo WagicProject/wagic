@@ -89,7 +89,7 @@ int Spell::resolve(){
   source->controller()->game->putInPlay(source);
 
   //Play SFX
-  if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0){
+  if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
     JSample * sample = source->getSample();
     if (sample){
       JSoundSystem::GetInstance()->PlaySample(sample);

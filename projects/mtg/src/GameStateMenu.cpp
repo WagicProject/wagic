@@ -133,12 +133,12 @@ void GameStateMenu::Start(){
   JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
 
-  if (GameApp::HasMusic && !GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
+  if (GameApp::HasMusic && !GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME].getIntValue() > 0){
     GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
     JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
   }
 
-  if (GameApp::HasMusic && GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] == 0){
+  if (GameApp::HasMusic && GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME].getIntValue() == 0){
     JSoundSystem::GetInstance()->StopMusic(GameApp::music);
     SAFE_DELETE(GameApp::music);
   }

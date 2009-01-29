@@ -4,12 +4,12 @@
 #include "../include/GameOptions.h"
 
 
-OptionItem::OptionItem(int _id, string _displayValue, int _maxValue, int _increment):JGuiObject(0){
+OptionItem::OptionItem(string _id, string _displayValue, int _maxValue, int _increment):JGuiObject(0){
   id = _id;
   maxValue = _maxValue;
   increment = _increment;
   displayValue = _displayValue;
-  value = GameOptions::GetInstance()->values[id];
+  value = GameOptions::GetInstance()->values[id].getIntValue();
   hasFocus = 0;
   x = 0;
   y = 0;
@@ -20,7 +20,10 @@ OptionItem::~OptionItem(){
 }
 
 void OptionItem::setData(){
-  GameOptions::GetInstance()->values[id] = value;
+  GameOptions::GetInstance()->values[id] = GameOption(value);
+  char buf[4096];
+  sprintf(buf, "Option: %s => %i\n", id.c_str(), GameOptions::GetInstance()->values[id].getIntValue());
+  OutputDebugString(buf);
 }
 
 void OptionItem::Render(){

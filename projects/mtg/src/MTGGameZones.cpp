@@ -90,7 +90,7 @@ void MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
 void MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
   if (from->removeCard(card)){
 
-    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME] > 0){
+    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
       if (to == graveyard){
         if (card->isACreature()){
           JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/graveyard.wav");

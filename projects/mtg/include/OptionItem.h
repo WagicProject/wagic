@@ -8,12 +8,12 @@ using std::string;
 
 class OptionItem:public JGuiObject{
  public:
-  string displayValue;
-  int id, value;
+  string displayValue, id;
+  int value;
   int hasFocus;
   int maxValue, increment;
   float x, y;
-  OptionItem(int id, string _displayValue, int _maxValue = 1, int _increment = 1);
+  OptionItem(string _id, string _displayValue, int _maxValue = 1, int _increment = 1);
 
   ~OptionItem();
   virtual void Render();

@@ -67,9 +67,9 @@ void GameStateOptions::Render()
 
   const char * const CreditsText[] = {
     "Wagic, The Homebrew ?! by WilLoW",
-    "This is a work in progress and it contains bugs, deal with it",
+    "This is a work in progress and it contains bugs",
     "updates on http://www.wololo.net/wagic",
-    "Many thanks to Abrasax and J for their help in this release",
+    "Many thanks to J for his help in this release, and to all card creators",
     "",
     "Developped with the JGE++ Library (http://jge.khors.com)",
     "",

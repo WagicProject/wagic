@@ -200,7 +200,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }
     welcome_menu->Add(10, "Cancel");
 
-    if (GameApp::HasMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME] > 0){
+    if (GameApp::HasMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME].getIntValue() > 0){
       if (GameApp::music){
          JSoundSystem::GetInstance()->StopMusic(GameApp::music);
           SAFE_DELETE(GameApp::music);
