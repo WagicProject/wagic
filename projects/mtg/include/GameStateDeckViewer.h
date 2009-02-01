@@ -73,6 +73,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   MTGCard *  cardIndex[7];
   int hudAlpha;
   float scrollSpeed;
+  int delSellMenu;
  public:
 
  GameStateDeckViewer(GameApp* parent): GameState(parent) {
@@ -141,6 +142,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   virtual void Start()
   {
     hudAlpha = 0;
+    delSellMenu = 0;
     pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
     playerdata = NEW PlayerData(mParent->collection);
     sellMenu = NULL;
@@ -276,6 +278,10 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     if (hudAlpha < 0) hudAlpha = 0;
     if (sellMenu){
       sellMenu->Update(dt);
+      if (delSellMenu){
+        SAFE_DELETE(sellMenu);
+        delSellMenu = 0;
+      }
       return;
     }
     if (mStage == STAGE_WAITING || mStage == STAGE_ONSCREEN_MENU){
@@ -460,6 +466,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       deckname = "Deck";
     }
     sprintf(buffer,"%s - %i/%i", deckname.c_str(),currentPos, total);
+    mFont->SetScale(1.0f);
     mFont->SetColor(ARGB(hudAlpha,255,255,255));
     mFont->DrawString(buffer,SCREEN_WIDTH/2, y+5,JGETEXT_CENTER);
 
@@ -502,8 +509,9 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   }
 
   void renderOnScreenMenu(){
-    mFont->SetColor(ARGB(255,255,255,255));
-    mFont->SetScale(1.0);
+    JLBFont * font = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+    font->SetColor(ARGB(255,255,255,255));
+    font->SetScale(1.0);
     JRenderer * r = JRenderer::GetInstance();
     float pspIconsSize = 0.5;
 
@@ -529,12 +537,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     r->RenderQuad(pspIcons[3],leftPspX + 20, leftPspY,0,pspIconsSize,pspIconsSize);
 
 
-    mFont->DrawString("Prev.", leftPspX - 35, leftPspY-15);
-    mFont->DrawString("Next", leftPspX + 15, leftPspY-15);
-    mFont->DrawString("card", leftPspX - 35, leftPspY);
-    mFont->DrawString("card", leftPspX + 15, leftPspY);
-    mFont->DrawString("Next color", leftPspX - 33, leftPspY - 35);
-    mFont->DrawString("Prev. color", leftPspX -33 , leftPspY +25);
+    font->DrawString("Prev.", leftPspX - 35, leftPspY-15);
+    font->DrawString("Next", leftPspX + 15, leftPspY-15);
+    font->DrawString("card", leftPspX - 35, leftPspY);
+    font->DrawString("card", leftPspX + 15, leftPspY);
+    font->DrawString("Next color", leftPspX - 33, leftPspY - 35);
+    font->DrawString("Prev. color", leftPspX -33 , leftPspY +25);
 
     //RIGHT PSP CIRCLE render
     r->FillCircle(rightPspX+(onScreenTransition*204),rightPspY,40,ARGB(128,50,50,50));
@@ -544,16 +552,16 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     r->RenderQuad(pspIcons[7],rightPspX, rightPspY + 20,0,pspIconsSize,pspIconsSize);
 
     if (displayed_deck == myCollection){
-      mFont->DrawString("Add card", rightPspX + 20, rightPspY-15);
-      mFont->DrawString("Display Deck", rightPspX - 35, rightPspY - 40);
+      font->DrawString("Add card", rightPspX + 20, rightPspY-15);
+      font->DrawString("Display Deck", rightPspX - 35, rightPspY - 40);
     }else{
-      mFont->DrawString("Remove card", rightPspX + 20, rightPspY-15);
-      mFont->DrawString("Display Collection", rightPspX - 35, rightPspY - 40);
+      font->DrawString("Remove card", rightPspX + 20, rightPspY-15);
+      font->DrawString("Display Collection", rightPspX - 35, rightPspY - 40);
     }
-    mFont->DrawString("Deck info", rightPspX - 70 , rightPspY-15);
-    mFont->DrawString("Sell card", rightPspX - 30 , rightPspY+20);
+    font->DrawString("Deck info", rightPspX - 70 , rightPspY-15);
+    font->DrawString("Sell card", rightPspX - 30 , rightPspY+20);
     //Bottom menus
-    mFont->DrawString("menu", SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
+    font->DrawString("menu", SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
 
 
 
@@ -563,15 +571,15 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     for (int j=0; j<Constants::MTG_NB_COLORS;j++){
       int value = myDeck->getCount(j);
       if (value > 0){
-	sprintf(buffer, "%i", value);
-	mFont->DrawString(buffer, SCREEN_WIDTH-190+rightTransition + nb_letters*13, SCREEN_HEIGHT/2 + 40);
-	r->RenderQuad(mIcons[j],SCREEN_WIDTH-197+rightTransition + nb_letters*13 , SCREEN_HEIGHT/2 + 46,0,0.5,0.5);
-	if (value > 9){nb_letters += 3;}else{nb_letters+=2;}
+	      sprintf(buffer, "%i", value);
+	      font->DrawString(buffer, SCREEN_WIDTH-190+rightTransition + nb_letters*13, SCREEN_HEIGHT/2 + 40);
+	      r->RenderQuad(mIcons[j],SCREEN_WIDTH-197+rightTransition + nb_letters*13 , SCREEN_HEIGHT/2 + 46,0,0.5,0.5);
+	      if (value > 9){nb_letters += 3;}else{nb_letters+=2;}
       }
     }
     int value = myDeck->getCount();
     sprintf(buffer, "Your Deck: %i cards", value);
-    mFont->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
+    font->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
 
     //TODO, put back !
     /*int nbCreatures = myDeck->countByType("Creature");
@@ -582,13 +590,13 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     */
 
 
-    mFont->DrawString("You are currently viewing your",  SCREEN_WIDTH-200+rightTransition, 5);
+   font->DrawString("You are currently viewing your",  SCREEN_WIDTH-200+rightTransition, 5);
     if (displayed_deck == myCollection){
-      mFont->DrawString("collection. Press TRIANGLE",  SCREEN_WIDTH-200+rightTransition, 20);
-      mFont->DrawString("to switch to your deck",  SCREEN_WIDTH-200+rightTransition, 35);
+      font->DrawString("collection. Press TRIANGLE",  SCREEN_WIDTH-200+rightTransition, 20);
+      font->DrawString("to switch to your deck",  SCREEN_WIDTH-200+rightTransition, 35);
     }else{
-      mFont->DrawString("deck. Press TRIANGLE to",  SCREEN_WIDTH-200+rightTransition, 20);
-      mFont->DrawString("switch to your collection",  SCREEN_WIDTH-200+rightTransition, 35);
+      font->DrawString("deck. Press TRIANGLE to",  SCREEN_WIDTH-200+rightTransition, 20);
+      font->DrawString("switch to your collection",  SCREEN_WIDTH-200+rightTransition, 35);
     }
 
   }
@@ -791,8 +799,8 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  }
 	}
       case 21:
-	SAFE_DELETE(sellMenu); //TODO, stop deleting this object while it's being used !!!
-	break;
+	      delSellMenu = 1;
+	      break;
       }
 
   }

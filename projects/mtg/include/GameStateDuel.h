@@ -18,6 +18,7 @@ class GameStateDuel: public GameState, public JGuiListener
 #ifdef TESTSUITE
   TestSuite * testSuite;
 #endif
+  int showMsg;
   int mGamePhase;
   Player * mCurrentPlayer;
   Player * mPlayers[2];

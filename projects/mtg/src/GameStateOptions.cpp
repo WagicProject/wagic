@@ -69,21 +69,21 @@ void GameStateOptions::Render()
     "Wagic, The Homebrew ?! by WilLoW",
     "This is a work in progress and it contains bugs",
     "updates on http://www.wololo.net/wagic",
-    "Many thanks to J for his help in this release, and to all card creators",
+    "Many thanks to the programmers and card creators who helped in this release",
     "",
     "Developped with the JGE++ Library (http://jge.khors.com)",
-    "",
-    "this freeware app is not endorsed by Wizards of the Coast, Inc",
-    "",
+    "Player's avatar from http://mathieuchoinet.blogspot.com, under CC License",
+    "Background picture from KDE4 , www.kde.org",
     "SFX From www.soundsnap.com",
-
-  };
-
-  const char * const MusicText[] = {
     "",
     "Music by Celestial Aeon Project, under Creative Commons License",
-    "Their music can be downloaded at http://www.jamendo.com"
+    "Their music can be downloaded at http://www.jamendo.com",
+    "",
+    "This work is not related to or endoresed by Wizards of the Coast, Inc",
+    "",
+    "Please support this project with donations at http://wololo.net/wagic",
   };
+
 
 
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/magic");
@@ -91,21 +91,14 @@ void GameStateOptions::Render()
   mFont->SetScale(1.0);
   float startpos = 272 - timer * 10;
   float pos = startpos;
-  for (int i = 0; i < 10; i++){
+  int size = sizeof(CreditsText) / sizeof(CreditsText[0]);
+  for (int i = 0; i < size; i++){
     pos = startpos +20*i;
     if (pos > -20){
       mFont->DrawString(CreditsText[i],SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
     }
   }
 
-  if (GameApp::HasMusic){
-    for (int i = 0; i < 3; i++){
-      pos = startpos +20*(10+i);
-      if (pos > -20){
-        mFont->DrawString(MusicText[i],SCREEN_WIDTH/2, pos,JGETEXT_CENTER);
-      }
-    }
-  }
   if (pos < -20) timer = 0;
   mFont->SetScale(1.f);
 

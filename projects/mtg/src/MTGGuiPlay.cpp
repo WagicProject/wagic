@@ -352,6 +352,14 @@ void MTGGuiPlay::Render(){
   RenderPlayerInfo(0);
   RenderPlayerInfo(1);
 
+  int opponentHand = game->players[1]->game->hand->nb_cards;
+  char buffer[10];
+  sprintf(buffer,"%i",opponentHand);
+  mFont->SetColor(ARGB(128,0,0,0));
+  mFont->DrawString(buffer, 56, 20);
+  mFont->SetColor(ARGB(255,255,255,255));
+  mFont->DrawString(buffer, 54, 18);
+
   if (mGlitterAlpha < 0){
     mGlitterAlpha = 510;
     int position = rand() % 2;

@@ -47,6 +47,7 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
 #ifdef TESTSUITE
   testSuite = NULL;
 #endif
+  showMsg = 0;
 }
 
 GameStateDuel::~GameStateDuel() {
@@ -69,8 +70,8 @@ void GameStateDuel::Start()
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
 
   mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
-  mFont->SetBase(0);	// using 2nd font
-  opponentMenuFont = mFont; //NEW JLBFont("graphics/simon",22);
+  mFont->SetBase(0);	
+  opponentMenuFont = mFont;
 
 
   menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
@@ -280,6 +281,7 @@ void GameStateDuel::Update(float dt)
       }
       game->Update(dt);
       if (game->gameOver){
+      showMsg = (rand() % 5);
 	if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() && mPlayers[0]!= game->gameOver){
 #if defined (WIN32) || defined (LINUX)
 	  char buf[4096];
@@ -352,7 +354,7 @@ void GameStateDuel::Render()
 	      if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
 	        if (game->gameOver !=mPlayers[0]){
 	          sprintf (buffer, "Victory! Congratulations, You earn 500 credits");
-	        }else{
+          }else{
 	          sprintf (buffer, "You have been defeated");
 	        }
 	      }else{
@@ -363,6 +365,16 @@ void GameStateDuel::Render()
 	        sprintf(buffer, "Player %i wins (%i)", winner, p0life );
 	      }
 	      mFont->DrawString(buffer, 10, 150);
+        
+        if (showMsg == 1){
+            JLBFont * f = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+            mFont->DrawString("Please support this project !" ,10,180);
+            f->DrawString("Wagic is free, open source, and developed on the little free time I have" ,10,196);
+            f->DrawString("If you enjoy this game, please consider donating a few bucks" ,10,208);
+            f->DrawString("I'll drink a beer in your name!" ,10,220);
+            f->DrawString("Thanks in advance for your support." ,10,232);
+            mFont->DrawString("-> http://wololo.net/wagic" ,10,244);
+        }
 	      break;
       }
     case DUEL_STATE_CHOOSE_DECK1:

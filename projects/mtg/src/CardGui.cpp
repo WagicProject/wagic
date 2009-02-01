@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/CardGui.h"
 #include "../include/ManaCostHybrid.h"
+#include "../include/Subtypes.h"
 #include <Vector2D.h>
 
 void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcons, float x, float y, float rotation, float scale){
@@ -63,7 +64,6 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
 
   unsigned int j = 0;
   while ((h = manacost->getHybridCost(j))){
-    OutputDebugString("Hybrid\n");
     for (int i = 0; i < 2; i++){
       int color = h->color1;
       int value = h->value1;
@@ -176,6 +176,14 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
     v.Rotate(rotation);
     sprintf(buf,"%i/%i",card->power,card->toughness);
     mFont->DrawString(buf,x+v.x,y+v.y);
+  }
+
+  for (int i = card->nb_types-1; i>=0; i--){
+    v.x = ((-width/2)+10) * scale;
+    v.y = (height/2-20 - 12 * i) * scale;
+    v.Rotate(rotation);
+    string s = Subtypes::subtypesList->find(card->types[i]);
+    mFont->DrawString(s.c_str(),x+v.x,y+v.y);
   }
 
 }
