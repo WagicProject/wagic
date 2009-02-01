@@ -19,7 +19,7 @@ import os
 import os.path
 from mtgCommon import *
 
-setinfo=sets['P1']
+setinfo=sets['CFX']
 stripReminderText = False
 conffile = open(setinfo['dir'] + ".conf", 'w')
 
@@ -74,7 +74,8 @@ for cardRow in soup.find(id="_gridResults").findAll('tr',onmouseover="this.style
     htmlText = cardRow('td')[3]
     htmlText = replaceSymbols(htmlText)
     text = cleanupHTMLText(htmlText, stripReminderText)
-
+    text = text.replace(u'\xc6', 'AE')
+    
     supertype, subtype = getCardTypes(cardRow)
 
     splitCard = split_re.match(text)
