@@ -9,8 +9,8 @@ ExtraCost::ExtraCost( TargetChooser *_tc):tc(_tc){
 
 
 int ExtraCost::setSource(MTGCardInstance * _source){
-  source=_source; 
-  if (tc){ tc->source = _source;} 
+  source=_source;
+  if (tc){ tc->source = _source;}
   return 1;
 }
 
@@ -67,7 +67,7 @@ ExtraCosts::ExtraCosts(){
 
 void ExtraCosts::Render(){
   //TODO cool window and stuff...
-  for (int i=0; i < costs.size(); i++){
+  for (size_t i = 0; i < costs.size(); i++){
     costs[i]->Render();
   }
 }
@@ -75,7 +75,7 @@ void ExtraCosts::Render(){
 int ExtraCosts::setAction(MTGAbility * _action, MTGCardInstance * _card){
   action = _action;
   source = _card;
-  for (int i=0; i < costs.size(); i++){
+  for (size_t i = 0; i < costs.size(); i++){
     costs[i]->setSource(_card);
   }
   return 1;
@@ -89,25 +89,25 @@ int ExtraCosts::reset(){
 }
 
 int ExtraCosts::tryToSetPayment(MTGCardInstance * card){
-  for (int i=0; i < costs.size(); i++){
+  for (size_t i = 0; i < costs.size(); i++){
     if (int result = costs[i]->setPayment(card)) return result;
   }
   return 0;
 }
 
 int ExtraCosts::isPaymentSet(){
-  for (int i=0; i < costs.size(); i++){
+  for (size_t i = 0; i < costs.size(); i++){
     if (!costs[i]->isPaymentSet()) return 0;
   }
-  return 1; 
+  return 1;
 }
 
 int ExtraCosts::doPay(){
   int result = 0;
-  for (int i=0; i < costs.size(); i++){
+  for (size_t i = 0; i < costs.size(); i++){
     result+=costs[i]->doPay();
   }
-  return result; 
+  return result;
 }
 void ExtraCosts::Dump(){
 #ifdef WIN32

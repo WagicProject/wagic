@@ -59,8 +59,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
     OutputDebugString("Sacrifice\n");
     TargetChooserFactory tcf;
     TargetChooser * tc = NULL;
-    int target_start = value.find("(");
-    int target_end = value.find(")");
+    size_t target_start = value.find("(");
+    size_t target_end = value.find(")");
     if (target_start!=string::npos && target_end!=string::npos){
       string target = value.substr(target_start+1, target_end-1 - target_start);
       tc = tcf.createTargetChooser(target,NULL);
