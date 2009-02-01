@@ -246,6 +246,8 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   if (opponent->basicAbilities[Constants::UNBLOCKABLE]) return 0;
   if (opponent->basicAbilities[Constants::FEAR] && !(hasColor(Constants::MTG_COLOR_ARTIFACT) || hasColor(Constants::MTG_COLOR_BLACK))) return 0;
   if (opponent->basicAbilities[Constants::FLYING] && !( basicAbilities[Constants::FLYING] || basicAbilities[Constants::REACH])) return 0;
+  //Can block only creatures with flying if has cloud
+  if (basicAbilities[Constants::CLOUD] && !( opponent->basicAbilities[Constants::FLYING])) return 0;
   // If opponent has shadow and a creature does not have either shadow or reachshadow it cannot be blocked
   if (opponent->basicAbilities[Constants::SHADOW] && !( basicAbilities[Constants::SHADOW] || basicAbilities[Constants::REACHSHADOW])) return 0;
   // If opponent does not have shadow and a creature has shadow it cannot be blocked

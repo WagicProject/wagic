@@ -96,8 +96,9 @@ class Constants
     PLAINSHOME = 35,
     FLANKING = 36,
     RAMPAGE1 = 37,
+    CLOUD = 38,
 
-    NB_BASIC_ABILITIES = 38,
+    NB_BASIC_ABILITIES = 39,
 
 
     RARITY_M = 'M',

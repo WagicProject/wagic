@@ -269,6 +269,32 @@ subtype=Spider
 toughness=3
 [/card]
 [card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Cloud Elemental can block only creatures with flying.
+abilities=cloud,flying
+id=129804
+name=Cloud Elemental
+rarity=C
+color=Blue
+type=Creature
+mana={2}{U}
+power=2
+subtype=Elemental
+toughness=3
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Cloud Sprite can block only creatures with flying.
+abilities=cloud,flying
+id=132069
+name=Cloud Sprite
+rarity=C
+color=Blue
+type=Creature
+mana={U}
+power=1
+subtype=Faerie
+toughness=1
+[/card]
+[card]
 text=Sacrifice Composite Golem: Add {W}{U}{B}{R}{G} to your mana pool.
 auto={s}:Add {W}{U}{B}{R}{G}
 id=135275

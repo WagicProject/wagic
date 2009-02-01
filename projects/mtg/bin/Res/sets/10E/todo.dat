@@ -321,30 +321,6 @@ subtype=Shapeshifter
 toughness=0
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Cloud Elemental can block only creatures with flying.
-id=129804
-name=Cloud Elemental
-rarity=C
-color=Blue
-type=Creature
-mana={2}{U}
-power=2
-subtype=Elemental
-toughness=3
-[/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Cloud Sprite can block only creatures with flying.
-id=132069
-name=Cloud Sprite
-rarity=C
-color=Blue
-type=Creature
-mana={U}
-power=1
-subtype=Faerie
-toughness=1
-[/card]
-[card]
 text=Each creature gets +1/+1 for each other creature in play that shares a creature type with it. (For example, if a Goblin Warrior, a Goblin Scout, and a Zombie Goblin are in play, each gets +2/+2.)
 id=129502
 name=Coat of Arms

@@ -98,39 +98,7 @@ power=4
 subtype=Rhino
 toughness=4
 [/card]
-[card]
-text=Flying     Cloud Dragon can block only creatures with flying.
-id=4252
-name=Cloud Dragon
-rarity=R
-type=Creature
-mana={5}{U}
-power=5
-subtype=Illusion Dragon
-toughness=4
-[/card]
-[card]
-text=Flying     Cloud Pirates can block only creatures with flying.
-id=4253
-name=Cloud Pirates
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Human Pirate
-toughness=1
-[/card]
-[card]
-text=Flying     Cloud Spirit can block only creatures with flying.
-id=4254
-name=Cloud Spirit
-rarity=U
-type=Creature
-mana={2}{U}
-power=3
-subtype=Spirit
-toughness=1
-[/card]
+
 [card]
 text=Play Command of Unsummoning only during the declare attackers step and only if you are the defending player.       Return one or two target attacking creatures to their owner's hand.
 id=4255
