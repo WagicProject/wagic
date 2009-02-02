@@ -1,0 +1,18 @@
+#Testing Sacrifice with orcish lumberjack (Sacrifice a forest to add 3 green mana)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:2646,2747
+[PLAYER2]
+[DO]
+2646
+choice 0
+2747
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:2646
+graveyard:2747
+manapool:{G}{G}{G}
+[PLAYER2]
+[END]

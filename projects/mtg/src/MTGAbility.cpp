@@ -512,9 +512,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         if (dryMode) return BAKA_EFFECT_GOOD;
         ManaCost * input = ManaCost::parseManaCost(s.substr(0,found));
         ManaCost * output = ManaCost::parseManaCost(s.substr(found));
-        if (input->getConvertedCost() || doTap){
+        if (!input->isNull() || doTap){
           SAFE_DELETE(cost); //erk
-          if (!input->getConvertedCost()){
+          if (input->isNull()){
             SAFE_DELETE(input);
           }
           MTGAbility * a = NEW AManaProducer(id, target, output, input);

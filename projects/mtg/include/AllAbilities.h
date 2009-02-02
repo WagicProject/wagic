@@ -643,6 +643,7 @@ class AManaProducer: public MTGAbility{
  public:
  AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost = NULL ):MTGAbility(id, card){
     LOG("==Creating ManaProducer Object");
+    if (!_cost) OutputDebugString("NO COST???\n");
     cost = _cost;
     output=_output;
     x1 = 10;
@@ -722,9 +723,22 @@ class AManaProducer: public MTGAbility{
 
   int reactToClick(MTGCardInstance *  _card){
     if (!isReactingToClick( _card)) return 0;
+    OutputDebugString("React To click 1\n");
+    if (cost){
+      cost->setExtraCostsAction(this, _card);
+      OutputDebugString("React To click 2\n");
+      if (!cost->isExtraPaymentSet()){
+        OutputDebugString("React To click 3\n");
+      
+        GameObserver::GetInstance()->waitForExtraPayment = cost->extraCosts;
+        return 0;
+      }
+      GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
+      cost->doPayExtra();
+    } 
     source->tapped = 1;
     currentlyTapping++;
-    if (cost) GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
+
     animation = 1.f;
     CardGui * cardg = game->mLayers->playLayer()->getByCard(source);
     if (cardg){
