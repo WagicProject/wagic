@@ -18,8 +18,6 @@ MenuItem::MenuItem(int id, JLBFont *font, const char* text, int x, int y, JQuad 
 
   if (hasFocus)
     Entering();
-  //  mFont->SetScale(1.2f);
-
 }
 
 

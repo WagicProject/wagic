@@ -29,7 +29,6 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
 
   JRenderer * renderer = JRenderer::GetInstance();
   mFont->SetRotation(rotation);
-  mFont->SetScale(scale);
 
   int color = card->getColor();
 
@@ -163,10 +162,8 @@ void CardGui::alternateRender(MTGCard * card, JLBFont * mFont, JQuad ** manaIcon
   if (over > 0){
     multiply = 1.1;
   }
-  mFont->SetScale(scale * multiply);
   mFont->SetColor(ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
   mFont->DrawString(card->getName(),x+v.x,y+v.y);
-  mFont->SetScale(scale);
   mFont->SetColor(ARGB(255,255,255,255));
 
 
@@ -348,7 +345,6 @@ void CardGui::Render(){
     if (card->isTapped()){
       renderer->FillRect(myX  - myH , myY  , myH, myW,   ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
       renderer->DrawRect(myX  - myH , myY  , myH, myW,   ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-      mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.8 * mScale);
       mFont->DrawString(buffer,myX - (myH)+4,myY + 1);
       if (mIcon) renderer->RenderQuad(mIcon,myX - myH/2, myY + myW/2,M_PI_2,mScale,mScale);
       if (tc){
@@ -359,7 +355,6 @@ void CardGui::Render(){
     }else{
       renderer->FillRect(myX   , myY , myW,  myH, ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
       renderer->DrawRect(myX   , myY , myW,  myH, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-      mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * mScale);
       mFont->DrawString(buffer,myX+4,myY + 1);
       if (mIcon) renderer->RenderQuad(mIcon,myX + myW/2, myY + myH/2,0,mScale, mScale);
       if (tc){
@@ -368,9 +363,6 @@ void CardGui::Render(){
         }
       }
     }
-
-
-    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   }
 
   if (tc && tc->alreadyHasTarget(card)){
@@ -382,7 +374,6 @@ void CardGui::Render(){
   }
 
   if (card->isACreature()){
-    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
     sprintf(buffer, "%i/%i",card->power,card->life);
     renderer->FillRect(x+2,y + mHeight - 12, 25 , 12 ,ARGB(128,0,0,0));

@@ -25,20 +25,21 @@ void GameStateShop::Create(){
 void GameStateShop::Start()
 {
   menu = NULL;
-  mFont = GameApp::CommonRes->GetJLBFont("graphics/magic");
+  menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+  itemFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
 
 
   mStage = STAGE_SHOP_SHOP;
-  
+
   bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/shop.jpg", TEX_TYPE_USE_VRAM);
   mBg = NEW JQuad(bgTexture, 0, 0, 400, 280);		// Create background quad for rendering.
   backTexture = JRenderer::GetInstance()->LoadTexture("sets/back.jpg", TEX_TYPE_USE_VRAM);
   mBack = NEW JQuad(backTexture, 0, 0, 200, 285);		// Create background quad for rendering.
-  
+
   JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
 
-  
+
   int sets[500];
   int nbsets = 0;
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
@@ -53,10 +54,10 @@ void GameStateShop::Start()
     setId = (rand() % MtgSets::SetsList->nb_items);
   }
   JQuad * mBackThumb = GameApp::CommonRes->GetQuad("back_thumb");
-  
+
   shop = NULL;
-  
-  shop = NEW ShopItems(10, this, mFont, 10, 10, mParent->collection, setId);
+
+  shop = NEW ShopItems(10, this, itemFont, 10, 10, mParent->collection, setId);
   sprintf(starterBuffer, "%s Starter (60 cards)",MtgSets::SetsList->values[setId].c_str());
   sprintf(boosterBuffer, "%s Booster (15 cards)",MtgSets::SetsList->values[setId].c_str());
   shop->Add(starterBuffer,mBack,mBackThumb, 6000);
@@ -92,7 +93,7 @@ void GameStateShop::Update(float dt)
     if (menu){
       menu->Update(dt);
     }else{
-      menu = NEW SimpleMenu(11,this,mFont,SCREEN_WIDTH/2-100,20);
+      menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
       menu->Add(12,"Save & Back to main menu");
       menu->Add(13, "Cancel");
     }

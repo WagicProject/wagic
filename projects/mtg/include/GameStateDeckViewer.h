@@ -149,8 +149,8 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
     displayed_deck =  myCollection;
     myDeck = NULL;
-    menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
-    mFont = GameApp::CommonRes->GetJLBFont("graphics/magic");
+    menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+    mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
 
 
 
@@ -429,7 +429,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
 
   void renderOnScreenBasicInfo(){
-    mFont->SetScale(1.0);
     char buffer[30], buffer2[30];
 
     float y = 0;
@@ -466,7 +465,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       deckname = "Deck";
     }
     sprintf(buffer,"%s - %i/%i", deckname.c_str(),currentPos, total);
-    mFont->SetScale(1.0f);
     mFont->SetColor(ARGB(hudAlpha,255,255,255));
     mFont->DrawString(buffer,SCREEN_WIDTH/2, y+5,JGETEXT_CENTER);
 
@@ -511,7 +509,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   void renderOnScreenMenu(){
     JLBFont * font = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     font->SetColor(ARGB(255,255,255,255));
-    font->SetScale(1.0);
     JRenderer * r = JRenderer::GetInstance();
     float pspIconsSize = 0.5;
 
@@ -638,10 +635,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       if (showName){
 	char buffer[4096];
 	sprintf(buffer, "%s", card->getName());
-	int scaleBackup = mFont->GetScale();
-	mFont->SetScale(1*scale);
 	mFont->DrawString(buffer,x,y);
-	mFont->SetScale(scaleBackup);
       }
     }else{
       CardGui::alternateRender(card, mFont, mIcons, x_center, y + 142.5*scale, 0, scale);
@@ -658,15 +652,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       float qtX = x + 120*scale;
       char buffer[4096];
       sprintf(buffer, "x%i", displayed_deck->cards[card]);
-      JLBFont * font = menuFont;
-      int scaleBackup = font->GetScale();
-      font->SetScale(1*scale);
+      JLBFont * font = mFont;
       font->SetColor(ARGB(fontAlpha/2,0,0,0));
-      JRenderer::GetInstance()->FillRect(qtX, qtY,32*scale,20*scale,ARGB(fontAlpha/2,0,0,0));
-      font->DrawString(buffer, qtX + 2, qtY + 2);
+      JRenderer::GetInstance()->FillRect(qtX, qtY,font->GetStringWidth(buffer) + 6,16,ARGB(fontAlpha/2,0,0,0));
+      font->DrawString(buffer, qtX + 4, qtY + 4);
       font->SetColor(ARGB(fontAlpha,255,255,255));
-      font->DrawString(buffer, qtX, qtY);
-      font->SetScale(scaleBackup);
+      font->DrawString(buffer, qtX+2, qtY + 2);
       font->SetColor(ARGB(255,255,255,255));
     }
   }
@@ -711,10 +702,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     if (displayed_deck->getCount(colorFilter)>0){
       renderSlideBar();
     }else{
-      int scaleBackup = mFont->GetScale();
-      mFont->SetScale(2);
       mFont->DrawString("No Card", SCREEN_WIDTH/2, SCREEN_HEIGHT/2,JGETEXT_CENTER);
-      mFont->SetScale(scaleBackup);
     }
 
     if (mStage == STAGE_ONSCREEN_MENU){

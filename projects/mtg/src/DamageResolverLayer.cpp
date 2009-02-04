@@ -336,7 +336,6 @@ void DamageResolverLayer::Render(){
   if (!mCount) return;
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  mFont->SetScale(0.75);
 
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->FillRect(0 ,0 , SCREEN_WIDTH , SCREEN_HEIGHT , ARGB(200,0,0,0));

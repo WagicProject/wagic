@@ -17,7 +17,8 @@ class GameStateShop: public GameState, public JGuiListener
  private:
 
   ShopItems * shop;
-  JLBFont * mFont;
+  JLBFont * menuFont;
+  JLBFont * itemFont;
   JQuad * mBg;
   JTexture * bgTexture;
   JQuad * mBack;

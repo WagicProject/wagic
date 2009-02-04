@@ -12,12 +12,8 @@ ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thu
   mScale = 1.0f;
   mTargetScale = 1.0f;
 
-
-
   if (hasFocus)
     Entering();
-  mFont->SetScale(1.2f);
-
 }
 
 ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price): JGuiObject(id), mFont(font), mX(x), mY(y), price(_price){
@@ -26,11 +22,8 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFoc
   mScale = 1.0f;
   mTargetScale = 1.0f;
 
-
-
   if (hasFocus)
     Entering();
-  mFont->SetScale(1.2f);
 
   card = collection->getCardById(_cardid);
   quantity = 1;
@@ -58,7 +51,7 @@ void ShopItem::Render(){
   }
 
   if (thumb){
-    renderer->RenderQuad(thumb,mX,mY,0,mScale * 0.45,mScale * 0.45);
+    renderer->RenderQuad(thumb,mX,mY - (mScale > 1 ? 4 : 0),0,mScale * 0.45,mScale * 0.45);
   }else{
     //NOTHING
   }
@@ -79,8 +72,7 @@ void ShopItem::Render(){
   if (!quantity){
     mFont->SetColor(ARGB(255,128,128,128));
   }
-  mFont->SetScale(mScale);
-  mFont->DrawString(mText.c_str(),mX + 30,mY);
+  mFont->DrawString(mText.c_str(), mX + 30, mY + 8);
 }
 
 
@@ -162,7 +154,7 @@ void ShopItems::Update(float dt){
       char buffer[4096];
       sprintf(buffer,"%s : %i credits",item->getText(),price);
       if(!dialog){
-	dialog = NEW SimpleMenu(1,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+	dialog = NEW SimpleMenu(1,this,GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
 	dialog->Add(1,"Yes");
 	dialog->Add(2,"No");
       }
@@ -189,11 +181,11 @@ void ShopItems::Render(){
   }
   char credits[512];
   sprintf(credits,"credits: %i", playerdata->credits);
-  mFont->SetScale(1.2);
+  unsigned int len = 4 + mFont->GetStringWidth(credits);
   mFont->SetColor(ARGB(200,0,0,0));
-  mFont->DrawString(credits,SCREEN_WIDTH-148, SCREEN_HEIGHT - 13);
+  mFont->DrawString(credits, SCREEN_WIDTH - len + 2, SCREEN_HEIGHT - 13);
   mFont->SetColor(ARGB(255,255,255,255));
-  mFont->DrawString(credits,SCREEN_WIDTH-150, SCREEN_HEIGHT - 15);
+  mFont->DrawString(credits, SCREEN_WIDTH - len, SCREEN_HEIGHT - 15);
   if (display) display->Render();
 }
 
