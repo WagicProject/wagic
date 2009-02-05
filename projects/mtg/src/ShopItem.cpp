@@ -62,7 +62,7 @@ void ShopItem::Render(){
     if (quad){
       renderer->RenderQuad(quad,mX + SCREEN_WIDTH/2 + 20,5,0, 0.9f,0.9f);
     }else{
-      if (card) CardGui::alternateRender(card,mFont,NULL,mX + SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
+      if (card) CardGui::alternateRender(card,NULL,mX + SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
       //TODO
     }
     mFont->SetColor(ARGB(255,255,255,0));

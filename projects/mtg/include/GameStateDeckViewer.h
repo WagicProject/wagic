@@ -633,12 +633,15 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       quad->SetColor(ARGB(mAlpha,quadAlpha,quadAlpha,quadAlpha));
       JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,scale,scale);
       if (showName){
-	char buffer[4096];
-	sprintf(buffer, "%s", card->getName());
-	mFont->DrawString(buffer,x,y);
+	      char buffer[4096];
+	      sprintf(buffer, "%s", card->getName());
+        float scaleBackup = mFont->GetScale();
+        mFont->SetScale(scale);
+	      mFont->DrawString(buffer,x,y);
+        mFont->SetScale(scaleBackup);
       }
     }else{
-      CardGui::alternateRender(card, mFont, mIcons, x_center, y + 142.5*scale, 0, scale);
+      CardGui::alternateRender(card, mIcons, x_center, y + 142.5*scale, 0, scale);
       quad = card->getThumb();
       if (quad){
          float _scale = 285 * scale / quad->mHeight;
