@@ -1,0 +1,1157 @@
+[card]
+text=Target player loses 4 life and you gain 4 life.     Basic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+id=179513
+name=Absorb Vis
+rarity=C
+type=Sorcery
+mana={6}{B}
+[/card]
+[card]
+text=Flying     {1}{G}{U}: Creatures you control gain shroud until end of turn.
+id=153946
+name=Aerie Mystics
+rarity=U
+type=Creature
+mana={4}{W}
+power=3
+subtype=Bird Wizard
+toughness=3
+[/card]
+[card]
+text={T}: Add one mana of any color to your mana pool. Spend this mana only to play creature spells.
+id=189271
+name=Ancient Ziggurat
+rarity=U
+type=Land
+[/card]
+[card]
+text=Apocalypse Hydra comes into play with X +1/+1 counters on it. If X is 5 or more, it comes into play with an additional X +1/+1 counters on it.     {1}{R}, Remove a +1/+1 counter from Apocalypse Hydra: Apocalypse Hydra deals 1 damage to target creature or player.
+id=183068
+name=Apocalypse Hydra
+rarity=M
+type=Creature
+mana={X}{R}{G}
+power=0
+subtype=Hydra
+toughness=0
+[/card]
+[card]
+text={2}, {T}, Sacrifice Armillary Sphere: Search your library for up to two basic land cards, reveal them, and put them into your hand. Then shuffle your library.
+id=137936
+name=Armillary Sphere
+rarity=C
+type=Artifact
+mana={2}
+[/card]
+
+
+[card]
+text=Flying     Domain - Aven Trailblazer's toughness is equal to the number of basic land types among lands you control.
+id=180278
+name=Aven Trailblazer
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Bird Soldier
+toughness=*
+[/card]
+[card]
+text=Banefire deals X damage to target creature or player.     If X is 5 or more, Banefire can't be countered by spells or abilities and the damage can't be prevented.
+id=186613
+name=Banefire
+rarity=R
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text={1}: Target creature with power 5 or greater gains vigilance until end of turn.
+id=177931
+name=Beacon Behemoth
+rarity=C
+type=Creature
+mana={3}{G}{G}
+power=5
+subtype=Beast
+toughness=3
+[/card]
+[card]
+text=Flying, trample     At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way.     Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
+id=180267
+name=Blood Tyrant
+rarity=R
+type=Creature
+mana={4}{U}{B}{R}
+power=5
+subtype=Vampire
+toughness=5
+[/card]
+[card]
+text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze.     At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
+id=159610
+name=Bloodhall Ooze
+rarity=R
+type=Creature
+mana={R}
+power=1
+subtype=Ooze
+toughness=1
+[/card]
+[card]
+text=Equipped creature gets +1/+0.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+id=189270
+name=Bone Saw
+rarity=C
+type=Artifact
+mana={0}
+subtype=Equipment
+[/card]
+[card]
+text=When Brackwater Elemental attacks or blocks, sacrifice it at end of turn.     Unearth {2}{U} ({2}{U}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
+id=180147
+name=Brackwater Elemental
+rarity=C
+type=Creature
+mana={2}{U}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+
+
+[card]
+text=Trample     Whenever Charnelhoard Wurm deals damage to an opponent, you may return target card from your graveyard to your hand.
+id=179438
+name=Charnelhoard Wurm
+rarity=R
+type=Creature
+mana={4}{B}{R}{G}
+power=6
+subtype=Wurm
+toughness=6
+[/card]
+[card]
+text=Trample     When Child of Alara is put into a graveyard from play, destroy all nonland permanents. They can't be regenerated.
+id=180516
+name=Child of Alara
+rarity=M
+type=Legendary Creature
+mana={W}{U}{B}{R}{G}
+power=6
+subtype=Avatar
+toughness=6
+[/card]
+[card]
+text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
+id=159612
+name=Cliffrunner Behemoth
+rarity=R
+type=Creature
+mana={3}{G}
+power=5
+subtype=Rhino Beast
+toughness=3
+[/card]
+[card]
+text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
+id=179437
+name=Conflux
+rarity=M
+type=Sorcery
+mana={3}{W}{U}{B}{R}{G}
+[/card]
+[card]
+text=Target creature gets -3/-0 until end of turn.     Cycling {2} ({2}, Discard this card: Draw a card.)
+id=180272
+name=Constricting Tendrils
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Enchant red or green creature     Enchanted creature doesn't untap during its controller's untap step.
+id=183053
+name=Controlled Instincts
+rarity=U
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text=Enchant Forest or Plains     Whenever enchanted land becomes tapped, its controller loses 2 life.
+id=183054
+name=Corrupted Roots
+rarity=U
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=Counter target noncreature spell. Its controller loses 2 life.
+id=186327
+name=Countersquall
+rarity=U
+type=Instant
+mana={U}{B}
+[/card]
+[card]
+text=Court Homunculus gets +1/+1 as long as you control another artifact.
+id=182607
+name=Court Homunculus
+rarity=C
+type=Artifact Creature
+mana={W}
+power=1
+subtype=Homunculus
+toughness=1
+[/card]
+
+[card]
+text={R}{G}{W}: Cylian Sunsinger and each other creature with the same name as it get +3/+3 until end of turn.
+id=189081
+name=Cylian Sunsinger
+rarity=R
+type=Creature
+mana={1}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
+text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
+id=185143
+name=Dark Temper
+rarity=C
+type=Instant
+mana={2}{R}
+[/card]
+
+[card]
+text=Domain - Target creature gets -1/-1 until end of turn for each basic land type among lands you control.
+id=179239
+name=Drag Down
+rarity=C
+type=Instant
+mana={2}{B}
+[/card]
+[card]
+text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
+id=186392
+name=Dragonsoul Knight
+rarity=U
+type=Creature
+mana={2}{R}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text={1}{U}{R}: Dreadwing gets +3/+0 and gains flying until end of turn.
+auto={1}{U}{R}: 3/0 && flying
+id=159629
+name=Dreadwing
+rarity=U
+type=Creature
+mana={B}
+power=1
+subtype=Zombie
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +3/+3 and has flying.     Whenever enchanted creature deals damage to a player, that player discards two cards.
+id=183024
+name=Elder Mastery
+rarity=U
+type=Enchantment
+mana={3}{U}{B}{R}
+subtype=Aura
+[/card]
+[card]
+text=Reach (This can block creatures with flying.)  As long as you control a red permanent, Ember Weaver gets +1/+0 and has first strike.
+id=184990
+name=Ember Weaver
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Spider
+toughness=3
+[/card]
+
+[card]
+text=Flying     At the beginning of your upkeep, return an artifact you control to its owner's hand.
+id=180158
+name=Esperzoa
+rarity=U
+type=Artifact Creature
+mana={2}{U}
+power=4
+subtype=Jellyfish
+toughness=3
+[/card]
+
+[card]
+text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
+id=189273
+name=Exotic Orchard
+rarity=R
+type=Land
+[/card]
+[card]
+text=Domain - Search your library for a basic land card, put that card into play tapped, then shuffle your library. Exploding Borders deals X damage to target player, where X is the number of basic land types among lands you control.
+id=189378
+name=Exploding Borders
+rarity=C
+type=Sorcery
+mana={2}{R}{G}
+[/card]
+[card]
+text=Flying     Whenever another creature leaves play, you may have target player put the top two cards of his or her library into his or her graveyard.     Unearth {2}{B} ({2}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
+id=189082
+name=Extractor Demon
+rarity=R
+type=Creature
+mana={4}{B}{B}
+power=5
+subtype=Demon
+toughness=5
+[/card]
+[card]
+text=Flying     When Faerie Mechanist comes into play, look at the top three cards of your library. You may reveal an artifact card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+id=182608
+name=Faerie Mechanist
+rarity=C
+type=Artifact Creature
+mana={3}{U}
+power=2
+subtype=Faerie Artificer
+toughness=2
+[/card]
+[card]
+text=Fiery Fall deals 5 damage to target creature.     Basic landcycling {1}{R} ({1}{R}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+id=179519
+name=Fiery Fall
+rarity=C
+type=Instant
+mana={5}{R}
+[/card]
+[card]
+text=Destroy target artifact or enchantment. If that permanent was blue or black, draw a card.
+id=179439
+name=Filigree Fracture
+rarity=U
+type=Instant
+mana={2}{G}
+[/card]
+[card]
+text={W}{U}{B}{R}{G}: Fleshformer gets +2/+2 and gains fear until end of turn. Target creature gets -2/-2 until end of turn. Play this ability only during your turn.
+id=179884
+name=Fleshformer
+rarity=U
+type=Creature
+mana={2}{B}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=At the beginning of each player's draw step, that player draws two additional cards.
+id=189147
+name=Font of Mythos
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {U}, {T}: Draw a card, then discard a card.
+id=184993
+name=Frontline Sage
+rarity=C
+type=Creature
+mana={2}{U}
+power=0
+subtype=Human Wizard
+toughness=1
+[/card]
+
+[card]
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {T}: Destroy target creature that dealt damage to you this turn.
+id=186614
+name=Giltspire Avenger
+rarity=R
+type=Creature
+mana={G}{W}{U}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+text=Creatures you control get +1/+2 until end of turn. Untap those creatures.     Basic landcycling {1}{W} ({1}{W}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+id=179505
+name=Gleam of Resistance
+rarity=C
+type=Instant
+mana={4}{W}
+[/card]
+[card]
+text=Flash     Devour 1 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with that many +1/+1 counters on it.)
+id=179512
+name=Gluttonous Slime
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Ooze
+toughness=2
+[/card]
+
+[card]
+text={1}{R}, Sacrifice a land: Put a +1/+1 counter on Goblin Razerunners.     At the end of your turn, you may have Goblin Razerunners deal damage equal to the number of +1/+1 counters on it to target player.
+id=179487
+name=Goblin Razerunners
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=3
+subtype=Goblin Warrior
+toughness=4
+[/card]
+[card]
+text={T}: Target land you control becomes the basic land type of your choice until end of turn.
+id=177927
+name=Grixis Illusionist
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=When Grixis Slavedriver leaves play, put a 2/2 black Zombie creature token into play.     Unearth {3}{B} ({3}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
+id=179804
+name=Grixis Slavedriver
+rarity=U
+type=Creature
+mana={5}{B}
+power=4
+subtype=Zombie Giant
+toughness=4
+[/card]
+[card]
+text={W}{U}, {T}: Put a bribery counter on target creature you don't control. Its controller draws a card.     Creatures with bribery counters on them can't attack or block.
+id=185811
+name=Gwafa Hazid, Profiteer
+rarity=R
+type=Legendary Creature
+mana={1}{W}{U}
+power=2
+subtype=Human Rogue
+toughness=2
+[/card]
+[card]
+text=Devour 1 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with that many +1/+1 counters on it.)  Hellkite Hatchling has flying and trample if it devoured a creature.
+id=189146
+name=Hellkite Hatchling
+rarity=U
+type=Creature
+mana={2}{R}{G}
+power=2
+subtype=Dragon
+toughness=2
+[/card]
+[card]
+text=Trample, haste     At end of turn, sacrifice Hellspark Elemental.     Unearth {1}{R} ({1}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
+id=174799
+name=Hellspark Elemental
+rarity=U
+type=Creature
+mana={1}{R}
+power=3
+subtype=Elemental
+toughness=1
+[/card]
+[card]
+text=Ignite Disorder deals 3 damage divided as you choose among any number of target white and/or blue creatures.
+id=183056
+name=Ignite Disorder
+rarity=U
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Whenever Infectious Horror attacks, each opponent loses 2 life.
+id=157732
+name=Infectious Horror
+rarity=C
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie Horror
+toughness=2
+[/card]
+
+[card]
+text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.     {T}: Target creature is unblockable this turn.
+id=174791
+name=Jhessian Balmgiver
+rarity=U
+type=Creature
+mana={1}{W}{U}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+
+[card]
+text=Whenever an opponent draws a card, if you control a red permanent, you may have Kederekt Parasite deal 1 damage to that player.
+id=189080
+name=Kederekt Parasite
+rarity=R
+type=Creature
+mana={B}
+power=1
+subtype=Horror
+toughness=1
+[/card]
+[card]
+text=Knight of the Reliquary gets +1/+1 for each land card in your graveyard.     {T}, Sacrifice a Forest or Plains: Search your library for a land card, put it into play, then shuffle your library.
+id=189145
+name=Knight of the Reliquary
+rarity=R
+type=Creature
+mana={1}{G}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+
+
+[card]
+text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
+id=175026
+name=Lapse of Certainty
+rarity=C
+type=Instant
+mana={2}{W}
+[/card]
+[card]
+text=Flying     Whenever Maelstrom Archangel deals combat damage to a player, you may play a nonland card from your hand without paying its mana cost.
+id=185136
+name=Maelstrom Archangel
+rarity=M
+type=Creature
+mana={W}{U}{B}{R}{G}
+power=5
+subtype=Angel
+toughness=5
+[/card]
+[card]
+text=Flying     When Magister Sphinx comes into play, target player's life total becomes 10.
+id=179892
+name=Magister Sphinx
+rarity=R
+type=Artifact Creature
+mana={4}{W}{U}{B}
+power=5
+subtype=Sphinx
+toughness=5
+[/card]
+[card]
+text=Flying     When Malfegor comes into play, discard your hand. Each opponent sacrifices a creature for each card discarded this way.
+id=185812
+name=Malfegor
+rarity=M
+type=Legendary Creature
+mana={2}{B}{B}{R}{R}
+power=6
+subtype=Demon Dragon
+toughness=6
+[/card]
+
+[card]
+text=Domain - Equipped creature gets +1/+1 for each basic land type among lands you control.     Equip {3}
+id=180159
+name=Manaforce Mace
+rarity=U
+type=Artifact
+mana={4}
+subtype=Equipment
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
+id=182609
+name=Maniacal Rage
+rarity=C
+type=Enchantment
+mana={1}{R}
+subtype=Aura
+[/card]
+[card]
+text=Prevent all noncombat damage that would be dealt to creatures you control.
+id=186615
+name=Mark of Asylum
+rarity=R
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text=Put X 1/1 white Soldier creature tokens into play. If X is 5 or more, destroy all other creatures.
+id=178560
+name=Martial Coup
+rarity=R
+type=Sorcery
+mana={X}{W}{W}
+[/card]
+[card]
+text={U}, {T}, Return an artifact you control to its owner's hand: You may put an artifact card from your hand into play.
+id=179252
+name=Master Transmuter
+rarity=R
+type=Artifact Creature
+mana={3}{U}
+power=1
+subtype=Human Artificer
+toughness=2
+[/card]
+[card]
+text=Domain - Matca Rioters's power and toughness are each equal to the number of basic land types among lands you control.
+id=179248
+name=Matca Rioters
+rarity=C
+type=Creature
+mana={2}{G}
+power=*
+subtype=Human Warrior
+toughness=*
+[/card]
+[card]
+text=Vigilance, trample     Whenever Meglonoth blocks a creature, Meglonoth deals damage to that creature's controller equal to Meglonoth's power.
+id=179886
+name=Meglonoth
+rarity=R
+type=Creature
+mana={3}{R}{G}{W}
+power=6
+subtype=Beast
+toughness=6
+[/card]
+[card]
+text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
+id=150810
+name=Might of Alara
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Trample     At the beginning of your upkeep, if you control a blue permanent, you may put a token into play that's a copy of Mirror-Sigil Sergeant.
+id=158598
+name=Mirror-Sigil Sergeant
+rarity=M
+type=Creature
+mana={5}{W}
+power=4
+subtype=Rhino Soldier
+toughness=4
+[/card]
+[card]
+text=Destroy target artifact creature.     Cycling {2} ({2}, Discard this card: Draw a card.)
+id=184988
+name=Molten Frame
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Vigilance     {R}, {T}: Target creature can't block this turn.     {G}, {T}: Target creature blocks this turn if able.
+id=138571
+name=Nacatl Hunt-Pride
+rarity=U
+type=Creature
+mana={5}{W}
+power=5
+subtype=Cat Warrior
+toughness=4
+[/card]
+
+[card]
+text=Protection from artifacts
+id=183022
+name=Nacatl Savage
+rarity=C
+type=Creature
+mana={1}{G}
+power=2
+subtype=Cat Warrior
+toughness=1
+[/card]
+[card]
+text=+3: Destroy target noncreature permanent.     -2: Gain control of target creature.     -9: Nicol Bolas, Planeswalker deals 7 damage to target player. That player discards seven cards, then sacrifices seven permanents.
+id=179441
+name=Nicol Bolas, Planeswalker
+rarity=M
+type=Planeswalker
+mana={4}{U}{B}{B}{R}
+subtype=Bolas
+toughness=5
+[/card]
+
+[card]
+text=As Nyxathid comes into play, choose an opponent.     Nyxathid gets -1/-1 for each card in the chosen player's hand.
+id=186616
+name=Nyxathid
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=7
+subtype=Elemental
+toughness=7
+[/card]
+
+[card]
+text=Whenever another creature with power 5 or greater comes into play under your control, you may return target creature card from your graveyard to your hand.
+id=189873
+name=Paleoloth
+rarity=R
+type=Creature
+mana={4}{G}{G}
+power=5
+subtype=Beast
+toughness=5
+[/card]
+[card]
+text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Paragon of the Amesha becomes an Angel, gets +3/+3, and gains flying and lifelink.
+id=179878
+name=Paragon of the Amesha
+rarity=U
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Flying     When Parasitic Strix comes into play, if you control a black permanent, target player loses 2 life and you gain 2 life.
+id=175021
+name=Parasitic Strix
+rarity=C
+type=Artifact Creature
+mana={2}{U}
+power=2
+subtype=Bird
+toughness=2
+[/card]
+[card]
+text=Remove target creature from the game. Its controller may search his or her library for a basic land card, put that card into play tapped, then shuffle his or her library.
+id=179235
+name=Path to Exile
+rarity=U
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Flying     Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)  {2}{R}: Pestilent Kathari gains first strike until end of turn.
+id=179518
+name=Pestilent Kathari
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Bird Warrior
+toughness=1
+[/card]
+[card]
+text=Protection from everything     If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
+id=179496
+name=Progenitus
+rarity=M
+type=Legendary Creature
+mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
+power=10
+subtype=Hydra Avatar
+toughness=10
+[/card]
+[card]
+text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
+id=179440
+name=Quenchable Fire
+rarity=C
+type=Sorcery
+mana={3}{R}
+[/card]
+
+[card]
+text=You have no maximum hand size.     {T}: Add {1} to your mana pool.
+id=150807
+name=Reliquary Tower
+rarity=U
+type=Land
+[/card]
+
+[card]
+text=When Rhox Meditant comes into play, if you control a green permanent, draw a card.
+id=159634
+name=Rhox Meditant
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Rhino Monk
+toughness=4
+[/card]
+[card]
+text=When Rotting Rats comes into play, each player discards a card.     Unearth {1}{B} ({1}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
+id=150833
+name=Rotting Rats
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Zombie Rat
+toughness=1
+[/card]
+[card]
+text=Rupture Spire comes into play tapped.     When Rupture Spire comes into play, sacrifice it unless you pay {1}.     {T}: Add one mana of any color to your mana pool.
+id=142301
+name=Rupture Spire
+rarity=C
+type=Land
+[/card]
+
+[card]
+text=Salvage Slasher gets +1/+0 for each artifact card in your graveyard.
+id=179254
+name=Salvage Slasher
+rarity=C
+type=Artifact Creature
+mana={1}{B}
+power=1
+subtype=Human Rogue
+toughness=1
+[/card]
+[card]
+text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
+id=183025
+name=Scarland Thrinax
+rarity=U
+type=Creature
+mana={B}{R}{G}
+power=2
+subtype=Lizard
+toughness=2
+[/card]
+[card]
+text={T}: Scattershot Archer deals 1 damage to each creature with flying.
+id=185828
+name=Scattershot Archer
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Archer
+toughness=2
+[/card]
+
+[card]
+text={1}{B}, {T}: Target player discards a card. Play this ability only during your turn.
+id=189084
+name=Scepter of Fugue
+rarity=R
+type=Artifact
+mana={B}{B}
+[/card]
+
+[card]
+text={W}{B}: Scornful AEther-Lich gains fear and vigilance until end of turn.
+auto={W}{B}:fear && vigilance
+id=186328
+name=Scornful AEther-Lich
+rarity=U
+type=Artifact Creature
+mana={3}{U}
+power=2
+subtype=Zombie Wizard
+toughness=4
+[/card]
+[card]
+text=When Sedraxis Alchemist comes into play, if you control a blue permanent, return target nonland permanent to its owner's hand.
+id=182306
+name=Sedraxis Alchemist
+rarity=C
+type=Creature
+mana={2}{B}
+power=2
+subtype=Zombie Wizard
+toughness=2
+[/card]
+[card]
+text=Shambling Remains can't block.     Unearth {B}{R} ({B}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
+id=184991
+name=Shambling Remains
+rarity=U
+type=Creature
+mana={1}{B}{R}
+power=4
+subtype=Zombie Horror
+toughness=3
+[/card]
+[card]
+text=Search your library for a Plains card, an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
+id=175034
+name=Shard Convergence
+rarity=U
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+text=Whenever you play an enchantment spell, put a 4/4 white Angel creature token with flying into play.
+id=180271
+name=Sigil of the Empty Throne
+rarity=R
+type=Enchantment
+mana={3}{W}{W}
+[/card]
+[card]
+text=Vigilance     {T}: Reveal the top card of your library. If it's a land card, put it into play. Otherwise, put it into your hand.
+id=174953
+name=Skyward Eye Prophets
+rarity=U
+type=Creature
+mana={3}{G}{W}{U}
+power=3
+subtype=Human Wizard
+toughness=3
+[/card]
+[card]
+text=Whenever another artifact comes into play under your control or another artifact you control leaves play, you may pay {1}. If you do, target player loses 1 life and you gain 1 life.
+id=183019
+name=Sludge Strider
+rarity=U
+type=Artifact Creature
+mana={1}{W}{U}{B}
+power=3
+subtype=Insect
+toughness=3
+[/card]
+[card]
+text=Draw cards equal to the power of target creature you control.
+id=185137
+name=Soul's Majesty
+rarity=R
+type=Sorcery
+mana={4}{G}
+[/card]
+[card]
+text=Flying     When Sphinx Summoner comes into play, you may search your library for an artifact creature card, reveal it, and put it into your hand. If you do, shuffle your library.
+id=189079
+name=Sphinx Summoner
+rarity=R
+type=Artifact Creature
+mana={3}{U}{B}
+power=3
+subtype=Sphinx
+toughness=3
+[/card]
+[card]
+text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
+id=185829
+name=Spore Burst
+rarity=U
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
+id=180345
+name=Suicidal Charge
+rarity=C
+type=Enchantment
+mana={3}{B}{R}
+[/card]
+[card]
+text=Target player gains 8 life.     Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+id=179523
+name=Sylvan Bounty
+rarity=C
+type=Instant
+mana={5}{G}
+[/card]
+[card]
+text=Target opponent reveals cards from the top of his or her library until he or she reveals a creature card. That player puts all noncreature cards revealed this way into his or her graveyard, then you put the creature card into play under your control.
+id=189085
+name=Telemin Performance
+rarity=R
+type=Sorcery
+mana={3}{U}{U}
+[/card]
+
+[card]
+text=Toxic Iguanar has deathtouch as long as you control a green permanent. (Whenever it deals damage to a creature, destroy that creature.)
+id=170956
+name=Toxic Iguanar
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Lizard
+toughness=1
+[/card]
+[card]
+text=Counter target spell.     Basic landcycling {1}{U} ({1}{U}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+id=179508
+name=Traumatic Visions
+rarity=C
+type=Instant
+mana={3}{U}{U}
+[/card]
+[card]
+text=When Tukatongue Thallid is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
+id=184995
+name=Tukatongue Thallid
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Fungus
+toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {T}: Target land you control becomes the basic land type of your choice until end of turn.
+id=189078
+name=Unstable Frontier
+rarity=U
+type=Land
+[/card]
+
+[card]
+text={1}: Regenerate target creature with power 5 or greater.
+id=180344
+name=Vagrant Plowbeasts
+rarity=U
+type=Creature
+mana={5}{G}{W}
+power=6
+subtype=Beast
+toughness=6
+[/card]
+
+
+[card]
+text={U}{B}: Vectis Agents gets -2/-0 until end of turn and is unblockable this turn.
+id=183063
+name=Vectis Agents
+rarity=C
+type=Artifact Creature
+mana={3}{U}{B}
+power=4
+subtype=Human Rogue
+toughness=3
+[/card]
+
+
+[card]
+text=Target creature gains flying until end of turn. If you control a white permanent, return View from Above to its owner's hand.
+id=183058
+name=View from Above
+rarity=U
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Domain - Target player discards a card for each basic land type among lands you control.
+id=150847
+name=Voices from the Void
+rarity=U
+type=Sorcery
+mana={4}{B}
+[/card]
+[card]
+text=Volcanic Fallout can't be countered.     Volcanic Fallout deals 2 damage to each creature and each player.
+id=180274
+name=Volcanic Fallout
+rarity=U
+type=Instant
+mana={1}{R}{R}
+[/card]
+[card]
+text=Flying     Devour 1 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with that many +1/+1 counters on it.)  When Voracious Dragon comes into play, it deals damage to target creature or player equal to twice the number of Goblins it devoured.
+id=186329
+name=Voracious Dragon
+rarity=R
+type=Creature
+mana={3}{R}{R}
+power=4
+subtype=Dragon
+toughness=4
+[/card]
+[card]
+text=Defender, flying     At the end of your turn, you may gain life equal to the power of target creature you control.
+id=189874
+name=Wall of Reverence
+rarity=R
+type=Creature
+mana={3}{W}
+power=1
+subtype=Spirit Wall
+toughness=6
+[/card]
+[card]
+text=Domain - {3}: Wandering Goblins gets +1/+0 until end of turn for each basic land type among lands you control.
+id=180279
+name=Wandering Goblins
+rarity=C
+type=Creature
+mana={2}{R}
+power=0
+subtype=Goblin Warrior
+toughness=3
+[/card]
+[card]
+text=At the beginning of your upkeep, sacrifice Wild Leotau unless you pay {G}.
+id=179489
+name=Wild Leotau
+rarity=C
+type=Creature
+mana={2}{G}{G}
+power=5
+subtype=Cat
+toughness=4
+[/card]
+[card]
+text=Flying     You may play Worldheart Phoenix from your graveyard by paying {W}{U}{B}{R}{G} rather than paying its mana cost. If you do, it comes into play with two +1/+1 counters on it.
+id=175401
+name=Worldheart Phoenix
+rarity=R
+type=Creature
+mana={3}{R}
+power=2
+subtype=Phoenix
+toughness=2
+[/card]
+[card]
+text=Domain - Look at the top X cards of your library, where X is the number of basic land types among lands you control. Put one of those cards into your hand and the rest on the bottom of your library in any order.
+id=142298
+name=Worldly Counsel
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Destroy target creature if it has the least power or is tied for least power among creatures in play.
+id=174907
+name=Wretched Banquet
+rarity=C
+type=Sorcery
+mana={B}
+[/card]
+[card]
+text=Enchant creature     When a creature is put into a graveyard from play, destroy enchanted creature.
+id=179891
+name=Yoke of the Damned
+rarity=C
+type=Enchantment
+mana={1}{B}
+subtype=Aura
+[/card]
+
