@@ -150,7 +150,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     if (delimiter!= string::npos){
       cost = ManaCost::parseManaCost(line.substr(0,delimiter+1));
     }
-    OutputDebugString("Pqrsing cost\n");
+    OutputDebugString("Parsing cost\n");
     if (cost && cost->isNull()){
       OutputDebugString("Cost is null\n");
       SAFE_DELETE(cost);
@@ -192,7 +192,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //Target Abilities
       found = s.find("target(");
       if (found != string::npos){
-        int end = s.find(")");
+        int end = s.find(")", found);
         string starget = s.substr(found + 7,end - found - 7);
         TargetChooserFactory tcf;
         tc = tcf.createTargetChooser(starget, card);
@@ -298,7 +298,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	      string szone = s.substr(found + 7,end - found - 7);
         if (tc){
           if (cost){
-            game->addObserver(NEW AZoneMover(id,card,tc,szone,cost));
+            game->addObserver(NEW AZoneMover(id,card,tc,szone,cost,doTap));
           }
         }else{
           MTGGameZone * fromZone = target->getCurrentZone();//this is technically incorrect. The initial zone should be as described in the targetchooser

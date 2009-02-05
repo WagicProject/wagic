@@ -164,7 +164,7 @@ class AZoneMover:public TargetAbility{
 public:
   string destinationZone;
 
-   AZoneMover(int _id, MTGCardInstance * _source, TargetChooser * _tc,string destZone, ManaCost * _cost = NULL):TargetAbility(_id,_source, _tc,_cost){
+   AZoneMover(int _id, MTGCardInstance * _source, TargetChooser * _tc,string destZone, ManaCost * _cost = NULL, int _tap=0):TargetAbility(_id,_source, _tc,_cost,0,_tap){
     destinationZone = destZone;
   }
 

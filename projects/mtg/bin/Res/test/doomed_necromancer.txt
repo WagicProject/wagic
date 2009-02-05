@@ -1,0 +1,19 @@
+#Testing Doomed Necromancer's ability on a brass man in graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:129880
+graveyard:1099
+manapool:{B}
+[PLAYER2]
+[DO]
+129880
+1099
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1099
+graveyard:129880
+manapool:{0}
+[PLAYER2]
+[END]
