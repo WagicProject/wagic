@@ -12,10 +12,12 @@ class TargetChooser;
 class ManaCost;
 class MTGGameZone;
 class Player;
+class AManaProducer;
 
 #include "ActionElement.h"
 #include <string>
 #include <map>
+#include <hge/hgeparticle.h>
 using std::string;
 using std::map;
 
@@ -206,6 +208,31 @@ class AbilityFactory{
   void addAbilities(int _id, Spell * spell);
 };
 
+
+class AManaProducer: public MTGAbility{
+ protected:
+  
+  ManaCost * cost;
+  ManaCost * output;
+  string menutext;
+  float x0,y0,x1,y1,x,y;
+  float animation;
+  Player * controller;
+  int tap;
+
+  hgeParticleSystem * mParticleSys;
+ public:
+   static int currentlyTapping;
+   AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1 );
+   void Update(float dt);
+   void Render();
+   int isReactingToClick(MTGCardInstance *  _card);
+  int resolve();
+  int reactToClick(MTGCardInstance *  _card);
+  const char * getMenuText();
+  int testDestroy();
+  ~AManaProducer();
+};
 
 #include "MTGCardInstance.h"
 

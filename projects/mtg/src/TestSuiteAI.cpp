@@ -1,5 +1,6 @@
 #include "../include/TestSuiteAI.h"
 #include "../include/config.h"
+#include "../include/MTGAbility.h"
 
 #include <string>
 using std::string;
@@ -45,7 +46,7 @@ int TestSuiteAI::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
   g->gameOver = NULL; // Prevent draw rule from losing the game
   timer+= dt;
-  if (timer < suite->timerLimit) return 1;
+  if (AManaProducer::currentlyTapping || timer < suite->timerLimit) return 1;
   timer = 0;
 
   string action = suite->getNextAction();
@@ -212,7 +213,7 @@ void TestSuite::initGame(){
   if (!timerLimit){
     timerLimit = 0.3;
   }else{
-    timerLimit = 0.26;
+    timerLimit = 0.1;
   }
   //Put the GameObserver in the initial state
   GameObserver * g = GameObserver::GetInstance();
@@ -237,7 +238,7 @@ void TestSuite::initGame(){
 	          Spell * spell = NEW Spell(card);
 	          p->game->putInZone(card,  p->game->hand, p->game->stack);
 	          spell->resolve();
-	          card->summoningSickness = 0;
+	          if (!summoningSickness) card->summoningSickness = 0;
 	          delete spell;
 	        }else{
 	          if (!p->game->library->hasCard(card)){
@@ -358,6 +359,7 @@ TestSuite::TestSuite(const char * filename){
 }
 
 int TestSuite::loadNext(){
+  summoningSickness = 0;
   if (!nbfiles) return 0;
   if (currentfile >= nbfiles) return 0;
   load(files[currentfile].c_str());
@@ -430,6 +432,10 @@ void TestSuite::load(const char * _filename){
       if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
       if (s[0] == '#') continue;
       std::transform( s.begin(), s.end(), s.begin(),::tolower );
+      if (s.compare("summoningsickness") == 0) {
+        summoningSickness = 1;
+        continue;
+      }
       switch(state){
       case -1:
 	if (s.compare("[init]") == 0) state++;

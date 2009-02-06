@@ -1,0 +1,16 @@
+#Composite golem sacrifice ability subject to summoning Sickness ?
+SummoningSickness
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:135275
+[PLAYER2]
+[DO]
+135275
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:135275
+manapool:{W}{U}{B}{R}{G}
+[PLAYER2]
+[END]

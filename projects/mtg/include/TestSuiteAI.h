@@ -47,6 +47,7 @@ class TestSuiteState{
 };
 class TestSuite{
  public:
+  int summoningSickness;
   float timerLimit;
   int currentAction;
   TestSuiteState initState;

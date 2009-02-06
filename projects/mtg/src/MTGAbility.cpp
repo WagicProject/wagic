@@ -518,7 +518,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           if (input->isNull()){
             SAFE_DELETE(input);
           }
-          MTGAbility * a = NEW AManaProducer(id, target, output, input);
+          MTGAbility * a = NEW AManaProducer(id, target, output, input,doTap);
           if (multi){
             multi->Add(a);
           }else{
@@ -1973,3 +1973,181 @@ GenericTriggeredAbility::~GenericTriggeredAbility(){
   delete te;
   SAFE_DELETE(dc);
 }
+
+
+/*Mana Producers (lands)
+//These have a reactToClick function, and therefore two manaProducers on the same card conflict with each other
+//That means the player has to choose one. although that is perfect for cards such as birds of paradise or badlands,
+other solutions need to be provided for abilities that add mana (ex: mana flare)
+*/
+/*
+  Currently the mana is added to the pool AFTER the animation
+  This is VERY BAD, since we don't have any control on the duration of the animation. This can lead to bugs with
+  the AI, who is expecting to have the mana in its manapool right after clicking the land card !!!
+  The sum of "dt" has to be 0.25 for the mana to be in the manapool currently
+*/
+
+
+   AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost , int doTap):MTGAbility(id, card), tap(doTap){
+    LOG("==Creating ManaProducer Object");
+    cost = _cost;
+    output=_output;
+    x1 = 10;
+    y1 = 220;
+    Player * player = card->controller();
+    if (player == game->players[1]) y1 = 100;
+    x = x1;
+    y = y1;
+    animation = 0.f;
+    mParticleSys = NULL;
+    menutext = "";
+
+    int landColor = output->getMainColor();
+
+    if (landColor == Constants::MTG_COLOR_RED){
+      mParticleSys = NEW hgeParticleSystem("graphics/manared.psi",GameApp::CommonRes->GetQuad("particles"));
+    }else if (landColor == Constants::MTG_COLOR_BLUE){
+      mParticleSys = NEW hgeParticleSystem("graphics/manablue.psi", GameApp::CommonRes->GetQuad("particles"));
+    }else if (landColor == Constants::MTG_COLOR_GREEN){
+      mParticleSys = NEW hgeParticleSystem("graphics/managreen.psi", GameApp::CommonRes->GetQuad("particles"));
+    }else if (landColor == Constants::MTG_COLOR_BLACK){
+      mParticleSys = NEW hgeParticleSystem("graphics/manablack.psi", GameApp::CommonRes->GetQuad("particles"));
+    }else if (landColor == Constants::MTG_COLOR_WHITE){
+      mParticleSys = NEW hgeParticleSystem("graphics/manawhite.psi", GameApp::CommonRes->GetQuad("particles"));
+    }else{
+      mParticleSys = NEW hgeParticleSystem("graphics/mana.psi", GameApp::CommonRes->GetQuad("particles"));
+    }
+
+
+
+    LOG("==ManaProducer Object Creation successful !");
+  }
+
+  void AManaProducer::Update(float dt){
+    if (mParticleSys) mParticleSys->Update(dt);
+    if (animation){
+      x = (1.f - animation)*x1 + animation * x0;
+      y = (1.f - animation)*y1 + animation * y0;
+      if (mParticleSys) mParticleSys->MoveTo(x, y);
+      if (mParticleSys && animation == 1.f) mParticleSys->Fire();
+      animation -= 4 *dt;
+      if (!animation) animation = -1;
+      if (animation < 0){
+	      animation = 0;
+        currentlyTapping--;
+	      resolve();
+	      if (mParticleSys) mParticleSys->Stop();
+      }
+    }
+
+  }
+
+  void AManaProducer::Render(){
+    JRenderer * renderer = JRenderer::GetInstance();
+    if (animation){
+      renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
+      if (mParticleSys) mParticleSys->Render();
+      // set normal blending
+      renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+    }
+
+  }
+
+  int AManaProducer::isReactingToClick(MTGCardInstance *  _card){
+    int result = 0;
+    if (_card == source && (!tap || !source->isTapped())  && game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType("land") || !tap || !source->hasSummoningSickness()) ){
+      if (!cost || game->currentlyActing()->getManaPool()->canAfford(cost)) result =  1;
+    }
+    return result;
+  }
+
+  int AManaProducer::resolve(){
+    controller = source->controller();
+    controller->getManaPool()->add(output);
+    return 1;
+  }
+
+  int AManaProducer::reactToClick(MTGCardInstance *  _card){
+    if (!isReactingToClick( _card)) return 0;
+    OutputDebugString("React To click 1\n");
+    if (cost){
+      cost->setExtraCostsAction(this, _card);
+      OutputDebugString("React To click 2\n");
+      if (!cost->isExtraPaymentSet()){
+        OutputDebugString("React To click 3\n");
+      
+        GameObserver::GetInstance()->waitForExtraPayment = cost->extraCosts;
+        return 0;
+      }
+      GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
+      cost->doPayExtra();
+    } 
+    if (tap) source->tapped = 1;
+    currentlyTapping++;
+
+    animation = 1.f;
+    CardGui * cardg = game->mLayers->playLayer()->getByCard(source);
+    if (cardg){
+      x0 = cardg->x + 15;
+      y0 = cardg->y + 20;
+    }
+
+
+    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0 && currentlyTapping < 3){
+      JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/mana.wav");
+      if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
+    }
+    return 1;
+  }
+
+  const char * AManaProducer::getMenuText(){
+    if (menutext.size())return menutext.c_str();
+    menutext = "Add ";
+    char buffer[128];
+    int alreadyHasOne = 0;
+    for (int i= 0; i < 6; i++){
+      int value = output->getCost(i);
+      if (value){
+	if (alreadyHasOne) menutext.append(",");
+	sprintf(buffer, "%i ", value);
+	menutext.append(buffer);
+	switch (i){
+	case Constants::MTG_COLOR_RED:
+	  menutext.append("red");
+	  break;
+	case Constants::MTG_COLOR_BLUE:
+	  menutext.append("blue");
+	  break;
+	case Constants::MTG_COLOR_GREEN:
+	  menutext.append("green");
+	  break;
+	case Constants::MTG_COLOR_WHITE:
+	  menutext.append("white");
+	  break;
+	case Constants::MTG_COLOR_BLACK:
+	  menutext.append("black");
+	  break;
+	default:
+	  break;
+	}
+	alreadyHasOne = 1;
+      }
+    }
+    menutext.append(" mana");
+    return menutext.c_str();
+  }
+
+  int AManaProducer::testDestroy(){
+    if (animation >0) return 0;
+    return MTGAbility::testDestroy();
+  }
+
+  AManaProducer::~AManaProducer(){
+    LOG("==Destroying ManaProducer Object");
+    SAFE_DELETE(cost);
+    SAFE_DELETE(output);
+    SAFE_DELETE(mParticleSys);
+    LOG("==Destroying ManaProducer Object Successful!");
+  }
+
+int AManaProducer::currentlyTapping = 0;
