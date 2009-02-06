@@ -46,6 +46,7 @@ lifeforce.txt
 living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
+nantuko_husk.txt
 orcish_lumberjack.txt
 paralysis.txt
 paralysis2.txt

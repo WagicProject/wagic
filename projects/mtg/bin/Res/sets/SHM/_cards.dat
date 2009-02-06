@@ -180,18 +180,6 @@ subtype=Treefolk Shaman
 toughness=6
 [/card]
 [card]
-text=Sacrifice Fulminator Mage: Destroy target nonbasic land.
-auto={S}:destroy target(land[-plains;-mountain;-swamp;-forest;-island])
-id=142009
-name=Fulminator Mage
-rarity=R
-type=Creature
-mana={1}{BR}{BR}
-power=2
-subtype=Elemental Shaman
-toughness=2
-[/card]
-[card]
 text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
 abilities=flying
 auto=lord(creature[blue]|myinplay) 1/1

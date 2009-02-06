@@ -622,7 +622,18 @@ rarity=R
 type=Instant
 mana={2}{GW}{GW}{GW}
 [/card]
-
+[card]
+text=Sacrifice Fulminator Mage: Destroy target nonbasic land.
+auto={S}:destroy target(land[-plains;-mountain;-swamp;-forest;-island])
+id=142009
+name=Fulminator Mage
+rarity=R
+type=Creature
+mana={1}{BR}{BR}
+power=2
+subtype=Elemental Shaman
+toughness=2
+[/card]
 [card]
 text=When Furystoke Giant comes into play, other creatures you control gain &quot;{T}: This creature deals 2 damage to target creature or player&quot; until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=152069

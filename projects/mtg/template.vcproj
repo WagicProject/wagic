@@ -538,10 +538,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\allTargetChoosers.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\Blocker.h"
 				>
 			</File>

@@ -528,14 +528,14 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
 
 
 //Alteration of Power and Toughness until end of turn (Aura)
-class APowerToughnessModifierUntilEndOfTurn: public MTGAbility{
+class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
  public:
   int power, toughness;
   int counters;
   int maxcounters;
-  ManaCost * cost;
- APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness,  ManaCost * _cost, int _maxcounters = 0):MTGAbility(id,_source,_target),power(_power),toughness(_toughness),maxcounters(_maxcounters), cost(_cost){
+ APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness,  ManaCost * _cost, int _maxcounters = 0):ActivatedAbility(id,_source,_cost,0,0),power(_power),toughness(_toughness),maxcounters(_maxcounters){
     counters = 0;
+    target=_target;
   }
 
   void Update(float dt){
@@ -546,20 +546,19 @@ class APowerToughnessModifierUntilEndOfTurn: public MTGAbility{
 	counters--;
       }
     }
+    ActivatedAbility::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance *  _card){
-    if (_card == source && (!maxcounters || counters < maxcounters) && game->currentlyActing()->game->inPlay->hasCard(source)){
-      if (game->currentlyActing()->getManaPool()->canAfford(cost)){
-	return 1;
-      }
-    }
-    return 0;
+  int fireAbility(){
+    return resolve();
   }
 
-  int reactToClick(MTGCardInstance *  _card){
-    if (!isReactingToClick( _card)) return 0;
-    game->currentlyActing()->getManaPool()->pay(cost);
+  int isReactingToClick(MTGCardInstance * card){
+    if (!ActivatedAbility::isReactingToClick(card)) return 0;
+    return (!maxcounters || (counters < maxcounters));
+  }
+
+  int resolve(){
     ((MTGCardInstance *)target)->power += power;
     ((MTGCardInstance *)target)->addToToughness(toughness);
     counters++;

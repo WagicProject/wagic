@@ -1,0 +1,29 @@
+#Testing Nantuko Husk's ability on an orcish artillery
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:129653,129663
+[PLAYER2]
+[DO]
+129653
+129663
+next
+#combat begin
+next
+#attackers
+129653
+choice 0
+next
+#defensers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:129653
+graveyard:129663
+[PLAYER2]
+life:16
+[END]

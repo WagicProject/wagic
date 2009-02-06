@@ -498,6 +498,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	              game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
 	            }
 	          }else{
+              OutputDebugString("NANTUKO OK\n");
 	            game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
 	          }
 	        }
