@@ -59,6 +59,8 @@ void MTGPlayerCards::init(){
   hand = NEW MTGHand();
   inPlay = NEW MTGInPlay();
   stack = NEW MTGStack();
+  stack = NEW MTGStack();
+  removedFromGame = NEW MTGRemovedFromGame();
 }
 
 

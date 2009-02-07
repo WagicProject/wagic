@@ -1,0 +1,18 @@
+#Testing Celestial purge on Canyon Minotaur
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:183055
+manapool:{1}{W}
+[PLAYER2]
+inplay:184994
+[DO]
+183055
+184994
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:183055
+manapool:{0}
+[PLAYER2]
+[END]
