@@ -27,6 +27,14 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+text={T}: Add {2} to your mana pool. Ancient Tomb deals 2 damage to you.
+auto={T}: Add {2} && Damage 1 controller
+id=4636
+name=Ancient Tomb
+rarity=U
+type=Land
+[/card]
+[card]
 text=Flying
 id=4861
 name=Armored Pegasus
@@ -281,6 +289,15 @@ colour=Blue
 rarity=U
 mana={2}{U}{U}
 type=Instant
+[/card]
+[card]
+text=White creatures get -1/-1.
+auto=lord(creature[white]) -1/-1
+id=4658
+name=Dread of Night
+rarity=U
+type=Enchantment
+mana={B}
 [/card]
 [card]
 text=Legendary       Other Elf creatures have forestwalk.   Other Elves have shroud. (They can't be the targets of spells or abilities.)
@@ -617,6 +634,19 @@ subtype=Elemental
 power=4
 toughness=1
 abilities=Haste
+[/card]
+[card]
+text={T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.
+auto={T},{S}:Add{G}
+auto={T},{S}:Add{R}
+auto={T},{S}:Add{U}
+auto={T},{S}:Add{B}
+auto={T},{S}:Add{W}
+id=4614
+name=Lotus Petal
+rarity=C
+type=Artifact
+mana={0}
 [/card]
 [card]
 id=4829

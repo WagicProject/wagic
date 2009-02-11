@@ -70,19 +70,19 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
 	  int intvalue = atoi(value.c_str());
 	  int colors[2];
 	  int values[2];
-	  if (!intvalue && value.size() > 1){
+	  if (intvalue < 10 && value.size() > 1){
 	    for (int i = 0; i < 2; i++){
 	      char c = value[i];
 	      if (c >='0' && c <='9'){
-		colors[i] = Constants::MTG_COLOR_ARTIFACT;
-		values[i] = c - '0';
+		      colors[i] = Constants::MTG_COLOR_ARTIFACT;
+		      values[i] = c - '0';
 	      }else{
-		for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
-		  if (c == Constants::MTGColorChars[j]){
-		    colors[i] = j;
-		    values[i] = 1;
-		  }
-		}
+		      for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+		        if (c == Constants::MTGColorChars[j]){
+		          colors[i] = j;
+		          values[i] = 1;
+		        }
+		      }
 	      }
 	    }
 	    manaCost->addHybrid(colors[0], values[0], colors[1], values[1]);
@@ -98,6 +98,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
       break;
     }
   }
+
   return manaCost;
 }
 
@@ -378,3 +379,25 @@ ManaCost * ManaCost::Diff(ManaCost * _cost){
   return result;
 
 }
+
+#ifdef WIN32
+void ManaCost::Dump(){
+  char buf[4096];
+  OutputDebugString("\n===ManaCost===\n");
+  for (int i=0; i<= Constants::MTG_NB_COLORS; i++){
+    if (cost[i]) {
+      sprintf(buf, "%c:%i - ", Constants::MTGColorChars[i],cost[i]);
+      OutputDebugString(buf);
+    }
+  }
+
+  for (int i=0; i< nbhybrids; i++){
+      ManaCostHybrid * h = hybrids[i];
+
+      sprintf(buf, "H:{%c:%i}/{%c:%i}", Constants::MTGColorChars[h->color1], h->value1, Constants::MTGColorChars[h->color2], h->value2);
+      OutputDebugString(buf);
+  }
+  OutputDebugString("\n=============\n");
+}
+
+#endif

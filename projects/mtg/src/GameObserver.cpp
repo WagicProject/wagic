@@ -272,11 +272,9 @@ void GameObserver::stackObjectClicked(Interruptible * action){
 }
 
 void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
-  LOG("==GameObserver::cardClick");
-  if (card) 	{LOG(card->getName())};
   Player * clickedPlayer = NULL;
   if (!card) clickedPlayer = ((Player *)object);
-  if (targetChooser != NULL){
+  if (targetChooser){
     int result;
     if (card) {
       if (card == cardWaitingForTargets){

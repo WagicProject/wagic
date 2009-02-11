@@ -43,6 +43,8 @@ int SacrificeCost::isPaymentSet(){
 int SacrificeCost::doPay(){
   if(target){
 	  target->controller()->game->putInGraveyard(target);
+    target = NULL;
+    if (tc) tc->initTargets();
     return 1;
   }
   return 0;

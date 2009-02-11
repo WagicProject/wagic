@@ -5,6 +5,7 @@ generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt
 generic/hybrid_mana.txt
+generic/hybrid_mana_2.txt
 generic/legendary.txt
 generic/persist.txt
 generic/wither.txt
@@ -18,6 +19,8 @@ animate_dead2.txt
 ardakar_wastes.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
+bottle_gnomes.txt
+boggart_arsonists.txt
 brass_man.txt
 castle.txt
 celestial_purge.txt
@@ -52,9 +55,11 @@ nantuko_husk.txt
 orcish_lumberjack.txt
 paralysis.txt
 paralysis2.txt
+protomatter_powder.txt
 resurrection.txt
 rootwalla.txt
 royal_assassin.txt
+siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt
 spark_elemental.txt

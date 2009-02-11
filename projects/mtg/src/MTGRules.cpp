@@ -21,6 +21,9 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card){
     LOG("CANPUTINPLAY- correct time to play\n");
     ManaCost * playerMana = player->getManaPool();
     ManaCost * cost = card->getManaCost();
+#ifdef WIN32
+  cost->Dump();
+#endif
     if (playerMana->canAfford(cost)){
       LOG("CANPUTINPLAY- ManaCost ok\n");
       return 1;

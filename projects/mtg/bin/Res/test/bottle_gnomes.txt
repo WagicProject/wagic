@@ -1,0 +1,15 @@
+#Do we get 3 life when sacrificing bottle gnomes ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:129495
+[PLAYER2]
+[DO]
+129495
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:23
+graveyard:129495
+[PLAYER2]
+[END]

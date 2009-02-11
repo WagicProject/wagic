@@ -42,6 +42,7 @@ Interruptible * TestSuite::getActionByMTGId(int mtgid){
   return NULL;
 }
 
+
 int TestSuiteAI::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
   g->gameOver = NULL; // Prevent draw rule from losing the game
@@ -211,7 +212,7 @@ void TestSuite::initGame(){
   // or go faster when it comes to the whole test suite.
   //Warning, putting this value too low (< 0.25) will give unexpected results
   if (!timerLimit){
-    timerLimit = 0.3;
+    timerLimit = 0.5;
   }else{
     timerLimit = 0.1;
   }

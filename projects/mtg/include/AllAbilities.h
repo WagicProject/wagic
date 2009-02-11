@@ -93,6 +93,28 @@ class ADrawer:public ActivatedAbility{
 
 };
 
+// Gives/Takes Life to controller of source
+class ALifeGiver:public ActivatedAbility{
+ public:
+  int life;
+ ALifeGiver(int _id, MTGCardInstance * card,ManaCost * _cost, int _life, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),life(_life){
+  }
+
+  int resolve(){
+    source->controller()->life+=life;
+    return 1;
+  }
+
+
+
+  const char * getMenuText(){
+    if (life < 0) return "Lose life";
+    return "Gain life";
+  }
+
+
+};
+
 class ATokenCreator:public ActivatedAbility{
 public:
   list<int>abilities;

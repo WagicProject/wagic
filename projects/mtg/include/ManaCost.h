@@ -58,6 +58,9 @@ class ManaCost{
 
   int isPositive();
   ManaCost * Diff(ManaCost * _cost);
+#ifdef WIN32
+  void Dump();
+#endif
 };
 
 #endif

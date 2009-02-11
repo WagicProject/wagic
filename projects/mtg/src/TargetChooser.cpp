@@ -189,7 +189,7 @@ OutputDebugString("COLOR FOUND !!!");
 	  typeName = typeName.substr(0,found);
 	}
 	//X targets allowed ?
-	if (typeName.at(typeName.length()-1) == 's'){
+  if (typeName.at(typeName.length()-1) == 's' && !Subtypes::subtypesList->find(typeName)){
 	  typeName = typeName.substr(0,typeName.length()-1);
 	  maxtargets = -1;
 	}

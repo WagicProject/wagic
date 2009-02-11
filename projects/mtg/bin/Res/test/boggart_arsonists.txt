@@ -1,0 +1,19 @@
+#  {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:158684
+manapool:{2}{R}
+[PLAYER2]
+inplay:154395
+[DO]
+158684
+154395
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:158684
+manapool:{0}
+[PLAYER2]
+graveyard:154395
+[END]

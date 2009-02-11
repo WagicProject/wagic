@@ -40,6 +40,7 @@ toughness=4
 [card]
 text=Plainswalk     {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
 auto={2}{R}{S}:destroy target(scarecrow,plains)
+abilities=plainswalk
 id=158684
 name=Boggart Arsonists
 rarity=C

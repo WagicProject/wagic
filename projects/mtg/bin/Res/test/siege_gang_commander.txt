@@ -1,0 +1,25 @@
+#TestingSiege-Gang Commander Sacrifice goblin ability
+#text=When Siege-Gang Commander comes into play, put three 1/1 red Goblin creature tokens into play.     {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:130539,130378,129578
+manapool:{2}{R}{R}
+[PLAYER2]
+inplay:129586,129600
+[DO]
+130539
+129586
+129578
+130539
+129600
+130378
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:130378,129578
+inplay:130539,-130539,-130539,-130539
+manapool:{0}
+[PLAYER2]
+graveyard:129586,129600
+[END]

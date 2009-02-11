@@ -373,7 +373,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         }else{
 	        if (dryMode) return BAKA_EFFECT_BAD;
 	        if (tc){
-	          game->addObserver(NEW ADestroyer(id, card,tc));
+	          game->addObserver(NEW ADestroyer(id, card,tc,0,cost));
 	        }else{
 	          game->mLayers->stackLayer()->addPutInGraveyard(target);
 	        }
@@ -434,7 +434,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        if (!cost && !doTap){
 	          card->controller()->life+=life;
 	        }else{
-	          //TODO;
+            game->addObserver(NEW ALifeGiver(id, card,cost, life, doTap));
 	        }
         }
         result++;
@@ -1699,7 +1699,10 @@ ActivatedAbility::~ActivatedAbility(){
   if (cost) delete cost;
 }
 
-//
+//The whole targetAbility mechanism is messed up, mainly because of its interactions with 
+// the ActionLayer, GameObserver, and parent class ActivatedAbility.
+// Currently choosing a target is a complete different mechanism for put into play and for other abilities.
+// It probably shouldn't be the case.
 
 TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap){
   tc = _tc;
@@ -1715,8 +1718,8 @@ void TargetAbility::Update(float dt){
     if(mEngine->GetButtonClick(PSP_CTRL_CROSS)){
       waitingForAnswer = 0;
     }else if(tc->targetsReadyCheck() == TARGET_OK_FULL){
-      waitingForAnswer = 0;
-      ActivatedAbility::reactToClick(source);
+      //waitingForAnswer = 0;
+      //ActivatedAbility::reactToClick(source);
     }
   }
 }
@@ -1724,8 +1727,11 @@ void TargetAbility::Update(float dt){
 int TargetAbility::reactToTargetClick(Targetable * object){
   if (object->typeAsTarget() == TARGET_CARD) return reactToClick((MTGCardInstance *)object);
   if (waitingForAnswer){
-    tc->toggleTarget(object);
-    return 1;
+      if (tc->toggleTarget(object) == TARGET_OK_FULL){
+	      waitingForAnswer = 0;
+	      return ActivatedAbility::reactToClick(source);
+      } 
+      return 1;
   }
   return 0;
 }
@@ -1740,12 +1746,17 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
     }
   }else{
     if (card == source){
-      if (tc->targetsReadyCheck() == TARGET_OK){
+      if (tc->targetsReadyCheck() == TARGET_OK || tc->targetsReadyCheck() == TARGET_OK_FULL){
 	      waitingForAnswer = 0;
 	      return ActivatedAbility::reactToClick(source);
       }
     }else{
-      tc->toggleTarget(card);
+      if (tc->toggleTarget(card) == TARGET_OK_FULL){
+	      
+	      int result = ActivatedAbility::reactToClick(source);
+        if (result) waitingForAnswer = 0;
+        return result;
+      }    
       return 1;
     }
   }
@@ -1753,7 +1764,7 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
 }
 
 void TargetAbility::Render(){
-  //TODO
+  //TODO ?
 }
 
 

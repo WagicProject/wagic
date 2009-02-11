@@ -126,10 +126,7 @@ int ActionLayer::reactToTargetClick(Targetable * card){
 int ActionLayer::isReactingToClick(MTGCardInstance * card){
   int result = 0;
 
-  for (int i=0;i<mCount;i++){
-    ActionElement * currentAction = (ActionElement *)mObjects[i];
-    if(currentAction->waitingForAnswer) return -1;
-  }
+  if (isWaitingForAnswer()) return -1; 
 
 
   for (int i=0;i<mCount;i++){

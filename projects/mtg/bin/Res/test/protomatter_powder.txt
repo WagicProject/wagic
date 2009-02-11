@@ -1,0 +1,19 @@
+#text={4}{W}, {T}, Sacrifice Protomatter Powder: Return target artifact card from your graveyard to play.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:174833
+graveyard:1099
+manapool:{4}{W}
+[PLAYER2]
+[DO]
+174833
+1099
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:174833
+manapool:{0}
+inplay:1099
+[PLAYER2]
+[END]

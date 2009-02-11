@@ -49,13 +49,7 @@ rarity=U
 type=Enchantment
 mana={2}{R}
 [/card]
-[card]
-text={T}: Add {2} to your mana pool. Ancient Tomb deals 2 damage to you.
-id=4636
-name=Ancient Tomb
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=Flying     Whenever Angelic Protector becomes the target of a spell or ability, Angelic Protector gets +0/+3 until end of turn.
 id=4858
@@ -696,14 +690,7 @@ power=0
 subtype=Shapeshifter
 toughness=0
 [/card]
-[card]
-text=White creatures get -1/-1.
-id=4658
-name=Dread of Night
-rarity=U
-type=Enchantment
-mana={B}
-[/card]
+
 [card]
 text=Draw three cards, then put two cards from your hand both on top of your library or both on the bottom of your library.
 id=4696
@@ -1515,14 +1502,7 @@ rarity=U
 type=Sorcery
 mana={2}{U}{B}
 [/card]
-[card]
-text={T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.
-id=4614
-name=Lotus Petal
-rarity=C
-type=Artifact
-mana={0}
-[/card]
+
 [card]
 text=
 id=4829

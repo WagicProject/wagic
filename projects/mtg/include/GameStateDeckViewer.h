@@ -437,7 +437,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     mFont->DrawString(buffer, SCREEN_WIDTH-120 , y);
 
     if (colorFilter != ALL_COLORS){
-      sprintf(buffer2, "(   %i)", myDeck->getCount(colorFilter));
+      sprintf(buffer2, "(      %i)", myDeck->getCount(colorFilter));
       mFont->DrawString(buffer2, SCREEN_WIDTH-55 , y);
       JRenderer::GetInstance()->RenderQuad(mIcons[colorFilter], SCREEN_WIDTH-42  , y + 6 , 0.0f,0.5,0.5);
     }
