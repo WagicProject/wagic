@@ -17,6 +17,7 @@ afflict.txt
 anarchy.txt
 animate_dead.txt
 animate_dead2.txt
+animate_dead3.txt
 ankh_of_mishra.txt
 ardakar_wastes.txt
 ascendant_evincar.txt

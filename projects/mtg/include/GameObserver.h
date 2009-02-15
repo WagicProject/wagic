@@ -72,11 +72,8 @@ class GameObserver{
   void addObserver(MTGAbility * observer);
   void removeObserver(ActionElement * observer);
   void startGame(int shuffle = 1, int draw = 1);
-  void nextStep();
   void untapPhase();
   void draw();
-  int canPutInPlay(MTGCardInstance *  card);
-  void putInPlay(MTGCardInstance *  card);
   int isInPlay(MTGCardInstance *  card);
   int isACreature(MTGCardInstance *  card);
   int tryToTapOrUntap(MTGCardInstance * card);

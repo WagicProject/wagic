@@ -222,11 +222,6 @@ void GameObserver::Render(){
 }
 
 
-void GameObserver::nextStep(){
-
-}
-
-
 
 
 void GameObserver::ButtonPressed (int controllerId, PlayGuiObject * _object){
@@ -345,66 +340,7 @@ TargetChooser * GameObserver::getCurrentTargetChooser(){
   return targetChooser;
 }
 
-//Check if it is possible to put a card into play
-//TODO : improve according to spells in game...
-int GameObserver::canPutInPlay(MTGCardInstance *  card){
-  Player * player = currentlyActing();
-  LOG("CANPUTINPLAY- check if card belongs to current player\n");
-  if (!player->game->hand->hasCard(card)) return 0;
-  LOG("CANPUTINPLAY- check if card is land or can be played\n");
-  if (card->hasType("land")){
-    LOG("CANPUTINPLAY- card is land - check if can be played\n");
-    if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)){
-      LOG("CANPUTINPLAY- Land, ok\n");
-      return 1;
-    }
-  }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && (currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
-    LOG("CANPUTINPLAY- correct time to play\n");
-    if (checkManaCost(card)){
-      LOG("CANPUTINPLAY- ManaCost ok\n");
-      if (targetListIsSet(card)){
-#ifdef LOG
-	LOG("CANPUTINPLAY- Targets chosen -> OK\n");
-#endif
-	return 1;
-      }else{
-#ifdef LOG
-	LOG("CANPUTINPLAY- Targets not chosen yet\n");
-#endif
-	return 0;
-      }
-    }
-  }
-  return 0;
-}
 
-
-void GameObserver::putInPlay(MTGCardInstance *  card){
-  Player * player = currentlyActing();
-  ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-  player->getManaPool()->pay(card->getManaCost());
-  ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
-  delete previousManaPool;
-  if (card->hasType("land")){
-    Spell * spell = NEW Spell(card);
-    player->game->putInZone(card,  player->game->hand, player->game->stack);
-    spell->resolve();
-    delete spellCost;
-    delete spell;
-  }else{
-    if (targetChooser){
-      mLayers->stackLayer()->addSpell(card,targetChooser->targets,targetChooser->cursor, spellCost);
-      delete targetChooser;
-      targetChooser = NULL;
-    }else{
-      mLayers->stackLayer()->addSpell(card,NULL,0, spellCost);
-    }
-    player->game->putInZone(card,  player->game->hand, player->game->stack);
-
-  }
-
-
-}
 
 /* Returns true if the card is in one of the player's play zone */
 int GameObserver::isInPlay(MTGCardInstance * card){
@@ -415,7 +351,6 @@ int GameObserver::isInPlay(MTGCardInstance * card){
 }
 
 void GameObserver::draw(){
-  //TODO checks to allow multiple draw, or no draw, etc...
   currentPlayer->game->drawFromLibrary();
 }
 

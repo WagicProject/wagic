@@ -201,9 +201,9 @@ toughness=3
 [/card]
 [card]
 text={T}: Add {R}, {G}, or {W} to your mana pool.
-auto={T]:Add {R}
-auto={T]:Add {G}
-auto={T]:Add {W}
+auto={T}:Add {R}
+auto={T}:Add {G}
+auto={T}:Add {W}
 id=174903
 name=Druid of the Anima
 rarity=C
@@ -294,6 +294,7 @@ subtype=Forest
 [/card]
 [card]
 text=Trample
+abilities=trample
 id=177596
 name=Goblin Deathraiders
 rarity=C

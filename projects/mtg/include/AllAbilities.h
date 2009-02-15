@@ -1743,6 +1743,7 @@ class AAnimateDead:public MTGAbility{
   int destroy(){
     MTGCardInstance * card = (MTGCardInstance *) target;
     card->power++;
+    card->controller()->game->putInZone(card, card->controller()->game->inPlay,card->owner->game->graveyard);
     return 1;
   }
 };
