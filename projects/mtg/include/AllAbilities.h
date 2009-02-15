@@ -1217,23 +1217,31 @@ class AAladdinsLamp: public TargetAbility{
 
 
 //Ankh of Mishra
-class AAnkhOfMishra: public MTGAbility{
+class AAnkhOfMishra: public ListMaintainerAbility{
  public:
-  int playerLands[2];
- AAnkhOfMishra(int id, MTGCardInstance * _source):MTGAbility(id, _source){
-    for (int i=0; i< 2; i++){
-      playerLands[i] = GameObserver::GetInstance()->players[i]->game->inPlay->countByType("land");
-    }
+  int init;
+ AAnkhOfMishra(int id, MTGCardInstance * _source):ListMaintainerAbility(id, _source){
+    init = 0;
   }
 
   void Update(float dt){
-    for (int i=0; i < 2; i++){
-      int lands = GameObserver::GetInstance()->players[i]->game->inPlay->countByType("land");
-      while (lands > playerLands[i]){
-	GameObserver::GetInstance()->mLayers->stackLayer()->addDamage(source,GameObserver::GetInstance()->players[i], 2);
-	playerLands[i]++;
-      }
-    }
+    ListMaintainerAbility::Update(dt);
+    init = 1;
+  }
+
+  int canBeInList(MTGCardInstance * card){
+    if (card->hasType("land")) return 1;
+    return 0;
+  }
+
+  int added(MTGCardInstance * card){
+    if (!init) return 0;
+    game->mLayers->stackLayer()->addDamage(source,card->controller(), 2);
+    return 1;
+  }
+
+  int removed(MTGCardInstance * card){
+    return 1;
   }
 };
 
@@ -1472,23 +1480,23 @@ class ACreatureBond:public TriggeredAbility{
 };
 
 //1105: Dingus Egg
-class ADingusEgg: public MTGAbility{
+class ADingusEgg: public ListMaintainerAbility{
  public:
-  int playerLands[2];
- ADingusEgg(int id, MTGCardInstance * _source):MTGAbility(id, _source){
-    for (int i=0; i< 2; i++){
-      playerLands[i] = GameObserver::GetInstance()->players[i]->game->inPlay->countByType("land");
-    }
+ ADingusEgg(int id, MTGCardInstance * _source):ListMaintainerAbility(id, _source){
   }
 
-  void Update(float dt){
-    for (int i=0; i < 2; i++){
-      int lands = GameObserver::GetInstance()->players[i]->game->inPlay->countByType("land");
-      while (lands < playerLands[i]){
-	GameObserver::GetInstance()->mLayers->stackLayer()->addDamage(source,GameObserver::GetInstance()->players[i], 2);
-	playerLands[i]--;
-      }
-    }
+  int canBeInList(MTGCardInstance * card){
+    if (card->hasType("land")) return 1;
+    return 0;
+  }
+
+  int added(MTGCardInstance * card){
+    return 1;
+  }
+
+  int removed(MTGCardInstance * card){
+    game->mLayers->stackLayer()->addDamage(source,card->controller(), 2);
+    return 1;
   }
 };
 
@@ -1908,15 +1916,6 @@ class AKudzu: public TargetAbility{
     return 0;
   }
 
-  /*
-    int reactToClick(MTGCardInstance * card){
-    if (!waitingForAnswer) {
-    }else{
-    tc->toggleTarget(card);
-    }
-    return 1;
-    }
-  */
 
   int resolve(){
     target = tc->getNextCardTarget();
@@ -2423,30 +2422,7 @@ class AKeldonWarlord:public ListMaintainerAbility{
 
 };
 
-//1302 : Kird Ape
-class AKirdApe:public MTGAbility{
- public:
-  int init;
- AKirdApe(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-    init = 0;
-  }
 
-  void Update(float dt){
-    if (source->controller()->game->inPlay->hasType("forest")){
-      if(!init){
-	init = 1;
-	source->power+=1;
-	source->addToToughness(2);
-      }
-    }else{
-      if (init){
-	init = 0;
-	source->power-=1;
-	source->addToToughness(-2);
-      }
-    }
-  }
-};
 
 //1309 Orcish Artilery
 class AOrcishArtillery: public ADamager{
@@ -2589,30 +2565,6 @@ class ANorthernPaladin:public TargetAbility{
 
 };
 
-//Sedge Troll
-class ASedgeTroll:public MTGAbility{
- public:
-  int init;
- ASedgeTroll(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-    init = 0;
-  }
-
-  void Update(float dt){
-    if (source->controller()->game->inPlay->hasType("swamp")){
-      if(!init){
-	init = 1;
-	source->power+=1;
-	source->addToToughness(1);
-      }
-    }else{
-      if (init){
-	init = 0;
-	source->power-=1;
-	source->addToToughness(-1);
-      }
-    }
-  }
-};
 
 //Soul Net
 class ASoulNet:public ActivatedAbility{
@@ -2883,33 +2835,45 @@ class ACreaturePowerToughnessModifierForAllTypeControlled:public ListMaintainerA
 
 };
 
-//GenericKirdApe
-//Erwan 2008/11/15 : this cannot work as type is never initialized...
-class AGenericKirdApe:public MTGAbility{
+//Generic Kird Ape
+class AKirdApe:public ListMaintainerAbility{
  public:
-  int init;
-  char type [20];
+  TargetChooser * tc;
   int power;
   int toughness;
- AGenericKirdApe(int _id, MTGCardInstance * _source, const char * _type, int _power, int _toughness):MTGAbility(_id, _source){
-    init = 0;
-  }
+ AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _power, int _toughness):ListMaintainerAbility(_id, _source){
+    power = _power;
+    toughness = _toughness;
+    tc = _tc;
+ }
 
-  void Update(float dt){
-    if (source->controller()->game->inPlay->hasType(type)){
-      if(!init){
-	init = 1;
-	source->power+=power;
-	source->addToToughness(toughness);
-      }
-    }else{
-      if (init){
-	init = 0;
-	source->power-=power;
-	source->addToToughness(-toughness);
-      }
-    }
-  }
+ int canBeInList(MTGCardInstance * card){
+   if (card->controller() == source->controller() && tc->canTarget(card)) return 1;
+   return 0;
+ }
+
+ int added(MTGCardInstance * card){
+   if (cards.size()== 1){
+      source->power+=power;
+      source->addToToughness(toughness);
+      return 1;
+   }
+   return 0;
+ }
+
+ int removed(MTGCardInstance * card){
+   if (cards.size()== 0){
+      source->power-=power;
+      source->addToToughness(-toughness);
+      return 1;
+   }
+   return 0;
+ }
+ 
+ ~AKirdApe(){
+   delete tc;
+ }
+
 };
 
 

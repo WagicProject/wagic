@@ -28,7 +28,7 @@ type=Sorcery
 [/card]
 [card]
 text={T}: Add {2} to your mana pool. Ancient Tomb deals 2 damage to you.
-auto={T}: Add {2} && Damage 1 controller
+auto={T}: Add {2} && Damage 2 controller
 id=4636
 name=Ancient Tomb
 rarity=U

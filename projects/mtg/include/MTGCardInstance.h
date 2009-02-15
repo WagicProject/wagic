@@ -39,6 +39,7 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
  public:
   bool isToken;
   MTGGameZone * getCurrentZone();
+  MTGGameZone * previousZone;
   int doDamageTest;
   int summoningSickness;
   // The recommended method to test for summoning Sickness !

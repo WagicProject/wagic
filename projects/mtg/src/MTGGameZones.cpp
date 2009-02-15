@@ -160,6 +160,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card){
     if (cards[i] == card){
       cards[i] = cards[nb_cards -1];
       nb_cards--;
+      card->previousZone = this;
       return card;
     }
   }

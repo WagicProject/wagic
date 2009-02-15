@@ -1,0 +1,24 @@
+# bug : Ankh of Mishra : DoesnÅft deal damage if a land was destroyed then a new one is put into play
+# Ankh of Mishra : (RV) 1094
+# text=Whenever a land comes into play, Ankh of Mishra deals 2 damage to that land's controller.
+# Will destroy a land with stone rain, then put a plains into play
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1397,1094
+hand:1396,1321
+manapool:{R}{2}
+[PLAYER2]
+[DO]
+1321
+1397
+1396
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1397,1321
+inplay:1094,1396
+manapool:{0}
+life:18
+[PLAYER2]
+[END]

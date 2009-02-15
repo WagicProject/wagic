@@ -1,0 +1,43 @@
+# bug : Kird Ape : keeps his power/toughness bonus when unsummoned. This allows to cheat and bost the Kird ape like crazy.
+# Kird Ape : (RV) 1302
+# text=Kird Ape gets +1/+2 as long as you control a Forest.
+# Will unsummon and reput into play
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1386,1302
+hand:1229
+manapool:{R}{U}
+[PLAYER2]
+[DO]
+1229
+1302
+1302
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combatbegins
+next
+#attackers
+1302
+next
+#blockers
+next
+#damage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:1229
+inplay:1386,1302
+manapool:{0}
+[PLAYER2]
+life:18
+[END]

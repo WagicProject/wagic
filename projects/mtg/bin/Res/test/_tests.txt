@@ -6,6 +6,7 @@ generic/first_strike2.txt
 generic/first_strike3.txt
 generic/hybrid_mana.txt
 generic/hybrid_mana_2.txt
+generic/hybrid_mana_3.txt
 generic/legendary.txt
 generic/persist.txt
 generic/wither.txt
@@ -16,6 +17,7 @@ afflict.txt
 anarchy.txt
 animate_dead.txt
 animate_dead2.txt
+ankh_of_mishra.txt
 ardakar_wastes.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
@@ -32,7 +34,9 @@ counsel_of_the_soratami.txt
 counterspell.txt
 counterspell2.txt
 creature_bond.txt
+dingus_egg.txt
 doomed_necromancer.txt
+dragon_fodder.txt
 drain_life.txt
 flare.txt
 force_of_nature.txt
@@ -45,6 +49,7 @@ goblin_balloon_brigade2.txt
 goblin_king.txt
 hymn_of_rebirth.txt
 keldon_warlord.txt
+kird_ape.txt
 kudzu.txt
 kudzu2.txt
 lifeforce.txt

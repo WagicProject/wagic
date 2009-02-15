@@ -1122,7 +1122,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1315: //Sedge Troll
     {
-      game->addObserver( NEW ASedgeTroll(_id, card));
+      TargetChooser * tc = NEW TypeTargetChooser("swamp",card);
+      game->addObserver(NEW AKirdApe(_id, card,tc,1,1));
       break;
     }
   case 1221: //Serendib Efreet
@@ -1281,7 +1282,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1302: //Kird Ape
     {
-      game->addObserver(NEW AKirdApe(_id, card));
+      TargetChooser * tc = NEW TypeTargetChooser("forest",card);
+      game->addObserver(NEW AKirdApe(_id, card,tc,1,2));
       break;
     }
   case 1309: //Orcish Artillery
@@ -1862,12 +1864,14 @@ void ListMaintainerAbility::Update(float dt){
 
 //Destroy the spell -> remove all targets
 int ListMaintainerAbility::destroy(){
-  map<MTGCardInstance *,bool>::iterator it;
+  map<MTGCardInstance *,bool>::iterator it = cards.begin();
 
-  for ( it=cards.begin() ; it != cards.end(); it++ ){
-    removed((*it).first);
+  while ( it!=cards.end()){
+    MTGCardInstance * card = (*it).first;
+    cards.erase(card);
+    removed(card);
+    it = cards.begin();
   }
-  cards.clear();
   return 1;
 }
 

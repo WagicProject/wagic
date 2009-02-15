@@ -1,0 +1,26 @@
+# bug : Dingus Egg can be put into play but does not deal damage when a player loses a land
+# Dingus Egg : (RV) 1105
+#text=Whenever a land is put into a graveyard from play, Dingus Egg deals 2 damage to that land's controller.
+# Will destroy 2 lands with stone rains
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1397,1105
+hand:1321,1321,1396
+manapool:{R}{2}{R}{2}
+[PLAYER2]
+[DO]
+1321
+1397
+1396
+1321
+1396
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1397,1321,1396,1321
+inplay:1105
+manapool:{0}
+life:16
+[PLAYER2]
+[END]

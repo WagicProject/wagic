@@ -53,7 +53,7 @@ class TestSuite{
   TestSuiteState initState;
   TestSuiteState endState;
   TestSuiteActions actions;
-  string files[128];
+  string files[1024];
   int nbfiles;
   int currentfile;
   void load(const char * filename);

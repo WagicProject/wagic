@@ -1,0 +1,18 @@
+#Testing Hybrid Mana
+# Spectral possession: text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 6.)  Put three 1/1 white Spirit creature tokens with flying into play.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:152070
+manapool:{R}{R}{G}{G}{W}{W}
+[PLAYER2]
+[DO]
+152070
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:152070
+inplay:-152070,-152070,-152070
+manapool:{0}
+[PLAYER2]
+[END]

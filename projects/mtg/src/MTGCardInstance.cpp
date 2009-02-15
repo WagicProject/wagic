@@ -52,6 +52,7 @@ void MTGCardInstance::initMTGCI(){
   owner = NULL;
   changedZoneRecently = 0;
   counters = NEW Counters(this);
+  previousZone = NULL;
 }
 
 
