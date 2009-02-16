@@ -50,7 +50,7 @@ abilities=vigilance
 [card]
 text=Destroy all lands.
 auto=destroy all(land)
-id=id=4373
+id=4373
 name=Armageddon
 rarity=R
 mana={3}{W}
@@ -558,7 +558,7 @@ type=Sorcery
 [/card]
 [card]
 text=Hurricane deals X damage to each creature with flying and each player.
-id=id=4301
+id=4301
 alias=1251
 name=Hurricane
 rarity=R
@@ -1218,7 +1218,7 @@ type=Sorcery
 [card]
 text=When Venerable Monk comes into play, you gain 2 life.
 auto=life:2
-id=129786
+id=4403
 name=Venerable Monk
 rarity=U
 color=White
