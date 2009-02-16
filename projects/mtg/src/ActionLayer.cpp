@@ -2,6 +2,7 @@
 #include "../include/ActionLayer.h"
 #include "../include/GameObserver.h"
 #include "../include/Targetable.h"
+#include "../include/WEvent.h"
 
 int ActionLayer::unstopableRenderInProgress(){
 
@@ -91,6 +92,23 @@ int ActionLayer::isWaitingForAnswer(){
     if(currentAction->waitingForAnswer) return 1;
   }
   return 0;
+}
+
+int ActionLayer::stillInUse(MTGCardInstance * card){
+  for (int i=0;i<mCount;i++){
+    ActionElement * currentAction = (ActionElement *)mObjects[i];
+    if(currentAction->stillInUse(card)) return 1;
+  }
+  return 0;
+}
+
+int ActionLayer::receiveEvent(WEvent * event){
+  int result = 0;
+  for (int i=0;i<mCount;i++){
+    ActionElement * currentAction = (ActionElement *)mObjects[i];
+    result += currentAction->receiveEvent(event);
+  }
+  return result;
 }
 
 int ActionLayer::isReactingToTargetClick(Targetable * card){

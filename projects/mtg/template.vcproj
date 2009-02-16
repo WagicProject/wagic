@@ -488,6 +488,10 @@
 				RelativePath=".\src\utils.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\WEvent.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Misc"
@@ -767,6 +771,10 @@
 			</File>
 			<File
 				RelativePath=".\include\utils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WEvent.h"
 				>
 			</File>
 		</Filter>

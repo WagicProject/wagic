@@ -51,21 +51,22 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   card->getManaCost()->doPayExtra();
   ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
   delete previousManaPool;
-  if (card->hasType("land")){
-    Spell * spell = NEW Spell(card);
-    player->game->putInZone(card,  player->game->hand, player->game->stack);
+  if (card->hasType("land")){   
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
+    Spell * spell = NEW Spell(copy);
     spell->resolve();
     delete spellCost;
     delete spell;
     player->canPutLandsIntoPlay--;
   }else{
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
     if (game->targetChooser){
-      game->mLayers->stackLayer()->addSpell(card,game->targetChooser->targets,game->targetChooser->cursor, spellCost);
+      game->mLayers->stackLayer()->addSpell(copy,game->targetChooser->targets,game->targetChooser->cursor, spellCost);
       SAFE_DELETE(game->targetChooser);
     }else{
-      game->mLayers->stackLayer()->addSpell(card,NULL,0, spellCost);
+      game->mLayers->stackLayer()->addSpell(copy,NULL,0, spellCost);
     }
-    player->game->putInZone(card,  player->game->hand, player->game->stack);
+    
 
   }
   return 1;

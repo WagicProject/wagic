@@ -38,8 +38,12 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
   void initMTGCI();
  public:
   bool isToken;
+  int stillInUse();
+  Player * lastController;
   MTGGameZone * getCurrentZone();
   MTGGameZone * previousZone;
+  MTGCardInstance * previous;
+  MTGCardInstance * next;
   int doDamageTest;
   int summoningSickness;
   // The recommended method to test for summoning Sickness !

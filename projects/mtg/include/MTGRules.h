@@ -6,7 +6,7 @@
 
 #include "../include/MTGAbility.h"
 #include "../include/Counters.h"
-
+#include "../include/WEvent.h"
 
 class MTGPutInPlayRule:public MTGAbility{
  public:
@@ -39,6 +39,49 @@ class MTGBlockRule:public MTGAbility{
 
 
 /* Persist Rule */
+class MTGPersistRule:public MTGAbility{
+ public:
+  MTGPersistRule(int _id):MTGAbility(_id,NULL){};
+
+  int receiveEvent(WEvent * event){
+OutputDebugString("Receive1\n");
+    if (event->type == WEvent::CHANGE_ZONE){
+OutputDebugString("Receive2\n");
+      WEventZoneChange * e = (WEventZoneChange *) event;
+      MTGCardInstance * card = e->card->previous;
+      if (card && card->basicAbilities[Constants::PERSIST] && !card->counters->hasCounter(-1,-1)){
+OutputDebugString("Receive3\n");
+        int ok = 0;
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+          if (e->from == p->game->inPlay) ok = 1;
+        }
+        if (!ok) return 0;
+OutputDebugString("Receive4\n");
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+          if (e->to == p->game->graveyard){
+OutputDebugString("Receive5\n");
+            //p->game->putInZone(card,  p->game->graveyard, card->owner->game->hand);
+	          MTGCardInstance * copy = p->game->putInZone(e->card,  p->game->graveyard, e->card->owner->game->stack);
+            Spell * spell = NEW Spell(copy);
+	          spell->resolve();
+            spell->source->counters->addCounter(-1,-1);
+            game->mLayers->playLayer()->forceUpdateCards();
+            delete spell;
+            return 1;
+          }
+        }
+      }
+    }
+    return 0;
+  }
+
+  int testDestroy(){return 0;}
+
+};
+
+/*
 class MTGPersistRule:public ListMaintainerAbility{
  public:
  MTGPersistRule(int _id):ListMaintainerAbility(_id){};
@@ -50,23 +93,29 @@ class MTGPersistRule:public ListMaintainerAbility{
       MTGCardInstance * card = ((*it).first);
       Player * p = card->controller();
       if (p->game->graveyard->hasCard(card)){
-#if defined (WIN32) || defined (LINUX)
-	OutputDebugString("persist passed test 1 !\n");
-#endif
-	p->game->putInZone(card,  p->game->graveyard, p->game->hand);
-	Spell * spell = NEW Spell(card);
-	p->game->putInZone(card,  p->game->hand, p->game->stack);
-	spell->resolve();
-	delete spell;
-#if defined (WIN32) || defined (LINUX)
-	OutputDebugString("persist passed test 2 !\n");
-#endif
-	card->counters->addCounter(-1,-1);
-#if defined (WIN32) || defined (LINUX)
-	OutputDebugString("persist passed test 3 !\n");
-#endif
+	      p->game->putInZone(card,  p->game->graveyard, p->game->hand);
+	      Spell * spell = NEW Spell(card);
+	      p->game->putInZone(card,  p->game->hand, p->game->stack);
+	      spell->resolve();
+	      delete spell;
+	      card->counters->addCounter(-1,-1);
       }
     }
+
+    // Dirtiest Code Ever, we remove the counters here 
+    
+    for (int i = 0; i < 2; i++){
+      Player * p = game->players[i];
+      MTGGameZone * zones[] = {p->game->graveyard, p->game->hand, p->game->library, p->game->removedFromGame};
+      for (int j = 0; j < 5; j++){
+	      MTGGameZone * zone = zones[j];
+        for (int k=0; k < zone->nb_cards; k++){
+          zone->cards[k]->counters->init();
+        }
+      }
+    }
+
+
     ListMaintainerAbility::Update(dt);
   }
 
@@ -87,7 +136,7 @@ class MTGPersistRule:public ListMaintainerAbility{
   int testDestroy(){return 0;}
 };
 
-
+*/
 
 /*
  * Rule 420.5e (Legend Rule)

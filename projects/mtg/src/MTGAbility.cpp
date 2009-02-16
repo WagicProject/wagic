@@ -51,8 +51,8 @@ int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
 
 
 int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
-  Spell * spell = NEW Spell(card);
-  p->game->putInZone(card,  zone, p->game->stack);
+  MTGCardInstance * copy = p->game->putInZone(card,  zone, p->game->stack);
+  Spell * spell = NEW Spell(copy);
   spell->resolve();
   delete spell;
   return 1;
@@ -595,6 +595,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
 void AbilityFactory::addAbilities(int _id, Spell * spell){
   MTGCardInstance * card = spell->source;
+
   if (spell->cursor==1) card->target =  spell->getNextCardTarget();
   _id = magicText(_id, spell);
   int putSourceInGraveyard = 0; //For spells that are not already InstantAbilities;
@@ -942,7 +943,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1143: //Animate Dead
     {
-      game->addObserver(NEW AAnimateDead(_id, card, card->target));
+      AAnimateDead * a = NEW AAnimateDead(_id, card, card->target);
+      game->addObserver(a);
+      card->target = ((MTGCardInstance * )a->target);
       break;
     }
   case 1148 : //Cursed lands
@@ -1379,8 +1382,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   case 1367: //Swords to Plowshares
     {
-      card->target->controller()->life+= card->target->power;
-      card->target->controller()->game->inPlay->removeCard(card->target);
+      Player * p = card->target->controller();
+      p->life+= card->target->power;
+      p->game->putInZone(card->target,p->game->inPlay,card->owner->game->removedFromGame);
       break;
     }
   case 1182: //Terror
@@ -1597,7 +1601,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   }
   if (putSourceInGraveyard == 1){
     MTGPlayerCards * zones = card->controller()->game;
-    zones->putInGraveyard(card);
+    card = zones->putInGraveyard(card);
   }
 }
 

@@ -37,6 +37,7 @@ class Counters{
   Counter *  hasCounter(const char * _name,int _power =  0, int _toughness = 0);
   Counter * hasCounter(int _power, int _toughness);
   Counter * getNext(Counter * previous = NULL);
+  int init();
 };
 
 

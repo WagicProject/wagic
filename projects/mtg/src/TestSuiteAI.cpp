@@ -235,11 +235,10 @@ void TestSuite::initGame(){
         OutputDebugString(buf);
 	      if (card && zone != p->game->library){
 	        if (zone == p->game->inPlay){
-	          p->game->putInZone(card,  p->game->library, p->game->hand);
-	          Spell * spell = NEW Spell(card);
-	          p->game->putInZone(card,  p->game->hand, p->game->stack);
+	          MTGCardInstance * copy = p->game->putInZone(card,  p->game->library, p->game->stack);
+	          Spell * spell = NEW Spell(copy);          
 	          spell->resolve();
-	          if (!summoningSickness) card->summoningSickness = 0;
+	          if (!summoningSickness) p->game->inPlay->cards[k]->summoningSickness = 0;
 	          delete spell;
 	        }else{
 	          if (!p->game->library->hasCard(card)){

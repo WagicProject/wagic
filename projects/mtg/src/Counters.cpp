@@ -81,6 +81,16 @@ int Counters::addCounter(int _power, int _toughness){
   return addCounter("",_power, _toughness);
 }
 
+int Counters::init(){
+  for (int i = mCount-1; i >= 0; i--){
+    while (counters[i]->nb >= 1) {
+      counters[i]->removed();
+      counters[i]->nb--;
+    }
+  }
+  return 1;
+}
+
 int Counters::removeCounter(const char * _name,int _power, int _toughness){
   for (int i = 0; i < mCount; i++){
     if (counters[i]->sameAs(_name, _power,_toughness)){

@@ -13,6 +13,7 @@
 
 class GuiLayer;
 class Targetable;
+class WEvent;
 
 class ActionLayer: public GuiLayer, public JGuiListener{
  public:
@@ -22,12 +23,14 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   virtual void Update(float dt);
   int unstopableRenderInProgress();
   bool CheckUserInput(u32 key);
- ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL;};
+  ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL;};
   int isWaitingForAnswer();
   int isReactingToTargetClick(Targetable * card);
+  int receiveEvent(WEvent * event);
   int reactToTargetClick(Targetable * card);
   int isReactingToClick(MTGCardInstance  * card);
   int reactToClick(MTGCardInstance * card);
+  int stillInUse(MTGCardInstance * card);
   void setMenuObject(Targetable * object);
   void ButtonPressed(int controllerid, int controlid);
   void doReactTo(int menuIndex);

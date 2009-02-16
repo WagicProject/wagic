@@ -2,6 +2,7 @@
 #include "../include/MTGGameZones.h"
 #include "../include/Player.h"
 #include "../include/GameOptions.h"
+#include "../include/WEvent.h"
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -69,28 +70,32 @@ void MTGPlayerCards::showHand(){
 }
 
 
-void MTGPlayerCards::putInPlay(MTGCardInstance * card){
-  hand->removeCard(card);
-  stack->removeCard(card); //Which one is it ???
+MTGCardInstance * MTGPlayerCards::putInPlay(MTGCardInstance * card){
+  MTGCardInstance * copy = hand->removeCard(card);
+  if(!copy) copy = stack->removeCard(card); //Which one is it ???
 
-  inPlay->addCard(card);
-  card->summoningSickness = 1;
-  card->changedZoneRecently = 1.f;
+  inPlay->addCard(copy);
+  copy->summoningSickness = 1;
+  copy->changedZoneRecently = 1.f;
+  return copy;
 }
 
-void MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
+MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
+  MTGCardInstance * copy = NULL;
   if (inPlay->hasCard(card)){
-    putInZone(card,inPlay, graveyard);
+    copy = putInZone(card,inPlay, graveyard);
   }else if (stack->hasCard(card)){
-    putInZone(card,stack, graveyard);
+    copy = putInZone(card,stack, graveyard);
   }else{
-    putInZone(card,hand, graveyard);
+    copy = putInZone(card,hand, graveyard);
   }
+  return copy;
 
 }
 
-void MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
-  if (from->removeCard(card)){
+MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
+  MTGCardInstance * copy = NULL;
+  if (copy = from->removeCard(card)){
 
     if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
       if (to == graveyard){
@@ -106,14 +111,17 @@ void MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGa
       if (to != g->players[0]->game->inPlay && to != g->players[1]->game->inPlay){
         //Token leaves play: we destroy it
         //TODO DELETE Object
-        return;
+        return NULL;
       }
     }
     
-    to->addCard(card);
-    card->changedZoneRecently = 1.f;
-
-    card->reset();
+    to->addCard(copy);
+    copy->changedZoneRecently = 1.f;
+    GameObserver *g = GameObserver::GetInstance();
+    WEvent * e = NEW WEventZoneChange(copy, from, to);
+    g->mLayers->actionLayer()->receiveEvent(e);
+    delete e;
+    return copy;
   }
 }
 
@@ -147,6 +155,9 @@ MTGGameZone::~MTGGameZone(){
 }
 
 void MTGGameZone::setOwner(Player * player){
+  char buf[4096];
+  sprintf(buf, "Setting Owner : %p\n", player);
+OutputDebugString(buf);
   for (int i=0; i<nb_cards; i++) {
     cards[i]->owner = player;
   }
@@ -160,8 +171,15 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card){
     if (cards[i] == card){
       cards[i] = cards[nb_cards -1];
       nb_cards--;
-      card->previousZone = this;
-      return card;
+      if (card->isToken){ //TODO better than this ?
+        return card;
+      }
+      card->lastController = card->controller();
+      MTGCardInstance * copy = NEW MTGCardInstance(card->model,card->owner->game);
+      copy->previous = card;
+      card->next = copy;
+      copy->previousZone = this;
+      return copy;
     }
   }
   return NULL;
@@ -206,7 +224,7 @@ void MTGGameZone::shuffle(){
     int r = i + (rand() % (nb_cards-i)); // Random remaining position.
     MTGCardInstance * temp = cards[i]; cards[i] = cards[r]; cards[r] = temp;
   }
-  srand(time(0));  // initialize seed "randomly" TODO :improve
+  //srand(time(0));  // initialize seed "randomly" TODO :improve
 }
 
 

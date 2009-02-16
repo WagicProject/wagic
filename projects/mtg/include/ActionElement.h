@@ -16,6 +16,7 @@
 class MTGCardInstance;
 class Targetable;
 class TargetChooser;
+class WEvent;
 
 class ActionElement: public JGuiObject{
  protected:
@@ -39,6 +40,8 @@ class ActionElement: public JGuiObject{
   virtual int isReactingToTargetClick(Targetable * card);
   virtual int reactToTargetClick(Targetable * card);
   virtual int isReactingToClick(MTGCardInstance * card){return 0;};
+  virtual int stillInUse(MTGCardInstance * card){return 0;};
+  virtual int receiveEvent(WEvent * event){return 0;};
   virtual int reactToClick(MTGCardInstance * card){return 0;};
   virtual const char * getMenuText(){return "Ability";};
 };

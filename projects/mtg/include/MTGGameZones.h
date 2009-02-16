@@ -15,8 +15,9 @@ class Player;
 
 class MTGGameZone {
  protected:
-  Player * owner;
+  
  public:
+   Player * owner;
   //Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
   MTGCardInstance * cards[MTG_MAX_PLAYER_CARDS];
   map<MTGCardInstance *,int> cardsMap;
@@ -93,9 +94,9 @@ class MTGPlayerCards {
   void discardRandom(MTGGameZone * from);
   void drawFromLibrary();
   void showHand();
-  void putInGraveyard(MTGCardInstance * card);
-  void putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
-  void putInPlay(MTGCardInstance * card);
+  MTGCardInstance * putInGraveyard(MTGCardInstance * card);
+  MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
+  MTGCardInstance * putInPlay(MTGCardInstance * card);
   int isInPlay(MTGCardInstance * card);
 
 };

@@ -13,6 +13,7 @@ class ManaCost;
 class MTGGameZone;
 class Player;
 class AManaProducer;
+class WEvent;
 
 #include "ActionElement.h"
 #include <string>
@@ -33,9 +34,10 @@ using std::map;
 class MTGAbility: public ActionElement{
  protected:
   char menuText[25];
-  Damageable * target;
+ 
   GameObserver * game;
  public:
+  Damageable * target;
   MTGCardInstance * source;
   MTGAbility(int id, MTGCardInstance * card);
   MTGAbility(int id, MTGCardInstance * _source, Damageable * _target);
@@ -44,8 +46,10 @@ class MTGAbility: public ActionElement{
   virtual void Render(){};
   virtual int isReactingToClick(MTGCardInstance * card){return 0;};
   virtual int reactToClick(MTGCardInstance * card){return 0;};
+  virtual int receiveEvent(WEvent * event){return 0;};
   virtual void Update(float dt){};
   virtual int fireAbility();
+  virtual int stillInUse(MTGCardInstance * card){if (card==source) return 1; return 0;};
   virtual int resolve(){return 0;};
 
 

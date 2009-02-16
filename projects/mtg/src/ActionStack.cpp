@@ -86,7 +86,10 @@ Spell::~Spell(){
 int Spell::resolve(){
   GameObserver * game = GameObserver::GetInstance();
   //TODO Remove target if it's not targettable anymore
-  source->controller()->game->putInPlay(source);
+   while (source->next){
+    source = source->next;
+  }
+  source = source->controller()->game->putInPlay(source);
 
   //Play SFX
   if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){

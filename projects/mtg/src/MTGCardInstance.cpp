@@ -22,6 +22,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to): 
   attacker = 0;
   lifeOrig = life;
   belongs_to=_belongs_to;
+  owner = _belongs_to->library->owner;
+  lastController = owner;
   initAttackersDefensers();
   life=toughness;
   LOG("==Creating MTGCardInstance Successful==");
@@ -32,6 +34,7 @@ MTGCardInstance::~MTGCardInstance(){
   LOG("==Deleting MTGCardInstance==");
   SAFE_DELETE(blockers);
   SAFE_DELETE(counters);
+  SAFE_DELETE(previous);
   LOG("==Deleting MTGCardInstance Succesfull==");
 }
 void MTGCardInstance::initMTGCI(){
@@ -53,6 +56,9 @@ void MTGCardInstance::initMTGCI(){
   changedZoneRecently = 0;
   counters = NEW Counters(this);
   previousZone = NULL;
+  previous = NULL;
+  next = NULL;
+  lastController = NULL;
 }
 
 
@@ -164,7 +170,17 @@ int MTGCardInstance::cleanup(){
   life=toughness;
   GameObserver * game = GameObserver::GetInstance();
   if (!game || game->currentPlayer == controller()) summoningSickness = 0;
+  if (previous && !previous->stillInUse()){
+    SAFE_DELETE(previous);
+  }
   return 1;
+}
+
+int MTGCardInstance::stillInUse(){
+GameObserver * game = GameObserver::GetInstance();
+if (game->mLayers->actionLayer()->stillInUse(this)) return 1;
+if (!previous) return 0;
+return previous->stillInUse();
 }
 
 /* Summoning Sickness
@@ -184,9 +200,9 @@ int MTGCardInstance::hasSummoningSickness(){
 int MTGCardInstance::changeController(Player * newController){
   Player * originalOwner = controller();
   if (originalOwner  == newController) return 0;
-  originalOwner->game->inPlay->removeCard(this);
-  newController->game->inPlay->addCard(this);
-  summoningSickness = 1;
+  MTGCardInstance * copy = originalOwner->game->inPlay->removeCard(this);
+  newController->game->inPlay->addCard(copy);
+  //summoningSickness = 1;
   return 1;
 }
 
@@ -204,12 +220,12 @@ Player * MTGCardInstance::controller(){
   GameObserver * game = GameObserver::GetInstance();
   if (!game) return NULL;
   for (int i = 0; i < 2; i++){
-    if (game->players[i]->game->inPlay->hasCard(this)) return game->players[i];
-    if (game->players[i]->game->stack->hasCard(this)) return game->players[i];
-    if (game->players[i]->game->graveyard->hasCard(this)) return game->players[i];
-    if (game->players[i]->game->hand->hasCard(this)) return game->players[i];
+    if (game->players[i]->game->inPlay->hasCard(this)) return  game->players[i];
+    if (game->players[i]->game->stack->hasCard(this)) return  game->players[i];
+    if (game->players[i]->game->graveyard->hasCard(this)) return  game->players[i];
+    if (game->players[i]->game->hand->hasCard(this)) return  game->players[i];
   }
-  return NULL;
+  return lastController;
 }
 
 int MTGCardInstance::canAttack(){

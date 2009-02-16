@@ -10,6 +10,7 @@
 #include "CardGui.h"
 #include "GameOptions.h"
 #include "Token.h"
+#include "WEvent.h"
 
 #include <JGui.h>
 #include <hge/hgeparticle.h>
@@ -169,10 +170,11 @@ public:
     }
     for ( it=abilities.begin() ; it != abilities.end(); it++ ){
       myToken->basicAbilities[*it] = 1;
-    }  
+    }
+    source->controller()->game->stack->addCard(myToken);
     Spell * spell = NEW Spell(myToken);
 
-    source->controller()->game->stack->addCard(myToken);
+    
     spell->resolve();
     delete spell;
     return 1;
@@ -201,8 +203,9 @@ public:
         //inplay is a special zone !
         for (int i=0; i < 2; i++){
           if (destZone == game->players[i]->game->inPlay){
-              Spell * spell = NEW Spell(_target);
-              game->players[i]->game->putInZone(_target,  fromZone, game->players[i]->game->stack);
+              MTGCardInstance * copy = game->players[i]->game->putInZone(_target,  fromZone, game->players[i]->game->stack);
+              Spell * spell = NEW Spell(copy);
+              
               spell->resolve();
               delete spell;
               return 1;
@@ -1201,9 +1204,9 @@ class AAladdinsLamp: public TargetAbility{
   int fireAbility(){
     source->tapped = 1;
     MTGLibrary * library = game->currentlyActing()->game->library;
-    library->removeCard(tc->getNextCardTarget());
+    MTGCardInstance * card = library->removeCard(tc->getNextCardTarget());
     library->shuffleTopToBottom(nbcards - 1 );
-    library->addCard(tc->getNextCardTarget());
+    library->addCard(card);
     init = 0;
     return 1;
   }
@@ -1442,41 +1445,39 @@ class AConservator: public MTGAbility{
 
 
 //Creature bond
-class ACreatureBond:public TriggeredAbility{
+class ACreatureBond:public MTGAbility{
  public:
-  int mTriggered;
   int resolved;
- ACreatureBond(int _id, MTGCardInstance * _source, MTGCardInstance * _target):TriggeredAbility(_id,_source,_target){
-    mTriggered = 0;
+ ACreatureBond(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id,_source,_target){
     resolved = 0;
   }
 
-  int trigger(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    for (int i = 0; i < 2; i++){
-      if (!mTriggered && game->players[i]->game->graveyard->hasCard(_target)){
-        mTriggered = 1;
-        return 1;
+ int receiveEvent(WEvent * event){
+   MTGCardInstance * _target = (MTGCardInstance *) target;
+   if (event->type == WEvent::CHANGE_ZONE){
+      WEventZoneChange * e = (WEventZoneChange *) event;
+      MTGCardInstance * card = e->card->previous;
+      if (card == _target){
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+          if (e->to == p->game->graveyard){
+            game->mLayers->stackLayer()->addDamage(source,_target->controller(),_target->toughness);
+            return 1;
+          }
+        }
       }
-    }
+   }
     return 0;
-  }
+ }
 
-  int resolve(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    game->mLayers->stackLayer()->addDamage(source,_target->controller(),_target->toughness);
-    resolved = 1;
-    return 1;
-  }
-
-  int testDestroy(){
+ /* int testDestroy(){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     if(_target->controller()->game->graveyard->hasCard(_target) && !resolved){
       return 0;
     }else{
       return TriggeredAbility::testDestroy();
     }
-  }
+  }*/
 };
 
 //1105: Dingus Egg
@@ -1733,10 +1734,12 @@ class AAnimateDead:public MTGAbility{
     card->life = card->toughness;
     //Put the card in play again, with all its abilities !
     //AbilityFactory af;
-    Spell * spell = NEW Spell(card);
+    MTGCardInstance * copy = source->controller()->game->putInZone(card,  _target->controller()->game->graveyard, source->controller()->game->stack);
+    Spell * spell = NEW Spell(copy);
     //af.addAbilities(game->mLayers->actionLayer()->getMaxId(), spell);
-    source->controller()->game->putInZone(card,  _target->controller()->game->graveyard, source->controller()->game->stack);
+    
     spell->resolve();
+    target = spell->source;
     delete spell;
   }
 
@@ -1893,14 +1896,14 @@ class AKudzu: public TargetAbility{
 
   void Update(float dt){
     MTGCardInstance * _target = (MTGCardInstance *)target;
-    if (!_target->tapped){
+    if (_target && !_target->tapped){
       previouslyTapped = 0;
     }else if (!previouslyTapped){
 #if defined (WIN32) || defined (LINUX)
       OutputDebugString("Kudzu Strikes !\n");
 #endif
       MTGCardInstance * _target = (MTGCardInstance *)target;
-      _target->controller()->game->putInGraveyard(_target);
+      target = _target->controller()->game->putInGraveyard(_target);
       reactToClick(source); // ????
     }
     TargetAbility::Update(dt);
@@ -1922,7 +1925,7 @@ class AKudzu: public TargetAbility{
     target = tc->getNextCardTarget();
     source->target = (MTGCardInstance *) target;
     previouslyTapped = 0;
-    if (source->target->tapped) previouslyTapped = 1;
+    if (source->target && source->target->tapped) previouslyTapped = 1;
     return 1;
   }
 

@@ -156,26 +156,20 @@ void MTGGuiPlay::setTargettingCardPosition(CardGui * cardg, int player, int play
   return;
 }
 
-void MTGGuiPlay::updateCards(){
+void MTGGuiPlay::forceUpdateCards(){
   GameObserver * game = GameObserver::GetInstance();
   Player * player = game->players[0];
   int player0Mode =(game->currentPlayer == player);
   int nb_cards = player->game->inPlay->nb_cards;
-  MTGCardInstance * attackers[MAX_ATTACKERS];
-  for (int i = 0; i <MAX_ATTACKERS; i++){
-    attackers[i] = NULL;
-  }
-
-  offset = 6;
-
-  Player * opponent = game->players[1];
-  int opponent_cards = opponent ->game->inPlay->nb_cards;
-  if (mCount - offset != (nb_cards+opponent_cards) || game->currentPlayer != currentPlayer ){ //if the number of cards has changed, then an update occured (is this test engouh ?)
     resetObjects();
     AddPlayersGuiInfo();
     offset = mCount;
 
     bool hasFocus = player0Mode;
+  offset = 6;
+
+  Player * opponent = game->players[1];
+  int opponent_cards = opponent ->game->inPlay->nb_cards;
 
     for (int i = 0;i<nb_cards; i++){
       if (hasFocus) mCurr = mCount ;
@@ -192,6 +186,24 @@ void MTGGuiPlay::updateCards(){
     }
 
     currentPlayer = game->currentPlayer;
+}
+
+void MTGGuiPlay::updateCards(){
+  GameObserver * game = GameObserver::GetInstance();
+  Player * player = game->players[0];
+  int player0Mode =(game->currentPlayer == player);
+  int nb_cards = player->game->inPlay->nb_cards;
+  MTGCardInstance * attackers[MAX_ATTACKERS];
+  for (int i = 0; i <MAX_ATTACKERS; i++){
+    attackers[i] = NULL;
+  }
+
+  offset = 6;
+
+  Player * opponent = game->players[1];
+  int opponent_cards = opponent ->game->inPlay->nb_cards;
+  if (mCount - offset != (nb_cards+opponent_cards) || game->currentPlayer != currentPlayer ){ //if the number of cards has changed, then an update occured (is this test engouh ?)
+     forceUpdateCards();
   }
 
 
