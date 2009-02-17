@@ -864,18 +864,7 @@ power=2
 subtype=Shapeshifter
 toughness=1
 [/card]
-[card]
-text=Flying     Attacking creatures you control get +2/+0.
-abilities=flying
-id=154258
-name=Nobilis of War
-rarity=R
-type=Creature
-mana={RW}{RW}{RW}{RW}{RW}
-power=3
-subtype=Spirit Avatar
-toughness=4
-[/card]
+
 [card]
 text=Noggle Bandit can't be blocked except by creatures with defender.
 id=157286
@@ -1124,19 +1113,7 @@ rarity=U
 type=Sorcery
 mana={3}{G}{G}
 [/card]
-[card]
-text={1}, Sacrifice a Scarecrow: Draw a card.     {4}, {T}: Return target artifact creature card from your graveyard to play.
-auto={1}{S(scarecrow|myinplay)}:draw:1
-auto={4}{T}:moveTo(myinplay) target(artifact|mygraveyard)
-id=157979
-name=Scarecrone
-rarity=R
-type=Artifact Creature
-mana={3}
-power=1
-subtype=Scarecrow
-toughness=2
-[/card]
+
 [card]
 text=Enchant creature     As long as enchanted creature is red, it gets +1/+1 and has &quot;{RW}: This creature gets +1/+0 until end of turn.&quot;     As long as enchanted creature is white, it gets +1/+1 and has lifelink. (Whenever it deals damage, its controller gains that much life.)
 target=creature
@@ -1382,15 +1359,7 @@ power=*
 subtype=Elemental
 toughness=*
 [/card]
-[card]
-target=creature
-text=Remove target creature from the game.
-id=151083
-name=Unmake
-rarity=C
-type=Instant
-mana={WB}{WB}{WB}
-[/card]
+
 [card]
 text=Creatures your opponents control get -1/-0 until end of turn if {U} was spent to play Unnerving Assault, and creatures you control get +1/+0 until end of turn if {R} was spent to play it. (Do both if {U}{R} was spent.)
 id=157416

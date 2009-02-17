@@ -1,0 +1,21 @@
+#Testing That Ascendant Evincar gives +1/+1 to black creatures
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:106525,185142
+[PLAYER2]
+[DO]
+185142
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:106525,185142
+[PLAYER2]
+life:17
+[END]

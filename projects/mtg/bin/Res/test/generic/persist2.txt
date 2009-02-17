@@ -1,0 +1,65 @@
+#Testing Persist
+#bug : persist works strange, the creature gets -1/-1 after it is killed, then back to play
+#for the second time it be destroyed, it remain in a -1/-1 state even in the graveyard or back
+#to hand by raise dead
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand: 1303,129732
+manapool:{R}{R}
+[PLAYER2]
+inplay:152096,1375,1397,1396,1395,1391,1390
+hand:1174
+[DO]
+1303
+152096
+129732
+152096
+eot
+#untap 2
+next
+#upkeep 2
+next
+#draw2
+next
+#main2
+1375
+1174
+152096
+1390
+1391
+1395
+1396
+1397
+152096
+eot
+eot
+#untap 2
+next
+#upkeep 2
+next
+#draw2
+next
+#main2
+next
+#comba begins 2
+next
+#attackers
+152096
+next
+#blockers
+next
+#damages
+next
+#endofcombat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:18
+graveyard:1303,129732
+manapool:{0}
+[PLAYER2]
+inplay:1375,1397,1396,1395,1391,1390,152096
+graveyard:1174
+life:20
+[END]

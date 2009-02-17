@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/CardDescriptor.h"
+#include "../include/Subtypes.h"
 
 CardDescriptor::CardDescriptor(): MTGCardInstance(){
   init();
@@ -16,7 +17,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
   int found = 1;
   for (int i = 0; i< nb_types; i++){
     found = 0;
-    if (card->hasSubtype(types[i])){
+    if (card->hasSubtype(types[i]) || (card->name.compare(Subtypes::subtypesList->find(types[i])) == 0)){
       found = 1;
       break;
     }
@@ -31,6 +32,13 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
         break;
       }
     }
+    else if (colors[i] == -1){
+      found = 0;
+      if(!card->hasColor(i)){
+        found = 1;
+        break;
+      }
+    }
   }
   if (!found) return NULL;
   return card;
@@ -40,12 +48,14 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
   MTGCardInstance * match = card;
   for (int i = 0; i< nb_types; i++){
 
-    if (!card->hasSubtype(types[i])){
+    if (!card->hasSubtype(types[i]) && !(card->name.compare(Subtypes::subtypesList->find(types[i])) == 0)){
       match = NULL;
     }
   }
   for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
     if ((colors[i] == 1 && !card->hasColor(i))||(colors[i] == -1 && card->hasColor(i))){
+OutputDebugString ("Too bad for ");
+OutputDebugString(card->getName());
       match = NULL;
     }
   }

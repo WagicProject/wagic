@@ -9,6 +9,7 @@ generic/hybrid_mana_2.txt
 generic/hybrid_mana_3.txt
 generic/legendary.txt
 generic/persist.txt
+generic/persist2.txt
 generic/wither.txt
 ########################
 #Specific Cards
@@ -22,6 +23,7 @@ ankh_of_mishra.txt
 ardakar_wastes.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
+ascendant_evincar3.txt
 bottle_gnomes.txt
 boggart_arsonists.txt
 brass_man.txt
