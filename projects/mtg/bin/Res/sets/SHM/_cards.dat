@@ -696,6 +696,7 @@ toughness=3
 [card]
 text=Flash     Enchant creature     Enchanted creature gets -3/-0.
 abilities=flash
+target=creature
 auto=-3/0
 id=142053
 name=Torpor Dust

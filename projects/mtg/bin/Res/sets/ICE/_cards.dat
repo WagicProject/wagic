@@ -1181,6 +1181,7 @@ mana={1}{W}
 [card]
 text=Target creature gains flying until end of turn. Draw a card at the beginning of the next turn's upkeep.
 id=2541
+target=creature
 auto=:flying
 auto=@next upkeep:draw:1
 name=Updraft
@@ -1269,7 +1270,7 @@ toughness=3
 [card]
 text=If at any time you control no islands, bury Skeleton Ship.{T}: Put a -1/-1 counter on target creature.
 id=2737
-abilities=wither,islandhome
+abilities=islandhome
 name=Skeleton Ship
 rarity=R
 type=Creature 
