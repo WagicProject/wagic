@@ -19,7 +19,7 @@ id=4370
 name=Angelic Blessing
 rarity=C
 mana={2}{W}
-type=Instant
+type=Sorcery
 auto=3/3
 auto=flying
 [/card]

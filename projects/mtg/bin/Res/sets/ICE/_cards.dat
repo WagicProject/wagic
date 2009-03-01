@@ -910,7 +910,7 @@ rarity=C
 type=Creature 
 mana={G}
 power=1
-subtype=Elves
+subtype=Elf druid
 toughness=1
 [/card]
 [card]
