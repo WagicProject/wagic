@@ -12,6 +12,9 @@ ActionElement::ActionElement(int id):JGuiObject(id){
   tc = NULL;
 }
 
+ActionElement::~ActionElement(){
+  SAFE_DELETE(tc);
+}
 
 int ActionElement::getActivity(){
 

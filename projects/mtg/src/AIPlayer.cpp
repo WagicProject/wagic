@@ -4,8 +4,27 @@
 #include "../include/DamageResolverLayer.h"
 #include "../include/DamagerDamaged.h"
 #include "../include/AIStats.h"
+#include "../include/AllAbilities.h"
 
 const char * const MTG_LAND_TEXTS[] = {"artifact","forest","island","mountain","swamp","plains","other lands"};
+
+int AIAction::Act(){
+  GameObserver * g = GameObserver::GetInstance();
+  if (player){
+    g->cardClick(NULL, player);
+    return 1;
+  }
+  if (ability){
+    ability->reactToClick(click);
+    if (target) g->cardClick(target);
+    return 1;
+  }else if (click){ //Shouldn't be used, really...
+    g->cardClick(click);
+    if (target) g->cardClick(target);
+    return 1;
+  }
+  return 0;
+}
 
 AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file): Player(_deck, file){
   potentialMana = NEW ManaCost();
@@ -45,7 +64,7 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("tapping land for mana\n");
 #endif
-
+  if (!cost) return;
   ManaCost * diff = potentialMana->Diff(cost);
   GameObserver * gameObs = GameObserver::GetInstance();
   CardDescriptor cd;
@@ -64,7 +83,8 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
       }
     }
     if (doTap){
-      gameObs->cardClick(card);
+      AIAction * a = NEW AIAction(card);
+      clickstream.push(a);
     }
   }
 
@@ -101,22 +121,140 @@ ManaCost * AIPlayer::getPotentialMana(){
 }
 
 
-//Default AI does not interrupt
-int AIPlayer::checkInterrupt(){
-  GameObserver * gameObs = GameObserver::GetInstance();
-  if (gameObs->mLayers->stackLayer()->askIfWishesToInterrupt == this){
-    gameObs->mLayers->stackLayer()->cancelInterruptOffer();
+int AIAction::getEfficiency(){
+  //TODO add multiplier according to what the player wants
+  if (efficiency != -1) return efficiency;
+  if (!ability) return 0;
+  GameObserver * g = GameObserver::GetInstance();
+  ActionStack * s = g->mLayers->stackLayer();
+  Player * p = g->currentlyActing();
+  if (s->has(ability)) return 0;
+  switch (ability->aType){
+    case MTGAbility::DAMAGER:
+      {
+        ADamager * a = (ADamager *) ability;
+        if ( p == target->controller()){
+          efficiency = 0;
+        }else if (a->damage >= target->toughness){
+          efficiency = 100;
+        }else if (target->toughness){
+          efficiency = (100 * a->damage) / target->toughness;
+        }else{
+          efficiency = 0;
+        }
+        break;
+      }
+    case MTGAbility::STANDARD_REGENERATE:
+      {
+        MTGCardInstance * _target = (MTGCardInstance *)(ability->target);
+        PutInGraveyard * action = ((PutInGraveyard *) g->mLayers->stackLayer()->getNext(NULL,ACTION_PUTINGRAVEYARD,NOT_RESOLVED));
+        int i = 0;
+        while(action){
+          i++;
+          if (action->card == _target){
+	          efficiency = 95;
+            action = NULL;
+          }else{
+            action = ((PutInGraveyard *) g->mLayers->stackLayer()->getNext(action,ACTION_PUTINGRAVEYARD,NOT_RESOLVED));
+          }
+        }
+        char buf[4096];
+        sprintf(buf,"Graveyard : %i\n", i);
+        OutputDebugString(buf);
+        if (efficiency == -1) efficiency = 0;
+        break;
+      }
+    case MTGAbility::MANA_PRODUCER: //can't use mana producers right now :/
+      efficiency = 0;
+      break;
+    default:
+      if (target){
+        efficiency = rand() % 5; //Small percentage of chance for other abilities
+      }else{
+        efficiency = rand() % 10;
+      }
+      break;
+  }
+  return efficiency;
+}
+
+
+
+
+int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAction *, int, CmpAbilities> * ranking){
+  if (!a->tc){
+    AIAction * as = NEW AIAction(a,c,NULL);
+    (*ranking)[as] = 1;
     return 1;
+  }
+  GameObserver * g = GameObserver::GetInstance();
+  for (int i = 0; i < 2; i++){
+    Player * p = g->players[i];
+    MTGGameZone * playerZones[] = {p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay};
+    for (int j = 0; j < 4; j++){
+      MTGGameZone * zone = playerZones[j];
+      for (int k=0; k < zone->nb_cards; k++){
+        MTGCardInstance * t = zone->cards[k];
+        if (a->tc->canTarget(t)){
+
+          AIAction * as = NEW AIAction(a,c,t);
+          (*ranking)[as] = 1;
+        }
+      }
+    }
+  }
+  return 1;
+}
+
+int AIPlayer::selectAbility(){
+  map<AIAction *, int,CmpAbilities>ranking;
+  list<int>::iterator it;
+  ManaCost * pMana = getPotentialMana();
+  GameObserver * g = GameObserver::GetInstance();
+  for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++){ //0 is not a mtgability...hackish
+    //Make sure we can use the ability
+    MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
+    for (int j=0; j < game->inPlay->nb_cards; j++){
+      MTGCardInstance * card =  game->inPlay->cards[j];
+      if (a->isReactingToClick(card,pMana)){
+        createAbilityTargets(a, card, &ranking);
+      }
+    }
+  }
+
+  if (ranking.size()){
+    OutputDebugString("We have a winner\n");
+    AIAction * a = ranking.begin()->first;
+    int chance = 1 + rand() % 100;
+    if (a->getEfficiency() < chance){
+      a = NULL;
+    }else{
+OutputDebugString("We REALLY have a winner\n");
+      tapLandsForMana(pMana, a->ability->cost);
+      clickstream.push(a);
+    }
+    map<AIAction *, int, CmpAbilities>::iterator it2;
+    for (it2 = ranking.begin(); it2!=ranking.end(); it2++){
+      if (a != it2->first) delete(it2->first);
+    }
+  }
+  return 1;    
+}
+  
+
+
+int AIPlayer::interruptIfICan(){
+  GameObserver * g = GameObserver::GetInstance();
+
+  if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
+      g->mLayers->stackLayer()->setIsInterrupting(this);
+      return 1;
   }
   return 0;
 }
 
 int AIPlayer::effectBadOrGood(MTGCardInstance * card){
   int id = card->getMTGId();
-  switch (id){
-  default:
-    break;
-  }
   AbilityFactory * af = NEW AbilityFactory();
   int autoGuess = af->magicText(id,NULL,card);
   delete af;
@@ -182,14 +320,14 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
     case TARGET_CARD:
       {
 	MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
-	gameObs->cardClick(card);
+	clickstream.push(NEW AIAction(card));
 	return 1;
 	break;
       }
     case TARGET_PLAYER:
       {
 	Player * player = ((Player *) potentialTargets[i]);
-	gameObs->cardClick(NULL, player);
+	clickstream.push(NEW AIAction(player));
 	return 1;
 	break;
       }
@@ -236,7 +374,9 @@ int AIPlayer::chooseAttackers(){
     cd.setType("creature");
     MTGCardInstance * card = NULL;
     while((card = cd.nextmatch(game->inPlay, card))){
-      GameObserver::GetInstance()->cardClick(card);
+      GameObserver * g = GameObserver::GetInstance();
+      g->cardClick(card);
+      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
     }
   }
   return 1;
@@ -270,7 +410,9 @@ int AIPlayer::chooseBlockers(){
 	  opponentsToughness[attacker]-= card->power;
 	  set = 1;
 	}else{
-	  GameObserver::GetInstance()->cardClick(card);
+	  GameObserver * g = GameObserver::GetInstance();
+      g->cardClick(card);
+      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
 	}
       }
     }
@@ -278,13 +420,19 @@ int AIPlayer::chooseBlockers(){
   card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
     if (card->defenser && opponentsToughness[card->defenser] > 0){
-      while (card->defenser) GameObserver::GetInstance()->cardClick(card);
+      while (card->defenser){
+        GameObserver * g = GameObserver::GetInstance();
+        g->cardClick(card);
+        if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
+      }
     }
   }
   card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
     if(!card->defenser){
-      GameObserver::GetInstance()->cardClick(card);
+      GameObserver * g = GameObserver::GetInstance();
+      g->cardClick(card);
+      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
       int set = 0;
       while(!set){
 	if (!card->defenser){
@@ -292,7 +440,9 @@ int AIPlayer::chooseBlockers(){
 	}else{
 	  MTGCardInstance * attacker = card->defenser;
 	  if (opponentsToughness[attacker] <= 0 || (card->toughness <= card->defenser->power && opponentForce*2 <life)  || card->defenser->nbOpponents()>1){
-	    GameObserver::GetInstance()->cardClick(card);
+	    GameObserver * g = GameObserver::GetInstance();
+      g->cardClick(card);
+      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
 	  }else{
 	    set = 1;
 	  }
@@ -322,19 +472,19 @@ int AIPlayer::combatDamages(){
 #endif
       DamagerDamaged * current = (DamagerDamaged *) drl->mObjects[i];
       if (current->damageSelecter == this){
-	result = 1;
-	DamagerDamaged * canardEmissaire = NULL;
-	for (int j = 0; j < drl->mCount; j++){
-	  DamagerDamaged * opponent = (DamagerDamaged *) drl->mObjects[j];
-	  if (drl->isOpponent(current, opponent)){
-	    if (!canardEmissaire) canardEmissaire = opponent;
-	    int over = opponent->hasLethalDamage();
-	    while(!over){
-	      if(!current->dealOneDamage(opponent)){
-		over = 1;
-	      }else{
-		over =  opponent->hasLethalDamage();
-	      }
+	      result = 1;
+	      DamagerDamaged * canardEmissaire = NULL;
+	      for (int j = 0; j < drl->mCount; j++){
+	        DamagerDamaged * opponent = (DamagerDamaged *) drl->mObjects[j];
+	        if (drl->isOpponent(current, opponent)){
+	          if (!canardEmissaire) canardEmissaire = opponent;
+	            int over = opponent->hasLethalDamage();
+	            while(!over){
+	              if(!current->dealOneDamage(opponent)){
+		              over = 1;
+	              }else{
+		              over =  opponent->hasLethalDamage();
+	          }
 #if defined (WIN32) || defined (LINUX)
 	      char buf[4096];
 	      sprintf(buf, "==========\n%s deals %i damages to %s\n=============\n", current->card->getName(), 1, opponent->card->getName());
@@ -455,9 +605,127 @@ AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, char * avatarFil
 }
 
 void AIPlayerBaka::initTimer(){
-  timer = 0.3;
+  timer = 0.1;
 }
 
+int AIPlayerBaka::computeActions(){
+  GameObserver * g = GameObserver::GetInstance();
+  Player * p = g->currentPlayer;
+  if (!(g->currentlyActing() == this)) return 0;
+  if (chooseTarget()) return 1;
+  int currentGamePhase = g->getCurrentGamePhase();
+  if (g->isInterrupting == this){ // interrupting
+    selectAbility();
+    return 1;
+  }else if (p == this){ //standard actions
+    CardDescriptor cd;
+    MTGCardInstance * card = NULL;
+    switch(currentGamePhase){
+    case Constants::MTG_PHASE_FIRSTMAIN:
+    case Constants::MTG_PHASE_SECONDMAIN:
+      if (canPutLandsIntoPlay){
+	      //Attempt to put land into play
+	      cd.init();
+	      cd.setColor(Constants::MTG_COLOR_LAND);
+	      card = cd.match(game->hand);
+	      if (card){
+          AIAction * a = NEW AIAction(card);
+	        clickstream.push(a);
+          return 1;
+	      }
+      }
+
+	    //No mana, try to get some
+	    getPotentialMana();
+	    if (potentialMana->getConvertedCost() > 0){
+
+
+	      //look for the most expensive creature we can afford
+	      nextCardToPlay = FindCardToPlay(potentialMana, "creature");
+	      //Let's Try an enchantment maybe ?
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "enchantment");
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "artifact");
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "instant");
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "sorcery");
+	      if (nextCardToPlay){
+#if defined (WIN32) || defined (LINUX)
+          char buffe[4096];
+	        sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName());
+	        OutputDebugString(buffe);
+#endif
+
+	        tapLandsForMana(potentialMana,nextCardToPlay->getManaCost());
+          AIAction * a = NEW AIAction(nextCardToPlay);
+	        clickstream.push(a);
+          return 1;
+        }else{
+          selectAbility();
+        }
+      }else{
+        selectAbility();
+      }
+      break;
+    case Constants::MTG_PHASE_COMBATATTACKERS:
+      chooseAttackers();
+      break;
+    default:
+      selectAbility();
+      break;
+    }
+  }else{
+    switch(currentGamePhase){
+    case Constants::MTG_PHASE_COMBATBLOCKERS:
+      chooseBlockers();
+      break;
+    default:
+      break;
+    }
+    return 1;
+  }
+};
+
+int AIPlayerBaka::Act(float dt){
+  GameObserver * g = GameObserver::GetInstance();
+  int currentGamePhase = g->getCurrentGamePhase();
+
+  if (currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentGamePhase != oldGamePhase){
+    if (getStats()) getStats()->updateStats();
+  }
+  oldGamePhase = currentGamePhase;
+
+  timer-= dt;
+  if (AManaProducer::currentlyTapping || timer>0){
+    return 0;
+  }
+  initTimer();
+  if (combatDamages()){
+    OutputDebugString("Damages and NOTHING ELSE\n");
+    return 0;
+  }
+  interruptIfICan();
+  if (!(g->currentlyActing() == this)){
+    OutputDebugString("Cannot interrupt\n");
+    return 0;
+  }
+  if (!clickstream.empty()){
+    AIAction * action = clickstream.front();
+    action->Act();
+    SAFE_DELETE(action);
+    clickstream.pop();
+  }
+
+  if (clickstream.empty()) computeActions();
+  if (clickstream.empty()){
+    if (g->isInterrupting == this){
+      g->mLayers->stackLayer()->cancelInterruptOffer(); //endOfInterruption();
+    }else{
+      g->userRequestNextGamePhase();
+    }
+  }
+  return 1;
+};
+
+/*
 int AIPlayerBaka::Act(float dt){
   GameObserver * gameObs = GameObserver::GetInstance();
   int currentGamePhase = gameObs->getCurrentGamePhase();
@@ -472,13 +740,16 @@ int AIPlayerBaka::Act(float dt){
 
   oldGamePhase = currentGamePhase;
 
-  if (checkInterrupt()) return 0;
 
+  //if (checkInterrupt()) return 0;
+  
   timer-= dt;
-  if (timer>0){
+  if (AManaProducer::currentlyTapping || timer>0){
     return 0;
   }
   initTimer();
+  checkInterrupt();
+  if (currentAbility) return (useAbility());
   if (combatDamages()) return 0;
   if (chooseTarget()) return 0;
 
@@ -575,3 +846,4 @@ int AIPlayerBaka::Act(float dt){
   }
   return 1;
 }
+*/

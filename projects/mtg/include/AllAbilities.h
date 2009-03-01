@@ -396,7 +396,7 @@ class ASpellCastLife:public MTGAbility{
     trigger.setColor(color);
   }
 
-  int isReactingToClick(MTGCardInstance *  _card){
+  int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL){
     if (_card == source && game->currentlyActing()->game->inPlay->hasCard(source)){
       if (game->currentlyActing()->getManaPool()->canAfford(cost)){
 	Interruptible * laststackitem = game->mLayers->stackLayer()->_(-1);
@@ -430,7 +430,7 @@ class AUnBlocker:public MTGAbility{
   }
 
 
-  int isReactingToClick(MTGCardInstance *  _card){
+  int isReactingToClick(MTGCardInstance *  _card,ManaCost * mana = NULL){
     if (_card == target && game->currentlyActing()->game->inPlay->hasCard(source) && (MTGCardInstance *) _card->isTapped()){
       if (game->currentlyActing()->getManaPool()->canAfford(cost)){
 	return 1;
@@ -462,10 +462,10 @@ class AUntaperOnceDuringTurn:public AUnBlocker{
     AUnBlocker::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (onlyPlayerTurn && game->currentPlayer!=source->controller()) return 0;
     if (untappedThisTurn) return 0;
-    return AUnBlocker::isReactingToClick(card);
+    return AUnBlocker::isReactingToClick(card,mana);
   }
 
   int reactToClick(MTGCardInstance * card){
@@ -578,8 +578,8 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
     return resolve();
   }
 
-  int isReactingToClick(MTGCardInstance * card){
-    if (!ActivatedAbility::isReactingToClick(card)) return 0;
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
     return (!maxcounters || (counters < maxcounters));
   }
 
@@ -694,6 +694,7 @@ class AStandardRegenerate:public ActivatedAbility{
  public:
  AStandardRegenerate(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost):ActivatedAbility(_id,_source,_cost,0,0){
     target = _target;
+    aType = MTGAbility::STANDARD_REGENERATE;
   }
 
   int resolve(){
@@ -933,6 +934,7 @@ class ADamager:public TargetAbility{
   int damage;
  ADamager(int id, MTGCardInstance * card, ManaCost * _cost, int _damage, TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(id,card, _tc, _cost,0,_tap),damage(_damage){
     if (!tc) tc = NEW DamageableTargetChooser(card);
+    aType = MTGAbility::DAMAGER;
   }
   int resolve(){
     Damageable * _target = tc->getNextDamageableTarget();
@@ -1271,7 +1273,7 @@ class AArmageddonClock:public MTGAbility{
       }
     }
   }
-  int isReactingToClick(MTGCardInstance *   _card){
+  int isReactingToClick(MTGCardInstance *   _card, ManaCost * mana = NULL){
     if (counters > 0 && _card == source && currentPhase == Constants::MTG_PHASE_UPKEEP){
       if (game->currentlyActing()->getManaPool()->canAfford( & cost)){
 	return 1;
@@ -1357,7 +1359,7 @@ class AClockworkBeast:public MTGAbility{
       }
     }
   }
-  int isReactingToClick(MTGCardInstance *  _card){
+  int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL){
     if (counters < 7  && _card == source && currentPhase == Constants::MTG_PHASE_UPKEEP && game->currentPlayer->game->inPlay->hasCard(source)){
       if (game->currentlyActing()->getManaPool()->canAfford( & cost)){
 	return 1;
@@ -1423,7 +1425,7 @@ class AConservator: public MTGAbility{
     alterDamage();
   }
 
-  int isReactingToClick(MTGCardInstance *  _card){
+  int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL){
     if ( _card == source && game->currentlyActing()->game->inPlay->hasCard(source) && !_card->isTapped()){
       if (game->currentlyActing()->getManaPool()->canAfford( & cost)){
 	return 1;
@@ -1560,8 +1562,8 @@ class AFarmstead:public ActivatedAbility{
     target = _target;
   }
 
-  int isReactingToClick(MTGCardInstance * card){
-    if (!ActivatedAbility::isReactingToClick(card)) return 0;
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
     if (currentPhase == Constants::MTG_PHASE_UPKEEP) return 1;
     return 0;
   }
@@ -1605,7 +1607,7 @@ class AGlassesOfUrza:public MTGAbility{
     }
 
   }
-  int isReactingToClick(MTGCardInstance *  card){
+  int isReactingToClick(MTGCardInstance *  card, ManaCost * mana = NULL){
     if ( card == source){
       if (game->currentlyActing()->game->isInPlay(card) && !source->isTapped()){
 	return 1;
@@ -1674,7 +1676,7 @@ class ALivingArtifact:public MTGAbility{
     }
   }
 
-  int isReactingtoclick(MTGCardInstance * card){
+  int isReactingtoclick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (currentPhase == Constants::MTG_PHASE_UPKEEP && card == source && game->currentPlayer == source->controller() && counters && !usedThisTurn){
       return 1;
     }
@@ -1709,9 +1711,9 @@ class ALordOfThePit: public TargetAbility{
     TargetAbility::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (currentPhase != Constants::MTG_PHASE_UPKEEP || paidThisTurn) return 0;
-    return TargetAbility::isReactingToClick(card);
+    return TargetAbility::isReactingToClick(card,mana);
   }
 
   int resolve(){
@@ -1867,9 +1869,9 @@ class AJandorsRing:public ActivatedAbility{
     cost->add(Constants::MTG_COLOR_ARTIFACT, 2);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (!source->controller()->game->hand->hasCard(source->controller()->game->library->lastCardDrawn)) return 0;
-    return ActivatedAbility::isReactingToClick(card);
+    return ActivatedAbility::isReactingToClick(card,mana);
   }
 
   int resolve(){
@@ -1909,7 +1911,7 @@ class AKudzu: public TargetAbility{
     TargetAbility::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     if (card == source && (!_target || !_target->isInPlay())){
 #if defined (WIN32) || defined (LINUX)
@@ -2073,7 +2075,7 @@ class APowerLeak:public TriggeredAbility{
     TriggeredAbility::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (damagesToDealThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && card==source && _target->controller() == game->currentPlayer){
       if (game->currentPlayer->getManaPool()->canAfford(& cost)) return 1;
@@ -2186,7 +2188,7 @@ class AScavengingGhoul:public MTGAbility{
     //TODO
   }
 
-  int isReactingToClick(MTGCardInstance *  _card){
+  int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL){
     if (counters > 0 && _card == source && game->currentlyActing()->game->inPlay->hasCard(source)){
       return 1;
     }
@@ -2391,8 +2393,8 @@ class AForceOfNature:public ActivatedAbility{
     ActivatedAbility::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
-    return (dealDamageThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card));
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    return (dealDamageThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card,mana));
   }
 
   int resolve(){
@@ -2509,7 +2511,7 @@ class AIslandSanctuary:public MTGAbility{
     }
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (card==source && game->currentPlayer == card->controller() && currentPhase == Constants::MTG_PHASE_DRAW){
       Interruptible * action = game->mLayers->stackLayer()->_(-1);
       if (action->type == ACTION_DRAW) return 1;
@@ -2582,10 +2584,10 @@ class ASoulNet:public ActivatedAbility{
     newDead = latest;
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     newDead = ((PutInGraveyard *) GameObserver::GetInstance()->mLayers->stackLayer()->getPrevious(NULL,ACTION_PUTINGRAVEYARD,RESOLVED_OK));
     if (newDead && newDead != latest && newDead->card->isACreature())
-      return ActivatedAbility::isReactingToClick(card);
+      return ActivatedAbility::isReactingToClick(card,mana);
     return 0;
   }
   int resolve(){
@@ -2624,8 +2626,8 @@ class AStasis:public ActivatedAbility{
     ActivatedAbility::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
-    return (!paidThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card));
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    return (!paidThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card,mana));
   }
 
   int resolve(){
@@ -2769,9 +2771,9 @@ class AMinionofLeshrac: public TargetAbility{
     TargetAbility::Update(dt);
   }
 
-  int isReactingToClick(MTGCardInstance * card){
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (currentPhase != Constants::MTG_PHASE_UPKEEP || paidThisTurn) return 0;
-    return TargetAbility::isReactingToClick(card);
+    return TargetAbility::isReactingToClick(card,mana);
   }
 
   int resolve(){

@@ -109,11 +109,6 @@ ManaCost::ManaCost(int _cost[], int nb_elems){
   init();
   int i;
   int total = nb_elems;
-#if defined (WIN32) || defined (LINUX)
-  char    buf[4096];
-  sprintf(buf, "Create New MAnaCost, total Colors : %i\n", total);
-  OutputDebugString(buf);
-#endif
   for (i = 0; i < total; i++){
     cost[_cost[i*2]] = _cost[i*2 + 1];
   }

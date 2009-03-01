@@ -122,7 +122,7 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=2
-abilites=swampwalk
+abilities=swampwalk
 [/card]
 [card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
@@ -271,12 +271,12 @@ type=Instant
 [card]
 text=Return target sorcery card from your graveyard to your hand.
 target=sorcery|myGraveyard
-alias=1263
+auto=moveTo(myHand)
 id=4259
 name=Deja vu
 rarity=C
 mana={2}{B}
-type=sorcery
+type=Sorcery
 [/card]
 [card]
 text=Flying
@@ -288,7 +288,7 @@ type=Creature
 subtype=Drake
 power=2
 toughness=2
-abilites=flying
+abilities=flying
 [/card]
 [card]
 text=Destroy all creatures and lands
@@ -824,7 +824,7 @@ type=Creature
 subtype=Illusion Warrior
 power=2
 toughness=2
-abilites=unblockable
+abilities=unblockable
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -872,7 +872,7 @@ type=Creature
 subtype=Illusion Warrior
 power=2
 toughness=2
-abilites=unblockable
+abilities=unblockable
 [/card]
 [card]
 text=Pyroclasm deals 2 damage to each creature.

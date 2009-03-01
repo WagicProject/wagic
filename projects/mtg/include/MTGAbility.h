@@ -37,14 +37,16 @@ class MTGAbility: public ActionElement{
  
   GameObserver * game;
  public:
+  ManaCost * cost;
   Damageable * target;
+  int aType;
   MTGCardInstance * source;
   MTGAbility(int id, MTGCardInstance * card);
   MTGAbility(int id, MTGCardInstance * _source, Damageable * _target);
   virtual int testDestroy();
   virtual ~MTGAbility();
   virtual void Render(){};
-  virtual int isReactingToClick(MTGCardInstance * card){return 0;};
+  virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){return 0;};
   virtual int reactToClick(MTGCardInstance * card){return 0;};
   virtual int receiveEvent(WEvent * event){return 0;};
   virtual void Update(float dt){};
@@ -52,7 +54,15 @@ class MTGAbility: public ActionElement{
   virtual int stillInUse(MTGCardInstance * card){if (card==source) return 1; return 0;};
   virtual int resolve(){return 0;};
 
+  /*Poor man's casting */
+  enum {
+    UNKNOWN = 0,
+    MANA_PRODUCER = 1,
+    MTG_ATTACK_RULE = 2,
+    DAMAGER = 3,
+    STANDARD_REGENERATE = 4,
 
+  };
 };
 
 
@@ -69,12 +79,11 @@ class TriggeredAbility:public MTGAbility{
 
 class ActivatedAbility:public MTGAbility{
  public:
-  ManaCost * cost;
   int playerturnonly;
   int needsTapping;
   ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
   virtual int reactToClick(MTGCardInstance * card);
-  virtual int isReactingToClick(MTGCardInstance * card);
+  virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);
   virtual int resolve() = 0;
   virtual ~ActivatedAbility();
@@ -230,7 +239,7 @@ class AManaProducer: public MTGAbility{
    AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1 );
    void Update(float dt);
    void Render();
-   int isReactingToClick(MTGCardInstance *  _card);
+   int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
   int resolve();
   int reactToClick(MTGCardInstance *  _card);
   const char * getMenuText();

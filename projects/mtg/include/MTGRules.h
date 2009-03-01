@@ -10,7 +10,7 @@
 
 class MTGPutInPlayRule:public MTGAbility{
  public:
-  int isReactingToClick(MTGCardInstance * card);
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
   int testDestroy();
   MTGPutInPlayRule(int _id);
@@ -20,7 +20,7 @@ class MTGPutInPlayRule:public MTGAbility{
 
 class MTGAttackRule:public MTGAbility{
  public:
-  int isReactingToClick(MTGCardInstance * card);
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
   int testDestroy();
   MTGAttackRule(int _id);
@@ -30,7 +30,7 @@ class MTGAttackRule:public MTGAbility{
 
 class MTGBlockRule:public MTGAbility{
  public:
-  int isReactingToClick(MTGCardInstance * card);
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
   int testDestroy();
   MTGBlockRule(int _id);

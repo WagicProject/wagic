@@ -14,6 +14,7 @@
 
 
 class MTGCardInstance;
+class ManaCost;
 class Targetable;
 class TargetChooser;
 class WEvent;
@@ -37,9 +38,10 @@ class ActionElement: public JGuiObject{
   virtual int destroy(){return 0;};
   virtual bool CheckUserInput(u32 key){return false;};
   ActionElement(int id);
+  virtual ~ActionElement();
   virtual int isReactingToTargetClick(Targetable * card);
   virtual int reactToTargetClick(Targetable * card);
-  virtual int isReactingToClick(MTGCardInstance * card){return 0;};
+  virtual int isReactingToClick(MTGCardInstance * card, ManaCost * man = NULL){return 0;};
   virtual int stillInUse(MTGCardInstance * card){return 0;};
   virtual int receiveEvent(WEvent * event){return 0;};
   virtual int reactToClick(MTGCardInstance * card){return 0;};

@@ -54,8 +54,6 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
   }
   for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
     if ((colors[i] == 1 && !card->hasColor(i))||(colors[i] == -1 && card->hasColor(i))){
-OutputDebugString ("Too bad for ");
-OutputDebugString(card->getName());
       match = NULL;
     }
   }

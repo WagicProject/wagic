@@ -5,7 +5,7 @@ MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
 
 }
 
-int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card){
+int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
   Player * player = game->currentlyActing();
   Player * currentPlayer = game->currentPlayer;
   LOG("CANPUTINPLAY- check if card belongs to current player\n");
@@ -80,7 +80,7 @@ int MTGPutInPlayRule::testDestroy(){
 MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){
 }
 
-int MTGAttackRule::isReactingToClick(MTGCardInstance * card){
+int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
   if (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && !card->isAttacker()){
     if (card->canAttack()) return 1;
   }
@@ -104,7 +104,7 @@ int MTGAttackRule::testDestroy(){
 MTGBlockRule::MTGBlockRule(int _id):MTGAbility(_id,NULL){
 }
 
-int MTGBlockRule::isReactingToClick(MTGCardInstance * card){
+int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
   if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting && card->controller() == game->opponent()){
     if (card->canBlock()) return 1;
   }

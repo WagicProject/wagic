@@ -1609,12 +1609,16 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * card):ActionElement(id){
   game = GameObserver::GetInstance();
   source = card;
   target = card;
+  aType = MTGAbility::UNKNOWN;
+  cost = NULL;
 }
 
 MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Damageable * _target ):ActionElement(id){
   game = GameObserver::GetInstance();
   source = _source;
   target = _target;
+  aType = MTGAbility::UNKNOWN;
+  cost = NULL;
 }
 
 MTGAbility::~MTGAbility(){
@@ -1644,16 +1648,21 @@ int MTGAbility::fireAbility(){
 
 //
 
-ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly,int tap):MTGAbility(id,card), cost(_cost), playerturnonly(_playerturnonly), needsTapping(tap){
+ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly,int tap):MTGAbility(id,card), playerturnonly(_playerturnonly), needsTapping(tap){
+  cost = _cost;
 }
 
 
-int ActivatedAbility::isReactingToClick(MTGCardInstance * card){
+int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
   Player * player = game->currentPlayer;
   if (!playerturnonly) player = game->currentlyActing();
   if (card == source && source->controller()==player && player==game->currentlyActing() && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness()))){
     if (!cost) return 1;
-    if (!player->getManaPool()->canAfford(cost)) return 0;
+    if (!mana) mana = player->getManaPool();
+    if (!mana->canAfford(cost)) return 0;
+    char buf[4096];
+    sprintf(buf, "Will react to Click : %i\n", aType);
+    OutputDebugString(buf);
     return 1;
   }
   return 0;
@@ -1751,11 +1760,9 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
       return 1;
     }
   }else{
-    if (card == source){
-      if (tc->targetsReadyCheck() == TARGET_OK || tc->targetsReadyCheck() == TARGET_OK_FULL){
-	      waitingForAnswer = 0;
-	      return ActivatedAbility::reactToClick(source);
-      }
+    if (card == source && (tc->targetsReadyCheck() == TARGET_OK || tc->targetsReadyCheck() == TARGET_OK_FULL)){
+      waitingForAnswer = 0;
+      return ActivatedAbility::reactToClick(source);
     }else{
       if (tc->toggleTarget(card) == TARGET_OK_FULL){
 	      
@@ -2008,7 +2015,9 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
 
 
    AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost , int doTap):MTGAbility(id, card), tap(doTap){
-    LOG("==Creating ManaProducer Object");
+   
+     LOG("==Creating ManaProducer Object");
+     aType=MTGAbility::MANA_PRODUCER;
     cost = _cost;
     output=_output;
     x1 = 10;
@@ -2072,10 +2081,11 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
 
   }
 
-  int AManaProducer::isReactingToClick(MTGCardInstance *  _card){
+  int AManaProducer::isReactingToClick(MTGCardInstance *  _card, ManaCost * mana){
     int result = 0;
+    if (!mana) mana = game->currentlyActing()->getManaPool();
     if (_card == source && (!tap || !source->isTapped())  && game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType("land") || !tap || !source->hasSummoningSickness()) ){
-      if (!cost || game->currentlyActing()->getManaPool()->canAfford(cost)) result =  1;
+      if (!cost || mana->canAfford(cost)) result =  1;
     }
     return result;
   }

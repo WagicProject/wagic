@@ -508,7 +508,7 @@ void ActionStack::Update(float dt){
 }
 
 void ActionStack::cancelInterruptOffer(int cancelMode){
-  if (askIfWishesToInterrupt == game->players[0]){
+  if (game->isInterrupting == game->players[0]){
     interruptDecision[0] = cancelMode;
   }else{
     interruptDecision[1] = cancelMode;
