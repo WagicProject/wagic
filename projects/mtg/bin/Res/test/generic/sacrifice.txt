@@ -1,0 +1,29 @@
+#Bug: Creatures with shroud(e.g. Inkwell Leviathan(CFX)) can't be sacrificed by others(e.g. Nantuko Husk(10E))
+# text=Sacrifice a creature: Nantuko Husk gets +2/+2 until end of turn. (Nantuko Husk 2/2)
+[INIT]
+COMBATBEGIN
+[PLAYER1]
+inplay:154081,129653
+[PLAYER2]
+[DO]
+129653
+154081
+next
+#attackers
+129653
+choice 0
+next
+#blockers
+next
+#damages
+next
+#endofcombat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+graveyard:154081
+inplay:129653
+[PLAYER2]
+life:16
+[END]

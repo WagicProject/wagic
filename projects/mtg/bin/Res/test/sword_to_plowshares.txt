@@ -1,0 +1,20 @@
+#Bug : removing a persisting creature from the game causes a crahs (swords to plowshares + creature with persist)
+# sword to plowshares : 1367
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1367
+manapool:{W}
+[PLAYER2]
+inplay:141935
+[DO]
+1367
+141935
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1367
+manapool:{0}
+[PLAYER2]
+life:23
+[END]

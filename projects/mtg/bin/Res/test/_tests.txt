@@ -10,6 +10,7 @@ generic/hybrid_mana_3.txt
 generic/legendary.txt
 generic/persist.txt
 generic/persist2.txt
+generic/sacrifice.txt
 generic/wither.txt
 ########################
 #Specific Cards
@@ -72,6 +73,7 @@ shivan_hellkite.txt
 shock.txt
 spark_elemental.txt
 stasis.txt
+sword_to_plowshares.txt
 terror.txt
 volcanic_island.txt
 white_knight1.txt
