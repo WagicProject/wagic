@@ -982,7 +982,6 @@ toughness=4
 [/card]
 [card]
 text=You gain 4 life.
-target=player
 auto=life:4
 id=4393
 name=Sacred Nectar
