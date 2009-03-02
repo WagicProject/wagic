@@ -35,7 +35,7 @@ class MTGGameZone {
   int hasType(const char * value);
   void setOwner(Player * player);
   MTGCardInstance * lastCardDrawn;
-  static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source);
+  static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
 };
 
 class MTGLibrary: public MTGGameZone {

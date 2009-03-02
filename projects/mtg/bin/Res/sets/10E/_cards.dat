@@ -847,6 +847,7 @@ toughness=1
 [card]
 text={1}, {T}: Tap target artifact, creature, or land.
 id=129601
+auto={1}{T}:tap target(artifact,creature,land)
 name=Icy Manipulator
 rarity=U
 color=Artifact

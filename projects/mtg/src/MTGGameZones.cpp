@@ -353,25 +353,34 @@ void MTGLibrary::shuffleTopToBottom(int nbcards){
   }
 }
 
-MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source){
+MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source,MTGCardInstance * target){
   Player * p = source->controller();
+  Player * p2 = target->controller();
   if(zoneName.compare("mygraveyard") == 0)return p->game->graveyard;
   if(zoneName.compare("opponentgraveyard") == 0) return p->opponent()->game->graveyard;
-  if(zoneName.compare("ownergraveyard") == 0) return source->owner->game->graveyard;
-  if(zoneName.compare("graveyard") == 0) return source->owner->game->graveyard;
+  if(zoneName.compare("targetownergraveyard") == 0) return target->owner->game->graveyard;
+  if(zoneName.compare("targetcontrollergraveyard") == 0) return p2->game->graveyard;
+  if(zoneName.compare("ownergraveyard") == 0) return target->owner->game->graveyard;
+  if(zoneName.compare("graveyard") == 0) return target->owner->game->graveyard;
 
   if(zoneName.compare("myinplay") == 0)return p->game->inPlay;
   if(zoneName.compare("opponentinplay") == 0) return p->opponent()->game->inPlay;
-  if(zoneName.compare("ownerinplay") == 0) return source->owner->game->inPlay;
+  if(zoneName.compare("targetownerinplay") == 0) return target->owner->game->inPlay;
+  if(zoneName.compare("targetcontrollerinplay") == 0) return p2->game->inPlay;
+  if(zoneName.compare("ownerinplay") == 0) return target->owner->game->inPlay;
 
   if(zoneName.compare("myhand") == 0)return p->game->hand;
   if(zoneName.compare("opponenthand") == 0) return p->opponent()->game->hand;
-  if(zoneName.compare("ownerhand") == 0) return source->owner->game->hand;
-  if(zoneName.compare("hand") == 0) return source->owner->game->hand;
+  if(zoneName.compare("targetcontrollerhand") == 0) return p2->game->hand;
+  if(zoneName.compare("targetownerhand") == 0) return target->owner->game->hand;
+  if(zoneName.compare("ownerhand") == 0) return target->owner->game->hand;
+  if(zoneName.compare("hand") == 0) return target->owner->game->hand;
 
   if(zoneName.compare("myremovedfromgame") == 0)return p->game->removedFromGame;
   if(zoneName.compare("opponentremovedfromgame") == 0) return p->opponent()->game->removedFromGame;
-  if(zoneName.compare("ownerremovedfromgame") == 0) return source->owner->game->removedFromGame;
-  if(zoneName.compare("removedfromgame") == 0) return source->owner->game->removedFromGame;
+  if(zoneName.compare("targetcontrollerremovedfromgame") == 0) return p2->game->removedFromGame;
+  if(zoneName.compare("targetownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
+  if(zoneName.compare("ownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
+  if(zoneName.compare("removedfromgame") == 0) return target->owner->game->removedFromGame;
   return NULL;
 }

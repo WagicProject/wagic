@@ -96,6 +96,7 @@ subtype=Aura
 [/card]
 [card]
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
+auto={s(artifact|myinplay)}:2/2
 id=1280
 name=Atog
 rarity=C
@@ -270,6 +271,7 @@ subtype=Aura
 [card]
 text=Untapped creatures you control get +0/+2.
 id=1334
+auto=lord(creature[-tapped]|myinplay) 0/2
 name=Castle
 rarity=U
 type=Enchantment
@@ -1485,6 +1487,7 @@ toughness=3
 text=Attacking creatures you control get +1/+0.
 id=1310
 name=Orcish Oriflamme
+auto=lord(creature[attacking]|myinplay)1/0
 rarity=U
 type=Enchantment
 mana={3}{R}
@@ -1656,6 +1659,7 @@ mana={W}
 [card]
 text=Return target creature card from your graveyard to your hand.
 target=creature|myGraveyard
+auto=moveTo(myHand)
 id=1174
 name=Raise Dead
 rarity=C
@@ -1703,6 +1707,7 @@ subtype=Aura
 [card]
 text=Return target card from your graveyard to your hand.
 target=*|myGraveyard
+auto=moveTo(myHand)
 id=1263
 name=Regrowth
 rarity=U
@@ -1712,6 +1717,7 @@ mana={1}{G}
 [card]
 text=Return target creature card from your graveyard to play.
 target=creature|myGraveyard
+auto=moveTo(myInPlay)
 id=1360
 name=Resurrection
 rarity=U
@@ -2052,6 +2058,7 @@ subtype=Mountain Forest
 [card]
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
 target=creature[-black;-artifact]
+auto=bury
 id=1182
 name=Terror
 rarity=C
@@ -2196,6 +2203,7 @@ subtype=Aura
 [card]
 text=Return target creature to its owner's hand.
 target=creature
+auto=moveTo(ownerHand)
 id=1229
 name=Unsummon
 rarity=C
@@ -2403,7 +2411,8 @@ subtype=Aura
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +0/+2 and has reach. (It can block creatures with flying.)
 target=creature
-auto=reach, :0/2
+auto=reach
+auto=0/2
 id=1278
 name=Web
 rarity=R

@@ -302,7 +302,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           }
         }else{
           MTGGameZone * fromZone = target->getCurrentZone();//this is technically incorrect. The initial zone should be as described in the targetchooser
-          MTGGameZone * destZone = MTGGameZone::stringToZone(szone, target);
+          MTGGameZone * destZone = MTGGameZone::stringToZone(szone, card, target);
           target->controller()->game->putInZone(target,fromZone,destZone);
         }
         result++;
@@ -489,7 +489,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,power,toughness));
         }else{
 	        if(tc){
-	          game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc));
+	          game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
 	        }else{
 	          if (!cost){
 	            if(card->hasType("enchantment")){
@@ -498,7 +498,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	              game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
 	            }
 	          }else{
-              OutputDebugString("NANTUKO OK\n");
 	            game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
 	          }
 	        }
@@ -1045,11 +1044,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
-  case 1174: //Raise Dead
-    {
-      MTGPlayerCards * zones = game->currentlyActing()->game;
-      zones->putInZone(card->target,zones->graveyard,zones->hand);
-    }
   case 1176: //Sacrifice
     {
       ASacrifice * ability = NEW ASacrifice(_id, card, card->target);
@@ -1088,15 +1082,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1200 : //Feedback
     {
       game->addObserver(NEW AWanderlust(_id, card, card->target));
-      break;
-    }
-  case 129601: //Icy Manipulator
-    {
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
-      TypeTargetChooser * tc = new TypeTargetChooser("artifact",card);
-      tc->addType("land");
-      tc->addType("creature");
-      game->addObserver(NEW ATapper(_id,card,NEW ManaCost(cost, 1),tc));
       break;
     }
 
@@ -1145,13 +1130,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW APowerToughnessModifierRegularCounter(_id, card, card->target, Constants::MTG_PHASE_UPKEEP, -1, -1));
       break;
     }
-  case 1229: //Unsummon
-    {
-      MTGPlayerCards * zones = card->target->controller()->game;
-      zones->putInZone(card->target,zones->inPlay,zones->hand);
-      break;
 
-    }
   case 1235: //Aspect of Wolf
     {
       game->addObserver(NEW AAspectOfWolf(_id, card, card->target));
@@ -1191,12 +1170,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AStandardRegenerate(_id,card,card->target,NEW ManaCost(cost,1)));
       break;
     }
-  case 1263: //Regrowth
-    {
-      MTGPlayerCards * zones = game->currentlyActing()->game;
-      zones->putInZone(card->target,zones->graveyard,zones->hand);
-      break;
-    }
+
   case 1266: //stream of life
     {
       int x = spell->cost->getConvertedCost() - 1; //TODO Improve that !
@@ -1227,17 +1201,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1278: //Web
-    {
-      game->addObserver(NEW APowerToughnessModifier(_id, card, card->target, 0,2));
-      game->addObserver(NEW ABasicAbilityModifier(_id + 1, card, card->target, Constants::REACH));
-      break;
-    }
-  case 1280: //Atog
-    {
-      game->addObserver(NEW AAtog(_id, card));
-      break;
-    }
+
   case 1285: //Dwarven Warriors{
     {
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
@@ -1294,11 +1258,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AOrcishArtillery(_id, card));
       break;
     }
-  case 1310: //Orcish Oriflame
-    {
-      game->addObserver(NEW AOrcishOriflame(_id, card));
-      break;
-    }
   case 1326: //Wheel of fortune
     {
       for (int i = 0; i < 2; i++){
@@ -1321,11 +1280,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1333: //Blue  Ward
     {
       game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_BLUE));
-      break;
-    }
-  case 1334: //Castle
-    {
-      game->addObserver(NEW ACastle(_id,card));
       break;
     }
   case 1238: //Cockatrice
@@ -1353,14 +1307,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_RED));
       break;
     }
-  case 1360: //Resurrection
-    {
-      Player * p = card->controller();
-      Player * p2 = card->target->controller();
-      AbilityFactory af;
-      af.putInPlayFromZone(card->target, p2->game->graveyard,  p);
-      break;
-    }
   case 1362: //Reverse polarity
     {
       ActionStack * as = game->mLayers->stackLayer();
@@ -1385,14 +1331,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       Player * p = card->target->controller();
       p->life+= card->target->power;
       p->game->putInZone(card->target,p->game->inPlay,card->owner->game->removedFromGame);
-      break;
-    }
-  case 1182: //Terror
-    {
-      if (card->target->hasColor(Constants::MTG_COLOR_BLACK) || card->target->hasSubtype("artifact")){
-      }else{
-	card->target->controller()->game->putInGraveyard(card->target);
-      }
       break;
     }
   case 1267: //Thicket Basilic

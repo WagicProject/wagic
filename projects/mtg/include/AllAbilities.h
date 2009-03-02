@@ -198,7 +198,7 @@ public:
       Player* p = _target->controller();
       if (p){
         MTGGameZone * fromZone = _target->getCurrentZone();
-        MTGGameZone * destZone = MTGGameZone::stringToZone(destinationZone, source);
+        MTGGameZone * destZone = MTGGameZone::stringToZone(destinationZone, source,_target);
 
         //inplay is a special zone !
         for (int i=0; i < 2; i++){
@@ -516,7 +516,7 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
   int nbTargets;
   int power, toughness;
 
- ATargetterPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, int _power, int _toughness,  ManaCost * _cost, TargetChooser * _tc = NULL):TargetAbility(_id,_source,_tc,_cost,0),power(_power),toughness(_toughness){
+ ATargetterPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, int _power, int _toughness,  ManaCost * _cost, TargetChooser * _tc = NULL, int doTap=1):TargetAbility(_id,_source,_tc,_cost,0,doTap),power(_power),toughness(_toughness){
     if (!tc) tc = NEW CreatureTargetChooser(_source);
     nbTargets = 0;
   }
@@ -1472,14 +1472,6 @@ class ACreatureBond:public MTGAbility{
     return 0;
  }
 
- /* int testDestroy(){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    if(_target->controller()->game->graveyard->hasCard(_target) && !resolved){
-      return 0;
-    }else{
-      return TriggeredAbility::testDestroy();
-    }
-  }*/
 };
 
 //1105: Dingus Egg
@@ -1556,20 +1548,31 @@ class AEbonyHorse:public TargetAbility{
 //1345 Farmstead
 class AFarmstead:public ActivatedAbility{
  public:
+ int usedThisTurn;
  AFarmstead(int _id, MTGCardInstance * source, MTGCardInstance * _target):ActivatedAbility(_id, source,0,1,0){
     int _cost[] = {Constants::MTG_COLOR_WHITE, 2};
     cost = NEW ManaCost(_cost,1);
     target = _target;
+    usedThisTurn = 0;
   }
+
+ void Update(float dt){
+   if (newPhase != currentPhase && newPhase != Constants::MTG_PHASE_UPKEEP){
+     usedThisTurn = 0;
+   }
+   ActivatedAbility::Update(dt);
+ }
 
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
-    if (currentPhase == Constants::MTG_PHASE_UPKEEP) return 1;
-    return 0;
+    if (currentPhase != Constants::MTG_PHASE_UPKEEP) return 0;
+    if (usedThisTurn) return 0;
+    return 1;
   }
 
   int resolve(){
     source->controller()->life++;
+    usedThisTurn = 1;
     return 1;
   }
 
@@ -2292,47 +2295,6 @@ class AWanderlust:public TriggeredAbility{
   }
 };
 
-//1280 Atog
-class AAtog:public TargetAbility{
- public:
-  Player * currentController;
-  int counters;
- AAtog(int _id, MTGCardInstance * _source):TargetAbility(_id, _source,NULL, NULL, 0,0){
-    currentController = source->controller();
-    MTGGameZone * zones[] = {currentController->game->inPlay};
-    tc = NEW TypeTargetChooser("artifact", zones, 1, source);
-    counters = 0;
-  }
-
-  void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
-      for (int i = 0; i < counters; i++){
-	source->power-=2;
-	source->addToToughness(-2);
-      }
-      counters = 0;
-    }
-    TargetAbility::Update(dt);
-    Player * newController = source->controller();
-    if (newController != currentController){
-      SAFE_DELETE(tc);
-      MTGGameZone * zones[] = {newController->game->inPlay};  //In case Atog's controller changes
-      tc = NEW TypeTargetChooser("artifact", zones, 1, source);
-      currentController = newController;
-    }
-  }
-
-  int resolve(){
-    tc->getNextCardTarget()->controller()->game->putInGraveyard(tc->getNextCardTarget());
-    source->power+=2;
-    source->addToToughness(2);
-    counters ++;
-    return 1;
-  }
-};
-
-
-
 
 //1284 Dragon Whelp
 class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
@@ -2442,52 +2404,6 @@ class AOrcishArtillery: public ADamager{
     return 1;
   }
 
-};
-
-//1310 Orcish Oriflame
-class AOrcishOriflame:public ListMaintainerAbility{
- public:
-  int color;
- AOrcishOriflame(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (source->controller() == game->currentPlayer && game->currentPlayer->game->inPlay->hasCard(card) && card->attacker) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    card->power += 1;
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    card->power -= 1;
-    return 1;
-  }
-
-};
-
-//1334 Castle
-class ACastle:public ListMaintainerAbility{
- public:
- ACastle(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (source->controller()->game->inPlay->hasCard(card) && card->isACreature() && !card->isAttacker() && !card->tapped) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    card->addToToughness(2);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    card->addToToughness(-2);
-    return 1;
-  }
 };
 
 

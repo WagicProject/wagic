@@ -1,0 +1,31 @@
+#Bug : icatian priest(10E) & spirit weaver(10E) have the same problem that their abilities become tap abilities and thus can be used once a turn and affected by summon sickness
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:132123,129624
+manapool:{W}{W}{W}{W}{W}{W}
+[PLAYER2]
+[DO]
+132123
+129624
+132123
+129624
+next
+#combat begins
+next
+#attackers
+129624
+next
+#blockers
+next
+#damages
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:132123,129624
+manapool:{0}
+[PLAYER2]
+life:14
+[END]
