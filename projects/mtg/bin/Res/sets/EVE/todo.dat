@@ -955,6 +955,7 @@ toughness=2
 [/card]
 [card]
 text=Overbeing of Myth's power and toughness are each equal to the number of cards in your hand.     At the beginning of your draw step, draw a card.
+auto=foreach(*|myhand) 1/1
 id=151151
 name=Overbeing of Myth
 rarity=R

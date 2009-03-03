@@ -697,17 +697,7 @@ subtype=Bolas
 toughness=5
 [/card]
 
-[card]
-text=As Nyxathid comes into play, choose an opponent.     Nyxathid gets -1/-1 for each card in the chosen player's hand.
-id=186616
-name=Nyxathid
-rarity=R
-type=Creature
-mana={1}{B}{B}
-power=7
-subtype=Elemental
-toughness=7
-[/card]
+
 
 [card]
 text=Whenever another creature with power 5 or greater comes into play under your control, you may return target creature card from your graveyard to your hand.
@@ -819,17 +809,7 @@ rarity=C
 type=Land
 [/card]
 
-[card]
-text=Salvage Slasher gets +1/+0 for each artifact card in your graveyard.
-id=179254
-name=Salvage Slasher
-rarity=C
-type=Artifact Creature
-mana={1}{B}
-power=1
-subtype=Human Rogue
-toughness=1
-[/card]
+
 [card]
 text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
 id=183025

@@ -202,6 +202,18 @@ subtype=Human Druid
 toughness=1
 [/card]
 [card]
+text=As Nyxathid comes into play, choose an opponent.     Nyxathid gets -1/-1 for each card in the chosen player's hand.
+auto=foreach(*|opponenthand) -1/-1
+id=186616
+name=Nyxathid
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=7
+subtype=Elemental
+toughness=7
+[/card]
+[card]
 text={1}{W}, {T}: You gain 5 life.     {1}{U}, {T}: Draw a card, then discard a card.     {1}{B}, {T}: Target creature gets -2/-2 until end of turn.     {1}{R}, {T}: Obelisk of Alara deals 3 damage to target player.     {1}{G}, {T}: Target creature gets +4/+4 until end of turn.
 auto={1}{W}{T}:life 5
 auto={1}{U}{T}:Draw:1
@@ -251,6 +263,18 @@ mana={2}{G}
 power=2
 subtype=Elf Archer
 toughness=3
+[/card]
+[card]
+text=Salvage Slasher gets +1/+0 for each artifact card in your graveyard.
+auto=foreach(artifact|mygraveyard) 1/0
+id=179254
+name=Salvage Slasher
+rarity=C
+type=Artifact Creature
+mana={1}{B}
+power=1
+subtype=Human Rogue
+toughness=1
 [/card]
 [card]
 text={W}, {T}: Tap target permanent.

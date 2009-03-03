@@ -176,6 +176,18 @@ subtype=Bird
 toughness=1
 [/card]
 [card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
+id=135267
+target=creature
+auto=foreach(forest|myinplay) 1/1
+name=Blanchwood Armor
+rarity=U
+color=Green
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+[/card]
+[card]
 text=Blaze deals X damage to target creature or player.
 target=creature,player
 alias=1291
@@ -1177,6 +1189,34 @@ subtype=Goblin
 toughness=1
 [/card]
 [card]
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Molimo, Maro-Sorcerer's power and toughness are  equal to the number of lands you control.
+abilities=trample, legendary
+auto=foreach(land|myinplay) 1/1 includeself
+id=106368
+name=Molimo, Maro-Sorcerer
+rarity=R
+color=Green
+type=Creature
+mana={4}{G}{G}{G}
+power=*
+subtype=Elemental
+toughness=*
+[/card]
+[card]
+text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards.     {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+auto={B}:regenerate
+auto=foreach(creature|graveyard) 1/1
+id=129648
+name=Mortivore
+rarity=R
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=*
+subtype=Lhurgoyf
+toughness=*
+[/card]
+[card]
 text={T}: Add {R} to your mana pool.
 auto={T}: Add {R}
 id=129652
@@ -1516,7 +1556,7 @@ subtype=Aura
 [card]
 text=Relentless Rats gets +1/+1 for each other creature in play named Relentless Rats.     A deck can have any number of cards named Relentless Rats.
 id=135236
-auto=foreach(name:Relentless Rats)
+auto=foreach(relentless rats) 1/1
 name=Relentless Rats
 rarity=U
 color=Black
@@ -1646,6 +1686,19 @@ mana={2}{B}
 power=2
 subtype=Zombie
 toughness=2
+[/card]
+[card]
+text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
+id=130504
+auto=foreach(creature|myinplay) 1/1 includeself
+name=Scion of the Wild
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=*
+subtype=Avatar
+toughness=*
 [/card]
 [card]
 text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
@@ -2219,6 +2272,19 @@ name=Yavimaya Coast
 rarity=R
 color=Land
 type=Land
+[/card]
+[card]
+text=Yavimaya Enchantress gets +1/+1 for each enchantment in play.
+auto=foreach(enchantment) 1/1 includeself
+id=130515
+name=Yavimaya Enchantress
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Druid
+toughness=2
 [/card]
 [card]
 text=First strike (This creature deals combat damage before creatures without first strike.)

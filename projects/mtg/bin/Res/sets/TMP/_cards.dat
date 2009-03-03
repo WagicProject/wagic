@@ -724,6 +724,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Mogg Squad gets -1/-1 for each other creature in play.
+auto=foreach(creature) -1/-1
+id=4834
+name=Mogg Squad
+rarity=U
+type=Creature
+mana={1}{R}
+power=3
+subtype=Goblin
+toughness=3
+[/card]
+[card]
 text={T}: Add {R} to your mana pool.
 auto={T}: Add {R}
 id=4945

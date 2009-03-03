@@ -777,7 +777,7 @@ class AExalted:public ListMaintainerAbility{
 
 
   int canBeInList(MTGCardInstance * card){
-    if (card->isAttacker() && game->currentPlayer == source->controller()) return 1;
+    if (card->isAttacker() && game->currentPlayer == source->controller() && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -819,7 +819,7 @@ class AExaltedAbility:public ListMaintainerAbility{
 
 
   int canBeInList(MTGCardInstance * card){
-    if (card->isAttacker() && game->currentPlayer == source->controller()) return 1;
+    if (card->isAttacker() && game->currentPlayer == source->controller() && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -856,7 +856,7 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
 
 
   int canBeInList(MTGCardInstance * card){
-    if (card->hasType(type)) return 1;
+    if (card->hasType(type) && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -917,8 +917,8 @@ class ALord:public ListMaintainerAbility{
     if (ability != -1 && card->basicAbilities[ability]) card->basicAbilities[ability] -=1;
     if (regenCost){
       if(regenerations.find(card) != regenerations.end()){
-	if (game->isInPlay(card)) game->removeObserver(regenerations[card]);
-	regenerations.erase(card);
+	      if (game->isInPlay(card)) game->removeObserver(regenerations[card]);
+	      regenerations.erase(card);
       }
     }
     return 1;
@@ -926,6 +926,42 @@ class ALord:public ListMaintainerAbility{
 
 };
 
+
+//Foreach (plague rats...)
+class AForeach:public ListMaintainerAbility{
+ public:
+  TargetChooser * tc;
+  int power, toughness;
+  int includeSelf;
+ AForeach(int _id, MTGCardInstance * card,MTGCardInstance * _target, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0):ListMaintainerAbility(_id,card,_target){
+    tc = _tc;
+    tc->source = NULL;
+    includeSelf = _includeSelf;
+    power = _power;
+    toughness = _toughness;
+    if (!target) target = source; //Is this needed ?
+  }
+
+  int canBeInList(MTGCardInstance * card){
+    if ( (includeSelf || card!=source) && tc->canTarget(card)) return 1;
+    return 0;
+  }
+
+  int added(MTGCardInstance * card){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    _target->power += power;
+    _target->addToToughness(toughness);
+    return 1;
+  }
+
+  int removed(MTGCardInstance * card){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    _target->power -= power;
+    _target->addToToughness(-toughness);
+    return 1;
+  }
+
+};
 
 
 /* Standard Damager, can choose a NEW target each time the price is paid */
@@ -1235,7 +1271,7 @@ class AAnkhOfMishra: public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card->hasType("land")) return 1;
+    if (card->hasType("land") && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -1481,7 +1517,7 @@ class ADingusEgg: public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card->hasType("land")) return 1;
+    if (card->hasType("land") && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -1974,30 +2010,6 @@ class AMillstone:public TargetAbility{
 
 };
 
-//1170: Nightmare
-class ANightmare:public ListMaintainerAbility{
- public:
- ANightmare(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (source->controller()->game->inPlay->hasCard(card) && card->hasType("swamp") ) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    source->power += 1;
-    source->addToToughness(1);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    source->power -= 1;
-    source->addToToughness(-1);
-    return 1;
-  }
-
-};
 
 
 
@@ -2029,36 +2041,6 @@ class APestilence: public ActivatedAbility{
 
 };
 
-//Plague Rats and similar. Power and toughness equal to number of cards that share a name
-class APlagueRats:public ListMaintainerAbility{
- public:
-  string name;
- APlagueRats(int _id, MTGCardInstance * _source, const char * _name):ListMaintainerAbility(_id,_source){
-    name = _name;
-    std::transform(name.begin(), name.end(), name.begin(),::tolower );
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (card == source) return 0;
-    string compared = card->name;
-    std::transform( compared.begin(), compared.end(), compared.begin(),::tolower );
-    if (name.compare(compared) == 0) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    source->power += 1;
-    source->addToToughness(1);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    source->power -= 1;
-    source->addToToughness(-1);
-    return 1;
-  }
-
-};
 
 //Power Leak
 class APowerLeak:public TriggeredAbility{
@@ -2249,7 +2231,7 @@ class AAspectOfWolf:public ListMaintainerAbility{
 
   int canBeInList(MTGCardInstance * card){
 
-    if (card->controller() == source->controller() &&  card->hasType("forest")) return 1;
+    if (card->controller() == source->controller() &&  card->hasType("forest") && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -2365,30 +2347,6 @@ class AForceOfNature:public ActivatedAbility{
   }
 };
 
-//1301 KeldonWarlord
-class AKeldonWarlord:public ListMaintainerAbility{
- public:
- AKeldonWarlord(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (source->controller()->game->inPlay->hasCard(card) && card->isACreature() && !card->hasType("wall") ) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    source->power += 1;
-    source->addToToughness(1);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    source->power -= 1;
-    source->addToToughness(-1);
-    return 1;
-  }
-
-};
 
 
 
@@ -2704,58 +2662,9 @@ class AMinionofLeshrac: public TargetAbility{
 
 };
 
-//2703 Lost Order of Jarkeld
-class ALostOrderofJarkeld:public ListMaintainerAbility{
- public:
- ALostOrderofJarkeld(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (source->controller()->opponent()->game->inPlay->hasCard(card) && card->isACreature() ) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    source->power += 1;
-    source->addToToughness(1);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    source->power -= 1;
-    source->addToToughness(-1);
-    return 1;
-  }
-
-};
 
 
 
-//CreaturePowerToughnessModifierForAllTypeControlled
-class ACreaturePowerToughnessModifierForAllTypeControlled:public ListMaintainerAbility{
- public:
-  char type[20];
- ACreaturePowerToughnessModifierForAllTypeControlled(int _id, MTGCardInstance * _source, const char * _type):ListMaintainerAbility(_id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (source->controller()->game->inPlay->hasCard(card) && card->hasType(type) ) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    source->power += 1;
-    source->addToToughness(1);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    source->power -= 1;
-    source->addToToughness(-1);
-    return 1;
-  }
-
-};
 
 //Generic Kird Ape
 class AKirdApe:public ListMaintainerAbility{

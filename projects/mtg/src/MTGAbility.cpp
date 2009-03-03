@@ -67,8 +67,8 @@ Damageable * AbilityFactory::parseCollateralTarget(MTGCardInstance * card, strin
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
     size_t found = s.find("/");
     if (found != string::npos){
-      size_t start = s.find(":");
-      if (start == string::npos) start = s.find(" ");
+      size_t start = s.find(":", found - 4);
+      if (start == string::npos) start = s.find(" ", found - 4);
       if (start == string::npos) start = -1;
       *power = atoi(s.substr(start+1,s.size()-found).c_str());
       size_t end = s.find(" ",start);
@@ -180,6 +180,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
       TargetChooser * lordTargets = NULL;
       int lordIncludeSelf = 0;
+      int lordType = 0;
+      string lordTargetsString;
 
       Trigger * trigger = parseTrigger(s);
       //Dirty way to remove the trigger text (could get in the way)
@@ -205,25 +207,25 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         if (dryMode) return BAKA_EFFECT_GOOD;
         unsigned int end = s.find(")", found+5);
         if (end != string::npos){
-	        string lordType = s.substr(found+5,end-found-5).c_str();
-          TargetChooserFactory tcf;
-          lordTargets = tcf.createTargetChooser(lordType, card);
+	        lordTargetsString = s.substr(found+5,end-found-5).c_str();
+          lordType = PARSER_LORD;
         }
-        if (s.find("includeself") != string::npos) lordIncludeSelf = 1;
       }
-
-      //foreach. Very basic, needs to be improved !
-      found = s.find("foreach(name:");
+      found = s.find("foreach(");
       if (found != string::npos){
         if (dryMode) return BAKA_EFFECT_GOOD;
-        unsigned int end = s.find(")", found+13);
+        unsigned int end = s.find(")", found+8);
         if (end != string::npos){
-	        string type = s.substr(found+13,end-found-13).c_str();
-	        game->addObserver(NEW APlagueRats(id,card,type.c_str()));
-	        result++;
-	        continue;
+	        lordTargetsString = s.substr(found+8,end-found-8).c_str();
+          lordType = PARSER_FOREACH;
         }
       }
+      if (lordTargetsString.size()){
+          TargetChooserFactory tcf;
+          lordTargets = tcf.createTargetChooser(lordTargetsString, card);
+          if (s.find("includeself") != string::npos) lordIncludeSelf = 1;
+      }
+
 
       //Untapper (Ley Druid...)
       found = s.find("untap");
@@ -485,21 +487,28 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         }
 
 
-        if (lordTargets){
+        if (lordType == PARSER_LORD){
 	        game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,power,toughness));
         }else{
 	        if(tc){
-	          game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
+	            game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
 	        }else{
-	          if (!cost){
-	            if(card->hasType("enchantment")){
-	              game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
+            if (lordType == PARSER_FOREACH){
+              char buf[4096];
+              sprintf(buf, "KELDON : %i/%i , includeself = %i\n", power,toughness,lordIncludeSelf);
+              OutputDebugString(buf);
+	            game->addObserver(NEW AForeach(id,card,target,lordTargets,lordIncludeSelf,power,toughness));
+            }else{
+	            if (!cost){
+	              if(card->hasType("enchantment")){
+	                game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
+	              }else{
+	                game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
+	              }
 	            }else{
-	              game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
+	              game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
 	            }
-	          }else{
-	            game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
-	          }
+            }
 	        }
         }
         result++;
@@ -1026,11 +1035,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1170: //Nightmare
-    {
-      game->addObserver(NEW ANightmare(_id, card));
-      break;
-    }
   case 1171: //Paralysis
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
@@ -1242,11 +1246,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
-  case 1301: // Keldon Warlord
-    {
-      game->addObserver(NEW AKeldonWarlord(_id, card));
-      break;
-    }
   case 1302: //Kird Ape
     {
       TargetChooser * tc = NEW TypeTargetChooser("forest",card);
@@ -1475,11 +1474,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       tc->maxpower = 1;
       tc->maxtoughness =1;
       game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(cost,1),tc));
-      break;
-    }
-  case 2703: // Lost Order of Jarkeld
-    {
-      game->addObserver(NEW ALostOrderofJarkeld(_id, card));
       break;
     }
   default:
@@ -1780,8 +1774,10 @@ void ListMaintainerAbility::Update(float dt){
     int doDelete = 1;
     for (int i = 0; i < 2; i++){
       Player * p = game->players[i];
-      MTGGameZone * zones[] = {p->game->inPlay};
-      for (int k = 0; k < 1; k++){
+      MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand};
+      for (int k = 0; k < 3; k++){
+      //MTGGameZone * zones[] = {p->game->inPlay};
+      //for (int k = 0; k < 1; k++){
 	MTGGameZone * zone = zones[k];
 	if (zone->hasCard(card)){
 	  doDelete = 0;
@@ -1796,8 +1792,10 @@ void ListMaintainerAbility::Update(float dt){
   }
   for (int i = 0; i < 2; i++){
     Player * p = game->players[i];
-    MTGGameZone * zones[] = {p->game->inPlay};
-    for (int k = 0; k < 1; k++){
+    MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand};
+    for (int k = 0; k < 3; k++){
+    //  MTGGameZone * zones[] = {p->game->inPlay};
+    //  for (int k = 0; k < 1; k++){
       MTGGameZone * zone = zones[k];
       for (int j = 0; j < zone->nb_cards; j++){
 	if (canBeInList(zone->cards[j])){

@@ -199,16 +199,6 @@ type=Sorcery
 mana={3}{B}{B}
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
-id=135267
-name=Blanchwood Armor
-rarity=U
-color=Green
-type=Enchantment
-mana={2}{G}
-subtype=Aura
-[/card]
-[card]
 text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
 id=129709
 name=Bloodfire Colossus
@@ -1050,18 +1040,7 @@ color=Black
 type=Sorcery
 mana={2}{B}
 [/card]
-[card]
-text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
-id=106368
-name=Molimo, Maro-Sorcerer
-rarity=R
-color=Green
-type=Legendary Creature
-mana={4}{G}{G}{G}
-power=*
-subtype=Elemental
-toughness=*
-[/card]
+
 [card]
 text=At the beginning of your upkeep, if twenty or more creature cards are in your graveyard, you win the game.
 id=135259
@@ -1070,18 +1049,6 @@ rarity=R
 color=Black
 type=Enchantment
 mana={2}{B}{B}
-[/card]
-[card]
-text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards.     {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-id=129648
-name=Mortivore
-rarity=R
-color=Black
-type=Creature
-mana={2}{B}{B}
-power=*
-subtype=Lhurgoyf
-toughness=*
 [/card]
 [card]
 text=Target player gains 8 life.
@@ -1407,18 +1374,7 @@ power=1
 subtype=Beast
 toughness=5
 [/card]
-[card]
-text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
-id=130504
-name=Scion of the Wild
-rarity=R
-color=Green
-type=Creature
-mana={1}{G}{G}
-power=*
-subtype=Avatar
-toughness=*
-[/card]
+
 [card]
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, return Scoria Wurm to its owner's hand.
 id=130374
@@ -2030,15 +1986,4 @@ color=Artifact
 type=Artifact
 mana={2}
 [/card]
-[card]
-text=Yavimaya Enchantress gets +1/+1 for each enchantment in play.
-id=130515
-name=Yavimaya Enchantress
-rarity=U
-color=Green
-type=Creature
-mana={2}{G}
-power=2
-subtype=Human Druid
-toughness=2
-[/card]
+

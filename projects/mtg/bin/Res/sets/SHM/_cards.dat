@@ -1,4 +1,16 @@
 [card]
+text=Enchant creature     Enchanted creature gets +1/+1 for each Plains you control and has flying.
+target=creature
+auto=foreach(plains|myinplay) 1/1 includeself
+auto=flying
+id=146041
+name=Armored Ascension
+rarity=U
+type=Enchantment
+mana={3}{W}
+subtype=Aura
+[/card]
+[card]
 text=Flying     {BR}: Blistering Dieflyn gets +1/+0 until end of turn.
 abilities=flying
 auto={BR}:1/0
@@ -88,6 +100,19 @@ subtype=Elemental Rogue
 toughness=3
 [/card]
 [card]
+text=Fear     Crowd of Cinders's power and toughness are each equal to the number of black permanents you control.
+abilities=fear
+auto=foreach(*[black]|myinplay) 1/1 includeself
+id=146051
+name=Crowd of Cinders
+rarity=U
+type=Creature
+mana={3}{B}
+power=*
+subtype=Elemental
+toughness=*
+[/card]
+[card]
 text=Blue creatures you control are unblockable.
 auto=lord(creature[blue]|myinplay) unblockable includeself
 id=141981
@@ -110,6 +135,19 @@ mana={GW}
 power=1
 subtype=Elf Shaman
 toughness=1
+[/card]
+[card]
+text=Flying     Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
+auto=foreach(*[blue]|myinplay) 1/1 includeself
+abilities=flying
+id=158685
+name=Faerie Swarm
+rarity=U
+type=Creature
+mana={3}{U}
+power=*
+subtype=Faerie
+toughness=*
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {RG}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
@@ -289,6 +327,19 @@ mana={1}{GW}{GW}
 power=3
 subtype=Ouphe
 toughness=2
+[/card]
+[card]
+text=Vigilance     Kithkin Rabble's power and toughness are each equal to the number of white permanents you control.
+auto=foreach(*[white]|myinplay) 1/1 includeself
+abilities=vigilance
+id=158695
+name=Kithkin Rabble
+rarity=U
+type=Creature
+mana={3}{W}
+power=*
+subtype=Kithkin
+toughness=*
 [/card]
 [card]
 text={W}, {T}: Target blocking creature gets +2/+2 until end of turn.

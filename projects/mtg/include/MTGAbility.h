@@ -31,6 +31,9 @@ using std::map;
 
 #define COUNT_POWER 1
 
+#define PARSER_LORD 1
+#define PARSER_FOREACH 2
+
 class MTGAbility: public ActionElement{
  protected:
   char menuText[25];

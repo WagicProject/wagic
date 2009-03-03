@@ -149,7 +149,7 @@ class MTGLegendRule:public ListMaintainerAbility{
  MTGLegendRule(int _id):ListMaintainerAbility(_id){};
 
   int canBeInList(MTGCardInstance * card){
-    if (card->basicAbilities[Constants::LEGENDARY]){
+    if (card->basicAbilities[Constants::LEGENDARY] && game->isInPlay(card)){
       return 1;
     }
     return 0;

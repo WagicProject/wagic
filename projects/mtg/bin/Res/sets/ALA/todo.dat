@@ -813,17 +813,7 @@ power=1
 subtype=Ooze
 toughness=1
 [/card]
-[card]
-text=Master of Etherium's power and toughness are each equal to the number of artifacts you control.     Other artifact creatures you control get +1/+1.
-id=175114
-name=Master of Etherium
-rarity=R
-type=Artifact Creature
-mana={2}{U}
-power=*
-subtype=Vedalken Wizard
-toughness=*
-[/card]
+
 [card]
 text={3}{R}{G}{W}, {T}: Look at the top five cards of your library. You may put a creature card with power 5 or greater from among them into play. Put the rest on the bottom of your library in any order.
 id=175058

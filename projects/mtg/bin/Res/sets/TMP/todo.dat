@@ -1733,17 +1733,7 @@ power=1
 subtype=Goblin
 toughness=1
 [/card]
-[card]
-text=Mogg Squad gets -1/-1 for each other creature in play.
-id=4834
-name=Mogg Squad
-rarity=U
-type=Creature
-mana={1}{R}
-power=3
-subtype=Goblin
-toughness=3
-[/card]
+
 [card]
 text=When Mongrel Pack is put into a graveyard from play during combat, put four 1/1 green Hound creature tokens into play.
 id=4771

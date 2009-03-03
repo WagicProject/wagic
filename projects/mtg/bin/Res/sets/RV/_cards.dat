@@ -1158,6 +1158,7 @@ mana={2}{W}{W}
 [card]
 text=Keldon Warlord's power and toughness are each equal to the number of non-Wall creatures you control.
 id=1301
+auto=foreach(creature[-wall]|myinplay) 1/1 includeself
 name=Keldon Warlord
 rarity=U
 type=Creature
@@ -1441,6 +1442,7 @@ mana={4}
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
 abilities=flying
+auto=foreach(swamp|myinplay) 1/1 includeself
 id=1170
 name=Nightmare
 rarity=R
@@ -1487,7 +1489,7 @@ toughness=3
 text=Attacking creatures you control get +1/+0.
 id=1310
 name=Orcish Oriflamme
-auto=lord(creature[attacking]|myinplay)1/0
+auto=lord(creature[attacking]|myinplay) 1/0
 rarity=U
 type=Enchantment
 mana={3}{R}
@@ -1599,14 +1601,14 @@ subtype=Plains Mountain
 text=Plague Rats's power and toughness are each equal to the number of creatures named Plague Rats in play.
 id=1173
 name=Plague Rats
-auto=foreach(name:Plague Rats)
+auto=foreach(plague rats) 1/1 includeself
 rarity=C
 color=Black
 type=Creature
 mana={2}{B}
-power=1
+power=0
 subtype=Rat
-toughness=1
+toughness=0
 [/card]
 [card]
 text=Enchant enchantment     At the beginning of the upkeep of enchanted enchantment's controller, that player may pay up to {2}. For each one mana less than {2} he or she pays this way, Power Leak deals 1 damage to him or her.

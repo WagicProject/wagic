@@ -1408,6 +1408,7 @@ mana={2}
 [card]
 text=Lost Order of Jarkeld has power and toughness each equal to 1 plus the number of creatures target opponent controls.
 id=2703
+auto=foreach(creature|opponentinplay) 1/1
 name=Lost Order of Jarkeld
 rarity=R
 type=Creature 

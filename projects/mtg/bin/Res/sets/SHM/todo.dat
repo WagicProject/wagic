@@ -33,15 +33,7 @@ power=1
 subtype=Kithkin Cleric
 toughness=1
 [/card]
-[card]
-text=Enchant creature     Enchanted creature gets +1/+1 for each Plains you control and has flying.
-id=146041
-name=Armored Ascension
-rarity=U
-type=Enchantment
-mana={3}{W}
-subtype=Aura
-[/card]
+
 [card]
 text=Ashenmoor Cohort gets +1/+1 as long as you control another black creature.
 id=142060
@@ -312,17 +304,7 @@ rarity=C
 type=Instant
 mana={R}
 [/card]
-[card]
-text=Fear     Crowd of Cinders's power and toughness are each equal to the number of black permanents you control.
-id=146051
-name=Crowd of Cinders
-rarity=U
-type=Creature
-mana={3}{B}
-power=*
-subtype=Elemental
-toughness=*
-[/card]
+
 [card]
 text=When Cultbrand Cinder comes into play, put a -1/-1 counter on target creature.
 id=142068
@@ -543,17 +525,7 @@ power=2
 subtype=Faerie Rogue
 toughness=2
 [/card]
-[card]
-text=Flying     Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
-id=158685
-name=Faerie Swarm
-rarity=U
-type=Creature
-mana={3}{U}
-power=*
-subtype=Faerie
-toughness=*
-[/card]
+
 [card]
 text=When Farhaven Elf comes into play, you may search your library for a basic land card and put it into play tapped. If you do, shuffle your library.
 id=153289
@@ -976,17 +948,7 @@ power=2
 subtype=Kithkin Soldier
 toughness=2
 [/card]
-[card]
-text=Vigilance     Kithkin Rabble's power and toughness are each equal to the number of white permanents you control.
-id=158695
-name=Kithkin Rabble
-rarity=U
-type=Creature
-mana={3}{W}
-power=*
-subtype=Kithkin
-toughness=*
-[/card]
+
 [card]
 text=Flying     {1}{U}, {T}: Target opponent removes the top card of his or her library from the game. Until end of turn, you may play that card. ({T} is the untap symbol.)
 id=146036
