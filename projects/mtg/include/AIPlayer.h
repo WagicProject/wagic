@@ -59,7 +59,7 @@ class AIPlayer: public Player{
   AIStats * getStats();
  public:
    void End(){};
-  virtual int displayStack(){return 1;};
+  virtual int displayStack(){return 0;};
   AIStats * stats;
   ManaCost * getPotentialMana();
   AIPlayer(MTGPlayerCards * _deck, string deckFile);

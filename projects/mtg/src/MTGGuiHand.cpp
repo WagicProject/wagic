@@ -102,3 +102,10 @@ void MTGGuiHand::Render(){
     }
   }
 }
+
+// WALDORF - added method
+void MTGGuiHand::showHand (bool show)
+{
+    if (show) mShowHand = HAND_SHOW;
+    else mShowHand = HAND_HIDE;
+}

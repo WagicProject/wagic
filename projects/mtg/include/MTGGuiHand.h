@@ -28,6 +28,7 @@ class MTGGuiHand: public GuiCardsController{
   bool CheckUserInput(u32 key);
   virtual void Render();
   void updateCards();
+  void showHand (bool show);// WALDORF - added
 
 };
 

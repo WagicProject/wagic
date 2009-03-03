@@ -8,6 +8,9 @@
 #include "../include/Damage.h"
 #include "../include/ManaCost.h"
 #include "../include/GameOptions.h"
+// WALDORF - added to support drawing big cards during interrupts
+#include "../include/CardGui.h"
+
 
 /*
   NextGamePhase requested by user
@@ -27,7 +30,7 @@ void NextGamePhase::Render(){
   int playerId = 1;
   if (GameObserver::GetInstance()->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
   sprintf(buffer, "Player %i : -> %s", playerId, Constants::MTGPhaseNames[nextPhase]);
-  mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+  mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
 }
 
 NextGamePhase::NextGamePhase(int id): Interruptible(id){
@@ -46,7 +49,7 @@ void StackAbility::Render(){
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   sprintf(buffer, "%s", ability->getMenuText());
-  mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+  mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = ability->source->getThumb();
   if (quad){
@@ -108,7 +111,7 @@ void Spell::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  mFont->DrawString(source->getName(), x + 25 , y, JGETEXT_LEFT);
+  mFont->DrawString(source->getName(), x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();
   if (quad){
@@ -118,6 +121,38 @@ void Spell::Render(){
   }else{
     //
   }
+  // WALDORF - added these lines to render a big card as well as the small one
+  // in the interrupt window. A big card will be rendered no matter whether
+  // the user has been using big cards or not. However, I do take into which
+  // kind of big card they like.
+  // The card will be rendered in the same place as the GuiHand
+  // card. It doesn't attempt to hide the GUIHand card, it
+  // just overwrites it.
+  // I stole the render code from RenderBig() in CardGUI.cpp
+
+  quad = source->getQuad();
+  if (quad){
+      quad->SetColor(ARGB(220,255,255,255));
+      float scale = 257.f / quad->mHeight;
+      renderer->RenderQuad(quad, 10 , 20 , 0.0f,scale,scale);
+  }
+  else
+  {
+      MTGCard * mtgcard = source->model;
+      JLBFont * font = GameApp::CommonRes->GetJLBFont("graphics/magic");
+      CardGui::alternateRender(mtgcard, NULL, 10 + 90 , 20 + 130, 0.0f,0.9f);
+
+      quad = source->getThumb();
+      if (quad){
+          float scale = 250 / quad->mHeight;
+          quad->SetColor(ARGB(40,255,255,255));
+          renderer->RenderQuad(quad, 20, 20, 0.0f, scale, scale);
+      }
+  }
+
+  // WALDORF - end
+
+
   Damageable * target = getNextDamageableTarget();
   if (target){
     quad = target->getIcon();
@@ -156,9 +191,9 @@ void PutInGraveyard::Render(){
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   if (!removeFromGame){
-    mFont->DrawString("goes to graveyard", x + 20 , y, JGETEXT_LEFT);
+    mFont->DrawString("goes to graveyard", x + 30 , y, JGETEXT_LEFT);
   }else{
-    mFont->DrawString("is removed from game", x + 20 , y, JGETEXT_LEFT);
+    mFont->DrawString("is removed from game", x + 30 , y, JGETEXT_LEFT);
   }
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = card->getThumb();
@@ -497,14 +532,17 @@ void ActionStack::Update(float dt){
   }else if (mode == ACTIONSTACK_TARGET){
     GuiLayer::Update(dt);
   }
-  if (askIfWishesToInterrupt)
+  if (askIfWishesToInterrupt){
+    // WALDORF - added code to use a game option setting to determine how
+    // long the Interrupt timer should be. If it is set to zero (0), the
+    // game will wait for ever for the user to make a selection.
+    if (GameOptions::GetInstance()->values[OPTIONS_INTERRUPT_SECONDS].getIntValue() > 0)
     {
-      if (timer < 0) timer = 3;
+      if (timer < 0) timer = GameOptions::GetInstance()->values[OPTIONS_INTERRUPT_SECONDS].getIntValue();
       timer -= dt;
-      if (timer < 0){
-	cancelInterruptOffer();
-      }
+      if (timer < 0) cancelInterruptOffer();
     }
+  }
 }
 
 void ActionStack::cancelInterruptOffer(int cancelMode){
@@ -685,15 +723,27 @@ void ActionStack::Render(){
     }
 
     char buffer[200];
-    sprintf(buffer, "interrupt ? %i", static_cast<int>(timer));
-    mFont->DrawString(buffer, x0 + 5 , currenty - 40 - ((Interruptible *)mObjects[mCount-1])->mHeight);
+    // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down
+    // seconds if the user disables auto progressing interrupts by setting the seconds
+    // value to zero in Options.
+    if (GameOptions::GetInstance()->values[OPTIONS_INTERRUPT_SECONDS].getIntValue() == 0)
+        sprintf(buffer, "Interrupt?");
+    else
+        sprintf(buffer, "Interrupt?  %i", static_cast<int>(timer));
 
-    if (mCount > 1){
-      sprintf(buffer, "X Interrupt - 0 No - [] No to All");
-    }else{
-      sprintf(buffer, "X Interrupt - 0 No");
-    }
-    mFont->DrawString(buffer, x0 + 5 , currenty);
+    //WALDORF - removed all the unnecessary math. just display the prompt at the
+    // top of the box.
+    //mFont->DrawString(buffer, x0 + 5 , currenty - 40 - ((Interruptible *)mObjects[mCount-1])->mHeight);
+    mFont->DrawString(buffer, x0 + 5, y0);
+
+
+    if (mCount > 1) sprintf(buffer, "X Interrupt - 0 No - [] No to All");
+    else            sprintf(buffer, "X Interrupt - 0 No");
+
+    // WALDORF - puts the button legend right under the prompt. the stack
+    // will be displayed below it now. no more need to do wierd currY math.
+    //mFont->DrawString(buffer, x0 + 5 , currenty);
+     mFont->DrawString(buffer, x0 + 5, y0 + 14);
   }else if (mode == ACTIONSTACK_TARGET && modal){
     for (int i=0;i<mCount ;i++){
       Interruptible * current = (Interruptible *)mObjects[i];

@@ -8,6 +8,9 @@ using std::string;
 
 #define OPTIONS_MUSICVOLUME "musicVolume"
 #define OPTIONS_SFXVOLUME "sfxVolume"
+// WALDORF - added
+#define OPTIONS_INTERRUPT_SECONDS "interruptSeconds"                         
+
 
 #define OPTIONS_SAVEFILE RESPATH"/settings/options.txt"
 
