@@ -42,29 +42,20 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 	    zoneName = s2;
 	    s2 = "";
 	  }
+    zones[nbzones] = game->currentlyActing()->game->inPlay;
+    
 	  //Graveyards
-	  if (zoneName.compare("mygraveyard") == 0){
-	    zones[nbzones] = game->currentlyActing()->game->graveyard;
-	  }else if(zoneName.compare("opponentgraveyard") == 0){
-	    zones[nbzones] = game->currentlyActing()->opponent()->game->graveyard;
-	  }else if(zoneName.compare("graveyard") == 0){
+    if(zoneName.compare("graveyard") == 0){
 	    zones[nbzones] = game->players[0]->game->graveyard;
 	    nbzones++;
 	    zones[nbzones] = game->players[1]->game->graveyard;
-	  }else{
-
-	    //inPlay
-	    if (zoneName.compare("myinplay") == 0){
-	      zones[nbzones] = game->currentlyActing()->game->inPlay;
-	    }else if(zoneName.compare("opponentinplay") == 0){
-	      zones[nbzones] = game->currentlyActing()->opponent()->game->inPlay;
-	    }else if(zoneName.compare("inplay") == 0){
+	  }else if(zoneName.compare("inplay") == 0){
 	      zones[nbzones] = game->players[0]->game->inPlay;
 	      nbzones++;
 	      zones[nbzones] = game->players[1]->game->inPlay;
-	    }else{
-	      zones[nbzones] = game->currentlyActing()->game->inPlay;
-	    }
+	  }else{
+	      MTGGameZone * zone = MTGGameZone::stringToZone(zoneName, card,card);
+        if (zone) zones[nbzones] = zone;
 	  }
 	  nbzones++;
 	}

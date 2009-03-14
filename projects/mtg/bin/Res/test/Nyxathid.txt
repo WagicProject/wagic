@@ -1,0 +1,36 @@
+#text=As Nyxathid comes into play, choose an opponent.     Nyxathid gets -1/-1 for each card in the chosen player's hand.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:186616
+[PLAYER2]
+hand:179434
+library:185140
+[DO]
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#combat begin
+next
+#attackers
+186616
+next
+#blockers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:186616
+[PLAYER2]
+hand:179434,185140
+life:15
+[END]

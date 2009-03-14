@@ -354,8 +354,12 @@ void MTGLibrary::shuffleTopToBottom(int nbcards){
 }
 
 MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source,MTGCardInstance * target){
-  Player * p = source->controller();
-  Player * p2 = target->controller();
+  Player *p, *p2;
+  GameObserver * g = GameObserver::GetInstance();
+  if (!source) p = g->currentlyActing();
+  else p = source->controller();
+  if (!target) p2 = p;
+  else p2 = target->controller();
   if(zoneName.compare("mygraveyard") == 0)return p->game->graveyard;
   if(zoneName.compare("opponentgraveyard") == 0) return p->opponent()->game->graveyard;
   if(zoneName.compare("targetownergraveyard") == 0) return target->owner->game->graveyard;
