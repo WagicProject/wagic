@@ -43,6 +43,7 @@ doomed_necromancer.txt
 dragon_fodder.txt
 drain_life.txt
 flare.txt
+foratog.txt
 force_of_nature.txt
 force_of_nature2.txt
 force_of_nature3.txt
@@ -65,6 +66,7 @@ nantuko_husk.txt
 orcish_lumberjack.txt
 paralysis.txt
 paralysis2.txt
+plague_rats.txt
 protomatter_powder.txt
 resurrection.txt
 rootwalla.txt
@@ -76,6 +78,7 @@ spark_elemental.txt
 stasis.txt
 sword_to_plowshares.txt
 terror.txt
+tranquil_domain.txt
 volcanic_island.txt
 white_knight1.txt
 wrath_of_god.txt

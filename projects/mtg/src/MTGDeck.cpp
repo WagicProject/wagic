@@ -87,6 +87,7 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
     case 'B'://Basic Land
       card->setColor(Constants::MTG_COLOR_LAND);
       card->setType("Land");
+      card->setType("Basic");
       break;
     case 'L':
       card->setColor(Constants::MTG_COLOR_LAND);
@@ -103,7 +104,16 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
   }else if(key.compare("power")==0){
     card->setPower (atoi(value.c_str()));
   }else if(key.compare("subtype")==0){
-    card->setSubtype(value);
+    while (value.size()){
+      unsigned int found = value.find(" ");
+      if (found != string::npos){
+        card->setSubtype(value.substr(0,found));
+        value = value.substr(found+1);
+      }else{
+        card->setSubtype(value);
+        value = "";
+      }
+    }
   }else if(key.compare("toughness")==0){
     card->setToughness(atoi(value.c_str()));
   }else{

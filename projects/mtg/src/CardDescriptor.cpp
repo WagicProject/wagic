@@ -13,13 +13,26 @@ int CardDescriptor::init(){
   return result;
 }
 
+void CardDescriptor::setNegativeSubtype( string value){
+  int id = Subtypes::subtypesList->Add(value);
+  addType(-id);
+} 
+
 MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
   int found = 1;
   for (int i = 0; i< nb_types; i++){
     found = 0;
-    if (card->hasSubtype(types[i]) || (card->name.compare(Subtypes::subtypesList->find(types[i])) == 0)){
-      found = 1;
-      break;
+    if (types[i] >= 0){
+
+      if (card->hasSubtype(types[i]) || (Subtypes::subtypesList->find(card->name) == types[i])){
+        found = 1;
+        break;
+      }
+    }else{
+      if (!card->hasSubtype(-types[i])){
+        found = 1;
+        break;
+      }
     }
   }
   if (!found) return NULL;
@@ -47,9 +60,14 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
 MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
   MTGCardInstance * match = card;
   for (int i = 0; i< nb_types; i++){
-
-    if (!card->hasSubtype(types[i]) && !(card->name.compare(Subtypes::subtypesList->find(types[i])) == 0)){
-      match = NULL;
+    if (types[i] >= 0){
+      if (!card->hasSubtype(types[i]) && !(Subtypes::subtypesList->find(card->name) == types[i])){
+        match = NULL;
+      }
+    }else{
+      if(card->hasSubtype(-types[i])){
+        match = NULL;
+      }
     }
   }
   for (int i = 0; i< Constants::MTG_NB_COLORS; i++){

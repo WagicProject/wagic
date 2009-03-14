@@ -178,19 +178,9 @@ void MTGCard::addType(char * _type_text){
 }
 
 void MTGCard::setSubtype( string value){
-  string s = value;
-  while (s.size()){
-    unsigned int found = s.find(" ");
-    if (found != string::npos){
-      int id = Subtypes::subtypesList->Add(s.substr(0,found));
+
+      int id = Subtypes::subtypesList->Add(value);
       addType(id);
-      s = s.substr(found+1);
-    }else{
-      int id = Subtypes::subtypesList->Add(s);
-      addType(id);
-      s = "";
-    }
-  }
 }
 
 void MTGCard::addType(int id){
@@ -242,6 +232,9 @@ void MTGCard::addMagicText(string value){
 
 void MTGCard::setName( string value){
   name = value;
+  //This is a bug fix for plague rats and the "foreach ability"
+  //Right now we add names as types, so that they get recognized
+  if (value.at(value.length()-1) == 's') Subtypes::subtypesList->Add(value); 
 }
 
 const char * MTGCard::getName(){

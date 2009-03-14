@@ -121,6 +121,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 #endif
 	      minus = 1;
 	      nbminuses++;
+        attribute=attribute.substr(1);
 	    }
 #ifdef WIN32
 	    OutputDebugString(attribute.c_str());
@@ -166,21 +167,30 @@ OutputDebugString("COLOR FOUND !!!");
 		}
 	      }
 	      if (!attributefound){
-		//Abilities
-		for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-		  if (attribute.find(Constants::MTGBasicAbilities[j]) != string::npos){
-		    attributefound = 1;
-		    if (minus){
-		      cd->basicAbilities[j] = -1;
-		    }else{
-		      cd->basicAbilities[j] = 1;
-		    }
-		  }
-		}
-	      }
+		      //Abilities
+		      for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+		        if (attribute.find(Constants::MTGBasicAbilities[j]) != string::npos){
+		          attributefound = 1;
+		          if (minus){
+		            cd->basicAbilities[j] = -1;
+		          }else{
+		            cd->basicAbilities[j] = 1;
+		          }
+		        }
+		      }
+        }
+
+	      if (!attributefound){
+		      //Subtypes
+		      if (minus){
+		        cd->setNegativeSubtype(attribute);
+		      }else{
+		        cd->setSubtype(attribute);
+		      }
+        }
 	    }
 	  }
-	  if (nbminuses < 2){
+	  if (nbminuses == 0){
 #ifdef WIN32
 	    OutputDebugString("Switching to OR\n");
 #endif
@@ -196,6 +206,7 @@ OutputDebugString("COLOR FOUND !!!");
 	if (cd){
 	  if (!tc){
 	    if (typeName.compare("*")!=0) cd->setSubtype(typeName);
+
 	    tc = NEW DescriptorTargetChooser(cd,zones,nbzones,card,maxtargets);
 #ifdef WIN32
 	    OutputDebugString("Advanced Attributes 2 \n");
@@ -379,11 +390,11 @@ int TypeTargetChooser::canTarget(Targetable * target ){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
     if (!TargetZoneChooser::canTarget(card)) return 0;
-    int result = 0;
     for (int i= 0; i < nbtypes; i++){
-      result += card->hasSubtype(types[i]);
+      if (card->hasSubtype(types[i])) return 1;
+      if (Subtypes::subtypesList->find(card->name) == types[i]) return 1;
     }
-    return result;
+    return 0;
   }
   return 0;
 }

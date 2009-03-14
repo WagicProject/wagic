@@ -284,12 +284,16 @@ void CardGui::Render(){
 
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = card->getThumb();
+#if defined (WIN32) || defined (LINUX)
+  //This shouldn't be done for the PSP. Basically it forces the system to load
+  // The big image if it cannot find the thumbnail. That's great for image quality on a PC,
+  // But it kills the performance for those who don't have thumbnails on the PSP
   if (!quad || quad->mHeight * 2 < mHeight){
     JQuad * quad2 = card->getQuad();
     if (quad2)
       quad = quad2;
   }
-
+#endif
   float tap = (float)(card->isTapped());
   float rotation = M_PI_2 * tap;
   float mScale = mHeight / 64;

@@ -1,0 +1,1329 @@
+#INVASION
+[card]
+text=Counter target spell.   You gain 3 life.
+alias=1196
+id=23155
+auto=life:3
+name=Absorb
+colour=White,Blue
+rarity=R
+mana={W}{U}{U}
+type=Instant
+[/card]
+[card]
+text=Target creature gets +1/+1 until end of turn.     Draw a card.
+target=creature
+auto=1/1
+auto=draw:1
+id=24127
+name=Aggressive Urge
+color=Green
+rarity=C
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+text=Ancient Spring comes into play tapped.     {T}: Add {U} to your mana pool.    {T}, Sacrifice Ancient Spring: Add {W}{B} to your mana pool. 
+auto=tap
+auto={T}:Add{U}
+auto={T}{s}:Add{W}{B}
+id=23236
+name=Ancient Spring
+rarity=C
+type=Land
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy comes into play, you gain 3 life.
+id=22952
+name=Angel of Mercy
+colour=White
+rarity=U
+mana={4}{W}
+type=Creature
+subtype=Angel
+auto=life:3
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Creatures you control get +0/+1.     Sacrifice Angelic Shield: Return target creature to its owner's hand.
+auto=lord(creature|myinplay) 0/1 includeself
+auto={s}:moveTo(ownerhand) target(creature)
+id=23177
+name=Angelic Shield
+color=White,Blue
+rarity=U
+mana={W}{U}
+type=Enchantment
+[/card]
+[card]
+text=Destroy target nonblack creature. It can't be regenerated.      Draw a card.
+target=creature[-black]
+auto=bury
+auto=draw:1
+id=23042
+name=Annihilate
+color=Black
+rarity=U
+mana={3}{B}{B}
+type=Instant
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.    {T}, Sacrifice Archaeological Dig: Add one mana of any color to your mana pool. 
+auto={T}:Add{1}
+auto={T}{s}:Add{W}
+auto={T}{s}:Add{U}
+auto={T}{s}:Add{B}
+auto={T}{s}:Add{R}
+auto={T}{s}:Add{G}
+id=23245
+name=Archaeological Dig
+rarity=U
+type=Land
+[/card]
+[card]
+text=Enchant creature      Enchanted creature gets +2/+2 and has trample.     Whenever enchanted creature deals damage, you gain that much life.
+target=creature
+auto=:2/2
+auto=trample
+auto=lifelink
+id=23164
+name=Armadillo Cloak
+color=Green,White
+rarity=C
+mana={1}{G}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={1}{W}{W}: Target creature you control gains protection from the color of your choice until end of turn.    {1}{U}{U}: Armored Guardian gains shroud until end of turn. (It can't be the target of spells or abilities.)
+id=23197
+name=Armored Guardian
+colour=White,Blue
+rarity=R
+mana={3}{W}{U}
+type=Creature
+subtype=Cat Soldier
+auto={1}{W}{W}:protection from white target(creature|myinplay)
+auto={1}{W}{W}:protection from blue target(creature|myinplay)
+auto={1}{W}{W}:protection from black target(creature|myinplay)
+auto={1}{W}{W}:protection from red target(creature|myinplay)
+auto={1}{W}{W}:protection from green target(creature|myinplay)
+auto={1}{U}{U}:shroud
+power=2
+toughness=5
+[/card]
+[card]
+text={3}{U},{T}: Draw a card.
+id=22947
+name=Benalish Heralds
+colour=White
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+auto={3}{U}{T}:Draw:1
+power=2
+toughness=4
+[/card]
+[card]
+text={W},{T}: Tap target creature.
+id=22937
+name=Benalish Trapper
+colour=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+auto={W}{T}:tap target(creature)
+power=1
+toughness=2
+[/card]
+[card]
+text={T}: Add {B} or {R} to your mana pool.
+id=23219 
+name=Bloodstone Cameo
+colour=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {B}
+auto={T}: Add {R}
+type=Artifact
+[/card]
+[card]
+text=: {1}: Add {B} to your mana pool.
+id=23024
+name=Bog Initiate
+colour=Black
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Human Wizard
+auto={1}: Add {B}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{W}, {T}, Sacrifice Capashen Unicorn: Destroy target artifact or enchantment.
+id=22936
+name=Capashen Unicorn
+colour=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Unicorn
+auto={1}{W}{T}{s}:Destroy target(enchantment,artifact)
+power=1
+toughness=2
+[/card]
+[card]
+text=Vigilance     {G}: Regenerate Charging Troll.
+id=23162
+name=Charging Troll
+colour=Green,White
+rarity=U
+mana={2}{G}{W}
+type=Creature
+subtype=Troll
+auto={G}:regenerate
+power=3
+toughness=3
+abilities=vigilance
+[/card]
+[card]
+text=Coastal Tower comes into play tapped.     {T}: Add {W} or {U} to your mana pool.
+auto=tap
+auto={T}:Add{W}
+auto={T}:Add{U}
+id=23240
+name=Coastal Tower
+rarity=U
+type=Land
+[/card]
+[card]
+text=Remove target card in a graveyard from the game. Draw a card.
+target=*|graveyard
+auto=moveto(removedfromgame)
+auto=draw:1
+id=24119
+name=Cremate
+rarity=U
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Protection from red      {W}: Target creature gains protection from red until end of turn.
+id=22934
+name=Crimson Acolyte
+colour=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+auto={W}:protection from red target(creature)
+power=1
+toughness=1
+abilities=protection from red
+[/card]
+[card]
+text=Sacrifice Crosis's Attendant: Add {U}{B}{R} to your mana pool.
+auto={1}{s}:Add {U}{B}{R}
+id=25837
+name=Crosis's Attendant
+colour=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text=Protection from black       Crusading Knight gets +1/+1 for each Swamp your opponents control.
+id=22963
+auto=foreach(name:Swamp)
+name=Crusading Knight
+colour=White
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+abilities=protection from black
+[/card]
+[card]
+text=Flying, protection from white      When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
+target=creature[blue;red]|myGraveyard
+alias=1174
+id=23320
+name=Crypt Angel
+colour=Black
+rarity=R
+mana={4}{B}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+abilities=flying,protection from white
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
+target=creature
+auto=:-1/-1
+auto=fear
+id=23044
+name=Cursed Flesh
+color=Black
+rarity=C
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Sacrifice Darigaaz's Attendant: Add {B}{R}{G} to your mana pool.
+auto={1}{s}:Add {B}{R}{G}
+id=25838
+name=Darigaaz's Attendant
+colour=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Add {U} or {B} to your mana pool.
+id=23218 
+name=Drake-Skull Cameo
+colour=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {U}
+auto={T}: Add {B}
+type=Artifact
+[/card]
+[card]
+text=Sacrifice Dromar's Attendant: Add {W}{U}{B} to your mana pool.
+auto={1}{s}:Add {W}{U}{B}
+id=25836
+name=Dromar's Attendant
+colour=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text=Elfhame Palace comes into play tapped.     {T}: Add {G} or {W} to your mana pool.
+auto=tap
+auto={T}:Add{G}
+auto={T}:Add{W}
+id=23244
+name=Elfhame Palace
+rarity=U
+type=Land
+[/card]
+text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
+alias=129534
+id=26445
+name=Elvish Champion
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Elf
+toughness=2
+[/card]
+[card]
+text=Creatures you control have haste.     Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
+auto=lord(creature|myinplay) haste includeself
+auto={s}:2/2 target(creature)
+id=23180
+name=Fires of Yavimaya
+color=Red,Green
+rarity=U
+mana={1}{R}{G}
+type=Enchantment
+[/card]
+[card]
+text={R}: Firescreamer gets +1/+0 until end of turn.
+id=23017
+name=Firescreamer
+colour=Black
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Kavu
+auto={R}:1/0
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=26311
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=26310
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=26312
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=25967
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Protection from red
+id=23158
+name=Galina's Knight
+colour=White,Blue
+rarity=C
+mana={W}{U}
+type=Creature
+subtype=Merfolk Knight
+power=2
+toughness=2
+abilities=protection from red
+[/card]
+[card]
+text=Geothermal Crevice comes into play tapped.     {T}: Add {R} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {B}{G} to your mana pool. 
+auto=tap
+auto={T}:Add{R}
+auto={T}{s}:Add{B}{G}
+id=23238
+name=Geothermal Crevice
+rarity=C
+type=Land
+[/card]
+[card]
+text=Flying      {U}: Glimmering Angel gains shroud until end of turn. (It can't be the target of spells or abilities.)
+id=22929
+auto={U}:shroud
+name=Glimmering Angel
+colour=White
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Legendary      {1}{W}{U}, {T}: Return target artifact or enchantment card from your graveyard to your hand.
+auto={1}{W}{U}:moveTo(myhand) target(artifact,enchantment|mygraveyard)
+id=25977
+name=Hanna, Ship's Navigator
+colour=White,Blue
+rarity=R
+mana={1}{W}{U}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text={2}: Target blue or red creature gets +1/+0 until end of turn.
+auto={2}:1/0 target(creature[blue;red])
+id=23041
+name=Hate Weaver
+color=Black
+rarity=U
+mana={1}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=1
+[/card]
+[card]
+text=Target player gains 7 life.
+target=player
+auto=life:7
+id=23183
+name=Heroes' Reunion
+color=Green,White
+rarity=U
+mana={G}{W}
+type=Instant
+[/card]
+[card]
+text={B}: Hooded Kavu gains fear until end of turn.
+id=23061
+name=Hooded Kavu
+colour=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Kavu
+auto={B}:fear
+power=2
+toughness=2
+[/card]
+[card]
+text=Lifelink (Whenever this creature deals damage, you gain that much life.)
+id=23163
+name=Horned Cheetah
+colour=Green,White
+rarity=U
+mana={2}{G}{W}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+abilities=lifelink
+[/card]
+[card]
+text=Irrigation Ditch comes into play tapped.     {T}: Add {W} to your mana pool.    {T}, Sacrifice Irrigation Ditch: Add {G}{U} to your mana pool. 
+auto=tap
+auto={T}:Add{W}
+auto={T}{s}:Add{G}{U}
+id=23235
+name=Irrigation Ditch
+rarity=C
+type=Land
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=26301
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=25964
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=26302
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=26303
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=When Kavu Climber comes into play, draw a card.
+id=23109
+name=Kavu Climber
+auto=draw:1
+color=Green
+rarity=C
+mana={3}{G}{G}
+type=Creature
+subtype=Kavu
+power=3
+toughness=3
+[/card]
+[card]
+text=Legendary     {T}: Add {1} to your mana pool.    {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player. 
+auto={T}:Add {1}
+auto={4}{R}{T}{S(creature|myinplay)}:Damage:2 target(creature,player)
+id=25930
+name=Keldon Necropolis
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
+text={W}: Llanowar Cavalry gains vigilance until end of turn.
+id=23322
+name=Llanowar Cavalry
+colour=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Human Soldier
+auto={W}:vigilance
+power=1
+toughness=4
+[/card]
+[card]
+text=Protection from black
+id=23157
+name=Llanowar Knight
+colour=Green,White
+rarity=C
+mana={G}{W}
+type=Creature
+subtype=Elf Knight
+power=2
+toughness=2
+abilities=protection from black
+[/card]
+[card]
+text={T}: Llanowar Vanguard gets +0/+4 until end of turn.
+id=23123
+name=Llanowar Vanguard
+colour=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Dryad
+auto={T}:0/4
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying      {T}: Add one mana of any color to your mana pool.
+id=23233
+name=Lotus Guardian
+colour=Artifact
+rarity=R
+mana={7}
+type=Artifact Creature
+subtype=Dragon
+auto={T}:Add {W}
+auto={T}:Add {U} 
+auto={T}:Add {B}
+auto={T}:Add {R}
+auto={T}:Add {G}
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
+text=Protection from white       Marauding Knight gets +1/+1 for each Plains your opponents control.
+id=23053
+auto=foreach(name:Plains)
+name=Marauding Knight
+colour=Black
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Knight
+power=2
+toughness=2
+abilities=protection from white
+[/card]
+[card]
+text={B}: Regenerate Metathran Zombie.
+id=22973
+name=Metathran Zombie
+colour=Blue
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Metathran Zombie
+auto={B}:regenerate
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=25966
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=26307
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=26309
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=26308
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={2}: Target red or white creature gains trample until end of turn. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=23124
+name=Might Weaver
+color=Green
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Human Wizard
+auto={2}:trample target(creature[red;white])
+power=2
+toughness=1
+[/card]
+[card]
+text={U}{U}, {T}: Return target creature to its owner's hand. .   {R}{R}, {T}: Nightscape Master deals 2 damage to target creature.
+id=23049
+name=Nightscape Master
+colour=Black
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Wizard
+auto={U}{U}{T}:moveTo(ownerhand) target(creature)
+auto={R}{R}{T}:Damage:2 target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text={1}: Noble Panther gains first strike until end of turn.
+id=23147
+name=Noble Panther
+colour=Green,White
+rarity=R
+mana={1}{G}{W}
+type=Creature
+subtype=Cat
+auto={1}:first strike
+power=3
+toughness=3
+[/card]
+[card]
+text={1}{G}: Add one mana of any color to your mana pool.
+id=23111
+name=Nomadic Elf
+colour=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf Nomad
+auto={1}{G}:Add {W}
+auto={1}{G}:Add {U} 
+auto={1}{G}:Add {B}
+auto={1}{G}:Add {R}
+auto={1}{G}:Add {G}
+power=2
+toughness=2
+[/card]
+[card]
+text=Protection from black      {W}: Target creature gains protection from black until end of turn.
+id=22935
+name=Obsidian Acolyte
+colour=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+auto={W}:protection from black target(creature)
+power=1
+toughness=1
+abilities=protection from black
+[/card]
+[card]
+text=Sacrifice a creature: Add one mana of any color to your mana pool.
+id=23226
+name=Phyrexian Altar
+colour=Artifact
+rarity=R
+mana={3}
+type=Artifact
+auto={S(creature|myinplay)}:Add {W}
+auto={S(creature|myinplay)}:Add {U} 
+auto={S(creature|myinplay)}:Add {B}
+auto={S(creature|myinplay)}:Add {R}
+auto={S(creature|myinplay)}:Add {G}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying.)  {B}: Phyrexian Battleflies gets +1/+0 until end of turn. Play this ability no more than twice each turn.
+auto={B}:1/0 limit:2
+id=23023
+name=Phyrexian Battleflies
+colour=Black
+rarity=C
+mana={B}
+type=Creature
+subtype=Insect
+power=0
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=26299
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=25963
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=26300
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=26298
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
+id=23081
+name=Rage Weaver
+color=Red
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+auto={2}:haste target(creature[green;black])
+power=2
+toughness=1
+[/card]
+[card]
+text=Flash, Haste
+id=23148
+name=Raging Kavu
+colour=Red,Green
+rarity=R
+mana={1}{R}{G}
+type=Creature
+subtype=Kavu
+power=3
+toughness=1
+abilities=flash,haste
+[/card]
+[card]
+text=Flying, first strike
+id=22933
+name=Razorfoot Griffin
+colour=White
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+abilities=flying,first strike
+[/card]
+[card]
+text=Return target creature card from your graveyard to your hand.   Draw a card.
+target=creature|myGraveyard
+alias=1174
+auto=draw:1
+id=23029
+name=Recover
+colour=Black
+rarity=C
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+text=Return target creature to its owner's hand.    Draw a card.
+target=creature
+alias=1229
+id=22985
+name=Repulse
+colour=Black
+rarity=C
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt by target attacking creature this turn.   Draw a card.
+target=creature[attacking]
+auto=:-99/0
+id=22943
+name=Restrain
+colour=White
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=You gain 3 life.     Draw a card.
+id=22941
+auto=life:3
+auto=draw:1
+name=Reviving Dose
+color=White
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=Sacrifice Rith's Attendant: Add {R}{G}{W} to your mana pool.
+auto={1}{s}:Add {R}{G}{W}
+id=25839
+name=Rith's Attendant
+colour=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text=Trample, protection from blue, protection from red
+id=23205
+name=Sabertooth Nishoba
+colour=Green,White
+rarity=R
+mana={4}{G}{W}
+type=Creature
+subtype=Cat Beast Warrior
+power=5
+toughness=5
+abilities=trample, protection from blue, protection from red
+[/card]
+[card]
+text=Salt Marsh comes into play tapped.     {T}: Add {U} or {B} to your mana pool.
+auto=tap
+auto={T}:Add{U}
+auto={T}:Add{B}
+id=23241
+name=Salt Marsh
+rarity=U
+type=Land
+[/card]
+[card]
+text=Enchant creature      When Scavenged Weaponry comes into play, draw a card.    Enchanted creature gets +1/+1.
+target=creature
+auto=:1/1
+auto=draw:1
+id=23028
+name=Scavenged Weaponry
+color=Black
+rarity=C
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={T}: Add {W} or {U} to your mana pool.
+id=23217 
+name=Seashell Cameo
+colour=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {W}
+auto={T}: Add {U}
+type=Artifact
+[/card]
+[card]
+text={R}: Serpentine Kavu gains haste until end of turn.
+id=23105
+name=Serpentine Kavu
+colour=Green
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Kavu
+auto={R}:haste
+power=4
+toughness=4
+[/card]
+[card]
+text=Shivan Oasis comes into play tapped.     {T}: Add {R} or {G} to your mana pool.
+auto=tap
+auto={T}:Add{R}
+auto={T}:Add{G}
+id=23243
+name=Shivan Oasis
+rarity=U
+type=Land
+[/card]
+[card]
+text=Protection from white
+id=23160
+name=Shivan Zombie
+colour=Black,Red
+rarity=C
+mana={B}{R}
+type=Creature
+subtype=Barbarian Zombie
+power=2
+toughness=2
+abilities=protection from white
+[/card]
+[card]
+text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
+id=22996
+name=Sky Weaver
+color=Blue
+rarity=U
+mana={1}{U}
+type=Creature
+subtype=Metathran Wizard
+auto={2}:flying target(creature[white;black])
+power=2
+toughness=1
+[/card]
+[card]
+text=Forestwalk
+id=23149
+name=Slinking Serpent
+colour=Blue,Black
+rarity=U
+mana={2}{U}{B}
+type=Creature
+subtype=Serpent
+power=2
+toughness=3
+abilities=forestwalk
+[/card]
+[card]
+text={2}: Target green or blue creature gets +0/+1 until end of turn.
+id=22950
+name=Spirit Weaver
+color=White
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Human Wizard
+auto={2}:0/1 target(creature[green;blue])
+power=2
+toughness=1
+[/card]
+[card]
+text={3}{U}, {T}: Tap target creature.    {3}{B}, {T}: Destroy target tapped creature.
+id=25752
+name=Stalking Assassin
+colour=Blue,Black
+rarity=R
+mana={1}{U}{B}
+type=Creature
+subtype=Human Assassin
+auto={3}{U}{T}:tap target(creature)
+auto={3}{B}{T}:destroy target(creature[tapped])
+power=1
+toughness=1
+[/card]
+[card]
+text=Sulfur Vent comes into play tapped.     {T}: Add {B} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {U}{R} to your mana pool. 
+auto=tap
+auto={T}:Add{B}
+auto={T}{s}:Add{U}{R}
+id=23237
+name=Sulfur Vent
+rarity=C
+type=Land
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=26305
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=26306
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=26304
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=25965
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={R}{R}, {T}: Thornscape Master deals 2 damage to target creature.   {W}{W}, {T}: Target creature gains protection from the color of your choice until end of turn.
+id=23136
+name=Thornscape Master
+colour=Green
+rarity=R
+mana={2}{G}{G}
+type=Creature
+subtype=Human Wizard
+auto={R}{R}{T}:Damage:2 target(creature)
+auto={W}{W}{T}:protection from white target(creature)
+auto={W}{W}{T}:protection from blue target(creature)
+auto={W}{W}{T}:protection from black target(creature)
+auto={W}{W}{T}:protection from red target(creature)
+auto={W}{W}{T}:protection from green target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Add {G} or {W} to your mana pool.
+id=23221 
+name=Tigereye Cameo
+colour=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {G}
+auto={T}: Add {W}
+type=Artifact
+[/card]
+[card]
+text=Tinder Farm comes into play tapped.     {T}: Add {G} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {R}{W} to your mana pool. 
+auto=tap
+auto={T}:Add{G}
+auto={T}{s}:Add{R}{W}
+id=23239
+name=Tinder Farm
+rarity=C
+type=Land
+[/card]
+[card]
+text=Flying     {W}: Tower Drake gets +0/+1 until end of turn.
+id=22974
+name=Tower Drake
+color=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Drake
+auto={W}:0/1
+power=2
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Destroy all enchantments.
+auto=Destroy all(enchantment)
+id=23116
+name=Tranquility
+color=Green
+rarity=C
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+text=Sacrifice Treva's Attendant: Add {G}{W}{U} to your mana pool.
+auto={1}{s}:Add {G}{W}{U}
+id=25840
+name=Treva's Attendant
+colour=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Add {R} or {G} to your mana pool.
+id=23220
+name=Troll-Horn Cameo
+colour=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {R}
+auto={T}: Add {G}
+type=Artifact
+[/card]
+[card]
+text=Other black creatures get -1/-1
+auto=lord(creature[black]) -1/-1
+id=23035
+name=Urborg Shambler
+colour=Black
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=3
+[/card]
+[card]
+text=Urborg Volcano comes into play tapped.     {T}: Add {B} or {R} to your mana pool.
+auto=tap
+auto={T}:Add{B}
+auto={T}:Add{R}
+id=23242
+name=Urborg Volcano
+rarity=U
+type=Land
+[/card]
+[card]
+text={T}: Add one mana of any color to your mana pool.
+id=12605
+name=Utopia Tree
+colour=Green
+rarity=R
+mana={1}{G}
+type=Creature
+subtype=Plant
+auto={T}:Add {W}
+auto={T}:Add {U} 
+auto={T}:Add {B}
+auto={T}:Add {R}
+auto={T}:Add {G}
+power=0
+toughness=2
+[/card]
+[card]
+text={G}: Viashino Grappler gains trample until end of turn.
+id=22930
+name=Viashino Grappler
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Viashino
+auto={G}:trample
+power=3
+toughness=1
+[/card]
+[card]
+text=Protection from green
+id=23159
+name=Vodalian Zombie
+colour=Blue,Black
+rarity=C
+mana={U}{B}
+type=Creature
+subtype=Merfolk Zombie
+power=2
+toughness=2
+abilities=protection from green
+[/card]
+[card]
+text=Destroy target blue or black creature with flying.
+target=creature[black;blue;flying]
+auto=destroy
+id=23130
+name=Wallop
+color=Green
+rarity=U
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+text=Enchant creature      Enchanted creature gets +1/+3 and has flying.
+target=creature
+auto=:1/3
+auto=flying
+id=24118
+name=Wings of Hope
+color=White,Blue
+rarity=C
+mana={W}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+[card]
+text=Protection from blue
+id=23161
+name=Yavimaya Barbarian
+colour=Red,Green
+rarity=C
+mana={R}{G}
+type=Creature
+subtype=Elf Barbarian
+power=2
+toughness=2
+abilities=protection from blue
+[/card]
+[card]
+text=Zap deals 1 damage to target creature or player.     Draw a card.
+target=creature,player
+auto=damage:1
+auto=draw:1
+id=23075
+name=Zap
+color=Red
+rarity=C
+mana={2}{R}
+type=Instant
+[/card]

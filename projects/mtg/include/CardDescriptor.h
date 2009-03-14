@@ -19,6 +19,7 @@ class CardDescriptor: public MTGCardInstance{
   int mode;
   int init();
   CardDescriptor();
+  void setNegativeSubtype( string value);
   MTGCardInstance * match(MTGCardInstance * card);
   MTGCardInstance * match(MTGGameZone * zone);
   MTGCardInstance * nextmatch(MTGGameZone * zone, MTGCardInstance * previous);

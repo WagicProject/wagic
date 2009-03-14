@@ -1,0 +1,1105 @@
+#Set Mirage
+#release 4.1.0a
+[card]
+text=Enchanted creature gets +1/+1 and gains flanking (whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn).
+id=3425 
+name=Agility
+target=creature
+auto=:flanking
+auto=:1/1
+type=Enchantment
+subtype=Aura
+mana={1}{R}
+rarity=C
+[/card]
+[card]
+text={B}{T}: Target creature gets +1/+0 until end of turn.  {G}{T}: Target creature gets +0/+1 until end of turn.
+id=3427 
+name=Armorer Guildmage
+auto={B}{T}:1/0 target(creature)
+auto={G}{T}:0/1 target(creature)
+type=Creature
+subtype=Human Wizard
+mana={R}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Put target creature card from an opponent's graveyard into play under your control.
+id=3273 
+name=Ashen Powder
+target=creature|opponentgraveyard
+auto=moveTo(myinplay)
+type=Sorcery
+mana={2}{B}{B}
+rarity=R
+[/card]
+[card]
+text=Flying  Attacking does not cause Bay Falcon to tap.
+id=3325 
+name=Bay Falcon
+abilities=Flying,Vigilance
+type=Creature
+subtype=Bird
+mana={1}{U}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Defender (This creature can't attack.)
+id=3430 
+name=Blistering Barrier
+type=Creature
+subtype=Wall
+mana={2}{R}
+abilities=defender
+power=5
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Return target permanent to owner's hand.
+id=3327 
+name=Boomerang
+target=*
+auto=moveTo(ownerhand)
+type=Instant
+mana={U}{U}
+rarity=C
+[/card]
+[card]
+text={B}:Breathstealer gets +1/-1 until end of turn
+id=3278
+name=Breathstealer
+auto={B}:1/-1
+type=Creature
+subtype=Nightstalker
+mana={2}{B}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {R}{R}: First strike until end of turn
+id=3433 
+name=Burning Shield Askari
+abilities=flanking
+auto={R}{R}:first strike
+type=Creature
+subtype=Human Knight
+mana={2}{R}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Flying, protection from green
+id=3328 
+name=Cerulean Wyvern
+abilities=Flying, protection from green
+type=Creature
+subtype=Drake
+mana={4}{U}
+power=3
+toughness=3
+rarity=U
+[/card]
+[card]
+text=Charcoal Diamond comes into play tapped.  {T}: Add {B} to your mana pool.
+id=3244 
+name=Charcoal Diamond
+auto=tap
+auto={T}: Add {B}
+type=Artifact
+mana={2}
+rarity=U
+[/card]
+[card]
+text=Trample
+id=3379 
+name=Crash of Rhinos
+abilities=Trample
+type=Creature
+subtype=Rhinos
+mana={6}{G}{G}
+power=8
+toughness=4
+rarity=C
+[/card]
+[card]
+text=Destroy target nonblack creature. It can't be regenerated.
+id=3284 
+name=Dark Banishing
+auto=bury target(creature[-black])
+type=Instant
+mana={2}{B}
+rarity=C
+[/card]
+[card]
+text=Add {B}{B}{B} to your mana pool.
+id=3285 
+name=Dark Ritual
+alias=1149
+type=Mana Source
+mana={B}
+rarity=C
+[/card]
+[card]
+text=Swampwalk {B}: Dirtwater Wraith gets +1/+0 until end of turn.
+id=3286 
+name=Dirtwater Wraith
+abilities=swampwalk
+auto={B}:1/0
+type=Creature
+subtype=Wraith
+mana={3}{B}
+power=1
+toughness=3
+rarity=C
+[/card]
+[card]
+text=Destroy target artifact or enchantment.
+id=3485 
+name=Disenchant
+target=artifact,enchantment
+auto=destroy
+type=Instant
+mana={1}{W}
+rarity=C
+[/card]
+[card]
+text={2}{R}, {T}: Destroy target nonbasic land.
+auto={2}{R}{T}:destroy target(land[-basic])
+id=3440
+name=Dwarven Miner
+rarity=U
+type=Creature
+mana={1}{R}
+power=1
+subtype=Dwarf
+toughness=2
+[/card]
+[card]
+text={T}: Target creature with power 2 or less is unblockable this turn.
+id=3441 
+name=Dwarven Nomad
+alias=1285
+type=Creature
+subtype=Dwarf Nomad
+mana={2}{R}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Flying, first strike
+id=3488 
+name=Ekundu Griffin
+abilities=flying,first strike
+type=Creature
+subtype=Griffin
+mana={3}{W}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) Enchanted creature gets -2/-2.
+id=3290 
+name=Enfeeblement
+target=creature
+auto=:-2/-2
+type=Enchantment
+subtype=Aura
+mana={B}{B}
+rarity=C
+[/card]
+[card]
+text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {W}: Femeref Knight gains vigilance until end of turn.
+id=3493 
+name=Femeref Knight
+abilities=flanking
+auto={W}:vigilance
+type=Creature
+subtype=Human Knight
+mana={2}{W}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=
+id=3494 
+name=Femeref Scouts
+type=Creature
+subtype=Human Scout
+mana={2}{W}
+power=1
+toughness=4
+rarity=C
+[/card]
+[card]
+text=Flying 
+id=3291 
+name=Feral Shadow
+abilities=Flying
+type=Creature
+subtype=Nightstalker
+mana={2}{B}
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+text={B}: Fetid Horror gets +1/+1 until end of turn.
+id=3292 
+name=Fetid Horror
+auto={B}:1/1
+type=Creature
+subtype=Shade Horror
+mana={3}{B}
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Fire Diamond comes into play tapped.  {T}: Add {R} to your mana pool. Play this ability as a mana source.
+id=3250 
+name=Fire Diamond
+auto=tap
+auto={T}: Add {R}
+type=Artifact
+mana={2}
+rarity=U
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) {R}: Enchanted creature gets +1/+0 until end of turn.
+id=3445 
+name=Firebreathing
+target=creature
+auto={R}:1/0
+type=Enchantment
+subtype=Aura
+mana={R}
+rarity=C
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=3566 
+name=Forest
+auto={T}: Add {G}
+type=Basic Land
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=3567
+name=Forest
+auto={T}: Add {G}
+type=Basic Land
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=3568 
+name=Forest
+auto={T}: Add {G}
+type=Basic Land
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=3569
+name=Forest
+auto={T}: Add {G}
+type=Basic Land
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=3387 
+name=Giant Mantis
+abilities=reach
+type=Creature
+subtype=Insect
+mana={3}{G}
+power=2
+toughness=4
+rarity=C
+[/card]
+[card]
+text=Flying  {1}{U}{U}: Target creature gains flying until end of turn.
+id=3340 
+name=Harmattan Efreet
+abilities=Flying
+auto={1}{U}{U}:flying target(creature)
+type=Creature
+subtype=Efreet
+mana={2}{U}{U}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Flying, protection from red
+id=3539 
+name=Hazerider Drake
+abilities=Flying,protection from red
+type=Creature
+subtype=Drake
+mana={2}{W}{U}
+power=2
+toughness=3
+rarity=U
+[/card]
+[card]
+text={2}: Igneous Golem gains trample until end of turn.
+id=3253 
+name=Igneous Golem
+auto={2}:trample
+type=Artifact Creature
+subtype=Golem
+mana={5}
+power=3
+toughness=4
+rarity=U
+[/card]
+[card]
+text=Trample.
+id=3497 
+name=Iron Tusk Elephant
+abilities=Trample
+type=Creature
+subtype=Elephant
+mana={4}{W}
+power=3
+toughness=3
+rarity=U
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=3581
+name=Island
+auto={T}: Add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=3582 
+name=Island
+auto={T}: Add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=3583 
+name=Island
+auto={T}: Add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=3584 
+name=Island
+auto={T}: Add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text=Shroud (This permanent can't be the target of spells or abilities.) Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
+id=3391 
+name=Jolrael's Centaur
+abilities=flanking, shroud
+type=Creature
+subtype=Centaur Archer
+mana={1}{G}{G}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text={R}: Regenerate {G}: Regenerate 
+id=3540 
+name=Jungle Troll
+auto={GR}:regenerate
+type=Creature
+subtype=Troll
+mana={1}{R}{G}
+power=2
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Protection from blue
+id=3394 
+name=Karoo Meerkat
+abilities=protection from blue
+type=Creature
+subtype=Mongoose
+mana={1}{G}
+power=2
+toughness=1
+rarity=U
+[/card]
+[card]
+text={T}: Add {1} to your mana pool. {1}{T}: Add one mana of any color to your mana pool.
+id=3256 
+name=Mana Prism
+auto={T}: Add {1}
+auto={1}{T}: Add {B}
+auto={1}{T}: Add {G}
+auto={1}{T}: Add {R}
+auto={1}{T}: Add {U}
+auto={1}{T}: Add {W}
+type=Artifact
+mana={3}
+rarity=U
+[/card]
+[card]
+text=Marble Diamond comes into play tapped.  {T}: Add {W} to your mana pool.
+id=3258 
+name=Marble Diamond
+auto=tap
+auto={T}: Add {W}
+type=Artifact
+mana={2}
+rarity=U
+[/card]
+[card]
+text=Flying, protection from black
+id=3502 
+name=Melesse Spirit
+abilities=Flying,protection from black
+type=Creature
+subtype=Angel Spirit
+mana={3}{W}{W}
+power=3
+toughness=3
+rarity=U
+[/card]
+[card]
+text=Moss Diamond comes into play tapped.  {T}: Add {G} to your mana pool. 
+id=3260 
+name=Moss Diamond
+auto=tap
+auto={T}: Add {G}
+type=Artifact
+mana={2}
+rarity=U
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=3577 
+name=Mountain
+auto={T}: Add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=3578 
+name=Mountain
+auto={T}: Add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=3579 
+name=Mountain
+auto={T}: Add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=3580 
+name=Mountain
+auto={T}: Add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.)
+id=3504 
+name=Mtenda Herder
+abilities=flanking
+type=Creature
+subtype=Human Scout
+mana={W}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Banding, trample
+id=3505 
+name=Noble Elephant
+abilities=trample,banding
+type=Creature
+subtype=Elephant
+mana={3}{W}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Black creatures get +2/+0 until end of turn.
+id=3301 
+name=Nocturnal Raid
+auto=lord(creature[black]):2/0
+type=Instant
+mana={2}{B}{B}
+rarity=U
+[/card]
+[card]
+text={3}: Patagia Golem gains flying until end of turn.
+id=3261 
+name=Patagia Golem
+auto={3}:flying
+type=Artifact Creature
+subtype=Golem
+mana={4}
+power=2
+toughness=3
+rarity=U
+[/card]
+[card]
+text=Flying  {1}{W}: Pearl Dragon gets +0/+1 until end of turn.
+id=3508 
+name=Pearl Dragon
+abilities=Flying
+auto={1}{W}:0/1
+type=Creature
+subtype=Dragon
+mana={4}{W}{W}
+power=4
+toughness=4
+rarity=R
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=3585 
+name=Plains
+auto={T}: Add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=3586 
+name=Plains
+auto={T}: Add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=3587 
+name=Plains
+auto={T}: Add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=3588 
+name=Plains
+auto={T}: Add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text=Enchant creature. {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=3405 
+name=Regeneration
+target=creature
+auto={G}:regenerate
+type=Enchantment
+subtype=Aura
+mana={1}{G}
+rarity=C
+[/card]
+[card]
+text={B}: Regenerate Restless Dead.
+id=3307 
+name=Restless Dead
+auto={B}:regenerate
+type=Creature
+subtype=Skeletons
+mana={1}{B}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Enchant creature. When Ritual of Steel comes into play, draw a card at the beginning of the next turn's upkeep. Enchanted creature gets +0/+2.
+id=3511 
+name=Ritual of Steel
+target=creature
+auto=:0/2
+auto=@next upkeep:draw:1
+type=Enchantment
+subtype=Aura
+mana={2}{W}
+rarity=C
+[/card]
+[card]
+text=Whenever Rock Basilisk blocks or is blocked by a non-Wall creature, destroy that creature at end of combat.
+id=3550 
+name=Rock Basilisk
+alias=1238
+type=Creature
+subtype=Basilisk
+mana={4}{R}{G}
+power=4
+toughness=5
+rarity=R
+[/card]
+[card]
+text={T}: Add {1} to your mana pool. {1}{T}: Add {U} to your mana pool.
+id=3361 
+name=Sea Scryer
+auto={T}: Add {1}
+auto={1}{T}: Add {U}
+type=Creature
+subtype=Merfolk Wizard
+mana={1}{U}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Destroy all Auras.
+id=3411 
+name=Serene Heart
+auto=destroy all(aura)
+type=Instant
+mana={1}{G}
+rarity=C
+[/card]
+[card]
+text={W}{T}: Target creature gains first strike until end of turn.  {B}{T}: Target creature gets +1/+0 until end of turn.
+id=3362 
+name=Shaper Guildmage
+auto={W}{T}:first strike target(creature)
+auto={B}{T}:1/0 target(creature)
+type=Creature
+subtype=Human Wizard
+mana={U}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Sky Diamond comes into play tapped.  {T}: Add {U} to your mana pool.
+id=3267 
+name=Sky Diamond
+auto=tap
+auto={T}: Add {U}
+type=Artifact
+mana={2}
+rarity=U
+[/card]
+[card]
+text=Destroy target land.
+id=3465 
+name=Stone Rain
+target=Land
+auto=destroy
+type=Sorcery
+mana={2}{R}
+rarity=C
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=3562
+name=Swamp
+auto={T}: Add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=3563 
+name=Swamp
+auto={T}: Add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=3564 
+name=Swamp
+auto={T}: Add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=3565
+name=Swamp
+auto={T}: Add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text=Haste
+id=3467 
+name=Talruum Minotaur
+abilities=haste
+type=Creature
+subtype=Minotaur Berserker
+mana={2}{R}{R}
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+text={2}{T}: Telim'Tor's Darts deals 1 damage to target player. 
+id=3269 
+name=Telim'Tor's Darts
+auto={2}{T}:damage 1 target(player)
+type=Artifact
+mana={2}
+rarity=U
+[/card]
+[card]
+text=Remove target permanent you own or control from the game. Draw a card at the beginning of the next turn's upkeep.
+id=3469 
+name=Telim'Tor's Edict
+auto=moveTo(myremovedfromgame) target(*|myinplay)
+auto=@next upkeep:draw:1
+type=Instant
+mana={R}
+rarity=R
+[/card]
+[card]
+text=Banding, flying
+id=3518 
+name=Teremko Griffin
+abilities=Flying, Banding
+type=Creature
+subtype=Griffin
+mana={3}{W}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Destroy all non-Aura enchantments.
+id=3414
+auto=destroy all(enchantment[-aura])
+name=Tranquil Domain
+rarity=C
+type=Instant
+mana={1}{G}
+[/card]
+[card]
+text=Forestwalk. {1}{G}{G}: Target creature gains forestwalk until end of turn.
+id=3418 
+name=Unseen Walker
+abilities=forestwalk
+auto={1}{G}{G}:forestwalk target(creature)
+type=Creature
+subtype=Dryad
+mana={1}{G}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Unyaro Bee Sting deals 2 damage to target creature or player.
+id=3419 
+name=Unyaro Bee Sting
+target=creature,player
+auto=damage:2
+type=Sorcery
+mana={3}{G}
+rarity=U
+[/card]
+[card]
+text=
+id=3471 
+name=Viashino Warrior
+type=Creature
+subtype=Viashino Warrior
+mana={3}{R}
+power=4
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Flying,haste
+id=3472 
+name=Volcanic Dragon
+abilities=flying, haste
+type=Creature
+subtype=Dragon
+mana={4}{R}{R}
+power=4
+toughness=4
+rarity=R
+[/card]
+[card]
+text=Trample
+id=3423 
+name=Wild Elephant
+abilities=Trample
+type=Creature
+subtype=Elephant
+mana={3}{G}
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+text=Protection from white  {1}{R}: Wildfire Emissary gets +1/+0 until end of turn.
+id=3474 
+name=Wildfire Emissary
+abilities=protection from white
+auto={1}{R}:1/0
+type=Creature
+subtype=Efreet
+mana={3}{R}
+power=2
+toughness=4
+rarity=U
+[/card]
+[card]
+text=Flying, protection from blue
+id=3560 
+name=Windreaper Falcon
+abilities=Flying, protection from blue
+type=Creature
+subtype=Bird
+mana={1}{R}{G}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Lifelink (Whenever this creature deals damage, you gain that much life.)
+id=3561 
+name=Zebra Unicorn
+abilities=lifelink
+type=Creature
+subtype=Unicorn
+mana={2}{G}{W}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {W}{W}: Zhalfirin Knight gains first strike until end of turn.
+id=3525 
+name=Zhalfirin Knight
+abilities=flanking
+auto={W}{W}:first strike
+type=Creature
+subtype=Human Knight
+mana={2}{W}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Untap target nonattacking creature. It gets +1/+3 until end of turn.
+id=3477 
+name=Alarum
+target=creature[-attacking]
+auto=untap
+auto=:1/3
+type=Instant
+mana={1}{W}
+rarity=C
+[/card]
+[card]
+text={T}:Sacrifice a creature: Target creature gets +2/+2 until end of turn. {T}:Sacrifice a Swamp: Target creature gets +1/+1 until end of turn.
+id=3276 
+name=Blighted Shaman
+type=Creature
+subtype=Human Cleric Shaman
+auto={T}{S(creature|myinplay)}:2/2 target(creature)
+auto={T}{S(swamp|myinplay)}:1/1 target(creature)
+mana={1}{B}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets  -1/-1 until end of turn.) {1}{B}{B}: Regenerate Cadaverous Knight.
+id=3279 
+name=Cadaverous Knight
+abilities=flanking
+type=Creature
+subtype=Zombie Knight
+auto={1}{B}{B}:regenerate
+mana={2}{B}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.  {T}:Sacrifice Crystal Vein: Add {2} to your mana pool.
+id=3571 
+name=Crystal Vein
+auto={T}: Add {1}
+auto={T}{S}:add {2}
+type=Basic Land
+rarity=U
+[/card]
+[card]
+text=Elixir of Vitality comes into play tapped.  {T}:Sacrifice Elixir of Vitality: Gain 4 life.  8, {T}:Sacrifice Elixir of Vitality: Gain 8 life.
+id=3248 
+name=Elixir of Vitality
+type=Artifact
+auto=tap
+auto={T}{S}:life:4
+auto={8}{T}{S}:life:8
+mana={4}
+rarity=U
+[/card]
+[card]
+text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.
+id=3384 
+name=Femeref Archers
+type=Creature
+subtype=Human Archer
+auto={T}:damage:4 target(creature[attacking;flying])
+mana={2}{G}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Flare deals 1 damage to target creature or player.  Draw a card at the beginning of the next turn's upkeep.
+id=3447 
+name=Flare
+auto=damage:1 target(creature,player)
+auto=@next upkeep:draw:1
+type=Instant
+mana={2}{R}
+rarity=C
+[/card]
+[card]
+text={G}, Sacrifice a Forest: Foratog gets +2/+2 until end of turn.
+id=3386 
+name=Foratog
+type=Creature
+subtype=Atog
+auto={G}{S(forest|myinplay)}:2/2
+mana={2}{G}
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Put three 1/1 red Goblin Scout creature tokens with mountainwalk into play.
+id=3449 
+name=Goblin Scouts
+type=Sorcery
+auto=token(Goblin Scout,creature token Goblin Scout, 1/1,mountainwalk red)*3
+mana={3}{R}{R}
+rarity=U
+[/card]
+[card]
+text={R},{T},Sacrifice a Goblin: Red creatures get +1/+1 until end of turn.
+id=3450 
+name=Goblin Soothsayer
+type=Creature
+subtype=Goblin Shaman
+auto={R}{T}{S(goblin|myinplay)}:lord(creature[red]) 1/1
+mana={R}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Rampage 1 (For each creature assigned to block it beyond the first, this creature gets +1/+1 until end of turn.)
+id=3252 
+name=Horrible Hordes
+type=Artifact Creature
+subtype=Spirit
+auto=rampage
+mana={3}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Flying. Other Griffin creatures get +1/+1.
+id=3526 
+name=Zuberi, Golden Feather
+abilities=Flying,legendary
+type=Creature
+subtype=Griffin
+auto=lord(griffin) 1/1
+mana={4}{W}
+power=3
+toughness=3
+rarity=R
+[/card]
+[card]
+text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {1}{W}{W}: Target Knight creature gets +1/+1 until end of turn.
+id=3524 
+name=Zhalfirin Commander
+abilities=flanking
+type=creature
+subtype=Human Knight
+auto={1}{W}{W}:1/1 target(knight)
+mana={2}{W}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text={B}{R}{T}: Shauku's Minion deals 2 damage to target white creature.
+id=3554 
+name=Shauku's Minion
+type=Creature
+subtype=Human Minion
+auto=damage:2 target(creature[white])
+mana={1}{B}{R}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Flying. {3}{G}, Sacrifice Uktabi Faerie: Destroy target artifact.
+id=3416 
+name=Uktabi Faerie
+abilities=Flying
+auto={3}{G}{S}:destroy target(artifact)
+type=Creature
+subtype=Faerie
+mana={1}{G}
+power=1
+toughness=1
+rarity=C
+[/card]

@@ -67,8 +67,10 @@ Damageable * AbilityFactory::parseCollateralTarget(MTGCardInstance * card, strin
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
     size_t found = s.find("/");
     if (found != string::npos){
-      size_t start = s.find(":", found - 4);
-      if (start == string::npos) start = s.find(" ", found - 4);
+      int search_from = found - 4;
+      if (search_from < 0) search_from = 0;
+      size_t start = s.find(':', search_from);
+      if (start == string::npos) start = s.find(" ", search_from);
       if (start == string::npos) start = -1;
       *power = atoi(s.substr(start+1,s.size()-found).c_str());
       size_t end = s.find(" ",start);

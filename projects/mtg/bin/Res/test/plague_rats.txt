@@ -1,0 +1,19 @@
+#Testing Plague rats (lightning bolt on one of them)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1303
+inplay:1173,1173,1173,1173
+manapool:{R}
+[PLAYER2]
+[DO]
+1303
+1173
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:1303
+manapool:{0}
+inplay:1173,1173,1173,1173
+[PLAYER2]
+[END]

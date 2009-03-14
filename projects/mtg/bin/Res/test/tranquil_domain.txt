@@ -1,0 +1,23 @@
+#text=Destroy all non-Aura enchantments.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:3414,3425,
+inplay:1250,3566,143024
+manapool:{2}{R}
+[PLAYER2]
+[DO]
+#play aura on grizzly
+3425
+1250
+#play tranquil domain
+3566
+3414
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:3414,143024
+inplay:1250,3566,3425
+manapool:{0}
+[PLAYER2]
+[END]

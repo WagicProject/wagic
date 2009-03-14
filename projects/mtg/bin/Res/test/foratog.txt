@@ -1,0 +1,30 @@
+#text={G}, Sacrifice a Forest: Foratog gets +2/+2 until end of turn.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:3386,3566
+manapool:{G}
+[PLAYER2]
+[DO]
+3386
+3566
+next
+#combat begin
+next
+#attackers
+3386
+next
+#blockers
+next
+#damages
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:3566
+inplay:3386
+manapool:{0}
+[PLAYER2]
+life:17
+[END]

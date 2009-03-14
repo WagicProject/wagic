@@ -42,6 +42,7 @@ class MTGCard {
   TexturesCache * mCache;
   string text;
   string name;
+
   int colors[Constants::MTG_NB_COLORS];
   int basicAbilities[Constants::NB_BASIC_ABILITIES];
   vector<string> formattedText;

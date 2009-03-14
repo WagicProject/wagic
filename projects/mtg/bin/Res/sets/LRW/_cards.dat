@@ -1,0 +1,617 @@
+[card]
+text=
+id=145976
+name=Axegrinder Giant
+rarity=C
+type=Creature
+mana={4}{R}{R}
+power=6
+subtype=Giant Warrior
+toughness=4
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has double strike.
+target=creature
+auto=double strike
+id=145973
+name=Battle Mastery
+rarity=U
+type=Enchantment
+mana={2}{W}
+subtype=Aura
+[/card]
+[card]
+text=Return target Goblin card from your graveyard to your hand.
+target=goblin(mygraveyard)
+auto=moveTo(myHand)
+id=142359
+name=Boggart Birth Rite
+rarity=C
+type=Sorcery
+subtype=tribal
+mana={B}
+subtype=Goblin
+[/card]
+[card]
+text=Forestwalk     {2}{B}, Sacrifice Boggart Loggers: Destroy target Treefolk or Forest.
+abilities=forestwalk
+auto={2}{B}{S}:destroy target(treefolk,forest)
+id=139709
+name=Boggart Loggers
+rarity=C
+type=Creature
+mana={2}{B}
+power=2
+subtype=Goblin Rogue
+toughness=1
+[/card]
+[card]
+text=Reach (This can block creatures with flying.)
+abilities=reach
+id=139492
+name=Cloudcrown Oak
+rarity=C
+type=Creature
+mana={2}{G}{G}
+power=3
+subtype=Treefolk Warrior
+toughness=4
+[/card]
+[card]
+text={U}: Deeptread Merrow gains islandwalk until end of turn.
+auto={U}:islandwalk
+id=142352
+name=Deeptread Merrow
+rarity=C
+type=Creature
+mana={1}{U}
+power=2
+subtype=Merfolk Rogue
+toughness=1
+[/card]
+[card]
+text=Flash     Enchant creature     Enchanted creature gets +5/+5 and has trample.
+abilities=flash
+target=creature
+auto=5/5
+auto=trample
+id=143732
+name=Epic Proportions
+rarity=R
+type=Enchantment
+mana={4}{G}{G}
+subtype=Aura
+[/card]
+[card]
+text=Destroy target non-Elf creature.
+target=creature[-elf]
+auto=destroy
+id=139449
+name=Eyeblight's Ending
+rarity=C
+type=Instant
+subtype=tribal
+mana={2}{B}
+subtype=Elf
+[/card]
+[card]
+text={B}, Sacrifice a Goblin: Facevaulter gets +2/+2 until end of turn.
+auto={B},{S(goblin|myinplay)}:2/2
+id=142361
+name=Facevaulter
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text={R}: Flamekin Brawler gets +1/+0 until end of turn.
+auto={R}:1/0
+id=139461
+name=Flamekin Brawler
+rarity=C
+type=Creature
+mana={R}
+power=0
+subtype=Elemental Warrior
+toughness=2
+[/card]
+[card]
+text={3}{R}: Flamekin Spitfire deals 1 damage to target creature or player.
+auto={3}{R}:damage 1 target(creature,player)
+id=139728
+name=Flamekin Spitfire
+rarity=U
+type=Creature
+mana={1}{R}
+power=1
+subtype=Elemental Shaman
+toughness=1
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=143633
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=143625
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=143618
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=143617
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={W}, {T}: Tap target creature.
+auto={W}{T}:tap target(creature)
+id=139397
+name=Goldmeadow Harrier
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Kithkin Soldier
+toughness=1
+[/card]
+[card]
+text=When Guardian of Cloverdell comes into play, put three 1/1 white Kithkin Soldier creature tokens into play.     {G}, Sacrifice a Kithkin: You gain 1 life.
+auto=token(Kithkin Soldier,creature Kithkin Soldier,1/1,white)*3
+auto={G}{S(kithkin|myinplay)}:life 1
+id=139665
+name=Guardian of Cloverdell
+rarity=U
+type=Creature
+mana={5}{G}{G}
+power=4
+subtype=Treefolk Shaman
+toughness=5
+[/card]
+[card]
+text=When Hearthcage Giant comes into play, put two 3/1 red Elemental Shaman creature tokens into play.     Sacrifice an Elemental: Target Giant creature gets +3/+1 until end of turn.
+auto=token(Elemental Shaman,creature Elemental Shaman,3/1,red)*3
+auto={G}{S(elemental|myinplay)}:3/1
+id=139691
+name=Hearthcage Giant
+rarity=U
+type=Creature
+mana={6}{R}{R}
+power=5
+subtype=Giant Warrior
+toughness=5
+[/card]
+[card]
+text=Mountainwalk
+abilities=Mountainwalk
+id=145971
+name=Hillcomber Giant
+rarity=C
+type=Creature
+mana={2}{W}{W}
+power=3
+subtype=Giant Scout
+toughness=3
+[/card]
+[card]
+text=Vigilance, trample, haste     {W}{U}{B}{R}{G}: You may play target Elemental card from your graveyard without paying its mana cost.
+abilities=vigilance,trample,haste
+auto={W}{U}{B}{R}{G}:moveTo(myInPlay) target(elemental|mygraveyard)
+id=140219
+name=Horde of Notions
+rarity=R
+type=Legendary Creature
+mana={W}{U}{B}{R}{G}
+power=5
+subtype=Elemental
+toughness=5
+[/card]
+[card]
+text=Other Elf creatures you control get +1/+1.     {G}, {T}: Put a 1/1 green Elf Warrior creature token into play.
+auto=lord(elf) 1/1
+auto={G}{T}:token(Elf Warrior,creature Elf Warrior,1/1,green)
+id=139683
+name=Imperious Perfect
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Warrior
+toughness=2
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=143619
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=143632
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=143624
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=143628
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={G}, {T}: Target attacking creature gets +2/+2 until end of turn.
+auto={G}{T}:target(creature[attacking]) 2/2
+id=139498
+name=Kithkin Daggerdare
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Kithkin Soldier
+toughness=1
+[/card]
+[card]
+text=First strike     Lifelink (Whenever this creature deals damage, you gain that much life.)
+auto=first strike, lifelink
+id=139715
+name=Knight of Meadowgrain
+rarity=U
+type=Creature
+mana={W}{W}
+power=2
+subtype=Kithkin Knight
+toughness=2
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=139487
+name=Leaf Gilder
+rarity=C
+type=Creature
+mana={1}{G}
+power=2
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text=Sacrifice Moonglove Extract: Moonglove Extract deals 2 damage to target creature or player.
+auot={S}:damage 2 target(creature,player)
+id=139506
+name=Moonglove Extract
+rarity=C
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=143626
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=143627
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=143631
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=143623
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Destroy target attacking or blocking creature.
+target=creature[attacking;blocking]
+id=139693
+name=Neck Snap
+rarity=C
+type=Instant
+mana={3}{W}
+[/card]
+[card]
+text=Vigilance, trample
+abilities=vigilance,trample
+id=139494
+name=Oakgnarl Warrior
+rarity=C
+type=Creature
+mana={5}{G}{G}
+power=5
+subtype=Treefolk Warrior
+toughness=7
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:add{W}
+id=143630
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:add{W}
+id=143620
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:add{W}
+id=143622
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:add{W}
+id=143621
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text=Flying, first strike
+abilities=flying,first strike
+id=139396
+name=Plover Knights
+rarity=C
+type=Creature
+mana={3}{W}{W}
+power=3
+subtype=Kithkin Knight
+toughness=3
+[/card]
+[card]
+text=Enchant creature     Enchanted creature is unblockable and has shroud. (It can't be the target of spells or abilities.)
+target=creature
+auto=unblockable
+auto=shroud
+id=139687
+name=Protective Bubble
+rarity=C
+type=Enchantment
+mana={3}{U}
+subtype=Aura
+[/card]
+[card]
+text=Flash     Flying     Other Faerie creatures you control get +1/+1.     Other Faeries you control have shroud. (A permanent with shroud can't be the target of spells or abilities.)
+abilities=flash,flying
+auto=lord(faerie) 1/1
+auto=lord(faerie) shroud
+id=139741
+name=Scion of Oona
+rarity=R
+type=Creature
+mana={2}{U}
+power=1
+subtype=Faerie Soldier
+toughness=1
+[/card]
+[card]
+text=Flash     Flying
+abilities=flash,flying
+id=139426
+name=Sentinels of Glen Elendra
+rarity=C
+type=Creature
+mana={3}{U}
+power=2
+subtype=Faerie Soldier
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {1}, {T}: Add one mana of any color to your mana pool.
+auto={T}:Add {1}
+auto={1}{T}: Add {G}
+auto={1}{T}: Add {R}
+auto={1}{T}: Add {B}
+auto={1}{T}: Add {U}
+auto={1}{T}: Add {W}
+id=141802
+name=Shimmering Grotto
+rarity=C
+type=Land
+[/card]
+[card]
+text=Enchant creature     When Soaring Hope comes into play, you gain 3 life.     Enchanted creature has flying.     {W}: Put Soaring Hope on top of its owner's library.
+target=creature
+auto=life 3
+auto=flying
+auto={W}: moveTo(ownerlibrary)
+id=139511
+name=Soaring Hope
+rarity=C
+type=Enchantment
+mana={4}{W}
+subtype=Aura
+[/card]
+[card]
+text={1}{U}, {T}: You may tap or untap target creature.
+auto={1}{U}{T}:tap target(creature)
+auto={1}{U}{T}:untap target(creature)
+id=142358
+name=Stonybrook Angler
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Merfolk Wizard
+toughness=2
+[/card]
+[card]
+text=Other Giant creatures you control get +2/+2 and have trample.
+auto=lord(giant) 2/2
+auto=lord(giant) trample
+id=139667
+name=Sunrise Sovereign
+rarity=R
+type=Creature
+mana={5}{R}
+power=5
+subtype=Giant Warrior
+toughness=5
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=143629
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=143636
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=143635
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=143634
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}, Sacrifice a Goblin: Tar Pitcher deals 2 damage to target creature or player.
+auto={T},{S(goblin|myinplay)}:damage 2 target(creature,player)
+id=139470
+name=Tar Pitcher
+rarity=U
+type=Creature
+mana={3}{R}
+power=2
+subtype=Goblin Shaman
+toughness=2
+[/card]
+[card]
+text=Tarfire deals 2 damage to target creature or player.
+target=creature,player
+auto=damage 2
+id=139476
+name=Tarfire
+rarity=C
+type=Instant
+mana={R}
+subtype=Goblin Tribal
+[/card]
+[card]
+text=Flash     Enchant creature     When Triclopean Sight comes into play, untap enchanted creature.     Enchanted creature gets +1/+1 and has vigilance.
+abilities=flash
+target=creature
+auto=untap
+auto=1/1
+auto=vigilance
+id=146580
+name=Triclopean Sight
+rarity=C
+type=Enchantment
+mana={1}{W}
+subtype=Aura
+[/card]
+[card]
+text=Other Kithkin creatures you control get +1/+1.
+auto=lord(kithkin) 1/1
+id=139716
+name=Wizened Cenn
+rarity=U
+type=Creature
+mana={W}{W}
+power=2
+subtype=Kithkin Cleric
+toughness=2
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has defender and flying.
+target=creature
+auto=flying
+auto=defender
+id=142357
+name=Zephyr Net
+rarity=C
+type=Enchantment
+mana={1}{U}
+subtype=Aura
+[/card]
