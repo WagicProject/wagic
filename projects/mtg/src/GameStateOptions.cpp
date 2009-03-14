@@ -70,9 +70,9 @@ void GameStateOptions::Render()
 
   const char * const CreditsText[] = {
     "Wagic, The Homebrew ?! by WilLoW",
-    "This is a work in progress and it contains bugs",
-    "updates on http://www.wololo.net/wagic",
-    "Many thanks to the programmers and card creators who helped in this release",
+    "",
+    "updates, new cards, and more on http://www.wololo.net/wagic",
+    "Many thanks to the devs and card creators who help this project",
     "",
     "Developped with the JGE++ Library (http://jge.khors.com)",
     "Player's avatar from http://mathieuchoinet.blogspot.com, under CC License",
@@ -82,7 +82,7 @@ void GameStateOptions::Render()
     "Music by Celestial Aeon Project, under Creative Commons License",
     "Their music can be downloaded at http://www.jamendo.com",
     "",
-    "This work is not related to or endoresed by Wizards of the Coast, Inc",
+    "This work is not related to or endorsed by Wizards of the Coast, Inc",
     "",
     "Please support this project with donations at http://wololo.net/wagic",
   };

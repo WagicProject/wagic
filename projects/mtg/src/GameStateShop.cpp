@@ -49,20 +49,22 @@ void GameStateShop::Start()
     }
   }
   if (nbsets){
-    setId = sets[(rand() % nbsets)];
+    setIds[0] = sets[(rand() % nbsets)];
+    setIds[1] = sets[(rand() % nbsets)];
   }else{
-    setId = (rand() % MtgSets::SetsList->nb_items);
+    setIds[0] = (rand() % MtgSets::SetsList->nb_items);
+    setIds[1] = (rand() % MtgSets::SetsList->nb_items);
   }
   JQuad * mBackThumb = GameApp::CommonRes->GetQuad("back_thumb");
 
   shop = NULL;
 
-  shop = NEW ShopItems(10, this, itemFont, 10, 10, mParent->collection, setId);
-  sprintf(starterBuffer, "%s Starter (60 cards)",MtgSets::SetsList->values[setId].c_str());
-  sprintf(boosterBuffer, "%s Booster (15 cards)",MtgSets::SetsList->values[setId].c_str());
-  shop->Add(starterBuffer,mBack,mBackThumb, 6000);
+  shop = NEW ShopItems(10, this, itemFont, 10, 0, mParent->collection, setIds);
+  sprintf(starterBuffer, "%s Booster (15 cards)",MtgSets::SetsList->values[setIds[0]].c_str());
+  sprintf(boosterBuffer, "%s Booster (15 cards)",MtgSets::SetsList->values[setIds[1]].c_str());
+  shop->Add(starterBuffer,mBack,mBackThumb, 1900);
   shop->Add(boosterBuffer,mBack,mBackThumb, 1900);
-  for (int i = 0; i < 4; i++){
+  for (int i = 0; i < 5; i++){
     shop->Add(mParent->collection->randomCardId());
   }
 

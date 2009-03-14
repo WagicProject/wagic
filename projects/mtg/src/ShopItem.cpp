@@ -119,13 +119,16 @@ bool ShopItem::ButtonPressed()
 }
 
 
-ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int _setId): JGuiController(id, listener), mX(x), mY(y), mFont(font), collection(_collection), setId(_setId){
+ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]): JGuiController(id, listener), mX(x), mY(y), mFont(font), collection(_collection){
   mHeight = 0;
   showPriceDialog = -1;
   dialog = NULL;
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",_collection);
   playerdata = NEW PlayerData(_collection);
   display = NULL;
+  for (int i=0; i < 2; i++){
+    setIds[i] = _setIds[i];
+  };
 }
 
 
@@ -135,12 +138,12 @@ void ShopItems::Add(int cardid){
   int price = pricelist->getPrice(cardid);
   price = price + price * (rnd -10)/100;
   JGuiController::Add(NEW ShopItem(mCount, mFont, cardid, mX + 10, mY + 10 + mHeight,  (mCount == 0),collection, price));
-  mHeight += 40;
+  mHeight += 38;
 }
 
 void ShopItems::Add(char * text, JQuad * quad,JQuad * thumb, int price){
   JGuiController::Add(NEW ShopItem(mCount, mFont, text, quad, thumb, mX + 10, mY + 10 + mHeight,  (mCount == 0), price));
-  mHeight += 40;
+  mHeight += 38;
 }
 
 void ShopItems::Update(float dt){
@@ -216,20 +219,20 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	playerdata->collection->add(item->card);
 	item->quantity--;
       }else{
-	safeDeleteDisplay();
-	display = new CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
-	int curNbcards = playerdata->collection->totalCards();
-	if (showPriceDialog == 0){
-	  //Starter Deck
-	  playerdata->collection->addRandomCards(3,setId,Constants::RARITY_R,NULL);
-	  playerdata->collection->addRandomCards(9, setId,Constants::RARITY_U,NULL);
-	  playerdata->collection->addRandomCards(48, setId,Constants::RARITY_C,NULL);
-	}else{
-	  //Booster
-	  playerdata->collection->addRandomCards(1, setId,Constants::RARITY_R);
-	  playerdata->collection->addRandomCards(3, setId,Constants::RARITY_U);
-	  playerdata->collection->addRandomCards(11, setId,Constants::RARITY_C);
-	}
+	      safeDeleteDisplay();
+	      display = new CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
+	      int curNbcards = playerdata->collection->totalCards();
+	      //if (showPriceDialog == 0){
+	      //  //Starter Deck
+	      //  playerdata->collection->addRandomCards(3,setId,Constants::RARITY_R,NULL);
+	      //  playerdata->collection->addRandomCards(9, setId,Constants::RARITY_U,NULL);
+	      //  playerdata->collection->addRandomCards(48, setId,Constants::RARITY_C,NULL);
+	      //}else{
+	        //Booster
+	        playerdata->collection->addRandomCards(1, setIds[showPriceDialog],Constants::RARITY_R);
+	        playerdata->collection->addRandomCards(3, setIds[showPriceDialog],Constants::RARITY_U);
+	        playerdata->collection->addRandomCards(11, setIds[showPriceDialog],Constants::RARITY_C);
+	     // }
 	int newNbCards = playerdata->collection->totalCards();;
 	for (int i = curNbcards; i < newNbCards ; i++){
 	  MTGCardInstance * card = NEW MTGCardInstance(playerdata->collection->_(i), NULL);

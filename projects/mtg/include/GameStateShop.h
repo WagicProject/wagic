@@ -26,7 +26,7 @@ class GameStateShop: public GameState, public JGuiListener
   SimpleMenu * menu;
   int mStage;
   char starterBuffer[128], boosterBuffer[128];
-  int setId;
+  int setIds[2];
 
  public:
   GameStateShop(GameApp* parent);

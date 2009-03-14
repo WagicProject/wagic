@@ -51,12 +51,12 @@ class ShopItems:public JGuiController,public JGuiListener{
   MTGAllCards * collection;
   SimpleMenu * dialog;
   int showPriceDialog;
-  int setId;
+  int setIds[2];;
   MTGCardInstance * displayCards[100];
   CardDisplay * display;
   void safeDeleteDisplay();
  public:
-  ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int setId);
+  ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]);
   ~ShopItems();
   void Render();
   virtual void Update(float dt);
