@@ -141,17 +141,7 @@ power=6
 subtype=Avatar
 toughness=6
 [/card]
-[card]
-text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
-id=159612
-name=Cliffrunner Behemoth
-rarity=R
-type=Creature
-mana={3}{G}
-power=5
-subtype=Rhino Beast
-toughness=3
-[/card]
+
 [card]
 text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
 id=179437
@@ -194,17 +184,7 @@ rarity=U
 type=Instant
 mana={U}{B}
 [/card]
-[card]
-text=Court Homunculus gets +1/+1 as long as you control another artifact.
-id=182607
-name=Court Homunculus
-rarity=C
-type=Artifact Creature
-mana={W}
-power=1
-subtype=Homunculus
-toughness=1
-[/card]
+
 
 [card]
 text={R}{G}{W}: Cylian Sunsinger and each other creature with the same name as it get +3/+3 until end of turn.
@@ -266,17 +246,7 @@ type=Enchantment
 mana={3}{U}{B}{R}
 subtype=Aura
 [/card]
-[card]
-text=Reach (This can block creatures with flying.)  As long as you control a red permanent, Ember Weaver gets +1/+0 and has first strike.
-id=184990
-name=Ember Weaver
-rarity=C
-type=Creature
-mana={2}{G}
-power=2
-subtype=Spider
-toughness=3
-[/card]
+
 
 [card]
 text=Flying     At the beginning of your upkeep, return an artifact you control to its owner's hand.

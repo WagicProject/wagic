@@ -1617,17 +1617,7 @@ rarity=R
 type=Enchantment
 mana={4}{R}
 [/card]
-[card]
-text=Wild Nacatl gets +1/+1 as long as you control a Mountain.     Wild Nacatl gets +1/+1 as long as you control a Plains.
-id=174989
-name=Wild Nacatl
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Cat Warrior
-toughness=1
-[/card]
+
 [card]
 text=Lifelink (Whenever this creature deals damage, you gain that much life.)  Windwright Mage has flying as long as an artifact card is in your graveyard.
 id=175014

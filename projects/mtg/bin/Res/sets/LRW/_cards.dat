@@ -46,6 +46,19 @@ subtype=Goblin Rogue
 toughness=1
 [/card]
 [card]
+text=As long as you control a Faerie, Boggart Sprite-Chaser gets +1/+1 and has flying.
+auto=aslongas(faerie|myinplay) 1/1
+auto=aslongas(faerie|myinplay) flying
+id=146446
+name=Boggart Sprite-Chaser
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Goblin Warrior
+toughness=2
+[/card]
+[card]
 text=Reach (This can block creatures with flying.)
 abilities=reach
 id=139492
@@ -56,6 +69,20 @@ mana={2}{G}{G}
 power=3
 subtype=Treefolk Warrior
 toughness=4
+[/card]
+[card]
+text=Dauntless Dourbark's power and toughness are each equal to the number of Forests you control plus the number of Treefolk you control.     Dauntless Dourbark has trample as long as you control another Treefolk.
+auto=foreach(forest|myinplay) 1/1 
+auto=foreach(treefolk|myinplay) 1/1
+auto=aslongas(treefolk|myinplay) trample other
+id=141851
+name=Dauntless Dourbark
+rarity=R
+type=Creature
+mana={3}{G}
+power=*
+subtype=Treefolk Warrior
+toughness=*
 [/card]
 [card]
 text={U}: Deeptread Merrow gains islandwalk until end of turn.
@@ -287,6 +314,19 @@ rarity=C
 type=Creature
 mana={1}{G}
 power=1
+subtype=Kithkin Soldier
+toughness=1
+[/card]
+[card]
+text=As long as you control a Giant, Kithkin Greatheart gets +1/+1 and has first strike.
+auto=aslongas(giant|myinplay) 1/1
+auto=aslongas(giant|myinplay) first strike
+id=146444
+name=Kithkin Greatheart
+rarity=C
+type=Creature
+mana={1}{W}
+power=2
 subtype=Kithkin Soldier
 toughness=1
 [/card]

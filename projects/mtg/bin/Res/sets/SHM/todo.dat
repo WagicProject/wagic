@@ -68,17 +68,7 @@ power=2
 subtype=Kithkin Wizard
 toughness=2
 [/card]
-[card]
-text=First strike     Ballynock Cohort gets +1/+1 as long as you control another white creature.
-id=142045
-name=Ballynock Cohort
-rarity=C
-type=Creature
-mana={2}{W}
-power=2
-subtype=Kithkin Soldier
-toughness=2
-[/card]
+
 [card]
 text=Target creature gets +2/+2 until end of turn.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 id=158772
@@ -126,17 +116,7 @@ type=Enchantment
 mana={4}{U}
 subtype=Aura
 [/card]
-[card]
-text=Blazethorn Scarecrow has haste as long as you control a red creature.     Blazethorn Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)
-id=151632
-name=Blazethorn Scarecrow
-rarity=C
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Scarecrow
-toughness=3
-[/card]
+
 [card]
 text=Equipped creature gets +1/+0 and has wither. (It deals damage to creatures in the form of -1/-1 counters.)  Equip {2}
 id=129135
@@ -172,17 +152,7 @@ rarity=R
 type=Enchantment
 mana={4}{W}
 [/card]
-[card]
-text=Flying     Briarberry Cohort gets +1/+1 as long as you control another blue creature.
-id=146043
-name=Briarberry Cohort
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Faerie Soldier
-toughness=1
-[/card]
+
 [card]
 text=Burn Trail deals 3 damage to target creature or player.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 id=158688
@@ -264,17 +234,7 @@ rarity=R
 type=Instant
 mana={3}{U}{U}
 [/card]
-[card]
-text=Crabapple Cohort gets +1/+1 as long as you control another green creature.
-id=146009
-name=Crabapple Cohort
-rarity=C
-type=Creature
-mana={4}{G}
-power=4
-subtype=Treefolk Warrior
-toughness=4
-[/card]
+
 [card]
 text=When Cragganwick Cremator comes into play, discard a card at random. If you discard a creature card this way, Cragganwick Cremator deals damage equal to that card's power to target player.
 id=159402
@@ -1196,17 +1156,7 @@ power=5
 subtype=Troll
 toughness=5
 [/card]
-[card]
-text=Haste     Mudbrawler Cohort gets +1/+1 as long as you control another red creature.
-id=146062
-name=Mudbrawler Cohort
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Goblin Warrior
-toughness=1
-[/card]
+
 [card]
 text=Mudbrawler Raiders can't be blocked by blue creatures.
 id=141992
@@ -1427,17 +1377,7 @@ rarity=U
 type=Enchantment
 mana={1}{G}{G}
 [/card]
-[card]
-text=Rattleblaze Scarecrow has persist as long as you control a black creature. (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)  Rattleblaze Scarecrow has haste as long as you control a red creature.
-id=151631
-name=Rattleblaze Scarecrow
-rarity=C
-type=Artifact Creature
-mana={6}
-power=5
-subtype=Scarecrow
-toughness=3
-[/card]
+
 [card]
 text=Raven's Run Dragoon can't be blocked by black creatures.
 id=142037
@@ -1876,17 +1816,7 @@ power=2
 subtype=Kithkin Soldier Wizard
 toughness=2
 [/card]
-[card]
-text=Thornwatch Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)  Thornwatch Scarecrow has vigilance as long as you control a white creature.
-id=151634
-name=Thornwatch Scarecrow
-rarity=C
-type=Artifact Creature
-mana={6}
-power=4
-subtype=Scarecrow
-toughness=4
-[/card]
+
 [card]
 text=If you would draw a card, draw two cards instead.
 id=146728
@@ -2011,17 +1941,7 @@ power=3
 subtype=Merfolk Rogue
 toughness=3
 [/card]
-[card]
-text=Watchwing Scarecrow has vigilance as long as you control a white creature.     Watchwing Scarecrow has flying as long as you control a blue creature.
-id=151630
-name=Watchwing Scarecrow
-rarity=C
-type=Artifact Creature
-mana={4}
-power=2
-subtype=Scarecrow
-toughness=4
-[/card]
+
 [card]
 text=Enchant player     If a card would be put into enchanted player's graveyard from anywhere, instead that card is revealed and put on the bottom of that player's library.
 id=146740
@@ -2085,17 +2005,7 @@ power=5
 subtype=Bird
 toughness=7
 [/card]
-[card]
-text=Wingrattle Scarecrow has flying as long as you control a blue creature.     Wingrattle Scarecrow has persist as long as you control a black creature. (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-id=151633
-name=Wingrattle Scarecrow
-rarity=C
-type=Artifact Creature
-mana={3}
-power=2
-subtype=Scarecrow
-toughness=2
-[/card]
+
 [card]
 text=Whenever Witherscale Wurm blocks or becomes blocked by a creature, that creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)  Whenever Witherscale Wurm deals damage to an opponent, remove all -1/-1 counters from it.
 id=152068

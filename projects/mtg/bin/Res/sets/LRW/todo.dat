@@ -223,17 +223,7 @@ type=Tribal Enchantment
 mana={2}{R}
 subtype=Goblin
 [/card]
-[card]
-text=As long as you control a Faerie, Boggart Sprite-Chaser gets +1/+1 and has flying.
-id=146446
-name=Boggart Sprite-Chaser
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Goblin Warrior
-toughness=2
-[/card]
+
 [card]
 text=Swampwalk     Whenever a player plays a Goblin spell, you may pay {G}. If you do, you gain 2 life.
 id=139410
@@ -467,19 +457,7 @@ rarity=R
 type=Instant
 mana={1}{U}{U}{U}
 [/card]
-[card]
-text=Dauntless Dourbark's power and toughness are each equal to the number of Forests you control plus the number of Treefolk you control.     Dauntless Dourbark has trample as long as you control another Treefolk.
-auto=foreach(forest|myinplay) 1/1 includeself
-auto=foreach(treefolk|myinplay) 1/1 includeself
-id=141851
-name=Dauntless Dourbark
-rarity=R
-type=Creature
-mana={3}{G}
-power=*
-subtype=Treefolk Warrior
-toughness=*
-[/card]
+
 [card]
 text=Flash     When Dawnfluke comes into play, prevent the next 3 damage that would be dealt to target creature or player this turn.     Evoke {W} (You may play this spell for its evoke cost. If you do, it's sacrificed when it comes into play.)
 id=145801
@@ -1246,17 +1224,7 @@ subtype=Kithkin Soldier
 toughness=2
 [/card]
 
-[card]
-text=As long as you control a Giant, Kithkin Greatheart gets +1/+1 and has first strike.
-id=146444
-name=Kithkin Greatheart
-rarity=C
-type=Creature
-mana={1}{W}
-power=2
-subtype=Kithkin Soldier
-toughness=1
-[/card]
+
 [card]
 text=When Kithkin Harbinger comes into play, you may search your library for a Kithkin card, reveal it, then shuffle your library and put that card on top of it.
 id=139399

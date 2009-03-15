@@ -45,6 +45,31 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
+text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
+auto=aslongas(*[red]|myinplay) haste
+auto=aslongas(*[white]|myinplay) lifelink
+id=159612
+name=Cliffrunner Behemoth
+rarity=R
+type=Creature
+mana={3}{G}
+power=5
+subtype=Rhino Beast
+toughness=3
+[/card]
+[card]
+text=Court Homunculus gets +1/+1 as long as you control another artifact.
+auto=aslongas(artifact|myinplay) 1/1 other
+id=182607
+name=Court Homunculus
+rarity=C
+type=Artifact Creature
+mana={W}
+power=1
+subtype=Homunculus
+toughness=1
+[/card]
+[card]
 text=Creatures your opponents control get -1/-0.
 auto=lord(creature|opponentinplay) -1/0
 id=180322
@@ -65,6 +90,19 @@ mana={1}{W}
 power=1
 subtype=Gargoyle
 toughness=2
+[/card]
+[card]
+text=Reach (This can block creatures with flying.)  As long as you control a red permanent, Ember Weaver gets +1/+0 and has first strike.
+auto=aslongas(*[red]|myinplay) 1/0
+auto=aslongas(*[red]|myinplay) first strike
+id=184990
+name=Ember Weaver
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Spider
+toughness=3
 [/card]
 [card]
 text=Flying

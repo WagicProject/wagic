@@ -507,7 +507,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             if (lordType == PARSER_FOREACH){
 	            game->addObserver(NEW AForeach(id,card,target,lordTargets,lordIncludeSelf,power,toughness));
             }else if (lordType == PARSER_ASLONGAS){
-	            game->addObserver(NEW AKirdApe(id,card,lordTargets,power,toughness,lordIncludeSelf));
+	            game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,power,toughness));
             }else{
 	            if (!cost){
 	              if(card->hasType("enchantment")){
@@ -567,9 +567,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	          }
 	        }
 
-	        if (lordTargets){
+	        if (lordType == PARSER_LORD){
 	          game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,j));
-	        }else{
+	        }else if (lordType == PARSER_ASLONGAS){
+	            game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,0,0,j));
+          }else{
 	          if (tc){
 	            game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc, modifier));
 	          }else{

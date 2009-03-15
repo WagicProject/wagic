@@ -82,6 +82,18 @@ mana={2}{W}
 subtype=aura
 [/card]
 [card]
+text=Dire Wolves has banding as long as you control a Plains.
+auto=aslongas(plains|myinplay) banding
+id=2554
+name=Dire Wolves
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Wolf
+toughness=2
+[/card]
+[card]
 text=Target creature cannot be blocked except by artifact creatures or black creatures.
 id=2448
 alias=1161
@@ -738,6 +750,18 @@ mana={R}
 power=1
 subtype=Orc
 toughness=1
+[/card]
+[card]
+text=Pestilence Rats's power is equal to the number of other Rats in play. (For example, as long as there are two other Rats in play, Pestilence Rats's power and toughness are 2/3.)
+id=2481
+auto=foreach(rat) 1/0 other
+name=Pestilence Rats
+rarity=C
+type=Creature
+mana={2}{B}
+power=0
+subtype=Rat
+toughness=3
 [/card]
 [card]
 text=Swampwalk

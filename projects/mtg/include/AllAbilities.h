@@ -2424,7 +2424,7 @@ class AKarma: public TriggeredAbility{
   }
 };
 
-//1355 Norther Paladin
+//1355 Northern Paladin
 class ANorthernPaladin:public TargetAbility{
  public:
  ANorthernPaladin(int _id, MTGCardInstance * card):TargetAbility(_id, card){
@@ -2672,12 +2672,14 @@ class AKirdApe:public ListMaintainerAbility{
   TargetChooser * tc;
   int power;
   int toughness;
+  int ability;
   int includeSelf;
- AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _power, int _toughness,int _includeSelf):ListMaintainerAbility(_id, _source){
+ AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _includeSelf,int _power = 0, int _toughness = 0, int _ability=-1):ListMaintainerAbility(_id, _source){
     power = _power;
     toughness = _toughness;
     tc = _tc;
     includeSelf = _includeSelf;
+    ability=_ability;
  }
 
  int canBeInList(MTGCardInstance * card){
@@ -2689,15 +2691,18 @@ class AKirdApe:public ListMaintainerAbility{
    if (cards.size()== 1){
       source->power+=power;
       source->addToToughness(toughness);
+      if (ability != -1) source->basicAbilities[ability] +=1;
       return 1;
    }
    return 0;
  }
 
  int removed(MTGCardInstance * card){
+
    if (cards.size()== 0){
       source->power-=power;
       source->addToToughness(-toughness);
+      if ((ability != -1) && source->basicAbilities[ability] >0 ) source->basicAbilities[ability] -=1;
       return 1;
    }
    return 0;

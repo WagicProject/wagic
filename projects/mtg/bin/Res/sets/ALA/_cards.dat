@@ -868,6 +868,19 @@ subtype=Bird Soldier
 toughness=4
 [/card]
 [card]
+text=Wild Nacatl gets +1/+1 as long as you control a Mountain.     Wild Nacatl gets +1/+1 as long as you control a Plains.
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+id=174989
+name=Wild Nacatl
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Cat Warrior
+toughness=1
+[/card]
+[card]
 text=
 id=175062
 name=Woolly Thoctar
