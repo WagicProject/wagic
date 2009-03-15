@@ -670,7 +670,7 @@ subtype=aura
 text=Target creature gets +2/+2 as long as any opponent controls any black cards. That creature cannot be blocked by black creatures.
 id=2666
 target=creature
-auto=:2/2
+auto=aslongas(*[black]|opponentinplay) 2/2
 auto=protection from black
 name=Black Scarab
 rarity=U
@@ -689,6 +689,7 @@ type=Enchantment
 mana={W}
 subtype=aura
 [/card]
+
 [card]
 text=Cumulative Upkeep: {R} Target creature's controller cannot cast summon spells.
 id=2613

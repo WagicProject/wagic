@@ -1029,18 +1029,6 @@ mana={3}{R}{R}
 rarity=U
 [/card]
 [card]
-text={R},{T},Sacrifice a Goblin: Red creatures get +1/+1 until end of turn.
-id=3450 
-name=Goblin Soothsayer
-type=Creature
-subtype=Goblin Shaman
-auto={R}{T}{S(goblin|myinplay)}:lord(creature[red]) 1/1
-mana={R}
-power=1
-toughness=1
-rarity=U
-[/card]
-[card]
 text=Rampage 1 (For each creature assigned to block it beyond the first, this creature gets +1/+1 until end of turn.)
 id=3252 
 name=Horrible Hordes
@@ -1059,7 +1047,7 @@ name=Zuberi, Golden Feather
 abilities=Flying,legendary
 type=Creature
 subtype=Griffin
-auto=lord(griffin) 1/1
+auto=lord(griffin) 1/1 other
 mana={4}{W}
 power=3
 toughness=3

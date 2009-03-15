@@ -72,6 +72,7 @@ protomatter_powder.txt
 resurrection.txt
 rootwalla.txt
 royal_assassin.txt
+seismic_assault.txt
 siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt

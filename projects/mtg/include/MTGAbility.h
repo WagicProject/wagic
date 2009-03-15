@@ -33,6 +33,7 @@ using std::map;
 
 #define PARSER_LORD 1
 #define PARSER_FOREACH 2
+#define PARSER_ASLONGAS 3
 
 class MTGAbility: public ActionElement{
  protected:

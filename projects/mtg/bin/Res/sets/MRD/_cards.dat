@@ -48,7 +48,7 @@ abilities=flying
 [/card]
 [card]
 text=Creatures you control get +0/+1.     Sacrifice Angelic Shield: Return target creature to its owner's hand.
-auto=lord(creature|myinplay) 0/1 includeself
+auto=lord(creature|myinplay) 0/1 
 auto={s}:moveTo(ownerhand) target(creature)
 id=23177
 name=Angelic Shield
@@ -242,7 +242,7 @@ toughness=3
 [card]
 text=Protection from black       Crusading Knight gets +1/+1 for each Swamp your opponents control.
 id=22963
-auto=foreach(name:Swamp)
+auto=foreach(swamp|opponentinplay) 1/1
 name=Crusading Knight
 colour=White
 rarity=R
@@ -342,7 +342,7 @@ toughness=2
 [/card]
 [card]
 text=Creatures you control have haste.     Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
-auto=lord(creature|myinplay) haste includeself
+auto=lord(creature|myinplay) haste 
 auto={s}:2/2 target(creature)
 id=23180
 name=Fires of Yavimaya
@@ -638,7 +638,7 @@ abilities=flying
 [card]
 text=Protection from white       Marauding Knight gets +1/+1 for each Plains your opponents control.
 id=23053
-auto=foreach(name:Plains)
+auto=foreach(plains|opponentinplay) 1/1
 name=Marauding Knight
 colour=Black
 rarity=R
@@ -1213,7 +1213,7 @@ type=Artifact
 [/card]
 [card]
 text=Other black creatures get -1/-1
-auto=lord(creature[black]) -1/-1
+auto=lord(creature[black]) -1/-1 other
 id=23035
 name=Urborg Shambler
 colour=Black

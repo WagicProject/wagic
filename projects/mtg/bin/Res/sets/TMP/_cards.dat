@@ -303,8 +303,8 @@ mana={B}
 text=Legendary       Other Elf creatures have forestwalk.   Other Elves have shroud. (They can't be the targets of spells or abilities.)
 id=4757
 name=Eladamri, Lord of Leaves
-auto=lord(elf) forestwalk
-auto=lord(elf) shroud
+auto=lord(elf) forestwalk other
+auto=lord(elf) shroud other
 colour=Green
 rarity=R
 mana={G}{G}
@@ -725,7 +725,7 @@ toughness=1
 [/card]
 [card]
 text=Mogg Squad gets -1/-1 for each other creature in play.
-auto=foreach(creature) -1/-1
+auto=foreach(creature) -1/-1 other
 id=4834
 name=Mogg Squad
 rarity=U

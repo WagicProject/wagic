@@ -244,7 +244,7 @@ toughness=1
 [/card]
 [card]
 text=Flying     Attacking creatures you control get +2/+0.
-auto=lord(creature[attacking]|myinplay) 2/0 includeself
+auto=lord(creature[attacking]|myinplay) 2/0 
 abilities=flying
 id=154258
 name=Nobilis of War

@@ -1,0 +1,20 @@
+#Discard a land card: Seismic Assault deals 2 damage to target creature or player.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:129884
+hand:129754
+[PLAYER2]
+inplay:1250
+[DO]
+129884
+1250
+129754
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:129884
+graveyard:129754
+[PLAYER2]
+graveyard:1250
+[END]

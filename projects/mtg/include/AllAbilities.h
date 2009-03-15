@@ -2672,14 +2672,16 @@ class AKirdApe:public ListMaintainerAbility{
   TargetChooser * tc;
   int power;
   int toughness;
- AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _power, int _toughness):ListMaintainerAbility(_id, _source){
+  int includeSelf;
+ AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _power, int _toughness,int _includeSelf):ListMaintainerAbility(_id, _source){
     power = _power;
     toughness = _toughness;
     tc = _tc;
+    includeSelf = _includeSelf;
  }
 
  int canBeInList(MTGCardInstance * card){
-   if (card->controller() == source->controller() && tc->canTarget(card)) return 1;
+   if ((includeSelf || card!=source) && tc->canTarget(card)) return 1;
    return 0;
  }
 

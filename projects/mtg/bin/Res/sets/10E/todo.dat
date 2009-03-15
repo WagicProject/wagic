@@ -1420,15 +1420,7 @@ power=2
 subtype=Spirit
 toughness=4
 [/card]
-[card]
-text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
-id=129884
-name=Seismic Assault
-rarity=R
-color=Red
-type=Enchantment
-mana={R}{R}{R}
-[/card]
+
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever a creature dealt damage by Sengir Vampire this turn is put into a graveyard, put a +1/+1 counter on Sengir Vampire.
 id=129724

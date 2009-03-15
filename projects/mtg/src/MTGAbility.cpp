@@ -181,7 +181,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       TargetChooser * tc = NULL;
 
       TargetChooser * lordTargets = NULL;
-      int lordIncludeSelf = 0;
+      int lordIncludeSelf = 1;
       int lordType = 0;
       string lordTargetsString;
 
@@ -222,10 +222,19 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           lordType = PARSER_FOREACH;
         }
       }
+      found = s.find("aslongas(");
+      if (found != string::npos){
+        if (dryMode) return BAKA_EFFECT_GOOD;
+        unsigned int end = s.find(")", found+9);
+        if (end != string::npos){
+	        lordTargetsString = s.substr(found+9,end-found-9).c_str();
+          lordType = PARSER_ASLONGAS;
+        }
+      }
       if (lordTargetsString.size()){
           TargetChooserFactory tcf;
           lordTargets = tcf.createTargetChooser(lordTargetsString, card);
-          if (s.find("includeself") != string::npos) lordIncludeSelf = 1;
+          if (s.find("other") != string::npos) lordIncludeSelf = 0;
       }
 
 
@@ -496,10 +505,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	            game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
 	        }else{
             if (lordType == PARSER_FOREACH){
-              char buf[4096];
-              sprintf(buf, "KELDON : %i/%i , includeself = %i\n", power,toughness,lordIncludeSelf);
-              OutputDebugString(buf);
 	            game->addObserver(NEW AForeach(id,card,target,lordTargets,lordIncludeSelf,power,toughness));
+            }else if (lordType == PARSER_ASLONGAS){
+	            game->addObserver(NEW AKirdApe(id,card,lordTargets,power,toughness,lordIncludeSelf));
             }else{
 	            if (!cost){
 	              if(card->hasType("enchantment")){
@@ -1114,12 +1122,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
       break;
     }
-  case 1315: //Sedge Troll
-    {
-      TargetChooser * tc = NEW TypeTargetChooser("swamp",card);
-      game->addObserver(NEW AKirdApe(_id, card,tc,1,1));
-      break;
-    }
   case 1221: //Serendib Efreet
     {
       game->addObserver( NEW ASerendibEfreet(_id, card));
@@ -1245,13 +1247,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1243: //Fastbond
     {
       game->addObserver(NEW AFastbond(_id, card));
-      break;
-    }
-
-  case 1302: //Kird Ape
-    {
-      TargetChooser * tc = NEW TypeTargetChooser("forest",card);
-      game->addObserver(NEW AKirdApe(_id, card,tc,1,2));
       break;
     }
   case 1309: //Orcish Artillery

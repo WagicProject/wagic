@@ -1,7 +1,7 @@
 [card]
 text=Enchant creature     Enchanted creature gets +1/+1 for each Plains you control and has flying.
 target=creature
-auto=foreach(plains|myinplay) 1/1 includeself
+auto=foreach(plains|myinplay) 1/1
 auto=flying
 id=146041
 name=Armored Ascension
@@ -9,6 +9,18 @@ rarity=U
 type=Enchantment
 mana={3}{W}
 subtype=Aura
+[/card]
+[card]
+text=Ashenmoor Cohort gets +1/+1 as long as you control another black creature.
+auto=aslongas(creature[black]) 1/1 other
+id=142060
+name=Ashenmoor Cohort
+rarity=C
+type=Creature
+mana={5}{B}
+power=4
+subtype=Elemental Warrior
+toughness=3
 [/card]
 [card]
 text=Flying     {BR}: Blistering Dieflyn gets +1/+0 until end of turn.
@@ -25,7 +37,7 @@ toughness=1
 [/card]
 [card]
 text=Red creatures you control have first strike.
-auto=lord(creature[red]|myinplay) first strike includeself
+auto=lord(creature[red]|myinplay) first strike 
 id=142062
 name=Bloodmark Mentor
 rarity=U
@@ -38,8 +50,8 @@ toughness=1
 [card]
 text=Trample     Other red creatures you control get +1/+1.     Other green creatures you control get +1/+1.
 abilities=trample
-auto=lord(creature[red]|myinplay) 1/1
-auto=lord(creature[green]|myinplay) 1/1
+auto=lord(creature[red]|myinplay) 1/1 other
+auto=lord(creature[green]|myinplay) 1/1 other
 id=147428
 name=Boartusk Liege
 rarity=R
@@ -89,7 +101,7 @@ toughness=1
 [/card]
 [card]
 text=Black creatures you control have wither. (They deal damage to creatures in the form of -1/-1 counters.)
-auto=lord(creature[black]|myinplay) wither includeself
+auto=lord(creature[black]|myinplay) wither
 id=142034
 name=Corrosive Mentor
 rarity=U
@@ -102,7 +114,7 @@ toughness=3
 [card]
 text=Fear     Crowd of Cinders's power and toughness are each equal to the number of black permanents you control.
 abilities=fear
-auto=foreach(*[black]|myinplay) 1/1 includeself
+auto=foreach(*[black]|myinplay) 1/1
 id=146051
 name=Crowd of Cinders
 rarity=U
@@ -114,7 +126,7 @@ toughness=*
 [/card]
 [card]
 text=Blue creatures you control are unblockable.
-auto=lord(creature[blue]|myinplay) unblockable includeself
+auto=lord(creature[blue]|myinplay) unblockable
 id=141981
 name=Deepchannel Mentor
 rarity=U
@@ -138,7 +150,7 @@ toughness=1
 [/card]
 [card]
 text=Flying     Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
-auto=foreach(*[blue]|myinplay) 1/1 includeself
+auto=foreach(*[blue]|myinplay) 1/1
 abilities=flying
 id=158685
 name=Faerie Swarm
@@ -233,8 +245,8 @@ toughness=2
 [card]
 text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
 abilities=flying
-auto=lord(creature[blue]|myinplay) 1/1
-auto=lord(creature[black]|myinplay) 1/1
+auto=lord(creature[blue]|myinplay) 1/1 other
+auto=lord(creature[black]|myinplay) 1/1 other
 id=146743
 name=Glen Elendra Liege
 rarity=R
@@ -342,7 +354,7 @@ toughness=2
 [/card]
 [card]
 text=Vigilance     Kithkin Rabble's power and toughness are each equal to the number of white permanents you control.
-auto=foreach(*[white]|myinplay) 1/1 includeself
+auto=foreach(*[white]|myinplay) 1/1
 abilities=vigilance
 id=158695
 name=Kithkin Rabble
@@ -745,8 +757,8 @@ subtype=Swamp
 [card]
 text=Flash     Other white creatures you control get +1/+1.     Other blue creatures you control get +1/+1.
 abilities=flash
-auto=lord(creature[white]|myinplay) 1/1
-auto=lord(creature[blue]|myinplay) 1/1
+auto=lord(creature[white]|myinplay) 1/1 other
+auto=lord(creature[blue]|myinplay) 1/1 other
 id=147409
 name=Thistledown Liege
 rarity=R

@@ -114,8 +114,8 @@ type=Land
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Other black creatures get +1/+1.      Nonblack creatures get -1/-1.
 abilities=Legendary, flying
-auto=lord(creature[black]) 1/1
-auto=lord(creature[-black]) -1/-1 includeself
+auto=lord(creature[black]) 1/1 other
+auto=lord(creature[-black]) -1/-1
 id=106525
 name=Ascendant Evincar
 rarity=R
@@ -474,8 +474,8 @@ toughness=5
 [card]
 text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
 id=129534
-auto=lord(elf) 1/1 
-auto=lord(elf) forestwalk
+auto=lord(elf) 1/1 other
+auto=lord(elf) forestwalk other
 name=Elvish Champion
 rarity=R
 color=Green
@@ -537,8 +537,8 @@ toughness=2
 [card]
 text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
 id=135258
-auto=lord(soldier) 1/1 
-auto=lord(soldier)  first strike
+auto=lord(soldier) 1/1 other
+auto=lord(soldier)  first strike other
 name=Field Marshal
 rarity=R
 color=White
@@ -689,7 +689,7 @@ toughness=4
 [/card]
 [card]
 text=Creatures you control get +1/+1.
-auto=lord(creature|myinplay) 1/1 includeself
+auto=lord(creature|myinplay) 1/1 
 id=129572
 name=Glorious Anthem
 rarity=R
@@ -700,8 +700,8 @@ mana={1}{W}{W}
 [card]
 text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
 id=129578
-auto=lord(goblin) 1/1
-auto=lord(goblin) mountainwalk
+auto=lord(goblin) 1/1 other
+auto=lord(goblin) mountainwalk other
 name=Goblin King
 rarity=R
 color=Red
@@ -1030,7 +1030,7 @@ toughness=7
 [/card]
 [card]
 text=Other Zombie creatures get +1/+1.     {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
-auto=lord(zombie) 1/1
+auto=lord(zombie) 1/1 other
 auto={1}{B}{T}:moveTo(myhand) target(zombie|mygraveyard)
 id=129629
 name=Lord of the Undead
@@ -1167,7 +1167,7 @@ toughness=3
 [card]
 text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.)  {2}{W}: Put a 1/1 white Soldier creature token into play.
 auto={2}{W}:token(Soldier,creature soldier, 1/1,white)
-auto=lord(soldier) vigilance includeself
+auto=lord(soldier) vigilance
 id=129716
 name=Mobilization
 rarity=R
@@ -1191,7 +1191,7 @@ toughness=1
 [card]
 text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Molimo, Maro-Sorcerer's power and toughness are  equal to the number of lands you control.
 abilities=trample, legendary
-auto=foreach(land|myinplay) 1/1 includeself
+auto=foreach(land|myinplay) 1/1
 id=106368
 name=Molimo, Maro-Sorcerer
 rarity=R
@@ -1460,7 +1460,7 @@ subtype=Plains
 [/card]
 [card]
 text=Creatures you control have trample. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-auto=lord(creature|myinplay) trample includeself
+auto=lord(creature|myinplay) trample 
 id=136288
 name=Primal Rage
 rarity=U
@@ -1556,7 +1556,7 @@ subtype=Aura
 [card]
 text=Relentless Rats gets +1/+1 for each other creature in play named Relentless Rats.     A deck can have any number of cards named Relentless Rats.
 id=135236
-auto=foreach(relentless rats) 1/1
+auto=foreach(relentless rats) 1/1 other
 name=Relentless Rats
 rarity=U
 color=Black
@@ -1690,7 +1690,7 @@ toughness=2
 [card]
 text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
 id=130504
-auto=foreach(creature|myinplay) 1/1 includeself
+auto=foreach(creature|myinplay) 1/1 
 name=Scion of the Wild
 rarity=R
 color=Green
@@ -1699,6 +1699,16 @@ mana={1}{G}{G}
 power=*
 subtype=Avatar
 toughness=*
+[/card]
+[card]
+text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
+auto={S(land|myhand)}:damage 2 target(creature,player)
+id=129884
+name=Seismic Assault
+rarity=R
+color=Red
+type=Enchantment
+mana={R}{R}{R}
 [/card]
 [card]
 text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
@@ -2275,7 +2285,7 @@ type=Land
 [/card]
 [card]
 text=Yavimaya Enchantress gets +1/+1 for each enchantment in play.
-auto=foreach(enchantment) 1/1 includeself
+auto=foreach(enchantment) 1/1 
 id=130515
 name=Yavimaya Enchantress
 rarity=U

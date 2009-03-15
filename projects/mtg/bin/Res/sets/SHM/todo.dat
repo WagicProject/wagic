@@ -34,17 +34,7 @@ subtype=Kithkin Cleric
 toughness=1
 [/card]
 
-[card]
-text=Ashenmoor Cohort gets +1/+1 as long as you control another black creature.
-id=142060
-name=Ashenmoor Cohort
-rarity=C
-type=Creature
-mana={5}{B}
-power=4
-subtype=Elemental Warrior
-toughness=3
-[/card]
+
 [card]
 text=Ashenmoor Gouger can't block.
 id=153981
