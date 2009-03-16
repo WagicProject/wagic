@@ -29,7 +29,10 @@ class GameStateDuel: public GameState, public JGuiListener
   SimpleMenu * menu;
   JLBFont* mFont, *opponentMenuFont;
   int nbAIDecks;
-
+  int unlocked;
+  JQuad * unlockedQuad;
+  JTexture * unlockedTex;
+  int isDifficultyUnlocked();
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
  public:
   GameStateDuel(GameApp* parent);

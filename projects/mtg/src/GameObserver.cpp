@@ -151,6 +151,32 @@ void GameObserver::startGame(int shuffle, int draw){
   }
   phaseRing->goToPhase(Constants::MTG_PHASE_FIRSTMAIN, players[0]);
   currentGamePhase = Constants::MTG_PHASE_FIRSTMAIN;
+
+  //Difficult mode special stuff
+  if (!players[0]->isAI() && players[1]->isAI()){
+    GameOptions * go = GameOptions::GetInstance(); 
+    int difficulty = go->values[OPTIONS_DIFFICULTY].getIntValue();
+    if (go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue() && difficulty) {
+      Player * p = players[1];
+      for (int level=0; level < difficulty; level ++){
+        MTGCardInstance * card = NULL;
+        MTGGameZone * z = p->game->library;
+        for (int j = 0; j<z->nb_cards; j++){
+          MTGCardInstance * _card = z->cards[j];
+          if (_card->hasType("land")){
+            card = _card;
+            j = z->nb_cards;
+          }
+        }
+        if (card){
+          MTGCardInstance * copy = p->game->putInZone(card,  p->game->library, p->game->stack);
+          Spell * spell = NEW Spell(copy);          
+          spell->resolve();
+          delete spell;
+        }
+      }
+    }
+  }
 }
 
 void GameObserver::addObserver(MTGAbility * observer){

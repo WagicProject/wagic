@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/GameStateDuel.h"
+#include "../include/GameOptions.h"
 #include "../include/utils.h"
 #include "../include/AIPlayer.h"
 #include "../include/PlayerData.h"
@@ -73,6 +74,9 @@ void GameStateDuel::Start()
   mFont->SetBase(0);	
   opponentMenuFont = mFont;
 
+  unlocked = -1;
+  unlockedTex = NULL;
+  unlockedQuad = NULL;
 
   menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
   menu->Add(12,"Back to main menu");
@@ -171,6 +175,8 @@ void GameStateDuel::End()
     SAFE_DELETE(deck[i]);
   }
 
+  SAFE_DELETE(unlockedQuad);
+  SAFE_DELETE(unlockedTex);
   SAFE_DELETE(menu);
   SAFE_DELETE(opponentMenu);
 #ifdef TESTSUITE
@@ -283,16 +289,24 @@ void GameStateDuel::Update(float dt)
       if (game->gameOver){
       showMsg = (rand() % 5);
 	if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() && mPlayers[0]!= game->gameOver){
-#if defined (WIN32) || defined (LINUX)
-	  char buf[4096];
-	  sprintf(buf, "%p - %p", mPlayers[0], game->gameOver);
-	  OutputDebugString(buf);
-#endif
 	  PlayerData * playerdata = NEW PlayerData(mParent->collection);
 	  playerdata->credits+= 500;
 	  playerdata->save();
 	  delete playerdata;
-	}
+    if (unlocked == -1){
+      unlocked = isDifficultyUnlocked();
+      if (unlocked){
+        unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/unlocked.png", TEX_TYPE_USE_VRAM); 
+        unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+        GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
+        GameOptions::GetInstance()->save();
+        JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
+        if (sample) JSoundSystem::GetInstance()->PlaySample(sample); 
+      }
+    }
+  }else{
+      unlocked = 0;
+  }
 	mGamePhase = DUEL_STATE_END;
 #ifdef TESTSUITE
 	if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
@@ -348,12 +362,15 @@ void GameStateDuel::Render()
     {
     case DUEL_STATE_END:
       {
-	      JRenderer::GetInstance()->ClearScreen(ARGB(200,0,0,0));
+        JRenderer * r = JRenderer::GetInstance();
+	      r->ClearScreen(ARGB(200,0,0,0));
 	      char buffer[50];
+        int unlocked = 0;
 	      int p0life = mPlayers[0]->life;
 	      if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
-	        if (game->gameOver !=mPlayers[0]){
+	        if (game->gameOver != mPlayers[0]){
 	          sprintf (buffer, "Victory! Congratulations, You earn 500 credits");
+            
           }else{
 	          sprintf (buffer, "You have been defeated");
 	        }
@@ -365,7 +382,9 @@ void GameStateDuel::Render()
 	        sprintf(buffer, "Player %i wins (%i)", winner, p0life );
 	      }
 	      mFont->DrawString(buffer, 10, 150);
-        
+        if (unlockedQuad){
+          r->RenderQuad(unlockedQuad, 20, 20);
+        }
         if (showMsg == 1){
             JLBFont * f = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
             mFont->DrawString("Please support this project !" ,10,180);
@@ -451,4 +470,28 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         }
       }
   }
+}
+
+int GameStateDuel::isDifficultyUnlocked(){
+  if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()) return 0;
+  nbAIDecks = 0;
+  int found = 1;
+  int wins = 0;
+  DeckStats * stats = DeckStats::GetInstance();
+  stats->load(mPlayers[0]);
+  while (found){
+    found = 0;
+    char buffer[512];
+    char aiSmallDeckName[512];
+    sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbAIDecks+1);
+    if(fileExists(buffer)){
+      found = 1;
+      nbAIDecks++;
+      sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks); 
+      int percentVictories = stats->percentVictories(string(aiSmallDeckName));
+      if (percentVictories >=67) wins++;
+      if (wins >= 12) return 1;
+    }
+  }
+  return 0;
 }

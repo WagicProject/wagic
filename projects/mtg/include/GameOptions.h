@@ -8,6 +8,9 @@ using std::string;
 
 #define OPTIONS_MUSICVOLUME "musicVolume"
 #define OPTIONS_SFXVOLUME "sfxVolume"
+#define OPTIONS_DIFFICULTY_MODE_UNLOCKED "prx_handler" //huhu
+#define OPTIONS_DIFFICULTY "difficulty"
+
 // WALDORF - added
 #define OPTIONS_INTERRUPT_SECONDS "interruptSeconds"                         
 
