@@ -22,7 +22,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to): 
   attacker = 0;
   lifeOrig = life;
   belongs_to=_belongs_to;
-  owner = _belongs_to->library->owner;
+  owner = NULL;
+  if (_belongs_to) owner = _belongs_to->library->owner;
   lastController = owner;
   initAttackersDefensers();
   life=toughness;
