@@ -17,6 +17,8 @@ class GameStateMenu: public GameState, public JGuiListener
   JTexture * movingWTexture;
   JQuad * mBg;
   JQuad * mMovingW;
+  JTexture * splashTex;
+  JQuad * splashQuad;
   float mCreditsYPos;
   int currentState;
   //JMusic * bgMusic;

@@ -49,6 +49,8 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
   testSuite = NULL;
 #endif
   showMsg = 0;
+  unlockedTex = NULL;
+  unlockedQuad = NULL;
 }
 
 GameStateDuel::~GameStateDuel() {
@@ -75,8 +77,7 @@ void GameStateDuel::Start()
   opponentMenuFont = mFont;
 
   unlocked = -1;
-  unlockedTex = NULL;
-  unlockedQuad = NULL;
+
 
   menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
   menu->Add(12,"Back to main menu");
@@ -365,7 +366,6 @@ void GameStateDuel::Render()
         JRenderer * r = JRenderer::GetInstance();
 	      r->ClearScreen(ARGB(200,0,0,0));
 	      char buffer[50];
-        int unlocked = 0;
 	      int p0life = mPlayers[0]->life;
 	      if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
 	        if (game->gameOver != mPlayers[0]){

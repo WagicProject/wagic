@@ -5,7 +5,7 @@
 #include "../include/GameOptions.h"
 #include "../include/GameApp.h"
 
-static const char* GAME_VERSION = "WTH?! 0.4.1 - by WilLoW";
+static const char* GAME_VERSION = "WTH?! 0.5.0 - by WilLoW";
 #define ALPHA_WARNING 0
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
@@ -61,6 +61,8 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
   angleMultiplier = MIN_ANGLE_MULTIPLIER;
   yW = 55;
   mVolume = 0;
+  splashTex = NULL;
+  splashQuad = NULL;
 }
 
 GameStateMenu::~GameStateMenu() {}
@@ -76,6 +78,10 @@ void GameStateMenu::Create()
   movingWTexture = JRenderer::GetInstance()->LoadTexture("graphics/movingW.png", TEX_TYPE_USE_VRAM);
   mBg = NEW JQuad(bgTexture, 0, 0, 256, 166);		// Create background quad for rendering.
   mMovingW = NEW JQuad(movingWTexture, 2, 2, 84, 62);
+  if (fileExists("graphics/splash.jpg")){
+    splashTex = JRenderer::GetInstance()->LoadTexture("graphics/splash.jpg", TEX_TYPE_USE_VRAM);
+    splashQuad = NEW JQuad(splashTex, 0, 0, 480, 272);
+  }
   mBg->SetHotSpot(105,50);
   mMovingW->SetHotSpot(72,16);
   //load all the icon images
@@ -198,21 +204,23 @@ void GameStateMenu::Update(float dt)
     {
     case MENU_STATE_MAJOR_LOADING_CARDS :
       if (mReadConf){
-	mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
+	      mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
       }else{
-	mReadConf = 1;
+	      mReadConf = 1;
       }
       if (!nextCardSet()){
-	//How many cards total ?
-	sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
-	//Check for first time comer
-	std::ifstream file(RESPATH"/player/collection.dat");
-	if(file){
-	  file.close();
-	  currentState = MENU_STATE_MAJOR_WARNING | MENU_STATE_MINOR_NONE;
-	}else{
-	  currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
-	}
+	      //How many cards total ?
+	      sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
+	      //Check for first time comer
+	      std::ifstream file(RESPATH"/player/collection.dat");
+	      if(file){
+	        file.close();
+	        currentState = MENU_STATE_MAJOR_WARNING | MENU_STATE_MINOR_NONE;
+	      }else{
+	        currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
+	      }
+        SAFE_DELETE(splashQuad);
+        SAFE_DELETE(splashTex);
       }
       break;
     case MENU_STATE_MAJOR_FIRST_TIME :
@@ -347,17 +355,21 @@ void GameStateMenu::Render()
   renderer->ClearScreen(ARGB(0,0,0,0));
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
-    char text[512];
-    sprintf(text, "LOADING SET: %s", mCurrentSetName);
-    mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
+    if (splashQuad){
+      renderer->RenderQuad(splashQuad,0,0);
+    }else{
+      char text[512];
+      sprintf(text, "LOADING SET: %s", mCurrentSetName);
+      mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
+    }
   }else{
     mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
     PIXEL_TYPE colors[] =
       {
-	ARGB(255, 3, 2, 0),
-	ARGB(255, 8, 3, 0),
-	ARGB(255,21,12, 0),
-	ARGB(255,50,34, 0)
+	      ARGB(255, 3, 2, 0),
+	      ARGB(255, 8, 3, 0),
+	      ARGB(255,21,12, 0),
+	      ARGB(255,50,34, 0)
       };
 
     renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);

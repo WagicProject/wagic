@@ -17,7 +17,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
       LOG("CANPUTINPLAY- Land, ok\n");
       return 1;
     }
-  }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
+  }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
     LOG("CANPUTINPLAY- correct time to play\n");
     ManaCost * playerMana = player->getManaPool();
     ManaCost * cost = card->getManaCost();

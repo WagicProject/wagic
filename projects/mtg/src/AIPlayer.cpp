@@ -617,7 +617,7 @@ int AIPlayerBaka::computeActions(){
   if (g->isInterrupting == this){ // interrupting
     selectAbility();
     return 1;
-  }else if (p == this){ //standard actions
+  }else if (p == this && g->mLayers->stackLayer()->count(0,NOT_RESOLVED) == 0){ //standard actions
     CardDescriptor cd;
     MTGCardInstance * card = NULL;
     switch(currentGamePhase){
@@ -682,6 +682,7 @@ int AIPlayerBaka::computeActions(){
     }
     return 1;
   }
+  return 1;
 };
 
 int AIPlayerBaka::Act(float dt){
