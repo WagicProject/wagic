@@ -112,6 +112,20 @@ color=Land
 type=Land
 [/card]
 [card]
+text={T}: Draw three cards.     {2}{U}{U}: Return Arcanis the Omnipotent to its owner's hand.
+auto={T}:draw 3
+auto={2}{U}{U}:moveTo(hand)
+abilities=legendary
+id=106426
+name=Arcanis the Omnipotent
+rarity=R
+type=Legendary Creature
+mana={3}{U}{U}{U}
+power=3
+subtype=Wizard
+toughness=4
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Other black creatures get +1/+1.      Nonblack creatures get -1/-1.
 abilities=Legendary, flying
 auto=lord(creature[black]) 1/1 other
@@ -486,6 +500,19 @@ subtype=Elf
 toughness=2
 [/card]
 [card]
+text={G}, {T}: You may put a creature card from your hand into play.
+auto={G}{T}:moveTo(inPlay) target(creature|myhand)
+id=129535
+name=Elvish Piper
+rarity=R
+color=Green
+type=Creature
+mana={3}{G}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
 text=
 id=135263
 name=Enormous Baloth
@@ -623,6 +650,16 @@ rarity=L
 color=Land
 type=Basic Land
 subtype=Forest
+[/card]
+[card]
+text={2}, {T}: You gain 1 life.
+auto={2},{T}:life 1
+id=135273
+name=Fountain of Youth
+rarity=U
+color=Artifact
+type=Artifact
+mana={0}
 [/card]
 [card]
 text=
@@ -797,6 +834,19 @@ mana={W}
 power=1
 subtype=Human Soldier
 toughness=1
+[/card]
+[card]
+text={U}: Untap Horseshoe Crab.
+auto={U}:untap
+id=129596
+name=Horseshoe Crab
+rarity=C
+color=Blue
+type=Creature
+mana={2}{U}
+power=1
+subtype=Crab
+toughness=3
 [/card]
 [card]
 text=At the beginning of each player's draw step, if Howling Mine is untapped, that player draws a card.
@@ -1482,6 +1532,16 @@ subtype=Human Wizard
 toughness=1
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {T}, Sacrifice Quicksand: Target attacking creature without flying gets -1/-2 until end of turn.
+auto={T}:Add{1}
+auto={T}{S}:-1/-2 target(creature[attacking;-flying])
+id=129687
+name=Quicksand
+rarity=U
+color=Land
+type=Land
+[/card]
+[card]
 text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
 auto={2}:haste target(creature[green;black])
 id=130997
@@ -1759,6 +1819,19 @@ rarity=U
 color=Red
 type=Sorcery
 mana={2}{R}{R}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
+target=creature
+auto=flying
+auto={U}:moveTo(hand)
+id=129553
+name=Shimmering Wings
+rarity=C
+color=Blue
+type=Enchantment
+mana={U}
+subtype=Aura
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {R}: Shivan Dragon gets +1/+0 until end of turn.

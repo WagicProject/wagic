@@ -23,14 +23,6 @@ type=Enchantment
 mana={1}{R}{G}
 [/card]
 [card]
-text=Target creature gets +1/+1 until end of turn.     Draw a card.
-id=24127
-name=Aggressive Urge
-rarity=C
-type=Instant
-mana={1}{G}
-[/card]
-[card]
 text=Kicker {1}{R} (You may pay an additional {1}{R} as you play this spell.)    Destroy target nonblack creature. It can't be regenerated. If the kicker cost was paid, Agonizing Demise deals damage equal to that creature's power to the creature's controller.
 id=23034
 name=Agonizing Demise
@@ -72,13 +64,6 @@ subtype=Kavu
 toughness=3
 [/card]
 [card]
-text=Ancient Spring comes into play tapped.       {T}: Add {U} to your mana pool.       {T}, Sacrifice Ancient Spring: Add {W}{B} to your mana pool.
-id=23236
-name=Ancient Spring
-rarity=C
-type=Land
-[/card]
-[card]
 text=Black spells you play cost {B} more to play.       {B}: Andradite Leech gets +1/+1 until end of turn.
 id=23052
 name=Andradite Leech
@@ -88,40 +73,6 @@ mana={2}{B}
 power=2
 subtype=Leech
 toughness=2
-[/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy comes into play, you gain 3 life.
-id=22952
-name=Angel of Mercy
-rarity=U
-type=Creature
-mana={4}{W}
-power=3
-subtype=Angel
-toughness=3
-[/card]
-[card]
-text=Creatures you control get +0/+1.       Sacrifice Angelic Shield: Return target creature to its owner's hand.
-id=23177
-name=Angelic Shield
-rarity=U
-type=Enchantment
-mana={W}{U}
-[/card]
-[card]
-text=Destroy target nonblack creature. It can't be regenerated.     Draw a card.
-id=23042
-name=Annihilate
-rarity=U
-type=Instant
-mana={3}{B}{B}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.       {T}, Sacrifice Archaeological Dig: Add one mana of any color to your mana pool.
-id=23245
-name=Archaeological Dig
-rarity=U
-type=Land
 [/card]
 [card]
 text=Kicker {2} (You may pay an additional {2} as you play this spell.)  Vigilance     If the kicker cost was paid, Ardent Soldier comes into play with a +1/+1 counter on it.
