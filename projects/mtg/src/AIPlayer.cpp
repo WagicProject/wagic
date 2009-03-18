@@ -708,13 +708,6 @@ int AIPlayerBaka::Act(float dt){
     OutputDebugString("Cannot interrupt\n");
     return 0;
   }
-  if (!clickstream.empty()){
-    AIAction * action = clickstream.front();
-    action->Act();
-    SAFE_DELETE(action);
-    clickstream.pop();
-  }
-
   if (clickstream.empty()) computeActions();
   if (clickstream.empty()){
     if (g->isInterrupting == this){
@@ -722,7 +715,16 @@ int AIPlayerBaka::Act(float dt){
     }else{
       g->userRequestNextGamePhase();
     }
+  } else {
+  //if (!clickstream.empty()){
+    AIAction * action = clickstream.front();
+    action->Act();
+    SAFE_DELETE(action);
+    clickstream.pop();
   }
+
+  //if (clickstream.empty()) computeActions();
+
   return 1;
 };
 

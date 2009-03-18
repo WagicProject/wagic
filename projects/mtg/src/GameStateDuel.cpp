@@ -490,7 +490,7 @@ int GameStateDuel::isDifficultyUnlocked(){
       sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks); 
       int percentVictories = stats->percentVictories(string(aiSmallDeckName));
       if (percentVictories >=67) wins++;
-      if (wins >= 12) return 1;
+      if (wins >= 10) return 1;
     }
   }
   return 0;

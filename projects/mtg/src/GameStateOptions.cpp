@@ -29,7 +29,7 @@ void GameStateOptions::Start()
   // WALDORF - added next line
   optionsList->Add(NEW OptionItem(OPTIONS_INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()) {
-    optionsList->Add(NEW OptionItem(OPTIONS_DIFFICULTY, "difficulty", 3, 1));
+    optionsList->Add(NEW OptionItem(OPTIONS_DIFFICULTY, "Difficulty", 3, 1));
   }
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
   optionsMenu = NEW SimpleMenu(102, this,mFont, 50,170);
