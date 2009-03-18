@@ -95,7 +95,14 @@ MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
 
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
   MTGCardInstance * copy = NULL;
-  if (copy = from->removeCard(card)){
+  //Special case, a card is not a new object if it goes from inplay to inplay, because it technically doesn't change zone
+  int newObject = 1;
+  if ((from = g->players[0]->game->inPlay || from = g->players[1]->game->inPlay) &&
+	  (to = g->players[0]->game->inPlay || to = g->players[1]->game->inPlay) {
+	  newObject = 0;
+  }
+  
+  if (copy = from->removeCard(card,newObject)){
 
     if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
       if (to == graveyard){
@@ -155,29 +162,29 @@ MTGGameZone::~MTGGameZone(){
 }
 
 void MTGGameZone::setOwner(Player * player){
-  char buf[4096];
-  sprintf(buf, "Setting Owner : %p\n", player);
-OutputDebugString(buf);
   for (int i=0; i<nb_cards; i++) {
     cards[i]->owner = player;
   }
   owner = player;
 }
 
-MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card){
+MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy){
   int i;
   cardsMap.erase(card);
   for (i=0; i<(nb_cards); i++) {
     if (cards[i] == card){
       cards[i] = cards[nb_cards -1];
       nb_cards--;
+	  MTGCardInstance * copy = card;
       if (card->isToken){ //TODO better than this ?
         return card;
       }
       card->lastController = card->controller();
-      MTGCardInstance * copy = NEW MTGCardInstance(card->model,card->owner->game);
-      copy->previous = card;
-      card->next = copy;
+      if (createCopy) {
+		copy = NEW MTGCardInstance(card->model,card->owner->game);
+		copy->previous = card;
+		card->next = copy;
+	  }
       copy->previousZone = this;
       return copy;
     }

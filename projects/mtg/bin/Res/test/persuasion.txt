@@ -1,0 +1,18 @@
+#Testing Persuasion on a serra angel in opponent's play, make sure the angel ends up in the correct zone
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:129900
+manapool:{3}{U}{U}
+[PLAYER2]
+inplay:1366
+[DO]
+129900
+1366
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{0}
+inplay:129900,1366
+[PLAYER2]
+[END]

@@ -28,7 +28,7 @@ class MTGGameZone {
   virtual MTGCardInstance * draw();
   void addCard(MTGCardInstance * card);
   void debugPrint();
-  MTGCardInstance * removeCard(MTGCardInstance * card);
+  MTGCardInstance * removeCard(MTGCardInstance * card, int createCopy = 1);
   MTGCardInstance * hasCard(MTGCardInstance * card);
   void cleanupPhase();
   int countByType(const char * value);
