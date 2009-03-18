@@ -1771,8 +1771,7 @@ class AAnimateDead:public MTGAbility{
  public:
  AAnimateDead(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id, _source, _target){
     MTGCardInstance * card =  _target;
-    card->power--;
-    card->life = card->toughness;
+
     //Put the card in play again, with all its abilities !
     //AbilityFactory af;
     MTGCardInstance * copy = source->controller()->game->putInZone(card,  _target->controller()->game->graveyard, source->controller()->game->stack);
@@ -1781,6 +1780,9 @@ class AAnimateDead:public MTGAbility{
     
     spell->resolve();
     target = spell->source;
+    card = spell->source;
+    card->power--;
+    card->life = card->toughness;
     delete spell;
   }
 
