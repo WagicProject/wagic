@@ -201,7 +201,7 @@ int MTGCardInstance::hasSummoningSickness(){
 int MTGCardInstance::changeController(Player * newController){
   Player * originalOwner = controller();
   if (originalOwner  == newController) return 0;
-  MTGCardInstance * copy = originalOwner->game->inPlay->removeCard(this);
+  MTGCardInstance * copy = originalOwner->game->inPlay->removeCard(this,0);
   newController->game->inPlay->addCard(copy);
   //summoningSickness = 1;
   return 1;

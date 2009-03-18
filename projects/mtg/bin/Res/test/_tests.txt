@@ -68,6 +68,7 @@ Nyxathid.txt
 orcish_lumberjack.txt
 paralysis.txt
 paralysis2.txt
+persuasion.txt
 plague_rats.txt
 protomatter_powder.txt
 resurrection.txt

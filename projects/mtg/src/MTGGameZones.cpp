@@ -95,14 +95,9 @@ MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
 
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
   MTGCardInstance * copy = NULL;
-  //Special case, a card is not a new object if it goes from inplay to inplay, because it technically doesn't change zone
-  int newObject = 1;
-  if ((from = g->players[0]->game->inPlay || from = g->players[1]->game->inPlay) &&
-	  (to = g->players[0]->game->inPlay || to = g->players[1]->game->inPlay) {
-	  newObject = 0;
-  }
-  
-  if (copy = from->removeCard(card,newObject)){
+  GameObserver *g = GameObserver::GetInstance();
+
+  if (copy = from->removeCard(card)){
 
     if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
       if (to == graveyard){
@@ -114,7 +109,6 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
 
     if (card->isToken){
-      GameObserver *g = GameObserver::GetInstance();
       if (to != g->players[0]->game->inPlay && to != g->players[1]->game->inPlay){
         //Token leaves play: we destroy it
         //TODO DELETE Object

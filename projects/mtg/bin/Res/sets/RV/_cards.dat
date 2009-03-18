@@ -601,7 +601,7 @@ subtype=Elemental
 toughness=5
 [/card]
 [card]
-text=Enchant creature     When Earthbind comes into play, if enchanted creature has flying, Earthbind deals 2 damage to that creature and Earthbind gains &quot;Enchanted creature loses flying.&quot;
+text=Enchant creature     When Earthbind comes into play, if enchanted creature has flying, Earthbind deals 2 damage to that creature and Earthbind gains "Enchanted creature loses flying."
 target=creature
 id=1288
 name=Earthbind
@@ -670,7 +670,7 @@ type=Instant
 mana={W}{W}
 [/card]
 [card]
-text=Enchant land     Enchanted land has &quot;At the beginning of your upkeep, you may pay {W}{W}. If you do, you gain 1 life.&quot;
+text=Enchant land     Enchanted land has "At the beginning of your upkeep, you may pay {W}{W}. If you do, you gain 1 life."
 target=land
 id=1345
 name=Farmstead
@@ -1508,7 +1508,7 @@ subtype=Thopter
 toughness=2
 [/card]
 [card]
-text=Enchant creature     When Paralyze comes into play, tap enchanted creature.     Enchanted creature doesn't untap during its controller's untap step.     Enchanted creature has &quot;At the beginning of your upkeep, you may pay {4}. If you do, untap this creature.&quot;
+text=Enchant creature     When Paralyze comes into play, tap enchanted creature.     Enchanted creature doesn't untap during its controller's untap step.     Enchanted creature has "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
 target=creature
 id=1171
 name=Paralyze
@@ -2485,7 +2485,7 @@ type=Sorcery
 mana={2}{W}{W}
 [/card]
 [card]
-text=Zombie creatures have swampwalk.     All Zombies have &quot;{B}: Regenerate this permanent.&quot;
+text=Zombie creatures have swampwalk.     All Zombies have "{B}: Regenerate this permanent."
 auto=lord(zombie) swampwalk
 auto=lord(zombie)  {B}:regenerate
 id=1188
