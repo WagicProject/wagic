@@ -245,12 +245,12 @@ toughness=3
 [/card]
 [card]
 text=Vigilance, trample, haste     {W}{U}{B}{R}{G}: You may play target Elemental card from your graveyard without paying its mana cost.
-abilities=vigilance,trample,haste
+abilities=vigilance,trample,haste,Legendary 
 auto={W}{U}{B}{R}{G}:moveTo(myInPlay) target(elemental|mygraveyard)
 id=140219
 name=Horde of Notions
 rarity=R
-type=Legendary Creature
+type=Creature
 mana={W}{U}{B}{R}{G}
 power=5
 subtype=Elemental
