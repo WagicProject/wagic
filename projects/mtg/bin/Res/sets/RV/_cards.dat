@@ -1,5 +1,3 @@
-#SET: Revised Edition
-#VERSION: 1.1
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
 abilities=Flying
@@ -152,7 +150,7 @@ rarity=C
 type=Creature
 mana={W}
 power=1
-subtype=Hero
+subtype=Human Soldier
 toughness=1
 [/card]
 [card]
@@ -176,7 +174,7 @@ rarity=U
 type=Creature
 mana={B}{B}
 power=2
-subtype=Knight
+subtype=Human Knight
 toughness=2
 [/card]
 [card]
@@ -255,6 +253,7 @@ rarity=U
 type=Artifact Creature
 mana={1}
 power=1
+subtype=Construct
 toughness=3
 [/card]
 [card]
@@ -352,6 +351,7 @@ id=1101
 name=Clockwork Beast
 rarity=R
 type=Artifact Creature
+subtype=Beast
 mana={6}
 power=0
 toughness=4
@@ -541,6 +541,7 @@ id=1107
 name=Dragon Engine
 rarity=R
 type=Artifact Creature
+subtype=Construct
 mana={3}
 power=1
 toughness=3
@@ -635,7 +636,7 @@ rarity=R
 type=Creature
 mana={1}{B}{B}
 power=1
-subtype=El-Hajjaj
+subtype=Human Wizard
 toughness=1
 [/card]
 [card]
@@ -647,7 +648,7 @@ rarity=R
 type=Creature
 mana={1}{G}
 power=2
-subtype=Elf
+subtype=Elf Archer
 toughness=1
 [/card]
 [card]
@@ -658,7 +659,7 @@ rarity=C
 type=Creature
 mana={1}{B}
 power=2
-subtype=Raider
+subtype=Human Warrior
 toughness=3
 [/card]
 [card]
@@ -865,7 +866,7 @@ toughness=1
 text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
 id=1296
 auto=lord(goblin) 1/1 other
-auto=lord(goblin)  mountainwalk other
+auto=lord(goblin) mountainwalk other
 name=Goblin King
 rarity=R
 type=Creature
@@ -1084,7 +1085,7 @@ rarity=R
 type=Creature
 mana={4}{U}{U}{U}
 power=6
-subtype=Island-Fish
+subtype=Fish
 toughness=8
 [/card]
 [card]
@@ -1164,7 +1165,7 @@ rarity=U
 type=Creature
 mana={2}{R}{R}
 power=*
-subtype=Lord
+subtype=Human Barbarian
 toughness=*
 [/card]
 [card]
@@ -1300,14 +1301,14 @@ toughness=1
 [card]
 text=Other Merfolk creatures get +1/+1 and have islandwalk.
 auto=lord(merfolk) 1/1 other
-auto=lord(merfolk)  islandwalk other
+auto=lord(merfolk) islandwalk other
 id=1206
 name=Lord of Atlantis
 rarity=R
 type=Creature
 mana={U}{U}
 power=2
-subtype=Merfolk Lord
+subtype=Merfolk
 toughness=2
 [/card]
 [card]
@@ -1450,7 +1451,7 @@ rarity=R
 type=Creature
 mana={5}{B}
 power=*
-subtype=Nightmare
+subtype=Nightmare Horse
 toughness=*
 [/card]
 [card]
@@ -1461,7 +1462,7 @@ rarity=R
 type=Creature
 mana={2}{W}{W}
 power=3
-subtype=Knight
+subtype=Human Knight
 toughness=3
 [/card]
 [card]
@@ -1545,7 +1546,7 @@ rarity=U
 type=Creature
 mana={3}{U}
 power=3
-subtype=Phantasm
+subtype=Illusion
 toughness=3
 [/card]
 [card]
@@ -1754,7 +1755,7 @@ rarity=R
 type=Creature
 mana={3}{R}
 power=3
-subtype=Roc
+subtype=Bird
 toughness=3
 [/card]
 [card]
@@ -2377,7 +2378,7 @@ rarity=C
 type=Creature
 mana={3}{G}
 power=3
-subtype=Mammoth
+subtype=Elephant
 toughness=3
 [/card]
 [card]
@@ -2441,7 +2442,7 @@ rarity=U
 type=Creature
 mana={W}{W}
 power=2
-subtype=Knight
+subtype=Human Knight
 toughness=2
 [/card]
 [card]
@@ -2494,6 +2495,6 @@ rarity=R
 type=Creature
 mana={1}{B}{B}
 power=2
-subtype=Lord
+subtype=Zombie
 toughness=3
 [/card]
