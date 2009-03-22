@@ -119,7 +119,7 @@ abilities=legendary
 id=106426
 name=Arcanis the Omnipotent
 rarity=R
-type=Legendary Creature
+type=Creature
 mana={3}{U}{U}{U}
 power=3
 subtype=Wizard
@@ -501,7 +501,7 @@ toughness=2
 [/card]
 [card]
 text={G}, {T}: You may put a creature card from your hand into play.
-auto={G}{T}:moveTo(inPlay) target(creature|myhand)
+auto={G}{T}:moveTo(myinplay) target(creature|myhand)
 id=129535
 name=Elvish Piper
 rarity=R
