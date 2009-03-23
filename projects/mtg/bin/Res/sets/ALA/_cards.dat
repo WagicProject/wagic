@@ -857,6 +857,18 @@ subtype=Gargoyle
 toughness=4
 [/card]
 [card]
+text={1}{B}, Discard a card: Regenerate Viashino Skeleton.
+id=175097
+name=Viashino Skeleton
+auto={1}{B}{S(*|myhand)}:regenerate
+rarity=C
+type=Creature
+mana={3}{R}
+power=2
+subtype=Viashino Skeleton
+toughness=1
+[/card]
+[card]
 text=Flying     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 abilities=flying, exalted
 id=174955

@@ -1259,7 +1259,7 @@ subtype=Equipment
 [/card]
 
 [card]
-text=Skeletonize deals 3 damage to target creature. When a creature dealt damage this way is put into a graveyard this turn, put a 1/1 black Skeleton creature token into play with &quot;{B}: Regenerate this creature.&quot;
+text=Skeletonize deals 3 damage to target creature. When a creature dealt damage this way is put into a graveyard this turn, put a 1/1 black Skeleton creature token into play with "{B}: Regenerate this creature."
 id=175070
 name=Skeletonize
 rarity=U
@@ -1541,17 +1541,7 @@ power=4
 subtype=Vampire
 toughness=4
 [/card]
-[card]
-text={1}{B}, Discard a card: Regenerate Viashino Skeleton.
-id=175097
-name=Viashino Skeleton
-rarity=C
-type=Creature
-mana={3}{R}
-power=2
-subtype=Viashino Skeleton
-toughness=1
-[/card]
+
 [card]
 text=Whenever a creature is put into a graveyard from play, you may have Vicious Shadows deal damage to target player equal to the number of cards in that player's hand.
 id=175048
