@@ -738,6 +738,7 @@ type=Land
 text=Remove target card in a graveyard from the game. You gain 3 life.
 target=*|graveyard
 auto=moveto(removedfromgame)
+auto=life:3
 id=177473
 name=Shadowfeed
 rarity=C
