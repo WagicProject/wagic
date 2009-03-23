@@ -375,31 +375,6 @@ rarity=R
 type=Artifact
 mana={1}{U}{U}
 [/card]
-
-
-
-
-
-
-
-
-
-
-
-
-[card]
-text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
-id=185829
-name=Spore Burst
-auto=aslongas(forest|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
-auto=aslongas(island|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
-auto=aslongas(plains|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
-auto=aslongas(mountain|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
-auto=aslongas(swamp|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
-rarity=U
-type=Sorcery
-mana={3}{G}
-[/card]
 [card]
 text={G}: Thornling gains haste until end of turn.     {G}: Thornling gains trample until end of turn.     {G}: Thornling is indestructible this turn.     {1}: Thornling gets +1/-1 until end of turn.     {1}: Thornling gets -1/+1 until end of turn.
 auto={G}:haste
