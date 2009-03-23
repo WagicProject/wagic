@@ -12,6 +12,7 @@ id=153946
 name=Aerie Mystics
 rarity=U
 type=Creature
+auto={1}{G}{U}:lord(creature|myinplay) shroud ## want mana + lord funtion to work
 mana={4}{W}
 power=3
 subtype=Bird Wizard
@@ -45,17 +46,7 @@ mana={2}
 [/card]
 
 
-[card]
-text=Flying     Domain - Aven Trailblazer's toughness is equal to the number of basic land types among lands you control.
-id=180278
-name=Aven Trailblazer
-rarity=C
-type=Creature
-mana={2}{W}
-power=2
-subtype=Bird Soldier
-toughness=*
-[/card]
+
 [card]
 text=Banefire deals X damage to target creature or player.     If X is 5 or more, Banefire can't be countered by spells or abilities and the damage can't be prevented.
 id=186613
@@ -167,15 +158,7 @@ type=Enchantment
 mana={U}
 subtype=Aura
 [/card]
-[card]
-text=Enchant Forest or Plains     Whenever enchanted land becomes tapped, its controller loses 2 life.
-id=183054
-name=Corrupted Roots
-rarity=U
-type=Enchantment
-mana={B}
-subtype=Aura
-[/card]
+
 [card]
 text=Counter target noncreature spell. Its controller loses 2 life.
 id=186327
@@ -209,7 +192,13 @@ mana={2}{R}
 [card]
 text=Domain - Target creature gets -1/-1 until end of turn for each basic land type among lands you control.
 id=179239
+target=creature
 name=Drag Down
+auto=aslongas(forest|myinplay) -1/-1  ## tested.... too bad it works just like lord where it has to remain in play to take effect...
+auto=aslongas(island|myinplay) -1/-1
+auto=aslongas(plains|myinplay) -1/-1
+auto=aslongas(mountain|myinplay) -1/-1
+auto=aslongas(swamp|myinplay) -1/-1
 rarity=C
 type=Instant
 mana={2}{B}
@@ -227,7 +216,7 @@ toughness=2
 [/card]
 [card]
 text={1}{U}{R}: Dreadwing gets +3/+0 and gains flying until end of turn.
-auto={1}{U}{R}: 3/0 && flying
+auto={1}{U}{R}: 3/0 && flying ## better && too (i am asking a lot... lol! :P)
 id=159629
 name=Dreadwing
 rarity=U
@@ -584,17 +573,7 @@ power=1
 subtype=Human Artificer
 toughness=2
 [/card]
-[card]
-text=Domain - Matca Rioters's power and toughness are each equal to the number of basic land types among lands you control.
-id=179248
-name=Matca Rioters
-rarity=C
-type=Creature
-mana={2}{G}
-power=*
-subtype=Human Warrior
-toughness=*
-[/card]
+
 [card]
 text=Vigilance, trample     Whenever Meglonoth blocks a creature, Meglonoth deals damage to that creature's controller equal to Meglonoth's power.
 id=179886
@@ -610,6 +589,7 @@ toughness=6
 text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
 id=150810
 name=Might of Alara
+target=creature
 rarity=C
 type=Instant
 mana={G}
@@ -903,14 +883,7 @@ power=3
 subtype=Sphinx
 toughness=3
 [/card]
-[card]
-text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
-id=185829
-name=Spore Burst
-rarity=U
-type=Sorcery
-mana={3}{G}
-[/card]
+
 [card]
 text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
 id=180345

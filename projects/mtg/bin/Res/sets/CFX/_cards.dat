@@ -24,6 +24,22 @@ subtype=Bird Soldier
 toughness=1
 [/card]
 [card]
+text=Flying     Domain - Aven Trailblazer's toughness is equal to the number of basic land types among lands you control.
+id=180278
+name=Aven Trailblazer
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Bird Soldier
+auto=aslongas(forest|myinplay) 0/1
+auto=aslongas(island|myinplay) 0/1
+auto=aslongas(plains|myinplay) 0/1
+auto=aslongas(mountain|myinplay) 0/1
+auto=aslongas(swamp|myinplay) 0/1
+toughness=*
+[/card]
+[card]
 text=
 id=184994
 name=Canyon Minotaur
@@ -56,6 +72,17 @@ mana={3}{G}
 power=5
 subtype=Rhino Beast
 toughness=3
+[/card]
+[card]
+text=Enchant Forest or Plains     Whenever enchanted land becomes tapped, its controller loses 2 life.
+id=183054
+target=forest,plains
+alias=1218
+name=Corrupted Roots
+rarity=U
+type=Enchantment
+mana={B}
+subtype=Aura
 [/card]
 [card]
 text=Court Homunculus gets +1/+1 as long as you control another artifact.
@@ -164,6 +191,22 @@ mana={7}{U}{U}
 power=7
 subtype=Leviathan
 toughness=11
+[/card]
+[card]
+text=Domain - Matca Rioters's power and toughness are each equal to the number of basic land types among lands you control.
+id=179248
+name=Matca Rioters
+rarity=C
+type=Creature
+mana={2}{G}
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(swamp|myinplay) 1/1
+power=*
+subtype=Human Warrior
+toughness=*
 [/card]
 [card]
 text=When Kaleidostone comes into play, draw a card.     {5}, {T}, Sacrifice Kaleidostone: Add {W}{U}{B}{R}{G} to your mana pool.
@@ -331,6 +374,31 @@ name=Scepter of Insight
 rarity=R
 type=Artifact
 mana={1}{U}{U}
+[/card]
+
+
+
+
+
+
+
+
+
+
+
+
+[card]
+text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
+id=185829
+name=Spore Burst
+auto=aslongas(forest|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
+auto=aslongas(island|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
+auto=aslongas(plains|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
+auto=aslongas(mountain|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
+auto=aslongas(swamp|myinplay) token(Saproling,Saproling Creature, 1/1, Green)
+rarity=U
+type=Sorcery
+mana={3}{G}
 [/card]
 [card]
 text={G}: Thornling gains haste until end of turn.     {G}: Thornling gains trample until end of turn.     {G}: Thornling is indestructible this turn.     {1}: Thornling gets +1/-1 until end of turn.     {1}: Thornling gets -1/+1 until end of turn.
