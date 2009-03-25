@@ -24,6 +24,7 @@ MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idLi
       library->addCard(newCard);
     }
   }
+  
 
 
 }
@@ -43,7 +44,8 @@ void MTGPlayerCards::setOwner(Player * player){
 void MTGPlayerCards::initGame(int shuffle, int draw){
   if (shuffle) library->shuffle();
   if (draw){
-    for (int i=0;i<7;i++){
+    for (int i=0;i<7;i++){ 
+      OutputDebugString("draw\n");
       drawFromLibrary();
     }
   }
@@ -167,18 +169,19 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
   cardsMap.erase(card);
   for (i=0; i<(nb_cards); i++) {
     if (cards[i] == card){
-      cards[i] = cards[nb_cards -1];
+      //cards[i] = cards[nb_cards -1];
       nb_cards--;
-	  MTGCardInstance * copy = card;
+      cards.erase(cards.begin()+i);
+	    MTGCardInstance * copy = card;
       if (card->isToken){ //TODO better than this ?
         return card;
       }
       card->lastController = card->controller();
       if (createCopy) {
-		copy = NEW MTGCardInstance(card->model,card->owner->game);
-		copy->previous = card;
-		card->next = copy;
-	  }
+		    copy = NEW MTGCardInstance(card->model,card->owner->game);
+		    copy->previous = card;
+		    card->next = copy;
+	    }
       copy->previousZone = this;
       return copy;
     }
@@ -232,7 +235,7 @@ void MTGGameZone::shuffle(){
 
 void MTGGameZone::addCard(MTGCardInstance * card){
   if (!card) return;
-  cards[nb_cards] = card;
+  cards.push_back(card);
   nb_cards++;
   cardsMap[card] = 1;
 
@@ -242,8 +245,9 @@ MTGCardInstance * MTGGameZone::draw(){
   if (!nb_cards) return NULL;
   nb_cards--;
   lastCardDrawn = cards[nb_cards];
-  cardsMap.erase(cards[nb_cards]);
-  return cards[nb_cards];
+  cards.pop_back();
+  cardsMap.erase( lastCardDrawn);
+  return lastCardDrawn;
 }
 
 MTGCardInstance * MTGLibrary::draw(){

@@ -19,7 +19,7 @@ class MTGGameZone {
  public:
    Player * owner;
   //Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
-  MTGCardInstance * cards[MTG_MAX_PLAYER_CARDS];
+  vector<MTGCardInstance *> cards; //[MTG_MAX_PLAYER_CARDS];
   map<MTGCardInstance *,int> cardsMap;
   int nb_cards;
   MTGGameZone();

@@ -21,7 +21,7 @@ class GameApp;
 class MTGCard;
 
 
-#define MAX_SETS 30
+#define MAX_SETS 50
 
 
 

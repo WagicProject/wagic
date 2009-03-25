@@ -238,9 +238,9 @@ int MTGAllCards::totalCards(){
 int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
 
   string s;
-  int result = 0;
-  if(std::getline(file,s)) result = 1;
-  if (!s.size()) return 0;
+  int result = 1;
+  if(!std::getline(file,s)) return 0;
+  if (!s.size()) return -1;
   if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
     switch(conf_read_mode) {
     case 0:
