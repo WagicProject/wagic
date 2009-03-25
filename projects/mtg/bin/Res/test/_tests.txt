@@ -42,6 +42,7 @@ dingus_egg.txt
 doomed_necromancer.txt
 dragon_fodder.txt
 drain_life.txt
+fastbond.txt
 flare.txt
 foratog.txt
 force_of_nature.txt

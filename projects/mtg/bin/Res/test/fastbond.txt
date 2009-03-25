@@ -1,0 +1,17 @@
+#Fastbond: infinite loop bug ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:1375,1373
+inplay:1243
+[PLAYER2]
+[DO]
+1373
+1375
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1243,1373,1375
+life:19
+[PLAYER2]
+[END]

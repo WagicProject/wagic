@@ -363,7 +363,10 @@ MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * sourc
   GameObserver * g = GameObserver::GetInstance();
   if (!source) p = g->currentlyActing();
   else p = source->controller();
-  if (!target) p2 = p;
+  if (!target){
+    p2 = p;
+    target = source;//hack ?
+  }
   else p2 = target->controller();
   if(zoneName.compare("mygraveyard") == 0)return p->game->graveyard;
   if(zoneName.compare("opponentgraveyard") == 0) return p->opponent()->game->graveyard;
@@ -377,6 +380,7 @@ MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * sourc
   if(zoneName.compare("targetownerinplay") == 0) return target->owner->game->inPlay;
   if(zoneName.compare("targetcontrollerinplay") == 0) return p2->game->inPlay;
   if(zoneName.compare("ownerinplay") == 0) return target->owner->game->inPlay;
+  if(zoneName.compare("inplay") == 0) return p->game->inPlay;
 
   if(zoneName.compare("myhand") == 0)return p->game->hand;
   if(zoneName.compare("opponenthand") == 0) return p->opponent()->game->hand;

@@ -1828,6 +1828,7 @@ class AErgRaiders:public MTGAbility{
 class AFastbond:public TriggeredAbility{
  public:
   int alreadyPlayedALand;
+  int previous;
  AFastbond(int _id, MTGCardInstance * card):TriggeredAbility(_id, card){
     alreadyPlayedALand = 0;
   }
@@ -1840,16 +1841,19 @@ class AFastbond:public TriggeredAbility{
   }
 
   int trigger(){
-    if(source->controller()->canPutLandsIntoPlay==0) return 1;
+    if(source->controller()->canPutLandsIntoPlay==0 && previous ==1){
+      previous = 0;
+      source->controller()->canPutLandsIntoPlay = 1;
+      if (alreadyPlayedALand) return 1;
+      alreadyPlayedALand = 1;
+      return 0;
+    }
+    previous = source->controller()->canPutLandsIntoPlay;
     return 0;
   }
 
   int resolve(){
-    source->controller()->canPutLandsIntoPlay = 1;
-    if (alreadyPlayedALand){
-      game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
-    }
-    alreadyPlayedALand = 1;
+    game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
     return 1;
   }
 };
