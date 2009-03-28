@@ -68,7 +68,7 @@ subtype=Kithkin Soldier
 toughness=2
 [/card]
 [card]
-text=Until end of turn, target creature gains &quot;{T}: Return target nonland permanent to its owner's hand.&quot;
+text=Until end of turn, target creature gains "{T}: Return target nonland permanent to its owner's hand."
 id=154350
 name=Banishing Knack
 rarity=C
@@ -96,7 +96,8 @@ mana={1}{WB}
 [/card]
 [card]
 text=Remove target card in a graveyard from the game. Put a 1/1 white and black Spirit creature token with flying into play.
-target=*|graveyard
+auto=moveTo(ownerremovedfromgame) target(*|graveyard)
+auto=token(Spirit,Token Spirit Creature, 1/1,flying white,black)
 id=157415
 name=Beckon Apparition
 rarity=C
@@ -261,8 +262,8 @@ toughness=3
 [card]
 text=Other black creatures you control get +1/+1.     Other green creatures you control get +1/+1.     At the beginning of your upkeep, you may put a 1/1 black and green Worm creature token into play.
 id=157406
-auto=lord(creature[black]) 1/1
-auto=lord(creature[green]) 1/1
+auto=lord(creature[black]) 1/1 other
+auto=lord(creature[green]) 1/1 other
 name=Creakwood Liege
 rarity=R
 type=Creature
@@ -282,8 +283,8 @@ mana={1}{B}
 [card]
 text=Other white creatures you control get +1/+1.     Other black creatures you control get +1/+1.     Whenever you play a white spell, you may tap target creature.     Whenever you play a black spell, you may destroy target creature if it's tapped.
 id=157288
-auto=lord(creature[black]) 1/1
-auto=lord(creature[white]) 1/1
+auto=lord(creature[black]) 1/1 other
+auto=lord(creature[white]) 1/1 other
 name=Deathbringer Liege
 rarity=R
 type=Creature
@@ -767,19 +768,7 @@ power=2
 subtype=Merfolk Wizard
 toughness=3
 [/card]
-[card]
-text=Other blue creatures you control get +1/+1.     Other red creatures you control get +1/+1.     {UR}{UR}{UR}{UR}: You may put a blue or red creature card from your hand into play.
-id=151132
-auto=lord(creature[blue]) 1/1
-auto=lord(creature[red]) 1/1
-name=Mindwrack Liege
-rarity=R
-type=Creature
-mana={3}{UR}{UR}{UR}
-power=4
-subtype=Horror
-toughness=4
-[/card]
+
 [card]
 text={1}{UR}{UR}: Copy target instant or sorcery spell that targets you. You may choose new targets for the copy.
 id=152106
@@ -799,8 +788,8 @@ mana={2}{RW}
 [card]
 text=Other green creatures you control get +1/+1.     Other blue creatures you control get +1/+1.     Untap all green and/or blue creatures you control during each other player's untap step.
 id=152091
-auto=lord(creature[green]) 1/1
-auto=lord(creature[blue]) 1/1
+auto=lord(creature[green]) 1/1 other
+auto=lord(creature[blue]) 1/1 other
 name=Murkfiend Liege
 rarity=R
 type=Creature
@@ -876,17 +865,7 @@ power=2
 subtype=Noggle Rogue
 toughness=2
 [/card]
-[card]
-text=When Noggle Bridgebreaker comes into play, return a land you control to its owner's hand.
-id=158899
-name=Noggle Bridgebreaker
-rarity=C
-type=Creature
-mana={2}{UR}{UR}
-power=4
-subtype=Noggle Rogue
-toughness=3
-[/card]
+
 [card]
 text=When Noggle Hedge-Mage comes into play, if you control two or more Islands, you may tap two target permanents.     When Noggle Hedge-Mage comes into play, if you control two or more Mountains, you may have Noggle Hedge-Mage deal 2 damage to target player.
 id=159066
@@ -1116,7 +1095,7 @@ mana={3}{G}{G}
 [/card]
 
 [card]
-text=Enchant creature     As long as enchanted creature is red, it gets +1/+1 and has &quot;{RW}: This creature gets +1/+0 until end of turn.&quot;     As long as enchanted creature is white, it gets +1/+1 and has lifelink. (Whenever it deals damage, its controller gains that much life.)
+text=Enchant creature     As long as enchanted creature is red, it gets +1/+1 and has "{RW}: This creature gets +1/+0 until end of turn."     As long as enchanted creature is white, it gets +1/+1 and has lifelink. (Whenever it deals damage, its controller gains that much life.)
 target=creature
 id=152015
 name=Scourge of the Nobilis

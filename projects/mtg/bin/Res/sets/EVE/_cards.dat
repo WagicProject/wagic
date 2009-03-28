@@ -220,6 +220,20 @@ subtype=Spirit
 toughness=2
 [/card]
 [card]
+text=Other blue creatures you control get +1/+1.     Other red creatures you control get +1/+1.     {UR}{UR}{UR}{UR}: You may put a blue or red creature card from your hand into play.
+id=151132
+auto=lord(creature[blue]|myinplay) 1/1 other
+auto=lord(creature[red]|myinplay) 1/1 other
+auto={UR}{UR}{UR}{UR}:moveTo(myinplay) target(creature[blue;red]|myhand)
+name=Mindwrack Liege
+rarity=R
+type=Creature
+mana={3}{UR}{UR}{UR}
+power=4
+subtype=Horror
+toughness=4
+[/card]
+[card]
 text=Target creature gets +4/+4 until end of turn.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
 target=creature
 auto=:+4/+4
@@ -254,6 +268,18 @@ mana={RW}{RW}{RW}{RW}{RW}
 power=3
 subtype=Spirit Avatar
 toughness=4
+[/card]
+[card]
+text=When Noggle Bridgebreaker comes into play, return a land you control to its owner's hand.
+id=158899
+name=Noggle Bridgebreaker
+auto=moveTo(hand) target(land|myinplay)
+rarity=C
+type=Creature
+mana={2}{UR}{UR}
+power=4
+subtype=Noggle Rogue
+toughness=3
 [/card]
 [card]
 text={1}{BG}: Regenerate Odious Trow.
