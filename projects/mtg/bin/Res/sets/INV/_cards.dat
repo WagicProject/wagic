@@ -1,4 +1,3 @@
-#INVASION
 [card]
 text=Counter target spell.   You gain 3 life.
 alias=1196
@@ -48,7 +47,7 @@ abilities=flying
 [/card]
 [card]
 text=Creatures you control get +0/+1.     Sacrifice Angelic Shield: Return target creature to its owner's hand.
-auto=lord(creature|myinplay) 0/1
+auto=lord(creature|myinplay) 0/1 includeself
 auto={s}:moveTo(ownerhand) target(creature)
 id=23177
 name=Angelic Shield
@@ -242,7 +241,7 @@ toughness=3
 [card]
 text=Protection from black       Crusading Knight gets +1/+1 for each Swamp your opponents control.
 id=22963
-auto=foreach(name:Swamp)
+auto=foreach(swamp|opponentinplay) 1/1
 name=Crusading Knight
 colour=White
 rarity=R
@@ -252,21 +251,6 @@ subtype=Human Knight
 power=2
 toughness=2
 abilities=protection from black
-[/card]
-[card]
-text=Flying, protection from white      When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
-target=creature[blue;red]|myGraveyard
-alias=1174
-id=23320
-name=Crypt Angel
-colour=Black
-rarity=R
-mana={4}{B}
-type=Creature
-subtype=Angel
-power=3
-toughness=3
-abilities=flying,protection from white
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
@@ -329,8 +313,7 @@ rarity=U
 type=Land
 [/card]
 text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
-auto=lord(elf) 1/1 other
-auto=lord(elf) forestwalk other
+alias=129534
 id=26445
 name=Elvish Champion
 rarity=R
@@ -343,7 +326,7 @@ toughness=2
 [/card]
 [card]
 text=Creatures you control have haste.     Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
-auto=lord(creature|myinplay) haste 
+auto=lord(creature|myinplay) haste includeself
 auto={s}:2/2 target(creature)
 id=23180
 name=Fires of Yavimaya
@@ -570,6 +553,37 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Kavu Runner has haste as long as no opponent controls a white or blue creature.
+id=23079
+name=Kavu 
+color=Red Runner
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Kavu
+auto=aslongas(creature[blue;white]|opponentinplay) -haste
+power=3
+toughness=3
+abilities=haste
+[/card]
+[card]
+text=Domain - Kavu Scout gets +1/+0 for each basic land type among lands you control.
+id=23323
+name=Kavu Scout
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Kavu
+auto=aslongas(forest|myinplay) 1/0
+auto=aslongas(island|myinplay) 1/0
+auto=aslongas(plains|myinplay) 1/0
+auto=aslongas(mountain|myinplay) 1/0
+auto=aslongas(swamp|myinplay) 1/0
+power=0
+toughness=2
+[/card]
+[card]
 text=Legendary     {T}: Add {1} to your mana pool.    {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player. 
 auto={T}:Add {1}
 auto={4}{R}{T}{S(creature|myinplay)}:Damage:2 target(creature,player)
@@ -639,7 +653,7 @@ abilities=flying
 [card]
 text=Protection from white       Marauding Knight gets +1/+1 for each Plains your opponents control.
 id=23053
-auto=foreach(name:Plains)
+auto=foreach(plains|opponentinplay) 1/1
 name=Marauding Knight
 colour=Black
 rarity=R
@@ -662,6 +676,20 @@ subtype=Metathran Zombie
 auto={B}:regenerate
 power=1
 toughness=1
+[/card]
+[card]
+text=Legendary   Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)     Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
+id=23138
+auto=foreach(land|myinplay) 1/1
+name=Molimo, Maro-Sorcerer
+colour=Green
+rarity=R
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Elemental
+power=*
+toughness=*
+abilities=legendary,trample
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -1023,6 +1051,19 @@ toughness=2
 abilities=protection from white
 [/card]
 [card]
+text=Skittish Kavu gets +1/+1 as long as no opponent controls a white or blue creature.
+id=23080
+name=Kavu 
+color=Skittish Kavu
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Kavu
+auto=aslongas(creature[blue;white]|opponentinplay) -1/-1
+power=2
+toughness=2
+[/card]
+[card]
 text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
 id=22996
 name=Sky Weaver
@@ -1076,6 +1117,21 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Enchant creature       Domain - Enchanted creature gets +1/+1 for each basic land type among lands you control.
+id=22939
+name=Strength of Unity
+color=White
+rarity=C
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(swamp|myinplay) 1/1
+[/card]
+[card]
 text=Sulfur Vent comes into play tapped.     {T}: Add {B} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {U}{R} to your mana pool. 
 auto=tap
 auto={T}:Add{B}
@@ -1127,18 +1183,19 @@ subtype=Swamp
 [/card]
 [card]
 text=Tek gets +0/+2 as long as you control a Plains, has flying as long as you control an Island, gets +2/+0 as long as you control a Swamp, has first strike as long as you control a Mountain, and has trample as long as you control a Forest.
-auto=aslongas(plains|myinplay) 0/2
-auto=aslongas(island|myinplay) flying
-auto=aslongas(swamp|myinplay) 2/0
-auto=aslongas(mountain|myinplay) first strike
-auto=aslongas(forest|myinplay) trample
 id=23229
 name=Tek
+color=Arifact
 rarity=R
-type=Artifact Creature
 mana={5}
-power=2
+type=Artifact Creature
 subtype=Dragon
+auto=aslongas(forest|myinplay) trample
+auto=aslongas(island|myinplay) flying
+auto=aslongas(plains|myinplay) 0/2
+auto=aslongas(mountain|myinplay) first strike
+auto=aslongas(swamp|myinplay) 2/0
+power=2
 toughness=2
 [/card]
 [card]
@@ -1306,6 +1363,23 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+text=Domain - Wayfaring Giant gets +1/+1 for each basic land type among lands you control.
+id=23211
+name=Wayfaring Giant
+color=White
+rarity=U
+mana={5}{W}
+type=Creature
+subtype=Giant
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(swamp|myinplay) 1/1
+power=1
+toughness=3
+[/card]
+[card]
 text=Enchant creature      Enchanted creature gets +1/+3 and has flying.
 target=creature
 auto=:1/3
@@ -1331,6 +1405,20 @@ subtype=Elf Barbarian
 power=2
 toughness=2
 abilities=protection from blue
+[/card]
+[card]
+text=Yavimaya Kavu's power is equal to the number of red creatures in play.    Yavimaya Kavu's toughness is equal to the number of green creatures in play.
+id=23174
+auto=foreach(creature[red]|inplay) 1/0
+auto=foreach(creature[green]|inplay) 0/1
+name=Yavimaya Kavu
+colour=Green
+rarity=U
+mana={2}{R}{G}
+type=Creature
+subtype=Kavu
+power=*
+toughness=*
 [/card]
 [card]
 text=Zap deals 1 damage to target creature or player.     Draw a card.
