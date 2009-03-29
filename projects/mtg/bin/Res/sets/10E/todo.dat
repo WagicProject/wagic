@@ -662,18 +662,7 @@ power=3
 subtype=Zombie Spirit
 toughness=3
 [/card]
-[card]
-text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
-id=129584
-name=Gravedigger
-rarity=C
-color=Black
-type=Creature
-mana={3}{B}
-power=2
-subtype=Zombie
-toughness=2
-[/card]
+
 [card]
 text=Guerrilla Tactics deals 2 damage to target creature or player.     When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
 id=129588

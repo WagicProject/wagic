@@ -54,6 +54,7 @@ giant_growth2.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
 goblin_king.txt
+gravedigger.txt
 hymn_of_rebirth.txt
 icatian_priest.txt
 keldon_warlord.txt

@@ -47,6 +47,8 @@ const char* Constants::MTGBasicAbilities[] = {
 "flanking",
 "rampage",
 "cloud",
+"cantattack",
+"mustattack",
 };
 
 const char* Constants::MTGPhaseNames[] =

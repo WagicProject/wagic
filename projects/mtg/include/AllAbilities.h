@@ -23,6 +23,56 @@ using std::map;
   Generic classes
 */
 
+//MayAbility: May do something when comes into play (should be extended)
+class MayAbility:public MTGAbility{
+public:
+  int triggered;
+  MTGAbility * ability;
+  int deleteAbility;
+  MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source):MTGAbility(_id,_source),ability(_ability){
+    triggered = 0;
+    deleteAbility = 1;
+  }
+
+  void Update(float dt){
+    MTGAbility::Update(dt);
+    if (!triggered){
+      triggered = 1;
+      game->mLayers->actionLayer()->setMenuObject(source);
+      OutputDebugString("SetMenuObject!\n");
+    }
+  }
+
+   const char * getMenuText(){
+     return ability->getMenuText();
+  }
+
+  int testDestroy(){
+    if (triggered && !game->mLayers->actionLayer()->menuObject){
+      OutputDebugString("Destroy!\n");
+      return 1;
+    }
+    return 0;
+  }
+
+  int isReactingToTargetClick(Targetable * card){
+    OutputDebugString("IsReacting ???\n");
+    if (card == source) return 1;
+    return 0;
+  }
+
+  int reactToTargetClick(Targetable * object){
+    OutputDebugString("ReactToTargetClick!\n");
+    deleteAbility = 0;
+    game->addObserver(ability);
+    return ability->reactToTargetClick(object);
+  }
+ 
+  ~MayAbility(){
+    if (deleteAbility) SAFE_DELETE(ability);
+  }
+};
+
 
 //MultiAbility : triggers several actions for a cost
 class MultiAbility:public ActivatedAbility{

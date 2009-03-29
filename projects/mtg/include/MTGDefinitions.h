@@ -97,8 +97,10 @@ class Constants
     FLANKING = 36,
     RAMPAGE1 = 37,
     CLOUD = 38,
+    CANTATTACK = 39,
+    MUSTATTACK = 40,
 
-    NB_BASIC_ABILITIES = 39,
+    NB_BASIC_ABILITIES = 41,
 
 
     RARITY_M = 'M',

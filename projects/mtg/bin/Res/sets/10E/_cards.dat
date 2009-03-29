@@ -774,6 +774,19 @@ subtype=Goblin Warrior
 toughness=2
 [/card]
 [card]
+text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+auto=may moveTo(myhand) target(creature|mygraveyard)
+id=129584
+name=Gravedigger
+rarity=C
+color=Black
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
 text=
 id=129586
 name=Grizzly Bears

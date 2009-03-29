@@ -1,0 +1,20 @@
+# text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:129584
+manapool:{3}{B}
+graveyard:129586
+[PLAYER2]
+[DO]
+129584
+choice 0
+129586
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:129584
+hand:129586
+manapool:{0}
+[PLAYER2]
+[END]

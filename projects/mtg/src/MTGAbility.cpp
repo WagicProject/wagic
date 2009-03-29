@@ -157,6 +157,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       OutputDebugString("Cost is null\n");
       SAFE_DELETE(cost);
     }
+  
+    int may = 0;
+    if (line.find("may ") != string::npos) may = 1;
+
     int doTap = 0;
     //Tap in the cost ?
     if (line.find("{t}") != string::npos) doTap = 1;
@@ -306,13 +310,20 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //MoveTo Move a card from a zone to another
       found = s.find("moveto(");
       if (found != string::npos){
+        OutputDebugString("may!\n");
         if (dryMode) return BAKA_EFFECT_BAD; //TODO : depends on where from, where to...
 	      int end = s.find(")");
 	      string szone = s.substr(found + 7,end - found - 7);
         if (tc){
-          if (cost){
-            game->addObserver(NEW AZoneMover(id,card,tc,szone,cost,doTap));
-          }
+          //if (cost){
+            AZoneMover * a = NEW AZoneMover(id,card,tc,szone,cost,doTap);
+            if (may){
+              game->addObserver(NEW MayAbility(id,a,card));
+              OutputDebugString("may!\n");
+            }else{
+              game->addObserver(a);
+            }
+         // }
         }else{
           MTGGameZone * fromZone = target->getCurrentZone();//this is technically incorrect. The initial zone should be as described in the targetchooser
           MTGGameZone * destZone = MTGGameZone::stringToZone(szone, card, target);
