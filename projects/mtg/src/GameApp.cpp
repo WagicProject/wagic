@@ -170,6 +170,8 @@ void GameApp::Destroy()
     SAFE_DELETE(collection);
   }
   SAFE_DELETE(cache);
+  SampleCache::DestroyInstance();
+
 
   SAFE_DELETE(CommonRes);
 
@@ -181,6 +183,10 @@ void GameApp::Destroy()
   SAFE_DELETE(music);
 
   delete(DeckStats::GetInstance());
+
+  SimpleMenu::destroy();
+
+
   LOG("==Destroying GameApp Successful==");
 
 }

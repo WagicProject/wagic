@@ -93,6 +93,7 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
   LOG("==Creating CardTexture Object");
   char filename[100];
   quad = NULL;
+  tex = NULL;
   nbpixels = 0;
   lastTime = 0;
   if (type == CACHE_THUMB){
@@ -103,7 +104,8 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
 #ifdef WIN32
   OutputDebugString(filename);
 #endif
-  tex = JRenderer::GetInstance()->LoadTexture(filename, false);
+  if (fileExists(filename))
+    tex = JRenderer::GetInstance()->LoadTexture(filename, false);
   if (tex){
     quad = NEW JQuad(tex, 0.0f, 0.0f, tex->mWidth, tex->mHeight);
     nbpixels = tex->mTexHeight * tex->mTexWidth;
@@ -176,4 +178,8 @@ void SampleCache::cleanCache(){
 
 SampleCache::~SampleCache(){
   cleanCache();
+}
+
+void SampleCache::DestroyInstance(){
+  SAFE_DELETE(mInstance);
 }

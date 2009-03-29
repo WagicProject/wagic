@@ -63,7 +63,6 @@ void ShopItem::Render(){
       renderer->RenderQuad(quad,mX + SCREEN_WIDTH/2 + 20,5,0, 0.9f,0.9f);
     }else{
       if (card) CardGui::alternateRender(card,NULL,mX + SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
-      //TODO
     }
     mFont->SetColor(ARGB(255,255,255,0));
   }else{
@@ -80,18 +79,15 @@ void ShopItem::Render(){
 
 void ShopItem::Update(float dt)
 {
-  if (mScale < mTargetScale)
-    {
+  if (mScale < mTargetScale){
       mScale += 8.0f*dt;
       if (mScale > mTargetScale)
-	mScale = mTargetScale;
-    }
-  else if (mScale > mTargetScale)
-    {
+	      mScale = mTargetScale;
+   }else if (mScale > mTargetScale){
       mScale -= 8.0f*dt;
       if (mScale < mTargetScale)
-	mScale = mTargetScale;
-    }
+	      mScale = mTargetScale;
+   }
 }
 
 
@@ -157,9 +153,9 @@ void ShopItems::Update(float dt){
       char buffer[4096];
       sprintf(buffer,"%s : %i credits",item->getText(),price);
       if(!dialog){
-	dialog = NEW SimpleMenu(1,this,GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
-	dialog->Add(1,"Yes");
-	dialog->Add(2,"No");
+	      dialog = NEW SimpleMenu(1,this,GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+	      dialog->Add(1,"Yes");
+	      dialog->Add(2,"No");
       }
       else{
 	dialog->Update(dt);
@@ -220,7 +216,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	item->quantity--;
       }else{
 	      safeDeleteDisplay();
-	      display = new CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
+	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
 	      int curNbcards = playerdata->collection->totalCards();
 	      //if (showPriceDialog == 0){
 	      //  //Starter Deck

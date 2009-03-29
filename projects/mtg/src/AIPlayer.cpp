@@ -515,7 +515,7 @@ AIStats * AIPlayer::getStats(){
   if (!stats){
     char statFile[512];
     sprintf(statFile, RESPATH"/ai/baka/stats/%s.stats", opponent()->deckFile.c_str());
-    stats = new AIStats(this, statFile);
+    stats = NEW AIStats(this, statFile);
   }
   return stats;
 }

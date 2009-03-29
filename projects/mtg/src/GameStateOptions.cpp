@@ -44,6 +44,7 @@ void GameStateOptions::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
   SAFE_DELETE(optionsList);
+  SAFE_DELETE(optionsMenu);
 }
 
 

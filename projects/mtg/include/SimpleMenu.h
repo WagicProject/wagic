@@ -33,6 +33,7 @@ class SimpleMenu:public JGuiController{
   static unsigned int refCount;
 
   static JQuad *spadeR, *spadeL, *jewel, *side;
+  static JTexture *spadeRTex, *spadeLTex, *jewelTex, *sideTex;
   static JLBFont* titleFont;
   static hgeParticleSystem* stars;
   // This works only because of no multithreading
@@ -51,6 +52,7 @@ class SimpleMenu:public JGuiController{
 
   float selectionTargetY;
   bool closed;
+  static void destroy();
 };
 
 

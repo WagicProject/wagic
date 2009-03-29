@@ -18,6 +18,10 @@ JQuad* SimpleMenu::spadeR = NULL;
 JQuad* SimpleMenu::spadeL = NULL;
 JQuad* SimpleMenu::jewel = NULL;
 JQuad* SimpleMenu::side = NULL;
+JTexture* SimpleMenu::spadeRTex = NULL;
+JTexture* SimpleMenu::spadeLTex = NULL;
+JTexture* SimpleMenu::jewelTex = NULL;
+JTexture* SimpleMenu::sideTex = NULL;
 JLBFont* SimpleMenu::titleFont = NULL;
 hgeParticleSystem* SimpleMenu::stars = NULL;
 unsigned int SimpleMenu::refCount = 0;
@@ -36,21 +40,22 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
   title = _title;
   startId = 0;
   maxItems = _maxItems;
-  side = NULL;
   selectionT = 0;
   timeOpen = 0;
   closed = false;
   ++refCount;
 
   JRenderer* renderer = JRenderer::GetInstance();
-  static JTexture* spadeLTex = renderer->LoadTexture(spadeLPath, TEX_TYPE_USE_VRAM);
-  static JTexture* spadeRTex = renderer->LoadTexture(spadeRPath, TEX_TYPE_USE_VRAM);
-  static JTexture* jewelTex  = renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
-  static JTexture* sideTex   = renderer->LoadTexture(sidePath, TEX_TYPE_USE_VRAM);
-  if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
+  
+  if (!spadeLTex)  spadeLTex= renderer->LoadTexture(spadeLPath, TEX_TYPE_USE_VRAM);
+  if (!spadeRTex) spadeRTex = renderer->LoadTexture(spadeRPath, TEX_TYPE_USE_VRAM);
+  if (!jewelTex)   jewelTex= renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
+  if (!sideTex)   sideTex = renderer->LoadTexture(sidePath, TEX_TYPE_USE_VRAM);
+if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
   if (NULL == spadeR) spadeR = NEW JQuad(spadeRTex, 2, 1, 16, 13);
   if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
   if (NULL == side)   side   = NEW JQuad(sideTex, 1, 1, 1, 7);
+
   if (NULL == titleFont)
     {
       GameApp::CommonRes->LoadJLBFont(titleFontPath, 7);
@@ -171,4 +176,16 @@ void SimpleMenu::Close()
 {
   timeOpen = -1.0;
   stars->Stop(true);
+}
+
+void SimpleMenu::destroy(){
+  SAFE_DELETE(SimpleMenu::spadeR);
+  SAFE_DELETE(SimpleMenu::spadeL);
+  SAFE_DELETE(SimpleMenu::jewel);
+  SAFE_DELETE(SimpleMenu::side);
+  SAFE_DELETE(SimpleMenu::spadeRTex);
+  SAFE_DELETE(SimpleMenu::spadeLTex);
+  SAFE_DELETE(SimpleMenu::jewelTex);
+  SAFE_DELETE(SimpleMenu::sideTex);
+  SAFE_DELETE(SimpleMenu::stars);
 }

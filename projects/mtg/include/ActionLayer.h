@@ -24,6 +24,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   int unstopableRenderInProgress();
   bool CheckUserInput(u32 key);
   ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL;};
+  ~ActionLayer();
   int isWaitingForAnswer();
   int isReactingToTargetClick(Targetable * card);
   int receiveEvent(WEvent * event);

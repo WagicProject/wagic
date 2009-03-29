@@ -76,6 +76,7 @@ protected:
   ~SampleCache();
 public:
   static SampleCache * GetInstance();
+  static void DestroyInstance();
   SampleCache(){lastTime = 0;};
   JSample * getSample(string filename);
 

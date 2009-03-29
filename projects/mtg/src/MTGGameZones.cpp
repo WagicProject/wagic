@@ -30,11 +30,12 @@ MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idLi
 }
 
 MTGPlayerCards::~MTGPlayerCards(){
-  if(library) delete library;
-  if(graveyard) delete graveyard;
-  if(hand) delete hand;
-  if(inPlay) delete inPlay;
-  if(stack) delete stack;
+  SAFE_DELETE(library);
+  SAFE_DELETE(graveyard);
+  SAFE_DELETE(hand);
+  SAFE_DELETE(inPlay);
+  SAFE_DELETE(stack);
+  SAFE_DELETE(removedFromGame);
 }
 
 void MTGPlayerCards::setOwner(Player * player){
@@ -61,7 +62,6 @@ void MTGPlayerCards::init(){
   graveyard = NEW MTGGraveyard();
   hand = NEW MTGHand();
   inPlay = NEW MTGInPlay();
-  stack = NEW MTGStack();
   stack = NEW MTGStack();
   removedFromGame = NEW MTGRemovedFromGame();
 }

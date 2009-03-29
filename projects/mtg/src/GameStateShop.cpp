@@ -77,12 +77,9 @@ void GameStateShop::End()
   SAFE_DELETE(shop);
   SAFE_DELETE(mBack);
   SAFE_DELETE(backTexture);
-  if(bgTexture)
-    SAFE_DELETE(bgTexture);
-  if(mBg)
-    SAFE_DELETE(mBg);
-  if(menu)
-    SAFE_DELETE(menu);
+  SAFE_DELETE(bgTexture);
+  SAFE_DELETE(mBg);
+  SAFE_DELETE(menu);
 
 }
 

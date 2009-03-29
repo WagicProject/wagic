@@ -216,3 +216,7 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid){
   menuObject = 0;
 
 }
+
+ActionLayer::~ActionLayer(){
+  SAFE_DELETE(abilitiesMenu);
+}
