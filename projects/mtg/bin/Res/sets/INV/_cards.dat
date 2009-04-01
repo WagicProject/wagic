@@ -253,6 +253,18 @@ toughness=2
 abilities=protection from black
 [/card]
 [card]
+text=Flying, protection from white     When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
+id=23320
+name=Crypt Angel
+auto=may moveTo(myhand) target(creature[blue;red]|mygraveyard)
+rarity=R
+type=Creature
+mana={4}{B}
+power=3
+subtype=Angel
+toughness=3
+[/card]
+[card]
 text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
 target=creature
 auto=:-1/-1
