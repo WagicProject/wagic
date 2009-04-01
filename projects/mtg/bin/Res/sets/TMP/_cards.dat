@@ -1,5 +1,3 @@
-#TEMPEST
-#Initial Release by Dr. Solomat
 [card]
 text=First strike    {W}: Target creature gains first strike until end of turn.
 auto={W}:first strike target(creature)
@@ -18,7 +16,7 @@ abilities=first strike
 text=Destroy target artifact, creature, or land. Aftershock deals 3 damage to you.
 target=artifact,creature,land
 auto=destroy
-auto=life:-3
+auto=damage 3 controller
 id=4800
 name=Aftershock
 color=Black
@@ -48,6 +46,18 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Sacrifice an enchantment: Auratog gets +2/+2 until end of turn.
+id=4862
+name=Auratog
+rarity=R
+type=Creature
+mana={1}{W}
+auto={s(enchantment|myinplay)}:2/2
+power=1
+subtype=Atog
+toughness=2
+[/card]
+[card]
 text=Flying, swampwalk
 id=4749
 name=Bayou Dragonfly
@@ -74,14 +84,49 @@ toughness=6
 abilities=islandwalk
 [/card]
 [card]
+text=Sacrifice Blood Pet: Add {B} to your mana pool.
+id=12342
+name=Blood Pet
+rarity=C
+type=Creature
+mana={B}
+auto={S}: Add{B}
+power=1
+subtype=Thrull
+toughness=1
+[/card]
+[card]
 text=Destroy all islands.
 auto=destroy all(island)
 id=4805
 name=Boil
-colour=Red
+color=Red
 rarity=U
 mana={3}{R}
 type=Instant
+[/card]
+[card]
+text=Sacrifice Bottle Gnomes: You gain 3 life.
+id=4598
+name=Bottle Gnomes
+rarity=U
+type=Artifact Creature
+mana={3}
+auto={S}:life:3
+power=1
+subtype=Gnome
+toughness=3
+[/card]
+[card]
+text=Caldera Lake comes into play tapped.       {T}: Add {1} to your mana pool.       {T}: Add {U} or {R} to your mana pool. Caldera Lake deals 1 damage to you.
+id=4930
+name=Caldera Lake
+auto=tap
+auto={T}: Add{1}
+auto={T}: Add{U} && damage 1 controller
+auto={T}: Add{R} && damage 1 controller
+rarity=R
+type=Land
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
@@ -110,61 +155,61 @@ toughness=1
 abilities=Mountainwalk
 [/card]
 [card]
-text={1}: Prevent all damage against you from one black source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+text={1}: The next time a black source of your choice would deal damage to you this turn, prevent that damage.
 id=4864
 alias=1335
 name=Circle of Protection: Black
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-text={1}: Prevent all damage against you from one blue source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+text={1}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage.
 id=4865
 alias=1336
 name=Circle of Protection: Blue
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-text={1}: Prevent all damage against you from one green source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+text={1}: The next time a green source of your choice would deal damage to you this turn, prevent that damage.
 id=4866
 alias=1337
 name=Circle of Protection: Green
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-text={1}: Prevent all damage against you from one red source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+text={1}: The next time a red source of your choice would deal damage to you this turn, prevent that damage.
 id=4867
 alias=1338
 name=Circle of Protection: Red
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-text={1}: Prevent all damage against you from one white source. If a source deals damage to you more than once in a turn, you may pay 1 each time to prevent the damage.
+text={1}: The next time a white source of your choice would deal damage to you this turn, prevent that damage.
 id=4869
 alias=1339
 name=Circle of Protection: White
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-text=All Sliver creatures gain "{2}:regenerate"
+text=All Slivers have "{2}: Regenerate this permanent."
 auto=lord(sliver) {2}:regenerate
 id=4640
 name=Clot Sliver
-colour=Black
+color=Black
 rarity=C
 mana={1}{B}
 type=Creature
@@ -187,14 +232,39 @@ toughness=1
 abilities=first strike
 [/card]
 [card]
+text=Fear     When Commander Greven il-Vec comes into play, sacrifice a creature.
+id=4643
+name=Commander Greven il-Vec
+rarity=R
+type=Creature
+mana={3}{B}{B}{B}
+abilities=Legendary,fear
+target=creature|myinplay
+auto=destroy
+power=7
+subtype=Human Warrior
+toughness=5
+[/card]
+[card]
 text=Counter target spell.
 id=4693
 alias=1196
 name=Counterspell
-Colour=Blue
+Color=Blue
 rarity=C
 mana={U}{U}
 type=Instant
+[/card]
+[card]
+text=Enchant creature     {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
+id=4809
+name=Crown of Flames
+rarity=C
+type=Enchantment
+auto=:1/0
+auto={R}:moveTo(hand)
+mana={R}
+subtype=Aura
 [/card]
 [card]
 text=Destroy target nonblack creature. It can't be regenerated.
@@ -212,7 +282,7 @@ text=Add {B}{B}{B} to your mana pool.
 auto=Add {B}{B}{B}
 id=4646
 name=Dark Ritual
-colour=Black
+color=Black
 rarity=C
 mana={B}
 type=Instant
@@ -221,7 +291,7 @@ type=Instant
 text={B}: Regenerate Darkling Stalker.       {B}: Darkling Stalker gets +1/+1 until end of turn.
 id=4647
 name=Darkling Stalker
-colour=Black
+color=Black
 rarity=C
 mana={3}{B}
 type=Creature
@@ -274,7 +344,7 @@ target=artifact,enchantment
 auto=destroy
 id=4872
 name=Disenchant
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Instant
@@ -285,7 +355,7 @@ id=4695
 alias=1196
 auto=draw:1
 name=Dismiss
-colour=Blue
+color=Blue
 rarity=U
 mana={2}{U}{U}
 type=Instant
@@ -305,7 +375,7 @@ id=4757
 name=Eladamri, Lord of Leaves
 auto=lord(elf) forestwalk other
 auto=lord(elf) shroud other
-colour=Green
+color=Green
 rarity=R
 mana={G}{G}
 type=Creature
@@ -330,11 +400,11 @@ subtype=Aura
 text=Flying
 id=4700
 name=Fighting Drake
-colour=Blue
+color=Blue
 rarity=U
 mana={2}{U}{U}
 type=Creature
-subtype=Sliver
+subtype=Drake
 power=2
 toughness=4
 abilities=flying
@@ -343,7 +413,7 @@ abilities=flying
 text=Flying     {R}: Firefly gets +1/+0 until end of turn.
 id=4813
 name=Firefly
-colour=Red
+color=Red
 rarity=U
 mana={3}{R}
 type=Creature
@@ -357,7 +427,7 @@ abilities=flying
 text={R}: Flowstone Giant gets +2/-2 until end of turn.
 id=4816
 name=Flowstone Giant
-colour=Red
+color=Red
 rarity=C
 mana={2}{R}{R}
 type=Creature
@@ -370,7 +440,7 @@ toughness=3
 text=Flying     {R}: Flowstone Wyvern gets +2/-2 until end of turn.
 id=4818
 name=Flowstone Wyvern
-colour=Red
+color=Red
 rarity=R
 mana={3}{R}{R}
 type=Creature
@@ -427,7 +497,7 @@ auto=reach
 auto=draw:1
 id=4762
 name=Frog Tongue
-colour=C
+color=C
 rarity=U
 mana={1}{G
 type=Enchantment
@@ -449,7 +519,7 @@ type=Instant
 text={U}: Giant Crab gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=4703
 name=Giant Crab
-colour=Blue
+color=Blue
 rarity=C
 mana={4}{U}
 type=Creature
@@ -471,6 +541,27 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Sacrifice a creature: Goblin Bombardment deals 1 damage to target creature or player.
+id=4821
+name=Goblin Bombardment
+auto={s(creature|myinplay)}:damage:1 target(creature,player)
+rarity=U
+type=Enchantment
+mana={1}{R}
+[/card]
+[card]
+text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+id=4665
+name=Gravedigger
+auto=may moveTo(myhand) target(creature|mygraveyard)
+rarity=C
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
 text=Artifacts have shroud. (They can't be the targets of spells or abilities.)
 auto=lord(artifact) shroud
 id=4878
@@ -485,7 +576,7 @@ text=All Sliver creatures have haste.
 id=4824
 auto=lord(sliver) Haste
 name=Heart Sliver
-colour=Red
+color=Red
 rarity=C
 mana={1}{R}
 type=Creature
@@ -508,6 +599,18 @@ toughness=1
 abilities=reachshadow
 [/card]
 [card]
+text={T}, Sacrifice a Forest: Heartwood Giant deals 2 damage to target player.
+id=4766
+name=Heartwood Giant
+rarity=R
+auto={T}{S(forest|myinplay)}:damage:2 target(player)
+type=Creature
+mana={3}{G}{G}
+power=4
+subtype=Giant
+toughness=4
+[/card]
+[card]
 text=Forestwalk
 id=4767
 name=Heartwood Treefolk
@@ -516,8 +619,8 @@ color=Green
 mana={2}{G}{G}
 type=Creature
 subtype=Treefolk
-power=2
-toughness=3
+power=3
+toughness=4
 abilities=forestwalk
 [/card]
 [card]
@@ -537,7 +640,7 @@ text=All Sliver creatures have trample.
 auto=lord(sliver) Trample
 id=4768
 name=Horned Sliver
-colour=Green
+color=Green
 rarity=U
 mana={2}{G}
 type=Creature
@@ -549,7 +652,7 @@ abilities=trample
 [card]
 id=4704
 name=Horned Turtle
-colour=Blue
+color=Blue
 rarity=C
 mana={2}{U}
 type=Creature
@@ -597,7 +700,7 @@ subtype=Island
 text=First strike      {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
 id=4883
 name=Knight of Dawn
-colour=White
+color=White
 rarity=U
 mana={1}{W}{W}
 type=Creature
@@ -609,7 +712,7 @@ auto={W}{W}:protection from red
 auto={W}{W}:protection from green
 power=2
 toughness=2
-abilites=first strike
+abilities=first strike
 [/card]
 [card]
 text=Lightning Blast deals 4 damage to target creature or player.
@@ -651,12 +754,12 @@ mana={0}
 [card]
 id=4829
 name=Lowland Giant
-colour=Red
+color=Red
 rarity=C
 mana={2}{R}{R}
 type=Creature
 subtype=Giant
-power=3
+power=4
 toughness=3
 [/card]
 [card]
@@ -676,7 +779,7 @@ toughness=1
 text={U}: Manta Riders gains flying until end of turn.
 id=4711
 name=Manta Riders
-colour=Blue
+color=Blue
 rarity=C
 mana={U}
 type=Creature
@@ -684,6 +787,18 @@ subtype=Merfolk
 auto={U}:flying
 power=1
 toughness=1
+[/card]
+[card]
+text=Sacrifice a Swamp: Marsh Lurker gains fear until end of turn.
+id=4673
+name=Marsh Lurker
+auto={S(swamp|myinplay)}:fear
+rarity=C
+type=Creature
+mana={3}{B}
+power=3
+subtype=Beast
+toughness=2
 [/card]
 [card]
 text={W}, {T}: Tap target creature.
@@ -703,7 +818,7 @@ text=Flying       {T}: Mawcor deals 1 damage to target creature or player.
 auto={T}:damage:1 target(creature,player)
 id=4712
 name=Mawcor
-colour=Blue
+color=Blue
 rarity=R
 mana={3}{U}{U}
 type=Creature
@@ -715,7 +830,7 @@ abilities=flying
 [card]
 id=4617
 name=Metallic Sliver
-colour=Artifact
+color=Artifact
 rarity=C
 mana={1}
 type=Artifact Creature
@@ -724,8 +839,44 @@ power=1
 toughness=1
 [/card]
 [card]
+text=All Slivers have "{2}, Sacrifice this permanent: Draw a card."
+id=4714
+name=Mnemonic Sliver
+auto=lord(sliver) {2}{S}:draw:1
+rarity=U
+type=Creature
+mana={2}{U}
+power=2
+subtype=Sliver
+toughness=2
+[/card]
+[card]
+text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
+id=4832
+name=Mogg Fanatic
+auto={S}:damage:1 target(creature,player)
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
+text=Sacrifice a Goblin: Target creature gets +1/+1 until end of turn.
+id=4833
+name=Mogg Raider
+auto={s(goblin|myinplay)}:1/1 target(creature)
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
 text=Mogg Squad gets -1/-1 for each other creature in play.
-auto=foreach(creature) -1/-1 other
+auto=foreach(creature|inplay) -1/-1 other
 id=4834
 name=Mogg Squad
 rarity=U
@@ -780,14 +931,14 @@ text=All Sliver creatures get +1/+1.
 id=4772
 auto=lord(sliver) 1/1
 name=Muscle Sliver
-colour=Green
+color=Green
 rarity=C
 mana={1}{G}
 type=Creature
 subtype=Sliver
-power=2
+power=1
 subtype=Sliver
-toughness=2
+toughness=1
 [/card]
 [card]
 text=Target player gains 8 life.
@@ -799,6 +950,27 @@ color=Green
 rarity=C
 mana={3}{G}{G}
 type=Sorcery
+[/card]
+[card]
+text=Discard a card: Regenerate Patchwork Gnomes.
+id=4619
+name=Patchwork Gnomes
+auto={s(*|myhand)}:regenerate
+rarity=U
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Gnome
+toughness=1
+[/card]
+[card]
+text={2}, Discard a card: Put a 1/1 white Pegasus creature token with flying into play.
+id=4893
+name=Pegasus Refuge
+auto={2}{s(*|myhand)}:token(Pegasus,Pegasus Token Creature, 1/1,flying white)
+rarity=R
+type=Enchantment
+mana={3}{W}
 [/card]
 [card]
 text=Destroy all green creatures. Those creatures cannot be regenerated.
@@ -832,6 +1004,29 @@ subtype=Insect
 power=3
 toughness=1
 abilities=shroud
+[/card]
+[card]
+text=Pine Barrens comes into play tapped.       {T}: Add {1} to your mana pool.       {T}: Add {B} or {G} to your mana pool. Pine Barrens deals 1 damage to you.
+id=4935
+auto=tap
+auto={T}:Add{1}
+auto={T}:Add{B} && damage 1 controller
+auto={T}:Add{G} && damage 1 controller
+name=Pine Barrens
+rarity=R
+type=Land
+[/card]
+[card]
+text=Flying     {B}: Pit Imp gets +1/+0 until end of turn. Play this ability no more than twice each turn.
+id=4677
+name=Pit Imp
+auto={B}:1/0 limit:2
+rarity=C
+type=Creature
+mana={B}
+power=0
+subtype=Imp
+toughness=1
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -913,9 +1108,9 @@ abilities=first strike
 text={B}: Destroy target artifact, creature, or land you control.
 id=4679
 name=Rats of Rath
-colour=Black
+color=Black
 rarity=C
-mana={2}{B}
+mana={1}{B}
 type=Creature
 subtype=Rat
 auto={B}:destroy target(artifact,creature,land|myinplay)
@@ -961,11 +1156,23 @@ power=2
 toughness=2
 [/card]
 [card]
+text={T}, Sacrifice Rootwater Diver: Return target artifact card from your graveyard to your hand.
+id=4720
+name=Rootwater Diver
+auto={T}{S}:moveTo(myhand) target(artifact|mygraveyard)
+rarity=U
+type=Creature
+mana={U}
+power=1
+subtype=Merfolk
+toughness=1
+[/card]
+[card]
 text={T}: Rootwater Hunter deals 1 damage to target creature or player.
 id=4721
 name=Rootwater Hunter
 auto={T}:damage:1 target(creature,player)
-colour=Blue
+color=Blue
 rarity=C
 mana={2}{U}
 type=Creature
@@ -974,18 +1181,40 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Salt Flats comes into play tapped.       {T}: Add {1} to your mana pool.       {T}: Add {W} or {B} to your mana pool. Salt Flats deals 1 damage to you.
+id=4938
+auto=tap
+auto={T}: Add{1}
+auto={T}: Add{W} && damage 1 controller
+auto={T}: Add{B} && damage 1 controller
+name=Salt Flats
+rarity=R
+type=Land
+[/card]
+[card]
 text=(This creature deals combat damage before creatures without first strike.)       {R}: Sandstone Warrior gets +1/+0 until end of turn.
 id=4841
 name=Sandstone Warrior
-colour=Red
+color=Red
 rarity=C
 mana={2}{R}{R}
 type=Creature
 subtype=Human Soldier Warrior
 auto={R}:1/0
-power=3
+power=1
 toughness=3
 abilities=first strike
+[/card]
+[card]
+text=Scabland comes into play tapped.     {T}: Add {1} to your mana pool.     {T}: Add {R} or {W} to your mana pool. Scabland deals 1 damage to you.
+id=4939
+name=Scabland
+auto=tap
+auto={T}: Add{1}
+auto={T}: Add{R} && damage 1 controller
+auto={T}: Add{W} && damage 1 controller
+rarity=R
+type=Land
 [/card]
 [card]
 text=Flying     {1}{B}: Regenerate Screeching Harpy.
@@ -1027,6 +1256,27 @@ mana={U}
 type=Instant
 [/card]
 [card]
+text=Destroy target artifact.
+id=4847
+name=Shatter
+target=artifact
+auto=destroy
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
+id=4726
+name=Shimmering Wings
+auto=:flying
+auto={U}:moveTo(hand)
+rarity=C
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
 text=Flying, first strike
 id=4917
 name=Sky Spirit
@@ -1040,19 +1290,6 @@ toughness=2
 abilities=flying,first strike
 [/card]
 [card]
-text=Flying
-id=4927
-name=Skyshroud Condor
-rarity=U
-color=Blue
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
-abilities=flying
-[/card]
-[card]
 text={T}: Add {G} to your mana pool.    {1}: Add {W} or {R} to your mana pool.
 id=4789
 name=Skyshroud Elf
@@ -1060,12 +1297,23 @@ color=Green
 rarity=C
 mana={1}{G}
 type=Creature
-subtype=Elf
+subtype=Elf Druid
 auto={T}:Add {G}
 auto={1}:Add {W}
 auto={1}:Add {R}
 power=1
 toughness=1
+[/card]
+[card]
+text=Skyshroud Forest comes into play tapped.     {T}: Add {1} to your mana pool.     {T}: Add {U} or {G} to your mana pool. Skyshroud Forest deals 1 damage to you.
+id=4940
+name=Skyshroud Forest
+auto=tap
+auto={T}: Add {1}
+auto={T}: Add {U} && damage 1 controller
+auto={T}: Add {G} && damage 1 controller
+rarity=R
+type=Land
 [/card]
 [card]
 text={1}{G}: Regenerate Skyshroud Troll.
@@ -1078,6 +1326,19 @@ type=Creature
 subtype=Troll Giant
 auto={1}{G}:regenerate
 power=3
+toughness=3
+[/card]
+[card]
+text=Flying     Discard a creature card: Skyshroud Vampire gets +2/+2 until end of turn.
+id=4686
+name=Skyshroud Vampire
+abilities=flying
+auto={S(*|myhand)}:2/2
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=3
+subtype=Vampire
 toughness=3
 [/card]
 [card]
@@ -1151,7 +1412,7 @@ text=Counter target spell with converted mana cost X.
 id=4728
 alias=1224
 name=Spell Blast
-colour=Blue
+color=Blue
 rarity=C
 mana={X}{U}
 type=Instant
@@ -1175,7 +1436,7 @@ target=enchantment
 alias=1194
 id=4729
 name=Steal Enchantment
-colour=Blue
+color=Blue
 rarity=U
 mana={U}{U}
 type=Enchantment
@@ -1187,7 +1448,7 @@ target=land
 auto=destroy
 id=4850
 name=Stone Rain
-colour=Red
+color=Red
 rarity=C
 mana={2}{R}
 type=Sorcery
@@ -1197,7 +1458,7 @@ text={G}{G}: Tap target creature with flying.
 id=4793
 auto={G}{G}:tap target(creature[flying])
 name=Storm Front
-colour=Green
+color=Green
 rarity=U
 mana={G}
 type=Enchantment
@@ -1243,7 +1504,7 @@ text=All Sliver creatures have first strike.
 id=4908
 auto=lord(sliver) first strike
 name=Talon Sliver
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Creature
@@ -1281,10 +1542,20 @@ text=Destroy all enchantments.
 id=4795
 auto=destroy all(enchantment)
 name=Tranquility
-colour=Green
+color=Green
 rarity=C
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+text=You may tap or untap target artifact, creature, or land.     Draw a card.
+id=4739
+name=Twitch
+auto=may tap target(artifact,creature,land)
+auto=draw:1
+rarity=C
+type=Instant
+mana={2}{U}
 [/card]
 [card]
 text=Destroy target artifact.
@@ -1292,7 +1563,7 @@ id=4798
 target=artifact
 auto=destroy
 name=Verdigris
-colour=Green
+color=Green
 rarity=U
 mana={2}{G}
 type=Sorcery
@@ -1301,7 +1572,7 @@ type=Sorcery
 text=Defender (This creature can't attack.)      Wall of Diffusion can block creatures with shadow as though they didn't have shadow.
 id=4855
 name=Wall of Diffusion
-colour=Red
+color=Red
 rarity=C
 mana={1}{R}
 type=Creature
@@ -1311,10 +1582,19 @@ toughness=5
 abilities=defender, reachshadow
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.       {T}, Sacrifice Wasteland: Destroy target nonbasic land.
+id=4944
+name=Wasteland
+auto={T}: Add{1}
+auto={T}{S}:destroy target(land[-basic])
+rarity=U
+type=Land
+[/card]
+[card]
 text={T}: Target creature gains flying until end of turn.
 id=4744
 name=Wind Dancer
-colour=Blue
+color=Blue
 rarity=U
 mana={1}{U}
 type=Creature
@@ -1328,7 +1608,7 @@ abilities=flying
 text=Flying
 id=4745
 name=Wind Drake
-colour=Blue
+color=Blue
 rarity=C
 mana={2}{U}
 type=Creature
@@ -1341,7 +1621,7 @@ abilities=flying
 text=All Sliver creatures have flying.
 id=4746
 name=Winged Sliver
-colour=Blue
+color=Blue
 rarity=C
 mana={1}{U}
 type=Creature
@@ -1357,7 +1637,7 @@ id=4799
 target=land
 auto=destroy
 name=Winter's Grasp
-colour=Green
+color=Green
 rarity=U
 mana={1}{G}{G}
 type=Sorcery
