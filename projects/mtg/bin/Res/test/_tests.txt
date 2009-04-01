@@ -31,6 +31,8 @@ brass_man.txt
 castle.txt
 celestial_purge.txt
 circle_of_protection.txt
+clone.txt
+clone2.txt
 composite_golem.txt
 control_magic.txt
 control_magic2.txt

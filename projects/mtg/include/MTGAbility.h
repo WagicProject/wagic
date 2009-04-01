@@ -41,6 +41,7 @@ class MTGAbility: public ActionElement{
  
   GameObserver * game;
  public:
+   int forceDestroy;
   ManaCost * cost;
   Damageable * target;
   int aType;

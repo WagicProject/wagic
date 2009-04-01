@@ -1,0 +1,42 @@
+# As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:129501
+manapool:{3}{U}
+[PLAYER2]
+inplay:1221
+[DO]
+129501
+choice 0
+1221
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main1
+next
+#combat begin
+next
+#attackers
+129501
+next
+#blockers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:129501
+manapool:{0}
+life:19
+[PLAYER2]
+inplay:1221
+life:16
+[END]

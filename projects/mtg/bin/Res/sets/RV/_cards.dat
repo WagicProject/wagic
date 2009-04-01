@@ -357,6 +357,19 @@ power=0
 toughness=4
 [/card]
 [card]
+text=As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
+auto=may copy target(creature)
+id=1193
+name=Clone
+rarity=U
+color=Blue
+type=Creature
+mana={3}{U}
+power=0
+subtype=Shapeshifter
+toughness=0
+[/card]
+[card]
 text=Flying     Whenever Cockatrice blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 abilities=Flying
 id=1238

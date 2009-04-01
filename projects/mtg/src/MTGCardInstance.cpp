@@ -31,6 +31,47 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to): 
 
 }
 
+void MTGCardInstance::copy(MTGCardInstance * card){
+ MTGCard * source = card->model;
+ for (int i = 0; i< Constants::NB_BASIC_ABILITIES; i++){
+    basicAbilities[i] = source->basicAbilities[i];
+  }
+  for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
+    types[i] = source->types[i];
+  }
+  nb_types = source->nb_types;
+  for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
+    colors[i] = source->colors[i];
+  }
+  manaCost.copy(source->getManaCost());
+
+  text = source->text;
+  name = source->name;
+  //strcpy(image_name, source->image_name);
+
+  //rarity = source->rarity;
+  power = source->power;
+  toughness = source->toughness;
+  life = toughness;
+  lifeOrig = life;
+  //mtgid = source->mtgid;
+  //setId = source->setId;
+  formattedTextInit = 0;
+  magicText = source->magicText;
+  spellTargetType = source->spellTargetType;
+  alias = source->alias; 
+
+  //Now this is dirty...
+  int backupid = mtgid;
+  mtgid = source->getId();
+  Spell * spell = NEW Spell(this);
+  AbilityFactory af;
+  GameObserver * g = GameObserver::GetInstance();
+  af.addAbilities(g->mLayers->actionLayer()->getMaxId(), spell);
+  delete spell;
+  mtgid = backupid;
+}
+
 MTGCardInstance::~MTGCardInstance(){
   LOG("==Deleting MTGCardInstance==");
   SAFE_DELETE(blockers);

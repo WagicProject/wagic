@@ -283,18 +283,7 @@ power=2
 subtype=Elf Warrior Druid
 toughness=2
 [/card]
-[card]
-text=As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
-id=129501
-name=Clone
-rarity=R
-color=Blue
-type=Creature
-mana={3}{U}
-power=0
-subtype=Shapeshifter
-toughness=0
-[/card]
+
 [card]
 text=Each creature gets +1/+1 for each other creature in play that shares a creature type with it. (For example, if a Goblin Warrior, a Goblin Scout, and a Zombie Goblin are in play, each gets +2/+2.)
 id=129502

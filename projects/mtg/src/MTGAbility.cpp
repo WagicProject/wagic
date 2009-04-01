@@ -333,6 +333,25 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         continue;
       }
 
+      //Copy a target
+      found = s.find("copy ");
+      if (found != string::npos){
+        if (dryMode) return BAKA_EFFECT_GOOD; //TODO : 
+        if (tc){
+            ACopier * a = NEW ACopier(id,card,tc,cost);
+            if (may){
+              game->addObserver(NEW MayAbility(id,a,card));
+              OutputDebugString("may!\n");
+            }else{
+              game->addObserver(a);
+            }
+        }else{
+         //TODO
+        }
+        result++;
+        continue;
+      }
+
       //Bury
       found = s.find("bury");
       if (found != string::npos){
@@ -1553,6 +1572,7 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * card):ActionElement(id){
   target = card;
   aType = MTGAbility::UNKNOWN;
   cost = NULL;
+  forceDestroy = 0;
 }
 
 MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Damageable * _target ):ActionElement(id){
@@ -1561,6 +1581,7 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Damageable * _target ):
   target = _target;
   aType = MTGAbility::UNKNOWN;
   cost = NULL;
+  forceDestroy = 0;
 }
 
 MTGAbility::~MTGAbility(){
@@ -1570,6 +1591,8 @@ MTGAbility::~MTGAbility(){
 //returns 1 if this ability needs to be removed from the list of active abilities
 int MTGAbility::testDestroy(){
   if (game->mLayers->stackLayer()->has(this)) return 0;
+  if (waitingForAnswer) return 0;
+  if (forceDestroy) return 1;
   if (!game->isInPlay(source) ){
     OutputDebugString("Destroying Ability !!!\n");
     return 1;

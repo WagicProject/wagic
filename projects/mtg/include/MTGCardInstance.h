@@ -93,7 +93,7 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
   int addProtection(CardDescriptor * cd);
   int removeProtection(CardDescriptor *cd, int erase = 0);
   int protectedAgainst(MTGCardInstance * card);
-
+  void copy(MTGCardInstance * card);
   // in game
   int isTapped();
   void untap();

@@ -295,6 +295,19 @@ subtype=Spider
 toughness=3
 [/card]
 [card]
+text=As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
+auto=may copy target(creature)
+id=129501
+name=Clone
+rarity=R
+color=Blue
+type=Creature
+mana={3}{U}
+power=0
+subtype=Shapeshifter
+toughness=0
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Cloud Elemental can block only creatures with flying.
 abilities=cloud,flying
 id=129804

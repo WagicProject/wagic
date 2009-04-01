@@ -31,6 +31,7 @@ public:
   int deleteAbility;
   MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source):MTGAbility(_id,_source),ability(_ability){
     triggered = 0;
+    ability->forceDestroy = 1;
     deleteAbility = 1;
   }
 
@@ -267,6 +268,28 @@ public:
     }
     return 0;
   }
+};
+
+//Copier. TargetAbility
+class ACopier:public TargetAbility{
+ public:
+ ACopier(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL, ManaCost * _cost=NULL):TargetAbility(_id,_source, _tc,_cost,0,0){
+    if (!tc) tc = NEW CreatureTargetChooser();
+  }
+
+  int resolve(){
+    MTGCardInstance * _target = tc->getNextCardTarget();
+    if(_target){
+      source->copy(_target);
+      return 1;
+    }
+    return 0;
+  }
+
+  const char * getMenuText(){
+    return "Copy";
+  }
+
 };
 
 //Destroyer. TargetAbility
