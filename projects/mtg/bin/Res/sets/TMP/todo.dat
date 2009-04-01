@@ -266,18 +266,7 @@ subtype=Human Cleric
 toughness=1
 [/card]
 
-[card]
-text=Flying     When Cloudchaser Eagle comes into play, destroy target enchantment.
-id=4871
-name=Cloudchaser Eagle
-auto=destroy target(enchantment)
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Bird
-toughness=2
-[/card]
+
 [card]
 text=Target opponent reveals his or her hand. Choose a card from it. That player discards that card.
 id=4641
@@ -568,15 +557,7 @@ power=2
 subtype=Juggernaut
 toughness=2
 [/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets -2/-2.
-id=4661
-name=Enfeeblement
-rarity=C
-type=Enchantment
-mana={B}{B}
-subtype=Aura
-[/card]
+
 [card]
 text={R}, {T}: Enraging Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {R} to end this effect.     Enchanted creature has haste.
 id=4811
@@ -1116,7 +1097,18 @@ rarity=R
 type=Enchantment
 mana={G}
 [/card]
-
+[card]
+text=All Slivers have "{2}, Sacrifice this permanent: Draw a card."
+id=4714
+name=Mnemonic Sliver
+auto=lord(sliver) {2}{S}:draw:1
+rarity=U
+type=Creature
+mana={2}{U}
+power=2
+subtype=Sliver
+toughness=2
+[/card]
 [card]
 text={T}: Target creature you control gets +1/+0 and gains flying until end of turn. Destroy that creature at end of turn.
 id=4618

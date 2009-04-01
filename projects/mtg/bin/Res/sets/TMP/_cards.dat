@@ -219,6 +219,18 @@ toughness=1
 abilities={2}:regenerate
 [/card]
 [card]
+text=Flying     When Cloudchaser Eagle comes into play, destroy target enchantment.
+id=4871
+name=Cloudchaser Eagle
+auto=may destroy target(enchantment)
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Bird
+toughness=2
+[/card]
+[card]
 text=First strike
 id=4599
 name=Coiled Tinviper
@@ -837,18 +849,6 @@ type=Artifact Creature
 subtype=Sliver
 power=1
 toughness=1
-[/card]
-[card]
-text=All Slivers have "{2}, Sacrifice this permanent: Draw a card."
-id=4714
-name=Mnemonic Sliver
-auto=lord(sliver) {2}{S}:draw:1
-rarity=U
-type=Creature
-mana={2}{U}
-power=2
-subtype=Sliver
-toughness=2
 [/card]
 [card]
 text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
