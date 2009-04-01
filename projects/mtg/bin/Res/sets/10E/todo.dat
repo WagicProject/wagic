@@ -1312,15 +1312,7 @@ power=7
 subtype=Wurm
 toughness=7
 [/card]
-[card]
-text=As Sculpting Steel comes into play, you may choose an artifact in play. If you do, Sculpting Steel comes into play as a copy of that artifact.
-id=135241
-name=Sculpting Steel
-rarity=R
-color=Artifact
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=Sea Monster can't attack unless defending player controls an Island.
 id=129719
@@ -1683,18 +1675,7 @@ color=Blue
 type=Sorcery
 mana={3}{U}{U}
 [/card]
-[card]
-text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
-id=135232
-name=Treasure Hunter
-rarity=U
-color=White
-type=Creature
-mana={2}{W}
-power=2
-subtype=Human
-toughness=2
-[/card]
+
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
 id=129777

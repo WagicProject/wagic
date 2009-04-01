@@ -1787,6 +1787,16 @@ subtype=Avatar
 toughness=*
 [/card]
 [card]
+text=As Sculpting Steel comes into play, you may choose an artifact in play. If you do, Sculpting Steel comes into play as a copy of that artifact.
+auto=may copy target(artifact)
+id=135241
+name=Sculpting Steel
+rarity=R
+color=Artifact
+type=Artifact
+mana={3}
+[/card]
+[card]
 text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
 auto={S(land|myhand)}:damage 2 target(creature,player)
 id=129884
@@ -2207,6 +2217,19 @@ rarity=U
 color=Blue
 type=Sorcery
 mana={3}{U}{U}
+[/card]
+[card]
+text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
+auto=may moveTo(myhand) target(artifact|mygraveyard)
+id=135232
+name=Treasure Hunter
+rarity=U
+color=White
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human
+toughness=2
 [/card]
 [card]
 text=First strike (This creature deals combat damage before creatures without first strike.)
