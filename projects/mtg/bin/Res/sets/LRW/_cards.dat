@@ -332,7 +332,7 @@ toughness=1
 [/card]
 [card]
 text=First strike     Lifelink (Whenever this creature deals damage, you gain that much life.)
-auto=first strike, lifelink
+abilities=first strike,lifelink
 id=139715
 name=Knight of Meadowgrain
 rarity=U
