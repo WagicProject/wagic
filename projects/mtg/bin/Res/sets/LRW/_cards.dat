@@ -402,6 +402,7 @@ subtype=Mountain
 [card]
 text=Destroy target attacking or blocking creature.
 target=creature[attacking;blocking]
+auto=destroy
 id=139693
 name=Neck Snap
 rarity=C
