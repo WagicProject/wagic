@@ -30,10 +30,8 @@
 using std::string;
 
 
-int lowercase(string  source);
 
 int filesize(const char * filename);
-int readfile_to_ints(const char * filename, int * out_buffer);
 int fileExists(const char * filename);
 
 #ifdef LINUX

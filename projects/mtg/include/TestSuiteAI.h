@@ -37,16 +37,19 @@ class TestSuitePlayerData{
 
 
 
+class TestSuite;
 class TestSuiteState{
  public:
   int phase;
-  void parsePlayerState(int playerId, string s);
+  void parsePlayerState(int playerId, string s,TestSuite * suite);
   TestSuiteState();
   TestSuitePlayerData playerData[2];
   void cleanup();
 };
+
 class TestSuite{
  public:
+  MTGAllCards* collection;
   int summoningSickness;
   float timerLimit;
   int currentAction;
@@ -57,10 +60,10 @@ class TestSuite{
   int nbfiles;
   int currentfile;
   void load(const char * filename);
-  TestSuite(const char * filename);
+  TestSuite(const char * filename,MTGAllCards* _collection);
   void initGame();
   int assertGame();
-  MTGPlayerCards * buildDeck(MTGAllCards * collection, int playerId);
+  MTGPlayerCards * buildDeck(int playerId);
   string getNextAction();
   int phaseStrToInt(string s);
   MTGCardInstance * getCardByMTGId(int mtgid);
@@ -68,6 +71,7 @@ class TestSuite{
   int loadNext();
   void cleanup();
   int Log(const char * text);
+  int getMTGId(string name);
 
 };
 
@@ -75,7 +79,7 @@ class TestSuiteAI:public AIPlayer{
  public:
   TestSuite * suite;
   float timer;
-  TestSuiteAI(MTGAllCards * collection,TestSuite * suite, int playerId);
+  TestSuiteAI(TestSuite * suite, int playerId);
   virtual int Act(float dt);
   virtual int displayStack(){return 1;}
 

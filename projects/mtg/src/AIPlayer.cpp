@@ -551,8 +551,9 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCa
   OutputDebugString(debuf);
 #endif
   int deck_cards_ids[100];
-  int nb_elements = readfile_to_ints(deckFile, deck_cards_ids);
-  MTGPlayerCards * deck = NEW MTGPlayerCards(collection,deck_cards_ids, nb_elements);
+  MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, collection);
+  MTGPlayerCards * deck = NEW MTGPlayerCards(collection,tempDeck);
+  delete tempDeck;
   AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFileSmall, avatarFile);
   return baka;
 }

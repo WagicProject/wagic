@@ -35,6 +35,7 @@ class MtgSets{
   static MtgSets * SetsList;
   MtgSets();
   int Add(const char * subtype);
+  int find(string value);
 
 };
 
@@ -59,6 +60,7 @@ class MTGAllCards {
   MTGAllCards(const char * config_file, const char * set_name);
   MTGAllCards(const char * config_file, const char * set_name, TexturesCache * cache);
   MTGCard * getCardById(int id);
+  MTGCard * getCardByName(string name);
   int load(const char * config_file, const char * setName, int autoload = 1);
   int countByType(const char * _type);
   int countByColor(int color);

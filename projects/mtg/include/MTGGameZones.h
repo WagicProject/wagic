@@ -10,6 +10,7 @@ using std::map;
 #define MTG_MAX_PLAYER_CARDS 100
 
 class MTGAllCards;
+class MTGDeck;
 class MTGCardInstance;
 class Player;
 
@@ -88,6 +89,7 @@ class MTGPlayerCards {
   MTGAllCards * collection;
 
   MTGPlayerCards(MTGAllCards * _collection, int * idList, int idListSize);
+  MTGPlayerCards(MTGAllCards * _collection, MTGDeck * deck);
   ~MTGPlayerCards();
   void initGame(int shuffle = 1, int draw = 1);
   void setOwner(Player * player);

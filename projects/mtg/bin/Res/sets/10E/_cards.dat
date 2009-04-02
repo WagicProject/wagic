@@ -666,7 +666,7 @@ subtype=Forest
 [/card]
 [card]
 text={2}, {T}: You gain 1 life.
-auto={2},{T}:life 1
+auto={2},{T}:life:1
 id=135273
 name=Fountain of Youth
 rarity=U

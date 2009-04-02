@@ -3,6 +3,7 @@
 #include "../include/Player.h"
 #include "../include/GameOptions.h"
 #include "../include/WEvent.h"
+#include "../include/MTGDeck.h"
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -19,6 +20,23 @@ MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idLi
   collection = _collection;
   for (i=0;i<idListSize;i++){
     MTGCard * card =  collection->getCardById(idList[i]);
+    if (card){
+      MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+      library->addCard(newCard);
+    }
+  }
+  
+
+
+}
+
+
+
+MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection,MTGDeck * deck){
+  init();
+  collection = _collection;
+  for (int i=0; i<deck->totalCards(); i++){
+    MTGCard * card =  deck->collection[i];
     if (card){
       MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
       library->addCard(newCard);

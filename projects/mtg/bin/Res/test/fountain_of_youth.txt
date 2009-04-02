@@ -1,0 +1,17 @@
+#Testing Does fountain of youth give  +1 life ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:fountain of youth
+manapool:{2}
+[PLAYER2]
+[DO]
+fountain of youth
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:fountain of youth
+manapool:{0}
+life:21
+[PLAYER2]
+[END]

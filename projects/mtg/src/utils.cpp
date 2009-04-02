@@ -2,13 +2,6 @@
 #include "../include/utils.h"
 
 
-int lowercase(string sBuffer) {
-  std::transform( sBuffer.begin(), sBuffer.end(), sBuffer.begin(),
-		  ::tolower );
-  return 1;
-}
-
-
 
 
 
@@ -34,26 +27,6 @@ int filesize(const char * filename){
   return file_size;
 }
 
-
-
-int readfile_to_ints(const char * filename, int * out_buffer){
-  std::ifstream fichier(filename);
-  std::string s;
-  unsigned int count = 0;
-  if(fichier){
-    while(std::getline(fichier,s)){
-      int value = atoi(s.c_str());
-      if (value){
-	out_buffer[count] = value;
-	++count;
-      }
-    }
-
-  }
-  fichier.close();
-  return count;
-
-}
 
 int fileExists(const char * filename){
  std::ifstream fichier(filename);

@@ -66,7 +66,7 @@ void GameStateDuel::Start()
 
 #ifdef TESTSUITE
   if (testSuite) delete testSuite;
-  testSuite = NEW TestSuite(RESPATH"/test/_tests.txt");
+  testSuite = NEW TestSuite(RESPATH"/test/_tests.txt",mParent->collection);
 #endif
 
 
@@ -117,9 +117,11 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
       sprintf(deckFile, RESPATH"/player/deck%i.txt",decknb);
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
-      int deck_cards_ids[100];
-      int nb_elements = readfile_to_ints(deckFile, deck_cards_ids);
-      deck[playerId] = NEW MTGPlayerCards(mParent->collection,deck_cards_ids, nb_elements);
+      //int deck_cards_ids[100];
+      //int nb_elements = readfile_to_ints(deckFile, deck_cards_ids);
+      MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
+      deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
+      delete tempDeck;
       mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFileSmall);
     }else{ //AI Player, chose deck
           AIPlayerFactory playerCreator;
@@ -141,7 +143,7 @@ void GameStateDuel::loadTestSuitePlayers(){
     if (mPlayers[i]){
       delete mPlayers[i];
     }
-    mPlayers[i] = NEW TestSuiteAI(mParent->collection,testSuite, i);
+    mPlayers[i] = NEW TestSuiteAI(testSuite, i);
     OutputDebugString ("loading suite 2\n");
     deck[i] = mPlayers[i]->game;
   }

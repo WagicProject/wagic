@@ -30,6 +30,16 @@ int MtgSets::Add(const char * name){
   return nb_items - 1;
 }
 
+int MtgSets::find(string name){
+  std::transform(name.begin(), name.end(), name.begin(),::tolower );
+  for (int i = 0; i < nb_items; i++){
+    string set = values[i];
+    std::transform(set.begin(), set.end(), set.begin(),::tolower );;
+    if (set.compare(name) == 0) return i;
+  }
+  return -1;
+}
+
 
 int MTGAllCards::processConfLine(string s, MTGCard *card){
   unsigned int i = s.find_first_of("=");
@@ -279,6 +289,29 @@ MTGCard * MTGAllCards::getCardById(int id){
   return 0;
 }
 
+MTGCard * MTGAllCards::getCardByName(string name){
+  if (!name.size()) return NULL;
+  if (name[0] == '#') return NULL;
+  std::transform(name.begin(), name.end(), name.begin(),::tolower );
+  int setId = -1;
+  size_t found = name.find(" (");
+  if (found != string::npos){
+    size_t end = name.find(")");
+    string setName = name.substr(found+2,end-found-2);
+    name = name.substr(0,found);
+    setId = MtgSets::SetsList->find(setName);
+  }
+  for (int i=0; i<total_cards; i++){
+    if (setId!=-1 && setId != collection[i]->setId) continue;
+    string cardName = collection[i]->name;
+    std::transform(cardName.begin(), cardName.end(), cardName.begin(),::tolower );
+    if (cardName.compare(name) == 0) return collection[i];
+    
+  }
+  return NULL;
+}
+
+
 
 
 MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards){
@@ -292,7 +325,23 @@ MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * 
   if(file){
     while(std::getline(file,s)){
       int cardnb = atoi(s.c_str());
-      if (cardnb) add(cardnb);
+      if (cardnb){
+        add(cardnb);
+      }else{
+        int nb = 1;
+        size_t found = s.find(" *");
+        if (found != string::npos){
+          nb = atoi(s.substr(found+2).c_str());
+          s=s.substr(0,found);
+          OutputDebugString(s.c_str());
+        }
+        MTGCard * card = allcards->getCardByName(s);
+        if (card){
+          for (int i = 0; i < nb; i++){
+            add(card);
+          }
+        }
+      }
     }
     file.close();
   }else{

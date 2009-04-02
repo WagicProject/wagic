@@ -5,13 +5,21 @@
 #include <string>
 using std::string;
 
-TestSuiteAI::TestSuiteAI(MTGAllCards* collection, TestSuite * _suite, int playerId):AIPlayer(_suite->buildDeck(collection, playerId),"testsuite"){
+TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buildDeck(playerId),"testsuite"){
   suite = _suite;
   timer= 0;
   mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);
   if (mAvatarTex){
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
   }
+}
+
+int TestSuite::getMTGId(string cardName){
+  int cardnb = atoi(cardName.c_str());
+  if (cardnb) return cardnb;
+  MTGCard * card = collection->getCardByName(cardName);
+  if (card) return card->getMTGId();
+  return 0;
 }
 
 MTGCardInstance * TestSuite::getCardByMTGId(int mtgid){
@@ -90,7 +98,7 @@ int TestSuiteAI::Act(float dt){
     int choice = atoi(action.substr(action.find("choice ") + 7).c_str());
     g->mLayers->actionLayer()->doReactTo(choice);
   }else{
-    int mtgid = atoi(action.c_str());
+    int mtgid = suite->getMTGId(action);
     if (mtgid){
       Interruptible * toInterrupt = suite->getActionByMTGId(mtgid);
 	    if (toInterrupt){
@@ -140,7 +148,7 @@ TestSuiteState::TestSuiteState(){
 
 }
 
-void TestSuiteState::parsePlayerState(int playerId, string s){
+void TestSuiteState::parsePlayerState(int playerId, string s, TestSuite * suite){
   unsigned int limiter = s.find(":");
   string areaS;
   int area;
@@ -169,13 +177,13 @@ void TestSuiteState::parsePlayerState(int playerId, string s){
       unsigned int value;
       limiter = s.find(",");
       if (limiter != string::npos){
-	value = atoi(s.substr(0,limiter).c_str());
-	s = s.substr(limiter+1);
+	      value = suite->getMTGId(s.substr(0,limiter));
+	      s = s.substr(limiter+1);
       }else{
-	value = atoi(s.c_str());
-	s = "";
+	      value = suite->getMTGId(s);
+	      s = "";
       }
-      playerData[playerId].zones[area].add(value);
+      if (value) playerData[playerId].zones[area].add(value);
     }
   }else{
     //ERROR
@@ -192,7 +200,7 @@ string TestSuite::getNextAction(){
 }
 
 
-MTGPlayerCards * TestSuite::buildDeck(MTGAllCards * collection, int playerId){
+MTGPlayerCards * TestSuite::buildDeck( int playerId){
   int list[100];
   int nbcards = 0;
   for (int j = 0; j < 4; j++){
@@ -324,7 +332,8 @@ int TestSuite::assertGame(){
   return 1;
 }
 
-TestSuite::TestSuite(const char * filename){
+TestSuite::TestSuite(const char * filename,MTGAllCards* _collection){
+  collection=_collection;
   timerLimit = 0;
   std::ifstream file(filename);
   std::string s;
@@ -451,14 +460,14 @@ void TestSuite::load(const char * _filename){
 	if (s.compare("[player2]") == 0){
 	  state++;
 	}else{
-	  initState.parsePlayerState(0, s);
+	  initState.parsePlayerState(0, s,this);
 	}
 	break;
       case 2:
 	if (s.compare("[do]") == 0){
 	  state++;
 	}else{
-	  initState.parsePlayerState(1, s);
+	  initState.parsePlayerState(1, s,this);
 	}
 	break;
       case 3:
@@ -479,14 +488,14 @@ void TestSuite::load(const char * _filename){
 	if (s.compare("[player2]") == 0){
 	  state++;
 	}else{
-	  endState.parsePlayerState(0, s);
+	  endState.parsePlayerState(0, s,this);
 	}
 	break;
       case 6:
 	if (s.compare("[end]") == 0){
 	  state++;
 	}else{
-	  endState.parsePlayerState(1, s);
+	  endState.parsePlayerState(1, s,this);
 	}
 	break;
       }
