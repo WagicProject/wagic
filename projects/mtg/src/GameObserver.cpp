@@ -225,6 +225,9 @@ void GameObserver::Update(float dt){
 //applies damage to creatures after updates
 //Players life test
 void GameObserver::stateEffects(){
+  if (mLayers->stackLayer()->count(0,NOT_RESOLVED) != 0) return;
+  if (mLayers->actionLayer()->menuObject) return;
+  if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()) return;
   for (int i =0; i < 2; i++){
     MTGGameZone * zone = players[i]->game->inPlay;
     for (int j = zone->nb_cards-1 ; j>=0; j--){

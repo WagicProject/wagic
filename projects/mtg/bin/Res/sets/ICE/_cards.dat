@@ -466,7 +466,8 @@ subtype=Swamp
 [card]
 text=Put target creature card in a graveyard into play under your control.
 id=2731
-auto=moveTo(myinplay) target(creature|graveyard)
+target=creature|graveyard
+auto=moveTo(myinplay)
 name=Hymn of Rebirth
 rarity=U
 type=Sorcery

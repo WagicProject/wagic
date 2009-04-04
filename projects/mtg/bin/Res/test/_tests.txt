@@ -69,6 +69,7 @@ living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
 nantuko_husk.txt
+nightmare.txt
 Nyxathid.txt
 orcish_lumberjack.txt
 paralysis.txt

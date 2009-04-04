@@ -1,0 +1,16 @@
+#nightmare has 0 life, does it go to graveyard ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:nightmare
+manapool:{5}{B}
+[PLAYER2]
+[DO]
+nightmare
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:nightmare
+manapool:{0}
+[PLAYER2]
+[END]

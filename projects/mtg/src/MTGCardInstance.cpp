@@ -84,7 +84,7 @@ void MTGCardInstance::initMTGCI(){
   model=NULL;
   isToken = false;
   lifeOrig = 0;
-  doDamageTest = 0;
+  doDamageTest = 1;
   belongs_to=NULL;
   tapped = 0;
   blockers = NEW Blockers();
@@ -125,6 +125,7 @@ int MTGCardInstance::isInPlay(){
 int MTGCardInstance::afterDamage(){
   if (!doDamageTest) return 0;
   doDamageTest = 0;
+  if (!isACreature()) return 0;
   if (life <=0 && isInPlay()){
     GameObserver * game = GameObserver::GetInstance();
     game->mLayers->stackLayer()->addPutInGraveyard(this);
