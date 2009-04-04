@@ -229,6 +229,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\AIMomirPlayer.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\AIPlayer.cpp"
 				>
 			</File>
@@ -527,6 +531,10 @@
 			</File>
 			<File
 				RelativePath=".\include\ActionStack.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\AIMomirPlayer.h"
 				>
 			</File>
 			<File

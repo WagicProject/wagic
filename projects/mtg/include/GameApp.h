@@ -41,6 +41,9 @@
 #define PLAYER_TYPE_TESTSUITE 2
 
 
+#define GAME_TYPE_CLASSIC 0
+#define GAME_TYPE_MOMIR 1
+
 class MTGAllCards;
 class TexturesCache;
 
@@ -63,6 +66,7 @@ class GameApp:	public JApp
  public:
   int players[2];
   MTGAllCards * collection;
+  int gameType;
   TexturesCache *  cache;
 
   GameApp();

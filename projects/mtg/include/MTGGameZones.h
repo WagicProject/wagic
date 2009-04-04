@@ -85,6 +85,7 @@ class MTGPlayerCards {
   MTGInPlay * inPlay;
   MTGStack * stack;
   MTGRemovedFromGame * removedFromGame;
+  MTGGameZone * garbage;
 
   MTGAllCards * collection;
 

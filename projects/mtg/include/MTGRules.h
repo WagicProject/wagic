@@ -81,62 +81,6 @@ OutputDebugString("Receive5\n");
 
 };
 
-/*
-class MTGPersistRule:public ListMaintainerAbility{
- public:
- MTGPersistRule(int _id):ListMaintainerAbility(_id){};
-
-  virtual void Update(float dt){
-    map<MTGCardInstance *,bool>::iterator it;
-
-    for ( it=cards.begin() ; it != cards.end(); it++ ){
-      MTGCardInstance * card = ((*it).first);
-      Player * p = card->controller();
-      if (p->game->graveyard->hasCard(card)){
-	      p->game->putInZone(card,  p->game->graveyard, p->game->hand);
-	      Spell * spell = NEW Spell(card);
-	      p->game->putInZone(card,  p->game->hand, p->game->stack);
-	      spell->resolve();
-	      delete spell;
-	      card->counters->addCounter(-1,-1);
-      }
-    }
-
-    // Dirtiest Code Ever, we remove the counters here 
-    
-    for (int i = 0; i < 2; i++){
-      Player * p = game->players[i];
-      MTGGameZone * zones[] = {p->game->graveyard, p->game->hand, p->game->library, p->game->removedFromGame};
-      for (int j = 0; j < 5; j++){
-	      MTGGameZone * zone = zones[j];
-        for (int k=0; k < zone->nb_cards; k++){
-          zone->cards[k]->counters->init();
-        }
-      }
-    }
-
-
-    ListMaintainerAbility::Update(dt);
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (card->basicAbilities[Constants::PERSIST] && !card->counters->hasCounter(-1,-1) ){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("yay, persist !\n");
-#endif
-      return 1;
-    }
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){return 1;}
-
-  int removed(MTGCardInstance * card){return 0;}
-
-  int testDestroy(){return 0;}
-};
-
-*/
 
 /*
  * Rule 420.5e (Legend Rule)
@@ -174,6 +118,20 @@ class MTGLegendRule:public ListMaintainerAbility{
   int removed(MTGCardInstance * card){return 0;}
 
   int testDestroy(){return 0;}
+};
+
+
+class MTGMomirRule:public MTGAbility{
+public:
+  int alreadyplayed;
+  MTGAllCards * collection;
+  MTGCardInstance * genRandomCreature(int convertedCost);
+  int testDestroy();
+  void Update(float dt);
+  MTGMomirRule(int _id, MTGAllCards * _collection);
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+  int reactToClick(MTGCardInstance * card);
+  const char * getMenuText(){return "Momir";}
 };
 
 #endif

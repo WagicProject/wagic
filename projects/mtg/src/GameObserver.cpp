@@ -109,6 +109,10 @@ void GameObserver::nextGamePhase(){
     }
     mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
     mLayers->actionLayer()->Update(0);
+    for (int i=0; i < 2; i++){
+      delete (players[i]->game->garbage);
+      players[i]->game->garbage = NEW MTGGameZone();
+    }
     return nextGamePhase();
   }
 

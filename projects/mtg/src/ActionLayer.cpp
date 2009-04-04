@@ -4,6 +4,16 @@
 #include "../include/Targetable.h"
 #include "../include/WEvent.h"
 
+MTGAbility* ActionLayer::getAbility(int type){
+  for (int i = 1; i < mCount; i++){
+     MTGAbility * a = ((MTGAbility *)mObjects[i]);
+     if (a->aType == type){
+       return a;
+     }
+   }
+  return NULL;
+}
+
 int ActionLayer::unstopableRenderInProgress(){
 
   for (int i=0;i<mCount;i++){

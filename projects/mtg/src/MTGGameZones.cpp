@@ -54,6 +54,7 @@ MTGPlayerCards::~MTGPlayerCards(){
   SAFE_DELETE(inPlay);
   SAFE_DELETE(stack);
   SAFE_DELETE(removedFromGame);
+  SAFE_DELETE(garbage);
 }
 
 void MTGPlayerCards::setOwner(Player * player){
@@ -82,6 +83,7 @@ void MTGPlayerCards::init(){
   inPlay = NEW MTGInPlay();
   stack = NEW MTGStack();
   removedFromGame = NEW MTGRemovedFromGame();
+  garbage = NEW MTGGameZone();
 }
 
 
@@ -130,8 +132,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     if (card->isToken){
       if (to != g->players[0]->game->inPlay && to != g->players[1]->game->inPlay){
-        //Token leaves play: we destroy it
-        //TODO DELETE Object
+        garbage->addCard(copy);
         return NULL;
       }
     }

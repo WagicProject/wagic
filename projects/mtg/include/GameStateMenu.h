@@ -11,6 +11,8 @@ class GameStateMenu: public GameState, public JGuiListener
  private:
   JGuiController* mGuiController;
   SimpleMenu* subMenuController;
+  SimpleMenu* gameTypeMenu;
+  int hasChosenGameType;
   JQuad * mIcons[10];
   JTexture * mIconsTexture;
   JTexture * bgTexture;

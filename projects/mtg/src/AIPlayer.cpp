@@ -121,6 +121,10 @@ ManaCost * AIPlayer::getPotentialMana(){
 }
 
 
+int AIPlayer::getEfficiency(AIAction * action){
+  return action->getEfficiency();
+}
+
 int AIAction::getEfficiency(){
   //TODO add multiplier according to what the player wants
   if (efficiency != -1) return efficiency;
@@ -129,6 +133,7 @@ int AIAction::getEfficiency(){
   ActionStack * s = g->mLayers->stackLayer();
   Player * p = g->currentlyActing();
   if (s->has(ability)) return 0;
+  if (ability->cost && !(ability->cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
   switch (ability->aType){
     case MTGAbility::DAMAGER:
       {
@@ -226,7 +231,7 @@ int AIPlayer::selectAbility(){
     OutputDebugString("We have a winner\n");
     AIAction * a = ranking.begin()->first;
     int chance = 1 + rand() % 100;
-    if (a->getEfficiency() < chance){
+    if (getEfficiency(a) < chance){
       a = NULL;
     }else{
 OutputDebugString("We REALLY have a winner\n");
@@ -261,6 +266,8 @@ int AIPlayer::effectBadOrGood(MTGCardInstance * card){
   if (autoGuess) return autoGuess;
   return BAKA_EFFECT_DONTKNOW;
 }
+
+
 
 int AIPlayer::chooseTarget(TargetChooser * tc){
   Targetable * potentialTargets[50];
@@ -393,24 +400,25 @@ int AIPlayer::chooseBlockers(){
   cd.setType("Creature");
   cd.tapped = -1;
   MTGCardInstance * card = NULL;
+  GameObserver * g = GameObserver::GetInstance();
   while((card = cd.nextmatch(game->inPlay, card))){
-    GameObserver::GetInstance()->cardClick(card);
+    g->cardClick(card);
+    if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
     int set = 0;
     while(!set){
       if (!card->defenser){
-	set = 1;
+	      set = 1;
       }else{
-	MTGCardInstance * attacker = card->defenser;
-	map<MTGCardInstance *,int>::iterator it = opponentsToughness.find(attacker);
-	if ( it == opponentsToughness.end()){
-	  opponentsToughness[attacker] = attacker->toughness;
-	  it = opponentsToughness.find(attacker);
-	}
-	if (opponentsToughness[attacker] > 0 && getStats() && getStats()->isInTop(attacker,3,false)){
-	  opponentsToughness[attacker]-= card->power;
-	  set = 1;
-	}else{
-	  GameObserver * g = GameObserver::GetInstance();
+	      MTGCardInstance * attacker = card->defenser;
+	      map<MTGCardInstance *,int>::iterator it = opponentsToughness.find(attacker);
+	      if ( it == opponentsToughness.end()){
+	        opponentsToughness[attacker] = attacker->toughness;
+	        it = opponentsToughness.find(attacker);
+	      }
+	      if (opponentsToughness[attacker] > 0 && getStats() && getStats()->isInTop(attacker,3,false)){
+	        opponentsToughness[attacker]-= card->power;
+	        set = 1;
+	    }else{
       g->cardClick(card);
       if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
 	}
@@ -421,7 +429,7 @@ int AIPlayer::chooseBlockers(){
   while((card = cd.nextmatch(game->inPlay, card))){
     if (card->defenser && opponentsToughness[card->defenser] > 0){
       while (card->defenser){
-        GameObserver * g = GameObserver::GetInstance();
+        
         g->cardClick(card);
         if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
       }
@@ -430,7 +438,6 @@ int AIPlayer::chooseBlockers(){
   card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
     if(!card->defenser){
-      GameObserver * g = GameObserver::GetInstance();
       g->cardClick(card);
       if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
       int set = 0;
@@ -440,7 +447,6 @@ int AIPlayer::chooseBlockers(){
 	}else{
 	  MTGCardInstance * attacker = card->defenser;
 	  if (opponentsToughness[attacker] <= 0 || (card->toughness <= card->defenser->power && opponentForce*2 <life)  || card->defenser->nbOpponents()>1){
-	    GameObserver * g = GameObserver::GetInstance();
       g->cardClick(card);
       if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
 	  }else{

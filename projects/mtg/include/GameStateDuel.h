@@ -33,7 +33,9 @@ class GameStateDuel: public GameState, public JGuiListener
   JQuad * unlockedQuad;
   JTexture * unlockedTex;
   int isDifficultyUnlocked();
+  int isMomirUnlocked();
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
+  void loadPlayerMomir(int playerId, int isAI);
  public:
   GameStateDuel(GameApp* parent);
   virtual ~GameStateDuel();

@@ -71,6 +71,7 @@ class AIPlayer: public Player{
   int selectAbility();
   int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAction *, int,CmpAbilities> * ranking);
   int useAbility();
+  virtual int getEfficiency(AIAction * action);
 
 };
 
@@ -84,7 +85,7 @@ class AIPlayerBaka: public AIPlayer{
   AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile, char * avatarFile);
   virtual int Act(float dt);
   void initTimer();
-  int computeActions();
+  virtual int computeActions();
 };
 
 class AIPlayerFactory{

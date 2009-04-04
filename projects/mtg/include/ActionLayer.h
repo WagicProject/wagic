@@ -10,6 +10,7 @@
 #include "GuiLayers.h"
 #include "ActionElement.h"
 #include "SimpleMenu.h"
+#include "MTGAbility.h"
 
 class GuiLayer;
 class Targetable;
@@ -36,6 +37,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   void ButtonPressed(int controllerid, int controlid);
   void doReactTo(int menuIndex);
   TargetChooser * getCurrentTargetChooser();
+  MTGAbility * getAbility(int type);
 };
 
 

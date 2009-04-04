@@ -47,7 +47,9 @@ enum
   SUBMENUITEM_2PLAYER,
   SUBMENUITEM_DEMO,
   SUBMENUITEM_CANCEL,
-  SUBMENUITEM_TESTSUITE
+  SUBMENUITEM_TESTSUITE,
+  SUBMENUITEM_MOMIR,
+  SUBMENUITEM_CLASSIC,
 };
 
 
@@ -55,6 +57,7 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
 {
   mGuiController = NULL;
   subMenuController = NULL;
+  gameTypeMenu = NULL;
   mIconsTexture = NULL;
   //bgMusic = NULL;
   timeIndex = 0;
@@ -118,6 +121,7 @@ void GameStateMenu::Destroy()
 {
   SAFE_DELETE(mGuiController);
   SAFE_DELETE(subMenuController);
+  SAFE_DELETE(gameTypeMenu);
   SAFE_DELETE(mIconsTexture);
 
   for (int i = 0; i < 10 ; i++){
@@ -148,6 +152,9 @@ void GameStateMenu::Start(){
     JSoundSystem::GetInstance()->StopMusic(GameApp::music);
     SAFE_DELETE(GameApp::music);
   }
+
+  hasChosenGameType = 1;
+  if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) hasChosenGameType =0;
 }
 
 
@@ -176,13 +183,7 @@ int GameStateMenu::nextCardSet(){
 
 void GameStateMenu::End()
 {
-  //mEngine->EnableVSync(false);
 
-  //  if (bgMusic)
-  //    {
-  //JSoundSystem::GetInstance()->StopMusic(bgMusic);
-  //SAFE_DELETE(bgMusic);
-  //    }
   JRenderer::GetInstance()->EnableVSync(false);
 }
 
@@ -190,14 +191,6 @@ void GameStateMenu::End()
 
 void GameStateMenu::Update(float dt)
 {
-  /*
-  if (GameApp::music){
-    if (mVolume < 2*GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME]){
-      mVolume++;
-      JSoundSystem::GetInstance()->SetVolume(mVolume/2);
-    }
-  }
-  */
 
   timeIndex += dt * 2;
   switch (MENU_STATE_MAJOR & currentState)
@@ -258,8 +251,19 @@ void GameStateMenu::Update(float dt)
     case MENU_STATE_MAJOR_DUEL :
       if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
 	{
-	  mParent->SetNextState(GAME_STATE_DUEL);
-	  currentState = MENU_STATE_MAJOR_MAINMENU;
+    if (!hasChosenGameType){
+      currentState = MENU_STATE_MAJOR_SUBMENU;
+      JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+      subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
+	    if (subMenuController){
+	      subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
+	      subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
+	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+      }
+    }else{
+	    mParent->SetNextState(GAME_STATE_DUEL);
+	    currentState = MENU_STATE_MAJOR_MAINMENU;
+    }
 	}
     }
   switch (MENU_STATE_MINOR & currentState)
@@ -423,23 +427,18 @@ JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
     switch (controlId)
       {
       case MENUITEM_PLAY:
-
+	    subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
+	    if (subMenuController){
+	      subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
+	      subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players");
+	      subMenuController->Add(SUBMENUITEM_DEMO,"Demo");
+	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 #ifdef TESTSUITE
-	subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
-#else
-	subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
-#endif
-	if (subMenuController){
-	  subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
-	  subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players");
-	  subMenuController->Add(SUBMENUITEM_DEMO,"Demo");
-	  subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
-#ifdef TESTSUITE
-	  subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
+	      subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
 #endif
 	  currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
-	}
-	break;
+	    }
+	    break;
       case MENUITEM_DECKEDITOR:
 	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
 	break;
@@ -474,6 +473,20 @@ JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
 	subMenuController->Close();
 	currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	break;
+
+  case SUBMENUITEM_CLASSIC:
+    this->hasChosenGameType = 1;
+    mParent->gameType = GAME_TYPE_CLASSIC;
+    subMenuController->Close();
+    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+    break;
+
+  case SUBMENUITEM_MOMIR:
+    this->hasChosenGameType = 1;
+    mParent->gameType = GAME_TYPE_MOMIR;
+    subMenuController->Close();
+    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+    break;
 #ifdef TESTSUITE
       case SUBMENUITEM_TESTSUITE:
 	mParent->players[0] = PLAYER_TYPE_TESTSUITE;

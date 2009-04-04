@@ -60,12 +60,16 @@ class MTGAbility: public ActionElement{
   virtual int resolve(){return 0;};
 
   /*Poor man's casting */
+  /* Todo replace that crap with dynamic casting */
   enum {
     UNKNOWN = 0,
     MANA_PRODUCER = 1,
     MTG_ATTACK_RULE = 2,
     DAMAGER = 3,
     STANDARD_REGENERATE = 4,
+    PUT_INTO_PLAY = 5,
+    MOMIR = 6,
+    MTG_BLOCK_RULE = 7,
 
   };
 };

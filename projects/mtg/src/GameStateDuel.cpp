@@ -3,9 +3,10 @@
 #include "../include/GameOptions.h"
 #include "../include/utils.h"
 #include "../include/AIPlayer.h"
+#include "../include/AIMomirPlayer.h"
 #include "../include/PlayerData.h"
 #include "../include/DeckStats.h"
-
+#include "../include/MTGRules.h"
 
 #ifdef TESTSUITE
 #include "../include/TestSuiteAI.h"
@@ -89,18 +90,18 @@ void GameStateDuel::Start()
   for (int i = 0; i<2; i ++){
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       if (!deckmenu){
-	decksneeded = 1;
-	deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
-	char buffer[100];
-	for (int j=1; j<6; j++){
-	  sprintf(buffer, RESPATH"/player/deck%i.txt",j);
-	  std::ifstream file(buffer);
-	  if(file){
-	    deckmenu->Add(j, GameState::menuTexts[j]);
-	    file.close();
-	    decksneeded = 0;
-	  }
-	}
+	      decksneeded = 1;
+	      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
+	      char buffer[100];
+	      for (int j=1; j<6; j++){
+	        sprintf(buffer, RESPATH"/player/deck%i.txt",j);
+	        std::ifstream file(buffer);
+	        if(file){
+	          deckmenu->Add(j, GameState::menuTexts[j]);
+	          file.close();
+	          decksneeded = 0;
+	        }
+	      }
       }
     }
   }
@@ -109,6 +110,19 @@ void GameStateDuel::Start()
     mGamePhase = DUEL_STATE_ERROR_NO_DECK;
 }
 
+
+void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
+  char * deckFile = RESPATH"/player/momir.txt";
+  char * deckFileSmall = "momir";
+  MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
+  deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
+  if (!isAI){ //Human Player
+      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFileSmall);
+  }else{
+      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,"");
+  }
+  delete tempDeck;
+}
 
 void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
   if (decknb){
@@ -197,7 +211,14 @@ void GameStateDuel::Update(float dt)
 	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
       break;
     case DUEL_STATE_CHOOSE_DECK1:
-      if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
+      if (mParent->gameType == GAME_TYPE_MOMIR){
+        for (int i = 0; i < 2; i++){
+          int isAI = 1;
+          if (mParent->players[i] ==  PLAYER_TYPE_HUMAN) isAI = 0;
+          loadPlayerMomir(i, isAI);
+        }
+        mGamePhase = DUEL_STATE_PLAY;
+      }else if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
 	      deckmenu->Update(dt);
 #ifdef TESTSUITE
       else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
@@ -280,13 +301,19 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_PLAY:
     //Stop the music before starting the game
       if (GameApp::music){
-	JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-	SAFE_DELETE(GameApp::music);
+	      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+	      SAFE_DELETE(GameApp::music);
       }
       if (!game){
-	GameObserver::Init(mPlayers, 2);
-	game = GameObserver::GetInstance();
-	game->startGame();
+	      GameObserver::Init(mPlayers, 2);
+	      game = GameObserver::GetInstance();
+	      game->startGame();
+        if (mParent->gameType == GAME_TYPE_MOMIR){
+          game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
+          for (int i = 0; i < 2; i++){
+            game->players[i]->life+=4;
+          }
+        }
       }
       game->Update(dt);
       if (game->gameOver){
@@ -303,6 +330,16 @@ void GameStateDuel::Update(float dt)
         unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
         GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
         GameOptions::GetInstance()->save();
+      }else{
+        unlocked = isMomirUnlocked();
+        if (unlocked){
+          unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/momir_unlocked.png", TEX_TYPE_USE_VRAM); 
+          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED] = GameOption(1);
+          GameOptions::GetInstance()->save();
+        }
+      }
+      if (unlocked){
         JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
         if (sample) JSoundSystem::GetInstance()->PlaySample(sample); 
       }
@@ -495,5 +532,12 @@ int GameStateDuel::isDifficultyUnlocked(){
       if (wins >= 10) return 1;
     }
   }
+  return 0;
+}
+
+int GameStateDuel::isMomirUnlocked(){
+  if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) return 0;
+  Player *p = mPlayers[0];
+  if (p->game->inPlay->countByType("land") == 8) return 1;
   return 0;
 }

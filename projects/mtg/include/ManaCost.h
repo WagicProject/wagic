@@ -22,7 +22,7 @@ class ManaCost{
   static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL);
   void init();
   void x();
-  ManaCost(int _cost[], int nb_elems);
+  ManaCost(int _cost[], int nb_elems = 1);
   ManaCost();
   ~ManaCost();
   ManaCost(ManaCost * _manaCost);

@@ -38,8 +38,8 @@ GameApp::GameApp(): JApp()
   mShowDebugInfo = false;
   players[0] = 0;
   players[1] = 0;
-
-
+  gameType = GAME_TYPE_CLASSIC;
+  //gameType = GAME_TYPE_MOMIR;
 
 
 }
