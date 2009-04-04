@@ -65,7 +65,7 @@ auto=:1/1
 auto={w}:0/1
 type=Enchantment 
 mana={W}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature. Enchanted creature has banding.
@@ -76,7 +76,7 @@ name=Cooperation
 rarity=C
 type=Enchantment 
 mana={2}{W}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Dire Wolves has banding as long as you control a Plains.
@@ -99,7 +99,7 @@ name=Fear
 rarity=C
 type=Enchantment 
 mana={B}{B}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature. Enchanted creature has swampwalk.
@@ -110,7 +110,7 @@ name=Leshrac's Rite
 rarity=U
 type=Enchantment 
 mana={B}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -121,7 +121,7 @@ name=Regeneration
 rarity=C
 type=Enchantment 
 mana={1}{G}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature. Enchanted creature gets +0/+2. {R}: Enchanted creature gets +1/+0 until end of turn.
@@ -133,7 +133,7 @@ name=Stonehands
 rarity=C
 type=Enchantment 
 mana={2}{R}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature. Enchanted creature gets +1/+0 and has flying and first strike.
@@ -145,7 +145,7 @@ name=Wings of Aesthir
 rarity=U
 type=Enchantment 
 mana={W}{U}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Destroy target nonblack creature. It can't be regenerated.
@@ -267,7 +267,7 @@ mana={U}
 [/card]
 [card]
 text={2},{T},Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
-auto={2}{T}{S}:bury target(creature[-flying;attacking]|opponentinplay)
+auto={2}{T}{S}:bury target(creature[-flying;attacking])
 id=2419
 name=Pit Trap
 rarity=U
@@ -398,7 +398,7 @@ auto={T}: Add {G}
 name=Snow-Covered Forest
 rarity=L
 type=Land
-subtype=Snow-Covered Forest
+type=Basic Snow Land
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -407,7 +407,7 @@ auto={T}: Add {U}
 name=Snow-Covered Island
 rarity=L
 type=Land
-subtype=Snow-Covered Island
+type=Basic Snow Land
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -416,7 +416,7 @@ auto={T}: Add {R}
 name=Snow-Covered Mountain
 rarity=L
 type=Land
-subtype=Snow-Covered Mountain
+type=Basic Snow Land
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -425,7 +425,7 @@ auto={T}: Add {W}
 name=Snow-Covered Plains
 rarity=L
 type=Land
-subtype=Snow-Covered Plains
+type=Basic Snow Land
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -434,7 +434,7 @@ auto={T}: Add {B}
 name=Snow-Covered Swamp
 rarity=L
 type=Land
-subtype=Snow-Covered Swamp
+type=Basic Snow Land
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -887,19 +887,6 @@ subtype=Wall
 toughness=7
 [/card]
 [card]
-text=Defender. {3}: Walking Wall gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
-id=2432
-abilities=Defender
-auto={3}:3/-1 limit:1
-name=Walking Wall
-rarity=U
-type=Artifact Creature
-mana={4}
-power=0
-toughness=6
-subtype=Wall
-[/card]
-[card]
 text=Defender (This creature can't attack.)  Banding
 abilities=banding,defender
 id=2433
@@ -999,7 +986,7 @@ name=Conquer
 rarity=U
 type=Enchantment 
 mana={3}{R}{R}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text={2}: Target creature gains banding until end of turn.
@@ -1037,7 +1024,7 @@ name=Forbidden Lore
 rarity=R
 type=Enchantment 
 mana={2}{G}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature. When Krovikan Fetish comes into play, draw a card at the beginning of the next turn's upkeep. Enchanted creature gets +1/+1.
@@ -1049,7 +1036,7 @@ name=Krovikan Fetish
 rarity=C
 type=Enchantment 
 mana={2}{B}
-subtype=aura
+subtype=Aura
 [/card]
 [card]
 text=Flare deals 1 damage to target creature or player. Draw a card at the beginning of the next turn's upkeep.
