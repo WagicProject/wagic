@@ -1,0 +1,26 @@
+#Lhurgoyf's power is equal to the number of creature cards in all graveyards and its toughness is equal to that number plus 1.
+#bug: power and toughness always 0/1
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:lhurgoyf
+graveyard:grizzly bears
+[PLAYER2]
+graveyard:air elemental
+[DO]
+lhurgoyf
+next
+#blockers 
+next
+#combatdamage
+next
+#endofcombat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:lhurgoyf
+graveyard:grizzly bears
+[PLAYER2]
+graveyard:air elemental
+life:18
+[END]

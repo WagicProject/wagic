@@ -1,0 +1,27 @@
+#enchantment: All artifacts have shroud. 
+#bug: all artifacts go to graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:hanna's custody,disenchant
+inplay:the rack,swamp,plains
+manapool:{2}{W}
+[PLAYER2]
+inplay:black vise,bad moon
+[DO]
+hanna's custody
+swamp
+plains
+disenchant
+black vise
+bad moon
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:the rack,swamp,plains,hanna's custody
+graveyard:disenchant
+manapool:{0}
+[PLAYER2]
+graveyard:bad moon
+inplay:black vise
+[END]
