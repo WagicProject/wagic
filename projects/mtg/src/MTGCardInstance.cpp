@@ -272,9 +272,11 @@ Player * MTGCardInstance::controller(){
 }
 
 int MTGCardInstance::canAttack(){
-  if (!hasSummoningSickness() && !tapped && isACreature() && basicAbilities[Constants::DEFENSER] !=1)
-    return 1;
-  return 0;
+  if (tapped) return 0;
+  if (hasSummoningSickness()) return 0;
+  if (basicAbilities[Constants::DEFENSER] || basicAbilities[Constants::CANTATTACK]) return 0;
+  if (!isACreature()) return 0;
+  return 1;
 }
 
 

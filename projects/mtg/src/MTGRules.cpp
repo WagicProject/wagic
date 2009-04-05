@@ -88,6 +88,18 @@ int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
   return 0;
 }
 
+void MTGAttackRule::Update(float dt){
+  if (currentPhase != newPhase && currentPhase == Constants::MTG_PHASE_COMBATATTACKERS){
+    Player * p = game->currentPlayer;
+    MTGGameZone * z = p->game->inPlay;
+    for (int i= 0; i < z->nb_cards; i++){
+      MTGCardInstance * card = z->cards[i];
+      if (!card->isAttacker() && card->has(Constants::MUSTATTACK)) reactToClick(card);
+    }
+  }
+  MTGAbility::Update(dt);
+}
+
 int MTGAttackRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
   card->attacker = 1;

@@ -796,6 +796,19 @@ subtype=Bird Skeleton
 toughness=2
 [/card]
 [card]
+text=Steelclad Serpent can't attack unless you control another artifact.
+abilities=cantattack
+auto=aslongas(artifact|myinplay) other -cantattack
+id=175009
+name=Steelclad Serpent
+rarity=C
+type=Artifact Creature
+mana={5}{U}
+power=4
+subtype=Serpent
+toughness=5
+[/card]
+[card]
 text=Vigilance     {T}: Add {G} to your mana pool.
 abilities=vigilance
 auto={T}:Add{G}

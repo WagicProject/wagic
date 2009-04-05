@@ -25,6 +25,7 @@ class MTGAttackRule:public MTGAbility{
   int testDestroy();
   MTGAttackRule(int _id);
   const char * getMenuText(){return "Attacker";}
+  void Update(float dt);
 
 };
 

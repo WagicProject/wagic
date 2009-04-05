@@ -213,6 +213,19 @@ type=Sorcery
 mana={X}{R}
 [/card]
 [card]
+text=Bloodrock Cyclops attacks each turn if able.
+abilities=mustattack
+id=130384
+name=Bloodrock Cyclops
+rarity=C
+color=Red
+type=Creature
+mana={2}{R}
+power=3
+subtype=Cyclops
+toughness=3
+[/card]
+[card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
 abilities=swampwalk
 id=129491

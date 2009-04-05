@@ -1,0 +1,17 @@
+#Steelclad serpent can't attack unless you control another artifact
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Steelclad Serpent
+[PLAYER2]
+[DO]
+Steelclad Serpent
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Steelclad Serpent
+[PLAYER2]
+[END]

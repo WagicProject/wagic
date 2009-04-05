@@ -195,18 +195,7 @@ power=6
 subtype=Giant
 toughness=6
 [/card]
-[card]
-text=Bloodrock Cyclops attacks each turn if able.
-id=130384
-name=Bloodrock Cyclops
-rarity=C
-color=Red
-type=Creature
-mana={2}{R}
-power=3
-subtype=Cyclops
-toughness=3
-[/card]
+
 [card]
 text=When Bogardan Firefiend is put into a graveyard from play, it deals 2 damage to target creature.
 id=130534

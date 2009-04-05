@@ -921,10 +921,11 @@ class ALord:public ListMaintainerAbility{
   TargetChooser * tc;
   int power, toughness;
   int ability;
+  int modifier;
   ManaCost * regenCost;
   int includeSelf;
   map<MTGCardInstance *, MTGAbility *> regenerations;
- ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL):ListMaintainerAbility(_id,card){
+ ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL, int _modifier = 1):ListMaintainerAbility(_id,card){
     tc = _tc;
     tc->source = NULL;
     includeSelf = _includeSelf;
@@ -932,6 +933,8 @@ class ALord:public ListMaintainerAbility{
     toughness = _toughness;
     ability = _ability;
     regenCost = _regenCost;
+    modifier = _modifier;
+    if (!modifier) modifier = -1;
   }
 
   int canBeInList(MTGCardInstance * card){
@@ -942,7 +945,7 @@ class ALord:public ListMaintainerAbility{
   int added(MTGCardInstance * card){
     card->power += power;
     card->addToToughness(toughness);
-    if (ability != -1) card->basicAbilities[ability] +=1;
+    if (ability != -1) card->basicAbilities[ability] +=modifier;
     if (regenCost){
       ManaCost * _regenCost = NEW ManaCost(regenCost);
       AStandardRegenerate * regen = NEW AStandardRegenerate(0, card, card, _regenCost);
@@ -955,7 +958,7 @@ class ALord:public ListMaintainerAbility{
   int removed(MTGCardInstance * card){
     card->power -= power;
     card->addToToughness(-toughness);
-    if (ability != -1 && card->basicAbilities[ability]) card->basicAbilities[ability] -=1;
+    if (ability != -1 && ((card->basicAbilities[ability]>0 && (modifier >0)) || (card->basicAbilities[ability]<=0 && (modifier <0)) )) card->basicAbilities[ability] -=modifier;
     if (regenCost){
       if(regenerations.find(card) != regenerations.end()){
 	      if (game->isInPlay(card)) game->removeObserver(regenerations[card]);
@@ -2720,13 +2723,16 @@ class AKirdApe:public ListMaintainerAbility{
   int power;
   int toughness;
   int ability;
+  int modifier;
   int includeSelf;
- AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _includeSelf,int _power = 0, int _toughness = 0, int _ability=-1):ListMaintainerAbility(_id, _source){
+ AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _includeSelf,int _power = 0, int _toughness = 0, int _ability=-1, int _abilityModifier = 1):ListMaintainerAbility(_id, _source){
     power = _power;
     toughness = _toughness;
     tc = _tc;
     includeSelf = _includeSelf;
     ability=_ability;
+    modifier = _abilityModifier;
+    if (!modifier) modifier = -1;
  }
 
  int canBeInList(MTGCardInstance * card){
@@ -2738,7 +2744,7 @@ class AKirdApe:public ListMaintainerAbility{
    if (cards.size()== 1){
       source->power+=power;
       source->addToToughness(toughness);
-      if (ability != -1) source->basicAbilities[ability] +=1;
+      if (ability != -1) source->basicAbilities[ability] +=modifier;
       return 1;
    }
    return 0;
@@ -2749,7 +2755,7 @@ class AKirdApe:public ListMaintainerAbility{
    if (cards.size()== 0){
       source->power-=power;
       source->addToToughness(-toughness);
-      if ((ability != -1) && source->basicAbilities[ability] >0 ) source->basicAbilities[ability] -=1;
+      if ((ability != -1) && source->basicAbilities[ability] >0 ) source->basicAbilities[ability] -=modifier;
       return 1;
    }
    return 0;

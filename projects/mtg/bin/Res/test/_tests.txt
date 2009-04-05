@@ -1,6 +1,7 @@
 ########################
 #Generic engine features
 ########################
+generic/attacks_each_turn.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt
@@ -92,6 +93,8 @@ shock.txt
 spark_elemental.txt
 spirit_link.txt
 stasis.txt
+steelclad_serpent1.txt
+steelclad_serpent2.txt
 sword_to_plowshares.txt
 terror.txt
 tranquil_domain.txt

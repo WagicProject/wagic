@@ -1,0 +1,24 @@
+#Bloodrock Cyclops attacks each turn if able.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:bloodrock cyclops
+[PLAYER2]
+[DO]
+next
+#combat begin
+next
+#attackers
+next
+#blockers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:bloodrock cyclops
+[PLAYER2]
+life:17
+[END]
