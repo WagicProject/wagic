@@ -267,7 +267,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   int Remove(MTGCard * card){
     if (!card) return 0;
     int result = displayed_deck->Remove(card);
-    loadIndexes(currentCard);
+    //loadIndexes(currentCard);
     return result;
   }
 
@@ -326,7 +326,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  char buffer[4096];
 	  {
 	    MTGCard * card  = cardIndex[2];
-	    if (card){
+	    if (card && displayed_deck->cards[card]){
 	      int rnd = (rand() % 20);
 	      price = pricelist->getPrice(card->getMTGId()) / 2;
 	      price = price - price * (rnd -10)/100;
@@ -777,8 +777,8 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  MTGCard * card  = cardIndex[2];
 	  if (card){
 	    int rnd = (rand() % 20);
-	    price = price - (rnd * price)/100;
 	    playerdata->credits += price;
+      price = price - (rnd * price)/100;
 	    pricelist->setPrice(card->getMTGId(),price*2);
 #if defined (WIN32) || defined (LINUX)
 	    char buf[4096];

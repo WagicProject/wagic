@@ -1,0 +1,20 @@
+# Deja Vu Return target sorcery card from your graveyard to your hand.
+#bug: is not a sorcery when it resolves, instead it is shown as "Error"
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:deja vu
+graveyard:fireball
+manapool:{2}{U}
+[PLAYER2]
+[DO]
+deja vu
+fireball
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:fireball
+graveyard:deja vu
+manapool:{0}
+[PLAYER2]
+[END]

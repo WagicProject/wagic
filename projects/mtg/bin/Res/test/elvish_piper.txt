@@ -1,0 +1,18 @@
+# {G},{T}: You may put a creature card from your hand into play.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:grizzly bears
+inplay:elvish piper
+manapool:{G}
+[PLAYER2]
+[DO]
+elvish piper
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:elvish piper,grizzly bears
+manapool:{0}
+[PLAYER2]
+[END]

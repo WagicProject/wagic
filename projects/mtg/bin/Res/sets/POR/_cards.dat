@@ -275,7 +275,7 @@ auto=moveTo(myHand)
 id=4259
 name=Deja vu
 rarity=C
-mana={2}{B}
+mana={2}{U}
 type=Sorcery
 [/card]
 [card]
