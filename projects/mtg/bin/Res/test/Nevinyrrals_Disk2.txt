@@ -1,0 +1,29 @@
+#
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Nevinyrral's Disk
+inplay:black vise,swamp
+manapool:{4}
+[PLAYER2]
+inplay:obsianus golem
+[DO]
+Nevinyrral's Disk
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+swamp
+Nevinyrral's Disk
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:black vise,Nevinyrral's Disk
+inplay:swamp
+[PLAYER2]
+graveyard:obsianus golem
+[END]

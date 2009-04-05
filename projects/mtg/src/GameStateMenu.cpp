@@ -5,7 +5,7 @@
 #include "../include/GameOptions.h"
 #include "../include/GameApp.h"
 
-static const char* GAME_VERSION = "WTH?! 0.5.1 - by WilLoW";
+static const char* GAME_VERSION = "WTH?! 0.6.0 - by WilLoW";
 #define ALPHA_WARNING 0
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4

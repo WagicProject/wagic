@@ -76,6 +76,8 @@ living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
 nantuko_husk.txt
+Nevinyrrals_Disk.txt
+Nevinyrrals_Disk2.txt
 nightmare.txt
 Nyxathid.txt
 orcish_lumberjack.txt

@@ -292,6 +292,28 @@ class ACopier:public TargetAbility{
 
 };
 
+
+//All Destroyer. TargetAbility
+class AAllDestroyer:public ActivatedAbility{
+ public:
+  int bury;
+  AAllDestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _bury = 0, ManaCost * _cost=NULL,int doTap =1):ActivatedAbility(_id,_source,_cost,0,doTap),bury(_bury){
+    tc = _tc;
+    
+  }
+
+  int resolve(){
+    AbilityFactory af;
+    af.destroyAllInPlay(tc,bury);
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Destroy All...";
+  }
+
+};
+
 //Destroyer. TargetAbility
 class ADestroyer:public TargetAbility{
  public:

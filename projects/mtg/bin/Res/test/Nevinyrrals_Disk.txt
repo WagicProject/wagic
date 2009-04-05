@@ -1,0 +1,16 @@
+#Bug: NevinyrralÅfs Disk: Destroys creatures, enchantments and artifacts as soon as it comes into play
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Nevinyrral's Disk
+inplay:black vise
+manapool:{4}
+[PLAYER2]
+[DO]
+Nevinyrral's Disk
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:black vise,Nevinyrral's Disk
+[PLAYER2]
+[END]

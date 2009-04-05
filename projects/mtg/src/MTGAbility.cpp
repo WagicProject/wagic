@@ -375,8 +375,12 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
               if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
               return BAKA_EFFECT_BAD;
             }else{
-              this->destroyAllInPlay(targetAll,1);
-              delete targetAll;
+              if (cost){
+                game->addObserver(NEW AAllDestroyer(id, card,targetAll,1,cost,doTap));
+              }else{
+                this->destroyAllInPlay(targetAll,1);
+                delete targetAll;
+              }
             }
 	        }else{
 	          if (dryMode) return BAKA_EFFECT_BAD;
@@ -410,8 +414,12 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	          if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
 	          return BAKA_EFFECT_BAD;
 	        }else{
-	          this->destroyAllInPlay(targetAll);
-	          delete targetAll;
+             if (cost){
+                game->addObserver(NEW AAllDestroyer(id, card,targetAll,0,cost,doTap));
+              }else{
+                this->destroyAllInPlay(targetAll);
+                delete targetAll;
+              }
 	        }
         }else{
 	        if (dryMode) return BAKA_EFFECT_BAD;

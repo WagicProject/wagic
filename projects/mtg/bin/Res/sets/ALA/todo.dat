@@ -1364,17 +1364,7 @@ power=3
 subtype=Lizard
 toughness=3
 [/card]
-[card]
-text=Steelclad Serpent can't attack unless you control another artifact.
-id=175009
-name=Steelclad Serpent
-rarity=C
-type=Artifact Creature
-mana={5}{U}
-power=4
-subtype=Serpent
-toughness=5
-[/card]
+
 [card]
 text=Flying, vigilance     Players can't untap more than one creature during their untap steps.
 id=175396

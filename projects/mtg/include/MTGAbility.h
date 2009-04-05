@@ -220,13 +220,13 @@ class GenericTriggeredAbility:public TriggeredAbility{
 class AbilityFactory{
  private:
   int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
-  int destroyAllInPlay(TargetChooser * tc, int bury = 0);
   int putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p);
   int parsePowerToughness(string s, int *power, int *toughness);
   Trigger * parseTrigger(string magicText);
   Damageable * parseCollateralTarget(MTGCardInstance * card, string s);
  public:
   int magicText(int id, Spell * spell, MTGCardInstance * card = NULL);
+  int destroyAllInPlay(TargetChooser * tc, int bury = 0);
   void addAbilities(int _id, Spell * spell);
 };
 
