@@ -1,0 +1,17 @@
+#Bug: Keldon warlord dies when coming into play
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:keldon warlord
+inplay:grizzly bears
+manapool:{2}{R}{R}
+[PLAYER2]
+[DO]
+keldon warlord
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,keldon warlord
+manapool:{0}
+[PLAYER2]
+[END]

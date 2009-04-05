@@ -371,8 +371,11 @@ int TestSuite::loadNext(){
   summoningSickness = 0;
   if (!nbfiles) return 0;
   if (currentfile >= nbfiles) return 0;
-  load(files[currentfile].c_str());
   currentfile++;
+  if (!load(files[currentfile-1].c_str())) return loadNext();
+  
+  //load(files[currentfile].c_str());
+  //currentfile++;
   return currentfile;
 }
 
@@ -424,10 +427,9 @@ void TestSuite::cleanup(){
   actions.cleanup();
 }
 
-void TestSuite::load(const char * _filename){
+int TestSuite::load(const char * _filename){
   char filename[4096];
   sprintf(filename, RESPATH"/test/%s", _filename);
-  printf(filename);
   std::ifstream file(filename);
   std::string s;
 
@@ -502,7 +504,8 @@ void TestSuite::load(const char * _filename){
     }
     file.close();
   }else{
-    //TODO Error management
+    return 0;
   }
+  return 1;
 }
 
