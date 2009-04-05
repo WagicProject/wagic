@@ -1,0 +1,31 @@
+#Testing spirit link on grizzly bears
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:spirit link
+inplay:grizzly bears
+manapool:{W}
+[PLAYER2]
+[DO]
+spirit link
+grizzly bears
+next
+#combat begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#combat damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears,spirit link
+manapool:{0}
+life:22
+[PLAYER2]
+life:18
+[END]

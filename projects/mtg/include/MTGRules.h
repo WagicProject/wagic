@@ -134,4 +134,28 @@ public:
   const char * getMenuText(){return "Momir";}
 };
 
+
+/* LifeLink */
+class MTGLifelinkRule:public MTGAbility{
+  public:
+  MTGLifelinkRule(int _id):MTGAbility(_id,NULL){};
+
+  int receiveEvent(WEvent * event){
+    if (event->type == WEvent::DAMAGE){
+      WEventDamage * e = (WEventDamage *) event;
+      Damage * d = e->damage;
+      MTGCardInstance * card = d->source;
+      if (d->damage>0 && card && card->basicAbilities[Constants::LIFELINK]){
+        card->controller()->life+= d->damage;
+        return 1;
+      }
+    }
+    return 0;
+  }
+
+  int testDestroy(){return 0;}
+
+};
+
+
 #endif

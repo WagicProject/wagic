@@ -460,9 +460,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       }
 
       //gain/lose life
-      found = s.find("life");
+      found = s.find("life:");
       if (found != string::npos){
-        unsigned int start = s.find(":",found);
+        unsigned int start = found+4;
         unsigned int end = s.find(" ",start);
         int life;
         if (end != string::npos){
@@ -1516,10 +1516,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
    * For example, setting LIFELINK for a creature is not enough right now...
    * It shouldn't be necessary to add an object. State based abilities could do the trick
    */
-  if (card->basicAbilities[Constants::LIFELINK]){
-    ALifeLink * ability = NEW ALifeLink(_id, card);
-    game->addObserver(ability);
-  }
+
 
   for (int i=Constants::PROTECTIONGREEN; i <= Constants::PROTECTIONWHITE; i++){
     if (card->basicAbilities[i]){

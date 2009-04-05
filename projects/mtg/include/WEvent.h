@@ -3,11 +3,13 @@
 
 class MTGCardInstance;
 class MTGGameZone;
+class Damage;
 
 class WEvent{
 public:
   enum{
     CHANGE_ZONE = 1,
+    DAMAGE = 2,
   };
   int type;
   WEvent(int _type);
@@ -19,6 +21,13 @@ public:
   MTGGameZone * from;
   MTGGameZone * to;
   WEventZoneChange(MTGCardInstance * _card, MTGGameZone * _from, MTGGameZone *_to);
+};
+
+
+class WEventDamage: public WEvent{
+public:
+  Damage * damage;
+  WEventDamage(Damage * _damage);
 };
 
 #endif

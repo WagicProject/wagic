@@ -1,0 +1,19 @@
+#Testing Lifelink
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Rhox War Monk
+[PLAYER2]
+[DO]
+Rhox War Monk
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Rhox War Monk
+life:23
+[PLAYER2]
+life:17
+[END]

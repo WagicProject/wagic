@@ -8,6 +8,7 @@ generic/hybrid_mana.txt
 generic/hybrid_mana_2.txt
 generic/hybrid_mana_3.txt
 generic/legendary.txt
+generic/lifelink.txt
 generic/persist.txt
 generic/persist2.txt
 generic/sacrifice.txt
@@ -89,6 +90,7 @@ siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt
 spark_elemental.txt
+spirit_link.txt
 stasis.txt
 sword_to_plowshares.txt
 terror.txt

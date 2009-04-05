@@ -715,38 +715,6 @@ class ASpellCounterEnchantment:public TargetAbility{
 };
 
 
-
-/* Lifelink Ability */
-class ALifeLink:public MTGAbility{
- public:
-  int nbdamagesthisturn;
-  Damage * lastDamage;
- ALifeLink(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-    nbdamagesthisturn = 0;
-    lastDamage = NULL;
-  }
-
-  void Update(float dt){
-    ActionStack * as = game->mLayers->stackLayer();
-    int totaldamages = as->count(ACTION_DAMAGE,RESOLVED_OK);
-    if ( totaldamages > nbdamagesthisturn){
-      Damage * damage = ((Damage * )as->getNext(lastDamage,ACTION_DAMAGE, RESOLVED_OK));
-      while(damage){
-	lastDamage = damage;
-	if (damage->source == source){
-	  source->controller()->life+= damage->damage;
-	}
-	damage = ((Damage * )as->getNext(lastDamage,ACTION_DAMAGE, RESOLVED_OK));
-      }
-    }else if (totaldamages ==0){
-      lastDamage = NULL;
-    }
-    nbdamagesthisturn = totaldamages;
-  }
-
-};
-
-
 //Circle of Protections
 class ACircleOfProtection: public TargetAbility{
  public:

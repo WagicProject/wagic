@@ -2,6 +2,7 @@
 #include "../include/Damage.h"
 #include "../include/MTGCardInstance.h"
 #include "../include/Counters.h"
+#include "../include/WEvent.h"
 
 Damage::Damage(int id, MTGCardInstance * _source, Damageable * _target): Interruptible(id){
   init(_source, _target, _source->getPower());
@@ -44,6 +45,12 @@ int Damage::resolve(){
   }
 
   int a = target->dealDamage(damage);
+
+  //Send Damage event to listeners
+  WEventDamage * e = NEW WEventDamage(this);
+  GameObserver::GetInstance()->mLayers->actionLayer()->receiveEvent(e);
+  delete e;
+
   return a;
 }
 
