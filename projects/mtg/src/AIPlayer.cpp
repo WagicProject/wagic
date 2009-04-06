@@ -30,6 +30,7 @@ AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file): Player(_deck, file){
   potentialMana = NEW ManaCost();
   nextCardToPlay = NULL;
   stats = NULL;
+  agressivity = 50;
 }
 
 AIPlayer::~AIPlayer(){
@@ -374,16 +375,21 @@ int AIPlayer::chooseAttackers(){
   int myForce = getCreaturesInfo(this,INFO_CREATURESPOWER,-1,1);
   int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1,1);
   bool attack = ((myCreatures > opponentCreatures) || (myForce > opponentForce) || (myForce > 2*opponent()->life));
+  if (agressivity > 80 && !attack && life > opponentForce) {
+    opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES,-1);
+    opponentForce = getCreaturesInfo(opponent(),INFO_CREATURESPOWER,-1);
+    attack = (myCreatures >= opponentCreatures && myForce > opponentForce) || (myForce > opponentForce) || (myForce > opponent()->life);
+  }
   printf("Choose attackers : %i %i %i %i -> %i\n", opponentForce, opponentCreatures, myForce, myCreatures, attack);
   if (attack){
     CardDescriptor cd;
     cd.init();
     cd.setType("creature");
     MTGCardInstance * card = NULL;
+    GameObserver * g = GameObserver::GetInstance();
+    MTGAbility * a =  g->mLayers->actionLayer()->getAbility(MTGAbility::MTG_ATTACK_RULE);
     while((card = cd.nextmatch(game->inPlay, card))){
-      GameObserver * g = GameObserver::GetInstance();
-      g->cardClick(card);
-      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
+      g->mLayers->actionLayer()->reactToClick(a,card);
     }
   }
   return 1;

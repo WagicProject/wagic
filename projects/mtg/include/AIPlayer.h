@@ -47,6 +47,7 @@ class CmpAbilities { // compares Abilities efficiency
 class AIPlayer: public Player{
  protected:
   MTGCardInstance * nextCardToPlay;
+  int agressivity;
   ManaCost * potentialMana;
   queue<AIAction *> clickstream;
   void tapLandsForMana(ManaCost * potentialMana, ManaCost * cost);

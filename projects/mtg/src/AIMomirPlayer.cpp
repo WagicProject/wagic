@@ -12,13 +12,14 @@ MTGAbility * AIMomirPlayer::momirAbility = NULL;
 AIMomirPlayer::AIMomirPlayer(MTGPlayerCards * _deck, char * file, char * avatarFile): AIPlayerBaka(_deck,file, avatarFile){
 // TODO count min and max number of mana (should probably be part of the gameobserver so that human players don't make mistakes)
   momirAbility = NULL;
+  agressivity = 100;
 }
 
 int AIMomirPlayer::getEfficiency(AIAction * action){
 
 
 int efficiency = AIPlayerBaka::getEfficiency(action);
-if (efficiency < 15) return 0;
+
 GameObserver * g = GameObserver::GetInstance();
 if (g->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN) return 0;
  return efficiency;
