@@ -175,13 +175,21 @@ int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
 }
 
 int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard){
-  if (!isReactingToClick(card_to_discard)) return 0;
   Player * player = game->currentlyActing();
   ManaCost * cost = player->getManaPool();
   int converted = cost->getConvertedCost();
+  int id = genRandomCreatureId(converted);
+  return reactToClick(card_to_discard, id);
+}
+
+int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId){
+  if (!isReactingToClick(card_to_discard)) return 0;
+   Player * player = game->currentlyActing();
+  ManaCost * cost = player->getManaPool(); 
   player->getManaPool()->pay(cost);
+   MTGCardInstance * card = genCreature(cardId);
   player->game->putInZone(card_to_discard,  player->game->hand, player->game->graveyard);
-  MTGCardInstance * card = genRandomCreature(converted); //TODO code this function
+
   player->game->stack->addCard(card);
   Spell * spell = NEW Spell(card);
   spell->resolve();
@@ -191,7 +199,14 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard){
   return 1;
 }
 
-MTGCardInstance * MTGMomirRule::genRandomCreature(int convertedCost){
+MTGCardInstance * MTGMomirRule::genCreature( int id){
+  if (!id) return NULL;
+  Player * p = game->currentlyActing();
+  MTGCard * card = collection->getCardById(id);
+  return NEW MTGCardInstance(card,p->game);
+}
+
+int MTGMomirRule::genRandomCreatureId(int convertedCost){
   Player * p = game->currentlyActing();
    int total_cards = collection->totalCards();
    int start = (rand() % total_cards);
@@ -199,13 +214,13 @@ MTGCardInstance * MTGMomirRule::genRandomCreature(int convertedCost){
    while (id2 < total_cards){
        MTGCard * card = collection->collection[id2];
        if (card->isACreature() && card->getManaCost()->getConvertedCost() == convertedCost){
-         return NEW MTGCardInstance(card,p->game);
+         return card->getMTGId();
        }
        id2++;
-       if (id2 == start) return NULL;
+       if (id2 == start) return 0;
        if (id2 == total_cards) id2 = 0;
    }
-   return NULL;
+   return 0;
 }
 
 //The Momir rule is never destroyed

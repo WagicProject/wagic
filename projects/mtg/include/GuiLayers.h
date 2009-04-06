@@ -44,7 +44,7 @@ class GuiLayers{
   GuiLayer * objects[MAX_GUI_LAYERS];
  public:
   GuiLayers();
-  void Update(float dt, Player * player);
+  virtual void Update(float dt, Player * player);
   void Render();
   void Add(GuiLayer * layer);
   void Remove();

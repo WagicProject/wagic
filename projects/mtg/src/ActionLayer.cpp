@@ -14,6 +14,19 @@ MTGAbility* ActionLayer::getAbility(int type){
   return NULL;
 }
 
+int ActionLayer::reactToClick(ActionElement * ability, MTGCardInstance * card){
+  int result = ability->reactToClick(card);
+  if (result) stuffHappened = 1;
+  return result;
+}
+
+
+int ActionLayer::reactToTargetClick(ActionElement* ability, Targetable * card){
+  int result = ability->reactToTargetClick(card);
+  if (result) stuffHappened = 1;
+  return result;
+}
+
 int ActionLayer::unstopableRenderInProgress(){
 
   for (int i=0;i<mCount;i++){
@@ -43,6 +56,7 @@ bool ActionLayer::CheckUserInput(u32 key){
 
 
 void ActionLayer::Update(float dt){
+  stuffHappened = 0;
   if (menuObject){
     abilitiesMenu->Update(dt);
     return;
@@ -139,7 +153,7 @@ int ActionLayer::reactToTargetClick(Targetable * card){
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
     if(currentAction->waitingForAnswer){
-      return currentAction->reactToTargetClick(card);
+      return reactToTargetClick(currentAction,card);
     }
   }
 
@@ -171,14 +185,14 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
     if(currentAction->waitingForAnswer){
-      return currentAction->reactToClick(card);
+      return reactToClick(currentAction,card);
     }
   }
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
     OutputDebugString(currentAction->getMenuText());
-    result += currentAction->reactToClick(card);
+    result += reactToClick(currentAction,card);
     if (result) return result;
   }
   return result;

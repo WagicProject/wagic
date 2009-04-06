@@ -15,7 +15,7 @@ int AIAction::Act(){
     return 1;
   }
   if (ability){
-    ability->reactToClick(click);
+    g->mLayers->actionLayer()->reactToClick(ability,click);
     if (target) g->cardClick(target);
     return 1;
   }else if (click){ //Shouldn't be used, really...

@@ -99,8 +99,9 @@ class Constants
     CLOUD = 38,
     CANTATTACK = 39,
     MUSTATTACK = 40,
+    CANTBLOCK = 41,
 
-    NB_BASIC_ABILITIES = 41,
+    NB_BASIC_ABILITIES = 42,
 
 
     RARITY_M = 'M',

@@ -217,6 +217,9 @@ void GameObserver::Update(float dt){
   currentActionPlayer = player;
   if (isInterrupting) player = isInterrupting;
   mLayers->Update(dt,player);
+  while (mLayers->actionLayer()->stuffHappened){
+    mLayers->actionLayer()->Update(0);
+  }
   stateEffects();
   oldGamePhase = currentGamePhase;
 
@@ -225,6 +228,7 @@ void GameObserver::Update(float dt){
 //applies damage to creatures after updates
 //Players life test
 void GameObserver::stateEffects(){
+
   if (mLayers->stackLayer()->count(0,NOT_RESOLVED) != 0) return;
   if (mLayers->actionLayer()->menuObject) return;
   if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()) return;
@@ -333,7 +337,7 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
       waitForExtraPayment->tryToSetPayment(card);
     }
     if (waitForExtraPayment->isPaymentSet()){
-      waitForExtraPayment->action->reactToClick(waitForExtraPayment->source);
+      mLayers->actionLayer()->reactToClick(waitForExtraPayment->action, waitForExtraPayment->source);
       waitForExtraPayment = NULL;
     }
     return;

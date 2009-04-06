@@ -161,7 +161,7 @@ void GameStateDuel::loadTestSuitePlayers(){
     OutputDebugString ("loading suite 2\n");
     deck[i] = mPlayers[i]->game;
   }
-
+  mParent->gameType = testSuite->gameType;
   if (game) delete game;
   game = NULL;
   if (!game){
@@ -171,6 +171,13 @@ void GameStateDuel::loadTestSuitePlayers(){
     OutputDebugString ("loading suite 4\n");
     game->startGame(0,0);
     OutputDebugString ("loading suite 5\n");
+
+    if (mParent->gameType == GAME_TYPE_MOMIR){
+      game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
+      for (int i = 0; i < 2; i++){
+        game->players[i]->life+=4;
+      }
+    }
   }
 }
 #endif
@@ -223,7 +230,9 @@ void GameStateDuel::Update(float dt)
 #ifdef TESTSUITE
       else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
 	      if (testSuite && testSuite->loadNext()){
+
 	        loadTestSuitePlayers();
+
 	        mGamePhase = DUEL_STATE_PLAY;
 	        testSuite->initGame();
 	        char buf[4096];

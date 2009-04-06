@@ -20,11 +20,12 @@ class ActionLayer: public GuiLayer, public JGuiListener{
  public:
   Targetable * menuObject;
   SimpleMenu * abilitiesMenu;
+  int stuffHappened;
   virtual void Render();
   virtual void Update(float dt);
   int unstopableRenderInProgress();
   bool CheckUserInput(u32 key);
-  ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL;};
+  ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL; stuffHappened = 0;};
   ~ActionLayer();
   int isWaitingForAnswer();
   int isReactingToTargetClick(Targetable * card);
@@ -32,6 +33,8 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   int reactToTargetClick(Targetable * card);
   int isReactingToClick(MTGCardInstance  * card);
   int reactToClick(MTGCardInstance * card);
+  int reactToClick(ActionElement * ability,MTGCardInstance * card);
+  int reactToTargetClick(ActionElement * ability,Targetable * card);
   int stillInUse(MTGCardInstance * card);
   void setMenuObject(Targetable * object);
   void ButtonPressed(int controllerid, int controlid);

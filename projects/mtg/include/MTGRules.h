@@ -123,15 +123,18 @@ class MTGLegendRule:public ListMaintainerAbility{
 
 
 class MTGMomirRule:public MTGAbility{
+private:
+  int genRandomCreatureId(int convertedCost);
 public:
   int alreadyplayed;
   MTGAllCards * collection;
-  MTGCardInstance * genRandomCreature(int convertedCost);
+  MTGCardInstance * genCreature(int id);
   int testDestroy();
   void Update(float dt);
   MTGMomirRule(int _id, MTGAllCards * _collection);
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
+  int reactToClick(MTGCardInstance * card, int id);
   const char * getMenuText(){return "Momir";}
 };
 

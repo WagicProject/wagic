@@ -110,29 +110,27 @@ void GuiLayers::Remove(){
 }
 
 void GuiLayers::Update(float dt, Player * currentPlayer){
-  int i;
-  int isAI = currentPlayer->isAI();
-  for (i=0; i<nbitems; i++){
+
+  for (int i=0; i<nbitems; i++){
     objects[i]->Update(dt);
   }
+  int isAI = currentPlayer->isAI();
   u32 key;
-  while ((key = JGE::GetInstance()->ReadButton()))
-    {
-      GameObserver * game = GameObserver::GetInstance();
-      if (game->waitForExtraPayment && key == PSP_CTRL_CROSS){
-        game->waitForExtraPayment = NULL;
-        continue;
-      }
-      for (i=0; i<nbitems; i++){
-	if (!isAI){
-	  if (0 != key)
-	    if (objects[i]->CheckUserInput(key))
-	      break;
-	}
-      }
+  while ((key = JGE::GetInstance()->ReadButton())){
+    GameObserver * game = GameObserver::GetInstance();
+    if (game->waitForExtraPayment && key == PSP_CTRL_CROSS){
+      game->waitForExtraPayment = NULL;
+      continue;
     }
-  if (isAI)
-    currentPlayer->Act(dt);
+    for (int i=0; i<nbitems; i++){
+	    if (!isAI){
+	      if (0 != key)
+	        if (objects[i]->CheckUserInput(key)) break;
+	     }
+    }
+  }
+  if (isAI) currentPlayer->Act(dt);
+
 }
 
 void GuiLayers::Render(){

@@ -1,6 +1,8 @@
 #include "../include/TestSuiteAI.h"
 #include "../include/config.h"
 #include "../include/MTGAbility.h"
+#include "../include/MTGRules.h"
+#include "../include/ActionLayer.h"
 
 #include <string>
 using std::string;
@@ -97,6 +99,13 @@ int TestSuiteAI::Act(float dt){
     OutputDebugString("choice !!!\n");
     int choice = atoi(action.substr(action.find("choice ") + 7).c_str());
     g->mLayers->actionLayer()->doReactTo(choice);
+  }else if(action.find(" -momir- ")!=string::npos){
+    int start = action.find(" -momir- ");
+    int cardId = suite->getMTGId(action.substr(start + 9).c_str());
+    int cardIdHand = suite->getMTGId(action.substr(0,start).c_str());
+    MTGMomirRule * a = ((MTGMomirRule *)g->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR));
+    a->reactToClick(suite->getCardByMTGId(cardIdHand), cardId);
+    g->mLayers->actionLayer()->stuffHappened = 1;
   }else{
     int mtgid = suite->getMTGId(action);
     if (mtgid){
@@ -428,6 +437,8 @@ void TestSuite::cleanup(){
 }
 
 int TestSuite::load(const char * _filename){
+  summoningSickness = 0;
+  gameType = GAME_TYPE_CLASSIC;
   char filename[4096];
   sprintf(filename, RESPATH"/test/%s", _filename);
   std::ifstream file(filename);
@@ -445,6 +456,10 @@ int TestSuite::load(const char * _filename){
       std::transform( s.begin(), s.end(), s.begin(),::tolower );
       if (s.compare("summoningsickness") == 0) {
         summoningSickness = 1;
+        continue;
+      }
+      if (s.compare("momir") == 0) {
+        gameType = GAME_TYPE_MOMIR;
         continue;
       }
       switch(state){

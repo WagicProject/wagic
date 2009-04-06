@@ -295,8 +295,10 @@ int MTGCardInstance::setToughness(int value){
 }
 
 int MTGCardInstance::canBlock(){
-  if (!tapped && isACreature())return 1;
-  return 0;
+  if (tapped) return 0;
+  if (basicAbilities[Constants::CANTBLOCK]) return 0;
+  if (!isACreature())return 0;
+  return 1;
 }
 
 int MTGCardInstance::canBlock(MTGCardInstance * opponent){

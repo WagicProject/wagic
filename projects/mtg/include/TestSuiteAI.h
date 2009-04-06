@@ -51,6 +51,7 @@ class TestSuite{
  public:
   MTGAllCards* collection;
   int summoningSickness;
+  int gameType;
   float timerLimit;
   int currentAction;
   TestSuiteState initState;

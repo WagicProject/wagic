@@ -66,7 +66,7 @@ hannas_custody.txt
 hymn_of_rebirth.txt
 icatian_priest.txt
 keldon_warlord.txt
-keldon_warlord_2.txt
+keldon_warlord2.txt
 kird_ape.txt
 kudzu.txt
 kudzu2.txt
@@ -105,3 +105,7 @@ volcanic_island.txt
 white_knight1.txt
 wrath_of_god.txt
 zombie_master.txt
+########################
+#Momir Basic Tests
+########################
+momir/keldon_warlord.txt
