@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/ShopItem.h"
+#include "../include/GameStateShop.h"
 #include "../include/CardGui.h"
 
 
@@ -26,7 +27,7 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFoc
     Entering();
 
   card = collection->getCardById(_cardid);
-  quantity = 1;
+  quantity = 1 + (rand() % 4);
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
   thumb = NULL;
@@ -43,15 +44,41 @@ const char * ShopItem::getText(){
 
 
 void ShopItem::Render(){
+  if (mHasFocus){
+    mFont->SetColor(ARGB(255,255,255,0));
+  }else{
+    mFont->SetColor(ARGB(255,255,255,255));
+  }
+  if (!quantity){
+    mFont->SetColor(ARGB(255,128,128,128));
+  }
+  
+  
   JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRect(mX-5, mY-5,230,35, ARGB(128,0,0,0));
+  float x0 = mX;
+  float y0 = mY - (mScale > 1 ? 4 : 0);
+  if (GetId()%2){
+    float xs[] = {mX,   mX,   mX+230,mX+230};
+    float ys[] = {mY-5+17,mY-5+19,mY-5+35,mY-5}    ;
+
+    renderer->FillPolygon(xs,ys,4,ARGB(200,0,0,0));
+    x0 = mX + 230 -30;
+    mFont->DrawString(mText.c_str(), x0, mY + 8,JGETEXT_RIGHT);
+    
+  }else{
+    float xs[] = {mX-5,   mX-5,   mX-5+230,mX-5+230,};
+    float ys[] = {mY-5,mY-5+35,mY-5+17,mY-5+19}    ;
+    renderer->FillPolygon(xs,ys,4,ARGB(128,0,0,0));
+     mFont->DrawString(mText.c_str(), mX + 30, mY + 8);
+  }
+  //renderer->FillRect(mX-5, mY-5,230,35, );
   if (card){
     thumb = card->getThumb();
     mText= card->name;
   }
 
   if (thumb){
-    renderer->RenderQuad(thumb,mX,mY - (mScale > 1 ? 4 : 0),0,mScale * 0.45,mScale * 0.45);
+    renderer->RenderQuad(thumb,x0,y0,0,mScale * 0.45,mScale * 0.45);
   }else{
     //NOTHING
   }
@@ -64,14 +91,7 @@ void ShopItem::Render(){
     }else{
       if (card) CardGui::alternateRender(card,NULL,mX + SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
     }
-    mFont->SetColor(ARGB(255,255,255,0));
-  }else{
-    mFont->SetColor(ARGB(255,255,255,255));
   }
-  if (!quantity){
-    mFont->SetColor(ARGB(255,128,128,128));
-  }
-  mFont->DrawString(mText.c_str(), mX + 30, mY + 8);
 }
 
 
@@ -122,7 +142,7 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",_collection);
   playerdata = NEW PlayerData(_collection);
   display = NULL;
-  for (int i=0; i < 2; i++){
+  for (int i=0; i < SHOP_BOOSTERS; i++){
     setIds[i] = _setIds[i];
   };
 }
@@ -134,12 +154,12 @@ void ShopItems::Add(int cardid){
   int price = pricelist->getPrice(cardid);
   price = price + price * (rnd -10)/100;
   JGuiController::Add(NEW ShopItem(mCount, mFont, cardid, mX + 10, mY + 10 + mHeight,  (mCount == 0),collection, price));
-  mHeight += 38;
+  mHeight += 22;
 }
 
 void ShopItems::Add(char * text, JQuad * quad,JQuad * thumb, int price){
   JGuiController::Add(NEW ShopItem(mCount, mFont, text, quad, thumb, mX + 10, mY + 10 + mHeight,  (mCount == 0), price));
-  mHeight += 38;
+  mHeight += 22;
 }
 
 void ShopItems::Update(float dt){

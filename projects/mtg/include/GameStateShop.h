@@ -12,6 +12,8 @@
 #define STAGE_SHOP_MENU 3
 #define STAGE_SHOP_SHOP 4
 
+#define SHOP_BOOSTERS 3
+
 class GameStateShop: public GameState, public JGuiListener
 {
  private:
@@ -26,7 +28,8 @@ class GameStateShop: public GameState, public JGuiListener
   SimpleMenu * menu;
   int mStage;
   char starterBuffer[128], boosterBuffer[128];
-  int setIds[2];
+  char setNames[SHOP_BOOSTERS][128];
+  int setIds[SHOP_BOOSTERS];
 
  public:
   GameStateShop(GameApp* parent);

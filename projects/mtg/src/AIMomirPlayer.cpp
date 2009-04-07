@@ -10,7 +10,6 @@
 MTGAbility * AIMomirPlayer::momirAbility = NULL;
 
 AIMomirPlayer::AIMomirPlayer(MTGPlayerCards * _deck, char * file, char * avatarFile): AIPlayerBaka(_deck,file, avatarFile){
-// TODO count min and max number of mana (should probably be part of the gameobserver so that human players don't make mistakes)
   momirAbility = NULL;
   agressivity = 100;
 }
@@ -35,29 +34,32 @@ MTGAbility * AIMomirPlayer::getMomirAbility(){
 
 int AIMomirPlayer::momir(){
  if (!game->hand->nb_cards) return 0; //nothing to discard :/ 
+ int result = 0;
+ int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES);
+ int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES );
  getPotentialMana();
  int converted = potentialMana->getConvertedCost();
  int efficiency = 100;
  int chance = 1 + (rand() % 100);
- if (converted == 5) efficiency = 5 ; //Strategy: skip 5 drop
- if (converted == 7) efficiency = 50; //Strategy: 7 drops have bad upkeep costs and the AI doesn't handle those right now...
+ if (converted == 5 &&  myCreatures > opponentCreatures && game->hand->nb_cards<4) efficiency = 5 ; //Strategy: skip 5 drop
+ if (converted == 7 &&  myCreatures > opponentCreatures && game->hand->nb_cards<2) efficiency = 50; //Strategy: 7 drops have bad upkeep costs and the AI doesn't handle those right now...
  if (converted > 8 ) converted = 8;
- if (converted == 8) efficiency = 100 - game->inPlay->nb_cards;
+ if (converted == 8) efficiency = 100 - (myCreatures-opponentCreatures);
 
  if (efficiency >= chance){
    int _cost[] = {Constants::MTG_COLOR_ARTIFACT,converted};
    ManaCost * cost = NEW ManaCost(_cost);
-   tapLandsForMana(potentialMana,cost);
-   delete cost;
    MTGAbility * ability = getMomirAbility();
    MTGCardInstance * card = game->hand->cards[0];
    if (ability->isReactingToClick(card,cost)){
+     tapLandsForMana(potentialMana,cost);
      AIAction * a = NEW AIAction(ability,card);
      clickstream.push(a);
-    return 1;
+    result = 1;
    }
+   delete cost;
  }
- return 0;
+ return result;
 }
 
 int AIMomirPlayer::computeActions(){
