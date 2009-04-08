@@ -258,7 +258,7 @@ toughness=5
 [/card]
 [card]
 text=Other Elf creatures you control get +1/+1.     {G}, {T}: Put a 1/1 green Elf Warrior creature token into play.
-auto=lord(elf) 1/1 other
+auto=lord(elf|myinplay) 1/1 other 
 auto={G}{T}:token(Elf Warrior,creature Elf Warrior,1/1,green)
 id=139683
 name=Imperious Perfect
@@ -484,8 +484,8 @@ subtype=Aura
 [card]
 text=Flash     Flying     Other Faerie creatures you control get +1/+1.     Other Faeries you control have shroud. (A permanent with shroud can't be the target of spells or abilities.)
 abilities=flash,flying
-auto=lord(faerie) 1/1 other
-auto=lord(faerie) shroud other
+auto=lord(faerie|myinplay) 1/1 other
+auto=lord(faerie|myinplay) shroud other
 id=139741
 name=Scion of Oona
 rarity=R
