@@ -114,6 +114,7 @@ toughness=3
 [/card]
 [card]
 text=Flying     Briarberry Cohort gets +1/+1 as long as you control another blue creature.
+abilities=flying
 auto=aslongas(creature[blue]|myinplay) 1/1 other
 id=146043
 name=Briarberry Cohort
