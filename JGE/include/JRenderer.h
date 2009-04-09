@@ -124,7 +124,7 @@ public:
 	/// @param mode - Choose to put texture in VRAM (PSP only).
 	///
 	//////////////////////////////////////////////////////////////////////////
-	JTexture* LoadTexture(const char* filename, int mode = 0);
+	JTexture* LoadTexture(const char* filename, int mode = 0, int textureFormat = TEXTURE_FORMAT);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.
@@ -527,10 +527,10 @@ private:
 		bool mVRAM;
 	};
 
-	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0);
-	void LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0);
-	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0);
-	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0);
+	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
+	void LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
+	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
+	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 
 	static JRenderer* mInstance;
 
@@ -547,6 +547,9 @@ private:
 	PIXEL_TYPE* mVRAM;
 	int mCurrentTex;
 	int mCurrentBlend;
+  int mCurrentTextureFormat;
+
+  int PixelSize(int textureMode);
 
 #endif
 

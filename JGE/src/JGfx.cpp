@@ -102,6 +102,7 @@ JTexture::JTexture()
 {
 	mBits = NULL;
 	mInVideoRAM = false;
+  mTextureFormat = TEXTURE_FORMAT;
 }
 
 JTexture::~JTexture()
@@ -190,12 +191,13 @@ void JRenderer::InitRenderer()
 	}
 #endif
 
-	mSwizzle = 1;
+	mSwizzle = 0;
 	mVsync = false;
 
 	mTexCounter = 0;
 	mCurrentTex = -1;
 	mCurrentBlend = -1;
+  mCurrentTextureFormat = TEXTURE_FORMAT;
 
 	mFOV = 75.0f;
 
@@ -568,7 +570,12 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 //		v3---v4
 void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float xScale, float yScale)
 {
-	if (mCurrentTex != quad->mTex->mTexId)
+  if (mCurrentTextureFormat != quad->mTex->mTextureFormat){
+    mCurrentTextureFormat = quad->mTex->mTextureFormat;
+    sceGuTexMode(mCurrentTextureFormat, 0, 0, mSwizzle);
+  }
+  
+  if (mCurrentTex != quad->mTex->mTexId)
 	{
 		sceGuTexImage(0, quad->mTex->mTexWidth, quad->mTex->mTexHeight, quad->mTex->mTexWidth, quad->mTex->mBits);
 		mCurrentTex = quad->mTex->mTexId;
@@ -579,6 +586,8 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 		sceGuTexFunc(quad->mBlend, GU_TCC_RGBA);
 		mCurrentBlend = quad->mBlend;
 	}
+
+
 
 	//float destWidth = quad->mWidth*quad->mScaleX;
 	float destHeight = quad->mHeight*yScale;
@@ -736,6 +745,11 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 
 void JRenderer::RenderQuad(JQuad* quad, VertexColor* points)
 {
+  if (mCurrentTextureFormat != quad->mTex->mTextureFormat){
+    mCurrentTextureFormat = quad->mTex->mTextureFormat;
+    sceGuTexMode(mCurrentTextureFormat, 0, 0, mSwizzle);
+  }
+
 	if (mCurrentTex != quad->mTex->mTexId)
 	{
 		sceGuTexImage(0, quad->mTex->mTexWidth, quad->mTex->mTexHeight, quad->mTex->mTexWidth, quad->mTex->mBits);
@@ -747,6 +761,8 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* points)
 		sceGuTexFunc(quad->mBlend, GU_TCC_RGBA);
 		mCurrentBlend = quad->mBlend;
 	}
+
+
 
 	// allocate memory on the current display list for temporary storage
 	// in order to rotate, we use 4 vertices this time
@@ -978,7 +994,21 @@ static void jpeg_mem_src(j_decompress_ptr cinfo, u8 *mem, int len)
 }
 
 
-void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode)
+int JRenderer::PixelSize(int textureMode){
+ switch (textureMode) {
+      case PSP_DISPLAY_PIXEL_FORMAT_565:
+              return 2;
+      case PSP_DISPLAY_PIXEL_FORMAT_5551:
+              return 2;
+      case PSP_DISPLAY_PIXEL_FORMAT_4444:
+             return 2;
+      case PSP_DISPLAY_PIXEL_FORMAT_8888:
+              return 4;
+       }
+ return PIXEL_SIZE;
+}
+
+void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode, int textureMode)
 {
 	textureInfo.mBits = NULL;
 	char filenamenew[4096];
@@ -992,9 +1022,13 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 
 	struct jpeg_decompress_struct	cinfo;
 	struct jpeg_error_mgr jerr;
-	u8 *rgbadata, *scanline, *p, *q;
+	u8 *scanline, *p;
+  u16 *rgbadata16, *q16, *bits16;
+  u32 *rgbadata32, *q32, *bits32;
 	int	rawsize, i;
-
+  int pixelSize = PixelSize(textureMode);
+  bits16 = NULL;
+  bits32 = NULL;
 
         FILE * fp = fopen(filenamenew, "rb");
 	if (fp==NULL)
@@ -1020,40 +1054,53 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 	int tw = getNextPower2(cinfo.output_width);
 	int th = getNextPower2(cinfo.output_height);
 
-	PIXEL_TYPE* bits = NULL;
+
 	bool videoRAMUsed = false;
 
-	int size = tw * th * sizeof(PIXEL_TYPE);
+	int size = tw * th * pixelSize;
 
 	if (useVideoRAM)// && (mCurrentPointer+size)<0x200000)
 	{
 		//bits = (PIXEL_TYPE*) (0x04000000+0x40000000+mCurrentPointer);
 		//mCurrentPointer += size;
-		bits = (PIXEL_TYPE*)valloc(size);
+    if (pixelSize == 2){
+		  bits16 = (u16*)valloc(size);
+    }else{
+      bits32 = (u32*)valloc(size);
+    }
 		videoRAMUsed = true;
 	}
 
 	//else
-	if (bits == NULL)
+	if (bits16 == NULL && bits32 == NULL)
 	{
 		videoRAMUsed = false;
-		bits = (PIXEL_TYPE*) memalign(16, size);
+    if (pixelSize == 2){
+		  bits16 = (u16*)memalign(16, size);
+    }else{
+		  bits32 = (u32*)memalign(16, size);
+    }
 	}
 
-	rgbadata = (u8 *)bits;
-
+	//rgbadata = (u8 *)bits;
+  rgbadata16 = bits16;
+  rgbadata32 = bits32;
 	if (mSwizzle)
 	{
-		rgbadata = (u8 *) memalign(16, size);
-
-		if(!rgbadata)
+		//rgbadata = (u8 *) memalign(16, size);
+    if (rgbadata16) rgbadata16 = (u16*) memalign(16, size);
+    if (rgbadata32) rgbadata32 = (u32*) memalign(16, size);
+		if(!rgbadata16 && !rgbadata32)
 		{
 			jpeg_destroy_decompress(&cinfo);
-			if (videoRAMUsed)
+      if (videoRAMUsed){
 				//mCurrentPointer -= size;
-				vfree(bits);
-			else
-				free (bits);
+				if (bits16) vfree(bits16);
+        if (bits32) vfree(bits32);
+      }else{
+				if (bits16) free(bits16);
+        if (bits32) free(bits32);
+      }
 			return;
 		}
 	}
@@ -1063,36 +1110,67 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 	{
 		jpeg_destroy_decompress(&cinfo);
 
-		if (videoRAMUsed)
-			//mCurrentPointer -= size;
-			vfree(bits);
-		else
-			free (bits);
-
-		if (mSwizzle)
-			if (rgbadata)
-				free(rgbadata);
-
+    if (videoRAMUsed){
+				if (bits16) vfree(bits16);
+        if (bits32) vfree(bits32);
+    }else{
+				if (bits16) free(bits16);
+        if (bits32) free(bits32);
+    }
+    if (mSwizzle){
+			if (rgbadata16)
+				free(rgbadata16);
+			if (rgbadata32)
+				free(rgbadata32);
+    }
 		return;
 	}
 
-	u8* currRow = rgbadata;
+	u16 * currRow16 = rgbadata16;
+  u32 * currRow32 = rgbadata32;
+  u16 color16;
+  u32 color32;
 	while(cinfo.output_scanline < cinfo.output_height)
 	{
 		p = scanline;
 		jpeg_read_scanlines(&cinfo, &scanline, 1);
 
-		q = currRow;
-		for(i=0; i<(int)cinfo.output_width; i++)
-		{
-			q[0] = p[0];
-			q[1] = p[1];
-			q[2] = p[2];
-			q[3] = 255;
+		q16 = currRow16;
+    q32 = currRow32;
+		for(i=0; i<(int)cinfo.output_width; i++){
+      int a = 255;
+      int r = p[0];
+      int g = p[1];
+      int b = p[2];
+      switch (textureMode) {
+      case PSP_DISPLAY_PIXEL_FORMAT_565:
+              color16 = (r >> 3) | ((g >> 2) << 5) | ((b >> 3) << 11);
+              *(q16) = color16;
+              break;
+      case PSP_DISPLAY_PIXEL_FORMAT_5551:
+              color16 = (r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10) | ((a >> 7) << 15);
+              *(q16) = color16;
+              break;
+      case PSP_DISPLAY_PIXEL_FORMAT_4444:
+              color16 = (r >> 4) | ((g >> 4) << 4) | ((b >> 4) << 8) | ((a >> 4) << 12);
+              *(q16) = color16;
+              break;
+      case PSP_DISPLAY_PIXEL_FORMAT_8888:
+              color32 = r | (g << 8) | (b << 16) | (a << 24);
+              *(q32) = color32;
+              break;
+       }
+			//q[0] = p[0];
+			//q[1] = p[1];
+			//q[2] = p[2];
+			//q[3] = 255;
 
-			p+=3; q+=4;
+			p+=3; 
+      if (q16) q16+=1;
+      if (q32) q32+=1;
 		}
-		currRow += tw*4;
+		if (currRow32)  currRow32+= tw;
+    if (currRow16)  currRow16+= tw;
 	}
 
 	free(scanline);
@@ -1103,13 +1181,20 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 
 	if (mSwizzle)
 	{
-		swizzle_fast((u8*)bits, (const u8*)rgbadata, tw*sizeof(PIXEL_TYPE), th/*cinfo.output_height*/);
-		free (rgbadata);
+    if (rgbadata16){
+		  swizzle_fast((u8*)bits16, (const u8*)rgbadata16, tw*pixelSize, th/*cinfo.output_height*/);
+		  free (rgbadata16);
+    }
+    if (rgbadata32){
+		  swizzle_fast((u8*)bits32, (const u8*)rgbadata32, tw*pixelSize, th/*cinfo.output_height*/);
+		  free (rgbadata32);
+    }
 	}
 
 
 
-	textureInfo.mBits = (u8 *)bits;
+	if (bits16) textureInfo.mBits = (u8 *)bits16;
+  else textureInfo.mBits = (u8 *)bits32;
 	textureInfo.mWidth = cinfo.output_width;
 	textureInfo.mHeight = cinfo.output_height;
 	textureInfo.mTexWidth = tw;
@@ -1121,18 +1206,18 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 }
 
 
-JTexture* JRenderer::LoadTexture(const char* filename, int mode)
+JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureMode)
 {
 	TextureInfo textureInfo;
 	textureInfo.mVRAM = false;
 	textureInfo.mBits = NULL;
 
 	if (strstr(filename, ".jpg")!=NULL || strstr(filename, ".JPG")!=NULL)
-		LoadJPG(textureInfo, filename, mode);
+		LoadJPG(textureInfo, filename, mode, textureMode);
 	else if(strstr(filename, ".gif")!=NULL || strstr(filename, ".GIF")!=NULL)
-		LoadGIF(textureInfo,filename, mode);
+		LoadGIF(textureInfo,filename, mode, textureMode);
 	else
-		LoadPNG(textureInfo, filename, mode);
+		LoadPNG(textureInfo, filename, mode, textureMode);
 
 	if (textureInfo.mBits == NULL)
 		return NULL;
@@ -1146,7 +1231,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode)
 			mImageFilter->ProcessImage((PIXEL_TYPE*)textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight);
 
 		tex->mTexId = mTexCounter++;
-
+    tex->mTextureFormat = textureMode;
 		tex->mWidth = textureInfo.mWidth;
 		tex->mHeight = textureInfo.mHeight;
 		tex->mTexWidth = textureInfo.mTexWidth;
@@ -1174,7 +1259,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode)
 // http://svn.ps2dev.org/filedetails.php?repname=psp&path=/trunk/libpng/screenshot/main.c&rev=0&sc=0
 // Load PNG as texture
 //------------------------------------------------------------------------------------------------
-void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode)
+void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode, int textureMode)
 {
 	textureInfo.mBits = NULL;
 
@@ -1342,7 +1427,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 
 //////////////////////////////////////////////////////////////////////////
 /// GIF Support
-int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode)
+int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode, int textureMode)
 {
 	bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);
 	//	pixel ** image_data=NULL;
@@ -1544,7 +1629,7 @@ int image_gif_read(GifFileType * ft, GifByteType * buf, int size)
 
 }
 
-void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode)
+void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode, int textureMode)
 {
 	textureInfo.mBits = NULL;
 	//bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);

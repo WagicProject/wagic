@@ -48,6 +48,7 @@ public:
 	JMusic();
 	~JMusic();
   void Update();
+  int getPlayTime();
 
 #if defined (WIN32) || defined (LINUX)
 	FSOUND_SAMPLE *mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
@@ -173,6 +174,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void SetVolume(int volume);
 
+  	int mChannel;
 protected:
 	JSoundSystem();
 	~JSoundSystem();
@@ -189,7 +191,7 @@ private:
 #endif
 
 	int mVolume;
-	int mChannel;
+
 
 	static JSoundSystem* mInstance;
 

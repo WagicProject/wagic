@@ -18,10 +18,14 @@
 //////////////////////////////////////////////////////////////////////////
 JMusic::JMusic()
 {
-
 }
 
 void JMusic::Update(){
+
+}
+
+int JMusic::getPlayTime(){
+  return FSOUND_GetCurrentPosition(JSoundSystem::GetInstance()->mChannel)/44.1; //todo more generic, here it's only 44kHz
 }
 
 JMusic::~JMusic()
@@ -151,11 +155,6 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
-	// 	if (music && music->mTrack)
-	// 	{
-	// 		FMUSIC_SetLooping(music->mTrack, (looping?1:0));
-	// 		FMUSIC_PlaySong(music->mTrack);
-	// 	}
 	
 	if (music && music->mTrack)
 	{
@@ -210,20 +209,6 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 
 	return sample;
 }
-
-
-// void JSoundSystem::FreeSample(JSample *sample)
-// {
-// 	if (sample)
-// 	{
-// 		if (sample->mSample)
-// 			FSOUND_Sample_Free(sample->mSample);
-// 
-// 		//delete sample;
-// 		//sample = NULL;
-// 	}
-// 
-// }
 
 
 void JSoundSystem::PlaySample(JSample *sample)

@@ -38,7 +38,7 @@ extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int wi
 JTTFont::JTTFont(int cacheImageSize)
 {
 
-	mColor = 0xffffffff;
+  mColor = ARGB(255,255,255,255);
 	mAngle = 0.0;
 	mLibrary = 0;
 	mFace = 0;

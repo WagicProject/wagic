@@ -143,7 +143,10 @@ typedef uint32_t u32;
 		PSP_CTRL_NOTE       = 0x800000
 	} PspCtrlButtons;
 
-
+  #define TEXTURE_FORMAT			0
+  #define GU_PSM_8888 0
+  #define GU_PSM_5551 0
+  #define GU_PSM_4444 0
 	#define PIXEL_TYPE				DWORD
 
 #else	// PSP
@@ -327,7 +330,7 @@ public:
 #if defined (WIN32) || defined (LINUX)
 	GLuint mTexId;
 #else
-
+  int mTextureFormat;
 	int mTexId;
 	bool mInVideoRAM;
 	PIXEL_TYPE* mBits;

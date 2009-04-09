@@ -196,7 +196,7 @@ bool JMP3::update() {
 
          // Output
          m_samplesPlayed += sceAudioSRCOutputBlocking(m_volume, tempBuffer);
-         m_playTime = (m_samplingRate > 0) ? (m_samplesPlayed / m_samplingRate) : 0;
+         m_playTime = (m_samplingRate > 0) ? (m_samplesPlayed / (m_samplingRate/1000)) : 0;
       }
    }
 
@@ -225,9 +225,9 @@ int JMP3::playTime() const {
 }
 
 int JMP3::playTimeMinutes() {
-   return m_playTime / 60;
+   return (m_playTime / 1000) / 60;
 }
 
 int JMP3::playTimeSeconds() {
-   return m_playTime % 60;
+   return (m_playTime/1000) % 60;
 }

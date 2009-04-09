@@ -599,7 +599,7 @@ static void jpeg_mem_src(j_decompress_ptr cinfo, byte *mem, int len)
 LoadJPG
 ==============
 */
-void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode)
+void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode, int TextureFormat)
 {
 
 
@@ -746,7 +746,7 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
 }
 
 
-JTexture* JRenderer::LoadTexture(const char* filename, int mode)
+JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat)
 {
 	TextureInfo textureInfo;
 	
@@ -835,7 +835,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode)
 	return tex;
 }
 
-void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode)
+void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode, int TextureFormat)
 {
 	//TextureInfo* textureInfo = new TextureInfo;
 
@@ -1030,7 +1030,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 
 //////////////////////////////////////////////////////////////////////////
 /// GIF Support
-int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode)
+int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode, int TextureFormat)
 {
 
 	//	pixel ** image_data=NULL;
@@ -1172,7 +1172,7 @@ int image_gif_read(GifFileType * ft, GifByteType * buf, int size)
 
 }
 
-void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode)
+void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode, int TextureFormat)
 {
 	///*
 	//FILE * fp = fopen(filename, "rb");
@@ -1294,7 +1294,7 @@ void JRenderer::Enable2D()
 	glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
 	glLoadIdentity ();													// Reset The Projection Matrix
 	
-	gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f);
+	gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F);
 
 	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
 	glLoadIdentity ();													// Reset The Modelview Matrix

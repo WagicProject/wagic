@@ -28,7 +28,12 @@ JMusic::~JMusic()
 }
 
 void JMusic::Update(){
-  //if (mTrack) mTrack->update();
+
+}
+
+int JMusic::getPlayTime(){
+    if (mTrack) return mTrack->playTime();
+    return 0;
 }
 
 JSample::JSample()

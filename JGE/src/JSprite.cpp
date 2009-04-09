@@ -119,6 +119,7 @@ void JSprite::Update(float dt)
 		}
 	}
 
+
 	
 }
 

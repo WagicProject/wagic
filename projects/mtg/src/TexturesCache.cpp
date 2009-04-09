@@ -72,12 +72,13 @@ int TexturesCache::cleanup(){
 JQuad * TexturesCache::getQuad(MTGCard * card, int type){
   int cache_id = getCacheById(card->getId(), type);
   if (cache_id == -1){
-    fprintf(stderr, "not found %d %i\n", card->getId(), type);
+    
     //Not found in the cache, we have to load the file and put it in the cache
     if (cleanup()){
       cache_id = nb_textures;
       cache[cache_id] = NEW CardTexture(card, type);
       totalsize+= cache[cache_id]->nbpixels;
+      fprintf(stderr, "Total Size of cache in pixels:  %i\n", totalsize);
       nb_textures++;
     }
   }
@@ -105,7 +106,7 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
   OutputDebugString(filename);
 #endif
   if (fileExists(filename))
-    tex = JRenderer::GetInstance()->LoadTexture(filename, false);
+    tex = JRenderer::GetInstance()->LoadTexture(filename, false,GU_PSM_5551);
   if (tex){
     quad = NEW JQuad(tex, 0.0f, 0.0f, tex->mWidth, tex->mHeight);
     nbpixels = tex->mTexHeight * tex->mTexWidth;
