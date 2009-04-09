@@ -1106,6 +1106,7 @@ toughness=1
 [/card]
 [card]
 text=Flying, trample (This creature can't be blocked except by creatures with flying or reach. If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
+abilities=flying,trample
 id=135271
 alias=1166
 name=Lord of the Pit
