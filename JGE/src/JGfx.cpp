@@ -191,7 +191,7 @@ void JRenderer::InitRenderer()
 	}
 #endif
 
-	mSwizzle = 0;
+	mSwizzle = 1;
 	mVsync = false;
 
 	mTexCounter = 0;
