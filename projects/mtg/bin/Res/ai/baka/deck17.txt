@@ -1,0 +1,74 @@
+#Plain blue deck
+#4 x Control Magic, {2}{U}{U}, Enchant creature
+1194
+1194
+1194
+1194
+#2x Mahamoti Djinn
+129633
+129633
+#2x Persuasion, {3}{U}{U}, Enchant creature, control magic
+129900
+129900
+#4x Cloud Sprite,{U}, Creature Faerie,1/1,flying cloud
+132069
+132069
+132069
+132069
+#2x Sentinels of glen Elendra,{3}{U}, Creature Faerie Soldier,2/3,flash flying
+139426
+139426
+#4x Scien of Oona, Creature Faerie Soldier,1/1,flash flying,lord(faerie|myinplay)1/1
+139741
+139741
+139741
+139741
+#4x Oona's Gatewarden, {BU},Creature Faerie Soldier,2/1,flying defender wihter
+141975
+141975
+141975
+141975
+#4x Briaberry Cohort,{1}{U} Creature Faerie Soldier,1/1, flying +1/+1 aslongas(*[blue]|myinplay)
+146043
+146043
+146043
+146043
+#4x Glen Elendra Liege,{1}{UB}{UB}{UB}, Creature Faerie Knight, flying 2/3 lord(creature[black;blue]|myinplay) 1/1 
+146743
+146743
+146743
+146743
+#4x Wasp Lancer, {UB}{UB}{UB}, Creature Faerie Soldier,3/2,flying
+153967
+153967
+153967
+153967
+#4x Plumeveil,{UW}{UW}{UW}, Creature Elemental,4/4,flash flying defender
+153980
+153980
+153980
+153980
+#2x Faerie Swarm, {3}{U}, Creature Faerie,*/*,flying,foreach(*[blue]|myinplay)1/1
+158685
+158685
+#20 x Island (10E)
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606
+129606

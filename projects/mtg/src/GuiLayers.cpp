@@ -2,18 +2,46 @@
 #include "../include/GuiLayers.h"
 #include "../include/Player.h"
 
-GuiLayer::GuiLayer(int id, GameObserver* _game):JGuiController(id, NULL){
+GuiLayer::GuiLayer(int id, GameObserver* _game){
+  mId = id;
   game = _game;
   modal = 0;
   hasFocus = false;
+  mCount = 0;
+  mCurr = 0;
+  mActionButton = PSP_CTRL_CIRCLE;
 }
 
 GuiLayer::~GuiLayer(){
-  //TODO
+  resetObjects();
+}
+
+void GuiLayer::Add(JGuiObject *object){
+  mObjects.push_back(object);
+  mCount++;
+}
+
+void GuiLayer::Remove(JGuiObject *object){
+  for (int i=0;i<mCount;i++){
+    if (mObjects[i]==object){
+      delete mObjects[i];
+      mObjects.erase(mObjects.begin()+i);
+      mCount--;
+      if (mCurr == mCount)
+	      mCurr = 0;
+      return;
+    }
+  }
 }
 
 int GuiLayer::getMaxId(){
   return mCount;
+}
+
+void GuiLayer::Render(){
+ for (int i=0;i<mCount;i++)
+    if (mObjects[i]!=NULL)
+      mObjects[i]->Render(); 
 }
 
 void GuiLayer::Update(float dt){
@@ -27,7 +55,7 @@ void GuiLayer::resetObjects(){
   for (int i=0;i<mCount;i++)
     if (mObjects[i])
       delete mObjects[i];
-
+  mObjects.clear();
   mCount = 0;
   mCurr = 0;
 }

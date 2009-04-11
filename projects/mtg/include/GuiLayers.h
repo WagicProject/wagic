@@ -14,10 +14,17 @@
 class GameObserver;
 class Player;
 
-class GuiLayer: public JGuiController{
+class GuiLayer{
  protected:
   GameObserver * game;
+  int mId;
+  u32	mActionButton;
  public:
+  int mCount;
+  int mCurr;
+  vector<JGuiObject *>mObjects;
+  void Add(JGuiObject * object);
+  void Remove(JGuiObject * object);
   int modal;
   bool hasFocus;
   virtual void resetObjects();
@@ -31,7 +38,7 @@ class GuiLayer: public JGuiController{
   virtual int unstopableRenderInProgress(){return 0;};
   int getIndexOf(JGuiObject * object);
   JGuiObject * getByIndex (int index);
-  virtual void Render(){JGuiController::Render();};
+  virtual void Render();
   int empty(){
     if (mCount) return 0;
     return 1;

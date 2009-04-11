@@ -1,0 +1,73 @@
+#Plain white deck
+#4x Crusade,{W}{W}, Enchantment, all white creatures +1/+1
+1341
+1341
+1341
+1341
+#4x Sacred Nectar, {1}{W}, Sorcery, you gain 4 life
+4393
+4393
+4393
+4393
+#4x Glorious Anthem, {1}{W}{W}, Enchantment, Creatures you control get +1/+1
+129572
+129572
+129572
+129572
+#4x Paladin en-Vec, {1}{W}{W}, Creature - Human Knight,2/2, first strike protection from red and black
+129668
+129668
+129668
+129668
+#4x Knight of Meadowgrain,{W}{W}, Creature-Kithin Knight,2/2,first strike,lifelink
+139715
+139715
+139715
+139715
+#4x Wizened Cenn,{W}{W}, Creature - Kithin Cleric,2/2, other kithin get +1/+1
+139716
+139716
+139716
+139716
+#4x Zealous Guardian,{WU}, Creature - Kithin Soldier,1/1,flash
+142028
+142028
+142028
+142028
+#4x Ballynock Cohort,{2}{W},Creature - Kithin Soldier,2/2,First strike, get +1/+1 aslongas you control another white creature
+142045
+142045
+142045
+142045
+#2x Armored Ascension,{3}{W},Enchant creature, +1/+1 for each plains and flying
+146041
+146041
+#2x Oversoul of Dusk,{WG}{WG}{WG}{WG}{WG},5/5, Creature - Spirit avatar, protection from blue,red and black
+146735
+146735
+#4x Thistledown Liege,{1}{WU}{WU}{WU}, 1/3, creature - Kithin Knight, give +1/+1 to blue and white creature you control
+147409
+147409
+147409
+147409
+#20x Plains (10E)
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683
+129683

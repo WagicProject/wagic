@@ -1,0 +1,18 @@
+#Testing That Keldon Warlord's power and toughness change as expected
+MOMIR
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,llanowar elves
+hand:plains
+manapool:{4}
+[PLAYER2]
+[DO]
+plains -momir- keldon warlord
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:plains
+inplay:grizzly bears,llanowar elves,keldon warlord
+[PLAYER2]
+[END]

@@ -125,7 +125,10 @@ class MTGLegendRule:public ListMaintainerAbility{
 class MTGMomirRule:public MTGAbility{
 private:
   int genRandomCreatureId(int convertedCost);
+  static vector<int> pool[20];
+  static int initialized;
 public:
+
   int alreadyplayed;
   MTGAllCards * collection;
   MTGCardInstance * genCreature(int id);

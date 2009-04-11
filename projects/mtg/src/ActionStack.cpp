@@ -445,6 +445,33 @@ void ActionStack::unpackDamageStacks(){
 }
 
 void ActionStack::repackDamageStacks(){
+  std::vector<JGuiObject *>::iterator iter = mObjects.begin() ;
+
+  while( iter != mObjects.end() ){
+    Interruptible * action = ((Interruptible *) *iter);
+    int found = 0;
+    if (action->type == ACTION_DAMAGE){
+      Damage * damage = (Damage *) action;
+      for (int j = 0; j < mCount; j++){
+        Interruptible * action2 = ((Interruptible *)mObjects[j]);
+        if (action2->type == ACTION_DAMAGES){
+          DamageStack * ds = (DamageStack *) action2;
+          for (int k = 0; k< ds->mCount; k++){
+            Damage * dsdamage = ((Damage *)ds->mObjects[k]);
+            if (dsdamage==damage){
+              //Remove(damage);
+              iter = mObjects.erase( iter ) ;
+              found = 1;
+              mCount--;
+            }
+          }
+        }
+      }
+    }
+    if (!found) ++iter;
+  }
+
+/*
   for (int i = mCount-1; i >=0; i--){
     Interruptible * action = ((Interruptible *)mObjects[i]);
     if (action->type == ACTION_DAMAGE){
@@ -465,6 +492,7 @@ void ActionStack::repackDamageStacks(){
       }
     }
   }
+*/
 }
 
 void ActionStack::Update(float dt){
@@ -657,14 +685,18 @@ int ActionStack::CombatDamages(int strike){
 
 //Cleans history of last turn
 int ActionStack::garbageCollect(){
-  for (int i=mCount-1;i>=0; i--){
-    Interruptible * current = ((Interruptible *)mObjects[i]);
-    if (current->state != NOT_RESOLVED){
-      mObjects[i] = mObjects[mCount-1];
-      mCount--;
-      SAFE_DELETE(current);
-    }
+std::vector<JGuiObject *>::iterator iter = mObjects.begin() ;
+
+while( iter != mObjects.end() ){
+  Interruptible * current = ((Interruptible *) *iter);
+  if (current->state != NOT_RESOLVED){
+    iter = mObjects.erase( iter ) ;
+    mCount--;
+    SAFE_DELETE(current);
+  }else {
+    ++iter ;
   }
+}
   return 1;
 }
 

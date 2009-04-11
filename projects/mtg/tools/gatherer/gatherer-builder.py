@@ -19,12 +19,12 @@ import os
 import os.path
 from mtgCommon import *
 
-setinfo=sets['IN']
+setinfo=sets['OD']
 stripReminderText = False
 conffile = open(setinfo['dir'] + ".conf", 'w')
 
-FETCH_IMAGES = False
-# FETCH_IMAGES = True
+#FETCH_IMAGES = False
+FETCH_IMAGES = True
 
 url = "http://ww2.wizards.com/gatherer/Index.aspx?setfilter=%s\\&output=Spoiler" % setinfo['gathname']
 gatherer = urllib.urlopen(url)

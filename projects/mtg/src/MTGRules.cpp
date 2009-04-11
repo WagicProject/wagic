@@ -154,8 +154,23 @@ int MTGBlockRule::testDestroy(){
 // * Momir
 //
 
+int MTGMomirRule::initialized = 0;
+vector<int> MTGMomirRule::pool[20];
+
 MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection):MTGAbility(_id, NULL){
   collection = _collection;
+  if (!initialized){
+    int total_cards = collection->totalCards();
+    for (int i = 0; i < total_cards; i++){
+      MTGCard * card = collection->collection[i];
+      if (card->isACreature()){
+         int convertedCost = card->getManaCost()->getConvertedCost();
+         if (convertedCost>20) continue;
+         pool[convertedCost].push_back(card->getMTGId());
+      }
+    }
+    initialized =1;
+  }
   alreadyplayed = 0;
   aType=MTGAbility::MOMIR;
 }
@@ -207,20 +222,11 @@ MTGCardInstance * MTGMomirRule::genCreature( int id){
 }
 
 int MTGMomirRule::genRandomCreatureId(int convertedCost){
-  Player * p = game->currentlyActing();
-   int total_cards = collection->totalCards();
+   if (convertedCost > 20) return 0;
+   int total_cards = pool[convertedCost].size();
+   if (!total_cards) return 0;
    int start = (rand() % total_cards);
-   int id2 = start;
-   while (id2 < total_cards){
-       MTGCard * card = collection->collection[id2];
-       if (card->isACreature() && card->getManaCost()->getConvertedCost() == convertedCost){
-         return card->getMTGId();
-       }
-       id2++;
-       if (id2 == start) return 0;
-       if (id2 == total_cards) id2 = 0;
-   }
-   return 0;
+   return pool[convertedCost][start];
 }
 
 //The Momir rule is never destroyed

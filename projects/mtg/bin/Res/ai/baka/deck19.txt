@@ -1,0 +1,73 @@
+#Plain Green Elf deck
+#4x Elvish Archers,{1}{G},2/1,Creature Elf,first strike
+1242
+1242
+1242
+1242
+#4x Elvish Champion,{1}{G}{G},2/2,Creature Elf,Other elf gets +1/+1 and forestwalk
+129534
+129534
+129534
+129534
+#4x Blanchwood Armor,{2}{G}, Enchant Creature, give +1/+1 foreach forest you control
+135267
+135267
+135267
+135267
+#2x Wildslayer Elves, {3}{G},3/3, Creature Elf Warrior, Wither
+135436
+135436
+#4x Inperious Perfect,{2}{G}, 2/2 Creature Elf Warrior, gives +1/+1 other elf you control +token 1/1 elf for {T}{G}
+139683
+139683
+139683
+139683
+#2x Dauntless Dourbark,{3}{G},*/*,Creature Treefolk warrior, power/toughness = nb of forest you control
+141851
+141851
+#4x Safehold Elite, {1}{WG},2/2, Creature Elf Scout, Persist
+146077
+146077
+146077
+146077
+#4x Boartusk Liege, {1}{RG}{RG}{RG},3/4, Creature Goblin Knight, tramples & Gives +1/+1 to red&green creatures you control
+147428
+147428
+147428
+147428
+#4x Twinblade Slasher,{G},1/1,Creature Elf Warrior, wither {1}{G}:+2/+2 only once per turn
+153436
+153436
+153436
+153436
+#4X Wilt-Leaf Cavaliers,{WG}{WG}{WG}, 3/4, Creature Elf Knight, Vigilance
+153962
+153962
+153962
+153962
+#4x Cylian Elf,{1}{G},2/2,Creature Elf Scout
+174935
+174935
+174935
+174935
+#20x Forest
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560
+129560

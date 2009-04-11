@@ -253,7 +253,8 @@ int AIPlayer::interruptIfICan(){
   GameObserver * g = GameObserver::GetInstance();
 
   if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
-      g->mLayers->stackLayer()->setIsInterrupting(this);
+      if (!clickstream.empty()) g->mLayers->stackLayer()->cancelInterruptOffer();
+      else g->mLayers->stackLayer()->setIsInterrupting(this);
       return 1;
   }
   return 0;

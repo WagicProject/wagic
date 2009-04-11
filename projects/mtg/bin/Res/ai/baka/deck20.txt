@@ -1,0 +1,74 @@
+#Plain Black deck
+#4x Bad Moon,{1}{B}, Enchantment, all black creature gets +1/+1
+1144
+1144
+1144
+1144
+#4x Black knight,{B}{B}, Creature Knight,2/2, first strike protection from white
+1145
+1145
+1145
+1145
+#4x Erg Raiders,{1}{B},2/3, does 2 damage to controller if you do not attack with
+1159
+1159
+1159
+1159
+#2x Ascendant Evincar,{4}{B}{B},3/3, Legendary Creature Vampire,Flying all black creature get +1/+1 other -1/-1
+106525
+106525
+#4x Hypnotic Specter,{1}{B}{B},2/2, Creature Specter, Flying opponent discard a card if damaged by HS
+129600
+129600
+129600
+129600
+#4x Unholy Strengh, {B}, Enchant creature, gives +2/+1
+129780
+129780
+129780
+129780
+#2x terror, {1}{B}, bury target non black, non artifact creature
+135199
+135199
+#2xEyeblight's Ending,{2}{B},destroy target non-elf creature
+139449
+139449
+#4x Oona's Gatewarden, {UB},2/1, flying defender wither
+141975
+141975
+141975
+141975
+#4x Glen Elendra Liege,{1}{UB}{UB}{UB}, Creature Faerie Knight, flying 2/3 lord(creature[black;blue]|myinplay) 1/1 
+146743
+146743
+146743
+146743
+#2x Wasp Lancer, {UB}{UB}{UB}, Creature Faerie Soldier,3/2,flying
+153967
+153967
+#4x Nyxathid,{1}{B}{B}, Creature Elemental, pow/thg = 7-nb cards opponent
+186616
+186616
+186616
+186616
+#20x Swamp (10E)
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
+129754
