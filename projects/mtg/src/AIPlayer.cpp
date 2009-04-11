@@ -396,6 +396,14 @@ int AIPlayer::chooseAttackers(){
   return 1;
 }
 
+/* Can I first strike my oponent and get away with murder ? */
+int AIPlayer::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy){
+  if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE)) return 0;
+  if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE))) return 0;
+  if (!card->power >= ennemy->toughness) return 0;
+  return 1;
+}
+
 int AIPlayer::chooseBlockers(){
   map<MTGCardInstance *, int> opponentsToughness;
   int opponentForce = getCreaturesInfo(opponent(),INFO_CREATURESPOWER);
@@ -408,9 +416,10 @@ int AIPlayer::chooseBlockers(){
   cd.tapped = -1;
   MTGCardInstance * card = NULL;
   GameObserver * g = GameObserver::GetInstance();
+  MTGAbility * a =  g->mLayers->actionLayer()->getAbility(MTGAbility::MTG_BLOCK_RULE);
+
   while((card = cd.nextmatch(game->inPlay, card))){
-    g->cardClick(card);
-    if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
+    g->mLayers->actionLayer()->reactToClick(a,card);
     int set = 0;
     while(!set){
       if (!card->defenser){
@@ -426,8 +435,7 @@ int AIPlayer::chooseBlockers(){
 	        opponentsToughness[attacker]-= card->power;
 	        set = 1;
 	    }else{
-      g->cardClick(card);
-      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
+      g->mLayers->actionLayer()->reactToClick(a,card);
 	}
       }
     }
@@ -437,25 +445,24 @@ int AIPlayer::chooseBlockers(){
     if (card->defenser && opponentsToughness[card->defenser] > 0){
       while (card->defenser){
         
-        g->cardClick(card);
-        if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
+        g->mLayers->actionLayer()->reactToClick(a,card);
       }
     }
   }
   card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
     if(!card->defenser){
-      g->cardClick(card);
-      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
+      g->mLayers->actionLayer()->reactToClick(a,card);
       int set = 0;
       while(!set){
 	if (!card->defenser){
 	  set = 1;
 	}else{
 	  MTGCardInstance * attacker = card->defenser;
-	  if (opponentsToughness[attacker] <= 0 || (card->toughness <= card->defenser->power && opponentForce*2 <life)  || card->defenser->nbOpponents()>1){
-      g->cardClick(card);
-      if (g->mLayers->actionLayer()->menuObject) g->mLayers->actionLayer()->doReactTo(0);
+	  if (opponentsToughness[attacker] <= 0 || 
+    (card->toughness <= card->defenser->power && opponentForce*2 <life  && !canFirstStrikeKill(card,card->defenser))  || 
+    card->defenser->nbOpponents()>1){
+      g->mLayers->actionLayer()->reactToClick(a,card);
 	  }else{
 	    set = 1;
 	  }

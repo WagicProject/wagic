@@ -173,6 +173,7 @@ MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection):MTGAbility(_id, N
   }
   alreadyplayed = 0;
   aType=MTGAbility::MOMIR;
+  textAlpha = 0;
 }
 
 int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
@@ -211,6 +212,8 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId){
   spell->source->isToken = 1;
   delete spell;
 	alreadyplayed = 1;
+  textAlpha = 255;
+  text = card->name;
   return 1;
 }
 
@@ -238,5 +241,17 @@ void MTGMomirRule::Update(float dt){
   if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
     alreadyplayed = 0;
   }
+  if (textAlpha){
+    textAlpha -= (200*dt);
+    if (textAlpha <0) textAlpha = 0;
+  }
   MTGAbility::Update(dt);
+}
+
+void MTGMomirRule::Render(){
+  if (!textAlpha) return;
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+  mFont->SetScale(2 - (float)textAlpha/130);
+  mFont->SetColor(ARGB(textAlpha,255,255,255));
+  mFont->DrawString(text.c_str(),SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
 }

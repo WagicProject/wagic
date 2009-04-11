@@ -429,6 +429,7 @@ void GameStateDuel::Render()
 	        }
 	        sprintf(buffer, "Player %i wins (%i)", winner, p0life );
 	      }
+        mFont->SetScale(1);
 	      mFont->DrawString(buffer, 10, 150);
         if (unlockedQuad){
           r->RenderQuad(unlockedQuad, 20, 20);

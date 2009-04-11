@@ -118,6 +118,7 @@ MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
   MTGCardInstance * copy = NULL;
   GameObserver *g = GameObserver::GetInstance();
+  if (!from || !to) return card; //Error check
 
   if (copy = from->removeCard(card)){
 
@@ -145,6 +146,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     delete e;
     return copy;
   }
+  return card; //Error
 }
 
 void MTGPlayerCards::discardRandom(MTGGameZone * from){

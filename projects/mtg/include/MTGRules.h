@@ -127,6 +127,9 @@ private:
   int genRandomCreatureId(int convertedCost);
   static vector<int> pool[20];
   static int initialized;
+
+  int textAlpha;
+  string text;
 public:
 
   int alreadyplayed;
@@ -134,6 +137,7 @@ public:
   MTGCardInstance * genCreature(int id);
   int testDestroy();
   void Update(float dt);
+  void Render();
   MTGMomirRule(int _id, MTGAllCards * _collection);
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);

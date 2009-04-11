@@ -18,6 +18,7 @@ generic/wither.txt
 #Specific Cards
 ########################
 afflict.txt
+Amugaba.txt
 anarchy.txt
 animate_dead.txt
 animate_dead2.txt

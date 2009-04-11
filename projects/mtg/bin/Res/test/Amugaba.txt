@@ -1,0 +1,19 @@
+#text=Flying. {2}{U}, Discard a card from your hand: Return Amugaba to its owner's hand. 
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:swamp
+inplay:Amugaba
+manapool:{2}{U}
+[PLAYER2]
+[DO]
+Amugaba
+Swamp
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:Amugaba
+graveyard:Swamp
+manapool:{0}
+[PLAYER2]
+[END]

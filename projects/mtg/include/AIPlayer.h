@@ -55,6 +55,7 @@ class AIPlayer: public Player{
   int interruptIfICan();
   int chooseAttackers();
   int chooseBlockers();
+  int canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
   int effectBadOrGood(MTGCardInstance * card);
   int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
   AIStats * getStats();

@@ -270,6 +270,45 @@ public:
   }
 };
 
+
+//Moves Cards from a zone to another
+//TODO: this looks awfully similar to the equivalent targetAbility...woudln't there be a way to merge them ?
+class AZoneSelfMover:public ActivatedAbility{
+
+public:
+  string destinationZone;
+
+   AZoneSelfMover(int _id, MTGCardInstance * _source,string destZone, ManaCost * _cost = NULL, int _tap=0):ActivatedAbility(_id,_source,_cost,0,_tap){
+    destinationZone = destZone;
+  }
+
+  int resolve(){
+    MTGCardInstance * _target = source;
+    if(_target){
+      Player* p = _target->controller();
+      if (p){
+        MTGGameZone * fromZone = _target->getCurrentZone();
+        MTGGameZone * destZone = MTGGameZone::stringToZone(destinationZone, source,_target);
+        //inplay is a special zone !
+        for (int i=0; i < 2; i++){
+          if (destZone == game->players[i]->game->inPlay){
+              MTGCardInstance * copy = game->players[i]->game->putInZone(_target,  fromZone, game->players[i]->game->stack);
+              Spell * spell = NEW Spell(copy);
+              
+              spell->resolve();
+              delete spell;
+              return 1;
+          }
+        }        
+        p->game->putInZone(_target,fromZone,destZone);
+      }
+      return 1;
+    }
+    return 0;
+  }
+};
+
+
 //Copier. TargetAbility
 class ACopier:public TargetAbility{
  public:
