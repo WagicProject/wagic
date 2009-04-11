@@ -265,6 +265,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Credits.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Damage.cpp"
 				>
 			</File>
@@ -575,6 +579,10 @@
 			</File>
 			<File
 				RelativePath=".\include\Counters.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Credits.h"
 				>
 			</File>
 			<File

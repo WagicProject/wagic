@@ -73,6 +73,7 @@ int GameObserver::enteringPhase(int phase){
 }
 
 void GameObserver::nextPlayer(){
+  turn++;
   currentPlayerId = (currentPlayerId+1)%nbPlayers;
   currentPlayer = players[currentPlayerId];
   currentActionPlayer = currentPlayer;
@@ -83,6 +84,7 @@ void GameObserver::nextGamePhase(){
   Phase * cPhase = phaseRing->getCurrentPhase();
   currentGamePhase = cPhase->id;
   if (currentPlayer != cPhase->player) nextPlayer();
+
 
   //init begin of turn
   if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN){
@@ -153,6 +155,7 @@ void GameObserver::startGame(int shuffle, int draw){
   for (i=0; i<nbPlayers; i++){
     players[i]->game->initGame(shuffle, draw);
   }
+  turn = 0;
   phaseRing->goToPhase(Constants::MTG_PHASE_FIRSTMAIN, players[0]);
   currentGamePhase = Constants::MTG_PHASE_FIRSTMAIN;
 

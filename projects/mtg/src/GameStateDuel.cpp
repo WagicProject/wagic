@@ -7,6 +7,7 @@
 #include "../include/PlayerData.h"
 #include "../include/DeckStats.h"
 #include "../include/MTGRules.h"
+#include "../include/Credits.h"
 
 #ifdef TESTSUITE
 #include "../include/TestSuiteAI.h"
@@ -49,9 +50,8 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
 #ifdef TESTSUITE
   testSuite = NULL;
 #endif
-  showMsg = 0;
-  unlockedTex = NULL;
-  unlockedQuad = NULL;
+
+  credits = NULL;
 }
 
 GameStateDuel::~GameStateDuel() {
@@ -72,12 +72,12 @@ void GameStateDuel::Start()
 
 
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
+  credits = NEW Credits();
 
   mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   mFont->SetBase(0);	
   opponentMenuFont = mFont;
 
-  unlocked = -1;
 
 
   menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
@@ -199,8 +199,8 @@ void GameStateDuel::End()
     SAFE_DELETE(deck[i]);
   }
 
-  SAFE_DELETE(unlockedQuad);
-  SAFE_DELETE(unlockedTex);
+  SAFE_DELETE(credits);
+
   SAFE_DELETE(menu);
   SAFE_DELETE(opponentMenu);
 #ifdef TESTSUITE
@@ -326,37 +326,8 @@ void GameStateDuel::Update(float dt)
       }
       game->Update(dt);
       if (game->gameOver){
-      showMsg = (rand() % 5);
-	if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() && mPlayers[0]!= game->gameOver){
-	  PlayerData * playerdata = NEW PlayerData(mParent->collection);
-	  playerdata->credits+= 500;
-	  playerdata->save();
-	  delete playerdata;
-    if (unlocked == -1){
-      unlocked = isDifficultyUnlocked();
-      if (unlocked){
-        unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/unlocked.png", TEX_TYPE_USE_VRAM); 
-        unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
-        GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
-        GameOptions::GetInstance()->save();
-      }else{
-        unlocked = isMomirUnlocked();
-        if (unlocked){
-          unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/momir_unlocked.png", TEX_TYPE_USE_VRAM); 
-          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
-          GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED] = GameOption(1);
-          GameOptions::GetInstance()->save();
-        }
-      }
-      if (unlocked){
-        JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
-        if (sample) JSoundSystem::GetInstance()->PlaySample(sample); 
-      }
-    }
-  }else{
-      unlocked = 0;
-  }
-	mGamePhase = DUEL_STATE_END;
+        credits->compute(mPlayers[0],mPlayers[1], mParent);
+	      mGamePhase = DUEL_STATE_END;
 #ifdef TESTSUITE
 	if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
 	  if (testSuite->loadNext()){
@@ -413,36 +384,7 @@ void GameStateDuel::Render()
       {
         JRenderer * r = JRenderer::GetInstance();
 	      r->ClearScreen(ARGB(200,0,0,0));
-	      char buffer[50];
-	      int p0life = mPlayers[0]->life;
-	      if (!mPlayers[0]->isAI() && mPlayers[1]->isAI() ){
-	        if (game->gameOver != mPlayers[0]){
-	          sprintf (buffer, "Victory! Congratulations, You earn 500 credits");
-            
-          }else{
-	          sprintf (buffer, "You have been defeated");
-	        }
-	      }else{
-	        int winner = 2;
-	        if (game->gameOver !=mPlayers[0]){
-	          winner = 1;
-	        }
-	        sprintf(buffer, "Player %i wins (%i)", winner, p0life );
-	      }
-        mFont->SetScale(1);
-	      mFont->DrawString(buffer, 10, 150);
-        if (unlockedQuad){
-          r->RenderQuad(unlockedQuad, 20, 20);
-        }
-        if (showMsg == 1){
-            JLBFont * f = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
-            mFont->DrawString("Please support this project !" ,10,180);
-            f->DrawString("Wagic is free, open source, and developed on the little free time I have" ,10,196);
-            f->DrawString("If you enjoy this game, please consider donating a few bucks" ,10,208);
-            f->DrawString("I'll drink a beer in your name!" ,10,220);
-            f->DrawString("Thanks in advance for your support." ,10,232);
-            mFont->DrawString("-> http://wololo.net/wagic" ,10,244);
-        }
+	      credits->Render();
 	      break;
       }
     case DUEL_STATE_CHOOSE_DECK1:
@@ -519,35 +461,4 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         }
       }
   }
-}
-
-int GameStateDuel::isDifficultyUnlocked(){
-  if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()) return 0;
-  nbAIDecks = 0;
-  int found = 1;
-  int wins = 0;
-  DeckStats * stats = DeckStats::GetInstance();
-  stats->load(mPlayers[0]);
-  while (found){
-    found = 0;
-    char buffer[512];
-    char aiSmallDeckName[512];
-    sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbAIDecks+1);
-    if(fileExists(buffer)){
-      found = 1;
-      nbAIDecks++;
-      sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks); 
-      int percentVictories = stats->percentVictories(string(aiSmallDeckName));
-      if (percentVictories >=67) wins++;
-      if (wins >= 10) return 1;
-    }
-  }
-  return 0;
-}
-
-int GameStateDuel::isMomirUnlocked(){
-  if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) return 0;
-  Player *p = mPlayers[0];
-  if (p->game->inPlay->countByType("land") == 8) return 1;
-  return 0;
 }

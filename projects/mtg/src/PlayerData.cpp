@@ -25,7 +25,7 @@ PlayerData::PlayerData(MTGAllCards * allcards){
 
 int PlayerData::save(){
   std::ofstream file(PLAYER_SAVEFILE);
-  char writer[10];
+  char writer[64];
   if (file){
     sprintf(writer,"%i\n", credits);
     file<<writer;

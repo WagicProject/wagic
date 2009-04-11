@@ -11,6 +11,7 @@
 #ifdef TESTSUITE
 class TestSuite;
 #endif
+class Credits;
 
 class GameStateDuel: public GameState, public JGuiListener
 {
@@ -18,7 +19,7 @@ class GameStateDuel: public GameState, public JGuiListener
 #ifdef TESTSUITE
   TestSuite * testSuite;
 #endif
-  int showMsg;
+  Credits * credits;
   int mGamePhase;
   Player * mCurrentPlayer;
   Player * mPlayers[2];
@@ -29,11 +30,8 @@ class GameStateDuel: public GameState, public JGuiListener
   SimpleMenu * menu;
   JLBFont* mFont, *opponentMenuFont;
   int nbAIDecks;
-  int unlocked;
-  JQuad * unlockedQuad;
-  JTexture * unlockedTex;
-  int isDifficultyUnlocked();
-  int isMomirUnlocked();
+
+
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
   void loadPlayerMomir(int playerId, int isAI);
  public:

@@ -34,6 +34,7 @@ class GameObserver{
 
   
  public:
+  int turn;
   int targetListIsSet(MTGCardInstance * card);
   PhaseRing * phaseRing;
   int cancelCurrentAction();
