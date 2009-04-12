@@ -843,6 +843,10 @@ class AProtectionFrom:public MTGAbility{
     return 1;
   }
 
+  ~AProtectionFrom(){
+    delete(cd);
+  }
+
 };
 
 //Aura Enchantments that provide controller of target life or damages at a given phase of their turn
@@ -979,7 +983,6 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
 //Lords (Merfolk lord...) give power and toughness to OTHER creatures of their type, they can give them special abilities, regeneration
 class ALord:public ListMaintainerAbility{
  public:
-  TargetChooser * tc;
   int power, toughness;
   int ability;
   int modifier;
@@ -1035,7 +1038,6 @@ class ALord:public ListMaintainerAbility{
 //Foreach (plague rats...)
 class AForeach:public ListMaintainerAbility{
  public:
-  TargetChooser * tc;
   int power, toughness;
   int includeSelf;
  AForeach(int _id, MTGCardInstance * card,MTGCardInstance * _target, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0):ListMaintainerAbility(_id,card,_target){
@@ -2780,7 +2782,6 @@ class AMinionofLeshrac: public TargetAbility{
 //Generic Kird Ape
 class AKirdApe:public ListMaintainerAbility{
  public:
-  TargetChooser * tc;
   int power;
   int toughness;
   int ability;
@@ -2822,9 +2823,6 @@ class AKirdApe:public ListMaintainerAbility{
    return 0;
  }
  
- ~AKirdApe(){
-   delete tc;
- }
 
 };
 

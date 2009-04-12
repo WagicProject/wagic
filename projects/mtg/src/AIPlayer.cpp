@@ -39,6 +39,7 @@ AIPlayer::~AIPlayer(){
     stats->save();
     SAFE_DELETE(stats);
   }
+  //TODO delete clickstream!
 }
 MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random){
   for (int i = 0; i < game->hand->nb_cards; i++){

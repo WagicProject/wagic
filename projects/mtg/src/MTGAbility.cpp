@@ -94,13 +94,16 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
     for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
       found = magicText.find(Constants::MTGPhaseCodeNames[i]);
       if (found != string::npos){
-	return NEW TriggerNextPhase(i);
+	      return NEW TriggerNextPhase(i);
       }
     }
   }
 
   return NULL;
 }
+
+
+
 
 //Some basic functionalities that can be added automatically in the text file
 /*
@@ -114,6 +117,9 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
 int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
   int dryMode = 0;
   if (!spell) dryMode = 1;
+  int dryModeResultSet = 0;
+  int dryModeResult = 0;
+
   GameObserver * game = GameObserver::GetInstance();
   if (!card) card = spell->source;
   MTGCardInstance * target = card->target;
@@ -165,6 +171,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     //Tap in the cost ?
     if (line.find("{t}") != string::npos) doTap = 1;
 
+    TargetChooser * tc;
+    TargetChooser * lordTargets;
+    Trigger * trigger;
     while (line.size()){
       string s;
       found = line.find("&&");
@@ -173,8 +182,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         line = line.substr(found+2);
         if (!multi){
           OutputDebugString("Multi initializing\n");
-          multi = NEW MultiAbility(id, card, cost,doTap);
-          game->addObserver(multi);
+          if (!dryMode) {
+            multi = NEW MultiAbility(id, card, cost,doTap);
+            game->addObserver(multi);
+          }
           OutputDebugString("Multi initialized\n");
         }
       }else{
@@ -182,14 +193,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         line = "";
       }
 
-      TargetChooser * tc = NULL;
-
-      TargetChooser * lordTargets = NULL;
+      tc = NULL;
+      lordTargets = NULL;
       int lordIncludeSelf = 1;
       int lordType = 0;
       string lordTargetsString;
 
-      Trigger * trigger = parseTrigger(s);
+      trigger = parseTrigger(s);
       //Dirty way to remove the trigger text (could get in the way)
       if (trigger){
         found = s.find(":");
@@ -210,7 +220,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //Lord
       found = s.find("lord(");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
         unsigned int end = s.find(")", found+5);
         if (end != string::npos){
 	        lordTargetsString = s.substr(found+5,end-found-5).c_str();
@@ -219,7 +233,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       }
       found = s.find("foreach(");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
         unsigned int end = s.find(")", found+8);
         if (end != string::npos){
 	        lordTargetsString = s.substr(found+8,end-found-8).c_str();
@@ -228,7 +246,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       }
       found = s.find("aslongas(");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
         unsigned int end = s.find(")", found+9);
         if (end != string::npos){
 	        lordTargetsString = s.substr(found+9,end-found-9).c_str();
@@ -245,7 +267,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //Untapper (Ley Druid...)
       found = s.find("untap");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
         if (tc){
 	        game->addObserver(NEW AUntaper(id, card, cost, tc));
         }else{
@@ -259,7 +285,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //Regeneration
       found = s.find("}:regenerate");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
 
         if (lordTargets){
 	        game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,-1,cost));
@@ -279,7 +309,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //Token creator. Name, type, p/t, abilities
       found = s.find("token(");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
         int end = s.find(",", found);
         string sname = s.substr(found + 6,end - found - 6);
         int previous = end+1;
@@ -310,7 +344,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //MoveTo Move a card from a zone to another
       found = s.find("moveto(");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_BAD; //TODO : depends on where from, where to...
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_BAD;
+          dryModeResultSet = 1;
+          break;
+        } //TODO : depends on where from, where to...
 	      int end = s.find(")",found+1);
 	      string szone = s.substr(found + 7,end - found - 7);
         if (tc){
@@ -343,7 +381,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //Copy a target
       found = s.find("copy ");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD; //TODO : 
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        } //TODO : 
         if (tc){
             ACopier * a = NEW ACopier(id,card,tc,cost);
             if (may){
@@ -363,7 +405,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       found = s.find("bury");
       if (found != string::npos){
         if (trigger){
-	        if (dryMode) return BAKA_EFFECT_BAD;
+          if (dryMode) {
+            dryModeResult = BAKA_EFFECT_BAD;
+            dryModeResultSet = 1;
+            break;
+          }
 	        BuryEvent * action = NEW BuryEvent();
 	        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
         }else{
@@ -379,8 +425,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
               int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
               int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
               delete targetAll;
-              if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
-              return BAKA_EFFECT_BAD;
+              if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) dryModeResult =  BAKA_EFFECT_GOOD;
+              else dryModeResult =  BAKA_EFFECT_BAD;
+              break;
             }else{
               if (cost){
                 game->addObserver(NEW AAllDestroyer(id, card,targetAll,1,cost,doTap));
@@ -390,7 +437,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
               }
             }
 	        }else{
-	          if (dryMode) return BAKA_EFFECT_BAD;
+            if (dryMode){
+              dryModeResult = BAKA_EFFECT_BAD;
+              break;
+            }
 	          if (tc){
 	            game->addObserver(NEW ABurier(id, card,tc));
 	          }else{
@@ -418,8 +468,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	          int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
 	          int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
 	          delete targetAll;
-	          if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) return BAKA_EFFECT_GOOD;
-	          return BAKA_EFFECT_BAD;
+	          if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) dryModeResult =  BAKA_EFFECT_GOOD;
+            else dryModeResult =  BAKA_EFFECT_BAD;
+            break;
 	        }else{
              if (cost){
                 game->addObserver(NEW AAllDestroyer(id, card,targetAll,0,cost,doTap));
@@ -429,7 +480,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
               }
 	        }
         }else{
-	        if (dryMode) return BAKA_EFFECT_BAD;
+          if (dryMode){
+            dryModeResult =  BAKA_EFFECT_BAD;
+            break;
+          }
 	        if (tc){
 	          game->addObserver(NEW ADestroyer(id, card,tc,0,cost));
 	        }else{
@@ -452,7 +506,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         }else{
 	        damage = atoi(s.substr(start+1).c_str());
         }
-        if (dryMode) return BAKA_EFFECT_BAD;
+        if (dryMode){
+            dryModeResult =  BAKA_EFFECT_BAD;
+            break;
+        }
         if (tc){
 	        MTGAbility * a = NEW ADamager(id, card, cost, damage, tc,doTap);
           if (multi){
@@ -485,7 +542,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         }else{
 	        life = atoi(s.substr(start+1).c_str());
         }
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode){
+          dryModeResult =  BAKA_EFFECT_GOOD;
+          break;
+        }
         if (tc){
 	        //TODO ?
         }else{
@@ -510,7 +570,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         }else{
 	        nbcards = atoi(s.substr(start+1).c_str());
         }
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode){
+          dryModeResult =  BAKA_EFFECT_GOOD;
+          break;
+        }
         if (trigger){
 	        DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
 	        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
@@ -533,8 +596,12 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       int power, toughness;
       if ( parsePowerToughness(s,&power, &toughness)){
         if (dryMode){
-	        if (power >=0 && toughness >= 0 ) return BAKA_EFFECT_GOOD;
-	        return BAKA_EFFECT_BAD;
+	        if (power >=0 && toughness >= 0 ) {
+            dryModeResult =  BAKA_EFFECT_GOOD;
+          }else{
+            dryModeResult =  BAKA_EFFECT_BAD;
+          }
+          break;
         }
         int limit = 0;
         unsigned int limit_str = s.find("limit:");
@@ -573,7 +640,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       //Mana Producer
       found = s.find("add");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode){
+          dryModeResult =  BAKA_EFFECT_GOOD;
+          break;
+        }
         ManaCost * input = ManaCost::parseManaCost(s.substr(0,found));
         ManaCost * output = ManaCost::parseManaCost(s.substr(found));
         if (!input->isNull() || doTap){
@@ -604,42 +674,48 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        if (found > 0 && s[found-1] == '-') modifier = 0;
 	        if (dryMode){
 	          if (j == Constants::DEFENDER){
-	            if (modifier == 1) return BAKA_EFFECT_BAD;
-	            return BAKA_EFFECT_GOOD;
+	            if (modifier == 1) dryModeResult = BAKA_EFFECT_BAD;
+	            else dryModeResult = BAKA_EFFECT_GOOD;
 	          }else{
-	            if (modifier == 1) return BAKA_EFFECT_GOOD;
-	            return BAKA_EFFECT_BAD;
+	            if (modifier == 1) dryModeResult = BAKA_EFFECT_GOOD;
+              else dryModeResult = BAKA_EFFECT_BAD;
 	          }
-	        }
-
-	        if (lordType == PARSER_LORD){
-	          game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,j,0,modifier));
-	        }else if (lordType == PARSER_ASLONGAS){
-	            game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,0,0,j,modifier));
+            dryModeResultSet = 1;
+            break;
           }else{
-	          if (tc){
-	            game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc, modifier));
-	          }else{
-	            if (!cost){
-	              if(card->hasType("enchantment")){
-		              game->addObserver(NEW ABasicAbilityModifier(id, card,target, j,modifier));
-	              }else{
-		              game->addObserver(NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier));
-	              }
+	          if (lordType == PARSER_LORD){
+	            game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,j,0,modifier));
+	          }else if (lordType == PARSER_ASLONGAS){
+	              game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,0,0,j,modifier));
+            }else{
+	            if (tc){
+	              game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc, modifier));
 	            }else{
-	              game->addObserver(NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, cost,j,modifier));
+	              if (!cost){
+	                if(card->hasType("enchantment")){
+		                game->addObserver(NEW ABasicAbilityModifier(id, card,target, j,modifier));
+	                }else{
+		                game->addObserver(NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier));
+	                }
+	              }else{
+	                game->addObserver(NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, cost,j,modifier));
+	              }
 	            }
 	          }
-	        }
-	        result++;
-	        continue;
+	          result++;
+	          continue;
+          }
         }
       }
+      if (dryModeResultSet) break;
 
       //Tapper (icy manipulator)
       found = s.find("tap");
       if (found != string::npos){
-        if (dryMode) return BAKA_EFFECT_GOOD;
+        if (dryMode){
+          dryModeResult = BAKA_EFFECT_GOOD;
+          break;
+        }
         if (tc){
           game->addObserver(NEW ATapper(id, card, cost, tc));
         }else{
@@ -653,8 +729,17 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     sprintf(buf, "AUTO ACTION PARSED: %s\n", line.c_str());
     OutputDebugString(buf);
 #endif
+    } 
+    if (dryMode){
+      SAFE_DELETE(tc);
+      SAFE_DELETE(lordTargets);
+      SAFE_DELETE(multi);
+      SAFE_DELETE(cost);
+      SAFE_DELETE(trigger);
+      return dryModeResult;
     }
   }
+
   return result;
 }
 
@@ -1597,7 +1682,7 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Damageable * _target ):
 }
 
 MTGAbility::~MTGAbility(){
-
+  SAFE_DELETE(cost);
 }
 
 //returns 1 if this ability needs to be removed from the list of active abilities
@@ -1687,9 +1772,6 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
 }
 
 
-ActivatedAbility::~ActivatedAbility(){
-  if (cost) delete cost;
-}
 
 //The whole targetAbility mechanism is messed up, mainly because of its interactions with 
 // the ActionLayer, GameObserver, and parent class ActivatedAbility.

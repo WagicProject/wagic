@@ -1,0 +1,20 @@
+PSPSDK=$(shell psp-config --pspsdk-path)
+PSPDIR=$(shell psp-config --psp-prefix)
+TARGET_LIB = libhgetools.a
+OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
+       src/hge/hgerect.o src/hge/hgevector.o \
+       src/hge/hgedistort.o src/hge/hgefont.o
+
+
+INCDIR = include/psp include/psp/freetype2
+LIBDIR = lib/psp
+
+CFLAGS = -O2 -G0 -Wall
+
+LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++ -ljge300
+
+include $(PSPSDK)/lib/build.mak
+
+install: $(TARGET_LIB)
+	@cp libhgetools.a  lib/psp
+	@echo "Done"

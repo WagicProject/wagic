@@ -66,8 +66,8 @@ void ActionLayer::Update(float dt){
     if (mObjects[i]!= NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];
       if (currentAction->testDestroy()){
-	currentAction->destroy();
-	Remove(currentAction);
+	      currentAction->destroy();
+	      Remove(currentAction);
       }
     }
   }

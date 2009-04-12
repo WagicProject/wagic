@@ -66,7 +66,7 @@ void GameStateDuel::Start()
 
 
 #ifdef TESTSUITE
-  if (testSuite) delete testSuite;
+  SAFE_DELETE(testSuite);
   testSuite = NEW TestSuite(RESPATH"/test/_tests.txt",mParent->collection);
 #endif
 

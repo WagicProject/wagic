@@ -8,220 +8,204 @@
 
 
 TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInstance * card){
+  if (!s.size()) return NULL;
+
   GameObserver * game = GameObserver::GetInstance();
   MTGGameZone * zones[10];
   int nbzones = 0;
-  int size = s.size();
-  if (size != 0){
-    unsigned int found;
-    found = s.find("player");
-    if (found != string::npos){
-      int maxtargets = 1;
-      unsigned int several = s.find_first_of('s',5);
-      if (several != string::npos) maxtargets = -1;
-      found = s.find("creature");
+  unsigned int found;
+
+  found = s.find("player");
+  if (found != string::npos){
+    int maxtargets = 1;
+    unsigned int several = s.find_first_of('s',5);
+    if (several != string::npos) maxtargets = -1;
+    found = s.find("creature");
+    if (found != string::npos) return NEW DamageableTargetChooser(card,maxtargets); //Any Damageable target (player, creature)
+    return NEW PlayerTargetChooser(card,maxtargets); //Any player
+  }
+
+  string s1;
+  found = s.find("|");
+  if (found != string::npos){
+    string s2;
+    s1 = s.substr(0,found);
+    s2 = s.substr(found+1);
+    while(s2.size()){
+      found = s2.find(",");
+      string zoneName;
       if (found != string::npos){
-	return NEW DamageableTargetChooser(card,maxtargets); //Any Damageable target (player, creature)
+        zoneName = s2.substr(0,found);
+        s2 = s2.substr(found+1);
       }else{
-	return NEW PlayerTargetChooser(card,maxtargets); //Any player
+        zoneName = s2;
+        s2 = "";
+      }
+      zones[nbzones] = game->currentlyActing()->game->inPlay;
+    
+      //Graveyards
+      if(zoneName.compare("graveyard") == 0){
+        zones[nbzones] = game->players[0]->game->graveyard;
+        nbzones++;
+        zones[nbzones] = game->players[1]->game->graveyard;
+      }else if(zoneName.compare("inplay") == 0){
+          zones[nbzones] = game->players[0]->game->inPlay;
+          nbzones++;
+          zones[nbzones] = game->players[1]->game->inPlay;
+      }else{
+          MTGGameZone * zone = MTGGameZone::stringToZone(zoneName, card,card);
+          if (zone) zones[nbzones] = zone;
+      }
+      nbzones++;
+    }
+  }else{
+    s1 = s;
+    nbzones = 2;
+    zones[0]= game->players[0]->game->inPlay;
+    zones[1]= game->players[1]->game->inPlay;
+  }
+
+  TargetChooser * tc = NULL;
+  int maxtargets = 1;
+  CardDescriptor * cd = NULL;
+
+  while(s1.size()){
+    found = s1.find(",");
+    string typeName;
+    if (found != string::npos){
+      typeName = s1.substr(0,found);
+      s1 = s1.substr(found+1);
+    }else{
+      typeName = s1;
+      s1 = "";
+    }
+
+    //Advanced cards caracteristics ?
+    found = typeName.find("[");
+    if (found != string::npos){
+      int nbminuses = 0;
+      int end = typeName.find("]");
+#ifdef WIN32
+      OutputDebugString("Advanced Attributes 1 \n");
+#endif
+      string attributes = typeName.substr(found+1,end-found-1);
+#ifdef WIN32
+      OutputDebugString(attributes.c_str());
+      OutputDebugString("\n");
+#endif
+      cd = NEW CardDescriptor();
+      while(attributes.size()){
+        unsigned int found2 = attributes.find(";");
+        string attribute;
+        if (found2 != string::npos){
+          attribute = attributes.substr(0,found2);
+          attributes = attributes.substr(found2+1);
+        }else{
+          attribute = attributes;
+          attributes = "";
+        }
+        int minus = 0;
+        if (attribute[0] == '-'){
+#ifdef WIN32
+          OutputDebugString("MINUS\n");
+#endif
+          minus = 1;
+          nbminuses++;
+          attribute=attribute.substr(1);
+        }
+#ifdef WIN32
+        OutputDebugString(attribute.c_str());
+        OutputDebugString("\n");
+#endif
+        //Attacker
+        if (attribute.find("attacking") != string::npos){
+          if (minus){
+	          cd->attacker = -1;
+          }else{
+	          cd->attacker = 1;
+          }
+          //Blocker
+        }else if (attribute.find("blocking") != string::npos){
+          if (minus){
+	          cd->defenser = (MTGCardInstance *)-1; //Oh yeah, that's ugly....
+          }else{
+	          cd->defenser = (MTGCardInstance *)1;
+          }
+        //Tapped, untapped
+        }else if (attribute.find("tapped") != string::npos){
+          if (minus){
+	          cd->tapped = -1;
+          }else{
+	          cd->tapped = 1;
+          }
+        }else{
+          int attributefound = 0;
+          //Colors
+          for (int cid = 0; cid < Constants::MTG_NB_COLORS; cid++){
+	          if (attribute.find(Constants::MTGColorStrings[cid]) != string::npos){
+	            attributefound = 1;
+	            if (minus){
+	              cd->colors[cid] = -1;
+	            }else{
+	              cd->colors[cid] = 1;
+	            }
+	          }
+          }
+          if (!attributefound){
+	          //Abilities
+	          for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+	            if (attribute.find(Constants::MTGBasicAbilities[j]) != string::npos){
+	              attributefound = 1;
+	              if (minus){
+	                cd->basicAbilities[j] = -1;
+	              }else{
+	                cd->basicAbilities[j] = 1;
+	              }
+	            }
+	          }
+          }
+
+          if (!attributefound){
+	          //Subtypes
+	          if (minus){
+	            cd->setNegativeSubtype(attribute);
+	          }else{
+	            cd->setSubtype(attribute);
+	          }
+          }
+        }
+      }
+      if (nbminuses == 0) cd->mode = CD_OR;
+      typeName = typeName.substr(0,found);
+    }
+    //X targets allowed ?
+    if (typeName.at(typeName.length()-1) == 's' && !Subtypes::subtypesList->find(typeName)){
+      typeName = typeName.substr(0,typeName.length()-1);
+      maxtargets = -1;
+    }
+    if (cd){
+      if (!tc){
+        if (typeName.compare("*")!=0) cd->setSubtype(typeName);
+
+        tc = NEW DescriptorTargetChooser(cd,zones,nbzones,card,maxtargets);
+      }else{
+        delete(cd);
+        return NULL;
       }
     }else{
-      string s1;
-      found = s.find("|");
-      if (found != string::npos){
-	string s2;
-	s1 = s.substr(0,found);
-	s2 = s.substr(found+1);
-	while(s2.size()){
-	  found = s2.find(",");
-	  string zoneName;
-	  if (found != string::npos){
-	    zoneName = s2.substr(0,found);
-	    s2 = s2.substr(found+1);
-	  }else{
-	    zoneName = s2;
-	    s2 = "";
-	  }
-    zones[nbzones] = game->currentlyActing()->game->inPlay;
-    
-	  //Graveyards
-    if(zoneName.compare("graveyard") == 0){
-	    zones[nbzones] = game->players[0]->game->graveyard;
-	    nbzones++;
-	    zones[nbzones] = game->players[1]->game->graveyard;
-	  }else if(zoneName.compare("inplay") == 0){
-	      zones[nbzones] = game->players[0]->game->inPlay;
-	      nbzones++;
-	      zones[nbzones] = game->players[1]->game->inPlay;
-	  }else{
-	      MTGGameZone * zone = MTGGameZone::stringToZone(zoneName, card,card);
-        if (zone) zones[nbzones] = zone;
-	  }
-	  nbzones++;
-	}
+      if (!tc){
+        if (typeName.compare("*")==0){
+          return NEW TargetZoneChooser(zones, nbzones,card, maxtargets);
+        }else{
+          tc =  NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card,maxtargets);
+        }
       }else{
-	s1 = s;
-	nbzones = 2;
-	zones[0]= game->players[0]->game->inPlay;
-	zones[1]= game->players[1]->game->inPlay;
+        ((TypeTargetChooser *)tc)->addType(typeName.c_str());
+        tc->maxtargets = maxtargets;
       }
-
-      TargetChooser * tc = NULL;
-      int maxtargets = 1;
-      CardDescriptor * cd = NULL;
-
-      while(s1.size()){
-	found = s1.find(",");
-	string typeName;
-	if (found != string::npos){
-	  typeName = s1.substr(0,found);
-	  s1 = s1.substr(found+1);
-	}else{
-	  typeName = s1;
-	  s1 = "";
-	}
-
-	//Advanced cards caracteristics ?
-	found = typeName.find("[");
-	if (found != string::npos){
-	  int nbminuses = 0;
-	  int end = typeName.find("]");
-#ifdef WIN32
-	  OutputDebugString("Advanced Attributes 1 \n");
-#endif
-	  string attributes = typeName.substr(found+1,end-found-1);
-#ifdef WIN32
-	  OutputDebugString(attributes.c_str());
-	  OutputDebugString("\n");
-#endif
-	  cd = NEW CardDescriptor();
-	  while(attributes.size()){
-	    unsigned int found2 = attributes.find(";");
-	    string attribute;
-	    if (found2 != string::npos){
-	      attribute = attributes.substr(0,found2);
-	      attributes = attributes.substr(found2+1);
-	    }else{
-	      attribute = attributes;
-	      attributes = "";
-	    }
-	    int minus = 0;
-	    if (attribute[0] == '-'){
-#ifdef WIN32
-	      OutputDebugString("MINUS\n");
-#endif
-	      minus = 1;
-	      nbminuses++;
-        attribute=attribute.substr(1);
-	    }
-#ifdef WIN32
-	    OutputDebugString(attribute.c_str());
-	    OutputDebugString("\n");
-#endif
-	    //Attacker
-	    if (attribute.find("attacking") != string::npos){
-	      if (minus){
-		cd->attacker = -1;
-	      }else{
-		cd->attacker = 1;
-	      }
-
-	      //Blocker
-	    }else if (attribute.find("blocking") != string::npos){
-	      if (minus){
-		cd->defenser = (MTGCardInstance *)-1; //Oh yeah, that's ugly....
-	      }else{
-		cd->defenser = (MTGCardInstance *)1;
-	      }
-
-	      //Tapped, untapped
-	    }else if (attribute.find("tapped") != string::npos){
-	      if (minus){
-		cd->tapped = -1;
-	      }else{
-		cd->tapped = 1;
-	      }
-	    }else{
-	      int attributefound = 0;
-	      //Colors
-	      for (int cid = 0; cid < Constants::MTG_NB_COLORS; cid++){
-		if (attribute.find(Constants::MTGColorStrings[cid]) != string::npos){
-		  attributefound = 1;
-		  if (minus){
-		    cd->colors[cid] = -1;
-		  }else{
-		    cd->colors[cid] = 1;
-#ifdef WIN32
-OutputDebugString("COLOR FOUND !!!");
-#endif
-		  }
-		}
-	      }
-	      if (!attributefound){
-		      //Abilities
-		      for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-		        if (attribute.find(Constants::MTGBasicAbilities[j]) != string::npos){
-		          attributefound = 1;
-		          if (minus){
-		            cd->basicAbilities[j] = -1;
-		          }else{
-		            cd->basicAbilities[j] = 1;
-		          }
-		        }
-		      }
-        }
-
-	      if (!attributefound){
-		      //Subtypes
-		      if (minus){
-		        cd->setNegativeSubtype(attribute);
-		      }else{
-		        cd->setSubtype(attribute);
-		      }
-        }
-	    }
-	  }
-	  if (nbminuses == 0){
-#ifdef WIN32
-	    OutputDebugString("Switching to OR\n");
-#endif
-	    cd->mode = CD_OR;
-	  }
-	  typeName = typeName.substr(0,found);
-	}
-	//X targets allowed ?
-  if (typeName.at(typeName.length()-1) == 's' && !Subtypes::subtypesList->find(typeName)){
-	  typeName = typeName.substr(0,typeName.length()-1);
-	  maxtargets = -1;
-	}
-	if (cd){
-	  if (!tc){
-	    if (typeName.compare("*")!=0) cd->setSubtype(typeName);
-
-	    tc = NEW DescriptorTargetChooser(cd,zones,nbzones,card,maxtargets);
-#ifdef WIN32
-	    OutputDebugString("Advanced Attributes 2 \n");
-#endif
-	  }else{
-	    return NULL;
-	  }
-	}else{
-	  if (!tc){
-	    if (typeName.compare("*")==0){
-	      return NEW TargetZoneChooser(zones, nbzones,card, maxtargets);
-	    }else{
-	      tc =  NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card,maxtargets);
-	    }
-	  }else{
-	    ((TypeTargetChooser *)tc)->addType(typeName.c_str());
-	    tc->maxtargets = maxtargets;
-	  }
-	}
-      }
-      return tc;
     }
   }
-  return NULL;
+  return tc;
 }
 
 TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card){
@@ -421,7 +405,9 @@ int DescriptorTargetChooser::canTarget(Targetable * target){
   return 0;
 }
 
-
+DescriptorTargetChooser::~DescriptorTargetChooser(){
+  SAFE_DELETE(cd);
+}
 
 /**
    Choose a creature

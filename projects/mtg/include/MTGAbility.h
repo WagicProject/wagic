@@ -95,7 +95,6 @@ class ActivatedAbility:public MTGAbility{
   virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);
   virtual int resolve() = 0;
-  virtual ~ActivatedAbility();
 };
 
 class TargetAbility:public ActivatedAbility{

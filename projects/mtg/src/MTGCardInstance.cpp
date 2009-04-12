@@ -87,7 +87,7 @@ void MTGCardInstance::initMTGCI(){
   doDamageTest = 1;
   belongs_to=NULL;
   tapped = 0;
-  blockers = NEW Blockers();
+  blockers = NULL;
   untapping = 0;
   summoningSickness = 0;
   target = NULL;
@@ -110,6 +110,7 @@ void MTGCardInstance::addType(int type){
 }
 
 Blockers * MTGCardInstance::getBlockers(){
+  if (!blockers) blockers = NEW Blockers();
   return blockers;
 }
 

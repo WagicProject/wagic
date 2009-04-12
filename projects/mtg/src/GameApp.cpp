@@ -221,7 +221,7 @@ void GameApp::Update()
   if (mNextState != NULL)
     {
       if (mCurrentState != NULL)
-	mCurrentState->End();
+	      mCurrentState->End();
 
       mCurrentState = mNextState;
       mCurrentState->Start();

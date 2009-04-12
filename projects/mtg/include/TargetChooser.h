@@ -38,6 +38,7 @@ class TargetChooser: public TargetsList {
   virtual int canTarget(Targetable * _target);
   virtual int full(){if (maxtargets != -1 && cursor>=maxtargets) {return 1;} else{return 0;}};
   virtual int ready(){return cursor;};
+  virtual ~TargetChooser(){};
   int targetListSet();
 
 
@@ -103,6 +104,7 @@ class DescriptorTargetChooser:public TargetZoneChooser{
   DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card = NULL, int _maxtargets = 1);
   DescriptorTargetChooser(CardDescriptor * _cd, MTGGameZone ** _zones, int nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
   virtual int canTarget(Targetable * target);
+  ~DescriptorTargetChooser();
 };
 
 
