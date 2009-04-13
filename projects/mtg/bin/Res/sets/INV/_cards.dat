@@ -569,8 +569,8 @@ toughness=3
 [card]
 text=Kavu Runner has haste as long as no opponent controls a white or blue creature.
 id=23079
-name=Kavu 
-color=Red Runner
+name=Kavu Runner
+color=Red 
 rarity=U
 mana={3}{R}
 type=Creature
@@ -1067,8 +1067,8 @@ abilities=protection from white
 [card]
 text=Skittish Kavu gets +1/+1 as long as no opponent controls a white or blue creature.
 id=23080
-name=Kavu 
-color=Skittish Kavu
+name=Skittish Kavu 
+color=Blue
 rarity=U
 mana={1}{R}
 type=Creature
