@@ -6,6 +6,7 @@
 #include "../include/GameState.h"
 #include "../include/SimpleMenu.h"
 
+
 class GameStateMenu: public GameState, public JGuiListener
 {
  private:

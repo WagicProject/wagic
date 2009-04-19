@@ -4,6 +4,7 @@
 #include "../include/MenuItem.h"
 #include "../include/GameOptions.h"
 #include "../include/GameApp.h"
+#include "../include/MTGCard.h"
 
 static const char* GAME_VERSION = "WTH?! 0.6.0 - by WilLoW";
 #define ALPHA_WARNING 0
@@ -72,6 +73,8 @@ GameStateMenu::~GameStateMenu() {}
 
 void GameStateMenu::Create()
 {
+
+
   mDip = NULL;
   mReadConf = 0;
   mCurrentSetName[0] = 0;
@@ -241,8 +244,10 @@ void GameStateMenu::Update(float dt)
       break;
     case MENU_STATE_MAJOR_MAINMENU :
       if (mGuiController!=NULL){
-	mGuiController->Update(dt);
+	      mGuiController->Update(dt);
       }
+
+      
       break;
     case MENU_STATE_MAJOR_SUBMENU :
       subMenuController->Update(dt);
@@ -407,6 +412,7 @@ void GameStateMenu::Render()
 
     }
   }
+
 }
 
 

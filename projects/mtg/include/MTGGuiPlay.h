@@ -26,7 +26,6 @@ class MTGGuiPlay: public PlayGuiObjectController {
   float mGlitterX, mGlitterY;
   JTexture * mPhaseBarTexture;
   JQuad * mIcons[7];
-  JTexture * mIconsTexture;
   JTexture * mBgTex;
   JQuad * mBg;
 

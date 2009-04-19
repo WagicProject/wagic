@@ -26,7 +26,7 @@ MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id,
   offset = 0;
 
 
-  mPhaseBarTexture = JRenderer::GetInstance()->LoadTexture("graphics/phasebar.png", TEX_TYPE_USE_VRAM);
+  mPhaseBarTexture = GameApp::CommonRes->GetTexture("graphics/phasebar.png"); 
   for (int i=0; i < 12; i++){
     phaseIcons[2*i] = NEW JQuad(mPhaseBarTexture, i*28, 0, 28, 28);
     phaseIcons[2*i + 1] = NEW JQuad(mPhaseBarTexture, i*28, 28, 28, 28);
@@ -36,26 +36,34 @@ MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id,
   mGlitterAlpha = -1;
   mFont= GameApp::CommonRes->GetJLBFont("graphics/simon");
 
-  mIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/menuicons.png", TEX_TYPE_USE_VRAM);
   //load all the icon images
-  mIcons[Constants::MTG_COLOR_ARTIFACT] = NEW JQuad(mIconsTexture, 2+6*36, 38, 32, 32);
-  mIcons[Constants::MTG_COLOR_LAND] = NEW JQuad(mIconsTexture, 2+5*36, 38, 32, 32);
-  mIcons[Constants::MTG_COLOR_WHITE] = NEW JQuad(mIconsTexture, 2+4*36, 38, 32, 32);
-  mIcons[Constants::MTG_COLOR_RED] = NEW JQuad(mIconsTexture, 2+3*36, 38, 32, 32);
-  mIcons[Constants::MTG_COLOR_BLACK] = NEW JQuad(mIconsTexture, 2+2*36, 38, 32, 32);
-  mIcons[Constants::MTG_COLOR_BLUE] = NEW JQuad(mIconsTexture, 2+1*36, 38, 32, 32);
-  mIcons[Constants::MTG_COLOR_GREEN] = NEW JQuad(mIconsTexture, 2+0*36, 38, 32, 32);
+  mIcons[Constants::MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
+  mIcons[Constants::MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
+  mIcons[Constants::MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
+  mIcons[Constants::MTG_COLOR_RED] = GameApp::CommonRes->GetQuad("c_red");
+  mIcons[Constants::MTG_COLOR_BLACK] = GameApp::CommonRes->GetQuad("c_black");
+  mIcons[Constants::MTG_COLOR_BLUE] = GameApp::CommonRes->GetQuad("c_blue");
+  mIcons[Constants::MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
   for (int i=0; i < 7; i++){
     mIcons[i]->SetHotSpot(16,16);
   }
 
-  mBgTex = JRenderer::GetInstance()->LoadTexture("graphics/background.png", TEX_TYPE_USE_VRAM);
-  mBg = NEW JQuad(mBgTex, 0, 0, 480, 272);
+  mBgTex = GameApp::CommonRes->GetTexture("graphics/background.png");
+  if (mBgTex) mBg = NEW JQuad(mBgTex, 0, 0, 480, 272);
+  else {
+    mBg = NULL;
+    GameApp::systemError = "error Loading Texture mBgTex in MTGGuiPlay intialization";
+  }
 
-  mBgTex2 = JRenderer::GetInstance()->LoadTexture("graphics/back.jpg", TEX_TYPE_USE_VRAM);
-  mBg2 = NEW JQuad(mBgTex2, 0, 0, 480, 255);
-  for (int i= 0; i < 4; i++){
-    alphaBg[i] = 255;
+  mBgTex2 = GameApp::CommonRes->GetTexture("graphics/back.jpg");
+  if (mBgTex2){
+    mBg2 = NEW JQuad(mBgTex2, 0, 0, 480, 255);
+    for (int i= 0; i < 4; i++){
+      alphaBg[i] = 255;
+    }
+  }else{
+    mBg2 = NULL;
+    GameApp::systemError = "error Loading Texture mBgTex2 in MTGGuiPlay intialization";
   }
   alphaBg[0] = 0;
   AddPlayersGuiInfo();
@@ -401,20 +409,17 @@ void MTGGuiPlay::Render(){
 MTGGuiPlay::~MTGGuiPlay(){
   LOG("==Destroying MTGGuiPlay==");
   delete mBg;
-  delete mBgTex;
-  for (int i=0; i < 7; i++){
-    delete mIcons[i];
-  }
-  delete 	mIconsTexture;
+  //delete mBgTex;
+
   delete 	mGlitter;
   for (int i=0; i < 12; i++){
     delete phaseIcons[2*i] ;
     delete phaseIcons[2*i + 1];
   }
-  delete	mPhaseBarTexture;
+  //delete	mPhaseBarTexture;
 
   SAFE_DELETE(mBg2);
-  SAFE_DELETE(mBgTex2);
+  //SAFE_DELETE(mBgTex2);
 
   LOG("==Destroying MTGGuiPlay Successful==");
 

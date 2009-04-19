@@ -10,7 +10,10 @@ int DeckStat::percentVictories(){
 }
 
 DeckStats * DeckStats::GetInstance(){
-  if (!mInstance) mInstance = NEW DeckStats();
+  if (!mInstance){
+    mInstance = NEW DeckStats();
+    
+  }
   return mInstance;
 }
 
@@ -19,6 +22,7 @@ void DeckStats::cleanStats(){
   for (it = stats.begin(); it != stats.end(); it++){
     SAFE_DELETE(it->second);
   }
+  
   stats.clear();
 }
 
@@ -53,7 +57,10 @@ void DeckStats::load(const char * filename){
       int games = atoi(s.c_str());
       std::getline(file,s);
       int victories = atoi(s.c_str());
-      stats[deckfile] = NEW DeckStat(games,victories);
+      map<string,DeckStat *>::iterator it = stats.find(deckfile);
+      if (it == stats.end()){
+        stats[deckfile] = NEW DeckStat(games,victories);
+      }
     }
     file.close();
   }

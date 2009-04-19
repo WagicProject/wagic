@@ -66,25 +66,20 @@ bool JMP3::fillBuffers() {
 }
 
 bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize) {
-   printf("load\n");
       m_inBufferSize = inBufferSize;
-      printf("1\n");
       //m_inBuffer = new char[m_inBufferSize];
       //if (!m_inBuffer)
       //   return false;
 
       m_outBufferSize = outBufferSize;
-      printf("2\n");
       //m_outBuffer = new short[outBufferSize];
       //if (!m_outBuffer)
       //   return false;
 
-      printf("3:%s\n",filename.c_str());
       m_fileHandle = sceIoOpen(filename.c_str(), PSP_O_RDONLY, 0777);
       if (m_fileHandle < 0)
          return false;
 
-      printf("4\n");
       int ret = sceMp3InitResource();
       if (ret < 0)
          return false;
@@ -108,53 +103,40 @@ bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize
       initArgs.pcmBufSize = m_outBufferSize;
       initArgs.pcmBuf = (SceVoid*) m_outBuffer;
 
-      printf("5\n");
       m_mp3Handle = sceMp3ReserveMp3Handle(&initArgs);
       if (m_mp3Handle < 0)
          return false;
 
       // Alright we are all set up, let's fill the first buffer.
-      printf("5.5\n");
       bool _filled= fillBuffers();
       if (! _filled) return false;
 
-      printf("end = %i, bufsize = %i, outSize = %i\n", fileSize, m_inBufferSize, m_outBufferSize);
 
       // Start this bitch up!
-      printf("6\n");
       int start = sceMp3Init(m_mp3Handle);
       if (start < 0)
          return false;
 
-      printf("7\n");
       m_numChannels = sceMp3GetMp3ChannelNum(m_mp3Handle);
-      printf("8\n");
       m_samplingRate = sceMp3GetSamplingRate(m_mp3Handle);
 
    return true;
 }
 
 bool JMP3::unload() {
-  printf("unload 1\n");
    if (m_channel >= 0)
       sceAudioSRCChRelease();
 
-   printf("unload 2\n");
    sceMp3ReleaseMp3Handle(m_mp3Handle);
 
-   printf("unload 3\n");
    sceMp3TermResource();
 
-   printf("unload 4\n");
    sceIoClose(m_fileHandle);
 
-   printf("unload 5\n");
    //delete[] m_inBuffer;
 
-    printf("unload 6\n");
    //delete[] m_outBuffer;
 
-   printf("unload 7\n");
    return true;
 }
 

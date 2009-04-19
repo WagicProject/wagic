@@ -401,7 +401,7 @@ int AIPlayer::chooseAttackers(){
 int AIPlayer::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy){
   if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE)) return 0;
   if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE))) return 0;
-  if (!card->power >= ennemy->toughness) return 0;
+  if (!(card->power >= ennemy->toughness)) return 0;
   return 1;
 }
 
@@ -461,8 +461,8 @@ int AIPlayer::chooseBlockers(){
 	}else{
 	  MTGCardInstance * attacker = card->defenser;
 	  if (opponentsToughness[attacker] <= 0 || 
-    (card->toughness <= card->defenser->power && opponentForce*2 <life  && !canFirstStrikeKill(card,card->defenser))  || 
-    card->defenser->nbOpponents()>1){
+    (card->toughness <= attacker->power && opponentForce*2 <life  && !canFirstStrikeKill(card,attacker))  || 
+    attacker->nbOpponents()>1){
       g->mLayers->actionLayer()->reactToClick(a,card);
 	  }else{
 	    set = 1;

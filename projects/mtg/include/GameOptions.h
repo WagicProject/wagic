@@ -11,6 +11,7 @@ using std::string;
 #define OPTIONS_DIFFICULTY_MODE_UNLOCKED "prx_handler" //huhu
 #define OPTIONS_MOMIR_MODE_UNLOCKED "prx_rimom" //haha
 #define OPTIONS_DIFFICULTY "difficulty"
+#define OPTIONS_CACHESIZE "cacheSize"
 
 // WALDORF - added
 #define OPTIONS_INTERRUPT_SECONDS "interruptSeconds"                         

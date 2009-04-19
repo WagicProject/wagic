@@ -21,6 +21,7 @@ JResourceManager* GameApp::CommonRes = NEW JResourceManager();
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;
+string GameApp::systemError = "";
 
 GameState::GameState(GameApp* parent): mParent(parent)
 {
@@ -105,6 +106,10 @@ void GameApp::Create()
   CommonRes->LoadJLBFont("graphics/magic",16);
 
 
+  CommonRes->CreateTexture("graphics/phasebar.png");
+  CommonRes->CreateTexture("graphics/background.png");
+  CommonRes->CreateTexture("graphics/back.jpg");
+
   //CommonRes->CreateTexture("graphics/interrupt.png");
   //CommonRes->CreateQuad("interrupt", "graphics/interrupt.png", 0, 0, 256, 128);
 
@@ -171,7 +176,7 @@ void GameApp::Destroy()
   }
   SAFE_DELETE(cache);
   SampleCache::DestroyInstance();
-
+  delete(DeckStats::GetInstance());
 
   SAFE_DELETE(CommonRes);
 
@@ -182,7 +187,7 @@ void GameApp::Destroy()
 
   SAFE_DELETE(music);
 
-  delete(DeckStats::GetInstance());
+
 
   SimpleMenu::destroy();
 
@@ -196,6 +201,7 @@ void GameApp::Destroy()
 void GameApp::Update()
 {
 
+  if (systemError.size()) return;
   JGE* mEngine = JGE::GetInstance();
   if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonClick(PSP_CTRL_TRIANGLE))
     {
@@ -236,7 +242,12 @@ void GameApp::Update()
 
 void GameApp::Render()
 {
-
+  if (systemError.size()){
+    fprintf(stderr, systemError.c_str());
+    JLBFont * mFont= CommonRes->GetJLBFont("graphics/simon");
+    if (mFont) mFont->DrawString(systemError.c_str(),1,1);
+    return;
+  }
   if (mCurrentState != NULL)
     {
       mCurrentState->Render();

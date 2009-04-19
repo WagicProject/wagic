@@ -84,6 +84,7 @@ class GameApp:	public JApp
   static JResourceManager * CommonRes;
   static hgeParticleSystem * Particles[6];
   static int HasMusic;
+  static string systemError;
   static JMusic* music;
 
 };

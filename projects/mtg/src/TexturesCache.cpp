@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/TexturesCache.h"
+#include "../include/GameOptions.h"
 
 TexturesCache::TexturesCache(){
   nb_textures = 0;
@@ -9,6 +10,8 @@ TexturesCache::TexturesCache(){
   for (int i=0; i<MAX_CACHE_OBJECTS;i++){
     cache[i] = NULL;
   }
+  maxSize =  GameOptions::GetInstance()->values[OPTIONS_CACHESIZE].getIntValue() * 100000;
+  if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
 #ifdef WIN32
   char buf [4096];
   sprintf(buf, " Init TextureCache : %p\n", this);
@@ -61,7 +64,7 @@ void TexturesCache::removeQuad(int id){
 }
 
 int TexturesCache::cleanup(){
-  while (nb_textures >= MAX_CACHE_OBJECTS - 1 || totalsize > CACHE_SIZE_PIXELS){
+  while (nb_textures >= MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
     int i = getOldestQuad();
     if (i == -1) return 0;
     removeQuad(i);

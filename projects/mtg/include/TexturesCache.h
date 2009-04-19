@@ -2,7 +2,7 @@
 #define _TEXTURES_CACHE_H
 
 #define MAX_CACHE_OBJECTS 100
-#define CACHE_SIZE_PIXELS 6000000
+#define CACHE_SIZE_PIXELS 2000000
 
 #define CACHE_CARD 1
 #define CACHE_THUMB 2
@@ -43,6 +43,7 @@ class TexturesCache{
   int nb_textures;
   int delete_previous;
   int totalsize;
+  int maxSize;
   CardTexture * cache[MAX_CACHE_OBJECTS];
  public:
   int isInCache(MTGCard * card, int type=CACHE_CARD);

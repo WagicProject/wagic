@@ -16,6 +16,7 @@ class ManaCost{
   int cost[Constants::MTG_NB_COLORS+1];
   ManaCostHybrid * hybrids[10];
   unsigned int nbhybrids;
+  int extraCostsIsCopy;
   
  public:
   ExtraCosts * extraCosts;
