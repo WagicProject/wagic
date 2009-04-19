@@ -243,9 +243,9 @@ public:
     destinationZone = destZone;
   }
 
-  int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
-    if(_target){
+   static int moveTarget(MTGCardInstance * _target, string destinationZone, MTGCardInstance * source){
+     GameObserver * g = GameObserver::GetInstance();
+     if(_target){
       Player* p = _target->controller();
       if (p){
         MTGGameZone * fromZone = _target->getCurrentZone();
@@ -253,8 +253,8 @@ public:
 
         //inplay is a special zone !
         for (int i=0; i < 2; i++){
-          if (destZone == game->players[i]->game->inPlay){
-              MTGCardInstance * copy = game->players[i]->game->putInZone(_target,  fromZone, game->players[i]->game->stack);
+          if (destZone == g->players[i]->game->inPlay){
+              MTGCardInstance * copy = g->players[i]->game->putInZone(_target,  fromZone, g->players[i]->game->stack);
               Spell * spell = NEW Spell(copy);
               
               spell->resolve();
@@ -267,6 +267,11 @@ public:
       return 1;
     }
     return 0;
+   }
+
+  int resolve(){
+    MTGCardInstance * _target = tc->getNextCardTarget();
+    return moveTarget(_target,destinationZone, source);  
   }
 };
 

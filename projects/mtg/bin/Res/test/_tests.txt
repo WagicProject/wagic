@@ -103,9 +103,12 @@ sword_to_plowshares.txt
 terror.txt
 tranquil_domain.txt
 volcanic_island.txt
+wall_of_diffusion.txt
+wall_of_diffusion2.txt
 white_knight1.txt
 wrath_of_god.txt
 zombie_master.txt
+zombify.txt
 ########################
 #Momir Basic Tests
 ########################

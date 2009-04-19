@@ -1,0 +1,44 @@
+#Bug: zombify on a Roowalla doesn't give the rootwalla it's abilities back
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:zombify
+graveyard:rootwalla
+inplay:swamp,forest
+manapool:{3}{B}
+[PLAYER2]
+[DO]
+zombify
+rootwalla
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main 1
+swamp
+forest
+rootwalla
+next
+#combat begins
+next
+#attackers
+rootwalla
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:zombify
+inplay:swamp,forest,rootwalla
+manapool:{0}
+[PLAYER2]
+life:16
+[END]

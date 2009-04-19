@@ -70,6 +70,7 @@ void SimpleMenuItem::Relocate(int x, int y)
 
 int SimpleMenuItem::GetWidth()
 {
+  mFont->SetScale(1.0);
   return mFont->GetStringWidth(mText.c_str());
 }
 

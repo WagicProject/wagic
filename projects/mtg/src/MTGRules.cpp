@@ -225,8 +225,13 @@ MTGCardInstance * MTGMomirRule::genCreature( int id){
 }
 
 int MTGMomirRule::genRandomCreatureId(int convertedCost){
-   if (convertedCost > 20) return 0;
-   int total_cards = pool[convertedCost].size();
+   if (convertedCost > 20) convertedCost = 20;
+   int total_cards = 0;
+   int i = convertedCost;
+   while (!total_cards && i >=0){
+    total_cards = pool[i].size();
+    i--;
+   }
    if (!total_cards) return 0;
    int start = (rand() % total_cards);
    return pool[convertedCost][start];

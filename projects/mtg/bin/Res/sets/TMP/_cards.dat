@@ -220,6 +220,7 @@ abilities={2}:regenerate
 [/card]
 [card]
 text=Flying     When Cloudchaser Eagle comes into play, destroy target enchantment.
+abilities=flying
 id=4871
 name=Cloudchaser Eagle
 auto=may destroy target(enchantment)

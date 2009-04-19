@@ -1,0 +1,24 @@
+#Bug: Wall of diffusion has reach
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:air elemental
+[PLAYER2]
+inplay:wall of diffusion
+[DO]
+air elemental
+next
+#blockers
+wall of diffusion
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:air elemental
+[PLAYER2]
+inplay:wall of diffusion
+life:16
+[END]

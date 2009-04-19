@@ -1,0 +1,23 @@
+#Wall of diffusionShadow
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:dauthi marauder
+[PLAYER2]
+inplay:wall of diffusion
+[DO]
+dauthi marauder
+next
+#blockers
+wall of diffusion
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:dauthi marauder
+[PLAYER2]
+inplay:wall of diffusion
+[END]

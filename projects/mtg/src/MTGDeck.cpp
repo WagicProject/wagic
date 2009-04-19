@@ -62,10 +62,22 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
   }else if (key.compare("abilities")==0){
     //Specific Abilities
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-      unsigned int found = value.find(Constants::MTGBasicAbilities[j]);
-      if (found != string::npos){
-	card->basicAbilities[j] = 1;
+    while (value.size()){
+      string attribute;
+      size_t found2 = value.find(",");
+      if (found2 != string::npos){
+        attribute = value.substr(0,found2);
+        value = value.substr(found2+1);
+      }else{
+        attribute = value;
+        value = "";
+      }
+      for (int j = Constants::NB_BASIC_ABILITIES-1; j >=0 ; j--){
+        size_t found = attribute.find(Constants::MTGBasicAbilities[j]);
+        if (found != string::npos){
+	        card->basicAbilities[j] = 1;
+          break;
+        }
       }
     }
   }else if(key.compare("id")==0){

@@ -548,8 +548,8 @@ toughness=2
 [/card]
 [card]
 text=Other Giant creatures you control get +2/+2 and have trample.
-auto=lord(giant) 2/2 other
-auto=lord(giant) trample other
+auto=lord(giant|myinplay) 2/2 other
+auto=lord(giant|myinplay) trample other
 id=139667
 name=Sunrise Sovereign
 rarity=R
