@@ -637,6 +637,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Flying     Kyren Glider can't block.
+id=19604
+name=Kyren Glider
+abilities=cantblock,flying
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
 text=First strike
 id=19618
 name=Lightning Hounds

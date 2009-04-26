@@ -1545,17 +1545,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Flying     Kyren Glider can't block.
-id=19604
-name=Kyren Glider
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Goblin
-toughness=1
-[/card]
-[card]
 text=Haste     If an opponent controls a Plains and you control a Mountain, you may play Kyren Legate without paying its mana cost.
 id=19841
 name=Kyren Legate
