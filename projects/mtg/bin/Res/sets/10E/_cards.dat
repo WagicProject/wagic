@@ -113,7 +113,7 @@ type=Land
 [/card]
 [card]
 text={T}: Draw three cards.     {2}{U}{U}: Return Arcanis the Omnipotent to its owner's hand.
-auto={T}:draw 3
+auto={T}:draw:3
 auto={2}{U}{U}:moveTo(hand)
 abilities=legendary
 id=106426
