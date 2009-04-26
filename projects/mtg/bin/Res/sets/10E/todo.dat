@@ -1292,18 +1292,7 @@ subtype=Wurm
 toughness=7
 [/card]
 
-[card]
-text=Sea Monster can't attack unless defending player controls an Island.
-id=129719
-name=Sea Monster
-rarity=C
-color=Blue
-type=Creature
-mana={4}{U}{U}
-power=6
-subtype=Serpent
-toughness=6
-[/card]
+
 [card]
 text=Untap all permanents you control during each other player's untap step.
 id=129722
