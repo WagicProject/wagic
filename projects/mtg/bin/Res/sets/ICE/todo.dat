@@ -670,17 +670,6 @@ type=Enchantment
 mana={3}{U}
 [/card]
 [card]
-text=Defender (This creature can't attack.)  Drift of the Dead's power and toughness are each equal to the number of snow lands you control.
-id=2447
-name=Drift of the Dead
-rarity=U
-type=Creature
-mana={3}{B}
-power=*
-subtype=Wall
-toughness=*
-[/card]
-[card]
 text=At the beginning of your upkeep, sacrifice Drought unless you pay {W}{W}.     Spells cost an additional &quot;Sacrifice a Swamp&quot; to play for each black mana symbol in their mana costs.     Activated abilities cost an additional &quot;Sacrifice a Swamp&quot; to play for each black mana symbol in their activation costs.
 id=2681
 name=Drought
@@ -961,6 +950,8 @@ mana={1}{W}
 text=Foul Familiar can't block.     {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
 id=2450
 name=Foul Familiar
+abilities=cantblock
+auto={B}
 rarity=C
 type=Creature
 mana={2}{B}

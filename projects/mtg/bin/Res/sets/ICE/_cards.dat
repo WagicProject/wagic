@@ -1,4 +1,55 @@
 [card]
+text={1}: Adarkar Sentinel gets +0/+1 until end of turn.
+id=2392
+auto={1}:0/1
+name=Adarkar Sentinel
+rarity=U
+type=Artifact Creature
+mana={5}
+power=3
+subtype=Soldier
+toughness=3
+[/card]
+[card]
+text={1}, {T}: Target 1/1 creature gets +1/+2 until end of turn.
+id=2393
+name=Aegis of the Meek
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Destroy all white permanents.
+auto=destroy all(*[white])
+id=2606
+name=Anarchy
+rarity=U
+type=Sorcery
+mana={2}{R}{R}
+[/card]
+[card]
+text=Enchant creature. Enchanted creature gets +1/+1. {W}:Enchanted creature gets +0/+1 until end of turn.
+id=2664
+name=Armor of Faith
+target=creature
+rarity=C
+auto=:1/1
+auto={w}:0/1
+type=Enchantment 
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Gain 1 life. Draw a card at the beginning of the next turn's upkeep.
+id=2667
+name=Blessed Wine
+auto=@next upkeep:draw:1
+auto=life:1
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
 text={T}: Centaur Archer deals 1 damage to target creature with flying.
 id=2718
 name=Centaur Archer
@@ -56,16 +107,13 @@ type=Enchantment
 mana={1}{W}
 [/card]
 [card]
-text=Enchant creature. Enchanted creature gets +1/+1. {W}:Enchanted creature gets +0/+1 until end of turn.
-id=2664
-name=Armor of Faith
-target=creature
+text=Counter target spell.
+id=2500
+alias=1196
+name=Counterspell
 rarity=C
-auto=:1/1
-auto={w}:0/1
-type=Enchantment 
-mana={W}
-subtype=Aura
+type=Instant
+mana={U}{U}
 [/card]
 [card]
 text=Enchant creature. Enchanted creature has banding.
@@ -77,6 +125,35 @@ rarity=C
 type=Enchantment 
 mana={2}{W}
 subtype=Aura
+[/card]
+[card]
+text=Destroy target nonblack creature. It can't be regenerated.
+id=2443
+target=creature[-black]
+auto=bury
+name=Dark Banishing
+rarity=C
+type=Instant
+mana={2}{B}
+[/card]
+[card]
+text=Add {B}{B}{B} to your mana pool.
+id=2444
+alias=1149
+name=Dark Ritual
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Regenerate target creature.
+id=2679
+target=creature
+auto=:regenerate
+name=Death Ward
+rarity=C
+type=Instant
+mana={W}
 [/card]
 [card]
 text=Dire Wolves has banding as long as you control a Plains.
@@ -91,83 +168,6 @@ subtype=Wolf
 toughness=2
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
-id=2448
-alias=1161
-target=creature
-name=Fear
-rarity=C
-type=Enchantment 
-mana={B}{B}
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature. Enchanted creature has swampwalk.
-id=2467
-target=creature
-auto=:swampwalk
-name=Leshrac's Rite
-rarity=U
-type=Enchantment 
-mana={B}
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-target=creature
-auto={G}:regenerate
-id=2583
-name=Regeneration
-rarity=C
-type=Enchantment 
-mana={1}{G}
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature. Enchanted creature gets +0/+2. {R}: Enchanted creature gets +1/+0 until end of turn.
-id=2655
-target=creature
-auto=:0/2
-auto={R}:1/0
-name=Stonehands
-rarity=C
-type=Enchantment 
-mana={2}{R}
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature. Enchanted creature gets +1/+0 and has flying and first strike.
-id=2741
-target=creature
-auto=:flying,first strike
-auto=:1/0
-name=Wings of Aesthir
-rarity=U
-type=Enchantment 
-mana={W}{U}
-subtype=Aura
-[/card]
-[card]
-text=Destroy target nonblack creature. It can't be regenerated.
-id=2443
-target=creature[-black]
-auto=bury
-name=Dark Banishing
-rarity=C
-type=Instant
-mana={2}{B}
-[/card]
-[card]
-text=Regenerate target creature.
-id=2679
-target=creature
-auto=:regenerate
-name=Death Ward
-rarity=C
-type=Instant
-mana={W}
-[/card]
-[card]
 text=Destroy target artifact or enchantment.
 id=2680
 target=artifact,enchantment
@@ -176,6 +176,16 @@ name=Disenchant
 rarity=C
 type=Instant
 mana={1}{W}
+[/card]
+[card]
+text=Tap target artifact, creature, or land. Draw a card at the beginning of the next turn's upkeep.
+id=2503
+auto=tap target(artifact,creature,land)
+auto=@next upkeep:draw:1
+name=Enervate
+rarity=C
+type=Instant
+mana={1}{U}
 [/card]
 [card]
 text=Target creature gains trample and gets +3/+0 until end of turn.
@@ -189,99 +199,15 @@ type=Instant
 mana={2}{G}{G}
 [/card]
 [card]
-text=Target creature gets +3/+3 until end of turn.
-id=2570
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
+id=2448
+alias=1161
 target=creature
-auto=:3/3
-name=Giant Growth
+name=Fear
 rarity=C
-type=Instant
-mana={G}
-[/card]
-[card]
-text=Target creature gets +X/+0 until end of turn.
-id=2456
-target=creature
-alias=1164
-name=Howl from Beyond
-rarity=C
-type=Instant
-mana={X}{B}
-[/card]
-[card]
-text=Destroy target artifact.
-target=artifact
-auto=destroy
-id=2652
-name=Shatter
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
-[card]
-text=Remove target creature from the game. That creature's controller gains life equal to its power.
-id=2714
-target=creature
-alias=1367
-name=Swords to Plowshares
-rarity=U
-type=Instant
-mana={W}
-[/card]
-[card]
-text=Target creature is unblockable this turn.
-id=2596
-target=creature
-auto=:unblockable
-name=Trailblazer
-rarity=R
-type=Instant
-mana={2}{G}{G}
-[/card]
-[card]
-text=Counter target spell.
-id=2500
-alias=1196
-name=Counterspell
-rarity=C
-type=Instant
-mana={U}{U}
-[/card]
-[card]
-text=Add {B}{B}{B} to your mana pool.
-id=2444
-alias=1149
-name=Dark Ritual
-rarity=C
-type=Instant
-mana={B}
-[/card]
-[card]
-text=Choose one - Counter target spell if it's red; or destroy target permanent if it's red.
-id=2508
-alias=1191
-name=Hydroblast
-rarity=C
-type=Instant
-mana={U}
-[/card]
-[card]
-text={2},{T},Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
-auto={2}{T}{S}:bury target(creature[-flying;attacking])
-id=2419
-name=Pit Trap
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text=Choose one - Counter target spell if it's blue; or destroy target permanent if it's blue.
-id=2649
-alias=1312
-name=Pyroblast
-rarity=C
-type=Instant
-mana={R}
+type=Enchantment 
+mana={B}{B}
+subtype=Aura
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
@@ -309,6 +235,170 @@ name=Forest
 rarity=L
 type=Basic Land
 subtype=Forest
+[/card]
+[card]
+text={2}{G}, {T}: Untap target creature.
+id=2566
+name=Fyndhorn Brownie
+auto={2}{G}{T}:untap target(creature)
+rarity=C
+type=Creature 
+mana={2}{G}
+power=1
+subtype=Ouphe
+toughness=1
+[/card]
+[card]
+text=Target creature gets +3/+3 until end of turn.
+id=2570
+target=creature
+auto=:3/3
+name=Giant Growth
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Target creature gets +X/+0 until end of turn.
+id=2456
+target=creature
+alias=1164
+name=Howl from Beyond
+rarity=C
+type=Instant
+mana={X}{B}
+[/card]
+[card]
+text=Choose one - Counter target spell if it's red; or destroy target permanent if it's red.
+id=2508
+alias=1191
+name=Hydroblast
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text={1}, {T}: Tap target artifact, creature, or land.
+id=2408
+name=Icy Manipulator
+auto={1}{T}:tap target(artifact,creature,land)
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Enchant creature. Enchanted creature has swampwalk.
+id=2467
+target=creature
+auto=:swampwalk
+name=Leshrac's Rite
+rarity=U
+type=Enchantment 
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=Lhurgoyf's power is equal to the number of creature cards in all graveyards and its toughness is equal to that number plus 1.
+id=2576
+name=Lhurgoyf
+auto=foreach(creature|graveyard) 1/1
+rarity=R
+type=Creature 
+mana={2}{G}{G}
+power=*
+subtype=Lhurgoyf
+toughness=1
+[/card]
+[card]
+text=As Lost Order of Jarkeld comes into play, choose an opponent. Lost Order of Jarkeld's power and toughness are each equal to 1 plus the number of creatures the chosen player controls.
+id=2703
+auto=foreach(creature|opponentinplay) 1/1
+name=Lost Order of Jarkeld
+rarity=R
+type=Creature 
+mana={2}{W}{W}
+power=1
+subtype=Human Knight
+toughness=1
+[/card]
+[card]
+text={2},{T},Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
+auto={2}{T}{S}:bury target(creature[-flying;attacking])
+id=2419
+name=Pit Trap
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Choose one - Counter target spell if it's blue; or destroy target permanent if it's blue.
+id=2649
+alias=1312
+name=Pyroblast
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Pyroclasm deals 2 damage to each creature.
+id=2650
+name=Pyroclasm
+rarity=U
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+target=creature
+auto={G}:regenerate
+id=2583
+name=Regeneration
+rarity=C
+type=Enchantment 
+mana={1}{G}
+subtype=Aura
+[/card]
+[card]
+text=Destroy target artifact.
+target=artifact
+auto=destroy
+id=2652
+name=Shatter
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Enchant creature. Enchanted creature gets +0/+2. {R}: Enchanted creature gets +1/+0 until end of turn.
+id=2655
+target=creature
+auto=:0/2
+auto={R}:1/0
+name=Stonehands
+rarity=C
+type=Enchantment 
+mana={2}{R}
+subtype=Aura
+[/card]
+[card]
+text=Remove target creature from the game. That creature's controller gains life equal to its power.
+id=2714
+target=creature
+alias=1367
+name=Swords to Plowshares
+rarity=U
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Target creature is unblockable this turn.
+id=2596
+target=creature
+auto=:unblockable
+name=Trailblazer
+rarity=R
+type=Instant
+mana={2}{G}{G}
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -397,8 +487,8 @@ id=2749
 auto={T}: Add {G}
 name=Snow-Covered Forest
 rarity=L
-type=Land
 type=Basic Snow Land
+subtype=Forest
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -406,8 +496,8 @@ id=2770
 auto={T}: Add {U}
 name=Snow-Covered Island
 rarity=L
-type=Land
 type=Basic Snow Land
+subtype=Island
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -415,8 +505,8 @@ id=2766
 auto={T}: Add {R}
 name=Snow-Covered Mountain
 rarity=L
-type=Land
 type=Basic Snow Land
+subtype=Mountain
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -424,8 +514,8 @@ id=2774
 auto={T}: Add {W}
 name=Snow-Covered Plains
 rarity=L
-type=Land
 type=Basic Snow Land
+subtype=Plains
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -433,8 +523,8 @@ id=2742
 auto={T}: Add {B}
 name=Snow-Covered Swamp
 rarity=L
-type=Land
 type=Basic Snow Land
+subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -540,18 +630,6 @@ type=Creature
 mana={3}{B}
 power=3
 subtype=Horror
-toughness=3
-[/card]
-[card]
-text={1}: Adarkar Sentinel gets +0/+1 until end of turn.
-id=2392
-auto={1}:0/1
-name=Adarkar Sentinel
-rarity=U
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Soldier
 toughness=3
 [/card]
 [card]
@@ -1008,13 +1086,17 @@ type=Artifact
 mana={1}
 [/card]
 [card]
-text={1}, {T}: Tap target artifact, creature, or land.
-id=2408
-name=Icy Manipulator
-auto={1}{T}:tap target(artifact,creature,land)
+text=Defender (This creature can't attack.)  Drift of the Dead's power and toughness are each equal to the number of snow lands you control.
+id=2447
+name=Drift of the Dead
+abilities=Defender
+auto=foreach(land[snow]|myinplay) 1/1
 rarity=U
-type=Artifact
-mana={4}
+type=Creature
+mana={3}{B}
+power=*
+subtype=Wall
+toughness=*
 [/card]
 [card]
 text=Enchant land. Enchanted land has "{T}: Target creature gets +2/+1 until end of turn."
@@ -1181,24 +1263,6 @@ type=Sorcery
 mana={4}{R}{R}
 [/card]
 [card]
-text=Gain 1 life. Draw a card at the beginning of the next turn's upkeep.
-id=2667
-name=Blessed Wine
-auto=@next upkeep:draw:1
-auto=life:1
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
-text=Pyroclasm deals 2 damage to each creature.
-id=2650
-name=Pyroclasm
-rarity=U
-type=Sorcery
-mana={1}{R}
-[/card]
-[card]
 text=Touch of Death deals 1 damage to target player, and you gain 1 life. Draw a card at the beginning of the next turn's upkeep.
 id=2491
 name=Touch of Death
@@ -1231,27 +1295,6 @@ type=Instant
 mana={B}
 [/card]
 [card]
-text=Destroy all white permanents.
-auto=destroy all(*[white])
-id=2606
-name=Anarchy
-rarity=U
-type=Sorcery
-mana={2}{R}{R}
-[/card]
-[card]
-text={2}{G}, {T}: Untap target creature.
-id=2566
-name=Fyndhorn Brownie
-auto={2}{G}{T}:untap target(creature)
-rarity=C
-type=Creature 
-mana={2}{G}
-power=1
-subtype=Ouphe
-toughness=1
-[/card]
-[card]
 text=For each artifact or creature card in an opponent's graveyard, add {1} to your mana pool and you gain 1 life.
 id=2487
 name=Spoils of Evil
@@ -1281,48 +1324,6 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text={2}, {T}: Target creature with power 3 or less gains flying until end of turn.
-id=2435
-name=Whalebone Glider
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text=As Lost Order of Jarkeld comes into play, choose an opponent. Lost Order of Jarkeld's power and toughness are each equal to 1 plus the number of creatures the chosen player controls.
-id=2703
-auto=foreach(creature|opponentinplay) 1/1
-name=Lost Order of Jarkeld
-rarity=R
-type=Creature 
-mana={2}{W}{W}
-power=1
-subtype=Human Knight
-toughness=1
-[/card]
-[card]
-text=Lhurgoyf's power is equal to the number of creature cards in all graveyards and its toughness is equal to that number plus 1.
-id=2576
-name=Lhurgoyf
-auto=foreach(creature|graveyard) 1/1
-rarity=R
-type=Creature 
-mana={2}{G}{G}
-power=*
-subtype=Lhurgoyf
-toughness=1
-[/card]
-[card]
-text=Tap target artifact, creature, or land. Draw a card at the beginning of the next turn's upkeep.
-id=2503
-auto=tap target(artifact,creature,land)
-auto=@next upkeep:draw:1
-name=Enervate
-rarity=C
-type=Instant
-mana={1}{U}
-[/card]
-[card]
 text=Target creature gains haste and "{0}: Untap this creature. Play this ability only once." until end of turn.       Draw a card at the beginning of the next turn's upkeep.
 id=2595
 target=creature
@@ -1334,14 +1335,6 @@ type=Instant
 mana={2}{G}
 [/card]
 [card]
-text={1}, {T}: Target 1/1 creature gets +1/+2 until end of turn.
-id=2393
-name=Aegis of the Meek
-rarity=R
-type=Artifact
-mana={3}
-[/card]
-[card]
 text=Vertigo deals 2 damage to target creature with flying. That creature loses flying until end of turn.
 id=2658
 name=Vertigo
@@ -1351,6 +1344,26 @@ auto=-flying
 rarity=U
 type=Instant
 mana={R}
+[/card]
+[card]
+text={2}, {T}: Target creature with power 3 or less gains flying until end of turn.
+id=2435
+name=Whalebone Glider
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Enchant creature. Enchanted creature gets +1/+0 and has flying and first strike.
+id=2741
+target=creature
+auto=:flying,first strike
+auto=:1/0
+name=Wings of Aesthir
+rarity=U
+type=Enchantment 
+mana={W}{U}
+subtype=Aura
 [/card]
 [card]
 text=Sacrifice a land: You gain 2 life.
