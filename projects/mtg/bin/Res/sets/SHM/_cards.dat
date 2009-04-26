@@ -918,6 +918,19 @@ subtype=Scarecrow
 toughness=4
 [/card]
 [card]
+text=Whimwader can't attack unless defending player controls a blue permanent.
+id=141957
+name=Whimwader
+abilities=cantattack
+auto=aslongas(*[blue]|opponentinplay) -cantattack
+rarity=C
+type=Creature
+mana={4}{U}
+power=6
+subtype=Elemental
+toughness=4
+[/card]
+[card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
 abilities=wither
 id=135436

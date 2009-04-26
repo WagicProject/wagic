@@ -1952,17 +1952,6 @@ mana={GW}{GW}
 subtype=Aura
 [/card]
 [card]
-text=Whimwader can't attack unless defending player controls a blue permanent.
-id=141957
-name=Whimwader
-rarity=C
-type=Creature
-mana={4}{U}
-power=6
-subtype=Elemental
-toughness=4
-[/card]
-[card]
 text=Whenever Wicker Warcrawler attacks or blocks, put a -1/-1 counter on it at end of combat.
 id=154410
 name=Wicker Warcrawler
