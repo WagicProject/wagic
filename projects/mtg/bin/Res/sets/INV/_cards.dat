@@ -1158,6 +1158,17 @@ auto=aslongas(mountain|myinplay) 1/1
 auto=aslongas(swamp|myinplay) 1/1
 [/card]
 [card]
+text=Target creature can't block this turn.     Draw a card.
+id=23073
+name=Stun
+target=creature
+auto=:cantattack
+auto=draw:1
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
 text=Sulfur Vent comes into play tapped.     {T}: Add {B} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {U}{R} to your mana pool. 
 auto=tap
 auto={T}:Add{B}
