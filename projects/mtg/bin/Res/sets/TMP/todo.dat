@@ -1229,17 +1229,7 @@ rarity=U
 type=Sorcery
 mana={2}{G}{G}{G}
 [/card]
-[card]
-text=As Pallimud comes into play, choose an opponent.     Pallimud's power is equal to the number of tapped lands the chosen player controls.
-id=4837
-name=Pallimud
-rarity=R
-type=Creature
-mana={2}{R}
-power=*
-subtype=Beast
-toughness=3
-[/card]
+
 
 [card]
 text=White spells you play cost {1} less to play.
@@ -1540,17 +1530,7 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-[card]
-text=Sea Monster can't attack unless defending player controls an Island.
-id=4724
-name=Sea Monster
-rarity=C
-type=Creature
-mana={4}{U}{U}
-power=6
-subtype=Serpent
-toughness=6
-[/card]
+
 [card]
 text=Buyback {4} (You may pay an additional {4} as you play this spell. If you do, put this card into your hand as it resolves.)  Searing Touch deals 1 damage to target creature or player.
 id=4843
@@ -1785,14 +1765,7 @@ toughness=1
 [/card]
 
 
-[card]
-text=Target creature can't block this turn.     Draw a card.
-id=4851
-name=Stun
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
+
 [card]
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
 id=4852
@@ -1935,7 +1908,16 @@ power=3
 subtype=Elephant
 toughness=3
 [/card]
-
+[card]
+text=You may tap or untap target artifact, creature, or land.     Draw a card.
+id=4739
+name=Twitch
+auto=may tap target(artifact,creature,land)
+auto=draw:1
+rarity=C
+type=Instant
+mana={2}{U}
+[/card]
 [card]
 text=Whenever a creature comes into play, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
 id=4740

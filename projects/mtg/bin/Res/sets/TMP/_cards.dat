@@ -987,6 +987,18 @@ mana={1}{W}
 subtype=Aura
 [/card]
 [card]
+text=As Pallimud comes into play, choose an opponent.     Pallimud's power is equal to the number of tapped lands the chosen player controls.
+id=4837
+name=Pallimud
+auto=foreach(land[tapped]|opponentinplay) 1/0
+rarity=R
+type=Creature
+mana={2}{R}
+power=*
+subtype=Beast
+toughness=3
+[/card]
+[card]
 text=Discard a card: Regenerate Patchwork Gnomes.
 id=4619
 name=Patchwork Gnomes
@@ -1266,6 +1278,19 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Sea Monster can't attack unless defending player controls an Island.
+id=4724
+name=Sea Monster
+abilities=cantattack
+auto=aslongas(Island|opponentinplay) -cantattack
+rarity=C
+type=Creature
+mana={4}{U}{U}
+power=6
+subtype=Serpent
+toughness=6
+[/card]
+[card]
 text={T}: Untap target creature.
 id=4788
 name=Seeker of Skybreak
@@ -1368,7 +1393,7 @@ text=Flying     Discard a creature card: Skyshroud Vampire gets +2/+2 until end 
 id=4686
 name=Skyshroud Vampire
 abilities=flying
-auto={S(*|myhand)}:2/2
+auto={S(creature|myhand)}:2/2
 rarity=U
 type=Creature
 mana={3}{B}{B}
@@ -1499,6 +1524,17 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
+text=Target creature can't block this turn.     Draw a card.
+id=4851
+name=Stun
+target=creature
+auto=:cantblock
+auto=draw:1
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
 text={T}: Add {B} to your mana pool.
 auto={T}: Add {B}
 id=4925
@@ -1581,16 +1617,6 @@ color=Green
 rarity=C
 mana={2}{G}
 type=Sorcery
-[/card]
-[card]
-text=You may tap or untap target artifact, creature, or land.     Draw a card.
-id=4739
-name=Twitch
-auto=may tap target(artifact,creature,land)
-auto=draw:1
-rarity=C
-type=Instant
-mana={2}{U}
 [/card]
 [card]
 text=Destroy target artifact.
