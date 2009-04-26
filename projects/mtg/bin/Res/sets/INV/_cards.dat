@@ -665,6 +665,18 @@ toughness=4
 abilities=flying
 [/card]
 [card]
+text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
+id=23072
+name=Maniacal Rage
+target=creature
+auto=:2/2
+auto=:cantblock
+rarity=C
+type=Enchantment
+mana={1}{R}
+subtype=Aura
+[/card]
+[card]
 text=Protection from white       Marauding Knight gets +1/+1 for each Plains your opponents control.
 id=23053
 auto=foreach(plains|opponentinplay) 1/1

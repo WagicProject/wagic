@@ -1295,15 +1295,6 @@ type=Enchantment
 mana={1}{U}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
-id=23072
-name=Maniacal Rage
-rarity=C
-type=Enchantment
-mana={1}{R}
-subtype=Aura
-[/card]
-[card]
 text=Search your library for three cards, remove them from the game, then shuffle your library.       Draw a card.
 id=23003
 name=Manipulate Fate
@@ -1976,8 +1967,9 @@ mana={2}{W}
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard to play.
 id=22965
 name=Reya Dawnbringer
+abilities=Legendary,flying
 rarity=R
-type=Legendary Creature
+type=Creature
 mana={6}{W}{W}{W}
 power=4
 subtype=Angel
