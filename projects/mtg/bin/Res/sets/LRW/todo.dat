@@ -158,17 +158,6 @@ mana={1}{R}
 subtype=Shapeshifter
 [/card]
 [card]
-text=Blind-Spot Giant can't attack or block unless you control another Giant.
-id=146597
-name=Blind-Spot Giant
-rarity=C
-type=Creature
-mana={2}{R}
-power=4
-subtype=Giant Warrior
-toughness=3
-[/card]
-[card]
 text=Bog Hoodlums can't block.     When Bog Hoodlums comes into play, clash with an opponent. If you win, put a +1/+1 counter on Bog Hoodlums. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 id=145966
 name=Bog Hoodlums
@@ -601,18 +590,6 @@ rarity=U
 type=Enchantment
 mana={1}{W}
 [/card]
-
-[card]
-text=Flying     Ethereal Whiskergill can't attack unless defending player controls an Island.
-id=139431
-name=Ethereal Whiskergill
-rarity=U
-type=Creature
-mana={3}{U}
-power=4
-subtype=Elemental
-toughness=3
-[/card]
 [card]
 text=When Exiled Boggart is put into a graveyard from play, discard a card.
 id=146443
@@ -624,7 +601,6 @@ power=2
 subtype=Goblin Rogue
 toughness=2
 [/card]
-
 [card]
 text=Whenever an opponent plays a blue spell during your turn, you may put a 4/4 green Elemental creature token into play.
 id=143728
@@ -634,7 +610,6 @@ type=Tribal Enchantment
 mana={1}{G}
 subtype=Elemental
 [/card]
-
 [card]
 text=Flash     Flying     When Faerie Harbinger comes into play, you may search your library for a Faerie card, reveal it, then shuffle your library and put that card on top of it.
 id=139427
@@ -758,7 +733,6 @@ power=2
 subtype=Elemental Warrior
 toughness=1
 [/card]
-
 [card]
 text=When Flamekin Harbinger comes into play, you may search your library for an Elemental card, reveal it, then shuffle your library and put that card on top of it.
 id=139463
@@ -770,7 +744,6 @@ power=1
 subtype=Elemental Shaman
 toughness=1
 [/card]
-
 [card]
 text=As an additional cost to play Fodder Launch, sacrifice a Goblin.     Target creature gets -5/-5 until end of turn. Fodder Launch deals 5 damage to that creature's controller.
 id=146447
@@ -1616,7 +1589,6 @@ power=2
 subtype=Treefolk Warrior
 toughness=4
 [/card]
-
 [card]
 text=When Oblivion Ring comes into play, remove another target nonland permanent from the game.      When Oblivion Ring leaves play, return the removed card to play under its owner's control.
 id=139414
@@ -1795,7 +1767,6 @@ rarity=U
 type=Instant
 mana={2}{U}{U}
 [/card]
-
 [card]
 text=As Secluded Glen comes into play, you may reveal a Faerie card from your hand. If you don't, Secluded Glen comes into play tapped.     {T}: Add {U} or {B} to your mana pool.
 id=153458
@@ -1814,7 +1785,6 @@ power=4
 subtype=Treefolk Druid
 toughness=4
 [/card]
-
 [card]
 text=Defender     At the beginning of combat on your turn, you may clash with an opponent. If you win, Sentry Oak gets +2/+0 and loses defender until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 id=145970
@@ -1853,7 +1823,6 @@ type=Tribal Instant
 mana={W}
 subtype=Shapeshifter
 [/card]
-
 [card]
 text=Fear     When Shriekmaw comes into play, destroy target nonartifact, nonblack creature.     Evoke {1}{B} (You may play this spell for its evoke cost. If you do, it's sacrificed when it comes into play.)
 id=146175
@@ -1909,7 +1878,6 @@ power=1
 subtype=Elemental Shaman
 toughness=1
 [/card]
-
 [card]
 text={2}: Target creature gains trample until end of turn. If this is the third time this ability has resolved this turn, you may add {R}{R}{R}{R}{R}{R}{R}{R} to your mana pool.
 id=139467
@@ -2010,7 +1978,6 @@ power=1
 subtype=Goblin Rogue
 toughness=3
 [/card]
-
 [card]
 text={T}: Target Merfolk creature gets +1/+1 and gains islandwalk until end of turn.     {T}: Target land becomes an Island until end of turn.
 id=139424
@@ -2031,7 +1998,6 @@ type=Tribal Sorcery
 mana={3}{W}
 subtype=Merfolk
 [/card]
-
 [card]
 text=Creatures you control get +1/+1 until end of turn. If you control a Kithkin, draw a card.
 id=145799
@@ -2071,8 +2037,6 @@ rarity=U
 type=Enchantment
 mana={G}
 [/card]
-
-
 [card]
 text=Flying     When Thieving Sprite comes into play, target player reveals X cards from his or her hand, where X is the number of Faeries you control. You choose one of those cards. That player discards that card.
 id=139452
@@ -2174,7 +2138,6 @@ power=0
 subtype=Treefolk Druid
 toughness=3
 [/card]
-
 [card]
 text=Changeling (This card is every creature type at all times.)  {1}{U}: Switch Turtleshell Changeling's power and toughness until end of turn.
 id=145807
@@ -2361,7 +2324,6 @@ power=1
 subtype=Elemental
 toughness=3
 [/card]
-
 [card]
 text=Changeling (This card is every creature type at all times.)
 id=145816
@@ -2425,4 +2387,3 @@ power=3
 subtype=Faerie Wizard
 toughness=3
 [/card]
-

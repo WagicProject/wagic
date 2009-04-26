@@ -21,6 +21,20 @@ mana={2}{W}
 subtype=Aura
 [/card]
 [card]
+text=Blind-Spot Giant can't attack or block unless you control another Giant.
+id=146597
+name=Blind-Spot Giant
+abilities=cantattack,cantblock
+auto=aslongas(Giant|myinplay) other -cantattack
+auto=aslongas(Giant|myinplay) other -cantblock
+rarity=C
+type=Creature
+mana={2}{R}
+power=4
+subtype=Giant Warrior
+toughness=3
+[/card]
+[card]
 text=Return target Goblin card from your graveyard to your hand.
 target=goblin(mygraveyard)
 auto=moveTo(myHand)
@@ -108,6 +122,19 @@ rarity=R
 type=Enchantment
 mana={4}{G}{G}
 subtype=Aura
+[/card]
+[card]
+text=Flying     Ethereal Whiskergill can't attack unless defending player controls an Island.
+id=139431
+name=Ethereal Whiskergill
+abilities=cantattack,flying
+auto=aslongas(Island|opponentinplay) -cantattack
+rarity=U
+type=Creature
+mana={3}{U}
+power=4
+subtype=Elemental
+toughness=3
 [/card]
 [card]
 text=Destroy target non-Elf creature.
