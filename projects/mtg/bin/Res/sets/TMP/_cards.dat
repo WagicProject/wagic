@@ -352,6 +352,18 @@ toughness=1
 abilities=shadow
 [/card]
 [card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Dauthi Slayer attacks each turn if able.
+id=4654
+name=Dauthi Slayer
+abilities=shadow,mustattack
+rarity=C
+type=Creature
+mana={B}{B}
+power=2
+subtype=Dauthi Soldier
+toughness=2
+[/card]
+[card]
 text=Destroy target artifact or enchantment.
 target=artifact,enchantment
 auto=destroy

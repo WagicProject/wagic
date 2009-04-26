@@ -365,17 +365,6 @@ subtype=Dauthi Minion
 toughness=1
 [/card]
 [card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Dauthi Slayer attacks each turn if able.
-id=4654
-name=Dauthi Slayer
-rarity=C
-type=Creature
-mana={B}{B}
-power=2
-subtype=Dauthi Soldier
-toughness=2
-[/card]
-[card]
 text=Tap target creature. It deals damage equal to its power to another target creature.
 id=4810
 name=Deadshot
