@@ -116,7 +116,6 @@ type=Enchantment
 mana={4}{U}
 subtype=Aura
 [/card]
-
 [card]
 text=Equipped creature gets +1/+0 and has wither. (It deals damage to creatures in the form of -1/-1 counters.)  Equip {2}
 id=129135
@@ -127,15 +126,6 @@ mana={2}
 subtype=Equipment
 [/card]
 [card]
-text=Enchant creature     Enchanted creature attacks each turn if able.
-id=159395
-name=Bloodshed Fever
-rarity=C
-type=Enchantment
-mana={R}
-subtype=Aura
-[/card]
-[card]
 text=Whenever a creature is put into a graveyard from play, if it had a -1/-1 counter on it, put a -1/-1 counter on target creature.
 id=135429
 name=Blowfly Infestation
@@ -143,7 +133,6 @@ rarity=U
 type=Enchantment
 mana={2}{B}
 [/card]
-
 [card]
 text=If you would gain life, you gain twice that much life instead.
 id=146751
@@ -1782,17 +1771,6 @@ mana={2}{RG}
 power=2
 subtype=Goblin Warrior Shaman
 toughness=3
-[/card]
-[card]
-text=Tattermunge Maniac attacks each turn if able.
-id=142013
-name=Tattermunge Maniac
-rarity=U
-type=Creature
-mana={RG}
-power=2
-subtype=Goblin Warrior
-toughness=1
 [/card]
 [card]
 text={R}{G}: Each blocked creature gets +1/+0 and gains trample until end of turn.

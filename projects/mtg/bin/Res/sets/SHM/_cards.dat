@@ -74,6 +74,17 @@ subtype=Goblin Warrior
 toughness=1
 [/card]
 [card]
+text=Enchant creature     Enchanted creature attacks each turn if able.
+id=159395
+name=Bloodshed Fever
+target=creature
+auto=:mustattack
+rarity=C
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
 text=Trample     Other red creatures you control get +1/+1.     Other green creatures you control get +1/+1.
 abilities=trample
 auto=lord(creature[red]|myinplay) 1/1 other
@@ -830,6 +841,18 @@ name=Swamp
 rarity=L
 type=Basic Land
 subtype=Swamp
+[/card]
+[card]
+text=Tattermunge Maniac attacks each turn if able.
+id=142013
+name=Tattermunge Maniac
+abilities=mustattack
+rarity=U
+type=Creature
+mana={RG}
+power=2
+subtype=Goblin Warrior
+toughness=1
 [/card]
 [card]
 text=Flash     Other white creatures you control get +1/+1.     Other blue creatures you control get +1/+1.
