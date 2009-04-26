@@ -2115,6 +2115,18 @@ subtype=Human Rebel
 toughness=2
 [/card]
 [card]
+text=Target creature can't block this turn.     Draw a card.
+id=134755
+name=Stun
+target=creature
+auto=:cantblock
+auto=draw:1
+rarity=C
+color=Red
+type=Instant
+mana={1}{R}
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.
 id=129751
 auto={T}:Add {1}

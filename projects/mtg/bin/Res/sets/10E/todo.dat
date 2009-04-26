@@ -1519,15 +1519,7 @@ color=Black
 type=Sorcery
 mana={2}{B}{B}
 [/card]
-[card]
-text=Target creature can't block this turn.     Draw a card.
-id=134755
-name=Stun
-rarity=C
-color=Red
-type=Instant
-mana={1}{R}
-[/card]
+
 [card]
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
 id=129750
