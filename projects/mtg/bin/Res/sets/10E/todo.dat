@@ -1033,16 +1033,6 @@ type=Sorcery
 mana={2}{G}{G}{G}
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
-id=129667
-name=Pacifism
-rarity=C
-color=White
-type=Enchantment
-mana={1}{W}
-subtype=Aura
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  All damage that would be dealt to you is dealt to enchanted creature instead.
 id=135248
 name=Pariah

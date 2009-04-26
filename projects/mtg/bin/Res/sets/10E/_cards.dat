@@ -1411,6 +1411,19 @@ subtype=Thopter
 toughness=2
 [/card]
 [card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
+id=129667
+name=Pacifism
+target=creature
+auto=cantattack
+auto=cantblock
+rarity=C
+color=White
+type=Enchantment
+mana={1}{W}
+subtype=Aura
+[/card]
+[card]
 text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
 abilities=First strike, protection from black, protection from red
 id=129668

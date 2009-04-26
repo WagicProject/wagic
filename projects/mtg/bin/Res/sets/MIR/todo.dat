@@ -1919,15 +1919,6 @@ type=World Enchantment
 mana={3}{W}
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
-id=3507
-name=Pacifism
-rarity=C
-type=Enchantment
-mana={1}{W}
-subtype=Aura
-[/card]
-[card]
 text=Look at target opponent's hand and choose a card from it. Put that card on top of that player's library.
 id=3302
 name=Painful Memories

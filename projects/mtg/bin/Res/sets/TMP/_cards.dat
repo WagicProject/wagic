@@ -953,6 +953,18 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
+id=4892
+name=Pacifism
+target=creature
+auto=cantattack
+auto=cantblock
+rarity=C
+type=Enchantment
+mana={1}{W}
+subtype=Aura
+[/card]
+[card]
 text=Discard a card: Regenerate Patchwork Gnomes.
 id=4619
 name=Patchwork Gnomes
