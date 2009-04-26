@@ -728,6 +728,16 @@ toughness=2
 abilities=first strike
 [/card]
 [card]
+text=Black creatures can't attack or block.
+id=4884
+name=Light of Day
+auto=lord(creature[black]) cantattack
+auto=lord(creature[black]) cantblock
+rarity=U
+type=Enchantment
+mana={3}{W}
+[/card]
+[card]
 text=Lightning Blast deals 4 damage to target creature or player.
 target=creature,player
 auto=Damage:4

@@ -970,16 +970,6 @@ type=Sorcery
 mana={2}{U}{U}
 [/card]
 [card]
-text=Black creatures can't attack or block.
-id=4884
-name=Light of Day
-rarity=U
-type=Enchantment
-mana={3}{W}
-[/card]
-
-
-[card]
 text=Each player removes all creature cards in his or her graveyard from the game, then sacrifices all creatures he or she controls, then puts into play all cards he or she removed this way.
 id=4671
 name=Living Death
