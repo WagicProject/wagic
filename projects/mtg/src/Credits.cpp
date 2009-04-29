@@ -8,7 +8,7 @@
   CreditBonus::CreditBonus(int _value, string _text){
     value = _value;
     text = _text;
-    
+
   }
 
 
@@ -27,10 +27,10 @@
   Credits::~Credits(){
     SAFE_DELETE(unlockedTex);
     SAFE_DELETE(unlockedQuad);
-    for (int i=0;i<bonus.size();i++)
+    for (unsigned int i = 0; i<bonus.size(); ++i)
     if (bonus[i])
       delete bonus[i];
- bonus.clear();
+    bonus.clear();
   }
 
 void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
@@ -40,7 +40,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
   showMsg = (rand() % 5);
   GameObserver * g = GameObserver::GetInstance();
 	if (!p1->isAI() && p2->isAI() && p1!= g->gameOver){
-    GameOptions * go = GameOptions::GetInstance(); 
+    GameOptions * go = GameOptions::GetInstance();
     value = 400;
     if (app->gameType == GAME_TYPE_MOMIR) value = 200;
     int difficulty = go->values[OPTIONS_DIFFICULTY].getIntValue();
@@ -73,14 +73,14 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     if (unlocked == -1){
       unlocked = isDifficultyUnlocked();
       if (unlocked){
-        unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/unlocked.png", TEX_TYPE_USE_VRAM); 
+        unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/unlocked.png", TEX_TYPE_USE_VRAM);
         unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
         GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
         GameOptions::GetInstance()->save();
       }else{
         unlocked = isMomirUnlocked();
         if (unlocked){
-          unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/momir_unlocked.png", TEX_TYPE_USE_VRAM); 
+          unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/momir_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED] = GameOption(1);
           GameOptions::GetInstance()->save();
@@ -88,7 +88,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
       }
       if (unlocked){
         JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
-        if (sample) JSoundSystem::GetInstance()->PlaySample(sample); 
+        if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
       }
     }
 
@@ -129,7 +129,7 @@ void Credits::Render(){
       if (unlockedQuad){
         showMsg = 0;
         r->RenderQuad(unlockedQuad, 20, 20);
-      }    
+      }
     }else{
       sprintf (buffer, "You have been defeated");
     }
@@ -141,7 +141,7 @@ void Credits::Render(){
     int p0life = p1->life;
     sprintf(buffer, "Player %i wins (%i)", winner, p0life );
   }
-       
+
 
   float y = 130;
   if (showMsg == 1) y = 50;
@@ -160,7 +160,7 @@ void Credits::Render(){
     f->DrawString("(Seriously, donate or I'll kill this cute little bunny)" ,10,y+54);
     f->DrawString("Thanks in advance for your support." ,10,y+66);
     f2->DrawString("-> http://wololo.net/wagic" ,10,y+78);
-  } 
+  }
 
 }
 
@@ -180,7 +180,7 @@ int Credits::isDifficultyUnlocked(){
     if(fileExists(buffer)){
       found = 1;
       nbAIDecks++;
-      sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks); 
+      sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks);
       int percentVictories = stats->percentVictories(string(aiSmallDeckName));
       if (percentVictories >=67) wins++;
       if (wins >= 10) return 1;

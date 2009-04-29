@@ -112,14 +112,15 @@ void GameStateDuel::Start()
 
 
 void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
-  char * deckFile = RESPATH"/player/momir.txt";
-  char * deckFileSmall = "momir";
+  char deckFile[] = RESPATH"/player/momir.txt";
+  char deckFileSmall[] = "momir";
+  char empty[] = "";
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
   deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
   if (!isAI){ //Human Player
       mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFileSmall);
   }else{
-      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,"");
+      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,empty);
   }
   delete tempDeck;
 }

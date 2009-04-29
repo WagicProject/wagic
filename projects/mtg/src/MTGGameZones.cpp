@@ -120,7 +120,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
   GameObserver *g = GameObserver::GetInstance();
   if (!from || !to) return card; //Error check
 
-  if (copy = from->removeCard(card)){
+  if ((copy = from->removeCard(card))){
 
     if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
       if (to == graveyard){

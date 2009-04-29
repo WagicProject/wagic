@@ -163,7 +163,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       OutputDebugString("Cost is null\n");
       SAFE_DELETE(cost);
     }
-  
+
     int may = 0;
     if (line.find("may ") != string::npos) may = 1;
 
@@ -171,9 +171,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     //Tap in the cost ?
     if (line.find("{t}") != string::npos) doTap = 1;
 
-    TargetChooser * tc;
-    TargetChooser * lordTargets;
-    Trigger * trigger;
+    TargetChooser * tc = NULL;
+    TargetChooser * lordTargets = NULL;
+    Trigger * trigger = NULL;
     while (line.size()){
       string s;
       found = line.find("&&");
@@ -383,7 +383,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           dryModeResult = BAKA_EFFECT_GOOD;
           dryModeResultSet = 1;
           break;
-        } //TODO : 
+        } //TODO :
         if (tc){
             ACopier * a = NEW ACopier(id,card,tc,cost);
             if (may){
@@ -727,7 +727,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     sprintf(buf, "AUTO ACTION PARSED: %s\n", line.c_str());
     OutputDebugString(buf);
 #endif
-    } 
+    }
     if (dryMode){
       SAFE_DELETE(tc);
       SAFE_DELETE(lordTargets);
@@ -1736,7 +1736,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
     OutputDebugString("React To click 2\n");
     if (!cost->isExtraPaymentSet()){
       OutputDebugString("React To click 3\n");
-      
+
       game->waitForExtraPayment = cost->extraCosts;
       return 0;
     }
@@ -1757,12 +1757,12 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
     if (object->typeAsTarget() == TARGET_CARD) cost->setExtraCostsAction(this, (MTGCardInstance *) object);
     OutputDebugString("React To click 2\n");
     if (!cost->isExtraPaymentSet()){
-      OutputDebugString("React To click 3\n");   
+      OutputDebugString("React To click 3\n");
       game->waitForExtraPayment = cost->extraCosts;
       return 0;
     }
     game->currentlyActing()->getManaPool()->pay(cost);
-    cost->doPayExtra();    
+    cost->doPayExtra();
   }
   fireAbility();
   return 1;
@@ -1771,7 +1771,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
 
 
 
-//The whole targetAbility mechanism is messed up, mainly because of its interactions with 
+//The whole targetAbility mechanism is messed up, mainly because of its interactions with
 // the ActionLayer, GameObserver, and parent class ActivatedAbility.
 // Currently choosing a target is a complete different mechanism for put into play and for other abilities.
 // It probably shouldn't be the case.
@@ -1802,7 +1802,7 @@ int TargetAbility::reactToTargetClick(Targetable * object){
       if (tc->toggleTarget(object) == TARGET_OK_FULL){
 	      waitingForAnswer = 0;
 	      return ActivatedAbility::reactToClick(source);
-      } 
+      }
       return 1;
   }
   return 0;
@@ -1822,11 +1822,11 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
       return ActivatedAbility::reactToClick(source);
     }else{
       if (tc->toggleTarget(card) == TARGET_OK_FULL){
-	      
+
 	      int result = ActivatedAbility::reactToClick(source);
         if (result) waitingForAnswer = 0;
         return result;
-      }    
+      }
       return 1;
     }
   }
@@ -2076,7 +2076,7 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
 
 
    AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost , int doTap):MTGAbility(id, card), tap(doTap){
-   
+
      LOG("==Creating ManaProducer Object");
      aType=MTGAbility::MANA_PRODUCER;
     cost = _cost;
@@ -2165,13 +2165,13 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
       OutputDebugString("React To click 2\n");
       if (!cost->isExtraPaymentSet()){
         OutputDebugString("React To click 3\n");
-      
+
         GameObserver::GetInstance()->waitForExtraPayment = cost->extraCosts;
         return 0;
       }
       GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
       cost->doPayExtra();
-    } 
+    }
     if (tap) source->tapped = 1;
     currentlyTapping++;
 
