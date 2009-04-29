@@ -590,7 +590,7 @@ static void jpeg_mem_src(j_decompress_ptr cinfo, byte *mem, int len)
 LoadJPG
 ==============
 */
-void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)))
+void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
 {
 
 
@@ -738,7 +738,7 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
 }
 
 
-JTexture* JRenderer::LoadTexture(const char* filename, int mode)
+JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
 {
 	TextureInfo textureInfo;
 
@@ -827,7 +827,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode)
 	return tex;
 }
 
-void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)))
+void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
 {
 	//TextureInfo* textureInfo = new TextureInfo;
 
@@ -1022,7 +1022,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 
 //////////////////////////////////////////////////////////////////////////
 /// GIF Support
-int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode __attribute__((unused)))
+int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
 {
 
 	//	pixel ** image_data=NULL;
@@ -1163,7 +1163,7 @@ int image_gif_read(GifFileType * ft, GifByteType * buf, int size)
 
 }
 
-void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode)
+void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode, int TextureFormat __attribute__((unused)))
 {
 	///*
 	//FILE * fp = fopen(filename, "rb");
