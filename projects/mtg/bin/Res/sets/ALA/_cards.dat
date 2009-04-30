@@ -368,7 +368,7 @@ toughness=1
 [/card]
 [card]
 text=All creatures get -2/-2 until end of turn.
-auto=loard(creatures) -2/-2
+auto=lord(creatures) -2/-2
 id=179424
 name=Infest
 rarity=U
