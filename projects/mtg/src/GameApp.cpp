@@ -143,6 +143,10 @@ void GameApp::Create()
 
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
+
+  char buf[512];
+  sprintf(buf, "size of MTGCardInstance : %i\n" , sizeof(MTGCardInstance));
+  OutputDebugString(buf);
 }
 
 
@@ -230,6 +234,18 @@ void GameApp::Update()
 	      mCurrentState->End();
 
       mCurrentState = mNextState;
+     
+
+#if defined (WIN32) || defined (LINUX)
+#else
+   /*   
+    int maxLinear = ramAvailableLineareMax();
+      int ram = ramAvailable();
+      char buf[512];
+      sprintf(buf, "Ram : linear max: %i - total : %i\n",maxLinear, ram);
+      fprintf(stderr,buf);
+   */
+#endif
       mCurrentState->Start();
 
       mNextState = NULL;

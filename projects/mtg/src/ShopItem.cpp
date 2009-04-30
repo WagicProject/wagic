@@ -238,23 +238,17 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	      safeDeleteDisplay();
 	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
 	      int curNbcards = playerdata->collection->totalCards();
-	      //if (showPriceDialog == 0){
-	      //  //Starter Deck
-	      //  playerdata->collection->addRandomCards(3,setId,Constants::RARITY_R,NULL);
-	      //  playerdata->collection->addRandomCards(9, setId,Constants::RARITY_U,NULL);
-	      //  playerdata->collection->addRandomCards(48, setId,Constants::RARITY_C,NULL);
-	      //}else{
-	        //Booster
-	        playerdata->collection->addRandomCards(1, setIds[showPriceDialog],Constants::RARITY_R);
-	        playerdata->collection->addRandomCards(3, setIds[showPriceDialog],Constants::RARITY_U);
-	        playerdata->collection->addRandomCards(11, setIds[showPriceDialog],Constants::RARITY_C);
-	     // }
-	int newNbCards = playerdata->collection->totalCards();;
-	for (int i = curNbcards; i < newNbCards ; i++){
-	  MTGCardInstance * card = NEW MTGCardInstance(playerdata->collection->_(i), NULL);
-	  displayCards[i-curNbcards] = card;
-	  display->AddCard(card);
-	}
+
+        playerdata->collection->addRandomCards(1, setIds[showPriceDialog],Constants::RARITY_R);
+        playerdata->collection->addRandomCards(3, setIds[showPriceDialog],Constants::RARITY_U);
+        playerdata->collection->addRandomCards(11, setIds[showPriceDialog],Constants::RARITY_C);
+
+	      int newNbCards = playerdata->collection->totalCards();;
+	      for (int i = curNbcards; i < newNbCards ; i++){
+	        MTGCardInstance * card = NEW MTGCardInstance(playerdata->collection->_(i), NULL);
+	        displayCards[i-curNbcards] = card;
+	        display->AddCard(card);
+	      }
       }
       //Remove(showPriceDialog);
       showPriceDialog = -1;

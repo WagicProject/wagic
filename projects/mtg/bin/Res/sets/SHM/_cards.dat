@@ -23,6 +23,18 @@ subtype=Elemental Warrior
 toughness=3
 [/card]
 [card]
+text=Ashenmoor Gouger can't block.
+abilities=cantblock
+id=153981
+name=Ashenmoor Gouger
+rarity=U
+type=Creature
+mana={BR}{BR}{BR}
+power=4
+subtype=Elemental Warrior
+toughness=4
+[/card]
+[card]
 text=First strike     Ballynock Cohort gets +1/+1 as long as you control another white creature.
 abilities=first strike
 auto=aslongas(creature[white]|myinplay) 1/1 other
@@ -351,6 +363,18 @@ type=Artifact Creature
 mana={1}
 power=1
 subtype=Scarecrow
+toughness=1
+[/card]
+[card]
+text=Inkfathom Infiltrator can't block and is unblockable.
+abilities=unblockable,cantblock
+id=154401
+name=Inkfathom Infiltrator
+rarity=U
+type=Creature
+mana={UB}{UB}
+power=2
+subtype=Merfolk Rogue
 toughness=1
 [/card]
 [card]

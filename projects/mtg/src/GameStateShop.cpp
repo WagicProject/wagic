@@ -43,7 +43,7 @@ void GameStateShop::Start()
   int sets[500];
   int nbsets = 0;
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
-    if (mParent->collection->countBySet(i) > 100){ //Only sets with more than 100 cards can get boosters and starters
+    if (mParent->collection->countBySet(i) > 80){ //Only sets with more than 80 cards can get boosters and starters
       sets[nbsets] = i;
       nbsets++;
     }

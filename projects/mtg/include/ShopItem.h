@@ -12,6 +12,8 @@
 #include <string>
 using std::string;
 
+#define SHOP_BOOSTERS 3
+
 class ShopItem:public JGuiObject{
  private:
   bool mHasFocus;
@@ -51,7 +53,7 @@ class ShopItems:public JGuiController,public JGuiListener{
   MTGAllCards * collection;
   SimpleMenu * dialog;
   int showPriceDialog;
-  int setIds[2];;
+  int setIds[SHOP_BOOSTERS];
   MTGCardInstance * displayCards[100];
   CardDisplay * display;
   void safeDeleteDisplay();

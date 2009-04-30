@@ -15,6 +15,9 @@
 #include <pspgu.h>
 #include <psprtc.h>
 
+#include <psptypes.h>
+#include <malloc.h>
+
 #endif
 
 
@@ -37,6 +40,23 @@ int fileExists(const char * filename);
 #ifdef LINUX
 void dumpStack();
 #endif
+
+
+/* RAM simple check functions header */
+
+// *** DEFINES ***
+
+#if defined (WIN32) || defined (LINUX)
+#define RAM_BLOCK      (100 * 1024 * 1024)
+#else
+#define RAM_BLOCK      (1024 * 1024)
+#endif
+
+// *** FUNCTIONS DECLARATIONS ***
+
+u32 ramAvailableLineareMax (void);
+u32 ramAvailable (void);
+
 
 #endif
 
