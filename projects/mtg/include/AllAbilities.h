@@ -1040,6 +1040,18 @@ class ALord:public ListMaintainerAbility{
 };
 
 
+class ALordUEOT:public ALord{
+public:
+  ALordUEOT(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL, int _modifier = 1): ALord(_id, card,  _tc, _includeSelf,  _power  ,  _toughness , _ability , _regenCost,  _modifier){
+  }
+
+
+   int testDestroy(){
+    if (newPhase == Constants::MTG_PHASE_AFTER_EOT) return 1;
+    return 0;
+  }
+};
+
 //Foreach (plague rats...)
 class AForeach:public ListMaintainerAbility{
  public:

@@ -367,6 +367,15 @@ subtype=Ogre Mutant
 toughness=1
 [/card]
 [card]
+text=All creatures get -2/-2 until end of turn.
+auto=loard(creatures) -2/-2
+id=179424
+name=Infest
+rarity=U
+type=Sorcery
+mana={1}{B}{B}
+[/card]
+[card]
 text={T}: Add {U} to your mana pool.
 auto={T}:Add{U}
 id=174979
@@ -771,6 +780,17 @@ subtype=Human Wizard
 toughness=1
 [/card]
 [card]
+text=Until end of turn, target creature you control gets +3/+3 and other creatures you control get +1/+1.
+target=creature|myinplay
+auto=2/2
+auto=lord(creatures|myinplay) 1/1
+id=177597
+name=Sigil Blessing
+rarity=C
+type=Instant
+mana={G}{W}
+[/card]
+[card]
 text=First strike     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 abilities=first strike, exalted
 id=174958
@@ -856,6 +876,18 @@ name=Swamp
 rarity=L
 type=Basic Land
 subtype=Swamp
+[/card]
+[card]
+text=Until end of turn, creatures you control get +5/+5 and gain first strike, lifelink, and trample.
+auto=lord(creatures|myinplay) 5/5
+auto=lord(creatures|myinplay) lifelink
+auto=lord(creatures|myinplay) first strike
+auto=lord(creatures|myinplay) trample
+id=174839
+name=Titanic Ultimatum
+rarity=R
+type=Sorcery
+mana={R}{R}{G}{G}{G}{W}{W}
 [/card]
 [card]
 text=Flying

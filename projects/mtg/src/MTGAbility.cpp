@@ -609,7 +609,15 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
 
         if (lordType == PARSER_LORD){
-	        game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,power,toughness));
+          if (!cost){
+            if(card->hasType("instant") || card->hasType("sorcery")){
+              game->addObserver(NEW ALordUEOT(id,card,lordTargets,lordIncludeSelf,power,toughness));
+            }else{
+	            game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,power,toughness));
+            }
+          }else{
+            //TODO
+          }
         }else{
 	        if(tc){
 	            game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
@@ -682,7 +690,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             break;
           }else{
 	          if (lordType == PARSER_LORD){
-	            game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,j,0,modifier));
+              if(card->hasType("instant") || card->hasType("sorcery")){
+                game->addObserver(NEW ALordUEOT(id,card,lordTargets,lordIncludeSelf,0,0,j,0,modifier));
+              }else{
+	              game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,j,0,modifier));
+              }
 	          }else if (lordType == PARSER_ASLONGAS){
 	              game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,0,0,j,modifier));
             }else{

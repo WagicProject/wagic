@@ -638,14 +638,7 @@ rarity=R
 type=Artifact
 mana={2}{B}{B}
 [/card]
-[card]
-text=All creatures get -2/-2 until end of turn.
-id=179424
-name=Infest
-rarity=U
-type=Sorcery
-mana={1}{B}{B}
-[/card]
+
 [card]
 text=Count the number of cards in your library. Your life total becomes that number.
 id=175039
@@ -1240,14 +1233,7 @@ power=5
 subtype=Sphinx
 toughness=5
 [/card]
-[card]
-text=Until end of turn, target creature you control gets +3/+3 and other creatures you control get +1/+1.
-id=177597
-name=Sigil Blessing
-rarity=C
-type=Instant
-mana={G}{W}
-[/card]
+
 [card]
 text=Sigil of Distinction comes into play with X charge counters on it.     Equipped creature gets +1/+1 for each charge counter on Sigil of Distinction.     Equip-Remove a charge counter from Sigil of Distinction.
 id=174867
@@ -1471,14 +1457,7 @@ power=2
 subtype=Bird
 toughness=1
 [/card]
-[card]
-text=Until end of turn, creatures you control get +5/+5 and gain first strike, lifelink, and trample.
-id=174839
-name=Titanic Ultimatum
-rarity=R
-type=Sorcery
-mana={R}{R}{G}{G}{G}{W}{W}
-[/card]
+
 [card]
 text=Tap an untapped creature you control: Topan Ascetic gets +1/+1 until end of turn.
 id=174999

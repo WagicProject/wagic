@@ -101,6 +101,7 @@ steelclad_serpent1.txt
 steelclad_serpent2.txt
 sword_to_plowshares.txt
 terror.txt
+titanic_ultimatum.txt
 tranquil_domain.txt
 volcanic_island.txt
 wall_of_diffusion.txt

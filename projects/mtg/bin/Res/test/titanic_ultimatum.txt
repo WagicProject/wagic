@@ -1,0 +1,45 @@
+#Test new lord Until end of turn abilities
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears
+hand:titanic ultimatum
+manapool:{R}{R}{G}{G}{G}{W}{W}
+[PLAYER2]
+[DO]
+titanic ultimatum
+next
+#combat begin
+next
+#attackers
+grizzly bears
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#combat begins
+next
+#attackers
+grizzly bears
+next
+#blcokers
+next
+#combat damage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears
+graveyard:titanic ultimatum
+manapool:{0}
+life:27
+[PLAYER2]
+life:11
+[END]
