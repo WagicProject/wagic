@@ -1469,14 +1469,7 @@ power=2
 subtype=Human Monk
 toughness=2
 [/card]
-[card]
-text=Creatures you control gain shroud until end of turn. (They can't be the targets of spells or abilities.)
-id=179432
-name=Tortoise Formation
-rarity=C
-type=Instant
-mana={3}{U}
-[/card]
+
 [card]
 text={R}: Undead Leotau gets +1/-1 until end of turn.     Unearth {2}{B} ({2}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=176452
@@ -1577,17 +1570,7 @@ type=Enchantment
 mana={4}{R}
 [/card]
 
-[card]
-text=Lifelink (Whenever this creature deals damage, you gain that much life.)  Windwright Mage has flying as long as an artifact card is in your graveyard.
-id=175014
-name=Windwright Mage
-rarity=C
-type=Artifact Creature
-mana={W}{U}{B}
-power=2
-subtype=Human Wizard
-toughness=2
-[/card]
+
 [card]
 text=Cycling {2} ({2}, Discard this card: Draw a card.)
 id=175078

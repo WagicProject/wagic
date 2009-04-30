@@ -890,6 +890,15 @@ type=Sorcery
 mana={R}{R}{G}{G}{G}{W}{W}
 [/card]
 [card]
+text=Creatures you control gain shroud until end of turn. (They can't be the targets of spells or abilities.)
+auto=lord(creatures|myinplay) shroud
+id=179432
+name=Tortoise Formation
+rarity=C
+type=Instant
+mana={3}{U}
+[/card]
+[card]
 text=Flying
 abilities=flying
 id=174924
@@ -937,6 +946,19 @@ mana={G}
 power=1
 subtype=Cat Warrior
 toughness=1
+[/card]
+[card]
+text=Lifelink (Whenever this creature deals damage, you gain that much life.)  Windwright Mage has flying as long as an artifact card is in your graveyard.
+abilities=lifelink
+auto=aslongas(artifact|mygraveyard) flying
+id=175014
+name=Windwright Mage
+rarity=C
+type=Artifact Creature
+mana={W}{U}{B}
+power=2
+subtype=Human Wizard
+toughness=2
 [/card]
 [card]
 text=
