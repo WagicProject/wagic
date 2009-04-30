@@ -1411,6 +1411,17 @@ subtype=Thopter
 toughness=2
 [/card]
 [card]
+text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+auto=lord(creatures|myinplay) 3/3
+auto=lord(creatures|myinplay) trample
+id=130506
+name=Overrun
+rarity=U
+color=Green
+type=Sorcery
+mana={2}{G}{G}{G}
+[/card]
+[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
 id=129667
 name=Pacifism
@@ -1583,6 +1594,16 @@ mana={2}{R}
 power=1
 subtype=Human Wizard
 toughness=1
+[/card]
+[card]
+text=Pyroclasm deals 2 damage to each creature.
+auto=damage:2 all(creature)
+id=129801
+name=Pyroclasm
+rarity=U
+color=Red
+type=Sorcery
+mana={1}{R}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {T}, Sacrifice Quicksand: Target attacking creature without flying gets -1/-2 until end of turn.
@@ -2078,6 +2099,19 @@ subtype=Wurm
 toughness=4
 [/card]
 [card]
+text=Spineless Thug can't block.
+abilities=cantblock
+id=129743
+name=Spineless Thug
+rarity=C
+color=Black
+type=Creature
+mana={1}{B}
+power=2
+subtype=Zombie Mercenary
+toughness=2
+[/card]
+[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Whenever enchanted creature deals damage, you gain that much life.
 target=creature
 auto=lifelink
@@ -2298,6 +2332,20 @@ subtype=Wolf
 toughness=1
 [/card]
 [card]
+text=Flash (You may play this spell any time you could play an instant.)  Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and attacks each turn if able.
+abilities=flash
+target=creature
+auto=2/2
+auto=mustattack
+id=134756
+name=Uncontrollable Anger
+rarity=C
+color=Red
+type=Enchantment
+mana={2}{R}{R}
+subtype=Aura
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Underground River deals 1 damage to you.
 id=129778
 auto={T}:Add {1}
@@ -2423,6 +2471,16 @@ mana={G}
 power=0
 subtype=Wall
 toughness=3
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+auto=lord(creatures|myinplay) 1/1
+id=129797
+name=Warrior's Honor
+rarity=C
+color=White
+type=Instant
+mana={2}{W}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)

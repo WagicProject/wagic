@@ -87,6 +87,7 @@ paralysis2.txt
 persuasion.txt
 plague_rats.txt
 protomatter_powder.txt
+pyroclasm.txt
 resurrection.txt
 rootwalla.txt
 royal_assassin.txt
@@ -114,3 +115,4 @@ zombify.txt
 #Momir Basic Tests
 ########################
 momir/keldon_warlord.txt
+

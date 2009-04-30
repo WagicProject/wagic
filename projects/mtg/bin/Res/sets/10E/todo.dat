@@ -1023,15 +1023,7 @@ type=Enchantment
 mana={2}{G}
 subtype=Aura
 [/card]
-[card]
-text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-id=130506
-name=Overrun
-rarity=U
-color=Green
-type=Sorcery
-mana={2}{G}{G}{G}
-[/card]
+
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  All damage that would be dealt to you is dealt to enchanted creature instead.
 id=135248
@@ -1106,15 +1098,7 @@ power=1
 subtype=Human Wizard
 toughness=2
 [/card]
-[card]
-text=Pyroclasm deals 2 damage to each creature.
-id=129801
-name=Pyroclasm
-rarity=U
-color=Red
-type=Sorcery
-mana={1}{R}
-[/card]
+
 
 [card]
 text=Whenever you play a white, blue, black, or red spell, put a +1/+1 counter on Quirion Dryad.
@@ -1421,18 +1405,7 @@ power=1
 subtype=Drake
 toughness=1
 [/card]
-[card]
-text=Spineless Thug can't block.
-id=129743
-name=Spineless Thug
-rarity=C
-color=Black
-type=Creature
-mana={1}{B}
-power=2
-subtype=Zombie Mercenary
-toughness=2
-[/card]
+
 [card]
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
 id=136509
@@ -1696,16 +1669,7 @@ color=Blue
 type=Instant
 mana={2}{U}
 [/card]
-[card]
-text=Flash (You may play this spell any time you could play an instant.)  Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and attacks each turn if able.
-id=134756
-name=Uncontrollable Anger
-rarity=C
-color=Red
-type=Enchantment
-mana={2}{R}{R}
-subtype=Aura
-[/card]
+
 [card]
 text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
 id=129779
@@ -1793,15 +1757,7 @@ color=Red
 type=Sorcery
 mana={5}{R}{R}{R}
 [/card]
-[card]
-text=Creatures you control get +1/+1 until end of turn.
-id=129797
-name=Warrior's Honor
-rarity=C
-color=White
-type=Instant
-mana={2}{W}
-[/card]
+
 [card]
 text=Equipped creature is unblockable and has shroud. (It can't be the target of spells or abilities.)  Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 id=135278

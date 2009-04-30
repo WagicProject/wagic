@@ -49,6 +49,40 @@ int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
   return 1;
 }
 
+int AbilityFactory::damageAll(TargetChooser * tc, int damage){
+  MTGCardInstance * source = tc->source;
+  tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
+  GameObserver * g = GameObserver::GetInstance();
+  for (int i = 0; i < 2 ; i++){
+    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
+      if (tc->canTarget(current)){
+        g->mLayers->stackLayer()->addDamage(source,current, damage);
+      }
+    }
+  }
+  return 1;
+}
+
+
+
+int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
+  MTGCardInstance * source = tc->source;
+  tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
+  GameObserver * g = GameObserver::GetInstance();
+  for (int i = 0; i < 2 ; i++){
+    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
+      if (tc->canTarget(current)){
+        AZoneMover::moveTarget(current,destinationZone , source);
+      }
+    }
+  }
+  return 1;
+}
+
+
+
 
 int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
   MTGCardInstance * copy = p->game->putInZone(card,  zone, p->game->stack);
@@ -206,7 +240,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         s = s.substr(found+1);
       }
 
-
+      int all = 0;
       //Target Abilities
       found = s.find("target(");
       if (found != string::npos){
@@ -215,7 +249,17 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         TargetChooserFactory tcf;
         tc = tcf.createTargetChooser(starget, card);
 
+      }else{
+        found = s.find("all(");
+        if (found != string::npos){
+          all = 1;
+          int end = s.find(")", found);
+          string starget = s.substr(found + 4,end - found -4);
+          TargetChooserFactory tcf;
+          tc = tcf.createTargetChooser(starget, card);
+        }
       }
+
 
       //Lord
       found = s.find("lord(");
@@ -352,14 +396,16 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	      int end = s.find(")",found+1);
 	      string szone = s.substr(found + 7,end - found - 7);
         if (tc){
-          //if (cost){
+          if (all){
+            moveAll(tc,szone);
+          }else{
             AZoneMover * a = NEW AZoneMover(id,card,tc,szone,cost,doTap);
             if (may){
               game->addObserver(NEW MayAbility(id,a,card));
             }else{
               game->addObserver(a);
             }
-         // }
+          }
         }else{
           if (cost){
             MTGAbility * a = NEW AZoneSelfMover(id,card,szone,cost,doTap);
@@ -411,27 +457,22 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        BuryEvent * action = NEW BuryEvent();
 	        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
         }else{
-	        found = s.find("all(");
-	        if (found != string::npos){
-	          int end = s.find(")");
-	          string starget = s.substr(found + 4,end - found - 4);
-            TargetChooserFactory tcf;
-            TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+          if (all){
             if (dryMode){
-              int myNbCards = countCards(targetAll,card->controller());
-              int opponentNbCards = countCards(targetAll, card->controller()->opponent());
-              int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
-              int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
-              delete targetAll;
+              int myNbCards = countCards(tc,card->controller());
+              int opponentNbCards = countCards(tc, card->controller()->opponent());
+              int myCardsPower = countCards(tc,card->controller(),COUNT_POWER);
+              int opponentCardsPower = countCards(tc, card->controller()->opponent(),COUNT_POWER);
+              SAFE_DELETE(tc);
               if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) dryModeResult =  BAKA_EFFECT_GOOD;
               else dryModeResult =  BAKA_EFFECT_BAD;
               break;
             }else{
               if (cost){
-                game->addObserver(NEW AAllDestroyer(id, card,targetAll,1,cost,doTap));
+                game->addObserver(NEW AAllDestroyer(id, card,tc,1,cost,doTap));
               }else{
-                this->destroyAllInPlay(targetAll,1);
-                delete targetAll;
+                this->destroyAllInPlay(tc,1);
+                SAFE_DELETE(tc);
               }
             }
 	        }else{
@@ -454,27 +495,22 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       found = s.find("destroy");
       if (found != string::npos){
 
-        found = s.find("all(");
-        if (found != string::npos){
-	        int end = s.find(")");
-	        string starget = s.substr(found + 4,end - found - 4);
-	        TargetChooserFactory tcf;
-	        TargetChooser * targetAll = tcf.createTargetChooser(starget, card);
+        if (all){
 	        if (dryMode){
-	          int myNbCards = countCards(targetAll,card->controller());
-	          int opponentNbCards = countCards(targetAll, card->controller()->opponent());
-	          int myCardsPower = countCards(targetAll,card->controller(),COUNT_POWER);
-	          int opponentCardsPower = countCards(targetAll, card->controller()->opponent(),COUNT_POWER);
-	          delete targetAll;
+	          int myNbCards = countCards(tc,card->controller());
+	          int opponentNbCards = countCards(tc, card->controller()->opponent());
+	          int myCardsPower = countCards(tc,card->controller(),COUNT_POWER);
+	          int opponentCardsPower = countCards(tc, card->controller()->opponent(),COUNT_POWER);
+	          SAFE_DELETE(tc);
 	          if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) dryModeResult =  BAKA_EFFECT_GOOD;
             else dryModeResult =  BAKA_EFFECT_BAD;
             break;
 	        }else{
              if (cost){
-                game->addObserver(NEW AAllDestroyer(id, card,targetAll,0,cost,doTap));
+                game->addObserver(NEW AAllDestroyer(id, card,tc,0,cost,doTap));
               }else{
-                this->destroyAllInPlay(targetAll);
-                delete targetAll;
+                this->destroyAllInPlay(tc);
+                SAFE_DELETE(tc);
               }
 	        }
         }else{
@@ -509,11 +545,15 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             break;
         }
         if (tc){
-	        MTGAbility * a = NEW ADamager(id, card, cost, damage, tc,doTap);
-          if (multi){
-            multi->Add(a);
+          if (all){
+            damageAll(tc,damage);
           }else{
-            game->addObserver(a);
+	          MTGAbility * a = NEW ADamager(id, card, cost, damage, tc,doTap);
+            if (multi){
+              multi->Add(a);
+            }else{
+              game->addObserver(a);
+            }
           }
         }else{
           if (multi){

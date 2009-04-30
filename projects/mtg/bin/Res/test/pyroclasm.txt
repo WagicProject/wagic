@@ -1,0 +1,20 @@
+#Testing Pyroclasm
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:pyroclasm
+inplay:air elemental,rage weaver
+manapool:{1}{R}
+[PLAYER2]
+inplay:grizzly bears,relentless rats
+[DO]
+pyroclasm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:pyroclasm,rage weaver
+inplay:air elemental
+manapool:{0}
+[PLAYER2]
+graveyard:grizzly bears,relentless rats
+[END]
