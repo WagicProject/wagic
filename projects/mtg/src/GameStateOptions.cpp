@@ -73,9 +73,9 @@ void GameStateOptions::Render()
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 
   const char * const CreditsText[] = {
-    "Wagic, The Homebrew ?! by WilLoW",
+    "Wagic, The Homebrew?! by WilLoW",
     "",
-    "updates, new cards, and more on http://www.wololo.net/wagic",
+    "updates, new cards, and more on http://wololo.net/wagic",
     "Many thanks to the devs and card creators who help this project",
     "",
     "Developped with the JGE++ Library (http://jge.khors.com)",
@@ -83,8 +83,8 @@ void GameStateOptions::Render()
     "Background picture from KDE4 , www.kde.org",
     "SFX From www.soundsnap.com",
     "",
-    "Music by Celestial Aeon Project, under Creative Commons License",
-    "Their music can be downloaded at http://www.jamendo.com",
+    "Music by Celestial Aeon Project, http://www.jamendo.com",
+    "",
     "",
     "This work is not related to or endorsed by Wizards of the Coast, Inc",
     "",

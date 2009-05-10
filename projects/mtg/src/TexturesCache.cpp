@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/TexturesCache.h"
 #include "../include/GameOptions.h"
+#include <JFileSystem.h>
 
 TexturesCache::TexturesCache(){
   nb_textures = 0;
@@ -95,6 +96,7 @@ int CardTexture::getId(){
 
 CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
   LOG("==Creating CardTexture Object");
+  JFileSystem* fs = JFileSystem::GetInstance();
   char filename[100];
   quad = NULL;
   tex = NULL;
@@ -105,11 +107,23 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
   }else{
     sprintf(filename, "sets/%s/%s", card->getSetName(), card->getImageName());
   }
-#ifdef WIN32
-  OutputDebugString(filename);
-#endif
-  if (fileExists(filename))
+
+  if (fileExists(filename)){
+    fs->DetachZipFile();
     tex = JRenderer::GetInstance()->LoadTexture(filename, false,GU_PSM_5551);
+  }else{
+    char zipname[100];
+    sprintf(zipname, "Res/sets/%s/%s.zip", card->getSetName(),card->getSetName());
+    if (fileExists(zipname)){
+      fs->AttachZipFile(zipname);
+      if (type == CACHE_THUMB){
+        sprintf(filename, "thumbnails/%s", card->getImageName());
+      }else{
+        sprintf(filename, "%s", card->getImageName());
+      }
+      tex = JRenderer::GetInstance()->LoadTexture(filename, false,GU_PSM_5551);
+    }
+  }
   if (tex){
     quad = NEW JQuad(tex, 0.0f, 0.0f, tex->mWidth, tex->mHeight);
     nbpixels = tex->mTexHeight * tex->mTexWidth;

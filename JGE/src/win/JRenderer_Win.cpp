@@ -608,17 +608,45 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 
 	struct jpeg_decompress_struct	cinfo;
 	struct jpeg_error_mgr jerr;
-	BYTE *rgbadata, *scanline, *p, *q;
+	BYTE *rawdata, *rgbadata, *scanline, *p, *q;
 	int	rawsize, i;
 
-		char filenamenew[4096];
-	sprintf(filenamenew, "Res/%s", filename);
+//		char filenamenew[4096];
+//	sprintf(filenamenew, "Res/%s", filename);
 
 
-	// Initialise libJpeg Object
+
+
+        JFileSystem* fileSystem = JFileSystem::GetInstance();
+        if (!fileSystem->OpenFile(filename))
+        {
+                return;
+        }
+
+        rawsize = fileSystem->GetFileSize();
+
+        rawdata = new BYTE[rawsize];
+
+        if (!rawdata)
+        {
+                fileSystem->CloseFile();
+                return;
+        }
+
+        fileSystem->ReadFile(rawdata, rawsize);
+        fileSystem->CloseFile();
+
+     /*   if (rawdata[6] != 'J' || rawdata[7] != 'F' || rawdata[8] != 'I' || rawdata[9] != 'F') 
+        { 
+                delete [] rawdata;
+                return; 
+        } */
+
+      	// Initialise libJpeg Object
 	cinfo.err = jpeg_std_error(&jerr);
-	jpeg_create_decompress(&cinfo);
-
+	jpeg_create_decompress(&cinfo);  
+        
+        /*
 FILE* fp = fopen(filenamenew, "rb");
     if (fp == NULL)
     {
@@ -627,9 +655,13 @@ FILE* fp = fopen(filenamenew, "rb");
     }
 
  jpeg_stdio_src(&cinfo, fp);
+ */
+
+jpeg_mem_src(&cinfo, rawdata, rawsize);
 
 	// Process JPEG header
 	jpeg_read_header(&cinfo, true);
+
 
 
 
@@ -703,7 +735,8 @@ FILE* fp = fopen(filenamenew, "rb");
 
 
 
-fclose(fp);
+
+
 
 
 
@@ -715,12 +748,14 @@ fclose(fp);
 
 
 	// Finish Decompression
-	jpeg_finish_decompress(&cinfo);
-
+  try{
+    jpeg_finish_decompress(&cinfo);
+  }catch(...){}
 	// Destroy JPEG object
 	jpeg_destroy_decompress(&cinfo);
 
-
+//fclose(fp);
+delete [] rawdata;
 	
 }
 

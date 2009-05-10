@@ -68,8 +68,7 @@ JFileSystem::JFileSystem()
 
 JFileSystem::~JFileSystem()
 {
-	if (mZipAvailable && mZipFile != NULL)
-		unzCloseCurrentFile(mZipFile);
+	DetachZipFile();
 }
 
 
@@ -78,7 +77,9 @@ bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL 
 	if (mZipAvailable && mZipFile != NULL)
 	{
 		if (mZipFileName != zipfile)
-			unzCloseCurrentFile(mZipFile);		// close the previous zip file
+			DetachZipFile();		// close the previous zip file
+    else
+      return true;
 	}
 
 	mZipFileName = zipfile;
@@ -101,6 +102,7 @@ void JFileSystem::DetachZipFile()
 	if (mZipAvailable && mZipFile != NULL)
 	{
 		unzCloseCurrentFile(mZipFile);
+    unzClose(mZipFile);
 	}
 
 	mZipFile = NULL;
@@ -115,9 +117,10 @@ bool JFileSystem::OpenFile(const string &filename)
 
 	if (mZipAvailable && mZipFile != NULL)
 	{
-		if (unzLocateFile(mZipFile, path.c_str(), 0) != UNZ_OK)
-			return false;
-
+    if (unzLocateFile(mZipFile, filename.c_str(), 0) != UNZ_OK){
+			DetachZipFile();
+      return OpenFile(filename);
+    }
 		char filenameInzip[256];
 		unz_file_info fileInfo;
 
@@ -159,8 +162,10 @@ bool JFileSystem::OpenFile(const string &filename)
 
 void JFileSystem::CloseFile()
 {
-	if (mZipAvailable && mZipFile != NULL)
+  if (mZipAvailable && mZipFile != NULL){
+    unzCloseCurrentFile(mZipFile);
 		return;
+  }
 
 	#if defined (WIN32) || defined (LINUX)
 		if (mFile != NULL)

@@ -1022,7 +1022,7 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 
 	struct jpeg_decompress_struct	cinfo;
 	struct jpeg_error_mgr jerr;
-	u8 *scanline, *p;
+	u8 *rawdata, *scanline, *p;
   u16 *rgbadata16, *q16, *bits16;
   u32 *rgbadata32, *q32, *bits32;
 	int	rawsize, i;
@@ -1030,6 +1030,7 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
   bits16 = NULL;
   bits32 = NULL;
 
+  /*
         FILE * fp = fopen(filenamenew, "rb");
 	if (fp==NULL)
 	  return;
@@ -1039,6 +1040,39 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 	jpeg_create_decompress(&cinfo);
 
 	jpeg_stdio_src(&cinfo, fp);
+*/
+
+
+        JFileSystem* fileSystem = JFileSystem::GetInstance();
+        if (!fileSystem->OpenFile(filename))
+        {
+                return;
+        }
+
+        rawsize = fileSystem->GetFileSize();
+
+        rawdata = new u8[rawsize];
+
+        if (!rawdata)
+        {
+                fileSystem->CloseFile();
+                return;
+        }
+
+        fileSystem->ReadFile(rawdata, rawsize);
+        fileSystem->CloseFile();
+
+       /* if (rawdata[6] != 'J' || rawdata[7] != 'F' || rawdata[8] != 'I' || rawdata[9] != 'F') 
+        { 
+                delete [] rawdata;
+                return; 
+        } */
+
+
+        cinfo.err = jpeg_std_error(&jerr);
+        jpeg_create_decompress(&cinfo);
+
+        jpeg_mem_src(&cinfo, rawdata, rawsize);
 
 
 	jpeg_read_header(&cinfo, true);
@@ -1175,7 +1209,9 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 
 	free(scanline);
 
-	jpeg_finish_decompress(&cinfo);
+	try{
+    jpeg_finish_decompress(&cinfo);
+  }catch(...){}
 
 
 
@@ -1202,7 +1238,8 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 	textureInfo.mVRAM =videoRAMUsed;
 
 	jpeg_destroy_decompress(&cinfo);
-	fclose(fp);
+//	fclose(fp);
+  delete [] rawdata;
 }
 
 
