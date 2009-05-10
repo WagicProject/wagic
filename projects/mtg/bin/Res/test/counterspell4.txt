@@ -1,0 +1,27 @@
+#Testing counterspell on bad moon
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:bad moon
+manapool:{1}{B}
+[PLAYER2]
+hand:counterspell
+manapool:{U}{U}
+[DO]
+bad moon
+no
+yes
+counterspell
+bad moon
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:bad moon
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:counterspell
+manapool:{0}
+life:20
+[END]

@@ -42,6 +42,8 @@ control_magic2.txt
 counsel_of_the_soratami.txt
 counterspell.txt
 counterspell2.txt
+counterspell3.txt
+counterspell4.txt
 creature_bond.txt
 deja_vu.txt
 dingus_egg.txt
@@ -115,4 +117,3 @@ zombify.txt
 #Momir Basic Tests
 ########################
 momir/keldon_warlord.txt
-

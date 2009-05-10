@@ -502,6 +502,7 @@ void ActionStack::Update(float dt){
   TargetChooser * tc = game->getCurrentTargetChooser();
   int newState = game->getCurrentGamePhase();
   currentState = newState;
+  if (!tc) checked = 0;
 
   //Select Stack's display mode
   if (mode==ACTIONSTACK_STANDARD && tc && !checked){
@@ -509,15 +510,16 @@ void ActionStack::Update(float dt){
     unpackDamageStacks();
     for (int i = 0; i < mCount ; i++){
       Interruptible * current = (Interruptible *)mObjects[i];
+      OutputDebugString("OH MY GOD, TAARGET MODE!\n");
       if (tc->canTarget(current)){
-	if (mObjects[mCurr]) mObjects[mCurr]->Leaving(PSP_CTRL_UP);
-	current->display = 1;
-	mCurr = i;
-	mObjects[mCurr]->Entering();
-	mode=ACTIONSTACK_TARGET;
-	modal = 1;
+	      if (mObjects[mCurr]) mObjects[mCurr]->Leaving(PSP_CTRL_UP);
+	      current->display = 1;
+	      mCurr = i;
+	      mObjects[mCurr]->Entering();
+	      mode=ACTIONSTACK_TARGET;
+	      modal = 1;
       }else{
-	current->display = 0;
+	      current->display = 0;
       }
     }
     if (mode != ACTIONSTACK_TARGET){

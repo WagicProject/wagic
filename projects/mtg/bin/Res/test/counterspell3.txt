@@ -1,0 +1,30 @@
+#Testing counterspell extensively
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:lightning bolt
+inplay:mountain
+[PLAYER2]
+hand:counterspell
+inplay:hill giant,1393,1392
+[DO]
+mountain
+lightning bolt
+hill giant
+no
+yes
+1392
+1393
+counterspell
+lightning bolt
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:lightning bolt
+inplay:mountain
+[PLAYER2]
+graveyard:counterspell
+inplay:hill giant,1393,1392
+life:20
+[END]
