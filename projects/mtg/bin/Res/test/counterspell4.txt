@@ -5,13 +5,13 @@ FIRSTMAIN
 hand:bad moon
 manapool:{1}{B}
 [PLAYER2]
-hand:counterspell
+hand:counterspell (RV)
 manapool:{U}{U}
 [DO]
 bad moon
 no
 yes
-counterspell
+counterspell (RV)
 bad moon
 endinterruption
 [ASSERT]
@@ -21,7 +21,7 @@ graveyard:bad moon
 manapool:{0}
 life:20
 [PLAYER2]
-graveyard:counterspell
+graveyard:counterspell (RV)
 manapool:{0}
 life:20
 [END]

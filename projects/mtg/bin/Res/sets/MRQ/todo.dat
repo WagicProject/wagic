@@ -617,14 +617,6 @@ subtype=Human Minion
 toughness=1
 [/card]
 [card]
-text=Counter target spell.
-id=19570
-name=Counterspell
-rarity=C
-type=Instant
-mana={U}{U}
-[/card]
-[card]
 text=Whenever a creature becomes the target of a spell or ability, return that creature to its owner's hand. (It won't be affected by the spell or ability.)
 id=19683
 name=Cowardice

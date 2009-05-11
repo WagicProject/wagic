@@ -354,6 +354,16 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Counter target blue instant spell.
+target=instant[blue]|stack
+auto=fizzle
+id=158773
+name=Guttural Response
+rarity=U
+type=Instant
+mana={RG}
+[/card]
+[card]
 text=Sacrifice Heap Doll: Remove target card in a graveyard from the game.
 auto={S}:moveTo(removedfromgame) target(*|graveyard)
 id=154395

@@ -40,14 +40,7 @@ name=Ancient Den
 rarity=C
 type=Artifact Land
 [/card]
-[card]
-text=Counter target artifact or enchantment spell.
-id=45976
-name=Annul
-rarity=C
-type=Instant
-mana={U}
-[/card]
+
 [card]
 text={R}, Remove the top ten cards of your library from the game: Arc-Slogger deals 2 damage to target creature or player.
 id=48436

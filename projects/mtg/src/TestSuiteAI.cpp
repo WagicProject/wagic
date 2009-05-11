@@ -109,6 +109,9 @@ int TestSuiteAI::Act(float dt){
   }else{
     int mtgid = suite->getMTGId(action);
     if (mtgid){
+      char buffe[512];
+      sprintf(buffe, "CARD ID : %i\n", mtgid);
+      OutputDebugString(buffe);
       Interruptible * toInterrupt = suite->getActionByMTGId(mtgid);
 	    if (toInterrupt){
 	      g->stackObjectClicked(toInterrupt);

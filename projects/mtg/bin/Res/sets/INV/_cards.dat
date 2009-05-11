@@ -1,10 +1,10 @@
 [card]
 text=Counter target spell.   You gain 3 life.
-alias=1196
 id=23155
+target=*|stack
+auto=fizzle
 auto=life:3
 name=Absorb
-color=White,Blue
 rarity=R
 mana={W}{U}{U}
 type=Instant
@@ -337,6 +337,17 @@ mana={1}{G}{G}
 power=2
 subtype=Elf
 toughness=2
+[/card]
+[card]
+text=Counter target creature spell.       Draw a card.
+target=creature|stack
+auto=fizzle
+auto=draw:1
+id=22986
+name=Exclude
+rarity=C
+type=Instant
+mana={2}{U}
 [/card]
 [card]
 text=Creatures you control have haste.     Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.

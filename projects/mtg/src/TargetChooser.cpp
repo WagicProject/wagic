@@ -52,6 +52,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           zones[nbzones] = game->players[0]->game->inPlay;
           nbzones++;
           zones[nbzones] = game->players[1]->game->inPlay;
+      }else if(zoneName.compare("stack") == 0){
+        zones[nbzones] = game->players[0]->game->stack;
+        nbzones++;
+        zones[nbzones] = game->players[1]->game->stack;
       }else{
           MTGGameZone * zone = MTGGameZone::stringToZone(zoneName, card,card);
           if (zone) zones[nbzones] = zone;
@@ -220,7 +224,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card
   //Any target than cannot be defined automatically is determined by its id
   switch (id){
     //Spell
-  case 1196: //CounterSpell
+  //case 1196: //CounterSpell
   case 1224: //Spell blast
     {
 #if defined (WIN32) || defined (LINUX)
@@ -272,6 +276,8 @@ int TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
     if (source && (card->protectedAgainst(source) || card->has(Constants::SHROUD))) return 0;
+    return 1;
+  }else if (target->typeAsTarget() == TARGET_STACKACTION){
     return 1;
   }
   return 0;
@@ -362,14 +368,25 @@ void TypeTargetChooser::addType(int type){
 }
 
 int TypeTargetChooser::canTarget(Targetable * target ){
+  if (!TargetZoneChooser::canTarget(target)) return 0;
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    if (!TargetZoneChooser::canTarget(card)) return 0;
     for (int i= 0; i < nbtypes; i++){
       if (card->hasSubtype(types[i])) return 1;
       if (Subtypes::subtypesList->find(card->name) == types[i]) return 1;
     }
     return 0;
+  }else if (target->typeAsTarget() == TARGET_STACKACTION){
+    Interruptible * action = (Interruptible *) target;
+    if (action->type == ACTION_SPELL && action->state==NOT_RESOLVED){
+      Spell * spell = (Spell *) action;
+      MTGCardInstance * card = spell->source;
+      for (int i= 0; i < nbtypes; i++){
+        if (card->hasSubtype(types[i])) return 1;
+        if (Subtypes::subtypesList->find(card->name) == types[i]) return 1;
+      }
+      return 0;
+    }
   }
   return 0;
 }
@@ -397,10 +414,17 @@ DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGGameZo
 }
 
 int DescriptorTargetChooser::canTarget(Targetable * target){
+  if (!TargetZoneChooser::canTarget(target)) return 0;
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (!TargetZoneChooser::canTarget(_target)) return 0;
     if (cd->match(_target)) return 1;
+  }else if (target->typeAsTarget() == TARGET_STACKACTION){
+    Interruptible * action = (Interruptible *) target;
+    if (action->type == ACTION_SPELL && action->state==NOT_RESOLVED){
+      Spell * spell = (Spell *) action;
+      MTGCardInstance * card = spell->source;
+      if (cd->match(card)) return 1;
+    }
   }
   return 0;
 }
@@ -472,6 +496,16 @@ int TargetZoneChooser::canTarget(Targetable * target){
     MTGCardInstance * card = (MTGCardInstance *) target;
     for (int i = 0; i<nbzones; i++){
       if (zones[i]->hasCard(card)) return 1;
+    }
+  }else if (target->typeAsTarget() == TARGET_STACKACTION){
+OutputDebugString ("CHECKING INTERRUPTIBLE\n");
+    Interruptible * action = (Interruptible *) target;
+    if (action->type == ACTION_SPELL && action->state==NOT_RESOLVED){
+      Spell * spell = (Spell *) action;
+      MTGCardInstance * card = spell->source;
+      for (int i = 0; i<nbzones; i++){
+          if (zones[i]->hasCard(card)) return 1;
+      }
     }
   }
   return 0;

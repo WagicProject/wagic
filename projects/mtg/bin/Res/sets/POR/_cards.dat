@@ -786,6 +786,16 @@ toughness=1
 abilities=mountainwalk
 [/card]
 [card]
+text=Counter target creature or sorcery spell.
+target=creature,sorcery|stack
+auto=fizzle
+id=4268
+name=Mystic Denial
+rarity=U
+type=Instant
+mana={1}{U}{U}
+[/card]
+[card]
 text=Target player gains 8 life.
 target=player
 auto=life:8

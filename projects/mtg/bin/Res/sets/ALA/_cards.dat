@@ -62,7 +62,8 @@ toughness=5
 [card]
 text=Counter target spell.
 id=178092
-alias=1196
+target=*|stack
+auto=fizzle
 name=Cancel
 rarity=C
 type=Instant

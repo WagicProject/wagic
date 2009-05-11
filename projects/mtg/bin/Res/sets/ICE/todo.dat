@@ -553,14 +553,6 @@ mana={2}{W}
 subtype=Aura
 [/card]
 [card]
-text=Counter target spell.
-id=2500
-name=Counterspell
-rarity=C
-type=Instant
-mana={U}{U}
-[/card]
-[card]
 text={4}, {T}: Attach target Aura attached to a creature to another creature.
 id=2401
 name=Crown of the Ages
@@ -1346,22 +1338,6 @@ mana={4}{B}
 power=4
 subtype=Spirit
 toughness=3
-[/card]
-[card]
-text=Choose one - Counter target spell if it's red; or destroy target permanent if it's red.
-id=2508
-name=Hydroblast
-rarity=C
-type=Instant
-mana={U}
-[/card]
-[card]
-text=Put target creature card in a graveyard into play under your control.
-id=2731
-name=Hymn of Rebirth
-rarity=U
-type=Sorcery
-mana={3}{G}{W}
 [/card]
 [card]
 text={X}, {T}: Put a charge counter on Ice Cauldron and remove a nonland card in your hand from the game. As long as that card remains removed from the game, you may play it. Note the type and amount of mana spent to pay this activation cost. Play this ability only if there are no charge counters on Ice Cauldron.     {T}, Remove a charge counter from Ice Cauldron: Add Ice Cauldron's last noted type and amount of mana to your mana pool. Spend this mana only to play the last card removed from the game with Ice Cauldron.
@@ -2473,22 +2449,6 @@ mana={2}{G}
 power=1
 subtype=Ouphe
 toughness=1
-[/card]
-[card]
-text=Choose one - Counter target spell if it's blue; or destroy target permanent if it's blue.
-id=2649
-name=Pyroblast
-rarity=C
-type=Instant
-mana={R}
-[/card]
-[card]
-text=Pyroclasm deals 2 damage to each creature.
-id=2650
-name=Pyroclasm
-rarity=U
-type=Sorcery
-mana={1}{R}
 [/card]
 [card]
 text=Blocking creatures get +1/+1 until end of turn.

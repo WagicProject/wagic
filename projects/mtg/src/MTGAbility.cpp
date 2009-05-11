@@ -307,6 +307,25 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           if (s.find("other") != string::npos) lordIncludeSelf = 0;
       }
 
+       
+      //Fizzle (counterspell...)
+      found = s.find("fizzle");
+      if (found != string::npos){
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_BAD;
+          dryModeResultSet = 1;
+          break;
+        }
+        if (tc){
+	        //TODO
+        }else{
+	        Spell * starget = spell->getNextSpellTarget();
+          if (starget) game->mLayers->stackLayer()->Fizzle(starget);
+        }
+        result++;
+        continue;
+      }
+           
 
       //Untapper (Ley Druid...)
       found = s.find("untap");
@@ -919,12 +938,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AConservator(_id,card));
       break;
     }
-  case 1196: //Counterspell
+/*  case 1196: //Counterspell
     {
       Spell * starget = spell->getNextSpellTarget();
       if (starget) game->mLayers->stackLayer()->Fizzle(starget);
       break;
-    }
+    } */
   case 1197: //Creature Bond
     {
       game->addObserver(NEW ACreatureBond(_id,card, card->target));

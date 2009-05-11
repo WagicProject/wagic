@@ -194,7 +194,8 @@ abilities=flying,cloud
 [/card]
 [card]
 text=Counter target spell.
-alias=1196
+target=*|stack
+auto=fizzle
 id=19570
 name=Counterspell
 color=Blue
@@ -546,8 +547,7 @@ color=Black
 rarity=U
 mana={2}{B}{B}{B}
 type=Enchantment
-[/card]
-[card]
+[/card] [card]
 text={3}, {T}: Target creature gains first strike until end of turn.
 id=19882
 name=Iron Lance

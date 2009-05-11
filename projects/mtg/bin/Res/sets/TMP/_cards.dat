@@ -261,7 +261,8 @@ toughness=5
 [card]
 text=Counter target spell.
 id=4693
-alias=1196
+target=*|stack
+auto=fizzle
 name=Counterspell
 Color=Blue
 rarity=C
@@ -377,7 +378,8 @@ type=Instant
 [card]
 text=Counter target spell.     Draw a card.
 id=4695
-alias=1196
+target=*|stack
+auto=fizzle
 auto=draw:1
 name=Dismiss
 color=Blue

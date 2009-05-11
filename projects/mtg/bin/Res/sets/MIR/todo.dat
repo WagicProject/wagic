@@ -3153,14 +3153,7 @@ power=1
 subtype=Bird
 toughness=1
 [/card]
-[card]
-text=As an additional cost to play Withering Boon, pay 3 life.     Counter target creature spell.
-id=3321
-name=Withering Boon
-rarity=U
-type=Instant
-mana={1}{B}
-[/card]
+
 [card]
 text=Search your library for a creature card and reveal that card. Shuffle your library, then put the revealed card back on top of it.
 id=3424

@@ -286,7 +286,8 @@ type=Land
 [/card]
 [card]
 text=Counter target spell.
-alias=1196
+target=*|stack
+auto=fizzle
 id=129882
 name=Cancel
 rarity=C
@@ -646,6 +647,17 @@ mana={2}{R}
 power=2
 subtype=Goblin Mutant
 toughness=2
+[/card]
+[card]
+text=Counter target red or green spell.
+target=*[red;green]|stack
+auto=fizzle
+id=129908
+name=Flashfreeze
+rarity=U
+color=Blue
+type=Instant
+mana={1}{U}
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
@@ -1699,6 +1711,17 @@ mana={1}{B}{B}
 power=2
 subtype=Rat
 toughness=2
+[/card]
+[card]
+text=Counter target creature spell.
+target=creature|stack
+auto=fizzle
+id=129699
+name=Remove Soul
+rarity=C
+color=Blue
+type=Instant
+mana={1}{U}
 [/card]
 [card]
 text=You gain 3 life.     Draw a card.

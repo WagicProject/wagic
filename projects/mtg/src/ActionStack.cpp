@@ -510,7 +510,6 @@ void ActionStack::Update(float dt){
     unpackDamageStacks();
     for (int i = 0; i < mCount ; i++){
       Interruptible * current = (Interruptible *)mObjects[i];
-      OutputDebugString("OH MY GOD, TAARGET MODE!\n");
       if (tc->canTarget(current)){
 	      if (mObjects[mCurr]) mObjects[mCurr]->Leaving(PSP_CTRL_UP);
 	      current->display = 1;

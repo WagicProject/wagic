@@ -109,7 +109,8 @@ mana={1}{W}
 [card]
 text=Counter target spell.
 id=2500
-alias=1196
+target=*|stack
+auto=fizzle
 name=Counterspell
 rarity=C
 type=Instant

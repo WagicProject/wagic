@@ -1,12 +1,4 @@
 [card]
-text=Counter target spell. You gain 3 life.
-id=23155
-name=Absorb
-rarity=R
-type=Instant
-mana={W}{U}{U}
-[/card]
-[card]
 text=Choose a color. Target player reveals his or her hand, then you choose a card of that color from it. That player discards that card.
 id=23030
 name=Addle
@@ -723,14 +715,7 @@ type=Enchantment
 mana={U}
 subtype=Aura
 [/card]
-[card]
-text=Counter target creature spell.       Draw a card.
-id=22986
-name=Exclude
-rarity=C
-type=Instant
-mana={2}{U}
-[/card]
+
 [card]
 text=Enchant creature     Domain - Enchanted creature gets -1/-1 for each basic land type among lands you control.
 id=23032

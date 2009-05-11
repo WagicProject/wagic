@@ -413,14 +413,7 @@ rarity=C
 type=Sorcery
 mana={G}
 [/card]
-[card]
-text=Counter target creature or sorcery spell.
-id=4268
-name=Mystic Denial
-rarity=U
-type=Instant
-mana={1}{U}{U}
-[/card]
+
 [card]
 text=As an additional cost to play Natural Order, sacrifice a green creature.     Search your library for a green creature card and put it into play. Then shuffle your library.
 id=4307

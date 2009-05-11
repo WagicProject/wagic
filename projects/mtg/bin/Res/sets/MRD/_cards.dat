@@ -21,6 +21,16 @@ mana={2}{W}{W}
 type=Instant
 [/card]
 [card]
+text=Counter target artifact or enchantment spell.
+target=artifact,enchantment|stack
+auto=fizzle
+id=45976
+name=Annul
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
 id=46106
 alias=1280
