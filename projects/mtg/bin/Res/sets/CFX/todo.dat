@@ -537,15 +537,7 @@ type=Artifact
 mana={4}
 subtype=Equipment
 [/card]
-[card]
-text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
-id=182609
-name=Maniacal Rage
-rarity=C
-type=Enchantment
-mana={1}{R}
-subtype=Aura
-[/card]
+
 [card]
 text=Prevent all noncombat damage that would be dealt to creatures you control.
 id=186615
