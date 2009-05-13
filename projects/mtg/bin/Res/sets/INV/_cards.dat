@@ -964,6 +964,7 @@ target=creature
 alias=1229
 id=22985
 name=Repulse
+auto=draw:1
 color=Black
 rarity=C
 mana={2}{U}
