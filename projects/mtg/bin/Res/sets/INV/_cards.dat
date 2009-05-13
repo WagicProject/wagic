@@ -1162,6 +1162,7 @@ color=White
 rarity=C
 mana={3}{W}
 type=Enchantment
+target=creature
 subtype=Aura
 auto=aslongas(forest|myinplay) 1/1
 auto=aslongas(island|myinplay) 1/1
