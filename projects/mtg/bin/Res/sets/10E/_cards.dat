@@ -1608,6 +1608,20 @@ subtype=Human Wizard
 toughness=1
 [/card]
 [card]
+text={U}, {T}: You may tap or untap target creature.
+id=129685
+name=Puppeteer
+rarity=U
+color=Blue
+type=Creature
+mana={2}{U}
+auto={U}{T}:tap target(creature)
+auto={U}{T}:untap target(creature)
+power=1
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
 text=Pyroclasm deals 2 damage to each creature.
 auto=damage:2 all(creature)
 id=129801

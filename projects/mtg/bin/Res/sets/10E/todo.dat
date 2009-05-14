@@ -1078,18 +1078,7 @@ power=4
 subtype=Angel
 toughness=4
 [/card]
-[card]
-text={U}, {T}: You may tap or untap target creature.
-id=129685
-name=Puppeteer
-rarity=U
-color=Blue
-type=Creature
-mana={2}{U}
-power=1
-subtype=Human Wizard
-toughness=2
-[/card]
+
 
 
 [card]
