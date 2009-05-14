@@ -1,0 +1,19 @@
+#Testing Northern paladin on Black Knight
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:northern paladin
+manapool:{W}{W}
+[PLAYER2]
+inplay:Black Knight
+[DO]
+northern paladin
+black knight
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:northern paladin
+manapool:{W}{W}
+[PLAYER2]
+inplay:black knight
+[END]

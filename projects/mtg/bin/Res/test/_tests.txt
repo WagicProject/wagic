@@ -82,6 +82,8 @@ nantuko_husk.txt
 Nevinyrrals_Disk.txt
 Nevinyrrals_Disk2.txt
 nightmare.txt
+northern_paladin.txt
+northern_paladin2.txt
 Nyxathid.txt
 orcish_lumberjack.txt
 paralysis.txt

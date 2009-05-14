@@ -224,7 +224,6 @@ TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card
   //Any target than cannot be defined automatically is determined by its id
   switch (id){
     //Spell
-  //case 1196: //CounterSpell
   case 1224: //Spell blast
     {
 #if defined (WIN32) || defined (LINUX)

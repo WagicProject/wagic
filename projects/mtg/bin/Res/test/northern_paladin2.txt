@@ -1,0 +1,19 @@
+#Testing Northern paladin on erg raiders
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:northern paladin
+manapool:{W}{W}
+[PLAYER2]
+inplay:erg raiders
+[DO]
+northern paladin
+erg raiders
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:northern paladin
+manapool:{W}{W}
+[PLAYER2]
+graveyard:erg raiders
+[END]

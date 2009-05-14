@@ -1494,11 +1494,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AKarma(_id, card));
       break;
     }
-  case 1355: //Northern Paladin
-    {
-      game->addObserver(NEW ANorthernPaladin(_id, card));
-      break;
-    }
   case 1359: //Red Ward
     {
       game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_RED));

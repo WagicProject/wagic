@@ -1471,6 +1471,7 @@ toughness=*
 [/card]
 [card]
 text={W}{W}, {T}: Destroy target black permanent.
+auto={W}{W}{T}:destroy target(*[black])
 id=1355
 name=Northern Paladin
 rarity=R

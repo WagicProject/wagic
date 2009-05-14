@@ -2554,27 +2554,6 @@ class AKarma: public TriggeredAbility{
   }
 };
 
-//1355 Northern Paladin
-class ANorthernPaladin:public TargetAbility{
- public:
- ANorthernPaladin(int _id, MTGCardInstance * card):TargetAbility(_id, card){
-    int _cost[] = {Constants::MTG_COLOR_WHITE, 2};
-    cost = NEW ManaCost(_cost,1);
-    tc = NEW TargetChooser();
-  }
-
-  int resolve(){
-    MTGCardInstance * card = tc->getNextCardTarget();
-    if (card->hasColor(Constants::MTG_COLOR_BLACK)){
-      card->controller()->game->putInGraveyard(card);
-      return 1;
-    }
-    return 0;
-  }
-
-
-};
-
 
 //Soul Net
 class ASoulNet:public ActivatedAbility{
