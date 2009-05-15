@@ -1069,6 +1069,7 @@ type=Land
 text=Flying     {B}: Pit Imp gets +1/+0 until end of turn. Play this ability no more than twice each turn.
 id=4677
 name=Pit Imp
+abilities=flying
 auto={B}:1/0 limit:2
 rarity=C
 type=Creature
