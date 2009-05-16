@@ -1,5 +1,5 @@
 #Fichier de traduction Francais pour Wagic The Homebrew 0.6.0
-#Renommez ce fichier "_lang.txt" et redemarrez le jeu, la traduction devrait etre automatique
+#Placez ce fichier dans Res/lang.txt (renommez-le si necessaire), la traduction devrait etre automatique
 
 #Note to translators:
 #If you want to translate cards, I suggest you translate their text (the "text=" line) directly in _cards.dat,
@@ -32,6 +32,9 @@ Choose Opponent=Choix de l'adversaire
 (easy)=(facile)
 (hard)=(difficile)
 Random=Aleatoire
+Interrupt?=Interruption ?
+X Interrupt - 0 No - [] No to All=X Interrompre - 0 Non - [] Non pour tout
+X Interrupt - 0 No=X Interrompre - 0 Non
 
 #Phases
 Untap=Degagement
