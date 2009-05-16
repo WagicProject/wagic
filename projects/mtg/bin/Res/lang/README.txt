@@ -1,0 +1,1 @@
+To translate Wagic into the language of your choice, rename the file xx.txt (where "xx" is your chosen language) into "_lang.txt"

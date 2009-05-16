@@ -124,7 +124,7 @@ class ActionStack :public GuiLayer{
   Interruptible * getNext(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
   int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
   void Fizzle(Interruptible * action);
-  Interruptible * _(int id);
+  Interruptible * getAt(int id);
   void cancelInterruptOffer(int cancelMode = 1);
   void endOfInterruption();
   Interruptible * getLatest(int state);

@@ -15,6 +15,7 @@
 #include "../include/GameStateOptions.h"
 #include "../include/GameStateShop.h"
 #include "../include/DeckStats.h"
+#include "../include/Translate.h"
 
 const char * const GameState::menuTexts[]= {"--NEW--","Deck 1", "Deck 2", "Deck 3", "Deck 4", "Deck 5", "Deck 6"} ;
 JResourceManager* GameApp::CommonRes = NEW JResourceManager();
@@ -190,7 +191,7 @@ void GameApp::Destroy()
   SAFE_DELETE(MtgSets::SetsList);
 
   SAFE_DELETE(music);
-
+  Translator::EndInstance();
 
 
   SimpleMenu::destroy();

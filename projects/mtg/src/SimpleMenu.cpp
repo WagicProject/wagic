@@ -3,6 +3,7 @@
 #include "../include/SimpleMenuItem.h"
 #include "JTypes.h"
 #include "../include/GameApp.h"
+#include "../include/Translate.h"
 
 const unsigned SimpleMenu::SIDE_SIZE = 7;
 const unsigned SimpleMenu::VMARGIN = 16;
@@ -37,7 +38,7 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
   mX = x;
   mY = y;
   mFont = font;
-  title = _title;
+  title = _(_title);
   startId = 0;
   maxItems = _maxItems;
   selectionT = 0;

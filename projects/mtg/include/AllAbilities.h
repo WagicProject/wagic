@@ -538,7 +538,7 @@ class ASpellCastLife:public MTGAbility{
   int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL){
     if (_card == source && game->currentlyActing()->game->inPlay->hasCard(source)){
       if (game->currentlyActing()->getManaPool()->canAfford(cost)){
-	Interruptible * laststackitem = game->mLayers->stackLayer()->_(-1);
+	Interruptible * laststackitem = game->mLayers->stackLayer()->getAt(-1);
 	if (laststackitem && laststackitem->type == ACTION_SPELL){
 	  Spell * spell = (Spell*)laststackitem;
 	  if (spell->source != lastUsedOn && trigger.match(spell->source)){
@@ -2517,7 +2517,7 @@ class AIslandSanctuary:public MTGAbility{
 
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (card==source && game->currentPlayer == card->controller() && currentPhase == Constants::MTG_PHASE_DRAW){
-      Interruptible * action = game->mLayers->stackLayer()->_(-1);
+      Interruptible * action = game->mLayers->stackLayer()->getAt(-1);
       if (action->type == ACTION_DRAW) return 1;
     }
     return 0;
@@ -2526,7 +2526,7 @@ class AIslandSanctuary:public MTGAbility{
 
   int reactToClick(MTGCardInstance * card){
     if (!isReactingToClick(card)) return 0;
-    game->mLayers->stackLayer()->Remove(game->mLayers->stackLayer()->_(-1));
+    game->mLayers->stackLayer()->Remove(game->mLayers->stackLayer()->getAt(-1));
     initThisTurn = 1;
     return 1;
   }

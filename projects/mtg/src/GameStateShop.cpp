@@ -6,6 +6,7 @@
 #include "../include/GameStateShop.h"
 #include "../include/GameApp.h"
 #include "../include/MTGDeck.h"
+#include "../include/Translate.h"
 
 
 GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {}
@@ -63,7 +64,7 @@ void GameStateShop::Start()
 
   shop = NEW ShopItems(10, this, itemFont, 10, 0, mParent->collection, setIds);
   for (int i = 0; i < SHOP_BOOSTERS; i++){
-    sprintf(setNames[i], "%s Booster (15 cards)",MtgSets::SetsList->values[setIds[i]].c_str());
+    sprintf(setNames[i], "%s Booster (15 %s)",MtgSets::SetsList->values[setIds[i]].c_str(), _("cards").c_str());
     shop->Add(setNames[i],mBack,mBackThumb, 1200);
   }
   
@@ -96,7 +97,7 @@ void GameStateShop::Update(float dt)
       menu->Update(dt);
     }else{
       menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
-      menu->Add(12,"Save & Back to main menu");
+      menu->Add(12,"Save & Back to Main Menu");
       menu->Add(13, "Cancel");
     }
   }else{

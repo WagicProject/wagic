@@ -1,10 +1,10 @@
 #include "../include/config.h"
 #include "../include/SimpleMenuItem.h"
+#include "../include/Translate.h"
 
-
-SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, const char* text, int x, int y, bool hasFocus): JGuiObject(id), parent(_parent), mFont(font), mX(x), mY(y)
+SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, string text, int x, int y, bool hasFocus): JGuiObject(id), parent(_parent), mFont(font), mX(x), mY(y)
 {
-  mText = text;
+  mText = _(text);
   mHasFocus = hasFocus;
 
   mScale = 1.0f;

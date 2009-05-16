@@ -10,7 +10,7 @@
 #include "../include/GameOptions.h"
 // WALDORF - added to support drawing big cards during interrupts
 #include "../include/CardGui.h"
-
+#include "../include/Translate.h"
 
 /*
   NextGamePhase requested by user
@@ -29,7 +29,7 @@ void NextGamePhase::Render(){
   char buffer[200];
   int playerId = 1;
   if (GameObserver::GetInstance()->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
-  sprintf(buffer, "Player %i : -> %s", playerId, Constants::MTGPhaseNames[nextPhase]);
+  sprintf(buffer, "%s %i : -> %s", _("Player").c_str(), playerId, _(Constants::MTGPhaseNames[nextPhase]).c_str());
   mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
 }
 
@@ -48,7 +48,7 @@ void StackAbility::Render(){
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
-  sprintf(buffer, "%s", ability->getMenuText());
+  sprintf(buffer, "%s", _(ability->getMenuText()).c_str());
   mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = ability->source->getThumb();
@@ -57,7 +57,7 @@ void StackAbility::Render(){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
-    mFont->DrawString(ability->source->getName(),x,y-15);
+    mFont->DrawString(_(ability->source->getName()).c_str(),x,y-15);
   }
 }
 StackAbility::StackAbility(int id,MTGAbility * _ability): Interruptible(id),ability(_ability){
@@ -111,7 +111,7 @@ void Spell::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  mFont->DrawString(source->getName(), x + 30 , y, JGETEXT_LEFT);
+  mFont->DrawString(_(source->getName()).c_str(), x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();
   if (quad){
@@ -162,7 +162,7 @@ void Spell::Render(){
       renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
     }else{
       if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-        mFont->DrawString(((MTGCardInstance *)target)->getName(),x+120,y);
+        mFont->DrawString(_(((MTGCardInstance *)target)->getName()).c_str(),x+120,y);
     }
   }
 }
@@ -191,9 +191,9 @@ void PutInGraveyard::Render(){
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   if (!removeFromGame){
-    mFont->DrawString("goes to graveyard", x + 30 , y, JGETEXT_LEFT);
+    mFont->DrawString(_("goes to graveyard").c_str(), x + 30 , y, JGETEXT_LEFT);
   }else{
-    mFont->DrawString("is removed from game", x + 30 , y, JGETEXT_LEFT);
+    mFont->DrawString(_("is removed from game").c_str(), x + 30 , y, JGETEXT_LEFT);
   }
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = card->getThumb();
@@ -295,7 +295,7 @@ int ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[], in
 }
 
 
-Interruptible * ActionStack::_(int id){
+Interruptible * ActionStack::getAt(int id){
   if (id < 0) id = mCount + id;
   if (id > mCount -1) return NULL;
   return (Interruptible *)mObjects[id];
@@ -760,9 +760,9 @@ void ActionStack::Render(){
     // seconds if the user disables auto progressing interrupts by setting the seconds
     // value to zero in Options.
     if (GameOptions::GetInstance()->values[OPTIONS_INTERRUPT_SECONDS].getIntValue() == 0)
-        sprintf(buffer, "Interrupt?");
+        sprintf(buffer, _("Interrupt?").c_str());
     else
-        sprintf(buffer, "Interrupt?  %i", static_cast<int>(timer));
+        sprintf(buffer, "%s  %i", _("Interrupt?").c_str(),static_cast<int>(timer));
 
     //WALDORF - removed all the unnecessary math. just display the prompt at the
     // top of the box.
@@ -770,8 +770,8 @@ void ActionStack::Render(){
     mFont->DrawString(buffer, x0 + 5, y0);
 
 
-    if (mCount > 1) sprintf(buffer, "X Interrupt - 0 No - [] No to All");
-    else            sprintf(buffer, "X Interrupt - 0 No");
+    if (mCount > 1) sprintf(buffer, _("X Interrupt - 0 No - [] No to All").c_str());
+    else            sprintf(buffer, _("X Interrupt - 0 No").c_str());
 
     // WALDORF - puts the button legend right under the prompt. the stack
     // will be displayed below it now. no more need to do wierd currY math.

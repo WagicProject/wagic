@@ -2,6 +2,7 @@
 #include "../include/CardGui.h"
 #include "../include/ManaCostHybrid.h"
 #include "../include/Subtypes.h"
+#include "../include/Translate.h"
 #include "../include/MTGDefinitions.h"
 #include <Vector2D.h>
 
@@ -112,6 +113,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
 
   if (!card->formattedTextInit){
     std::string s(card->getText());
+    s = _(s);
     std::string::size_type found=s.find_first_of("{}");
     while (found!=string::npos)
       {
@@ -160,7 +162,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
   v.x = ((-width/2)+10) * scale;
   v.y = ((-height/2) + 25) * scale;
   v.Rotate(rotation);
-  int over = strlen(card->getName()) - 23;
+  int over = strlen(_(card->getName()).c_str()) - 23;
   float multiply = 1.4;
   if (over > 0){
     multiply = 1.1;
@@ -168,7 +170,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
   mFont->SetScale(scale * multiply);
 
   mFont->SetColor(ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-  mFont->DrawString(card->getName(),x+v.x,y+v.y);
+  mFont->DrawString(_(card->getName()).c_str(),x+v.x,y+v.y);
   mFont->SetScale(scale);
   mFont->SetColor(ARGB(255,255,255,255));
 
@@ -186,7 +188,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
     v.y = (height/2-20 - 12 * i) * scale;
     v.Rotate(rotation);
     string s = Subtypes::subtypesList->find(card->types[i]);
-    mFont->DrawString(s.c_str(),x+v.x,y+v.y);
+    mFont->DrawString(_(s).c_str(),x+v.x,y+v.y);
   }
 
   mFont->SetScale(backup);

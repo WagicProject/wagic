@@ -2,13 +2,13 @@
 #include "../include/GameApp.h"
 #include <JGE.h>
 #include "../include/GameOptions.h"
-
+#include "../include/Translate.h"
 
 OptionItem::OptionItem(string _id, string _displayValue, int _maxValue, int _increment):JGuiObject(0){
   id = _id;
   maxValue = _maxValue;
   increment = _increment;
-  displayValue = _displayValue;
+  displayValue = _(_displayValue);
   value = GameOptions::GetInstance()->values[id].getIntValue();
   hasFocus = 0;
   x = 0;

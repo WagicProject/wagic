@@ -4,6 +4,7 @@
 #include "../include/OptionItem.h"
 #include "../include/SimpleMenu.h"
 #include "../include/GameOptions.h"
+#include "../include/Translate.h"
 
 GameStateOptions::GameStateOptions(GameApp* parent): GameState(parent) {
   optionsList = NULL;
@@ -31,7 +32,7 @@ void GameStateOptions::Start()
   if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()) {
     optionsList->Add(NEW OptionItem(OPTIONS_DIFFICULTY, "Difficulty", 3, 1));
   }
-  optionsList->Add(NEW OptionItem(OPTIONS_CACHESIZE, "Cache Size", 60, 5));
+  optionsList->Add(NEW OptionItem(OPTIONS_CACHESIZE, "Image Cache Size", 60, 5));
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
   optionsMenu = NEW SimpleMenu(102, this,mFont, 50,170);
   optionsMenu->Add(1, "Save & Back to Main Menu");
@@ -102,7 +103,7 @@ void GameStateOptions::Render()
   for (int i = 0; i < size; i++){
     pos = startpos +20*i;
     if (pos > -20){
-      mFont->DrawString(CreditsText[i],SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
+      mFont->DrawString(_(CreditsText[i]).c_str(),SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
     }
   }
 

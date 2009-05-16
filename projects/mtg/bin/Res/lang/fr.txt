@@ -1,0 +1,87 @@
+#Fichier de traduction Francais pour Wagic The Homebrew 0.6.0
+#Renommez ce fichier "_lang.txt" et redemarrez le jeu, la traduction devrait etre automatique
+
+#Note to translators:
+#If you want to translate cards, I suggest you translate their text (the "text=" line) directly in _cards.dat,
+# BUT DO NOT TOUCH ANYTHING ELSE in the _cards.dat files (names and types of creatures are used by the game!)
+# If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
+#Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
+
+#Game menus/texts
+Play=Jouer
+Deck Editor=Editeur de Deck
+Shop=Magasin
+Exit=Quitter
+1 Player=1 Joueur
+2 Players=2 Joueurs
+Player=Joueur
+Cancel=Annuler
+Classic=Classique
+Music volume=Volume Musique
+SFX volume=Volume Sons
+Seconds to pause for an Interrupt=Secondes pour interruption
+Difficulty=Difficulte
+Image Cache Size=Taille du cache images
+Save & Back to Main Menu=Sauver & retour au Menu
+Back to Main Menu=Retour au menu
+Back to main menu=Retour au menu
+--NEW--=--NOUVEAU--
+Save=Sauver
+Choose a Deck=Choix du deck
+Choose Opponent=Choix de l'adversaire
+(easy)=(facile)
+(hard)=(difficile)
+Random=Aleatoire
+
+#Phases
+Untap=Degagement
+Upkeep=Entretien
+Draw=Pioche
+Main phase 1=Phase principale 1
+Combat begins=Debut du combat
+Attackers=Attaquants
+Blockers=Bloqueurs
+Combat damage=Blessures
+Combat ends=Fin du combat
+Main phase 2=Phase principale 2
+End of turn=Fin du tour
+Cleanup=Nettoyage
+
+#Deck Editor
+Prev.=Prec.
+card=carte
+cards=cartes
+Next=Suiv.
+Next color=Couleur suiv.
+Prev. color=Couleur prec.
+Add card=Ajouter carte
+Display Deck=Afficher deck
+Remove Card=Enlever carte
+Display collection=Afficher collection
+Your Deck=Votre deck
+You are currently viewing your=Vous etes sur votre
+collection. Press TRIANGLE=collection. Appuyez sur TRIANGLE
+to switch to your deck=pour voir votre deck
+deck. Press TRIANGLE to=deck. Appuyez sur TRIANGLE
+switch to your collection= pour voire votre collection
+
+Deck info=Info deck
+Sell card=Vendre carte
+#types
+artifact=artefact
+enchantment=enchantement
+sorcey=rituel
+instant=ephemere
+land=terrain
+
+#subtypes
+#please keep the english alphabetical order, makes it easier to update!
+angel=ange
+elf=elfe
+human=humain
+sorcerer=sorcier
+wurm=guivre
+
+#card names
+#please keep this alphabetized
+Black Knight=Chevalier Noir

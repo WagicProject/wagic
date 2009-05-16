@@ -1,9 +1,10 @@
 #include "../include/config.h"
 #include "../include/MenuItem.h"
+#include "../include/Translate.h"
 
-
-MenuItem::MenuItem(int id, JLBFont *font, const char* text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mText(text), mX(x), mY(y)
+MenuItem::MenuItem(int id, JLBFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mX(x), mY(y)
 {
+  mText = _(text);
   updatedSinceLastRender = 1;
   mParticleSys = NEW hgeParticleSystem(particle, particleTex);
   mParticleSys->MoveTo(mX, mY);
@@ -41,7 +42,7 @@ void MenuItem::Render()
       onQuad->SetColor(ARGB(70,255,255,255));
       renderer->RenderQuad(onQuad, SCREEN_WIDTH  , SCREEN_HEIGHT/2 , 0,8,8);
       onQuad->SetColor(ARGB(255,255,255,255));
-      mFont->DrawString(mText, SCREEN_WIDTH/2, 20 + 3*SCREEN_HEIGHT/4, JGETEXT_CENTER);
+      mFont->DrawString(mText.c_str(), SCREEN_WIDTH/2, 20 + 3*SCREEN_HEIGHT/4, JGETEXT_CENTER);
       renderer->RenderQuad(onQuad, mX  , mY , 0,mScale,mScale);
 
     }

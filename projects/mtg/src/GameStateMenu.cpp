@@ -5,6 +5,8 @@
 #include "../include/GameOptions.h"
 #include "../include/GameApp.h"
 #include "../include/MTGCard.h"
+#include "../include/Translate.h"
+
 
 static const char* GAME_VERSION = "WTH?! 0.6.2 - by WilLoW";
 #define ALPHA_WARNING 0

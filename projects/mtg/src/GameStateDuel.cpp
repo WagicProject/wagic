@@ -8,6 +8,7 @@
 #include "../include/DeckStats.h"
 #include "../include/MTGRules.h"
 #include "../include/Credits.h"
+#include "../include/Translate.h"
 
 #ifdef TESTSUITE
 #include "../include/TestSuiteAI.h"
@@ -285,7 +286,7 @@ void GameStateDuel::Update(float dt)
 		}else{
 		  difficulty = "(easy)";
 		}
-		sprintf(deckDesc, "Deck %i %s",nbAIDecks, difficulty.c_str());
+		sprintf(deckDesc, "Deck %i %s",nbAIDecks, _(difficulty).c_str());
 		opponentMenu->Add(nbAIDecks,deckDesc);
 	      }
 	    }

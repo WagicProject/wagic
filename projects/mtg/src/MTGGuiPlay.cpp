@@ -7,6 +7,7 @@
 #include "../include/MTGCardInstance.h"
 #include "../include/CardGui.h"
 #include "../include/CardDisplay.h"
+#include "../include/Translate.h"
 
 #define ZX_MAIN 100
 #define ZY_MAIN 22
@@ -329,7 +330,7 @@ void MTGGuiPlay::RenderPhaseBar(){
     mFont->SetColor(ARGB(255,255,255,255));
   }
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  mFont->DrawString(Constants::MTGPhaseNames[currentPhase], 375, 2);
+  mFont->DrawString(_(Constants::MTGPhaseNames[currentPhase]).c_str(), 375, 2);
 }
 
 void MTGGuiPlay::Render(){

@@ -13,6 +13,7 @@
 #include "../include/PriceList.h"
 #include "../include/PlayerData.h"
 #include "../include/DeckDataWrapper.h"
+#include "../include/Translate.h"
 
 #define NO_USER_ACTIVITY_HELP_DELAY 10
 #define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
@@ -330,7 +331,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	      int rnd = (rand() % 20);
 	      price = pricelist->getPrice(card->getMTGId()) / 2;
 	      price = price - price * (rnd -10)/100;
-	      sprintf(buffer,"%s : %i credits",card->getName(),price);
+	      sprintf(buffer,"%s : %i %s",_(card->getName()).c_str(),price,_("credits").c_str());
 	      sellMenu = NEW SimpleMenu(2,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
 	      sellMenu->Add(20,"Yes");
 	      sellMenu->Add(21,"No");
@@ -534,12 +535,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     r->RenderQuad(pspIcons[3],leftPspX + 20, leftPspY,0,pspIconsSize,pspIconsSize);
 
 
-    font->DrawString("Prev.", leftPspX - 35, leftPspY-15);
-    font->DrawString("Next", leftPspX + 15, leftPspY-15);
-    font->DrawString("card", leftPspX - 35, leftPspY);
-    font->DrawString("card", leftPspX + 15, leftPspY);
-    font->DrawString("Next color", leftPspX - 33, leftPspY - 35);
-    font->DrawString("Prev. color", leftPspX -33 , leftPspY +25);
+    font->DrawString(_("Prev.").c_str(), leftPspX - 35, leftPspY-15);
+    font->DrawString(_("Next").c_str(), leftPspX + 15, leftPspY-15);
+    font->DrawString(_("card").c_str(), leftPspX - 35, leftPspY);
+    font->DrawString(_("card").c_str(), leftPspX + 15, leftPspY);
+    font->DrawString(_("Next color").c_str(), leftPspX - 33, leftPspY - 35);
+    font->DrawString(_("Prev. color").c_str(), leftPspX -33 , leftPspY +25);
 
     //RIGHT PSP CIRCLE render
     r->FillCircle(rightPspX+(onScreenTransition*204),rightPspY,40,ARGB(128,50,50,50));
@@ -549,16 +550,16 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     r->RenderQuad(pspIcons[7],rightPspX, rightPspY + 20,0,pspIconsSize,pspIconsSize);
 
     if (displayed_deck == myCollection){
-      font->DrawString("Add card", rightPspX + 20, rightPspY-15);
-      font->DrawString("Display Deck", rightPspX - 35, rightPspY - 40);
+      font->DrawString(_("Add card").c_str(), rightPspX + 20, rightPspY-15);
+      font->DrawString(_("Display Deck").c_str(), rightPspX - 35, rightPspY - 40);
     }else{
-      font->DrawString("Remove card", rightPspX + 20, rightPspY-15);
-      font->DrawString("Display Collection", rightPspX - 35, rightPspY - 40);
+      font->DrawString(_("Remove card").c_str(), rightPspX + 20, rightPspY-15);
+      font->DrawString(_("Display Collection").c_str(), rightPspX - 35, rightPspY - 40);
     }
-    font->DrawString("Deck info", rightPspX - 70 , rightPspY-15);
-    font->DrawString("Sell card", rightPspX - 30 , rightPspY+20);
+    font->DrawString(_("Deck info").c_str(), rightPspX - 70 , rightPspY-15);
+    font->DrawString(_("Sell card").c_str(), rightPspX - 30 , rightPspY+20);
     //Bottom menus
-    font->DrawString("menu", SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
+    font->DrawString(_("menu").c_str(), SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
 
 
 
@@ -575,7 +576,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       }
     }
     int value = myDeck->getCount();
-    sprintf(buffer, "Your Deck: %i cards", value);
+    sprintf(buffer, "%s: %i %s", _("Your Deck").c_str(), value, _("cards").c_str());
     font->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
 
     //TODO, put back !
@@ -587,13 +588,13 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     */
 
 
-   font->DrawString("You are currently viewing your",  SCREEN_WIDTH-200+rightTransition, 5);
+   font->DrawString(_("You are currently viewing your").c_str(),  SCREEN_WIDTH-200+rightTransition, 5);
     if (displayed_deck == myCollection){
-      font->DrawString("collection. Press TRIANGLE",  SCREEN_WIDTH-200+rightTransition, 20);
-      font->DrawString("to switch to your deck",  SCREEN_WIDTH-200+rightTransition, 35);
+      font->DrawString(_("collection. Press TRIANGLE").c_str(),  SCREEN_WIDTH-200+rightTransition, 20);
+      font->DrawString(_("to switch to your deck").c_str(),  SCREEN_WIDTH-200+rightTransition, 35);
     }else{
-      font->DrawString("deck. Press TRIANGLE to",  SCREEN_WIDTH-200+rightTransition, 20);
-      font->DrawString("switch to your collection",  SCREEN_WIDTH-200+rightTransition, 35);
+      font->DrawString(_("deck. Press TRIANGLE to").c_str(),  SCREEN_WIDTH-200+rightTransition, 20);
+      font->DrawString(_("switch to your collection").c_str(),  SCREEN_WIDTH-200+rightTransition, 35);
     }
 
   }

@@ -15,7 +15,7 @@ class MenuItem: public JGuiObject
  private:
   bool mHasFocus;
   JLBFont *mFont;
-  const char* const mText;
+  string mText;
   int mX;
   int mY;
   int updatedSinceLastRender;
@@ -29,7 +29,7 @@ class MenuItem: public JGuiObject
 
 
  public:
-  MenuItem(int id, JLBFont *font, const char* text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleQuad, bool hasFocus = false);
+  MenuItem(int id, JLBFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleQuad, bool hasFocus = false);
   ~MenuItem();
   virtual void Render();
   virtual void Update(float dt);
