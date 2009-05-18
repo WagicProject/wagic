@@ -7,6 +7,7 @@ GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/JGE.o src/JGui.o src/JLBFont.o \
 	src/JGameObject.o src/JSpline.o src/JAnimator.o \
 	src/JResourceManager.o src/JFileSystem.o \
+	src/JNetwork.o src/JSocket.o \
 	src/JParticle.o src/JParticleEmitter.o src/JParticleEffect.o \
 	src/JParticleSystem.o \
 	src/unzip/ioapi.o src/unzip/mztools.o src/unzip/unzip.o \

@@ -389,6 +389,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\JNetwork.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\JOBJModel.cpp"
 				>
 			</File>
@@ -414,6 +418,10 @@
 			</File>
 			<File
 				RelativePath=".\src\JResourceManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\win\JSocket_Win.cpp"
 				>
 			</File>
 			<File
@@ -584,6 +592,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\JNetwork.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\JOBJModel.h"
 				>
 			</File>
@@ -609,6 +621,10 @@
 			</File>
 			<File
 				RelativePath="include\JResourceManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\JSocket.h"
 				>
 			</File>
 			<File
