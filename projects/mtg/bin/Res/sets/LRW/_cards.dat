@@ -73,6 +73,20 @@ subtype=Goblin Warrior
 toughness=2
 [/card]
 [card]
+text=First strike     {T}: Brigid, Hero of Kinsbaile deals 2 damage to each attacking or blocking creature target player controls.
+id=141829
+name=Brigid, Hero of Kinsbaile
+abilities=Legendary,first strike
+auto={T}:damage:2 all(creature[attacking;blocking]|opponentinplay)
+auto={T}:damage:2 all(creature[attacking;blocking]|myinplay)
+rarity=R
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Kithkin Archer
+toughness=3
+[/card]
+[card]
 text=Reach (This can block creatures with flying.)
 abilities=reach
 id=139492
