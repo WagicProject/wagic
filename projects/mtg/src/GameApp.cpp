@@ -193,7 +193,6 @@ void GameApp::Destroy()
   SAFE_DELETE(music);
   Translator::EndInstance();
 
-
   SimpleMenu::destroy();
 
 

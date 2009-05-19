@@ -485,6 +485,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\TextScroller.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\TexturesCache.cpp"
 				>
 			</File>
@@ -779,6 +783,10 @@
 			</File>
 			<File
 				RelativePath=".\include\TestSuiteAI.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\TextScroller.h"
 				>
 			</File>
 			<File

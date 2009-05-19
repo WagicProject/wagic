@@ -938,12 +938,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AConservator(_id,card));
       break;
     }
-/*  case 1196: //Counterspell
-    {
-      Spell * starget = spell->getNextSpellTarget();
-      if (starget) game->mLayers->stackLayer()->Fizzle(starget);
-      break;
-    } */
+
   case 1197: //Creature Bond
     {
       game->addObserver(NEW ACreatureBond(_id,card, card->target));
@@ -1593,32 +1588,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
     //Addons ICE-AGE Cards
 
-  case 2650: //Pyroclasm Need to be improved copied from hurricane with does 0 dammage to player and does 2 dammage to each creature
-    {
-      int x = 2;
-      for (int i = 0; i < 2 ; i++){
-	game->mLayers->stackLayer()->addDamage(card, game->players[i], 0);// To be removed ?
-	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (current->isACreature()){
-	    game->mLayers->stackLayer()->addDamage(card, current, x);
-	  }
-	}
-      }
-      break;
-    }
   case 2660: //Word of Blasting
     {
       card->target->controller()->game->putInGraveyard(card->target);
       card->target->controller()->life-= card->target->getManaCost()->getConvertedCost();
-      break;
-    }
-  case 2443: //Dark Banishing
-    {
-      if (card->target->hasColor(Constants::MTG_COLOR_BLACK)){
-      }else{
-	card->target->controller()->game->putInGraveyard(card->target);
-      }
       break;
     }
   case 2593: //Thoughtleech

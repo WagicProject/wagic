@@ -379,6 +379,7 @@ void MTGLibrary::shuffleTopToBottom(int nbcards){
   }
 }
 
+
 MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source,MTGCardInstance * target){
   Player *p, *p2;
   GameObserver * g = GameObserver::GetInstance();

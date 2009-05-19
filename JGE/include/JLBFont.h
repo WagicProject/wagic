@@ -53,7 +53,7 @@ public:
 	/// @align - Text aligment.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	void		DrawString(const char *string, float x, float y, int align=JGETEXT_LEFT);
+	void		DrawString(const char *string, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Rendering text to screen with syntax similar to printf of C/C++.

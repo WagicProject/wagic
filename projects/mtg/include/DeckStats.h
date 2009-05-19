@@ -31,6 +31,8 @@ public:
   void cleanStats();
   ~DeckStats();
   int percentVictories(string opponentsDeckFile);
+  int percentVictories();
+  int nbGames();
 };
 
 #endif

@@ -1,5 +1,7 @@
+#include "../include/config.h"
 #include "../include/DeckDataWrapper.h"
 #include "../include/MTGDeck.h"
+#include "../include/PriceList.h"
 
 DeckDataWrapper::DeckDataWrapper(MTGDeck * deck){
   parent = deck;
@@ -9,6 +11,7 @@ DeckDataWrapper::DeckDataWrapper(MTGDeck * deck){
   for (int i = 0; i < deck->totalCards(); i++){
     MTGCard * card = deck->_(i);
     Add(card);
+
   }
   currentposition = 0;
   currentColor = -1;
@@ -126,4 +129,17 @@ void DeckDataWrapper::updateCurrentPosition(MTGCard * currentCard, int color){
 int DeckDataWrapper::getCount(int color){
   if (color == -1) return colors[Constants::MTG_NB_COLORS];
   return colors[color];
+}
+
+int DeckDataWrapper::totalPrice(){
+  int total = 0;
+  PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",this->parent);
+  map<MTGCard *,int,Cmp1>::iterator it;
+  for ( it=cards.begin() ; it != cards.end(); it++ ){
+      MTGCard * current = (*it).first;
+      int nb =  (*it).second;
+      if (nb) total += pricelist->getPrice(current->getMTGId());
+  }
+  delete pricelist;
+  return total;
 }

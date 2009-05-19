@@ -344,6 +344,7 @@ mana={R}
 text=Pyroclasm deals 2 damage to each creature.
 id=2650
 name=Pyroclasm
+auto=damage:2 all(creature)
 rarity=U
 type=Sorcery
 mana={1}{R}

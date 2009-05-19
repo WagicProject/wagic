@@ -39,6 +39,32 @@ int DeckStats::percentVictories(string opponentsFile){
   }
 }
 
+int DeckStats::nbGames(){
+  int nbgames = 0;
+  map<string,DeckStat *>::iterator it;
+  for (it = stats.begin(); it != stats.end(); it++){
+    DeckStat * d = it->second;
+    nbgames+=d->nbgames;
+  }
+  return nbgames;
+}
+
+
+int DeckStats::percentVictories(){
+  int victories = 0;
+  int nbgames = 0;
+  map<string,DeckStat *>::iterator it;
+  for (it = stats.begin(); it != stats.end(); it++){
+    DeckStat * d = it->second;
+    nbgames+=d->nbgames;
+    victories+=d->victories;
+  }
+  if (nbgames){
+    return (victories * 100)/nbgames;
+  }
+  return 50;
+}
+
 void DeckStats::load(Player * player){
   char filename[512];
   sprintf(filename, RESPATH"/player/stats/%s.txt",player->deckFile.c_str());

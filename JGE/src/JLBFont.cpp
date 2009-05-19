@@ -99,7 +99,7 @@ JLBFont::~JLBFont()
 }
 
 
-void JLBFont::DrawString(const char *string, float x, float y, int align)
+void JLBFont::DrawString(const char *string, float x, float y, int align, float leftOffset, float displayWidth)
 {
 	char *p = (char*)string;
 	float dx = x, dy = y;
@@ -115,13 +115,41 @@ void JLBFont::DrawString(const char *string, float x, float y, int align)
 
 	dx = floorf(dx);
 	dy = floorf(dy);
+  float x0 = dx;
 	int index;
 	while (*p)
 	{
 		index = (*p - 32)+mBase;
-		mQuad->SetTextureRect(mXPos[index], mYPos[index], mCharWidth[index], mHeight);
+    float charWidth = mCharWidth[index];
+    float delta = (charWidth + mTracking) * mScale;
+    float xPos =  mXPos[index];
+    if (leftOffset){
+      if (leftOffset < 0){
+        dx-=leftOffset;
+        leftOffset = 0;
+        continue;
+      }else if (leftOffset - delta > 0){
+        leftOffset -= delta;
+        p++;
+        continue;
+      }else{
+        xPos = mXPos[index] + (leftOffset);
+         delta -= leftOffset;
+        leftOffset = 0;
+       
+        charWidth = (delta/mScale) - mTracking;
+      }
+    }
+    else if (displayWidth){
+      if (dx > x0+displayWidth)  return;
+      if (dx+delta > x0+displayWidth) {
+        delta = x0 + displayWidth - dx;
+        charWidth = (delta/mScale) - mTracking;
+      }
+    }
+		mQuad->SetTextureRect(xPos, mYPos[index], charWidth , mHeight);
 		mRenderer->RenderQuad(mQuad, dx, dy, mRotation, mScale, mScale);
-		dx += (mCharWidth[index] + mTracking) * mScale;
+		dx += delta;
 		p++;
 
    }

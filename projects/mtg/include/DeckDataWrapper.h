@@ -42,6 +42,7 @@ class DeckDataWrapper{
   void updateCounts(MTGCard * card = NULL, int removed = 0);
   void updateCurrentPosition(MTGCard * currentCard,int color = -1);
   int getCount(int color = -1);
+  int totalPrice();
   void save();
 };
 

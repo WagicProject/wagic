@@ -257,6 +257,7 @@ int MTGAllCards::totalCards(){
   return (total_cards);
 }
 
+
 int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
 
   string s;

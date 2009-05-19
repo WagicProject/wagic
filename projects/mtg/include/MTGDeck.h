@@ -12,6 +12,7 @@
 
 #include "../include/GameApp.h"
 #include "../include/TexturesCache.h"
+
 #include <string>
 
 using std::string;

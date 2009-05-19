@@ -5,11 +5,13 @@
 #include <dirent.h>
 #include "../include/GameState.h"
 #include "../include/SimpleMenu.h"
-
+#include "../include/TextScroller.h"
 
 class GameStateMenu: public GameState, public JGuiListener
 {
  private:
+ TextScroller * scroller;
+ int scrollerSet;
   JGuiController* mGuiController;
   SimpleMenu* subMenuController;
   SimpleMenu* gameTypeMenu;
@@ -38,7 +40,7 @@ class GameStateMenu: public GameState, public JGuiListener
   float angleMultiplier;
   float angleW;
   float yW;
-
+  void fillScroller();
  public:
   GameStateMenu(GameApp* parent);
   virtual ~GameStateMenu();

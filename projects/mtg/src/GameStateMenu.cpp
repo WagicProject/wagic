@@ -6,7 +6,10 @@
 #include "../include/GameApp.h"
 #include "../include/MTGCard.h"
 #include "../include/Translate.h"
-
+#include "../include/DeckStats.h"
+#include "../include/PlayerData.h"
+#include "../include/utils.h"
+#include "../include/DeckDataWrapper.h"
 
 static const char* GAME_VERSION = "WTH?! 0.6.2 - by WilLoW";
 #define ALPHA_WARNING 0
@@ -69,6 +72,7 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
   mVolume = 0;
   splashTex = NULL;
   splashQuad = NULL;
+  scroller = NULL;
 }
 
 GameStateMenu::~GameStateMenu() {}
@@ -118,6 +122,8 @@ void GameStateMenu::Create()
     }
 
   currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
+  scroller = NEW TextScroller(GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 100 , SCREEN_HEIGHT-15,200);
+
 }
 
 
@@ -137,6 +143,7 @@ void GameStateMenu::Destroy()
   SAFE_DELETE(mMovingW);
   SAFE_DELETE(movingWTexture);
   SAFE_DELETE(bgTexture);
+  SAFE_DELETE(scroller);
 
   //SAFE_DELETE (bgMusic);
 }
@@ -160,8 +167,72 @@ void GameStateMenu::Start(){
 
   hasChosenGameType = 1;
   if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) hasChosenGameType =0;
+
+  scrollerSet = 0;
+
+
 }
 
+
+void GameStateMenu::fillScroller(){
+  scroller->Reset();
+  char buffer[4096];
+  char buff2[512];
+
+  DeckStats * stats = DeckStats::GetInstance();
+  int totalGames = 0;
+  for (int j=1; j<6; j++){
+    sprintf(buffer, RESPATH"/player/stats/player_deck%i.txt",j);
+    if(fileExists(buffer)){
+		  stats->load(buffer);
+		  int percentVictories = stats->percentVictories();
+
+      sprintf(buff2, "You have a %i%% victory ratio with Deck%i",percentVictories,j);
+      scroller->Add(buff2);
+      int nbGames = stats->nbGames();
+      totalGames+= nbGames;
+      sprintf(buff2, "You have played %i games with Deck%i",nbGames,j);
+      scroller->Add(buff2);
+    }
+  }
+  if (totalGames){
+      sprintf(buff2, "You have played a total of %i games",totalGames);
+      scroller->Add(buff2);
+  }
+  GameOptions * go = GameOptions::GetInstance();
+
+  if (!go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()){
+    scroller->Add("Unlock the difficult mode for more challenging duels!");   
+  }
+  if (!go->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()){
+    scroller->Add("Interested in playing Momir Basic? You'll have to unlock it first :)");   
+  }
+
+  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
+  int totalCards = ddw->getCount();
+  if (totalCards){
+      sprintf(buff2, "You have a total of %i cards in your collection",totalCards);
+      scroller->Add(buff2);
+
+      int estimatedValue = ddw->totalPrice();
+      sprintf(buff2, "The shopkeeper would buy your entire collection for around %i credits",estimatedValue/2);
+      scroller->Add(buff2);
+
+      sprintf(buff2, "The cards in your collection have an average value of %i credits",estimatedValue/totalCards);
+      scroller->Add(buff2);
+  }
+  delete ddw;
+ 
+  PlayerData * playerdata = NEW PlayerData(mParent->collection);
+  sprintf(buff2, "You currently have %i credits",playerdata->credits);
+  delete playerdata;
+  scroller->Add(buff2);
+
+  scroller->Add("Need more cards? Go to http://wololo.net/wagic");
+
+  scrollerSet = 1;
+  scroller->setRandom();
+}
 
 int GameStateMenu::nextCardSet(){
   int found = 0;
@@ -245,6 +316,7 @@ void GameStateMenu::Update(float dt)
       }
       break;
     case MENU_STATE_MAJOR_MAINMENU :
+      if (!scrollerSet) fillScroller();
       if (mGuiController!=NULL){
 	      mGuiController->Update(dt);
       }
@@ -307,6 +379,8 @@ void GameStateMenu::Update(float dt)
       angleW += angleMultiplier * dt;
       yW = yW + 5*dt + (yW - 55) *5*dt;
     }
+
+  scroller->Update(dt);
 }
 
 
@@ -391,10 +465,13 @@ void GameStateMenu::Render()
     
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(128,255,255,255));
-    mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,SCREEN_HEIGHT-15,JGETEXT_RIGHT);
-    mFont->DrawString(nbcardsStr,10, SCREEN_HEIGHT-15);
+    mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,5,JGETEXT_RIGHT);
+    mFont->DrawString(nbcardsStr,10, 5);
     mFont->SetScale(1.f);
     mFont->SetColor(ARGB(255,255,255,255));
+
+    scroller->Render();
+
     if (subMenuController){
       subMenuController->Render();
     }

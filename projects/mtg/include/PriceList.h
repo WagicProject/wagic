@@ -6,6 +6,8 @@
 #include "../include/MTGDeck.h"
 #include <stdio.h>
 
+class MTGAllCards;
+
 class Price{
  public:
   int cardid;
