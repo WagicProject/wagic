@@ -2142,7 +2142,6 @@ class AMillstone:public TargetAbility{
 
 
 
-
 //1172 Pestilence
 class APestilence: public ActivatedAbility{
  public:
@@ -2629,6 +2628,31 @@ class AStasis:public ActivatedAbility{
 
 
 //--------------Addon Abra------------------
+
+// Generic Karma
+class ADamageForTypeControlled: public TriggeredAbility{
+ public:
+	char type[20];
+ ADamageForTypeControlled(int _id, MTGCardInstance * _source,const char * _type):TriggeredAbility(_id, _source){
+  sprintf(type,"%s",_type);
+    }
+
+  int trigger(){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
+    return 0;
+  }
+
+  int resolve(){
+    int totaldamage = 0;
+    MTGGameZone *  zone = game->currentPlayer->game->inPlay;
+    for (int i = 0; i < zone->nb_cards; i++){
+      if (zone->cards[i]->hasType(type)) totaldamage++;;
+    }
+    if (totaldamage) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, totaldamage);
+    return 1;
+  }
+};
+
 //ShieldOfTheAge
 class AShieldOfTheAge: public TargetAbility{
  public:

@@ -1243,6 +1243,17 @@ type=Artifact
 mana={2}
 [/card]
 [card]
+text=Target player discards two cards.
+id=129645
+target=player
+auto=discard:2
+name=Mind Rot
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Mind Stone: Draw a card.
 auto={T}:Add{1}
 auto={1}{T}{S}:draw:1

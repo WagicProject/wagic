@@ -7,25 +7,6 @@ type=Sorcery
 mana={X}{1}{B}
 [/card]
 [card]
-text=First strike     {W}: Target creature gains first strike until end of turn.
-id=4857
-name=Advance Scout
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Soldier Scout
-toughness=1
-[/card]
-[card]
-text=Destroy target artifact, creature, or land. Aftershock deals 3 damage to you.
-id=4800
-name=Aftershock
-rarity=C
-type=Sorcery
-mana={2}{R}{R}
-[/card]
-[card]
 text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
 id=4596
 name=Altar of Dementia
@@ -41,15 +22,6 @@ rarity=R
 type=Enchantment
 mana={2}{G}{G}
 [/card]
-[card]
-text=At the beginning of each player's upkeep, Ancient Runes deals damage to that player equal to the number of artifacts he or she controls.
-id=4801
-name=Ancient Runes
-rarity=U
-type=Enchantment
-mana={2}{R}
-[/card]
-
 [card]
 text=Flying     Whenever Angelic Protector becomes the target of a spell or ability, Angelic Protector gets +0/+3 until end of turn.
 id=4858
@@ -100,8 +72,6 @@ power=2
 subtype=Sliver
 toughness=2
 [/card]
-
-
 [card]
 text=Flying     When Avenging Angel is put into a graveyard from play, you may put Avenging Angel on top of its owner's library.
 id=4863
@@ -113,7 +83,6 @@ power=3
 subtype=Angel
 toughness=3
 [/card]
-
 [card]
 text=All Sliver creatures have "{2}: This creature gets +1/+0 until end of turn."
 id=4803
@@ -462,17 +431,6 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Other Elf creatures have forestwalk.     Other Elves have shroud. (They can't be the targets of spells or abilities.)
-id=4757
-name=Eladamri, Lord of Leaves
-rarity=R
-type=Legendary Creature
-mana={G}{G}
-power=2
-subtype=Elf Warrior
-toughness=2
-[/card]
-[card]
 text=At the beginning of each player's precombat main phase, add {G}{G} to that player's mana pool.
 id=4758
 name=Eladamri's Vineyard
@@ -617,14 +575,7 @@ rarity=R
 type=Sorcery
 mana={4}{B}
 [/card]
-[card]
-text={2}{B}{B}: Put a -1/-1 counter on target creature.
-id=4664
-name=Fevered Convulsions
-rarity=R
-type=Enchantment
-mana={B}{B}
-[/card]
+
 [card]
 text=Whenever a nontoken creature is put into your graveyard from play, put a 1/1 white Spirit creature token with flying into play.
 id=4874
@@ -633,7 +584,6 @@ rarity=R
 type=Enchantment
 mana={2}{W}{W}
 [/card]
-
 
 [card]
 text={T}: Fireslinger deals 1 damage to target creature or player and 1 damage to you.

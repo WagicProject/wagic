@@ -25,6 +25,14 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+text=At the beginning of each player's upkeep, Ancient Runes deals damage to that player equal to the number of artifacts he or she controls.
+id=4801
+name=Ancient Runes
+rarity=U
+type=Enchantment
+mana={2}{R}
+[/card]
+[card]
 text={T}: Add {2} to your mana pool. Ancient Tomb deals 2 damage to you.
 auto={T}: Add {2} && Damage 2 controller
 id=4636
@@ -422,6 +430,16 @@ rarity=C
 mana={B}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text={2}{B}{B}: Put a -1/-1 counter on target creature.
+id=4664
+abilities=wither
+auto={2}{B}{B}:damage:1 target(creature)
+name=Fevered Convulsions
+rarity=R
+type=Enchantment
+mana={B}{B}
 [/card]
 [card]
 text=Flying

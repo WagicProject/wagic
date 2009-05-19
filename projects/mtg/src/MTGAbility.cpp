@@ -649,6 +649,37 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         continue;
       }
 
+      //Discard
+      found = s.find("discard:");
+      if (found != string::npos){
+        unsigned int start = s.find(":",found);
+        unsigned int end = s.find(" ",start);
+        int nbcards;
+        if (end != string::npos){
+	        nbcards = atoi(s.substr(start+1,end-start-1).c_str());
+        }else{
+	        nbcards = atoi(s.substr(start+1).c_str());
+        }
+        if (dryMode){
+          dryModeResult =  BAKA_EFFECT_BAD;
+          break;
+        }
+        if (trigger){
+	        //TODO ?
+        }else{
+	        if (tc){
+	          //TODO ?
+	        }else{
+			      for (int i = 0; i < nbcards; i++){
+					game->opponent()->game->discardRandom(game->opponent()->game->hand);
+				  }
+			}
+		}
+					result++;
+        continue;
+	  }
+
+
       //Change Power/Toughness
       int power, toughness;
       if ( parsePowerToughness(s,&power, &toughness)){
@@ -1642,9 +1673,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(cost,1),tc));
       break;
     }
+//---addon Tempest---
+    case 4801: //Ancient Ruine
+    {
+      game->addObserver(NEW ADamageForTypeControlled(_id, card,"artifact"));
+      break;
+    }
   default:
     break;
   }
+
+
 
   /* Erwan - 2008/11/13: We want to get rid of these basicAbility things.
    * basicAbilities themselves are alright, but creating new object depending on them is dangerous
