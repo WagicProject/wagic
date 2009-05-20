@@ -1051,7 +1051,7 @@ toughness=1
 abilities=flying,protection from red
 [/card]
 [card]
-text={B}: Thrashing Wumpus deals 1 damage to each creature and each player. deals 1 damage to each creature and each player.
+text={B}: Thrashing Wumpus deals 1 damage to each creature and each player.
 alias=1172
 id=19823
 name=Thrashing Wumpus
