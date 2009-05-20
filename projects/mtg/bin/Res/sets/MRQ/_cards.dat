@@ -55,7 +55,7 @@ text=Flying   Battle Squadron's power and toughness are each equal to the number
 id=19712
 auto=foreach(creature|myinplay) 1/1 includeself
 name=Battle Squadron
-colour=Red
+color=Red
 rarity=R
 mana={3}{R}{R}
 type=Creature
@@ -241,6 +241,18 @@ mana={B}
 type=Instant
 [/card]
 [card]
+text={U}: Return Darting Merfolk to its owner's hand.
+id=19559
+auto={U}:moveto(hand)
+name=Darting Merfolk
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Merfolk
+toughness=1
+[/card]
+[card]
 text=Shroud (This permanent can't be the target of spells or abilities.)
 id=19628
 name=Deadly Insect
@@ -323,10 +335,19 @@ rarity=C
 mana={2}{U}
 type=Creature
 subtype=Drake
-auto={U}:1/0 limit 1
+auto={U}:1/0 limit:1
 power=1
 toughness=3
 abilities=flying
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.       {3}, {T}, Sacrifice a land: Destroy target nonbasic land.
+id=19772
+auto={T}: Add {1}
+auto={3}{T}{S(land|myinplay)}:destroy target(land[-basic])
+name=Dust Bowl
+rarity=R
+type=Land
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.     Sacrifice Eye of Ramos: Add {U} to your mana pool.
@@ -436,9 +457,33 @@ rarity=C
 mana={3}{G}
 type=Creature
 subtype=Insect
-auto={G}{S}:token(Butterfly,creature insect, 1/1,flying green)
+auto={G}{S}:token(Butterfly,creature insect token, 1/1,flying green)
 power=3
 toughness=3
+[/card]
+[card]
+text=When Glowing Anemone comes into play, you may return target land to its owner's hand.
+id=19803
+auto=may moveto(ownerhand) target(land)
+name=Glowing Anemone
+rarity=U
+type=Creature
+mana={3}{U}
+power=1
+subtype=Jellyfish Beast
+toughness=3
+[/card]
+[card]
+text={1}{G}: Return target basic land card from your graveyard to your hand.
+id=19863
+auto={1}{G}:moveto(myhand) target(land[basic]|mygraveyard)
+name=Groundskeeper
+rarity=U
+type=Creature
+mana={G}
+power=1
+subtype=Human Druid
+toughness=1
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.     Sacrifice Heart of Ramos: Add {R} to your mana pool.
@@ -450,6 +495,19 @@ mana={3}
 type=Artifact
 auto={T}:Add {R}
 auto={S}:Add {R}
+[/card]
+[card]
+text={2}: Henge Guardian gains trample until end of turn.
+id=19770
+name=Henge Guardian
+color=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Dragon Wurm
+auto={2}:trample
+power=3
+toughness=4
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {2}, {T}: Add one mana of any color to your mana pool.
@@ -464,19 +522,6 @@ name=Henge of Ramos
 color=Land
 rarity=U
 type=Land
-[/card]
-[card]
-text={2}: Henge Guardian gains trample until end of turn.
-id=19770
-name=Henge Guardian
-color=Artifact
-rarity=U
-mana={5}
-type=Artifact Creature
-subtype=Dragon Wurm
-auto={2}:trample
-power=3
-toughness=4
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {T}, Sacrifice a creature: You gain 1 life. 
@@ -678,7 +723,7 @@ toughness=4
 text=Flash      Enchant creature        Enchanted creature gets +2/-2.
 id=19594
 target=creature
-auto=2/-2
+auto=:2/-2
 name=Maggot Therapy
 color=Black
 rarity=C
@@ -686,6 +731,15 @@ mana={2}{B}
 type=Enchantment
 subtype=Aura
 abilities=flash
+[/card]
+[card]
+text=White creatures and blue creatures can't block.
+id=19854
+auto=lord(creature[blue;white]) cantblock
+name=Magistrate's Veto
+rarity=U
+type=Enchantment
+mana={2}{R}
 [/card]
 [card]
 text=Flying
@@ -754,6 +808,15 @@ toughness=1
 abilities=flying,protection from black
 [/card]
 [card]
+text=Whenever a creature you control deals combat damage, you gain that much life.
+auto=lord(creature|myinplay) lifelink other
+id=19786
+name=Noble Purpose
+rarity=U
+type=Enchantment
+mana={3}{W}{W}
+[/card]
+[card]
 text={2}{B}{T}, Discard a card: Destroy target nonblack creature. It can't be regenerated.
 id=19695
 name=Notorious Assassin
@@ -765,6 +828,30 @@ subtype=Human Spellshaper Assassin
 auto={2}{B}{T}{S(*|myhand)}:destroy target(creature[-black])
 power=2
 toughness=2
+[/card]
+[card]
+text=Ogre Taskmaster can't block.
+id=19844
+name=Ogre Taskmaster
+rarity=U
+type=Creature
+mana={3}{R}
+power=4
+subtype=Ogre
+toughness=3
+abilities=cantblock
+[/card]
+[card]
+text=Whenever Pious Warrior is dealt combat damage, you gain that much life.
+id=19552
+name=Pious Warrior
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Human Rebel Warrior
+toughness=3
+abilities=lifelink
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -891,6 +978,18 @@ toughness=1
 abilities=forestwalk
 [/card]
 [card]
+text={G}, {T}, Discard a card: Regenerate target creature.
+id=19622
+auto={G}{T}{S(*|myhand)}:regenerate target(creature)
+name=Rushwood Herbalist
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Spellshaper
+toughness=2
+[/card]
+[card]
 text={2}{R}{T}, Discard a card: Destroy target land.
 id=19835
 name=Seismic Mage
@@ -939,6 +1038,16 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Target player discards a card at random.
+id=19597
+target=player
+auto=discard:2
+name=Specter's Wail
+rarity=C
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
 text=Creatures you control get +0/+1 and have reach. (They can block creatures with flying.)
 auto=lord(creature|myinplay) 0/1 includeself
 auto=lord(creature|myinplay) reach includeself
@@ -948,6 +1057,15 @@ color=Green
 rarity=C
 mana={2}{G}
 type=Enchantment
+[/card]
+[card]
+text=Squall deals 2 damage to each creature with flying.
+id=19636
+auto=damage:2 all(creature[flying])
+name=Squall
+rarity=C
+type=Sorcery
+mana={2}{G}
 [/card]
 [card]
 text=Vigilance (Attacking doesn't cause this creature to tap.)
@@ -986,6 +1104,18 @@ color=Red
 rarity=C
 mana={2}{R}
 type=Sorcery
+[/card]
+[card]
+text=When Strongarm Thug comes into play, you may return target Mercenary card from your graveyard to your hand.
+id=19689
+name=Strongarm Thug
+auto=may moveto(myhand) target(Mercenary|mygraveyard)
+rarity=U
+type=Creature
+mana={2}{B}
+power=1
+subtype=Human Mercenary
+toughness=1
 [/card]
 [card]
 text={1}, Sacrifice a land: Target creature gets +1/+1 until end of turn.
@@ -1079,7 +1209,7 @@ abilities=unblockable
 [card]
 text=Flash       Enchant creature      Enchanted creature gets +1/+1 and has trample.
 target=creature
-auto=1/1
+auto=:1/1
 auto=trample
 id=19635
 name=Tiger Claws
@@ -1115,6 +1245,17 @@ auto={T}:Add {W}
 auto={S}:Add {W}
 [/card]
 [card]
+text={1}: Return target land you control to its owner's hand.     {1}, Discard a land card: Draw a card.
+id=19675
+name=Trade Routes
+color=Blue
+rarity=R
+mana={1}{U}
+auto={1}:moveTo(ownerhand) target(land|myinplay)
+auto={1}{S(land|myhand)}:draw:1
+type=Enchantment
+[/card]
+[card]
 text=Destroy all enchantments.
 id=19637
 auto=destroy all(enchantment)
@@ -1125,15 +1266,13 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-text={1}: Return target land you control to its owner's hand.     {1}, Discard a land card: Draw a card.
-id=19675
-name=Trade Routes
-color=Blue
-rarity=R
-mana={1}{U}
-auto={1}:moveTo(ownerhand) target(land|myinplay)
-auto={1}{S(land|myhand)}:draw:1
-type=Enchantment
+text=Tremor deals 1 damage to each creature without flying.
+id=19614
+auto=damage:1 all(creature[-flying])
+name=Tremor
+rarity=C
+type=Sorcery
+mana={R}
 [/card]
 [card]
 text={B}{T}, Discard a card: Return target creature card from your graveyard to your hand.
@@ -1146,6 +1285,18 @@ type=Creature
 subtype=Human Spellshaper
 auto={B}{T}{S(*|myhand)}:moveTo(ownerhand) target(creature|mygraveyard)
 power=1
+toughness=1
+[/card]
+[card]
+text=Flying     Whenever Venomous Dragonfly blocks or becomes blocked by a creature, destroy that creature at end of combat.
+id=19625
+alias=1267
+name=Venomous Dragonfly
+rarity=C
+type=Creature
+mana={3}{G}
+power=1
+subtype=Insect
 toughness=1
 [/card]
 [card]
