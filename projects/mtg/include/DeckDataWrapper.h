@@ -44,6 +44,8 @@ class DeckDataWrapper{
   int getCount(int color = -1);
   int totalPrice();
   void save();
+  int countByName(MTGCard * card);
+  int count(MTGCard *  card);
 };
 
 #endif

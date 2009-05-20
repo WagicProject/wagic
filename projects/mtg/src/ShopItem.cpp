@@ -17,9 +17,9 @@ ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thu
     Entering();
 }
 
-ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price): JGuiObject(id), mFont(font), mX(x), mY(y), price(_price){
+ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw): JGuiObject(id), mFont(font), mX(x), mY(y), price(_price){
   mHasFocus = hasFocus;
-
+  mDDW = ddw;
   mScale = 1.0f;
   mTargetScale = 1.0f;
 
@@ -27,6 +27,8 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFoc
     Entering();
 
   card = collection->getCardById(_cardid);
+  nameCount = mDDW->countByName(card);
+
   quantity = 1 + (rand() % 4);
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
@@ -53,7 +55,18 @@ void ShopItem::Render(){
     mFont->SetColor(ARGB(255,128,128,128));
   }
   
-  
+ 
+  if (card){
+    thumb = card->getThumb();
+    if (nameCount){
+      char buffer[512];
+      sprintf(buffer, "%s /%i/", card->name.c_str(), nameCount );
+      mText = buffer;
+    }else{
+      mText = card->name;
+    }
+  }
+
   JRenderer * renderer = JRenderer::GetInstance();
   float x0 = mX;
   float y0 = mY - (mScale > 1 ? 4 : 0);
@@ -72,10 +85,7 @@ void ShopItem::Render(){
      mFont->DrawString(mText.c_str(), mX + 30, mY + 8);
   }
   //renderer->FillRect(mX-5, mY-5,230,35, );
-  if (card){
-    thumb = card->getThumb();
-    mText= card->name;
-  }
+
 
   if (thumb){
     renderer->RenderQuad(thumb,x0,y0,0,mScale * 0.45,mScale * 0.45);
@@ -145,6 +155,7 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   for (int i=0; i < SHOP_BOOSTERS; i++){
     setIds[i] = _setIds[i];
   };
+  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", NULL,_collection));
 }
 
 
@@ -153,7 +164,7 @@ void ShopItems::Add(int cardid){
   int rnd = (rand() % 20);
   int price = pricelist->getPrice(cardid);
   price = price + price * (rnd -10)/100;
-  JGuiController::Add(NEW ShopItem(mCount, mFont, cardid, mX + 10, mY + 10 + mHeight,  (mCount == 0),collection, price));
+  JGuiController::Add(NEW ShopItem(mCount, mFont, cardid, mX + 10, mY + 10 + mHeight,  (mCount == 0),collection, price,myCollection));
   mHeight += 22;
 }
 
@@ -234,6 +245,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	pricelist->setPrice(item->card->getMTGId(),price);
 	playerdata->collection->add(item->card);
 	item->quantity--;
+  item->nameCount++;
       }else{
 	      safeDeleteDisplay();
 	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
@@ -290,4 +302,5 @@ ShopItems::~ShopItems(){
   SAFE_DELETE(playerdata);
   SAFE_DELETE(dialog);
   safeDeleteDisplay();
+  SAFE_DELETE(myCollection);
 }

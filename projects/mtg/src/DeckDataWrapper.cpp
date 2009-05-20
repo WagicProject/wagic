@@ -74,6 +74,50 @@ int DeckDataWrapper::Remove(MTGCard * card){
   return 1;
 }
 
+int DeckDataWrapper::count(MTGCard * card){
+  if(cards.find(card) == cards.end()){
+    cards[card] = 0;
+  }
+  return cards[card];
+}
+
+int DeckDataWrapper::countByName(MTGCard * card){
+  string name = card->name;
+  int total = 0;
+  map<MTGCard *,int,Cmp1>::iterator it;
+  it = cards.find(card);
+  if(cards.find(card) == cards.end()){
+    cards[card] = 0;
+    it = cards.find(card);
+  }
+
+   while(it !=cards.end()){
+     MTGCard * _card = (*it).first;
+     if (name.compare(_card->name) !=0){
+       it = cards.end();
+     }else{
+      total+= (*it).second;
+      it++;
+     }
+   }
+
+   it = cards.find(card);
+   it--;
+   while(1){
+     MTGCard * _card = (*it).first;
+     if (name.compare(_card->name) !=0){
+       break;
+     }else{
+      total+= (*it).second;
+      if (it == cards.begin()) break;
+      it--;
+      
+     }
+   }
+   return total;
+}
+
+
 MTGCard * DeckDataWrapper::getNext(MTGCard * previous, int color){
   map<MTGCard *,int,Cmp1>::iterator it;
 
