@@ -62,6 +62,15 @@ subtype=Human Cleric
 toughness=4
 [/card]
 [card]
+text=Whenever a player plays a white spell, you may gain 1 life.
+id=129466
+name=Angel's Feather
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
 text=Target creature gets +3/+3 and gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
 target=creature
 auto=:3/3
@@ -89,7 +98,7 @@ toughness=4
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy comes into play, you gain 3 life.
 abilities=flying
-auto=gainlife:3
+auto=life:3
 id=129465
 name=Angel of Mercy
 rarity=U
@@ -211,6 +220,19 @@ rarity=U
 color=Red
 type=Sorcery
 mana={X}{R}
+[/card]
+[card]
+text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
+id=129709
+name=Bloodfire Colossus
+auto={R}{S}:damage:6 all(creature,player)
+rarity=R
+color=Red
+type=Creature
+mana={6}{R}{R}
+power=6
+subtype=Giant
+toughness=6
 [/card]
 [card]
 text=Bloodrock Cyclops attacks each turn if able.
@@ -348,6 +370,17 @@ subtype=Faerie
 toughness=1
 [/card]
 [card]
+text=Spend only black mana on X.     Consume Spirit deals X damage to target creature or player and you gain X life.
+id=129505
+alias=1156
+target=creature,player
+name=Consume Spirit
+rarity=U
+color=Black
+type=Sorcery
+mana={X}{1}{B}
+[/card]
+[card]
 text=Sacrifice Composite Golem: Add {W}{U}{B}{R}{G} to your mana pool.
 auto={s}:Add {W}{U}{B}{R}{G}
 id=135275
@@ -429,6 +462,15 @@ type=Sorcery
 mana={3}{R}
 [/card]
 [card]
+text=Whenever a player plays a black spell, you may gain 1 life.
+id=129523
+name=Demon's Horn
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
 text=Destroy target enchantment.
 target=enchantment
 auto=destroy
@@ -461,6 +503,15 @@ rarity=R
 color=Red
 type=Enchantment
 mana={4}{R}{R}
+[/card]
+[card]
+text=Whenever a player plays a red spell, you may gain 1 life.
+id=129527
+name=Dragon's Claw
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
 [/card]
 [card]
 text=
@@ -513,6 +564,16 @@ subtype=Elemental
 toughness=5
 [/card]
 [card]
+text=Return all creatures to their owners' hands.
+id=129541
+name=Evacuation
+auto=moveTo(ownerhand) all(creature)
+rarity=R
+color=Blue
+type=Instant
+mana={3}{U}{U}
+[/card]
+[card]
 text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
 id=129534
 auto=lord(elf) 1/1 other
@@ -555,7 +616,7 @@ toughness=7
 text=Essence Drain deals 3 damage to target creature or player and you gain 3 life.
 target=creature,player
 auto=damage:3
-auto=gainlife:3
+auto=life:3
 id=135191
 name=Essence Drain
 rarity=C
@@ -1056,6 +1117,15 @@ subtype=Kavu
 toughness=3
 [/card]
 [card]
+text=Whenever a player plays a blue spell, you may gain 1 life.
+id=129619
+name=Kraken's Eye
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+[card]
 text=Lava Axe deals 5 damage to target player.
 target=player
 auto=Damage 5
@@ -1392,6 +1462,17 @@ rarity=C
 color=Green
 type=Instant
 mana={1}{G}
+[/card]
+[card]
+text=Target player gains 8 life.
+id=129655
+target=player
+auto=life:8
+name=Natural Spring
+rarity=C
+color=Green
+type=Sorcery
+mana={3}{G}{G}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
@@ -2552,6 +2633,15 @@ rarity=R
 color=White
 type=Sorcery
 mana={2}{W}{W}
+[/card]
+[card]
+text=Whenever a player plays a green spell, you may gain 1 life.
+id=129809
+name=Wurm's Tooth
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {G} or {U} to your mana pool. Yavimaya Coast deals 1 damage to you.

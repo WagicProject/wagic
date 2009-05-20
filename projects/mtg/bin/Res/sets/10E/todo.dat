@@ -50,15 +50,6 @@ type=Enchantment
 mana={3}{W}{W}
 [/card]
 [card]
-text=Whenever a player plays a white spell, you may gain 1 life.
-id=129466
-name=Angel's Feather
-rarity=U
-color=Artifact
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;
 id=130530
 name=Arcane Teachings
@@ -68,7 +59,6 @@ type=Enchantment
 mana={2}{R}
 subtype=Aura
 [/card]
-
 [card]
 text=Gain control of target Aura that's attached to a permanent. Attach it to another permanent it can enchant.
 id=130976
@@ -184,19 +174,6 @@ type=Sorcery
 mana={3}{B}{B}
 [/card]
 [card]
-text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
-id=129709
-name=Bloodfire Colossus
-rarity=R
-color=Red
-type=Creature
-mana={6}{R}{R}
-power=6
-subtype=Giant
-toughness=6
-[/card]
-
-[card]
 text=When Bogardan Firefiend is put into a graveyard from play, it deals 2 damage to target creature.
 id=130534
 name=Bogardan Firefiend
@@ -208,7 +185,6 @@ power=2
 subtype=Elemental Spirit
 toughness=1
 [/card]
-
 [card]
 text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
 id=135261
@@ -322,15 +298,6 @@ type=Sorcery
 mana={3}{R}{R}
 [/card]
 [card]
-text=Spend only black mana on X.     Consume Spirit deals X damage to target creature or player and you gain X life.
-id=129505
-name=Consume Spirit
-rarity=U
-color=Black
-type=Sorcery
-mana={X}{1}{B}
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Whenever enchanted creature attacks or blocks, its controller loses 3 life.
 id=129590
 name=Contaminated Bond
@@ -387,15 +354,6 @@ type=Instant
 mana={2}{U}
 [/card]
 [card]
-text=Whenever a player plays a black spell, you may gain 1 life.
-id=129523
-name=Demon's Horn
-rarity=U
-color=Artifact
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=When Denizen of the Deep comes into play, return each other creature you control to its owner's hand.
 id=135250
 name=Denizen of the Deep
@@ -443,15 +401,7 @@ color=Artifact
 type=Artifact
 mana={2}
 [/card]
-[card]
-text=Whenever a player plays a red spell, you may gain 1 life.
-id=129527
-name=Dragon's Claw
-rarity=U
-color=Artifact
-type=Artifact
-mana={2}
-[/card]
+
 [card]
 text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
 id=135246
@@ -499,16 +449,6 @@ mana={G}
 power=1
 subtype=Elf Berserker
 toughness=1
-[/card]
-
-[card]
-text=Return all creatures to their owners' hands.
-id=129541
-name=Evacuation
-rarity=R
-color=Blue
-type=Instant
-mana={3}{U}{U}
 [/card]
 [card]
 text=Faerie Conclave comes into play tapped.     {T}: Add {U} to your mana pool.     {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
@@ -795,15 +735,6 @@ subtype=Human Knight
 toughness=2
 [/card]
 [card]
-text=Whenever a player plays a blue spell, you may gain 1 life.
-id=129619
-name=Kraken's Eye
-rarity=U
-color=Artifact
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
 id=130373
 name=Lavaborn Muse
@@ -955,15 +886,7 @@ color=Black
 type=Enchantment
 mana={2}{B}{B}
 [/card]
-[card]
-text=Target player gains 8 life.
-id=129655
-name=Natural Spring
-rarity=C
-color=Green
-type=Sorcery
-mana={3}{G}{G}
-[/card]
+
 [card]
 text=First strike (This creature deals combat damage before creatures without first strike.)  When Nekrataal comes into play, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
 id=129658
@@ -1315,6 +1238,7 @@ toughness=3
 text=Target player loses 4 life and you gain 4 life.
 id=129739
 name=Soul Feast
+target=player
 rarity=U
 color=Black
 type=Sorcery
@@ -1745,13 +1669,5 @@ power=2
 subtype=Spirit
 toughness=3
 [/card]
-[card]
-text=Whenever a player plays a green spell, you may gain 1 life.
-id=129809
-name=Wurm's Tooth
-rarity=U
-color=Artifact
-type=Artifact
-mana={2}
-[/card]
+
 

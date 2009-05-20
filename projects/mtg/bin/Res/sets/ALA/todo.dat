@@ -121,14 +121,6 @@ subtype=Elf Shaman
 toughness=1
 [/card]
 [card]
-text=Blightning deals 3 damage to target player. That player discards two cards.
-id=174917
-name=Blightning
-rarity=C
-type=Sorcery
-mana={1}{B}{R}
-[/card]
-[card]
 text=When Blister Beetle comes into play, target creature gets -1/-1 until end of turn.
 id=174893
 name=Blister Beetle

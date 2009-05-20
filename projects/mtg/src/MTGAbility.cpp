@@ -1129,7 +1129,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1126:// Millstone
     {
-      game->addObserver( NEW AMillstone(_id ,card));
+	game->addObserver( NEW AMillstone(_id ,card));
       break;
     }
   case 1215: //Power Leak
@@ -1179,6 +1179,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
+
   case 1142: //Wooden Sphere
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
@@ -1677,6 +1678,33 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     case 4801: //Ancient Ruine
     {
       game->addObserver(NEW ADamageForTypeControlled(_id, card,"artifact"));
+      break;
+    }
+
+//-- addon 10E---
+	case 129523: //Demon's Horn
+	      {
+      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLACK, NEW ManaCost() , 1));
+      break;
+    }
+	case 129527: //Dragon's Claw
+	      {
+      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_RED, NEW ManaCost() , 1));
+      break;
+    }
+	case 129619: //Kraken's Eye
+	      {
+      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLUE, NEW ManaCost() , 1));
+      break;
+    }
+  	case 129809: //Wurm's Tooth
+	      {
+      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_GREEN, NEW ManaCost() , 1));
+      break;
+    }
+    case 129466: //Angel's Feather
+	      {
+      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE, NEW ManaCost() , 1));
       break;
     }
   default:

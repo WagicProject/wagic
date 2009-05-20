@@ -35,6 +35,17 @@ subtype=Human Wizard
 toughness=2
 [/card]
 [card]
+text=Blightning deals 3 damage to target player. That player discards two cards.
+id=174917
+target=player
+auto=damage:3
+auto=discard:2
+name=Blightning
+rarity=C
+type=Sorcery
+mana={1}{B}{R}
+[/card]
+[card]
 text=Flying     When Broodmate Dragon comes into play, put a 4/4 red Dragon creature token with flying into play.
 abilities=flying
 auto=token(Dragon,creature dragon, 4/4,flying red)

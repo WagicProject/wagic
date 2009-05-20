@@ -2141,7 +2141,6 @@ class AMillstone:public TargetAbility{
 };
 
 
-
 //1172 Pestilence
 class APestilence: public ActivatedAbility{
  public:
@@ -2628,6 +2627,28 @@ class AStasis:public ActivatedAbility{
 
 
 //--------------Addon Abra------------------
+
+
+//GenericMillstone
+class ADeplete:public TargetAbility{
+ public:
+	 int nbcards;
+	  ADeplete(int _id, MTGCardInstance * card, ManaCost * _cost, int _nbcards,TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(_id,card, _tc, _cost,0,_tap){
+      if (!tc) tc= NEW PlayerTargetChooser(card);
+	  }
+
+  int resolve(){
+    Player * player = tc->getNextPlayerTarget();
+    if (!player) return 0;
+    MTGLibrary * library = player->game->library;
+    for (int i = 0; i < nbcards; i++){
+      if (library->nb_cards)
+	player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
+    }
+    return 1;
+  }
+
+};
 
 // Generic Karma
 class ADamageForTypeControlled: public TriggeredAbility{
