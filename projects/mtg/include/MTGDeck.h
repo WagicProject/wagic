@@ -53,7 +53,8 @@ class MTGAllCards {
 
   TexturesCache * mCache;
   MTGCard * _(int i);
-  MTGCard * collection[Constants::TOTAL_NUMBER_OF_CARDS];
+  vector<MTGCard *> collection;
+   //collection[Constants::TOTAL_NUMBER_OF_CARDS];
   MTGAllCards();
   ~MTGAllCards();
   MTGAllCards(TexturesCache * cache);

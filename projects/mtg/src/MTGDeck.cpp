@@ -268,7 +268,7 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     switch(conf_read_mode) {
     case 0:
       if (s[0] == '['){
-        collection[total_cards] =  NEW MTGCard(mCache,set_id);
+        collection.push_back(NEW MTGCard(mCache,set_id));
         conf_read_mode = 1;
       }
       break;
@@ -381,7 +381,7 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
     sprintf(subtype, _subtype);
 
 
-  int subcollection[Constants::TOTAL_NUMBER_OF_CARDS];
+  vector<int> subcollection;
   int subtotal = 0;
   for (int i = 0; i < collectionTotal; i++){
     MTGCard * card = allcards->_(i);
@@ -389,7 +389,7 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
 	(rarity == -1 || card->getRarity()==rarity) &&
 	(!_subtype || card->hasSubtype(subtype))
 	){
-      subcollection[subtotal] = i;
+    subcollection.push_back(i);
       subtotal++;
     }
   }
@@ -409,7 +409,7 @@ int MTGDeck::add(int cardid){
 
 int MTGDeck::add(MTGCard * card){
   if (!card) return 0;
-  collection[total_cards] = card;
+  collection.push_back(card);
   ++total_cards;
   initCounters();
   return total_cards;
@@ -418,6 +418,7 @@ int MTGDeck::add(MTGCard * card){
 
 int MTGDeck::removeAll(){
   total_cards = 0;
+  collection.clear();
   initCounters();
   return 1;
 }
@@ -430,7 +431,7 @@ int MTGDeck::remove(int cardid){
 int MTGDeck::remove(MTGCard * card){
   for (int i = 0; i<total_cards; i++){
     if (collection[i] == card){
-      collection[i] = collection[total_cards - 1];
+      collection.erase(collection.begin()+i);
       total_cards--;
       initCounters();
       return 1;

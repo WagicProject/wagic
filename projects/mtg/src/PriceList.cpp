@@ -2,13 +2,8 @@
 #include "../include/PriceList.h"
 
 
-Price::Price(int _cardid, int _price): cardid(_cardid),price(_price){
-}
-
-
 
 PriceList::PriceList(const char * _filename, MTGAllCards * _collection):collection(_collection){
-  nbprices = 0;
   filename = _filename;
   std::ifstream file(_filename);
   std::string cardid;
@@ -16,8 +11,7 @@ PriceList::PriceList(const char * _filename, MTGAllCards * _collection):collecti
   if(file){
     while(std::getline(file,cardid)){
       std::getline(file,price);
-      prices[nbprices]= NEW Price(atoi(cardid.c_str()), atoi(price.c_str()));
-      nbprices++;
+      prices[atoi(cardid.c_str())]= atoi(price.c_str());
     }
     file.close();
   }
@@ -25,19 +19,17 @@ PriceList::PriceList(const char * _filename, MTGAllCards * _collection):collecti
 
 
 PriceList::~PriceList(){
-  for (int i = 0; i < nbprices; i++){
-    delete (prices[i]);
-  }
-  nbprices = 0;
 }
 
 int PriceList::save(){
   std::ofstream file(filename.c_str());
   char writer[20];
   if (file){
-    for (int i = 0; i<nbprices; i++){
-      sprintf(writer,"%i\n%i\n", prices[i]->cardid, prices[i]->price);
-      file<<writer;
+      map<int,int>::iterator it=prices.begin();
+      while(it != prices.end()){
+        sprintf(writer,"%i\n%i\n", (*it).first, (*it).second);
+        it++;
+        file<<writer;
     }
     file.close();
   }
@@ -45,11 +37,9 @@ int PriceList::save(){
   return 1;
 }
 int PriceList::getPrice(int cardId){
-  for(int i = 0; i < nbprices; i++){
-    if (prices[i]->cardid == cardId){
-      return prices[i]->price;
-    }
-  }
+  map<int,int>::iterator it = prices.find(cardId);
+  if (it != prices.end()) return (*it).second;
+
   char rarity = collection->getCardById(cardId)->getRarity();
   switch(rarity){
   case Constants::RARITY_M:
@@ -76,13 +66,6 @@ int PriceList::getPrice(int cardId){
 }
 
 int PriceList::setPrice(int cardId, int price){
-  for(int i = 0; i < nbprices; i++){
-    if (prices[i]->cardid == cardId){
-      prices[i]->price = price;
-      return prices[i]->price;
-    }
-  }
-  prices[nbprices] = NEW Price(cardId, price);
-  nbprices++;
-  return prices[nbprices-1]->price;
+  prices[cardId] = price;
+  return price;
 }

@@ -10,9 +10,6 @@ class Constants
  public:
   enum
   {
-    TOTAL_NUMBER_OF_CARDS = 4000,
-
-
     MTG_COLOR_ARTIFACT = 0,
     MTG_COLOR_GREEN = 1,
     MTG_COLOR_BLUE = 2,
