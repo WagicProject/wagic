@@ -1266,10 +1266,15 @@ power=2
 subtype=Spirit
 toughness=2
 [/card]
-
-
-
-
+[card]
+text=Whenever a creature you control deals combat damage, you gain that much life.
+auto=lord(creature|myinplay) lifelink other
+id=19786
+name=Noble Purpose
+rarity=U
+type=Enchantment
+mana={3}{W}{W}
+[/card]
 [card]
 text=If you control a Plains, you may tap an untapped creature you control rather than pay the mana cost of Orim's Cure.       Prevent the next 4 damage that would be dealt to target creature or player this turn.
 id=19547
@@ -1345,7 +1350,18 @@ type=Enchantment
 mana={1}{B}
 subtype=Aura
 [/card]
-
+[card]
+text=Whenever Pious Warrior is dealt combat damage, you gain that much life.
+id=19552
+name=Pious Warrior
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Human Rebel Warrior
+toughness=3
+abilities=lifelink
+[/card]
 [card]
 text={X}, {T}: Target creature you control gets +X/+X until end of turn. Destroy it at end of turn.
 id=19881
