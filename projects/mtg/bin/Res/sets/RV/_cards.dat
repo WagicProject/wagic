@@ -1394,6 +1394,7 @@ toughness=1
 text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
 id=1126
 name=Millstone
+auto={2}{T}:deplete:2 target(player)
 rarity=R
 type=Artifact
 mana={2}

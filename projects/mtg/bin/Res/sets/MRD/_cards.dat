@@ -955,6 +955,15 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+text={8}, {T}: Target player puts the top eight cards of his or her library into his or her graveyard.
+id=46730
+auto={8}{T}:deplete:8 target(player)
+name=Tower of Murmurs
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
 text=Haste
 id=5585
 abilities=haste

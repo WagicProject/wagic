@@ -36,6 +36,20 @@ subtype=Elemental
 toughness=4
 [/card]
 [card]
+text={3}: Target player puts the top three cards of his or her library into his or her graveyard.
+id=129913
+auto={3}:deplete:3 target(player)
+name=Ambassador Laquatus
+rarity=R
+color=Blue
+type=Creature
+abilities=legendary
+mana={1}{U}{U}
+power=1
+subtype=Merfolk Wizard
+toughness=3
+[/card]
+[card]
 text=First strike (This creature deals combat damage before creatures without first strike.)
 abilities=first strike
 id=134753
@@ -1305,8 +1319,8 @@ toughness=1
 [card]
 text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
 id=129643
-alias=1126
 name=Millstone
+auto={2}{T}:deplete:2 target(player)
 rarity=R
 color=Artifact
 type=Artifact

@@ -649,6 +649,35 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         continue;
       }
 
+		//Deplete
+      found = s.find("deplete:");
+      if (found != string::npos){
+        unsigned int start = s.find(":",found);
+        unsigned int end = s.find(" ",start);
+        int nbcards;
+        if (end != string::npos){
+	        nbcards = atoi(s.substr(start+1,end-start-1).c_str());
+        }else{
+	        nbcards = atoi(s.substr(start+1).c_str());
+        }
+        if (dryMode){
+          dryModeResult =  BAKA_EFFECT_BAD;
+          break;
+        }
+        if (trigger){
+		//TODO ?
+		}else{
+	        if (tc){
+	          game->addObserver (NEW ADeplete(id,card,cost,nbcards,tc,doTap));
+        }else{
+			//todo
+			}
+
+		}
+        result++;
+        continue;
+      }
+
       //Discard
       found = s.find("discard:");
       if (found != string::npos){
@@ -1127,11 +1156,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW ARegularLifeModifierAura(_id+2, card, card, Constants::MTG_PHASE_DRAW, -1, 1));
       break;
     }
-  case 1126:// Millstone
-    {
-	game->addObserver( NEW AMillstone(_id ,card));
-      break;
-    }
+  //case 1126:// Millstone
+  //  {
+//	game->addObserver( NEW AMillstone(_id ,card));
+//      break;
+//    }
   case 1215: //Power Leak
     {
       game->addObserver( NEW APowerLeak(_id ,card, card->target));

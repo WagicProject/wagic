@@ -1,4 +1,16 @@
 [card]
+text=Whenever a player plays a white spell, you may pay {1}. If you do, you gain 1 life.
+id=141929
+alias=1114
+name=Apothecary Initiate
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Kithkin Cleric
+toughness=1
+[/card]
+[card]
 text=Enchant creature     Enchanted creature gets +1/+1 for each Plains you control and has flying.
 target=creature
 auto=foreach(plains|myinplay) 1/1
@@ -221,6 +233,16 @@ mana={GW}
 power=1
 subtype=Elf Shaman
 toughness=1
+[/card]
+[card]
+text=Creatures target player controls can't block this turn. Ember Gale deals 1 damage to each white and/or blue creature that player controls.
+id=158766
+auto=lord(creature|opponentinplay) cantblock
+auto=damage:1 all(creature[white;blue]|opponentinplay)
+name=Ember Gale
+rarity=C
+type=Sorcery
+mana={3}{R}
 [/card]
 [card]
 text=Flying     Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.

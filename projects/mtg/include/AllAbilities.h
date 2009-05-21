@@ -2633,10 +2633,10 @@ class AStasis:public ActivatedAbility{
 class ADeplete:public TargetAbility{
  public:
 	 int nbcards;
-	  ADeplete(int _id, MTGCardInstance * card, ManaCost * _cost, int _nbcards,TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(_id,card, _tc, _cost,0,_tap){
+	  ADeplete(int _id, MTGCardInstance * card, ManaCost * _cost, int _nbcards = 1,TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(_id,card, _tc, _cost,0,_tap){
       if (!tc) tc= NEW PlayerTargetChooser(card);
+	  nbcards = _nbcards;
 	  }
-
   int resolve(){
     Player * player = tc->getNextPlayerTarget();
     if (!player) return 0;

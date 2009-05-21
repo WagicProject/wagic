@@ -23,24 +23,12 @@ type=Instant
 mana={B}
 [/card]
 [card]
-text=Whenever a player plays a white spell, you may pay {1}. If you do, you gain 1 life.
-id=141929
-name=Apothecary Initiate
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Kithkin Cleric
-toughness=1
-[/card]
-
-
-
-[card]
 text=Other black creatures you control get +1/+1.     Other red creatures you control get +1/+1.     Whenever Ashenmoor Liege becomes the target of a spell or ability an opponent controls, that player loses 4 life.
 id=146065
 name=Ashenmoor Liege
 rarity=R
+auto=lord(creature[black]|myinplay) 1/1
+auto=lord(creature[red]|myinplay) 1/1
 type=Creature
 mana={1}{BR}{BR}{BR}
 power=4
@@ -58,7 +46,6 @@ power=2
 subtype=Kithkin Wizard
 toughness=2
 [/card]
-
 [card]
 text=Target creature gets +2/+2 until end of turn.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 id=158772
@@ -344,6 +331,8 @@ mana={1}{B}
 [card]
 text=You may put a green creature card from your hand into play.
 id=154003
+target=creature[green]|myhand
+auto=moveto(inplay)
 name=Dramatic Entrance
 rarity=R
 type=Instant
@@ -361,6 +350,7 @@ mana={UB}
 text=Drove of Elves's power and toughness are each equal to the number of green permanents you control.     Drove of Elves can't be the target of spells or abilities your opponents control.
 id=157878
 name=Drove of Elves
+auto=foreach(*[green]|myinplay) 1/1
 rarity=U
 type=Creature
 mana={3}{G}
@@ -406,15 +396,6 @@ name=Elsewhere Flask
 rarity=C
 type=Artifact
 mana={2}
-[/card]
-
-[card]
-text=Creatures target player controls can't block this turn. Ember Gale deals 1 damage to each white and/or blue creature that player controls.
-id=158766
-name=Ember Gale
-rarity=C
-type=Sorcery
-mana={3}{R}
 [/card]
 [card]
 text=Whenever you play a black spell, Emberstrike Duo gets +1/+1 until end of turn.     Whenever you play a red spell, Emberstrike Duo gains first strike until end of turn.

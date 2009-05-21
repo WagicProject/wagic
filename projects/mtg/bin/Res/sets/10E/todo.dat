@@ -29,18 +29,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text={3}: Target player puts the top three cards of his or her library into his or her graveyard.
-id=129913
-name=Ambassador Laquatus
-rarity=R
-color=Blue
-type=Legendary Creature
-mana={1}{U}{U}
-power=1
-subtype=Merfolk Wizard
-toughness=3
-[/card]
-[card]
 text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
 id=129710
 name=Angelic Chorus
