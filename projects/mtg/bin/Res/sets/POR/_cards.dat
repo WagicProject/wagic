@@ -681,6 +681,26 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Target opponent discards a card at random.
+target=player
+auto=discard:1
+id=4229
+name=Mind Knives
+rarity=C
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
+text=Target player discards two cards.
+target=player
+auto=discard:2
+id=4230
+name=Mind Rot
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
 id=4351
 name=Minotaur Warrior
 rarity=C
