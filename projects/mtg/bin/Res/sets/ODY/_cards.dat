@@ -38,6 +38,18 @@ toughness=6
 rarity=R
 [/card]
 [card]
+text=When Anarchist comes into play, you may return target sorcery card from your graveyard to your hand.
+id=29758
+name=Anarchist
+auto=may moveTo(myhand) target(sorcery|mygraveyard)
+rarity=C
+type=Creature
+mana={4}{R}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
 id=29699
 name=Angelic Wall
@@ -48,6 +60,30 @@ subtype=Wall
 power=0
 toughness=4
 rarity=C
+[/card]
+[card]
+text={1}{R}: Ashen Firebeast deals 1 damage to each creature without flying.
+id=29965
+name=Ashen Firebeast
+auto={1}{R}:damage:1 all(creature[-flying])
+rarity=R
+type=Creature
+mana={6}{R}{R}
+power=6
+subtype=Elemental Beast
+toughness=6
+[/card]
+[card]
+text=When Auramancer comes into play, you may return target enchantment card from your graveyard to your hand.
+id=29700
+name=Auramancer
+auto=may moveTo(myhand) target(enchantment|mygraveyard)
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Wizard
+toughness=2
 [/card]
 [card]
 text=Flying. {2}{W}{T}: Aven Archer deals 2 damage to target attacking or blocking creature. 
@@ -61,6 +97,18 @@ subtype=Bird Soldier
 power=2
 toughness=2
 rarity=U
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)   When Aven Cloudchaser comes into play, destroy target enchantment.
+id=29694
+name=Aven Cloudchaser
+auto=may moveTo(ownergraveyard) target(enchantment)
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Bird Soldier
+toughness=2
 [/card]
 [card]
 text=Flying. {W}: Aven Flock gets +0/+1 until end of turn. 
@@ -88,6 +136,19 @@ subtype=Bird Soldier
 power=2
 toughness=3
 rarity=U
+[/card]
+[card]
+text=Flying     {1}{U}, Discard a card: Return Balshan Griffin to its owner's hand.
+id=29820
+name=Balshan Griffin
+abilities=flying
+auto={1}{U}{S(*|myhand)}:moveTo(hand)
+rarity=U
+type=Creature
+mana={3}{U}{U}
+power=3
+subtype=Griffin
+toughness=2
 [/card]
 [card]
 text={2}{R}, Sacrifice Barbarian Lunatic: Barbarian Lunatic deals 2 damage to target creature.
@@ -139,6 +200,18 @@ auto=foreach(enchantment|graveyard) 1/1
 power=*
 toughness=*
 rarity=R
+[/card]
+[card]
+text=When Cartographer comes into play, you may return target land card from your graveyard to your hand.
+id=29783
+name=Cartographer
+auto=may moveTo(myhand) target(land|mygraveyard)
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human
+toughness=2
 [/card]
 [card]
 text={U}{U}: Tap target creature without flying. 
@@ -399,6 +472,18 @@ type=Instant
 rarity=U
 [/card]
 [card]
+text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+id=29741
+name=Gravedigger
+auto=may moveTo(myhand) target(creature|mygraveyard)
+rarity=C
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
 text=When Ground Seal comes into play, draw a card. Cards in graveyards can't be the targets of spells or abilities.
 id=29991
 name=Ground Seal
@@ -485,6 +570,19 @@ toughness=1
 rarity=R
 [/card]
 [card]
+text=Reach (This creature can block creatures with flying.)  {G}, Discard a card: Krosan Archer gets +0/+2 until end of turn.
+id=29780
+name=Krosan Archer
+abilities=reach
+auto={G}{S(*|myhand)}:0/2
+rarity=C
+type=Creature
+mana={3}{G}
+power=2
+subtype=Centaur Archer
+toughness=3
+[/card]
+[card]
 text=Forestwalk
 id=29782
 name=Leaf Dancer
@@ -524,6 +622,15 @@ toughness=2
 rarity=U
 [/card]
 [card]
+text={R}, Sacrifice a land: Magma Vein deals 1 damage to each creature without flying.
+id=29859
+name=Magma Vein
+auto={R}{S(land|myinplay)}:damage:1 all(creature[-flying])
+rarity=U
+type=Enchantment
+mana={2}{R}
+[/card]
+[card]
 text=Haste (This creature can attack the turn it comes under your control.) Magnivore's power and toughness are each equal to the number of sorcery cards in all graveyards.
 id=30550
 name=Magnivore
@@ -542,7 +649,7 @@ id=30560
 name=Malevolent Awakening
 mana={1}{B}{B}
 color=black
-auto={1}{B}{B}{s(Creature|myinplay)}:moveTo(myhand) target(Creature|mygraveyard)
+auto={1}{B}{B}{S(Creature|myinplay)}:moveTo(myhand) target(Creature|mygraveyard)
 type=Enchantment
 rarity=U
 [/card]
@@ -634,7 +741,7 @@ text=Sacrifice a land: Target creature gains haste until end of turn.
 id=29971
 name=Need for Speed
 mana={R}
-auto={s(land|myinplay)}:haste target(Creature)
+auto={S(land|myinplay)}:haste target(Creature)
 type=Enchantment
 rarity=R
 [/card]
@@ -649,6 +756,16 @@ auto={S}{S(*|myhand)}:add{B}{B}{B}
 power=1
 toughness=2
 rarity=C
+[/card]
+[card]
+text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+id=29996
+name=Overrun
+auto=lord(creature|myinplay) trample
+auto=lord(creature|myinplay) 3/3
+rarity=U
+type=Sorcery
+mana={2}{G}{G}{G}
 [/card]
 [card]
 text=Discard a card from your hand: Regenerate Patchwork Gnomes.
@@ -808,6 +925,35 @@ mana={2}{G}
 color=green
 type=Instant
 rarity=C
+[/card]
+[card]
+text=First strike     Discard a card: Resilient Wanderer gains protection from the color of your choice until end of turn.
+id=29804
+name=Resilient Wanderer
+abilities=first strike
+auto={S(*|myhand)}:protection from black
+auto={S(*|myhand)}:protection from green
+auto={S(*|myhand)}:protection from red
+auto={S(*|myhand)}:protection from blue
+auto={S(*|myhand)}:protection from white
+rarity=U
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Human Nomad
+toughness=3
+[/card]
+[card]
+text=When Scrivener comes into play, you may return target instant card from your graveyard to your hand.
+id=29712
+name=Scrivener
+auto=may moveTo(myhand) target(instant|mygraveyard)
+rarity=C
+type=Creature
+mana={4}{U}
+power=2
+subtype=Human Wizard
+toughness=2
 [/card]
 [card]
 text=Seafloor Debris comes into play tapped. Tap: Add U to your mana pool. Tap, Sacrifice Seafloor Debris: Add one mana of any color to your mana pool.
