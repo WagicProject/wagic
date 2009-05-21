@@ -1519,14 +1519,6 @@ type=Enchantment
 mana={2}{B}
 [/card]
 [card]
-text={B}, Sacrifice Necrogen Spellbomb: Target player discards a card.     {1}, Sacrifice Necrogen Spellbomb: Draw a card.
-id=46055
-name=Necrogen Spellbomb
-rarity=C
-type=Artifact
-mana={1}
-[/card]
-[card]
 text=Flash     Protection from artifacts
 id=48930
 name=Needlebug

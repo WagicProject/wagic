@@ -697,7 +697,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        //TODO ?
         }else{
 	        if (tc){
-	          //TODO ?
+	          game->addObserver (NEW ADiscard(id,card,cost,nbcards,tc,doTap));
 	        }else{
 			      for (int i = 0; i < nbcards; i++){
 					game->opponent()->game->discardRandom(game->opponent()->game->hand);

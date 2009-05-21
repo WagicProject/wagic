@@ -2650,6 +2650,27 @@ class ADeplete:public TargetAbility{
 
 };
 
+
+class ADiscard:public TargetAbility{
+ public:
+	 int nbcards;
+	  ADiscard(int _id, MTGCardInstance * card, ManaCost * _cost, int _nbcards = 1,TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(_id,card, _tc, _cost,0,_tap){
+      if (!tc) tc= NEW PlayerTargetChooser(card);
+	  nbcards = _nbcards;
+	  }
+  int resolve(){
+    Player * player = tc->getNextPlayerTarget();
+    if (!player) return 0;
+	for (int i = 0; i < 2; i++){
+	game->players[i]->game->discardRandom(game->players[i]->game->hand);
+	}
+    return 1;
+  }
+    const char * getMenuText(){
+    return "Discard";
+  }
+};
+
 // Generic Karma
 class ADamageForTypeControlled: public TriggeredAbility{
  public:
