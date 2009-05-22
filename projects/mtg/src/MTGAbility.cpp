@@ -1736,6 +1736,26 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE, NEW ManaCost() , 1));
       break;
     }
+
+//--- addon shm---
+	case 146013: //Corrupt
+		{
+			Damageable * target = spell->getNextDamageableTarget();
+			int damage_life = card->controller()->game->inPlay->countByType("swamp");
+			game->mLayers->stackLayer()->addDamage(card, target, damage_life);
+			game->currentlyActing()->life+=damage_life;
+			break;
+		}
+// --- addon Eventide ---
+	case 158903: //Chaotic Backlash
+		{
+			Damageable * target = spell->getNextDamageableTarget();
+	//		int damage1 = game->opponent()->game->inPlay->countByType(Constants::MTG_COLOR_WHITE);
+	//		int damage2 = game->opponent()->game->inPlay->countByType(Constants::MTG_COLOR_BLUE);
+	//		int damage = damage1 * 2 + damage2 * 2;
+	//		game->mLayers->stackLayer()->addDamage(card, target, damage_life);
+			break;
+		}
   default:
     break;
   }

@@ -186,6 +186,15 @@ subtype=Elemental Rogue
 toughness=3
 [/card]
 [card]
+text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
+target=creature,player
+id=146013
+name=Corrupt
+rarity=U
+type=Sorcery
+mana={5}{B}
+[/card]
+[card]
 text=Crabapple Cohort gets +1/+1 as long as you control another green creature.
 auto=aslongas(creature[green]|myinplay) 1/1 other
 id=146009

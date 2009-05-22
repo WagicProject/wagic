@@ -2613,14 +2613,6 @@ subtype=Demon Spirit
 toughness=5
 [/card]
 [card]
-text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
-id=3464
-name=Spitting Earth
-rarity=C
-type=Sorcery
-mana={1}{R}
-[/card]
-[card]
 text=Stalking Tiger can't be blocked by more than one creature.
 id=3412
 name=Stalking Tiger

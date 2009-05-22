@@ -2280,6 +2280,16 @@ subtype=Human Wizard
 toughness=1
 [/card]
 [card]
+text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
+id=136509
+target=creature
+name=Spitting Earth
+rarity=C
+color=Red
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
 text={7}{W}: You gain 5 life.
 auto={7}{W}:life:5
 id=130385

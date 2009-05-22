@@ -733,6 +733,16 @@ mana={2}
 rarity=U
 [/card]
 [card]
+text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
+id=3464
+alias=136509
+target=creature
+name=Spitting Earth
+rarity=C
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
 text=Destroy target land.
 id=3465 
 name=Stone Rain

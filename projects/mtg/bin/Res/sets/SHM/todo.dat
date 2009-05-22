@@ -185,14 +185,6 @@ type=Instant
 mana={2}{U}
 [/card]
 [card]
-text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
-id=146013
-name=Corrupt
-rarity=U
-type=Sorcery
-mana={5}{B}
-[/card]
-[card]
 text=Counter target spell. Search its controller's graveyard, hand, and library for all cards with the same name as that spell and remove them from the game. Then that player shuffles his or her library.
 id=153966
 name=Counterbore

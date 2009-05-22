@@ -1109,6 +1109,16 @@ power=3
 toughness=4
 [/card]
 [card]
+text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
+id=4362
+target=creature
+alias=136509
+name=Spitting Earth
+rarity=C
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
 text=Flying
 id=4396
 name=Spotted Griffin
