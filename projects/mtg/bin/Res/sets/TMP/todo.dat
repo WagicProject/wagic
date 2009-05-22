@@ -1513,14 +1513,6 @@ subtype=Angel
 toughness=3
 [/card]
 [card]
-text=Destroy target enchantment. You gain life equal to its converted mana cost.
-id=4898
-name=Serene Offering
-rarity=U
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=When Servant of Volrath leaves play, sacrifice a creature.
 id=4685
 name=Servant of Volrath

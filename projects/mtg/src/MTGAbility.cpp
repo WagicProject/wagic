@@ -1710,6 +1710,23 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
+// --- addon Mirage ---
+
+	  case 3410: //Seed of Innocence
+    {
+		GameObserver * game = GameObserver::GetInstance();
+      for (int i = 0; i < 2 ; i++){
+		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+			if (current->hasType("Artifact")){
+				game->players[i]->game->putInGraveyard(current);
+				current->controller()->life-= current->getManaCost()->getConvertedCost();
+			}
+		}
+	  }
+      break;
+	}
+
 //-- addon 10E---
 	case 129523: //Demon's Horn
 	      {
@@ -1753,9 +1770,24 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->currentlyActing()->life+=damage_life;
 			break;
 		}
+
+// --- addon Invasion---
+    case 23195: //Artifact Mutation (works fine but display is strange if you bury a target from opponent, need to wait your turn to have the token put in play)
+    {
+      card->target->controller()->game->putInGraveyard(card->target);
+      int x = card->target->getManaCost()->getConvertedCost();
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling token","creature",1,1,"green",0);
+          for (int i=0; i < x; i++){
+            tok->resolve();
+          }
+          delete tok;    
+      break;
+    }
+
   default:
     break;
   }
+
 
 
 

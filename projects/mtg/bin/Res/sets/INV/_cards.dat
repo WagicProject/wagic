@@ -114,6 +114,25 @@ power=2
 toughness=5
 [/card]
 [card]
+text=Destroy target artifact. It can't be regenerated. Put X 1/1 green Saproling creature tokens into play, where X is its converted mana cost.
+id=23195
+target=artifact
+name=Artifact Mutation
+rarity=R
+type=Instant
+mana={R}{G}
+[/card]
+[card]
+text=Destroy target enchantment. Put X 1/1 green Saproling creature tokens into play, where X is its converted mana cost.
+id=23184
+target=aura
+alias=23195
+name=Aura Mutation
+rarity=R
+type=Instant
+mana={G}{W}
+[/card]
+[card]
 text={3}{U},{T}: Draw a card.
 id=22947
 name=Benalish Heralds

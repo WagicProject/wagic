@@ -98,14 +98,6 @@ subtype=Cat Soldier
 toughness=5
 [/card]
 [card]
-text=Destroy target artifact. It can't be regenerated. Put X 1/1 green Saproling creature tokens into play, where X is its converted mana cost.
-id=23195
-name=Artifact Mutation
-rarity=R
-type=Instant
-mana={R}{G}
-[/card]
-[card]
 text=Assault deals 2 damage to target creature or player.     //     Put a 3/3 green Elephant creature token into play.
 id=20579
 name=Assault // Battery
@@ -132,14 +124,7 @@ power=2
 subtype=Human Cleric
 toughness=3
 [/card]
-[card]
-text=Destroy target enchantment. Put X 1/1 green Saproling creature tokens into play, where X is its converted mana cost.
-id=23184
-name=Aura Mutation
-rarity=R
-type=Instant
-mana={G}{W}
-[/card]
+
 [card]
 text=Whenever a creature comes into play under your control, you may destroy target artifact or enchantment.
 id=23152

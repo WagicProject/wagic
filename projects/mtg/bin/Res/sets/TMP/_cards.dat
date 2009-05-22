@@ -1325,6 +1325,16 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Destroy target enchantment. You gain life equal to its converted mana cost.
+id=4898
+target=enchantment
+alias=1607
+name=Serene Offering
+rarity=U
+type=Instant
+mana={1}{W}
+[/card]
+[card]
 text=Target creature gains shadow until end of turn.    Draw a card.
 target=creature
 auto=shadow

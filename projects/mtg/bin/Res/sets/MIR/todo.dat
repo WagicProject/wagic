@@ -693,14 +693,6 @@ type=Instant
 mana={1}{U}{U}
 [/card]
 [card]
-text=Destroy target artifact. You gain life equal to its converted mana cost.
-id=3486
-name=Divine Offering
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=Divine Retribution deals damage to target attacking creature equal to the number of attacking creatures.
 id=3487
 name=Divine Retribution
@@ -2415,22 +2407,6 @@ name=Seedling Charm
 rarity=C
 type=Instant
 mana={G}
-[/card]
-[card]
-text=Destroy all artifacts. They can't be regenerated. The controller of each artifact destroyed this way gains life equal to its converted mana cost.
-id=3410
-name=Seeds of Innocence
-rarity=R
-type=Sorcery
-mana={1}{G}{G}
-[/card]
-[card]
-text=Destroy all Auras.
-id=3411
-name=Serene Heart
-rarity=C
-type=Instant
-mana={1}{G}
 [/card]
 [card]
 text={B}, Pay 1 life: Sewer Rats gets +1/+0 until end of turn. Play this ability no more than three times each turn.
