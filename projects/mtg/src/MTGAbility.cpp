@@ -1704,7 +1704,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 //---addon Tempest---
-    case 4801: //Ancient Ruine
+    case 4801: //Ancient Rune
     {
       game->addObserver(NEW ADamageForTypeControlled(_id, card,"artifact"));
       break;
@@ -1760,7 +1760,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->mLayers->stackLayer()->addDamage(card, target, damage);
 			break;
 		}
-
+  case 129909: //Cryoclasm
+    {
+      card->target->controller()->game->putInGraveyard(card->target);
+      card->target->controller()->life-= 3;
+      break;
+    }
 //--- addon shm---
 	case 146013: //Corrupt
 		{
@@ -1829,8 +1834,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   // New Abilities Flanking and Rampage
 
-  if (card->basicAbilities [Constants::RAMPAGE1]){
-    game->addObserver (NEW ARampageAbility(_id, card, 1, 1));
+  if (card->basicAbilities [Constants::RAMPAGE]){
+    game->addObserver (NEW ARampageAbility(_id, card, 1, 1,1));
   }
 
   //Instants are put in the graveyard automatically if that's not already done

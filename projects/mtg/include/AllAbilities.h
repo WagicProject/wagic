@@ -2888,44 +2888,19 @@ class AKirdApe:public ListMaintainerAbility{
 
 };
 
-
-//Rampage ability Tentative 2
+//Rampage ability
 class ARampageAbility:public MTGAbility{
- public:
-  int nbOpponents;
-  int PowerModifier;
-  int ToughnessModifier;
-  int modifier;
- ARampageAbility(int _id, MTGCardInstance * _source,int _PowerModifier, int _ToughnessModifier):MTGAbility(_id, _source){
-    modifier=0;
-  }
-  void Update(float dt){
-    if (source->isAttacker()){
-      MTGInPlay * inPlay = game->opponent()->game->inPlay;
-      for (int i = 0; i < inPlay->nb_cards; i ++){
-	MTGCardInstance * current = inPlay->cards[i];
-	if (current->isDefenser()){
-	  modifier++;
-	}
-      }
-      source->power+= (PowerModifier * modifier);
-      source->addToToughness(ToughnessModifier * modifier);
-    }
-  }
-};
-
-
-//Rampage ability Tentative 1 - Did not work as expected
-class A1RampageAbility:public MTGAbility{
  public:
   MTGCardInstance * opponents[20];
   int nbOpponents;
   int PowerModifier;
   int ToughnessModifier;
- A1RampageAbility(int _id, MTGCardInstance * _source,int _PowerModifier, int _ToughnessModifier):MTGAbility(_id, _source){
-    nbOpponents = 0;
+  int MaxOpponent;
+ ARampageAbility(int _id, MTGCardInstance * _source,int _PowerModifier, int _ToughnessModifier, int _MaxOpponent):MTGAbility(_id, _source){
+    PowerModifier = _PowerModifier;
+    ToughnessModifier = _ToughnessModifier;
+	MaxOpponent = _MaxOpponent;
   }
-
   void Update(float dt){
     if (source->isAttacker()){
       if (newPhase != currentPhase){
@@ -2935,13 +2910,16 @@ class A1RampageAbility:public MTGAbility{
 	  while (opponent){
 	    opponents[nbOpponents] = opponent;
 	    nbOpponents ++;
-	    source->power+= PowerModifier;
-	    source->addToToughness(ToughnessModifier);
-	    opponent = source->getNextOpponent(opponent);
+		opponent = source->getNextOpponent(opponent);
+		if (nbOpponents > MaxOpponent){
+			source->power+= PowerModifier;
+			source->addToToughness(ToughnessModifier);
+	    
+		}
 	  }
 	}
-      }
-    }
+	  }
+	}
   }
 };
 

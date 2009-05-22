@@ -92,7 +92,7 @@ class Constants
     SWAMPHOME = 34,
     PLAINSHOME = 35,
     FLANKING = 36,
-    RAMPAGE1 = 37,
+    RAMPAGE = 37,
     CLOUD = 38,
     CANTATTACK = 39,
     MUSTATTACK = 40,

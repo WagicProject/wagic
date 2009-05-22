@@ -314,15 +314,6 @@ type=Sorcery
 mana={1}{B}
 [/card]
 [card]
-text=Destroy target Plains or Island. Cryoclasm deals 3 damage to that land's controller.
-id=129909
-name=Cryoclasm
-rarity=U
-color=Red
-type=Sorcery
-mana={2}{R}
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature doesn't untap during its controller's untap step.
 id=129521
 name=Dehydration

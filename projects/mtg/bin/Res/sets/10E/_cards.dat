@@ -277,7 +277,7 @@ toughness=3
 [card]
 text=Return target permanent to its owner's hand.
 target=*
-alias=1229
+auto=moveTo(ownerHand)
 id=129494
 name=Boomerang
 rarity=C
@@ -452,6 +452,16 @@ rarity=U
 color=Green
 type=Sorcery
 mana={2}{G}{G}
+[/card]
+[card]
+text=Destroy target Plains or Island. Cryoclasm deals 3 damage to that land's controller.
+target=plains,island
+id=129909
+name=Cryoclasm
+rarity=U
+color=Red
+type=Sorcery
+mana={2}{R}
 [/card]
 [card]
 text=Destroy target green or white creature.
@@ -1085,7 +1095,7 @@ subtype=Island
 [card]
 text={4}, {T}: Draw a card.
 id=106478
-alias=1119
+auto={4}{T}:draw:1
 name=Jayemdae Tome
 rarity=R
 color=Artifact
@@ -1492,7 +1502,7 @@ mana={3}{G}{G}
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
 abilities=flying
 id=129659
-alias=1170
+auto=foreach(swamp|myinplay) 1/1
 name=Nightmare
 rarity=R
 color=Black
@@ -1703,7 +1713,7 @@ mana={1}{G}
 [card]
 text={T}: Prodigal Pyromancer deals 1 damage to target creature or player.
 id=134752
-alias=1217
+auto={T}:damage:1 target(creature,player)
 name=Prodigal Pyromancer
 rarity=C
 color=Red
@@ -1787,7 +1797,7 @@ mana={1}{B}{B}
 [card]
 text=Return target card from your graveyard to your hand.
 target=*|myGraveyard
-alias=1263
+auto=moveTo(myHand)
 id=130507
 name=Recollect
 rarity=U
@@ -1893,7 +1903,7 @@ toughness=3
 [card]
 text={3}, {T}: Rod of Ruin deals 1 damage to target creature or player.
 id=129704
-alias=1134
+auto={3}{T}:damage:1 target(creature,player)
 name=Rod of Ruin
 rarity=U
 color=Artifact
@@ -1929,7 +1939,7 @@ toughness=2
 [card]
 text={T}: Destroy target tapped creature.
 id=129708
-alias=1175
+auto={T}:destroy target(creature[tapped])
 name=Royal Assassin
 rarity=R
 color=Black
@@ -2054,7 +2064,7 @@ toughness=2
 [card]
 text=Destroy all artifacts. They can't be regenerated.
 id=130370
-alias=1317
+auto=bury all(artifact)
 name=Shatterstorm
 rarity=U
 color=Red
@@ -2407,7 +2417,7 @@ toughness=4
 [card]
 text=Destroy all enchantments.
 id=132131
-alias=1270
+auto=destroy all(enchantment)
 name=Tempest of Light
 rarity=U
 color=White
@@ -2416,8 +2426,8 @@ mana={2}{W}
 [/card]
 [card]
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
-target=creature[-artifact;-black]
-alias=1182
+target=creature[-black;-artifact]
+auto=bury
 id=135199
 name=Terror
 rarity=C
@@ -2524,8 +2534,8 @@ subtype=Aura
 [card]
 text=Return target creature to its owner's hand.
 target=creature
+auto=moveTo(ownerHand)
 id=136218
-alias=1229
 name=Unsummon
 rarity=C
 color=Blue
@@ -2651,7 +2661,7 @@ toughness=2
 [card]
 text=Destroy all creatures. They can't be regenerated.
 id=129808
-alias=1372
+auto=bury all(creature)
 name=Wrath of God
 rarity=R
 color=White
