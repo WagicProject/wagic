@@ -451,6 +451,18 @@ toughness=1
 rarity=U
 [/card]
 [card]
+text=Whenever Jungle Wurm becomes blocked, it gets -1/-1 until end of turn for each creature blocking it beyond the first.
+id=3393
+auto=rampage(-1/-1,1)
+name=Jungle Wurm
+rarity=C
+type=Creature
+mana={3}{G}{G}
+power=5
+subtype=Wurm
+toughness=5
+[/card]
+[card]
 text=Protection from blue
 id=3394 
 name=Karoo Meerkat
@@ -819,6 +831,18 @@ toughness=3
 rarity=C
 [/card]
 [card]
+text=Flying; trample; rampage 4 (Whenever this creature becomes blocked, it gets +4/+4 until end of turn for each creature blocking it beyond the first.)
+id=3268
+auto=rampage(4/4,1)
+name=Teeka's Dragon
+rarity=R
+type=Artifact Creature
+mana={9}
+power=5
+subtype=Dragon
+toughness=5
+[/card]
+[card]
 text={2}{T}: Telim'Tor's Darts deals 1 damage to target player. 
 id=3269 
 name=Telim'Tor's Darts
@@ -1072,7 +1096,7 @@ id=3252
 name=Horrible Hordes
 type=Artifact Creature
 subtype=Spirit
-abilities=rampage
+auto=rampage(1/1,1)
 mana={3}
 power=2
 toughness=2

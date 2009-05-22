@@ -2918,6 +2918,10 @@ class ARampageAbility:public MTGAbility{
 		}
 	  }
 	}
+	if( newPhase == Constants::MTG_PHASE_AFTER_EOT ){
+			source->power-= PowerModifier;
+			source->addToToughness(-ToughnessModifier);
+	}
 	  }
 	}
   }

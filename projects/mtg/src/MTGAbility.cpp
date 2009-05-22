@@ -708,6 +708,37 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         continue;
 	  }
 
+      //rampage
+      found = s.find("rampage(");
+      if (found != string::npos){
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
+        int end = s.find(",", found);
+		string spt = s.substr(8,end - 1);
+        int power, toughness;
+		if ( parsePowerToughness(spt,&power, &toughness)){
+			if (dryMode){
+				if (power >=0 && toughness >= 0 ) {
+				dryModeResult =  BAKA_EFFECT_GOOD;
+			}else{
+				dryModeResult =  BAKA_EFFECT_BAD;
+			}
+			break;
+        }
+        int MaxOpponent = atoi(s.substr(found+1).c_str());
+        if(tc){
+			//TODO??
+        }else{
+			game->addObserver(NEW  ARampageAbility(id,card,power,toughness,MaxOpponent));
+
+        }
+        result++;
+        continue;
+		}
+	  }
 
       //Change Power/Toughness
       int power, toughness;
@@ -1764,11 +1795,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		{
 		  card->target->controller()->game->putInGraveyard(card->target);
 		  card->target->controller()->life-= 3;
-		  break;
-		}
-	  case 129533: //Elvish Berserker
-		{
-			game->addObserver (NEW ARampageAbility(_id,card,1,1,0));
 		  break;
 		}
 //--- addon shm---

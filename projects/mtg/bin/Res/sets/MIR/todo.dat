@@ -1331,17 +1331,6 @@ subtype=Viashino Shaman
 toughness=4
 [/card]
 [card]
-text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
-id=3252
-name=Horrible Hordes
-rarity=U
-type=Artifact Creature
-mana={3}
-power=2
-subtype=Spirit
-toughness=2
-[/card]
-[card]
 text={2}: Igneous Golem gains trample until end of turn.
 id=3253
 name=Igneous Golem
@@ -1483,17 +1472,6 @@ mana={1}{R}{G}
 power=2
 subtype=Troll
 toughness=1
-[/card]
-[card]
-text=Whenever Jungle Wurm becomes blocked, it gets -1/-1 until end of turn for each creature blocking it beyond the first.
-id=3393
-name=Jungle Wurm
-rarity=C
-type=Creature
-mana={3}{G}{G}
-power=5
-subtype=Wurm
-toughness=5
 [/card]
 [card]
 text=Kaervek's Hex deals 1 damage to each nonblack creature and an additional 1 damage to each green creature.
@@ -2720,17 +2698,6 @@ mana={3}{U}{U}
 power=7
 subtype=Serpent
 toughness=7
-[/card]
-[card]
-text=Flying; trample; rampage 4 (Whenever this creature becomes blocked, it gets +4/+4 until end of turn for each creature blocking it beyond the first.)
-id=3268
-name=Teeka's Dragon
-rarity=R
-type=Artifact Creature
-mana={9}
-power=5
-subtype=Dragon
-toughness=5
 [/card]
 [card]
 text=Enchant artifact or creature     Enchanted permanent has phasing.

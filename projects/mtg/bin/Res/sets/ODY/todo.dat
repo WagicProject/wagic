@@ -1539,17 +1539,6 @@ subtype=Atog
 toughness=2
 [/card]
 [card]
-text=Whenever Rabid Elephant becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
-id=29781
-name=Rabid Elephant
-rarity=C
-type=Creature
-mana={4}{G}
-power=3
-subtype=Elephant
-toughness=4
-[/card]
-[card]
 text=Destroy target artifact or enchantment.       Flashback {4}{W}{W} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=29808
 name=Ray of Distortion

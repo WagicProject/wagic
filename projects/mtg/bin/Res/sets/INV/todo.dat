@@ -2328,17 +2328,6 @@ type=Sorcery
 mana={X}{2}{B}
 [/card]
 [card]
-text=Whenever Sparring Golem becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
-id=23225
-name=Sparring Golem
-rarity=U
-type=Artifact Creature
-mana={3}
-power=2
-subtype=Golem
-toughness=2
-[/card]
-[card]
 text=Play Spinal Embrace only during combat.       Untap target creature you don't control and gain control of it. It gains haste until end of turn. At end of turn, sacrifice it. If you do, you gain life equal to its toughness.
 id=23189
 name=Spinal Embrace

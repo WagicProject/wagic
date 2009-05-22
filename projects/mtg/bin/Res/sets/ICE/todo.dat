@@ -1068,17 +1068,6 @@ type=Artifact
 mana={0}
 [/card]
 [card]
-text=Whenever Johtull Wurm becomes blocked, it gets -2/-1 until end of turn for each creature blocking it beyond the first.
-id=2574
-name=Johtull Wurm
-rarity=U
-type=Creature
-mana={5}{G}
-power=6
-subtype=Wurm
-toughness=6
-[/card]
-[card]
 text=At the beginning of your upkeep, sacrifice Justice unless you pay {W}{W}.       Whenever a red creature or spell deals damage, Justice deals that much damage to that creature's or spell's controller.
 id=2692
 name=Justice

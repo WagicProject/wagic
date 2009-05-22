@@ -1122,6 +1122,18 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Whenever Sparring Golem becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=23225
+auto=rampage(1/1,0)
+name=Sparring Golem
+rarity=U
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Golem
+toughness=2
+[/card]
+[card]
 text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
 id=22996
 name=Sky Weaver

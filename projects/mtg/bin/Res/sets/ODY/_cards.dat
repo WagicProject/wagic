@@ -901,6 +901,18 @@ toughness=2
 rarity=U
 [/card]
 [card]
+text=Whenever Rabid Elephant becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
+id=29781
+auto=rampage(2/2,0)
+name=Rabid Elephant
+rarity=C
+type=Creature
+mana={4}{G}
+power=3
+subtype=Elephant
+toughness=4
+[/card]
+[card]
 text=Ravaged Highlands comes into play tapped. Tap: Add R to your mana pool. Tap, Sacrifice Ravaged Highlands: Add one mana of any color to your mana pool.
 id=31764
 auto=tap

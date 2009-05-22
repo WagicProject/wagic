@@ -623,6 +623,18 @@ subtype=Human Cleric Druid
 toughness=1
 [/card]
 [card]
+text=Whenever Johtull Wurm becomes blocked, it gets -2/-1 until end of turn for each creature blocking it beyond the first.
+id=2574
+name=Johtull Wurm
+auto=rampage(-2/-1,1)
+rarity=U
+type=Creature
+mana={5}{G}
+power=6
+subtype=Wurm
+toughness=6
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
 id=2755
 auto={T}:add {1}
