@@ -1760,12 +1760,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->mLayers->stackLayer()->addDamage(card, target, damage);
 			break;
 		}
-  case 129909: //Cryoclasm
-    {
-      card->target->controller()->game->putInGraveyard(card->target);
-      card->target->controller()->life-= 3;
-      break;
-    }
+	case 129909: //Cryoclasm
+		{
+		  card->target->controller()->game->putInGraveyard(card->target);
+		  card->target->controller()->life-= 3;
+		  break;
+		}
+	  case 129533: //Elvish Berserker
+		{
+			game->addObserver (NEW ARampageAbility(_id,card,1,1,0));
+		  break;
+		}
 //--- addon shm---
 	case 146013: //Corrupt
 		{

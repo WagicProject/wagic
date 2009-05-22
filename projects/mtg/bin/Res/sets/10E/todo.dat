@@ -418,18 +418,6 @@ subtype=Elf
 toughness=3
 [/card]
 [card]
-text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
-id=129533
-name=Elvish Berserker
-rarity=C
-color=Green
-type=Creature
-mana={G}
-power=1
-subtype=Elf Berserker
-toughness=1
-[/card]
-[card]
 text=Faerie Conclave comes into play tapped.     {T}: Add {U} to your mana pool.     {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
 id=106531
 name=Faerie Conclave

@@ -598,6 +598,18 @@ type=Instant
 mana={3}{U}{U}
 [/card]
 [card]
+text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=129533
+name=Elvish Berserker
+rarity=C
+color=Green
+type=Creature
+mana={G}
+power=1
+subtype=Elf Berserker
+toughness=1
+[/card]
+[card]
 text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
 id=129534
 auto=lord(elf) 1/1 other
