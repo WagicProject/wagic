@@ -7,7 +7,7 @@ GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/JGE.o src/JGui.o src/JLBFont.o \
 	src/JGameObject.o src/JSpline.o src/JAnimator.o \
 	src/JResourceManager.o src/JFileSystem.o \
-	src/JNetwork.o src/JSocket.o \
+	src/JNetwork.o \
 	src/JParticle.o src/JParticleEmitter.o src/JParticleEffect.o \
 	src/JParticleSystem.o \
 	src/unzip/ioapi.o src/unzip/mztools.o src/unzip/unzip.o \
@@ -16,7 +16,7 @@ GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/tinyxml/tinyxmlparser.o src/tinyxml/tinyxmlerror.o \
 	src/Encoding.o src/JTTFont.o \
 	src/JMD2Model.o src/JOBJModel.o src/vram.o
-PSP_OBJS = src/JGfx.o src/JSfx.o src/JAudio.o src/JMP3.o src/decoder_prx.o src/main.o
+PSP_OBJS = src/JSocket.o src/JGfx.o src/JSfx.o src/JAudio.o src/JMP3.o src/decoder_prx.o src/main.o
 LINUX_OBJS = src/linux/JGfx.o src/linux/JSfx.o src/Xmain.o
 
 

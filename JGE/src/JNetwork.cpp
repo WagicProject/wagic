@@ -58,7 +58,7 @@ JNetwork::JNetwork(){
 int JNetwork::receive(char * buffer, int length){
   JSocket * socket = JSocket::mInstance;
   if (!socket) return 0;
-  int size = 0; 
+  int size = 0;
   while(!socket->received_data.empty() && size < length){
     buffer[size] = socket->received_data.front();
     socket->received_data.pop();
@@ -78,43 +78,60 @@ int JNetwork::send(char * buffer, int length){
 
 
 
-#ifdef WIN32
-int JNetwork::net_thread(LPVOID param)
+#if defined (WIN32)
+int JNetwork::net_thread(void* param)
 {
-	do
-	{
-    JSocket::mInstance = new JSocket();
-    JSocket * s = JSocket::mInstance;
-    if (JNetwork::serverIP.size()){
-      OutputDebugString(JNetwork::serverIP.c_str());
-			s->start_client(JNetwork::serverIP.c_str());
+  do
+    {
+      JSocket::mInstance = new JSocket();
+      JSocket * s = JSocket::mInstance;
+      if (JNetwork::serverIP.size()){
+	OutputDebugString(JNetwork::serverIP.c_str());
+	s->start_client(JNetwork::serverIP.c_str());
+      }else{
+	s->start_server(""); //IP address useless for server ?
+      }
+    }
+  while(0);
 
-    }else{
-			s->start_server(""); //IP address useless for server ?
-
-		}
-	}
-	while(0);
-
-	return 0;
+  return 0;
 }
-
-
 int JNetwork::connect(string serverIP){
   if(netthread) return 0;
 
   JNetwork::serverIP = serverIP;
   /* Create a user thread to do the real work */
   HANDLE hthread;
-  hthread=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)net_thread,0,0,&netthread); 
+  hthread=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)net_thread,0,0,&netthread);
   return netthread;
+}
+
+#elif defined (LINUX)
+void* JNetwork::net_thread(void* param __attribute__((unused)))
+{
+  do
+    {
+      JSocket::mInstance = new JSocket();
+      JSocket * s = JSocket::mInstance;
+      if (JNetwork::serverIP.size())
+	s->start_client(JNetwork::serverIP.c_str());
+      else
+	s->start_server(""); //IP address useless for server ?
+    }
+  while (0);
+  return NULL;
+}
+
+int JNetwork::connect(string serverIP)
+{
+  if (netthread) return 0;
+  JNetwork::serverIP = serverIP;
+  return pthread_create(&netthread, NULL, net_thread, NULL);
 }
 
 #else
 int net_thread(SceSize args, void *argp)
 {
-	
-
 	do
 	{
     JSocket::mInstance = new JSocket();

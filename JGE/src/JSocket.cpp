@@ -98,18 +98,18 @@ int JSocket::start_client(const char *szIpAddr){
  int sock;
   sockaddr_in addrListen;
   int error;
-  
+
   sock = sceNetInetSocket(AF_INET, SOCK_STREAM, 0);
  if (sock <= 0){
   printf("socket returned $%x\n", sock);
   sceKernelDelayThread(500*1000);
   return sock;
  }
-     
+
   addrListen.sin_family = AF_INET;
   addrListen.sin_addr.s_addr  = inet_addr(szIpAddr);
   addrListen.sin_port = htons(SERVER_PORT);
-  
+
   int err = sceNetInetConnect(sock, (sockaddr *)&addrListen, sizeof(addrListen));
   if (err != 0){
    printf("Unable to connect!\n");
@@ -143,7 +143,7 @@ int JSocket::start_server(const char *szIpAddr)
 	if(sock < 0)
 	{
 		printf("Error creating server socket\n");
-		return sock; 
+		return sock;
 	}
 
 	ret = listen(sock, 1);
@@ -185,7 +185,7 @@ int JSocket::start_server(const char *szIpAddr)
 						return _new;
 					}
 
-					printf("New connection %d from %s:%d\n", val, 
+					printf("New connection %d from %s:%d\n", val,
 							inet_ntoa(client.sin_addr),
 							ntohs(client.sin_port));
 
@@ -204,8 +204,6 @@ int JSocket::start_server(const char *szIpAddr)
 	close(sock);
 	return 0;
 }
-
-
 
 
 
