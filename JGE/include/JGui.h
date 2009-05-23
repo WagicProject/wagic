@@ -12,6 +12,7 @@
 #ifndef _JGUI_H
 #define _JGUI_H
 
+#include <ostream>
 #include "JGE.h"
 #include "JSprite.h"
 
@@ -46,6 +47,7 @@ class JGuiObject
   virtual ~JGuiObject();
 
   virtual void Render() = 0;
+  virtual std::ostream& toString(std::ostream&) const = 0;
   virtual void Update(float dt);
 
   virtual void Entering();			// when focus is transferring to this obj

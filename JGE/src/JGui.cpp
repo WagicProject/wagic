@@ -56,6 +56,11 @@ void JGuiObject::Update(float dt __attribute__((unused)))
 {
 }
 
+ostream& operator<<(ostream &out, const JGuiObject &j)
+{
+  return j.toString(out);
+}
+
 JGuiController::JGuiController(int id, JGuiListener* listener) : mId(id), mListener(listener)
 {
   mEngine = JGE::GetInstance();
