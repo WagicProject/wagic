@@ -22,6 +22,7 @@ class OptionItem:public JGuiObject{
   virtual bool Leaving();
   void setData();
   virtual void updateValue(){value+=increment; if (value>maxValue) value=0;};
+  virtual ostream& toString(ostream& out) const;
 };
 
 class OptionsList{

@@ -414,5 +414,7 @@ CardGui::~CardGui(){
   LOG("==CardGui object destruction Successful");
 }
 
-
-
+ostream& CardGui::toString(ostream& out) const
+{
+  return (out << "CardGui ::: mParticleSys : " << mParticleSys << " ; alpha : " << alpha << " ; card : " << card);
+}

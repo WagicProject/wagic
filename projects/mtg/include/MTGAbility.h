@@ -38,7 +38,7 @@ using std::map;
 class MTGAbility: public ActionElement{
  protected:
   char menuText[25];
- 
+
   GameObserver * game;
  public:
    int forceDestroy;
@@ -58,6 +58,7 @@ class MTGAbility: public ActionElement{
   virtual int fireAbility();
   virtual int stillInUse(MTGCardInstance * card){if (card==source) return 1; return 0;};
   virtual int resolve(){return 0;};
+  virtual ostream& toString(ostream& out) const;
 
   /*Poor man's casting */
   /* Todo replace that crap with dynamic casting */
@@ -70,7 +71,6 @@ class MTGAbility: public ActionElement{
     PUT_INTO_PLAY = 5,
     MOMIR = 6,
     MTG_BLOCK_RULE = 7,
-
   };
 };
 
@@ -83,6 +83,7 @@ class TriggeredAbility:public MTGAbility{
   virtual void Render(){};
   virtual int trigger()=0;
   virtual int resolve() = 0;
+  virtual ostream& toString(ostream& out) const;
 };
 
 
@@ -95,6 +96,7 @@ class ActivatedAbility:public MTGAbility{
   virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);
   virtual int resolve() = 0;
+  virtual ostream& toString(ostream& out) const;
 };
 
 class TargetAbility:public ActivatedAbility{
@@ -105,6 +107,7 @@ class TargetAbility:public ActivatedAbility{
   virtual int reactToClick(MTGCardInstance * card);
   virtual int reactToTargetClick(Targetable * object);
   virtual void Render();
+  virtual ostream& toString(ostream& out) const;
 };
 
 class InstantAbility:public MTGAbility{
@@ -115,6 +118,7 @@ class InstantAbility:public MTGAbility{
   InstantAbility(int _id, MTGCardInstance * source);
   InstantAbility(int _id, MTGCardInstance * source,Damageable * _target);
   virtual int resolve(){return 0;};
+  virtual ostream& toString(ostream& out) const;
 };
 
 /* State based effects. This class works ONLY for InPlay and needs to be extended for other areas of the game !!! */
@@ -129,6 +133,7 @@ class ListMaintainerAbility:public MTGAbility{
   virtual int added(MTGCardInstance * card) = 0;
   virtual int removed(MTGCardInstance * card) = 0;
   virtual int destroy();
+  virtual ostream& toString(ostream& out) const;
 };
 
 /* An attempt to globalize triggered abilities as much as possible */
@@ -234,7 +239,7 @@ class AbilityFactory{
 
 class AManaProducer: public MTGAbility{
  protected:
-  
+
   ManaCost * cost;
   ManaCost * output;
   string menutext;
@@ -255,6 +260,7 @@ class AManaProducer: public MTGAbility{
   const char * getMenuText();
   int testDestroy();
   ~AManaProducer();
+  virtual ostream& toString(ostream& out) const;
 };
 
 #include "MTGCardInstance.h"

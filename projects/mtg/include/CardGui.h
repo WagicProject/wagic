@@ -20,6 +20,7 @@ class CardGui: public PlayGuiObject{
   CardGui(int id, MTGCardInstance * _card, float desiredHeight, float _x=0, float _y=0, bool hasFocus = false);
   virtual void Render();
   virtual void Update(float dt);
+  virtual ostream& toString(ostream& out) const;
 
   void RenderBig(float x=-1, float y = -1, int alternate = 0);
   static void alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float y, float rotation= 0, float scale=1);

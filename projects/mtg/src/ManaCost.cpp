@@ -401,3 +401,8 @@ void ManaCost::Dump(){
 }
 
 #endif
+
+ostream& operator<<(ostream& out, const ManaCost& m)
+{
+  return out << "(manacost)";
+}

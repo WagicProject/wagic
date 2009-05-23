@@ -103,3 +103,18 @@ bool MenuItem::ButtonPressed()
 MenuItem::~MenuItem(){
   if (mParticleSys) delete mParticleSys;
 }
+
+ostream& MenuItem::toString(ostream& out) const
+{
+  return out << "MenuItem ::: mHasFocus : " << mHasFocus
+	     << " ; mFont : " << mFont
+	     << " ; mText : " << mText
+	     << " ; mX,mY : " << mX << "," << mY
+	     << " ; updatedSinceLastRender : " << updatedSinceLastRender
+	     << " ; lastDt : " << lastDt
+	     << " ; mScale : " << mScale
+	     << " ; mTargetScale : " << mTargetScale
+	     << " ; onQuad : " << onQuad
+	     << " ; offQuad : " << offQuad
+	     << " ; mParticleSys : " << mParticleSys;
+}

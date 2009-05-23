@@ -13,9 +13,9 @@ class MTGPutInPlayRule:public MTGAbility{
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
   int testDestroy();
+  virtual ostream& toString(ostream& out) const;
   MTGPutInPlayRule(int _id);
   const char * getMenuText(){return "Put into play";}
-
 };
 
 class MTGAttackRule:public MTGAbility{
@@ -23,10 +23,10 @@ class MTGAttackRule:public MTGAbility{
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
   int testDestroy();
+  virtual ostream& toString(ostream& out) const;
   MTGAttackRule(int _id);
   const char * getMenuText(){return "Attacker";}
   void Update(float dt);
-
 };
 
 class MTGBlockRule:public MTGAbility{
@@ -34,6 +34,7 @@ class MTGBlockRule:public MTGAbility{
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
   int testDestroy();
+  virtual ostream& toString(ostream& out) const;
   MTGBlockRule(int _id);
   const char * getMenuText(){return "Blocker";}
 };
@@ -78,8 +79,12 @@ OutputDebugString("Receive5\n");
     return 0;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "MTGPersistRule ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
   int testDestroy(){return 0;}
-
 };
 
 
@@ -119,6 +124,11 @@ class MTGLegendRule:public ListMaintainerAbility{
   int removed(MTGCardInstance * card){return 0;}
 
   int testDestroy(){return 0;}
+
+  virtual ostream& toString(ostream& out) const
+  {
+    return out << "MTGLegendRule :::";
+  }
 };
 
 
@@ -143,6 +153,7 @@ public:
   int reactToClick(MTGCardInstance * card);
   int reactToClick(MTGCardInstance * card, int id);
   const char * getMenuText(){return "Momir";}
+  virtual ostream& toString(ostream& out) const;
 };
 
 
@@ -166,6 +177,11 @@ class MTGLifelinkRule:public MTGAbility{
 
   int testDestroy(){return 0;}
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "MTGLifelinkRule ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 

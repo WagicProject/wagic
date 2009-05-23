@@ -38,6 +38,11 @@ NextGamePhase::NextGamePhase(int id): Interruptible(id){
   type = ACTION_NEXTGAMEPHASE;
 }
 
+ostream& NextGamePhase::toString(ostream& out) const
+{
+  out << "NextGamePhase ::: ";
+  return out;
+}
 
 /* Ability */
 int StackAbility::resolve(){
@@ -64,6 +69,11 @@ StackAbility::StackAbility(int id,MTGAbility * _ability): Interruptible(id),abil
   type=ACTION_ABILITY;
 }
 
+ostream& StackAbility::toString(ostream& out) const
+{
+  out << "StackAbility ::: ability : " << ability;
+  return out;
+}
 
 /* Spell Cast */
 
@@ -167,6 +177,12 @@ void Spell::Render(){
   }
 }
 
+ostream& Spell::toString(ostream& out) const
+{
+  out << "Spell ::: cost : " << cost;
+  return out;
+}
+
 
 /* Put a card in graveyard */
 
@@ -206,6 +222,11 @@ void PutInGraveyard::Render(){
   }
 }
 
+ostream& PutInGraveyard::toString(ostream& out) const
+{
+  out << "PutInGraveyard ::: removeFromGame : " << removeFromGame;
+  return out;
+}
 
 /* Draw a Card */
 DrawAction::DrawAction(int id, Player * _player, int _nbcards):Interruptible(id), nbcards(_nbcards), player(_player){
@@ -227,6 +248,12 @@ void DrawAction::Render(){
   if (player ==  GameObserver::GetInstance()->players[1]) playerId = 2;
   sprintf(buffer, "Player %i draws %i card", playerId, nbcards);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
+}
+
+ostream& DrawAction::toString(ostream& out) const
+{
+  out << "DrawAction ::: nbcards : " << nbcards << " ; player : " << player;
+  return out;
 }
 
 /* The Action Stack itself */

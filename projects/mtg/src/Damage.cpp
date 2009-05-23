@@ -80,6 +80,12 @@ void Damage::Render(){
 
 }
 
+ostream& Damage::toString(ostream& out) const
+{
+  out << "Damage ::: target : " << target << " ; damage " << damage;
+  return out;
+}
+
 DamageStack::DamageStack(int id, GameObserver * _game):GuiLayer(id, _game), Interruptible(id){
   currentState = -1;
   type = ACTION_DAMAGES;
@@ -158,3 +164,7 @@ void DamageStack::Render(){
   }
 }
 
+ostream& DamageStack::toString(ostream& out) const
+{
+  return (out << "DamageStack ::: currentState : " << currentState);
+}

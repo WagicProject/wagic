@@ -62,6 +62,7 @@ class NextGamePhase: public Interruptible {
  public:
   int resolve();
   void Render();
+  virtual ostream& toString(ostream& out) const;
   NextGamePhase(int id);
 };
 
@@ -75,6 +76,7 @@ class Spell: public Interruptible, public TargetsList {
   ~Spell();
   int resolve();
   void Render();
+  virtual ostream& toString(ostream& out) const;
 };
 
 class StackAbility: public Interruptible {
@@ -82,6 +84,7 @@ class StackAbility: public Interruptible {
   MTGAbility * ability;
   int resolve();
   void Render();
+  virtual ostream& toString(ostream& out) const;
   StackAbility(int id, MTGAbility * _ability);
 };
 
@@ -91,6 +94,7 @@ class PutInGraveyard: public Interruptible {
   int removeFromGame;
   int resolve();
   void Render();
+  virtual ostream& toString(ostream& out) const;
   PutInGraveyard(int id, MTGCardInstance * _card);
 };
 
@@ -101,6 +105,7 @@ class DrawAction: public Interruptible {
   Player * player;
   int resolve();
   void Render();
+  virtual ostream& toString(ostream& out) const;
   DrawAction(int id, Player *  _player, int _nbcards);
 };
 

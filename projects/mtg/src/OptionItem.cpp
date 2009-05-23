@@ -121,3 +121,14 @@ void OptionsList::Update(float dt){
     options[i]->Update(dt);
   }
 }
+
+ostream& OptionItem::toString(ostream& out) const
+{
+  return out << "OptionItem ::: displayValue : " << displayValue
+	     << " ; id : " << id
+	     << " ; value : " << value
+	     << " ; hasFocus : " << hasFocus
+	     << " ; maxValue : " << maxValue
+	     << " ; increment : " << increment
+	     << " ; x,y : " << x << "," << y;
+}

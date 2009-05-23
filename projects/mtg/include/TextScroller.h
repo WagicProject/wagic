@@ -19,7 +19,7 @@ private:
   float start;
   int timer;
   vector<string> strings;
-  int currentId;
+  unsigned int currentId;
   int mRandom;
 public:
   void Add(string text);
@@ -28,6 +28,7 @@ public:
   TextScroller(JLBFont * font, float x, float y, float width, float speed = 30);
   void Render();
   void Update(float dt);
+  virtual ostream& toString(ostream& out) const;
 };
 
 #endif

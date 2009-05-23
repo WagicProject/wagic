@@ -584,3 +584,34 @@ JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
     break;
   }
 }
+
+ostream& GameStateMenu::toString(ostream& out) const
+{
+  return out << "GameStateMenu ::: scroller : " << scroller
+	     << " ; scrollerSet : " << scrollerSet
+	     << " ; mGuiController : " << mGuiController
+	     << " ; subMenuController : " << subMenuController
+	     << " ; gameTypeMenu : " << gameTypeMenu
+	     << " ; hasChosenGameType : " << hasChosenGameType
+	     << " ; mIcons : " << mIcons
+	     << " ; mIconsTexture : " << mIconsTexture
+	     << " ; bgTexture : " << bgTexture
+	     << " ; movingWTexture : " << movingWTexture
+	     << " ; mBg : " << mBg
+	     << " ; mMovingW : " << mMovingW
+	     << " ; splashTex : " << splashTex
+	     << " ; splashQuad : " << splashQuad
+	     << " ; mCreditsYPos : " << mCreditsYPos
+	     << " ; currentState : " << currentState
+	     << " ; mVolume : " << mVolume
+	     << " ; nbcardsStr : " << nbcardsStr
+	     << " ; mDip : " << mDip
+	     << " ; mDit : " << mDit
+	     << " ; mCurrentSetName : " << mCurrentSetName
+	     << " ; mCurrentSetFileName : " << mCurrentSetFileName
+	     << " ; mReadConf : " << mReadConf
+	     << " ; timeIndex : " << timeIndex
+	     << " ; angleMultiplier : " << angleMultiplier
+	     << " ; angleW : " << angleW
+	     << " ; yW : " << yW;
+}

@@ -53,3 +53,8 @@ bool MTGGamePhase::CheckUserInput(u32 key){
   }
   return false;
 }
+
+ostream& MTGGamePhase::toString(ostream& out) const
+{
+  return out << "MTGGamePhase ::: animation " << animation << " ; currentState : " << currentState;
+}

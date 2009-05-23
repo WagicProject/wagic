@@ -36,6 +36,7 @@ class Damage: public Interruptible {
   Damage(int id, MTGCardInstance* _source, Damageable * _target);
   Damage(int id, MTGCardInstance* _source, Damageable * _target, int _damage);
   int resolve();
+  virtual ostream& toString(ostream& out) const;
 };
 
 
@@ -49,6 +50,7 @@ class DamageStack :public GuiLayer, public Interruptible{
   void Render();
   int CombatDamages();//Deprecated ?
   int CombatDamages(int strike);
+  virtual ostream& toString(ostream& out) const;
   DamageStack(int id, GameObserver* _game);
 };
 

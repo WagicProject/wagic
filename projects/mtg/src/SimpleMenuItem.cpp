@@ -78,3 +78,14 @@ bool SimpleMenuItem::hasFocus()
 {
   return mHasFocus;
 }
+
+ostream& SimpleMenuItem::toString(ostream& out) const
+{
+  return out << "SimpleMenuItem ::: mHasFocus : " << mHasFocus
+	     << " ; parent : " << parent
+	     << " ; mFont : " << mFont
+	     << " ; mText : " << mText
+	     << " ; mScale : " << mScale
+	     << " ; mTargetScale : " << mTargetScale
+	     << " ; mX,mY : " << mX << "," << mY;
+}

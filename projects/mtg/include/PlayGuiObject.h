@@ -47,6 +47,7 @@ class GuiAvatar: public PlayGuiObject{
   Player * player;
   virtual void Render();
   GuiAvatar(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * _player);
+  virtual ostream& toString(ostream& out) const;
 };
 
 class GuiGameZone: public PlayGuiObject{
@@ -62,16 +63,19 @@ class GuiGameZone: public PlayGuiObject{
   ~GuiGameZone();
   virtual void ButtonPressed(int controllerId, int controlId);
   void toggleDisplay();
+  virtual ostream& toString(ostream& out) const;
 };
 
 class GuiGraveyard: public GuiGameZone{
  public:
   GuiGraveyard(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
+  virtual ostream& toString(ostream& out) const;
 };
 
 class GuiLibrary: public GuiGameZone{
  public:
   GuiLibrary(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
+  virtual ostream& toString(ostream& out) const;
 };
 
 

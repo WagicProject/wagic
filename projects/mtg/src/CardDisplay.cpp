@@ -145,10 +145,20 @@ void CardDisplay::Render(){
   }
 }
 
+ostream& CardDisplay::toString(ostream& out) const
+{
+  return (out << "CardDisplay ::: x,y : " << x << "," << y << " ; start_item : " << start_item << " ; nb_displayed_items " << nb_displayed_items << " ; tc : " << tc << " ; listener : " << listener);
+}
+
 DefaultTargetDisplay::DefaultTargetDisplay(int id, GameObserver* _game, int _x, int _y,JGuiListener * _listener, int _nb_displayed_items ):CardDisplay(id, _game,  _x,  _y, _listener, NULL, _nb_displayed_items ){
   tc = NEW TargetChooser();
 }
 
 DefaultTargetDisplay::~DefaultTargetDisplay(){
   SAFE_DELETE(tc);
+}
+
+std::ostream& operator<<(std::ostream& out, const CardDisplay& m)
+{
+  return m.toString(out);
 }

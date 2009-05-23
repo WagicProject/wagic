@@ -88,6 +88,13 @@ void GuiAvatar::Render(){
   mFont->DrawString(buffer, x+1,y+38);
 }
 
+ostream& GuiAvatar::toString(ostream& out) const
+{
+  return out << "GuiAvatar ::: avatarRed : " << avatarRed
+	     << " ; currentLife : " << currentLife
+	     << " ; player : " << player;
+}
+
 
 void GuiGameZone::toggleDisplay(){
   if (showCards){
@@ -140,12 +147,28 @@ GuiGameZone::~GuiGameZone(){
   if(cd) delete cd;
 }
 
+ostream& GuiGameZone::toString(ostream& out) const
+{
+  return out << "GuiGameZone ::: zone : " << zone
+	     << " ; cd : " << cd
+	     << " ; showCards : " << showCards;
+}
+
 GuiGraveyard::GuiGraveyard(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player):GuiGameZone(id, desiredHeight, _x,  _y,  hasFocus,player->game->graveyard){
   type= GUI_GRAVEYARD;
 }
 
+ostream& GuiGraveyard::toString(ostream& out) const
+{
+  return out << "GuiGraveyard :::";
+}
 
 GuiLibrary::GuiLibrary(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player):GuiGameZone(id, desiredHeight, _x,  _y,  hasFocus,player->game->library){
   type = GUI_LIBRARY;
 }
 
+
+ostream& GuiLibrary::toString(ostream& out) const
+{
+  return out << "GuiLibrary :::";
+}

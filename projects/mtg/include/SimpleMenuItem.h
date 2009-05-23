@@ -40,6 +40,7 @@ class SimpleMenuItem: public JGuiObject
   virtual void Entering();
   virtual bool Leaving(u32 key);
   virtual bool ButtonPressed();
+  virtual ostream& toString(ostream& out) const;
 };
 
 #endif

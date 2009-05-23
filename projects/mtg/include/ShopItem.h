@@ -46,6 +46,7 @@ class ShopItem:public JGuiObject{
   virtual bool ButtonPressed();
 
   const char * getText();
+  virtual ostream& toString(ostream& out) const;
 };
 
 class ShopItems:public JGuiController,public JGuiListener{

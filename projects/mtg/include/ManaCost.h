@@ -64,4 +64,6 @@ class ManaCost{
 #endif
 };
 
+std::ostream& operator<<(std::ostream& out, const ManaCost& m);
+
 #endif

@@ -68,10 +68,20 @@ public:
     game->addObserver(ability);
     return ability->reactToTargetClick(object);
   }
- 
+
   ~MayAbility(){
     if (deleteAbility) SAFE_DELETE(ability);
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "MayAbility ::: triggered : " << triggered
+	<< " ; ability : " << ability
+	<< " ; deleteAbility : " << deleteAbility
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+
 };
 
 
@@ -117,6 +127,13 @@ public:
       delete events[i];
     }
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "MultiAbility ::: abilities : ?" // << abilities
+      	<< " ; events : ?" // << events
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 
@@ -143,6 +160,13 @@ class ADrawer:public ActivatedAbility{
     OutputDebugString("Deleting ADrawer\n");
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADrawer ::: nbcards : " << nbcards
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
+
 };
 
 // Gives/Takes Life to controller of source
@@ -157,14 +181,17 @@ class ALifeGiver:public ActivatedAbility{
     return 1;
   }
 
-
-
   const char * getMenuText(){
     if (life < 0) return "Lose life";
     return "Gain life";
   }
 
-
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ALifeGiver ::: life : " << life
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 class ATokenCreator:public ActivatedAbility{
@@ -225,10 +252,22 @@ public:
     source->controller()->game->stack->addCard(myToken);
     Spell * spell = NEW Spell(myToken);
 
-    
+
     spell->resolve();
     delete spell;
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ATokenCreator ::: abilities : ?" // << abilities
+	<< " ; types : ?" // << types
+	<< " ; colors : ?" // << colors
+	<< " ; power : " << power
+	<< " ; toughness : " << toughness
+	<< " ; name : " << name
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
   }
 
 };
@@ -256,7 +295,7 @@ public:
           if (destZone == g->players[i]->game->inPlay){
               MTGCardInstance * copy = g->players[i]->game->putInZone(_target,  fromZone, g->players[i]->game->stack);
               Spell * spell = NEW Spell(copy);
-              
+
               spell->resolve();
               delete spell;
               return 1;
@@ -271,8 +310,15 @@ public:
 
   int resolve(){
     MTGCardInstance * _target = tc->getNextCardTarget();
-    return moveTarget(_target,destinationZone, source);  
+    return moveTarget(_target,destinationZone, source);
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AZoneMover ::: destinationZone : " << destinationZone
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
+
 };
 
 
@@ -299,17 +345,23 @@ public:
           if (destZone == game->players[i]->game->inPlay){
               MTGCardInstance * copy = game->players[i]->game->putInZone(_target,  fromZone, game->players[i]->game->stack);
               Spell * spell = NEW Spell(copy);
-              
+
               spell->resolve();
               delete spell;
               return 1;
           }
-        }        
+        }
         p->game->putInZone(_target,fromZone,destZone);
       }
       return 1;
     }
     return 0;
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AZoneSelfMover ::: destinationZone : " << destinationZone
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
   }
 };
 
@@ -333,6 +385,11 @@ class ACopier:public TargetAbility{
   const char * getMenuText(){
     return "Copy";
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ACopier ::: (";
+    return TargetAbility::toString(out) << ")";
+  }
 
 };
 
@@ -343,7 +400,7 @@ class AAllDestroyer:public ActivatedAbility{
   int bury;
   AAllDestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _bury = 0, ManaCost * _cost=NULL,int doTap =1):ActivatedAbility(_id,_source,_cost,0,doTap),bury(_bury){
     tc = _tc;
-    
+
   }
 
   int resolve(){
@@ -354,6 +411,13 @@ class AAllDestroyer:public ActivatedAbility{
 
   const char * getMenuText(){
     return "Destroy All...";
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAllDestroyer ::: bury : " << bury
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
   }
 
 };
@@ -383,6 +447,12 @@ class ADestroyer:public TargetAbility{
     return "Destroy";
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADestroyer ::: bury : " << bury
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 //Destroyer. TargetAbility
@@ -393,6 +463,12 @@ class ABurier:public ADestroyer{
 
   const char * getMenuText(){
     return "Bury";
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ABurier ::: (";
+    return ADestroyer::toString(out) << ")";
   }
 };
 
@@ -421,6 +497,15 @@ class ABasicAbilityModifier:public MTGAbility{
       //BUG !!!
       return 0;
     }
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ABasicAbilityModifier ::: modifier : " << modifier
+	<< " ; ability : " << ability
+	<< " ; value_before_modification : " << value_before_modification
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -467,6 +552,16 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
     return Constants::MTGBasicAbilities[ability];
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ABasicAbilityModifierUntilEOT ::: mTargets : " << mTargets
+	<< " ; nbTargets : " << nbTargets
+	<< " ; modifier : " << modifier
+	<< " ; stateBeforeActivation : " << stateBeforeActivation
+        << " ; ability : " << ability
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 
 };
 
@@ -483,6 +578,13 @@ class  AInstantBasicAbilityModifierUntilEOT: public InstantAbility{
   int destroy(){
     ((MTGCardInstance *)target)->basicAbilities[ability] = stateBeforeActivation;
     return 1;
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ABasicAbilityModifierUntilEOT ::: stateBeforeActivation : " << stateBeforeActivation
+	<< " ability : " << ability
+	<< " (";
+    return InstantAbility::toString(out) << ")";
   }
 
 };
@@ -515,6 +617,15 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
 
   const char * getMenuText(){
     return Constants::MTGBasicAbilities[ability];
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ABasicAbilityAuraModifierUntilEOT ::: stateBeforeActivation : " << stateBeforeActivation
+	<< " ; ability : " << ability
+	<< " ; value : " << value
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
   }
 
 };
@@ -559,6 +670,17 @@ class ASpellCastLife:public MTGAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ASpellCastLife ::: trigger : ? " // << trigger
+	<< " ; cost : " << cost
+	<< " ; life : " << life
+	<< " ; lastUsedOn : " << lastUsedOn
+	<< " ; lastChecked : " << lastChecked
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+
 };
 
 //Allows to untap at any moment for an amount of mana
@@ -584,6 +706,14 @@ class AUnBlocker:public MTGAbility{
     _card->untap();
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AUnBlocker ::: cost : " << cost
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+
 };
 
 //Allows to untap target card once per turn for a manaCost
@@ -611,6 +741,15 @@ class AUntaperOnceDuringTurn:public AUnBlocker{
     untappedThisTurn = 1;
     return AUnBlocker::reactToClick(card);
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AUntaperOnceDuringTurn ::: untappedThisTurn : " << untappedThisTurn
+	<< " ; onlyPlayerTurn : " << onlyPlayerTurn
+	<< " (";
+    return AUnBlocker::toString(out) << ")";
+  }
+
 };
 
 //Alteration of Power and Toughness  (enchantments)
@@ -627,6 +766,13 @@ class APowerToughnessModifier: public MTGAbility{
     ((MTGCardInstance *)target)->addToToughness(-toughness);
     return 1;
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APowerToughnessModifier ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 // Permanent life alteration evry turn of the target's controller. Useful only for unstable mutation currently
@@ -642,6 +788,14 @@ class APowerToughnessModifierRegularCounter:public MTGAbility{
       ((MTGCardInstance *)target)->power += power;
       ((MTGCardInstance *)target)->addToToughness(toughness);
     }
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APowerToughnessModifierRegularCounter ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " ; phase : " << phase
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 
 };
@@ -687,6 +841,16 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ATargetterPowerToughnessModifierUntilEOT ::: mTargets : " << mTargets
+	<< " ; nbTargets : " << nbTargets
+	<< " ; power : " << power
+	<< " ; toughness : " << toughness
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
+
 };
 
 
@@ -728,6 +892,15 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
     counters++;
     return 1;
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APowerToughnessModifierUntilEndOfTurn ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " ; counters : " << counters
+	<< " ; maxcounters : " << maxcounters
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 
@@ -750,7 +923,16 @@ class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APowerToughnessModifierUntilEndOfTurn ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " (";
+    return InstantAbility::toString(out) << ")";
+  }
 };
+
+
 //Untap Blockers with simple Mana Mechanism
 class AUntapManaBlocker: public Blocker{
  public:
@@ -758,6 +940,11 @@ class AUntapManaBlocker: public Blocker{
   }
 
  AUntapManaBlocker(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost):Blocker(id, card,_target, _cost){
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AUntapManaBlocker ::: (";
+    return Blocker::toString(out) << ")";
   }
 };
 
@@ -777,6 +964,11 @@ class ASpellCounterEnchantment:public TargetAbility{
     }
     return 0;
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ASpellCounterEnchantment ::: (";
+    return TargetAbility::toString(out) << ")";
+  }
 
 };
 
@@ -793,6 +985,11 @@ class ACircleOfProtection: public TargetAbility{
     if (!damage) return 0;
     game->mLayers->stackLayer()->Fizzle(damage);
     return 1;
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ACircleOfProtection ::: (";
+    return TargetAbility::toString(out) << ")";
   }
 };
 
@@ -824,6 +1021,11 @@ class AStandardRegenerate:public ActivatedAbility{
     return "Regenerate";
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AStandardRegenerate ::: (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 /*Gives protection to a target */
@@ -852,6 +1054,12 @@ class AProtectionFrom:public MTGAbility{
     delete(cd);
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AProtectionFrom ::: cd : " << cd
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //Aura Enchantments that provide controller of target life or damages at a given phase of their turn
@@ -873,6 +1081,14 @@ class ARegularLifeModifierAura:public MTGAbility{
 	}
       }
     }
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ARegularLifeModifierAura ::: life : " << life
+	<< " ; phase : " << phase
+	<< " ; onlyIfTargetTapped : " << onlyIfTargetTapped
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -916,6 +1132,13 @@ class AExalted:public ListMaintainerAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AExalted ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
 };
 
 
@@ -953,6 +1176,13 @@ class AExaltedAbility:public ListMaintainerAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AExaltedAbility ::: ability : " << ability
+	<< " ; luckyWinner : " << luckyWinner
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
 };
 
 
@@ -983,6 +1213,14 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AConvertLandToCreatures ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " ; type : " << type
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
 };
 
 //Lords (Merfolk lord...) give power and toughness to OTHER creatures of their type, they can give them special abilities, regeneration
@@ -1037,6 +1275,17 @@ class ALord:public ListMaintainerAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ALord ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " ; ability : " << ability
+	<< " ; modifier : " << modifier
+	<< " ; regenCost : " << regenCost
+	<< " ; includeSelf : " << includeSelf
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
 };
 
 
@@ -1050,6 +1299,11 @@ public:
     if (newPhase == Constants::MTG_PHASE_AFTER_EOT) return 1;
     return 0;
   }
+   virtual ostream& toString(ostream& out) const
+   {
+     out << "ALordUEOT ::: (";
+     return ALord::toString(out) << ")";
+   }
 };
 
 //Foreach (plague rats...)
@@ -1085,6 +1339,15 @@ class AForeach:public ListMaintainerAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AForeach ::: power : " << power
+	<< " ; toughness : " << toughness
+	<< " ; includeSelf : " << includeSelf
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
+
 };
 
 
@@ -1106,7 +1369,12 @@ class ADamager:public TargetAbility{
     return "Damage target";
   }
 
-
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADamager ::: damage : " << damage
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 /* Can tap a target for a cost */
@@ -1128,6 +1396,12 @@ class ATapper:public TargetAbility{
     return "Tap target";
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ATapper ::: damage : " << damage
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 //Ability to untap a target
@@ -1148,6 +1422,11 @@ class AUntaper:public TargetAbility{
     return "Untap target";
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AUntaper ::: (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 
@@ -1191,6 +1470,16 @@ class ALifeZoneLink:public MTGAbility{
       }
     }
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ALifeZoneLink ::: phase : " << phase
+	<< " ; condition : " << condition
+	<< " ; life : " << life
+	<< " ; controller : " << controller
+	<< " ; nbcards : " << nbcards
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //Creatures that cannot attack if opponent has not a given type of land, and die if controller has not this type of land
@@ -1215,6 +1504,12 @@ class AStrongLandLinkCreature: public MTGAbility{
       player->game->putInGraveyard(source);
     }
   }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AStrongLandLinkCreature ::: land : " << land
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //Steal control of a target
@@ -1233,6 +1528,13 @@ class AControlStealAura: public MTGAbility{
       _target->changeController(originalController);
     }
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AControlStealAura ::: originalController : " << originalController
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -1258,6 +1560,12 @@ class ATakeControlAura:public MTGAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ATakeControlAura ::: previousController : " << previousController
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //Creatures that kill their blockers
@@ -1295,6 +1603,14 @@ class AOldSchoolDeathtouch:public MTGAbility{
       return MTGAbility::testDestroy();
     }
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AOldSchoolDeathtouch ::: opponents : " << opponents
+	<< " ; nbOpponents : " << nbOpponents
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 
@@ -1315,6 +1631,12 @@ class AConvertToCreatureAura:public MTGAbility{
     _target->removeType("creature");
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AConvertToCreatureAura ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 /*
@@ -1327,6 +1649,7 @@ class AAladdinsLamp: public TargetAbility{
   CardDisplay cd;
   int nbcards;
   int init;
+
  AAladdinsLamp(int _id, MTGCardInstance * card):TargetAbility(_id,card){
     cost = NEW ManaCost();
     cost->x();
@@ -1375,7 +1698,14 @@ class AAladdinsLamp: public TargetAbility{
 
   int resolve(){return 1;};
 
-
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAladdinsLamp ::: cd : " << cd
+	<< " ; nbcards  : " << nbcards
+	<< " ; init : " << init
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 
@@ -1407,6 +1737,13 @@ class AAnkhOfMishra: public ListMaintainerAbility{
 
   int removed(MTGCardInstance * card){
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAnkhOfMishra ::: init : " << init
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
   }
 };
 
@@ -1448,6 +1785,14 @@ class AArmageddonClock:public MTGAbility{
     counters --;
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AArmageddonClock ::: counters : " << counters
+	<< " ; cost : " << cost
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 
@@ -1466,6 +1811,13 @@ class ABlackVise: public MTGAbility{
     if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && GameObserver::GetInstance()->opponent()->game->inPlay->hasCard(source)){
       if ( nbcards > 4) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, nbcards - 4);
     }
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ABlackVise ::: nbcards : " << nbcards
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -1495,6 +1847,12 @@ class AChannel:public ActivatedAbility{
     if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) return 1;
     currentPhase = newPhase;
     return 0;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AChannel ::: (";
+    return ActivatedAbility::toString(out) << ")";
   }
 };
 
@@ -1535,6 +1893,14 @@ class AClockworkBeast:public MTGAbility{
     ((MTGCardInstance *)target)->power++;
     ((MTGCardInstance *)target)->tapped = 1;
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AClockworkBeast ::: counters : " << counters
+	<< " ; cost : " << cost
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -1603,6 +1969,13 @@ class AConservator: public MTGAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AConservator ::: canprevent : " << canprevent
+	<< " ; cost : " << cost
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 
@@ -1632,6 +2005,12 @@ class ACreatureBond:public MTGAbility{
     return 0;
  }
 
+ virtual ostream& toString(ostream& out) const
+ {
+   out << "ACreatureBond ::: resolved : " << resolved
+       << " (";
+   return MTGAbility::toString(out) << ")";
+ }
 };
 
 //1105: Dingus Egg
@@ -1652,6 +2031,12 @@ class ADingusEgg: public ListMaintainerAbility{
   int removed(MTGCardInstance * card){
     game->mLayers->stackLayer()->addDamage(source,card->controller(), 2);
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADingusEgg ::: (";
+    return ListMaintainerAbility::toString(out) << ")";
   }
 };
 
@@ -1685,7 +2070,11 @@ class ADisruptingScepter:public TargetAbility{
     return 1;
   }
 
-
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADisruptingScepter ::: (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 
@@ -1703,6 +2092,11 @@ class AEbonyHorse:public TargetAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AEbonyHorse ::: (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 //1345 Farmstead
@@ -1736,6 +2130,12 @@ class AFarmstead:public ActivatedAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AFarmstead ::: usedThisTurn : " << usedThisTurn
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 //1110 Glasses of Urza
@@ -1786,6 +2186,13 @@ class AGlassesOfUrza:public MTGAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AGlassesOfUrza ::: display : " << display
+	<< " ; isActive : " << isActive
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //1112 Howling Mine
@@ -1797,6 +2204,12 @@ class AHowlingMine:public MTGAbility{
     if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && !source->tapped){
       game->mLayers->stackLayer()->addDraw(game->currentPlayer);
     }
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AHowlingMine ::: (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -1811,6 +2224,12 @@ class AJayemdaeTome:public ActivatedAbility{
   int resolve(){
     game->mLayers->stackLayer()->addDraw(source->controller());
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AJayemdaeTome ::: (";
+    return ActivatedAbility::toString(out) << ")";
   }
 };
 
@@ -1853,6 +2272,14 @@ class ALivingArtifact:public MTGAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ALivingArtifact ::: usedThisTurn : " << usedThisTurn
+	<< " ; counters : " << counters
+	<< " ; latest : " << latest
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //Lord of the Pit
@@ -1889,6 +2316,12 @@ class ALordOfThePit: public TargetAbility{
     return 0;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ALordOfThePit ::: paidThisTurn : " << paidThisTurn
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 //1143 Animate Dead
 class AAnimateDead:public MTGAbility{
@@ -1901,7 +2334,7 @@ class AAnimateDead:public MTGAbility{
     MTGCardInstance * copy = source->controller()->game->putInZone(card,  _target->controller()->game->graveyard, source->controller()->game->stack);
     Spell * spell = NEW Spell(copy);
     //af.addAbilities(game->mLayers->actionLayer()->getMaxId(), spell);
-    
+
     spell->resolve();
     target = spell->source;
     card = spell->source;
@@ -1915,6 +2348,12 @@ class AAnimateDead:public MTGAbility{
     card->power++;
     card->controller()->game->putInZone(card, card->controller()->game->inPlay,card->owner->game->graveyard);
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAnimateDead ::: (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -1945,6 +2384,14 @@ class AErgRaiders:public MTGAbility{
       }
     }
 
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AErgRaiders ::: init : " << init
+	<< " ; dealDamage : " << dealDamage
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -1979,6 +2426,14 @@ class AFastbond:public TriggeredAbility{
   int resolve(){
     game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AFastbond ::: alreadyPlayedALand : " << alreadyPlayedALand
+	<< " ; previous : " << previous
+	<< " (";
+    return TriggeredAbility::toString(out) << ")";
   }
 };
 
@@ -2029,6 +2484,12 @@ class AHypnoticSpecter:public MTGAbility{
 
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AHypnoticSpecter ::: nbdamagesthisturn : " << nbdamagesthisturn
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //1117 Jandor's Ring
@@ -2049,6 +2510,11 @@ class AJandorsRing:public ActivatedAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AJandorsRing ::: (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2117,7 +2583,12 @@ class AKudzu: public TargetAbility{
     return 0;
   }
 
-
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AKudzu ::: previouslyTapped : " << previouslyTapped
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 //Millstone
@@ -2138,6 +2609,11 @@ class AMillstone:public TargetAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AMillstone ::: (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2167,6 +2643,11 @@ class APestilence: public ActivatedAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APestilence ::: (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2215,6 +2696,14 @@ class APowerLeak:public TriggeredAbility{
     game->mLayers->stackLayer()->addDamage(source,_target->controller(), damagesToDealThisTurn);
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APowerLeak ::: damagesToDealThisTurn : " << damagesToDealThisTurn
+      	<< " ; cost : " << cost
+	<< " (";
+    return TriggeredAbility::toString(out) << ")";
+  }
 };
 
 //Power Surge
@@ -2248,6 +2737,13 @@ class APowerSurge:public TriggeredAbility{
     totalLands = 0;
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APowerSurge ::: totalLands : " << totalLands
+	<< " (";
+    return TriggeredAbility::toString(out) << ")";
+  }
 };
 
 //1175 Royal Assassin
@@ -2266,6 +2762,11 @@ class ARoyalAssassin:public TargetAbility{
     return 0;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ARoyalAssassin ::: (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2286,6 +2787,11 @@ class ASacrifice:public InstantAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ASacrifice ::: (";
+    return InstantAbility::toString(out) << ")";
+  }
 };
 
 //1178 Scavenging Ghoul
@@ -2315,6 +2821,12 @@ class AScavengingGhoul:public MTGAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AScavengingGhoul ::: counters : " << counters
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //1218 Psychic Venom
@@ -2333,6 +2845,13 @@ class APsychicVenom:public MTGAbility{
     }
     tapped = newState;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APsychicVenom ::: tapped : " << tapped
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2346,6 +2865,12 @@ class ASerendibEfreet:public MTGAbility{
     if (newPhase == Constants::MTG_PHASE_UPKEEP && newPhase != currentPhase && game->currentPlayer == source->controller()){
       game->mLayers->stackLayer()->addDamage(source,game->currentPlayer,1);
     }
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ASerendibEfreet ::: (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -2385,6 +2910,12 @@ class AAspectOfWolf:public ListMaintainerAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAspectOfWolf ::: color : " << color
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
 };
 
 //1276 Wanderlust, 1148 Cursed Lands
@@ -2403,6 +2934,12 @@ class AWanderlust:public TriggeredAbility{
     game->mLayers->stackLayer()->addDamage(source,((MTGCardInstance *) target)->controller(),1);
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AWanderlust ::: (";
+    return TriggeredAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2420,6 +2957,11 @@ class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
     APowerToughnessModifierUntilEndOfTurn::Update(dt);
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADragonWhelp ::: (";
+    return APowerToughnessModifierUntilEndOfTurn::toString(out) << ")";
+  }
 };
 
 //1288 EarthBind
@@ -2427,6 +2969,12 @@ class AEarthbind:public ABasicAbilityModifier{
  public:
  AEarthbind(int _id, MTGCardInstance * _source, MTGCardInstance * _target):ABasicAbilityModifier(_id,_source,_target,Constants::FLYING,0){
     if (value_before_modification) game->mLayers->stackLayer()->addDamage(source,target,2);
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AEarthbind ::: (";
+    return ABasicAbilityModifier::toString(out) << ")";
   }
 };
 
@@ -2442,6 +2990,12 @@ class AFireball:public InstantAbility{
       game->mLayers->stackLayer()->addDamage(source,_target,individualdamage);
       _target = spell->getNextDamageableTarget(_target);
     }
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AFireball ::: (";
+    return InstantAbility::toString(out) << ")";
   }
 };
 
@@ -2473,6 +3027,13 @@ class AForceOfNature:public ActivatedAbility{
     dealDamageThisTurn = 0;
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AForceOfNature ::: dealDamageThisTurn : " << dealDamageThisTurn
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2490,6 +3051,11 @@ class AOrcishArtillery: public ADamager{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AOrcishArtillery ::: (";
+    return ADamager::toString(out) << ")";
+  }
 };
 
 
@@ -2528,6 +3094,13 @@ class AIslandSanctuary:public MTGAbility{
     initThisTurn = 1;
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AIslandSanctuary ::: initThisTurn : " << initThisTurn
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 //1352 Karma
@@ -2549,6 +3122,12 @@ class AKarma: public TriggeredAbility{
     }
     if (totaldamage) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, totaldamage);
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AKarma ::: (";
+    return TriggeredAbility::toString(out) << ")";
   }
 };
 
@@ -2575,6 +3154,14 @@ class ASoulNet:public ActivatedAbility{
     latest = newDead;
     source->controller()->life++;
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ASoulNet ::: latest : " << latest
+	<< " ; newDead : " << newDead
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
   }
 };
 
@@ -2622,6 +3209,13 @@ class AStasis:public ActivatedAbility{
     }
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AStasis ::: paidThisTurn : " << paidThisTurn
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2648,6 +3242,12 @@ class ADeplete:public TargetAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADeplete ::: nbcards : " << nbcards
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2669,6 +3269,13 @@ class ADiscard:public TargetAbility{
     const char * getMenuText(){
     return "Discard";
   }
+
+    virtual ostream& toString(ostream& out) const
+    {
+      out << "ADiscard ::: nbcards : " << nbcards
+	  << " (";
+      return TargetAbility::toString(out) << ")";
+    }
 };
 
 // Generic Karma
@@ -2693,6 +3300,13 @@ class ADamageForTypeControlled: public TriggeredAbility{
     if (totaldamage) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, totaldamage);
     return 1;
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADamageForTypeControlled ::: type : " << type
+	<< " (";
+    return TriggeredAbility::toString(out) << ")";
+  }
 };
 
 //ShieldOfTheAge
@@ -2707,6 +3321,12 @@ class AShieldOfTheAge: public TargetAbility{
     if (!damage) return 0;
     game->mLayers->stackLayer()->Fizzle(damage);
     return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AShieldOfTheAge ::: (";
+    return TargetAbility::toString(out) << ")";
   }
 };
 
@@ -2731,6 +3351,11 @@ class APeopleOfTheWoods:public ListMaintainerAbility{
     return 1;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "APeopleOfTheWoods ::: (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
 };
 
 //Abomination Kill blocking creature if white or green
@@ -2767,6 +3392,14 @@ class AAbomination :public MTGAbility{
       return MTGAbility::testDestroy();
     }
   }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAbomination ::: opponents : " << opponents
+	<< " ; nbOpponents : " << nbOpponents
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
 };
 
 // GiveLifeForTappedType
@@ -2797,6 +3430,14 @@ class AGiveLifeForTappedType:public MTGAbility{
       source->controller()->life++;
     }
     nbtypestapped = newcount;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AGiveLifeForTappedType ::: type : " << type
+	<< " ; nbtypestapped : " << nbtypestapped
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 
@@ -2835,6 +3476,12 @@ class AMinionofLeshrac: public TargetAbility{
     return 0;
   }
 
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AMinionofLeshrac ::: paidThisTurn : " << paidThisTurn
+	<< " (";
+    return TargetAbility::toString(out) << ")";
+  }
 };
 
 
@@ -2884,8 +3531,18 @@ class AKirdApe:public ListMaintainerAbility{
    }
    return 0;
  }
- 
 
+
+ virtual ostream& toString(ostream& out) const
+ {
+   out << "AKirdApe ::: power : " << power
+       << " ; toughness : " << toughness
+       << " ; ability : " << ability
+       << " ; modifier : " << modifier
+       << " ; includeSelf : " << includeSelf
+       << " (";
+   return ListMaintainerAbility::toString(out) << ")";
+ }
 };
 
 //Rampage ability
@@ -2896,6 +3553,7 @@ class ARampageAbility:public MTGAbility{
   int PowerModifier;
   int ToughnessModifier;
   int MaxOpponent;
+
  ARampageAbility(int _id, MTGCardInstance * _source,int _PowerModifier, int _ToughnessModifier, int _MaxOpponent):MTGAbility(_id, _source){
     PowerModifier = _PowerModifier;
     ToughnessModifier = _ToughnessModifier;
@@ -2914,7 +3572,7 @@ class ARampageAbility:public MTGAbility{
 		if (nbOpponents > MaxOpponent){
 			source->power+= PowerModifier;
 			source->addToToughness(ToughnessModifier);
-	    
+
 		}
 	  }
 	}
@@ -2924,6 +3582,17 @@ class ARampageAbility:public MTGAbility{
 	}
 	  }
 	}
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ARampageAbility ::: opponents : " << opponents
+	<< " ; nbOpponents : " << nbOpponents
+	<< " ; PowerModifier : " << PowerModifier
+	<< " ; ToughnessModifier : " << ToughnessModifier
+	<< " ; MaxOpponent : " << MaxOpponent
+	<< " (";
+    return MTGAbility::toString(out) << ")";
   }
 };
 

@@ -49,3 +49,18 @@ void TextScroller::Update(float dt){
 void TextScroller::Render(){
   mFont->DrawString(mText.c_str(),mX,mY,JGETEXT_LEFT,start,mWidth);
 }
+
+ostream& TextScroller::toString(ostream& out) const
+{
+  return out << "TextScroller ::: mText : " << mText
+	     << " ; tempText : " << tempText
+	     << " ; mFont : " << mFont
+	     << " ; mWidth : " << mWidth
+	     << " ; mSpeed : " << mSpeed
+	     << " ; mX,mY : " << mX << "," << mY
+	     << " ; start : " << start
+	     << " ; timer : " << timer
+	     << " ; strings : ?" // << strings
+	     << " ; currentId : " << currentId
+	     << " ; mRandom : " << mRandom;
+}

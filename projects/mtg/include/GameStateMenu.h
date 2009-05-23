@@ -54,6 +54,7 @@ class GameStateMenu: public GameState, public JGuiListener
 
   int nextCardSet(); // Retrieves the next set subfolder automatically
   void createUsersFirstDeck(int setId);
+  virtual ostream& toString(ostream& out) const;
 };
 
 #endif

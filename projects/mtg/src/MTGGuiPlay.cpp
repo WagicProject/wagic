@@ -27,7 +27,7 @@ MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id,
   offset = 0;
 
 
-  mPhaseBarTexture = GameApp::CommonRes->GetTexture("graphics/phasebar.png"); 
+  mPhaseBarTexture = GameApp::CommonRes->GetTexture("graphics/phasebar.png");
   for (int i=0; i < 12; i++){
     phaseIcons[2*i] = NEW JQuad(mPhaseBarTexture, i*28, 0, 28, 28);
     phaseIcons[2*i + 1] = NEW JQuad(mPhaseBarTexture, i*28, 28, 28, 28);

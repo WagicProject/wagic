@@ -304,3 +304,20 @@ ShopItems::~ShopItems(){
   safeDeleteDisplay();
   SAFE_DELETE(myCollection);
 }
+
+ostream& ShopItem::toString(ostream& out) const
+{
+  return out << "ShopItem ::: mHasFocus : " << mHasFocus
+	     << " ; mFont : " << mFont
+	     << " ; mText : " << mText
+	     << " ; mX,mY : " << mX << "," << mY
+	     << " ; quad : " << quad
+	     << " ; thumb : " << thumb
+	     << " ; mScale : " << mScale
+	     << " ; mTargetScale : " << mTargetScale
+	     << " ; mDDW : " << mDDW
+	     << " ; nameCount : " << nameCount
+	     << " ; quantity : " << quantity
+	     << " ; card : " << card
+	     << " ; price : " << price;
+}

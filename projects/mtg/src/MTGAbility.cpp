@@ -1926,6 +1926,17 @@ int MTGAbility::fireAbility(){
   return 1;
 }
 
+ostream& MTGAbility::toString(ostream& out) const
+{
+  return out << "MTGAbility ::: menuText : " << menuText
+	     << " ; game : " << game
+	     << " ; forceDestroy : " << forceDestroy
+	     << " ; cost : " << cost
+	     << " ; target : " << target
+	     << " ; aType : " << aType
+	     << " ; source : " << source;
+}
+
 //
 
 ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly,int tap):MTGAbility(id,card), playerturnonly(_playerturnonly), needsTapping(tap){
@@ -1989,6 +2000,13 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
 
 }
 
+ostream& ActivatedAbility::toString(ostream& out) const
+{
+  out << "ActivatedAbility ::: playerturnonly : " << playerturnonly
+      << " ; needsTapping : " << needsTapping
+      << " (";
+  return MTGAbility::toString(out) << ")";
+}
 
 
 //The whole targetAbility mechanism is messed up, mainly because of its interactions with
@@ -2057,6 +2075,11 @@ void TargetAbility::Render(){
   //TODO ?
 }
 
+ostream& TargetAbility::toString(ostream& out) const
+{
+  out << "TargetAbility ::: (";
+  return ActivatedAbility::toString(out) << ")";
+}
 
 //
 
@@ -2072,6 +2095,11 @@ void TriggeredAbility::Update(float dt){
   if (trigger()) fireAbility();
 }
 
+ostream& TriggeredAbility::toString(ostream& out) const
+{
+  out << "TriggeredAbility ::: (";
+  return MTGAbility::toString(out) << ")";
+}
 
 
 //
@@ -2108,6 +2136,13 @@ int InstantAbility::testDestroy(){
   currentPhase = newPhase;
   return 0;
 
+}
+
+ostream& InstantAbility::toString(ostream& out) const
+{
+  out << "InstantAbility ::: init : " << init
+      << " (";
+  return MTGAbility::toString(out) << ")";
 }
 
 
@@ -2165,6 +2200,12 @@ int ListMaintainerAbility::destroy(){
     it = cards.begin();
   }
   return 1;
+}
+
+ostream& ListMaintainerAbility::toString(ostream& out) const
+{
+  out << "ListMaintainerAbility ::: (";
+  return MTGAbility::toString(out) << ")";
 }
 
 
@@ -2461,3 +2502,18 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
   }
 
 int AManaProducer::currentlyTapping = 0;
+
+ostream& AManaProducer::toString(ostream& out) const
+{
+  out << "AManaProducer ::: cost : " << cost
+      << " ; output : " << output
+      << " ; menutext : " << menutext
+      << " ; x0,y0 : " << x0 << "," << y0
+      << " ; x1,y1 : " << x1 << "," << y1
+      << " ; x,y : " << x << "," << y
+      << " ; animation : " << animation
+      << " ; controller : " << controller
+      << " ; tap : " << tap
+      << " (";
+  return MTGAbility::toString(out) << ")";
+}

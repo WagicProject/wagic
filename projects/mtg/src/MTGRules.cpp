@@ -77,6 +77,13 @@ int MTGPutInPlayRule::testDestroy(){
   return 0;
 }
 
+ostream& MTGPutInPlayRule::toString(ostream& out) const
+{
+  out << "MTGPutInPlayRule ::: (";
+  return MTGAbility::toString(out) << ")";
+}
+
+
 MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){
   aType=MTGAbility::MTG_ATTACK_RULE;
 }
@@ -112,7 +119,11 @@ int MTGAttackRule::testDestroy(){
   return 0;
 }
 
-
+ostream& MTGAttackRule::toString(ostream& out) const
+{
+  out << "MTGAttackRule ::: (";
+  return MTGAbility::toString(out) << ")";
+}
 
 MTGBlockRule::MTGBlockRule(int _id):MTGAbility(_id,NULL){
   aType=MTGAbility::MTG_BLOCK_RULE;
@@ -149,6 +160,11 @@ int MTGBlockRule::testDestroy(){
   return 0;
 }
 
+ostream& MTGBlockRule::toString(ostream& out) const
+{
+  out << "MTGBlockRule ::: (";
+  return MTGAbility::toString(out) << ")";
+}
 
 //
 // * Momir
@@ -259,4 +275,10 @@ void MTGMomirRule::Render(){
   mFont->SetScale(2 - (float)textAlpha/130);
   mFont->SetColor(ARGB(textAlpha,255,255,255));
   mFont->DrawString(text.c_str(),SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
+}
+
+ostream& MTGMomirRule::toString(ostream& out) const
+{
+  out << "MTGMomirRule ::: pool : " << pool << " ; initialized : " << initialized << " ; textAlpha : " << textAlpha << " ; text " << text << " ; alreadyplayed : " << alreadyplayed << " ; collection : " << collection << "(";
+  return MTGAbility::toString(out) << ")";
 }
