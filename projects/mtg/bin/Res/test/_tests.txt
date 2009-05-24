@@ -28,6 +28,7 @@ ardakar_wastes.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
 ascendant_evincar3.txt
+blessed_wine.txt
 bottle_gnomes.txt
 boggart_arsonists.txt
 brass_man.txt

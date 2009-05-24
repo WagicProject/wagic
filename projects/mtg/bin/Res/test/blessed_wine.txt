@@ -1,0 +1,25 @@
+#Bug: draw @next upkeep crashes the game ?
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:blessed wine
+library:swamp
+manapool:{1}{W}
+[PLAYER2]
+[DO]
+blessed wine
+eot
+#untap
+next
+#upkeep
+next
+#draw
+[ASSERT]
+DRAW
+[PLAYER1]
+hand:swamp
+graveyard:blessed wine
+manapool:{0}
+life:21
+[PLAYER2]
+[END]
