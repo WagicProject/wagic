@@ -1,0 +1,253 @@
+[card]
+text=Vigilance, haste
+id=180604
+name=Cerodon Yearling 
+color=Red,White
+rarity=C
+mana={R}{W}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+abilities=vigilance,haste
+[/card]
+[card]
+text=Target creature gets +4/+2 and gains trample until end of turn.
+target=creature
+auto=:4/2
+auto=trample
+id=179624
+name=Colossal Might 
+color=Red,Green
+rarity=C
+mana={R}{G}
+type=Instant
+[/card]
+[card]
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
+id=179542
+name=Ethercaste Knight
+color=White,Blue
+rarity=C
+mana={W}{U}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=3
+abilities=exalted
+[/card]
+[card]
+text=
+id=189647
+name=Grizzled Leotau
+color=Green,White
+rarity=C
+mana={G}{W}
+type=Creature
+subtype=Cat
+power=1
+toughness=5
+[/card]
+[card]
+text=Double strike
+id=179585
+name=Marisi's Twinclaws
+color=White,Red,Green
+rarity=U
+mana={2}{RW}{G}
+type=Creature
+subtype=Cat warrior
+power=2
+toughness=4
+abilities=double strike
+[/card]
+[card]
+text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
+id=177922
+name=Lord of Extinction 
+color=Green,White
+rarity=M
+mana={2}{B}{G}
+type=Creature
+subtype=Elemental
+auto=foreach(*|graveyard) 1/1
+power=*
+toughness=*
+[/card]
+[card]
+text=Creatures you control have haste.
+id=180625
+name=Madrush Cyclops 
+color=Black,Red,Green
+rarity=R
+mana={1}{B}{R}{G}
+type=Creature
+subtype=Cyclops Warrior
+auto=lord(creature|myinplay) haste
+power=3
+toughness=4
+[/card]
+[card]
+text=Enchant creature    Enchanted creature gets +2/+0 and has flying.
+id=179591
+target=creature
+auto=:2/0
+auto=flying
+name=Magefire Wings 
+color=Blue,Red
+rarity=C
+mana={U}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Flying     When Messenger Falcons comes into play, draw a card.
+id=189644
+name=Messenger Falcons
+color=Green,Blue,White
+rarity=U
+mana={2}{GU}{W}
+auto=draw:1
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
+id=179556
+name=Qasali Pridemage
+color=Green,White
+rarity=C
+mana={G}{W}
+type=Creature
+subtype=Cat Wizard
+auto={1}{S}:destroy target(artifact;enchantment)
+power=2
+toughness=2
+abilities=exalted
+[/card]
+[card]
+text=
+id=189650
+name=Rhox Brute
+color=Red,Green
+rarity=U
+mana={2}{R}{G}
+type=Creature
+subtype=Rhino
+power=4
+toughness=4
+[/card]
+[card]
+text=Enchant creature    Enchanted creature gets +3/-3.
+id=179553
+target=creature
+auto=:3/-3
+name=Sangrite Backlash  
+color=Blue,Red
+rarity=C
+mana={BG}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Flying, haste
+id=179594
+name=Sewn-Eye Drake
+color=Blue,Red,Black
+rarity=C
+mana={2}{UR}{B}
+type=Creature
+subtype=Zombie Drake
+power=3
+toughness=1
+abilities=flying,haste
+[/card]
+[card]
+text=Exalted
+id=159688
+name=Sigiled Behemoth 
+color=Green,White
+rarity=C
+mana={4}{G}{W}
+type=Creature
+subtype=Beast
+power=5
+toughness=4
+abilities=exalted
+[/card]
+[card]
+text=Flying, first strike, vigilance, lifelink, protection from red and from green
+id=189641
+name=Sphinx of the Steelhead
+color=White,Blue,Black
+rarity=M
+mana={5}{W}{U}{B}
+type=Artifact Creature
+subtype=Sphinx
+power=6
+toughness=6
+abilities=flying,first strike,vigilance,lifelink,protection from red,protection from green
+[/card]
+[card]
+text=Flying
+id=179537
+name=Talon Trooper
+color=White,Blue
+rarity=C
+mana={1}{W}{U}
+type=Creature
+subtype=Bird Scout
+power=2
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Destroy target creature. It can't be regenerated.
+target=creature
+auto=bury
+id=176449
+name=Terminate
+color=Black,Red
+rarity=C
+mana={B}{R}
+type=Instant
+[/card]
+[card]
+text={T}: Untap another target permanent.
+id=138217
+name=Unbender Tine
+color=White,Blue
+rarity=U
+mana={2}{W}{U}
+auto={T}:Untap target(*)
+type=Artifact
+[/card]
+[card]
+text=When Vithian Renegades comes into play, destroy target artifact.
+id=179535
+auto=may moveTo(graveyard) target(artifact)
+name=Vithian Renegades
+color=Red,Green
+rarity=U
+mana={1}{R}{G}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=2
+[/card]
+[card]
+text=Defender, flying, shroud
+id=179601
+name=Wall of Denial
+color=White,Blue
+rarity=U
+mana={1}{W}{U}
+type=Creature
+subtype=Illusion Wall
+power=0
+toughness=8
+abilities=Defender, flying, shroud
+[/card]
