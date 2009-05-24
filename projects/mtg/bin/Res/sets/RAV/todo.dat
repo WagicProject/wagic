@@ -1,0 +1,2908 @@
+[card]
+text=Whenever Agrus Kos, Wojek Veteran attacks, attacking red creatures get +2/+0 and attacking white creatures get +0/+2 until end of turn.
+id=89101
+name=Agrus Kos, Wojek Veteran
+rarity=R
+type=Legendary Creature
+mana={3}{R}{W}
+power=3
+subtype=Human Soldier
+toughness=3
+[/card]
+[card]
+text=When Auratouched Mage comes into play, search your library for an Aura card that could enchant it. If Auratouched Mage is still in play, attach that Aura to it. Otherwise, reveal the Aura card and put it into your hand. Then shuffle your library.
+id=87952
+name=Auratouched Mage
+rarity=U
+type=Creature
+mana={5}{W}
+power=3
+subtype=Human Wizard
+toughness=3
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Trample
+id=89096
+name=Autochthon Wurm
+rarity=R
+type=Creature
+mana={10}{G}{G}{G}{W}{W}
+power=9
+subtype=Wurm
+toughness=14
+[/card]
+[card]
+text={R}, Sacrifice Barbarian Riftcutter: Destroy target land.
+id=87972
+name=Barbarian Riftcutter
+rarity=C
+type=Creature
+mana={4}{R}
+power=3
+subtype=Human Barbarian
+toughness=3
+[/card]
+[card]
+text=Radiance - Choose a color. Target creature and each other creature that shares a color with it gain protection from the chosen color until end of turn.
+id=87910
+name=Bathe in Light
+rarity=U
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Flying     Whenever a source deals damage to Belltower Sphinx, that source's controller puts that many cards from the top of his or her library into his or her graveyard.
+id=88981
+name=Belltower Sphinx
+rarity=U
+type=Creature
+mana={4}{U}
+power=2
+subtype=Sphinx
+toughness=5
+[/card]
+[card]
+text=Defender (This creature can't attack.)  {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
+id=89047
+name=Benevolent Ancestor
+rarity=C
+type=Creature
+mana={2}{W}
+power=0
+subtype=Spirit
+toughness=4
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
+id=83688
+name=Birds of Paradise
+rarity=R
+type=Creature
+mana={G}
+power=0
+subtype=Bird
+toughness=1
+[/card]
+[card]
+text=Flying     Creatures can't attack you.
+id=83754
+name=Blazing Archon
+rarity=R
+type=Creature
+mana={6}{W}{W}{W}
+power=5
+subtype=Archon
+toughness=6
+[/card]
+[card]
+text={1}{R}, Sacrifice Blockbuster: Blockbuster deals 3 damage to each tapped creature and each player.
+id=87977
+name=Blockbuster
+rarity=U
+type=Enchantment
+mana={3}{R}{R}
+[/card]
+[card]
+text=Noncreature spells you play cost {2} less to play.     Whenever you play a noncreature spell, counter that spell unless you sacrifice a creature.
+id=89102
+name=Blood Funnel
+rarity=R
+type=Enchantment
+mana={1}{B}
+[/card]
+[card]
+text=Whenever a creature spell is played, each player returns all cards with the same name as that spell from his or her graveyard to play.
+id=89000
+name=Bloodbond March
+rarity=R
+type=Enchantment
+mana={2}{B}{G}
+[/card]
+[card]
+text={2}, {T}, Put a blood counter on Bloodletter Quill: Draw a card, then lose 1 life for each blood counter on Bloodletter Quill.     {U}{B}: Remove a blood counter from Bloodletter Quill.
+id=83928
+name=Bloodletter Quill
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt by target attacking or blocking creature this turn. If {R} was spent to play Boros Fury-Shield, it deals damage to that creature's controller equal to the creature's power.
+id=89006
+name=Boros Fury-Shield
+rarity=C
+type=Instant
+mana={2}{W}
+[/card]
+[card]
+text=Boros Garrison comes into play tapped.     When Boros Garrison comes into play, return a land you control to its owner's hand.     {T}: Add {R}{W} to your mana pool.
+id=83900
+name=Boros Garrison
+rarity=C
+type=Land
+[/card]
+[card]
+text=({RW} can be paid with either {R} or {W}.)  {1}{R}: Target creature gains haste until end of turn.     {1}{W}: Target creature gains first strike until end of turn.
+id=87918
+name=Boros Guildmage
+rarity=U
+type=Creature
+mana={RW}{RW}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=({RW} can be paid with either {R} or {W}.)  First strike
+id=88992
+name=Boros Recruit
+rarity=C
+type=Creature
+mana={RW}
+power=1
+subtype=Goblin Soldier
+toughness=1
+[/card]
+[card]
+text={1}, {T}: Add {R}{W} to your mana pool.
+id=95537
+name=Boros Signet
+rarity=C
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Double strike
+id=83588
+name=Boros Swiftblade
+rarity=U
+type=Creature
+mana={R}{W}
+power=1
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+text=At the beginning of each opponent's upkeep, remove all cards in your hand from the game face down.     At the beginning of your upkeep, return all cards you own removed from the game with Bottled Cloister to your hand, then draw a card.
+id=89018
+name=Bottled Cloister
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Destroy target creature that isn't enchanted. It can't be regenerated.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=88965
+name=Brainspoil
+rarity=C
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=Whenever an Aura becomes attached to Bramble Elemental, put two 1/1 green Saproling creature tokens into play.
+id=87964
+name=Bramble Elemental
+rarity=C
+type=Creature
+mana={3}{G}{G}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Enchant creature you control     When enchanted creature deals combat damage to a player, sacrifice it and attach Breath of Fury to a creature you control. If you do, untap all creatures you control and after this phase, there is an additional combat phase.
+id=89099
+name=Breath of Fury
+rarity=R
+type=Enchantment
+mana={2}{R}{R}
+subtype=Aura
+[/card]
+[card]
+text=Radiance - Brightflame deals X damage to target creature and each other creature that shares a color with it. You gain life equal to the damage dealt this way.
+id=89068
+name=Brightflame
+rarity=R
+type=Sorcery
+mana={X}{R}{R}{W}{W}
+[/card]
+[card]
+text={W}, Sacrifice a creature: Prevent the next 1 damage that would be dealt to target creature or player this turn.
+id=83612
+name=Caregiver
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+[card]
+text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
+id=88974
+name=Carrion Howler
+rarity=U
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie Wolf
+toughness=2
+[/card]
+[card]
+text=Defender (This creature can't attack.)  When Carven Caryatid comes into play, draw a card.
+id=89048
+name=Carven Caryatid
+rarity=U
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Spirit
+toughness=5
+[/card]
+[card]
+text=({GW} can be paid with either {G} or {W}.)  When Centaur Safeguard is put into a graveyard from play, you may gain 3 life.
+id=87959
+name=Centaur Safeguard
+rarity=C
+type=Creature
+mana={2}{GW}
+power=3
+subtype=Centaur Warrior
+toughness=1
+[/card]
+[card]
+text=Flying     {U}: Cerulean Sphinx's owner shuffles it into his or her library.
+id=89095
+name=Cerulean Sphinx
+rarity=R
+type=Creature
+mana={4}{U}{U}
+power=5
+subtype=Sphinx
+toughness=5
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Prevent all damage that would be dealt by creatures this turn. You gain life equal to the damage prevented this way.
+id=87957
+name=Chant of Vitu-Ghazi
+rarity=U
+type=Instant
+mana={6}{W}{W}
+[/card]
+[card]
+text=Char deals 4 damage to target creature or player and 2 damage to you.
+id=87942
+name=Char
+rarity=R
+type=Instant
+mana={2}{R}
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Search your library for a creature card with converted mana cost X or less and put it into play. Then shuffle your library.
+id=89064
+name=Chord of Calling
+rarity=R
+type=Instant
+mana={X}{G}{G}{G}
+[/card]
+[card]
+text=Forestwalk     As an additional cost to play creature spells, you may pay any amount of mana. If you do, that creature comes into play with that many additional +1/+1 counters on it.
+id=89053
+name=Chorus of the Conclave
+rarity=R
+type=Legendary Creature
+mana={4}{G}{G}{W}{W}
+power=3
+subtype=Dryad
+toughness=8
+[/card]
+[card]
+text=Whenever you play a blue spell, remove the top card of target library from the game.     Whenever you play a black spell, remove the top card of target library from the game.     Your opponents can't play nonland cards with the same name as a card removed from the game with Circu, Dimir Lobotomist.
+id=89111
+name=Circu, Dimir Lobotomist
+rarity=R
+type=Legendary Creature
+mana={2}{U}{B}
+power=2
+subtype=Human Wizard
+toughness=3
+[/card]
+[card]
+text=When Civic Wayfinder comes into play, you may search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.
+id=83584
+name=Civic Wayfinder
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Warrior Druid
+toughness=2
+[/card]
+[card]
+text=Radiance - Cleansing Beam deals 2 damage to target creature and each other creature that shares a color with it.
+id=83567
+name=Cleansing Beam
+rarity=U
+type=Instant
+mana={4}{R}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets -4/-1.
+id=83822
+name=Clinging Darkness
+rarity=C
+type=Enchantment
+mana={1}{B}
+subtype=Aura
+[/card]
+[card]
+text=Whenever a nonartifact permanent comes into play under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
+id=89089
+name=Cloudstone Curio
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Return target permanent to its owner's hand. Its controller loses 3 life.     Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=89037
+name=Clutch of the Undercity
+rarity=U
+type=Instant
+mana={1}{U}{U}{B}
+[/card]
+[card]
+text=Whenever Coalhauler Swine is dealt damage, it deals that much damage to each player.
+id=87949
+name=Coalhauler Swine
+rarity=C
+type=Creature
+mana={4}{R}{R}
+power=4
+subtype=Boar Beast
+toughness=4
+[/card]
+[card]
+text=Target player draws three cards. Then that player discards two cards unless he or she discards a land card.
+id=87991
+name=Compulsive Research
+rarity=C
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=At the beginning of each upkeep, all creatures you control gain flying until end of turn if a creature you control has flying. The same is true for fear, first strike, double strike, landwalk, protection, trample, and vigilance.
+id=89109
+name=Concerted Effort
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Flying
+id=87915
+name=Conclave Equenaut
+rarity=C
+type=Creature
+mana={4}{W}{W}
+power=3
+subtype=Human Soldier
+toughness=3
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  When Conclave Phalanx comes into play, you gain 1 life for each creature you control.
+id=89010
+name=Conclave Phalanx
+rarity=U
+type=Creature
+mana={4}{W}
+power=2
+subtype=Human Soldier
+toughness=4
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Enchant creature     Enchanted creature gets +0/+2 for each other creature you control.
+id=87969
+name=Conclave's Blessing
+rarity=C
+type=Enchantment
+mana={3}{W}
+subtype=Aura
+[/card]
+[card]
+text=Search your library for up to three creature cards and reveal them. Shuffle your library, then put those cards on top of it in any order.
+id=87995
+name=Congregation at Dawn
+rarity=U
+type=Instant
+mana={G}{G}{W}
+[/card]
+[card]
+text=Choose one - Target player draws two cards; or target player discards two cards.
+id=87923
+name=Consult the Necrosages
+rarity=C
+type=Sorcery
+mana={1}{U}{B}
+[/card]
+[card]
+text=Counter target spell unless its controller pays {4}.
+id=88998
+name=Convolute
+rarity=C
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=As Copy Enchantment comes into play, you may choose an enchantment in play. If you do, Copy Enchantment comes into play as a copy of that enchantment.
+id=83807
+name=Copy Enchantment
+rarity=R
+type=Enchantment
+mana={2}{U}
+[/card]
+[card]
+text=Flying, vigilance
+id=87913
+name=Courier Hawk
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Bird
+toughness=2
+[/card]
+[card]
+text=Play with the top card of your library revealed.     As long as the top card of your library is a creature card, creatures you control that share a color with that card get +1/+1.     {G}{W}: Put the top card of your library on the bottom of your library.
+id=83903
+name=Crown of Convergence
+rarity=R
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={3}, {T}: Tap target creature, then return Cyclopean Snare to its owner's hand.
+id=89035
+name=Cyclopean Snare
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost.
+id=83771
+name=Dark Confidant
+rarity=R
+type=Creature
+mana={1}{B}
+power=2
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Sacrifice a Forest: You gain 3 life.
+id=89017
+name=Dark Heart of the Wood
+rarity=U
+type=Enchantment
+mana={B}{G}
+[/card]
+[card]
+text=Target creature gets -1/-1 until end of turn.     Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=87922
+name=Darkblast
+rarity=U
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Remove target attacking or blocking creature from the game.
+id=89040
+name=Devouring Light
+rarity=U
+type=Instant
+mana={1}{W}{W}
+[/card]
+[card]
+text=Dimir Aqueduct comes into play tapped.     When Dimir Aqueduct comes into play, return a land you control to its owner's hand.     {T}: Add {U}{B} to your mana pool.
+id=87929
+name=Dimir Aqueduct
+rarity=C
+type=Land
+[/card]
+[card]
+text=Whenever Dimir Cutpurse deals combat damage to a player, that player discards a card and you draw a card.
+id=87906
+name=Dimir Cutpurse
+rarity=R
+type=Creature
+mana={1}{U}{B}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text={1}{U}{B}: Remove target creature card in a graveyard from the game. Dimir Doppelganger becomes a copy of that card and gains this ability.
+id=83850
+name=Dimir Doppelganger
+rarity=R
+type=Creature
+mana={1}{U}{B}
+power=0
+subtype=Shapeshifter
+toughness=2
+[/card]
+[card]
+text=({UB} can be paid with either {U} or {B}.)  {3}{U}: Target player draws a card. Play this ability only any time you could play a sorcery.     {3}{B}: Target player discards a card. Play this ability only any time you could play a sorcery.
+id=87990
+name=Dimir Guildmage
+rarity=U
+type=Creature
+mana={UB}{UB}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Fear     Sacrifice a creature: Regenerate Dimir House Guard.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87926
+name=Dimir House Guard
+rarity=C
+type=Creature
+mana={3}{B}
+power=2
+subtype=Skeleton
+toughness=3
+[/card]
+[card]
+text=Dimir Infiltrator is unblockable.     Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87987
+name=Dimir Infiltrator
+rarity=C
+type=Creature
+mana={U}{B}
+power=1
+subtype=Spirit
+toughness=3
+[/card]
+[card]
+text=Look at the top three cards of target player's library. Remove any number of those cards from the game, then put the rest back in any order.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87981
+name=Dimir Machinations
+rarity=U
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text={1}, {T}: Add {U}{B} to your mana pool.
+id=95535
+name=Dimir Signet
+rarity=C
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Destroy target creature with converted mana cost X.
+id=87917
+name=Disembowel
+rarity=C
+type=Instant
+mana={X}{B}
+[/card]
+[card]
+text=Flying     {T}, Sacrifice Divebomber Griffin: Divebomber Griffin deals 3 damage to target attacking or blocking creature.
+id=88975
+name=Divebomber Griffin
+rarity=U
+type=Creature
+mana={3}{W}{W}
+power=3
+subtype=Griffin
+toughness=2
+[/card]
+[card]
+text=Target creature gets -3/-0 until end of turn.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87925
+name=Dizzy Spell
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Dogpile deals damage to target creature or player equal to the number of attacking creatures you control.
+id=87921
+name=Dogpile
+rarity=C
+type=Instant
+mana={3}{R}
+[/card]
+[card]
+text=If an effect would put one or more tokens into play under your control, it puts twice that many of those tokens into play instead.     If an effect would place one or more counters on a permanent you control, it places twice that many of those counters on that permanent instead.
+id=89116
+name=Doubling Season
+rarity=R
+type=Enchantment
+mana={4}{G}
+[/card]
+[card]
+text={2}{G}, {T}: Return target enchantment card from your graveyard to your hand.
+id=88968
+name=Dowsing Shaman
+rarity=U
+type=Creature
+mana={4}{G}
+power=3
+subtype=Centaur Shaman
+toughness=4
+[/card]
+[card]
+text=Flying     When Drake Familiar comes into play, sacrifice it unless you return an enchantment in play to its owner's hand.
+id=87960
+name=Drake Familiar
+rarity=C
+type=Creature
+mana={1}{U}
+power=2
+subtype=Drake
+toughness=1
+[/card]
+[card]
+text=Enchant permanent     You may play Dream Leash only on a tapped permanent.     You control enchanted permanent.
+id=88945
+name=Dream Leash
+rarity=R
+type=Enchantment
+mana={3}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Flying     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87994
+name=Drift of Phantasms
+rarity=C
+type=Creature
+mana={2}{U}
+power=0
+subtype=Spirit
+toughness=5
+[/card]
+[card]
+text=Whenever Dromad Purebred is dealt damage, you gain 1 life.
+id=87911
+name=Dromad Purebred
+rarity=C
+type=Creature
+mana={4}{W}
+power=1
+subtype=Camel Beast
+toughness=5
+[/card]
+[card]
+text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
+id=87989
+name=Drooling Groodion
+rarity=U
+type=Creature
+mana={3}{B}{B}{G}
+power=4
+subtype=Beast
+toughness=3
+[/card]
+[card]
+text=You gain 1 life for each creature in play. If {W} was spent to play Dryad's Caress, untap all creatures you control.
+id=87958
+name=Dryad's Caress
+rarity=C
+type=Instant
+mana={4}{G}{G}
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {U}{B}, {T}: Target player puts the top card of his or her library into his or her graveyard.
+id=88943
+name=Duskmantle, House of Shadow
+rarity=U
+type=Land
+[/card]
+[card]
+text={T}: Add {B} to your mana pool. Elves of Deep Shadow deals 1 damage to you.
+id=83833
+name=Elves of Deep Shadow
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text={4}{G}, Sacrifice a creature: Destroy target creature with flying.
+id=87928
+name=Elvish Skysweeper
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Warrior
+toughness=1
+[/card]
+[card]
+text=Each player returns all creature cards from his or her graveyard to his or her hand.
+id=89015
+name=Empty the Catacombs
+rarity=R
+type=Sorcery
+mana={3}{B}
+[/card]
+[card]
+text={U}, {T}: Target creature is unblockable this turn.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=89023
+name=Ethereal Usher
+rarity=U
+type=Creature
+mana={5}{U}
+power=2
+subtype=Spirit
+toughness=3
+[/card]
+[card]
+text=Damage that would be dealt by Excruciator can't be prevented.
+id=87900
+name=Excruciator
+rarity=R
+type=Creature
+mana={6}{R}{R}
+power=7
+subtype=Avatar
+toughness=7
+[/card]
+[card]
+text=Whenever a player plays an instant or sorcery card, remove it from the game. Then that player copies each instant or sorcery card removed from the game with Eye of the Storm. For each copy, the player may play the copy without paying its mana cost.
+id=83791
+name=Eye of the Storm
+rarity=R
+type=Enchantment
+mana={5}{U}{U}
+[/card]
+[card]
+text=Enchant permanent     When Faith's Fetters comes into play, you gain 4 life.     Enchanted permanent's activated abilities can't be played unless they're mana abilities. If enchanted permanent is a creature, it can't attack or block.
+id=83609
+name=Faith's Fetters
+rarity=C
+type=Enchantment
+mana={3}{W}
+subtype=Aura
+[/card]
+[card]
+text=Search your library for a Plains, Island, Swamp, or Mountain card and put it into play tapped. Then shuffle your library.
+id=87970
+name=Farseek
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Prevent the next X damage that would be dealt to you this turn.     Draw a card.
+id=83884
+name=Festival of the Guildpact
+rarity=U
+type=Instant
+mana={X}{W}
+[/card]
+[card]
+text=As an additional cost to play Fiery Conclusion, sacrifice a creature.     Fiery Conclusion deals 5 damage to target creature.
+id=83620
+name=Fiery Conclusion
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Flying, first strike     At the beginning of your upkeep, if Firemane Angel is in your graveyard or in play, you may gain 1 life.     {6}{R}{R}{W}{W}: Return Firemane Angel from your graveyard to play. Play this ability only during your upkeep.
+id=89074
+name=Firemane Angel
+rarity=R
+type=Creature
+mana={3}{R}{W}{W}
+power=4
+subtype=Angel
+toughness=3
+[/card]
+[card]
+text=Enchant creature     When Fists of Ironwood comes into play, put two 1/1 green Saproling creature tokens into play.     Enchanted creature has trample.
+id=83672
+name=Fists of Ironwood
+rarity=C
+type=Enchantment
+mana={1}{G}
+subtype=Aura
+[/card]
+[card]
+text=Until end of turn, permanents you control gain &quot;{T}: This permanent deals 1 damage to target creature or player.&quot;
+id=83912
+name=Flame Fusillade
+rarity=R
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=When Flame-Kin Zealot comes into play, creatures you control get +1/+1 and gain haste until end of turn.
+id=83562
+name=Flame-Kin Zealot
+rarity=U
+type=Creature
+mana={1}{R}{R}{W}
+power=2
+subtype=Elemental Berserker
+toughness=2
+[/card]
+[card]
+text=Untap target creature and gain control of it until end of turn.  That creature gains haste until end of turn. If {W} was spent to play Flash Conscription, the creature gains &quot;Whenever this creature deals combat damage, you gain that much life&quot; until end of turn.
+id=87953
+name=Flash Conscription
+rarity=U
+type=Instant
+mana={5}{R}
+[/card]
+[card]
+text=Enchant creature     {2}{W}{W}: Remove enchanted creature and all Auras attached to it from the game. At end of turn, return that card to play under its owner's control. If you do, return those Auras to play under their owners' control attached to that creature.
+id=83602
+name=Flickerform
+rarity=R
+type=Enchantment
+mana={1}{W}
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature     When Flight of Fancy comes into play, draw two cards.     Enchanted creature has flying.
+id=83677
+name=Flight of Fancy
+rarity=C
+type=Enchantment
+mana={3}{U}
+subtype=Aura
+[/card]
+[card]
+text=Draw a card for each Island you control.
+id=87978
+name=Flow of Ideas
+rarity=U
+type=Sorcery
+mana={5}{U}
+[/card]
+[card]
+text=Enchant creature     At the beginning of your upkeep, put a token into play that's a copy of enchanted creature.
+id=83699
+name=Followed Footsteps
+rarity=R
+type=Enchantment
+mana={3}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=95098
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=95097
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=95106
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+id=95099
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Whenever Frenzied Goblin attacks, you may pay {R}. If you do, target creature can't block this turn.
+id=87947
+name=Frenzied Goblin
+rarity=U
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Berserker
+toughness=1
+[/card]
+[card]
+text=Enchant creature     When Galvanic Arc comes into play, it deals 3 damage to target creature or player.     Enchanted creature has first strike.
+id=87968
+name=Galvanic Arc
+rarity=C
+type=Enchantment
+mana={2}{R}
+subtype=Aura
+[/card]
+[card]
+text=Creatures you control have vigilance as long as Gate Hound is enchanted.
+id=87982
+name=Gate Hound
+rarity=C
+type=Creature
+mana={2}{W}
+power=1
+subtype=Hound
+toughness=1
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Target creature gets +2/+2 until end of turn.
+id=87940
+name=Gather Courage
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=({BG} can be paid with either {B} or {G}.)  Regenerate target creature. At end of combat, destroy all creatures that blocked or were blocked by that creature this turn.
+id=83933
+name=Gaze of the Gorgon
+rarity=C
+type=Instant
+mana={3}{BG}
+[/card]
+[card]
+text=If a source would deal damage to a creature or player, it deals half that damage, rounded down, to that creature or player instead.
+id=89042
+name=Ghosts of the Innocent
+rarity=R
+type=Creature
+mana={5}{W}{W}
+power=4
+subtype=Spirit
+toughness=5
+[/card]
+[card]
+text=Tap an untapped creature you control: Tap target artifact or creature.
+id=89027
+name=Glare of Subdual
+rarity=R
+type=Enchantment
+mana={2}{G}{W}
+[/card]
+[card]
+text=
+id=83719
+name=Glass Golem
+rarity=U
+type=Artifact Creature
+mana={5}
+power=6
+subtype=Golem
+toughness=2
+[/card]
+[card]
+text=({BG} can be paid with either {B} or {G}.)  Trample     At the end of your turn, return to your hand all creature cards in your graveyard that were put into your graveyard from play this turn.
+id=83702
+name=Gleancrawler
+rarity=R
+type=Creature
+mana={3}{BG}{BG}{BG}
+power=6
+subtype=Insect Horror
+toughness=6
+[/card]
+[card]
+text=Target player puts the top ten cards of his or her library into his or her graveyard.
+id=83597
+name=Glimpse the Unthinkable
+rarity=R
+type=Sorcery
+mana={U}{B}
+[/card]
+[card]
+text=Haste     Goblin Fire Fiend must be blocked if able.     {R}: Goblin Fire Fiend gets +1/+0 until end of turn.
+id=87965
+name=Goblin Fire Fiend
+rarity=C
+type=Creature
+mana={3}{R}
+power=1
+subtype=Goblin Berserker
+toughness=1
+[/card]
+[card]
+text=Mountainwalk
+id=83803
+name=Goblin Spelunkers
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Goblin Warrior
+toughness=2
+[/card]
+[card]
+text=When Golgari Brownscale is put into your hand from your graveyard, you gain 2 life.     Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=89019
+name=Golgari Brownscale
+rarity=C
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Lizard
+toughness=3
+[/card]
+[card]
+text=Whenever a nontoken creature you control is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
+id=89069
+name=Golgari Germination
+rarity=U
+type=Enchantment
+mana={1}{B}{G}
+[/card]
+[card]
+text=Golgari Grave-Troll comes into play with a +1/+1 counter on it for each creature card in your graveyard.     {1}, Remove a +1/+1 counter from Golgari Grave-Troll: Regenerate Golgari Grave-Troll.     Dredge 6
+id=88960
+name=Golgari Grave-Troll
+rarity=R
+type=Creature
+mana={4}{G}
+power=0
+subtype=Skeleton Troll
+toughness=0
+[/card]
+[card]
+text=({BG} can be paid with either {B} or {G}.)  {4}{B}, Sacrifice a creature: Return target creature card from your graveyard to your hand.     {4}{G}: Put a +1/+1 counter on target creature.
+id=83838
+name=Golgari Guildmage
+rarity=U
+type=Creature
+mana={BG}{BG}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
+text=Golgari Rot Farm comes into play tapped.     When Golgari Rot Farm comes into play, return a land you control to its owner's hand.     {T}: Add {B}{G} to your mana pool.
+id=87939
+name=Golgari Rot Farm
+rarity=C
+type=Land
+[/card]
+[card]
+text={B}, Sacrifice a creature: Target player loses 1 life.
+id=89038
+name=Golgari Rotwurm
+rarity=C
+type=Creature
+mana={3}{B}{G}
+power=5
+subtype=Zombie Wurm
+toughness=4
+[/card]
+[card]
+text={1}, {T}: Add {B}{G} to your mana pool.
+id=95536
+name=Golgari Signet
+rarity=C
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=When Golgari Thug is put into a graveyard from play, put target creature card in your graveyard on top of your library.     Dredge 4 (If you would draw a card, instead you may put exactly four cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=88994
+name=Golgari Thug
+rarity=U
+type=Creature
+mana={1}{B}
+power=1
+subtype=Human Warrior
+toughness=1
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=88959
+name=Goliath Spider
+rarity=U
+type=Creature
+mana={6}{G}{G}
+power=7
+subtype=Spider
+toughness=6
+[/card]
+[card]
+text={1}, Sacrifice Grave-Shell Scarab: Draw a card.     Dredge 1 (If you would draw a card, instead you may put exactly one card from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=89073
+name=Grave-Shell Scarab
+rarity=R
+type=Creature
+mana={2}{B}{G}{G}
+power=4
+subtype=Insect
+toughness=4
+[/card]
+[card]
+text=Islandwalk
+id=87914
+name=Grayscaled Gharial
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Crocodile
+toughness=1
+[/card]
+[card]
+text={1}{R}: Greater Forgeling gets +3/-3 until end of turn.
+id=87934
+name=Greater Forgeling
+rarity=U
+type=Creature
+mana={3}{R}{R}
+power=3
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=87899
+name=Greater Mossdog
+rarity=C
+type=Creature
+mana={3}{G}
+power=3
+subtype=Plant Hound
+toughness=3
+[/card]
+[card]
+text=Flash     As Grifter's Blade comes into play, choose a creature you control it could be attached to. If you do, it comes into play attached to that creature.     Equipped creature gets +1/+1.     Equip {1}
+id=83619
+name=Grifter's Blade
+rarity=U
+type=Artifact
+mana={3}
+subtype=Equipment
+[/card]
+[card]
+text=Defender (This creature can't attack.)  When Grozoth comes into play, you may search your library for any number of cards that have converted mana cost 9, reveal them, and put them into your hand. If you do, shuffle your library.     {4}: Grozoth loses defender until end of turn.     Transmute {1}{U}{U}
+id=83832
+name=Grozoth
+rarity=R
+type=Creature
+mana={6}{U}{U}{U}
+power=9
+subtype=Leviathan
+toughness=9
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Vigilance
+id=89030
+name=Guardian of Vitu-Ghazi
+rarity=C
+type=Creature
+mana={6}{G}{W}
+power=4
+subtype=Elemental
+toughness=7
+[/card]
+[card]
+text=Whenever you play a creature spell, Halcyon Glaze becomes a 4/4 Illusion creature with flying until end of turn. It's still an enchantment.
+id=83764
+name=Halcyon Glaze
+rarity=U
+type=Enchantment
+mana={1}{U}{U}
+[/card]
+[card]
+text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
+id=83712
+name=Hammerfist Giant
+rarity=R
+type=Creature
+mana={4}{R}{R}
+power=5
+subtype=Giant Warrior
+toughness=4
+[/card]
+[card]
+text={B}{B}{B}, {T}: Destroy target land. If that land was nonbasic, untap Helldozer.
+id=88990
+name=Helldozer
+rarity=R
+type=Creature
+mana={3}{B}{B}{B}
+power=6
+subtype=Zombie Giant
+toughness=5
+[/card]
+[card]
+text=Destroy six target creatures.
+id=89059
+name=Hex
+rarity=R
+type=Sorcery
+mana={4}{B}{B}
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Destroy all nontoken creatures.
+id=88985
+name=Hour of Reckoning
+rarity=R
+type=Sorcery
+mana={4}{W}{W}{W}
+[/card]
+[card]
+text=Flying, haste     When Hunted Dragon comes into play, put three 2/2 white Knight creature tokens with first strike into play under target opponent's control.
+id=89086
+name=Hunted Dragon
+rarity=R
+type=Creature
+mana={3}{R}{R}
+power=6
+subtype=Dragon
+toughness=6
+[/card]
+[card]
+text=Trample     When Hunted Horror comes into play, put two 3/3 green Centaur creature tokens with protection from black into play under target opponent's control.
+id=89005
+name=Hunted Horror
+rarity=R
+type=Creature
+mana={B}{B}
+power=7
+subtype=Horror
+toughness=7
+[/card]
+[card]
+text=Flying     When Hunted Lammasu comes into play, put a 4/4 black Horror creature token into play under target opponent's control.
+id=89051
+name=Hunted Lammasu
+rarity=R
+type=Creature
+mana={2}{W}{W}
+power=5
+subtype=Lammasu
+toughness=5
+[/card]
+[card]
+text=Hunted Phantasm is unblockable.     When Hunted Phantasm comes into play, put five 1/1 red Goblin creature tokens into play under target opponent's control.
+id=83573
+name=Hunted Phantasm
+rarity=R
+type=Creature
+mana={1}{U}{U}
+power=4
+subtype=Spirit
+toughness=6
+[/card]
+[card]
+text=When Hunted Troll comes into play, put four 1/1 blue Faerie creature tokens with flying into play under target opponent's control.     {G}: Regenerate Hunted Troll.
+id=89079
+name=Hunted Troll
+rarity=R
+type=Creature
+mana={2}{G}{G}
+power=8
+subtype=Troll Warrior
+toughness=4
+[/card]
+[card]
+text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain &quot;This creature can't block.&quot;
+id=87993
+name=Incite Hysteria
+rarity=C
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Prevent all damage that Indentured Oaf would deal to red creatures.
+id=87897
+name=Indentured Oaf
+rarity=U
+type=Creature
+mana={3}{R}
+power=4
+subtype=Ogre Warrior
+toughness=3
+[/card]
+[card]
+text=Counter target spell. If {B} was spent to play Induce Paranoia, that spell's controller puts the top X cards of his or her library into his or her graveyard, where X is the spell's converted mana cost.
+id=87924
+name=Induce Paranoia
+rarity=C
+type=Instant
+mana={2}{U}{U}
+[/card]
+[card]
+text=When Infectious Host is put into a graveyard from play, target player loses 2 life.
+id=87966
+name=Infectious Host
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Zombie
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has &quot;At the end of your turn, sacrifice this creature unless it attacked this turn.&quot;
+id=88997
+name=Instill Furor
+rarity=U
+type=Enchantment
+mana={1}{R}
+subtype=Aura
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=95107
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=95100
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=95113
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=95103
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Target creature gains forestwalk until end of turn.
+id=87916
+name=Ivy Dancer
+rarity=U
+type=Creature
+mana={2}{G}
+power=1
+subtype=Dryad Shaman
+toughness=2
+[/card]
+[card]
+text=Defender (This creature can't attack.)  {T}: Put target card in a graveyard on the bottom of its owner's library.
+id=88977
+name=Junktroller
+rarity=U
+type=Artifact Creature
+mana={4}
+power=0
+subtype=Golem
+toughness=6
+[/card]
+[card]
+text=Flying     When Keening Banshee comes into play, target creature gets -2/-2 until end of turn.
+id=83599
+name=Keening Banshee
+rarity=U
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text=Target creature gets -3/-3 until end of turn.
+id=89056
+name=Last Gasp
+rarity=C
+type=Instant
+mana={1}{B}
+[/card]
+[card]
+text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
+id=89008
+name=Leashling
+rarity=U
+type=Artifact Creature
+mana={6}
+power=3
+subtype=Hound
+toughness=3
+[/card]
+[card]
+text=Radiance - Destroy target enchantment and each other enchantment that shares a color with it.
+id=87954
+name=Leave No Trace
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Return up to three target land cards from your graveyard to your hand.     Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=89001
+name=Life from the Loam
+rarity=R
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Prevent all damage that would be dealt to creatures you control by sources you control.
+id=88952
+name=Light of Sanction
+rarity=R
+type=Enchantment
+mana={1}{W}{W}
+[/card]
+[card]
+text=Lightning Helix deals 3 damage to target creature or player and you gain 3 life.
+id=87908
+name=Lightning Helix
+rarity=U
+type=Instant
+mana={R}{W}
+[/card]
+[card]
+text={T}: Each player draws a card, then discards a card.
+id=87941
+name=Lore Broker
+rarity=U
+type=Creature
+mana={1}{U}
+power=1
+subtype=Human Rogue
+toughness=2
+[/card]
+[card]
+text=Artifacts, creatures, and lands your opponents control come into play tapped.
+id=83651
+name=Loxodon Gatekeeper
+rarity=R
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Elephant Soldier
+toughness=3
+[/card]
+[card]
+text=When Loxodon Hierarch comes into play, you gain 4 life.     {G}{W}, Sacrifice Loxodon Hierarch: Regenerate each creature you control.
+id=83738
+name=Loxodon Hierarch
+rarity=R
+type=Creature
+mana={2}{G}{W}
+power=4
+subtype=Elephant Cleric
+toughness=4
+[/card]
+[card]
+text=({UB} can be paid with either {U} or {B}.)  {2}, {T}: Look at the top card of target player's library. You may put that card into that player's graveyard.
+id=83834
+name=Lurking Informant
+rarity=C
+type=Creature
+mana={1}{UB}
+power=1
+subtype=Human Rogue
+toughness=2
+[/card]
+[card]
+text=Enchant creature     At the beginning of your upkeep, return enchanted creature and all Auras attached to that creature to their owners' hands.
+id=83921
+name=Mark of Eviction
+rarity=U
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text=({RW} can be paid with either {R} or {W}.)  Play Master Warcraft only before attackers are declared.     You choose which creatures attack this turn. You choose how each creature blocks this turn.
+id=83572
+name=Master Warcraft
+rarity=R
+type=Instant
+mana={2}{RW}{RW}
+[/card]
+[card]
+text=When Mausoleum Turnkey comes into play, return target creature card of an opponent's choice from your graveyard to your hand.
+id=83893
+name=Mausoleum Turnkey
+rarity=U
+type=Creature
+mana={3}{B}
+power=3
+subtype=Ogre Rogue
+toughness=2
+[/card]
+[card]
+text=Trample     Whenever Mindleech Mass deals combat damage to a player, you may look at that player's hand. If you do, you may play a nonland card in it without paying that card's mana cost.
+id=89054
+name=Mindleech Mass
+rarity=R
+type=Creature
+mana={5}{U}{B}{B}
+power=6
+subtype=Horror
+toughness=6
+[/card]
+[card]
+text=Whenever you play a spell, put the cards in your hand on the bottom of your library in any order, then draw that many cards.
+id=88982
+name=Mindmoil
+rarity=R
+type=Enchantment
+mana={4}{R}
+[/card]
+[card]
+text=Each player shuffles his or her graveyard into his or her library.
+id=88963
+name=Mnemonic Nexus
+rarity=U
+type=Instant
+mana={3}{U}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +3/+3.     Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=89009
+name=Moldervine Cloak
+rarity=U
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+[/card]
+[card]
+text=As Molten Sentry comes into play, flip a coin. If the coin comes up heads, Molten Sentry comes into play as a 5/2 creature with haste. If it comes up tails, Molten Sentry comes into play as a 2/5 creature with defender.
+id=89080
+name=Molten Sentry
+rarity=R
+type=Creature
+mana={3}{R}
+power=*
+subtype=Elemental
+toughness=*
+[/card]
+[card]
+text=Look at the top five cards of your library. For each card, put that card into your graveyard unless you pay 2 life. Then put the rest into your hand.
+id=89088
+name=Moonlight Bargain
+rarity=R
+type=Instant
+mana={3}{B}{B}
+[/card]
+[card]
+text=Flying     At the beginning of your upkeep, you lose 1 life.
+id=83631
+name=Moroii
+rarity=U
+type=Creature
+mana={2}{U}{B}
+power=4
+subtype=Vampire
+toughness=4
+[/card]
+[card]
+text={2}{G}: All creatures able to block Mortipede this turn do so.
+id=87955
+name=Mortipede
+rarity=C
+type=Creature
+mana={3}{B}
+power=4
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=95096
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=95102
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=95104
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=95109
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Counter target instant or sorcery spell.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=88955
+name=Muddle the Mixture
+rarity=C
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text=Enchant creature     Whenever enchanted creature deals combat damage to a player, you may return target creature card from your graveyard to your hand.
+id=87985
+name=Necromantic Thirst
+rarity=C
+type=Enchantment
+mana={2}{B}{B}
+subtype=Aura
+[/card]
+[card]
+text=At the beginning of your upkeep, put a +1/+1 counter on Necroplasm.     At the end of your turn, destroy each creature with converted mana cost equal to the number of +1/+1 counters on Necroplasm.     Dredge 2
+id=88956
+name=Necroplasm
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Ooze
+toughness=1
+[/card]
+[card]
+text=When Netherborn Phalanx comes into play, each opponent loses 1 life for each creature he or she controls.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=88972
+name=Netherborn Phalanx
+rarity=U
+type=Creature
+mana={5}{B}
+power=2
+subtype=Horror
+toughness=4
+[/card]
+[card]
+text=First strike, vigilance
+id=87975
+name=Nightguard Patrol
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text=Target player reveals his or her hand. You choose a card from it. That player discards that card.     Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=89062
+name=Nightmare Void
+rarity=U
+type=Sorcery
+mana={3}{B}
+[/card]
+[card]
+text=Tap four untapped creatures you control: Destroy target artifact or enchantment.
+id=83913
+name=Nullmage Shepherd
+rarity=U
+type=Creature
+mana={3}{G}
+power=2
+subtype=Elf Shaman
+toughness=4
+[/card]
+[card]
+text=Flying     Whenever the first noncreature spell of a turn is played, counter that spell.
+id=83726
+name=Nullstone Gargoyle
+rarity=R
+type=Artifact Creature
+mana={9}
+power=4
+subtype=Gargoyle
+toughness=5
+[/card]
+[card]
+text=Vigilance     Other creatures you control get +0/+2 and have vigilance.
+id=89012
+name=Oathsworn Giant
+rarity=U
+type=Creature
+mana={4}{W}{W}
+power=3
+subtype=Giant Soldier
+toughness=4
+[/card]
+[card]
+text={W}: Prevent the next 1 damage that would be dealt to Ordruun Commando this turn.
+id=87902
+name=Ordruun Commando
+rarity=C
+type=Creature
+mana={3}{R}
+power=4
+subtype=Minotaur Soldier
+toughness=1
+[/card]
+[card]
+text=({T}: Add {B} or {G} to your mana pool.)  As Overgrown Tomb comes into play, you may pay 2 life. If you don't, Overgrown Tomb comes into play tapped.
+id=89072
+name=Overgrown Tomb
+rarity=R
+type=Land
+subtype=Swamp Forest
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Creatures you control get +3/+3 until end of turn.
+id=89044
+name=Overwhelm
+rarity=U
+type=Sorcery
+mana={5}{G}{G}
+[/card]
+[card]
+text=All damage that would be dealt to you is dealt to equipped creature instead.     Equip {3}
+id=83730
+name=Pariah's Shield
+rarity=R
+type=Artifact
+mana={5}
+subtype=Equipment
+[/card]
+[card]
+text=Return target creature you control and target creature you don't control to their owners' hands.
+id=87951
+name=Peel from Reality
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Equipped creature has defender, flying, and first strike.     Equip {2}
+id=89090
+name=Peregrine Mask
+rarity=U
+type=Artifact
+mana={1}
+subtype=Equipment
+[/card]
+[card]
+text={1}, Sacrifice a creature: Search your library for a land card with a basic land type and put it into play tapped. Then shuffle your library.
+id=83744
+name=Perilous Forays
+rarity=U
+type=Enchantment
+mana={3}{G}{G}
+[/card]
+[card]
+text=Counter target spell unless its controller discards his or her hand.     Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87992
+name=Perplex
+rarity=C
+type=Instant
+mana={1}{U}{B}
+[/card]
+[card]
+text=If damage would be dealt to Phytohydra, put that many +1/+1 counters on it instead.
+id=88969
+name=Phytohydra
+rarity=R
+type=Creature
+mana={2}{G}{W}{W}
+power=1
+subtype=Plant Hydra
+toughness=1
+[/card]
+[card]
+text=At the beginning of your upkeep, put a plague counter on Plague Boiler.     {1}{B}{G}: Put a plague counter on Plague Boiler or remove a plague counter from it.     When Plague Boiler has three or more plague counters on it, sacrifice it. If you do, destroy all nonland permanents.
+id=83556
+name=Plague Boiler
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=95112
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=95108
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=95115
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+id=95105
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has flying.     Whenever enchanted creature deals combat damage to a player, put that many 1/1 green Saproling creature tokens into play.
+id=89011
+name=Pollenbright Wings
+rarity=U
+type=Enchantment
+mana={4}{G}{W}
+subtype=Aura
+[/card]
+[card]
+text=Whenever you play a creature spell, you may draw a card.
+id=89083
+name=Primordial Sage
+rarity=R
+type=Creature
+mana={4}{G}{G}
+power=4
+subtype=Spirit
+toughness=5
+[/card]
+[card]
+text=({GW} can be paid with either {G} or {W}.)  Other permanents you control can't be the targets of spells or abilities your opponents control.
+id=83720
+name=Privileged Position
+rarity=R
+type=Enchantment
+mana={2}{GW}{GW}{GW}
+[/card]
+[card]
+text=Target player puts the top X cards of his or her library into his or her graveyard and you gain X life.
+id=89114
+name=Psychic Drain
+rarity=U
+type=Sorcery
+mana={X}{U}{B}
+[/card]
+[card]
+text=Destroy target artifact or creature. It can't be regenerated.
+id=89063
+name=Putrefy
+rarity=U
+type=Instant
+mana={1}{B}{G}
+[/card]
+[card]
+text=Target creature becomes the color or colors of your choice until end of turn.     Draw a card.
+id=87979
+name=Quickchange
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Rain of Embers deals 1 damage to each creature and each player.
+id=87943
+name=Rain of Embers
+rarity=C
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=Radiance - Untap target creature and each other creature that shares a color with it. Those creatures get +2/+0 until end of turn.
+id=83680
+name=Rally the Righteous
+rarity=C
+type=Instant
+mana={1}{R}{W}
+[/card]
+[card]
+text=Flying, vigilance, haste     {T}: The next 3 damage that would be dealt to target creature you control this turn is dealt to another target creature instead.
+id=89061
+name=Razia, Boros Archangel
+rarity=R
+type=Legendary Creature
+mana={4}{R}{R}{W}{W}
+power=6
+subtype=Angel
+toughness=3
+[/card]
+[card]
+text=Each player chooses three permanents he or she controls, then sacrifices the rest.
+id=89115
+name=Razia's Purification
+rarity=R
+type=Sorcery
+mana={4}{R}{W}
+[/card]
+[card]
+text=Return target card from your graveyard to your hand.
+id=88966
+name=Recollect
+rarity=U
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text=Counter target spell. If that spell is countered this way, put it into its owner's hand instead of into that player's graveyard.     Draw a card.
+id=87919
+name=Remand
+rarity=U
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Change the target of target activated ability with a single target.     Draw a card.
+id=89087
+name=Reroute
+rarity=U
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Ribbons of Night deals 4 damage to target creature and you gain 4 life. If {U} was spent to play Ribbons of Night, draw a card.
+id=83634
+name=Ribbons of Night
+rarity=U
+type=Sorcery
+mana={4}{B}
+[/card]
+[card]
+text=Destroy target land. If {B} was spent to play Rolling Spoil, all creatures get -1/-1 until end of turn.
+id=89024
+name=Rolling Spoil
+rarity=U
+type=Sorcery
+mana={2}{G}{G}
+[/card]
+[card]
+text={1}{U}: Roofstalker Wight gains flying until end of turn.
+id=87945
+name=Roofstalker Wight
+rarity=C
+type=Creature
+mana={1}{B}
+power=2
+subtype=Zombie
+toughness=1
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Tap two untapped creatures you control: Root-Kin Ally gets +2/+2 until end of turn.
+id=89026
+name=Root-Kin Ally
+rarity=U
+type=Creature
+mana={4}{G}{G}
+power=3
+subtype=Elemental Warrior
+toughness=3
+[/card]
+[card]
+text=Sabertooth Alley Cat attacks each turn if able.     {1}{R}: Creatures without defender can't block Sabertooth Alley Cat this turn.
+id=87937
+name=Sabertooth Alley Cat
+rarity=C
+type=Creature
+mana={1}{R}{R}
+power=2
+subtype=Cat
+toughness=1
+[/card]
+[card]
+text=({T}: Add {R} or {W} to your mana pool.)  As Sacred Foundry comes into play, you may pay 2 life. If you don't, Sacred Foundry comes into play tapped.
+id=89066
+name=Sacred Foundry
+rarity=R
+type=Land
+subtype=Mountain Plains
+[/card]
+[card]
+text=When Sadistic Augermage is put into a graveyard from play, each player puts a card from his or her hand on top of his or her library.
+id=83745
+name=Sadistic Augermage
+rarity=C
+type=Creature
+mana={2}{B}
+power=3
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Tap three untapped creatures you control: Tap target creature.
+id=88983
+name=Sandsower
+rarity=U
+type=Creature
+mana={3}{W}
+power=1
+subtype=Spirit
+toughness=3
+[/card]
+[card]
+text=Whenever you sacrifice a black creature, you may pay 2 life. If you do, each other player sacrifices a creature.     Whenever you sacrifice a green creature, you may gain 2 life.
+id=89113
+name=Savra, Queen of the Golgari
+rarity=R
+type=Legendary Creature
+mana={2}{B}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Put three 1/1 green Saproling creature tokens into play.
+id=87931
+name=Scatter the Seeds
+rarity=C
+type=Instant
+mana={3}{G}{G}
+[/card]
+[card]
+text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
+id=83647
+name=Scion of the Wild
+rarity=R
+type=Creature
+mana={1}{G}{G}
+power=*
+subtype=Avatar
+toughness=*
+[/card]
+[card]
+text=Flying     {R}: Target creature can't block Screeching Griffin this turn.
+id=87907
+name=Screeching Griffin
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Griffin
+toughness=2
+[/card]
+[card]
+text=Whenever you gain life, you may pay {2}. If you do, Searing Meditation deals 2 damage to target creature or player.
+id=89117
+name=Searing Meditation
+rarity=R
+type=Enchantment
+mana={1}{R}{W}
+[/card]
+[card]
+text=Destroy target artifact or enchantment. If {G} was spent to play Seed Spark, put two 1/1 green Saproling creature tokens into play.
+id=88984
+name=Seed Spark
+rarity=U
+type=Instant
+mana={3}{W}
+[/card]
+[card]
+text=Target creature gets +1/+1 until end of turn.     Target creature gets +1/+1 until end of turn.     Target creature gets +1/+1 until end of turn.
+id=89075
+name=Seeds of Strength
+rarity=C
+type=Instant
+mana={G}{W}
+[/card]
+[card]
+text=Destroy target land. Add {R}{R} to your mana pool.
+id=83829
+name=Seismic Spike
+rarity=C
+type=Sorcery
+mana={2}{R}{R}
+[/card]
+[card]
+text={1}, {T}, Tap an untapped creature you control: Put a 1/1 green Saproling creature token into play.
+id=87936
+name=Selesnya Evangel
+rarity=C
+type=Creature
+mana={G}{W}
+power=1
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
+text=({GW} can be paid with either {G} or {W}.)  {3}{G}: Put a 1/1 green Saproling creature token into play.     {3}{W}: Creatures you control get +1/+1 until end of turn.
+id=87988
+name=Selesnya Guildmage
+rarity=U
+type=Creature
+mana={GW}{GW}
+power=2
+subtype=Elf Wizard
+toughness=2
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)  Selesnya Sagittars can block an additional creature.
+id=83880
+name=Selesnya Sagittars
+rarity=U
+type=Creature
+mana={3}{G}{W}
+power=2
+subtype=Elf Archer
+toughness=5
+[/card]
+[card]
+text=Selesnya Sanctuary comes into play tapped.     When Selesnya Sanctuary comes into play, return a land you control to its owner's hand.     {T}: Add {G}{W} to your mana pool.
+id=87963
+name=Selesnya Sanctuary
+rarity=C
+type=Land
+[/card]
+[card]
+text={1}, {T}: Add {G}{W} to your mana pool.
+id=95538
+name=Selesnya Signet
+rarity=C
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=When Sell-Sword Brute is put into a graveyard from play, it deals 2 damage to you.
+id=87909
+name=Sell-Sword Brute
+rarity=C
+type=Creature
+mana={1}{R}
+power=2
+subtype=Human Mercenary
+toughness=2
+[/card]
+[card]
+text=Swampwalk     Sacrifice Sewerdreg: Remove target card in a graveyard from the game.
+id=88995
+name=Sewerdreg
+rarity=C
+type=Creature
+mana={3}{B}{B}
+power=3
+subtype=Spirit
+toughness=3
+[/card]
+[card]
+text=({UB} can be paid with either {U} or {B}.)  Players can't search libraries this turn.     Draw a card.
+id=83827
+name=Shadow of Doubt
+rarity=R
+type=Instant
+mana={UB}{UB}
+[/card]
+[card]
+text=Sacrifice Shambling Shell: Put a +1/+1 counter on target creature.     Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=89021
+name=Shambling Shell
+rarity=C
+type=Creature
+mana={1}{B}{G}
+power=3
+subtype=Plant Zombie
+toughness=1
+[/card]
+[card]
+text=Remove up to four target cards in a single graveyard from the game.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87962
+name=Shred Memory
+rarity=C
+type=Instant
+mana={1}{B}
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Trample
+id=87932
+name=Siege Wurm
+rarity=C
+type=Creature
+mana={5}{G}{G}
+power=5
+subtype=Wurm
+toughness=5
+[/card]
+[card]
+text=Until end of turn, you may play target instant or sorcery card in your graveyard without paying its mana cost. If that card would be put into your graveyard this turn, remove it from the game instead. Remove Sins of the Past from the game.
+id=83648
+name=Sins of the Past
+rarity=R
+type=Sorcery
+mana={4}{B}{B}
+[/card]
+[card]
+text={G}: Target creature blocks Sisters of Stone Death this turn if able.     {B}{G}: Remove from the game target creature blocking or blocked by Sisters of Stone Death.     {2}{B}: Put a creature card removed from the game with Sisters of Stone Death into play under your control.
+id=83746
+name=Sisters of Stone Death
+rarity=R
+type=Legendary Creature
+mana={4}{B}{B}{G}{G}
+power=7
+subtype=Gorgon
+toughness=5
+[/card]
+[card]
+text=Flying, haste
+id=109082
+name=Skyknight Legionnaire
+rarity=C
+type=Creature
+mana={1}{R}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Destroy target artifact.     Draw a card.
+id=83646
+name=Smash
+rarity=C
+type=Instant
+mana={2}{R}
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=87986
+name=Snapping Drake
+rarity=C
+type=Creature
+mana={3}{U}
+power=3
+subtype=Drake
+toughness=2
+[/card]
+[card]
+text=When Sparkmage Apprentice comes into play, it deals 1 damage to target creature or player.
+id=87967
+name=Sparkmage Apprentice
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=When Spawnbroker comes into play, you may exchange control of target creature you control and target creature with power less than or equal to that creature's power an opponent controls.
+id=83748
+name=Spawnbroker
+rarity=R
+type=Creature
+mana={2}{U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text={T}: Choose a player. That player adds one mana of any color he or she chooses to his or her mana pool.
+id=89003
+name=Spectral Searchlight
+rarity=U
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature doesn't untap during its controller's untap step.     {3}{U}: Attach Stasis Cell to target creature.
+id=88944
+name=Stasis Cell
+rarity=C
+type=Enchantment
+mana={4}{U}
+subtype=Aura
+[/card]
+[card]
+text=Flying     Whenever Stinkweed Imp deals combat damage to a creature, destroy that creature.     Dredge 5 (If you would draw a card, instead you may put exactly five cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+id=87984
+name=Stinkweed Imp
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Imp
+toughness=2
+[/card]
+[card]
+text=Whenever a land comes into play under your control, untap Stone-Seeder Hierophant.     {T}: Untap target land.
+id=89041
+name=Stone-Seeder Hierophant
+rarity=C
+type=Creature
+mana={2}{G}{G}
+power=1
+subtype=Human Druid
+toughness=1
+[/card]
+[card]
+text=At the end of each player's turn, that player sacrifices an untapped land.
+id=89105
+name=Stoneshaker Shaman
+rarity=U
+type=Creature
+mana={2}{R}
+power=1
+subtype=Human Shaman
+toughness=1
+[/card]
+[card]
+text=Enchant creature     When Strands of Undeath comes into play, target player discards two cards.     {B}: Regenerate enchanted creature.
+id=83819
+name=Strands of Undeath
+rarity=C
+type=Enchantment
+mana={3}{B}
+subtype=Aura
+[/card]
+[card]
+text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Destroy target artifact or enchantment.
+id=87927
+name=Sundering Vitae
+rarity=C
+type=Instant
+mana={2}{G}
+[/card]
+[card]
+text=Equipped creature gets +4/+0.     {R}{W}, Unattach Sunforger: Search your library for a red or white instant card with converted mana cost 4 or less and play that card without paying its mana cost. Then shuffle your library.     Equip {3}
+id=83618
+name=Sunforger
+rarity=R
+type=Artifact
+mana={3}
+subtype=Equipment
+[/card]
+[card]
+text=Whenever Sunhome Enforcer deals combat damage, you gain that much life.     {1}{R}: Sunhome Enforcer gets +1/+0 until end of turn.
+id=89070
+name=Sunhome Enforcer
+rarity=U
+type=Creature
+mana={2}{R}{W}
+power=2
+subtype=Giant Soldier
+toughness=4
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {2}{R}{W}, {T}: Target creature gains double strike until end of turn.
+id=83794
+name=Sunhome, Fortress of the Legion
+rarity=U
+type=Land
+[/card]
+[card]
+text=Activated abilities cost {2} more to play unless they're mana abilities.
+id=83617
+name=Suppression Field
+rarity=U
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text=Radiance - Target creature and each other creature that shares a color with it gain haste until end of turn.
+id=87956
+name=Surge of Zeal
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Flying     When Surveilling Sprite is put into a graveyard from play, you may draw a card.
+id=87904
+name=Surveilling Sprite
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Faerie Rogue
+toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {3}{B}{G}: Until end of turn, Svogthos, the Restless Tomb becomes a black and green Plant Zombie creature with &quot;This creature's power and toughness are each equal to the number of creature cards in your graveyard.&quot; It's still a land.
+id=89045
+name=Svogthos, the Restless Tomb
+rarity=U
+type=Land
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=95111
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=95114
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=95101
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=95110
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Flying     If Szadek, Lord of Secrets would deal combat damage to a player, instead put that many +1/+1 counters on Szadek and that player puts that many cards from the top of his or her library into his or her graveyard.
+id=89092
+name=Szadek, Lord of Secrets
+rarity=R
+type=Legendary Creature
+mana={3}{U}{U}{B}{B}
+power=5
+subtype=Vampire
+toughness=5
+[/card]
+[card]
+text=Flying     {B}: Regenerate Tattered Drake.
+id=87930
+name=Tattered Drake
+rarity=C
+type=Creature
+mana={4}{U}
+power=2
+subtype=Zombie Drake
+toughness=2
+[/card]
+[card]
+text=Look at the top three cards of your library. Put one of those cards into your hand, one on top of your library, and one on the bottom of your library.
+id=88988
+name=Telling Time
+rarity=U
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=({T}: Add {G} or {W} to your mana pool.)  As Temple Garden comes into play, you may pay 2 life. If you don't, Temple Garden comes into play tapped.
+id=89093
+name=Temple Garden
+rarity=R
+type=Land
+subtype=Forest Plains
+[/card]
+[card]
+text={1}: Choose a basic land type. Each land you control becomes that type until end of turn.
+id=87905
+name=Terraformer
+rarity=C
+type=Creature
+mana={2}{U}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Terrarion comes into play tapped.     {2}, {T}, Sacrifice Terrarion: Add two mana in any combination of colors to your mana pool.     When Terrarion is put into a graveyard from play, draw a card.
+id=83629
+name=Terrarion
+rarity=C
+type=Artifact
+mana={1}
+[/card]
+[card]
+text={1}, Sacrifice a creature: Look at the top two cards of target opponent's library, then remove one of them from the game.
+id=83576
+name=Thoughtpicker Witch
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Search your library for up to three Aura cards with different names, reveal them, and put them into your hand. Then shuffle your library.
+id=83905
+name=Three Dreams
+rarity=R
+type=Sorcery
+mana={4}{W}
+[/card]
+[card]
+text={T}: Target creature can't attack or block this turn.
+id=83611
+name=Thundersong Trumpeter
+rarity=C
+type=Creature
+mana={R}{W}
+power=2
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text=Defender (This creature can't attack.)  {4}: Tidewater Minion loses defender until end of turn.     {T}: Untap target permanent.
+id=83679
+name=Tidewater Minion
+rarity=C
+type=Creature
+mana={3}{U}{U}
+power=4
+subtype=Elemental Minion
+toughness=4
+[/card]
+[card]
+text=Other green creatures you control get +1/+1.     Other white creatures you control get +1/+1.     {T}: Put a legendary 2/2 green and white Wolf creature token named Voja into play.
+id=89110
+name=Tolsimir Wolfblood
+rarity=R
+type=Legendary Creature
+mana={4}{G}{W}
+power=3
+subtype=Elf Warrior
+toughness=4
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Sacrifice three lands: Torpid Moloch loses defender until end of turn.
+id=89004
+name=Torpid Moloch
+rarity=C
+type=Creature
+mana={R}
+power=3
+subtype=Lizard
+toughness=2
+[/card]
+[card]
+text={W}, Sacrifice Transluminant: Put a 1/1 white Spirit creature token with flying into play at end of turn.
+id=87946
+name=Transluminant
+rarity=C
+type=Creature
+mana={1}{G}
+power=2
+subtype=Dryad Shaman
+toughness=2
+[/card]
+[card]
+text={1}{G}: Trophy Hunter deals 1 damage to target creature with flying.     Whenever a creature with flying dealt damage by Trophy Hunter this turn is put into a graveyard, put a +1/+1 counter on Trophy Hunter.
+id=89107
+name=Trophy Hunter
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Archer
+toughness=3
+[/card]
+[card]
+text=Name a card. Target player reveals cards from the top of his or her library until the named card is revealed. If it is, that player puts the rest of the revealed cards into his or her graveyard and puts the named card on top of his or her library. Otherwise, the player shuffles his or her library.
+id=89022
+name=Tunnel Vision
+rarity=R
+type=Sorcery
+mana={5}{U}
+[/card]
+[card]
+text=Whenever a creature token leaves play, put a +1/+1 counter on Twilight Drover.     {2}{W}, Remove a +1/+1 counter from Twilight Drover: Put two 1/1 white Spirit creature tokens with flying into play.
+id=88973
+name=Twilight Drover
+rarity=R
+type=Creature
+mana={2}{W}
+power=1
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text=Target player sacrifices a creature. You draw cards equal to that creature's power.
+id=89052
+name=Twisted Justice
+rarity=U
+type=Sorcery
+mana={4}{U}{B}
+[/card]
+[card]
+text=Fear     {B}: Undercity Shade gets +1/+1 until end of turn.
+id=88951
+name=Undercity Shade
+rarity=U
+type=Creature
+mana={4}{B}
+power=1
+subtype=Shade
+toughness=1
+[/card]
+[card]
+text={G}: Target creature gets +1/+1 until end of turn.
+id=88979
+name=Ursapine
+rarity=R
+type=Creature
+mana={3}{G}{G}
+power=3
+subtype=Beast
+toughness=3
+[/card]
+[card]
+text=When Vedalken Dismisser comes into play, put target creature on top of its owner's library.
+id=87898
+name=Vedalken Dismisser
+rarity=C
+type=Creature
+mana={5}{U}
+power=2
+subtype=Vedalken Wizard
+toughness=2
+[/card]
+[card]
+text={U}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
+id=89028
+name=Vedalken Entrancer
+rarity=C
+type=Creature
+mana={3}{U}
+power=1
+subtype=Vedalken Wizard
+toughness=4
+[/card]
+[card]
+text=Other creatures you control get +0/+1.
+id=87950
+name=Veteran Armorer
+rarity=C
+type=Creature
+mana={1}{W}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+text={T}: Viashino Fangtail deals 1 damage to target creature or player.
+id=87974
+name=Viashino Fangtail
+rarity=C
+type=Creature
+mana={2}{R}{R}
+power=3
+subtype=Viashino Warrior
+toughness=3
+[/card]
+[card]
+text={R}: Viashino Slasher gets +1/-1 until end of turn.
+id=83605
+name=Viashino Slasher
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Viashino Warrior
+toughness=2
+[/card]
+[card]
+text=Return target creature card from your graveyard to play. If {G} was spent to play Vigor Mortis, that creature comes into play with an additional +1/+1 counter on it.
+id=88986
+name=Vigor Mortis
+rarity=U
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text=When Vindictive Mob comes into play, sacrifice a creature.     Vindictive Mob can't be blocked by Saprolings.
+id=89002
+name=Vindictive Mob
+rarity=U
+type=Creature
+mana={4}{B}{B}
+power=5
+subtype=Human Berserker
+toughness=5
+[/card]
+[card]
+text=Whenever a land comes into play under your control, put a +1/+1 counter on Vinelasher Kudzu.
+id=83559
+name=Vinelasher Kudzu
+rarity=R
+type=Creature
+mana={1}{G}
+power=1
+subtype=Plant
+toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {2}{G}{W}, {T}: Put a 1/1 green Saproling creature token into play.
+id=89016
+name=Vitu-Ghazi, the City-Tree
+rarity=U
+type=Land
+[/card]
+[card]
+text={2}{G}: Regenerate Votary of the Conclave.
+id=87948
+name=Votary of the Conclave
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text={2}, Sacrifice Voyager Staff: Remove target creature from the game. Return the removed card to play under its owner's control at end of turn.
+id=88991
+name=Voyager Staff
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Flying     Whenever a card is put into an opponent's graveyard from anywhere, put a +1/+1 counter on Vulturous Zombie.
+id=89082
+name=Vulturous Zombie
+rarity=R
+type=Creature
+mana={3}{B}{G}
+power=3
+subtype=Plant Zombie
+toughness=3
+[/card]
+[card]
+text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way into play, then puts all enchantment cards revealed this way into play, then puts all cards revealed this way that weren't put into play on the bottom of his or her library in any order.
+id=89084
+name=Warp World
+rarity=R
+type=Sorcery
+mana={5}{R}{R}{R}
+[/card]
+[card]
+text={R}, Sacrifice War-Torch Goblin: War-Torch Goblin deals 2 damage to target blocking creature.
+id=87971
+name=War-Torch Goblin
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=
+id=83625
+name=Watchwolf
+rarity=U
+type=Creature
+mana={G}{W}
+power=3
+subtype=Wolf
+toughness=3
+[/card]
+[card]
+text=({T}: Add {U} or {B} to your mana pool.)  As Watery Grave comes into play, you may pay 2 life. If you don't, Watery Grave comes into play tapped.
+id=83731
+name=Watery Grave
+rarity=R
+type=Land
+subtype=Island Swamp
+[/card]
+[card]
+text=Flying     Players play with the top card of their libraries revealed.
+id=88971
+name=Wizened Snitches
+rarity=U
+type=Creature
+mana={3}{U}
+power=1
+subtype=Faerie Rogue
+toughness=3
+[/card]
+[card]
+text=Flying     At the beginning of each player's upkeep, that player sacrifices a creature. If the player can't, sacrifice Woebringer Demon.
+id=89049
+name=Woebringer Demon
+rarity=R
+type=Creature
+mana={3}{B}{B}
+power=4
+subtype=Demon
+toughness=4
+[/card]
+[card]
+text=Radiance - {T}: Prevent the next 1 damage that would be dealt to target creature and each other creature that shares a color with it this turn.
+id=88993
+name=Wojek Apothecary
+rarity=U
+type=Creature
+mana={2}{W}{W}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+[card]
+text=Radiance - {T}: Wojek Embermage deals 1 damage to target creature and each other creature that shares a color with it.
+id=88946
+name=Wojek Embermage
+rarity=U
+type=Creature
+mana={3}{R}
+power=1
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Radiance - Target creature and each other creature that shares a color with it get +1/+1 until end of turn.
+id=87896
+name=Wojek Siren
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text={1}{B}{G}, {T}: Target Forest becomes a 4/4 black and green Elemental Horror creature. It's still a land.
+id=83747
+name=Woodwraith Corrupter
+rarity=R
+type=Creature
+mana={3}{B}{B}{G}
+power=3
+subtype=Elemental Horror
+toughness=6
+[/card]
+[card]
+text=Remove a creature card in your graveyard from the game: Regenerate Woodwraith Strangler.
+id=83908
+name=Woodwraith Strangler
+rarity=C
+type=Creature
+mana={2}{B}{G}
+power=2
+subtype=Plant Zombie
+toughness=2
+[/card]
+[card]
+text=When Zephyr Spirit blocks, return it to its owner's hand.
+id=88962
+name=Zephyr Spirit
+rarity=C
+type=Creature
+mana={5}{U}
+power=0
+subtype=Spirit
+toughness=6
+[/card]

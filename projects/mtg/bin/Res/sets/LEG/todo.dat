@@ -1,0 +1,2948 @@
+[card]
+text=Whenever Abomination blocks or becomes blocked by a green or white creature, destroy that creature at end of combat.
+id=1427
+name=Abomination
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=2
+subtype=Horror
+toughness=6
+[/card]
+[card]
+text=Destroy all Forests.
+id=1470
+name=Acid Rain
+rarity=R
+type=Sorcery
+mana={3}{U}
+[/card]
+[card]
+text=Choose one - Destroy target blue permanent; or return target Island to its owner's hand.
+id=1556
+name=Active Volcano
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text={B}{R}{G}, {T}: Return target creature card from your graveyard to your hand.
+id=1642
+name=Adun Oakenshield
+rarity=R
+type=Legendary Creature
+mana={B}{R}{G}
+power=1
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Green legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+id=1698
+name=Adventurers' Guildhouse
+rarity=U
+type=Land
+[/card]
+[card]
+text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
+id=1557
+name=AErathi Berserker
+rarity=U
+type=Creature
+mana={2}{R}{R}{R}
+power=2
+subtype=Human Berserker
+toughness=4
+[/card]
+[card]
+text=Whenever Aisling Leprechaun blocks or becomes blocked by a creature, that creature becomes green. (This effect doesn't end at end of turn.)
+id=1513
+name=Aisling Leprechaun
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Faerie
+toughness=1
+[/card]
+[card]
+text=Except for creatures named Akron Legionnaire and artifact creatures, creatures you control can't attack.
+id=1599
+name=Akron Legionnaire
+rarity=R
+type=Creature
+mana={6}{W}{W}
+power=8
+subtype=Giant Soldier
+toughness=4
+[/card]
+[card]
+text={5}, {T}: Prevent all damage that would be dealt to you this turn by attacking creatures without flying.
+id=1398
+name=Al-abara's Carpet
+rarity=R
+type=Artifact
+mana={5}
+[/card]
+[card]
+text=Choose one - Target player gains X life; or prevent the next X damage that would be dealt to target creature or player this turn.
+id=1600
+name=Alabaster Potion
+rarity=C
+type=Instant
+mana={X}{W}{W}
+[/card]
+[card]
+text={2}, {T}: Target permanent you control becomes the color of your choice. (This effect doesn't end at end of turn.)
+id=1399
+name=Alchor's Tomb
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Remove All Hallow's Eve from the game with two scream counters on it.     At the beginning of your upkeep, if All Hallow's Eve is removed from the game with a scream counter on it, remove a scream counter from it. If there are no more scream counters on it, put it into your graveyard and each player returns all creature cards from his or her graveyard to play.
+id=1428
+name=All Hallow's Eve
+rarity=R
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text=Amrou Kithkin can't be blocked by creatures with power 3 or greater.
+id=1601
+name=Amrou Kithkin
+rarity=C
+type=Creature
+mana={W}{W}
+power=1
+subtype=Kithkin
+toughness=1
+[/card]
+[card]
+text=Creatures you control get +1/+1 as long as you control no nonartifact, nonwhite creatures.
+id=1602
+name=Angelic Voices
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text={G}{W}{U}, {T}: Prevent all combat damage that would be dealt this turn.
+id=1643
+name=Angus Mackenzie
+rarity=R
+type=Legendary Creature
+mana={G}{W}{U}
+power=2
+subtype=Human Cleric
+toughness=2
+[/card]
+[card]
+text=Enchant creature     Enchanted creature can't be the target of spells and can't be enchanted. This effect doesn't remove Anti-Magic Aura.
+id=1471
+name=Anti-Magic Aura
+rarity=C
+type=Enchantment
+mana={2}{U}
+subtype=Aura
+[/card]
+[card]
+text=Creatures can't attack a player who didn't play a spell and didn't put a card into play during his or her last turn.
+id=1514
+name=Arboria
+rarity=U
+type=World Enchantment
+mana={2}{G}{G}
+[/card]
+[card]
+text=Flying     At the beginning of your upkeep, sacrifice Arcades Sabboth unless you pay {G}{W}{U}.     Untapped nonattacking creatures you control get +0/+2.     {W}: Arcades Sabboth gets +0/+1 until end of turn.
+id=1644
+name=Arcades Sabboth
+rarity=R
+type=Legendary Creature
+mana={2}{G}{G}{W}{W}{U}{U}
+power=7
+subtype=Elder Dragon
+toughness=7
+[/card]
+[card]
+text=Legendary creatures don't untap during their controllers' untap steps.     When Arena of the Ancients comes into play, tap all legendary creatures.
+id=1400
+name=Arena of the Ancients
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Counter target instant or Aura spell that targets a permanent you control.
+id=1515
+name=Avoid Fate
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Trample     Whenever a creature dealt damage by Axelrod Gunnarson this turn is put into a graveyard, you gain 1 life and Axelrod deals 1 damage to target player.
+id=1645
+name=Axelrod Gunnarson
+rarity=R
+type=Legendary Creature
+mana={4}{B}{B}{R}{R}
+power=5
+subtype=Giant
+toughness=5
+[/card]
+[card]
+text=Banding     {T}: Counter target activated ability from an artifact source unless that ability's controller pays {W}.
+id=1646
+name=Ayesha Tanaka
+rarity=R
+type=Legendary Creature
+mana={W}{W}{U}{U}
+power=2
+subtype=Human Artificer
+toughness=2
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=1472
+name=Azure Drake
+rarity=U
+type=Creature
+mana={3}{U}
+power=2
+subtype=Drake
+toughness=4
+[/card]
+[card]
+text=This turn, whenever target sorcery spell deals damage, Backdraft deals half that much damage, rounded down, to that spell's controller.
+id=1558
+name=Backdraft
+rarity=U
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Enchant creature     Whenever enchanted creature deals damage to you, Backfire deals that much damage to that creature's controller.
+id=1473
+name=Backfire
+rarity=U
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text=
+id=1516
+name=Barbary Apes
+rarity=C
+type=Creature
+mana={1}{G}
+power=2
+subtype=Ape
+toughness=2
+[/card]
+[card]
+text=
+id=1647
+name=Barktooth Warbeard
+rarity=U
+type=Legendary Creature
+mana={4}{B}{R}{R}
+power=6
+subtype=Human Warrior
+toughness=5
+[/card]
+[card]
+text=Vigilance     Bartel Runeaxe can't be the target of Aura spells.
+id=1648
+name=Bartel Runeaxe
+rarity=R
+type=Legendary Creature
+mana={3}{B}{R}{G}
+power=6
+subtype=Giant Warrior
+toughness=5
+[/card]
+[card]
+text=Protection from red     Beasts of Bogardan gets +1/+1 as long as any opponent controls a white permanent.
+id=1559
+name=Beasts of Bogardan
+rarity=U
+type=Creature
+mana={4}{R}
+power=3
+subtype=Beast
+toughness=3
+[/card]
+[card]
+text={2}, {T}: Put a charge counter on Black Mana Battery.       {T}, Remove any number of charge counters from Black Mana Battery: Add {B} to your mana pool, then add an additional {B} to your mana pool for each charge counter removed this way.
+id=1401
+name=Black Mana Battery
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=When Blazing Effigy is put into a graveyard from play, Blazing Effigy deals X damage to target creature, where X is 3 plus the amount of damage dealt to Blazing Effigy this turn by other sources named Blazing Effigy.
+id=1560
+name=Blazing Effigy
+rarity=C
+type=Creature
+mana={1}{R}
+power=0
+subtype=Elemental
+toughness=3
+[/card]
+[card]
+text=Enchant land     When enchanted land becomes tapped, destroy it.
+id=1429
+name=Blight
+rarity=U
+type=Enchantment
+mana={B}{B}
+subtype=Aura
+[/card]
+[card]
+text=If target creature has toughness 5 or greater, it gets +4/-4 until end of turn. Otherwise, it gets +4/-X until end of turn, where X is its toughness minus 1.
+id=1561
+name=Blood Lust
+rarity=U
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text={2}, {T}: Put a charge counter on Blue Mana Battery.       {T}, Remove any number of charge counters from Blue Mana Battery: Add {U} to your mana pool, then add an additional {U} to your mana pool for each charge counter removed this way.
+id=1402
+name=Blue Mana Battery
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Return target permanent to its owner's hand.
+id=1474
+name=Boomerang
+rarity=C
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text={2}{B}{R}, {T}: Put a 1/1 black and red Demon creature token named Minor Demon into play.
+id=1649
+name=Boris Devilboon
+rarity=R
+type=Legendary Creature
+mana={3}{B}{R}
+power=2
+subtype=Zombie Wizard
+toughness=2
+[/card]
+[card]
+text=When Brine Hag is put into a graveyard from play, all creatures that dealt damage to it this turn become 0/2. (This effect doesn't end at end of turn.)
+id=1475
+name=Brine Hag
+rarity=U
+type=Creature
+mana={2}{U}{U}
+power=2
+subtype=Hag
+toughness=2
+[/card]
+[card]
+text=Trample     If you control another creature, prevent all damage that would be dealt to Bronze Horse by spells that target it.
+id=1403
+name=Bronze Horse
+rarity=R
+type=Artifact Creature
+mana={7}
+power=4
+subtype=Horse
+toughness=4
+[/card]
+[card]
+text={1}: Carrion Ants gets +1/+1 until end of turn.
+id=1430
+name=Carrion Ants
+rarity=R
+type=Creature
+mana={2}{B}{B}
+power=0
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text=Forestwalk
+id=1517
+name=Cat Warriors
+rarity=C
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Cat Warrior
+toughness=2
+[/card]
+[card]
+text=White legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+id=1699
+name=Cathedral of Serra
+rarity=U
+type=Land
+[/card]
+[card]
+text=No more than two creatures can attack each combat.     No more than two creatures can block each combat.
+id=1562
+name=Caverns of Despair
+rarity=R
+type=World Enchantment
+mana={2}{R}{R}
+[/card]
+[card]
+text=Chain Lightning deals 3 damage to target creature or player. Then that player or that creature's controller may pay {R}{R}. If the player does, he or she may copy this spell and may choose a new target for that copy.
+id=1563
+name=Chain Lightning
+rarity=C
+type=Sorcery
+mana={R}
+[/card]
+[card]
+text=If a player would draw a card except the first one he or she draws in his or her draw step each turn, that player discards a card instead. If the player discards a card this way, he or she draws a card. If the player doesn't discard a card this way, he or she puts the top card of his or her library into his or her graveyard.
+id=1431
+name=Chains of Mephistopheles
+rarity=R
+type=Enchantment
+mana={1}{B}
+[/card]
+[card]
+text=Flying     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)  At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
+id=1650
+name=Chromium
+rarity=R
+type=Legendary Creature
+mana={2}{W}{W}{U}{U}{B}{B}
+power=7
+subtype=Elder Dragon
+toughness=7
+[/card]
+[card]
+text=Destroy all black creatures.
+id=1603
+name=Cleanse
+rarity=R
+type=Sorcery
+mana={2}{W}{W}
+[/card]
+[card]
+text=If Clergy of the Holy Nimbus would be destroyed, regenerate it.     {1}: Clergy of the Holy Nimbus can't be regenerated this turn. Only any opponent may play this ability.
+id=1604
+name=Clergy of the Holy Nimbus
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+[card]
+text=Enchant creature you control     Enchanted creature doesn't untap during your untap step if Cocoon has a pupa counter on it.     When Cocoon comes into play, tap enchanted creature and put three pupa counters on Cocoon.     At the beginning of your upkeep, remove a pupa counter from Cocoon. If you can't, sacrifice it and enchanted creature gets +1/+1 and gains flying. (This effect doesn't end at end of turn.)
+id=1518
+name=Cocoon
+rarity=U
+type=Enchantment
+mana={G}
+subtype=Aura
+[/card]
+[card]
+text=All creatures have haste.
+id=1519
+name=Concordant Crossroads
+rarity=R
+type=World Enchantment
+mana={G}
+[/card]
+[card]
+text=First strike     At the beginning of your upkeep, unless you pay {3}{B}{B}{B}, sacrifice Cosmic Horror and it deals 7 damage to you.
+id=1432
+name=Cosmic Horror
+rarity=R
+type=Creature
+mana={3}{B}{B}{B}
+power=7
+subtype=Horror
+toughness=7
+[/card]
+[card]
+text=Trample     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+id=1520
+name=Craw Giant
+rarity=U
+type=Creature
+mana={3}{G}{G}{G}{G}
+power=6
+subtype=Giant
+toughness=4
+[/card]
+[card]
+text=Creatures with mountainwalk can be blocked as though they didn't have mountainwalk.
+id=1564
+name=Crevasse
+rarity=U
+type=Enchantment
+mana={2}{R}
+[/card]
+[card]
+text=Crimson Kobolds is red.
+id=1565
+name=Crimson Kobolds
+rarity=C
+type=Creature
+mana={0}
+power=0
+subtype=Kobold
+toughness=1
+[/card]
+[card]
+text=Flying     {R}, {T}: Crimson Manticore deals 1 damage to target attacking or blocking creature.
+id=1566
+name=Crimson Manticore
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=2
+subtype=Manticore
+toughness=2
+[/card]
+[card]
+text=Crookshank Kobolds is red.
+id=1567
+name=Crookshank Kobolds
+rarity=C
+type=Creature
+mana={0}
+power=0
+subtype=Kobold
+toughness=1
+[/card]
+[card]
+text=When Cyclopean Mummy is put into a graveyard from play, remove Cyclopean Mummy from the game.
+id=1433
+name=Cyclopean Mummy
+rarity=C
+type=Creature
+mana={1}{B}
+power=2
+subtype=Zombie
+toughness=1
+[/card]
+[card]
+text=Dakkon Blackblade's power and toughness are each equal to the number of lands you control.
+id=1651
+name=Dakkon Blackblade
+rarity=R
+type=Legendary Creature
+mana={2}{W}{U}{U}{B}
+power=*
+subtype=Human Warrior
+toughness=*
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt this turn.
+id=1434
+name=Darkness
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text={T}: D'Avenant Archer deals 1 damage to target attacking or blocking creature.
+id=1605
+name=D'Avenant Archer
+rarity=C
+type=Creature
+mana={2}{W}
+power=1
+subtype=Human Soldier Archer
+toughness=2
+[/card]
+[card]
+text=Creatures with forestwalk can be blocked as though they didn't have forestwalk.
+id=1521
+name=Deadfall
+rarity=U
+type=Enchantment
+mana={2}{G}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature can't attack.     Prevent all combat damage that would be dealt by enchanted creature.
+id=1435
+name=Demonic Torment
+rarity=U
+type=Enchantment
+mana={2}{B}
+subtype=Aura
+[/card]
+[card]
+text=Islandwalk
+id=1476
+name=Devouring Deep
+rarity=C
+type=Creature
+mana={2}{U}
+power=1
+subtype=Fish
+toughness=2
+[/card]
+[card]
+text=Play Disharmony only during combat before blockers are declared.      Untap target attacking creature and remove it from combat. Gain control of that creature until end of turn.
+id=1568
+name=Disharmony
+rarity=R
+type=Instant
+mana={2}{R}
+[/card]
+[card]
+text=Divine Intervention comes into play with two intervention counters on it.       At the beginning of your upkeep, remove an intervention counter from Divine Intervention. If there are no intervention counters on it, the game is a draw.
+id=1606
+name=Divine Intervention
+rarity=R
+type=Enchantment
+mana={6}{W}{W}
+[/card]
+[card]
+text=Destroy target artifact. You gain life equal to its converted mana cost.
+id=1607
+name=Divine Offering
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +3/+3.
+id=1608
+name=Divine Transformation
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature     {0}: Enchanted creature becomes the color or colors of your choice. Play this ability only once each turn.
+id=1477
+name=Dream Coat
+rarity=U
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text=
+id=1522
+name=Durkwood Boars
+rarity=C
+type=Creature
+mana={4}{G}
+power=4
+subtype=Boar
+toughness=4
+[/card]
+[card]
+text=Any number of target creatures become red until end of turn.
+id=1569
+name=Dwarven Song
+rarity=U
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Defender, trample     When Elder Land Wurm blocks, it loses defender.
+id=1609
+name=Elder Land Wurm
+rarity=R
+type=Creature
+mana={4}{W}{W}{W}
+power=5
+subtype=Dragon Wurm
+toughness=5
+[/card]
+[card]
+text=At the beginning of your upkeep, unless you sacrifice an Island, sacrifice Elder Spawn and it deals 6 damage to you.     Elder Spawn can't be blocked by red creatures.
+id=1478
+name=Elder Spawn
+rarity=R
+type=Creature
+mana={4}{U}{U}{U}
+power=6
+subtype=Elemental
+toughness=6
+[/card]
+[card]
+text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
+id=1523
+name=Elven Riders
+rarity=R
+type=Creature
+mana={3}{G}{G}
+power=3
+subtype=Elf
+toughness=3
+[/card]
+[card]
+text=Flying     {G}{G}: Emerald Dragonfly gains first strike until end of turn.
+id=1524
+name=Emerald Dragonfly
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt to Enchanted Being by enchanted creatures.
+id=1610
+name=Enchanted Being
+rarity=C
+type=Creature
+mana={1}{W}{W}
+power=2
+subtype=Human
+toughness=2
+[/card]
+[card]
+text=Attach target Aura attached to a creature or land to another permanent of that type.
+id=1479
+name=Enchantment Alteration
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Tap target untapped creature you control. If you do, add {X} to your mana pool, where X is that creature's converted mana cost.
+id=1480
+name=Energy Tap
+rarity=C
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Enchant land     Enchanted land has &quot;{T}: Counter target spell if it would destroy a land you control.&quot;
+id=1611
+name=Equinox
+rarity=C
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has vigilance.
+id=1570
+name=Eternal Warrior
+rarity=U
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
+text=Starting with you, each player may put a permanent card from his or her hand into play. Repeat this process until no one puts a card into play.
+id=1525
+name=Eureka
+rarity=R
+type=Sorcery
+mana={2}{G}{G}
+[/card]
+[card]
+text=Non-Eye creatures you control can't attack.     Evil Eye of Orms-by-Gore can't be blocked except by Walls.
+id=1436
+name=Evil Eye of Orms-by-Gore
+rarity=U
+type=Creature
+mana={4}{B}
+power=3
+subtype=Eye
+toughness=6
+[/card]
+[card]
+text=Flying     Sacrifice a creature: Fallen Angel gets +2/+1 until end of turn.
+id=1437
+name=Fallen Angel
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=3
+subtype=Angel
+toughness=3
+[/card]
+[card]
+text=Flip Falling Star onto the playing area from a height of at least one foot. Falling Star deals 3 damage to each creature it lands on. Tap all creatures dealt damage by Falling Star. If Falling Star doesn't turn completely over at least once during the flip, it has no effect.
+id=1571
+name=Falling Star
+rarity=R
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Tap all creatures blocking target attacking creature. Prevent all combat damage that would be dealt this turn by that creature and each creature blocking it.
+id=1572
+name=Feint
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Players play with the top card of their libraries revealed.
+id=1481
+name=Field of Dreams
+rarity=R
+type=World Enchantment
+mana={U}
+[/card]
+[card]
+text=Flying     {G}, {T}: Add {R} to your mana pool.
+id=1526
+name=Fire Sprites
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Faerie
+toughness=1
+[/card]
+[card]
+text=Flying     If Firestorm Phoenix would be put into a graveyard from play, return Firestorm Phoenix to its owner's hand instead. It can't be played again until its owner's next turn.
+id=1573
+name=Firestorm Phoenix
+rarity=R
+type=Creature
+mana={4}{R}{R}
+power=3
+subtype=Phoenix
+toughness=2
+[/card]
+[card]
+text=Counter target instant spell.
+id=1482
+name=Flash Counter
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Choose one - Destroy target red permanent; or return target Mountain to its owner's hand.
+id=1483
+name=Flash Flood
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Whenever Floral Spuzzem attacks and isn't blocked, you may destroy target artifact defending player controls. If you do, Floral Spuzzem deals no combat damage this turn.
+id=1527
+name=Floral Spuzzem
+rarity=U
+type=Creature
+mana={3}{G}
+power=2
+subtype=Elemental
+toughness=2
+[/card]
+[card]
+text=Counter target spell unless its controller pays {1}.
+id=1484
+name=Force Spike
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=At the beginning of your upkeep, sacrifice Forethought Amulet unless you pay {3}.     If an instant or sorcery source would deal 3 or more damage to you, it deals 2 damage to you instead.
+id=1404
+name=Forethought Amulet
+rarity=R
+type=Artifact
+mana={5}
+[/card]
+[card]
+text=Wall creatures you control get +1/+0 and have banding.
+id=1612
+name=Fortified Area
+rarity=U
+type=Enchantment
+mana={1}{W}{W}
+[/card]
+[card]
+text=Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+id=1574
+name=Frost Giant
+rarity=U
+type=Creature
+mana={3}{R}{R}{R}
+power=4
+subtype=Giant
+toughness=4
+[/card]
+[card]
+text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep.
+id=1652
+name=Gabriel Angelfire
+rarity=R
+type=Legendary Creature
+mana={3}{G}{G}{W}{W}
+power=4
+subtype=Angel
+toughness=4
+[/card]
+[card]
+text=Enchant creature     Prevent all combat damage that would be dealt to and dealt by enchanted creature.
+id=1485
+name=Gaseous Form
+rarity=C
+type=Enchantment
+mana={2}{U}
+subtype=Aura
+[/card]
+[card]
+text={5}, Sacrifice Gauntlets of Chaos: Exchange control of target artifact, creature, or land an opponent controls and a permanent you control if they share one of those types. Destroy all Auras attached to those permanents.
+id=1405
+name=Gauntlets of Chaos
+rarity=R
+type=Artifact
+mana={5}
+[/card]
+[card]
+text={T}: Target creature gets -1/-0 until end of turn.
+id=1438
+name=Ghosts of the Damned
+rarity=C
+type=Creature
+mana={1}{B}{B}
+power=0
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text={5}: At the beginning of your next upkeep, choose a basic land type. Giant Slug gains landwalk of the chosen type until the end of that turn.
+id=1439
+name=Giant Slug
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Slug
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +2/+2.
+id=1575
+name=Giant Strength
+rarity=C
+type=Enchantment
+mana={R}{R}
+subtype=Aura
+[/card]
+[card]
+text=Giant Turtle can't attack if it attacked during your last turn.
+id=1528
+name=Giant Turtle
+rarity=C
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Turtle
+toughness=4
+[/card]
+[card]
+text=Put X glyph counters on target creature that target Wall blocked this turn, where X is the power of that blocked creature. The creature gains &quot;This creature doesn't untap during your untap step if it has a glyph counter on it&quot; and &quot;At the beginning of your upkeep, remove a glyph counter from this creature.&quot;
+id=1486
+name=Glyph of Delusion
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Target blocking Wall you control gets +10/+0 until end of combat. Prevent all damage that would be dealt to it this turn. Destroy it at end of turn.
+id=1576
+name=Glyph of Destruction
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text=At end of combat, destroy all creatures that were blocked by target Wall this turn.
+id=1440
+name=Glyph of Doom
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Until end of turn, whenever an attacking creature deals damage to target Wall creature, you gain that much life.
+id=1613
+name=Glyph of Life
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Play Glyph of Reincarnation only during the end of combat step.     Destroy all creatures that were blocked by target Wall this turn. They can't be regenerated. For each creature put into a graveyard this way, choose a creature card from the graveyard of that creature's controller and return that card to play under its owner's control.
+id=1529
+name=Glyph of Reincarnation
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=First strike     Creatures with islandwalk can be blocked as though they didn't have islandwalk.
+id=1653
+name=Gosta Dirk
+rarity=R
+type=Legendary Creature
+mana={3}{W}{W}{U}{U}
+power=4
+subtype=Human Warrior
+toughness=4
+[/card]
+[card]
+text=All creatures lose flying.
+id=1577
+name=Gravity Sphere
+rarity=R
+type=World Enchantment
+mana={2}{R}
+[/card]
+[card]
+text=Target creature gets +0/+X until end of turn, where X is its converted mana cost.
+id=1614
+name=Great Defender
+rarity=U
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Creatures with plainswalk can be blocked as though they didn't have plainswalk.
+id=1615
+name=Great Wall
+rarity=U
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
+text={1}{W}: The next time a black or red source of your choice would deal damage to you this turn, prevent that damage.
+id=1616
+name=Greater Realm of Preservation
+rarity=U
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text={B}, Pay 2 life: Draw a card.
+id=1441
+name=Greed
+rarity=R
+type=Enchantment
+mana={3}{B}
+[/card]
+[card]
+text={2}, {T}: Put a charge counter on Green Mana Battery.       {T}, Remove any number of charge counters from Green Mana Battery: Add {G} to your mana pool, then add an additional {G} to your mana pool for each charge counter removed this way.
+id=1406
+name=Green Mana Battery
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text={T}: Target player discards a card at random. Play this ability only during your turn.
+id=1654
+name=Gwendlyn Di Corci
+rarity=R
+type=Legendary Creature
+mana={U}{B}{B}{R}
+power=3
+subtype=Human Rogue
+toughness=5
+[/card]
+[card]
+text=At the beginning of your upkeep, Halfdane's power and toughness become equal to the power and toughness of target creature other than Halfdane, until the end of your next upkeep.
+id=1655
+name=Halfdane
+rarity=R
+type=Legendary Creature
+mana={1}{W}{U}{B}
+power=3
+subtype=Shapeshifter
+toughness=3
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.       {T}: Target creature loses all landwalk abilities until end of turn.
+id=1700
+name=Hammerheim
+rarity=U
+type=Legendary Land
+[/card]
+[card]
+text=At the beginning of your upkeep, if Hazezon Tamar came into play since the beginning of your last upkeep, put a 1/1 red, green, and white Sand Warrior creature token into play for each land you control. Those creatures have &quot;When a permanent named Hazezon Tamar isn't in play, remove this creature from the game.&quot;
+id=1656
+name=Hazezon Tamar
+rarity=R
+type=Legendary Creature
+mana={4}{R}{G}{W}
+power=2
+subtype=Human Warrior
+toughness=4
+[/card]
+[card]
+text=
+id=1442
+name=Headless Horseman
+rarity=C
+type=Creature
+mana={2}{B}
+power=2
+subtype=Zombie Knight
+toughness=2
+[/card]
+[card]
+text=Any number of target creatures become white until end of turn.
+id=1617
+name=Heaven's Gate
+rarity=U
+type=Instant
+mana={W}
+[/card]
+[card]
+text=All creatures get -1/-0 until end of turn.
+id=1443
+name=Hell Swarm
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures put into all graveyards this way.
+id=1445
+name=Hellfire
+rarity=R
+type=Sorcery
+mana={2}{B}{B}{B}
+[/card]
+[card]
+text={T}, Sacrifice a creature: Return target creature card from your graveyard to play. Play this ability only during your upkeep.
+id=1444
+name=Hell's Caretaker
+rarity=R
+type=Creature
+mana={3}{B}
+power=1
+subtype=Horror
+toughness=1
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt this turn.
+id=1618
+name=Holy Day
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
+id=1407
+name=Horn of Deafening
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=First strike
+id=1530
+name=Hornet Cobra
+rarity=C
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Snake
+toughness=1
+[/card]
+[card]
+text=Sacrifice a Swamp: Regenerate target black creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=1446
+name=Horror of Horrors
+rarity=U
+type=Enchantment
+mana={3}{B}{B}
+[/card]
+[card]
+text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
+id=1657
+name=Hunding Gjornersen
+rarity=U
+type=Legendary Creature
+mana={3}{W}{U}{U}
+power=5
+subtype=Human Warrior
+toughness=4
+[/card]
+[card]
+text={T}: You may tap or untap target artifact an opponent controls.
+id=1578
+name=Hyperion Blacksmith
+rarity=U
+type=Creature
+mana={1}{R}{R}
+power=2
+subtype=Human Artificer
+toughness=2
+[/card]
+[card]
+text=Whenever an opponent plays an instant spell other than the first instant spell that player plays each turn, Ichneumon Druid deals 4 damage to him or her.
+id=1531
+name=Ichneumon Druid
+rarity=U
+type=Creature
+mana={1}{G}{G}
+power=1
+subtype=Human Druid
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +2/-2.
+id=1579
+name=Immolation
+rarity=C
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature     Whenever a player plays an activated ability of enchanted creature with {T} in its cost that isn't a mana ability, you may pay {1}. If you do, counter that ability. If you don't, sacrifice Imprison.     Whenever enchanted creature attacks or blocks, you may pay {1}. If you do, tap the creature and remove it from combat. Creatures it blocked that no other creatures blocked this combat become unblocked. If you don't pay {1}, sacrifice Imprison.
+id=1447
+name=Imprison
+rarity=R
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=Whenever a player plays an instant spell, counter it unless that player pays {X}, where X is its converted mana cost.
+id=1487
+name=In the Eye of Chaos
+rarity=R
+type=World Enchantment
+mana={2}{U}
+[/card]
+[card]
+text=Until end of turn, prevent all damage that would be dealt to target creature.
+id=1619
+name=Indestructible Aura
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Whenever Infernal Medusa blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
+id=1448
+name=Infernal Medusa
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=2
+subtype=Gorgon
+toughness=4
+[/card]
+[card]
+text=Enchant creature     Whenever enchanted creature blocks or becomes blocked by a creature with toughness 3 or less, destroy the other creature at end of combat. At end of turn, if that creature was put into a graveyard this way, put a +1/+1 counter on the first creature.
+id=1620
+name=Infinite Authority
+rarity=R
+type=Enchantment
+mana={W}{W}{W}
+subtype=Aura
+[/card]
+[card]
+text=Whenever an opponent plays a nonartifact creature spell that doesn't share a color with a creature you control, counter that spell unless its controller pays {X}, where X is its converted mana cost.
+id=1488
+name=Invoke Prejudice
+rarity=R
+type=Enchantment
+mana={U}{U}{U}{U}
+[/card]
+[card]
+text=Protection from red     Creatures named Ivory Guardians get +1/+1 as long as an opponent controls a red permanent.
+id=1621
+name=Ivory Guardians
+rarity=U
+type=Creature
+mana={4}{W}{W}
+power=3
+subtype=Giant Cleric
+toughness=3
+[/card]
+[card]
+text=Green creatures you control get +0/+2.
+id=1658
+name=Jacques le Vert
+rarity=R
+type=Legendary Creature
+mana={1}{R}{G}{W}
+power=3
+subtype=Human Warrior
+toughness=2
+[/card]
+[card]
+text=
+id=1659
+name=Jasmine Boreal
+rarity=U
+type=Legendary Creature
+mana={3}{G}{W}
+power=4
+subtype=Human
+toughness=5
+[/card]
+[card]
+text=
+id=1660
+name=Jedit Ojanen
+rarity=U
+type=Legendary Creature
+mana={4}{W}{W}{U}
+power=5
+subtype=Cat Warrior
+toughness=5
+[/card]
+[card]
+text=
+id=1661
+name=Jerrard of the Closed Fist
+rarity=U
+type=Legendary Creature
+mana={3}{R}{G}{G}
+power=6
+subtype=Human Knight
+toughness=5
+[/card]
+[card]
+text=At the beginning of your combat phase, you may have Johan gain &quot;Johan can't attack&quot; until end of combat. If you do, attacking doesn't cause creatures you control to tap this combat if Johan is untapped.
+id=1662
+name=Johan
+rarity=R
+type=Legendary Creature
+mana={3}{R}{G}{W}
+power=5
+subtype=Human Wizard
+toughness=4
+[/card]
+[card]
+text=Jovial Evil deals X damage to target opponent, where X is twice the number of white creatures that player controls.
+id=1449
+name=Jovial Evil
+rarity=R
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=You and target player exchange control of the creature you each control with the highest converted mana cost. Then exchange control of artifacts the same way. If two or more permanents a player controls are tied for highest cost, their controller chooses one of them.
+id=1489
+name=Juxtapose
+rarity=R
+type=Sorcery
+mana={3}{U}
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.     {T}: Return target legendary creature to its owner's hand.
+id=1701
+name=Karakas
+rarity=U
+type=Legendary Land
+[/card]
+[card]
+text=
+id=1663
+name=Kasimir the Lone Wolf
+rarity=U
+type=Legendary Creature
+mana={4}{W}{U}
+power=5
+subtype=Human Warrior
+toughness=3
+[/card]
+[card]
+text=
+id=1622
+name=Keepers of the Faith
+rarity=C
+type=Creature
+mana={1}{W}{W}
+power=2
+subtype=Human Cleric
+toughness=3
+[/card]
+[card]
+text={T}: Prevent the next 2 damage that would be dealt to target creature this turn.
+id=1664
+name=Kei Takahashi
+rarity=R
+type=Legendary Creature
+mana={2}{G}{W}
+power=2
+subtype=Human Cleric
+toughness=2
+[/card]
+[card]
+text=Flying     {G}: Killer Bees gets +1/+1 until end of turn.
+id=1532
+name=Killer Bees
+rarity=R
+type=Creature
+mana={1}{G}{G}
+power=0
+subtype=Insect
+toughness=1
+[/card]
+[card]
+text=Artifacts, creatures, and lands your opponents control come into play tapped.
+id=1623
+name=Kismet
+rarity=U
+type=Enchantment
+mana={3}{W}
+[/card]
+[card]
+text={2}, {T}: Remove the top card of your library from the game face down.      {0}: Sacrifice Knowledge Vault. If you do, discard your hand, then put all cards removed from the game with Knowledge Vault into their owner's hand.     When Knowledge Vault leaves play, put all cards removed from the game with Knowledge Vault into their owner's graveyard.
+id=1408
+name=Knowledge Vault
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Other Kobold creatures you control get +0/+1 and have trample.
+id=1580
+name=Kobold Drill Sergeant
+rarity=U
+type=Creature
+mana={1}{R}
+power=1
+subtype=Kobold Soldier
+toughness=2
+[/card]
+[card]
+text=Kobold creatures you control have first strike.
+id=1581
+name=Kobold Overlord
+rarity=R
+type=Creature
+mana={1}{R}
+power=1
+subtype=Kobold
+toughness=2
+[/card]
+[card]
+text=Other Kobold creatures you control get +1/+0.
+id=1582
+name=Kobold Taskmaster
+rarity=U
+type=Creature
+mana={1}{R}
+power=1
+subtype=Kobold
+toughness=2
+[/card]
+[card]
+text=Kobolds of Kher Keep is red.
+id=1583
+name=Kobolds of Kher Keep
+rarity=C
+type=Creature
+mana={0}
+power=0
+subtype=Kobold
+toughness=1
+[/card]
+[card]
+text={2}, {T}: Prevent all damage that would be dealt this turn by target creature you control. That creature gets +0/+X until end of turn, where X is its converted mana cost.
+id=1409
+name=Kry Shield
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={T}: Lady Caleria deals 3 damage to target attacking or blocking creature.
+id=1665
+name=Lady Caleria
+rarity=R
+type=Legendary Creature
+mana={3}{G}{G}{W}{W}
+power=3
+subtype=Human Archer
+toughness=6
+[/card]
+[card]
+text={W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
+id=1666
+name=Lady Evangela
+rarity=R
+type=Legendary Creature
+mana={W}{U}{B}
+power=1
+subtype=Human Cleric
+toughness=2
+[/card]
+[card]
+text=
+id=1667
+name=Lady Orca
+rarity=U
+type=Legendary Creature
+mana={5}{B}{R}
+power=7
+subtype=Demon
+toughness=4
+[/card]
+[card]
+text=If an opponent who controls at least as many lands as you do would put a land into play, that player instead puts that land into play then sacrifices a land.
+id=1490
+name=Land Equilibrium
+rarity=R
+type=Enchantment
+mana={2}{U}{U}
+[/card]
+[card]
+text=At the beginning of your upkeep, if an opponent controls more lands than you, you may search your library for up to three basic land cards, reveal them, and put them into your hand. If you do, shuffle your library.
+id=1624
+name=Land Tax
+rarity=U
+type=Enchantment
+mana={W}
+[/card]
+[card]
+text=Discard a card: If the discarded card is a land card, Land's Edge deals 2 damage to target player. Any player may play this ability.
+id=1584
+name=Land's Edge
+rarity=R
+type=World Enchantment
+mana={1}{R}{R}
+[/card]
+[card]
+text={B}: If Lesser Werewolf's power is 1 or more, it gets -1/-0 until end of turn and put a -0/-1 counter on target creature blocking or blocked by Lesser Werewolf. Play this ability only during the declare blockers step.
+id=1450
+name=Lesser Werewolf
+rarity=U
+type=Creature
+mana={3}{B}
+power=2
+subtype=Human Wolf
+toughness=4
+[/card]
+[card]
+text=Sacrifice a creature: You gain life equal to the sacrificed creature's toughness. Play this ability only during your upkeep.
+id=1410
+name=Life Chisel
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text={4}, {T}: Put a matrix counter on target creature and that creature gains &quot;Remove a matrix counter from this creature: Regenerate this creature.&quot; Play this ability only during your upkeep.
+id=1411
+name=Life Matrix
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Whenever a Mountain an opponent controls becomes tapped, you gain 1 life.
+id=1625
+name=Lifeblood
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=All lands are 1/1 creatures that are still lands.
+id=1533
+name=Living Plane
+rarity=R
+type=World Enchantment
+mana={2}{G}{G}
+[/card]
+[card]
+text=First strike, legendary landwalk
+id=1668
+name=Livonya Silone
+rarity=R
+type=Legendary Creature
+mana={2}{R}{R}{G}{G}
+power=4
+subtype=Human Warrior
+toughness=4
+[/card]
+[card]
+text=First strike     Creatures with plainswalk can be blocked as though they didn't have plainswalk.     Creatures with forestwalk can be blocked as though they didn't have forestwalk.
+id=1669
+name=Lord Magnus
+rarity=U
+type=Legendary Creature
+mana={3}{G}{W}{W}
+power=4
+subtype=Human Druid
+toughness=3
+[/card]
+[card]
+text=Swampwalk
+id=1451
+name=Lost Soul
+rarity=C
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Spirit Minion
+toughness=1
+[/card]
+[card]
+text=Counter target spell. At the beginning of your next main phase, add {X} to your mana pool, where X is that spell's converted mana cost.
+id=1491
+name=Mana Drain
+rarity=U
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text=Instant and enchantment spells you play cost up to {2} less to play.
+id=1412
+name=Mana Matrix
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text=All Walls able to block Marble Priest do so.     Prevent all combat damage that would be dealt to Marble Priest by Walls.
+id=1413
+name=Marble Priest
+rarity=U
+type=Artifact Creature
+mana={5}
+power=3
+subtype=Cleric
+toughness=3
+[/card]
+[card]
+text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
+id=1670
+name=Marhault Elsdragon
+rarity=U
+type=Legendary Creature
+mana={3}{R}{R}{G}
+power=4
+subtype=Elf Warrior
+toughness=6
+[/card]
+[card]
+text={2}{G}{G}: Put a 1/1 green Wolf creature token named Wolves of the Hunt into play. That creature has &quot;bands with other Wolves.&quot;
+id=1534
+name=Master of the Hunt
+rarity=R
+type=Creature
+mana={2}{G}{G}
+power=2
+subtype=Human
+toughness=2
+[/card]
+[card]
+text={T}, Sacrifice Mirror Universe: Exchange life totals with target opponent. Play this ability only during your upkeep.
+id=1414
+name=Mirror Universe
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text=Creatures without flying can't attack.
+id=1626
+name=Moat
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=When Mold Demon comes into play, sacrifice it unless you sacrifice two Swamps.
+id=1452
+name=Mold Demon
+rarity=R
+type=Creature
+mana={5}{B}{B}
+power=6
+subtype=Fungus Demon
+toughness=6
+[/card]
+[card]
+text=
+id=1535
+name=Moss Monster
+rarity=C
+type=Creature
+mana={3}{G}{G}
+power=3
+subtype=Elemental
+toughness=6
+[/card]
+[card]
+text=Red legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+id=1702
+name=Mountain Stronghold
+rarity=U
+type=Land
+[/card]
+[card]
+text=Mountainwalk, protection from white
+id=1585
+name=Mountain Yeti
+rarity=U
+type=Creature
+mana={2}{R}{R}
+power=3
+subtype=Yeti
+toughness=3
+[/card]
+[card]
+text={X}, {T}: Name a card. Target opponent reveals X cards at random from his or her hand. That player then discards all cards with that name revealed this way. Play this ability only during your turn.
+id=1671
+name=Nebuchadnezzar
+rarity=R
+type=Legendary Creature
+mana={3}{U}{B}
+power=3
+subtype=Human Wizard
+toughness=3
+[/card]
+[card]
+text=Whenever a player plays a spell, counter it unless its controller pays {3}.
+id=1453
+name=Nether Void
+rarity=R
+type=World Enchantment
+mana={3}{B}
+[/card]
+[card]
+text=Flying     At the beginning of your upkeep, sacrifice Nicol Bolas unless you pay {U}{B}{R}.     Whenever Nicol Bolas deals damage to an opponent, that player discards his or her hand.
+id=1672
+name=Nicol Bolas
+rarity=R
+type=Legendary Creature
+mana={2}{U}{U}{B}{B}{R}{R}
+power=7
+subtype=Elder Dragon
+toughness=7
+[/card]
+[card]
+text={4}, {T}: For one spell this turn, you may spend mana as though it were mana of any color to pay that spell's mana cost. (Additional costs are still paid normally.)
+id=1415
+name=North Star
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text={3}, {T}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature of an opponent's choice instead.
+id=1416
+name=Nova Pentacle
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Flying     At end of turn, if a creature was put into a graveyard from play this turn, put a carrion counter on Osai Vultures.     Remove two carrion counters from Osai Vultures: Osai Vultures gets +1/+1 until end of turn.
+id=1627
+name=Osai Vultures
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Bird
+toughness=1
+[/card]
+[card]
+text=Flying, trample     At the beginning of your upkeep, sacrifice Palladia-Mors unless you pay {R}{G}{W}.
+id=1673
+name=Palladia-Mors
+rarity=R
+type=Legendary Creature
+mana={2}{R}{R}{G}{G}{W}{W}
+power=7
+subtype=Elder Dragon
+toughness=7
+[/card]
+[card]
+text=X target creatures gain islandwalk until end of turn.
+id=1492
+name=Part Water
+rarity=U
+type=Sorcery
+mana={X}{X}{U}
+[/card]
+[card]
+text={B}{R}: Pavel Maliki gets +1/+0 until end of turn.
+id=1674
+name=Pavel Maliki
+rarity=U
+type=Legendary Creature
+mana={4}{B}{R}
+power=5
+subtype=Human
+toughness=3
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.     {T}: Target 1/1 creature gets +1/+2 until end of turn.
+id=1703
+name=Pendelhaven
+rarity=U
+type=Legendary Land
+[/card]
+[card]
+text={T}: Target player names a card, then reveals the top card of his or her library. If that card is the named card, that player puts it into his or her hand. If it isn't, the player puts it into his or her graveyard.
+id=1628
+name=Petra Sphinx
+rarity=R
+type=Creature
+mana={2}{W}{W}{W}
+power=3
+subtype=Sphinx
+toughness=4
+[/card]
+[card]
+text=Whenever Pit Scorpion deals damage to a player, that player gets a poison counter. (A player with ten or more poison counters loses the game.)
+id=1454
+name=Pit Scorpion
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Scorpion
+toughness=1
+[/card]
+[card]
+text=Flying     {G}{G}{G}, {T}: Target creature gains flying until end of turn.
+id=1536
+name=Pixie Queen
+rarity=R
+type=Creature
+mana={2}{G}{G}
+power=1
+subtype=Faerie
+toughness=1
+[/card]
+[card]
+text=Creature spells you play cost up to {2} less to play.
+id=1417
+name=Planar Gate
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text={1}{G}, {T}: Target creature gets -2/-0 until end of turn.
+id=1537
+name=Pradesh Gypsies
+rarity=U
+type=Creature
+mana={2}{G}
+power=1
+subtype=Human Nomad
+toughness=1
+[/card]
+[card]
+text=Whenever a player plays an enchantment spell, counter it.
+id=1629
+name=Presence of the Master
+rarity=U
+type=Enchantment
+mana={3}{W}
+[/card]
+[card]
+text=Primordial Ooze attacks each turn if able.     At the beginning of your upkeep, put a +1/+1 counter on Primordial Ooze. Then pay {X}, where X is equal to the number of +1/+1 counters on Primordial Ooze, or tap Primordial Ooze and it deals X damage to you.
+id=1586
+name=Primordial Ooze
+rarity=U
+type=Creature
+mana={R}
+power=1
+subtype=Ooze
+toughness=1
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+id=1675
+name=Princess Lucrezia
+rarity=U
+type=Legendary Creature
+mana={3}{U}{U}{B}
+power=5
+subtype=Human Wizard
+toughness=4
+[/card]
+[card]
+text={T}: Psionic Entity deals 2 damage to target creature or player and 3 damage to itself.
+id=1493
+name=Psionic Entity
+rarity=R
+type=Creature
+mana={4}{U}
+power=2
+subtype=Illusion
+toughness=2
+[/card]
+[card]
+text=Psychic Purge deals 1 damage to target creature or player.     When a spell or ability an opponent controls causes you to discard Psychic Purge, that player loses 5 life.
+id=1494
+name=Psychic Purge
+rarity=C
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Enchant creature     When enchanted creature is put into a graveyard, return that card to its owner's hand. If that card is returned to its owner's hand this way, you may pay {U}{U}{U}. If you do, return Puppet Master from your graveyard to your hand.
+id=1495
+name=Puppet Master
+rarity=U
+type=Enchantment
+mana={U}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+id=1587
+name=Pyrotechnics
+rarity=C
+type=Sorcery
+mana={4}{R}
+[/card]
+[card]
+text=Creatures with swampwalk can be blocked as though they didn't have swampwalk.
+id=1455
+name=Quagmire
+rarity=U
+type=Enchantment
+mana={2}{B}
+[/card]
+[card]
+text={T}: If target Plains is tapped for mana, it produces colorless mana instead of white mana. (This effect doesn't end at end of turn.)
+id=1588
+name=Quarum Trench Gnomes
+rarity=R
+type=Creature
+mana={3}{R}
+power=1
+subtype=Gnome
+toughness=1
+[/card]
+[card]
+text=Vigilance     Rabid Wombat gets +2/+2 for each Aura attached to it.
+id=1538
+name=Rabid Wombat
+rarity=U
+type=Creature
+mana={2}{G}{G}
+power=0
+subtype=Wombat
+toughness=1
+[/card]
+[card]
+text={T}: Target creature loses flying until end of turn.
+id=1539
+name=Radjan Spirit
+rarity=U
+type=Creature
+mana={3}{G}
+power=3
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text=
+id=1589
+name=Raging Bull
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Ox
+toughness=2
+[/card]
+[card]
+text={G}{W}{U}, {T}: Regenerate target creature.
+id=1676
+name=Ragnar
+rarity=R
+type=Legendary Creature
+mana={G}{W}{U}
+power=2
+subtype=Human Cleric
+toughness=2
+[/card]
+[card]
+text=First strike
+id=1677
+name=Ramirez DePietro
+rarity=U
+type=Legendary Creature
+mana={3}{U}{B}{B}
+power=4
+subtype=Human Pirate
+toughness=3
+[/card]
+[card]
+text={T}: Destroy target enchanted creature.
+id=1678
+name=Ramses Overdark
+rarity=R
+type=Legendary Creature
+mana={2}{U}{U}{B}{B}
+power=4
+subtype=Human Assassin
+toughness=3
+[/card]
+[card]
+text=Play Rapid Fire only before blockers are declared.     Target creature gains first strike until end of turn. If it doesn't have rampage, that creature gains rampage 2 until end of turn. (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+id=1630
+name=Rapid Fire
+rarity=R
+type=Instant
+mana={3}{W}
+[/card]
+[card]
+text=Rasputin Dreamweaver comes into play with seven dream counters on it.     Remove a dream counter from Rasputin: Add {1} to your mana pool.     Remove a dream counter from Rasputin: Prevent the next 1 damage that would be dealt to Rasputin this turn.     At the beginning of your upkeep, if Rasputin started the turn untapped, put a dream counter on it. Rasputin can't have more than seven dream counters on it.
+id=1679
+name=Rasputin Dreamweaver
+rarity=R
+type=Legendary Creature
+mana={4}{W}{U}
+power=4
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Remove Rebirth from your deck before playing if you're not playing for ante.       Each player may put the top card of his or her library into the ante. If a player does, his or her life total becomes 20.
+id=1540
+name=Rebirth
+rarity=R
+type=Sorcery
+mana={3}{G}{G}{G}
+[/card]
+[card]
+text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Remove Recall from the game.
+id=1496
+name=Recall
+rarity=R
+type=Sorcery
+mana={X}{X}{U}
+[/card]
+[card]
+text={2}, {T}: Put a charge counter on Red Mana Battery.       {T}, Remove any number of charge counters from Red Mana Battery: Add {R} to your mana pool, then add an additional {R} to your mana pool for each charge counter removed this way.
+id=1418
+name=Red Mana Battery
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Choose target creature. When that creature is put into a graveyard this turn, return a creature card from that graveyard to play under the control of that creature's owner.
+id=1541
+name=Reincarnation
+rarity=U
+type=Instant
+mana={1}{G}{G}
+[/card]
+[card]
+text={T}: Tap target artifact.
+id=1419
+name=Relic Barrier
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Enchant artifact an opponent controls     Whenever enchanted artifact becomes tapped, choose one - Relic Bind deals 1 damage to target player; or target player gains 1 life.
+id=1497
+name=Relic Bind
+rarity=U
+type=Enchantment
+mana={2}{U}
+subtype=Aura
+[/card]
+[card]
+text=Return to your hand all enchantments you both own and control, all Auras you own attached to permanents you control, and all Auras you own attached to attacking creatures your opponents control. Then destroy all other enchantments you control, all other Auras attached to permanents you control, and all other Auras attached to attacking creatures your opponents control.
+id=1631
+name=Remove Enchantments
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Counter target creature spell.
+id=1498
+name=Remove Soul
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Play Reset only during an opponent's turn after his or her upkeep step.       Untap all lands you control.
+id=1499
+name=Reset
+rarity=U
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text=All players play with their hands revealed.
+id=1542
+name=Revelation
+rarity=R
+type=World Enchantment
+mana={G}
+[/card]
+[card]
+text=All damage that would be dealt this turn by target sorcery spell is dealt to that spell's controller instead.
+id=1500
+name=Reverberation
+rarity=R
+type=Instant
+mana={2}{U}{U}
+[/card]
+[card]
+text=Plainswalk
+id=1632
+name=Righteous Avengers
+rarity=U
+type=Creature
+mana={4}{W}
+power=3
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text={3}, {T}: Counter target instant or Aura spell that targets a permanent you control.
+id=1420
+name=Ring of Immortals
+rarity=R
+type=Artifact
+mana={5}
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+id=1680
+name=Riven Turnbull
+rarity=U
+type=Legendary Creature
+mana={5}{U}{B}
+power=5
+subtype=Human Advisor
+toughness=7
+[/card]
+[card]
+text=At the beginning of your upkeep, unless you pay {R}{R}{R}, an opponent gains control of Rohgahh of Kher Keep and all creatures you control named Kobolds of Kher Keep. If a player gains control of a creature this way, tap it. (This effect doesn't end at end of turn.)  Creatures you control named Kobolds of Kher Keep get +2/+2.
+id=1681
+name=Rohgahh of Kher Keep
+rarity=R
+type=Legendary Creature
+mana={2}{B}{B}{R}{R}
+power=5
+subtype=Kobold
+toughness=5
+[/card]
+[card]
+text=You may choose not to untap Rubinia Soulsinger during your untap step.     {T}: Gain control of target creature as long as you control Rubinia and Rubinia remains tapped.
+id=1682
+name=Rubinia Soulsinger
+rarity=R
+type=Legendary Creature
+mana={2}{G}{W}{U}
+power=2
+subtype=Faerie
+toughness=3
+[/card]
+[card]
+text=Counter target activated ability from an artifact source.
+id=1543
+name=Rust
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Any number of target creatures become blue until end of turn.
+id=1501
+name=Sea Kings' Blessing
+rarity=U
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Blue legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+id=1704
+name=Seafarer's Quay
+rarity=U
+type=Land
+[/card]
+[card]
+text=Enchant creature     Enchanted creature can't be blocked except by artifact creatures and/or white creatures.
+id=1633
+name=Seeker
+rarity=U
+type=Enchantment
+mana={2}{W}{W}
+subtype=Aura
+[/card]
+[card]
+text=Islandwalk
+id=1502
+name=Segovian Leviathan
+rarity=U
+type=Creature
+mana={4}{U}
+power=3
+subtype=Leviathan
+toughness=3
+[/card]
+[card]
+text={0}: Sentinel's toughness becomes 1 plus the power of target creature blocking or blocked by Sentinel. (This effect doesn't end at end of turn.)
+id=1421
+name=Sentinel
+rarity=R
+type=Artifact Creature
+mana={4}
+power=1
+subtype=Shapeshifter
+toughness=1
+[/card]
+[card]
+text={4}, {T}: Put a 1/1 Snake artifact creature token into play. This creature has &quot;Whenever this creature deals damage to a player, that player gets a poison counter.&quot; (A player with ten or more poison counters loses the game.)
+id=1422
+name=Serpent Generator
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text={T}: Target creature loses all &quot;bands with other&quot; abilities until end of turn.
+id=1544
+name=Shelkin Brownie
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Ouphe
+toughness=1
+[/card]
+[card]
+text=Creatures you control get +0/+2 until end of turn.
+id=1634
+name=Shield Wall
+rarity=U
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text={B}, {T}: All damage that would be dealt to you this turn by target attacking creature is dealt to Shimian Night Stalker instead.
+id=1456
+name=Shimian Night Stalker
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=4
+subtype=Nightstalker
+toughness=4
+[/card]
+[card]
+text=Prevent all damage that would be dealt to target creature this turn by spells or abilities that target it.
+id=1503
+name=Silhouette
+rarity=U
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=
+id=1683
+name=Sir Shandlar of Eberyn
+rarity=U
+type=Legendary Creature
+mana={4}{G}{W}
+power=4
+subtype=Human Knight
+toughness=7
+[/card]
+[card]
+text=
+id=1684
+name=Sivitri Scarzam
+rarity=U
+type=Legendary Creature
+mana={5}{U}{B}
+power=6
+subtype=Human
+toughness=4
+[/card]
+[card]
+text=Swampwalk     Whenever a player plays a black spell, you gain 1 life.
+id=1685
+name=Sol'kanar the Swamp King
+rarity=R
+type=Legendary Creature
+mana={2}{U}{B}{R}
+power=5
+subtype=Demon
+toughness=5
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has shroud as long as it's untapped. (It can't be the target of spells or abilities.)
+id=1504
+name=Spectral Cloak
+rarity=U
+type=Enchantment
+mana={U}{U}
+subtype=Aura
+[/card]
+[card]
+text={T}: Destroy target blue creature.
+id=1590
+name=Spinal Villain
+rarity=R
+type=Creature
+mana={2}{R}
+power=1
+subtype=Beast
+toughness=2
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Whenever enchanted creature deals damage, you gain that much life.
+id=1635
+name=Spirit Link
+rarity=U
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature     Whenever enchanted creature becomes tapped, put a -0/-2 counter on it.
+id=1457
+name=Spirit Shackle
+rarity=C
+type=Enchantment
+mana={B}{B}
+subtype=Aura
+[/card]
+[card]
+text=At the beginning of each player's upkeep, if that player controls a Plains, he or she gains 1 life.
+id=1636
+name=Spiritual Sanctuary
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=When Stangg comes into play, if Stangg is in play, put a legendary 3/4 red and green Human Warrior creature token named Stangg Twin into play. When Stangg leaves play, remove that token from the game. When that token leaves play, sacrifice Stangg.
+id=1686
+name=Stangg
+rarity=R
+type=Legendary Creature
+mana={4}{R}{G}
+power=3
+subtype=Human Warrior
+toughness=4
+[/card]
+[card]
+text=Storm Seeker deals damage equal to the number of cards in target player's hand to that player.
+id=1545
+name=Storm Seeker
+rarity=U
+type=Instant
+mana={3}{G}
+[/card]
+[card]
+text=At the beginning of each player's upkeep, Storm World deals X damage to that player, where X is 4 minus the number of cards in his or her hand.
+id=1591
+name=Storm World
+rarity=R
+type=World Enchantment
+mana={R}
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt by target creature this turn. That creature gets +0/+X until end of turn, where X is its converted mana cost.
+id=1546
+name=Subdue
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text={T}: Add {2} to your mana pool.
+id=1687
+name=Sunastian Falconer
+rarity=U
+type=Legendary Creature
+mana={3}{R}{G}
+power=4
+subtype=Human Shaman
+toughness=4
+[/card]
+[card]
+text=Sword of the Ages comes into play tapped.       {T}, Remove Sword of the Ages and any number of creatures you control from the game: Sword of the Ages deals X damage to target creature or player, where X is the total power of the creatures removed from the game this way.
+id=1423
+name=Sword of the Ages
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
+id=1547
+name=Sylvan Library
+rarity=U
+type=Enchantment
+mana={1}{G}
+[/card]
+[card]
+text=Any number of target creatures become green until end of turn.
+id=1548
+name=Sylvan Paradise
+rarity=U
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
+id=1458
+name=Syphon Soul
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature.     When enchanted creature is put into a graveyard, that creature's controller chooses a creature that Takklemaggot could enchant. If he or she does, return Takklemaggot to play under your control attached to that creature. If he or she doesn't, return Takklemaggot to play under your control as a non-Aura enchantment. It loses &quot;enchant creature&quot; and gains &quot;At the beginning of that player's upkeep, Takklemaggot deals 1 damage to him or her.&quot;
+id=1459
+name=Takklemaggot
+rarity=U
+type=Enchantment
+mana={2}{B}{B}
+subtype=Aura
+[/card]
+[card]
+text=Tap target creature. Prevent all combat damage that would be dealt by that creature this turn. It doesn't untap during its controller's next two untap steps.
+id=1505
+name=Telekinesis
+rarity=R
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text=Play Teleport only after attackers are declared and before blockers are declared.     Target creature is unblockable this turn.
+id=1506
+name=Teleport
+rarity=R
+type=Instant
+mana={U}{U}{U}
+[/card]
+[card]
+text=Remove Tempest Efreet from your deck before playing if you're not playing for ante.     {T}, Sacrifice Tempest Efreet: Target opponent may pay 10 life. If that player doesn't, he or she reveals a card at random from his or her hand. Exchange ownership of the revealed card and Tempest Efreet. Put the revealed card into your hand and Tempest Efreet from anywhere into that player's graveyard.
+id=1592
+name=Tempest Efreet
+rarity=R
+type=Creature
+mana={1}{R}{R}{R}
+power=3
+subtype=Efreet
+toughness=3
+[/card]
+[card]
+text=Tetsuo Umezawa can't be the target of Aura spells.     {U}{B}{B}{R}, {T}: Destroy target tapped or blocking creature.
+id=1688
+name=Tetsuo Umezawa
+rarity=R
+type=Legendary Creature
+mana={U}{B}{R}
+power=3
+subtype=Human Archer
+toughness=3
+[/card]
+[card]
+text=At the beginning of each player's upkeep, destroy target nonartifact creature that player controls of his or her choice. It can't be regenerated.
+id=1460
+name=The Abyss
+rarity=R
+type=World Enchantment
+mana={3}{B}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +1/+0.     {R}{R}{R}: Regenerate enchanted creature.
+id=1593
+name=The Brute
+rarity=C
+type=Enchantment
+mana={1}{R}
+subtype=Aura
+[/card]
+[card]
+text=
+id=1689
+name=The Lady of the Mountain
+rarity=U
+type=Legendary Creature
+mana={4}{R}{G}
+power=5
+subtype=Giant
+toughness=5
+[/card]
+[card]
+text=All creatures have &quot;At the beginning of your upkeep, sacrifice this creature unless you pay {1}.&quot;
+id=1690
+name=The Tabernacle at Pendrell Vale
+rarity=R
+type=Legendary Land
+[/card]
+[card]
+text=At end of combat, gain control of all creatures blocking The Wretched as long as you control The Wretched.
+id=1461
+name=The Wretched
+rarity=R
+type=Creature
+mana={3}{B}{B}
+power=2
+subtype=Demon
+toughness=5
+[/card]
+[card]
+text=Flying, first strike
+id=1637
+name=Thunder Spirit
+rarity=R
+type=Creature
+mana={1}{W}{W}
+power=2
+subtype=Elemental Spirit
+toughness=2
+[/card]
+[card]
+text=When Time Elemental attacks or blocks, at end of combat, sacrifice it and it deals 5 damage to you.     {2}{U}{U}, {T}: Return target permanent that isn't enchanted to its owner's hand.
+id=1507
+name=Time Elemental
+rarity=R
+type=Creature
+mana={2}{U}
+power=0
+subtype=Elemental
+toughness=2
+[/card]
+[card]
+text=
+id=1691
+name=Tobias Andrion
+rarity=U
+type=Legendary Creature
+mana={3}{W}{U}
+power=4
+subtype=Human Advisor
+toughness=4
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.       {T}: Target creature loses banding and all &quot;bands with other&quot; abilities until end of turn. Play this ability only during any upkeep step.
+id=1705
+name=Tolaria
+rarity=U
+type=Legendary Land
+[/card]
+[card]
+text={T}: Tor Wauki deals 2 damage to target attacking or blocking creature.
+id=1692
+name=Tor Wauki
+rarity=U
+type=Legendary Creature
+mana={2}{B}{B}{R}
+power=3
+subtype=Human Archer
+toughness=3
+[/card]
+[card]
+text=
+id=1693
+name=Torsten Von Ursus
+rarity=U
+type=Legendary Creature
+mana={3}{G}{G}{W}
+power=5
+subtype=Human Soldier
+toughness=5
+[/card]
+[card]
+text=Any number of target creatures become black until end of turn.
+id=1462
+name=Touch of Darkness
+rarity=U
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Switch target creature's power and toughness until end of turn.
+id=1463
+name=Transmutation
+rarity=C
+type=Instant
+mana={1}{B}
+[/card]
+[card]
+text={3}, {T}: Put a hatchling counter on Triassic Egg.      Remove two hatchling counters from Triassic Egg, Sacrifice Triassic Egg: You may put a creature card from your hand or graveyard into play.
+id=1424
+name=Triassic Egg
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Flying     {R}{G}, {T}: Target creature gets +2/+2 until end of turn.
+id=1694
+name=Tuknir Deathlock
+rarity=R
+type=Legendary Creature
+mana={R}{R}{G}{G}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)
+id=1638
+name=Tundra Wolves
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Wolf
+toughness=1
+[/card]
+[card]
+text=Typhoon deals damage to each opponent equal to the number of Islands that player controls.
+id=1549
+name=Typhoon
+rarity=R
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text=Creatures with islandwalk can be blocked as though they didn't have islandwalk.
+id=1508
+name=Undertow
+rarity=U
+type=Enchantment
+mana={2}{U}
+[/card]
+[card]
+text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
+id=1464
+name=Underworld Dreams
+rarity=U
+type=Enchantment
+mana={B}{B}{B}
+[/card]
+[card]
+text=Black legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+id=1706
+name=Unholy Citadel
+rarity=U
+type=Land
+[/card]
+[card]
+text=Search your library for a basic land card and put that card into play. Then shuffle your library.
+id=1550
+name=Untamed Wilds
+rarity=U
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.       {T}: Target creature loses first strike or swampwalk until end of turn.
+id=1707
+name=Urborg
+rarity=U
+type=Legendary Land
+[/card]
+[card]
+text=First strike     Creatures with swampwalk can be blocked as though they didn't have swampwalk.
+id=1695
+name=Ur-Drago
+rarity=R
+type=Legendary Creature
+mana={3}{U}{U}{B}{B}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Flying     At the beginning of your upkeep, sacrifice Vaevictis Asmadi unless you pay {B}{R}{G}.     {B}: Vaevictis Asmadi gets +1/+0 until end of turn.     {R}: Vaevictis Asmadi gets +1/+0 until end of turn.     {G}: Vaevictis Asmadi gets +1/+0 until end of turn.
+id=1696
+name=Vaevictis Asmadi
+rarity=R
+type=Legendary Creature
+mana={2}{B}{B}{R}{R}{G}{G}
+power=7
+subtype=Elder Dragon
+toughness=7
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {B}: Vampire Bats gets +1/+0 until end of turn. Play this ability no more than twice each turn.
+id=1465
+name=Vampire Bats
+rarity=C
+type=Creature
+mana={B}
+power=0
+subtype=Bat
+toughness=1
+[/card]
+[card]
+text=Enchant creature     Venarian Gold comes into play with X sleep counters on it.     When Venarian Gold comes into play, tap enchanted creature.     Enchanted creature doesn't untap during its controller's untap step if Venarian Gold has a sleep counter on it.     At the beginning of the upkeep of enchanted creature's controller, remove a sleep counter from Venarian Gold.
+id=1509
+name=Venarian Gold
+rarity=C
+type=Enchantment
+mana={X}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text=Look at the top five cards of target player's library. You may then have that player shuffle that library.
+id=1639
+name=Visions
+rarity=U
+type=Sorcery
+mana={W}
+[/card]
+[card]
+text=At the beginning of your upkeep, put a pin counter on Voodoo Doll.     At the end of your turn, if Voodoo Doll is untapped, sacrifice it and it deals damage equal to the number of pin counters on it to you.     {X}{X}, {T}: Voodoo Doll deals X damage to target creature or player. X is the number of pin counters on Voodoo Doll.
+id=1425
+name=Voodoo Doll
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text={B}: Regenerate Walking Dead.
+id=1466
+name=Walking Dead
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Zombie
+toughness=1
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Whenever Wall of Caltrops blocks a creature, if no non-Wall creatures are blocking that creature, Wall of Caltrops gains banding until end of turn.
+id=1640
+name=Wall of Caltrops
+rarity=C
+type=Creature
+mana={1}{W}
+power=2
+subtype=Wall
+toughness=1
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Whenever Wall of Dust blocks a creature, that creature can't attack during its controller's next turn.
+id=1594
+name=Wall of Dust
+rarity=U
+type=Creature
+mana={2}{R}
+power=1
+subtype=Wall
+toughness=4
+[/card]
+[card]
+text=Defender (This creature can't attack.)
+id=1595
+name=Wall of Earth
+rarity=C
+type=Creature
+mana={1}{R}
+power=0
+subtype=Wall
+toughness=6
+[/card]
+[card]
+text=Defender (This creature can't attack.)
+id=1596
+name=Wall of Heat
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Wall
+toughness=6
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Protection from black
+id=1641
+name=Wall of Light
+rarity=U
+type=Creature
+mana={2}{W}
+power=1
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Defender (This creature can't attack.)  {1}: Wall of Opposition gets +1/+0 until end of turn.
+id=1597
+name=Wall of Opposition
+rarity=R
+type=Creature
+mana={3}{R}{R}
+power=0
+subtype=Wall
+toughness=6
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Protection from white     Prevent all damage that would be dealt to Wall of Putrid Flesh by enchanted creatures.
+id=1467
+name=Wall of Putrid Flesh
+rarity=U
+type=Creature
+mana={2}{B}
+power=2
+subtype=Wall
+toughness=4
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Prevent all damage that would be dealt to Wall of Shadows by creatures it's blocking.     Wall of Shadows can't be the target of spells that can target only Walls or of abilities that can target only Walls.
+id=1468
+name=Wall of Shadows
+rarity=C
+type=Creature
+mana={1}{B}{B}
+power=0
+subtype=Wall
+toughness=1
+[/card]
+[card]
+text=Defender (This creature can't attack.)  At the beginning of your upkeep, Wall of Tombstones's toughness becomes 1 plus the number of creature cards in your graveyard. (This effect doesn't end at end of turn.)
+id=1469
+name=Wall of Tombstones
+rarity=U
+type=Creature
+mana={1}{B}
+power=0
+subtype=Wall
+toughness=1
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Prevent all damage that would be dealt to Wall of Vapor by creatures it's blocking.
+id=1510
+name=Wall of Vapor
+rarity=C
+type=Creature
+mana={3}{U}
+power=0
+subtype=Wall
+toughness=1
+[/card]
+[card]
+text=Defender (This creature can't attack.)  {2}{U}{U}: Wall of Wonder gets +4/-4 until end of turn and can attack this turn as though it didn't have defender.
+id=1511
+name=Wall of Wonder
+rarity=U
+type=Creature
+mana={2}{U}{U}
+power=1
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Protection from black     At end of turn, if Whirling Dervish dealt damage to an opponent this turn, put a +1/+1 counter on it.
+id=1551
+name=Whirling Dervish
+rarity=U
+type=Creature
+mana={G}{G}
+power=1
+subtype=Human Monk
+toughness=1
+[/card]
+[card]
+text={2}, {T}: Put a charge counter on White Mana Battery.       {T}, Remove any number of charge counters from White Mana Battery: Add {W} to your mana pool, then add an additional {W} to your mana pool for each charge counter removed this way.
+id=1426
+name=White Mana Battery
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=You may choose not to untap Willow Satyr during your untap step.     {T}: Gain control of target legendary creature as long as you control Willow Satyr and Willow Satyr remains tapped.
+id=1552
+name=Willow Satyr
+rarity=R
+type=Creature
+mana={2}{G}{G}
+power=1
+subtype=Satyr
+toughness=1
+[/card]
+[card]
+text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
+id=1598
+name=Winds of Change
+rarity=U
+type=Sorcery
+mana={R}
+[/card]
+[card]
+text=Tap X target creatures. Winter Blast deals 2 damage to each of those creatures with flying.
+id=1553
+name=Winter Blast
+rarity=R
+type=Sorcery
+mana={X}{G}
+[/card]
+[card]
+text=Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+id=1554
+name=Wolverine Pack
+rarity=C
+type=Creature
+mana={2}{G}{G}
+power=2
+subtype=Wolverine
+toughness=4
+[/card]
+[card]
+text=As Wood Elemental comes into play, sacrifice any number of untapped Forests. Wood Elemental comes into play with a +1/+1 counter for each Forest sacrificed this way.
+id=1555
+name=Wood Elemental
+rarity=R
+type=Creature
+mana={3}{G}
+power=0
+subtype=Elemental
+toughness=0
+[/card]
+[card]
+text=Flying     {B}{R}{G}, {T}: Target player draws a card.
+id=1697
+name=Xira Arien
+rarity=R
+type=Legendary Creature
+mana={B}{R}{G}
+power=1
+subtype=Insect Wizard
+toughness=2
+[/card]
+[card]
+text=Flying, vigilance
+id=1512
+name=Zephyr Falcon
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Bird
+toughness=1
+[/card]

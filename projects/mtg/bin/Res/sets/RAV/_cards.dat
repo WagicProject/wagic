@@ -1,0 +1,935 @@
+[card]
+text={R}, Sacrifice Barbarian Riftcutter: Destroy target land.
+id=87972
+name=Barbarian Riftcutter
+color=Red
+rarity=C
+mana={4}{R}
+type=Creature
+subtype=Human Barbarian
+auto={R}{S}:Destroy target(land)
+power=3
+toughness=3
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
+alias=1236
+id=83688
+name=Birds of Paradise
+color=Green
+rarity=R
+mana={G}
+type=Creature
+subtype=Bird
+power=0
+toughness=1
+abilities=Flying
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)      Creatures can't attack you.
+id=83754
+name=Blazing Archon
+color=White
+rarity=R
+mana={6}{W}{W}{W}
+type=Creature
+subtype=Archon
+auto=lord(creature|opponentinplay) defender
+power=5
+toughness=6
+abilities=Flying
+[/card]
+[card]
+text={1}{R}: Target creature gains haste until end of turn.     {1}{W}: Target creature gains first strike until end of turn.
+id=87918
+name=Boros Guildmage
+color=Red,White
+rarity=U
+mana={RW}{RW}
+type=Creature
+subtype=Human Wizard
+auto={1}{R}:Haste target(creature)
+auto={1}{W}:First Strike target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text=First Strike
+id=88992
+name=Boros Recruit
+color=Red,White
+rarity=C
+mana={RW}
+type=Creature
+subtype=Goblin Soldier
+power=1
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text={1}, {T}: Add {R}{W} to your mana pool.
+auto={1}{T}:Add {R}{W}
+id=95537
+name=Boros Signet
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Double Strike
+id=83588
+name=Boros Swiftblade
+color=Red,White
+rarity=U
+mana={R}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+abilities=double strike
+[/card]
+[card]
+text=Defender    When Carven Caryatid comes into play, draw a card.
+id=89048
+auto=draw:1
+name=Carven Caryatid
+color=Green
+rarity=U
+mana={1}{G}{G}
+type=Creature
+subtype=Spirit
+power=2
+toughness=5
+abilities=defender
+[/card]
+[card]
+text=Char deals 4 damage to target creature or player and 2 damage to you.
+target=creature,player
+auto=Damage:4
+auto=life:-2
+id=87942
+name=Char
+color=Red
+rarity=R
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+text=Enchant creature    Enchanted creature gets -4/-1.
+target=creature
+auto=:-4/-1
+id=83822
+name=Clinging Darkness
+color=Black
+rarity=C
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=As Copy Enchantment comes into play, you may choose an enchantment in play. If you do, Copy Enchantment comes into play as a copy of that enchantment.
+auto=may copy target(artifact)
+id=83807
+name=Copy Enchantment
+rarity=R
+color=Blue
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+text=Flying, vigilance
+id=87913
+name=Courier Hawk
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=2
+abilities=flying,vigilance
+[/card]
+[card]
+text=Sacrifice a forest: You gain 3 life.
+auto={S(forest|myinplay)}:life:3
+id=89017
+name=Dark Heart of the Wood
+color=Black,Green
+rarity=U
+mana={B}{G}
+type=Enchantment
+[/card]
+[card]
+text={1}, {T}: Add {U}{B} to your mana pool.
+auto={1}{T}:Add {U}{B}
+id=95535
+name=Dimir Signet
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Flying     {T}, Sacrifice Divebomber Griffin: Divebomber Griffin deals 3 damage to target attacking or blocking creature
+id=88975
+name=Divebomber Griffin
+color=White
+rarity=U
+mana={3}{W}{W}
+type=Creature
+subtype=Griffin
+auto={T}{S}:Damage:3 target(creature[attacking;blocking])
+power=3
+toughness=2
+abilities=flying
+[/card]
+[card]
+text={2}{G}, {T}: Return target enchantment card from your graveyard to your hand.
+id=88968
+name=Dowsing Shaman
+color=Green
+rarity=U
+mana={4}{G}
+type=Creature
+subtype=Centaur Shaman
+auto={2}{G}{T}:moveTo(myhand) target(enchantment|mygraveyard)
+power=3
+toughness=4
+[/card]
+[card]
+text=Enchant permanent      You may play Dream Leash only on a tapped permanent.      You control enchanted permanent.
+target=*[tapped]
+alias=1194
+id=88945
+name=Dream Leash
+color=Blue
+rarity=R
+mana={3}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={T}: Add {B} to your mana pool. Elves of Deep Shadow deals 1 damage to you.
+id=83833
+name=Elves of Deep Shadow
+color=Green
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf Druid
+auto={T}:Add {B} && Damage 1 controller
+power=1
+toughness=1
+[/card]
+[card]
+text={4}{G}, Sacrifice a creature: Destroy target creature with flying.
+id=87928
+name=Elvish Skysweeper
+color=Green
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf Warrior
+auto={4}{G}{S(creature|myinplay)}:Destroy target(creature[flying])
+power=1
+toughness=1
+[/card]
+[card]
+text=Enchant creature    When Fists of Ironwood comes into play, put two 1/1 green Saproling creature tokens into play.     Enchanted creature has trample.
+target=creature
+auto=token(Saproling,creature saproling, 1/1,green)*2
+auto=trample
+id=83672
+name=Fists of Ironwood
+color=Green
+rarity=C
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+text=Enchant creature    When Flight of Fancy comes into play, draw two cards.      Enchanted creature has flying.
+target=creature
+auto=draw:2
+auto=flying
+id=83677
+name=Flight of Fancy
+color=Blue
+rarity=C
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=95097
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=95106
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=95099
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=95098
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Enchant creature     When Galvanic Arc comes into play, it deals 3 damage to target creature or player.        Enchanted creature has first strike.
+target=creature
+auto=first strike
+auto=Damage:3 target(creature,player)
+id=87968
+name=Galvanic Arc
+color=Red
+rarity=C
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+id=83719
+name=Glass Golem
+color=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=6
+toughness=2
+[/card]
+[card]
+text=Mountainwalk
+id=83803
+name=Goblin Spelunkers
+color=Red
+mana={2}{R}
+rarity=C
+type=Creature
+subtype=Goblin warrior
+power=2
+toughness=2
+abilities=mountainwalk
+[/card]
+[card]
+text={1}, {T}: Add {B}{G} to your mana pool.
+auto={1}{T}:Add {B}{G}
+id=95536
+name=Golgari Signet
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=88959
+name=Goliath Spider
+color=Green
+rarity=C
+mana={6}{G}{G}
+type=Creature
+subtype=Spider
+power=7
+toughness=6
+abilities=reach
+[/card]
+[card]
+text=Islandwalk
+id=87914
+name=Grayscaled Gharial
+color=Blue
+rarity=C
+mana={U}
+type=Creature
+subtype=Crocodile
+power=1
+toughness=1
+abilities=islandwalk
+[/card]
+[card]
+text={1}{R}: Greater Forgeling gets +3/-3 until end of turn.
+id=87934
+name=Greater Forgeling
+color=Red
+rarity=R
+mana={3}{R}{R}
+type=Creature
+subtype=Elemental
+auto={1}{R}:3/-3
+power=3
+toughness=4
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=95113
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=95103
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=95100
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=95107
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Target creature gains forestwalk until end of turn.
+id=87916
+name=Ivy Dancer
+color=Green
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Dryad Shaman
+auto={T}:forestwalk target(creature)
+power=1
+toughness=2
+[/card]
+[card]
+text=Flying      When Keening Banshee comes into play, target creature gets -2/-2 until end of turn.
+id=83599
+name=Keening Banshee
+target=creature
+auto=:-2/-2
+rarity=C
+color=Black
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Target creature gets -3/-3 until end of turn.
+id=89056
+target=creature
+auto=:-3/-3
+name=Last Gasp
+color=Black
+rarity=C
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+text=Lightning Helix deals 3 damage to target creature or player and you gain 3 life.
+target=creature,player
+auto=Damage:3
+auto=life:3
+id=87908
+name=Lightning Helix
+color=Red,White
+rarity=U
+mana={W}{R}
+type=Instant
+[/card]
+[card]
+text=Flying       At the beginning of your upkeep, you lose 1 life.
+alias=1221
+id=83631
+name=Moroii
+color=Black,Blue
+rarity=U
+mana={2}{U}{B}
+type=Creature
+subtype=Vampire
+power=4
+toughness=4
+abilities=Flying
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=95102
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=95104
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=95096
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=95109
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=First strike, vigilance
+id=87975
+name=Nightguard Patrol
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+abilities=first strike,vigilance
+[/card]
+[card]
+text=Vigilance      Other creatures you control get +0/+2 and have vigilance.
+id=89012
+name=Oathsworn Giant
+color=White
+rarity=U
+mana={4}{W}{W}
+type=Creature
+subtype=Griffin
+auto=lord(creature|myinplay) 0/2 other
+auto=lord(creature|myinplay) vigilance other
+power=3
+toughness=4
+abilities=vigilance
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=95112
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=95108
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=95115
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=95105
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text=Destroy target artifact or creature. It can't be regenerated.
+target=creature,artifact
+auto=bury
+id=89063
+name=Putrefy
+color=Black,Green
+rarity=U
+mana={1}{B}{G}
+type=Instant
+[/card]
+[card]
+text=Return target card from your graveyard to your hand.
+target=*|myGraveyard
+alias=1263
+id=88966
+name=Recollect
+color=Green
+rarity=U
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+text={1}{U}: Roofstalker Wight gains flying until end of turn. 
+id=87945
+name=Roofstalker Wight
+color=Black
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Zombie
+auto={1}{U}:flying
+power=2
+toughness=1
+[/card]
+[card]
+text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
+id=83647
+auto=foreach(creature|myinplay) 1/1 
+name=Scion of the Wild
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=*
+subtype=Avatar
+toughness=*
+[/card]
+[card]
+text=Destroy target land. Add {R}{R} to your mana pool.
+target=land
+auto=destroy
+auto=Add {R}{R}
+id=83829
+name=Seismic Spike
+color=Red
+rarity=C
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text={1}, {T}: Add {G}{W} to your mana pool.
+auto={1}{T}:Add {G}{W}
+id=95538
+name=Selesnya Signet
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Swampwalk        Sacrifice Sewerdreg: Remove target card in a graveyard from the game.
+id=88995
+name=Sewerdreg
+color=Black
+rarity=C
+mana={3}{B}{B}
+type=Creature
+subtype=Spirit
+auto={S}:moveTo(removedfromgame) target(*|graveyard)
+power=3
+toughness=3
+abilities=swampwalk
+[/card]
+[card]
+text=Flying, haste
+id=109082
+name=Skyknight Legionnaire
+color=Red,White
+rarity=C
+mana={1}{R}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+abilities=flying,haste
+[/card]
+[card]
+text=Destroy target artifact.     Draw a card.
+target=artifact
+auto=destroy
+auto=draw:1
+id=83646
+name=Smash
+color=Red
+rarity=C
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=87986
+name=Snapping Drake
+color=Blue
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=When Sparkmage Apprentice comes into play, it deals 1 damage to target creature or player.
+id=87967
+name=Sparkmage Apprentice
+target=creature,player
+auto=Damage:1
+rarity=C
+color=Red
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=95114
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=95101
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=95110
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=95111
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Flying      {B}: Regenerate Tattered Drake.
+id=87986
+name=Tattered Drake
+color=Blue
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Zombie Drake
+{B}:regenerate
+power=2
+toughness=2
+[/card]
+[card]
+text=Defender (This creature can't attack.)   {4}: Tidewater Minion loses defender until end of turn.    {T}: Untap target permanent.
+id=83679
+name=Tidewater Minion
+color=Blue
+rarity=C
+mana={3}{U}{U}
+type=Creature
+subtype=Elemental
+{4}:-defender
+{T}:untap target(*)
+power=4
+toughness=4
+auto=defender
+[/card]
+[card]
+text=Legendary     Other green creatures you control get +1/+1.    Other white creatures you control get +1/+1.     {T}: Put a legendary 2/2 green and white Wolf creature token named Voja into play.
+id=89110
+name=Tolsimir, Wolfblood
+color=Green,White
+rarity=R
+mana={4}{G}{W}
+type=Creature
+subtype=Elf Warrior
+auto=lord(creature[green]|myinplay) 1/1 other
+auto=lord(creature[white]|myinplay) 1/1 other
+auto={T}:token(Voja,creature wolf, 2/2,legendary green white)
+power=3
+toughness=4
+abilities=legendary
+[/card]
+[card]
+text={W}, Sacrifice Transluminant: Put a 1/1 white Spirit creature token with flying into play at end of turn.
+id=87946
+name=Transluminant
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Dryad Shaman
+auto={W}{S}:token(Spirit,creature spirit, 1/1,flying white)
+power=2
+toughness=2
+[/card]
+[card]
+text=Fear {B}: Undercity Shade gets +1/+1 until end of turn.
+id=88951
+name=Undercity Shade
+color=Black
+rarity=U
+mana={4}{B}
+type=Creature
+subtype=Shade
+auto={B}:1/1
+auto=fear
+power=1
+toughness=1
+[/card]
+[card]
+text={G}: Target creature gets +1/+1 until end of turn.
+id=88979
+name=Ursapine
+color=Green
+rarity=R
+mana={2}{G}
+type=Creature
+subtype=Beast
+auto={G}:1/1 target(creature)
+power=3
+toughness=3
+[/card]
+[card]
+text=Other creatures you control get +0/+1.
+id=87950
+name=Veteran Armorer
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+auto=lord(creature|myinplay) 0/1 other
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Viashino Fangtail deals 1 damage to target creature or player.
+id=87974
+name=Viashino Fangtail
+color=Red
+rarity=C
+mana={2}{R}{R}
+type=Creature
+subtype=Viashino Warrior
+auto={T}:Damage:1 target(creature,player)
+power=3
+toughness=3
+[/card]
+[card]
+text={R}: Viashino Slasher gets +1/-1 until end of turn.
+id=83605
+name=Viashino Slasher
+color=Red
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Viashino Warrior
+auto={T}:1/-1
+power=1
+toughness=2
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.  {2}{G}{W}, {T}: Put a 1/1 green Saproling creature token into play.
+id=89016
+auto={T}:Add {1} 
+auto={2}{G}{W}{T}:token(Saproling,creature saproling, 1/1, green)
+name=Vitu-Ghazi, the City-Tree
+color=Land
+rarity=U
+type=Land
+[/card]
+[card]
+text={2}{G}: Regenerate Votary of the Conclave.
+id=87948
+name=Votary of the Conclave
+color=White
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Soldier
+auto={2}{G}:regenerate
+power=1
+toughness=1
+[/card]
+[card]
+text={R}, Sacrifice War-Torch Goblin: War-Torch Goblin deals 2 damage to target blocking creature.
+id=87971
+name=War-Torch Goblin
+color=Red
+rarity=C
+mana={R}
+type=Creature
+subtype=Goblin Warrior
+auto={R}{S}:Damage:2 target(creature[attacking;blocking])
+power=1
+toughness=1
+[/card]
+[card]
+id=83625
+name=Watchwolf
+color=Green,White
+rarity=U
+mana={G}{W}
+type=Creature
+subtype=Wolf
+power=3
+toughness=3
+[/card]

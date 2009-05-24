@@ -1,0 +1,1095 @@
+[card]
+text=All creatures have protection from black.
+auto=lord(creature) protection from black
+id=5716
+name=Absolute Grace
+color=White
+rarity=U
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text=All creatures have protection from red.
+auto=lord(creature) protection from red
+id=8437
+name=Absolute Law
+color=White
+rarity=U
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+id=5603
+name=Anaconda
+color=Green
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Snake
+power=3
+toughness=3
+abilities=swampwalk
+[/card]
+[card]
+text=Flying    {T}: Target attacking or blocking creature gets +1/+1 until end of turn.
+id=5781
+name=Angelic Page
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Angel Spirit
+auto={T}:1/1 target(creature[attacking;blocking])
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Trample
+id=5862
+name=Argothian swine
+color=Green
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Boar
+power=3
+toughness=3
+abilities=trample
+[/card]
+[card]
+text=Legendary    {2}, Sacrifice a permanent: Return target creature to its owner's hand.
+id=9856
+name=Barrin, Master Wizard
+color=Blue
+rarity=R
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+auto={s(*|myinplay)}:moveTo(ownerhand) target(creature|ownerhand)
+power=1
+toughness=1
+abilities=legendary
+[/card]
+[card]
+text=Creatures can't block.
+auto=lord(creature) cantblock
+id=5727
+name=Bedlam
+color=Red
+rarity=R
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+text=Destroy target land or nonblack creature. It can't be regenerated.
+target=land,creature[-black]
+auto=bury
+id=5605
+name=Befoul
+color=Black
+rarity=C
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
+id=5623
+target=creature
+auto=foreach(forest|myinplay) 1/1
+name=Blanchwood Armor
+color=Green
+rarity=U
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Sacrifice Blood Vassal: Add {B}{B} to your mana pool.
+id=5737
+name=Blood Vassal
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Thrull
+auto={S}:Add {B}{B}
+power=2
+toughness=2
+[/card]
+[card]
+id=5747
+name=Blanchwood Treefolk
+color=Green
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Treefolk
+power=4
+toughness=5
+[/card]
+[card]
+text=Swampwalk
+id=5597
+name=Bog Raiders
+color=Black
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+abilities=swampwalk
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +1/+1 for each other creature you control. 
+target=creature
+auto=:-1/-1
+auto=foreach(creature|myinplay) 1/1
+id=5848
+name=Bravado
+color=Red
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Target creature gets +2/+0 and gains fear until end of turn.
+target=creature
+auto=:2/0
+auto=fear
+id=5633
+name=Breach
+color=Black
+rarity=C
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+text=Islandwalk
+id=5577
+name=Bull Hippo
+color=Green
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Hippo
+power=3
+toughness=3
+abilities=islandwalk
+[/card]
+[card]
+text={1}, Sacrifice a permanent: You gain 1 life.
+auto={S(*|myinplay)}:life:1
+id=8890
+name=Claws of Gix
+color=Artifact
+rarity=U
+mana={0}
+type=Artifact
+[/card]
+[card]
+text=Enchant creature      Enchanted creature is unblockable.
+target=creature
+auto=unblockable
+id=5718
+name=Cloak of Mists
+rarity=C
+color=Blue
+type=Enchantment
+mana={1}{U}
+subtype=Aura
+[/card]
+[card]
+text=Enchant permanent (Target a permanent as you play this. This card comes into play attached to that permanent.)     You control enchanted permanent.
+target=*
+alias=1194
+id=10426
+name=Confiscate
+color=Blue
+rarity=U
+type=Enchantment
+mana={4}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text={4}, Sacrifice Copper Gnomes: You may put an artifact card from your hand into play.
+id=8815
+auto={4}{S}:moveTo(myinplay) target(artifact|myhand)
+name=Copper Gnomes
+color=Artifact
+rarity=R
+mana={2}
+type=Artifact Creature
+subtype=Gnome
+power=1
+toughness=1
+[/card]
+[card]
+id=5613
+name=Coral Merfolk
+color=Blue
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Merfolk
+power=2
+toughness=1
+[/card]
+[card]
+text=Flying, haste
+id=5555
+name=Crazed Skirge
+color=Black
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Imp
+power=2
+toughness=2
+abilities=flying,haste
+[/card]
+[card]
+text=Creatures with flying get -2/-0.
+auto=lord(creature[flying]) -2/0
+id=5668
+name=Crosswinds
+color=Green
+rarity=U
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+text=Flying         When Dark Hatchling comes into play, destroy target nonblack creature. It can't be regenerated.
+auto=may bury target(creature[-black])
+id=5852
+name=Dark Hatchling
+color=Black
+rarity=R
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Add {B}{B}{B} to your mana pool.
+auto=Add {B}{B}{B}
+id=5626
+name=Dark Ritual
+colour=Black
+rarity=C
+mana={B}
+type=Instant
+[/card]
+[card]
+text=destroy target artifact or enchantment
+target=artifact,enchantment
+auto=destroy
+id=5630
+name=Disenchant
+colour=White
+rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text={B}{B}, {T}: Destroy target green creature. 
+id=5860
+name=Eastern Paladin
+color=Black
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Knight
+auto={B}{B}{T}:destroy target(creature[green])
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Elite Archers deals 3 damage to target attacking or blocking creature.
+id=5771
+name=Elite Archers
+color=White
+rarity=R
+mana={5}{W}
+type=Creature
+subtype=Human Soldier Archer
+auto={T}:damage:3 target(creature[attacking;blocking])
+power=3
+toughness=3
+[/card]
+[card]
+text={G}: Target creature gains trample until end of turn.
+id=5738
+name=Elvish Herder
+color=Green
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf
+auto={G}:trample target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text={G}, {T}, Sacrifice Elvish Lyrist: Destroy target enchantment.
+auto={G}{T}{S}:destroy target(enchantment)
+id=5774
+name=Elvish Lyrist
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf
+toughness=1
+[/card]
+[card]
+text=Fault Line deals X damage to each creature without flying and each player.
+alias=1289
+id=8867
+name=Fault Line
+colour=Red
+rarity=R
+mana={X}{R}{R}
+type=Instant
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=8340
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=8341
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=8338
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=8339
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +3/+3 and has trample.     {G}: Regenerate enchanted creature.
+target=creature
+auto=:3/3
+auto=trample
+auto={G}:regenerate
+id=5720
+name=Gaea's Embrace
+color=Green
+rarity=U
+mana={2}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Creatures you control get +1/+1.
+auto=lord(creature|myinplay) 1/1
+id=5835
+name=Glorious Anthem
+rarity=R
+color=White
+type=Enchantment
+mana={1}{W}{W}
+[/card]
+[card]
+text=Goblin Raider can't block.
+id=5701
+name=Goblin Raider
+color=red
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+abilities=cantblock
+[/card]
+[card]
+text=Mountainwalk
+id=5543
+name=Goblin Spelunkers
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+abilities=mountainwalk
+[/card]
+[card]
+id=5683
+name=Gorilla Warrior
+rarity=C
+color=Green
+mana={2}{G}
+type=Creature
+subtype=Ape Warrior
+power=3
+toughness=2
+[/card]
+[card]
+text=Protection from blue
+id=8806
+name=Guma
+color=Red
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+abilities=protection from blue
+[/card]
+[card]
+text=Flying, shroud (This permanent can't be the target of spells or abilities.)
+id=9710
+name=Hawkeater Moth
+color=Green
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Insect
+power=1
+toughness=2
+abilities=flying,shroud
+[/card]
+[card]
+text=Heat Ray deals X damage to target creature.
+target=creature
+alias=1291
+id=10464
+name=Heat Ray
+color=Red
+rarity=C
+color=Red
+type=Instant
+mana={X}{R}
+[/card]
+[card]
+text={U}: Untap Horseshoe Crab.
+id=9849
+name=Horseshoe Crab
+color=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Crab
+auto={U}:untap 
+power=1
+toughness=3
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=8326
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=8329
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=8328
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:add {U}
+id=8327
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={B}: Looming Shade gets +1/+1 until end of turn.
+auto={B}:1/1
+id=5591
+name=Looming Shade
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Shade
+power=1
+toughness=1
+[/card]
+[card]
+text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
+auto=may moveTo(myhand) target(enchantment|mygraveyard)
+id=5706
+name=Monk Idealist
+color=White
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=2
+toughness=2
+[/card]
+[card]
+text=When Monk Realist comes into play, destroy target enchantment.
+auto=may destroy target(enchantment)
+id=5708
+name=Monk Realist
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=1
+toughness=1
+[/card]
+[card]
+text={U}: Untap Morphling.     {U}: Morphling gains flying until end of turn.     {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.    {1}: Morphling gets -1/+1 until end of turn.
+id=5863
+name=Morphling
+color=Blue
+rarity=R
+mana={U}{U}
+type=Creature
+subtype=Shapeshifter
+auto={U}:untap
+auto={U}:flying
+auto={U}:shroud
+auto={1}:1/-1
+auto={1}:-1/1
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=8334
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=8337
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=8335
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=8336
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
+id=
+name=Pacifism
+target=creature
+auto=cantattack
+auto=cantblock
+rarity=C
+color=White
+type=Enchantment
+mana={1}{W}
+subtype=Aura
+[/card]
+[card]
+text=Flying, first strike
+id=5729
+name=Pegasus Charger
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=2
+toughness=1
+abilities=flying,first strike
+[/card]
+[card]
+text=At end of turn, if no creatures are in play, sacrifice Pestilence.       {B}: Pestilence deals 1 damage to each creature and each player.
+alias=1172
+id=5619
+name=Pestilence
+colour=Black
+rarity=C
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+text=Sacrifice a creature: Phyrexian Ghoul gets +2/+2 until end of turn.
+auto={s(creature|myinplay)}:2/2
+id=5652
+name=Phyrexian Ghoul
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
+text=Legendary  {T}: Add {1} to your mana pool.  {T}, Sacrifice a creature: Add {B}{B} to your mana pool. 
+id=10677
+name=Phyrexian Tower
+auto={T}:Add {1}
+auto={T}{s(creature|myinplay)}:Add {B}{B}
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
+text={2}{T}: Sacrifice Pit Trap to bury target creature without flying that is attacking you.
+auto={2}{T}{S}:bury target(creature[-flying;attacking]|opponentinplay)
+id=8801
+name=Pit Trap
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=8325
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=8324
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=8323
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=8322
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text=When Priest of Gix comes into play, add {B}{B}{B} to your mana pool.
+auto=Add: {B}{B}{B}
+id=9724
+name=Priest of Gix
+color=Black
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Human Cleric Minion
+power=2
+toughness=2
+[/card]
+[card]
+text=Enchant creature      Enchanted creature has first strike.
+target=creature
+auto=first strike
+id=10465
+name=Reflexes
+color=Red
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=First strike    {1}{B}: Regenerate Sanguine Guard.
+auto={1}{B}:regenerate
+id=5627
+name=Sanguine Guard
+color=Black
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie Knight
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
+text=First strike
+id=5707
+name=Serra Zealot
+color=White
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has flying and vigilance. (It can't be blocked except by creatures with flying or reach, and attacking doesn't cause it to tap.)
+target=creature
+auto=:2/2
+auto=flying
+auto=vigilance
+id=9682
+name=Serra's Embrace
+color=White
+rarity=U
+mana={2}{W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{R}: Shivan Hellkite deals 1 damage to target creature or player.
+auto={1}{R}:damage:1 target(creature,player)
+id=5660
+name=Shivan Hellkite
+color=Red
+rarity=R
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+abilities=flying
+[/card]
+[card]
+text=Enchant creature    Enchanted creature gets +2/+2 and has flying.    {R}: Enchanted creature gets +1/+0 until end of turn.
+target=creature
+auto=:2/2
+auto=flying
+auto={R}:1/0
+id=5721
+name=Shivan Embrace
+color=Red
+rarity=U
+mana={2}{R}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={T}: You gain 1 life.
+auto={T}:life:1
+id=5651
+name=Silent Attendant
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=2
+[/card]
+[card]
+text=Flying. Discard a card: Add {B} to your mana pool.
+id=5851
+name=Skirge Familiar
+auto={s(*|myhand)}:Add {B}
+color=Black
+rarity=U
+mana={4}{B}
+type=Creature
+subtype=Imp
+power=3
+toughness=2
+abilities=flying
+[/card]
+[card]
+text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
+auto={1}{W}:-99/0 target(creature[attacking;flying])
+id=5669
+name=Songstitcher
+color=White
+rarity=U
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+text=When Stern Proctor comes into play, return target artifact or enchantment to its owner's hand.
+auto=may moveTo(ownerhand) target(enchantment;artifact)
+id=5661
+name=Stern Proctor
+color=Blue
+rarity=U
+mana={U}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+text=Target player draws X cards.
+target=player
+alias=1192
+id=5677
+name=Stroke of Genius
+color=Blue
+rarity=R
+mana={X}{2}{U}
+type=Instant
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=8332
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=8333
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=8330
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=8331
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+id=5759
+name=Thundering Giant
+color=Red
+rarity=U
+mana={3}{R}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=3
+abilities=haste
+[/card]
+[card]
+text=Treefolk Seedlings's toughness is equal to the number of Forests you control.
+id=5866
+auto=foreach(forest|myinplay) 0/1
+name=Treefolk Seedlings
+color=Green
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Treefolk
+power=2
+toughness=*
+[/card]
+[card]
+text={B}: Regenerate Unworthy Dead.
+auto={B}:regenerate
+id=5780
+name=Unworthy Dead
+color=Black
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Skeleton
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying, protection from black
+id=5635
+name=Voice of Grace
+color=White
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=2
+abilities=flying,protection from black
+[/card]
+[card]
+text=Flying, protection from red
+id=5673
+name=Voice of Law
+color=White
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=2
+abilities=flying,protection from red
+[/card]
+[card]
+text={1}, {T}: Untap target artifact.
+auto={1}{T}:untap target(artifact)
+id=5547
+name=Voltaic Key
+color=Artifact
+rarity=U
+mana={1}
+type=Artifact
+[/card]
+[card]
+text={B}{B}, {T}: Destroy target white creature. 
+id=5861
+name=Western Paladin
+color=Black
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Knight
+auto={B}{B}{T}:destroy target(creature[white])
+power=3
+toughness=3
+[/card]
+[card]
+text=Destroy all creatures with flying.
+id=8849
+auto=destroy all(creature[flying])
+name=Whirlwind
+color=Green
+rarity=R
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+[card]
+text=Wirecat can't attack or block if an enchantment is in play.
+id=8834
+auto=aslongas(enchantment|inplay) cantattack
+auto=aslongas(enchantment|inplay) cantblock
+name=Wirecat
+color=Artifact
+rarity=U
+mana={4}
+type=Artifact Creature
+subtype=Cat
+power=4
+toughness=3
+[/card]
+[card]
+text=Worn Powerstone comes into play tapped.    {T}: Add 2 Mana to your mana pool.
+auto=tap
+auto={T}:Add {2}
+id=8876
+name=Worn Powerstone
+color=Artifact
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Flying, shroud
+id=5825
+name=Zephid
+color=Blue
+rarity=R
+mana={4}{U}{U}
+type=Creature
+subtype=Illusion
+power=3
+toughness=4
+abilites=flying,shroud
+[/card]
+[card]
+text=Enchant creature      Enchanted creature gets +2/+2 and has flying and shroud. (It can't be the target of spells or abilities.)  
+target=creature
+auto=:2/2
+auto=flying
+auto=shroud
+id=8787
+name=Zephid's Embrace
+color=Blue
+rarity=U
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
