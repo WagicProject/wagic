@@ -1144,17 +1144,6 @@ subtype=Dwarf
 toughness=1
 [/card]
 [card]
-text=When Minotaur Explorer comes into play, sacrifice it unless you discard a card at random.
-id=31786
-name=Minotaur Explorer
-rarity=U
-type=Creature
-mana={1}{R}
-power=3
-subtype=Minotaur Scout
-toughness=3
-[/card]
-[card]
 text=Whenever you play an instant or sorcery spell, you may pay {3}. If you do, copy that spell. You may choose new targets for the copy.
 id=31801
 name=Mirari

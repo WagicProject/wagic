@@ -564,15 +564,6 @@ subtype=Elf Druid
 toughness=2
 [/card]
 [card]
-text=Put a 1/1 green Elf Warrior creature token into play for each Elf you control.
-id=139676
-name=Elvish Promenade
-rarity=U
-type=Tribal Sorcery
-mana={3}{G}
-subtype=Elf
-[/card]
-[card]
 text=Whenever you clash, tap target creature an opponent controls. If you won, that creature doesn't untap during its controller's next untap step. (This ability triggers after the clash ends.)
 id=146583
 name=Entangling Trap

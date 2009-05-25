@@ -670,9 +670,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        if (tc){
 	          game->addObserver (NEW ADeplete(id,card,cost,nbcards,tc,doTap));
         }else{
-			//todo
+			Player * player = spell->getNextPlayerTarget();
+			MTGLibrary * library = player->game->library;
+			for (int i = 0; i < nbcards; i++){
+				if (library->nb_cards)
+				player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
 			}
-
+			}
 		}
         result++;
         continue;
@@ -699,12 +703,19 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        if (tc){
 	          game->addObserver (NEW ADiscard(id,card,cost,nbcards,tc,doTap));
 	        }else{
-			      for (int i = 0; i < nbcards; i++){
-					game->opponent()->game->discardRandom(game->opponent()->game->hand);
-				  }
+				Player * player = spell->getNextPlayerTarget();
+				if(player){
+					for (int i=0; i<nbcards; i++){
+					player->game->discardRandom(player->game->hand);
+					}
+				 }else{
+					for (int i=0; i<nbcards; i++){
+					game->currentlyActing()->game->discardRandom(game->currentlyActing()->game->hand);
+					 }
+				}
 			}
 		}
-					result++;
+		result++;
         continue;
 	  }
 
@@ -728,7 +739,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 			}
 			break;
         }
-        int MaxOpponent = atoi(s.substr(found+1).c_str());
+        int MaxOpponent = atoi(s.substr(end+1,end+2).c_str());
         if(tc){
 			//TODO??
         }else{
@@ -1633,29 +1644,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
-    //Addons The Dark
-
-  case 1797: //Inferno does 6 damage to all players and all creatures.
-    {
-      for (int i = 0; i < 2 ; i++){
-	game->mLayers->stackLayer()->addDamage(card, game->players[i], 6);
-	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (current->isACreature()){
-	    game->mLayers->stackLayer()->addDamage(card, current, 6);
-	  }
-	}
-      }
-      break;
-    }
-
-  case 1773 : //People of the Woods
-    {
-      game->addObserver(NEW APeopleOfTheWoods(_id, card));
-      break;
-    }
-
-
     //Addons Legends
   case 1427: //Abomination
     {
@@ -1734,6 +1722,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(cost,1),tc));
       break;
     }
+
+//---addon Alliance---
+	
+    case 3194: // Exile
+    {
+	Player * p = card->target->controller();
+    p->game->putInZone(card->target,p->game->inPlay,card->owner->game->removedFromGame);
+	game->currentlyActing()->life+=  card->target->toughness;
+	  break;
+    }
+
 //---addon Tempest---
     case 4801: //Ancient Rune
     {
@@ -1797,6 +1796,19 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		  card->target->controller()->life-= 3;
 		  break;
 		}
+
+  case 130373: //Lavaborn Muse
+    {
+      game->addObserver( NEW ALavaborn(_id ,card, Constants::MTG_PHASE_UPKEEP, -2,-3));
+      break;
+    }
+  case 135215: //Sylvan Basilisk
+    {
+      game->addObserver( NEW ABasilik (_id ,card));
+      break;
+    }
+
+
 //--- addon shm---
 	case 146013: //Corrupt
 		{
@@ -1808,17 +1820,29 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		}
 
 // --- addon Invasion---
-    case 23195: //Artifact Mutation (works fine but display is strange if you bury a target from opponent, need to wait your turn to have the token put in play)
+    case 23195: //Artifact Mutation (works fine but display is strange if you bury a target from opponent)
     {
       card->target->controller()->game->putInGraveyard(card->target);
       int x = card->target->getManaCost()->getConvertedCost();
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling token","creature",1,1,"green",0);
           for (int i=0; i < x; i++){
             tok->resolve();
-          }
-          delete tok;    
+          }   
       break;
     }
+
+
+// --- addon Lorwynn---
+    case 139676: // Elvish Promenade
+		{
+		int x = card->controller()->game->inPlay->countByType("Elf");
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Elf Warrior token","creature",1,1,"green",0);
+          for (int i=0; i < x-1; i++){
+            tok->resolve();
+          }
+      break;
+    }
+
 
   default:
     break;
@@ -1861,12 +1885,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   }
   if (card->basicAbilities[Constants::PLAINSHOME]){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card,"plains"));
-  }
-
-  // New Abilities Flanking and Rampage
-
-  if (card->basicAbilities [Constants::RAMPAGE]){
-    game->addObserver (NEW ARampageAbility(_id, card, 1, 1,1));
   }
 
   //Instants are put in the graveyard automatically if that's not already done

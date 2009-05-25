@@ -879,6 +879,18 @@ toughness=2
 abilities=unblockable
 [/card]
 [card]
+text=When Pillaging Horde comes into play, sacrifice it unless you discard a card at random.
+id=4353
+auto=discard:1
+name=Pillaging Horde
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=5
+subtype=Human Barbarian
+toughness=5
+[/card]
+[card]
 text={T}: Add {W} to your mana pool.
 auto={T}: Add {W}
 id=4425

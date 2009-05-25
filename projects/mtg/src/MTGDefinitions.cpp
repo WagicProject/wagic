@@ -44,8 +44,6 @@ const char* Constants::MTGBasicAbilities[] = {
 "moutainhome",
 "swamphome",
 "plainshome",
-"flanking",
-"rampage",
 "cloud",
 "cantattack",
 "mustattack",

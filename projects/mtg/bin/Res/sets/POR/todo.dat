@@ -456,17 +456,6 @@ type=Sorcery
 mana={U}
 [/card]
 [card]
-text=When Pillaging Horde comes into play, sacrifice it unless you discard a card at random.
-id=4353
-name=Pillaging Horde
-rarity=R
-type=Creature
-mana={2}{R}{R}
-power=5
-subtype=Human Barbarian
-toughness=5
-[/card]
-[card]
 text=When Plant Elemental comes into play, sacrifice it unless you sacrifice a Forest.
 id=4313
 name=Plant Elemental

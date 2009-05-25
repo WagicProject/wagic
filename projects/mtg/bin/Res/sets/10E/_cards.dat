@@ -1174,6 +1174,18 @@ type=Sorcery
 mana={4}{R}
 [/card]
 [card]
+text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
+id=130373
+name=Lavaborn Muse
+rarity=R
+color=Red
+type=Creature
+mana={3}{R}
+power=3
+subtype=Spirit
+toughness=3
+[/card]
+[card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
 abilities=Haste
 id=129624
@@ -2239,6 +2251,18 @@ subtype=Drake
 toughness=2
 [/card]
 [card]
+text=Target player loses 4 life and you gain 4 life.
+id=129739
+name=Soul Feast
+target=player
+auto=damage:4
+auto=life:4
+rarity=U
+color=Black
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
 text=Trample, haste (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player. This creature can attack and {T} as soon as it comes under your control.)  At end of turn, sacrifice Spark Elemental.
 abilities=trample,haste
 auto=@next endofturn:bury
@@ -2413,6 +2437,18 @@ rarity=L
 color=Land
 type=Basic Land
 subtype=Swamp
+[/card]
+[card]
+text=Whenever Sylvan Basilisk becomes blocked by a creature, destroy that creature.
+id=135215
+name=Sylvan Basilisk
+rarity=U
+color=Green
+type=Creature
+mana={3}{G}{G}
+power=2
+subtype=Basilisk
+toughness=4
 [/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.)  Reach (This creature can block creatures with flying.)

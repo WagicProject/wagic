@@ -702,18 +702,6 @@ subtype=Human Knight
 toughness=2
 [/card]
 [card]
-text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
-id=130373
-name=Lavaborn Muse
-rarity=R
-color=Red
-type=Creature
-mana={3}{R}
-power=3
-subtype=Spirit
-toughness=3
-[/card]
-[card]
 text={W}{U}{B}{R}{G}: Remove target permanent from the game.     If Legacy Weapon would be put into a graveyard from anywhere, reveal Legacy Weapon and shuffle it into its owner's library instead.
 id=135242
 name=Legacy Weapon
@@ -1202,16 +1190,6 @@ subtype=Minion
 toughness=3
 [/card]
 [card]
-text=Target player loses 4 life and you gain 4 life.
-id=129739
-name=Soul Feast
-target=player
-rarity=U
-color=Black
-type=Sorcery
-mana={3}{B}{B}
-[/card]
-[card]
 text=Whenever another creature comes into play, you gain 1 life.
 id=129740
 name=Soul Warden
@@ -1348,18 +1326,6 @@ type=Enchantment
 mana={3}{U}{U}
 [/card]
 [card]
-text=Whenever Sylvan Basilisk becomes blocked by a creature, destroy that creature.
-id=135215
-name=Sylvan Basilisk
-rarity=U
-color=Green
-type=Creature
-mana={3}{G}{G}
-power=2
-subtype=Basilisk
-toughness=4
-[/card]
-[card]
 text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
 id=130513
 name=Sylvan Scrying
@@ -1397,6 +1363,7 @@ type=Land
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.
 id=129764
+abilities=flying
 name=Thieving Magpie
 rarity=U
 color=Blue

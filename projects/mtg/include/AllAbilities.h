@@ -1613,7 +1613,6 @@ class AOldSchoolDeathtouch:public MTGAbility{
   }
 };
 
-
 //Converts a card to a creature (Aura)
 class AConvertToCreatureAura:public MTGAbility{
  public:
@@ -3222,6 +3221,102 @@ class AStasis:public ActivatedAbility{
 
 //--------------Addon Abra------------------
 
+//Basilik
+class ABasilik:public MTGAbility{
+ public:
+  MTGCardInstance * opponents[20];
+  int nbOpponents;
+ ABasilik (int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
+    nbOpponents = 0;
+  }
+
+  void Update(float dt){
+    if (newPhase != currentPhase){
+      if( newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
+	nbOpponents = 0;
+	MTGCardInstance * opponent = source->getNextOpponent();
+	while (opponent){
+	  opponents[nbOpponents] = opponent;
+	  nbOpponents ++;
+	  opponent = source->getNextOpponent(opponent);
+	}
+      }else if (newPhase == Constants::MTG_PHASE_COMBATEND){
+	for (int i = 0; i < nbOpponents ; i++){
+	  game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
+	}
+      }
+    }
+  }
+
+  int testDestroy(){
+    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
+      return 0;
+    }else{
+      return MTGAbility::testDestroy();
+    }
+  }
+  
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ABasilik ::: opponents : " << opponents
+	<< " ; nbOpponents : " << nbOpponents
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+};
+
+
+//Lavaborn - quick and very dirty ;) copy of ALifezonelink but without the multiplier.
+class ALavaborn:public MTGAbility{
+ public:
+  int phase;
+  int condition;
+  int life;
+  int controller;
+  int nbcards;
+  MTGGameZone * zone;
+ ALavaborn(int _id ,MTGCardInstance * card, int _phase, int _condition, int _life, int _controller = 0, MTGGameZone * _zone = NULL):MTGAbility(_id, card){
+    phase = _phase;
+    condition = _condition;
+    controller = _controller;
+    life = _life;
+    zone = _zone;
+    if (zone == NULL){
+      if (controller){
+	zone = game->currentPlayer->game->hand;
+      }else{
+	zone = game->opponent()->game->hand;
+      }
+    }
+  }
+
+  void Update(float dt){
+    if (newPhase != currentPhase && newPhase == phase){
+      if ((controller && game->currentPlayer == source->controller()) ||(!controller && game->currentPlayer != source->controller()) ){
+	if ((condition < 0 && zone->nb_cards < - condition) ||(condition >0 && zone->nb_cards > condition)){
+	  int diff = zone->nb_cards - condition;
+	  if (condition < 0) diff = - condition - zone->nb_cards;
+	  if (life > 0){
+	    game->currentPlayer->life+=life;
+	  }else{
+	    game->mLayers->stackLayer()->addDamage(source,game->currentPlayer,-life);
+	  }
+	}
+      }
+    }
+  }
+virtual ostream& toString(ostream& out) const
+  {
+    out << "ALavaborn ::: phase : " << phase
+	<< " ; condition : " << condition
+	<< " ; life : " << life
+	<< " ; controller : " << controller
+	<< " ; nbcards : " << nbcards
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+};
+
 
 //GenericMillstone
 class ADeplete:public TargetAbility{
@@ -3241,6 +3336,9 @@ class ADeplete:public TargetAbility{
     }
     return 1;
   }
+    const char * getMenuText(){
+    return "Deplete";
+	  }
 
   virtual ostream& toString(ostream& out) const
   {
@@ -3327,34 +3425,6 @@ class AShieldOfTheAge: public TargetAbility{
   {
     out << "AShieldOfTheAge ::: (";
     return TargetAbility::toString(out) << ")";
-  }
-};
-
-// People of the Woods
-class APeopleOfTheWoods:public ListMaintainerAbility{
- public:
- APeopleOfTheWoods(int _id, MTGCardInstance * _source):ListMaintainerAbility(_id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (source->controller()->game->inPlay->hasCard(card) && card->hasType("forest") ) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    source->addToToughness(1);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    source->addToToughness(-1);
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "APeopleOfTheWoods ::: (";
-    return ListMaintainerAbility::toString(out) << ")";
   }
 };
 
@@ -3577,8 +3647,10 @@ class ARampageAbility:public MTGAbility{
 	  }
 	}
 	if( newPhase == Constants::MTG_PHASE_AFTER_EOT ){
+		for (int i = 0; i < nbOpponents; i++){
 			source->power-= PowerModifier;
 			source->addToToughness(-ToughnessModifier);
+		}
 	}
 	  }
 	}

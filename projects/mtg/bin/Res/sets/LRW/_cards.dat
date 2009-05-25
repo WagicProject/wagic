@@ -125,6 +125,15 @@ subtype=Merfolk Rogue
 toughness=1
 [/card]
 [card]
+text=Put a 1/1 green Elf Warrior creature token into play for each Elf you control.
+id=139676
+name=Elvish Promenade
+rarity=U
+type=Sorcery
+mana={3}{G}
+subtype=Tribal Elf
+[/card]
+[card]
 text=Flash     Enchant creature     Enchanted creature gets +5/+5 and has trample.
 abilities=flash
 target=creature
@@ -449,6 +458,18 @@ name=Neck Snap
 rarity=C
 type=Instant
 mana={3}{W}
+[/card]
+[card]
+text=Flying     Nightshade Stinger can't block.
+id=139456
+name=Nightshade Stinger
+abilities=flying,cantblock
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Faerie Rogue
+toughness=1
 [/card]
 [card]
 text=Vigilance, trample

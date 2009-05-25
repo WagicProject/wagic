@@ -91,14 +91,12 @@ class Constants
     MOUNTAINHOME = 33,
     SWAMPHOME = 34,
     PLAINSHOME = 35,
-    FLANKING = 36,
-    RAMPAGE = 37,
-    CLOUD = 38,
-    CANTATTACK = 39,
-    MUSTATTACK = 40,
-    CANTBLOCK = 41,
+    CLOUD = 36,
+    CANTATTACK = 37,
+    MUSTATTACK = 38,
+    CANTBLOCK = 39,
 
-    NB_BASIC_ABILITIES = 42,
+    NB_BASIC_ABILITIES = 40,
 
 
     RARITY_M = 'M',

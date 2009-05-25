@@ -450,7 +450,7 @@ toughness=2
 [card]
 text=Double strike     {B}{G}: Viashino Slaughtermaster gets +1/+1 until end of turn. Play this ability only once each turn.
 abilities=double strike
-auto={B}{G}:1/1 limit 1
+auto={B}{G}:1/1 limit:1
 id=179245
 name=Viashino Slaughtermaster
 rarity=U
