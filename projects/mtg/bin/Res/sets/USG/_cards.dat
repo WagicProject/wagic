@@ -46,6 +46,17 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Counter target artifact or enchantment spell.
+id=10420
+target=artifact,enchantment|stack
+auto=fizzle
+name=Annul
+color=Blue
+rarity=C
+mana={U}
+type=Instant
+[/card]
+[card]
 text=Trample
 id=5862
 name=Argothian swine
@@ -181,6 +192,19 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
+text=Whenever Cave Tiger becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=5762
+name=Cave Tiger
+color=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Cat
+auto=rampage(1/1,0)
+power=2
+toughness=2
+[/card]
+[card]
 text={1}, Sacrifice a permanent: You gain 1 life.
 auto={S(*|myinplay)}:life:1
 id=8890
@@ -297,6 +321,16 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text={1}{U}: Counter target red spell.
+id=5723
+name=Douse
+color=Blue
+rarity=U
+mana={2}{U}
+type=Enchantment
+auto={1}{U}:fizzle target(*[red]|stack)
+[/card]
+[card]
 text={B}{B}, {T}: Destroy target green creature. 
 id=5860
 name=Eastern Paladin
@@ -346,6 +380,16 @@ mana={G}
 power=1
 subtype=Elf
 toughness=1
+[/card]
+[card]
+text=Creatures without flying can't block this turn.
+id=5542
+name=Falter
+auto=lord(creature[-flying]) cantblock
+color=Red
+rarity=C
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 text=Fault Line deals X damage to each creature without flying and each player.
@@ -485,6 +529,16 @@ toughness=2
 abilities=flying,shroud
 [/card]
 [card]
+text=Attacking creatures gain first strike until end of turn.
+id=8805
+name=Headlong Rush
+auto=lord(creature[attacking]) first strike
+color=Red
+rarity=C
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 text=Heat Ray deals X damage to target creature.
 target=creature
 alias=1291
@@ -495,6 +549,16 @@ rarity=C
 color=Red
 type=Instant
 mana={X}{R}
+[/card]
+[card]
+text=Return all green permanents to their owners' hands.
+id=5674
+name=Hibernation
+auto=
+color=Blue
+rarity=U
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 text={U}: Untap Horseshoe Crab.
@@ -884,6 +948,16 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Steam Blast deals 2 damage to each creature and each player.
+id=5563
+name=Steam Blast
+auto=damage:2 all(creature;player)
+color=Red
+rarity=U
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
 text=When Stern Proctor comes into play, return target artifact or enchantment to its owner's hand.
 auto=may moveTo(ownerhand) target(enchantment;artifact)
 id=5661
@@ -981,6 +1055,19 @@ type=Creature
 subtype=Skeleton
 power=1
 toughness=1
+[/card]
+[card]
+text=Whenever Viashino Weaponsmith becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
+id=5590
+name=Viashino Weaponsmith
+color=Red
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Viashino
+auto=rampage(2/2,0)
+power=2
+toughness=2
 [/card]
 [card]
 text=Flying, protection from black

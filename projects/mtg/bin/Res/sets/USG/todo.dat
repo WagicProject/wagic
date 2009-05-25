@@ -1,20 +1,4 @@
 [card]
-text=All creatures have protection from black.
-id=5716
-name=Absolute Grace
-rarity=U
-type=Enchantment
-mana={1}{W}
-[/card]
-[card]
-text=All creatures have protection from red.
-id=8437
-name=Absolute Law
-rarity=U
-type=Enchantment
-mana={1}{W}
-[/card]
-[card]
 text=If you would draw a card, you may instead choose land or nonland and reveal cards from the top of your library until you reveal a card of the chosen kind. Put that card into your hand and put all other cards revealed this way on the bottom of your library in any order.
 id=5551
 name=Abundance
@@ -75,42 +59,12 @@ subtype=Troll
 toughness=3
 [/card]
 [card]
-text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
-id=5603
-name=Anaconda
-rarity=U
-type=Creature
-mana={3}{G}
-power=3
-subtype=Snake
-toughness=3
-[/card]
-[card]
 text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
 id=5714
 name=Angelic Chorus
 rarity=R
 type=Enchantment
 mana={3}{W}{W}
-[/card]
-[card]
-text=Flying     {T}: Target attacking or blocking creature gets +1/+1 until end of turn.
-id=5781
-name=Angelic Page
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Angel Spirit
-toughness=1
-[/card]
-[card]
-text=Counter target artifact or enchantment spell.
-id=10420
-name=Annul
-rarity=C
-type=Instant
-mana={U}
 [/card]
 [card]
 text=At the end of each player's turn, Antagonism deals 2 damage to that player unless one of his or her opponents was dealt damage that turn.
@@ -159,17 +113,6 @@ subtype=Human Druid
 toughness=1
 [/card]
 [card]
-text=Trample
-id=5862
-name=Argothian Swine
-rarity=C
-type=Creature
-mana={3}{G}
-power=3
-subtype=Boar
-toughness=3
-[/card]
-[card]
 text=Trample     When Argothian Wurm comes into play, any player may sacrifice a land. If a player does, put Argothian Wurm on top of its owner's library.
 id=5769
 name=Argothian Wurm
@@ -197,17 +140,6 @@ type=Enchantment
 mana={2}{U}
 [/card]
 [card]
-text={2}, Sacrifice a permanent: Return target creature to its owner's hand.
-id=9856
-name=Barrin, Master Wizard
-rarity=R
-type=Legendary Creature
-mana={1}{U}{U}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
 text=At the beginning of your upkeep, you may put a page counter on Barrin's Codex.     {4}, {T}, Sacrifice Barrin's Codex: Draw X cards, where X is the number of page counters on Barrin's Codex.
 id=5735
 name=Barrin's Codex
@@ -216,37 +148,12 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Creatures can't block.
-id=5727
-name=Bedlam
-rarity=R
-type=Enchantment
-mana={2}{R}{R}
-[/card]
-[card]
-text=Destroy target land or nonblack creature. It can't be regenerated.
-id=5605
-name=Befoul
-rarity=C
-type=Sorcery
-mana={2}{B}{B}
-[/card]
-[card]
 text=Whenever a green creature is put into a graveyard from play, its controller discards a card.
 id=5617
 name=Bereavement
 rarity=U
 type=Enchantment
 mana={1}{B}
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
-id=5623
-name=Blanchwood Armor
-rarity=U
-type=Enchantment
-mana={2}{G}
-subtype=Aura
 [/card]
 [card]
 text=
@@ -267,51 +174,12 @@ rarity=U
 type=Land
 [/card]
 [card]
-text=Sacrifice Blood Vassal: Add {B}{B} to your mana pool.
-id=5737
-name=Blood Vassal
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Thrull
-toughness=2
-[/card]
-[card]
-text=Swampwalk
-id=5597
-name=Bog Raiders
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Zombie
-toughness=2
-[/card]
-[card]
 text=Gain control of all permanents you own. (This effect doesn't end at end of turn.)  Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5564
 name=Brand
 rarity=R
 type=Instant
 mana={R}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets +1/+1 for each other creature you control.
-id=5848
-name=Bravado
-rarity=C
-type=Enchantment
-mana={1}{R}
-subtype=Aura
-[/card]
-[card]
-text=Target creature gets +2/+0 and gains fear until end of turn.
-id=5633
-name=Breach
-rarity=C
-type=Instant
-mana={2}{B}
 [/card]
 [card]
 text=Enchant creature     Enchanted creature gets +1/+2.     When Brilliant Halo is put into a graveyard from play, return Brilliant Halo to its owner's hand.
@@ -321,17 +189,6 @@ rarity=C
 type=Enchantment
 mana={1}{W}
 subtype=Aura
-[/card]
-[card]
-text=Islandwalk
-id=5577
-name=Bull Hippo
-rarity=U
-type=Creature
-mana={3}{G}
-power=3
-subtype=Hippo
-toughness=3
 [/card]
 [card]
 text=At the beginning of your upkeep, Bulwark deals damage to target opponent equal to the number of cards in your hand greater than the number of cards in his or her hand.
@@ -399,17 +256,6 @@ subtype=Construct
 toughness=3
 [/card]
 [card]
-text=Whenever Cave Tiger becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
-id=5762
-name=Cave Tiger
-rarity=C
-type=Creature
-mana={2}{G}
-power=2
-subtype=Cat
-toughness=2
-[/card]
-[card]
 text=Trample     At the beginning of your upkeep, sacrifice Child of Gaea unless you pay {G}{G}.     {1}{G}: Regenerate Child of Gaea.
 id=9678
 name=Child of Gaea
@@ -459,38 +305,12 @@ subtype=Human Druid
 toughness=2
 [/card]
 [card]
-text={1}, Sacrifice a permanent: You gain 1 life.
-id=8890
-name=Claws of Gix
-rarity=U
-type=Artifact
-mana={0}
-[/card]
-[card]
 text=Destroy target enchantment.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5692
 name=Clear
 rarity=U
 type=Instant
 mana={1}{W}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature is unblockable.
-id=5718
-name=Cloak of Mists
-rarity=C
-type=Enchantment
-mana={1}{U}
-subtype=Aura
-[/card]
-[card]
-text=Enchant permanent (Target a permanent as you play this. This card comes into play attached to that permanent.)  You control enchanted permanent.
-id=10426
-name=Confiscate
-rarity=U
-type=Enchantment
-mana={4}{U}{U}
-subtype=Aura
 [/card]
 [card]
 text=Target player gains 2 life for each creature in play.
@@ -507,28 +327,6 @@ name=Contamination
 rarity=R
 type=Enchantment
 mana={2}{B}
-[/card]
-[card]
-text={4}, Sacrifice Copper Gnomes: You may put an artifact card from your hand into play.
-id=8815
-name=Copper Gnomes
-rarity=R
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Gnome
-toughness=1
-[/card]
-[card]
-text=
-id=5613
-name=Coral Merfolk
-rarity=C
-type=Creature
-mana={1}{U}
-power=2
-subtype=Merfolk
-toughness=1
 [/card]
 [card]
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
@@ -561,25 +359,6 @@ subtype=Hellion Beast
 toughness=6
 [/card]
 [card]
-text=Flying, haste
-id=5555
-name=Crazed Skirge
-rarity=U
-type=Creature
-mana={3}{B}
-power=2
-subtype=Imp
-toughness=2
-[/card]
-[card]
-text=Creatures with flying get -2/-0.
-id=5668
-name=Crosswinds
-rarity=U
-type=Enchantment
-mana={1}{G}
-[/card]
-[card]
 text={3}, {T}, Sacrifice Crystal Chimes: Return all enchantment cards from your graveyard to your hand.
 id=5742
 name=Crystal Chimes
@@ -594,25 +373,6 @@ name=Curfew
 rarity=C
 type=Instant
 mana={U}
-[/card]
-[card]
-text=Flying     When Dark Hatchling comes into play, destroy target nonblack creature. It can't be regenerated.
-id=5852
-name=Dark Hatchling
-rarity=R
-type=Creature
-mana={4}{B}{B}
-power=3
-subtype=Horror
-toughness=3
-[/card]
-[card]
-text=Add {B}{B}{B} to your mana pool.
-id=5626
-name=Dark Ritual
-rarity=C
-type=Instant
-mana={B}
 [/card]
 [card]
 text=All creatures are black.
@@ -687,14 +447,6 @@ type=Enchantment
 mana={3}{B}{B}
 [/card]
 [card]
-text=Destroy target artifact or enchantment.
-id=5630
-name=Disenchant
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=Disorder deals 2 damage to each white creature and each player who controls a white creature.
 id=5854
 name=Disorder
@@ -712,14 +464,6 @@ mana={2}{U}
 power=1
 subtype=Human Wizard
 toughness=1
-[/card]
-[card]
-text={1}{U}: Counter target red spell.
-id=5723
-name=Douse
-rarity=U
-type=Enchantment
-mana={2}{U}
 [/card]
 [card]
 text={3}, {T}: Put a +1/+1 counter on target creature.
@@ -767,17 +511,6 @@ type=Sorcery
 mana={B}
 [/card]
 [card]
-text={B}{B}, {T}: Destroy target green creature.
-id=5860
-name=Eastern Paladin
-rarity=R
-type=Creature
-mana={2}{B}{B}
-power=3
-subtype=Zombie Knight
-toughness=3
-[/card]
-[card]
 text=Whenever Electryte deals combat damage to defending player, it deals damage equal to its power to each blocking creature.
 id=9700
 name=Electryte
@@ -787,39 +520,6 @@ mana={3}{R}{R}
 power=3
 subtype=Beast
 toughness=3
-[/card]
-[card]
-text={T}: Elite Archers deals 3 damage to target attacking or blocking creature.
-id=5771
-name=Elite Archers
-rarity=R
-type=Creature
-mana={5}{W}
-power=3
-subtype=Human Soldier Archer
-toughness=3
-[/card]
-[card]
-text={G}: Target creature gains trample until end of turn.
-id=5738
-name=Elvish Herder
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf
-toughness=1
-[/card]
-[card]
-text={G}, {T}, Sacrifice Elvish Lyrist: Destroy target enchantment.
-id=5774
-name=Elvish Lyrist
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf
-toughness=1
 [/card]
 [card]
 text=Attach target Aura attached to a creature or land to another permanent of that type.
@@ -900,22 +600,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
-text=Creatures without flying can't block this turn.
-id=5542
-name=Falter
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
-[card]
-text=Fault Line deals X damage to each creature without flying and each player.
-id=8867
-name=Fault Line
-rarity=R
-type=Instant
-mana={X}{R}{R}
-[/card]
-[card]
 text=Whenever a creature is put into a graveyard from play, that creature's controller may draw a card.
 id=5604
 name=Fecundity
@@ -991,30 +675,6 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-id=8341
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=8338
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=8339
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
 text=Enchant creature     When Fortitude is put into a graveyard from play, return Fortitude to its owner's hand.     Sacrifice a Forest: Regenerate enchanted creature.
 id=9850
 name=Fortitude
@@ -1039,15 +699,6 @@ rarity=R
 type=Legendary Land
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +3/+3 and has trample.     {G}: Regenerate enchanted creature.
-id=5720
-name=Gaea's Embrace
-rarity=U
-type=Enchantment
-mana={2}{G}{G}
-subtype=Aura
-[/card]
-[card]
 text=Search your library for a card, put that card into your hand, then discard a card at random. Then shuffle your library.
 id=10654
 name=Gamble
@@ -1065,14 +716,6 @@ mana={1}{U}
 power=3
 subtype=Drake
 toughness=3
-[/card]
-[card]
-text=Creatures you control get +1/+1.
-id=5835
-name=Glorious Anthem
-rarity=R
-type=Enchantment
-mana={1}{W}{W}
 [/card]
 [card]
 text=Whenever Goblin Cadets blocks or becomes blocked, target opponent gains control of it. (This removes Goblin Cadets from combat.)
@@ -1127,28 +770,6 @@ subtype=Goblin
 toughness=1
 [/card]
 [card]
-text=Goblin Raider can't block.
-id=5701
-name=Goblin Raider
-rarity=C
-type=Creature
-mana={1}{R}
-power=2
-subtype=Goblin Warrior
-toughness=2
-[/card]
-[card]
-text=Mountainwalk
-id=5543
-name=Goblin Spelunkers
-rarity=C
-type=Creature
-mana={2}{R}
-power=2
-subtype=Goblin Warrior
-toughness=2
-[/card]
-[card]
 text=Haste     Echo {1}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5760
 name=Goblin War Buggy
@@ -1157,17 +778,6 @@ type=Creature
 mana={1}{R}
 power=2
 subtype=Goblin
-toughness=2
-[/card]
-[card]
-text=
-id=5683
-name=Gorilla Warrior
-rarity=C
-type=Creature
-mana={2}{G}
-power=3
-subtype=Ape Warrior
 toughness=2
 [/card]
 [card]
@@ -1206,50 +816,12 @@ type=Enchantment
 mana={2}{G}
 [/card]
 [card]
-text=Protection from blue
-id=8806
-name=Guma
-rarity=U
-type=Creature
-mana={2}{R}
-power=2
-subtype=Cat
-toughness=2
-[/card]
-[card]
-text=Flying; shroud (This permanent can't be the target of spells or abilities.)
-id=9710
-name=Hawkeater Moth
-rarity=U
-type=Creature
-mana={3}{G}
-power=1
-subtype=Insect
-toughness=2
-[/card]
-[card]
-text=Attacking creatures gain first strike until end of turn.
-id=8805
-name=Headlong Rush
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
-[card]
 text=Choose one - Target player gains 3 life; or prevent the next 3 damage that would be dealt to target creature or player this turn.
 id=8813
 name=Healing Salve
 rarity=C
 type=Instant
 mana={W}
-[/card]
-[card]
-text=Heat Ray deals X damage to target creature.
-id=10464
-name=Heat Ray
-rarity=C
-type=Instant
-mana={X}{R}
 [/card]
 [card]
 text=Flying, vigilance     Echo {2}{W}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
@@ -1270,14 +842,6 @@ rarity=C
 type=Enchantment
 mana={1}{U}
 subtype=Aura
-[/card]
-[card]
-text=Return all green permanents to their owners' hands.
-id=5674
-name=Hibernation
-rarity=U
-type=Instant
-mana={2}{U}
 [/card]
 [card]
 text=When an opponent plays an enchantment spell, if Hidden Ancients is an enchantment, Hidden Ancients becomes a 5/5 Treefolk creature.
@@ -1350,17 +914,6 @@ subtype=Construct
 toughness=2
 [/card]
 [card]
-text={U}: Untap Horseshoe Crab.
-id=9849
-name=Horseshoe Crab
-rarity=C
-type=Creature
-mana={2}{U}
-power=1
-subtype=Crab
-toughness=3
-[/card]
-[card]
 text=Target creature loses all abilities and becomes 0/1 until end of turn.
 id=5702
 name=Humble
@@ -1405,38 +958,6 @@ mana={2}{W}
 power=1
 subtype=Human Soldier
 toughness=1
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=8326
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=8329
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=8328
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=8327
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
 [/card]
 [card]
 text=Jagged Lightning deals 3 damage to target creature and 3 damage to another target creature.
@@ -1509,17 +1030,6 @@ rarity=U
 type=Enchantment
 mana={1}{U}
 subtype=Aura
-[/card]
-[card]
-text={B}: Looming Shade gets +1/+1 until end of turn.
-id=5591
-name=Looming Shade
-rarity=C
-type=Creature
-mana={2}{B}
-power=1
-subtype=Shade
-toughness=1
 [/card]
 [card]
 text=At the beginning of your upkeep, you may put a petal counter on Lotus Blossom.       {T}, Sacrifice Lotus Blossom: Add X mana of any one color to your mana pool, where X is the number of petal counters on Lotus Blossom.
@@ -1598,71 +1108,6 @@ mana={4}
 power=0
 subtype=Wall
 toughness=6
-[/card]
-[card]
-text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
-id=5706
-name=Monk Idealist
-rarity=U
-type=Creature
-mana={2}{W}
-power=2
-subtype=Human Monk Cleric
-toughness=2
-[/card]
-[card]
-text=When Monk Realist comes into play, destroy target enchantment.
-id=5708
-name=Monk Realist
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Monk Cleric
-toughness=1
-[/card]
-[card]
-text={U}: Untap Morphling.     {U}: Morphling gains flying until end of turn.     {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)  {1}: Morphling gets +1/-1 until end of turn.     {1}: Morphling gets -1/+1 until end of turn.
-id=5863
-name=Morphling
-rarity=R
-type=Creature
-mana={3}{U}{U}
-power=3
-subtype=Shapeshifter
-toughness=3
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=8334
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=8337
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=8335
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=8336
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
 [/card]
 [card]
 text=Sacrifice No Rest for the Wicked: Return to your hand all creature cards that were put into your graveyard from play this turn.
@@ -1759,15 +1204,6 @@ type=Instant
 mana={X}{R}
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
-id=5748
-name=Pacifism
-rarity=C
-type=Enchantment
-mana={1}{W}
-subtype=Aura
-[/card]
-[card]
 text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, Parasitic Bond deals 2 damage to that player.
 id=8816
 name=Parasitic Bond
@@ -1792,17 +1228,6 @@ name=Path of Peace
 rarity=C
 type=Sorcery
 mana={3}{W}
-[/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  First strike (This creature deals combat damage before creatures without first strike.)
-id=5729
-name=Pegasus Charger
-rarity=C
-type=Creature
-mana={2}{W}
-power=2
-subtype=Pegasus
-toughness=1
 [/card]
 [card]
 text=Flying     Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -1844,14 +1269,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text=At end of turn, if no creatures are in play, sacrifice Pestilence.       {B}: Pestilence deals 1 damage to each creature and each player.
-id=5619
-name=Pestilence
-rarity=C
-type=Enchantment
-mana={2}{B}{B}
-[/card]
-[card]
 text=Phyrexian Colossus doesn't untap during your untap step.     Pay 8 life: Untap Phyrexian Colossus.     Phyrexian Colossus can't be blocked except by three or more creatures.
 id=8865
 name=Phyrexian Colossus
@@ -1863,70 +1280,12 @@ subtype=Golem
 toughness=8
 [/card]
 [card]
-text=Sacrifice a creature: Phyrexian Ghoul gets +2/+2 until end of turn.
-id=5652
-name=Phyrexian Ghoul
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Zombie
-toughness=2
-[/card]
-[card]
 text=As Phyrexian Processor comes into play, pay any amount of life.     {4}, {T}: Put a black Minion creature token into play. Its power and toughness are each equal to the amount of life paid.
 id=5610
 name=Phyrexian Processor
 rarity=R
 type=Artifact
 mana={4}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.       {T}, Sacrifice a creature: Add {B}{B} to your mana pool.
-id=10677
-name=Phyrexian Tower
-rarity=R
-type=Legendary Land
-[/card]
-[card]
-text={2}, {T}, Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
-id=8801
-name=Pit Trap
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=8325
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=8324
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=8323
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=8322
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
 [/card]
 [card]
 text=Return all basic land cards from all graveyards to play under their owners' control, tapped.
@@ -1986,17 +1345,6 @@ name=Presence of the Master
 rarity=U
 type=Enchantment
 mana={3}{W}
-[/card]
-[card]
-text=When Priest of Gix comes into play, add {B}{B}{B} to your mana pool.
-id=9724
-name=Priest of Gix
-rarity=U
-type=Creature
-mana={2}{B}
-power=2
-subtype=Human Cleric Minion
-toughness=1
 [/card]
 [card]
 text={T}: Add {G} to your mana pool for each Elf in play.
@@ -2078,15 +1426,6 @@ name=Redeem
 rarity=U
 type=Instant
 mana={1}{W}
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has first strike. (It deals combat damage before creatures without first strike.)
-id=10465
-name=Reflexes
-rarity=C
-type=Enchantment
-mana={R}
-subtype=Aura
 [/card]
 [card]
 text=You gain 6 life.     Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -2263,17 +1602,6 @@ subtype=Serpent
 toughness=4
 [/card]
 [card]
-text=First strike     {1}{B}: Regenerate Sanguine Guard.
-id=5627
-name=Sanguine Guard
-rarity=U
-type=Creature
-mana={1}{B}{B}
-power=2
-subtype=Zombie Knight
-toughness=2
-[/card]
-[card]
 text=Whenever a player taps an Island for mana, Scald deals 1 damage to that player.
 id=10657
 name=Scald
@@ -2323,26 +1651,6 @@ subtype=Avatar
 toughness=*
 [/card]
 [card]
-text=First strike
-id=5707
-name=Serra Zealot
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Human Soldier
-toughness=1
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has flying and vigilance. (It can't be blocked except by creatures with flying or reach, and attacking doesn't cause it to tap.)
-id=9682
-name=Serra's Embrace
-rarity=U
-type=Enchantment
-mana={2}{W}{W}
-subtype=Aura
-[/card]
-[card]
 text=At the beginning of your upkeep, you may put a verse counter on Serra's Hymn.     Sacrifice Serra's Hymn: Prevent the next X damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose, where X is the number of verse counters on Serra's Hymn.
 id=5602
 name=Serra's Hymn
@@ -2384,17 +1692,6 @@ rarity=R
 type=Legendary Land
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{R}: Shivan Hellkite deals 1 damage to target creature or player.
-id=5660
-name=Shivan Hellkite
-rarity=R
-type=Creature
-mana={5}{R}{R}
-power=5
-subtype=Dragon
-toughness=5
-[/card]
-[card]
 text=First strike, haste     Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5562
 name=Shivan Raptor
@@ -2404,15 +1701,6 @@ mana={2}{R}
 power=3
 subtype=Lizard
 toughness=1
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets +2/+2 and has flying.     {R}: Enchanted creature gets +1/+0 until end of turn.
-id=5721
-name=Shiv's Embrace
-rarity=U
-type=Enchantment
-mana={2}{R}{R}
-subtype=Aura
 [/card]
 [card]
 text=Each player may put an artifact, creature, enchantment, or land card from his or her hand into play.
@@ -2438,28 +1726,6 @@ rarity=C
 type=Enchantment
 mana={B}
 subtype=Aura
-[/card]
-[card]
-text={T}: You gain 1 life.
-id=5651
-name=Silent Attendant
-rarity=C
-type=Creature
-mana={2}{W}
-power=0
-subtype=Human Cleric
-toughness=2
-[/card]
-[card]
-text=Flying     Discard a card: Add {B} to your mana pool.
-id=5851
-name=Skirge Familiar
-rarity=U
-type=Creature
-mana={4}{B}
-power=3
-subtype=Imp
-toughness=2
 [/card]
 [card]
 text=Flying     When you play a creature spell, sacrifice Skittering Skirge.
@@ -2586,33 +1852,6 @@ mana={G}
 subtype=Aura
 [/card]
 [card]
-text=Steam Blast deals 2 damage to each creature and each player.
-id=5563
-name=Steam Blast
-rarity=U
-type=Sorcery
-mana={2}{R}
-[/card]
-[card]
-text=When Stern Proctor comes into play, return target artifact or enchantment to its owner's hand.
-id=5661
-name=Stern Proctor
-rarity=U
-type=Creature
-mana={U}{U}
-power=1
-subtype=Human Wizard
-toughness=2
-[/card]
-[card]
-text=Target player draws X cards.
-id=5677
-name=Stroke of Genius
-rarity=R
-type=Instant
-mana={X}{2}{U}
-[/card]
-[card]
 text=If a red spell would deal damage to a creature or player, it deals that much damage plus 1 to that creature or player instead.
 id=5638
 name=Sulfuric Vapors
@@ -2627,38 +1866,6 @@ name=Sunder
 rarity=R
 type=Instant
 mana={3}{U}{U}
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=8332
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=8333
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=8330
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=8331
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
 [/card]
 [card]
 text=Two target creatures each get +2/+2 until end of turn.
@@ -2769,17 +1976,6 @@ type=Enchantment
 mana={2}{R}
 [/card]
 [card]
-text=Treefolk Seedlings's toughness is equal to the number of Forests you control.
-id=5866
-name=Treefolk Seedlings
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Treefolk
-toughness=*
-[/card]
-[card]
 text=Treetop Rangers can't be blocked except by creatures with flying.
 id=5681
 name=Treetop Rangers
@@ -2813,17 +2009,6 @@ name=Unnerve
 rarity=C
 type=Sorcery
 mana={3}{B}
-[/card]
-[card]
-text={B}: Regenerate Unworthy Dead.
-id=5780
-name=Unworthy Dead
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Skeleton
-toughness=1
 [/card]
 [card]
 text=If a source would deal damage to you, prevent 1 of that damage.
@@ -2944,17 +2129,6 @@ subtype=Viashino
 toughness=2
 [/card]
 [card]
-text=Whenever Viashino Weaponsmith becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
-id=5590
-name=Viashino Weaponsmith
-rarity=C
-type=Creature
-mana={3}{R}
-power=2
-subtype=Viashino
-toughness=2
-[/card]
-[card]
 text=As an additional cost to play Victimize, sacrifice a creature.     Return two target creature cards from your graveyard to play tapped.
 id=10655
 name=Victimize
@@ -2969,36 +2143,6 @@ name=Vile Requiem
 rarity=U
 type=Enchantment
 mana={2}{B}{B}
-[/card]
-[card]
-text=Flying, protection from black
-id=5635
-name=Voice of Grace
-rarity=U
-type=Creature
-mana={3}{W}
-power=2
-subtype=Angel
-toughness=2
-[/card]
-[card]
-text=Flying, protection from red
-id=5673
-name=Voice of Law
-rarity=U
-type=Creature
-mana={3}{W}
-power=2
-subtype=Angel
-toughness=2
-[/card]
-[card]
-text={1}, {T}: Untap target artifact.
-id=5547
-name=Voltaic Key
-rarity=U
-type=Artifact
-mana={1}
 [/card]
 [card]
 text=Mountainwalk     Echo {1}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
@@ -3039,31 +2183,12 @@ type=Instant
 mana={2}{W}
 [/card]
 [card]
-text={B}{B}, {T}: Destroy target white creature.
-id=5861
-name=Western Paladin
-rarity=R
-type=Creature
-mana={2}{B}{B}
-power=3
-subtype=Zombie Knight
-toughness=3
-[/card]
-[card]
 text={3}: Each player puts the top two cards of his or her library into his or her graveyard.
 id=7247
 name=Whetstone
 rarity=R
 type=Artifact
 mana={3}
-[/card]
-[card]
-text=Destroy all creatures with flying.
-id=8849
-name=Whirlwind
-rarity=R
-type=Sorcery
-mana={2}{G}{G}
 [/card]
 [card]
 text=At the beginning of your upkeep, if a player has more life than any other, that player gains control of Wild Dogs.     Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -3104,17 +2229,6 @@ subtype=Wurm
 toughness=6
 [/card]
 [card]
-text=Wirecat can't attack or block if an enchantment is in play.
-id=8834
-name=Wirecat
-rarity=U
-type=Artifact Creature
-mana={4}
-power=4
-subtype=Cat
-toughness=3
-[/card]
-[card]
 text=Swampwalk     {T}: Add {B}{B}{B}{B} to your mana pool. Target opponent gains control of Witch Engine. (Play this ability only any time you could play an instant.)
 id=5836
 name=Witch Engine
@@ -3135,14 +2249,6 @@ mana={2}{U}
 power=2
 subtype=Human Wizard
 toughness=2
-[/card]
-[card]
-text=Worn Powerstone comes into play tapped.       {T}: Add {2} to your mana pool.
-id=8876
-name=Worn Powerstone
-rarity=U
-type=Artifact
-mana={3}
 [/card]
 [card]
 text=If you control a creature, damage that would reduce your life total to less than 1 reduces it to 1 instead.
@@ -3167,24 +2273,4 @@ name=Yawgmoth's Will
 rarity=R
 type=Sorcery
 mana={2}{B}
-[/card]
-[card]
-text=Flying; shroud (This permanent can't be the target of spells or abilities.)
-id=5825
-name=Zephid
-rarity=R
-type=Creature
-mana={4}{U}{U}
-power=3
-subtype=Illusion
-toughness=4
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets +2/+2 and has flying and shroud. (It can't be the target of spells or abilities.)
-id=8787
-name=Zephid's Embrace
-rarity=U
-type=Enchantment
-mana={2}{U}{U}
-subtype=Aura
 [/card]
