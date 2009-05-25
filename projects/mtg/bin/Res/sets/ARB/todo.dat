@@ -136,31 +136,12 @@ text=Cascade (When you play this spell, remove cards from the top of your librar
 rarity=C
 [/card]
 [card]
-id=180604
-name=Cerodon Yearling
-mana={R}{W}
-type=Creature
-subtype=Beast
-power=2
-toughness=2
-text=Vigilance, haste
-rarity=C
-[/card]
-[card]
 id=189653
 name=Cloven Casting
 mana={5}{U}{R}
 type=Enchantment
 text=Whenever you play a multicolored instant or sorcery spell, you may pay {1}. If you do, copy that spell. You may choose new targets for the copy.
 rarity=R
-[/card]
-[card]
-id=179624
-name=Colossal Might
-mana={R}{G}
-type=Instant
-text=Target creature gets +4/+2 and gains trample until end of turn.
-rarity=C
 [/card]
 [card]
 id=179621
@@ -320,17 +301,6 @@ text=As long as you control another multicolored permanent, Esper Stormblade get
 rarity=C
 [/card]
 [card]
-id=179542
-name=Ethercaste Knight
-mana={W}{U}
-type=Artifact Creature
-subtype=Human Knight
-power=1
-toughness=3
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-rarity=C
-[/card]
-[card]
 id=179573
 name=Etherium Abomination
 mana={3}{U}{B}
@@ -357,7 +327,7 @@ id=179618
 name=Etherwrought Page
 mana={1}{W}{U}{B}
 type=Artifact
-text=At the beginning of your upkeep, choose one  EYou gain 2 life; or look at the top card of your library, then you may put that card into your graveyard; or each opponent loses 1 life.
+text=At the beginning of your upkeep, choose one — You gain 2 life; or look at the top card of your library, then you may put that card into your graveyard; or each opponent loses 1 life.
 rarity=U
 [/card]
 [card]
@@ -497,16 +467,6 @@ text=When you cycle Grixis Sojourners or it's put into a graveyard from play, yo
 rarity=C
 [/card]
 [card]
-id=189647
-name=Grizzled Leotau
-mana={G}{W}
-type=Creature
-subtype=Cat
-power=1
-toughness=5
-rarity=C
-[/card]
-[card]
 id=175109
 name=Identity Crisis
 mana={2}{W}{W}{B}{B}
@@ -542,6 +502,7 @@ name=Intimidation Bolt
 mana={1}{R}{W}
 type=Instant
 text=Intimidation Bolt deals 3 damage to target creature. Other creatures can't attack this turn.
+target=creature
 rarity=U
 [/card]
 [card]
@@ -685,17 +646,6 @@ text=Fear, haste Whenever Lightning Reaver deals combat damage to a player, put 
 rarity=R
 [/card]
 [card]
-id=177922
-name=Lord of Extinction
-mana={3}{B}{G}
-type=Creature
-subtype=Elemental
-power=*
-toughness=*
-text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
-rarity=M
-[/card]
-[card]
 id=179633
 name=Lorescale Coatl
 mana={1}{G}{U}
@@ -705,17 +655,6 @@ power=2
 toughness=2
 text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
 rarity=U
-[/card]
-[card]
-id=180625
-name=Madrush Cyclops
-mana={1}{B}{R}{G}
-type=Creature
-subtype=Cyclops Warrior
-power=3
-toughness=4
-text=Creatures you control have haste.
-rarity=R
 [/card]
 [card]
 id=179540
@@ -740,26 +679,6 @@ mana={1}{R}{G}
 type=Artifact
 subtype=Equipment
 text=Whenever equipped creature attacks, it deals damage equal to its power to defending player. Equip {3}
-rarity=U
-[/card]
-[card]
-id=179591
-name=Magefire Wings
-mana={U}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+0 and has flying.
-rarity=C
-[/card]
-[card]
-id=179585
-name=Marisi's Twinclaws
-mana={2}{(}{R}{/}{W}{)}{G}
-type=Creature
-subtype=Cat Warrior
-power=2
-toughness=4
-text=Double strike
 rarity=U
 [/card]
 [card]
@@ -800,17 +719,6 @@ power=2
 toughness=2
 text=As Meddling Mage comes into play, name a nonland card. The named card can't be played.
 rarity=R
-[/card]
-[card]
-id=189644
-name=Messenger Falcons
-mana={2}{(}{G}{/}{U}{)}{W}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
-text=Flying When Messenger Falcons comes into play, draw a card.
-rarity=U
 [/card]
 [card]
 id=179599
@@ -949,17 +857,6 @@ text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Play this ability on
 rarity=C
 [/card]
 [card]
-id=179556
-name=Qasali Pridemage
-mana={G}{W}
-type=Creature
-subtype=Cat Wizard
-power=2
-toughness=2
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.
-rarity=C
-[/card]
-[card]
 id=175256
 name=Reborn Hope
 mana={G}{W}
@@ -977,16 +874,6 @@ power=2
 toughness=2
 text=Flying Whenever a source an opponent controls deals damage to you, you may put that many +1/+1 counters on Retaliator Griffin.
 rarity=R
-[/card]
-[card]
-id=189650
-name=Rhox Brute
-mana={2}{R}{G}
-type=Creature
-subtype=Rhino Warrior
-power=4
-toughness=4
-rarity=C
 [/card]
 [card]
 id=180601
@@ -1011,26 +898,6 @@ text=Defender Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Sear
 rarity=C
 [/card]
 [card]
-id=179553
-name=Sangrite Backlash
-mana={(}{B}{/}{G}{)}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +3/-3.
-rarity=C
-[/card]
-[card]
-id=179623
-name=Sanity Gnawers
-mana={1}{B}{R}
-type=Creature
-subtype=Rat
-power=1
-toughness=1
-text=When Sanity Gnawers comes into play, target player discards a card at random.
-rarity=U
-[/card]
-[card]
 id=180607
 name=Sen Triplets
 mana={2}{W}{U}{B}
@@ -1040,17 +907,6 @@ power=3
 toughness=3
 text=At the beginning of your upkeep, choose target opponent. This turn, that player can't play spells or activated abilities and plays with his or her hand revealed. You may play cards from that player's hand this turn.
 rarity=M
-[/card]
-[card]
-id=179594
-name=Sewn-Eye Drake
-mana={2}{(}{U}{/}{R}{)}{B}
-type=Creature
-subtype=Zombie Drake
-power=3
-toughness=1
-text=Flying, haste
-rarity=C
 [/card]
 [card]
 id=185063
@@ -1079,17 +935,6 @@ mana={1}{G}{W}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+1 for each creature you control. Cycling {(g/w)} ({(g/w)}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
-id=159688
-name=Sigiled Behemoth
-mana={4}{G}{W}
-type=Creature
-subtype=Beast
-power=5
-toughness=4
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 rarity=C
 [/card]
 [card]
@@ -1127,7 +972,7 @@ id=183008
 name=Soul Manipulation
 mana={1}{U}{B}
 type=Instant
-text=Choose one or both  ECounter target creature spell; and/or return target creature card in your graveyard to your hand.
+text=Choose one or both — Counter target creature spell; and/or return target creature card in your graveyard to your hand.
 rarity=C
 [/card]
 [card]
@@ -1172,17 +1017,6 @@ text=Spellbreaker Behemoth can't be countered. Creature spells you control with 
 rarity=R
 [/card]
 [card]
-id=189641
-name=Sphinx of the Steel Wind
-mana={5}{W}{U}{B}
-type=Artifact Creature
-subtype=Sphinx
-power=6
-toughness=6
-text=Flying, first strike, vigilance, lifelink, protection from red and from green
-rarity=M
-[/card]
-[card]
 id=179534
 name=Stormcaller's Boon
 mana={2}{W}{U}
@@ -1208,25 +1042,6 @@ mana={1}{W}{B}
 type=Artifact
 text={T}, Sacrifice Tainted Sigil: You gain life equal to the total life lost by all players this turn. (Damage causes loss of life.)
 rarity=U
-[/card]
-[card]
-id=179537
-name=Talon Trooper
-mana={1}{W}{U}
-type=Creature
-subtype=Bird Scout
-power=2
-toughness=3
-text=Flying
-rarity=C
-[/card]
-[card]
-id=176449
-name=Terminate
-mana={B}{R}
-type=Instant
-text=Destroy target creature. It can't be regenerated.
-rarity=C
 [/card]
 [card]
 id=183017
@@ -1273,14 +1088,6 @@ text=Enchant land Enchanted land has shroud. (It can't be the target of spells o
 rarity=C
 [/card]
 [card]
-id=138217
-name=Unbender Tine
-mana={2}{W}{U}
-type=Artifact
-text={T}: Untap another target permanent.
-rarity=U
-[/card]
-[card]
 id=189651
 name=Unscythe, Killer of Kings
 mana={U}{B}{B}{R}
@@ -1297,7 +1104,7 @@ type=Legendary Creature
 subtype=Beast
 power=5
 toughness=5
-text=Uril, the Miststalker can't be the target of spells or abilities your opponents control.  Uril gets +2/+2 for each Aura attached to it.
+text=Uril, the Miststalker can't be the target of spells or abilities your opponents control. Uril gets +2/+2 for each Aura attached to it.
 rarity=M
 [/card]
 [card]
@@ -1369,28 +1176,6 @@ text=Cascade (When you play this spell, remove cards from the top of your librar
 rarity=C
 [/card]
 [card]
-id=179535
-name=Vithian Renegades
-mana={1}{R}{G}
-type=Creature
-subtype=Human Shaman
-power=3
-toughness=2
-text=When Vithian Renegades comes into play, destroy target artifact.
-rarity=U
-[/card]
-[card]
-id=179601
-name=Wall of Denial
-mana={1}{W}{U}
-type=Creature
-subtype=Wall
-power=0
-toughness=8
-text=Defender, flying, shroud
-rarity=U
-[/card]
-[card]
 id=180592
 name=Wargate
 mana={X}{G}{W}{U}
@@ -1416,12 +1201,4 @@ power=1
 toughness=1
 text=Flash Flying Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
 rarity=C
-[/card]
-[card]
-id=179575
-name=Zealous Persecution
-mana={W}{B}
-type=Instant
-text=Until end of turn, creatures you control get +1/+1 and creatures your opponents control get -1/-1.
-rarity=U
 [/card]
