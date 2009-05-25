@@ -224,7 +224,6 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
-abilities={2}:regenerate
 [/card]
 [card]
 text=Flying     When Cloudchaser Eagle comes into play, destroy target enchantment.
@@ -619,7 +618,7 @@ type=Enchantment
 [card]
 text=All Sliver creatures have haste.
 id=4824
-auto=lord(sliver) Haste
+auto=lord(sliver) haste
 name=Heart Sliver
 color=Red
 rarity=C
@@ -628,7 +627,6 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
-abilities=Haste
 [/card]
 [card]
 text=Reachshadow (This creature can block creatures with shadow as though they didn't have shadow.
