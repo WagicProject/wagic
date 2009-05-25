@@ -1,6 +1,8 @@
 [card]
 text=Whenever Agrus Kos, Wojek Veteran attacks, attacking red creatures get +2/+0 and attacking white creatures get +0/+2 until end of turn.
 id=89101
+auto=aslongas(Agrus Kos[attacking]) lord(creature[red;attacking]) 2/0
+auto=aslongas(Agrus Kos[attacking]) lord(creature[white;attacking]) 0/2
 name=Agrus Kos, Wojek Veteran
 rarity=R
 type=Legendary Creature
@@ -30,17 +32,6 @@ mana={10}{G}{G}{G}{W}{W}
 power=9
 subtype=Wurm
 toughness=14
-[/card]
-[card]
-text={R}, Sacrifice Barbarian Riftcutter: Destroy target land.
-id=87972
-name=Barbarian Riftcutter
-rarity=C
-type=Creature
-mana={4}{R}
-power=3
-subtype=Human Barbarian
-toughness=3
 [/card]
 [card]
 text=Radiance - Choose a color. Target creature and each other creature that shares a color with it gain protection from the chosen color until end of turn.
@@ -73,30 +64,9 @@ subtype=Spirit
 toughness=4
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
-id=83688
-name=Birds of Paradise
-rarity=R
-type=Creature
-mana={G}
-power=0
-subtype=Bird
-toughness=1
-[/card]
-[card]
-text=Flying     Creatures can't attack you.
-id=83754
-name=Blazing Archon
-rarity=R
-type=Creature
-mana={6}{W}{W}{W}
-power=5
-subtype=Archon
-toughness=6
-[/card]
-[card]
 text={1}{R}, Sacrifice Blockbuster: Blockbuster deals 3 damage to each tapped creature and each player.
 id=87977
+auto={1}{R}{S}:damage:3 all(creature[tapped],player)
 name=Blockbuster
 rarity=U
 type=Enchantment
@@ -140,47 +110,6 @@ id=83900
 name=Boros Garrison
 rarity=C
 type=Land
-[/card]
-[card]
-text=({RW} can be paid with either {R} or {W}.)  {1}{R}: Target creature gains haste until end of turn.     {1}{W}: Target creature gains first strike until end of turn.
-id=87918
-name=Boros Guildmage
-rarity=U
-type=Creature
-mana={RW}{RW}
-power=2
-subtype=Human Wizard
-toughness=2
-[/card]
-[card]
-text=({RW} can be paid with either {R} or {W}.)  First strike
-id=88992
-name=Boros Recruit
-rarity=C
-type=Creature
-mana={RW}
-power=1
-subtype=Goblin Soldier
-toughness=1
-[/card]
-[card]
-text={1}, {T}: Add {R}{W} to your mana pool.
-id=95537
-name=Boros Signet
-rarity=C
-type=Artifact
-mana={2}
-[/card]
-[card]
-text=Double strike
-id=83588
-name=Boros Swiftblade
-rarity=U
-type=Creature
-mana={R}{W}
-power=1
-subtype=Human Soldier
-toughness=2
 [/card]
 [card]
 text=At the beginning of each opponent's upkeep, remove all cards in your hand from the game face down.     At the beginning of your upkeep, return all cards you own removed from the game with Bottled Cloister to your hand, then draw a card.
@@ -249,17 +178,6 @@ subtype=Zombie Wolf
 toughness=2
 [/card]
 [card]
-text=Defender (This creature can't attack.)  When Carven Caryatid comes into play, draw a card.
-id=89048
-name=Carven Caryatid
-rarity=U
-type=Creature
-mana={1}{G}{G}
-power=2
-subtype=Spirit
-toughness=5
-[/card]
-[card]
 text=({GW} can be paid with either {G} or {W}.)  When Centaur Safeguard is put into a graveyard from play, you may gain 3 life.
 id=87959
 name=Centaur Safeguard
@@ -288,14 +206,6 @@ name=Chant of Vitu-Ghazi
 rarity=U
 type=Instant
 mana={6}{W}{W}
-[/card]
-[card]
-text=Char deals 4 damage to target creature or player and 2 damage to you.
-id=87942
-name=Char
-rarity=R
-type=Instant
-mana={2}{R}
 [/card]
 [card]
 text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Search your library for a creature card with converted mana cost X or less and put it into play. Then shuffle your library.
@@ -345,15 +255,6 @@ name=Cleansing Beam
 rarity=U
 type=Instant
 mana={4}{R}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets -4/-1.
-id=83822
-name=Clinging Darkness
-rarity=C
-type=Enchantment
-mana={1}{B}
-subtype=Aura
 [/card]
 [card]
 text=Whenever a nonartifact permanent comes into play under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
@@ -454,25 +355,6 @@ type=Instant
 mana={2}{U}
 [/card]
 [card]
-text=As Copy Enchantment comes into play, you may choose an enchantment in play. If you do, Copy Enchantment comes into play as a copy of that enchantment.
-id=83807
-name=Copy Enchantment
-rarity=R
-type=Enchantment
-mana={2}{U}
-[/card]
-[card]
-text=Flying, vigilance
-id=87913
-name=Courier Hawk
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Bird
-toughness=2
-[/card]
-[card]
 text=Play with the top card of your library revealed.     As long as the top card of your library is a creature card, creatures you control that share a color with that card get +1/+1.     {G}{W}: Put the top card of your library on the bottom of your library.
 id=83903
 name=Crown of Convergence
@@ -498,14 +380,6 @@ mana={1}{B}
 power=2
 subtype=Human Wizard
 toughness=1
-[/card]
-[card]
-text=Sacrifice a Forest: You gain 3 life.
-id=89017
-name=Dark Heart of the Wood
-rarity=U
-type=Enchantment
-mana={B}{G}
 [/card]
 [card]
 text=Target creature gets -1/-1 until end of turn.     Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
@@ -594,31 +468,12 @@ type=Sorcery
 mana={2}{B}
 [/card]
 [card]
-text={1}, {T}: Add {U}{B} to your mana pool.
-id=95535
-name=Dimir Signet
-rarity=C
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=Destroy target creature with converted mana cost X.
 id=87917
 name=Disembowel
 rarity=C
 type=Instant
 mana={X}{B}
-[/card]
-[card]
-text=Flying     {T}, Sacrifice Divebomber Griffin: Divebomber Griffin deals 3 damage to target attacking or blocking creature.
-id=88975
-name=Divebomber Griffin
-rarity=U
-type=Creature
-mana={3}{W}{W}
-power=3
-subtype=Griffin
-toughness=2
 [/card]
 [card]
 text=Target creature gets -3/-0 until end of turn.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
@@ -645,17 +500,6 @@ type=Enchantment
 mana={4}{G}
 [/card]
 [card]
-text={2}{G}, {T}: Return target enchantment card from your graveyard to your hand.
-id=88968
-name=Dowsing Shaman
-rarity=U
-type=Creature
-mana={4}{G}
-power=3
-subtype=Centaur Shaman
-toughness=4
-[/card]
-[card]
 text=Flying     When Drake Familiar comes into play, sacrifice it unless you return an enchantment in play to its owner's hand.
 id=87960
 name=Drake Familiar
@@ -665,15 +509,6 @@ mana={1}{U}
 power=2
 subtype=Drake
 toughness=1
-[/card]
-[card]
-text=Enchant permanent     You may play Dream Leash only on a tapped permanent.     You control enchanted permanent.
-id=88945
-name=Dream Leash
-rarity=R
-type=Enchantment
-mana={3}{U}{U}
-subtype=Aura
 [/card]
 [card]
 text=Defender (This creature can't attack.)  Flying     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
@@ -715,43 +550,6 @@ name=Dryad's Caress
 rarity=C
 type=Instant
 mana={4}{G}{G}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {U}{B}, {T}: Target player puts the top card of his or her library into his or her graveyard.
-id=88943
-name=Duskmantle, House of Shadow
-rarity=U
-type=Land
-[/card]
-[card]
-text={T}: Add {B} to your mana pool. Elves of Deep Shadow deals 1 damage to you.
-id=83833
-name=Elves of Deep Shadow
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf Druid
-toughness=1
-[/card]
-[card]
-text={4}{G}, Sacrifice a creature: Destroy target creature with flying.
-id=87928
-name=Elvish Skysweeper
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf Warrior
-toughness=1
-[/card]
-[card]
-text=Each player returns all creature cards from his or her graveyard to his or her hand.
-id=89015
-name=Empty the Catacombs
-rarity=R
-type=Sorcery
-mana={3}{B}
 [/card]
 [card]
 text={U}, {T}: Target creature is unblockable this turn.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
@@ -828,15 +626,6 @@ subtype=Angel
 toughness=3
 [/card]
 [card]
-text=Enchant creature     When Fists of Ironwood comes into play, put two 1/1 green Saproling creature tokens into play.     Enchanted creature has trample.
-id=83672
-name=Fists of Ironwood
-rarity=C
-type=Enchantment
-mana={1}{G}
-subtype=Aura
-[/card]
-[card]
 text=Until end of turn, permanents you control gain &quot;{T}: This permanent deals 1 damage to target creature or player.&quot;
 id=83912
 name=Flame Fusillade
@@ -873,23 +662,6 @@ mana={1}{W}
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature     When Flight of Fancy comes into play, draw two cards.     Enchanted creature has flying.
-id=83677
-name=Flight of Fancy
-rarity=C
-type=Enchantment
-mana={3}{U}
-subtype=Aura
-[/card]
-[card]
-text=Draw a card for each Island you control.
-id=87978
-name=Flow of Ideas
-rarity=U
-type=Sorcery
-mana={5}{U}
-[/card]
-[card]
 text=Enchant creature     At the beginning of your upkeep, put a token into play that's a copy of enchanted creature.
 id=83699
 name=Followed Footsteps
@@ -897,38 +669,6 @@ rarity=R
 type=Enchantment
 mana={3}{U}{U}
 subtype=Aura
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=95098
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=95097
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=95106
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=95099
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
 text=Whenever Frenzied Goblin attacks, you may pay {R}. If you do, target creature can't block this turn.
@@ -940,15 +680,6 @@ mana={R}
 power=1
 subtype=Goblin Berserker
 toughness=1
-[/card]
-[card]
-text=Enchant creature     When Galvanic Arc comes into play, it deals 3 damage to target creature or player.     Enchanted creature has first strike.
-id=87968
-name=Galvanic Arc
-rarity=C
-type=Enchantment
-mana={2}{R}
-subtype=Aura
 [/card]
 [card]
 text=Creatures you control have vigilance as long as Gate Hound is enchanted.
@@ -997,17 +728,6 @@ type=Enchantment
 mana={2}{G}{W}
 [/card]
 [card]
-text=
-id=83719
-name=Glass Golem
-rarity=U
-type=Artifact Creature
-mana={5}
-power=6
-subtype=Golem
-toughness=2
-[/card]
-[card]
 text=({BG} can be paid with either {B} or {G}.)  Trample     At the end of your turn, return to your hand all creature cards in your graveyard that were put into your graveyard from play this turn.
 id=83702
 name=Gleancrawler
@@ -1019,14 +739,6 @@ subtype=Insect Horror
 toughness=6
 [/card]
 [card]
-text=Target player puts the top ten cards of his or her library into his or her graveyard.
-id=83597
-name=Glimpse the Unthinkable
-rarity=R
-type=Sorcery
-mana={U}{B}
-[/card]
-[card]
 text=Haste     Goblin Fire Fiend must be blocked if able.     {R}: Goblin Fire Fiend gets +1/+0 until end of turn.
 id=87965
 name=Goblin Fire Fiend
@@ -1036,17 +748,6 @@ mana={3}{R}
 power=1
 subtype=Goblin Berserker
 toughness=1
-[/card]
-[card]
-text=Mountainwalk
-id=83803
-name=Goblin Spelunkers
-rarity=C
-type=Creature
-mana={2}{R}
-power=2
-subtype=Goblin Warrior
-toughness=2
 [/card]
 [card]
 text=When Golgari Brownscale is put into your hand from your graveyard, you gain 2 life.     Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
@@ -1097,25 +798,6 @@ rarity=C
 type=Land
 [/card]
 [card]
-text={B}, Sacrifice a creature: Target player loses 1 life.
-id=89038
-name=Golgari Rotwurm
-rarity=C
-type=Creature
-mana={3}{B}{G}
-power=5
-subtype=Zombie Wurm
-toughness=4
-[/card]
-[card]
-text={1}, {T}: Add {B}{G} to your mana pool.
-id=95536
-name=Golgari Signet
-rarity=C
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=When Golgari Thug is put into a graveyard from play, put target creature card in your graveyard on top of your library.     Dredge 4 (If you would draw a card, instead you may put exactly four cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 id=88994
 name=Golgari Thug
@@ -1127,17 +809,6 @@ subtype=Human Warrior
 toughness=1
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)
-id=88959
-name=Goliath Spider
-rarity=U
-type=Creature
-mana={6}{G}{G}
-power=7
-subtype=Spider
-toughness=6
-[/card]
-[card]
 text={1}, Sacrifice Grave-Shell Scarab: Draw a card.     Dredge 1 (If you would draw a card, instead you may put exactly one card from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 id=89073
 name=Grave-Shell Scarab
@@ -1146,28 +817,6 @@ type=Creature
 mana={2}{B}{G}{G}
 power=4
 subtype=Insect
-toughness=4
-[/card]
-[card]
-text=Islandwalk
-id=87914
-name=Grayscaled Gharial
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Crocodile
-toughness=1
-[/card]
-[card]
-text={1}{R}: Greater Forgeling gets +3/-3 until end of turn.
-id=87934
-name=Greater Forgeling
-rarity=U
-type=Creature
-mana={3}{R}{R}
-power=3
-subtype=Elemental
 toughness=4
 [/card]
 [card]
@@ -1219,17 +868,6 @@ name=Halcyon Glaze
 rarity=U
 type=Enchantment
 mana={1}{U}{U}
-[/card]
-[card]
-text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
-id=83712
-name=Hammerfist Giant
-rarity=R
-type=Creature
-mana={4}{R}{R}
-power=5
-subtype=Giant Warrior
-toughness=4
 [/card]
 [card]
 text={B}{B}{B}, {T}: Destroy target land. If that land was nonbasic, untap Helldozer.
@@ -1361,49 +999,6 @@ mana={1}{R}
 subtype=Aura
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.
-id=95107
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=95100
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=95113
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=95103
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Target creature gains forestwalk until end of turn.
-id=87916
-name=Ivy Dancer
-rarity=U
-type=Creature
-mana={2}{G}
-power=1
-subtype=Dryad Shaman
-toughness=2
-[/card]
-[card]
 text=Defender (This creature can't attack.)  {T}: Put target card in a graveyard on the bottom of its owner's library.
 id=88977
 name=Junktroller
@@ -1424,14 +1019,6 @@ mana={2}{B}{B}
 power=2
 subtype=Spirit
 toughness=2
-[/card]
-[card]
-text=Target creature gets -3/-3 until end of turn.
-id=89056
-name=Last Gasp
-rarity=C
-type=Instant
-mana={1}{B}
 [/card]
 [card]
 text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
@@ -1467,14 +1054,6 @@ name=Light of Sanction
 rarity=R
 type=Enchantment
 mana={1}{W}{W}
-[/card]
-[card]
-text=Lightning Helix deals 3 damage to target creature or player and you gain 3 life.
-id=87908
-name=Lightning Helix
-rarity=U
-type=Instant
-mana={R}{W}
 [/card]
 [card]
 text={T}: Each player draws a card, then discards a card.
@@ -1604,17 +1183,6 @@ type=Instant
 mana={3}{B}{B}
 [/card]
 [card]
-text=Flying     At the beginning of your upkeep, you lose 1 life.
-id=83631
-name=Moroii
-rarity=U
-type=Creature
-mana={2}{U}{B}
-power=4
-subtype=Vampire
-toughness=4
-[/card]
-[card]
 text={2}{G}: All creatures able to block Mortipede this turn do so.
 id=87955
 name=Mortipede
@@ -1697,17 +1265,6 @@ subtype=Horror
 toughness=4
 [/card]
 [card]
-text=First strike, vigilance
-id=87975
-name=Nightguard Patrol
-rarity=C
-type=Creature
-mana={2}{W}
-power=2
-subtype=Human Soldier
-toughness=1
-[/card]
-[card]
 text=Target player reveals his or her hand. You choose a card from it. That player discards that card.     Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 id=89062
 name=Nightmare Void
@@ -1736,17 +1293,6 @@ mana={9}
 power=4
 subtype=Gargoyle
 toughness=5
-[/card]
-[card]
-text=Vigilance     Other creatures you control get +0/+2 and have vigilance.
-id=89012
-name=Oathsworn Giant
-rarity=U
-type=Creature
-mana={4}{W}{W}
-power=3
-subtype=Giant Soldier
-toughness=4
 [/card]
 [card]
 text={W}: Prevent the next 1 damage that would be dealt to Ordruun Commando this turn.
@@ -1837,38 +1383,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text={T}: Add {W} to your mana pool.
-id=95112
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=95108
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=95115
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=95105
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
 text=Enchant creature     Enchanted creature has flying.     Whenever enchanted creature deals combat damage to a player, put that many 1/1 green Saproling creature tokens into play.
 id=89011
 name=Pollenbright Wings
@@ -1897,36 +1411,12 @@ type=Enchantment
 mana={2}{GW}{GW}{GW}
 [/card]
 [card]
-text=Target player puts the top X cards of his or her library into his or her graveyard and you gain X life.
-id=89114
-name=Psychic Drain
-rarity=U
-type=Sorcery
-mana={X}{U}{B}
-[/card]
-[card]
-text=Destroy target artifact or creature. It can't be regenerated.
-id=89063
-name=Putrefy
-rarity=U
-type=Instant
-mana={1}{B}{G}
-[/card]
-[card]
 text=Target creature becomes the color or colors of your choice until end of turn.     Draw a card.
 id=87979
 name=Quickchange
 rarity=C
 type=Instant
 mana={1}{U}
-[/card]
-[card]
-text=Rain of Embers deals 1 damage to each creature and each player.
-id=87943
-name=Rain of Embers
-rarity=C
-type=Sorcery
-mana={1}{R}
 [/card]
 [card]
 text=Radiance - Untap target creature and each other creature that shares a color with it. Those creatures get +2/+0 until end of turn.
@@ -1954,14 +1444,6 @@ name=Razia's Purification
 rarity=R
 type=Sorcery
 mana={4}{R}{W}
-[/card]
-[card]
-text=Return target card from your graveyard to your hand.
-id=88966
-name=Recollect
-rarity=U
-type=Sorcery
-mana={2}{G}
 [/card]
 [card]
 text=Counter target spell. If that spell is countered this way, put it into its owner's hand instead of into that player's graveyard.     Draw a card.
@@ -1994,17 +1476,6 @@ name=Rolling Spoil
 rarity=U
 type=Sorcery
 mana={2}{G}{G}
-[/card]
-[card]
-text={1}{U}: Roofstalker Wight gains flying until end of turn.
-id=87945
-name=Roofstalker Wight
-rarity=C
-type=Creature
-mana={1}{B}
-power=2
-subtype=Zombie
-toughness=1
 [/card]
 [card]
 text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Tap two untapped creatures you control: Root-Kin Ally gets +2/+2 until end of turn.
@@ -2078,17 +1549,6 @@ type=Instant
 mana={3}{G}{G}
 [/card]
 [card]
-text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
-id=83647
-name=Scion of the Wild
-rarity=R
-type=Creature
-mana={1}{G}{G}
-power=*
-subtype=Avatar
-toughness=*
-[/card]
-[card]
 text=Flying     {R}: Target creature can't block Screeching Griffin this turn.
 id=87907
 name=Screeching Griffin
@@ -2124,14 +1584,6 @@ type=Instant
 mana={G}{W}
 [/card]
 [card]
-text=Destroy target land. Add {R}{R} to your mana pool.
-id=83829
-name=Seismic Spike
-rarity=C
-type=Sorcery
-mana={2}{R}{R}
-[/card]
-[card]
 text={1}, {T}, Tap an untapped creature you control: Put a 1/1 green Saproling creature token into play.
 id=87936
 name=Selesnya Evangel
@@ -2140,17 +1592,6 @@ type=Creature
 mana={G}{W}
 power=1
 subtype=Elf Shaman
-toughness=2
-[/card]
-[card]
-text=({GW} can be paid with either {G} or {W}.)  {3}{G}: Put a 1/1 green Saproling creature token into play.     {3}{W}: Creatures you control get +1/+1 until end of turn.
-id=87988
-name=Selesnya Guildmage
-rarity=U
-type=Creature
-mana={GW}{GW}
-power=2
-subtype=Elf Wizard
 toughness=2
 [/card]
 [card]
@@ -2172,14 +1613,6 @@ rarity=C
 type=Land
 [/card]
 [card]
-text={1}, {T}: Add {G}{W} to your mana pool.
-id=95538
-name=Selesnya Signet
-rarity=C
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=When Sell-Sword Brute is put into a graveyard from play, it deals 2 damage to you.
 id=87909
 name=Sell-Sword Brute
@@ -2189,17 +1622,6 @@ mana={1}{R}
 power=2
 subtype=Human Mercenary
 toughness=2
-[/card]
-[card]
-text=Swampwalk     Sacrifice Sewerdreg: Remove target card in a graveyard from the game.
-id=88995
-name=Sewerdreg
-rarity=C
-type=Creature
-mana={3}{B}{B}
-power=3
-subtype=Spirit
-toughness=3
 [/card]
 [card]
 text=({UB} can be paid with either {U} or {B}.)  Players can't search libraries this turn.     Draw a card.
@@ -2257,47 +1679,6 @@ mana={4}{B}{B}{G}{G}
 power=7
 subtype=Gorgon
 toughness=5
-[/card]
-[card]
-text=Flying, haste
-id=109082
-name=Skyknight Legionnaire
-rarity=C
-type=Creature
-mana={1}{R}{W}
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
-text=Destroy target artifact.     Draw a card.
-id=83646
-name=Smash
-rarity=C
-type=Instant
-mana={2}{R}
-[/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-id=87986
-name=Snapping Drake
-rarity=C
-type=Creature
-mana={3}{U}
-power=3
-subtype=Drake
-toughness=2
-[/card]
-[card]
-text=When Sparkmage Apprentice comes into play, it deals 1 damage to target creature or player.
-id=87967
-name=Sparkmage Apprentice
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Human Wizard
-toughness=1
 [/card]
 [card]
 text=When Spawnbroker comes into play, you may exchange control of target creature you control and target creature with power less than or equal to that creature's power an opponent controls.
@@ -2398,13 +1779,6 @@ subtype=Giant Soldier
 toughness=4
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {2}{R}{W}, {T}: Target creature gains double strike until end of turn.
-id=83794
-name=Sunhome, Fortress of the Legion
-rarity=U
-type=Land
-[/card]
-[card]
 text=Activated abilities cost {2} more to play unless they're mana abilities.
 id=83617
 name=Suppression Field
@@ -2439,38 +1813,6 @@ rarity=U
 type=Land
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.
-id=95111
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=95114
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=95101
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=95110
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
 text=Flying     If Szadek, Lord of Secrets would deal combat damage to a player, instead put that many +1/+1 counters on Szadek and that player puts that many cards from the top of his or her library into his or her graveyard.
 id=89092
 name=Szadek, Lord of Secrets
@@ -2480,17 +1822,6 @@ mana={3}{U}{U}{B}{B}
 power=5
 subtype=Vampire
 toughness=5
-[/card]
-[card]
-text=Flying     {B}: Regenerate Tattered Drake.
-id=87930
-name=Tattered Drake
-rarity=C
-type=Creature
-mana={4}{U}
-power=2
-subtype=Zombie Drake
-toughness=2
 [/card]
 [card]
 text=Look at the top three cards of your library. Put one of those cards into your hand, one on top of your library, and one on the bottom of your library.
@@ -2558,28 +1889,6 @@ subtype=Human Soldier
 toughness=1
 [/card]
 [card]
-text=Defender (This creature can't attack.)  {4}: Tidewater Minion loses defender until end of turn.     {T}: Untap target permanent.
-id=83679
-name=Tidewater Minion
-rarity=C
-type=Creature
-mana={3}{U}{U}
-power=4
-subtype=Elemental Minion
-toughness=4
-[/card]
-[card]
-text=Other green creatures you control get +1/+1.     Other white creatures you control get +1/+1.     {T}: Put a legendary 2/2 green and white Wolf creature token named Voja into play.
-id=89110
-name=Tolsimir Wolfblood
-rarity=R
-type=Legendary Creature
-mana={4}{G}{W}
-power=3
-subtype=Elf Warrior
-toughness=4
-[/card]
-[card]
 text=Defender (This creature can't attack.)  Sacrifice three lands: Torpid Moloch loses defender until end of turn.
 id=89004
 name=Torpid Moloch
@@ -2588,17 +1897,6 @@ type=Creature
 mana={R}
 power=3
 subtype=Lizard
-toughness=2
-[/card]
-[card]
-text={W}, Sacrifice Transluminant: Put a 1/1 white Spirit creature token with flying into play at end of turn.
-id=87946
-name=Transluminant
-rarity=C
-type=Creature
-mana={1}{G}
-power=2
-subtype=Dryad Shaman
 toughness=2
 [/card]
 [card]
@@ -2640,28 +1938,6 @@ type=Sorcery
 mana={4}{U}{B}
 [/card]
 [card]
-text=Fear     {B}: Undercity Shade gets +1/+1 until end of turn.
-id=88951
-name=Undercity Shade
-rarity=U
-type=Creature
-mana={4}{B}
-power=1
-subtype=Shade
-toughness=1
-[/card]
-[card]
-text={G}: Target creature gets +1/+1 until end of turn.
-id=88979
-name=Ursapine
-rarity=R
-type=Creature
-mana={3}{G}{G}
-power=3
-subtype=Beast
-toughness=3
-[/card]
-[card]
 text=When Vedalken Dismisser comes into play, put target creature on top of its owner's library.
 id=87898
 name=Vedalken Dismisser
@@ -2670,50 +1946,6 @@ type=Creature
 mana={5}{U}
 power=2
 subtype=Vedalken Wizard
-toughness=2
-[/card]
-[card]
-text={U}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
-id=89028
-name=Vedalken Entrancer
-rarity=C
-type=Creature
-mana={3}{U}
-power=1
-subtype=Vedalken Wizard
-toughness=4
-[/card]
-[card]
-text=Other creatures you control get +0/+1.
-id=87950
-name=Veteran Armorer
-rarity=C
-type=Creature
-mana={1}{W}
-power=2
-subtype=Human Soldier
-toughness=2
-[/card]
-[card]
-text={T}: Viashino Fangtail deals 1 damage to target creature or player.
-id=87974
-name=Viashino Fangtail
-rarity=C
-type=Creature
-mana={2}{R}{R}
-power=3
-subtype=Viashino Warrior
-toughness=3
-[/card]
-[card]
-text={R}: Viashino Slasher gets +1/-1 until end of turn.
-id=83605
-name=Viashino Slasher
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Viashino Warrior
 toughness=2
 [/card]
 [card]
@@ -2747,24 +1979,6 @@ subtype=Plant
 toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {2}{G}{W}, {T}: Put a 1/1 green Saproling creature token into play.
-id=89016
-name=Vitu-Ghazi, the City-Tree
-rarity=U
-type=Land
-[/card]
-[card]
-text={2}{G}: Regenerate Votary of the Conclave.
-id=87948
-name=Votary of the Conclave
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Human Soldier
-toughness=1
-[/card]
-[card]
 text={2}, Sacrifice Voyager Staff: Remove target creature from the game. Return the removed card to play under its owner's control at end of turn.
 id=88991
 name=Voyager Staff
@@ -2790,28 +2004,6 @@ name=Warp World
 rarity=R
 type=Sorcery
 mana={5}{R}{R}{R}
-[/card]
-[card]
-text={R}, Sacrifice War-Torch Goblin: War-Torch Goblin deals 2 damage to target blocking creature.
-id=87971
-name=War-Torch Goblin
-rarity=C
-type=Creature
-mana={R}
-power=1
-subtype=Goblin Warrior
-toughness=1
-[/card]
-[card]
-text=
-id=83625
-name=Watchwolf
-rarity=U
-type=Creature
-mana={G}{W}
-power=3
-subtype=Wolf
-toughness=3
 [/card]
 [card]
 text=({T}: Add {U} or {B} to your mana pool.)  As Watery Grave comes into play, you may pay 2 life. If you don't, Watery Grave comes into play tapped.

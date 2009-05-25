@@ -1843,6 +1843,26 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
+// --- addon Ravnica---
+    case 87978: // Flow of Ideas
+		{
+		int nbcards = card->controller()->game->inPlay->countByType("Island");
+	    game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);
+      break;
+    }
+  
+	case 89114:	//Psychic Drain
+    {
+	Player * player = spell->getNextPlayerTarget();
+	MTGLibrary * library = player->game->library;
+	int x = spell->cost->getConvertedCost() - 2;
+	for (int i = 0; i < x; i++){
+				if (library->nb_cards)
+				player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
+	}
+	game->currentlyActing()->life+= x;
+      break;
+    }
 
   default:
     break;

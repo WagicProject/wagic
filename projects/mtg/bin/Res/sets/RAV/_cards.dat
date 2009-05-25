@@ -18,8 +18,7 @@ id=83688
 name=Birds of Paradise
 color=Green
 rarity=R
-mana={G}
-type=Creature
+mana={G}type=Creature
 subtype=Bird
 power=0
 toughness=1
@@ -31,8 +30,7 @@ id=83754
 name=Blazing Archon
 color=White
 rarity=R
-mana={6}{W}{W}{W}
-type=Creature
+mana={6}{W}{W}{W}type=Creature
 subtype=Archon
 auto=lord(creature|opponentinplay) defender
 power=5
@@ -40,7 +38,7 @@ toughness=6
 abilities=Flying
 [/card]
 [card]
-text={1}{R}: Target creature gains haste until end of turn.     {1}{W}: Target creature gains first strike until end of turn.
+text=({RW} can be paid with either {R} or {W}.) {1}{R}: Target creature gains haste until end of turn.     {1}{W}: Target creature gains first strike until end of turn.
 id=87918
 name=Boros Guildmage
 color=Red,White
@@ -54,7 +52,7 @@ power=2
 toughness=2
 [/card]
 [card]
-text=First Strike
+text=({RW} can be paid with either {R} or {W}.)  First strike
 id=88992
 name=Boros Recruit
 color=Red,White
@@ -90,7 +88,7 @@ toughness=2
 abilities=double strike
 [/card]
 [card]
-text=Defender    When Carven Caryatid comes into play, draw a card.
+text=Defender (This creature can't attack.)  When Carven Caryatid comes into play, draw a card.
 id=89048
 auto=draw:1
 name=Carven Caryatid
@@ -210,6 +208,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {U}{B}, {T}: Target player puts the top card of his or her library into his or her graveyard.
+auto={T}:add{1}
+auto={U}{B}{T}:deplete:1 target(player)
+id=88943
+name=Duskmantle, House of Shadow
+rarity=U
+type=Land
+[/card]
+[card]
 text={T}: Add {B} to your mana pool. Elves of Deep Shadow deals 1 damage to you.
 id=83833
 name=Elves of Deep Shadow
@@ -221,6 +228,15 @@ subtype=Elf Druid
 auto={T}:Add {B} && Damage 1 controller
 power=1
 toughness=1
+[/card]
+[card]
+text=Each player returns all creature cards from his or her graveyard to his or her hand.
+id=89015
+name=Empty the Catacombs
+auto=moveto(ownerhand) all(creature|graveyard)
+rarity=R
+type=Sorcery
+mana={3}{B}
 [/card]
 [card]
 text={4}{G}, Sacrifice a creature: Destroy target creature with flying.
@@ -248,7 +264,6 @@ mana={1}{G}
 type=Enchantment
 subtype=Aura
 [/card]
-
 [card]
 text=Enchant creature    When Flight of Fancy comes into play, draw two cards.      Enchanted creature has flying.
 target=creature
@@ -262,7 +277,14 @@ mana={3}{U}
 type=Enchantment
 subtype=Aura
 [/card]
-
+[card]
+text=Draw a card for each Island you control.
+id=87978
+name=Flow of Ideas
+rarity=U
+type=Sorcery
+mana={5}{U}
+[/card]
 [card]
 text={T}: Add {G} to your mana pool.
 auto={T}:Add {G}
@@ -312,7 +334,6 @@ mana={2}{R}
 type=Enchantment
 subtype=Aura
 [/card]
-
 [card]
 id=83719
 name=Glass Golem
@@ -323,6 +344,16 @@ type=Artifact Creature
 subtype=Golem
 power=6
 toughness=2
+[/card]
+[card]
+text=Target player puts the top ten cards of his or her library into his or her graveyard.
+id=83597
+target=player
+auto=deplete:10
+name=Glimpse the Unthinkable
+rarity=R
+type=Sorcery
+mana={U}{B}
 [/card]
 [card]
 text=Mountainwalk
@@ -336,6 +367,18 @@ subtype=Goblin warrior
 power=2
 toughness=2
 abilities=mountainwalk
+[/card]
+[card]
+text={B}, Sacrifice a creature: Target player loses 1 life.
+id=89038
+auto={B}{S(creature|myinplay):damage:1 target(player)
+name=Golgari Rotwurm
+rarity=C
+type=Creature
+mana={3}{B}{G}
+power=5
+subtype=Zombie Wurm
+toughness=4
 [/card]
 [card]
 text={1}, {T}: Add {B}{G} to your mana pool.
@@ -384,6 +427,18 @@ type=Creature
 subtype=Elemental
 auto={1}{R}:3/-3
 power=3
+toughness=4
+[/card]
+[card]
+text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
+id=83712
+auto={T}:damage:4 all(creature[-flying],player)
+name=Hammerfist Giant
+rarity=R
+type=Creature
+mana={4}{R}{R}
+power=5
+subtype=Giant Warrior
 toughness=4
 [/card]
 [card]
@@ -588,6 +643,15 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text=Target player puts the top X cards of his or her library into his or her graveyard and you gain X life.
+id=89114
+target=player
+name=Psychic Drain
+rarity=U
+type=Sorcery
+mana={X}{U}{B}
+[/card]
+[card]
 text=Destroy target artifact or creature. It can't be regenerated.
 target=creature,artifact
 auto=bury
@@ -599,9 +663,17 @@ mana={1}{B}{G}
 type=Instant
 [/card]
 [card]
+text=Rain of Embers deals 1 damage to each creature and each player.
+id=87943
+auto=damage:1 all(creature,player)
+name=Rain of Embers
+rarity=C
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
 text=Return target card from your graveyard to your hand.
-target=*|myGraveyard
-alias=1263
+auto=moveto(myHand) target(*|myGraveyard)
 id=88966
 name=Recollect
 color=Green
@@ -646,6 +718,19 @@ color=Red
 rarity=C
 mana={2}{R}{R}
 type=Sorcery
+[/card]
+[card]
+text=({GW} can be paid with either {G} or {W}.)  {3}{G}: Put a 1/1 green Saproling creature token into play.     {3}{W}: Creatures you control get +1/+1 until end of turn.
+id=87988
+auto={3}{G}:token (saproling,creature saproling token,1/1,green)
+auto={3}{W}:lord (creature|myinplay) 1/1
+name=Selesnya Guildmage
+rarity=U
+type=Creature
+mana={GW}{GW}
+power=2
+subtype=Elf Wizard
+toughness=2
 [/card]
 [card]
 text={1}, {T}: Add {G}{W} to your mana pool.
@@ -722,6 +807,15 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {2}{R}{W}, {T}: Target creature gains double strike until end of turn.
+id=83794
+auto={T}:add {1}
+auto={2}{R}{W}{T}:double strike target(creature)
+name=Sunhome, Fortress of the Legion
+rarity=U
+type=Land
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -846,6 +940,18 @@ subtype=Beast
 auto={G}:1/1 target(creature)
 power=3
 toughness=3
+[/card]
+[card]
+text={U}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
+id=89028
+auto={U}{T}:deplete:2 target(player)
+name=Vedalken Entrancer
+rarity=C
+type=Creature
+mana={3}{U}
+power=1
+subtype=Vedalken Wizard
+toughness=4
 [/card]
 [card]
 text=Other creatures you control get +0/+1.
