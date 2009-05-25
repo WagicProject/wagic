@@ -49,19 +49,6 @@ power=1
 toughness=5
 [/card]
 [card]
-text=Double strike
-id=179585
-name=Marisi's Twinclaws
-color=White,Red,Green
-rarity=U
-mana={2}{RW}{G}
-type=Creature
-subtype=Cat warrior
-power=2
-toughness=4
-abilities=double strike
-[/card]
-[card]
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
 id=177922
 name=Lord of Extinction 
@@ -99,6 +86,19 @@ rarity=C
 mana={U}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Double strike
+id=179585
+name=Marisi's Twinclaws
+color=White,Red,Green
+rarity=U
+mana={2}{RW}{G}
+type=Creature
+subtype=Cat warrior
+power=2
+toughness=4
+abilities=double strike
 [/card]
 [card]
 text=Flying     When Messenger Falcons comes into play, draw a card.
@@ -153,6 +153,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+id=179623
+name=Sanity Gnawers
+mana={1}{B}{R}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+text=When Sanity Gnawers comes into play, target player discards a card at random.
+auto=discard:1 target(player)
+rarity=U
+[/card]
+[card]
 text=Flying, haste
 id=179594
 name=Sewn-Eye Drake
@@ -181,7 +193,7 @@ abilities=exalted
 [card]
 text=Flying, first strike, vigilance, lifelink, protection from red and from green
 id=189641
-name=Sphinx of the Steelhead
+name=Sphinx of the Steel Wind
 color=White,Blue,Black
 rarity=M
 mana={5}{W}{U}{B}
@@ -250,4 +262,14 @@ subtype=Illusion Wall
 power=0
 toughness=8
 abilities=Defender, flying, shroud
+[/card]
+[card]
+id=179575
+name=Zealous Persecution
+mana={W}{B}
+type=Instant
+text=Until end of turn, creatures you control get +1/+1 and creatures your opponents control get -1/-1.
+auto=lord(creature|myinplay) 1/1
+auto=lord(creature|opponentinplay) -1/-1
+rarity=U
 [/card]
