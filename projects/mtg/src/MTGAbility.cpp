@@ -1824,7 +1824,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       card->target->controller()->game->putInGraveyard(card->target);
       int x = card->target->getManaCost()->getConvertedCost();
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling token","creature",1,1,"green",0);
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling token",1,1,"green",0);
           for (int i=0; i < x; i++){
             tok->resolve();
           }   
@@ -1836,7 +1836,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     case 139676: // Elvish Promenade
 		{
 		int x = card->controller()->game->inPlay->countByType("Elf");
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Elf Warrior token","creature",1,1,"green",0);
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Elf Warrior","creature Elf Warrior token",1,1,"green",0);
           for (int i=0; i < x-1; i++){
             tok->resolve();
           }

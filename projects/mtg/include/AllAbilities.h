@@ -3247,14 +3247,6 @@ class ABasilik:public MTGAbility{
       }
     }
   }
-
-  int testDestroy(){
-    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
-      return 0;
-    }else{
-      return MTGAbility::testDestroy();
-    }
-  }
   
   virtual ostream& toString(ostream& out) const
   {
