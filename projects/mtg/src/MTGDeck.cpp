@@ -341,6 +341,7 @@ MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * 
   if(file){
     while(std::getline(file,s)){
       if (!s.size()) continue;
+      if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
       if (s[0] == '#'){
         size_t found = s.find("NAME:");
         if ( found != string::npos){
