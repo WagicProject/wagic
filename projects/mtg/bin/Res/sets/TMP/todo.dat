@@ -106,7 +106,6 @@ power=3
 subtype=Spirit
 toughness=3
 [/card]
-
 [card]
 text=Play Blood Frenzy only before the combat damage step.     Target attacking or blocking creature gets +4/+0 until end of turn. Destroy that creature at end of turn.
 id=4804
@@ -115,8 +114,6 @@ rarity=C
 type=Instant
 mana={1}{R}
 [/card]
-
-
 [card]
 text=As Booby Trap comes into play, name a card other than a basic land card and choose an opponent.     The chosen player reveals each card he or she draws.     When the chosen player draws the named card, sacrifice Booby Trap. If you do, Booby Trap deals 10 damage to that player.
 id=4597
@@ -125,7 +122,6 @@ rarity=R
 type=Artifact
 mana={6}
 [/card]
-
 [card]
 text={T}: Put a bounty counter on target nonblack creature.     {T}: Destroy target creature with a bounty counter on it.
 id=4638
@@ -145,8 +141,6 @@ rarity=C
 type=Enchantment
 mana={2}{G}
 [/card]
-
-
 [card]
 text=Flying     {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
 id=4806
@@ -158,7 +152,6 @@ power=1
 subtype=Drake
 toughness=2
 [/card]
-
 [card]
 text=Buyback {3} (You may pay an additional {3} as you play this spell. If you do, put this card into your hand as it resolves.)  Return target permanent to its owner's hand.
 id=4691
@@ -234,8 +227,6 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-
-
 [card]
 text=Target opponent reveals his or her hand. Choose a card from it. That player discards that card.
 id=4641
@@ -255,7 +246,6 @@ power=1
 subtype=Zombie Wizard
 toughness=1
 [/card]
-
 [card]
 text={3}: Remove target creature you control from the game.     Sacrifice Cold Storage: Return each creature card removed from the game with Cold Storage to play under its owner's control.
 id=4600
@@ -264,7 +254,6 @@ rarity=R
 type=Artifact
 mana={4}
 [/card]
-
 [card]
 text=Buyback {2} (You may pay an additional {2} as you play this spell. If you do, put this card into your hand as it resolves.)  Return the top creature card from your graveyard to play. That creature gains haste until end of turn. Remove the creature from the game at end of turn.
 id=4644
@@ -273,7 +262,6 @@ rarity=R
 type=Instant
 mana={2}{B}
 [/card]
-
 [card]
 text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at end of turn. Play this ability only once each turn.
 id=4754
@@ -285,7 +273,6 @@ power=3
 subtype=Elephant
 toughness=3
 [/card]
-
 [card]
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Cursed Scroll deals 2 damage to target creature or player.
 id=4601
@@ -294,10 +281,6 @@ rarity=R
 type=Artifact
 mana={1}
 [/card]
-
-
-
-
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever a creature with shadow is put into a graveyard from play, put a +1/+1 counter on Dauthi Ghoul.
 id=4649
@@ -320,8 +303,6 @@ power=2
 subtype=Dauthi Horror
 toughness=1
 [/card]
-
-
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever Dauthi Mindripper attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
 id=4653
@@ -368,8 +349,6 @@ power=3
 subtype=Wurm
 toughness=4
 [/card]
-
-
 [card]
 text=Buyback {3} (You may pay an additional {3} as you play this spell. If you do, put this card into your hand as it resolves.)  Return target creature card from your graveyard to your hand.
 id=4657
@@ -389,7 +368,6 @@ power=0
 subtype=Shapeshifter
 toughness=0
 [/card]
-
 [card]
 text=Draw three cards, then put two cards from your hand both on top of your library or both on the bottom of your library.
 id=4696
@@ -504,7 +482,6 @@ power=2
 subtype=Juggernaut
 toughness=2
 [/card]
-
 [card]
 text={R}, {T}: Enraging Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {R} to end this effect.     Enchanted creature has haste.
 id=4811
@@ -575,7 +552,6 @@ rarity=R
 type=Sorcery
 mana={4}{B}
 [/card]
-
 [card]
 text=Whenever a nontoken creature is put into your graveyard from play, put a 1/1 white Spirit creature token with flying into play.
 id=4874
@@ -584,7 +560,6 @@ rarity=R
 type=Enchantment
 mana={2}{W}{W}
 [/card]
-
 [card]
 text={T}: Fireslinger deals 1 damage to target creature or player and 1 damage to you.
 id=4814
@@ -616,7 +591,6 @@ type=Enchantment
 mana={W}
 subtype=Aura
 [/card]
-
 [card]
 text={R}: Flowstone Salamander deals 1 damage to target creature blocking it.
 id=4817
@@ -639,7 +613,6 @@ power=4
 subtype=Shapeshifter
 toughness=4
 [/card]
-
 [card]
 text={2}, {T}: Draw a card. Play this ability only if you have no cards in hand.
 id=4609
@@ -648,11 +621,6 @@ rarity=R
 type=Artifact
 mana={4}
 [/card]
-
-
-
-
-
 [card]
 text=Whenever Fugitive Druid becomes the target of an Aura spell, you draw a card.
 id=4763
@@ -683,7 +651,6 @@ power=1
 subtype=Squid Beast
 toughness=3
 [/card]
-
 [card]
 text=Enchant creature     Prevent all combat damage that would be dealt to and dealt by enchanted creature.
 id=4702
@@ -708,10 +675,6 @@ name=Ghost Town
 rarity=U
 type=Land
 [/card]
-
-
-
-
 [card]
 text={3}, {T}: Put the top two cards of target player's library into that player's graveyard. If both cards share a color, repeat this process.
 id=4610
@@ -728,7 +691,6 @@ rarity=R
 type=Enchantment
 mana={2}{R}
 [/card]
-
 [card]
 text=As an additional cost to play Harrow, sacrifice a land.       Search your library for up to two basic land cards and put them into play. Then shuffle your library.
 id=4764
@@ -745,10 +707,6 @@ rarity=U
 type=Enchantment
 mana={1}{R}
 [/card]
-
-
-
-
 [card]
 text=You may choose not to untap Helm of Possession during your untap step.     {2}, {T}, Sacrifice a creature: Gain control of target creature as long as you control Helm of Possession and Helm of Possession remains tapped.
 id=4611
@@ -757,9 +715,6 @@ rarity=R
 type=Artifact
 mana={4}
 [/card]
-
-
-
 [card]
 text=All creatures lose all abilities and are 1/1.
 id=4881
@@ -808,10 +763,6 @@ rarity=U
 type=Instant
 mana={1}{W}
 [/card]
-
-
-
-
 [card]
 text=Whenever Jackal Pup is dealt damage, it deals that much damage to you.
 id=4825
@@ -858,7 +809,6 @@ rarity=C
 type=Instant
 mana={1}{R}
 [/card]
-
 [card]
 text={B}{B}: Destroy target creature blocking Knight of Dusk.
 id=4668
@@ -924,8 +874,6 @@ rarity=U
 type=Sorcery
 mana={2}{U}{B}
 [/card]
-
-
 [card]
 text=Flying      {T}: Each non-Wall creature the active player controls attacks this turn if able. At end of turn, destroy each of those creatures that didn't attack this turn. Play this ability only during an opponent's turn, before attackers are declared.
 id=4672
@@ -964,8 +912,6 @@ rarity=R
 type=Sorcery
 mana={1}{U}
 [/card]
-
-
 [card]
 text=Creatures with power 3 or greater don't untap during their controllers' untap steps.
 id=4886
@@ -977,9 +923,6 @@ power=3
 subtype=Giant
 toughness=3
 [/card]
-
-
-
 [card]
 text={T}: Add {1} to your mana pool.       {T}: Untap target attacking creature with shadow. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 id=4933
@@ -995,7 +938,6 @@ rarity=R
 type=Instant
 mana={2}{U}
 [/card]
-
 [card]
 text=All Slivers have "{2}, Sacrifice this permanent: Target player discards a card at random. Play this ability only any time you could play a sorcery."
 id=4674
@@ -1057,7 +999,6 @@ power=2
 subtype=Goblin
 toughness=2
 [/card]
-
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Mogg Hollows doesn't untap during your next untap step.
 id=4934
@@ -1065,8 +1006,6 @@ name=Mogg Hollows
 rarity=U
 type=Land
 [/card]
-
-
 [card]
 text=When Mongrel Pack is put into a graveyard from play during combat, put four 1/1 green Hound creature tokens into play.
 id=4771
@@ -1078,10 +1017,6 @@ power=4
 subtype=Hound
 toughness=1
 [/card]
-
-
-
-
 [card]
 text=Reach (This creature can block creatures with flying.)  {W}: Mounted Archers can block an additional creature this turn.
 id=4888
@@ -1093,8 +1028,6 @@ power=2
 subtype=Human Soldier Archer
 toughness=3
 [/card]
-
-
 [card]
 text=All lands are 2/2 creatures that are still lands.
 id=4774
@@ -1102,14 +1035,6 @@ name=Nature's Revolt
 rarity=R
 type=Enchantment
 mana={3}{G}{G}
-[/card]
-[card]
-text=Needle Storm deals 4 damage to each creature with flying.
-id=4775
-name=Needle Storm
-rarity=U
-type=Sorcery
-mana={2}{G}
 [/card]
 [card]
 text=Whenever a creature becomes blocked by a creature with lesser power, destroy the blocking creature.       Whenever a creature blocks a creature with lesser power, destroy the attacking creature.
@@ -1172,16 +1097,6 @@ type=Enchantment
 mana={1}{W}{W}
 [/card]
 [card]
-text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-id=4777
-name=Overrun
-rarity=U
-type=Sorcery
-mana={2}{G}{G}{G}
-[/card]
-
-
-[card]
 text=White spells you play cost {1} less to play.
 id=4620
 name=Pearl Medallion
@@ -1189,8 +1104,6 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-
-
 [card]
 text={4}, {T}: Target opponent chooses one of the top two cards in your graveyard. Remove that card from the game and put the other one into your hand.
 id=4621
@@ -1199,7 +1112,6 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
 [card]
 text={2}, {T}: Choose one - flying; first strike; shadow; or trample. Target creature with that ability loses it until end of turn and another target creature gains it until end of turn.
 id=4623
@@ -1208,13 +1120,6 @@ rarity=U
 type=Artifact
 mana={2}
 [/card]
-
-
-
-
-
-
-
 [card]
 text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands he or she controls and empties his or her mana pool.
 id=4716
@@ -1425,8 +1330,6 @@ rarity=R
 type=Enchantment
 mana={3}{W}{W}
 [/card]
-
-
 [card]
 text=Blue spells you play cost {1} less to play.
 id=4626
@@ -1443,7 +1346,6 @@ rarity=R
 type=Enchantment
 mana={B}
 [/card]
-
 [card]
 text=At the beginning of your upkeep, if you have three or fewer cards in hand, Scalding Tongs deals 1 damage to target opponent.
 id=4627
@@ -1471,7 +1373,6 @@ power=3
 subtype=Beast
 toughness=4
 [/card]
-
 [card]
 text={1}, {T}: Remove any number of cards in your hand from the game face down. Put that many cards from the top of your library into your hand. Then look at the removed cards and put them on top of your library in any order.
 id=4628
@@ -1480,7 +1381,6 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-
 [card]
 text=Buyback {4} (You may pay an additional {4} as you play this spell. If you do, put this card into your hand as it resolves.)  Searing Touch deals 1 damage to target creature or player.
 id=4843
@@ -1489,7 +1389,6 @@ rarity=U
 type=Instant
 mana={R}
 [/card]
-
 [card]
 text=Whenever Segmented Wurm becomes the target of a spell or ability, put a -1/-1 counter on it.
 id=4915
@@ -1523,17 +1422,6 @@ power=3
 subtype=Minion
 toughness=3
 [/card]
-
-[card]
-text=Shadowstorm deals 2 damage to each creature with shadow.
-id=4846
-name=Shadowstorm
-rarity=U
-type=Sorcery
-mana={R}
-[/card]
-
-
 [card]
 text=Whenever Shocker deals damage to a player, that player discards all the cards in his or her hand, then draws that many cards.
 id=4848
@@ -1545,7 +1433,6 @@ power=1
 subtype=Insect
 toughness=1
 [/card]
-
 [card]
 text=Flying     You can't play Skyshroud Condor unless you've played another spell this turn.
 id=4727
@@ -1557,8 +1444,6 @@ power=2
 subtype=Bird
 toughness=2
 [/card]
-
-
 [card]
 text={T}: You may put a land card from your hand into play. Play this ability only any time you could play a sorcery.
 id=4790
@@ -1570,11 +1455,6 @@ power=1
 subtype=Elf
 toughness=1
 [/card]
-
-
-
-
-
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  {0}: The next time Soltari Guerrillas would deal combat damage to defending player this turn, it deals that damage to target creature instead.
 id=4918
@@ -1597,8 +1477,6 @@ power=2
 subtype=Soltari Knight
 toughness=2
 [/card]
-
-
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever Soltari Trooper attacks, it gets +1/+1 until end of turn.
 id=4905
@@ -1621,7 +1499,6 @@ power=2
 subtype=Spirit
 toughness=2
 [/card]
-
 [card]
 text=Spike Drone comes into play with a +1/+1 counter on it.     {2}, Remove a +1/+1 counter from Spike Drone: Put a +1/+1 counter on target creature.
 id=4792
@@ -1692,8 +1569,6 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
-
 [card]
 text={1}{U}, {T}: Stinging Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {U} to end this effect.     Whenever enchanted creature becomes tapped, Stinging Licid deals 2 damage to that creature's controller.
 id=4730
@@ -1705,9 +1580,6 @@ power=1
 subtype=Licid
 toughness=1
 [/card]
-
-
-
 [card]
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
 id=4852
@@ -1716,10 +1588,6 @@ rarity=U
 type=Instant
 mana={3}{R}
 [/card]
-
-
-
-
 [card]
 text=Enchant creature     Enchanted creature gets +3/+0 as long as it's attacking. Otherwise, it gets -2/-1.
 id=4853
@@ -1729,7 +1597,6 @@ type=Enchantment
 mana={R}
 subtype=Aura
 [/card]
-
 [card]
 text=Tap an untapped creature you control: Telethopter gains flying until end of turn.
 id=4631
@@ -1784,7 +1651,6 @@ power=1
 subtype=Thalakos Wizard
 toughness=1
 [/card]
-
 [card]
 text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
 id=4632
@@ -1837,8 +1703,6 @@ power=1
 subtype=Spirit
 toughness=4
 [/card]
-
-
 [card]
 text={1}{G}: Target creature blocks Trumpeting Armodon this turn if able.
 id=4796
@@ -1889,7 +1753,6 @@ power=7
 subtype=Elemental
 toughness=7
 [/card]
-
 [card]
 text={T}: Target creature's power or toughness becomes 1 until end of turn.
 id=4920
@@ -1910,7 +1773,6 @@ type=Enchantment
 mana={1}{U}
 subtype=Aura
 [/card]
-
 [card]
 text=Whenever an opponent plays a red spell, you gain 2 life.
 id=4909
@@ -1919,7 +1781,6 @@ rarity=U
 type=Enchantment
 mana={1}{W}
 [/card]
-
 [card]
 text=Watchdog blocks each turn if able.     As long as Watchdog is untapped, all creatures attacking you get -1/-0.
 id=4634
@@ -1958,8 +1819,6 @@ power=5
 subtype=Wurm
 toughness=4
 [/card]
-
-
 [card]
 text=Destroy all creatures that aren't enchanted. They can't be regenerated.
 id=4910
@@ -1968,8 +1827,6 @@ rarity=R
 type=Sorcery
 mana={3}{W}{W}
 [/card]
-
-
 [card]
 text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
 id=4921

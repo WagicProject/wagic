@@ -98,7 +98,6 @@ power=4
 subtype=Rhino
 toughness=4
 [/card]
-
 [card]
 text=Play Command of Unsummoning only during the declare attackers step and only if you are the defending player.       Return one or two target attacking creatures to their owner's hand.
 id=4255
@@ -360,17 +359,6 @@ subtype=Human Rogue
 toughness=1
 [/card]
 [card]
-text=Jungle Lion can't block.
-id=4302
-name=Jungle Lion
-rarity=C
-type=Creature
-mana={G}
-power=2
-subtype=Cat
-toughness=1
-[/card]
-[card]
 text=Take an extra turn after this one. At the end of that turn, you lose the game.
 id=4347
 name=Last Chance
@@ -420,14 +408,6 @@ name=Nature's Lore
 rarity=C
 type=Sorcery
 mana={1}{G}
-[/card]
-[card]
-text=Needle Storm deals 4 damage to each creature with flying.
-id=4311
-name=Needle Storm
-rarity=U
-type=Sorcery
-mana={2}{G}
 [/card]
 [card]
 text=When Noxious Toad is put into a graveyard from play, each opponent discards a card.

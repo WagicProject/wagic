@@ -992,6 +992,27 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
+text=Needle Storm deals 4 damage to each creature with flying.
+auto=damage:4 all(creature[blocking])
+id=4775
+name=Needle Storm
+rarity=U
+color=Green
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
+auto=lord(creatures|myinplay) 3/3
+auto=lord(creatures|myinplay) trample
+id=4777
+name=Overrun
+rarity=U
+color=Green
+mana={2}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
 id=4892
 name=Pacifism
@@ -1342,6 +1363,16 @@ color=Blue
 rarity=C
 mana={U}
 type=Instant
+[/card]
+[card]
+text=Shadowstorm deals 2 damage to each creature with shadow.
+id=4846
+name=Shadowstorm
+color=Red
+rarity=U
+auto=damage:2 all(creature[shadow])
+type=Sorcery
+mana={R}
 [/card]
 [card]
 text=Destroy target artifact.

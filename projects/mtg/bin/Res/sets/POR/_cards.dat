@@ -593,6 +593,18 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
+text=Jungle Lion can't block.
+id=4302
+name=Jungle Lion
+rarity=C
+type=Creature
+mana={G}
+power=2
+subtype=Cat
+toughness=1
+abilities=cantblock
+[/card]
+[card]
 text=Reach (This creature can block creatures with flying.)
 id=4387
 name=Keen-Eyed Archers
@@ -833,6 +845,16 @@ name=Nature's Ruin
 rarity=U
 mana={2}{B}
 type=Sorcery
+[/card]
+[card]
+text=Needle Storm deals 4 damage to each creature with flying.
+auto=damage:4 all(creature[blocking])
+id=4311
+name=Needle Storm
+rarity=U
+color=Green
+type=Sorcery
+mana={2}{G}
 [/card]
 [card]
 id=9845
