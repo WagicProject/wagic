@@ -357,7 +357,7 @@ id=179618
 name=Etherwrought Page
 mana={1}{W}{U}{B}
 type=Artifact
-text=At the beginning of your upkeep, choose one — You gain 2 life; or look at the top card of your library, then you may put that card into your graveyard; or each opponent loses 1 life.
+text=At the beginning of your upkeep, choose one  EYou gain 2 life; or look at the top card of your library, then you may put that card into your graveyard; or each opponent loses 1 life.
 rarity=U
 [/card]
 [card]
@@ -1127,7 +1127,7 @@ id=183008
 name=Soul Manipulation
 mana={1}{U}{B}
 type=Instant
-text=Choose one or both — Counter target creature spell; and/or return target creature card in your graveyard to your hand.
+text=Choose one or both  ECounter target creature spell; and/or return target creature card in your graveyard to your hand.
 rarity=C
 [/card]
 [card]
