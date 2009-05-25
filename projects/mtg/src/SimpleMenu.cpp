@@ -134,8 +134,10 @@ void SimpleMenu::Render(){
     if (i > mCount-1) break;
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7)
       {
-	if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus())
-	  mFont->SetColor(ARGB(255,255,255,0));
+        if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
+          GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+20,mY+15);
+	        mFont->SetColor(ARGB(255,255,255,0));
+        }
 	else
 	  mFont->SetColor(ARGB(255,255,255,255));
 	(static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
@@ -168,8 +170,10 @@ void SimpleMenu::Update(float dt){
     }
 }
 
-void SimpleMenu::Add(int id, const char * text){
-  JGuiController::Add(NEW SimpleMenuItem(this, id, mFont, text, 0, mY + VMARGIN + mCount*LINE_HEIGHT, (mCount == 0)));
+void SimpleMenu::Add(int id, const char * text,string desc){
+  SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, mFont, text, 0, mY + VMARGIN + mCount*LINE_HEIGHT, (mCount == 0));
+  smi->desc = desc;
+  JGuiController::Add(smi);
   if (mCount <= maxItems) mHeight += LINE_HEIGHT;
 }
 

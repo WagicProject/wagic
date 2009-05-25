@@ -272,22 +272,24 @@ void GameStateDuel::Update(float dt)
 	      char deckDesc[512];
 	      sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbAIDecks+1);
 	      if(fileExists(buffer)){
-		found = 1;
-		nbAIDecks++;
-		sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks);
-		DeckStats * stats = DeckStats::GetInstance();
-		stats->load(mPlayers[0]);
-		int percentVictories = stats->percentVictories(string(aiSmallDeckName));
-		string difficulty;
-		if (percentVictories < 34){
-		  difficulty = "(hard)";
-		}else if (percentVictories < 67){
-		  difficulty = "";
-		}else{
-		  difficulty = "(easy)";
-		}
-		sprintf(deckDesc, "Deck %i %s",nbAIDecks, _(difficulty).c_str());
-		opponentMenu->Add(nbAIDecks,deckDesc);
+          MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,NULL,1);
+		      found = 1;
+		      nbAIDecks++;
+		      sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks);
+		      DeckStats * stats = DeckStats::GetInstance();
+		      stats->load(mPlayers[0]);
+		      int percentVictories = stats->percentVictories(string(aiSmallDeckName));
+		      string difficulty;
+		      if (percentVictories < 34){
+		        difficulty = "(hard)";
+		      }else if (percentVictories < 67){
+		        difficulty = "";
+		      }else{
+		        difficulty = "(easy)";
+		      }
+          sprintf(deckDesc, "%s %s",mtgd->meta_name.c_str(), _(difficulty).c_str());
+		      opponentMenu->Add(nbAIDecks,deckDesc,mtgd->meta_desc);
+          delete mtgd;
 	      }
 	    }
 	  }

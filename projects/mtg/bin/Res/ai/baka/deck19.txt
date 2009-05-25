@@ -1,4 +1,8 @@
-#Plain Green Elf deck
+#NAME:Elves
+#DESC:And here you thought you would enjoy
+#DESC:a little trip in the forest...
+#DESC: 
+#DESC:Who said only Goblins were nasty?
 #4x Elvish Archers,{1}{G},2/1,Creature Elf,first strike
 1242
 1242

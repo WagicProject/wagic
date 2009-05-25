@@ -79,8 +79,11 @@ class MTGDeck:public MTGAllCards{
  protected:
   string filename;
   MTGAllCards * allcards;
+
  public:
-  MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards);
+  string meta_desc;
+  string meta_name;
+  MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only = 0);
   int addRandomCards(int howmany, int setId = -1, int rarity = -1, const char * subtype = NULL);
   int add(int cardid);
   int remove(int cardid);

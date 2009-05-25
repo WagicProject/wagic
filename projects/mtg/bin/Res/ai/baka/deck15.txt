@@ -1,3 +1,14 @@
+#NAME:Rats!
+#DESC:"They fought the dogs, and killed the cats,
+#DESC:And bit the babies in the cradles,
+#DESC:And ate the cheeses out of the vats
+#DESC:And licked the soup from the cook's own ladles,
+#DESC:Split open the kegs of salted sprats,
+#DESC:Made nests inside men's Sunday hats,
+#DESC:And even spoiled the women's chats,
+#DESC:By drowning their speaking
+#DESC:With shrieking and squeaking
+#DESC:In fifty different sharps and flats."
 #Black Deck, Rats
 #26 Swamps
 157886

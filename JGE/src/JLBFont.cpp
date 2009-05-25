@@ -102,23 +102,31 @@ JLBFont::~JLBFont()
 void JLBFont::DrawString(const char *string, float x, float y, int align, float leftOffset, float displayWidth)
 {
 	char *p = (char*)string;
-	float dx = x, dy = y;
+	float dx0 = x, dy = y;
 
 	if (mQuad == NULL) return;
 
 	float width = GetStringWidth(string);
 
 	if (align == JGETEXT_RIGHT)
-		dx -= width;
+		dx0 -= width;
 	else if (align == JGETEXT_CENTER)
-		dx -= width/2;
+		dx0 -= width/2;
 
-	dx = floorf(dx);
+	float dx = floorf(dx0);
 	dy = floorf(dy);
   float x0 = dx;
 	int index;
 	while (*p)
 	{
+    if (*p == '\n') {
+      p++;
+      dy += (mHeight * 1.1 * mScale);
+      dy = floorf(dy);
+      dx = dx0;
+      continue;
+    }
+
 		index = (*p - 32)+mBase;
     float charWidth = mCharWidth[index];
     float delta = (charWidth + mTracking) * mScale;

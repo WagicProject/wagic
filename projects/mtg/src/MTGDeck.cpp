@@ -327,16 +327,35 @@ MTGCard * MTGAllCards::getCardByName(string name){
 
 
 
-MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards){
+MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only){
   mCache = cache;
   total_cards = 0;
   allcards = _allcards;
   filename = config_file;
+  size_t slash = filename.find_last_of("/");
+  size_t dot = filename.find(".");
+  meta_name = filename.substr(slash+1,dot-slash-1);
   std::ifstream file(config_file);
   std::string s;
 
   if(file){
     while(std::getline(file,s)){
+      if (!s.size()) continue;
+      if (s[0] == '#'){
+        size_t found = s.find("NAME:");
+        if ( found != string::npos){
+          meta_name = s.substr(found+5);
+          continue;
+        }
+        found = s.find("DESC:");
+        if ( found != string::npos){
+          if (meta_desc.size()) meta_desc.append("\n");
+          meta_desc.append(s.substr(found+5));
+          continue;
+        }
+        continue;
+      }
+      if (meta_only) break;
       int cardnb = atoi(s.c_str());
       if (cardnb){
         add(cardnb);

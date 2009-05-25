@@ -24,6 +24,7 @@ class SimpleMenuItem: public JGuiObject
   float mTargetScale;
 
  public:
+  string desc;
   SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, string text, int x, int y, bool hasFocus = false);
 
   int mX;

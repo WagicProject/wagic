@@ -47,7 +47,7 @@ class SimpleMenu:public JGuiController{
   SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int y, const char * _title = "", int _maxItems = 7);
   void Render();
   void Update(float dt);
-  void Add(int id, const char * Text);
+  void Add(int id, const char * Text,string desc = "");
   void Close();
 
   float selectionTargetY;

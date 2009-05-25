@@ -19,7 +19,7 @@ import os
 import os.path
 from mtgCommon import *
 
-setinfo=sets['OD']
+setinfo=sets['UZ']
 stripReminderText = False
 conffile = open(setinfo['dir'] + ".conf", 'w')
 
