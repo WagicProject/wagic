@@ -682,7 +682,7 @@ subtype=Aura
 [/card]
 [card]
 text=All Sliver creatures have trample.
-auto=lord(sliver) Trample
+auto=lord(sliver) trample
 id=4768
 name=Horned Sliver
 color=Green
@@ -980,7 +980,6 @@ mana={1}{G}
 type=Creature
 subtype=Sliver
 power=1
-subtype=Sliver
 toughness=1
 [/card]
 [card]
@@ -1613,7 +1612,6 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
-abilities=First Strike
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow)
@@ -1671,7 +1669,7 @@ type=Creature
 subtype=Wall
 power=0
 toughness=5
-abilities=defender, reachshadow
+abilities=defender,reachshadow
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.       {T}, Sacrifice Wasteland: Destroy target nonbasic land.
@@ -1721,7 +1719,6 @@ subtype=Sliver
 auto=lord(Sliver) flying
 power=1
 toughness=1
-abilities=flying
 [/card]
 [card]
 text=Destroy target land.
