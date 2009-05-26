@@ -380,19 +380,6 @@ color=Artifact
 type=Artifact
 mana={2}
 [/card]
-
-[card]
-text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
-id=135246
-name=Dreamborn Muse
-rarity=R
-color=Blue
-type=Creature
-mana={2}{U}{U}
-power=2
-subtype=Spirit
-toughness=2
-[/card]
 [card]
 text={1}{R}: Target creature can't block Duct Crawler this turn.
 id=129579

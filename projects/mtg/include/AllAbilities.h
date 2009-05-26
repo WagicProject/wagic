@@ -3399,6 +3399,37 @@ class ADamageForTypeControlled: public TriggeredAbility{
   }
 };
 
+// Dreamborn Muse
+class ADreambornMuse: public TriggeredAbility{
+ public:
+	 int nbcards;
+ ADreambornMuse(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
+ }
+
+  int trigger(){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
+    return 0;
+  }
+
+  int resolve(){
+    int nbcards = game->currentPlayer->game->hand->nb_cards;
+    MTGLibrary * library = game->currentPlayer->game->library;
+    for (int i = 0; i < nbcards; i++){
+      if (library->nb_cards)
+	game->currentPlayer->game->putInZone(library->cards[library->nb_cards-1],library,game->currentPlayer->game->graveyard);
+	}
+	return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ADamageForTypeControlled ::: nbcards : " << nbcards
+	<< " (";
+    return TriggeredAbility::toString(out) << ")";
+  }
+};
+
+
 //ShieldOfTheAge
 class AShieldOfTheAge: public TargetAbility{
  public:
