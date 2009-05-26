@@ -993,7 +993,7 @@ type=Sorcery
 [/card]
 [card]
 text=Needle Storm deals 4 damage to each creature with flying.
-auto=damage:4 all(creature[blocking])
+auto=damage:4 all(creature[flying])
 id=4775
 name=Needle Storm
 rarity=U
