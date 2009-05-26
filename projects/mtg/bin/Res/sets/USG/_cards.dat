@@ -1164,7 +1164,7 @@ type=Creature
 subtype=Illusion
 power=3
 toughness=4
-abilites=flying,shroud
+abilities=flying,shroud
 [/card]
 [card]
 text=Enchant creature      Enchanted creature gets +2/+2 and has flying and shroud. (It can't be the target of spells or abilities.)  
