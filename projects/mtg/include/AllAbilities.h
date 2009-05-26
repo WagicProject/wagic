@@ -3423,7 +3423,7 @@ class ADreambornMuse: public TriggeredAbility{
 
   virtual ostream& toString(ostream& out) const
   {
-    out << "ADamageForTypeControlled ::: nbcards : " << nbcards
+    out << "ADreambornMuse ::: nbcards : " << nbcards
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }

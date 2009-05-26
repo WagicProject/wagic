@@ -1,4 +1,15 @@
 [card]
+text=Whenever Abomination blocks or becomes blocked by a green or white creature, destroy that creature at end of combat.
+id=1427
+name=Abomination
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=2
+subtype=Horror
+toughness=6
+[/card]
+[card]
 text=Destroy all forests.
 auto=destroy all(forest)
 id=1470
@@ -21,6 +32,18 @@ subtype=Human Knight
 power=1
 toughness=2
 abilities=legendary
+[/card]
+[card]
+text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
+id=1557
+auto=rampage(3/3,1)
+name=AErathi Berserker
+rarity=U
+type=Creature
+mana={2}{R}{R}{R}
+power=2
+subtype=Human Berserker
+toughness=4
 [/card]
 [card]
 text=Except for creatures named Akron Legionnaire and artifact creatures, creatures you control can't attack.
@@ -89,7 +112,7 @@ abilities=protection from red
 [card]
 text=Return target permanent to its owner's hand.
 target=*
-alias=1229
+auto=moveto(ownerhand)
 id=1474
 name=Boomerang
 color=Blue
@@ -138,6 +161,19 @@ toughness=2
 abilities=forestwalk
 [/card]
 [card]
+text=Flying     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)  At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
+id=1650
+abilities=flying
+auto=rampage(2/2,1)
+name=Chromium
+rarity=R
+type=Legendary Creature
+mana={2}{W}{W}{U}{U}{B}{B}
+power=7
+subtype=Elder Dragon
+toughness=7
+[/card]
+[card]
 text=Destroy all black creatures.
 auto=destroy all(creature[black])
 id=1603
@@ -156,6 +192,19 @@ color=Green
 rarity=R
 mana={1}{G}
 type=Enchantment
+[/card]
+[card]
+text=Trample     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+id=1520
+abilities=trample
+auto=rampage(2/2,1)
+name=Craw Giant
+rarity=U
+type=Creature
+mana={3}{G}{G}{G}{G}
+power=6
+subtype=Giant
+toughness=4
 [/card]
 [card]
 text=Creatures with mountainwalk can be blocked as though they didn't have mountainwalk.
@@ -243,19 +292,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack.     Prevent all combat damage that would be dealt by enchanted creature.
-id=1435
-target=creature
-auto=:-99/0
-auto=cantattack
-name=Demonic Torment
-color=Black
-rarity=U
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 text=Islandwalk
 id=1476
 name=Devouring Deep
@@ -267,6 +303,15 @@ subtype=Fish
 power=1
 toughness=2
 abilities=islandwalk
+[/card]
+[card]
+text=Destroy target artifact. You gain life equal to its converted mana cost.
+id=1607
+target=artifact
+name=Divine Offering
+rarity=C
+type=Instant
+mana={1}{W}
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +3/+3.
@@ -304,6 +349,15 @@ auto={G}{G}:first strike
 power=1
 toughness=1
 abilities=flying
+[/card]
+[card]
+text=Tap target untapped creature you control. If you do, add {X} to your mana pool, where X is that creature's converted mana cost.
+target=creature|myinplay
+id=1480
+name=Energy Tap
+rarity=C
+type=Sorcery
+mana={U}
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has vigilance.
@@ -346,6 +400,16 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Counter target instant spell.
+id=1482
+target=instant|stack
+auto=fizzle
+name=Flash Counter
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
 text=Wall creatures you control get +1/+0 and have banding.
 auto=lord(wall|myinplay) 1/0
 auto=lord(wall|myinplay) banding
@@ -355,6 +419,18 @@ color=White
 rarity=U
 mana={1}{W}{W}
 type=Enchantment
+[/card]
+[card]
+text=Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+id=1574
+auto=rampage(2/2,1)
+name=Frost Giant
+rarity=U
+type=Creature
+mana={3}{R}{R}{R}
+power=4
+subtype=Giant
+toughness=4
 [/card]
 [card]
 text={T}: Target creature gets -1/-0 until end of turn.
@@ -406,6 +482,28 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
+text=Target creature gets +0/+X until end of turn, where X is its converted mana cost.
+id=1614
+taget=creature
+name=Great Defender
+rarity=U
+type=Instant
+mana={W}
+[/card]
+[card]
+text={T}: Target player discards a card at random. Play this ability only during your turn.
+id=1654
+name=Gwendlyn Di Corci
+auto={T}:discard:1 target(player)
+rarity=R
+type=Creature
+abilities=legendary
+mana={U}{B}{B}{R}
+power=3
+subtype=Human Rogue
+toughness=5
+[/card]
+[card]
 text=Creatures with plainswalk can be blocked as though they didn't have plainswalk.
 auto=lord(creature) -plainswalk
 id=1615
@@ -414,21 +512,6 @@ color=White
 rarity=U
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-text=Legendary     {T}: Add {R} to your mana pool.      {T}: Target creature loses all landwalk abilities until end of turn.
-auto={T}:Add {R}
-auto={T}:-plainswalk target(creature)
-auto={T}:-islandwalk target(creature)
-auto={T}:-swampwalk target(creature)
-auto={T}:-mountainwalk target(creature)
-auto={T}:-forestwalk target(creature) 
-id=1700
-name=Hammerheim
-color=Land
-rarity=U
-type=Land
-abilities=legendary
 [/card]
 [card]
 id=1442
@@ -442,6 +525,15 @@ power=2
 toughness=2
 [/card]
 [card]
+text=All creatures get -1/-0 until end of turn.
+id=1443
+auto=lord(creature) -1/0
+name=Hell Swarm
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
 text={B}, {T}, Sacrifice a creature: Return target creature card from your graveyard to play. Play this ability only during your upkeep.
 auto={B},{T},{s(creature|myinplay)}:moveTo(myinplay) target(creature|mygraveyard)
 id=1444
@@ -453,15 +545,6 @@ type=Creature
 subtype=Horror
 power=1
 toughness=1
-[/card]
-[card]
-text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn..
-id=1407
-auto={2}{T}:-99/0 target(creature)
-name=Horn of Deafening
-rarity=R
-mana={4}
-type=Artifact
 [/card]
 [card]
 id=1530
@@ -486,8 +569,9 @@ mana={3}{B}{B}
 type=Enchantment
 [/card]
 [card]
-text=Legendary   Rampage 1
+text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
 id=1653
+auto=rampage(1/1,1)
 name=Hunding Gjornersen
 color=White,Blue
 rarity=U
@@ -496,7 +580,7 @@ type=Creature
 subtype=Human Warrior
 power=5
 toughness=4
-abilities=legendary,rampage
+abilities=legendary
 [/card]
 [card]
 text={T}: You may tap or untap target artifact an opponent controls.
@@ -536,6 +620,19 @@ type=Creature
 subtype=Gorgon
 power=2
 toughness=4
+[/card]
+[card]
+text=Protection from red     Creatures named Ivory Guardians get +1/+1 as long as an opponent controls a red permanent.
+id=1621
+abilities=protection from red
+auto=aslongas(*[red]|myinplay) lord(Ivory Guardians) 1/1
+name=Ivory Guardians
+rarity=U
+type=Creature
+mana={4}{W}{W}
+power=3
+subtype=Giant Cleric
+toughness=3
 [/card]
 [card]
 text=Legendary      Green creatures you control get +0/+2.
@@ -705,20 +802,6 @@ toughness=6
 abilities=legendary
 [/card]
 [card]
-text=Legendary      {W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
-id=1666
-name=Lady Evangela
-color=White,Blue,Black
-rarity=R
-mana={W}{U}{B}
-type=Creature
-subtype=Human Cleric
-auto={T}:-99/0 target(creature)
-power=1
-toughness=2
-abilities=legendary
-[/card]
-[card]
 text=Legendary
 id=1667
 name=Lady Orca
@@ -730,6 +813,22 @@ subtype=Demon
 power=7
 toughness=4
 abilities=legendary
+[/card]
+[card]
+text=Whenever a Mountain an opponent controls becomes tapped, you gain 1 life.
+id=1625
+name=Lifeblood
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=All lands are 1/1 creatures that are still lands.
+id=1533
+name=Living Plane
+rarity=R
+type=World Enchantment
+mana={2}{G}{G}
 [/card]
 [card]
 text=Legendary   First strike, legendary landwalk
@@ -774,7 +873,7 @@ toughness=1
 abilities=swampwalk
 [/card]
 [card]
-text=Legendary   Rampage 1
+text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
 id=1670
 name=Marhault Elsdragon
 color=Red,Green
@@ -784,7 +883,8 @@ type=Creature
 subtype=Elf Warrior
 power=4
 toughness=6
-abilities=legendary,rampage
+auto=rampage(1/1,1)
+abilities=legendary
 [/card]
 [card]
 text=Creatures without flying can't attack.
@@ -833,6 +933,14 @@ auto={B}{R}:1/0
 power=5
 toughness=3
 abilities=legendary
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.     {T}: Target 1/1 creature gets +1/+2 until end of turn.
+id=1703
+auto={T}:add {G}
+name=Pendelhaven
+rarity=U
+type=Legendary Land
 [/card]
 [card]
 text=Flying      {G}{G}{G}, {T}: Target creature gains flying until end of turn.
@@ -947,6 +1055,16 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+text=Counter target creature spell.
+id=1498
+target=creature|stack
+auto=fizzle
+name=Remove Soul
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
 text=Plainswalk
 id=1632
 name=Righteous Avengers
@@ -987,6 +1105,15 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
+text=Creatures you control get +0/+2 until end of turn.
+id=1634
+auto=lord(creature|myinplay) 0/2
+name=Shield Wall
+rarity=U
+type=Instant
+mana={1}{W}
+[/card]
+[card]
 text={T}: Target creature loses all "bands with other" abilities until end of turn.
 id=1544
 name=Shelkin Brownie
@@ -1010,6 +1137,18 @@ type=Creature
 subtype=Human
 power=6
 toughness=4
+abilities=legendary
+[/card]
+[card]
+text=
+id=1683
+name=Sir Shandlar of Eberyn
+rarity=U
+type=Creature
+mana={4}{G}{W}
+power=4
+subtype=Human Knight
+toughness=7
 abilities=legendary
 [/card]
 [card]
@@ -1050,6 +1189,27 @@ auto={T}:Add {2}
 power=4
 toughness=4
 abilities=legendary
+[/card]
+[card]
+text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
+id=1458
+target=player
+auto=damage:2
+auto=life:2
+name=Syphon Soul
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Play Teleport only after attackers are declared and before blockers are declared.     Target creature is unblockable this turn.
+id=1506
+name=Teleport
+target=creature
+auto=unblockable
+rarity=R
+type=Instant
+mana={U}{U}{U}
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+0.   {R}{R}{R}: Regenerate enchanted creature.
@@ -1283,6 +1443,18 @@ auto={1}:1/0
 power=0
 toughness=6
 abilities=defender
+[/card]
+[card]
+text=Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+id=1554
+auto=rampage(2/2,1)
+name=Wolverine Pack
+rarity=C
+type=Creature
+mana={2}{G}{G}
+power=2
+subtype=Wolverine
+toughness=4
 [/card]
 [card]
 text=Legendary   Flying      {B}{R}{G}, {T}: Target player draws a card.

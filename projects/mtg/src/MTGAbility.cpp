@@ -1666,6 +1666,30 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AGiveLifeForTappedType (_id, card, "island"));
       break;
     }
+  case 1480: //Energy Tap
+	{
+	card->target->tapped = 1;
+	int mana = card->target->getManaCost()->getConvertedCost();
+	game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, mana);
+	}
+
+  case 1614: // Great Defender
+	{
+	int toughness = card->target->getManaCost()->getConvertedCost();
+	int power = 0;
+	game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, card->target,power,toughness));
+	}
+  
+  case 1703: //Pendelhaven
+    {
+      CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
+      tc->maxpower = 1;
+      tc->maxtoughness =1;
+      game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(),tc));
+      break;
+    }
+
+
     //Addons ICE-AGE Cards
 
   case 2660: //Word of Blasting
@@ -1831,7 +1855,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       card->target->controller()->game->putInGraveyard(card->target);
       int x = card->target->getManaCost()->getConvertedCost();
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling token",1,1,"green",0);
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling",1,1,"green",0);
           for (int i=0; i < x; i++){
             tok->resolve();
           }   
@@ -1843,7 +1867,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     case 139676: // Elvish Promenade
 		{
 		int x = card->controller()->game->inPlay->countByType("Elf");
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Elf Warrior","creature Elf Warrior token",1,1,"green",0);
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Elf Warrior","creature Elf Warrior",1,1,"green",0);
           for (int i=0; i < x-1; i++){
             tok->resolve();
           }
