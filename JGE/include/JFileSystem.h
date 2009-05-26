@@ -35,6 +35,14 @@ using namespace std;
 ///
 //////////////////////////////////////////////////////////////////////////
 
+class JZipCache {
+public:
+  JZipCache();
+  ~JZipCache();
+  map<string,unz_file_pos *> dir;
+  
+};
+
 class JFileSystem
 {
 public:
@@ -109,10 +117,12 @@ protected:
 private:
 	static JFileSystem* mInstance;
 
+	map<string,JZipCache *>mZipCache;
 	string mResourceRoot;
 	string mZipFileName;
 	char *mPassword;
 	bool mZipAvailable;
+  void preloadZip(string filename);
 #if defined (WIN32) || defined (LINUX)
 	FILE *mFile;
 #else

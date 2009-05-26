@@ -23,6 +23,41 @@
 #include <map>
 #include <string>
 
+
+JZipCache::JZipCache(){}
+
+JZipCache::~JZipCache(){
+  map<string,unz_file_pos *>::iterator it;
+  for (it = dir.begin(); it != dir.end(); it++){
+    delete(it->second);
+  }
+  dir.clear();
+}
+
+void JFileSystem::preloadZip(string filename){
+	map<string,JZipCache *>::iterator it = mZipCache.find(filename);
+  if (it != mZipCache.end()) return;
+	
+	JZipCache * cache = new JZipCache();
+	mZipCache[filename] = cache;
+ 
+ if (!mZipAvailable || !mZipFile) {
+		AttachZipFile(filename);
+		if (!mZipAvailable || !mZipFile) return;
+	}
+	int err = unzGoToFirstFile (mZipFile);
+	while (err == UNZ_OK){
+		unz_file_pos* filePos = new unz_file_pos();
+		char filenameInzip[4096];
+		if (unzGetCurrentFileInfo(mZipFile, NULL, filenameInzip, sizeof(filenameInzip), NULL, 0, NULL, 0) == UNZ_OK){
+			unzGetFilePos(mZipFile, filePos);
+			string name = filenameInzip;
+			cache->dir[name] = filePos;
+		}
+		err = unzGoToNextFile(mZipFile);
+	}
+}
+
 JFileSystem* JFileSystem::mInstance = NULL;
 
 JFileSystem* JFileSystem::GetInstance()
@@ -69,6 +104,12 @@ JFileSystem::JFileSystem()
 JFileSystem::~JFileSystem()
 {
 	DetachZipFile();
+	
+  map<string,JZipCache *>::iterator it;
+  for (it = mZipCache.begin(); it != mZipCache.end(); it++){
+    delete(it->second);
+  }
+  mZipCache.clear();	
 }
 
 
@@ -117,10 +158,19 @@ bool JFileSystem::OpenFile(const string &filename)
 
 	if (mZipAvailable && mZipFile != NULL)
 	{
-    if (unzLocateFile(mZipFile, filename.c_str(), 0) != UNZ_OK){
+	  preloadZip(mZipFileName);
+	  map<string,JZipCache *>::iterator it = mZipCache.find(mZipFileName);
+    if (it == mZipCache.end()){
 			DetachZipFile();
-      return OpenFile(filename);
-    }
+			return OpenFile(filename);  
+	  }
+	  JZipCache * zc = it->second;
+	  map<string,unz_file_pos *>::iterator it2 = zc->dir.find(filename);
+    if (it2 == zc->dir.end()){
+			DetachZipFile();
+			return OpenFile(filename);  
+	  }
+	  unzGoToFilePos(mZipFile,it2->second);
 		char filenameInzip[256];
 		unz_file_info fileInfo;
 

@@ -155,6 +155,14 @@ void GameObserver::startGame(int shuffle, int draw){
   for (i=0; i<nbPlayers; i++){
     players[i]->game->initGame(shuffle, draw);
   }
+
+  //Preload images from hand
+  if (!players[0]->isAI()){
+    for (i=0; i< players[0]->game->hand->nb_cards; i++){
+      players[0]->game->hand->cards[i]->getThumb();
+      players[0]->game->hand->cards[i]->getQuad();
+    }
+  }
   turn = 0;
   phaseRing->goToPhase(Constants::MTG_PHASE_FIRSTMAIN, players[0]);
   currentGamePhase = Constants::MTG_PHASE_FIRSTMAIN;
