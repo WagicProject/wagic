@@ -115,7 +115,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.
 id=179556
 name=Qasali Pridemage
 color=Green,White
@@ -123,7 +123,7 @@ rarity=C
 mana={G}{W}
 type=Creature
 subtype=Cat Wizard
-auto={1}{S}:destroy target(artifact;enchantment)
+auto={1}{S}:destroy target(artifact,enchantment)
 power=2
 toughness=2
 abilities=exalted
