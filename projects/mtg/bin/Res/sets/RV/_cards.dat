@@ -2503,9 +2503,9 @@ type=Sorcery
 mana={2}{W}{W}
 [/card]
 [card]
-text=Zombie creatures have swampwalk.     All Zombies have "{B}: Regenerate this permanent."
-auto=lord(zombie) swampwalk
-auto=lord(zombie)  {B}:regenerate
+text=OTher Zombie creatures have swampwalk.     Other Zombies have "{B}: Regenerate this permanent."
+auto=lord(zombie) swampwalk other
+auto=lord(zombie)  {B}:regenerate other
 id=1188
 name=Zombie Master
 rarity=R
