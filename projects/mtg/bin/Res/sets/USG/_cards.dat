@@ -982,6 +982,16 @@ mana={X}{2}{U}
 type=Instant
 [/card]
 [card]
+text=Return all lands to their owners' hands.
+id=5599
+name=Sunder
+auto=moveTo(ownerhand) all(land|inplay)
+color=Blue
+rarity=R
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
 text={T}: Add {B} to your mana pool.
 auto={T}: Add {B}
 id=8332
