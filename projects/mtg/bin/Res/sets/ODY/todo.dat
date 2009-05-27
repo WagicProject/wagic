@@ -2073,14 +2073,6 @@ type=Enchantment
 mana={1}{U}
 [/card]
 [card]
-text=Return all permanents to their owners' hands.
-id=31852
-name=Upheaval
-rarity=R
-type=Sorcery
-mana={4}{U}{U}
-[/card]
-[card]
 text=Flying     Whenever a creature dealt damage by Vampiric Dragon this turn is put into a graveyard, put a +1/+1 counter on Vampiric Dragon.     {1}{R}: Vampiric Dragon deals 1 damage to target creature.
 id=29969
 name=Vampiric Dragon

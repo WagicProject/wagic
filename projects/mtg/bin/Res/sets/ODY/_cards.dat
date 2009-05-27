@@ -1214,6 +1214,16 @@ toughness=3
 rarity=U
 [/card]
 [card]
+text=Return all permanents to their owners' hands.
+id=31852
+name=Upheaval
+auto=moveTo(ownerhand) all(*|inplay)
+color=Blue
+rarity=R
+type=Sorcery
+mana={4}{U}{U}
+[/card]
+[card]
 text=Swampwalk {B}: Whispering Shade gets +1/+1 until end of turn
 id=29734
 name=Whispering Shade
@@ -1243,8 +1253,8 @@ rarity=C
 text=Return target creature card from your graveyard to play.
 id=29847
 name=Zombify
-target=Creature|mygraveyard
-auto=moveTo(myInPlay)
+target=creature|mygraveyard
+auto=moveTo(myinplay)
 mana={3}{B}
 color=black
 type=Sorcery
