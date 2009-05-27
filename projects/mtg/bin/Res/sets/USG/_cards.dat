@@ -263,6 +263,15 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
+id=5853
+alias=146013
+name=Corrupt
+rarity=C
+type=Sorcery
+mana={5}{B}
+[/card]
+[card]
 text=Flying, haste
 id=5555
 name=Crazed Skirge

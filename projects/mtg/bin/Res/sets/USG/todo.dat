@@ -329,14 +329,6 @@ type=Enchantment
 mana={2}{B}
 [/card]
 [card]
-text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
-id=5853
-name=Corrupt
-rarity=C
-type=Sorcery
-mana={5}{B}
-[/card]
-[card]
 text=Trample     Echo {1}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5665
 name=Cradle Guard
@@ -665,15 +657,7 @@ mana={1}{U}
 power=0
 subtype=Wall
 toughness=2
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=8340
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
+[/card]]
 [card]
 text=Enchant creature     When Fortitude is put into a graveyard from play, return Fortitude to its owner's hand.     Sacrifice a Forest: Regenerate enchanted creature.
 id=9850

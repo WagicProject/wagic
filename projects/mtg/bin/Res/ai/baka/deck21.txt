@@ -1,4 +1,9 @@
-#Plain red deck
+#NAME:Burning
+#DESC:Better be prepared to burn the midnight oil
+#DESC:the goblin brashness will make you boil
+#DESC:
+#DESC:and you will end, 
+#DESC:burning with a low flame..
 #2 x Bloodmark Mentor
 142062
 142062

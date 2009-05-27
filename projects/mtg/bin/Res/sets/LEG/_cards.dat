@@ -940,7 +940,8 @@ id=1703
 auto={T}:add {G}
 name=Pendelhaven
 rarity=U
-type=Legendary Land
+type=land
+abilities=legendary
 [/card]
 [card]
 text=Flying      {G}{G}{G}, {T}: Target creature gains flying until end of turn.
