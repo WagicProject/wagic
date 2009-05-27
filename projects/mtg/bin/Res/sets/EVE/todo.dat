@@ -680,14 +680,6 @@ type=Instant
 mana={1}{UR}
 [/card]
 [card]
-text=Return all nonblue creatures to their owners' hands.
-id=142010
-name=Inundate
-rarity=R
-type=Sorcery
-mana={3}{U}{U}{U}
-[/card]
-[card]
 text=Creatures your opponents control lose flying until end of turn if {G} was spent to play Invert the Skies, and creatures you control gain flying until end of turn if {U} was spent to play it. (Do both if {G}{U} was spent.)
 id=151108
 name=Invert the Skies
@@ -768,7 +760,6 @@ power=2
 subtype=Merfolk Wizard
 toughness=3
 [/card]
-
 [card]
 text={1}{UR}{UR}: Copy target instant or sorcery spell that targets you. You may choose new targets for the copy.
 id=152106
