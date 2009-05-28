@@ -1350,6 +1350,34 @@ class AForeach:public ListMaintainerAbility{
 
 };
 
+//Damage all.... ActivatedAbility
+class AAllDamager:public ActivatedAbility{
+ public:
+  int damage;
+  AAllDamager(int _id, MTGCardInstance * _source, ManaCost * _cost, int _damage, TargetChooser * _tc ,int doTap =1):ActivatedAbility(_id,_source,_cost,0,doTap),damage(_damage){
+    tc = _tc;
+
+  }
+
+  int resolve(){
+    AbilityFactory af;
+    af.damageAll(tc,damage);
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Damage All...";
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAllDamager ::: damage : " << damage
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
+
+};
+
 
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class ADamager:public TargetAbility{

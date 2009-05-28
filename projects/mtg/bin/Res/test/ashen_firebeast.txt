@@ -1,0 +1,20 @@
+#Testing Ashen firebeast: {1}{R}: Ashen Firebeast deals 1 damage to each creature without flying.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Ashen Firebeast,Benalish Hero,Birds of Paradise
+manapool:{1}{R}
+[PLAYER2]
+inplay:plague rats,drudge skelettons,El_Hajaj,Air elemental
+[DO]
+Ashen Firebeast
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Benalish Hero
+inplay:Ashen Firebeast,Birds of Paradise
+manapool:{0}
+[PLAYER2]
+graveyard:plague rats,drudge skelettons,El_Hajaj
+inplay:Air elemental
+[END]

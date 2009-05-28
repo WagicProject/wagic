@@ -19,6 +19,7 @@ TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buil
 int TestSuite::getMTGId(string cardName){
   int cardnb = atoi(cardName.c_str());
   if (cardnb) return cardnb;
+  if (cardName.compare("*") == 0) return -1; //Any card
   MTGCard * card = collection->getCardByName(cardName);
   if (card) return card->getMTGId();
   return 0;
@@ -329,13 +330,15 @@ int TestSuite::assertGame(){
 	return 0;
       }
       for (int k = 0; k < endState.playerData[i].zones[j].nbitems; k++){
-	int cardid = endState.playerData[i].zones[j].cards[k];
-	MTGCardInstance * card = getCardByMTGId(cardid);
-  if (!card || !zone->hasCard(card)){
-	  sprintf(result, "<span class=\"error\">==Card ID not the same. Didn't find %i</span><br />", cardid);
-	  Log(result);
-	  error++;
-	}
+	      int cardid = endState.playerData[i].zones[j].cards[k];
+        if (cardid != -1){
+	        MTGCardInstance * card = getCardByMTGId(cardid);
+          if (!card || !zone->hasCard(card)){
+	          sprintf(result, "<span class=\"error\">==Card ID not the same. Didn't find %i</span><br />", cardid);
+	          Log(result);
+	          error++;
+	        }
+        }
       }
     }
   }

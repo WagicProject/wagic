@@ -241,11 +241,17 @@ MTGCardInstance * MTGMomirRule::genCreature( int id){
 }
 
 int MTGMomirRule::genRandomCreatureId(int convertedCost){
-   if (convertedCost > 20) convertedCost = 20;
+   if (convertedCost >= 20) convertedCost = 19;
    int total_cards = 0;
    int i = convertedCost;
    while (!total_cards && i >=0){
+#ifdef WIN32
+     char buf[4096];
+     sprintf(buf,"Converted Cost in momir: %i\n", i);
+     OutputDebugString(buf);
+#endif
     total_cards = pool[i].size();
+    convertedCost = i;
     i--;
    }
    if (!total_cards) return 0;

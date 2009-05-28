@@ -565,7 +565,12 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         }
         if (tc){
           if (all){
-            damageAll(tc,damage);
+            if (cost){
+              MTGAbility * a = NEW AAllDamager(id, card, cost, damage, tc,doTap);
+              game->addObserver(a);
+            }else{
+              damageAll(tc,damage);
+            }
           }else{
 	          MTGAbility * a = NEW ADamager(id, card, cost, damage, tc,doTap);
             if (multi){
@@ -578,7 +583,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           if (multi){
             Damageable * target = parseCollateralTarget(card, s);
             if (!target) target = spell->getNextDamageableTarget();
-            if (!target)OutputDebugString("NO TARGET FOR DAMAGE\n");
             multi->Add(NEW DamageEvent(card,target,damage));
           }else{
 	          game->mLayers->stackLayer()->addDamage(card,spell->getNextDamageableTarget(), damage);

@@ -1,0 +1,18 @@
+#Testing That Paying a great cost does not crash momir
+MOMIR
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{20}
+hand:plains
+[PLAYER2]
+[DO]
+plains
+choice 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:plains
+inplay:*
+[PLAYER2]
+[END]
