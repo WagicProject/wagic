@@ -897,6 +897,17 @@ subtype=Goblin
 toughness=2
 [/card]
 [card]
+text=Draw four cards, then discard three cards at random.
+id=135221
+auto=draw:4
+auto=discard:3
+name=Goblin Lore
+rarity=U
+color=Red
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
 text=
 id=129580
 name=Goblin Piker
@@ -1832,6 +1843,19 @@ type=Sorcery
 mana={1}{B}{B}
 [/card]
 [card]
+text=When Ravenous Rats comes into play, target opponent discards a card.
+id=129692
+name=Ravenous Rats
+auto=discard:1 target(player)
+rarity=C
+color=Black
+type=Creature
+mana={1}{B}
+power=1
+subtype=Rat
+toughness=1
+[/card]
+[card]
 text=Return target card from your graveyard to your hand.
 target=*|myGraveyard
 auto=moveTo(myHand)
@@ -2641,6 +2665,19 @@ type=Creature
 mana={2}{W}
 power=2
 subtype=Human Monk Cleric
+toughness=2
+[/card]
+[card]
+text=When Viridian Shaman comes into play, destroy target artifact.
+id=129792
+name=Viridian Shaman
+auto=may moveTo(ownergraveyard) target(artifact)
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Shaman
 toughness=2
 [/card]
 [card]
