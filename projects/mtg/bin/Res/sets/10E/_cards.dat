@@ -1022,7 +1022,7 @@ mana={2}
 [card]
 text=Return all artifacts target player owns to his or her hand.
 id=135260
-target=player;
+target=player
 alias=1202
 name=Hurkyl's Recall
 rarity=R

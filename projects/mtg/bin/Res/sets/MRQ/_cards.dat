@@ -677,7 +677,7 @@ rarity=C
 mana={1}{R}
 type=Creature
 subtype=Human Spellshaper
-auto={R}{T}{S(*|myhand)}:damage:1 target(creature;player)
+auto={R}{T}{S(*|myhand)}:damage:1 target(creature,player)
 power=1
 toughness=1
 [/card]
@@ -990,7 +990,7 @@ rarity=C
 mana={3}{R}
 type=Creature
 subtype=Human Soldier
-auto={S}:Damage:2 target(creature;player)
+auto={S}:Damage:2 target(creature,player)
 power=2
 toughness=2
 [/card]
@@ -1068,7 +1068,7 @@ rarity=C
 mana={2}{U}{U}
 type=Creature
 subtype=Wall
-auto={U}{T}:Damage:1 target(creature;player)
+auto={U}{T}:Damage:1 target(creature,player)
 power=0
 toughness=4
 abilities=defender

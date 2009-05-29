@@ -968,7 +968,7 @@ mana={2}{R}
 [/card]
 [card]
 text=When Stern Proctor comes into play, return target artifact or enchantment to its owner's hand.
-auto=may moveTo(ownerhand) target(enchantment;artifact)
+auto=may moveTo(ownerhand) target(enchantment,artifact)
 id=5661
 name=Stern Proctor
 color=Blue
