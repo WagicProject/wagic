@@ -34,8 +34,7 @@ void GameStateShop::Start()
 
   bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/shop.jpg", TEX_TYPE_USE_VRAM);
   mBg = NEW JQuad(bgTexture, 0, 0, 400, 280);		// Create background quad for rendering.
-  backTexture = JRenderer::GetInstance()->LoadTexture("sets/back.jpg", TEX_TYPE_USE_VRAM);
-  mBack = NEW JQuad(backTexture, 0, 0, 200, 285);		// Create background quad for rendering.
+  mBack = GameApp::CommonRes->GetQuad("back");
 
   JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
@@ -79,8 +78,6 @@ void GameStateShop::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
   SAFE_DELETE(shop);
-  SAFE_DELETE(mBack);
-  SAFE_DELETE(backTexture);
   SAFE_DELETE(bgTexture);
   SAFE_DELETE(mBg);
   SAFE_DELETE(menu);
@@ -92,6 +89,8 @@ void GameStateShop::Destroy(){
 
 void GameStateShop::Update(float dt)
 {
+  mParent->effect->UpdateSmall(dt);
+  mParent->effect->UpdateBig(dt);
   if (mStage == STAGE_SHOP_MENU){
     if (menu){
       menu->Update(dt);

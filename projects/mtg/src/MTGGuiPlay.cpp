@@ -2,6 +2,7 @@
    cards in play, graveyard, library, games phases, Players avatars
 */
 
+#include <math.h>
 #include "../include/config.h"
 #include "../include/MTGGuiPlay.h"
 #include "../include/MTGCardInstance.h"
@@ -66,6 +67,7 @@ MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id,
     mBg2 = NULL;
     GameApp::systemError = "error Loading Texture mBgTex2 in MTGGuiPlay intialization";
   }
+
   alphaBg[0] = 0;
   AddPlayersGuiInfo();
 }
@@ -250,10 +252,7 @@ void MTGGuiPlay::updateCards(){
     setTargettingCardPosition(cardGui, 1, !player0Mode);
   }
 
-
-
 }
-
 
 void MTGGuiPlay::AddPlayersGuiInfo(){
   //init with the players objects

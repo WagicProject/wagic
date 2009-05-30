@@ -92,7 +92,7 @@ void GameApp::Create()
   CommonRes->CreateTexture("sets/back.jpg");
   CommonRes->CreateQuad("back", "sets/back.jpg", 0, 0, 200, 285);
   CommonRes->CreateTexture("sets/back_thumb.jpg");
-  CommonRes->CreateQuad("back_thumb", "sets/back_thumb.jpg", 0, 0, 45, 64);
+  CommonRes->CreateQuad("back_thumb", "sets/back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT);
 
   CommonRes->CreateTexture("graphics/particles.png");
   CommonRes->CreateQuad("particles", "graphics/particles.png", 0, 0, 32, 32);
@@ -144,6 +144,8 @@ void GameApp::Create()
 
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
+
+  effect = new CardEffect();
 
   char buf[512];
   sprintf(buf, "size of MTGCardInstance : %i\n" , sizeof(MTGCardInstance));
@@ -218,8 +220,6 @@ void GameApp::Update()
     mEngine->End();
     return;
   }
-
-
 
   float dt = mEngine->GetDelta();
   if (dt > 35.0f)		// min 30 FPS ;)

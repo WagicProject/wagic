@@ -328,6 +328,7 @@ void GameStateDuel::Update(float dt)
           }
         }
       }
+      mParent->effect->UpdateSmall(dt);
       game->Update(dt);
       if (game->gameOver){
         credits->compute(mPlayers[0],mPlayers[1], mParent);
@@ -354,15 +355,18 @@ void GameStateDuel::Update(float dt)
       }
       break;
     case DUEL_STATE_MENU:
+      mParent->effect->UpdateSmall(dt);
       menu->Update(dt);
       break;
     case DUEL_STATE_CANCEL:
+      mParent->effect->UpdateSmall(dt);
       menu->Update(dt);
       if (menu->closed)
 	mGamePhase = DUEL_STATE_PLAY;
       break;
     case DUEL_STATE_BACK_TO_MAIN_MENU:
-      menu->Update(dt);
+       mParent->effect->UpdateSmall(dt);
+     menu->Update(dt);
       if (menu->closed)
 	mParent->SetNextState(GAME_STATE_MENU);
       break;

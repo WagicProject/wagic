@@ -56,7 +56,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   int colorFilter;
   JMusic * bgMusic;
-  JTexture * backTex;
   JQuad * backQuad;
   SimpleMenu * welcome_menu;
   JLBFont * mFont;
@@ -182,9 +181,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       pspIcons[i]->SetHotSpot(16,16);
     }
 
-
-    backTex = JRenderer::GetInstance()->LoadTexture("sets/back.jpg", TEX_TYPE_USE_VRAM);
-    backQuad = NEW JQuad(backTex, 0, 0, 200, 285);		// Create quad for rendering.
+    backQuad = GameApp::CommonRes->GetQuad("back");
 
     //menuFont = NEW JLBFont("graphics/f3",16);
     menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
@@ -238,8 +235,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       JSoundSystem::GetInstance()->StopMusic(GameApp::music);
       SAFE_DELETE(GameApp::music);
     }
-    SAFE_DELETE(backTex);
-    SAFE_DELETE(backQuad);
     SAFE_DELETE(welcome_menu);
     SAFE_DELETE(menu);
     SAFE_DELETE(pspIconsTexture);
@@ -275,6 +270,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   virtual void Update(float dt)
   {
+    mParent->effect->UpdateBig(dt);
     hudAlpha = 255-(last_user_activity * 500);
     if (hudAlpha < 0) hudAlpha = 0;
     if (sellMenu){

@@ -33,6 +33,8 @@
 
 #include "../include/TexturesCache.h"
 
+#include "../include/CardEffect.h"
+
 #define MAX_STATE			6
 
 
@@ -62,12 +64,13 @@ class GameApp:	public JApp
   GameState* mNextState;
   GameState* mGameStates[MAX_STATE];
 
-
  public:
   int players[2];
   MTGAllCards * collection;
   int gameType;
   TexturesCache *  cache;
+  CardEffect *effect;
+
 
   GameApp();
   virtual ~GameApp();
