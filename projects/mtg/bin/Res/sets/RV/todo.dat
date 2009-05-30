@@ -73,15 +73,7 @@ power=5
 subtype=Demon
 toughness=5
 [/card]
-[card]
-text=Search your library for a card and put that card into your hand. Then shuffle your library.
-id=1155
-name=Demonic Tutor
-rarity=U
-color=Black
-type=Sorcery
-mana={1}{B}
-[/card]
+
 [card]
 text=Disintegrate deals X damage to target creature or player. That creature can't be regenerated this turn. If the creature would be put into a graveyard this turn, remove it from the game instead.
 id=1283

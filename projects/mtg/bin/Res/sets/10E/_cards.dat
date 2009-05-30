@@ -2498,6 +2498,17 @@ subtype=Basilisk
 toughness=4
 [/card]
 [card]
+text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
+target=land|mylibrary
+auto=moveTo(myHand)
+id=130513
+name=Sylvan Scrying
+rarity=U
+color=Green
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
 text=Flash (You may play this spell any time you could play an instant.)  Reach (This creature can block creatures with flying.)
 abilities=flash,reach
 id=135231

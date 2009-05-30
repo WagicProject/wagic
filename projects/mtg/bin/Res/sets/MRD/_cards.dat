@@ -57,11 +57,11 @@ power=1
 toughness=1
 [/card]
 [card]
-text={U}, Sacrifice Æther Spellbomb: Return target creature to its owner's hand.     {1}, Sacrifice Æther Spellbomb: Draw a card.
+text={U}, Sacrifice AEther Spellbomb: Return target creature to its owner's hand.     {1}, Sacrifice AEther Spellbomb: Draw a card.
 auto={U}{S}:moveTo(ownerhand) target(creature)
 auto={1}{S}:draw:1
 id=48113
-name=Æther Spellbomb
+name=AEther Spellbomb
 color=Artifact
 rarity=C
 mana={1}

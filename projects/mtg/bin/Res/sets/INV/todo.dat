@@ -323,17 +323,7 @@ power=1
 subtype=Unicorn
 toughness=2
 [/card]
-[card]
-text={T}: Search your library for a legendary card, reveal that card, and put it into your hand. Then shuffle your library.
-id=25976
-name=Captain Sisay
-rarity=R
-type=Legendary Creature
-mana={2}{G}{W}
-power=2
-subtype=Human Soldier
-toughness=2
-[/card]
+
 [card]
 text=Play Cauldron Dance only during combat.     Return target creature card from your graveyard to play. That creature gains haste. Return it to your hand at end of turn.      You may put a creature card from your hand into play. That creature gains haste. Its controller sacrifices it at end of turn.
 id=23173
@@ -1387,17 +1377,7 @@ type=Enchantment
 mana={1}{B}
 subtype=Aura
 [/card]
-[card]
-text={U}, {T}: Put target creature you control on top of its owner's library.     {R}, {T}: Target creature gains first strike until end of turn.
-id=23016
-name=Nightscape Apprentice
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Zombie Wizard
-toughness=1
-[/card]
+
 [card]
 text={U}{U}, {T}: Return target creature to its owner's hand.     {R}{R}, {T}: Nightscape Master deals 2 damage to target creature.
 id=23049
@@ -1648,14 +1628,7 @@ rarity=L
 type=Basic Land
 subtype=Plains
 [/card]
-[card]
-text={6}, {T}: Search your library for a card and put that card into your hand. Then shuffle your library.
-id=23234
-name=Planar Portal
-rarity=R
-type=Artifact
-mana={6}
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature has protection from the colors of permanents you control. This effect doesn't remove Pledge of Loyalty.
 id=22958
@@ -2471,17 +2444,7 @@ name=Sulfur Vent
 rarity=C
 type=Land
 [/card]
-[card]
-text={G}, {T}: Target creature gets +1/+1 until end of turn.     {U}, {T}: Put target creature you control on top of its owner's library.
-id=22928
-name=Sunscape Apprentice
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
+
 [card]
 text={G}{G}, {T}: Creatures you control get +2/+2 until end of turn.     {U}{U}, {T}: Return target creature to its owner's hand.
 id=22961

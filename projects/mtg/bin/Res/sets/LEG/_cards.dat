@@ -1352,6 +1352,15 @@ type=Land
 abilities=legendary
 [/card]
 [card]
+text=Search your library for a basic land card and put that card into play. Then shuffle your library.
+auto=moveTo(myInPlay) target(land[basic]|myLibrary)
+id=1550
+name=Untamed Wilds
+rarity=U
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
 text=Legendary   First strike     Creatures with swampwalk can be blocked as though they didn't have swampwalk.
 id=1695
 name=Ur-Drago

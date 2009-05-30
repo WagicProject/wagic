@@ -1469,14 +1469,7 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text=Search your library for a Forest card and put that card into play. Then shuffle your library.
-id=2579
-name=Nature's Lore
-rarity=U
-type=Sorcery
-mana={1}{G}
-[/card]
+
 [card]
 text=Skip your draw step.     Whenever you discard a card, remove that card in your graveyard from the game.     Pay 1 life: Remove the top card of your library from the game face down. Put that card into your hand at the end of your turn.
 id=2478

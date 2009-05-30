@@ -803,6 +803,16 @@ subtype=Elf Scout
 toughness=2
 [/card]
 [card]
+text=Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.
+target=forest,plains|myLibrary
+auto=moveTo(myHand)
+id=142038
+name=Safewright Quest
+rarity=C
+type=Sorcery
+mana={GW}
+[/card]
+[card]
 text=Trample     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 abilities=trample,persist
 id=152078

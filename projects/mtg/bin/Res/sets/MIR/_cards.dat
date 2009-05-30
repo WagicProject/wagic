@@ -34,6 +34,15 @@ mana={2}{B}{B}
 rarity=R
 [/card]
 [card]
+text=Bad River comes into play tapped.       {T}, Sacrifice Bad River: Search your library for an Island or Swamp card and put it into play. Then shuffle your library.
+auto=tap
+auto={T}{S}:moveTo(myInPlay) target(Island,Swamp|myLibrary)
+id=3570
+name=Bad River
+rarity=U
+type=Land
+[/card]
+[card]
 text=Flying  Attacking does not cause Bay Falcon to tap.
 id=3325 
 name=Bay Falcon
@@ -115,6 +124,19 @@ mana={2}
 rarity=U
 [/card]
 [card]
+text={G}, {T}: Target creature gets +0/+1 until end of turn.     {U}, {T}: Put target creature you control on top of its owner's library.
+auto={G}{T}:0/1 target(creature)
+auto={U}{T}:moveTo(ownersLibrary) target(creature|myInplay)
+id=3482
+name=Civic Guildmage
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
 text=Trample
 id=3379 
 name=Crash of Rhinos
@@ -156,6 +178,15 @@ mana={3}{B}
 power=1
 toughness=3
 rarity=C
+[/card]
+[card]
+text=Put target artifact or enchantment on top of its owner's library.
+auto=moveTo(ownersLibrary) target(artifact,enchantment)
+id=3484
+name=Disempower
+rarity=C
+type=Instant
+mana={1}{W}
 [/card]
 [card]
 text=Destroy target artifact or enchantment.
@@ -223,6 +254,15 @@ type=Enchantment
 subtype=Aura
 mana={B}{B}
 rarity=C
+[/card]
+[card]
+text=Put target land on top of its owner's library.
+auto=moveTo(ownersLibrary) target(land)
+id=3383
+name=Fallow Earth
+rarity=U
+type=Sorcery
+mana={2}{G}
 [/card]
 [card]
 text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {W}: Femeref Knight gains vigilance until end of turn.
@@ -294,6 +334,15 @@ mana={R}
 rarity=C
 [/card]
 [card]
+text=Flood Plain comes into play tapped.       {T}, Sacrifice Flood Plain: Search your library for a Plains or Island card and put it into play. Then shuffle your library.
+auto=tap
+auto={T}{S}:moveTo(myInPlay) target(Plains,Island|myLibrary)
+id=3572
+name=Flood Plain
+rarity=U
+type=Land
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.
 id=3566 
 name=Forest
@@ -340,6 +389,15 @@ mana={3}{G}
 power=2
 toughness=4
 rarity=C
+[/card]
+[card]
+text=Grasslands comes into play tapped.       {T}, Sacrifice Grasslands: Search your library for a Forest or Plains card and put it into play. Then shuffle your library.
+auto=tap
+auto={T}{S}:moveTo(myInPlay) target(Plains,Forest|myLibrary)
+id=3573
+name=Grasslands
+rarity=U
+type=Land
 [/card]
 [card]
 text=Flying  {1}{U}{U}: Target creature gains flying until end of turn.
@@ -557,6 +615,15 @@ subtype=Mountain
 rarity=L
 [/card]
 [card]
+text=Mountain Valley comes into play tapped.       {T}, Sacrifice Mountain Valley: Search your library for a Mountain or Forest card and put it into play. Then shuffle your library.
+auto=tap
+auto={T}{S}:moveTo(myInPlay) target(Mountain,Forest|myLibrary)
+id=3574
+name=Mountain Valley
+rarity=U
+type=Land
+[/card]
+[card]
 text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.)
 id=3504 
 name=Mtenda Herder
@@ -708,6 +775,15 @@ mana={4}{R}{G}
 power=4
 toughness=5
 rarity=R
+[/card]
+[card]
+text=Rocky Tar Pit comes into play tapped.       {T}, Sacrifice Rocky Tar Pit: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
+auto=tap
+auto={T}{S}:moveTo(myInPlay) target(Mountain,Swamp|myLibrary)
+id=3575
+name=Rocky Tar Pit
+rarity=U
+type=Land
 [/card]
 [card]
 text={T}: Add {1} to your mana pool. {1}{T}: Add {U} to your mana pool.

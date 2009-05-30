@@ -388,6 +388,18 @@ type=Artifact
 mana={1}{U}{U}
 [/card]
 [card]
+text=Flying     When Sphinx Summoner comes into play, you may search your library for an artifact creature card, reveal it, and put it into your hand. If you do, shuffle your library.
+auto=may moveTo(myHand) target(creature[artifact]|myLibrary)
+id=189079
+name=Sphinx Summoner
+rarity=R
+type=Artifact Creature
+mana={3}{U}{B}
+power=3
+subtype=Sphinx
+toughness=3
+[/card]
+[card]
 text={G}: Thornling gains haste until end of turn.     {G}: Thornling gains trample until end of turn.     {G}: Thornling is indestructible this turn.     {1}: Thornling gets +1/-1 until end of turn.     {1}: Thornling gets -1/+1 until end of turn.
 auto={G}:haste
 auto={G}:trample

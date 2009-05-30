@@ -343,15 +343,7 @@ power=11
 subtype=Serpent
 toughness=11
 [/card]
-[card]
-text=Search your library for a card and put that card into your hand. Then shuffle your library.
-id=129525
-name=Diabolic Tutor
-rarity=U
-color=Black
-type=Sorcery
-mana={2}{B}{B}
-[/card]
+
 [card]
 text=Counter target spell. Look at the top four cards of your library, then put them back in any order.
 id=134749
@@ -1269,15 +1261,7 @@ color=Blue
 type=Enchantment
 mana={3}{U}{U}
 [/card]
-[card]
-text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
-id=130513
-name=Sylvan Scrying
-rarity=U
-color=Green
-type=Sorcery
-mana={1}{G}
-[/card]
+
 [card]
 text=Your opponents play with their hands revealed.
 id=129761

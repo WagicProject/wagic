@@ -111,6 +111,7 @@ toughness=4
 [/card]
 [card]
 text={2}{G}, {T}, Sacrifice a red creature, a green creature, and a white creature: Search your library for a card named Godsire and put it into play. Then shuffle your library.
+auto={2}{G}{T}{s:creature[red]|myInplay}{s:creature[rwhite]|myInplay}{s:creature[green]|myInplay}:moveTo(myInplay) target(creature[Godsire]|myLibrary)
 id=175263
 name=Behemoth's Herald
 rarity=U
@@ -435,14 +436,7 @@ power=2
 subtype=Human Cleric
 toughness=2
 [/card]
-[card]
-text=Put target creature on top of its owner's library.
-id=180144
-name=Excommunicate
-rarity=C
-type=Sorcery
-mana={2}{W}
-[/card]
+
 [card]
 text=At the end of your turn, if you control a creature with power 5 or greater, you may have Exuberant Firestoker deal 2 damage to target player.     {T}: Add {1} to your mana pool.
 id=175049

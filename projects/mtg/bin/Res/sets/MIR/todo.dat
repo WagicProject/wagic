@@ -143,13 +143,7 @@ power=1
 subtype=Drake
 toughness=3
 [/card]
-[card]
-text=Bad River comes into play tapped.       {T}, Sacrifice Bad River: Search your library for an Island or Swamp card and put it into play. Then shuffle your library.
-id=3570
-name=Bad River
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=Whenever a creature attacks you, it loses flanking until end of turn.       Whenever a creature without flying attacks you, Barbed Foliage deals 1 damage to it.
 id=3376
@@ -476,17 +470,7 @@ rarity=R
 type=Enchantment
 mana={1}{W}{B}
 [/card]
-[card]
-text={G}, {T}: Target creature gets +0/+1 until end of turn.     {U}, {T}: Put target creature you control on top of its owner's library.
-id=3482
-name=Civic Guildmage
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature has phasing and can't be blocked except by Walls.
 id=3329
@@ -667,22 +651,6 @@ mana={2}{B}{R}
 power=2
 subtype=Spirit
 toughness=2
-[/card]
-[card]
-text=Put target artifact or enchantment on top of its owner's library.
-id=3484
-name=Disempower
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
-text=Destroy target artifact or enchantment.
-id=3485
-name=Disenchant
-rarity=C
-type=Instant
-mana={1}{W}
 [/card]
 [card]
 text=Counter target spell. If that spell is countered this way, remove it from the game instead of putting it into its owner's graveyard.
@@ -881,14 +849,7 @@ power=3
 subtype=Avatar
 toughness=4
 [/card]
-[card]
-text=Put target land on top of its owner's library.
-id=3383
-name=Fallow Earth
-rarity=U
-type=Sorcery
-mana={2}{G}
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature gets +1/+2 as long as it's white.     Enchanted creature has shroud as long as its controller controls another creature. (It can't be the target of spells or abilities.)
 id=3491
@@ -1016,13 +977,7 @@ rarity=R
 type=Instant
 mana={1}{U}
 [/card]
-[card]
-text=Flood Plain comes into play tapped.       {T}, Sacrifice Flood Plain: Search your library for a Plains or Island card and put it into play. Then shuffle your library.
-id=3572
-name=Flood Plain
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=Defender (This creature can't attack.)  When Floodgate has flying, sacrifice it.     When Floodgate leaves play, it deals 1 damage for each two Islands you control to each nonblue creature without flying.
 id=3338
@@ -1186,13 +1141,7 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
-[card]
-text=Grasslands comes into play tapped.       {T}, Sacrifice Grasslands: Search your library for a Forest or Plains card and put it into play. Then shuffle your library.
-id=3573
-name=Grasslands
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=You may play Grave Servitude any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     Enchanted creature gets +3/-1 and is black.
 id=3295
@@ -1794,13 +1743,7 @@ rarity=L
 type=Basic Land
 subtype=Mountain
 [/card]
-[card]
-text=Mountain Valley comes into play tapped.       {T}, Sacrifice Mountain Valley: Search your library for a Mountain or Forest card and put it into play. Then shuffle your library.
-id=3574
-name=Mountain Valley
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=Flying       {W}, {T}: Return Mtenda Griffin to its owner's hand and return target Griffin card in your graveyard to your hand. Play this ability only during your upkeep.
 id=3503
@@ -2257,13 +2200,7 @@ power=4
 subtype=Basilisk
 toughness=5
 [/card]
-[card]
-text=Rocky Tar Pit comes into play tapped.       {T}, Sacrifice Rocky Tar Pit: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
-id=3575
-name=Rocky Tar Pit
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=As Roots of Life comes into play, choose Islands or Swamps.     Whenever a land of the chosen type an opponent controls becomes tapped, you gain 1 life.
 id=3406

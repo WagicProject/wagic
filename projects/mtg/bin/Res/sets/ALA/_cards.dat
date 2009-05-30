@@ -248,6 +248,16 @@ type=Artifact
 mana={2}{U}
 [/card]
 [card]
+text=Put target creature on top of its owner's library.
+target=creature
+auto=moveTo(ownersLibrary)
+id=180144
+name=Excommunicate
+rarity=C
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
 text={1}{B}, {T}, Sacrifice Executioner's Capsule: Destroy target nonblack creature.
 auto={1}{B}{T}{S}:destroy target(creature[-black])
 id=174895

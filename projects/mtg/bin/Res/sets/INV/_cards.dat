@@ -196,6 +196,19 @@ power=1
 toughness=2
 [/card]
 [card]
+text={T}: Search your library for a legendary card, reveal that card, and put it into your hand. Then shuffle your library.
+abilities=legendary
+auto={T}:moveTo(myHand) target(*[legendary]|myLibrary)
+id=25976
+name=Captain Sisay
+rarity=R
+type=Creature
+mana={2}{G}{W}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
 text=Vigilance     {G}: Regenerate Charging Troll.
 id=23162
 name=Charging Troll
@@ -801,6 +814,19 @@ power=2
 toughness=1
 [/card]
 [card]
+text={U}, {T}: Put target creature you control on top of its owner's library.     {R}, {T}: Target creature gains first strike until end of turn.
+auto={U}{T}:moveTo(ownersLibrary) target(creature|myInPlay)
+auto={R}{T}:first striek target(creature)
+id=23016
+name=Nightscape Apprentice
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Zombie Wizard
+toughness=1
+[/card]
+[card]
 text={U}{U}, {T}: Return target creature to its owner's hand. .   {R}{R}, {T}: Nightscape Master deals 2 damage to target creature.
 id=23049
 name=Nightscape Master
@@ -925,6 +951,15 @@ rarity=L
 color=Land
 type=Basic Land
 subtype=Plains
+[/card]
+[card]
+text={6}, {T}: Search your library for a card and put that card into your hand. Then shuffle your library.
+auto={6}{T}:moveTo(myHand) target(*|myLibrary)
+id=23234
+name=Planar Portal
+rarity=R
+type=Artifact
+mana={6}
 [/card]
 [card]
 text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
@@ -1222,6 +1257,19 @@ id=23237
 name=Sulfur Vent
 rarity=C
 type=Land
+[/card]
+[card]
+text={G}, {T}: Target creature gets +1/+1 until end of turn.     {U}, {T}: Put target creature you control on top of its owner's library.
+auto={G}{T}:1/1 target(creature)
+auto={U}{T}:moveTo(ownersLibrary) target(creature|myInplay)
+id=22928
+name=Sunscape Apprentice
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Wizard
+toughness=1
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.

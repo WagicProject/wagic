@@ -1457,14 +1457,7 @@ power=2
 subtype=Elf Warrior
 toughness=2
 [/card]
-[card]
-text=Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.
-id=142038
-name=Safewright Quest
-rarity=C
-type=Sorcery
-mana={GW}
-[/card]
+
 [card]
 text=({T}: Add {G} to your mana pool.)  Sapseep Forest comes into play tapped.     {G}, {T}: You gain 1 life. Play this ability only if you control two or more green permanents.
 id=142048

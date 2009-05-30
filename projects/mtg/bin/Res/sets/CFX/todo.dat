@@ -864,17 +864,7 @@ rarity=R
 type=Sorcery
 mana={4}{G}
 [/card]
-[card]
-text=Flying     When Sphinx Summoner comes into play, you may search your library for an artifact creature card, reveal it, and put it into your hand. If you do, shuffle your library.
-id=189079
-name=Sphinx Summoner
-rarity=R
-type=Artifact Creature
-mana={3}{U}{B}
-power=3
-subtype=Sphinx
-toughness=3
-[/card]
+
 [card]
 text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
 id=185829

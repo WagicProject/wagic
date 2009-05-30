@@ -514,6 +514,17 @@ type=Instant
 mana={B}
 [/card]
 [card]
+text=Search your library for a card and put that card into your hand. Then shuffle your library.
+target=*|myLibrary
+auto=moveTo(hand)
+id=1155
+name=Demonic Tutor
+rarity=U
+color=Black
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
 text=Destroy target permanent.
 target=*
 auto=destroy
