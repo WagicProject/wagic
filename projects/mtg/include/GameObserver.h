@@ -10,8 +10,6 @@
 #include "TargetChooser.h"
 #include "PhaseRing.h"
 
-#define MAX_GAME_OBSERVERS 500
-
 
 class MTGGamePhase;
 class MTGAbility;
@@ -34,7 +32,9 @@ class GameObserver{
 
   
  public:
+  int forceShuffleLibrary[2];
   int turn;
+  int forceShuffleLibraries();
   int targetListIsSet(MTGCardInstance * card);
   PhaseRing * phaseRing;
   int cancelCurrentAction();

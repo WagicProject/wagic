@@ -13,7 +13,7 @@ class CardDisplay:public PlayGuiObjectController{
   TargetChooser * tc;
   JGuiListener * listener;
   CardDisplay();
-  CardDisplay(int id, GameObserver* _game, int _x, int _y, JGuiListener * _listener, TargetChooser * _tc = NULL, int _nb_displayed_items = 7 );
+  CardDisplay(int id, GameObserver* _game, int _x, int _y, JGuiListener * _listener = NULL, TargetChooser * _tc = NULL, int _nb_displayed_items = 7 );
   void AddCard(MTGCardInstance * _card);
   void rotateLeft();
   void rotateRight();

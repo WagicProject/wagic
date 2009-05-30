@@ -469,6 +469,7 @@ int CreatureTargetChooser::canTarget(Targetable * target){
 }
 
 
+/* TargetzoneChooser targets everything in a given zone */
 TargetZoneChooser::TargetZoneChooser(MTGCardInstance * card, int _maxtargets){
   init(NULL,0);
   source = card;
@@ -510,6 +511,14 @@ OutputDebugString ("CHECKING INTERRUPTIBLE\n");
   return 0;
 }
 
+
+int TargetZoneChooser::targetsZone(MTGGameZone * z){
+  for (int i = 0; i < nbzones; i++){
+    if (zones[i] == z) return 1;
+    
+  }
+  return 0;
+}
 
 /* Player Target */
 int PlayerTargetChooser::canTarget(Targetable * target){

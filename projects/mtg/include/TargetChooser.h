@@ -31,7 +31,7 @@ class TargetChooser: public TargetsList {
 
   MTGCardInstance * source; //Optionnal source, used for protection from...
   int maxtargets; //Set to -1 for "unlimited"
-
+  virtual int targetsZone(MTGGameZone * z){return 0;};
   int ForceTargetListReady();
   int targetsReadyCheck();
   virtual int addTarget(Targetable * target);
@@ -57,6 +57,7 @@ class TargetZoneChooser:public TargetChooser{
   MTGGameZone * zones[6];
   int nbzones;
   int init(MTGGameZone ** _zones, int _nbzones);
+  int targetsZone(MTGGameZone * z);
   TargetZoneChooser(MTGCardInstance * card = NULL, int _maxtargets = 1);
   TargetZoneChooser(MTGGameZone ** _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
   virtual int canTarget(Targetable * _card);

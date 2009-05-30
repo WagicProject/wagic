@@ -148,12 +148,26 @@ void GameObserver::userRequestNextGamePhase(){
   }
 }
 
-
+int GameObserver::forceShuffleLibraries(){
+  OutputDebugString("FORCING\n");
+  int result = 0;
+  for (int i=0; i<2; i++){
+    if (forceShuffleLibrary[i]) {
+      forceShuffleLibrary[i] = 0;
+      players[i]->game->library->shuffle();
+      result++;
+      OutputDebugString("YAY\n");
+    }
+  }
+  if (result) mLayers->playLayer()->forceUpdateCards();
+  return result;
+}
 
 void GameObserver::startGame(int shuffle, int draw){
   int i;
   for (i=0; i<nbPlayers; i++){
     players[i]->game->initGame(shuffle, draw);
+    forceShuffleLibrary[i] = 0;
   }
 
   //Preload images from hand
@@ -281,7 +295,20 @@ void GameObserver::ButtonPressed (int controllerId, PlayGuiObject * _object){
     MTGCardInstance * card = ((CardGui *)_object)->card;
     cardClick(card, card);
   }
-  //if (id>= -6 && id <= -3){
+  if (id== -6 || id == -4){ //libraries
+    GuiGameZone * zone = (GuiGameZone *)_object;
+    if (zone->showCards){
+      zone->toggleDisplay();
+      forceShuffleLibraries();
+    } else {
+      int pId = (-id - 4)/2;
+      if (targetChooser && targetChooser->targetsZone(players[pId]->game->library)){
+        zone->toggleDisplay();
+        forceShuffleLibrary[pId] = 1;
+      }
+    }
+    
+  }
   if (id== -5 || id == -3){ //TODO libraries ???
     GuiGameZone * zone = (GuiGameZone *)_object;
     zone->toggleDisplay();

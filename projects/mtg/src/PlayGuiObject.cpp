@@ -130,7 +130,7 @@ void GuiGameZone::Render(){
 }
 
 void GuiGameZone::ButtonPressed(int controllerId, int controlId){
-  toggleDisplay();
+  GameObserver::GetInstance()->ButtonPressed(GetId(), this);
 }
 
 void GuiGameZone::Update(float dt){
@@ -139,7 +139,7 @@ void GuiGameZone::Update(float dt){
 }
 
 GuiGameZone::GuiGameZone(int id, float desiredHeight,float _x, float _y, bool hasFocus,MTGGameZone * _zone): PlayGuiObject(id, desiredHeight, _x,  _y,  hasFocus), zone(_zone){
-  cd = NEW CardDisplay(id, GameObserver::GetInstance(), _x,  _y, this);
+  cd = NEW CardDisplay(id, GameObserver::GetInstance(), _x,  _y,this);
   showCards = 0;
 }
 

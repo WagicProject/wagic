@@ -57,11 +57,10 @@ void CardDisplay::rotateRight(){
 bool CardDisplay::CheckUserInput(u32 key){
   if (PSP_CTRL_CROSS == key)
     {
-      if (listener != NULL)
-	{
-	  listener->ButtonPressed(mId, 0);
-	  return true;
-	}
+      if (listener){
+	      listener->ButtonPressed(mId, 0);
+	      return true;
+      } 
     }
 
   if (!mCount)

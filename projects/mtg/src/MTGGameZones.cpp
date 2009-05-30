@@ -417,5 +417,12 @@ MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * sourc
   if(zoneName.compare("targetownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
   if(zoneName.compare("ownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
   if(zoneName.compare("removedfromgame") == 0) return target->owner->game->removedFromGame;
+
+  if(zoneName.compare("mylibrary") == 0)return p->game->library;
+  if(zoneName.compare("opponentlibrary") == 0) return p->opponent()->game->library;
+  if(zoneName.compare("targetownerlibrary") == 0) return target->owner->game->library;
+  if(zoneName.compare("targetcontrollerlibrary") == 0) return p2->game->library;
+  if(zoneName.compare("ownerlibrary") == 0) return target->owner->game->library;
+  if(zoneName.compare("library") == 0) return p->game->library;
   return NULL;
 }

@@ -268,6 +268,7 @@ Player * MTGCardInstance::controller(){
     if (game->players[i]->game->stack->hasCard(this)) return  game->players[i];
     if (game->players[i]->game->graveyard->hasCard(this)) return  game->players[i];
     if (game->players[i]->game->hand->hasCard(this)) return  game->players[i];
+    if (game->players[i]->game->library->hasCard(this)) return  game->players[i];
   }
   return lastController;
 }
