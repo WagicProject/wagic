@@ -250,7 +250,7 @@ mana={2}{U}
 [card]
 text=Put target creature on top of its owner's library.
 target=creature
-auto=moveTo(ownersLibrary)
+auto=moveTo(ownerLibrary)
 id=180144
 name=Excommunicate
 rarity=C

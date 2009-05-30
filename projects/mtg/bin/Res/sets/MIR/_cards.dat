@@ -126,7 +126,7 @@ rarity=U
 [card]
 text={G}, {T}: Target creature gets +0/+1 until end of turn.     {U}, {T}: Put target creature you control on top of its owner's library.
 auto={G}{T}:0/1 target(creature)
-auto={U}{T}:moveTo(ownersLibrary) target(creature|myInplay)
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myInplay)
 id=3482
 name=Civic Guildmage
 rarity=C
@@ -181,7 +181,7 @@ rarity=C
 [/card]
 [card]
 text=Put target artifact or enchantment on top of its owner's library.
-auto=moveTo(ownersLibrary) target(artifact,enchantment)
+auto=moveTo(ownerLibrary) target(artifact,enchantment)
 id=3484
 name=Disempower
 rarity=C
@@ -257,7 +257,7 @@ rarity=C
 [/card]
 [card]
 text=Put target land on top of its owner's library.
-auto=moveTo(ownersLibrary) target(land)
+auto=moveTo(ownerLibrary) target(land)
 id=3383
 name=Fallow Earth
 rarity=U

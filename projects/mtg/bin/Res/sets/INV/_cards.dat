@@ -815,7 +815,7 @@ toughness=1
 [/card]
 [card]
 text={U}, {T}: Put target creature you control on top of its owner's library.     {R}, {T}: Target creature gains first strike until end of turn.
-auto={U}{T}:moveTo(ownersLibrary) target(creature|myInPlay)
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myInPlay)
 auto={R}{T}:first striek target(creature)
 id=23016
 name=Nightscape Apprentice
@@ -1261,7 +1261,7 @@ type=Land
 [card]
 text={G}, {T}: Target creature gets +1/+1 until end of turn.     {U}, {T}: Put target creature you control on top of its owner's library.
 auto={G}{T}:1/1 target(creature)
-auto={U}{T}:moveTo(ownersLibrary) target(creature|myInplay)
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myInplay)
 id=22928
 name=Sunscape Apprentice
 rarity=C

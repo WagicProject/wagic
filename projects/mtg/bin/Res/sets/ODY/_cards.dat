@@ -983,7 +983,7 @@ rarity=C
 [card]
 text=Put target creature on top of its owner's library.
 target=creature
-auto=moveTo(ownersLibrary)
+auto=moveTo(ownerLibrary)
 id=29723
 name=Repel
 rarity=C

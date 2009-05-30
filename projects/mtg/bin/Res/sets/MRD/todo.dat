@@ -1191,17 +1191,6 @@ subtype=Myr
 toughness=2
 [/card]
 [card]
-text=Flying When Looming Hoverguard comes into play, put target artifact on top of its owner's library.
-id=48114
-name=Looming Hoverguard
-rarity=U
-type=Creature
-mana={4}{U}{U}
-power=3
-subtype=Drone
-toughness=3
-[/card]
-[card]
 text={W}, {T}: Regenerate target artifact.
 id=46071
 name=Loxodon Mender

@@ -433,6 +433,19 @@ toughness=2
 abilities=Flying
 [/card]
 [card]
+text=Flying When Looming Hoverguard comes into play, put target artifact on top of its owner's library.
+id=48114
+name=Looming Hoverguard
+rarity=U
+type=Creature
+mana={4}{U}{U}
+power=3
+subtype=Drone
+toughness=3
+abilities=flying
+auto=may moveTo(ownerlibrary) target(artifact)
+[/card]
+[card]
 text=
 id=48438
 name=Lumengrid Warden

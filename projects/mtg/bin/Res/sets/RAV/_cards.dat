@@ -957,7 +957,7 @@ toughness=3
 [/card]
 [card]
 text=When Vedalken Dismisser comes into play, put target creature on top of its owner's library.
-auto=moveTo(ownersLibrary) target(creature)
+auto=moveTo(ownerLibrary) target(creature)
 id=87898
 name=Vedalken Dismisser
 rarity=C

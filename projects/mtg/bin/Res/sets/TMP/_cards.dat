@@ -1645,7 +1645,7 @@ toughness=1
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  {U}: Put Thalakos Mistfolk on top of its owner's library.
 abilities=shadow
-auto={U}: moveTo(ownersLibrary)
+auto={U}: moveTo(ownerLibrary)
 id=4733
 name=Thalakos Mistfolk
 rarity=C
@@ -1671,7 +1671,7 @@ abilities=shadow
 [card]
 text=Put target creature on top of its owner's library.
 target=creature
-auto=moveTo(ownersLibrary)
+auto=moveTo(ownerLibrary)
 id=4736
 name=Time Ebb
 rarity=C
