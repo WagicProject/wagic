@@ -465,6 +465,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Search your library for a card, put that card into your hand, then discard a card at random. Then shuffle your library.
+target=*|myLibrary
+auto=discard:1
+auto=moveTo(myHand)
+id=10654
+name=Gamble
+rarity=R
+type=Sorcery
+mana={R}
+[/card]
+[card]
 text=Creatures you control get +1/+1.
 auto=lord(creature|myinplay) 1/1
 id=5835
@@ -473,6 +484,18 @@ rarity=R
 color=White
 type=Enchantment
 mana={1}{W}{W}
+[/card]
+[card]
+text=When Goblin Matron comes into play, you may search your library for a Goblin card, reveal that card, and put it into your hand. If you do, shuffle your library.
+auto=may moveTo(myHand) target(goblin|myLibrary)
+id=8824
+name=Goblin Matron
+rarity=C
+type=Creature
+mana={2}{R}
+power=1
+subtype=Goblin
+toughness=1
 [/card]
 [card]
 text=Goblin Raider can't block.

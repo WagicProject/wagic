@@ -682,14 +682,7 @@ name=Gaea's Cradle
 rarity=R
 type=Legendary Land
 [/card]
-[card]
-text=Search your library for a card, put that card into your hand, then discard a card at random. Then shuffle your library.
-id=10654
-name=Gamble
-rarity=R
-type=Sorcery
-mana={R}
-[/card]
+
 [card]
 text=Flying     When Gilded Drake comes into play, exchange control of Gilded Drake and up to one target creature an opponent controls. If you don't make an exchange, sacrifice Gilded Drake. This ability can't be countered except by spells and abilities. (This effect doesn't end at end of turn.)
 id=5837
@@ -723,17 +716,7 @@ power=1
 subtype=Goblin
 toughness=1
 [/card]
-[card]
-text=When Goblin Matron comes into play, you may search your library for a Goblin card, reveal that card, and put it into your hand. If you do, shuffle your library.
-id=8824
-name=Goblin Matron
-rarity=C
-type=Creature
-mana={2}{R}
-power=1
-subtype=Goblin
-toughness=1
-[/card]
+
 [card]
 text=Put X 1/1 red Goblin creature tokens into play.
 id=8818

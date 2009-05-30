@@ -324,6 +324,16 @@ type=Land
 rarity=R
 [/card]
 [card]
+text=Search your library for a card and put that card into your hand. Then shuffle your library.
+target=*|myLibrary
+auto=moveTo(myHand)
+id=29954
+name=Diabolic Tutor
+rarity=U
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
 text=Tap: Destroy target creature token. 
 id=31789
 name=Dogged Hunter
@@ -375,6 +385,16 @@ toughness=1
 rarity=C
 [/card]
 [card]
+text=Search your library for a card and put that card into your graveyard. Then shuffle your library.
+target=*|myLibrary
+auto=moveTo(myGraveyard)
+id=30552
+name=Entomb
+rarity=R
+type=Instant
+mana={B}
+[/card]
+[card]
 text=Escape Artist is unblockable. {U}, Discard a card from your hand: Return Escape Artist to its owner's hand. 
 id=31813
 name=Escape Artist
@@ -398,6 +418,16 @@ auto=bury
 auto=draw:1
 type=Instant 
 rarity=U
+[/card]
+[card]
+text=Search target player's library for a card and remove that card from the game. Then that player shuffles his or her library.
+target=*|library
+auto=moveTo(removedFromGame)
+id=29849
+name=Extract
+rarity=R
+type=Sorcery
+mana={U}
 [/card]
 [card]
 text={2}{B}, Discard a card from your hand: Face of Fear gains fear until end of turn.
@@ -949,6 +979,16 @@ mana={2}{G}
 color=green
 type=Instant
 rarity=C
+[/card]
+[card]
+text=Put target creature on top of its owner's library.
+target=creature
+auto=moveTo(ownersLibrary)
+id=29723
+name=Repel
+rarity=C
+type=Instant
+mana={3}{U}
 [/card]
 [card]
 text=First strike     Discard a card: Resilient Wanderer gains protection from the color of your choice until end of turn.

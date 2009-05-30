@@ -572,14 +572,7 @@ power=1
 subtype=Human Cleric
 toughness=2
 [/card]
-[card]
-text=Search your library for a card and put that card into your hand. Then shuffle your library.
-id=29954
-name=Diabolic Tutor
-rarity=U
-type=Sorcery
-mana={2}{B}{B}
-[/card]
+
 [card]
 text={1}{G}, Sacrifice Diligent Farmhand: Search your library for a basic land card and put that card into play tapped. Then shuffle your library.     If Diligent Farmhand is in a graveyard, effects from spells named Muscle Burst count it as a card named Muscle Burst.
 id=29773
@@ -720,14 +713,7 @@ rarity=U
 type=Instant
 mana={R}
 [/card]
-[card]
-text=Search your library for a card and put that card into your graveyard. Then shuffle your library.
-id=30552
-name=Entomb
-rarity=R
-type=Instant
-mana={B}
-[/card]
+
 [card]
 text=Target player sacrifices a land.     Threshold - All players sacrifice all lands instead if seven or more cards are in your graveyard.
 id=30547
@@ -736,14 +722,7 @@ rarity=R
 type=Sorcery
 mana={4}{R}
 [/card]
-[card]
-text=Search target player's library for a card and remove that card from the game. Then that player shuffles his or her library.
-id=29849
-name=Extract
-rarity=R
-type=Sorcery
-mana={U}
-[/card]
+
 [card]
 text={1}{B}, Sacrifice Famished Ghoul: Remove up to two target cards in a single graveyard from the game.
 id=29736
@@ -1551,14 +1530,7 @@ rarity=U
 type=Sorcery
 mana={1}{R}
 [/card]
-[card]
-text=Put target creature on top of its owner's library.
-id=29723
-name=Repel
-rarity=C
-type=Instant
-mana={3}{U}
-[/card]
+
 [card]
 text=Flying     Whenever a creature dealt damage by Repentant Vampire this turn is put into a graveyard, put a +1/+1 counter on Repentant Vampire.     Threshold - As long as seven or more cards are in your graveyard, Repentant Vampire is white and has "{T}: Destroy target black creature."
 id=29945

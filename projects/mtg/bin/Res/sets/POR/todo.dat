@@ -401,14 +401,7 @@ rarity=R
 type=Sorcery
 mana={2}{G}
 [/card]
-[card]
-text=Search your library for a Forest card and put that card into play. Then shuffle your library.
-id=4310
-name=Nature's Lore
-rarity=C
-type=Sorcery
-mana={1}{G}
-[/card]
+
 [card]
 text=When Noxious Toad is put into a graveyard from play, each opponent discards a card.
 id=4233
@@ -677,14 +670,7 @@ power=3
 subtype=Beast
 toughness=2
 [/card]
-[card]
-text=Search your library for a basic land card and put that card into play. Then shuffle your library.
-id=4323
-name=Untamed Wilds
-rarity=U
-type=Sorcery
-mana={2}{G}
-[/card]
+
 [card]
 text=White creatures get +2/+0 until end of turn.
 id=4402
@@ -725,14 +711,4 @@ rarity=U
 type=Sorcery
 mana={2}{U}
 [/card]
-[card]
-text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-id=4327
-name=Wood Elves
-rarity=R
-type=Creature
-mana={2}{G}
-power=1
-subtype=Elf Scout
-toughness=1
-[/card]
+

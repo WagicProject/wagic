@@ -237,17 +237,7 @@ power=2
 subtype=Human Wizard
 toughness=3
 [/card]
-[card]
-text=When Civic Wayfinder comes into play, you may search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.
-id=83584
-name=Civic Wayfinder
-rarity=C
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Warrior Druid
-toughness=2
-[/card]
+
 [card]
 text=Radiance - Cleansing Beam deals 2 damage to target creature and each other creature that shares a color with it.
 id=83567
@@ -1937,17 +1927,7 @@ rarity=U
 type=Sorcery
 mana={4}{U}{B}
 [/card]
-[card]
-text=When Vedalken Dismisser comes into play, put target creature on top of its owner's library.
-id=87898
-name=Vedalken Dismisser
-rarity=C
-type=Creature
-mana={5}{U}
-power=2
-subtype=Vedalken Wizard
-toughness=2
-[/card]
+
 [card]
 text=Return target creature card from your graveyard to play. If {G} was spent to play Vigor Mortis, that creature comes into play with an additional +1/+1 counter on it.
 id=88986

@@ -140,6 +140,16 @@ mana={1}{G}{G}
 type=Enchantment
 [/card]
 [card]
+text=Search target opponent's library for a creature card and put that card into play under your control. Then that player shuffles his or her library.
+target=creature|opponentLibrary
+auto=moveTo(myInplay)
+id=21300
+name=Bribery
+rarity=R
+type=Sorcery
+mana={3}{U}{U}
+[/card]
+[card]
 text=Flash       Enchant creature      Enchanted creature has flying.
 target=creature
 auto=flying
@@ -151,6 +161,16 @@ mana={1}{U}
 type=Enchantment
 subtype=Aura
 abilities=flash
+[/card]
+[card]
+text=Search your library for a Mercenary card, reveal that card, and put it into your hand. Then shuffle your library.
+target=mercenary|myLibrary
+auto=moveTo(myHand)
+id=19832
+name=Cateran Summons
+rarity=U
+type=Sorcery
+mana={B}
 [/card]
 [card]
 text=Enchant creature      Enchanted creature gets +1/+1 and has mountainwalk.
@@ -484,6 +504,15 @@ mana={G}
 power=1
 subtype=Human Druid
 toughness=1
+[/card]
+[card]
+text={B}: Put target creature card from your graveyard on top of your library.
+auto={B}:moveTo(myLibrary) target(creature|myGraveyard)
+id=19704
+name=Haunted Crossroads
+rarity=U
+type=Enchantment
+mana={2}{B}
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.     Sacrifice Heart of Ramos: Add {R} to your mana pool.
@@ -993,6 +1022,18 @@ subtype=Human Soldier
 auto={S}:Damage:2 target(creature,player)
 power=2
 toughness=2
+[/card]
+[card]
+text=When Silverglade Elemental comes into play, you may search your library for a Forest card and put that card into play. If you do, shuffle your library.
+auto=may moveTo(myInplay) target(Forest|myLibrary)
+id=19631
+name=Silverglade Elemental
+rarity=C
+type=Creature
+mana={4}{G}
+power=4
+subtype=Elemental
+toughness=4
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.     Sacrifice Skull of Ramos: Add {B} to your mana pool.

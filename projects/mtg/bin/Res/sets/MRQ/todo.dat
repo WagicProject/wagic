@@ -150,14 +150,7 @@ rarity=U
 type=Enchantment
 mana={1}{G}{G}
 [/card]
-[card]
-text=Search target opponent's library for a creature card and put that card into play under your control. Then that player shuffles his or her library.
-id=21300
-name=Bribery
-rarity=R
-type=Sorcery
-mana={3}{U}{U}
-[/card]
+
 [card]
 text={X}{B}, {T}, Discard a card: Target creature gets +X/+0 until end of turn.
 id=19815
@@ -246,14 +239,7 @@ power=5
 subtype=Horror Mercenary
 toughness=5
 [/card]
-[card]
-text=Search your library for a Mercenary card, reveal that card, and put it into your hand. Then shuffle your library.
-id=19832
-name=Cateran Summons
-rarity=U
-type=Sorcery
-mana={B}
-[/card]
+
 [card]
 text=Flying     Whenever Caustic Wasps deals combat damage to a player, you may destroy target artifact that player controls.
 id=19865
@@ -841,14 +827,7 @@ power=1
 subtype=Human Spellshaper
 toughness=1
 [/card]
-[card]
-text={B}: Put target creature card from your graveyard on top of your library.
-id=19704
-name=Haunted Crossroads
-rarity=U
-type=Enchantment
-mana={2}{B}
-[/card]
+
 [card]
 text=Hickory Woodlot comes into play tapped with two depletion counters on it.       {T}, Remove a depletion counter from Hickory Woodlot: Add {G}{G} to your mana pool. If there are no depletion counters on Hickory Woodlot, sacrifice it.
 id=19646
@@ -1815,17 +1794,7 @@ power=2
 subtype=Human Mercenary Assassin
 toughness=1
 [/card]
-[card]
-text=When Silverglade Elemental comes into play, you may search your library for a Forest card and put that card into play. If you do, shuffle your library.
-id=19631
-name=Silverglade Elemental
-rarity=C
-type=Creature
-mana={4}{G}
-power=4
-subtype=Elemental
-toughness=4
-[/card]
+
 [card]
 text={1}{G}, {T}, Discard a card: Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
 id=19728

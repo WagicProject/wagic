@@ -838,6 +838,16 @@ type=Sorcery
 mana={3}{G}{G}
 [/card]
 [card]
+text=Search your library for a Forest card and put that card into play. Then shuffle your library.
+target=Forest|myLibrary
+auto=moveTo(myInplay)
+id=4310
+name=Nature's Lore
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
 text=Destroy all green creatures.
 auto=destroy all(creature[green])
 id=4232
@@ -1267,6 +1277,16 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
+text=Search your library for a basic land card and put that card into play. Then shuffle your library.
+target=land[basic]|myLibrary
+auto=moveTo(myInplay)
+id=4323
+name=Untamed Wilds
+rarity=U
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
 text=Vampiric Feast deals 4 damage to target creature or player and you gain 4 life.
 target=creature,player
 auto=damage:4 target
@@ -1411,6 +1431,18 @@ rarity=U
 color=Green
 mana={1}{G}{G}
 type=Sorcery
+[/card]
+[card]
+text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
+auto=moveTo(inPlay) target(forest|myLibrary)
+id=4327
+name=Wood Elves
+rarity=R
+type=Creature
+mana={2}{G}
+power=1
+subtype=Elf Scout
+toughness=1
 [/card]
 [card]
 text=Destroy all creatures. They can't be regenerated.

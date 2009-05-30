@@ -1643,6 +1643,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  {U}: Put Thalakos Mistfolk on top of its owner's library.
+abilities=shadow
+auto={U}: moveTo(ownersLibrary)
+id=4733
+name=Thalakos Mistfolk
+rarity=C
+type=Creature
+mana={2}{U}
+power=2
+subtype=Thalakos Illusion
+toughness=1
+[/card]
+[card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow)
 id=4735
 name=Thalakos Sentry
@@ -1654,6 +1667,16 @@ subtype=Thalakos Soldier
 power=1
 toughness=2
 abilities=shadow
+[/card]
+[card]
+text=Put target creature on top of its owner's library.
+target=creature
+auto=moveTo(ownersLibrary)
+id=4736
+name=Time Ebb
+rarity=C
+type=Sorcery
+mana={2}{U}
 [/card]
 [card]
 id=4794
