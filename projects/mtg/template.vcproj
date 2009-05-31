@@ -253,6 +253,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\CardEffect.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\CardGui.cpp"
 				>
 			</File>
@@ -574,6 +578,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\CardEffect.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\CardGui.h"
 				>
 			</File>
@@ -615,6 +623,10 @@
 			</File>
 			<File
 				RelativePath=".\include\DuelLayers.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Effects.h"
 				>
 			</File>
 			<File
