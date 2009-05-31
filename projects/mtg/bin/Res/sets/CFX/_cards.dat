@@ -107,7 +107,7 @@ mana={3}{U}
 [/card]
 [card]
 text=Flying     {B}: Darklit Gargoyle gets +2/-1 until end of turn.
-abilitites=flying
+abilities=flying
 auto={B}:2/-1
 id=180334
 name=Darklit Gargoyle
