@@ -59,7 +59,7 @@ void Damage::Render(){
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
-  sprintf(buffer, "Does %i damage to", damage);
+  sprintf(buffer, "Deals %i damage to", damage);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();
