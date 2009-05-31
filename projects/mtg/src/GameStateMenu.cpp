@@ -123,7 +123,7 @@ void GameStateMenu::Create()
 
   currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
   scroller = NEW TextScroller(GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 100 , SCREEN_HEIGHT-15,200);
-
+  scrollerSet = 0;
 }
 
 
@@ -168,7 +168,7 @@ void GameStateMenu::Start(){
   hasChosenGameType = 1;
   if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) hasChosenGameType =0;
 
-  scrollerSet = 0;
+  
 
 
 }
@@ -229,6 +229,8 @@ void GameStateMenu::fillScroller(){
   scroller->Add(buff2);
 
   scroller->Add("Need more cards? Go to http://wololo.net/wagic");
+
+  scroller->Add("These stats will be updated next time you run Wagic");
 
   scrollerSet = 1;
   scroller->setRandom();

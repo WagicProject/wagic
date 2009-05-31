@@ -8,7 +8,7 @@ class JLBFont;
 using namespace std;
 
 class TextScroller: public JGuiObject{
-private:
+protected:
   string mText;
   string tempText;
   JLBFont * mFont;
