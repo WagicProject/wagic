@@ -816,7 +816,7 @@ toughness=1
 [card]
 text={U}, {T}: Put target creature you control on top of its owner's library.     {R}, {T}: Target creature gains first strike until end of turn.
 auto={U}{T}:moveTo(ownerLibrary) target(creature|myInPlay)
-auto={R}{T}:first striek target(creature)
+auto={R}{T}:first strike target(creature)
 id=23016
 name=Nightscape Apprentice
 rarity=C
