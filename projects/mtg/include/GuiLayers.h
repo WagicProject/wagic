@@ -35,7 +35,7 @@ class GuiLayer{
   virtual ~GuiLayer();
   virtual void Update(float dt);
   virtual bool CheckUserInput(u32 key){ return false; };
-  virtual int unstopableRenderInProgress(){return 0;};
+  virtual int unstoppableRenderInProgress(){return 0;};
   int getIndexOf(JGuiObject * object);
   JGuiObject * getByIndex (int index);
   virtual void Render();
@@ -55,7 +55,7 @@ class GuiLayers{
   void Render();
   void Add(GuiLayer * layer);
   void Remove();
-  int unstopableRenderInProgress();
+  int unstoppableRenderInProgress();
   ~GuiLayers();
 
 };

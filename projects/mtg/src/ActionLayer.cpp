@@ -27,7 +27,7 @@ int ActionLayer::reactToTargetClick(ActionElement* ability, Targetable * card){
   return result;
 }
 
-int ActionLayer::unstopableRenderInProgress(){
+int ActionLayer::unstoppableRenderInProgress(){
 
   for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){

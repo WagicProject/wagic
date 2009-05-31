@@ -114,9 +114,9 @@ GuiLayers::~GuiLayers(){
   }
   LOG("==Destroying GuiLayers Successful==");
 }
-int GuiLayers::unstopableRenderInProgress(){
+int GuiLayers::unstoppableRenderInProgress(){
   for (int i=0; i<nbitems; i++){
-    if (objects[i]->unstopableRenderInProgress())
+    if (objects[i]->unstoppableRenderInProgress())
       return 1;
   }
   return 0;

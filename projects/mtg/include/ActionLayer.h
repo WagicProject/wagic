@@ -23,7 +23,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   int stuffHappened;
   virtual void Render();
   virtual void Update(float dt);
-  int unstopableRenderInProgress();
+  int unstoppableRenderInProgress();
   bool CheckUserInput(u32 key);
   ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL; stuffHappened = 0;};
   ~ActionLayer();
