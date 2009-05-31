@@ -270,7 +270,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   virtual void Update(float dt)
   {
-    mParent->effect->UpdateBig(dt);
+    //    mParent->effect->UpdateBig(dt);
     hudAlpha = 255-(last_user_activity * 500);
     if (hudAlpha < 0) hudAlpha = 0;
     if (sellMenu){
