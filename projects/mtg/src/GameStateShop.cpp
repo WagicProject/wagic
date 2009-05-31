@@ -89,8 +89,8 @@ void GameStateShop::Destroy(){
 
 void GameStateShop::Update(float dt)
 {
-  mParent->effect->UpdateSmall(dt);
-  mParent->effect->UpdateBig(dt);
+  //  mParent->effect->UpdateSmall(dt);
+  //  mParent->effect->UpdateBig(dt);
   if (mStage == STAGE_SHOP_MENU){
     if (menu){
       menu->Update(dt);
