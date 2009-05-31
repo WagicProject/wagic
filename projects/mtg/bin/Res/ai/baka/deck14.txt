@@ -1,3 +1,12 @@
+#NAME:Deep Blue
+#DESC:Are you sure you want
+#DESC:to put that 8/8 into play?
+#DESC:
+#DESC:You realize it might end up
+#DESC:fighting against you, right?
+#DESC:
+#DESC:It's not like I did not warn
+#DESC:you with that Boomerang.
 #Blue Deck, with Persusasion
 #28 Islands
 176428

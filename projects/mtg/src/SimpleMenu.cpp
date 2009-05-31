@@ -135,7 +135,7 @@ void SimpleMenu::Render(){
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7)
       {
         if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
-          GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+20,mY+15);
+          GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
 	        mFont->SetColor(ARGB(255,255,255,0));
         }
 	else
