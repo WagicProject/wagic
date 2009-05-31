@@ -84,37 +84,39 @@ int DeckDataWrapper::count(MTGCard * card){
 int DeckDataWrapper::countByName(MTGCard * card){
   string name = card->name;
   int total = 0;
-  map<MTGCard *,int,Cmp1>::iterator it;
+  map<MTGCard *,int,Cmp1>::iterator it,it_origin;
   it = cards.find(card);
-  if(cards.find(card) == cards.end()){
+  if(it == cards.end()){
     cards[card] = 0;
     it = cards.find(card);
   }
+  it_origin = it;
 
-   while(it !=cards.end()){
-     MTGCard * _card = (*it).first;
-     if (name.compare(_card->name) !=0){
-       it = cards.end();
-     }else{
-      total+= (*it).second;
-      it++;
-     }
+ while(it !=cards.end()){
+   MTGCard * _card = (*it).first;
+   if (name.compare(_card->name) !=0){
+     it = cards.end();
+   }else{
+    total+= (*it).second;
+    it++;
    }
+ }
 
-   it = cards.find(card);
-   it--;
-   while(1){
-     MTGCard * _card = (*it).first;
-     if (name.compare(_card->name) !=0){
-       break;
-     }else{
-      total+= (*it).second;
-      if (it == cards.begin()) break;
-      it--;
-      
-     }
+ it = cards.find(card);
+ if (it == cards.begin()) return total;
+ it--;
+ while(1){
+   MTGCard * _card = (*it).first;
+   if (name.compare(_card->name) !=0){
+     break;
+   }else{
+    total+= (*it).second;
+    if (it == cards.begin()) break;
+    it--;
+    
    }
-   return total;
+ }
+ return total;
 }
 
 
