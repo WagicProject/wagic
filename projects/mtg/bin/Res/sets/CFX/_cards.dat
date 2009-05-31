@@ -395,6 +395,7 @@ name=Sphinx Summoner
 rarity=R
 type=Artifact Creature
 mana={3}{U}{B}
+abilities=flying
 power=3
 subtype=Sphinx
 toughness=3
