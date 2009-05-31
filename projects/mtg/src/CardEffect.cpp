@@ -18,7 +18,7 @@ CardEffect::CardEffect()
       palette[i] = ARGB(((unsigned char)(191 + 64 * (sinf(M_PI*sinf(2*M_PI*((float)i)/256.0)/2)))),
 			0,
 			(unsigned char)(200 * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2) * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2)),
-      (unsigned char)(200 * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2) ),
+			(unsigned char)(200 * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2))
 
 			);
     }
