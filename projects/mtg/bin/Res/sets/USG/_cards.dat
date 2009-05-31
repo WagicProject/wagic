@@ -739,7 +739,7 @@ subtype=Mountain
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
-id=
+id=5748
 name=Pacifism
 target=creature
 auto=cantattack
