@@ -1,5 +1,6 @@
 #include "../include/GameApp.h"
 #include "../include/MTGCard.h"
+#include "../include/GameOptions.h"
 #include "../include/CardEffect.h"
 
 PIXEL_TYPE CardEffect::surface[] = {};
@@ -16,8 +17,9 @@ CardEffect::CardEffect()
 
       palette[i] = ARGB(((unsigned char)(191 + 64 * (sinf(M_PI*sinf(2*M_PI*((float)i)/256.0)/2)))),
 			0,
-			((unsigned char)(64 + 64 * (cosf(M_PI*sinf(2*M_PI*((float)i)/256.0)/2)))),
-			(unsigned char)(255 * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2) * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2))
+			(unsigned char)(200 * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2) * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2)),
+      (unsigned char)(200 * (0.5 + sinf(2*M_PI*((float)i)/256.0)/2) ),
+
 			);
     }
 }
@@ -29,6 +31,7 @@ CardEffect::~CardEffect()
 
 void CardEffect::UpdateSmall(float dt)
 {
+  if (!GameOptions::GetInstance()->values[OPTIONS_PLASMAEFFECT].getIntValue()) return;
   static float t = 0;
   t += 3*dt;
   unsigned char c = (unsigned char)(5*t);
@@ -44,6 +47,7 @@ void CardEffect::UpdateSmall(float dt)
 
 void CardEffect::UpdateBig(float dt)
 {
+  if (!GameOptions::GetInstance()->values[OPTIONS_PLASMAEFFECT].getIntValue()) return;
   static float t = 0;
   t += 3*dt;
   unsigned char c = (unsigned char)(9*t);

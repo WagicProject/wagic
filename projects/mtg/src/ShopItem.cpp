@@ -97,6 +97,7 @@ void ShopItem::Render(){
       quad = card->getQuad();
     }
     if (quad){
+      quad->SetColor(ARGB(255,255,255,255));
       renderer->RenderQuad(quad,mX + SCREEN_WIDTH/2 + 20,5,0, 0.9f,0.9f);
     }else{
       if (card) CardGui::alternateRender(card,NULL,mX + SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);

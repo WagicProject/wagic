@@ -12,6 +12,7 @@ using std::string;
 #define OPTIONS_MOMIR_MODE_UNLOCKED "prx_rimom" //haha
 #define OPTIONS_DIFFICULTY "difficulty"
 #define OPTIONS_CACHESIZE "cacheSize"
+#define OPTIONS_PLASMAEFFECT "plasmaEffect"
 
 // WALDORF - added
 #define OPTIONS_INTERRUPT_SECONDS "interruptSeconds"                         
