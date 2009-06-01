@@ -1,14 +1,18 @@
 #Plain white deck
+#NAME:Army of Justice
+#DESC:Defending law with an army of zealous
+#DESC:followers, every criminal shall be punished
+#DESC:with the wrath of the just.
 #4x Crusade,{W}{W}, Enchantment, all white creatures +1/+1
 1341
 1341
 1341
 1341
-#4x Sacred Nectar, {1}{W}, Sorcery, you gain 4 life
-4393
-4393
-4393
-4393
+#4x Swords to Plowshares, {W} Remove target creature from game, controller gains life = strength
+1367
+1367
+1367
+1367
 #4x Glorious Anthem, {1}{W}{W}, Enchantment, Creatures you control get +1/+1
 129572
 129572
