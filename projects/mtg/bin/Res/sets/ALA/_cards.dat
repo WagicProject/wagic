@@ -993,3 +993,15 @@ power=5
 subtype=Beast
 toughness=4
 [/card]
+[card]
+text={T}: Target player puts the top card of his or her library into his or her graveyard.
+auto={T}:deplete:1 target(player)
+id=176433
+name=Cathartic Adept
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
