@@ -8,11 +8,7 @@
 #DESC:It's not like I did not warn
 #DESC:you with that Boomerang.
 #Blue Deck, with Persusasion
-#28 Islands
-176428
-176428
-176428
-176428
+#24 Islands
 176428
 176428
 176428
@@ -42,12 +38,17 @@
 129900
 129900
 129900
+#2Control Magic
+1194
+1194
 #4Boomerang
 129494
 129494
 129494
 129494
-#2Lord of Atlantis
+#4Lord of Atlantis
+1206
+1206
 1206
 1206
 #2Merfolk
