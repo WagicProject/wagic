@@ -1,4 +1,9 @@
 #DeckMill /Artifact Game for AI
+#NAME:Artifact Torture
+#DESC:Black vises in Ivory Towers await you when facing
+#DESC:this artificially created army, designed to
+#DESC:completely stop your progress and then
+#DESC:torture you to death.
 #4x Howling Mine
 129598
 129598
@@ -39,13 +44,15 @@
 1101
 1101
 1101
-#4x CloudHeath Drake
-174814
-174814
-174814
-174814
+#4x Master of Etherium
+175114
+175114
+175114
+175114
 #Lands
-#8islands
+#10islands
+129606
+129606
 129606
 129607
 129608
@@ -54,8 +61,7 @@
 129607
 129608
 129609
-#8swamps
-129754
+#7swamps
 129755
 129756
 129757
@@ -63,8 +69,7 @@
 129755
 129756
 129757
-#8Plains
-129680
+#7Plains
 129681
 129682
 129683
