@@ -1,7 +1,7 @@
 [card]
 text=Target creature gets -1/-1 until end of turn.     Draw a card.
 target=creature
-auto=-1/-1
+auto=:-1/-1
 auto=draw:1
 id=135206
 name=Afflict
@@ -13,7 +13,7 @@ mana={2}{B}
 [card]
 text=Target creature gets +1/+1 until end of turn.     Draw a card.
 target=creature
-auto=1/1
+auto=:1/1
 auto=draw:1
 id=130525
 name=Aggressive Urge
@@ -518,7 +518,7 @@ mana={1}
 [/card]
 [card]
 text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from your graveyard to play.
-auto={B},{T},{S}:moveTo(myinplay) target(creature|mygraveyard)
+auto={B}{T}{S}:moveTo(myinplay) target(creature|mygraveyard)
 id=129880
 name=Doomed Necromancer
 rarity=R
@@ -713,7 +713,7 @@ toughness=2
 text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
 id=135258
 auto=lord(soldier) 1/1 other
-auto=lord(soldier)  first strike other
+auto=lord(soldier) first strike other
 name=Field Marshal
 rarity=R
 color=White
@@ -812,7 +812,7 @@ subtype=Forest
 [/card]
 [card]
 text={2}, {T}: You gain 1 life.
-auto={2},{T}:life:1
+auto={2}{T}:life:1
 id=135273
 name=Fountain of Youth
 rarity=U
@@ -834,7 +834,7 @@ toughness=1
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {R}: Furnace Whelp gets +1/+0 until end of turn.
-abilities=Flying
+abilities=flying
 auto={R}:1/0
 id=130386
 name=Furnace Whelp
@@ -1151,7 +1151,7 @@ mana={4}
 [/card]
 [card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)  {T}: Kamahl, Pit Fighter deals 3 damage to target creature or player.
-abilities=haste, legendary
+abilities=haste,legendary
 auto={T}:Damage:3 target(creature,player)
 id=106398
 name=Kamahl, Pit Fighter
@@ -1199,7 +1199,7 @@ mana={2}
 [card]
 text=Lava Axe deals 5 damage to target player.
 target=player
-auto=Damage 5
+auto=damage:5
 id=129620
 name=Lava Axe
 rarity=C
@@ -1221,7 +1221,7 @@ toughness=3
 [/card]
 [card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
-abilities=Haste
+abilities=haste
 id=129624
 name=Lightning Elemental
 rarity=C
@@ -1234,7 +1234,7 @@ toughness=1
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto=auto={T}: Add {G}
+auto={T}: Add {G}
 id=129626
 name=Llanowar Elves
 rarity=C
@@ -1299,7 +1299,7 @@ toughness=2
 [/card]
 [card]
 text={W}, {T}: Tap target creature.
-auto={W},{T}:tap target(creature)
+auto={W}{T}:tap target(creature)
 id=129638
 name=Loxodon Mystic
 rarity=C
@@ -1324,7 +1324,7 @@ toughness=3
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-abilities=Flying
+abilities=flying
 id=129633
 name=Mahamoti Djinn
 rarity=R
@@ -1337,7 +1337,7 @@ toughness=6
 [/card]
 [card]
 text={2}: Mantis Engine gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)  {2}: Mantis Engine gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
-auto={2}:Flying
+auto={2}:flying
 auto={2}:first strike
 id=136289
 name=Mantis Engine
@@ -1419,7 +1419,7 @@ mana={2}
 [/card]
 [card]
 text=First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
-abilities=First strike, forestwalk, vigilance, legendary 
+abilities=first strike,forestwalk,vigilance,legendary 
 id=106405
 name=Mirri, Cat Warrior
 rarity=R
@@ -1456,7 +1456,7 @@ toughness=1
 [/card]
 [card]
 text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Molimo, Maro-Sorcerer's power and toughness are  equal to the number of lands you control.
-abilities=trample, legendary
+abilities=trample,legendary
 auto=foreach(land|myinplay) 1/1
 id=106368
 name=Molimo, Maro-Sorcerer
@@ -1586,7 +1586,7 @@ toughness=3
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-abilities=Flying
+abilities=flying
 id=129665
 name=Ornithopter
 rarity=U
@@ -1623,7 +1623,7 @@ subtype=Aura
 [/card]
 [card]
 text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
-abilities=First strike, protection from black, protection from red
+abilities=first strike,protection from black,protection from red
 id=129668
 name=Paladin en-Vec
 rarity=R
@@ -2085,7 +2085,7 @@ toughness=6
 [/card]
 [card]
 text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
-auto={S(land|myhand)}:damage 2 target(creature,player)
+auto={S(land|myhand)}:damage:2 target(creature,player)
 id=129884
 name=Seismic Assault
 rarity=R
@@ -2147,7 +2147,7 @@ mana={2}{R}{R}
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
 target=creature
 auto=flying
-auto={U}:moveTo(hand)
+auto={U}:moveTo(ownerhand)
 id=129553
 name=Shimmering Wings
 rarity=C
@@ -2173,7 +2173,7 @@ toughness=5
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{R}: Shivan Hellkite deals 1 damage to target creature or player.
 abilities=flying
-auto={1}{R}: Damage:1 target(creature,player)
+auto={1}{R}:Damage:1 target(creature,player)
 id=130538
 name=Shivan Hellkite
 rarity=R
@@ -2209,7 +2209,7 @@ mana={R}
 [card]
 text=When Siege-Gang Commander comes into play, put three 1/1 red Goblin creature tokens into play.     {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
 auto=token(Goblin,creature goblin, 1/1,red)*3
-auto={1},{R},{S(goblin|myinplay)}:Damage:2 target(creature,player)
+auto={1}{R}{S(goblin|myinplay)}:Damage:2 target(creature,player)
 id=130539
 name=Siege-Gang Commander
 rarity=R
@@ -2222,7 +2222,7 @@ toughness=2
 [/card]
 [card]
 text=Flying, first strike (This creature can't be blocked except by creatures with flying or reach, and it deals combat damage before creatures without first strike.)
-abilities=Flying, first strike
+abilities=flying, first strike
 id=129735
 name=Skyhunter Patrol
 rarity=C
@@ -2414,7 +2414,7 @@ text=Target creature can't block this turn.     Draw a card.
 id=134755
 name=Stun
 target=creature
-auto=:cantblock
+auto=cantblock
 auto=draw:1
 rarity=C
 color=Red
@@ -2544,7 +2544,7 @@ mana={1}{B}
 [/card]
 [card]
 text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
-auto={5},{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
+auto={5}{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
 id=135253
 name=The Hive
 rarity=R
