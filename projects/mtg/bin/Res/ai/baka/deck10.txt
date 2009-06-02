@@ -1,41 +1,54 @@
+##NAME:Goblins of the Howling Mine
+#Spark Elemental
 129577
 129577
 129577
 129577
+#Raging Goblin
 129688
 129688
 129688
 129688
+#Goblin Piker
 129580
 129580
 129580
 129580
+#Goblin King
 129578
 129578
 129578
 129578
+#Goblin Striker
 48592
 48592
 48592
 48592
+#Lightning Bolt
 1303
 1303
 1303
 1303
+#Wheel of Fate
 1326
 1326
+#Black Vise
 1097
 1097
+#Hearthfire Hobgoblin
 157201
 157201
 157201
 157201
+#Howling Mine
 129598
 129598
+#Goblin Mountaineer
 174938
 174938
 174938
 174938
+#Mountain
 1390
 1390
 1390
