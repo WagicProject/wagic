@@ -1318,6 +1318,7 @@ mana={3}{G}
 power=1
 subtype=Insect
 toughness=1
+abilities=flying
 [/card]
 [card]
 text=Defender (This creature can't attack.)        {T}: Add {G} to your mana pool.
