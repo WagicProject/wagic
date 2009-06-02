@@ -1,0 +1,20 @@
+#Bug: two akron legionnaires on your side, non can attack
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:akron legionnaire,akron legionnaire,grizzly bears,dragon engine
+[PLAYER2]
+[DO]
+akron legionnaire
+grizzly bears
+dragon engine
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:akron legionnaire,akron legionnaire,grizzly bears,dragon engine
+[PLAYER2]
+life:11
+[END]

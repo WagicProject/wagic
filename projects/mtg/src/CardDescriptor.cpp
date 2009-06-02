@@ -29,7 +29,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
         break;
       }
     }else{
-      if (!card->hasSubtype(-types[i])){
+      if (!card->hasSubtype(-types[i]) && (Subtypes::subtypesList->find(card->name) != -types[i])){
         found = 1;
         break;
       }
@@ -65,7 +65,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
         match = NULL;
       }
     }else{
-      if(card->hasSubtype(-types[i])){
+      if(card->hasSubtype(-types[i]) || (Subtypes::subtypesList->find(card->name) == -types[i])){
         match = NULL;
       }
     }

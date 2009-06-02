@@ -47,7 +47,7 @@ toughness=4
 [/card]
 [card]
 text=Except for creatures named Akron Legionnaire and artifact creatures, creatures you control can't attack.
-auto=lord(creature[-artifact]|myinplay) cantattack other
+auto=lord(creature[-artifact;-Akron Legionnaire]|myinplay) cantattack
 id=1599
 name=Akron Legionnaire
 color=White
