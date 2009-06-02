@@ -1,43 +1,54 @@
+#NAME:Wolves, Sprites and Thoctars
+#Spark Elemental
 129577
 129577
 129577
 129577
+#Tundra Wolves
 129604
 129604
 129604
-129604
-129790
-129790
-129790
-129790
+#Watchwolf
+83625
+83625
+83625
+83625
+#Wooly Thoctar
 175062
 175062
 175062
 175062
+#Scryb Sprites
 1264
 1264
 1264
-1264
+#Lightning Bolt
 1303
 1303
 1303
 1303
+#Kird Ape
 1302
 1302
 1302
 1302
+#Savannah Lions
 1365
 1365
 1365
 1365
+#Swords to Plowshares
 1367
 1367
 1367
 1367
+#Forest5
 1388
 1388
 1388
 1388
+1388
+#Plains9
 1397
 1397
 1397
@@ -46,6 +57,8 @@
 1397
 1397
 1397
+1397
+#Mountain8
 1390
 1390
 1390
