@@ -1,5 +1,5 @@
 #DeckMill /Artifact Game for AI
-#NAME:Artifact Torture
+#NAME:Inquisitor
 #DESC:Black vises in Ivory Towers await you when facing
 #DESC:this artificially created army, designed to
 #DESC:completely stop your progress and then

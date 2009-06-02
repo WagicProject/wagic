@@ -1,4 +1,4 @@
-#NAME:Wolves, Sprites and Thoctars
+#NAME:WST
 #Spark Elemental
 129577
 129577

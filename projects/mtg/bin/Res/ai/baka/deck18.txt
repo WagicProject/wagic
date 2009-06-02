@@ -1,5 +1,5 @@
 #Plain white deck
-#NAME:Army of Justice
+#NAME:Justice
 #DESC:Defending law with an army of zealous
 #DESC:followers, every criminal shall be punished
 #DESC:with the wrath of the just.
