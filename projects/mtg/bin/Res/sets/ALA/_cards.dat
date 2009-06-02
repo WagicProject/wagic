@@ -1024,7 +1024,7 @@ text=Flying
 When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
 abilities=flying,legendary
 auto=auto=may moveTo(myinplay) target(artifact|mygraveyard)
-id=Sharuum the Hegemon
+id=175127
 name=Sharuum the Hegemon
 rarity=M
 type=Artifact Creature
