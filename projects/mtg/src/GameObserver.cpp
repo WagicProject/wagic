@@ -302,14 +302,15 @@ void GameObserver::ButtonPressed (int controllerId, PlayGuiObject * _object){
       forceShuffleLibraries();
     } else {
       int pId = (-id - 4)/2;
-      if (targetChooser && targetChooser->targetsZone(players[pId]->game->library)){
+      TargetChooser * _tc = this->getCurrentTargetChooser();
+      if (_tc && _tc->targetsZone(players[pId]->game->library)){
         zone->toggleDisplay();
         forceShuffleLibrary[pId] = 1;
       }
     }
     
   }
-  if (id== -5 || id == -3){ //TODO libraries ???
+  if (id== -5 || id == -3){ 
     GuiGameZone * zone = (GuiGameZone *)_object;
     zone->toggleDisplay();
   }

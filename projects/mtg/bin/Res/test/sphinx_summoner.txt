@@ -1,0 +1,22 @@
+#Bug: Sphinx summoner doesn't allow to search the library
+# text=Flying     When Sphinx Summoner comes into play, you may search your library for an artifact creature card, reveal it, and put it into your hand. If you do, shuffle your library.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Sphinx Summoner
+library:swamp,plains,dragon engine,mountain
+manapool:{3}{B}{U}
+[PLAYER2]
+[DO]
+Sphinx Summoner
+choice 0
+dragon engine
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+library:*,*,*
+hand:dragon engine
+inplay:sphinx summoner
+manapool:{0}
+[PLAYER2]
+[END]

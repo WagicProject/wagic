@@ -102,6 +102,7 @@ seismic_assault.txt
 siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt
+sphinx_summoner.txt
 spark_elemental.txt
 spirit_link.txt
 stasis.txt

@@ -325,9 +325,10 @@ int TestSuite::assertGame(){
     for (int j = 0; j < 4; j++){
       MTGGameZone * zone = playerZones[j];
       if (zone->nb_cards != endState.playerData[i].zones[j].nbitems){
-	Log("<span class=\"error\">==Card number not the same==</span><br />");
-	error++;
-	return 0;
+        sprintf(result, "<span class=\"error\">==Card number not the same in %i==</span><br />",j);
+        Log(result);
+	      error++;
+	      return 0;
       }
       for (int k = 0; k < endState.playerData[i].zones[j].nbitems; k++){
 	      int cardid = endState.playerData[i].zones[j].cards[k];
