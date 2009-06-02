@@ -1005,3 +1005,31 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
+[card]
+text=Flying
+When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
+abilities=flying
+auto=auto=may moveTo(myHand) target(artifact|mygraveyard)
+id=174925
+name=Sanctum Gargoyle
+rarity=C
+type=Artifact Creature
+mana={3}{W}
+power=2
+subtype=Gargoyle
+toughness=3
+[/card]
+[card]
+text=Flying
+When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
+abilities=flying,legendary
+auto=auto=may moveTo(myinplay) target(artifact|mygraveyard)
+id=Sharuum the Hegemon
+name=Sharuum the Hegemon
+rarity=M
+type=Artifact Creature
+mana={3}{W}{U}{B}
+power=5
+subtype=Sphinx
+toughness=5
+[/card]
