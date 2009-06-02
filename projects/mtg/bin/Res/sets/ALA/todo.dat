@@ -223,17 +223,6 @@ subtype=Viashino Warrior
 toughness=4
 [/card]
 [card]
-text={T}: Target player puts the top card of his or her library into his or her graveyard.
-id=176433
-name=Cathartic Adept
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
 text=Choose five permanents you control. For each of those permanents, you may search your library for a card with the same name as that permanent. Put those cards into play tapped, then shuffle your library.
 id=175142
 name=Clarion Ultimatum
@@ -1116,7 +1105,6 @@ subtype=Golem
 toughness=4
 [/card]
 [card]
-text=Flying     When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
 id=174925
 name=Sanctum Gargoyle
 rarity=C
@@ -1209,18 +1197,6 @@ subtype=Sphinx
 toughness=4
 [/card]
 [card]
-text=Flying     When Sharuum the Hegemon comes into play, you may return target artifact card from your graveyard to play.
-id=175127
-name=Sharuum the Hegemon
-rarity=M
-type=Legendary Artifact Creature
-mana={3}{W}{U}{B}
-power=5
-subtype=Sphinx
-toughness=5
-[/card]
-
-[card]
 text=Sigil of Distinction comes into play with X charge counters on it.     Equipped creature gets +1/+1 for each charge counter on Sigil of Distinction.     Equip-Remove a charge counter from Sigil of Distinction.
 id=174867
 name=Sigil of Distinction
@@ -1229,7 +1205,6 @@ type=Artifact
 mana={X}
 subtype=Equipment
 [/card]
-
 [card]
 text=Skeletonize deals 3 damage to target creature. When a creature dealt damage this way is put into a graveyard this turn, put a 1/1 black Skeleton creature token into play with "{B}: Regenerate this creature."
 id=175070

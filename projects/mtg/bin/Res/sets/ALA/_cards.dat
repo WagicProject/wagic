@@ -81,6 +81,18 @@ type=Instant
 mana={1}{U}{U}
 [/card]
 [card]
+text={T}: Target player puts the top card of his or her library into his or her graveyard.
+auto={T}:deplete:1 target(player)
+id=176433
+name=Cathartic Adept
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
 text={1}{R}: Cavern Thoctar gets +1/+0 until end of turn.
 auto={1}{R}:1/0
 id=174994
@@ -744,6 +756,19 @@ type=Sorcery
 mana={4}{R}{G}
 [/card]
 [card]
+text=Flying     When Sharuum the Hegemon comes into play, you may return target artifact card from your graveyard to play.
+abilities=flying
+auto=may moveTo(myHand) target(artifact|mygraveyard)
+id=174925
+name=Sanctum Gargoyle
+rarity=C
+type=Artifact Creature
+mana={3}{W}
+power=2
+subtype=Gargoyle
+toughness=3
+[/card]
+[card]
 text=Savage Lands comes into play tapped.     {T}: Add {B}, {R}, or {G} to your mana pool.
 auto=tap
 auto={T}:Add{B}
@@ -775,6 +800,19 @@ name=Shadowfeed
 rarity=C
 type=Instant
 mana={B}
+[/card]
+[card]
+text=Flying     When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
+abilities=flying,legendary
+auto=may moveTo(myinplay) target(artifact|mygraveyard)
+id=175127
+name=Sharuum the Hegemon
+rarity=M
+type=Artifact Creature
+mana={3}{W}{U}{B}
+power=5
+subtype=Sphinx
+toughness=5
 [/card]
 [card]
 text={U}: Shore Snapper gains islandwalk until end of turn.
@@ -992,44 +1030,4 @@ mana={R}{G}{W}
 power=5
 subtype=Beast
 toughness=4
-[/card]
-[card]
-text={T}: Target player puts the top card of his or her library into his or her graveyard.
-auto={T}:deplete:1 target(player)
-id=176433
-name=Cathartic Adept
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text=Flying
-When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
-abilities=flying
-auto=auto=may moveTo(myHand) target(artifact|mygraveyard)
-id=174925
-name=Sanctum Gargoyle
-rarity=C
-type=Artifact Creature
-mana={3}{W}
-power=2
-subtype=Gargoyle
-toughness=3
-[/card]
-[card]
-text=Flying
-When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
-abilities=flying,legendary
-auto=auto=may moveTo(myinplay) target(artifact|mygraveyard)
-id=175127
-name=Sharuum the Hegemon
-rarity=M
-type=Artifact Creature
-mana={3}{W}{U}{B}
-power=5
-subtype=Sphinx
-toughness=5
 [/card]
