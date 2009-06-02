@@ -267,6 +267,7 @@ toughness=7
 text=Flying, haste     When you play Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to play.
 id=153972
 name=Demigod of Revenge
+auto=moveTo(myinplay) all(creature[Demigod of Revenge]|mygraveyard)
 rarity=R
 type=Creature
 mana={BR}{BR}{BR}{BR}{BR}
