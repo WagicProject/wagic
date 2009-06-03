@@ -856,7 +856,7 @@ mana={2}{B}
 type=Creature
 subtype=Human Cleric Minion
 power=2
-toughness=2
+toughness=1
 [/card]
 [card]
 text=Enchant creature      Enchanted creature has first strike.
