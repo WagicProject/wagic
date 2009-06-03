@@ -2,6 +2,7 @@
 text=Enchant creature      Enchanted creature gets +2/+2 for each other enchantment in play.
 target=creature
 auto=foreach(enchantment|myinplay) 2/2 other
+auto=foreach(enchantment|opponentinplay) 2/2 other
 id=19634
 name=Ancestral Mask
 color=Green
