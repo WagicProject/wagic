@@ -514,7 +514,7 @@ name=Diabolic Tutor
 rarity=U
 color=Black
 type=Sorcery
-mana={1}
+mana={2}{B}{B}
 [/card]
 [card]
 text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from your graveyard to play.
