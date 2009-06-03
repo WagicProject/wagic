@@ -1105,16 +1105,6 @@ subtype=Golem
 toughness=4
 [/card]
 [card]
-id=174925
-name=Sanctum Gargoyle
-rarity=C
-type=Artifact Creature
-mana={3}{W}
-power=2
-subtype=Gargoyle
-toughness=3
-[/card]
-[card]
 text=+1: Creatures you control get +1/+1 and gain haste until end of turn.     -2: Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.     -6: Put five 4/4 red Dragon creature tokens with flying into play.
 id=174983
 name=Sarkhan Vol
