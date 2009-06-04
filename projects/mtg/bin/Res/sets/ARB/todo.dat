@@ -327,7 +327,7 @@ id=179618
 name=Etherwrought Page
 mana={1}{W}{U}{B}
 type=Artifact
-text=At the beginning of your upkeep, choose one  EYou gain 2 life; or look at the top card of your library, then you may put that card into your graveyard; or each opponent loses 1 life.
+text=At the beginning of your upkeep, choose one ?EYou gain 2 life; or look at the top card of your library, then you may put that card into your graveyard; or each opponent loses 1 life.
 rarity=U
 [/card]
 [card]
@@ -467,6 +467,17 @@ text=When you cycle Grixis Sojourners or it's put into a graveyard from play, yo
 rarity=C
 [/card]
 [card]
+id=180624
+name=Knotvine Paladin
+mana={G}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text=Whenever Knotvine Paladin attacks, it gets +1/+1 until end of turn for each untapped creature you control.
+rarity=R
+[/card]
+[card]
 id=175109
 name=Identity Crisis
 mana={2}{W}{W}{B}{B}
@@ -496,15 +507,6 @@ subtype=Demon Illusion
 power=4
 toughness=3
 text=Flying When you play a spell, sacrifice Illusory Demon.
-rarity=U
-[/card]
-[card]
-id=179568
-name=Intimidation Bolt
-mana={1}{R}{W}
-type=Instant
-text=Intimidation Bolt deals 3 damage to target creature. Other creatures can't attack this turn.
-target=creature
 rarity=U
 [/card]
 [card]
@@ -595,17 +597,7 @@ toughness=2
 text=Each other multicolored creature you control gets +1/+1 for each of its colors.
 rarity=R
 [/card]
-[card]
-id=180624
-name=Knotvine Paladin
-mana={G}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=Whenever Knotvine Paladin attacks, it gets +1/+1 until end of turn for each untapped creature you control.
-rarity=R
-[/card]
+
 [card]
 id=180612
 name=Lavalanche
@@ -970,20 +962,22 @@ text=Gain control of target creature. Untap that creature. It gains haste until 
 rarity=U
 [/card]
 [card]
-id=183008
-name=Soul Manipulation
-mana={1}{U}{B}
-type=Instant
-text=Choose one or both  ECounter target creature spell; and/or return target creature card in your graveyard to your hand.
-rarity=C
-[/card]
-[card]
 id=179409
 name=Soulquake
 mana={3}{U}{U}{B}{B}
 type=Sorcery
+auto=moveto(ownerhand) all (creature|inplay)
+auto=moveto(ownerhand) all (creature|graveyard)
 text=Return all creatures in play and all creature cards in graveyards to their owners' hands.
 rarity=R
+[/card]
+[card]
+id=183008
+name=Soul Manipulation
+mana={1}{U}{B}
+type=Instant
+text=Choose one or both ?ECounter target creature spell; and/or return target creature card in your graveyard to your hand.
+rarity=C
 [/card]
 [card]
 id=180600

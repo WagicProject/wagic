@@ -745,6 +745,18 @@ subtype=Human Warrior
 toughness=2
 [/card]
 [card]
+text={4}{G}: Rockcaster Platoon deals 2 damage to each creature with flying and each player.
+id=175024
+auto={4}{G}:damage:4 all (creature[flying],player)
+name=Rockcaster Platoon
+rarity=U
+type=Creature
+mana={5}{W}{W}
+power=5
+subtype=Rhino Soldier
+toughness=7
+[/card]
+[card]
 text=Target creature gets +3/+3 and gains double strike until end of turn.
 target=creature
 auto=:3/3

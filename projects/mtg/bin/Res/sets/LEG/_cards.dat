@@ -1,15 +1,4 @@
 [card]
-text=Whenever Abomination blocks or becomes blocked by a green or white creature, destroy that creature at end of combat.
-id=1427
-name=Abomination
-rarity=U
-type=Creature
-mana={3}{B}{B}
-power=2
-subtype=Horror
-toughness=6
-[/card]
-[card]
 text=Destroy all forests.
 auto=destroy all(forest)
 id=1470
@@ -163,11 +152,11 @@ abilities=forestwalk
 [card]
 text=Flying     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)  At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
 id=1650
-abilities=flying
+abilities=flying,Legendary
 auto=rampage(2/2,1)
 name=Chromium
 rarity=R
-type=Legendary Creature
+type=Creature
 mana={2}{W}{W}{U}{U}{B}{B}
 power=7
 subtype=Elder Dragon

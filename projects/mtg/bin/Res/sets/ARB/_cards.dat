@@ -49,6 +49,18 @@ power=1
 toughness=5
 [/card]
 [card]
+id=179568
+name=Intimidation Bolt
+mana={1}{R}{W}
+type=Instant
+text=Intimidation Bolt deals 3 damage to target creature. Other creatures can't attack this turn.
+target=creature
+auto=damage:3
+auto=lord(creature) cantattack
+target=creature
+rarity=U
+[/card]
+[card]
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
 id=177922
 name=Lord of Extinction 

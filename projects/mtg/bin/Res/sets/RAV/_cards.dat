@@ -244,15 +244,6 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Each player returns all creature cards from his or her graveyard to his or her hand.
-id=89015
-name=Empty the Catacombs
-auto=moveto(ownerhand) all(creature|graveyard)
-rarity=R
-type=Sorcery
-mana={3}{B}
-[/card]
-[card]
 text={4}{G}, Sacrifice a creature: Destroy target creature with flying.
 id=87928
 name=Elvish Skysweeper
@@ -334,19 +325,6 @@ name=Forest
 rarity=L
 type=Basic Land
 subtype=Forest
-[/card]
-[card]
-text=Enchant creature     When Galvanic Arc comes into play, it deals 3 damage to target creature or player.        Enchanted creature has first strike.
-target=creature
-auto=first strike
-auto=Damage:3 target(creature,player)
-id=87968
-name=Galvanic Arc
-color=Red
-rarity=C
-mana={2}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 id=83719

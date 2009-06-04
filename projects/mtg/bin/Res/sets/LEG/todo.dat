@@ -1,4 +1,15 @@
 [card]
+text=Whenever Abomination blocks or becomes blocked by a green or white creature, destroy that creature at end of combat.
+id=1427
+name=Abomination
+rarity=U
+type=Creature
+mana={3}{B}{B}
+power=2
+subtype=Horror
+toughness=6
+[/card]
+[card]
 text=Choose one - Destroy target blue permanent; or return target Island to its owner's hand.
 id=1556
 name=Active Volcano

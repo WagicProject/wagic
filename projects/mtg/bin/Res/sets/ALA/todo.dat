@@ -398,6 +398,8 @@ mana={W}{U}{B}
 [card]
 text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Esper Panorama: Search your library for a basic Plains, Island, or Swamp card and put it into play tapped. Then shuffle your library.
 id=179431
+auto={T}:add {1}
+auto={1}{T}{S}:moveto (myinplay) target(island,plains,swamp|mylibrary)
 name=Esper Panorama
 rarity=C
 type=Land
@@ -1060,17 +1062,7 @@ power=6
 subtype=Beast
 toughness=4
 [/card]
-[card]
-text={4}{G}: Rockcaster Platoon deals 2 damage to each creature with flying and each player.
-id=175024
-name=Rockcaster Platoon
-rarity=U
-type=Creature
-mana={5}{W}{W}
-power=5
-subtype=Rhino Soldier
-toughness=7
-[/card]
+
 [card]
 text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
 id=174988
