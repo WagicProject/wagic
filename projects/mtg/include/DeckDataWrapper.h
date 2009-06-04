@@ -16,9 +16,7 @@ class Cmp1 { // compares cards by their name
   bool operator()(MTGCard * card1, MTGCard * card2) const {
     if (!card2) return true;
     if (!card1) return false;
-    string name1 = card1->name;
-    string name2 = card2->name;
-    int result = name1.compare(name2);
+    int result = card1->name.compare(card2->name);
     if (!result) return card1->getMTGId() < card2->getMTGId();
     return ( result < 0);
   }
