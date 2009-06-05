@@ -13,7 +13,6 @@ DeckDataWrapper::DeckDataWrapper(MTGDeck * deck){
     Add(card);
 
   }
-  currentposition = 0;
   currentColor = -1;
 }
 
@@ -155,19 +154,6 @@ MTGCard * DeckDataWrapper::getPrevious(MTGCard * next, int color){
     if (card == next) return NULL;
     if ((*it).second >0 && (color ==-1 || card->hasColor(color))){
       return card;
-    }
-  }
-}
-
-void DeckDataWrapper::updateCurrentPosition(MTGCard * currentCard, int color){
-  currentposition = 0;
-  MTGCard * next = getNext(NULL,color);
-  while (next){
-    currentposition+=cards[next];
-    if (next == currentCard){
-      next = NULL;
-    }else{
-      next = getNext(next,color);
     }
   }
 }

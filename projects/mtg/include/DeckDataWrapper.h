@@ -27,7 +27,6 @@ class DeckDataWrapper{
   int colors[Constants::MTG_NB_COLORS+1];
   int currentColor;
   map<MTGCard *, int,Cmp1> cards;
-  int currentposition;
   MTGDeck * parent;
 
   DeckDataWrapper(MTGDeck * deck);
@@ -38,7 +37,6 @@ class DeckDataWrapper{
   MTGCard * getNext(MTGCard * previous = NULL, int color = -1);
   MTGCard * getPrevious(MTGCard * next = NULL, int color = -1);
   void updateCounts(MTGCard * card = NULL, int removed = 0);
-  void updateCurrentPosition(MTGCard * currentCard,int color = -1);
   int getCount(int color = -1);
   int totalPrice();
   void save();

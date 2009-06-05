@@ -103,7 +103,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       }
       cardIndex[0] = currentCard;
     }
-    displayed_deck->updateCurrentPosition(cardIndex[2],colorFilter);
   }
 
   void loadIndexes(MTGCard * current = NULL){
@@ -121,9 +120,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       OutputDebugString(buf);
 #endif
       _current = displayed_deck->getNext(_current,colorFilter);
-
     }
-    displayed_deck->updateCurrentPosition(cardIndex[2],colorFilter);
   }
 
   void switchDisplay(){
@@ -443,13 +440,26 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
 
   void renderSlideBar(){
-    int currentPos = displayed_deck->currentposition;
     int total = displayed_deck->getCount(colorFilter);
     int filler = 15;
     int y = SCREEN_HEIGHT-25;
     int bar_size  = SCREEN_WIDTH - 2*filler;
-    int cursor_pos = bar_size * currentPos / total;
     JRenderer * r = JRenderer::GetInstance();
+    typedef map<MTGCard *,int,Cmp1>::reverse_iterator rit;
+
+    int currentPos = 0;
+    {
+      rit end = rit(displayed_deck->cards.begin());
+      rit it = rit(displayed_deck->cards.find(cardIndex[2]));
+	if (-1 == colorFilter)
+	  for (; it != end; ++it)
+	    currentPos += it->second;
+	else
+	  for (; it != end; ++it)
+	    if (it->first->hasColor(colorFilter)) currentPos += it->second;
+    }
+    int cursor_pos = bar_size * currentPos / total;
+
     r->FillRoundRect(filler + 5,y+5,bar_size,0,3,ARGB(hudAlpha/2,0,0,0));
     r->DrawLine(filler+cursor_pos + 5 ,y+5,filler+cursor_pos + 5,y+10,ARGB(hudAlpha/2,0,0,0));
 
