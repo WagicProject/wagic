@@ -1,60 +1,82 @@
-1389
-1390
-1391
-1389
-1390
-1391
-1389
-1390
-1391
-1389
-1390
-1391
-1386
-1387
-1388
-1386
-1387
-1388
-1386
-1387
-1388
-1386
-1387
-1388
+#DESC:Red/Green simple deck
+#2x Cockatrice
 1238
 1238
+#3x Craw Wurm
 1239
 1239
 1239
+#2x Elvish Archers
 1242
 1242
+#2x Giant Spider
 1249
 1249
+#2x Grizzly Bears
 1250
 1250
+#2x Scryb Sprites
 1264
 1264
+#2x Shanodin Dryads
 1265
 1265
+#1x Tranquility
 1270
+#1x Tsunami
 1271
+#2x Earth Elemental
 1287
 1287
+#2x Fire Elemental
 1290
 1290
+#1x Flashfires 
 1293
+#3x Goblin King
 1296
 1296
 1296
+#2x Hill Giant 
 1299
 1299
+#4x Mons's Goblin Raiders 
 1308
 1308
 1308
 1308
+#2x Orcish Oriflamme 
 1310
 1310
+#1x Power Surge 
 1311
-1371
+#1x Wheel of Fortune
 1326
+#1x White Ward 
+1371
+#Forest (RV)
+1386
+1386
+1386
+1386
+1387
+1387
+1387
+1387
+1388
+1388
+1388
+1388
+#Mountain
+1389
+1389
+1389
+1389
+1390
+1390
+1390
+1390
+1391
+1391
+1391
+1391
