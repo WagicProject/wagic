@@ -183,6 +183,22 @@ subtype=Human Archer
 toughness=1
 [/card]
 [card]
+text=Skeleton creatures you control and other Zombie creatures you control get +1/+1 and have deathtouch.
+auto=lord(zombie) 1/1 other
+auto=lord(skeleton) 1/1
+auto=lord(zombie) deathtouch other
+auto=lord(skeleton) deathtouch
+id=176430
+name=Death Baron
+rarity=R
+color=Black
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Zombie Wizard
+toughness=2
+[/card]
+[card]
 text=First strike     Shroud (This creature can't be the target of spells or abilities.)
 abilities=first strike,shroud
 id=175121
