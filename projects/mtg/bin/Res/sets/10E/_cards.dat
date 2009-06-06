@@ -98,7 +98,7 @@ mana={2}{W}
 [/card]
 [card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
-abilities=Defender, flying
+abilities=defender,flying
 id=129671
 name=Angelic Wall
 rarity=C
@@ -137,7 +137,7 @@ type=Land
 [card]
 text={T}: Draw three cards.     {2}{U}{U}: Return Arcanis the Omnipotent to its owner's hand.
 auto={T}:draw:3
-auto={2}{U}{U}:moveTo(hand)
+auto={2}{U}{U}:moveTo(ownerhand)
 abilities=legendary
 id=106426
 name=Arcanis the Omnipotent
@@ -150,7 +150,7 @@ toughness=4
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Other black creatures get +1/+1.      Nonblack creatures get -1/-1.
-abilities=Legendary, flying
+abilities=legendary,flying
 auto=lord(creature[black]) 1/1 other
 auto=lord(creature[-black]) -1/-1
 id=106525
@@ -200,7 +200,7 @@ toughness=2
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
-abilities=Flying
+abilities=flying
 alias=1236
 id=129906
 name=Birds of Paradise
@@ -872,7 +872,7 @@ mana={G}
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
-abilities=Reach
+abilities=reach
 id=129570
 name=Giant Spider
 rarity=C
@@ -1675,7 +1675,7 @@ toughness=2
 [/card]
 [card]
 text={2}, {T}, Sacrifice a creature: Draw a card.
-auto={2},{T},{S(creature|myinplay)}:draw:1
+auto={2}{T}{S(creature|myinplay)}:draw:1
 id=135281
 name=Phyrexian Vault
 rarity=U
@@ -2222,7 +2222,7 @@ toughness=2
 [/card]
 [card]
 text=Flying, first strike (This creature can't be blocked except by creatures with flying or reach, and it deals combat damage before creatures without first strike.)
-abilities=flying, first strike
+abilities=flying,first strike
 id=129735
 name=Skyhunter Patrol
 rarity=C

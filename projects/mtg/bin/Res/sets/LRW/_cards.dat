@@ -76,7 +76,7 @@ toughness=2
 text=First strike     {T}: Brigid, Hero of Kinsbaile deals 2 damage to each attacking or blocking creature target player controls.
 id=141829
 name=Brigid, Hero of Kinsbaile
-abilities=Legendary,first strike
+abilities=legendary,first strike
 auto={T}:damage:2 all(creature[attacking;blocking]|opponentinplay)
 auto={T}:damage:2 all(creature[attacking;blocking]|myinplay)
 rarity=R
@@ -173,7 +173,7 @@ subtype=Elf
 [/card]
 [card]
 text={B}, Sacrifice a Goblin: Facevaulter gets +2/+2 until end of turn.
-auto={B},{S(goblin|myinplay)}:2/2
+auto={B}{S(goblin|myinplay)}:2/2
 id=142361
 name=Facevaulter
 rarity=C
@@ -258,7 +258,7 @@ toughness=1
 [card]
 text=When Guardian of Cloverdell comes into play, put three 1/1 white Kithkin Soldier creature tokens into play.     {G}, Sacrifice a Kithkin: You gain 1 life.
 auto=token(Kithkin Soldier,creature Kithkin Soldier,1/1,white)*3
-auto={G}{S(kithkin|myinplay)}:life 1
+auto={G}{S(kithkin|myinplay)}:life: 1
 id=139665
 name=Guardian of Cloverdell
 rarity=U
@@ -406,7 +406,7 @@ toughness=1
 [/card]
 [card]
 text=Sacrifice Moonglove Extract: Moonglove Extract deals 2 damage to target creature or player.
-auot={S}:damage 2 target(creature,player)
+auot={S}:damage:2 target(creature,player)
 id=139506
 name=Moonglove Extract
 rarity=C
@@ -585,9 +585,9 @@ type=Land
 [card]
 text=Enchant creature     When Soaring Hope comes into play, you gain 3 life.     Enchanted creature has flying.     {W}: Put Soaring Hope on top of its owner's library.
 target=creature
-auto=life 3
+auto=life:3
 auto=flying
-auto={W}: moveTo(ownerlibrary)
+auto={W}:moveTo(ownerlibrary)
 id=139511
 name=Soaring Hope
 rarity=C
@@ -659,7 +659,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}, Sacrifice a Goblin: Tar Pitcher deals 2 damage to target creature or player.
-auto={T},{S(goblin|myinplay)}:damage 2 target(creature,player)
+auto={T},{S(goblin|myinplay)}:damage:2 target(creature,player)
 id=139470
 name=Tar Pitcher
 rarity=U
@@ -672,7 +672,7 @@ toughness=2
 [card]
 text=Tarfire deals 2 damage to target creature or player.
 target=creature,player
-auto=damage 2
+auto=damage:2
 id=139476
 name=Tarfire
 rarity=C
@@ -685,7 +685,7 @@ text=Flash     Enchant creature     When Triclopean Sight comes into play, untap
 abilities=flash
 target=creature
 auto=untap
-auto=1/1
+auto=:1/1
 auto=vigilance
 id=146580
 name=Triclopean Sight

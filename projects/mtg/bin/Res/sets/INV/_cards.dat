@@ -12,7 +12,7 @@ type=Instant
 [card]
 text=Target creature gets +1/+1 until end of turn.     Draw a card.
 target=creature
-auto=1/1
+auto=:1/1
 auto=draw:1
 id=24127
 name=Aggressive Urge
@@ -295,6 +295,7 @@ mana={4}{B}
 power=3
 subtype=Angel
 toughness=3
+abilities=flying
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
@@ -713,7 +714,7 @@ id=23072
 name=Maniacal Rage
 target=creature
 auto=:2/2
-auto=:cantblock
+auto=cantblock
 rarity=C
 type=Enchantment
 mana={1}{R}
@@ -1003,7 +1004,7 @@ abilities=flying,first strike
 [card]
 text=Return target creature card from your graveyard to your hand.   Draw a card.
 target=creature|myGraveyard
-alias=1174
+auto=moveTo(myhand)
 auto=draw:1
 id=23029
 name=Recover
@@ -1015,11 +1016,11 @@ type=Sorcery
 [card]
 text=Return target creature to its owner's hand.    Draw a card.
 target=creature
-alias=1229
+auto=moveTo(ownerhand)
 id=22985
 name=Repulse
 auto=draw:1
-color=Black
+color=Blue
 rarity=C
 mana={2}{U}
 type=Instant
@@ -1071,7 +1072,7 @@ type=Creature
 subtype=Cat Beast Warrior
 power=5
 toughness=5
-abilities=trample, protection from blue, protection from red
+abilities=trample,protection from blue,protection from red
 [/card]
 [card]
 text=Salt Marsh comes into play tapped.     {T}: Add {U} or {B} to your mana pool.
@@ -1242,7 +1243,7 @@ text=Target creature can't block this turn.     Draw a card.
 id=23073
 name=Stun
 target=creature
-auto=:cantattack
+auto=cantattack
 auto=draw:1
 rarity=C
 type=Instant
