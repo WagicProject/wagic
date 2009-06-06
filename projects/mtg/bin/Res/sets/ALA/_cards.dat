@@ -23,8 +23,8 @@ type=Land
 [/card]
 [card]
 text={G}, {T}: Target creature gains trample until end of turn.     {U}, {T}: Target creature gains flying until end of turn.
-auto={G},{T}:trample target(creature)
-auto={U},{T}:flying target(creature)
+auto={G}{T}:trample target(creature)
+auto={U}{T}:flying target(creature)
 id=175123
 name=Bant Battlemage
 rarity=U
@@ -60,7 +60,7 @@ toughness=4
 [/card]
 [card]
 text=Vigilance, haste
-abilities=Vigilance, haste
+abilities=vigilance,haste
 id=174952
 name=Bull Cerodon
 rarity=U
@@ -119,7 +119,7 @@ toughness=3
 [/card]
 [card]
 text={1}{U}, {T}, Sacrifice Courier's Capsule: Draw two cards.
-auto={1}{U}, {T}, {S}: Draw:2
+auto={1}{U}{T}{S}:Draw:2
 id=174800
 name=Courier's Capsule
 rarity=C
@@ -184,7 +184,7 @@ toughness=1
 [/card]
 [card]
 text=First strike     Shroud (This creature can't be the target of spells or abilities.)
-abilities=first strike, shroud
+abilities=first strike,shroud
 id=175121
 name=Deft Duelist
 rarity=C
@@ -196,7 +196,7 @@ toughness=1
 [/card]
 [card]
 text={2}{W}, {T}, Sacrifice Dispeller's Capsule: Destroy target artifact or enchantment.
-auto={2}{W},{T},{S}:destroy target(artifact,enchantment)
+auto={2}{W}{T}{S}:destroy target(artifact,enchantment)
 id=174830
 name=Dispeller's Capsule
 rarity=C
@@ -252,7 +252,7 @@ toughness=1
 [card]
 text=Flash     {B}, {T}, Sacrifice an artifact: Draw a card.
 abilities=flash
-auto={B},{T},{S(artifact|myinplay)}:draw:1
+auto={B}{T}{S(artifact|myinplay)}:draw:1
 id=175138
 name=Etherium Astrolabe
 rarity=U
@@ -494,7 +494,7 @@ toughness=2
 [card]
 text=Enchant creature     Enchanted creature gets +3/+0 and has first strike.
 target=creature
-auto=3/0
+auto=:3/0
 auto=first strike
 id=176446
 name=Lightning Talons
@@ -528,7 +528,7 @@ toughness=*
 [card]
 text={W}, {T}: Regenerate target artifact.
 id=175113
-auto={W},{T}:Regenerate target(artifact)
+auto={W}{T}:Regenerate target(artifact)
 name=Metallurgeon
 rarity=U
 type=Artifact Creature
@@ -585,8 +585,8 @@ mana={1}{G}
 [/card]
 [card]
 text={R}, {T}: Target creature gets +2/+0 until end of turn.     {W}, {T}: Tap target creature.
-auto={R},{T}:2/0 target(creature)
-auto={W},{T}:tap target(creature)
+auto={R}{T}:2/0 target(creature)
+auto={W}{T}:tap target(creature)
 id=174944
 name=Naya Battlemage
 rarity=U
@@ -721,8 +721,8 @@ subtype=Rhino Soldier
 toughness=3
 [/card]
 [card]
-abilities=lifelink
 text=Lifelink
+abilities=lifelink
 id=174957
 name=Rhox War Monk
 rarity=U
@@ -996,7 +996,7 @@ toughness=1
 [/card]
 [card]
 text=Flying     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=flying, exalted
+abilities=flying,exalted
 id=174955
 name=Waveskimmer Aven
 rarity=C
