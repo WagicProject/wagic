@@ -251,17 +251,25 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	      safeDeleteDisplay();
 	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
 	      int curNbcards = playerdata->collection->totalCards();
+        MTGDeck * tempDeck = NEW MTGDeck(NULL,playerdata->collection->database);
 
-        playerdata->collection->addRandomCards(1, setIds[showPriceDialog],Constants::RARITY_R);
-        playerdata->collection->addRandomCards(3, setIds[showPriceDialog],Constants::RARITY_U);
-        playerdata->collection->addRandomCards(11, setIds[showPriceDialog],Constants::RARITY_C);
+        tempDeck->addRandomCards(1, setIds[showPriceDialog],Constants::RARITY_R);
+        tempDeck->addRandomCards(3, setIds[showPriceDialog],Constants::RARITY_U);
+        tempDeck->addRandomCards(11, setIds[showPriceDialog],Constants::RARITY_C);
+        playerdata->collection->add(tempDeck);
 
-	      int newNbCards = playerdata->collection->totalCards();;
-	      for (int i = curNbcards; i < newNbCards ; i++){
-	        MTGCardInstance * card = NEW MTGCardInstance(playerdata->collection->_(i), NULL);
-	        displayCards[i-curNbcards] = card;
-	        display->AddCard(card);
-	      }
+        
+        int i = 0;
+        for (map<int,int>::iterator it = tempDeck->cards.begin(); it!=tempDeck->cards.end(); it++){
+          MTGCard * c = tempDeck->getCardById(it->first);
+          for (int j = 0; j < it->second; j++){
+            MTGCardInstance * card = NEW MTGCardInstance(c, NULL);
+            displayCards[i] = card;
+	          display->AddCard(card);
+            i++;
+          }
+        }
+        delete tempDeck;
       }
       //Remove(showPriceDialog);
       showPriceDialog = -1;

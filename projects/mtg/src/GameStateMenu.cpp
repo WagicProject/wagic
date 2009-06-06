@@ -222,7 +222,7 @@ void GameStateMenu::fillScroller(){
       scroller->Add(buff2);
   }
   delete ddw;
- 
+
   PlayerData * playerdata = NEW PlayerData(mParent->collection);
   sprintf(buff2, "You currently have %i credits",playerdata->credits);
   delete playerdata;

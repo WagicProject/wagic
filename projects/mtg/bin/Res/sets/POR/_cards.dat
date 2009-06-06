@@ -745,18 +745,6 @@ toughness=1
 abilities=flying
 [/card]
 [card]
-text=Flying
-id=4306
-name=Moon Sprite
-rarity=U
-mana={1}{G}
-type=Creature
-subtype=Faerie
-power=1
-toughness=1
-abilities=flying
-[/card]
-[card]
 text={T}: Add {R} to your mana pool.
 auto={T}: Add {R}
 id=4420
@@ -804,18 +792,6 @@ type=Creature
 subtype=Rat
 power=1
 toughness=1
-[/card]
-[card]
-text=Mountainwalk
-id=4352
-name=Mountain Goat
-rarity=U
-mana={R}
-type=Creature
-subtype=Goat
-power=1
-toughness=1
-abilities=mountainwalk
 [/card]
 [card]
 text=Counter target creature or sorcery spell.
@@ -937,18 +913,6 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
-text=Phantom Warrior is unblockable.
-id=4272
-name=Phantom Warrior
-rarity=R
-mana={1}{U}{U}
-type=Creature
-subtype=Illusion Warrior
-power=2
-toughness=2
-abilities=unblockable
-[/card]
-[card]
 text=Pyroclasm deals 2 damage to each creature.
 id=4354
 alias=2650
@@ -1045,7 +1009,7 @@ power=2
 toughness=3
 [/card]
 [card]
-id=4315
+id=4316
 name=Rowan Treefolk
 rarity=C
 mana={3}{G}

@@ -8,10 +8,10 @@ DeckDataWrapper::DeckDataWrapper(MTGDeck * deck){
   for (int i = 0; i <= Constants::MTG_NB_COLORS; i++){
     colors[i] = 0;
   }
-  for (int i = 0; i < deck->totalCards(); i++){
-    MTGCard * card = deck->_(i);
-    Add(card);
-
+  map<int,int>::iterator it;
+  for (it = deck->cards.begin(); it!=deck->cards.end(); it++){
+    MTGCard * card = deck->getCardById(it->first);
+    Add(card,it->second);
   }
   currentColor = -1;
 }
@@ -33,7 +33,7 @@ DeckDataWrapper::~DeckDataWrapper(){
   SAFE_DELETE(parent);
 }
 
-void DeckDataWrapper::updateCounts(MTGCard * card, int removed){
+void DeckDataWrapper::updateCounts(MTGCard * card, int increment){
   if (!card){
     for (int i = 0; i < Constants::MTG_NB_COLORS+1; i++){
       colors[i] = 0;
@@ -47,8 +47,6 @@ void DeckDataWrapper::updateCounts(MTGCard * card, int removed){
       }
     }
   }else{
-    int increment = 1;
-    if (removed) increment = -1;
     colors[Constants::MTG_NB_COLORS] += increment;
     for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
       if (card->hasColor(i)) colors[i]+=increment;
@@ -56,20 +54,20 @@ void DeckDataWrapper::updateCounts(MTGCard * card, int removed){
   }
 }
 
-int DeckDataWrapper::Add(MTGCard * card){
+int DeckDataWrapper::Add(MTGCard * card, int quantity){
   if(cards.find(card) == cards.end()){
-    cards[card] = 1;
+    cards[card] = quantity;
   }else{
-    cards[card]++;
+    cards[card]+= quantity;
   }
-  updateCounts(card);
+  updateCounts(card,quantity);
   return cards[card];
 }
 
 int DeckDataWrapper::Remove(MTGCard * card){
-  if(cards.find(card) == cards.end() || cards[card] == 0) return 0;
+  if(cards.find(card) == cards.end() || cards[card] <= 0) return 0;
   cards[card]--;
-  updateCounts(card,1);
+  updateCounts(card,-1);
   return 1;
 }
 
@@ -165,7 +163,7 @@ int DeckDataWrapper::getCount(int color){
 
 int DeckDataWrapper::totalPrice(){
   int total = 0;
-  PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",this->parent);
+  PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",this->parent->database);
   map<MTGCard *,int,Cmp1>::iterator it;
   for ( it=cards.begin() ; it != cards.end(); it++ ){
       MTGCard * current = (*it).first;

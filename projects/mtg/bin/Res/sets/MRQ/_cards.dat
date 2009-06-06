@@ -119,7 +119,7 @@ abilities=swampwalk
 [/card]
 [card]
 text={B}{T}, Discard a card: Add {B}{B}{B} to your mana pool.
-id=21332
+id=19578
 name=Bog Witch
 color=Black
 rarity=C
@@ -1171,7 +1171,7 @@ subtype=Swamp
 [card]
 text={T}: Add {B} to your mana pool.
 auto={T}: Add {B}
-id=20888
+id=20889
 name=Swamp
 rarity=L
 color=Land

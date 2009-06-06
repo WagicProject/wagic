@@ -42,6 +42,8 @@ class MtgSets{
 
 
 class MTGAllCards {
+private:
+  MTGCard * tempCard;
  protected:
   int conf_read_mode;
   int colorsCount[Constants::MTG_NB_COLORS];
@@ -52,12 +54,12 @@ class MTGAllCards {
  public:
 
   TexturesCache * mCache;
-  MTGCard * _(int i);
-  vector<MTGCard *> collection;
-   //collection[Constants::TOTAL_NUMBER_OF_CARDS];
+  vector<int> ids;
+  map<int, MTGCard *> collection;
   MTGAllCards();
   ~MTGAllCards();
   MTGAllCards(TexturesCache * cache);
+  MTGCard * _(int id);
   void destroyAllCards();
   MTGAllCards(const char * config_file, const char * set_name);
   MTGAllCards(const char * config_file, const char * set_name, TexturesCache * cache);
@@ -75,22 +77,31 @@ class MTGAllCards {
 };
 
 
-class MTGDeck:public MTGAllCards{
+class MTGDeck{
  protected:
   string filename;
-  MTGAllCards * allcards;
+
+  
+  int total_cards;
 
  public:
+   TexturesCache * mCache;
+  MTGAllCards * database;
+   map <int,int> cards;
   string meta_desc;
   string meta_name;
+  int totalCards();
+  MTGDeck(TexturesCache * cache, MTGAllCards * _allcards);
   MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only = 0);
   int addRandomCards(int howmany, int setId = -1, int rarity = -1, const char * subtype = NULL);
   int add(int cardid);
+  int add(MTGDeck * deck); // adds the contents of "deck" into myself
   int remove(int cardid);
   int removeAll();
   int add(MTGCard * card);
   int remove(MTGCard * card);
   int save();
+  MTGCard * getCardById(int id);
 };
 
 

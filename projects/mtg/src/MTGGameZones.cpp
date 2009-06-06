@@ -35,16 +35,16 @@ MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idLi
 MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection,MTGDeck * deck){
   init();
   collection = _collection;
-  for (int i=0; i<deck->totalCards(); i++){
-    MTGCard * card =  deck->collection[i];
+  map<int,int>::iterator it;
+  for (it = deck->cards.begin(); it!=deck->cards.end(); it++){
+    MTGCard * card = deck->getCardById(it->first);
     if (card){
-      MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
-      library->addCard(newCard);
+      for (int i = 0; i < it->second; i++){
+        MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+        library->addCard(newCard);
+      }
     }
   }
-  
-
-
 }
 
 MTGPlayerCards::~MTGPlayerCards(){

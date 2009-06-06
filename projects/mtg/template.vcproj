@@ -253,10 +253,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\CardEffect.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\CardGui.cpp"
 				>
 			</File>

@@ -304,3 +304,4 @@ void MTGCard::setToughness(int _toughness){
 int MTGCard::getToughness(){
   return toughness;
 }
+

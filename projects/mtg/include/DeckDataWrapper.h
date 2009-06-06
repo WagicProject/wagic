@@ -32,11 +32,11 @@ class DeckDataWrapper{
   DeckDataWrapper(MTGDeck * deck);
   ~DeckDataWrapper();
 
-  int Add(MTGCard * card);
+  int Add(MTGCard * card, int quantity = 1);
   int Remove(MTGCard * card);
   MTGCard * getNext(MTGCard * previous = NULL, int color = -1);
   MTGCard * getPrevious(MTGCard * next = NULL, int color = -1);
-  void updateCounts(MTGCard * card = NULL, int removed = 0);
+  void updateCounts(MTGCard * card = NULL, int quantity = 1);
   int getCount(int color = -1);
   int totalPrice();
   void save();

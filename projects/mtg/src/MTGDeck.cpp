@@ -153,6 +153,7 @@ void MTGAllCards::initCounters(){
 }
 
 void MTGAllCards::init(){
+  tempCard = NULL;
   mCache = NULL;
   total_cards = 0;
   initCounters();
@@ -179,12 +180,16 @@ MTGAllCards::MTGAllCards(){
 }
 
 MTGAllCards::~MTGAllCards(){
+  //Why don't we call destroyAllCards from here ???
 }
 
 void MTGAllCards::destroyAllCards(){
-  for (int i= 0; i < total_cards; i++){
-    SAFE_DELETE(collection[i]);
-  };
+  map<int,MTGCard *>::iterator it;
+
+  for (it = collection.begin(); it!=collection.end(); it++) delete(it->second);
+
+  collection.clear();
+  ids.clear();
 
 }
 
@@ -204,23 +209,21 @@ MTGAllCards::MTGAllCards(const char * config_file, const char * set_name, Textur
 }
 
 
-MTGCard * MTGAllCards::_(int i){
-  if (i < total_cards) return collection[i];
-  return NULL;
-}
-
 
 int MTGAllCards::randomCardId(){
-  int id = (rand() % total_cards);
-  return collection[id]->getMTGId();
+  int id = (rand() % ids.size());
+  return ids[id];
 }
 
 
 
 int MTGAllCards::countBySet(int setId){
   int result = 0;
-  for (int i=0; i< total_cards; i++){
-    if(collection[i]->setId == setId){
+  map<int,MTGCard *>::iterator it;
+
+  for (it = collection.begin(); it!=collection.end(); it++){
+    MTGCard * c = it->second;
+    if( c->setId == setId){
       result++;
     }
   }
@@ -230,8 +233,10 @@ int MTGAllCards::countBySet(int setId){
 //TODO more efficient way ?
 int MTGAllCards::countByType(const char * _type){
   int result = 0;
-  for (int i=0; i< total_cards; i++){
-    if(collection[i]->hasType(_type)){
+  map<int,MTGCard *>::iterator it;
+  for (it = collection.begin(); it!=collection.end(); it++){
+    MTGCard * c = it->second;
+    if(c->hasType(_type)){
       result++;
     }
   }
@@ -244,8 +249,10 @@ int MTGAllCards::countByColor(int color){
     for (int i=0; i< Constants::MTG_NB_COLORS; i++){
       colorsCount[i] = 0;
     }
-    for (int i=0; i< total_cards; i++){
-      int j = collection[i]->getColor();
+    map<int,MTGCard *>::iterator it;
+    for (it = collection.begin(); it!=collection.end(); it++){
+      MTGCard * c = it->second;
+      int j = c->getColor();
 
       colorsCount[j]++;
     }
@@ -268,16 +275,26 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     switch(conf_read_mode) {
     case 0:
       if (s[0] == '['){
-        collection.push_back(NEW MTGCard(mCache,set_id));
+        tempCard = NEW MTGCard(mCache,set_id);
         conf_read_mode = 1;
       }
       break;
     case 1:
       if (s[0] == '[' && s[1] == '/'){
 	      conf_read_mode = 0;
-	      total_cards++;
+        int newId = tempCard->getId();
+        if (collection.find(newId) != collection.end()){
+          char outBuf[4096];
+          sprintf(outBuf,"warning, card id collision! : %i - %s\n", newId, tempCard->name.c_str());
+          OutputDebugString (outBuf);
+          delete tempCard;
+        }else{
+          ids.push_back(newId);
+          collection[newId] = tempCard;
+	        total_cards++;
+        }
       }else{
-	      processConfLine(s, collection[total_cards]);
+	      processConfLine(s, tempCard);
       }
       break;
     default:
@@ -292,14 +309,16 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
 
 
 MTGCard * MTGAllCards::getCardById(int id){
-  int i;
-  for (i=0; i<total_cards; i++){
-    int cardId = collection[i]->getMTGId();
-    if (cardId == id){
-      return collection[i];
-    }
+	map<int, MTGCard *>::iterator it = collection.find(id);
+	if ( it != collection.end()){
+    return (it->second);
   }
   return 0;
+}
+
+MTGCard * MTGAllCards::_(int index){
+  if (index >= total_cards) return NULL;
+  return getCardById(ids[index]);
 }
 
 MTGCard * MTGAllCards::getCardByName(string name){
@@ -314,11 +333,13 @@ MTGCard * MTGAllCards::getCardByName(string name){
     name = name.substr(0,found);
     setId = MtgSets::SetsList->find(setName);
   }
-  for (int i=0; i<total_cards; i++){
-    if (setId!=-1 && setId != collection[i]->setId) continue;
-    string cardName = collection[i]->name;
+  map<int,MTGCard *>::iterator it;
+  for (it = collection.begin(); it!=collection.end(); it++){
+    MTGCard * c = it->second;
+    if (setId!=-1 && setId != c->setId) continue;
+    string cardName = c->name;
     std::transform(cardName.begin(), cardName.end(), cardName.begin(),::tolower );
-    if (cardName.compare(name) == 0) return collection[i];
+    if (cardName.compare(name) == 0) return c;
     
   }
   return NULL;
@@ -326,11 +347,16 @@ MTGCard * MTGAllCards::getCardByName(string name){
 
 
 
+MTGDeck::MTGDeck(TexturesCache * cache, MTGAllCards * _allcards){
+  mCache = cache;
+  total_cards = 0;
+  database = _allcards;
+}
 
 MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only){
   mCache = cache;
   total_cards = 0;
-  allcards = _allcards;
+  database = _allcards;
   filename = config_file;
   size_t slash = filename.find_last_of("/");
   size_t dot = filename.find(".");
@@ -368,7 +394,7 @@ MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * 
           s=s.substr(0,found);
           OutputDebugString(s.c_str());
         }
-        MTGCard * card = allcards->getCardByName(s);
+        MTGCard * card = database->getCardByName(s);
         if (card){
           for (int i = 0; i < nb; i++){
             add(card);
@@ -384,15 +410,20 @@ MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * 
 
 }
 
+int MTGDeck::totalCards(){
+  return total_cards;
+}
 
+MTGCard * MTGDeck::getCardById(int mtgId){
+  return database->getCardById(mtgId);
+}
 
 int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _subtype){
-  int collectionTotal = allcards->totalCards();
+  int collectionTotal = database->totalCards();
   if (!collectionTotal) return 0;
   if (setId == -1 && rarity == -1 && !_subtype){
     for (int i = 0; i < howmany; i++){
-      int id = (rand() % collectionTotal);
-      add(allcards->_(id));
+      add(database->randomCardId());
     }
     return 1;
   }
@@ -404,60 +435,69 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
   vector<int> subcollection;
   int subtotal = 0;
   for (int i = 0; i < collectionTotal; i++){
-    MTGCard * card = allcards->_(i);
+    MTGCard * card = database->_(i);
     if ((setId == -1 || card->setId == setId) &&
 	(rarity == -1 || card->getRarity()==rarity) &&
 	(!_subtype || card->hasSubtype(subtype))
 	){
-    subcollection.push_back(i);
+      subcollection.push_back(card->getId());
       subtotal++;
     }
   }
   if (subtotal == 0) return 0;
   for (int i = 0; i < howmany; i++){
     int id = (rand() % subtotal);
-    add(allcards->_(subcollection[id]));
+    add(subcollection[id]);
   }
   return 1;
 }
 
+int MTGDeck::add(MTGDeck * deck){
+  map<int,int>::iterator it;
+  for (it = deck->cards.begin(); it!=deck->cards.end(); it++){
+    for (int i = 0; i < it->second; i++){
+      add(it->first);
+    }
+  }
+  return deck->totalCards();
+}
+
 int MTGDeck::add(int cardid){
-  MTGCard * card = allcards->getCardById(cardid);
-  add(card);
+  if (!database->getCardById(cardid)) return 0;
+  if(cards.find(cardid) == cards.end()){
+    cards[cardid] = 1;
+  }else{
+    cards[cardid]++;
+  }
+  ++total_cards;
+  //initCounters();
   return total_cards;
 }
 
 int MTGDeck::add(MTGCard * card){
   if (!card) return 0;
-  collection.push_back(card);
-  ++total_cards;
-  initCounters();
-  return total_cards;
+  return (add(card->getId()));
 }
 
 
 int MTGDeck::removeAll(){
   total_cards = 0;
-  collection.clear();
-  initCounters();
+  cards.clear();
+  //initCounters();
   return 1;
 }
 
 int MTGDeck::remove(int cardid){
-  MTGCard * card = getCardById(cardid);
-  return remove(card);
+  if(cards.find(cardid) == cards.end() || cards[cardid] == 0) return 0;
+  cards[cardid]--;
+  total_cards--;
+  //initCounters();
+  return 1;
 }
 
 int MTGDeck::remove(MTGCard * card){
-  for (int i = 0; i<total_cards; i++){
-    if (collection[i] == card){
-      collection.erase(collection.begin()+i);
-      total_cards--;
-      initCounters();
-      return 1;
-    }
-  }
-  return 0;
+  if (!card) return 0;
+  return (remove(card->getId()));
 }
 
 int MTGDeck::save(){
@@ -467,9 +507,12 @@ int MTGDeck::save(){
 #if defined (WIN32) || defined (LINUX)
     OutputDebugString("saving");
 #endif
-    for (int i = 0; i<total_cards; i++){
-      sprintf(writer,"%i\n", collection[i]->getMTGId());
-      file<<writer;
+    map<int,int>::iterator it;
+    for (it = cards.begin(); it!=cards.end(); it++){
+      sprintf(writer,"%i\n", it->first);
+      for (int j = 0; j<it->second; j++){
+        file<<writer;
+      }
     }
     file.close();
   }
