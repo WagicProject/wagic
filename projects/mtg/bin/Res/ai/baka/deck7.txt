@@ -1,60 +1,75 @@
+#NAME:Wrath
+#DESC:Mono white deck with destructive power
+#3x Wrath of God
 129808
 129808
 129808
+#4x Savannah Lions
 1365
 1365
 1365
 1365
+#3x Sigiled Paladin {W}{W}, first strike exalted 2/2
 174958
 174958
 174958
+#4x Serra Angel
 1366
 1366
 1366
 1366
+#4x Crusade
 1341
 1341
 1341
 1341
-175030
 174958
+#4x Sword to plowshares
 1367
 1367
 1367
+1367
+#4x White Knight
 1370
 1370
 1370
 1370
-175030
-1367
-175030
+#4x Armageddon
+1328
+1328
+1328
+1328
+# Plains (RV)
 1395
+1395
+1395
+1395
+1396
+1396
 1396
 1397
 1397
-1328
-1328
-1328
-1328
-175030
-175030
-175030
-175030
-175030
-175030
-175030
-175030
 1397
-1395
-1396
-1395
-1396
-1395
+# Plains (10E)
+175030
+175030
+175030
+175030
+175030
+175030
+175030
+175030
+175030
+175030
+175030
+#4 x Guardian of Akrasa {2}{W} - defender 0/4 exalted
+175103
+175103
+175103
+175103
+#4x Skyhunter Skirmisher {1}{W}{W} - flying double strike, 1/1
 129513
-175103
-175103
-175103
-175103
 129513
+129513
+#1x Paladin en-Vec {1}{W}{W} - 2/2
 129668
-129513

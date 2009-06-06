@@ -1827,7 +1827,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   case 130373: //Lavaborn Muse
     {
-      game->addObserver( NEW ALavaborn(_id ,card, Constants::MTG_PHASE_UPKEEP, -2,-3));
+      game->addObserver( NEW ALavaborn(_id ,card, Constants::MTG_PHASE_UPKEEP, -3,-3));
       break;
     }
 

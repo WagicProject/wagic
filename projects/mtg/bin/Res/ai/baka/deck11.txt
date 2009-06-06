@@ -1,60 +1,76 @@
+#Name:Alliance
+#DESC:Green/Blue/White small creatures
+#4x unsummon
 1229
 1229
 1229
 1229
-129604
-129604
-129604
-129604
+#4x Elvish Archer {1}{G}, 2/1 first strike
 1242
 1242
 1242
 1242
+#4x Scryb Sprites, Faerie, {G}, 1/1 flying
 1264
 1264
 1264
 1264
+#4x Savannah Lion, {W},2/1
 1365
 1365
 1365
 1365
+#4x Sword to plowshares {W}	
 1367
 1367
 1367
 1367
+#4x Tundra Wolves {W} - 1/1, first strike 
+129604
+129604
+129604
+129604
+#4x Waveskimmer Aven - Creature Bird Soldier - {2}{G}{W}{U} - 2/4 Flying Exalted
 174955
 174955
 174955
 174955
+#4x Rhox War monk - Creature {G}{W}{U} - 3/4 Lifelink
 174957
 174957
 174957
 174957
+#4x Deft duelist - Creature {W}{U} - 2/1 First Strike,Shroud
 175121
 175121
 175121
 175121
+#4x Steward of Valeron - Creature — Human Druid Knight - {W}{G} - 2/2 {T}:add {G}
 175134
 175134
 175134
 175134
+#7x plains 10E
 129683
 129683
 129683
+129683
+129683
+129683
+129683
+#7x Forest 10E
 129562
 129562
 129562
+129562
+129562
+129562
+129562
+#6x Island 10E
 129609
 129609
 129609
 129609
 129609
 129609
-129562
-129562
-129562
-129562
-129683
-129683
-129683
-129683
+
