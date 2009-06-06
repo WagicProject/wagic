@@ -250,7 +250,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
       }else{
 	      safeDeleteDisplay();
 	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
-	      int curNbcards = playerdata->collection->totalCards();
+
         MTGDeck * tempDeck = NEW MTGDeck(NULL,playerdata->collection->database);
 
         tempDeck->addRandomCards(1, setIds[showPriceDialog],Constants::RARITY_R);

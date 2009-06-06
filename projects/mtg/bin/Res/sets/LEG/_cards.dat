@@ -649,7 +649,7 @@ subtype=Human
 power=4
 toughness=5
 abilities=legendary
-[/cards]
+[/card]
 [card]
 text=Legendary  
 name=Jedit Ojanen
@@ -662,7 +662,7 @@ subtype=Cat Warrior
 power=5
 toughness=5
 abilities=legendary
-[/cards]
+[/card]
 [card]
 text=Legendary  
 name=Jerrard of the Closed Fist
@@ -675,7 +675,7 @@ subtype=Human Knight
 power=6
 toughness=5
 abilities=legendary
-[/cards]
+[/card]
 [card]
 text=Legendary   {T}: Add {W} to your mana pool.   {W}, {T}: Return target legendary creature to its owner's hand.
 id=1701
@@ -698,7 +698,7 @@ subtype=Human Warrior
 power=5
 toughness=3
 abilities=legendary
-[/cards]
+[/card]
 [card]
 name=Keepers of the Faith
 id=1622
@@ -709,7 +709,7 @@ type=Creature
 subtype=Human Cleric
 power=2
 toughness=3
-[/cards]
+[/card]
 [card]
 text=Flying     {G}: Killer Bees gets +1/+1 until end of turn.
 id=1532
@@ -908,7 +908,7 @@ subtype=Yeti
 power=3
 toughness=2
 abilities=mountainwalk,protection from white
-[/cards]
+[/card]
 [card]
 text=Legendary    {B}{R}: Pavel Maliki gets +1/+0 until end of turn.
 id=1674

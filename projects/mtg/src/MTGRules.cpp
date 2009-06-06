@@ -176,7 +176,7 @@ vector<int> MTGMomirRule::pool[20];
 MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection):MTGAbility(_id, NULL){
   collection = _collection;
   if (!initialized){
-    for (int i = 0; i < collection->ids.size(); i++){
+    for (size_t i = 0; i < collection->ids.size(); i++){
       MTGCard * card = collection->collection[collection->ids[i]];
       if (card->isACreature()){
          int convertedCost = card->getManaCost()->getConvertedCost();

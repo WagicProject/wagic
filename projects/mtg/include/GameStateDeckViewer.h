@@ -641,7 +641,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,scale,scale);
       if (showName){
 	      char buffer[4096];
-	      sprintf(buffer, "%s", _(card->getName()));
+        sprintf(buffer, "%s", _(card->getName()).c_str());
         float scaleBackup = mFont->GetScale();
         mFont->SetScale(scale);
 	      mFont->DrawString(buffer,x,y);
