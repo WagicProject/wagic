@@ -582,7 +582,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       }
     }
     int value = myDeck->getCount();
-    sprintf(buffer, "%s: %i %s", _("Your Deck").c_str(), value, _("cards").c_str());
+    sprintf(buffer, "Your Deck: %i cards",  value);
     font->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
 
     //TODO, put back !
@@ -641,7 +641,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,scale,scale);
       if (showName){
 	      char buffer[4096];
-	      sprintf(buffer, "%s", card->getName());
+	      sprintf(buffer, "%s", _(card->getName()));
         float scaleBackup = mFont->GetScale();
         mFont->SetScale(scale);
 	      mFont->DrawString(buffer,x,y);
@@ -721,11 +721,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       welcome_menu->Render();
     }else{
       renderOnScreenBasicInfo();
-      if (sellMenu) sellMenu->Render();
+
     }
     if (mStage == STAGE_MENU){
       menu->Render();
     }
+    if (sellMenu) sellMenu->Render();
 
   }
 

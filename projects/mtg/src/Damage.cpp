@@ -3,6 +3,7 @@
 #include "../include/MTGCardInstance.h"
 #include "../include/Counters.h"
 #include "../include/WEvent.h"
+#include "../include/Translate.h"
 
 Damage::Damage(int id, MTGCardInstance * _source, Damageable * _target): Interruptible(id){
   init(_source, _target, _source->getPower());
@@ -59,7 +60,7 @@ void Damage::Render(){
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
-  sprintf(buffer, "Deals %i damage to", damage);
+  sprintf(buffer, _("Deals %i damage to").c_str(), damage);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();

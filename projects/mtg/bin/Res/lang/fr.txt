@@ -29,12 +29,25 @@ Back to main menu=Retour au menu
 Save=Sauver
 Choose a Deck=Choix du deck
 Choose Opponent=Choix de l'adversaire
-(easy)=(facile)
-(hard)=(difficile)
+(easy)=(*)
+(hard)=(***)
 Random=Aleatoire
 Interrupt?=Interruption ?
 X Interrupt - 0 No - [] No to All=X Interrompre - 0 Non - [] Non pour tout
 X Interrupt - 0 No=X Interrompre - 0 Non
+You have a %i%% victory ratio with Deck%i=Vous avez %i%% de reussite avec le Deck%i
+You have played %i games with Deck%i=Vous avez fait %i parties avec le Deck %i
+You have played a total of %i games=Vous avez fait un total de %i parties
+Unlock the difficult mode for more challenging duels!=Debloquez le mode difficile pour plus de challenge!
+Interested in playing Momir Basic? You'll have to unlock it first :)=Connaissez-vous le mode Momir Basic ? Essayez de le debloquer pour pouvoir l'essayer !
+You have a total of %i cards in your collection=Vous avez un total de %i cartes dans votre collection
+The cards in your collection have an average value of %i credits=La valeur moyenne de chacune de vos cartes est de %i credits
+The shopkeeper would buy your entire collection for around %i credits=Le marchand acheterait votre collection pour environ %i credits
+You currently have %i credits=Vous possedez %i credits
+Need more cards? Go to http://wololo.net/wagic=Vous voulez plus de cartes ? Allez sur http://wololo.net/wagic
+These stats will be updated next time you run Wagic=Ces stats seront mises a jour au prochain demarrage de Wagic
+Yes=Oui
+No=Non
 
 #Phases
 Untap=Degagement
@@ -50,6 +63,9 @@ Main phase 2=Phase principale 2
 End of turn=Fin du tour
 Cleanup=Nettoyage
 
+#Stack
+Deals %i damage to=Fait %i degat(s) a
+
 #Deck Editor
 Prev.=Prec.
 card=carte
@@ -61,12 +77,12 @@ Add card=Ajouter carte
 Display Deck=Afficher deck
 Remove Card=Enlever carte
 Display collection=Afficher collection
-Your Deck=Votre deck
+Your Deck: %i cards=Votre Deck: %i cartes
 You are currently viewing your=Vous etes sur votre
 collection. Press TRIANGLE=collection. Appuyez sur TRIANGLE
 to switch to your deck=pour voir votre deck
 deck. Press TRIANGLE to=deck. Appuyez sur TRIANGLE
-switch to your collection= pour voire votre collection
+switch to your collection=pour voir votre collection
 
 Deck info=Info deck
 Sell card=Vendre carte

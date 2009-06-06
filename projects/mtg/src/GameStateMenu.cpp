@@ -11,7 +11,7 @@
 #include "../include/utils.h"
 #include "../include/DeckDataWrapper.h"
 
-static const char* GAME_VERSION = "WTH?! 0.6.2 - by WilLoW";
+static const char* GAME_VERSION = "WTH?! 0.7.0 - by WilLoW";
 #define ALPHA_WARNING 0
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
@@ -187,50 +187,50 @@ void GameStateMenu::fillScroller(){
 		  stats->load(buffer);
 		  int percentVictories = stats->percentVictories();
 
-      sprintf(buff2, "You have a %i%% victory ratio with Deck%i",percentVictories,j);
+      sprintf(buff2, _("You have a %i%% victory ratio with Deck%i").c_str(),percentVictories,j);
       scroller->Add(buff2);
       int nbGames = stats->nbGames();
       totalGames+= nbGames;
-      sprintf(buff2, "You have played %i games with Deck%i",nbGames,j);
+      sprintf(buff2, _("You have played %i games with Deck%i").c_str(),nbGames,j);
       scroller->Add(buff2);
     }
   }
   if (totalGames){
-      sprintf(buff2, "You have played a total of %i games",totalGames);
+    sprintf(buff2, _("You have played a total of %i games").c_str(),totalGames);
       scroller->Add(buff2);
   }
   GameOptions * go = GameOptions::GetInstance();
 
   if (!go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()){
-    scroller->Add("Unlock the difficult mode for more challenging duels!");   
+    scroller->Add(_("Unlock the difficult mode for more challenging duels!"));   
   }
   if (!go->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()){
-    scroller->Add("Interested in playing Momir Basic? You'll have to unlock it first :)");   
+    scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));   
   }
 
   DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
   int totalCards = ddw->getCount();
   if (totalCards){
-      sprintf(buff2, "You have a total of %i cards in your collection",totalCards);
+    sprintf(buff2, _("You have a total of %i cards in your collection").c_str(),totalCards);
       scroller->Add(buff2);
 
       int estimatedValue = ddw->totalPrice();
-      sprintf(buff2, "The shopkeeper would buy your entire collection for around %i credits",estimatedValue/2);
+      sprintf(buff2, _("The shopkeeper would buy your entire collection for around %i credits").c_str(),estimatedValue/2);
       scroller->Add(buff2);
 
-      sprintf(buff2, "The cards in your collection have an average value of %i credits",estimatedValue/totalCards);
+      sprintf(buff2, _("The cards in your collection have an average value of %i credits").c_str(),estimatedValue/totalCards);
       scroller->Add(buff2);
   }
   delete ddw;
 
   PlayerData * playerdata = NEW PlayerData(mParent->collection);
-  sprintf(buff2, "You currently have %i credits",playerdata->credits);
+  sprintf(buff2, _("You currently have %i credits").c_str(),playerdata->credits);
   delete playerdata;
   scroller->Add(buff2);
 
-  scroller->Add("Need more cards? Go to http://wololo.net/wagic");
+  scroller->Add(_("Need more cards? Go to http://wololo.net/wagic"));
 
-  scroller->Add("These stats will be updated next time you run Wagic");
+  scroller->Add(_("These stats will be updated next time you run Wagic"));
 
   scrollerSet = 1;
   scroller->setRandom();
