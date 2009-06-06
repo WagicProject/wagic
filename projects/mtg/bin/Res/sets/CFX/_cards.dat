@@ -146,7 +146,7 @@ toughness=3
 [card]
 text=Flying     {1}{W}{B}, {T}: Destroy target creature or enchantment.     {2}{U}: Untap Ethersworn Adjudicator.
 abilities=flying
-auto={1}{W}{B},{T}:destroy target(creature,enchantment)
+auto={1}{W}{B}{T}:destroy target(creature,enchantment)
 auto={2}{U}:untap
 id=175035
 name=Ethersworn Adjudicator
@@ -182,7 +182,7 @@ toughness=2
 [/card]
 [card]
 text=Islandwalk, trample, shroud
-abilities=Islandwalk, trample, shroud
+abilities=islandwalk,trample,shroud
 id=154081
 name=Inkwell Leviathan
 rarity=R
@@ -211,7 +211,7 @@ toughness=*
 [card]
 text=When Kaleidostone comes into play, draw a card.     {5}, {T}, Sacrifice Kaleidostone: Add {W}{U}{B}{R}{G} to your mana pool.
 auto=draw:1
-auto={5},{T},{S}:Add {W}{U}{B}{R}{G}
+auto={5}{T}{S}:Add {W}{U}{B}{R}{G}
 id=189272
 name=Kaleidostone
 rarity=C
@@ -244,11 +244,11 @@ toughness=2
 [/card]
 [card]
 text={1}, {T}: Add one mana of any color to your mana pool.
-auto={1},{T}: Add {G}
-auto={1},{T}: Add {R}
-auto={1},{T}: Add {B}
-auto={1},{T}: Add {U}
-auto={1},{T}: Add {W}
+auto={1}{T}: Add {G}
+auto={1}{T}: Add {R}
+auto={1}{T}: Add {B}
+auto={1}{T}: Add {U}
+auto={1}{T}: Add {W}
 id=189269
 name=Mana Cylix
 rarity=C
@@ -258,7 +258,7 @@ mana={1}
 [card]
 text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
 target=creature
-auto=2/2
+auto=:2/2
 auto=cantblock
 id=182609
 name=Maniacal Rage
@@ -321,8 +321,8 @@ mana={6}
 [/card]
 [card]
 text=Haste     {R}, {T}: Put a 3/1 red Elemental creature token with haste into play.
-abilities=haste, Legendary 
-auto={R},{T}:token(Elemental,creature, 3/1,haste red)
+abilities=haste,legendary 
+auto={R}{T}:token(Elemental,creature, 3/1,haste red)
 id=185810
 name=Rakka Mar
 rarity=R
@@ -347,7 +347,7 @@ toughness=3
 [/card]
 [card]
 text={R}{W}, {T}: Sacellum Archers deals 2 damage to target attacking or blocking creature.
-auto={R}{W},{T}:damage:2 target(creature[attacking;blocking])
+auto={R}{W}{T}:damage:2 target(creature[attacking;blocking])
 id=179488
 name=Sacellum Archers
 rarity=U
@@ -380,7 +380,7 @@ mana={1}{W}{W}
 [/card]
 [card]
 text={3}{U}, {T}: Draw a card.
-auto={3}{U},{T}:Draw:1
+auto={3}{U}{T}:Draw:1
 id=184989
 name=Scepter of Insight
 rarity=R

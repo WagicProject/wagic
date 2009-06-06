@@ -45,7 +45,7 @@ toughness=2
 [/card]
 [card]
 text={W}, {T}: Tap target artifact.
-auto={W},{T}:tap target(artifact)
+auto={W}{T}:tap target(artifact)
 id=45963
 name=Auriok Transfixer
 color=White
@@ -144,7 +144,7 @@ text=Destroy target artifact. Then add {G}{G}{G} to your mana pool.
 id=49060
 target=artifact
 auto=destroy
-auto=:Add {G}{G}{G}
+auto=Add:{G}{G}{G}
 name=Deconstruct
 color=Green
 rarity=C
@@ -174,7 +174,7 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=1
-abilities=Fear
+abilities=fear
 [/card]
 [card]
 text={1}{G}, Sacrifice Elf Replica: Destroy target enchantment.
@@ -297,7 +297,7 @@ type=Creature
 subtype=Goblin Berserker
 power=1
 toughness=1
-abilities=First strike, haste
+abilities=first strike,haste
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -430,7 +430,7 @@ type=Creature
 subtype=Cat Knight
 power=2
 toughness=2
-abilities=Flying
+abilities=flying
 [/card]
 [card]
 text=Flying When Looming Hoverguard comes into play, put target artifact on top of its owner's library.
@@ -579,7 +579,7 @@ rarity=U
 [card]
 text=Flying. Nim Shrieker gets +1/+0 for each artifact you control.
 id=48584
-abilities=Flying
+abilities=flying
 name=Nim Shrieker
 auto=foreach(artifact|myinplay) 1/0
 mana={3}{B}
@@ -621,7 +621,7 @@ type=Artifact Creature
 subtype=Thopter
 power=0
 toughness=2
-abilities=Flying
+abilities=flying
 [/card]
 [card]
 text={1}{B}: Regenerate Pewter Golem.
@@ -676,7 +676,7 @@ subtype=Plains
 text=Target creature gets +3/+3 and gains trample until end of turn.
 id=48595
 target=creature
-auto=:trample
+auto=trample
 auto=:3/3
 name=Predator's Strike
 color=Green
@@ -708,8 +708,8 @@ type=Instant
 [card]
 text=Return target permanent to its owner's hand.
 id=49061
-alias=1229
 target=*
+auto=moveTo(ownerhand)
 name=Regress
 color=Blue
 rarity=C
@@ -719,7 +719,7 @@ type=Instant
 [card]
 text=Add {R}{R}{R}{R}{R} to your mana pool.
 id=34945
-auto=Add {R}{R}{R}{R}{R}
+auto=Add:{R}{R}{R}{R}{R}
 name=Seething Song
 color=Red
 rarity=C
@@ -772,7 +772,7 @@ type=Creature
 subtype=Cat Knight
 power=2
 toughness=3
-abilities=Flying, first strike
+abilities=flying,first strike
 [/card]
 [card]
 text={1}{W}, Sacrifice Soldier Replica: Soldier Replica deals 3 damage to target attacking or blocking creature.
@@ -1010,5 +1010,5 @@ type=Artifact Creature
 subtype=Soldier
 power=1
 toughness=4
-abilities=Vigilance
+abilities=vigilance
 [/card]

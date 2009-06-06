@@ -54,7 +54,7 @@ abilities=defender
 [card]
 text=Flying   Battle Squadron's power and toughness are each equal to the number of creatures you control.
 id=19712
-auto=foreach(creature|myinplay) 1/1 includeself
+auto=foreach(creature|myinplay) 1/1
 name=Battle Squadron
 color=Red
 rarity=R
@@ -615,7 +615,7 @@ toughness=2
 [/card]
 [card]
 text=Creatures you control have fear.
-auto=lord(creature|myinplay) fear includeself
+auto=lord(creature|myinplay) fear
 id=19833
 name=Intimidation
 color=Black
@@ -745,12 +745,12 @@ rarity=U
 mana={2}{G}{G}
 type=Creature
 subtype=Satyr Beast
-auto=lord(creature) forestwalk includeself
+auto=lord(creature) forestwalk
 power=5
 toughness=4
 [/card]
 [card]
-text=Flash      Enchant creature        Enchanted creature gets +2/-2.
+text=Flash    Enchant creature     Enchanted creature gets +2/-2.
 id=19594
 target=creature
 auto=:2/-2
@@ -1130,7 +1130,7 @@ type=Sorcery
 text=When Strongarm Thug comes into play, you may return target Mercenary card from your graveyard to your hand.
 id=19689
 name=Strongarm Thug
-auto=may moveto(myhand) target(Mercenary|mygraveyard)
+auto=may moveto(myhand) target(mercenary|mygraveyard)
 rarity=U
 type=Creature
 mana={2}{B}

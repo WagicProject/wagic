@@ -389,7 +389,7 @@ toughness=2
 [/card]
 [card]
 text=Swampwalk, forestwalk
-abilities=Swampwalk, forestwalk
+abilities=swampwalk,forestwalk
 id=151120
 name=Stalker Hag
 rarity=U
@@ -401,7 +401,7 @@ toughness=2
 [/card]
 [card]
 text=Protection from white and from black     {WB}: Stillmoon Cavalier gains flying until end of turn.     {WB}: Stillmoon Cavalier gains first strike until end of turn.     {WB}{WB}: Stillmoon Cavalier gets +1/+0 until end of turn.
-abilities=protection from black, protection from white
+abilities=protection from black,protection from white
 auto={WB}:flying
 auto={WB}:first strike
 auto={WB}{WB}:+1/+0
