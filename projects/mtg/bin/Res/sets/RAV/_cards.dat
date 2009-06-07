@@ -48,8 +48,8 @@ rarity=U
 mana={RW}{RW}
 type=Creature
 subtype=Human Wizard
-auto={1}{R}:Haste target(creature)
-auto={1}{W}:First Strike target(creature)
+auto={1}{R}:haste target(creature)
+auto={1}{W}:first strike target(creature)
 power=2
 toughness=2
 [/card]
@@ -861,6 +861,7 @@ subtype=Zombie Drake
 {B}:regenerate
 power=2
 toughness=2
+abilities=flying
 [/card]
 [card]
 text=Defender (This creature can't attack.)   {4}: Tidewater Minion loses defender until end of turn.    {T}: Untap target permanent.
