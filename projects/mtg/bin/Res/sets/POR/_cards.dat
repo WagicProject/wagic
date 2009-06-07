@@ -1,7 +1,7 @@
 #PORTAL
 #Thanks to Dr.Solomat for the initial release 2009/01/01
 [card]
-text= Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
 id=4288
 name=Anaconda
 rarity=U
@@ -20,7 +20,7 @@ name=Angelic Blessing
 rarity=C
 mana={2}{W}
 type=Sorcery
-auto=3/3
+auto=:3/3
 auto=flying
 [/card]
 [card]
@@ -180,7 +180,7 @@ abilities=Islandwalk
 [card]
 text=Target creature gets +2/+0 until end of turn. Burning Cloak deals 2 damage to that creature.
 target=creature
-auto=2/0
+auto=:2/0
 auto=damage:2
 id=4331
 name=Burning Cloak
@@ -358,7 +358,7 @@ abilities=forestwalk
 [card]
 text=Return target card from your graveyard to your hand.
 target=*|myGraveyard
-alias=1263
+auto=moveTo(myHand)
 id=4295
 name=Elven Cache
 rarity=C
@@ -376,6 +376,7 @@ power=4
 toughness=1
 [/card]
 [card]
+text=Flying
 id=4221
 name=Feral Shadow
 rarity=C
@@ -549,7 +550,7 @@ toughness=4
 [card]
 text=Target creature gets +4/+0 until end of turn.
 target=creature
-auto=4/0
+auto=:4/0
 id=4226
 name=Howling Fury
 rarity=C
@@ -726,7 +727,7 @@ toughness=3
 text=Target creature gets +4/+4 until end of turn.
 id=4304
 target=creature
-auto=4/4
+auto=:4/4
 name=Monstrous Growth
 rarity=C
 mana={1}{G}
@@ -1253,7 +1254,7 @@ mana={2}{G}
 [card]
 text=Vampiric Feast deals 4 damage to target creature or player and you gain 4 life.
 target=creature,player
-auto=damage:4 target
+auto=damage:4
 auto=life:4
 id=4243
 name=Vampiric Feast
