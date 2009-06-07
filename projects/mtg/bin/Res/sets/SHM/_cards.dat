@@ -102,7 +102,7 @@ text=Enchant creature     Enchanted creature attacks each turn if able.
 id=159395
 name=Bloodshed Fever
 target=creature
-auto=:mustattack
+auto=mustattack
 rarity=C
 type=Enchantment
 mana={R}
@@ -642,7 +642,7 @@ toughness=4
 [/card]
 [card]
 text=Protection from blue, from black, and from red
-abilities=protection from blue, protection from black, protection from red
+abilities=protection from blue,protection from black,protection from red
 id=146735
 name=Oversoul of Dusk
 rarity=R
@@ -780,7 +780,7 @@ toughness=2
 [/card]
 [card]
 text=First strike     Wither (This deals damage to creatures in the form of -1/-1 counters.)
-abilities=first strike, wither
+abilities=first strike,wither
 id=147389
 name=Rustrazor Butcher
 rarity=C
@@ -960,7 +960,7 @@ toughness=4
 text=Flash     Enchant creature     Enchanted creature gets -3/-0.
 abilities=flash
 target=creature
-auto=-3/0
+auto=:-3/0
 id=142053
 name=Torpor Dust
 rarity=C
@@ -983,7 +983,7 @@ toughness=5
 [/card]
 [card]
 text={2}, {T}: Tap target creature.
-auto={2},[T}:tap target(creature)
+auto={2}[T}:tap target(creature)
 id=147420
 name=Trip Noose
 rarity=U
