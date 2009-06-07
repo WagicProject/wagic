@@ -1,0 +1,77 @@
+#NAME:Selesnya
+#DESC:Do you dare arming yourself
+#DESC:against the conclave?
+#Carven Caryatid
+89048
+89048
+89048
+89048
+#Courier Hawk
+87913
+87913
+#Fists of Ironwood
+83672
+83672
+83672
+83672
+#Goliath Spider
+88959
+88959
+#Nightguard Patrol
+87975
+87975
+87975
+#Scion of the Wild
+83647
+83647
+83647
+#Selesnya Guildmage
+87988
+87988
+87988
+87988
+#Tolsimir Wolfblood
+89110
+89110
+#Veteran Armorer
+87950
+87950
+#Knight of the Skyward Eye
+175047
+175047
+#Watchwolf
+83625
+83625
+83625
+83625
+#Glorious Anthem
+129572
+129572
+129572
+129572
+#Forest
+95097
+95097
+95097
+95106
+95106
+95106
+95099
+95099
+95099
+95098
+95098
+95098
+#Plains
+95112
+95112
+95112
+95108
+95108
+95108
+95115
+95115
+95115
+95105
+95105
+95105
