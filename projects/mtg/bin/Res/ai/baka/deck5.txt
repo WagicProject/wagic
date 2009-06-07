@@ -1,59 +1,84 @@
-1373
-1374
-1375
-1373
-1374
-1375
-1373
-1374
-1375
-1389
-1390
-1391
-1389
-1390
-1391
-1389
-1390
-1391
+#NAME:Army of Death
+#DESC:Dangerous foes await you.
+#DESC:Both Undead, Goblins and other
+#DESC:Abominations will fight you 
+#DESC:recklessly.
+#Ankh of Mishra
 1094
 1094
 1094
 1094
+#Armageddon Clock
 1095
+#Black Vise
 1097
 1097
+#Dancing Scimitar
 1104
 1104
+#Howling Mine
 1112
+#The Rack
 1139
 1139
+#Bad Moon
 1144
 1144
+#Black Knight
 1145
 1145
+#Drudge Skeletons
 1157
 1157
 1157
 1157
+#El-Hajjaj
 1158
 1158
+#Hypnotic Specter
 1165
 1165
+#Scathe Zombies
 1177
 1177
 1177
 1177
+#Zombie Master
 1188
+#Goblin King
 1296
 1296
+#Orcish Oriflamme
 1310
 1310
+#Wheel of Fortune
 1326
+#Sedge Troll
 1315
 1315
 1315
+#Mons's Goblin Raiders
 1308
 1308
 1308
 1308
+#Swamp
+1373
+1374
+1375
+1373
+1374
+1375
+1373
+1374
+1375
+#Mountain
+1389
+1390
+1391
+1389
+1390
+1391
+1389
+1390
+1391
