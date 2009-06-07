@@ -1,59 +1,86 @@
-1386
-1387
-1388
-1386
-1387
-1388
-1386
-1387
-1388
-1386
-1387
-1388
-1392
-1393
-1394
-1392
-1393
-1394
-1392
-1393
-1394
-1392
-1393
-1394
+#NAME:Yavimaya
+#DESC:Beasts of the woods and the
+#DESC:seas are gathering, preparing
+#DESC:for battle.
+#Armageddon Clock
 1095
+#Obsianus Golem
 1129
 1129
+#Air Elemental
 1189
 1189
 1189
 1189
+#Lifetap
 1205
 1205
+#Lord of Atlantis
 1206
 1206
+#Merfolk of the Pearl Trident
 1210
 1210
 1210
 1210
+#Phantom Monster
 1213
 1213
+#Serendib Efreet
 1221
+1221
+#Sea Serpent
 1220
 1220
+#Cockatrice
 1238
+#Craw Wurm
 1239
+#Elvish Archers
 1242
+#Giant Spider
 1249
 1249
+#Grizzly Bears
 1250
 1250
+#Scryb Sprites
 1264
 1264
+#Thicket Basilisk
 1267
+#Timber Wolves
 1268
+#Tsunami
 1271
+#Wall of Ice
 1274
+#War Mammoth
 1277
 1277
+#Forest
+1386
+1387
+1388
+1386
+1387
+1388
+1386
+1387
+1388
+1386
+1387
+1388
+#Island
+1392
+1393
+1394
+1392
+1393
+1394
+1392
+1393
+1394
+1392
+1393
+1394
