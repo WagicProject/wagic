@@ -908,6 +908,7 @@ rarity=C
 [/card]
 [card]
 text=Flying; trample; rampage 4 (Whenever this creature becomes blocked, it gets +4/+4 until end of turn for each creature blocking it beyond the first.)
+abilities=flying,trample
 id=3268
 auto=rampage(4/4,1)
 name=Teeka's Dragon
