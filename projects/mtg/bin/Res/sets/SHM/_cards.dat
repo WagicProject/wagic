@@ -983,7 +983,7 @@ toughness=5
 [/card]
 [card]
 text={2}, {T}: Tap target creature.
-auto={2}[T}:tap target(creature)
+auto={2}{T}:tap target(creature)
 id=147420
 name=Trip Noose
 rarity=U
