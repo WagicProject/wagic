@@ -696,7 +696,7 @@ subtype=Aura
 [/card]
 [card]
 text=Other Kithkin creatures you control get +1/+1.
-auto=lord(kithkin) 1/1 other
+auto=lord(kithkin|myinplay) 1/1 other 
 id=139716
 name=Wizened Cenn
 rarity=U
