@@ -46,7 +46,7 @@ type=Land
 text=Flying  Attacking does not cause Bay Falcon to tap.
 id=3325 
 name=Bay Falcon
-abilities=flying,Vigilance
+abilities=flying,vigilance
 type=Creature
 subtype=Bird
 mana={1}{U}
@@ -917,6 +917,7 @@ mana={9}
 power=5
 subtype=Dragon
 toughness=5
+abilities=flying
 [/card]
 [card]
 text={2}{T}: Telim'Tor's Darts deals 1 damage to target player. 
