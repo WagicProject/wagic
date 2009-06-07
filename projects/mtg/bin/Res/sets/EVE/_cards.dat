@@ -24,7 +24,7 @@ type=Land
 [card]
 text=Choose any number of target creatures. Each of those creatures gains persist until end of turn. (When it's put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 target=creatures
-auto=:persist
+auto=persist
 id=151060
 name=Cauldron Haze
 rarity=U
@@ -34,7 +34,7 @@ mana={1}{WB}
 [card]
 text=Target creature gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
 target=creature
-auto=:double strike
+auto=double strike
 id=153039
 name=Double Cleave
 rarity=C
@@ -160,7 +160,7 @@ toughness=2
 [/card]
 [card]
 text=Flying, first strike
-abilities=flying, first strike
+abilities=flying,first strike
 id=151090
 name=Hobgoblin Dragoon
 rarity=C
@@ -246,7 +246,7 @@ toughness=4
 [card]
 text=Target creature gets +4/+4 until end of turn.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
 target=creature
-auto=:+4/+4
+auto=:4/4
 abilities=retrace
 id=153441
 name=Monstrify
@@ -329,7 +329,7 @@ toughness=2
 [card]
 text={WB}{WB}{WB}: Restless Apparition gets +3/+3 until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 abilities=persist
-auto={WB}{WB}{WB}:+3/+3
+auto={WB}{WB}{WB}:3/3
 id=157291
 name=Restless Apparition
 rarity=U
@@ -442,7 +442,7 @@ toughness=1
 [card]
 text=Flying     {UR}: Talonrend gets +1/-1 until end of turn.
 abilities=flying
-auto={UR}:+1/-1
+auto={UR}:1/-1
 id=153430
 name=Talonrend
 rarity=U
