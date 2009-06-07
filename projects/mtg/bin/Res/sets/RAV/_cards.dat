@@ -363,7 +363,7 @@ abilities=mountainwalk
 [card]
 text={B}, Sacrifice a creature: Target player loses 1 life.
 id=89038
-auto={B}{S(creature|myinplay):damage:1 target(player)
+auto={B}{S(creature|myinplay)}:damage:1 target(player)
 name=Golgari Rotwurm
 rarity=C
 type=Creature
