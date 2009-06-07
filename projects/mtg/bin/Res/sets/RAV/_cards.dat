@@ -422,18 +422,6 @@ power=3
 toughness=4
 [/card]
 [card]
-text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
-id=83712
-auto={T}:damage:4 all(creature[-flying],player)
-name=Hammerfist Giant
-rarity=R
-type=Creature
-mana={4}{R}{R}
-power=5
-subtype=Giant Warrior
-toughness=4
-[/card]
-[card]
 text={T}: Add {U} to your mana pool.
 auto={T}:add {U}
 id=95113
@@ -714,7 +702,7 @@ type=Sorcery
 [card]
 text=({GW} can be paid with either {G} or {W}.)  {3}{G}: Put a 1/1 green Saproling creature token into play.     {3}{W}: Creatures you control get +1/+1 until end of turn.
 id=87988
-auto={3}{G}:token (saproling,creature saproling token,1/1,green)
+auto={3}{G}:token (saproling,creature saproling,1/1,green)
 auto={3}{W}:lord (creature|myinplay) 1/1
 name=Selesnya Guildmage
 rarity=U

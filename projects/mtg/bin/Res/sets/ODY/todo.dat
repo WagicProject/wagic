@@ -612,6 +612,19 @@ type=Enchantment
 mana={1}{W}{W}
 [/card]
 [card]
+text=Tap: Destroy target creature token. 
+id=31789
+name=Dogged Hunter
+auto={T}:destroy target(token)
+mana={2}{W}
+color=white
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=1
+rarity=R
+[/card]
+[card]
 text=Dreamwinder can't attack unless defending player controls an Island.     {U}, Sacrifice an Island: Target land becomes an Island until end of turn.
 id=31802
 name=Dreamwinder

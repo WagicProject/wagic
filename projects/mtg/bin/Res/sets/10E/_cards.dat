@@ -1854,19 +1854,6 @@ type=Sorcery
 mana={1}{B}{B}
 [/card]
 [card]
-text=When Ravenous Rats comes into play, target opponent discards a card.
-id=129692
-name=Ravenous Rats
-auto=discard:1 target(player)
-rarity=C
-color=Black
-type=Creature
-mana={1}{B}
-power=1
-subtype=Rat
-toughness=1
-[/card]
-[card]
 text=Return target card from your graveyard to your hand.
 target=*|myGraveyard
 auto=moveTo(myHand)

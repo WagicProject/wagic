@@ -930,6 +930,19 @@ type=Sorcery
 mana={1}{G}
 [/card]
 [card]
+text=When Ravenous Rats comes into play, target opponent discards a card.
+id=129692
+name=Ravenous Rats
+auto=discard:1 target(player)
+rarity=C
+color=Black
+type=Creature
+mana={1}{B}
+power=1
+subtype=Rat
+toughness=1
+[/card]
+[card]
 text=First strike (This creature deals combat damage before creatures without first strike.)  At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card.     At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
 id=106552
 name=Razormane Masticore

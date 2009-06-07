@@ -523,6 +523,7 @@ mana={1}{U}
 text=Flying     {U}, Sacrifice Glen Elendra Archmage: Counter target noncreature spell.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 abilities=flying
 id=157977
+auto={U}{S}:fizzle(*[-creature]|stack)
 name=Glen Elendra Archmage
 rarity=R
 type=Creature

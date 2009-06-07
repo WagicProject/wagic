@@ -9,21 +9,32 @@
 1365
 1365
 1365
-#3x Sigiled Paladin {W}{W}, first strike exalted 2/2
+#4x Sigiled Paladin {W}{W}, first strike exalted 2/2
+174958
 174958
 174958
 174958
 #4x Serra Angel
-1366
-1366
-1366
-1366
+129726
+129726
+129726
+129726
+#4 x Guardian of Akrasa {2}{W} - defender 0/4 exalted
+175103
+175103
+175103
+175103
+#3x Skyhunter Skirmisher {1}{W}{W} - flying double strike, 1/1
+129513
+129513
+129513
+#1x Paladin en-Vec {1}{W}{W} - 2/2
+129668
 #4x Crusade
 1341
 1341
 1341
 1341
-174958
 #4x Sword to plowshares
 1367
 1367
@@ -62,14 +73,3 @@
 175030
 175030
 175030
-#4 x Guardian of Akrasa {2}{W} - defender 0/4 exalted
-175103
-175103
-175103
-175103
-#4x Skyhunter Skirmisher {1}{W}{W} - flying double strike, 1/1
-129513
-129513
-129513
-#1x Paladin en-Vec {1}{W}{W} - 2/2
-129668

@@ -335,19 +335,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text=Tap: Destroy target creature token. 
-id=31789
-name=Dogged Hunter
-auto={T}:destroy target(token)
-mana={2}{W}
-color=white
-type=Creature
-subtype=Human Nomad
-power=1
-toughness=1
-rarity=R
-[/card]
-[card]
 text={G},{T}, Sacrifice Druid Lyrist: Destroy target enchantment.
 id=29778
 name=Druid Lyrist

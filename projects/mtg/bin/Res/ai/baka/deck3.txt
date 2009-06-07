@@ -1,66 +1,92 @@
+#NAME:Flashback
+#DESC:Ol'good revision green/white
+#DESC:small creatures deck
+#2x Black Vise
 1097
 1097
+#2x The Rack
 1139
 1139
+#2x Cockatrice
 1238
 1238
+#2x Craw Wurm
 1239
 1239
+#2x Giant Spider
 1249
 1249
+#2x Grizzly Bears
 1250
 1250
+#2x Ironroot Treefolk
 1253
 1253
+#1x Living Lands 
 1259
+#3x Scryb Sprites
 1264
 1264
 1264
+#4x Shanodin Dryads
 1265
 1265
 1265
 1265
+#2x Thicket Basilisk
 1267
 1267
+#1x War Mammoth 
 1277
+#1x Armageddon
 1328
+#2x Benalish Hero
 1330
 1330
+#2x Castle
 1334
 1334
+#2x Crusade
 1341
 1341
+#2x Mesa Pegasus
 1354
 1354
+#2x Pearled Unicorn
 1356
 1356
+#2x Savannah Lions
 1365
 1365
+#2x Serra Angel
 1366
 1366
+#2x Wrath of God
 1372
 1372
+# Forest (RV)
+1386
+1386
+1386
 1386
 1387
-1388
-1386
+1387
+1387
 1387
 1388
-1386
-1387
 1388
-1386
-1387
 1388
+1388
+# Plains (RV)
 1395
+1395
+1395
+1395
+1396
+1396
+1396
 1396
 1397
-1395
-1396
 1397
-1395
-1396
 1397
-1395
-1396
 1397
