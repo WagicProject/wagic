@@ -881,6 +881,7 @@ rarity=U
 type=Enchantment
 mana={1}{U}{U}
 [/card]
+#Hammerfist giant requires a serious update of the targetChooser code before it can work.
 [card]
 text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
 id=83712

@@ -1,0 +1,18 @@
+#Bug:Ashen firebeast crashes the game if used more than once
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:air elemental,grizzly bears,ashen firebeast
+manapool:{2}{R}{R}
+[PLAYER2]
+[DO]
+ashen firebeast
+ashen firebeast
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:grizzly bears
+inplay:air elemental,ashen firebeast
+manapool:{0}
+[PLAYER2]
+[END]

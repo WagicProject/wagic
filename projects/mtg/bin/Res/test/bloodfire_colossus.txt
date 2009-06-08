@@ -1,0 +1,18 @@
+#Bug: Bloodfire colossus doesn't damage players
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:air elemental,grizzly bears,bloodfire colossus
+manapool:{R}
+[PLAYER2]
+[DO]
+bloodfire colossus
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:bloodfire colossus,air elemental,grizzly bears
+manapool:{0}
+life:14
+[PLAYER2]
+life:14
+[END]

@@ -1,0 +1,22 @@
+#Bug: Master of Etherium gets wrong bonuses
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Master of Etherium,Black Vise,The Rack
+[PLAYER2]
+[DO]
+Master of Etherium
+next
+#bloquers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Master of Etherium,Black Vise,The Rack
+manapool:{0}
+[PLAYER2]
+life:17
+[END]

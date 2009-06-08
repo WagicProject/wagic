@@ -30,7 +30,9 @@ ascendant_evincar.txt
 ascendant_evincar2.txt
 ascendant_evincar3.txt
 ashen_firebeast.txt
+ashen_firebeast2.txt
 blessed_wine.txt
+bloodfire_colossus.txt
 bottle_gnomes.txt
 boggart_arsonists.txt
 brass_man.txt
@@ -68,6 +70,7 @@ goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
 goblin_king.txt
 gravedigger.txt
+#hammerfist_giant.txt
 hannas_custody.txt
 hymn_of_rebirth.txt
 icatian_priest.txt
@@ -81,6 +84,7 @@ lifeforce.txt
 living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
+master_of_etherium.txt
 nantuko_husk.txt
 Nevinyrrals_Disk.txt
 Nevinyrrals_Disk2.txt

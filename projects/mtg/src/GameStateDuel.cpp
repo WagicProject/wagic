@@ -288,6 +288,7 @@ void GameStateDuel::Update(float dt)
 		        difficulty = "(easy)";
 		      }
           sprintf(deckDesc, "%s %s",mtgd->meta_name.c_str(), _(difficulty).c_str());
+          deckDesc[16] = 0;
 		      opponentMenu->Add(nbAIDecks,deckDesc,mtgd->meta_desc);
           delete mtgd;
 	      }

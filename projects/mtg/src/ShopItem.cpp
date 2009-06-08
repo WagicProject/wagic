@@ -60,7 +60,7 @@ void ShopItem::Render(){
     thumb = card->getThumb();
     if (nameCount){
       char buffer[512];
-      sprintf(buffer, "%s /%i/", card->name.c_str(), nameCount );
+      sprintf(buffer, "%s (%i)", card->name.c_str(), nameCount );
       mText = buffer;
     }else{
       mText = card->name;

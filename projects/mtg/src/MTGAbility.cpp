@@ -32,6 +32,7 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
 }
 
 int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
+  MTGCardInstance * source = tc->source;
   tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
   GameObserver * game = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
@@ -46,6 +47,7 @@ int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
       }
     }
   }
+  tc->source = source; //restore source
   return 1;
 }
 
@@ -54,6 +56,7 @@ int AbilityFactory::damageAll(TargetChooser * tc, int damage){
   tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
   GameObserver * g = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
+    if (tc->canTarget(g->players[i]))  g->mLayers->stackLayer()->addDamage(source,g->players[i], damage);
     for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
       MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
       if (tc->canTarget(current)){
@@ -61,6 +64,7 @@ int AbilityFactory::damageAll(TargetChooser * tc, int damage){
       }
     }
   }
+  tc->source = source; //restore source
   return 1;
 }
 
@@ -78,6 +82,7 @@ int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
       }
     }
   }
+  tc->source = source; //restore source
   return 1;
 }
 

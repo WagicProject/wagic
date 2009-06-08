@@ -134,12 +134,12 @@ rarity=C
 [/card]
 [card]
 text=Add {B}{B}{B} to your mana pool.
-id=3285 
+auto=Add{B}{B}{B}
+id=3285
 name=Dark Ritual
-alias=1149
-type=Mana Source
-mana={B}
 rarity=C
+type=Instant
+mana={B}
 [/card]
 [card]
 text=Swampwalk {B}: Dirtwater Wraith gets +1/+0 until end of turn.
