@@ -17,10 +17,10 @@ Player=Spieler
 Cancel=Abbrechen
 Classic=Klassisch
 Music volume=Musik Volumen
-SFX volume=VSFX Volumen
+SFX volume=SFX Volumen
 Seconds to pause for an Interrupt=Unterbrechnungspaus in Sek
 Difficulty=Schwierigkeitsstufe
-Image Cache Size=Taille du cache images
+Image Cache Size=Bildspeicher Kapazitaet
 Save & Back to Main Menu=Speichern & ins Menue
 Back to Main Menu=Zurueck ins Menue
 Back to main menu=Zurueck ins Menue
@@ -32,27 +32,27 @@ Choose Opponent=Gegner weahlen
 (hard)=(schwer)
 Random=Random
 Interrupt?=Unterbrechen ?
-X Interrupt - 0 No - [] No to All=X Unterbrechen - 0 Nein - [] Non Nein bei allen
+X Interrupt - 0 No - [] No to All=X Unterbrechen - 0 Nein - [] Nein bei allen
 X Interrupt - 0 No=X Unterbrechen - 0 Nein
 
 #Phases
-Untap=Enttapphase
+Untap=Enttappphase
 Upkeep=Versorgungsphase
-Draw=Ziehpahse
+Draw=Ziehphase
 Main phase 1=1. Hauptphase
 Combat begins=Begin der Kampfphase
 Attackers=Angreifer Deklarieren
 Blockers=Blocker Deklarieren
 Combat damage=Kampfschade
 Combat ends=Ende der Kampfphase
-Main phase 2=P2. Hauptphase
+Main phase 2=2. Hauptphase
 End of turn=Endphase
 Cleanup=Aufraeumpahse
 #Deck Editor
-Prev.=Vorher..
+Prev.=Vorher.
 card=Karte
 cards=Karten
-Next=Naechste.
+Next=Naechste
 Next color=Neacheste Farbe.
 Prev. color=Vorher. Farbe.
 Add card=Karte hinzufuegen
@@ -75,6 +75,7 @@ enchantment=Verzauberung
 sorcey=Hexerei
 instant=Spontanzauber
 land=Land
+Creature=Kreatur
 
 #subtypes
 #please keep the english alphabetical order, makes it easier to update!
@@ -83,6 +84,8 @@ elf=Elfe
 human=Mensch
 sorcerer=Zauberer
 wurm=Wurm
+warrior=Krieger
+faeries=Feen
 
 #card names
 #please keep this alphabetized

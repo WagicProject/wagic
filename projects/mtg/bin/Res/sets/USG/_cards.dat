@@ -265,6 +265,7 @@ toughness=1
 [card]
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
 id=5853
+target=creature,player
 alias=146013
 name=Corrupt
 rarity=C
