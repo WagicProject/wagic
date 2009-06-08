@@ -494,7 +494,7 @@ toughness=2
 [card]
 text=Enchant creature     Enchanted creature gets +3/+0 and has first strike.
 target=creature
-auto=:3/0
+auto=3/0
 auto=first strike
 id=176446
 name=Lightning Talons
@@ -759,7 +759,7 @@ toughness=7
 [card]
 text=Target creature gets +3/+3 and gains double strike until end of turn.
 target=creature
-auto=:3/3
+auto=3/3
 auto=double strike
 id=176438
 name=Sangrite Surge

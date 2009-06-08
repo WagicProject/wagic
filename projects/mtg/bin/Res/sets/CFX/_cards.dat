@@ -258,7 +258,7 @@ mana={1}
 [card]
 text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
 target=creature
-auto=:2/2
+auto=2/2
 auto=cantblock
 id=182609
 name=Maniacal Rage

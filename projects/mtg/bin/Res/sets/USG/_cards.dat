@@ -156,7 +156,7 @@ abilities=swampwalk
 [card]
 text=Enchant creature     Enchanted creature gets +1/+1 for each other creature you control. 
 target=creature
-auto=:-1/-1
+auto=-1/-1
 auto=foreach(creature|myinplay) 1/1
 id=5848
 name=Bravado
@@ -169,7 +169,7 @@ subtype=Aura
 [card]
 text=Target creature gets +2/+0 and gains fear until end of turn.
 target=creature
-auto=:2/0
+auto=2/0
 auto=fear
 id=5633
 name=Breach
@@ -453,7 +453,7 @@ subtype=Forest
 [card]
 text=Enchant creature     Enchanted creature gets +3/+3 and has trample.     {G}: Regenerate enchanted creature.
 target=creature
-auto=:3/3
+auto=3/3
 auto=trample
 auto={G}:regenerate
 id=5720
@@ -900,7 +900,7 @@ abilities=first strike
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has flying and vigilance. (It can't be blocked except by creatures with flying or reach, and attacking doesn't cause it to tap.)
 target=creature
-auto=:2/2
+auto=2/2
 auto=flying
 auto=vigilance
 id=9682
@@ -928,7 +928,7 @@ abilities=flying
 [card]
 text=Enchant creature    Enchanted creature gets +2/+2 and has flying.    {R}: Enchanted creature gets +1/+0 until end of turn.
 target=creature
-auto=:2/2
+auto=2/2
 auto=flying
 auto={R}:1/0
 id=5721
@@ -1211,7 +1211,7 @@ abilities=flying,shroud
 [card]
 text=Enchant creature      Enchanted creature gets +2/+2 and has flying and shroud. (It can't be the target of spells or abilities.)  
 target=creature
-auto=:2/2
+auto=2/2
 auto=flying
 auto=shroud
 id=8787

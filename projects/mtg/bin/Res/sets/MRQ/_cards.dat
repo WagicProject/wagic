@@ -176,7 +176,7 @@ mana={B}
 [card]
 text=Enchant creature      Enchanted creature gets +1/+1 and has mountainwalk.
 target=creature
-auto=:1/1
+auto=1/1
 auto=mountainwalk
 id=19620
 name=Cave Sense
@@ -384,7 +384,7 @@ auto={S}:Add {U}
 [card]
 text=Flash       Enchant creature      Enchanted creature gets +1/+0 and has first strike.
 target=creature
-auto=:1/0
+auto=1/0
 auto=first strike
 id=19613
 name=Flaming Sword
@@ -753,7 +753,7 @@ toughness=4
 text=Flash    Enchant creature     Enchanted creature gets +2/-2.
 id=19594
 target=creature
-auto=:2/-2
+auto=2/-2
 name=Maggot Therapy
 color=Black
 rarity=C
@@ -1230,7 +1230,7 @@ abilities=unblockable
 [card]
 text=Flash       Enchant creature      Enchanted creature gets +1/+1 and has trample.
 target=creature
-auto=:1/1
+auto=1/1
 auto=trample
 id=19635
 name=Tiger Claws

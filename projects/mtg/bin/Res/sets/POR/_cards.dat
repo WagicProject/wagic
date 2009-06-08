@@ -20,7 +20,7 @@ name=Angelic Blessing
 rarity=C
 mana={2}{W}
 type=Sorcery
-auto=:3/3
+auto=3/3
 auto=flying
 [/card]
 [card]
@@ -180,7 +180,7 @@ abilities=Islandwalk
 [card]
 text=Target creature gets +2/+0 until end of turn. Burning Cloak deals 2 damage to that creature.
 target=creature
-auto=:2/0
+auto=2/0
 auto=damage:2
 id=4331
 name=Burning Cloak
@@ -550,7 +550,7 @@ toughness=4
 [card]
 text=Target creature gets +4/+0 until end of turn.
 target=creature
-auto=:4/0
+auto=4/0
 id=4226
 name=Howling Fury
 rarity=C
@@ -727,7 +727,7 @@ toughness=3
 text=Target creature gets +4/+4 until end of turn.
 id=4304
 target=creature
-auto=:4/4
+auto=4/4
 name=Monstrous Growth
 rarity=C
 mana={1}{G}

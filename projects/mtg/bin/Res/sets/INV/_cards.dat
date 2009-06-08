@@ -12,7 +12,7 @@ type=Instant
 [card]
 text=Target creature gets +1/+1 until end of turn.     Draw a card.
 target=creature
-auto=:1/1
+auto=1/1
 auto=draw:1
 id=24127
 name=Aggressive Urge
@@ -84,7 +84,7 @@ type=Land
 [card]
 text=Enchant creature      Enchanted creature gets +2/+2 and has trample.     Whenever enchanted creature deals damage, you gain that much life.
 target=creature
-auto=:2/2
+auto=2/2
 auto=trample
 auto=lifelink
 id=23164
@@ -170,7 +170,7 @@ auto={T}: Add {R}
 type=Artifact
 [/card]
 [card]
-text=: {1}: Add {B} to your mana pool.
+text={1}: Add {B} to your mana pool.
 id=23024
 name=Bog Initiate
 color=Black
@@ -300,7 +300,7 @@ abilities=flying
 [card]
 text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
 target=creature
-auto=:-1/-1
+auto=-1/-1
 auto=fear
 id=23044
 name=Cursed Flesh
@@ -713,7 +713,7 @@ text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
 id=23072
 name=Maniacal Rage
 target=creature
-auto=:2/2
+auto=2/2
 auto=cantblock
 rarity=C
 type=Enchantment
@@ -1026,18 +1026,6 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt by target attacking creature this turn.   Draw a card.
-target=creature[attacking]
-auto=:-99/0
-auto=draw:1
-id=22943
-name=Restrain
-color=White
-rarity=C
-mana={2}{W}
-type=Instant
-[/card]
-[card]
 text=You gain 3 life.     Draw a card.
 id=22941
 auto=life:3
@@ -1087,7 +1075,7 @@ type=Land
 [card]
 text=Enchant creature      When Scavenged Weaponry comes into play, draw a card.    Enchanted creature gets +1/+1.
 target=creature
-auto=:1/1
+auto=1/1
 auto=draw:1
 id=23028
 name=Scavenged Weaponry
@@ -1513,7 +1501,7 @@ toughness=3
 [card]
 text=Enchant creature      Enchanted creature gets +1/+3 and has flying.
 target=creature
-auto=:1/3
+auto=1/3
 auto=flying
 id=24118
 name=Wings of Hope

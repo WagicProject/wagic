@@ -246,7 +246,7 @@ toughness=4
 [card]
 text=Target creature gets +4/+4 until end of turn.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
 target=creature
-auto=:4/4
+auto=4/4
 abilities=retrace
 id=153441
 name=Monstrify

@@ -490,7 +490,7 @@ mana={B}
 [card]
 text=Regenerate target creature.
 target=creature
-auto=:regenerate
+auto=regenerate
 id=1342
 name=Death Ward
 rarity=C
@@ -981,7 +981,7 @@ subtype=Aura
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+2.
 target=creature
-auto=:1/2
+auto=1/2
 id=1350
 name=Holy Strength
 rarity=C
@@ -1766,7 +1766,7 @@ mana={W}{W}
 [/card]
 [card]
 text=Target blocking creature gets +7/+7 until end of turn.
-auto=:7/7
+auto=7/7
 target=creature[blocking]
 id=1363
 name=Righteousness
@@ -2215,7 +2215,7 @@ subtype=Island Swamp
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+1.
 target=creature
-auto=:2/1
+auto=2/1
 id=1183
 name=Unholy Strength
 rarity=C
@@ -2433,7 +2433,7 @@ toughness=4
 [card]
 text=Enchant creature     Enchanted creature gets -2/-1.
 target=creature
-auto=:-2/-1
+auto=-2/-1
 id=1186
 name=Weakness
 rarity=C

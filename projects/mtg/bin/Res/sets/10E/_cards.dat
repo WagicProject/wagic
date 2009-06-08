@@ -1,7 +1,7 @@
 [card]
 text=Target creature gets -1/-1 until end of turn.     Draw a card.
 target=creature
-auto=:-1/-1
+auto=-1/-1
 auto=draw:1
 id=135206
 name=Afflict
@@ -13,7 +13,7 @@ mana={2}{B}
 [card]
 text=Target creature gets +1/+1 until end of turn.     Draw a card.
 target=creature
-auto=:1/1
+auto=1/1
 auto=draw:1
 id=130525
 name=Aggressive Urge
@@ -87,7 +87,7 @@ mana={2}
 [card]
 text=Target creature gets +3/+3 and gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
 target=creature
-auto=:3/3
+auto=3/3
 auto=flying
 id=129711
 name=Angelic Blessing
@@ -738,7 +738,7 @@ subtype=Aura
 [card]
 text=Target creature gets +4/+0 until end of turn.
 target=creature
-auto=:4/0
+auto=4/0
 id=130379
 name=Fists of the Anvil
 rarity=C
@@ -862,7 +862,7 @@ toughness=1
 [card]
 text=Target creature gets +3/+3 until end of turn.
 target=creature
-auto=:3/3
+auto=3/3
 id=129568
 name=Giant Growth
 rarity=C
@@ -996,7 +996,7 @@ toughness=3
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+2.
 target=creature
-auto=:1/2
+auto=1/2
 id=129594
 name=Holy Strength
 rarity=C
@@ -1364,7 +1364,7 @@ toughness=3
 [card]
 text=Target creature gets +7/+7 until end of turn.
 target=creature
-auto=:7/7
+auto=7/7
 id=129642
 name=Might of Oaks
 rarity=R
@@ -1926,7 +1926,7 @@ mana={2}{W}
 [card]
 text=Target blocking creature gets +7/+7 until end of turn.
 target=creature[blocking]
-auto=:7/7
+auto=7/7
 id=130552
 name=Righteousness
 rarity=R
@@ -2096,7 +2096,7 @@ toughness=4
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has flying and vigilance. (It can't be blocked except by creatures with flying or reach, and attacking doesn't cause it to tap.)
 target=creature
-auto=:2/2
+auto=2/2
 auto=flying
 auto=vigilance
 id=135214
@@ -2616,7 +2616,7 @@ type=Land
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+1.
 target=creature
-auto=:2/1
+auto=2/1
 id=129780
 name=Unholy Strength
 rarity=C
