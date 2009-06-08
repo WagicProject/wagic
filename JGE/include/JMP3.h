@@ -36,7 +36,9 @@ public:
   int m_paused;
   int m_channel;
   int m_mp3Handle; 
-  int m_fileHandle; 
+  int m_fileHandle;
+  int m_fileSize;
+  char m_fileName[256];
   static JMP3* mInstance;
   JMP3(const std::string& filename, int inBufferSize= 16*1024, int outBufferSize =16*(1152/2));
   ~JMP3();

@@ -50,11 +50,22 @@ bool JMP3::fillBuffers() {
    if (ret < 0)
       return false;
 
-   if (sceIoLseek32(m_fileHandle, pos, SEEK_SET) < 0) {
-      return false;
-   }
+    if (sceIoLseek32(m_fileHandle, pos, SEEK_SET) < 0) {
+      // Re-open the file because file handel can be invalidated by suspend/resume.
+      sceIoClose(m_fileHandle);
+      m_fileHandle = sceIoOpen(m_fileName, PSP_O_RDONLY, 0777);
+      if (m_fileHandle < 0)
+         return false;
+      if (sceIoLseek32(m_fileHandle, 0, SEEK_END) != m_fileSize
+            || sceIoLseek32(m_fileHandle, pos, SEEK_SET) < 0) {
+         sceIoClose(m_fileHandle);
+         m_fileHandle = -1;
+         return false;
+      }
+    }
 
-   int readLength = sceIoRead(m_fileHandle, dest, length);
+    int readLength = sceIoRead(m_fileHandle, dest, length);
+
    if (readLength < 0)
       return false;
 
@@ -77,17 +88,30 @@ bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize
       //   return false;
 
       m_fileHandle = sceIoOpen(filename.c_str(), PSP_O_RDONLY, 0777);
-      if (m_fileHandle < 0)
-         return false;
+       if (m_fileHandle < 0)
+          return false;
 
-      int ret = sceMp3InitResource();
-      if (ret < 0)
-         return false;
+     // Memorise the full path for reloading with decode thread.
+      if ( getcwd(m_fileName, sizeof(m_fileName)) ){
+         int len = strnlen(m_fileName, sizeof(m_fileName));
+         if (len + filename.size() <= sizeof(m_fileName) - 2){
+            m_fileName[len++] = '/';
+            strcpy(m_fileName + len, filename.c_str());
+         }else{
+            m_fileName[0] = NULL;
+         }
+      }
+
+       int ret = sceMp3InitResource();
+       if (ret < 0)
+          return false;
 
       SceMp3InitArg initArgs;
 
       int fileSize = sceIoLseek32(m_fileHandle, 0, SEEK_END);
       sceIoLseek32(m_fileHandle, 0, SEEK_SET);
+	  m_fileSize = fileSize;
+
 
       unsigned char* testbuffer = new unsigned char[7456];
       sceIoRead(m_fileHandle, testbuffer, 7456);
@@ -141,6 +165,9 @@ bool JMP3::unload() {
 }
 
 bool JMP3::update() {
+	int retry = 8;//FIXME:magic number
+	JMP3_update_start:
+
    if (!m_paused) {
       if (sceMp3CheckStreamDataNeeded(m_mp3Handle) > 0) {
          fillBuffers();
@@ -163,6 +190,12 @@ bool JMP3::update() {
 
       // Okay, let's see if we can't get something outputted :/
       if (numDecoded == 0 || ((unsigned)numDecoded == 0x80671402)) {
+	  if (retry-- > 0){
+           //give me a recovery chance after suspend/resume...
+            sceKernelDelayThread(1);
+            goto JMP3_update_start;
+         }
+
          sceMp3ResetPlayPosition(m_mp3Handle);
          if (!m_loop)
             m_paused = true;
@@ -179,6 +212,8 @@ bool JMP3::update() {
          // Output
          m_samplesPlayed += sceAudioSRCOutputBlocking(m_volume, tempBuffer);
          m_playTime = (m_samplingRate > 0) ? (m_samplesPlayed / (m_samplingRate/1000)) : 0;
+		 m_lastDecoded = numDecoded;
+
       }
    }
 

@@ -420,11 +420,17 @@ void JGE::Run()
 		  pspDebugScreenSetXY(0, 0);
 		  pspDebugScreenPrintf(mDebuggingMsg);
 		}
-	    }
-	  mVeryOldButtons = mCtrlPad.Buttons;
-	}
-    }
+	  }
+     mVeryOldButtons = mCtrlPad.Buttons;
+	  }
+      else
+	  {
+     sceKernelDelayThread(1);
+	  }
+  }
 }
+
+
 
 #endif		///// PSP specified code
 
