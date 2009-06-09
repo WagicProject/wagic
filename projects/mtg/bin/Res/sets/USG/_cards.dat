@@ -94,17 +94,6 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
-text=Destroy target land or nonblack creature. It can't be regenerated.
-target=land,creature[-black]
-auto=bury
-id=5605
-name=Befoul
-color=Black
-rarity=C
-mana={2}{B}{B}
-type=Sorcery
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
 id=5623
 target=creature

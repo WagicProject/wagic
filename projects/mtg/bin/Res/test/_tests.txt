@@ -31,6 +31,7 @@ ascendant_evincar2.txt
 ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
+#befoul.txt
 blessed_wine.txt
 bloodfire_colossus.txt
 bottle_gnomes.txt
@@ -50,14 +51,17 @@ counterspell2.txt
 counterspell3.txt
 counterspell4.txt
 creature_bond.txt
+dauthi_embrace.txt
 deja_vu.txt
 dingus_egg.txt
 doomed_necromancer.txt
 dragon_fodder.txt
 drain_life.txt
+drift_of_the_dead.txt
 elvish_piper.txt
 fastbond.txt
 flare.txt
+#fledgling_imp.txt TODO Understand why this one fails
 foratog.txt
 force_of_nature.txt
 force_of_nature2.txt

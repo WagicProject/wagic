@@ -1,0 +1,19 @@
+#Bug: Dauthi Embrace gets tapped if its ability is used
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Dauthi Embrace,grizzly bears,kird ape
+manapool:{B}{B}{b}{B}
+[PLAYER2]
+[DO]
+Dauthi Embrace
+grizzly bears
+Dauthi Embrace
+kird ape
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Dauthi Embrace,grizzly bears,kird ape
+manapool:{0}
+[PLAYER2]
+[END]

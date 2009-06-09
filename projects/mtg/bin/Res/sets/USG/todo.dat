@@ -147,6 +147,18 @@ rarity=R
 type=Artifact
 mana={4}
 [/card]
+#Befoul requires a huge update on targetChooser before it can work :/
+[card]
+text=Destroy target land or nonblack creature. It can't be regenerated.
+target=creature[-black],land
+auto=bury
+id=5605
+name=Befoul
+color=Black
+rarity=C
+mana={2}{B}{B}
+type=Sorcery
+[/card]
 [card]
 text=Whenever a green creature is put into a graveyard from play, its controller discards a card.
 id=5617

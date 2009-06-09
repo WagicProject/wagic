@@ -1,0 +1,19 @@
+#Testing Befoul on Grizzly bears
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:befoul
+manapool:{2}{B}{B}
+[PLAYER2]
+inplay:1250
+[DO]
+befoul
+1250
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:befoul
+manapool:{0}
+[PLAYER2]
+graveyard:1250
+[END]

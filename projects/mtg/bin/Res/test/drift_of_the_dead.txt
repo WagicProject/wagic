@@ -1,0 +1,23 @@
+#Testing That Drift of the dead only gets power/toughness from snow lands
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:dragon engine
+[PLAYER2]
+inplay:drift of the dead,snow-covered forest,snow-covered mountain,mountain
+[DO]
+dragon engine
+next
+#blockers 
+drift of the dead
+next
+#combatdamage
+next
+#endofcombat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:dragon engine
+[PLAYER2]
+inplay:drift of the dead,snow-covered forest,snow-covered mountain,mountain
+[END]

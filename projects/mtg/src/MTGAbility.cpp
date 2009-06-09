@@ -869,7 +869,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	              game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,0,0,j,modifier));
             }else{
 	            if (tc){
-	              game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc, modifier));
+	              game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc, modifier,doTap));
 	            }else{
 	              if (!cost){
 	                if(card->hasType("enchantment")){
