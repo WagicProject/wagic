@@ -81,7 +81,7 @@ void GameStateOptions::Render()
     "",
     "Developped with the JGE++ Library (http://jge.khors.com)",
     "Player's avatar from http://mathieuchoinet.blogspot.com, under CC License",
-    "Background picture from KDE4 , www.kde.org",
+    "Background picture and some art from the KDE project, www.kde.org",
     "SFX From www.soundsnap.com",
     "",
     "Music by Celestial Aeon Project, http://www.jamendo.com",
