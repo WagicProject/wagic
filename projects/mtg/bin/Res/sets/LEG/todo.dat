@@ -289,6 +289,19 @@ type=Enchantment
 mana={1}{B}
 [/card]
 [card]
+text=Flying     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)  At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
+id=1650
+abilities=flying,Legendary
+auto=rampage(2/2,1)
+name=Chromium
+rarity=R
+type=Creature
+mana={2}{W}{W}{U}{U}{B}{B}
+power=7
+subtype=Elder Dragon
+toughness=7
+[/card]
+[card]
 text=If Clergy of the Holy Nimbus would be destroyed, regenerate it.     {1}: Clergy of the Holy Nimbus can't be regenerated this turn. Only any opponent may play this ability.
 id=1604
 name=Clergy of the Holy Nimbus

@@ -150,19 +150,6 @@ toughness=2
 abilities=forestwalk
 [/card]
 [card]
-text=Flying     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)  At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
-id=1650
-abilities=flying,Legendary
-auto=rampage(2/2,1)
-name=Chromium
-rarity=R
-type=Creature
-mana={2}{W}{W}{U}{U}{B}{B}
-power=7
-subtype=Elder Dragon
-toughness=7
-[/card]
-[card]
 text=Destroy all black creatures.
 auto=destroy all(creature[black])
 id=1603
@@ -430,7 +417,7 @@ rarity=C
 mana={1}{B}{B}
 type=Creature
 subtype=Spirit
-auto={T}:-1/0
+auto={T}:-1/0 target(creature)
 power=0
 toughness=2
 [/card]
