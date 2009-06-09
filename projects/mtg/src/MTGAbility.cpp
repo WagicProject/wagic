@@ -195,7 +195,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
     unsigned int delimiter = line.find("}:");
     ManaCost * cost = NULL;
     if (delimiter!= string::npos){
-      cost = ManaCost::parseManaCost(line.substr(0,delimiter+1));
+      cost = ManaCost::parseManaCost(line.substr(0,delimiter+1),NULL,card);
     }
     OutputDebugString("Parsing cost\n");
     if (cost && cost->isNull()){

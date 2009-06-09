@@ -61,7 +61,8 @@ drift_of_the_dead.txt
 elvish_piper.txt
 fastbond.txt
 flare.txt
-#fledgling_imp.txt TODO Understand why this one fails
+fledgling_imp.txt 
+fledgling_imp2.txt
 foratog.txt
 force_of_nature.txt
 force_of_nature2.txt

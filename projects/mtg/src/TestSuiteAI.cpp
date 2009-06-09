@@ -119,6 +119,8 @@ int TestSuiteAI::Act(float dt){
 	    }else{
         MTGCardInstance * card = suite->getCardByMTGId(mtgid);
         if (card) {
+          OutputDebugString("Clicking ON: ");
+          OutputDebugString(card->name.c_str());
 	        g->cardClick(card,card);
         }
       }

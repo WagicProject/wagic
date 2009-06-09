@@ -11,7 +11,7 @@
 #include <windows.h>
 #endif
 
-ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
+ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstance * c){
 #if defined (WIN32) || defined (LINUX)
   char    buf[4096];
 #endif
@@ -63,7 +63,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost){
     size_t target_end = value.find(")");
     if (target_start!=string::npos && target_end!=string::npos){
       string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,NULL);
+      tc = tcf.createTargetChooser(target,c);
     }
     manaCost->addExtraCost(NEW SacrificeCost(tc));
 	}else{

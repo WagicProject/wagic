@@ -20,7 +20,7 @@ class ManaCost{
   
  public:
   ExtraCosts * extraCosts;
-  static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL);
+  static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
   void init();
   void x();
   ManaCost(int _cost[], int nb_elems = 1);
