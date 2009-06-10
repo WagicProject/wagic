@@ -871,7 +871,8 @@ toughness=1
 [/card]
 [card]
 text=Search your library for a Forest card and put that card into play. Then shuffle your library.
-auto=moveTo(myInPlay) target(forest|myLibrary)
+target=forest|myLibrary
+auto=moveTo(myInPlay)
 id=2579
 name=Nature's Lore
 rarity=U
