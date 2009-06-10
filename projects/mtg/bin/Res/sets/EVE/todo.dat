@@ -857,7 +857,18 @@ power=2
 subtype=Noggle Rogue
 toughness=2
 [/card]
-
+[card]
+text=When Noggle Bridgebreaker comes into play, return a land you control to its owner's hand.
+id=158899
+name=Noggle Bridgebreaker
+auto=moveTo(hand) target(land|myinplay)
+rarity=C
+type=Creature
+mana={2}{UR}{UR}
+power=4
+subtype=Noggle Rogue
+toughness=3
+[/card]
 [card]
 text=When Noggle Hedge-Mage comes into play, if you control two or more Islands, you may tap two target permanents.     When Noggle Hedge-Mage comes into play, if you control two or more Mountains, you may have Noggle Hedge-Mage deal 2 damage to target player.
 id=159066

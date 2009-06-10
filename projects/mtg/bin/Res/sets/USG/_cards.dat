@@ -285,20 +285,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-text=Flying         When Dark Hatchling comes into play, destroy target nonblack creature. It can't be regenerated.
-auto=may bury target(creature[-black])
-id=5852
-name=Dark Hatchling
-color=Black
-rarity=R
-mana={4}{B}{B}
-type=Creature
-subtype=Horror
-power=3
-toughness=3
-abilities=flying
-[/card]
-[card]
 text=Add {B}{B}{B} to your mana pool.
 auto=Add {B}{B}{B}
 id=5626
@@ -656,19 +642,6 @@ type=Creature
 subtype=Human Monk Cleric
 power=2
 toughness=2
-[/card]
-[card]
-text=When Monk Realist comes into play, destroy target enchantment.
-auto=may destroy target(enchantment)
-id=5708
-name=Monk Realist
-color=White
-rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=1
-toughness=1
 [/card]
 [card]
 text={U}: Untap Morphling.     {U}: Morphling gains flying until end of turn.     {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.    {1}: Morphling gets -1/+1 until end of turn.

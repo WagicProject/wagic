@@ -1,4 +1,5 @@
-#Red/White Deck for AI, Anti Artifact
+#NAME:Disenchant
+#DESC:Red/White Deck for AI, Anti Artifact
 #2x Shatter
 1316
 1316

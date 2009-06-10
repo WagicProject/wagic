@@ -228,6 +228,19 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
+text=Flying     When Cloudchaser Eagle comes into play, destroy target enchantment.
+abilities=flying
+id=4871
+name=Cloudchaser Eagle
+auto=may moveto(ownergraveyard) target(enchantment)
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Bird
+toughness=2
+[/card]
+[card]
 text=Target opponent reveals his or her hand. Choose a card from it. That player discards that card.
 id=4641
 name=Coercion

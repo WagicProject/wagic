@@ -69,6 +69,7 @@ mana={2}{W}
 text=Whenever Charging Bandits attacks, it gets +2/+0 until end of turn.
 id=4212
 name=Charging Bandits
+auto=lord(creature[charging bandits;attacking]|myinplay) 2/0
 rarity=U
 type=Creature
 mana={4}{B}
@@ -80,6 +81,7 @@ toughness=3
 text=Whenever Charging Paladin attacks, it gets +0/+3 until end of turn.
 id=4379
 name=Charging Paladin
+auto=lord(creature[Charging Paladin;attacking]|myinplay) 0/3
 rarity=U
 type=Creature
 mana={2}{W}
@@ -105,28 +107,6 @@ name=Command of Unsummoning
 rarity=U
 type=Instant
 mana={2}{U}
-[/card]
-[card]
-text=Craven Giant can't block.
-id=4332
-name=Craven Giant
-rarity=C
-type=Creature
-mana={2}{R}
-power=4
-subtype=Giant
-toughness=1
-[/card]
-[card]
-text=Craven Knight can't block.
-id=4213
-name=Craven Knight
-rarity=C
-type=Creature
-mana={1}{B}
-power=2
-subtype=Human Knight
-toughness=2
 [/card]
 [card]
 text=Draw four cards. You lose half your life, rounded up.
@@ -178,14 +158,6 @@ name=Dread Charge
 rarity=R
 type=Sorcery
 mana={3}{B}
-[/card]
-[card]
-text=Dry Spell deals 1 damage to each creature and each player.
-id=4218
-name=Dry Spell
-rarity=U
-type=Sorcery
-mana={1}{B}
 [/card]
 [card]
 text=Flying     When Ebon Dragon comes into play, you may have target opponent discard a card.
@@ -256,14 +228,6 @@ subtype=Snake
 toughness=1
 [/card]
 [card]
-text=Fire Tempest deals 6 damage to each creature and each player.
-id=4339
-name=Fire Tempest
-rarity=R
-type=Sorcery
-mana={5}{R}{R}
-[/card]
-[card]
 text=Fleet-Footed Monk can't be blocked by creatures with power 2 or greater.
 id=4383
 name=Fleet-Footed Monk
@@ -307,45 +271,12 @@ type=Sorcery
 mana={1}{W}
 [/card]
 [card]
-text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
-id=4223
-name=Gravedigger
-rarity=U
-type=Creature
-mana={3}{B}
-power=2
-subtype=Zombie
-toughness=2
-[/card]
-[card]
 text=Play Harsh Justice only during the declare attackers step and only if you are the defending player.       This turn, whenever an attacking creature deals combat damage to you, it deals that much damage to its controller.
 id=4386
 name=Harsh Justice
 rarity=R
 type=Instant
 mana={2}{W}
-[/card]
-[card]
-text=Hulking Cyclops can't block.
-id=4345
-name=Hulking Cyclops
-rarity=U
-type=Creature
-mana={3}{R}{R}
-power=5
-subtype=Cyclops
-toughness=5
-[/card]
-[card]
-text=Hulking Goblin can't block.
-id=4346
-name=Hulking Goblin
-rarity=C
-type=Creature
-mana={1}{R}
-power=2
-subtype=Goblin
-toughness=2
 [/card]
 [card]
 text=Flying     When Ingenious Thief comes into play, look at target player's hand.
@@ -367,8 +298,22 @@ type=Sorcery
 mana={R}{R}
 [/card]
 [card]
+text=When Man-o'-War comes into play, return target creature to its owner's hand.
+alias=1229
+id=4266
+target=creature
+name=Man-o'-War
+mana={2}{U}
+rarity=U
+type=Creature
+subtype=Jellyfish
+power=2
+toughness=2
+[/card]
+[card]
 text=When Mercenary Knight comes into play, sacrifice it unless you discard a creature card.
 id=4228
+auto=discard:1
 name=Mercenary Knight
 rarity=R
 type=Creature
@@ -393,15 +338,6 @@ rarity=R
 type=Sorcery
 mana={2}{G}{G}
 [/card]
-[card]
-text=Green creatures you control gain forestwalk until end of turn.
-id=4309
-name=Nature's Cloak
-rarity=R
-type=Sorcery
-mana={2}{G}
-[/card]
-
 [card]
 text=When Noxious Toad is put into a graveyard from play, each opponent discards a card.
 id=4233

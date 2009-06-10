@@ -166,7 +166,7 @@ id=1519
 name=Concordant Crossroads
 color=Green
 rarity=R
-mana={1}{G}
+mana={G}
 type=Enchantment
 [/card]
 [card]

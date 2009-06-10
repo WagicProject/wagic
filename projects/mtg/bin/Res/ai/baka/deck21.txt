@@ -1,8 +1,9 @@
 #NAME:Burning
-#DESC:Better be prepared to burn the midnight oil
-#DESC:the goblin brashness will make you boil
-#DESC:
-#DESC:and you will end, 
+#DESC:Better be prepared, 
+#DESC:to burn the midnight oil.
+#DESC:The goblin brashness ,
+#DESC:will make you boil.
+#DESC:And you will end, 
 #DESC:burning with a low flame..
 #2 x Bloodmark Mentor
 142062

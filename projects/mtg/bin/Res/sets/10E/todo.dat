@@ -565,18 +565,6 @@ type=Enchantment
 mana={W}
 [/card]
 [card]
-text=When Highway Robber comes into play, target opponent loses 2 life and you gain 2 life.
-id=129564
-name=Highway Robber
-rarity=C
-color=Black
-type=Creature
-mana={2}{B}{B}
-power=2
-subtype=Human Rogue Mercenary
-toughness=2
-[/card]
-[card]
 text=Prevent all combat damage that would be dealt this turn.
 id=129593
 name=Holy Day

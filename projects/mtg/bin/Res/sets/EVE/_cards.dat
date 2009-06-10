@@ -280,18 +280,6 @@ subtype=Spirit Avatar
 toughness=4
 [/card]
 [card]
-text=When Noggle Bridgebreaker comes into play, return a land you control to its owner's hand.
-id=158899
-name=Noggle Bridgebreaker
-auto=moveTo(hand) target(land|myinplay)
-rarity=C
-type=Creature
-mana={2}{UR}{UR}
-power=4
-subtype=Noggle Rogue
-toughness=3
-[/card]
-[card]
 text={1}{BG}: Regenerate Odious Trow.
 auto={1}{BG}:regenerate 
 id=150977

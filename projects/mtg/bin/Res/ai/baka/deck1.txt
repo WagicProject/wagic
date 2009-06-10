@@ -1,3 +1,4 @@
+#NAME:Nightmare
 #DESC:Black/Blue Deck
 #2x Obsianus Golem
 1129

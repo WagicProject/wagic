@@ -1,4 +1,5 @@
-##NAME:Howlins
+#NAME:Howlins
+#DESC:Goblin deck
 #Spark Elemental
 129577
 129577

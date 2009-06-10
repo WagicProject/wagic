@@ -1,3 +1,4 @@
+#NAME:Taiga
 #DESC:Red/Green simple deck
 #2x Cockatrice
 1238

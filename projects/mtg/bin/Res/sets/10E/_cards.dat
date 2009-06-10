@@ -982,6 +982,21 @@ subtype=Zombie Wizard
 toughness=1
 [/card]
 [card]
+text=When Highway Robber comes into play, target opponent loses 2 life and you gain 2 life.
+id=129564
+target=player
+auto=damage:2
+auto=life:2
+name=Highway Robber
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Human Rogue Mercenary
+toughness=2
+[/card]
+[card]
 text=
 id=129591
 name=Hill Giant

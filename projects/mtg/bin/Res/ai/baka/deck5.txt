@@ -1,4 +1,4 @@
-#NAME:Army of Death
+#NAME:Death Army
 #DESC:Dangerous foes await you.
 #DESC:Both Undead, Goblins and other
 #DESC:Abominations will fight you 

@@ -471,21 +471,6 @@ power=1
 toughness=2
 [/card]
 [card]
-text=Flying      When Keening Banshee comes into play, target creature gets -2/-2 until end of turn.
-id=83599
-name=Keening Banshee
-target=creature
-auto=-2/-2
-rarity=C
-color=Black
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-abilities=flying
-[/card]
-[card]
 text=Target creature gets -3/-3 until end of turn.
 id=89056
 target=creature
@@ -877,7 +862,7 @@ type=Creature
 subtype=Elf Warrior
 auto=lord(creature[green]|myinplay) 1/1 other
 auto=lord(creature[white]|myinplay) 1/1 other
-auto={T}:token(Voja,creature wolf, 2/2,legendary green white)
+auto={T}:token(Voja,creature wolf, 2/2,green white legendary)
 power=3
 toughness=4
 abilities=legendary

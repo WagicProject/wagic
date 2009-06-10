@@ -1,5 +1,5 @@
-#Black/White Deck 10E/RV
 #NAME:Panda Hive
+#DESC:Black/White Deck 10E/RV
 #4x The hive
 135253
 135253

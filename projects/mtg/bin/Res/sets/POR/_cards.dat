@@ -258,6 +258,30 @@ subtype=Spirit
 toughness=1
 [/card]
 [card]
+text=Craven Giant can't block.
+id=4332
+auto=cantblock
+name=Craven Giant
+rarity=C
+type=Creature
+mana={2}{R}
+power=4
+subtype=Giant
+toughness=1
+[/card]
+[card]
+text=Craven Knight can't block.
+id=4213
+name=Craven Knight
+auto=cantblock
+rarity=C
+type=Creature
+mana={1}{B}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
 text=Play Defiant Stand only during the declare attackers step and only if you are the defending player. Target creature gets +1/+3 until the end of the turn. If that creature is tapped, untap it.
 target=creature
 auto=untap
@@ -335,6 +359,15 @@ toughness=5
 abilities=flying
 [/card]
 [card]
+text=Dry Spell deals 1 damage to each creature and each player.
+id=4218
+name=Dry Spell
+auto=damage:1 all(creature,player)
+rarity=U
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
 text=Earthquake deals X damage to each creature without flying and each player.
 alias=1289
 id=4335
@@ -399,6 +432,15 @@ type=Creature
 subytpe=Imp
 power=2
 toughness=1
+[/card]
+[card]
+text=Fire Tempest deals 6 damage to each creature and each player.
+id=4339
+name=Fire Tempest
+auto=damage:6 all (creature,player)
+rarity=R
+type=Sorcery
+mana={5}{R}{R}
 [/card]
 [card]
 text=Destroy all Plains.
@@ -498,6 +540,18 @@ power=3
 toughness=2
 [/card]
 [card]
+text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+id=4223
+auto=may moveto(myhand) target(creature|mygraveyard)
+name=Gravedigger
+rarity=U
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
 id=4300
 name=Grizzly Bears
 rarity=C
@@ -556,6 +610,30 @@ name=Howling Fury
 rarity=C
 mana={2}{B}
 type=Sorcery
+[/card]
+[card]
+text=Hulking Cyclops can't block.
+id=4345
+name=Hulking Cyclops
+auto=cantblock
+rarity=U
+type=Creature
+mana={3}{R}{R}
+power=5
+subtype=Cyclops
+toughness=5
+[/card]
+[card]
+text=Hulking Goblin can't block.
+id=4346
+auto=cantblock
+name=Hulking Goblin
+rarity=C
+type=Creature
+mana={1}{R}
+power=2
+subtype=Goblin
+toughness=2
 [/card]
 [card]
 text=Hurricane deals X damage to each creature with flying and each player.
@@ -668,19 +746,6 @@ mana={3}{R}
 type=Creature
 subtype=Lizard Warrior
 power=4
-toughness=2
-[/card]
-[card]
-text=When Man-o'-War comes into play, return target creature to its owner's hand.
-alias=1229
-id=4266
-target=creature
-name=Man-o'-War
-mana={2}{U}
-rarity=U
-type=Creature
-subtype=Jellyfish
-power=2
 toughness=2
 [/card]
 [card]
@@ -815,6 +880,15 @@ type=Sorcery
 mana={3}{G}{G}
 [/card]
 [card]
+text=Green creatures you control gain forestwalk until end of turn.
+id=4309
+auto=lord(creature|myinplay) forestwalk
+name=Nature's Cloak
+rarity=R
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
 text=Search your library for a Forest card and put that card into play. Then shuffle your library.
 target=Forest|myLibrary
 auto=moveTo(myInplay)
@@ -916,7 +990,7 @@ subtype=Plains
 [card]
 text=Pyroclasm deals 2 damage to each creature.
 id=4354
-alias=2650
+auto=damage:2 all(creature)
 name=Pyroclasm
 rarity=U
 type=Sorcery

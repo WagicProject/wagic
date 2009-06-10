@@ -29,7 +29,7 @@
 146597
 146597
 146597
-#Borderland Behemoth
+#Borderland Behemoth (IS NOT INCLUDED IN OFFICIAL RELEASE !! SHOULD BE REPLACED !!)
 153102
 153102
 #Pyroclasm
