@@ -114,18 +114,6 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-text={0}: Return Blinking Spirit to its owner's hand.
-id=2668
-name=Blinking Spirit
-auto={0}:moveto(ownerhand)
-rarity=R
-type=Creature
-mana={3}{W}
-power=2
-subtype=Spirit
-toughness=2
-[/card]
-[card]
 text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
 id=2751
 auto={T}:add {1}

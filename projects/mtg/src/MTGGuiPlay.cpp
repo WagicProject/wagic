@@ -291,9 +291,9 @@ void MTGGuiPlay::RenderPlayerInfo(int playerid){
   JRenderer * r = JRenderer::GetInstance();
   Player * player = GameObserver::GetInstance()->players[playerid];
 
-  //Avatar
-  GuiAvatar * avatar = (GuiAvatar *)mObjects[3*playerid];
-  avatar->Render();
+  //Avatar - already done in main Render phase
+  //GuiAvatar * avatar = (GuiAvatar *)mObjects[3*playerid];
+  //avatar->Render();
 
 
 
@@ -362,7 +362,7 @@ void MTGGuiPlay::Render(){
 
   renderer->RenderQuad(mBg,0,0);
 
-  for (int i=0;i<mCount;i++){
+  for (int i=mCount-1;i>=0;i--){
     if (mObjects[i]!=NULL && i!=mCurr){
       mObjects[i]->Render();
     }

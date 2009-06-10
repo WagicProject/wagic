@@ -194,6 +194,18 @@ mana={W}
 subtype=Aura
 [/card]
 [card]
+text={0}: Return Blinking Spirit to its owner's hand.
+id=2668
+name=Blinking Spirit
+auto={0}:moveto(ownerhand)
+rarity=R
+type=Creature
+mana={3}{W}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
 text=Play Blizzard only if you control a snow land.     Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Creatures with flying don't untap during their controllers' untap steps.
 id=2551
 name=Blizzard

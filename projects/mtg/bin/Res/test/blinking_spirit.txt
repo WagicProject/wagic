@@ -1,0 +1,24 @@
+#Bug:blinking spirit goes directly to graveyard
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Blinking Spirit
+[PLAYER2]
+[DO]
+Blinking Spirit
+choice 0
+next
+#blockers
+next
+#damage
+next
+#combatend
+next
+Blinking Spirit
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+hand:Blinking Spirit
+[PLAYER2]
+life:18
+[END]

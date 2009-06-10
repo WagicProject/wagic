@@ -33,6 +33,7 @@ ashen_firebeast.txt
 ashen_firebeast2.txt
 #befoul.txt
 blessed_wine.txt
+#blinking_spirit.txt
 bloodfire_colossus.txt
 bottle_gnomes.txt
 boggart_arsonists.txt
