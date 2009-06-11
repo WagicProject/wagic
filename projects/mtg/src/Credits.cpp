@@ -4,6 +4,7 @@
 #include "../include/config.h"
 #include "../include/PlayerData.h"
 #include "../include/DeckStats.h"
+#include "../include/Translate.h"
 
   CreditBonus::CreditBonus(int _value, string _text){
     value = _value;
@@ -45,28 +46,28 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     if (app->gameType == GAME_TYPE_MOMIR) value = 200;
     int difficulty = go->values[OPTIONS_DIFFICULTY].getIntValue();
     if (go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue() && difficulty) {
-      CreditBonus * b = NEW CreditBonus(100*difficulty, "Difficulty Bonus");
+      CreditBonus * b = NEW CreditBonus(100*difficulty, _("Difficulty Bonus"));
       bonus.push_back(b);
     }
 
     if (p1->life == 1) {
-      CreditBonus * b = NEW CreditBonus(111, "'Live dangerously and you live right' Bonus");
+      CreditBonus * b = NEW CreditBonus(111, _("'Live dangerously and you live right' Bonus"));
       bonus.push_back(b);
     }
 
     int diff = p1->life - p2->life;
     if (diff){
-      CreditBonus * b = NEW CreditBonus(diff, "Life Delta Bonus");
+      CreditBonus * b = NEW CreditBonus(diff, _("Life Delta Bonus"));
       bonus.push_back(b);
     }
 
     if (p1->game->library->nb_cards == 0) {
-      CreditBonus * b = NEW CreditBonus(391, "'Decree of Theophilus' Bonus");
+      CreditBonus * b = NEW CreditBonus(391, _("'Decree of Theophilus' Bonus"));
       bonus.push_back(b);
     }
 
     if (g->turn < 15) {
-      CreditBonus * b = NEW CreditBonus((20 - g->turn)*17, "'Fast and Furious' Bonus");
+      CreditBonus * b = NEW CreditBonus((20 - g->turn)*17, _("'Fast and Furious' Bonus"));
       bonus.push_back(b);
     }
 
@@ -94,7 +95,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 
     vector<CreditBonus *>::iterator it;
     if (bonus.size()){
-      CreditBonus * b = NEW CreditBonus(value, "Victory");
+      CreditBonus * b = NEW CreditBonus(value, _("Victory"));
       bonus.insert(bonus.begin(),b);
       for ( it=bonus.begin()+1 ; it < bonus.end(); ++it){
         value+= (*it)->value;
@@ -125,13 +126,13 @@ void Credits::Render(){
   char buffer[512];
   if (!p1->isAI() && p2->isAI() ){
     if (g->gameOver != p1){
-      sprintf (buffer, "Congratulations! You earn %i credits", value);
+      sprintf (buffer, _("Congratulations! You earn %i credits").c_str(), value);
       if (unlockedQuad){
         showMsg = 0;
         r->RenderQuad(unlockedQuad, 20, 20);
       }
     }else{
-      sprintf (buffer, "You have been defeated");
+      sprintf (buffer, _("You have been defeated").c_str());
     }
   }else{
     int winner = 2;
@@ -139,7 +140,7 @@ void Credits::Render(){
       winner = 1;
     }
     int p0life = p1->life;
-    sprintf(buffer, "Player %i wins (%i)", winner, p0life );
+    sprintf(buffer, _("Player %i wins (%i)").c_str(), winner, p0life );
   }
 
 
@@ -154,11 +155,11 @@ void Credits::Render(){
   y+=15;
 
   if (showMsg == 1){
-    f2->DrawString("Please support this project !" ,10,y+15);
-    f->DrawString("Wagic is free, open source, and developed on the little free time I have" ,10,y+30);
-    f->DrawString("If you enjoy this game, please consider donating a few bucks" ,10,y+42);
-    f->DrawString("(Seriously, donate or I'll kill this cute little bunny)" ,10,y+54);
-    f->DrawString("Thanks in advance for your support." ,10,y+66);
+    f2->DrawString(_("Please support this project!").c_str() ,10,y+15);
+    f->DrawString(_("Wagic is free, open source, and developed on the little free time I have").c_str() ,10,y+30);
+    f->DrawString(_("If you enjoy this game, please consider donating a few bucks").c_str() ,10,y+42);
+    f->DrawString(_("(Seriously, donate or I'll kill this cute little bunny)").c_str() ,10,y+54);
+    f->DrawString(_("Thanks in advance for your support.").c_str() ,10,y+66);
     f2->DrawString("-> http://wololo.net/wagic" ,10,y+78);
   }
 

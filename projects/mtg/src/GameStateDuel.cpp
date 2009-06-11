@@ -407,8 +407,8 @@ void GameStateDuel::Render()
       }
       break;
     case DUEL_STATE_ERROR_NO_DECK:
-      mFont->DrawString("NO DECK AVAILABLE,",0,SCREEN_HEIGHT/2);
-      mFont->DrawString("PRESS CIRCLE TO GO TO THE DECK EDITOR!",0,SCREEN_HEIGHT/2 + 20);
+      mFont->DrawString(_("NO DECK AVAILABLE,").c_str(),0,SCREEN_HEIGHT/2);
+      mFont->DrawString(_("PRESS CIRCLE TO GO TO THE DECK EDITOR!").c_str(),0,SCREEN_HEIGHT/2 + 20);
       break;
     case DUEL_STATE_MENU:
     case DUEL_STATE_CANCEL:

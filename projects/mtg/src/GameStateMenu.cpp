@@ -11,7 +11,7 @@
 #include "../include/utils.h"
 #include "../include/DeckDataWrapper.h"
 
-static const char* GAME_VERSION = "WTH?! 0.7.0 - by WilLoW";
+static const char* GAME_VERSION = "WTH?! 0.7.1 - by WilLoW";
 #define ALPHA_WARNING 0
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
