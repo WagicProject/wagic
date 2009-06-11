@@ -110,5 +110,6 @@ class JGuiController
   //void SetShadingBackground(int x, int y, int width, int height, PIXEL_TYPE color);
 };
 
+ostream& operator<<(ostream &out, const JGuiObject &j);
 
 #endif
