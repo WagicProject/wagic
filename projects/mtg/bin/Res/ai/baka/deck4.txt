@@ -1,3 +1,6 @@
+#NAME:Elemental
+#DESC:Red/white creature deck
+#DESC:With elemental/Serra and small creatures
 1389
 1390
 1391

@@ -1,5 +1,5 @@
 #NAME:Flashback
-#DESC:Ol'good revision green/white
+#DESC:Ol'good RV green/white
 #DESC:small creatures deck
 #2x Black Vise
 1097

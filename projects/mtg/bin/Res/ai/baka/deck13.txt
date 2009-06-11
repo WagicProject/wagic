@@ -1,4 +1,8 @@
 #NAME:Djungle
+#DESC:Two glowing red eyes 
+#DESC:and the stench of foul breath 
+#DESC:are all the warning 
+#DESC:you're likely to get.
 #Spark Elemental
 129577
 129577

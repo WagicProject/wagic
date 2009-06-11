@@ -1,4 +1,4 @@
-#Name:Alliance
+#NAME:Alliance
 #DESC:Green/Blue/White small creatures
 #4x unsummon
 1229

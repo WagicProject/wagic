@@ -1,5 +1,7 @@
 #NAME:Wrath
-#DESC:Mono white deck with destructive power
+#DESC:O miserable of happy 
+#DESC:Is this the end
+#DESC:Of this new glorious world 
 #3x Wrath of God
 129808
 129808

@@ -1,5 +1,10 @@
+#Black/White Deck 10E/RV
 #NAME:Panda Hive
-#DESC:Black/White Deck 10E/RV
+#DESC:Their buzzing will make your bones
+#DESC:hum from a mile away
+#DESC:They can't disobey orders, 
+#DESC:never surrender, 
+#DESC:and don't stop fighting 
 #4x The hive
 135253
 135253

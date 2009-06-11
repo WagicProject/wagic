@@ -1,5 +1,8 @@
 #NAME:Nightmare
-#DESC:Black/Blue Deck
+#DESC:Of royal blood among the spirits
+#DESC:he rides on the wings of the winds. 
+#DESC:The thunder of its hooves 
+#DESC:beats dreams into despair
 #2x Obsianus Golem
 1129
 1129

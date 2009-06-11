@@ -1,5 +1,11 @@
 #NAME:Taiga
-#DESC:Red/Green simple deck
+#DESC:The most terrifying thing a
+#DESC:is probably the horrible 
+#DESC:crashing sound. 
+#DESC:This noise is so loud 
+#DESC:it echoes through the trees 
+#DESC:and seems to come 
+#DESC:from all directions at once.
 #2x Cockatrice
 1238
 1238

@@ -1,6 +1,11 @@
 #Plain black deck
 #NAME:Terror
-#DESC:Simple Mono Black Deck
+#DESC:They groaned, they stirred, 
+#DESC:they all uprose,
+#DESC:Nor spake, nor moved their eyes;
+#DESC:It had been strange, 
+#DESC:even in a dream,
+#DESC:To have seen those dead men rise
 #4x Hypnotic Specter
 129600
 129600
