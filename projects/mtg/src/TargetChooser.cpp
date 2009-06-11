@@ -274,7 +274,7 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets): TargetsLi
 int TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    if (source && (card->protectedAgainst(source) || card->has(Constants::SHROUD))) return 0;
+    if (source && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(source) )) return 0;
     return 1;
   }else if (target->typeAsTarget() == TARGET_STACKACTION){
     return 1;

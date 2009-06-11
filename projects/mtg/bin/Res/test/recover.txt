@@ -1,0 +1,20 @@
+#Bug: Recover leaves a copy of target card in the graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:recover (INV)
+graveyard:grizzly bears
+library:swamp
+manapool:{2}{B}
+[PLAYER2]
+[DO]
+recover (INV)
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:recover (INV)
+hand:grizzly bears,swamp
+manapool:{0}
+[PLAYER2]
+[END]

@@ -268,6 +268,12 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	          display->AddCard(card);
             i++;
           }
+          for (int j = 0; j < mCount; j++){
+            ShopItem * si =  ((ShopItem *)mObjects[j]);
+            if (si->card && si->card->name.compare(c->name) == 0){
+              si->nameCount+= it->second;
+            }
+          }
         }
         delete tempDeck;
       }

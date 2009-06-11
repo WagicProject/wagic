@@ -122,7 +122,7 @@ void GameStateMenu::Create()
     }
 
   currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
-  scroller = NEW TextScroller(GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 100 , SCREEN_HEIGHT-15,200);
+  scroller = NEW TextScroller(GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
   scrollerSet = 0;
 }
 
@@ -228,7 +228,7 @@ void GameStateMenu::fillScroller(){
   delete playerdata;
   scroller->Add(buff2);
 
-  scroller->Add(_("Need more cards? Go to http://wololo.net/wagic"));
+  scroller->Add(_("More cards and mods at http://wololo.net/wagic"));
 
   scroller->Add(_("These stats will be updated next time you run Wagic"));
 
@@ -472,6 +472,7 @@ void GameStateMenu::Render()
     mFont->SetScale(1.f);
     mFont->SetColor(ARGB(255,255,255,255));
 
+    renderer->FillRoundRect(SCREEN_WIDTH/2 - 100,SCREEN_HEIGHT-20, 191,6,5,ARGB(100,10,5,0));
     scroller->Render();
 
     if (subMenuController){

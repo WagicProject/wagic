@@ -105,6 +105,7 @@ persuasion.txt
 plague_rats.txt
 protomatter_powder.txt
 pyroclasm.txt
+recover.txt
 resurrection.txt
 rootwalla.txt
 royal_assassin.txt
