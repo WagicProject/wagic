@@ -3,12 +3,12 @@
 /////////////
 
 #include <pspkernel.h>
-#include <pspdebug.h> 
+#include <pspdebug.h>
 #include <pspaudiolib.h>
 #include <pspaudio.h>
 
-#include <pspsdk.h> 
-#include <pspaudiocodec.h> 
+#include <pspsdk.h>
+#include <pspaudiocodec.h>
 #include <pspmpeg.h>
 #include <malloc.h>
 #include <string.h>
@@ -22,29 +22,29 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-unsigned long g_MP3CodecBuffer[65] __attribute__((aligned(64))); 
+unsigned long g_MP3CodecBuffer[65] __attribute__((aligned(64)));
 short g_DecoderBuffer[SAMPLE_PER_FRAME<<1] __attribute__((aligned(64)));
 short g_DecodedDataOutputBuffer[SAMPLE_PER_FRAME<<2] __attribute__((aligned(64)));
 
 bool g_MP3DecoderOK = false;
-bool g_GotEDRAM; 
+bool g_GotEDRAM;
 
 JMP3* g_CurrentMP3;
 //////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////
-WAVDATA* p_currentWav[NUMBER_WAV_CHANNELS];		// ¸÷Í¨µÀµ±Ç°µÄ²¥·Å
-WAVDATA currentWav[NUMBER_WAV_CHANNELS];		// ¸÷Í¨µÀµ±Ç°µÄ²¥·Å
+WAVDATA* p_currentWav[NUMBER_WAV_CHANNELS];		// å„é€šé“å½“å‰çš„æ’­æ”¾
+WAVDATA currentWav[NUMBER_WAV_CHANNELS];		// å„é€šé“å½“å‰çš„æ’­æ”¾
 
 
 ///////////////////////////////////////////////////////////////////
-char loadWaveData(WAVDATA* p_wav, char* fileName, char memLoad)  // WAVE¼ÓÔØ, memLoad-ÊÇ·ñ¼ÓÔØÖÁÄÚ´E
+char loadWaveData(WAVDATA* p_wav, char* fileName, char memLoad)  // WAVEåŠ è½½, memLoad-æ˜¯å¦åŠ è½½è‡³å†…ç£¥E
 {
 
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
-	if (!fileSystem->OpenFile(fileName)) 
+	if (!fileSystem->OpenFile(fileName))
 		return 0;
-		
+
 	memset(p_wav, 0, sizeof(WAVDATA));
 	//SceUID fd = sceIoOpen(fileName, PSP_O_RDONLY, 0777);
 	char head[256];
@@ -162,7 +162,7 @@ char loadWaveData(WAVDATA* p_wav, char* fileName, char memLoad)  // WAVE¼ÓÔØ, me
 }
 
 ///////////////////////////////////////////////////////////////////
-void releaseWaveData(WAVDATA* p_wav)  // WAVEÊÍ·Å
+void releaseWaveData(WAVDATA* p_wav)  // WAVEé‡Šæ”¾
 {
 	if (p_wav->fd==-1)
 		free(p_wav->buffer);
@@ -172,7 +172,7 @@ void releaseWaveData(WAVDATA* p_wav)  // WAVEÊÍ·Å
 }
 
 ///////////////////////////////////////////////////////////////////
-void audioOutCallback(int channel, void* buf, unsigned int length)  // ¸÷Í¨µÀ»ØµE
+void audioOutCallback(int channel, void* buf, unsigned int length)  // å„é€šé“å›ç¥¦E
 {
 	WAVDATA* p_wav = NULL;
 	memset(buf, 0, 4096);
@@ -313,7 +313,7 @@ void audioOutCallback_2(void* buf, unsigned int length, void *userdata) {audioOu
 //void audioOutCallback_3(void* buf, unsigned int length, void *userdata) {audioOutCallback(3, buf, length);}
 
 ///////////////////////////////////////////////////////////////////
-char playWaveFile(int channel, char* fullName, unsigned long flag)  // ²¥·ÅWAVEÎÄ¼ş
+char playWaveFile(int channel, char* fullName, unsigned long flag)  // æ’­æ”¾WAVEæ–‡ä»¶
 {
 	stopWaveMem(channel);
 	if (currentWav[channel].fullName[0])
@@ -326,14 +326,14 @@ char playWaveFile(int channel, char* fullName, unsigned long flag)  // ²¥·ÅWAVEÎ
 }
 
 ///////////////////////////////////////////////////////////////////
-void stopWaveFile(int channel)  // Í£Ö¹WAVEÎÄ¼ş
+void stopWaveFile(int channel)  // åœæ­¢WAVEæ–‡ä»¶
 {
 	if (currentWav[channel].fullName[0])
 		releaseWaveData(&currentWav[channel]);
 }
 
 ///////////////////////////////////////////////////////////////////
-int playWaveMem(WAVDATA* p_wav, unsigned long flag)  // ²¥·ÅWAVE
+int playWaveMem(WAVDATA* p_wav, unsigned long flag)  // æ’­æ”¾WAVE
 {
 	int i;
 	for (i=0;i<NUMBER_WAV_CHANNELS;i++)
@@ -352,17 +352,17 @@ int playWaveMem(WAVDATA* p_wav, unsigned long flag)  // ²¥·ÅWAVE
 		}
 	}
 
-	return -1;	
+	return -1;
 }
 
 ///////////////////////////////////////////////////////////////////
-void stopWaveMem(int channel)  // Í£Ö¹WAVE
+void stopWaveMem(int channel)  // åœæ­¢WAVE
 {
 	p_currentWav[channel] = NULL;
 }
 
 ///////////////////////////////////////////////////////////////////
-void setChannelFlag(int channel, int flag)  // ÉèÖÃ²¥·ÅÊôĞÔ
+void setChannelFlag(int channel, int flag)  // è®¾ç½®æ’­æ”¾å±æ€§
 {
 	WAVDATA* p_wav = NULL;
 	if (!currentWav[channel].fullName[0])
@@ -379,7 +379,7 @@ void setChannelFlag(int channel, int flag)  // ÉèÖÃ²¥·ÅÊôĞÔ
 }
 
 ///////////////////////////////////////////////////////////////////
-void audioInit()  // ³õÊ¼»¯
+void audioInit()  // åˆå§‹åŒ–
 {
 	int i;
 	for (i=0; i<NUMBER_WAV_CHANNELS; i++)
@@ -428,7 +428,7 @@ void StopMP3()
     printf("stop 4\n");
     sceKernelWaitThreadEnd(mp3thread, NULL);
     printf("stop 5\n");
-    sceKernelDeleteThread(mp3thread); 
+    sceKernelDeleteThread(mp3thread);
     printf("stop 6\n");
     mp3->unload();
     printf("stop 7\n");
@@ -454,4 +454,4 @@ int decodeThread2(SceSize args, void *argp){
    //sceKernelDelayThread(10000);
   }
   return 0;
-} 
+}
