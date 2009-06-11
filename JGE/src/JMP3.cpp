@@ -18,9 +18,8 @@ void JMP3::init() {
    loadModules();
 }
 
-JMP3::JMP3(const std::string& filename, int inBufferSize, int outBufferSize) :
+JMP3::JMP3() :
   m_volume(PSP_AUDIO_VOLUME_MAX), m_samplesPlayed(0), m_paused(true) {
-   load(filename, inBufferSize,outBufferSize);
 }
 
 JMP3::~JMP3() {
@@ -111,12 +110,6 @@ bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize
       int fileSize = sceIoLseek32(m_fileHandle, 0, SEEK_END);
       sceIoLseek32(m_fileHandle, 0, SEEK_SET);
 	  m_fileSize = fileSize;
-
-
-      unsigned char* testbuffer = new unsigned char[7456];
-      sceIoRead(m_fileHandle, testbuffer, 7456);
-
-      delete testbuffer;
 
       initArgs.unk1 = 0;
       initArgs.unk2 = 0;

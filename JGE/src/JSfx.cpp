@@ -109,13 +109,18 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
   string s = "Res/";
 #endif
   s.append(fileName);
-	JMusic *music = new JMusic();
-	if (music)
+  JMusic *music = new JMusic();
+  if (music)
+    {
+      music->mTrack = new JMP3();
+      if (!music->mTrack->load(s))
 	{
-		music->mTrack = new JMP3(s);
+	  free(music->mTrack);
+	  music->mTrack = NULL;
 	}
+    }
   JMP3::mInstance = music->mTrack;
-	return music;
+  return music;
 }
 
 
