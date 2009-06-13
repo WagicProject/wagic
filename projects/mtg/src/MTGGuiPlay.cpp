@@ -172,11 +172,10 @@ void MTGGuiPlay::forceUpdateCards(){
   Player * player = game->players[0];
   int player0Mode =(game->currentPlayer == player);
   int nb_cards = player->game->inPlay->nb_cards;
-    resetObjects();
-    AddPlayersGuiInfo();
-    offset = mCount;
-
-    bool hasFocus = player0Mode;
+  resetObjects();
+  AddPlayersGuiInfo();
+  offset = mCount;
+  bool hasFocus = player0Mode;
   offset = 6;
 
   Player * opponent = game->players[1];
@@ -200,8 +199,9 @@ void MTGGuiPlay::forceUpdateCards(){
 }
 
 int MTGGuiPlay::receiveEvent(WEvent *event){
- if (event->type == WEvent::CHANGE_ZONE){
-    WEventZoneChange * e = (WEventZoneChange *) event;
+  if (event->type == WEvent::CHANGE_ZONE){
+    WEventZoneChange * e = dynamic_cast<WEventZoneChange*>(event);
+    if (!event) return 0;
     int ok = 0;
     for (int i = 0; i < 2 ; i++){
       Player * p = game->players[i];
@@ -211,7 +211,7 @@ int MTGGuiPlay::receiveEvent(WEvent *event){
     forceUpdateCards();
     return 1;
   }
- return 0;
+  return 0;
 }
 
 void MTGGuiPlay::updateCards(){

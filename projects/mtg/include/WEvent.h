@@ -13,6 +13,7 @@ public:
   };
   int type;
   WEvent(int _type);
+  virtual ~WEvent() {};
 };
 
 class WEventZoneChange: public WEvent{
@@ -21,6 +22,7 @@ public:
   MTGGameZone * from;
   MTGGameZone * to;
   WEventZoneChange(MTGCardInstance * _card, MTGGameZone * _from, MTGGameZone *_to);
+  virtual ~WEventZoneChange() {};
 };
 
 
