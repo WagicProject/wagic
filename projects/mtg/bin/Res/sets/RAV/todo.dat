@@ -593,6 +593,9 @@ subtype=Aura
 text=Search your library for a Plains, Island, Swamp, or Mountain card and put it into play tapped. Then shuffle your library.
 id=87970
 name=Farseek
+target=plains,island,swamp|mylibrary
+auto=moveto(myinplay)
+auto=tap
 rarity=C
 type=Sorcery
 mana={1}{G}
@@ -625,7 +628,7 @@ subtype=Angel
 toughness=3
 [/card]
 [card]
-text=Until end of turn, permanents you control gain &quot;{T}: This permanent deals 1 damage to target creature or player.&quot;
+text=Until end of turn, permanents you control gain "{T}: This permanent deals 1 damage to target creature or player."
 id=83912
 name=Flame Fusillade
 rarity=R

@@ -1,4 +1,7 @@
 #NAME:Giants!
+#DESC:A giant can brood 
+#DESC:over a grudge for decades, 
+#DESC:and woe to those who interrupt him. 
 #Mogg Fanatic
 4832
 4832
@@ -30,8 +33,11 @@
 146597
 146597
 #Borderland Behemoth (IS NOT INCLUDED IN OFFICIAL RELEASE !! SHOULD BE REPLACED !!)
-153102
-153102
+#153102
+#153102
+#Oathsworn Giant {4}{W}{W} - 3/4 giant - lord creature|myinplay 0/2 vigilance other
+89012
+89012
 #Pyroclasm
 129801
 129801

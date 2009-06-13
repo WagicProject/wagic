@@ -1,5 +1,9 @@
-#NAME:Disenchant
-#DESC:Red/White Deck for AI, Anti Artifact
+#NAME:Shatter
+#DESC:The scepter of power is fragile 
+#DESC:in a calloused hand.
+#DESC:See you effort reduced
+#DESC:to a smoking stack of scrap 
+#DESC:in one easy step.
 #2x Shatter
 1316
 1316

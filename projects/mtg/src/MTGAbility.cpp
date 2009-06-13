@@ -760,6 +760,40 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 		}
 	  }
 
+
+      //counter
+      found = s.find("counter(");
+      if (found != string::npos){
+        if (dryMode) {
+          dryModeResult = BAKA_EFFECT_GOOD;
+          dryModeResultSet = 1;
+          break;
+        }
+        int end = s.find(")", found);
+		string spt = s.substr(9,end - 1);
+        int power, toughness;
+		if ( parsePowerToughness(spt,&power, &toughness)){
+			if (dryMode){
+				if (power >=0 && toughness >= 0 ) {
+				dryModeResult =  BAKA_EFFECT_GOOD;
+			}else{
+				dryModeResult =  BAKA_EFFECT_BAD;
+			}
+			break;
+        }
+        if(tc){
+			//TODO
+
+        }else{
+			game->addObserver(NEW  ACounters(id,card,target,power,toughness));
+
+        }
+        result++;
+        continue;
+		}
+	  }
+
+
       //Change Power/Toughness
       int power, toughness;
       if ( parsePowerToughness(s,&power, &toughness)){
@@ -1790,6 +1824,27 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
 	}
 
+
+//-- addon Urza Saga---
+  case 8818: //Goblin Offensive
+    {
+      int x = spell->cost->getConvertedCost() - 3;
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin","creature Goblin",1,1,"Red",0);
+          for (int i=0; i < x; i++){
+            tok->resolve();
+          }   
+      break;
+    }
+  
+  case 5684://Path of Peace
+    {
+	Player * p = card->target->controller();
+	p->game->putInGraveyard(card->target);
+    p->life+= 4;
+	  break;
+    }
+
+
 //-- addon 10E---
 	case 129523: //Demon's Horn
 	      {
@@ -1860,7 +1915,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		}
 
 // --- addon Invasion---
-    case 23195: //Artifact Mutation (works fine but display is strange if you bury a target from opponent)
+    case 23195: //Artifact Mutation
     {
       card->target->controller()->game->putInGraveyard(card->target);
       int x = card->target->getManaCost()->getConvertedCost();

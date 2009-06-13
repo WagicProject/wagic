@@ -10,6 +10,7 @@
 #include "CardGui.h"
 #include "GameOptions.h"
 #include "Token.h"
+#include "Counters.h"
 #include "WEvent.h"
 
 #include <JGui.h>
@@ -3248,6 +3249,27 @@ class AStasis:public ActivatedAbility{
 
 
 //--------------Addon Abra------------------
+
+
+
+//Draft for counters
+class ACounters: public MTGAbility{
+ public:
+  int counter;
+  int power;
+  int toughness;
+ ACounters(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness):MTGAbility(id,_source,_target),power(_power),toughness(_toughness){
+	_target->counters->addCounter(power, toughness);
+ }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ACounters ::: counter : " << counter
+		<< " ; power : " << power
+		<< " ; toughness : " << toughness
+		<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+};
 
 //Basilik
 class ABasilik:public MTGAbility{

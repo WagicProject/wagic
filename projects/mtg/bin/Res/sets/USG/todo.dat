@@ -742,15 +742,6 @@ power=1
 subtype=Goblin
 toughness=1
 [/card]
-
-[card]
-text=Put X 1/1 red Goblin creature tokens into play.
-id=8818
-name=Goblin Offensive
-rarity=U
-type=Sorcery
-mana={X}{1}{R}{R}
-[/card]
 [card]
 text=Echo {R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5653
@@ -1228,14 +1219,6 @@ mana={2}{W}
 subtype=Aura
 [/card]
 [card]
-text=Destroy target creature. Its owner gains 4 life.
-id=5684
-name=Path of Peace
-rarity=C
-type=Sorcery
-mana={3}{W}
-[/card]
-[card]
 text=Flying     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5575
 name=Pendrell Drake
@@ -1695,7 +1678,10 @@ text={T}: Add {1} to your mana pool.       {2}{R}, {T}: Shivan Gorge deals 1 dam
 id=10482
 name=Shivan Gorge
 rarity=R
-type=Legendary Land
+type=Land
+abilities=Legendary
+auto={T}:add {1}
+auto={2}{R}{T}:damage:1 target(opponent)
 [/card]
 [card]
 text=First strike, haste     Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
@@ -1758,6 +1744,8 @@ toughness=3
 [card]
 text=Slippery Karst comes into play tapped.     {T}: Add {G} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5803
+auto=tap
+auto={T}:add {G}
 name=Slippery Karst
 rarity=C
 type=Land
@@ -1911,17 +1899,6 @@ name=Thran Turbine
 rarity=U
 type=Artifact
 mana={1}
-[/card]
-[card]
-text=Haste (This creature can attack and {T} as soon as it comes under your control.)
-id=5759
-name=Thundering Giant
-rarity=U
-type=Creature
-mana={3}{R}{R}
-power=4
-subtype=Giant
-toughness=3
 [/card]
 [card]
 text=Each player shuffles his or her graveyard and hand into his or her library, then draws seven cards. You untap up to six lands.     Remove Time Spiral from the game.

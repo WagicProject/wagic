@@ -474,6 +474,14 @@ subtype=Goblin
 toughness=1
 [/card]
 [card]
+text=Put X 1/1 red Goblin creature tokens into play.
+id=8818
+name=Goblin Offensive
+rarity=U
+type=Sorcery
+mana={X}{1}{R}{R}
+[/card]
+[card]
 text=Goblin Raider can't block.
 id=5701
 name=Goblin Raider
@@ -712,6 +720,15 @@ color=White
 type=Enchantment
 mana={1}{W}
 subtype=Aura
+[/card]
+[card]
+text=Destroy target creature. Its owner gains 4 life.
+id=5684
+target=creature
+name=Path of Peace
+rarity=C
+type=Sorcery
+mana={3}{W}
 [/card]
 [card]
 text=Flying, first strike

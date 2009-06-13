@@ -1,5 +1,7 @@
 #NAME:Howlins
-#DESC:Goblin deck
+#DESC:High in Jund's mountains. 
+#DESC:They build up a head of steam 
+#DESC:before attacking prey down below.
 #Spark Elemental
 129577
 129577
