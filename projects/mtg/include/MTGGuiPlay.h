@@ -50,6 +50,7 @@ class MTGGuiPlay: public PlayGuiObjectController {
   virtual void Render();
   void forceUpdateCards();
   void updateCards();
+  int receiveEvent(WEvent * e);
 };
 
 

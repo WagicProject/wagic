@@ -46,24 +46,19 @@ class MTGPersistRule:public MTGAbility{
   MTGPersistRule(int _id):MTGAbility(_id,NULL){};
 
   int receiveEvent(WEvent * event){
-OutputDebugString("Receive1\n");
     if (event->type == WEvent::CHANGE_ZONE){
-OutputDebugString("Receive2\n");
       WEventZoneChange * e = (WEventZoneChange *) event;
       MTGCardInstance * card = e->card->previous;
       if (card && card->basicAbilities[Constants::PERSIST] && !card->counters->hasCounter(-1,-1)){
-OutputDebugString("Receive3\n");
         int ok = 0;
         for (int i = 0; i < 2 ; i++){
           Player * p = game->players[i];
           if (e->from == p->game->inPlay) ok = 1;
         }
         if (!ok) return 0;
-OutputDebugString("Receive4\n");
         for (int i = 0; i < 2 ; i++){
           Player * p = game->players[i];
           if (e->to == p->game->graveyard){
-OutputDebugString("Receive5\n");
             //p->game->putInZone(card,  p->game->graveyard, card->owner->game->hand);
 	          MTGCardInstance * copy = p->game->putInZone(e->card,  p->game->graveyard, e->card->owner->game->stack);
             Spell * spell = NEW Spell(copy);

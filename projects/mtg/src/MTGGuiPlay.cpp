@@ -199,6 +199,22 @@ void MTGGuiPlay::forceUpdateCards(){
     currentPlayer = game->currentPlayer;
 }
 
+int MTGGuiPlay::receiveEvent(WEvent *event){
+ return 0;
+ if (event->type == WEvent::CHANGE_ZONE){
+    WEventZoneChange * e = (WEventZoneChange *) event;
+    int ok = 0;
+    for (int i = 0; i < 2 ; i++){
+      Player * p = game->players[i];
+      if (e->from == p->game->inPlay || e->to == p->game->inPlay ) ok = 1;
+    }
+    if (!ok) return 0;
+    forceUpdateCards();
+    return 1;
+  }
+ return 0;
+}
+
 void MTGGuiPlay::updateCards(){
   GameObserver * game = GameObserver::GetInstance();
   Player * player = game->players[0];
@@ -213,9 +229,7 @@ void MTGGuiPlay::updateCards(){
 
   Player * opponent = game->players[1];
   int opponent_cards = opponent ->game->inPlay->nb_cards;
-  if (mCount - offset != (nb_cards+opponent_cards) || game->currentPlayer != currentPlayer ){ //if the number of cards has changed, then an update occured (is this test engouh ?)
-     forceUpdateCards();
-  }
+
 
 
   //This is just so that we display the cards of the current player first, so that blockers are correctly positionned
