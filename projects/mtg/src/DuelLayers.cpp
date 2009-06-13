@@ -62,4 +62,3 @@ MTGGuiPlay * DuelLayers::playLayer(){
 }
 
 
-

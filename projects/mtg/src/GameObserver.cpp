@@ -439,6 +439,10 @@ void GameObserver::untapPhase(){
   currentPlayer->inPlay()->untapAll();
 }
 
+int GameObserver::receiveEvent(WEvent * e){
+  return mLayers->receiveEvent(e);
+}
+
 
 int GameObserver::isACreature(MTGCardInstance * card){
   return card->isACreature();

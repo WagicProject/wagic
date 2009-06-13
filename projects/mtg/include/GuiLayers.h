@@ -9,10 +9,11 @@
 #define DIR_RIGHT 4
 
 #include <JGui.h>
-
+#include "../include/WEvent.h"
 
 class GameObserver;
 class Player;
+
 
 class GuiLayer{
  protected:
@@ -43,6 +44,8 @@ class GuiLayer{
     if (mCount) return 0;
     return 1;
   };
+
+  virtual int receiveEvent(WEvent * e){return 0;};
 };
 
 class GuiLayers{
@@ -57,6 +60,7 @@ class GuiLayers{
   void Remove();
   int unstoppableRenderInProgress();
   ~GuiLayers();
+   int receiveEvent(WEvent * e);
 
 };
 

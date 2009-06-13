@@ -49,7 +49,7 @@ int Damage::resolve(){
 
   //Send Damage event to listeners
   WEventDamage * e = NEW WEventDamage(this);
-  GameObserver::GetInstance()->mLayers->actionLayer()->receiveEvent(e);
+  GameObserver::GetInstance()->receiveEvent(e);
   delete e;
 
   return a;

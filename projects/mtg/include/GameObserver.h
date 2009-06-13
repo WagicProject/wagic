@@ -85,7 +85,7 @@ class GameObserver{
   void Render();
   void ButtonPressed(int, PlayGuiObject*);
 
-
+  int receiveEvent(WEvent * event);
 };
 
 #endif

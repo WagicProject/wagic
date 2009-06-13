@@ -172,3 +172,12 @@ void GuiLayers::Render(){
     objects[i]->Render();
   }
 }
+
+
+int GuiLayers::receiveEvent(WEvent * e){
+  for (int i = 0; i < nbitems; i++){
+    objects[i]->receiveEvent(e);
+  }
+  return 1;
+}
+
