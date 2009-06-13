@@ -93,12 +93,20 @@ void MTGPlayerCards::showHand(){
 
 
 MTGCardInstance * MTGPlayerCards::putInPlay(MTGCardInstance * card){
+  MTGGameZone * from = hand;
   MTGCardInstance * copy = hand->removeCard(card);
-  if(!copy) copy = stack->removeCard(card); //Which one is it ???
-
+  if(!copy){
+    copy = stack->removeCard(card); //Which one is it ???
+    from = stack;
+  }
   inPlay->addCard(copy);
   copy->summoningSickness = 1;
   copy->changedZoneRecently = 1.f;
+
+  GameObserver *g = GameObserver::GetInstance();
+  WEvent * e = NEW WEventZoneChange(copy, from, inPlay);
+  g->receiveEvent(e);
+
   return copy;
 }
 

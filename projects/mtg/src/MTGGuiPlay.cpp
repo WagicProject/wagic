@@ -200,7 +200,6 @@ void MTGGuiPlay::forceUpdateCards(){
 }
 
 int MTGGuiPlay::receiveEvent(WEvent *event){
- return 0;
  if (event->type == WEvent::CHANGE_ZONE){
     WEventZoneChange * e = (WEventZoneChange *) event;
     int ok = 0;
