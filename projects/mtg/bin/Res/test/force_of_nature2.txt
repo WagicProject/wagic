@@ -1,6 +1,6 @@
 #Testing That Force of nature accept GGGG to be paid
 [INIT]
-UNTAP
+UPKEEP
 [PLAYER1]
 life:20
 inplay:1245
@@ -8,8 +8,6 @@ manapool:{G}{G}{G}{G}
 [PLAYER2]
 life:20
 [DO]
-next
-#upkeep
 1245
 next
 #draw

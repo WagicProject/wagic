@@ -93,14 +93,9 @@ void GameObserver::nextGamePhase(){
     mLayers->actionLayer()->Update(0);
     return nextGamePhase();
   }
-  //manaBurn
-  if (currentGamePhase == Constants::MTG_PHASE_UNTAP ||
-      currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN ||
-      currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN ||
-      currentGamePhase == Constants::MTG_PHASE_SECONDMAIN ||
-      currentGamePhase == Constants::MTG_PHASE_ENDOFTURN
-      ){
-    currentPlayer->manaBurn();
+
+  for (int i=0; i < 2; i++){
+    players[i]->getManaPool()->init();
   }
 
   //After End of turn

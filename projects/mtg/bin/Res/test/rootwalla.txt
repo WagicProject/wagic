@@ -1,5 +1,5 @@
 #Does the limit work well on Rootwalla's ability ?
-#player 1 tries to activate it twice. Does he get the manaburn because of the one time that didn't work ?
+#player 1 tries to activate it twice. 
 #does player 2 get 4 damages ?
 [INIT]
 FIRSTMAIN
@@ -24,7 +24,7 @@ next
 [ASSERT]
 COMBATEND
 [PLAYER1]
-life:18
+life:20
 inplay:129707
 manapool:{0}
 [PLAYER2]

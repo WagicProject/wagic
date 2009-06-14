@@ -59,13 +59,6 @@ ManaCost * Player::getManaPool(){
   return manaPool;
 }
 
-int Player::manaBurn(){
-  int burn = manaPool->getConvertedCost();
-  life -= burn;
-  manaPool->init();
-  return burn;
-}
-
 
 int Player::testLife(){
   if (life <=0){

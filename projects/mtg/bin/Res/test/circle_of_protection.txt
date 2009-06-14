@@ -4,8 +4,7 @@ COMBATATTACKERS
 [PLAYER1]
 inplay:1166
 [PLAYER2]
-inplay:1335
-manapool:{1}
+inplay:1335,plains
 [DO]
 1166
 next
@@ -16,6 +15,7 @@ no
 no
 #interrupt the actual damage
 yes
+plains
 1335
 1166
 endinterrupt
@@ -28,7 +28,7 @@ inplay:1166
 manapool:{0}
 life:20
 [PLAYER2]
-inplay:1335
+inplay:1335,plains
 manapool:{0}
 life:20
 [END]

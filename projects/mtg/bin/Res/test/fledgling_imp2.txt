@@ -5,13 +5,13 @@ COMBATATTACKERS
 [PLAYER1]
 inplay:air elemental
 [PLAYER2]
-inplay:fledgling imp
+inplay:fledgling imp,swamp
 hand:grizzly bears
-manapool:{B}
 [DO]
 air elemental
 next
 #blockers
+swamp
 fledgling imp
 choice 1
 grizzly bears
@@ -26,5 +26,6 @@ COMBATEND
 inplay:air elemental
 [PLAYER2]
 graveyard:grizzly bears,fledgling imp
+inplay:swamp
 manapool:{0}
 [END]

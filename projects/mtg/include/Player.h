@@ -29,7 +29,6 @@ class Player: public Damageable, public Targetable{
   void unTapPhase();
   MTGInPlay * inPlay();
   ManaCost * getManaPool();
-  int manaBurn();
   void cleanupPhase();
   virtual int Act(float dt){return 0;};
   virtual int isAI(){return 0;};
