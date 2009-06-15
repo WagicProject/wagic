@@ -5,7 +5,9 @@
 
 class Effect : public JGuiObject
 {
- Effect(int id) : JGuiObject(id) {};
+  static int id_counter;
+ public:
+ Effect() : JGuiObject(++id_counter) {};
 };
 
 #endif // _EFFECTS_H_
