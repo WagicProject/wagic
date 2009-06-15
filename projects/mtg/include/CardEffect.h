@@ -4,22 +4,18 @@
 #include <JGE.h>
 #include "Effects.h"
 
+class CardGui;
+
 class CardEffect : public Effect
 {
  public:
-  CardEffect();
+  CardEffect(CardGui* target);
   ~CardEffect();
  private:
-  static PIXEL_TYPE surface[MTG_IMAGE_WIDTH*MTG_IMAGE_HEIGHT];
-  unsigned char sineTable1[256];
-  unsigned char sineTable2[256];
-  PIXEL_TYPE palette[256];
-  JTexture * backTexture;
-  JTexture * backThumbTexture;
+  CardGui* target;
 
  public:
-  void UpdateSmall(float dt);
-  void UpdateBig(float dt);
+  virtual void Render();
 };
 
 
