@@ -1,5 +1,8 @@
 #NAME:Alliance
-#DESC:Green/Blue/White small creatures
+#DESC:In the Castel of Bant,
+#DESC:the call to battle
+#DESC:echoes the prayer of Asha.
+#DESC:Prepare to face Bant's light
 #4x unsummon
 1229
 1229

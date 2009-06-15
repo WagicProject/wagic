@@ -1,63 +1,84 @@
-#NAME:Elemental
-#DESC:Red/white creature deck
-#DESC:With elemental/Serra and small creatures
-1389
-1390
-1391
-1389
-1390
-1391
-1389
-1390
-1391
-1389
-1390
-1391
-1395
-1396
-1397
-1395
-1396
-1397
-1395
-1396
-1397
-1395
-1396
-1397
-1097
-1097
-1139
-1139
-1287
-1287
-1287
+#NAME:Plateau
+#DESC:In the highland of Borros
+#DESC:Angels,elementals and Goblin 
+#DESC:are preparing for battle.
+#DESC:Beware, the crusade is coming...
+#4x Lightning Helix {W}{R} - does 3 damage and you gain 3 life replacement for #2x Black Vise (1097) and #2x The Rack (1139)
+87908
+87908
+87908
+87908
+#2x Bull Cerodon replacement for #3x Earth Elementat {3}{R}{R} -4/5 (1287)
+174952
+174952
+#2x Fire Elemental {3}{R}{R} - 5/4
 1290
 1290
-1290
-1290
-1296
-1296
-1295
-1295
-1297
-1297
-1310
+#2 x Nobilis of War {RW}{RW}{RW}{RW}{RW} replacement for 2x Fire elemental (1290)
+154258
+154258
+#2x Goblin king (replaced Rv version 1296 with 10E)
+129578
+129578
+#4 x Boros Recruit - {WR} - Goblin 1/1 first strike - Replace 2x Goblin Baloon brigade (1295) and  2 x Benalish Hero {W} -1/1 banding (1330)
+88992
+88992
+88992
+88992
+#1x Mons Goblin Raide (1308)
 1308
+#2x Skyknight Legionnaire replacement for #2x Granite Gargoyle {2}{R} - 2/2 flying {R}:0/1 1297
+109082
+109082
+#1x Orcish Oriflame
+1310
+#2x Castle {3}{W} - untapped creature get 0/2
 1334
 1334
+#1x Crusade White creature get +1/+1 {W}{W}
 1341
-1356
-1356
+#2x Cerodon Yearling {R}{W} vigilance haste 2/2 replacement for pearled Unicord 2/2 {2}{W} (1356)
+180604
+180604
+#2x Serra Angel {3}{W}{W} - 4/4 flying,vigilance
 1366
 1366
+#2x Wall of sword {3}{W} 3/5 flying defender
 1369
 1369
+#2x White knight 2/2 first strike, protection from black
 1370
 1370
-1330
-1330
-1328
-1301
+#1x Hill Giant {3}{R} - 3/3
 1299
-1300
+#2x Hearthfire Hobgoblin replacement for - 1x Hurloon Minotaur - {1}{R}{R} - 2/3 - 1300 and 1xEarth Elementat {3}{R}{R} -4/5 - 1287
+157201
+157201
+#1x Keldon Warlord
+1301
+#Moutains
+1389
+1389
+1389
+1389
+1390
+1390
+1390
+1390
+1391
+1391
+1391
+1391
+#Plains
+1395
+1395
+1395
+1395
+1396
+1396
+1396
+1396
+1397
+1397
+1397
+1397

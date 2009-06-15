@@ -95,15 +95,6 @@ type=Instant
 mana={1}{WB}
 [/card]
 [card]
-text=Remove target card in a graveyard from the game. Put a 1/1 white and black Spirit creature token with flying into play.
-auto=moveTo(ownerremovedfromgame) target(*|graveyard)
-auto=token(Spirit,Token Spirit Creature, 1/1,flying white,black)
-id=157415
-name=Beckon Apparition
-rarity=C
-type=Instant
-mana={WB}
-[/card]
 [card]
 text=First strike     Belligerent Hatchling comes into play with four -1/-1 counters on it.     Whenever you play a red spell, remove a -1/-1 counter from Belligerent Hatchling.     Whenever you play a white spell, remove a -1/-1 counter from Belligerent Hatchling.
 abilities=first strike
@@ -1047,14 +1038,6 @@ name=Rekindled Flame
 rarity=R
 type=Sorcery
 mana={2}{R}{R}
-[/card]
-[card]
-text=When Rise of the Hobgoblins comes into play, you may pay {X}. If you do, put X 1/1 red and white Goblin Soldier creature tokens into play.     {RW}: Red creatures and white creatures you control gain first strike until end of turn.
-id=151114
-name=Rise of the Hobgoblins
-rarity=R
-type=Enchantment
-mana={RW}{RW}
 [/card]
 [card]
 text=Whenever you play a spell that's both blue and red, Riverfall Mimic becomes 3/3 and is unblockable until end of turn.

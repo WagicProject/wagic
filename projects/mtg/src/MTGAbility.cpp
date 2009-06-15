@@ -1688,7 +1688,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
 
     //Addons Legends
-  case 1427: //Abomination
+  case 1427: //Abomination (does not work make the game crash)
     {
       game->addObserver(NEW AAbomination(_id,card));
       break;
@@ -1731,7 +1731,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(),tc));
       break;
     }
-
 
     //Addons ICE-AGE Cards
 
@@ -1903,6 +1902,38 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
+  case 129750: //Sudden Impact
+	{
+		Damageable * target = spell->getNextDamageableTarget();
+		Player * p = spell->getNextPlayerTarget();
+		MTGHand * hand = p->game->hand;
+		int damage = hand->nb_cards;
+		game->mLayers->stackLayer()->addDamage(card, target, damage);
+	break;
+	}
+
+  case 135268: //Colossus of Sardia
+    {
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 9};
+      game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
+      break;
+    }
+
+	  case 135197: //Stronghold Discipline
+    {
+		GameObserver * game = GameObserver::GetInstance();
+      for (int i = 0; i < 2 ; i++){
+		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+			if (current->hasType("Creature")){
+				current->controller()->life-= 1;
+			}
+		}
+	  }
+      break;
+	}
+
+
 
 //--- addon shm---
 	case 146013: //Corrupt
@@ -1925,7 +1956,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
           }   
       break;
     }
+//--- addon Eventide ----
 
+	case 151114: //Rise of the Hobgoblins
+    {
+      int x = spell->cost->getConvertedCost() - 2;
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin Soldier","creature Goblin Soldier",1,1,"red white",0);
+          for (int i=0; i < x; i++){
+            tok->resolve();
+          }   
+      break;
+    }
 
 // --- addon Lorwynn---
     case 139676: // Elvish Promenade

@@ -1595,14 +1595,6 @@ subtype=Licid
 toughness=1
 [/card]
 [card]
-text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
-id=4852
-name=Sudden Impact
-rarity=U
-type=Instant
-mana={3}{R}
-[/card]
-[card]
 text=Enchant creature     Enchanted creature gets +3/+0 as long as it's attacking. Otherwise, it gets -2/-1.
 id=4853
 name=Tahngarth's Rage

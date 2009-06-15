@@ -1089,6 +1089,16 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
+id=4852
+target=player
+alias=129750
+name=Sudden Impact
+rarity=U
+type=Instant
+mana={3}{R}
+[/card]
+[card]
 text=Flying     {B}: Pit Imp gets +1/+0 until end of turn. Play this ability no more than twice each turn.
 id=4677
 name=Pit Imp

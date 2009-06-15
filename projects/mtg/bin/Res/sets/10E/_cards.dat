@@ -2412,6 +2412,15 @@ subtype=Human Rebel
 toughness=2
 [/card]
 [card]
+text=Each player loses 1 life for each creature he or she controls.
+id=135197
+name=Stronghold Discipline
+rarity=U
+color=Black
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
 text=Target creature can't block this turn.     Draw a card.
 id=134755
 name=Stun
@@ -2433,6 +2442,17 @@ name=Sulfurous Springs
 rarity=R
 color=Land
 type=Land
+[/card]
+[card]
+text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
+id=129750
+target=player
+target=player
+name=Sudden Impact
+rarity=U
+color=Red
+type=Instant
+mana={3}{R}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)

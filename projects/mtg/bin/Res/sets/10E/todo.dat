@@ -246,18 +246,6 @@ type=Artifact
 mana={5}
 [/card]
 [card]
-text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Colossus of Sardia doesn't untap during your untap step.     {9}: Untap Colossus of Sardia. Play this ability only during your upkeep.
-id=135268
-name=Colossus of Sardia
-rarity=R
-color=Artifact
-type=Artifact Creature
-mana={9}
-power=9
-subtype=Golem
-toughness=9
-[/card]
-[card]
 text=Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 id=130521
 name=Commune with Nature
@@ -1236,24 +1224,6 @@ type=Enchantment
 mana={1}{W}{W}
 [/card]
 [card]
-text=Each player loses 1 life for each creature he or she controls.
-id=135197
-name=Stronghold Discipline
-rarity=U
-color=Black
-type=Sorcery
-mana={2}{B}{B}
-[/card]
-[card]
-text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
-id=129750
-name=Sudden Impact
-rarity=U
-color=Red
-type=Instant
-mana={3}{R}
-[/card]
-[card]
 text=At the beginning of each player's upkeep, that player returns a creature he or she controls to its owner's hand.
 id=129509
 name=Sunken Hope
@@ -1262,7 +1232,6 @@ color=Blue
 type=Enchantment
 mana={3}{U}{U}
 [/card]
-
 [card]
 text=Your opponents play with their hands revealed.
 id=129761
@@ -1316,6 +1285,7 @@ text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a
 id=136282
 name=Thrull Surgeon
 rarity=U
+auto={1}{B}{S}:moveto(graveyard) target(*|opponentHand)
 color=Black
 type=Creature
 mana={1}{B}

@@ -1154,6 +1154,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Storm Seeker deals damage equal to the number of cards in target player's hand to that player.
+id=1545
+target=player
+alias=129750
+name=Storm Seeker
+rarity=U
+type=Instant
+mana={3}{G}
+[/card]
+[card]
 text=Legendary      {T}: Add {2} to your mana pool.
 id=1687
 name=Sunastian Falconer

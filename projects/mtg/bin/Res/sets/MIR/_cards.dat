@@ -447,6 +447,19 @@ subtype=Island
 rarity=L
 [/card]
 [card]
+text={1}{G}{T}: Put a 0/1 green Plant Wall creature token with defender into play.     Sacrifice a Plant Wall token: Add {R} to your mana pool.
+id=3392
+auto={1}{G}{T}:token(Plant Wal,creature Plant Wall, 0/1,green defender)
+auto={S(Plant wall|myinplay)}:add {R}
+name=Jungle Patrol
+rarity=R
+type=Creature
+mana={3}{G}
+power=3
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
 text={R}: Regenerate {G}: Regenerate 
 id=3540 
 name=Jungle Troll

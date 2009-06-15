@@ -1110,14 +1110,6 @@ subtype=Goblin Warrior
 toughness=2
 [/card]
 [card]
-text=Put three 1/1 red Goblin Scout creature tokens with mountainwalk into play.
-id=3449
-name=Goblin Scouts
-rarity=U
-type=Sorcery
-mana={3}{R}{R}
-[/card]
-[card]
 text={R}, {T}, Sacrifice a Goblin: Red creatures get +1/+1 until end of turn.
 id=3450
 name=Goblin Soothsayer
@@ -1409,28 +1401,6 @@ name=Jolt
 rarity=C
 type=Instant
 mana={2}{U}
-[/card]
-[card]
-text={1}{G}, {T}: Put a 0/1 green Plant Wall creature token with defender into play.     Sacrifice a Plant Wall token: Add {R} to your mana pool.
-id=3392
-name=Jungle Patrol
-rarity=R
-type=Creature
-mana={3}{G}
-power=3
-subtype=Human Soldier
-toughness=2
-[/card]
-[card]
-text={R}: Regenerate Jungle Troll.       {G}: Regenerate Jungle Troll.
-id=3540
-name=Jungle Troll
-rarity=U
-type=Creature
-mana={1}{R}{G}
-power=2
-subtype=Troll
-toughness=1
 [/card]
 [card]
 text=Kaervek's Hex deals 1 damage to each nonblack creature and an additional 1 damage to each green creature.

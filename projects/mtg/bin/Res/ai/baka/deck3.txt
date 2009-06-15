@@ -1,6 +1,9 @@
 #NAME:Savannah
-#DESC:Ol'good RV green/white
-#DESC:small creatures deck
+#DESC:United against the terrible
+#DESC:Phyrexian Fate,
+#DESC:there is no time for dispute
+#DESC:or rivalries,
+#DESC:in Eladamri and Gerarrd's army
 #2x Black Vise
 1097
 1097

@@ -10,6 +10,16 @@ power=3
 subtype=Scarecrow
 toughness=3
 [/card]
+text=Remove target card in a graveyard from the game. Put a 1/1 white and black Spirit creature token with flying into play.
+target=*|graveyard
+auto=moveTo(removedfromgame)
+auto=token(Spirit,Token Spirit Creature, 1/1,white black flying)
+id=157415
+name=Beckon Apparition
+rarity=C
+type=Instant
+mana={WB}
+[/card]
 [card]
 text={T}: Add {1} to your mana pool.     {UR}, {T}: Add {U}{U}, {U}{R}, or {R}{R} to your mana pool.
 auto={T}: Add {1}
@@ -326,6 +336,15 @@ mana={WB}{WB}{WB}
 power=2
 subtype=Spirit
 toughness=2
+[/card]
+[card]
+text=When Rise of the Hobgoblins comes into play, you may pay {X}. If you do, put X 1/1 red and white Goblin Soldier creature tokens into play.     {RW}: Red creatures and white creatures you control gain first strike until end of turn.
+id=151114
+auto={RW}:lord(creature[white;red]|myinplay) first strike
+name=Rise of the Hobgoblins
+rarity=R
+type=Enchantment
+mana={X}{RW}{RW}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {RW}, {T}: Add {R}{R}, {R}{W}, or {W}{W} to your mana pool.
