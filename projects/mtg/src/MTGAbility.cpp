@@ -1933,6 +1933,21 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
 	}
 
+	case 130369: // Soulblast
+    {
+	int damage = 0;
+	Damageable * target = spell->getNextDamageableTarget();
+	GameObserver * game = GameObserver::GetInstance();
+	for (int j = 0; j < card->controller()->game->inPlay->nb_cards; j++){
+			MTGCardInstance * current =  card->controller()->game->inPlay->cards[j];
+			if (current->hasType("Creature")){
+				card->controller()->game->putInGraveyard(current);
+				damage+= current->power;
+			}
+	}
+	game->mLayers->stackLayer()->addDamage(card, target, damage);
+      break;
+	}
 
 
 //--- addon shm---

@@ -407,6 +407,17 @@ power=4
 subtype=Golem
 toughness=4
 [/card]
+[card]text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Colossus of Sardia doesn't untap during your untap step.     {9}: Untap Colossus of Sardia. Play this ability only during your upkeep.
+id=135268
+name=Colossus of Sardia
+rarity=R 
+color=Artifact
+type=Artifact Creature
+mana={9}
+power=9
+subtype=Golem
+toughness=9 
+[/card] 
 [card]
 text=Draw two cards.
 auto=draw:2
@@ -2300,6 +2311,16 @@ subtype=Drake
 toughness=2
 [/card]
 [card]
+text=As an additional cost to play Soulblast, sacrifice all creatures you control.      Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.
+id=130369
+target=creature,player
+name=Soulblast
+rarity=R
+color=Red
+type=Instant
+mana={3}{R}{R}{R}
+[/card]
+[card]
 text=Target player loses 4 life and you gain 4 life.
 id=129739
 name=Soul Feast
@@ -2446,7 +2467,6 @@ type=Land
 [card]
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
 id=129750
-target=player
 target=player
 name=Sudden Impact
 rarity=U
