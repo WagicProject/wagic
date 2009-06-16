@@ -2,6 +2,7 @@
 #include "../include/MTGCardInstance.h"
 #include "../include/MTGGameZones.h"
 #include "../include/Damage.h"
+#include "../include/PhaseRing.h"
 
 WEvent::WEvent(int _type){
   type=_type;
@@ -15,4 +16,9 @@ WEventZoneChange::WEventZoneChange(MTGCardInstance * _card, MTGGameZone * _from,
 
 WEventDamage::WEventDamage(Damage *_damage):WEvent(DAMAGE){
   damage = _damage;
+}
+
+WEventPhaseChange::WEventPhaseChange(Phase * _from, Phase * _to):WEvent(CHANGE_PHASE){
+  from = _from;
+  to = _to;
 }

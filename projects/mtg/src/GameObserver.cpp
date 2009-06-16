@@ -80,8 +80,15 @@ void GameObserver::nextPlayer(){
 
 }
 void GameObserver::nextGamePhase(){
+  Phase * cPhaseOld = phaseRing->getCurrentPhase();
   phaseRing->forward();
   Phase * cPhase = phaseRing->getCurrentPhase();
+
+  //Warn the layers about the phase Change
+  WEvent * e = NEW WEventPhaseChange(cPhaseOld, cPhase);
+  receiveEvent(e);
+  delete e;
+
   currentGamePhase = cPhase->id;
   if (currentPlayer != cPhase->player) nextPlayer();
 
