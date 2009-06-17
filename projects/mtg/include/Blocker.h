@@ -22,6 +22,7 @@ class Blocker : public MTGAbility {
   virtual int unblock(){return 1;};
   Blocker(int id, MTGCardInstance * card, ManaCost * _cost);
   Blocker(int id, MTGCardInstance * card);
+  Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target);
   Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target, ManaCost * _cost);
   ~Blocker();
   virtual void Update(float dt);

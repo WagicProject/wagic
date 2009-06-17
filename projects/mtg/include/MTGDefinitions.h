@@ -95,8 +95,9 @@ class Constants
     CANTATTACK = 37,
     MUSTATTACK = 38,
     CANTBLOCK = 39,
+	DOESNOTUNTAP =40,
 
-    NB_BASIC_ABILITIES = 40,
+    NB_BASIC_ABILITIES = 41,
 
 
     RARITY_M = 'M',

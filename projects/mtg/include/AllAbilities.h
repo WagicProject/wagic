@@ -1458,7 +1458,6 @@ class AUntaper:public TargetAbility{
   }
 };
 
-
 // Add life of gives damage if a given zone has more or less than [condition] cards at the beginning of [phase]
 //Ex : the rack, ivory tower...
 class ALifeZoneLink:public MTGAbility{

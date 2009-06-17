@@ -7,6 +7,7 @@
 #include "../include/TargetChooser.h"
 #include "../include/CardGui.h"
 #include "../include/MTGDeck.h"
+#include "../include/Blocker.h"
 
 
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
@@ -357,9 +358,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         }
         if (tc){
 	        game->addObserver(NEW AUntaper(id, card, cost, tc));
-        }else{
-	         target->tapped = 0;
-        }
+          }else{
+			  if (cost){
+				  game->addObserver(NEW AUntapManaBlocker(id, card, cost));
+			  }else{
+				  target->tapped = 0;
+			  }
+		}
         result++;
         continue;
       }
@@ -1931,10 +1936,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	break;
 	}
 
-  case 135268: //Colossus of Sardia
+ // case 135268: //Colossus of Sardia
+ //   {
+ //     int cost[] = {Constants::MTG_COLOR_ARTIFACT, 9};
+ //     game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
+ //     break;
+ //   }
+
+  case 129521: //Dehydratation
+  // Don't understand why but target automatically untap when cast...
     {
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 9};
-      game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
+			game->addObserver(NEW Blocker(_id,card,card->target));
       break;
     }
 
@@ -2058,6 +2070,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   if (card->basicAbilities[Constants::EXALTED]){
     game->addObserver(NEW AExalted(_id, card));
+  }
+
+  if (card->basicAbilities[Constants::DOESNOTUNTAP]){
+    game->addObserver(NEW Blocker(_id, card));
   }
 
   // Tested works the first r10 did not function because of the mistake in the array of the definition

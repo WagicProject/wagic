@@ -407,9 +407,12 @@ power=4
 subtype=Golem
 toughness=4
 [/card]
-[card]text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Colossus of Sardia doesn't untap during your untap step.     {9}: Untap Colossus of Sardia. Play this ability only during your upkeep.
+[card]
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Colossus of Sardia doesn't untap during your untap step.     {9}: Untap Colossus of Sardia. Play this ability only during your upkeep.
 id=135268
 name=Colossus of Sardia
+abilities=doesnotuntap,trample
+auto={9}:untap
 rarity=R 
 color=Artifact
 type=Artifact Creature
@@ -484,6 +487,17 @@ rarity=U
 color=Black
 type=Sorcery
 mana={B}
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature doesn't untap during its controller's untap step.
+id=129521
+target=creature
+name=Dehydration
+rarity=C
+color=Blue
+type=Enchantment
+mana={3}{U}
+subtype=Aura
 [/card]
 [card]
 text=Tap all creatures without flying.

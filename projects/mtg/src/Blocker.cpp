@@ -8,7 +8,9 @@ Blocker::Blocker(int id, MTGCardInstance * card):MTGAbility(id, card){
 Blocker::Blocker(int id, MTGCardInstance * card, ManaCost * _cost):MTGAbility(id, card){
   init(_cost);
 }
-
+Blocker::Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target):MTGAbility(id, card,_target){
+  init ( NEW ManaCost());
+}
 Blocker::Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target, ManaCost * _cost):MTGAbility(id, card,_target){
   init(_cost);
 }
