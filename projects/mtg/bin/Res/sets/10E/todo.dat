@@ -311,15 +311,6 @@ mana={3}{U}
 subtype=Aura
 [/card]
 [card]
-text=Tap all creatures without flying.
-id=135223
-name=Deluge
-rarity=U
-color=Blue
-type=Instant
-mana={2}{U}
-[/card]
-[card]
 text=When Denizen of the Deep comes into play, return each other creature you control to its owner's hand.
 id=135250
 name=Denizen of the Deep

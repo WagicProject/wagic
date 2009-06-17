@@ -87,6 +87,21 @@ int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
 }
 
 
+int AbilityFactory::TapAll(TargetChooser * tc){
+  MTGCardInstance * source = tc->source;
+  tc->source = NULL; // This is to prevent protection from...
+  GameObserver * g = GameObserver::GetInstance();
+  for (int i = 0; i < 2 ; i++){
+    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
+      if (tc->canTarget(current)){
+	  current->tapped = 1;
+	  }
+	}
+  }
+  tc->source = source; //restore source
+  return 1;
+}
 
 
 int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
@@ -931,10 +946,14 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           break;
         }
         if (tc){
-          game->addObserver(NEW ATapper(id, card, cost, tc));
-        }else{
-          target->tapped = 1;
-        }
+			if (all){
+              TapAll(tc);
+			}else{
+				game->addObserver(NEW ATapper(id, card, cost, tc));
+			}
+		}else{
+			target->tapped = 1;
+		}
         result++;
         continue;
       }

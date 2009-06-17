@@ -233,6 +233,7 @@ class AbilityFactory{
   int destroyAllInPlay(TargetChooser * tc, int bury = 0);
   int moveAll(TargetChooser * tc, string destinationZone);
   int damageAll(TargetChooser * tc, int damage);
+  int TapAll(TargetChooser * tc);
   void addAbilities(int _id, Spell * spell);
 };
 

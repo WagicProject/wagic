@@ -486,6 +486,16 @@ type=Sorcery
 mana={B}
 [/card]
 [card]
+text=Tap all creatures without flying.
+id=135223
+name=Deluge
+auto=tap all(creature[-flying])
+rarity=U
+color=Blue
+type=Instant
+mana={2}{U}
+[/card]
+[card]
 text=Destroy target artifact or land.
 target=artifact,land
 auto=destroy
