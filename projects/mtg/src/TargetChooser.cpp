@@ -48,7 +48,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         zones[nbzones] = game->players[0]->game->graveyard;
         nbzones++;
         zones[nbzones] = game->players[1]->game->graveyard;
-      }else if(zoneName.compare("inplay") == 0){
+      }else if(zoneName.compare("battlefield") == 0 || zoneName.compare("inplay") == 0){
           zones[nbzones] = game->players[0]->game->inPlay;
           nbzones++;
           zones[nbzones] = game->players[1]->game->inPlay;

@@ -175,7 +175,7 @@ void TestSuiteState::parsePlayerState(int playerId, string s, TestSuite * suite)
       area = 1;
     }else if(areaS.compare("hand")  == 0){
       area = 2;
-    }else if(areaS.compare("inplay")  == 0 ){
+    }else if(areaS.compare("inplay")  == 0 || areaS.compare("battlefield")  == 0  ){
       area = 3;
     }else if(areaS.compare("life")  == 0){
       playerData[playerId].life = atoi((s.substr(limiter+1)).c_str());

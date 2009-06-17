@@ -63,7 +63,7 @@ const char* Constants::MTGPhaseNames[] =
 	"Combat damage",
 	"Combat ends",
 	"Main phase 2",
-	"End of turn",
+	"End",
 	"Cleanup",
 	"---"
 };
@@ -81,7 +81,7 @@ const char* Constants::MTGPhaseCodeNames[] =
 	"combatdamage",
 	"combatends",
 	"secondmain",
-	"endofturn",
+	"end",
 	"cleanup",
 	"beforenextturn"
 };

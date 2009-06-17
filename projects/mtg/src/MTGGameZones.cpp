@@ -81,8 +81,11 @@ void MTGPlayerCards::init(){
   graveyard = NEW MTGGraveyard();
   hand = NEW MTGHand();
   inPlay = NEW MTGInPlay();
+  battlefield=inPlay;
+
   stack = NEW MTGStack();
   removedFromGame = NEW MTGRemovedFromGame();
+  exile = removedFromGame;
   garbage = NEW MTGGameZone();
 }
 
@@ -412,6 +415,13 @@ MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * sourc
   if(zoneName.compare("ownerinplay") == 0) return target->owner->game->inPlay;
   if(zoneName.compare("inplay") == 0) return p->game->inPlay;
 
+  if(zoneName.compare("mybattlefield") == 0)return p->game->inPlay;
+  if(zoneName.compare("opponentbattlefield") == 0) return p->opponent()->game->inPlay;
+  if(zoneName.compare("targetownerbattlefield") == 0) return target->owner->game->inPlay;
+  if(zoneName.compare("targetcontrollerbattlefield") == 0) return p2->game->inPlay;
+  if(zoneName.compare("ownerbattlefield") == 0) return target->owner->game->inPlay;
+  if(zoneName.compare("battlefield") == 0) return p->game->inPlay;
+
   if(zoneName.compare("myhand") == 0)return p->game->hand;
   if(zoneName.compare("opponenthand") == 0) return p->opponent()->game->hand;
   if(zoneName.compare("targetcontrollerhand") == 0) return p2->game->hand;
@@ -425,6 +435,13 @@ MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * sourc
   if(zoneName.compare("targetownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
   if(zoneName.compare("ownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
   if(zoneName.compare("removedfromgame") == 0) return target->owner->game->removedFromGame;
+
+  if(zoneName.compare("myexile") == 0)return p->game->removedFromGame;
+  if(zoneName.compare("opponentexile") == 0) return p->opponent()->game->removedFromGame;
+  if(zoneName.compare("targetcontrollerexile") == 0) return p2->game->removedFromGame;
+  if(zoneName.compare("targetownerexile") == 0) return target->owner->game->removedFromGame;
+  if(zoneName.compare("ownerexile") == 0) return target->owner->game->removedFromGame;
+  if(zoneName.compare("exile") == 0) return target->owner->game->removedFromGame;
 
   if(zoneName.compare("mylibrary") == 0)return p->game->library;
   if(zoneName.compare("opponentlibrary") == 0) return p->opponent()->game->library;

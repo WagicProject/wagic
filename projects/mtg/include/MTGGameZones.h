@@ -83,8 +83,11 @@ class MTGPlayerCards {
   MTGGraveyard * graveyard;
   MTGHand * hand;
   MTGInPlay * inPlay;
+  MTGInPlay * battlefield; //alias to inPlay
+
   MTGStack * stack;
   MTGRemovedFromGame * removedFromGame;
+  MTGRemovedFromGame * exile; //alias to removedFromZone
   MTGGameZone * garbage;
 
   MTGAllCards * collection;

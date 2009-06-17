@@ -571,7 +571,6 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCa
   sprintf(debuf,"Deck File: %s", deckFile);
   OutputDebugString(debuf);
 #endif
-  int deck_cards_ids[100];
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, collection);
   MTGPlayerCards * deck = NEW MTGPlayerCards(collection,tempDeck);
   delete tempDeck;
