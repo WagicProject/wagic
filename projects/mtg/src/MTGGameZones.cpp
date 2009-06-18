@@ -73,7 +73,13 @@ void MTGPlayerCards::initGame(int shuffle, int draw){
 
 void MTGPlayerCards::drawFromLibrary(){
   MTGCardInstance * drownCard = library->draw();
-  hand->addCard(drownCard);
+  if(drownCard){
+    hand->addCard(drownCard);
+    GameObserver *g = GameObserver::GetInstance();
+    WEvent * e = NEW WEventZoneChange(drownCard,library,hand);
+    g->receiveEvent(e);
+    delete e;
+  }
 }
 
 void MTGPlayerCards::init(){
@@ -109,6 +115,7 @@ MTGCardInstance * MTGPlayerCards::putInPlay(MTGCardInstance * card){
   GameObserver *g = GameObserver::GetInstance();
   WEvent * e = NEW WEventZoneChange(copy, from, inPlay);
   g->receiveEvent(e);
+  delete e;
 
   return copy;
 }
