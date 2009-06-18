@@ -353,18 +353,6 @@ subtype=Insect
 toughness=1
 [/card]
 [card]
-text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
-id=135266
-name=Elven Riders
-rarity=U
-color=Green
-type=Creature
-mana={3}{G}{G}
-power=3
-subtype=Elf
-toughness=3
-[/card]
-[card]
 text=Faerie Conclave comes into play tapped.     {T}: Add {U} to your mana pool.     {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
 id=106531
 name=Faerie Conclave
@@ -574,18 +562,6 @@ mana={1}{G}
 power=2
 subtype=Elf Druid
 toughness=1
-[/card]
-[card]
-text=Juggernaut attacks each turn if able.     Juggernaut can't be blocked by Walls.
-id=135240
-name=Juggernaut
-rarity=U
-color=Artifact
-type=Artifact Creature
-mana={4}
-power=5
-subtype=Juggernaut
-toughness=3
 [/card]
 [card]
 text=Karplusan Strider can't be the target of blue or black spells.

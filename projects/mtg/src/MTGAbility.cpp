@@ -711,6 +711,32 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         continue;
       }
 
+      //CannotBeBlockedBy
+       found = s.find("cantbeblockedby(");
+       if (found != string::npos){
+	       int end = s.find(")",found+1);
+	 	  string starget = s.substr(found + 18,end - found - 18);
+ 		 TargetChooserFactory tcf;
+ 		 tc = tcf.createTargetChooser(starget,card);
+		 // TypeTargetChooser * tc = createTargetChooser(starget,card);
+ 	  if (dryMode){
+ 		  dryModeResult =  BAKA_EFFECT_GOOD;
+ 		  break;
+ 	  }
+	  for (int i = 0; i < 2 ; i++){
+		  for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
+			  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+				if (tc->canTarget(current));{
+				  if (card->canBlock (current)) return 1;
+			  }
+		  }
+	  }
+	  result++;
+	  continue;
+	  }
+
+
+
       //Discard
       found = s.find("discard:");
       if (found != string::npos){
@@ -962,6 +988,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         result++;
         continue;
       }
+
 #if defined (WIN32) || defined (LINUX)
     char buf[4096];
     sprintf(buf, "AUTO ACTION PARSED: %s\n", line.c_str());
