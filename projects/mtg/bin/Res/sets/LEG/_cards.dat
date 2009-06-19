@@ -916,7 +916,7 @@ id=1703
 auto={T}:add {G}
 name=Pendelhaven
 rarity=U
-type=land
+type=Land
 abilities=legendary
 [/card]
 [card]
