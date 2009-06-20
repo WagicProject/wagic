@@ -3740,4 +3740,32 @@ class ARampageAbility:public MTGAbility{
   }
 };
 
+// Dreamborn Muse
+class ASeedbornMuse: public TriggeredAbility{
+ public:
+	 int nbcards;
+ ASeedbornMuse(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
+ }
+
+   int trigger(){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && ((MTGCardInstance *) source)->controller()!= game->currentPlayer){
+      return 1;
+    }
+    return 0;
+  }
+
+  int resolve(){
+		  for (int j = source->controller()->game->inPlay->nb_cards-1; j >=0 ; j--){
+			  MTGCardInstance * current =  source->controller()->game->inPlay->cards[j];
+			  current->tapped = 0;
+	  }
+	return 1;
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ASeedbornMuse ::: (";
+    return TriggeredAbility::toString(out) << ")";
+  }
+};
+
 #endif

@@ -1008,18 +1008,6 @@ subtype=Wurm
 toughness=7
 [/card]
 [card]
-text=Untap all permanents you control during each other player's untap step.
-id=129722
-name=Seedborn Muse
-rarity=R
-color=Green
-type=Creature
-mana={3}{G}{G}
-power=2
-subtype=Spirit
-toughness=4
-[/card]
-[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever a creature dealt damage by Sengir Vampire this turn is put into a graveyard, put a +1/+1 counter on Sengir Vampire.
 id=129724
 name=Sengir Vampire

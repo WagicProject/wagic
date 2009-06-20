@@ -104,6 +104,21 @@ int AbilityFactory::TapAll(TargetChooser * tc){
   return 1;
 }
 
+int AbilityFactory::UntapAll(TargetChooser * tc){
+  MTGCardInstance * source = tc->source;
+  tc->source = NULL; // This is to prevent protection from...
+  GameObserver * g = GameObserver::GetInstance();
+  for (int i = 0; i < 2 ; i++){
+    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
+      if (tc->canTarget(current)){
+	  current->tapped = 0;
+	  }
+	}
+  }
+  tc->source = source; //restore source
+  return 1;
+}
 
 int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
   MTGCardInstance * copy = p->game->putInZone(card,  zone, p->game->stack);
@@ -357,13 +372,17 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           break;
         }
         if (tc){
-	        game->addObserver(NEW AUntaper(id, card, cost, tc));
-          }else{
-			  if (cost){
-				  game->addObserver(NEW AUntapManaBlocker(id, card, cost));
-			  }else{
-				  target->tapped = 0;
-			  }
+			if (all){
+              UntapAll(tc);
+			}else{
+				game->addObserver(NEW AUntaper(id, card, cost, tc));
+			}
+		}else{
+			if (cost){
+				game->addObserver(NEW AUntapManaBlocker(id, card, cost));
+			}else{
+				target->tapped = 0;
+			}
 		}
         result++;
         continue;
@@ -718,7 +737,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	 	  string starget = s.substr(found + 18,end - found - 18);
  		 TargetChooserFactory tcf;
  		 tc = tcf.createTargetChooser(starget,card);
-		 // TypeTargetChooser * tc = createTargetChooser(starget,card);
  	  if (dryMode){
  		  dryModeResult =  BAKA_EFFECT_GOOD;
  		  break;
@@ -726,9 +744,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	  for (int i = 0; i < 2 ; i++){
 		  for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
 			  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-				if (tc->canTarget(current));{
-				  if (card->canBlock (current)) return 1;
-			  }
+				if (tc->canTarget(current)){
+					MTGCardInstance * canBlock = tc->source;
+					current->canBlock(0);
+				}
 		  }
 	  }
 	  result++;
@@ -1940,7 +1959,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ALavaborn(_id ,card, Constants::MTG_PHASE_UPKEEP, -3,-3));
       break;
     }
-
+  case 129722 : //Seddborn Muse
+    {
+      game->addObserver( NEW ASeedbornMuse(_id ,card));
+      break;
+    }
   case 135246: //Dreamborn Muse
     {
       game->addObserver( NEW ADreambornMuse(_id ,card));
@@ -2070,6 +2093,18 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 				player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
 	}
 	game->currentlyActing()->life+= x;
+      break;
+    }
+
+	// --- addon ARB---
+    case 179614: // Morbid Bloom
+    {
+      card->target->controller()->game->putInZone(card->target, card->target->controller()->game->inPlay,card->owner->game->removedFromGame);
+      int x = card->target->toughness;
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling",1,1,"green",0);
+          for (int i=0; i < x; i++){
+            tok->resolve();
+          }   
       break;
     }
 
