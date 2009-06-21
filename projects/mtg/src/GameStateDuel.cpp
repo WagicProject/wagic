@@ -156,9 +156,8 @@ void GameStateDuel::loadTestSuitePlayers(){
   OutputDebugString ("loading suite 1\n");
   if (!testSuite) return;
   for (int i = 0; i < 2; i++){
-    if (mPlayers[i]){
-      delete mPlayers[i];
-    }
+    SAFE_DELETE(mPlayers[i]);
+    SAFE_DELETE(deck[i]);
     mPlayers[i] = NEW TestSuiteAI(testSuite, i);
     OutputDebugString ("loading suite 2\n");
     deck[i] = mPlayers[i]->game;
