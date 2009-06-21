@@ -3740,10 +3740,9 @@ class ARampageAbility:public MTGAbility{
   }
 };
 
-// Dreamborn Muse
+// Seedborn Muse
 class ASeedbornMuse: public TriggeredAbility{
  public:
-	 int nbcards;
  ASeedbornMuse(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
  }
 
@@ -3767,5 +3766,83 @@ class ASeedbornMuse: public TriggeredAbility{
     return TriggeredAbility::toString(out) << ")";
   }
 };
+
+// Graveborn Muse
+class AGravebornMuse: public TriggeredAbility{
+ public:
+	 int nbcards_life;
+ AGravebornMuse(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
+ nbcards_life=0;
+ }
+
+   int trigger(){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && ((MTGCardInstance *) source)->controller()== game->currentPlayer){
+      return 1;
+    }
+    return 0;
+  }
+
+  int resolve(){
+		  for (int j = source->controller()->game->inPlay->nb_cards-1; j >=0 ; j--){
+			  MTGCardInstance * current =  source->controller()->game->inPlay->cards[j];
+			  if (current->hasSubtype("zombie")){
+				  nbcards_life++;
+			  }
+		  }
+		  source->controller()->life-=nbcards_life;
+		  game->mLayers->stackLayer()->addDraw(source->controller(),nbcards_life);
+	return 1;
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AGravebornMuse ::: nbcards_life : " << nbcards_life
+	<< " (";
+    return TriggeredAbility::toString(out) << ")";
+  }
+};
+
+// Verdant Force
+class AVerdantForce: public TriggeredAbility{
+ public:
+	 list<int>types;
+ AVerdantForce(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
+    string s = "Saproling Creature";
+    while (s.size()){
+      unsigned int found = s.find(" ");
+      if (found != string::npos){
+        int id = Subtypes::subtypesList->Add(s.substr(0,found));
+        types.push_back(id);
+        s = s.substr(found+1);
+      }else{
+        int id = Subtypes::subtypesList->Add(s);
+        types.push_back(id);
+        s = "";
+	  }
+	}
+ }
+  int trigger(){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
+    return 0;
+  }
+  int resolve(){
+    Token * myToken = NEW Token("Saproling",source,1,1);
+	list<int>::iterator it;
+    for ( it=types.begin() ; it != types.end(); it++ ){
+		myToken->addType(*it);
+	}
+    myToken->setColor(Constants::MTG_COLOR_GREEN);
+    source->controller()->game->stack->addCard(myToken);
+    Spell * spell = NEW Spell(myToken);
+    spell->resolve();
+    delete spell;
+    return 1;
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+	  out << "AVerdantForce ::: (";
+	  return TriggeredAbility::toString(out) << ")";
+  }
+};
+
 
 #endif

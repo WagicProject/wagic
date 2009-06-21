@@ -1969,13 +1969,66 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ADreambornMuse(_id ,card));
       break;
     }
+  case 135256: //Graveborn Muse
+    {
+      game->addObserver( NEW AGravebornMuse(_id ,card));
+      break;
+    }
 
+  case 129774: // Traumatize
+	  {
+		  int nbcards;
+		  Player * player = spell->getNextPlayerTarget();
+		  MTGLibrary * library = player->game->library;
+		  nbcards = (library->nb_cards)/2;
+		  for (int i = 0; i < nbcards; i++){
+			  if (library->nb_cards)
+				  player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
+			}
+		  break;
+	  }
+
+  case 129788: // Verdant Force
+	  {
+	  game->addObserver( NEW AVerdantForce(_id,card));
+	  break;
+	  }
   case 135215: //Sylvan Basilisk
     {
       game->addObserver( NEW ABasilik (_id ,card));
       break;
     }
-
+  case 130553:// Beacon of Immortality
+	  {
+		int life;
+		Player * player = spell->getNextPlayerTarget();
+		MTGLibrary * library = card->controller()->game->library;
+		MTGGraveyard * graveyard = card->controller()->game->graveyard;
+		life = player->life;
+		player->life+=life;
+		MTGGameZone * zones[] = {card->controller()->game->inPlay,card->controller()->game->graveyard,card->controller()->game->hand};
+		for (int k = 0; k < 3; k++){
+			MTGGameZone * zone = zones[k];
+			if (zone->hasCard(card)){
+				card->controller()->game->putInZone(card,zone,library);
+				library->shuffle();
+			}
+		}
+		break;
+	  }
+   case 135262:// Beacon of Destruction & unrest
+	  {
+		MTGLibrary * library = card->controller()->game->library;
+		MTGGameZone * zones[] = {card->controller()->game->inPlay,card->controller()->game->graveyard,card->controller()->game->hand};
+		for (int k = 0; k < 3; k++){
+			MTGGameZone * zone = zones[k];
+			if (zone->hasCard(card)){
+				card->controller()->game->putInZone(card,zone,library);
+				library->shuffle();
+			}
+		}
+		break;
+	  }
   case 129750: //Sudden Impact
 	{
 		Damageable * target = spell->getNextDamageableTarget();

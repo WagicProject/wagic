@@ -135,33 +135,6 @@ type=Instant
 mana={W}
 [/card]
 [card]
-text=Beacon of Destruction deals 5 damage to target creature or player. Shuffle Beacon of Destruction into its owner's library.
-id=135262
-name=Beacon of Destruction
-rarity=R
-color=Red
-type=Instant
-mana={3}{R}{R}
-[/card]
-[card]
-text=Double target player's life total. Shuffle Beacon of Immortality into its owner's library.
-id=130553
-name=Beacon of Immortality
-rarity=R
-color=White
-type=Instant
-mana={5}{W}
-[/card]
-[card]
-text=Put target artifact or creature card in a graveyard into play under your control. Shuffle Beacon of Unrest into its owner's library.
-id=135270
-name=Beacon of Unrest
-rarity=R
-color=Black
-type=Sorcery
-mana={3}{B}{B}
-[/card]
-[card]
 text=When Bogardan Firefiend is put into a graveyard from play, it deals 2 damage to target creature.
 id=130534
 name=Bogardan Firefiend
@@ -450,18 +423,6 @@ rarity=R
 color=Black
 type=Enchantment
 mana={1}{B}{B}{B}
-[/card]
-[card]
-text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
-id=135256
-name=Graveborn Muse
-rarity=R
-color=Black
-type=Creature
-mana={2}{B}{B}
-power=3
-subtype=Zombie Spirit
-toughness=3
 [/card]
 [card]
 text=Guerrilla Tactics deals 2 damage to target creature or player.     When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
@@ -1258,15 +1219,6 @@ type=Sorcery
 mana={8}{U}{U}
 [/card]
 [card]
-text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
-id=129774
-name=Traumatize
-rarity=R
-color=Blue
-type=Sorcery
-mana={3}{U}{U}
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
 id=129777
 name=Treetop Bracers
@@ -1343,18 +1295,6 @@ rarity=R
 color=Green
 type=Enchantment
 mana={3}{G}
-[/card]
-[card]
-text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
-id=129788
-name=Verdant Force
-rarity=R
-color=Green
-type=Creature
-mana={5}{G}{G}{G}
-power=7
-subtype=Elemental
-toughness=7
 [/card]
 [card]
 text=Viashino Runner can't be blocked except by two or more creatures.

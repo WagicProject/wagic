@@ -186,6 +186,39 @@ color=Land
 type=Land
 [/card]
 [card]
+text=Beacon of Destruction deals 5 damage to target creature or player. Shuffle Beacon of Destruction into its owner's library.
+id=135262
+name=Beacon of Destruction
+target=creature,player
+auto=damage:5
+rarity=R
+color=Red
+type=Instant
+mana={3}{R}{R}
+[/card]
+[card]
+text=Double target player's life total. Shuffle Beacon of Immortality into its owner's library.
+id=130553
+target=player
+name=Beacon of Immortality
+rarity=R
+color=White
+type=Instant
+mana={5}{W}
+[/card]
+[card]
+text=Put target artifact or creature card in a graveyard into play under your control. Shuffle Beacon of Unrest into its owner's library.
+id=135270
+target=creature,artifact|graveyard
+auto=moveto(myinplay)
+alias=135262
+name=Beacon of Unrest
+rarity=R
+color=Black
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
 text=Flash (You may play this spell any time you could play an instant.)  First strike (This creature deals combat damage before creatures without first strike.)
 abilities=flash,first strike
 id=136279
@@ -990,6 +1023,18 @@ mana={2}{R}
 power=1
 subtype=Goblin Warrior
 toughness=2
+[/card]
+[card]
+text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
+id=135256
+name=Graveborn Muse
+rarity=R
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=3
+subtype=Zombie Spirit
+toughness=3
 [/card]
 [card]
 text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
@@ -2681,6 +2726,16 @@ type=Sorcery
 mana={3}{U}{U}
 [/card]
 [card]
+text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
+id=129774
+target=player
+name=Traumatize
+rarity=R
+color=Blue
+type=Sorcery
+mana={3}{U}{U}
+[/card]
+[card]
 text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
 auto=may moveTo(myhand) target(artifact|mygraveyard)
 id=135232
@@ -2793,6 +2848,18 @@ mana={2}{W}
 power=2
 subtype=Human Monk Cleric
 toughness=2
+[/card]
+[card]
+text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
+id=129788
+name=Verdant Force
+rarity=R
+color=Green
+type=Creature
+mana={5}{G}{G}{G}
+power=7
+subtype=Elemental
+toughness=7
 [/card]
 [card]
 text=When Viridian Shaman comes into play, destroy target artifact.
