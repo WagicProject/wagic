@@ -1546,7 +1546,9 @@ class AControlStealAura: public MTGAbility{
   Player  * originalController;
  AControlStealAura(int _id , MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id, _source, _target){
     originalController = _target->controller();
-    _target->changeController(game->currentlyActing());
+    MTGCardInstance * copy = _target->changeController(game->currentlyActing());
+    target = copy;
+    source->target = copy;
   }
 
   int destroy(){

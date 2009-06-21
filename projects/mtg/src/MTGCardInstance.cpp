@@ -241,13 +241,12 @@ int MTGCardInstance::hasSummoningSickness(){
   return 1;
 }
 
-int MTGCardInstance::changeController(Player * newController){
+MTGCardInstance * MTGCardInstance::changeController(Player * newController){
   Player * originalOwner = controller();
   if (originalOwner  == newController) return 0;
-  MTGCardInstance * copy = originalOwner->game->inPlay->removeCard(this,0);
-  newController->game->inPlay->addCard(copy);
+  MTGCardInstance * copy = originalOwner->game->putInZone(this, originalOwner->game->inPlay, newController->game->inPlay);
   //summoningSickness = 1;
-  return 1;
+  return copy;
 }
 
 //Reset the card parameters

@@ -1669,7 +1669,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1326: //Wheel of fortune
     {
       for (int i = 0; i < 2; i++){
-	//	MTGLibrary * library = game->players[i]->game->library;
 	MTGHand * hand = game->players[i]->game->hand;
 	for (int j = hand->nb_cards-1; j>=0; j--){
 	  game->players[i]->game->putInGraveyard(hand->cards[j]);

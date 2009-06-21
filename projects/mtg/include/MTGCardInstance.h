@@ -48,7 +48,7 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
   int summoningSickness;
   // The recommended method to test for summoning Sickness !
   int hasSummoningSickness();
-  int changeController(Player * newcontroller);
+  MTGCardInstance * changeController(Player * newcontroller);
   MTGCardInstance * defenser;
   float changedZoneRecently;
   Player * owner;

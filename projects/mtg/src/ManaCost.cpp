@@ -144,7 +144,7 @@ void ManaCost::init(){
   }
   nbhybrids = 0;
   extraCosts = NULL;
-  extraCostsIsCopy = 1;
+  extraCostsIsCopy = 0;
 }
 
 
