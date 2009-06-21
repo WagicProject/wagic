@@ -232,6 +232,19 @@ subtype=Merfolk Rogue
 toughness=2
 [/card]
 [card]
+text=Drove of Elves's power and toughness are each equal to the number of green permanents you control.     Drove of Elves can't be the target of spells or abilities your opponents control.
+id=157878
+name=Drove of Elves
+auto=foreach(*[green]|myinplay) 1/1
+abilities=opponentshroud
+rarity=U
+type=Creature
+mana={3}{G}
+power=*
+subtype=Elf
+toughness=*
+[/card]
+[card]
 text={GW}, {T}, Sacrifice Elvish Hexhunter: Destroy target enchantment.
 auto={GW}{T}{S}:destroy target(enchantment)
 id=141958

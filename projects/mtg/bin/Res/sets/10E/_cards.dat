@@ -862,6 +862,15 @@ type=Instant
 mana={1}{U}
 [/card]
 [card]
+text=All creatures get +X/-X until end of turn.
+id=130542
+name=Flowstone Slide
+rarity=R
+color=Red
+type=Sorcery
+mana={X}{2}{R}{R}
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.
 auto={T}: Add {G}
 id=129561

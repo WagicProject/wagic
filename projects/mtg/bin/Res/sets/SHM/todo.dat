@@ -58,6 +58,7 @@ mana={GW}
 text=Barrenton Cragtreads can't be blocked by red creatures.
 id=142000
 name=Barrenton Cragtreads
+auto=cantbeblockedby(creature[red])
 rarity=C
 type=Creature
 mana={2}{WU}{WU}
@@ -325,7 +326,7 @@ mana={1}{B}
 text=You may put a green creature card from your hand into play.
 id=154003
 target=creature[green]|myhand
-auto=moveto(inplay)
+auto=moveto(myinplay)
 name=Dramatic Entrance
 rarity=R
 type=Instant
@@ -338,18 +339,6 @@ name=Dream Salvage
 rarity=U
 type=Instant
 mana={UB}
-[/card]
-[card]
-text=Drove of Elves's power and toughness are each equal to the number of green permanents you control.     Drove of Elves can't be the target of spells or abilities your opponents control.
-id=157878
-name=Drove of Elves
-auto=foreach(*[green]|myinplay) 1/1
-rarity=U
-type=Creature
-mana={3}{G}
-power=*
-subtype=Elf
-toughness=*
 [/card]
 [card]
 text=Whenever a player plays a blue spell, you may pay {1}. If you do, target player puts the top two cards of his or her library into his or her graveyard.

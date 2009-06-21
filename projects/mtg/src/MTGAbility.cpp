@@ -1914,6 +1914,16 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
 //-- addon 10E---
+
+	case 130542: //Flowstone Slide
+		{
+			TargetChooser * lordTargets = NULL;
+			int x = spell->cost->getConvertedCost() - 4;
+			TargetChooserFactory tcf;
+            lordTargets = tcf.createTargetChooser("creature", card);
+			game->addObserver (NEW ALordUEOT(id,card,lordTargets,0,x,-x));
+			break;
+		}
 	case 129523: //Demon's Horn
 	      {
       game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLACK, NEW ManaCost() , 1));

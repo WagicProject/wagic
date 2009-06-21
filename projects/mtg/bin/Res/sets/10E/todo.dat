@@ -346,15 +346,6 @@ subtype=Zombie Goblin
 toughness=1
 [/card]
 [card]
-text=All creatures get +X/-X until end of turn.
-id=130542
-name=Flowstone Slide
-rarity=R
-color=Red
-type=Sorcery
-mana={X}{2}{R}{R}
-[/card]
-[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Fog Elemental attacks or blocks, sacrifice it at end of combat.
 id=132073
 name=Fog Elemental
