@@ -32,6 +32,7 @@ type=Creature
 mana={2}{W}
 power=2
 subtype=Bird Soldier
+abilities=flying
 auto=aslongas(forest|myinplay) 0/1
 auto=aslongas(island|myinplay) 0/1
 auto=aslongas(plains|myinplay) 0/1
