@@ -595,17 +595,6 @@ type=Sorcery
 mana={2}{U}
 [/card]
 [card]
-text=Trample
-id=46115
-name=Fangren Hunter
-rarity=C
-type=Creature
-mana={3}{G}{G}
-power=4
-subtype=Beast
-toughness=4
-[/card]
-[card]
 text=Whenever a source an opponent controls deals damage to you, if Farsight Mask is untapped, you may draw a card.
 id=46135
 name=Farsight Mask
@@ -642,14 +631,6 @@ mana={3}
 subtype=Equipment
 [/card]
 [card]
-text=Target creature gets +4/+0 until end of turn.
-id=48377
-name=Fists of the Anvil
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
-[card]
 text=Whenever Flayed Nim deals combat damage to a creature, that creature's controller loses that much life. {2}{B}: Regenerate Flayed Nim.
 id=46094
 name=Flayed Nim
@@ -659,38 +640,6 @@ mana={3}{B}
 power=2
 subtype=Skeleton
 toughness=2
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=48421
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=48424
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=48422
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=48423
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
 text=As an additional cost to play Forge Armor, sacrifice an artifact. Put X +1/+1 counters on target creature, where X is the sacrificed artifact's converted mana cost.
@@ -721,28 +670,12 @@ subtype=Frog
 toughness=2
 [/card]
 [card]
-text=Flash     {3}, {T}: Untap target artifact.
-id=48399
-name=Galvanic Key
-rarity=C
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=At the beginning of each player's upkeep, that player reveals the top card of his or her library. If it's an artifact, creature, enchantment, or land card, the player may put it into play.
 id=46721
 name=Gate to the AEther
 rarity=R
 type=Artifact
 mana={6}
-[/card]
-[card]
-text={T}: Add three mana of any one color to your mana pool.
-id=48189
-name=Gilded Lotus
-rarity=R
-type=Artifact
-mana={5}
 [/card]
 [card]
 text=At end of turn, if you control no artifacts, sacrifice Glimmervoid.     {T}: Add one mana of any color to your mana pool.
@@ -782,28 +715,6 @@ subtype=Construct
 toughness=4
 [/card]
 [card]
-text={3}{R}, Sacrifice Goblin Replica: Destroy target artifact.
-id=46049
-name=Goblin Replica
-rarity=C
-type=Artifact Creature
-mana={3}
-power=2
-subtype=Goblin
-toughness=2
-[/card]
-[card]
-text=First strike, haste
-id=48592
-name=Goblin Striker
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Goblin Berserker
-toughness=1
-[/card]
-[card]
 text=Goblin War Wagon doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {2}. If you do, untap Goblin War Wagon.
 id=46044
 name=Goblin War Wagon
@@ -813,17 +724,6 @@ mana={4}
 power=3
 subtype=Juggernaut
 toughness=3
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=46024
-name=Gold Myr
-rarity=C
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Myr
-toughness=1
 [/card]
 [card]
 text=Equipped creature gets +1/+0 for each Equipment attached to it.     Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
@@ -841,14 +741,6 @@ name=Grab the Reins
 rarity=U
 type=Instant
 mana={3}{R}
-[/card]
-[card]
-text={3}, {T} or {R}, {T}: Granite Shard deals 1 damage to target creature or player.
-id=46051
-name=Granite Shard
-rarity=U
-type=Artifact
-mana={3}
 [/card]
 [card]
 text=(Great Furnace isn't a spell.)  {T}: Add {R} to your mana pool.
@@ -888,39 +780,12 @@ subtype=Beast
 toughness=3
 [/card]
 [card]
-text={3}, {T} or {G}, {T}: Target creature gains trample until end of turn.
-id=46059
-name=Heartwood Shard
-rarity=U
-type=Artifact
-mana={3}
-[/card]
-[card]
-text={1}{R}: Hematite Golem gets +2/+0 until end of turn.
-id=48055
-name=Hematite Golem
-rarity=C
-type=Artifact Creature
-mana={4}
-power=1
-subtype=Golem
-toughness=4
-[/card]
-[card]
 text=Each artifact spell costs {1} more to play for each artifact its controller controls.
 id=48082
 name=Hum of the Radix
 rarity=R
 type=Enchantment
 mana={2}{G}{G}
-[/card]
-[card]
-text={1}, {T}: Tap target artifact, creature, or land.
-id=46728
-name=Icy Manipulator
-rarity=U
-type=Artifact
-mana={4}
 [/card]
 [card]
 text=Choose one - Creatures target player controls attack this turn if able; or creatures you control gain first strike until end of turn.     Entwine {2} (Choose both if you pay the entwine cost.)
@@ -940,55 +805,12 @@ mana={1}{U}
 subtype=Aura
 [/card]
 [card]
-text={T}: Add {R} to your mana pool.
-id=46048
-name=Iron Myr
-rarity=C
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Myr
-toughness=1
-[/card]
-[card]
 text=Target creature gets -1/-1 until end of turn for each artifact you control.
 id=48585
 name=Irradiate
 rarity=C
 type=Instant
 mana={3}{B}
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=48410
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=48412
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=48413
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=48411
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
 [/card]
 [card]
 text=Imprint - When Isochron Scepter comes into play, you may remove an instant card with converted mana cost 2 or less in your hand from the game. (The removed card is imprinted on this artifact.)  {2}, {T}: You may copy the imprinted instant card. If you do, you may play the copy without paying its mana cost.
@@ -1045,28 +867,6 @@ type=Legendary Artifact
 mana={2}
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.
-id=46040
-name=Leaden Myr
-rarity=C
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Myr
-toughness=1
-[/card]
-[card]
-text=Artifacts you control can't be the targets of spells or abilities your opponents control.
-id=46550
-name=Leonin Abunas
-rarity=R
-type=Creature
-mana={3}{W}
-power=2
-subtype=Cat Cleric
-toughness=5
-[/card]
-[card]
 text=Flash     {2}, Sacrifice Leonin Bladetrap: Leonin Bladetrap deals 2 damage to each attacking creature without flying.
 id=48378
 name=Leonin Bladetrap
@@ -1104,17 +904,6 @@ rarity=C
 type=Artifact
 mana={1}
 subtype=Equipment
-[/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-id=45960
-name=Leonin Skyhunter
-rarity=U
-type=Creature
-mana={W}{W}
-power=2
-subtype=Cat Knight
-toughness=2
 [/card]
 [card]
 text={1}{W}: Creatures you control get +1/+1 until end of turn.

@@ -420,6 +420,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Artifacts you control can't be the targets of spells or abilities your opponents control.
+auto=lord(artifact|myinplay) opponentshroud
+id=46550
+name=Leonin Abunas
+rarity=R
+type=Creature
+mana={3}{W}
+power=2
+subtype=Cat Cleric
+toughness=5
+[/card]
+[card]
 text=Flying
 id=45960
 name=Leonin Skyhunter
