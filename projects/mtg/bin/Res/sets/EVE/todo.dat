@@ -470,6 +470,17 @@ type=Instant
 mana={RW}{RW}{RW}
 [/card]
 [card]
+text=Flame Jab deals 1 damage to target creature or player.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
+target=player,creature
+abilities=retrace
+auto=damage:1
+id=153432
+name=Flame Jab
+rarity=C
+type=Sorcery
+mana={R}
+[/card]
+[card]
 text=Flying     When Flickerwisp comes into play, remove another target permanent from the game. Return that card to play under its owner's control at end of turn.
 abilities=flying
 id=151089
@@ -767,6 +778,17 @@ name=Moonhold
 rarity=U
 type=Instant
 mana={2}{RW}
+[/card]
+[card]
+text=Target creature gets +4/+4 until end of turn.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
+target=creature
+auto=4/4
+abilities=retrace
+id=153441
+name=Monstrify
+rarity=C
+type=Sorcery
+mana={3}{G}
 [/card]
 [card]
 text=Other green creatures you control get +1/+1.     Other blue creatures you control get +1/+1.     Untap all green and/or blue creatures you control during each other player's untap step.

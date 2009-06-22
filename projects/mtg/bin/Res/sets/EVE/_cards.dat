@@ -123,17 +123,6 @@ rarity=R
 type=Land
 [/card]
 [card]
-text=Flame Jab deals 1 damage to target creature or player.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=player,creature
-abilities=retrace
-auto=damage:1
-id=153432
-name=Flame Jab
-rarity=C
-type=Sorcery
-mana={R}
-[/card]
-[card]
 text={T}: Add {1} to your mana pool.     {GU}, {T}: Add {G}{G}, {G}{U}, or {U}{U} to your mana pool.
 auto={T}: Add {1}
 auto={GU}{T}: Add {G}{G}
@@ -252,17 +241,6 @@ mana={3}{UR}{UR}{UR}
 power=4
 subtype=Horror
 toughness=4
-[/card]
-[card]
-text=Target creature gets +4/+4 until end of turn.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=creature
-auto=4/4
-abilities=retrace
-id=153441
-name=Monstrify
-rarity=C
-type=Sorcery
-mana={3}{G}
 [/card]
 [card]
 text=Lifelink (Whenever this creature deals damage, you gain that much life.)
