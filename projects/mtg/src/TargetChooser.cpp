@@ -275,7 +275,8 @@ int TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
     if (source && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(source) )) return 0;
-    return 1;
+    if (source && card->isInPlay() && (source->controller() != card->controller()) && (card->has(Constants::OPPONENTSHROUD)|| card->protectedAgainst(source) )) return 0;
+	return 1;
   }else if (target->typeAsTarget() == TARGET_STACKACTION){
     return 1;
   }

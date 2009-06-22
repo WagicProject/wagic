@@ -301,6 +301,15 @@ type=Instant
 mana={2R}{2R}{2R}
 [/card]
 [card]
+text=Draw a card for each Island you control.
+id=158692
+alias=87978
+name=Flow of Ideas
+rarity=U
+type=Sorcery
+mana={5}{U}
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.
 auto={T}:Add{G}
 id=157877
@@ -347,6 +356,14 @@ mana={5}{G}
 power=3
 subtype=Treefolk Shaman
 toughness=6
+[/card]
+[card]
+text=Destroy all artifacts and enchantments. You gain 2 life for each permanent destroyed this way.
+id=146759
+name=Fracturing Gust
+rarity=R
+type=Instant
+mana={2}{GW}{GW}{GW}
 [/card]
 [card]
 text=Sacrifice Fulminator Mage: Destroy target nonbasic land.
@@ -418,6 +435,14 @@ mana={1}
 power=1
 subtype=Scarecrow
 toughness=1
+[/card]
+[card]
+text=Put a 2/2 green Wolf creature token into play for each Forest you control.
+id=153996
+name=Howl of the Night Pack
+rarity=U
+type=Sorcery
+mana={6}{G}
 [/card]
 [card]
 text=Inkfathom Infiltrator can't block and is unblockable.
@@ -633,6 +658,16 @@ subtype=Faerie Soldier
 toughness=1
 [/card]
 [card]
+text=Destroy target land. Poison the Well deals 2 damage to that land's controller.
+id=147427
+target=Land
+auto=destroy
+name=Poison the Well
+rarity=C
+type=Sorcery
+mana={2}{BR}{BR}
+[/card]
+[card]
 text=Creatures you control have double strike.
 auto=lord(creature|myinplay) double strike
 id=146727
@@ -692,6 +727,28 @@ type=Artifact Creature
 mana={2}
 power=1
 subtype=Scarecrow
+toughness=1
+[/card]
+[card]
+text=Destroy target artifact. Smash to Smithereens deals 3 damage to that artifact's controller.
+id=158243
+target=Artifact
+auto=destroy
+name=Smash to Smithereens
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text={B}{R}: Each player loses 1 life.
+id=157880
+auto={B}{R}:damage:1 all(player)
+name=Spiteflame Witch
+rarity=U
+type=Creature
+mana={1}{BR}
+power=2
+subtype=Elemental Shaman
 toughness=1
 [/card]
 [card]
@@ -970,6 +1027,16 @@ subtype=Scarecrow
 toughness=4
 [/card]
 [card]
+text=Tap all creatures your opponents control and untap all creatures you control.
+id=146024
+auto=tap all(creature|opponentinplay)
+auto=untap all(creature|myinplay)
+name=Thoughtweft Gambit
+rarity=U
+type=Instant
+mana={4}{WU}{WU}
+[/card]
+[card]
 text=Flash     Enchant creature     Enchanted creature gets -3/-0.
 abilities=flash
 target=creature
@@ -1064,6 +1131,18 @@ mana={GW}{GW}{GW}
 power=3
 subtype=Elf Knight
 toughness=4
+[/card]
+[card]
+text=Flying     Attacking creatures you control have lifelink.
+id=146090
+auto=lord(creature[attacking]|myinplay) lifelink
+name=Windbrisk Raptor
+rarity=R
+type=Creature
+mana={5}{W}{W}
+power=5
+subtype=Bird
+toughness=7
 [/card]
 [card]
 text=Wingrattle Scarecrow has flying as long as you control a blue creature.     Wingrattle Scarecrow has persist as long as you control a black creature. (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)

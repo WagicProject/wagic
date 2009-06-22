@@ -463,28 +463,12 @@ type=Enchantment
 mana={4}{G}
 [/card]
 [card]
-text=Draw a card for each Island you control.
-id=158692
-name=Flow of Ideas
-rarity=U
-type=Sorcery
-mana={5}{U}
-[/card]
-[card]
 text=Return a card at random from your graveyard to your hand, then reorder your graveyard as you choose.
 id=146736
 name=Fossil Find
 rarity=U
 type=Sorcery
 mana={RG}
-[/card]
-[card]
-text=Destroy all artifacts and enchantments. You gain 2 life for each permanent destroyed this way.
-id=146759
-name=Fracturing Gust
-rarity=R
-type=Instant
-mana={2}{GW}{GW}{GW}
 [/card]
 [card]
 text=When Furystoke Giant comes into play, other creatures you control gain &quot;{T}: This creature deals 2 damage to target creature or player&quot; until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
@@ -641,8 +625,6 @@ power=4
 subtype=Scarecrow
 toughness=4
 [/card]
-
-
 [card]
 text=At the beginning of your upkeep, remove a -1/-1 counter from each creature you control.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=153312
@@ -697,14 +679,6 @@ subtype=Goblin
 toughness=*
 [/card]
 [card]
-text=Put a 2/2 green Wolf creature token into play for each Forest you control.
-id=153996
-name=Howl of the Night Pack
-rarity=U
-type=Sorcery
-mana={6}{G}
-[/card]
-[card]
 text=Trample     Whenever Hungry Spriggan attacks, it gets +3/+3 until end of turn.
 id=153997
 name=Hungry Spriggan
@@ -750,7 +724,6 @@ power=3
 subtype=Giant Warrior
 toughness=3
 [/card]
-
 [card]
 text=Fear     {2}{U}{B}: Each unblocked creature becomes 4/1 until end of turn.
 id=157879
@@ -811,7 +784,6 @@ power=2
 subtype=Kithkin Soldier
 toughness=2
 [/card]
-
 [card]
 text=Flying     {1}{U}, {T}: Target opponent removes the top card of his or her library from the game. Until end of turn, you may play that card. ({T} is the untap symbol.)
 id=146036
@@ -960,6 +932,8 @@ mana={UB}{UB}{UB}{UB}
 text=Target player puts the top four cards of his or her library into his or her graveyard.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 id=158759
 name=Memory Sluice
+target=player
+auto=deplete:4
 rarity=C
 type=Sorcery
 mana={UB}
@@ -1081,11 +1055,11 @@ power=5
 subtype=Troll
 toughness=5
 [/card]
-
 [card]
 text=Mudbrawler Raiders can't be blocked by blue creatures.
 id=141992
 name=Mudbrawler Raiders
+auto=cantbeblockedby(creature[blue])
 rarity=C
 type=Creature
 mana={2}{RG}{RG}
@@ -1185,14 +1159,6 @@ name=Plague of Vermin
 rarity=R
 type=Sorcery
 mana={6}{B}
-[/card]
-[card]
-text=Destroy target land. Poison the Well deals 2 damage to that land's controller.
-id=147427
-name=Poison the Well
-rarity=C
-type=Sorcery
-mana={2}{BR}{BR}
 [/card]
 [card]
 text=Whenever a land comes into play under an opponent's control, that player loses 2 life and you gain 2 life.
@@ -1302,10 +1268,10 @@ rarity=U
 type=Enchantment
 mana={1}{G}{G}
 [/card]
-
 [card]
 text=Raven's Run Dragoon can't be blocked by black creatures.
 id=142037
+auto=cantbeblockedby(creature[black])
 name=Raven's Run Dragoon
 rarity=C
 type=Creature
@@ -1554,14 +1520,6 @@ subtype=Giant Rogue
 toughness=4
 [/card]
 [card]
-text=Destroy target artifact. Smash to Smithereens deals 3 damage to that artifact's controller.
-id=158243
-name=Smash to Smithereens
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
-[card]
 text=Whenever a player plays a black spell, you may pay {1}. If you do, target player loses 1 life.
 id=147376
 name=Smolder Initiate
@@ -1587,6 +1545,7 @@ toughness=1
 text=Sootwalkers can't be blocked by white creatures.
 id=141936
 name=Sootwalkers
+auto=cantbeblockedby(creature[white])
 rarity=C
 type=Creature
 mana={2}{BR}{BR}
@@ -1612,17 +1571,6 @@ name=Spell Syphon
 rarity=C
 type=Instant
 mana={1}{U}
-[/card]
-[card]
-text={B}{R}: Each player loses 1 life.
-id=157880
-name=Spiteflame Witch
-rarity=U
-type=Creature
-mana={1}{BR}
-power=2
-subtype=Elemental Shaman
-toughness=1
 [/card]
 [card]
 text=At the beginning of each player's draw step, that player draws an additional card.     Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
@@ -1723,7 +1671,6 @@ power=2
 subtype=Kithkin Soldier Wizard
 toughness=2
 [/card]
-
 [card]
 text=If you would draw a card, draw two cards instead.
 id=146728
@@ -1731,14 +1678,6 @@ name=Thought Reflection
 rarity=R
 type=Enchantment
 mana={4}{U}{U}{U}
-[/card]
-[card]
-text=Tap all creatures your opponents control and untap all creatures you control.
-id=146024
-name=Thoughtweft Gambit
-rarity=U
-type=Instant
-mana={4}{WU}{WU}
 [/card]
 [card]
 text=You gain 1 life for each tapped artifact, creature, and land you control.
@@ -1817,7 +1756,6 @@ type=Artifact
 mana={3}
 subtype=Equipment
 [/card]
-
 [card]
 text=Vexing Shusher can't be countered.     {RG}: Target spell can't be countered by spells or abilities.
 id=146016
@@ -1841,6 +1779,7 @@ mana={G}
 text=Wanderbrine Rootcutters can't be blocked by green creatures.
 id=142012
 name=Wanderbrine Rootcutters
+auto=cantbeblockedby(creature[green])
 rarity=C
 type=Creature
 mana={2}{UB}{UB}
@@ -1848,7 +1787,6 @@ power=3
 subtype=Merfolk Rogue
 toughness=3
 [/card]
-
 [card]
 text=Enchant player     If a card would be put into enchanted player's graveyard from anywhere, instead that card is revealed and put on the bottom of that player's library.
 id=146740
@@ -1890,18 +1828,6 @@ power=4
 subtype=Elf Knight
 toughness=4
 [/card]
-[card]
-text=Flying     Attacking creatures you control have lifelink.
-id=146090
-name=Windbrisk Raptor
-rarity=R
-type=Creature
-mana={5}{W}{W}
-power=5
-subtype=Bird
-toughness=7
-[/card]
-
 [card]
 text=Whenever Witherscale Wurm blocks or becomes blocked by a creature, that creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)  Whenever Witherscale Wurm deals damage to an opponent, remove all -1/-1 counters from it.
 id=152068

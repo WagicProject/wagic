@@ -2102,6 +2102,42 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->currentlyActing()->life+=damage_life;
 			break;
 		}
+	
+	case 153996: // Howl of the Night Pack
+		{
+		int x = card->controller()->game->inPlay->countByType("Forest");
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Wolf","Creature Wolf",2,2,"green",0);
+          for (int i=0; i < x-1; i++){
+            tok->resolve();
+          }
+      break;
+    }
+
+	case 147427: // Poison the Well
+		{
+			card->target->controller()->life-=2;
+			break;
+		}
+	case 158243: //Smash to Smithereens
+		{
+			card->target->controller()->life-=3;
+			break;
+		}
+	
+	case 146759: //Fracturing Gust
+    {
+		GameObserver * game = GameObserver::GetInstance();
+      for (int i = 0; i < 2 ; i++){
+		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+			if (current->hasType("Artifact") || current->hasType("Enchantment")){
+				game->players[i]->game->putInGraveyard(current);
+				card->controller()->life+= 2;
+			}
+		}
+	  }
+      break;
+	}
 
 // --- addon Invasion---
     case 23195: //Artifact Mutation
