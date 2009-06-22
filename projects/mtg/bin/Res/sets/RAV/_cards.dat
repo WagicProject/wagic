@@ -608,6 +608,15 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text=({GW} can be paid with either {G} or {W}.)  Other permanents you control can't be the targets of spells or abilities your opponents control.
+auto=lord(*|myinplay) opponentshroud other
+id=83720
+name=Privileged Position
+rarity=R
+type=Enchantment
+mana={2}{GW}{GW}{GW}
+[/card]
+[card]
 text=Target player puts the top X cards of his or her library into his or her graveyard and you gain X life.
 id=89114
 target=player

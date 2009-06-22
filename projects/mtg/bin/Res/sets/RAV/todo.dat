@@ -1435,14 +1435,6 @@ subtype=Spirit
 toughness=5
 [/card]
 [card]
-text=({GW} can be paid with either {G} or {W}.)  Other permanents you control can't be the targets of spells or abilities your opponents control.
-id=83720
-name=Privileged Position
-rarity=R
-type=Enchantment
-mana={2}{GW}{GW}{GW}
-[/card]
-[card]
 text=Target creature becomes the color or colors of your choice until end of turn.     Draw a card.
 id=87979
 name=Quickchange
