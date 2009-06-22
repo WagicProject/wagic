@@ -1,7 +1,7 @@
 #ifndef _GUI_LAYERS_H_
 #define _GUI_LAYERS_H_
 
-#define MAX_GUI_LAYERS 6
+#define MAX_GUI_LAYERS 7
 
 #define DIR_DOWN 1
 #define DIR_UP 2

@@ -110,6 +110,7 @@ void GameApp::Create()
   CommonRes->CreateTexture("graphics/phasebar.png");
   CommonRes->CreateTexture("graphics/background.png");
   CommonRes->CreateTexture("graphics/back.jpg");
+  CommonRes->CreateTexture("graphics/phasebar.png");
 
   //CommonRes->CreateTexture("graphics/interrupt.png");
   //CommonRes->CreateQuad("interrupt", "graphics/interrupt.png", 0, 0, 256, 128);

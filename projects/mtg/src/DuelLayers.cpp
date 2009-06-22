@@ -2,7 +2,7 @@
 #include "../include/DuelLayers.h"
 #include "../include/MTGRules.h"
 #include "../include/DamageResolverLayer.h"
-
+#include "../include/GuiPhaseBar.h"
 
 
 void DuelLayers::init(){
@@ -32,33 +32,32 @@ void DuelLayers::init(){
   //3 Game
   MTGGuiPlay * play = NEW MTGGuiPlay(4, GameObserver::GetInstance());
 
+  Add(NEW GuiPhaseBar(GameObserver::GetInstance()));
   Add(mActionStack);
   Add(mDamageResolver);
   Add(actionLayer);
   Add(mGuiHand);
   Add(play);
-
-
 }
 
 
 ActionStack * DuelLayers::stackLayer(){
-  return ((ActionStack *) (objects[0]));
+  return ((ActionStack *) (objects[1]));
 }
 
 DamageResolverLayer * DuelLayers::combatLayer(){
-  return ((DamageResolverLayer *) (objects[1]));
+  return ((DamageResolverLayer *) (objects[2]));
 }
 
 ActionLayer * DuelLayers::actionLayer(){
-  return ((ActionLayer *) (objects[2]));
+  return ((ActionLayer *) (objects[3]));
 }
 
 MTGGuiHand * DuelLayers::handLayer(){
-  return ((MTGGuiHand *) (objects[3]));
+  return ((MTGGuiHand *) (objects[4]));
 }
 MTGGuiPlay * DuelLayers::playLayer(){
-  return ((MTGGuiPlay *) (objects[4]));
+  return ((MTGGuiPlay *) (objects[5]));
 }
 
 
