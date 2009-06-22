@@ -361,6 +361,18 @@ subtype=Scarecrow
 toughness=2
 [/card]
 [card]
+text=Slippery Bogle can't be the target of spells or abilities your opponents control.
+abilities=opponentshroud
+id=150999
+name=Slippery Bogle
+rarity=C
+type=Creature
+mana={GU}
+power=1
+subtype=Beast
+toughness=1
+[/card]
+[card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
 abilities=wither
 id=157211
