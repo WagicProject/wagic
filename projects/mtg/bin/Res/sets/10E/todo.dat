@@ -1228,18 +1228,6 @@ color=Land
 type=Land
 [/card]
 [card]
-text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-id=130498
-name=Troll Ascetic
-rarity=R
-color=Green
-type=Creature
-mana={1}{G}{G}
-power=3
-subtype=Troll Shaman
-toughness=2
-[/card]
-[card]
 text=You have shroud. (You can't be the target of spells or abilities.)
 id=129610
 name=True Believer

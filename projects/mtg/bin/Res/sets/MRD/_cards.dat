@@ -987,6 +987,19 @@ type=Artifact
 mana={4}
 [/card]
 [card]
+text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+auto={1}{G}:regenerate
+abilities=opponentshroud
+id=49828
+name=Troll Ascetic
+rarity=R
+type=Creature
+mana={1}{G}{G}
+power=3
+subtype=Troll Shaman
+toughness=2
+[/card]
+[card]
 text=Haste
 id=5585
 abilities=haste

@@ -2527,17 +2527,6 @@ subtype=Construct
 toughness=1
 [/card]
 [card]
-text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-id=49828
-name=Troll Ascetic
-rarity=R
-type=Creature
-mana={1}{G}{G}
-power=3
-subtype=Troll Shaman
-toughness=2
-[/card]
-[card]
 text={1}{G}: Regenerate target green creature.
 id=46117
 name=Trolls of Tel-Jilad
