@@ -764,18 +764,6 @@ subtype=Lizard
 toughness=2
 [/card]
 [card]
-text={T}: Scattershot Archer deals 1 damage to each creature with flying.
-id=185828
-name=Scattershot Archer
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf Archer
-toughness=2
-[/card]
-
-[card]
 text={1}{B}, {T}: Target player discards a card. Play this ability only during your turn.
 id=189084
 name=Scepter of Fugue

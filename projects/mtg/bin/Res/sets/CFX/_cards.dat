@@ -371,6 +371,18 @@ subtype=Human Rogue
 toughness=1
 [/card]
 [card]
+text={T}: Scattershot Archer deals 1 damage to each creature with flying.
+auto={T}:damage:1 all(creature[flying])
+id=185828
+name=Scattershot Archer
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Archer
+toughness=2
+[/card]
+[card]
 text={W}, {T}: Tap target permanent.
 auto={W}{T}:tap target(*)
 id=174792
