@@ -685,6 +685,18 @@ rarity=L
 subtype=Plains
 [/card]
 [card]
+text=Plated Slagwurm can't be the target of spells or abilities your opponents control.
+abilities=opponentshroud
+id=47781
+name=Plated Slagwurm
+rarity=R
+type=Creature
+mana={4}{G}{G}{G}
+power=8
+subtype=Wurm
+toughness=8
+[/card]
+[card]
 text=Target creature gets +3/+3 and gains trample until end of turn.
 id=48595
 target=creature

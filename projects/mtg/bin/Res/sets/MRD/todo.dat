@@ -1530,17 +1530,6 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
-text=Plated Slagwurm can't be the target of spells or abilities your opponents control.
-id=47781
-name=Plated Slagwurm
-rarity=R
-type=Creature
-mana={4}{G}{G}{G}
-power=8
-subtype=Wurm
-toughness=8
-[/card]
-[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  You can't lose the game and your opponents can't win the game.
 id=48580
 name=Platinum Angel
