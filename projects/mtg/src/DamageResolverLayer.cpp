@@ -169,6 +169,7 @@ int DamageResolverLayer::initResolve(){
   if (empty()){
     if (!damageStack->empty()){
       game->mLayers->stackLayer()->addAction(damageStack);
+      game->mLayers->stackLayer()->resolve(); //Wagic 2010
     }else{
       SAFE_DELETE(damageStack);
     }
@@ -246,6 +247,7 @@ int DamageResolverLayer::resolveDamages(){
     }
   }
   game->mLayers->stackLayer()->addAction(damageStack);
+  game->mLayers->stackLayer()->resolve(); //Wagic 2010
   remainingDamageSteps--;
   resetObjects();
   damageStack = NULL;

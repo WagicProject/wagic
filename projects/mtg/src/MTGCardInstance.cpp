@@ -101,6 +101,7 @@ void MTGCardInstance::initMTGCI(){
   previous = NULL;
   next = NULL;
   lastController = NULL;
+  regenerateTokens = 0;
 }
 
 
@@ -128,13 +129,20 @@ int MTGCardInstance::afterDamage(){
   doDamageTest = 0;
   if (!isACreature()) return 0;
   if (life <=0 && isInPlay()){
-    GameObserver * game = GameObserver::GetInstance();
-    game->mLayers->stackLayer()->addPutInGraveyard(this);
-    return 1;
+    return destroy();
   }
   return 0;
 }
 
+int MTGCardInstance::bury(){
+    Player * p = controller();
+    p->game->putInZone(this,p->game->inPlay,owner->game->graveyard);
+    return 1;
+}
+int MTGCardInstance::destroy(){
+    if (!triggerRegenerate()) return bury();
+    return 0;
+}
 
 MTGGameZone * MTGCardInstance::getCurrentZone(){
   GameObserver * game = GameObserver::GetInstance();
@@ -194,10 +202,17 @@ void MTGCardInstance::resetAllDamage(){
   nb_damages = 0;
 }
 
-void MTGCardInstance::regenerate(){
+int MTGCardInstance::regenerate(){
+  return ++regenerateTokens;
+}
+
+int MTGCardInstance::triggerRegenerate(){
+  if (! regenerateTokens) return 0;
+  regenerateTokens--;
   tapped = 1;
   life = toughness;
   initAttackersDefensers();
+  return 1;
 }
 
 
@@ -217,6 +232,7 @@ int MTGCardInstance::cleanup(){
   if (previous && !previous->stillInUse()){
     SAFE_DELETE(previous);
   }
+  regenerateTokens = 0;
   return 1;
 }
 

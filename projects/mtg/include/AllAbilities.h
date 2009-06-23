@@ -434,12 +434,8 @@ class ADestroyer:public TargetAbility{
   int resolve(){
     MTGCardInstance * _target = tc->getNextCardTarget();
     if(_target){
-      if (bury){
-	_target->controller()->game->putInGraveyard(_target);
-      }else{
-	game->mLayers->stackLayer()->addPutInGraveyard(_target);
-      }
-      return 1;
+      if (bury) return _target->bury();
+      else return _target->destroy();
     }
     return 0;
   }
@@ -976,17 +972,46 @@ class ASpellCounterEnchantment:public TargetAbility{
 
 //Circle of Protections
 class ACircleOfProtection: public TargetAbility{
+protected:
+  map<ReplacementEffect*, int> current;
  public:
- ACircleOfProtection(int _id, MTGCardInstance * source, int _color):TargetAbility(_id,source,NEW DamageTargetChooser(source,_color),NEW ManaCost(),0,0){
+ ACircleOfProtection(int _id, MTGCardInstance * source, int _color):TargetAbility(_id,source,NEW SpellOrPermanentTargetChooser(source,_color),NEW ManaCost(),0,0){
     cost->add(Constants::MTG_COLOR_ARTIFACT,1);
   }
 
   int resolve(){
-    Damage * damage = tc->getNextDamageTarget();
-    if (!damage) return 0;
-    game->mLayers->stackLayer()->Fizzle(damage);
+    MTGCardInstance * _target = NULL;
+    if (! (_target = tc->getNextCardTarget())){
+      Spell * starget = tc->getNextSpellTarget();
+      _target = starget->source;
+    }
+    if (!_target) return 0;
+    REDamagePrevention * re = NEW REDamagePrevention (
+      NEW CardTargetChooser(_target,NULL), 
+      NEW PlayerTargetChooser(0,1,source->controller()));
+    current[re] = 1;
+    game->replacementEffects->add(re);
     return 1;
   }
+
+  void clear(){
+    for (map<ReplacementEffect*, int>::iterator it = current.begin(); it!=current.end(); it++){
+      ReplacementEffect* re = (*it).first;
+      game->replacementEffects->remove(re);
+      delete re;
+    }
+    current.clear();
+  }
+
+  void Update(float dt){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) clear();
+    TargetAbility::Update(dt);
+  }
+
+  ~ACircleOfProtection(){
+    clear();
+  }
+
   virtual ostream& toString(ostream& out) const
   {
     out << "ACircleOfProtection ::: (";
@@ -1005,16 +1030,6 @@ class AStandardRegenerate:public ActivatedAbility{
   int resolve(){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     _target->regenerate();
-    PutInGraveyard * action = ((PutInGraveyard *) game->mLayers->stackLayer()->getNext(NULL,ACTION_PUTINGRAVEYARD,NOT_RESOLVED));
-    while(action){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Fizzling due to regenerate! \n");
-#endif
-      if (action->card == _target){
-	game->mLayers->stackLayer()->Fizzle(action);
-      }
-      action = ((PutInGraveyard *) game->mLayers->stackLayer()->getNext(action,ACTION_PUTINGRAVEYARD,NOT_RESOLVED));
-    }
     return 1;
   }
 

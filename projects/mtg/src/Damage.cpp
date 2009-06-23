@@ -45,12 +45,17 @@ int Damage::resolve(){
     _target->doDamageTest = 1;
   }
 
-  int a = target->dealDamage(damage);
+  GameObserver * g = GameObserver::GetInstance();
+  WEvent * e = NEW WEventDamage(this);
+  e = g->replacementEffects->replace(e);
 
-  //Send Damage event to listeners
-  WEventDamage * e = NEW WEventDamage(this);
-  GameObserver::GetInstance()->receiveEvent(e);
-  delete e;
+  int a = 0;
+  if (damage) a = target->dealDamage(damage);
+
+  //Send (Damage/Replaced effect) event to listeners
+
+  g->receiveEvent(e);
+  SAFE_DELETE(e);
 
   return a;
 }

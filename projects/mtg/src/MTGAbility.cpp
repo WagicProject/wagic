@@ -37,14 +37,12 @@ int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
   tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
   GameObserver * game = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
-    for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+    Player * p = game->players[i]; 
+    for (int j = p->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  p->game->inPlay->cards[j];
       if (tc->canTarget(current)){
-	if (bury){
-	  game->players[i]->game->putInGraveyard(current);
-	}else{
-	  game->mLayers->stackLayer()->addPutInGraveyard(current);
-	}
+        if (bury) current->bury();
+        else current->destroy();      
       }
     }
   }
@@ -546,7 +544,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	          if (tc){
 	            game->addObserver(NEW ABurier(id, card,tc));
 	          }else{
-	            target->controller()->game->putInGraveyard(target);
+	            target->bury();
 	          }
 	        }
         }
@@ -584,7 +582,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	        if (tc){
 	          game->addObserver(NEW ADestroyer(id, card,tc,0,cost));
 	        }else{
-	          game->mLayers->stackLayer()->addPutInGraveyard(target);
+            target->destroy();
 	        }
         }
         result++;
@@ -1605,19 +1603,19 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       int _x = x;
       MTGCardInstance * target = spell->getNextCardTarget();
       while(target && _x){
-	game->mLayers->stackLayer()->addPutInGraveyard(target);
-	_x--;
-	target = spell->getNextCardTarget(target);
+        target->destroy();
+	      _x--;
+	      target = spell->getNextCardTarget(target);
       }
       x-=_x;
       for (int i = 0; i < 2 ; i++){
-	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
-	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (current->isACreature()){
-	    game->mLayers->stackLayer()->addDamage(card, current, x);
-	  }
-	}
+	      game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
+	      for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+	        MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+	        if (current->isACreature()){
+	          game->mLayers->stackLayer()->addDamage(card, current, x);
+	        }
+	      }
       }
       break;
     }

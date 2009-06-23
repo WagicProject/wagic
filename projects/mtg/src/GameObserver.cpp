@@ -51,6 +51,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   reaction = 0;
   gameOver = NULL;
   phaseRing = NEW PhaseRing(_players,_nb_players);
+  replacementEffects = NEW ReplacementEffects();
 }
 
 void GameObserver::setGamePhaseManager(MTGGamePhase * _phases){
@@ -229,6 +230,7 @@ GameObserver::~GameObserver(){
   SAFE_DELETE(targetChooser);
   SAFE_DELETE(mLayers);
   SAFE_DELETE(phaseRing);
+  SAFE_DELETE(replacementEffects);
   LOG("==GameObserver Destroyed==");
 
 }
@@ -442,6 +444,7 @@ void GameObserver::untapPhase(){
 }
 
 int GameObserver::receiveEvent(WEvent * e){
+  if (!e) return 0;
   return mLayers->receiveEvent(e);
 }
 

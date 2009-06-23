@@ -13,7 +13,7 @@ class GameObserver;
 #define DAMAGEABLE_MTGCARDINSTANCE 0
 #define DAMAGEABLE_PLAYER 1
 
-class Damageable {
+class Damageable:public Targetable {
  protected:
 
  public:

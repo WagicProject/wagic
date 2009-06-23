@@ -10,7 +10,7 @@
 class MTGPlayerCards;
 class MTGInPlay;
 
-class Player: public Damageable, public Targetable{
+class Player: public Damageable{
  protected:
   ManaCost * manaPool;
 

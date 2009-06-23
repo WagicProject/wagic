@@ -23,7 +23,7 @@ class Counters;
 
 
 
-class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
+class MTGCardInstance: public MTGCard, public Damageable {
  protected:
   int untapping;
   int nb_damages;
@@ -37,6 +37,7 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
   MTGCardInstance * getNextPartner();
   void initMTGCI();
  public:
+  int regenerateTokens;
   bool isToken;
   int stillInUse();
   Player * lastController;
@@ -76,13 +77,16 @@ class MTGCardInstance: public MTGCard, public Damageable, public Targetable {
   MTGCardInstance();
   MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to);
   Blockers * getBlockers();
-  void regenerate();
+  int regenerate();
+  int triggerRegenerate();
   Player * controller();
   JQuad * getIcon();
   int initAttackersDefensers();
   MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
   int nbOpponents();
   ~MTGCardInstance();
+  int bury();
+  int destroy();
 
 
   int addToToughness(int value);

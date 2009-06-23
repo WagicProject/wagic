@@ -330,7 +330,21 @@ int TargetChooser::targetListSet(){
   return 0;
 }
 
+/**
+  a specific Card
+**/
+CardTargetChooser::CardTargetChooser(MTGCardInstance * _card, MTGCardInstance * source):TargetChooser(source){
+  validTarget = _card;
+}
 
+int CardTargetChooser::canTarget(Targetable * target ){
+  if (!TargetChooser::canTarget(target)) return 0;
+  if (target->typeAsTarget() == TARGET_CARD){
+    MTGCardInstance * card = (MTGCardInstance *) target;
+    if (card == validTarget) return 1;
+  }
+  return 0;
+}
 
 /**
    Choose anything that has a given list of types
@@ -522,9 +536,15 @@ int TargetZoneChooser::targetsZone(MTGGameZone * z){
 }
 
 /* Player Target */
+
+PlayerTargetChooser::PlayerTargetChooser(MTGCardInstance * card, int _maxtargets, Player *_p):TargetChooser(card, _maxtargets){
+  p = _p;
+}
+
 int PlayerTargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_PLAYER){
-    return 1;
+    Player * _target = (Player *) target;
+    if (!p || p == _target) return 1;
   }
   return 0;
 }

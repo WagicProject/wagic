@@ -52,9 +52,19 @@ class TargetChooserFactory{
 };
 
 
+class CardTargetChooser:public TargetChooser {
+
+protected:
+  MTGCardInstance * validTarget;
+public:
+  CardTargetChooser(MTGCardInstance * _card, MTGCardInstance * source);
+  virtual int canTarget(Targetable * target );
+};
+
+
 class TargetZoneChooser:public TargetChooser{
  public:
-  MTGGameZone * zones[6];
+  MTGGameZone * zones[10];
   int nbzones;
   int init(MTGGameZone ** _zones, int _nbzones);
   int targetsZone(MTGGameZone * z);
@@ -83,8 +93,10 @@ class DamageableTargetChooser:public CreatureTargetChooser{
 
 
 class PlayerTargetChooser:public TargetChooser{
+protected:
+  Player * p; //In Case we can only target a specific player
  public:
- PlayerTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1):TargetChooser(card, _maxtargets){};
+ PlayerTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1, Player *_p = NULL);
   virtual int canTarget(Targetable * target);
 };
 

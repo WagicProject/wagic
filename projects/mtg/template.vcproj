@@ -373,6 +373,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GuiPhaseBar.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Logger.cpp"
 				>
 			</File>
@@ -454,6 +458,10 @@
 			</File>
 			<File
 				RelativePath=".\src\PriceList.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\ReplacementEffects.cpp"
 				>
 			</File>
 			<File
@@ -674,6 +682,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\GuiPhaseBar.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\Logger.h"
 				>
 			</File>
@@ -759,6 +771,10 @@
 			</File>
 			<File
 				RelativePath=".\include\PriceList.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\ReplacementEffects.h"
 				>
 			</File>
 			<File

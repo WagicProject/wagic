@@ -9,16 +9,11 @@ inplay:1335,plains
 1166
 next
 #blockers
-next
-no
-#damage phase
-no
-#interrupt the actual damage
-yes
 plains
 1335
 1166
-endinterrupt
+next
+#damage
 next
 #combatend
 [ASSERT]

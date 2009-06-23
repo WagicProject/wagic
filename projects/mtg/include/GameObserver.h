@@ -9,7 +9,7 @@
 #include "DuelLayers.h"
 #include "TargetChooser.h"
 #include "PhaseRing.h"
-
+#include "ReplacementEffects.h"
 
 class MTGGamePhase;
 class MTGAbility;
@@ -43,6 +43,7 @@ class GameObserver{
   int oldGamePhase;
   TargetChooser * targetChooser;
   DuelLayers * mLayers;
+  ReplacementEffects *replacementEffects;
   Player * gameOver;
   Player * players[2]; //created outside
   MTGGamePhase * gamePhaseManager; //Created Outside ?
