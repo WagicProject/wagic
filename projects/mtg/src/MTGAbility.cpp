@@ -167,6 +167,17 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
     }
   }
 
+    //Each Time...
+  found = magicText.find("each");
+  if (found != string::npos){
+    for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
+      found = magicText.find(Constants::MTGPhaseCodeNames[i]);
+      if (found != string::npos){
+	      return NEW TriggerAtPhase(i);
+      }
+    }
+  }
+
   return NULL;
 }
 
@@ -1309,11 +1320,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW ARegularLifeModifierAura(_id+2, card, card, Constants::MTG_PHASE_DRAW, -1, 1));
       break;
     }
-  //case 1126:// Millstone
-  //  {
-//	game->addObserver( NEW AMillstone(_id ,card));
-//      break;
-//    }
   case 1215: //Power Leak
     {
       game->addObserver( NEW APowerLeak(_id ,card, card->target));
@@ -1699,7 +1705,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1352: //Karma
     {
-      game->addObserver(NEW AKarma(_id, card));
+	  game->addObserver(NEW ADamageForTypeControlled(_id, card,"swamp"));
       break;
     }
   case 1359: //Red Ward
@@ -2050,13 +2056,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		game->mLayers->stackLayer()->addDamage(card, target, damage);
 	break;
 	}
-
- // case 135268: //Colossus of Sardia
- //   {
- //     int cost[] = {Constants::MTG_COLOR_ARTIFACT, 9};
- //     game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
- //     break;
- //   }
 
   case 129521: //Dehydratation
   // Don't understand why but target automatically untap when cast...

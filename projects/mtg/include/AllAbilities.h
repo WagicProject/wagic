@@ -1583,36 +1583,6 @@ class AControlStealAura: public MTGAbility{
   }
 };
 
-
-
-
-//Same as StealControl Aura ???? Obsolete ?
-class ATakeControlAura:public MTGAbility{
- public:
-  Player * previousController;
- ATakeControlAura(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id, _source,_target){
-    previousController = _target->controller();
-    previousController->game->putInZone(_target, previousController->game->inPlay, source->controller()->game->inPlay);
-
-  }
-
-  int destroy(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    Player * p = _target->controller();
-    if (p && p->game->inPlay->hasCard(_target)){
-      p->game->putInZone(_target, p->game->inPlay, previousController->game->inPlay);
-    }
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ATakeControlAura ::: previousController : " << previousController
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-};
-
 //Creatures that kill their blockers
 //Ex : Cockatrice
 class AOldSchoolDeathtouch:public MTGAbility{
@@ -1838,33 +1808,6 @@ class AArmageddonClock:public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 };
-
-
-//Black Vise
-class ABlackVise: public MTGAbility{
- public:
-  int nbcards;
- ABlackVise(int id, MTGCardInstance * _source):MTGAbility(id, _source){
-    nbcards = game->opponent()->game->hand->nb_cards;
-  }
-
-  void Update(float dt){
-    if (newPhase == Constants::MTG_PHASE_UPKEEP && GameObserver::GetInstance()->opponent()->game->inPlay->hasCard(source)){
-      nbcards = game->currentPlayer->game->hand->nb_cards;
-    }
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && GameObserver::GetInstance()->opponent()->game->inPlay->hasCard(source)){
-      if ( nbcards > 4) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, nbcards - 4);
-    }
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ABlackVise ::: nbcards : " << nbcards
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-};
-
 
 //Channel
 class AChannel:public ActivatedAbility{
@@ -2257,26 +2200,6 @@ class AHowlingMine:public MTGAbility{
   }
 };
 
-//1119 Jayemdae Tome
-class AJayemdaeTome:public ActivatedAbility{
- public:
- AJayemdaeTome(int _id, MTGCardInstance * card):ActivatedAbility(_id, card){
-    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
-    cost = NEW ManaCost(_cost,1);
-  }
-
-  int resolve(){
-    game->mLayers->stackLayer()->addDraw(source->controller());
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AJayemdaeTome ::: (";
-    return ActivatedAbility::toString(out) << ")";
-  }
-};
-
 
 //Living Artifact
 class ALivingArtifact:public MTGAbility{
@@ -2524,8 +2447,6 @@ class AHypnoticSpecter:public MTGAbility{
 	game->players[i]->game->discardRandom(game->players[i]->game->hand);
       }
     }
-
-
   }
 
   virtual ostream& toString(ostream& out) const
@@ -2634,32 +2555,6 @@ class AKudzu: public TargetAbility{
     return TargetAbility::toString(out) << ")";
   }
 };
-
-//Millstone
-class AMillstone:public TargetAbility{
- public:
- AMillstone(int _id, MTGCardInstance * card):TargetAbility(_id,card, NEW PlayerTargetChooser(), NEW ManaCost()){
-    cost->add(Constants::MTG_COLOR_ARTIFACT, 2);
-  }
-
-  int resolve(){
-    Player * player = tc->getNextPlayerTarget();
-    if (!player) return 0;
-    MTGLibrary * library = player->game->library;
-    for (int i = 0; i < 2; i++){
-      if (library->nb_cards)
-	player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
-    }
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AMillstone ::: (";
-    return TargetAbility::toString(out) << ")";
-  }
-};
-
 
 //1172 Pestilence
 class APestilence: public ActivatedAbility{
@@ -2790,28 +2685,6 @@ class APowerSurge:public TriggeredAbility{
   }
 };
 
-//1175 Royal Assassin
-class ARoyalAssassin:public TargetAbility{
- public:
-
- ARoyalAssassin(int _id, MTGCardInstance * _source):TargetAbility(_id,_source, NEW CreatureTargetChooser()){
-  }
-
-  int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
-    if(_target && _target->tapped){
-      _target->controller()->game->putInGraveyard(_target);
-      return 1;
-    }
-    return 0;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ARoyalAssassin ::: (";
-    return TargetAbility::toString(out) << ")";
-  }
-};
 
 
 //1176 Sacrifice
@@ -3147,34 +3020,6 @@ class AIslandSanctuary:public MTGAbility{
   }
 };
 
-//1352 Karma
-class AKarma: public TriggeredAbility{
- public:
- AKarma(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
-  }
-
-  int trigger(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
-    return 0;
-  }
-
-  int resolve(){
-    int totaldamage = 0;
-    MTGGameZone *  zone = game->currentPlayer->game->inPlay;
-    for (int i = 0; i < zone->nb_cards; i++){
-      if (zone->cards[i]->hasType("swamp")) totaldamage++;;
-    }
-    if (totaldamage) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, totaldamage);
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AKarma ::: (";
-    return TriggeredAbility::toString(out) << ")";
-  }
-};
-
 
 //Soul Net
 class ASoulNet:public ActivatedAbility{
@@ -3266,28 +3111,7 @@ class AStasis:public ActivatedAbility{
 
 //--------------Addon Abra------------------
 
-
-
-//Draft for counters
-class ACounters: public MTGAbility{
- public:
-  int counter;
-  int power;
-  int toughness;
- ACounters(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness):MTGAbility(id,_source,_target),power(_power),toughness(_toughness){
-	_target->counters->addCounter(power, toughness);
- }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ACounters ::: counter : " << counter
-		<< " ; power : " << power
-		<< " ; toughness : " << toughness
-		<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-};
-
-//Basilik
+//Basilik --> needs to be made more generic to avoid duplicate (also something like if opponent=type then ...)
 class ABasilik:public MTGAbility{
  public:
   MTGCardInstance * opponents[20];
@@ -3517,49 +3341,6 @@ class AShieldOfTheAge: public TargetAbility{
   }
 };
 
-//Abomination Kill blocking creature if white or green
-class AAbomination :public MTGAbility{
- public:
-  MTGCardInstance * opponents[20];
-  int nbOpponents;
-  AAbomination (int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-    nbOpponents = 0;
-  }
-
-  void Update(float dt){
-    if (newPhase != currentPhase){
-      if( newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
-	nbOpponents = 0;
-	MTGCardInstance * opponent = source->getNextOpponent();
-	while ((opponent && opponent->hasColor(Constants::MTG_COLOR_GREEN)) || opponent->hasColor(Constants::MTG_COLOR_WHITE)){
-	  opponents[nbOpponents] = opponent;
-	  nbOpponents ++;
-	  opponent = source->getNextOpponent(opponent);
-	}
-      }else if (newPhase == Constants::MTG_PHASE_COMBATEND){
-	for (int i = 0; i < nbOpponents ; i++){
-	  game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
-	}
-      }
-    }
-  }
-
-  int testDestroy(){
-    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
-      return 0;
-    }else{
-      return MTGAbility::testDestroy();
-    }
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AAbomination ::: opponents : " << opponents
-	<< " ; nbOpponents : " << nbOpponents
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-};
 
 // GiveLifeForTappedType
 class AGiveLifeForTappedType:public MTGAbility{
@@ -3642,10 +3423,6 @@ class AMinionofLeshrac: public TargetAbility{
     return TargetAbility::toString(out) << ")";
   }
 };
-
-
-
-
 
 //Generic Kird Ape
 class AKirdApe:public ListMaintainerAbility{
@@ -3889,11 +3666,77 @@ class AInstantControlSteal: public InstantAbility{
   virtual ostream& toString(ostream& out) const
   {
     out << "AInstantControlSteal ::: TrueController : " << TrueController
+	<< " ; TheftController : " << TheftController
 	<< " (";
     return InstantAbility::toString(out) << ")";
   }
 };
 
+/// Work in Progress also from no on all code could be removed...
+
+//Draft for counters
+class ACounters: public MTGAbility{
+ public:
+  int counter;
+  int power;
+  int toughness;
+ ACounters(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness):MTGAbility(id,_source,_target),power(_power),toughness(_toughness){
+	_target->counters->addCounter(power, toughness);
+ }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ACounters ::: counter : " << counter
+		<< " ; power : " << power
+		<< " ; toughness : " << toughness
+		<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+};
+
+///// Not working need to work on this one 
+///Abomination Kill blocking creature if white or green
+class AAbomination :public MTGAbility{
+ public:
+  MTGCardInstance * opponents[20];
+  int nbOpponents;
+  AAbomination (int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
+    nbOpponents = 0;
+  }
+
+  void Update(float dt){
+    if (newPhase != currentPhase){
+      if( newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
+	nbOpponents = 0;
+	MTGCardInstance * opponent = source->getNextOpponent();
+	while ((opponent && opponent->hasColor(Constants::MTG_COLOR_GREEN)) || opponent->hasColor(Constants::MTG_COLOR_WHITE)){
+	  opponents[nbOpponents] = opponent;
+	  nbOpponents ++;
+	  opponent = source->getNextOpponent(opponent);
+	}
+      }else if (newPhase == Constants::MTG_PHASE_COMBATEND){
+	for (int i = 0; i < nbOpponents ; i++){
+	  game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
+	}
+      }
+    }
+  }
+
+  int testDestroy(){
+    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
+      return 0;
+    }else{
+      return MTGAbility::testDestroy();
+    }
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAbomination ::: opponents : " << opponents
+	<< " ; nbOpponents : " << nbOpponents
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+};
 
 
 #endif
