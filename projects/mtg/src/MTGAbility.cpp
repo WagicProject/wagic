@@ -1885,7 +1885,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
 			if (current->hasType("Artifact")){
 				game->players[i]->game->putInGraveyard(current);
-				current->controller()->life-= current->getManaCost()->getConvertedCost();
+				current->controller()->life+= current->getManaCost()->getConvertedCost();
 			}
 		}
 	  }
@@ -1915,6 +1915,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 //-- addon 10E---
 
+	case 129767: //Threaten
+		{
+			game->addObserver( NEW AInstantControlSteal(_id,card,card->target));
+			break;
+		}
 	case 130542: //Flowstone Slide
 		{
 			TargetChooser * lordTargets = NULL;

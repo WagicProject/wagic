@@ -1172,6 +1172,8 @@ toughness=3
 [card]
 text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn. (It can attack and {T} this turn.)
 id=129767
+alias=1194
+auto=haste
 name=Threaten
 rarity=U
 color=Red

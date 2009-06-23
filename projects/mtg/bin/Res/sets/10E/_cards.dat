@@ -2712,6 +2712,17 @@ type=Artifact
 mana={5}
 [/card]
 [card]
+text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn. (It can attack and {T} this turn.)
+id=129767
+target=creature
+auto=haste
+name=Threaten
+rarity=U
+color=Red
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
 abilities=haste
 id=130381

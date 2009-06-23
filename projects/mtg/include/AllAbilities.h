@@ -3846,5 +3846,39 @@ class AVerdantForce: public TriggeredAbility{
   }
 };
 
+//Instant Steal control of a target
+class AInstantControlSteal: public InstantAbility{
+ public:
+  Player  * TrueController;
+  Player  * TheftController;
+ AInstantControlSteal(int _id , MTGCardInstance * _source, MTGCardInstance * _target):InstantAbility(_id, _source, _target){
+    TrueController = _target->controller();
+  //  TrueController->game->putInZone(_target, TrueController->game->inPlay, source->controller()->game->inPlay);
+ 	TheftController = source->controller();
+	MTGCardInstance * copy = _target->changeController(game->currentlyActing());
+    target = copy;
+    source->target = copy;
+
+ 
+ }
+ int destroy(){
+	MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (TheftController && TheftController->game->inPlay->hasCard(_target)){ //if the target is still in game -> spell was destroyed
+      _target->changeController(TrueController);
+	  
+    }
+	 return 1;
+  }
+
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AInstantControlSteal ::: TrueController : " << TrueController
+	<< " (";
+    return InstantAbility::toString(out) << ")";
+  }
+};
+
+
 
 #endif
