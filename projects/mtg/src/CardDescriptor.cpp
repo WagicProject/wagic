@@ -91,7 +91,8 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
 
 
   //Abilities
-  for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+  for(map<int,int>::const_iterator it = basicAbilities.begin(); it != basicAbilities.end(); ++it){
+    int j = it->first;
     if ((basicAbilities[j] == 1 && !card->basicAbilities[j]) || (basicAbilities[j] == -1 && card->basicAbilities[j])){
       match = NULL;
     }

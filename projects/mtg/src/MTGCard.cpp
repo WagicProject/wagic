@@ -33,9 +33,10 @@ const char * MTGCard::getSetName(){
 
 MTGCard::MTGCard(MTGCard * source){
   mCache = source->mCache;
-  for (int i = 0; i< Constants::NB_BASIC_ABILITIES; i++){
-    basicAbilities[i] = source->basicAbilities[i];
+  for(map<int,int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it){
+    basicAbilities[it->first] = source->basicAbilities[it->first];
   }
+
   for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
     types[i] = source->types[i];
   }
@@ -62,9 +63,8 @@ MTGCard::MTGCard(MTGCard * source){
 
 int MTGCard::init(){
   nb_types = 0;
-  for (int i = 0; i< Constants::NB_BASIC_ABILITIES; i++){
-    basicAbilities[i] = 0;
-  }
+  basicAbilities.clear();
+
   for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
     types[i] = 0;
   }

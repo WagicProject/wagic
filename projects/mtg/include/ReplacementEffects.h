@@ -6,6 +6,7 @@ using namespace std;
 #include "WEvent.h"
 
 class TargetChooser;
+class MTGAbility;
 
 class ReplacementEffect {
 public:
@@ -15,12 +16,13 @@ public:
 
 class REDamagePrevention: public ReplacementEffect {
 protected:
+  MTGAbility * source;
   TargetChooser * tcSource;
   TargetChooser * tcTarget;
   int damage;
   bool oneShot;
 public:
-  REDamagePrevention(TargetChooser *_tcSource = NULL,TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true);
+  REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL,TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true);
   WEvent * replace (WEvent *e);
   ~REDamagePrevention();
 };

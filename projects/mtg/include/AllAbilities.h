@@ -987,6 +987,7 @@ protected:
     }
     if (!_target) return 0;
     REDamagePrevention * re = NEW REDamagePrevention (
+      this,
       NEW CardTargetChooser(_target,NULL), 
       NEW PlayerTargetChooser(0,1,source->controller()));
     current[re] = 1;

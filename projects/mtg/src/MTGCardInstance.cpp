@@ -33,9 +33,10 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to): 
 
 void MTGCardInstance::copy(MTGCardInstance * card){
  MTGCard * source = card->model;
- for (int i = 0; i< Constants::NB_BASIC_ABILITIES; i++){
-    basicAbilities[i] = source->basicAbilities[i];
-  }
+ for(map<int,int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it){
+   int i = it->first;
+   basicAbilities[i] = source->basicAbilities[i];
+ }
   for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
     types[i] = source->types[i];
   }
@@ -506,7 +507,8 @@ JSample * MTGCardInstance::getSample(){
     }
   }
   if (!sample.size()){
-    for (int i = 0; i < Constants::NB_BASIC_ABILITIES; i++){
+    for(map<int,int>::const_iterator it = basicAbilities.begin(); it != basicAbilities.end(); ++it){
+      int i = it->first;
       if (!basicAbilities[i]) continue;
       string type = Constants::MTGBasicAbilities[i];
       type = "sound/sfx/" + type + ".wav";

@@ -149,7 +149,7 @@ void GameApp::Create()
   //  effect = new CardEffect();
 
   char buf[512];
-  sprintf(buf, "size of MTGCardInstance : %i\n" , sizeof(MTGCardInstance));
+  sprintf(buf, "size of MTGCard : %i\n" , sizeof(MTGCard));
   OutputDebugString(buf);
 }
 

@@ -24,6 +24,7 @@ class TexturesCache;
 
 #include <string>
 #include <vector>
+#include <map>
 using namespace std;
 
 class MTGCard {
@@ -40,6 +41,7 @@ class MTGCard {
   char image_name[MTGCARD_NAME_SIZE];
 
   int init();
+  
 
  public:
   TexturesCache * mCache;
@@ -47,7 +49,7 @@ class MTGCard {
   string name;
 
   int colors[Constants::MTG_NB_COLORS];
-  int basicAbilities[Constants::NB_BASIC_ABILITIES];
+  map<int,int> basicAbilities;
   vector<string> formattedText;
   string magicText;
   int alias;

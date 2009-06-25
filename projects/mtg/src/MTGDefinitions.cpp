@@ -52,6 +52,7 @@ const char* Constants::MTGBasicAbilities[] = {
 "opponentshroud",
 };
 
+
 const char* Constants::MTGPhaseNames[] =
 {
 	"---",
