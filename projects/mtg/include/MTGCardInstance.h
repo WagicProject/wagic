@@ -28,6 +28,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int untapping;
   int nb_damages;
   string sample;
+  int tapped;
 
   int lifeOrig;
   Blockers * blockers;
@@ -58,14 +59,12 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int attacker;
   MTGCardInstance * banding; // If belongs to a band when attacking
   MTGCardInstance * target;
-  int tapped;
   void addType(int type);
   int canBlock();
   int canBlock(MTGCardInstance * opponent);
   int canAttack();
   int afterDamage();
-  void setUntapping();
-  int isUntapping();
+
   int has(int ability);
   int cleanup();
   int reset();
@@ -99,9 +98,14 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int protectedAgainst(MTGCardInstance * card);
   void copy(MTGCardInstance * card);
   // in game
+
+  void setUntapping();
+  int isUntapping();
   int isTapped();
   void untap();
   void tap();
+  void attemptUntap();
+
   int isInPlay();
   void resetAllDamage();
   JSample * getSample();

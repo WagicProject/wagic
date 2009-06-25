@@ -4,6 +4,7 @@
 #include "../include/Damage.h"
 #include "../include/PhaseRing.h"
 
+
 WEvent::WEvent(int _type){
   type=_type;
 }
@@ -21,4 +22,10 @@ WEventDamage::WEventDamage(Damage *_damage):WEvent(DAMAGE){
 WEventPhaseChange::WEventPhaseChange(Phase * _from, Phase * _to):WEvent(CHANGE_PHASE){
   from = _from;
   to = _to;
+}
+
+WEventCardTap::WEventCardTap(MTGCardInstance * _card, int _before, int _after):WEvent(){
+  card = _card;
+  before = _before;
+  after = _after;
 }

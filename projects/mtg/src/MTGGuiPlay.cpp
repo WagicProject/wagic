@@ -199,19 +199,16 @@ void MTGGuiPlay::forceUpdateCards(){
 }
 
 int MTGGuiPlay::receiveEvent(WEvent *event){
-  if (event->type == WEvent::CHANGE_ZONE){
-    WEventZoneChange * e = dynamic_cast<WEventZoneChange*>(event);
-    if (!event) return 0;
-    int ok = 0;
-    for (int i = 0; i < 2 ; i++){
-      Player * p = game->players[i];
-      if (e->from == p->game->inPlay || e->to == p->game->inPlay ) ok = 1;
-    }
-    if (!ok) return 0;
-    forceUpdateCards();
-    return 1;
+  WEventZoneChange * e = dynamic_cast<WEventZoneChange*>(event);
+  if (!e) return 0;
+  int ok = 0;
+  for (int i = 0; i < 2 ; i++){
+    Player * p = game->players[i];
+    if (e->from == p->game->inPlay || e->to == p->game->inPlay ) ok = 1;
   }
-  return 0;
+  if (!ok) return 0;
+  forceUpdateCards();
+  return 1;
 }
 
 void MTGGuiPlay::updateCards(){

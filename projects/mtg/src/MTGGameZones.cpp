@@ -372,7 +372,7 @@ void MTGInPlay::untapAll(){
       sprintf(buf, "Can untap %s\n", cards[i]->getName());
       OutputDebugString(buf);
 #endif
-      cards[i]->untap();
+      cards[i]->attemptUntap();
     }
   }
 }

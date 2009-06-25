@@ -34,7 +34,7 @@ int ConstraintResolver::untap(GameObserver * game, MTGCardInstance * card){
 
   if (ok) {
     player->getManaPool()->pay(untapManaCost);
-    card->untap();
+    card->attemptUntap();
   }
   delete untapManaCost;
   return ok;

@@ -172,8 +172,23 @@ int MTGCardInstance::has(int basicAbility){
 
 //Taps the card
 void MTGCardInstance::tap(){
+  if (tapped) return;
   tapped = 1;
+  WEvent * e = NEW WEventCardTap(this, 0, 1);
+  GameObserver * game = GameObserver::GetInstance();
+  game->receiveEvent(e);
+  delete e;
 }
+
+void MTGCardInstance::untap(){
+  if (!tapped) return;
+  tapped = 0;
+  WEvent * e = NEW WEventCardTap(this, 1, 0);
+  GameObserver * game = GameObserver::GetInstance();
+  game->receiveEvent(e);
+  delete e;
+}
+
 
 void MTGCardInstance::setUntapping(){
   untapping = 1;
@@ -183,10 +198,10 @@ int MTGCardInstance::isUntapping(){
   return untapping;
 }
 
-//Untaps the card
-void MTGCardInstance::untap(){
+//Tries to Untap the card
+void MTGCardInstance::attemptUntap(){
   if (untapping){
-    tapped = 0;
+    untap();
     untapping = 0;
   }
 }
@@ -210,7 +225,7 @@ int MTGCardInstance::regenerate(){
 int MTGCardInstance::triggerRegenerate(){
   if (! regenerateTokens) return 0;
   regenerateTokens--;
-  tapped = 1;
+  tap();
   life = toughness;
   initAttackersDefensers();
   return 1;
@@ -269,7 +284,7 @@ MTGCardInstance * MTGCardInstance::changeController(Player * newController){
 //Reset the card parameters
 int MTGCardInstance::reset(){
   cleanup();
-  tapped=0;
+  untap();
   SAFE_DELETE(counters);
   counters = NEW Counters(this);
   return 1;
@@ -383,7 +398,7 @@ int MTGCardInstance::toggleAttacker(){
   if (canAttack()){
     if (!attacker){
       attacker = 1;
-      tapped = 1;
+      tap();
       return 1;
     }else{
       MTGCardInstance * bandingPartner = getNextPartner();
@@ -394,7 +409,7 @@ int MTGCardInstance::toggleAttacker(){
 	return 1;
       }else{
 	attacker = 0;
-	tapped = 0;
+	untap();
 	return 1;
       }
     }

@@ -71,7 +71,7 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
   GameObserver * gameObs = GameObserver::GetInstance();
   CardDescriptor cd;
   cd.setColor(Constants::MTG_COLOR_LAND);
-  cd.tapped = -1;
+  cd.unsecureSetTapped(-1);
 
   MTGCardInstance * card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
@@ -99,7 +99,7 @@ ManaCost * AIPlayer::getPotentialMana(){
   potentialMana = NEW ManaCost();
   CardDescriptor cd;
   cd.setColor(Constants::MTG_COLOR_LAND);
-  cd.tapped = -1;
+  cd.unsecureSetTapped(-1);
   MTGCardInstance * card = NULL;
   while((card = cd.nextmatch(game->inPlay, card))){
 
@@ -353,7 +353,7 @@ int AIPlayer::getCreaturesInfo(Player * player, int neededInfo , int untapMode, 
   CardDescriptor cd;
   cd.init();
   cd.setType("Creature");
-  cd.tapped = untapMode;
+  cd.unsecureSetTapped(untapMode);
   MTGCardInstance * card = NULL;
   while((card = cd.nextmatch(player->game->inPlay, card))){
     if (!canAttack || card->canAttack()){
@@ -414,7 +414,7 @@ int AIPlayer::chooseBlockers(){
   CardDescriptor cd;
   cd.init();
   cd.setType("Creature");
-  cd.tapped = -1;
+  cd.unsecureSetTapped(-1);
   MTGCardInstance * card = NULL;
   GameObserver * g = GameObserver::GetInstance();
   MTGAbility * a =  g->mLayers->actionLayer()->getAbility(MTGAbility::MTG_BLOCK_RULE);

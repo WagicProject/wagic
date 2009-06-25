@@ -9,12 +9,13 @@ class Phase;
 class WEvent{
 public:
   enum{
+    NOT_SPECIFIED = 0,
     CHANGE_ZONE = 1,
     DAMAGE = 2,
     CHANGE_PHASE = 3,
   };
   int type;
-  WEvent(int _type);
+  WEvent(int _type = NOT_SPECIFIED);
   virtual ~WEvent() {};
 };
 
@@ -39,6 +40,14 @@ public:
   Phase * from;
   Phase * to;
   WEventPhaseChange(Phase * _from, Phase * _to);
+};
+
+class WEventCardTap: public WEvent{
+public:
+  MTGCardInstance * card;
+  int before;
+  int after;
+  WEventCardTap(MTGCardInstance * card, int before, int after);
 };
 
 #endif

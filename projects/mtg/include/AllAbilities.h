@@ -700,7 +700,7 @@ class AUnBlocker:public MTGAbility{
   int reactToClick(MTGCardInstance *  _card){
     if (!isReactingToClick( _card)) return 0;
     game->currentlyActing()->getManaPool()->pay(cost);
-    _card->untap();
+    _card->attemptUntap();
     return 1;
   }
 
@@ -1090,7 +1090,7 @@ class ARegularLifeModifierAura:public MTGAbility{
 
   void Update(float dt){
     if (newPhase !=currentPhase && newPhase==phase && game->currentPlayer==((MTGCardInstance *)target)->controller()){
-      if (!onlyIfTargetTapped || ((MTGCardInstance *)target)->tapped){
+      if (!onlyIfTargetTapped || ((MTGCardInstance *)target)->isTapped()){
 	if (life > 0){
 	  game->currentPlayer->life+=life;
 	}else{
@@ -1432,7 +1432,7 @@ class ATapper:public TargetAbility{
   int resolve(){
     MTGCardInstance * _target = tc->getNextCardTarget();
     if (_target){
-      _target->tapped = true;
+      _target->tap();
     }
     return 1;
   }
@@ -1458,7 +1458,7 @@ class AUntaper:public TargetAbility{
   int resolve(){
     MTGCardInstance * _target = tc->getNextCardTarget();
     if (_target){
-      _target->tapped = 0;
+      _target->untap();
     }
     return 1;
   }
@@ -1539,7 +1539,7 @@ class AStrongLandLinkCreature: public MTGAbility{
     if (source->isAttacker()){
       if (!game->opponent()->game->inPlay->hasType(land)){
 	source->attacker=0;
-	source->tapped = 0;
+	source->untap();
 	//TODO Improve, there can be race conditions here
       }
     }
@@ -1702,7 +1702,7 @@ class AAladdinsLamp: public TargetAbility{
 
 
   int fireAbility(){
-    source->tapped = 1;
+    source->tap();
     MTGLibrary * library = game->currentlyActing()->game->library;
     MTGCardInstance * card = library->removeCard(tc->getNextCardTarget());
     library->shuffleTopToBottom(nbcards - 1 );
@@ -1879,7 +1879,7 @@ class AClockworkBeast:public MTGAbility{
     game->currentlyActing()->getManaPool()->pay(& cost);
     counters ++;
     ((MTGCardInstance *)target)->power++;
-    ((MTGCardInstance *)target)->tapped = 1;
+    ((MTGCardInstance *)target)->tap();
     return 1;
   }
 
@@ -1951,7 +1951,7 @@ class AConservator: public MTGAbility{
   int reactToClick(MTGCardInstance * _card){
     if (!isReactingToClick( _card)) return 0;
     game->currentlyActing()->getManaPool()->pay(& cost);
-    source->tapped = 1;
+    source->tap();
     canprevent = 2;
     alterDamage();
     return 1;
@@ -2169,7 +2169,7 @@ class AGlassesOfUrza:public MTGAbility{
 
   int reactToClick(MTGCardInstance * card){
     if (!isReactingToClick(card)) return 0;
-    source->tapped = 1;
+    source->tap();
     isActive = true;
     return 1;
   }
@@ -2189,7 +2189,7 @@ class AHowlingMine:public MTGAbility{
  AHowlingMine(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){}
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && !source->tapped){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && !source->isTapped()){
       game->mLayers->stackLayer()->addDraw(game->currentPlayer);
     }
   }
@@ -2493,13 +2493,13 @@ class AKudzu: public TargetAbility{
     tc->toggleTarget(_target);
     target = _target;
     previouslyTapped = 0;
-    if (_target->tapped) previouslyTapped = 1;
+    if (_target->isTapped()) previouslyTapped = 1;
   }
 
 
   void Update(float dt){
     MTGCardInstance * _target = (MTGCardInstance *)target;
-    if (_target && !_target->tapped){
+    if (_target && !_target->isTapped()){
       previouslyTapped = 0;
     }else if (!previouslyTapped){
 #if defined (WIN32) || defined (LINUX)
@@ -2528,7 +2528,7 @@ class AKudzu: public TargetAbility{
     target = tc->getNextCardTarget();
     source->target = (MTGCardInstance *) target;
     previouslyTapped = 0;
-    if (source->target && source->target->tapped) previouslyTapped = 1;
+    if (source->target && source->target->isTapped()) previouslyTapped = 1;
     return 1;
   }
 
@@ -2661,7 +2661,7 @@ class APowerSurge:public TriggeredAbility{
       MTGInPlay * inPlay = game->opponent()->game->inPlay;
       for (int i = 0; i < inPlay->nb_cards; i++){
 	MTGCardInstance * card = inPlay->cards[i];
-	if (!card->tapped && card->hasType("land")){
+	if (!card->isTapped() && card->hasType("land")){
 	  totalLands++;
 	}
       }
@@ -2752,7 +2752,7 @@ class APsychicVenom:public MTGAbility{
  public:
   int tapped;
  APsychicVenom(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id, _source,_target){
-    tapped = _target->tapped;
+    tapped = _target->isTapped();
   }
 
   void Update(float dt){
@@ -3354,7 +3354,7 @@ class AGiveLifeForTappedType:public MTGAbility{
     MTGInPlay * inplay = source->controller()->opponent()->game->inPlay;
     for (int i = 0; i < inplay->nb_cards; i++){
       MTGCardInstance * card = inplay->cards[i];
-      if (card->tapped && card->hasType(type)) result++;
+      if (card->isTapped() && card->hasType(type)) result++;
     }
     return result;
   }
@@ -3396,7 +3396,7 @@ class AMinionofLeshrac: public TargetAbility{
 	paidThisTurn = 0;
       }else if( newPhase == Constants::MTG_PHASE_UPKEEP + 1 && !paidThisTurn){
 	game->mLayers->stackLayer()->addDamage(source,source->controller(), 5);
-	source->tapped = 1;
+	source->tap();
       }
     }
     TargetAbility::Update(dt);
@@ -3551,7 +3551,7 @@ class ASeedbornMuse: public TriggeredAbility{
   int resolve(){
 		  for (int j = source->controller()->game->inPlay->nb_cards-1; j >=0 ; j--){
 			  MTGCardInstance * current =  source->controller()->game->inPlay->cards[j];
-			  current->tapped = 0;
+			  current->untap();
 	  }
 	return 1;
   }

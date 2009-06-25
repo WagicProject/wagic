@@ -13,6 +13,10 @@ int CardDescriptor::init(){
   return result;
 }
 
+void CardDescriptor::unsecureSetTapped(int i){
+  tapped = i;
+}
+
 void CardDescriptor::setNegativeSubtype( string value){
   int id = Subtypes::subtypesList->Add(value);
   addType(-id);

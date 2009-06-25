@@ -138,9 +138,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         //Tapped, untapped
         }else if (attribute.find("tapped") != string::npos){
           if (minus){
-	          cd->tapped = -1;
+	          cd->unsecureSetTapped(-1);
           }else{
-	          cd->tapped = 1;
+	          cd->unsecureSetTapped(1);
           }
         }else{
           int attributefound = 0;

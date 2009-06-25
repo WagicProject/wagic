@@ -94,7 +94,7 @@ int AbilityFactory::TapAll(TargetChooser * tc){
     for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
       MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
       if (tc->canTarget(current)){
-	  current->tapped = 1;
+	  current->tap();
 	  }
 	}
   }
@@ -110,7 +110,7 @@ int AbilityFactory::UntapAll(TargetChooser * tc){
     for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
       MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
       if (tc->canTarget(current)){
-	  current->tapped = 0;
+	  current->untap();
 	  }
 	}
   }
@@ -390,7 +390,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 			if (cost){
 				game->addObserver(NEW AUntapManaBlocker(id, card, cost));
 			}else{
-				target->tapped = 0;
+				target->untap();
 			}
 		}
         result++;
@@ -1011,7 +1011,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 				game->addObserver(NEW ATapper(id, card, cost, tc));
 			}
 		}else{
-			target->tapped = 1;
+			target->tap();
 		}
         result++;
         continue;
@@ -1447,7 +1447,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	MTGInPlay * inplay = player->game->inPlay;
 	for (int i = 0; i < inplay->nb_cards; i++){
 	  MTGCardInstance * current = inplay->cards[i];
-	  if (current->hasType("land")) current->tapped = 1;
+	  if (current->hasType("land")) current->tap();
 	}
 	player->getManaPool()->init();
       }
@@ -1465,7 +1465,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
       game->addObserver(NEW AUntapManaBlocker(_id, card,card->target, NEW ManaCost(cost,1)));
-      card->target->tapped = 1;
+      card->target->tap();
       break;
     }
   case 1172: //Pestilence
@@ -1784,7 +1784,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1480: //Energy Tap
 	{
-	card->target->tapped = 1;
+	card->target->tap();
 	int mana = card->target->getManaCost()->getConvertedCost();
 	game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, mana);
 	}
@@ -2360,7 +2360,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
     game->currentlyActing()->getManaPool()->pay(cost);
     cost->doPayExtra();
   }
-  if (needsTapping) source->tapped = 1;
+  if (needsTapping) source->tap();
   fireAbility();
 
   return 1;
@@ -2369,7 +2369,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
 
 int ActivatedAbility::reactToTargetClick(Targetable * object){
   if (!isReactingToTargetClick(object)) return 0;
-  if (needsTapping) source->tapped = 1;
+  if (needsTapping) source->tap();
   if (cost){
     if (object->typeAsTarget() == TARGET_CARD) cost->setExtraCostsAction(this, (MTGCardInstance *) object);
     OutputDebugString("React To click 2\n");
@@ -2819,7 +2819,7 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
       GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
       cost->doPayExtra();
     }
-    if (tap) source->tapped = 1;
+    if (tap) source->tap();
     currentlyTapping++;
 
     animation = 1.f;
