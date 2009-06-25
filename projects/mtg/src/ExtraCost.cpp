@@ -113,6 +113,13 @@ int ExtraCosts::doPay(){
   }
   return result;
 }
+
+ExtraCosts::~ExtraCosts(){
+  for (size_t i = 0; i < costs.size(); i++){
+    SAFE_DELETE(costs[i]);
+  }
+}
+
 void ExtraCosts::Dump(){
 #ifdef WIN32
   char buf[4096];

@@ -12,9 +12,6 @@
 #endif
 
 ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstance * c){
-#if defined (WIN32) || defined (LINUX)
-  char    buf[4096];
-#endif
   ManaCost * manaCost;
   if (_manaCost){
     manaCost = _manaCost;
@@ -159,6 +156,7 @@ void ManaCost::copy(ManaCost * _manaCost){
 
   if (_manaCost->extraCosts){
     //TODO Deep copy ?
+    if(!extraCostsIsCopy) SAFE_DELETE(extraCosts);
     extraCosts = _manaCost->extraCosts;
     extraCostsIsCopy = 1;
   }

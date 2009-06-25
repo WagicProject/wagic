@@ -26,6 +26,7 @@ public:
   MTGCardInstance * source;
   MTGAbility * action;
   ExtraCosts();
+  ~ExtraCosts();
   void Render();
   int tryToSetPayment(MTGCardInstance * card);
   int isPaymentSet();
