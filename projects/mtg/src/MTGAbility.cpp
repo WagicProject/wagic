@@ -691,7 +691,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         if (trigger){
 	        DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
 	        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
-        }else{
+		}else{
 	        if (tc){
 	          //TODO ?
 	        }else{
@@ -755,7 +755,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 			  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
 				if (tc->canTarget(current)){
 					MTGCardInstance * canBlock = tc->source;
-					current->canBlock(0);
+					current->canBlock();
 				}
 		  }
 	  }
@@ -1068,9 +1068,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1094: //Ank Of Mishra
     {
-      AAnkhOfMishra * ability = NEW AAnkhOfMishra(_id,card);
-      game->addObserver(ability);
-      break;
+   //   AAnkhOfMishra * ability = NEW AAnkhOfMishra(_id,card);
+   //   game->addObserver(ability);
+      game->addObserver (NEW ALifeModifierPutinplay(_id,card,"land",-2,2,1));
+		break;
     }
   case 1095: //Armageddon clock
     {
@@ -1193,8 +1194,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1105: //dingus Egg
     {
-      ADingusEgg * ability = NEW ADingusEgg(_id,card);
-      game->addObserver(ability);
+//      ADingusEgg * ability = NEW ADingusEgg(_id,card);
+//      game->addObserver(ability);
+		game->addObserver (NEW ALifeModifierPutinplay(_id,card,"land",-2,2,0));
+
       break;
     }
   case 1106: //Disrupting Scepter
@@ -1918,6 +1921,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
 //-- addon 10E---
+  case 129740: // Soul Warden
+	  {
+		  game->addObserver ( NEW ALifeModifierPutinplay(_id,card,"creature",1,1,1));
+			  break;
+	  }
+
+	case 129710: //Angelic Chorus
+		{
+			game->addObserver( NEW AAngelicChorus(_id,card));
+			break;
+		}
 
 	case 129767: //Threaten
 		{

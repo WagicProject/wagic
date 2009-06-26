@@ -124,6 +124,15 @@ subtype=Angel
 toughness=3
 [/card]
 [card]
+text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
+id=129710
+name=Angelic Chorus
+rarity=R
+color=White
+type=Enchantment
+mana={3}{W}{W}
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {T}: Add {W} or {U} to your mana pool. Adarkar Wastes deals 1 damage to you.
 auto={T}:Add {1}
 auto={T}:Add {W} && Damage 1 controller
@@ -2426,6 +2435,18 @@ mana={3}{U}
 power=3
 subtype=Drake
 toughness=2
+[/card]
+[card]
+text=Whenever another creature comes into play, you gain 1 life.
+id=129740
+name=Soul Warden
+rarity=U
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Human Cleric
+toughness=1
 [/card]
 [card]
 text=As an additional cost to play Soulblast, sacrifice all creatures you control.      Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.

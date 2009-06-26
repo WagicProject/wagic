@@ -29,15 +29,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
-id=129710
-name=Angelic Chorus
-rarity=R
-color=White
-type=Enchantment
-mana={3}{W}{W}
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;
 id=130530
 name=Arcane Teachings
@@ -1012,28 +1003,6 @@ mana={B}
 power=3
 subtype=Minion
 toughness=3
-[/card]
-[card]
-text=Whenever another creature comes into play, you gain 1 life.
-id=129740
-name=Soul Warden
-rarity=U
-color=White
-type=Creature
-mana={W}
-power=1
-subtype=Human Cleric
-toughness=1
-[/card]
-[card]
-text=As an additional cost to play Soulblast, sacrifice all creatures you control.      Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.
-id=130369
-target=creature,player
-name=Soulblast
-rarity=R
-color=Red
-type=Instant
-mana={3}{R}{R}{R}
 [/card]
 [card]
 text=Spawning Pool comes into play tapped.     {T}: Add {B} to your mana pool.     {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)

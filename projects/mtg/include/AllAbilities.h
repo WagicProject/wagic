@@ -3673,6 +3673,144 @@ class AInstantControlSteal: public InstantAbility{
   }
 };
 
+//Angelic Chorus (10E)
+class AAngelicChorus: public ListMaintainerAbility{
+ public:
+  int init;
+ AAngelicChorus(int id, MTGCardInstance * _source):ListMaintainerAbility(id, _source){
+    init = 0;
+  }
+
+  void Update(float dt){
+    ListMaintainerAbility::Update(dt);
+    init = 1;
+  }
+
+  int canBeInList(MTGCardInstance * card){
+    if (card->hasType("creature") && game->isInPlay(card)) return 1;
+    return 0;
+  }
+
+  int added(MTGCardInstance * card){
+   if (!init) return 0;
+   	  if (source->controller() == game->currentlyActing()){
+      card->controller()->life+= card->toughness;
+	  }
+    return 1;
+  }
+
+  int removed(MTGCardInstance * card){
+    return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AAngelicChorus ::: init : " << init
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
+};
+
+//Life/Damage for type removed/added from game - Generic Ankh of Mishra/dingus Egg
+class ALifeModifierPutinplay: public ListMaintainerAbility{
+ public:
+  int init;
+  char type[20];
+   int life;
+   int PlayerTarget;
+   int AddOrRemove;
+ ALifeModifierPutinplay(int id, MTGCardInstance * _source,const char * _type,  int _life, int _PlayerTarget, int _AddOrRemove):ListMaintainerAbility(id, _source){
+    sprintf(type,"%s",_type);
+	init = 0;
+	PlayerTarget = _PlayerTarget;
+    AddOrRemove = _AddOrRemove;
+	life = _life;
+  }
+
+  void Update(float dt){
+    ListMaintainerAbility::Update(dt);
+    init = 1;
+  }
+
+  int canBeInList(MTGCardInstance * card){
+    if (card->hasType(type) && game->isInPlay(card)) return 1;
+    return 0;
+  }
+
+  int added(MTGCardInstance * card){
+    if (!init) return 0;
+	if (AddOrRemove == 1){
+		if (life <  0){
+			int damage = life * -1;
+			if (PlayerTarget == 2){
+		game->mLayers->stackLayer()->addDamage(source,card->controller(), damage);
+			}
+			if (PlayerTarget == 1){
+		game->mLayers->stackLayer()->addDamage(source,source->controller(), damage);
+			}
+			if (PlayerTarget == 0){
+		game->mLayers->stackLayer()->addDamage(source,source->controller()->opponent(), damage);
+			}
+		}
+		if (life > 0){
+			if (PlayerTarget == 2){
+				card->controller()->life+=life;			
+			}
+			if (PlayerTarget == 1){
+				source->controller()->life+=life;			
+			}
+			if (PlayerTarget == 0){
+				source->controller()->opponent()->life+=life;		
+			}
+		}
+	}
+	return 1;
+  }
+
+  int removed(MTGCardInstance * card){
+	if (AddOrRemove == 0){
+		if (life <  0){
+			int damage = life * -1;
+			if (PlayerTarget == 2){
+		game->mLayers->stackLayer()->addDamage(source,card->controller(), damage);
+			}
+			if (PlayerTarget == 1){
+		game->mLayers->stackLayer()->addDamage(source,source->controller(), damage);
+			}
+			if (PlayerTarget == 0){
+		game->mLayers->stackLayer()->addDamage(source,source->controller()->opponent(), damage);
+			}
+		}
+		if (life > 0){
+			if (PlayerTarget == 2){
+				card->controller()->life+=life;			
+			}
+			if (PlayerTarget == 1){
+				source->controller()->life+=life;			
+			}
+			if (PlayerTarget == 0){
+				source->controller()->opponent()->life+=life;		
+			}
+		}
+	}
+	return 1;
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "ALifeModifierPutinplay ::: init : " << init
+	<< " ; type : " << type
+	<< " ; life : " << life
+	<< " ; PlayerTarget : " << PlayerTarget
+	<< " ; AddOrRemove : " << AddOrRemove
+	<< " (";
+    return ListMaintainerAbility::toString(out) << ")";
+  }
+};
+
+
+
+
 /// Work in Progress also from no on all code could be removed...
 
 //Draft for counters
