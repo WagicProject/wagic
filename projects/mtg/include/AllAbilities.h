@@ -1292,6 +1292,10 @@ class ALord:public ListMaintainerAbility{
     return 1;
   }
 
+  ~ALord(){
+    SAFE_DELETE(regenCost);
+  }
+
   virtual ostream& toString(ostream& out) const
   {
     out << "ALord ::: power : " << power

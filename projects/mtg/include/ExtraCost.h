@@ -13,6 +13,7 @@ public:
   TargetChooser * tc;
   MTGCardInstance * source;
   ExtraCost(TargetChooser *_tc = NULL);
+  ~ExtraCost();
   virtual int setPayment(MTGCardInstance * card) = 0;
   virtual int isPaymentSet() = 0;
   virtual int doPay() = 0;

@@ -7,6 +7,10 @@ ExtraCost::ExtraCost( TargetChooser *_tc):tc(_tc){
 
 }
 
+ExtraCost::~ExtraCost(){
+  SAFE_DELETE(tc);
+}
+
 
 int ExtraCost::setSource(MTGCardInstance * _source){
   source=_source;

@@ -383,6 +383,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         if (tc){
 			if (all){
               UntapAll(tc);
+              delete tc;
 			}else{
 				game->addObserver(NEW AUntaper(id, card, cost, tc));
 			}
@@ -470,6 +471,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         if (tc){
           if (all){
             moveAll(tc,szone);
+            delete(tc);
           }else{
             AZoneMover * a = NEW AZoneMover(id,card,tc,szone,cost,doTap);
             if (may){
@@ -623,6 +625,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
               game->addObserver(a);
             }else{
               damageAll(tc,damage);
+              delete tc;
             }
           }else{
 	          MTGAbility * a = NEW ADamager(id, card, cost, damage, tc,doTap);
@@ -1007,6 +1010,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         if (tc){
 			if (all){
               TapAll(tc);
+              delete tc;
 			}else{
 				game->addObserver(NEW ATapper(id, card, cost, tc));
 			}
