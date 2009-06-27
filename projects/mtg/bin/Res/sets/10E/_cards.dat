@@ -2538,6 +2538,7 @@ toughness=1
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
 id=136509
 target=creature
+auto=foreach(mountain|myinplay)damage:1
 name=Spitting Earth
 rarity=C
 color=Red

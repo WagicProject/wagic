@@ -67,8 +67,6 @@ int AbilityFactory::damageAll(TargetChooser * tc, int damage){
   return 1;
 }
 
-
-
 int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
   MTGCardInstance * source = tc->source;
   tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
@@ -618,6 +616,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             dryModeResult =  BAKA_EFFECT_BAD;
             break;
         }
+		if (lordType == PARSER_FOREACH){
+			int multiplier = countCards(lordTargets);
+			game->mLayers->stackLayer()->addDamage(card,spell->getNextDamageableTarget(),(damage*multiplier));
+		}else{
         if (tc){
           if (all){
             if (cost){
@@ -644,6 +646,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	          game->mLayers->stackLayer()->addDamage(card,spell->getNextDamageableTarget(), damage);
           }
         }
+		}
         result++;
         continue;
       }
@@ -663,6 +666,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           dryModeResult =  BAKA_EFFECT_GOOD;
           break;
         }
+		if (lordType == PARSER_FOREACH){
+			int multiplier = countCards(lordTargets);
+			card->controller()->life+=multiplier;
+		}else{
         if (tc){
 	        //TODO ?
         }else{
@@ -672,6 +679,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             game->addObserver(NEW ALifeGiver(id, card,cost, life, doTap));
 	        }
         }
+		}
         result++;
         continue;
       }
@@ -895,11 +903,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
               game->addObserver(NEW ALordUEOT(id,card,lordTargets,lordIncludeSelf,power,toughness));
             }else{
 	            game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,power,toughness));
-            }
-          }else{
+			}
+		  }else{
             //TODO
-          }
-        }else{
+		  }
+		}else{
 	        if(tc){
 	            game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
 	        }else{
@@ -1976,13 +1984,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE, NEW ManaCost() , 1));
       break;
     }
-	case 136509: //Spitting Earth
-		{
-			Damageable * target = spell->getNextDamageableTarget();
-			int damage = card->controller()->game->inPlay->countByType("mountain");
-			game->mLayers->stackLayer()->addDamage(card, target, damage);
-			break;
-		}
 	case 129909: //Cryoclasm
 		{
 		  card->target->controller()->game->putInGraveyard(card->target);
@@ -2114,15 +2115,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
 //--- addon shm---
-	case 146013: //Corrupt
-		{
-			Damageable * target = spell->getNextDamageableTarget();
-			int damage_life = card->controller()->game->inPlay->countByType("swamp");
-			game->mLayers->stackLayer()->addDamage(card, target, damage_life);
-			game->currentlyActing()->life+=damage_life;
-			break;
-		}
-	
+
 	case 153996: // Howl of the Night Pack
 		{
 		int x = card->controller()->game->inPlay->countByType("Forest");
