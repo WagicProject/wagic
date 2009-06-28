@@ -71,8 +71,8 @@ my $output = sub {
 
 my $lang = $ARGV[0] || "FR";
 my $data_folder = "../../bin/Res/sets";
-my $input_translation = "$lang/sets";
-my $output_folder = "output";
+my $input_translation = "$lang/input";
+my $output_folder = "sets";
 
 
 my $dh = DirHandle->new($input_translation) or die "No such directory: $input_translation";
@@ -89,7 +89,8 @@ while(defined(my $val = $dh->read)){
 				my $curdir = $input_translation."/".$val;
 				my $cards = $parseCards->($data_folder. "/" . $val ."/" . "_cards.dat");
 				my $transl = $parseCards->($curdir."/_cards.dat");
-				my $out = $output_folder ."/" . $val;
+				mkdir "$lang/$output_folder";
+				my $out = $lang . "/" . $output_folder ."/" . $val;
 				mkdir ($out);
 				$doOutput->($out . "/_cards.dat", $cards,$transl);
 				if (%$transl){
