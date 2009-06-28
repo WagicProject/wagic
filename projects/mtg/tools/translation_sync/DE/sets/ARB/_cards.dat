@@ -1,0 +1,270 @@
+[card]
+toughness=4
+name=Sigiled Behemoth 
+mana={4}{G}{W}
+subtype=Beast
+color=Green,White
+rarity=C
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+power=5
+id=159688
+type=Creature
+abilities=exalted
+[/card]
+[card]
+name=Terminate
+mana={B}{R}
+color=Black,Red
+target=creature
+auto=bury
+rarity=C
+text=Zerstoere eine Kreatur deiner Wahl. Sie kann nicht regeneriert werden.
+id=176449
+type=Instant
+[/card]
+[card]
+name=Unbender Tine
+mana={2}{W}{U}
+color=White,Blue
+auto={T}:Untap target(*)
+rarity=U
+text={T}: Enttappe eine andere bleibende Karte deiner Wahl.
+type=Artifact
+id=138217
+[/card]
+[card]
+toughness=4
+name=Rhox Brute
+mana={2}{R}{G}
+subtype=Rhino
+color=Red,Green
+rarity=U
+text=
+power=4
+id=189650
+type=Creature
+[/card]
+[card]
+name=Magefire Wings 
+mana={U}{R}
+subtype=Aura
+color=Blue,Red
+target=creature
+auto=flying
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+0 und Flugfaehigkeit.
+id=179591
+type=Enchantment
+[/card]
+[card]
+toughness=6
+name=Sphinx of the Steel Wind
+mana={5}{W}{U}{B}
+subtype=Sphinx
+color=White,Blue,Black
+rarity=M
+text=Fliegend, Erstschlag, Wachsamkeit, Lebensverknuepfung, Schutz vor Rot, Schutz vor Gruen
+power=6
+id=189641
+type=Artifact Creature
+abilities=flying,first strike,vigilance,lifelink,protection from red,protection from green
+[/card]
+[card]
+toughness=1
+name=Sewn-Eye Drake
+mana={2}{UR}{B}
+subtype=Zombie Drake
+color=Blue,Red,Black
+rarity=C
+text=Fliegend, Eile
+power=3
+id=179594
+type=Creature
+abilities=flying,haste
+[/card]
+[card]
+toughness=3
+name=Ethercaste Knight
+mana={W}{U}
+subtype=Human Knight
+color=White,Blue
+rarity=C
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+power=1
+id=179542
+type=Creature
+abilities=exalted
+[/card]
+[card]
+toughness=*
+name=Lord of Extinction 
+mana={3}{B}{G}
+subtype=Elemental
+color=Green,White
+auto=foreach(*|graveyard) 1/1
+rarity=M
+text=Staerke und Widerstandskraft des Fuersten der Ausrottung sind gleich der Anzahl an Karten in allen Friedhoefen.
+power=*
+id=177922
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Cerodon Yearling 
+mana={R}{W}
+subtype=Beast
+color=Red,White
+rarity=C
+text=Wachsamkeit, Eile
+power=2
+id=180604
+type=Creature
+abilities=vigilance,haste
+[/card]
+[card]
+toughness=4
+name=Marisi's Twinclaws
+mana={2}{RW}{G}
+subtype=Cat warrior
+color=White,Red,Green
+rarity=U
+text=Doppelschlag
+power=2
+id=179585
+type=Creature
+abilities=double strike
+[/card]
+[card]
+toughness=4
+name=Madrush Cyclops 
+mana={1}{B}{R}{G}
+subtype=Cyclops Warrior
+color=Black,Red,Green
+auto=lord(creature|myinplay) haste
+rarity=R
+text=Alle Kreaturen, die du kontrollierst, haben Eile.
+power=3
+id=180625
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Vithian Renegades
+mana={1}{R}{G}
+subtype=Human Shaman
+color=Red,Green
+auto=may moveTo(graveyard) target(artifact)
+rarity=U
+text=Wenn die Vithianischen Renegaten ins Spiel kommen, zerstoere ein Artefakt deiner Wahl.
+power=3
+id=179535
+type=Creature
+[/card]
+[card]
+toughness=5
+name=Grizzled Leotau
+mana={G}{W}
+subtype=Cat
+color=Green,White
+rarity=C
+text=
+power=1
+id=189647
+type=Creature
+[/card]
+[card]
+name=Intimidation Bolt
+mana={1}{R}{W}
+target=creature
+auto=lord(creature) cantattack
+rarity=U
+text=Der Einschuechternde Donnerschlag fuegt einer Kreatur deiner Wahl 3 Schadenspunkte zu. Andere Kreaturen koennen in diesem Zug nicht angreifen.
+type=Instant
+id=179568
+[/card]
+[card]
+toughness=2
+name=Messenger Falcons
+mana={2}{GU}{W}
+subtype=Bird
+color=Green,Blue,White
+auto=draw:1
+rarity=U
+text=Fliegend     Wenn die Brieffalken ins Spiel kommen, ziehe eine Karte.
+power=2
+id=189644
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=8
+name=Wall of Denial
+mana={1}{W}{U}
+subtype=Illusion Wall
+color=White,Blue
+rarity=U
+text=Verteidiger, Fliegend, Verhuellt
+power=0
+id=179601
+type=Creature
+abilities=Defender, flying, shroud
+[/card]
+[card]
+auto=lord(creature|opponentinplay) -1/-1
+text=Bis zum Ende des Zuges erhalten alle Kreaturen, die du kontrollierst, +1/+1, und alle Kreaturen, die deine Gegner kontrollieren, -1/-1.
+rarity=U
+name=Zealous Persecution
+id=179575
+type=Instant
+mana={W}{B}
+[/card]
+[card]
+toughness=2
+name=Qasali Pridemage
+mana={G}{W}
+subtype=Cat Wizard
+color=Green,White
+auto={1}{S}:destroy target(artifact,enchantment)
+rarity=C
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)     {1}, opfere den Qasal-Rudelmagier: Zerstoere ein Artefakt oder eine Verzauberung deiner Wahl.
+power=2
+id=179556
+type=Creature
+abilities=exalted
+[/card]
+[card]
+name=Colossal Might 
+mana={R}{G}
+color=Red,Green
+target=creature
+auto=trample
+rarity=C
+text=Eine Kreatur deiner Wahl erhaelt +4/+2 und verursacht bis zum Ende des Zuges Trampelschaden.
+id=179624
+type=Instant
+[/card]
+[card]
+name=Sangrite Backlash  
+mana={BG}{R}
+subtype=Aura
+color=Blue,Red
+target=creature
+auto=3/-3
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +3/-3.
+id=179553
+type=Enchantment
+[/card]
+[card]
+toughness=3
+name=Talon Trooper
+mana={1}{W}{U}
+subtype=Bird Scout
+color=White,Blue
+rarity=C
+text=Fliegend
+power=2
+id=179537
+type=Creature
+abilities=flying
+[/card]

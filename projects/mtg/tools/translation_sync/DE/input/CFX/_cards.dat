@@ -1,0 +1,487 @@
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur hat Flugfaehigkeit, Erstschlag und Wachsamkeit.
+target=creature
+auto=flying
+auto=first strike
+auto=vigilance
+id=150826
+name=Asha's Favor
+rarity=C
+type=Enchantment
+mana={2}{W}
+subtype=Aura
+[/card]
+[card]
+text=Fliegend, Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=flying,exalted
+id=184992
+name=Aven Squire
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Bird Soldier
+toughness=1
+[/card]
+[card]
+text=Fliegend     Domaene - Die Widerstandskraft des Avior-Pioniers ist gleich der Anzahl an Standardlandtypen unter den Laendern, die du kontrollierst.
+id=180278
+name=Aven Trailblazer
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Bird Soldier
+auto=aslongas(forest|myinplay) 0/1
+auto=aslongas(island|myinplay) 0/1
+auto=aslongas(plains|myinplay) 0/1
+auto=aslongas(mountain|myinplay) 0/1
+auto=aslongas(swamp|myinplay) 0/1
+toughness=*
+[/card]
+[card]
+text=
+id=184994
+name=Canyon Minotaur
+rarity=C
+type=Creature
+mana={3}{R}
+power=3
+subtype=Minotaur Warrior
+toughness=3
+[/card]
+[card]
+text=Entferne eine schwarze oder rote bleibende Karte deiner Wahl ganz aus dem Spiel.
+target=*[black;red]
+auto=moveTo(removedFromGame)
+id=183055
+name=Celestial Purge
+rarity=U
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Der Klippensprinter-Behemoth hat Eile, solange du eine rote bleibende Karte kontrollierst.     Der Klippensprinter-Behemoth hat Lebensverknuepfung, solange du eine weisse bleibende Karte kontrollierst.
+auto=aslongas(*[red]|myinplay) haste
+auto=aslongas(*[white]|myinplay) lifelink
+id=159612
+name=Cliffrunner Behemoth
+rarity=R
+type=Creature
+mana={3}{G}
+power=5
+subtype=Rhino Beast
+toughness=3
+[/card]
+[card]
+text=Wald-oder-Ebenenverzauberung     Immer wenn das verzauberte Land getappt wird, verliert sein Beherrscher 2 Lebenspunkte.
+id=183054
+target=forest,plains
+alias=1218
+name=Corrupted Roots
+rarity=U
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=Der Hof-Homunkulus erhaelt +1/+1, solange du ein anderes Artefakt kontrollierst.
+auto=aslongas(artifact|myinplay) 1/1 other
+id=182607
+name=Court Homunculus
+rarity=C
+type=Artifact Creature
+mana={W}
+power=1
+subtype=Homunculus
+toughness=1
+[/card]
+[card]
+text=Kreaturen, die deine Gegner kontrollieren, erhalten -1/-0.
+auto=lord(creature|opponentinplay) -1/0
+id=180322
+name=Cumber Stone
+rarity=U
+type=Artifact
+mana={3}{U}
+[/card]
+[card]
+text=Fliegend     {B}: Die Verdunkelte Gargoyle erhaelt +2/-1 bis zum Ende des Zuges.
+abilities=flying
+auto={B}:2/-1
+id=180334
+name=Darklit Gargoyle
+rarity=C
+type=Artifact Creature
+mana={1}{W}
+power=1
+subtype=Gargoyle
+toughness=2
+[/card]
+[card]
+text=Reichweite (Diese Kreatur kann fliegende Kreaturen blocken.)     Solange du eine rote bleibende Karte kontrollierst, erhaelt der Glutrote Weber +1/+0 und hat Erstschlag.
+auto=aslongas(*[red]|myinplay) 1/0
+auto=aslongas(*[red]|myinplay) first strike
+id=184990
+name=Ember Weaver
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Spider
+toughness=3
+[/card]
+[card]
+text=Fliegend
+abilities=flying
+id=184983
+name=Esper Cormorants
+rarity=C
+type=Artifact Creature
+mana={2}{W}{U}
+power=3
+subtype=Bird
+toughness=3
+[/card]
+[card]
+text=Fliegend     {1}{W}{B}, {T}: Zerstoere eine Kreatur oder eine Verzauberung deiner Wahl.     {2}{U}: Enttappe den aetherglaeubigen Aburteiler.
+abilities=flying
+auto={1}{W}{B}{T}:destroy target(creature,enchantment)
+auto={2}{U}:untap
+id=175035
+name=Ethersworn Adjudicator
+rarity=M
+type=Artifact Creature
+mana={4}{U}
+power=4
+subtype=Vedalken Knight
+toughness=4
+[/card]
+[card]
+text=
+id=179443
+name=Fusion Elemental
+rarity=U
+type=Creature
+mana={W}{U}{B}{R}{G}
+power=8
+subtype=Elemental
+toughness=8
+[/card]
+[card]
+text=Schutz vor Weiss.
+abilities=protection from white
+id=185142
+name=Goblin Outlander
+rarity=C
+type=Creature
+mana={B}{R}
+power=2
+subtype=Goblin Scout
+toughness=2
+[/card]
+[card]
+text=Inseltarnung, verursacht Trampelschaden, Verhuellt
+abilities=islandwalk,trample,shroud
+id=154081
+name=Inkwell Leviathan
+rarity=R
+type=Artifact Creature
+mana={7}{U}{U}
+power=7
+subtype=Leviathan
+toughness=11
+[/card]
+[card]
+text=Domaene - Staerke und Widerstandskraft der Matca-Anfeuerer sind gleich der Anzahl an Standardlandtypen unter den Laendern, die du kontrollierst.
+id=179248
+name=Matca Rioters
+rarity=C
+type=Creature
+mana={2}{G}
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(swamp|myinplay) 1/1
+power=*
+subtype=Human Warrior
+toughness=*
+[/card]
+[card]
+text=Wenn der Kaleidostein ins Spiel kommt, ziehe eine Karte.     {5}, {T}, opfere den Kaleidostein: Erhoehe deinen Manavorrat um {W}{U}{B}{R}{G}.
+auto=draw:1
+auto={5}{T}{S}:Add {W}{U}{B}{R}{G}
+id=189272
+name=Kaleidostone
+rarity=C
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={1}, {T}: Erhoehe deinen Manavorrat um {R}{G}{W}.
+auto={1}{T}:Add {R}{G}{W}
+id=180265
+name=Knotvine Mystic
+rarity=U
+type=Creature
+mana={R}{G}{W}
+power=2
+subtype=Elf Druid
+toughness=2
+[/card]
+[card]
+text={1}{W}: Das Kraniozeros erhaelt +0/+3 bis zum Ende des Zuges.
+auto={1}{W}:0/3
+id=177940
+name=Kranioceros
+rarity=C
+type=Creature
+mana={4}{R}
+power=5
+subtype=Beast
+toughness=2
+[/card]
+[card]
+text={1}, {T}: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+auto={1}{T}: Add {G}
+auto={1}{T}: Add {R}
+auto={1}{T}: Add {B}
+auto={1}{T}: Add {U}
+auto={1}{T}: Add {W}
+id=189269
+name=Mana Cylix
+rarity=C
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+2 und kann nicht blocken.
+target=creature
+auto=2/2
+auto=cantblock
+id=182609
+name=Maniacal Rage
+rarity=C
+type=Enchantment
+mana={1}{R}
+subtype=Aura
+[/card]
+[card]
+text=Schutz vor Blau.
+abilities=protection from blue
+id=185140
+name=Nacatl Outlander
+rarity=C
+type=Creature
+mana={R}{G}
+power=2
+subtype=Cat Scout
+toughness=2
+[/card]
+[card]
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)     {T}: Erhoehe deinen Manavorrat um {G}, {W} oder {U}.
+abilities=exalted
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+id=179434
+name=Noble Hierarch
+rarity=R
+type=Creature
+mana={G}
+power=0
+subtype=Human Druid
+toughness=1
+[/card]
+[card]
+text=Sowie die Nyxatide ins Spiel kommt, bestimme einen Gegner.     Die Nyxatide erhaelt -1/-1 fuer jede Karte auf der Hand des bestimmten Spielers.
+auto=foreach(*|opponenthand) -1/-1
+id=186616
+name=Nyxathid
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=7
+subtype=Elemental
+toughness=7
+[/card]
+[card]
+text={1}{W}, {T}: Du erhaeltst 5 Lebenspunkte dazu.     {1}{U}, {T}: Ziehe eine Karte und wirf dann eine Karte aus deiner Hand ab.     {1}{B}, {T}: Eine Kreatur deiner Wahl erhaelt -2/-2 bis zum Ende des Zuges.     {1}{R}, {T}: Der Obelisk von Alara fuegt einem Spieler deiner Wahl 3 Schadenspunkte zu.     {1}{G}, {T}: Eine Kreatur deiner Wahl erhaelt +4/+4 bis zum Ende des Zuges.
+auto={1}{W}{T}:life:5
+auto={1}{U}{T}:Draw:1
+auto={1}{B}{T}:-2/-2 target(creature)
+auto={1}{R}{T}:damage:3 target(player)
+auto={1}{G}{T}:4/4 target(creature)
+id=183018
+name=Obelisk of Alara
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text=Eile     {R}, {T}: Bringe einen 3/1 roten Elementarwesen-Kreaturenspielstein mit Eile ins Spiel.
+abilities=haste,legendary 
+auto={R}{T}:token(Elemental,creature, 3/1,haste red)
+id=185810
+name=Rakka Mar
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=2
+subtype=Human Shaman
+toughness=2
+[/card]
+[card]
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)     Wenn der Rhox-Leibwaechter ins Spiel kommt, erhaeltst du 3 Lebenspunkte dazu.
+auto=life:3
+abilities=exalted
+id=177924
+name=Rhox Bodyguard
+rarity=C
+type=Creature
+mana={3}{G}{W}
+power=2
+subtype=Rhino Monk Soldier
+toughness=3
+[/card]
+[card]
+text={R}{W}, {T}: Die Bogenschuetzen des Sacellums fuegen einer angreifenden oder blockenden Kreatur deiner Wahl 2 Schadenspunkte zu.
+auto={R}{W}{T}:damage:2 target(creature[attacking;blocking])
+id=179488
+name=Sacellum Archers
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Archer
+toughness=3
+[/card]
+[card]
+text=Der Altmetall-Schlitzer erhaelt +1/+0 fuer jede Artefaktkarte auf deinem Friedhof.
+auto=foreach(artifact|mygraveyard) 1/0
+id=179254
+name=Salvage Slasher
+rarity=C
+type=Artifact Creature
+mana={1}{B}
+power=1
+subtype=Human Rogue
+toughness=1
+[/card]
+[card]
+text={W}, {T}: Tappe eine bleibende Karte deiner Wahl.
+auto={W}{T}:tap target(*)
+id=174792
+name=Scepter of Dominance
+rarity=R
+type=Artifact
+mana={1}{W}{W}
+[/card]
+[card]
+text={3}{U}, {T}: Ziehe eine Karte.
+auto={3}{U}{T}:Draw:1
+id=184989
+name=Scepter of Insight
+rarity=R
+type=Artifact
+mana={1}{U}{U}
+[/card]
+[card]
+text=Fliegend     Wenn die Beschwoerer-Sphinx ins Spiel kommt, kannst du deine Bibliothek nach einer Artefaktkreaturenkarte durchsuchen, sie offen vorzeigen und auf deine Hand nehmen. Falls du dies tust, mische danach deine Bibliothek.
+auto=may moveTo(myHand) target(creature[artifact]|myLibrary)
+id=189079
+name=Sphinx Summoner
+rarity=R
+type=Artifact Creature
+mana={3}{U}{B}
+abilities=flying
+power=3
+subtype=Sphinx
+toughness=3
+[/card]
+[card]
+text={G}: Der Dornling erhaelt Eile bis zum Ende des Zuges.     {G}: Der Dornling verursacht bis zum Ende des Zuges Trampelschaden.     {G}: Der Dornling ist in diesem Zug unzerstoerbar.     {1}: Der Dornling erhaelt +1/-1 bis zum Ende des Zuges.     {1}: Der Dornling erhaelt -1/+1 bis zum Ende des Zuges.
+auto={G}:haste
+auto={G}:trample
+auto={1}:+1/-1
+auto={1}:-1/+1
+id=180341
+name=Thornling
+rarity=M
+type=Creature
+mana={3}{G}{G}
+power=4
+subtype=Elemental Shapeshifter
+toughness=4
+[/card]
+[card]
+text=Bringe eine Kreatur deiner Wahl auf die Hand ihres Besitzers zurueck.
+target=creature
+auto=moveTo(ownerhand)
+id=177932
+name=Unsummon
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Schutz vor Schwarz.
+abilities=protection from black
+id=185144
+name=Valeron Outlander
+rarity=C
+type=Creature
+mana={G}{W}
+power=2
+subtype=Human Scout
+toughness=2
+[/card]
+[card]
+text=
+id=184984
+name=Valiant Guard
+rarity=C
+type=Creature
+mana={W}
+power=0
+subtype=Human Soldier
+toughness=3
+[/card]
+[card]
+text=Schutz vor Rot.
+abilities=protection from red
+id=185141
+name=Vedalken Outlander
+rarity=C
+type=Artifact Creature
+mana={W}{U}
+power=2
+subtype=Vedalken Scout
+toughness=2
+[/card]
+[card]
+text=Doppelschlag     {B}{G}: Der Viashino-Metzelmeister erhaelt +1/+1 bis zum Ende des Zuges. Spiele diese Faehigkeit nur einmal pro Zug.
+abilities=double strike
+auto={B}{G}:1/1 limit:1
+id=179245
+name=Viashino Slaughtermaster
+rarity=U
+type=Creature
+mana={1}{R}
+power=1
+subtype=Viashino Warrior
+toughness=1
+[/card]
+[card]
+text=Scgutz vor Gruen.
+abilities=protection from green
+id=185138
+name=Zombie Outlander
+rarity=C
+type=Creature
+mana={U}{B}
+power=2
+subtype=Zombie Scout
+toughness=2
+[/card]

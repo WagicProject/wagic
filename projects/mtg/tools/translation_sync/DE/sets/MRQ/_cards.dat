@@ -1,0 +1,1341 @@
+[card]
+toughness=1
+name=Thermal Glider
+mana={2}{W}
+subtype=Human Rebel
+color=White
+rarity=C
+text=Flying, protection from red
+power=2
+id=19537
+type=Creature
+abilities=flying,protection from red
+[/card]
+[card]
+toughness=2
+name=Lightning Hounds
+mana={2}{R}{R}
+subtype=Hound
+color=Red
+rarity=C
+text=First strike
+power=3
+id=19618
+type=Creature
+abilities=first strike
+[/card]
+[card]
+name=Intimidation
+mana={2}{B}{B}{B}
+color=Black
+auto=lord(creature|myinplay) fear
+rarity=U
+text=Creatures you control have fear.
+type=Enchantment
+id=19833
+[/card]
+[card]
+toughness=1
+name=Misshapen Fiend
+mana={1}{B}
+subtype=Horror Mercenary
+color=Black
+rarity=C
+text=Flying
+power=1
+id=19581
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Tranquility
+mana={2}{G}
+color=Green
+auto=destroy all(enchantment)
+rarity=C
+text=Destroy all enchantments.
+type=Sorcery
+id=19637
+[/card]
+[card]
+toughness=4
+name=Crenellated Wall
+mana={4}
+subtype=Wall
+color=Artifact
+auto={T}:0/4 target(creature)
+rarity=U
+text=Defender (This creature can't attack.)     {T}: Target creature gets +0/+4 until end of turn.
+power=0
+id=19880
+type=Artifact Creature
+abilities=defender
+[/card]
+[card]
+toughness=*
+name=Battle Squadron
+mana={3}{R}{R}
+subtype=Goblin
+color=Red
+auto=foreach(creature|myinplay) 1/1
+rarity=R
+text=Flying   Battle Squadron's power and toughness are each equal to the number of creatures you control.
+power=*
+id=19712
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=3
+name=Ogre Taskmaster
+mana={3}{R}
+subtype=Ogre
+rarity=U
+text=Ogre Taskmaster can't block.
+power=4
+id=19844
+type=Creature
+abilities=cantblock
+[/card]
+[card]
+name=Heart of Ramos
+mana={3}
+color=Artifact
+auto={S}:Add {R}
+rarity=R
+text={T}: Add {R} to your mana pool.     Sacrifice Heart of Ramos: Add {R} to your mana pool.
+type=Artifact
+id=19766
+[/card]
+[card]
+toughness=1
+name=Deepwood Drummer
+mana={1}{G}
+subtype=Human Spellshaper
+color=Green
+auto={G}{T}{S(*|myhand)}:2/2 target(creature)
+rarity=C
+text={G}{T}, Discard a card: Target creature gets +2/+2 until end of turn.
+power=1
+id=19621
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Rishadan Airship
+mana={2}{U}
+subtype=Human Pirate
+color=Blue
+rarity=C
+text=Flying       Rishadan Airship can block only creatures with flying.
+power=3
+id=19802
+type=Creature
+abilities=flying,cloud
+[/card]
+[card]
+toughness=2
+name=Gerrard's Irregulars
+mana={4}{R}
+subtype=Human Soldier
+color=Red
+rarity=C
+text=Trample, haste
+power=4
+id=19842
+type=Creature
+abilities=trample,haste
+[/card]
+[card]
+name=Cave Sense
+mana={1}{R}
+subtype=Aura
+color=Red
+target=creature
+auto=mountainwalk
+rarity=C
+text=Enchant creature      Enchanted creature gets +1/+1 and has mountainwalk.
+id=19620
+type=Enchantment
+[/card]
+[card]
+auto=damage:2 all(creature[flying])
+text=Squall deals 2 damage to each creature with flying.
+rarity=C
+name=Squall
+id=19636
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Add {R} to your mana pool.
+type=Basic Land
+id=20895
+[/card]
+[card]
+toughness=3
+name=Glowing Anemone
+mana={3}{U}
+subtype=Jellyfish Beast
+auto=may moveto(ownerhand) target(land)
+rarity=U
+text=When Glowing Anemone comes into play, you may return target land to its owner's hand.
+power=1
+id=19803
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Strongarm Thug
+mana={2}{B}
+subtype=Human Mercenary
+auto=may moveto(myhand) target(mercenary|mygraveyard)
+rarity=U
+text=When Strongarm Thug comes into play, you may return target Mercenary card from your graveyard to your hand.
+power=1
+id=19689
+type=Creature
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}: Add {U} to your mana pool.
+type=Basic Land
+id=20885
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Add {B} to your mana pool.
+type=Basic Land
+id=20890
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Add {R} to your mana pool.
+type=Basic Land
+id=20894
+[/card]
+[card]
+name=Rain of Tears
+mana={1}{B}{B}
+color=Black
+target=land
+auto=destroy
+rarity=U
+text=Destroy target land.
+id=19828
+type=Sorcery
+[/card]
+[card]
+name=Cateran Summons
+mana={B}
+target=mercenary|myLibrary
+auto=moveTo(myHand)
+rarity=U
+text=Search your library for a Mercenary card, reveal that card, and put it into your hand. Then shuffle your library.
+type=Sorcery
+id=19832
+[/card]
+[card]
+toughness=1
+name=Kyren Glider
+mana={1}{R}
+subtype=Goblin
+rarity=C
+text=Flying     Kyren Glider can't block.
+power=1
+id=19604
+type=Creature
+abilities=cantblock,flying
+[/card]
+[card]
+name=Eye of Ramos
+mana={3}
+color=Artifact
+auto={S}:Add {U}
+rarity=R
+text={T}: Add {U} to your mana pool.     Sacrifice Eye of Ramos: Add {U} to your mana pool.
+type=Artifact
+id=19765
+[/card]
+[card]
+toughness=2
+name=Horned Troll
+mana={2}{G}
+subtype=Troll
+color=Green
+auto={G}:regenerate
+rarity=C
+text={G}: Regenerate Horned Troll.
+power=2
+id=19630
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Kris Mage
+mana={1}{R}
+subtype=Human Spellshaper
+color=Red
+auto={R}{T}{S(*|myhand)}:damage:1 target(creature,player)
+rarity=C
+text={R}{T}, Discard a card: Kris Mage deals 1 damage to target creature or player.
+power=1
+id=19836
+type=Creature
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}: Add {U} to your mana pool.
+type=Basic Land
+id=20887
+[/card]
+[card]
+toughness=2
+name=Blaster Mage
+mana={2}{R}
+subtype=Human Spellshaper
+color=Red
+auto={R}{T}{S(*|myhand)}:destroy target(wall)
+rarity=C
+text={R}{T}, Discard a card: Destroy target Wall.
+power=2
+id=21332
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Notorious Assassin
+mana={3}{B}
+subtype=Human Spellshaper Assassin
+color=Black
+auto={2}{B}{T}{S(*|myhand)}:destroy target(creature[-black])
+rarity=R
+text={2}{B}{T}, Discard a card: Destroy target nonblack creature. It can't be regenerated.
+power=2
+id=19695
+type=Creature
+[/card]
+[card]
+name=Briar Patch
+mana={1}{G}{G}
+color=Green
+auto=lord(creature[attacking]|opponentinplay) -1/0
+rarity=U
+text=Whenever a creature attacks you, it gets -1/-0 until end of turn.
+type=Enchantment
+id=19745
+[/card]
+[card]
+toughness=2
+name=Blockade Runner
+mana={3}{U}
+subtype=Merfolk
+color=Blue
+auto={U}:unblockable
+rarity=C
+text={U}: Blockade Runner is unblockable this turn.
+power=2
+id=19567
+type=Creature
+[/card]
+[card]
+color=Land
+auto={2}{T}:Add {G}
+text={T}: Add {1} to your mana pool.     {2}, {T}: Add one mana of any color to your mana pool.
+rarity=U
+name=Henge of Ramos
+id=19768
+type=Land
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Add {B} to your mana pool.
+type=Basic Land
+id=20888
+[/card]
+[card]
+toughness=2
+name=Balloon Peddler
+mana={2}{U}
+subtype=Human Spellshaper
+color=Blue
+auto={U}{T}{S(*|myhand)}:flying target(creature)
+rarity=C
+text={U}{T}, Discard a card: Target creature gains flying until end of turn.
+power=2
+id=19558
+type=Creature
+[/card]
+[card]
+name=Skull of Ramos
+mana={3}
+color=Artifact
+auto={S}:Add {B}
+rarity=R
+text={T}: Add {B} to your mana pool.     Sacrifice Skull of Ramos: Add {B} to your mana pool.
+type=Artifact
+id=19764
+[/card]
+[card]
+subtype=Forest
+auto={T}:add{G}
+text={T}: Add {G} to your mana pool.
+rarity=L
+name=Forest
+id=20898
+type=Basic Land
+[/card]
+[card]
+toughness=6
+name=Tidal Kraken
+mana={5}{U}{U}{U}
+subtype=Kraken
+color=Blue
+rarity=R
+text=Tidal Kraken is unblockable.
+power=6
+id=19674
+type=Creature
+abilities=unblockable
+[/card]
+[card]
+name=Maggot Therapy
+mana={2}{B}
+subtype=Aura
+color=Black
+target=creature
+auto=2/-2
+rarity=C
+text=Flash    Enchant creature     Enchanted creature gets +2/-2.
+id=19594
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+toughness=2
+name=Fresh Volunteers
+mana={1}{W}
+subtype=Human Rebel
+color=White
+rarity=C
+power=2
+id=19542
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Vine Trellis
+mana={1}{G}
+subtype=Plant Wall
+color=Green
+auto={T}:Add {G}
+rarity=C
+text=Defender (This creature can't attack.)        {T}: Add {G} to your mana pool.
+power=0
+id=19624
+type=Creature
+abilities=defender
+[/card]
+[card]
+name=Spidersilk Armor
+mana={2}{G}
+color=Green
+auto=lord(creature|myinplay) reach includeself
+rarity=C
+text=Creatures you control get +0/+1 and have reach. (They can block creatures with flying.)
+type=Enchantment
+id=19870
+[/card]
+[card]
+toughness=2
+name=Rushwood Herbalist
+mana={2}{G}
+subtype=Human Spellshaper
+auto={G}{T}{S(*|myhand)}:regenerate target(creature)
+rarity=C
+text={G}, {T}, Discard a card: Regenerate target creature.
+power=2
+id=19622
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Groundskeeper
+mana={G}
+subtype=Human Druid
+auto={1}{G}:moveto(myhand) target(land[basic]|mygraveyard)
+rarity=U
+text={1}{G}: Return target basic land card from your graveyard to your hand.
+power=1
+id=19863
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Cavern Crawler
+mana={2}{R}
+subtype=Insect
+color=Red
+auto={R}:1/-1
+rarity=C
+text=Mountainwalk      {R}: Cavern Crawler gets +1/-1 until end of turn.
+power=0
+id=19610
+type=Creature
+abilities=mountainwalk
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Add {B} to your mana pool.
+type=Basic Land
+id=20891
+[/card]
+[card]
+name=Counterspell
+mana={U}{U}
+color=Blue
+target=*|stack
+auto=fizzle
+rarity=U
+text=Counter target spell.
+id=19570
+type=Instant
+[/card]
+[card]
+name=Specter's Wail
+mana={1}{B}
+target=player
+auto=discard:1
+rarity=C
+text=Target player discards a card at random.
+type=Sorcery
+id=19597
+[/card]
+[card]
+name=Tiger Claws
+mana={1}{G}
+subtype=Aura
+color=Green
+target=creature
+auto=trample
+rarity=C
+text=Flash       Enchant creature      Enchanted creature gets +1/+1 and has trample.
+id=19635
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+name=Horn of Ramos
+mana={3}
+color=Artifact
+auto={S}:Add {G}
+rarity=R
+text={T}: Add {G} to your mana pool.     Sacrifice Horn of Ramos: Add {G} to your mana pool.
+type=Artifact
+id=19763
+[/card]
+[card]
+toughness=2
+name=Highway Robber
+mana={2}{B}{B}
+subtype=Human Rogue Mercenary
+color=Black
+target=player
+auto=life:2
+rarity=C
+text=When Highway Robber comes into play, target opponent loses 2 life and you gain 2 life.
+power=2
+id=19585
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Waterfront Bouncer
+mana={1}{U}
+subtype=Merfolk Spellshaper
+color=Blue
+auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(creature)
+rarity=C
+text={U}{T}, Discard a card: Return target creature to its owner's hand.
+power=1
+id=19557
+type=Creature
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Add {R} to your mana pool.
+type=Basic Land
+id=20892
+[/card]
+[card]
+color=Land
+auto={T}{S(creature|myinplay)}:life:1
+text={T}: Add {1} to your mana pool.     {T}, Sacrifice a creature: You gain 1 life. 
+rarity=R
+name=High Market
+id=19890
+type=Land
+[/card]
+[card]
+toughness=7
+name=Jhovall Queen
+mana={4}{W}{W}
+subtype=Cat Rebel
+color=White
+rarity=R
+text=Vigilance
+power=4
+id=19654
+type=Creature
+abilities=vigilance
+[/card]
+[card]
+toughness=3
+name=Boa Constrictor
+mana={4}{G}
+subtype=Snake
+color=Green
+auto={T}:3/3
+rarity=U
+text={T}: Boa Constrictor gets +3/+3 until end of turn.
+power=3
+id=19859
+type=Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Add {W} to your mana pool.
+type=Basic Land
+id=20880
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}: Add {U} to your mana pool.
+type=Basic Land
+id=20886
+[/card]
+[card]
+toughness=4
+name=Fountain Watch
+mana={3}{W}{W}
+subtype=Human Cleric
+color=White
+auto=lord(enchantment|myinplay) shroud
+rarity=R
+text=Artifacts and enchantments you control have shroud. (They can't be the targets of spells or abilities.)
+power=2
+id=19784
+type=Creature
+[/card]
+[card]
+name=Hoodwink
+mana={1}{U}
+color=Blue
+target=artifact,enchantment,land
+auto=moveTo(ownerhand)
+rarity=C
+text=Return target artifact, enchantment, or land to its owner's hand.
+id=20454
+type=Instant
+[/card]
+[card]
+toughness=3
+name=Wild Jhovall
+mana={3}{R}
+subtype=Cat
+color=Red
+rarity=C
+power=3
+id=19605
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Seismic Mage
+mana={3}{R}
+subtype=Human Spellshaper
+color=Red
+auto={2}{R}{T}{S(*|myhand)}:destroy target(land)
+rarity=R
+text={2}{R}{T}, Discard a card: Destroy target land.
+power=1
+id=19835
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Stinging Barrier
+mana={2}{U}{U}
+subtype=Wall
+color=Blue
+auto={U}{T}:Damage:1 target(creature,player)
+rarity=C
+text=Defender (This creature can't attack.)       {U}, {T}: Stinging Barrier deals 1 damage to target creature or player.
+power=0
+id=19561
+type=Creature
+abilities=defender
+[/card]
+[card]
+name=Trade Routes
+mana={1}{U}
+color=Blue
+auto={1}{S(land|myhand)}:draw:1
+rarity=R
+text={1}: Return target land you control to its owner's hand.     {1}, Discard a land card: Draw a card.
+type=Enchantment
+id=19675
+[/card]
+[card]
+auto=damage:1 all(creature[-flying])
+text=Tremor deals 1 damage to each creature without flying.
+rarity=C
+name=Tremor
+id=19614
+type=Sorcery
+mana={R}
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Add {W} to your mana pool.
+type=Basic Land
+id=20881
+[/card]
+[card]
+name=Sustenance
+mana={1}{G}
+color=Green
+auto={1}{s(land|myinplay)}:1/1 target(creature)
+rarity=U
+text={1}, Sacrifice a land: Target creature gets +1/+1 until end of turn.
+type=Enchantment
+id=19849
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Add {R} to your mana pool.
+type=Basic Land
+id=20893
+[/card]
+[card]
+auto={3}{T}{S(land|myinplay)}:destroy target(land[-basic])
+text={T}: Add {1} to your mana pool.       {3}, {T}, Sacrifice a land: Destroy target nonbasic land.
+rarity=R
+name=Dust Bowl
+id=19772
+type=Land
+[/card]
+[card]
+toughness=1
+name=Nightwind Glider
+mana={2}{W}
+subtype=Human Rebel
+color=White
+rarity=C
+text=Flying, protection from black
+power=2
+id=19544
+type=Creature
+abilities=flying,protection from black
+[/card]
+[card]
+toughness=2
+name=Bog Smugglers
+mana={1}{B}{B}
+subtype=Human Mercenary
+color=Black
+rarity=C
+text=Swampwalk
+power=2
+id=19598
+type=Creature
+abilities=swampwalk
+[/card]
+[card]
+toughness=2
+name=Steadfast Guard
+mana={W}{W}
+subtype=Human Rebel
+color=White
+rarity=C
+text=Vigilance (Attacking doesn't cause this creature to tap.)
+power=2
+id=19780
+type=Creature
+abilities=vigilance
+[/card]
+[card]
+toughness=1
+name=Arms Dealer
+mana={2}{R}
+subtype=Goblin
+color=Red
+auto={1}{R}{S(goblin|myinplay)}:Damage:4 target(creature)
+rarity=U
+text={1}{R}, Sacrifice a Goblin: Arms Dealer deals 4 damage to target creature.
+power=1
+id=19861
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Primeval Shambler
+mana={4}{B}
+subtype=Horror Mercenary
+color=Black
+auto={B}:1/1
+rarity=U
+text={B}: Primeval Shambler gets +1/+1 until end of turn.
+power=3
+id=19824
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Jhovall Rider
+mana={4}{W}
+subtype=Human Rebel
+color=White
+rarity=U
+text=Trample
+power=3
+id=20172
+type=Creature
+abilities=trample
+[/card]
+[card]
+toughness=1
+name=Tonic Peddler
+mana={1}{W}
+subtype=Human Spellshaper
+color=White
+auto={W}{T}{S(*|myhand)}:life:3
+rarity=U
+text={W}{T}, Discard a card: Target player gains 3 life.
+power=1
+id=136516
+type=Creature
+[/card]
+[card]
+name=Revive
+mana={1}{G}
+color=Green
+target=*[green]|myGraveyard
+rarity=U
+text=Return target green card from your graveyard to your hand.
+type=Sorcery
+id=19641
+alias=1263
+[/card]
+[card]
+name=Buoyancy
+mana={1}{U}
+subtype=Aura
+color=Blue
+target=creature
+auto=flying
+rarity=C
+text=Flash       Enchant creature      Enchanted creature has flying.
+id=19574
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+toughness=3
+name=Giant Caterpillar
+mana={3}{G}
+subtype=Insect
+color=Green
+auto={G}{S}:token(Butterfly,creature insect token, 1/1,flying green)
+rarity=C
+text={G}, Sacrifice Giant Caterpillar: Put a 1/1 green Insect creature token with flying named Butterfly into play at end of turn.
+power=3
+id=20847
+type=Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Add {W} to your mana pool.
+type=Basic Land
+id=20883
+[/card]
+[card]
+toughness=4
+name=Lumbering Satyr
+mana={2}{G}{G}
+subtype=Satyr Beast
+color=Green
+auto=lord(creature) forestwalk
+rarity=U
+text=All creatures have forestwalk.
+power=5
+id=19860
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Rock Badger
+mana={4}{R}
+subtype=Badger Beast
+color=Red
+rarity=C
+text=Mountainwalk (This creature is unblockable as long as defending player controls a Mountain.)
+power=3
+id=19840
+type=Creature
+abilities=mountainwalk
+[/card]
+[card]
+name=Iron Lance
+mana={2}
+color=Artifact
+auto={3}{T}:first strike target(creature)
+rarity=U
+text={3}, {T}: Target creature gains first strike until end of turn.
+type=Artifact
+id=19882
+[/card]
+[card]
+name=Stone Rain
+mana={2}{R}
+color=Red
+target=land
+auto=Destroy
+rarity=C
+text=Destroy target land.
+id=19612
+type=Sorcery
+[/card]
+[card]
+subtype=Forest
+auto={T}:add{G}
+text={T}: Add {G} to your mana pool.
+rarity=L
+name=Forest
+id=20897
+type=Basic Land
+[/card]
+[card]
+toughness=1
+name=Undertaker
+mana={1}{B}
+subtype=Human Spellshaper
+color=Black
+auto={B}{T}{S(*|myhand)}:moveTo(ownerhand) target(creature|mygraveyard)
+rarity=C
+text={B}{T}, Discard a card: Return target creature card from your graveyard to your hand.
+power=1
+id=21306
+type=Creature
+[/card]
+[card]
+name=Desert Twister
+mana={4}{G}{G}
+color=Green
+target=*
+auto=destroy
+rarity=U
+text=Destroy target permanent.
+id=19638
+type=Sorcery
+[/card]
+[card]
+toughness=1
+name=Crossbow Infantry
+mana={1}{W}
+subtype=Human Soldier Archer
+color=White
+auto={T}:damage:1 target(creature[attacking;blocking])
+rarity=C
+text={T}: Crossbow Infantry deals 1 damage to target attacking or blocking creature.
+power=1
+id=19540
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Devout Witness
+mana={2}{W}
+subtype=Human Spellshaper
+color=White
+auto={W}{T}{S(*|myhand)}:destroy target(artifact,enchantment)
+rarity=C
+text={W}{T}, Discard a card: Destroy target artifact or enchantment.
+power=2
+id=19536
+type=Creature
+[/card]
+[card]
+name=Disenchant
+mana={1}{W}
+color=White
+target=artifact,enchantment
+auto=destroy
+rarity=C
+text=Destroy target artifact or enchantment.
+id=19548
+type=Instant
+[/card]
+[card]
+name=Flaming Sword
+mana={1}{R}
+subtype=Aura
+color=Red
+target=creature
+auto=first strike
+rarity=C
+text=Flash       Enchant creature      Enchanted creature gets +1/+0 and has first strike.
+id=19613
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+toughness=4
+name=Henge Guardian
+mana={5}
+subtype=Dragon Wurm
+color=Artifact
+auto={2}:trample
+rarity=U
+text={2}: Henge Guardian gains trample until end of turn.
+power=3
+id=19770
+type=Artifact Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Add {W} to your mana pool.
+type=Basic Land
+id=20882
+[/card]
+[card]
+toughness=1
+name=Rushwood Dryad
+mana={1}{G}
+subtype=Dryad
+color=Green
+rarity=C
+text=Forestwalk (This creature is unblockable as long as defending player controls a Forest.)
+power=2
+id=19627
+type=Creature
+abilities=forestwalk
+[/card]
+[card]
+name=Tooth of Ramos
+mana={3}
+color=Artifact
+auto={S}:Add {W}
+rarity=R
+text={T}: Add {W} to your mana pool.     Sacrifice Tooth of Ramos: Add {W} to your mana pool.
+type=Artifact
+id=19762
+[/card]
+[card]
+subtype=Forest
+auto={T}:add{G}
+text={T}: Add {G} to your mana pool.
+rarity=L
+name=Forest
+id=20899
+type=Basic Land
+[/card]
+[card]
+toughness=1
+name=Venomous Dragonfly
+mana={3}{G}
+subtype=Insect
+rarity=C
+text=Flying     Whenever Venomous Dragonfly blocks or becomes blocked by a creature, destroy that creature at end of combat.
+power=1
+id=19625
+type=Creature
+alias=1267
+abilities=flying
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Add {B} to your mana pool.
+type=Basic Land
+id=20889
+[/card]
+[card]
+toughness=4
+name=Silverglade Elemental
+mana={4}{G}
+subtype=Elemental
+auto=may moveTo(myInplay) target(Forest|myLibrary)
+rarity=C
+text=When Silverglade Elemental comes into play, you may search your library for a Forest card and put that card into play. If you do, shuffle your library.
+power=4
+id=19631
+type=Creature
+[/card]
+[card]
+color=Land
+auto={1}{T}:Tap target(land)
+text={T}: Add {1} to your mana pool.     {1}, {T}: Tap target land. 
+rarity=R
+name=Rishadan Port
+id=19767
+type=Land
+[/card]
+[card]
+name=Diplomatic Immunity
+mana={1}{U}
+subtype=Aura
+color=Blue
+target=creature
+auto=shroud
+rarity=C
+text=Flash       Enchant creature     Shroud (This permanent can't be the target of spells or abilities.)     Enchanted creature has shroud.
+id=19576
+type=Enchantment
+abilities=shroud
+[/card]
+[card]
+name=Dark Ritual
+mana={B}
+color=Black
+auto=Add {B}{B}{B}
+rarity=C
+text=Add {B}{B}{B} to your mana pool.
+type=Instant
+id=19592
+[/card]
+[card]
+subtype=Forest
+auto={T}:add{G}
+text={T}: Add {G} to your mana pool.
+rarity=L
+name=Forest
+id=20896
+type=Basic Land
+[/card]
+[card]
+name=Bribery
+mana={3}{U}{U}
+target=creature|opponentLibrary
+auto=moveTo(myInplay)
+rarity=R
+text=Search target opponent's library for a creature card and put that card into play under your control. Then that player shuffles his or her library.
+type=Sorcery
+id=21300
+[/card]
+[card]
+toughness=2
+name=Shock Troops
+mana={3}{R}
+subtype=Human Soldier
+color=Red
+auto={S}:Damage:2 target(creature,player)
+rarity=C
+text=Sacrifice Shock Troops: Shock Troops deals 2 damage to target creature or player.
+power=2
+id=19609
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Drake Hatchling
+mana={2}{U}
+subtype=Drake
+color=Blue
+auto={U}:1/0 limit:1
+rarity=C
+text=Flying      {U}: Drake Hatchling gets +1/+0 until end of turn. Play this ability only once each turn.
+power=1
+id=19565
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=1
+name=Cloud Sprite
+mana={U}
+subtype=Faerie
+color=Blue
+rarity=C
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)      Cloud Sprite can block only creatures with flying.
+power=1
+id=19563
+type=Creature
+abilities=flying,cloud
+[/card]
+[card]
+toughness=3
+name=Thrashing Wumpus
+mana={3}{B}{B}
+subtype=Beast
+color=Black
+rarity=R
+text={B}: Thrashing Wumpus deals 1 damage to each creature and each player.
+power=3
+id=19823
+type=Creature
+alias=1172
+[/card]
+[card]
+auto={B}:moveTo(myLibrary) target(creature|myGraveyard)
+text={B}: Put target creature card from your graveyard on top of your library.
+rarity=U
+name=Haunted Crossroads
+id=19704
+type=Enchantment
+mana={2}{B}
+[/card]
+[card]
+name=Soothing Balm
+mana={1}{W}
+color=White
+target=player
+auto=life:5
+rarity=C
+text=Target player gains 5 life.
+id=19550
+type=Instant
+[/card]
+[card]
+toughness=1
+name=Deadly Insect
+mana={4}{G}
+subtype=Insect
+color=Green
+rarity=C
+text=Shroud (This permanent can't be the target of spells or abilities.)
+power=6
+id=19628
+type=Creature
+abilities=shroud
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}: Add {U} to your mana pool.
+type=Basic Land
+id=20884
+[/card]
+[card]
+auto=lord(creature[blue;white]) cantblock
+text=White creatures and blue creatures can't block.
+rarity=U
+name=Magistrate's Veto
+id=19854
+type=Enchantment
+mana={2}{R}
+[/card]
+[card]
+toughness=1
+name=Bog Witch
+mana={2}{B}
+subtype=Human Spellshaper
+color=Black
+auto={B}{T}{S(*|myhand)}:Add {B}{B}{B}
+rarity=C
+text={B}{T}, Discard a card: Add {B}{B}{B} to your mana pool.
+power=1
+id=19578
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Darting Merfolk
+mana={1}{U}
+subtype=Merfolk
+auto={U}:moveto(hand)
+rarity=C
+text={U}: Return Darting Merfolk to its owner's hand.
+power=1
+id=19559
+type=Creature
+[/card]
+[card]
+name=Ancestral Mask
+mana={2}{G}
+subtype=Aura
+color=Green
+target=creature
+auto=foreach(enchantment|opponentinplay) 2/2 other
+rarity=C
+text=Enchant creature      Enchanted creature gets +2/+2 for each other enchantment in play.
+id=19634
+type=Enchantment
+[/card]
+[card]
+toughness=3
+name=Battle Rampart
+mana={2}{R}
+subtype=Wall
+color=Red
+auto={T}:haste target(creature)
+rarity=C
+text=Defender (This creature can't attack.)     {T}: Target creature gains haste until end of turn.
+power=1
+id=19607
+type=Creature
+abilities=defender
+[/card]

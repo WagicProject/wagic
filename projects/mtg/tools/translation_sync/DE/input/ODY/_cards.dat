@@ -1,0 +1,1290 @@
+[card]
+text=Der Aufgegebene Aussenposten kommt getappt ins Spiel. {T}:Erhoehe deinen Manavorrat um {W}     {T}, opfere den Aufgegebenen Aussenposten: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+id=31761
+auto=tap
+auto={T}:Add{W}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
+name=Abandoned Outpost
+type=Land
+rarity=C
+[/card]
+[card]
+text=Eine Kreatur deiner Wahl erhaelt -1/-1 bis zum Ende des Zuges.     Ziehe eine Karte.
+id=29740
+name=Afflict
+target=Creature
+auto=-1/-1
+auto=draw:1
+mana={2}{B}
+color=black
+type=Instant 
+rarity=C
+[/card]
+[card]
+text=Fliegend. {2}{U}, wirf eine Karte aus deiner Hand ab: Bringe Amugaba auf die Hand seines Besitzers zurueck.
+id=29929
+name=Amugaba
+abilities=flying
+auto={2}{U}{s(*|myhand)}:moveTo(ownerhand)
+mana={5}{U}{U}
+type=Creature
+subtype=Illusion
+power=6
+toughness=6
+rarity=R
+[/card]
+[card]
+text=Wenn der Anarchist ins Spiel kommt, kannst du eine Hexereikarte deiner Wahl aus deinem Friedhof auf deine Hand bringen.
+id=29758
+name=Anarchist
+auto=may moveTo(myhand) target(sorcery|mygraveyard)
+rarity=C
+type=Creature
+mana={4}{R}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Verteidiger, Fliegend
+id=29699
+name=Angelic Wall
+abilities=flying,defender
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+rarity=C
+[/card]
+[card]
+text={1}{R}: Die Aschfahle Feuerbestie fuegt allen nichtfliegenden Kreaturen 1 Schadenspunkt zu.
+id=29965
+name=Ashen Firebeast
+auto={1}{R}:damage:1 all(creature[-flying])
+rarity=R
+type=Creature
+mana={6}{R}{R}
+power=6
+subtype=Elemental Beast
+toughness=6
+[/card]
+[card]
+text=Du kannst eine Verzauberungskarte deiner Wahl aus deinem Friedhof auf deine Hand zurueckbringen, wenn der Auraschoepfer ins Spiel kommt.
+id=29700
+name=Auramancer
+auto=may moveTo(myhand) target(enchantment|mygraveyard)
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Fliegend. {2}{W}{T}: Der Avior-Bogenschuetze fuegt einer angreifenden oder blockenden Kreatur deiner Wahl 2 Schadenspunkte zu.
+id=29691
+name=Aven Archer
+abilities=flying 
+auto={2}{W}{T}:damage:2 target(creature[attacking;blocking])
+mana={3}{W}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Fliegend     Wenn der Avior-Wolkenjaeger ins Spiel kommt, zerstoere eine Verzauberung deiner Wahl.
+id=29694
+name=Aven Cloudchaser
+abilities=flying
+auto=may moveTo(ownergraveyard) target(enchantment)
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Bird Soldier
+toughness=2
+[/card]
+[card]
+text=Fliegend      {W}: Der Aviorschwarm erhaelt +0/+1 bis zum Ende des Zuges.
+id=31767
+name=Aven Flock
+abilities=flying
+auto={W}:0/1
+mana={4}{W}
+color=white
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=3
+rarity=C
+[/card]
+[card]
+text=Fliegend, Schutz vor Rot
+id=29709
+name=Aven Smokeweaver
+abilities=flying,protection from red
+mana={2}{U}{U}
+color=blue
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=3
+rarity=U
+[/card]
+[card]
+text=Fliegend     {1}{U}, wirf eine Karte aus deiner Hand ab: Bringe den Balshan-Greif auf die Hand ihres Besitzers zurueck.
+id=29820
+name=Balshan Griffin
+abilities=flying
+auto={1}{U}{S(*|myhand)}:moveTo(hand)
+rarity=U
+type=Creature
+mana={3}{U}{U}
+power=3
+subtype=Griffin
+toughness=2
+[/card]
+[card]
+text={2}{R}, opfere den Wahnsinnigen Barbar:Der Wahnsinnige Barbar fuegt einer Kreatur deiner Wahl 2 Schadenspunkte zu.
+id=29757
+name=Barbarian Lunatic
+mana={2}{R}
+type=Creature
+subtype=Human Barbarian
+auto={2}{R}{S}:damage:2 target(creature)
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Andere Kreaturen, die du kontrollierst, erhalten +0/+1.
+id=29688
+name=Blessed Orator
+mana={3}{W}
+auto=lord(creature|myinplay) 0/1 other
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=4
+rarity=U
+[/card]
+[card]
+text=Die Zerfallenen Moorhaeuser kommen getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {B}.     {T}, opfere die Zerfallenen Moorhaeuser: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+id=31763
+auto=tap
+auto={T}:Add{B}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
+name=Bog Wreckage
+type=Land
+rarity=C
+[/card]
+[card]
+text=Wachsamkeit     Staerke und Widerstandskraft des Phrasenfressers sind gleich der Anzahl an Verzauberungskarten in allen Friedhoefen.
+id=29914
+name=Cantivore
+abilities=vigilance
+mana={1}{W}{W}
+type=Creature
+subtype=Lhurgoyf
+auto=foreach(enchantment|graveyard) 1/1
+power=*
+toughness=*
+rarity=R
+[/card]
+[card]
+text=Wenn der Kartenzeichner ins Spiel kommt, kannst du ein Land deiner Wahl aus deinem Friedhof auf deine Hand zurueckbringen.
+id=29783
+name=Cartographer
+auto=may moveTo(myhand) target(land|mygraveyard)
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human
+toughness=2
+[/card]
+[card]
+text={U}{U}: Tappe eine nichtfliegende Kreatur deiner Wahl.
+id=31870
+name=Cephalid Retainer
+mana={2}{U}{U}
+type=Creature
+subtype=Cephalid
+auto={U}{U}:tap target(creature[-flying])
+power=2
+toughness=3
+rarity=R
+[/card]
+[card]
+text=Fliegend {2}{U}, opfere ein Land: Ziehe eine Karte.
+id=29710
+name=Cephalid Scout
+mana={1}{U}
+type=Creature
+subtype=Cephalid Wizard
+auto={2}{U}{S(land|myinplay)}: Draw:1
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Fliegend     Staerke und Widerstandskraft des Traumverzehrers sind gleich der Anzahl an Spontanzauberkarten in allen Friedhoefen.
+id=29931
+name=Cognivore
+abilities=flying
+auto=foreach(instant|graveyard) 1/1
+mana={6}{U}{U}
+type=Creature
+subtype=Lhurgoyf
+power=*
+toughness=*
+rarity=R
+[/card]
+[card]
+text=Ziehe 3 Karten.
+id=30655
+name=Concentrate
+auto=draw:3
+mana={2}{U}{U}
+color=blue
+type=Sorcery 
+rarity=U
+[/card]
+[card]
+text=Opfere den Kryptenkriecher: Entferne eine Karte deiner Wahl in einem Friedhof ganz aus dem Spiel.
+id=29840
+name=Crypt Creeper
+mana={1}{B}
+color=black
+type=Creature
+subtype=Zombie
+auto={S}:moveTo(ownerremovedfromgame) target(*|graveyard)
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {5}{T}: Erhoehe deinen Manavorrat um {W}{U}{B}{R}{G}.
+id=30012
+name=Crystal Quarry
+auto={T}:add {1}
+auto={5}{T}: Add {W}{U}{B}{R}{G}
+type=Land
+rarity=R
+[/card]
+[card]
+text={1}{T} Erhoehe deinen Manavorrat um {U}{B}.
+id=29793
+name=Darkwater Catacombs
+auto={1}{T}: Add {U}{B}
+type=Land
+rarity=R
+[/card]
+[card]
+text={W}, opfere den Ergebenen Maertyrer:Du erhaeltst 3 Lebenspunkte dazu.
+id=31771
+name=Dedicated Martyr
+mana={W}
+color=white
+auto={W}{S}:life:3
+type=Creature
+subtype=Cleric
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Zerstoere ein Artefakt oder ein Land deiner Wahl.
+id=29867
+name=Demolish
+target=artifact,land
+auto=destroy
+mana={3}{R}
+color=Red
+type=Sorcery
+rarity=U
+[/card]
+[card]
+text={T}: Erhoehe deinen Manvorrat um {1}.     {1}{T}: Enttappe ein Land deiner Wahl.
+id=30013
+name=Deserted Temple
+auto={T}:add {1}
+auto={1}{T}:Untap target(land)
+type=Land
+rarity=R
+[/card]
+[card]
+text=Durchsuche deine Bibliothek nach einer Karte und nimm diese Karte auf deine Hand. Mische danach deine Bibliothek.
+target=*|myLibrary
+auto=moveTo(myHand)
+id=29954
+name=Diabolic Tutor
+rarity=U
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text={G},{T}, opfere den Druidendichter: Zerstoere eine Verzauberung deiner Wahl.
+id=29778
+name=Druid Lyrist
+mana={G}
+color=green
+auto={G}{T}{S}:destroy target(enchantment)
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Fliegend
+id=31807
+name=Dusk Imp
+abilities=flying
+mana={2}{B}
+color=blue
+type=Creature
+subtype=Imp
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Gebirgstarnung
+id=29760
+name=Dwarven Grunt
+abilities=mountainwalk
+mana={R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Durchsuche deine Bibliothek nach einer Karte und lege diese Karte auf deinen Friedhof. Mische danach deine Bibliothek.
+target=*|myLibrary
+auto=moveTo(myGraveyard)
+id=30552
+name=Entomb
+rarity=R
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Der Entfesselungskuenstler ist unblockbar.     {U},wirf eine Karte aus deiner Hand ab: Bringe den Entfesselungskuenstler auf die Hand seines Besitzers zurueck.
+id=31813
+name=Escape Artist
+type=Creature
+subtype=Wizard
+abilities=unblockable
+auto={U}{s(*|myhand)}:moveTo(ownerhand)
+mana={1}{U}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Zerstoere eine weisse Kreatur deiner Wahl.     Sie kann nicht regeneriert werden.     Ziehe eine Karte.
+id=30558
+name=Execute
+mana={2}{B}
+color=black
+target=Creature[white]
+auto=bury
+auto=draw:1
+type=Instant 
+rarity=U
+[/card]
+[card]
+text=Durchsuche die Bibliothek eines Spielers deiner Wahl. Bestimme eine Karte davon, und entferne diese Karte ganz aus dem Spiel. Dieser Spieler mischt danach seine Bibliothek.
+target=*|library
+auto=moveTo(removedFromGame)
+id=29849
+name=Extract
+rarity=R
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text={2}{B}, wirf eine Karte aus deiner Hand ab: Das Angesicht des Schreckens verursacht Furcht bis zu ende des Zuges.
+id=31738
+name=Face of Fear
+auto={2}{B}{S(*|myhand)}:fear
+mana={5}{B}
+type=Creature
+subtype=Horror
+power=3
+toughness=4
+rarity=U
+[/card]
+[card]
+text={B}, wirf eine Karte aus deiner Hand ab: Der Junge Bold erhaelt Flugfaehigkeit bis zum Ende des Zuges.
+id=31777
+name=Fledgling Imp
+mana={2}{B}
+type=Creature
+subtype=Imp
+auto={B}{S(*|myhand)}:flying
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {G}.
+id=31625
+name=Forest
+auto={T}:add {G}
+type=Basic Land
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {G}.
+id=31626
+name=Forest
+auto={T}:add {G}
+type=Basic Land
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {G}.
+id=31627
+name=Forest
+auto={T}:add {G} 
+type=Basic Land 
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {G}.
+id=31628
+name=Forest
+auto={T}:add {G} 
+type=Basic Land 
+subtype=Forest
+rarity=L
+[/card]
+[card]
+text=Eine blockende Kreatur deiner Wahl erhaelt +4/+4 bis zum Ende des Zuges.     Ziehe eine Karte.
+id=28755
+name=Gallantry
+target=Creature[blocking]
+auto=4/4
+auto=draw:1
+mana={1}{W}
+color=white
+type=Instant 
+rarity=U
+[/card]
+[card]
+text=Wenn der Totengraeber ins Spiel kommt, kannst du eine Kreaturenkarte deiner Wahl aus deinem Friedhof auf deine Hand zurueckholen.
+id=29741
+name=Gravedigger
+auto=may moveTo(myhand) target(creature|mygraveyard)
+rarity=C
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text=Wenn diese Verzauberung ins Spiel kommt ziehst Du eine Karte.     Karten in Friedhoefen koennen nicht das Ziel von Zauberspruechen und Effekten sein.
+id=29991
+name=Ground Seal
+mana={1}{G}
+type=Enchantment
+auto=lord(*|graveyard) shroud
+auto=draw:1
+rarity=R
+[/card]
+[card]
+text=Erstschlag
+id=29751
+name=Halberdier
+abilities=first strike
+mana={3}{R}
+color=red
+type=Creature
+subtype=Human Barbarian
+power=3
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Fliegend, Schutz vor allen Farben
+id=31799
+name=Iridescent Angel
+abilities=flying,protection from black,protection from blue,protection from green,protection from red,protection from white
+mana={5}{W}{U}
+color=white,blue
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+rarity=R
+[/card]
+[card]
+text=Erhoehe deinen Manvorrat um {U}.
+id=31613
+name=Island
+auto={T}:add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manvorrat um {U}.
+id=31614
+name=Island
+auto={T}:add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manvorrat um {U}.
+id=31615
+name=Island
+auto={T}:add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manvorrat um {U}.
+id=31616
+name=Island
+auto={T}:add {U}
+type=Basic Land
+subtype=Island
+rarity=L
+[/card]
+[card]
+text=Eile     {T}: Kamahl, der Grubenkaempfer fuegt einer Kreatur oder einem Spieler deiner Wahl 3 Schadenspunkte zu.
+id=29963
+name=Kamahl, Pit Fighter
+abilities=legendary,haste
+auto={T}:damage:3 target(creature,player)
+mana={4}{R}{R}
+color=red
+type=Creature
+subtype=Human Barbarian
+power=6
+toughness=1
+rarity=R
+[/card]
+[card]
+text=Reichweite     {G}, wirf eine Karte aus deiner Hand ab:Der Krosanische Bogenschuetze erhaelt +0/+2 bis zum Ende des Zuges.
+id=29780
+name=Krosan Archer
+abilities=reach
+auto={G}{S(*|myhand)}:0/2
+rarity=C
+type=Creature
+mana={3}{G}
+power=2
+subtype=Centaur Archer
+toughness=3
+[/card]
+[card]
+text=Waldtarnung
+id=29782
+name=Leaf Dancer
+abilities=forestwalk
+mana={1}{G}{G}
+type=Creature
+subtype=Centaur
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Fliegend     {1}{W}, opfere Leutnant Kirtar: Entferne eine angreifende Kreatur deiner Wahl ganz aus dem Spiel.
+id=31820
+name=Lieutenant Kirtar
+abilities=legendary,flying
+mana={1}{W}{W}
+type=Creature
+subtype=Bird Soldier
+auto={1}{W}{S}:moveTo(ownerremovedfromgame) target(creature[attacking])
+power=2
+toughness=2
+rarity=R
+[/card]
+[card]
+text=Opfere ein Artefakt: Der Steinatog erhaelt +1/+1 bis zum Ende des Zuges.     Opfere ein Land: Der Steinatog erhaelt +1/+1 bis zum Ende des Zuges.
+id=31770
+name=Lithatog
+mana={1}{R}{G}
+color=Red,Green
+type=Creature
+subtype=Atog
+auto={s(artifact|myinplay)}:1/1
+auto={s(land|myinplay)}:1/1
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text={R}, opfere ein Land: Die Magmaadern fuegen jeder nichtfliegenden Kreatur 1 Schadenspunkt zu.
+id=29859
+name=Magma Vein
+auto={R}{S(land|myinplay)}:damage:1 all(creature[-flying])
+rarity=U
+type=Enchantment
+mana={2}{R}
+[/card]
+[card]
+text=Eile     Staerke und Widerstandskraft des Machtmampfers sind gleich der Anzahl an Hexereikarten auf allen Friedhoefen.
+id=30550
+name=Magnivore
+abilities=haste
+auto=foreach(sorcery|graveyard) 1/1
+mana={2}{R}{R}
+type=Creature
+subtype=Lhurgoyf
+power=*
+toughness=*
+rarity=R
+[/card]
+[card]
+text={1}{B}{B}, opfere eine Kreatur: Bringe eine Kreaturenkarte deiner Wahl aus deinem Friedhof auf deine Hand zurueck.
+id=30560
+name=Malevolent Awakening
+mana={1}{B}{B}
+color=black
+auto={1}{B}{B}{S(creature|myinplay)}:moveTo(myhand) target(creature|mygraveyard)
+type=Enchantment
+rarity=U
+[/card]
+[card]
+text=Opfere den Minotaurischen Erforscher, wenn er ins Spiel kommt, falls du nicht eine zufaellig bestimmte Karte aus deiner Hand abwirfst.
+id=31786
+auto=discard:1
+name=Minotaur Explorer
+rarity=U
+type=Creature
+mana={1}{R}
+power=3
+subtype=Minotaur Scout
+toughness=3
+[/card]
+[card]
+text=Staerke und Widerstandskraft des Kadaverreissers sind gleich der Anzahl der Kreaturenkarten auf allen Friedhoefen.     {B}: Regeneriere den Kadaverreisser.
+id=29946
+name=Mortivore
+auto=foreach(creature|graveyard) 1/1
+auto={B}:regenerate
+mana={2}{B}{B}
+type=Creature
+subtype=Lhurgoyf
+power=*
+toughness=*
+rarity=R
+[/card]
+[card]
+text={1}{T}: Erhoehe deinen Manavorrat um {R}{G}.
+id=29795
+name=Mossfire Valley
+auto={1}{T}: Add {R}{G}
+type=Land
+rarity=R
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {R}.
+id=31621
+name=Mountain
+auto={T}:add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {R}.
+id=31622
+name=Mountain
+auto={T}:add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {R}.
+id=31623
+name=Mountain
+auto={T}:add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {R}.
+id=31624
+name=Mountain
+auto={T}:add {R}
+type=Basic Land
+subtype=Mountain
+rarity=L
+[/card]
+[card]
+text={G}{T}: Eine Kreatur deiner Wahl erhaelt +2/+2 bis zum Ende des Zuges.
+id=29771
+name=Nantuko Disciple
+auto={G}{T}:2/2 target(creature) 
+mana={3}{G}
+color=green
+type=Creature
+subtype=Insect Druid
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text={T}: Erhoehe deinen Manvorrat um {1}{G}.
+id=29870
+name=Nantuko Elder
+auto={T}: add {1}{G}
+mana={2}{G}
+color=green
+type=Creature
+subtype=Insect Druid
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Opfere ein Land: Eine Kreatur deiner Wahl erhaelt bis zum Ende des Zuges Eile.
+id=29971
+name=Need for Speed
+mana={R}
+auto={S(land|myinplay)}:haste target(creature)
+type=Enchantment
+rarity=R
+[/card]
+[card]
+text=Wirf eine Karte aus deiner Hand ab, opfere den uebereifrigen Lehrling: Erhoehe deinen Manavorrat um {B}{B}{B}.
+id=29737
+name=Overeager Apprentice
+mana={2}{B}
+type=Creature
+subtype=Human Minion
+auto={S}{S(*|myhand)}:add{B}{B}{B}
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Kreaturen, die du kontrollierst, erhalten +3/+3 und verursachen bis zum Ende des Zuges Trampelschaden. 
+id=29996
+name=Overrun
+auto=lord(creature|myinplay) trample
+auto=lord(creature|myinplay) 3/3
+rarity=U
+type=Sorcery
+mana={2}{G}{G}{G}
+[/card]
+[card]
+text=Wirf eine Karte aus deiner Hand ab: Regeneriere die Zusammengeflickten Gnome.
+id=31832
+name=Patchwork Gnomes
+mana={3}
+type=Artifact Creature
+auto={s(*|myhand)}:Regenerate
+subtype=Gnome
+power=2
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Wirf eine Karte aus deiner Hand ab: Der Spaehhund erhaelt Erstschlag bis zum Ende des Zuges.
+id=30654
+name=Patrol Hound
+mana={1}{W}
+type=Creature
+subtype=Hound
+auto={S(*|myhand)}:first strike
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Kreaturenverzauberung     Du kontrollierst die verzauberte Kreatur.
+id=29829
+alias=1194
+name=Persuasion
+target=Creature
+mana={3}{U}{U}
+color=blue
+type=Enchantment
+subtype=Aura
+rarity=R
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {T}, opfere das Versteinerte Feld: Bringe ein Land deiner Wahl aus deinem Friedhof auf deine Hand zurueck.
+id=30014
+auto={T}:Add{1}
+auto={T}{S}:moveTo(myhand) target(land|mygraveyard)
+name=Petrified Field
+type=Land
+rarity=R
+[/card]
+[card]
+text=Opfere eine Verzauberung: Der Phantatog erhaelt +1/+1 bis zum Ende des Zuges.     Wirf eine Karte aus deiner Hand ab: Der Phantatog erhaelt +1/+1 bis zum Ende des Zuges.
+id=31792
+name=Phantatog
+mana={1}{W}{U}
+type=Creature
+subtype=Atog
+auto={s(enchantment|myinplay)}:1/1
+auto={s(*|myhand)}:1/1
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {W}.
+id=31630
+name=Plains
+auto={T}:add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {W}.
+id=31612
+name=Plains
+auto={T}:add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {W}.
+id=31629
+name=Plains
+auto={T}:add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen Manavorrat um {W}.
+id=31631
+name=Plains
+auto={T}:add {W}
+type=Basic Land
+subtype=Plains
+rarity=L
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur verursacht Trampelschaden.
+id=31812
+name=Primal Frenzy
+target=Creature
+auto=trample
+mana={G}
+color=green
+type=Enchantment
+subtype=Aura
+rarity=C
+[/card]
+[card]
+text=Fliegend     Wirf eine Karte aus deiner Hand ab: Die pulsierende Illusion erhaelt +4/+4 bis zum Ende des Zuges. Spiele diese Faehigkeit nur einmal pro Zug.
+id=31611
+name=Pulsating Illusion
+abilities=flying
+auto={S(*|myhand)}:4/4 limit:1
+mana={4}{U}
+type=Creature
+subtype=Illusion
+power=0
+toughness=1
+rarity=U
+[/card]
+[card]
+text={U},{T}: Tappe oder Enttappe eine Kreatur deiner Wahl.
+id=29819
+name=Puppeteer
+mana={2}{U}
+color=blue
+type=Creature
+subtype=Human Wizard
+auto={U}{T}:tap target(creature)
+auto={U}{T}:untap target(creature)
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Raserei: 2
+id=29781
+auto=rampage(2/2,0)
+name=Rabid Elephant
+rarity=C
+type=Creature
+mana={4}{G}
+power=3
+subtype=Elephant
+toughness=4
+[/card]
+[card]
+text=Das Verwuestete Hochland kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {R}.     {T}, opfere das Verwuestete Hochland: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+id=31764
+auto=tap
+auto={T}:add{R}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
+name=Ravaged Highlands
+type=Land
+rarity=C
+[/card]
+[card]
+text=Regeneriere eine Kreatur deiner Wahl.     Ziehe eine Karte
+id=31741
+name=Refresh
+target=creature
+auto=regenerate
+auto=draw:1
+mana={2}{G}
+color=green
+type=Instant
+rarity=C
+[/card]
+[card]
+text=Lege eine Kreatur deiner Wahl oben auf die Bibliothek ihres Besitzers.
+target=creature
+auto=moveTo(ownerLibrary)
+id=29723
+name=Repel
+rarity=C
+type=Instant
+mana={3}{U}
+[/card]
+[card]
+text=Erstschlag     Wirf eine Karte aus deiner Hand ab: Der Unverwuestliche Wanderer erhaelt bis zum Ende des Zuges Schutz vor einer Farbe, die du bestimmst.
+id=29804
+name=Resilient Wanderer
+abilities=first strike
+auto={S(*|myhand)}:protection from black
+auto={S(*|myhand)}:protection from green
+auto={S(*|myhand)}:protection from red
+auto={S(*|myhand)}:protection from blue
+auto={S(*|myhand)}:protection from white
+rarity=U
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Human Nomad
+toughness=3
+[/card]
+[card]
+text=Wenn der Schreibgelehrte ins Spiel kommt, kannst Du eine Spontanzauberkarte Deiner Wahl aus Deinem Friedhof zurueck auf Deine Hand bringen.
+id=29712
+name=Scrivener
+auto=may moveTo(myhand) target(instant|mygraveyard)
+rarity=C
+type=Creature
+mana={4}{U}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Die Meeresgrundtruemmer kommen getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {U}.     {T}, opfere die Meeresgrundtruemmer: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+id=31762
+auto=tap
+auto={T}:add{U}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
+name=Seafloor Debris
+type=Land
+rarity=C
+[/card]
+[card]
+text=Entferne eine angreifende Kreatur deiner Wahl ganz aus dem Spiel.     Ziehe eine Karte.
+id=29706
+name=Second Thoughts
+mana={4}{W}
+auto=moveTo(ownerremovedfromgame) target(creature[attacking])
+auto=draw:1
+type=Instant 
+rarity=C
+[/card]
+[card]
+text={1}{T}: Erhoehe deinen Manavorrat um {B}{R}.
+id=29794
+name=Shadowblood Ridge
+auto={1}{T}: Add {B}{R}
+type=Land
+rarity=R
+[/card]
+[card]
+text={1}{T}: Erhoehe deinen Manavorrat um {W}{U}.
+id=29792
+name=Skycloud Expanse
+auto={1}{T}: Add {W}{U}
+type=Land
+rarity=R
+[/card]
+[card]
+text=Der Himmelsschuetze kann blocken, als ob er Flugfaehigkeit haette.     {T}, opfere den Himmelsschuetzen: Zerstoere eine fliegende angreifende oder blockende Kreatur deiner Wahl.
+id=30563
+name=Skyshooter
+mana={1}{G}
+type=Creature
+subtype=Centaur Archer
+power=1
+toughness=2
+abilities=reach
+auto={T}{S}:destroy target(creature[flying;attacking;blocking])
+rarity=U
+[/card]
+[card]
+text=Immer wenn bis zum Ende des Zuges eine Kreatur deiner Wahl Schaden zufuegt, erhaeltst du ebensoviele Lebenspunkte dazu.     Ziehe eine Karte.
+id=29807
+name=Spiritualize
+target=creature
+auto=lifelink
+auto=draw:1
+mana={2}{W}
+type=Instant 
+rarity=U
+[/card]
+[card]
+text=Die Eichhoernchenhorde erhaelt +1/+1 fuer jedes andere Eichhoernchen im Spiel.
+id=29979
+name=Squirrel Mob
+mana={1}{G}{G}
+type=Creature
+subtype=Squirrel
+auto=foreach(Squirrel|inplay) 1/1
+power=1
+toughness=1
+rarity=R
+[/card]
+[card]
+text=Fliegend. {1}{B}, wirf eine Karte aus deiner Hand ab: Der Pirschende Blutsauger erhaelt +2/+2 bis zum Ende des Zuges.
+id=29839
+name=Stalking Bloodsucker
+abilities=flying
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire
+auto={1}{B}{S(*|myhand)}:2/2
+power=4
+toughness=4
+rarity=R
+[/card]
+[card]
+text={3},{T}: Entferne eine Karte deiner Wahl aus einem Friedhof ganz aus dem Spiel.     {1},opfere den Dampfklauengraeber: Entferne eine Karte deiner Wahl aus einem Friedhof ganz aus dem Spiel.
+id=29897
+name=Steamclaw
+mana={2}
+auto={3}{T}:moveTo(ownerremovedfromgame) target(*|graveyard)
+auto={1}{S}:moveTo(ownerremovedfromgame) target(*|graveyard)
+type=Artifact
+rarity=U
+[/card]
+[card]
+text={1}{T}: Erhoehe deinen manavorrat um {G}{W}.
+id=29796
+name=Sungrass Prairie
+auto={1}{T}: Add {G}{W}
+type=Land
+rarity=R
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {B}.
+id=31617
+name=Swamp
+auto={T}:add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {B}.
+id=31618
+name=Swamp
+auto={T}:add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {B}.
+id=31619
+name=Swamp
+auto={T}:add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text=Erhoehe deinen manavorrat um {B}.
+id=31620
+name=Swamp
+auto={T}:add {B}
+type=Basic Land
+subtype=Swamp
+rarity=L
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {T}: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe. Die Besudelte Zitadelle fuegt dir 3 Schadenspunkte zu.
+id=30015
+auto={T}:Add{1}
+auto={T}:Add{B} && Damage 3 controller
+auto={T}:Add{G} && Damage 3 controller
+auto={T}:Add{R} && Damage 3 controller
+auto={T}:Add{U} && Damage 3 controller
+auto={T}:Add{W} && Damage 3 controller
+name=Tarnished Citadel
+type=Land
+rarity=R
+[/card]
+[card]
+text=Verursacht Trampelschaden     Staerke und Widerstandskraft des Erdverschlingers sind gleich der Anzahl an Laendern in allen Friedhoefen.
+id=29982
+name=Terravore
+abilities=trample
+mana={1}{G}{G}
+type=Creature
+subtype=Lhurgoyf
+auto=foreach(land|graveyard) 1/1
+power=*
+toughness=*
+rarity=R
+[/card]
+[card]
+text=Opfere ein Land: Der Wunderatog erhaelt +1/+1 bis zum Ende des Zuges.     Opfere eine Verzauberung: Der Wunderatog erhaelt +1/+1 bis zum Ende des Zuges.
+id=31835
+name=Thaumatog
+mana={1}{G}{W}
+color=Green,White
+type=Creature
+subtype=Atog
+auto={s(land|myinplay)}:1/1
+auto={s(enchantment|myinplay)}:1/1
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Die Waldlandruinen kommen getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {G}.     {T}, opfere die Waldlandruinen: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+id=31765
+auto=tap
+auto={T}:Add{G}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
+name=Timberland Ruins
+type=Land
+rarity=C
+[/card]
+[card]
+text=Wirf eine Karte aus deiner Hand ab: Der Stamm der Unermuedlichen erhaelt +0/+4 bis zum Ende des Zuges.
+id=29695
+name=Tireless Tribe
+mana={W}
+type=Creature
+auto={s(*|myhand)}:0/4
+subtype=Human Nomad
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Eine Kreatur deiner Wahl ist in diesem Zug unblockbar.     Ziehe eine Karte.
+id=30691
+name=Touch of Invisibility
+target=Creature
+auto=unblockable
+auto=draw:1
+mana={3}{U}
+color=blue
+type=Sorcery 
+rarity=C
+[/card]
+[card]
+text=Fliegend, Schutz vor Gruen
+id=31736
+name=Treetop Sentinel
+abilities=flying,protection from green
+mana={2}{U}{U}
+color=blue
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=3
+rarity=U
+[/card]
+[card]
+text=Bringe alle bleibenden Karten auf die Hand ihrer Besitzer zurueck.
+id=31852
+name=Upheaval
+auto=moveTo(ownerhand) all(*|inplay)
+color=Blue
+rarity=R
+type=Sorcery
+mana={4}{U}{U}
+[/card]
+[card]
+text=Sumpftarnung      {B}: Der Wispernde Schatten erhaelt +1/+1 bis zum Ende des Zuges.
+id=29734
+name=Whispering Shade
+abilities=swampwalk
+auto={B}:1/1
+mana={3}{B}
+color=Black
+type=Creature
+subtype=Shade
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=
+id=29772
+name=Woodland Druid
+mana={G}
+color=Green
+type=Creature
+subtype=Human Druid
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Bringe eine Kreaturenkarte deiner Wahl aus deinem Friedhof ins Spiel zurueck.
+id=29847
+name=Zombify
+target=creature|mygraveyard
+auto=moveTo(myinplay)
+mana={3}{B}
+color=Black
+type=Sorcery
+rarity=U
+[/card]

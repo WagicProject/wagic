@@ -1,1 +1,0 @@
-this is the output folder for synchronized/translated content

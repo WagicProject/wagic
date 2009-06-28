@@ -1,0 +1,512 @@
+[card]
+text={2}: {2}: Eine weisse Kreatur deiner Wahl erhaelt bis zum Ende des Zuges Beharrlichkeit. (Wenn sie aus dem Spiel auf einen Friedhof gelegt wird und keine -1/-1-Marke auf ihr lag, bringe sie mit einer -1/-1-Marke unter der Kontrolle ihres Besitzers ins Spiel zurueck.)
+auto={2}:persist target(creature)
+id=158293
+name=Antler Skulkin
+rarity=C
+type=Artifact Creature
+mana={5}
+power=3
+subtype=Scarecrow
+toughness=3
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {U/R}, {T}: Erhoehe deinen Manavorrat um {U}{U}, {U}{R} oder {R}{R}.
+auto={T}: Add {1}
+auto={UR}{T}: Add {U}{U}
+auto={UR}{T}: Add {U}{R}
+auto={UR}{T}: Add {R}{R}
+id=153433
+name=Cascade Bluffs
+rarity=R
+type=Land
+[/card]
+[card]
+text=Bestimme eine beliebige Anzahl an Kreaturen deiner Wahl. Jede dieser Kreaturen erhaelt Beharrlichkeit bis zum Ende des Zuges. (Wenn sie aus dem Spiel auf einen Friedhof gelegt wird und keine -1/-1-Marke auf ihr lag, bringe sie mit einer -1/-1-Marke unter der Kontrolle ihres Besitzers ins Spiel zurueck.)
+target=creatures
+auto=persist
+id=151060
+name=Cauldron Haze
+rarity=U
+type=Instant
+mana={1}{WB}
+[/card]
+[card]
+text=Eine Kreatur deiner Wahl erhaelt Doppelschlag bis zum Ende des Zuges. (Sie fuegt sowohl Erstschlags- als auch normalen Kampfschaden zu.)
+target=creature
+auto=double strike
+id=153039
+name=Double Cleave
+rarity=C
+type=Instant
+mana={1}{RW}
+[/card]
+[card]
+text=Zerstoere ein Land deiner Wahl. Du erhaeltst 2 Lebenspunkte dazu.
+target=land
+auto=destroy
+auto=life:2
+id=151079
+name=Drain the Well
+rarity=C
+type=Sorcery
+mana={2}{BG}{BG}
+[/card]
+[card]
+text=Opfere den Grauzwerg-Angreifer: Der Grauzwerg-Angreifer fuegt einer angreifenden oder blockenden Kreatur deiner Wahl 1 Schadenspunkt zu.
+auto={S}:damage:1 target(creature[attacking;blocking])
+id=150975
+name=Duergar Assailant
+rarity=C
+type=Creature
+mana={RW}
+power=1
+subtype=Dwarf Soldier
+toughness=1
+[/card]
+[card]
+text=Verdorren (Dies fuegt Kreaturen Schaden in Form von -1/-1-Marken zu.)     {R/W}: Der Hoehlenwaechter der Grauzwerge erhaelt +1/+0 bis zum Ende des Zuges.
+abilities=wither
+auto={RW}:1/0
+id=153437
+name=Duergar Cave-Guard
+rarity=U
+type=Creature
+mana={3}{R}
+power=1
+subtype=Dwarf Warrior
+toughness=3
+[/card]
+[card]
+text=Verursacht Trampelschaden.
+abilities=trample
+id=151164
+name=Duskdale Wurm
+rarity=U
+type=Creature
+mana={5}{G}{G}
+power=7
+subtype=Wurm
+toughness=7
+[/card]
+[card]
+text={2}: Eine schwarze Kreatur deiner Wahl erhaelt bis zum Ende des Zuges Verdorren. (Sie fuegt Kreaturen Schaden in Form von -1/-1-Marken zu.)
+auto={2}:wither target(creature[black])
+id=158296
+name=Fang Skulkin
+rarity=C
+type=Artifact Creature
+mana={2}
+power=2
+subtype=Scarecrow
+toughness=1
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {W/B}, {T}: Erhoehe deinen Manavorrat um {W}{W}, {W}{B} oder {B}{B}.
+auto={T}: Add {1}
+auto={WB}{T}: Add {W}{W}
+auto={WB}{T}: Add {W}{B}
+auto={WB}{T}: Add {B}{B}
+id=153446
+name=Fetid Heath
+rarity=R
+type=Land
+[/card]
+[card]
+text=Der Flammenhieb fuegt einer Kreatur oder einem Spieler deiner Wahl 1 Schadenspunkt zu.      Zurueckverfolgen (Du kannst diese Karte aus deinem Friedhof spielen, indem du zusaetzlich zu ihren anderen Kosten eine Laenderkarte aus deiner Hand abwirfst.)
+target=player,creature
+abilities=retrace
+auto=damage:1
+id=153432
+name=Flame Jab
+rarity=C
+type=Sorcery
+mana={R}
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {G/U}, {T}: Erhoehe deinen Manavorrat um {G}{G}, {G}{U} oder {U}{U}.
+auto={T}: Add {1}
+auto={GU}{T}: Add {G}{G}
+auto={GU}{T}: Add {G}{U}
+auto={GU}{T}: Add {U}{U}
+id=153481
+name=Flooded Grove
+rarity=R
+type=Land
+[/card]
+[card]
+text=Verdorren (Dies fuegt Kreaturen Schaden in Form von -1/-1-Marken zu.)
+abilities=wither
+id=152089
+name=Harvest Gwyllion
+rarity=C
+type=Creature
+mana={2}{WB}{WB}
+power=2
+subtype=Hag
+toughness=4
+[/card]
+[card]
+text=Doppelschlag
+abilities=double strike
+id=157201
+name=Hearthfire Hobgoblin
+rarity=U
+type=Creature
+mana={RW}{RW}{RW}
+power=2
+subtype=Goblin Soldier
+toughness=2
+[/card]
+[card]
+text=Fliegend, Erstschlag
+abilities=flying,first strike
+id=151090
+name=Hobgoblin Dragoon
+rarity=C
+type=Creature
+mana={2}{RW}
+power=1
+subtype=Goblin Knight
+toughness=2
+[/card]
+[card]
+text={3}: Eine gruene Kreatur deiner Wahl erhaelt +1/+1 bis zum Ende des Zuges.
+auto={3}:1/1 target(creature[green])
+id=158294
+name=Hoof Skulkin
+rarity=C
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text=Bringe alle nichtblauen Kreaturen auf die Hand ihrer Besitzer zurueck.
+id=142010
+name=Inundate
+auto=moveTo(ownerhand) all(creature[-blue]|inplay)
+color=Blue
+rarity=R
+type=Sorcery
+mana={3}{U}{U}{U}
+[/card]
+[card]
+text={2}: Eine rote Kreatur deiner Wahl erhaelt bis zum Ende des Zuges Eile.
+auto={2}:haste target(creature[red])
+id=158295
+name=Jawbone Skulkin
+rarity=C
+type=Artifact Creature
+mana={1}
+power=1
+subtype=Scarecrow
+toughness=1
+[/card]
+[card]
+text=Fliegend     {1}{W}, opfere den Kithkin-Zauberkalker: Zerstoere eine Verzauberung deiner Wahl.     Beharrlichkeit (Wenn diese Kreatur aus dem Spiel auf einen Friedhof gelegt wird und keine -1/-1-Marke auf ihr lag, bringe sie mit einer -1/-1-Marke unter der Kontrolle ihres Besitzers ins Spiel zurueck.)
+abilities=flying,persist
+auto={1}{W}{S}:destroy target(enchantment)
+id=152096
+name=Kithkin Spellduster
+rarity=C
+type=Creature
+mana={4}{W}
+power=2
+subtype=Kithkin Wizard
+toughness=3
+[/card]
+[card]
+text=Verursacht Furcht     Beharrlichkeit (Wenn diese Kreatur aus dem Spiel auf einen Friedhof gelegt wird und keine -1/-1-Marke auf ihr lag, bringe sie mit einer -1/-1-Marke unter der Kontrolle ihres Besitzers ins Spiel zurueck.)
+abilities=fear,persist
+id=147437
+name=Lingering Tormentor
+rarity=U
+type=Creature
+mana={3}{B}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text=Andere blaue Kreaturen, die du kontrollierst, erhalten +1/+1.     Andere rote Kreaturen, die du kontrollierst, erhalten +1/+1.     {U/R}{U/R}{U/R}{U/R}: Du kannst eine blaue oder rote Kreaturenkarte aus deiner Hand ins Spiel bringen.
+id=151132
+auto=lord(creature[blue]|myinplay) 1/1 other
+auto=lord(creature[red]|myinplay) 1/1 other
+auto={UR}{UR}{UR}{UR}:moveTo(myinplay) target(creature[blue;red]|myhand)
+name=Mindwrack Liege
+rarity=R
+type=Creature
+mana={3}{UR}{UR}{UR}
+power=4
+subtype=Horror
+toughness=4
+[/card]
+[card]
+text=Eine Kreatur deiner Wahl erhaelt +4/+4 bis zum Ende des Zuges.     Zurueckverfolgen (Du kannst diese Karte aus deinem Friedhof spielen, indem du zusaetzlich zu ihren anderen Kosten eine Laenderkarte aus deiner Hand abwirfst.)
+target=creature
+auto=4/4
+abilities=retrace
+id=153441
+name=Monstrify
+rarity=C
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+text=Lebensverknuepfung (Immer wenn diese Kreatur Schaden zufuegt, erhaeltst du ebenso viele Lebenspunkte dazu.)
+abilities=lifelink
+id=150986
+name=Nip Gwyllion
+rarity=C
+type=Creature
+mana={WB}
+power=1
+subtype=Hag
+toughness=1
+[/card]
+[card]
+text=Fliegend     Angreifende Kreaturen, die du kontrollierst, erhalten +2/+0.
+auto=lord(creature[attacking]|myinplay) 2/0 
+abilities=flying
+id=154258
+name=Nobilis of War
+rarity=R
+type=Creature
+mana={RW}{RW}{RW}{RW}{RW}
+power=3
+subtype=Spirit Avatar
+toughness=4
+[/card]
+[card]
+text={1}{B/G}: Regeneriere den Abscheulichen Trow.
+auto={1}{BG}:regenerate 
+id=150977
+name=Odious Trow
+rarity=C
+type=Creature
+mana={BG}
+power=1
+subtype=Troll
+toughness=1
+[/card]
+[card]
+text=Verdorren (Dies fuegt Kreaturen Schaden in Form von -1/-1-Marken zu.)     Die Zerloechernde Explosion fuegt einer Kreatur oder einem Spieler deiner Wahl 3 Schadenspunkte zu.
+target=creature,player
+abilities=wither
+auto=damage:3
+id=152034
+name=Puncture Blast
+rarity=C
+type=Instant
+mana={2}{R}
+[/card]
+[card]
+text=Verdorren (Dies fuegt Kreaturen Schaden in Form von -1/-1-Marken zu.)     Beharrlichkeit (Wenn diese Kreatur aus dem Spiel auf einen Friedhof gelegt wird und keine -1/-1-Marke auf ihr lag, bringe sie mit einer -1/-1-Marke unter der Kontrolle ihres Besitzers ins Spiel zurueck.)
+abilities=wither,persist
+id=158902
+name=Rendclaw Trow
+rarity=C
+type=Creature
+mana={2}{BG}
+power=2
+subtype=Troll
+toughness=2
+[/card]
+[card]
+text={W/B}{W/B}{W/B}: Die Rastlose Erscheinung erhaelt +3/+3 bis zum Ende des Zuges.     Beharrlichkeit (Wenn diese Kreatur aus dem Spiel auf einen Friedhof gelegt wird und keine -1/-1-Marke auf ihr lag, bringe sie mit einer -1/-1-Marke unter der Kontrolle ihres Besitzers ins Spiel zurueck.)
+abilities=persist
+auto={WB}{WB}{WB}:3/3
+id=157291
+name=Restless Apparition
+rarity=U
+type=Creature
+mana={WB}{WB}{WB}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {R/W}, {T}: Erhoehe deinen Manavorrat um {R}{R}, {R}{W} oder {W}{W}.
+auto={T}: Add {1}
+auto={RW}{T}: Add {R}{R}
+auto={RW}{T}: Add {R}{W}
+auto={RW}{T}: Add {W}{W}
+id=153434
+name=Rugged Prairie
+rarity=R
+type=Land
+[/card]
+[card]
+text={1}, opfere eine Vogelscheuche: Ziehe eine Karte.     {4}, {T}: Bringe eine Artefaktkreaturenkarte deiner Wahl aus deinem Friedhof ins Spiel zurueck.
+auto={1}{S(scarecrow|myinplay)}:draw:1
+auto={4}{T}:moveTo(myinplay) target(artifact|mygraveyard)
+id=157979
+name=Scarecrone
+rarity=R
+type=Artifact Creature
+mana={3}
+power=1
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text={3}: Eine blaue Kreatur deiner Wahl ist bis zum Ende des Zuges verhuellt.
+auto={3}:shroud target(creature[blue])
+id=158297
+name=Shell Skulkin
+rarity=C
+type=Artifact Creature
+mana={4}
+power=3
+subtype=Scarecrow
+toughness=2
+[/card]
+[card]
+text=Verdorren (Dies fuegt Kreaturen Schaden in Form von -1/-1-Marken zu.)
+abilities=wither
+id=157211
+name=Smoldering Butcher
+rarity=C
+type=Creature
+mana={3}{B}
+power=4
+subtype=Elemental Warrior
+toughness=2
+[/card]
+[card]
+text=Sumpftarnung, Gebirgstarnung
+abilities=swampwalk,forestwalk
+id=151120
+name=Stalker Hag
+rarity=U
+type=Creature
+mana={BG}{BG}{BG}
+power=3
+subtype=Hag
+toughness=2
+[/card]
+[card]
+text=Schutz vor Weiss und vor Schwarz     {W/B}: Der Vollmond-Reiter erhaelt Flugfaehigkeit bis zum Ende des Zuges.     {W/B}: Der Vollmond-Reiter erhaelt Erstschlag bis zum Ende des Zuges.     {W/B}{W/B}: Der Vollmond-Reiter erhaelt +1/+0 bis zum Ende des Zuges.
+abilities=protection from black,protection from white
+auto={WB}:flying
+auto={WB}:first strike
+auto={WB}{WB}:+1/+0
+id=153037
+name=Stillmoon Cavalier
+rarity=R
+type=Creature
+mana={1}{WB}{WB}
+power=2
+subtype=Zombie Knight
+toughness=1
+[/card]
+[card]
+text={U/R}: Der Flusshuepfer erhaelt Flugfaehigkeit bis zum Ende des Zuges.
+auto={UR}:flying
+id=151124
+name=Stream Hopper
+rarity=C
+type=Creature
+mana={UR}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
+text=Fliegend     {W/B}{W/B}{W/B}: Regeneriere eine Kreatur deiner Wahl.
+abilities=flying
+auto={WB}{WB}{WB}:Regenerate target(creature)
+id=153420
+name=Suture Spirit
+rarity=U
+type=Creature
+mana={1}{W}
+power=1
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text=Fliegend     {U/R}: Der Klauenreisser erhaelt +1/-1 bis zum Ende des Zuges.
+abilities=flying
+auto={UR}:1/-1
+id=153430
+name=Talonrend
+rarity=U
+type=Creature
+mana={4}{U}
+power=0
+subtype=Elemental
+toughness=5
+[/card]
+[card]
+text=Aufblitzen     Beharrlichkeit (Wenn diese Kreatur aus dem Spiel auf einen Friedhof gelegt wird und keine -1/-1-Marke auf ihr lag, bringe sie mit einer -1/-1-Marke unter der Kontrolle ihres Besitzers ins Spiel zurueck.)
+id=152140
+name=Trapjaw Kelpie
+rarity=C
+type=Creature
+mana={4}{GU}{GU}
+power=3
+subtype=Beast
+toughness=3
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {1}.     {B/G}, {T}: Erhoehe deinen Manavorrat um {B}{B}, {B}{G} oder {G}{G}.
+auto={T}: Add {1}
+auto={BG}{T}: Add {B}{B}
+auto={BG}{T}: Add {B}{G}
+auto={BG}{T}: Add {G}{G}
+id=153425
+name=Twilight Mire
+rarity=R
+type=Land
+[/card]
+[card]
+text=Verdorren (Dies fuegt Kreaturen Schaden in Form von -1/-1-Marken zu.)     {1}{G}: Der Doppelklingenschlitzer erhaelt +2/+2 bis zum Ende des Zuges. Spiele diese Faehigkeit nur einmal pro Zug.
+abilities=wither
+auto={1}{G}:2/2 limit:1
+id=153436
+name=Twinblade Slasher
+rarity=U
+type=Creature
+mana={G}
+power=1
+subtype=Elf Warrior
+toughness=1
+[/card]
+[card]
+target=creature
+text=Entferne eine Kreatur deiner Wahl ganz aus dem Spiel.
+target=creature
+auto=moveTo(removedfromGame)
+id=151083
+name=Unmake
+rarity=C
+type=Instant
+mana={WB}{WB}{WB}
+[/card]
+[card]
+text={T}: Eine rote oder gruene Kreatur deiner Wahl erhaelt -2/-0 bis zum Ende des Zuges.
+auto={T}:-2/0 target(creature[red])
+id=153476
+name=Wilderness Hypnotist
+rarity=C
+type=Creature
+mana={2}{U}{U}
+power=1
+subtype=Merfolk Wizard
+toughness=3
+[/card]
+[card]
+text=Wenn der Schwermuetige Selkie ins Spiel kommt, ziehe eine Karte.
+auto=draw:1
+id=151143
+name=Wistful Selkie
+rarity=U
+type=Creature
+mana={GU}{GU}{GU}
+power=2
+subtype=Merfolk Wizard
+toughness=2
+[/card]

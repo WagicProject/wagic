@@ -1,0 +1,1471 @@
+[card]
+text=Zerstoere alle Waelder.
+auto=destroy all(forest)
+id=1470
+name=Acid Rain
+color=Blue
+rarity=R
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+text={B}{R}{G}, {T}: Bringe eine Kreaturenkarte von Deinem Friedhof auf Deine Hand.
+auto={B}{R}{G}{T}:moveTo(myhand) target(creature|mygraveyard)
+id=1642
+name=Adun Oakenshield
+color=Black,Red,Green
+rarity=R
+mana={B}{R}{G}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text=Raserei 3 (Immer wenn diese Kreatur geblockt wird, erhaelt sie +3/+3 bis zum Ende des Zuges fuer jede Kreatur ausser der ersten, von der sie geblockt wird.)
+id=1557
+auto=rampage(3/3,1)
+name=AErathi Berserker
+rarity=U
+type=Creature
+mana={2}{R}{R}{R}
+power=2
+subtype=Human Berserker
+toughness=4
+[/card]
+[card]
+text=Ausser Legionaeren und Artefaktkreaturen koennen keine Kreaturen, die Du kontrollierst, angreifen.
+auto=lord(creature[-artifact;-Akron Legionnaire]|myinplay) cantattack
+id=1599
+name=Akron Legionnaire
+color=White
+rarity=R
+mana={6}{W}{W}
+type=Creature
+subtype=Giant Soldier
+power=8
+toughness=4
+[/card]
+[card]
+text=Fliegend
+id=1472
+name=Azure Drake
+color=Blue
+rarity=U
+mana={3}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=4
+abilities=flying
+[/card]
+[card]
+id=1516
+name=Barbary Apes
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Ape
+power=2
+toughness=2
+[/card]
+[card]
+text=Legendaer
+id=1647
+name=Barktooth Warbeard
+color=Black,Red
+rarity=U
+mana={4}{B}{R}{R}
+type=Creature
+subtype=Human Warrior
+power=6
+toughness=5
+abilities=legendary
+[/card]
+[card]
+text=Schutz vor Rot.    Diese Kreatur erhaelt +1/+1 solange ein Gegner weisse Karten kontrolliert.
+auto=aslongas(*[white]|opponentinplay) 1/1
+id=1559
+name=Beasts of Bogardan
+color=Red
+rarity=R
+mana={4}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+abilities=protection from red
+[/card]
+[card]
+text=Bringe eine bleibende Karte deiner Wahl auf die Hand ihres Besitzers zurueck.
+target=*
+auto=moveto(ownerhand)
+id=1474
+name=Boomerang
+color=Blue
+rarity=C
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+text=Legendaer     {2}{B}{R}, {T}: Bringe eine scharze und rote 1/1 Marke, die als "Minor Demon" zaehlt, ins Spiel.
+id=1649
+name=Boris Devilboon
+color=Black,Red
+rarity=R
+mana={3}{B}{R}
+type=Creature
+subtype=Zombie Wizard
+auto={2}{B}{R}{T}:token(Minor Demon,creature demon, 1/1,black red)
+power=2
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text={1}: Die Aasfressenden Ameisen erhalten +1/+1 bis zum Ende des Zuges.
+id=1430
+name=Carrion Ants
+color=Black
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Insect
+auto={1}:1/1
+power=0
+toughness=1
+[/card]
+[card]
+text=Waldtarnung
+id=1517
+name=Cat Warriors
+color=Green
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Cat Warrior
+power=2
+toughness=2
+abilities=forestwalk
+[/card]
+[card]
+text=Zerstoere alle schwarzen Kreaturen.
+auto=destroy all(creature[black])
+id=1603
+name=Cleanse
+color=White
+rarity=R
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+text=Alle Kreaturen erhalten Eile.
+auto=lord(creature) haste
+id=1519
+name=Concordant Crossroads
+color=Green
+rarity=R
+mana={G}
+type=Enchantment
+[/card]
+[card]
+text=Verursacht Trampelschaden     Raserei: 2
+id=1520
+abilities=trample
+auto=rampage(2/2,1)
+name=Craw Giant
+rarity=U
+type=Creature
+mana={3}{G}{G}{G}{G}
+power=6
+subtype=Giant
+toughness=4
+[/card]
+[card]
+text=Kreaturen mit Gebirgstarnung koennen geblockt werden, als haetten sie diese Faehigkeit nicht.
+auto=lord(creature) -mountainwalk
+id=1564
+name=Crevasse
+color=Red
+rarity=U
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+text=Die "Crimson Kobolds" sind  Rot.
+id=1565
+name=Crimson Kobolds
+color=Red
+rarity=C
+mana={0}
+type=Creature
+subtype=Kobold
+power=0
+toughness=1
+[/card]
+[card]
+text=Fliegend    {R}, {T}: Der Mantikor fuegt einer angreifenden oder blockenden Kreatur 1 Schadenspunkt zu.
+id=1566
+name=Crimson Manticore
+color=Red
+rarity=R
+mana={2}{R}{R}
+type=Creature
+subtype=Manticore
+auto={R}{T}:damage:1 target(creature[attacking;blocking])
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Die "Crookshank Kobolds" sind Rot.
+id=1567
+name=Crookshank Kobolds
+color=Red
+rarity=C
+mana={0}
+type=Creature
+subtype=Kobold
+power=0
+toughness=1
+[/card]
+[card]
+text=Legendaer     Die Staerke und Widerstandskraft dieser Kreatur ist so gross, wie die Anzahl der Laender, die Du kontrollierst.
+auto=foreach(land|myinplay) 1/1
+id=1651
+name=Dakkon Blackblade
+color=White,Blue,Black
+rarity=R
+mana={2}{B}{U}{U}{W}
+type=Creature
+subtype=Human Warrior
+power=*
+toughness=*
+abilities=legendary
+[/card]
+[card]
+text={T}: Der Bogenschuetze aus D'Avenant fuegt einer angreifenden oder verteidigenden Kreatur 1 Schadenspunkt zu.
+id=1605
+name=D'Avenant Archer
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier Archer
+auto={T}:damage:1 target(creature[attacking;blocking])
+power=1
+toughness=2
+[/card]
+[card]
+text=Kreaturen mit Waldtarnung koennen geblockt werden, als haetten sie diese Faehigkeit nicht.
+auto=lord(creature) -forestwalk
+id=1521
+name=Deadfall
+color=Green
+rarity=U
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+text=Inseltarnung
+id=1476
+name=Devouring Deep
+color=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Fish
+power=1
+toughness=2
+abilities=islandwalk
+[/card]
+[card]
+text=Zerstoere ein Artefakt Deiner Wahl. Du erhaeltst Lebenspunkte in der Hoehe der Spruchkosten des Artefakts dazu.
+id=1607
+target=artifact
+name=Divine Offering
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +3/+3.
+target=creature
+auto=3/3
+id=1608
+name=Divine Transformation
+color=White
+rarity=R
+mana={2}{W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+id=1522
+name=Durkwood Boars
+color=Green
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Boar
+power=4
+toughness=4
+[/card]
+[card]
+text=Fliegend      {G}{G}: Diese Kreatur erhaelt Erstschlag bis zum Ende des Zuges.
+id=1524
+name=Emerald Dragonfly
+rarity=C
+color=Green
+mana={1}{G}
+type=Creature
+subtype=Insect
+auto={G}{G}:first strike
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Tappe eine Kreatur, die Du kontrollierst und erhoehe Deinen Manavorrat um soviel farblose Mana, wie es kostet, diese Kreatur zu beschwoeren.
+target=creature|myinplay
+id=1480
+name=Energy Tap
+rarity=C
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Wachsamkeit.
+target=creature
+auto=vigilance
+id=1570
+name=Eternal Warrior
+color=Red
+rarity=U
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Fliegend     Opfere eine Kreatur: Der Gefallene Engel erhaelt +2/+1 bis zum Ende des Zuges.
+auto={s(creature|myinplay)}:2/1
+id=1437
+name=Fallen Angel
+color=Black
+rarity=U
+mana={3}{B}{B}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Fliegend      {G}, {T}: Erhoehe deinen Manavorrat um {R}.
+id=1526
+name=Fire Sprites
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Faerie
+auto={G}{T}:Add {R}
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Neutralisiere einen Spontanzauber deiner Wahl.
+id=1482
+target=instant|stack
+auto=fizzle
+name=Flash Counter
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Alle Mauern unter Deiner Kontrolle gewinnen Buendnisfaehigkeit und erhalten +1/+0
+auto=lord(wall|myinplay) 1/0
+auto=lord(wall|myinplay) banding
+id=1612
+name=Fortified Area
+color=White
+rarity=U
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+text=Raserei: 2
+id=1574
+auto=rampage(2/2,1)
+name=Frost Giant
+rarity=U
+type=Creature
+mana={3}{R}{R}{R}
+power=4
+subtype=Giant
+toughness=4
+[/card]
+[card]
+text={T}: Eine Zielkreatur erhaelt -1/-0 bis zum Ende des Zuges.
+id=1438
+name=Ghosts of the Damned
+color=Black
+rarity=C
+mana={1}{B}{B}
+type=Creature
+subtype=Spirit
+auto={T}:-1/0 target(creature)
+power=0
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+2.
+id=1575
+target=creature
+auto=2/2
+name=Giant Strength
+color=Red
+rarity=C
+mana={R}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Legendaar, Erstschlag      Kreaturen mit Inseltarnung koennen geblockt werden, als haetten sie diese Faehigkeit nicht.
+id=1653
+name=Gosta Dirk
+color=White,Blue
+rarity=R
+mana={3}{W}{W}{U}{U}
+type=Creature
+subtype=Human Warrior
+auto=lord(creature) -islandwalk
+power=4
+toughness=4
+abilities=legendary,first strike
+[/card]
+[card]
+text=Alle Kreaturen verlieren die Flugfaehigkeit.
+auto=lord(creature) -flying
+id=1577
+name=Gravity Sphere
+color=Red
+rarity=R
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+text=Eine Zielkreatur erhaelt +X/+0 bis zum Ende des Zuges, wobei X ihre umgewandelten Manakosten ist.
+id=1614
+taget=creature
+name=Great Defender
+rarity=U
+type=Instant
+mana={W}
+[/card]
+[card]
+text={T}: Ein Zielspieler wirft eine zufaellig ausgewaehlte Karte von seiner Hand ab. Spiele diese Faehigkeit nur waehrend Deines Zuges.
+id=1654
+name=Gwendlyn Di Corci
+auto={T}:discard:1 target(player)
+rarity=R
+type=Creature
+abilities=legendary
+mana={U}{B}{B}{R}
+power=3
+subtype=Human Rogue
+toughness=5
+[/card]
+[card]
+text=Kreaturen mit Ebenentarnung koennen geblockt werden, als haetten sie diese Faehigkeit nicht.
+auto=lord(creature) -plainswalk
+id=1615
+name=Great Wall
+color=White
+rarity=U
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+id=1442
+name=Headless Horseman
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Zombie Knight
+power=2
+toughness=2
+[/card]
+[card]
+text=Alle Kreaturen erhalten -1/-0 bis zum Ende des Zuges.
+id=1443
+auto=lord(creature) -1/0
+name=Hell Swarm
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text={B}, {T}, opfere eine Kreatur: Bringe eine Kreaturen-Karte aus Deinem Friedhof ins Spiel. Spiele diese Faehigkeit nur waehrend Deines Versorgungssegments.
+auto={B},{T},{s(creature|myinplay)}:moveTo(myinplay) target(creature|mygraveyard)
+id=1444
+name=Hell's Caretaker
+color=Black
+rarity=R
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
+[/card]
+[card]
+id=1530
+name=Hornet Cobra
+color=Green
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text=Opfere einen Sumpf: Regeneriere eine schwarze Kreatur deiner Wahl.
+auto={S(swamp|myinplay)}:regenerate target(creature[black])
+id=1446
+name=Horror of Horrors
+color=Black
+rarity=U
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
+text=Raserei: 1
+id=1657
+auto=rampage(1/1,1)
+name=Hunding Gjornersen
+color=White,Blue
+rarity=U
+mana={3}{W}{U}{U}
+type=Creature
+subtype=Human Warrior
+power=5
+toughness=4
+abilities=legendary
+[/card]
+[card]
+text={T}: Tappe oder Enttappe ein Zielartefakt, das ein Gegner kontrolliert.
+id=1578
+name=Hyperion Blacksmith
+color=Red
+rarity=U
+mana={1}{R}{R}
+type=Creature
+subtype=Human Artificer
+auto={T}:tap target(artifact|opponentinplay)
+auto={T}:untap target(artifact|opponentinplay)
+power=2
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/-2.
+id=1579
+target=creature
+auto=2/-2
+name=Immolation
+color=Red
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Am Ende der Kampfphase werden alle Nicht-Mauer-Kreaturen, die von dieser Kreatur geblockt wurden oder die diese Kreatur geblock haben, zerstoert.
+alias=1267
+id=1448
+name=Infernal Medusa
+color=Black
+rarity=U
+mana={3}{B}{B}
+type=Creature
+subtype=Gorgon
+power=2
+toughness=4
+[/card]
+[card]
+text=Schutz vor Rot     Solange irgendeiner Deiner Gegner rote Karten kontrolliert, erhalten alle Waechter +1/+1
+id=1621
+abilities=protection from red
+auto=aslongas(*[red]|opponentinplay) lord(Ivory Guardians) 1/1
+name=Ivory Guardians
+rarity=U
+type=Creature
+mana={4}{W}{W}
+power=3
+subtype=Giant Cleric
+toughness=3
+[/card]
+[card]
+text=Legendaer    Gruene Kreaturen, die Du kontrollierst, erhalten +0/+2.
+auto=lord(creature[green]|myinplay) 0/2
+id=1658
+name=Jacques le Vert
+color=Red,Green,white
+rarity=R
+mana={1}{R}{G}{W}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text=Legendaer  
+name=Jasmine Boreal
+id=1659
+color=Green,White
+rarity=U
+mana={3}{G}{W}
+type=Creature
+subtype=Human
+power=4
+toughness=5
+abilities=legendary
+[/card]
+[card]
+text=Legendaer
+name=Jedit Ojanen
+id=1660
+color=Blue,White
+rarity=U
+mana={4}{W}{W}{U}
+type=Creature
+subtype=Cat Warrior
+power=5
+toughness=5
+abilities=legendary
+[/card]
+[card]
+text=Legendaer 
+name=Jerrard of the Closed Fist
+id=1661
+color=Green,Red
+rarity=U
+mana={3}{G}{G}{R}
+type=Creature
+subtype=Human Knight
+power=6
+toughness=5
+abilities=legendary
+[/card]
+[card]
+text=Legendaer   {T}: Erhoehe deinen Manavorrat um {W}.   {W}, {T}: Bringe eine legendaere Zielkreatur auf die Hand ihres Besitzers.
+id=1701
+name=Karakas
+auto={T}:Add {W}
+auto={T}:moveTo(ownerhand) target(creature[legendary])
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
+text=Legendaer
+name=Kasimir the Lone Wolf
+id=1663
+color=Blue,White
+rarity=U
+mana={4}{U}{W}
+type=Creature
+subtype=Human Warrior
+power=5
+toughness=3
+abilities=legendary
+[/card]
+[card]
+name=Keepers of the Faith
+id=1622
+color=White
+rarity=C
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]
+[card]
+text=Fliegend     {G}: Die Killerbienen erhalten +1/+1 bis zum Ende des Zuges
+id=1532
+name=Killer Bees
+color=Green
+rarity=R
+mana={1}{G}{G}
+type=Creature
+subtype=Insect
+auto={G}:1/1
+power=0
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Die "Kobolds of Kher Keep" sind Rot.
+id=1583
+name=Kobolds of Kher Keep
+color=Red
+rarity=C
+mana={0}
+type=Creature
+subtype=Kobold
+power=0
+toughness=1
+[/card]
+[card]
+text=Alle Kobolde, die Du kontrollierst, erhalten +0/+1 und verursachen Trampelschaden.
+auto=lord(kobold|myinplay) 0/1 other
+auto=lord(kobold|myinplay) trample other
+id=1580
+name=Kobold Drill Sergeant
+color=Red
+rarity=R
+mana={1}{R}
+type=Creature
+subtype=Kobold Soldier
+power=1
+toughness=2
+[/card]
+[card]
+text=Alle Kobolde, die Du kontrollierst, besitzen Erstschlag.
+auto=lord(kobold|myinplay) first strike
+id=1581
+name=Kobold Overlord
+color=Red
+rarity=R
+mana={1}{R}
+type=Creature
+subtype=Kobold
+power=1
+toughness=2
+[/card]
+[card]
+text=Andere Kobolde, die du kontrollierst, erhalten +1/+0.
+auto=lord(kobold|myinplay) 1/0 other
+id=1582
+name=Kobold Taskmaster
+color=Red
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Kobold
+power=1
+toughness=2
+[/card]
+[card]
+text=Legendaer   {T}: Diese Kreatur fuegt einer angreifenden oder blockenden Zielkreatur drei Schadenspunkte zu.
+id=1665
+name=Lady Caleria
+color=White,Green
+rarity=R
+mana={3}{G}{G}{W}{W}
+type=Creature
+subtype=Human Archer
+auto={T}:damage:3 target(creaure[attacking;blocking])
+power=3
+toughness=6
+abilities=legendary
+[/card]
+[card]
+text=Legendaer
+id=1667
+name=Lady Orca
+color=Black,Red
+rarity=U
+mana={5}{B}{R}
+type=Creature
+subtype=Demon
+power=7
+toughness=4
+abilities=legendary
+[/card]
+[card]
+text=Immer wenn ein Gebirge, dass ein Gegner kontrolliert, getappt wird, erhaelst Du einen Lebenspunkt.
+id=1625
+name=Lifeblood
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=Alle Laender werden zu 1/1 Kreaturen, die als Laender zaehlen.
+id=1533
+name=Living Plane
+rarity=R
+type=World Enchantment
+mana={2}{G}{G}
+[/card]
+[card]
+text=Legendaer, Erstschlag,  Legendaeres-Land-Tarnung
+auto=aslongas(land[legendary]|opponentinplay) unblockable
+id=1668
+name=Livonya Silone
+color=Red,Green
+rarity=R
+mana={2}{R}{R}{G}{G}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=4
+abilities=legendary,first strike
+[/card]
+[card]
+text=Legendaer, Erstschlag    Kreaturen mit Waldtarnung und/oder Ebenentarnung koennen geblockt werden, als haetten sie diese Faehigkeit nicht.
+id=1669
+name=Lord Magnus
+color=White,Green
+rarity=U
+mana={3}{G}{W}{W}
+type=Creature
+subtype=Human Druid
+auto=lord(creature) -plainswalk
+auto=lord(creature) -forestwalk
+power=4
+toughness=3
+abilities=legendary,first strike
+[/card]
+[card]
+text=Sumpftarnung
+id=1451
+name=Lost Soul
+color=Black
+rarity=C
+mana={1}{B}{B}
+type=Creature
+subtype=Spirit Minion
+power=2
+toughness=1
+abilities=swampwalk
+[/card]
+[card]
+text=Raserei: 1
+id=1670
+name=Marhault Elsdragon
+color=Red,Green
+rarity=U
+mana={3}{G}{R}{R}
+type=Creature
+subtype=Elf Warrior
+power=4
+toughness=6
+auto=rampage(1/1,1)
+abilities=legendary
+[/card]
+[card]
+text=Nicht-fliegende Kreaturen koennen nicht angreifen.
+auto=lord(creature[-flying]) cantattack
+id=1626
+name=Moat
+color=White
+rarity=R
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+id=1535
+name=Moss Monster
+color=Green
+rarity=C
+mana={3}{G}{G}
+type=Creature
+subtype=Elemental
+power=3
+toughness=6
+[/card]
+[card]
+text=Gebirgstarnung, Schutz vor Weiss
+name=Mountain Yeti
+id=1585
+color=Red
+rarity=U
+mana={2}{R}{R}
+type=Creature
+subtype=Yeti
+power=3
+toughness=2
+abilities=mountainwalk,protection from white
+[/card]
+[card]
+text=Legendaer    {B}{R}: Pavel Maliki erhaelt +1/+1 bis zum Ende des Zuges.
+id=1674
+name=Pavel Maliki
+color=Black,Red
+rarity=U
+mana={4}{B}{R}
+type=Creature
+subtype=Human
+auto={B}{R}:1/0
+power=5
+toughness=3
+abilities=legendary
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.     {T}: Eine 1/1 Kreatur deiner Wahl erhaelt +1/+2 bis zum Ende des Zuges.
+id=1703
+auto={T}:add {G}
+name=Pendelhaven
+rarity=U
+type=land
+abilities=legendary
+[/card]
+[card]
+text=Fliegend      {G}{G}{G}, {T}: Eine Kreatur deiner Wahl erhaelt Flugfaehigkeit bis zum Ende des Zuges.
+id=1536
+name=Pixie Queen
+color=Green
+rarity=R
+mana={2}{G}{G}
+type=Creature
+subtype=Faerie
+auto={G}{G}{G}{T}:flying target(creature)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={1}{G}, {T}: Eine Kreatur deiner Wahl erhaelt -2/-0 bis zum Ende des Zuges.
+id=1537
+name=Pradesh Gypsies
+color=Green
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Human Nomad
+auto={1}{G}{T}:-2/0 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Legendaer      {T}: Erhoehe deinen Manavorrat um {U}.
+id=1675
+name=Princess Lucrezia
+color=Blue,Black
+rarity=U
+mana={3}{U}{U}{B}
+type=Creature
+subtype=Human Wizard
+auto={T}:Add {U}
+power=5
+toughness=4
+abilities=legendary
+[/card]
+[card]
+text=Kreaturen mit Sumpftarnung koennen geblockt werden, als haetten sie diese Faehigkeit nicht.
+auto=lord(creature) -swampwalk
+id=1455
+name=Quagmire
+color=Black
+rarity=U
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+text={T}: Eine Kreatur Deiner Wahl verliert Flugfaehigkeit bis zum Ende des Zuges.
+id=1539
+name=Radjan Spirit
+color=Green
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Spirit
+auto={T}:-flying target(creature)
+power=3
+toughness=2
+[/card]
+[card]
+id=1589
+name=Raging Bull
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Ox
+power=2
+toughness=2
+[/card]
+[card]
+text=Legendaer      {W}{U}{G}, {T}:  Regeneriere eine Zielkreatur.
+id=1676
+name=Ragnar
+color=White,Blue,Green
+rarity=R
+mana={W}{U}{G}
+type=Creature
+subtype=Human Cleric
+auto={W}{U}{G}{T}:regenerate target(creature)
+power=2
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text=Legendaer, Erstschlag
+id=1677
+name=Ramirez DePietro
+color=Blue,Black
+rarity=U
+mana={3}{U}{B}{B}
+type=Creature
+subtype=Human Pirate
+power=4
+toughness=3
+abilities=legendary,first strike
+[/card]
+[card]
+text={T}: Tappe ein Artefakt deiner Wahl.
+auto={T}:tap target(artifact)
+id=1419
+name=Relic Barrier
+color=Artifact
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Neutralisiere einen Kreaturenzauber deiner Wahl.
+id=1498
+target=creature|stack
+auto=fizzle
+name=Remove Soul
+rarity=C
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=Ebenetarnung
+id=1632
+name=Righteous Avengers
+color=White
+rarity=U
+mana={3}{U}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=1
+abilities=plainswalk
+[/card]
+[card]
+text=Legendaer      {T}: Erhoehe deinen Manavorrat um {B}.
+id=1680
+name=Riven Turnbull
+color=Blue,Black
+rarity=U
+mana={5}{U}{B}
+type=Creature
+subtype=Human Advisor
+auto={T}:Add {B}
+power=5
+toughness=7
+abilities=legendary
+[/card]
+[card]
+text=Inseltarnung
+id=1502
+name=Segovian Leviathan
+color=Blue
+rarity=U
+mana={4}{U}
+type=Creature
+subtype=Leviathan
+power=3
+toughness=3
+abilities=islandwalk
+[/card]
+[card]
+text=Alle Kreaturen, die Du kontrollierst, erhalten +0/+2 bis zum Ende des Zuges.
+id=1634
+auto=lord(creature|myinplay) 0/2
+name=Shield Wall
+rarity=U
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text={T}: Eine Zielkreatur verliert Buendnisfaehigkeit bis zum Ende des Zuges.
+id=1544
+name=Shelkin Brownie
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Ouphe
+auto={T}:-banding target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Legendaer
+id=1684
+name=Sivitri Scarzam
+color=Blue,Black
+rarity=U
+mana={5}{U}{B}
+type=Creature
+subtype=Human
+power=6
+toughness=4
+abilities=legendary
+[/card]
+[card]
+text=Legendaer
+id=1683
+name=Sir Shandlar of Eberyn
+rarity=U
+type=Creature
+mana={4}{G}{W}
+power=4
+subtype=Human Knight
+toughness=7
+abilities=legendary
+[/card]
+[card]
+text={T}: Zerstoere eine blaue Zielkreatur.
+id=1590
+name=Spinal Villain
+color=Red
+rarity=R
+mana={2}{R}
+type=Creature
+subtype=Beast
+auto={T}:destroy target(creature[blue])
+power=1
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung      Immer wenn die verzauberte Kreatur Schaden zufuegt, erhaeltst du ebenso viele Lebenspunkte dazu.
+target=creature
+auto=lifelink
+id=1635
+name=Spirit Link
+color=White
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Legendaer      {T}: Erhoehe deinen Manavorrat um {2}.
+id=1687
+name=Sunastian Falconer
+color=Red,Green
+rarity=U
+mana={3}{R}{G}
+type=Creature
+subtype=Human Shaman
+auto={T}:Add {2}
+power=4
+toughness=4
+abilities=legendary
+[/card]
+[card]
+text=Der Seelenfang fuegt allen anderen Spielern 2 Schadenspunkte zu. Du erhaeltst Lebenspunkte in Hoehe der so zugefuegten Schadenspunkte dazu.
+id=1458
+target=player
+auto=damage:2
+auto=life:2
+name=Syphon Soul
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Spiele diesen Spontanzauber nur in der Kampfphase. Die Zielkreatur kann in diesem Zug nicht geblockt werden.
+id=1506
+name=Teleport
+target=creature
+auto=unblockable
+rarity=R
+type=Instant
+mana={U}{U}{U}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +1/+0..   {R}{R}{R}: Regeneriere die verzauberte Kreatur.
+target=creature
+auto=1/0
+auto={R}{R}{R}:regenerate
+id=1593
+name=The Brute
+color=Red
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Legendaer
+id=1689
+name=The Lady of the Mountain
+color=Red,Green
+rarity=U
+mana={4}{R}{G}
+type=Creature
+subtype=Giant
+power=5
+toughness=5
+abilities=legendary
+[/card]
+[card]
+text=Fliegend, Erstschlag
+id=1637
+name=Thunder Spirit
+color=White
+rarity=R
+mana={1}{W}{W}
+type=Creature
+subtype=Elemental Spirit
+power=2
+toughness=2
+abilities=flying,first strike
+[/card]
+[card]
+text=Legendaer
+id=1691
+name=Tobias Andrion
+color=White,Blue
+rarity=U
+mana={3}{W}{U}
+type=Creature
+subtype=Human Advisor
+power=4
+toughness=4
+abilities=legendary
+[/card]
+[card]
+text=Legendaer     {T}: Erhoehe dinen Manavorrat um {U}.      {T}:  Eine Zielkreatur verliert Buendnisfaehigkeit bis zum Ende des Zuges. Spiele diese Faehigkeit nur waehrend Deines Versorgungssegments.
+auto={T}: Add {U}
+auto={T}:-banding target(creature)
+id=1705
+name=Tolaria
+color=Land
+rarity=U
+type=Land
+abilities=legendary
+[/card]
+[card]
+text=Legendaer   {T}: Tor Wauki fuegt einer angreifenden oder blockenden Zielkreatur zwei Schadenspunkte zu.
+id=1692
+name=Tor Wauki
+color=Black,Red
+rarity=U
+mana={2}{B}{B}{R}
+type=Creature
+subtype=Human Archer
+auto={T}:damage:2 target(creaure[attacking;blocking])
+power=3
+toughness=3
+abilities=legendary
+[/card]
+[card]
+text=Legendaer
+id=1693
+name=Torsten Von Ursus
+color=White,Green
+rarity=U
+mana={3}{G}{G}{W}
+type=Creature
+subtype=Human Soldier
+power=5
+toughness=5
+abilities=legendary
+[/card]
+[card]
+text=Legendaer   Fliegend      {R}{G}, {T}: Eine Zielkreatur erhaelt +2/+2 bis zum Ende des Zuges.
+id=1694
+name=Tuknir Deathlock
+color=Red,Green
+rarity=R
+mana={R}{R}{G}{G}
+type=Creature
+subtype=Human Wizard
+auto={R}{G}{T}:2/2 target(creature)
+power=2
+toughness=2
+abilities=legendary,flying
+[/card]
+[card]
+text=Erstschlag
+id=1638
+name=Tundra Wolves
+color=White
+rarity=C
+mana={W}
+type=Creature
+subtype=Wolf
+power=1
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text=Kreaturen mit Inseltarnung koennen geblockt werden, als wenn sie diese Faehigkeit nicht haetten.
+auto=lord(creature) -islandwalk
+id=1508
+name=Undertow
+color=Blue
+rarity=U
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+text=Legendaer     {T}: Erhoehe deinen Manavorrat um {B}.      {T}: Eine Zielkreatur verliert Erstschlag oder Sumpftarnung bis zum Ende des Zuges.
+auto={T}: Add {B}
+auto={T}:-swampwalk target(creature)
+auto={T}:-first strike target(creature)
+id=1707
+name=Urborg
+color=Land
+rarity=U
+type=Land
+abilities=legendary
+[/card]
+[card]
+text=Durchsuche Deine Bibliothek nach einem Standardland und bringe diese Karte ins Spiel. Mische danach Deine Bibliothek.
+auto=moveTo(myInPlay) target(land[basic]|myLibrary)
+id=1550
+name=Untamed Wilds
+rarity=U
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text=Legendaer   Erstschlag     Kreaturen mit Sumpftarnung koennen geblockt werden, als wenn sie diese Faehigkeit nicht haetten.
+id=1695
+name=Ur-Drago
+color=Blue,Black
+rarity=R
+mana={3}{U}{U}{B}{B}
+type=Creature
+subtype=Elemental
+auto=Lord(creature) -swampwalk
+power=4
+toughness=4
+abilities=legendary,first strike
+[/card]
+[card]
+text=Flying     {B}: Die Vampirfledermaeuse erhalten +1/+0 bis zum Ende des Zuges. Spiele diese Faehigkeit nicht oefter als zweimal pro Zug.
+id=1465
+name=Vampire Bats
+color=Black
+rarity=C
+mana={B}
+type=Creature
+subtype=Bat
+auto={B}:1/0 limit 2
+power=0
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={B}: Regeneriere diese Kreatur.
+id=1466
+name=Walking Dead
+color=Black
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Zombie
+auto={B}:regenerate
+power=1
+toughness=1
+[/card]
+[card]
+text=Verteidiger
+id=1595
+name=Wall of Earth
+color=Red
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Wall
+power=0
+toughness=6
+abilities=defender
+[/card]
+[card]
+text=Verteidiger
+id=1596
+name=Wall of Heat
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Wall
+power=2
+toughness=6
+abilities=defender
+[/card]
+[card]
+text=Verteidiger, Schutz vor Schwarz
+id=1641
+name=Wall of Light
+color=White
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Wall
+power=1
+toughness=6
+abilities=defender,protection from black
+[/card]
+[card]
+text=Verteidiger     {1}: Diese Kreatur erhaelt +1/+0 bis zum Ende des Zuges.
+id=1597
+name=Wall of Opposition
+color=Red
+rarity=C
+mana={3}{R}{R}
+type=Creature
+subtype=Wall
+auto={1}:1/0
+power=0
+toughness=6
+abilities=defender
+[/card]
+[card]
+text=Raserei: 2
+id=1554
+auto=rampage(2/2,1)
+name=Wolverine Pack
+rarity=C
+type=Creature
+mana={2}{G}{G}
+power=2
+subtype=Wolverine
+toughness=4
+[/card]
+[card]
+text=Legendaer   Fliegend      {B}{R}{G}, {T}: Ein Spieler deiner Wahl zieht eine Karte.
+id=1697
+name=Xira Arien
+color=Black,Red,Green
+rarity=R
+mana={B}{R}{G}
+type=Creature
+subtype=Insect Wizard
+auto={B}{R}{G}{T}:draw:1
+power=1
+toughness=2
+abilities=legendary,flying
+[/card]
+[card]
+text=Fliegend, Wachsamkeit
+id=1512
+name=Zephyr Falcon
+color=Blue
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+abilities=flying,vigilance
+[/card]

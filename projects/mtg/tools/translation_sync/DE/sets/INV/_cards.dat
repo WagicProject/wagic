@@ -1,0 +1,1455 @@
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}:Erhoehe Deinen Manavorrat um {U}.
+type=Basic Land
+id=26302
+[/card]
+[card]
+toughness=1
+name=Tower Drake
+mana={2}{U}
+subtype=Drake
+color=Blue
+auto={W}:0/1
+rarity=C
+text=Fliegend     {W}: Der Turmsceada erhaelt +0/+1 bis zum Ende des Zuges.
+power=2
+id=22974
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=25966
+[/card]
+[card]
+toughness=2
+name=Nightscape Master
+mana={2}{B}{B}
+subtype=Zombie Wizard
+color=Black
+auto={R}{R}{T}:Damage:2 target(creature)
+rarity=R
+text={U}{U}, {T}: Bringe eine Kreatur Deiner Wahl auf die Hand ihres Besitzers zurueck.   {R}{R}, {T}: Der Meister des Nachtpfads fuegt einer Kreatur Deiner Wahl 2 Schadenspunkte zu.
+power=2
+id=23049
+type=Creature
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Eroehe deinen Manavorrat um {B}.
+type=Basic Land
+id=26305
+[/card]
+[card]
+name=Phyrexian Altar
+mana={3}
+color=Artifact
+auto={S(creature|myinplay)}:Add {G}
+rarity=R
+text=Opfere eine Kreatur: Erhoehe Deinen Manavorrat um ein Mana einer beliebigen Farbe.
+type=Artifact
+id=23226
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=26308
+[/card]
+[card]
+toughness=3
+name=Treva's Attendant
+mana={5}
+subtype=Golem
+color=Artifact
+auto={1}{s}:Add {G}{W}{U}
+rarity=U
+text={1}, opfere Trevas Leibdiener: Erhoehe Deinen Manavorrat um {G}{W}{U}.
+power=3
+id=25840
+type=Artifact Creature
+[/card]
+[card]
+toughness=1
+name=Obsidian Acolyte
+mana={1}{W}
+subtype=Human Cleric
+color=White
+auto={W}:protection from black target(creature)
+rarity=C
+text=Schutz vor Schwarz      {W}: Eine Kreatur Deiner Wahl erhaelt Schutz vor Schwarz bis zum Ende des Zuges.
+power=1
+id=22935
+type=Creature
+abilities=protection from black
+[/card]
+[card]
+name=Annihilate
+mana={3}{B}{B}
+color=Black
+target=creature[-black]
+auto=draw:1
+rarity=U
+text=Zerstoere eine nichtschwarze Kreatur Deiner Wahl. Sie kann nicht regeneriert werden.     Ziehe eine Karte.
+id=23042
+type=Instant
+[/card]
+[card]
+toughness=1
+name=Might Weaver
+mana={1}{G}
+subtype=Human Wizard
+color=Green
+auto={2}:trample target(creature[red;white])
+rarity=U
+text={2}: T{2}: Eine rote oder weisse Kreatur deiner Wahl verursacht bis zum Ende des Zuges Trampelschaden.
+power=2
+id=23124
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Llanowar Vanguard
+mana={2}{G}
+subtype=Dryad
+color=Green
+auto={T}:0/4
+rarity=C
+text={T}: Die Llanowar- Stosstruppen erhalten +0/+4 bis zum Ende des Zuges.
+power=1
+id=23123
+type=Creature
+[/card]
+[card]
+name=Heroes' Reunion
+mana={G}{W}
+color=Green,White
+target=player
+auto=life:7
+rarity=U
+text=Ein Spieler Deiner Wahl erhaelt 7 Lebenspunkte dazu.
+id=23183
+type=Instant
+[/card]
+[card]
+name=Repulse
+mana={2}{U}
+color=Blue
+target=creature
+auto=draw:1
+rarity=C
+text=Bringe eine Kreatur Deiner Wahl auf die Hand ihres Besitzers zurueck.     Ziehe eine Karte.
+id=22985
+type=Instant
+[/card]
+[card]
+toughness=3
+name=Noble Panther
+mana={1}{G}{W}
+subtype=Cat
+color=Green,White
+auto={1}:first strike
+rarity=R
+text={1}: Der Edle Panther erhaelt Erstschlag bis zum Ende des Zuges.
+power=3
+id=23147
+type=Creature
+[/card]
+[card]
+name=Cremate
+mana={B}
+target=*|graveyard
+auto=draw:1
+rarity=U
+text=Entferne eine Karte deiner Wahl aus einem Friedhof ganz aus dem Spiel.     Ziehe eine Karte.
+type=Instant
+id=24119
+[/card]
+[card]
+name=Scavenged Weaponry
+mana={2}{B}
+subtype=Aura
+color=Black
+target=creature
+auto=draw:1
+rarity=C
+text=Kreaturenverzauberung     Wenn die Erbeuteten Waffen ins Spiel kommen, ziehe eine Karte.      Die verzauberte Kreatur erhaelt +1/+1
+id=23028
+type=Enchantment
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}:Erhoehe Deinen Manavorrat um {U}.
+type=Basic Land
+id=25964
+[/card]
+[card]
+name=Absorb
+mana={W}{U}{U}
+target=*|stack
+auto=life:3
+rarity=R
+text=Neutralisiere einen Zauberspruch Deiner Wahl.     Du erhaeltst 3 Lebenspunkte dazu.
+type=Instant
+id=23155
+[/card]
+[card]
+toughness=1
+name=Hate Weaver
+mana={1}{B}
+subtype=Zombie Wizard
+color=Black
+auto={2}:1/0 target(creature[blue;red])
+rarity=U
+text={2}: Eine blaue oder rote Kreatur deiner Wahl erhaelt +1/+0 bis zum Ende des Zuges.
+power=2
+id=23041
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Phyrexian Battleflies
+mana={B}
+subtype=Insect
+color=Black
+auto={B}:1/0 limit:2
+rarity=C
+text=Fliegend  {B}: Die Phyrexianischen Kriegsfliegen erhalten +1/+0 bis zum Ende des Zuges. Diese Faehigkeit kann maximal zweimal pro Zug gespielt werden.
+power=0
+id=23023
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=26307
+[/card]
+[card]
+toughness=3
+name=Angel of Mercy
+mana={4}{W}
+subtype=Angel
+color=White
+auto=life:3
+rarity=U
+text=Fliegend     Wenn der Engel der Gnade ins Spiel kommt, erhaeltst du 3 Lebenspunkte dazu.
+power=3
+id=22952
+type=Creature
+abilities=flying
+[/card]
+[card]
+target=aura
+text=Zerstoere eine Verzauberung Deiner Wahl. Bringe X 1/1 gruene Saproling-Spielsteine ins Spiel, wobei X die umgewandelten Manakosten jener Verzauberung sind.
+rarity=R
+name=Aura Mutation
+id=23184
+type=Instant
+mana={G}{W}
+alias=23195
+[/card]
+[card]
+toughness=2
+name=Shivan Zombie
+mana={B}{R}
+subtype=Barbarian Zombie
+color=Black,Red
+rarity=C
+text=Schutz vor Weiss
+power=2
+id=23160
+type=Creature
+abilities=protection from white
+[/card]
+[card]
+auto={T}{s}:Add{B}{G}
+text=Die Geothermische Spalte kommt getappt ins Spiel.     {T}: Erhoehe Deinen Manavorrat um {R}.     {T}, opfere die Geothermische Spalte:Erhoehe Deinen Manavorrat um {B}{G}.
+rarity=C
+name=Geothermal Crevice
+id=23238
+type=Land
+[/card]
+[card]
+name=Wallop
+mana={1}{G}
+color=Green
+target=creature[black;blue;flying]
+auto=destroy
+rarity=U
+text=Zerstoere eine blaue oder schwarze Kreatur Deiner Wahl mit Flugfaehigkeit.
+id=23130
+type=Sorcery
+[/card]
+[card]
+toughness=2
+name=Sparring Golem
+mana={3}
+subtype=Golem
+auto=rampage(1/1,0)
+rarity=U
+text=Immer wenn der Sparrings-Golem geblockt wird, erhaelt er bis zum Ende des Zuges +1/+1 fuer jede Kreatur, die ihn blockt.
+power=2
+id=23225
+type=Artifact Creature
+[/card]
+[card]
+toughness=2
+name=Nomadic Elf
+mana={1}{G}
+subtype=Elf Nomad
+color=Green
+auto={1}{G}:Add {G}
+rarity=C
+text={1}{G}: Erhoehe Deinen Manavorrat um ein Mana einer beliebigen Farbe.
+power=2
+id=23111
+type=Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {W}.
+type=Basic Land
+id=25963
+[/card]
+[card]
+toughness=2
+name=Hooded Kavu
+mana={2}{R}
+subtype=Kavu
+color=Red
+auto={B}:fear
+rarity=C
+text={B}: Der Verhuellte Kavu verursacht Furcht bis zum Ende des Zuges.
+power=2
+id=23061
+type=Creature
+[/card]
+[card]
+auto={T}:Add{U}
+text=Der Kuestenturm kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {W} oder {U}.
+rarity=U
+name=Coastal Tower
+id=23240
+type=Land
+[/card]
+[card]
+name=Wings of Hope
+mana={W}{U}
+subtype=Aura
+color=White,Blue
+target=creature
+auto=flying
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +1/+3 und Flugfaehigkeit.
+id=24118
+type=Enchantment
+[/card]
+[card]
+name=Recover
+mana={2}{B}
+color=Black
+target=creature|myGraveyard
+auto=draw:1
+rarity=C
+text=Bringe eine Kreaturenkarte deiner Wahl aus deinem Friedhof auf deine Hand zurueck.     Ziehe eine Karte.
+id=23029
+type=Sorcery
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=26309
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}:Erhoehe Deinen Manavorrat um {U}.
+type=Basic Land
+id=26303
+[/card]
+[card]
+toughness=1
+name=Crimson Acolyte
+mana={1}{W}
+subtype=Human Cleric
+color=White
+auto={W}:protection from red target(creature)
+rarity=C
+text=Schutz vor Rot      {W}: Eine Kreatur Deiner Wahl erhaelt Schutz vor Rot bis zum Ende des Zuges.
+power=1
+id=22934
+type=Creature
+abilities=protection from red
+[/card]
+[card]
+toughness=2
+name=Galina's Knight
+mana={W}{U}
+subtype=Merfolk Knight
+color=White,Blue
+rarity=C
+text=Schutz vor Rot
+power=2
+id=23158
+type=Creature
+abilities=protection from red
+[/card]
+[card]
+toughness=*
+name=Yavimaya Kavu
+mana={2}{R}{G}
+subtype=Kavu
+color=Green
+auto=foreach(creature[green]|inplay) 0/1
+rarity=U
+text=Die Staerke des Yavimaya-Kavu ist gleich der Anzahl an roten Kreaturen im Spiel.     Die Widerstandskraft des Yavimaya-Kavu ist gleich der Anzahl an gruenen Kreaturen im Spiel.
+power=*
+id=23174
+type=Creature
+[/card]
+[card]
+auto={T}{s}:Add{R}{W}
+text=Die Zunderfarm kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {G}.     {T}, opfere die Zunderfarm: Erhoehe deinen Manavorrat um {W}{R}.
+rarity=C
+name=Tinder Farm
+id=23239
+type=Land
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Eroehe deinen Manavorrat um {B}.
+type=Basic Land
+id=26304
+[/card]
+[card]
+toughness=*
+name=Molimo, Maro-Sorcerer
+mana={4}{G}{G}{G}
+subtype=Elemental
+color=Green
+auto=foreach(land|myinplay) 1/1
+rarity=R
+text=Legendaer, verursacht Trampelschaden      Staerke und Widerstandskraft von Molimo, Maro-Hexer sind gleich der Anzahl der Laender, die du kontrollierst.
+power=*
+id=23138
+type=Creature
+abilities=legendary,trample
+[/card]
+[card]
+toughness=3
+name=Crypt Angel
+mana={4}{B}
+subtype=Angel
+auto=may moveTo(myhand) target(creature[blue;red]|mygraveyard)
+rarity=R
+text=Fliegend, Schutz vor Weiss     Wenn der Gruftengel ins Spiel kommt, bringe eine blaue oder eine rote Kreaturenkarte Deiner Wahl aus Deinem Friedhof auf Deine Hand zurueck.
+power=3
+id=23320
+type=Creature
+abilities=flying
+[/card]
+[card]
+auto={T}:Add{G}
+text=Die Shiv-Oase kommt getappt ins Spiel.      {T}: Erhoehe deinen Manavorrat um {R} oder {G}.
+rarity=U
+name=Shivan Oasis
+id=23243
+type=Land
+[/card]
+[card]
+auto={T}:Add{R}
+text=Der Urborgvulkan kommt getappt ins Spiel.   {T}: Erhoehe deinen Manavorrat um {B} oder {R}.
+rarity=U
+name=Urborg Volcano
+id=23242
+type=Land
+[/card]
+[card]
+name=Strength of Unity
+mana={3}{W}
+subtype=Aura
+target=creature
+color=White
+auto=aslongas(swamp|myinplay) 1/1
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +1/+1 fuer jeden Standardlandtyp unter den Laendern, die Du kontrollierst.
+id=22939
+type=Enchantment
+[/card]
+[card]
+toughness=3
+name=Kavu Runner
+mana={3}{R}
+subtype=Kavu
+color=Red 
+auto=aslongas(creature[blue;white]|opponentinplay) -haste
+rarity=U
+text=Der Rennende Kavu hat Eile, solange kein Gegner eine weisse oder blaue Kreatur kontrolliert.
+power=3
+id=23079
+type=Creature
+abilities=haste
+[/card]
+[card]
+toughness=5
+name=Armored Guardian
+mana={3}{W}{U}
+subtype=Cat Soldier
+color=White,Blue
+auto={1}{U}{U}:shroud
+rarity=R
+text={1}{W}{W}: Bestimme eine Farbe. Eine Kreatur Deiner Wahl, die Du kontrollierst, erhaelt Schutz vor dieser Farbe bis zum Ende des Zuges.    {1}{U}{U}: Der Gepanzerte Waecher istbis zum Ende des Zuges verhuellt.
+power=2
+id=23197
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Vodalian Zombie
+mana={U}{B}
+subtype=Merfolk Zombie
+color=Blue,Black
+rarity=C
+text=Schutz vor Gruen
+power=2
+id=23159
+type=Creature
+abilities=protection from green
+[/card]
+[card]
+toughness=1
+name=Rage Weaver
+mana={1}{R}
+subtype=Human Wizard
+color=Red
+auto={2}:haste target(creature[green;black])
+rarity=U
+text={2}: Eine schwarze oder gruene Kreatur deiner Wahl erhaelt Eile bis zum Ende des Zuges.
+power=2
+id=23081
+type=Creature
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Eroehe deinen Manavorrat um {B}.
+type=Basic Land
+id=26306
+[/card]
+[card]
+name=Angelic Shield
+mana={W}{U}
+color=White,Blue
+auto={s}:moveTo(ownerhand) target(creature)
+rarity=U
+text=Alle Kreaturen, die Du kontrollierst, erhalten +0/+1.     Opfere den Schild der Engel: Bringe eine Kreatur Deiner Wahl auf die Hand ihres Besitzers.
+type=Enchantment
+id=23177
+[/card]
+[card]
+toughness=3
+name=Charging Troll
+mana={2}{G}{W}
+subtype=Troll
+color=Green,White
+auto={G}:regenerate
+rarity=U
+text=Wachsamkeit     {G}: Regeneration
+power=3
+id=23162
+type=Creature
+abilities=vigilance
+[/card]
+[card]
+name=Stun
+mana={1}{R}
+target=creature
+auto=draw:1
+rarity=C
+text=Eine Kreatur deiner Wahl kann in diesem Zug nicht blocken.      Ziehe eine Karte.
+type=Instant
+id=23073
+[/card]
+[card]
+toughness=1
+name=Metathran Zombie
+mana={1}{U}
+subtype=Metathran Zombie
+color=Blue
+auto={B}:regenerate
+rarity=C
+text={B}: Regeneriere den Metathran-Zombie
+power=1
+id=22973
+type=Creature
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=25967
+[/card]
+[card]
+name=Reviving Dose
+mana={2}{W}
+color=White
+auto=draw:1
+rarity=C
+text=Du erhaeltst 3 Lebenspunkte dazu.Ziehe eine Karte.
+type=Instant
+id=22941
+[/card]
+[card]
+name=Maniacal Rage
+mana={1}{R}
+subtype=Aura
+target=creature
+auto=cantblock
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+2 und kann nicht blocken.
+id=23072
+type=Enchantment
+[/card]
+[card]
+toughness=1
+name=Spirit Weaver
+mana={1}{W}
+subtype=Human Wizard
+color=White
+auto={2}:0/1 target(creature[green;blue])
+rarity=U
+text={2}: Eine gruene oder blaue Kreatur deiner Wahl erhaelt +0/+1 bis zum Ende des Zuges.
+power=2
+id=22950
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Glimmering Angel
+mana={3}{W}
+subtype=Angel
+color=White
+auto={U}:shroud
+rarity=C
+text=Fliegend      {U}: Der glimmernde Engel ist bis zum Ende des Zuges verhuellt.
+power=2
+id=22929
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=2
+name=Skittish Kavu 
+mana={1}{R}
+subtype=Kavu
+color=Red
+auto=aslongas(creature[blue;white]|opponentinplay) -1/-1
+rarity=U
+text=Der Launische Kavu erhaelt +1/+1, solange kein Gegner eine weisse oder blaue Kreatur kontrolliert.
+power=2
+id=23080
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Tek
+mana={5}
+subtype=Dragon
+color=Arifact
+auto=aslongas(swamp|myinplay) 2/0
+rarity=R
+text=Tek erhaelt +0/+2, solange Du eine Ebene kontrollierst, hat Flugfaehigkeit, solange Du eine Insel kontrollierst, erhaelt +2/+0, solange Du einen Sumpf kontrollierst, hat Erstschlag, solange Du ein Gebirge kontrollierst, und verursacht Trampelschaden, solange Du einen Wald kontrollierst.
+power=2
+id=23229
+type=Artifact Creature
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=26310
+[/card]
+[card]
+toughness=4
+name=Lotus Guardian
+mana={7}
+subtype=Dragon
+color=Artifact
+auto={T}:Add {G}
+rarity=R
+text=Fliegend      {T}: Erhoehe Deinen Manavorrat um ein Mana einer beliebigen Farbe.
+power=4
+id=23233
+type=Artifact Creature
+abilities=flying
+[/card]
+[card]
+toughness=4
+name=Benalish Heralds
+mana={3}{W}
+subtype=Human Soldier
+color=White
+auto={3}{U}{T}:Draw:1
+rarity=U
+text={3}{U},{T}: Ziehe eine Karte.
+power=2
+id=22947
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Sky Weaver
+mana={1}{U}
+subtype=Metathran Wizard
+color=Blue
+auto={2}:flying target(creature[white;black])
+rarity=U
+text={2}: Eine weisse oder schwarze Kreatur deiner Wahl erhaelt Flugfaehigkeit bis zum Ende des Zuges.
+power=2
+id=22996
+type=Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {W}.
+type=Basic Land
+id=26298
+[/card]
+[card]
+name=Aggressive Urge
+mana={1}{G}
+color=Green
+target=creature
+auto=draw:1
+rarity=C
+text=Eine Kreatur deiner Wahl erhaelt +1/+1 bis zum Ende des Zuges.     Ziehe eine Karte.
+id=24127
+type=Instant
+[/card]
+[card]
+auto={T}:Add{B}
+text=Die Salzmarschen kommen getappt ins Spiel.      {T}: Erhoehe deinen Manavorrat um {U} oder {B}.
+rarity=U
+name=Salt Marsh
+id=23241
+type=Land
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=26312
+[/card]
+[card]
+auto={T}{s}:Add{W}{B}
+text=Die Alte Quelle kommt getappt ins Spiel.     {T}: Erhoehe Deinen Manavorrat um {U}.    {T}, opfere die Alte Quelle: Erhoehe Deinen Manavorrat um {W}{B}. 
+rarity=C
+name=Ancient Spring
+id=23236
+type=Land
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=26311
+[/card]
+[card]
+toughness=1
+name=Raging Kavu
+mana={1}{R}{G}
+subtype=Kavu
+color=Red,Green
+rarity=R
+text=Aufblitzen, Eile
+power=3
+id=23148
+type=Creature
+abilities=flash,haste
+[/card]
+[card]
+auto={T}{s}:Add{G}{U}
+text=Der Bewaesserungsgraben kommt getappt ins Spiel.     {T}: Erhoehe Deinen Manavorrat um {W}     {T}, opfere den Bewaesserungsgraben:Erhoehe Deinen Manavorrat um {G}{U}.
+rarity=C
+name=Irrigation Ditch
+id=23235
+type=Land
+[/card]
+[card]
+toughness=2
+name=Llanowar Knight
+mana={G}{W}
+subtype=Elf Knight
+color=Green,White
+rarity=C
+text=Schutz vor Schwarz
+power=2
+id=23157
+type=Creature
+abilities=protection from black
+[/card]
+[card]
+toughness=1
+name=Stalking Assassin
+mana={1}{U}{B}
+subtype=Human Assassin
+color=Blue,Black
+auto={3}{B}{T}:destroy target(creature[tapped])
+rarity=R
+text={3}{U}, {T}: Tappe eine Kreatur Deiner Wahl.    {3}{B}, {T}: Zerstoere eine getappte Kreatur deiner Wahl.
+power=1
+id=25752
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Serpentine Kavu
+mana={4}{G}
+subtype=Kavu
+color=Green
+auto={R}:haste
+rarity=C
+text={R}: Der Gewundene Kavu erhaelt Eile bis zum Ende des Zuges.
+power=4
+id=23105
+type=Creature
+[/card]
+[card]
+name=Bloodstone Cameo
+mana={3}
+color=Artifact
+auto={T}: Add {R}
+rarity=U
+text={T}: Erhoehe deinen Manavorrat um {B} oder {R}.
+type=Artifact
+id=23219 
+[/card]
+[card]
+toughness=3
+name=Wayfaring Giant
+mana={5}{W}
+subtype=Giant
+color=White
+auto=aslongas(swamp|myinplay) 1/1
+rarity=U
+text=Der Herumstreifende Riese erhaelt +1/+1 fuer jeden Standardlandtyp unter den Laendern, die Du kontrollierst.
+power=1
+id=23211
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Slinking Serpent
+mana={2}{U}{B}
+subtype=Serpent
+color=Blue,Black
+rarity=U
+text=Waldtarnung
+power=2
+id=23149
+type=Creature
+abilities=forestwalk
+[/card]
+[card]
+toughness=3
+name=Dromar's Attendant
+mana={5}
+subtype=Golem
+color=Artifact
+auto={1}{s}:Add {W}{U}{B}
+rarity=U
+text=opfere Dromars Leibdiener: Erhoehe Deinen Manavorrat um {W}{U}{B}.
+power=3
+id=25836
+type=Artifact Creature
+[/card]
+[card]
+toughness=1
+name=Viashino Grappler
+mana={2}{R}
+subtype=Viashino
+color=Red
+auto={G}:trample
+rarity=C
+text={G}: Der Viashinogreifer verursacht Trampelschaden bis zum Ende des Zuges.
+power=3
+id=22930
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Crusading Knight
+mana={2}{W}{W}
+subtype=Human Knight
+color=White
+auto=foreach(swamp|opponentinplay) 1/1
+rarity=R
+text=Schutz vor Schwarz     Der Kreuzfahrende Ritter erhaelt +1/+1 fuer jeden Sumpf, den Deine Gegner kontrollieren.
+power=2
+id=22963
+type=Creature
+abilities=protection from black
+[/card]
+[card]
+auto={6}{T}:moveTo(myHand) target(*|myLibrary)
+text={6}, {T}: Durchsuche deine Bibliothek nach einer Karte und nimm diese Karte auf deine Hand. Mische danach deine Bibliothek.
+rarity=R
+name=Planar Portal
+id=23234
+type=Artifact
+mana={6}
+[/card]
+[card]
+toughness=2
+name=Marauding Knight
+mana={2}{B}{B}
+subtype=Zombie Knight
+color=Black
+auto=foreach(plains|opponentinplay) 1/1
+rarity=R
+text=Schutz vor Weiss     Der Pluendernde Ritter erhaelt +1/+1 fuer jede Ebene, die Dein Gegner kontrolliert.
+power=2
+id=23053
+type=Creature
+abilities=protection from white
+[/card]
+[card]
+name=Tranquility
+mana={2}{G}
+color=Green
+auto=Destroy all(enchantment)
+rarity=C
+text=Zerstoere alle Verzauberungen.
+type=Sorcery
+id=23116
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}:Erhoehe Deinen Manavorrat um {U}.
+type=Basic Land
+id=26301
+[/card]
+[card]
+name=Troll-Horn Cameo
+mana={3}
+color=Artifact
+auto={T}: Add {G}
+rarity=U
+text={T}: Erhoehe deinen Manavorrat um {R} oder {G}.
+type=Artifact
+id=23220
+[/card]
+[card]
+auto={T}{s}:Add{U}{R}
+text=Der Schwefelkrater kommt getappt ins Spiel.     {T}: Erhoehe Deinen Manavorrat um {B}.     {T}, opfere den Schwefelkrater: Erhoehe deinen Manavorrat um {U}{R}.
+rarity=C
+name=Sulfur Vent
+id=23237
+type=Land
+[/card]
+[card]
+target=artifact
+text=Zerstoere ein Artefakt Deiner Wahl. Es kann nicht regeneriert werden. Bringe X 1/1 gruene Saproling-Spielsteine ins Spiel, wobei X gleich der umgewandelten Manakosten des Artefakts sind.
+rarity=R
+name=Artifact Mutation
+id=23195
+type=Instant
+mana={R}{G}
+[/card]
+[card]
+auto={4}{R}{T}{S(creature|myinplay)}:Damage:2 target(creature,player)
+text=Legendaer     {T}: Erhoehe Deinen Manavorrat um {1}.    {4}{R}, {T}, opfere eine Kreatur: Die Keldonische Totenstadtfuegt einer Kreatur oder einem Spieler Deiner Wahl 2 Schadenspunkte zu.
+rarity=R
+name=Keldon Necropolis
+id=25930
+type=Land
+abilities=legendary
+[/card]
+[card]
+toughness=2
+name=Horned Cheetah
+mana={2}{G}{W}
+subtype=Cat
+color=Green,White
+rarity=U
+text=Lebensverknuepfung
+power=2
+id=23163
+type=Creature
+abilities=lifelink
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Eroehe deinen Manavorrat um {B}.
+type=Basic Land
+id=25965
+[/card]
+[card]
+name=Cursed Flesh
+mana={B}
+subtype=Aura
+color=Black
+target=creature
+auto=fear
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt -1/-1 und verursacht Furcht.
+id=23044
+type=Enchantment
+[/card]
+[card]
+toughness=2
+name=Hanna, Ship's Navigator
+mana={1}{W}{U}
+subtype=Human Artificer
+color=White,Blue
+auto={1}{W}{U}:moveTo(myhand) target(artifact,enchantment|mygraveyard)
+rarity=R
+text=Legendaer      {1}{W}{U}, {T}: Bringe ein Artefakt oder eine Verzauberung Deiner Wahl aus deinem Friedhof auf Deine Hand zurueck.
+power=1
+id=25977
+type=Creature
+abilities=legendary
+[/card]
+[card]
+name=Exclude
+mana={2}{U}
+target=creature|stack
+auto=draw:1
+rarity=C
+text=Neutralisiere einen Kreaturenzauber Deiner Wahl.     Ziehe eine Karte.
+type=Instant
+id=22986
+[/card]
+[card]
+toughness=2
+name=Utopia Tree
+mana={1}{G}
+subtype=Plant
+color=Green
+auto={T}:Add {G}
+rarity=R
+text={T}: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+power=0
+id=12605
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Sunscape Apprentice
+mana={W}
+subtype=Human Wizard
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myInplay)
+rarity=C
+text={G}, {T}: Eine Kreatur Deiner Wahl erhaelt +1/+1 bis zum Ende des Zuges.     {U}, {T}: Lege eine Kreatur deiner Wahl oben auf die Bibliothek ihres Besitzers.
+power=1
+id=22928
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Capashen Unicorn
+mana={1}{W}
+subtype=Unicorn
+color=White
+auto={1}{W}{T}{s}:Destroy target(enchantment,artifact)
+rarity=C
+text={1}{W}, {T}, opfere das Capashen-Einhorn: Zerstoere ein Artefakt oder eine Verzauberung Deiner Wahl.
+power=1
+id=22936
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Razorfoot Griffin
+mana={3}{W}
+subtype=Griffin
+color=White
+rarity=C
+text=Fliegend, Erstschlag
+power=2
+id=22933
+type=Creature
+abilities=flying,first strike
+[/card]
+[card]
+auto={T}{s}:Add{G}
+text={T}: Erhoehe deinen Manavorrat um {1}.    {T}, opfere die Archaeologische Ausgrabung: Erhoehe Deinen Manavorrat um ein Mana einer beliebigen Farbe.
+rarity=U
+name=Archaeological Dig
+id=23245
+type=Land
+[/card]
+[card]
+name=Seashell Cameo
+mana={3}
+color=Artifact
+auto={T}: Add {U}
+rarity=U
+text={T}: Erhoehe deinen Manavorrat um {W} oder {U}.
+type=Artifact
+id=23217 
+[/card]
+[card]
+toughness=2
+name=Yavimaya Barbarian
+mana={R}{G}
+subtype=Elf Barbarian
+color=Red,Green
+rarity=C
+text=Schutz vor Blau
+power=2
+id=23161
+type=Creature
+abilities=protection from blue
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Add {W} to your mana pool.
+type=Basic Land
+id=26299
+[/card]
+[card]
+auto={T}:Add{W}
+text=Der Elfheim-Palast kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {G} oder {W}.
+rarity=U
+name=Elfhame Palace
+id=23244
+type=Land
+[/card]
+[card]
+toughness=3
+name=Darigaaz's Attendant
+mana={5}
+subtype=Golem
+color=Artifact
+auto={1}{s}:Add {B}{R}{G}
+rarity=U
+text={1}, opfere den Darigaaz' Leibdiener: Erhoehe Deinen Manavorrat um {B}{R}{G}.
+power=3
+id=25838
+type=Artifact Creature
+[/card]
+[card]
+toughness=1
+name=Bog Initiate
+mana={1}{B}
+subtype=Human Wizard
+color=Black
+auto={1}: Add {B}
+rarity=C
+text={1}: Erhoehe deinen Manavorrat um {B}.
+power=1
+id=23024
+type=Creature
+[/card]
+[card]
+name=Armadillo Cloak
+mana={1}{G}{W}
+subtype=Aura
+color=Green,White
+target=creature
+auto=lifelink
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+2 und verursacht Trampelschaden.     Immer wenn die verzauberte Kreatur Schaden zufuegt, erhaeltst Du soviele Lebenspunkte dazu.
+id=23164
+type=Enchantment
+[/card]
+[card]
+toughness=2
+name=Kavu Scout
+mana={2}{R}
+subtype=Kavu
+color=Red
+auto=aslongas(swamp|myinplay) 1/0
+rarity=C
+text=Der Kavu-Kundschafter erhaelt +1/+0 fuer jeden Standardlandtyp unter den Laendern, die Du kontrollierst.
+power=0
+id=23323
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Captain Sisay
+mana={2}{G}{W}
+subtype=Human Soldier
+auto={T}:moveTo(myHand) target(*[legendary]|myLibrary)
+rarity=R
+text=Legendaer     {T}: Durchsuche Deine Bibliothek nach einer Legende oder einer legendaeren Karte, zeige sie offen und nimm sie auf Deine Hand. Mische danach Deine Bibliothek.
+power=2
+id=25976
+type=Creature
+abilities=legendary
+[/card]
+[card]
+name=Tigereye Cameo
+mana={3}
+color=Artifact
+auto={T}: Add {W}
+rarity=U
+text={T}: Erhoehe deinen Manavorrat um {G} oder {W}.
+type=Artifact
+id=23221 
+[/card]
+[card]
+toughness=2
+name=Benalish Trapper
+mana={1}{W}
+subtype=Human Soldier
+color=White
+auto={W}{T}:tap target(creature)
+rarity=C
+text={W},{T}: Tappe eine Kreatur deiner Wahl.
+power=1
+id=22937
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Llanowar Cavalry
+mana={2}{G}
+subtype=Human Soldier
+color=Green
+auto={W}:vigilance
+rarity=C
+text={W}: Die Llanowar-Reiterei erhaelt Wachsamkeit bis zum Ende des Zuges.
+power=1
+id=23322
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Rith's Attendant
+mana={5}
+subtype=Golem
+color=Artifact
+auto={1}{s}:Add {R}{G}{W}
+rarity=U
+text=opfere Riths Leibdiener: Erhoehe Deinen Manavorrat um {R}{G}{W}.
+power=3
+id=25839
+type=Artifact Creature
+[/card]
+[card]
+toughness=1
+name=Nightscape Apprentice
+mana={B}
+subtype=Zombie Wizard
+auto={R}{T}:first strike target(creature)
+rarity=C
+text={U}, {T}: Lege eine Kreatur Deiner Wahl, die Du kontrollierst, oben auf die Bibliothek ihres Besitzers.     {R}, {T}: Eine Kreatur Deiner Wahl erhaelt Erstschlag bis zum Ende des Zuges.
+power=1
+id=23016
+type=Creature
+[/card]
+[card]
+name=Zap
+mana={2}{R}
+color=Red
+target=creature,player
+auto=draw:1
+rarity=C
+text=Zapp fuegt einer Kreatur oder einem Spieler Deiner Wahl 1 Schadenspunkt zu.     Ziehe eine Karte.
+id=23075
+type=Instant
+[/card]
+[card]
+name=Fires of Yavimaya
+mana={1}{R}{G}
+color=Red,Green
+auto={s}:2/2 target(creature)
+rarity=U
+text=Alle Kreaturen, die Du kontrollierst, haben Eile.     Opfere die Feuer von Yavimaya: Eine Kreatur Deiner Wahl erhaelt +2/+2 bis zum Ende des Zuges.
+type=Enchantment
+id=23180
+[/card]
+[card]
+toughness=2
+name=Firescreamer
+mana={3}{B}
+subtype=Kavu
+color=Black
+auto={R}:1/0
+rarity=C
+text={R}: Der Freuerschreier erhaelt +1/+0 bis zum Ende des Zuges.
+power=2
+id=23017
+type=Creature
+[/card]
+[card]
+name=Drake-Skull Cameo
+mana={3}
+color=Artifact
+auto={T}: Add {B}
+rarity=U
+text={T}: Erhoehe Deinen Manavorrat um {U} oder {B}.
+type=Artifact
+id=23218 
+[/card]
+[card]
+toughness=3
+name=Urborg Shambler
+mana={2}{B}{B}
+subtype=Horror
+color=Black
+auto=lord(creature[black]) -1/-1 other
+rarity=U
+text=Alle anderen schwarzen Kreaturen erhalten -1/-1.
+power=4
+id=23035
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Crosis's Attendant
+mana={5}
+subtype=Golem
+color=Artifact
+auto={1}{s}:Add {U}{B}{R}
+rarity=U
+text=opfere Crosis' Leibdiener: Erhoehe Deinen Manavorrat um {U}{B}{R}.
+power=3
+id=25837
+type=Artifact Creature
+[/card]
+[card]
+toughness=3
+name=Kavu Climber
+mana={3}{G}{G}
+subtype=Kavu
+color=Green
+auto=draw:1
+rarity=C
+text=Wenn der Kletterkavu ins Spiel kommt, ziehe eine Karte.
+power=3
+id=23109
+type=Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {W}.
+type=Basic Land
+id=26300
+[/card]
+[card]
+toughness=2
+name=Thornscape Master
+mana={2}{G}{G}
+subtype=Human Wizard
+color=Green
+auto={W}{W}{T}:protection from green target(creature)
+rarity=R
+text={R}{R}, {T}: Der Meister des Dornenpfads fuegt einer Kreatur Deiner Wahl 2 Schadenspunkte zu.   {W}{W}, {T}: Eine Kreatur Deiner Wahl erhaelt bis zum Ende des Zuges Schutz vor einer Farbe, die Du bestimmst.
+power=2
+id=23136
+type=Creature
+[/card]
+[card]
+toughness=5
+name=Sabertooth Nishoba
+mana={4}{G}{W}
+subtype=Cat Beast Warrior
+color=Green,White
+rarity=R
+text=Verursacht Trampelschaden, Schutz vor Blau, Schutz vor Rot
+power=5
+id=23205
+type=Creature
+abilities=trample,protection from blue,protection from red
+[/card]
+[card]
+toughness=2
+name=Elvish Champion
+mana={1}{G}{G}
+subtype=Elf
+color=Green
+auto=lord(elf) forestwalk other
+rarity=R
+text=Andere Elfenkreaturen erhalten +1/+1 und Waldtarnung.
+power=2
+id=26445
+type=Creature
+[/card]

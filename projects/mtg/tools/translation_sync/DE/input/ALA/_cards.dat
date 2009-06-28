@@ -1,0 +1,1045 @@
+[card]
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=exalted
+id=174963
+name=Akrasan Squire
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text=Das Mysterioese Sanktum kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {W}, {U} oder {B}.
+auto=tap
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+id=175128
+name=Arcane Sanctum
+rarity=U
+type=Land
+[/card]
+[card]
+text={G}, {T}: Eine Kreatur deiner Wahl verursacht bis zum Ende des Zuges Trampelschaden.     {U}, {T}: Eine Kreatur deiner Wahl erhaelt Flugfaehigkeit bis zum Ende des Zuges.
+auto={G}{T}:trample target(creature)
+auto={U}{T}:flying target(creature)
+id=175123
+name=Bant Battlemage
+rarity=U
+type=Creature
+mana={2}{W}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=Der Fahlschlag fuegt einem Spieler deiner Wahl 3 Schadenspunkte zu. Dieser Spieler wirft zwei Karten aus seiner Hand ab.
+id=174917
+target=player
+auto=damage:3
+auto=discard:2
+name=Blightning
+rarity=C
+type=Sorcery
+mana={1}{B}{R}
+[/card]
+[card]
+text=Fliegend    Wenn der Zwillingsbrut-Drache ins Spiel kommt, bringe einen 4/4 roten Drachen-Kreaturenspielstein mit Flugfaehigkeit ins Spiel.
+abilities=flying
+auto=token(Dragon,creature dragon, 4/4,flying red)
+id=178101
+name=Broodmate Dragon
+rarity=R
+type=Creature
+mana={3}{B}{R}{G}
+power=4
+subtype=Dragon
+toughness=4
+[/card]
+[card]
+text=Wachsamkeit, Eile
+abilities=vigilance,haste
+id=174952
+name=Bull Cerodon
+rarity=U
+type=Creature
+mana={4}{R}{W}
+power=5
+subtype=Beast
+toughness=5
+[/card]
+[card]
+text=Neutralisiere einen Zauberspruch deiner Wahl.
+id=178092
+target=*|stack
+auto=fizzle
+name=Cancel
+rarity=C
+type=Instant
+mana={1}{U}{U}
+[/card]
+[card]
+text={T}: Ein Spieler deiner Wahl legt die oberste Karte seiner Bibliothek auf seinen Friedhof.
+auto={T}:deplete:1 target(player)
+id=176433
+name=Cathartic Adept
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text={1}{R}: Das Hoehlen-Thoktar erhaelt +1/+0 bis zum Ende des Zuges.
+auto={1}{R}:1/0
+id=174994
+name=Cavern Thoctar
+rarity=C
+type=Creature
+mana={5}{G}
+power=5
+subtype=Beast
+toughness=5
+[/card]
+[card]
+text=Fliegend     {1}{W}: Der Wolkenheiden-Sceada erhaelt Wachsamkeit bis zum Ende des Zuges.
+abilities=flying
+auto={1}{W}:vigilance
+id=174814
+name=Cloudheath Drake
+rarity=C
+type=Artifact Creature
+mana={4}{U}
+power=3
+subtype=Drake
+toughness=3
+[/card]
+[card]
+text={1}{U}, {T}, opfere die Kapsel des Kuriers: Ziehe zwei Karten.
+auto={1}{U}{T}{S}:Draw:2
+id=174800
+name=Courier's Capsule
+rarity=C
+type=Artifact
+mana={1}{U}
+[/card]
+[card]
+text=Reichweite (Diese Kreatur kann fliegende Kreaturen blocken.)     Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=reach,exalted
+id=174960
+name=Court Archers
+rarity=C
+type=Creature
+mana={2}{G}
+power=1
+subtype=Human Archer
+toughness=3
+[/card]
+[card]
+text=Drachen-Kreaturen, die du kontrollierst, erhalten +3/+3.
+auto=lord(dragon|myinplay) 3/3
+id=179426
+name=Crucible of Fire
+rarity=R
+type=Enchantment
+mana={3}{R}
+[/card]
+[card]
+text=Die Zerfallende Nekropolis kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {U}, {B} oder {R}.
+auto=tap
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+id=175112
+name=Crumbling Necropolis
+rarity=U
+type=Land
+[/card]
+[card]
+text=
+id=174935
+name=Cylian Elf
+rarity=C
+type=Creature
+mana={1}{G}
+power=2
+subtype=Elf Scout
+toughness=2
+[/card]
+[card]
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)     {W}, {T}: Der Morgenlicht-Bogenschuetze fuegt einer angreifenden oder blockenden Kreatur deiner Wahl 1 Schadenspunkt zu.
+abilities=exalted
+auto={W}{T}:damage:1 target(creature[attacking;blocking])
+id=175085
+name=Dawnray Archer
+rarity=U
+type=Creature
+mana={2}{U}
+power=1
+subtype=Human Archer
+toughness=1
+[/card]
+[card]
+text=Erstschlag, Verhuellt (Diese Kreatur kann nicht das Ziel von Zauberspruechen oder Faehigkeiten sein.)
+abilities=first strike,shroud
+id=175121
+name=Deft Duelist
+rarity=C
+type=Creature
+mana={W}{U}
+power=2
+subtype=Human Rogue
+toughness=1
+[/card]
+[card]
+text={2}{W}, {T}, opfere die Kapsel des Verbanners: Zerstoere ein Artefakt oder eine Verzauberung deiner Wahl.
+auto={2}{W}{T}{S}:destroy target(artifact,enchantment)
+id=174830
+name=Dispeller's Capsule
+rarity=C
+type=Artifact
+mana={W}
+[/card]
+[card]
+text=Bringe zwei 1/1 rote Goblin-Kreaturenspielsteine ins Spiel.
+auto=token(Goblin,creature goblin, 1/1,red)*2
+id=174936
+name=Dragon Fodder
+rarity=C
+type=Sorcery
+mana={1}{R}
+[/card]
+[card]
+text=
+id=174848
+name=Dreg Reaver
+rarity=C
+type=Creature
+mana={4}{B}
+power=4
+subtype=Zombie Beast
+toughness=3
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}, {G} oder {W}.
+auto={T}:Add {R}
+auto={T}:Add {G}
+auto={T}:Add {W}
+id=174903
+name=Druid of the Anima
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text=Wenn der Elfische Visionaer ins Spiel kommt, ziehe eine Karte.
+auto=draw:1
+id=175124
+name=Elvish Visionary
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
+text=Aufblitzen     {B}, {T}, opfere ein Artefakt: Ziehe eine Karte.
+abilities=flash
+auto={B}{T}{S(artifact|myinplay)}:draw:1
+id=175138
+name=Etherium Astrolabe
+rarity=U
+type=Artifact
+mana={2}{U}
+[/card]
+[card]
+text=Lege eine Kreatur deiner Wahl oben auf die Bibliothek ihres Besitzers.
+target=creature
+auto=moveTo(ownerLibrary)
+id=180144
+name=Excommunicate
+rarity=C
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
+text={1}{B}, {T}, Sacrifice Executioner's Capsule: Destroy target nonblack creature.
+auto={1}{B}{T}{S}:destroy target(creature[-black])
+id=174895
+name=Executioner's Capsule
+rarity=C
+type=Artifact
+mana={B}
+[/card]
+[card]
+text={2}{U}: Enttappe ein Artefakt deiner Wahl.
+auto={2}{U}:untap target(artifact)
+id=174888
+name=Filigree Sages
+rarity=U
+type=Artifact Creature
+mana={3}{U}
+power=2
+subtype=Vedalken Wizard
+toughness=3
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+auto={T}:Add {G}
+id=174927
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+auto={T}:Add {G}
+id=174930
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+auto={T}:Add {G}
+id=174928
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+auto={T}:Add {G}
+id=174929
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Verursacht Trampelschaden
+abilities=trample
+id=177596
+name=Goblin Deathraiders
+rarity=C
+type=Creature
+mana={B}{R}
+power=3
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=Gebirgstarnung
+abilities=mountainwalk
+id=174938
+name=Goblin Mountaineer
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Scout
+toughness=1
+[/card]
+[card]
+text=Wachsamkeit     {T}: Bringe einen 8/8 Bestien-Kreaturenspielstein ins Spiel, der rot, gruen und weiss ist.
+abilities=vigilance
+auto={T}:token(Beast,creature beast, 8/8,red green white)
+id=175105
+name=Godsire
+rarity=M
+type=Creature
+mana={4}{R}{G}{G}{W}
+power=8
+subtype=Beast
+toughness=8
+[/card]
+[card]
+text=Verteidiger     Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=defender,exalted
+id=175103
+name=Guardians of Akrasa
+rarity=C
+type=Creature
+mana={2}{W}
+power=0
+subtype=Human Soldier
+toughness=4
+[/card]
+[card]
+text=Fliegend, verursacht Trampelschaden, Eile     {R}: Der Oberherr der Hoellendrachen erhaelt +1/+0 bis zum Ende des Zuges.     {B}{G}: Regeneriere den Oberherrn der Hoellendrachen.
+abilities=flying,trample,haste
+auto={R}:1/0
+auto={B}{G}:regenerate
+id=175057
+name=Hellkite Overlord
+rarity=M
+type=Creature
+mana={4}{B}{R}{R}{G}
+power=8
+subtype=Dragon
+toughness=8
+[/card]
+[card]
+text=
+id=174806
+name=Incurable Ogre
+rarity=C
+type=Creature
+mana={3}{R}
+power=5
+subtype=Ogre Mutant
+toughness=1
+[/card]
+[card]
+text=Alle Kreaturen erhalten -2/-2 bis zum Ende des Zuges.
+auto=lord(creatures) -2/-2
+id=179424
+name=Infest
+rarity=U
+type=Sorcery
+mana={1}{B}{B}
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}.
+auto={T}:Add{U}
+id=174979
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}.
+auto={T}:Add{U}
+id=174977
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}.
+auto={T}:Add{U}
+id=174980
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}.
+auto={T}:Add{U}
+id=174978
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=Der Jhessische Infiltrator ist unblockbar.
+abilities=unblockable
+id=175392
+name=Jhessian Infiltrator
+rarity=U
+type=Creature
+mana={G}{U}
+power=2
+subtype=Human Rogue
+toughness=2
+[/card]
+[card]
+text=
+id=176428
+name=Jhessian Lookout
+rarity=C
+type=Creature
+mana={1}{U}
+power=2
+subtype=Human Scout
+toughness=1
+[/card]
+[card]
+text=Der Dschungelschrein kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {R}, {G} oder {W}.
+auto=tap
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
+id=175060
+name=Jungle Shrine
+rarity=U
+type=Land
+[/card]
+[card]
+text={3}{G}: Der Ritter des Aufblickenden Auges erhaelt +3/+3 bis zum Ende des Zuges. Spiele diese Faehigkeit nur einmal pro Zug.
+auto={3}{G}:3/3 limit:1
+id=175047
+name=Knight of the Skyward Eye
+rarity=C
+type=Creature
+mana={1}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +3/+0 und Erstschlag.
+target=creature
+auto=3/0
+auto=first strike
+id=176446
+name=Lightning Talons
+rarity=C
+type=Enchantment
+mana={2}{R}
+subtype=Aura
+[/card]
+[card]
+text={T}: Du erhaeltst 1 Lebenspunkt dazu.
+auto={T}:life:1
+id=175249
+name=Marble Chalice
+rarity=C
+type=Artifact
+mana={2}{W}
+[/card]
+[card]
+text=Staerke und Widerstandskraft des Meisters des Aetheriums sind gleich der Anzahl der Artefakte, die du kontrollierst.     Andere Artefaktkreaturen, die du kontrollierst, erhalten +1/+1.
+id=175114
+auto=lord(creature[artifact]|myinplay) 1/1 other
+auto=foreach(artifact|myinplay) 1/1
+name=Master of Etherium
+rarity=R
+type=Artifact Creature
+mana={2}{U}
+power=*
+subtype=Vedalken Wizard
+toughness=*
+[/card]
+[card]
+text={W}, {T}: Regeneriere ein Artefakt deiner Wahl.
+id=175113
+auto={W}{T}:Regenerate target(artifact)
+name=Metallurgeon
+rarity=U
+type=Artifact Creature
+mana={1}{W}
+power=1
+subtype=Human Artificer
+toughness=2
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}.
+auto={T}:Add{R}
+id=175018
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}.
+auto={T}:Add{R}
+id=175019
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}.
+auto={T}:Add{R}
+id=175017
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}.
+auto={T}:Add{R}
+id=175020
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Zerstoere ein Artefakt oder eine Verzauberung deiner Wahl.
+target=artifact,enchantment
+auto=destroy
+id=174890
+name=Naturalize
+rarity=C
+type=Instant
+mana={1}{G}
+[/card]
+[card]
+text={R}, {T}: Eine Kreatur deiner Wahl erhaelt +2/+0 bis zum Ende des Zuges.     {W}, {T}: Tappe eine Kreatur deiner Wahl.
+auto={R}{T}:2/0 target(creature)
+auto={W}{T}:tap target(creature)
+id=174944
+name=Naya Battlemage
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Human Shaman
+toughness=2
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}, {W} oder {U}.
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+id=175102
+name=Obelisk of Bant
+rarity=C
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}, {U} oder {B}.
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+id=174906
+name=Obelisk of Esper
+rarity=C
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}, {B} oder {R}.
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+id=174887
+name=Obelisk of Grixis
+rarity=C
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}, {R} oder {G}.
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+id=174892
+name=Obelisk of Jund
+rarity=C
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}, {W} oder {U}.
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
+id=175061
+name=Obelisk of Naya
+rarity=C
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=exalted
+id=175252
+name=Outrider of Jhess
+rarity=C
+type=Creature
+mana={3}{U}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}.
+auto={T}:Add{W}
+id=175029
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}.
+auto={T}:Add{W}
+id=175032
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}.
+auto={T}:Add{W}
+id=175031
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}.
+auto={T}:Add{W}
+id=175030
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={4}{W}, {T}, opfere das Urmaterie-Pulver: Bringe eine Artefaktkarte deiner Wahl aus deinem Friedhof ins Spiel zurueck.
+auto={4}{W}{T}{S}:moveTo(myInPlay) target(artifact|mygraveyard)
+id=174833
+name=Protomatter Powder
+rarity=U
+type=Artifact
+mana={2}{U}
+[/card]
+[card]
+text=Verursacht Trampelschaden     Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=trample,exalted
+id=174959
+name=Rhox Charger
+rarity=U
+type=Creature
+mana={3}{G}
+power=3
+subtype=Rhino Soldier
+toughness=3
+[/card]
+[card]
+text=Lebensverknuepfung
+abilities=lifelink
+id=174957
+name=Rhox War Monk
+rarity=U
+type=Creature
+mana={G}{W}{U}
+power=3
+subtype=Rhino Monk
+toughness=4
+[/card]
+[card]
+text=Eile
+abilities=haste
+id=177600
+name=Rip-Clan Crasher
+rarity=C
+type=Creature
+mana={R}{G}
+power=2
+subtype=Human Warrior
+toughness=2
+[/card]
+[card]
+text={4}{G}: Die Steinwerfer-Kolonne fuegt allen fliegenden Kreaturen und allen Spielern 2 Schadenspunkte zu.
+id=175024
+auto={4}{G}:damage:4 all (creature[flying],player)
+name=Rockcaster Platoon
+rarity=U
+type=Creature
+mana={5}{W}{W}
+power=5
+subtype=Rhino Soldier
+toughness=7
+[/card]
+[card]
+text=Eine Kreatur deiner Wahl erhaelt +3/+3 und Doppelschlag bis zum Ende des Zuges.
+target=creature
+auto=3/3
+auto=double strike
+id=176438
+name=Sangrite Surge
+rarity=U
+type=Sorcery
+mana={4}{R}{G}
+[/card]
+[card]
+text=Fliegend     Wenn der Gargoyle des Heiligtums ins Spiel kommt, kannst du eine Artefaktkarte deiner Wahl aus deinem Friedhof auf deine Hand zuruecknehmen.
+abilities=flying
+auto=may moveTo(myHand) target(artifact|mygraveyard)
+id=174925
+name=Sanctum Gargoyle
+rarity=C
+type=Artifact Creature
+mana={3}{W}
+power=2
+subtype=Gargoyle
+toughness=3
+[/card]
+[card]
+text=Die Wilden Landschaften kommen getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {B}, {R} oder {G}.
+auto=tap
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+id=174877
+name=Savage Lands
+rarity=U
+type=Land
+[/card]
+[card]
+text=Die Seekuestenzitadelle kommt getappt ins Spiel.     {T}: Erhoehe deinen Manavorrat um {G}, {W} oder {U}.
+auto=tap
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+id=174950
+name=Seaside Citadel
+rarity=U
+type=Land
+[/card]
+[card]
+text=Entferne eine Karte deiner Wahl in einem Friedhof ganz aus dem Spiel. Du erhaeltst 3 Lebenspunkte dazu.
+target=*|graveyard
+auto=moveto(removedfromgame)
+auto=life:3
+id=177473
+name=Shadowfeed
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Fliegend     Wenn Sharuum, Sphinx-Hegemon ins Spiel kommt, kannst du eine Artefaktkarte deiner Wahl aus deinem Friedhof ins Spiel zurueckbringen.
+abilities=flying,legendary
+auto=may moveTo(myinplay) target(artifact|mygraveyard)
+id=175127
+name=Sharuum the Hegemon
+rarity=M
+type=Artifact Creature
+mana={3}{W}{U}{B}
+power=5
+subtype=Sphinx
+toughness=5
+[/card]
+[card]
+text={U}: Der Strandschnapper erhaelt Inseltarnung bis zum Ende des Zuges.
+id=175390
+auto={U}:islandwalk
+name=Shore Snapper
+rarity=C
+type=Creature
+mana={2}{B}
+power=2
+subtype=Beast
+toughness=2
+[/card]
+[card]
+text=Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)     {U}: Der Hexer aus der Blicker-Kaste ist bis zum Ende des Zuges verhuellt. (Er kann nicht das Ziel von Zauberspruechen oder Faehigkeiten sein.)
+abilities=exalted
+auto={U}:shroud
+id=174956
+name=Sighted-Caste Sorcerer
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Bis zum Ende des Zuges erhaelt eine Kreatur deiner Wahl, die du kontrollierst, +3/+3, und alle andere Kreaturen, die du kontrollierst, +1/+1.
+target=creature|myinplay
+auto=2/2
+auto=lord(creatures|myinplay) 1/1
+id=177597
+name=Sigil Blessing
+rarity=C
+type=Instant
+mana={G}{W}
+[/card]
+[card]
+text=Erstschlag     Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=first strike, exalted
+id=174958
+name=Sigiled Paladin
+rarity=U
+type=Creature
+mana={W}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Fliegend     {B}, opfere eine Kreatur: Regeneriere den Skelettartigen Kathari.
+abilities=flying
+auto={B},{S(creature|myinplay)}:regenerate
+id=175119
+name=Skeletal Kathari
+rarity=C
+type=Creature
+mana={4}{B}
+power=3
+subtype=Bird Skeleton
+toughness=2
+[/card]
+[card]
+text=Die Stahlgepanzerte Schlange kann nicht angreifen, falls du nicht ein anderes Artefakt kontrollierst.
+abilities=cantattack
+auto=aslongas(artifact|myinplay) other -cantattack
+id=175009
+name=Steelclad Serpent
+rarity=C
+type=Artifact Creature
+mana={5}{U}
+power=4
+subtype=Serpent
+toughness=5
+[/card]
+[card]
+text=Wachsamkeit     {T}: Erhoehe deinen Manavorrat um {G}.
+abilities=vigilance
+auto={T}:Add{G}
+id=175134
+name=Steward of Valeron
+rarity=C
+type=Creature
+mana={G}{W}
+power=2
+subtype=Human Druid Knight
+toughness=2
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}.
+auto={T}:Add{B}
+id=175089
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}.
+auto={T}:Add{B}
+id=175088
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}.
+auto={T}:Add{B}
+id=175091
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}.
+auto={T}:Add{B}
+id=175090
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Bis zum Ende des Zuges erhalten Kreaturen, die du kontrollierst, +5/+5, Erstschlag sowie Lebensverknuepfung und verursachen Trampelschaden.
+auto=lord(creatures|myinplay) 5/5
+auto=lord(creatures|myinplay) lifelink
+auto=lord(creatures|myinplay) first strike
+auto=lord(creatures|myinplay) trample
+id=174839
+name=Titanic Ultimatum
+rarity=R
+type=Sorcery
+mana={R}{R}{G}{G}{G}{W}{W}
+[/card]
+[card]
+text=Kreaturen, die du kontrollierst, sind bis zum Ende des Zuges verhuellt. (Sie koennen nicht das Ziel von Zauberspruechen oder Faehigkeiten sein.)
+auto=lord(creatures|myinplay) shroud
+id=179432
+name=Tortoise Formation
+rarity=C
+type=Instant
+mana={3}{U}
+[/card]
+[card]
+text=Fliegend
+abilities=flying
+id=174924
+name=Tower Gargoyle
+rarity=U
+type=Artifact Creature
+mana={1}{W}{U}{B}
+power=4
+subtype=Gargoyle
+toughness=4
+[/card]
+[card]
+text={1}{B}, wirf eine Karte aus der Hand ab: Regeneriere das Viashino-Skelett.
+id=175097
+name=Viashino Skeleton
+auto={1}{B}{S(*|myhand)}:regenerate
+rarity=C
+type=Creature
+mana={3}{R}
+power=2
+subtype=Viashino Skeleton
+toughness=1
+[/card]
+[card]
+text=Fliegend     Edelmut (Immer wenn eine Kreatur, die du kontrollierst, alleine angreift, erhaelt diese Kreatur +1/+1 bis zum Ende des Zuges.)
+abilities=flying,exalted
+id=174955
+name=Waveskimmer Aven
+rarity=C
+type=Creature
+mana={2}{G}{W}{U}
+power=2
+subtype=Bird Soldier
+toughness=4
+[/card]
+[card]
+text=Der Wilde Nacatl erhaelt +1/+1, solange du ein Gebirge kontrollierst.     Der Wilde Nacatl erhaelt +1/+1, solange du eine Ebene kontrollierst.
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+id=174989
+name=Wild Nacatl
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Cat Warrior
+toughness=1
+[/card]
+[card]
+text=Lebensverknuepfung (Immer wenn diese Kreatur Schaden zufuegt, erhaeltst du ebenso viele Lebenspunkte dazu.)     Der Windwerkende Magier hat Flugfaehigkeit, solange mindestens eine Artefaktkarte in deinem Friedhof liegt.
+abilities=lifelink
+auto=aslongas(artifact|mygraveyard) flying
+id=175014
+name=Windwright Mage
+rarity=C
+type=Artifact Creature
+mana={W}{U}{B}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
+text=
+id=175062
+name=Woolly Thoctar
+rarity=U
+type=Creature
+mana={R}{G}{W}
+power=5
+subtype=Beast
+toughness=4
+[/card]

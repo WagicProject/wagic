@@ -1,0 +1,1184 @@
+[card]
+subtype=Swamp
+auto={T}: Add {B}
+text={T}: Erhoehe deinen Manavorrat um {B}.
+rarity=L
+name=Swamp
+id=8333
+type=Basic Land
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Erhoehe Deinen Manavorrat um {W}.
+type=Basic Land
+id=8323
+[/card]
+[card]
+name=Bedlam
+mana={2}{R}{R}
+color=Red
+auto=lord(creature) cantblock
+rarity=R
+text=Kreaturen koennen nicht blocken.
+type=Enchantment
+id=5727
+[/card]
+[card]
+toughness=2
+name=Guma
+mana={2}{R}
+subtype=Cat
+color=Red
+rarity=U
+text=Schutz vor Blau
+power=2
+id=8806
+type=Creature
+abilities=protection from blue
+[/card]
+[card]
+name=Hibernation
+mana={2}{U}
+color=Blue
+auto=moveTo(ownerhand) all(*[green]|inplay)
+rarity=U
+text=Bringe alle gruenen bleibenden Karten auf die Hand ihres Besitzers zurueck.
+type=Instant
+id=5674
+[/card]
+[card]
+toughness=2
+name=Skirge Familiar
+mana={4}{B}
+subtype=Imp
+color=Black
+auto={s(*|myhand)}:Add {B}
+rarity=U
+text=Fliegend    Bestimme eine Karte aus Deiner Hand und wirf diese ab: Erhoehe Deinen Manavorrat um {B}. Spiele diese Faehigkeit wie eine Manaquelle.
+power=3
+id=5851
+type=Creature
+abilities=flying
+[/card]
+[card]
+subtype=Island
+auto={T}:add {U}
+text={T}: Erhoehe deinen Manavorrat um {U}.
+rarity=L
+name=Island
+id=8328
+type=Basic Land
+[/card]
+[card]
+subtype=Swamp
+auto={T}: Add {B}
+text={T}: Erhoehe deinen Manavorrat um {B}.
+rarity=L
+name=Swamp
+id=8332
+type=Basic Land
+[/card]
+[card]
+toughness=1
+name=Goblin Matron
+mana={2}{R}
+subtype=Goblin
+auto=may moveTo(myHand) target(goblin|myLibrary)
+rarity=C
+text=Wenn die Goblin-Matrone ins Spiel kommt, kannst du deine Bibliothek nach einer Goblinkarte durchsuchen. Wenn du dies tust, zeige die Karte offen vor und nimm sie auf deine Hand. Mische danach deine Bibliothek.
+power=1
+id=8824
+type=Creature
+[/card]
+[card]
+name=Stroke of Genius
+mana={X}{2}{U}
+color=Blue
+target=player
+rarity=R
+text=Ein Spieler Deiner Wahl zieht X Karten.
+type=Instant
+id=5677
+alias=1192
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=8339
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=8341
+[/card]
+[card]
+toughness=2
+name=Goblin Spelunkers
+mana={2}{R}
+subtype=Goblin Warrior
+color=Red
+rarity=C
+text=Gebirgstarnung
+power=2
+id=5543
+type=Creature
+abilities=mountainwalk
+[/card]
+[card]
+name=Sunder
+mana={3}{U}{U}
+color=Blue
+auto=moveTo(ownerhand) all(land|inplay)
+rarity=R
+text=Bringe alle Laender auf die Hand ihrer Besitzer zurueck.
+type=Instant
+id=5599
+[/card]
+[card]
+name=Glorious Anthem
+mana={1}{W}{W}
+color=White
+auto=lord(creature|myinplay) 1/1
+rarity=R
+text=Kreaturen, die du kontrollierst, erhalten +1/+1.
+type=Enchantment
+id=5835
+[/card]
+[card]
+toughness=2
+name=Stern Proctor
+mana={U}{U}
+subtype=Human Wizard
+color=Blue
+auto=may moveTo(ownerhand) target(enchantment,artifact)
+rarity=U
+text=Wenn der Gestrenge Schulmeister ins Spiel kommt, bringe ein Artefakt oder eine Verzauberung Deiner Wahl zurueck auf die Hand ihres Besitzers.
+power=1
+id=5661
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Horseshoe Crab
+mana={2}{U}
+subtype=Crab
+color=Blue
+auto={U}:untap 
+rarity=C
+text={U}: Enttappe den Pfeilschwanzkrebs.
+power=1
+id=9849
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Goblin Raider
+mana={1}{R}
+subtype=Goblin Warrior
+color=red
+rarity=C
+text=Der Goblin-Pluenderer kann nicht blocken.
+power=2
+id=5701
+type=Creature
+abilities=cantblock
+[/card]
+[card]
+name=Gaea's Embrace
+mana={2}{G}{G}
+subtype=Aura
+color=Green
+target=creature
+auto={G}:regenerate
+rarity=U
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +3/+3 und Trampeln.     R: Regeneriere die verzauberte Kreatur.
+id=5720
+type=Enchantment
+[/card]
+[card]
+toughness=5
+name=Shivan Hellkite
+mana={5}{R}{R}
+subtype=Dragon
+color=Red
+auto={1}{R}:damage:1 target(creature,player)
+rarity=R
+text=Fliegend  {1}{R}: Der Shivan-Hoellendrache fuegt einer Kreatur oder einem Spieler deiner Wahl 1 Schadenspunkt zu.
+power=5
+id=5660
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=1
+name=Pegasus Charger
+mana={2}{W}
+subtype=Pegasus
+color=White
+rarity=C
+text=Fliegend, Erstschlag
+power=2
+id=5729
+type=Creature
+abilities=flying,first strike
+[/card]
+[card]
+toughness=1
+name=Elvish Lyrist
+mana={G}
+subtype=Elf
+auto={G}{T}{S}:destroy target(enchantment)
+rarity=C
+text={G}, {T}, opfere den Elfendichter: Zerstoere eine Verzauberung deiner Wahl.
+power=1
+id=5774
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Bog Raiders
+mana={2}{B}
+subtype=Zombie
+color=Black
+rarity=C
+text=Sumpftarnung
+power=3
+id=5597
+type=Creature
+abilities=swampwalk
+[/card]
+[card]
+toughness=5
+name=Blanchwood Treefolk
+mana={4}{G}
+subtype=Treefolk
+color=Green
+rarity=C
+power=4
+id=5747
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Zephid
+mana={4}{U}{U}
+subtype=Illusion
+color=Blue
+rarity=R
+text=Fliegend, Verhuellt
+power=3
+id=5825
+type=Creature
+abilities=flying,shroud
+[/card]
+[card]
+toughness=1
+name=Elvish Herder
+mana={G}
+subtype=Elf
+color=Green
+auto={G}:trample target(creature)
+rarity=C
+text={G}: Eine Kreatur Deiner Wahl erhaelt Trampeln bis zum Ende des Zuges.
+power=1
+id=5738
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Serra Zealot
+mana={W}
+subtype=Human Soldier
+color=White
+rarity=C
+text=Erstschlag
+power=1
+id=5707
+type=Creature
+abilities=first strike
+[/card]
+[card]
+name=Cloak of Mists
+mana={1}{U}
+subtype=Aura
+color=Blue
+target=creature
+auto=unblockable
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur kann nicht geblockt werden.
+id=5718
+type=Enchantment
+[/card]
+[card]
+subtype=Island
+auto={T}:add {U}
+text={T}: Erhoehe deinen Manavorrat um {U}.
+rarity=L
+name=Island
+id=8326
+type=Basic Land
+[/card]
+[card]
+toughness=1
+name=Songstitcher
+mana={W}
+subtype=Human Cleric
+color=White
+auto={1}{W}:-99/0 target(creature[attacking;flying])
+rarity=U
+text={1}{W}: Eine angreifende fliegende Kreatur Deiner Wahl fuegt in diesem Zug keinen Kampfschaden zu.
+power=1
+id=5669
+type=Creature
+[/card]
+[card]
+name=Shivan Embrace
+mana={2}{R}{R}
+subtype=Aura
+color=Red
+target=creature
+auto={R}:1/0
+rarity=U
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+2 und Flugfaehigkeit.     {R}: Die verzauberte Kreatur erhaelt +1/+0 bis zum Ende des Zuges.
+id=5721
+type=Enchantment
+[/card]
+[card]
+toughness=2
+name=Voice of Law
+mana={3}{W}
+subtype=Angel
+color=White
+rarity=U
+text=Fliegend, Schutz vor Rot
+power=2
+id=5673
+type=Creature
+abilities=flying,protection from red
+[/card]
+[card]
+toughness=2
+name=Crazed Skirge
+mana={3}{B}
+subtype=Imp
+color=Black
+rarity=U
+text=Fliegend, Eile
+power=2
+id=5555
+type=Creature
+abilities=flying,haste
+[/card]
+[card]
+name=Voltaic Key
+mana={1}
+color=Artifact
+auto={1}{T}:untap target(artifact)
+rarity=U
+text={1}, {T}: Enttappe ein Artefakt Deiner Wahl.
+type=Artifact
+id=5547
+[/card]
+[card]
+toughness=1
+name=Barrin, Master Wizard
+mana={1}{U}{U}
+subtype=Human Wizard
+color=Blue
+auto={s(*|myinplay)}:moveTo(ownerhand) target(creature|inplay)
+rarity=R
+text=Legendaer    {2}, opfere eine bleibende Karte: Bringe eine Kreatur Deiner Wahl zurueck auf die Hand ihres Besitzers.
+power=1
+id=9856
+type=Creature
+abilities=legendary
+[/card]
+[card]
+toughness=1
+name=Unworthy Dead
+mana={1}{B}
+subtype=Skeleton
+color=Black
+auto={B}:regenerate
+rarity=C
+text={B}: Regeneriere die Ehrlosen Toten
+power=1
+id=5780
+type=Creature
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=8340
+[/card]
+[card]
+subtype=Island
+auto={T}:add {U}
+text={T}: Erhoehe deinen Manavorrat um {U}.
+rarity=L
+name=Island
+id=8327
+type=Basic Land
+[/card]
+[card]
+toughness=2
+name=Voice of Grace
+mana={3}{W}
+subtype=Angel
+color=White
+rarity=U
+text=Fliegend, Schutz vor Schwarz
+power=2
+id=5635
+type=Creature
+abilities=flying,protection from black
+[/card]
+[card]
+name=Absolute Grace
+mana={1}{W}
+color=White
+auto=lord(creature) protection from black
+rarity=U
+text=Alle Kreaturen erhalten Schutz vor Schwarz.
+type=Enchantment
+id=5716
+[/card]
+[card]
+toughness=2
+name=Hawkeater Moth
+mana={3}{G}
+subtype=Insect
+color=Green
+rarity=U
+text=Fliegend, Verhuellt
+power=1
+id=9710
+type=Creature
+abilities=flying,shroud
+[/card]
+[card]
+name=Falter
+mana={1}{R}
+color=Red
+auto=lord(creature[-flying]) cantblock
+rarity=C
+text=Nichtfliegende Kreaturen koennen in diesem Zug nicht blocken.
+type=Instant
+id=5542
+[/card]
+[card]
+target=creature,player
+text=Korruption fuegt einer Kreatur oder einem Spieler deiner Wahl Schadenspunkte in Hoehe der Anzahl der Suempfe, die du kontrollierst, zu. Du erhaeltst so viele Lebenspunkte dazu, wie auf diese Weise Schadenspunkte zugefuegt wurden.
+rarity=C
+name=Corrupt
+id=5853
+type=Sorcery
+mana={5}{B}
+alias=146013
+[/card]
+[card]
+name=Worn Powerstone
+mana={3}
+color=Artifact
+auto={T}:Add {2}
+rarity=U
+text=Der Abgenutzte Kraftstein kommt getappt ins Spiel.     {T}: Erhoehe Deinen Manavorrat um {2}.
+type=Artifact
+id=8876
+[/card]
+[card]
+toughness=1
+name=Angelic Page
+mana={1}{W}
+subtype=Angel Spirit
+color=White
+auto={T}:1/1 target(creature[attacking;blocking])
+rarity=C
+text=Fliegend    {T}: Eine angreifende oder blockende Kreatur deiner Wahl erhaelt +1/+1 bis zum Ende des Zuges.
+power=1
+id=5781
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=8334
+[/card]
+[card]
+name=Reflexes
+mana={R}
+subtype=Aura
+color=Red
+target=creature
+auto=first strike
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur hat Erstschlag.
+id=10465
+type=Enchantment
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Erhoehe Deinen Manavorrat um {W}.
+type=Basic Land
+id=8322
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=8335
+[/card]
+[card]
+auto={T}{s(creature|myinplay)}:Add {B}{B}
+text=Legendaer  {T}: Erhoehe Deinen Manavorrat um {1}.  {T}, opfere eine Kreatur: Erhoehe Deinen Manavorrat um {B}{B}. 
+rarity=R
+name=Phyrexian Tower
+id=10677
+type=Land
+abilities=legendary
+[/card]
+[card]
+text=Put X 1/1 red Goblin creature tokens into play.
+rarity=U
+name=Goblin Offensive
+id=8818
+type=Sorcery
+mana={X}{1}{R}{R}
+[/card]
+[card]
+toughness=2
+name=Monk Idealist
+mana={2}{W}
+subtype=Human Monk Cleric
+color=White
+auto=may moveTo(myhand) target(enchantment|mygraveyard)
+rarity=U
+text=Wenn der Idealistische Moench ins Spiel kommt, bringe eine Verzauberungskarte Deiner Wahl aus Deinem Friedhof zurueck auf Deine Hand.
+power=2
+id=5706
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Looming Shade
+mana={2}{B}
+subtype=Shade
+color=Black
+auto={B}:1/1
+rarity=C
+text={B}: Der Drohende Schatten erhaelt +1/+1 bis zum Ende des Zuges.
+power=1
+id=5591
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Priest of Gix
+mana={2}{B}
+subtype=Human Cleric Minion
+color=Black
+auto=Add: {B}{B}{B}
+rarity=U
+text=Wenn der Priester des Gix ins Spiel kommt, erhoehe Deinen Manavorrat um {B}{B}{B}.
+power=2
+id=9724
+type=Creature
+[/card]
+[card]
+colour=White
+name=Disenchant
+mana={1}{W}
+target=artifact,enchantment
+auto=destroy
+rarity=C
+text=Zerstoere eine Verzauberung oder ein Artefakt.
+id=5630
+type=Instant
+[/card]
+[card]
+name=Forest
+subtype=Forest
+color=Land
+auto={T}: Add {G}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {G}.
+type=Basic Land
+id=8338
+[/card]
+[card]
+toughness=2
+name=Viashino Weaponsmith
+mana={3}{R}
+subtype=Viashino
+color=Red
+auto=rampage(2/2,0)
+rarity=C
+text=Der Viashino- Waffenschmied erhaelt +2/+2 bis zum Ende des Zuges fuer jede Kreatur, die ihn blockt.
+power=2
+id=5590
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Silent Attendant
+mana={2}{W}
+subtype=Human Cleric
+color=White
+auto={T}:life:1
+rarity=C
+text={T}: Du erhaeltst 1 Lebenspunkt dazu.
+power=0
+id=5651
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Bull Hippo
+mana={3}{G}
+subtype=Hippo
+color=Green
+rarity=U
+text=Inseltarnung
+power=3
+id=5577
+type=Creature
+abilities=islandwalk
+[/card]
+[card]
+toughness=2
+name=Sanguine Guard
+mana={1}{B}{B}
+subtype=Zombie Knight
+color=Black
+auto={1}{B}:regenerate
+rarity=U
+text=Erstschlag    {1}{B}: Regeneriere den Blutruenstiger Waechter.
+power=2
+id=5627
+type=Creature
+abilities=first strike
+[/card]
+[card]
+subtype=Swamp
+auto={T}: Add {B}
+text={T}: Erhoehe deinen Manavorrat um {B}.
+rarity=L
+name=Swamp
+id=8330
+type=Basic Land
+[/card]
+[card]
+toughness=3
+name=Anaconda
+mana={3}{G}
+subtype=Snake
+color=Green
+rarity=U
+text=Sumpftarnung
+power=3
+id=5603
+type=Creature
+abilities=swampwalk
+[/card]
+[card]
+subtype=Island
+auto={T}:add {U}
+text={T}: Erhoehe deinen Manavorrat um {U}.
+rarity=L
+name=Island
+id=8329
+type=Basic Land
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Erhoehe Deinen Manavorrat um {W}.
+type=Basic Land
+id=8325
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=8336
+[/card]
+[card]
+text=Opfere den schwarzen Tod am Ende des Zuges, falls keine Kreaturen im Spiel sind.     {B}: Der schwarze Tod fuegt allen Kreaturen und Spielern 1 Schadenspunkt zu.
+rarity=C
+colour=Black
+name=Pestilence
+id=5619
+type=Enchantment
+mana={2}{B}{B}
+alias=1172
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Erhoehe Deinen Manavorrat um {W}.
+type=Basic Land
+id=8324
+[/card]
+[card]
+toughness=1
+name=Coral Merfolk
+mana={1}{U}
+subtype=Merfolk
+color=Blue
+rarity=C
+power=2
+id=5613
+type=Creature
+[/card]
+[card]
+colour=Black
+name=Dark Ritual
+mana={B}
+auto=Add {B}{B}{B}
+rarity=C
+text=Erhoehe deinen Manavorrat um {B}{B}{B}.
+type=Instant
+id=5626
+[/card]
+[card]
+name=Douse
+mana={2}{U}
+color=Blue
+auto={1}{U}:fizzle target(*[red]|stack)
+rarity=U
+text={1}{U}: Neutralisiere einen roten Zauberspruch Deiner Wahl. Spiele diese Faehigkeit wie ein Unterbrechungszauber
+type=Enchantment
+id=5723
+[/card]
+[card]
+toughness=2
+name=Cave Tiger
+mana={2}{G}
+subtype=Cat
+color=Green
+auto=rampage(1/1,0)
+rarity=C
+text=Der Hoehlentiger erhaelt +1/+1 bis zum Ende des Zuges fuer jede Kreatur, die ihn blockt.
+power=2
+id=5762
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Western Paladin
+mana={2}{B}{B}
+subtype=Zombie Knight
+color=Black
+auto={B}{B}{T}:destroy target(creature[white])
+rarity=R
+text={B}{B}, {T}: Zerstoere eine weisse Kreatur deiner Wahl.
+power=3
+id=5861
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Argothian swine
+mana={3}{G}
+subtype=Boar
+color=Green
+rarity=C
+text=Verursacht Trampelschaden
+power=3
+id=5862
+type=Creature
+abilities=trample
+[/card]
+[card]
+toughness=1
+name=Copper Gnomes
+mana={2}
+subtype=Gnome
+color=Artifact
+auto={4}{S}:moveTo(myinplay) target(artifact|myhand)
+rarity=R
+text={4}, opfere die Kupfergnome: Bestimme eine Artefaktkarte aus Deiner Hand und bringe diese ins Spiel.
+power=1
+id=8815
+type=Artifact Creature
+[/card]
+[card]
+name=Annul
+mana={U}
+color=Blue
+target=artifact,enchantment|stack
+auto=fizzle
+rarity=C
+text=Neutralisiere einen Artefaktoder Verzauberungs- Zauberspruch deiner Wahl.
+id=10420
+type=Instant
+[/card]
+[card]
+name=Gamble
+mana={R}
+target=*|myLibrary
+auto=moveTo(myHand)
+rarity=R
+text=Durchsuche Deine Bibliothek nach einer Karte und nimm diese Karte auf Deine Hand. Wirf dann eine zufaellig bestimmte Karte aus Deiner ab. Mische Deine Bibliothek danach neu.
+type=Sorcery
+id=10654
+[/card]
+[card]
+toughness=2
+name=Gorilla Warrior
+mana={2}{G}
+subtype=Ape Warrior
+color=Green
+rarity=C
+power=3
+id=5683
+type=Creature
+[/card]
+[card]
+name=Absolute Law
+mana={1}{W}
+color=White
+auto=lord(creature) protection from red
+rarity=U
+text=Alle Kreaturen erhalten Schutz vor Rot.
+type=Enchantment
+id=8437
+[/card]
+[card]
+name=Zephid's Embrace
+mana={2}{U}{U}
+subtype=Aura
+color=Blue
+target=creature
+auto=shroud
+rarity=U
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+2 und Flugfaehigkeit und kann nicht Ziel von Zauberspruechen oder Faehigkeiten sein.
+id=8787
+type=Enchantment
+[/card]
+[card]
+toughness=*
+name=Treefolk Seedlings
+mana={2}{G}
+subtype=Treefolk
+color=Green
+auto=foreach(forest|myinplay) 0/1
+rarity=U
+text=Die Widerstandskraft der Baumvolksproesslinge ist gleich der Anzahl der Waelder, die Du kontrollierst.
+power=2
+id=5866
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Eastern Paladin
+mana={2}{B}{B}
+subtype=Zombie Knight
+color=Black
+auto={B}{B}{T}:destroy target(creature[green])
+rarity=R
+text={B}{B}, {T}: Zerstoere eine gruene Kreatur deiner Wahl.
+power=3
+id=5860
+type=Creature
+[/card]
+[card]
+name=Steam Blast
+mana={2}{R}
+color=Red
+auto=damage:2 all(creature,player)
+rarity=U
+text=Der Dampfstrahl fuegt jeder Kreatur und jedem Spieler 2 Schadenspunkte zu.
+type=Sorcery
+id=5563
+[/card]
+[card]
+name=Breach
+mana={2}{B}
+color=Black
+target=creature
+auto=fear
+rarity=C
+text=Eine Kreatur Deiner Wahl erhaelt +2/+0 und Furcht bis zum Ende des Zuges.
+id=5633
+type=Instant
+[/card]
+[card]
+toughness=3
+name=Thundering Giant
+mana={3}{R}{R}
+subtype=Giant
+color=Red
+rarity=U
+text=Eile
+power=4
+id=5759
+type=Creature
+abilities=haste
+[/card]
+[card]
+name=Crosswinds
+mana={2}{G}
+color=Green
+auto=lord(creature[flying]) -2/0
+rarity=U
+text=Alle fliegenden Kreaturen erhalten -2/-0.
+type=Enchantment
+id=5668
+[/card]
+[card]
+name=Bravado
+mana={1}{R}
+subtype=Aura
+color=Red
+target=creature
+auto=foreach(creature|myinplay) 1/1
+rarity=C
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +1/+1 fuer jede andere Kreatur, die du kontrollierst.
+id=5848
+type=Enchantment
+[/card]
+[card]
+toughness=3
+name=Wirecat
+mana={4}
+subtype=Cat
+color=Artifact
+auto=aslongas(enchantment|inplay) cantblock
+rarity=U
+text=Der Drahtkater kann nicht angreifen oder blocken, wenn eine Verzauberung im Spiel ist.
+power=4
+id=8834
+type=Artifact Creature
+[/card]
+[card]
+name=Serra's Embrace
+mana={2}{W}{W}
+subtype=Aura
+color=White
+target=creature
+auto=vigilance
+rarity=U
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +2/+2, Flugfaehigkeit und Wachsamkeit.
+id=9682
+type=Enchantment
+[/card]
+[card]
+toughness=3
+name=Morphling
+mana={3}{U}{U}
+subtype=Shapeshifter
+color=Blue
+auto={1}:-1/1
+rarity=R
+text={U}: Enttappe den Morphling.     {U}: Fliegend bis zum Ende des Zuges.     {U}: Der Morphling kann bis zum Ende des Zuges nicht Ziel von Zauberspruechen oder Faehigkeiten sein.     {1}: +1/-1 bis zum Ende des Zuges.     {1}: -1/+1 bis zum Ende des Zuges.
+power=3
+id=5863
+type=Creature
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Erhoehe deinen Manavorrat um {R}.
+type=Basic Land
+id=8337
+[/card]
+[card]
+name=Blanchwood Armor
+mana={2}{G}
+subtype=Aura
+color=Green
+target=creature
+auto=foreach(forest|myinplay) 1/1
+rarity=U
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +1/+1 fuer jeden Wald, den du kontrollierst.
+id=5623
+type=Enchantment
+[/card]
+[card]
+auto={2}{T}{S}:bury target(creature[-flying;attacking]|opponentinplay)
+text={2}{T}: opfere die Fallgrube: Zerstoere eine nichtfliegende angreifende Kreatur Deiner Wahl. Diese Kreatur kann in diesem Zug nicht regenerieren.
+rarity=U
+name=Pit Trap
+id=8801
+type=Artifact
+mana={2}
+[/card]
+[card]
+toughness=2
+name=Blood Vassal
+mana={2}{B}
+subtype=Thrull
+color=Black
+auto={S}:Add {B}{B}
+rarity=C
+text=Opfere den Blutsklaven: Erhoehe Deinen Manavorrat um {B}{B}.
+power=2
+id=5737
+type=Creature
+[/card]
+[card]
+name=Pacifism
+mana={1}{W}
+subtype=Aura
+color=White
+target=creature
+auto=cantblock
+rarity=C
+text=Kreaturenverzauberung      Die verzauberte Kreatur kann nicht angreifen oder blocken.
+id=5748
+type=Enchantment
+[/card]
+[card]
+name=Heat Ray
+mana={X}{R}
+color=Red
+target=creature
+rarity=C
+text=Der Hitzestrahl fuegt einer Kreatur deiner Wahl X Schadenspunkte zu.
+type=Instant
+id=10464
+alias=1291
+[/card]
+[card]
+toughness=3
+name=Elite Archers
+mana={5}{W}
+subtype=Human Soldier Archer
+color=White
+auto={T}:damage:3 target(creature[attacking;blocking])
+rarity=R
+text={T}: Die Meisterbogenschuetzen fuegen einer angreifenden oder blockenden Kreatur deiner Wahl 3 Schadenspunkte zu.
+power=3
+id=5771
+type=Creature
+[/card]
+[card]
+text=Die Bruchlinie fuegt allen nichtfliegenden Kreaturen und allen Spielern X Schadenspunkte zu.
+rarity=R
+colour=Red
+name=Fault Line
+id=8867
+type=Instant
+mana={X}{R}{R}
+alias=1289
+[/card]
+[card]
+toughness=2
+name=Phyrexian Ghoul
+mana={2}{B}
+subtype=Zombie
+color=Black
+auto={s(creature|myinplay)}:2/2
+rarity=C
+text=Opfere eine Kreatur: +2/+2 bis zum Ende des Zuges.
+power=2
+id=5652
+type=Creature
+[/card]
+[card]
+subtype=Swamp
+auto={T}: Add {B}
+text={T}: Erhoehe deinen Manavorrat um {B}.
+rarity=L
+name=Swamp
+id=8331
+type=Basic Land
+[/card]
+[card]
+target=creature
+text=Destroy target creature. Its owner gains 4 life.
+rarity=C
+name=Path of Peace
+id=5684
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
+name=Whirlwind
+mana={2}{G}{G}
+color=Green
+auto=destroy all(creature[flying])
+rarity=R
+text=Zerstoere alle fliegenden Kreaturen.
+type=Sorcery
+id=8849
+[/card]
+[card]
+name=Claws of Gix
+mana={0}
+color=Artifact
+auto={S(*|myinplay)}:life:1
+rarity=U
+text={1}, opfere eine bleibende Karte: Du erhaeltst 1 Lebenspunkt dazu.
+type=Artifact
+id=8890
+[/card]
+[card]
+name=Headlong Rush
+mana={1}{R}
+color=Red
+auto=lord(creature[attacking]) first strike
+rarity=C
+text=Alle angreifenden Kreaturen erhalten Erstschlag bis zum Ende des Zuges.
+type=Instant
+id=8805
+[/card]
+[card]
+name=Confiscate
+mana={4}{U}{U}
+subtype=Aura
+color=Blue
+target=*
+rarity=U
+text=Bleibende-Karten-Verzauberung     Du kontrollierst die verzauberte bleibende Karte.
+id=10426
+type=Enchantment
+alias=1194
+[/card]

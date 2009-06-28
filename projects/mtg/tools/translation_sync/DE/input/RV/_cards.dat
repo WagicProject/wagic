@@ -1,0 +1,2528 @@
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)
+abilities=Flying
+id=1189
+name=Air Elemental
+rarity=U
+type=Creature
+mana={3}{U}{U}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text={X}, {T}: Ziehe anstelle der obersten Karte Deiner Bibliothek X Karten, suche Dir eine davon aus und nimm sie in Dein Blatt. Danach mischst Du die uebriggebliebenen Karten und legst sie unter Deinen Bibliotheksstapel. X kann allerdings nicht 0 sein.
+id=1092
+name=Aladdin's Lamp
+rarity=R
+type=Artifact
+mana={10}
+[/card]
+[card]
+text={8}, {T}: Aladins Ring fuegt einer Kreatur oder einem Spieler deiner Wahl 4 Schadenspunkte zu.
+auto={8}{T}:damage:4 target(creature,player)
+id=1093
+name=Aladdin's Ring
+rarity=R
+type=Artifact
+mana={8}
+[/card]
+[card]
+text=Artefaktverzauberung     Das verzauberte Nicht-Kreatur-Artefakt wird zu einer Artefaktkreatur mit sowohl Staerke als auch Widerstandskraft in Hoehe der Spruchkosten des Artefakts. Es behaelt allerdings alle seine Originaleigenschaften.
+target=artifact
+id=1190
+name=Animate Artifact
+rarity=U
+type=Enchantment
+mana={3}{U}
+subtype=Aura
+[/card]
+[card]
+text=Waehle eine Kreaturenkarte in einem der Friedhoefe, wenn Du die Belebung der Toten sprichst. Wenn die Belebung der Toten ins Spiel kommt, bringe diese Kreatur unter Deiner Kontrolle ins Spiel, und die Belebung der Toten wird zu einer Kreaturenverzauberung, die auf diese Kreatur zielt. Die verzauberte Kreatur erhaelt -1/-0. Wenn die Belebung der Toten das Spiel verlaesst, begrabe die Kreatur.
+target=creature|graveyard
+id=1143
+name=Animate Dead
+rarity=U
+type=Enchantment
+mana={1}{B}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur kann angreifen, als waere sie keine Mauer.
+target=creature
+auto=-defender
+id=1327
+name=Animate Wall
+rarity=R
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Immer wenn ein Land ins Spiel kommt, fuegt Mishras Ankh dem Beherrscher dieses Lands 2 Schadenspunkte zu.
+id=1094
+name=Ankh of Mishra
+rarity=R
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Zerstoere alle Laender.
+auto=destroy all(land)
+id=1328
+name=Armageddon
+rarity=R
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
+text=Lege waehrend Deiner Versorgungsphase eine Schicksalsmarke auf die Uhr. Am Ende Deiner Versorgungsphase fuegt die Armageddon-Uhr jedem Spieler X Schadenspunkte zu, wobei X die Anzahl der Schicksalsmarken auf der Uhr ist. Waehrend jeder Versorgungsphase koennen alle Spieler 4 bezahlen, um eine Schicksalsmarke von der Uhr zu entfernen.
+id=1095
+name=Armageddon Clock
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +X/+X, wobei X der halben Anzahl der Waelder, die Du kontrollierst, entspricht. Runde fuer die Staerke ab und fuer die Widerstandskraft auf.
+target=creature
+id=1235
+name=Aspect of Wolf
+rarity=R
+type=Enchantment
+mana={1}{G}
+subtype=Aura
+[/card]
+[card]
+text=Opfere ein Artefakt: Der Atog erhaelt +2/+2 bis zum Ende des Zuges.
+auto={s(artifact|myinplay)}:2/2
+id=1280
+name=Atog
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Atog
+toughness=2
+[/card]
+[card]
+text=Schwarze Kreaturen erhalten +1/+1.
+auto=lord(creature[black]) 1/1
+id=1144
+name=Bad Moon
+rarity=R
+type=Enchantment
+mana={1}{B}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {R} oder {B}. Diese Karte zaehlt als Gebirge und als Sumpf und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+id=1376
+name=Badlands
+auto={T}:Add {B}
+auto={T}:Add {R}
+rarity=R
+type=Land
+subtype=Mountain Swamp
+[/card]
+[card]
+text=Tap: Erhoehe Deinen Manavorrat um {3} farblose Mana. Spiele diese Eigenschaft wie einen Unterbrechungszauber. Der Basaltmonolith kann waehrend Deiner Enttap-Phase nicht normal enttappt werden. Das Enttappen zu jeder anderen Zeit kostet Dich {3}. Du kannst allerdings dafuer nicht das Mana verwenden, dass Du vom Monolithen bekommen hast.
+id=1096
+name=Basalt Monolith
+rarity=U
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {B} oder {G}. Diese Karte zaehlt als Sumpf und als Wald und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {B}
+auto={T}:Add {G}
+id=1377
+name=Bayou
+rarity=R
+type=Land
+subtype=Swamp Forest
+[/card]
+[card]
+text=Buendnisfaehigkeit
+abilities=Banding
+id=1330
+name=Benalish Hero
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Soldier
+toughness=1
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)  {T}: Erhoehe deinen Manavorrat um ein Mana einer beliebigen Farbe.
+abilities=Flying
+id=1236
+name=Birds of Paradise
+rarity=R
+type=Creature
+mana={G}
+power=0
+subtype=Bird
+toughness=1
+[/card]
+[card]
+text=Erstschlag, Schutz vor Weiss
+abilities=First strike,protection from white
+id=1145
+name=Black Knight
+rarity=U
+type=Creature
+mana={B}{B}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Waehle einen Deiner Gegner. Hat dieser Gegner am Ende seiner Versorgungsphase mehr als vier Karten in der Hand, fuegt die Todespresse ihm fuer jede ueber vier hinausgehende Karte 1 Schadenspunkt zu.
+id=1097
+name=Black Vise
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Schutz vor Schwarz. Dieser Schutz zerstoert allerdings diese Verzauberung nicht.
+target=creature
+id=1331
+name=Black Ward
+rarity=U
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Kreaturenverzauberung     {W}: Die verzauberte Kreatur erhaelt +1/+1 bis zum Ende des Zuges.
+target=creature
+auto={W}:1/1
+id=1332
+name=Blessing
+rarity=R
+type=Enchantment
+mana={W}{W}
+subtype=Aura
+[/card]
+[card]
+text=Neutralisiert einen roten Zauberspruch oder zerstoert eine rote Karte im Spiel.
+id=1191
+name=Blue Elemental Blast
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Schutz vor Blau. Dieser Schutz zerstoert allerdings diese Verzauberung nicht.
+target=creature
+id=1333
+name=Blue Ward
+rarity=U
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Sumpftarnung (Diese Kreatur ist unblockbar, solange der verteidigende Spieler einen Sumpf kontrolliert.)
+abilities=Swampwalk
+id=1146
+name=Bog Wraith
+rarity=U
+type=Creature
+mana={3}{B}
+power=3
+subtype=Wraith
+toughness=3
+[/card]
+[card]
+text=Ein Spieler Deiner Wahl muss X Karten ziehen.
+target=player
+id=1192
+name=Braingeyser
+rarity=R
+type=Sorcery
+mana={X}{U}{U}
+[/card]
+[card]
+text=Der Messingmann enttappt nicht waehrend deiner Enttapp-Phase.     {1}: Enttappe Messingmann. Du kannst diese Eigenschaft nur waehrend deiner Versorgungsphase benutzen.
+id=1099
+name=Brass Man
+rarity=U
+type=Artifact Creature
+mana={1}
+power=1
+subtype=Construct
+toughness=3
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Gebirgstarnung.
+target=creature
+auto=mountainwalk
+id=1281
+name=Burrowing
+rarity=U
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
+text=Alle ungetappten Kreaturen, die Du kontrollierst, erhalten +0/+2.
+id=1334
+auto=lord(creature[-tapped]|myinplay) 0/2
+name=Castle
+rarity=U
+type=Enchantment
+mana={3}{W}
+[/card]
+[card]
+text={2}, {T}: Erhoehe Deinen Manavorrat um ein Mana einer Farbe Deiner Wahl.
+id=1100
+name=Celestial Prism
+auto={2}{T}: add {B}
+auto={2}{T}: add {U}
+auto={2}{T}: add {G}
+auto={2}{T}: add {R}
+auto={2}{T}: add {W}
+rarity=U
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Bis zum Ende des Zuges kannst Du Deinem Manavorrat um farbloses Mana aufstocken zum Preis von einem Lebenspunkt pro {1} farbloses Mana. Spiele diese Aufstockungen wie einen Unterbrechungszauber. Effekte, die Schaden verhindern oder umleiten, koennen hier nicht angewendet werden, um den Verlust der Lebenspunkte zu verhindern.
+id=1237
+name=Channel
+rarity=U
+type=Sorcery
+mana={G}{G}
+[/card]
+[card]
+text=Die Farbe einer entweder sich im Spiel befindlichen oder gerade gespielten Karte veraendert sich in Rot. Voellig unberuehrt davon bleiben der Gebrauch einer bestimmten Faehigkeit und die Kosten des Zauberns, des Tappens oder der Versorgung des Ziels.
+id=1282
+name=Chaoslace
+rarity=R
+type=Instant
+mana={R}
+[/card]
+[card]
+text={1}: Sobald eine schwarze Quelle, die du bestimmst, dir das naechste Mal in diesem Zug Schaden zufuegen wuerde, verhindere diesen Schaden.
+id=1335
+name=Circle of Protection: Black
+rarity=C
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text={1}: Sobald eine blaue Quelle, die du bestimmst, dir das naechste Mal in diesem Zug Schaden zufuegen wuerde, verhindere diesen Schaden.
+id=1336
+name=Circle of Protection: Blue
+rarity=C
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text={1}: Sobald eine gruene Quelle, die du bestimmst, dir das naechste Mal in diesem Zug Schaden zufuegen wuerde, verhindere diesen Schaden.
+id=1337
+name=Circle of Protection: Green
+rarity=C
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text={1}: Sobald eine rote Quelle, die du bestimmst, dir das naechste Mal in diesem Zug Schaden zufuegen wuerde, verhindere diesen Schaden.
+id=1338
+name=Circle of Protection: Red
+rarity=C
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text={1}: Sobald eine weisse Quelle, die du bestimmst, dir das naechste Mal in diesem Zug Schaden zufuegen wuerde, verhindere diesen Schaden.
+id=1339
+name=Circle of Protection: White
+rarity=C
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text=Wenn die Mechanische Bestie ins Spiel kommt, lege sieben +1/+0-Marken darauf. Entferne am Ende eines Kampfes, in dem die Mechanische Bestie angegriffen oder geblockt hat, eine dieser Marken.     {X}, {T}: Lege X +1/+0-Marken auf die Mechanische Bestie. Du kannst nicht mehr als sieben dieser Marken auf die Mechanische Bestie haben. Benutze diese Faehigkeit nur waehrend Deiner Versorgungsphase.
+id=1101
+name=Clockwork Beast
+rarity=R
+type=Artifact Creature
+subtype=Beast
+mana={6}
+power=0
+toughness=4
+[/card]
+[card]
+text=Sowie der Klon ins Spiel kommt, kannst du eine Kreatur im Spiel bestimmen. Falls du dies tust, kommt der Klon als eine Kopie dieser Kreatur ins Spiel.
+auto=may copy target(creature)
+id=1193
+name=Clone
+rarity=U
+color=Blue
+type=Creature
+mana={3}{U}
+power=0
+subtype=Shapeshifter
+toughness=0
+[/card]
+[card]
+text=Fliegend     Immer wenn der Wolpertinger eine Kreatur blockt, die keine Mauer ist, oder von ihr geblockt wird, zerstoere diese Kreatur am Ende des Kampfes.
+abilities=Flying
+id=1238
+name=Cockatrice
+rarity=R
+type=Creature
+mana={3}{G}{G}
+power=2
+subtype=Cockatrice
+toughness=4
+[/card]
+[card]
+text={3}, {T}: Verhindere bis zu 2 Schadenspunkte gegen Dich.
+id=1102
+name=Conservator
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Kreaturenverzauberung     Uebernimm die Herrschaft ueber die verzauberte Kreatur.
+target=creature
+id=1194
+name=Control Magic
+rarity=U
+type=Enchantment
+mana={2}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text=Neutralisiere einen Zauberspruch Deiner Wahl.
+id=1196
+name=Counterspell
+target=*|stack
+auto=fizzle
+rarity=U
+type=Instant
+mana={U}{U}
+[/card]
+[card]
+text=
+id=1239
+name=Craw Wurm
+rarity=C
+type=Creature
+mana={4}{G}{G}
+power=6
+subtype=Wurm
+toughness=4
+[/card]
+[card]
+text=Kreaturenverzauberung     Wenn das verzauberte Wesen auf dem Friedhof landet, fuegt es durch die Bindung seinem Beherrscher Schaden in Hoehe seiner Widerstandskraft zu.
+target=creature
+id=1197
+name=Creature Bond
+rarity=C
+type=Enchantment
+mana={1}{U}
+subtype=Aura
+[/card]
+[card]
+text=Begrabe ein Artefakt Deiner Wahl. Dessen Beherrscher erhaelt Lebenspunkte in Hoehe Der Spruchkosten des Artefakts dazu.
+target=artifact
+id=1240
+name=Crumble
+rarity=U
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Alle weissen Kreaturen erhalten +1/+1.
+auto=lord(creature[white]) 1/1
+id=1341
+name=Crusade
+rarity=R
+type=Enchantment
+mana={W}{W}
+[/card]
+[card]
+text=Immer wenn ein Spieler einen blauen Zauberspruch spielt, kannst du {1} bezahlen. Falls du dies tust, erhaeltst du 1 Lebenspunkt dazu.
+id=1103
+name=Crystal Rod
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Landverzauberung     Waehrend der Versorgungsphase des Beherrschers des verzauberten Landes fuegt ihm das Verfluchte Land 1 Schadenspunkt zu.
+target=land
+id=1148
+name=Cursed Land
+rarity=U
+type=Enchantment
+mana={2}{B}{B}
+subtype=Aura
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann nur von fliegenden Kreaturen geblockt werden.)
+abilities=Flying
+id=1104
+name=Dancing Scimitar
+rarity=R
+type=Artifact Creature
+mana={4}
+power=1
+subtype=Spirit
+toughness=5
+[/card]
+[card]
+text=Erhoehe Deinen Manavorrat um {B}{B}{B}.
+auto=Add{B}{B}{B}
+id=1149
+name=Dark Ritual
+rarity=C
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Regeneriere eine Kreatur Deiner Wahl.
+target=creature
+auto=regenerate
+id=1342
+name=Death Ward
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text={B}{B}: Neutralisiere einen gruenen Zauberspruch Deiner Wahl.
+id=1151
+name=Deathgrip
+rarity=U
+type=Enchantment
+mana={B}{B}
+[/card]
+[card]
+text=Die Farbe einer entweder sich im Spiel befindlichen oder gerade gespielten Karte veraendert sich in Schwarz. Voellig unberuehrt davon bleiben der Gebrauch einer bestimmten Faehigkeit und die Kosten des Zauberns, des Tappens oder der Versorgung des Ziels.
+id=1152
+name=Deathlace
+rarity=R
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Hohle eine Karte Deiner Wahl aus der Bibliothek in Dein Blatt. Vergiss nicht, Deine Bibliothek danach neu zu mischen.
+target=*|myLibrary
+auto=moveTo(hand)
+id=1155
+name=Demonic Tutor
+rarity=U
+color=Black
+type=Sorcery
+mana={1}{B}
+[/card]
+[card]
+text=Zerstoere eine bleibende Karte Deiner Wahl.
+target=*
+auto=destroy
+id=1241
+name=Desert Twister
+rarity=U
+type=Sorcery
+mana={4}{G}{G}
+[/card]
+[card]
+text=Immer wenn ein Land aus dem Spiel auf einen Friedhof gelegt wird, fuegt das Dingus-Ei dem Beherrscher dieses Landes 2 Schadenspunkte zu.
+id=1105
+name=Dingus Egg
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Zerstoere ein Artefakt oder eine Verzauberung deiner Wahl.
+target=artifact,enchantment
+auto=destroy
+id=1343
+name=Disenchant
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text={3}, {T}: Ein Spieler deiner Wahl wirft eine Karte aus seiner Hand ab. Spiele diese Faehigkeit nur waehrend deines Zuges.
+id=1106
+name=Disrupting Scepter
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={2}: Die Drachenmaschine erhaelt +1/+0 bis zum Ende des Zuges.
+auto={2}:1/0
+id=1107
+name=Dragon Engine
+rarity=R
+type=Artifact Creature
+subtype=Construct
+mana={3}
+power=1
+toughness=3
+[/card]
+[card]
+text=Fliegend     {R}: Das Drachenjunge erhaelt +1/+0 bis zum Ende des Zuges. Opfere das Drachenjunge am Ende des Zuges, falls diese Faehigkeit in diesem Zug viermal oder oefter verwendet worden ist.
+abilities=Flying
+id=1284
+name=Dragon Whelp
+rarity=U
+type=Creature
+mana={2}{R}{R}
+power=2
+subtype=Dragon
+toughness=3
+[/card]
+[card]
+text={X}: Der Dunkle Sog fuegt einer Kreatur oder einem Spieler Deiner Wahl X Schadenspunkte zu. Du kannst nur schwarzes Mana auf diese Art ausgeben. Du erhaeltst 1 Lebenspunkt fuer jeden Schadenspunkt, der auf diese Art zugefuegt wird.     Du kannst nicht mehr Lebenspunkte, als die Widerstandskraft der Kreatur betraegt oder als die Anzahl der Lebenspunkte des Spielers, dem mit dem Dunklen Sog Schaden zugefuegt wurde, erhalten.
+target=player,creature
+id=1156
+name=Drain Life
+rarity=C
+type=Sorcery
+mana={X}{1}{B}
+[/card]
+[card]
+text={B}: Regeneriere das Heer der geplagten Skelette. (Das naechste Mal, dass diese Kreatur in diesem Zug zerstoert wuerde, wird sie nicht zerstoert. Tappe sie stattdessen, entferne allen Schaden von ihr und entferne sie aus dem Kampf.)
+auto={B}:regenerate
+id=1157
+name=Drudge Skeletons
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Skeleton
+toughness=1
+[/card]
+[card]
+text={T}: Eine Kreatur Deiner Wahl mit Staerke kleiner oder gleich 2 wird unblockbar bis zum Ende des Zuges.
+id=1285
+name=Dwarven Warriors
+rarity=C
+type=Creature
+mana={2}{R}
+power=1
+subtype=Dwarf
+toughness=1
+[/card]
+[card]
+text=
+id=1287
+name=Earth Elemental
+rarity=U
+type=Creature
+mana={3}{R}{R}
+power=4
+subtype=Elemental
+toughness=5
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur verliert ihre Flugfaehigkeit und erhaelt 2 Schadenspunkte. Dieser Schaden tritt nur einmal auf und zwar dann, wenn Fluegellaehmung gesprochen wird. Diese Verzauberung hat keine Wirkung bei nichtfliegenden Kreaturen.
+target=creature
+id=1288
+name=Earthbind
+rarity=C
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
+text=Das Erdbeben fuegt allen nichtfliegenden Kreaturen und allen Spielern X Schadenspunkte zu.
+id=1289
+name=Earthquake
+rarity=R
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text={2}, {T}: Enttappe eine Deiner angreifenden Kreaturen. Diese Kreatur erhaelt waehrend des Angriffs keinen Schaden und teilt auch keinen aus.
+id=1108
+name=Ebony Horse
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text=Du gewinnst 1 Lebenspunkt fuer jeden Schadenspunkt, den El-Hajjaj beliebigen Gegnern zufuegt. Du kannst allerdings nicht mehr Lebenspunkte gewinnen als die angegriffene Kreatur Widerstandskraft bzw. der Spieler Lebenspunkte besitzt.
+abilities=Lifelink
+id=1158
+name=El-Hajjaj
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Erstschlag
+abilities=First strike
+id=1242
+name=Elvish Archers
+rarity=R
+type=Creature
+mana={1}{G}
+power=2
+subtype=Elf Archer
+toughness=1
+[/card]
+[card]
+text=Wenn Du mit den Raeubern nicht angreifst, fuegen sie Dir am Ende der Runde 2 Schadenspunkte zuallerdings nicht in der Runde, in der Du sie beschworen hast.
+id=1159
+name=Erg Raiders
+rarity=C
+type=Creature
+mana={1}{B}
+power=2
+subtype=Human Warrior
+toughness=3
+[/card]
+[card]
+text=Sprich diesen Zauberspruch nur, wenn eine Kreatur, ein Zauberspruch oder Effekt Dir Schaden zuteilt. Auge um Auge fuegt dem Beherrscher dieser Schadensquelle dieselbe Anzahl an Schadenspunkte zu.
+id=1344
+name=Eye for an Eye
+rarity=R
+type=Instant
+mana={W}{W}
+[/card]
+[card]
+text=Landverzauberung     Der Beherrscher des verzauberten Lands gewinnt 1 Lebenspunkt, wenn er waehrend seiner Versorgungsphase {W}{W} zahlt. Durch diesen Zauber kannst Du nur 1 Lebenspunkt pro Runde gewinnen.
+target=land
+id=1345
+name=Farmstead
+rarity=R
+type=Enchantment
+mana={W}{W}{W}
+subtype=Aura
+[/card]
+[card]
+text=Wenn Du an der Reihe bist, kannst Du so viele zusaetzliche Laender ins Spiel bringen, wie Du willst. Die gewaltige Schoepfungskraft kostet Dich jedoch 1 Schadenspunkt fuer jedes zusaetzlich ausgespielte Gelaende.
+id=1243
+name=Fastbond
+rarity=R
+type=Enchantment
+mana={G}
+[/card]
+[card]
+text=Kreaturenverzauberung (Bestimme eine Kreatur als Ziel, sowie du diese Karte spielst. Diese Karte kommt an die Kreatur angelegt ins Spiel.)     Die verzauberte Kreatur verursacht Furcht. (Sie kann nur von Artefaktkreaturen und/oder schwarzen Kreaturen geblockt werden.)
+target=creature
+auto=fear
+id=1161
+name=Fear
+rarity=C
+type=Enchantment
+mana={B}{B}
+subtype=Aura
+[/card]
+[card]
+text=Waehrend der Versorgungsphase des Beherrschers der verzauberten Verzauberung fuegt ihm die Rueckkopplung 1 Schadenspunkt zu.
+target=enchantment
+id=1200
+name=Feedback
+rarity=U
+type=Enchantment
+mana={2}{U}
+subtype=Aura
+[/card]
+[card]
+text=
+id=1290
+name=Fire Elemental
+rarity=U
+type=Creature
+mana={3}{R}{R}
+power=5
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Der Feuerball fuegt X Schadenspunkte zu, die gleichmaessig auf eine beliebige Anzahl von Kreaturen und/oder Spielern deiner Wahl aufgeteilt werden (dabei wird abgerundet).     Zahle als zusaetzliche Kosten, um den Feuerball zu spielen, {1} fuer jedes Ziel ausser dem ersten.
+target=players,creatures
+id=1291
+name=Fireball
+rarity=C
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text=Kreaturenverzauberung (Bestimme eine Kreatur als Ziel, sowie du diese Karte spielst. Diese Karte kommt an die Kreatur angelegt ins Spiel.)     {R}: Die verzauberte Kreatur erhaelt +1/+0 bis zum Ende des Zuges.
+target=creature
+auto={R}:1/0
+id=1292
+name=Firebreathing
+rarity=C
+type=Enchantment
+mana={R}
+subtype=Aura
+[/card]
+[card]
+text=Zerstoere alle Ebenen.
+id=1293
+auto=destroy all(plains)
+name=Flashfires
+rarity=U
+type=Sorcery
+mana={3}{R}
+[/card]
+[card]
+text=Kreaturenverzauberung (Bestimme eine Kreatur als Ziel, sowie du diese Karte spielst. Diese Karte kommt an die Kreatur angelegt ins Spiel.)     Die verzauberte Kreatur hat Flugfaehigkeit. (Sie kann nur von fliegenden Kreaturen geblockt werden.)
+target=creature
+auto=flying
+id=1201
+name=Flight
+rarity=C
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text={2}, {T}: Eine Kreatur deiner Wahl erhaelt Flugfaehigkeit bis zum Ende des Zuges.
+id=1109
+auto={2}{T}:flying target(creature)
+name=Flying Carpet
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Verursacht Trampelschaden (Falls diese Kreatur ihren Blockern genug Schaden zufuegen wuerde, um sie zu zerstoeren, kannst du sie den Rest des Schadens dem verteidigenden Spieler zufuegen lassen.)     Zu Beginn deines Versorgungssegments fuegen dir die Naturgewalten 8 Schadenspunkte zu, falls du nicht {G}{G}{G}{G} bezahlst.
+abilities=Trample
+id=1245
+name=Force of Nature
+rarity=R
+type=Creature
+mana={2}{G}{G}{G}{G}
+power=8
+subtype=Elemental
+toughness=8
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+id=1386
+name=Forest
+auto={T}:add{G}
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+id=1388
+name=Forest
+auto={T}:add{G}
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+id=1387
+name=Forest
+auto={T}:add{G}
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={B}: +1/+1 bis zum Ende des Zuges
+auto={B}:1/1
+id=1162
+name=Frozen Shade
+rarity=C
+type=Creature
+mana={2}{B}
+power=0
+subtype=Shade
+toughness=1
+[/card]
+[card]
+text=Eine Kreatur deiner Wahl erhaelt +3/+3 bis zum Ende des Zuges.
+target=creature
+auto=3/3
+id=1248
+name=Giant Growth
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Reichweite (Diese Kreatur kann fliegende Kreaturen blocken.)
+abilities=Reach
+id=1249
+name=Giant Spider
+rarity=C
+type=Creature
+mana={3}{G}
+power=2
+subtype=Spider
+toughness=4
+[/card]
+[card]
+text={T}: Schau Dir die Karten an, die ein Spieler Deiner Wahl auf der Hand haelt.
+id=1110
+name=Glasses of Urza
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text={R}: Die Ballonbrigade der Goblins erhaelt Flugfaehigkeit bis zum Ende des Zuges. (Sie kann nur von fliegenden Kreaturen geblockt werden.)
+auto={R}:flying
+id=1295
+name=Goblin Balloon Brigade
+rarity=U
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text=Andere Goblinkreaturen erhalten +1/+1 und Gebirgstarnung. (Sie sind unblockbar, solange der verteidigende Spieler ein Gebirge kontrolliert.)
+id=1296
+auto=lord(goblin) 1/1 other
+auto=lord(goblin) mountainwalk other
+name=Goblin King
+rarity=R
+type=Creature
+mana={1}{R}{R}
+power=2
+subtype=Goblin
+toughness=2
+[/card]
+[card]
+text=Fliegend     {R}: +0/+1 bis zum Ende des Zuges.
+abilities=Flying
+auto={R}:0/1
+id=1297
+name=Granite Gargoyle
+rarity=R
+type=Creature
+mana={2}{R}
+power=2
+subtype=Gargoyle
+toughness=2
+[/card]
+[card]
+text=
+id=1298
+name=Gray Ogre
+rarity=C
+type=Creature
+mana={2}{R}
+power=2
+subtype=Ogre
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Schutz vor Gruen. Dieser Schutz zerstoert allerdings diese Verzauberung nicht.
+target=creature
+id=1346
+name=Green Ward
+rarity=U
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=
+id=1250
+name=Grizzly Bears
+rarity=C
+type=Creature
+mana={1}{G}
+power=2
+subtype=Bear
+toughness=2
+[/card]
+[card]
+text={1}, {T}: Eine Kreatur Deiner Wahl erhaelt Buendnisfaehigkeit bis zum Ende des Zuges.
+auto={1}{T}:banding target(creature)
+id=1111
+name=Helm of Chatzuk
+rarity=R
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=
+id=1299
+name=Hill Giant
+rarity=C
+type=Creature
+mana={3}{R}
+power=3
+subtype=Giant
+toughness=3
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +0/+2.     {W}: Die verzauberte Kreatur erhaelt +0/+1 bis zum Ende des Zuges.
+target=creature
+auto={W}:0/1
+auto=0/2
+id=1349
+name=Holy Armor
+rarity=C
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Kreaturenverzauberung (Bestimme eine Kreatur als Ziel, sowie du diese Karte spielst. Diese Karte kommt an die Kreatur angelegt ins Spiel.)     Die verzauberte Kreatur erhaelt +1/+2.
+target=creature
+auto=1/2
+id=1350
+name=Holy Strength
+rarity=C
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Eine Kreatur deiner Wahl erhaelt +X/+0 bis zum Ende des Zuges.
+target=creature
+id=1164
+name=Howl from Beyond
+rarity=C
+type=Instant
+mana={X}{B}
+[/card]
+[card]
+text=Zu Beginn des Ziehsegments eines Spielers zieht dieser Spieler zusaetzlich eine Karte, falls das Verborgene Wissen nicht getappt ist.
+id=1112
+name=Howling Mine
+rarity=R
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Bringe alle Artefakte, die ein Spieler deiner Wahl besitzt, auf seine Hand zurueck.
+target=player
+id=1202
+name=Hurkyl's Recall
+rarity=R
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+text=
+id=1300
+name=Hurloon Minotaur
+rarity=C
+type=Creature
+mana={1}{R}{R}
+power=2
+subtype=Minotaur
+toughness=3
+[/card]
+[card]
+text=Der Hurrikan fuegt allen fliegenden Kreaturen und allen Spielern X Schadenspunkte zu.
+id=1251
+name=Hurricane
+rarity=U
+type=Sorcery
+mana={X}{G}
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)     Immer wenn das Hypnotisierende Gespenst einem Gegner Schaden zufuegt, wirft dieser Spieler eine zufaellig bestimmte Karte aus seiner Hand ab.
+abilities=Flying
+id=1165
+name=Hypnotic Specter
+rarity=U
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Specter
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung     Fuer die verzauberte Kreatur gilt die Einsatzverzoegerung nicht.     {0}: Enttappe die verzauberte Kreatur. Benutze diese Faehigkeit nur waehrend Deines Zuges und auch nur einmal pro Zug.
+target=creature
+auto=haste
+id=1252
+name=Instill Energy
+rarity=U
+type=Enchantment
+mana={G}
+subtype=Aura
+[/card]
+[card]
+text=Immer wenn ein Spieler einen roten Zauberspruch spielt, kannst du {1} bezahlen. Falls du dies tust, erhaeltst du 1 Lebenspunkt dazu.
+id=1113
+name=Iron Star
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=
+id=1253
+name=Ironroot Treefolk
+rarity=C
+type=Creature
+mana={4}{G}
+power=3
+subtype=Treefolk
+toughness=5
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}.
+auto={T}:add {U}
+id=1393
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}.
+auto={T}:add {U}
+id=1392
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {U}.
+auto={T}:add {U}
+id=1394
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=Der Inselfisch enttappt nicht waehrend Deiner Enttap-Phase.     Der Inselfisch kann nur angreifen, wenn der Gegner Inseln im Spiel hat. Wenn Du zu irgendeiner Zeit keine Inseln mehr im Spiel hast, geht Jasconius direkt auf den Friedhof.     {U}{U}{U}: Enttappe Inselfisch. Du kannst diese Eigenschaft nur waehrend Deiner Versorgungsphase benutzen.
+id=1203
+name=Island Fish Jasconius
+rarity=R
+type=Creature
+mana={4}{U}{U}{U}
+power=6
+subtype=Fish
+toughness=8
+[/card]
+[card]
+text=Waehrend Deiner Kartenziehphase kannst Du Dich entscheiden, eine Karte weniger als sonst zu ziehen. Wenn Du das tust, koennen Dich bis zum Beginn Deines naechsten Zuges nur Kreaturen mit Flugfaehigkeit oder Inseltarnung attackieren.
+id=1351
+name=Island Sanctuary
+rarity=R
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
+text=Immer wenn ein Spieler einen weissen Zauberspruch spielst, kannst du {1} bezahlen. Falls du dies tust, erhaeltst du 1 Lebenspunkt dazu.
+id=1114
+name=Ivory Cup
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Wenn Du waehrend der Versorgungsphase mehr als 4 Karten auf der Hand hast, erhaeltst Du 1 Lebenspunkt fuer jede zusaetzliche Karte.
+id=1115
+name=Ivory Tower
+rarity=R
+type=Artifact
+mana={1}
+[/card]
+[card]
+text={2}, {T}, wirf eine der Karten ab, die Du gerade aus Deiner Bibliothek gezogen hast und ziehe dafuer eine neue Karte.
+id=1117
+name=Jandor's Ring
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text={3}, {T}: Enttappe eine Kreatur.
+id=1118
+auto={3}{T}:untap target(creature)
+name=Jandor's Saddlebags
+rarity=R
+type=Artifact
+mana={2}
+[/card]
+[card]
+text={4}, {T}: Ziehe eine Karte.
+auto={4}{T}:Draw:1
+id=1119
+name=Jayemdae Tome
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Die Zielkreatur kann bis zum Ende des Zuges fliegen.
+target=creature
+auto=flying
+id=1204
+name=Jump
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Zu Beginn des Versorgungssegments jedes Spielers fuegt Karma diesem Spieler Schadenspunkte in Hoehe der Anzahl Suempfe, die er kontrolliert, zu.
+id=1352
+name=Karma
+rarity=U
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=Staerke und Widerstandskraft des Kriegsfuersten entsprechen der Anzahl an Nicht-Mauerkreaturen, die Du kontrollierst.
+id=1301
+auto=foreach(creature[-wall]|myinplay) 1/1
+name=Keldon Warlord
+rarity=U
+type=Creature
+mana={2}{R}{R}
+power=*
+subtype=Human Barbarian
+toughness=*
+[/card]
+[card]
+text=Kird der Menschenaffe erhaelt +1/+2, solange du einen Wald kontrollierst.
+auto=aslongas(forest|myinplay) 1/2
+id=1302
+name=Kird Ape
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Ape
+toughness=1
+[/card]
+[card]
+text=Alle Suempfe werden zu schwarzen 1/1 Kreaturen. Sie zaehlen immer noch als Laender und Du kannst sie fuer Mana tappen -allerdings nicht in dem Zug , indem sie ins Spiel kommen.
+id=1121
+name=Kormus Bell
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Landverzauberung     Wird das verzauberte Land getappt, so wird es vernichtet. Kudzu wird solange nicht abgelegt, wie sich noch Land im Spiel befindet. Stattdessen kann der Spieler, dessen Land gerade vernichtet wurde, Kudzu auf ein beliebiges anderes Land im Spiel legen.
+target=land
+id=1254
+name=Kudzu
+rarity=R
+type=Enchantment
+mana={1}{G}{G}
+subtype=Aura
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Erstschlag.
+target=creature
+auto=first strike
+id=1353
+name=Lance
+rarity=U
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text={T}: Enttappe ein Land deiner Wahl.
+auto={T}:untap target(land)
+id=1255
+name=Ley Druid
+rarity=U
+type=Creature
+mana={2}{G}
+power=1
+subtype=Human Druid
+toughness=1
+[/card]
+[card]
+text={G}{G}: Neutralisiere einen schwarzen Zauberspruch Deiner Wahl.
+id=1256
+name=Lifeforce
+rarity=U
+type=Enchantment
+mana={G}{G}
+[/card]
+[card]
+text=Die Farbe einer entweder sich im Spiel befindlichen oder gerade gespielten Karte veraendert sich in Gruen. Voellig unberuehrt davon bleiben der Gebrauch einer bestimmten Faehigkeit und die Kosten des Zauberns, des Tappens oder der Versorgung des Ziels.
+id=1257
+name=Lifelace
+rarity=R
+type=Instant
+mana={G}
+[/card]
+[card]
+text=Fuer jeden Wald Deines Gegners, der getappt wird, erhaeltst Du 1 Lebenspunkt.
+id=1205
+name=Lifetap
+rarity=U
+type=Enchantment
+mana={U}{U}
+[/card]
+[card]
+text=Der Blitz fuegt einer Kreatur oder einem Spieler 3 Schadenspunkte zu.
+target=creature,player
+auto=damage:3
+id=1303
+name=Lightning Bolt
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Lege fuer jeden Schadenspunkt, den Dir zugefuegt wird, eine Lebensmarke auf das Lebende Artefakt.     Entferne eine Lebensmarke vom Lebenden Artefakt. Du erhaeltst 1 Lebenspunkt dazu. Benutze diese Faehigkeit nur waehrend Deiner Versorgungsphase und auch nur einmal pro Zug.
+target=artifact
+id=1258
+name=Living Artifact
+rarity=R
+type=Enchantment
+mana={G}
+subtype=Aura
+[/card]
+[card]
+text=Alle Waelder sind 1/1 Kreaturen, die weiterhin Laender sind.
+id=1259
+name=Living Lands
+rarity=R
+type=Enchantment
+mana={3}{G}
+[/card]
+[card]
+text=(Mauern koennen nicht angreifen.)     {1}: Regeneration
+auto={1}:regenerate
+abilities=Defender
+id=1123
+name=Living Wall
+rarity=U
+type=Artifact Creature
+mana={4}
+power=0
+subtype=Wall
+toughness=6
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {G}.
+auto={T}: Add {G}
+id=1260
+name=Llanowar Elves
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text=Anderes Meervolk erhaelt +1/+1 und Inseltarnung.
+auto=lord(merfolk) 1/1 other
+auto=lord(merfolk) islandwalk other
+id=1206
+name=Lord of Atlantis
+rarity=R
+type=Creature
+mana={U}{U}
+power=2
+subtype=Merfolk
+toughness=2
+[/card]
+[card]
+text=Fliegend, verursacht Trampelschaden     Opfere zu Beginn deines Versorgungssegments eine Kreatur ausser dem Fuersten der Unterwelt. Falls du dies nicht kannst, fuegt dir der Fuerst der Unterwelt 7 Schadenspunkte zu.
+abilities=flying,trample
+id=1166
+name=Lord of the Pit
+rarity=R
+type=Creature
+mana={4}{B}{B}{B}
+power=7
+subtype=Demon
+toughness=7
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)
+abilities=flying
+id=1208
+name=Mahamoti Djinn
+rarity=R
+type=Creature
+mana={4}{U}{U}
+power=5
+subtype=Djinn
+toughness=6
+[/card]
+[card]
+text=Tappe alle Laender, die ein Spieler deiner Wahl kontrolliert, und leere seinen Manavorrat.
+target=player
+id=1209
+name=Mana Short
+rarity=R
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=Der Manaschatz enttapt nicht waehrend Deiner Enttap-Phase.     Wenn am Ende Deiner Versorgungsphase der Manaschatz getappt ist, fuegt er Dir 1 Schadenspunkt zu.       {4}: Enttappe den Manaschatz am Ende Deiner Versorgungsphase. Benutze diese Faehigkeit nur waehrend Deiner Versorgungsphase.       {T}: Erhoehe Deinen Manavorrat um {3}.
+id=1124
+name=Mana Vault
+rarity=R
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=
+id=1210
+name=Merfolk of the Pearl Trident
+rarity=C
+type=Creature
+mana={U}
+power=1
+subtype=Merfolk
+toughness=1
+[/card]
+[card]
+text=Fliegend, Buendnisfaehigkeit
+abilities=Flying, banding
+id=1354
+name=Mesa Pegasus
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Pegasus
+toughness=1
+[/card]
+[card]
+text={2}, {T}: Ein Spieler deiner Wahl legt die obersten beiden Karten seiner Bibliothek auf seinen Friedhof.
+id=1126
+name=Millstone
+auto={2}{T}:deplete:2 target(player)
+rarity=R
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Ein Spieler Deiner Wahl muss X zufaellig ausgesuchte Karten aus seiner Hand abwerfen. Hat er nicht genug Karten, dann muss er alle seine Karten abwerfen.
+target=player
+id=1167
+name=Mind Twist
+rarity=R
+type=Sorcery
+mana={X}{B}
+[/card]
+[card]
+text=
+id=1308
+name=Mons's Goblin Raiders
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}.
+auto={T}: Add {R}
+id=1391
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}.
+auto={T}: Add {R}
+id=1390
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {R}.
+auto={T}: Add {R}
+id=1389
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Nevinyrrals Wunderscheibe kommt getappt ins Spiel.       {1}, {T}: Zerstoere alle Artefakte, Kreaturen und Verzauberungen.
+auto=tap
+auto={1},{T}:destroy all(artifact,creature,enchantment)
+id=1128
+name=Nevinyrral's Disk
+rarity=R
+color=Artifact
+type=Artifact
+mana={4}
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)     Staerke und Widerstandskraft des Nachtmahrs sind gleich der Anzahl der Suempfe, die du kontrollierst.
+abilities=flying
+auto=foreach(swamp|myinplay) 1/1
+id=1170
+name=Nightmare
+rarity=R
+type=Creature
+mana={5}{B}
+power=*
+subtype=Nightmare Horse
+toughness=*
+[/card]
+[card]
+text={W}{W}, {T}: Zerstoere eine schwarze bleibende Karte deiner Wahl.
+auto={W}{W}{T}:destroy target(*[black])
+id=1355
+name=Northern Paladin
+rarity=R
+type=Creature
+mana={2}{W}{W}
+power=3
+subtype=Human Knight
+toughness=3
+[/card]
+[card]
+text=
+id=1129
+name=Obsianus Golem
+rarity=U
+type=Artifact Creature
+mana={6}
+power=4
+subtype=Golem
+toughness=6
+[/card]
+[card]
+text={T}: Die Ork-Artillerie fuegt einer Kreatur oder einem Spieler deiner Wahl 2 Schadenspunkte und dir 3 Schadenspunkte zu.
+id=1309
+name=Orcish Artillery
+rarity=U
+type=Creature
+mana={1}{R}{R}
+power=1
+subtype=Orc Warrior
+toughness=3
+[/card]
+[card]
+text=Angreifende Kreaturen, die Du kontrollierst, erhalten +1/+0.
+id=1310
+name=Orcish Oriflamme
+auto=lord(creature[attacking]|myinplay) 1/0
+rarity=U
+type=Enchantment
+mana={3}{R}
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)
+abilities=flying
+id=1131
+name=Ornithopter
+rarity=U
+type=Artifact Creature
+mana={0}
+power=0
+subtype=Thopter
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur kann nicht waehrend der Enttap-Phase normal enttappt werden. Der Beherrscher der Kreatur muss in der Versorgungsphase {4} bezahlen, um sie zu enttappen. Tappe die Kreatur, wenn die Laehmung auf sie gesprochen wird.
+target=creature
+id=1171
+name=Paralyze
+rarity=C
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=
+id=1356
+name=Pearled Unicorn
+rarity=C
+type=Creature
+mana={2}{W}
+power=2
+subtype=Unicorn
+toughness=2
+[/card]
+[card]
+text=Opfere den schwarzen Tod am Ende des Zuges, falls keine Kreaturen im Spiel sind.       {B}: Der schwarze Tod fuegt allen Kreaturen und Spielern 1 Schadenspunkt zu.
+id=1172
+name=Pestilence
+rarity=C
+type=Enchantment
+mana={2}{B}{B}
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)
+abilities=flying
+id=1213
+name=Phantom Monster
+rarity=U
+type=Creature
+mana={3}{U}
+power=3
+subtype=Illusion
+toughness=3
+[/card]
+[card]
+text=Das Piratenschiff kann nicht angreifen, solange der verteidigende Spieler keine Insel kontrolliert.     {T}: Das Piratenschiff fuegt einer Kreatur oder einem Spieler deiner Wahl 1 Schadenspunkt zu.     Opfere das Piratenschiff, wenn du keine Inseln kontrollierst.
+id=1214
+name=Pirate Ship
+abilities=islandhome
+auto={T}:damage target(creature,player)
+rarity=R
+type=Creature
+mana={4}{U}
+power=4
+subtype=Human Pirate
+toughness=3
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}.
+auto={T}: Add {W}
+id=1397
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}.
+auto={T}: Add {W}
+id=1396
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {W}.
+auto={T}: Add {W}
+id=1395
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {W} oder {R}. Diese Karte zaehlt als Ebene und als Gebirge und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+id=1378
+name=Plateau
+auto={T}:Add {W}
+auto={T}:Add {R}
+rarity=R
+type=Land
+subtype=Plains Mountain
+[/card]
+[card]
+text=Die Staerke und Widerstandskraft der Pestratten ist gleich der Anzahl an Pestratten im Spiel.
+id=1173
+name=Plague Rats
+auto=foreach(plague rats) 1/1
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}
+power=0
+subtype=Rat
+toughness=0
+[/card]
+[card]
+text=Verzaubere Verzauberung     Waehrend der Versorgungsphase des Beherrschers der verzauberten Verzauberung fuegt das Kraftleck diesem 2 Schadenspunkte zu. Dieser Spieler kann {1} pro Schadenspunkt, den er vermeiden will, ausgeben, um sich vor dem Kraftleck zu schuetzen.
+target=enchantment
+id=1215
+name=Power Leak
+rarity=C
+type=Enchantment
+mana={1}{U}
+subtype=Aura
+[/card]
+[card]
+text=Der Stromstoss fuegt jedem Spieler waehrend seiner Versorgungsphase fuer jedes Land, das zu Beginn seines Zuges und vor der Enttap-Phase nicht getappt war, einen Schadenspunkt zu.
+id=1311
+name=Power Surge
+rarity=R
+type=Enchantment
+mana={R}{R}
+[/card]
+[card]
+text={T}: Der Abtruennige Zauberer fuegt einer Kreatur oder einem Spieler deiner Wahl 1 Schadenspunkt zu.
+id=1217
+name=Prodigal Sorcerer
+auto={T}:damage:1 target(creature,player)
+rarity=C
+type=Creature
+mana={2}{U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text=Landverzauberung     Immer wenn das verzauberte Land getappt wird, fuegt das Seelengift dem Beherrscher des verzauberten Lands 2 Schadenspunkte zu.
+target=land
+id=1218
+name=Psychic Venom
+rarity=C
+type=Enchantment
+mana={1}{U}
+subtype=Aura
+[/card]
+[card]
+text=Die Farbe einer entweder sich im Spiel befindlichen oder gerade gespielten Karte veraendert sich in Weiss. Voellig unberuehrt davon bleiben der Gebrauch einer bestimmten Faehigkeit und die Kosten des Zauberns, des Tappens oder der Versorgung des Ziels.
+id=1358
+name=Purelace
+rarity=R
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Bringe eine Kreaturenkarte deiner Wahl aus deinem Friedhof auf deine Hand zurueck.
+target=creature|myGraveyard
+auto=moveTo(myHand)
+id=1174
+name=Raise Dead
+rarity=C
+type=Sorcery
+mana={B}
+[/card]
+[card]
+text=Hole ein Artefakt vom Friedhof zurueck in Dein Blatt.
+target=artifact|myGraveyard
+id=1219
+alias=1174
+name=Reconstruction
+rarity=C
+type=Sorcery
+mana={U}
+[/card]
+[card]
+text=Neutralisiert einen blauen Zauberspruch oder zerstoert eine blaue Karte im Spiel.
+id=1312
+name=Red Elemental Blast
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Schutz gegen Rot. Dieser Schutz zerstoert allerdings diese Verzauberung nicht.
+target=creature
+id=1359
+name=Red Ward
+rarity=U
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Kreaturenverzauberung (Bestimme eine Kreatur als Ziel, sowie du diese Karte spielst. Diese Karte kommt an die Kreatur angelegt ins Spiel.)     {G}: Regeneriere die verzauberte Kreatur.
+target=creature
+id=1262
+name=Regeneration
+rarity=C
+type=Enchantment
+mana={1}{G}
+subtype=Aura
+[/card]
+[card]
+text=Hole von Deinem Friedhof eine Karte Deiner Wahl wieder in Dein Blatt.
+target=*|myGraveyard
+auto=moveTo(myHand)
+id=1263
+name=Regrowth
+rarity=U
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
+text=Bringe eine Kreaturenkarte deiner Wahl aus deinem Friedhof ins Spiel zurueck.
+target=creature|myGraveyard
+auto=moveTo(myInPlay)
+id=1360
+name=Resurrection
+rarity=U
+type=Sorcery
+mana={2}{W}{W}
+[/card]
+[card]
+text=Jeder Schadenspunkt, der Dir bis jetzt in diesem Zug von Artefakten zugefuegt wurde, verwandelt sich rueckwirkend in einen Lebenspunkt, den Du zu Deinen dazuaddierst. Weiterer Schaden, den Du diese Runde erhaeltst, wird ganz normal behandelt.
+id=1362
+name=Reverse Polarity
+rarity=U
+type=Instant
+mana={W}{W}
+[/card]
+[card]
+text=Eine blockende Kreatur deiner Wahl erhaelt +7/+7 bis zum Ende des Zuges.
+auto=7/7
+target=creature[blocking]
+id=1363
+name=Righteousness
+rarity=R
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)
+abilities=flying
+id=1313
+name=Roc of Kher Ridges
+rarity=R
+type=Creature
+mana={3}{R}
+power=3
+subtype=Bird
+toughness=3
+[/card]
+[card]
+text={3}, {T}: Der Stab des Verderbens fuegt einer Kreatur oder einem Spieler deiner Wahl 1 Schadenspunkt zu.
+id=1134
+name=Rod of Ruin
+auto={3}{T}:damage:1 target(creature,player)
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
+text={T}: Zerstoere eine getappte Kreatur deiner Wahl.
+auto={T}:destroy target(creature[tapped])
+id=1175
+name=Royal Assassin
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Human Assassin
+toughness=1
+[/card]
+[card]
+text=Opfere eine Deiner Kreaturen und erhoehe Deinen Manavorrat um schwarzes Mana in Hoehe der Beschwoerungskosten der geopferten Kreatur.
+id=1176
+name=Sacrifice
+rarity=U
+type=Instant
+mana={B}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {W} oder {G}. Diese Karte zaehlt als Ebene und als Wald und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {W}
+auto={T}:Add {G}
+id=1379
+name=Savannah
+rarity=R
+type=Land
+subtype=Plains Forest
+[/card]
+[card]
+text=
+id=1365
+name=Savannah Lions
+rarity=R
+type=Creature
+mana={W}
+power=2
+subtype=Cat
+toughness=1
+[/card]
+[card]
+text=
+id=1177
+name=Scathe Zombies
+rarity=C
+type=Creature
+mana={2}{B}
+power=2
+subtype=Zombie
+toughness=2
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {B} oder {W}. Diese Karte zaehlt als Sumpf und als Ebene und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {B}
+auto={T}:Add {W}
+id=1380
+name=Scrubland
+rarity=R
+type=Land
+subtype=Plains Swamp
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)
+abilities=flying
+id=1264
+name=Scryb Sprites
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Faerie
+toughness=1
+[/card]
+[card]
+text=Die Schlange kann nur angreifen, wenn der Gegner Inseln im Spiel hat.     Wenn Du zu irgendeiner Zeit keine Inseln mehr im Spiel hast, geht die Schlange direkt auf den Friedhof.
+id=1220
+name=Sea Serpent
+rarity=C
+type=Creature
+mana={5}{U}
+power=5
+subtype=Serpent
+toughness=5
+[/card]
+[card]
+text={B}: Regeneration     Hat der Besitzer Suempfe im Spiel, erhaelt der Schilftroll +1/+1.
+auto={B}:regenerate
+auto=aslongas(swamp|myinplay) 1/1
+id=1315
+name=Sedge Troll
+rarity=R
+type=Creature
+mana={2}{R}
+power=2
+subtype=Troll
+toughness=2
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)       Der Ifrit fuegt Dir waehrend Deiner Versorgungsphase 1 Schadenspunkt zu.
+abilities=Flying
+id=1221
+name=Serendib Efreet
+rarity=R
+type=Creature
+mana={2}{U}
+power=3
+subtype=Efreet
+toughness=4
+[/card]
+[card]
+text=Fliegend, Wachsamkeit (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden und wird beim Angreifen nicht getappt.)
+abilities=flying,vigilance
+id=1366
+name=Serra Angel
+rarity=U
+type=Creature
+mana={3}{W}{W}
+power=4
+subtype=Angel
+toughness=4
+[/card]
+[card]
+text=Waldtarnung
+abilities=forestwalk
+id=1265
+name=Shanodin Dryads
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Dryad
+toughness=1
+[/card]
+[card]
+text=Zerstoere ein Artefakt deiner Wahl.
+target=artifact
+auto=destroy
+id=1316
+name=Shatter
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Zerstoere alle Artefakte. Sie koennen nicht regeneriert werden.
+auto=bury all(artifact)
+id=1317
+name=Shatterstorm
+rarity=U
+type=Sorcery
+mana={2}{R}{R}
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)     {R}: Der Shivan-Drache erhaelt +1/+0 bis zum Ende des Zuges.
+auto={R}:1/0
+abilities=flying
+id=1318
+name=Shivan Dragon
+rarity=R
+type=Creature
+mana={4}{R}{R}
+power=5
+subtype=Dragon
+toughness=5
+[/card]
+[card]
+text=Alle Schadenspunkte, die Dir bislang in diesem Zug zugefuegt worden sind, werden rueckwirkend auf eine Deiner Kreaturen gelenkt. Falls Du in diesem Zug weiteren Schaden erleidest, wird dieser allerdings ganz normal behandelt.
+target=creature|myinplay
+id=1180
+name=Simulacrum
+rarity=U
+type=Instant
+mana={1}{B}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {2}.
+auto={T}: Add {2}
+id=1135
+name=Sol Ring
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Immer wenn eine Kreatur aus dem Spiel auf einen Friedhof gelegt wird, kannst du {1} bezahlen. Wenn du dies tust, erhaeltst du 1 Lebenspunkt dazu.
+id=1136
+name=Soul Net
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Neutralisiere einen Zauberspruch Deiner Wahl mit Gesamtmanakosten in Hoehe von X.
+id=1224
+name=Spell Blast
+rarity=C
+type=Instant
+mana={X}{U}
+[/card]
+[card]
+text=Alle Spieler uebergehen ihre Enttap-Phase.     Zahle waehrend Deiner Versorgungsphase {U} oder begrabe die Starre.
+id=1225
+name=Stasis
+rarity=R
+color=Blue
+type=Enchantment
+mana={1}{U}
+[/card]
+[card]
+text=Du kontrollierst das verzauberte Artefakt.
+target=artifact
+id=1226
+name=Steal Artifact
+rarity=U
+type=Enchantment
+mana={2}{U}{U}
+subtype=Aura
+[/card]
+[card]
+text=Zerstoere ein Land deiner Wahl.
+target=land
+auto=destroy
+id=1321
+name=Stone Rain
+rarity=C
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Ein Spieler deiner Wahl erhaelt X Lebenspunkte dazu.
+target=player
+id=1266
+name=Stream of Life
+rarity=C
+type=Sorcery
+mana={X}{G}
+[/card]
+[card]
+text=Weisses Mana in Deinem Manavorrat kannst Du nach Belieben entweder als weisses oder rotes Mana verwenden.
+id=1137
+name=Sunglasses of Urza
+auto={W}: add {R}
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}.
+auto={T}: Add {B}
+id=1375
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}.
+auto={T}: Add {B}
+id=1373
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Erhoehe deinen Manavorrat um {B}.
+auto={T}: Add {B}
+id=1374
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Nimm eine Zielkreatur ganz aus dem Spiel. Ihr Beherrscher erhaelt dafuer so viele Lebenspunkte, wie die Kreatur Staerke hatte.
+target=creature
+id=1367
+name=Swords to Plowshares
+rarity=U
+type=Instant
+mana={W}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {R} oder {G}. Diese Karte zaehlt als Gebirge und als Wald und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {R}
+auto={T}:Add {G}
+id=1381
+name=Taiga
+rarity=R
+type=Land
+subtype=Mountain Forest
+[/card]
+[card]
+text=Zerstoere eine nichtschwarze Nichtartefaktkreatur deiner Wahl. Sie kann nicht regeneriert werden.
+target=creature[-black;-artifact]
+auto=bury
+id=1182
+name=Terror
+rarity=C
+type=Instant
+mana={1}{B}
+[/card]
+[card]
+text={5}, {T}: Bringe einen 1/1 Insekten-Artefaktkreaturspielstein mit Flugfaehigkeit namens Wespe ins Spiel. (Er kann ausser von fliegenden Kreaturen und Kreaturen mit Reichweite nicht geblockt werden.)
+auto={5},{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
+id=1138
+name=The Hive
+rarity=R
+color=Artifact
+type=Artifact
+mana={5}
+[/card]
+[card]
+text=Sowie die Streckbank ins Spiel kommt, bestimme einen Gegner.     Zu Beginn des Versorgungssegments dieses Gegners fuegt die Streckbank diesem Spieler X Schadenspunkte zu, wobei X gleich 3 minus der Anzahl an Karten auf seiner Hand ist.
+id=1139
+name=The Rack
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Immer wenn der Buschbasilisk eine Nichtmauerkreatur blockt oder von ihr geblockt wird, zerstoere diese Kreatur am Ende des Kampfes.
+id=1267
+name=Thicket Basilisk
+rarity=U
+type=Creature
+mana={3}{G}{G}
+power=2
+subtype=Basilisk
+toughness=4
+[/card]
+[card]
+text=Die Farbe einer entweder sich im Spiel befindlichen oder gerade gespielten Karte veraendert sich in Blau. Voellig unberuehrt davon bleiben der Gebrauch einer bestimmten Faehigkeit und die Kosten des Zauberns, des Tappens oder der Versorgung des Ziels.
+id=1227
+name=Thoughtlace
+rarity=R
+type=Instant
+mana={U}
+[/card]
+[card]
+text=Immer wenn ein Spieler einen schwarzen Zauberspruch spielt, kannst du {1} bezahlen. Wenn du dies tust, erhaeltst du 1 Lebenspunkt dazu.
+id=1140
+name=Throne of Bone
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Buendnisfaehigkeit
+id=1268
+name=Timber Wolves
+rarity=R
+type=Creature
+mana={G}
+power=1
+subtype=Wolf
+toughness=1
+[/card]
+[card]
+text=Zerstoere alle Verzauberungen.
+id=1270
+auto=destroy all(enchantment)
+name=Tranquility
+rarity=C
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {U} oder {G}. Diese Karte zaehlt als Insel und als Wald und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {U}
+auto={T}:Add {G}
+id=1382
+name=Tropical Island
+rarity=R
+type=Land
+subtype=Island Forest
+[/card]
+[card]
+text=Zerstoere alle Inseln.
+id=1271
+auto=destroy all(island)
+name=Tsunami
+rarity=U
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {U} oder {W}. Diese Karte zaehlt als Insel und als Ebene und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {U}
+auto={T}:Add {W}
+id=1383
+name=Tundra
+rarity=R
+type=Land
+subtype=Plains Island
+[/card]
+[card]
+text=Zerstoere eine Mauerdeiner Wahl. Sie kann nicht regenerieren.
+target=wall
+auto=bury
+id=1322
+name=Tunnel
+rarity=U
+type=Instant
+mana={R}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {B} oder {U}. Diese Karte zaehlt als Sumpf und als Insel und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {B}
+auto={T}:Add {U}
+id=1384
+name=Underground Sea
+rarity=R
+type=Land
+subtype=Island Swamp
+[/card]
+[card]
+text=Kreaturenverzauberung (Bestimme eine Kreatur als Ziel, sowie du diese Karte spielst. Diese Karte kommt an die Kreatur angelegt ins Spiel.)     Die verzauberte Kreatur erhaelt +2/+1.
+target=creature
+auto=2/1
+id=1183
+name=Unholy Strength
+rarity=C
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt +3/+3.     Lege zu Beginn des Versorgungssegments des Beherrschers der verzauberten Kreatur eine -1/-1-Marke auf die Kreatur.
+target=creature
+id=1228
+name=Unstable Mutation
+rarity=C
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
+text=Bringe eine Kreatur deiner Wahl auf die Hand ihres Besitzers zurueck.
+target=creature
+auto=moveTo(ownerHand)
+id=1229
+name=Unsummon
+rarity=C
+type=Instant
+mana={U}
+[/card]
+[card]
+text={R}: Regeneration
+auto={R}:Regenerate
+id=1323
+name=Uthden Troll
+rarity=U
+type=Creature
+mana={2}{R}
+power=2
+subtype=Troll
+toughness=2
+[/card]
+[card]
+text=Zerstoere X Gebirge Deiner Wahl. Der Vulkanausbruch fuegt jedem Spieler und jeder Kreatur fuer jedes so vernichtete Gebirge einen Schadenspunkt zu.
+target=mountains
+id=1231
+name=Volcanic Eruption
+rarity=R
+type=Sorcery
+mana={X}{U}{U}{U}
+[/card]
+[card]
+text={T}: Erhoehe Deinen Manavorrat um {U} oder {R}. Diese Karte zaehlt als Insel und als Gebirge und unterliegt Zauberspruechen, die fuer diese beiden Standard-Laender gelten. Zerstoert ein Zauberspruch eine dieser Standard-Laender, wird diese Karte zerstoert; veraendert ein Zauberspruch eines dieser Standard-Laender, bleibt das andere Standard-Land davon unberuehrt.
+auto={T}:Add {U}
+auto={T}:Add {R}
+id=1385
+name=Volcanic Island
+rarity=R
+type=Land
+subtype=Island Mountain
+[/card]
+[card]
+text=Verteidiger, Fliegend (Diese Kreatur kann nicht angreifen und kann fliegende Kreaturen blocken.)
+abilities=Defender,flying
+id=1232
+name=Wall of Air
+rarity=U
+type=Creature
+mana={1}{U}{U}
+power=1
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Verteidiger (Diese Kreatur kann nicht angreifen)     {B}: Regeneration
+auto={B}:Regenerate
+abilities=Defender
+id=1184
+name=Wall of Bone
+rarity=U
+type=Creature
+mana={2}{B}
+power=1
+subtype=Wall
+toughness=4
+[/card]
+[card]
+text=Verteidiger (Diese Kreatur kann nicht angreifen)     {G}: Regeneration
+auto={G}:Regenerate
+abilities=Defender
+id=1273
+name=Wall of Brambles
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Wall
+toughness=3
+[/card]
+[card]
+text=Verteidiger (Diese Kreatur kann nicht angreifen.)     {R}: Die Feuerwand erhaelt +1/+0 bis zum Ende des Zuges.
+auto={R}:1/0
+abilities=Defender
+id=1324
+name=Wall of Fire
+rarity=U
+type=Creature
+mana={1}{R}{R}
+power=0
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Verteidiger (Diese Kreatur kann nicht angreifen.) 
+abilities=Defender
+id=1274
+name=Wall of Ice
+rarity=U
+type=Creature
+mana={2}{G}
+power=0
+subtype=Wall
+toughness=7
+[/card]
+[card]
+text=Verteidiger (Diese Kreatur kann nicht angreifen.) 
+abilities=Defender
+id=1325
+name=Wall of Stone
+rarity=U
+type=Creature
+mana={1}{R}{R}
+power=0
+subtype=Wall
+toughness=8
+[/card]
+[card]
+text=Verteidiger, Fliegend (Diese Kreatur kann nicht angreifen und kann fliegende Kreaturen blocken.)
+abilities=Defender,flying
+id=1369
+name=Wall of Swords
+rarity=U
+type=Creature
+mana={3}{W}
+power=3
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Verteidiger (Diese Kreatur kann nicht angreifen)  {U}: Die Wasserwand erhaelt +1/+0 bis zum Ende des Zuges.
+auto={U}:1/0
+abilities=Defender
+id=1233
+name=Wall of Water
+rarity=U
+type=Creature
+mana={1}{U}{U}
+power=0
+subtype=Wall
+toughness=5
+[/card]
+[card]
+text=Verteidiger (Diese Kreatur kann nicht angreifen)
+abilities=Defender
+id=1275
+name=Wall of Wood
+rarity=C
+type=Creature
+mana={G}
+power=0
+subtype=Wall
+toughness=3
+[/card]
+[card]
+text=Kreaturenverzauberung     Die Wanderlust fuegt waehrend der Versorgungsphase des Beherrschers der verzauberten Kreatur diesem 1 Schadenspunkt zu.
+target=creature
+id=1276
+alias=1200
+name=Wanderlust
+rarity=U
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+[/card]
+[card]
+text=Trampelschaden
+abilities=Trample
+id=1277
+name=War Mammoth
+rarity=C
+type=Creature
+mana={3}{G}
+power=3
+subtype=Elephant
+toughness=3
+[/card]
+[card]
+text=Waehrend der Versorgungsphase des Beherrschers des verzauberten Artefakts fuegt ihm das Verformte Artefakt 1 Schadenspunkt zu.
+target=artifact
+id=1185
+name=Warp Artifact
+rarity=R
+type=Enchantment
+mana={B}{B}
+subtype=Aura
+[/card]
+[card]
+text=
+id=1234
+name=Water Elemental
+rarity=U
+type=Creature
+mana={3}{U}{U}
+power=5
+subtype=Elemental
+toughness=4
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt -2/-1.
+target=creature
+auto=-2/-1
+id=1186
+name=Weakness
+rarity=C
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
+text=Kreaturenverzauberung (Bestimme eine Kreatur als Ziel, sowie du diese Karte spielst. Diese Karte kommt an die Kreatur angelegt ins Spiel.)     Die verzauberte Kreatur erhaelt +0/+2 und kann blocken, als ob sie Flugfaehigkeit haette.
+target=creature
+auto=reach
+auto=0/2
+id=1278
+name=Web
+rarity=R
+type=Enchantment
+mana={G}
+subtype=Aura
+[/card]
+[card]
+text=Alle Spieler muessen ihr Blatt abwerfen und sieben neue Karten ziehen.
+id=1326
+name=Wheel of Fortune
+rarity=R
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Erstschlag, Schutz vor Schwarz
+abilities=first strike,protection from black
+id=1370
+name=White Knight
+rarity=U
+type=Creature
+mana={W}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
+text=Kreaturenverzauberung     Die verzauberte Kreatur erhaelt Schutz vor Weiss. Dieser Schutz zerstoert allerdings diese Verzauberung nicht.
+target=creature
+id=1371
+name=White Ward
+rarity=U
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Fliegend (Diese Kreatur kann nur von fliegenden Kreaturen geblockt werden.)     {B}: Regeneriere die Irrlichter.
+auto={B}:Regenerate
+abilities=flying
+id=1187
+name=Will-o'-the-Wisp
+rarity=R
+type=Creature
+mana={B}
+power=0
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text=Immer wenn ein Spieler einen gruenen Zauberspruch spielt, kannst du 1 bezahlen. Wenn du dies tust, erhaeltst du ein Lebenspunkt dazu.
+id=1142
+name=Wooden Sphere
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
+text=Zerstoere alle Kreaturen. Sie koennen nicht regeneriert werden.
+auto=bury all(creature)
+id=1372
+name=Wrath of God
+rarity=R
+type=Sorcery
+mana={2}{W}{W}
+[/card]
+[card]
+text=Alle Zombies erhalten "{B}: Regeneriere diese Kreatur" und Sumpftarnung.
+auto=lord(zombie) swampwalk other
+auto=lord(zombie)  {B}:regenerate other
+id=1188
+name=Zombie Master
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Zombie
+toughness=3
+[/card]

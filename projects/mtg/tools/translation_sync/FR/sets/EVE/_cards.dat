@@ -1,0 +1,500 @@
+[card]
+auto={RW}{T}: Add {W}{W}
+text={T}: Add {1} to your mana pool.     {RW}, {T}: Add {R}{R}, {R}{W}, or {W}{W} to your mana pool.
+rarity=R
+name=Rugged Prairie
+id=153434
+type=Land
+[/card]
+[card]
+toughness=3
+name=Duergar Cave-Guard
+mana={3}{R}
+subtype=Dwarf Warrior
+auto={RW}:1/0
+rarity=U
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  {RW}: Duergar Cave-Guard gets +1/+0 until end of turn.
+power=1
+id=153437
+type=Creature
+abilities=wither
+[/card]
+[card]
+name=Puncture Blast
+mana={2}{R}
+target=creature,player
+auto=damage:3
+rarity=C
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Puncture Blast deals 3 damage to target creature or player.
+type=Instant
+id=152034
+abilities=wither
+[/card]
+[card]
+name=Inundate
+mana={3}{U}{U}{U}
+color=Blue
+auto=moveTo(ownerhand) all(creature[-blue]|inplay)
+rarity=R
+text=Return all nonblue creatures to their owners' hands.
+type=Sorcery
+id=142010
+[/card]
+[card]
+toughness=3
+name=Trapjaw Kelpie
+mana={4}{GU}{GU}
+subtype=Beast
+rarity=C
+text=Flash     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+power=3
+id=152140
+type=Creature
+abilities=flash,persist
+[/card]
+[card]
+toughness=1
+name=Stream Hopper
+mana={UR}
+subtype=Goblin
+auto={UR}:flying
+rarity=C
+text={UR}: Stream Hopper gains flying until end of turn.
+power=1
+id=151124
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Shell Skulkin
+mana={4}
+subtype=Scarecrow
+auto={3}:shroud target(creature[blue])
+rarity=C
+text={3}: Target blue creature gains shroud until end of turn.
+power=3
+id=158297
+type=Artifact Creature
+[/card]
+[card]
+toughness=7
+name=Duskdale Wurm
+mana={5}{G}{G}
+subtype=Wurm
+rarity=U
+text=Trample
+power=7
+id=151164
+type=Creature
+abilities=trample
+[/card]
+[card]
+name=Beckon Apparition
+mana={WB}
+target=*|graveyard
+auto=token(Spirit,Token Spirit Creature, 1/1,white black flying)
+rarity=C
+text=Remove target card in a graveyard from the game. Put a 1/1 white and black Spirit creature token with flying into play.
+type=Instant
+id=157415
+[/card]
+[card]
+toughness=1
+name=Suture Spirit
+mana={1}{W}
+subtype=Spirit
+auto={WB}{WB}{WB}:Regenerate target(creature)
+rarity=U
+text=Flying     {WB}{WB}{WB}: Regenerate target creature.
+power=1
+id=153420
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=1
+name=Nip Gwyllion
+mana={WB}
+subtype=Hag
+rarity=C
+text=Lifelink (Whenever this creature deals damage, you gain that much life.)
+power=1
+id=150986
+type=Creature
+abilities=lifelink
+[/card]
+[card]
+toughness=2
+name=Lingering Tormentor
+mana={3}{B}
+subtype=Spirit
+rarity=U
+text=Fear     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+power=2
+id=147437
+type=Creature
+abilities=fear,persist
+[/card]
+[card]
+toughness=1
+name=Stillmoon Cavalier
+mana={1}{WB}{WB}
+subtype=Zombie Knight
+auto={WB}{WB}:+1/+0
+rarity=R
+text=Protection from white and from black     {WB}: Stillmoon Cavalier gains flying until end of turn.     {WB}: Stillmoon Cavalier gains first strike until end of turn.     {WB}{WB}: Stillmoon Cavalier gets +1/+0 until end of turn.
+power=2
+id=153037
+type=Creature
+abilities=protection from black,protection from white
+[/card]
+[card]
+toughness=2
+name=Smoldering Butcher
+mana={3}{B}
+subtype=Elemental Warrior
+rarity=C
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
+power=4
+id=157211
+type=Creature
+abilities=wither
+[/card]
+[card]
+toughness=2
+name=Rendclaw Trow
+mana={2}{BG}
+subtype=Troll
+rarity=C
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+power=2
+id=158902
+type=Creature
+abilities=wither,persist
+[/card]
+[card]
+toughness=4
+name=Harvest Gwyllion
+mana={2}{WB}{WB}
+subtype=Hag
+rarity=C
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
+power=2
+id=152089
+type=Creature
+abilities=wither
+[/card]
+[card]
+name=Unmake
+mana={WB}{WB}{WB}
+target=creature
+auto=moveTo(removedfromGame)
+rarity=C
+text=Remove target creature from the game.
+type=Instant
+id=151083
+[/card]
+[card]
+toughness=2
+name=Scarecrone
+mana={3}
+subtype=Scarecrow
+auto={4}{T}:moveTo(myinplay) target(artifact|mygraveyard)
+rarity=R
+text={1}, Sacrifice a Scarecrow: Draw a card.     {4}, {T}: Return target artifact creature card from your graveyard to play.
+power=1
+id=157979
+type=Artifact Creature
+[/card]
+[card]
+auto={UR}{T}: Add {R}{R}
+text={T}: Add {1} to your mana pool.     {UR}, {T}: Add {U}{U}, {U}{R}, or {R}{R} to your mana pool.
+rarity=R
+name=Cascade Bluffs
+id=153433
+type=Land
+[/card]
+[card]
+toughness=2
+name=Hearthfire Hobgoblin
+mana={RW}{RW}{RW}
+subtype=Goblin Soldier
+rarity=U
+text=Double strike
+power=2
+id=157201
+type=Creature
+abilities=double strike
+[/card]
+[card]
+toughness=1
+name=Slippery Bogle
+mana={GU}
+subtype=Beast
+rarity=C
+text=Slippery Bogle can't be the target of spells or abilities your opponents control.
+power=1
+id=150999
+type=Creature
+abilities=opponentshroud
+[/card]
+[card]
+name=Drain the Well
+mana={2}{BG}{BG}
+target=land
+auto=life:2
+rarity=C
+text=Destroy target land. You gain 2 life.
+type=Sorcery
+id=151079
+[/card]
+[card]
+toughness=3
+name=Antler Skulkin
+mana={5}
+subtype=Scarecrow
+auto={2}:persist target(creature)
+rarity=C
+text={2}: Target white creature gains persist until end of turn. (When it's put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+power=3
+id=158293
+type=Artifact Creature
+[/card]
+[card]
+toughness=4
+name=Mindwrack Liege
+mana={3}{UR}{UR}{UR}
+subtype=Horror
+auto={UR}{UR}{UR}{UR}:moveTo(myinplay) target(creature[blue;red]|myhand)
+rarity=R
+text=Other blue creatures you control get +1/+1.     Other red creatures you control get +1/+1.     {UR}{UR}{UR}{UR}: You may put a blue or red creature card from your hand into play.
+power=4
+id=151132
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Wistful Selkie
+mana={GU}{GU}{GU}
+subtype=Merfolk Wizard
+auto=draw:1
+rarity=U
+text=When Wistful Selkie comes into play, draw a card.
+power=2
+id=151143
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Hobgoblin Dragoon
+mana={2}{RW}
+subtype=Goblin Knight
+rarity=C
+text=Flying, first strike
+power=1
+id=151090
+type=Creature
+abilities=flying,first strike
+[/card]
+[card]
+name=Double Cleave
+mana={1}{RW}
+target=creature
+auto=double strike
+rarity=C
+text=Target creature gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
+type=Instant
+id=153039
+[/card]
+[card]
+name=Cauldron Haze
+mana={1}{WB}
+target=creatures
+auto=persist
+rarity=U
+text=Choose any number of target creatures. Each of those creatures gains persist until end of turn. (When it's put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+type=Instant
+id=151060
+[/card]
+[card]
+toughness=5
+name=Talonrend
+mana={4}{U}
+subtype=Elemental
+auto={UR}:1/-1
+rarity=U
+text=Flying     {UR}: Talonrend gets +1/-1 until end of turn.
+power=0
+id=153430
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=1
+name=Duergar Assailant
+mana={RW}
+subtype=Dwarf Soldier
+auto={S}:damage:1 target(creature[attacking;blocking])
+rarity=C
+text=Sacrifice Duergar Assailant: Duergar Assailant deals 1 damage to target attacking or blocking creature.
+power=1
+id=150975
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Fang Skulkin
+mana={2}
+subtype=Scarecrow
+auto={2}:wither target(creature[black])
+rarity=C
+text={2}: Target black creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
+power=2
+id=158296
+type=Artifact Creature
+[/card]
+[card]
+toughness=4
+name=Nobilis of War
+mana={RW}{RW}{RW}{RW}{RW}
+subtype=Spirit Avatar
+auto=lord(creature[attacking]|myinplay) 2/0 
+rarity=R
+text=Flying     Attacking creatures you control get +2/+0.
+power=3
+id=154258
+type=Creature
+abilities=flying
+[/card]
+[card]
+auto={GU}{T}: Add {U}{U}
+text={T}: Add {1} to your mana pool.     {GU}, {T}: Add {G}{G}, {G}{U}, or {U}{U} to your mana pool.
+rarity=R
+name=Flooded Grove
+id=153481
+type=Land
+[/card]
+[card]
+toughness=1
+name=Odious Trow
+mana={BG}
+subtype=Troll
+auto={1}{BG}:regenerate 
+rarity=C
+text={1}{BG}: Regenerate Odious Trow.
+power=1
+id=150977
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Stalker Hag
+mana={BG}{BG}{BG}
+subtype=Hag
+rarity=U
+text=Swampwalk, forestwalk
+power=3
+id=151120
+type=Creature
+abilities=swampwalk,forestwalk
+[/card]
+[card]
+toughness=1
+name=Twinblade Slasher
+mana={G}
+subtype=Elf Warrior
+auto={1}{G}:2/2 limit:1
+rarity=U
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  {1}{G}: Twinblade Slasher gets +2/+2 until end of turn. Play this ability only once each turn.
+power=1
+id=153436
+type=Creature
+abilities=wither
+[/card]
+[card]
+toughness=3
+name=Wilderness Hypnotist
+mana={2}{U}{U}
+subtype=Merfolk Wizard
+auto={T}:-2/0 target(creature[red])
+rarity=C
+text={T}: Target red or green creature gets -2/-0 until end of turn.
+power=1
+id=153476
+type=Creature
+[/card]
+[card]
+auto={BG}{T}: Add {G}{G}
+text={T}: Add {1} to your mana pool.     {BG}, {T}: Add {B}{B}, {B}{G}, or {G}{G} to your mana pool.
+rarity=R
+name=Twilight Mire
+id=153425
+type=Land
+[/card]
+[card]
+auto={RW}:lord(creature[white;red]|myinplay) first strike
+text=When Rise of the Hobgoblins comes into play, you may pay {X}. If you do, put X 1/1 red and white Goblin Soldier creature tokens into play.     {RW}: Red creatures and white creatures you control gain first strike until end of turn.
+rarity=R
+name=Rise of the Hobgoblins
+id=151114
+type=Enchantment
+mana={X}{RW}{RW}
+[/card]
+[card]
+toughness=1
+name=Jawbone Skulkin
+mana={1}
+subtype=Scarecrow
+auto={2}:haste target(creature[red])
+rarity=C
+text={2}: Target red creature gains haste until end of turn.
+power=1
+id=158295
+type=Artifact Creature
+[/card]
+[card]
+toughness=3
+name=Kithkin Spellduster
+mana={4}{W}
+subtype=Kithkin Wizard
+auto={1}{W}{S}:destroy target(enchantment)
+rarity=C
+text=Flying     {1}{W}, Sacrifice Kithkin Spellduster: Destroy target enchantment.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+power=2
+id=152096
+type=Creature
+abilities=flying,persist
+[/card]
+[card]
+toughness=2
+name=Restless Apparition
+mana={WB}{WB}{WB}
+subtype=Spirit
+auto={WB}{WB}{WB}:3/3
+rarity=U
+text={WB}{WB}{WB}: Restless Apparition gets +3/+3 until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+power=2
+id=157291
+type=Creature
+abilities=persist
+[/card]
+[card]
+toughness=2
+name=Hoof Skulkin
+mana={3}
+subtype=Scarecrow
+auto={3}:1/1 target(creature[green])
+rarity=C
+text={3}: Target green creature gets +1/+1 until end of turn.
+power=2
+id=158294
+type=Artifact Creature
+[/card]
+[card]
+auto={WB}{T}: Add {B}{B}
+text={T}: Add {1} to your mana pool.     {WB}, {T}: Add {W}{W}, {W}{B}, or {B}{B} to your mana pool.
+rarity=R
+name=Fetid Heath
+id=153446
+type=Land
+[/card]

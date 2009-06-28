@@ -1,0 +1,472 @@
+[card]
+toughness=*
+name=Matca Rioters
+mana={2}{G}
+subtype=Human Warrior
+auto=aslongas(swamp|myinplay) 1/1
+rarity=C
+text=Domain - Matca Rioters's power and toughness are each equal to the number of basic land types among lands you control.
+power=*
+id=179248
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Aven Squire
+mana={1}{W}
+subtype=Bird Soldier
+rarity=C
+text=Flying     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
+power=1
+id=184992
+type=Creature
+abilities=flying,exalted
+[/card]
+[card]
+toughness=2
+name=Zombie Outlander
+mana={U}{B}
+subtype=Zombie Scout
+rarity=C
+text=Protection from green
+power=2
+id=185138
+type=Creature
+abilities=protection from green
+[/card]
+[card]
+toughness=3
+name=Esper Cormorants
+mana={2}{W}{U}
+subtype=Bird
+rarity=C
+text=Flying
+power=3
+id=184983
+type=Artifact Creature
+abilities=flying
+[/card]
+[card]
+toughness=3
+name=Ember Weaver
+mana={2}{G}
+subtype=Spider
+auto=aslongas(*[red]|myinplay) first strike
+rarity=C
+text=Reach (This can block creatures with flying.)  As long as you control a red permanent, Ember Weaver gets +1/+0 and has first strike.
+power=2
+id=184990
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Noble Hierarch
+mana={G}
+subtype=Human Druid
+auto={T}:Add{U}
+rarity=R
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {T}: Add {G}, {W}, or {U} to your mana pool.
+power=0
+id=179434
+type=Creature
+abilities=exalted
+[/card]
+[card]
+toughness=3
+name=Rhox Bodyguard
+mana={3}{G}{W}
+subtype=Rhino Monk Soldier
+auto=life:3
+rarity=C
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  When Rhox Bodyguard comes into play, you gain 3 life.
+power=2
+id=177924
+type=Creature
+abilities=exalted
+[/card]
+[card]
+auto={W}{T}:tap target(*)
+text={W}, {T}: Tap target permanent.
+rarity=R
+name=Scepter of Dominance
+id=174792
+type=Artifact
+mana={1}{W}{W}
+[/card]
+[card]
+toughness=4
+name=Ethersworn Adjudicator
+mana={4}{U}
+subtype=Vedalken Knight
+auto={2}{U}:untap
+rarity=M
+text=Flying     {1}{W}{B}, {T}: Destroy target creature or enchantment.     {2}{U}: Untap Ethersworn Adjudicator.
+power=4
+id=175035
+type=Artifact Creature
+abilities=flying
+[/card]
+[card]
+auto={1}{G}{T}:4/4 target(creature)
+text={1}{W}, {T}: You gain 5 life.     {1}{U}, {T}: Draw a card, then discard a card.     {1}{B}, {T}: Target creature gets -2/-2 until end of turn.     {1}{R}, {T}: Obelisk of Alara deals 3 damage to target player.     {1}{G}, {T}: Target creature gets +4/+4 until end of turn.
+rarity=R
+name=Obelisk of Alara
+id=183018
+type=Artifact
+mana={6}
+[/card]
+[card]
+name=Corrupted Roots
+mana={B}
+subtype=Aura
+target=forest,plains
+rarity=U
+text=Enchant Forest or Plains     Whenever enchanted land becomes tapped, its controller loses 2 life.
+type=Enchantment
+id=183054
+alias=1218
+[/card]
+[card]
+toughness=11
+name=Inkwell Leviathan
+mana={7}{U}{U}
+subtype=Leviathan
+rarity=R
+text=Islandwalk, trample, shroud
+power=7
+id=154081
+type=Artifact Creature
+abilities=islandwalk,trample,shroud
+[/card]
+[card]
+toughness=2
+name=Valeron Outlander
+mana={G}{W}
+subtype=Human Scout
+rarity=C
+text=Protection from black
+power=2
+id=185144
+type=Creature
+abilities=protection from black
+[/card]
+[card]
+toughness=3
+name=Cliffrunner Behemoth
+mana={3}{G}
+subtype=Rhino Beast
+auto=aslongas(*[white]|myinplay) lifelink
+rarity=R
+text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
+power=5
+id=159612
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Goblin Outlander
+mana={B}{R}
+subtype=Goblin Scout
+rarity=C
+text=Protection from white
+power=2
+id=185142
+type=Creature
+abilities=protection from white
+[/card]
+[card]
+toughness=3
+name=Canyon Minotaur
+mana={3}{R}
+subtype=Minotaur Warrior
+rarity=C
+text=
+power=3
+id=184994
+type=Creature
+[/card]
+[card]
+name=Maniacal Rage
+mana={1}{R}
+subtype=Aura
+target=creature
+auto=cantblock
+rarity=C
+text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
+id=182609
+type=Enchantment
+[/card]
+[card]
+toughness=2
+name=Rakka Mar
+mana={2}{R}{R}
+subtype=Human Shaman
+auto={R}{T}:token(Elemental,creature, 3/1,haste red)
+rarity=R
+text=Haste     {R}, {T}: Put a 3/1 red Elemental creature token with haste into play.
+power=2
+id=185810
+type=Creature
+abilities=haste,legendary 
+[/card]
+[card]
+auto={3}{U}{T}:Draw:1
+text={3}{U}, {T}: Draw a card.
+rarity=R
+name=Scepter of Insight
+id=184989
+type=Artifact
+mana={1}{U}{U}
+[/card]
+[card]
+toughness=*
+name=Aven Trailblazer
+mana={2}{W}
+subtype=Bird Soldier
+auto=aslongas(swamp|myinplay) 0/1
+rarity=C
+text=Flying     Domain - Aven Trailblazer's toughness is equal to the number of basic land types among lands you control.
+power=2
+id=180278
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Celestial Purge
+mana={1}{W}
+target=*[black;red]
+auto=moveTo(removedFromGame)
+rarity=U
+text=Remove target black or red permanent from the game.
+type=Instant
+id=183055
+[/card]
+[card]
+auto={5}{T}{S}:Add {W}{U}{B}{R}{G}
+text=When Kaleidostone comes into play, draw a card.     {5}, {T}, Sacrifice Kaleidostone: Add {W}{U}{B}{R}{G} to your mana pool.
+rarity=C
+name=Kaleidostone
+id=189272
+type=Artifact
+mana={2}
+[/card]
+[card]
+name=Unsummon
+mana={U}
+target=creature
+auto=moveTo(ownerhand)
+rarity=C
+text=Return target creature to its owner's hand.
+type=Instant
+id=177932
+[/card]
+[card]
+toughness=2
+name=Vedalken Outlander
+mana={W}{U}
+subtype=Vedalken Scout
+rarity=C
+text=Protection from red
+power=2
+id=185141
+type=Artifact Creature
+abilities=protection from red
+[/card]
+[card]
+toughness=2
+name=Kranioceros
+mana={4}{R}
+subtype=Beast
+auto={1}{W}:0/3
+rarity=C
+text={1}{W}: Kranioceros gets +0/+3 until end of turn.
+power=5
+id=177940
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Sphinx Summoner
+mana={3}{U}{B}
+subtype=Sphinx
+auto=may moveTo(myHand) target(creature[artifact]|myLibrary)
+rarity=R
+text=Flying     When Sphinx Summoner comes into play, you may search your library for an artifact creature card, reveal it, and put it into your hand. If you do, shuffle your library.
+power=3
+id=189079
+type=Artifact Creature
+abilities=flying
+[/card]
+[card]
+name=Asha's Favor
+mana={2}{W}
+subtype=Aura
+target=creature
+auto=vigilance
+rarity=C
+text=Enchant creature     Enchanted creature has flying, first strike, and vigilance.
+id=150826
+type=Enchantment
+[/card]
+[card]
+toughness=1
+name=Court Homunculus
+mana={W}
+subtype=Homunculus
+auto=aslongas(artifact|myinplay) 1/1 other
+rarity=C
+text=Court Homunculus gets +1/+1 as long as you control another artifact.
+power=1
+id=182607
+type=Artifact Creature
+[/card]
+[card]
+auto=lord(creature|opponentinplay) -1/0
+text=Creatures your opponents control get -1/-0.
+rarity=U
+name=Cumber Stone
+id=180322
+type=Artifact
+mana={3}{U}
+[/card]
+[card]
+toughness=7
+name=Nyxathid
+mana={1}{B}{B}
+subtype=Elemental
+auto=foreach(*|opponenthand) -1/-1
+rarity=R
+text=As Nyxathid comes into play, choose an opponent.     Nyxathid gets -1/-1 for each card in the chosen player's hand.
+power=7
+id=186616
+type=Creature
+[/card]
+[card]
+toughness=8
+name=Fusion Elemental
+mana={W}{U}{B}{R}{G}
+subtype=Elemental
+rarity=U
+text=
+power=8
+id=179443
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Nacatl Outlander
+mana={R}{G}
+subtype=Cat Scout
+rarity=C
+text=Protection from blue
+power=2
+id=185140
+type=Creature
+abilities=protection from blue
+[/card]
+[card]
+toughness=1
+name=Salvage Slasher
+mana={1}{B}
+subtype=Human Rogue
+auto=foreach(artifact|mygraveyard) 1/0
+rarity=C
+text=Salvage Slasher gets +1/+0 for each artifact card in your graveyard.
+power=1
+id=179254
+type=Artifact Creature
+[/card]
+[card]
+toughness=3
+name=Sacellum Archers
+mana={2}{G}
+subtype=Elf Archer
+auto={R}{W}{T}:damage:2 target(creature[attacking;blocking])
+rarity=U
+text={R}{W}, {T}: Sacellum Archers deals 2 damage to target attacking or blocking creature.
+power=2
+id=179488
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Valiant Guard
+mana={W}
+subtype=Human Soldier
+rarity=C
+text=
+power=0
+id=184984
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Thornling
+mana={3}{G}{G}
+subtype=Elemental Shapeshifter
+auto={1}:-1/+1
+rarity=M
+text={G}: Thornling gains haste until end of turn.     {G}: Thornling gains trample until end of turn.     {G}: Thornling is indestructible this turn.     {1}: Thornling gets +1/-1 until end of turn.     {1}: Thornling gets -1/+1 until end of turn.
+power=4
+id=180341
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Viashino Slaughtermaster
+mana={1}{R}
+subtype=Viashino Warrior
+auto={B}{G}:1/1 limit:1
+rarity=U
+text=Double strike     {B}{G}: Viashino Slaughtermaster gets +1/+1 until end of turn. Play this ability only once each turn.
+power=1
+id=179245
+type=Creature
+abilities=double strike
+[/card]
+[card]
+toughness=2
+name=Scattershot Archer
+mana={G}
+subtype=Elf Archer
+auto={T}:damage:1 all(creature[flying])
+rarity=C
+text={T}: Scattershot Archer deals 1 damage to each creature with flying.
+power=1
+id=185828
+type=Creature
+[/card]
+[card]
+auto={1}{T}: Add {W}
+text={1}, {T}: Add one mana of any color to your mana pool.
+rarity=C
+name=Mana Cylix
+id=189269
+type=Artifact
+mana={1}
+[/card]
+[card]
+toughness=2
+name=Darklit Gargoyle
+mana={1}{W}
+subtype=Gargoyle
+auto={B}:2/-1
+rarity=C
+text=Flying     {B}: Darklit Gargoyle gets +2/-1 until end of turn.
+power=1
+id=180334
+type=Artifact Creature
+abilities=flying
+[/card]
+[card]
+toughness=2
+name=Knotvine Mystic
+mana={R}{G}{W}
+subtype=Elf Druid
+auto={1}{T}:Add {R}{G}{W}
+rarity=U
+text={1}, {T}: Add {R}{G}{W} to your mana pool.
+power=2
+id=180265
+type=Creature
+[/card]
