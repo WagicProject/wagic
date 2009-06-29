@@ -427,6 +427,15 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
+text={T}: Add {G} to your mana pool for each creature you control.
+id=10422
+auto={T}:foreach(creature|myinplay)add:{G}
+name=Gaea's Cradle
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
 text=Enchant creature     Enchanted creature gets +3/+3 and has trample.     {G}: Regenerate enchanted creature.
 target=creature
 auto=3/3

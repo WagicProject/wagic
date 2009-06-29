@@ -702,14 +702,6 @@ type=Sorcery
 mana={2}{G}
 [/card]
 [card]
-text={T}: Add {G} to your mana pool for each creature you control.
-id=10422
-name=Gaea's Cradle
-rarity=R
-type=Legendary Land
-[/card]
-
-[card]
 text=Flying     When Gilded Drake comes into play, exchange control of Gilded Drake and up to one target creature an opponent controls. If you don't make an exchange, sacrifice Gilded Drake. This ability can't be countered except by spells and abilities. (This effect doesn't end at end of turn.)
 id=5837
 name=Gilded Drake

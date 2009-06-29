@@ -964,17 +964,28 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           if (input->isNull()){
             SAFE_DELETE(input);
           }
-          MTGAbility * a = NEW AManaProducer(id, target, output, input,doTap);
-          if (multi){
+		  MTGAbility * a = NEW AManaProducer(id, target, output, input,doTap);
+		  ManaCost * FinalOutput = NEW ManaCost();
+		  if (lordType == PARSER_FOREACH){
+			int multiplier = countCards(lordTargets);
+			  for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
+				  if (output->hasColor(i)){
+				  FinalOutput->add(i,multiplier);
+				  }
+			  }
+			game->addObserver (NEW AManaProducer(id, target,FinalOutput, input,doTap));
+		  }else{
+		  if (multi){
             multi->Add(a);
-          }else{
+		  }else{
 	          game->addObserver(a);
-          }
-        }else{
+		  }
+		  }
+		}else{
           OutputDebugString ("uh oh\n");
           card->controller()->getManaPool()->add(output);
           delete output;
-        }
+		}
         result++;
         continue;
       }
