@@ -214,6 +214,15 @@ toughness=1
 abilities=flying,cloud
 [/card]
 [card]
+text=Draw a card for each creature you control.
+id=19739
+auto=foreach(creature|myinplay)draw:1
+name=Collective Unconscious
+rarity=R
+type=Sorcery
+mana={4}{G}{G}
+[/card]
+[card]
 text=Counter target spell.
 target=*|stack
 auto=fizzle

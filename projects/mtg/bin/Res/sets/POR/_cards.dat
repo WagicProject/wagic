@@ -1195,7 +1195,7 @@ toughness=4
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
 id=4362
 target=creature
-alias=136509
+auto=foreach(moutain|myinplay)damage:1
 name=Spitting Earth
 rarity=C
 type=Sorcery
@@ -1295,6 +1295,15 @@ name=Symbol of Unsummoning
 rarity=C
 mana={2}{U}
 type=Sorcery
+[/card]
+[card]
+text=Draw a card for each tapped creature target opponent controls.
+id=4279
+name=Theft of Dreams
+auto=foreach(creature[tapped]|opponentinplay)draw:1
+rarity=U
+type=Sorcery
+mana={2}{U}
 [/card]
 [card]
 text=Put target creature on top of its owner's library.

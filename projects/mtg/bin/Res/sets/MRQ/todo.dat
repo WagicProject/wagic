@@ -412,14 +412,6 @@ type=Enchantment
 mana={2}{U}{U}
 [/card]
 [card]
-text=Draw a card for each creature you control.
-id=19739
-name=Collective Unconscious
-rarity=R
-type=Sorcery
-mana={4}{G}{G}
-[/card]
-[card]
 text=Nonartifact creatures get +2/+2 as long as they all share a color.
 id=19665
 name=Common Cause

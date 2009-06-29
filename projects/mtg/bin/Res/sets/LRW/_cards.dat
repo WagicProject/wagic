@@ -128,6 +128,7 @@ toughness=1
 text=Put a 1/1 green Elf Warrior creature token into play for each Elf you control.
 id=139676
 name=Elvish Promenade
+auto=foreach(elf|myinplay)token(Elf Warrior,creature Elf Warrior,1/1,green)
 rarity=U
 type=Sorcery
 mana={3}{G}

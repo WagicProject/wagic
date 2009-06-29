@@ -50,6 +50,19 @@ int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
   return 1;
 }
 
+int AbilityFactory::CantBlock(TargetChooser * tc){
+  GameObserver * g = GameObserver::GetInstance();
+  MTGCardInstance * source = tc->source;
+    for (int j = g->opponent()->game->inPlay->nb_cards-1; j >=0 ; j--){
+      MTGCardInstance * current =  g->opponent()->game->inPlay->cards[j];	  
+		  if (tc->canTarget(current)){
+			  current->canBlock(source);
+			  return 0;
+		  }
+	}
+  return 1;
+}
+
 int AbilityFactory::damageAll(TargetChooser * tc, int damage){
   MTGCardInstance * source = tc->source;
   tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
@@ -82,6 +95,8 @@ int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
   tc->source = source; //restore source
   return 1;
 }
+
+
 
 
 int AbilityFactory::TapAll(TargetChooser * tc){
@@ -443,7 +458,15 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
         int multiplier = 1;
         found = s.find("*");
         if (found != string::npos)multiplier = atoi(s.substr(found+1).c_str());
-        if(cost || doTap){
+       	if (lordType == PARSER_FOREACH){
+			int nbtoken = countCards(lordTargets);
+			ATokenCreator * tok = NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap);
+			for (int i=0; i < nbtoken; i++){
+            tok->resolve();
+			}
+		delete tok;
+		}else{
+		if(cost || doTap){
           game->addObserver(NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap));
         }else{
           ATokenCreator * tok = NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap);
@@ -451,7 +474,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             tok->resolve();
           }
           delete tok;
-        }
+		}
+		}
         result++;
         continue;
       }
@@ -699,6 +723,10 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           dryModeResult =  BAKA_EFFECT_GOOD;
           break;
         }
+		if (lordType == PARSER_FOREACH){
+			int multiplier = countCards(lordTargets);
+			game->mLayers->stackLayer()->addDraw(card->controller(),multiplier);;
+		}else{
         if (trigger){
 	        DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
 	        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
@@ -710,12 +738,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 	            game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);
 	          }else{
 	            game->addObserver(NEW ADrawer(id,card,cost,nbcards,doTap));
-	          }
-	        }
-        }
+			  }
+			}
+		}
+		}
         result++;
         continue;
-      }
+	  }
 
 		//Deplete
       found = s.find("deplete:");
@@ -748,31 +777,20 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 		}
         result++;
         continue;
-      }
+	  }
 
       //CannotBeBlockedBy
        found = s.find("cantbeblockedby(");
        if (found != string::npos){
-	       int end = s.find(")",found+1);
-	 	  string starget = s.substr(found + 18,end - found - 18);
- 		 TargetChooserFactory tcf;
- 		 tc = tcf.createTargetChooser(starget,card);
- 	  if (dryMode){
- 		  dryModeResult =  BAKA_EFFECT_GOOD;
- 		  break;
- 	  }
-	  for (int i = 0; i < 2 ; i++){
-		  for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-			  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-				if (tc->canTarget(current)){
-					MTGCardInstance * canBlock = tc->source;
-					current->canBlock();
-				}
-		  }
-	  }
-	  result++;
-	  continue;
-	  }
+		   int end = s.find(")",found);
+		   string starget = s.substr(16, end - 16);
+		   TargetChooserFactory tcf;
+		   tc = tcf.createTargetChooser(starget,card);
+		   CantBlock(tc);
+		   result++;
+		   continue;
+	   }
+	   
 
 
 
@@ -830,9 +848,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 				dryModeResult =  BAKA_EFFECT_GOOD;
 			}else{
 				dryModeResult =  BAKA_EFFECT_BAD;
-			}
+				}
 			break;
-        }
+			}
         int MaxOpponent = atoi(s.substr(end+1,end+2).c_str());
         if(tc){
 			//TODO??
@@ -1080,10 +1098,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1094: //Ank Of Mishra
     {
-   //   AAnkhOfMishra * ability = NEW AAnkhOfMishra(_id,card);
-   //   game->addObserver(ability);
       game->addObserver (NEW ALifeModifierPutinplay(_id,card,"land",-2,2,1));
-		break;
+	  break;
     }
   case 1095: //Armageddon clock
     {
@@ -1091,14 +1107,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
-
   case 1096: //Basalt Monolith
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 3};
       AManaProducer * ability = NEW AManaProducer(_id, card, NEW ManaCost(cost,1));
       AUntapManaBlocker * ability2 = NEW AUntapManaBlocker(_id+1, card, NEW ManaCost(cost,1));
       AUnBlocker * ability3 = NEW AUnBlocker(_id+1, card,card, NEW ManaCost(cost,1));
-
       game->addObserver(ability);
       game->addObserver(ability2);
       game->addObserver(ability3);
@@ -2116,16 +2130,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 //--- addon shm---
 
-	case 153996: // Howl of the Night Pack
-		{
-		int x = card->controller()->game->inPlay->countByType("Forest");
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Wolf","Creature Wolf",2,2,"green",0);
-          for (int i=0; i < x-1; i++){
-            tok->resolve();
-          }
-      break;
-    }
-
 	case 147427: // Poison the Well
 		{
 			card->target->controller()->life-=2;
@@ -2175,24 +2179,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
-// --- addon Lorwynn---
-    case 139676: // Elvish Promenade
-		{
-		int x = card->controller()->game->inPlay->countByType("Elf");
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Elf Warrior","creature Elf Warrior",1,1,"green",0);
-          for (int i=0; i < x-1; i++){
-            tok->resolve();
-          }
-      break;
-    }
-
 // --- addon Ravnica---
-    case 87978: // Flow of Ideas
-		{
-		int nbcards = card->controller()->game->inPlay->countByType("Island");
-	    game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);
-      break;
-    }
   
 	case 89114:	//Psychic Drain
     {

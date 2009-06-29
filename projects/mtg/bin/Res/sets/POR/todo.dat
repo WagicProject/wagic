@@ -539,14 +539,6 @@ type=Sorcery
 mana={1}{W}
 [/card]
 [card]
-text=Draw a card for each tapped creature target opponent controls.
-id=4279
-name=Theft of Dreams
-rarity=U
-type=Sorcery
-mana={2}{U}
-[/card]
-[card]
 text=Whenever Thing from the Deep attacks, sacrifice it unless you sacrifice an Island.
 id=4280
 name=Thing from the Deep

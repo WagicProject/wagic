@@ -72,6 +72,8 @@ mana={3}
 [card]
 text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
 id=2663
+auto={W}{S(Enchantment|myinplay)}:destroy target(enchantment)
+auto={3}{U}{U}:fizzle target(enchantment|stack)
 name=Arenson's Aura
 rarity=C
 type=Enchantment
@@ -170,6 +172,8 @@ mana={1}
 [card]
 text=Untap all white creatures you control.       Whenever a creature blocks this turn, it gets +0/+1 until end of turn.
 id=2665
+auto=untap all(creature[white]|myinplay)
+auto=lord(creature[blocking])0/1
 name=Battle Cry
 rarity=U
 type=Instant
@@ -187,6 +191,9 @@ subtype=Aura
 [card]
 text=Enchant creature     Enchanted creature can't be blocked by black creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a black permanent.
 id=2666
+target=creature
+auto=cantbeblockedby(creature[black])
+auto=aslongas(*[black]|opponentinplay)2/2
 name=Black Scarab
 rarity=U
 type=Enchantment
@@ -216,6 +223,9 @@ mana={G}{G}
 [card]
 text=Enchant creature     Enchanted creature can't be blocked by blue creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a blue permanent.
 id=2669
+target=creature
+auto=cantbeblockedby(creature[blue])
+auto=aslongas(*[blue]|opponentinplay)2/2
 name=Blue Scarab
 rarity=U
 type=Enchantment
@@ -390,6 +400,8 @@ mana={2}
 [card]
 text=When Curse of Marit Lage comes into play, tap all Islands.       Islands don't untap during their controllers' untap steps.
 id=2617
+auto=tap all(island)
+auto=lord(island)doesntuntap
 name=Curse of Marit Lage
 rarity=R
 type=Enchantment
@@ -622,7 +634,7 @@ text=Foul Familiar can't block.     {B}, Pay 1 life: Return Foul Familiar to its
 id=2450
 name=Foul Familiar
 abilities=cantblock
-auto={B}
+auto={B}:moveto(ownerhand) && damage:1 && controller
 rarity=C
 type=Creature
 mana={2}{B}

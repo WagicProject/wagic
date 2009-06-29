@@ -306,7 +306,7 @@ mana={2R}{2R}{2R}
 [card]
 text=Draw a card for each Island you control.
 id=158692
-alias=87978
+auto=foreach(island|myinplay)draw:1
 name=Flow of Ideas
 rarity=U
 type=Sorcery
@@ -443,6 +443,7 @@ toughness=1
 text=Put a 2/2 green Wolf creature token into play for each Forest you control.
 id=153996
 name=Howl of the Night Pack
+auto=foreach(forest|myinplay)token(Wolf,creature wolf,2/2,green)
 rarity=U
 type=Sorcery
 mana={6}{G}

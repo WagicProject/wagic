@@ -286,6 +286,7 @@ subtype=Aura
 text=Draw a card for each Island you control.
 id=87978
 name=Flow of Ideas
+auto=foreach(island|myinplay)draw:1
 rarity=U
 type=Sorcery
 mana={5}{U}
