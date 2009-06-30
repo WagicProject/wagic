@@ -3719,13 +3719,12 @@ class AAngelicChorus: public ListMaintainerAbility{
 class ALifeModifierPutinplay: public ListMaintainerAbility{
  public:
   int init;
-  char type[20];
    int life;
    int PlayerTarget;
    int AddOrRemove;
- ALifeModifierPutinplay(int id, MTGCardInstance * _source,const char * _type,  int _life, int _PlayerTarget, int _AddOrRemove):ListMaintainerAbility(id, _source){
-    sprintf(type,"%s",_type);
+ ALifeModifierPutinplay(int id, MTGCardInstance * _source,TargetChooser * _tc,  int _life, int _PlayerTarget, int _AddOrRemove):ListMaintainerAbility(id, _source){
 	init = 0;
+	tc = _tc;
 	PlayerTarget = _PlayerTarget;
     AddOrRemove = _AddOrRemove;
 	life = _life;
@@ -3737,7 +3736,7 @@ class ALifeModifierPutinplay: public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card->hasType(type) && game->isInPlay(card)) return 1;
+    if (tc->canTarget(card)) return 1;
     return 0;
   }
 
@@ -3803,7 +3802,6 @@ class ALifeModifierPutinplay: public ListMaintainerAbility{
   virtual ostream& toString(ostream& out) const
   {
     out << "ALifeModifierPutinplay ::: init : " << init
-	<< " ; type : " << type
 	<< " ; life : " << life
 	<< " ; PlayerTarget : " << PlayerTarget
 	<< " ; AddOrRemove : " << AddOrRemove

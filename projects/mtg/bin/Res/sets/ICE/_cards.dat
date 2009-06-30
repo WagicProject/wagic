@@ -1228,6 +1228,7 @@ text=Add {B} to your mana pool for each creature card in your graveyard.
 id=2484
 name=Songs of the Damned
 rarity=C
+auto=foreach(creature|mygraveyard)add:{B}
 type=Instant
 mana={B}
 [/card]
@@ -1246,6 +1247,8 @@ subtype=Aura
 [card]
 text=For each artifact or creature card in an opponent's graveyard, add {1} to your mana pool and you gain 1 life.
 id=2487
+auto=foreach(artifact,creature|opponentgraveyard)add:{1}
+auto=foreach(artifact,creature|opponentgraveyard)life:1
 name=Spoils of Evil
 rarity=R
 type=Instant

@@ -66,6 +66,7 @@ toughness=3
 text=First strike (This creature deals combat damage before creatures without first strike.)  When Ancestor's Chosen comes into play, you gain 1 life for each card in your graveyard.
 abilities=first strike
 id=130550
+auto=foreach(*|mygraveyard)life:1
 name=Ancestor's Chosen
 rarity=U
 color=White

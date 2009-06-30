@@ -989,12 +989,24 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 		  }
 		}else{
           OutputDebugString ("uh oh\n");
-          card->controller()->getManaPool()->add(output);
-          delete output;
+		  		  if (lordType == PARSER_FOREACH){
+						ManaCost * FinalOutput = NEW ManaCost();
+						int multiplier = countCards(lordTargets);
+						for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
+							if (output->hasColor(i)){
+							 FinalOutput->add(i,multiplier);
+							}
+						}
+						card->controller()->getManaPool()->add(FinalOutput);
+						delete FinalOutput;
+				  }else{
+					  card->controller()->getManaPool()->add(output);
+					  delete output;
+				  }
 		}
         result++;
         continue;
-      }
+	  }
 
       //Gain/loose Ability
       for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
@@ -1099,12 +1111,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       AAladdinsLamp * ability = NEW AAladdinsLamp(_id, card);
       game->addObserver(ability);
-      break;
-    }
-  case 130550: //Ancestor's chosen
-    {
-      int life = card->controller()->game->graveyard->nb_cards;
-      card->controller()->life+= life;
       break;
     }
   case 1190: //Animate Artifact
@@ -1867,13 +1873,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AGiveLifeForTappedType (_id, card, "island"));
       break;
     }
-  case 2484: //Songs of the Damned
-    {
-      int mana = card->controller()->game->graveyard->countByType("creature");
-      game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_BLACK, mana);
-      break;
-    }
-
   case 2474: //Minion of Leshrac
     {
       game->addObserver(NEW AMinionofLeshrac( _id, card));
@@ -1882,15 +1881,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 2421: //Shield of the Age
     {
       game->addObserver(NEW AShieldOfTheAge( _id, card));
-      break;
-    }
-  case 2487: //Spoil of Evil
-    {
-      int mana_cr = game->opponent()->game->graveyard->countByType("creature");
-      int mana_ar = game->opponent()->game->graveyard->countByType("artifact");
-      int spoil = mana_ar + mana_cr;
-      game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, spoil);
-      game->currentlyActing()->life+= spoil;
       break;
     }
   case 2435: //Whalebone Glider
@@ -2077,7 +2067,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		int life;
 		Player * player = spell->getNextPlayerTarget();
 		MTGLibrary * library = card->controller()->game->library;
-		MTGGraveyard * graveyard = card->controller()->game->graveyard;
 		life = player->life;
 		player->life+=life;
 		MTGGameZone * zones[] = {card->controller()->game->inPlay,card->controller()->game->graveyard,card->controller()->game->hand};
