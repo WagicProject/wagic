@@ -329,14 +329,6 @@ subtype=Boar Beast
 toughness=0
 [/card]
 [card]
-text=Cloudpost comes into play tapped.     {T}: Add {1} to your mana pool for each Locus in play.
-id=49050
-name=Cloudpost
-rarity=C
-type=Land
-subtype=Locus
-[/card]
-[card]
 text={1}{U}: Cobalt Golem gains flying until end of turn.
 id=48053
 name=Cobalt Golem
@@ -382,17 +374,6 @@ mana={2}
 power=1
 subtype=Myr
 toughness=1
-[/card]
-[card]
-text=Copperhoof Vorrac gets +1/+1 for each untapped permanent your opponents control.
-id=48603
-name=Copperhoof Vorrac
-rarity=R
-type=Creature
-mana={3}{G}{G}
-power=2
-subtype=Boar Beast
-toughness=2
 [/card]
 [card]
 text=Destroy target artifact, enchantment, or land.
@@ -807,6 +788,8 @@ subtype=Aura
 [card]
 text=Target creature gets -1/-1 until end of turn for each artifact you control.
 id=48585
+target=creature
+auto=foreach(artifact|myinplay) -1/-1
 name=Irradiate
 rarity=C
 type=Instant
@@ -1390,25 +1373,6 @@ mana={2}{B}{B}
 power=2
 subtype=Zombie
 toughness=1
-[/card]
-[card]
-text=Flying Nim Shrieker gets +1/+0 for each artifact you control.
-id=48584
-name=Nim Shrieker
-rarity=C
-type=Creature
-mana={3}{B}
-power=0
-subtype=Zombie
-toughness=1
-[/card]
-[card]
-text={2}, {T}: Put a 0/1 Pest artifact creature token into play.
-id=50104
-name=Nuisance Engine
-rarity=U
-type=Artifact
-mana={3}
 [/card]
 [card]
 text={4}, {T}: Put a fate counter on target permanent.     {5}, {T}, Sacrifice Oblivion Stone: Destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents.
