@@ -785,7 +785,7 @@ subtype=Kithkin Soldier
 toughness=2
 [/card]
 [card]
-text=Flying     {1}{U}, {T}: Target opponent removes the top card of his or her library from the game. Until end of turn, you may play that card. ({T} is the untap symbol.)
+text=Flying     {1}{U}, {Q}: Target opponent removes the top card of his or her library from the game. Until end of turn, you may play that card. ({Q} is the untap symbol.)
 id=146036
 name=Knacksaw Clique
 rarity=R
@@ -834,7 +834,7 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-text=Leech Bonder comes into play with two -1/-1 counters on it.     {U}, {T}: Move a counter from target creature onto another target creature. ({T} is the untap symbol.)
+text=Leech Bonder comes into play with two -1/-1 counters on it.     {U}, {Q}: Move a counter from target creature onto another target creature. ({Q} is the untap symbol.)
 id=147406
 name=Leech Bonder
 rarity=U
@@ -1120,7 +1120,7 @@ subtype=Elf Cleric
 toughness=2
 [/card]
 [card]
-text={1}{W}{W}, {T}: Return target creature card with converted mana cost 3 or less from your graveyard to play. ({T} is the untap symbol.)
+text={1}{W}{W}, {Q}: Return target creature card with converted mana cost 3 or less from your graveyard to play. ({Q} is the untap symbol.)
 id=146007
 name=Order of Whiteclay
 rarity=R
@@ -1142,7 +1142,7 @@ subtype=Scarecrow
 toughness=3
 [/card]
 [card]
-text={2}{W}{W}, {T}: Target creature gains protection from the color of its controller's choice until end of turn. ({T} is the untap symbol.)
+text={2}{W}{W}, {Q}: Target creature gains protection from the color of its controller's choice until end of turn. ({Q} is the untap symbol.)
 id=153310
 name=Pale Wayfarer
 rarity=U
@@ -1151,6 +1151,23 @@ mana={5}{W}{W}
 power=4
 subtype=Spirit Giant
 toughness=4
+[/card]
+[card]
+text=Flying     {2}, {Q}: Add one mana of any color to your mana pool. ({Q} is the untap symbol.)
+abilities=flying
+auto={2}{Q}:Add{R}
+auto={2}{Q}:Add{G}
+auto={2}{Q}:Add{B}
+auto={2}{Q}:Add{U}
+auto={2}{Q}:Add{W}
+id=147381
+name=Pili-Pala
+rarity=C
+type=Artifact Creature
+mana={2}
+power=1
+subtype=Scarecrow
+toughness=1
 [/card]
 [card]
 text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token into play for each 1 life he or she paid this way.
@@ -1242,7 +1259,7 @@ subtype=Faerie Wizard
 toughness=2
 [/card]
 [card]
-text={WU}, {T}: Look at the top card of your library. You may remove that card from the game. ({T} is the untap symbol.)
+text={WU}, {Q}: Look at the top card of your library. You may remove that card from the game. ({Q} is the untap symbol.)
 id=158745
 name=Puresight Merrow
 rarity=U
@@ -1748,7 +1765,7 @@ type=Sorcery
 mana={3}{BR}{BR}
 [/card]
 [card]
-text=Equipped creature has "{3}, {T}: This creature gets +2/+2 until end of turn." ({T} is the untap symbol.)  Equip {0}
+text=Equipped creature has "{3}, {Q}: This creature gets +2/+2 until end of turn." ({Q} is the untap symbol.)  Equip {0}
 id=153317
 name=Umbral Mantle
 rarity=U

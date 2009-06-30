@@ -717,23 +717,6 @@ subtype=Kithkin Soldier
 toughness=2
 [/card]
 [card]
-text=Flying     {2}, {T}: Add one mana of any color to your mana pool. ({T} is the untap symbol.)
-abilities=flying
-auto={2}{T}:Add{R}
-auto={2}{T}:Add{G}
-auto={2}{T}:Add{B}
-auto={2}{T}:Add{U}
-auto={2}{T}:Add{W}
-id=147381
-name=Pili-Pala
-rarity=C
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Scarecrow
-toughness=1
-[/card]
-[card]
 text=Destroy target artifact. Smash to Smithereens deals 3 damage to that artifact's controller.
 id=158243
 target=Artifact
