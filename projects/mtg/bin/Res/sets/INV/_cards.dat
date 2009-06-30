@@ -723,7 +723,7 @@ subtype=Aura
 [card]
 text=Protection from white       Marauding Knight gets +1/+1 for each Plains your opponents control.
 id=23053
-auto=foreach(plains|opponentinplay) 1/1
+auto=foreach(Plains|opponentinplay) 1/1
 name=Marauding Knight
 color=Black
 rarity=R

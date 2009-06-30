@@ -452,17 +452,6 @@ mana={R}
 subtype=Aura
 [/card]
 [card]
-text=Protection from black     Crusading Knight gets +1/+1 for each Swamp your opponents control.
-id=22963
-name=Crusading Knight
-rarity=R
-type=Creature
-mana={2}{W}{W}
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Flying, protection from white     When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
 id=23320
 name=Crypt Angel
@@ -690,7 +679,6 @@ type=Enchantment
 mana={U}
 subtype=Aura
 [/card]
-
 [card]
 text=Enchant creature     Domain - Enchanted creature gets -1/-1 for each basic land type among lands you control.
 id=23032
@@ -1120,17 +1108,6 @@ subtype=Kavu
 toughness=3
 [/card]
 [card]
-text=Domain - Kavu Scout gets +1/+0 for each basic land type among lands you control.
-id=23323
-name=Kavu Scout
-rarity=C
-type=Creature
-mana={2}{R}
-power=0
-subtype=Kavu Scout
-toughness=2
-[/card]
-[card]
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you play this spell.)  If the kicker cost was paid, Kavu Titan comes into play with three +1/+1 counters on it and with trample.
 id=23106
 name=Kavu Titan
@@ -1261,17 +1238,6 @@ name=Manipulate Fate
 rarity=U
 type=Sorcery
 mana={1}{U}
-[/card]
-[card]
-text=Protection from white     Marauding Knight gets +1/+1 for each Plains your opponents control.
-id=23053
-name=Marauding Knight
-rarity=R
-type=Creature
-mana={2}{B}{B}
-power=2
-subtype=Zombie Knight
-toughness=2
 [/card]
 [card]
 text=Flying     {X}{U}: You may put a creature card with converted mana cost X from your hand into play. If you do, return Metathran Aerostat to its owner's hand.
@@ -2417,16 +2383,6 @@ subtype=Human Wizard
 toughness=2
 [/card]
 [card]
-text=Enchant creature     Domain - Enchanted creature gets +1/+1 for each basic land type among lands you control.
-id=22939
-name=Strength of Unity
-rarity=C
-type=Enchantment
-mana={3}{W}
-subtype=Aura
-[/card]
-
-[card]
 text=Trample     Sulam Djinn gets -2/-2 as long as green is the most common color among all permanents or is tied for most common.
 id=23126
 name=Sulam Djinn
@@ -2444,7 +2400,6 @@ name=Sulfur Vent
 rarity=C
 type=Land
 [/card]
-
 [card]
 text={G}{G}, {T}: Creatures you control get +2/+2 until end of turn.     {U}{U}, {T}: Return target creature to its owner's hand.
 id=22961
@@ -3047,17 +3002,6 @@ name=Wax // Wane
 rarity=U
 type=Instant // Instant
 mana={G} // {W}
-[/card]
-[card]
-text=Domain - Wayfaring Giant gets +1/+1 for each basic land type among lands you control.
-id=23211
-name=Wayfaring Giant
-rarity=U
-type=Creature
-mana={5}{W}
-power=1
-subtype=Giant
-toughness=3
 [/card]
 [card]
 text=Prevent all damage that would be dealt to a creature by another creature if they share a color.
