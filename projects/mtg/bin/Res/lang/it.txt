@@ -1,0 +1,151 @@
+#File di traduzione in Italiano per Wagic 0.7.1
+#Metti questo file nella cartella WTH/Res e rinominalo come _lang.txt
+#Al prossimo avvio del gioco avrai il tutto tradotto
+#Buon divertimento
+
+#Note to translators:
+#If you want to translate cards, I suggest you translate their text (the "text=" line) directly in _cards.dat,
+# BUT DO NOT TOUCH ANYTHING ELSE in the _cards.dat files (names and types of creatures are used by the game!)
+# If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
+#Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
+
+#Game menus/texts
+Play=Gioca
+Deck Editor=Deck Editor
+Shop=Negozio
+Options=Opzioni
+Exit=Esci
+1 Player=1 Giocatore
+2 Players=2 Giocatori
+Player=Giocatore
+Cancel=Annulla
+Classic=Classico
+Music volume=Volume Musica
+SFX volume=Volume Suoni
+Seconds to pause for an Interrupt=Secondi di pausa per Istantaneo
+Difficulty=Difficolta'
+Image Cache Size=Dimensione Cache Immagini
+Save & Back to Main Menu=Salva e Torna al Menu
+Back to Main Menu=Torna al Menu
+Back to main menu=Torna al Menu
+--NEW--=--NUOVO--
+Save=Salva
+Choose a Deck=Scegli un Mazzo
+Choose Opponent=Scegli Avversario
+(easy)=(*)
+(hard)=(***)
+Random=Casuale
+Interrupt?=Gioca istantaneo?
+X Interrupt - 0 No - [] No to All=X Gioca istant. - 0 No - [] No per tutto
+X Interrupt - 0 No=X Gioca istant. - 0 No
+You have a %i%% victory ratio with Deck%i=Hai il %i%% di vittorie col mazzo %i
+You have played %i games with Deck%i=Hai giocato %i partite con il mazzo %i
+You have played a total of %i games=Hai giocato in tutto %i partite
+Unlock the difficult mode for more challenging duels!=Sblocca la modalita' difficile per partite piu' competitive!
+Interested in playing Momir Basic? You'll have to unlock it first :)=Conosci Momir Basic? Sblocca questa modalita' per poterla provare
+You have a total of %i cards in your collection=Hai un totale di %i carte nella tua collezione
+The cards in your collection have an average value of %i credits=Le carte nella tua collezione hanno un valore medio di %i crediti
+The shopkeeper would buy your entire collection for around %i credits=Potresti vendere la tua intera collezione per circa %i crediti
+You currently have %i credits=Hai %i crediti
+More cards and mods at http://wololo.net/wagic=Ulteriori carte a http://wololo.net/wagic
+These stats will be updated next time you run Wagic=Le statistiche saranno aggiornate al prossimo avvio di Wagic
+Yes=Compra
+No=Annulla
+NO DECK AVAILABLE,=NESSUN DECK DISPONIBILE,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=PREMI CERCHIO PER TORNARE AL DECK EDITOR!
+
+#End of Match
+Difficulty Bonus=Bonus Difficolta'
+'Live dangerously and you live right' Bonus=Bonus 'Live dangerously and you live right' 
+Life Delta Bonus=Bonus per Differenza di Punti Vita
+'Decree of Theophilus' Bonus=Bonus 'Decreto di Theophilos'
+'Fast and Furious' Bonus=Bonus 'Fast and Furious'
+Victory=Vittoria
+Congratulations! You earn %i credits=Congratulazioni! Hai guadagnato %i crediti
+You have been defeated=Sei stato sconfitto
+Player %i wins (%i)=Il giocatore %i vince (%i)
+Please support this project !=Sostieni Wagic !
+Wagic is free, open source, and developed on the little free time I have=Wagic e' gratuito, open source, e sviluppato nel poco tempo libero che ho
+If you enjoy this game, please consider donating a few bucks=Se lo apprezzate, perfavore considerate di donare anche un paio di spiccioli
+(Seriously, donate or I'll kill this cute little bunny)=(Seriamente, senno' uccidero questo piccolo e tenero coniglietto o_o )
+Thanks in advance for your support.=Grazie in anticipo per il vostro supporto.
+
+
+#Phases
+Untap=Fase di Stappo
+Upkeep=Mantenimento
+Draw=Pesca
+Main phase 1=Fase Principale 1
+Combat begins=Inizio Combatt.
+Attackers=Attaccanti
+Blockers=Bloccanti
+Combat damage=Assegnaz. Danni
+Combat ends=Fine Combattimento
+Main phase 2=Fase Principale 2
+End of turn=Fine del Turno
+Cleanup=Fase di Scarto
+
+#Stack
+Deals %i damage to= Fa %i danno/i a
+goes to graveyard= va' nel cimitero
+Deplete= Mette nel cimitero
+
+#Deck Editor
+Prev.=prec.
+card=carta
+cards=carte
+Next=succ.
+Next color=Colore succ.
+Prev. color=Colore prec.
+Add card=Agg. carta
+Display Deck=Mostra Mazzo
+Remove card=Rimuovi carta
+Display Collection=Mostra collezione
+You are currently viewing your=Stai guardando il/la
+collection. Press TRIANGLE=collezione. Premi TRIANGOLO
+to switch to your deck=per vedere il mazzo
+deck. Press TRIANGLE to=mazzo. Premi TRIANGOLO 
+switch to your collection=per vedere la collezione
+Deck info=Info Mazzo
+Sell card=Vendi carta
+
+#Not Working Lines - maybe not yet implemented for translation
+#Linee non funzionanti - probabilmente non sono ancora state implementate per essere tradotte
+Collection - %i/%i=Collezione - %i/%i
+DECK: %i=MAZZO: %i
+Your Deck:=Mazzo:
+Player %i draws 1 card= Il Giocatore %i pesca 1 carta
+Add %i=Aggiungi %i
+Add %i mana=Aggiungi %i mana
+
+#types
+artifact=artefatto
+enchantment=incantesimo
+sorcery=stregoneria
+instant=istantaneo
+land=terra
+
+#subtypes
+#please keep the english alphabetical order, makes it easier to update!
+angel=angelo
+basic=base
+bird=uccello
+cat=gatto
+centaur=centauro
+elf=elfo
+forest=foresta
+hound=segugio
+human=umano
+island=isola
+knight=cavaliere
+mountain=montagna
+plains=pianura
+sliver=tramutante
+sorcerer=stregone
+soldier=soldato
+specter=spettro
+spider=ragno
+swamp=palude
+warrior=guerriero
+wolf=lupo
+wurm=verme
