@@ -15,19 +15,22 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
   GameObserver * game = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
     if (player && player!= game->players[i]) continue;
-    for (int j = game->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-      if (tc->canTarget(current)){
-        switch (option){
+	MTGGameZone * zones[] = {game->players[i]->game->inPlay,game->players[i]->game->graveyard,game->players[i]->game->hand};
+			for (int k = 0; k < 3; k++){
+				for (int j = zones[k]->nb_cards-1; j >=0 ; j--){
+				MTGCardInstance * current =  zones[k]->cards[j];
+				if (tc->canTarget(current)){
+					switch (option){
 	case COUNT_POWER:
 	  result+= current->power;
 	  break;
 	default:
 	  result++;
 	  break;
-        }
-      }
-    }
+					}
+				}
+				}
+			}
   }
   return result;
 }
@@ -85,12 +88,15 @@ int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
   tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
   GameObserver * g = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
-    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
-      if (tc->canTarget(current)){
-        AZoneMover::moveTarget(current,destinationZone , source);
-      }
-    }
+	  MTGGameZone * zones[] = {g->players[i]->game->inPlay,g->players[i]->game->graveyard,g->players[i]->game->hand};
+			for (int k = 0; k < 3; k++){
+				for (int j = zones[k]->nb_cards-1; j >=0 ; j--){
+					MTGCardInstance * current =  zones[k]->cards[j];
+					if (tc->canTarget(current)){        
+						AZoneMover::moveTarget(current,destinationZone , source);
+					}
+				}
+			}
   }
   tc->source = source; //restore source
   return 1;
@@ -1109,8 +1115,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1094: //Ank Of Mishra
     {
-      game->addObserver (NEW ALifeModifierPutinplay(_id,card,"land",-2,2,1));
-	  break;
+		TargetChooser * tc = NULL;
+		TargetChooserFactory tcf;
+		tc = tcf.createTargetChooser("land", card);
+		game->addObserver (NEW ALifeModifierPutinplay(_id,card,tc,-2,2,1));
+		break;
     }
   case 1095: //Armageddon clock
     {
@@ -1231,11 +1240,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1105: //dingus Egg
     {
-//      ADingusEgg * ability = NEW ADingusEgg(_id,card);
-//      game->addObserver(ability);
-		game->addObserver (NEW ALifeModifierPutinplay(_id,card,"land",-2,2,0));
-
-      break;
+		TargetChooser * tc = NULL;
+		TargetChooserFactory tcf;
+		tc = tcf.createTargetChooser("land", card);
+		game->addObserver (NEW ALifeModifierPutinplay(_id,card,tc,-2,2,0));
+		break;
     }
   case 1106: //Disrupting Scepter
     {
@@ -1383,12 +1392,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1312: //Red Elemental Blast
     {
       if (card->target){
-	card->target->controller()->game->putInGraveyard(card->target);
-      }else{
-	Spell * starget = spell->getNextSpellTarget();
-	game->mLayers->stackLayer()->Fizzle(starget);
-      }
-      break;
+		  card->target->controller()->game->putInGraveyard(card->target);
+	  }else{
+		  Spell * starget = spell->getNextSpellTarget();
+		  game->mLayers->stackLayer()->Fizzle(starget);
+	  }
+	  break;
     }
   case 1136: //Soul Net
     {
@@ -1960,8 +1969,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 //-- addon 10E---
   case 129740: // Soul Warden
 	  {
-		  game->addObserver ( NEW ALifeModifierPutinplay(_id,card,"creature",1,1,1));
-			  break;
+		  TargetChooser * tc = NULL;
+		  TargetChooserFactory tcf;
+		  tc = tcf.createTargetChooser("creature", card);
+		  game->addObserver ( NEW ALifeModifierPutinplay(_id,card,tc,1,1,1));
+		  break;
 	  }
 
 	case 129710: //Angelic Chorus
