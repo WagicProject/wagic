@@ -255,14 +255,6 @@ type=Sorcery
 mana={3}{R}
 [/card]
 [card]
-text=You gain 1 life for each Forest in play.
-id=4297
-name=Fruition
-rarity=C
-type=Sorcery
-mana={G}
-[/card]
-[card]
 text=If an opponent controls more lands than you, search your library for up to three Plains cards, reveal them, and put them into your hand. Then shuffle your library.
 id=4385
 name=Gift of Estates
@@ -423,25 +415,6 @@ type=Sorcery
 mana={4}{R}{R}
 [/card]
 [card]
-text=You gain 2 life for each Mountain target opponent controls.
-id=4391
-name=Renewing Dawn
-rarity=U
-type=Sorcery
-mana={1}{W}
-[/card]
-[card]
-text=Sacred Knight can't be blocked by black and/or red creatures.
-id=4392
-name=Sacred Knight
-rarity=C
-type=Creature
-mana={3}{W}
-power=3
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Play Scorching Winds only during the declare attackers step and only if you are the defending player.       Scorching Winds deals 1 damage to each attacking creature.
 id=4361
 name=Scorching Winds
@@ -489,22 +462,6 @@ mana={3}{G}
 power=3
 subtype=Cat
 toughness=3
-[/card]
-[card]
-text=You gain 3 life for each black creature target opponent controls.
-id=4397
-name=Starlight
-rarity=U
-type=Sorcery
-mana={1}{W}
-[/card]
-[card]
-text=Creatures you control get +0/+3 until end of turn.
-id=4399
-name=Steadfastness
-rarity=C
-type=Sorcery
-mana={1}{W}
 [/card]
 [card]
 text=You may play up to three additional lands this turn.

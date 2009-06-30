@@ -347,17 +347,6 @@ text=Destroy all blocking creatures and all blocked creatures.
 rarity=R
 [/card]
 [card]
-id=188965
-name=Filigree Angel
-mana={5}{W}{W}{U}
-type=Artifact Creature
-subtype=Angel
-power=4
-toughness=4
-text=Flying When Filigree Angel comes into play, you gain 3 life for each artifact you control.
-rarity=R
-[/card]
-[card]
 id=180609
 name=Finest Hour
 mana={2}{G}{W}{U}

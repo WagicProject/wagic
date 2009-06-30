@@ -125,6 +125,18 @@ subtype=Merfolk Rogue
 toughness=1
 [/card]
 [card]
+text=Sacrifice Elvish Eulogist: You gain 1 life for each Elf card in your graveyard.
+auto={s}:foreach(Elf|mygraveyard):life:1
+id=141804
+name=Elvish Eulogist
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
 text=Put a 1/1 green Elf Warrior creature token into play for each Elf you control.
 id=139676
 name=Elvish Promenade

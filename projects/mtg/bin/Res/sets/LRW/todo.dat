@@ -531,17 +531,6 @@ subtype=Elf Druid
 toughness=2
 [/card]
 [card]
-text=Sacrifice Elvish Eulogist: You gain 1 life for each Elf card in your graveyard.
-id=141804
-name=Elvish Eulogist
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf Shaman
-toughness=1
-[/card]
-[card]
 text=Whenever a player plays a Giant spell, you may put a +1/+1 counter on Elvish Handservant.
 id=146179
 name=Elvish Handservant

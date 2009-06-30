@@ -1342,17 +1342,6 @@ subtype=Zombie
 toughness=1
 [/card]
 [card]
-text=Nim Lasher gets +1/+0 for each artifact you control.
-id=12394
-name=Nim Lasher
-rarity=C
-type=Creature
-mana={2}{B}
-power=1
-subtype=Zombie
-toughness=1
-[/card]
-[card]
 text={2}{B}, Sacrifice Nim Replica: Target creature gets -1/-1 until end of turn.
 id=46041
 name=Nim Replica
@@ -1360,17 +1349,6 @@ rarity=C
 type=Artifact Creature
 mana={3}
 power=3
-subtype=Zombie
-toughness=1
-[/card]
-[card]
-text=Nim Shambler gets +1/+0 for each artifact you control. Sacrifice a creature: Regenerate Nim Shambler.
-id=48126
-name=Nim Shambler
-rarity=U
-type=Creature
-mana={2}{B}{B}
-power=2
 subtype=Zombie
 toughness=1
 [/card]

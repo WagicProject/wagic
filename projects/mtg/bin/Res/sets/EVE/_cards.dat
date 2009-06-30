@@ -217,6 +217,18 @@ subtype=Kithkin Wizard
 toughness=3
 [/card]
 [card]
+text=When Kithkin Zealot comes into play, you gain 1 life for each black and/or red permanent target opponent controls.
+auto=foreach(*[red;black]|opponentinplay):life:1
+id=154346
+name=Kithkin Zealot
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Kithkin Cleric
+toughness=3
+[/card]
+[card]
 text=Fear     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 abilities=fear,persist
 id=147437

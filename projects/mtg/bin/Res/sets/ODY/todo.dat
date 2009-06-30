@@ -44,6 +44,7 @@ mana={1}{U}
 [/card]
 [card]
 text=You gain 2 life for each card in your graveyard.       Flashback {9}{W}{W}{W} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
+auto=foreach(*|mygraveyard):life:2
 id=30555
 name=Ancestral Tribute
 rarity=R

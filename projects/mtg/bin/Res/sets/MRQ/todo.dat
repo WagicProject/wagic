@@ -847,14 +847,6 @@ subtype=Giant
 toughness=4
 [/card]
 [card]
-text=Remove all creature cards in all graveyards from the game. You gain 1 life for each card removed this way.
-id=19787
-name=Honor the Fallen
-rarity=R
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=Whenever a player plays a spell, he or she may pay {1}. If that player does, he or she draws a card at end of turn.
 id=19755
 name=Horn of Plenty

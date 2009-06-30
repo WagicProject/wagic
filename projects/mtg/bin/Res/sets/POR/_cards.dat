@@ -498,6 +498,15 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
+text=You gain 1 life for each Forest in play.
+auto=foreach(Forest):life:1
+id=4297
+name=Fruition
+rarity=C
+type=Sorcery
+mana={G}
+[/card]
+[card]
 id=4263
 name=Giant Octopus
 rarity=C
@@ -1084,6 +1093,15 @@ power=2
 toughness=3
 [/card]
 [card]
+text=You gain 2 life for each Mountain target opponent controls.
+auto=foreach(Mountain|opponentinplay):life:2
+id=4391
+name=Renewing Dawn
+rarity=U
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
 id=4316
 name=Rowan Treefolk
 rarity=C
@@ -1102,6 +1120,18 @@ rarity=C
 color=White
 mana={1}{W}
 type=Sorcery
+[/card]
+[card]
+text=Sacred Knight can't be blocked by black and/or red creatures.
+auto=cantbeblockedby(creature[red;black])
+id=4392
+name=Sacred Knight
+rarity=C
+type=Creature
+mana={3}{W}
+power=3
+subtype=Human Knight
+toughness=2
 [/card]
 [card]
 text=Scorching Spear deals 1 damage to target creature or player.
@@ -1214,6 +1244,15 @@ toughness=3
 abilities=flying
 [/card]
 [card]
+text=You gain 3 life for each black creature target opponent controls.
+auto=foreach(creature[black]|opponentinplay):life:3
+id=4397
+name=Starlight
+rarity=U
+type=Sorcery
+mana={1}{W}
+[/card]
+[card]
 text=Flying
 id=4398
 name=Starlit Angel
@@ -1224,6 +1263,15 @@ subtype=Angel
 power=3
 toughness=4
 abilities=flying
+[/card]
+[card]
+text=Creatures you control get +0/+3 until end of turn.
+auto=lord(creature|myinplay) 0/3
+id=4399
+name=Steadfastness
+rarity=C
+type=Sorcery
+mana={1}{W}
 [/card]
 [card]
 id=4400

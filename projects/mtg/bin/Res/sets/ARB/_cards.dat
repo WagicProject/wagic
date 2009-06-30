@@ -37,6 +37,19 @@ toughness=3
 abilities=exalted
 [/card]
 [card]
+id=188965
+name=Filigree Angel
+mana={5}{W}{W}{U}
+type=Artifact Creature
+subtype=Angel
+power=4
+toughness=4
+text=Flying When Filigree Angel comes into play, you gain 3 life for each artifact you control.
+abilities=flying
+auto=foreach(artifact|myinplay):life:3
+rarity=R
+[/card]
+[card]
 text=
 id=189647
 name=Grizzled Leotau

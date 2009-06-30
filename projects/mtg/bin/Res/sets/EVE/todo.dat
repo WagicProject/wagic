@@ -691,17 +691,6 @@ type=Instant
 mana={3}{GU}
 [/card]
 [card]
-text=When Kithkin Zealot comes into play, you gain 1 life for each black and/or red permanent target opponent controls.
-id=154346
-name=Kithkin Zealot
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Kithkin Cleric
-toughness=3
-[/card]
-[card]
 text=Whenever you play a spell, equipped creature gets +2/+2 until end of turn.     Equip {2}
 id=157971
 name=Leering Emblem
