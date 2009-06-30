@@ -105,7 +105,7 @@ subtype=Dwarf
 toughness=1
 [/card]
 [card]
-text=All artifacts have &quot;At the beginning of your upkeep, sacrifice this artifact unless you pay {2}.&quot;
+text=All artifacts have "At the beginning of your upkeep, sacrifice this artifact unless you pay {2}."
 id=1199
 name=Energy Flux
 rarity=U
@@ -233,7 +233,7 @@ mana={1}{G}{G}
 subtype=Aura
 [/card]
 [card]
-text=Change the text of target spell or permanent by replacing all instances of one basic land type with another. (For example, you may change &quot;swampwalk&quot; to &quot;plainswalk.&quot;) (This effect doesn't end at end of turn.)
+text=Change the text of target spell or permanent by replacing all instances of one basic land type with another. (For example, you may change "swampwalk" to "plainswalk.") (This effect doesn't end at end of turn.)
 id=1207
 name=Magical Hack
 rarity=R
@@ -242,7 +242,7 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Blue creatures don't untap during their controllers' untap steps.     Blue creatures have &quot;At the beginning of your upkeep, you may pay {4}. If you do, untap this creature.&quot;
+text=Blue creatures don't untap during their controllers' untap steps.     Blue creatures have "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
 id=1304
 name=Magnetic Mountain
 rarity=R
@@ -469,7 +469,7 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change &quot;target black spell&quot; to &quot;target blue spell.&quot;) (This effect doesn't end at end of turn.)
+text=Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change "target black spell" to "target blue spell.") (This effect doesn't end at end of turn.)
 id=1223
 name=Sleight of Mind
 rarity=R
@@ -532,7 +532,7 @@ subtype=Human Druid
 toughness=2
 [/card]
 [card]
-text=As Vesuvan Doppelganger comes into play, you may choose a creature in play. If you do, Vesuvan Doppelganger comes into play as a copy of that creature except for its color and gains &quot;At the beginning of your upkeep, you may have this creature become a copy of target creature except for its color. If you do, this creature gains this ability.&quot;
+text=As Vesuvan Doppelganger comes into play, you may choose a creature in play. If you do, Vesuvan Doppelganger comes into play as a copy of that creature except for its color and gains "At the beginning of your upkeep, you may have this creature become a copy of target creature except for its color. If you do, this creature gains this ability."
 id=1230
 name=Vesuvan Doppelganger
 rarity=R

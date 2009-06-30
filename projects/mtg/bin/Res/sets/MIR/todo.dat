@@ -430,7 +430,7 @@ type=Instant
 mana={R}
 [/card]
 [card]
-text=Creatures with flying have &quot;This creature can't block creatures without flying.&quot;     Creatures without flying have reach. (They can block creatures with flying.)
+text=Creatures with flying have "This creature can't block creatures without flying."     Creatures without flying have reach. (They can block creatures with flying.)
 id=3435
 name=Chaosphere
 rarity=R
@@ -621,7 +621,7 @@ type=Instant
 mana={2}{W}
 [/card]
 [card]
-text=Enchant black creature     Enchanted creature has &quot;Cumulative upkeep-Pay 1 life.&quot;     When enchanted creature is put into a graveyard, its controller loses 2 life.
+text=Enchant black creature     Enchanted creature has "Cumulative upkeep-Pay 1 life."     When enchanted creature is put into a graveyard, its controller loses 2 life.
 id=3381
 name=Decomposition
 rarity=U
@@ -1626,7 +1626,7 @@ subtype=Merfolk Wizard
 toughness=2
 [/card]
 [card]
-text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change &quot;nonblack creature&quot; to &quot;nongreen creature&quot; or &quot;forestwalk&quot; to &quot;islandwalk.&quot; This effect doesn't end at end of turn.)
+text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change "nonblack creature" to "nongreen creature" or "forestwalk" to "islandwalk." This effect doesn't end at end of turn.)
 id=3348
 name=Mind Bend
 rarity=U
@@ -1643,7 +1643,7 @@ mana={U}
 subtype=Aura
 [/card]
 [card]
-text=Defender (This creature can't attack.)  Flying     Whenever Mindbender Spores blocks a creature, put four fungus counters on that creature. The creature gains &quot;This creature doesn't untap during your untap step if it has a fungus counter on it&quot; and &quot;At the beginning of your upkeep, remove a fungus counter from this creature.&quot;
+text=Defender (This creature can't attack.)  Flying     Whenever Mindbender Spores blocks a creature, put four fungus counters on that creature. The creature gains "This creature doesn't untap during your untap step if it has a fungus counter on it" and "At the beginning of your upkeep, remove a fungus counter from this creature."
 id=3398
 name=Mindbender Spores
 rarity=R
@@ -2719,7 +2719,7 @@ type=World Enchantment
 mana={2}{B}{B}
 [/card]
 [card]
-text=Torrent of Lava deals X damage to each creature without flying.     As long as Torrent of Lava is on the stack, each creature has &quot;{T}: Prevent the next 1 damage that would be dealt to this creature by Torrent of Lava this turn.&quot;
+text=Torrent of Lava deals X damage to each creature without flying.     As long as Torrent of Lava is on the stack, each creature has "{T}: Prevent the next 1 damage that would be dealt to this creature by Torrent of Lava this turn."
 id=3470
 name=Torrent of Lava
 rarity=R

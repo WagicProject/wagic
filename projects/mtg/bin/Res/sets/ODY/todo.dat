@@ -51,7 +51,7 @@ type=Sorcery
 mana={5}{W}{W}
 [/card]
 [card]
-text=Enchant land     Enchanted land has &quot;{T}, Sacrifice a creature: You gain life equal to that creature's toughness.&quot;
+text=Enchant land     Enchanted land has "{T}, Sacrifice a creature: You gain life equal to that creature's toughness."
 id=31839
 name=Animal Boneyard
 rarity=U
@@ -202,7 +202,7 @@ type=Instant
 mana={R}
 [/card]
 [card]
-text=Flying     At the beginning of your upkeep, put the top card of your library into your graveyard.     Threshold - As long as seven or more cards are in your graveyard, Bloodcurdler gets +1/+1 and has &quot;At the end of your turn, remove two cards in your graveyard from the game.&quot;
+text=Flying     At the beginning of your upkeep, put the top card of your library into your graveyard.     Threshold - As long as seven or more cards are in your graveyard, Bloodcurdler gets +1/+1 and has "At the end of your turn, remove two cards in your graveyard from the game."
 id=29950
 name=Bloodcurdler
 rarity=R
@@ -314,7 +314,7 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text=Enchant land     Enchanted land has &quot;{T}: Target player loses 3 life.&quot;
+text=Enchant land     Enchanted land has "{T}: Target player loses 3 life."
 id=31837
 name=Caustic Tar
 rarity=U
@@ -386,7 +386,7 @@ subtype=Beast
 toughness=2
 [/card]
 [card]
-text=Enchant land     Enchanted land has &quot;{T}, Discard a card: Gain control of target creature until end of turn.&quot;
+text=Enchant land     Enchanted land has "{T}, Discard a card: Gain control of target creature until end of turn."
 id=31868
 name=Chamber of Manipulation
 rarity=U
@@ -430,7 +430,7 @@ subtype=Horror
 toughness=2
 [/card]
 [card]
-text=At the beginning of your upkeep, you may put a +1/+1 counter on Chlorophant.     Threshold - As long as seven or more cards are in your graveyard, Chlorophant has &quot;At the beginning of your upkeep, you may put another +1/+1 counter on Chlorophant.&quot;
+text=At the beginning of your upkeep, you may put a +1/+1 counter on Chlorophant.     Threshold - As long as seven or more cards are in your graveyard, Chlorophant has "At the beginning of your upkeep, you may put another +1/+1 counter on Chlorophant."
 id=29986
 name=Chlorophant
 rarity=R
@@ -498,7 +498,7 @@ type=Artifact
 mana={1}
 [/card]
 [card]
-text=At the beginning of your upkeep, remove a card in your graveyard from the game.     Threshold - As long as seven or more cards are in your graveyard, Decaying Soil has &quot;Whenever a nontoken creature is put into your graveyard from play, you may pay {1}. If you do, return that card to your hand.&quot;
+text=At the beginning of your upkeep, remove a card in your graveyard from the game.     Threshold - As long as seven or more cards are in your graveyard, Decaying Soil has "Whenever a nontoken creature is put into your graveyard from play, you may pay {1}. If you do, return that card to your hand."
 id=29955
 name=Decaying Soil
 rarity=R

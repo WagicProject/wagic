@@ -18,7 +18,7 @@ type=Instant
 mana={R}
 [/card]
 [card]
-text=Green legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+text=Green legendary creatures you control have "bands with other legendary creatures."
 id=1698
 name=Adventurers' Guildhouse
 rarity=U
@@ -258,7 +258,7 @@ subtype=Horse
 toughness=4
 [/card]
 [card]
-text=White legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+text=White legendary creatures you control have "bands with other legendary creatures."
 id=1699
 name=Cathedral of Serra
 rarity=U
@@ -454,7 +454,7 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Enchant land     Enchanted land has &quot;{T}: Counter target spell if it would destroy a land you control.&quot;
+text=Enchant land     Enchanted land has "{T}: Counter target spell if it would destroy a land you control."
 id=1611
 name=Equinox
 rarity=C
@@ -611,7 +611,7 @@ subtype=Turtle
 toughness=4
 [/card]
 [card]
-text=Put X glyph counters on target creature that target Wall blocked this turn, where X is the power of that blocked creature. The creature gains &quot;This creature doesn't untap during your untap step if it has a glyph counter on it&quot; and &quot;At the beginning of your upkeep, remove a glyph counter from this creature.&quot;
+text=Put X glyph counters on target creature that target Wall blocked this turn, where X is the power of that blocked creature. The creature gains "This creature doesn't untap during your untap step if it has a glyph counter on it" and "At the beginning of your upkeep, remove a glyph counter from this creature."
 id=1486
 name=Glyph of Delusion
 rarity=C
@@ -686,7 +686,7 @@ subtype=Shapeshifter
 toughness=3
 [/card]
 [card]
-text=At the beginning of your upkeep, if Hazezon Tamar came into play since the beginning of your last upkeep, put a 1/1 red, green, and white Sand Warrior creature token into play for each land you control. Those creatures have &quot;When a permanent named Hazezon Tamar isn't in play, remove this creature from the game.&quot;
+text=At the beginning of your upkeep, if Hazezon Tamar came into play since the beginning of your last upkeep, put a 1/1 red, green, and white Sand Warrior creature token into play for each land you control. Those creatures have "When a permanent named Hazezon Tamar isn't in play, remove this creature from the game."
 id=1656
 name=Hazezon Tamar
 rarity=R
@@ -805,7 +805,7 @@ type=Enchantment
 mana={U}{U}{U}{U}
 [/card]
 [card]
-text=At the beginning of your combat phase, you may have Johan gain &quot;Johan can't attack&quot; until end of combat. If you do, attacking doesn't cause creatures you control to tap this combat if Johan is untapped.
+text=At the beginning of your combat phase, you may have Johan gain "Johan can't attack" until end of combat. If you do, attacking doesn't cause creatures you control to tap this combat if Johan is untapped.
 id=1662
 name=Johan
 rarity=R
@@ -932,7 +932,7 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text={4}, {T}: Put a matrix counter on target creature and that creature gains &quot;Remove a matrix counter from this creature: Regenerate this creature.&quot; Play this ability only during your upkeep.
+text={4}, {T}: Put a matrix counter on target creature and that creature gains "Remove a matrix counter from this creature: Regenerate this creature." Play this ability only during your upkeep.
 id=1411
 name=Life Matrix
 rarity=R
@@ -967,7 +967,7 @@ subtype=Cleric
 toughness=3
 [/card]
 [card]
-text={2}{G}{G}: Put a 1/1 green Wolf creature token named Wolves of the Hunt into play. That creature has &quot;bands with other Wolves.&quot;
+text={2}{G}{G}: Put a 1/1 green Wolf creature token named Wolves of the Hunt into play. That creature has "bands with other Wolves."
 id=1534
 name=Master of the Hunt
 rarity=R
@@ -997,7 +997,7 @@ subtype=Fungus Demon
 toughness=6
 [/card]
 [card]
-text=Red legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+text=Red legendary creatures you control have "bands with other legendary creatures."
 id=1702
 name=Mountain Stronghold
 rarity=U
@@ -1336,7 +1336,7 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Blue legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+text=Blue legendary creatures you control have "bands with other legendary creatures."
 id=1704
 name=Seafarer's Quay
 rarity=U
@@ -1363,7 +1363,7 @@ subtype=Shapeshifter
 toughness=1
 [/card]
 [card]
-text={4}, {T}: Put a 1/1 Snake artifact creature token into play. This creature has &quot;Whenever this creature deals damage to a player, that player gets a poison counter.&quot; (A player with ten or more poison counters loses the game.)
+text={4}, {T}: Put a 1/1 Snake artifact creature token into play. This creature has "Whenever this creature deals damage to a player, that player gets a poison counter." (A player with ten or more poison counters loses the game.)
 id=1422
 name=Serpent Generator
 rarity=R
@@ -1489,7 +1489,7 @@ type=Instant
 mana={G}
 [/card]
 [card]
-text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature.     When enchanted creature is put into a graveyard, that creature's controller chooses a creature that Takklemaggot could enchant. If he or she does, return Takklemaggot to play under your control attached to that creature. If he or she doesn't, return Takklemaggot to play under your control as a non-Aura enchantment. It loses &quot;enchant creature&quot; and gains &quot;At the beginning of that player's upkeep, Takklemaggot deals 1 damage to him or her.&quot;
+text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature.     When enchanted creature is put into a graveyard, that creature's controller chooses a creature that Takklemaggot could enchant. If he or she does, return Takklemaggot to play under your control attached to that creature. If he or she doesn't, return Takklemaggot to play under your control as a non-Aura enchantment. It loses "enchant creature" and gains "At the beginning of that player's upkeep, Takklemaggot deals 1 damage to him or her."
 id=1459
 name=Takklemaggot
 rarity=U
@@ -1536,7 +1536,7 @@ type=World Enchantment
 mana={3}{B}
 [/card]
 [card]
-text=All creatures have &quot;At the beginning of your upkeep, sacrifice this creature unless you pay {1}.&quot;
+text=All creatures have "At the beginning of your upkeep, sacrifice this creature unless you pay {1}."
 id=1690
 name=The Tabernacle at Pendrell Vale
 rarity=R
@@ -1605,7 +1605,7 @@ type=Enchantment
 mana={B}{B}{B}
 [/card]
 [card]
-text=Black legendary creatures you control have &quot;bands with other legendary creatures.&quot;
+text=Black legendary creatures you control have "bands with other legendary creatures."
 id=1706
 name=Unholy Citadel
 rarity=U

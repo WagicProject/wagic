@@ -1782,7 +1782,7 @@ subtype=Hound
 toughness=2
 [/card]
 [card]
-text=Buyback {2} (You may pay an additional {2} as you play this spell. If you do, put this card into your hand as it resolves.)  Change the text of target permanent by replacing all instances of one color word or basic land type with another until end of turn. (For example, you may change &quot;nonred creature&quot; to &quot;nongreen creature&quot; or &quot;plainswalk&quot; to &quot;swampwalk.&quot;)
+text=Buyback {2} (You may pay an additional {2} as you play this spell. If you do, put this card into your hand as it resolves.)  Change the text of target permanent by replacing all instances of one color word or basic land type with another until end of turn. (For example, you may change "nonred creature" to "nongreen creature" or "plainswalk" to "swampwalk.")
 id=4742
 name=Whim of Volrath
 rarity=R

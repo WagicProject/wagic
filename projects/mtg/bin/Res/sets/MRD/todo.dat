@@ -1654,7 +1654,7 @@ subtype=Demon
 toughness=6
 [/card]
 [card]
-text=Enchant artifact     Enchanted artifact has &quot;At the beginning of your upkeep, you lose 2 life.&quot;
+text=Enchant artifact     Enchanted artifact has "At the beginning of your upkeep, you lose 2 life."
 id=48329
 name=Relic Bane
 rarity=U
@@ -2364,7 +2364,7 @@ subtype=Elf Druid
 toughness=2
 [/card]
 [card]
-text=Equipped creature has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
+text=Equipped creature has "{T}: This creature deals 1 damage to target creature or player."     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=46018
 name=Viridian Longbow
 rarity=C

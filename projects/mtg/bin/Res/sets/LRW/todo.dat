@@ -21,7 +21,7 @@ subtype=Elemental
 toughness=4
 [/card]
 [card]
-text=[+1]: You gain 2 life.     [-1]: Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn.     [-6]: Put a white Avatar creature token into play with &quot;This creature's power and toughness are each equal to your life total.&quot;
+text=[+1]: You gain 2 life.     [-1]: Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn.     [-6]: Put a white Avatar creature token into play with "This creature's power and toughness are each equal to your life total."
 id=140233
 name=Ajani Goldmane
 rarity=R
@@ -950,7 +950,7 @@ mana={3}{G}
 [/card]
 
 [card]
-text=Put a token into play that's a copy of target creature. It has haste and &quot;At end of turn, remove this permanent from the game.&quot;
+text=Put a token into play that's a copy of target creature. It has haste and "At end of turn, remove this permanent from the game."
 id=139468
 name=Heat Shimmer
 rarity=R
@@ -1324,7 +1324,7 @@ subtype=Goblin Shaman
 toughness=2
 [/card]
 [card]
-text=Return target creature card from your graveyard to play with a mannequin counter on it. As long as that creature has a mannequin counter on it, it has &quot;When this creature becomes the target of a spell or ability, sacrifice it.&quot;
+text=Return target creature card from your graveyard to play with a mannequin counter on it. As long as that creature has a mannequin counter on it, it has "When this creature becomes the target of a spell or ability, sacrifice it."
 id=139670
 name=Makeshift Mannequin
 rarity=U
@@ -1529,7 +1529,7 @@ type=Instant
 mana={R}
 [/card]
 [card]
-text=Enchant creature or land     Enchanted permanent has &quot;At the end of your turn, sacrifice this permanent and attach Nettlevine Blight to a creature or land you control.&quot;
+text=Enchant creature or land     Enchanted permanent has "At the end of your turn, sacrifice this permanent and attach Nettlevine Blight to a creature or land you control."
 id=143731
 name=Nettlevine Blight
 rarity=R

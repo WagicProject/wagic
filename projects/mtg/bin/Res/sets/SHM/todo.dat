@@ -363,7 +363,7 @@ subtype=Ouphe
 toughness=3
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has &quot;{T}: Put X 1/1 red Elemental creature tokens with haste into play, where X is this creature's power. Remove them from the game at end of turn.&quot;
+text=Enchant creature     Enchanted creature has "{T}: Put X 1/1 red Elemental creature tokens with haste into play, where X is this creature's power. Remove them from the game at end of turn."
 id=146087
 name=Elemental Mastery
 rarity=R
@@ -471,7 +471,7 @@ type=Sorcery
 mana={RG}
 [/card]
 [card]
-text=When Furystoke Giant comes into play, other creatures you control gain &quot;{T}: This creature deals 2 damage to target creature or player&quot; until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+text=When Furystoke Giant comes into play, other creatures you control gain "{T}: This creature deals 2 damage to target creature or player" until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=152069
 name=Furystoke Giant
 rarity=R
@@ -637,7 +637,7 @@ subtype=Elemental
 toughness=2
 [/card]
 [card]
-text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has &quot;Whenever this creature deals damage to an opponent, draw a card.&quot;     As long as enchanted creature is black, it gets +1/+1 and has &quot;Whenever this creature deals damage to an opponent, that player discards a card.&quot;
+text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, draw a card."     As long as enchanted creature is black, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, that player discards a card."
 id=158769
 name=Helm of the Ghastlord
 rarity=C
@@ -1169,7 +1169,7 @@ type=Enchantment
 mana={3}{B}{B}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;
+text=Enchant creature     Enchanted creature has "{T}: This creature deals 1 damage to target creature or player."
 id=152159
 name=Power of Fire
 rarity=C
@@ -1178,7 +1178,7 @@ mana={1}{R}
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has &quot;{T}: Put a 1/1 green Elf Warrior creature token into play.&quot;
+text=Enchant creature     Enchanted creature has "{T}: Put a 1/1 green Elf Warrior creature token into play."
 id=158768
 name=Presence of Gond
 rarity=C
@@ -1307,7 +1307,7 @@ type=Instant
 mana={3}{WU}
 [/card]
 [card]
-text=White creatures you control have &quot;{T}: You gain 1 life.&quot;
+text=White creatures you control have "{T}: You gain 1 life."
 id=141930
 name=Resplendent Mentor
 rarity=U
@@ -1480,7 +1480,7 @@ subtype=Elf Shaman
 toughness=1
 [/card]
 [card]
-text=Enchant creature     As long as enchanted creature is green, it gets +1/+1 and is indestructible. (Lethal damage and effects that say &quot;destroy&quot; don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.)  As long as enchanted creature is white, it gets +1/+1 and has flying.
+text=Enchant creature     As long as enchanted creature is green, it gets +1/+1 and is indestructible. (Lethal damage and effects that say "destroy" don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.)  As long as enchanted creature is white, it gets +1/+1 and has flying.
 id=158762
 name=Shield of the Oversoul
 rarity=C
@@ -1500,7 +1500,7 @@ subtype=Faerie Rogue
 toughness=3
 [/card]
 [card]
-text=Enchant creature     Enchanted creature doesn't untap during its controller's untap step.     Enchanted creature has &quot;{1}, Put a -1/-1 counter on this creature: Untap this creature.&quot;
+text=Enchant creature     Enchanted creature doesn't untap during its controller's untap step.     Enchanted creature has "{1}, Put a -1/-1 counter on this creature: Untap this creature."
 id=158760
 name=Sinking Feeling
 rarity=C
@@ -1705,7 +1705,7 @@ mana={B}
 subtype=Aura
 [/card]
 [card]
-text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.)  Until end of turn, target creature gets +4/+4 and gains trample, wither, and &quot;When this creature attacks, target creature blocks it this turn if able.&quot; (It deals damage to creatures in the form of -1/-1 counters.)
+text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.)  Until end of turn, target creature gets +4/+4 and gains trample, wither, and "When this creature attacks, target creature blocks it this turn if able." (It deals damage to creatures in the form of -1/-1 counters.)
 id=152075
 name=Tower Above
 rarity=U
@@ -1748,7 +1748,7 @@ type=Sorcery
 mana={3}{BR}{BR}
 [/card]
 [card]
-text=Equipped creature has &quot;{3}, {T}: This creature gets +2/+2 until end of turn.&quot; ({T} is the untap symbol.)  Equip {0}
+text=Equipped creature has "{3}, {T}: This creature gets +2/+2 until end of turn." ({T} is the untap symbol.)  Equip {0}
 id=153317
 name=Umbral Mantle
 rarity=U

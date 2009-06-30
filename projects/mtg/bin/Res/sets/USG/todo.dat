@@ -306,7 +306,7 @@ type=Artifact
 mana={5}
 [/card]
 [card]
-text=Creatures you control have &quot;{T}: Add {G} to your mana pool.&quot;
+text=Creatures you control have "{T}: Add {G} to your mana pool."
 id=5724
 name=Citanul Hierophants
 rarity=R
@@ -811,7 +811,7 @@ subtype=Angel
 toughness=4
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;
+text=Enchant creature     Enchanted creature has "{T}: This creature deals 1 damage to target creature or player."
 id=8784
 name=Hermetic Study
 rarity=C
@@ -1222,7 +1222,7 @@ subtype=Drake
 toughness=3
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has &quot;At the beginning of your upkeep, sacrifice this creature unless you pay its mana cost.&quot;
+text=Enchant creature     Enchanted creature has "At the beginning of your upkeep, sacrifice this creature unless you pay its mana cost."
 id=5614
 name=Pendrell Flux
 rarity=C
@@ -1347,7 +1347,7 @@ type=Artifact
 mana={5}
 [/card]
 [card]
-text=Until end of turn, lands you control gain &quot;Sacrifice this land: Add {B} to your mana pool.&quot;
+text=Until end of turn, lands you control gain "Sacrifice this land: Add {B} to your mana pool."
 id=5831
 name=Rain of Filth
 rarity=U
@@ -1448,7 +1448,7 @@ type=Instant
 mana={1}{U}{U}
 [/card]
 [card]
-text=Creatures you control have &quot;Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.&quot;
+text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
 id=10408
 name=Retaliation
 rarity=U
@@ -2014,7 +2014,7 @@ type=Enchantment
 mana={U}
 [/card]
 [card]
-text=When an opponent plays a spell, if Veiled Apparition is an enchantment, Veiled Apparition becomes a 3/3 Illusion creature with flying. That creature has &quot;At the beginning of your upkeep, sacrifice Veiled Apparition unless you pay {1}{U}.&quot;
+text=When an opponent plays a spell, if Veiled Apparition is an enchantment, Veiled Apparition becomes a 3/3 Illusion creature with flying. That creature has "At the beginning of your upkeep, sacrifice Veiled Apparition unless you pay {1}{U}."
 id=5797
 name=Veiled Apparition
 rarity=U

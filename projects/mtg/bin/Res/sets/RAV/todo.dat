@@ -647,7 +647,7 @@ subtype=Elemental Berserker
 toughness=2
 [/card]
 [card]
-text=Untap target creature and gain control of it until end of turn.  That creature gains haste until end of turn. If {W} was spent to play Flash Conscription, the creature gains &quot;Whenever this creature deals combat damage, you gain that much life&quot; until end of turn.
+text=Untap target creature and gain control of it until end of turn.  That creature gains haste until end of turn. If {W} was spent to play Flash Conscription, the creature gains "Whenever this creature deals combat damage, you gain that much life" until end of turn.
 id=87953
 name=Flash Conscription
 rarity=U
@@ -980,7 +980,7 @@ subtype=Troll Warrior
 toughness=4
 [/card]
 [card]
-text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain &quot;This creature can't block.&quot;
+text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain "This creature can't block."
 id=87993
 name=Incite Hysteria
 rarity=C
@@ -1018,7 +1018,7 @@ subtype=Zombie
 toughness=1
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has &quot;At the end of your turn, sacrifice this creature unless it attacked this turn.&quot;
+text=Enchant creature     Enchanted creature has "At the end of your turn, sacrifice this creature unless it attacked this turn."
 id=88997
 name=Instill Furor
 rarity=U
@@ -1830,7 +1830,7 @@ subtype=Faerie Rogue
 toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {3}{B}{G}: Until end of turn, Svogthos, the Restless Tomb becomes a black and green Plant Zombie creature with &quot;This creature's power and toughness are each equal to the number of creature cards in your graveyard.&quot; It's still a land.
+text={T}: Add {1} to your mana pool.     {3}{B}{G}: Until end of turn, Svogthos, the Restless Tomb becomes a black and green Plant Zombie creature with "This creature's power and toughness are each equal to the number of creature cards in your graveyard." It's still a land.
 id=89045
 name=Svogthos, the Restless Tomb
 rarity=U

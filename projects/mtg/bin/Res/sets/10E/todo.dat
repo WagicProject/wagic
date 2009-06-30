@@ -29,7 +29,7 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has &quot;{T}: This creature deals 1 damage to target creature or player.&quot;
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and has "{T}: This creature deals 1 damage to target creature or player."
 id=130530
 name=Arcane Teachings
 rarity=U
@@ -663,7 +663,7 @@ type=Sorcery
 mana={X}{2}{B}
 [/card]
 [card]
-text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change &quot;nonblack creature&quot; to &quot;nongreen creature&quot; or &quot;forestwalk&quot; to &quot;islandwalk.&quot; This effect doesn't end at end of turn.)
+text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change "nonblack creature" to "nongreen creature" or "forestwalk" to "islandwalk." This effect doesn't end at end of turn.)
 id=129644
 name=Mind Bend
 rarity=R

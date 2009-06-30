@@ -521,7 +521,7 @@ type=Sorcery
 mana={4}{W}
 [/card]
 [card]
-text=Until end of turn, target creature becomes black, gets +1/-1, and gains &quot;{B}: Regenerate this creature.&quot;
+text=Until end of turn, target creature becomes black, gets +1/-1, and gains "{B}: Regenerate this creature."
 id=23046
 name=Defiling Tears
 rarity=U
@@ -682,7 +682,7 @@ subtype=Merfolk
 toughness=3
 [/card]
 [card]
-text=Enchant permanent     If enchanted permanent is red or green, it has &quot;At the beginning of your upkeep, sacrifice this permanent unless you pay its mana cost.&quot;
+text=Enchant permanent     If enchanted permanent is red or green, it has "At the beginning of your upkeep, sacrifice this permanent unless you pay its mana cost."
 id=22997
 name=Essence Leak
 rarity=U
@@ -1658,7 +1658,7 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Defender (This creature can't attack.)  Kicker {1}{W} (You may pay an additional {1}{W} as you play this spell.)  If the kicker cost was paid, Prison Barricade comes into play with a +1/+1 counter on it and with &quot;Prison Barricade can attack as though it didn't have defender.&quot;
+text=Defender (This creature can't attack.)  Kicker {1}{W} (You may pay an additional {1}{W} as you play this spell.)  If the kicker cost was paid, Prison Barricade comes into play with a +1/+1 counter on it and with "Prison Barricade can attack as though it didn't have defender."
 id=22944
 name=Prison Barricade
 rarity=C
@@ -2938,7 +2938,7 @@ type=Instant
 mana={G}
 [/card]
 [card]
-text=All creatures have &quot;At the beginning of your upkeep, sacrifice this creature unless you pay 1 life.&quot;
+text=All creatures have "At the beginning of your upkeep, sacrifice this creature unless you pay 1 life."
 id=23188
 name=Vile Consumption
 rarity=R

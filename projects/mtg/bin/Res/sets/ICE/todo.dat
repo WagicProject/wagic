@@ -140,7 +140,7 @@ subtype=Hydra
 toughness=1
 [/card]
 [card]
-text={T}: Change the text of target white enchantment you control that doesn't have cumulative upkeep by replacing all instances of one color word with another. That enchantment gains &quot;Cumulative upkeep {1}.&quot; (For example, you may change &quot;counters black spells&quot; to &quot;counters blue spells.&quot;)
+text={T}: Change the text of target white enchantment you control that doesn't have cumulative upkeep by replacing all instances of one color word with another. That enchantment gains "Cumulative upkeep {1}." (For example, you may change "counters black spells" to "counters blue spells.")
 id=2495
 name=Balduvian Shaman
 rarity=C
@@ -233,7 +233,7 @@ mana={W}
 subtype=Aura
 [/card]
 [card]
-text={B}: Until end of turn, Bone Shaman gains &quot;Creatures dealt damage by Bone Shaman this turn can't be regenerated this turn.&quot;
+text={B}: Until end of turn, Bone Shaman gains "Creatures dealt damage by Bone Shaman this turn can't be regenerated this turn."
 id=2612
 name=Bone Shaman
 rarity=C
@@ -261,7 +261,7 @@ mana={3}{R}
 subtype=Aura
 [/card]
 [card]
-text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Green creatures have &quot;Cumulative upkeep {1}.&quot;
+text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Green creatures have "Cumulative upkeep {1}."
 id=2498
 name=Breath of Dreams
 rarity=U
@@ -309,7 +309,7 @@ type=Enchantment
 mana={1}{W}
 [/card]
 [card]
-text=Enchant land you control     Enchanted land has &quot;{W}{W}, {T}: Put a 0/1 white Caribou creature token into play.&quot;     Sacrifice a Caribou token: You gain 1 life.
+text=Enchant land you control     Enchanted land has "{W}{W}, {T}: Put a 0/1 white Caribou creature token into play."     Sacrifice a Caribou token: You gain 1 life.
 id=2671
 name=Caribou Range
 rarity=R
@@ -408,7 +408,7 @@ type=Enchantment
 mana={3}{R}{R}
 [/card]
 [card]
-text=Enchant creature card in a graveyard     When Dance of the Dead comes into play, if it's in play, it loses &quot;enchant creature card in a graveyard&quot; and gains &quot;enchant creature put into play with Dance of the Dead.&quot; Return enchanted creature card to play tapped under your control and attach Dance of the Dead to it. When Dance of the Dead leaves play, that creature's controller sacrifices it.     Enchanted creature gets +1/+1 and doesn't untap during its controller's untap step.      At the beginning of the upkeep of enchanted creature's controller, that player may pay {1}{B}. If he or she does, untap that creature.
+text=Enchant creature card in a graveyard     When Dance of the Dead comes into play, if it's in play, it loses "enchant creature card in a graveyard" and gains "enchant creature put into play with Dance of the Dead." Return enchanted creature card to play tapped under your control and attach Dance of the Dead to it. When Dance of the Dead leaves play, that creature's controller sacrifices it.     Enchanted creature gets +1/+1 and doesn't untap during its controller's untap step.      At the beginning of the upkeep of enchanted creature's controller, that player may pay {1}{B}. If he or she does, untap that creature.
 id=2442
 name=Dance of the Dead
 rarity=U
@@ -441,7 +441,7 @@ type=Sorcery
 mana={U}{B}
 [/card]
 [card]
-text=At end of combat, put a paralyzation counter on all creatures blocking or blocked by Dread Wight and tap those creatures. They gain &quot;If this creature has a paralyzation counter on it, it doesn't untap during its controller's untap step&quot; and &quot;{4}: Remove a paralyzation counter from this creature.&quot;
+text=At end of combat, put a paralyzation counter on all creatures blocking or blocked by Dread Wight and tap those creatures. They gain "If this creature has a paralyzation counter on it, it doesn't untap during its controller's untap step" and "{4}: Remove a paralyzation counter from this creature."
 id=2446
 name=Dread Wight
 rarity=R
@@ -452,7 +452,7 @@ subtype=Zombie
 toughness=4
 [/card]
 [card]
-text={1}{U}: Return target white or black creature card from your graveyard to play. That creature gains &quot;Cumulative upkeep {2}.&quot; If the creature would leave play, remove it from the game instead of putting it anywhere else.
+text={1}{U}: Return target white or black creature card from your graveyard to play. That creature gains "Cumulative upkeep {2}." If the creature would leave play, remove it from the game instead of putting it anywhere else.
 id=2502
 name=Dreams of the Dead
 rarity=U
@@ -460,7 +460,7 @@ type=Enchantment
 mana={3}{U}
 [/card]
 [card]
-text=At the beginning of your upkeep, sacrifice Drought unless you pay {W}{W}.     Spells cost an additional &quot;Sacrifice a Swamp&quot; to play for each black mana symbol in their mana costs.     Activated abilities cost an additional &quot;Sacrifice a Swamp&quot; to play for each black mana symbol in their activation costs.
+text=At the beginning of your upkeep, sacrifice Drought unless you pay {W}{W}.     Spells cost an additional "Sacrifice a Swamp" to play for each black mana symbol in their mana costs.     Activated abilities cost an additional "Sacrifice a Swamp" to play for each black mana symbol in their activation costs.
 id=2681
 name=Drought
 rarity=U
@@ -484,7 +484,7 @@ type=Enchantment
 mana={3}{B}{R}{G}
 [/card]
 [card]
-text=Enchant land you control     Enchanted land has &quot;{T}: Target blocking creature gets +1/+2 until end of turn.&quot;
+text=Enchant land you control     Enchanted land has "{T}: Target blocking creature gets +1/+2 until end of turn."
 id=2555
 name=Earthlore
 rarity=C
@@ -595,7 +595,7 @@ type=Instant
 mana={1}{B}{R}
 [/card]
 [card]
-text=Green creatures have &quot;This creature can't attack unless you sacrifice a land.&quot;
+text=Green creatures have "This creature can't attack unless you sacrifice a land."
 id=2726
 name=Flooded Woodlands
 rarity=R
@@ -916,7 +916,7 @@ subtype=Horse
 toughness=3
 [/card]
 [card]
-text=Enchant land you control     Enchanted land has &quot;{T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.&quot;
+text=Enchant land you control     Enchanted land has "{T}: Prevent the next 1 damage that would be dealt to target creature or player this turn."
 id=2572
 name=Hot Springs
 rarity=R
@@ -1450,7 +1450,7 @@ type=Enchantment
 mana={2}{R}
 [/card]
 [card]
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  {T}: Put a music counter on target creature. If it doesn't have &quot;At the beginning of your upkeep, destroy this creature unless you pay {1} for each music counter on it,&quot; it gains that ability.
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  {T}: Put a music counter on target creature. If it doesn't have "At the beginning of your upkeep, destroy this creature unless you pay {1} for each music counter on it," it gains that ability.
 id=2521
 name=Musician
 rarity=R
@@ -1461,7 +1461,7 @@ subtype=Human Wizard
 toughness=3
 [/card]
 [card]
-text=Enchant land you control     Cumulative upkeep {1}{U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Enchanted land has &quot;{T}: Target creature gets +2/+2 until end of turn.&quot;
+text=Enchant land you control     Cumulative upkeep {1}{U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Enchanted land has "{T}: Target creature gets +2/+2 until end of turn."
 id=2522
 name=Mystic Might
 rarity=R
@@ -1675,7 +1675,7 @@ type=Enchantment
 mana={U}{U}{U}
 [/card]
 [card]
-text=Black creatures have &quot;This creature can't attack unless you sacrifice a land.&quot;
+text=Black creatures have "This creature can't attack unless you sacrifice a land."
 id=2736
 name=Reclamation
 rarity=R
@@ -1787,7 +1787,7 @@ subtype=Skeleton
 toughness=3
 [/card]
 [card]
-text=Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change &quot;target black spell&quot; to &quot;target blue spell.&quot;) (This effect doesn't end at end of turn.)
+text=Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change "target black spell" to "target blue spell.") (This effect doesn't end at end of turn.)
 id=2535
 name=Sleight of Mind
 rarity=U
