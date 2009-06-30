@@ -1089,6 +1089,15 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
+text=Put a 1/1 green Saproling creature token into play for each card in your hand.
+auto=foreach(*|myhand)token(Saproling,Token Saproling,1/1,greeen)
+id=19871
+name=Spontaneous Generation
+rarity=R
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
 text=Squall deals 2 damage to each creature with flying.
 id=19636
 auto=damage:2 all(creature[flying])

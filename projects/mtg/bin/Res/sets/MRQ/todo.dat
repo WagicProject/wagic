@@ -1884,15 +1884,6 @@ type=Enchantment
 mana={1}{W}
 [/card]
 [card]
-text=Put a 1/1 green Saproling creature token into play for each card in your hand.
-id=19871
-name=Spontaneous Generation
-rarity=R
-type=Sorcery
-mana={3}{G}
-[/card]
-
-[card]
 text={2}: Squallmonger deals 1 damage to each creature with flying and each player. Any player may play this ability.
 id=19856
 name=Squallmonger
