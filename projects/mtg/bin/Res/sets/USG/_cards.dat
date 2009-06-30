@@ -848,6 +848,18 @@ power=2
 toughness=1
 [/card]
 [card]
+text={T}: Add {G} to your mana pool for each Elf in play.
+auto={T}:foreach(creature[Elf])add:{G}
+id=5823
+name=Priest of Titania
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
 text=Enchant creature      Enchanted creature has first strike.
 target=creature
 auto=first strike
@@ -899,6 +911,14 @@ rarity=U
 mana={2}{W}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text={T}: Add {W} to your mana pool for each enchantment you control.
+auto={T}:foreach(Enchantment|myinplay)add:{W}
+id=9674
+name=Serra's Sanctum
+rarity=R
+type=Legendary Land
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{R}: Shivan Hellkite deals 1 damage to target creature or player.
@@ -1060,6 +1080,15 @@ subtype=Giant
 power=4
 toughness=3
 abilities=haste
+[/card]
+[card]
+text={T}: Add {U} to your mana pool for each artifact you control.
+auto={T}:foreach(artifact|myinplay)add:{U}
+id=8883
+name=Tolarian Academy
+rarity=R
+type=Land
+abilities=legendary
 [/card]
 [card]
 text=Treefolk Seedlings's toughness is equal to the number of Forests you control.

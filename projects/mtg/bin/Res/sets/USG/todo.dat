@@ -1327,17 +1327,7 @@ rarity=U
 type=Enchantment
 mana={3}{W}
 [/card]
-[card]
-text={T}: Add {G} to your mana pool for each Elf in play.
-id=5823
-name=Priest of Titania
-rarity=C
-type=Creature
-mana={1}{G}
-power=1
-subtype=Elf Druid
-toughness=1
-[/card]
+
 [card]
 text=At the beginning of your upkeep, Purging Scythe deals 2 damage to the creature with the least toughness. If two or more creatures are tied for least toughness, you choose one.
 id=10649
@@ -1648,13 +1638,6 @@ type=Enchantment
 mana={2}{W}{W}
 [/card]
 [card]
-text={T}: Add {W} to your mana pool for each enchantment you control.
-id=9674
-name=Serra's Sanctum
-rarity=R
-type=Legendary Land
-[/card]
-[card]
 text=Defender (This creature can't attack.)  First strike     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5743
 name=Shimmering Barrier
@@ -1918,13 +1901,6 @@ mana={2}{G}
 power=1
 subtype=Elf Archer
 toughness=1
-[/card]
-[card]
-text={T}: Add {U} to your mana pool for each artifact you control.
-id=8883
-name=Tolarian Academy
-rarity=R
-type=Legendary Land
 [/card]
 [card]
 text=Discard all the cards in your hand, then draw that many cards.
