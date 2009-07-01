@@ -126,7 +126,7 @@ toughness=1
 [/card]
 [card]
 text=Sacrifice Elvish Eulogist: You gain 1 life for each Elf card in your graveyard.
-auto={s}:foreach(Elf|mygraveyard):life:1
+auto={s}:foreach(Elf|mygraveyard)life:1
 id=141804
 name=Elvish Eulogist
 rarity=C

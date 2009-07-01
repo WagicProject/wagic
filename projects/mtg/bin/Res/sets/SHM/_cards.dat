@@ -191,7 +191,7 @@ target=creature,player
 id=146013
 target=creature,player
 auto=foreach(swamp|myinplay):damage:1
-auto=foreach(swamp|myinplay):life:1
+auto=foreach(swamp|myinplay)life:1
 name=Corrupt
 rarity=U
 type=Sorcery
@@ -1025,9 +1025,9 @@ mana={4}{WU}{WU}
 [/card]
 [card]
 text=You gain 1 life for each tapped artifact, creature, and land you control.
-auto=foreach(creature[tapped]|myinplay):life:1
-auto=foreach(artifact[tapped]|myinplay):life:1
-auto=foreach(land[tapped]|myinplay):life:1
+auto=foreach(creature[tapped]|myinplay)life:1
+auto=foreach(artifact[tapped]|myinplay)life:1
+auto=foreach(land[tapped]|myinplay)life:1
 id=159410
 name=Toil to Renown
 rarity=C

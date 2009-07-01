@@ -218,7 +218,7 @@ toughness=3
 [/card]
 [card]
 text=When Kithkin Zealot comes into play, you gain 1 life for each black and/or red permanent target opponent controls.
-auto=foreach(*[red;black]|opponentinplay):life:1
+auto=foreach(*[red;black]|opponentinplay)life:1
 id=154346
 name=Kithkin Zealot
 rarity=C

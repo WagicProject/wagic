@@ -624,7 +624,7 @@ toughness=2
 [/card]
 [card]
 text=Remove all creature cards in all graveyards from the game. You gain 1 life for each card removed this way.
-auto=foreach(creature|graveyard):life:1
+auto=foreach(creature|graveyard)life:1
 auto=MoveTo(removedfromgame) all(creature|graveyard)
 id=19787
 name=Honor the Fallen

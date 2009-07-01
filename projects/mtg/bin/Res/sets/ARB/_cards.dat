@@ -46,7 +46,7 @@ power=4
 toughness=4
 text=Flying When Filigree Angel comes into play, you gain 3 life for each artifact you control.
 abilities=flying
-auto=foreach(artifact|myinplay):life:3
+auto=foreach(artifact|myinplay)life:3
 rarity=R
 [/card]
 [card]

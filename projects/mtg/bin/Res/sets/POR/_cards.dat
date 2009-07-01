@@ -499,7 +499,7 @@ subtype=Forest
 [/card]
 [card]
 text=You gain 1 life for each Forest in play.
-auto=foreach(Forest):life:1
+auto=foreach(Forest)life:1
 id=4297
 name=Fruition
 rarity=C
@@ -1094,7 +1094,7 @@ toughness=3
 [/card]
 [card]
 text=You gain 2 life for each Mountain target opponent controls.
-auto=foreach(Mountain|opponentinplay):life:2
+auto=foreach(Mountain|opponentinplay)life:2
 id=4391
 name=Renewing Dawn
 rarity=U
@@ -1245,7 +1245,7 @@ abilities=flying
 [/card]
 [card]
 text=You gain 3 life for each black creature target opponent controls.
-auto=foreach(creature[black]|opponentinplay):life:3
+auto=foreach(creature[black]|opponentinplay)life:3
 id=4397
 name=Starlight
 rarity=U
