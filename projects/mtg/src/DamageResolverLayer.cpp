@@ -122,7 +122,7 @@ void DamageResolverLayer::updateAllCoordinates(){
 }
 
 int DamageResolverLayer::updateCoordinates(MTGCardInstance * card){
-  DamagerDamaged * item;
+  DamagerDamaged * item = NULL;
   for (int i = 0; i < mCount; i++){
     item = (DamagerDamaged *)mObjects[i];
     if (item->card != card) item = NULL ;
