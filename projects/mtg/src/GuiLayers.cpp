@@ -145,11 +145,6 @@ void GuiLayers::Update(float dt, Player * currentPlayer){
   int isAI = currentPlayer->isAI();
   u32 key;
   while ((key = JGE::GetInstance()->ReadButton())){
-    GameObserver * game = GameObserver::GetInstance();
-    if (game->waitForExtraPayment && key == PSP_CTRL_CROSS){
-      game->waitForExtraPayment = NULL;
-      continue;
-    }
     for (int i=0; i<nbitems; i++){
 	    if (!isAI){
 	      if (0 != key)

@@ -180,4 +180,33 @@ class MTGLifelinkRule:public MTGAbility{
 };
 
 
+/* HUD Display */
+
+class HUDString {
+public:
+  string value;
+  int timestamp;
+  int quantity;
+  HUDString(string s, int ts):value(s),timestamp(ts){quantity = 1;};
+};
+
+class HUDDisplay:public MTGAbility{
+private:
+  list<HUDString *> events;
+  float timestamp;
+  float popdelay;
+  JLBFont * f;
+  float maxWidth;
+  int addEvent(string s);
+public:
+  int testDestroy();
+  int receiveEvent(WEvent * event);
+  void Update(float dt);
+  void Render();
+  HUDDisplay(int _id);
+  ~HUDDisplay();
+};
+
+
+
 #endif

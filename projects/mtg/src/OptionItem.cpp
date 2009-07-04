@@ -34,7 +34,15 @@ void OptionItem::Render(){
   renderer->FillRoundRect(x-5,y-2,SCREEN_WIDTH -x - 5,20,2,ARGB(150,50,50,50));
   mFont->DrawString(displayValue.c_str(),x,y);
   char buf[512];
-  sprintf(buf, "%i", value);
+  if (maxValue == 1){
+    if (value){
+      sprintf(buf, "yes");
+    }else{
+      sprintf(buf,"no");
+    }
+  }else{
+    sprintf(buf, "%i", value);
+  }
   mFont->DrawString(buf,SCREEN_WIDTH -10 ,y,JGETEXT_RIGHT);
 }
 

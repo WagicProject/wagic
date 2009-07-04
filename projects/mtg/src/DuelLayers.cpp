@@ -25,6 +25,8 @@ void DuelLayers::init(){
   actionLayer->Add(NEW MTGLegendRule(-1));
   actionLayer->Add(NEW MTGPersistRule(-1));
   actionLayer->Add(NEW MTGLifelinkRule(-1));
+  //Other display elements
+  actionLayer->Add(NEW HUDDisplay(-1));
 
   //2 Hand Layer
   MTGGuiHand * mGuiHand = NEW MTGGuiHand(3, GameObserver::GetInstance());

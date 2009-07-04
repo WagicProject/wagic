@@ -42,6 +42,11 @@ int ActionLayer::unstoppableRenderInProgress(){
 
 
 bool ActionLayer::CheckUserInput(u32 key){
+  GameObserver * g = GameObserver::GetInstance();
+  if (g->waitForExtraPayment && key == PSP_CTRL_CROSS){
+    game->waitForExtraPayment = NULL;
+    return 1;
+  }
   if (menuObject){
     return false;
   }

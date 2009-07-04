@@ -292,3 +292,94 @@ ostream& MTGMomirRule::toString(ostream& out) const
   out << "MTGMomirRule ::: pool : " << pool << " ; initialized : " << initialized << " ; textAlpha : " << textAlpha << " ; text " << text << " ; alreadyplayed : " << alreadyplayed << " ; collection : " << collection << "(";
   return MTGAbility::toString(out) << ")";
 }
+
+
+//HUDDisplay
+int HUDDisplay::testDestroy(){
+  return 0;
+}
+
+void HUDDisplay::Update(float dt){
+  timestamp += dt;
+  popdelay +=dt;
+  if (events.size()){
+    list<HUDString *>::iterator it = events.begin();
+    HUDString * hs = *it;
+    if (popdelay > 1 && timestamp - hs->timestamp > 2){ 
+      events.pop_front();
+      delete hs;
+      if (events.size()) popdelay = 0;
+    }
+  }else{
+    maxWidth = 0;
+  }
+}
+
+int HUDDisplay::addEvent(string s){
+  events.push_back(NEW HUDString(s, timestamp));
+  float width = f->GetStringWidth(s.c_str());
+  if (width > maxWidth) maxWidth = width;
+  return 1;
+}
+
+int HUDDisplay::receiveEvent(WEvent * event){
+
+  WEventZoneChange * ezc = dynamic_cast<WEventZoneChange*>(event);
+  if (ezc) {
+    int ok = 0;
+    for (int i = 0; i < 2 ; i++){
+      Player * p = game->players[i];
+      if (ezc->from == p->game->graveyard || ezc->to == p->game->graveyard ) ok = 1;
+    }
+    if (!ok) return 0;
+    char buffer[512];
+    sprintf(buffer,"%s goes to graveyard", ezc->card->getName());
+    string s = buffer;
+    return addEvent(s);
+  }
+
+  WEventDamage * ed = dynamic_cast<WEventDamage*>(event);
+  if (ed) {
+    char buffer[512];
+    sprintf(buffer, "%s: %i -> %s", ed->damage->source->getName(), ed->damage->damage, ed->damage->target->getDisplayName());
+    string s = buffer;
+    return addEvent(s);
+  }
+
+  return 0;
+}
+void HUDDisplay::Render(){
+  if (!events.size()) return;
+
+  f->SetColor(ARGB(255,255,255,255));
+
+  list<HUDString *>::reverse_iterator it;
+
+  float x0 = SCREEN_WIDTH-10-maxWidth-10;
+  float y0 = 20;
+  float size = events.size() * 16;
+  JRenderer * r = JRenderer::GetInstance();
+  r->FillRoundRect(x0,y0,maxWidth + 10,size,5,ARGB(50,0,0,0));
+
+  int i = 0;
+  for (it = events.rbegin(); it !=events.rend(); ++it){
+    HUDString * hs = *it;
+    f->DrawString(hs->value.c_str(),x0 + 5, y0 + 16 * i);
+    i++;
+  }
+}
+HUDDisplay::HUDDisplay(int _id):MTGAbility(_id, NULL){
+  timestamp = 0;
+  popdelay = 2;
+  f = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  maxWidth = 0;
+}
+  
+HUDDisplay::~HUDDisplay(){
+  list<HUDString *>::iterator it;
+  for (it = events.begin(); it !=events.end(); ++it){
+    HUDString * hs = *it;
+    delete hs;
+  }
+  events.clear();
+}

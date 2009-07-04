@@ -17,6 +17,7 @@ class Player: public Damageable{
  public:
   virtual void End();
   int typeAsTarget(){return TARGET_PLAYER;}
+  const char * getDisplayName();
   virtual int displayStack(){return 1;}
   JTexture * mAvatarTex;
   JQuad * mAvatar;

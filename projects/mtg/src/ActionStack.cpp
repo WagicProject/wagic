@@ -92,6 +92,10 @@ Spell::Spell(int id, MTGCardInstance * _source, Targetable * _targets[], int nb_
 }
 
 
+const char * Spell::getDisplayName(){
+  return source->getName();
+}
+
 Spell::~Spell(){
   SAFE_DELETE(cost);
 }
@@ -265,8 +269,13 @@ int ActionStack::addPutInGraveyard(MTGCardInstance * card){
 
 int ActionStack::addAbility(MTGAbility * ability){
   StackAbility * stackAbility = NEW StackAbility(mCount,ability);
-  addAction(stackAbility);
-  return 1;
+  int result = addAction(stackAbility);
+  if (!game->players[0]->isAI() && 
+     ability->source->controller()==game->players[0] && 
+     GameOptions::GetInstance()->values[OPTIONS_INTERRUPTMYABILITIES].getIntValue() == 0){
+       interruptDecision[0] = DONT_INTERRUPT;
+  }
+  return result;
 }
 
 int ActionStack::addDraw(Player * player, int nb_cards){
@@ -318,7 +327,13 @@ int ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[], in
   OutputDebugString(buf);
 #endif
   Spell * spell = NEW Spell(mCount,_source,_targets,_nbtargets, mana);
-  return addAction(spell);
+  int result =  addAction(spell);
+  if (!game->players[0]->isAI() && 
+     _source->controller()==game->players[0] && 
+     GameOptions::GetInstance()->values[OPTIONS_INTERRUPTMYSPELLS].getIntValue() == 0){
+       interruptDecision[0] = DONT_INTERRUPT;
+  }
+  return result;
 }
 
 

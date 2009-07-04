@@ -25,6 +25,12 @@ Player::~Player(){
   if (mAvatar) delete mAvatar;
 }
 
+const char * Player::getDisplayName(){
+  GameObserver  * g = GameObserver::GetInstance();
+  if (this == g->players[0]) return "Player 1";
+  return "Player 2";
+}
+
 MTGInPlay * Player::inPlay(){
   return game->inPlay;
 }

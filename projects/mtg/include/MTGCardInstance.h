@@ -56,6 +56,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   Player * owner;
   Counters * counters;
   int typeAsTarget(){return TARGET_CARD;}
+  const char * getDisplayName();
   MTGCardInstance * target;
   void addType(int type);
 

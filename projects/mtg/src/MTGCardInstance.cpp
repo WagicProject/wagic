@@ -108,6 +108,10 @@ void MTGCardInstance::initMTGCI(){
 }
 
 
+const char * MTGCardInstance::getDisplayName(){
+  return getName();
+}
+
 void MTGCardInstance::addType(int type){
   types[nb_types] = type;
   nb_types++;

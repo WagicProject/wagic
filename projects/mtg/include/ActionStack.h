@@ -53,6 +53,7 @@ class Interruptible: public PlayGuiObject, public Targetable{
   virtual void Render(){};
   int typeAsTarget(){return TARGET_STACKACTION;};
  Interruptible(int id,bool hasFocus = false):PlayGuiObject(id,40,x,y,hasFocus){state=NOT_RESOLVED;display=0;source=NULL;};
+ virtual const char *getDisplayName(){return "stack object";};
 #if defined (WIN32) || defined (LINUX)
   virtual void Dump();
 #endif
@@ -76,6 +77,7 @@ class Spell: public Interruptible, public TargetsList {
   ~Spell();
   int resolve();
   void Render();
+  const char *getDisplayName();
   virtual ostream& toString(ostream& out) const;
 };
 
@@ -122,6 +124,14 @@ class ActionStack :public GuiLayer{
   void unpackDamageStack(DamageStack * ds);
   void repackDamageStacks();
  public:
+
+   enum{
+     NOT_DECIDED = 0,
+     INTERRUPT = -1,
+     DONT_INTERRUPT = 1,
+     DONT_INTERRUPT_ALL = 2,
+   };
+
   int setIsInterrupting(Player * player);
   int count( int type = 0 , int state = 0 , int display = -1);
   Interruptible * getPrevious(Interruptible * next, int type = 0, int state = 0 , int display = -1);

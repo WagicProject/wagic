@@ -27,6 +27,8 @@ void GameStateOptions::Start()
   optionsList = NEW OptionsList();
   if (GameApp::HasMusic) optionsList->Add(NEW OptionItem(OPTIONS_MUSICVOLUME, "Music volume", 100, 10));
   optionsList->Add(NEW OptionItem(OPTIONS_SFXVOLUME, "SFX volume", 100, 10));
+  optionsList->Add(NEW OptionItem(OPTIONS_INTERRUPTMYSPELLS, "interrupt my spells"));
+  optionsList->Add(NEW OptionItem(OPTIONS_INTERRUPTMYABILITIES, "interrupt my abilities"));
   // WALDORF - added next line
   optionsList->Add(NEW OptionItem(OPTIONS_INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()) {

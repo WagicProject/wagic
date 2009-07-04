@@ -13,6 +13,8 @@ using std::string;
 #define OPTIONS_DIFFICULTY "difficulty"
 #define OPTIONS_CACHESIZE "cacheSize"
 #define OPTIONS_PLASMAEFFECT "plasmaEffect"
+#define OPTIONS_INTERRUPTMYSPELLS "interruptMySpells"
+#define OPTIONS_INTERRUPTMYABILITIES "interruptMyAbilities"
 
 // WALDORF - added
 #define OPTIONS_INTERRUPT_SECONDS "interruptSeconds"                         

@@ -8,6 +8,7 @@
 class Targetable{
  public:
   virtual int typeAsTarget() = 0;
+  virtual const char * getDisplayName() =0;
 };
 
 #endif
