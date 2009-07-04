@@ -9,6 +9,8 @@
 #include "../include/CardDescriptor.h"
 #include "../include/Counters.h"
 #include "../include/Subtypes.h"
+#include <algorithm>
+using namespace std;
 
 MTGCardInstance::MTGCardInstance(): MTGCard(), Damageable(0){
   LOG("==Creating MTGCardInstance==");
@@ -75,7 +77,7 @@ void MTGCardInstance::copy(MTGCardInstance * card){
 
 MTGCardInstance::~MTGCardInstance(){
   LOG("==Deleting MTGCardInstance==");
-  SAFE_DELETE(blockers);
+  SAFE_DELETE(untapBlockers);
   SAFE_DELETE(counters);
   SAFE_DELETE(previous);
   LOG("==Deleting MTGCardInstance Succesfull==");
@@ -88,7 +90,7 @@ void MTGCardInstance::initMTGCI(){
   doDamageTest = 1;
   belongs_to=NULL;
   tapped = 0;
-  blockers = NULL;
+  untapBlockers = NULL;
   untapping = 0;
   summoningSickness = 0;
   target = NULL;
@@ -111,9 +113,9 @@ void MTGCardInstance::addType(int type){
   nb_types++;
 }
 
-Blockers * MTGCardInstance::getBlockers(){
-  if (!blockers) blockers = NEW Blockers();
-  return blockers;
+UntapBlockers * MTGCardInstance::getUntapBlockers(){
+  if (!untapBlockers) untapBlockers = NEW UntapBlockers();
+  return untapBlockers;
 }
 
 int MTGCardInstance::isInPlay(){
@@ -238,6 +240,7 @@ int MTGCardInstance::initAttackersDefensers(){
   attacker = 0;
   defenser = NULL;
   banding = NULL;
+  blockers.clear();
   return 1;
 }
 
@@ -437,6 +440,37 @@ int MTGCardInstance::nbOpponents(){
   }
   return result;
 }
+
+MTGCardInstance * MTGCardInstance::getNextDefenser(MTGCardInstance * previous){
+  int found_previous = 0;
+  if (!previous) found_previous = 1;
+  list<MTGCardInstance *>::iterator it;
+  for (it= blockers.begin(); it != blockers.end(); ++it){
+    MTGCardInstance * c = *it;
+    if (found_previous && c->isInPlay()) return c;
+    if (c == previous) found_previous = 1;
+  }
+  return NULL;
+}
+
+int MTGCardInstance::moveBlockerInRow(MTGCardInstance * blocker){
+  list<MTGCardInstance *>::iterator it1 = find(blockers.begin(), blockers.end(), blocker);
+  list<MTGCardInstance *>::iterator it2 = it1;
+  if (it2 != blockers.end()) it2++;
+  if (it2 == blockers.end()) it2 = blockers.begin();
+
+  blockers.splice( it2, blockers, it1 ); // move a before b, invalidates a
+  char buffer[512];
+  OutputDebugString("===Outputing blockers\n");
+  for (it1 = blockers.begin(); it1 != blockers.end(); it1++){
+    MTGCardInstance * c = *it1;
+    sprintf(buffer, "%p-", c);
+    OutputDebugString(buffer);
+  }
+  OutputDebugString("\n===End Outputing blockers\n");
+  return 1;
+}
+
 //Returns opponents to this card for this turn. This * should * take into account banding
 MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous){
   GameObserver * game = GameObserver::GetInstance();
@@ -474,7 +508,12 @@ MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous){
 int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent){
   if (canBlock()){
     if (canBlock(opponent)){
+      if (defenser) defenser->blockers.remove(this);
       defenser = opponent;
+      if (defenser){
+        defenser->blockers.push_back(this);
+      }
+      GameObserver::GetInstance()->blockersSorted = false;
       return 1;
     }
   }

@@ -8,8 +8,8 @@ int ConstraintResolver::untap(GameObserver * game, MTGCardInstance * card){
   }
   int ok = 1;
   ManaCost * untapManaCost = NEW ManaCost();
-  Blockers * blockers = card->getBlockers();
-  Blocker * blocker;
+  UntapBlockers * blockers = card->getUntapBlockers();
+  UntapBlocker * blocker;
   blockers->rewind();
   Player * player = game->currentPlayer;
   while ((blocker = blockers->next())){

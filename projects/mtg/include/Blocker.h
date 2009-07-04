@@ -12,7 +12,7 @@ class ManaCost;
 class GameObserver;
 class MTGAbility;
 
-class Blocker : public MTGAbility {
+class UntapBlocker : public MTGAbility {
  protected:
   ManaCost * manaCost;
   int currentPhase;
@@ -20,28 +20,28 @@ class Blocker : public MTGAbility {
  public:
   virtual ManaCost * untapManaCost(){return manaCost;};
   virtual int unblock(){return 1;};
-  Blocker(int id, MTGCardInstance * card, ManaCost * _cost);
-  Blocker(int id, MTGCardInstance * card);
-  Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target);
-  Blocker(int id, MTGCardInstance * card, MTGCardInstance *_target, ManaCost * _cost);
-  ~Blocker();
+  UntapBlocker(int id, MTGCardInstance * card, ManaCost * _cost);
+  UntapBlocker(int id, MTGCardInstance * card);
+  UntapBlocker(int id, MTGCardInstance * card, MTGCardInstance *_target);
+  UntapBlocker(int id, MTGCardInstance * card, MTGCardInstance *_target, ManaCost * _cost);
+  ~UntapBlocker();
   virtual void Update(float dt);
   virtual int destroy();
 };
 
 
-class Blockers {
+class UntapBlockers {
  protected:
   int cursor;
   int blockers[MAX_BLOCKERS];
   GameObserver * game;
  public:
-  Blockers();
-  ~Blockers();
-  int Add (Blocker * ability);
-  int Remove (Blocker * ability);
+  UntapBlockers();
+  ~UntapBlockers();
+  int Add (UntapBlocker * ability);
+  int Remove (UntapBlocker * ability);
   int init();
-  Blocker * next();
+  UntapBlocker * next();
   int rewind();
   int isEmpty();
 };

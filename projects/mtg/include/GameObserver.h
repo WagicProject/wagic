@@ -28,10 +28,11 @@ class GameObserver{
   int nbPlayers;
   int currentPlayerId;
   int currentRound;
-
+  int blockersAssigned;
 
   
  public:
+  int blockersSorted;
   int forceShuffleLibrary[2];
   int turn;
   int forceShuffleLibraries();

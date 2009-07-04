@@ -17,11 +17,12 @@ class MTGAbility;
 class MTGCard;
 class TexturesCache;
 class ManaCost;
-class Blockers;
+class UntapBlockers;
 class CardDescriptor;
 class Counters;
 
-
+#include <list>
+using namespace std;
 
 class MTGCardInstance: public MTGCard, public Damageable {
  protected:
@@ -31,9 +32,9 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int tapped;
 
   int lifeOrig;
-  Blockers * blockers;
+  UntapBlockers * untapBlockers;
   MTGPlayerCards * belongs_to;
-  MTGAbility * UntapBlockers[10];
+  MTGAbility * untapBlockerAbilities[10];
   void unband();
   MTGCardInstance * getNextPartner();
   void initMTGCI();
@@ -51,38 +52,47 @@ class MTGCardInstance: public MTGCard, public Damageable {
   // The recommended method to test for summoning Sickness !
   int hasSummoningSickness();
   MTGCardInstance * changeController(Player * newcontroller);
-  MTGCardInstance * defenser;
   float changedZoneRecently;
   Player * owner;
   Counters * counters;
   int typeAsTarget(){return TARGET_CARD;}
-  int attacker;
-  MTGCardInstance * banding; // If belongs to a band when attacking
   MTGCardInstance * target;
   void addType(int type);
+
+  //Combat
+  MTGCardInstance * defenser;
+  list<MTGCardInstance *>blockers;
+  int attacker;
+  int toggleDefenser(MTGCardInstance * opponent);
+  int moveBlockerInRow(MTGCardInstance * blocker);
+  int toggleAttacker();
+  MTGCardInstance * banding; // If belongs to a band when attacking
   int canBlock();
   int canBlock(MTGCardInstance * opponent);
   int canAttack();
+  int isAttacker();
+  MTGCardInstance * isDefenser();
+  int initAttackersDefensers();
+  MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
+  MTGCardInstance * getNextDefenser(MTGCardInstance * previous=NULL);
+  int nbOpponents();
+
   int afterDamage();
 
   int has(int ability);
   int cleanup();
   int reset();
-  int isAttacker();
-  MTGCardInstance * isDefenser();
-  int toggleDefenser(MTGCardInstance * opponent);
-  int toggleAttacker();
+
+
   MTGCard * model;
   MTGCardInstance();
   MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to);
-  Blockers * getBlockers();
+  UntapBlockers * getUntapBlockers();
   int regenerate();
   int triggerRegenerate();
   Player * controller();
   JQuad * getIcon();
-  int initAttackersDefensers();
-  MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
-  int nbOpponents();
+
   ~MTGCardInstance();
   int bury();
   int destroy();

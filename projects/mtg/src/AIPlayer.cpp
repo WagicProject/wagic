@@ -474,10 +474,59 @@ int AIPlayer::chooseBlockers(){
   return 1;
 }
 
+int AIPlayer::orderBlockers(){
+  GameObserver * g = GameObserver::GetInstance();
+  DamageResolverLayer *  drl = g->mLayers->combatLayer();
+  if (drl->orderingIsNeeded && g->currentPlayer==this){
+    drl->blockersOrderingDone(); //TODO clever rank of blockers
+    return 1;
+  }
+  return 0;
+}
+
+
+
 int AIPlayer::combatDamages(){
   int result = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
   int currentGamePhase = gameObs->getCurrentGamePhase();
+
+  if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS) return orderBlockers();
+
+  if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
+  DamageResolverLayer *  drl = gameObs->mLayers->combatLayer();
+
+  if (drl->currentChoosingPlayer == this){
+    for (int i = 0; i < drl->mCount; i++){
+      DamagerDamaged * current = (DamagerDamaged *) drl->mObjects[i];
+      if (current->damageSelecter == this){
+        OutputDebugString("YEs, AI IS THE DAMAGE DEALER");
+        MTGCardInstance * attacker = current->card;
+        MTGCardInstance * canardEmissaire = *(attacker->blockers.rbegin());
+        
+        while (canardEmissaire && current->damageToDeal){
+          drl->clickDamage(canardEmissaire);
+        }
+        result = 1;
+        
+      }
+    }
+  }
+
+  
+  if (result) return drl->nextPlayer();
+  return 0;
+
+}
+
+/*
+int AIPlayer::combatDamages(){
+  int result = 0;
+  GameObserver * gameObs = GameObserver::GetInstance();
+  int currentGamePhase = gameObs->getCurrentGamePhase();
+
+  if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS) return orderBlockers();
+
   if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
   DamageResolverLayer *  drl = gameObs->mLayers->combatLayer();
 #if defined (WIN32) || defined (LINUX)
@@ -524,6 +573,7 @@ int AIPlayer::combatDamages(){
 	}
       }
     }
+
     if (result){
       drl->nextPlayer();
     }
@@ -531,6 +581,7 @@ int AIPlayer::combatDamages(){
   return result;
 
 }
+*/
 
 AIStats * AIPlayer::getStats(){
   if (!stats){

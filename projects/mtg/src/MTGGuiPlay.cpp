@@ -91,9 +91,17 @@ void MTGGuiPlay::initCardsDisplay(){
     }
   }
   cards_x_limit = 12;
-  nb_creatures = 0;
-  nb_lands = 0;
-  nb_spells = 0;
+  for (int i = 0; i < 2; i++){
+    nb_creatures[i] = 0;
+    nb_lands[i] = 0;
+    nb_spells[i] = 0;
+  }
+
+  for (int i = 6; i < mCount; i++){
+    CardGui * cardg = (CardGui *)mObjects[i];
+    cardg->x = 0;
+    cardg->y = 0;
+  }
 }
 
 
@@ -111,43 +119,64 @@ void MTGGuiPlay::adjustCardPosition(CardGui * cardg){
 }
 
 void MTGGuiPlay::setCardPosition(CardGui * cardg, int player, int playerTurn, int spellMode){
+  GameObserver * g = GameObserver::GetInstance();
   MTGCardInstance * card = cardg->card;
+  if (!(cardg->x ==0 && cardg->y ==0)) return ;
   if (card->target)
     return;
   if (spellMode && (card->isACreature() || card->hasType("land"))) return;
   if (!spellMode && !card->isACreature() && !card->hasType("land")) return;
   if (card->isACreature()){
-    int x_offset = nb_creatures % cards_x_limit;
-    int y_offset = nb_creatures / cards_x_limit;
+    int x_offset = nb_creatures[player] % cards_x_limit;
+    int y_offset = nb_creatures[player] / cards_x_limit;
     cardg->x= ZX_MAIN + (Z_CARDWIDTH * x_offset);
     cardg->y=ZY_MAIN +  ZH_CREATURES + (Z_CARDHEIGHT * y_offset) + 100 * (1-player);
-    nb_creatures++;
+    nb_creatures[player]++;
 
     if (playerTurn){
       if (card->isAttacker()){
-	cardg->y=122 + 30 * (1-player);
+	      cardg->y=122 + 30 * (1-player);
+        //Sets position of opponents as well
+        if (player == 1){
+          for (list<MTGCardInstance *>::iterator it= card->blockers.begin(); it !=card->blockers.end() ; ++it){
+            CardGui * c = getByCard(*it);
+            if (c) {
+              setCardPosition(c,1-player,1-playerTurn,spellMode);
+              adjustCardPosition(c);
+            }
+          }
+        }else{
+          for (list<MTGCardInstance *>::reverse_iterator it= card->blockers.rbegin(); it !=card->blockers.rend() ; ++it){
+            CardGui * c = getByCard(*it);
+            if (c) {
+              setCardPosition(c,1-player,1-playerTurn,spellMode);
+              adjustCardPosition(c);
+            }
+          }
+        }
+        
       }
     }else{
       if (card->isDefenser()){
-	CardGui * targetg = getByCard(card->isDefenser());
-	if (targetg) cardg->x = targetg->x;
-	cardg->y=122 + 30 * (1-player);
+	      CardGui * targetg = getByCard(card->isDefenser());
+	      if (targetg) cardg->x = targetg->x;
+	      cardg->y=122 + 30 * (1-player);
       }
     }
 
   }else if(card->hasType("land")){
-    int x_offset = nb_lands % cards_x_limit;
-    int y_offset = nb_lands/ cards_x_limit;
+    int x_offset = nb_lands[player] % cards_x_limit;
+    int y_offset = nb_lands[player] / cards_x_limit;
     cardg->x=ZX_MAIN + (Z_CARDWIDTH * x_offset);
     cardg->y=ZY_MAIN + (Z_CARDHEIGHT * y_offset) + 200 * (1-player);
-    nb_lands++;
+    nb_lands[player]++;
   }else{
-    int y_offset = nb_spells % Z_SPELLS_NBCARDS;
-    int x_offset = nb_spells/ Z_SPELLS_NBCARDS;
+    int y_offset = nb_spells[player] % Z_SPELLS_NBCARDS;
+    int x_offset = nb_spells[player] / Z_SPELLS_NBCARDS;
     cardg->x=ZX_SPELL - (Z_CARDWIDTH * x_offset);
     cardg->y=ZY_SPELL + (Z_CARDHEIGHT * y_offset) + 125 * (1-player);
-    nb_spells++;
-    cards_x_limit = 12 - (nb_spells + 2)/ Z_SPELLS_NBCARDS;
+    nb_spells[player]++;
+    cards_x_limit = 12 - (nb_spells[player] + 2)/ Z_SPELLS_NBCARDS;
   }
   adjustCardPosition(cardg);
 }
@@ -208,6 +237,7 @@ int MTGGuiPlay::receiveEvent(WEvent *event){
   }
   if (!ok) return 0;
   forceUpdateCards();
+  updateCards();
   return 1;
 }
 
@@ -229,25 +259,27 @@ void MTGGuiPlay::updateCards(){
 
 
   //This is just so that we display the cards of the current player first, so that blockers are correctly positionned
+  initCardsDisplay();
   for (int j= 0; j < 2; j++){
-    initCardsDisplay();
     if (j != player0Mode){
       for (int i =0; i<nb_cards; i++){
-	CardGui * cardGui = (CardGui *)mObjects[i + offset];
-	setCardPosition(cardGui, 0, player0Mode, 1);
+	      CardGui * cardGui = (CardGui *)mObjects[i + offset];
+	      setCardPosition(cardGui, 0, player0Mode, 1);
       }
       for (int i =0; i<nb_cards; i++){
-	CardGui * cardGui = (CardGui *)mObjects[i + offset];
-	setCardPosition(cardGui, 0, player0Mode, 0);
+	      CardGui * cardGui = (CardGui *)mObjects[i + offset];
+        MTGCardInstance * card = cardGui->card;
+        setCardPosition(cardGui, 0, player0Mode, 0);
       }
     }else{
       for (int i =0; i<opponent_cards; i++){
-	CardGui * cardGui = (CardGui *)mObjects[nb_cards + i + offset];
-	setCardPosition(cardGui, 1, !player0Mode,1);
+	      CardGui * cardGui = (CardGui *)mObjects[nb_cards + i + offset];
+	      setCardPosition(cardGui, 1, !player0Mode,1);
       }
       for (int i =0; i<opponent_cards; i++){
-	CardGui * cardGui = (CardGui *)mObjects[nb_cards + i + offset];
-	setCardPosition(cardGui, 1, !player0Mode,0);
+	      CardGui * cardGui = (CardGui *)mObjects[nb_cards + i + offset];
+	      MTGCardInstance * card = cardGui->card;
+        setCardPosition(cardGui, 1, !player0Mode,0);
       }
     }
   }

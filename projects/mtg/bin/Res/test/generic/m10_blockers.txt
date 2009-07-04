@@ -1,0 +1,28 @@
+#New blockers reordering rule
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Puppeteer
+[PLAYER2]
+inplay:raging goblin,Drudge Skeletons
+[DO]
+Puppeteer
+next
+#blockers
+raging goblin
+Drudge Skeletons
+next
+#blockers order
+Drudge Skeletons
+next
+#combat damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:Puppeteer
+[PLAYER2]
+graveyard:Drudge Skeletons
+inplay:raging goblin
+[END]

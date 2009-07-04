@@ -234,6 +234,7 @@ void CardGui::Update(float dt){
   if (card->changedZoneRecently){
     if (mParticleSys) mParticleSys->Update(dt);
     card->changedZoneRecently-= (5 *dt);
+    if (card->changedZoneRecently == 0) card->changedZoneRecently-= dt;//must not become zero atm
     if (card->changedZoneRecently < 0){
       if (mParticleSys)  mParticleSys->Stop();
     }

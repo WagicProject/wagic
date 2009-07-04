@@ -15,9 +15,9 @@ class MTGGuiPlay: public PlayGuiObjectController {
   int offset;
   Player * currentPlayer;
   MTGCardInstance * cardsGrid[SCREEN_WIDTH/5][SCREEN_HEIGHT/5];
-  int nb_creatures;
-  int nb_spells;
-  int nb_lands;
+  int nb_creatures[2];
+  int nb_spells[2];
+  int nb_lands[2];
   int cards_x_limit;
 
   JQuad * phaseIcons[24];

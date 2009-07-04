@@ -1,7 +1,9 @@
 #include "../include/config.h"
 #include "../include/DamagerDamaged.h"
 
-
+/*
+Temporary objects that store the damages dealt to/from creatures during the combat phase
+*/
 
 
 DamagerDamaged::DamagerDamaged(CardGui * cardg, Player * _damageSelecter, bool _hasFocus):CardGui(0, cardg->card,cardg->defaultHeight,cardg->x,cardg->y, _hasFocus){
@@ -26,7 +28,7 @@ int DamagerDamaged::sumDamages(){
 }
 
 int DamagerDamaged::hasLethalDamage(){
-  if (sumDamages() >= card->toughness) return 1;
+  if (sumDamages() >= card->life) return 1;
   return 0;
 }
 

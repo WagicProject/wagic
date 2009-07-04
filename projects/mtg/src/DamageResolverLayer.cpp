@@ -12,17 +12,22 @@ DamageResolverLayer::DamageResolverLayer(int id, GameObserver * _game):PlayGuiOb
   currentSource = NULL;
   buttonOk = 0;
   currentChoosingPlayer = NULL;
+  orderingIsNeeded = 0;
 }
 void DamageResolverLayer::Update(float dt){
   int newPhase = game->getCurrentGamePhase();
+  if (newPhase == Constants::MTG_PHASE_UNTAP){
+    orderingIsNeeded = 0;
+    game->blockersSorted = 0;
+  }
   if (newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
     if (!game->mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)){
-
       if (newPhase != currentPhase){
-	init();
+	      init();
       }
       if (remainingDamageSteps && empty()){
-	initResolve();
+        OutputDebugString("Combat Damage STEP\n");
+	      initResolve();
       }
     }
   }else{
@@ -32,6 +37,26 @@ void DamageResolverLayer::Update(float dt){
   PlayGuiObjectController::Update(dt);
 }
 
+
+int DamageResolverLayer::autoOrderBlockers(){
+  resetObjects();
+  MTGInPlay * attackers = game->currentPlayer->game->inPlay;
+ MTGCardInstance * attacker = attackers->getNextAttacker(NULL);
+  while (attacker != NULL){
+    if (attacker->blockers.size() > 1){
+      orderingIsNeeded = 1;
+      Player * p = attacker->controller();
+      addIfNotExists(attacker, p);
+      list<MTGCardInstance *>::iterator it;
+      for (it= attacker->blockers.begin(); it != attacker->blockers.end(); ++it){
+        addIfNotExists(*it, p);
+      }
+    }
+    attacker = attackers->getNextAttacker(attacker);
+  }
+  game->blockersSorted = 1;
+  return 1 - orderingIsNeeded;
+};
 
 Player * DamageResolverLayer::whoSelectsDamagesDealtBy(MTGCardInstance * card){
   if (card->controller() == game->currentPlayer){ //Attacker
@@ -75,41 +100,66 @@ int DamageResolverLayer::addAutoDamageToOpponents(MTGCardInstance * card){
 }
 
 
-int DamageResolverLayer::addIfNotExists(MTGCardInstance * card, Player * selecter){
+DamagerDamaged * DamageResolverLayer::addIfNotExists(MTGCardInstance * card, Player * selecter){
   for (int i = 0; i < mCount; i++){
     DamagerDamaged * item = (DamagerDamaged *)mObjects[i];
-    if (item->card == card) return 0;
+    if (item->card == card) return item;
   }
   CardGui * cardg = game->mLayers->playLayer()->getByCard(card);
   DamagerDamaged * item = NEW DamagerDamaged(cardg, selecter, mCount == 0);
   Add(item);
   mCurr = 0;
+  return item;
+}
+
+void DamageResolverLayer::updateAllCoordinates(){
+  for (int i = 0; i < mCount; i++){
+    DamagerDamaged * item = (DamagerDamaged *)mObjects[i];
+    CardGui * cardg = game->mLayers->playLayer()->getByCard(item->card);
+    item->x = cardg->x;
+    item->y = cardg->y;
+  }
+}
+
+int DamageResolverLayer::updateCoordinates(MTGCardInstance * card){
+  DamagerDamaged * item;
+  for (int i = 0; i < mCount; i++){
+    item = (DamagerDamaged *)mObjects[i];
+    if (item->card != card) item = NULL ;
+  }
+  if (!item) return 0;
+  CardGui * cardg = game->mLayers->playLayer()->getByCard(card);
+  item->x = cardg->x;
+  item->y = cardg->y;
   return 1;
 }
 
 
 //Adds a card and all its opponents to the Damagers' list
 int DamageResolverLayer::addDamager(MTGCardInstance * card, Player * selecter){
-  addIfNotExists(card, selecter);
+   DamagerDamaged * me = addIfNotExists(card, selecter);
   if (card->controller() == game->currentPlayer){ //Attacker
     MTGInPlay * defensers = game->opponent()->game->inPlay;
     MTGCardInstance * defenser = defensers->getNextDefenser(NULL, card);
     while (defenser != NULL){
-      addIfNotExists(defenser, whoSelectsDamagesDealtBy(defenser));
+      DamagerDamaged * item = addIfNotExists(defenser, whoSelectsDamagesDealtBy(defenser));
+      while (!item->hasLethalDamage() && me->dealOneDamage(item)){} //Add default damage to the card...
       defenser = defensers->getNextDefenser(defenser, card);
     }
   }else{ //Defenser
     MTGInPlay * attackers = game->currentPlayer->game->inPlay;
     MTGCardInstance * attacker = card->isDefenser();
-    addIfNotExists(attacker,whoSelectsDamagesDealtBy(attacker));
+    DamagerDamaged * item = addIfNotExists(attacker,whoSelectsDamagesDealtBy(attacker));
+    while (!item->hasLethalDamage() && me->dealOneDamage(item)){} //Add default damage to the card...
     MTGCardInstance * banding = attacker->banding;
     if (banding){
       attacker = attackers->getNextAttacker(NULL);
       while (attacker != NULL){
-	if (attacker->banding == banding){
-	  addIfNotExists(attacker,whoSelectsDamagesDealtBy(attacker));
-	}
-	attacker = attackers->getNextAttacker(attacker);
+	    if (attacker->banding == banding){
+	      item = addIfNotExists(attacker,whoSelectsDamagesDealtBy(attacker));
+        while (!item->hasLethalDamage() && me->dealOneDamage(item)){} //Add default damage to the card...
+	    }
+	    attacker = attackers->getNextAttacker(attacker);
       }
     }
   }
@@ -139,27 +189,23 @@ int DamageResolverLayer::initResolve(){
 
   MTGCardInstance * attacker = attackers->getNextAttacker(NULL);
   while (attacker != NULL){
-#if defined (WIN32) || defined (LINUX)
-    sprintf(buf, "attacker : %s \n", attacker->getName());
-    OutputDebugString(buf);
-#endif
-    if ((!strike && !attacker->has(Constants::FIRSTSTRIKE)) || (strike && attacker->has(Constants::FIRSTSTRIKE)) || attacker->has(Constants::DOUBLESTRIKE)){
-      Player * selecter = whoSelectsDamagesDealtBy(attacker);
-      if (!selecter){
-	addAutoDamageToOpponents(attacker);
+    if ((!strike && !attacker->has(Constants::FIRSTSTRIKE)) || (strike && attacker->has(Constants::FIRSTSTRIKE)) || attacker->has(Constants::DOUBLESTRIKE)){  
+      OutputDebugString("Attacker Damaging!\n"); 
+      if (Player * selecter = whoSelectsDamagesDealtBy(attacker)){
+	      addDamager(attacker, selecter);
       }else{
-	addDamager(attacker, selecter);
+        addAutoDamageToOpponents(attacker);
       }
     }
     MTGCardInstance * defenser = defensers->getNextDefenser(NULL, attacker);
     while (defenser != NULL){
-      if ((!strike && !defenser->has(Constants::FIRSTSTRIKE)) || (strike && defenser->has(Constants::FIRSTSTRIKE)) || defenser->has(Constants::DOUBLESTRIKE)){
-	Player * selecterb = whoSelectsDamagesDealtBy(defenser);
-	if (!selecterb){
-	  addAutoDamageToOpponents(defenser);
-	}else{
-	  addDamager(defenser, selecterb);
-	}
+      if ((!strike && !defenser->has(Constants::FIRSTSTRIKE)) || (strike && defenser->has(Constants::FIRSTSTRIKE)) || defenser->has(Constants::DOUBLESTRIKE)){       
+        OutputDebugString("Blocker Damaging!\n");  
+        if (Player * selecterb = whoSelectsDamagesDealtBy(defenser)){
+	        addDamager(defenser, selecterb);
+        }else{
+          addAutoDamageToOpponents(defenser);
+        }
       }
       defenser = defensers->getNextDefenser(defenser, attacker);
     }
@@ -177,7 +223,7 @@ int DamageResolverLayer::initResolve(){
     damageStack = NULL;
     modal = remainingDamageSteps;
   }else{
-    if (canStopDealDamages()) currentChoosingPlayer = game->opponent();
+    //nextPlayer();
   }
   return 1;
 }
@@ -199,22 +245,35 @@ DamagerDamaged * DamageResolverLayer::findByCard(MTGCardInstance * card){
 int DamageResolverLayer::canStopDealDamages(){
   for (int i = 0; i < mCount ; i ++){
     DamagerDamaged * current = (DamagerDamaged *) mObjects[i];
-    if (current->damageSelecter==currentChoosingPlayer && current->damageToDeal > 0){
-      MTGCardInstance * card = current->card;
+    MTGCardInstance * card = current->card;
+    if (current->damageSelecter==currentChoosingPlayer){
+      if (current->damageToDeal > 0){
+        if (card->controller() == game->currentPlayer){ //Attacker
+	        if (card->has(Constants::TRAMPLE)){
+	          MTGInPlay * defensers = game->opponent()->game->inPlay;
+	          MTGCardInstance * defenser = defensers->getNextDefenser(NULL, card);
+	          while (defenser != NULL){
+	            DamagerDamaged * _defenser = findByCard(defenser);
+	            if (!_defenser->hasLethalDamage()) return 0;
+	            defenser = defensers->getNextDefenser(defenser, card);
+	          }
+	        }else{
+	          return 0;
+	        }
+        }else{ //Defenser
+	        return 0;
+        }
+      }
       if (card->controller() == game->currentPlayer){ //Attacker
-	if (card->has(Constants::TRAMPLE)){
-	  MTGInPlay * defensers = game->opponent()->game->inPlay;
-	  MTGCardInstance * defenser = defensers->getNextDefenser(NULL, card);
-	  while (defenser != NULL){
-	    DamagerDamaged * _defenser = findByCard(defenser);
-	    if (!_defenser->hasLethalDamage()) return 0;
-	    defenser = defensers->getNextDefenser(defenser, card);
-	  }
-	}else{
-	  return 0;
-	}
-      }else{ //Defenser
-	return 0;
+        //check that blockers have lethal damage
+        list<MTGCardInstance *>::iterator it;
+        int found_non_lethal = 0;
+        for (it= card->blockers.begin(); it != card->blockers.end(); ++it){
+          MTGCardInstance * c = *it;
+          DamagerDamaged * defenser = findByCard(c);
+          if (found_non_lethal && defenser->sumDamages()) return 0;
+          if (!defenser->hasLethalDamage()) found_non_lethal = 1;
+        }
       }
     }
   }
@@ -274,44 +333,95 @@ int DamageResolverLayer::isOpponent(DamagerDamaged * a, DamagerDamaged * b){
   return 0;
 }
 
-void DamageResolverLayer::nextPlayer(){
+int DamageResolverLayer::nextPlayer(){
+  if (!canStopDealDamages()) return 0;
   if (currentChoosingPlayer == game->currentPlayer){
     currentChoosingPlayer = game->opponent();
-    if (canStopDealDamages()) resolveDamages();
-  }else{
-    resolveDamages();
   }
 
+  resolveDamages();
+  return 1;
+
 }
+
+bool DamageResolverLayer::blockersOrderingDone(){
+    orderingIsNeeded = 0;
+    game->blockersSorted = 1;
+    resetObjects();
+    return true;
+}
+
+bool DamageResolverLayer::clickReorderBlocker(MTGCardInstance * blocker){
+  if (!blocker->defenser) return false;
+  MTGCardInstance * attacker = blocker->defenser;
+  attacker->moveBlockerInRow(blocker);
+  list<MTGCardInstance *>::iterator it;
+  return true;
+}
+
+bool DamageResolverLayer::checkUserInputOrderBlockers(u32 key){
+  if (PSP_CTRL_CIRCLE == key) {
+    if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
+      DamagerDamaged * current = (DamagerDamaged *) mObjects[mCurr];
+      MTGCardInstance * blocker = current->card;
+      return clickReorderBlocker(blocker);
+    } 
+    return false;
+  }else if (PSP_CTRL_SQUARE == key){
+    return blockersOrderingDone();
+  }else{
+    return PlayGuiObjectController::CheckUserInput(key);
+  }
+}
+
+bool DamageResolverLayer::clickDamage(MTGCardInstance *c){
+  DamagerDamaged * current = findByCard(c);
+  return clickDamage(current);
+}
+
+bool DamageResolverLayer::clickDamage(DamagerDamaged * current){
+  if (!current) return false;
+  if (!currentSource || !isOpponent(current,currentSource)){
+    for (int i = 0; i < mCount; i++){
+      DamagerDamaged * _current = (DamagerDamaged *) mObjects[i];
+      if (isOpponent(current,_current)){
+        currentSource = _current;
+        break;
+      }
+    }
+  }
+  if (currentSource){
+    if (currentSource->damageSelecter == currentChoosingPlayer){
+      if (isOpponent(current,currentSource)){
+        MTGCardInstance * card = currentSource->card;
+        list<MTGCardInstance *>::iterator it = card->blockers.begin();
+        while (it!= card->blockers.end() && *it!=current->card){
+          DamagerDamaged * item = findByCard(*it);
+          while (!item->hasLethalDamage() && currentSource->dealOneDamage(item)){} //Add default damage to the card...
+          it++;
+        }
+        if (!currentSource->dealOneDamage(current)){
+          currentSource->removeDamagesTo(current);
+        }
+      }     
+    }
+  }else{
+    if (current->damageSelecter == currentChoosingPlayer){
+      currentSource = current;
+    }
+  }
+  return true;
+}
+
 bool DamageResolverLayer::CheckUserInput(u32 key){
   if (!mCount) return false;
+  if (orderingIsNeeded) return checkUserInputOrderBlockers(key);
   if (PSP_CTRL_CIRCLE == key){
     if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
       DamagerDamaged * current = (DamagerDamaged *) mObjects[mCurr];
-      if (!currentSource || !isOpponent(current,currentSource)){
-	for (int i = 0; i < mCount; i++){
-	  DamagerDamaged * _current = (DamagerDamaged *) mObjects[i];
-	  if (isOpponent(current,_current)){
-	    currentSource = _current;
-	    break;
-	  }
-	}
-      }
-      if (currentSource){
-	if (currentSource->damageSelecter == currentChoosingPlayer){
-	  if (isOpponent(current,currentSource)){
-	    if (!currentSource->dealOneDamage(current)){
-	      currentSource->removeDamagesTo(current);
-	    }
-	  }
-	}
-      }else{
-	if (current->damageSelecter == currentChoosingPlayer){
-	  currentSource = current;
-	}
-      }
-      buttonOk = 0;
-      if (canStopDealDamages()) buttonOk = 1;
+      return clickDamage(current);
+      //buttonOk = 0;
+      //if (canStopDealDamages()) buttonOk = 1;
     }
     return true;
   }else if (PSP_CTRL_CROSS == key){
@@ -323,11 +433,7 @@ bool DamageResolverLayer::CheckUserInput(u32 key){
       return true;
     }
   }else if (PSP_CTRL_SQUARE == key){
-    if (canStopDealDamages()){
-      nextPlayer();
-      //switch to next player or end of selection
-    }
-    return true;
+    return nextPlayer();
   }else{
     return PlayGuiObjectController::CheckUserInput(key);
   }
@@ -336,15 +442,16 @@ bool DamageResolverLayer::CheckUserInput(u32 key){
 
 void DamageResolverLayer::Render(){
   if (!mCount) return;
+  updateAllCoordinates(); //this is dirty :(
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
 
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->FillRect(0 ,0 , SCREEN_WIDTH , SCREEN_HEIGHT , ARGB(200,0,0,0));
   if (currentChoosingPlayer == game->currentPlayer){
-    mFont->DrawString("Player 1", 0,0);
+    mFont->DrawString("Attacking Player", 0,0);
   }else{
-    mFont->DrawString("Player 2", 0,0);
+    mFont->DrawString("Blocking Player", 0,0);
   }
   if (currentSource){
     currentSource->RenderBig(10, 20);
@@ -358,7 +465,8 @@ void DamageResolverLayer::Render(){
   }
 
 
-  if (buttonOk){
+  if (currentPhase == Constants::MTG_PHASE_COMBATDAMAGE && canStopDealDamages()){
     mFont->DrawString("Damages Assigned, Click Square to Continue", 250, 5);
   }
+  if (orderingIsNeeded) mFont->DrawString("Order blockers, then Click Square to Continue", 200, 5);
 }

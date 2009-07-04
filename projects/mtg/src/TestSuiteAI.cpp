@@ -3,6 +3,7 @@
 #include "../include/MTGAbility.h"
 #include "../include/MTGRules.h"
 #include "../include/ActionLayer.h"
+#include "../include/DamageResolverLayer.h"
 
 #include <string>
 using std::string;
@@ -63,6 +64,8 @@ int TestSuiteAI::Act(float dt){
 
   string action = suite->getNextAction();
   g->mLayers->stackLayer()->Dump();
+  DamageResolverLayer * drl = g->mLayers->combatLayer();
+
   OutputDebugString(action.c_str());
   OutputDebugString("\n");
 
@@ -87,7 +90,16 @@ int TestSuiteAI::Act(float dt){
     g->userRequestNextGamePhase();
   }
   else if (action.compare("next")==0){
-    g->userRequestNextGamePhase();
+    if (drl->orderingIsNeeded){
+      drl->blockersOrderingDone();
+      g->userRequestNextGamePhase();
+    }else if (drl->mCount){
+      OutputDebugString("End of combat damage!\n");
+      drl->nextPlayer();
+      g->userRequestNextGamePhase();
+    }else{
+      g->userRequestNextGamePhase();
+    }
   }else if (action.compare("yes")==0){
     g->mLayers->stackLayer()->setIsInterrupting(this);
   }else if (action.compare("endinterruption")==0){
@@ -121,7 +133,17 @@ int TestSuiteAI::Act(float dt){
         if (card) {
           OutputDebugString("Clicking ON: ");
           OutputDebugString(card->name.c_str());
-	        g->cardClick(card,card);
+          if (drl->mCount){
+            if (drl->orderingIsNeeded){
+              OutputDebugString(" Ordering Card\n");
+              drl->clickReorderBlocker(card);
+            }else{
+              OutputDebugString(" Damaging Card\n");
+              drl->clickDamage(card);
+            }
+          }else{
+	          g->cardClick(card,card);
+          }
         }
       }
     }else{

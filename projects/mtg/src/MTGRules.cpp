@@ -130,7 +130,7 @@ MTGBlockRule::MTGBlockRule(int _id):MTGAbility(_id,NULL){
 }
 
 int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
-  if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting && card->controller() == game->opponent()){
+  if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting && card->controller() == game->currentlyActing()){
     if (card->canBlock()) return 1;
   }
   return 0;
@@ -165,6 +165,11 @@ ostream& MTGBlockRule::toString(ostream& out) const
   out << "MTGBlockRule ::: (";
   return MTGAbility::toString(out) << ")";
 }
+
+
+//
+// Attacker chooses blockers order
+//
 
 //
 // * Momir

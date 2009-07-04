@@ -2,6 +2,7 @@
 #Generic engine features
 ########################
 generic/attacks_each_turn.txt
+generic/m10_blockers.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt

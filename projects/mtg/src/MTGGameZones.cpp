@@ -149,10 +149,11 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
       }
     }
 
+    MTGCardInstance * ret = copy;
     if (card->isToken){
       if (to != g->players[0]->game->inPlay && to != g->players[1]->game->inPlay){
-        garbage->addCard(copy);
-        return NULL;
+        to = garbage;
+        ret = NULL;
       }
     }
     
@@ -162,7 +163,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
     delete e;
-    return copy;
+    return ret;
   }
   return card; //Error
 }
@@ -331,19 +332,7 @@ int MTGInPlay::nbPartners(MTGCardInstance * attacker){
 }
 
 MTGCardInstance *  MTGInPlay::getNextDefenser(MTGCardInstance * previous, MTGCardInstance * attacker){
-  int foundprevious = 0;
-  if (previous == NULL){
-    foundprevious = 1;
-  }
-  for (int i = 0; i < nb_cards; i ++){
-    MTGCardInstance * current = cards[i];
-    if (current == previous){
-      foundprevious = 1;
-    }else if (foundprevious && current->isDefenser() == attacker){
-      return current;
-    }
-  }
-  return NULL;
+  return attacker->getNextDefenser(previous);
 }
 
 MTGCardInstance *  MTGInPlay::getNextAttacker(MTGCardInstance * previous){
@@ -366,7 +355,7 @@ void MTGInPlay::untapAll(){
   int i;
   for (i = 0; i < nb_cards; i ++){
     cards[i]->setUntapping();
-    if (cards[i]->getBlockers()->isEmpty()){
+    if (cards[i]->getUntapBlockers()->isEmpty()){
 #if defined (WIN32) || defined (LINUX)
       char buf[4096];
       sprintf(buf, "Can untap %s\n", cards[i]->getName());

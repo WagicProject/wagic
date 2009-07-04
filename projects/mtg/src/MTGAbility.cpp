@@ -932,29 +932,29 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
             //TODO
 		  }
 		}else{
-	        if(tc){
-	            game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
-	        }else{
-            if (lordType == PARSER_FOREACH){
-	            game->addObserver(NEW AForeach(id,card,target,lordTargets,lordIncludeSelf,power,toughness));
-            }else if (lordType == PARSER_ASLONGAS){
-	            game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,power,toughness));
+      if(tc){
+          game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
+      }else{
+        if (lordType == PARSER_FOREACH){
+          game->addObserver(NEW AForeach(id,card,target,lordTargets,lordIncludeSelf,power,toughness));
+        }else if (lordType == PARSER_ASLONGAS){
+          game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,power,toughness));
+        }else{
+          if (!cost){
+            if(card->hasType("enchantment")){
+              game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
             }else{
-	            if (!cost){
-	              if(card->hasType("enchantment")){
-	                game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
-	              }else{
-	                game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
-	              }
-	            }else{
-	              game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
-	            }
+              game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
             }
-	        }
+          }else{
+            game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
+          }
         }
-        result++;
-        continue;
       }
+    }
+    result++;
+    continue;
+    }
 
       //Mana Producer
       found = s.find("add");
@@ -970,43 +970,44 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
           if (input->isNull()){
             SAFE_DELETE(input);
           }
-		  MTGAbility * a = NEW AManaProducer(id, target, output, input,doTap);
-		  ManaCost * FinalOutput = NEW ManaCost();
-		  if (lordType == PARSER_FOREACH){
-			int multiplier = countCards(lordTargets);
-			  for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
-				  if (output->hasColor(i)){
-				  FinalOutput->add(i,multiplier);
-				  }
-			  }
-			game->addObserver (NEW AManaProducer(id, target,FinalOutput, input,doTap));
-		  }else{
-		  if (multi){
-            multi->Add(a);
-		  }else{
-	          game->addObserver(a);
-		  }
-		  }
-		}else{
+		      MTGAbility * a = NEW AManaProducer(id, target, output, input,doTap);
+    		  
+		      if (lordType == PARSER_FOREACH){
+            ManaCost * FinalOutput = NEW ManaCost();
+			      int multiplier = countCards(lordTargets);
+			      for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
+				      if (output->hasColor(i)){
+				        FinalOutput->add(i,multiplier);
+				      }
+			      }
+			      game->addObserver (NEW AManaProducer(id, target,FinalOutput, input,doTap));
+		      }else{
+		        if (multi){
+                  multi->Add(a);
+		        }else{
+	                game->addObserver(a);
+		        }
+		      }
+		    }else{
           OutputDebugString ("uh oh\n");
-		  		  if (lordType == PARSER_FOREACH){
-						ManaCost * FinalOutput = NEW ManaCost();
-						int multiplier = countCards(lordTargets);
-						for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
-							if (output->hasColor(i)){
-							 FinalOutput->add(i,multiplier);
-							}
-						}
-						card->controller()->getManaPool()->add(FinalOutput);
-						delete FinalOutput;
-				  }else{
-					  card->controller()->getManaPool()->add(output);
-					  delete output;
-				  }
-		}
-        result++;
-        continue;
-	  }
+  		      if (lordType == PARSER_FOREACH){
+				    ManaCost * FinalOutput = NEW ManaCost();
+				    int multiplier = countCards(lordTargets);
+				    for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
+					    if (output->hasColor(i)){
+					     FinalOutput->add(i,multiplier);
+					    }
+				    }
+				    card->controller()->getManaPool()->add(FinalOutput);
+				    delete FinalOutput;
+		      }else{
+			      card->controller()->getManaPool()->add(output);
+			      delete output;
+		      }
+		    }
+          result++;
+          continue;
+	      }
 
       //Gain/loose Ability
       for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
@@ -2105,7 +2106,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 129521: //Dehydratation
   // Don't understand why but target automatically untap when cast...
     {
-			game->addObserver(NEW Blocker(_id,card,card->target));
+			game->addObserver(NEW UntapBlocker(_id,card,card->target));
       break;
     }
 
@@ -2245,7 +2246,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   }
 
   if (card->basicAbilities[Constants::DOESNOTUNTAP]){
-    game->addObserver(NEW Blocker(_id, card));
+    game->addObserver(NEW UntapBlocker(_id, card));
   }
 
   // Tested works the first r10 did not function because of the mistake in the array of the definition

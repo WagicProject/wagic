@@ -52,6 +52,8 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   gameOver = NULL;
   phaseRing = NEW PhaseRing(_players,_nb_players);
   replacementEffects = NEW ReplacementEffects();
+  blockersSorted = false;
+  blockersAssigned = 0;
 }
 
 void GameObserver::setGamePhaseManager(MTGGamePhase * _phases){
@@ -78,10 +80,20 @@ void GameObserver::nextPlayer(){
   currentPlayerId = (currentPlayerId+1)%nbPlayers;
   currentPlayer = players[currentPlayerId];
   currentActionPlayer = currentPlayer;
+  blockersSorted = false;
+  blockersAssigned = 0;
 
 }
 void GameObserver::nextGamePhase(){
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
+  if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
+    blockersAssigned = 1;
+    if (!mLayers->combatLayer()->autoOrderBlockers()){
+      OutputDebugString("Player has To choose ordering!");
+      return;
+    }
+  }
+
   phaseRing->forward();
   Phase * cPhase = phaseRing->getCurrentPhase();
 
@@ -140,11 +152,22 @@ int GameObserver::cancelCurrentAction(){
 }
 
 void GameObserver::userRequestNextGamePhase(){
+  OutputDebugString("requesting Next Phase\n");
   if (mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)) return;
   if (getCurrentTargetChooser()) return;
-  if (mLayers->combatLayer()->remainingDamageSteps) return;
-  //TODO CHECK POSSIBILITY
-  if (opponent()->isAI() || GameOptions::GetInstance()->values[GameOptions::phaseInterrupts[currentGamePhase]].getIntValue()){
+  if (mLayers->combatLayer()->isDisplayed()) return;
+  Phase * cPhaseOld = phaseRing->getCurrentPhase();
+  if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
+    blockersAssigned = 1;
+    if (!mLayers->combatLayer()->autoOrderBlockers()){
+      OutputDebugString("Player has To choose ordering!");
+      return;
+    }
+  }
+   OutputDebugString("Next Phase Accepted\n");
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS || 
+     opponent()->isAI() || 
+     GameOptions::GetInstance()->values[GameOptions::phaseInterrupts[currentGamePhase]].getIntValue()){
     mLayers->stackLayer()->AddNextGamePhase();
   }else{
     nextGamePhase();
@@ -237,7 +260,7 @@ GameObserver::~GameObserver(){
 
 void GameObserver::Update(float dt){
   Player * player =  currentPlayer;
-  if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS){
+  if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS && !blockersSorted){
     player = opponent();
   }else	if (currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE){
     DamageResolverLayer *  drl = mLayers->combatLayer();

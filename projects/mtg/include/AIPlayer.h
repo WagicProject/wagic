@@ -51,6 +51,7 @@ class AIPlayer: public Player{
   ManaCost * potentialMana;
   queue<AIAction *> clickstream;
   void tapLandsForMana(ManaCost * potentialMana, ManaCost * cost);
+  int orderBlockers();
   int combatDamages();
   int interruptIfICan();
   int chooseAttackers();
