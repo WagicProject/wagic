@@ -1,0 +1,661 @@
+#Fallen Empires
+#Version 0.7.1
+#Pyros_70
+#09-06-30
+#Thanks to Wololo, Dr. Solomat, leungclj and the other coders
+###############################################
+#1890 Svyelunite Priest U no upkeep only
+#1866 Thrull Champion B no death scene
+###############################################
+[card]
+text={1}{T}, Sacrifice Aeolipile: Aeolipile deals 2 damage to target creature or player.
+id=1827
+name=Aeolipile
+rarity=R
+color=Artifact
+type=Artifact
+mana={2}
+auto={1}{T}{S}:damage:2 target(creature,player)
+[/card]
+[card]
+text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
+id=1842
+name=Basal Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={B}{B}
+power=1
+toughness=2
+auto={S}:add {B}{B}
+[/card]
+[card]
+text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
+id=1843
+alias=1842
+name=Basal Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={B}{B}
+power=1
+toughness=2
+[/card]
+[card]
+text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
+id=1844
+alias=1842
+name=Basal Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={B}{B}
+power=1
+toughness=2
+[/card]
+[card]
+text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
+id=1845
+alias=1842
+name=Basal Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={B}{B}
+power=1
+toughness=2
+[/card]
+[card]
+#how to make permanent?
+text={T}, Sacrifice Armor Thrull: Put a +1/+2 counter on target creature.
+id=1838
+name=Armor Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={2}{B}
+power=1
+toughness=3
+auto={s}:target(creature):1/2
+[/card]
+[card]
+text={T}, Sacrifice Armor Thrull: Put a +1/+2 counter on target creature.
+id=1839
+alias=1838
+name=Armor Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={2}{B}
+power=1
+toughness=3
+[/card]
+[card]
+text={T}, Sacrifice Armor Thrull: Put a +1/+2 counter on target creature.
+id=1840
+alias=1838
+name=Armor Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={2}{B}
+power=1
+toughness=3
+[/card]
+[card]
+text={T}, Sacrifice Armor Thrull: Put a +1/+2 counter on target creature.
+id=1841
+alias=1838
+name=Armor Thrull
+rarity=C
+color=Black
+type=Creature
+subtype=Thrull
+mana={2}{B}
+power=1
+toughness=3
+[/card]
+[card]
+text={1}{R}: Target Dwarf creature gets +1/+0 until end of turn.
+id=1943
+name=Dwarven Lieutenant
+rarity=U
+color=Red
+type=Creature
+subtype=Dwarf Soldier
+mana={R}{R}
+power=1
+toughness=2
+auto={1}{R}: target(dwarf) 1/0
+[/card]
+[card]
+text=Dwarven Ruins comes into play tapped.     {T}: Add {R} to your mana pool.     {T}, Sacrifice Dwarven Ruins: Add {R}{R} to your mana pool.
+id=2005
+name=Dwarven Ruins
+rarity=U
+color=Land
+type=Land
+auto=tap
+auto={T}:add {R}
+auto={T}{S}:add {R}{R}
+[/card]
+[card]
+text=Ebon Stronghold comes into play tapped.     {T}: Add {B} to your mana pool.     {T}, Sacrifice Ebon Stronghold: Add {B}{B} to your mana pool.
+id=2006
+name=Ebon Stronghold
+rarity=U
+color=Land
+type=Land
+auto=tap
+auto={T}:add {B}
+auto={T}{S}:add {B}{B}
+[/card]
+[card]
+#cannot highlite
+text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
+id=1904
+name=Elven Fortress
+rarity=C
+color=Green
+type=Enchantment
+mana={G}
+auto={1}{G}:target(creature[blocking]) 0/1
+[/card]
+[card]
+text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
+id=1905
+alias=1904
+name=Elven Fortress
+rarity=C
+color=Green
+type=Enchantment
+mana={G}
+[/card]
+[card]
+text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
+id=1906
+alias=1904
+name=Elven Fortress
+rarity=C
+color=Green
+type=Enchantment
+mana={G}
+[/card]
+[card]
+text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
+id=1907
+alias=1904
+name=Elven Fortress
+rarity=C
+color=Green
+type=Enchantment
+mana={G}
+[/card]
+[card]
+text=Havenwood Battleground comes into play tapped.     {T}: Add {G} to your mana pool.     {T}, Sacrifice Havenwood Battleground: Add {G}{G} to your mana pool.
+id=2007
+name=Havenwood Battleground
+rarity=U
+color=Land
+type=Land
+auto=tap
+auto={T}:add {G}
+auto={T}{S}:add {G}{G}
+[/card]
+[card]
+text={U}: Tap target green creature.
+id=1879
+name=Homarid Shaman
+rarity=R
+color=Blue
+type=Creature
+subtype=Homarid Shaman
+mana={2}{U}{U}
+power=2
+toughness=1
+auto={U}:tap target(creature[green])
+[/card]
+[card]
+text=Target player discards two cards at random.
+id=1849
+name=Hymn to Tourach
+rarity=C
+color=Black
+type=Sorcery
+mana={B}{B}
+target=player
+auto=discard:2
+[/card]
+[card]
+text=Target player discards two cards at random.
+id=1850
+alias=1849
+name=Hymn to Tourach
+rarity=C
+color=Black
+type=Sorcery
+mana={B}{B}
+[/card]
+[card]
+text=Target player discards two cards at random.
+id=1851
+alias=1849
+name=Hymn to Tourach
+rarity=C
+color=Black
+type=Sorcery
+mana={B}{B}
+[/card]
+[card]
+text=Target player discards two cards at random.
+id=1852
+alias=1849
+name=Hymn to Tourach
+rarity=C
+color=Black
+type=Sorcery
+mana={B}{B}
+[/card]
+[card]
+text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
+id=1981
+name=Icatian Infantry
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier
+mana={W}
+power=1
+toughness=1
+auto={1}:banding
+auto={1}:first strike
+[/card]
+[card]
+text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
+id=1982
+alias=1981
+name=Icatian Infantry
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier
+mana={W}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
+id=1983
+alias=1981
+name=Icatian Infantry
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier
+mana={W}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
+id=1984
+alias=1981
+name=Icatian Infantry
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier
+mana={W}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{W}: Target Soldier creature gets +1/+0 until end of turn.
+id=1988
+name=Icatian Lieutenant
+rarity=R
+color=White
+type=Creature
+subtype=Human Soldier
+mana={W}{W}
+power=1
+toughness=2
+auto={1}{W}:target(soldier) 1/0
+[/card]
+[card]
+text=Banding
+id=1992
+name=Icatian Phalanx
+rarity=U
+color=White
+type=Creature
+subtype=Human Soldier
+mana={4}{W}
+power=2
+toughness=4
+abilities=banding
+[/card]
+[card]
+text={1}{W}{W}: Target creature gets +1/+1 until end of turn.
+id=1993
+name=Icatian Priest
+rarity=U
+color=White
+type=Creature
+subtype=Human Cleric
+mana={W}
+power=1
+toughness=1
+auto={1}{W}{W}:target(creature) 1/1
+[/card]
+[card]
+text={1}{T}: Target creature gains first strike until end of turn.
+id=1994
+name=Icatian Scout
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier Scout
+mana={W}
+power=1
+toughness=1
+auto={1}{T}:target(creature) first strike
+[/card]
+[card]
+text={1}{T}: Target creature gains first strike until end of turn.
+id=1995
+alias=1994
+name=Icatian Scout
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier Scout
+mana={W}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{T}: Target creature gains first strike until end of turn.
+id=1996
+alias=1994
+name=Icatian Scout
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier Scout
+mana={W}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{T}: Target creature gains first strike until end of turn.
+id=1997
+alias=1994
+name=Icatian Scout
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier Scout
+mana={W}
+power=1
+toughness=1
+[/card]
+[card]
+text=Put four 1/1 white Citizen creature tokens into play.
+id=1999
+name=Icatian Town
+rarity=R
+color=White
+type=Sorcery
+mana={5}{W}
+auto=token(Citizen,creature human,1/1,white)*4
+[/card]
+[card]
+text={1}{T}, Sacrifice Implements of Sacrifice: Add two mana of any one color to your mana pool.
+id=1834
+name=Implements of Sacrifice
+rarity=R
+color=Artifact
+type=Artifact
+mana={2}
+auto={1}{T}{S}:add {G}{G}
+auto={1}{T}{S}:add {U}{U}
+auto={1}{T}{S}:add {R}{R}
+auto={1}{T}{S}:add {W}{W}
+auto={1}{T}{S}:add {B}{B}
+[/card]
+[card]
+text=Protection from black     {W}: Order of Leitbur gains first strike until end of turn.     {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
+id=2000
+name=Order of Leitbur
+rarity=C
+color=White
+type=Creature
+subtype=Human Cleric Knight
+mana={W}{W}
+power=2
+toughness=1
+abilities=protection from black
+auto={W}:first strike
+auto={W}{W}:1/0
+[/card]
+[card]
+text=Protection from black     {W}: Order of Leitbur gains first strike until end of turn.     {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
+id=2001
+alias=2000
+name=Order of Leitbur
+rarity=C
+color=White
+type=Creature
+subtype=Human Cleric Knight
+mana={W}{W}
+power=2
+toughness=1
+abilities=protection from black
+[/card]
+[card]
+text=Protection from black     {W}: Order of Leitbur gains first strike until end of turn.     {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
+id=2002
+alias=2000
+name=Order of Leitbur
+rarity=C
+color=White
+type=Creature
+subtype=Human Cleric Knight
+mana={W}{W}
+power=2
+toughness=1
+abilities=protection from black
+[/card]
+[card]
+text=Protection from white     {B}: Order of the Ebon Hand gains first strike until end of turn.     {B}{B}: Order of the Ebon Hand gets +1/+0 until end of turn.
+id=1862
+name=Order of the Ebon Hand
+rarity=C
+color=Black
+type=Creature
+subtype=Cleric Knight
+mana={B}{B}
+power=2
+toughness=1
+abilities=protection from white
+auto={B}:first strike
+auto={B}{B}:1/0
+[/card]
+[card]
+text=Protection from white     {B}: Order of the Ebon Hand gains first strike until end of turn.     {B}{B}: Order of the Ebon Hand gets +1/+0 until end of turn.
+id=1863
+alias=1862
+name=Order of the Ebon Hand
+rarity=C
+color=Black
+type=Creature
+subtype=Cleric Knight
+mana={B}{B}
+power=2
+toughness=1
+abilities=protection from white
+[/card]
+[card]
+text=Protection from white     {B}: Order of the Ebon Hand gains first strike until end of turn.     {B}{B}: Order of the Ebon Hand gets +1/+0 until end of turn.
+id=1864
+alias=1862
+name=Order of the Ebon Hand
+rarity=C
+color=Black
+type=Creature
+subtype=Cleric Knight
+mana={B}{B}
+power=2
+toughness=1
+abilities=protection from white
+[/card]
+[card]
+text={U}: River Merfolk gains mountainwalk until end of turn.
+id=1888
+name=River Merfolk
+rarity=R
+color=Blue
+type=Creature
+subtype=Merfolk
+mana={U}{U}
+power=2
+toughness=1
+auto={U}:mountainwalk
+[/card]
+[card]
+text=Ruins of Trokair comes into play tapped.     {T}: Add {W} to your mana pool.     {T}, Sacrifice Ruins of Trokair: Add {W}{W} to your mana pool.
+id=2011
+name=Ruins of Trokair
+rarity=U
+color=Land
+type=Land
+auto=tap
+auto={T}:add {W}
+auto={T}{S}:add {W}{W}
+[/card]
+[card]
+#upkeep part not enforceable
+text={U}{U}{T}: Target creature gains shroud until end of turn. Play this ability only during your upkeep.
+id=1890
+name=Svyelunite Priest
+rarity=U
+color=Blue
+type=Creature
+subtype=Merfolk Cleric
+mana={1}{U}
+power=1
+toughness=1
+auto={U}{U}{T}:target(creature) shroud
+[/card]
+[card]
+text=Svyelunite Temple comes into play tapped.     {T}: Add {U} to your mana pool.     {T}, Sacrifice Svyelunite Temple: Add {U}{U} to your mana pool.
+id=2013
+name=Svyelunite Temple
+rarity=U
+color=Land
+type=Land
+auto=tap
+auto={T}:add {U}
+auto={T}{S}:add {U}{U}
+[/card]
+[card]
+#needs onmoveTo command to release thrulls
+text=Thrull creatures get +1/+1.     {T}: Gain control of target Thrull as long as you control Thrull Champion.
+id=1866
+name=Thrull Champion
+rarity=R
+color=Black
+type=Creature
+subtype=Thrull
+mana={4}{B}
+power=2
+toughness=2
+auto=lord(thrull) 1/1
+auto={T}:moveTo(myinplay) target(thrull|opponentinplay)
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +1/+1.     Sacrifice Thrull Retainer: Regenerate enchanted creature.
+id=1867
+name=Thrull Retainer
+rarity=U
+color=Black
+type=Enchantment
+subtype=Aura
+mana={B}
+target=creature
+auto=:1/1
+auto={S}:regenerate
+[/card]
+[card]
+text=First strike     Vodalian Knights can't attack unless defending player controls an Island. When you control no Islands, sacrifice Vodalian Knights.     {U}: Vodalian Knights gains flying until end of turn.
+id=1895
+name=Vodalian Knights
+rarity=R
+color=Blue
+type=Creature
+subtype=Merfolk Knight
+mana={1}{U}{U}
+power=2
+toughness=2
+abilities=islandhome,first strike
+auto={U}:flying
+[/card]
+[card]
+text= 
+id=1899
+name=Vodalian Soldiers
+rarity=C
+color=Blue
+type=Creature
+subtype=Merfolk Soldier
+mana={1}{U}
+power=1
+toughness=2
+[/card]
+[card]
+text= 
+id=1900
+#alias=1899
+name=Vodalian Soldiers
+rarity=C
+color=Blue
+type=Creature
+subtype=Merfolk Soldier
+mana={1}{U}
+power=1
+toughness=2
+[/card]
+[card]
+text= 
+id=1901
+#alias=1899
+name=Vodalian Soldiers
+rarity=C
+color=Blue
+type=Creature
+subtype=Merfolk Soldier
+mana={1}{U}
+power=1
+toughness=2
+[/card]
+[card]
+text= 
+id=1902
+#alias=1899
+name=Vodalian Soldiers
+rarity=C
+color=Blue
+type=Creature
+subtype=Merfolk Soldier
+mana={1}{U}
+power=1
+toughness=2
+[/card]

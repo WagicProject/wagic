@@ -1,0 +1,610 @@
+[card]
+text=When Anarchist comes into play, you may return target sorcery card from your graveyard to your hand.
+id=6110
+name=Anarchist
+color=Red
+rarity=U
+mana={4}{R}
+type=Creature
+subtype=Human Wizard
+auto=may moveTo(myhand) target(sorcery|mygraveyard)
+power=2
+toughness=2
+[/card]
+[card]
+text=Target creature gets +3/+3 and gains flying until end of turn.
+target=creature
+auto=:3/3
+auto=flying
+id=6040
+name=Angelic Blessing
+color=White
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=At the beginning of your upkeep, tap Carnophage unless you pay 1 life.
+alias=1221
+id=6079
+name=Carnophage
+color=Black
+rarity=C
+mana={B}
+type=Creature
+subtype=Zombie
+auto={T}:life:1
+power=2
+toughness=2
+[/card]
+[card]
+text=When Cartographer comes into play, you may return target land card from your graveyard to your hand.
+id=6144
+name=Cartographer
+color=Green
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Human
+auto=may moveTo(myhand) target(land|mygraveyard)
+power=2
+toughness=2
+[/card]
+[card]
+text=As an additional cost to play Culling the Weak, sacrifice a creature. Add {B}{B}{B}{B} to your mana pool.
+target=creature|myinplay
+auto=bury
+auto=Add {B}{B}{B}{B}
+id=6085
+name=Culling the Weak
+color=Black
+rarity=C
+mana={B}
+type=Instant
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
+target=creature
+auto=:-1/-1
+auto=fear
+id=6089
+name=Cursed Flesh
+color=Black
+rarity=C
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)   {1}{B}, {T}: Destroy target creature with shadow.
+id=6091
+name=Dauthi Cutthroat
+color=Black
+rarity=U
+mana={1}{B}
+type=Creature
+subtype=Dauthi Minion
+auto={1}{B}{T}:destroy target(creature[shadow])
+power=1
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)   {B}{B}, Sacrifice Dauthi Jackal: Destroy target blocking creature.
+id=6081
+name=Dauthi Jackal
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Dauthi Hound
+auto={B}{B}{S}:destroy target(creature[blocking])
+power=2
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)    Dauthi Warlord's power is equal to the number of creatures with shadow in play
+id=6094
+name=Dauthi Warlord
+color=Black
+rarity=U
+mana={1}{B}
+type=Creature
+subtype=Dauthi Soldier
+auto=foreach(creature[shadow]|inplay) 1/0
+power=*
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text=Enchant creature you control   {R}: Enchanted creature deals 1 damage to target creature with flying.
+target=creature|myinplay
+auto={R}:damage:1 target(creature[flying])
+id=6114
+name=Dizzying Gaze
+color=Red
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Sacrifice a Forest: Target attacking creature gets -3/-0 until end of turn.
+auto={S(forest|myinplay)}:-3/0 target(creature[attacking]) 
+id=6146
+name=Elven Palisade
+color=Green
+rarity=U
+mana={G}
+type=Enchantment
+[/card]
+[card]
+text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=6133
+auto=rampage(1/1,0)
+name=Elvish Berserker
+color=Green
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf Berserker
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying   Discard a card: Return Ephemeron to its owner's hand.
+id=6073
+name=Ephemeron
+color=Blue
+rarity=R
+mana={4}{U}{U}
+type=Creature
+subtype=Illusion
+auto={S(*|myhand)}:moveTo(myhand)
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
+text={2}{U}{U}, {T}: Counter target spell.
+id=5146
+auto={2}{U}{U}{T}:fizzle target(*|stack)
+name=Ertai, Wizard Adept
+color=Blue
+rarity=R
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+abilities=legendary
+[/card]
+[card]
+text=Flying   Exalted Dragon can't attack unless you sacrifice a land.
+id=6053
+name=Exalted Dragon
+color=White
+rarity=R
+mana={4}{W}{W}
+type=Creature
+subtype=Dragon
+auto={S(land|myinplay)}:-cantattack
+power=5
+toughness=5
+abilities=flying,cantattack
+[/card]
+[card]
+text={U}: Killer Whale gains flying until end of turn.
+id=6065
+name=Killer Whale
+color=Blue
+rarity=U
+mana={3}{U}{U}
+type=Creature
+subtype=Whale
+auto={U}:flying
+power=3
+toughness=5
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +2/+2 and can't block.
+target=creature
+auto=:+2/+2
+auto=cantblock
+id=6109
+name=Maniacal Rage
+color=Red
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={1}, {T}, Discard a card: Regenerate target creature. 
+id=6165
+auto={1}{T}{S(*|myhand)}:regenerate target(creature)
+name=Medicine Bag
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Discard a card: You may tap or untap target artifact, creature, or land.
+auto={S(*|myhand)}:tap target(artifact;creature;land)
+auto={S(*|myhand)}:untap target(artifact;creature;land) 
+id=6076
+name=Mind Over Matter
+color=Blue
+rarity=R
+mana={2}{U}{U}{U}{U}
+type=Enchantment
+[/card]
+[card]
+text=Legendary   First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
+id=6155
+name=Mirri, Cat Warrior
+color=Green
+rarity=R
+mana={1}{G}{G}
+type=Creature
+subtype=Cat Warrior
+power=2
+toughness=3
+abilities=legendary,first strike,forestwalk,vigilance
+[/card]
+[card]
+text=All creatures get -1/-1 until end of turn.
+id=6088
+auto=lord(creature) -1/-1
+name=Nausea
+color=Black
+rarity=C
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
+id=5199
+name=Paladin en-Vec
+color=White
+rarity=R
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+abilities=First strike, protection from black, protection from red
+[/card]
+[card]
+text={W}, Discard a card: You gain 3 life.
+auto={W}{S(*|myhand)}:life:3
+id=6039
+name=Peace of Mind
+color=White
+rarity=U
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text={2}{G}:Plated Rootwalla gets +3/+3 until end of turn. Play this ability only once each turn.
+id=5201
+name=Plated Rootwalla
+color=Green
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Lizard
+auto={2}{G}:3/3 limit:1
+power=3
+toughness=3
+[/card]
+[card]
+text=Whenever Pygmy Troll becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.   {G}: Regenerate Pygmy Troll.
+id=6131
+auto=rampage(1/1,0)
+auto={G}:regenerate
+name=Pygmy Troll
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Troll
+power=1
+toughness=1
+[/card]
+[card]
+text=Whenever Rabid Wolverines becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=6134
+auto=rampage(1/1,0)
+name=Rabid Wolverines
+color=Green
+rarity=C
+mana={3}{G}{G}
+type=Creature
+subtype=Wolverine
+power=4
+toughness=4
+[/card]
+[card]
+text=Haste (This creature can attack and tap as soon as it comes under your control.)
+id=6106
+name=Raging Goblin
+color=Red
+rarity=C
+mana={R}
+type=Creature
+subtype=Goblin Berserker
+power=1
+toughness=1
+abilities=haste
+[/card]
+[card]
+text=When Ravenous Baboons comes into play, destroy target nonbasic land.
+id=5207
+name=Ravenous Baboons
+color=Red
+rarity=R
+mana={3}{R}
+type=Creature
+subtype=Ape
+auto=may destroy target(land[-basic])
+power=2
+toughness=2
+[/card]
+[card]
+text=Put target card from your graveyard on top of your library.
+target=*|mygraveyard
+auto=moveTo(ownerLibrary)
+id=6139
+name=Reclaim
+color=Green
+rarity=C
+mana={G}
+type=Sorcery
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+target=creature
+auto=shroud
+id=6059
+name=Robe of Mirrors
+color=Blue
+rarity=C
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Sacrifice a Forest: Regenerate Rootwater Alligator.
+id=6136
+name=Rootwater Alligator
+color=Green
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Crocodile
+auto={S(forest|myinplay)}:regenerate
+power=3
+toughness=2
+[/card]
+[card]
+text=Flying, first strike
+id=6129
+name=Sabertooth Wyvern
+color=Red
+rarity=U
+mana={4}{R}
+type=Creature
+subtype=Drake
+power=3
+toughness=2
+abilities=flying,first strike
+[/card]
+[card]
+text=All creatures get +1/+0 until end of turn.
+id=6086
+auto=lord(creature|myinplay) 1/0
+name=Scare Tactics
+color=Black
+rarity=C
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+text=When Scrivener comes into play, you may return target instant card from your graveyard to your hand.
+id=6067
+name=Scrivener
+color=Blue
+rarity=U
+mana={4}{U}
+type=Creature
+subtype=Human Wizard
+auto=may moveTo(myhand) target(instant|mygraveyard)
+power=2
+toughness=2
+[/card]
+[card]
+text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
+auto={S(land|myhand)}:damage:2 target(creature,player)
+id=6130
+name=Seismic Assault
+color=Red
+rarity=R
+mana={R}{R}{R}
+type=Enchantment
+[/card]
+[card]
+text=Sacrifice Shield Mate: Target creature gets +0/+4 until end of turn.
+id=6030
+name=Shield Mate
+color=White
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Soldier
+auto={S}:0/4 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Skyshroud Elite gets +1/+2 as long as an opponent controls a nonbasic land.
+id=5229
+name=Skyshroud Elite
+color=Green
+rarity=U
+mana={G}
+type=Creature
+subtype=Elf
+auto=aslongas(land[-basic]|opponentinplay) 1/2
+power=1
+toughness=1
+[/card]
+[card]
+text=Sacrifice Skyshaper: Creatures you control gain flying until end of turn. 
+id=5227
+auto={S}:lord(creature|myinplay) flying
+name=Skyshaper
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Trample   As Skyshroud War Beast comes into play, choose an opponent.   Skyshroud War Beast's power and toughness are each equal to the number of nonbasic lands the chosen player controls.
+id=5231
+name=Skyshroud War Beast
+color=Green
+rarity=R
+mana={1}{G}
+type=Creature
+subtype=Beast
+auto=foreach(land[-basic]|opponentinplay) 1/1
+power=*
+toughness=*
+[/card]
+[card]
+text=Vigilance
+id=6032
+name=Standing Troops
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=4
+abilities=vigilance
+[/card]
+[card]
+text={G}, Discard a creature card: Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
+id=6150
+auto={S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
+name=Survival of the Fittest
+color=Green
+rarity=R
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+text=Discard a card: Thalakos Drifters gains shadow until end of turn. (This creature can block or be blocked by only creatures with shadow.)
+id=6068
+name=Thalakos Drifters
+color=Blue
+rarity=R
+mana={2}{U}{U}
+type=Creature
+subtype=Thalakos
+auto={S(*|myhand)}:shadow
+power=3
+toughness=3
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)   Discard a card: Return Thalakos Scout to its owner's hand.
+id=6058
+name=Thalakos Scout
+color=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Thalakos Soldier Scout
+auto={S(*|myhand)}:moveTo(myhand)
+power=2
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text={U}: Put Wayward Soul on top of its owner's library.
+auto={U}: moveTo(ownersLibrary)
+id=5273
+name=Wayward Soul
+color=Blue
+rarity=C
+mana={2}{U}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
+id=6042
+name=Treasure Hunter
+color=White
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human
+auto=may moveTo(myhand) target(artifact|mygraveyard)
+power=2
+toughness=2
+[/card]
+[card]
+text={2}{U}{U}: Draw a card.
+auto={2}{U}{U}:draw:1
+id=6070
+name=Treasure Trove
+color=Blue
+rarity=U
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+text=Discard a creature card: Vampire Hounds gets +2/+2 until end of turn.
+id=6084
+name=Vampire Hounds
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Vampire Hound
+auto={S(creature|myhand)}:2/2
+power=2
+toughness=2
+[/card]
+[card]
+text={U}: Whiptongue Frog gains flying until end of turn.
+id=6057
+name=Whiptongue Frog
+color=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Frog
+auto={U}:flying
+power=1
+toughness=3
+[/card]
+[card]
+text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
+auto=moveTo(inPlay) target(forest|myLibrary)
+id=6135
+name=Wood Elves
+color=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Elf Scout
+power=1
+toughness=1
+[/card]

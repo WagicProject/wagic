@@ -1,0 +1,570 @@
+[card]
+text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Play this ability only once each turn.
+auto={s(land|myinplay)}:2/0
+id=75277
+name=Akki Avalanchers
+rarity=C
+color=Red
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text={R},{T}: Attacking creatures gain first strike until end of turn.
+id=159328
+name=Akki Coalflinger
+auto={R}{T}:lord(creature[attacking]) first strike
+rarity=U
+color=Red
+type=Creature
+mana={1}{R}{R}
+power=2
+subtype=Goblin Shaman
+toughness=2
+[/card]
+[card]
+text=Destroy target land or nonblack creature. It can’t be regenerated.
+target=Creature[-black],land
+auto=bury
+id=50291
+name=Befoul
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
+text={1}{R}, Sacrifice a creature: Blood Rites deals 2 damage to target Creature or player.
+auto={1}{R}{S(Creature|myinplay)}:damage:2 target(creature|player)
+id=50509
+name=Blood Rites
+rarity=U
+color=Red
+type=Enchantment
+mana={3}{R}{R}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature can’t attack or block.	{1}{W}: Return Cage of Hands to its owner’s hand.
+target=Creature
+auto=cantattack
+auto=cantblock
+auto={1}{W}:moveTo(ownerhand)
+id=50233
+name=Cage of Hands
+rarity=C
+color=White
+type=Enchantment
+subtype=Aura
+mana={2}{W}
+[/card]
+[card]
+text=Destroy all enchantments.
+auto=destroy all(enchantment)
+id=80500
+name=Cleanfall
+rarity=U
+color=White
+type=Sorcery
+mana={2}{W}
+subtype=Arcane
+[/card]
+[card]
+text=Draw two cards.
+auto=draw:2
+id=50219
+name=Counsel of the Soratami
+rarity=C
+color=Blue
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
+text=Creatures you control get +1/+0 and gain fear until end of turn.
+auto=lord(creature|myinplay) 1/0
+auto=lord(creature|myinplay) fear
+id=79094
+name=Dance of Shadows
+rarity=U
+color=Black
+type=Sorcery
+mana={3}{B}{B}
+subtype=Arcane
+[/card]
+[card]
+text=Return target permanent to its owner’s hand.
+target=*
+auto=moveTo(ownerhand)
+id=79155
+name=Eye of Nowhere
+rarity=C
+color=Blue
+type=Sorcery
+mana={U}{U}
+subtype=Arcane
+[/card]
+[card]
+text=Gale Force deals 5 damage to each Creature with flying.
+auto=damage all(creature[flying]):5
+id=79244
+name=Gale Force
+rarity=U
+color=Green
+type=Sorcery
+mana={5}{G}
+[/card]
+[card]
+text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
+auto={1}{G}{S}:moveTo(myhand) target(arcane|mygraveyard)
+id=77138
+name=Hana Kami
+rarity=U
+color=Green
+type=Creature
+mana={G}
+power=1
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text=Shroud
+abilities=shroud
+id=78684
+name=Humble Budoka
+rarity=C
+color=Green
+type=Creature
+mana={1}{G}
+power=2
+subtype=Human Monk
+toughness=2
+[/card]
+[card]
+text=Enchant Creature     Flash     Enchanted Creature gets +1/+2.
+abilities=flash
+target=Creature
+auto=:1/2
+id=50499
+name=Indomitable Will
+rarity=C
+color=White
+type=Enchantment
+subtype=Aura
+mana={1}{W}
+[/card]
+[card]
+abilities=legendary
+id=79217
+name=Isamaru, Hound of Konda
+rarity=R
+color=White
+type=Creature
+mana={W}
+power=2
+subtype=Hound
+toughness=2
+[/card]
+[card]
+text=Forestwalk
+abilities=forestwalk
+id=80525
+name=Jukai Messenger
+rarity=C
+color=Green
+type=Creature
+mana={G}
+power=1
+subtype=Human Monk
+toughness=1
+[/card]
+[card]
+text=Flying. {T}:Target creature gets +1/+2 until end of turn.
+abilities=flying
+auto={T}:1/2 target(Creature)
+id=79105
+name=Kabuto Moth
+rarity=C
+color=White
+type=Creature
+mana={2}{W}
+power=1
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text=Sacrifice Kami of Ancient Law: Destroy target enchantment.
+auto={S}:destroy target(enchantment)
+id=50349
+name=Kami of Ancient Law
+rarity=C
+color=White
+type=Creature
+mana={1}{W}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+id=79236
+name=Kami of Old Stone
+rarity=U
+color=White
+type=Creature
+mana={3}{W}
+power=1
+subtype=Spirit
+toughness=7
+[/card]
+[card]
+text=Sacrifice Kami of Twisted Reflection: Return target creature you control to its owner’s hand.
+auto={S}:moveTo(ownerhand) target(Creature|myinplay)
+id=50228
+name=Kami of Twisted Reflection
+rarity=C
+color=Blue
+type=Creature
+mana={1}{U}{U}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
+text={T}: Tap target Spirit.
+auto={T}:tap target(Spirit)
+id=76652
+name=Kitsune Diviner
+rarity=C
+color=White
+type=Creature
+mana={W}
+power=0
+subtype=Fox Cleric
+toughness=1
+[/card]
+[card]
+text=Shroud, trample
+abilities=shroud, trample, legendary
+id=50488
+name=Kodama of the North Tree
+rarity=R
+color=Green
+type=Creature
+mana={2}{G}{G}{G}
+power=6
+subtype=Spirit
+toughness=4
+[/card]
+[card]
+text=Flying
+abilities=flying
+id=75319
+name=Lantern Kami
+rarity=C
+color=White
+type=Creature
+mana={W}
+power=1
+subtype=Spirit
+toughness=1
+[/card]
+[card]
+text=Lava Spike deals 3 damage to target player
+target=player
+auto=damage:3
+id=79084
+name=Lava Spike
+rarity=C
+color=Red
+type=Sorcery
+mana={R}
+subtype=Arcane
+[/card]
+[card]
+text=Enchanted Creature has “{B}: This Creature gets +1/+1 until end of turn.”
+auto={B}:1/1
+id=50449
+name=Midnight Covenant
+rarity=C
+color=Black
+type=Enchantment
+mana={1}{B}
+subtype=Aura
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.     {U}, {T}: Untap target legendary permanent.
+abilities=legendary
+auto={T}:add{U}
+auto={U}{T}:untap target(*[legendary])
+id=79179
+name=Minamo, School at Water's Edge
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Trample
+abilities=trample
+id=76641
+name=Moss Kami
+rarity=C
+color=Green
+type=Creature
+mana={5}{G}
+power=5
+subtype=Spirit
+toughness=5
+[/card]
+[card]
+text=Nezumi Cutthroat can't block.
+abilities=cantblock
+id=80521
+name=Nezumi Cutthroat
+rarity=C
+color=Black
+type=Creature
+mana={1}{B}
+power=2
+subtype=Rat Warrior
+toughness=1
+[/card]
+[card]
+text=All Creatures get -1/-1.
+abilities=legendary
+auto=lord(Creature) -1/-1
+id=78991
+name=Night of Souls' Betrayal
+rarity=R
+color=Black
+type=Enchantment
+mana={2}{B}{B}
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.     {G}, {T}: Target legendary Creature gets +1/+1 until end of turn.
+abilities=legendary
+auto={T}:add{G}
+auto={G}{T}:1/1 target(Creature[legendary])
+id=80251
+name=Okina, Temple to the Grandfathers
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+id=50487
+name=Order of the Sacred Bell
+rarity=C
+color=Green
+type=Creature
+mana={3}{G}
+power=4
+subtype=Human Monk
+toughness=3
+[/card]
+[card]
+text={G}: Add one mana of any color to your mana pool.
+auto={G}:add{W}
+auto={G}:add{U}
+auto={G}:add{B}
+auto={G}:add{R}
+auto={G}:add{G}
+id=50319
+name=Orochi Leafcaller
+rarity=C
+color=Green
+type=Creature
+mana={G}
+power=1
+subtype=Snake Shaman
+toughness=1
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:add {G}
+id=75403
+name=Orochi Sustainer
+rarity=C
+color=Green
+type=Creature
+mana={1}{G}
+power=1
+subtype=Snake Shaman
+toughness=2
+[/card]
+[card]
+text=Return all Creatures you control to their owner’s hand.
+auto=moveTo(ownerhand) all(Creature|myinplay)
+id=80291
+name=Part the Veil
+rarity=R
+color=Blue
+type=Instant
+mana={3}{U}
+subtype=Arcane
+[/card]
+[card]
+text=Target Creature gets -5/-5 until end of turn.
+target=Creature
+auto=-5/-5
+id=78972
+name=Pull Under
+rarity=C
+color=Black
+type=Instant
+mana={5}{B}
+subtype=Arcane
+[/card]
+[card]
+text=Destroy target enchantment.
+target=Enchantment
+auto=destroy
+id=50313
+name=Quiet Purity
+rarity=C
+color=White
+type=Instant
+mana={W}
+subtype=Arcane
+[/card]
+[card]
+text=Draw a card
+auto=draw:1
+id=79247
+name=Reach Through Mists
+rarity=C
+color=Blue
+type=Instant
+mana={U}
+subtype=Arcane
+[/card]
+[card]
+text=Destroy target non-Spirit creature.
+auto=destroy
+target=Creature[-spirit]
+id=75259
+name=Rend Flesh
+rarity=C
+color=Black
+type=Instant
+mana={2}{B}
+subtype=Arcane
+[/card]
+[card]
+id=78586
+name=River Kaijin
+rarity=C
+color=Blue
+type=Creature
+mana={2}{U}
+power=1
+subtype=Spirit
+toughness=4
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.     {R}, {T}: Target legendary Creature gains first strike until end of turn.
+abilities=legendary
+auto={T}:add{R}
+auto={R}{T}:first strike target(Creature[legendary])
+id=79121
+name=Shinka, the Bloodsoaked Keep
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.     {B}, {T}: Target legendary Creature gains fear until end of turn.
+abilities=legendary
+auto={T}:add{B}
+auto={B}{T}:fear target(Creature[legendary])
+id=79186
+name=Shizo, Death’s Storehouse
+rarity=R
+color=Land
+type=Land
+[/card]
+[card]
+text=Mountainwalk
+abilities=mountainwalk
+id=79140
+name=Sokenzan Bruiser
+rarity=C
+color=Red
+type=Creature
+mana={4}{R}
+power=3
+subtype=Ogre Warrior
+toughness=3
+[/card]
+[card]
+text=Destroy target land.
+target=land
+auto=destroy
+id=79223
+name=Stone Rain
+rarity=C
+color=Red
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Enchant Creature     Flash     Enchanted Creature gets +2/+2 and attacks each turn if able.
+abilities=flash
+target=Creature
+auto=:2/2
+auto=mustattack
+id=50315
+name=Uncontrollable Anger
+rarity=C
+color=Red
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Target Creature gains haste until end of turn.
+target=Creature
+auto=haste
+id=77926
+name=Unnatural Speed
+rarity=C
+color=Red
+type=Instant
+mana={R}
+subtype=Arcane
+[/card]
+[card]
+text=Enchant Creature     Enchanted Creature has vigilance.
+target=Creature
+auto=vigilance
+id=50414
+name=Vigilance
+rarity=C
+color=White
+type=Enchantment
+mana={W}
+subtype=Aura
+[/card]
+[card]
+text=Villainous Ogre can’t block.     As long as you control a Demon, Villainous Ogre has “B: Regenerate Villainous Ogre.”
+abilities=cantblock
+auto=aslongas(demon|myinplay) {B}:regenerate
+id=80520
+name=Villanous Ogre
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}
+power=3
+subtype=Ogre Warrior
+toughness=2
+[/card]
+[card]
+id=50345
+name=Wandering Ones
+rarity=C
+color=Blue
+type=Creature
+mana={U}
+power=1
+subtype=Spirit
+toughness=1
+[/card]
