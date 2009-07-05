@@ -1,0 +1,18 @@
+#Bug: Arcanis the Omnipotent: draws 3 cards when comes into play, then canÅft use ÅgDrawÅh ability
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Arcanis the Omnipotent
+library:swamp,plains,mountain
+manapool:{3}{U}{U}{U}
+[PLAYER2]
+[DO]
+Arcanis the Omnipotent
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Arcanis the Omnipotent
+library:swamp,plains,mountain
+manapool:{0}
+[PLAYER2]
+[END]

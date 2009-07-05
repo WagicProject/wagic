@@ -26,6 +26,8 @@ animate_dead.txt
 animate_dead2.txt
 animate_dead3.txt
 ankh_of_mishra.txt
+arcanis_the_omnipotent.txt
+arcanis_the_omnipotent2.txt
 ardakar_wastes.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt

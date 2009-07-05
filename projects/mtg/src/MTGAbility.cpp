@@ -733,20 +733,20 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 			int multiplier = countCards(lordTargets);
 			game->mLayers->stackLayer()->addDraw(card->controller(),multiplier);;
 		}else{
-        if (trigger){
-	        DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
-	        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
-		}else{
-	        if (tc){
-	          //TODO ?
-	        }else{
-	          if (!cost){
-	            game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);
-	          }else{
-	            game->addObserver(NEW ADrawer(id,card,cost,nbcards,doTap));
-			  }
-			}
-		}
+      if (trigger){
+        DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
+        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
+		  }else{
+        if (tc){
+          //TODO ?
+        }else{
+          if (cost || doTap){
+             game->addObserver(NEW ADrawer(id,card,cost,nbcards,doTap));
+          }else{
+            game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);  
+	        }
+	      }
+      }
 		}
         result++;
         continue;
