@@ -36,8 +36,8 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
 }
 
 int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
-  MTGCardInstance * source = tc->source;
-  tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
+  MTGCardInstance * targetter = tc->targetter;
+  tc->targetter = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
   GameObserver * game = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
     Player * p = game->players[i]; 
@@ -49,7 +49,7 @@ int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
       }
     }
   }
-  tc->source = source; //restore source
+  tc->targetter = targetter; //restore targetter
   return 1;
 }
 
@@ -67,25 +67,25 @@ int AbilityFactory::CantBlock(TargetChooser * tc){
 }
 
 int AbilityFactory::damageAll(TargetChooser * tc, int damage){
-  MTGCardInstance * source = tc->source;
-  tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
+  MTGCardInstance * targetter = tc->targetter;
+  tc->targetter = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
   GameObserver * g = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
-    if (tc->canTarget(g->players[i]))  g->mLayers->stackLayer()->addDamage(source,g->players[i], damage);
+    if (tc->canTarget(g->players[i]))  g->mLayers->stackLayer()->addDamage(tc->source,g->players[i], damage);
     for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
       MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
       if (tc->canTarget(current)){
-        g->mLayers->stackLayer()->addDamage(source,current, damage);
+        g->mLayers->stackLayer()->addDamage(tc->source,current, damage);
       }
     }
   }
-  tc->source = source; //restore source
+  tc->targetter = targetter; //restore source
   return 1;
 }
 
 int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
-  MTGCardInstance * source = tc->source;
-  tc->source = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
+  MTGCardInstance * targetter = tc->targetter;
+  tc->targetter = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
   GameObserver * g = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
 	  MTGGameZone * zones[] = {g->players[i]->game->inPlay,g->players[i]->game->graveyard,g->players[i]->game->hand};
@@ -93,12 +93,12 @@ int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
 				for (int j = zones[k]->nb_cards-1; j >=0 ; j--){
 					MTGCardInstance * current =  zones[k]->cards[j];
 					if (tc->canTarget(current)){        
-						AZoneMover::moveTarget(current,destinationZone , source);
+						AZoneMover::moveTarget(current,destinationZone , tc->source);
 					}
 				}
 			}
   }
-  tc->source = source; //restore source
+  tc->targetter = targetter; //restore source
   return 1;
 }
 
@@ -106,8 +106,8 @@ int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
 
 
 int AbilityFactory::TapAll(TargetChooser * tc){
-  MTGCardInstance * source = tc->source;
-  tc->source = NULL; // This is to prevent protection from...
+  MTGCardInstance * targetter = tc->targetter;
+  tc->targetter = NULL; // This is to prevent protection from...
   GameObserver * g = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
     for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
@@ -117,13 +117,13 @@ int AbilityFactory::TapAll(TargetChooser * tc){
 	  }
 	}
   }
-  tc->source = source; //restore source
+  tc->targetter = targetter; //restore source
   return 1;
 }
 
 int AbilityFactory::UntapAll(TargetChooser * tc){
-  MTGCardInstance * source = tc->source;
-  tc->source = NULL; // This is to prevent protection from...
+  MTGCardInstance * targetter = tc->targetter;
+  tc->targetter = NULL; // This is to prevent protection from...
   GameObserver * g = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
     for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
@@ -133,7 +133,7 @@ int AbilityFactory::UntapAll(TargetChooser * tc){
 	  }
 	}
   }
-  tc->source = source; //restore source
+  tc->targetter = targetter; //restore source
   return 1;
 }
 

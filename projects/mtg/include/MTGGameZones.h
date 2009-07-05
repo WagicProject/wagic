@@ -18,6 +18,52 @@ class MTGGameZone {
  protected:
   
  public:
+
+   enum{
+    MY_GRAVEYARD = 11,
+    OPPONENT_GRAVEYARD = 12,
+    TARGET_OWNER_GRAVEYARD = 13,
+    TARGET_CONTROLLER_GRAVEYARD = 14,
+    GRAVEYARD = 15,
+    OWNER_GRAVEYARD = 16,
+
+    MY_BATTLEFIELD = 21,
+    OPPONENT_BATTLEFIELD = 22,
+    TARGET_OWNER_BATTLEFIELD = 23,
+    TARGET_CONTROLLER_BATTLEFIELD = 24,
+    BATTLEFIELD = 25,
+    OWNER_BATTLEFIELD = 26,
+
+    MY_HAND = 31,
+    OPPONENT_HAND = 32,
+    TARGET_OWNER_HAND = 33,
+    TARGET_CONTROLLER_HAND = 34,
+    HAND = 35,
+    OWNER_HAND = 36,
+
+    MY_EXILE = 41,
+    OPPONENT_EXILE = 42,
+    TARGET_OWNER_EXILE = 43,
+    TARGET_CONTROLLER_EXILE = 44,
+    EXILE = 45,
+    OWNER_EXILE = 46,
+
+    MY_LIBRARY = 51,
+    OPPONENT_LIBRARY = 52,
+    TARGET_OWNER_LIBRARY = 53,
+    TARGET_CONTROLLER_LIBRARY = 54,
+    LIBRARY = 55,
+    OWNER_LIBRARY = 56,
+
+    MY_STACK = 61,
+    OPPONENT_STACK = 62,
+    TARGET_OWNER_STACK = 63,
+    TARGET_CONTROLLER_STACK = 64,
+    STACK = 65,
+    OWNER_STACK = 66,
+
+   };
+
    Player * owner;
   //Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
   vector<MTGCardInstance *> cards; //[MTG_MAX_PLAYER_CARDS];
@@ -37,6 +83,8 @@ class MTGGameZone {
   void setOwner(Player * player);
   MTGCardInstance * lastCardDrawn;
   static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
+  static int zoneStringToId(string zoneName);
+  static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
 };
 
 class MTGLibrary: public MTGGameZone {

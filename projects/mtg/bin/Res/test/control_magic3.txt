@@ -1,0 +1,26 @@
+#Bug: control magic on a "lord" creature does not update its values
+# testing on a nightmare
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:control magic,lightning bolt
+inplay:mountain,129754,129755
+manapool:{2}{U}{U}
+[PLAYER2]
+inplay:nightmare,129756,129757,1373,1375
+[DO]
+control magic
+nightmare
+mountain
+lightning bolt
+nightmare
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:control magic,lightning bolt
+manapool:{0}
+inplay:mountain,129754,129755
+[PLAYER2]
+graveyard:nightmare
+inplay:129756,129757,1373,1375
+[END]

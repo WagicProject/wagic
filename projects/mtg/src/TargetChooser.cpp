@@ -11,7 +11,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
   if (!s.size()) return NULL;
 
   GameObserver * game = GameObserver::GetInstance();
-  MTGGameZone * zones[10];
+  int zones[10];
   int nbzones = 0;
   unsigned int found;
 
@@ -41,23 +41,23 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         zoneName = s2;
         s2 = "";
       }
-      zones[nbzones] = game->currentlyActing()->game->inPlay;
+      zones[nbzones] = MTGGameZone::MY_BATTLEFIELD;
     
       //Graveyards
       if(zoneName.compare("graveyard") == 0){
-        zones[nbzones] = game->players[0]->game->graveyard;
+        zones[nbzones] = MTGGameZone::MY_GRAVEYARD;
         nbzones++;
-        zones[nbzones] = game->players[1]->game->graveyard;
+        zones[nbzones] = MTGGameZone::OPPONENT_GRAVEYARD;
       }else if(zoneName.compare("battlefield") == 0 || zoneName.compare("inplay") == 0){
-          zones[nbzones] = game->players[0]->game->inPlay;
+          zones[nbzones] = MTGGameZone::MY_BATTLEFIELD;
           nbzones++;
-          zones[nbzones] = game->players[1]->game->inPlay;
+          zones[nbzones] = MTGGameZone::OPPONENT_BATTLEFIELD;
       }else if(zoneName.compare("stack") == 0){
-        zones[nbzones] = game->players[0]->game->stack;
+        zones[nbzones] = MTGGameZone::MY_STACK;
         nbzones++;
-        zones[nbzones] = game->players[1]->game->stack;
+        zones[nbzones] = MTGGameZone::OPPONENT_STACK;
       }else{
-          MTGGameZone * zone = MTGGameZone::stringToZone(zoneName, card,card);
+          int zone = MTGGameZone::zoneStringToId(zoneName);
           if (zone) zones[nbzones] = zone;
       }
       nbzones++;
@@ -65,8 +65,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
   }else{
     s1 = s;
     nbzones = 2;
-    zones[0]= game->players[0]->game->inPlay;
-    zones[1]= game->players[1]->game->inPlay;
+    zones[0]= MTGGameZone::MY_BATTLEFIELD;
+    zones[1]= MTGGameZone::OPPONENT_BATTLEFIELD;
   }
 
   TargetChooser * tc = NULL;
@@ -266,17 +266,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card
 TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets): TargetsList(){
   forceTargetListReady = 0;
   source = card;
+  targetter = card;
   maxtargets = _maxtargets;
 }
 
-//Default targetter : every card can be targetted, unless it is protected from the source card
-// For spells that do not "target" a specific card, set source to NULL
+//Default targetter : every card can be targetted, unless it is protected from the targetter card
+// For spells that do not "target" a specific card, set targetter to NULL
 int TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    if (source && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(source) )) return 0;
-    if (source && card->isInPlay() && (source->controller() != card->controller()) && (card->has(Constants::OPPONENTSHROUD)|| card->protectedAgainst(source) )) return 0;
-	return 1;
+    if (targetter && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(targetter) )) return 0;
+    if (source && targetter && card->isInPlay() && (source->controller() != card->controller()) && (card->has(Constants::OPPONENTSHROUD)|| card->protectedAgainst(targetter) )) return 0;
+	  return 1;
   }else if (target->typeAsTarget() == TARGET_STACKACTION){
     return 1;
   }
@@ -354,17 +355,17 @@ TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card,
   nbtypes = 0;
   addType(id);
   GameObserver * game = GameObserver::GetInstance();
-  MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+  int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
 }
 
-TypeTargetChooser::TypeTargetChooser(const char * _type, MTGGameZone ** _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+TypeTargetChooser::TypeTargetChooser(const char * _type, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
   int id = Subtypes::subtypesList->Add(_type);
   nbtypes = 0;
   addType(id);
   GameObserver * game = GameObserver::GetInstance();
   if (nbzones == 0){
-    MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+    int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
   }else{
     init(_zones, nbzones);
@@ -411,15 +412,15 @@ int TypeTargetChooser::canTarget(Targetable * target ){
 **/
 DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
   GameObserver * game = GameObserver::GetInstance();
-  MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+  int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   cd = _cd;
 }
 
-DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGGameZone ** _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
   GameObserver * game = GameObserver::GetInstance();
   if (nbzones == 0){
-    MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+    int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
   }else{
     init(_zones, nbzones);
@@ -453,16 +454,16 @@ DescriptorTargetChooser::~DescriptorTargetChooser(){
 
 CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
   GameObserver * game = GameObserver::GetInstance();
-  MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+  int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   maxpower=  -1;
   maxtoughness=  -1;
 }
 
-CreatureTargetChooser::CreatureTargetChooser(MTGGameZone ** _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+CreatureTargetChooser::CreatureTargetChooser(int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
   GameObserver * game = GameObserver::GetInstance();
   if (nbzones == 0){
-    MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+    int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
   }else{
     init(_zones, nbzones);
@@ -485,19 +486,15 @@ int CreatureTargetChooser::canTarget(Targetable * target){
 
 
 /* TargetzoneChooser targets everything in a given zone */
-TargetZoneChooser::TargetZoneChooser(MTGCardInstance * card, int _maxtargets){
+TargetZoneChooser::TargetZoneChooser(MTGCardInstance * card, int _maxtargets):TargetChooser(card,_maxtargets){
   init(NULL,0);
-  source = card;
-  maxtargets = _maxtargets;
 }
 
-TargetZoneChooser::TargetZoneChooser(MTGGameZone ** _zones, int _nbzones,MTGCardInstance * card, int _maxtargets){
+TargetZoneChooser::TargetZoneChooser(int * _zones, int _nbzones,MTGCardInstance * card, int _maxtargets):TargetChooser(card,_maxtargets){
   init(_zones, _nbzones);
-  source = card;
-  maxtargets = _maxtargets;
 }
 
-int TargetZoneChooser::init(MTGGameZone ** _zones, int _nbzones){
+int TargetZoneChooser::init(int * _zones, int _nbzones){
   for (int i = 0; i < _nbzones; i++){
     zones[i] = _zones[i];
   }
@@ -510,7 +507,7 @@ int TargetZoneChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
     for (int i = 0; i<nbzones; i++){
-      if (zones[i]->hasCard(card)) return 1;
+      if (MTGGameZone::intToZone(zones[i],source,card)->hasCard(card)) return 1;
     }
   }else if (target->typeAsTarget() == TARGET_STACKACTION){
 OutputDebugString ("CHECKING INTERRUPTIBLE\n");
@@ -519,7 +516,7 @@ OutputDebugString ("CHECKING INTERRUPTIBLE\n");
       Spell * spell = (Spell *) action;
       MTGCardInstance * card = spell->source;
       for (int i = 0; i<nbzones; i++){
-          if (zones[i]->hasCard(card)) return 1;
+          if (MTGGameZone::intToZone(zones[i],source,card)->hasCard(card)) return 1;
       }
     }
   }
@@ -529,7 +526,7 @@ OutputDebugString ("CHECKING INTERRUPTIBLE\n");
 
 int TargetZoneChooser::targetsZone(MTGGameZone * z){
   for (int i = 0; i < nbzones; i++){
-    if (zones[i] == z) return 1;
+    if (MTGGameZone::intToZone(zones[i],source) == z) return 1;
     
   }
   return 0;
@@ -588,7 +585,7 @@ int SpellTargetChooser::canTarget(Targetable * target){
 /*Spell or Permanent */
 SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets):TargetZoneChooser(card, _maxtargets){
   GameObserver * game = GameObserver::GetInstance();
-  MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+  int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   color = _color;
 }
@@ -638,7 +635,7 @@ int DamageTargetChooser::canTarget(Targetable * target){
 /*Damage or Permanent */
 DamageOrPermanentTargetChooser::DamageOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets):TargetZoneChooser(card, _maxtargets){
   GameObserver * game = GameObserver::GetInstance();
-  MTGGameZone * default_zones[] = {game->players[0]->game->inPlay, game->players[1]->game->inPlay};
+  int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   color = _color;
 }

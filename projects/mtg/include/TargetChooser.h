@@ -29,7 +29,8 @@ class TargetChooser: public TargetsList {
  public:
   TargetChooser(MTGCardInstance * card = NULL, int _maxtargets = -1);
 
-  MTGCardInstance * source; //Optionnal source, used for protection from...
+  MTGCardInstance * source; 
+  MTGCardInstance * targetter; //Optional, usually equals source, used for protection from...
   int maxtargets; //Set to -1 for "unlimited"
   virtual int targetsZone(MTGGameZone * z){return 0;};
   int ForceTargetListReady();
@@ -64,12 +65,12 @@ public:
 
 class TargetZoneChooser:public TargetChooser{
  public:
-  MTGGameZone * zones[10];
+  int zones[10];
   int nbzones;
-  int init(MTGGameZone ** _zones, int _nbzones);
+  int init(int * _zones, int _nbzones);
   int targetsZone(MTGGameZone * z);
   TargetZoneChooser(MTGCardInstance * card = NULL, int _maxtargets = 1);
-  TargetZoneChooser(MTGGameZone ** _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
+  TargetZoneChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
   virtual int canTarget(Targetable * _card);
 };
 
@@ -77,7 +78,7 @@ class CreatureTargetChooser:public TargetZoneChooser{
  public:
   int maxpower;
   int maxtoughness;
-  CreatureTargetChooser(MTGGameZone ** _zones, int _nbzones,MTGCardInstance * card = NULL, int _maxtargets = 1);
+  CreatureTargetChooser(int * _zones, int _nbzones,MTGCardInstance * card = NULL, int _maxtargets = 1);
   CreatureTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1);
   virtual int canTarget(Targetable * _card);
 
@@ -86,7 +87,7 @@ class CreatureTargetChooser:public TargetZoneChooser{
 
 class DamageableTargetChooser:public CreatureTargetChooser{
  public:
- DamageableTargetChooser(MTGGameZone ** _zones, int _nbzones,MTGCardInstance * card = NULL, int _maxtargets = 1):CreatureTargetChooser( _zones,_nbzones, card, _maxtargets){};
+ DamageableTargetChooser(int * _zones, int _nbzones,MTGCardInstance * card = NULL, int _maxtargets = 1):CreatureTargetChooser( _zones,_nbzones, card, _maxtargets){};
  DamageableTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1):CreatureTargetChooser(card, _maxtargets){};
   virtual int canTarget(Targetable * target);
 };
@@ -105,7 +106,7 @@ class TypeTargetChooser:public TargetZoneChooser{
   int nbtypes;
   int types[10];
   TypeTargetChooser(const char * _type, MTGCardInstance * card = NULL, int _maxtargets = 1);
-  TypeTargetChooser(const char * _type, MTGGameZone ** _zones, int nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
+  TypeTargetChooser(const char * _type, int * _zones, int nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
   void addType(int type);
   void addType(const char * type);
   virtual int canTarget(Targetable * targe);
@@ -115,7 +116,7 @@ class DescriptorTargetChooser:public TargetZoneChooser{
  public:
   CardDescriptor  * cd;
   DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card = NULL, int _maxtargets = 1);
-  DescriptorTargetChooser(CardDescriptor * _cd, MTGGameZone ** _zones, int nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
+  DescriptorTargetChooser(CardDescriptor * _cd, int * _zones, int nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
   virtual int canTarget(Targetable * target);
   ~DescriptorTargetChooser();
 };

@@ -1251,7 +1251,7 @@ class ALord:public ListMaintainerAbility{
   map<MTGCardInstance *, MTGAbility *> regenerations;
  ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL, int _modifier = 1):ListMaintainerAbility(_id,card){
     tc = _tc;
-    tc->source = NULL;
+    tc->targetter = NULL;
     includeSelf = _includeSelf;
     power = _power;
     toughness = _toughness;
@@ -1334,7 +1334,7 @@ class AForeach:public ListMaintainerAbility{
   int includeSelf;
  AForeach(int _id, MTGCardInstance * card,MTGCardInstance * _target, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0):ListMaintainerAbility(_id,card,_target){
     tc = _tc;
-    tc->source = NULL;
+    tc->targetter = NULL;
     includeSelf = _includeSelf;
     power = _power;
     toughness = _toughness;
@@ -1673,7 +1673,7 @@ class AAladdinsLamp: public TargetAbility{
     cost = NEW ManaCost();
     cost->x();
     cd = CardDisplay(1,game,SCREEN_WIDTH/2, SCREEN_HEIGHT/2,NULL);
-    MTGGameZone * zones[] = {game->currentPlayer->game->library};
+    int zones[] = {MTGGameZone::MY_LIBRARY};
     tc = NEW TargetZoneChooser(zones,1,source);
     nbcards = 0;
     init = 0;
@@ -2038,7 +2038,7 @@ class ADingusEgg: public ListMaintainerAbility{
 class ADisruptingScepter:public TargetAbility{
  public:
  ADisruptingScepter(int id, MTGCardInstance * _source):TargetAbility(id,_source){
-    MTGGameZone * zones[] = {GameObserver::GetInstance()->opponent()->game->hand};
+   int zones[] = {MTGGameZone::OPPONENT_HAND};
     tc = NEW TargetZoneChooser(zones,1,_source);
     int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 3};
     cost = NEW ManaCost(_cost,1);

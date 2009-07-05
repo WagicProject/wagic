@@ -138,10 +138,17 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
   GameObserver *g = GameObserver::GetInstance();
   if (!from || !to) return card; //Error check
 
-  if ((copy = from->removeCard(card))){
+  int doCopy = 1;
+  //When a card is moved from inPlay to inPlay (controller change, for example), it is still the same object
+  if ((to == g->players[0]->game->inPlay || to == g->players[1]->game->inPlay) &&
+    (from == g->players[0]->game->inPlay || from == g->players[1]->game->inPlay)){
+      doCopy = 0;
+  }
+
+  if ((copy = from->removeCard(card,doCopy))){
 
     if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
-      if (to == graveyard){
+      if (to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard){
         if (card->isACreature()){
           JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/graveyard.wav");
           if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
@@ -387,7 +394,7 @@ void MTGLibrary::shuffleTopToBottom(int nbcards){
 }
 
 
-MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source,MTGCardInstance * target){
+MTGGameZone * MTGGameZone::intToZone(int zoneId, MTGCardInstance * source,MTGCardInstance * target){
   Player *p, *p2;
   GameObserver * g = GameObserver::GetInstance();
   if (!source) p = g->currentlyActing();
@@ -397,53 +404,167 @@ MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * sourc
     target = source;//hack ?
   }
   else p2 = target->controller();
-  if(zoneName.compare("mygraveyard") == 0)return p->game->graveyard;
-  if(zoneName.compare("opponentgraveyard") == 0) return p->opponent()->game->graveyard;
-  if(zoneName.compare("targetownergraveyard") == 0) return target->owner->game->graveyard;
-  if(zoneName.compare("targetcontrollergraveyard") == 0) return p2->game->graveyard;
-  if(zoneName.compare("ownergraveyard") == 0) return target->owner->game->graveyard;
-  if(zoneName.compare("graveyard") == 0) return target->owner->game->graveyard;
 
-  if(zoneName.compare("myinplay") == 0)return p->game->inPlay;
-  if(zoneName.compare("opponentinplay") == 0) return p->opponent()->game->inPlay;
-  if(zoneName.compare("targetownerinplay") == 0) return target->owner->game->inPlay;
-  if(zoneName.compare("targetcontrollerinplay") == 0) return p2->game->inPlay;
-  if(zoneName.compare("ownerinplay") == 0) return target->owner->game->inPlay;
-  if(zoneName.compare("inplay") == 0) return p->game->inPlay;
+  switch(zoneId){
+    case MY_GRAVEYARD: return p->game->graveyard;
+    case OPPONENT_GRAVEYARD: return p->opponent()->game->graveyard;
+    case TARGET_OWNER_GRAVEYARD : return target->owner->game->graveyard;
+    case TARGET_CONTROLLER_GRAVEYARD:  return p2->game->graveyard;
+    case GRAVEYARD : return target->owner->game->graveyard;
+    case OWNER_GRAVEYARD : return target->owner->game->graveyard;
 
-  if(zoneName.compare("mybattlefield") == 0)return p->game->inPlay;
-  if(zoneName.compare("opponentbattlefield") == 0) return p->opponent()->game->inPlay;
-  if(zoneName.compare("targetownerbattlefield") == 0) return target->owner->game->inPlay;
-  if(zoneName.compare("targetcontrollerbattlefield") == 0) return p2->game->inPlay;
-  if(zoneName.compare("ownerbattlefield") == 0) return target->owner->game->inPlay;
-  if(zoneName.compare("battlefield") == 0) return p->game->inPlay;
+    case MY_BATTLEFIELD : return p->game->inPlay;
+    case OPPONENT_BATTLEFIELD : return p->opponent()->game->inPlay;
+    case TARGET_OWNER_BATTLEFIELD : return target->owner->game->inPlay;
+    case TARGET_CONTROLLER_BATTLEFIELD : return p2->game->inPlay;
+    case BATTLEFIELD : return p->game->inPlay;
+    case OWNER_BATTLEFIELD : return target->owner->game->inPlay;
 
-  if(zoneName.compare("myhand") == 0)return p->game->hand;
-  if(zoneName.compare("opponenthand") == 0) return p->opponent()->game->hand;
-  if(zoneName.compare("targetcontrollerhand") == 0) return p2->game->hand;
-  if(zoneName.compare("targetownerhand") == 0) return target->owner->game->hand;
-  if(zoneName.compare("ownerhand") == 0) return target->owner->game->hand;
-  if(zoneName.compare("hand") == 0) return target->owner->game->hand;
+    case MY_HAND : return p->game->hand;
+    case OPPONENT_HAND : return p->opponent()->game->hand;
+    case TARGET_OWNER_HAND : return target->owner->game->hand;
+    case TARGET_CONTROLLER_HAND : return p2->game->hand; 
+    case HAND : return target->owner->game->hand;
+    case OWNER_HAND : return target->owner->game->hand;
 
-  if(zoneName.compare("myremovedfromgame") == 0)return p->game->removedFromGame;
-  if(zoneName.compare("opponentremovedfromgame") == 0) return p->opponent()->game->removedFromGame;
-  if(zoneName.compare("targetcontrollerremovedfromgame") == 0) return p2->game->removedFromGame;
-  if(zoneName.compare("targetownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
-  if(zoneName.compare("ownerremovedfromgame") == 0) return target->owner->game->removedFromGame;
-  if(zoneName.compare("removedfromgame") == 0) return target->owner->game->removedFromGame;
+    case MY_EXILE : return p->game->removedFromGame;
+    case OPPONENT_EXILE : return p->opponent()->game->removedFromGame;
+    case TARGET_OWNER_EXILE :  return target->owner->game->removedFromGame;
+    case TARGET_CONTROLLER_EXILE : return p2->game->removedFromGame;
+    case EXILE : return target->owner->game->removedFromGame;
+    case OWNER_EXILE : return target->owner->game->removedFromGame;
 
-  if(zoneName.compare("myexile") == 0)return p->game->removedFromGame;
-  if(zoneName.compare("opponentexile") == 0) return p->opponent()->game->removedFromGame;
-  if(zoneName.compare("targetcontrollerexile") == 0) return p2->game->removedFromGame;
-  if(zoneName.compare("targetownerexile") == 0) return target->owner->game->removedFromGame;
-  if(zoneName.compare("ownerexile") == 0) return target->owner->game->removedFromGame;
-  if(zoneName.compare("exile") == 0) return target->owner->game->removedFromGame;
+    case MY_LIBRARY : return p->game->library;
+    case OPPONENT_LIBRARY : return p->opponent()->game->library;
+    case TARGET_OWNER_LIBRARY : return target->owner->game->library;
+    case TARGET_CONTROLLER_LIBRARY : return p2->game->library;
+    case LIBRARY : return p->game->library;
+    case OWNER_LIBRARY: return target->owner->game->library;
 
-  if(zoneName.compare("mylibrary") == 0)return p->game->library;
-  if(zoneName.compare("opponentlibrary") == 0) return p->opponent()->game->library;
-  if(zoneName.compare("targetownerlibrary") == 0) return target->owner->game->library;
-  if(zoneName.compare("targetcontrollerlibrary") == 0) return p2->game->library;
-  if(zoneName.compare("ownerlibrary") == 0) return target->owner->game->library;
-  if(zoneName.compare("library") == 0) return p->game->library;
-  return NULL;
+    case MY_STACK : return p->game->stack;
+    case OPPONENT_STACK : return p->opponent()->game->stack;
+    case TARGET_OWNER_STACK : return target->owner->game->stack;
+    case TARGET_CONTROLLER_STACK : return p2->game->stack;
+    case STACK : return p->game->stack;
+    case OWNER_STACK: return target->owner->game->stack;
+    default:
+      return NULL;
+  }
+}
+
+int MTGGameZone::zoneStringToId(string zoneName){
+  const char * strings[] = {
+    "mygraveyard",
+    "opponentgraveyard",
+    "targetownergraveyard",
+    "targetcontrollergraveyard",
+    "ownergraveyard",
+    "graveyard",
+
+    "myinplay",
+    "opponentinplay",
+    "targetownerinplay",
+    "targetcontrollerinplay",
+    "ownerinplay",
+    "inplay",
+
+    "mybattlefield",
+    "opponentbattlefield",
+    "targetownerbattlefield",
+    "targetcontrollerbattlefield",
+    "ownerbattlefield",
+    "battlefield",
+
+    "myhand",
+    "opponenthand",
+    "targetownerhand",
+    "targetcontrollerhand",
+    "ownerhand",
+    "hand",
+
+    "mylibrary",
+    "opponentlibrary",
+    "targetownerlibrary",
+    "targetcontrollerlibrary",
+    "ownerlibrary",
+    "library",
+
+    "myremovedfromgame",
+    "opponentremovedfromgame",
+    "targetownerremovedfromgame",
+    "targetcontrollerremovedfromgame",
+    "ownerremovedfromgame",
+    "removedfromgame",
+
+    "myexile",
+    "opponentexile",
+    "targetownerexile",
+    "targetcontrollerexile",
+    "ownerexile",
+    "exile",
+  };
+
+  int values[] = {
+    MY_GRAVEYARD,
+    OPPONENT_GRAVEYARD,
+    TARGET_OWNER_GRAVEYARD ,
+    TARGET_CONTROLLER_GRAVEYARD,
+    OWNER_GRAVEYARD ,
+    GRAVEYARD,
+
+    MY_BATTLEFIELD,
+    OPPONENT_BATTLEFIELD,
+    TARGET_OWNER_BATTLEFIELD ,
+    TARGET_CONTROLLER_BATTLEFIELD,
+    OWNER_BATTLEFIELD ,
+    BATTLEFIELD,
+
+    MY_BATTLEFIELD,
+    OPPONENT_BATTLEFIELD,
+    TARGET_OWNER_BATTLEFIELD ,
+    TARGET_CONTROLLER_BATTLEFIELD,
+    OWNER_BATTLEFIELD ,
+    BATTLEFIELD,
+
+    MY_HAND,
+    OPPONENT_HAND,
+    TARGET_OWNER_HAND ,
+    TARGET_CONTROLLER_HAND,
+    OWNER_HAND ,
+    HAND,
+
+    MY_LIBRARY,
+    OPPONENT_LIBRARY,
+    TARGET_OWNER_LIBRARY ,
+    TARGET_CONTROLLER_LIBRARY,
+    OWNER_LIBRARY ,
+    LIBRARY,
+
+    MY_EXILE,
+    OPPONENT_EXILE,
+    TARGET_OWNER_EXILE ,
+    TARGET_CONTROLLER_EXILE,
+    OWNER_EXILE ,
+    EXILE,
+
+    MY_EXILE,
+    OPPONENT_EXILE,
+    TARGET_OWNER_EXILE ,
+    TARGET_CONTROLLER_EXILE,
+    OWNER_EXILE ,
+    EXILE,
+  };
+
+  int max = sizeof(values) / sizeof*(values);
+
+  for (int i = 0; i < max; ++i){
+    if(zoneName.compare(strings[i]) == 0){
+      return values[i];
+    }
+  }
+  return 0;
+}
+
+MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source,MTGCardInstance * target){
+  return intToZone(zoneStringToId(zoneName), source,target);
 }

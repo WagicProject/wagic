@@ -14,18 +14,18 @@ ExtraCost::~ExtraCost(){
 
 int ExtraCost::setSource(MTGCardInstance * _source){
   source=_source;
-  if (tc){ tc->source = _source;}
+  if (tc){ tc->source = _source; tc->targetter = _source;}
   return 1;
 }
 
 SacrificeCost::SacrificeCost(TargetChooser *_tc):ExtraCost(_tc){
-  if (tc) tc->source = NULL; //Sacrificing is not targetting, protections do not apply
+  if (tc) tc->targetter = NULL; //Sacrificing is not targetting, protections do not apply
   target = NULL;
 }
 
 int SacrificeCost::setSource(MTGCardInstance * card){
   ExtraCost::setSource(card);
-  if (tc) tc->source = NULL; //Sacrificing is not targetting, protections do not apply
+  if (tc) tc->targetter = NULL; //Sacrificing is not targetting, protections do not apply
   if (!tc) target = card;
   return 1;
 }
