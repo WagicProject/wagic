@@ -4,8 +4,9 @@
 #include "../include/DeckStats.h"
 
 
-Player::Player(MTGPlayerCards * _deck, string file): Damageable(20){
+Player::Player(MTGPlayerCards * _deck, string file, string fileSmall): Damageable(20){
   deckFile = file;
+  deckFileSmall = fileSmall;
   game = _deck;
   game->setOwner(this);
   manaPool = NEW ManaCost();
@@ -55,7 +56,7 @@ Player * Player::opponent(){
   return NULL;
 }
 
-HumanPlayer::HumanPlayer(MTGPlayerCards * _deck, char * file):Player(_deck, file){
+HumanPlayer::HumanPlayer(MTGPlayerCards * _deck, char * file, string fileSmall):Player(_deck, file, fileSmall){
   mAvatarTex = JRenderer::GetInstance()->LoadTexture("player/avatar.jpg", TEX_TYPE_USE_VRAM);
   if (mAvatarTex)
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);

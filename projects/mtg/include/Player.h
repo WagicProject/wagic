@@ -25,7 +25,7 @@ class Player: public Damageable{
   MTGPlayerCards * game;
   int testLife();
   int afterDamage();
-  Player(MTGPlayerCards * _deck, string deckFile);
+  Player(MTGPlayerCards * _deck, string deckFile, string deckFileSmall);
   virtual ~Player();
   void unTapPhase();
   MTGInPlay * inPlay();
@@ -37,11 +37,12 @@ class Player: public Damageable{
   int getId();
   JQuad * getIcon();
   string deckFile;
+  string deckFileSmall;
 };
 
 class HumanPlayer: public Player{
  public:
-  HumanPlayer(MTGPlayerCards * _deck, char * _deckFile);
+  HumanPlayer(MTGPlayerCards * _deck, char * _deckFile, string _deckFileSmall);
 
 };
 

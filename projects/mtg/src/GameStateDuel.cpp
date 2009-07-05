@@ -119,9 +119,9 @@ void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
   deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
   if (!isAI){ //Human Player
-      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFileSmall);
+      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
   }else{
-      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,empty);
+      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,deckFileSmall, empty);
   }
   delete tempDeck;
 }
@@ -138,15 +138,19 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
       MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
       deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
       delete tempDeck;
-      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFileSmall);
+      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
     }else{ //AI Player, chose deck
           AIPlayerFactory playerCreator;
-          mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection,NULL,decknb);
+          Player * opponent = NULL;
+          if (playerId == 1) opponent = mPlayers[0];
+          mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection,opponent,decknb);
           deck[playerId] = mPlayers[playerId]->game;
     }
-  }else{
+  }else{ //Random AI deck
     AIPlayerFactory playerCreator;
-    mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection,NULL);
+    Player * opponent = NULL;
+    if (playerId == 1) opponent = mPlayers[0];
+    mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection,opponent);
     deck[playerId] = mPlayers[playerId]->game;
   }
 }
@@ -262,6 +266,9 @@ void GameStateDuel::Update(float dt)
 	  if (!opponentMenu){
 	    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, opponentMenuFont, 35, 25, "Choose Opponent");
 	    opponentMenu->Add(0,"Random");
+      if (GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()){
+        opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
+      }
 	    nbAIDecks = 0;
 	    int found = 1;
 	    while (found){
@@ -425,13 +432,13 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         switch(controlId){
           case 0:
             loadPlayer(1);
-	    opponentMenu->Close();
-	    mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+	          opponentMenu->Close();
+	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
           default:
             loadPlayer(1,controlId,1);
-	    opponentMenu->Close();
-	    mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+	          opponentMenu->Close();
+	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
 
         }

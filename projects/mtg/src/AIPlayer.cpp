@@ -26,7 +26,7 @@ int AIAction::Act(){
   return 0;
 }
 
-AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file): Player(_deck, file){
+AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file, string fileSmall): Player(_deck, file, fileSmall){
   potentialMana = NEW ManaCost();
   nextCardToPlay = NULL;
   stats = NULL;
@@ -519,113 +519,54 @@ int AIPlayer::combatDamages(){
 
 }
 
-/*
-int AIPlayer::combatDamages(){
-  int result = 0;
-  GameObserver * gameObs = GameObserver::GetInstance();
-  int currentGamePhase = gameObs->getCurrentGamePhase();
-
-  if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS) return orderBlockers();
-
-  if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
-  DamageResolverLayer *  drl = gameObs->mLayers->combatLayer();
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("AI Combat Phase START\n");
-#endif
-  if (drl->currentChoosingPlayer == this){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("This player chooses\n");
-#endif
-    for (int i = 0; i < drl->mCount; i++){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("AI Combat Phase\n");
-#endif
-      DamagerDamaged * current = (DamagerDamaged *) drl->mObjects[i];
-      if (current->damageSelecter == this){
-	      result = 1;
-	      DamagerDamaged * canardEmissaire = NULL;
-	      for (int j = 0; j < drl->mCount; j++){
-	        DamagerDamaged * opponent = (DamagerDamaged *) drl->mObjects[j];
-	        if (drl->isOpponent(current, opponent)){
-	          if (!canardEmissaire) canardEmissaire = opponent;
-	            int over = opponent->hasLethalDamage();
-	            while(!over){
-	              if(!current->dealOneDamage(opponent)){
-		              over = 1;
-	              }else{
-		              over =  opponent->hasLethalDamage();
-	          }
-#if defined (WIN32) || defined (LINUX)
-	      char buf[4096];
-	      sprintf(buf, "==========\n%s deals %i damages to %s\n=============\n", current->card->getName(), 1, opponent->card->getName());
-	      OutputDebugString(buf);
-#endif
-	    }
-	  }
-	}
-	if (canardEmissaire && !current->card->has(Constants::TRAMPLE)){
-	  while(current->dealOneDamage(canardEmissaire)){
-#if defined (WIN32) || defined (LINUX)
-	    OutputDebugString("==========\nDealing damage to Canard Emissaire\n================\n");
-#endif
-
-	  }
-	}
-      }
-    }
-
-    if (result){
-      drl->nextPlayer();
-    }
-  }
-  return result;
-
-}
-*/
 
 AIStats * AIPlayer::getStats(){
   if (!stats){
     char statFile[512];
-    sprintf(statFile, RESPATH"/ai/baka/stats/%s.stats", opponent()->deckFile.c_str());
+    sprintf(statFile, RESPATH"/ai/baka/stats/%s.stats", opponent()->deckFileSmall.c_str());
     stats = NEW AIStats(this, statFile);
   }
   return stats;
 }
 
-AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, MTGPlayerCards * oponents_deck, int deckid){
-  if (!deckid){
-    int nbdecks = 0;
-    int found = 1;
-    while (found){
-      found = 0;
-      char buffer[512];
-      sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbdecks+1);
-      std::ifstream file(buffer);
-      if(file){
-        found = 1;
-        file.close();
-        nbdecks++;
-      }
-    }
-    if (!nbdecks) return NULL;
-    deckid = 1 + rand() % (nbdecks);
-  }
+AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * opponent, int deckid){
   char deckFile[512];
-  sprintf(deckFile, RESPATH"/ai/baka/deck%i.txt",deckid);
   char avatarFile[512];
-  sprintf(avatarFile, "ai/baka/avatars/avatar%i.jpg",deckid);
-
   char deckFileSmall[512];
-  sprintf(deckFileSmall, "ai_baka_deck%i",deckid);
-#if defined (WIN32) || defined (LINUX)
-  char debuf[4096];
-  sprintf(debuf,"Deck File: %s", deckFile);
-  OutputDebugString(debuf);
-#endif
+  
+  if (deckid == -1){ //Evil twin
+    sprintf(deckFile, opponent->deckFile.c_str());
+    OutputDebugString(opponent->deckFile.c_str());
+    sprintf(avatarFile, "player/avatar.jpg");
+    sprintf(deckFileSmall, "ai_baka_eviltwin");
+  }else{
+    if (!deckid){
+      int nbdecks = 0;
+      int found = 1;
+      while (found){
+        found = 0;
+        char buffer[512];
+        sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbdecks+1);
+        std::ifstream file(buffer);
+        if(file){
+          found = 1;
+          file.close();
+          nbdecks++;
+        }
+      }
+      if (!nbdecks) return NULL;
+      deckid = 1 + rand() % (nbdecks);
+    }
+    sprintf(deckFile, RESPATH"/ai/baka/deck%i.txt",deckid);
+    sprintf(avatarFile, "ai/baka/avatars/avatar%i.jpg",deckid);
+    sprintf(deckFileSmall, "ai_baka_deck%i",deckid);
+  }
+
+
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, collection);
   MTGPlayerCards * deck = NEW MTGPlayerCards(collection,tempDeck);
   delete tempDeck;
-  AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFileSmall, avatarFile);
+  AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFile, deckFileSmall, avatarFile);
   return baka;
 }
 
@@ -665,7 +606,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
   return nextCardToPlay;
 }
 
-AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, char * avatarFile): AIPlayer(_deck,file){
+AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, char * fileSmall, char * avatarFile): AIPlayer(_deck,file, fileSmall){
   if (fileExists(avatarFile)){
     mAvatarTex = JRenderer::GetInstance()->LoadTexture(avatarFile, TEX_TYPE_USE_VRAM);
   }else{

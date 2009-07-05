@@ -24,6 +24,7 @@ class Credits{
 private:
   int isDifficultyUnlocked();
   int isMomirUnlocked();
+  int isEvilTwinUnlocked();
 public:
   int value;
   Player * p1, *p2;

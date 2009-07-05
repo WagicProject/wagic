@@ -8,8 +8,12 @@ using std::string;
 
 #define OPTIONS_MUSICVOLUME "musicVolume"
 #define OPTIONS_SFXVOLUME "sfxVolume"
+
 #define OPTIONS_DIFFICULTY_MODE_UNLOCKED "prx_handler" //huhu
 #define OPTIONS_MOMIR_MODE_UNLOCKED "prx_rimom" //haha
+#define OPTIONS_EVILTWIN_MODE_UNLOCKED "prx_eviltwin"
+#define OPTIONS_RANDOMDECK_MODE_UNLOCKED "prx_rnddeck"
+
 #define OPTIONS_DIFFICULTY "difficulty"
 #define OPTIONS_CACHESIZE "cacheSize"
 #define OPTIONS_PLASMAEFFECT "plasmaEffect"

@@ -78,14 +78,16 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
         unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
         GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
         GameOptions::GetInstance()->save();
-      }else{
-        unlocked = isMomirUnlocked();
-        if (unlocked){
+      }else if(unlocked = isMomirUnlocked()) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/momir_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED] = GameOption(1);
           GameOptions::GetInstance()->save();
-        }
+      }else if(unlocked = isEvilTwinUnlocked()) {
+          unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/eviltwin_unlocked.png", TEX_TYPE_USE_VRAM);
+          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED] = GameOption(1);
+          GameOptions::GetInstance()->save();
       }
       if (unlocked){
         JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
@@ -193,5 +195,11 @@ int Credits::isDifficultyUnlocked(){
 int Credits::isMomirUnlocked(){
   if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) return 0;
   if (p1->game->inPlay->countByType("land") == 8) return 1;
+  return 0;
+}
+
+int Credits::isEvilTwinUnlocked(){
+  if (GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()) return 0;
+  if (p1->game->inPlay->nb_cards && (p1->game->inPlay->nb_cards == p2->game->inPlay->nb_cards)) return 1;
   return 0;
 }

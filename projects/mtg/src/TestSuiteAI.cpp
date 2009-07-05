@@ -8,7 +8,7 @@
 #include <string>
 using std::string;
 
-TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buildDeck(playerId),"testsuite"){
+TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buildDeck(playerId),"testsuite", "testsuite"){
   suite = _suite;
   timer= 0;
   mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);

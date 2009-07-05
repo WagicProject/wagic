@@ -6,7 +6,7 @@
 
 class AIMomirPlayer:public AIPlayerBaka{
 public:
-  AIMomirPlayer(MTGPlayerCards * _deck, char * file, char * avatarFile);
+  AIMomirPlayer(MTGPlayerCards * _deck, char * file, char * fileSmall, char * avatarFile);
   int getEfficiency(AIAction * action);
   int momir();
   int computeActions();
