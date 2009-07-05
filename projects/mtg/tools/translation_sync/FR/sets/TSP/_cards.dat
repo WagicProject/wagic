@@ -1,0 +1,161 @@
+[card]
+toughness=5
+name=Scarwood Treefolk
+mana={3}{G}
+subtype=Treefolk
+color=Green
+auto=tap
+rarity=C
+text=Scarwood Treefolk comes into play tapped.
+power=3
+id=110524
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Wormwood Dryad
+mana={2}{G}
+subtype=Dryad
+color=Green
+auto={B}:swampwalk && Damage 1 controller
+rarity=C
+text={G}: Wormwood Dryad gains forestwalk until end of turn and it deals 1 damage to you. {G}: Wormwood Dryad gains swampwalk until end of turn and it deals 1 damage to you.
+power=3
+id=113583
+type=Creature
+[/card]
+[card]
+color=Land
+auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
+text={T}: Add {1} to your mana pool.  {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token into play.
+rarity=U
+name=Urza's Factory
+id=116384
+type=Land
+[/card]
+[card]
+color=Green
+text=Squall Line deals X damage to each creature with flying and each player.
+rarity=R
+name=Squall Line
+id=109702
+type=Instant
+mana={X}{G}{G}
+alias=1251
+[/card]
+[card]
+toughness=3
+name=Venser's Sliver
+mana={5}
+subtype=Sliver
+color=Artifact
+rarity=C
+text=
+power=3
+id=125866
+type=Artifact Creature
+[/card]
+[card]
+toughness=1
+name=Unyaro Bees
+mana={G}{G}{G}
+subtype=Insect
+color=Green
+auto={S}:Damage:2 target(creature, player)
+rarity=R
+text={G}: Unyaro Bees gets +1/+1 until end of turn.  {3}{G}Sacrifice Unyaro Bees: Unyaro Bees deals 2 damage to target creaturen or player.
+power=0
+id=113579
+type=Creature
+[/card]
+[card]
+auto={1},{T}: Add {W}
+text={T}: Add {1] to your mana pool.  {1}, {T}: Add one mana of any color to your mana pool.
+rarity=C
+name=Prismatic Lens
+id=118880
+type=Artifact
+mana={2}
+[/card]
+[card]
+color=Land
+auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
+text={T}: Add {1} to your mana pool.  {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep into play.
+rarity=R
+name=Kher Keep
+id=113553
+type=Land
+[/card]
+[card]
+toughness=2
+name=Ashcoat Bear
+mana={1}{G}
+subtype=Bear
+color=Green
+rarity=C
+text=Flash (You may play this spell any time you could play an instant.)  
+power=2
+id=114905
+type=Creature
+abilities=flash
+[/card]
+[card]
+name=Feebleness
+mana={1}{B}
+subtype=Aura
+color=Black
+target=creature
+auto=:-2/-1
+rarity=C
+text=Flash (You may play this spell any time you could play an instant.)  Enchant creature  Enchanted creature gets 
+id=108892
+type=Enchantment
+[/card]
+[card]
+name=Bewilder
+mana={2}{U}
+color=Blue
+target=creature
+auto=draw:1
+rarity=C
+text=Target creature gets -3/-0 until end of turn.     Draw a card.
+id=118901
+type=Instant
+[/card]
+[card]
+toughness=1
+name=Drudge Reavers
+mana={3}{B}
+subtype=Skeleton
+color=Black
+auto={B}:regenerate
+rarity=C
+text=text
+power=2
+id=108850
+type=Creature
+abilities=flash
+[/card]
+[card]
+toughness=6
+name=Havenwood Wurm
+mana={6}{G}
+subtype=Wurm
+color=Green
+rarity=C
+text=Flash (You may play this spell any time you could play an instant.) Trample. 
+power=5
+id=108808
+type=Creature
+abilities=flash, trample
+[/card]
+[card]
+name=Sprout
+mana={G}
+color=Green
+auto={G}:token(Saproling,creature saproling, 1/1, green)
+rarity=C
+text=Put a 1/1 green Saproling creature token into play.
+type=Instant
+id=122079
+[/card]

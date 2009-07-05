@@ -1,0 +1,644 @@
+[card]
+name=Shock
+mana={R}
+target=creature,player
+auto=damage:2
+rarity=C
+text=Shock deals 2 damage to target creature or  player.
+type=Instant 
+id=39482
+[/card]
+[card]
+name=Pinpoint Avalanche
+mana={3}{R}{R}
+target=creature
+auto=damage:4
+rarity=C
+text=Pinpoint Avalanche deals 4 damage to target  creature. The damage can't be prevented.
+type=Instant 
+id=40537
+[/card]
+[card]
+toughness=2
+name=Nova Cleric
+mana={W}
+subtype=Cleric
+auto={2}{W}{T}{S}:destroy all(enchantment)
+rarity=U
+text={2}{W}, Tap, Sacrifice Nova Cleric: Destroy all enchantments.
+power=1
+id=39732
+type=Creature
+[/card]
+[card]
+toughness=5
+name=Aven Brigadier
+mana={3}{W}{W}{W}
+subtype=Bird Soldier
+auto=lord(bird) 1/1
+rarity=R
+text=Flying. All other Birds get +1/+1. All other Soldiers get +1/+1.
+power=3
+id=40131
+type=Creature
+abilities=flying
+[/card]
+[card]
+auto={G}{T}:untap target(elf)
+text=Tap: Add 1 to your mana pool. G, Tap: Untap  target Elf.
+rarity=U
+name=Wirewood Lodge
+id=34764
+type=Land 
+[/card]
+[card]
+toughness=5
+name=Silvos, Rogue Elemental
+mana={3}{G}{G}{G}
+subtype=Elemental
+auto={G}:regenerate
+rarity=R
+text=Trample. G: Regenerate Silvos, Rogue Elemental.
+power=8
+id=39860
+type=Creature
+abilities=trample,legendary
+[/card]
+[card]
+auto={W}{T}:1/1 target(soldier) 
+text={T}: Add {1} to your mana pool. {W}{T}: Target  Soldier gets +1/+1 until end of turn.
+rarity=U
+name=Daru Encampment
+id=13210
+type=Land 
+[/card]
+[card]
+auto={T}: add {G}
+text={G}
+rarity=L
+name=Forest
+id=40105
+type=Land 
+[/card]
+[card]
+auto={T}: add {R}
+text={R}
+rarity=L
+name=Mountain
+id=40107
+type=Land 
+[/card]
+[card]
+auto={2}{W}:token(Soldier,creature token Soldier, 1/1,white)
+text=Attacking doesn't cause Soldiers to tap. 2W: Put a 1/1 white Soldier creature token into play.
+rarity=R
+name=Mobilization
+id=39699
+type=Enchantment 
+mana={2}{W}
+[/card]
+[card]
+toughness=3
+name=Anurid Murkdiver
+mana={4}{B}{B}
+subtype=Zombie Beast
+rarity=C
+text=Swampwalk
+power=4
+id=43638
+type=Creature
+abilities=swampwalk
+[/card]
+[card]
+toughness=2
+name=Wirewood Elf
+mana={1}{G}
+subtype=Elf
+auto={T}: Add {G}
+rarity=C
+text={T}: Add {G} to your mana pool.
+power=1
+id=39828
+type=Creature
+[/card]
+[card]
+auto={T}: add {U}
+text={U}
+rarity=L
+name=Island
+id=40119
+type=Land 
+[/card]
+[card]
+auto={T}: add {G}
+text={G}
+rarity=L
+name=Forest
+id=40116
+type=Land 
+[/card]
+[card]
+name=Inspirit
+mana={2}{W}
+target=creature
+auto=2/4
+rarity=U
+text=Untap target creature. It gets +2/+4 until end of turn.
+type=Instant 
+id=41154
+[/card]
+[card]
+name=Searing Flesh
+mana={6}{R}
+target=player
+auto=damage:7
+rarity=U
+text=Searing Flesh deals 7 damage to target  opponent.
+type=Sorcery 
+id=35386
+[/card]
+[card]
+auto={T}: add {B}
+text={B}
+rarity=L
+name=Swamp
+id=40114
+type=Land 
+[/card]
+[card]
+auto={1}{U}{T}:moveTo(ownerhand) target(wizard|myinplay)
+text=Tap: Add 1 to your mana pool. 1U, Tap: Return  target Wizard you control to its owner's hand.
+rarity=R
+name=Riptide Laboratory
+id=10704
+type=Land 
+[/card]
+[card]
+auto={T}: add {G}
+text={G}
+rarity=L
+name=Forest
+id=40106
+type=Land 
+[/card]
+[card]
+toughness=2
+name=Nantuko Husk
+mana={2}{B}
+subtype=Zombie Insect
+auto={S(creature|myinplay)}:2/2
+rarity=C
+text=Sacrifice a creature: Nantuko Husk gets +2/+2  until end of turn.
+power=2
+id=42186
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Wall of Mulch
+mana={1}{G}
+subtype=Wall
+auto={G}{S(wall|myinplay)}:draw:1
+rarity=U
+text=(Walls can't attack.)  G, Sacrifice a Wall: Draw a card.
+power=0
+id=39495
+type=Creature
+abilities=defender
+[/card]
+[card]
+toughness=4
+name=Ravenous Baloth
+mana={2}{G}{G}
+subtype=Beast
+auto={s(beast|myinplay)}:life:4
+rarity=R
+text=Sacrifice a Beast: You gain 4 life.
+power=4
+id=12444
+type=Creature
+[/card]
+[card]
+auto={3}{U}{S(*|myinplay)}:moveTo(ownerhand) target(*|inplay)
+text={3}{U}, Sacrifice a permanent: Return target permanent to its owner's hand.
+rarity=U
+name=Dispersing Orb
+id=40128
+type=Enchantment 
+mana={3}{U}{U}
+[/card]
+[card]
+auto={W}{U}{T}{S(bird|myinplay)}:draw:1
+text=Tap: Add 1 to your mana pool. {W}{U}, Tap,  Sacrifice a Bird: Draw a card.
+rarity=U
+name=Seaside Haven
+id=40539
+type=Land 
+[/card]
+[card]
+auto={T}: add {B}
+text={B}
+rarity=L
+name=Swamp
+id=40112
+type=Land 
+[/card]
+[card]
+auto={T}: add {R}
+text={R}
+rarity=L
+name=Mountain
+id=40108
+type=Land 
+[/card]
+[card]
+toughness=2
+name=Dive Bomber
+mana={3}{W}
+subtype=Bird Soldier
+auto={T}{S}:damage:2 target(creature[attacking;blocking]) 
+rarity=C
+text=Flying. Tap, Sacrifice Dive Bomber: Dive Bomber deals 2 damage  to target attacking or blocking creature.
+power=2
+id=39872
+type=Creature
+abilities=flying
+[/card]
+[card]
+auto={T}: add {U}
+text={U}
+rarity=L
+name=Island
+id=40120
+type=Land 
+[/card]
+[card]
+name=Annex
+mana={2}{U}{U}
+subtype=Aura
+color=blue
+target=Land
+rarity=U
+text=You control enchanted land.
+id=41463
+type=Enchantment
+alias=1194
+[/card]
+[card]
+toughness=6
+name=Krosan Groundshaker
+mana={4}{G}{G}{G}
+subtype=Beast
+auto={G}:trample target(beast)
+rarity=U
+text={G}: Target Beast gains trample until end of turn.
+power=6
+id=41056
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Doomed Necromancer
+mana={2}{B}
+subtype=Cleric Mercenary
+auto={B}{T}{S}:moveTo(myinplay) target(creature|mygraveyard)
+rarity=R
+text=B, Tap, Sacrifice Doomed Necromancer: Return target  creature card from your graveyard to play.
+power=2
+id=39549
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Severed Legion
+mana={1}{B}{B}
+subtype=Zombie
+rarity=C
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+power=2
+id=13204
+type=Creature
+abilities=fear
+[/card]
+[card]
+toughness=2
+name=Accursed Centaur
+mana={B}
+subtype=Zombie Centaur
+auto=destroy target(creature|myinplay)
+rarity=C
+text=When Accursed Centaur comes into play, sacrifice a  creature.
+power=2
+id=26715
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Goblin Sledder
+mana={R}
+subtype=Goblin
+auto={S(goblin|myinplay)}:1/1 target(creature) 
+rarity=C
+text=Sacrifice a Goblin: Target creature gets +1/+1 until  end of turn.
+power=1
+id=39826
+type=Creature
+[/card]
+[card]
+auto={T}: add {B}
+text={B}
+rarity=L
+name=Swamp
+id=40113
+type=Land 
+[/card]
+[card]
+toughness=5
+name=Visara the Dreadful
+mana={3}{B}{B}{B}
+subtype=Gorgon
+auto={T}:bury target(creature)
+rarity=R
+text=Flying. {T}: Destroy target creature. It can't be  regenerated.
+power=5
+id=39863
+type=Creature
+abilities=flying,legendary
+[/card]
+[card]
+auto={T}: add {W}
+text={W}
+rarity=L
+name=Plains
+id=40124
+type=Land 
+[/card]
+[card]
+toughness=1
+name=Crafty Pathmage
+mana={2}{U}
+subtype=Wizard
+rarity=C
+text=Tap: Target creature with power 2 or less is unblockable  this turn.
+power=1
+id=40060
+type=Creature
+alias=1285
+[/card]
+[card]
+toughness=4
+name=Crowd Favorites
+mana={6}{W}
+subtype=Soldier
+auto={3}{W}:0/5
+rarity=U
+text={3}{W}: Tap target creature. {3}{W}: Crowd Favorites gets +0/+5 until  end of turn.
+power=4
+id=40653
+type=Creature
+[/card]
+[card]
+name=Threaten
+mana={2}{R}
+target=creature
+auto=haste
+rarity=U
+text=Untap target creature and gain control of it  until end of turn. That creature gains haste until end of turn.
+type=Sorcery 
+id=43736
+alias=1194
+[/card]
+[card]
+name=Mythic Proportions
+mana={4}{G}{G}{G}
+subtype=Aura
+target=creature
+auto=trample
+rarity=R
+text=Enchanted creature gets +8/+8 and has trample.
+id=34684
+type=Enchantment
+[/card]
+[card]
+toughness=1
+name=Elvish Scrapper
+mana={G}
+subtype=Elf
+auto={G}{T}{S}:destroy target(artifact)
+rarity=U
+text=G, Tap, Sacrifice Elvish Scrapper: Destroy  target artifact.
+power=1
+id=13778
+type=Creature
+[/card]
+[card]
+auto={T}: add {W}
+text={W}
+rarity=L
+name=Plains
+id=40121
+type=Land 
+[/card]
+[card]
+toughness=5
+name=Rorix Bladewing
+mana={3}{R}{R}{R}
+subtype=Dragon
+rarity=R
+text=Flying, haste.
+power=6
+id=39859
+type=Creature
+abilities=flying,haste,legendary
+[/card]
+[card]
+toughness=2
+name=Goblin Sky Raider
+mana={2}{R}
+subtype=Goblin
+rarity=C
+text=Flying
+power=1
+id=39477
+type=Creature
+abilities=flying
+[/card]
+[card]
+auto={T}: add {R}
+text={R}
+rarity=L
+name=Mountain
+id=40110
+type=Land 
+[/card]
+[card]
+toughness=2
+name=Elvish Pathcutter
+mana={3}{G}
+subtype=Elf
+auto={2}{G}:forestwalk target(elf) 
+rarity=C
+text={2}{G}: Target Elf gains forestwalk until end of  turn.
+power=1
+id=39494
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Skirk Prospector
+mana={R}
+subtype=Goblin
+auto={S(goblin|myinplay)}:add {R}
+rarity=C
+text=Sacrifice a Goblin: Add R to your mana pool.
+power=1
+id=39563
+type=Creature
+[/card]
+[card]
+auto={T}: add {B}
+text={B}
+rarity=L
+name=Swamp
+id=40111
+type=Land 
+[/card]
+[card]
+auto={T}: add {U}
+text={U}
+rarity=L
+name=Island
+id=40118
+type=Land 
+[/card]
+[card]
+toughness=4
+name=Grassland Crusader
+mana={5}{W}
+subtype=Cleric Soldier
+auto={T}:2/2 target(elf,soldier) 
+rarity=C
+text={T}: Target Elf or Soldier gets +2/+2 until end of turn.
+power=2
+id=39715
+type=Creature
+[/card]
+[card]
+auto={1}{R}{T}:2/0 target(goblin) 
+text={T}: Add {1} to your mana pool. {1}{R}, Tap: Target  Goblin gets +2/+0 until end of turn.
+rarity=U
+name=Goblin Burrows
+id=13012
+type=Land 
+[/card]
+[card]
+toughness=2
+name=Glory Seeker
+mana={1}{W}
+subtype=Soldier
+rarity=C
+text=
+power=2
+id=39712
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Elvish Warrior
+mana={G}{G}
+subtype=Elf
+rarity=C
+text=
+power=2
+id=39927
+type=Creature
+[/card]
+[card]
+auto={T}: add {U}
+text={U}
+rarity=L
+name=Island
+id=40117
+type=Land 
+[/card]
+[card]
+auto={5}{R}{R}:token(Dragon,creature token Dragon, 5/5,red)
+text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying  into play.
+rarity=R
+name=Dragon Roost
+id=39665
+type=Enchantment 
+mana={4}{R}{R}
+[/card]
+[card]
+auto={T}:add {W} && damage 1 controller
+text=Grand Coliseum comes into play tapped. Tap:  Add 1 to your mana pool. Tap: Add one mana of  any color to your mana pool. Grand Coliseum  deals 1 damage to you.
+rarity=R
+name=Grand Coliseum
+id=39647
+type=Land 
+[/card]
+[card]
+auto={T}: add {W}
+text={W}
+rarity=L
+name=Plains
+id=40122
+type=Land 
+[/card]
+[card]
+auto={T}: add {R}
+text={R}
+rarity=L
+name=Mountain
+id=40109
+type=Land 
+[/card]
+[card]
+auto={T}: add {G}
+text={G}
+rarity=L
+name=Forest
+id=40115
+type=Land 
+[/card]
+[card]
+name=Demystify
+mana={W}
+target=Enchantment
+auto=destroy
+rarity=C
+text=Destroy target enchantment.
+type=Instant 
+id=41152
+[/card]
+[card]
+toughness=3
+name=Gluttonous Zombie
+mana={4}{B}
+subtype=Zombie
+rarity=U
+text=Fear (This creature can't be blocked except by  artifact creatures and/or black creatures.)
+power=3
+id=33713
+type=Creature
+abilities=fear
+[/card]
+[card]
+auto={T}: add {W}
+text={W}
+rarity=L
+name=Plains
+id=40123
+type=Land 
+[/card]
+[card]
+name=Naturalize
+mana={1}{G}
+target=artifact,enchantment
+auto=destroy
+rarity=C
+text=Destroy target artifact or enchantment.
+type=Instant 
+id=35414
+[/card]

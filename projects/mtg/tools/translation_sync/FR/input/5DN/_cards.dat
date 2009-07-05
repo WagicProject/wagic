@@ -1,0 +1,442 @@
+#v0.2
+
+[card]
+text=Vol.  {U}: L'Aerogarde de conception avancee acquiert le linceul jusqu'a la fin du tour.
+auto={U}:shroud
+id=50144
+name=Advanced Hoverguard
+rarity=C
+color=Blue
+type=Creature
+mana={3}{U}
+power=2
+subtype=Drone
+toughness=2
+[/card]
+
+[card]
+text=Portee.
+abilities=Reach
+id=51230
+name=Arachnoid
+rarity=U
+color=Artifact
+type=Artifact Creature
+mana={6}
+power=2
+subtype=Spider
+toughness=6
+[/card]
+
+[card]
+text=Vol.  {T}: Le joueur ciblee pert 1 point de vie.
+abilities=Flying
+id=73597
+auto={T}:Damage:1 target(player)
+name=Cackling Imp
+rarity=C
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Imp
+toughness=2
+[/card]
+
+[card]
+text=Celerite        La Monstruosite de fer barbele ne peut pas bloquer.
+abilities=haste, cantblock
+id=44608
+name=Iron-Barb Hellion
+rarity=U
+type=Creature
+mana={5}{R}
+color=Red
+power=5
+subtype=Beast
+toughness=4
+[/card]
+
+[card]
+text=Vigilence.      {W}: Le Loxodon vigoureux gagne +0/+1 jusqu'a la fin du tour.
+auto={W}:0/1
+abilities=vigilance
+id=73567
+name=Loxodon Stalwart
+rarity=U
+color=White
+type=Creature
+mana={3}{W}{W}
+power=3
+subtype=Elephant Soldier
+toughness=3
+[/card]
+
+[card]
+text=L'Elemental de plasma est imblocable.
+abilities=unblockable
+id=73562
+name=Plasma Elemental
+rarity=U
+color=Blue
+type=Creature
+mana={5}{U}
+power=4
+subtype=Elemental
+toughness=1
+[/card]
+
+[card]
+text={T}: Engagez l'artefact cible.
+id=43574
+auto={T}:tap target(artifact)
+name=Relic Barrier
+rarity=U
+color=Artifact
+type=Artifact
+mana={2}
+[/card]
+
+[card]
+text=La creature ciblee gagne +5/+0 et la celerite jusqu'a la fin du tour.
+target=creature
+auto=:5/0
+auto=haste
+id=51148
+name=Screaming Fury
+rarity=C
+type=Sorcery
+mana={2}{R}
+[/card]
+
+[card]
+text={1}{G}: Le Tyrranax gagne -1/+1 jusqu'a la fin du tour.
+auto={1}{G}:-1/+1
+id=50191
+name=Tyrranax
+rarity=C
+color=Green
+type=Creature
+mana={4}{G}{G}
+power=5
+subtype=Beast
+toughness=4
+[/card]
+
+[card]
+text=Celerite      {T}: La Sorciere vulshoke inflige 1 blessure a une cible, creature ou joueur.
+id=51177
+abilities=haste
+name=Vulshok Sorcerer
+auto={T}:damage:1 target(creature,player)
+rarity=C
+color=Red
+type=Creature
+mana={1}{R}{R}
+power=1
+subtype=Human Shaman
+toughness=1
+[/card]
+
+#New in v0.2
+
+[card]
+text=Sacrifiez le Golem Composite: Ajoutez {W}{U}{B}{R}{G} a votre reserve.
+auto={S}:Add{W}{U}{B}{R}{G}
+id=73557
+name=Composite Golem
+color=Artifact
+rarity=U
+mana={6}
+type=Artifact Creature
+power=4
+subtype=Golem
+toughness=4
+[/card]
+
+[card]
+text=Sacrifiez un artefact: Ajoutez {2} a votre reserve.
+auto={S(artifact|myinplay)}:Add{2}
+id=51633
+name=Krark-Clan Ironworks
+color=Artifact
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+text={1}:Degagez le Baton de domination.     {2}, {T}: Vous gagnez 1 point de vie.     {3}, {T}: Degagez la creature ciblee.     {4}, {T}: Engagez la creature ciblee.     {5}, {T}: Piochez une carte. 
+auto={1}:untap
+auto={2}{T}:Life:1
+auto={3}{T}:untap target(creature)
+auto={4}{T}:tap target(creature)
+auto={5}{T}:Draw:1
+id=50162
+name=Staff of Domination
+color=Artifact
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+text=Sacrifiez un artefact: Le Navigateur thermique acquiert le vol jusqu'a la fin du tour.
+auto={S(artifact|myinplay)}:flying
+id=50177
+name=Thermal Navigator
+color=Artifact
+rarity=C
+mana={3}
+type=Artifact Creature
+power=2
+subtype=Construct
+toughness=2
+[/card]
+
+[card]
+id=51189
+name=Dross Crocodile
+color=Black
+rarity=C
+mana={3}{B}
+type=Creature
+power=5
+subtype=Zombie Crocodile
+toughness=1
+[/card]
+
+[card]
+text=Defaussez vous d'une carte d'artefact: le Greffeur de chair gagne +2/+2 jusqu'a la fin du tour.
+auto={S(artifact|myhand)}:2/2
+id=50209
+name=Fleshgrafter
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+power=2
+subtype=Human Warrior
+toughness=2
+[/card]
+
+[card]
+text= Vous piochez 2 cartes et vous perdez 2 points de vie.
+auto=Draw:2
+auto=life:-2
+id=51178
+name=Night's Whisper
+color=Black
+rarity=U
+mana={1}{B}
+type=Sorcery
+[/card]
+
+[card]
+text=Le Nim grotesque gagne +1/+0 pour chaque artefact que vous controlez.
+auto=foreach(artifact|myinplay) 1/0
+id=73574
+name=Nim Grotesque
+color=Black
+rarity=U
+mana={6}{B}
+type=Creature
+power=3
+subtype=Zombie
+toughness=6
+[/card]
+
+[card]
+text=Les Rats implacables gagnent +1/+1 pour chaque autre creature en jeu nommee Rats implacables.      Un deck peut contenir n'importe quel nombre de cartes appelees Rats implacables.
+auto=foreach(relentless rats|inplay) 1/1
+id=73573
+name=Relentless Rats
+color=Black
+rarity=U
+mana={1}{B}{B}
+type=Creature
+power=2
+subtype=Rat
+toughness=2
+[/card]
+
+[card]
+text=Ajoutez {W}{U}{B}{R}{G} a votre reserve.
+auto=Add{W}{U}{B}{R}{G}
+id=73565
+name=Channel the Suns
+color=Green
+rarity=U
+mana={3}{G}
+type=Sorcery
+[/card]
+
+[card]
+text=Quand le Temoin eternel arrive en jeu, vous pouvez renvoyer une carte ciblee depuis votre cimetiere dans votre main.
+auto=may moveTo(myhand) target(*|mygraveyard)
+id=51628
+name=Eternal Witness
+color=Green
+rarity=U
+mana={1}{G}{G}
+type=Creature
+power=2
+subtype=Human Shaman
+toughness=1
+[/card]
+
+[card]
+text=Les terrains que vous controlez ont "{T}: Ajoutez 1 mana de la couleur de votre choix a votre reserve."
+auto=lord(land|myinplay) {T}:Add{W}
+auto=lord(land|myinplay) {T}:Add{U}
+auto=lord(land|myinplay) {T}:Add{B}
+auto=lord(land|myinplay) {T}:Add{R}
+auto=lord(land|myinplay) {T}:Add{G}
+id=72928
+name=Joiner Adept
+color=Green
+rarity=R
+mana={1]{G}
+type=Creature
+power=2
+subtype=Elf Druid
+toughness=1
+[/card]
+
+[card]
+text={G}, {T}, Sacrifiez une foret: Regenerez la creature cible.
+auto={G}{T}{S(forest|myinplay):regenerate target(creature)
+id=73582
+name=Tel-Jilad Lifebreather
+color=Green
+rarity=C
+mana={4]{G}
+type=Creature
+power=3
+subtype=Troll Shaman
+toughness=2
+[/card]
+
+[card]
+text={2}{G}, Sacrifiez l'Eclaireur viridian: L'Eclaireur viridian inflige 2 blessures a la creature avec le vol ciblee.
+auto={2}{G}{S}:Damage:2 target(creature[flying])
+id=73583
+name=Viridian Scout
+color=Green
+rarity=C
+mana={3}{G}
+type=Creature
+power=1
+subtype=Elf Warrior
+toughness=2
+[/card]
+
+[card]
+text=Vol     {R}: Le Dragonnet du fourneau gagne +1/+0 jusqu'a la fin du tour.
+abilities=flying
+auto={R}:1/0
+id=73578
+name=Furnace Whelp
+color=Red
+rarity=U
+mana={2}{R}{R}
+type=Creature
+power=2
+subtype=Dragon
+toughness=2
+[/card]
+
+[card]
+text={R}, Sacrifiez un artefact: La creature ciblee ne peut pas bloquer ce tour-ci.
+auto={R}{S(artifact):cantblock target(creature)
+id=51097
+name=Krark-Clan Ogre
+color=Red
+rarity=C
+mana={3}{R}{R}
+type=Creature
+power=3
+subtype=Ogre
+toughness=3
+[/card]
+
+[card]
+text=Pietinement, celerite     A la fin du tour, sacrifiez l'Elemental d'etincelles.
+abilities=trample,haste
+auto=@next endofturn:bury
+id=73579
+name=Spark Elemental
+color=Red
+rarity=C
+mana={R}
+type=Creature
+power=3
+subtype=Elemental
+toughness=1
+[/card]
+
+[card]
+text={U}, {T}: Renvoyez le permanent cible que vous controlez dans la main de son proprietaire.
+auto={U}{T}:moveTo(ownerhand) target(*|myinplay)
+id=50834
+name=Vedalken Mastermind
+color=Blue
+rarity=U
+mana={U}{U}
+type=Creature
+power=1
+subtype=Vedalken Wizard
+toughness=2
+[/card]
+
+[card]
+text=Vol, vigilance
+abilities=flying,vigilance
+id=50136
+name=Skyhunter Prowler
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+power=1
+subtype=Cat Knight
+toughness=3
+[/card]
+
+[card]
+text=Vol, double initiative
+abilities=flying,double strike
+id=51220
+name=Skyhunter Skirmisher
+color=White
+rarity=C
+mana={1}{W}{W}
+type=Creature
+power=1
+subtype=Cat Knight
+toughness=1
+[/card]
+
+[card]
+text=Detruisez la creature bloqueuse ciblee.
+target=creature[blocking]
+auto=destroy
+id=51147
+name=Vanquish
+color=White
+rarity=U
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]text=A chaque fois que la Vipere de la Filandre bloque ou devient bloquee par une creature, detruisez cette creature a la fin du combat.id=50203alias=1267name=Tangle Asp
+color=Greenrarity=Ctype=Creature mana={1}{G}power=1subtype=Snaketoughness=2[/card]
+
+[card]text={2}: Le Canon gobelin inflige 1 blessure a une cible, creature ou joueur. Sacrifiez le Canon gobelin.auto={s}:Damage:1 target(creature,player)id=48215name=Goblin Cannonrarity=Ucolor=Artifacttype=Artifactmana={4}[/card]
+
+[card]text={T}: Piochez une carte, puis defaussez-vous d'une carte.
+auto={T}{S(*|myhand)}:Draw:1id=82980name=Thought Courierrarity=Utype=Creature
+subtype=Human Wizardmana={1}{U}
+power=1toughness=1[/card]
+
+[card]text=Quand le Geant de magma arrive en jeu, il inflige 2 blessures a chaque creature et a chaque joueur.id=51102name=Magma Giantauto=damage:2 all(creature,player)rarity=Rcolor=Redtype=Creaturemana={5}{R}{R}power=5subtype=Gianttoughness=5[/card]

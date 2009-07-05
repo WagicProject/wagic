@@ -1,0 +1,360 @@
+#Prophecy
+#Version 0.0.3
+#Pyros_70
+#09-05-26
+#Thanks to Wololo, Dr. Solomat, leungclj and the other coders
+###############################################
+#24602 Fen Stalker B comes in tapped
+#24572 Hazy Homunculus U comes in tapped
+#24636 Scoria Cat R works 99%
+#24625 Spur Grappler R works 99%
+#24645 Veteran Brawlers R comes in tapped
+#24656 Vintura Snapper G comes in tapped,coded correctly, backwards effect
+###############################################
+[card]
+text={1}{B}, Sacrifiez un terrain: la creature ciblee gagne +2/+0 jusqu'a la fin du tour.
+id=24601
+name=Agent of Shauku
+rarity=C
+color=Black
+type=Creature
+subtype=Human Mercenary
+mana={1}{B}
+power=1
+toughness=1
+auto={1}{B}{S(land|myinplay)}:target(creature) 2/0
+[/card]
+[card]
+text=Flash     Enchanter : creature     La creature enchantee a le linceul.
+id=24579
+name=Alexi's Cloak
+rarity=C
+color=Blue
+type=Enchantment
+subtype=Aura
+mana={1}{U}
+target=creature
+abilities=flash
+auto=shroud
+[/card]
+[card]
+text=Sacrifiez un terrain: Detruisez l'enchantement cible.
+id=24560
+name=Aura Fracture
+rarity=C
+color=White
+type=Enchantment
+mana={2}{W}
+auto={s(land|myinplay)}:destroy target(enchantment)
+[/card]
+[card]
+text=Sacrifiez un terrain: Le Grifargne cotier acquiert le vol jusqu'a la fin du tour.
+id=24574
+name=Coastal Hornclaw
+rarity=C
+color=Blue
+type=Creature
+subtype=Bird
+mana={4}{U}
+power=3
+toughness=3
+auto={s(land|myinplay)}:flying
+[/card]
+[card]
+text=Vol, vigilance
+id=24548
+name=Diving Griffin
+rarity=C
+color=White
+type=Creature
+subtype=Griffin
+mana={1}{W}{W}
+power=2
+toughness=2
+abilities=flying,vigilance
+[/card]
+[card]
+text=Le Pisteur des fagnes a la peur tant que vous ne controlez pas de terrain degage.
+id=24602
+name=Fen Stalker
+rarity=C
+color=Black
+type=Creature
+subtype=Nightstalker
+mana={3}{B}
+power=3
+toughness=2
+abilities=fear
+auto=aslongas(land[-tapped]|myinplay) -fear
+[/card]
+[card]
+text=Flash     Enchanter : creature     La creature enchantee gagne -3/-0.
+id=24604
+name=Greel's Caress
+rarity=C
+color=Black
+type=Enchantment
+subtype=Aura
+mana={1}{B}
+target=creature
+abilities=flash
+auto=-3/0
+[/card]
+[card]
+text=L'Homoncule indistinct est imblocable tant que le joueur defenseur controle un terrain degage.
+id=24572
+name=Hazy Homunculus
+rarity=C
+color=Blue
+type=Creature
+subtype=Homunculus Illusion
+mana={1}{U}
+power=1
+toughness=1
+auto=aslongas(land[-tapped]|opponentinplay) unblockable
+[/card]
+[card]
+text=Flash     Enchanter : creature     {1}{G}: Regenerez la creature enchantee.
+id=24660
+name=Jolrael's Favor
+rarity=C
+color=Green
+type=Enchantment
+subtype=Aura
+mana={1}{G}
+target=creature
+abilities=flash
+auto={1}{G}:regenerate
+[/card]
+[card]
+text=A chaque fois que le Petit gargadon attaque ou bloque, sacrifiez un terrain.
+id=24647
+name=Lesser Gargadon
+rarity=U
+color=Red
+type=Creature
+subtype=Beast
+mana={2}{R}{R}
+power=6
+toughness=4
+abilities=cantattack,cantblock
+auto={s(land|myinplay)}:-cantattack
+auto={s(land|myinplay)}:-cantblock
+[/card]
+[card]
+text=Flash     Enchanter : creature     La creature enchantee gagne +1/+2.
+id=24550
+name=Mageta's Boon
+rarity=C
+color=White
+type=Enchantment
+subtype=Aura
+mana={1}{W}
+target=creature
+abilities=flash
+auto=:1/2
+[/card]
+[card]
+text=Traversee des marais.
+id=24664
+name=Marsh Boa
+rarity=C
+color=Green
+type=Creature
+subtype=Snake
+mana={G}
+power=1
+toughness=1
+abilities=swampwalk
+[/card]
+[card]
+text={T}, sacrifiez le Porteur de mines : Detruisez la creature attaquante ciblee.
+id=24555
+name=Mine Bearer
+rarity=C
+color=White
+type=Creature
+subtype=Human Soldier
+mana={2}{W}
+power=1
+toughness=1
+auto={T}{S}:destroy target(creature[attacking])
+#auto={T}{S}:destroy target(creature[attacking]|ownerinplay)
+[/card]
+[card]
+text=Detruisez toutes les creatures que vous ne controlez pas. Elles ne peuvent pas etre regenerees.
+id=24622
+name=Plague Wind
+rarity=R
+color=Black
+type=Sorcery
+mana={7}{B}{B}
+auto=bury all(creature|opponentinplay)
+[/card]
+[card]
+text=Pietinement
+id=24663
+name=Pygmy Razorback
+rarity=C
+color=Green
+type=Creature
+subtype=Boar
+mana={1}{G}
+power=2
+toughness=1
+abilities=trample
+[/card]
+[card]
+text=Portee
+id=24653
+name=Rib Cage Spider
+rarity=C
+color=Green
+type=Creature
+subtype=Spider
+mana={2}{G}
+power=1
+toughness=4
+abilities=reach
+[/card]
+[card]
+text={R}: La Furie des cretes gagne +1/+0 jusqu'a la fin du tour.
+id=24627
+name=Ridgeline Rager
+rarity=C
+color=Red
+type=Creature
+subtype=Beast
+mana={2}{R}
+power=1
+toughness=2
+auto={R}:1/0
+[/card]
+[card]
+text=Le Chat des scories gagne +3/+3 tant que vous ne controlez aucun terrain degage.
+id=24636
+name=Scoria Cat
+rarity=U
+color=Red
+type=Creature
+subtype=Cat
+mana={3}{R}{R}
+power=6
+toughness=6
+auto=aslongas(land[-tapped]|myinplay) -3/-3
+[/card]
+[card]
+text=Le Vent corrosif inflige 10 blessures a une cible, creature ou joueur.
+id=24650
+name=Searing Wind
+rarity=R
+color=Red
+type=Instant
+mana={8}{R}
+target=creature,player
+auto=damage:10
+[/card]
+[card]
+text=Le Grapperon gagne +2/+1 tant que vous ne controlez pas de terrain degage.
+id=24625
+name=Spur Grappler
+rarity=C
+color=Red
+type=Creature
+subtype=Beast
+mana={2}{R}
+power=4
+toughness=2
+auto=aslongas(land[-tapped]|myinplay) -2/-1
+[/card]
+[card]
+text=Vol     Sacrifiez un terrain: Renvoyez l'Aigle gardorage dans la main de son proprietaire.
+id=24583
+name=Stormwatch Eagle
+rarity=C
+color=Blue
+type=Creature
+subtype=Bird
+mana={3}{U}
+power=2
+toughness=1
+abilities=flying
+auto={s(land|myinplay)}:moveTo(myhand)
+[/card]
+[card]
+text={W}{W}: La creature attaquante ciblee gagne -1/-0 jusqu'a la fin du tour.
+id=24544
+name=Sword Dancer
+rarity=U
+color=White
+type=Creature
+subtype=Human Rebel
+mana={1}{W}
+power=1
+toughness=2
+auto={W}{W}:-1/0 target(creature[attacking])
+[/card]
+[card]
+text=Sacrifiez un terrain : Le Coursier sapeur gagne +0/+3 jusqu'a la fin du tour.
+id=24546
+name=Trenching Steed
+rarity=C
+color=White
+type=Creature
+subtype=Horse Rebel
+mana={3}{W}
+power=2
+toughness=3
+auto={s(land|myinplay)}:0/3
+[/card]
+[card]
+text=Les Bagarreurs veterans ne peuvent pas attaquer si le joueur defenseur controle un terrain degage. Les Bagarreurs veterans ne peuvent pas bloquer si vous controlez un terrain degage.
+id=24645
+name=Veteran Brawlers
+rarity=R
+color=Red
+type=Creature
+subtype=Human Soldier
+mana={1}{R}
+power=4
+toughness=4
+auto=aslongas(land[-tapped]|opponentinplay) cantattack
+auto=aslongas(land[-tapped]|myinplay) cantblock
+[/card]
+[card]
+#backwards effect
+text=Tant que vous ne controlez pas de terrain degage, la Tortue claqueuse de Vintara a le linceul.
+id=24656
+name=Vintara Snapper
+rarity=U
+color=Green
+type=Creature
+subtype=Turtle
+mana={G}{G}
+power=2
+toughness=2
+abilities=shroud
+auto=aslongas(land[-tapped]|myinplay) -shroud
+[/card]
+[card]
+text=A la fin de votre tour, si vous ne controlez aucun terrain degage, piochez une carte.
+id=24684
+name=Well of Discovery
+rarity=R
+color=Artifact
+type=Artifact
+mana={6}
+auto=@next endofturn:aslongas(land[-tapped|myinplay) draw:1
+[/card]
+[card]
+text={R}: La creature ciblee gagne la celerite jusqu'a la fin du tour.
+id=24628
+name=Whip Sergeant
+rarity=U
+type=Creature
+subtype=Human Soldier
+mana={2}{R}
+power=2
+toughness=1
+auto={R}:haste target(creature)
+[/card]

@@ -173,6 +173,19 @@ id=189647
 type=Creature
 [/card]
 [card]
+toughness=4
+name=Filigree Angel
+mana={5}{W}{W}{U}
+subtype=Angel
+auto=foreach(artifact|myinplay)life:3
+rarity=R
+text=Flying When Filigree Angel comes into play, you gain 3 life for each artifact you control.
+power=4
+id=188965
+type=Artifact Creature
+abilities=flying
+[/card]
+[card]
 name=Intimidation Bolt
 mana={1}{R}{W}
 target=creature

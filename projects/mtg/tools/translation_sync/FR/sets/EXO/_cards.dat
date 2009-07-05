@@ -1,0 +1,604 @@
+[card]
+toughness=3
+name=Mirri, Cat Warrior
+mana={1}{G}{G}
+subtype=Cat Warrior
+color=Green
+rarity=R
+text=Legende   Initiative, traversee des forets, vigilance 
+power=2
+id=6155
+type=Creature
+abilities=legendary,first strike,forestwalk,vigilance
+[/card]
+[card]
+toughness=2
+name=Cartographer
+mana={2}{G}
+subtype=Human
+color=Green
+auto=may moveTo(myhand) target(land|mygraveyard)
+rarity=U
+text=Quand la Cartographe arrive en jeu, vous pouvez renvoyer une carte de terrain ciblee depuis votre cimetiere dans votre main.
+power=2
+id=6144
+type=Creature
+[/card]
+[card]
+name=Nausea
+mana={1}{B}
+color=Black
+auto=lord(creature) -1/-1
+rarity=C
+text=Toutes les creatures gagnes -1/-1 jusqu'a la fin du tour.
+type=Instant
+id=6088
+[/card]
+[card]
+name=Treasure Trove
+mana={2}{U}{U}
+color=Blue
+auto={2}{U}{U}:draw:1
+rarity=U
+text={2}{U}{U}: Piochez une carte.
+type=Enchantment
+id=6070
+[/card]
+[card]
+name=Peace of Mind
+mana={1}{W}
+color=White
+auto={W}{S(*|myhand)}:life:3
+rarity=U
+text={W}, Defaussez-vous d'une carte: Vousgagnez 3 points de vie.
+type=Enchantment
+id=6039
+[/card]
+[card]
+toughness=1
+name=Dauthi Jackal
+mana={2}{B}
+subtype=Dauthi Hound
+color=Black
+auto={B}{B}{S}:destroy target(creature[blocking])
+rarity=C
+text=Distorsion (Cette creature ne peut bloquer ou etre bloquee que par une creature ayant la distorsion.)   {B}{B}, Sacrifiez le Chacal Dauthi: Detruisez la creature bloqueuse ciblee.
+power=2
+id=6081
+type=Creature
+abilities=shadow
+[/card]
+[card]
+toughness=2
+name=Paladin en-Vec
+mana={1}{W}{W}
+subtype=Human Knight
+color=White
+rarity=R
+text=Initiative, protection contre le noir, protection contre le rouge
+power=2
+id=5199
+type=Creature
+abilities=First strike, protection from black, protection from red
+[/card]
+[card]
+name=Maniacal Rage
+mana={1}{R}
+subtype=Aura
+color=Red
+target=creature
+auto=cantblock
+rarity=C
+text=Enchanter : creature   La creature enchantee gagne +2/+2 et ne peut pas bloquer.
+id=6109
+type=Enchantment
+[/card]
+[card]
+toughness=2
+name=Sabertooth Wyvern
+mana={4}{R}
+subtype=Drake
+color=Red
+rarity=U
+text=Vol, initiative
+power=3
+id=6129
+type=Creature
+abilities=flying,first strike
+[/card]
+[card]
+auto={1}{T}{S(*|myhand)}:regenerate target(creature)
+text={1}, {T}, Defaussez-vous d'une carte: Regenerez la creature ciblee. 
+rarity=U
+name=Medicine Bag
+id=6165
+type=Artifact
+mana={3}
+[/card]
+[card]
+toughness=1
+name=Dauthi Warlord
+mana={1}{B}
+subtype=Dauthi Soldier
+color=Black
+auto=foreach(creature[shadow]|inplay) 1/0
+rarity=U
+text=Distorsion (Cette creature ne peut bloquer ou etre bloquee que par une creature ayant la distorsion.)    La force du Seigneur de guerre dauthi est egale au nombre de creatures en jeu avec la distorsion.
+power=*
+id=6094
+type=Creature
+abilities=shadow
+[/card]
+[card]
+toughness=1
+name=Raging Goblin
+mana={R}
+subtype=Goblin Berserker
+color=Red
+rarity=C
+text=Celerite
+power=1
+id=6106
+type=Creature
+abilities=haste
+[/card]
+[card]
+auto={S}:lord(creature|myinplay) flying
+text=Sacrifiez le Forgeciel : toutes les creatures que vous controlez acquierent le vol jusqu'a la fin du tour.
+rarity=U
+name=Skyshaper
+id=5227
+type=Artifact
+mana={2}
+[/card]
+[card]
+toughness=3
+name=Thalakos Drifters
+mana={2}{U}{U}
+subtype=Thalakos
+color=Blue
+auto={S(*|myhand)}:shadow
+rarity=R
+text=Defaussez-vous d'une carte : les Vagabonds Thalakos acquierent la distorsion jusqu'a la fin du tour. (Cette creature ne peut bloquer ou etre bloquee que par une creature ayant la distorsion.)
+power=3
+id=6068
+type=Creature
+[/card]
+[card]
+toughness=*
+name=Skyshroud War Beast
+mana={1}{G}
+subtype=Beast
+color=Green
+auto=foreach(land[-basic]|opponentinplay) 1/1
+rarity=R
+text=Pietinement        Au moment ou elle arrive en jeu, choisissez un adversaire.   Sa force et son endurance sont chacune egale au nombre de terrains non-base que le joueur choisi controle.
+power=*
+id=5231
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Rabid Wolverines
+mana={3}{G}{G}
+subtype=Wolverine
+color=Green
+auto=rampage(1/1,0)
+rarity=C
+text=Pour chaque creature qui les bloque, ces Gloutons enrages gagnent +1/+1 jusqu'a la fin du tour.
+power=4
+id=6134
+type=Creature
+[/card]
+[card]
+name=Robe of Mirrors
+mana={U}
+subtype=Aura
+color=Blue
+target=creature
+auto=shroud
+rarity=C
+text=Enchanter : creature   La creature enchantee a le linceul. (Elle ne peut etre la cible de sorts ou d'effets.)
+id=6059
+type=Enchantment
+[/card]
+[card]
+name=Angelic Blessing
+mana={2}{W}
+color=White
+target=creature
+auto=flying
+rarity=C
+text=La creature ciblee gagne +3/+3 et le vol jusqu'a la fin du tour.
+id=6040
+type=Instant
+[/card]
+[card]
+toughness=3
+name=Whiptongue Frog
+mana={2}{U}
+subtype=Frog
+color=Blue
+auto={U}:flying
+rarity=C
+text={U}: La Grenouille a langue de fouet acquiert le vol jusqu'a la fin du tour.
+power=1
+id=6057
+type=Creature
+[/card]
+[card]
+name=Reclaim
+mana={G}
+color=Green
+target=*|mygraveyard
+auto=moveTo(ownerLibrary)
+rarity=C
+text=Mettez la carte ciblee depuis votre cimetiere au-dessus de votre bibliotheque.
+id=6139
+type=Sorcery
+[/card]
+[card]
+name=Cursed Flesh
+mana={B}
+subtype=Aura
+color=Black
+target=creature
+auto=fear
+rarity=C
+text=Enchanter : creature   La creature enchantee gagne -1/-1 et a la peur.
+id=6089
+type=Enchantment
+[/card]
+[card]
+toughness=1
+name=Dauthi Cutthroat
+mana={1}{B}
+subtype=Dauthi Minion
+color=Black
+auto={1}{B}{T}:destroy target(creature[shadow])
+rarity=U
+text=Distorsion (Cette creature ne peut bloquer ou etre bloquee que par une creature ayant la distorsion.)   {1}{B}, {T}: Detruisez la creature ciblee avec la distorsion.
+power=1
+id=6091
+type=Creature
+abilities=shadow
+[/card]
+[card]
+toughness=1
+name=Thalakos Scout
+mana={2}{U}
+subtype=Thalakos Soldier Scout
+color=Blue
+auto={S(*|myhand)}:moveTo(myhand)
+rarity=C
+text=Distorsion (Cette creature ne peut bloquer ou etre bloquee que par une creature ayant la distorsion.)   Defaussez-vous d'une carte : Renvoyez l'Eclaireur Thalakos dans la main de son proprietaire.
+power=2
+id=6058
+type=Creature
+abilities=shadow
+[/card]
+[card]
+toughness=1
+name=Shield Mate
+mana={W}
+subtype=Human Soldier
+color=White
+auto={S}:0/4 target(creature)
+rarity=C
+text=Sacrifiez le Compagnon de bouclier: La creature ciblee gagne +0/+4 jusqu'a la fin du tour.
+power=1
+id=6030
+type=Creature
+[/card]
+[card]
+name=Mind Over Matter
+mana={2}{U}{U}{U}{U}
+color=Blue
+auto={S(*|myhand)}:untap target(artifact;creature;land) 
+rarity=R
+text=Defaussez-vous d'une carte: Vous pouvez engager ou degager l'artefact, la creature, ou le terrain cible.
+type=Enchantment
+id=6076
+[/card]
+[card]
+toughness=2
+name=Anarchist
+mana={4}{R}
+subtype=Human Wizard
+color=Red
+auto=may moveTo(myhand) target(sorcery|mygraveyard)
+rarity=U
+text=Quand l'Anarchiste arrive en jeu vous pouvez renvoyer la carte de rituel ciblee depuis votre e dans votre main.
+power=2
+id=6110
+type=Creature
+[/card]
+[card]
+name=Culling the Weak
+mana={B}
+color=Black
+target=creature|myinplay
+auto=Add {B}{B}{B}{B}
+rarity=C
+text=En tant que cout supplementaire pour jouer le Sacrifice des faibles, sacrifiez une creature.    Ajoutez {B}{B}{B}{B} a votre reserve.
+id=6085
+type=Instant
+[/card]
+[card]
+toughness=2
+name=Treasure Hunter
+mana={2}{W}
+subtype=Human
+color=White
+auto=may moveTo(myhand) target(artifact|mygraveyard)
+rarity=U
+text=Quand le Chasseur de tresor arrive en jeu vous pouvez renvoyer la carte d'artefact ciblee depuis votre cimetiere dans votre main.
+power=2
+id=6042
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Pygmy Troll
+mana={1}{G}
+subtype=Troll
+color=Green
+auto={G}:regenerate
+rarity=C
+text=Pour chaque creature qui le bloque, le Troll pygmee gagne +1/+1 jusqu'a la fin du tour.   {G}: Regenerez le Troll pygmee.
+power=1
+id=6131
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Vampire Hounds
+mana={2}{B}
+subtype=Vampire Hound
+color=Black
+auto={S(creature|myhand)}:2/2
+rarity=C
+text=Choisissez une carte de creature et defaussez-vous en : ces Chiens de chasse vampires gagnent +2/+2 jusqu'a la fin du tour.
+power=2
+id=6084
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Carnophage
+mana={B}
+subtype=Zombie
+color=Black
+auto={T}:life:1
+rarity=C
+text=Au debut de votre entretien, engagez le Creophage a moins que vous ne payiez 1 point de vie.
+power=2
+id=6079
+type=Creature
+alias=1221
+[/card]
+[card]
+toughness=5
+name=Exalted Dragon
+mana={4}{W}{W}
+subtype=Dragon
+color=White
+auto={S(land|myinplay)}:-cantattack
+rarity=R
+text=Vol          Le Dragon exalte ne peut attaquer a moins que vous ne sacrifiez un terrain.
+power=5
+id=6053
+type=Creature
+abilities=flying,cantattack
+[/card]
+[card]
+toughness=2
+name=Rootwater Alligator
+mana={3}{G}
+subtype=Crocodile
+color=Green
+auto={S(forest|myinplay)}:regenerate
+rarity=C
+text=Sacrifiez une foret : regenerez l'Alligator de Souchemer.
+power=3
+id=6136
+type=Creature
+[/card]
+[card]
+name=Seismic Assault
+mana={R}{R}{R}
+color=Red
+auto={S(land|myhand)}:damage:2 target(creature,player)
+rarity=R
+text=Defaussez-vous d'une carte de terrain : L'Assaut sismique inflige 2 blessures a une cible, creature ou joueur.
+type=Enchantment
+id=6130
+[/card]
+[card]
+toughness=1
+name=Skyshroud Elite
+mana={G}
+subtype=Elf
+color=Green
+auto=aslongas(land[-basic]|opponentinplay) 1/2
+rarity=U
+text=L'Elite de Linciel gagne +1/+2 tant qu'un adversaire quelconque controle un terrain quelconque qui n'est pas un terrain de base.
+power=1
+id=5229
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Ertai, Wizard Adept
+mana={2}{U}
+subtype=Human Wizard
+color=Blue
+auto={2}{U}{U}{T}:fizzle target(*|stack)
+rarity=R
+text={2}{U}{U}, {T}: Coutrecarrez le sort cible.
+power=1
+id=5146
+type=Creature
+abilities=legendary
+[/card]
+[card]
+toughness=2
+name=Ravenous Baboons
+mana={3}{R}
+subtype=Ape
+color=Red
+auto=may destroy target(land[-basic])
+rarity=R
+text=Quand ces Babouins voraces arrivent en jeu, detruisez le terrain cible qui n'est pas un terrain de base.
+power=2
+id=5207
+type=Creature
+[/card]
+[card]
+name=Scare Tactics
+mana={1}{B}
+color=Black
+auto=lord(creature|myinplay) 1/0
+rarity=C
+text=Toutes les creatures gagnent +1/+0 jusqu'a la fin du tour.
+type=Instant
+id=6086
+[/card]
+[card]
+name=Survival of the Fittest
+mana={1}{G}
+color=Green
+auto={S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
+rarity=R
+text={G}, defaussez-vous d'une carte de creature : Cherchez une carte de creature dans votre bibliotheque, revelez cette carte et mettez-la dans votre main. Melangez ensuite votre bibliotheque.
+type=Enchantment
+id=6150
+[/card]
+[card]
+toughness=4
+name=Standing Troops
+mana={2}{W}
+subtype=Human Soldier
+color=White
+rarity=C
+text=Vigilance
+power=1
+id=6032
+type=Creature
+abilities=vigilance
+[/card]
+[card]
+toughness=2
+name=Wayward Soul
+mana={2}{U}{U}
+subtype=Spirit
+color=Blue
+auto={U}: moveTo(ownersLibrary)
+rarity=C
+text={U}: Mettez l'Ame retive au-dessus de la bibliotheque de son proprietaire.
+power=3
+id=5273
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=3
+name=Plated Rootwalla
+mana={4}{G}
+subtype=Lizard
+color=Green
+auto={2}{G}:3/3 limit:1
+rarity=C
+text={2}{G}: L'Agame a plaques gagne +3/+3 jusqu'a la fin du tour.     Ne jouez cette capacite qu'une seule fois par tour.
+power=3
+id=5201
+type=Creature
+[/card]
+[card]
+name=Dizzying Gaze
+mana={R}
+subtype=Aura
+color=Red
+target=creature|myinplay
+auto={R}:damage:1 target(creature[flying])
+rarity=C
+text=Enchanter : creature que vous controlez   {R}: La e enchantee inflige 1 blessure a la creature avec le vol ciblee.
+id=6114
+type=Enchantment
+[/card]
+[card]
+toughness=4
+name=Ephemeron
+mana={4}{U}{U}
+subtype=Illusion
+color=Blue
+auto={S(*|myhand)}:moveTo(myhand)
+rarity=R
+text=Vol          Defaussez-vous d'une carte : Renvoyez l'Ephemeroptere dans la main de son proprietaire.
+power=4
+id=6073
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Elven Palisade
+mana={G}
+color=Green
+auto={S(forest|myinplay)}:-3/0 target(creature[attacking]) 
+rarity=U
+text=Sacrifiez une foret : la creature attaquante ciblee gagne -3/-0 jusqu'a la fin du tour.
+type=Enchantment
+id=6146
+[/card]
+[card]
+toughness=1
+name=Wood Elves
+mana={2}{G}
+subtype=Elf Scout
+color=Green
+auto=moveTo(inPlay) target(forest|myLibrary)
+rarity=C
+text=Quand l'Elfe des bois arrive en jeu, cherchez une carte de foret dans votre bibliotheque et mettez cette carte en jeu. Melangez ensuite votre bibliotheque.
+power=1
+id=6135
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Elvish Berserker
+mana={G}
+subtype=Elf Berserker
+color=Green
+auto=rampage(1/1,0)
+rarity=C
+text=A chaque fois que le Berserker elfe devient bloque, il gagne +1/+1 jusqu'a la fin du tour pour chaque creature le bloquant.
+power=1
+id=6133
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Scrivener
+mana={4}{U}
+subtype=Human Wizard
+color=Blue
+auto=may moveTo(myhand) target(instant|mygraveyard)
+rarity=U
+text=Quand le Scribouillard arrive en jeu vous pouvez renvoyer la carte d'ephemere ciblee depuis votre cimetiere dans votre main.
+power=2
+id=6067
+type=Creature
+[/card]
+[card]
+toughness=5
+name=Killer Whale
+mana={3}{U}{U}
+subtype=Whale
+color=Blue
+auto={U}:flying
+rarity=U
+text={U}: La Baleine tueuse acquiert le vol jusqu'a la fin du tour.
+power=3
+id=6065
+type=Creature
+[/card]

@@ -846,7 +846,7 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-taget=creature
+target=creature
 text=Target creature gets +0/+X until end of turn, where X is its converted mana cost.
 rarity=U
 name=Great Defender

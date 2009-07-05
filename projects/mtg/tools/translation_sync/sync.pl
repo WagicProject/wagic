@@ -2,7 +2,7 @@
 
 #This script synchronizes a translation of _cards.dat with the equivalent english _cards.dat
 # it keeps everything from the english file, except the text line that is taken from the translated file
-# usage: translate.pl FR
+# usage: sync.pl FR
 
 use strict;
 use warnings;

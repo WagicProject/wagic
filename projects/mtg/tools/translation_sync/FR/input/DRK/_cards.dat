@@ -1,0 +1,509 @@
+#Set: The dark
+#Release V1.3
+#45/119
+[card]
+text={U}{T}: Ajoutez {3} a votre reserve. 
+id=1747
+name=Apprentice Wizard
+auto={U}{T}: add {3}
+type=Creature
+subtype=Wizard
+mana={1}{U}{U}
+power=0
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Pietinement, celerite.           A la fin du tour, sacrifiez la Boule fulgurante.
+id=1783
+abilities=trample,haste
+auto=@next endofturn:bury
+name=Ball Lightning
+type=Creature
+subtype=Ball Lightning
+mana={R}{R}{R}
+power=6
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Vol
+id=1730
+name=Bog Imp
+abilities=flying
+type=Creature
+subtype=Imp
+mana={1}{B}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text={2}{T}: Toutes les creatures gagnent -1/-0 jusqu'a la fin du tour. 
+id=1709
+auto={2}{T}:lord(creature) -1/0
+name=Bone Flute
+type=Artifact
+mana={3}
+rarity=U
+[/card]
+[card]
+text=Enchanter : creature            La creature enchantee ne peut pas attaquer a moins que son controleur ne paye {3}. 
+id=1803
+target=creature
+auto=cantattack
+auto={3}:-cantattack
+name=Brainwash
+type=Enchantment
+subtype=Aura
+mana={W}
+rarity=C
+[/card]
+[card]
+text=Defensseur
+id=1765
+name=Carnivorous Plant
+abilities=defender
+type=Creature
+subtype=Wall
+mana={3}{G}
+power=4
+toughness=5
+rarity=C
+[/card]
+[card]
+text=A chaque fois que le peuple des cavernes attaque, il gagne +1/-2 jusqu'a la fin du tour. {1}{R}{R}{T}: La creature ciblee acquiert la traversee des montagnes jusqu'a la fin du tour. 
+id=1786
+auto=lord(Cave People[attacking]) 1/-2
+auto={1}{R}{R}{T}:mountainwalk target(creature) 
+name=Cave People
+type=Creature
+subtype=Cave People
+mana={1}{R}{R}
+power=1
+toughness=4
+rarity=U
+[/card]
+[card]
+text={3}, Sacrifice Coal Golem: Ajoutez {R}{R}{R} a votre reserve. 
+id=1711
+auto={3}{S}:add {R}{R}{R}
+name=Coal Golem
+type=Artifact Creature
+mana={5}
+power=3
+toughness=3
+rarity=U
+[/card]
+[card]
+text=Sacrifiez une foret: Vous gagnez 3 points de vie.
+id=1820
+auto={S(forest|MyInplay)}:life:3
+name=Dark Heart of the Wood
+type=Enchantment
+mana={B}{G}
+rarity=C
+[/card]
+[card]
+text={3}: Regenerez la Machine Diabolique. 
+id=1713
+name=Diabolic Machine
+auto={3}:regenerate
+type=Artifact Creature
+mana={7}
+power=4
+toughness=4
+rarity=U
+[/card]
+[card]
+text={B}: Regenerez Drowned.
+id=1750
+name=Drowned
+auto={B}:regenerate
+type=Creature
+subtype=Zombies
+mana={1}{U}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text={T}: Ajoutez {B} a votre reserve. Les Elfes de l'ombre profonde vous infligent 1 blessure.
+id=1766
+auto={T}:add {B} && damage 1 controller
+name=Elves of Deep Shadow
+type=Creature
+subtype=Elves
+mana={G}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text={1}{W}{T}: Detruisez la creature noire ciblee. 
+id=1806
+name=Exorcist
+auto={1}{W}{T}:destroy target(creature[black])
+type=Creature
+subtype=Exorcist
+mana={W}{W}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Vol. {R}: Le Drakon de feu gagne +1/+0 jusqu'a la fin du tour. Vous ne pouvez jouer cette capacite qu'une seule fois par tour.
+id=1788
+auto={R}:1/0 limit:1
+name=Fire Drake
+abilities=flying
+type=Creature
+subtype=Drake
+mana={1}{R}{R}
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Detruisez la creature ou terrain cible. Il ne peut pas etre regeneree. 
+id=1789
+name=Fissure
+target=creature,land
+auto=bury
+type=Instant
+mana={3}{R}{R}
+rarity=C
+[/card]
+[card]
+text={U}{U}: Engagez la creature sans le vol ciblee. 
+id=1753
+auto={U}{U}:tap target(creature[-flying])
+name=Flood
+type=Enchantment
+mana={U}
+rarity=U
+[/card]
+[card]
+text={2}{T}: Vous gagnez 1 point devie. 
+id=1715
+auto={2}{T}:life:1
+name=Fountain of Youth
+type=Artifact
+mana={0}
+rarity=U
+[/card]
+[card]
+text=Vol.     {U}{U}{U}: Regenerez le Navire fantome.
+id=1754
+name=Ghost Ship
+abilities=flying
+auto={U}{U}{U}:regenerate
+type=Creature
+subtype=Ship
+mana={2}{U}{U}
+power=2
+toughness=4
+rarity=C
+[/card]
+[card]
+text={T}, sacrifiez l'Equipe de minage gobeline : Detruisez le mur cible.
+id=1791
+auto={T}{S}:destroy target(wall)
+name=Goblin Digging Team
+type=Creature
+subtype=Goblins
+mana={R}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+id=1792
+name=Goblin Hero
+type=Creature
+subtype=Goblin
+mana={2}{R}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=T}: Vous pouvez mettre en jeu une carte de gobelin de votre main. {R}: Le Gobelin cible gagne la protection contre le blanc jusqu'a la fin du tour. 
+id=1795
+name=Goblin Wizard
+auto={T}:moveto(myinplay) target(goblin|myhand)
+auto={R}:protection from white target(goblin)
+type=Creature
+subtype=Goblin
+mana={2}{R}{R}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text=Les creatures vertes gagnent la traversee des forets. 
+id=1768
+auto=lord(creature[green]) forestwalk
+name=Hidden Path
+type=Enchantment
+mana={2}{G}{G}{G}{G}
+rarity=U
+[/card]
+[card]
+text=Les creatures non-blanche gagne -1/-1 jusqu'a la fin du tour. 
+id=1810
+auto=lord(creature[-white]) -1/-1
+name=Holy Light
+type=Instant
+mana={2}{W}
+rarity=C
+[/card]
+[card]
+text=La Fournaise infllige 6 blessures a chaque creature et a chaque joueur.
+id=1797
+auto=damage:6 all(player,creature)
+name=Inferno
+type=Instant
+mana={5}{R}{R}
+rarity=U
+[/card]
+[card]
+text=Regroupement, protection contre le rouge.
+id=1811
+name=Knights of Thorn
+abilities=banding,protection from red
+type=Creature
+subtype=Knights
+mana= {3}{W}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Initiative
+id=1769
+name=Land Leeches
+abilities=first strike
+type=Creature
+subtype=Leeches
+mana= {1}{G}{G}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Toutes les creatures gagnent -2/-0 jusqu'a la fin du tour. 
+id=1737
+auto=lord(creature) -2/-0
+name=Marsh Gas
+type=Instant
+mana={B}
+rarity=C
+[/card]
+[card]
+text=Traversee des marais.
+id=1821
+name=Marsh Goblins
+abilities=swampwalk
+type=Creature
+subtype=Goblins
+mana= {B}{R}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text={T}: Detruisez la creature ciblee avec la traversee des iles. 
+id=1758
+auto={T}:destroy target(creature[islandwalk])
+name=Merfolk Assassin
+type=Creature
+subtype=Merfolk
+mana={U}{U}
+power=1
+toughness=2
+rarity=U
+[/card]
+[card]
+text={T}: Detruisez l'Aura ciblee attachee a une creature que vous controlez.
+id=1813
+name=Miracle Worker
+auto={T}:destroy target(aura|myinplay)
+type=Creature
+subtype=Miracle Worker
+mana={W}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Les creatures attaquantes gagnent +1/+1 jusqu'a la fin du tour.
+id=1814
+auto=lord(creature[attacking]) 1/1
+name=Morale
+type=Instant
+mana={1}{W}{W}
+rarity=C
+[/card]
+[card]
+text={G}{G}{G}{G}, {T}: Regenerez la creature ciblee.
+id=1772
+auto={G}{G}{G}{T}:regenerate target(creature)
+name=Niall Silvain
+type=Creature
+subtype=Niall Silvan
+mana={G}{G}{G}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text={T}, Sacrifiez un autre Orc ou Gobelin: Les autres creatures Orc gagnent +1/+1 jusqu'a la fin du tour. 
+id=1799
+name=Orc General
+auto={T}{S(orc,goblin|myinplay)}:lord(orc) 1/1
+type=Creature
+subtype=General
+mana={2}{R}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Les gents de la foret ont une force et une endurance egale au nombre de foret que vous controlez. 
+id=1773
+auto=foreach(forest|myinplay) 0/1
+name=People of the Woods
+type=Creature
+subtype=People of the Woods
+mana={G}{G}
+power=1
+toughness=*
+rarity=U
+[/card]
+[card]
+text=Regroupement, initiative.
+id=1815
+name=Pikemen
+abilities=banding,first strike
+type=Creature
+subtype=Pikemen
+mana= {1}{W}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+id=1822
+name=Scarwood Goblins
+type=Creature
+subtype=Goblins
+mana= {G}{R}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text={G}{G}{G}{G}, {T}: La creature ciblee gagne la traversee des forets jusqu'a la fin du tour.       {T}: La creature ciblee perd la traversee des forets jusqu'a la fin du tour. 
+id=1776
+auto={G}{G}{G}{G}{T}:forestwalk target(creature)
+auto={T}:-forestwalk target(creature)
+name=Scarwood Hag
+type=Creature
+subtype=Hag
+mana={1}{G}
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
+text={G}{T},sacrifiez les Maraudeurs : Detruisez l'artefact cible.
+id=1777
+auto={G}{T}{S}:destroy target(artifact)
+name=Scavenger Folk
+type=Creature
+subtype=Scavenger Folk
+mana={G}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text={T}: Ajoutez {R} a votre reserve. 
+id=1800
+name=Sisters of the Flame
+auto={T}: add {R}
+type=Creature
+subtype=Sisters
+mana={1}{R}{R}
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text={5}{T}: Renvoyez la carte d'enchantement ciblee depuis votre cimetiere dans votre main.
+id=1721
+auto={5}{T}:MoveTo(MyHand) target(enchantment|MyGraveyard)
+name=Skull of Orm
+type=Artifact
+mana={3}
+rarity=U
+[/card]
+[card]
+id=1817
+name=Squire
+type=Creature
+subtype=Squire
+mana= {1}{W}
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+text={1}{T}, Payez 1 point de vie: Ajoutez 1 mana de la couleur de votre choix a votre reserve. 
+id=1722
+name=Standing Stones
+auto={T}:add {G} && damage 1 controller
+auto={T}:add {R} && damage 1 controller
+auto={T}:add {B} && damage 1 controller
+auto={T}:add {U} && damage 1 controller
+auto={T}:add {W} && damage 1 controller
+type=Artifact
+mana={3}
+rarity=U
+[/card]
+[card]
+text=Detruisez tous les Gobelins. 
+id=1818
+auto=destroy all (goblin)
+name=Tivadar's Crusade
+type=Sorcery
+mana={1}{W}{W}
+rarity=U
+[/card]
+[card]
+text=La Wurm des eaux gagne +0/+1 aussi longtemps qu'un adversaire controle une ile. 
+id=1764
+auto=aslongas (island|opponentinplay) 0/1
+name=Water Wurm
+type=Creature
+subtype=Wurm
+mana={U}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text={T}: Le Chasseur de sorcieres inflige 1 blessure au joueur ciblee.         {1}{W}{W}, {T}: Renvoyez la creature ciblee qu'un adversaire controle dans la main de son proprietaire.
+id=1819
+name=Witch Hunter
+auto={T}:damage:1 target(player)
+auto={1}{W}{W}{T}:moveto(ownerHand) target(creature|OpponentInplay)
+type=Creature
+subtype=Hunter
+mana={2}{W}{W}
+power=1
+toughness=1
+rarity=U
+[/card]
+

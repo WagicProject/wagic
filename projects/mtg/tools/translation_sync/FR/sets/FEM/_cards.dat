@@ -1,0 +1,629 @@
+[card]
+toughness=3
+name=Armor Thrull
+mana={2}{B}
+subtype=Thrull
+color=Black
+rarity=C
+text={T}, Sacrifiez l' Armor thrull: Mettez un marqueur +1/+2 sur la creature ciblee.
+power=1
+id=1839
+type=Creature
+alias=1838
+[/card]
+[card]
+toughness=1
+name=Order of the Ebon Hand
+mana={B}{B}
+subtype=Cleric Knight
+color=Black
+rarity=C
+text=Protection contre le blanc     {B}: L'Order of the ebon hand gagne +1/+0 jusqu'a la fin du tour.     {B}{B}: L'Order of the ebon hand acquiert l'initiative jusqu'a la fin du tour.
+power=2
+id=1864
+type=Creature
+alias=1862
+abilities=protection from white
+[/card]
+[card]
+color=Land
+auto={T}{S}:add {R}{R}
+text=Les Ruines naines arrivent en jeu engagees.     {T}: Ajoutez {R} a votre reserve.     {T}, sacrifiez les Ruines naines : Ajoutez {R}{R} a votre reserve.
+rarity=U
+name=Dwarven Ruins
+id=2005
+type=Land
+[/card]
+[card]
+name=Icatian Town
+mana={5}{W}
+color=White
+auto=token(Citizen,creature human,1/1,white)*4
+rarity=R
+text=Mettez en jeu quatre jetons de creature blanche 1/1 Citoyen.
+type=Sorcery
+id=1999
+[/card]
+[card]
+toughness=1
+name=Icatian Scout
+mana={W}
+subtype=Human Soldier Scout
+color=White
+rarity=C
+text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
+power=1
+id=1996
+type=Creature
+alias=1994
+[/card]
+[card]
+color=Land
+auto={T}{S}:add {W}{W}
+text=Les ruines de Trokair arrivent en jeu engagees.     {T}: Ajoutez {W} a votre reserve.     {T}, sacrifiez les Ruines de Trokair : Ajoutez  {W}{W} a votre reserve.
+rarity=U
+name=Ruins of Trokair
+id=2011
+type=Land
+[/card]
+[card]
+toughness=3
+name=Armor Thrull
+mana={2}{B}
+subtype=Thrull
+color=Black
+rarity=C
+text={T}, Sacrifiez l' Armor thrull: Mettez un marqueur +1/+2 sur la creature ciblee.
+power=1
+id=1841
+type=Creature
+alias=1838
+[/card]
+[card]
+toughness=1
+name=Icatian Scout
+mana={W}
+subtype=Human Soldier Scout
+color=White
+auto={1}{T}:target(creature) first strike
+rarity=C
+text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
+power=1
+id=1994
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Vodalian Soldiers
+mana={1}{U}
+subtype=Merfolk Soldier
+color=Blue
+rarity=C
+text= 
+power=1
+id=1900
+type=Creature
+#alias=1899
+[/card]
+[card]
+color=Green
+text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
+rarity=C
+name=Elven Fortress
+id=1905
+type=Enchantment
+mana={G}
+alias=1904
+[/card]
+[card]
+color=Black
+text=Le joueur cible se defausse de 2 cartes au hazard.
+rarity=C
+name=Hymn to Tourach
+id=1851
+type=Sorcery
+mana={B}{B}
+alias=1849
+[/card]
+[card]
+toughness=1
+name=Icatian Infantry
+mana={W}
+subtype=Human Soldier
+color=White
+rarity=C
+text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
+power=1
+id=1983
+type=Creature
+alias=1981
+[/card]
+[card]
+toughness=1
+name=Icatian Infantry
+mana={W}
+subtype=Human Soldier
+color=White
+rarity=C
+text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
+power=1
+id=1982
+type=Creature
+alias=1981
+[/card]
+[card]
+toughness=1
+name=Icatian Infantry
+mana={W}
+subtype=Human Soldier
+color=White
+auto={1}:first strike
+rarity=C
+text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
+power=1
+id=1981
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Basal Thrull
+mana={B}{B}
+subtype=Thrull
+color=Black
+rarity=C
+text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
+power=1
+id=1844
+type=Creature
+alias=1842
+[/card]
+[card]
+toughness=2
+name=Vodalian Soldiers
+mana={1}{U}
+subtype=Merfolk Soldier
+color=Blue
+rarity=C
+text= 
+power=1
+id=1899
+type=Creature
+[/card]
+[card]
+name=Hymn to Tourach
+mana={B}{B}
+target=player
+color=Black
+auto=discard:2
+rarity=C
+text=Le joueur cible se defausse de 2 cartes au hazard.
+id=1849
+type=Sorcery
+[/card]
+[card]
+toughness=1
+name=Homarid Shaman
+mana={2}{U}{U}
+subtype=Homarid Shaman
+color=Blue
+auto={U}:tap target(creature[green])
+rarity=R
+text={U}: Engagez la creature verte ciblee.
+power=2
+id=1879
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Order of Leitbur
+mana={W}{W}
+subtype=Human Cleric Knight
+color=White
+rarity=C
+text=Protection contre le noir     {W}: Order of Leitbur gagne +1/+0 jusqu'a la fin du tour.     {W}{W}: Order of Leitbur acquiert l'initiative jusqu'a la fin du tour.
+power=2
+id=2002
+type=Creature
+alias=2000
+abilities=protection from black
+[/card]
+[card]
+toughness=1
+name=River Merfolk
+mana={U}{U}
+subtype=Merfolk
+color=Blue
+auto={U}:mountainwalk
+rarity=R
+text={U}: Le River Merfolk acquiert la traversee des montagnes jusqu'a la fin du tour.
+power=2
+id=1888
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Order of Leitbur
+mana={W}{W}
+subtype=Human Cleric Knight
+color=White
+rarity=C
+text=Protection contre le noir     {W}: Order of Leitbur gagne +1/+0 jusqu'a la fin du tour.     {W}{W}: Order of Leitbur acquiert l'initiative jusqu'a la fin du tour.
+power=2
+id=2001
+type=Creature
+alias=2000
+abilities=protection from black
+[/card]
+[card]
+toughness=2
+name=Vodalian Soldiers
+mana={1}{U}
+subtype=Merfolk Soldier
+color=Blue
+rarity=C
+text= 
+power=1
+id=1902
+type=Creature
+#alias=1899
+[/card]
+[card]
+name=Thrull Retainer
+mana={B}
+target=creature
+subtype=Aura
+color=Black
+auto={S}:regenerate
+rarity=U
+text=Enchanter : creature     La creature enchantee gagne +1/+1.     Sacrifiez le Serviteur srane : Regenerez la creature enchantee.
+id=1867
+type=Enchantment
+[/card]
+[card]
+toughness=2
+name=Dwarven Lieutenant
+mana={R}{R}
+subtype=Dwarf Soldier
+color=Red
+auto={1}{R}: target(dwarf) 1/0
+rarity=U
+text={1}{R}: La creature nain ciblee gagne +1/+0 jusqu'a la fin du tour.
+power=1
+id=1943
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Icatian Lieutenant
+mana={W}{W}
+subtype=Human Soldier
+color=White
+auto={1}{W}:target(soldier) 1/0
+rarity=R
+text={1}{W}: La creature soldat ciblee gagne +1/+0 jusqu'a la fin du tour.
+power=1
+id=1988
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Vodalian Knights
+mana={1}{U}{U}
+subtype=Merfolk Knight
+color=Blue
+auto={U}:flying
+rarity=R
+text=Initiative       Les Vodalian Knights ne peuvent pas attaquer a moins que le joueur defenseur ne controle une ile. Quand vous ne controlez pas d' ile, sacrifiez les Vodalian Knights.     {U}: Ces Vodalian knights acquierent le vol jusqu'a la fin du tour.
+power=2
+id=1895
+type=Creature
+abilities=islandhome,first strike
+[/card]
+[card]
+toughness=1
+name=Icatian Scout
+mana={W}
+subtype=Human Soldier Scout
+color=White
+rarity=C
+text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
+power=1
+id=1995
+type=Creature
+alias=1994
+[/card]
+[card]
+toughness=2
+name=Basal Thrull
+mana={B}{B}
+subtype=Thrull
+color=Black
+auto={S}:add {B}{B}
+rarity=C
+text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
+power=1
+id=1842
+type=Creature
+[/card]
+[card]
+name=Aeolipile
+mana={2}
+color=Artifact
+auto={1}{T}{S}:damage:2 target(creature,player)
+rarity=R
+text={1}{T}, sacrifiez l'Aeolipile : L'Aeolipile inflige 2 blessures a une cible, creature ou joueur.
+type=Artifact
+id=1827
+[/card]
+[card]
+toughness=1
+name=Order of Leitbur
+mana={W}{W}
+subtype=Human Cleric Knight
+color=White
+auto={W}{W}:1/0
+rarity=C
+text=Protection contre le noir     {W}: Order of Leitbur gagne +1/+0 jusqu'a la fin du tour.     {W}{W}: Order of Leitbur acquiert l'initiative jusqu'a la fin du tour.
+power=2
+id=2000
+type=Creature
+abilities=protection from black
+[/card]
+[card]
+toughness=1
+name=Icatian Scout
+mana={W}
+subtype=Human Soldier Scout
+color=White
+rarity=C
+text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
+power=1
+id=1997
+type=Creature
+alias=1994
+[/card]
+[card]
+color=Black
+text=Le joueur cible se defausse de 2 cartes au hazard.
+rarity=C
+name=Hymn to Tourach
+id=1850
+type=Sorcery
+mana={B}{B}
+alias=1849
+[/card]
+[card]
+toughness=1
+name=Svyelunite Priest
+mana={1}{U}
+subtype=Merfolk Cleric
+color=Blue
+auto={U}{U}{T}:target(creature) shroud
+rarity=U
+text={U}{U}{T}: La creature ciblee acquiert le linceul jusqu'a la fin du tour. Ne jouez cette capacite que pendant votre entretien.
+power=1
+id=1890
+type=Creature
+[/card]
+[card]
+name=Implements of Sacrifice
+mana={2}
+color=Artifact
+auto={1}{T}{S}:add {B}{B}
+rarity=R
+text={1}{T}, Sacrifiez Implement of sacrifice: Ajoutez a votre reserve 2 manas d'une couleur unique.
+type=Artifact
+id=1834
+[/card]
+[card]
+toughness=2
+name=Basal Thrull
+mana={B}{B}
+subtype=Thrull
+color=Black
+rarity=C
+text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
+power=1
+id=1843
+type=Creature
+alias=1842
+[/card]
+[card]
+color=Green
+text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
+rarity=C
+name=Elven Fortress
+id=1906
+type=Enchantment
+mana={G}
+alias=1904
+[/card]
+[card]
+toughness=1
+name=Order of the Ebon Hand
+mana={B}{B}
+subtype=Cleric Knight
+color=Black
+rarity=C
+text=Protection contre le blanc     {B}: L'Order of the ebon hand gagne +1/+0 jusqu'a la fin du tour.     {B}{B}: L'Order of the ebon hand acquiert l'initiative jusqu'a la fin du tour.
+power=2
+id=1863
+type=Creature
+alias=1862
+abilities=protection from white
+[/card]
+[card]
+color=Black
+text=Le joueur cible se defausse de 2 cartes au hazard.
+rarity=C
+name=Hymn to Tourach
+id=1852
+type=Sorcery
+mana={B}{B}
+alias=1849
+[/card]
+[card]
+color=Green
+text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
+rarity=C
+name=Elven Fortress
+id=1907
+type=Enchantment
+mana={G}
+alias=1904
+[/card]
+[card]
+color=Land
+auto={T}{S}:add {U}{U}
+text=Le Temple Svyelunite arrive en jeu engage.     {T}: Ajoutez {U} a votre reserve.     {T}, sacrifiez le Temple Svyelunite : Ajoutez  {U}{U} a votre reserve.
+rarity=U
+name=Svyelunite Temple
+id=2013
+type=Land
+[/card]
+[card]
+toughness=1
+name=Order of the Ebon Hand
+mana={B}{B}
+subtype=Cleric Knight
+color=Black
+auto={B}{B}:1/0
+rarity=C
+text=Protection contre le blanc     {B}: L'Order of the ebon hand gagne +1/+0 jusqu'a la fin du tour.     {B}{B}: L'Order of the ebon hand acquiert l'initiative jusqu'a la fin du tour.
+power=2
+id=1862
+type=Creature
+abilities=protection from white
+[/card]
+[card]
+toughness=3
+name=Armor Thrull
+mana={2}{B}
+subtype=Thrull
+color=Black
+rarity=C
+text={T}, Sacrifiez l' Armor thrull: Mettez un marqueur +1/+2 sur la creature ciblee.
+power=1
+id=1840
+type=Creature
+alias=1838
+[/card]
+[card]
+toughness=1
+name=Icatian Priest
+mana={W}
+subtype=Human Cleric
+color=White
+auto={1}{W}{W}:target(creature) 1/1
+rarity=U
+text={1}{W}{W}: La creature ciblee gagne +1/+1 jusqu'a la fin du tour.
+power=1
+id=1993
+type=Creature
+[/card]
+[card]
+color=Land
+auto={T}{S}:add {G}{G}
+text=Le champ de bataille d'Havrebois arrive en jeu engage.     {T}: Ajoutez {G} a votre reserve.     {T}, sacrifiez le Champ de bataille d'Havrebois : Ajoutez {G}{G} a votre reserve.
+rarity=U
+name=Havenwood Battleground
+id=2007
+type=Land
+[/card]
+[card]
+color=Land
+auto={T}{S}:add {B}{B}
+text=La place forte d'Eben arrive en jeu engagee.     {T}: Ajoutez {B} a votre reserve.     {T}, sacrifiez la place forte d'Eben : Ajoutez  {B}{B} a votre reserve.
+rarity=U
+name=Ebon Stronghold
+id=2006
+type=Land
+[/card]
+[card]
+toughness=1
+name=Icatian Infantry
+mana={W}
+subtype=Human Soldier
+color=White
+rarity=C
+text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
+power=1
+id=1984
+type=Creature
+alias=1981
+[/card]
+[card]
+name=Elven Fortress
+mana={G}
+color=Green
+auto={1}{G}:target(creature[blocking]) 0/1
+rarity=C
+text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
+type=Enchantment
+id=1904
+[/card]
+[card]
+toughness=3
+name=Armor Thrull
+mana={2}{B}
+subtype=Thrull
+color=Black
+auto={s}:target(creature):1/2
+rarity=C
+text={T}, Sacrifiez l' Armor thrull: Mettez un marqueur +1/+2 sur la creature ciblee.
+power=1
+id=1838
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Icatian Phalanx
+mana={4}{W}
+subtype=Human Soldier
+color=White
+rarity=U
+text=Regroupement
+power=2
+id=1992
+type=Creature
+abilities=banding
+[/card]
+[card]
+toughness=2
+name=Basal Thrull
+mana={B}{B}
+subtype=Thrull
+color=Black
+rarity=C
+text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
+power=1
+id=1845
+type=Creature
+alias=1842
+[/card]
+[card]
+toughness=2
+name=Vodalian Soldiers
+mana={1}{U}
+subtype=Merfolk Soldier
+color=Blue
+rarity=C
+text= 
+power=1
+id=1901
+type=Creature
+#alias=1899
+[/card]
+[card]
+toughness=2
+name=Thrull Champion
+mana={4}{B}
+subtype=Thrull
+color=Black
+auto={T}:moveTo(myinplay) target(thrull|opponentinplay)
+rarity=R
+text=Toutes les creatures sranes gagnent +1/+1.     {T}: Prenez le controle du srane cible tant que vous controlez le Thrull Champion.
+power=2
+id=1866
+type=Creature
+[/card]

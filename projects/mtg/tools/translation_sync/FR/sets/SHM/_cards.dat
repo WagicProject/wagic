@@ -53,19 +53,6 @@ type=Instant
 id=146017
 [/card]
 [card]
-toughness=1
-name=Pili-Pala
-mana={2}
-subtype=Scarecrow
-auto={2}{T}:Add{W}
-rarity=C
-text=Flying     {2}, {T}: Add one mana of any color to your mana pool. ({T} is the untap symbol.)
-power=1
-id=147381
-type=Artifact Creature
-abilities=flying
-[/card]
-[card]
 toughness=2
 name=Wasp Lancer
 mana={UB}{UB}{UB}
@@ -180,13 +167,13 @@ type=Creature
 abilities=trample,persist
 [/card]
 [card]
+auto=foreach(island|myinplay)draw:1
 text=Draw a card for each Island you control.
 rarity=U
 name=Flow of Ideas
 id=158692
 type=Sorcery
 mana={5}{U}
-alias=87978
 [/card]
 [card]
 toughness=1
@@ -264,6 +251,7 @@ id=157871
 type=Basic Land
 [/card]
 [card]
+auto=foreach(forest|myinplay)token(Wolf,creature wolf,2/2,green)
 text=Put a 2/2 green Wolf creature token into play for each Forest you control.
 rarity=U
 name=Howl of the Night Pack
@@ -566,7 +554,7 @@ abilities=wither
 name=Corrupt
 mana={5}{B}
 target=creature,player
-auto=foreach(swamp|myinplay):life:1
+auto=foreach(swamp|myinplay)life:1
 rarity=U
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
 type=Sorcery
@@ -1014,6 +1002,15 @@ power=2
 id=154010
 type=Creature
 abilities=wither
+[/card]
+[card]
+auto=foreach(land[tapped]|myinplay)life:1
+text=You gain 1 life for each tapped artifact, creature, and land you control.
+rarity=C
+name=Toil to Renown
+id=159410
+type=Sorcery
+mana={1}{G}
 [/card]
 [card]
 toughness=3

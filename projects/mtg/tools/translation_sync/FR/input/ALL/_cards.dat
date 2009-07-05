@@ -1,0 +1,536 @@
+#Set: Alliance
+#Release 1.0
+#27 playable cards, alternative cards ID have been included (20 of the cards included in this release are duplicate).
+[card]
+name=Aesthir Glider
+id=3040
+text=Vol       Le Planeur d'aeszir ne peut pas bloquer.
+type=Artifact Creature
+abilities=flying,cantblock
+mana={3}
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Aesthir Glider
+id=3041
+text=Vol       Le Planeur d'aeszir ne peut pas bloquer.
+type=Artifact Creature
+abilities=flying,cantblock
+mana={3}
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Agent of Stromgald
+id=3159
+text={R}: Ajoutez {B} a votre reserve.
+type=creature
+subtype=Knight
+auto={R}: Add {B}
+mana={R}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Agent of Stromgald
+id=3160
+text={R}: Ajoutez {B} a votre reserve.
+type=creature
+subtype=Knight
+auto={R}: Add {B}
+mana={R}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Balduvian War-Makers
+id=3163
+text=Celerite, sauvagerie 1 (Quand elle est bloquee, elle gagne +1/+1 jusqu'a la fin du tour pour chaque creature que la bloque au-dela de la premiere.)
+type=creature
+subtype=Barbarians
+abilities=rampage,haste
+mana={4}{R}
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+name=Balduvian War-Makers
+id=3162
+text=Celerite, sauvagerie 1 (Quand elle est bloquee, elle gagne +1/+1 jusqu'a la fin du tour pour chaque creature que la bloque au-dela de la premiere.)
+type=creature
+subtype=Barbarians
+abilities=rampage,haste
+mana={4}{R}
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+name=Burnout
+id=3166
+text=Vol      Quand les Pigeons voyageurs arrivent en jeu, piochez une carte au debut de l'entretien du prochain tour.
+type=Instant
+alias=1191
+auto=@next beginofturn:draw:1
+mana={1}{R}
+rarity=U
+[/card]
+[card]
+name=Carrier Pigeons
+id=3191
+text=Vol      Quand les Pigeons voyageurs arrivent en jeu, piochez une carte au debut de l'entretien du prochain tour.
+type=creature
+subtype=Pigeons
+abilities=flying
+auto=@next beginofturn:draw:1
+mana={3}{W}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Carrier Pigeons
+id=3190
+text=Vol      Quand les Pigeons voyageurs arrivent en jeu, piochez une carte au debut de l'entretien du prochain tour.
+type=creature
+subtype=Pigeons
+abilities=flying
+auto=@next beginofturn:draw:1
+mana={3}{W}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Deadly Insect
+id=3130
+text=Linceul (Ce permanent ne peut etre la cible de sorts ou d'effets.)
+type=creature
+subtype=Insect
+abilities=shroud
+mana={4}{G}
+power=6
+toughness=1
+rarity=U
+[/card]
+[card]
+name=Deadly Insect
+id=3123
+text=Linceul (Ce permanent ne peut etre la cible de sorts ou d'effets.)
+type=creature
+subtype=Insect
+abilities=shroud
+mana={4}{G}
+power=6
+toughness=1
+rarity=U
+[/card]
+[card]
+name=Elvish Ranger
+id=3132
+type=creature
+subtype=Elf
+mana={2}{G}
+power=4
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Elvish Ranger
+id=3133
+type=creature
+subtype=Elf
+mana={2}{G}
+power=4
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Enslaved Scout
+id=3169
+text={2}: L'Eclaireur asservi acquiert la traversee des montagnes jusqu'a la fin du tour.
+type=creature
+subtype=Goblin
+auto={2}:mountainwalk
+mana={2}{R}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+name=Enslaved Scout
+id=3170
+text={2}: L'Eclaireur asservi acquiert la traversee des montagnes jusqu'a la fin du tour.
+type=creature
+subtype=Goblin
+auto={2}:mountainwalk
+mana={2}{R}
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+name=Errand of Duty
+id=3192
+text=Mettez en jeu un jeton de creature blanche 1/1 Chevalier avec le regroupement.
+type=Instant
+auto=token(Knight,creature Knight,1/1,banding white)
+mana={1}{W}
+rarity=C
+[/card]
+[card]
+name=Errand of Duty
+id=3193
+text=Mettez en jeu un jeton de creature blanche 1/1 Chevalier avec le regroupement.
+type=Instant
+auto=token(Knight,creature Knight,1/1,banding white)
+mana={1}{W}
+rarity=C
+[/card]
+[card]
+name=Fevered Strength
+id=3075
+text=La creature ciblee gagne +2/+0 jusqu'a la fin du tour. Piochez une carte au debut de l'entretien du prochain tour.
+type=Instant
+target=Creature
+auto=:2/0
+auto=@next beginofturn:draw:1
+mana={2}{B}
+rarity=C
+[/card]
+[card]
+name=Fevered Strength
+id=3076
+text=La creature ciblee gagne +2/+0 jusqu'a la fin du tour. Piochez une carte au debut de l'entretien du prochain tour.
+type=Instant
+target=Creature
+auto=:2/0
+auto=@next beginofturn:draw:1
+mana={2}{B}
+rarity=C
+[/card]
+[card]
+name=Gorilla Chieftain
+id=3142
+text={1}{G}: Regenerez le Chef de clan gorille.
+type=creature
+subtype=Gorilla
+auto={1}G}:regenerate
+mana={2}{G}{G}
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+name=Gorilla Chieftain
+id=3143
+text={1}{G}: Regenerez le Chef de clan gorille.
+type=creature
+subtype=Gorilla
+auto={1}G}:regenerate
+mana={2}{G}{G}
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+name=Kaysa
+id=3145
+text=Les creatues verte que vous controlez gagnent +1/+1.
+type=creature
+subtype=Legend
+auto=lord(creature[green]) 1/1
+mana={3}{G}{G}
+power=2
+toughness=3
+rarity=R
+[/card]
+[card]
+name=Kjeldoran Escort
+id=3199
+text=Regroupement
+type=creature
+subtype=Soldier
+abilities=banding
+mana={2}{W}{W}
+power=2
+toughness=3
+rarity=C
+[/card]
+[card]
+name=Kjeldoran Escort
+id=3198
+text=Regroupement
+type=creature
+subtype=Soldier
+abilities=banding
+mana={2}{W}{W}
+power=2
+toughness=3
+rarity=C
+[/card]
+[card]
+name=Kjeldoran Outpost
+id=3233
+text=Si l'Avant-poste kjeldorien devait arriver en jeu, sacrifiez une plaine a la place. Si vous faites ainsi, mettez l'Avant-poste kjeldorien en jeu. Sinon, mettez-le dans le cimetiere de son proprietaire.       {T}: Ajoutez {W} a votre reserve.      {1}{W}, {T}: Mettez en jeu un jeton de creature blanche 1/1 Soldat.
+type=land
+target=plain|myinplay
+auto=bury
+auto={T}: add {W}
+auto={1}{W}{T}:token(soldier,creature solder,1/1,white)
+rarity=R
+[/card]
+[card]
+name=Lake of the Dead
+id=3234
+text=Si le Lac de la mort devait arriver en jeu, sacrifiez un marais a la place. Si vous faites ainsi, mettez le Lac de la mort en jeu. Sinon, mettez-le dans le cimetiere de son proprietaire.     {T}: Ajoutez {B} a votre reserve.     {T}, sacrifiez un marais : Ajoutez {B}{B}{B}{B} a votre reserve.
+type=land
+target=swamp|myinplay
+auto=bury
+auto={T}: add {B}
+auto={T}{S(swamp|myinplay)}: add {B}{B}{B}{B}
+mana={S(swamp|myinplay)}
+rarity=R
+[/card]
+[card]
+name=Lim-Dul's High Guard
+id=3083
+text=First strike {1}{B}: Regenerez la Haute garde de Lim-Dul.
+type=creature
+subtype=Skeleton
+abilities=first strike
+auto={1}{B}:regenerate
+mana={1}{B}{B}
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Lim-Dul's High Guard
+id=3082
+text=First strike {1}{B}: Regenerez la Haute garde de Lim-Dul.
+type=creature
+subtype=Skeleton
+abilities=first strike
+auto={1}{B}:regenerate
+mana={1}{B}{B}
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Noble Steeds
+id=3205
+text={1}{W}: La creature ciblée acquiert l'initiative jusqu'a la fin du tour.
+type=Enchantment
+auto={1}{W}:banding target(creature)
+mana={2}{W}
+rarity=C
+[/card]
+[card]
+name=Noble Steeds
+id=3206
+text={1}{W}: La creature ciblee acquiert l'initiative jusqu'a la fin du tour.
+type=Enchantment
+auto={1}{W}:banding target(creature)
+mana={2}{W}
+rarity=C
+[/card]
+[card]
+name=Pillage
+id=3178
+text=Detruisez l'artefact ou le terrain cible. Il ne peut regenere.
+type=Sorcery
+target=artifact,land
+auto=bury
+mana={1}{R}{R}
+rarity=U
+[/card]
+[card]
+name=School of the Unseen
+id=3235
+text={T}: Ajoutez {1} a votre reserve.  {2}, {T}: Ajoutez un mana de la couleur de votre choix a votre reserve.
+type=land
+auto={T}: add {1}
+auto={2}{T}: add {G}
+auto={2}{T}: add {R}
+auto={2}{T}: add {W}
+auto={2}{T}: add {B}
+auto={2}{T}: add {U}
+rarity=U
+[/card]
+[card]
+name=Stench of Decay
+id=3093
+text=Les creatures non-artefact gagnent -1/-1 jusqu'a la fin du tour.
+type=Instant
+auto=lord(creature[-artifact])-1/-1
+mana={1}{B}{B}
+rarity=C
+[/card]
+[card]
+name=Stench of Decay
+id=3092
+text=Les creatures non-artefact gagnent -1/-1 jusqu'a la fin du tour.
+type=Instant
+auto=lord(creature[-artifact])-1/-1
+mana={1}{B}{B}
+rarity=C
+[/card]
+[card]
+name=Storm Crow
+id=3120
+text=Vol
+type=creature
+subtype=Bird
+abilities=flying
+mana={1}{U}
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+name=Storm Crow
+id=3119
+text=Vol
+type=creature
+subtype=Bird
+abilities=flying
+mana={1}{U}
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+name=Storm Shaman
+id=3183
+text={R}: Le Shamane de l'orage gagne +1/+0 jusqu'a la fin du tour.
+type=creature
+subtype=Cleric
+auto={R}:1/0
+mana={2}{R}
+power=0
+toughness=4
+rarity=C
+[/card]
+[card]
+name=Storm Shaman
+id=3184
+text={R}: Le Shamane de l'orage gagne +1/+0 jusqu'a la fin du tour.
+type=creature
+subtype=Cleric
+auto={R}:1/0
+mana={2}{R}
+power=0
+toughness=4
+rarity=C
+[/card]
+[card]
+name=Taste of Paradise
+id=3150
+text=Gagnez 3 points de vie. Gagnez 3 points de vie pour chaque {1}{G} que vous payez en plus du cout de lancement.
+type=Sorcery
+auto=life:3
+auto={1}{G}:life:3
+mana={3}{G}
+rarity=C
+[/card]
+[card]
+name=Taste of Paradise
+id=3149
+text=Gagnez 3 points de vie. Gagnez 3 points de vie pour chaque {1}{G} que vous payez en plus du cout de lancement.
+type=Sorcery
+auto=life:3
+auto={1}{G}:life:3
+mana={3}{G}
+rarity=C
+[/card]
+[card]
+name=Unlikely Alliance
+id=3218
+text={1}{W}: La creature non-attaquante et non-bloqueuse ciblee gagne +0/+2 jusqu'a la fin du tour.
+type=Enchantment
+auto={1}{W}:0/2 target(creature[-attacking;-blocking])
+mana={1}{W}
+rarity=U
+[/card]
+[card]
+name=Viscerid Armor
+id=3125
+text=Enchanter : creature         La creature enchantee gagne +1/+1.      {1}{U}: Renvoyez l'Armure visceride dans la main de son proprietaire.
+type=Enchantment
+subtype=Aura
+target=Creature 
+auto=:1/1
+auto={1}{U}:moveto(ownerhand)
+mana={1}{U}
+rarity=C
+[/card]
+[card]
+name=Viscerid Armor
+id=3126
+text=Enchanter : creature         La creature enchantee gagne +1/+1.      {1}{U}: Renvoyez l'Armure visceride dans la main de son proprietaire.
+type=Enchantment
+subtype=Aura
+target=Creature 
+auto=:1/1
+auto={1}{U}:moveto(ownerhand)
+mana={1}{U}
+rarity=C
+[/card]
+[card]
+name=Wild Aesthir
+id=3219
+text=Vol, initiative      {W}{W}: L'Aeszir sauvage gagne +2/+0 jusqu'a la fin du tour. Ne jouez cette capacite qu'une seule fois par tour.
+type=creature
+subtype=Aesthir
+abilities=flying,first strike
+auto={W}{W}:2/0 limit 1
+mana={2}{W}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Wild Aesthir
+id=3220
+text=Vol, initiative      {W}{W}: L'Aeszir sauvage gagne +2/+0 jusqu'a la fin du tour. Ne jouez cette capacite qu'une seule fois par tour.
+type=creature
+subtype=Aesthir
+abilities=flying,first strike
+auto={W}{W}:2/0 limit 1
+mana={2}{W}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+name=Yavimaya Ancients
+id=3156
+text={G}: Les Enctiens de la Yavimaya gagnent +1/-2 jusqu'a la fin du tour.
+type=creature
+subtype=Treefolk
+auto={G}:1/2
+mana={3}{G}{G}
+power=2
+toughness=7
+rarity=C
+[/card]
+[card]
+name=Yavimaya Ancients
+id=3157
+text={G}: Les Enctiens de la Yavimaya gagnent +1/-2 jusqu'a la fin du tour.
+type=creature
+subtype=Treefolk
+auto={G}:1/2
+mana={3}{G}{G}
+power=2
+toughness=7
+rarity=C
+[/card]

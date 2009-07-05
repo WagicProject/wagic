@@ -224,6 +224,15 @@ type=Creature
 abilities=flying
 [/card]
 [card]
+auto={T}:foreach(artifact|myinplay)add:{U}
+text={T}: Add {U} to your mana pool for each artifact you control.
+rarity=R
+name=Tolarian Academy
+id=8883
+type=Land
+abilities=legendary
+[/card]
+[card]
 toughness=1
 name=Pegasus Charger
 mana={2}{W}
@@ -296,6 +305,18 @@ rarity=C
 text={G}: Target creature gains trample until end of turn.
 power=1
 id=5738
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Priest of Titania
+mana={1}{G}
+subtype=Elf Druid
+auto={T}:foreach(creature[Elf])add:{G}
+rarity=C
+text={T}: Add {G} to your mana pool for each Elf in play.
+power=1
+id=5823
 type=Creature
 [/card]
 [card]
@@ -419,6 +440,14 @@ text={B}: Regenerate Unworthy Dead.
 power=1
 id=5780
 type=Creature
+[/card]
+[card]
+auto={T}:foreach(Enchantment|myinplay)add:{W}
+text={T}: Add {W} to your mana pool for each enchantment you control.
+rarity=R
+name=Serra's Sanctum
+id=9674
+type=Legendary Land
 [/card]
 [card]
 name=Forest
@@ -1139,6 +1168,15 @@ name=Path of Peace
 id=5684
 type=Sorcery
 mana={3}{W}
+[/card]
+[card]
+auto={T}:foreach(creature|myinplay)add:{G}
+text={T}: Add {G} to your mana pool for each creature you control.
+rarity=R
+name=Gaea's Cradle
+id=10422
+type=Land
+abilities=legendary
 [/card]
 [card]
 name=Whirlwind

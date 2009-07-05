@@ -1,0 +1,536 @@
+[card]
+text=Pietinement     {1}{G}: Regenerez le Carnasside.
+id=5217
+name=Carnassid
+color=Green
+rarity=R
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+auto={1}{G}:regenerate
+power=5
+toughness=4
+abilities=trample
+[/card]
+[card]
+text=Vol     L'Esprit des nuages ne peut bloquer que les creatures avec le vol.
+abilities=cloud,flying
+id=5122
+name=Cloud Spirit
+color=Blue
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=1
+[/card]
+[card]
+text=Enchanter : creature     La creature enchantee gagne +1/+3.    {W}: Renvoyez la conviction dans la main de son proprietaire.
+id=5127
+name=Conviction
+color=White
+rarity=C
+mana={1}{W}
+auto=:1/3
+auto={W}:moveTo(myhand)
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Le Geant poltron ne peut pas bloquer.
+id=5130
+name=Craven Giant
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=1
+abilities=cantblock
+[/card]
+[card]
+text=Les creatures que vous controlez ont la portee jusqu'a la fin du tour.
+id=5131
+auto=lord(creature|myinplay) reach
+name=Crossbow Ambush
+color=Green
+rarity=C
+mana={G}
+type=Instant
+[/card]
+[card]
+text=Tous les slivoïdes ont le linceul.  (Ils ne peuvent etre la cible de sorts ou d'effets.)
+id=5134
+auto=lord(sliver) shroud
+name=Crystalline Sliver
+colour=White,Blue
+rarity=U
+mana={W}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+abilities=shroud
+[/card]
+[card]
+text={T}: La creature ciblee acquiert la distorsion jusqu'a la fin du tour. 
+id=5135
+name=Dauthi Trapper
+colour=Black
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Dauthi Minion
+auto={T}:shadow target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Detruisez la creature engagee cible.
+target=creature(tapped)
+auto=destroy
+id=5137
+name=Death Stroke
+color=Black
+rarity=C
+mana={B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Vol     {B}: L'Ombre des geoles gagne +1/+1 jusqu'a la fin du tour.
+id=5142
+name=Dungeon Shade
+colour=Black
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Shade Spirit
+auto={B}:1/1
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Renvoyez toutes les creatures dans la main de leur proprietaire.
+id=5147
+name=Evacuation
+auto=moveTo(ownerhand) all(creature|inplay)
+color=Blue
+rarity=R
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+text=Enchanter : creature    {R}: La creature enchantee gagne +1/-1 jusqu'a la fin du tour.
+target=creature
+auto={R}:1/-1
+id=5152
+name=Flowstone Blade
+color=Red
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Celerite   {0}: La Monstruosite de fluipierre gagne +1/-1 jusqu'a la fin du tour.
+id=5153
+name=Flowstone Hellion
+color=Red
+rarity=U
+mana={4}{R}
+type=Creature
+subtype=Hellion Beast
+auto={0}:1/-1
+power=3
+toughness=3
+abilities=haste
+[/card]
+[card]
+text=Pietinement   {R}: le Meurtrisseur de fluipierre gagne +1/-1 jusqu'a la fin du tour.
+id=5154
+name=Flowstone Mauler
+color=Red
+rarity=R
+mana={4}{R}{R}
+type=Creature
+subtype=Beast
+auto={R}:1/-1
+power=4
+toughness=5
+abilities=trample
+[/card]
+[card]
+text={R}: L'Escogriffe de fluipierre gagne +1/-1 jusqu'a la fin du tour.
+id=5156
+name=Flowstone Shambler
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Beast
+auto={R}:1/-1
+power=2
+toughness=2
+[/card]
+[card]
+text=Vol     Quand le Diablotin fletri arrive en jeu, vous perdez 2 points de vie.
+id=5158
+name=Foul Imp
+colour=Black
+rarity=C
+mana={B}{B}
+type=Creature
+subtype=Imp
+auto=life:-2
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Celerite   {R}: l'Esprit du fourneau gagne +1/+0 jusqu'a la fin du tour.
+id=5160
+name=Furnace Spirit
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Spirit
+auto={R}:1/0
+power=1
+toughness=1
+abilities=haste
+[/card]
+[card]
+text=Traversee des iles
+id=5163
+name=Hammerhead Shark
+colour=Blue
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Fish
+power=2
+toughness=3
+abilities=islandhome
+[/card]
+[card]
+text={W}: La Garde d'honneur gagne +0/+1 jusqu'a la fin du tour.
+id=5170
+name=Honor Guard
+color=White
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Soldier
+auto={W}:0/1
+power=1
+toughness=1
+[/card]
+[card]
+text=La creature ciblee gagne le vol jusqu'a la fin du tour.    Piochez une carte.
+target=creature
+auto=flying
+auto=draw:1
+id=5180
+name=Leap
+color=Blue
+rarity=C
+mana={U}
+type=Instant
+[/card]
+[card]
+text=Les Moggs bas-de-plafond ne peuvent ni attaquer ni bloquer seuls.
+id=5100
+name=Mogg Flunkies
+color=Red
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Goblin
+auto=aslongas(creature[attacking|myinplay) -cantattack
+auto=aslongas(creature[blocking|myinplay) -cantblock
+power=3
+toughness=3
+abilities=cantattack,cantblock
+[/card]
+[card]
+text=Les creatures que vous controlez acquierent le pietinement.
+auto=lord(creature|myinplay) trample
+id=5149
+name=Primal Rage
+rarity=U
+color=Green
+type=Enchantment
+mana={1}{G}
+[/card]
+[card]
+text={T}: La creature bloqueuse ciblee gagne -1/-1 jusqu'a la fin du tour.
+id=5205
+name=Rabid Rats
+colour=Black
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Rat
+auto={T}:-1/-1 target(creature[blocking])
+power=1
+toughness=1
+[/card]
+[card]
+text=Vol      Le Revenant a une force et une endurance chacune egale au nombre de cartes de creature dans votre cimetiere.
+id=5211
+auto=foreach(creature|mygraveyard) 1/1 
+name=Revenant
+color=Black
+rarity=R
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=*
+toughness=*
+abilities=flying
+[/card]
+[card]
+text=Les creatures murs peuvent attaquer comme si elles n'avaient pas le defenseur.
+id=5212
+auto=lord(wall) -defender
+name=Rolling Stones
+colour=White
+rarity=R
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text=Detruisez tous les terrains non-base.
+id=5213
+auto=destroy all(land[-basic])
+name=Ruination
+color=Red
+rarity=R
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+text=Quand le Guerrier serpentiforme arrive en jeu, vous perdez 3 points de vie.
+id=5219
+name=Serpent Warrior
+colour=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Snake Warrior
+auto=life:-3
+power=3
+toughness=3
+[/card]
+[card]
+text=Le Choc inflige 2 blessures a une cible, creature ou joueur.
+target=creature,player
+auto=Damage:2
+id=5143
+name=Shock
+color=Red
+rarity=C
+mana={R}
+type=Instant
+[/card]
+[card]
+text={T}: La creature ciblee avec le vol gagne -1/-1 jusqu'a la fin du tour.
+id=5228
+name=Skyshroud Archer
+colour=Green
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf Archer
+auto={T}:-1/-1 target(creature[flying])
+power=1
+toughness=1
+[/card]
+[card]
+text=Vol, vigilance.
+id=5224
+name=Skyshroud Falcon
+colour=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+abilities=flying,vigilance
+[/card]
+[card]
+text={T}: Ajoutez {G} a votre reserve.
+id=5230
+name=Skyshroud Troopers
+colour=Green
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Elf Druid Warrior
+auto={T}: Add {G}
+power=3
+toughness=3
+[/card]
+[card]
+text=Legende   {2}: Mettez en jeu un jeton de creature incolore 1/1 Slivoïde.
+id=5233
+auto={2}:token(Sliver,creature sliver, 1/1)
+name=Sliver Queen
+rarity=R
+type=Creature
+mana={W}{U}{B}{R}{G}
+power=7
+subtype=Sliver
+toughness=7
+abilities=legendary
+[/card]
+[card]
+id=5245
+name=Spined Wurm
+color=Green
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Wurm
+power=5
+toughness=4
+[/card]
+[card]
+text={T}, Sacrifiez une creature: Detruisez la creature non-noire ciblee.
+auto={T}{s(creature|myinplay)}:destroy target(creature[-black])
+id=5247
+name=Stronghold Assassin
+colour=Black
+rarity=R
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie Assassin
+power=2
+toughness=1
+[/card]
+[card]
+text=Les autres creatures noire gagne -1/-1.
+auto=lord(creature[black]) -1/-1 other
+id=5249
+name=Stronghold Taskmaster
+colour=Black
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Giant Minion
+power=4
+toughness=3
+[/card]
+[card]
+text=Legende    {T}: La creature legendaire ciblee gagne +2/+2 jusqu'a la fin du tour. 
+auto={T}:2/2 target(creature[legendary])
+id=5250
+name=Sword of the Chosen
+color=Artifact
+rarity=R
+mana={4}
+type=Artifact
+[/card]
+[card]
+text=Enchanter : creature    La creature enchantee gagne -3/-0.
+target=creature
+auto=:-3/0
+id=5257
+name=Torment
+color=Black
+rarity=C
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Defaussez-vous d'une carte de creature: Renvoyez dans votre main la carte de creature ciblee depuis votre cimetiere.
+auto={s(creature|myhand)}:moveTo(myhand) target(creature|mygraveyard) 
+id=5195
+name=Tortured Existence
+color=Black
+rarity=C
+mana={B}
+type=Enchantment
+[/card]
+[card]
+text=Quand le moine venerable arrive en jeu, vous gagnez 2 points de vie.
+auto=life:2
+id=5258
+name=Venerable Monk
+color=White
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=2
+toughness=2
+[/card]
+[card]
+text=Legende   {T}: Ajoutez {1} a votre reserve.   {1}{B}, {T}: Mettez une carte de creature ciblee depuis votre cimetiere au-dessus de votre bibliotheque.
+id=5263
+name=Volrath's Stronghold
+auto={T}:Add {1}
+auto={1}{B}{T}:moveTo(myLibrary) target(creature|mygraveyard)
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
+text=Defensseur    Quand le Mur de fleurs arrive en jeu, piochez une carte.
+id=5265
+auto=draw:1
+name=Wall of Blossoms
+colour=Green
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Plant Wall
+power=0
+toughness=4
+abilities=defender
+[/card]
+[card]
+text=Defensseur, initiative.    
+id=5268
+name=Wall of Razors
+colour=R
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Wall
+power=4
+toughness=1
+abilities=defender,first strike
+[/card]
+[card]
+text=Vol, lien de vie
+id=5271
+name=Warrior Angel
+colour=White
+rarity=R
+mana={4}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=4
+abilities=flying,lifelink
+[/card]
+[card]
+text=Initiative
+id=5274
+name=Youthful Knight
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Knight
+abilities=first strike
+power=2
+toughness=1
+[/card]

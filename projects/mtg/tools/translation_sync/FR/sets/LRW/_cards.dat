@@ -334,13 +334,14 @@ id=143622
 type=Basic Land
 [/card]
 [card]
-subtype=Tribal Elf
-text=Put a 1/1 green Elf Warrior creature token into play for each Elf you control.
-rarity=U
 name=Elvish Promenade
-id=139676
-type=Sorcery
 mana={3}{G}
+subtype=Tribal Elf
+auto=foreach(elf|myinplay)token(Elf Warrior,creature Elf Warrior,1/1,green)
+rarity=U
+text=Put a 1/1 green Elf Warrior creature token into play for each Elf you control.
+type=Sorcery
+id=139676
 [/card]
 [card]
 toughness=5
@@ -658,6 +659,18 @@ rarity=L
 name=Swamp
 id=143636
 type=Basic Land
+[/card]
+[card]
+toughness=1
+name=Elvish Eulogist
+mana={G}
+subtype=Elf Shaman
+auto={s}:foreach(Elf|mygraveyard)life:1
+rarity=C
+text=Sacrifice Elvish Eulogist: You gain 1 life for each Elf card in your graveyard.
+power=1
+id=141804
+type=Creature
 [/card]
 [card]
 subtype=Island

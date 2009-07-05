@@ -1,0 +1,1552 @@
+[card]
+text=Contrecarrez le sort cible. Vous gagnez 3 points de vie.
+id=23155
+target=*|stack
+auto=fizzle
+auto=life:3
+name=Absorb
+rarity=R
+mana={W}{U}{U}
+type=Instant
+[/card]
+[card]
+text=La creature ciblee gagne +1/+1 jusqu'a la fin du tour.     Piochez une carte.
+target=creature
+auto=1/1
+auto=draw:1
+id=24127
+name=Aggressive Urge
+color=Green
+rarity=C
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+text=L' Ancienne source arrive en jeu engagee.     {T}: Ajoutez {U} a votre reserve.    {T}, sacrifiez l'Ancienne source : Ajoutez {W}{B} a votre reserve.
+auto=tap
+auto={T}:Add{U}
+auto={T}{s}:Add{W}{B}
+id=23236
+name=Ancient Spring
+rarity=C
+type=Land
+[/card]
+[card]
+text=Vol  Quand l'Ange de misericorde arrive en jeu, vous gagnez 3 points de vie.
+id=22952
+name=Angel of Mercy
+color=White
+rarity=U
+mana={4}{W}
+type=Creature
+subtype=Angel
+auto=life:3
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Les creatures que vous controlez gagnent +0/+1.     Sacrifiez le Bouclier angelique : Renvoyez la créature ciblee dans la main de son proprietaire.
+auto=lord(creature|myinplay) 0/1
+auto={s}:moveTo(ownerhand) target(creature)
+id=23177
+name=Angelic Shield
+color=White,Blue
+rarity=U
+mana={W}{U}
+type=Enchantment
+[/card]
+[card]
+text=Detruisez la creature non-noire ciblee. Elle ne peut etre regenere.      Piochez une carte.
+target=creature[-black]
+auto=bury
+auto=draw:1
+id=23042
+name=Annihilate
+color=Black
+rarity=U
+mana={3}{B}{B}
+type=Instant
+[/card]
+[card]
+text={T}: Ajoutez {1} a votre reserve.    {T}, Sacrifiez le Gisement archéologique: Ajoutez un mana d'une couleur de votre choix à votre reserve.
+auto={T}:Add{1}
+auto={T}{s}:Add{W}
+auto={T}{s}:Add{U}
+auto={T}{s}:Add{B}
+auto={T}{s}:Add{R}
+auto={T}{s}:Add{G}
+id=23245
+name=Archaeological Dig
+rarity=U
+type=Land
+[/card]
+[card]
+text=Enchanter : creature      La creature enchantee gagne +2/+2 et a le pietinement.     A chaque fois que la creature enchantee inflige des blessures, vous gagnez autant de points de vie.
+target=creature
+auto=2/2
+auto=trample
+auto=lifelink
+id=23164
+name=Armadillo Cloak
+color=Green,White
+rarity=C
+mana={1}{G}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={1}{W}{W}: La creature ciblee que vous controlez acquiert la protection contre la couleur de votre choix jusqu'a la fin du tour.    {1}{U}{U}: Le Vigile en armure acquiert le linceul jusqu'à la fin du tour.
+id=23197
+name=Armored Guardian
+color=White,Blue
+rarity=R
+mana={3}{W}{U}
+type=Creature
+subtype=Cat Soldier
+auto={1}{W}{W}:protection from white target(creature|myinplay)
+auto={1}{W}{W}:protection from blue target(creature|myinplay)
+auto={1}{W}{W}:protection from black target(creature|myinplay)
+auto={1}{W}{W}:protection from red target(creature|myinplay)
+auto={1}{W}{W}:protection from green target(creature|myinplay)
+auto={1}{U}{U}:shroud
+power=2
+toughness=5
+[/card]
+[card]
+text=Detruisez l'artefact cible. Il ne peut pas etre regenere. Mettez en jeu X jetons de creature 1/1 verte Saprobionte, X etant son cout converti de mana.
+id=23195
+target=artifact
+name=Artifact Mutation
+rarity=R
+type=Instant
+mana={R}{G}
+[/card]
+[card]
+text=Detruisez l'enchantement cible. Mettez en jeu X jetons de creature verte 1/1 Saprobionte, X etant son cout converti de mana.
+id=23184
+target=aura
+alias=23195
+name=Aura Mutation
+rarity=R
+type=Instant
+mana={G}{W}
+[/card]
+[card]
+text={3}{U},{T}: Piochez une carte.
+id=22947
+name=Benalish Heralds
+color=White
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+auto={3}{U}{T}:Draw:1
+power=2
+toughness=4
+[/card]
+[card]
+text={W},{T}: Engagez la creature ciblee.
+id=22937
+name=Benalish Trapper
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+auto={W}{T}:tap target(creature)
+power=1
+toughness=2
+[/card]
+[card]
+text={T}: Ajoutez {B} ou {R} a votre reserve.
+id=23219 
+name=Bloodstone Cameo
+color=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {B}
+auto={T}: Add {R}
+type=Artifact
+[/card]
+[card]
+text={1}: Ajoutez {B} a votre reserve.
+id=23024
+name=Bog Initiate
+color=Black
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Human Wizard
+auto={1}: Add {B}
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{W}, {T}, sacrifiez la Licorne capashenne : Detruisez l'artefact cible ou l'enchantement cible.
+id=22936
+name=Capashen Unicorn
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Unicorn
+auto={1}{W}{T}{s}:Destroy target(enchantment,artifact)
+power=1
+toughness=2
+[/card]
+[card]
+text={T}: Cherchez dans votre bibliotheque une carte legendaire, revelez cette carte et mettez-la dans votre main. Melangez ensuite votre bibliotheque.
+abilities=legendary
+auto={T}:moveTo(myHand) target(*[legendary]|myLibrary)
+id=25976
+name=Captain Sisay
+rarity=R
+type=Creature
+mana={2}{G}{W}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+text=Vigilance     {G}: Regenerez le Troll fougueux.
+id=23162
+name=Charging Troll
+color=Green,White
+rarity=U
+mana={2}{G}{W}
+type=Creature
+subtype=Troll
+auto={G}:regenerate
+power=3
+toughness=3
+abilities=vigilance
+[/card]
+[card]
+text=La Tour cotiere arrive en jeu engagee.     {T}: Ajoutez {W} ou {U} a votre reserve.
+auto=tap
+auto={T}:Add{W}
+auto={T}:Add{U}
+id=23240
+name=Coastal Tower
+rarity=U
+type=Land
+[/card]
+[card]
+text=Retirez de la partie la carte ciblee d'un cimetiere.   Piochez une carte.
+target=*|graveyard
+auto=moveto(removedfromgame)
+auto=draw:1
+id=24119
+name=Cremate
+rarity=U
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Protection contre le rouge      {W}: La  creature ciblee gagne la protection contre le rouge jusqu'a la fin du tour.
+id=22934
+name=Crimson Acolyte
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+auto={W}:protection from red target(creature)
+power=1
+toughness=1
+abilities=protection from red
+[/card]
+[card]
+text=sacrifiez le Serviteur de Crosis : Ajoutez  {U}{B}{R} a votre reserve.
+auto={1}{s}:Add {U}{B}{R}
+id=25837
+name=Crosis's Attendant
+color=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text=Protection contre le noir       Le Chevalier en croisade gagne +1/+1 pour chaque marais que vos adversaires controlent.
+id=22963
+auto=foreach(swamp|opponentinplay) 1/1
+name=Crusading Knight
+color=White
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+abilities=protection from black
+[/card]
+[card]
+text=Vol, protection contre le blanc     Quand l'Ange de la crypte arrive en jeu, renvoyez la carte de creature bleue ou rouge ciblee depuis votre cimetiere dans votre main.
+id=23320
+name=Crypt Angel
+auto=may moveTo(myhand) target(creature[blue;red]|mygraveyard)
+rarity=R
+type=Creature
+mana={4}{B}
+power=3
+subtype=Angel
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Enchanter : creature   La creature enchantee gagne -1/-1 et a la peur.
+target=creature
+auto=-1/-1
+auto=fear
+id=23044
+name=Cursed Flesh
+color=Black
+rarity=C
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=sacrifiez le Serviteur de Darigaaz : Ajoutez  {B}{R}{G} a votre reserve.
+auto={1}{s}:Add {B}{R}{G}
+id=25838
+name=Darigaaz's Attendant
+color=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Ajoutez {U} or {B} a votre reserve.
+id=23218 
+name=Drake-Skull Cameo
+color=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {U}
+auto={T}: Add {B}
+type=Artifact
+[/card]
+[card]
+text=sacrifiez le Serviteur de Dromar : Ajoutez {W}{U}{B} a votre reserve.
+auto={1}{s}:Add {W}{U}{B}
+id=25836
+name=Dromar's Attendant
+color=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text=Le Palais terrelfe arrive en jeu engage.     {T}: Ajoutez {G} ou {W} a votre reserve.
+auto=tap
+auto={T}:Add{G}
+auto={T}:Add{W}
+id=23244
+name=Elfhame Palace
+rarity=U
+type=Land
+[/card]
+[card]
+text=Les autres creatures elfes gagnent +1/+1 et ont la traversee des forets.
+id=26445
+name=Elvish Champion
+auto=lord(elf) 1/1 other
+auto=lord(elf) forestwalk other
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=2
+subtype=Elf
+toughness=2
+[/card]
+[card]
+text=Contrecarrez le sort de creature ciblee.    Piochez une carte.
+target=creature|stack
+auto=fizzle
+auto=draw:1
+id=22986
+name=Exclude
+rarity=C
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=Les creatures que vous controlez ont la celerite.   Sacrifiez les Feux de la Yavimaya : La creature ciblee gagne +2/+2 jusqu'a la fin du tour.
+auto=lord(creature|myinplay) haste
+auto={s}:2/2 target(creature)
+id=23180
+name=Fires of Yavimaya
+color=Red,Green
+rarity=U
+mana={1}{R}{G}
+type=Enchantment
+[/card]
+[card]
+text={R}: Le Crifeu gagne +1/+0 jusqu'a la fin du tour.
+id=23017
+name=Firescreamer
+color=Black
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Kavu
+auto={R}:1/0
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Ajoutez {G} a votre reserve.
+auto={T}: Add {G}
+id=26311
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Ajoutez {G} a votre reserve.
+auto={T}: Add {G}
+id=26310
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Ajoutez {G} a votre reserve.
+auto={T}: Add {G}
+id=26312
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Ajoutez {G} a votre reserve.
+auto={T}: Add {G}
+id=25967
+name=Forest
+rarity=L
+color=Land
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text=Protection contre le rouge
+id=23158
+name=Galina's Knight
+color=White,Blue
+rarity=C
+mana={W}{U}
+type=Creature
+subtype=Merfolk Knight
+power=2
+toughness=2
+abilities=protection from red
+[/card]
+[card]
+text=La Crevasse bouillonnante arrive en jeu engagee.     {T}: Ajoutez {R} a votre reserve.    {T}, sacrifiez la Crevasse bouillonnante : Ajoutez {B}{G} a votre reserve. 
+auto=tap
+auto={T}:Add{R}
+auto={T}{s}:Add{B}{G}
+id=23238
+name=Geothermal Crevice
+rarity=C
+type=Land
+[/card]
+[card]
+text=Vol      {U}: L'Ange rayonnant acquiert le linceul jusqu'a la fin du tour.
+id=22929
+auto={U}:shroud
+name=Glimmering Angel
+color=White
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Legende      {1}{W}{U}, {T}: Renvoyez la carte d'artefact ou d'enchantement ciblee depuis votre cimetiere dans votre main.
+auto={1}{W}{U}:moveTo(myhand) target(artifact,enchantment|mygraveyard)
+id=25977
+name=Hanna, Ship's Navigator
+color=White,Blue
+rarity=R
+mana={1}{W}{U}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text={2}: La creature  bleue ou rouge ciblee gagne +1/+0 jusqu'a la fin du tour.
+auto={2}:1/0 target(creature[blue;red])
+id=23041
+name=Hate Weaver
+color=Black
+rarity=U
+mana={1}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=1
+[/card]
+[card]
+text=Le joueur cible gagne 7 points de vie.
+target=player
+auto=life:7
+id=23183
+name=Heroes' Reunion
+color=Green,White
+rarity=U
+mana={G}{W}
+type=Instant
+[/card]
+[card]
+text={B}: Le Kavru a capuche acquiert la peur jusqu'a la fin du tour.
+id=23061
+name=Hooded Kavu
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Kavu
+auto={B}:fear
+power=2
+toughness=2
+[/card]
+[card]
+text=Lien de vie. (Quand cette creature inflige des degats, vous gagnez autant de point de vie.)
+id=23163
+name=Horned Cheetah
+color=Green,White
+rarity=U
+mana={2}{G}{W}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+abilities=lifelink
+[/card]
+[card]
+text=Le canal d'irrigation arrive en jeu engage.     {T}: Ajoutez {W} a votre reserve.    {T}, sacrifiez le Canal d'irrigation : Ajoutez {G}{U} a votre reserve. 
+auto=tap
+auto={T}:Add{W}
+auto={T}{s}:Add{G}{U}
+id=23235
+name=Irrigation Ditch
+rarity=C
+type=Land
+[/card]
+[card]
+text={T}: Ajoutez {U} a votre reserve.
+auto={T}: Add {U}
+id=26301
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Ajoutez {U} a votre reserve.
+auto={T}: Add {U}
+id=25964
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Ajoutez {U} a votre reserve.
+auto={T}: Add {U}
+id=26302
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Ajoutez {U} a votre reserve.
+auto={T}: Add {U}
+id=26303
+name=Island
+rarity=L
+color=Land
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=Quand le Kavru grimpeur arrive en jeu, piochez une carte.
+id=23109
+name=Kavu Climber
+auto=draw:1
+color=Green
+rarity=C
+mana={3}{G}{G}
+type=Creature
+subtype=Kavu
+power=3
+toughness=3
+[/card]
+[card]
+text=Le Coureur kavru a la celerite tant qu'aucun adversaire ne controle une creature bleue ou blanche.
+id=23079
+name=Kavu Runner
+color=Red 
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Kavu
+auto=aslongas(creature[blue;white]|opponentinplay) -haste
+power=3
+toughness=3
+abilities=haste
+[/card]
+[card]
+text=Domaine — L'Eclaireur kavru gagne +1/+0 pour chaque type de terrain de base parmi les terrains que vous controlez.
+id=23323
+name=Kavu Scout
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Kavu
+auto=aslongas(forest|myinplay) 1/0
+auto=aslongas(island|myinplay) 1/0
+auto=aslongas(plains|myinplay) 1/0
+auto=aslongas(mountain|myinplay) 1/0
+auto=aslongas(swamp|myinplay) 1/0
+power=0
+toughness=2
+[/card]
+[card]
+text=Legende     {T}: Ajoutez {1} a votre reserve.    {4}{R}, {T}, Sacrifiez une creature : La Necropole kelde inflige 2 blessures a une cible, creature ou joueur.
+auto={T}:Add {1}
+auto={4}{R}{T}{S(creature|myinplay)}:Damage:2 target(creature,player)
+id=25930
+name=Keldon Necropolis
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
+text={W}: La Cavalerie de Llanowar acquiert la vigilance jusqu'a la fin du tour.
+id=23322
+name=Llanowar Cavalry
+color=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Human Soldier
+auto={W}:vigilance
+power=1
+toughness=4
+[/card]
+[card]
+text=Protection contre le noir
+id=23157
+name=Llanowar Knight
+color=Green,White
+rarity=C
+mana={G}{W}
+type=Creature
+subtype=Elf Knight
+power=2
+toughness=2
+abilities=protection from black
+[/card]
+[card]
+text={T}: L'Avant-garde de Llanowar gagne +0/+4 jusqu'a la fin du tour.
+id=23123
+name=Llanowar Vanguard
+color=Green
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Dryad
+auto={T}:0/4
+power=1
+toughness=1
+[/card]
+[card]
+text=Vol     {T}: Ajoutez un mana de la couleur de votre choix a votre reserve.
+id=23233
+name=Lotus Guardian
+color=Artifact
+rarity=R
+mana={7}
+type=Artifact Creature
+subtype=Dragon
+auto={T}:Add {W}
+auto={T}:Add {U} 
+auto={T}:Add {B}
+auto={T}:Add {R}
+auto={T}:Add {G}
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
+text=Enchanter : creature     La creature enchantee gagne +2/+2 et ne peut pas blocker.
+id=23072
+name=Maniacal Rage
+target=creature
+auto=2/2
+auto=cantblock
+rarity=C
+type=Enchantment
+mana={1}{R}
+subtype=Aura
+[/card]
+[card]
+text=Protection contre le blanc       Le Chevalier en maraude gagne +1/+1 pour chaque plaine que vos adversaires controlent.
+id=23053
+auto=foreach(plains|opponentinplay) 1/1
+name=Marauding Knight
+color=Black
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Knight
+power=2
+toughness=2
+abilities=protection from white
+[/card]
+[card]
+text={B}: Regenere le Zombie métathran.
+id=22973
+name=Metathran Zombie
+color=Blue
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Metathran Zombie
+auto={B}:regenerate
+power=1
+toughness=1
+[/card]
+[card]
+text=Legende   pietinement     La force et l'endurance de Molimo, maro-sorcier sont chacune egale au nombre de terrains que vous controlez.
+id=23138
+auto=foreach(land|myinplay) 1/1
+name=Molimo, Maro-Sorcerer
+color=Green
+rarity=R
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Elemental
+power=*
+toughness=*
+abilities=legendary,trample
+[/card]
+[card]
+text={T}: Ajoutez {R} a votre reserve.
+auto={T}: Add {R}
+id=25966
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Ajoutez {R} a votre reserve.
+auto={T}: Add {R}
+id=26307
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Ajoutez {R} a votre reserve.
+auto={T}: Add {R}
+id=26309
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Ajoutez {R} a votre reserve.
+auto={T}: Add {R}
+id=26308
+name=Mountain
+rarity=L
+color=Land
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={2}: La creature rouge ou blanche ciblee acquiert le pietinement jusqu'a la fin du tour.
+id=23124
+name=Might Weaver
+color=Green
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Human Wizard
+auto={2}:trample target(creature[red;white])
+power=2
+toughness=1
+[/card]
+[card]
+text={U}, {T}: Mettez la creature ciblee que vous controlez au-dessus de la bibliotheque de son proprietaire.     {R}, {T}: La creature ciblee acquiert l'initiative jusqu'a la fin du tour.
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myInPlay)
+auto={R}{T}:first strike target(creature)
+id=23016
+name=Nightscape Apprentice
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Zombie Wizard
+toughness=1
+[/card]
+[card]
+text={U}{U}, {T}: Renvoyez la creature ciblee dans la main de son proprietaire.     {R}{R}, {T}: Le Maitre nyctasophe inflige 2 blessures a la créature ciblee.
+id=23049
+name=Nightscape Master
+color=Black
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Wizard
+auto={U}{U}{T}:moveTo(ownerhand) target(creature)
+auto={R}{R}{T}:Damage:2 target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text={1}: La Panthere noble acquiert l'initiative jusqu'a la fin du tour.
+id=23147
+name=Noble Panther
+color=Green,White
+rarity=R
+mana={1}{G}{W}
+type=Creature
+subtype=Cat
+auto={1}:first strike
+power=3
+toughness=3
+[/card]
+[card]
+text={1}{G}: Ajoutez un mana de la couleur de votre choix a votre reserve.
+id=23111
+name=Nomadic Elf
+color=Green
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf Nomad
+auto={1}{G}:Add {W}
+auto={1}{G}:Add {U} 
+auto={1}{G}:Add {B}
+auto={1}{G}:Add {R}
+auto={1}{G}:Add {G}
+power=2
+toughness=2
+[/card]
+[card]
+text=Protection contre le noir      {W}: La creature ciblee gagne la protection contre le noir jusqu'a la fin du tour.
+id=22935
+name=Obsidian Acolyte
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+auto={W}:protection from black target(creature)
+power=1
+toughness=1
+abilities=protection from black
+[/card]
+[card]
+text=Sacrifiez une creature: ajoutez un mana de la couleur de votre choix a votre reserve.
+id=23226
+name=Phyrexian Altar
+color=Artifact
+rarity=R
+mana={3}
+type=Artifact
+auto={S(creature|myinplay)}:Add {W}
+auto={S(creature|myinplay)}:Add {U} 
+auto={S(creature|myinplay)}:Add {B}
+auto={S(creature|myinplay)}:Add {R}
+auto={S(creature|myinplay)}:Add {G}
+[/card]
+[card]
+text=Vol  {B}: Ces Moucharmes phyrexianes gagnent +1/+0 jusqu'a la fin du tour.    Ne jouez cette capacite que deux fois au plus par tour.
+auto={B}:1/0 limit:2
+id=23023
+name=Phyrexian Battleflies
+color=Black
+rarity=C
+mana={B}
+type=Creature
+subtype=Insect
+power=0
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={T}: Ajoutez {W} a votre reserve.
+auto={T}: Add {W}
+id=26299
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Ajoutez {W} a votre reserve.
+auto={T}: Add {W}
+id=25963
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Ajoutez {W} a votre reserve.
+auto={T}: Add {W}
+id=26300
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Ajoutez {W} a votre reserve.
+auto={T}: Add {W}
+id=26298
+name=Plains
+rarity=L
+color=Land
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={6}, {T}: Cherchez une carte dans votre bibliotheque et mettez cette carte dans votre main. Melangez ensuite votre bibliotheque.
+auto={6}{T}:moveTo(myHand) target(*|myLibrary)
+id=23234
+name=Planar Portal
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
+text={2}: La creature ciblee noire ou verte acquiert la celerite jusqu'a la fin du tour.
+id=23081
+name=Rage Weaver
+color=Red
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+auto={2}:haste target(creature[green;black])
+power=2
+toughness=1
+[/card]
+[card]
+text=Flash, celerite
+id=23148
+name=Raging Kavu
+color=Red,Green
+rarity=R
+mana={1}{R}{G}
+type=Creature
+subtype=Kavu
+power=3
+toughness=1
+abilities=flash,haste
+[/card]
+[card]
+text=Vol, initiative
+id=22933
+name=Razorfoot Griffin
+color=White
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+abilities=flying,first strike
+[/card]
+[card]
+text=Renvoyez la carte de creature ciblee depuis votre cimetiere dans votre main.     Piochez une carte.
+target=creature|myGraveyard
+auto=moveTo(myhand)
+auto=draw:1
+id=23029
+name=Recover
+color=Black
+rarity=C
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+text=Renvoyez la creature ciblee dans la main de son proprietaire.    Piochez une carte.
+target=creature
+auto=moveTo(ownerhand)
+id=22985
+name=Repulse
+auto=draw:1
+color=Blue
+rarity=C
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+text=Vous gagnez 3 points de vie.    Piochez une carte.
+id=22941
+auto=life:3
+auto=draw:1
+name=Reviving Dose
+color=White
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=sacrifiez le Serviteur de Riss : Ajoutez {R}{G}{W} a votre reserve.
+auto={1}{s}:Add {R}{G}{W}
+id=25839
+name=Rith's Attendant
+color=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text=pietinement, protection contre le bleu, protection contre le rouge
+id=23205
+name=Sabertooth Nishoba
+color=Green,White
+rarity=R
+mana={4}{G}{W}
+type=Creature
+subtype=Cat Beast Warrior
+power=5
+toughness=5
+abilities=trample,protection from blue,protection from red
+[/card]
+[card]
+text=Les Marais salant arrivent en jeu engage.     {T}: Ajoutez {U} ou {B} a votre reserve.
+auto=tap
+auto={T}:Add{U}
+auto={T}:Add{B}
+id=23241
+name=Salt Marsh
+rarity=U
+type=Land
+[/card]
+[card]
+text=Enchanter : creature      Quand l'Armement necropsique arrive en jeu, piochez une carte.    La creature enchantee gagne  +1/+1.
+target=creature
+auto=1/1
+auto=draw:1
+id=23028
+name=Scavenged Weaponry
+color=Black
+rarity=C
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={T}: Ajoutez {W} ou {U} a votre reserve.
+id=23217 
+name=Seashell Cameo
+color=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {W}
+auto={T}: Add {U}
+type=Artifact
+[/card]
+[card]
+text={R}: Le Kavru serpentin acquiert la celerite jusqu'a la fin du tour.
+id=23105
+name=Serpentine Kavu
+color=Green
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Kavu
+auto={R}:haste
+power=4
+toughness=4
+[/card]
+[card]
+text=L'Oasis shivane arrive en jeu engagee.     {T}: Ajoutez {R} ou {G} a votre reserve.
+auto=tap
+auto={T}:Add{R}
+auto={T}:Add{G}
+id=23243
+name=Shivan Oasis
+rarity=U
+type=Land
+[/card]
+[card]
+text=Protection contre le blanc
+id=23160
+name=Shivan Zombie
+color=Black,Red
+rarity=C
+mana={B}{R}
+type=Creature
+subtype=Barbarian Zombie
+power=2
+toughness=2
+abilities=protection from white
+[/card]
+[card]
+text=Le Kavru fantasque gagne +1/+1 tant qu'aucun adversaire ne controle une creature blanche ou bleue.
+id=23080
+name=Skittish Kavu 
+color=Red
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Kavu
+auto=aslongas(creature[blue;white]|opponentinplay) -1/-1
+power=2
+toughness=2
+[/card]
+[card]
+text=A chaque fois que Golem d'entrainement devient bloque, il gagne +1/+1 jusqu'a la fin du tour pour chaque creature qui l'a bloque.
+id=23225
+auto=rampage(1/1,0)
+name=Sparring Golem
+rarity=U
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Golem
+toughness=2
+[/card]
+[card]
+text={2}: La creature ciblee blanche ou noire acquiert le vol jusqu'a la fin du tour.
+id=22996
+name=Sky Weaver
+color=Blue
+rarity=U
+mana={1}{U}
+type=Creature
+subtype=Metathran Wizard
+auto={2}:flying target(creature[white;black])
+power=2
+toughness=1
+[/card]
+[card]
+text=Traversee des forets
+id=23149
+name=Slinking Serpent
+color=Blue,Black
+rarity=U
+mana={2}{U}{B}
+type=Creature
+subtype=Serpent
+power=2
+toughness=3
+abilities=forestwalk
+[/card]
+[card]
+text={2}: La creature verte ou bleue ciblee gagne +0/+1 jusqu'a la fin du tour.
+id=22950
+name=Spirit Weaver
+color=White
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Human Wizard
+auto={2}:0/1 target(creature[green;blue])
+power=2
+toughness=1
+[/card]
+[card]
+text={3}{U}, {T}: Engagez la creature ciblee.    {3}{B}, {T}: Detruisez la creature engagee ciblee.
+id=25752
+name=Stalking Assassin
+color=Blue,Black
+rarity=R
+mana={1}{U}{B}
+type=Creature
+subtype=Human Assassin
+auto={3}{U}{T}:tap target(creature)
+auto={3}{B}{T}:destroy target(creature[tapped])
+power=1
+toughness=1
+[/card]
+[card]
+text=Enchanter : creature       Domaine - La creature enchantee gagne +1/+1 pour chaque type de terrain de base parmi les terrains que vous controlez.
+id=22939
+name=Strength of Unity
+color=White
+rarity=C
+mana={3}{W}
+type=Enchantment
+target=creature
+subtype=Aura
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(swamp|myinplay) 1/1
+[/card]
+[card]
+text=La creature ciblee ne peut pas bloquer ce tour-ci.    Piochez une carte.
+id=23073
+name=Stun
+target=creature
+auto=cantattack
+auto=draw:1
+rarity=C
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=Le Geyser de souffre arrive en jeu engage.     {T}: Ajoutez {B} a votre reserve.    {T}, sacrifiez le Geyser de soufre : Ajoutez {U}{R} a votre reserve. 
+auto=tap
+auto={T}:Add{B}
+auto={T}{s}:Add{U}{R}
+id=23237
+name=Sulfur Vent
+rarity=C
+type=Land
+[/card]
+[card]
+text={G}, {T}: La creature e gagne +1/+1 jusqu'a la fin du tour.     {U}, {T}: Mettez la creature ciblee que vous controlez au-dessus de la bibliotheque de son proprietaire.
+auto={G}{T}:1/1 target(creature)
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myInplay)
+id=22928
+name=Sunscape Apprentice
+rarity=C
+type=Creature
+mana={W}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
+text={T}: Ajoutez {B} a votre reserve.
+auto={T}: Add {B}
+id=26305
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Ajoutez {B} a votre reserve.
+auto={T}: Add {B}
+id=26306
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Ajoutez {B} a votre reserve.
+auto={T}: Add {B}
+id=26304
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Ajoutez {B} a votre reserve.
+auto={T}: Add {B}
+id=25965
+name=Swamp
+rarity=L
+color=Land
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Le Tek gagne +0/+2 tant que vous controlez une plaine, a le vol tant que vous controlez une ile, gagne +2/+0 tant que vous controlez un marais, a l'initiative tant que vous controlez une montagne et a le pietinement tant que vous controlez une foret.
+id=23229
+name=Tek
+color=Arifact
+rarity=R
+mana={5}
+type=Artifact Creature
+subtype=Dragon
+auto=aslongas(forest|myinplay) trample
+auto=aslongas(island|myinplay) flying
+auto=aslongas(plains|myinplay) 0/2
+auto=aslongas(mountain|myinplay) first strike
+auto=aslongas(swamp|myinplay) 2/0
+power=2
+toughness=2
+[/card]
+[card]
+text={R}{R}, {T}: Le Maitre spinosophe inflige 2 blessures à la creature ciblee.   {W}{W}, {T}: La creature ciblee acquiert la protection contre la couleur de votre choix jusqu'a la fin du tour.
+id=23136
+name=Thornscape Master
+color=Green
+rarity=R
+mana={2}{G}{G}
+type=Creature
+subtype=Human Wizard
+auto={R}{R}{T}:Damage:2 target(creature)
+auto={W}{W}{T}:protection from white target(creature)
+auto={W}{W}{T}:protection from blue target(creature)
+auto={W}{W}{T}:protection from black target(creature)
+auto={W}{W}{T}:protection from red target(creature)
+auto={W}{W}{T}:protection from green target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Ajoutez {G} ou {W} a votre reserve.
+id=23221 
+name=Tigereye Cameo
+color=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {G}
+auto={T}: Add {W}
+type=Artifact
+[/card]
+[card]
+text=La Futaie d'amadou arrive en jeu engage.     {T}: Ajoutez {G} a votre reserve.    {T}, sacrifiez la Futaie d'amadou : Ajoutez {R}{W} a votre reserve. 
+auto=tap
+auto={T}:Add{G}
+auto={T}{s}:Add{R}{W}
+id=23239
+name=Tinder Farm
+rarity=C
+type=Land
+[/card]
+[card]
+text=Vol     {W}: Le Drakon des tours gagne +0/+1 jusqu'a la fin du tour.
+id=22974
+name=Tower Drake
+color=Blue
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Drake
+auto={W}:0/1
+power=2
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Detruisez tous les enchantements.
+auto=Destroy all(enchantment)
+id=23116
+name=Tranquility
+color=Green
+rarity=C
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+text=sacrifiez le Serviteur de Treva : Ajoutez {G}{W}{U} a votre reserve.
+auto={1}{s}:Add {G}{W}{U}
+id=25840
+name=Treva's Attendant
+color=Artifact
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Ajoutez {R} ou {G} a votre reserve.
+id=23220
+name=Troll-Horn Cameo
+color=Artifact
+rarity=U
+mana={3}
+auto={T}: Add {R}
+auto={T}: Add {G}
+type=Artifact
+[/card]
+[card]
+text=Les autres creatures noire gagnent -1/-1
+auto=lord(creature[black]) -1/-1 other
+id=23035
+name=Urborg Shambler
+color=Black
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=3
+[/card]
+[card]
+text=Le Volcan d'Urborg arrive en jeu engagé.     {T}: Ajoutez {B} ou {R} a votre reserve.
+auto=tap
+auto={T}:Add{B}
+auto={T}:Add{R}
+id=23242
+name=Urborg Volcano
+rarity=U
+type=Land
+[/card]
+[card]
+text={T}: Ajoutez un mana de la couleur de votre choix a votre reserve.
+id=12605
+name=Utopia Tree
+color=Green
+rarity=R
+mana={1}{G}
+type=Creature
+subtype=Plant
+auto={T}:Add {W}
+auto={T}:Add {U} 
+auto={T}:Add {B}
+auto={T}:Add {R}
+auto={T}:Add {G}
+power=0
+toughness=2
+[/card]
+[card]
+text={G}: Le Viashino accrocheur acquiert le pietinement jusqu'a la fin du tour.
+id=22930
+name=Viashino Grappler
+color=Red
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Viashino
+auto={G}:trample
+power=3
+toughness=1
+[/card]
+[card]
+text=Protection contre le vert
+id=23159
+name=Vodalian Zombie
+color=Blue,Black
+rarity=C
+mana={U}{B}
+type=Creature
+subtype=Merfolk Zombie
+power=2
+toughness=2
+abilities=protection from green
+[/card]
+[card]
+text=Detruisez la creature ciblee, noire ou bleu avec le vol.
+target=creature[black;blue;flying]
+auto=destroy
+id=23130
+name=Wallop
+color=Green
+rarity=U
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+text=Domaine — Le Geant baladeur gagne +1/+1 pour chaque type de terrain de base parmi les terrains que vous controlez.
+id=23211
+name=Wayfaring Giant
+color=White
+rarity=U
+mana={5}{W}
+type=Creature
+subtype=Giant
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(swamp|myinplay) 1/1
+power=1
+toughness=3
+[/card]
+[card]
+text=Enchanter : creature      La creature enchantee gagne +1/+3 et a le vol.
+target=creature
+auto=1/3
+auto=flying
+id=24118
+name=Wings of Hope
+color=White,Blue
+rarity=C
+mana={W}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Protection contre le bleu
+id=23161
+name=Yavimaya Barbarian
+color=Red,Green
+rarity=C
+mana={R}{G}
+type=Creature
+subtype=Elf Barbarian
+power=2
+toughness=2
+abilities=protection from blue
+[/card]
+[card]
+text=La force du Kavru de la Yavimaya est egale au nombre de creatures rouges en jeu.   L'endurance du Kavru de la Yavimaya est egale au nombre de creatures vertes en jeu.
+id=23174
+auto=foreach(creature[red]|inplay) 1/0
+auto=foreach(creature[green]|inplay) 0/1
+name=Yavimaya Kavu
+color=Green
+rarity=U
+mana={2}{R}{G}
+type=Creature
+subtype=Kavu
+power=*
+toughness=*
+[/card]
+[card]
+text=Le Zap inflige 1 blessure à une cible, creature ou joueur.        Piochez une carte.
+target=creature,player
+auto=damage:1
+auto=draw:1
+id=23075
+name=Zap
+color=Red
+rarity=C
+mana={2}{R}
+type=Instant
+[/card]

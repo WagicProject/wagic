@@ -1,0 +1,236 @@
+[card]
+name=Flowstone Embrace
+mana={1}{R}
+subtype=Aura
+color=Red
+target=creature
+auto={T}:2/-2
+rarity=C
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)    {T}: Enchanted creature gets +2/-2 until end of turn.
+id=132227
+type=Enchantment
+[/card]
+[card]
+toughness=1
+name=Tarmogoyf
+mana={1}{G}
+subtype=Lhurgoyf
+color=Green
+auto=aslongas(sorcery|graveyard) 1/1
+rarity=R
+text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
+power=O
+id=136142
+type=Creature
+[/card]
+[card]
+name=Gift of Granite
+mana={W}
+subtype=Aura
+color=White
+target=creature
+auto=0/2
+rarity=C
+text=Flash (You may play this spell any time you could play an instant.)     Enchant creature    Enchanted creature gets +0/+2.
+id=136200
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+toughness=1
+name=Cloudseeder
+mana={1}{U}
+subtype=Faerie Spellshaper
+color=Blue
+auto={U}{T}{S(*|myhand)}:token(Cloud Sprite,creature faerie, 1/1,flying,cloud blue)
+rarity=U
+text={U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite into play with flying and "Cloud Sprite can block only creatures with flying."
+power=1
+id=130309
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Venser's Diffusion
+mana={2}{U}
+color=Blue
+target=*[-land]
+rarity=C
+text=Return target nonland permanent or suspended card to its owner's hand.
+type=Instant
+id=136197
+alias=1229
+[/card]
+[card]
+toughness=1
+name=Sliversmith
+mana={2}
+subtype=Spellshaper
+color=Artifact
+auto={1}{T}{S(*|myhand)}:token(Metallic Sliver,creature sliver, 1/1)
+rarity=U
+text={1}, {T}, Discard a card: Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver into play.
+power=1
+id=130329
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Mass of Ghouls
+mana={3}{B}{B}
+subtype=Zombie Warrior
+color=Black
+rarity=C
+power=5
+id=126158
+type=Creature
+[/card]
+[card]
+auto={RB}{T}:Add{R}{R}
+text={T}: Add {1} to your mana pool.     {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
+rarity=R
+name=Graven Cairns
+id=130581
+type=Land
+[/card]
+[card]
+toughness=3
+name=Char-Rumbler
+mana={2}{R}{R}
+subtype=Elemental
+color=Red
+rarity=U
+text={R}: Char-Rumbler gets +1/+0 until end of turn.
+power=-1
+id=130582
+type=Creature
+abilities=double strike
+[/card]
+[card]
+name=136150
+mana={7}
+subtype=Akroma's Memorial
+color=Artifact
+auto=lord(creature|myinplay) protection from black
+rarity=R
+text=Legendary    Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
+id=136150
+type=Artifact
+abilities=legendary
+[/card]
+[card]
+toughness=1
+name=Sarcomite Myr
+mana={2}{U}
+subtype=Myr
+color=Blue,Artifact
+auto={2}{S}:Draw:1
+rarity=C
+text={2}: Sarcomite Myr gains flying until end of turn.      {2}, Sacrifice Sarcomite Myr: Draw a card.
+power=2
+id=136212
+type=Artifact Creature
+[/card]
+[card]
+auto={1}{T}{S}:Draw:1
+text={T}: Pay 1 life: Add {G} or {W} to your mana pool.    {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
+rarity=R
+name=Horizon Canopy
+id=130574
+type=Land
+[/card]
+[card]
+toughness=4
+name=Fomori Nomad
+mana={4}{R}
+subtype=Nomad Giant
+color=Red
+rarity=C
+power=4
+id=126149
+type=Creature
+[/card]
+[card]
+name=Oblivion Crown
+mana={1}{B}
+subtype=Aura
+color=Black
+target=creature
+auto={S(*|myhand)}:1/1
+rarity=C
+text=Flash (You may play this spell any time you could play an instant.)     Enchant creature      Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
+id=132219
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+toughness=0
+name=Force of Savagery
+mana={2}{R}
+subtype=Elemental
+color=Green
+rarity=R
+text=Trample
+power=8
+id=130713
+type=Creature
+abilities=trample
+[/card]
+[card]
+toughness=3
+name=Magus of the Moat
+mana={2}{W}{W}
+subtype=Human Wizard
+color=White
+auto=lord(creature|inplay) cantattack
+rarity=R
+text=Creatures without flying can't attack.
+power=0
+id=136148
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Blind Phantasm
+mana={2}{U}
+subtype=Illusion
+color=Blue
+rarity=C
+power=2
+id=126143
+type=Creature
+[/card]
+[card]
+name=Emblem of the Warmind
+mana={1}{R}
+subtype=Aura
+color=Red
+target=creature
+auto=lord(creature|myinplay) haste
+rarity=U
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)    Creatures you control have haste.
+id=136215
+type=Enchantment
+[/card]
+[card]
+toughness=3
+name=Nessian Courser
+mana={2}{G}
+subtype=Centaur Warrior
+color=Green
+rarity=C
+power=3
+id=136138
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Blade of the Sixth Pride
+mana={1}{W}
+subtype=Cat Rebel
+color=White
+rarity=C
+power=3
+id=130676
+type=Creature
+[/card]
