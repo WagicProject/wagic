@@ -24,8 +24,4 @@ WEventPhaseChange::WEventPhaseChange(Phase * _from, Phase * _to):WEvent(CHANGE_P
   to = _to;
 }
 
-WEventCardTap::WEventCardTap(MTGCardInstance * _card, int _before, int _after):WEvent(){
-  card = _card;
-  before = _before;
-  after = _after;
-}
+WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after):WEvent(), card(card),before(before), after(after){}

@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/MTGRules.h"
+#include "../include/Translate.h"
 
 MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
   aType=MTGAbility::PUT_INTO_PLAY;
@@ -333,7 +334,7 @@ int HUDDisplay::receiveEvent(WEvent * event){
     }
     if (!ok) return 0;
     char buffer[512];
-    sprintf(buffer,"%s goes to graveyard", ezc->card->getName());
+    sprintf(buffer,_("%s goes to graveyard").c_str(), _(ezc->card->getName()).c_str());
     string s = buffer;
     return addEvent(s);
   }
@@ -341,7 +342,7 @@ int HUDDisplay::receiveEvent(WEvent * event){
   WEventDamage * ed = dynamic_cast<WEventDamage*>(event);
   if (ed) {
     char buffer[512];
-    sprintf(buffer, "%s: %i -> %s", ed->damage->source->getName(), ed->damage->damage, ed->damage->target->getDisplayName());
+    sprintf(buffer, "%s: %i -> %s", _(ed->damage->source->name).c_str(), ed->damage->damage, _(ed->damage->target->getDisplayName()).c_str());
     string s = buffer;
     return addEvent(s);
   }

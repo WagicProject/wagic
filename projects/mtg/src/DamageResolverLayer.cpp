@@ -4,6 +4,7 @@
 #include "../include/MTGCardInstance.h"
 #include "../include/DamagerDamaged.h"
 #include "../include/Damage.h"
+#include "../include/Translate.h"
 
 DamageResolverLayer::DamageResolverLayer(int id, GameObserver * _game):PlayGuiObjectController(id,  _game){
   currentPhase = -1;
@@ -449,13 +450,13 @@ void DamageResolverLayer::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->FillRect(0 ,0 , SCREEN_WIDTH , SCREEN_HEIGHT , ARGB(200,0,0,0));
   if (currentChoosingPlayer == game->currentPlayer){
-    mFont->DrawString("Attacking Player", 0,0);
+    mFont->DrawString(_("Attacking Player").c_str(), 0,0);
   }else{
-    mFont->DrawString("Blocking Player", 0,0);
+    mFont->DrawString(_("Blocking Player").c_str(), 0,0);
   }
   if (currentSource){
     currentSource->RenderBig(10, 20);
-    mFont->DrawString("Current Damager:", 10, 5);
+    mFont->DrawString(_("Current Damager:").c_str(), 10, 5);
   }
   for (int i = 0; i < mCount; i++){
     ((DamagerDamaged *)mObjects[i])->Render(currentChoosingPlayer);
@@ -466,7 +467,7 @@ void DamageResolverLayer::Render(){
 
 
   if (currentPhase == Constants::MTG_PHASE_COMBATDAMAGE && canStopDealDamages()){
-    mFont->DrawString("Damages Assigned, Click Square to Continue", 250, 5);
+    mFont->DrawString(_("Damages Assigned, Click Square to Continue").c_str(), 250, 5);
   }
-  if (orderingIsNeeded) mFont->DrawString("Order blockers, then Click Square to Continue", 200, 5);
+  if (orderingIsNeeded) mFont->DrawString(_("Order blockers, then Click Square to Continue").c_str(), 200, 5);
 }

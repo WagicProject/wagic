@@ -125,7 +125,7 @@ void Spell::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  mFont->DrawString(_(source->getName()).c_str(), x + 30 , y, JGETEXT_LEFT);
+  mFont->DrawString(_(source->name).c_str(), x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = source->getThumb();
   if (quad){
@@ -176,7 +176,7 @@ void Spell::Render(){
       renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
     }else{
       if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-        mFont->DrawString(_(((MTGCardInstance *)target)->getName()).c_str(),x+120,y);
+        mFont->DrawString(_(((MTGCardInstance *)target)->name).c_str(),x+120,y);
     }
   }
 }
@@ -213,7 +213,7 @@ void PutInGraveyard::Render(){
   if (!removeFromGame){
     mFont->DrawString(_("goes to graveyard").c_str(), x + 30 , y, JGETEXT_LEFT);
   }else{
-    mFont->DrawString(_("is removed from game").c_str(), x + 30 , y, JGETEXT_LEFT);
+    mFont->DrawString(_("is exiled").c_str(), x + 30 , y, JGETEXT_LEFT);
   }
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = card->getThumb();
@@ -222,7 +222,7 @@ void PutInGraveyard::Render(){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
   }else{
-    mFont->DrawString(card->getName(),x,y-15);
+    mFont->DrawString(_(card->name).c_str(),x,y-15);
   }
 }
 
@@ -250,7 +250,7 @@ void DrawAction::Render(){
   char buffer[200];
   int playerId = 1;
   if (player ==  GameObserver::GetInstance()->players[1]) playerId = 2;
-  sprintf(buffer, "Player %i draws %i card", playerId, nbcards);
+  sprintf(buffer, _("Player %i draws %i card").c_str(), playerId, nbcards);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
 }
 
@@ -808,7 +808,6 @@ void ActionStack::Render(){
 
     //WALDORF - removed all the unnecessary math. just display the prompt at the
     // top of the box.
-    //mFont->DrawString(buffer, x0 + 5 , currenty - 40 - ((Interruptible *)mObjects[mCount-1])->mHeight);
     mFont->DrawString(buffer, x0 + 5, y0);
 
 
@@ -817,7 +816,6 @@ void ActionStack::Render(){
 
     // WALDORF - puts the button legend right under the prompt. the stack
     // will be displayed below it now. no more need to do wierd currY math.
-    //mFont->DrawString(buffer, x0 + 5 , currenty);
      mFont->DrawString(buffer, x0 + 5, y0 + 14);
   }else if (mode == ACTIONSTACK_TARGET && modal){
     for (int i=0;i<mCount ;i++){

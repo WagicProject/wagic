@@ -446,7 +446,7 @@ void GameStateMenu::Render()
       renderer->RenderQuad(splashQuad,0,0);
     }else{
       char text[512];
-      sprintf(text, "LOADING SET: %s", mCurrentSetName);
+      sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
       mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
     }
   }else{

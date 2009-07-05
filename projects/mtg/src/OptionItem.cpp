@@ -36,9 +36,9 @@ void OptionItem::Render(){
   char buf[512];
   if (maxValue == 1){
     if (value){
-      sprintf(buf, "yes");
+      sprintf(buf, _("Yes").c_str());
     }else{
-      sprintf(buf,"no");
+      sprintf(buf,_("No").c_str());
     }
   }else{
     sprintf(buf, "%i", value);

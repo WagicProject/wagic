@@ -582,7 +582,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
       }
     }
     int value = myDeck->getCount();
-    sprintf(buffer, "Your Deck: %i cards",  value);
+    sprintf(buffer, _("Your Deck: %i cards").c_str(),  value);
     font->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
 
     //TODO, put back !
@@ -712,7 +712,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     if (displayed_deck->getCount(colorFilter)>0){
       renderSlideBar();
     }else{
-      mFont->DrawString("No Card", SCREEN_WIDTH/2, SCREEN_HEIGHT/2,JGETEXT_CENTER);
+      mFont->DrawString(_("No Card").c_str(), SCREEN_WIDTH/2, SCREEN_HEIGHT/2,JGETEXT_CENTER);
     }
 
     if (mStage == STAGE_ONSCREEN_MENU){

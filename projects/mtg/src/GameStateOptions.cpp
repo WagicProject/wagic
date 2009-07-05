@@ -112,12 +112,11 @@ void GameStateOptions::Render()
   if (pos < -20) timer = 0;
   mFont->SetScale(1.f);
 
+  optionsList->Render();
+
   if (mState == SHOW_OPTIONS_MENU){
     optionsMenu->Render();
   }
-
-  optionsList->Render();
-
 }
 
 

@@ -8,6 +8,7 @@
 #Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
 
 #Game menus/texts
+LOADING SET: %s=CHARGEMENT SET: %s
 Play=Jouer
 Deck Editor=Editeur de Deck
 Shop=Magasin
@@ -19,6 +20,8 @@ Cancel=Annuler
 Classic=Classique
 Music volume=Volume Musique
 SFX volume=Volume Sons
+interrupt my spells=Interrompre mes sorts
+interrupt my abilities=Interrompre mes abilites
 Seconds to pause for an Interrupt=Secondes pour interruption
 Difficulty=Difficulte
 Image Cache Size=Taille du cache images
@@ -32,9 +35,6 @@ Choose Opponent=Choix de l'adversaire
 (easy)=(*)
 (hard)=(***)
 Random=Aleatoire
-Interrupt?=Interruption ?
-X Interrupt - 0 No - [] No to All=X Interrompre - 0 Non - [] Non pour tout
-X Interrupt - 0 No=X Interrompre - 0 Non
 You have a %i%% victory ratio with Deck%i=Vous avez %i%% de reussite avec le Deck%i
 You have played %i games with Deck%i=Vous avez fait %i parties avec le Deck %i
 You have played a total of %i games=Vous avez fait un total de %i parties
@@ -51,6 +51,16 @@ No=Non
 NO DECK AVAILABLE,=PAS DE DECK DISPONIBLE,
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=APPUYEZ SUR O POUR CREER UN DECK !
 
+#Shop
+credits: %i=credits: %i
+
+#in Game
+Interrupt?=Interruption ?
+X Interrupt - 0 No - [] No to All=X Interrompre - 0 Non - [] Non pour tout
+X Interrupt - 0 No=X Interrompre - 0 Non
+Player 1=Joueur 1
+Player 2=Joueur 2 
+
 #End of Match
 Difficulty Bonus=Bonus Difficulte
 'Live dangerously and you live right' Bonus=Bonus 'Vivre dangereusement et fierement' 
@@ -61,7 +71,7 @@ Victory=Victoire
 Congratulations! You earn %i credits=Felicitations, vous gagnez %i credits
 You have been defeated=Vous avez perdu
 Player %i wins (%i)=Le joueur %i gagne (%i)
-Please support this project !=Soutenez ce projet !
+Please support this project!=Soutenez ce projet !
 Wagic is free, open source, and developed on the little free time I have=Wagic est gratuit, open source, et developpe sur mon temps libre
 If you enjoy this game, please consider donating a few bucks=Si vous appreciez ce jeu, merci de me faire un don
 (Seriously, donate or I'll kill this cute little bunny)=(serieux si vous me faites pas un don, je tue un pokemon)
@@ -84,6 +94,18 @@ Cleanup=Nettoyage
 
 #Stack
 Deals %i damage to=Fait %i degat(s) a
+goes to graveyard=va au cimetiere
+is exiled=est exile
+Player %i draws %i card=Joueur %i pioche %i carte
+%s goes to graveyard=%s va au cimetiere
+
+#inGame
+Attacking Player=Joueur attaquant
+Blocking Player=Joueur defenseur
+Current Damager:=Blessures infligees par:
+Damages Assigned, Click Square to Continue=Blessures infligees, appuyez sur [] pour continuer
+Order blockers, then Click Square to Continue=triez les bloqueurs, puis appuyez sur [] pour continuer
+sacrifice=sacrifice
 
 #Deck Editor
 Prev.=Prec.
@@ -102,6 +124,8 @@ collection. Press TRIANGLE=collection. Appuyez sur TRIANGLE
 to switch to your deck=pour voir votre deck
 deck. Press TRIANGLE to=deck. Appuyez sur TRIANGLE
 switch to your collection=pour voir votre collection
+Your Deck: %i cards=votre deck: %i cartes
+No Card=Pas de carte
 
 Deck info=Info deck
 Sell card=Vendre carte

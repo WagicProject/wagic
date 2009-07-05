@@ -2,6 +2,7 @@
 #include "../include/ShopItem.h"
 #include "../include/GameStateShop.h"
 #include "../include/CardGui.h"
+#include "../include/Translate.h"
 
 
 ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thumb,  int x, int y, bool hasFocus, int _price): JGuiObject(id), mFont(font), mText(text), mX(x), mY(y), quad(_quad), thumb(_thumb), price(_price)
@@ -60,10 +61,10 @@ void ShopItem::Render(){
     thumb = card->getThumb();
     if (nameCount){
       char buffer[512];
-      sprintf(buffer, "%s (%i)", card->name.c_str(), nameCount );
+      sprintf(buffer, "%s (%i)", _(card->name).c_str(), nameCount );
       mText = buffer;
     }else{
-      mText = card->name;
+      mText = _(card->name).c_str();
     }
   }
 
@@ -211,7 +212,7 @@ void ShopItems::Render(){
     }
   }
   char credits[512];
-  sprintf(credits,"credits: %i", playerdata->credits);
+  sprintf(credits,_("credits: %i").c_str(), playerdata->credits);
   unsigned int len = 4 + mFont->GetStringWidth(credits);
   mFont->SetColor(ARGB(200,0,0,0));
   mFont->DrawString(credits, SCREEN_WIDTH - len + 2, SCREEN_HEIGHT - 13);

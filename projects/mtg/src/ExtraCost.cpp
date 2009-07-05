@@ -1,6 +1,7 @@
 #include "../include/ExtraCost.h"
 #include "../include/TargetChooser.h"
 #include "../include/MTGCardInstance.h"
+#include "../include/Translate.h"
 #include <JGE.h>
 
 ExtraCost::ExtraCost( TargetChooser *_tc):tc(_tc){
@@ -61,7 +62,7 @@ void SacrificeCost::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
-  sprintf(buffer, "sacrifice");
+  sprintf(buffer, _("sacrifice").c_str());
   mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
 }
 

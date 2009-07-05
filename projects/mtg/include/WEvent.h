@@ -45,9 +45,9 @@ public:
 class WEventCardTap: public WEvent{
 public:
   MTGCardInstance * card;
-  int before;
-  int after;
-  WEventCardTap(MTGCardInstance * card, int before, int after);
+  bool before;
+  bool after;
+  WEventCardTap(MTGCardInstance * card, bool before, bool after);
 };
 
 #endif
