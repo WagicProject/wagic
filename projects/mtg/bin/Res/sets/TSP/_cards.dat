@@ -1,5 +1,41 @@
-#0.2 Fixed Urza's Factory
-
+#Thanks to Blublub for orignal version 2009/07/05
+[card]
+id=116725
+name=Academy Ruins
+abilities=Legendary
+type=Land
+text={T}: Add {1} to your mana pool. {1}{U}, {T}: Put target artifact card in your graveyard on top of your library.
+auto={T}:Add{1}
+auto={1}{U}{T}:moveTo(mylibrary) target(artifact|mygraveyard)
+rarity=R
+[/card]
+[card]
+id=108852
+name=AEther Web
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature gets +1/+1, has reach, and can block creatures with shadow as though they didn't have shadow. (Creatures with reach can block creatures with flying.)
+abilities=flash
+target=creature
+auto=1/1
+auto=reach
+auto=reachshadow
+rarity=C
+[/card]
+[card]
+id=113558
+name=AEtherflame Wall
+mana={1}{R}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+text=Defender AEtherflame Wall can block creatures with shadow as though they didn't have shadow. {R}: AEtherflame Wall gets +1/+0 until end of turn.
+abilities=defender,reachshadow
+auto={R}:1/0
+rarity=C
+[/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.)  
 abilities=flash
@@ -13,7 +49,28 @@ power=2
 subtype=Bear
 toughness=2
 [/card]
-
+[card]
+id=114918
+name=Assassinate
+mana={2}{B}
+type=Sorcery
+text=Destroy target tapped creature.
+target=creature[tapped]
+auto=destroy
+rarity=C
+[/card]
+[card]
+id=114916
+name=Assembly-Worker
+mana={3}
+type=Artifact Creature
+subtype=Assembly-Worker
+power=2
+toughness=2
+text={T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
+auto={T}:1/1 target(assembly-worker)
+rarity=U
+[/card]
 [card]
 text=Target creature gets -3/-0 until end of turn.     Draw a card.
 target=creature
@@ -26,7 +83,41 @@ color=Blue
 type=Instant
 mana={2}{U}
 [/card]
-
+[card]
+id=109697
+name=Bonesplitter Sliver
+mana={3}{R}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Sliver creatures get +2/+0.
+auto=lord(sliver) 2/0
+rarity=C
+[/card]
+[card]
+id=118876
+name=Brass Gnat
+mana={1}
+type=Artifact Creature
+subtype=Insect
+power=1
+toughness=1
+text=Flying Brass Gnat doesn't untap during your untap step. At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Gnat.
+abilities=flying
+alias=1099
+rarity=C
+[/card]
+[card]
+id=113523
+name=Cancel
+mana={1}{U}{U}
+type=Instant
+text=Counter target spell.
+target=*|stack
+auto=fizzle
+rarity=C
+[/card]
 [card]
 text=text=Flash (You may play this spell any time you could play an instant.)  {B}: Regenerate Drudge Reavers. 
 abilities=flash
@@ -41,9 +132,8 @@ power=2
 subtype=Skeleton
 toughness=1
 [/card]
-
 [card]
-text=Flash (You may play this spell any time you could play an instant.)  Enchant creature  Enchanted creature gets =2/-1.
+text=Flash (You may play this spell any time you could play an instant.)  Enchant creature  Enchanted creature gets -2/-1.
 target=creature
 auto=:-2/-1
 id=108892
@@ -54,7 +144,39 @@ type=Enchantment
 mana={1}{B}
 subtype=Aura
 [/card]
-
+[card]
+id=118906
+name=Forest
+type=Basic Land
+subtype=Forest
+text=G
+auto={T}:add{G}
+rarity=C
+[/card]
+[card]
+id=109722
+name=Fury Sliver
+mana={5}{R}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+text=All Sliver creatures have double strike.
+auto=lord(sliver) double strike
+rarity=U
+[/card]
+[card]
+id=108830
+name=Greenseeker
+mana={G}
+type=Creature
+subtype=Elf Spellshaper
+power=1
+toughness=1
+text={G}, {T}, Discard a card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
+auto={G}{T}{S:(*|myhand)}:moveTo(myHand) target(land[basic]|mylibrary)
+rarity=C
+[/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.) Trample. 
 abilities=flash, trample
@@ -68,7 +190,40 @@ power=5
 subtype=Wurm
 toughness=6
 [/card]
-
+[card]
+id=108900
+name=Icatian Crier
+mana={2}{W}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
+text={1}{W}, {T}, Discard a card: Put two 1/1 white Citizen creature tokens into play.
+auto={1}{W}{T}{S(*|myhand)}:tokenCitizen,creature citizen, 1/1, white)*2
+rarity=C
+[/card]
+[card]
+id=122089
+name=Island
+type=Basic Land
+subtype=Island
+auto={T}:Add{U}
+text=U
+rarity=C
+[/card]
+[card]
+id=113571
+name=Jedit's Dragoons
+mana={5}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=5
+abilities=vigilance
+auto=life:4
+text=Vigilance When Jedit's Dragoons comes into play, you gain 4 life.
+rarity=C
+[/card]
 [card]
 text={T}: Add {1} to your mana pool.  {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep into play.
 id=113553
@@ -79,7 +234,49 @@ color=Land
 rarity=R
 type=Land
 [/card]
-
+[card]
+id=126298
+name=Magus of the Disk
+mana={2}{W}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=4
+text=Magus of the Disk comes into play tapped. {1}, {T}: Destroy all artifacts, creatures, and enchantments.
+auto=tap
+auto={1}{T}:destroy all(artifact,creature,enchantment)
+rarity=R
+[/card]
+[card]
+id=111042
+name=Might Sliver
+mana={4}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Sliver creatures get +2/+2.
+auto=lord(sliver) 2/2
+rarity=U
+[/card]
+[card]
+id=122080
+name=Mountain
+type=Basic Land
+subtype=Mountain
+auto={T}:Add{R}
+text=R
+rarity=C
+[/card]
+[card]
+id=122084
+name=Plains
+type=Basic Land
+subtype=Plains
+auto={T}:Add{W}
+text=W
+rarity=C
+[/card]
 [card]
 text={T}: Add {1] to your mana pool.  {1}, {T}: Add one mana of any color to your mana pool.
 auto={T}:Add {1} 
@@ -94,7 +291,6 @@ rarity=C
 type=Artifact
 mana={2}
 [/card]
-
 [card]
 text=Scarwood Treefolk comes into play tapped.
 auto=tap
@@ -108,7 +304,30 @@ power=3
 subtype=Treefolk
 toughness=5
 [/card]
-
+[card]
+id=108797
+name=Shadow Sliver
+mana={2}{U}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Sliver creatures have shadow. (They can block or be blocked by only creatures with shadow.)
+auto=lord(sliver) shadow
+rarity=C
+[/card]
+[card]
+id=111073
+name=Spinneret Sliver
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Sliver creatures have reach. (They can block creatures with flying.)
+auto=lord(sliver) reach
+rarity=C
+[/card]
 [card]
 text=Put a 1/1 green Saproling creature token into play.
 auto={G}:token(Saproling,creature saproling, 1/1, green)
@@ -120,7 +339,6 @@ type=Instant
 mana={G}
 [/card]
 [card]
-
 [card]
 text=Squall Line deals X damage to each creature with flying and each player.
 id=109702
@@ -131,11 +349,54 @@ color=Green
 type=Instant
 mana={X}{G}{G}
 [/card]
-
+[card]
+id=122078
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
+id=118887
+name=Temporal Eddy
+mana={2}{U}{U}
+type=Sorcery
+text=Put target creature or land on top of its owner's library.
+target=creature,land
+auto=moveTo(ownerlibrary)
+rarity=C
+[/card]
+[card]
+id=108907
+name=Tolarian Sentinel
+mana={3}{U}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=3
+text=Flying {U}, {T}, Discard a card: Return target permanent you control to its owner's hand.
+abilities=flying
+auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(*|myinplay)
+rarity=C
+[/card]
+[card]
+id=108841
+name=Trespasser il-Vec
+mana={2}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=1
+text=Discard a card: Trespasser il-Vec gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
+auto={S(*|myhand)}:shadow
+rarity=C
+[/card]
 [card]
 text={G}: Unyaro Bees gets +1/+1 until end of turn.  {3}{G}Sacrifice Unyaro Bees: Unyaro Bees deals 2 damage to target creaturen or player.
-auto={B}:1/1
-auto={S}:Damage:2 target(creature, player)
+auto={G}:1/1
+auto={3}{G}{S}:Damage:2 target(creature, player)
 id=113579
 name=Unyaro Bees
 rarity=R
@@ -146,7 +407,6 @@ power=0
 subtype=Insect
 toughness=1
 [/card]
-
 [card]
 text={T}: Add {1} to your mana pool.  {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token into play.
 id=116384
@@ -157,7 +417,6 @@ color=Land
 rarity=U
 type=Land
 [/card]
-
 [card]
 text=
 id=125866
@@ -170,18 +429,15 @@ power=3
 subtype=Sliver
 toughness=3
 [/card]
-
 [card]
-text={G}: Wormwood Dryad gains forestwalk until end of turn and it deals 1 damage to you. {G}: Wormwood Dryad gains swampwalk until end of turn and it deals 1 damage to you.
-id=113583
-auto={G}:forestwalk && Damage 1 controller
-auto={B}:swampwalk && Damage 1 controller
-name=Wormwood Dryad
-rarity=C
-color=Green
+id=106648
+name=Watcher Sliver
+mana={3}{W}
 type=Creature
-mana={2}{G}
-power=3
-subtype=Dryad
-toughness=1
+subtype=Sliver
+power=2
+toughness=2
+text=All Sliver creatures get +0/+2.
+auto=lord(sliver) 0/2
+rarity=C
 [/card]

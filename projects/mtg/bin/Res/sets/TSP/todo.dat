@@ -1,31 +1,5 @@
-[card]
-id=116725
-name=Academy Ruins
-mana=
-type=Legendary Land
-text={T}: Add {1} to your mana pool. {1}{U}, {T}: Put target artifact card in your graveyard on top of your library.
-rarity=R
-[/card]
-[card]
-id=108852
-name=Æther Web
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature gets +1/+1, has reach, and can block creatures with shadow as though they didn't have shadow. (Creatures with reach can block creatures with flying.)
-rarity=C
-[/card]
-[card]
-id=113558
-name=Ætherflame Wall
-mana={1}{R}
-type=Creature
-subtype=Wall
-power=0
-toughness=4
-text=Defender Ætherflame Wall can block creatures with shadow as though they didn't have shadow. {R}: Ætherflame Wall gets +1/+0 until end of turn.
-rarity=C
-[/card]
+
+
 [card]
 id=113619
 name=Amrou Scout
@@ -73,17 +47,6 @@ text=Split second (As long as this spell is on the stack, players can't play spe
 rarity=R
 [/card]
 [card]
-id=114905
-name=Ashcoat Bear
-mana={1}{G}
-type=Creature
-subtype=Bear
-power=2
-toughness=2
-text=Flash (You may play this spell any time you could play an instant.)
-rarity=C
-[/card]
-[card]
 id=116740
 name=Aspect of Mongoose
 mana={1}{G}
@@ -92,25 +55,8 @@ subtype=Aura
 text=Enchant creature Enchanted creature has shroud. (It can't be the target of spells or abilities.) When Aspect of Mongoose is put into a graveyard from play, return Aspect of Mongoose to its owner's hand.
 rarity=U
 [/card]
-[card]
-id=114918
-name=Assassinate
-mana={2}{B}
-type=Sorcery
-text=Destroy target tapped creature.
-rarity=C
-[/card]
-[card]
-id=114916
-name=Assembly-Worker
-mana={3}
-type=Artifact Creature
-subtype=Assembly-Worker
-power=2
-toughness=2
-text={T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
-rarity=U
-[/card]
+
+
 [card]
 id=109762
 name=Barbed Shocker
@@ -196,28 +142,8 @@ toughness=4
 text=Flash (You may play this spell any time you could play an instant.) When Bogardan Rager comes into play, target creature gets +4/+0 until end of turn.
 rarity=C
 [/card]
-[card]
-id=109697
-name=Bonesplitter Sliver
-mana={3}{R}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Sliver creatures get +2/+0.
-rarity=C
-[/card]
-[card]
-id=118876
-name=Brass Gnat
-mana={1}
-type=Artifact Creature
-subtype=Insect
-power=1
-toughness=1
-text=Flying Brass Gnat doesn't untap during your untap step. At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Gnat.
-rarity=C
-[/card]
+
+
 [card]
 id=118895
 name=Brine Elemental
@@ -245,14 +171,7 @@ type=Sorcery
 text=Return target black creature card from your graveyard to your hand. Madness {0} (If you discard this card, you may play it for its madness cost instead of putting it into your graveyard.)
 rarity=C
 [/card]
-[card]
-id=113523
-name=Cancel
-mana={1}{U}{U}
-type=Instant
-text=Counter target spell.
-rarity=C
-[/card]
+
 [card]
 id=113529
 name=Candles of Leng
@@ -731,15 +650,6 @@ text=Morph—Return two Islands you control to their owner's hand. (You may play
 rarity=C
 [/card]
 [card]
-id=108892
-name=Feebleness
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature gets -2/-1.
-rarity=C
-[/card]
-[card]
 id=111064
 name=Firemaw Kavu
 mana={5}{R}
@@ -822,15 +732,7 @@ subtype=Aura
 text=Enchant creature When enchanted creature is put into a graveyard, return that card to play under your control. When Fool's Demise is put into a graveyard from play, return Fool's Demise to its owner's hand.
 rarity=U
 [/card]
-[card]
-id=118906
-name=Forest
-mana=
-type=Basic Land
-subtype=Forest
-text=G
-rarity=C
-[/card]
+
 [card]
 id=106652
 name=Foriysian Interceptor
@@ -855,7 +757,7 @@ id=116732
 name=Fortify
 mana={2}{W}
 type=Instant
-text=Choose one — Creatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
+text=Choose one  ECreatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -888,17 +790,7 @@ toughness=2
 text=All Sliver creatures have "Whenever this creature is dealt damage, put a +1/+1 counter on it." (The damage is dealt before the counter is put on.)
 rarity=R
 [/card]
-[card]
-id=109722
-name=Fury Sliver
-mana={5}{R}
-type=Creature
-subtype=Sliver
-power=3
-toughness=3
-text=All Sliver creatures have double strike.
-rarity=U
-[/card]
+
 [card]
 id=124220
 name=Gauntlet of Power
@@ -1006,17 +898,7 @@ toughness=7
 text=Suspend 10—{R} Sacrifice an artifact, creature, or land: Remove a time counter from Greater Gargadon. Play this ability only if Greater Gargadon is suspended.
 rarity=R
 [/card]
-[card]
-id=108830
-name=Greenseeker
-mana={G}
-type=Creature
-subtype=Elf Spellshaper
-power=1
-toughness=1
-text={G}, {T}, Discard a card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
-rarity=C
-[/card]
+
 [card]
 id=110514
 name=Griffin Guide
@@ -1064,17 +946,7 @@ type=Instant
 text=Target player discards two cards. If you played this spell during your main phase, that player discards four cards instead.
 rarity=U
 [/card]
-[card]
-id=108808
-name=Havenwood Wurm
-mana={6}{G}
-type=Creature
-subtype=Wurm
-power=5
-toughness=6
-text=Flash (You may play this spell any time you could play an instant.) Trample
-rarity=C
-[/card]
+
 [card]
 id=118873
 name=Herd Gnarr
@@ -1097,7 +969,7 @@ rarity=R
 [card]
 id=113533
 name=Hypergenesis
-mana=
+mana={0}
 type=Sorcery
 text=Hypergenesis is green. Suspend 3—{1}{G}{G} Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand into play. Repeat this process until no one puts a card into play.
 rarity=R
@@ -1113,17 +985,7 @@ toughness=2
 text=Whenever another Goblin you control becomes blocked, sacrifice it. If you do, it deals 4 damage to each creature blocking it. Sacrifice two Mountains: Put two 1/1 red Goblin creature tokens into play.
 rarity=R
 [/card]
-[card]
-id=108900
-name=Icatian Crier
-mana={2}{W}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=1
-text={1}{W}, {T}, Discard a card: Put two 1/1 white Citizen creature tokens into play.
-rarity=C
-[/card]
+
 [card]
 id=109756
 name=Ignite Memories
@@ -1143,15 +1005,7 @@ toughness=2
 text=Ironclaw Buzzardiers can't block creatures with power 2 or greater. {R}: Ironclaw Buzzardiers gains flying until end of turn.
 rarity=C
 [/card]
-[card]
-id=122089
-name=Island
-mana=
-type=Basic Land
-subtype=Island
-text=U
-rarity=C
-[/card]
+
 [card]
 id=114903
 name=Ith, High Arcanist
@@ -1196,17 +1050,7 @@ toughness=2
 text={R}, {T}, Discard a card: Destroy target blue permanent. {1}{R}, {T}, Discard a card: Jaya Ballard, Task Mage deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn. {5}{R}{R}, {T}, Discard a card: Jaya Ballard deals 6 damage to each creature and each player.
 rarity=R
 [/card]
-[card]
-id=113571
-name=Jedit's Dragoons
-mana={5}{W}
-type=Creature
-subtype=Cat Soldier
-power=2
-toughness=5
-text=Vigilance When Jedit's Dragoons comes into play, you gain 4 life.
-rarity=C
-[/card]
+
 [card]
 id=118879
 name=Jhoira's Timebug
@@ -1239,14 +1083,6 @@ power=4
 toughness=1
 text=First strike Suspend 4—{R} (Rather than play this card from your hand, you may pay {R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
-[/card]
-[card]
-id=113553
-name=Kher Keep
-mana=
-type=Legendary Land
-text={T}: Add {1} to your mana pool. {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep into play.
-rarity=R
 [/card]
 [card]
 id=118907
@@ -1343,17 +1179,7 @@ toughness=2
 text={X}, {T}: Untap X target lands.
 rarity=R
 [/card]
-[card]
-id=126298
-name=Magus of the Disk
-mana={2}{W}{W}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=4
-text=Magus of the Disk comes into play tapped. {1}, {T}: Destroy all artifacts, creatures, and enchantments.
-rarity=R
-[/card]
+
 [card]
 id=126287
 name=Magus of the Jar
@@ -1415,17 +1241,6 @@ name=Might of Old Krosa
 mana={G}
 type=Instant
 text=Target creature gets +2/+2 until end of turn. If you played this spell during your main phase, that creature gets +4/+4 until end of turn instead.
-rarity=U
-[/card]
-[card]
-id=111042
-name=Might Sliver
-mana={4}{G}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Sliver creatures get +2/+2.
 rarity=U
 [/card]
 [card]
@@ -1501,15 +1316,7 @@ type=Instant
 text=Target spell or permanent becomes colorless.
 rarity=R
 [/card]
-[card]
-id=122080
-name=Mountain
-mana=
-type=Basic Land
-subtype=Mountain
-text=R
-rarity=C
-[/card]
+
 [card]
 id=118888
 name=Mwonvuli Acid-Moss
@@ -1736,15 +1543,7 @@ toughness=5
 text=All Slivers have "At the beginning of your upkeep, this permanent deals 1 damage to you."
 rarity=R
 [/card]
-[card]
-id=122084
-name=Plains
-mana=
-type=Basic Land
-subtype=Plains
-text=W
-rarity=C
-[/card]
+
 [card]
 id=110510
 name=Plated Pegasus
@@ -1782,14 +1581,6 @@ power=2
 toughness=2
 text=Whenever another creature comes into play under your control, that creature gets +3/+3 until end of turn.
 rarity=U
-[/card]
-[card]
-id=118880
-name=Prismatic Lens
-mana={2}
-type=Artifact
-text={T}: Add {1} to your mana pool. {1}, {T}: Add one mana of any color to your mana pool.
-rarity=C
 [/card]
 [card]
 id=113559
@@ -2028,17 +1819,7 @@ toughness=3
 text=You can't play Serra Avenger during your first, second, or third turns of the game. Flying, vigilance
 rarity=R
 [/card]
-[card]
-id=108797
-name=Shadow Sliver
-mana={2}{U}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Sliver creatures have shadow. (They can block or be blocked by only creatures with shadow.)
-rarity=C
-[/card]
+
 [card]
 id=118908
 name=Sidewinder Sliver
@@ -2140,17 +1921,7 @@ toughness=2
 text=Flying Sacrifice Spiketail Drakeling: Counter target spell unless its controller pays {2}.
 rarity=C
 [/card]
-[card]
-id=111073
-name=Spinneret Sliver
-mana={1}{G}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Sliver creatures have reach. (They can block creatures with flying.)
-rarity=C
-[/card]
+
 [card]
 id=109680
 name=Spirit Loop
@@ -2180,22 +1951,9 @@ subtype=Faerie
 power=2
 toughness=2
 text=Flying Other creatures you control with flying get +0/+1. {T}: Other creatures you control with flying get +1/+0 until end of turn.
-rarity=R
-[/card]
-[card]
-id=122079
-name=Sprout
-mana={G}
-type=Instant
-text=Put a 1/1 green Saproling creature token into play.
-rarity=C
-[/card]
-[card]
-id=109702
-name=Squall Line
-mana={X}{G}{G}
-type=Instant
-text=Squall Line deals X damage to each creature with flying and each player.
+abilities=flying
+auto=lord(creature[flying]|myinplay) 0/1
+auto={T}:lord(creature[flying]|myinplay) 1/0
 rarity=R
 [/card]
 [card]
@@ -2309,15 +2067,7 @@ type=Instant
 text=Sulfurous Blast deals 2 damage to each creature and each player. If you played this spell during your main phase, Sulfurous Blast deals 3 damage to each creature and each player instead.
 rarity=U
 [/card]
-[card]
-id=122078
-name=Swamp
-mana=
-type=Basic Land
-subtype=Swamp
-text=B
-rarity=C
-[/card]
+
 [card]
 id=114913
 name=Swarmyard
@@ -2359,14 +2109,7 @@ toughness=2
 text=All Slivers have "{T}: Tap target permanent."
 rarity=U
 [/card]
-[card]
-id=118887
-name=Temporal Eddy
-mana={2}{U}{U}
-type=Sorcery
-text=Put target creature or land on top of its owner's library.
-rarity=C
-[/card]
+
 [card]
 id=106654
 name=Temporal Isolation
@@ -2482,17 +2225,7 @@ toughness=2
 text=First strike, protection from red When Tivadar of Thorn comes into play, destroy target Goblin.
 rarity=R
 [/card]
-[card]
-id=108907
-name=Tolarian Sentinel
-mana={3}{U}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=3
-text=Flying {U}, {T}, Discard a card: Return target permanent you control to its owner's hand.
-rarity=C
-[/card]
+
 [card]
 id=108857
 name=Traitor's Clutch
@@ -2501,17 +2234,7 @@ type=Instant
 text=Target creature gets +1/+0, becomes black, and gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.) Flashback {1}{B} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 rarity=C
 [/card]
-[card]
-id=108841
-name=Trespasser il-Vec
-mana={2}{B}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=1
-text=Discard a card: Trespasser il-Vec gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
-rarity=C
-[/card]
+
 [card]
 id=110499
 name=Trickbind
@@ -2536,7 +2259,7 @@ id=116726
 name=Tromp the Domains
 mana={5}{G}
 type=Sorcery
-text=Domain — Until end of turn, creatures you control gain trample and get +1/+1 for each basic land type among lands you control.
+text=Domain  EUntil end of turn, creatures you control gain trample and get +1/+1 for each basic land type among lands you control.
 rarity=U
 [/card]
 [card]
@@ -2567,17 +2290,7 @@ subtype=Aura
 text=Enchant creature Enchanted creature gets +2/+2 and can't block. When Undying Rage is put into a graveyard from play, return Undying Rage to its owner's hand.
 rarity=U
 [/card]
-[card]
-id=113579
-name=Unyaro Bees
-mana={G}{G}{G}
-type=Creature
-subtype=Insect
-power=0
-toughness=1
-text=Flying {G}: Unyaro Bees gets +1/+1 until end of turn. {3}{G}, Sacrifice Unyaro Bees: Unyaro Bees deals 2 damage to target creature or player.
-rarity=R
-[/card]
+
 [card]
 id=108798
 name=Urborg Syphon-Mage
@@ -2589,15 +2302,7 @@ toughness=2
 text={2}{B}, {T}, Discard a card: Each other player loses 2 life. You gain life equal to the life lost this way.
 rarity=C
 [/card]
-[card]
-id=116384
-name=Urza's Factory
-mana=
-type=Land
-subtype=Urza’s
-text={T}: Add {1} to your mana pool. {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token into play.
-rarity=U
-[/card]
+
 [card]
 id=118900
 name=Vampiric Sliver
@@ -2608,16 +2313,6 @@ power=3
 toughness=3
 text=All Sliver creatures have "Whenever a creature dealt damage by this creature this turn is put into a graveyard, put a +1/+1 counter on this creature."
 rarity=U
-[/card]
-[card]
-id=125866
-name=Venser's Sliver
-mana={5}
-type=Artifact Creature
-subtype=Sliver
-power=3
-toughness=3
-rarity=C
 [/card]
 [card]
 id=109766
@@ -2707,17 +2402,7 @@ type=Sorcery
 text=Buyback—Sacrifice three Islands. (You may sacrifice three Islands in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Target player takes an extra turn after this one.
 rarity=R
 [/card]
-[card]
-id=106648
-name=Watcher Sliver
-mana={3}{W}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Sliver creatures get +0/+2.
-rarity=C
-[/card]
+
 [card]
 id=126283
 name=Weathered Bodyguards
