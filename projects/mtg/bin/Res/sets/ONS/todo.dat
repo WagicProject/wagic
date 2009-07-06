@@ -1,15 +1,4 @@
 [card]
-id=26715
-name=Accursed Centaur
-mana={B}
-type=Creature
-subtype=Zombie Centaur
-power=2
-toughness=2
-text=When Accursed Centaur comes into play, sacrifice a creature.
-rarity=C
-[/card]
-[card]
 id=12425
 name=AEher Charge
 mana={4}{R}
@@ -24,14 +13,6 @@ mana={2}{R}
 type=Enchantment
 text={3}{R}{R}: Untap all creatures you control. After this main phase, there is an additional combat phase followed by an additional main phase. Play this ability only any time you could play a sorcery.
 rarity=R
-[/card]
-[card]
-id=39889
-name=Airborne Aid
-mana={3}{U}
-type=Sorcery
-text=Draw a card for each Bird in play.
-rarity=C
 [/card]
 [card]
 id=39755
@@ -80,26 +61,6 @@ text=Reveal the top five cards of your library. An opponent chooses a creature c
 rarity=R
 [/card]
 [card]
-id=41463
-name=Annex
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant land (Target a land as you play this. This card comes into play attached to that land.) You control enchanted land.
-rarity=U
-[/card]
-[card]
-id=43638
-name=Anurid Murkdiver
-mana={4}{B}{B}
-type=Creature
-subtype=Zombie Frog Beast
-power=4
-toughness=3
-text=Swampwalk
-rarity=C
-[/card]
-[card]
 id=39530
 name=Aphetto Alchemist
 mana={1}{U}
@@ -139,17 +100,6 @@ power=3
 toughness=2
 text=Flying When Aphetto Vulture is put into a graveyard from play, you may put target Zombie card from your graveyard on top of your library.
 rarity=U
-[/card]
-[card]
-id=39932
-name=Arcanis the Omnipotent
-mana={3}{U}{U}{U}
-type=Legendary Creature
-subtype=Wizard
-power=3
-toughness=4
-text={T}: Draw three cards. {2}{U}{U}: Return Arcanis the Omnipotent to its owner's hand.
-rarity=R
 [/card]
 [card]
 id=39923
@@ -192,28 +142,6 @@ name=Aurification
 mana={2}{W}{W}
 type=Enchantment
 text=Whenever a creature deals damage to you, put a gold counter on it. Each creature with a gold counter on it is a Wall in addition to its other creature types and has defender. (Those creatures can't attack.) When Aurification leaves play, remove all gold counters from all creatures.
-rarity=R
-[/card]
-[card]
-id=43331
-name=Avarax
-mana={3}{R}{R}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-text=Haste When Avarax comes into play, you may search your library for a card named Avarax, reveal it, and put it into your hand. If you do, shuffle your library. {1}{R}: Avarax gets +1/+0 until end of turn.
-rarity=U
-[/card]
-[card]
-id=40131
-name=Aven Brigadier
-mana={3}{W}{W}{W}
-type=Creature
-subtype=Bird Soldier
-power=3
-toughness=5
-text=Flying Other Bird creatures get +1/+1. Other Soldier creatures get +1/+1.
 rarity=R
 [/card]
 [card]
@@ -330,7 +258,7 @@ type=Creature
 subtype=Elemental Cat
 power=7
 toughness=1
-text=Trample, haste At end of turn, sacrifice Blistering Firecat. Morph {R}{R} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+text=Trample, haste. At end of turn, sacrifice Blistering Firecat. Morph {R}{R} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=R
 [/card]
 [card]
@@ -347,7 +275,6 @@ rarity=U
 [card]
 id=39505
 name=Bloodstained Mire
-mana=
 type=Land
 text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
 rarity=R
@@ -369,14 +296,6 @@ name=Break Open
 mana={1}{R}
 type=Instant
 text=Turn target face-down creature an opponent controls face up.
-rarity=C
-[/card]
-[card]
-id=39846
-name=Brightstone Ritual
-mana={R}
-type=Instant
-text=Add {R} to your mana pool for each Goblin in play.
 rarity=C
 [/card]
 [card]
@@ -468,14 +387,6 @@ text=Tap two untapped Soldiers you control: Catapult Squad deals 2 damage to tar
 rarity=U
 [/card]
 [card]
-id=39678
-name=Centaur Glade
-mana={3}{G}{G}
-type=Enchantment
-text={2}{G}{G}: Put a 3/3 green Centaur creature token into play.
-rarity=U
-[/card]
-[card]
 id=12445
 name=Chain of Acid
 mana={3}{G}
@@ -543,17 +454,6 @@ text=As Circle of Solace comes into play, choose a creature type.  {1}{W}: The n
 rarity=R
 [/card]
 [card]
-id=39533
-name=Clone
-mana={3}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=0
-text=As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
-rarity=U
-[/card]
-[card]
 id=34397
 name=Commando Raid
 mana={2}{R}
@@ -605,23 +505,12 @@ text={T}: Target creature with power 2 or less is unblockable this turn.
 rarity=C
 [/card]
 [card]
-id=40653
-name=Crowd Favorites
-mana={6}{W}
-type=Creature
-subtype=Human Soldier
-power=4
-toughness=4
-text={3}{W}: Tap target creature. {3}{W}: Crowd Favorites gets +0/+5 until end of turn.
-rarity=U
-[/card]
-[card]
 id=39883
 name=Crown of Ascension
 mana={1}{U}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature has flying. Sacrifice Crown of Ascension: Enchanted creature and other creatures that share a creature type with it gain flying until end of turn.
+text=Enchant creature. Enchanted creature has flying. Sacrifice Crown of Ascension: Enchanted creature and other creatures that share a creature type with it gain flying until end of turn.
 rarity=C
 [/card]
 [card]
@@ -630,7 +519,7 @@ name=Crown of Awe
 mana={1}{W}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature has protection from black and from red. Sacrifice Crown of Awe: Enchanted creature and other creatures that share a creature type with it gain protection from black and from red until end of turn.
+text=Enchant creature. Enchanted creature has protection from black and from red. Sacrifice Crown of Awe: Enchanted creature and other creatures that share a creature type with it gain protection from black and from red until end of turn.
 rarity=C
 [/card]
 [card]
@@ -639,7 +528,7 @@ name=Crown of Fury
 mana={1}{R}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+0 and has first strike. Sacrifice Crown of Fury: Enchanted creature and other creatures that share a creature type with it get +1/+0 and gain first strike until end of turn.
+text=Enchant creature. Enchanted creature gets +1/+0 and has first strike. Sacrifice Crown of Fury: Enchanted creature and other creatures that share a creature type with it get +1/+0 and gain first strike until end of turn.
 rarity=C
 [/card]
 [card]
@@ -648,7 +537,7 @@ name=Crown of Suspicion
 mana={1}{B}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature gets +2/-1. Sacrifice Crown of Suspicion: Enchanted creature and other creatures that share a creature type with it get +2/-1 until end of turn.
+text=Enchant creature. Enchanted creature gets +2/-1. Sacrifice Crown of Suspicion: Enchanted creature and other creatures that share a creature type with it get +2/-1 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -657,7 +546,7 @@ name=Crown of Vigor
 mana={1}{G}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1. Sacrifice Crown of Vigor: Enchanted creature and other creatures that share a creature type with it get +1/+1 until end of turn.
+text=Enchant creature. Enchanted creature gets +1/+1. Sacrifice Crown of Vigor: Enchanted creature and other creatures that share a creature type with it get +1/+1 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -670,14 +559,6 @@ power=4
 toughness=5
 text=Defender (This creature can't attack.) Morph {4}{W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
-[/card]
-[card]
-id=10720
-name=Cruel Revival
-mana={4}{B}
-type=Instant
-text=Destroy target non-Zombie creature. It can't be regenerated. Return up to one target Zombie card from your graveyard to your hand.
-rarity=C
 [/card]
 [card]
 id=39701
@@ -693,26 +574,7 @@ name=Custody Battle
 mana={1}{R}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature has "At the beginning of your upkeep, target opponent gains control of this creature unless you sacrifice a land."
-rarity=U
-[/card]
-[card]
-id=39523
-name=Daru Cavalier
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=First strike When Daru Cavalier comes into play, you may search your library for a card named Daru Cavalier, reveal it, and put it into your hand. If you do, shuffle your library.
-rarity=C
-[/card]
-[card]
-id=13210
-name=Daru Encampment
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {W}, {T}: Target Soldier creature gets +1/+1 until end of turn.
+text=Enchant creature. Enchanted creature has "At the beginning of your upkeep, target opponent gains control of this creature unless you sacrifice a land."
 rarity=U
 [/card]
 [card]
@@ -734,7 +596,7 @@ type=Creature
 subtype=Human Soldier
 power=3
 toughness=4
-text=First strike Morph {2}{W}{W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+text=First strike. Morph {2}{W}{W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=C
 [/card]
 [card]
@@ -784,14 +646,6 @@ text=Creatures of the creature type of your choice get +0/+4 until end of turn.
 rarity=C
 [/card]
 [card]
-id=41152
-name=Demystify
-mana={W}
-type=Instant
-text=Destroy target enchantment.
-rarity=C
-[/card]
-[card]
 id=41157
 name=Dirge of Dread
 mana={2}{B}
@@ -807,7 +661,7 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=2
-text=Protection from black Cycling {2} ({2}, Discard this card: Draw a card.)
+text=Protection from black. Cycling {2} ({2}, Discard this card: Draw a card.)
 rarity=C
 [/card]
 [card]
@@ -818,7 +672,7 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=2
-text=Protection from white Cycling {2} ({2}, Discard this card: Draw a card.)
+text=Protection from white. Cycling {2} ({2}, Discard this card: Draw a card.)
 rarity=C
 [/card]
 [card]
@@ -827,14 +681,6 @@ name=Discombobulate
 mana={2}{U}{U}
 type=Instant
 text=Counter target spell. Look at the top four cards of your library, then put them back in any order.
-rarity=U
-[/card]
-[card]
-id=40128
-name=Dispersing Orb
-mana={3}{U}{U}
-type=Enchantment
-text={3}{U}, Sacrifice a permanent: Return target permanent to its owner's hand.
 rarity=U
 [/card]
 [card]
@@ -849,52 +695,11 @@ text={T}: Counter target spell unless its controller pays {1}. Morph {U} (You ma
 rarity=C
 [/card]
 [card]
-id=39872
-name=Dive Bomber
-mana={3}{W}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=2
-text=Flying {T}, Sacrifice Dive Bomber: Dive Bomber deals 2 damage to target attacking or blocking creature.
-rarity=C
-[/card]
-[card]
 id=40197
 name=Doom Cannon
 mana={6}
 type=Artifact
 text=As Doom Cannon comes into play, choose a creature type.  {3}, {T}, Sacrifice a creature of the chosen type: Doom Cannon deals 3 damage to target creature or player.
-rarity=R
-[/card]
-[card]
-id=39549
-name=Doomed Necromancer
-mana={2}{B}
-type=Creature
-subtype=Human Cleric Mercenary
-power=2
-toughness=2
-text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from your graveyard to play.
-rarity=R
-[/card]
-[card]
-id=39743
-name=Doubtless One
-mana={3}{W}
-type=Creature
-subtype=Cleric Avatar
-power=*
-toughness=*
-text=Lifelink (Whenever this creature deals damage, you gain that much life.) Doubtless One's power and toughness are each equal to the number of Clerics in play.
-rarity=U
-[/card]
-[card]
-id=39665
-name=Dragon Roost
-mana={4}{R}{R}
-type=Enchantment
-text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying into play. (It can't be blocked except by creatures with flying or reach.)
 rarity=R
 [/card]
 [card]
@@ -944,18 +749,7 @@ name=Elvish Guidance
 mana={2}{G}
 type=Enchantment
 subtype=Aura
-text=Enchant land Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool for each Elf in play (in addition to the mana the land produces).
-rarity=C
-[/card]
-[card]
-id=39494
-name=Elvish Pathcutter
-mana={3}{G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=2
-text={2}{G}: Target Elf creature gains forestwalk until end of turn.
+text=Enchant land. Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool for each Elf in play (in addition to the mana the land produces).
 rarity=C
 [/card]
 [card]
@@ -970,17 +764,6 @@ text=When Elvish Pioneer comes into play, you may put a basic land card from you
 rarity=C
 [/card]
 [card]
-id=13778
-name=Elvish Scrapper
-mana={G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text={G}, {T}, Sacrifice Elvish Scrapper: Destroy target artifact.
-rarity=U
-[/card]
-[card]
 id=5656
 name=Elvish Vanguard
 mana={1}{G}
@@ -990,27 +773,6 @@ power=1
 toughness=1
 text=Whenever another Elf comes into play, put a +1/+1 counter on Elvish Vanguard.
 rarity=R
-[/card]
-[card]
-id=39927
-name=Elvish Warrior
-mana={G}{G}
-type=Creature
-subtype=Elf Warrior
-power=2
-toughness=3
-rarity=C
-[/card]
-[card]
-id=39589
-name=Embermage Goblin
-mana={3}{R}
-type=Creature
-subtype=Goblin Wizard
-power=1
-toughness=1
-text=When Embermage Goblin comes into play, you may search your library for a card named Embermage Goblin, reveal it, and put it into your hand. If you do, shuffle your library. {T}: Embermage Goblin deals 1 damage to target creature or player.
-rarity=U
 [/card]
 [card]
 id=35514
@@ -1113,14 +875,6 @@ text=Until end of turn, whenever a player gains life, that player loses 2 life f
 rarity=R
 [/card]
 [card]
-id=41169
-name=Feeding Frenzy
-mana={2}{B}
-type=Instant
-text=Target creature gets -X/-X until end of turn, where X is the number of Zombies in play.
-rarity=U
-[/card]
-[card]
 id=39905
 name=Festering Goblin
 mana={B}
@@ -1136,7 +890,7 @@ id=39484
 name=Fever Charm
 mana={R}
 type=Instant
-text=Choose one  ETarget creature gains haste until end of turn; or target creature gets +2/+0 until end of turn; or Fever Charm deals 3 damage to target Wizard creature.
+text=Choose one: Target creature gains haste until end of turn; or target creature gets +2/+0 until end of turn; or Fever Charm deals 3 damage to target Wizard creature.
 rarity=C
 [/card]
 [card]
@@ -1158,7 +912,7 @@ type=Creature
 subtype=Bird Wizard
 power=2
 toughness=2
-text=Flying Whenever a player cycles a card, return Fleeting Aven to its owner's hand.
+text=Flying. Whenever a player cycles a card, return Fleeting Aven to its owner's hand.
 rarity=U
 [/card]
 [card]
@@ -1181,18 +935,8 @@ text=Protection from Goblins Morph {W} (You may play this face down as a 2/2 cre
 rarity=C
 [/card]
 [card]
-id=40115
-name=Forest
-mana=
-type=Basic Land
-subtype=Forest
-text=G
-rarity=C
-[/card]
-[card]
 id=41140
 name=Forgotten Cave
-mana=
 type=Land
 text=Forgotten Cave comes into play tapped. {T}: Add {R} to your mana pool. Cycling {R} ({R}, Discard this card: Draw a card.)
 rarity=C
@@ -1257,37 +1001,8 @@ type=Creature
 subtype=Bird Cleric
 power=3
 toughness=3
-text=Flying {5}{W}: The next time damage would be dealt to Glarecaster and/or you this turn, that damage is dealt to target creature or player instead.
+text=Flying. {5}{W}: The next time damage would be dealt to Glarecaster and/or you this turn, that damage is dealt to target creature or player instead.
 rarity=R
-[/card]
-[card]
-id=39712
-name=Glory Seeker
-mana={1}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-rarity=C
-[/card]
-[card]
-id=33713
-name=Gluttonous Zombie
-mana={4}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
-rarity=U
-[/card]
-[card]
-id=13012
-name=Goblin Burrows
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {1}{R}, {T}: Target Goblin creature gets +2/+0 until end of turn.
-rarity=U
 [/card]
 [card]
 id=39942
@@ -1334,28 +1049,6 @@ text=Goblin Sharpshooter doesn't untap during your untap step. Whenever a creatu
 rarity=R
 [/card]
 [card]
-id=39477
-name=Goblin Sky Raider
-mana={2}{R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=2
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-rarity=C
-[/card]
-[card]
-id=39826
-name=Goblin Sledder
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text=Sacrifice a Goblin: Target creature gets +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=39722
 name=Goblin Taskmaster
 mana={R}
@@ -1367,31 +1060,12 @@ text={1}{R}: Target Goblin creature gets +1/+0 until end of turn. Morph {R} (You
 rarity=C
 [/card]
 [card]
-id=39647
-name=Grand Coliseum
-mana=
-type=Land
-text=Grand Coliseum comes into play tapped.  {T}: Add {1} to your mana pool.  {T}: Add one mana of any color to your mana pool. Grand Coliseum deals 1 damage to you.
-rarity=R
-[/card]
-[card]
 id=31788
 name=Grand Melee
 mana={3}{R}
 type=Enchantment
 text=All creatures attack each turn if able.  All creatures block each turn if able.
 rarity=R
-[/card]
-[card]
-id=39715
-name=Grassland Crusader
-mana={5}{W}
-type=Creature
-subtype=Human Cleric Soldier
-power=2
-toughness=4
-text={T}: Target Elf or Soldier creature gets +2/+2 until end of turn.
-rarity=C
 [/card]
 [card]
 id=39666
@@ -1539,17 +1213,6 @@ text=Whenever Headhunter deals combat damage to a player, that player discards a
 rarity=U
 [/card]
 [card]
-id=39744
-name=Heedless One
-mana={3}{G}
-type=Creature
-subtype=Elf Avatar
-power=*
-toughness=*
-text=Trample Heedless One's power and toughness are each equal to the number of Elves in play.
-rarity=U
-[/card]
-[card]
 id=34952
 name=Hystrodon
 mana={4}{G}
@@ -1581,14 +1244,6 @@ text=Enchant creature Enchanted creature gets +2/+5. Cycling {3} ({3}, Discard t
 rarity=U
 [/card]
 [card]
-id=23280
-name=Infest
-mana={1}{B}{B}
-type=Sorcery
-text=All creatures get -2/-2 until end of turn.
-rarity=U
-[/card]
-[card]
 id=39437
 name=Information Dealer
 mana={1}{U}
@@ -1598,14 +1253,6 @@ power=1
 toughness=1
 text={T}: Look at the top X cards of your library, where X is the number of Wizards in play, then put them back in any order.
 rarity=C
-[/card]
-[card]
-id=41154
-name=Inspirit
-mana={2}{W}
-type=Instant
-text=Untap target creature. It gets +2/+4 until end of turn.
-rarity=U
 [/card]
 [card]
 id=35457
@@ -1633,15 +1280,6 @@ power=2
 toughness=4
 text=Ironfist Crusher can block any number of creatures. Morph {3}{W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
-[/card]
-[card]
-id=40120
-name=Island
-mana=
-type=Basic Land
-subtype=Island
-text=U
-rarity=C
 [/card]
 [card]
 id=40578
@@ -1712,17 +1350,6 @@ text=Morph {6}{G}{G} (You may play this face down as a 2/2 creature for {3}. Tur
 rarity=R
 [/card]
 [card]
-id=41056
-name=Krosan Groundshaker
-mana={4}{G}{G}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=6
-text={G}: Target Beast creature gains trample until end of turn.
-rarity=U
-[/card]
-[card]
 id=43479
 name=Krosan Tusker
 mana={5}{G}{G}
@@ -1772,7 +1399,6 @@ rarity=U
 [card]
 id=41138
 name=Lonely Sandbar
-mana=
 type=Land
 text=Lonely Sandbar comes into play tapped. {T}: Add {U} to your mana pool. Cycling {U} ({U}, Discard this card: Draw a card.)
 rarity=C
@@ -1809,7 +1435,7 @@ type=Creature
 subtype=Ogre
 power=3
 toughness=3
-text=Trample, haste When Menacing Ogre comes into play, each player secretly chooses a number. Then those numbers are revealed. Each player with the highest number loses that much life. If you are one of those players, put two +1/+1 counters on Menacing Ogre.
+text=Trample, haste. When Menacing Ogre comes into play, each player secretly chooses a number. Then those numbers are revealed. Each player with the highest number loses that much life. If you are one of those players, put two +1/+1 counters on Menacing Ogre.
 rarity=R
 [/card]
 [card]
@@ -1817,7 +1443,7 @@ id=39466
 name=Misery Charm
 mana={B}
 type=Instant
-text=Choose one  EDestroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
+text=Choose one: Destroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
 rarity=C
 [/card]
 [card]
@@ -1896,32 +1522,6 @@ text=Mistform Wall has defender as long as it's a Wall. {1}: Mistform Wall becom
 rarity=C
 [/card]
 [card]
-id=39699
-name=Mobilization
-mana={2}{W}
-type=Enchantment
-text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.) {2}{W}: Put a 1/1 white Soldier creature token into play.
-rarity=R
-[/card]
-[card]
-id=40109
-name=Mountain
-mana=
-type=Basic Land
-subtype=Mountain
-text=R
-rarity=C
-[/card]
-[card]
-id=34684
-name=Mythic Proportions
-mana={4}{G}{G}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +8/+8 and has trample.
-rarity=R
-[/card]
-[card]
 id=39516
 name=Nameless One
 mana={3}{U}
@@ -1933,25 +1533,6 @@ text=Nameless One's power and toughness are each equal to the number of Wizards 
 rarity=U
 [/card]
 [card]
-id=42186
-name=Nantuko Husk
-mana={2}{B}
-type=Creature
-subtype=Zombie Insect
-power=2
-toughness=2
-text=Sacrifice a creature: Nantuko Husk gets +2/+2 until end of turn.
-rarity=U
-[/card]
-[card]
-id=35414
-name=Naturalize
-mana={1}{G}
-type=Instant
-text=Destroy target artifact or enchantment.
-rarity=C
-[/card]
-[card]
 id=39710
 name=Nosy Goblin
 mana={2}{R}
@@ -1961,25 +1542,6 @@ power=2
 toughness=1
 text={T}, Sacrifice Nosy Goblin: Destroy target face-down creature.
 rarity=C
-[/card]
-[card]
-id=39732
-name=Nova Cleric
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
-text={2}{W}, {T}, Sacrifice Nova Cleric: Destroy all enchantments.
-rarity=U
-[/card]
-[card]
-id=39933
-name=Oblation
-mana={2}{W}
-type=Instant
-text=The owner of target nonland permanent shuffles it into his or her library, then draws two cards.
-rarity=R
 [/card]
 [card]
 id=33693
@@ -1996,15 +1558,6 @@ mana={2}{G}
 type=Enchantment
 text=Whenever you attack with three or more creatures, draw a card.
 rarity=U
-[/card]
-[card]
-id=19729
-name=Pacifism
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature can't attack or block.
-rarity=C
 [/card]
 [card]
 id=26747
@@ -2038,30 +1591,12 @@ id=39433
 name=Piety Charm
 mana={W}
 type=Instant
-text=Choose one  EDestroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
-rarity=C
-[/card]
-[card]
-id=40537
-name=Pinpoint Avalanche
-mana={3}{R}{R}
-type=Instant
-text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
-rarity=C
-[/card]
-[card]
-id=40123
-name=Plains
-mana=
-type=Basic Land
-subtype=Plains
-text=W
+text=Choose one: Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
 rarity=C
 [/card]
 [card]
 id=39504
 name=Polluted Delta
-mana=
 type=Land
 text={T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Island or Swamp card and put it into play. Then shuffle your library.
 rarity=R
@@ -2073,14 +1608,6 @@ mana={2}{G}
 type=Instant
 text=Target creature gets +4/+4 until end of turn. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
 rarity=U
-[/card]
-[card]
-id=39845
-name=Profane Prayers
-mana={2}{B}{B}
-type=Sorcery
-text=Profane Prayers deals X damage to target creature or player and you gain X life, where X is the number of Clerics in play.
-rarity=C
 [/card]
 [card]
 id=26428
@@ -2113,42 +1640,12 @@ text=Flying {U}: If target spell has only one target and that target is Quicksil
 rarity=R
 [/card]
 [card]
-id=12444
-name=Ravenous Baloth
-mana={2}{G}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=Sacrifice a Beast: You gain 4 life.
-rarity=R
-[/card]
-[card]
 id=9839
 name=Read the Runes
 mana={X}{U}
 type=Instant
 text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
 rarity=R
-[/card]
-[card]
-id=39746
-name=Reckless One
-mana={3}{R}
-type=Creature
-subtype=Goblin Avatar
-power=*
-toughness=*
-text=Haste Reckless One's power and toughness are each equal to the number of Goblins in play.
-rarity=U
-[/card]
-[card]
-id=41462
-name=Reminisce
-mana={2}{U}
-type=Sorcery
-text=Target player shuffles his or her graveyard into his or her library.
-rarity=U
 [/card]
 [card]
 id=41153
@@ -2200,14 +1697,6 @@ text=Whenever Riptide Entrancer deals combat damage to a player, you may sacrifi
 rarity=R
 [/card]
 [card]
-id=10704
-name=Riptide Laboratory
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {1}{U}, {T}: Return target Wizard you control to its owner's hand.
-rarity=R
-[/card]
-[card]
 id=40198
 name=Riptide Replicator
 mana={X}{4}
@@ -2232,17 +1721,6 @@ name=Risky Move
 mana={3}{R}{R}{R}
 type=Enchantment
 text=At the beginning of each player's upkeep, that player gains control of Risky Move.  When you gain control of Risky Move from another player, choose a creature you control and an opponent. Flip a coin. If you lose the flip, that opponent gains control of that creature.
-rarity=R
-[/card]
-[card]
-id=39859
-name=Rorix Bladewing
-mana={3}{R}{R}{R}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=5
-text=Flying, haste
 rarity=R
 [/card]
 [card]
@@ -2296,17 +1774,6 @@ text=Enchant creature Prevent all combat damage that would be dealt to and dealt
 rarity=C
 [/card]
 [card]
-id=39445
-name=Screaming Seahawk
-mana={4}{U}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
-text=Flying When Screaming Seahawk comes into play, you may search your library for a card named Screaming Seahawk, reveal it, and put it into your hand. If you do, shuffle your library.
-rarity=C
-[/card]
-[card]
 id=39455
 name=Screeching Buzzard
 mana={3}{B}
@@ -2318,14 +1785,6 @@ text=Flying When Screeching Buzzard is put into a graveyard from play, each oppo
 rarity=C
 [/card]
 [card]
-id=35386
-name=Searing Flesh
-mana={6}{R}
-type=Sorcery
-text=Searing Flesh deals 7 damage to target opponent.
-rarity=U
-[/card]
-[card]
 id=39446
 name=Sea's Claim
 mana={U}
@@ -2335,17 +1794,8 @@ text=Enchant land (Target a land as you play this. This card comes into play att
 rarity=C
 [/card]
 [card]
-id=40539
-name=Seaside Haven
-mana=
-type=Land
-text={T}: Add {1} to your mana pool.  {W}{U}, {T}, Sacrifice a Bird: Draw a card.
-rarity=U
-[/card]
-[card]
 id=41137
 name=Secluded Steppe
-mana=
 type=Land
 text=Secluded Steppe comes into play tapped. {T}: Add {W} to your mana pool. Cycling {W} ({W}, Discard this card: Draw a card.)
 rarity=C
@@ -2360,17 +1810,6 @@ power=2
 toughness=3
 text=Whenever Serpentine Basilisk deals combat damage to a creature, destroy that creature at end of combat. Morph {1}{G}{G} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
-[/card]
-[card]
-id=13204
-name=Severed Legion
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
-rarity=C
 [/card]
 [card]
 id=41279
@@ -2400,17 +1839,6 @@ text=As Shared Triumph comes into play, choose a creature type.  Creatures of th
 rarity=R
 [/card]
 [card]
-id=39464
-name=Shepherd of Rot
-mana={1}{B}
-type=Creature
-subtype=Zombie Cleric
-power=1
-toughness=1
-text={T}: Each player loses 1 life for each Zombie in play.
-rarity=C
-[/card]
-[card]
 id=39879
 name=Shieldmage Elder
 mana={5}{W}
@@ -2420,14 +1848,6 @@ power=2
 toughness=3
 text=Tap two untapped Clerics you control: Prevent all damage target creature would deal this turn. Tap two untapped Wizards you control: Prevent all damage target spell would deal this turn.
 rarity=U
-[/card]
-[card]
-id=39482
-name=Shock
-mana={R}
-type=Instant
-text=Shock deals 2 damage to target creature or player.
-rarity=C
 [/card]
 [card]
 id=39605
@@ -2460,17 +1880,6 @@ text=Reach (This creature can block creatures with flying.) {X}{G}{G}: Silklash 
 rarity=R
 [/card]
 [card]
-id=39860
-name=Silvos, Rogue Elemental
-mana={3}{G}{G}{G}
-type=Legendary Creature
-subtype=Elemental
-power=8
-toughness=5
-text=Trample {G}: Regenerate Silvos, Rogue Elemental.
-rarity=R
-[/card]
-[card]
 id=12417
 name=Skirk Commando
 mana={1}{R}{R}
@@ -2491,17 +1900,6 @@ power=2
 toughness=2
 text=Protection from red Tap five untapped Goblins you control: Skirk Fire Marshal deals 10 damage to each creature and each player.
 rarity=R
-[/card]
-[card]
-id=39563
-name=Skirk Prospector
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text=Sacrifice a Goblin: Add {R} to your mana pool.
-rarity=C
 [/card]
 [card]
 id=39754
@@ -2578,17 +1976,6 @@ mana={3}{R}
 type=Instant
 text=Solar Blast deals 3 damage to target creature or player. Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.) When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
 rarity=C
-[/card]
-[card]
-id=39745
-name=Soulless One
-mana={3}{B}
-type=Creature
-subtype=Zombie Avatar
-power=*
-toughness=*
-text=Soulless One's power and toughness are each equal to the number of Zombies in play plus the number of Zombie cards in all graveyards.
-rarity=U
 [/card]
 [card]
 id=39476
@@ -2724,15 +2111,6 @@ text=Tap five untapped Wizards you control: Search target player's library for u
 rarity=R
 [/card]
 [card]
-id=40113
-name=Swamp
-mana=
-type=Basic Land
-subtype=Swamp
-text=B
-rarity=C
-[/card]
-[card]
 id=41136
 name=Swat
 mana={1}{B}{B}
@@ -2772,22 +2150,6 @@ power=7
 toughness=7
 text=When Symbiotic Wurm is put into a graveyard from play, put seven 1/1 green Insect creature tokens into play.
 rarity=R
-[/card]
-[card]
-id=39825
-name=Syphon Mind
-mana={3}{B}
-type=Sorcery
-text=Each other player discards a card. You draw a card for each card discarded this way.
-rarity=C
-[/card]
-[card]
-id=39468
-name=Syphon Soul
-mana={2}{B}
-type=Sorcery
-text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
-rarity=C
 [/card]
 [card]
 id=39890
@@ -2830,7 +2192,7 @@ type=Creature
 subtype=Bird Beast
 power=2
 toughness=3
-text=Flying At the beginning of your upkeep, if a player controls more Wizards than any other player, he or she gains control of Thoughtbound Primoc.
+text=Flying. At the beginning of your upkeep, if a player controls more Wizards than any other player, he or she gains control of Thoughtbound Primoc.
 rarity=U
 [/card]
 [card]
@@ -2842,22 +2204,6 @@ subtype=Beast
 power=4
 toughness=4
 text=Whenever Thrashing Mudspawn is dealt damage, you lose that much life. Morph {1}{B}{B} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-rarity=U
-[/card]
-[card]
-id=43736
-name=Threaten
-mana={2}{R}
-type=Sorcery
-text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn. (It can attack and {T} this turn.)
-rarity=U
-[/card]
-[card]
-id=39847
-name=Thunder of Hooves
-mana={3}{R}
-type=Sorcery
-text=Thunder of Hooves deals X damage to each creature without flying and each player, where X is the number of Beasts in play.
 rarity=U
 [/card]
 [card]
@@ -2922,7 +2268,7 @@ id=39450
 name=Trickery Charm
 mana={U}
 type=Instant
-text=Choose one  ETarget creature gains flying until end of turn; or target creature becomes the creature type of your choice until end of turn; or look at the top four cards of your library, then put them back in any order.
+text=Choose one: Target creature gains flying until end of turn; or target creature becomes the creature type of your choice until end of turn; or look at the top four cards of your library, then put them back in any order.
 rarity=C
 [/card]
 [card]
@@ -2948,14 +2294,6 @@ text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your
 rarity=R
 [/card]
 [card]
-id=40541
-name=Unholy Grotto
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {B}, {T}: Put target Zombie card from your graveyard on top of your library.
-rarity=R
-[/card]
-[card]
 id=39427
 name=Unified Strike
 mana={W}
@@ -2975,22 +2313,11 @@ text={1}{G}, {T}: Venomspout Brackus deals 5 damage to target attacking or block
 rarity=U
 [/card]
 [card]
-id=39863
-name=Visara the Dreadful
-mana={3}{B}{B}{B}
-type=Legendary Creature
-subtype=Gorgon
-power=5
-toughness=5
-text=Flying {T}: Destroy target creature. It can't be regenerated.
-rarity=R
-[/card]
-[card]
 id=39501
 name=Vitality Charm
 mana={G}
 type=Instant
-text=Choose one  EPut a 1/1 green Insect creature token into play; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
+text=Choose one: Put a 1/1 green Insect creature token into play; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
 rarity=C
 [/card]
 [card]
@@ -3027,17 +2354,6 @@ text={B}, {T}: Creatures of the creature type of your choice attack this turn if
 rarity=U
 [/card]
 [card]
-id=39495
-name=Wall of Mulch
-mana={1}{G}
-type=Creature
-subtype=Wall
-power=0
-toughness=4
-text=Defender (This creature can't attack.) {G}, Sacrifice a Wall: Draw a card.
-rarity=U
-[/card]
-[card]
 id=39483
 name=Wave of Indifference
 mana={X}{R}
@@ -3065,17 +2381,6 @@ text=Each player may search his or her library for up to X creature cards, revea
 rarity=R
 [/card]
 [card]
-id=39497
-name=Wellwisher
-mana={1}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text={T}: You gain 1 life for each Elf in play.
-rarity=C
-[/card]
-[card]
 id=42184
 name=Wheel and Deal
 mana={3}{U}
@@ -3097,21 +2402,9 @@ rarity=U
 [card]
 id=39507
 name=Windswept Heath
-mana=
 type=Land
 text={T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card and put it into play. Then shuffle your library.
 rarity=R
-[/card]
-[card]
-id=39828
-name=Wirewood Elf
-mana={1}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=2
-text={T}: Add {G} to your mana pool.
-rarity=C
 [/card]
 [card]
 id=39907
@@ -3122,22 +2415,6 @@ subtype=Elf
 power=1
 toughness=1
 text=When Wirewood Herald is put into a graveyard from play, you may search your library for an Elf card, reveal that card, put it into your hand, then shuffle your library.
-rarity=C
-[/card]
-[card]
-id=34764
-name=Wirewood Lodge
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {G}, {T}: Untap target Elf.
-rarity=U
-[/card]
-[card]
-id=39841
-name=Wirewood Pride
-mana={G}
-type=Instant
-text=Target creature gets +X/+X until end of turn, where X is the number of Elves in play.
 rarity=C
 [/card]
 [card]
