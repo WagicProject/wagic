@@ -1,0 +1,20 @@
+#Testing Rampage
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Elvish Berserker
+[PLAYER2]
+inplay:raging goblin
+[DO]
+Elvish Berserker
+next
+raging goblin
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Elvish Berserker
+[PLAYER2]
+graveyard:raging goblin
+[END]

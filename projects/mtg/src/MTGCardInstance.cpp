@@ -135,7 +135,7 @@ int MTGCardInstance::afterDamage(){
   if (!doDamageTest) return 0;
   doDamageTest = 0;
   if (!isACreature()) return 0;
-  if (life <=0 && isInPlay() && !basicAbilities[Constants::INDESTRUCTIBLE]){
+  if (life <=0 && isInPlay()){
     return destroy();
   }
   return 0;
@@ -145,11 +145,12 @@ int MTGCardInstance::bury(){
     Player * p = controller();
 	if (!basicAbilities[Constants::INDESTRUCTIBLE]){
     p->game->putInZone(this,p->game->inPlay,owner->game->graveyard);
+    return 1;
 	}
-	return 1;
+	return 0;
 }
 int MTGCardInstance::destroy(){
-    if (!triggerRegenerate() || !basicAbilities[Constants::INDESTRUCTIBLE]) return bury();
+    if (!triggerRegenerate()) return bury();
     return 0;
 }
 

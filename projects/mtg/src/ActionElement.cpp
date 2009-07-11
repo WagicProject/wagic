@@ -10,10 +10,13 @@ ActionElement::ActionElement(int id):JGuiObject(id){
   currentPhase = -1;
   newPhase = -1;
   tc = NULL;
+  isClone = 0;
 }
 
 ActionElement::~ActionElement(){
-  SAFE_DELETE(tc);
+  if (!isClone){
+    SAFE_DELETE(tc);
+  }
 }
 
 int ActionElement::getActivity(){

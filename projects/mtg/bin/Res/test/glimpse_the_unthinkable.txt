@@ -1,0 +1,20 @@
+#Testing Deplete (sorcery
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Glimpse the Unthinkable
+manapool:{U}{B}
+[PLAYER2]
+library:swamp,plains,mountain,forest,island,bayou,plateau,white knight,black knight,grizzly bears,raging goblin
+[DO]
+Glimpse the Unthinkable
+p2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Glimpse the Unthinkable
+manapool:{0}
+[PLAYER2]
+library:swamp
+graveyard:plains,mountain,forest,island,bayou,plateau,white knight,black knight,grizzly bears,raging goblin
+[END]

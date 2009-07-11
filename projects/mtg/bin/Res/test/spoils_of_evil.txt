@@ -1,0 +1,20 @@
+#Testing Spoils of Evil
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Spoils Of Evil
+graveyard:black knight
+manapool:{2}{B}
+[PLAYER2]
+graveyard:swamp,grizzly bears,dragon engine
+[DO]
+Spoils Of Evil
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:black knight,Spoils Of Evil
+life:22
+manapool:{2}
+[PLAYER2]
+graveyard:swamp,grizzly bears,dragon engine
+[END]

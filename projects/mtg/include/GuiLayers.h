@@ -25,7 +25,7 @@ class GuiLayer{
   int mCurr;
   vector<JGuiObject *>mObjects;
   void Add(JGuiObject * object);
-  void Remove(JGuiObject * object);
+  int Remove(JGuiObject * object);
   int modal;
   bool hasFocus;
   virtual void resetObjects();

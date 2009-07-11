@@ -20,9 +20,39 @@
 #include <map>
 using std::map;
 
+
+
+
+class AAFizzler:public ActivatedAbility{
+ public:
+ AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap){
+   target = _target;
+  }
+
+  int resolve(){
+    Spell * _target = (Spell *) target;
+    game->mLayers->stackLayer()->Fizzle(_target);
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Fizzle";
+  }
+
+  AAFizzler* clone() const{
+    AAFizzler * a =  NEW AAFizzler(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+};
+
+
 /*
   Generic classes
 */
+
+
 
 //MayAbility: May do something when comes into play (should be extended)
 class MayAbility:public MTGAbility{
@@ -83,6 +113,12 @@ public:
     return MTGAbility::toString(out) << ")";
   }
 
+  MayAbility * MayAbility::clone() const{
+    MayAbility * a =  NEW MayAbility(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 };
 
 
@@ -135,65 +171,149 @@ public:
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
+
+  MultiAbility * MultiAbility::clone() const{
+    MultiAbility * a =  NEW MultiAbility(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+
+
+//Generic Activated Ability
+
+class GenericActivatedAbility:public ActivatedAbility{
+ public:
+  MTGAbility * ability;
+  int limitPerTurn;
+  int counters;
+ GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 1, int limit = 0):ActivatedAbility(_id, card,_cost,0,_tap),ability(a),limitPerTurn(limit){
+   counters = 0;
+  }
+
+  int resolve(){
+    counters++;
+    if (ability) return ability->resolve();
+    return 0;
+  }
+
+  const char * getMenuText(){
+    if (ability) return ability->getMenuText();
+    return "Error";
+  }
+
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    if (limitPerTurn && counters >= limitPerTurn) return 0;
+    return ActivatedAbility::isReactingToClick(card,mana);
+  }
+
+  void Update(float dt){
+    if (newPhase != currentPhase && newPhase ==Constants::MTG_PHASE_AFTER_EOT){
+      counters = 0;
+    }
+    ActivatedAbility::Update(dt);
+  }
+
+  GenericActivatedAbility * GenericActivatedAbility::clone() const{
+    GenericActivatedAbility * a =  NEW GenericActivatedAbility(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  ~GenericActivatedAbility(){
+    if (!isClone){
+      SAFE_DELETE(ability);
+    }
+  }
+
+};
+
+/* Generic TargetAbility */
+class GenericTargetAbility:public TargetAbility{
+
+public:
+  int limitPerTurn;
+  int counters;
+   GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0):TargetAbility(_id,_source, _tc,_cost,0,_tap),limitPerTurn(limit){
+    ability = a;
+    counters = 0;
+  }
+
+  GenericTargetAbility * GenericTargetAbility::clone() const{
+    GenericTargetAbility * a =  NEW GenericTargetAbility(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    if (limitPerTurn && counters >= limitPerTurn) return 0;
+    return TargetAbility::isReactingToClick(card,mana);
+  }
+
+  void Update(float dt){
+    if (newPhase != currentPhase && newPhase ==Constants::MTG_PHASE_AFTER_EOT){
+      counters = 0;
+    }
+    TargetAbility::Update(dt);
+  }
+
+
 };
 
 
 //Drawer, allows to draw a card for a cost:
 
-class ADrawer:public ActivatedAbility{
+class AADrawer:public ActivatedAbility{
  public:
   int nbcards;
- ADrawer(int _id, MTGCardInstance * card,ManaCost * _cost, int _nbcards = 1, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),nbcards(_nbcards){
+ AADrawer(int _id, MTGCardInstance * card,ManaCost * _cost, int _nbcards = 1, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),nbcards(_nbcards){
   }
 
   int resolve(){
     game->mLayers->stackLayer()->addDraw(source->controller(),nbcards);
+    game->mLayers->stackLayer()->resolve();
     return 1;
   }
-
-
 
   const char * getMenuText(){
     return "Draw";
   }
 
-  ~ADrawer(){
-    OutputDebugString("Deleting ADrawer\n");
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADrawer ::: nbcards : " << nbcards
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
+  AADrawer * AADrawer::clone() const{
+    AADrawer * a =  NEW AADrawer(*this);
+    a->isClone = 1;
+    return a;
   }
 
 };
 
-// Gives/Takes Life to controller of source
-class ALifeGiver:public ActivatedAbility{
+/*Gives life to target controller*/
+class AALifer:public ActivatedAbility{
  public:
   int life;
- ALifeGiver(int _id, MTGCardInstance * card,ManaCost * _cost, int _life, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),life(_life){
+ AALifer(int _id, MTGCardInstance * card, MTGCardInstance * _target, int life, ManaCost * _cost = NULL, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),life(life){
+   target = _target;
   }
 
   int resolve(){
-    source->controller()->life+=life;
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    _target->controller()->life+=life;
     return 1;
   }
 
   const char * getMenuText(){
-    if (life < 0) return "Lose life";
-    return "Gain life";
+    return "Life";
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ALifeGiver ::: life : " << life
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
+  AALifer * AALifer::clone() const{
+    AALifer * a =  NEW AALifer(*this);
+    a->isClone = 1;
+    return a;
   }
+
 };
+
+
 
 class ATokenCreator:public ActivatedAbility{
 public:
@@ -202,10 +322,12 @@ public:
   list<int>colors;
   int power, toughness;
   string name;
-  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap):ActivatedAbility(_id,_source,_cost,0,_doTap){
+  int multiplier;
+  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap, int _multiplier = 1):ActivatedAbility(_id,_source,_cost,0,_doTap){
     power = _power;
     toughness = _toughness;
     name = sname;
+    multiplier = _multiplier;
 
 //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
@@ -239,23 +361,25 @@ public:
   }
 
   int resolve(){
-    Token * myToken = NEW Token(name,source,power,toughness);
-    list<int>::iterator it;
-    for ( it=types.begin() ; it != types.end(); it++ ){
-      myToken->addType(*it);
-    }
-    for ( it=colors.begin() ; it != colors.end(); it++ ){
-      myToken->setColor(*it);
-    }
-    for ( it=abilities.begin() ; it != abilities.end(); it++ ){
-      myToken->basicAbilities[*it] = 1;
-    }
-    source->controller()->game->stack->addCard(myToken);
-    Spell * spell = NEW Spell(myToken);
+    for (int i = 0; i < multiplier; ++i){
+      Token * myToken = NEW Token(name,source,power,toughness);
+      list<int>::iterator it;
+      for ( it=types.begin() ; it != types.end(); it++ ){
+        myToken->addType(*it);
+      }
+      for ( it=colors.begin() ; it != colors.end(); it++ ){
+        myToken->setColor(*it);
+      }
+      for ( it=abilities.begin() ; it != abilities.end(); it++ ){
+        myToken->basicAbilities[*it] = 1;
+      }
+      source->controller()->game->stack->addCard(myToken);
+      Spell * spell = NEW Spell(myToken);
 
 
-    spell->resolve();
-    delete spell;
+      spell->resolve();
+      delete spell;
+    }
     return 1;
   }
 
@@ -271,25 +395,29 @@ public:
     return ActivatedAbility::toString(out) << ")";
   }
 
-};
-
-//Moves Cards from a zone to another
-class AZoneMover:public TargetAbility{
-
-public:
-  string destinationZone;
-
-   AZoneMover(int _id, MTGCardInstance * _source, TargetChooser * _tc,string destZone, ManaCost * _cost = NULL, int _tap=0):TargetAbility(_id,_source, _tc,_cost,0,_tap){
-    destinationZone = destZone;
+  ATokenCreator * clone() const{
+    ATokenCreator * a =  NEW ATokenCreator(*this);
+    a->isClone = 1;
+    return a;
   }
 
-   static int moveTarget(MTGCardInstance * _target, string destinationZone, MTGCardInstance * source){
-     GameObserver * g = GameObserver::GetInstance();
-     if(_target){
+};
+
+class AAMover:public ActivatedAbility{
+public:
+  string destination;
+  AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost=NULL, int doTap=0):ActivatedAbility(_id,_source,_cost,0,doTap),destination(dest){
+    if (_target) target = _target; 
+ }
+
+  int resolve(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(target){
       Player* p = _target->controller();
       if (p){
+        GameObserver * g = GameObserver::GetInstance();
         MTGGameZone * fromZone = _target->getCurrentZone();
-        MTGGameZone * destZone = MTGGameZone::stringToZone(destinationZone, source,_target);
+        MTGGameZone * destZone = MTGGameZone::stringToZone(destination, source,_target);
 
         //inplay is a special zone !
         for (int i=0; i < 2; i++){
@@ -303,79 +431,35 @@ public:
           }
         }
         p->game->putInZone(_target,fromZone,destZone);
+        return 1;
       }
-      return 1;
     }
     return 0;
-   }
-
-  int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
-    return moveTarget(_target,destinationZone, source);
   }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AZoneMover ::: destinationZone : " << destinationZone
-	<< " (";
-    return TargetAbility::toString(out) << ")";
+
+  const char * getMenuText(){
+    return "Move";
+  }
+
+
+  AAMover * AAMover::clone() const{
+    AAMover * a =  NEW AAMover(*this);
+    a->isClone = 1;
+    return a;
   }
 
 };
 
 
-//Moves Cards from a zone to another
-//TODO: this looks awfully similar to the equivalent targetAbility...woudln't there be a way to merge them ?
-class AZoneSelfMover:public ActivatedAbility{
-
-public:
-  string destinationZone;
-
-   AZoneSelfMover(int _id, MTGCardInstance * _source,string destZone, ManaCost * _cost = NULL, int _tap=0):ActivatedAbility(_id,_source,_cost,0,_tap){
-    destinationZone = destZone;
-  }
-
-  int resolve(){
-    MTGCardInstance * _target = source;
-    if(_target){
-      Player* p = _target->controller();
-      if (p){
-        MTGGameZone * fromZone = _target->getCurrentZone();
-        MTGGameZone * destZone = MTGGameZone::stringToZone(destinationZone, source,_target);
-        //inplay is a special zone !
-        for (int i=0; i < 2; i++){
-          if (destZone == game->players[i]->game->inPlay){
-              MTGCardInstance * copy = game->players[i]->game->putInZone(_target,  fromZone, game->players[i]->game->stack);
-              Spell * spell = NEW Spell(copy);
-
-              spell->resolve();
-              delete spell;
-              return 1;
-          }
-        }
-        p->game->putInZone(_target,fromZone,destZone);
-      }
-      return 1;
-    }
-    return 0;
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AZoneSelfMover ::: destinationZone : " << destinationZone
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
-  }
-};
-
-
-//Copier. TargetAbility
-class ACopier:public TargetAbility{
+//Copier. ActivatedAbility
+class AACopier:public ActivatedAbility{
  public:
- ACopier(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL, ManaCost * _cost=NULL):TargetAbility(_id,_source, _tc,_cost,0,0){
-    if (!tc) tc = NEW CreatureTargetChooser();
+ AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost,0,0){
+    target = _target;
   }
 
   int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
+    MTGCardInstance * _target = (MTGCardInstance *) target;
     if(_target){
       source->copy(_target);
       return 1;
@@ -386,53 +470,25 @@ class ACopier:public TargetAbility{
   const char * getMenuText(){
     return "Copy";
   }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ACopier ::: (";
-    return TargetAbility::toString(out) << ")";
-  }
 
+
+  AACopier * AACopier::clone() const{
+    AACopier * a =  NEW AACopier(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
-//All Destroyer. TargetAbility
-class AAllDestroyer:public ActivatedAbility{
- public:
+class AADestroyer:public ActivatedAbility{
+public:
   int bury;
-  AAllDestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _bury = 0, ManaCost * _cost=NULL,int doTap =1):ActivatedAbility(_id,_source,_cost,0,doTap),bury(_bury){
-    tc = _tc;
-
-  }
+ AADestroyer(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _bury = 0, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost),bury(_bury){
+    if (_target) target = _target; 
+ }
 
   int resolve(){
-    AbilityFactory af;
-    af.destroyAllInPlay(tc,bury);
-    return 1;
-  }
-
-  const char * getMenuText(){
-    return "Destroy All...";
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AAllDestroyer ::: bury : " << bury
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
-  }
-
-};
-
-//Destroyer. TargetAbility
-class ADestroyer:public TargetAbility{
- public:
-  int bury;
- ADestroyer(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL, int _bury = 0, ManaCost * _cost=NULL):TargetAbility(_id,_source, _tc,_cost),bury(_bury){
-    if (!tc) tc = NEW CreatureTargetChooser();
-  }
-
-  int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
+    MTGCardInstance * _target = (MTGCardInstance *) target;
     if(_target){
       if (bury) return _target->bury();
       else return _target->destroy();
@@ -444,30 +500,16 @@ class ADestroyer:public TargetAbility{
     return "Destroy";
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADestroyer ::: bury : " << bury
-	<< " (";
-    return TargetAbility::toString(out) << ")";
+
+  AADestroyer * AADestroyer::clone() const{
+    AADestroyer * a =  NEW AADestroyer(*this);
+    a->isClone = 1;
+    return a;
   }
+
+
 };
 
-//Destroyer. TargetAbility
-class ABurier:public ADestroyer{
- public:
- ABurier(int _id, MTGCardInstance * _source, TargetChooser * _tc = NULL,ManaCost * _cost=NULL):ADestroyer(_id,_source, _tc,1,_cost){
-  }
-
-  const char * getMenuText(){
-    return "Bury";
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ABurier ::: (";
-    return ADestroyer::toString(out) << ")";
-  }
-};
 
 
 /*Changes one of the basic abilities of target
@@ -482,9 +524,14 @@ class ABasicAbilityModifier:public MTGAbility{
   int ability;
   int value_before_modification;
  ABasicAbilityModifier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int _modifier = 1): MTGAbility(_id,_source,_target),modifier(_modifier),ability(_ability){
+
+  }
+
+ int addToGame(){
     value_before_modification = ((MTGCardInstance * )target)->basicAbilities[ability];
     ((MTGCardInstance * )target)->basicAbilities[ability]=modifier;
-  }
+    return MTGAbility::addToGame();
+ }
 
   int destroy(){
     if (((MTGCardInstance * )target)->basicAbilities[ability] == modifier){
@@ -504,6 +551,13 @@ class ABasicAbilityModifier:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+
+  ABasicAbilityModifier * ABasicAbilityModifier::clone() const{
+    ABasicAbilityModifier * a =  NEW ABasicAbilityModifier(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 };
 
 //Modifies an	ability until end of turn. Needs a target
@@ -560,6 +614,12 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
     return TargetAbility::toString(out) << ")";
   }
 
+  ABasicAbilityModifierUntilEOT * ABasicAbilityModifierUntilEOT::clone() const{
+    ABasicAbilityModifierUntilEOT * a =  NEW ABasicAbilityModifierUntilEOT(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 };
 
 /*Instants that modifies a basic ability until end of turn */
@@ -567,10 +627,17 @@ class  AInstantBasicAbilityModifierUntilEOT: public InstantAbility{
  public:
   int stateBeforeActivation;
   int ability;
- AInstantBasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int value):InstantAbility(_id, _source, _target),ability(_ability){
+  int value;
+ AInstantBasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int value):InstantAbility(_id, _source, _target),ability(_ability),value(value){
+
+  }
+
+ int addToGame(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
     stateBeforeActivation = _target->basicAbilities[ability];
     _target->basicAbilities[ability] = value;
-  }
+    return InstantAbility::addToGame();
+ }
 
   int destroy(){
     ((MTGCardInstance *)target)->basicAbilities[ability] = stateBeforeActivation;
@@ -582,6 +649,12 @@ class  AInstantBasicAbilityModifierUntilEOT: public InstantAbility{
 	<< " ability : " << ability
 	<< " (";
     return InstantAbility::toString(out) << ")";
+  }
+
+  AInstantBasicAbilityModifierUntilEOT * AInstantBasicAbilityModifierUntilEOT::clone() const{
+    AInstantBasicAbilityModifierUntilEOT * a =  NEW AInstantBasicAbilityModifierUntilEOT(*this);
+    a->isClone = 1;
+    return a;
   }
 
 };
@@ -623,6 +696,12 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
 	<< " ; value : " << value
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
+  }
+
+  ABasicAbilityAuraModifierUntilEOT * ABasicAbilityAuraModifierUntilEOT::clone() const{
+    ABasicAbilityAuraModifierUntilEOT * a =  NEW ABasicAbilityAuraModifierUntilEOT(*this);
+    a->isClone = 1;
+    return a;
   }
 
 };
@@ -678,6 +757,12 @@ class ASpellCastLife:public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
+  ASpellCastLife * ASpellCastLife::clone() const{
+    ASpellCastLife * a =  NEW ASpellCastLife(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 };
 
 //Allows to untap at any moment for an amount of mana
@@ -709,6 +794,12 @@ class AUnBlocker:public MTGAbility{
     out << "AUnBlocker ::: cost : " << cost
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+
+  AUnBlocker * AUnBlocker::clone() const{
+    AUnBlocker * a =  NEW AUnBlocker(*this);
+    a->isClone = 1;
+    return a;
   }
 
 };
@@ -747,6 +838,12 @@ class AUntaperOnceDuringTurn:public AUnBlocker{
     return AUnBlocker::toString(out) << ")";
   }
 
+  AUntaperOnceDuringTurn * AUntaperOnceDuringTurn::clone() const{
+    AUntaperOnceDuringTurn * a =  NEW AUntaperOnceDuringTurn(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 };
 
 //Alteration of Power and Toughness  (enchantments)
@@ -754,9 +851,15 @@ class APowerToughnessModifier: public MTGAbility{
  public:
   int power, toughness;
  APowerToughnessModifier(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness):MTGAbility(id,_source,_target),power(_power),toughness(_toughness){
+
+  }
+
+ int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
     _target->power += power;
     _target->addToToughness(toughness);
-  }
+    return MTGAbility::addToGame();
+ }
 
   int destroy(){
     ((MTGCardInstance *)target)->power -= power;
@@ -770,6 +873,16 @@ class APowerToughnessModifier: public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  APowerToughnessModifier * APowerToughnessModifier::clone() const{
+    APowerToughnessModifier * a =  NEW APowerToughnessModifier(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  ~APowerToughnessModifier(){
+    OutputDebugString ("DELETING POWERTOUGHNESS");
+  }
+
 };
 
 // Permanent life alteration evry turn of the target's controller. Useful only for unstable mutation currently
@@ -794,7 +907,11 @@ class APowerToughnessModifierRegularCounter:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-
+  APowerToughnessModifierRegularCounter * APowerToughnessModifierRegularCounter::clone() const{
+    APowerToughnessModifierRegularCounter * a =  NEW APowerToughnessModifierRegularCounter(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -847,7 +964,11 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
-
+  ATargetterPowerToughnessModifierUntilEOT * ATargetterPowerToughnessModifierUntilEOT::clone() const{
+    ATargetterPowerToughnessModifierUntilEOT * a =  NEW ATargetterPowerToughnessModifierUntilEOT(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -858,7 +979,7 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
   int power, toughness;
   int counters;
   int maxcounters;
- APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness,  ManaCost * _cost, int _maxcounters = 0):ActivatedAbility(id,_source,_cost,0,0),power(_power),toughness(_toughness),maxcounters(_maxcounters){
+ APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness,  ManaCost * _cost = NULL, int _maxcounters = 0):ActivatedAbility(id,_source,_cost,0,0),power(_power),toughness(_toughness),maxcounters(_maxcounters){
     counters = 0;
     target=_target;
   }
@@ -898,6 +1019,11 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
+  APowerToughnessModifierUntilEndOfTurn * APowerToughnessModifierUntilEndOfTurn::clone() const{
+    APowerToughnessModifierUntilEndOfTurn * a =  NEW APowerToughnessModifierUntilEndOfTurn(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -927,6 +1053,11 @@ class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
 	<< " (";
     return InstantAbility::toString(out) << ")";
   }
+  AInstantPowerToughnessModifierUntilEOT * AInstantPowerToughnessModifierUntilEOT::clone() const{
+    AInstantPowerToughnessModifierUntilEOT * a =  NEW AInstantPowerToughnessModifierUntilEOT(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -943,30 +1074,11 @@ class AUntapManaBlocker: public UntapBlocker{
     out << "AUntapManaBlocker ::: (";
     return UntapBlocker::toString(out) << ")";
   }
-};
-
-/* Spell Counters (Enchantment) for a mana cost */
-//LifeForce
-class ASpellCounterEnchantment:public TargetAbility{
- public:
-
- ASpellCounterEnchantment(int _id, MTGCardInstance * _source, ManaCost * _cost,int color = -1, int _tap = 0):TargetAbility(_id,_source,NEW SpellTargetChooser(_source,color),_cost,0,_tap){
+  AUntapManaBlocker * AUntapManaBlocker::clone() const{
+    AUntapManaBlocker * a =  NEW AUntapManaBlocker(*this);
+    a->isClone = 1;
+    return a;
   }
-
-  int resolve(){
-    Spell * _target = tc->getNextSpellTarget();
-    if(_target){
-      game->mLayers->stackLayer()->Fizzle(_target);
-      return 1;
-    }
-    return 0;
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ASpellCounterEnchantment ::: (";
-    return TargetAbility::toString(out) << ")";
-  }
-
 };
 
 
@@ -1018,12 +1130,18 @@ protected:
     out << "ACircleOfProtection ::: (";
     return TargetAbility::toString(out) << ")";
   }
+  ACircleOfProtection * ACircleOfProtection::clone() const{
+    ACircleOfProtection * a =  NEW ACircleOfProtection(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
+
 
 //Basic regeneration mechanism for a Mana cost
 class AStandardRegenerate:public ActivatedAbility{
  public:
- AStandardRegenerate(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost):ActivatedAbility(_id,_source,_cost,0,0){
+ AStandardRegenerate(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL):ActivatedAbility(_id,_source,_cost,0,0){
     target = _target;
     aType = MTGAbility::STANDARD_REGENERATE;
   }
@@ -1042,6 +1160,11 @@ class AStandardRegenerate:public ActivatedAbility{
   {
     out << "AStandardRegenerate ::: (";
     return ActivatedAbility::toString(out) << ")";
+  }
+  AStandardRegenerate * AStandardRegenerate::clone() const{
+    AStandardRegenerate * a =  NEW AStandardRegenerate(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -1077,6 +1200,11 @@ class AProtectionFrom:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AProtectionFrom * AProtectionFrom::clone() const{
+    AProtectionFrom * a =  NEW AProtectionFrom(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Aura Enchantments that provide controller of target life or damages at a given phase of their turn
@@ -1106,6 +1234,11 @@ class ARegularLifeModifierAura:public MTGAbility{
 	<< " ; onlyIfTargetTapped : " << onlyIfTargetTapped
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+  ARegularLifeModifierAura * ARegularLifeModifierAura::clone() const{
+    ARegularLifeModifierAura * a =  NEW ARegularLifeModifierAura(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -1156,6 +1289,11 @@ class AExalted:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
+  AExalted * AExalted::clone() const{
+    AExalted * a =  NEW AExalted(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -1200,6 +1338,11 @@ class AExaltedAbility:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
+  AExaltedAbility * AExaltedAbility::clone() const{
+    AExaltedAbility * a =  NEW AExaltedAbility(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -1238,27 +1381,88 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
+  AConvertLandToCreatures * AConvertLandToCreatures::clone() const{
+    AConvertLandToCreatures * a =  NEW AConvertLandToCreatures(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+
+//Generic Kird Ape
+class AAsLongAs:public ListMaintainerAbility{
+ public:
+   MTGAbility * ability;
+   MTGAbility * a;
+  int includeSelf;
+ AAsLongAs(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id, _source),ability(a){
+    tc = _tc;
+    includeSelf = _includeSelf;
+    tc->targetter  = NULL;
+    ability->source = source;
+    ability->target = target;
+    a = NULL;
+ }
+
+ int canBeInList(MTGCardInstance * card){
+   if ((includeSelf || card!=source) && tc->canTarget(card)) return 1;
+   return 0;
+ }
+
+  int resolve(){
+    //TODO check if ability is oneShot ?
+    updateTargets();
+    cards.clear();
+    players.clear();
+    return 1;
+  }
+
+
+ int added(MTGCardInstance * card){
+    if (cards.size()== 1){
+        a = ability->clone();
+        a->addToGame();
+        return 1;
+      }
+      return 0;
+ }
+
+ int removed(MTGCardInstance * card){
+
+   if (cards.size()== 0){
+     game->removeObserver(a);
+     a = NULL;
+     return 1;
+   }
+   return 0;
+ }
+
+  ~AAsLongAs(){
+    if (!isClone) SAFE_DELETE(ability);
+  }
+
+
+  AAsLongAs * AAsLongAs::clone() const{
+    AAsLongAs * a =  NEW AAsLongAs(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Lords (Merfolk lord...) give power and toughness to OTHER creatures of their type, they can give them special abilities, regeneration
 class ALord:public ListMaintainerAbility{
  public:
-  int power, toughness;
-  int ability;
-  int modifier;
-  ManaCost * regenCost;
+   MTGAbility * ability;
   int includeSelf;
-  map<MTGCardInstance *, MTGAbility *> regenerations;
- ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL, int _modifier = 1):ListMaintainerAbility(_id,card){
+  map<Damageable *, MTGAbility *> abilities;
+ ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card), ability(a){
     tc = _tc;
     tc->targetter = NULL;
     includeSelf = _includeSelf;
-    power = _power;
-    toughness = _toughness;
-    ability = _ability;
-    regenCost = _regenCost;
-    modifier = _modifier;
-    if (!modifier) modifier = -1;
+  }
+
+  int canBeInList(Player *p){
+    if (tc->canTarget(p)) return 1;
+    return 0;
   }
 
   int canBeInList(MTGCardInstance * card){
@@ -1266,79 +1470,69 @@ class ALord:public ListMaintainerAbility{
     return 0;
   }
 
-  int added(MTGCardInstance * card){
-    card->power += power;
-    card->addToToughness(toughness);
-    if (ability != -1) card->basicAbilities[ability] +=modifier;
-    if (regenCost){
-      ManaCost * _regenCost = NEW ManaCost(regenCost);
-      AStandardRegenerate * regen = NEW AStandardRegenerate(0, card, card, _regenCost);
-      regenerations[card] = regen;
-      game->addObserver(regen);
-    }
+  int resolve(){
+    //TODO check if ability is oneShot ?
+    updateTargets();
+    cards.clear();
+    players.clear();
     return 1;
+  }
+  
+  int _added(Damageable * d){
+      MTGAbility * a = ability->clone();
+      a->target = d;
+      if (a->oneShot){
+        a->resolve();
+        delete(a);
+      }else{
+        if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
+          a->source = (MTGCardInstance *)d;
+        }
+        a->addToGame();
+        abilities[d] = a;
+      }
+      return 1;
+  }
+
+  int added(MTGCardInstance * card){
+   return  _added(card);
+  }
+
+  int added(Player * p){
+    return _added(p);
   }
 
   int removed(MTGCardInstance * card){
-    card->power -= power;
-    card->addToToughness(-toughness);
-    if (ability != -1 && ((card->basicAbilities[ability]>0 && (modifier >0)) || (card->basicAbilities[ability]<=0 && (modifier <0)) )) card->basicAbilities[ability] -=modifier;
-    if (regenCost){
-      if(regenerations.find(card) != regenerations.end()){
-	      if (game->isInPlay(card)) game->removeObserver(regenerations[card]);
-	      regenerations.erase(card);
-      }
+    if(abilities.find(card) != abilities.end()){
+      game->removeObserver(abilities[card]);
+      abilities.erase(card);
     }
     return 1;
   }
 
   ~ALord(){
-    SAFE_DELETE(regenCost);
+    if (!isClone) SAFE_DELETE(ability);
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ALord ::: power : " << power
-	<< " ; toughness : " << toughness
-	<< " ; ability : " << ability
-	<< " ; modifier : " << modifier
-	<< " ; regenCost : " << regenCost
-	<< " ; includeSelf : " << includeSelf
-	<< " (";
-    return ListMaintainerAbility::toString(out) << ")";
+  ALord * ALord::clone() const{
+    ALord * a =  NEW ALord(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
-
-class ALordUEOT:public ALord{
-public:
-  ALordUEOT(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0, int _ability = -1, ManaCost * _regenCost = NULL, int _modifier = 1): ALord(_id, card,  _tc, _includeSelf,  _power  ,  _toughness , _ability , _regenCost,  _modifier){
-  }
-
-
-   int testDestroy(){
-    if (newPhase == Constants::MTG_PHASE_AFTER_EOT) return 1;
-    return 0;
-  }
-   virtual ostream& toString(ostream& out) const
-   {
-     out << "ALordUEOT ::: (";
-     return ALord::toString(out) << ")";
-   }
-};
 
 //Foreach (plague rats...)
 class AForeach:public ListMaintainerAbility{
  public:
-  int power, toughness;
+   MTGAbility * ability;
   int includeSelf;
- AForeach(int _id, MTGCardInstance * card,MTGCardInstance * _target, TargetChooser * _tc, int _includeSelf, int _power = 0 , int _toughness = 0):ListMaintainerAbility(_id,card,_target){
+  map<Damageable *, MTGAbility *> abilities;
+ AForeach(int _id, MTGCardInstance * card,MTGCardInstance * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card,_target), ability(a){
     tc = _tc;
     tc->targetter = NULL;
     includeSelf = _includeSelf;
-    power = _power;
-    toughness = _toughness;
-    if (!target) target = source; //Is this needed ?
+    ability->target = _target;
   }
 
   int canBeInList(MTGCardInstance * card){
@@ -1347,94 +1541,105 @@ class AForeach:public ListMaintainerAbility{
   }
 
   int added(MTGCardInstance * card){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    _target->power += power;
-    _target->addToToughness(toughness);
-    return 1;
+      MTGAbility * a = ability->clone();
+      if (a->oneShot){
+        a->resolve();
+        delete(a);
+      }else{
+        a->addToGame();
+        abilities[card] = a;
+      }
+      return 1;
   }
 
   int removed(MTGCardInstance * card){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    _target->power -= power;
-    _target->addToToughness(-toughness);
-    return 1;
+    if(abilities.find(card) != abilities.end()){
+      game->removeObserver(abilities[card]);
+      abilities.erase(card);
+      return 1;
+    }
+    return 0;
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AForeach ::: power : " << power
-	<< " ; toughness : " << toughness
-	<< " ; includeSelf : " << includeSelf
-	<< " (";
-    return ListMaintainerAbility::toString(out) << ")";
-  }
-
-};
-
-//Damage all.... ActivatedAbility
-class AAllDamager:public ActivatedAbility{
- public:
-  int damage;
-  AAllDamager(int _id, MTGCardInstance * _source, ManaCost * _cost, int _damage, TargetChooser * _tc ,int doTap =1):ActivatedAbility(_id,_source,_cost,0,doTap),damage(_damage){
-    tc = _tc;
-
+  AForeach * AForeach::clone() const{
+    AForeach * a =  NEW AForeach(*this);
+    a->isClone = 1;
+    return a;
   }
 
   int resolve(){
-    AbilityFactory af;
-    af.damageAll(tc,damage);
+    //TODO check if ability is oneShot ?
+    updateTargets();
+    cards.clear();
+    players.clear();
     return 1;
   }
+  
 
-  const char * getMenuText(){
-    return "Damage All...";
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AAllDamager ::: damage : " << damage
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
+  ~AForeach(){
+    if (!isClone) SAFE_DELETE(ability);
   }
 
 };
 
+
+class AADamager:public ActivatedAbility{
+public:
+  int damage;
+AADamager(int _id, MTGCardInstance * _source, Damageable * _target, int _damage = 0, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost),damage(_damage){
+    if (_target) target = _target; 
+    aType = MTGAbility::DAMAGER;
+ }
+
+  int resolve(){
+    if(target){
+      Damageable * _target = (Damageable *)target;
+      game->mLayers->stackLayer()->addDamage(source,_target, damage);
+      game->mLayers->stackLayer()->resolve();
+      return 1;
+    }
+    return 0;
+  }
+
+  const char * getMenuText(){
+    return "Damage";
+  }
+
+
+  AADamager * AADamager::clone() const{
+    AADamager * a =  NEW AADamager(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+
+};
 
 /* Standard Damager, can choose a NEW target each time the price is paid */
-class ADamager:public TargetAbility{
+class TADamager:public TargetAbility{
  public:
   int damage;
- ADamager(int id, MTGCardInstance * card, ManaCost * _cost, int _damage, TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(id,card, _tc, _cost,0,_tap),damage(_damage){
+ TADamager(int id, MTGCardInstance * card, ManaCost * _cost, int _damage, TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(id,card, _tc, _cost,0,_tap),damage(_damage){
     if (!tc) tc = NEW DamageableTargetChooser(card);
-    aType = MTGAbility::DAMAGER;
-  }
-  int resolve(){
-    Damageable * _target = tc->getNextDamageableTarget();
-    GameObserver::GetInstance()->mLayers->stackLayer()->addDamage(source,_target, damage);
-    return 1;
+    ability = NEW AADamager(id,card,NULL,damage);
   }
 
-  const char * getMenuText(){
-    return "Damage target";
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADamager ::: damage : " << damage
-	<< " (";
-    return TargetAbility::toString(out) << ")";
+  TADamager * TADamager::clone() const{
+    TADamager * a =  NEW TADamager(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
 /* Can tap a target for a cost */
-class ATapper:public TargetAbility{
+class AATapper:public ActivatedAbility{
  public:
-  int damage;
- ATapper(int id, MTGCardInstance * card, ManaCost * _cost, TargetChooser * _chooser):TargetAbility(id,card, _chooser, _cost){
+ AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target,ManaCost * _cost = NULL, int doTap = 0):ActivatedAbility(id,card, _cost,0,doTap){
+   target = _target;
   }
 
   int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
+    MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target){
       _target->tap();
     }
@@ -1445,38 +1650,40 @@ class ATapper:public TargetAbility{
     return "Tap target";
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ATapper ::: damage : " << damage
-	<< " (";
-    return TargetAbility::toString(out) << ")";
+  AATapper * AATapper::clone() const{
+    AATapper * a =  NEW AATapper(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
-//Ability to untap a target
-class AUntaper:public TargetAbility{
+
+/* Can untap a target for a cost */
+class AAUntapper:public ActivatedAbility{
  public:
- AUntaper(int _id, MTGCardInstance * card, ManaCost * _manacost, TargetChooser * _tc):TargetAbility(_id,card,_tc,_manacost){
+ AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target,ManaCost * _cost = NULL, int doTap = 0):ActivatedAbility(id,card, _cost,0,doTap){
+   target = _target;
   }
 
   int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
+    MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target){
-      _target->untap();
+      _target->tap();
     }
     return 1;
   }
 
   const char * getMenuText(){
-    return "Untap target";
+    return "untap target";
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AUntaper ::: (";
-    return TargetAbility::toString(out) << ")";
+  AAUntapper * clone() const{
+    AAUntapper * a =  NEW AAUntapper(*this);
+    a->isClone = 1;
+    return a;
   }
 };
+
 
 // Add life of gives damage if a given zone has more or less than [condition] cards at the beginning of [phase]
 //Ex : the rack, ivory tower...
@@ -1528,6 +1735,11 @@ class ALifeZoneLink:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  ALifeZoneLink * ALifeZoneLink::clone() const{
+    ALifeZoneLink * a =  NEW ALifeZoneLink(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Creatures that cannot attack if opponent has not a given type of land, and die if controller has not this type of land
@@ -1558,6 +1770,11 @@ class AStrongLandLinkCreature: public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AStrongLandLinkCreature * AStrongLandLinkCreature::clone() const{
+    AStrongLandLinkCreature * a =  NEW AStrongLandLinkCreature(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Steal control of a target
@@ -1585,6 +1802,11 @@ class AControlStealAura: public MTGAbility{
     out << "AControlStealAura ::: originalController : " << originalController
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+  AControlStealAura * AControlStealAura::clone() const{
+    AControlStealAura * a =  NEW AControlStealAura(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -1631,6 +1853,11 @@ class AOldSchoolDeathtouch:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AOldSchoolDeathtouch * AOldSchoolDeathtouch::clone() const{
+    AOldSchoolDeathtouch * a =  NEW AOldSchoolDeathtouch(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Converts a card to a creature (Aura)
@@ -1655,6 +1882,11 @@ class AConvertToCreatureAura:public MTGAbility{
   {
     out << "AConvertToCreatureAura ::: (";
     return MTGAbility::toString(out) << ")";
+  }
+  AConvertToCreatureAura * AConvertToCreatureAura::clone() const{
+    AConvertToCreatureAura * a =  NEW AConvertToCreatureAura(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -1725,6 +1957,11 @@ class AAladdinsLamp: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
+  AAladdinsLamp * AAladdinsLamp::clone() const{
+    AAladdinsLamp * a =  NEW AAladdinsLamp(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -1763,6 +2000,11 @@ class AAnkhOfMishra: public ListMaintainerAbility{
     out << "AAnkhOfMishra ::: init : " << init
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
+  }
+  AAnkhOfMishra * AAnkhOfMishra::clone() const{
+    AAnkhOfMishra * a =  NEW AAnkhOfMishra(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -1812,6 +2054,11 @@ class AArmageddonClock:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AArmageddonClock * AArmageddonClock::clone() const{
+    AArmageddonClock * a =  NEW AArmageddonClock(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Channel
@@ -1845,6 +2092,11 @@ class AChannel:public ActivatedAbility{
   {
     out << "AChannel ::: (";
     return ActivatedAbility::toString(out) << ")";
+  }
+  AChannel * AChannel::clone() const{
+    AChannel * a =  NEW AChannel(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -1893,6 +2145,11 @@ class AClockworkBeast:public MTGAbility{
 	<< " ; cost : " << cost
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+  AClockworkBeast * AClockworkBeast::clone() const{
+    AClockworkBeast * a =  NEW AClockworkBeast(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -1968,6 +2225,11 @@ class AConservator: public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AConservator * AConservator::clone() const{
+    AConservator * a =  NEW AConservator(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -2003,6 +2265,11 @@ class ACreatureBond:public MTGAbility{
        << " (";
    return MTGAbility::toString(out) << ")";
  }
+   ACreatureBond * ACreatureBond::clone() const{
+    ACreatureBond * a =  NEW ACreatureBond(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //1105: Dingus Egg
@@ -2029,6 +2296,11 @@ class ADingusEgg: public ListMaintainerAbility{
   {
     out << "ADingusEgg ::: (";
     return ListMaintainerAbility::toString(out) << ")";
+  }
+  ADingusEgg * ADingusEgg::clone() const{
+    ADingusEgg * a =  NEW ADingusEgg(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2067,6 +2339,11 @@ class ADisruptingScepter:public TargetAbility{
     out << "ADisruptingScepter ::: (";
     return TargetAbility::toString(out) << ")";
   }
+  ADisruptingScepter * ADisruptingScepter::clone() const{
+    ADisruptingScepter * a =  NEW ADisruptingScepter(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -2088,6 +2365,11 @@ class AEbonyHorse:public TargetAbility{
   {
     out << "AEbonyHorse ::: (";
     return TargetAbility::toString(out) << ")";
+  }
+  AEbonyHorse * AEbonyHorse::clone() const{
+    AEbonyHorse * a =  NEW AEbonyHorse(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2127,6 +2409,11 @@ class AFarmstead:public ActivatedAbility{
     out << "AFarmstead ::: usedThisTurn : " << usedThisTurn
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
+  }
+  AFarmstead * AFarmstead::clone() const{
+    AFarmstead * a =  NEW AFarmstead(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2185,6 +2472,11 @@ class AGlassesOfUrza:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AGlassesOfUrza * AGlassesOfUrza::clone() const{
+    AGlassesOfUrza * a =  NEW AGlassesOfUrza(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //1112 Howling Mine
@@ -2202,6 +2494,11 @@ class AHowlingMine:public MTGAbility{
   {
     out << "AHowlingMine ::: (";
     return MTGAbility::toString(out) << ")";
+  }
+  AHowlingMine * AHowlingMine::clone() const{
+    AHowlingMine * a =  NEW AHowlingMine(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2252,6 +2549,11 @@ class ALivingArtifact:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  ALivingArtifact * ALivingArtifact::clone() const{
+    ALivingArtifact * a =  NEW ALivingArtifact(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Lord of the Pit
@@ -2294,6 +2596,11 @@ class ALordOfThePit: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
+  ALordOfThePit * ALordOfThePit::clone() const{
+    ALordOfThePit * a =  NEW ALordOfThePit(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 //1143 Animate Dead
 class AAnimateDead:public MTGAbility{
@@ -2326,6 +2633,11 @@ class AAnimateDead:public MTGAbility{
   {
     out << "AAnimateDead ::: (";
     return MTGAbility::toString(out) << ")";
+  }
+    AAnimateDead * AAnimateDead::clone() const{
+    AAnimateDead * a =  NEW AAnimateDead(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2364,6 +2676,11 @@ class AErgRaiders:public MTGAbility{
 	<< " ; dealDamage : " << dealDamage
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+  AErgRaiders * AErgRaiders::clone() const{
+    AErgRaiders * a =  NEW AErgRaiders(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2406,6 +2723,11 @@ class AFastbond:public TriggeredAbility{
 	<< " ; previous : " << previous
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
+  }
+  AFastbond * AFastbond::clone() const{
+    AFastbond * a =  NEW AFastbond(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2460,6 +2782,11 @@ class AHypnoticSpecter:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AHypnoticSpecter * AHypnoticSpecter::clone() const{
+    AHypnoticSpecter * a =  NEW AHypnoticSpecter(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //1117 Jandor's Ring
@@ -2484,6 +2811,11 @@ class AJandorsRing:public ActivatedAbility{
   {
     out << "AJandorsRing ::: (";
     return ActivatedAbility::toString(out) << ")";
+  }
+  AJandorsRing * AJandorsRing::clone() const{
+    AJandorsRing * a =  NEW AJandorsRing(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2559,6 +2891,11 @@ class AKudzu: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
+  AKudzu * AKudzu::clone() const{
+    AKudzu * a =  NEW AKudzu(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //1172 Pestilence
@@ -2591,6 +2928,11 @@ class APestilence: public ActivatedAbility{
   {
     out << "APestilence ::: (";
     return ActivatedAbility::toString(out) << ")";
+  }
+  APestilence * APestilence::clone() const{
+    APestilence * a =  NEW APestilence(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2648,6 +2990,11 @@ class APowerLeak:public TriggeredAbility{
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }
+  APowerLeak * APowerLeak::clone() const{
+    APowerLeak * a =  NEW APowerLeak(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Power Surge
@@ -2688,6 +3035,11 @@ class APowerSurge:public TriggeredAbility{
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }
+  APowerSurge * APowerSurge::clone() const{
+    APowerSurge * a =  NEW APowerSurge(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -2713,6 +3065,11 @@ class ASacrifice:public InstantAbility{
   {
     out << "ASacrifice ::: (";
     return InstantAbility::toString(out) << ")";
+  }
+  ASacrifice * ASacrifice::clone() const{
+    ASacrifice * a =  NEW ASacrifice(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2749,6 +3106,11 @@ class AScavengingGhoul:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AScavengingGhoul * AScavengingGhoul::clone() const{
+    AScavengingGhoul * a =  NEW AScavengingGhoul(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //1218 Psychic Venom
@@ -2774,6 +3136,11 @@ class APsychicVenom:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  APsychicVenom * APsychicVenom::clone() const{
+    APsychicVenom * a =  NEW APsychicVenom(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -2793,6 +3160,11 @@ class ASerendibEfreet:public MTGAbility{
   {
     out << "ASerendibEfreet ::: (";
     return MTGAbility::toString(out) << ")";
+  }
+  ASerendibEfreet * ASerendibEfreet::clone() const{
+    ASerendibEfreet * a =  NEW ASerendibEfreet(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2838,6 +3210,11 @@ class AAspectOfWolf:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
+  AAspectOfWolf * AAspectOfWolf::clone() const{
+    AAspectOfWolf * a =  NEW AAspectOfWolf(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //1276 Wanderlust, 1148 Cursed Lands
@@ -2862,6 +3239,11 @@ class AWanderlust:public TriggeredAbility{
     out << "AWanderlust ::: (";
     return TriggeredAbility::toString(out) << ")";
   }
+  AWanderlust * AWanderlust::clone() const{
+    AWanderlust * a =  NEW AWanderlust(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -2884,19 +3266,32 @@ class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
     out << "ADragonWhelp ::: (";
     return APowerToughnessModifierUntilEndOfTurn::toString(out) << ")";
   }
+  ADragonWhelp * ADragonWhelp::clone() const{
+    ADragonWhelp * a =  NEW ADragonWhelp(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //1288 EarthBind
 class AEarthbind:public ABasicAbilityModifier{
  public:
  AEarthbind(int _id, MTGCardInstance * _source, MTGCardInstance * _target):ABasicAbilityModifier(_id,_source,_target,Constants::FLYING,0){
-    if (value_before_modification) game->mLayers->stackLayer()->addDamage(source,target,2);
+   if (value_before_modification){
+     Damageable * _target = (Damageable *)target;
+     game->mLayers->stackLayer()->addDamage(source,_target,2);
+   }
   }
 
   virtual ostream& toString(ostream& out) const
   {
     out << "AEarthbind ::: (";
     return ABasicAbilityModifier::toString(out) << ")";
+  }
+  AEarthbind * AEarthbind::clone() const{
+    AEarthbind * a =  NEW AEarthbind(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2918,6 +3313,11 @@ class AFireball:public InstantAbility{
   {
     out << "AFireball ::: (";
     return InstantAbility::toString(out) << ")";
+  }
+  AFireball * AFireball::clone() const{
+    AFireball * a =  NEW AFireball(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -2956,27 +3356,33 @@ class AForceOfNature:public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
+  AForceOfNature * AForceOfNature::clone() const{
+    AForceOfNature * a =  NEW AForceOfNature(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
 
 
 //1309 Orcish Artilery
-class AOrcishArtillery: public ADamager{
+class AOrcishArtillery: public TADamager{
  public:
- AOrcishArtillery(int _id,MTGCardInstance * card): ADamager(_id, card, NEW ManaCost(), 2){
+ AOrcishArtillery(int _id,MTGCardInstance * card): TADamager(_id, card, NEW ManaCost(), 2){
   }
 
   int resolve(){
-    ADamager::resolve();
+    TADamager::resolve();
     game->mLayers->stackLayer()->addDamage(source,source->controller(), 3);
     return 1;
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AOrcishArtillery ::: (";
-    return ADamager::toString(out) << ")";
+
+  AOrcishArtillery * AOrcishArtillery::clone() const{
+    AOrcishArtillery * a =  NEW AOrcishArtillery(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3023,6 +3429,11 @@ class AIslandSanctuary:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+  AIslandSanctuary * AIslandSanctuary::clone() const{
+    AIslandSanctuary * a =  NEW AIslandSanctuary(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -3056,6 +3467,11 @@ class ASoulNet:public ActivatedAbility{
 	<< " ; newDead : " << newDead
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
+  }
+  ASoulNet * ASoulNet::clone() const{
+    ASoulNet * a =  NEW ASoulNet(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3110,6 +3526,11 @@ class AStasis:public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
+  AStasis * AStasis::clone() const{
+    AStasis * a =  NEW AStasis(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -3149,6 +3570,11 @@ class ABasilik:public MTGAbility{
 	<< " ; nbOpponents : " << nbOpponents
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+  ABasilik * ABasilik::clone() const{
+    ABasilik * a =  NEW ABasilik(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3201,66 +3627,72 @@ virtual ostream& toString(ostream& out) const
 	<< " ; nbcards : " << nbcards
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }  
+
+ALavaborn * ALavaborn::clone() const{
+    ALavaborn * a =  NEW ALavaborn(*this);
+    a->isClone = 1;
+    return a;
   }
+
 };
 
 
-//GenericMillstone
-class ADeplete:public TargetAbility{
+//Generic Millstone
+class AADepleter:public ActivatedAbility{
  public:
 	 int nbcards;
-	  ADeplete(int _id, MTGCardInstance * card, ManaCost * _cost, int _nbcards = 1,TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(_id,card, _tc, _cost,0,_tap){
-      if (!tc) tc= NEW PlayerTargetChooser(card);
-	  nbcards = _nbcards;
+	  AADepleter(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 1):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
+      target = _target;
 	  }
   int resolve(){
-    Player * player = tc->getNextPlayerTarget();
+    Player * player = (Player *) target;
     if (!player) return 0;
     MTGLibrary * library = player->game->library;
     for (int i = 0; i < nbcards; i++){
       if (library->nb_cards)
-	player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
+	      player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
     }
     return 1;
   }
-    const char * getMenuText(){
-    return "Deplete";
-	  }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADeplete ::: nbcards : " << nbcards
-	<< " (";
-    return TargetAbility::toString(out) << ")";
+  const char * getMenuText(){
+  return "Deplete";
+  }
+
+  AADepleter * AADepleter::clone() const{
+    AADepleter * a =  NEW AADepleter(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
 
-class ADiscard:public TargetAbility{
+//Random Discard
+class AARandomDiscarder:public ActivatedAbility{
  public:
 	 int nbcards;
-	  ADiscard(int _id, MTGCardInstance * card, ManaCost * _cost, int _nbcards = 1,TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(_id,card, _tc, _cost,0,_tap){
-      if (!tc) tc= NEW PlayerTargetChooser(card);
-	  nbcards = _nbcards;
+	  AARandomDiscarder(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 1):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
+      target = _target;
 	  }
   int resolve(){
-    Player * player = tc->getNextPlayerTarget();
+    Player * player = (Player *) target;
     if (!player) return 0;
-	for (int i = 0; i < 2; i++){
-	game->players[i]->game->discardRandom(game->players[i]->game->hand);
-	}
+	  for (int i = 0; i < nbcards; i++){
+	    player->game->discardRandom(player->game->hand);
+	  }
     return 1;
   }
-    const char * getMenuText(){
-    return "Discard";
+
+  const char * getMenuText(){
+  return "Discard Random";
   }
 
-    virtual ostream& toString(ostream& out) const
-    {
-      out << "ADiscard ::: nbcards : " << nbcards
-	  << " (";
-      return TargetAbility::toString(out) << ")";
-    }
+  AARandomDiscarder * clone() const{
+    AARandomDiscarder * a =  NEW AARandomDiscarder(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 // Generic Karma
@@ -3292,6 +3724,12 @@ class ADamageForTypeControlled: public TriggeredAbility{
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }
+
+  ADamageForTypeControlled * ADamageForTypeControlled::clone() const{
+    ADamageForTypeControlled * a =  NEW ADamageForTypeControlled(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 // Dreamborn Muse
@@ -3322,6 +3760,12 @@ class ADreambornMuse: public TriggeredAbility{
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }
+
+  ADreambornMuse * ADreambornMuse::clone() const{
+    ADreambornMuse * a =  NEW ADreambornMuse(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 
@@ -3343,6 +3787,12 @@ class AShieldOfTheAge: public TargetAbility{
   {
     out << "AShieldOfTheAge ::: (";
     return TargetAbility::toString(out) << ")";
+  }
+
+    AShieldOfTheAge * AShieldOfTheAge::clone() const{
+    AShieldOfTheAge * a =  NEW AShieldOfTheAge(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3383,6 +3833,12 @@ class AGiveLifeForTappedType:public MTGAbility{
 	<< " ; nbtypestapped : " << nbtypestapped
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+
+  AGiveLifeForTappedType * AGiveLifeForTappedType::clone() const{
+    AGiveLifeForTappedType * a =  NEW AGiveLifeForTappedType(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3427,64 +3883,14 @@ class AMinionofLeshrac: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
+
+  AMinionofLeshrac * AMinionofLeshrac::clone() const{
+    AMinionofLeshrac * a =  NEW AMinionofLeshrac(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
-//Generic Kird Ape
-class AKirdApe:public ListMaintainerAbility{
- public:
-  int power;
-  int toughness;
-  int ability;
-  int modifier;
-  int includeSelf;
- AKirdApe(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _includeSelf,int _power = 0, int _toughness = 0, int _ability=-1, int _abilityModifier = 1):ListMaintainerAbility(_id, _source){
-    power = _power;
-    toughness = _toughness;
-    tc = _tc;
-    includeSelf = _includeSelf;
-    ability=_ability;
-    modifier = _abilityModifier;
-    if (!modifier) modifier = -1;
- }
-
- int canBeInList(MTGCardInstance * card){
-   if ((includeSelf || card!=source) && tc->canTarget(card)) return 1;
-   return 0;
- }
-
- int added(MTGCardInstance * card){
-   if (cards.size()== 1){
-      source->power+=power;
-      source->addToToughness(toughness);
-      if (ability != -1) source->basicAbilities[ability] +=modifier;
-      return 1;
-   }
-   return 0;
- }
-
- int removed(MTGCardInstance * card){
-
-   if (cards.size()== 0){
-      source->power-=power;
-      source->addToToughness(-toughness);
-      if ((ability != -1) && source->basicAbilities[ability] >0 ) source->basicAbilities[ability] -=modifier;
-      return 1;
-   }
-   return 0;
- }
-
-
- virtual ostream& toString(ostream& out) const
- {
-   out << "AKirdApe ::: power : " << power
-       << " ; toughness : " << toughness
-       << " ; ability : " << ability
-       << " ; modifier : " << modifier
-       << " ; includeSelf : " << includeSelf
-       << " (";
-   return ListMaintainerAbility::toString(out) << ")";
- }
-};
 
 //Rampage ability
 class ARampageAbility:public MTGAbility{
@@ -3537,6 +3943,12 @@ class ARampageAbility:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
+
+  ARampageAbility * ARampageAbility::clone() const{
+    ARampageAbility * a =  NEW ARampageAbility(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 // Seedborn Muse
@@ -3563,6 +3975,12 @@ class ASeedbornMuse: public TriggeredAbility{
   {
     out << "ASeedbornMuse ::: (";
     return TriggeredAbility::toString(out) << ")";
+  }
+
+  ASeedbornMuse * ASeedbornMuse::clone() const{
+    ASeedbornMuse * a =  NEW ASeedbornMuse(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3597,6 +4015,12 @@ class AGravebornMuse: public TriggeredAbility{
     out << "AGravebornMuse ::: nbcards_life : " << nbcards_life
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
+  }
+
+  AGravebornMuse * AGravebornMuse::clone() const{
+    AGravebornMuse * a =  NEW AGravebornMuse(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3641,6 +4065,12 @@ class AVerdantForce: public TriggeredAbility{
 	  out << "AVerdantForce ::: (";
 	  return TriggeredAbility::toString(out) << ")";
   }
+
+  AVerdantForce * AVerdantForce::clone() const{
+    AVerdantForce * a =  NEW AVerdantForce(*this);
+    a->isClone = 1;
+    return a;
+  }
 };
 
 //Instant Steal control of a target
@@ -3674,6 +4104,12 @@ class AInstantControlSteal: public InstantAbility{
 	<< " ; TheftController : " << TheftController
 	<< " (";
     return InstantAbility::toString(out) << ")";
+  }
+
+  AInstantControlSteal * AInstantControlSteal::clone() const{
+    AInstantControlSteal * a =  NEW AInstantControlSteal(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3712,6 +4148,12 @@ class AAngelicChorus: public ListMaintainerAbility{
     out << "AAngelicChorus ::: init : " << init
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
+  }
+
+  AAngelicChorus * AAngelicChorus::clone() const{
+    AAngelicChorus * a =  NEW AAngelicChorus(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3808,6 +4250,12 @@ class ALifeModifierPutinplay: public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
+  ALifeModifierPutinplay * ALifeModifierPutinplay::clone() const{
+    ALifeModifierPutinplay * a =  NEW ALifeModifierPutinplay(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 };
 
 
@@ -3831,6 +4279,12 @@ class ACounters: public MTGAbility{
 		<< " ; toughness : " << toughness
 		<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+
+  ACounters * ACounters::clone() const{
+    ACounters * a =  NEW ACounters(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 
@@ -3876,6 +4330,12 @@ class AAbomination :public MTGAbility{
 	<< " ; nbOpponents : " << nbOpponents
 	<< " (";
     return MTGAbility::toString(out) << ")";
+  }
+
+  AAbomination * AAbomination::clone() const{
+    AAbomination * a =  NEW AAbomination(*this);
+    a->isClone = 1;
+    return a;
   }
 };
 

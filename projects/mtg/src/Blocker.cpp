@@ -24,6 +24,12 @@ void UntapBlocker::init(ManaCost * _cost){
   manaCost = _cost;
 }
 
+  UntapBlocker * UntapBlocker::clone() const{
+    UntapBlocker * a =  NEW UntapBlocker(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 
 //Default behaviour for blockers : they block the card they're attached to
 void UntapBlocker::Update(float dt){

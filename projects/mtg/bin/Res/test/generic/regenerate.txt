@@ -1,0 +1,22 @@
+#Testing Regenerate
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Drudge Skeletons,swamp
+[PLAYER2]
+inplay:raging goblin
+[DO]
+Drudge skeletons
+swamp
+Drudge skeletons
+next
+raging goblin
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Drudge Skeletons,swamp
+[PLAYER2]
+graveyard:raging goblin
+[END]

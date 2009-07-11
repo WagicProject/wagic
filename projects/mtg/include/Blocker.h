@@ -27,6 +27,7 @@ class UntapBlocker : public MTGAbility {
   ~UntapBlocker();
   virtual void Update(float dt);
   virtual int destroy();
+  virtual UntapBlocker * clone() const;
 };
 
 

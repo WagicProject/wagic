@@ -21,7 +21,7 @@ void GuiLayer::Add(JGuiObject *object){
   mCount++;
 }
 
-void GuiLayer::Remove(JGuiObject *object){
+int GuiLayer::Remove(JGuiObject *object){
   for (int i=0;i<mCount;i++){
     if (mObjects[i]==object){
       delete mObjects[i];
@@ -29,9 +29,10 @@ void GuiLayer::Remove(JGuiObject *object){
       mCount--;
       if (mCurr == mCount)
 	      mCurr = 0;
-      return;
+      return 1;
     }
   }
+  return 0;
 }
 
 int GuiLayer::getMaxId(){

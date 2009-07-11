@@ -1,0 +1,20 @@
+#Testing Deplete
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Millstone
+manapool:{2}}
+[PLAYER2]
+library:swamp,plains,mountain,forest,island,bayou,plateau,white knight,black knight,grizzly bears,raging goblin
+[DO]
+Millstone
+p2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Millstone
+manapool:{0}
+[PLAYER2]
+library:swamp,plains,mountain,forest,island,bayou,plateau,white knight,black knight
+graveyard:grizzly bears,raging goblin
+[END]

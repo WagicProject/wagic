@@ -18,6 +18,7 @@ class MTGGamePhase: public ActionElement {
   virtual void Render();
   virtual void Update(float dt);
   bool CheckUserInput(u32 key);
+  virtual MTGGamePhase * clone() const;
   virtual ostream& toString(ostream& out) const;
 };
 

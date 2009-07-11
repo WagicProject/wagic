@@ -119,6 +119,11 @@ int TestSuiteAI::Act(float dt){
     MTGMomirRule * a = ((MTGMomirRule *)g->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR));
     a->reactToClick(suite->getCardByMTGId(cardIdHand), cardId);
     g->mLayers->actionLayer()->stuffHappened = 1;
+  }else if(action.find("p1")!=string::npos || action.find("p2")!=string::npos){
+    Player * p = g->players[1];
+    int start = action.find("p1");
+    if (start != string::npos) p = g->players[0];
+    g->cardClick(NULL, p);
   }else{
     int mtgid = suite->getMTGId(action);
     if (mtgid){

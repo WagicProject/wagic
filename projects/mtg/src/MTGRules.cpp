@@ -84,6 +84,12 @@ ostream& MTGPutInPlayRule::toString(ostream& out) const
   return MTGAbility::toString(out) << ")";
 }
 
+ MTGPutInPlayRule * MTGPutInPlayRule::clone() const{
+    MTGPutInPlayRule * a =  NEW MTGPutInPlayRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 
 MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){
   aType=MTGAbility::MTG_ATTACK_RULE;
@@ -126,6 +132,13 @@ ostream& MTGAttackRule::toString(ostream& out) const
   return MTGAbility::toString(out) << ")";
 }
 
+ MTGAttackRule * MTGAttackRule::clone() const{
+    MTGAttackRule * a =  NEW MTGAttackRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+
 MTGBlockRule::MTGBlockRule(int _id):MTGAbility(_id,NULL){
   aType=MTGAbility::MTG_BLOCK_RULE;
 }
@@ -167,7 +180,11 @@ ostream& MTGBlockRule::toString(ostream& out) const
   return MTGAbility::toString(out) << ")";
 }
 
-
+ MTGBlockRule * MTGBlockRule::clone() const{
+    MTGBlockRule * a =  NEW MTGBlockRule(*this);
+    a->isClone = 1;
+    return a;
+  }
 //
 // Attacker chooses blockers order
 //
@@ -295,6 +312,12 @@ ostream& MTGMomirRule::toString(ostream& out) const
 }
 
 
+ MTGMomirRule * MTGMomirRule::clone() const{
+    MTGMomirRule * a =  NEW MTGMomirRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 //HUDDisplay
 int HUDDisplay::testDestroy(){
   return 0;
@@ -384,3 +407,124 @@ HUDDisplay::~HUDDisplay(){
   }
   events.clear();
 }
+
+  HUDDisplay * HUDDisplay::clone() const{
+    HUDDisplay * a =  NEW HUDDisplay(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+
+  /* Persist */
+  MTGPersistRule::MTGPersistRule(int _id):MTGAbility(_id,NULL){};
+
+  int MTGPersistRule::receiveEvent(WEvent * event){
+    if (event->type == WEvent::CHANGE_ZONE){
+      WEventZoneChange * e = (WEventZoneChange *) event;
+      MTGCardInstance * card = e->card->previous;
+      if (card && card->basicAbilities[Constants::PERSIST] && !card->counters->hasCounter(-1,-1)){
+        int ok = 0;
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+          if (e->from == p->game->inPlay) ok = 1;
+        }
+        if (!ok) return 0;
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+          if (e->to == p->game->graveyard){
+            //p->game->putInZone(card,  p->game->graveyard, card->owner->game->hand);
+	          MTGCardInstance * copy = p->game->putInZone(e->card,  p->game->graveyard, e->card->owner->game->stack);
+            Spell * spell = NEW Spell(copy);
+	          spell->resolve();
+            spell->source->counters->addCounter(-1,-1);
+            game->mLayers->playLayer()->forceUpdateCards();
+            delete spell;
+            return 1;
+          }
+        }
+      }
+    }
+    return 0;
+  }
+
+  ostream& MTGPersistRule::toString(ostream& out) const
+  {
+    out << "MTGPersistRule ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
+  int MTGPersistRule::testDestroy(){return 0;}
+  MTGPersistRule * MTGPersistRule::clone() const{
+    MTGPersistRule * a =  NEW MTGPersistRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+
+  /* Legend Rule */
+  MTGLegendRule::MTGLegendRule(int _id):ListMaintainerAbility(_id){};
+
+  int MTGLegendRule::canBeInList(MTGCardInstance * card){
+    if (card->basicAbilities[Constants::LEGENDARY] && game->isInPlay(card)){
+      return 1;
+    }
+    return 0;
+  }
+
+  int MTGLegendRule::added(MTGCardInstance * card){
+    map<MTGCardInstance *,bool>::iterator it;
+    int destroy = 0;
+    for ( it=cards.begin() ; it != cards.end(); it++ ){
+      MTGCardInstance * comparison = (*it).first;
+      if (comparison!= card && !strcmp(comparison->getName(), card->getName())){
+	comparison->owner->game->putInGraveyard(comparison);
+	destroy = 1;
+      }
+    }
+    if (destroy){
+      card->owner->game->putInGraveyard(card);
+    }
+    return 1;
+  }
+
+  int MTGLegendRule::removed(MTGCardInstance * card){return 0;}
+
+  int MTGLegendRule::testDestroy(){return 0;}
+
+  ostream& MTGLegendRule::toString(ostream& out) const
+  {
+    return out << "MTGLegendRule :::";
+  }
+  MTGLegendRule * MTGLegendRule::clone() const{
+    MTGLegendRule * a =  NEW MTGLegendRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  /* Lifelink */
+  MTGLifelinkRule::MTGLifelinkRule(int _id):MTGAbility(_id,NULL){};
+
+  int  MTGLifelinkRule::receiveEvent(WEvent * event){
+    if (event->type == WEvent::DAMAGE){
+      WEventDamage * e = (WEventDamage *) event;
+      Damage * d = e->damage;
+      MTGCardInstance * card = d->source;
+      if (d->damage>0 && card && card->basicAbilities[Constants::LIFELINK]){
+        card->controller()->life+= d->damage;
+        return 1;
+      }
+    }
+    return 0;
+  }
+
+  int  MTGLifelinkRule::testDestroy(){return 0;}
+
+ ostream&  MTGLifelinkRule::toString(ostream& out) const
+  {
+    out << "MTGLifelinkRule ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
+  MTGLifelinkRule *  MTGLifelinkRule::clone() const{
+        MTGLifelinkRule * a =  NEW MTGLifelinkRule(*this);
+    a->isClone = 1;
+    return a;
+  }

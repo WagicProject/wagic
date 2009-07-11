@@ -16,6 +16,7 @@ class MTGPutInPlayRule:public MTGAbility{
   virtual ostream& toString(ostream& out) const;
   MTGPutInPlayRule(int _id);
   const char * getMenuText(){return "Put into play";}
+  virtual MTGPutInPlayRule * clone() const;
 };
 
 class MTGAttackRule:public MTGAbility{
@@ -27,6 +28,7 @@ class MTGAttackRule:public MTGAbility{
   MTGAttackRule(int _id);
   const char * getMenuText(){return "Attacker";}
   void Update(float dt);
+  virtual MTGAttackRule * clone() const;
 };
 
 class MTGBlockRule:public MTGAbility{
@@ -37,49 +39,18 @@ class MTGBlockRule:public MTGAbility{
   virtual ostream& toString(ostream& out) const;
   MTGBlockRule(int _id);
   const char * getMenuText(){return "Blocker";}
+  virtual MTGBlockRule * clone() const;
 };
 
 
 /* Persist Rule */
 class MTGPersistRule:public MTGAbility{
  public:
-  MTGPersistRule(int _id):MTGAbility(_id,NULL){};
-
-  int receiveEvent(WEvent * event){
-    if (event->type == WEvent::CHANGE_ZONE){
-      WEventZoneChange * e = (WEventZoneChange *) event;
-      MTGCardInstance * card = e->card->previous;
-      if (card && card->basicAbilities[Constants::PERSIST] && !card->counters->hasCounter(-1,-1)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-          if (e->from == p->game->inPlay) ok = 1;
-        }
-        if (!ok) return 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-          if (e->to == p->game->graveyard){
-            //p->game->putInZone(card,  p->game->graveyard, card->owner->game->hand);
-	          MTGCardInstance * copy = p->game->putInZone(e->card,  p->game->graveyard, e->card->owner->game->stack);
-            Spell * spell = NEW Spell(copy);
-	          spell->resolve();
-            spell->source->counters->addCounter(-1,-1);
-            game->mLayers->playLayer()->forceUpdateCards();
-            delete spell;
-            return 1;
-          }
-        }
-      }
-    }
-    return 0;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "MTGPersistRule ::: (";
-    return MTGAbility::toString(out) << ")";
-  }
-  int testDestroy(){return 0;}
+  MTGPersistRule(int _id);
+  int receiveEvent(WEvent * event);
+  virtual ostream& toString(ostream& out) const;
+  int testDestroy();
+  virtual MTGPersistRule * clone() const;
 };
 
 
@@ -91,39 +62,13 @@ class MTGPersistRule:public MTGAbility{
  */
 class MTGLegendRule:public ListMaintainerAbility{
  public:
- MTGLegendRule(int _id):ListMaintainerAbility(_id){};
-
-  int canBeInList(MTGCardInstance * card){
-    if (card->basicAbilities[Constants::LEGENDARY] && game->isInPlay(card)){
-      return 1;
-    }
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    map<MTGCardInstance *,bool>::iterator it;
-    int destroy = 0;
-    for ( it=cards.begin() ; it != cards.end(); it++ ){
-      MTGCardInstance * comparison = (*it).first;
-      if (comparison!= card && !strcmp(comparison->getName(), card->getName())){
-	comparison->owner->game->putInGraveyard(comparison);
-	destroy = 1;
-      }
-    }
-    if (destroy){
-      card->owner->game->putInGraveyard(card);
-    }
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){return 0;}
-
-  int testDestroy(){return 0;}
-
-  virtual ostream& toString(ostream& out) const
-  {
-    return out << "MTGLegendRule :::";
-  }
+  MTGLegendRule(int _id);
+  int canBeInList(MTGCardInstance * card);
+  int added(MTGCardInstance * card);
+  int removed(MTGCardInstance * card);
+  int testDestroy();
+  virtual ostream& toString(ostream& out) const;
+  virtual MTGLegendRule * clone() const;
 };
 
 
@@ -149,34 +94,22 @@ public:
   int reactToClick(MTGCardInstance * card, int id);
   const char * getMenuText(){return "Momir";}
   virtual ostream& toString(ostream& out) const;
+  virtual MTGMomirRule * clone() const;
 };
 
 
 /* LifeLink */
 class MTGLifelinkRule:public MTGAbility{
   public:
-  MTGLifelinkRule(int _id):MTGAbility(_id,NULL){};
+  MTGLifelinkRule(int _id);
 
-  int receiveEvent(WEvent * event){
-    if (event->type == WEvent::DAMAGE){
-      WEventDamage * e = (WEventDamage *) event;
-      Damage * d = e->damage;
-      MTGCardInstance * card = d->source;
-      if (d->damage>0 && card && card->basicAbilities[Constants::LIFELINK]){
-        card->controller()->life+= d->damage;
-        return 1;
-      }
-    }
-    return 0;
-  }
+  int receiveEvent(WEvent * event);
 
-  int testDestroy(){return 0;}
+  int testDestroy();
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "MTGLifelinkRule ::: (";
-    return MTGAbility::toString(out) << ")";
-  }
+  virtual ostream& toString(ostream& out) const;
+
+  virtual MTGLifelinkRule * clone() const;
 };
 
 
@@ -205,6 +138,7 @@ public:
   void Render();
   HUDDisplay(int _id);
   ~HUDDisplay();
+  virtual HUDDisplay * clone() const;
 };
 
 

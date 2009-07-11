@@ -1,0 +1,22 @@
+#Testing Spitting Earth on Dragon engine
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Spitting Earth
+inplay:129652,129651,129650
+[PLAYER2]
+inplay:Dragon Engine
+[DO]
+129652
+129651
+Spitting Earth
+Dragon Engine
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:129652,129651,129650
+graveyard:Spitting Earth
+manapool:{0}
+[PLAYER2]
+graveyard:Dragon Engine
+[END]

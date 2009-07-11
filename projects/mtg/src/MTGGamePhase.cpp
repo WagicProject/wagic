@@ -54,6 +54,12 @@ bool MTGGamePhase::CheckUserInput(u32 key){
   return false;
 }
 
+  MTGGamePhase * MTGGamePhase::clone() const{
+    MTGGamePhase * a =  NEW MTGGamePhase(*this);
+    a->isClone = 1;
+    return a;
+  }
+
 ostream& MTGGamePhase::toString(ostream& out) const
 {
   return out << "MTGGamePhase ::: animation " << animation << " ; currentState : " << currentState;

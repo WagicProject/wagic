@@ -1,0 +1,21 @@
+#Testing Ancestors chosen
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Ancestor's chosen
+graveyard:swamp,grizzly bears,dragon engine
+manapool:{5}{W}{W}
+[PLAYER2]
+graveyard:black knight
+[DO]
+Ancestor's chosen
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Ancestor's chosen
+life:23
+graveyard:swamp,grizzly bears,dragon engine
+manapool:{0}
+[PLAYER2]
+graveyard:black knight
+[END]

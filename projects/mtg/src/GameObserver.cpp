@@ -152,7 +152,6 @@ int GameObserver::cancelCurrentAction(){
 }
 
 void GameObserver::userRequestNextGamePhase(){
-  OutputDebugString("requesting Next Phase\n");
   if (mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)) return;
   if (getCurrentTargetChooser()) return;
   if (mLayers->combatLayer()->isDisplayed()) return;
@@ -164,7 +163,6 @@ void GameObserver::userRequestNextGamePhase(){
       return;
     }
   }
-   OutputDebugString("Next Phase Accepted\n");
   if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS || 
      opponent()->isAI() || 
      GameOptions::GetInstance()->values[GameOptions::phaseInterrupts[currentGamePhase]].getIntValue()){
@@ -241,11 +239,14 @@ void GameObserver::addObserver(MTGAbility * observer){
 
 void GameObserver::removeObserver(ActionElement * observer){
   if (observer){
-    observer->destroy();
+    if (mLayers->actionLayer()->getIndexOf(observer) != -1){
+      observer->destroy();
+      mLayers->actionLayer()->Remove(observer);
+    }
   }else{
     //TODO log error
   }
-  mLayers->actionLayer()->Remove(observer);
+  
 }
 
 GameObserver::~GameObserver(){

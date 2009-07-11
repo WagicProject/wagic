@@ -13,6 +13,8 @@ generic/legendary.txt
 generic/lifelink.txt
 generic/persist.txt
 generic/persist2.txt
+generic/rampage.txt
+generic/regenerate.txt
 generic/sacrifice.txt
 generic/wither.txt
 ########################
@@ -22,6 +24,7 @@ afflict.txt
 akron_legionnaire.txt
 Amugaba.txt
 anarchy.txt
+ancestors_chosen.txt
 animate_dead.txt
 animate_dead2.txt
 animate_dead3.txt
@@ -57,6 +60,7 @@ counterspell3.txt
 counterspell4.txt
 creature_bond.txt
 dauthi_embrace.txt
+death_ward.txt
 deja_vu.txt
 dingus_egg.txt
 doomed_necromancer.txt
@@ -76,12 +80,14 @@ fountain_of_youth.txt
 ghost_warden.txt
 giant_growth.txt
 giant_growth2.txt
+glimpse_the_unthinkable.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
 goblin_king.txt
 gravedigger.txt
 #hammerfist_giant.txt
 hannas_custody.txt
+howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
 icatian_priest.txt
 keldon_warlord.txt
@@ -95,6 +101,8 @@ living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
 master_of_etherium.txt
+millstone.txt
+mind_rot.txt
 nantuko_husk.txt
 Nevinyrrals_Disk.txt
 Nevinyrrals_Disk2.txt
@@ -118,8 +126,10 @@ siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt
 sphinx_summoner.txt
+spitting_earth.txt
 spark_elemental.txt
 spirit_link.txt
+spoils_of_evil.txt
 stasis.txt
 steelclad_serpent1.txt
 steelclad_serpent2.txt

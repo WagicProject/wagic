@@ -1,0 +1,18 @@
+#Testing Howl of the night pack
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:153996
+inplay:1386,1387,1388
+manapool:{6}{G}
+[PLAYER2]
+[DO]
+153996
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1386,1387,1388,*,*,*
+graveyard:153996
+manapool:{0}
+[PLAYER2]
+[END]

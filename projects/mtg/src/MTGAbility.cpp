@@ -15,43 +15,27 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
   GameObserver * game = GameObserver::GetInstance();
   for (int i = 0; i < 2 ; i++){
     if (player && player!= game->players[i]) continue;
-	MTGGameZone * zones[] = {game->players[i]->game->inPlay,game->players[i]->game->graveyard,game->players[i]->game->hand};
-			for (int k = 0; k < 3; k++){
-				for (int j = zones[k]->nb_cards-1; j >=0 ; j--){
-				MTGCardInstance * current =  zones[k]->cards[j];
-				if (tc->canTarget(current)){
-					switch (option){
-	case COUNT_POWER:
-	  result+= current->power;
-	  break;
-	default:
-	  result++;
-	  break;
-					}
-				}
-				}
-			}
+        MTGGameZone * zones[] = {game->players[i]->game->inPlay,game->players[i]->game->graveyard,game->players[i]->game->hand};
+                        for (int k = 0; k < 3; k++){
+                                for (int j = zones[k]->nb_cards-1; j >=0 ; j--){
+                                MTGCardInstance * current =  zones[k]->cards[j];
+                                if (tc->canTarget(current)){
+                                        switch (option){
+        case COUNT_POWER:
+          result+= current->power;
+          break;
+        default:
+          result++;
+          break;
+                                        }
+                                }
+                                }
+                        }
   }
   return result;
 }
 
-int AbilityFactory::destroyAllInPlay(TargetChooser * tc, int bury){
-  MTGCardInstance * targetter = tc->targetter;
-  tc->targetter = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
-  GameObserver * game = GameObserver::GetInstance();
-  for (int i = 0; i < 2 ; i++){
-    Player * p = game->players[i]; 
-    for (int j = p->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  p->game->inPlay->cards[j];
-      if (tc->canTarget(current)){
-        if (bury) current->bury();
-        else current->destroy();      
-      }
-    }
-  }
-  tc->targetter = targetter; //restore targetter
-  return 1;
-}
+
 
 int AbilityFactory::CantBlock(TargetChooser * tc){
   GameObserver * g = GameObserver::GetInstance();
@@ -66,106 +50,18 @@ int AbilityFactory::CantBlock(TargetChooser * tc){
   return 1;
 }
 
-int AbilityFactory::damageAll(TargetChooser * tc, int damage){
-  MTGCardInstance * targetter = tc->targetter;
-  tc->targetter = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
-  GameObserver * g = GameObserver::GetInstance();
-  for (int i = 0; i < 2 ; i++){
-    if (tc->canTarget(g->players[i]))  g->mLayers->stackLayer()->addDamage(tc->source,g->players[i], damage);
-    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
-      if (tc->canTarget(current)){
-        g->mLayers->stackLayer()->addDamage(tc->source,current, damage);
-      }
-    }
-  }
-  tc->targetter = targetter; //restore source
-  return 1;
-}
-
-int AbilityFactory::moveAll(TargetChooser * tc, string destinationZone){
-  MTGCardInstance * targetter = tc->targetter;
-  tc->targetter = NULL; // This is to prevent protection from... as objects that destroy all do not actually target
-  GameObserver * g = GameObserver::GetInstance();
-  for (int i = 0; i < 2 ; i++){
-	  MTGGameZone * zones[] = {g->players[i]->game->inPlay,g->players[i]->game->graveyard,g->players[i]->game->hand};
-			for (int k = 0; k < 3; k++){
-				for (int j = zones[k]->nb_cards-1; j >=0 ; j--){
-					MTGCardInstance * current =  zones[k]->cards[j];
-					if (tc->canTarget(current)){        
-						AZoneMover::moveTarget(current,destinationZone , tc->source);
-					}
-				}
-			}
-  }
-  tc->targetter = targetter; //restore source
-  return 1;
-}
-
-
-
-
-int AbilityFactory::TapAll(TargetChooser * tc){
-  MTGCardInstance * targetter = tc->targetter;
-  tc->targetter = NULL; // This is to prevent protection from...
-  GameObserver * g = GameObserver::GetInstance();
-  for (int i = 0; i < 2 ; i++){
-    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
-      if (tc->canTarget(current)){
-	  current->tap();
-	  }
-	}
-  }
-  tc->targetter = targetter; //restore source
-  return 1;
-}
-
-int AbilityFactory::UntapAll(TargetChooser * tc){
-  MTGCardInstance * targetter = tc->targetter;
-  tc->targetter = NULL; // This is to prevent protection from...
-  GameObserver * g = GameObserver::GetInstance();
-  for (int i = 0; i < 2 ; i++){
-    for (int j = g->players[i]->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  g->players[i]->game->inPlay->cards[j];
-      if (tc->canTarget(current)){
-	  current->untap();
-	  }
-	}
-  }
-  tc->targetter = targetter; //restore source
-  return 1;
-}
-
-int AbilityFactory::putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p){
-  MTGCardInstance * copy = p->game->putInZone(card,  zone, p->game->stack);
-  Spell * spell = NEW Spell(copy);
-  spell->resolve();
-  delete spell;
-  return 1;
-}
-
-Damageable * AbilityFactory::parseCollateralTarget(MTGCardInstance * card, string s){
-  size_t found = s.find("controller");
-  if (found != string::npos) return card->controller();
-  return NULL;
-}
 
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
     size_t found = s.find("/");
     if (found != string::npos){
-      int search_from = found - 4;
-      if (search_from < 0) search_from = 0;
-      size_t start = s.find(':', search_from);
-      if (start == string::npos) start = s.find(" ", search_from);
+      size_t end = s.find(" ", found);
+      if (end == string::npos) end = s.size();
+      size_t start = s.find_last_of(" ",found);
       if (start == string::npos) start = -1;
+
       *power = atoi(s.substr(start+1,s.size()-found).c_str());
-      size_t end = s.find(" ",start);
-      if (end != string::npos){
-	      *toughness = atoi(s.substr(found+1,end-found-1).c_str());
-      }else{
-	      *toughness = atoi(s.substr(found+1).c_str());
-      }
+      *toughness = atoi(s.substr(found+1,end-found-1).c_str());
+
       return 1;
     }
     return 0;
@@ -203,6 +99,626 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
 
 
 
+//Parses a string and returns the corresponding MTGAbility object
+// Returns NULL if parsing failed
+MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated){
+  size_t found;
+  
+  //TODO This block redundant with calling function
+  if (!card && spell) card = spell->source;
+  if (!card) return NULL;
+  MTGCardInstance * target = card->target;
+  if (!target) target = card; 
+
+  int doTap = 0; //Tap in the cost ?
+  if (s.find("{t}") != string::npos) doTap = 1;
+
+  unsigned int delimiter = s.find("}:");
+    
+  if (delimiter!= string::npos && s[0]=='{'){
+    ManaCost * cost  = ManaCost::parseManaCost(s.substr(0,delimiter+1),NULL,card);
+    if (doTap || (cost && !cost->isNull())){
+      string s1 = s.substr(delimiter+2);
+      
+      MTGAbility * a = parseMagicLine(s1, id, spell, card, 1);
+      if (!a){
+        OutputDebugString("Error parsing:");
+        OutputDebugString(s.c_str());
+        OutputDebugString("\n");
+        return NULL;
+      }
+
+      //A stupid Special case for ManaProducers because they don't use the stack :(
+      AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
+      if (amp){
+        amp->cost = cost;
+        amp->oneShot = 0;
+        amp->tap = doTap;
+        return amp;
+      }
+
+      int limit = 0;
+      unsigned int limit_str = s.find("limit:");
+      if (limit_str != string::npos){
+        limit = atoi(s.substr(limit_str+6).c_str());
+      }
+
+      TargetChooser * tc = NULL;
+      //Target Abilities
+      found = s.find("target(");
+      if (found != string::npos){
+        int end = s.find(")", found);
+        string starget = s.substr(found + 7,end - found - 7);
+        TargetChooserFactory tcf;
+        tc = tcf.createTargetChooser(starget, card);
+      }
+
+      if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit);
+      return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit);
+    }
+    SAFE_DELETE(cost);
+  }
+
+
+
+  //Multiple abilities for ONE cost
+  found = s.find("&&");
+  if (found != string::npos){
+    string s1 = s.substr(0,found);
+    string s2 = s.substr(found+2);
+    MultiAbility * multi = NEW MultiAbility(id, card,NULL,NULL);
+    MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
+    MTGAbility * a2 = parseMagicLine(s2,id,spell, card);
+    multi->Add(a1);
+    multi->Add(a2);
+    return multi;
+  }
+
+  //When...comes into play, you may...
+  found = s.find("may ");
+  if (found != string::npos){
+    string s1 = s.substr(found+4);
+    MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
+    if (!a1) return NULL;
+    TargetChooser * tc = NULL;
+    //Target Abilities
+    found = s.find("target(");
+    if (found != string::npos){
+      int end = s.find(")", found);
+      string starget = s.substr(found + 7,end - found - 7);
+      TargetChooserFactory tcf;
+      tc = tcf.createTargetChooser(starget, card);
+    }
+    if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
+    return NEW MayAbility(id,a1,card);
+  }
+
+  Trigger * trigger = NULL;
+  trigger = parseTrigger(s);
+  //Dirty way to remove the trigger text (could get in the way)
+  if (trigger){
+    found = s.find(":");
+    s = s.substr(found+1);
+  }
+ 
+
+  //Lord, foreach, aslongas
+  string lords[] = {"lord(","foreach(", "aslongas(", "all("};
+  for (int i = 0; i < 4; ++i){
+    found = s.find(lords[i]);
+    if (found != string::npos){
+      size_t header = lords[i].size();
+      size_t end = s.find(")", found+header);
+      string s1;
+      if (found == 0 || end != s.size()-1){
+        s1 = s.substr(end+1);
+      }else{
+        s1 = s.substr(0, found);
+      }
+      if (end != string::npos){
+        int lordIncludeSelf = 1;
+        size_t other = s.find("other", end);
+        if ( other != string::npos){
+          lordIncludeSelf = 0;
+          s.replace(other, 5,"");
+        }
+        string lordTargetsString = s.substr(found+header,end-found-header);
+        TargetChooserFactory tcf;
+        TargetChooser * lordTargets = tcf.createTargetChooser(lordTargetsString, card);
+        
+        
+        MTGAbility * a = parseMagicLine(s1,id,spell, card);
+        if (!a){
+          SAFE_DELETE(lordTargets);
+          return NULL;
+        }
+        MTGAbility * result = NULL;
+        int oneShot = 0;
+        if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
+        if (i == 3) oneShot = 1;
+        switch(i){
+          case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
+          case 1: result =  NEW AForeach(id, card, target,lordTargets, lordIncludeSelf, a); break;
+          case 2: result =  NEW AAsLongAs(id, card, lordTargets, lordIncludeSelf, a); break;
+          case 3: result =  NEW ALord(id, card, lordTargets,  lordIncludeSelf, a); break;
+          default: result =  NULL;
+        }
+        if (result) result->oneShot = oneShot;
+        return result;
+      }
+      return NULL;
+    }
+  }
+
+  
+  //Fizzle (counterspell...)
+  found = s.find("fizzle");
+  if (found != string::npos){
+    Spell * starget = NULL;
+    if (spell) starget = spell->getNextSpellTarget();
+    MTGAbility * a = NEW AAFizzler(id,card,starget);
+    a->oneShot = 1;
+    return a;
+  }
+           
+
+  //Untapper (Ley Druid...)
+  found = s.find("untap");
+  if (found != string::npos){
+    MTGAbility * a = NEW AAUntapper(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
+
+  //Regeneration
+  found = s.find("regenerate");
+  if (found != string::npos){
+    MTGAbility * a =  NEW AStandardRegenerate(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
+
+  //Token creator. Name, type, p/t, abilities
+  found = s.find("token(");
+  if (found != string::npos){
+    int end = s.find(",", found);
+    string sname = s.substr(found + 6,end - found - 6);
+    int previous = end+1;
+    end = s.find(",",previous);
+    string stypes = s.substr(previous,end - previous);
+    previous = end+1;
+    end = s.find(",",previous);
+    string spt = s.substr(previous,end - previous);
+    int power, toughness;
+    parsePowerToughness(spt,&power, &toughness);
+    string sabilities = s.substr(end+1);
+    int multiplier = 1;
+    found = s.find("*");
+    if (found != string::npos)multiplier = atoi(s.substr(found+1).c_str());
+    ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power,toughness,sabilities,0, multiplier);
+    tok->oneShot = 1;
+    return tok;
+  }
+
+
+  //MoveTo Move a card from a zone to another
+  found = s.find("moveto(");
+  if (found != string::npos){
+    int end = s.find(")",found+1);
+    string szone = s.substr(found + 7,end - found - 7);
+    MTGAbility * a = NEW AAMover(id,card,target,szone);
+    a->oneShot = 1;
+    return a;
+
+  }
+
+  //Copy a target
+  found = s.find("copy ");
+  if (found != string::npos){
+    MTGAbility * a = NEW AACopier(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
+
+  //Bury, destroy
+  string destroys[] = {"bury","destroy"};
+  int destroyTypes[]= {1, 0};
+  for (int i = 0; i < 2; ++i){
+    found = s.find(destroys[i]);
+    if (found != string::npos){
+      int bury = destroyTypes[i];
+      if (trigger){
+        if (bury){
+          BuryEvent * action = NEW BuryEvent();
+          return NEW GenericTriggeredAbility(id, card,trigger,action);
+        }
+        return NULL;
+      }
+      MTGAbility * a = NEW AADestroyer(id,card,target,bury);
+      a->oneShot = 1;
+      return a;
+    }
+  }
+
+  //Damage
+  found = s.find("damage");
+  if (found != string::npos){
+    unsigned int start = s.find(":",found);
+    if (start == string::npos) start = s.find(" ",found);
+    unsigned int end = s.find(" ",start);
+    int damage;
+    if (end != string::npos){
+      damage = atoi(s.substr(start+1,end-start-1).c_str());
+    }else{
+      damage = atoi(s.substr(start+1).c_str());
+    }
+
+    Damageable * d = NULL;
+    if (spell) d = spell->getNextDamageableTarget();
+    if (s.find("controller") != string::npos) d = card->controller();
+    MTGAbility * a =  NEW AADamager(id,card,d, damage);
+    a->oneShot = 1;
+    return a;
+  }
+
+
+  //gain/lose life
+  found = s.find("life:");
+  if (found != string::npos){
+    unsigned int start = found+4;
+    unsigned int end = s.find(" ",start);
+    int life;
+    if (end != string::npos){
+      life = atoi(s.substr(start+1,end-start-1).c_str());
+    }else{
+      life = atoi(s.substr(start+1).c_str());
+    }
+
+    MTGAbility * a =  NEW AALifer(id,card,card,life);
+    a->oneShot = 1;
+    return a;
+  }
+
+  //Draw
+  found = s.find("draw:");
+  if (found != string::npos){
+    unsigned int start = s.find(":",found);
+    unsigned int end = s.find(" ",start);
+    int nbcards;
+    if (end != string::npos){
+      nbcards = atoi(s.substr(start+1,end-start-1).c_str());
+    }else{
+      nbcards = atoi(s.substr(start+1).c_str());
+    }
+
+    if (trigger){
+      DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
+      return NEW GenericTriggeredAbility(id, card,trigger,action);
+	  }
+
+    MTGAbility * a = NEW AADrawer(id,card,NULL,nbcards);
+    a->oneShot = 1;
+    return a;
+  }
+
+  //Deplete
+  found = s.find("deplete:");
+  if (found != string::npos){
+    unsigned int start = s.find(":",found);
+    unsigned int end = s.find(" ",start);
+    int nbcards;
+    if (end != string::npos){
+      nbcards = atoi(s.substr(start+1,end-start-1).c_str());
+    }else{
+      nbcards = atoi(s.substr(start+1).c_str());
+    }
+    Player * player = NULL;
+    if (spell) player = spell->getNextPlayerTarget();
+    MTGAbility * a = NEW AADepleter(id,card,player,nbcards);
+    a->oneShot = 1;
+    return a;
+  }
+
+
+  /*
+  //CannotBeBlockedBy
+  found = s.find("cantbeblockedby(");
+  if (found != string::npos){
+    int end = s.find(")",found);
+    string starget = s.substr(16, end - 16);
+    TargetChooserFactory tcf;
+    tc = tcf.createTargetChooser(starget,card);
+    return NULL; //NEW ACantBlock(tc); //hu ? CantBlock(tc);
+  }
+	   
+*/
+  //Discard
+  found = s.find("discard:");
+  if (found != string::npos){
+    unsigned int start = s.find(":",found);
+    unsigned int end = s.find(" ",start);
+    int nbcards;
+    if (end != string::npos){
+      nbcards = atoi(s.substr(start+1,end-start-1).c_str());
+    }else{
+      nbcards = atoi(s.substr(start+1).c_str());
+    }
+
+    Player * player = NULL;
+    if (spell) player = spell->getNextPlayerTarget();
+    if (!player) player = GameObserver::GetInstance()->currentlyActing();
+    MTGAbility * a = NEW AARandomDiscarder (id, card, player,nbcards);
+	  a->oneShot = 1;
+    return a;
+  }
+
+
+
+  //rampage
+  found = s.find("rampage(");
+  if (found != string::npos){
+    int end = s.find(",", found);
+    string spt = s.substr(8,end - 1);
+    int power, toughness;
+    if (parsePowerToughness(spt,&power, &toughness)){
+      int MaxOpponent = atoi(s.substr(end+1,end+2).c_str());
+	    return NEW  ARampageAbility(id,card,power,toughness,MaxOpponent);
+    }
+    return NULL;
+  }
+/*
+
+  //counter
+  found = s.find("counter(");
+  if (found != string::npos){
+    int end = s.find(")", found);
+    string spt = s.substr(9,end - 1);
+    int power, toughness;
+    if ( parsePowerToughness(spt,&power, &toughness)){
+      if(tc){
+	      //TODO
+      }else{
+	      return NEW ACounters(id,card,target,power,toughness);
+      }
+    }
+    return NULL;
+  }
+
+*/
+
+ 
+  //Change Power/Toughness
+  int power, toughness;
+  if ( parsePowerToughness(s,&power, &toughness)){
+    if (!activated){
+      if(card->hasType("instant") || card->hasType("sorcery")){
+        return NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness);
+      }
+      return NEW APowerToughnessModifier(id, card, target,power,toughness);
+    }
+    return NEW APowerToughnessModifierUntilEndOfTurn(id,card,target,power,toughness);
+  }
+
+
+
+  //Mana Producer
+  found = s.find("add");
+  if (found != string::npos){
+    ManaCost * output = ManaCost::parseManaCost(s.substr(found));
+    MTGAbility * a =  NEW AManaProducer(id, target, output);
+    a->oneShot = 1;
+    return a;
+  }
+
+
+  //Gain/loose Ability
+  for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+    found = s.find(Constants::MTGBasicAbilities[j]);
+    if (found!= string::npos){
+      int modifier = 1;
+      if (found > 0 && s[found-1] == '-') modifier = 0;
+      if (!activated){
+        if(card->hasType("instant") || card->hasType("sorcery") ) return NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier);   
+        return NEW ABasicAbilityModifier(id, card,target, j,modifier);
+      }
+      return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);
+    }
+  }
+
+  //Tapper (icy manipulator)
+  found = s.find("tap");
+  if (found != string::npos){
+    MTGAbility * a = NEW AATapper(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
+  return NULL;
+
+}
+
+//Tells the AI if the ability should target itself or an ennemy
+int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
+  if (!a) return BAKA_EFFECT_DONTKNOW;
+
+  GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
+  if (gta) {
+    if (mode == MODE_PUTINTOPLAY) return BAKA_EFFECT_GOOD;
+    return abilityEfficiency(gta->ability,p, mode);
+  }
+  
+  GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
+  if (gaa) {
+    if (mode == MODE_PUTINTOPLAY) return BAKA_EFFECT_GOOD;
+    return abilityEfficiency(gaa->ability,p, mode);
+  }
+  
+  MultiAbility * mua = dynamic_cast<MultiAbility*>(a);
+  if (mua) return abilityEfficiency(mua->abilities[0],p, mode);
+
+  MayAbility * maya = dynamic_cast<MayAbility*>(a);
+  if (maya) return abilityEfficiency(maya->ability,p, mode);
+
+  GameObserver * g = GameObserver::GetInstance();
+
+  ALord * alord = dynamic_cast<ALord *>(a);
+  if (alord) {
+    int myCards = countCards(alord->tc, p);
+    int theirCards = countCards(alord->tc, p->opponent());
+    int efficiency = abilityEfficiency(alord->ability,p, mode);
+    if (myCards > theirCards) return efficiency;
+    return -efficiency;
+  }
+
+  AAsLongAs * ala = dynamic_cast<AAsLongAs *>(a);
+  if (ala) {
+    return abilityEfficiency(ala->ability,p, mode);
+  }
+
+  AForeach * af = dynamic_cast<AForeach *>(a);
+  if (af) {
+    return abilityEfficiency(af->ability,p, mode);
+  }
+
+  AAFizzler  * aaf = dynamic_cast<AAFizzler *>(a);
+  if (aaf){
+    return BAKA_EFFECT_BAD;
+  }
+
+  AAUntapper * aau = dynamic_cast<AAUntapper *>(a);
+  if (aau){
+    return BAKA_EFFECT_GOOD;
+  }
+
+
+  AATapper * aat = dynamic_cast<AATapper *>(a);
+  if (aat){
+    return BAKA_EFFECT_BAD;
+  }
+
+
+  ATokenCreator * aatc = dynamic_cast<ATokenCreator *>(a);
+  if (aatc){
+    return BAKA_EFFECT_GOOD;
+  }
+
+
+  AAMover * aam = dynamic_cast<AAMover *>(a);
+  if (aam){
+    //TODO
+    return BAKA_EFFECT_BAD;
+  }
+
+
+  AACopier * aac = dynamic_cast<AACopier  *>(a);
+  if (aac){
+    return BAKA_EFFECT_GOOD;
+  }
+
+
+  AADestroyer * aad = dynamic_cast<AADestroyer *>(a);
+  if (aad){
+    return BAKA_EFFECT_BAD;
+  }
+
+  AStandardRegenerate * asr = dynamic_cast<AStandardRegenerate *>(a);
+  if (asr){
+    return BAKA_EFFECT_GOOD;
+  }
+
+  AADamager * aada = dynamic_cast<AADamager *>(a);
+  if (aada){
+    return BAKA_EFFECT_BAD;
+  }
+
+
+  AALifer * aal = dynamic_cast<AALifer *>(a);
+  if (aal){
+    if (aal->life > 0) return BAKA_EFFECT_GOOD;
+    return BAKA_EFFECT_BAD;
+  }
+
+
+  AADepleter * aade = dynamic_cast<AADepleter *>(a);
+  if (aade){
+    return BAKA_EFFECT_BAD;
+  }
+
+
+  AADrawer * aadr = dynamic_cast<AADrawer *>(a);
+  if (aadr){
+    return BAKA_EFFECT_GOOD;
+  }
+
+  AARandomDiscarder * aard = dynamic_cast<AARandomDiscarder *>(a);
+  if (aard){
+    return BAKA_EFFECT_BAD;
+  }
+
+  ARampageAbility * ara = dynamic_cast<ARampageAbility *>(a);
+  if (ara){
+    return BAKA_EFFECT_GOOD;
+  }
+
+  AInstantPowerToughnessModifierUntilEOT * aiptm = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a);
+  if (aiptm){
+    if (aiptm->power>=0 && aiptm->toughness>=0) return BAKA_EFFECT_GOOD;
+    return BAKA_EFFECT_BAD;
+  }
+
+  APowerToughnessModifier * aptm = dynamic_cast<APowerToughnessModifier *>(a);
+  if (aptm){
+    if (aptm->power>=0 && aptm->toughness>=0) return BAKA_EFFECT_GOOD;
+    return BAKA_EFFECT_BAD;
+  }
+
+  APowerToughnessModifierUntilEndOfTurn * aptmu = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a);
+  if (aptmu){
+    if (aptmu->power>=0 && aptmu->toughness>=0) return BAKA_EFFECT_GOOD;
+    return BAKA_EFFECT_BAD;
+  }
+
+  map<int,bool> badAbilities;
+  badAbilities[Constants::CANTATTACK] = true;
+  badAbilities[Constants::CANTBLOCK] = true;
+  badAbilities[Constants::CLOUD] = true;
+  badAbilities[Constants::DEFENDER] = true;
+  badAbilities[Constants::DOESNOTUNTAP] = true;
+  badAbilities[Constants::MUSTATTACK] = true;
+
+  AInstantBasicAbilityModifierUntilEOT * aibam = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a);
+  if (aibam){
+    int result = BAKA_EFFECT_GOOD;
+    if (badAbilities[aibam->ability]) result = BAKA_EFFECT_BAD;
+    if (aibam->value <= 0) result = -result;
+    return result;
+  }
+
+  ABasicAbilityModifier * abam = dynamic_cast<ABasicAbilityModifier *>(a);
+  if (abam){
+    int result = BAKA_EFFECT_GOOD;
+    if (badAbilities[abam->ability]) result = BAKA_EFFECT_BAD;
+    if (abam->modifier <= 0) result = -result;
+    return result;
+  }
+
+  ABasicAbilityAuraModifierUntilEOT * abamu = dynamic_cast<ABasicAbilityAuraModifierUntilEOT *>(a);
+  if (abamu){
+    int result = BAKA_EFFECT_GOOD;
+    if (badAbilities[abamu->ability]) result = BAKA_EFFECT_BAD;
+    if (abamu->value <= 0) result = -result;
+    return result;
+  }
+
+  AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
+  if (amp) return BAKA_EFFECT_GOOD;
+
+  return BAKA_EFFECT_DONTKNOW;
+}
+
 //Some basic functionalities that can be added automatically in the text file
 /*
  * Several objects are computed from the text string, and have a direct influence on what action we should take
@@ -215,11 +731,10 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
 int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
   int dryMode = 0;
   if (!spell) dryMode = 1;
-  int dryModeResultSet = 0;
-  int dryModeResult = 0;
 
   GameObserver * game = GameObserver::GetInstance();
-  if (!card) card = spell->source;
+  if (!card && spell) card = spell->source;
+  if (!card) return 0;
   MTGCardInstance * target = card->target;
   if (!target) target = card;
   string magicText = card->magicText;
@@ -233,7 +748,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
   unsigned int found;
   int result = id;
 
-
+  
   while (magicText.size()){
     found = magicText.find("\n");
     if (found != string::npos){
@@ -243,857 +758,29 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       line = magicText;
       magicText = "";
     }
-#if defined (WIN32) || defined (LINUX)
-    char buf[4096];
-    sprintf(buf, "AUTO ACTION: %s\n", line.c_str());
-    OutputDebugString(buf);
-#endif
 
-
-    MultiAbility * multi = NULL;
-    unsigned int delimiter = line.find("}:");
-    ManaCost * cost = NULL;
-    if (delimiter!= string::npos){
-      cost = ManaCost::parseManaCost(line.substr(0,delimiter+1),NULL,card);
-    }
-    OutputDebugString("Parsing cost\n");
-    if (cost && cost->isNull()){
-      OutputDebugString("Cost is null\n");
-      SAFE_DELETE(cost);
-    }
-
-    int may = 0;
-    if (line.find("may ") != string::npos) may = 1;
-
-    int doTap = 0;
-    //Tap in the cost ?
-    if (line.find("{t}") != string::npos) doTap = 1;
-
-    TargetChooser * tc = NULL;
-    TargetChooser * lordTargets = NULL;
-    Trigger * trigger = NULL;
-    while (line.size()){
-      string s;
-      found = line.find("&&");
-      if (found != string::npos){
-        s = line.substr(0,found);
-        line = line.substr(found+2);
-        if (!multi){
-          OutputDebugString("Multi initializing\n");
-          if (!dryMode) {
-            multi = NEW MultiAbility(id, card, cost,doTap);
-            game->addObserver(multi);
-          }
-          OutputDebugString("Multi initialized\n");
-        }
-      }else{
-        s = line;
-        line = "";
-      }
-
-      tc = NULL;
-      lordTargets = NULL;
-      int lordIncludeSelf = 1;
-      int lordType = 0;
-      string lordTargetsString;
-
-      trigger = parseTrigger(s);
-      //Dirty way to remove the trigger text (could get in the way)
-      if (trigger){
-        found = s.find(":");
-        s = s.substr(found+1);
-      }
-
-      int all = 0;
-      //Target Abilities
-      found = s.find("target(");
-      if (found != string::npos){
-        int end = s.find(")", found);
-        string starget = s.substr(found + 7,end - found - 7);
-        TargetChooserFactory tcf;
-        tc = tcf.createTargetChooser(starget, card);
-
-      }else{
-        found = s.find("all(");
-        if (found != string::npos){
-          all = 1;
-          int end = s.find(")", found);
-          string starget = s.substr(found + 4,end - found -4);
-          TargetChooserFactory tcf;
-          tc = tcf.createTargetChooser(starget, card);
-        }
-      }
-
-
-      //Lord
-      found = s.find("lord(");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-        unsigned int end = s.find(")", found+5);
-        if (end != string::npos){
-	        lordTargetsString = s.substr(found+5,end-found-5).c_str();
-          lordType = PARSER_LORD;
-        }
-      }
-      found = s.find("foreach(");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-        unsigned int end = s.find(")", found+8);
-        if (end != string::npos){
-	        lordTargetsString = s.substr(found+8,end-found-8).c_str();
-          lordType = PARSER_FOREACH;
-        }
-      }
-      found = s.find("aslongas(");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-        unsigned int end = s.find(")", found+9);
-        if (end != string::npos){
-	        lordTargetsString = s.substr(found+9,end-found-9).c_str();
-          lordType = PARSER_ASLONGAS;
-        }
-      }
-      if (lordTargetsString.size()){
-          TargetChooserFactory tcf;
-          lordTargets = tcf.createTargetChooser(lordTargetsString, card);
-          if (s.find("other") != string::npos) lordIncludeSelf = 0;
-      }
-
-       
-      //Fizzle (counterspell...)
-      found = s.find("fizzle");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_BAD;
-          dryModeResultSet = 1;
-          break;
-        }
-        if (tc){
-	        //TODO
-        }else{
-	        Spell * starget = spell->getNextSpellTarget();
-          if (starget) game->mLayers->stackLayer()->Fizzle(starget);
-        }
-        result++;
-        continue;
-      }
-           
-
-      //Untapper (Ley Druid...)
-      found = s.find("untap");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-        if (tc){
-			if (all){
-              UntapAll(tc);
-              delete tc;
-			}else{
-				game->addObserver(NEW AUntaper(id, card, cost, tc));
-			}
-		}else{
-			if (cost){
-				game->addObserver(NEW AUntapManaBlocker(id, card, cost));
-			}else{
-				target->untap();
-			}
-		}
-        result++;
-        continue;
-      }
-
-
-      //Regeneration
-      found = s.find("}:regenerate");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-
-        if (lordTargets){
-	        game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,-1,cost));
-        }else{
-	        if (tc){
-	          //TODO
-	        }else{
-	          game->addObserver(NEW AStandardRegenerate(id, card, target, cost));
-	          //TODO death ward !
-	        }
-        }
-        result++;
-        continue;
-      }
-
-
-      //Token creator. Name, type, p/t, abilities
-      found = s.find("token(");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-        int end = s.find(",", found);
-        string sname = s.substr(found + 6,end - found - 6);
-        int previous = end+1;
-        end = s.find(",",previous);
-        string stypes = s.substr(previous,end - previous);
-        previous = end+1;
-        end = s.find(",",previous);
-        string spt = s.substr(previous,end - previous);
-        int power, toughness;
-        parsePowerToughness(spt,&power, &toughness);
-        string sabilities = s.substr(end+1);
-        int multiplier = 1;
-        found = s.find("*");
-        if (found != string::npos)multiplier = atoi(s.substr(found+1).c_str());
-       	if (lordType == PARSER_FOREACH){
-			int nbtoken = countCards(lordTargets);
-			ATokenCreator * tok = NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap);
-			for (int i=0; i < nbtoken; i++){
-            tok->resolve();
-			}
-		delete tok;
-		}else{
-		if(cost || doTap){
-          game->addObserver(NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap));
-        }else{
-          ATokenCreator * tok = NEW ATokenCreator(id,card,cost,sname,stypes,power,toughness,sabilities,doTap);
-          for (int i=0; i < multiplier; i++){
-            tok->resolve();
-          }
-          delete tok;
-		}
-		}
-        result++;
-        continue;
-      }
-
-      //MoveTo Move a card from a zone to another
-      found = s.find("moveto(");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_BAD;
-          dryModeResultSet = 1;
-          break;
-        } //TODO : depends on where from, where to...
-	      int end = s.find(")",found+1);
-	      string szone = s.substr(found + 7,end - found - 7);
-        if (tc){
-          if (all){
-            moveAll(tc,szone);
-            delete(tc);
-          }else{
-            AZoneMover * a = NEW AZoneMover(id,card,tc,szone,cost,doTap);
-            if (may){
-              game->addObserver(NEW MayAbility(id,a,card));
-            }else{
-              game->addObserver(a);
-            }
-          }
-        }else{
-          if (cost){
-            MTGAbility * a = NEW AZoneSelfMover(id,card,szone,cost,doTap);
-            if (may){
-              game->addObserver(NEW MayAbility(id,a,card));
-            }else{
-              game->addObserver(a);
-            }
-          }else{
-            AZoneMover::moveTarget(target,szone,card);
-          }
-        }
-        result++;
-        continue;
-      }
-
-      //Copy a target
-      found = s.find("copy ");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        } //TODO :
-        if (tc){
-            ACopier * a = NEW ACopier(id,card,tc,cost);
-            if (may){
-              game->addObserver(NEW MayAbility(id,a,card));
-              OutputDebugString("may!\n");
-            }else{
-              game->addObserver(a);
-            }
-        }else{
-         //TODO
-        }
-        result++;
-        continue;
-      }
-
-      //Bury
-      found = s.find("bury");
-      if (found != string::npos){
-        if (trigger){
-          if (dryMode) {
-            dryModeResult = BAKA_EFFECT_BAD;
-            dryModeResultSet = 1;
-            break;
-          }
-	        BuryEvent * action = NEW BuryEvent();
-	        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
-        }else{
-          if (all){
-            if (dryMode){
-              int myNbCards = countCards(tc,card->controller());
-              int opponentNbCards = countCards(tc, card->controller()->opponent());
-              int myCardsPower = countCards(tc,card->controller(),COUNT_POWER);
-              int opponentCardsPower = countCards(tc, card->controller()->opponent(),COUNT_POWER);
-              SAFE_DELETE(tc);
-              if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) dryModeResult =  BAKA_EFFECT_GOOD;
-              else dryModeResult =  BAKA_EFFECT_BAD;
-              break;
-            }else{
-              if (cost){
-                game->addObserver(NEW AAllDestroyer(id, card,tc,1,cost,doTap));
-              }else{
-                this->destroyAllInPlay(tc,1);
-                SAFE_DELETE(tc);
-              }
-            }
-	        }else{
-            if (dryMode){
-              dryModeResult = BAKA_EFFECT_BAD;
-              break;
-            }
-	          if (tc){
-	            game->addObserver(NEW ABurier(id, card,tc));
-	          }else{
-	            target->bury();
-	          }
-	        }
-        }
-        result++;
-        continue;
-      }
-
-      //Destroy
-      found = s.find("destroy");
-      if (found != string::npos){
-
-        if (all){
-	        if (dryMode){
-	          int myNbCards = countCards(tc,card->controller());
-	          int opponentNbCards = countCards(tc, card->controller()->opponent());
-	          int myCardsPower = countCards(tc,card->controller(),COUNT_POWER);
-	          int opponentCardsPower = countCards(tc, card->controller()->opponent(),COUNT_POWER);
-	          SAFE_DELETE(tc);
-	          if (myNbCards < opponentNbCards || myCardsPower < opponentCardsPower) dryModeResult =  BAKA_EFFECT_GOOD;
-            else dryModeResult =  BAKA_EFFECT_BAD;
-            break;
-	        }else{
-             if (cost){
-                game->addObserver(NEW AAllDestroyer(id, card,tc,0,cost,doTap));
-              }else{
-                this->destroyAllInPlay(tc);
-                SAFE_DELETE(tc);
-              }
-	        }
-        }else{
-          if (dryMode){
-            dryModeResult =  BAKA_EFFECT_BAD;
-            break;
-          }
-	        if (tc){
-	          game->addObserver(NEW ADestroyer(id, card,tc,0,cost));
-	        }else{
-            target->destroy();
-	        }
-        }
-        result++;
-        continue;
-      }
-
-      //Damage
-      found = s.find("damage");
-      if (found != string::npos){
-        unsigned int start = s.find(":",found);
-        if (start == string::npos) start = s.find(" ",found);
-        unsigned int end = s.find(" ",start);
-        int damage;
-        if (end != string::npos){
-	        damage = atoi(s.substr(start+1,end-start-1).c_str());
-        }else{
-	        damage = atoi(s.substr(start+1).c_str());
-        }
-        if (dryMode){
-            dryModeResult =  BAKA_EFFECT_BAD;
-            break;
-        }
-		if (lordType == PARSER_FOREACH){
-			int multiplier = countCards(lordTargets);
-			game->mLayers->stackLayer()->addDamage(card,spell->getNextDamageableTarget(),(damage*multiplier));
-		}else{
-        if (tc){
-          if (all){
-            if (cost){
-              MTGAbility * a = NEW AAllDamager(id, card, cost, damage, tc,doTap);
-              game->addObserver(a);
-            }else{
-              damageAll(tc,damage);
-              delete tc;
-            }
-          }else{
-	          MTGAbility * a = NEW ADamager(id, card, cost, damage, tc,doTap);
-            if (multi){
-              multi->Add(a);
-            }else{
-              game->addObserver(a);
-            }
-          }
-        }else{
-          if (multi){
-            Damageable * target = parseCollateralTarget(card, s);
-            if (!target) target = spell->getNextDamageableTarget();
-            multi->Add(NEW DamageEvent(card,target,damage));
-          }else{
-	          game->mLayers->stackLayer()->addDamage(card,spell->getNextDamageableTarget(), damage);
-          }
-        }
-		}
-        result++;
-        continue;
-      }
-
-      //gain/lose life
-      found = s.find("life:");
-      if (found != string::npos){
-        unsigned int start = found+4;
-        unsigned int end = s.find(" ",start);
-        int life;
-        if (end != string::npos){
-	        life = atoi(s.substr(start+1,end-start-1).c_str());
-        }else{
-	        life = atoi(s.substr(start+1).c_str());
-        }
-        if (dryMode){
-          dryModeResult =  BAKA_EFFECT_GOOD;
-          break;
-        }
-		if (lordType == PARSER_FOREACH){
-			int multiplier = countCards(lordTargets);
-			card->controller()->life+=multiplier;
-		}else{
-        if (tc){
-	        //TODO ?
-        }else{
-	        if (!cost && !doTap){
-	          card->controller()->life+=life;
-	        }else{
-            game->addObserver(NEW ALifeGiver(id, card,cost, life, doTap));
-	        }
-        }
-		}
-        result++;
-        continue;
-      }
-
-      //Draw
-      found = s.find("draw:");
-      if (found != string::npos){
-        unsigned int start = s.find(":",found);
-        unsigned int end = s.find(" ",start);
-        int nbcards;
-        if (end != string::npos){
-	        nbcards = atoi(s.substr(start+1,end-start-1).c_str());
-        }else{
-	        nbcards = atoi(s.substr(start+1).c_str());
-        }
-        if (dryMode){
-          dryModeResult =  BAKA_EFFECT_GOOD;
-          break;
-        }
-		if (lordType == PARSER_FOREACH){
-			int multiplier = countCards(lordTargets);
-			game->mLayers->stackLayer()->addDraw(card->controller(),multiplier);;
-		}else{
-      if (trigger){
-        DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
-        game->addObserver(NEW GenericTriggeredAbility(id, card,trigger,action));
-		  }else{
-        if (tc){
-          //TODO ?
-        }else{
-          if (cost || doTap){
-             game->addObserver(NEW ADrawer(id,card,cost,nbcards,doTap));
-          }else{
-            game->mLayers->stackLayer()->addDraw(card->controller(),nbcards);  
-	        }
-	      }
-      }
-		}
-        result++;
-        continue;
-	  }
-
-		//Deplete
-      found = s.find("deplete:");
-      if (found != string::npos){
-        unsigned int start = s.find(":",found);
-        unsigned int end = s.find(" ",start);
-        int nbcards;
-        if (end != string::npos){
-	        nbcards = atoi(s.substr(start+1,end-start-1).c_str());
-        }else{
-	        nbcards = atoi(s.substr(start+1).c_str());
-        }
-        if (dryMode){
-          dryModeResult =  BAKA_EFFECT_BAD;
-          break;
-        }
-        if (trigger){
-		//TODO ?
-		}else{
-	        if (tc){
-	          game->addObserver (NEW ADeplete(id,card,cost,nbcards,tc,doTap));
-        }else{
-			Player * player = spell->getNextPlayerTarget();
-			MTGLibrary * library = player->game->library;
-			for (int i = 0; i < nbcards; i++){
-				if (library->nb_cards)
-				player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
-			}
-			}
-		}
-        result++;
-        continue;
-	  }
-
-      //CannotBeBlockedBy
-       found = s.find("cantbeblockedby(");
-       if (found != string::npos){
-		   int end = s.find(")",found);
-		   string starget = s.substr(16, end - 16);
-		   TargetChooserFactory tcf;
-		   tc = tcf.createTargetChooser(starget,card);
-		   CantBlock(tc);
-		   result++;
-		   continue;
-	   }
-	   
-
-
-
-      //Discard
-      found = s.find("discard:");
-      if (found != string::npos){
-        unsigned int start = s.find(":",found);
-        unsigned int end = s.find(" ",start);
-        int nbcards;
-        if (end != string::npos){
-	        nbcards = atoi(s.substr(start+1,end-start-1).c_str());
-        }else{
-	        nbcards = atoi(s.substr(start+1).c_str());
-        }
-        if (dryMode){
-          dryModeResult =  BAKA_EFFECT_BAD;
-          break;
-        }
-        if (trigger){
-	        //TODO ?
-        }else{
-	        if (tc){
-	          game->addObserver (NEW ADiscard(id,card,cost,nbcards,tc,doTap));
-	        }else{
-				Player * player = spell->getNextPlayerTarget();
-				if(player){
-					for (int i=0; i<nbcards; i++){
-					player->game->discardRandom(player->game->hand);
-					}
-				 }else{
-					for (int i=0; i<nbcards; i++){
-					game->currentlyActing()->game->discardRandom(game->currentlyActing()->game->hand);
-					 }
-				}
-			}
-		}
-		result++;
-        continue;
-	  }
-
-      //rampage
-      found = s.find("rampage(");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-        int end = s.find(",", found);
-		string spt = s.substr(8,end - 1);
-        int power, toughness;
-		if ( parsePowerToughness(spt,&power, &toughness)){
-			if (dryMode){
-				if (power >=0 && toughness >= 0 ) {
-				dryModeResult =  BAKA_EFFECT_GOOD;
-			}else{
-				dryModeResult =  BAKA_EFFECT_BAD;
-				}
-			break;
-			}
-        int MaxOpponent = atoi(s.substr(end+1,end+2).c_str());
-        if(tc){
-			//TODO??
-        }else{
-			game->addObserver(NEW  ARampageAbility(id,card,power,toughness,MaxOpponent));
-
-        }
-        result++;
-        continue;
-		}
-	  }
-
-
-      //counter
-      found = s.find("counter(");
-      if (found != string::npos){
-        if (dryMode) {
-          dryModeResult = BAKA_EFFECT_GOOD;
-          dryModeResultSet = 1;
-          break;
-        }
-        int end = s.find(")", found);
-		string spt = s.substr(9,end - 1);
-        int power, toughness;
-		if ( parsePowerToughness(spt,&power, &toughness)){
-			if (dryMode){
-				if (power >=0 && toughness >= 0 ) {
-				dryModeResult =  BAKA_EFFECT_GOOD;
-			}else{
-				dryModeResult =  BAKA_EFFECT_BAD;
-			}
-			break;
-        }
-        if(tc){
-			//TODO
-
-        }else{
-			game->addObserver(NEW  ACounters(id,card,target,power,toughness));
-
-        }
-        result++;
-        continue;
-		}
-	  }
-
-
-      //Change Power/Toughness
-      int power, toughness;
-      if ( parsePowerToughness(s,&power, &toughness)){
-        if (dryMode){
-	        if (power >=0 && toughness >= 0 ) {
-            dryModeResult =  BAKA_EFFECT_GOOD;
-          }else{
-            dryModeResult =  BAKA_EFFECT_BAD;
-          }
-          break;
-        }
-        int limit = 0;
-        unsigned int limit_str = s.find("limit:");
-        if (limit_str != string::npos){
-	        limit = atoi(s.substr(limit_str+6).c_str());
-        }
-
-
-        if (lordType == PARSER_LORD){
-          if (!cost){
-            if(card->hasType("instant") || card->hasType("sorcery")){
-              game->addObserver(NEW ALordUEOT(id,card,lordTargets,lordIncludeSelf,power,toughness));
-            }else{
-	            game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,power,toughness));
-			}
-		  }else{
-            //TODO
-		  }
-		}else{
-      if(tc){
-          game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card,power,toughness, cost, tc,doTap));
-      }else{
-        if (lordType == PARSER_FOREACH){
-          game->addObserver(NEW AForeach(id,card,target,lordTargets,lordIncludeSelf,power,toughness));
-        }else if (lordType == PARSER_ASLONGAS){
-          game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,power,toughness));
-        }else{
-          if (!cost){
-            if(card->hasType("enchantment")){
-              game->addObserver(NEW APowerToughnessModifier(id, card, target,power,toughness));
-            }else{
-              game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness));
-            }
-          }else{
-            game->addObserver(NEW APowerToughnessModifierUntilEndOfTurn(id, card, target,power,toughness, cost, limit));
-          }
-        }
-      }
-    }
-    result++;
-    continue;
-    }
-
-      //Mana Producer
-      found = s.find("add");
-      if (found != string::npos){
-        if (dryMode){
-          dryModeResult =  BAKA_EFFECT_GOOD;
-          break;
-        }
-        ManaCost * input = ManaCost::parseManaCost(s.substr(0,found));
-        ManaCost * output = ManaCost::parseManaCost(s.substr(found));
-        if (!input->isNull() || doTap){
-          SAFE_DELETE(cost); //erk
-          if (input->isNull()){
-            SAFE_DELETE(input);
-          }
-		      MTGAbility * a = NEW AManaProducer(id, target, output, input,doTap);
-    		  
-		      if (lordType == PARSER_FOREACH){
-            ManaCost * FinalOutput = NEW ManaCost();
-			      int multiplier = countCards(lordTargets);
-			      for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
-				      if (output->hasColor(i)){
-				        FinalOutput->add(i,multiplier);
-				      }
-			      }
-			      game->addObserver (NEW AManaProducer(id, target,FinalOutput, input,doTap));
-		      }else{
-		        if (multi){
-                  multi->Add(a);
-		        }else{
-	                game->addObserver(a);
-		        }
-		      }
-		    }else{
-          OutputDebugString ("uh oh\n");
-  		      if (lordType == PARSER_FOREACH){
-				    ManaCost * FinalOutput = NEW ManaCost();
-				    int multiplier = countCards(lordTargets);
-				    for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
-					    if (output->hasColor(i)){
-					     FinalOutput->add(i,multiplier);
-					    }
-				    }
-				    card->controller()->getManaPool()->add(FinalOutput);
-				    delete FinalOutput;
-		      }else{
-			      card->controller()->getManaPool()->add(output);
-			      delete output;
-		      }
-		    }
-          result++;
-          continue;
-	      }
-
-      //Gain/loose Ability
-      for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-        found = s.find(Constants::MTGBasicAbilities[j]);
-        if (found!= string::npos){
-	        int modifier = 1;
-	        if (found > 0 && s[found-1] == '-') modifier = 0;
-	        if (dryMode){
-	          if (j == Constants::DEFENDER){
-	            if (modifier == 1) dryModeResult = BAKA_EFFECT_BAD;
-	            else dryModeResult = BAKA_EFFECT_GOOD;
-	          }else{
-	            if (modifier == 1) dryModeResult = BAKA_EFFECT_GOOD;
-              else dryModeResult = BAKA_EFFECT_BAD;
-	          }
-            dryModeResultSet = 1;
-            break;
-          }else{
-	          if (lordType == PARSER_LORD){
-              if(card->hasType("instant") || card->hasType("sorcery")){
-                game->addObserver(NEW ALordUEOT(id,card,lordTargets,lordIncludeSelf,0,0,j,0,modifier));
-              }else{
-	              game->addObserver(NEW ALord(id,card,lordTargets,lordIncludeSelf,0,0,j,0,modifier));
-              }
-	          }else if (lordType == PARSER_ASLONGAS){
-	              game->addObserver(NEW AKirdApe(id,card,lordTargets,lordIncludeSelf,0,0,j,modifier));
-            }else{
-	            if (tc){
-	              game->addObserver(NEW ABasicAbilityModifierUntilEOT(id, card, j, cost,tc, modifier,doTap));
-	            }else{
-	              if (!cost){
-	                if(card->hasType("enchantment")){
-		                game->addObserver(NEW ABasicAbilityModifier(id, card,target, j,modifier));
-	                }else{
-		                game->addObserver(NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier));
-	                }
-	              }else{
-	                game->addObserver(NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, cost,j,modifier));
-	              }
-	            }
-	          }
-	          result++;
-	          continue;
-          }
-        }
-      }
-      if (dryModeResultSet) break;
-
-      //Tapper (icy manipulator)
-      found = s.find("tap");
-      if (found != string::npos){
-        if (dryMode){
-          dryModeResult = BAKA_EFFECT_GOOD;
-          break;
-        }
-        if (tc){
-			if (all){
-              TapAll(tc);
-              delete tc;
-			}else{
-				game->addObserver(NEW ATapper(id, card, cost, tc));
-			}
-		}else{
-			target->tap();
-		}
-        result++;
-        continue;
-      }
-
-#if defined (WIN32) || defined (LINUX)
-    char buf[4096];
-    sprintf(buf, "AUTO ACTION PARSED: %s\n", line.c_str());
-    OutputDebugString(buf);
-#endif
-    }
+    MTGAbility * a = parseMagicLine(line, result, spell, card);
     if (dryMode){
-      SAFE_DELETE(tc);
-      SAFE_DELETE(lordTargets);
-      SAFE_DELETE(multi);
-      SAFE_DELETE(cost);
-      SAFE_DELETE(trigger);
-      return dryModeResult;
+      result = abilityEfficiency(a, card->controller(),MODE_PUTINTOPLAY);
+      SAFE_DELETE(a);
+      return result;
+    }
+
+    if (a){
+      if (a->oneShot){
+        a->resolve();
+        delete(a); 
+      }else{
+        a->addToGame();
+      }
+      result++;
+    }else{
+      OutputDebugString("ERROR: Parser returned NULL\n");
+      //return result;
     }
   }
-
   return result;
+ 
 }
 
 void AbilityFactory::addAbilities(int _id, Spell * spell){
@@ -1229,12 +916,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
-  case 1151: //Deathgrip
-    {
-      int _cost[] = {Constants::MTG_COLOR_BLACK, 2};
-      game->addObserver(NEW ASpellCounterEnchantment(_id, card, NEW ManaCost(_cost, 1),Constants::MTG_COLOR_GREEN));
-      break;
-    }
   case 1152: //Deathlace
     {
       if (card->target){
@@ -1339,12 +1020,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1254: //Kudzu
     {
       game->addObserver(NEW AKudzu(id, card, card->target));
-      break;
-    }
-  case 1256: //LifeForce
-    {
-      int _cost[] = {Constants::MTG_COLOR_GREEN, 2};
-      game->addObserver(NEW ASpellCounterEnchantment(_id, card, NEW ManaCost(_cost, 1),Constants::MTG_COLOR_BLACK));
       break;
     }
   case 1257: //Lifelace
@@ -1581,7 +1256,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1214: //Pirate Ship
     {
       game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
-      game->addObserver(NEW ADamager(_id+1, card, NEW ManaCost(), 1));
+      game->addObserver(NEW TADamager(_id+1, card, NEW ManaCost(), 1));
       break;
     }
   case 1218: //Psychic Venom
@@ -1984,7 +1659,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			int x = spell->cost->getConvertedCost() - 4;
 			TargetChooserFactory tcf;
             lordTargets = tcf.createTargetChooser("creature", card);
-			game->addObserver (NEW ALordUEOT(id,card,lordTargets,0,x,-x));
 			break;
 		}
 	case 129523: //Demon's Horn
@@ -2285,19 +1959,31 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * card):ActionElement(id){
   aType = MTGAbility::UNKNOWN;
   cost = NULL;
   forceDestroy = 0;
+  oneShot = 0;
 }
 
-MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Damageable * _target ):ActionElement(id){
+MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Targetable * _target ):ActionElement(id){
   game = GameObserver::GetInstance();
   source = _source;
   target = _target;
   aType = MTGAbility::UNKNOWN;
   cost = NULL;
   forceDestroy = 0;
+  oneShot = 0;
 }
 
 MTGAbility::~MTGAbility(){
   SAFE_DELETE(cost);
+}
+
+int MTGAbility::addToGame(){
+  GameObserver::GetInstance()->addObserver(this);
+  return 1;
+}
+
+int MTGAbility::removeFromGame(){
+  GameObserver::GetInstance()->removeObserver(this);
+  return 1;
 }
 
 //returns 1 if this ability needs to be removed from the list of active abilities
@@ -2413,10 +2099,12 @@ ostream& ActivatedAbility::toString(ostream& out) const
 
 TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap){
   tc = _tc;
+  ability = NULL;
 }
 
 TargetAbility::TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap){
   tc = NULL;
+  ability = NULL;
 }
 
 void TargetAbility::Update(float dt){
@@ -2472,6 +2160,24 @@ void TargetAbility::Render(){
   //TODO ?
 }
 
+int TargetAbility::resolve(){
+  Targetable * t = tc->getNextTarget();
+  if (t && ability){
+    ability->target = t;
+    return ability->resolve();
+  }
+  return 0;
+}
+
+const char * TargetAbility::getMenuText(){
+  if (ability) return ability->getMenuText();
+  return ActivatedAbility::getMenuText();
+}
+
+TargetAbility::~TargetAbility(){
+  if (!isClone) SAFE_DELETE(ability);
+}
+
 ostream& TargetAbility::toString(ostream& out) const
 {
   out << "TargetAbility ::: (";
@@ -2481,7 +2187,7 @@ ostream& TargetAbility::toString(ostream& out) const
 //
 
 
-TriggeredAbility::TriggeredAbility(int id, MTGCardInstance * card, Damageable * _target):MTGAbility(id,card, _target){
+TriggeredAbility::TriggeredAbility(int id, MTGCardInstance * card, Targetable * _target):MTGAbility(id,card, _target){
 }
 
 
@@ -2543,47 +2249,61 @@ ostream& InstantAbility::toString(ostream& out) const
 }
 
 
-void ListMaintainerAbility::Update(float dt){
-  map<MTGCardInstance *,bool>::iterator it=cards.begin();
-  while(it != cards.end()){
+void ListMaintainerAbility::updateTargets(){
+  //remove invalid ones
+  map<MTGCardInstance *,bool> temp;
+  for (map<MTGCardInstance *,bool>::iterator it=cards.begin(); it != cards.end(); ++it){
     MTGCardInstance * card = (*it).first;
-    it++;
-    int doDelete = 1;
-    for (int i = 0; i < 2; i++){
-      Player * p = game->players[i];
-      MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand};
-      for (int k = 0; k < 3; k++){
-      //MTGGameZone * zones[] = {p->game->inPlay};
-      //for (int k = 0; k < 1; k++){
-	MTGGameZone * zone = zones[k];
-	if (zone->hasCard(card)){
-	  doDelete = 0;
-	  break;
-	}
-      }
-    }
-    if (doDelete || !canBeInList(card)){
-      cards.erase(card);
-      removed(card);
-    }
+    if (!canBeInList(card)) temp[card] = true;
   }
+
+  for (map<MTGCardInstance *,bool>::iterator it=temp.begin(); it != temp.end(); ++it){
+    MTGCardInstance * card = (*it).first;
+    cards.erase(card);
+    removed(card);
+  }
+
+  temp.clear();
+
+  //add new valid ones
   for (int i = 0; i < 2; i++){
     Player * p = game->players[i];
     MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand};
     for (int k = 0; k < 3; k++){
-    //  MTGGameZone * zones[] = {p->game->inPlay};
-    //  for (int k = 0; k < 1; k++){
       MTGGameZone * zone = zones[k];
       for (int j = 0; j < zone->nb_cards; j++){
-	if (canBeInList(zone->cards[j])){
-	  if(cards.find(zone->cards[j]) == cards.end()){
-	    cards[zone->cards[j]] = true;
-	    added(zone->cards[j]);
-	  }
-	}
+	      if (canBeInList(zone->cards[j])){
+	        if(cards.find(zone->cards[j]) == cards.end()){
+	          temp[zone->cards[j]] = true;
+          }
+        }
       }
     }
   }
+
+  for (map<MTGCardInstance *,bool>::iterator it=temp.begin(); it != temp.end(); ++it){
+    MTGCardInstance * card = (*it).first;
+    cards[card] = true;
+    added(card);
+  }
+
+  temp.clear();
+
+  for (int i = 0; i < 2; ++i){
+    Player * p = game->players[i];
+    if (!players[p] && canBeInList(p)){
+      players[p] = true;
+      added(p);
+    }else if (players[p] && !canBeInList(p)){
+      players[p] = false;
+      removed(p);
+    }
+  }
+
+}
+
+void ListMaintainerAbility::Update(float dt){
+  updateTargets();
 }
 
 //Destroy the spell -> remove all targets
@@ -2611,11 +2331,11 @@ ostream& ListMaintainerAbility::toString(ostream& out) const
 MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(){
   game = GameObserver::GetInstance();
 }
-MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(MTGCardInstance * _source, Damageable * _target):target(_target),source(_source){
+MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(MTGCardInstance * _source, Targetable * _target):target(_target),source(_source){
   if (!target) target = source;
   game = GameObserver::GetInstance();
 }
-void MTGAbilityBasicFeatures::init(MTGCardInstance * _source, Damageable * _target){
+void MTGAbilityBasicFeatures::init(MTGCardInstance * _source, Targetable * _target){
   source = source;
   target=_target;
   if (!target) target = source;
@@ -2652,13 +2372,14 @@ int TriggerNextPhase::testDestroy(){
 
 TriggeredEvent::TriggeredEvent():MTGAbilityBasicFeatures(){}
 
-TriggeredEvent::TriggeredEvent(MTGCardInstance * _source, Damageable * _target):MTGAbilityBasicFeatures(_source, _target){}
+TriggeredEvent::TriggeredEvent(MTGCardInstance * _source, Targetable * _target):MTGAbilityBasicFeatures(_source, _target){}
 
 DamageEvent::DamageEvent(MTGCardInstance * _source, Damageable * _target, int _damage):TriggeredEvent(_source,_target),damage(_damage){
 }
 
 int DamageEvent::resolve(){
-  game->mLayers->stackLayer()->addDamage(source,target, damage);
+  Damageable * _target = (Damageable *)target;
+  game->mLayers->stackLayer()->addDamage(source,_target, damage);
   return damage;
 }
 
@@ -2689,7 +2410,7 @@ int DestroyCondition::testDestroy(){
 
 
 
-GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _source, Trigger * _t, TriggeredEvent * _te, DestroyCondition * _dc , Damageable * _target ): TriggeredAbility(id, _source,_target){
+GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _source, Trigger * _t, TriggeredEvent * _te, DestroyCondition * _dc , Targetable * _target ): TriggeredAbility(id, _source,_target){
   if (!target) target = source;
   t = _t;
   te = _te;
@@ -2719,6 +2440,11 @@ GenericTriggeredAbility::~GenericTriggeredAbility(){
   SAFE_DELETE(dc);
 }
 
+GenericTriggeredAbility* GenericTriggeredAbility::clone() const{
+    GenericTriggeredAbility * a = NEW GenericTriggeredAbility(*this);
+    a->isClone = 1;
+    return a;
+}
 
 /*Mana Producers (lands)
 //These have a reactToClick function, and therefore two manaProducers on the same card conflict with each other
@@ -2891,11 +2617,18 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
   }
 
   AManaProducer::~AManaProducer(){
+    if (isClone) return;
     LOG("==Destroying ManaProducer Object");
     SAFE_DELETE(cost);
     SAFE_DELETE(output);
     SAFE_DELETE(mParticleSys);
     LOG("==Destroying ManaProducer Object Successful!");
+  }
+
+  AManaProducer * AManaProducer::clone() const{
+    AManaProducer * a =  NEW AManaProducer(*this);
+    a->isClone = 1;
+    return a;
   }
 
 int AManaProducer::currentlyTapping = 0;

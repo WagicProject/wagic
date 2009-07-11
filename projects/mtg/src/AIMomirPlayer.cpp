@@ -15,13 +15,13 @@ AIMomirPlayer::AIMomirPlayer(MTGPlayerCards * _deck, char * file, char * fileSma
 }
 
 int AIMomirPlayer::getEfficiency(AIAction * action){
+  MTGAbility * ability = action->ability;
+  if (ability->cost && !(ability->cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
+  int efficiency = AIPlayerBaka::getEfficiency(action);
 
-
-int efficiency = AIPlayerBaka::getEfficiency(action);
-
-GameObserver * g = GameObserver::GetInstance();
-if (g->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN) return 0;
- return efficiency;
+  GameObserver * g = GameObserver::GetInstance();
+  if (g->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN) return 0;
+  return efficiency;
 }
 
 MTGAbility * AIMomirPlayer::getMomirAbility(){
@@ -113,81 +113,4 @@ the general rule is this: if you want to get to Eight, you have to skip two drop
   return AIPlayerBaka::computeActions();
 }
 
-/*
-int AIPlayerBaka::computeActions(){
-  GameObserver * g = GameObserver::GetInstance();
-  Player * p = g->currentPlayer;
-  if (!(g->currentlyActing() == this)) return 0;
-  if (chooseTarget()) return 1;
-  int currentGamePhase = g->getCurrentGamePhase();
-  if (g->isInterrupting == this){ // interrupting
-    selectAbility();
-    return 1;
-  }else if (p == this && g->mLayers->stackLayer()->count(0,NOT_RESOLVED) == 0){ //standard actions
-    CardDescriptor cd;
-    MTGCardInstance * card = NULL;
-    switch(currentGamePhase){
-    case Constants::MTG_PHASE_FIRSTMAIN:
-    case Constants::MTG_PHASE_SECONDMAIN:
-      if (canPutLandsIntoPlay){
-	      //Attempt to put land into play
-	      cd.init();
-	      cd.setColor(Constants::MTG_COLOR_LAND);
-	      card = cd.match(game->hand);
-	      if (card){
-          AIAction * a = NEW AIAction(card);
-	        clickstream.push(a);
-          return 1;
-	      }
-      }
 
-	    //No mana, try to get some
-	    getPotentialMana();
-	    if (potentialMana->getConvertedCost() > 0){
-
-
-	      //look for the most expensive creature we can afford
-	      nextCardToPlay = FindCardToPlay(potentialMana, "creature");
-	      //Let's Try an enchantment maybe ?
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "enchantment");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "artifact");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "instant");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "sorcery");
-	      if (nextCardToPlay){
-#if defined (WIN32) || defined (LINUX)
-          char buffe[4096];
-	        sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName());
-	        OutputDebugString(buffe);
-#endif
-
-	        tapLandsForMana(potentialMana,nextCardToPlay->getManaCost());
-          AIAction * a = NEW AIAction(nextCardToPlay);
-	        clickstream.push(a);
-          return 1;
-        }else{
-          selectAbility();
-        }
-      }else{
-        selectAbility();
-      }
-      break;
-    case Constants::MTG_PHASE_COMBATATTACKERS:
-      chooseAttackers();
-      break;
-    default:
-      selectAbility();
-      break;
-    }
-  }else{
-    switch(currentGamePhase){
-    case Constants::MTG_PHASE_COMBATBLOCKERS:
-      chooseBlockers();
-      break;
-    default:
-      break;
-    }
-    return 1;
-  }
-  return 1;
-};
-*/

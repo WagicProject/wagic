@@ -282,9 +282,6 @@ int ManaCost::canAfford(ManaCost * _cost){
   int positive = diff->isPositive();
   delete diff;
   if (positive){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("can afford\n");
-#endif
     return 1;
   }
   return 0;

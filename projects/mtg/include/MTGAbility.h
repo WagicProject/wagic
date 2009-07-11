@@ -19,15 +19,18 @@ class WEvent;
 #include <string>
 #include <map>
 #include <hge/hgeparticle.h>
+#include "../include/Damage.h"
 using std::string;
 using std::map;
 
 
-//Two stupid variables used to give a hint to the AI:
+//stupid variables used to give a hint to the AI:
 // Should I cast a spell on an enemy or friendly unit ?
 #define BAKA_EFFECT_GOOD 1
 #define BAKA_EFFECT_BAD -1
 #define BAKA_EFFECT_DONTKNOW 0
+#define MODE_PUTINTOPLAY 1
+#define MODE_ABILITY 2
 
 #define COUNT_POWER 1
 
@@ -38,16 +41,17 @@ using std::map;
 class MTGAbility: public ActionElement{
  protected:
   char menuText[25];
-
+  
   GameObserver * game;
  public:
+   int oneShot;
    int forceDestroy;
   ManaCost * cost;
-  Damageable * target;
+  Targetable * target;
   int aType;
   MTGCardInstance * source;
   MTGAbility(int id, MTGCardInstance * card);
-  MTGAbility(int id, MTGCardInstance * _source, Damageable * _target);
+  MTGAbility(int id, MTGCardInstance * _source, Targetable * _target);
   virtual int testDestroy();
   virtual ~MTGAbility();
   virtual void Render(){};
@@ -58,7 +62,10 @@ class MTGAbility: public ActionElement{
   virtual int fireAbility();
   virtual int stillInUse(MTGCardInstance * card){if (card==source) return 1; return 0;};
   virtual int resolve(){return 0;};
+  virtual MTGAbility* clone() const = 0; 
   virtual ostream& toString(ostream& out) const;
+  virtual int addToGame();
+  virtual int removeFromGame();
 
   /*Poor man's casting */
   /* Todo replace that crap with dynamic casting */
@@ -78,11 +85,12 @@ class MTGAbility: public ActionElement{
 class TriggeredAbility:public MTGAbility{
  public:
   TriggeredAbility(int id, MTGCardInstance * card);
-  TriggeredAbility(int id, MTGCardInstance * _source, Damageable * _target);
+  TriggeredAbility(int id, MTGCardInstance * _source, Targetable * _target);
   virtual void Update(float dt);
   virtual void Render(){};
   virtual int trigger()=0;
   virtual int resolve() = 0;
+  virtual TriggeredAbility* clone() const = 0; 
   virtual ostream& toString(ostream& out) const;
 };
 
@@ -96,18 +104,24 @@ class ActivatedAbility:public MTGAbility{
   virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);
   virtual int resolve() = 0;
+  virtual ActivatedAbility* clone() const = 0; 
   virtual ostream& toString(ostream& out) const;
 };
 
 class TargetAbility:public ActivatedAbility{
  public:
+  MTGAbility * ability;
   TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
   TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
   virtual void Update(float dt);
   virtual int reactToClick(MTGCardInstance * card);
   virtual int reactToTargetClick(Targetable * object);
+  virtual TargetAbility* clone() const = 0;
   virtual void Render();
+  virtual int resolve();
+  virtual const char * getMenuText();
   virtual ostream& toString(ostream& out) const;
+  ~TargetAbility();
 };
 
 class InstantAbility:public MTGAbility{
@@ -118,6 +132,7 @@ class InstantAbility:public MTGAbility{
   InstantAbility(int _id, MTGCardInstance * source);
   InstantAbility(int _id, MTGCardInstance * source,Damageable * _target);
   virtual int resolve(){return 0;};
+  virtual InstantAbility* clone() const = 0;
   virtual ostream& toString(ostream& out) const;
 };
 
@@ -125,26 +140,32 @@ class InstantAbility:public MTGAbility{
 class ListMaintainerAbility:public MTGAbility{
  public:
   map<MTGCardInstance *,bool> cards;
+  map<Player *,bool> players;
  ListMaintainerAbility(int _id):MTGAbility(_id,NULL){};
  ListMaintainerAbility(int _id, MTGCardInstance *_source):MTGAbility(_id, _source){};
  ListMaintainerAbility(int _id, MTGCardInstance *_source,Damageable * _target):MTGAbility(_id, _source, _target){};
   virtual void Update(float dt);
+  void updateTargets();
   virtual int canBeInList(MTGCardInstance * card) = 0;
   virtual int added(MTGCardInstance * card) = 0;
   virtual int removed(MTGCardInstance * card) = 0;
+  virtual int canBeInList(Player * p){return 0;};
+  virtual int added(Player * p){return 0;};
+  virtual int removed(Player * p){return 0;};
   virtual int destroy();
+  virtual ListMaintainerAbility* clone() const = 0;
   virtual ostream& toString(ostream& out) const;
 };
 
 /* An attempt to globalize triggered abilities as much as possible */
 class MTGAbilityBasicFeatures{
  public:
-  Damageable * target;
+  Targetable * target;
   GameObserver * game;
   MTGCardInstance * source;
   MTGAbilityBasicFeatures();
-  MTGAbilityBasicFeatures(MTGCardInstance * _source, Damageable * _target = NULL);
-  void init(MTGCardInstance * _source, Damageable * _target = NULL);
+  MTGAbilityBasicFeatures(MTGCardInstance * _source, Targetable * _target = NULL);
+  void init(MTGCardInstance * _source, Targetable * _target = NULL);
 };
 
 class Trigger:public MTGAbilityBasicFeatures{
@@ -176,7 +197,7 @@ class TriggerNextPhase:public TriggerAtPhase{
 class TriggeredEvent:public MTGAbilityBasicFeatures{
  public:
    TriggeredEvent();
-   TriggeredEvent(MTGCardInstance * source, Damageable * target = NULL);
+   TriggeredEvent(MTGCardInstance * source, Targetable * target = NULL);
   virtual int resolve()=0;
 };
 
@@ -213,21 +234,22 @@ class GenericTriggeredAbility:public TriggeredAbility{
   Trigger * t;
   TriggeredEvent * te;
   DestroyCondition  * dc;
-  GenericTriggeredAbility(int id, MTGCardInstance * _source, Trigger * _t, TriggeredEvent * _te, DestroyCondition * _dc = NULL, Damageable * _target = NULL);
+  GenericTriggeredAbility(int id, MTGCardInstance * _source, Trigger * _t, TriggeredEvent * _te, DestroyCondition * _dc = NULL, Targetable * _target = NULL);
   virtual int trigger();
   virtual int resolve();
   virtual int testDestroy();
+  virtual GenericTriggeredAbility* clone() const;
   ~GenericTriggeredAbility();
 };
 
 /* Ability Factory */
 class AbilityFactory{
  private:
-  int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
-  int putInPlayFromZone(MTGCardInstance * card, MTGGameZone * zone, Player * p);
+   int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
   int parsePowerToughness(string s, int *power, int *toughness);
   Trigger * parseTrigger(string magicText);
-  Damageable * parseCollateralTarget(MTGCardInstance * card, string s);
+  MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0);
+  int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY);
  public:
   int magicText(int id, Spell * spell, MTGCardInstance * card = NULL);
   int destroyAllInPlay(TargetChooser * tc, int bury = 0);
@@ -243,16 +265,16 @@ class AbilityFactory{
 class AManaProducer: public MTGAbility{
  protected:
 
-  ManaCost * cost;
   ManaCost * output;
   string menutext;
   float x0,y0,x1,y1,x,y;
   float animation;
   Player * controller;
-  int tap;
+
 
   hgeParticleSystem * mParticleSys;
  public:
+   int tap;
    static int currentlyTapping;
    AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1 );
    void Update(float dt);
@@ -263,6 +285,7 @@ class AManaProducer: public MTGAbility{
   const char * getMenuText();
   int testDestroy();
   ~AManaProducer();
+  virtual AManaProducer * clone() const;
   virtual ostream& toString(ostream& out) const;
 };
 

@@ -22,10 +22,11 @@ class WEvent;
 class ActionElement: public JGuiObject{
  protected:
   int activeState;
-
+  
 
 
  public:
+  int isClone;
   TargetChooser * tc;
   int currentPhase;
   int newPhase;
@@ -46,6 +47,7 @@ class ActionElement: public JGuiObject{
   virtual int receiveEvent(WEvent * event){return 0;};
   virtual int reactToClick(MTGCardInstance * card){return 0;};
   virtual const char * getMenuText(){return "Ability";};
+  virtual ActionElement * clone() const = 0; 
 };
 
 

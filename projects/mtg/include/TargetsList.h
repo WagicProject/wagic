@@ -27,7 +27,7 @@ class TargetsList{
   Interruptible * getNextInterruptible(Interruptible * previous, int type);
   Spell * getNextSpellTarget(Spell * previous = 0);
   Damage * getNextDamageTarget(Damage * previous = 0);
-  Targetable * getNextTarget(Targetable * previous, int type);
+  Targetable * getNextTarget(Targetable * previous = 0, int type = -1);
   void initTargets(){cursor = 0;};
 };
 

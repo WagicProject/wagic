@@ -135,17 +135,29 @@ int AIAction::getEfficiency(){
   ActionStack * s = g->mLayers->stackLayer();
   Player * p = g->currentlyActing();
   if (s->has(ability)) return 0;
-  if (ability->cost && !(ability->cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
-  switch (ability->aType){
+  
+  MTGAbility * a = ability;
+  GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
+  if (gta) a = gta->ability;
+  
+  GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
+  if (gaa) a = gaa->ability;
+
+  if (!a){
+    OutputDebugString("FATAL: Ability is NULL in AIAction::getEfficiency()");
+    return 0;
+  }
+
+  switch (a->aType){
     case MTGAbility::DAMAGER:
       {
-        ADamager * a = (ADamager *) ability;
+        AADamager * aad = (AADamager *) a;
         if ( p == target->controller()){
           efficiency = 0;
-        }else if (a->damage >= target->toughness){
+        }else if (aad->damage >= target->toughness){
           efficiency = 100;
         }else if (target->toughness){
-          efficiency = (100 * a->damage) / target->toughness;
+          efficiency = (50 * aad->damage) / target->toughness;
         }else{
           efficiency = 0;
         }
@@ -153,22 +165,12 @@ int AIAction::getEfficiency(){
       }
     case MTGAbility::STANDARD_REGENERATE:
       {
-        MTGCardInstance * _target = (MTGCardInstance *)(ability->target);
-        PutInGraveyard * action = ((PutInGraveyard *) g->mLayers->stackLayer()->getNext(NULL,ACTION_PUTINGRAVEYARD,NOT_RESOLVED));
-        int i = 0;
-        while(action){
-          i++;
-          if (action->card == _target){
-	          efficiency = 95;
-            action = NULL;
-          }else{
-            action = ((PutInGraveyard *) g->mLayers->stackLayer()->getNext(action,ACTION_PUTINGRAVEYARD,NOT_RESOLVED));
-          }
+        MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+        efficiency = 0;
+        if (!_target->regenerateTokens && g->getCurrentGamePhase()< Constants::MTG_PHASE_COMBATDAMAGE && (_target->defenser || _target->blockers.size())){
+          efficiency = 95;
         }
-        char buf[4096];
-        sprintf(buf,"Graveyard : %i\n", i);
-        OutputDebugString(buf);
-        if (efficiency == -1) efficiency = 0;
+        //TODO If the card is the target of a damage spell
         break;
       }
     case MTGAbility::MANA_PRODUCER: //can't use mana producers right now :/
@@ -741,125 +743,3 @@ int AIPlayerBaka::Act(float dt){
   return 1;
 };
 
-/*
-int AIPlayerBaka::Act(float dt){
-  GameObserver * gameObs = GameObserver::GetInstance();
-  int currentGamePhase = gameObs->getCurrentGamePhase();
-
-  if (currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentGamePhase != oldGamePhase){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("updating stats\n");
-#endif
-    if (getStats()) getStats()->updateStats();
-  }
-
-
-  oldGamePhase = currentGamePhase;
-
-
-  //if (checkInterrupt()) return 0;
-  
-  timer-= dt;
-  if (AManaProducer::currentlyTapping || timer>0){
-    return 0;
-  }
-  initTimer();
-  checkInterrupt();
-  if (currentAbility) return (useAbility());
-  if (combatDamages()) return 0;
-  if (chooseTarget()) return 0;
-
-
-  Player * currentPlayer = gameObs->currentPlayer;
-
-
-
-
-  CardDescriptor cd;
-
-
-  if (currentPlayer == this){
-    MTGCardInstance * card = NULL;
-    switch(currentGamePhase){
-    case Constants::MTG_PHASE_FIRSTMAIN:
-    case Constants::MTG_PHASE_SECONDMAIN:
-      if (canPutLandsIntoPlay){
-
-	//Attempt to put land into play
-	cd.init();
-	cd.setColor(Constants::MTG_COLOR_LAND);
-	card = cd.match(game->hand);
-	if (card){
-	  gameObs->cardClick(card);
-	}
-      }
-      if(NULL == card){
-
-	//Attempt to put creature into play
-	if (manaPool->getConvertedCost()==0){
-
-	  //No mana, try to get some
-	  getPotentialMana();
-	  if (potentialMana->getConvertedCost() > 0){
-
-
-	    //look for the most expensive creature we can afford
-	    nextCardToPlay = FindCardToPlay(potentialMana, "creature");
-	    //Let's Try an enchantment maybe ?
-	    if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "enchantment");
-	    if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "artifact");
-	    if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "instant");
-	    if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "sorcery");
-	    if (nextCardToPlay){
-#if defined (WIN32) || defined (LINUX)
-        char buffe[4096];
-	      sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName());
-	      OutputDebugString(buffe);
-#endif
-
-	      tapLandsForMana(potentialMana,nextCardToPlay->getManaCost());
-	    }
-	  }
-	  SAFE_DELETE(potentialMana);
-	}else{
-	  //We have mana, we can try to put the card into play
-#if defined (WIN32) || defined (LINUX)
-	  OutputDebugString("Mana paid, ready to put card into play\n");
-#endif
-	  if (nextCardToPlay){
-	    gameObs->cardClick(nextCardToPlay);
-	    nextCardToPlay = NULL;
-	  }else{
-	    //ERROR, WE PAID MANA WITHOUT ANY WILL TO PLAY
-	  }
-	}
-      }
-      if (NULL == card && NULL == nextCardToPlay){
-#if defined (WIN32) || defined (LINUX)
-	OutputDebugString("Switching to next phase\n");
-#endif
-	gameObs->userRequestNextGamePhase();
-      }
-      break;
-    case Constants::MTG_PHASE_COMBATATTACKERS:
-      chooseAttackers();
-      gameObs->userRequestNextGamePhase();
-      break;
-    default:
-      gameObs->userRequestNextGamePhase();
-      break;
-    }
-  }else{
-    switch(currentGamePhase){
-    case Constants::MTG_PHASE_COMBATBLOCKERS:
-      chooseBlockers();
-      gameObs->userRequestNextGamePhase();
-      break;
-    default:
-      break;
-    }
-    return 1;
-  }
-  return 1;
-}
-*/

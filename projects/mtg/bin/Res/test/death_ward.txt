@@ -1,0 +1,26 @@
+#Testing Regenerate (Death Ward)
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:Death Ward
+manapool:{W}
+inplay:raging goblin
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+Death Ward
+raging goblin
+raging goblin
+next
+grizzly bears
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:raging goblin
+graveyard:Death Ward
+manapool:{0}
+[PLAYER2]
+inplay:grizzly bears
+[END]

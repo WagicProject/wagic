@@ -1,0 +1,20 @@
+#Testing Random discard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Mind Rot
+manapool:{2}{B}
+[PLAYER2]
+hand:swamp,plains,mountain
+[DO]
+Mind Rot
+p2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Mind Rot
+manapool:{0}
+[PLAYER2]
+hand:*
+graveyard:*,*
+[END]

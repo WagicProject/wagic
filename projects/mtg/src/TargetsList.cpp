@@ -58,11 +58,11 @@ int TargetsList::toggleTarget(Targetable * target){
 }
 
 
-Targetable * TargetsList::getNextTarget(Targetable * previous, int type){
+Targetable * TargetsList::getNextTarget(Targetable * previous , int type){
   int found = 0;
   if (!previous) found = 1;
   for (int i = 0; i < cursor; i++){
-    if (found && targets[i]->typeAsTarget() == type){
+    if (found && (type == -1 || targets[i]->typeAsTarget() == type)){
       return (targets[i]);
     }
     if (targets[i] == previous) found = 1;
