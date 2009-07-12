@@ -92,7 +92,7 @@ type=Instant
 [/card]
 [card]
 text=Target opponent reveals his or her hand. You draw a card for each Mountain and red card in it.
-auto=foreach(*[land,red]|opponenthand) draw:1
+auto=foreach(*[land;red]|opponenthand) draw:1
 id=4249
 name=Baleful Stare
 rarity=U
@@ -1447,7 +1447,7 @@ type=Sorcery
 [/card]
 [card]
 text=White creatures get +2/+0 until end of turn.
-auto=lord(creature[white] 2/0
+auto=lord(creature[white]) 2/0
 id=4402
 name=Valorous Charge
 rarity=U
