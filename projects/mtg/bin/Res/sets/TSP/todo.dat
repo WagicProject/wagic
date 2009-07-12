@@ -2098,17 +2098,7 @@ toughness=4
 text=Flash (You may play this spell any time you could play an instant.) Creature cards you own that aren't in play have flash. Each opponent can play spells only any time he or she could play a sorcery.
 rarity=R
 [/card]
-[card]
-id=111085
-name=Telekinetic Sliver
-mana={2}{U}{U}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Slivers have "{T}: Tap target permanent."
-rarity=U
-[/card]
+
 
 [card]
 id=106654

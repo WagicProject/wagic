@@ -67,7 +67,7 @@ int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
     return 0;
 }
 
-Trigger * AbilityFactory::parseTrigger(string magicText){
+TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target){
   size_t found = magicText.find("@");
   if (found == string::npos) return NULL;
 
@@ -77,7 +77,7 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
     for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
       found = magicText.find(Constants::MTGPhaseCodeNames[i]);
       if (found != string::npos){
-	      return NEW TriggerNextPhase(i);
+	      return NEW TriggerNextPhase(id, card,target,i);
       }
     }
   }
@@ -88,7 +88,7 @@ Trigger * AbilityFactory::parseTrigger(string magicText){
     for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
       found = magicText.find(Constants::MTGPhaseCodeNames[i]);
       if (found != string::npos){
-	      return NEW TriggerAtPhase(i);
+	      return NEW TriggerAtPhase(id, card,target,i);
       }
     }
   }
@@ -109,6 +109,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (!card) return NULL;
   MTGCardInstance * target = card->target;
   if (!target) target = card; 
+
+
+  TriggeredAbility * trigger = NULL;
+  trigger = parseTrigger(s,id,spell,card,target);
+  //Dirty way to remove the trigger text (could get in the way)
+  if (trigger){
+    found = s.find(":");
+    string s1 = s.substr(found+1);
+    MTGAbility * a = parseMagicLine(s1, id, spell, card,activated);
+    if (!a){
+      delete trigger;
+      return NULL;
+    }
+    return NEW GenericTriggeredAbility(id,card,trigger,a,NULL,target);
+  }
 
   int doTap = 0; //Tap in the cost ?
   if (s.find("{t}") != string::npos) doTap = 1;
@@ -193,13 +208,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NEW MayAbility(id,a1,card);
   }
 
-  Trigger * trigger = NULL;
-  trigger = parseTrigger(s);
-  //Dirty way to remove the trigger text (could get in the way)
-  if (trigger){
-    found = s.find(":");
-    s = s.substr(found+1);
-  }
+
  
 
   //Lord, foreach, aslongas
@@ -330,13 +339,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find(destroys[i]);
     if (found != string::npos){
       int bury = destroyTypes[i];
-      if (trigger){
+      /*if (trigger){
         if (bury){
           BuryEvent * action = NEW BuryEvent();
           return NEW GenericTriggeredAbility(id, card,trigger,action);
         }
         return NULL;
-      }
+      }*/
       MTGAbility * a = NEW AADestroyer(id,card,target,bury);
       a->oneShot = 1;
       return a;
@@ -394,10 +403,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       nbcards = atoi(s.substr(start+1).c_str());
     }
 
-    if (trigger){
+    /*if (trigger){
       DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
       return NEW GenericTriggeredAbility(id, card,trigger,action);
-	  }
+	  }*/
 
     MTGAbility * a = NEW AADrawer(id,card,NULL,nbcards);
     a->oneShot = 1;
@@ -2328,7 +2337,7 @@ ostream& ListMaintainerAbility::toString(ostream& out) const
 }
 
 
-/* An attempt to globalize triggered abilities as much as possible */
+/* An attempt to globalize triggered abilities as much as possible 
 
 MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(){
   game = GameObserver::GetInstance();
@@ -2341,35 +2350,6 @@ void MTGAbilityBasicFeatures::init(MTGCardInstance * _source, Targetable * _targ
   source = source;
   target=_target;
   if (!target) target = source;
-}
-
-
-
-TriggerAtPhase::TriggerAtPhase(int _phaseId):Trigger(),phaseId(_phaseId){
-  currentPhase = game->getCurrentGamePhase();
-  newPhase = game->getCurrentGamePhase();
-}
-
-int TriggerAtPhase::trigger(){
-  int result = 0;
-  newPhase = game->getCurrentGamePhase();
-  if (currentPhase != newPhase && newPhase == phaseId){
-    result = 1;
-  }
-  currentPhase = newPhase;
-  return result;
-}
-
-TriggerNextPhase::TriggerNextPhase(int _phaseId):TriggerAtPhase(_phaseId){
-  destroyActivated = 0;
-}
-
-int TriggerNextPhase::testDestroy(){
-  if (newPhase <= phaseId) destroyActivated = 1;
-  if ( newPhase > phaseId && destroyActivated){
-    return 1;
-  }
-  return 0;
 }
 
 TriggeredEvent::TriggeredEvent():MTGAbilityBasicFeatures(){}
@@ -2409,37 +2389,95 @@ int DestroyCondition::testDestroy(){
   }
   return 0;
 }
+*/
 
+TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId):TriggeredAbility(id, source,target),phaseId(_phaseId){
+  GameObserver * g = GameObserver::GetInstance();
+  newPhase = g->getCurrentGamePhase();
+  currentPhase = newPhase;
+}
 
+int TriggerAtPhase::trigger(){
+  int result = 0;
+  if (currentPhase != newPhase && newPhase == phaseId){
+    result = 1;
+  }
+  return result;
+}
 
-GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _source, Trigger * _t, TriggeredEvent * _te, DestroyCondition * _dc , Targetable * _target ): TriggeredAbility(id, _source,_target){
+TriggerAtPhase* TriggerAtPhase::clone() const{
+    TriggerAtPhase * a =  NEW TriggerAtPhase(*this);
+    a->isClone = 1;
+    return a;
+}
+
+TriggerNextPhase::TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId):TriggerAtPhase(id, source,target,_phaseId){
+  destroyActivated = 0;
+}
+
+int TriggerNextPhase::testDestroy(){
+  if (newPhase <= phaseId) destroyActivated = 1;
+  if ( newPhase > phaseId && destroyActivated){
+    return 1;
+  }
+  return 0;
+}
+
+TriggerNextPhase* TriggerNextPhase::clone() const{
+    TriggerNextPhase * a =  NEW TriggerNextPhase(*this);
+    a->isClone = 1;
+    return a;
+}
+
+GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _source,  TriggeredAbility * _t, MTGAbility * a , MTGAbility * dc, Targetable * _target ): TriggeredAbility(id, _source,_target){
   if (!target) target = source;
   t = _t;
-  te = _te;
-  dc = _dc;
+  ability = a;
+  destroyCondition = dc;
 
-  t->init(source,target);
-  te->init(source,target);
-  if (dc) dc->init(source,target);
+  t->source = source;
+  t->target = target;
+  ability->source = source;
+  ability->target = target;
+  if (destroyCondition){
+    destroyCondition->source = source;
+    destroyCondition->target = target;;
+  }
 }
 
 int GenericTriggeredAbility::trigger(){
   return t->trigger();
 }
 
+
+int GenericTriggeredAbility::receiveEvent(WEvent * e){
+  if (t->receiveEvent(e)) return resolve();
+  return 0;
+}
+
+void GenericTriggeredAbility::Update(float dt){
+  GameObserver * g = GameObserver::GetInstance();
+  int newPhase = g->getCurrentGamePhase();
+  t->newPhase = newPhase;
+  TriggeredAbility::Update(dt);
+  t->currentPhase = newPhase;
+}
+
 int GenericTriggeredAbility::resolve(){
-  return te->resolve();
+  return ability->resolve();
 }
 
 int GenericTriggeredAbility::testDestroy(){
-  if (dc) return dc->testDestroy();
+  if (destroyCondition) return destroyCondition->testDestroy();
   return t->testDestroy();
 }
 
 GenericTriggeredAbility::~GenericTriggeredAbility(){
-  delete t;
-  delete te;
-  SAFE_DELETE(dc);
+  if (!isClone){
+    delete t;
+    delete ability;
+    SAFE_DELETE(destroyCondition);
+  }
 }
 
 GenericTriggeredAbility* GenericTriggeredAbility::clone() const{

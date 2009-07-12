@@ -126,16 +126,11 @@ public:
 class MultiAbility:public ActivatedAbility{
 public:
   vector<MTGAbility *> abilities;
-  vector<TriggeredEvent *> events;
+
 
   MultiAbility(int _id, MTGCardInstance * card,ManaCost * _cost, int _tap):ActivatedAbility(_id, card,_cost,0,_tap){
   }
 
-
-  int Add(TriggeredEvent * event){
-    events.push_back(event);
-    return 1;
-  }
 
   int Add(MTGAbility * ability){
     abilities.push_back(ability);
@@ -147,10 +142,6 @@ public:
     for (unsigned int i = 0; i < sz; i++){
       abilities[i]->resolve();
     }
-    sz = events.size();
-    for (unsigned int i = 0; i < sz; i++){
-      events[i]->resolve();
-    }
     return 1;
   }
 
@@ -159,17 +150,6 @@ public:
     for (unsigned int i = 0; i < sz; i++){
       delete abilities[i];
     }
-    sz = events.size();
-    for (unsigned int i = 0; i < sz; i++){
-      delete events[i];
-    }
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "MultiAbility ::: abilities : ?" // << abilities
-      	<< " ; events : ?" // << events
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
   }
 
   MultiAbility * clone() const{

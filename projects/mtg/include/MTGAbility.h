@@ -157,7 +157,7 @@ class ListMaintainerAbility:public MTGAbility{
   virtual ostream& toString(ostream& out) const;
 };
 
-/* An attempt to globalize triggered abilities as much as possible */
+/* An attempt to globalize triggered abilities as much as possible 
 class MTGAbilityBasicFeatures{
  public:
   Targetable * target;
@@ -168,31 +168,28 @@ class MTGAbilityBasicFeatures{
   void init(MTGCardInstance * _source, Targetable * _target = NULL);
 };
 
-class Trigger:public MTGAbilityBasicFeatures{
- public:
-  virtual int trigger()=0;
-  virtual int testDestroy(){return 0;};
-};
+*/
 
 
-class TriggerAtPhase:public Trigger{
+class TriggerAtPhase:public TriggeredAbility{
  public:
-  int currentPhase, newPhase;
   int phaseId;
-
-  TriggerAtPhase(int _phaseId);
-
+  TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId);
   virtual int trigger();
+  int resolve(){return 0;};
+  virtual TriggerAtPhase* clone() const;
 };
 
 class TriggerNextPhase:public TriggerAtPhase{
  public:
   int destroyActivated;
-  TriggerNextPhase(int _phaseId);
-
+  TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId);
+  virtual TriggerNextPhase* clone() const;
   virtual int testDestroy();
 
 };
+
+/*
 
 class TriggeredEvent:public MTGAbilityBasicFeatures{
  public:
@@ -227,17 +224,19 @@ class DestroyCondition:public MTGAbilityBasicFeatures{
  public:
   virtual int testDestroy();
 };
-
+*/
 
 class GenericTriggeredAbility:public TriggeredAbility{
  public:
-  Trigger * t;
-  TriggeredEvent * te;
-  DestroyCondition  * dc;
-  GenericTriggeredAbility(int id, MTGCardInstance * _source, Trigger * _t, TriggeredEvent * _te, DestroyCondition * _dc = NULL, Targetable * _target = NULL);
+  TriggeredAbility * t;
+  MTGAbility * ability;
+  MTGAbility * destroyCondition;
+  GenericTriggeredAbility(int id, MTGCardInstance * _source,  TriggeredAbility * _t, MTGAbility * a,MTGAbility * dc = NULL, Targetable * _target = NULL);
   virtual int trigger();
+  virtual int receiveEvent(WEvent * e);
   virtual int resolve();
   virtual int testDestroy();
+  void Update(float dt);
   virtual GenericTriggeredAbility* clone() const;
   ~GenericTriggeredAbility();
 };
@@ -247,7 +246,7 @@ class AbilityFactory{
  private:
    int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
   int parsePowerToughness(string s, int *power, int *toughness);
-  Trigger * parseTrigger(string magicText);
+  TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0);
   int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY);
  public:

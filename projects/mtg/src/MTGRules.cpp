@@ -432,12 +432,10 @@ HUDDisplay::~HUDDisplay(){
         for (int i = 0; i < 2 ; i++){
           Player * p = game->players[i];
           if (e->to == p->game->graveyard){
-            //p->game->putInZone(card,  p->game->graveyard, card->owner->game->hand);
 	          MTGCardInstance * copy = p->game->putInZone(e->card,  p->game->graveyard, e->card->owner->game->stack);
             Spell * spell = NEW Spell(copy);
 	          spell->resolve();
             spell->source->counters->addCounter(-1,-1);
-            game->mLayers->playLayer()->forceUpdateCards();
             delete spell;
             return 1;
           }

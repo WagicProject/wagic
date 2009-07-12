@@ -44,7 +44,7 @@ int ActionLayer::unstoppableRenderInProgress(){
 bool ActionLayer::CheckUserInput(u32 key){
   GameObserver * g = GameObserver::GetInstance();
   if (g->waitForExtraPayment && key == PSP_CTRL_CROSS){
-    game->waitForExtraPayment = NULL;
+    g->waitForExtraPayment = NULL;
     return 1;
   }
   if (menuObject){
@@ -67,15 +67,16 @@ void ActionLayer::Update(float dt){
     return;
   }
   modal = 0;
+  GameObserver * g = GameObserver::GetInstance();
   for (int i=mCount -1 ;i>=0;i--){
     if (mObjects[i]!= NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];
       if (currentAction->testDestroy()){
-        game->removeObserver(currentAction);
+        g->removeObserver(currentAction);
       }
     }
   }
-  int newPhase = GameObserver::GetInstance()->getCurrentGamePhase();
+  int newPhase = g->getCurrentGamePhase();
   for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];

@@ -1305,6 +1305,23 @@ subtype=Human Barbarian
 toughness=1
 [/card]
 [card]
+text=Lands you control have "{T}: Add one mana of any color to your mana pool."
+auto=lord(land|myinplay) {T}: add{G}
+auto=lord(land|myinplay) {T}: add{R}
+auto=lord(land|myinplay) {T}: add{U}
+auto=lord(land|myinplay) {T}: add{B}
+auto=lord(land|myinplay) {T}: add{W}
+id=130500
+name=Joiner Adept
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}
+power=2
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
 auto={T}:Add {1}
 auto={T}:Add {R} && Damage 1 controller
@@ -2817,6 +2834,17 @@ mana={W}
 power=1
 subtype=Wolf
 toughness=1
+[/card]
+[card]
+text=You may tap or untap target artifact, creature, or land.     Draw a card.
+auto=may untap target(artifact,creature,land)
+auto=draw:1
+id=136286
+name=Twitch
+rarity=C
+color=Blue
+type=Instant
+mana={2}{U}
 [/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.)  Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+2 and attacks each turn if able.
