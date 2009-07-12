@@ -113,7 +113,7 @@ public:
     return MTGAbility::toString(out) << ")";
   }
 
-  MayAbility * MayAbility::clone() const{
+  MayAbility * clone() const{
     MayAbility * a =  NEW MayAbility(*this);
     a->isClone = 1;
     return a;
@@ -172,7 +172,7 @@ public:
     return ActivatedAbility::toString(out) << ")";
   }
 
-  MultiAbility * MultiAbility::clone() const{
+  MultiAbility * clone() const{
     MultiAbility * a =  NEW MultiAbility(*this);
     a->isClone = 1;
     return a;
@@ -214,7 +214,7 @@ class GenericActivatedAbility:public ActivatedAbility{
     ActivatedAbility::Update(dt);
   }
 
-  GenericActivatedAbility * GenericActivatedAbility::clone() const{
+  GenericActivatedAbility * clone() const{
     GenericActivatedAbility * a =  NEW GenericActivatedAbility(*this);
     a->isClone = 1;
     return a;
@@ -239,7 +239,7 @@ public:
     counters = 0;
   }
 
-  GenericTargetAbility * GenericTargetAbility::clone() const{
+  GenericTargetAbility * clone() const{
     GenericTargetAbility * a =  NEW GenericTargetAbility(*this);
     a->isClone = 1;
     return a;
@@ -279,7 +279,7 @@ class AADrawer:public ActivatedAbility{
     return "Draw";
   }
 
-  AADrawer * AADrawer::clone() const{
+  AADrawer * clone() const{
     AADrawer * a =  NEW AADrawer(*this);
     a->isClone = 1;
     return a;
@@ -305,7 +305,7 @@ class AALifer:public ActivatedAbility{
     return "Life";
   }
 
-  AALifer * AALifer::clone() const{
+  AALifer * clone() const{
     AALifer * a =  NEW AALifer(*this);
     a->isClone = 1;
     return a;
@@ -442,7 +442,7 @@ public:
   }
 
 
-  AAMover * AAMover::clone() const{
+  AAMover * clone() const{
     AAMover * a =  NEW AAMover(*this);
     a->isClone = 1;
     return a;
@@ -472,7 +472,7 @@ class AACopier:public ActivatedAbility{
   }
 
 
-  AACopier * AACopier::clone() const{
+  AACopier * clone() const{
     AACopier * a =  NEW AACopier(*this);
     a->isClone = 1;
     return a;
@@ -501,7 +501,7 @@ public:
   }
 
 
-  AADestroyer * AADestroyer::clone() const{
+  AADestroyer * clone() const{
     AADestroyer * a =  NEW AADestroyer(*this);
     a->isClone = 1;
     return a;
@@ -552,7 +552,7 @@ class ABasicAbilityModifier:public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
-  ABasicAbilityModifier * ABasicAbilityModifier::clone() const{
+  ABasicAbilityModifier * clone() const{
     ABasicAbilityModifier * a =  NEW ABasicAbilityModifier(*this);
     a->isClone = 1;
     return a;
@@ -614,7 +614,7 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
     return TargetAbility::toString(out) << ")";
   }
 
-  ABasicAbilityModifierUntilEOT * ABasicAbilityModifierUntilEOT::clone() const{
+  ABasicAbilityModifierUntilEOT * clone() const{
     ABasicAbilityModifierUntilEOT * a =  NEW ABasicAbilityModifierUntilEOT(*this);
     a->isClone = 1;
     return a;
@@ -651,7 +651,7 @@ class  AInstantBasicAbilityModifierUntilEOT: public InstantAbility{
     return InstantAbility::toString(out) << ")";
   }
 
-  AInstantBasicAbilityModifierUntilEOT * AInstantBasicAbilityModifierUntilEOT::clone() const{
+  AInstantBasicAbilityModifierUntilEOT * clone() const{
     AInstantBasicAbilityModifierUntilEOT * a =  NEW AInstantBasicAbilityModifierUntilEOT(*this);
     a->isClone = 1;
     return a;
@@ -698,7 +698,7 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
     return ActivatedAbility::toString(out) << ")";
   }
 
-  ABasicAbilityAuraModifierUntilEOT * ABasicAbilityAuraModifierUntilEOT::clone() const{
+  ABasicAbilityAuraModifierUntilEOT * clone() const{
     ABasicAbilityAuraModifierUntilEOT * a =  NEW ABasicAbilityAuraModifierUntilEOT(*this);
     a->isClone = 1;
     return a;
@@ -757,7 +757,7 @@ class ASpellCastLife:public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
-  ASpellCastLife * ASpellCastLife::clone() const{
+  ASpellCastLife * clone() const{
     ASpellCastLife * a =  NEW ASpellCastLife(*this);
     a->isClone = 1;
     return a;
@@ -796,7 +796,7 @@ class AUnBlocker:public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
-  AUnBlocker * AUnBlocker::clone() const{
+  AUnBlocker * clone() const{
     AUnBlocker * a =  NEW AUnBlocker(*this);
     a->isClone = 1;
     return a;
@@ -838,7 +838,7 @@ class AUntaperOnceDuringTurn:public AUnBlocker{
     return AUnBlocker::toString(out) << ")";
   }
 
-  AUntaperOnceDuringTurn * AUntaperOnceDuringTurn::clone() const{
+  AUntaperOnceDuringTurn * clone() const{
     AUntaperOnceDuringTurn * a =  NEW AUntaperOnceDuringTurn(*this);
     a->isClone = 1;
     return a;
@@ -873,7 +873,7 @@ class APowerToughnessModifier: public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  APowerToughnessModifier * APowerToughnessModifier::clone() const{
+  APowerToughnessModifier * clone() const{
     APowerToughnessModifier * a =  NEW APowerToughnessModifier(*this);
     a->isClone = 1;
     return a;
@@ -907,7 +907,7 @@ class APowerToughnessModifierRegularCounter:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  APowerToughnessModifierRegularCounter * APowerToughnessModifierRegularCounter::clone() const{
+  APowerToughnessModifierRegularCounter * clone() const{
     APowerToughnessModifierRegularCounter * a =  NEW APowerToughnessModifierRegularCounter(*this);
     a->isClone = 1;
     return a;
@@ -964,7 +964,7 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
-  ATargetterPowerToughnessModifierUntilEOT * ATargetterPowerToughnessModifierUntilEOT::clone() const{
+  ATargetterPowerToughnessModifierUntilEOT * clone() const{
     ATargetterPowerToughnessModifierUntilEOT * a =  NEW ATargetterPowerToughnessModifierUntilEOT(*this);
     a->isClone = 1;
     return a;
@@ -1019,7 +1019,7 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
-  APowerToughnessModifierUntilEndOfTurn * APowerToughnessModifierUntilEndOfTurn::clone() const{
+  APowerToughnessModifierUntilEndOfTurn * clone() const{
     APowerToughnessModifierUntilEndOfTurn * a =  NEW APowerToughnessModifierUntilEndOfTurn(*this);
     a->isClone = 1;
     return a;
@@ -1053,7 +1053,7 @@ class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
 	<< " (";
     return InstantAbility::toString(out) << ")";
   }
-  AInstantPowerToughnessModifierUntilEOT * AInstantPowerToughnessModifierUntilEOT::clone() const{
+  AInstantPowerToughnessModifierUntilEOT * clone() const{
     AInstantPowerToughnessModifierUntilEOT * a =  NEW AInstantPowerToughnessModifierUntilEOT(*this);
     a->isClone = 1;
     return a;
@@ -1074,7 +1074,7 @@ class AUntapManaBlocker: public UntapBlocker{
     out << "AUntapManaBlocker ::: (";
     return UntapBlocker::toString(out) << ")";
   }
-  AUntapManaBlocker * AUntapManaBlocker::clone() const{
+  AUntapManaBlocker * clone() const{
     AUntapManaBlocker * a =  NEW AUntapManaBlocker(*this);
     a->isClone = 1;
     return a;
@@ -1130,7 +1130,7 @@ protected:
     out << "ACircleOfProtection ::: (";
     return TargetAbility::toString(out) << ")";
   }
-  ACircleOfProtection * ACircleOfProtection::clone() const{
+  ACircleOfProtection * clone() const{
     ACircleOfProtection * a =  NEW ACircleOfProtection(*this);
     a->isClone = 1;
     return a;
@@ -1161,7 +1161,7 @@ class AStandardRegenerate:public ActivatedAbility{
     out << "AStandardRegenerate ::: (";
     return ActivatedAbility::toString(out) << ")";
   }
-  AStandardRegenerate * AStandardRegenerate::clone() const{
+  AStandardRegenerate * clone() const{
     AStandardRegenerate * a =  NEW AStandardRegenerate(*this);
     a->isClone = 1;
     return a;
@@ -1200,7 +1200,7 @@ class AProtectionFrom:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AProtectionFrom * AProtectionFrom::clone() const{
+  AProtectionFrom * clone() const{
     AProtectionFrom * a =  NEW AProtectionFrom(*this);
     a->isClone = 1;
     return a;
@@ -1235,7 +1235,7 @@ class ARegularLifeModifierAura:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  ARegularLifeModifierAura * ARegularLifeModifierAura::clone() const{
+  ARegularLifeModifierAura * clone() const{
     ARegularLifeModifierAura * a =  NEW ARegularLifeModifierAura(*this);
     a->isClone = 1;
     return a;
@@ -1289,7 +1289,7 @@ class AExalted:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
-  AExalted * AExalted::clone() const{
+  AExalted * clone() const{
     AExalted * a =  NEW AExalted(*this);
     a->isClone = 1;
     return a;
@@ -1338,7 +1338,7 @@ class AExaltedAbility:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
-  AExaltedAbility * AExaltedAbility::clone() const{
+  AExaltedAbility * clone() const{
     AExaltedAbility * a =  NEW AExaltedAbility(*this);
     a->isClone = 1;
     return a;
@@ -1381,7 +1381,7 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
-  AConvertLandToCreatures * AConvertLandToCreatures::clone() const{
+  AConvertLandToCreatures * clone() const{
     AConvertLandToCreatures * a =  NEW AConvertLandToCreatures(*this);
     a->isClone = 1;
     return a;
@@ -1441,7 +1441,7 @@ class AAsLongAs:public ListMaintainerAbility{
   }
 
 
-  AAsLongAs * AAsLongAs::clone() const{
+  AAsLongAs * clone() const{
     AAsLongAs * a =  NEW AAsLongAs(*this);
     a->isClone = 1;
     return a;
@@ -1514,7 +1514,7 @@ class ALord:public ListMaintainerAbility{
     if (!isClone) SAFE_DELETE(ability);
   }
 
-  ALord * ALord::clone() const{
+  ALord * clone() const{
     ALord * a =  NEW ALord(*this);
     a->isClone = 1;
     return a;
@@ -1561,7 +1561,7 @@ class AForeach:public ListMaintainerAbility{
     return 0;
   }
 
-  AForeach * AForeach::clone() const{
+  AForeach * clone() const{
     AForeach * a =  NEW AForeach(*this);
     a->isClone = 1;
     return a;
@@ -1606,7 +1606,7 @@ AADamager(int _id, MTGCardInstance * _source, Damageable * _target, int _damage 
   }
 
 
-  AADamager * AADamager::clone() const{
+  AADamager * clone() const{
     AADamager * a =  NEW AADamager(*this);
     a->isClone = 1;
     return a;
@@ -1624,7 +1624,7 @@ class TADamager:public TargetAbility{
     ability = NEW AADamager(id,card,NULL,damage);
   }
 
-  TADamager * TADamager::clone() const{
+  TADamager * clone() const{
     TADamager * a =  NEW TADamager(*this);
     a->isClone = 1;
     return a;
@@ -1650,7 +1650,7 @@ class AATapper:public ActivatedAbility{
     return "Tap target";
   }
 
-  AATapper * AATapper::clone() const{
+  AATapper * clone() const{
     AATapper * a =  NEW AATapper(*this);
     a->isClone = 1;
     return a;
@@ -1735,7 +1735,7 @@ class ALifeZoneLink:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  ALifeZoneLink * ALifeZoneLink::clone() const{
+  ALifeZoneLink * clone() const{
     ALifeZoneLink * a =  NEW ALifeZoneLink(*this);
     a->isClone = 1;
     return a;
@@ -1770,7 +1770,7 @@ class AStrongLandLinkCreature: public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AStrongLandLinkCreature * AStrongLandLinkCreature::clone() const{
+  AStrongLandLinkCreature * clone() const{
     AStrongLandLinkCreature * a =  NEW AStrongLandLinkCreature(*this);
     a->isClone = 1;
     return a;
@@ -1803,7 +1803,7 @@ class AControlStealAura: public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AControlStealAura * AControlStealAura::clone() const{
+  AControlStealAura * clone() const{
     AControlStealAura * a =  NEW AControlStealAura(*this);
     a->isClone = 1;
     return a;
@@ -1853,7 +1853,7 @@ class AOldSchoolDeathtouch:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AOldSchoolDeathtouch * AOldSchoolDeathtouch::clone() const{
+  AOldSchoolDeathtouch * clone() const{
     AOldSchoolDeathtouch * a =  NEW AOldSchoolDeathtouch(*this);
     a->isClone = 1;
     return a;
@@ -1883,7 +1883,7 @@ class AConvertToCreatureAura:public MTGAbility{
     out << "AConvertToCreatureAura ::: (";
     return MTGAbility::toString(out) << ")";
   }
-  AConvertToCreatureAura * AConvertToCreatureAura::clone() const{
+  AConvertToCreatureAura * clone() const{
     AConvertToCreatureAura * a =  NEW AConvertToCreatureAura(*this);
     a->isClone = 1;
     return a;
@@ -1957,7 +1957,7 @@ class AAladdinsLamp: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
-  AAladdinsLamp * AAladdinsLamp::clone() const{
+  AAladdinsLamp * clone() const{
     AAladdinsLamp * a =  NEW AAladdinsLamp(*this);
     a->isClone = 1;
     return a;
@@ -2001,7 +2001,7 @@ class AAnkhOfMishra: public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
-  AAnkhOfMishra * AAnkhOfMishra::clone() const{
+  AAnkhOfMishra * clone() const{
     AAnkhOfMishra * a =  NEW AAnkhOfMishra(*this);
     a->isClone = 1;
     return a;
@@ -2054,7 +2054,7 @@ class AArmageddonClock:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AArmageddonClock * AArmageddonClock::clone() const{
+  AArmageddonClock * clone() const{
     AArmageddonClock * a =  NEW AArmageddonClock(*this);
     a->isClone = 1;
     return a;
@@ -2093,7 +2093,7 @@ class AChannel:public ActivatedAbility{
     out << "AChannel ::: (";
     return ActivatedAbility::toString(out) << ")";
   }
-  AChannel * AChannel::clone() const{
+  AChannel * clone() const{
     AChannel * a =  NEW AChannel(*this);
     a->isClone = 1;
     return a;
@@ -2146,7 +2146,7 @@ class AClockworkBeast:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AClockworkBeast * AClockworkBeast::clone() const{
+  AClockworkBeast * clone() const{
     AClockworkBeast * a =  NEW AClockworkBeast(*this);
     a->isClone = 1;
     return a;
@@ -2225,7 +2225,7 @@ class AConservator: public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AConservator * AConservator::clone() const{
+  AConservator * clone() const{
     AConservator * a =  NEW AConservator(*this);
     a->isClone = 1;
     return a;
@@ -2265,7 +2265,7 @@ class ACreatureBond:public MTGAbility{
        << " (";
    return MTGAbility::toString(out) << ")";
  }
-   ACreatureBond * ACreatureBond::clone() const{
+   ACreatureBond * clone() const{
     ACreatureBond * a =  NEW ACreatureBond(*this);
     a->isClone = 1;
     return a;
@@ -2297,7 +2297,7 @@ class ADingusEgg: public ListMaintainerAbility{
     out << "ADingusEgg ::: (";
     return ListMaintainerAbility::toString(out) << ")";
   }
-  ADingusEgg * ADingusEgg::clone() const{
+  ADingusEgg * clone() const{
     ADingusEgg * a =  NEW ADingusEgg(*this);
     a->isClone = 1;
     return a;
@@ -2339,7 +2339,7 @@ class ADisruptingScepter:public TargetAbility{
     out << "ADisruptingScepter ::: (";
     return TargetAbility::toString(out) << ")";
   }
-  ADisruptingScepter * ADisruptingScepter::clone() const{
+  ADisruptingScepter * clone() const{
     ADisruptingScepter * a =  NEW ADisruptingScepter(*this);
     a->isClone = 1;
     return a;
@@ -2366,7 +2366,7 @@ class AEbonyHorse:public TargetAbility{
     out << "AEbonyHorse ::: (";
     return TargetAbility::toString(out) << ")";
   }
-  AEbonyHorse * AEbonyHorse::clone() const{
+  AEbonyHorse * clone() const{
     AEbonyHorse * a =  NEW AEbonyHorse(*this);
     a->isClone = 1;
     return a;
@@ -2410,7 +2410,7 @@ class AFarmstead:public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
-  AFarmstead * AFarmstead::clone() const{
+  AFarmstead * clone() const{
     AFarmstead * a =  NEW AFarmstead(*this);
     a->isClone = 1;
     return a;
@@ -2472,7 +2472,7 @@ class AGlassesOfUrza:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AGlassesOfUrza * AGlassesOfUrza::clone() const{
+  AGlassesOfUrza * clone() const{
     AGlassesOfUrza * a =  NEW AGlassesOfUrza(*this);
     a->isClone = 1;
     return a;
@@ -2495,7 +2495,7 @@ class AHowlingMine:public MTGAbility{
     out << "AHowlingMine ::: (";
     return MTGAbility::toString(out) << ")";
   }
-  AHowlingMine * AHowlingMine::clone() const{
+  AHowlingMine * clone() const{
     AHowlingMine * a =  NEW AHowlingMine(*this);
     a->isClone = 1;
     return a;
@@ -2549,7 +2549,7 @@ class ALivingArtifact:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  ALivingArtifact * ALivingArtifact::clone() const{
+  ALivingArtifact * clone() const{
     ALivingArtifact * a =  NEW ALivingArtifact(*this);
     a->isClone = 1;
     return a;
@@ -2596,7 +2596,7 @@ class ALordOfThePit: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
-  ALordOfThePit * ALordOfThePit::clone() const{
+  ALordOfThePit * clone() const{
     ALordOfThePit * a =  NEW ALordOfThePit(*this);
     a->isClone = 1;
     return a;
@@ -2634,7 +2634,7 @@ class AAnimateDead:public MTGAbility{
     out << "AAnimateDead ::: (";
     return MTGAbility::toString(out) << ")";
   }
-    AAnimateDead * AAnimateDead::clone() const{
+    AAnimateDead * clone() const{
     AAnimateDead * a =  NEW AAnimateDead(*this);
     a->isClone = 1;
     return a;
@@ -2677,7 +2677,7 @@ class AErgRaiders:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AErgRaiders * AErgRaiders::clone() const{
+  AErgRaiders * clone() const{
     AErgRaiders * a =  NEW AErgRaiders(*this);
     a->isClone = 1;
     return a;
@@ -2724,7 +2724,7 @@ class AFastbond:public TriggeredAbility{
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }
-  AFastbond * AFastbond::clone() const{
+  AFastbond * clone() const{
     AFastbond * a =  NEW AFastbond(*this);
     a->isClone = 1;
     return a;
@@ -2782,7 +2782,7 @@ class AHypnoticSpecter:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AHypnoticSpecter * AHypnoticSpecter::clone() const{
+  AHypnoticSpecter * clone() const{
     AHypnoticSpecter * a =  NEW AHypnoticSpecter(*this);
     a->isClone = 1;
     return a;
@@ -2812,7 +2812,7 @@ class AJandorsRing:public ActivatedAbility{
     out << "AJandorsRing ::: (";
     return ActivatedAbility::toString(out) << ")";
   }
-  AJandorsRing * AJandorsRing::clone() const{
+  AJandorsRing * clone() const{
     AJandorsRing * a =  NEW AJandorsRing(*this);
     a->isClone = 1;
     return a;
@@ -2891,7 +2891,7 @@ class AKudzu: public TargetAbility{
 	<< " (";
     return TargetAbility::toString(out) << ")";
   }
-  AKudzu * AKudzu::clone() const{
+  AKudzu * clone() const{
     AKudzu * a =  NEW AKudzu(*this);
     a->isClone = 1;
     return a;
@@ -2929,7 +2929,7 @@ class APestilence: public ActivatedAbility{
     out << "APestilence ::: (";
     return ActivatedAbility::toString(out) << ")";
   }
-  APestilence * APestilence::clone() const{
+  APestilence * clone() const{
     APestilence * a =  NEW APestilence(*this);
     a->isClone = 1;
     return a;
@@ -2990,7 +2990,7 @@ class APowerLeak:public TriggeredAbility{
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }
-  APowerLeak * APowerLeak::clone() const{
+  APowerLeak * clone() const{
     APowerLeak * a =  NEW APowerLeak(*this);
     a->isClone = 1;
     return a;
@@ -3035,7 +3035,7 @@ class APowerSurge:public TriggeredAbility{
 	<< " (";
     return TriggeredAbility::toString(out) << ")";
   }
-  APowerSurge * APowerSurge::clone() const{
+  APowerSurge * clone() const{
     APowerSurge * a =  NEW APowerSurge(*this);
     a->isClone = 1;
     return a;
@@ -3066,7 +3066,7 @@ class ASacrifice:public InstantAbility{
     out << "ASacrifice ::: (";
     return InstantAbility::toString(out) << ")";
   }
-  ASacrifice * ASacrifice::clone() const{
+  ASacrifice * clone() const{
     ASacrifice * a =  NEW ASacrifice(*this);
     a->isClone = 1;
     return a;
@@ -3106,7 +3106,7 @@ class AScavengingGhoul:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AScavengingGhoul * AScavengingGhoul::clone() const{
+  AScavengingGhoul * clone() const{
     AScavengingGhoul * a =  NEW AScavengingGhoul(*this);
     a->isClone = 1;
     return a;
@@ -3136,7 +3136,7 @@ class APsychicVenom:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  APsychicVenom * APsychicVenom::clone() const{
+  APsychicVenom * clone() const{
     APsychicVenom * a =  NEW APsychicVenom(*this);
     a->isClone = 1;
     return a;
@@ -3161,7 +3161,7 @@ class ASerendibEfreet:public MTGAbility{
     out << "ASerendibEfreet ::: (";
     return MTGAbility::toString(out) << ")";
   }
-  ASerendibEfreet * ASerendibEfreet::clone() const{
+  ASerendibEfreet * clone() const{
     ASerendibEfreet * a =  NEW ASerendibEfreet(*this);
     a->isClone = 1;
     return a;
@@ -3210,7 +3210,7 @@ class AAspectOfWolf:public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
-  AAspectOfWolf * AAspectOfWolf::clone() const{
+  AAspectOfWolf * clone() const{
     AAspectOfWolf * a =  NEW AAspectOfWolf(*this);
     a->isClone = 1;
     return a;
@@ -3239,7 +3239,7 @@ class AWanderlust:public TriggeredAbility{
     out << "AWanderlust ::: (";
     return TriggeredAbility::toString(out) << ")";
   }
-  AWanderlust * AWanderlust::clone() const{
+  AWanderlust * clone() const{
     AWanderlust * a =  NEW AWanderlust(*this);
     a->isClone = 1;
     return a;
@@ -3266,7 +3266,7 @@ class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
     out << "ADragonWhelp ::: (";
     return APowerToughnessModifierUntilEndOfTurn::toString(out) << ")";
   }
-  ADragonWhelp * ADragonWhelp::clone() const{
+  ADragonWhelp * clone() const{
     ADragonWhelp * a =  NEW ADragonWhelp(*this);
     a->isClone = 1;
     return a;
@@ -3288,7 +3288,7 @@ class AEarthbind:public ABasicAbilityModifier{
     out << "AEarthbind ::: (";
     return ABasicAbilityModifier::toString(out) << ")";
   }
-  AEarthbind * AEarthbind::clone() const{
+  AEarthbind * clone() const{
     AEarthbind * a =  NEW AEarthbind(*this);
     a->isClone = 1;
     return a;
@@ -3314,7 +3314,7 @@ class AFireball:public InstantAbility{
     out << "AFireball ::: (";
     return InstantAbility::toString(out) << ")";
   }
-  AFireball * AFireball::clone() const{
+  AFireball * clone() const{
     AFireball * a =  NEW AFireball(*this);
     a->isClone = 1;
     return a;
@@ -3356,7 +3356,7 @@ class AForceOfNature:public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
-  AForceOfNature * AForceOfNature::clone() const{
+  AForceOfNature * clone() const{
     AForceOfNature * a =  NEW AForceOfNature(*this);
     a->isClone = 1;
     return a;
@@ -3379,7 +3379,7 @@ class AOrcishArtillery: public TADamager{
   }
 
 
-  AOrcishArtillery * AOrcishArtillery::clone() const{
+  AOrcishArtillery * clone() const{
     AOrcishArtillery * a =  NEW AOrcishArtillery(*this);
     a->isClone = 1;
     return a;
@@ -3429,7 +3429,7 @@ class AIslandSanctuary:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  AIslandSanctuary * AIslandSanctuary::clone() const{
+  AIslandSanctuary * clone() const{
     AIslandSanctuary * a =  NEW AIslandSanctuary(*this);
     a->isClone = 1;
     return a;
@@ -3468,7 +3468,7 @@ class ASoulNet:public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
-  ASoulNet * ASoulNet::clone() const{
+  ASoulNet * clone() const{
     ASoulNet * a =  NEW ASoulNet(*this);
     a->isClone = 1;
     return a;
@@ -3526,7 +3526,7 @@ class AStasis:public ActivatedAbility{
 	<< " (";
     return ActivatedAbility::toString(out) << ")";
   }
-  AStasis * AStasis::clone() const{
+  AStasis * clone() const{
     AStasis * a =  NEW AStasis(*this);
     a->isClone = 1;
     return a;
@@ -3571,7 +3571,7 @@ class ABasilik:public MTGAbility{
 	<< " (";
     return MTGAbility::toString(out) << ")";
   }
-  ABasilik * ABasilik::clone() const{
+  ABasilik * clone() const{
     ABasilik * a =  NEW ABasilik(*this);
     a->isClone = 1;
     return a;
@@ -3629,7 +3629,7 @@ virtual ostream& toString(ostream& out) const
     return MTGAbility::toString(out) << ")";
   }  
 
-ALavaborn * ALavaborn::clone() const{
+ALavaborn * clone() const{
     ALavaborn * a =  NEW ALavaborn(*this);
     a->isClone = 1;
     return a;
@@ -3660,7 +3660,7 @@ class AADepleter:public ActivatedAbility{
   return "Deplete";
   }
 
-  AADepleter * AADepleter::clone() const{
+  AADepleter * clone() const{
     AADepleter * a =  NEW AADepleter(*this);
     a->isClone = 1;
     return a;
@@ -3725,7 +3725,7 @@ class ADamageForTypeControlled: public TriggeredAbility{
     return TriggeredAbility::toString(out) << ")";
   }
 
-  ADamageForTypeControlled * ADamageForTypeControlled::clone() const{
+  ADamageForTypeControlled * clone() const{
     ADamageForTypeControlled * a =  NEW ADamageForTypeControlled(*this);
     a->isClone = 1;
     return a;
@@ -3761,7 +3761,7 @@ class ADreambornMuse: public TriggeredAbility{
     return TriggeredAbility::toString(out) << ")";
   }
 
-  ADreambornMuse * ADreambornMuse::clone() const{
+  ADreambornMuse * clone() const{
     ADreambornMuse * a =  NEW ADreambornMuse(*this);
     a->isClone = 1;
     return a;
@@ -3789,7 +3789,7 @@ class AShieldOfTheAge: public TargetAbility{
     return TargetAbility::toString(out) << ")";
   }
 
-    AShieldOfTheAge * AShieldOfTheAge::clone() const{
+    AShieldOfTheAge * clone() const{
     AShieldOfTheAge * a =  NEW AShieldOfTheAge(*this);
     a->isClone = 1;
     return a;
@@ -3835,7 +3835,7 @@ class AGiveLifeForTappedType:public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
-  AGiveLifeForTappedType * AGiveLifeForTappedType::clone() const{
+  AGiveLifeForTappedType * clone() const{
     AGiveLifeForTappedType * a =  NEW AGiveLifeForTappedType(*this);
     a->isClone = 1;
     return a;
@@ -3884,7 +3884,7 @@ class AMinionofLeshrac: public TargetAbility{
     return TargetAbility::toString(out) << ")";
   }
 
-  AMinionofLeshrac * AMinionofLeshrac::clone() const{
+  AMinionofLeshrac * clone() const{
     AMinionofLeshrac * a =  NEW AMinionofLeshrac(*this);
     a->isClone = 1;
     return a;
@@ -3944,7 +3944,7 @@ class ARampageAbility:public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
-  ARampageAbility * ARampageAbility::clone() const{
+  ARampageAbility * clone() const{
     ARampageAbility * a =  NEW ARampageAbility(*this);
     a->isClone = 1;
     return a;
@@ -3977,7 +3977,7 @@ class ASeedbornMuse: public TriggeredAbility{
     return TriggeredAbility::toString(out) << ")";
   }
 
-  ASeedbornMuse * ASeedbornMuse::clone() const{
+  ASeedbornMuse * clone() const{
     ASeedbornMuse * a =  NEW ASeedbornMuse(*this);
     a->isClone = 1;
     return a;
@@ -4017,7 +4017,7 @@ class AGravebornMuse: public TriggeredAbility{
     return TriggeredAbility::toString(out) << ")";
   }
 
-  AGravebornMuse * AGravebornMuse::clone() const{
+  AGravebornMuse * clone() const{
     AGravebornMuse * a =  NEW AGravebornMuse(*this);
     a->isClone = 1;
     return a;
@@ -4066,7 +4066,7 @@ class AVerdantForce: public TriggeredAbility{
 	  return TriggeredAbility::toString(out) << ")";
   }
 
-  AVerdantForce * AVerdantForce::clone() const{
+  AVerdantForce * clone() const{
     AVerdantForce * a =  NEW AVerdantForce(*this);
     a->isClone = 1;
     return a;
@@ -4106,7 +4106,7 @@ class AInstantControlSteal: public InstantAbility{
     return InstantAbility::toString(out) << ")";
   }
 
-  AInstantControlSteal * AInstantControlSteal::clone() const{
+  AInstantControlSteal * clone() const{
     AInstantControlSteal * a =  NEW AInstantControlSteal(*this);
     a->isClone = 1;
     return a;
@@ -4150,7 +4150,7 @@ class AAngelicChorus: public ListMaintainerAbility{
     return ListMaintainerAbility::toString(out) << ")";
   }
 
-  AAngelicChorus * AAngelicChorus::clone() const{
+  AAngelicChorus * clone() const{
     AAngelicChorus * a =  NEW AAngelicChorus(*this);
     a->isClone = 1;
     return a;
@@ -4250,7 +4250,7 @@ class ALifeModifierPutinplay: public ListMaintainerAbility{
 	<< " (";
     return ListMaintainerAbility::toString(out) << ")";
   }
-  ALifeModifierPutinplay * ALifeModifierPutinplay::clone() const{
+  ALifeModifierPutinplay * clone() const{
     ALifeModifierPutinplay * a =  NEW ALifeModifierPutinplay(*this);
     a->isClone = 1;
     return a;
@@ -4281,7 +4281,7 @@ class ACounters: public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
-  ACounters * ACounters::clone() const{
+  ACounters * clone() const{
     ACounters * a =  NEW ACounters(*this);
     a->isClone = 1;
     return a;
@@ -4332,7 +4332,7 @@ class AAbomination :public MTGAbility{
     return MTGAbility::toString(out) << ")";
   }
 
-  AAbomination * AAbomination::clone() const{
+  AAbomination * clone() const{
     AAbomination * a =  NEW AAbomination(*this);
     a->isClone = 1;
     return a;
