@@ -14,7 +14,7 @@ toughness=2
 [card]
 text=Target creature gets +3/+3 and gains flying until end of turn.
 target=creature
-auto=:3/3
+auto=3/3
 auto=flying
 id=6040
 name=Angelic Blessing
@@ -22,20 +22,6 @@ color=White
 rarity=C
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-text=At the beginning of your upkeep, tap Carnophage unless you pay 1 life.
-alias=1221
-id=6079
-name=Carnophage
-color=Black
-rarity=C
-mana={B}
-type=Creature
-subtype=Zombie
-auto={T}:life:1
-power=2
-toughness=2
 [/card]
 [card]
 text=When Cartographer comes into play, you may return target land card from your graveyard to your hand.
@@ -63,9 +49,9 @@ mana={B}
 type=Instant
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
+text=Enchant creature.   Enchanted creature gets -1/-1 and has fear.
 target=creature
-auto=:-1/-1
+auto=-1/-1
 auto=fear
 id=6089
 name=Cursed Flesh
@@ -153,7 +139,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Flying   Discard a card: Return Ephemeron to its owner's hand.
+text=Flying. Discard a card: Return Ephemeron to its owner's hand.
 id=6073
 name=Ephemeron
 color=Blue
@@ -181,7 +167,7 @@ toughness=1
 abilities=legendary
 [/card]
 [card]
-text=Flying   Exalted Dragon can't attack unless you sacrifice a land.
+text=Flying. Exalted Dragon can't attack unless you sacrifice a land.
 id=6053
 name=Exalted Dragon
 color=White
@@ -208,9 +194,9 @@ power=3
 toughness=5
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +2/+2 and can't block.
+text=Enchant creature.   Enchanted creature gets +2/+2 and can't block.
 target=creature
-auto=:+2/+2
+auto=2/2
 auto=cantblock
 id=6109
 name=Maniacal Rage
@@ -231,8 +217,8 @@ type=Artifact
 [/card]
 [card]
 text=Discard a card: You may tap or untap target artifact, creature, or land.
-auto={S(*|myhand)}:tap target(artifact;creature;land)
-auto={S(*|myhand)}:untap target(artifact;creature;land) 
+auto={S(*|myhand)}:tap target(artifact,creature,land)
+auto={S(*|myhand)}:untap target(artifact,creature,land) 
 id=6076
 name=Mind Over Matter
 color=Blue
@@ -274,7 +260,7 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
-abilities=First strike, protection from black, protection from red
+abilities=first strike,protection from black,protection from red
 [/card]
 [card]
 text={W}, Discard a card: You gain 3 life.
@@ -348,14 +334,14 @@ rarity=R
 mana={3}{R}
 type=Creature
 subtype=Ape
-auto=may destroy target(land[-basic])
+auto=destroy target(land[-basic])
 power=2
 toughness=2
 [/card]
 [card]
 text=Put target card from your graveyard on top of your library.
 target=*|mygraveyard
-auto=moveTo(ownerLibrary)
+auto=moveTo(myLibrary)
 id=6139
 name=Reclaim
 color=Green
@@ -364,7 +350,16 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
-text=Enchant creature   Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+id=6140
+name=Resuscitate
+mana={1}{G}
+type=Instant
+text=Until end of turn, creatures you control gain "{1}: Regenerate this creature."
+auto=lord(creature|myinplay) {1}:regenerate
+rarity=U
+[/card]
+[card]
+text=Enchant creature. Enchanted creature has shroud. (It can't be the target of spells or abilities.)
 target=creature
 auto=shroud
 id=6059
@@ -404,7 +399,7 @@ abilities=flying,first strike
 [card]
 text=All creatures get +1/+0 until end of turn.
 id=6086
-auto=lord(creature|myinplay) 1/0
+auto=lord(creature) 1/0
 name=Scare Tactics
 color=Black
 rarity=C
@@ -435,6 +430,18 @@ mana={R}{R}{R}
 type=Enchantment
 [/card]
 [card]
+id=6038
+name=Shackles
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature. Enchanted creature doesn't untap during its controller's untap step. {W}: Return Shackles to its owner's hand.
+target=creature
+auto=doesnotuntap
+auto={W}:moveTo(ownerhand)
+rarity=C
+[/card]
+[card]
 text=Sacrifice Shield Mate: Target creature gets +0/+4 until end of turn.
 id=6030
 name=Shield Mate
@@ -446,6 +453,15 @@ subtype=Human Soldier
 auto={S}:0/4 target(creature)
 power=1
 toughness=1
+[/card]
+[card]
+text=Sacrifice Skyshaper: Creatures you control gain flying until end of turn. 
+id=5227
+auto={S}:lord(creature|myinplay) flying
+name=Skyshaper
+rarity=U
+mana={2}
+type=Artifact
 [/card]
 [card]
 text=Skyshroud Elite gets +1/+2 as long as an opponent controls a nonbasic land.
@@ -461,15 +477,6 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Sacrifice Skyshaper: Creatures you control gain flying until end of turn. 
-id=5227
-auto={S}:lord(creature|myinplay) flying
-name=Skyshaper
-rarity=U
-mana={2}
-type=Artifact
-[/card]
-[card]
 text=Trample   As Skyshroud War Beast comes into play, choose an opponent.   Skyshroud War Beast's power and toughness are each equal to the number of nonbasic lands the chosen player controls.
 id=5231
 name=Skyshroud War Beast
@@ -479,6 +486,7 @@ mana={1}{G}
 type=Creature
 subtype=Beast
 auto=foreach(land[-basic]|opponentinplay) 1/1
+abilities=trample
 power=*
 toughness=*
 [/card]
@@ -533,18 +541,13 @@ toughness=1
 abilities=shadow
 [/card]
 [card]
-text={U}: Put Wayward Soul on top of its owner's library.
-auto={U}: moveTo(ownersLibrary)
-id=5273
-name=Wayward Soul
-color=Blue
-rarity=C
-mana={2}{U}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=2
-abilities=flying
+id=5254
+name=Theft of Dreams
+mana={2}{U}
+type=Sorcery
+text=Draw a card for each tapped creature target opponent controls.
+auto=foreach(creature[-tapped]|opponentinplay) draw:1
+rarity=U
 [/card]
 [card]
 text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
@@ -581,6 +584,20 @@ subtype=Vampire Hound
 auto={S(creature|myhand)}:2/2
 power=2
 toughness=2
+[/card]
+[card]
+text={U}: Put Wayward Soul on top of its owner's library.
+auto={U}:moveTo(ownerLibrary)
+id=5273
+name=Wayward Soul
+color=Blue
+rarity=C
+mana={2}{U}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=2
+abilities=flying
 [/card]
 [card]
 text={U}: Whiptongue Frog gains flying until end of turn.

@@ -3,7 +3,7 @@ id=6071
 name=AEther Tide
 mana={X}{U}
 type=Sorcery
-text=As an additional cost to play ÁEher Tide, discard X creature cards. Return X target creatures to their owners' hands.
+text=As an additional cost to play AEher Tide, discard X creature cards. Return X target creatures to their owners' hands.
 rarity=C
 [/card]
 [card]
@@ -12,36 +12,6 @@ name=Allay
 mana={1}{W}
 type=Instant
 text=Buyback {3} (You may pay an additional {3} as you play this spell. If you do, put this card into your hand as it resolves.) Destroy target enchantment.
-rarity=C
-[/card]
-[card]
-id=6110
-name=Anarchist
-mana={4}{R}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=When Anarchist comes into play, you may return target sorcery card from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=6040
-name=Angelic Blessing
-mana={2}{W}
-type=Sorcery
-text=Target creature gets +3/+3 and gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
-rarity=C
-[/card]
-[card]
-id=6137
-name=Avenging Druid
-mana={2}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=3
-text=Whenever Avenging Druid deals damage to an opponent, you may reveal cards from the top of your library until you reveal a land card. Put that card into play and put all other cards revealed this way into your graveyard.
 rarity=C
 [/card]
 [card]
@@ -63,17 +33,6 @@ power=2
 toughness=2
 text=At the beginning of your upkeep, tap Carnophage unless you pay 1 life.
 rarity=C
-[/card]
-[card]
-id=6144
-name=Cartographer
-mana={2}{G}
-type=Creature
-subtype=Human
-power=2
-toughness=2
-text=When Cartographer comes into play, you may return target land card from your graveyard to your hand.
-rarity=U
 [/card]
 [card]
 id=6080
@@ -119,7 +78,6 @@ rarity=C
 [card]
 id=6168
 name=City of Traitors
-mana=
 type=Land
 text=When you play another land, sacrifice City of Traitors.  {T}: Add {2} to your mana pool.
 rarity=R
@@ -152,14 +110,6 @@ text=Whenever Crashing Boars attacks, defending player chooses an untapped creat
 rarity=U
 [/card]
 [card]
-id=6085
-name=Culling the Weak
-mana={B}
-type=Instant
-text=As an additional cost to play Culling the Weak, sacrifice a creature.  Add {B}{B}{B}{B} to your mana pool.
-rarity=C
-[/card]
-[card]
 id=6062
 name=Cunning
 mana={1}{U}
@@ -174,49 +124,7 @@ name=Curiosity
 mana={U}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Whenever enchanted creature deals damage to an opponent, you may draw a card.
-rarity=U
-[/card]
-[card]
-id=6089
-name=Cursed Flesh
-mana={B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets -1/-1 and has fear.
-rarity=C
-[/card]
-[card]
-id=6091
-name=Dauthi Cutthroat
-mana={1}{B}
-type=Creature
-subtype=Dauthi Minion
-power=1
-toughness=1
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) {1}{B}, {T}: Destroy target creature with shadow.
-rarity=U
-[/card]
-[card]
-id=6081
-name=Dauthi Jackal
-mana={2}{B}
-type=Creature
-subtype=Dauthi Hound
-power=2
-toughness=1
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) {B}{B}, Sacrifice Dauthi Jackal: Destroy target blocking creature.
-rarity=C
-[/card]
-[card]
-id=6094
-name=Dauthi Warlord
-mana={1}{B}
-type=Creature
-subtype=Dauthi Soldier
-power=*
-toughness=1
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) Dauthi Warlord's power is equal to the number of creatures with shadow in play.
+text=Enchant creature. Whenever enchanted creature deals damage to an opponent, you may draw a card.
 rarity=U
 [/card]
 [card]
@@ -225,15 +133,6 @@ name=Death's Duet
 mana={2}{B}
 type=Sorcery
 text=Return two target creature cards from your graveyard to your hand.
-rarity=C
-[/card]
-[card]
-id=6114
-name=Dizzying Gaze
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature you control {R}: Enchanted creature deals 1 damage to target creature with flying.
 rarity=C
 [/card]
 [card]
@@ -248,25 +147,6 @@ text={1}{U}{U}, {T}: Dominating Licid loses this ability and becomes an Aura enc
 rarity=R
 [/card]
 [card]
-id=6146
-name=Elven Palisade
-mana={G}
-type=Enchantment
-text=Sacrifice a Forest: Target attacking creature gets -3/-0 until end of turn.
-rarity=U
-[/card]
-[card]
-id=6133
-name=Elvish Berserker
-mana={G}
-type=Creature
-subtype=Elf Berserker
-power=1
-toughness=1
-text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
-rarity=C
-[/card]
-[card]
 id=6099
 name=Entropic Specter
 mana={3}{B}{B}
@@ -275,17 +155,6 @@ subtype=Specter Spirit
 power=*
 toughness=*
 text=Flying As Entropic Specter comes into play, choose an opponent. Entropic Specter's power and toughness are each equal to the number of cards in the chosen player's hand. Whenever Entropic Specter deals damage to a player, that player discards a card.
-rarity=R
-[/card]
-[card]
-id=6073
-name=Ephemeron
-mana={4}{U}{U}
-type=Creature
-subtype=Illusion
-power=4
-toughness=4
-text=Flying Discard a card: Return Ephemeron to its owner's hand.
 rarity=R
 [/card]
 [card]
@@ -302,28 +171,6 @@ name=Erratic Portal
 mana={4}
 type=Artifact
 text={1}, {T}: Return target creature to its owner's hand unless its controller pays {1}.
-rarity=R
-[/card]
-[card]
-id=5146
-name=Ertai, Wizard Adept
-mana={2}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={2}{U}{U}, {T}: Counter target spell.
-rarity=R
-[/card]
-[card]
-id=6053
-name=Exalted Dragon
-mana={4}{W}{W}
-type=Creature
-subtype=Dragon
-power=5
-toughness=5
-text=Flying Exalted Dragon can't attack unless you sacrifice a land.
 rarity=R
 [/card]
 [card]
@@ -471,17 +318,6 @@ text={U}, {T}: Draw a card. Play this ability only if an opponent has at least t
 rarity=U
 [/card]
 [card]
-id=6065
-name=Killer Whale
-mana={3}{U}{U}
-type=Creature
-subtype=Whale
-power=3
-toughness=5
-text={U}: Killer Whale gains flying until end of turn.
-rarity=U
-[/card]
-[card]
 id=6045
 name=Kor Chant
 mana={2}{W}
@@ -525,23 +361,6 @@ text=At the end of your turn, you may reveal your hand and put all land cards fr
 rarity=R
 [/card]
 [card]
-id=6109
-name=Maniacal Rage
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+2 and can't block.
-rarity=C
-[/card]
-[card]
-id=6165
-name=Medicine Bag
-mana={3}
-type=Artifact
-text={1}, {T}, Discard a card: Regenerate target creature.
-rarity=U
-[/card]
-[card]
 id=6167
 name=Memory Crystal
 mana={3}
@@ -572,14 +391,6 @@ text=When Mind Maggots comes into play, discard any number of creature cards. Fo
 rarity=U
 [/card]
 [card]
-id=6076
-name=Mind Over Matter
-mana={2}{U}{U}{U}{U}
-type=Enchantment
-text=Discard a card: You may tap or untap target artifact, creature, or land.
-rarity=R
-[/card]
-[card]
 id=5171
 name=Mindless Automaton
 mana={4}
@@ -602,17 +413,6 @@ text=Flying When Mirozel becomes the target of a spell or ability, return Miroze
 rarity=U
 [/card]
 [card]
-id=6155
-name=Mirri, Cat Warrior
-mana={1}{G}{G}
-type=Legendary Creature
-subtype=Cat Warrior
-power=2
-toughness=3
-text=First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
-rarity=R
-[/card]
-[card]
 id=6118
 name=Mogg Assassin
 mana={2}{R}
@@ -633,14 +433,6 @@ power=4
 toughness=4
 text=Monstrous Hound can't attack unless you control more lands than defending player. Monstrous Hound can't block unless you control more lands than attacking player.
 rarity=R
-[/card]
-[card]
-id=6088
-name=Nausea
-mana={1}{B}
-type=Sorcery
-text=All creatures get -1/-1 until end of turn.
-rarity=C
 [/card]
 [card]
 id=6095
@@ -718,17 +510,6 @@ text=Whenever you play a creature spell, tap target creature.
 rarity=C
 [/card]
 [card]
-id=5199
-name=Paladin en-Vec
-mana={1}{W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=First strike, protection from black and from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
-rarity=R
-[/card]
-[card]
 id=6126
 name=Pandemonium
 mana={3}{R}
@@ -743,14 +524,6 @@ mana={1}{R}
 type=Enchantment
 subtype=Aura
 text=Enchant creature At the beginning of the upkeep of enchanted creature's controller, reveal the top card of that player's library. If that card is a land card, destroy that creature. Otherwise, it gets +3/+3 until end of turn.
-rarity=U
-[/card]
-[card]
-id=6039
-name=Peace of Mind
-mana={1}{W}
-type=Enchantment
-text={W}, Discard a card: You gain 3 life.
 rarity=U
 [/card]
 [card]
@@ -792,17 +565,6 @@ text={X}{X}{B}: Destroy target nonblack creature with converted mana cost X.
 rarity=R
 [/card]
 [card]
-id=5201
-name=Plated Rootwalla
-mana={4}{G}
-type=Creature
-subtype=Lizard
-power=3
-toughness=3
-text={2}{G}: Plated Rootwalla gets +3/+3 until end of turn. Play this ability only once each turn.
-rarity=C
-[/card]
-[card]
 id=6141
 name=Predatory Hunger
 mana={G}
@@ -817,51 +579,9 @@ name=Price of Progress
 mana={1}{R}
 type=Instant
 text=Price of Progress deals 2 damage to each player for each nonbasic land he or she controls.
+auto=foreach(land[-basic]|myinplay) life:-2
+auto=foreach(land[-basic]|opponentinplay) damage:2 target(player)
 rarity=U
-[/card]
-[card]
-id=6131
-name=Pygmy Troll
-mana={1}{G}
-type=Creature
-subtype=Troll
-power=1
-toughness=1
-text=Whenever Pygmy Troll becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.  {G}: Regenerate Pygmy Troll.
-rarity=C
-[/card]
-[card]
-id=6134
-name=Rabid Wolverines
-mana={3}{G}{G}
-type=Creature
-subtype=Wolverine
-power=4
-toughness=4
-text=Whenever Rabid Wolverines becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
-rarity=C
-[/card]
-[card]
-id=6106
-name=Raging Goblin
-mana={R}
-type=Creature
-subtype=Goblin Berserker
-power=1
-toughness=1
-text=Haste (This creature can attack and {T} as soon as it comes under your control.)
-rarity=C
-[/card]
-[card]
-id=5207
-name=Ravenous Baboons
-mana={3}{R}
-type=Creature
-subtype=Ape
-power=2
-toughness=2
-text=When Ravenous Baboons comes into play, destroy target nonbasic land.
-rarity=R
 [/card]
 [card]
 id=6037
@@ -883,14 +603,6 @@ text=Whenever Reckless Ogre attacks alone, it gets +3/+0 until end of turn.
 rarity=C
 [/card]
 [card]
-id=6139
-name=Reclaim
-mana={G}
-type=Instant
-text=Put target card from your graveyard on top of your library.
-rarity=C
-[/card]
-[card]
 id=6046
 name=Reconnaissance
 mana={W}
@@ -907,34 +619,6 @@ text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Retur
 rarity=R
 [/card]
 [card]
-id=6140
-name=Resuscitate
-mana={1}{G}
-type=Instant
-text=Until end of turn, creatures you control gain "{1}: Regenerate this creature."
-rarity=U
-[/card]
-[card]
-id=6059
-name=Robe of Mirrors
-mana={U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) Enchanted creature has shroud. (It can't be the target of spells or abilities.)
-rarity=C
-[/card]
-[card]
-id=6136
-name=Rootwater Alligator
-mana={3}{G}
-type=Creature
-subtype=Crocodile
-power=3
-toughness=2
-text=Sacrifice a Forest: Regenerate Rootwater Alligator.
-rarity=C
-[/card]
-[card]
 id=6055
 name=Rootwater Mystic
 mana={U}
@@ -944,17 +628,6 @@ power=1
 toughness=1
 text={1}{U}: Look at the top card of target player's library.
 rarity=C
-[/card]
-[card]
-id=6129
-name=Sabertooth Wyvern
-mana={4}{R}
-type=Creature
-subtype=Drake
-power=3
-toughness=2
-text=Flying, first strike
-rarity=U
 [/card]
 [card]
 id=6117
@@ -968,14 +641,6 @@ text=Whenever Scalding Salamander attacks, you may have it deal 1 damage to each
 rarity=U
 [/card]
 [card]
-id=6086
-name=Scare Tactics
-mana={B}
-type=Instant
-text=Creatures you control get +1/+0 until end of turn.
-rarity=C
-[/card]
-[card]
 id=6054
 name=School of Piranha
 mana={1}{U}
@@ -987,81 +652,12 @@ text=At the beginning of your upkeep, sacrifice School of Piranha unless you pay
 rarity=C
 [/card]
 [card]
-id=6067
-name=Scrivener
-mana={4}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=When Scrivener comes into play, you may return target instant card from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=6130
-name=Seismic Assault
-mana={R}{R}{R}
-type=Enchantment
-text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
-rarity=R
-[/card]
-[card]
-id=6038
-name=Shackles
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. {W}: Return Shackles to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=5221
 name=Shattering Pulse
 mana={1}{R}
 type=Instant
 text=Buyback {3} (You may pay an additional {3} as you play this spell. If you do, put this card into your hand as it resolves.) Destroy target artifact.
 rarity=C
-[/card]
-[card]
-id=6030
-name=Shield Mate
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text=Sacrifice Shield Mate: Target creature gets +0/+4 until end of turn.
-rarity=C
-[/card]
-[card]
-id=5227
-name=Skyshaper
-mana={2}
-type=Artifact
-text=Sacrifice Skyshaper: Creatures you control gain flying until end of turn.
-rarity=U
-[/card]
-[card]
-id=5229
-name=Skyshroud Elite
-mana={G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text=Skyshroud Elite gets +1/+2 as long as an opponent controls a nonbasic land.
-rarity=U
-[/card]
-[card]
-id=5231
-name=Skyshroud War Beast
-mana={1}{G}
-type=Creature
-subtype=Beast
-power=*
-toughness=*
-text=Trample As Skyshroud War Beast comes into play, choose an opponent. Skyshroud War Beast's power and toughness are each equal to the number of nonbasic lands the chosen player controls.
-rarity=R
 [/card]
 [card]
 id=6097
@@ -1080,6 +676,7 @@ subtype=Soltari Cleric
 power=2
 toughness=2
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) Whenever Soltari Visionary deals damage to a player, destroy target enchantment that player controls.
+abilities=shadow
 rarity=C
 [/card]
 [card]
@@ -1088,6 +685,8 @@ name=Song of Serenity
 mana={1}{G}
 type=Enchantment
 text=Enchanted creatures can't attack or block.
+auto=lord(creature[enchanted]) cantattack
+auto=lord(creature[enchanted]) cantblock
 rarity=U
 [/card]
 [card]
@@ -1178,55 +777,6 @@ text=Spike Weaver comes into play with three +1/+1 counters on it. {2}, Remove a
 rarity=R
 [/card]
 [card]
-id=6032
-name=Standing Troops
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=4
-text=Vigilance
-rarity=C
-[/card]
-[card]
-id=6150
-name=Survival of the Fittest
-mana={1}{G}
-type=Enchantment
-text={G}, Discard a creature card: Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=6068
-name=Thalakos Drifters
-mana={2}{U}{U}
-type=Creature
-subtype=Thalakos
-power=3
-toughness=3
-text=Discard a card: Thalakos Drifters gains shadow until end of turn. (This creature can block or be blocked by only creatures with shadow.)
-rarity=R
-[/card]
-[card]
-id=6058
-name=Thalakos Scout
-mana={2}{U}
-type=Creature
-subtype=Thalakos Soldier Scout
-power=2
-toughness=1
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) Discard a card: Return Thalakos Scout to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=5254
-name=Theft of Dreams
-mana={2}{U}
-type=Sorcery
-text=Draw a card for each tapped creature target opponent controls.
-rarity=U
-[/card]
-[card]
 id=6164
 name=Thopter Squadron
 mana={5}
@@ -1260,36 +810,6 @@ text={1}, {T}: Transmogrifying Licid loses this ability and becomes an Aura ench
 rarity=U
 [/card]
 [card]
-id=6042
-name=Treasure Hunter
-mana={2}{W}
-type=Creature
-subtype=Human
-power=2
-toughness=2
-text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=6070
-name=Treasure Trove
-mana={2}{U}{U}
-type=Enchantment
-text={2}{U}{U}: Draw a card.
-rarity=U
-[/card]
-[card]
-id=6084
-name=Vampire Hounds
-mana={2}{B}
-type=Creature
-subtype=Vampire Hound
-power=2
-toughness=2
-text=Discard a creature card: Vampire Hounds gets +2/+2 until end of turn.
-rarity=C
-[/card]
-[card]
 id=6100
 name=Volrath's Dungeon
 mana={2}{B}{B}
@@ -1309,17 +829,6 @@ text=Defender (This creature can't attack.) At end of combat, remove from the ga
 rarity=R
 [/card]
 [card]
-id=5273
-name=Wayward Soul
-mana={2}{U}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=2
-text=Flying  {U}: Put Wayward Soul on top of its owner's library.
-rarity=C
-[/card]
-[card]
 id=6034
 name=Welkin Hawk
 mana={1}{W}
@@ -1329,28 +838,6 @@ power=1
 toughness=1
 text=Flying When Welkin Hawk is put into a graveyard from play, you may search your library for a card named Welkin Hawk, reveal that card, put it into your hand, then shuffle your library.
 rarity=C
-[/card]
-[card]
-id=6057
-name=Whiptongue Frog
-mana={2}{U}
-type=Creature
-subtype=Frog
-power=1
-toughness=3
-text={U}: Whiptongue Frog gains flying until end of turn.
-rarity=C
-[/card]
-[card]
-id=6135
-name=Wood Elves
-mana={2}{G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=1
-text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-rarity=U
 [/card]
 [card]
 id=6156
