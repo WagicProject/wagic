@@ -242,14 +242,7 @@ type=Sorcery
 text=Target player reveals three cards from his or her hand and you choose one of them. That player discards that card.
 rarity=U
 [/card]
-[card]
-id=41156
-name=Blatant Thievery
-mana={4}{U}{U}{U}
-type=Sorcery
-text=For each opponent, gain control of target permanent that player controls. (This effect doesn't end at end of turn.)
-rarity=R
-[/card]
+
 [card]
 id=39737
 name=Blistering Firecat
@@ -272,13 +265,7 @@ toughness=1
 text={T}: Choose a creature type. Reveal the top card of your library. If that card is a creature card of the chosen type, put it into your hand. Otherwise, put it into your graveyard.
 rarity=U
 [/card]
-[card]
-id=39505
-name=Bloodstained Mire
-type=Land
-text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
-rarity=R
-[/card]
+
 [card]
 id=39547
 name=Boneknitter
@@ -1065,6 +1052,8 @@ name=Grand Melee
 mana={3}{R}
 type=Enchantment
 text=All creatures attack each turn if able.  All creatures block each turn if able.
+auto=lord(creature) mustattack
+auto=lord(creature) mustblock
 rarity=R
 [/card]
 [card]
@@ -1594,13 +1583,7 @@ type=Instant
 text=Choose one: Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
 rarity=C
 [/card]
-[card]
-id=39504
-name=Polluted Delta
-type=Land
-text={T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Island or Swamp card and put it into play. Then shuffle your library.
-rarity=R
-[/card]
+
 [card]
 id=41145
 name=Primal Boost
@@ -1620,14 +1603,7 @@ toughness=5
 text=When Prowling Pangolin comes into play, any player may sacrifice two creatures. If a player does, sacrifice Prowling Pangolin.
 rarity=U
 [/card]
-[card]
-id=40173
-name=Psychic Trance
-mana={2}{U}{U}
-type=Instant
-text=Until end of turn, Wizards you control gain "{T}: Counter target spell."
-rarity=R
-[/card]
+
 [card]
 id=39539
 name=Quicksilver Dragon
@@ -1655,14 +1631,7 @@ type=Instant
 text=You gain 6 life. Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) When you cycle Renewed Faith, you may gain 2 life.
 rarity=C
 [/card]
-[card]
-id=40656
-name=Righteous Cause
-mana={3}{W}{W}
-type=Enchantment
-text=Whenever a creature attacks, you gain 1 life.
-rarity=U
-[/card]
+
 [card]
 id=39848
 name=Riptide Biologist
@@ -1751,6 +1720,7 @@ name=Run Wild
 mana={G}
 type=Instant
 text=Until end of turn, target creature gains trample and "{G}: Regenerate this creature."
+target=creature
 rarity=U
 [/card]
 [card]
@@ -1912,14 +1882,7 @@ toughness=5
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, turn Skittish Valesk face down. Morph {5}{R} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
 [/card]
-[card]
-id=39696
-name=Slate of Ancestry
-mana={4}
-type=Artifact
-text={4}, {T}, Discard your hand: Draw a card for each creature you control.
-rarity=R
-[/card]
+
 [card]
 id=41171
 name=Slice and Dice

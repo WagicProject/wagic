@@ -1,0 +1,23 @@
+#Testing Slate of ancestry
+# text={4}, {T}, Discard your hand: Draw a card for each creature you control.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Slate of Ancestry,grizzly bears,raging goblin
+library:dragon engine,bayou,forest
+hand:swamp,mountain,island,plains
+manapool:{4}
+[PLAYER2]
+[DO]
+Slate of Ancestry
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Slate of Ancestry,grizzly bears,raging goblin
+graveyard:swamp,mountain,island,plains
+hand:bayou,forest
+library:dragon engine
+manapool:{0}
+[PLAYER2]
+life:20
+[END]

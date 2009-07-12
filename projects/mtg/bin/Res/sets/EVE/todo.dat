@@ -239,17 +239,7 @@ power=2
 subtype=Shapeshifter
 toughness=4
 [/card]
-[card]
-text={BG}{BG}: Remove target card in a graveyard from the game. You gain 1 life.
-id=157206
-name=Creakwood Ghoul
-rarity=U
-type=Creature
-mana={4}{B}
-power=3
-subtype=Plant Zombie
-toughness=3
-[/card]
+
 [card]
 text=Other black creatures you control get +1/+1.     Other green creatures you control get +1/+1.     At the beginning of your upkeep, you may put a 1/1 black and green Worm creature token into play.
 id=157406

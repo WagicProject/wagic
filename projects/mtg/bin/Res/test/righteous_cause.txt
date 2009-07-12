@@ -1,0 +1,24 @@
+#Testing Righteous Cause
+# text=Whenever a creature attacks, you gain 1 life.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Righteous Cause,grizzly bears,raging goblin,dragon engine
+[PLAYER2]
+[DO]
+grizzly bears
+raging goblin
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Righteous Cause,grizzly bears,raging goblin,dragon engine
+life:22
+[PLAYER2]
+life:17
+[END]

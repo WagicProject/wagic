@@ -120,12 +120,14 @@ protomatter_powder.txt
 pyroclasm.txt
 recover.txt
 resurrection.txt
+righteous_cause.txt
 rootwalla.txt
 royal_assassin.txt
 seismic_assault.txt
 siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt
+slate_of_ancestry.txt
 sphinx_summoner.txt
 spitting_earth.txt
 spark_elemental.txt

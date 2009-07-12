@@ -85,6 +85,24 @@ toughness=5
 rarity=R
 [/card]
 [card]
+id=41156
+name=Blatant Thievery
+mana={4}{U}{U}{U}
+type=Sorcery
+text=For each opponent, gain control of target permanent that player controls. (This effect doesn't end at end of turn.)
+target=*|opponentInPlay
+auto=moveTo(myInplay)
+rarity=R
+[/card]
+[card]
+id=39505
+name=Bloodstained Mire
+type=Land
+text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
+auto={T},{S}:moveTo(myinplay) target(swamp,mountain|mylibrary) && life:-1
+rarity=R
+[/card]
+[card]
 id=39846
 name=Brightstone Ritual
 mana={R}
@@ -640,6 +658,14 @@ subtype=Plains
 rarity=L
 [/card]
 [card]
+id=39504
+name=Polluted Delta
+type=Land
+text={T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Island or Swamp card and put it into play. Then shuffle your library.
+auto={T},{S}:moveTo(myinplay) target(island,swamp|mylibrary) && life:-1
+rarity=R
+[/card]
+[card]
 id=39845
 name=Profane Prayers
 mana={2}{B}{B}
@@ -648,6 +674,15 @@ text=Profane Prayers deals X damage to target creature or player and you gain X 
 auto=foreach(Cleric)damage:1 target(player,creature)
 auto=foreach(Cleric)life:1
 rarity=C
+[/card]
+[card]
+id=40173
+name=Psychic Trance
+mana={2}{U}{U}
+type=Instant
+text=Until end of turn, Wizards you control gain "{T}: Counter target spell."
+auto=lord(wizard|myinplay) {T}:fizzle target(*|stack)
+rarity=R
 [/card]
 [card]
 text=Sacrifice a Beast: You gain 4 life.
@@ -680,6 +715,15 @@ mana={2}{U}
 type=Sorcery
 text=Target player shuffles his or her graveyard into his or her library.
 auto=moveTo(ownerlibrary) all(*|ownergraveyard)
+rarity=U
+[/card]
+[card]
+id=40656
+name=Righteous Cause
+mana={3}{W}{W}
+type=Enchantment
+text=Whenever a creature attacks, you gain 1 life.
+auto=@each blockers step:foreach(creature[attacking]) life:1
 rarity=U
 [/card]
 [card]
@@ -792,6 +836,15 @@ subtype=Goblin
 power=1
 toughness=1
 rarity=C
+[/card]
+[card]
+id=39696
+name=Slate of Ancestry
+mana={4}
+type=Artifact
+text={4}, {T}, Discard your hand: Draw a card for each creature you control.
+auto={4}{T}:all(*|myhand) moveTo(mygraveyard) && foreach(creature|myinplay) draw:1
+rarity=R
 [/card]
 [card]
 id=39745
