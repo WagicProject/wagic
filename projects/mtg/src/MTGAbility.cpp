@@ -113,9 +113,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   int doTap = 0; //Tap in the cost ?
   if (s.find("{t}") != string::npos) doTap = 1;
 
-  unsigned int delimiter = s.find("}:");
-    
-  if (delimiter!= string::npos && s[0]=='{'){
+  size_t delimiter = s.find("}:");
+  size_t firstNonSpace = s.find_first_not_of(" ");
+  if (delimiter!= string::npos && firstNonSpace !=string::npos && s[firstNonSpace] == '{'){
     ManaCost * cost  = ManaCost::parseManaCost(s.substr(0,delimiter+1),NULL,card);
     if (doTap || (cost && !cost->isNull())){
       string s1 = s.substr(delimiter+2);
@@ -1973,7 +1973,9 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Targetable * _target ):
 }
 
 MTGAbility::~MTGAbility(){
-  SAFE_DELETE(cost);
+  if (!isClone){
+    SAFE_DELETE(cost);
+  }
 }
 
 int MTGAbility::addToGame(){

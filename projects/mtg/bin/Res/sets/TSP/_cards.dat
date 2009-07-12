@@ -359,6 +359,18 @@ text=B
 rarity=C
 [/card]
 [card]
+id=111085
+name=Telekinetic Sliver
+mana={2}{U}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Slivers have "{T}: Tap target permanent."
+auto=lord(sliver) {T}:tap target(*)
+rarity=U
+[/card]
+[card]
 id=118887
 name=Temporal Eddy
 mana={2}{U}{U}
