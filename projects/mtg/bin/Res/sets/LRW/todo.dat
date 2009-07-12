@@ -137,17 +137,7 @@ power=5
 subtype=Elemental
 toughness=5
 [/card]
-[card]
-text={2}{B}: Regenerate target Treefolk.
-id=139454
-name=Black Poplar Shaman
-rarity=C
-type=Creature
-mana={2}{B}
-power=1
-subtype=Treefolk Shaman
-toughness=3
-[/card]
+
 [card]
 text=Changeling (This card is every creature type at all times.)  Up to two target creatures each get +2/+0 and gain all creature types until end of turn.
 id=139480

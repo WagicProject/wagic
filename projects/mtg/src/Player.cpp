@@ -50,6 +50,7 @@ JQuad * Player::getIcon(){
 
 Player * Player::opponent(){
   GameObserver * game = GameObserver::GetInstance();
+  if (!game) return NULL;
   for (int i= 0; i < 2; i++){
     if (game->players[i] != this) return game->players[i];
   }

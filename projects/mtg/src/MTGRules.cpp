@@ -116,8 +116,7 @@ void MTGAttackRule::Update(float dt){
 
 int MTGAttackRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
-  card->attacker = 1;
-  if (!card->basicAbilities[Constants::VIGILANCE]) card->tap();
+  card->toggleAttacker();
   return 1;
 }
 

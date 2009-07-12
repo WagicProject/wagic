@@ -42,6 +42,18 @@ type=Instant
 mana={1}{WB}
 [/card]
 [card]
+text={BG}{BG}: Remove target card in a graveyard from the game. You gain 1 life.
+auto={BG}{BG}:moveTo(exile) target(*|graveyard) && life:1
+id=157206
+name=Creakwood Ghoul
+rarity=U
+type=Creature
+mana={4}{B}
+power=3
+subtype=Plant Zombie
+toughness=3
+[/card]
+[card]
 text=Target creature gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
 target=creature
 auto=double strike

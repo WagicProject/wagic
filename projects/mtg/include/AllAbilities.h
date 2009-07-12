@@ -140,6 +140,7 @@ public:
   int resolve(){
     vector<int>::size_type sz = abilities.size();
     for (unsigned int i = 0; i < sz; i++){
+      if (target && target!= source && abilities[i]->target == abilities[i]->source) abilities[i]->target = target;
       abilities[i]->resolve();
     }
     return 1;
@@ -1734,8 +1735,7 @@ class AStrongLandLinkCreature: public MTGAbility{
   void Update(float dt){
     if (source->isAttacker()){
       if (!game->opponent()->game->inPlay->hasType(land)){
-	source->attacker=0;
-	source->untap();
+        source->toggleAttacker();
 	//TODO Improve, there can be race conditions here
       }
     }
@@ -2337,7 +2337,8 @@ class AEbonyHorse:public TargetAbility{
   }
 
   int resolve(){
-    tc->getNextCardTarget()->attacker =  0;
+    MTGCardInstance * _target = tc->getNextCardTarget();
+    if (_target->isAttacker()) _target->toggleAttacker();
     return 1;
   }
 
@@ -3382,7 +3383,7 @@ class AIslandSanctuary:public MTGAbility{
       MTGGameZone *  zone = game->currentPlayer->game->inPlay;
       for (int i = 0; i < zone->nb_cards; i++){
 	MTGCardInstance * card =  zone->cards[i];
-	if (card->isAttacker() && !card->basicAbilities[Constants::FLYING] && !card->basicAbilities[Constants::ISLANDWALK]) card->attacker=0;
+  if (card->isAttacker() && !card->basicAbilities[Constants::FLYING] && !card->basicAbilities[Constants::ISLANDWALK]) source->toggleAttacker();
       }
     }
   }

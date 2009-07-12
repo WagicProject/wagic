@@ -9,7 +9,9 @@ CardDescriptor::CardDescriptor(): MTGCardInstance(){
 
 int CardDescriptor::init(){
   int result = MTGCardInstance::init();
-  initAttackersDefensers();
+  attacker = 0;
+  defenser = NULL;
+  banding = NULL;
   return result;
 }
 

@@ -27,7 +27,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to): 
   owner = NULL;
   if (_belongs_to) owner = _belongs_to->library->owner;
   lastController = owner;
-  initAttackersDefensers();
+  defenser = NULL;
+  banding = NULL;
   life=toughness;
   LOG("==Creating MTGCardInstance Successful==");
 
@@ -242,8 +243,8 @@ int MTGCardInstance::triggerRegenerate(){
 
 
 int MTGCardInstance::initAttackersDefensers(){
-  attacker = 0;
-  defenser = NULL;
+  setAttacker(0);
+  setDefenser(NULL);
   banding = NULL;
   blockers.clear();
   return 1;
@@ -403,26 +404,38 @@ void MTGCardInstance::unband(){
   return ;
 }
 
+int MTGCardInstance::setAttacker(int value){
+  Targetable * previousTarget = NULL;
+  Targetable * target = NULL;
+  Player * p  = controller()->opponent();
+  if (value) target = p;
+  if (attacker) previousTarget = p; 
+  attacker = value;
+  WEvent * e = NEW WEventCreatureAttacker(this,previousTarget, target);
+  GameObserver::GetInstance()->receiveEvent(e);
+  delete e;
+  return 1;
+}
+
 int MTGCardInstance::toggleAttacker(){
-  //TODO more controls ?
-  if (canAttack()){
-    if (!attacker){
-      attacker = 1;
-      tap();
+  GameObserver * g = GameObserver::GetInstance();
+  if (!attacker){
+    if (!basicAbilities[Constants::VIGILANCE]) tap();
+    setAttacker(1);  
+    return 1;
+  }else{
+    //Banding needs to be debugged...
+    /*MTGCardInstance * bandingPartner = getNextPartner();
+    if (bandingPartner){
+      if (banding) unband();
+      if (!bandingPartner->banding) bandingPartner->banding = bandingPartner;
+      banding = bandingPartner->banding;
       return 1;
-    }else{
-      MTGCardInstance * bandingPartner = getNextPartner();
-      if (bandingPartner){
-	if (banding) unband();
-	if (!bandingPartner->banding) bandingPartner->banding = bandingPartner;
-	banding = bandingPartner->banding;
-	return 1;
-      }else{
-	attacker = 0;
-	untap();
-	return 1;
-      }
-    }
+    }else{*/
+      untap();
+      setAttacker(0);
+      return 1;
+    //}
   }
   return 0;
 }
@@ -465,14 +478,9 @@ int MTGCardInstance::moveBlockerInRow(MTGCardInstance * blocker){
   if (it2 == blockers.end()) it2 = blockers.begin();
 
   blockers.splice( it2, blockers, it1 ); // move a before b, invalidates a
-  char buffer[512];
-  OutputDebugString("===Outputing blockers\n");
-  for (it1 = blockers.begin(); it1 != blockers.end(); it1++){
-    MTGCardInstance * c = *it1;
-    sprintf(buffer, "%p-", c);
-    OutputDebugString(buffer);
-  }
-  OutputDebugString("\n===End Outputing blockers\n");
+  WEvent* e = NEW WEventCreatureBlockerRank(blocker,*it2,this);
+  GameObserver::GetInstance()->receiveEvent(e);
+  delete(e);
   return 1;
 }
 
@@ -510,15 +518,24 @@ MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous){
   return NULL;
 }
 
+int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
+  GameObserver * g = GameObserver::GetInstance();
+  if (defenser) defenser->blockers.remove(this);
+  WEvent * e = NEW WEventCreatureBlocker(this, defenser, opponent);
+  defenser = opponent;
+  if (defenser){
+    defenser->blockers.push_back(this);
+  }
+  g->blockersSorted = false;
+  g->receiveEvent(e);
+  delete e;
+  return 1;
+}
+
 int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent){
   if (canBlock()){
     if (canBlock(opponent)){
-      if (defenser) defenser->blockers.remove(this);
-      defenser = opponent;
-      if (defenser){
-        defenser->blockers.push_back(this);
-      }
-      GameObserver::GetInstance()->blockersSorted = false;
+      setDefenser(opponent);
       return 1;
     }
   }

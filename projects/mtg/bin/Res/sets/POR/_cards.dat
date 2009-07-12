@@ -91,6 +91,15 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+text=Target opponent reveals his or her hand. You draw a card for each Mountain and red card in it.
+auto=foreach(*[land,red]|opponenthand) draw:1
+id=4249
+name=Baleful Stare
+rarity=U
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
 text=Bee Sting deals 2 damage to target creature or player.
 id=4289
 target=creature,player
@@ -99,6 +108,24 @@ name=Bee Sting
 rarity=U
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+text=You gain 3 life for each creature attacking you.
+auto=foreach(creature[attacking]|opponentinplay) life:3
+id=4375
+name=Blessed Reversal
+rarity=R
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text=Tap all nonwhite creatures.
+auto=tap all(creature[-white])
+id=4376
+name=Blinding Light
+rarity=R
+type=Sorcery
+mana={2}{W}
 [/card]
 [card]
 text=Flying
@@ -280,6 +307,19 @@ mana={1}{B}
 power=2
 subtype=Human Knight
 toughness=2
+[/card]
+[card]
+text=Deep-Sea Serpent can't attack unless defending player controls an Island.
+abilities=cantattack
+auto=aslongas(island|opponentinplay) -cantattack
+id=4258
+name=Deep-Sea Serpent
+rarity=U
+type=Creature
+mana={4}{U}{U}
+power=5
+subtype=Serpent
+toughness=5
 [/card]
 [card]
 text=Play Defiant Stand only during the declare attackers step and only if you are the defending player. Target creature gets +1/+3 until the end of the turn. If that creature is tapped, untap it.
@@ -798,6 +838,15 @@ power=2
 toughness=3
 [/card]
 [card]
+text=Untap all creatures you control.
+auto=untap all(creature|myinplay)
+id=4303
+name=Mobilize
+rarity=C
+type=Sorcery
+mana={G}
+[/card]
+[card]
 text=Target creature gets +4/+4 until end of turn.
 id=4304
 target=creature
@@ -1145,6 +1194,18 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
+text=When Serpent Assassin comes into play, you may destroy target nonblack creature.
+auto=may destroy target(creature[-black])
+id=4237
+name=Serpent Assassin
+rarity=R
+type=Creature
+mana={3}{B}{B}
+power=2
+subtype=Snake Assassin
+toughness=2
+[/card]
+[card]
 text=When Serpent Warrior comes into play, you lose 3 life.
 auto=life:-3
 id=4238
@@ -1354,6 +1415,18 @@ type=Sorcery
 mana={2}{U}
 [/card]
 [card]
+text=Haste (This creature can attack the turn it comes under your control.)  When Thundermare comes into play, tap all other creatures.
+auto=tap all(creature) other
+id=4364
+name=Thundermare
+rarity=R
+type=Creature
+mana={5}{R}
+power=5
+subtype=Elemental Horse
+toughness=5
+[/card]
+[card]
 text=Put target creature on top of its owner's library.
 target=creature
 auto=moveTo(ownerLibrary)
@@ -1371,6 +1444,24 @@ name=Touch of Brilliance
 rarity=C
 mana={3}{U}
 type=Sorcery
+[/card]
+[card]
+text=White creatures get +2/+0 until end of turn.
+auto=lord(creature[white] 2/0
+id=4402
+name=Valorous Charge
+rarity=U
+type=Sorcery
+mana={1}{W}{W}
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+auto=lord(creature|myinplay) 1/1
+id=4406
+name=Warrior's Charge
+rarity=C
+type=Sorcery
+mana={2}{W}
 [/card]
 [card]
 text=Search your library for a basic land card and put that card into play. Then shuffle your library.

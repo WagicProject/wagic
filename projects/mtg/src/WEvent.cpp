@@ -24,4 +24,14 @@ WEventPhaseChange::WEventPhaseChange(Phase * _from, Phase * _to):WEvent(CHANGE_P
   to = _to;
 }
 
-WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after):WEvent(), card(card),before(before), after(after){}
+WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after)
+  :WEventCardUpdate(card), before(before), after(after){}
+
+WEventCreatureAttacker::WEventCreatureAttacker(MTGCardInstance * card,Targetable * before, Targetable * after)
+  :WEventCardUpdate(card), before(before), after(after){}
+
+WEventCreatureBlocker::WEventCreatureBlocker(MTGCardInstance * card,MTGCardInstance * from,MTGCardInstance * to)
+  :WEventCardUpdate(card), before(before), after(after){}
+
+WEventCreatureBlockerRank::WEventCreatureBlockerRank(MTGCardInstance * card,MTGCardInstance * exchangeWith, MTGCardInstance * attacker)
+  :WEventCardUpdate(card), exchangeWith(exchangeWith), attacker(attacker){}

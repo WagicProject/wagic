@@ -38,6 +38,8 @@ class MTGCardInstance: public MTGCard, public Damageable {
   void unband();
   MTGCardInstance * getNextPartner();
   void initMTGCI();
+  int setDefenser(MTGCardInstance * c);
+  int setAttacker(int value);
  public:
   int regenerateTokens;
   bool isToken;

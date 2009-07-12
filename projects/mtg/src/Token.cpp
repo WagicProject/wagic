@@ -13,7 +13,9 @@ Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness)
   model = this;
   owner = source->owner;
   belongs_to=source->controller()->game;
-  initAttackersDefensers();
+  attacker = 0;
+  defenser = NULL;
+  banding = NULL;
   mCache = source->mCache;
 
 }

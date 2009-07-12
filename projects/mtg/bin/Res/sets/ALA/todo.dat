@@ -865,14 +865,7 @@ name=Naya Panorama
 rarity=C
 type=Land
 [/card]
-[card]
-text={2}: Remove target creature card in a graveyard from the game. Put a 1/1 green Saproling creature token into play.
-id=175023
-name=Necrogenesis
-rarity=U
-type=Enchantment
-mana={B}{G}
-[/card]
+
 [card]
 text=When Oblivion Ring comes into play, remove another target nonland permanent from the game.      When Oblivion Ring leaves play, return the removed card to play under its owner's control.
 id=174909

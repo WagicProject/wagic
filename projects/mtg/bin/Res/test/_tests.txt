@@ -104,6 +104,7 @@ master_of_etherium.txt
 millstone.txt
 mind_rot.txt
 nantuko_husk.txt
+necrogenesis.txt
 Nevinyrrals_Disk.txt
 Nevinyrrals_Disk2.txt
 nightmare.txt

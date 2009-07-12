@@ -21,6 +21,18 @@ mana={2}{W}
 subtype=Aura
 [/card]
 [card]
+text={2}{B}: Regenerate target Treefolk.
+auto={2}{B}:regenerate target(treefolk)
+id=139454
+name=Black Poplar Shaman
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Treefolk Shaman
+toughness=3
+[/card]
+[card]
 text=Blind-Spot Giant can't attack or block unless you control another Giant.
 id=146597
 name=Blind-Spot Giant

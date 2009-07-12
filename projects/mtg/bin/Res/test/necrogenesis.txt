@@ -1,0 +1,19 @@
+#Testing && symbol
+#necrogensis: text={2}: Remove target creature card in a graveyard from the game. Put a 1/1 green Saproling creature token into play.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:necrogenesis
+manapool:{B}{B}
+[PLAYER2]
+graveyard:1250
+[DO]
+necrogenesis
+1250
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:necrogenesis,*
+manapool:{0}
+[PLAYER2]
+[END]
