@@ -923,6 +923,19 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text={T}, Pay 1 life: Add one mana of any color to your mana pool.
+id=23231
+auto={T}:add{B} && life:-1
+auto={T}:add{U} && life:-1
+auto={T}:add{G} && life:-1
+auto={T}:add{R} && life:-1
+auto={T}:add{W} && life:-1
+name=Phyrexian Lens
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
 text={T}: Add {W} to your mana pool.
 auto={T}: Add {W}
 id=26299

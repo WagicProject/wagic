@@ -903,14 +903,6 @@ text=Flying. Whenever a player cycles a card, return Fleeting Aven to its owner'
 rarity=U
 [/card]
 [card]
-id=39503
-name=Flooded Strand
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Flooded Strand: Search your library for a Plains or Island card and put it into play. Then shuffle your library.
-rarity=R
-[/card]
-[card]
 id=34410
 name=Foothill Guide
 mana={W}
@@ -2363,13 +2355,6 @@ text={W}, {T}: Tap target creature. Morph {W} (You may play this face down as a 
 rarity=U
 [/card]
 [card]
-id=39507
-name=Windswept Heath
-type=Land
-text={T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card and put it into play. Then shuffle your library.
-rarity=R
-[/card]
-[card]
 id=39907
 name=Wirewood Herald
 mana={1}{G}
@@ -2399,14 +2384,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Whenever a player cycles a card, put a plague counter on Withering Hex. Enchanted creature gets -1/-1 for each plague counter on Withering Hex.
 rarity=U
-[/card]
-[card]
-id=39506
-name=Wooded Foothills
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Mountain or Forest card and put it into play. Then shuffle your library.
-rarity=R
 [/card]
 [card]
 id=40191

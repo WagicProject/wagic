@@ -2336,14 +2336,3 @@ power=3
 subtype=Elf Warrior
 toughness=3
 [/card]
-[card]
-text=Flash     Flying     {U}{B}, Pay 1 life: Return Wydwen, the Biting Gale to its owner's hand.
-id=140229
-name=Wydwen, the Biting Gale
-rarity=R
-type=Legendary Creature
-mana={2}{U}{B}
-power=3
-subtype=Faerie Wizard
-toughness=3
-[/card]

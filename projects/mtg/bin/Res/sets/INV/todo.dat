@@ -1487,14 +1487,6 @@ subtype=Minion
 toughness=2
 [/card]
 [card]
-text={T}, Pay 1 life: Add one mana of any color to your mana pool.
-id=23231
-name=Phyrexian Lens
-rarity=R
-type=Artifact
-mana={3}
-[/card]
-[card]
 text=Whenever Phyrexian Reaper becomes blocked by a green creature, destroy that creature. It can't be regenerated.
 id=23036
 name=Phyrexian Reaper

@@ -630,19 +630,6 @@ type=Sorcery
 mana={G}
 [/card]
 [card]
-text=Foul Familiar can't block.     {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
-id=2450
-name=Foul Familiar
-abilities=cantblock
-auto={B}:moveto(ownerhand) && damage:1 && controller
-rarity=C
-type=Creature
-mana={2}{B}
-power=3
-subtype=Spirit
-toughness=1
-[/card]
-[card]
 text=Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.     Draw a card at the beginning of the next turn's upkeep.
 id=2562
 name=Foxfire
@@ -1585,17 +1572,6 @@ subtype=Orc
 toughness=3
 [/card]
 [card]
-text={T}, Pay 1 life: Counter target black spell.
-id=2705
-name=Order of the Sacred Torch
-rarity=R
-type=Creature
-mana={1}{W}{W}
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text={4}, {T}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
 id=2418
 name=Pentagram of the Ages
@@ -1931,17 +1907,6 @@ name=Stormbind
 rarity=R
 type=Enchantment
 mana={1}{R}{G}
-[/card]
-[card]
-text={T}, Pay 1 life: Counter target white spell.
-id=2490
-name=Stromgald Cabal
-rarity=R
-type=Creature
-mana={1}{B}{B}
-power=2
-subtype=Human Knight
-toughness=2
 [/card]
 [card]
 text=Target player chooses three cards from his or her hand and puts them on top of his or her library in any order.

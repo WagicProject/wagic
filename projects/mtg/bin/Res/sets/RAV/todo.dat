@@ -167,17 +167,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
-text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
-id=88974
-name=Carrion Howler
-rarity=U
-type=Creature
-mana={3}{B}
-power=2
-subtype=Zombie Wolf
-toughness=2
-[/card]
-[card]
 text=({GW} can be paid with either {G} or {W}.)  When Centaur Safeguard is put into a graveyard from play, you may gain 3 life.
 id=87959
 name=Centaur Safeguard

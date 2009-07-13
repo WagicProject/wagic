@@ -732,6 +732,19 @@ subtype=Kithkin Cleric
 toughness=2
 [/card]
 [card]
+text=Flash,Flying. {U}{B}, Pay 1 life: Return Wydwen, the Biting Gale to its owner's hand.
+id=140229
+name=Wydwen, the Biting Gale
+rarity=R
+type=Creature
+abilities=legendary,flying,flash
+auto={U}{B}:moveTo(ownerhand) && life:-1
+mana={2}{U}{B}
+power=3
+subtype=Faerie Wizard
+toughness=3
+[/card]
+[card]
 text=Enchant creature     Enchanted creature has defender and flying.
 target=creature
 auto=flying

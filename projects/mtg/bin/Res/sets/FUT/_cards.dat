@@ -139,8 +139,8 @@ type=Land
 [/card]
 [card]
 text={T}: Pay 1 life: Add {G} or {W} to your mana pool.    {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
-auto={T}:Add {G} && Damage 1 controller
-auto={T}:Add {W} && Damage 1 controller
+auto={T}:Add {G} && life:-1
+auto={T}:Add {W} && life:-1
 auto={1}{T}{S}:Draw:1
 id=130574
 name=Horizon Canopy

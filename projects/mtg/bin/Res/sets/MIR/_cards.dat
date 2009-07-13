@@ -767,6 +767,18 @@ mana={1}{G}
 rarity=C
 [/card]
 [card]
+text={B}, Pay 1 life: Sewer Rats gets +1/+0 until end of turn. Play this ability no more than three times each turn.
+id=3308
+name=Sewer Rats
+rarity=C
+type=Creature
+mana={B}
+auto={B}:1/0 && life:-1 limit:3
+power=1
+subtype=Rat
+toughness=1
+[/card]
+[card]
 text={W}{T}: Target creature gains first strike until end of turn.  {B}{T}: Target creature gets +1/+0 until end of turn.
 id=3362 
 name=Shaper Guildmage

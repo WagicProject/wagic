@@ -419,6 +419,19 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
+text=Foul Familiar can't block.     {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
+id=2450
+name=Foul Familiar
+abilities=cantblock
+auto={B}:moveto(ownerhand) && life:-1
+rarity=C
+type=Creature
+mana={2}{B}
+power=3
+subtype=Spirit
+toughness=1
+[/card]
+[card]
 text={3}, {T}: Target creature gains first strike until end of turn.
 id=2404
 name=Fyndhorn Bow
@@ -907,6 +920,18 @@ subtype=Orc
 toughness=1
 [/card]
 [card]
+text={T}, Pay 1 life: Counter target black spell.
+id=2705
+name=Order of the Sacred Torch
+auto={T}:fizzle(*[black]|stack) && life:-1
+rarity=R
+type=Creature
+mana={1}{W}{W}
+power=2
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
 text=Protection from black. {W}: Order of the White Shield gains first strike until end of turn. {W}{W}: Order of the White Shield gets +1/+0 until end of turn.
 id=2706
 name=Order of the White Shield
@@ -1299,6 +1324,18 @@ mana={3}{W}{U}{G}
 power=3
 subtype=Elemental Spirit
 toughness=3
+[/card]
+[card]
+text={T}, Pay 1 life: Counter target white spell.
+auto={T}:fizzle(*[white]|stack) && life:1
+id=2490
+name=Stromgald Cabal
+rarity=R
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Human Knight
+toughness=2
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.

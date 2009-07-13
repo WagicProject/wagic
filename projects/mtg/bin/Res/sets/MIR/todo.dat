@@ -2305,17 +2305,6 @@ type=Instant
 mana={G}
 [/card]
 [card]
-text={B}, Pay 1 life: Sewer Rats gets +1/+0 until end of turn. Play this ability no more than three times each turn.
-id=3308
-name=Sewer Rats
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Rat
-toughness=1
-[/card]
-[card]
 text={U}, {T}: Put target creature you control on top of its owner's library.     {R}, {T}: Shadow Guildmage deals 1 damage to target creature or player and 1 damage to you.
 id=3309
 name=Shadow Guildmage
