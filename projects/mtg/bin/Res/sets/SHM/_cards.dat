@@ -239,6 +239,7 @@ text=Flying, haste. When you play Demigod of Revenge, return all cards named Dem
 id=153972
 name=Demigod of Revenge
 auto=moveTo(myinplay) all(Demigod of Revenge|mygraveyard)
+abilities=flying,haste
 rarity=R
 type=Creature
 mana={BR}{BR}{BR}{BR}{BR}
