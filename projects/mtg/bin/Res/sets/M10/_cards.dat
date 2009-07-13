@@ -10,3 +10,24 @@ text=Flying
 abilities=flying
 rarity=U
 [/card]
+[card]
+id=189894
+name=Alluring Siren
+mana={1}{U}
+type=Creature
+subtype=Siren
+power=1
+toughness=1
+text={T}: Target creature an opponent controls attacks you this turn if able.
+auto={T}:target(creature|opponentinplay) mustattack
+rarity=U
+[/card]
+[card]
+id=190549
+name=Angel's Mercy
+mana={2}{W}{W}
+type=Instant
+text=You gain 7 life.
+auto=life:7
+rarity=C
+[/card]
