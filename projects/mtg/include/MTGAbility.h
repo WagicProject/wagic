@@ -157,20 +157,6 @@ class ListMaintainerAbility:public MTGAbility{
   virtual ostream& toString(ostream& out) const;
 };
 
-/* An attempt to globalize triggered abilities as much as possible 
-class MTGAbilityBasicFeatures{
- public:
-  Targetable * target;
-  GameObserver * game;
-  MTGCardInstance * source;
-  MTGAbilityBasicFeatures();
-  MTGAbilityBasicFeatures(MTGCardInstance * _source, Targetable * _target = NULL);
-  void init(MTGCardInstance * _source, Targetable * _target = NULL);
-};
-
-*/
-
-
 class TriggerAtPhase:public TriggeredAbility{
  public:
   int phaseId;
@@ -189,42 +175,6 @@ class TriggerNextPhase:public TriggerAtPhase{
 
 };
 
-/*
-
-class TriggeredEvent:public MTGAbilityBasicFeatures{
- public:
-   TriggeredEvent();
-   TriggeredEvent(MTGCardInstance * source, Targetable * target = NULL);
-  virtual int resolve()=0;
-};
-
-class DrawEvent:public TriggeredEvent{
- public:
-  Player * player;
-  int nbcards;
-  DrawEvent(Player * _player, int _nbcards);
-  int resolve();
-};
-
-class BuryEvent: public TriggeredEvent{
- public:
-  int resolve();
-};
-
-class DamageEvent:public TriggeredEvent{
-  public:
-    int damage;
-    DamageEvent(MTGCardInstance * _source, Damageable * _target, int _damage);
-    int resolve();
-};
-
-
-
-class DestroyCondition:public MTGAbilityBasicFeatures{
- public:
-  virtual int testDestroy();
-};
-*/
 
 class GenericTriggeredAbility:public TriggeredAbility{
  public:

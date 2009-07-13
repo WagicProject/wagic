@@ -2337,59 +2337,6 @@ ostream& ListMaintainerAbility::toString(ostream& out) const
 }
 
 
-/* An attempt to globalize triggered abilities as much as possible 
-
-MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(){
-  game = GameObserver::GetInstance();
-}
-MTGAbilityBasicFeatures::MTGAbilityBasicFeatures(MTGCardInstance * _source, Targetable * _target):target(_target),source(_source){
-  if (!target) target = source;
-  game = GameObserver::GetInstance();
-}
-void MTGAbilityBasicFeatures::init(MTGCardInstance * _source, Targetable * _target){
-  source = source;
-  target=_target;
-  if (!target) target = source;
-}
-
-TriggeredEvent::TriggeredEvent():MTGAbilityBasicFeatures(){}
-
-TriggeredEvent::TriggeredEvent(MTGCardInstance * _source, Targetable * _target):MTGAbilityBasicFeatures(_source, _target){}
-
-DamageEvent::DamageEvent(MTGCardInstance * _source, Damageable * _target, int _damage):TriggeredEvent(_source,_target),damage(_damage){
-}
-
-int DamageEvent::resolve(){
-  Damageable * _target = (Damageable *)target;
-  game->mLayers->stackLayer()->addDamage(source,_target, damage);
-  return damage;
-}
-
-DrawEvent::DrawEvent(Player * _player, int _nbcards):TriggeredEvent(),player(_player),nbcards(_nbcards){
-}
-
-int DrawEvent::resolve(){
-  game->mLayers->stackLayer()->addDraw(player,nbcards);
-  return nbcards;
-}
-
-int BuryEvent::resolve(){
-  MTGCardInstance * _target = (MTGCardInstance *) target;
-  _target->controller()->game->putInGraveyard(_target);
-  return 1;
-}
-
-int DestroyCondition::testDestroy(){
-  if (!game->isInPlay(source)){
-    return 1;
-  }
-  if (target && !game->isInPlay((MTGCardInstance *)target)){
-    source->controller()->game->putInGraveyard(source);//TODO put this in a better place ???
-    return 1;
-  }
-  return 0;
-}
-*/
 
 TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId):TriggeredAbility(id, source,target),phaseId(_phaseId){
   GameObserver * g = GameObserver::GetInstance();
