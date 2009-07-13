@@ -1377,28 +1377,6 @@ text=Slaughter Pact is black. Destroy target nonblack creature. At the beginning
 rarity=R
 [/card]
 [card]
-id=136146
-name=Sliver Legion
-mana={W}{U}{B}{R}{G}
-type=Legendary Creature
-subtype=Sliver
-power=7
-toughness=7
-text=All Sliver creatures get +1/+1 for each other Sliver in play.
-rarity=R
-[/card]
-[card]
-id=130329
-name=Sliversmith
-mana={2}
-type=Artifact Creature
-subtype=Spellshaper
-power=1
-toughness=1
-text={1}, {T}, Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver into play.
-rarity=U
-[/card]
-[card]
 id=130708
 name=Snake Cult Initiation
 mana={3}{B}
@@ -1555,17 +1533,6 @@ mana={5}{U}{U}
 type=Enchantment
 subtype=Aura
 text=Split second (As long as this spell is on the stack, players can't play spells or activated abilities that aren't mana abilities.) Enchant permanent You control enchanted permanent.
-rarity=R
-[/card]
-[card]
-id=136142
-name=Tarmogoyf
-mana={1}{G}
-type=Creature
-subtype=Lhurgoyf
-power=*
-toughness=1+*
-text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 rarity=R
 [/card]
 [card]

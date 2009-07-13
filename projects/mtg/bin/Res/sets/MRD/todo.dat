@@ -897,17 +897,6 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text=When Leveler comes into play, remove all cards in your library from the game.
-id=46708
-name=Leveler
-rarity=R
-type=Artifact Creature
-mana={5}
-power=10
-subtype=Juggernaut
-toughness=10
-[/card]
-[card]
 text={2}, {T}: Name a card. Target opponent guesses whether a card with that name is in your hand. You may reveal your hand. If you do and your opponent guessed wrong, draw a card.
 id=46733
 name=Liar's Pendulum
@@ -1075,14 +1064,6 @@ rarity=U
 type=Artifact
 mana={2}
 subtype=Equipment
-[/card]
-[card]
-text=All creatures have haste.
-id=48191
-name=Mass Hysteria
-rarity=R
-type=Enchantment
-mana={R}
 [/card]
 [card]
 text=Sacrifice an artifact: Megatog gets +3/+3 and gains trample until end of turn.
@@ -2381,17 +2362,6 @@ name=Wail of the Nim
 rarity=C
 type=Instant
 mana={2}{B}
-[/card]
-[card]
-text=Defender (This creature can't attack.)  Pay 1 life: Wall of Blood gets +1/+1 until end of turn.
-id=48184
-name=Wall of Blood
-rarity=U
-type=Creature
-mana={2}{B}
-power=0
-subtype=Wall
-toughness=2
 [/card]
 [card]
 text=When Wanderguard Sentry comes into play, look at target opponent's hand.

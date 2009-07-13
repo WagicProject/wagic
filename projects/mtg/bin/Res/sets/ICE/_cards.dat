@@ -1445,6 +1445,19 @@ type=Instant
 mana={R}
 [/card]
 [card]
+text=Defender     {3}: Walking Wall gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
+id=2432
+name=Walking Wall
+abilities=defender
+auto={3}:-defender && 3/-1 limit:1
+rarity=U
+type=Artifact Creature
+mana={4}
+power=0
+subtype=Wall
+toughness=6
+[/card]
+[card]
 text=Defender (This creature can't attack.)  {R}: Wall of Lava gets +1/+1 until end of turn.
 id=2659
 abilities=defender

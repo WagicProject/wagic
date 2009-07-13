@@ -240,22 +240,6 @@ subtype=Human Wizard
 toughness=3
 [/card]
 [card]
-text=Tap all nonwhite creatures.
-id=22955
-name=Blinding Light
-rarity=U
-type=Sorcery
-mana={2}{W}
-[/card]
-[card]
-text={T}: Add {B} or {R} to your mana pool.
-id=23219
-name=Bloodstone Cameo
-rarity=U
-type=Artifact
-mana={3}
-[/card]
-[card]
 text=Shroud (This permanent can't be the target of spells or abilities.)  Blurred Mongoose can't be countered.
 id=23139
 name=Blurred Mongoose
@@ -2611,14 +2595,6 @@ mana={2}{U}
 power=2
 subtype=Drake
 toughness=1
-[/card]
-[card]
-text=Destroy all enchantments.
-id=23116
-name=Tranquility
-rarity=C
-type=Sorcery
-mana={2}{G}
 [/card]
 [card]
 text=Enchant creature     As Traveler's Cloak comes into play, choose a land type.     Enchanted creature has landwalk of the chosen type.     When Traveler's Cloak comes into play, draw a card.

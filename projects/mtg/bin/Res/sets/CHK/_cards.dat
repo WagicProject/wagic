@@ -60,6 +60,15 @@ subtype=Aura
 mana={2}{W}
 [/card]
 [card]
+id=77140
+name=Call to Glory
+mana={1}{W}
+type=Instant
+text=Untap all creatures you control. Samurai creatures you control get +1/+1 until end of turn.
+auto=untap all(creature|myinplay) && lord(samurai) 1/1
+rarity=C
+[/card]
+[card]
 text=Destroy all enchantments.
 auto=destroy all(enchantment)
 id=80500

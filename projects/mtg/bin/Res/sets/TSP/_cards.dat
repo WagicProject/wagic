@@ -72,6 +72,18 @@ auto={T}:1/1 target(assembly-worker)
 rarity=U
 [/card]
 [card]
+id=108792
+name=Basal Sliver
+mana={2}{B}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Slivers have "Sacrifice this permanent: Add {B}{B} to your mana pool."
+auto=lord(sliver) {S}:Add {B}{B}
+rarity=C
+[/card]
+[card]
 text=Target creature gets -3/-0 until end of turn.     Draw a card.
 target=creature
 auto=-3/-0
@@ -145,6 +157,19 @@ mana={1}{B}
 subtype=Aura
 [/card]
 [card]
+id=109727
+name=Firewake Sliver
+mana={1}{R}{G}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Sliver creatures have haste. All Slivers have "{1}, Sacrifice this permanent: Target Sliver creature gets +2/+2 until end of turn."
+auto=lord(sliver) haste
+auto=lord(sliver) {1}{S}:2/2 target(sliver)
+rarity=U
+[/card]
+[card]
 id=118906
 name=Forest
 type=Basic Land
@@ -164,6 +189,22 @@ toughness=3
 text=All Sliver creatures have double strike.
 auto=lord(sliver) double strike
 rarity=U
+[/card]
+[card]
+id=118922
+name=Gemhide Sliver
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Slivers have "{T}: Add one mana of any color to your mana pool."
+auto=lord(sliver) {T}:add {B}
+auto=lord(sliver) {T}:add {U}
+auto=lord(sliver) {T}:add {G}
+auto=lord(sliver) {T}:add {R}
+auto=lord(sliver) {T}:add {W}
+rarity=C
 [/card]
 [card]
 id=108830
@@ -292,6 +333,18 @@ type=Artifact
 mana={2}
 [/card]
 [card]
+id=111051
+name=Quilled Sliver
+mana={1}{W}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Slivers have "{T}: This permanent deals 1 damage to target attacking or blocking creature."
+auto=lord(sliver) {T}:damage:1 target(creature[attacking;blocking])
+rarity=U
+[/card]
+[card]
 text=Scarwood Treefolk comes into play tapped.
 auto=tap
 id=110524
@@ -303,6 +356,19 @@ mana={3}{G}
 power=3
 subtype=Treefolk
 toughness=5
+[/card]
+[card]
+id=118917
+name=Sedge Sliver
+mana={2}{R}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Sliver creatures have "This creature gets +1/+1 as long as you control a Swamp." All Slivers have "{B}: Regenerate this permanent."
+auto=lord(sliver) aslongas(swamp|myinplay) 1/1
+auto=lord(sliver) {B}:regenerate
+rarity=R
 [/card]
 [card]
 id=108797

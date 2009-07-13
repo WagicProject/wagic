@@ -54,6 +54,18 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=All Sliver creatures have "{2}: This creature gets +0/+1 until end of turn."
+id=4689
+name=Armor Sliver
+auto=lord(sliver) {2}:0/1
+rarity=U
+type=Creature
+mana={2}{W}
+power=2
+subtype=Sliver
+toughness=2
+[/card]
+[card]
 text=Sacrifice an enchantment: Auratog gets +2/+2 until end of turn.
 id=4862
 name=Auratog
@@ -63,6 +75,18 @@ mana={1}{W}
 auto={s(enchantment|myinplay)}:2/2
 power=1
 subtype=Atog
+toughness=2
+[/card]
+[card]
+text=All Sliver creatures have "{2}: This creature gets +1/+0 until end of turn."
+id=4803
+name=Barbed Sliver
+auto=lord(sliver) {2}:1/0
+rarity=U
+type=Creature
+mana={2}{R}
+power=2
+subtype=Sliver
 toughness=2
 [/card]
 [card]
@@ -877,6 +901,18 @@ type=Artifact Creature
 subtype=Sliver
 power=1
 toughness=1
+[/card]
+[card]
+text=All Slivers have "{2}, Sacrifice this permanent: Draw a card."
+id=4714
+name=Mnemonic Sliver
+auto=lord(sliver) {2}{S}:draw:1
+rarity=U
+type=Creature
+mana={2}{U}
+power=2
+subtype=Sliver
+toughness=2
 [/card]
 [card]
 text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.

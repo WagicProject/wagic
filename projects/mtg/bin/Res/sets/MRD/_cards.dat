@@ -455,6 +455,18 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=When Leveler comes into play, remove all cards in your library from the game.
+auto=moveTo(myremovedfromgame) all(*|mylibrary)
+id=46708
+name=Leveler
+rarity=R
+type=Artifact Creature
+mana={5}
+power=10
+subtype=Juggernaut
+toughness=10
+[/card]
+[card]
 text=Flying When Looming Hoverguard comes into play, put target artifact on top of its owner's library.
 id=48114
 name=Looming Hoverguard
@@ -1044,6 +1056,19 @@ mana={3}{R}
 type=Creature
 subtype=Human Berserker
 power=3
+toughness=2
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Pay 1 life: Wall of Blood gets +1/+1 until end of turn.
+auto=1/1 && life:-1
+abilities=defender
+id=48184
+name=Wall of Blood
+rarity=U
+type=Creature
+mana={2}{B}
+power=0
+subtype=Wall
 toughness=2
 [/card]
 [card]

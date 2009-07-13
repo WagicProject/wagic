@@ -253,14 +253,6 @@ Enchant creature Enchanted creature can't attack or block. {1}{W}: Return Cage o
 rarity=C
 [/card]
 [card]
-id=77140
-name=Call to Glory
-mana={1}{W}
-type=Instant
-text=Untap all creatures you control. Samurai creatures you control get +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=78190
 name=Callous Deceiver
 mana={2}{U}
@@ -278,15 +270,6 @@ mana={1}{W}
 type=Instant
 subtype=Arcane
 text=Prevent the next 3 damage that would be dealt to target creature or player this turn. You gain life equal to the damage prevented this way. Splice onto Arcane {1}{W} (As you play an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
-rarity=U
-[/card]
-[card]
-id=80500
-name=Cleanfall
-mana={2}{W}
-type=Sorcery
-subtype=Arcane
-text=Destroy all enchantments.
 rarity=U
 [/card]
 [card]
@@ -1787,14 +1770,6 @@ Whenever a source you control deals damage to another player, put that many thef
 rarity=R
 [/card]
 [card]
-id=78991
-name=Night of Souls' Betrayal
-mana={2}{B}{B}
-type=Legendary Enchantment
-text=All creatures get -1/-1.
-rarity=R
-[/card]
-[card]
 id=78678
 name=Nezumi Graverobber (Nighteyes the Desecrator)
 mana={1}{B}
@@ -1971,15 +1946,6 @@ power=5
 toughness=4
 text=Fear At the beginning of your upkeep, sacrifice a creature if you don't control an Ogre.
 rarity=U
-[/card]
-[card]
-id=80291
-name=Part the Veil
-mana={3}{U}
-type=Instant
-subtype=Arcane
-text=Return all creatures you control to their owner's hand.
-rarity=R
 [/card]
 [card]
 id=78690

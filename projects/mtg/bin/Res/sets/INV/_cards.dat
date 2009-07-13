@@ -159,6 +159,15 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Tap all nonwhite creatures.
+auto=tap all(creature[-white])
+id=22955
+name=Blinding Light
+rarity=U
+type=Sorcery
+mana={2}{W}
+[/card]
+[card]
 text={T}: Add {B} or {R} to your mana pool.
 id=23219 
 name=Bloodstone Cameo

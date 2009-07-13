@@ -61,18 +61,6 @@ type=Sorcery
 mana={2}{R}{R}{R}
 [/card]
 [card]
-text=All Sliver creatures have "{2}: This creature gets +0/+1 until end of turn."
-id=4689
-name=Armor Sliver
-auto=lord(sliver) {2}:0/1
-rarity=U
-type=Creature
-mana={2}{W}
-power=2
-subtype=Sliver
-toughness=2
-[/card]
-[card]
 text=Flying     When Avenging Angel is put into a graveyard from play, you may put Avenging Angel on top of its owner's library.
 id=4863
 name=Avenging Angel
@@ -82,18 +70,6 @@ mana={3}{W}{W}
 power=3
 subtype=Angel
 toughness=3
-[/card]
-[card]
-text=All Sliver creatures have "{2}: This creature gets +1/+0 until end of turn."
-id=4803
-name=Barbed Sliver
-auto=lord(sliver) {2}:1/0
-rarity=U
-type=Creature
-mana={2}{R}
-power=2
-subtype=Sliver
-toughness=2
 [/card]
 [card]
 text=Flying       Whenever Bellowing Fiend deals damage to a creature, Bellowing Fiend deals 3 damage to that creature's controller and 3 damage to you.
@@ -981,18 +957,6 @@ name=Mirri's Guile
 rarity=R
 type=Enchantment
 mana={G}
-[/card]
-[card]
-text=All Slivers have "{2}, Sacrifice this permanent: Draw a card."
-id=4714
-name=Mnemonic Sliver
-auto=lord(sliver) {2}{S}:draw:1
-rarity=U
-type=Creature
-mana={2}{U}
-power=2
-subtype=Sliver
-toughness=2
 [/card]
 [card]
 text={T}: Target creature you control gets +1/+0 and gains flying until end of turn. Destroy that creature at end of turn.

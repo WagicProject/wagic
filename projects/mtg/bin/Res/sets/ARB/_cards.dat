@@ -62,6 +62,17 @@ power=1
 toughness=5
 [/card]
 [card]
+id=175109
+name=Identity Crisis
+mana={2}{W}{W}{B}{B}
+type=Sorcery
+text=Remove all cards in target player's hand and graveyard from the game.
+target=player
+auto=moveTo(removedfromgame) all(*|hand)
+auto=moveTo(removedfromgame) all(*|graveyard)
+rarity=R
+[/card]
+[card]
 id=179568
 name=Intimidation Bolt
 mana={1}{R}{W}
@@ -202,6 +213,16 @@ subtype=Beast
 power=5
 toughness=4
 abilities=exalted
+[/card]
+[card]
+id=179409
+name=Soulquake
+mana={3}{U}{U}{B}{B}
+type=Sorcery
+auto=moveto(ownerhand) all(creature|inplay)
+auto=moveto(ownerhand) all(creature|graveyard)
+text=Return all creatures in play and all creature cards in graveyards to their owners' hands.
+rarity=R
 [/card]
 [card]
 text=Flying, first strike, vigilance, lifelink, protection from red and from green

@@ -467,14 +467,6 @@ text=Whenever Knotvine Paladin attacks, it gets +1/+1 until end of turn for each
 rarity=R
 [/card]
 [card]
-id=175109
-name=Identity Crisis
-mana={2}{W}{W}{B}{B}
-type=Sorcery
-text=Remove all cards in target player's hand and graveyard from the game.
-rarity=R
-[/card]
-[card]
 id=144276
 name=Igneous Pouncer
 mana={4}{B}{R}
@@ -777,6 +769,7 @@ name=Necromancer's Covenant
 mana={3}{W}{B}{B}
 type=Enchantment
 text=When Necromancer's Covenant comes into play, remove all creature cards in target player's graveyard from the game, then put a 2/2 black Zombie creature token into play for each card removed this way. Zombies you control have lifelink.
+auto=moveTo(removedfromgame) all(creature|......)
 rarity=R
 [/card]
 [card]
@@ -961,16 +954,6 @@ mana={3}{(}{U}{/}{R}{)}{B}
 type=Sorcery
 text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
 rarity=U
-[/card]
-[card]
-id=179409
-name=Soulquake
-mana={3}{U}{U}{B}{B}
-type=Sorcery
-auto=moveto(ownerhand) all (creature|inplay)
-auto=moveto(ownerhand) all (creature|graveyard)
-text=Return all creatures in play and all creature cards in graveyards to their owners' hands.
-rarity=R
 [/card]
 [card]
 id=183008

@@ -69,17 +69,6 @@ text=Trample, haste Whenever Barbed Shocker deals damage to a player, that playe
 rarity=U
 [/card]
 [card]
-id=108792
-name=Basal Sliver
-mana={2}{B}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Slivers have "Sacrifice this permanent: Add {B}{B} to your mana pool."
-rarity=C
-[/card]
-[card]
 id=118883
 name=Basalt Gargoyle
 mana={2}{R}
@@ -661,17 +650,6 @@ text=Echo {5}{R} (At the beginning of your upkeep, if this came under your contr
 rarity=U
 [/card]
 [card]
-id=109727
-name=Firewake Sliver
-mana={1}{R}{G}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Sliver creatures have haste. All Slivers have "{1}, Sacrifice this permanent: Target Sliver creature gets +2/+2 until end of turn."
-rarity=U
-[/card]
-[card]
 id=116733
 name=Flagstones of Trokair
 mana=
@@ -805,17 +783,6 @@ name=Gaze of Justice
 mana={W}
 type=Sorcery
 text=As an additional cost to play Gaze of Justice, tap three untapped white creatures you control. Remove target creature from the game. Flashback {5}{W} (You may play this card from your graveyard for its flashback cost and any additional costs. Then remove it from the game.)
-rarity=C
-[/card]
-[card]
-id=118922
-name=Gemhide Sliver
-mana={1}{G}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Slivers have "{T}: Add one mana of any color to your mana pool."
 rarity=C
 [/card]
 [card]
@@ -1050,7 +1017,6 @@ toughness=2
 text={R}, {T}, Discard a card: Destroy target blue permanent. {1}{R}, {T}, Discard a card: Jaya Ballard, Task Mage deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn. {5}{R}{R}, {T}, Discard a card: Jaya Ballard deals 6 damage to each creature and each player.
 rarity=R
 [/card]
-
 [card]
 id=118879
 name=Jhoira's Timebug
@@ -1621,17 +1587,6 @@ text=All Sliver creatures have flying. All Slivers have "If this permanent would
 rarity=R
 [/card]
 [card]
-id=111051
-name=Quilled Sliver
-mana={1}{W}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Slivers have "{T}: This permanent deals 1 damage to target attacking or blocking creature."
-rarity=U
-[/card]
-[card]
 id=109729
 name=Reiterate
 mana={1}{R}{R}
@@ -1765,6 +1720,7 @@ subtype=Sliver
 power=1
 toughness=1
 text=All Slivers have "{T}: Target player puts the top card of his or her library into his or her graveyard."
+auto=lord(sliver) {T}:moveTo(graveyard) target(....)
 rarity=C
 [/card]
 [card]
@@ -1785,17 +1741,6 @@ mana={2}{G}
 type=Sorcery
 text=Search your library for a basic land card and put it into play. Then shuffle your library. Suspend 2—{G} (Rather than play this card from your hand, you may pay {G} and remove it from the game with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 rarity=C
-[/card]
-[card]
-id=118917
-name=Sedge Sliver
-mana={2}{R}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Sliver creatures have "This creature gets +1/+1 as long as you control a Swamp." All Slivers have "{B}: Regenerate this permanent."
-rarity=R
 [/card]
 [card]
 id=116383
@@ -1819,7 +1764,6 @@ toughness=3
 text=You can't play Serra Avenger during your first, second, or third turns of the game. Flying, vigilance
 rarity=R
 [/card]
-
 [card]
 id=118908
 name=Sidewinder Sliver
@@ -1829,6 +1773,7 @@ subtype=Sliver
 power=1
 toughness=1
 text=All Sliver creatures have flanking. (Whenever a creature without flanking blocks a Sliver, the blocking creature gets -1/-1 until end of turn.)
+auto=lord(sliver) flanking
 rarity=C
 [/card]
 [card]
