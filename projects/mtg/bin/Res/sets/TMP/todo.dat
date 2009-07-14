@@ -53,14 +53,6 @@ subtype=Ape
 toughness=4
 [/card]
 [card]
-text=Remove all permanents from the game. You discard your hand.
-id=4802
-name=Apocalypse
-rarity=R
-type=Sorcery
-mana={2}{R}{R}{R}
-[/card]
-[card]
 text=Flying     When Avenging Angel is put into a graveyard from play, you may put Avenging Angel on top of its owner's library.
 id=4863
 name=Avenging Angel
@@ -118,17 +110,6 @@ type=Enchantment
 mana={2}{G}
 [/card]
 [card]
-text=Flying     {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
-id=4806
-name=Canyon Drake
-rarity=R
-type=Creature
-mana={2}{R}{R}
-power=1
-subtype=Drake
-toughness=2
-[/card]
-[card]
 text=Buyback {3} (You may pay an additional {3} as you play this spell. If you do, put this card into your hand as it resolves.)  Return target permanent to its owner's hand.
 id=4691
 name=Capsize
@@ -176,14 +157,6 @@ name=Chill
 rarity=U
 type=Enchantment
 mana={1}{U}
-[/card]
-[card]
-text=Islands don't untap during their controllers' untap steps.
-id=4753
-name=Choke
-rarity=U
-type=Enchantment
-mana={2}{G}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Cinder Marsh doesn't untap during your next untap step.

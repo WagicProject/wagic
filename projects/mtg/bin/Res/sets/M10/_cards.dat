@@ -1028,7 +1028,7 @@ name=Planar Cleansing
 mana={3}{W}{W}{W}
 type=Sorcery
 text=Destroy all nonland permanents.
-auto=destroy all(:[-land])
+auto=destroy all(*[-land])
 rarity=R
 [/card]
 [card]

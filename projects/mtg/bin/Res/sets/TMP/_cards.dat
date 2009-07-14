@@ -41,6 +41,16 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Exile all permanents. You discard your hand.
+id=4802
+name=Apocalypse
+mana={2}{R}{R}{R}
+type=Sorcery
+auto=moveTo(Exile) all(*|inplay)
+auto=moveTo(mygraveyard) all(*|myhand)
+rarity=R
+[/card]
+[card]
 text=Flying
 id=4861
 name=Armored Pegasus
@@ -174,6 +184,18 @@ toughness=3
 abilities=Reach
 [/card]
 [card]
+text=Flying     {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
+id=4806
+name=Canyon Drake
+rarity=R
+type=Creature
+mana={2}{R}{R}
+auto={1}:2/0 && discard:1
+power=1
+subtype=Drake
+toughness=2
+[/card]
+[card]
 text=Reach (This creature can block creatures with flying.)
 id=4807
 name=Canyon Wildcat
@@ -185,6 +207,15 @@ subtype=Cat
 power=2
 toughness=1
 abilities=Mountainwalk
+[/card]
+[card]
+text=Islands don't untap during their controllers' untap steps.
+id=4753
+name=Choke
+rarity=U
+type=Enchantment
+auto=lord(island) doesnotuntap
+mana={2}{G}
 [/card]
 [card]
 text={1}: The next time a black source of your choice would deal damage to you this turn, prevent that damage.
@@ -1374,6 +1405,20 @@ subtype=Elf
 auto={T}:untap target(creature)
 power=2
 toughness=1
+[/card]
+[card]
+text=Flying   Pay 2 life: Return Selenia, Dark Angel to its owner's hand.
+id=4916
+name=Selenia, Dark Angel
+color=White,Black
+rarity=R
+type=Creature
+abilities=legendary,flying
+auto={0}:moveTo(ownerhand) && life:-2
+mana={3}{W}{B}
+power=3
+subtype=Angel
+toughness=3
 [/card]
 [card]
 text=Destroy target enchantment. You gain life equal to its converted mana cost.
