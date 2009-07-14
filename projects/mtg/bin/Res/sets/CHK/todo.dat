@@ -1,26 +1,4 @@
 [card]
-id=75277
-name=Akki Avalanchers
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Play this ability only once each turn.
-rarity=C
-[/card]
-[card]
-id=159328
-name=Akki Coalflinger
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=2
-text=First strike {R}, {T}: Attacking creatures gain first strike until end of turn.
-rarity=U
-[/card]
-[card]
 id=78694
 name=Akki Lavarunner
 mana={3}{R}
@@ -28,18 +6,8 @@ type=Creature
 subtype=Goblin Warrior
 power=1
 toughness=1
-text=Haste Whenever Akki Lavarunner deals damage to an opponent, flip it. rarity=R
-[/card]
-[card]
-id=77919
-name=Akki Rockspeaker
-mana={1}{R}
-type=Creature
-subtype=Goblin Shaman
-power=1
-toughness=1
-When Akki Rockspeaker comes into play, add {R} to your mana pool.
-rarity=C
+text=Haste Whenever Akki Lavarunner deals damage to an opponent, flip it.
+rarity=R
 [/card]
 [card]
 id=75399
@@ -76,21 +44,11 @@ rarity=U
 id=78695
 name=Kitsune Mystic (Autumn-Tail, Kitsune Sage)
 mana={3}{W}
-type=Legendary Creature — Fox Wizard
+type=Legendary Creature
+subtype=Fox Wizard
 power=4
 toughness=5
 text={1}: Attach target Aura attached to a creature to another creature.
-rarity=R
-[/card]
-[card]
-id=78697
-name=Azami, Lady of Scrolls
-mana={2}{U}{U}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=0
-toughness=2
-text=Tap an untapped Wizard you control: Draw a card.
 rarity=R
 [/card]
 [card]
@@ -116,25 +74,6 @@ text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of 
 rarity=C
 [/card]
 [card]
-id=50291
-name=Befoul
-mana={2}{B}{B}
-type=Sorcery
-text=Destroy target land or nonblack creature. It can't be regenerated.
-rarity=U
-[/card]
-[card]
-id=79248
-name=Ben-Ben, Akki Hermit
-mana={2}{R}{R}
-type=Legendary Creature
-subtype=Goblin Shaman
-power=1
-toughness=1
-text={T}: Ben-Ben, Akki Hermit deals damage to target attacking creature equal to the number of untapped Mountains you control.
-rarity=R
-[/card]
-[card]
 id=50451
 name=Blessed Breath
 mana={W}
@@ -142,23 +81,6 @@ type=Instant
 subtype=Arcane
 text=Target creature you control gains protection from the color of your choice until end of turn. Splice onto Arcane {W} (As you play an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 rarity=C
-[/card]
-[card]
-id=77925
-name=Blind with Anger
-mana={3}{R}
-type=Instant
-subtype=Arcane
-text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
-rarity=U
-[/card]
-[card]
-id=50509
-name=Blood Rites
-mana={3}{R}{R}
-type=Enchantment
-text={1}{R}, Sacrifice a creature: Blood Rites deals 2 damage to target creature or player.
-rarity=U
 [/card]
 [card]
 id=79166

@@ -1,12 +1,4 @@
 [card]
-id=136150
-name=Akroma's Memorial
-mana={7}
-type=Legendary Artifact
-text=Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
-rarity=R
-[/card]
-[card]
 id=130345
 name=Angel of Salvation
 mana={6}{W}{W}
@@ -106,26 +98,6 @@ text=Search target player's library for a card and remove that card from the gam
 rarity=R
 [/card]
 [card]
-id=130676
-name=Blade of the Sixth Pride
-mana={1}{W}
-type=Creature
-subtype=Cat Rebel
-power=3
-toughness=1
-rarity=C
-[/card]
-[card]
-id=126143
-name=Blind Phantasm
-mana={2}{U}
-type=Creature
-subtype=Illusion
-power=2
-toughness=3
-rarity=C
-[/card]
-[card]
 id=130686
 name=Bloodshot Trainee
 mana={3}{R}
@@ -198,17 +170,6 @@ text=As long as Centaur Omenreader is tapped, creature spells you play cost {2} 
 rarity=U
 [/card]
 [card]
-id=130582
-name=Char-Rumbler
-mana={2}{R}{R}
-type=Creature
-subtype=Elemental
-power=-1
-toughness=3
-text=Double strike {R}: Char-Rumbler gets +1/+0 until end of turn.
-rarity=U
-[/card]
-[card]
 id=126204
 name=Chronomantic Escape
 mana={4}{W}{W}
@@ -223,17 +184,6 @@ mana={3}
 type=Artifact
 text=As Cloud Key comes into play, choose artifact, creature, enchantment, instant, or sorcery. Spells you play of the chosen type cost {1} less to play.
 rarity=R
-[/card]
-[card]
-id=130309
-name=Cloudseeder
-mana={1}{U}
-type=Creature
-subtype=Faerie Spellshaper
-power=1
-toughness=1
-text=Flying {U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite into play with flying and "Cloud Sprite can block only creatures with flying."
-rarity=U
 [/card]
 [card]
 id=125878
@@ -296,7 +246,7 @@ name=Daybreak Coronet
 mana={W}{W}
 type=Enchantment
 subtype=Aura
-text=Enchant creature with another Aura attached to it Enchanted creature gets +3/+3 and has first strike, vigilance, and lifelink. (Whenever it deals damage, its controller gains that much life.)
+text=Enchant creature with another Aura attached to it. Enchanted creature gets +3/+3 and has first strike, vigilance, and lifelink. (Whenever it deals damage, its controller gains that much life.)
 rarity=R
 [/card]
 [card]
@@ -365,15 +315,6 @@ text=Sacrifice Emberwilde Augur: Emberwilde Augur deals 3 damage to target playe
 rarity=C
 [/card]
 [card]
-id=136215
-name=Emblem of the Warmind
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature you control Creatures you control have haste.
-rarity=U
-[/card]
-[card]
 id=136143
 name=Epochrasite
 mana={2}
@@ -419,36 +360,6 @@ power=3
 toughness=3
 text=Transfigure {1}{B}{B} ({1}{B}{B}, Sacrifice this creature: Search your library for a creature card with the same converted mana cost as this creature and put that card into play. Then shuffle your library. Play only as a sorcery.)
 rarity=U
-[/card]
-[card]
-id=132227
-name=Flowstone Embrace
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature {T}: Enchanted creature gets +2/-2 until end of turn.
-rarity=C
-[/card]
-[card]
-id=126149
-name=Fomori Nomad
-mana={4}{R}
-type=Creature
-subtype=Nomad Giant
-power=4
-toughness=4
-rarity=C
-[/card]
-[card]
-id=130713
-name=Force of Savagery
-mana={2}{G}
-type=Creature
-subtype=Elemental
-power=8
-toughness=0
-text=Trample
-rarity=R
 [/card]
 [card]
 id=130669
@@ -497,15 +408,6 @@ text=At the beginning of each player's upkeep, that player loses 1 life and disc
 rarity=R
 [/card]
 [card]
-id=136200
-name=Gift of Granite
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature gets +0/+2.
-rarity=C
-[/card]
-[card]
 id=136157
 name=Glittering Wish
 mana={G}{W}
@@ -542,14 +444,6 @@ power=2
 toughness=2
 text=Madness {1}{B} (If you discard this card, you may play it for its madness cost instead of putting it into your graveyard.) When Grave Scrabbler comes into play, if its madness cost was paid, you may return target creature card in a graveyard to its owner's hand.
 rarity=C
-[/card]
-[card]
-id=130581
-name=Graven Cairns
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {(b/r)}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
-rarity=R
 [/card]
 [card]
 id=136040
@@ -718,15 +612,6 @@ text=Korlash, Heir to Blackblade's power and toughness are each equal to the num
 rarity=R
 [/card]
 [card]
-id=126139
-name=Leaden Fists
-mana={2}{U}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
-rarity=C
-[/card]
-[card]
 id=136198
 name=Linessa, Zephyr Mage
 mana={3}{U}
@@ -869,17 +754,6 @@ text=Play with the top card of your library revealed. You may play the top card 
 rarity=R
 [/card]
 [card]
-id=136148
-name=Magus of the Moat
-mana={2}{W}{W}
-type=Creature
-subtype=Human Wizard
-power=0
-toughness=3
-text=Creatures without flying can't attack.
-rarity=R
-[/card]
-[card]
 id=136152
 name=Magus of the Moon
 mana={2}{R}
@@ -910,16 +784,6 @@ text=Creatures you control get +1/+1 and gain vigilance until end of turn. Cycli
 rarity=C
 [/card]
 [card]
-id=126158
-name=Mass of Ghouls
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie Warrior
-power=5
-toughness=3
-rarity=C
-[/card]
-[card]
 id=136202
 name=Mesmeric Sliver
 mana={3}{U}
@@ -929,14 +793,6 @@ power=2
 toughness=2
 text=All Slivers have "When this permanent comes into play, you may fateseal 1." (Its controller looks at the top card of an opponent's library, then he or she may put that card on the bottom of that library.)
 rarity=C
-[/card]
-[card]
-id=130316
-name=Minions' Murmurs
-mana={2}{B}{B}
-type=Sorcery
-text=You draw X cards and you lose X life, where X is the number of creatures you control.
-rarity=U
 [/card]
 [card]
 id=130346
@@ -996,16 +852,6 @@ text=Flying When Narcomoeba is put into your graveyard from your library, you ma
 rarity=U
 [/card]
 [card]
-id=136138
-name=Nessian Courser
-mana={2}{G}
-type=Creature
-subtype=Centaur Warrior
-power=3
-toughness=3
-rarity=C
-[/card]
-[card]
 id=126198
 name=New Benalia
 mana=
@@ -1039,15 +885,6 @@ mana={U}
 type=Instant
 text=Counter target spell if no mana was spent to play it.
 rarity=R
-[/card]
-[card]
-id=132219
-name=Oblivion Crown
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
-rarity=C
 [/card]
 [card]
 id=136210
@@ -1246,36 +1083,6 @@ power=1
 toughness=1
 text={W}, Sacrifice Samite Censer-Bearer: Prevent the next 1 damage that would be dealt to each creature you control this turn.
 rarity=C
-[/card]
-[card]
-id=136212
-name=Sarcomite Myr
-mana={2}{U}
-type=Artifact Creature
-subtype=Myr
-power=2
-toughness=1
-text={2}: Sarcomite Myr gains flying until end of turn. {2}, Sacrifice Sarcomite Myr: Draw a card.
-rarity=C
-[/card]
-[card]
-id=136161
-name=Scourge of Kher Ridges
-mana={6}{R}{R}
-type=Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying. {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
-rarity=R
-[/card]
-[card]
-id=126200
-name=Scout's Warning
-mana={W}
-type=Instant
-text=The next creature card you play this turn can be played as though it had flash. Draw a card.
-rarity=R
 [/card]
 [card]
 id=136158
@@ -1600,13 +1407,13 @@ rarity=U
 [/card]
 [card]
 id=130325
-name=Vedalken Æthermage
+name=Vedalken AEthermage
 mana={1}{U}
 type=Creature
 subtype=Vedalken Wizard
 power=1
 toughness=2
-text=Flash (You may play this spell any time you could play an instant.) When Vedalken Æthermage comes into play, return target Sliver to its owner's hand. Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
+text=Flash (You may play this spell any time you could play an instant.) When Vedalken AEthermage comes into play, return target Sliver to its owner's hand. Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
 rarity=C
 [/card]
 [card]

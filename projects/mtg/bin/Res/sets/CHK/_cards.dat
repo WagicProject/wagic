@@ -1,6 +1,6 @@
 [card]
 text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Play this ability only once each turn.
-auto={s(land|myinplay)}:2/0
+auto={s(land|myinplay)}:2/0 limit:1
 id=75277
 name=Akki Avalanchers
 rarity=C
@@ -25,6 +25,31 @@ subtype=Goblin Shaman
 toughness=2
 [/card]
 [card]
+id=77919
+name=Akki Rockspeaker
+mana={1}{R}
+type=Creature
+subtype=Goblin Shaman
+power=1
+toughness=1
+text=When Akki Rockspeaker comes into play, add {R} to your mana pool.
+auto=Add{R}
+rarity=C
+[/card]
+[card]
+id=78697
+name=Azami, Lady of Scrolls
+mana={2}{U}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=2
+text=Tap an untapped Wizard you control: Draw a card.
+auto=tap target(wizard[-tapped]) && draw:1
+abilities=legendary
+rarity=R
+[/card]
+[card]
 text=Destroy target land or nonblack creature. It can’t be regenerated.
 target=Creature[-black],land
 auto=bury
@@ -34,6 +59,30 @@ rarity=C
 color=Black
 type=Sorcery
 mana={2}{B}{B}
+[/card]
+[card]
+id=79248
+name=Ben-Ben, Akki Hermit
+mana={2}{R}{R}
+type=Legendary Creature
+subtype=Goblin Shaman
+power=1
+toughness=1
+text={T}: Ben-Ben, Akki Hermit deals damage to target attacking creature equal to the number of untapped Mountains you control.
+auto={T}:foreach(mountain|myinplay) damage:1 target(creature[attacking])
+rarity=R
+[/card]
+[card]
+id=77925
+alias=???
+name=Blind with Anger
+mana={3}{R}
+type=Instant
+subtype=Arcane
+text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
+target=creature[-legendary]
+auto=haste
+rarity=U
 [/card]
 [card]
 text={1}{R}, Sacrifice a creature: Blood Rites deals 2 damage to target Creature or player.

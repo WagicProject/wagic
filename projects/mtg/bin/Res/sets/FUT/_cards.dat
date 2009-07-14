@@ -1,5 +1,5 @@
 [card]
-text=Legendary    Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
+text=Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
 id=136150
 name=136150
 color=Artifact
@@ -114,7 +114,7 @@ toughness=0
 abilities=trample
 [/card]
 [card]
-text=Flash (You may play this spell any time you could play an instant.)     Enchant creature    Enchanted creature gets +0/+2.
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +0/+2.
 id=136200
 target=creature
 name=Gift of Granite
@@ -148,6 +148,19 @@ rarity=R
 type=Land
 [/card]
 [card]
+id=126139
+name=Leaden Fists
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+target=creature
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
+abilities=flash
+auto=3/3
+auto=doesnotuntap
+rarity=C
+[/card]
+[card]
 text=Creatures without flying can't attack.
 id=136148
 name=Magus of the Moat
@@ -172,6 +185,16 @@ power=5
 toughness=3
 [/card]
 [card]
+id=130316
+name=Minions' Murmurs
+mana={2}{B}{B}
+type=Sorcery
+text=You draw X cards and you lose X life, where X is the number of creatures you control.
+auto=foreach(creature|myinplay) draw:1
+auto=foreach(creature|myinplay) life:-1
+rarity=U
+[/card]
+[card]
 id=136138
 name=Nessian Courser
 color=Green
@@ -183,7 +206,7 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Flash (You may play this spell any time you could play an instant.)     Enchant creature      Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
 id=132219
 target=creature
 name=Oblivion Crown
@@ -196,7 +219,7 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
-text={2}: Sarcomite Myr gains flying until end of turn.      {2}, Sacrifice Sarcomite Myr: Draw a card.
+text={2}: Sarcomite Myr gains flying until end of turn. {2}, Sacrifice Sarcomite Myr: Draw a card.
 id=136212
 name=Sarcomite Myr
 color=Blue,Artifact
@@ -208,6 +231,31 @@ auto={2}:flying
 auto={2}{S}:Draw:1
 power=2
 toughness=1
+[/card]
+[card]
+id=136161
+name=Scourge of Kher Ridges
+mana={6}{R}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=6
+text=Flying {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying. {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
+auto={1}{R}:damage:2 all(creature[-flying])
+auto={5}{R}:damage:6 all(creature[flying])
+abilities=flying
+rarity=R
+[/card]
+[card]
+id=126200
+name=Scout's Warning
+mana={W}
+type=Instant
+text=The next creature card you play this turn can be played as though it had flash. Draw a card. ## Will this work?
+target=creature|myhand
+auto=flash
+auto=draw:1
+rarity=R
 [/card]
 [card]
 id=136146
