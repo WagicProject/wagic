@@ -490,7 +490,6 @@ power=4
 subtype=Horror
 toughness=3
 [/card]
-
 [card]
 text=At the beginning of your upkeep, remove a card in your graveyard from the game.     Threshold - As long as seven or more cards are in your graveyard, Decaying Soil has "Whenever a nontoken creature is put into your graveyard from play, you may pay {1}. If you do, return that card to your hand."
 id=29955
@@ -1659,14 +1658,6 @@ mana={2}{G}
 subtype=Aura
 [/card]
 [card]
-text={2}, {T}, Sacrifice Shadowblood Egg: Add {B}{R} to your mana pool. Draw a card.
-id=30553
-name=Shadowblood Egg
-rarity=U
-type=Artifact
-mana={1}
-[/card]
-[card]
 text=Fear     Whenever Shadowmage Infiltrator deals combat damage to a player, you may draw a card.
 id=33604
 name=Shadowmage Infiltrator
@@ -1727,14 +1718,6 @@ name=Skull Fracture
 rarity=U
 type=Sorcery
 mana={B}
-[/card]
-[card]
-text={2}, {T}, Sacrifice Skycloud Egg: Add {W}{U} to your mana pool. Draw a card.
-id=29892
-name=Skycloud Egg
-rarity=U
-type=Artifact
-mana={1}
 [/card]
 [card]
 text=Flying     Whenever a creature with flying is put into a graveyard from play, put a +1/+1 counter on Soulcatcher.
@@ -1864,15 +1847,6 @@ mana={4}{G}{G}{G}
 power=4
 subtype=Basilisk
 toughness=5
-[/card]
-[card]
-text={2}, {T}, Sacrifice Sungrass Egg: Add {G}{W} to your mana pool. Draw a card.
-id=30750
-name=Sungrass Egg
-auto={2}{T}{S}: Add {G}{W}
-rarity=U
-type=Artifact
-mana={1}
 [/card]
 [card]
 text=Target creature gets +2/+2 and gains trample until end of turn.       Flashback {2}{G}{G} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)

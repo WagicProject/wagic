@@ -728,7 +728,7 @@ rarity=R
 [/card]
 [card]
 text={2}, {T}, Sacrifice Mossfire Egg: Add {R}{G} to your mana pool. Draw a card.
-auto={2}{T}{S}:Add{r}{R} && Draw:1
+auto={2}{T}{S}:Add{R}{G} && Draw:1
 id=30010
 name=Mossfire Egg
 rarity=U
@@ -1082,12 +1082,30 @@ type=Instant
 rarity=C
 [/card]
 [card]
+text={2}, {T}, Sacrifice Shadowblood Egg: Add {B}{R} to your mana pool. Draw a card.
+auto={2}{T}{S}:Add{B}{R} && draw:1
+id=30553
+name=Shadowblood Egg
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
 text={1}{T}: Add {B}{R} to your mana pool.
 id=29794
 name=Shadowblood Ridge
 auto={1}{T}: Add {B}{R}
 type=Land
 rarity=R
+[/card]
+[card]
+text={2}, {T}, Sacrifice Skycloud Egg: Add {W}{U} to your mana pool. Draw a card.
+auto={2}{T}{S}:Add{W}{U} && draw:1
+id=29892
+name=Skycloud Egg
+rarity=U
+type=Artifact
+mana={1}
 [/card]
 [card]
 text={1}{T}: Add {W}{U} to your mana pool.
@@ -1155,6 +1173,15 @@ auto={3}{T}:moveTo(ownerremovedfromgame) target(*|graveyard)
 auto={1}{S}:moveTo(ownerremovedfromgame) target(*|graveyard)
 type=Artifact
 rarity=U
+[/card]
+[card]
+text={2}, {T}, Sacrifice Sungrass Egg: Add {G}{W} to your mana pool. Draw a card.
+auto={2}{T}{S}:add{G}{W} && draw:1
+id=30750
+name=Sungrass Egg
+rarity=U
+type=Artifact
+mana={1}
 [/card]
 [card]
 text={1}{T}: Add {G}{W} to your mana pool.
