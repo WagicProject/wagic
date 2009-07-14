@@ -233,20 +233,6 @@ power=2
 toughness=1
 [/card]
 [card]
-id=136161
-name=Scourge of Kher Ridges
-mana={6}{R}{R}
-type=Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying. {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
-auto={1}{R}:damage:2 all(creature[-flying])
-auto={5}{R}:damage:6 all(creature[flying])
-abilities=flying
-rarity=R
-[/card]
-[card]
 id=126200
 name=Scout's Warning
 mana={W}
