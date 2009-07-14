@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=130345
 name=Angel of Salvation
 mana={6}{W}{W}
@@ -1187,6 +1187,19 @@ name=Slaughter Pact
 mana={0}
 type=Instant
 text=Slaughter Pact is black. Destroy target nonblack creature. At the beginning of your next upkeep, pay {2}{B}. If you don't, you lose the game.
+rarity=R
+[/card]
+[card]
+id=136146
+name=Sliver Legion
+mana={W}{U}{B}{R}{G}
+type=Creature
+subtype=Sliver
+power=7
+toughness=7
+text=All Sliver creatures get +1/+1 for each other Sliver in play.
+auto=lord(sliver) 1/1 other
+abilities=legendary
 rarity=R
 [/card]
 [card]

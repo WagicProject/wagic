@@ -244,19 +244,6 @@ auto=draw:1
 rarity=R
 [/card]
 [card]
-id=136146
-name=Sliver Legion
-mana={W}{U}{B}{R}{G}
-type=Creature
-subtype=Sliver
-power=7
-toughness=7
-text=All Sliver creatures get +1/+1 for each other Sliver in play.
-auto=lord(sliver) 1/1 other
-abilities=legendary
-rarity=R
-[/card]
-[card]
 text={1}, {T}, Discard a card: Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver into play.
 id=130329
 name=Sliversmith
