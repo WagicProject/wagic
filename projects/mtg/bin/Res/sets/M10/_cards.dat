@@ -203,8 +203,9 @@ power=3
 toughness=3
 text=Vigilance (Attacking doesn't cause this creature to tap.) Other Soldier creatures you control get +1/+1 and have vigilance. When Captain of the Watch enters the battlefield, put three 1/1 white Soldier creature tokens onto the battlefield.
 auto=lord(soldier|myBattlefield) 1/1
-auto=lord(soldier|myBattlefield) vigiliance
+auto=lord(soldier|myBattlefield) vigilance
 auto=token(Soldier,Creature Soldier,1/1,white)*3
+abilities=vigilance
 rarity=R
 [/card]
 [card]
