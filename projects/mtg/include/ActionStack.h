@@ -146,7 +146,7 @@ class ActionStack :public GuiLayer{
   Player * askIfWishesToInterrupt;
   int garbageCollect();
   int addAction(Interruptible * interruptible);
-  int addSpell(MTGCardInstance* card, Targetable * targets[], int nbtargets, ManaCost * mana);
+  Spell * addSpell(MTGCardInstance* card, Targetable * targets[], int nbtargets, ManaCost * mana);
   int AddNextGamePhase();
   int addPutInGraveyard(MTGCardInstance * card);
   int addDraw(Player * player, int nbcards = 1);

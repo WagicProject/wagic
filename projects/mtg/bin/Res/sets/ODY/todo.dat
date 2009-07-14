@@ -490,14 +490,7 @@ power=4
 subtype=Horror
 toughness=3
 [/card]
-[card]
-text={2}, {T}, Sacrifice Darkwater Egg: Add {U}{B} to your mana pool. Draw a card.
-id=30749
-name=Darkwater Egg
-rarity=U
-type=Artifact
-mana={1}
-[/card]
+
 [card]
 text=At the beginning of your upkeep, remove a card in your graveyard from the game.     Threshold - As long as seven or more cards are in your graveyard, Decaying Soil has "Whenever a nontoken creature is put into your graveyard from play, you may pay {1}. If you do, return that card to your hand."
 id=29955
@@ -538,14 +531,7 @@ rarity=R
 type=Enchantment
 mana={3}{W}
 [/card]
-[card]
-text=Tap all creatures without flying.
-id=31816
-name=Deluge
-rarity=U
-type=Instant
-mana={2}{U}
-[/card]
+
 [card]
 text=Return target permanent to its owner's hand.       Flashback {5}{U}{U} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=29826
@@ -629,7 +615,8 @@ rarity=R
 text=Dreamwinder can't attack unless defending player controls an Island.     {U}, Sacrifice an Island: Target land becomes an Island until end of turn.
 id=31802
 name=Dreamwinder
-auto=aslongas(land[-island]|opponentinplay) cantattack
+auto=aslongas(land[island]|opponentinplay) -cantattack
+abilities=cantattack
 rarity=C
 type=Creature
 mana={3}{U}
@@ -775,14 +762,7 @@ rarity=C
 type=Sorcery
 mana={R}
 [/card]
-[card]
-text=Flame Burst deals X damage to target creature or player, where X is 2 plus the number of cards named Flame Burst in all graveyards.
-id=29767
-name=Flame Burst
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
+
 [card]
 text={R}, Discard a card at random: Frenetic Ogre gets +3/+0 until end of turn.
 id=29855
@@ -1176,14 +1156,7 @@ rarity=C
 type=Sorcery
 mana={1}{B}
 [/card]
-[card]
-text={2}, {T}, Sacrifice Mossfire Egg: Add {R}{G} to your mana pool. Draw a card.
-id=30010
-name=Mossfire Egg
-rarity=U
-type=Artifact
-mana={1}
-[/card]
+
 [card]
 text=Target player removes all land cards in his or her graveyard from the game.
 id=31740
@@ -1192,14 +1165,7 @@ rarity=R
 type=Instant
 mana={2}{R}
 [/card]
-[card]
-text=Target creature gets +X/+X until end of turn, where X is 3 plus the number of cards named Muscle Burst in all graveyards.
-id=29788
-name=Muscle Burst
-rarity=C
-type=Instant
-mana={1}{G}
-[/card]
+
 [card]
 text=Protection from black and from red     Threshold - Mystic Crusader gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
 id=29802

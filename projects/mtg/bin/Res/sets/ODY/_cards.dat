@@ -293,6 +293,15 @@ type=Land
 rarity=R
 [/card]
 [card]
+text={2}, {T}, Sacrifice Darkwater Egg: Add {U}{B} to your mana pool. Draw a card.
+auto={2}{T}{S}:Add{U}{B} && Draw:1
+id=30749
+name=Darkwater Egg
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
 text={W}, Sacrifice Dedicated Martyr: You gain 3 life. 
 id=31771
 name=Dedicated Martyr
@@ -304,6 +313,15 @@ subtype=Cleric
 power=1
 toughness=1
 rarity=C
+[/card]
+[card]
+text=Tap all creatures without flying.
+auto=tap all(creature[-flying])
+id=31816
+name=Deluge
+rarity=U
+type=Instant
+mana={2}{U}
 [/card]
 [card]
 text=Destroy target artifact or land.
@@ -429,6 +447,17 @@ subtype=Horror
 power=3
 toughness=4
 rarity=U
+[/card]
+[card]
+text=Flame Burst deals X damage to target creature or player, where X is 2 plus the number of cards named Flame Burst in all graveyards.
+target=creature,player
+auto=Damage:2
+auto=foreach(Flame Burst|graveyard) Damage:1
+id=29767
+name=Flame Burst
+rarity=C
+type=Instant
+mana={1}{R}
 [/card]
 [card]
 text={B}, Discard a card from your hand: Fledgling Imp gains flying until end of turn. 
@@ -698,6 +727,15 @@ toughness=*
 rarity=R
 [/card]
 [card]
+text={2}, {T}, Sacrifice Mossfire Egg: Add {R}{G} to your mana pool. Draw a card.
+auto={2}{T}{S}:Add{r}{R} && Draw:1
+id=30010
+name=Mossfire Egg
+rarity=U
+type=Artifact
+mana={1}
+[/card]
+[card]
 text={1}{T}: Add {R}{G} to your mana pool.
 id=29795
 name=Mossfire Valley
@@ -740,6 +778,17 @@ auto={T}:add {R}
 type=Basic Land
 subtype=Mountain
 rarity=L
+[/card]
+[card]
+text=Target creature gets +X/+X until end of turn, where X is 3 plus the number of cards named Muscle Burst in all graveyards.
+target=creature
+auto=3/3
+auto=foreach(Muscle Burst|graveyard) 1/1
+id=29788
+name=Muscle Burst
+rarity=C
+type=Instant
+mana={1}{G}
 [/card]
 [card]
 text={G}{T}: Target creature gets +2/+2 until end of turn.

@@ -21,6 +21,40 @@
 using std::map;
 
 
+//
+//Triggers
+//
+
+class TrCardAddedToZone:public TriggeredAbility{
+public:
+  TargetChooser * toTc;
+  TargetZoneChooser * fromTc;
+  TrCardAddedToZone::TrCardAddedToZone(int id,MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), fromTc(fromTc),toTc(toTc){
+  }
+
+  int resolve(){
+    return 0; //This is a trigger, this function should not be called
+  }
+
+  int triggerOnEvent(WEvent * event){
+    WEventZoneChange * e = dynamic_cast<WEventZoneChange*>(event);
+    if (!e) return 0;
+    if (!toTc->canTarget(e->card)) return 0;
+    if (fromTc && !fromTc->targetsZone(e->from)) return 0;
+    return 1;
+  }
+
+  ~TrCardAddedToZone(){
+    SAFE_DELETE(toTc);
+    SAFE_DELETE(fromTc);
+  }
+
+  TrCardAddedToZone * clone() const{
+    TrCardAddedToZone * a =  NEW TrCardAddedToZone(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 
 
 class AAFizzler:public ActivatedAbility{

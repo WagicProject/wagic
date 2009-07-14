@@ -742,10 +742,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\MTGSpellStack.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\OptionItem.h"
 				>
 			</File>

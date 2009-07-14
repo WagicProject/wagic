@@ -320,7 +320,7 @@ int ActionStack::addAction(Interruptible * action){
   return 1;
 }
 
-int ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[], int _nbtargets, ManaCost * mana){
+Spell * ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[], int _nbtargets, ManaCost * mana){
 #if defined (WIN32) || defined (LINUX)
   char    buf[4096], *p = buf;
   sprintf(buf, "Add spell\n");
@@ -333,7 +333,7 @@ int ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[], in
      GameOptions::GetInstance()->values[OPTIONS_INTERRUPTMYSPELLS].getIntValue() == 0){
        interruptDecision[0] = DONT_INTERRUPT;
   }
-  return result;
+  return spell;
 }
 
 

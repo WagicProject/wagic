@@ -88,7 +88,9 @@ class TriggeredAbility:public MTGAbility{
   TriggeredAbility(int id, MTGCardInstance * _source, Targetable * _target);
   virtual void Update(float dt);
   virtual void Render(){};
-  virtual int trigger()=0;
+  virtual int trigger(){return 0;};
+  virtual int triggerOnEvent(WEvent * e){return 0;};
+  int receiveEvent(WEvent * e);
   virtual int resolve() = 0;
   virtual TriggeredAbility* clone() const = 0; 
   virtual ostream& toString(ostream& out) const;
@@ -183,11 +185,12 @@ class GenericTriggeredAbility:public TriggeredAbility{
   MTGAbility * destroyCondition;
   GenericTriggeredAbility(int id, MTGCardInstance * _source,  TriggeredAbility * _t, MTGAbility * a,MTGAbility * dc = NULL, Targetable * _target = NULL);
   virtual int trigger();
-  virtual int receiveEvent(WEvent * e);
+  virtual int triggerOnEvent(WEvent * e);
   virtual int resolve();
   virtual int testDestroy();
   void Update(float dt);
   virtual GenericTriggeredAbility* clone() const;
+  const char * getMenuText();
   ~GenericTriggeredAbility();
 };
 

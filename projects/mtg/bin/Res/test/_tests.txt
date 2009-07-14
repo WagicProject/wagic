@@ -32,6 +32,7 @@ ankh_of_mishra.txt
 arcanis_the_omnipotent.txt
 arcanis_the_omnipotent2.txt
 ardakar_wastes.txt
+argothian_enchantress.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
 ascendant_evincar3.txt

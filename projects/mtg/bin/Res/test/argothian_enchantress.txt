@@ -1,0 +1,20 @@
+#Testing Argothian Enchantress
+#Whenever you play an enchantment spell, draw a card.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Argothian Enchantress
+hand:lifeforce
+library:plains
+manapool:{G}{G}
+[PLAYER2]
+[DO]
+lifeforce
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Argothian Enchantress,lifeforce
+hand:plains
+manapool{0}
+[PLAYER2]
+[END]

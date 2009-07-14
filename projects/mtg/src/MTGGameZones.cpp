@@ -502,6 +502,14 @@ int MTGGameZone::zoneStringToId(string zoneName){
     "targetcontrollerexile",
     "ownerexile",
     "exile",
+
+    "mystack",
+    "opponentstack",
+    "targetownerstack",
+    "targetcontrollerstack",
+    "ownerstack",
+    "stack",
+
   };
 
   int values[] = {
@@ -553,6 +561,13 @@ int MTGGameZone::zoneStringToId(string zoneName){
     TARGET_CONTROLLER_EXILE,
     OWNER_EXILE ,
     EXILE,
+
+    MY_STACK,
+    OPPONENT_STACK,
+    TARGET_OWNER_STACK ,
+    TARGET_CONTROLLER_STACK,
+    OWNER_STACK ,
+    STACK,
   };
 
   int max = sizeof(values) / sizeof*(values);

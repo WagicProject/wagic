@@ -101,17 +101,7 @@ power=2
 subtype=Elf Druid
 toughness=2
 [/card]
-[card]
-text=Shroud (This permanent can't be the target of spells or abilities.)  Whenever you play an enchantment spell, draw a card.
-id=5686
-name=Argothian Enchantress
-rarity=R
-type=Creature
-mana={1}{G}
-power=0
-subtype=Human Druid
-toughness=1
-[/card]
+
 [card]
 text=Trample     When Argothian Wurm comes into play, any player may sacrifice a land. If a player does, put Argothian Wurm on top of its owner's library.
 id=5769
@@ -131,14 +121,7 @@ rarity=R
 type=Enchantment
 mana={2}{U}
 [/card]
-[card]
-text=Nonbasic lands don't untap during their controllers' untap steps.
-id=5711
-name=Back to Basics
-rarity=R
-type=Enchantment
-mana={2}{U}
-[/card]
+
 [card]
 text=At the beginning of your upkeep, you may put a page counter on Barrin's Codex.     {4}, {T}, Sacrifice Barrin's Codex: Draw X cards, where X is the number of page counters on Barrin's Codex.
 id=5735

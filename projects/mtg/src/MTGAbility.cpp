@@ -71,6 +71,17 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
   size_t found = magicText.find("@");
   if (found == string::npos) return NULL;
 
+  //Card Changed Zone
+  found = magicText.find("movedto(");
+  if (found != string::npos){
+    size_t end = magicText.find (")");
+    string starget = magicText.substr(found+8,end - found - 8);
+    TargetChooserFactory tcf;
+    TargetChooser *toTc = tcf.createTargetChooser(starget,card);
+    toTc->targetter = NULL;
+    return NEW TrCardAddedToZone(id,card,toTc);
+  }
+
   //Next Time...
   found = magicText.find("next");
   if (found != string::npos){
@@ -339,13 +350,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find(destroys[i]);
     if (found != string::npos){
       int bury = destroyTypes[i];
-      /*if (trigger){
-        if (bury){
-          BuryEvent * action = NEW BuryEvent();
-          return NEW GenericTriggeredAbility(id, card,trigger,action);
-        }
-        return NULL;
-      }*/
       MTGAbility * a = NEW AADestroyer(id,card,target,bury);
       a->oneShot = 1;
       return a;
@@ -402,11 +406,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }else{
       nbcards = atoi(s.substr(start+1).c_str());
     }
-
-    /*if (trigger){
-      DrawEvent * action = NEW DrawEvent(card->controller(),nbcards);
-      return NEW GenericTriggeredAbility(id, card,trigger,action);
-	  }*/
 
     MTGAbility * a = NEW AADrawer(id,card,NULL,nbcards);
     a->oneShot = 1;
@@ -2205,6 +2204,14 @@ TriggeredAbility::TriggeredAbility(int id, MTGCardInstance * card, Targetable * 
 TriggeredAbility::TriggeredAbility(int id, MTGCardInstance * card):MTGAbility(id,card){
 }
 
+int TriggeredAbility::receiveEvent(WEvent * e){
+  if (triggerOnEvent(e)){
+    fireAbility();
+    return 1;
+  }
+  return 0; 
+}
+
 void TriggeredAbility::Update(float dt){
   if (trigger()) fireAbility();
 }
@@ -2397,9 +2404,8 @@ int GenericTriggeredAbility::trigger(){
 }
 
 
-int GenericTriggeredAbility::receiveEvent(WEvent * e){
-  if (t->receiveEvent(e)) return resolve();
-  return 0;
+int GenericTriggeredAbility::triggerOnEvent(WEvent * e){
+  return t->triggerOnEvent(e);
 }
 
 void GenericTriggeredAbility::Update(float dt){
@@ -2426,6 +2432,10 @@ GenericTriggeredAbility::~GenericTriggeredAbility(){
     SAFE_DELETE(destroyCondition);
   }
 }
+
+ const char * GenericTriggeredAbility::getMenuText(){
+   return ability->getMenuText();
+ }
 
 GenericTriggeredAbility* GenericTriggeredAbility::clone() const{
     GenericTriggeredAbility * a = NEW GenericTriggeredAbility(*this);
