@@ -288,7 +288,7 @@ void TestSuite::initGame(){
 	          MTGCardInstance * copy = p->game->putInZone(card,  p->game->library, p->game->stack);
 	          Spell * spell = NEW Spell(copy);          
 	          spell->resolve();
-	          if (!summoningSickness) p->game->inPlay->cards[k]->summoningSickness = 0;
+            if (!summoningSickness && p->game->inPlay->nb_cards>k) p->game->inPlay->cards[k]->summoningSickness = 0;
 	          delete spell;
 	        }else{
 	          if (!p->game->library->hasCard(card)){

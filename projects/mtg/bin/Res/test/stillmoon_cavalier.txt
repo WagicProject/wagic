@@ -1,0 +1,52 @@
+#Bug: Stillmoon cavalier's effects don't wear off at the end of the turn
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Stillmoon Cavalier
+manapool:{B}
+[PLAYER2]
+inplay:grizzly bears,raging goblin
+[DO]
+Stillmoon Cavalier
+choice 1
+next
+#combat begins
+next
+#attackers
+Stillmoon Cavalier
+next
+#blockers
+Grizzly Bears
+next
+#damage
+next
+#end
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combat begins
+next
+#attackers
+Stillmoon Cavalier
+next
+#blockers
+raging goblin
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:Stillmoon Cavalier
+manapool:{0}
+[PLAYER2]
+graveyard:grizzly bears,raging goblin
+[END]

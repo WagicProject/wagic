@@ -29,7 +29,7 @@ class TrCardAddedToZone:public TriggeredAbility{
 public:
   TargetChooser * toTc;
   TargetZoneChooser * fromTc;
-  TrCardAddedToZone::TrCardAddedToZone(int id,MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), fromTc(fromTc),toTc(toTc){
+  TrCardAddedToZone(int id,MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), fromTc(fromTc),toTc(toTc){
   }
 
   int resolve(){
@@ -174,8 +174,10 @@ public:
   int resolve(){
     vector<int>::size_type sz = abilities.size();
     for (unsigned int i = 0; i < sz; i++){
+      Targetable * backup =  abilities[i]->target;
       if (target && target!= source && abilities[i]->target == abilities[i]->source) abilities[i]->target = target;
       abilities[i]->resolve();
+      abilities[i]->target = backup;
     }
     return 1;
   }
@@ -654,6 +656,10 @@ class  AInstantBasicAbilityModifierUntilEOT: public InstantAbility{
     return InstantAbility::addToGame();
  }
 
+  const char * getMenuText(){
+    return Constants::MTGBasicAbilities[ability];
+  }
+
   int destroy(){
     ((MTGCardInstance *)target)->basicAbilities[ability] = stateBeforeActivation;
     return 1;
@@ -677,40 +683,21 @@ class  AInstantBasicAbilityModifierUntilEOT: public InstantAbility{
 //Alteration of Ability until of turn (Aura)
 class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
  public:
-  int stateBeforeActivation;
-  int ability;
-  int value;
- ABasicAbilityAuraModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _ability, int _value = 1):ActivatedAbility(_id,_source, _cost, 0,0), ability(_ability), value(_value){
+  AInstantBasicAbilityModifierUntilEOT * ability;
+ ABasicAbilityAuraModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _ability, int _value = 1):ActivatedAbility(_id,_source, _cost, 0,0){
     target = _target;
-    stateBeforeActivation = _target->basicAbilities[ability];
-  }
-
-  void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
-      MTGCardInstance * _target = (MTGCardInstance *) target;
-      _target->basicAbilities[ability] = stateBeforeActivation;
-    }
-    ActivatedAbility::Update(dt);
+    ability = NEW AInstantBasicAbilityModifierUntilEOT(_id,_source,_target,_ability, _value);
   }
 
   int resolve(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    stateBeforeActivation = _target->basicAbilities[ability];
-    _target->basicAbilities[ability] = value;
+    MTGAbility * a = ability->clone();
+    a->target = target;
+    a->addToGame();
     return 1;
   }
 
   const char * getMenuText(){
-    return Constants::MTGBasicAbilities[ability];
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ABasicAbilityAuraModifierUntilEOT ::: stateBeforeActivation : " << stateBeforeActivation
-	<< " ; ability : " << ability
-	<< " ; value : " << value
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
+    return ability->getMenuText(); 
   }
 
   ABasicAbilityAuraModifierUntilEOT * clone() const{
@@ -719,6 +706,9 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
     return a;
   }
 
+  ~ABasicAbilityAuraModifierUntilEOT(){
+    if (!isClone) SAFE_DELETE(ability);
+  }
 };
 
 
@@ -986,62 +976,6 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
   }
 };
 
-
-
-//Alteration of Power and Toughness until end of turn (Aura)
-class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
- public:
-  int power, toughness;
-  int counters;
-  int maxcounters;
- APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness,  ManaCost * _cost = NULL, int _maxcounters = 0):ActivatedAbility(id,_source,_cost,0,0),power(_power),toughness(_toughness),maxcounters(_maxcounters){
-    counters = 0;
-    target=_target;
-  }
-
-  void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
-      while(counters){
-	((MTGCardInstance *)target)->power -= power;
-	((MTGCardInstance *)target)->addToToughness(-toughness);
-	counters--;
-      }
-    }
-    ActivatedAbility::Update(dt);
-  }
-
-  int fireAbility(){
-    return resolve();
-  }
-
-  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
-    if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
-    return (!maxcounters || (counters < maxcounters));
-  }
-
-  int resolve(){
-    ((MTGCardInstance *)target)->power += power;
-    ((MTGCardInstance *)target)->addToToughness(toughness);
-    counters++;
-    return 1;
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "APowerToughnessModifierUntilEndOfTurn ::: power : " << power
-	<< " ; toughness : " << toughness
-	<< " ; counters : " << counters
-	<< " ; maxcounters : " << maxcounters
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
-  }
-  APowerToughnessModifierUntilEndOfTurn * clone() const{
-    APowerToughnessModifierUntilEndOfTurn * a =  NEW APowerToughnessModifierUntilEndOfTurn(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //Alteration of Power and toughness until end of turn (instant)
 class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
  public:
@@ -1074,6 +1008,51 @@ class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
     return a;
   }
 };
+
+
+
+//Alteration of Power and Toughness until end of turn (Aura)
+class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
+ public:
+  AInstantPowerToughnessModifierUntilEOT * ability;
+  int counters;
+  int maxcounters;
+ APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness,  ManaCost * _cost = NULL, int _maxcounters = 0):ActivatedAbility(id,_source,_cost,0,0),maxcounters(_maxcounters){
+    counters = 0;
+    target=_target;
+    ability = NEW AInstantPowerToughnessModifierUntilEOT(id,_source,_target,_power,_toughness);
+  }
+
+  int fireAbility(){
+    return resolve();
+  }
+
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
+    return (!maxcounters || (counters < maxcounters));
+  }
+
+  int resolve(){
+    MTGAbility * a = ability->clone();
+    a->target = target;
+    a->addToGame();
+    counters++;
+    return 1;
+  }
+
+  APowerToughnessModifierUntilEndOfTurn * clone() const{
+    APowerToughnessModifierUntilEndOfTurn * a =  NEW APowerToughnessModifierUntilEndOfTurn(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  ~APowerToughnessModifierUntilEndOfTurn(){
+    if (!isClone) SAFE_DELETE(ability);
+  }
+};
+
+
+
 
 
 //Untap Blockers with simple Mana Mechanism

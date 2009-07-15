@@ -685,8 +685,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
 
   APowerToughnessModifierUntilEndOfTurn * aptmu = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a);
   if (aptmu){
-    if (aptmu->power>=0 && aptmu->toughness>=0) return BAKA_EFFECT_GOOD;
-    return BAKA_EFFECT_BAD;
+    return abilityEfficiency(aptmu->ability, p, mode);
   }
 
   map<int,bool> badAbilities;
@@ -715,10 +714,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
 
   ABasicAbilityAuraModifierUntilEOT * abamu = dynamic_cast<ABasicAbilityAuraModifierUntilEOT *>(a);
   if (abamu){
-    int result = BAKA_EFFECT_GOOD;
-    if (badAbilities[abamu->ability]) result = BAKA_EFFECT_BAD;
-    if (abamu->value <= 0) result = -result;
-    return result;
+    return abilityEfficiency(abamu->ability, p, mode);
   }
 
   AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
@@ -2228,7 +2224,7 @@ InstantAbility::InstantAbility(int _id, MTGCardInstance * source):MTGAbility(_id
   init = 0;
   for (int i = 0; i < 2; i++){
     if(game->players[i]->game->inPlay->hasCard(source)){
-      game->players[i]->game->putInGraveyard(source);
+      //game->players[i]->game->putInGraveyard(source);
     }
   }
 }
@@ -2243,7 +2239,7 @@ InstantAbility::InstantAbility(int _id, MTGCardInstance * source, Damageable * _
   init = 0;
   for (int i = 0; i < 2; i++){
     if(game->players[i]->game->inPlay->hasCard(source)){
-      game->players[i]->game->putInGraveyard(source);
+      //game->players[i]->game->putInGraveyard(source);
     }
   }
 }
