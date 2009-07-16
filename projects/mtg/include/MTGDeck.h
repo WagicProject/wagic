@@ -13,6 +13,7 @@
 #include "../include/GameApp.h"
 #include "../include/TexturesCache.h"
 
+
 #include <string>
 
 using std::string;
@@ -102,6 +103,7 @@ class MTGDeck{
   int remove(MTGCard * card);
   int save();
   MTGCard * getCardById(int id);
+ 
 };
 
 

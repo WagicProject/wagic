@@ -349,6 +349,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GameState.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GameStateDuel.cpp"
 				>
 			</File>

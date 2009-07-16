@@ -90,20 +90,11 @@ void GameStateDuel::Start()
 
   for (int i = 0; i<2; i ++){
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
-      if (!deckmenu){
-	      decksneeded = 1;
-	      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
-	      char buffer[100];
-	      for (int j=1; j<6; j++){
-	        sprintf(buffer, RESPATH"/player/deck%i.txt",j);
-	        std::ifstream file(buffer);
-	        if(file){
-	          deckmenu->Add(j, GameState::menuTexts[j]);
-	          file.close();
-	          decksneeded = 0;
-	        }
-	      }
-      }
+      decksneeded = 1;
+      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
+      int nbDecks = fillDeckMenu(deckmenu,RESPATH"/player");
+      if (nbDecks) decksneeded = 0;
+      break;
     }
   }
 
@@ -133,8 +124,6 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
       sprintf(deckFile, RESPATH"/player/deck%i.txt",decknb);
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
-      //int deck_cards_ids[100];
-      //int nb_elements = readfile_to_ints(deckFile, deck_cards_ids);
       MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
       deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
       delete tempDeck;
@@ -214,6 +203,8 @@ void GameStateDuel::End()
 }
 
 
+
+
 void GameStateDuel::Update(float dt)
 {
   switch (mGamePhase)
@@ -269,36 +260,7 @@ void GameStateDuel::Update(float dt)
       if (GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()){
         opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
       }
-	    nbAIDecks = 0;
-	    int found = 1;
-	    while (found){
-	      found = 0;
-	      char buffer[512];
-	      char aiSmallDeckName[512];
-	      char deckDesc[512];
-	      sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbAIDecks+1);
-	      if(fileExists(buffer)){
-          MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,NULL,1);
-		      found = 1;
-		      nbAIDecks++;
-		      sprintf(aiSmallDeckName, "ai_baka_deck%i",nbAIDecks);
-		      DeckStats * stats = DeckStats::GetInstance();
-		      stats->load(mPlayers[0]);
-		      int percentVictories = stats->percentVictories(string(aiSmallDeckName));
-		      string difficulty;
-		      if (percentVictories < 34){
-		        difficulty = "(hard)";
-		      }else if (percentVictories < 67){
-		        difficulty = "";
-		      }else{
-		        difficulty = "(easy)";
-		      }
-          sprintf(deckDesc, "%s %s",mtgd->meta_name.c_str(), _(difficulty).c_str());
-          deckDesc[16] = 0;
-		      opponentMenu->Add(nbAIDecks,deckDesc,mtgd->meta_desc);
-          delete mtgd;
-	      }
-	    }
+	    fillDeckMenu(opponentMenu,RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
 	  }
 	  opponentMenu->Update(dt);
 	}else{
@@ -444,27 +406,24 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         }
         break;
       }
+    case DUEL_MENU_CHOOSE_DECK:
+      {  
+        if (mGamePhase == DUEL_STATE_CHOOSE_DECK1){
+          loadPlayer(0,controlId);
+          deckmenu->Close();
+          mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
+        }else{
+          loadPlayer(1,controlId);
+          deckmenu->Close();
+          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+        }
+        break;
+      }
     default:
       {
       switch (controlId)
         {
-          case 1:
-          case 2:
-          case 3:
-          case 4:
-          case 5:
-            {
-	            if (mGamePhase == DUEL_STATE_CHOOSE_DECK1){
-	              loadPlayer(0,controlId);
-		      deckmenu->Close();
-	              mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
-	            }else{
-	              loadPlayer(1,controlId);
-		      deckmenu->Close();
-	              mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
-	            }
-	            break;
-            }
+
           case 12:
 	    menu->Close();
 	    mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;

@@ -6,6 +6,8 @@
 class JGE;
 
 #include <JSoundSystem.h>
+#include <string>
+using namespace std;
 
 enum ENUM_GAME_STATE
   {
@@ -16,7 +18,10 @@ enum ENUM_GAME_STATE
     GAME_STATE_OPTIONS = 0x05,
   };
 
+
 class GameApp;
+class SimpleMenu;
+class Player;
 
 class GameState
 {
@@ -38,6 +43,7 @@ class GameState
 
   virtual void Update(float dt) = 0;
   virtual void Render() = 0;
+  static int fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
 };
 
 

@@ -184,18 +184,9 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
     welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
     char buffer[100];
-    for (int i=1; i < 6; i++){
-      sprintf(buffer, RESPATH"/player/deck%i.txt",i);
-      std::ifstream file(buffer);
-      if(file){
-	welcome_menu->Add(i, GameState::menuTexts[i]);
-	file.close();
-      }else{
-	welcome_menu->Add(i, GameState::menuTexts[0]);
-      }
-
-    }
-    welcome_menu->Add(10, "Cancel");
+    int nbDecks = fillDeckMenu(welcome_menu,RESPATH"/player");
+	  welcome_menu->Add(nbDecks+1, "--NEW--");
+    welcome_menu->Add(-1, "Cancel");
 
     if (GameApp::HasMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME].getIntValue() > 0){
       if (GameApp::music){
@@ -680,8 +671,8 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   virtual void Render()
   {
     //	void RenderQuad(JQuad* quad, float xo, float yo, float angle=0.0f, float xScale=1.0f, float yScale=1.0f);
-
-    JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
+    JRenderer * r = JRenderer::GetInstance();
+    r->ClearScreen(ARGB(0,0,0,0));
 
 
     if(displayed_deck == myDeck){
@@ -718,6 +709,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     if (mStage == STAGE_ONSCREEN_MENU){
       renderOnScreenMenu();
     }else if (mStage == STAGE_WELCOME){
+      r->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(200,0,0,0));
       welcome_menu->Render();
     }else{
       renderOnScreenBasicInfo();
@@ -755,19 +747,20 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   virtual void ButtonPressed(int controllerId, int controlId)
   {
+    switch(controllerId){
+      case 10:
+        if (controlId == -1){
+	        mParent->SetNextState(GAME_STATE_MENU);
+          return;
+        }
+        loadDeck(controlId);
+        mStage = STAGE_WAITING;
+        return;
+    }
+
     switch (controlId)
       {
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 5:
-	loadDeck(controlId);
-	mStage = STAGE_WAITING;
-	break;
-      case 10:
-	mParent->SetNextState(GAME_STATE_MENU);
-	break;
+
       case 11:
 	myDeck->save();
 	playerdata->save();
