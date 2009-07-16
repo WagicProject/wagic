@@ -1413,17 +1413,6 @@ mana={4}{G}{W}
 subtype=Aura
 [/card]
 [card]
-text=Whenever you play a creature spell, you may draw a card.
-id=89083
-name=Primordial Sage
-rarity=R
-type=Creature
-mana={4}{G}{G}
-power=4
-subtype=Spirit
-toughness=5
-[/card]
-[card]
 text=Target creature becomes the color or colors of your choice until end of turn.     Draw a card.
 id=87979
 name=Quickchange

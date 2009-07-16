@@ -988,6 +988,19 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
+text=Whenever you play a red spell, Tattermunge Duo gets +1/+1 until end of turn. Whenever you play a green spell, Tattermunge Duo gains forestwalk until end of turn.
+auto=@movedTo(*[red]|mystack):1/1
+auto=@movedTo(*[green]|mystack):forestwalk
+id=153282
+name=Tattermunge Duo
+rarity=C
+type=Creature
+mana={2}{RG}
+power=2
+subtype=Goblin Warrior Shaman
+toughness=3
+[/card]
+[card]
 text=Tattermunge Maniac attacks each turn if able.
 id=142013
 name=Tattermunge Maniac
@@ -998,6 +1011,19 @@ mana={RG}
 power=2
 subtype=Goblin Warrior
 toughness=1
+[/card]
+[card]
+text=Whenever you play a white spell, Thistledown Duo gets +1/+1 until end of turn.     Whenever you play a blue spell, Thistledown Duo gains flying until end of turn.
+auto=@movedTo(*[white]|mystack):1/1
+auto=@movedTo(*[blue]|mystack):flying
+id=153301
+name=Thistledown Duo
+rarity=C
+type=Creature
+mana={2}{WU}
+power=2
+subtype=Kithkin Soldier Wizard
+toughness=2
 [/card]
 [card]
 text=Flash     Other white creatures you control get +1/+1.     Other blue creatures you control get +1/+1.

@@ -629,6 +629,18 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text=Whenever you play a creature spell, you may draw a card.
+auto=@movedTo(creature|mystack):draw:1
+id=89083
+name=Primordial Sage
+rarity=R
+type=Creature
+mana={4}{G}{G}
+power=4
+subtype=Spirit
+toughness=5
+[/card]
+[card]
 text=({GW} can be paid with either {G} or {W}.)  Other permanents you control can't be the targets of spells or abilities your opponents control.
 auto=lord(*|myinplay) opponentshroud other
 id=83720

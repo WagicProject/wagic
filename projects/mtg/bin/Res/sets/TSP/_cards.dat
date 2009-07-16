@@ -96,6 +96,19 @@ type=Instant
 mana={2}{U}
 [/card]
 [card]
+id=108901
+name=Bogardan Rager
+mana={5}{R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=4
+text=Flash (You may play this spell any time you could play an instant.) When Bogardan Rager comes into play, target creature gets +4/+0 until end of turn.
+abilities=flash
+auto=4/0 target(creature)
+rarity=C
+[/card]
+[card]
 id=109697
 name=Bonesplitter Sliver
 mana={3}{R}
@@ -131,6 +144,18 @@ auto=fizzle
 rarity=C
 [/card]
 [card]
+id=108858
+name=Dream Stalker
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=5
+text=When Dream Stalker comes into play, return a permanent you control to its owner's hand.
+auto=moveTo(ownerhand) target(*|myinplay)
+rarity=C
+[/card]
+[card]
 text=text=Flash (You may play this spell any time you could play an instant.)  {B}: Regenerate Drudge Reavers. 
 abilities=flash
 auto={B}:regenerate
@@ -143,6 +168,18 @@ mana={3}{B}
 power=2
 subtype=Skeleton
 toughness=1
+[/card]
+[card]
+id=108788
+name=Eternity Snare
+mana={5}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature. When Eternity Snare comes into play, draw a card. Enchanted creature doesn't untap during its controller's untap step.
+target=creature
+auto=doesnotuntap
+auto=draw:1
+rarity=C
 [/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.)  Enchant creature  Enchanted creature gets -2/-1.
@@ -179,6 +216,33 @@ auto={T}:add{G}
 rarity=C
 [/card]
 [card]
+id=118927
+name=Forest
+type=Basic Land
+subtype=Forest
+text=G
+auto={T}:add{G}
+rarity=C
+[/card]
+[card]
+id=122083
+name=Forest
+type=Basic Land
+subtype=Forest
+text=G
+auto={T}:add{G}
+rarity=C
+[/card]
+[card]
+id=122088
+name=Forest
+type=Basic Land
+subtype=Forest
+text=G
+auto={T}:add{G}
+rarity=C
+[/card]
+[card]
 id=109722
 name=Fury Sliver
 mana={5}{R}
@@ -207,6 +271,19 @@ auto=lord(sliver) {T}:add {W}
 rarity=C
 [/card]
 [card]
+id=108838
+name=Ghitu Firebreathing
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature {R}: Enchanted creature gets +1/+0 until end of turn. {R}: Return Ghitu Firebreathing to its owner's hand.
+target=creature
+abilities=flash
+auto={R}:1/0
+auto={R}:moveTo(ownerhand)
+rarity=C
+[/card]
+[card]
 id=108830
 name=Greenseeker
 mana={G}
@@ -217,6 +294,18 @@ toughness=1
 text={G}, {T}, Discard a card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
 auto={G}{T}{S:(*|myhand)}:moveTo(myHand) target(land[basic]|mylibrary)
 rarity=C
+[/card]
+[card]
+id=109706
+name=Harmonic Sliver
+mana={1}{G}{W}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Slivers have "When this permanent comes into play, destroy target artifact or enchantment."
+auto=lord(sliver) destroy target(artifact,enchantment)
+rarity=U
 [/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.) Trample. 
@@ -245,6 +334,33 @@ rarity=C
 [/card]
 [card]
 id=122089
+name=Island
+type=Basic Land
+subtype=Island
+auto={T}:Add{U}
+text=U
+rarity=C
+[/card]
+[card]
+id=122095
+name=Island
+type=Basic Land
+subtype=Island
+auto={T}:Add{U}
+text=U
+rarity=C
+[/card]
+[card]
+id=122077
+name=Island
+type=Basic Land
+subtype=Island
+auto={T}:Add{U}
+text=U
+rarity=C
+[/card]
+[card]
+id=118905
 name=Island
 type=Basic Land
 subtype=Island
@@ -301,6 +417,24 @@ auto=lord(sliver) 2/2
 rarity=U
 [/card]
 [card]
+id=118921
+name=Mountain
+type=Basic Land
+subtype=Mountain
+auto={T}:Add{R}
+text=R
+rarity=C
+[/card]
+[card]
+id=118926
+name=Mountain
+type=Basic Land
+subtype=Mountain
+auto={T}:Add{R}
+text=R
+rarity=C
+[/card]
+[card]
 id=122080
 name=Mountain
 type=Basic Land
@@ -310,7 +444,54 @@ text=R
 rarity=C
 [/card]
 [card]
+id=122090
+name=Mountain
+type=Basic Land
+subtype=Mountain
+auto={T}:Add{R}
+text=R
+rarity=C
+[/card]
+[card]
+id=114902
+name=Orcish Cannonade
+mana={1}{R}{R}
+type=Instant
+text=Orcish Cannonade deals 2 damage to target creature or player and 3 damage to you. Draw a card.
+target=creature,player
+auto=damage:2 && damage 3 controller
+auto=draw:1
+rarity=C
+[/card]
+[card]
 id=122084
+name=Plains
+type=Basic Land
+subtype=Plains
+auto={T}:Add{W}
+text=W
+rarity=C
+[/card]
+[card]
+id=122085
+name=Plains
+type=Basic Land
+subtype=Plains
+auto={T}:Add{W}
+text=W
+rarity=C
+[/card]
+[card]
+id=122087
+name=Plains
+type=Basic Land
+subtype=Plains
+auto={T}:Add{W}
+text=W
+rarity=C
+[/card]
+[card]
+id=122092
 name=Plains
 type=Basic Land
 subtype=Plains
@@ -395,6 +576,20 @@ auto=lord(sliver) reach
 rarity=C
 [/card]
 [card]
+id=116386
+name=Sprite Noble
+mana={1}{U}{U}
+type=Creature
+subtype=Faerie
+power=2
+toughness=2
+text=Flying. Other creatures you control with flying get +0/+1. {T}: Other creatures you control with flying get +1/+0 until end of turn.
+abilities=flying
+auto=lord(creature[flying]|myinplay) 0/1 other
+auto={T}:lord(creature[flying]|myinplay) 1/0 other
+rarity=R
+[/card]
+[card]
 text=Put a 1/1 green Saproling creature token into play.
 auto={G}:token(Saproling,creature saproling, 1/1, green)
 id=122079
@@ -404,7 +599,6 @@ color=Green
 type=Instant
 mana={G}
 [/card]
-[card]
 [card]
 text=Squall Line deals X damage to each creature with flying and each player.
 id=109702
@@ -416,6 +610,44 @@ type=Instant
 mana={X}{G}{G}
 [/card]
 [card]
+id=116730
+name=Strength in Numbers
+mana={1}{G}
+type=Instant
+text=Until end of turn, target creature gains trample and gets +X/+X, where X is the number of attacking creatures.
+target=creature
+auto=foreach(creature[attacking]) 1/1
+auto-trample
+rarity=C
+[/card]
+[card]
+id=118903
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
+id=118904
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
+id=122076
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
 id=122078
 name=Swamp
 auto={T}:Add{B}
@@ -423,6 +655,18 @@ type=Basic Land
 subtype=Swamp
 text=B
 rarity=C
+[/card]
+[card]
+id=114913
+name=Swarmyard
+type=Land
+text={T}: Add {1} to your mana pool. {T}: Regenerate target Insect, Rat, Spider, or Squirrel.
+auto={T}:add{1}
+auto={T}:regenerate target(insect)
+auto={T}:regenerate target(rat)
+auto={T}:regenerate target(spider)
+auto={T}:regenerate target(squirrel)
+rarity=R
 [/card]
 [card]
 id=111085
@@ -445,6 +689,29 @@ text=Put target creature or land on top of its owner's library.
 target=creature,land
 auto=moveTo(ownerlibrary)
 rarity=C
+[/card]
+[card]
+id=106632
+name=Tendrils of Corruption
+mana={3}{B}
+type=Instant
+text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
+auto=foreach(swamp|myinplay) damage:1 target(creature)
+auto=foreach(swamp|myinplay) life:1
+rarity=C
+[/card]
+[card]
+id=116736
+name=Tivadar of Thorn
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text=First strike, protection from red When Tivadar of Thorn comes into play, destroy target Goblin.
+abilities=first strike, protection from red, legendary
+auto=destroy target(goblin)
+rarity=R
 [/card]
 [card]
 id=108907
@@ -470,6 +737,20 @@ toughness=1
 text=Discard a card: Trespasser il-Vec gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
 auto={S(*|myhand)}:shadow
 rarity=C
+[/card]
+[card]
+id=116726
+name=Tromp the Domains
+mana={5}{G}
+type=Sorcery
+text=Domain - Until end of turn, creatures you control gain trample and get +1/+1 for each basic land type among lands you control.
+auto=aslongas(plains|myinplay) lord(creature|myinplay) 1/1
+auto=aslongas(forest|myinplay) lord(creature|myinplay) 1/1
+auto=aslongas(mountain|myinplay) lord(creature|myinplay) 1/1
+auto=aslongas(swamp|myinplay) lord(creature|myinplay) 1/1
+auto=aslongas(island|myinplay) lord(creature|myinplay) 1/1
+auto=lord(creature|myinplay) trample
+rarity=U
 [/card]
 [card]
 text={G}: Unyaro Bees gets +1/+1 until end of turn.  {3}{G}Sacrifice Unyaro Bees: Unyaro Bees deals 2 damage to target creaturen or player.
@@ -508,6 +789,31 @@ subtype=Sliver
 toughness=3
 [/card]
 [card]
+id=111069
+name=Viashino Bladescout
+mana={1}{R}{R}
+type=Creature
+subtype=Viashino Scout
+power=2
+toughness=1
+text=Flash (You may play this spell any time you could play an instant.) When Viashino Bladescout comes into play, target creature gains first strike until end of turn.
+abilities=flash
+auto=first strike target(creature)
+rarity=C
+[/card]
+[card]
+id=111082
+name=Viscid Lemures
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=3
+text={0}: Viscid Lemures gets -1/-0 and gains swampwalk until end of turn.
+auto={0}: -1/-0 && swampwalk
+rarity=C
+[/card]
+[card]
 id=106648
 name=Watcher Sliver
 mana={3}{W}
@@ -517,5 +823,18 @@ power=2
 toughness=2
 text=All Sliver creatures get +0/+2.
 auto=lord(sliver) 0/2
+rarity=C
+[/card]
+[card]
+id=113583
+name=Wormwood Dryad
+mana={2}{G}
+type=Creature
+subtype=Dryad
+power=3
+toughness=1
+text={G}: Wormwood Dryad gains forestwalk until end of turn and deals 1 damage to you. {B}: Wormwood Dryad gains swampwalk until end of turn and deals 1 damage to you.
+auto={G}:forestwalk && damage 1 controller
+auto={B}:swampwalk && damage 1 controller
 rarity=C
 [/card]

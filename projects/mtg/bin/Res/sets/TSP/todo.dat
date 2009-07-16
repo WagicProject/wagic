@@ -1,5 +1,3 @@
-
-
 [card]
 id=113619
 name=Amrou Scout
@@ -55,8 +53,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature has shroud. (It can't be the target of spells or abilities.) When Aspect of Mongoose is put into a graveyard from play, return Aspect of Mongoose to its owner's hand.
 rarity=U
 [/card]
-
-
 [card]
 id=109762
 name=Barbed Shocker
@@ -91,14 +87,6 @@ text=Flanking (Whenever a creature without flanking blocks this creature, the bl
 rarity=C
 [/card]
 [card]
-id=118901
-name=Bewilder
-mana={2}{U}
-type=Instant
-text=Target creature gets -3/-0 until end of turn. Draw a card.
-rarity=C
-[/card]
-[card]
 id=108799
 name=Blazing Blade Askari
 mana={2}{R}
@@ -120,19 +108,6 @@ toughness=5
 text=Flash Flying When Bogardan Hellkite comes into play, it deals 5 damage divided as you choose among any number of target creatures and/or players.
 rarity=R
 [/card]
-[card]
-id=108901
-name=Bogardan Rager
-mana={5}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=4
-text=Flash (You may play this spell any time you could play an instant.) When Bogardan Rager comes into play, target creature gets +4/+0 until end of turn.
-rarity=C
-[/card]
-
-
 [card]
 id=118895
 name=Brine Elemental
@@ -160,7 +135,6 @@ type=Sorcery
 text=Return target black creature card from your graveyard to your hand. Madness {0} (If you discard this card, you may play it for its madness cost instead of putting it into your graveyard.)
 rarity=C
 [/card]
-
 [card]
 id=113529
 name=Candles of Leng
@@ -235,6 +209,12 @@ name=Chromatic Star
 mana={1}
 type=Artifact
 text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. When Chromatic Star is put into a graveyard from play, draw a card.
+auto={1}{T}{S}:add{B}
+auto={1}{T}{S}:add{U}
+auto={1}{T}{S}:add{G}
+auto={1}{T}{S}:add{R}
+auto={1}{T}{S}:add{W}
+auto=@movedTo(...)
 rarity=U
 [/card]
 [card]
@@ -283,7 +263,8 @@ type=Creature
 subtype=Bird
 power=2
 toughness=2
-text=Flying When Cloudchaser Kestrel comes into play, destroy target enchantment. {W}: Target permanent becomes white until end of turn.
+text=Flying. When Cloudchaser Kestrel comes into play, destroy target enchantment. {W}: Target permanent becomes white until end of turn.
+auto=destroy target(enchantment)
 rarity=C
 [/card]
 [card]
@@ -473,17 +454,6 @@ text={T}: Add {1} to your mana pool. {1}, {T}: Put a storage counter on Dreadshi
 rarity=U
 [/card]
 [card]
-id=108858
-name=Dream Stalker
-mana={1}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=5
-text=When Dream Stalker comes into play, return a permanent you control to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=108918
 name=Drifter il-Dal
 mana={U}
@@ -492,17 +462,6 @@ subtype=Human Wizard
 power=2
 toughness=1
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) At the beginning of your upkeep, sacrifice Drifter il-Dal unless you pay {U}.
-rarity=C
-[/card]
-[card]
-id=108850
-name=Drudge Reavers
-mana={3}{B}
-type=Creature
-subtype=Skeleton
-power=2
-toughness=1
-text=Flash (You may play this spell any time you could play an instant.) {B}: Regenerate Drudge Reavers.
 rarity=C
 [/card]
 [card]
@@ -577,15 +536,6 @@ subtype=Illusion
 power=4
 toughness=4
 text=Flying Suspend 4—{1}{U} (Rather than play this card from your hand, you may pay {1}{U} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
-rarity=C
-[/card]
-[card]
-id=108788
-name=Eternity Snare
-mana={5}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature When Eternity Snare comes into play, draw a card. Enchanted creature doesn't untap during its controller's untap step.
 rarity=C
 [/card]
 [card]
@@ -699,6 +649,7 @@ subtype=Human Spellshaper
 power=2
 toughness=2
 text={1}{R}, {T}, Discard a card: Target creature gets +1/-1 and gains haste until end of turn.
+auto={1}{R}{T}{S(*|myhand)}: 1/-1 && haste ## opps, forgot this wont work yet
 rarity=C
 [/card]
 [card]
@@ -710,7 +661,6 @@ subtype=Aura
 text=Enchant creature When enchanted creature is put into a graveyard, return that card to play under your control. When Fool's Demise is put into a graveyard from play, return Fool's Demise to its owner's hand.
 rarity=U
 [/card]
-
 [card]
 id=106652
 name=Foriysian Interceptor
@@ -735,7 +685,7 @@ id=116732
 name=Fortify
 mana={2}{W}
 type=Instant
-text=Choose one  ECreatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
+text=Choose one: Creatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -768,7 +718,6 @@ toughness=2
 text=All Sliver creatures have "Whenever this creature is dealt damage, put a +1/+1 counter on it." (The damage is dealt before the counter is put on.)
 rarity=R
 [/card]
-
 [card]
 id=124220
 name=Gauntlet of Power
@@ -792,15 +741,6 @@ mana=
 type=Legendary Land
 text=If Gemstone Caverns is in your opening hand and you're not playing first, you may begin the game with Gemstone Caverns in play with a luck counter on it. If you do, remove a card in your hand from the game. {T}: Add {1} to your mana pool. If Gemstone Caverns has a luck counter on it, instead add one mana of any color to your mana pool.
 rarity=R
-[/card]
-[card]
-id=108838
-name=Ghitu Firebreathing
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature {R}: Enchanted creature gets +1/+0 until end of turn. {R}: Return Ghitu Firebreathing to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=109717
@@ -833,6 +773,7 @@ subtype=Goblin Warrior
 power=2
 toughness=1
 text=Sacrifice Goblin Skycutter: Goblin Skycutter deals 2 damage to target creature with flying. That creature loses flying until end of turn.
+auto={S}:damage:2 target(creature{-flying}) && -flying ...........
 rarity=C
 [/card]
 [card]
@@ -865,7 +806,6 @@ toughness=7
 text=Suspend 10—{R} Sacrifice an artifact, creature, or land: Remove a time counter from Greater Gargadon. Play this ability only if Greater Gargadon is suspended.
 rarity=R
 [/card]
-
 [card]
 id=110514
 name=Griffin Guide
@@ -895,17 +835,6 @@ text=Flanking (Whenever a creature without flanking blocks this creature, the bl
 rarity=U
 [/card]
 [card]
-id=109706
-name=Harmonic Sliver
-mana={1}{G}{W}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Slivers have "When this permanent comes into play, destroy target artifact or enchantment."
-rarity=U
-[/card]
-[card]
 id=109731
 name=Haunting Hymn
 mana={4}{B}{B}
@@ -913,7 +842,6 @@ type=Instant
 text=Target player discards two cards. If you played this spell during your main phase, that player discards four cards instead.
 rarity=U
 [/card]
-
 [card]
 id=118873
 name=Herd Gnarr
@@ -952,7 +880,6 @@ toughness=2
 text=Whenever another Goblin you control becomes blocked, sacrifice it. If you do, it deals 4 damage to each creature blocking it. Sacrifice two Mountains: Put two 1/1 red Goblin creature tokens into play.
 rarity=R
 [/card]
-
 [card]
 id=109756
 name=Ignite Memories
@@ -972,7 +899,6 @@ toughness=2
 text=Ironclaw Buzzardiers can't block creatures with power 2 or greater. {R}: Ironclaw Buzzardiers gains flying until end of turn.
 rarity=C
 [/card]
-
 [card]
 id=114903
 name=Ith, High Arcanist
@@ -1145,7 +1071,6 @@ toughness=2
 text={X}, {T}: Untap X target lands.
 rarity=R
 [/card]
-
 [card]
 id=126287
 name=Magus of the Jar
@@ -1282,7 +1207,6 @@ type=Instant
 text=Target spell or permanent becomes colorless.
 rarity=R
 [/card]
-
 [card]
 id=118888
 name=Mwonvuli Acid-Moss
@@ -1369,14 +1293,6 @@ mana={2}{U}
 type=Enchantment
 subtype=Aura
 text=Flash (You may play this spell any time you could play an instant.) Enchant creature Whenever enchanted creature deals damage to an opponent, you may draw a card.
-rarity=C
-[/card]
-[card]
-id=114902
-name=Orcish Cannonade
-mana={1}{R}{R}
-type=Instant
-text=Orcish Cannonade deals 2 damage to target creature or player and 3 damage to you. Draw a card.
 rarity=C
 [/card]
 [card]
@@ -1866,7 +1782,6 @@ toughness=2
 text=Flying Sacrifice Spiketail Drakeling: Counter target spell unless its controller pays {2}.
 rarity=C
 [/card]
-
 [card]
 id=109680
 name=Spirit Loop
@@ -1886,20 +1801,6 @@ power=4
 toughness=4
 text=At the beginning of your upkeep, put a spore counter on each Fungus you control. Remove three spore counters from Sporesower Thallid: Put a 1/1 green Saproling creature token into play.
 rarity=U
-[/card]
-[card]
-id=116386
-name=Sprite Noble
-mana={1}{U}{U}
-type=Creature
-subtype=Faerie
-power=2
-toughness=2
-text=Flying Other creatures you control with flying get +0/+1. {T}: Other creatures you control with flying get +1/+0 until end of turn.
-abilities=flying
-auto=lord(creature[flying]|myinplay) 0/1
-auto={T}:lord(creature[flying]|myinplay) 1/0
-rarity=R
 [/card]
 [card]
 id=118915
@@ -1937,14 +1838,6 @@ name=Strangling Soot
 mana={2}{B}
 type=Instant
 text=Destroy target creature with toughness 3 or less. Flashback {5}{R} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
-rarity=C
-[/card]
-[card]
-id=116730
-name=Strength in Numbers
-mana={1}{G}
-type=Instant
-text=Until end of turn, target creature gains trample and gets +X/+X, where X is the number of attacking creatures.
 rarity=C
 [/card]
 [card]
@@ -2012,15 +1905,6 @@ type=Instant
 text=Sulfurous Blast deals 2 damage to each creature and each player. If you played this spell during your main phase, Sulfurous Blast deals 3 damage to each creature and each player instead.
 rarity=U
 [/card]
-
-[card]
-id=114913
-name=Swarmyard
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Regenerate target Insect, Rat, Spider, or Squirrel.
-rarity=R
-[/card]
 [card]
 id=113616
 name=Tectonic Fiend
@@ -2043,8 +1927,6 @@ toughness=4
 text=Flash (You may play this spell any time you could play an instant.) Creature cards you own that aren't in play have flash. Each opponent can play spells only any time he or she could play a sorcery.
 rarity=R
 [/card]
-
-
 [card]
 id=106654
 name=Temporal Isolation
@@ -2055,19 +1937,11 @@ text=Flash (You may play this spell any time you could play an instant.) Enchant
 rarity=C
 [/card]
 [card]
-id=106632
-name=Tendrils of Corruption
-mana={3}{B}
-type=Instant
-text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
-rarity=C
-[/card]
-[card]
 id=118874
 name=Terramorphic Expanse
-mana=
 type=Land
 text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
+auto={T}{S}:moveTo(myinplay) target(land[basic]|mylibrary)
 rarity=C
 [/card]
 [card]
@@ -2150,18 +2024,6 @@ text={T}: Add {W} to your mana pool. {1}{W}{W}: Thunder Totem becomes a 2/2 whit
 rarity=U
 [/card]
 [card]
-id=116736
-name=Tivadar of Thorn
-mana={1}{W}{W}
-type=Legendary Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=First strike, protection from red When Tivadar of Thorn comes into play, destroy target Goblin.
-rarity=R
-[/card]
-
-[card]
 id=108857
 name=Traitor's Clutch
 mana={4}{B}
@@ -2169,7 +2031,6 @@ type=Instant
 text=Target creature gets +1/+0, becomes black, and gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.) Flashback {1}{B} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 rarity=C
 [/card]
-
 [card]
 id=110499
 name=Trickbind
@@ -2188,14 +2049,6 @@ power=1
 toughness=1
 text=Flying Triskelavus comes into play with three +1/+1 counters on it.  {1}, Remove a +1/+1 counter from Triskelavus: Put a 1/1 Triskelavite artifact creature token with flying into play. It has "Sacrifice this creature: This creature deals 1 damage to target creature or player."
 rarity=R
-[/card]
-[card]
-id=116726
-name=Tromp the Domains
-mana={5}{G}
-type=Sorcery
-text=Domain  EUntil end of turn, creatures you control gain trample and get +1/+1 for each basic land type among lands you control.
-rarity=U
 [/card]
 [card]
 id=118910
@@ -2225,7 +2078,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature gets +2/+2 and can't block. When Undying Rage is put into a graveyard from play, return Undying Rage to its owner's hand.
 rarity=U
 [/card]
-
 [card]
 id=108798
 name=Urborg Syphon-Mage
@@ -2237,7 +2089,6 @@ toughness=2
 text={2}{B}, {T}, Discard a card: Each other player loses 2 life. You gain life equal to the life lost this way.
 rarity=C
 [/card]
-
 [card]
 id=118900
 name=Vampiric Sliver
@@ -2278,17 +2129,6 @@ text=As Vesuvan Shapeshifter comes into play or is turned face up, you may choos
 rarity=R
 [/card]
 [card]
-id=111069
-name=Viashino Bladescout
-mana={1}{R}{R}
-type=Creature
-subtype=Viashino Scout
-power=2
-toughness=1
-text=Flash (You may play this spell any time you could play an instant.) When Viashino Bladescout comes into play, target creature gains first strike until end of turn.
-rarity=C
-[/card]
-[card]
 id=113615
 name=Viscerid Deepwalker
 mana={4}{U}
@@ -2300,17 +2140,6 @@ text={U}: Viscerid Deepwalker gets +1/+0 until end of turn. Suspend 4—{U} (Rat
 rarity=C
 [/card]
 [card]
-id=111082
-name=Viscid Lemures
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=4
-toughness=3
-text={0}: Viscid Lemures gets -1/-0 and gains swampwalk until end of turn.
-rarity=C
-[/card]
-[card]
 id=111076
 name=Voidmage Husher
 mana={3}{U}
@@ -2319,6 +2148,8 @@ subtype=Human Wizard
 power=2
 toughness=2
 text=Flash (You may play this spell any time you could play an instant.) When Voidmage Husher comes into play, counter target activated ability. (Mana abilities can't be targeted.) Whenever you play a spell, you may return Voidmage Husher to its owner's hand.
+abilities=flash
+auto=fizzle target...
 rarity=U
 [/card]
 [card]
@@ -2337,7 +2168,6 @@ type=Sorcery
 text=Buyback—Sacrifice three Islands. (You may sacrifice three Islands in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Target player takes an extra turn after this one.
 rarity=R
 [/card]
-
 [card]
 id=126283
 name=Weathered Bodyguards
@@ -2380,17 +2210,6 @@ mana={3}{R}{R}
 type=Instant
 text=Split second (As long as this spell is on the stack, players can't play spells or activated abilities that aren't mana abilities.) Untap target permanent and gain control of it until end of turn. It gains haste until end of turn.
 rarity=R
-[/card]
-[card]
-id=113583
-name=Wormwood Dryad
-mana={2}{G}
-type=Creature
-subtype=Dryad
-power=3
-toughness=1
-text={G}: Wormwood Dryad gains forestwalk until end of turn and deals 1 damage to you. {B}: Wormwood Dryad gains swampwalk until end of turn and deals 1 damage to you.
-rarity=C
 [/card]
 [card]
 id=114917
