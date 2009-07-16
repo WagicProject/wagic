@@ -152,17 +152,7 @@ subtype=Aura
 text=Enchant creature Enchanted creature can't attack or block. When enchanted creature becomes the target of a spell or ability, remove that creature from the game.
 rarity=C
 [/card]
-[card]
-id=180614
-name=Dauntless Escort
-mana={1}{G}{W}
-type=Creature
-subtype=Rhino Soldier
-power=3
-toughness=3
-text=Sacrifice Dauntless Escort: Creatures you control are indestructible this turn.
-rarity=R
-[/card]
+
 [card]
 id=179543
 name=Deadshot Minotaur
@@ -362,14 +352,7 @@ type=Artifact
 text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Firewild Borderpost's mana cost. Firewild Borderpost comes into play tapped. {T}: Add {R} or {G} to your mana pool.
 rarity=C
 [/card]
-[card]
-id=179605
-name=Flurry of Wings
-mana={G}{W}{U}
-type=Instant
-text=Put X 1/1 white Bird Soldier creature tokens with flying into play, where X is the number of attacking creatures.
-rarity=U
-[/card]
+
 [card]
 id=179598
 name=Giant Ambush Beetle
@@ -479,17 +462,7 @@ abilities=haste
 auto={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary) #Not quite right :(
 rarity=C
 [/card]
-[card]
-id=179596
-name=Illusory Demon
-mana={1}{U}{B}
-type=Creature
-subtype=Demon Illusion
-power=4
-toughness=3
-text=Flying When you play a spell, sacrifice Illusory Demon.
-rarity=U
-[/card]
+
 [card]
 id=180605
 name=Jenara, Asura of War
@@ -534,17 +507,7 @@ toughness=2
 text=When you cycle Jund Sojourners or it's put into a graveyard from play, you may have it deal 1 damage to target creature or player. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.)
 rarity=C
 [/card]
-[card]
-id=180587
-name=Karrthus, Tyrant of Jund
-mana={4}{B}{R}{G}
-type=Legendary Creature
-subtype=Dragon
-power=7
-toughness=7
-text=Flying, haste When Karrthus, Tyrant of Jund comes into play, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
-rarity=M
-[/card]
+
 [card]
 id=179602
 name=Kathari Bomber
@@ -587,17 +550,7 @@ type=Sorcery
 text=Lavalanche deals X damage to target player and each creature he or she controls.
 rarity=R
 [/card]
-[card]
-id=180606
-name=Leonin Armorguard
-mana={2}{G}{W}
-type=Creature
-subtype=Cat Soldier
-power=3
-toughness=3
-text=When Leonin Armorguard comes into play, creatures you control get +1/+1 until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=179555
 name=Lich Lord of Unx
@@ -947,14 +900,7 @@ toughness=4
 text=Whenever Skyclaw Thrash attacks, flip a coin. If you win the flip, Skyclaw Thrash gets +1/+1 and gains flying until end of turn.
 rarity=U
 [/card]
-[card]
-id=188971
-name=Slave of Bolas
-mana={3}{(}{U}{/}{R}{)}{B}
-type=Sorcery
-text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
-rarity=U
-[/card]
+
 [card]
 id=183008
 name=Soul Manipulation
@@ -1004,17 +950,7 @@ type=Enchantment
 text=Sacrifice Stormcaller's Boon: Creatures you control gain flying until end of turn. Cascade (When you play this spell, remove cards from the top of your library from the game until you remove a nonland card that costs less. You may play it without paying its mana cost. Put the removed cards on the bottom in a random order.)
 rarity=C
 [/card]
-[card]
-id=179589
-name=Stun Sniper
-mana={R}{W}
-type=Creature
-subtype=Human Archer
-power=1
-toughness=1
-text={1}, {T}: Stun Sniper deals 1 damage to target creature. Tap that creature.
-rarity=U
-[/card]
+
 [card]
 id=180618
 name=Tainted Sigil

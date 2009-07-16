@@ -23,6 +23,15 @@ auto={T}:target(creature|opponentinplay) mustattack
 rarity=U
 [/card]
 [card]
+id=191245
+name=Angel's Feather
+mana={2}
+type=Artifact
+text=Whenever a player casts a white spell, you may gain 1 life.
+auto=@movedTo(*[white]|stack):may life:1
+rarity=U
+[/card]
+[card]
 id=190549
 name=Angel's Mercy
 mana={2}{W}{W}
@@ -307,6 +316,15 @@ target=creature[green;white]
 rarity=U
 [/card]
 [card]
+id=191247
+name=Demon's Horn
+mana={2}
+type=Artifact
+text=Whenever a player casts a black spell, you may gain 1 life.
+auto=@movedTo(*[black]|stack):may life:1
+rarity=U
+[/card]
+[card]
 id=190533
 name=Diabolic Tutor
 mana={2}{B}{B}
@@ -364,6 +382,15 @@ text=Destroy target nonblack creature.
 target=creature[-black]
 auto=destroy
 rarity=C
+[/card]
+[card]
+id=191244
+name=Dragon's Claw
+mana={2}
+type=Artifact
+text=Whenever a player casts a red spell, you may gain 1 life.
+auto=@movedTo(*[red]|stack):may life:1
+rarity=U
 [/card]
 [card]
 id=191060
@@ -603,6 +630,18 @@ auto=lord(creature|myBattlefield) 1/1
 rarity=C
 [/card]
 [card]
+id=191092
+name=Goblin Artillery
+mana={1}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=1
+toughness=3
+text={T}: Goblin Artillery deals 2 damage to target creature or player and 3 damage to you.
+auto={T}:damage:2 target(player) && damage:3 controller
+rarity=U
+[/card]
+[card]
 id=190558
 name=Goblin Chieftain
 mana={1}{R}{R}
@@ -775,6 +814,15 @@ auto=first strike
 rarity=C
 [/card]
 [card]
+id=191246
+name=Kraken's Eye
+mana={2}
+type=Artifact
+text=Whenever a player casts a blue spell, you may gain 1 life.
+auto=@movedTo(*[blue]|stack): may life:1
+rarity=U
+[/card]
+[card]
 id=191084
 name=Lava Axe
 mana={4}{R}
@@ -849,6 +897,18 @@ toughness=1
 text={B}: Looming Shade gets +1/+1 until end of turn.
 auto={B}:1/1
 rarity=C
+[/card]
+[card]
+id=191378
+name=Mesa Enchantress
+mana={1}{W}{W}
+type=Creature
+subtype=Human Druid
+power=0
+toughness=2
+text=Whenever you cast an enchantment spell, you may draw a card.
+auto=@movedTo(enchantment|stack): may draw:1
+rarity=R
 [/card]
 [card]
 id=191087
@@ -1255,6 +1315,18 @@ toughness=2
 rarity=C
 [/card]
 [card]
+id=190571
+name=Soul Warden
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text=Whenever another creature enters the battlefield, you gain 1 life.
+auto=@movedTo(*|battlefield): life:1
+rarity=U
+[/card]
+[card]
 id=190163
 name=Snapping Drake
 mana={3}{U}
@@ -1502,6 +1574,15 @@ toughness=2
 text=Flying
 abilities=flying
 rarity=C
+[/card]
+[card]
+id=191248
+name=Wurm's Tooth
+mana={2}
+type=Artifact
+text=Whenever a player casts a green spell, you may gain 1 life.
+auto=@movedTo(*[green]|stack): may life:1
+rarity=U
 [/card]
 [card]
 id=190167

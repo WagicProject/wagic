@@ -1239,19 +1239,7 @@ power=3
 subtype=Viashino
 toughness=2
 [/card]
-[card]
-text=Haste (This creature can attack and {T} as soon as it comes under your control.)  At end of turn, return Viashino Sandscout to its owner's hand. (Return it only if it's in play.)
-id=130387
-name=Viashino Sandscout
-auto=@next endofturn:moveTo(hand)
-rarity=C
-color=Red
-type=Creature
-mana={1}{R}
-power=2
-subtype=Viashino Scout
-toughness=1
-[/card]
+
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  As Voice of All comes into play, choose a color.      Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
 id=136290

@@ -24,6 +24,18 @@ mana={R}{G}
 type=Instant
 [/card]
 [card]
+id=180614
+name=Dauntless Escort
+mana={1}{G}{W}
+type=Creature
+subtype=Rhino Soldier
+power=3
+toughness=3
+text=Sacrifice Dauntless Escort: Creatures you control are indestructible this turn.
+auto={S}:lord(creature|mybattlefield) indestructible
+rarity=R
+[/card]
+[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=179542
 name=Ethercaste Knight
@@ -50,6 +62,15 @@ auto=foreach(artifact|myinplay)life:3
 rarity=R
 [/card]
 [card]
+id=179605
+name=Flurry of Wings
+mana={G}{W}{U}
+type=Instant
+text=Put X 1/1 white Bird Soldier creature tokens with flying into play, where X is the number of attacking creatures.
+auto=foreach(creature[attacking]) token(Bird Soldier,Creature Bird Soldier,1/1,white flying)
+rarity=U
+[/card]
+[card]
 text=
 id=189647
 name=Grizzled Leotau
@@ -73,6 +94,18 @@ auto=moveTo(removedfromgame) all(*|graveyard)
 rarity=R
 [/card]
 [card]
+id=179596
+name=Illusory Demon
+mana={1}{U}{B}
+type=Creature
+subtype=Demon Illusion
+power=4
+toughness=3
+text=Flying When you play a spell, sacrifice Illusory Demon.
+auto=@movedTo(*|mystack):bury
+rarity=U
+[/card]
+[card]
 id=179568
 name=Intimidation Bolt
 mana={1}{R}{W}
@@ -83,6 +116,33 @@ auto=damage:3
 auto=lord(creature) cantattack
 target=creature
 rarity=U
+[/card]
+[card]
+id=180587
+name=Karrthus, Tyrant of Jund
+mana={4}{B}{R}{G}
+type=Creature
+subtype=Dragon
+power=7
+toughness=7
+text=Flying, haste When Karrthus, Tyrant of Jund comes into play, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
+abilities=flying,haste,legendary
+auto=moveTo(myInPlay) all(dragon)
+auto=untap all(dragon)
+auto=lord(dragon|mybattlefield) haste other
+rarity=M
+[/card]
+[card]
+id=180606
+name=Leonin Armorguard
+mana={2}{G}{W}
+type=Creature
+subtype=Cat Soldier
+power=3
+toughness=3
+text=When Leonin Armorguard comes into play, creatures you control get +1/+1 until end of turn.
+auto=all(creature|myinplay) 1/1
+rarity=C
 [/card]
 [card]
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
@@ -215,6 +275,18 @@ toughness=4
 abilities=exalted
 [/card]
 [card]
+id=188971
+name=Slave of Bolas
+mana={3}{(}{U}{/}{R}{)}{B}
+type=Sorcery
+text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
+target=creature
+auto=@next end:bury
+auto=untap
+auto=haste
+rarity=U
+[/card]
+[card]
 id=179409
 name=Soulquake
 mana={3}{U}{U}{B}{B}
@@ -236,6 +308,18 @@ subtype=Sphinx
 power=6
 toughness=6
 abilities=flying,first strike,vigilance,lifelink,protection from red,protection from green
+[/card]
+[card]
+id=179589
+name=Stun Sniper
+mana={R}{W}
+type=Creature
+subtype=Human Archer
+power=1
+toughness=1
+text={1}, {T}: Stun Sniper deals 1 damage to target creature. Tap that creature.
+auto={1}{T}:damage::1 target(creature) && tap
+rarity=U
 [/card]
 [card]
 text=Flying

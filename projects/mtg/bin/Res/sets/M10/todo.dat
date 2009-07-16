@@ -39,14 +39,7 @@ text=+1: You gain 2 life. -1: Put a +1/+1 counter on each creature you control. 
 rarity=M
 [/card]
 
-[card]
-id=191245
-name=Angel's Feather
-mana={2}
-type=Artifact
-text=Whenever a player casts a white spell, you may gain 1 life.
-rarity=U
-[/card]
+
 
 
 
@@ -191,14 +184,7 @@ text=Reach (This creature can block creatures with flying.) Deathtouch (Creature
 rarity=C
 [/card]
 
-[card]
-id=191247
-name=Demon's Horn
-mana={2}
-type=Artifact
-text=Whenever a player casts a black spell, you may gain 1 life.
-rarity=U
-[/card]
+
 
 
 
@@ -217,14 +203,7 @@ rarity=R
 [/card]
 
 
-[card]
-id=191244
-name=Dragon's Claw
-mana={2}
-type=Artifact
-text=Whenever a player casts a red spell, you may gain 1 life.
-rarity=U
-[/card]
+
 [card]
 id=191091
 name=Dragonskull Summit
@@ -293,17 +272,7 @@ text=Glacial Fortress enters the battlefield tapped unless you control a Plains 
 rarity=R
 [/card]
 
-[card]
-id=191092
-name=Goblin Artillery
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=3
-text={T}: Goblin Artillery deals 2 damage to target creature or player and 3 damage to you.
-rarity=U
-[/card]
+
 
 
 [card]
@@ -442,14 +411,7 @@ text=Jackal Familiar can't attack or block alone.
 rarity=C
 [/card]
 
-[card]
-id=191246
-name=Kraken's Eye
-mana={2}
-type=Artifact
-text=Whenever a player casts a blue spell, you may gain 1 life.
-rarity=U
-[/card]
+
 
 
 
@@ -544,17 +506,7 @@ text={T}: Draw a card, then discard a card.
 rarity=U
 [/card]
 
-[card]
-id=191378
-name=Mesa Enchantress
-mana={1}{W}{W}
-type=Creature
-subtype=Human Druid
-power=0
-toughness=2
-text=Whenever you cast an enchantment spell, you may draw a card.
-rarity=R
-[/card]
+
 
 
 [card]
@@ -790,17 +742,7 @@ subtype=Aura
 text=Enchant creature At the beginning of the upkeep of enchanted creature's controller, that player loses 1 life.
 rarity=C
 [/card]
-[card]
-id=190571
-name=Soul Warden
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text=Whenever another creature enters the battlefield, you gain 1 life.
-rarity=U
-[/card]
+
 [card]
 id=191053
 name=Sparkmage Apprentice
@@ -974,14 +916,7 @@ type=Instant
 text=Windstorm deals X damage to each creature with flying.
 rarity=U
 [/card]
-[card]
-id=191248
-name=Wurm's Tooth
-mana={2}
-type=Artifact
-text=Whenever a player casts a green spell, you may gain 1 life.
-rarity=U
-[/card]
+
 [card]
 id=189885
 name=Xathrid Demon

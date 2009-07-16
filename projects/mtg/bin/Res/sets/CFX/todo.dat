@@ -6,18 +6,7 @@ rarity=C
 type=Sorcery
 mana={6}{B}
 [/card]
-[card]
-text=Flying     {1}{G}{U}: Creatures you control gain shroud until end of turn.
-id=153946
-name=Aerie Mystics
-rarity=U
-type=Creature
-auto={1}{G}{U}:lord(creature|myinplay) shroud ## want mana + lord funtion to work
-mana={4}{W}
-power=3
-subtype=Bird Wizard
-toughness=3
-[/card]
+
 [card]
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to play creature spells.
 id=189271
@@ -149,15 +138,7 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-[card]
-text=Enchant red or green creature     Enchanted creature doesn't untap during its controller's untap step.
-id=183053
-name=Controlled Instincts
-rarity=U
-type=Enchantment
-mana={U}
-subtype=Aura
-[/card]
+
 
 [card]
 text=Counter target noncreature spell. Its controller loses 2 life.
@@ -169,17 +150,7 @@ mana={U}{B}
 [/card]
 
 
-[card]
-text={R}{G}{W}: Cylian Sunsinger and each other creature with the same name as it get +3/+3 until end of turn.
-id=189081
-name=Cylian Sunsinger
-rarity=R
-type=Creature
-mana={1}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
-[/card]
+
 [card]
 text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
 id=185143
@@ -189,20 +160,7 @@ type=Instant
 mana={2}{R}
 [/card]
 
-[card]
-text=Domain - Target creature gets -1/-1 until end of turn for each basic land type among lands you control.
-id=179239
-target=creature
-name=Drag Down
-auto=aslongas(forest|myinplay) -1/-1  ## tested.... too bad it works just like lord where it has to remain in play to take effect...
-auto=aslongas(island|myinplay) -1/-1
-auto=aslongas(plains|myinplay) -1/-1
-auto=aslongas(mountain|myinplay) -1/-1
-auto=aslongas(swamp|myinplay) -1/-1
-rarity=C
-type=Instant
-mana={2}{B}
-[/card]
+
 [card]
 text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
 id=186392
@@ -214,18 +172,7 @@ power=2
 subtype=Human Knight
 toughness=2
 [/card]
-[card]
-text={1}{U}{R}: Dreadwing gets +3/+0 and gains flying until end of turn.
-auto={1}{U}{R}: 3/0 && flying ## better && too (i am asking a lot... lol! :P)
-id=159629
-name=Dreadwing
-rarity=U
-type=Creature
-mana={B}
-power=1
-subtype=Zombie
-toughness=1
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature gets +3/+3 and has flying.     Whenever enchanted creature deals damage to a player, that player discards two cards.
 id=183024
@@ -473,17 +420,7 @@ power=1
 subtype=Horror
 toughness=1
 [/card]
-[card]
-text=Knight of the Reliquary gets +1/+1 for each land card in your graveyard.     {T}, Sacrifice a Forest or Plains: Search your library for a land card, put it into play, then shuffle your library.
-id=189145
-name=Knight of the Reliquary
-rarity=R
-type=Creature
-mana={1}{G}{W}
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
+
 
 
 [card]
@@ -577,15 +514,7 @@ power=6
 subtype=Beast
 toughness=6
 [/card]
-[card]
-text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
-id=150810
-name=Might of Alara
-target=creature
-rarity=C
-type=Instant
-mana={G}
-[/card]
+
 [card]
 text=Trample     At the beginning of your upkeep, if you control a blue permanent, you may put a token into play that's a copy of Mirror-Sigil Sergeant.
 id=158598
@@ -607,6 +536,9 @@ mana={1}{R}
 [/card]
 [card]
 text=Vigilance     {R}, {T}: Target creature can't block this turn.     {G}, {T}: Target creature blocks this turn if able.
+abilities=vigilance
+auto={R}{T}:cantblock target(creature)
+auto={G}{T}:mustblock target(creature) #Not yet in the engine
 id=138571
 name=Nacatl Hunt-Pride
 rarity=U
@@ -772,18 +704,8 @@ type=Artifact
 mana={B}{B}
 [/card]
 
-[card]
-text={W}{B}: Scornful AEther-Lich gains fear and vigilance until end of turn.
-auto={W}{B}:fear && vigilance
-id=186328
-name=Scornful AEther-Lich
-rarity=U
-type=Artifact Creature
-mana={3}{U}
-power=2
-subtype=Zombie Wizard
-toughness=4
-[/card]
+
+
 [card]
 text=When Sedraxis Alchemist comes into play, if you control a blue permanent, return target nonland permanent to its owner's hand.
 id=182306
@@ -814,14 +736,7 @@ rarity=U
 type=Sorcery
 mana={3}{G}
 [/card]
-[card]
-text=Whenever you play an enchantment spell, put a 4/4 white Angel creature token with flying into play.
-id=180271
-name=Sigil of the Empty Throne
-rarity=R
-type=Enchantment
-mana={3}{W}{W}
-[/card]
+
 [card]
 text=Vigilance     {T}: Reveal the top card of your library. If it's a land card, put it into play. Otherwise, put it into your hand.
 id=174953
@@ -853,22 +768,8 @@ type=Sorcery
 mana={4}{G}
 [/card]
 
-[card]
-text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
-id=185829
-name=Spore Burst
-rarity=U
-type=Sorcery
-mana={3}{G}
-[/card]
-[card]
-text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
-id=180345
-name=Suicidal Charge
-rarity=C
-type=Enchantment
-mana={3}{B}{R}
-[/card]
+
+
 [card]
 text=Target player gains 8 life.     Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 id=179523
@@ -937,17 +838,7 @@ toughness=6
 [/card]
 
 
-[card]
-text={U}{B}: Vectis Agents gets -2/-0 until end of turn and is unblockable this turn.
-id=183063
-name=Vectis Agents
-rarity=C
-type=Artifact Creature
-mana={3}{U}{B}
-power=4
-subtype=Human Rogue
-toughness=3
-[/card]
+
 
 
 [card]
@@ -1045,13 +936,5 @@ rarity=C
 type=Sorcery
 mana={B}
 [/card]
-[card]
-text=Enchant creature     When a creature is put into a graveyard from play, destroy enchanted creature.
-id=179891
-name=Yoke of the Damned
-rarity=C
-type=Enchantment
-mana={1}{B}
-subtype=Aura
-[/card]
+
 

@@ -2947,6 +2947,20 @@ subtype=Elemental
 toughness=7
 [/card]
 [card]
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)  At end of turn, return Viashino Sandscout to its owner's hand. (Return it only if it's in play.)
+id=130387
+name=Viashino Sandscout
+auto=@next end step:moveTo(hand)
+abilities=haste
+rarity=C
+color=Red
+type=Creature
+mana={1}{R}
+power=2
+subtype=Viashino Scout
+toughness=1
+[/card]
+[card]
 text=When Viridian Shaman comes into play, destroy target artifact.
 id=129792
 name=Viridian Shaman

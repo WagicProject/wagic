@@ -1,4 +1,17 @@
 [card]
+text=Flying     {1}{G}{U}: Creatures you control gain shroud until end of turn.
+abilities=flying
+auto={1}{G}{U}:lord(creature|mybattlefield) shroud
+id=153946
+name=Aerie Mystics
+rarity=U
+type=Creature
+mana={4}{W}
+power=3
+subtype=Bird Wizard
+toughness=3
+[/card]
+[card]
 text=Enchant creature     Enchanted creature has flying, first strike, and vigilance.
 target=creature
 auto=flying
@@ -75,6 +88,17 @@ subtype=Rhino Beast
 toughness=3
 [/card]
 [card]
+text=Enchant red or green creature     Enchanted creature doesn't untap during its controller's untap step.
+target=creature[green;red]
+auto=doesnotuntap
+id=183053
+name=Controlled Instincts
+rarity=U
+type=Enchantment
+mana={U}
+subtype=Aura
+[/card]
+[card]
 text=Enchant Forest or Plains     Whenever enchanted land becomes tapped, its controller loses 2 life.
 id=183054
 target=forest,plains
@@ -107,6 +131,18 @@ type=Artifact
 mana={3}{U}
 [/card]
 [card]
+text={R}{G}{W}: Cylian Sunsinger and each other creature with the same name as it get +3/+3 until end of turn.
+auto={R}{G}{W}:lord(Cylian Sunsinger) 3/3
+id=189081
+name=Cylian Sunsinger
+rarity=R
+type=Creature
+mana={1}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
 text=Flying     {B}: Darklit Gargoyle gets +2/-1 until end of turn.
 abilities=flying
 auto={B}:2/-1
@@ -118,6 +154,32 @@ mana={1}{W}
 power=1
 subtype=Gargoyle
 toughness=2
+[/card]
+[card]
+text=Domain - Target creature gets -1/-1 until end of turn for each basic land type among lands you control.
+id=179239
+target=creature
+name=Drag Down
+auto=aslongas(forest|myinplay) -1/-1 
+auto=aslongas(island|myinplay) -1/-1
+auto=aslongas(plains|myinplay) -1/-1
+auto=aslongas(mountain|myinplay) -1/-1
+auto=aslongas(swamp|myinplay) -1/-1
+rarity=C
+type=Instant
+mana={2}{B}
+[/card]
+[card]
+text={1}{U}{R}: Dreadwing gets +3/+0 and gains flying until end of turn.
+auto={1}{U}{R}: 3/0 && flying
+id=159629
+name=Dreadwing
+rarity=U
+type=Creature
+mana={B}
+power=1
+subtype=Zombie
+toughness=1
 [/card]
 [card]
 text=Reach (This can block creatures with flying.)  As long as you control a red permanent, Ember Weaver gets +1/+0 and has first strike.
@@ -194,20 +256,17 @@ subtype=Leviathan
 toughness=11
 [/card]
 [card]
-text=Domain - Matca Rioters's power and toughness are each equal to the number of basic land types among lands you control.
-id=179248
-name=Matca Rioters
-rarity=C
+text=Knight of the Reliquary gets +1/+1 for each land card in your graveyard.     {T}, Sacrifice a Forest or Plains: Search your library for a land card, put it into play, then shuffle your library.
+auto=foreach(land|mygraveyard) 1/1
+auto={T},{S(forest,plains|myinplay)}:moveTo(myInPlay) target(land|mylibrary)
+id=189145
+name=Knight of the Reliquary
+rarity=R
 type=Creature
-mana={2}{G}
-auto=aslongas(forest|myinplay) 1/1
-auto=aslongas(island|myinplay) 1/1
-auto=aslongas(plains|myinplay) 1/1
-auto=aslongas(mountain|myinplay) 1/1
-auto=aslongas(swamp|myinplay) 1/1
-power=*
-subtype=Human Warrior
-toughness=*
+mana={1}{G}{W}
+power=2
+subtype=Human Knight
+toughness=2
 [/card]
 [card]
 text=When Kaleidostone comes into play, draw a card.     {5}, {T}, Sacrifice Kaleidostone: Add {W}{U}{B}{R}{G} to your mana pool.
@@ -267,6 +326,36 @@ rarity=C
 type=Enchantment
 mana={1}{R}
 subtype=Aura
+[/card]
+[card]
+text=Domain - Matca Rioters's power and toughness are each equal to the number of basic land types among lands you control.
+id=179248
+name=Matca Rioters
+rarity=C
+type=Creature
+mana={2}{G}
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
+auto=aslongas(swamp|myinplay) 1/1
+power=*
+subtype=Human Warrior
+toughness=*
+[/card]
+[card]
+text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
+auto=aslongas(forest|myInPlay) 1/1
+auto=aslongas(mountain|myInPlay) 1/1
+auto=aslongas(plains|myInPlay) 1/1
+auto=aslongas(swamp|myInPlay) 1/1
+auto=aslongas(island|myInPlay) 1/1
+id=150810
+name=Might of Alara
+target=creature
+rarity=C
+type=Instant
+mana={G}
 [/card]
 [card]
 text=Protection from blue
@@ -401,6 +490,27 @@ type=Artifact
 mana={1}{U}{U}
 [/card]
 [card]
+text={W}{B}: Scornful AEther-Lich gains fear and vigilance until end of turn.
+auto={W}{B}:fear && vigilance
+id=186328
+name=Scornful AEther-Lich
+rarity=U
+type=Artifact Creature
+mana={3}{U}
+power=2
+subtype=Zombie Wizard
+toughness=4
+[/card]
+[card]
+text=Whenever you play an enchantment spell, put a 4/4 white Angel creature token with flying into play.
+auto=@movedTo(enchantment|mystack):token(Angel,Creature Angel,4/4,white flying)
+id=180271
+name=Sigil of the Empty Throne
+rarity=R
+type=Enchantment
+mana={3}{W}{W}
+[/card]
+[card]
 text=Flying     When Sphinx Summoner comes into play, you may search your library for an artifact creature card, reveal it, and put it into your hand. If you do, shuffle your library.
 auto=may moveTo(myHand) target(creature[artifact]|myLibrary)
 id=189079
@@ -412,6 +522,28 @@ abilities=flying
 power=3
 subtype=Sphinx
 toughness=3
+[/card]
+[card]
+text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
+auto=aslongas(forest|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(mountain|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(plains|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(swamp|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(island|myinplay) token(Saproling,Creature Saproling,1/1,green)
+id=185829
+name=Spore Burst
+rarity=U
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
+auto={S}:lord(creature|opponentBattlefield) -1/-1 && lord(creature|opponentBattlefield) mustattack
+id=180345
+name=Suicidal Charge
+rarity=C
+type=Enchantment
+mana={3}{B}{R}
 [/card]
 [card]
 text={G}: Thornling gains haste until end of turn.     {G}: Thornling gains trample until end of turn.     {G}: Thornling is indestructible this turn.     {1}: Thornling gets +1/-1 until end of turn.     {1}: Thornling gets -1/+1 until end of turn.
@@ -462,6 +594,18 @@ subtype=Human Soldier
 toughness=3
 [/card]
 [card]
+text={U}{B}: Vectis Agents gets -2/-0 until end of turn and is unblockable this turn.
+auto={U}{B}:-2/0 && unblockable
+id=183063
+name=Vectis Agents
+rarity=C
+type=Artifact Creature
+mana={3}{U}{B}
+power=4
+subtype=Human Rogue
+toughness=3
+[/card]
+[card]
 text=Protection from red
 abilities=protection from red
 id=185141
@@ -485,6 +629,17 @@ mana={1}{R}
 power=1
 subtype=Viashino Warrior
 toughness=1
+[/card]
+[card]
+text=Enchant creature     When a creature is put into a graveyard from play, destroy enchanted creature.
+target=creature
+auto=@movedTo(creature|graveyard):destroy
+id=179891
+name=Yoke of the Damned
+rarity=C
+type=Enchantment
+mana={1}{B}
+subtype=Aura
 [/card]
 [card]
 text=Protection from green
