@@ -74,6 +74,7 @@ void GameStateDuel::Start()
 
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
   credits = NEW Credits();
+  playerDecksDir = RESPATH"/player";
 
   mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   mFont->SetBase(0);	
@@ -92,14 +93,18 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
       deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
-      int nbDecks = fillDeckMenu(deckmenu,RESPATH"/player");
+      int nbDecks = fillDeckMenu(deckmenu,playerDecksDir);
       if (nbDecks) decksneeded = 0;
       break;
     }
   }
 
-  if (decksneeded)
-    mGamePhase = DUEL_STATE_ERROR_NO_DECK;
+  if (decksneeded){
+    playerDecksDir = RESPATH"/player/premade";
+    deckmenu->Add(-1,"Create your Deck!","Highly recommended to get\nthe full Wagic experience!");
+    fillDeckMenu(deckmenu,playerDecksDir);
+  }
+    //mGamePhase = DUEL_STATE_ERROR_NO_DECK;
 }
 
 
@@ -121,7 +126,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
   if (decknb){
     if (!isAI){ //Human Player
       char deckFile[255];
-      sprintf(deckFile, RESPATH"/player/deck%i.txt",decknb);
+      sprintf(deckFile, "%s/deck%i.txt",playerDecksDir.c_str(), decknb);
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
       MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
@@ -408,6 +413,10 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
       }
     case DUEL_MENU_CHOOSE_DECK:
       {  
+        if (controlId < 0){
+          mParent->SetNextState(GAME_STATE_DECK_VIEWER);
+          return;
+        }
         if (mGamePhase == DUEL_STATE_CHOOSE_DECK1){
           loadPlayer(0,controlId);
           deckmenu->Close();

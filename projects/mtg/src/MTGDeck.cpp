@@ -507,6 +507,21 @@ int MTGDeck::save(){
 #if defined (WIN32) || defined (LINUX)
     OutputDebugString("saving");
 #endif
+    if (meta_name.size()){
+      file << "#NAME:" << meta_name << '\n';
+    }
+    
+    if (meta_desc.size()){
+      size_t found = 0;
+      string desc= meta_desc;
+      found = desc.find_first_of("\n");
+      while(found != string::npos){
+        file << "#DESC:" << desc.substr(0,found+1);
+        desc=desc.substr(found+1);
+        found = desc.find_first_of("\n");
+      }
+      file << "#DESC:" << desc << "\n";
+    }
     map<int,int>::iterator it;
     for (it = cards.begin(); it!=cards.end(); it++){
       sprintf(writer,"%i\n", it->first);
