@@ -23,7 +23,6 @@ class Player: public Damageable{
   JQuad * mAvatar;
   int canPutLandsIntoPlay;
   MTGPlayerCards * game;
-  int testLife();
   int afterDamage();
   Player(MTGPlayerCards * _deck, string deckFile, string deckFileSmall);
   virtual ~Player();

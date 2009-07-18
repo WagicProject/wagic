@@ -276,7 +276,7 @@ int ManaCost::pay(ManaCost * _cost){
   //TODO return 0 if can't afford the cost!
 }
 
-//return 1 if _cost can be paid with current data
+//return 1 if _cost can be paid with current data, 0 otherwise
 int ManaCost::canAfford(ManaCost * _cost){
   ManaCost * diff = Diff(_cost);
   int positive = diff->isPositive();
@@ -340,21 +340,16 @@ ManaCost * ManaCost::Diff(ManaCost * _cost){
   //Colorless mana, special case
   int colorless_idx = Constants::MTG_COLOR_ARTIFACT * 2 + 1;
   if (diff[colorless_idx] < 0){
-#if defined (WIN32) || defined (LINUX)
-    //char    buf[4096], *p = buf;
-    //sprintf(buf, "--Diff color TEST %i : %i\n", i, cost[i]);
-    OutputDebugString("Colorless mana not enough\n");
-#endif
     for (int i=0; i < Constants::MTG_NB_COLORS; i++){
       if (diff[i*2 + 1] > 0){
-	if (diff[i*2 + 1] + diff[colorless_idx] > 0){
-	  diff[i*2 + 1] += diff[colorless_idx];
-	  diff[colorless_idx] = 0;
-	  break;
-	}else{
-	  diff[colorless_idx] +=  diff[i*2 + 1];
-	  diff[i*2 + 1] = 0;
-	}
+	      if (diff[i*2 + 1] + diff[colorless_idx] > 0){
+	        diff[i*2 + 1] += diff[colorless_idx];
+	        diff[colorless_idx] = 0;
+	        break;
+	      }else{
+	        diff[colorless_idx] +=  diff[i*2 + 1];
+	        diff[i*2 + 1] = 0;
+	      }
       }
     }
   }
@@ -364,8 +359,8 @@ ManaCost * ManaCost::Diff(ManaCost * _cost){
     diff[Constants::MTG_NB_COLORS * 2 + 1] = 0;
     for (int i=0; i < Constants::MTG_NB_COLORS; i++){
       if (diff[i*2 + 1] > 0){
-	diff[Constants::MTG_NB_COLORS * 2 + 1] += diff[i*2 + 1];
-	diff[i*2 + 1] = 0;
+	      diff[Constants::MTG_NB_COLORS * 2 + 1] += diff[i*2 + 1];
+	      diff[i*2 + 1] = 0;
       }
     }
   }

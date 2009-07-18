@@ -15,10 +15,6 @@ OptionItem::OptionItem(string _id, string _displayValue, int _maxValue, int _inc
   y = 0;
 }
 
-OptionItem::~OptionItem(){
-  //TODO
-}
-
 void OptionItem::setData(){
   GameOptions::GetInstance()->values[id] = GameOption(value);
 }

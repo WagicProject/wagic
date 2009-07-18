@@ -67,21 +67,8 @@ ManaCost * Player::getManaPool(){
   return manaPool;
 }
 
-
-int Player::testLife(){
-  if (life <=0){
-#if defined (WIN32) || defined (LINUX)
-    //char    buf[4096], *p = buf;
-    //sprintf(buf, "--Diff color TEST %i : %i\n", i, cost[i]);
-    OutputDebugString("GAME OVER\n");
-#endif
-    //return GameObserver::GetInstance()->endOfGame();
-  }
-  return life;
-}
-
 int Player::afterDamage(){
-  return testLife();
+  return life;
 }
 
 //Cleanup phase at the end of a turn

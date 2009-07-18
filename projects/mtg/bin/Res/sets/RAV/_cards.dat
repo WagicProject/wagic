@@ -295,14 +295,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-id=39503
-name=Flooded Strand
-type=Land
-text={T}, Pay 1 life, Sacrifice Flooded Strand: Search your library for a Plains or Island card and put it into play. Then shuffle your library.
-auto={T}{S}:moveTo(myinplay) target(plains,island|mylibrary) && life:-1
-rarity=R
-[/card]
-[card]
 text=Draw a card for each Island you control.
 id=87978
 name=Flow of Ideas
@@ -1058,21 +1050,4 @@ type=Creature
 subtype=Wolf
 power=3
 toughness=3
-[/card]
-[card]
-id=39507
-name=Windswept Heath
-type=Land
-text={T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card and put it into play. Then shuffle your library.
-auto={T}{S}:moveTo(myinplay) target(forest,plains) && life:-1
-rarity=R
-[/card]
-[card]
-id=39506
-name=Wooded Foothills
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Mountain or Forest card and put it into play. Then shuffle your library.
-auto={T}{S}:moveTo(myinplay) target(mountain,forest|mylibrary) && life:-1
-rarity=R
 [/card]

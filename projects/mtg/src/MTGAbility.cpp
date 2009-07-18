@@ -2227,11 +2227,6 @@ ostream& TriggeredAbility::toString(ostream& out) const
 //
 InstantAbility::InstantAbility(int _id, MTGCardInstance * source):MTGAbility(_id, source){
   init = 0;
-  for (int i = 0; i < 2; i++){
-    if(game->players[i]->game->inPlay->hasCard(source)){
-      //game->players[i]->game->putInGraveyard(source);
-    }
-  }
 }
 
 void InstantAbility::Update(float dt){
@@ -2242,11 +2237,6 @@ void InstantAbility::Update(float dt){
 
 InstantAbility::InstantAbility(int _id, MTGCardInstance * source, Damageable * _target):MTGAbility(_id, source, _target){
   init = 0;
-  for (int i = 0; i < 2; i++){
-    if(game->players[i]->game->inPlay->hasCard(source)){
-      //game->players[i]->game->putInGraveyard(source);
-    }
-  }
 }
 
 

@@ -12,7 +12,6 @@
 #include "../include/DeckDataWrapper.h"
 
 static const char* GAME_VERSION = "WTH?! 0.7.1 - by WilLoW";
-#define ALPHA_WARNING 0
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
@@ -27,7 +26,6 @@ enum ENUM_MENU_STATE_MAJOR
     MENU_STATE_MAJOR_LOADING_MENU = 0x03,
     MENU_STATE_MAJOR_LOADING_CARDS = 0x04,
     MENU_STATE_MAJOR_FIRST_TIME = 0x05,
-    MENU_STATE_MAJOR_WARNING = 0x06,
     MENU_STATE_MAJOR_DUEL = 0x07,
 
     MENU_STATE_MAJOR = 0xFF
@@ -81,8 +79,6 @@ GameStateMenu::~GameStateMenu() {}
 
 void GameStateMenu::Create()
 {
-
-
   mDip = NULL;
   mReadConf = 0;
   mCurrentSetName[0] = 0;
@@ -100,20 +96,16 @@ void GameStateMenu::Create()
   mMovingW->SetHotSpot(72,16);
   //load all the icon images
   int n = 0;
-  for (int i=0;i<5;i++)
-    {
-      for (int j=0;j<2;j++)
-	{
-	  mIcons[n] = NEW JQuad(mIconsTexture, 2 + i*36, 2 + j*36, 32, 32);
-	  mIcons[n]->SetHotSpot(16,16);
-	  n++;
-	}
-    }
+  for (int i=0;i<5;i++){
+    for (int j=0;j<2;j++){
+	    mIcons[n] = NEW JQuad(mIconsTexture, 2 + i*36, 2 + j*36, 32, 32);
+	    mIcons[n]->SetHotSpot(16,16);
+	    n++;
+	  }
+  }
 
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
-  //mFont->SetBase(0);	// using 2nd font
   mGuiController = NEW JGuiController(100, this);
-  //mGuiController->SetShadingBackground(10, 45, 80, 100, ARGB(255,0,0,0));
   if (mGuiController)
     {
       mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",GameApp::CommonRes->GetQuad("particles"),  true));
@@ -147,7 +139,6 @@ void GameStateMenu::Destroy()
   SAFE_DELETE(bgTexture);
   SAFE_DELETE(scroller);
 
-  //SAFE_DELETE (bgMusic);
 }
 
 
@@ -289,7 +280,7 @@ void GameStateMenu::Update(float dt)
 	      std::ifstream file(RESPATH"/player/collection.dat");
 	      if(file){
 	        file.close();
-	        currentState = MENU_STATE_MAJOR_WARNING | MENU_STATE_MINOR_NONE;
+	        currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
 	      }else{
 	        currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
 	      }
@@ -311,14 +302,7 @@ void GameStateMenu::Update(float dt)
 	}
 	createUsersFirstDeck(setId);
       }
-      currentState = MENU_STATE_MAJOR_WARNING | MENU_STATE_MINOR_NONE;
-      break;
-    case MENU_STATE_MAJOR_WARNING :
-      if (!ALPHA_WARNING){
-	currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
-      }else{
-	if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
-      }
+      currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
       break;
     case MENU_STATE_MAJOR_MAINMENU :
       if (!scrollerSet) fillScroller();
@@ -486,21 +470,6 @@ void GameStateMenu::Render()
 
     if (subMenuController){
       subMenuController->Render();
-    }
-
-    if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_WARNING){
-      renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(128,0,0,0));
-
-      mFont->DrawString("IMPORTANT NOTE" ,SCREEN_WIDTH/2,10,JGETEXT_CENTER);
-      mFont->DrawString("This is an alpha version with lots of bugs.",SCREEN_WIDTH/2,35,JGETEXT_CENTER);
-      mFont->DrawString("It WILL crash your psp" ,SCREEN_WIDTH/2,50,JGETEXT_CENTER);
-      mFont->DrawString("If you use it anyway, your feedback is welcome" ,SCREEN_WIDTH/2,65,JGETEXT_CENTER);
-
-      mFont->DrawString("This freeware game is NOT published or endorsed" ,SCREEN_WIDTH/2,110,JGETEXT_CENTER);
-      mFont->DrawString("by Wizard of the Coast, Inc." ,SCREEN_WIDTH/2,125,JGETEXT_CENTER);
-      mFont->DrawString("Infos & updates at http://wololo.net/wagic/" ,SCREEN_WIDTH/2,170,JGETEXT_CENTER);
-      mFont->DrawString("PRESS CIRCLE TO CONTINUE OR HOME TO QUIT" ,SCREEN_WIDTH/2,210,JGETEXT_CENTER);
-
     }
   }
 

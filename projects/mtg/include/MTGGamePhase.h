@@ -15,7 +15,6 @@ class MTGGamePhase: public ActionElement {
   JLBFont * mFont;
  public:
   MTGGamePhase(int id);
-  virtual void Render();
   virtual void Update(float dt);
   bool CheckUserInput(u32 key);
   virtual MTGGamePhase * clone() const;

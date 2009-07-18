@@ -10,10 +10,6 @@ MTGGamePhase::MTGGamePhase(int id):ActionElement(id){
 }
 
 
-void MTGGamePhase::Render(){
-}
-
-
 void MTGGamePhase::Update(float dt){
 
   int newState = GameObserver::GetInstance()->getCurrentGamePhase();

@@ -15,7 +15,6 @@ class OptionItem:public JGuiObject{
   float x, y;
   OptionItem(string _id, string _displayValue, int _maxValue = 1, int _increment = 1);
 
-  ~OptionItem();
   virtual void Render();
   virtual void Update(float dt);
   virtual void Entering();

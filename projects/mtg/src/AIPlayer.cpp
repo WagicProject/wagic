@@ -731,14 +731,12 @@ int AIPlayerBaka::Act(float dt){
       g->userRequestNextGamePhase();
     }
   } else {
-  //if (!clickstream.empty()){
     AIAction * action = clickstream.front();
     action->Act();
     SAFE_DELETE(action);
     clickstream.pop();
   }
 
-  //if (clickstream.empty()) computeActions();
 
   return 1;
 };
