@@ -3,6 +3,7 @@
 ########################
 generic/attacks_each_turn.txt
 generic/m10_blockers.txt
+generic/m10_blockers2.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt

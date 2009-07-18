@@ -474,10 +474,10 @@ MTGCardInstance * MTGCardInstance::getNextDefenser(MTGCardInstance * previous){
 int MTGCardInstance::moveBlockerInRow(MTGCardInstance * blocker){
   list<MTGCardInstance *>::iterator it1 = find(blockers.begin(), blockers.end(), blocker);
   list<MTGCardInstance *>::iterator it2 = it1;
-  if (it2 != blockers.end()) it2++;
-  if (it2 == blockers.end()) it2 = blockers.begin();
-
-  blockers.splice( it2, blockers, it1 ); // move a before b, invalidates a
+  if (it2 == blockers.end()) it2 = blockers.begin(); else ++it2;
+  if (it2 == blockers.end()) it2 = blockers.begin(); 
+    
+  std::iter_swap(it1,it2);
   WEvent* e = NEW WEventCreatureBlockerRank(blocker,*it2,this);
   GameObserver::GetInstance()->receiveEvent(e);
   delete(e);

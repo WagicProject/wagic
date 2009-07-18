@@ -1,0 +1,30 @@
+#New blockers reordering rule
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:raging goblin,Drudge Skeletons,dragon engine
+[DO]
+grizzly bears
+next
+#blockers
+dragon engine
+raging goblin
+Drudge Skeletons
+next
+#blockers order
+dragon engine
+dragon engine
+next
+#combat damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:grizzly bears
+[PLAYER2]
+graveyard:Drudge Skeletons,raging goblin
+inplay:dragon engine
+[END]
