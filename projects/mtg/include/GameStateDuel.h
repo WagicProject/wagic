@@ -3,8 +3,9 @@
 
 
 #include "../include/GameState.h"
-#include "_includeAll.h"
 #include "../include/SimpleMenu.h"
+#include "../include/MTGDeck.h"
+#include "../include/GameObserver.h"
 
 #define CHOOSE_OPPONENT 7
 
@@ -12,6 +13,7 @@
 class TestSuite;
 #endif
 class Credits;
+
 
 class GameStateDuel: public GameState, public JGuiListener
 {

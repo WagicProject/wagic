@@ -542,10 +542,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\include\_includeAll.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\ActionElement.h"
 				>
 			</File>
