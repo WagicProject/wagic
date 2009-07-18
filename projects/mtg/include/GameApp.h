@@ -45,6 +45,8 @@
 
 #define GAME_TYPE_CLASSIC 0
 #define GAME_TYPE_MOMIR 1
+#define GAME_TYPE_RANDOM1 2
+#define GAME_TYPE_RANDOM2 3
 
 class MTGAllCards;
 class TexturesCache;

@@ -1,0 +1,22 @@
+#Bug: Ability until end of turn + creature killed = crash ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:jump,terror
+inplay:grizzly bears
+manapool:{B}{U}{1}
+[PLAYER2]
+[DO]
+jump
+grizzly bears
+terror
+grizzly bears
+eot
+next
+[ASSERT]
+UPKEEP
+[PLAYER1]
+graveyard:jump,terror,grizzly bears
+manapool:{0}
+[PLAYER2]
+[END]

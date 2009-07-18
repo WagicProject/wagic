@@ -2,7 +2,7 @@
 #include "../include/MTGDefinitions.h"
 #include "../include/Player.h"
 #include "../include/config.h"
-
+#include "../include/WEvent.h"
 
 
 /* Creates a new phase ring with the default rules */
@@ -32,8 +32,15 @@ Phase * PhaseRing::getCurrentPhase(){
 }
 
 Phase * PhaseRing::forward(){
+  Phase * cPhaseOld = *current;
   if (current != ring.end()) current++;
   if (current == ring.end()) current = ring.begin();
+
+  //Warn the layers about the phase Change
+  WEvent * e = NEW WEventPhaseChange(cPhaseOld, *current);
+  GameObserver::GetInstance()->receiveEvent(e);
+  delete e;
+
   return *current;
 }
 

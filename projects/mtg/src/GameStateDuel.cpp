@@ -107,6 +107,40 @@ void GameStateDuel::Start()
     //mGamePhase = DUEL_STATE_ERROR_NO_DECK;
 }
 
+void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
+  int color1 = 1 + rand() % 5;
+  int color2 = 1 + rand() % 5;
+  int color0 = Constants::MTG_COLOR_ARTIFACT;
+  if (mode == GAME_TYPE_RANDOM1) color2 = color1;
+  int colors[]={color1,color2,color0};
+  int nbcolors = 3;
+
+  string lands[] = {"forest", "forest", "island", "mountain", "swamp", "plains", "forest"};
+  
+
+  MTGDeck * tempDeck = NEW MTGDeck(NULL, mParent->collection);
+  tempDeck->addRandomCards(9,-1,-1,lands[color1].c_str());
+  tempDeck->addRandomCards(9,-1,-1,lands[color2].c_str());
+  tempDeck->addRandomCards(1,-1,'U',"land",colors,nbcolors);
+  tempDeck->addRandomCards(1,-1,'R',"land",colors,nbcolors);
+  tempDeck->addRandomCards(12,-1,-1,"creature",colors,nbcolors);
+  tempDeck->addRandomCards(2,-1,-1,"sorcery",colors,nbcolors);
+  tempDeck->addRandomCards(2,-1,-1,"enchantment",colors,nbcolors);
+  tempDeck->addRandomCards(2,-1,-1,"instant",colors,nbcolors);
+  tempDeck->addRandomCards(2,-1,-1,"artifact",colors,nbcolors);
+
+  char * deckFile = "random";
+  string deckFileSmall = "random";
+
+  deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
+  if (!isAI){ //Human Player
+      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
+  }else{
+    mPlayers[playerId] =  NEW AIPlayerBaka(deck[playerId],deckFile, "random", "");
+  }
+  delete tempDeck;
+}
+
 
 void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
   char deckFile[] = RESPATH"/player/momir.txt";
@@ -224,6 +258,13 @@ void GameStateDuel::Update(float dt)
           int isAI = 1;
           if (mParent->players[i] ==  PLAYER_TYPE_HUMAN) isAI = 0;
           loadPlayerMomir(i, isAI);
+        }
+        mGamePhase = DUEL_STATE_PLAY;
+      } else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2){
+        for (int i = 0; i < 2; i++){
+          int isAI = 1;
+          if (mParent->players[i] ==  PLAYER_TYPE_HUMAN) isAI = 0;
+          loadPlayerRandom(i, isAI, mParent->gameType);
         }
         mGamePhase = DUEL_STATE_PLAY;
       }else if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
@@ -373,10 +414,14 @@ void GameStateDuel::Render()
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
     case DUEL_STATE_CHOOSE_DECK2:
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
-      if (opponentMenu){
-	      opponentMenu->Render();
-      }else if (deckmenu){
-	      deckmenu->Render();
+      if (mParent->gameType != GAME_TYPE_CLASSIC){
+        mFont->DrawString(_("LOADING DECKS").c_str(),0,SCREEN_HEIGHT/2);
+      }else{
+        if (opponentMenu){
+	        opponentMenu->Render();
+        }else if (deckmenu){
+	        deckmenu->Render();
+        }
       }
       break;
     case DUEL_STATE_ERROR_NO_DECK:

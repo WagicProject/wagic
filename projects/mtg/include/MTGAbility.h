@@ -60,7 +60,7 @@ class MTGAbility: public ActionElement{
   virtual int receiveEvent(WEvent * event){return 0;};
   virtual void Update(float dt){};
   virtual int fireAbility();
-  virtual int stillInUse(MTGCardInstance * card){if (card==source) return 1; return 0;};
+  virtual int stillInUse(MTGCardInstance * card);
   virtual int resolve(){return 0;};
   virtual MTGAbility* clone() const = 0; 
   virtual ostream& toString(ostream& out) const;

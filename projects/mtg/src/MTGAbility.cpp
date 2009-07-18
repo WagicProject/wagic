@@ -1976,6 +1976,11 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * _source,Targetable * _target ):
   oneShot = 0;
 }
 
+int MTGAbility::stillInUse(MTGCardInstance * card){
+  if (card==source || card==target) return 1; 
+  return 0;
+}
+
 MTGAbility::~MTGAbility(){
   if (!isClone){
     SAFE_DELETE(cost);

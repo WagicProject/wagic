@@ -661,7 +661,8 @@ class  AInstantBasicAbilityModifierUntilEOT: public InstantAbility{
   }
 
   int destroy(){
-    ((MTGCardInstance *)target)->basicAbilities[ability] = stateBeforeActivation;
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    if (_target) _target->basicAbilities[ability] = stateBeforeActivation;
     return 1;
   }
   virtual ostream& toString(ostream& out) const

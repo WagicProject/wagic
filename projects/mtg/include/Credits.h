@@ -25,6 +25,7 @@ private:
   int isDifficultyUnlocked();
   int isMomirUnlocked();
   int isEvilTwinUnlocked();
+  int isRandomDeckUnlocked();
 public:
   int value;
   Player * p1, *p2;

@@ -94,7 +94,7 @@ class MTGDeck{
   int totalCards();
   MTGDeck(TexturesCache * cache, MTGAllCards * _allcards);
   MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only = 0);
-  int addRandomCards(int howmany, int setId = -1, int rarity = -1, const char * subtype = NULL);
+  int addRandomCards(int howmany, int setId = -1, int rarity = -1, const char * subtype = NULL, int * colors = NULL, int nbcolors = 0);
   int add(int cardid);
   int add(MTGDeck * deck); // adds the contents of "deck" into myself
   int remove(int cardid);

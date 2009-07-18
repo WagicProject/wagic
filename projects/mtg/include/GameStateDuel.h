@@ -34,6 +34,7 @@ class GameStateDuel: public GameState, public JGuiListener
 
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
   void loadPlayerMomir(int playerId, int isAI);
+  void loadPlayerRandom(int playerId, int isAI, int mode);
   
  public:
   GameStateDuel(GameApp* parent);

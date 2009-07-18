@@ -56,6 +56,8 @@ enum
   SUBMENUITEM_TESTSUITE,
   SUBMENUITEM_MOMIR,
   SUBMENUITEM_CLASSIC,
+  SUBMENUITEM_RANDOM1,
+  SUBMENUITEM_RANDOM2,
 };
 
 
@@ -167,6 +169,7 @@ void GameStateMenu::Start(){
 
   hasChosenGameType = 1;
   if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) hasChosenGameType =0;
+  if (GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()) hasChosenGameType =0;
 
   
 
@@ -338,7 +341,13 @@ void GameStateMenu::Update(float dt)
       subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
 	    if (subMenuController){
 	      subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
-	      subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
+        if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()){
+	        subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
+        }
+        if (GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()){
+	        subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
+          subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
+        }
 	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
       }
     }else{
@@ -572,6 +581,20 @@ JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   case SUBMENUITEM_MOMIR:
     this->hasChosenGameType = 1;
     mParent->gameType = GAME_TYPE_MOMIR;
+    subMenuController->Close();
+    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+    break;
+
+  case SUBMENUITEM_RANDOM1:
+    this->hasChosenGameType = 1;
+    mParent->gameType = GAME_TYPE_RANDOM1;
+    subMenuController->Close();
+    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+    break;
+
+  case SUBMENUITEM_RANDOM2:
+    this->hasChosenGameType = 1;
+    mParent->gameType = GAME_TYPE_RANDOM2;
     subMenuController->Close();
     currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
     break;

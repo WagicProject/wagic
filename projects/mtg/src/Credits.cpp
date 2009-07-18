@@ -43,7 +43,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 	if (!p1->isAI() && p2->isAI() && p1!= g->gameOver){
     GameOptions * go = GameOptions::GetInstance();
     value = 400;
-    if (app->gameType == GAME_TYPE_MOMIR) value = 200;
+    if (app->gameType != GAME_TYPE_CLASSIC) value = 200;
     int difficulty = go->values[OPTIONS_DIFFICULTY].getIntValue();
     if (go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue() && difficulty) {
       CreditBonus * b = NEW CreditBonus(100*difficulty, _("Difficulty Bonus"));
@@ -87,6 +87,11 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/eviltwin_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED] = GameOption(1);
+          GameOptions::GetInstance()->save();
+      }else if(unlocked = isRandomDeckUnlocked()) {
+          unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/randomdeck_unlocked.png", TEX_TYPE_USE_VRAM);
+          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
           GameOptions::GetInstance()->save();
       }
       if (unlocked){
@@ -201,5 +206,12 @@ int Credits::isMomirUnlocked(){
 int Credits::isEvilTwinUnlocked(){
   if (GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()) return 0;
   if (p1->game->inPlay->nb_cards && (p1->game->inPlay->nb_cards == p2->game->inPlay->nb_cards)) return 1;
+  return 0;
+}
+
+int Credits::isRandomDeckUnlocked(){
+  if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY].getIntValue() == 0 ) return 0;
+  if (GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()) return 0;
+  if (p1->life >= 20 ) return 1;
   return 0;
 }

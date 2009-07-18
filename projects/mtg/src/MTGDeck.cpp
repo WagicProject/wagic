@@ -351,6 +351,8 @@ MTGDeck::MTGDeck(TexturesCache * cache, MTGAllCards * _allcards){
   mCache = cache;
   total_cards = 0;
   database = _allcards;
+  filename ="";
+  meta_name = "";
 }
 
 MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only){
@@ -418,10 +420,20 @@ MTGCard * MTGDeck::getCardById(int mtgId){
   return database->getCardById(mtgId);
 }
 
-int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _subtype){
+
+int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _subtype, int * colors, int nbcolors){
+  int unallowedColors[Constants::MTG_NB_COLORS+1];
+  for (int i=0; i < Constants::MTG_NB_COLORS; ++i){
+    if (nbcolors) unallowedColors[i] = 1;
+    else unallowedColors[i] = 0;
+  }
+  for (int i=0; i < nbcolors; ++i){
+    unallowedColors[colors[i]] = 0;
+  }
+
   int collectionTotal = database->totalCards();
   if (!collectionTotal) return 0;
-  if (setId == -1 && rarity == -1 && !_subtype){
+  if (setId == -1 && rarity == -1 && !_subtype && !nbcolors){
     for (int i = 0; i < howmany; i++){
       add(database->randomCardId());
     }
@@ -440,8 +452,17 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
 	(rarity == -1 || card->getRarity()==rarity) &&
 	(!_subtype || card->hasSubtype(subtype))
 	){
-      subcollection.push_back(card->getId());
-      subtotal++;
+      int ok = 1;
+      for (int j=0; j < Constants::MTG_NB_COLORS; ++j){
+        if (unallowedColors[j] && card->hasColor(j)){
+          ok = 0;
+          break;
+        }
+      }
+      if (ok){
+        subcollection.push_back(card->getId());
+        subtotal++;
+      }
     }
   }
   if (subtotal == 0) return 0;
