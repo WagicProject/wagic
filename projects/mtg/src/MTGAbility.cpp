@@ -790,12 +790,19 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 void AbilityFactory::addAbilities(int _id, Spell * spell){
   MTGCardInstance * card = spell->source;
 
+
+  if (card->hasType("instant") || card->hasType("sorcery")){    
+    MTGPlayerCards * zones = card->controller()->game;
+    zones->putInGraveyard(card);
+  }
+
   if (spell->cursor==1) card->target =  spell->getNextCardTarget();
   _id = magicText(_id, spell);
-  int putSourceInGraveyard = 0; //For spells that are not already InstantAbilities;
-
 
   GameObserver * game = GameObserver::GetInstance();
+
+
+
   int id = card->getId();
   if (card->alias) id = card->alias;
   switch (id){
@@ -1804,17 +1811,16 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 	case 130369: // Soulblast
     {
-	int damage = 0;
-	Damageable * target = spell->getNextDamageableTarget();
-	GameObserver * game = GameObserver::GetInstance();
-	for (int j = 0; j < card->controller()->game->inPlay->nb_cards; j++){
-			MTGCardInstance * current =  card->controller()->game->inPlay->cards[j];
-			if (current->hasType("Creature")){
-				card->controller()->game->putInGraveyard(current);
-				damage+= current->power;
-			}
-	}
-	game->mLayers->stackLayer()->addDamage(card, target, damage);
+	    int damage = 0;
+	    Damageable * target = spell->getNextDamageableTarget();
+	    for (int j = card->controller()->game->inPlay->nb_cards-1; j >=0 ; --j){
+			  MTGCardInstance * current =  card->controller()->game->inPlay->cards[j];
+			  if (current->hasType("Creature")){
+				  card->controller()->game->putInGraveyard(current);
+				  damage+= current->power;
+			  }
+	    }
+	    game->mLayers->stackLayer()->addDamage(card, target, damage);
       break;
 	}
 
@@ -1944,16 +1950,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card,"plains"));
   }
 
-  //Instants are put in the graveyard automatically if that's not already done
-  if (!putSourceInGraveyard){
-    if (card->hasType("instant") || card->hasType("sorcery")){
-      putSourceInGraveyard = 1;
-    }
-  }
-  if (putSourceInGraveyard == 1){
-    MTGPlayerCards * zones = card->controller()->game;
-    card = zones->putInGraveyard(card);
-  }
 }
 
 MTGAbility::MTGAbility(int id, MTGCardInstance * card):ActionElement(id){

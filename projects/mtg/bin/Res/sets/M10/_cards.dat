@@ -919,8 +919,8 @@ subtype=Merfolk
 power=2
 toughness=2
 text=Other Merfolk creatures you control get +1/+1. {T}: Target Merfolk creature is unblockable this turn.
-auto=lord(merfolk|myBattlefield) 1/1
-auto={T}:unblockable target(merfolk)
+auto=lord(merfolk|myBattlefield) 1/1 other
+auto={T}:unblockable target(merfolk) other
 rarity=R
 [/card]
 [card]

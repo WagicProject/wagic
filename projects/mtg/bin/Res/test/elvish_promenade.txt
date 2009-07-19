@@ -1,0 +1,19 @@
+#Testing Elvish Promenade
+#Put a 1/1 green Elf Warrior creature token onto the battlefield for each Elf you control.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:elvish promenade
+inplay:elvish champion,llanowar elves
+manapool:{3}{G}
+[PLAYER2]
+[DO]
+elvish promenade
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:elvish promenade
+inplay:elvish champion,llanowar elves,*,*
+manapool:{0}
+[PLAYER2]
+[END]

@@ -1,0 +1,22 @@
+#Testing Soulblast
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:soulblast,Flowstone embrace
+inplay:raging goblin,grizzly bears
+manapool:{2}{R}{R}{R}{R}{R}{R}
+[PLAYER2]
+inplay:dragon engine
+[DO]
+Flowstone embrace
+grizzly bears
+soulblast
+dragon engine
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:soulblast,Flowstone embrace,raging goblin,grizzly bears
+manapool:{0}
+[PLAYER2]
+graveyard:dragon engine
+[END]

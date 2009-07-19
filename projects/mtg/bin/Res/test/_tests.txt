@@ -70,6 +70,7 @@ dragon_fodder.txt
 drain_life.txt
 drift_of_the_dead.txt
 elvish_piper.txt
+elvish_promenade.txt
 fastbond.txt
 flare.txt
 fledgling_imp.txt 
@@ -132,6 +133,7 @@ siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt
 slate_of_ancestry.txt
+soulblast.txt
 sphinx_summoner.txt
 spitting_earth.txt
 spark_elemental.txt

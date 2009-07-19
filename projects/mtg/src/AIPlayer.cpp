@@ -79,6 +79,7 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
     if (amp){
       MTGCardInstance * card = amp->source;
       if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
+        used[card] = true;
         int doTap = 1;
         for (int i=Constants::MTG_NB_COLORS-1; i>= 0; i--){
           if (diff->getCost(i) &&  amp->output->getCost(i) ){
@@ -90,7 +91,6 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
         if (doTap){
           AIAction * action = NEW AIAction(amp,card);
           clickstream.push(action);
-          used[card] = true;
         }
       }
     }
@@ -147,8 +147,8 @@ int AIAction::getEfficiency(){
   }
 
   //Can't handle sacrifice costs that require a target yet :(
-  if (a->cost){
-    ExtraCosts * ec = a->cost->extraCosts;
+  if (ability->cost){
+    ExtraCosts * ec = ability->cost->extraCosts;
     if (ec){
       for (size_t i = 0; i < ec->costs.size(); i++){
         if (ec->costs[i]->tc) return 0;

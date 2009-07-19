@@ -206,6 +206,7 @@ class GenericActivatedAbility:public ActivatedAbility{
   int counters;
  GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 1, int limit = 0):ActivatedAbility(_id, card,_cost,0,_tap),ability(a),limitPerTurn(limit){
    counters = 0;
+   target = ability->target;
   }
 
   int resolve(){

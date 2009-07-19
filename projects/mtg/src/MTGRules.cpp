@@ -349,16 +349,15 @@ int HUDDisplay::receiveEvent(WEvent * event){
 
   WEventZoneChange * ezc = dynamic_cast<WEventZoneChange*>(event);
   if (ezc) {
-    int ok = 0;
     for (int i = 0; i < 2 ; i++){
       Player * p = game->players[i];
-      if (ezc->from == p->game->graveyard || ezc->to == p->game->graveyard ) ok = 1;
+      if (ezc->to == p->game->graveyard ){
+        char buffer[512];
+        sprintf(buffer,_("%s goes to graveyard").c_str(), _(ezc->card->getName()).c_str());
+        string s = buffer;
+        return addEvent(s);
+      }
     }
-    if (!ok) return 0;
-    char buffer[512];
-    sprintf(buffer,_("%s goes to graveyard").c_str(), _(ezc->card->getName()).c_str());
-    string s = buffer;
-    return addEvent(s);
   }
 
   WEventDamage * ed = dynamic_cast<WEventDamage*>(event);
