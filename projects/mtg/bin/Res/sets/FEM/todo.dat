@@ -1,12 +1,4 @@
 [card]
-id=1827
-name=Aeolipile
-mana={2}
-type=Artifact
-text={1}, {T}, Sacrifice Aeolipile: Aeolipile deals 2 damage to target creature or player.
-rarity=R
-[/card]
-[card]
 id=1838
 name=Armor Thrull
 mana={2}{B}
@@ -24,17 +16,6 @@ mana={2}
 type=Artifact
 text={1}, {T}, Sacrifice Balm of Restoration: Choose one — You gain 2 life; or prevent the next 2 damage that would be dealt to target creature or player this turn.
 rarity=R
-[/card]
-[card]
-id=1844
-name=Basal Thrull
-mana={B}{B}
-type=Creature
-subtype=Thrull
-power=1
-toughness=2
-text={T}, Sacrifice Basal Thrull: Add oBoB to your mana pool.
-rarity=C
 [/card]
 [card]
 id=2003
@@ -121,14 +102,6 @@ text=Black spells you play cost {B} more to play.
 rarity=U
 [/card]
 [card]
-id=1832
-name=Draconian Cylix
-mana={3}
-type=Artifact
-text={2}, {T}, Discard a card at random: Regenerate target creature.
-rarity=R
-[/card]
-[card]
 id=1941
 name=Dwarven Armorer
 mana={R}
@@ -156,25 +129,6 @@ text=Dwarven Hold comes into play tapped.  You may choose not to untap Dwarven H
 rarity=R
 [/card]
 [card]
-id=1943
-name=Dwarven Lieutenant
-mana={R}{R}
-type=Creature
-subtype=Dwarf Soldier
-power=1
-toughness=2
-text={1}{R}: Target Dwarf creature gets +1/+0 until end of turn.
-rarity=U
-[/card]
-[card]
-id=2005
-name=Dwarven Ruins
-mana=
-type=Land
-text=Dwarven Ruins comes into play tapped. {T}: Add {R} to your mana pool. {T}, Sacrifice Dwarven Ruins: Add {R}{R} to your mana pool.
-rarity=U
-[/card]
-[card]
 id=1946
 name=Dwarven Soldier
 mana={1}{R}
@@ -197,30 +151,6 @@ text=First strike, trample At the beginning of your upkeep, put a -2/-2 counter 
 rarity=R
 [/card]
 [card]
-id=2006
-name=Ebon Stronghold
-mana=
-type=Land
-text=Ebon Stronghold comes into play tapped. {T}: Add {B} to your mana pool. {T}, Sacrifice Ebon Stronghold: Add {B}{B} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=1904
-name=Elven Fortress
-mana={G}
-type=Enchantment
-text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=1833
-name=Elven Lyre
-mana={2}
-type=Artifact
-text={1}, {T}, Sacrifice Elven Lyre: Target creature gets +2/+2 until end of turn.
-rarity=R
-[/card]
-[card]
 id=1908
 name=Elvish Farmer
 mana={1}{G}
@@ -240,6 +170,7 @@ subtype=Elf Archer
 power=1
 toughness=1
 text={1}{G}, {T}: Target creature doesn't untap during its controller's next untap step.
+auto=doesnotuntap target(creature)
 rarity=C
 [/card]
 [card]
@@ -304,17 +235,6 @@ text={G}{G}: Put a spore counter on target Fungus.
 rarity=R
 [/card]
 [card]
-id=1949
-name=Goblin Chirurgeon
-mana={R}
-type=Creature
-subtype=Goblin Shaman
-power=0
-toughness=2
-text=Sacrifice a Goblin: Regenerate target creature.
-rarity=C
-[/card]
-[card]
 id=1950
 name=Goblin Flotilla
 mana={2}{R}
@@ -369,14 +289,6 @@ text={T}, Tap three untapped white creatures you control: Destroy target creatur
 rarity=R
 [/card]
 [card]
-id=2007
-name=Havenwood Battleground
-mana=
-type=Land
-text=Havenwood Battleground comes into play tapped. {T}: Add {G} to your mana pool. {T}, Sacrifice Havenwood Battleground: Add {G}{G} to your mana pool.
-rarity=U
-[/card]
-[card]
 id=1980
 name=Heroism
 mana={2}{W}
@@ -412,17 +324,6 @@ text=Homarid comes into play with a tide counter on it. At the beginning of your
 rarity=C
 [/card]
 [card]
-id=1879
-name=Homarid Shaman
-mana={2}{U}{U}
-type=Creature
-subtype=Homarid Shaman
-power=2
-toughness=1
-text={U}: Tap target green creature.
-rarity=R
-[/card]
-[card]
 id=1880
 name=Homarid Spawning Bed
 mana={U}{U}
@@ -442,25 +343,6 @@ text={U}: Homarid Warrior gains shroud until end of turn and doesn't untap durin
 rarity=C
 [/card]
 [card]
-id=1851
-name=Hymn to Tourach
-mana={B}{B}
-type=Sorcery
-text=Target player discards two cards at random.
-rarity=U
-[/card]
-[card]
-id=1982
-name=Icatian Infantry
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text={1}: Icatian Infantry gains banding until end of turn. {1}: Icatian Infantry gains first strike until end of turn.
-rarity=C
-[/card]
-[card]
 id=1987
 name=Icatian Javelineers
 mana={W}
@@ -472,17 +354,6 @@ text=Icatian Javelineers comes into play with a javelin counter on it. {T}, Remo
 rarity=C
 [/card]
 [card]
-id=1988
-name=Icatian Lieutenant
-mana={W}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
-text={1}{W}: Target Soldier creature gets +1/+0 until end of turn.
-rarity=R
-[/card]
-[card]
 id=1991
 name=Icatian Moneychanger
 mana={W}
@@ -491,39 +362,6 @@ subtype=Human
 power=0
 toughness=2
 text=Icatian Moneychanger comes into play with three credit counters on it. When Icatian Moneychanger comes into play, it deals 3 damage to you. At the beginning of your upkeep, put a credit counter on Icatian Moneychanger. Sacrifice Icatian Moneychanger: You gain 1 life for each credit counter on Icatian Moneychanger. Play this ability only during your upkeep.
-rarity=C
-[/card]
-[card]
-id=1992
-name=Icatian Phalanx
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=4
-text=Banding
-rarity=U
-[/card]
-[card]
-id=1993
-name=Icatian Priest
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text={1}{W}{W}: Target creature gets +1/+1 until end of turn.
-rarity=U
-[/card]
-[card]
-id=1996
-name=Icatian Scout
-mana={W}
-type=Creature
-subtype=Human Soldier Scout
-power=1
-toughness=1
-text={1}, {T}: Target creature gains first strike until end of turn.
 rarity=C
 [/card]
 [card]
@@ -543,22 +381,6 @@ name=Icatian Store
 mana=
 type=Land
 text=Icatian Store comes into play tapped.  You may choose not to untap Icatian Store during your untap step.  At the beginning of your upkeep, if Icatian Store is tapped, put a storage counter on it.  {T}, Remove any number of storage counters from Icatian Store: Add {W} to your mana pool for each storage counter removed this way.
-rarity=R
-[/card]
-[card]
-id=1999
-name=Icatian Town
-mana={5}{W}
-type=Sorcery
-text=Put four 1/1 white Citizen creature tokens into play.
-rarity=U
-[/card]
-[card]
-id=1834
-name=Implements of Sacrifice
-mana={2}
-type=Artifact
-text={1}, {T}, Sacrifice Implements of Sacrifice: Add two mana of any one color to your mana pool.
 rarity=R
 [/card]
 [card]
@@ -645,28 +467,6 @@ text=Orcish Veteran can't block white creatures with power 2 or greater. {R}: Or
 rarity=C
 [/card]
 [card]
-id=2002
-name=Order of Leitbur
-mana={W}{W}
-type=Creature
-subtype=Human Cleric Knight
-power=2
-toughness=1
-text=Protection from black {W}: Order of Leitbur gains first strike until end of turn. {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=1862
-name=Order of the Ebon Hand
-mana={B}{B}
-type=Creature
-subtype=Cleric Knight
-power=2
-toughness=1
-text=Protection from white {B}: Order of the Ebon Hand gains first strike until end of turn. {B}{B}: Order of the Ebon Hand gets +1/+0 until end of turn.
-rarity=C
-[/card]
-[card]
 id=1968
 name=Orgg
 mana={3}{R}{R}
@@ -692,33 +492,6 @@ mana=
 type=Land
 text={T}: Add one mana of any color to your mana pool. An opponent gains control of Rainbow Vale at end of turn.
 rarity=R
-[/card]
-[card]
-id=1835
-name=Ring of Renewal
-mana={5}
-type=Artifact
-text={5}, {T}, Discard a card at random: Draw two cards.
-rarity=R
-[/card]
-[card]
-id=1888
-name=River Merfolk
-mana={U}{U}
-type=Creature
-subtype=Merfolk
-power=2
-toughness=1
-text={U}: River Merfolk gains mountainwalk until end of turn.
-rarity=R
-[/card]
-[card]
-id=2011
-name=Ruins of Trokair
-mana=
-type=Land
-text=Ruins of Trokair comes into play tapped. {T}: Add {W} to your mana pool. {T}, Sacrifice Ruins of Trokair: Add {W}{W} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=2012
@@ -783,14 +556,6 @@ subtype=Merfolk Cleric
 power=1
 toughness=1
 text={U}{U}, {T}: Target creature gains shroud until end of turn. Play this ability only during your upkeep. (It can't be the target of spells or abilities.)
-rarity=U
-[/card]
-[card]
-id=2013
-name=Svyelunite Temple
-mana=
-type=Land
-text=Svyelunite Temple comes into play tapped. {T}: Add {U} to your mana pool. {T}, Sacrifice Svyelunite Temple: Add {U}{U} to your mana pool.
 rarity=U
 [/card]
 [card]
@@ -876,15 +641,6 @@ text=Thrull creatures get +1/+1. {T}: Gain control of target Thrull as long as y
 rarity=R
 [/card]
 [card]
-id=1867
-name=Thrull Retainer
-mana={B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1. Sacrifice Thrull Retainer: Regenerate enchanted creature.
-rarity=U
-[/card]
-[card]
 id=1868
 name=Thrull Wizard
 mana={2}{B}
@@ -937,6 +693,8 @@ subtype=Merfolk Knight
 power=2
 toughness=2
 text=First strike Vodalian Knights can't attack unless defending player controls an Island. When you control no Islands, sacrifice Vodalian Knights. {U}: Vodalian Knights gains flying until end of turn.
+abilities=cantattack
+auto=aslongas(island|opponentinplay) -cantattack
 rarity=U
 [/card]
 [card]
@@ -948,16 +706,6 @@ subtype=Merfolk Wizard
 power=1
 toughness=1
 text={U}, {T}: Counter target spell unless its controller pays {1}.
-rarity=C
-[/card]
-[card]
-id=1901
-name=Vodalian Soldiers
-mana={1}{U}
-type=Creature
-subtype=Merfolk Soldier
-power=1
-toughness=2
 rarity=C
 [/card]
 [card]
