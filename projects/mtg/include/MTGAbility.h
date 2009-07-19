@@ -217,7 +217,7 @@ class AbilityFactory{
 class AManaProducer: public MTGAbility{
  protected:
 
-  ManaCost * output;
+  
   string menutext;
   float x0,y0,x1,y1,x,y;
   float animation;
@@ -226,6 +226,7 @@ class AManaProducer: public MTGAbility{
 
   hgeParticleSystem * mParticleSys;
  public:
+   ManaCost * output;
    int tap;
    static int currentlyTapping;
    AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1 );

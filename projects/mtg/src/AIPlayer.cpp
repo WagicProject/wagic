@@ -5,6 +5,7 @@
 #include "../include/DamagerDamaged.h"
 #include "../include/AIStats.h"
 #include "../include/AllAbilities.h"
+#include "../include/ExtraCost.h"
 
 const char * const MTG_LAND_TEXTS[] = {"artifact","forest","island","mountain","swamp","plains","other lands"};
 
@@ -68,57 +69,54 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
 #endif
   if (!cost) return;
   ManaCost * diff = potentialMana->Diff(cost);
-  GameObserver * gameObs = GameObserver::GetInstance();
-  CardDescriptor cd;
-  cd.setColor(Constants::MTG_COLOR_LAND);
-  cd.unsecureSetTapped(-1);
+  GameObserver * g = GameObserver::GetInstance();
 
-  MTGCardInstance * card = NULL;
-  while((card = cd.nextmatch(game->inPlay, card))){
-
-    int doTap = 1;
-    for (int i=Constants::MTG_NB_COLORS-1; i>= 0; i--){
-      if (diff->getCost(i) &&  card->hasSubtype(MTG_LAND_TEXTS[i]) ){
-	      diff->remove(i,1);
-	      doTap = 0;
-	      break;
+  map<MTGCardInstance *,bool>used;
+  for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++){ //0 is not a mtgability...hackish
+    //Make sure we can use the ability
+    MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
+    AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
+    if (amp){
+      MTGCardInstance * card = amp->source;
+      if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
+        int doTap = 1;
+        for (int i=Constants::MTG_NB_COLORS-1; i>= 0; i--){
+          if (diff->getCost(i) &&  amp->output->getCost(i) ){
+	          diff->remove(i,1);
+            doTap = 0;
+            break;
+          }
+        }
+        if (doTap){
+          AIAction * action = NEW AIAction(amp,card);
+          clickstream.push(action);
+          used[card] = true;
+        }
       }
     }
-    if (doTap){
-      AIAction * a = NEW AIAction(card);
-      clickstream.push(a);
-    }
   }
-
   delete(diff);
 
 }
-//TODO a better function that does not take into account only basic lands
+
 ManaCost * AIPlayer::getPotentialMana(){
   SAFE_DELETE(potentialMana);
   potentialMana = NEW ManaCost();
-  CardDescriptor cd;
-  cd.setColor(Constants::MTG_COLOR_LAND);
-  cd.unsecureSetTapped(-1);
-  MTGCardInstance * card = NULL;
-  while((card = cd.nextmatch(game->inPlay, card))){
-
-    if (card->hasSubtype("plains")){
-      potentialMana->add(Constants::MTG_COLOR_WHITE,1);
-    }else if(card->hasSubtype("swamp")){
-      potentialMana->add(Constants::MTG_COLOR_BLACK,1);
-    }else if(card->hasSubtype("forest")){
-      potentialMana->add(Constants::MTG_COLOR_GREEN,1);
-    }else if(card->hasSubtype("mountain")){
-      potentialMana->add(Constants::MTG_COLOR_RED,1);
-    }else if(card->hasSubtype("island")){
-      potentialMana->add(Constants::MTG_COLOR_BLUE,1);
-    }else{
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("WTF ????\n");
-#endif
+  GameObserver * g = GameObserver::GetInstance();
+  map<MTGCardInstance *,bool>used;
+  for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++){ //0 is not a mtgability...hackish
+    //Make sure we can use the ability
+    MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
+    AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
+    if (amp){
+      MTGCardInstance * card = amp->source;
+      if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
+        potentialMana->add(amp->output);
+        used[card] = true;
+      }
     }
   }
+
   return potentialMana;
 }
 
@@ -148,6 +146,15 @@ int AIAction::getEfficiency(){
     return 0;
   }
 
+  //Can't handle sacrifice costs that require a target yet :(
+  if (a->cost){
+    ExtraCosts * ec = a->cost->extraCosts;
+    if (ec){
+      for (size_t i = 0; i < ec->costs.size(); i++){
+        if (ec->costs[i]->tc) return 0;
+      }
+    }
+  }
   switch (a->aType){
     case MTGAbility::DAMAGER:
       {

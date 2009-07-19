@@ -120,6 +120,7 @@ paralysis2.txt
 persuasion.txt
 plague_rats.txt
 protomatter_powder.txt
+pygmy_troll.txt
 pyroclasm.txt
 recover.txt
 resurrection.txt

@@ -1,0 +1,49 @@
+#Testing bug with Rampage
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:pygmy troll,forest
+[PLAYER2]
+inplay:grizzly bears,hill giant
+[DO]
+forest
+pygmy troll
+next
+#combat begins
+next
+#combat attackers
+pygmy troll
+next
+grizzly bears
+next
+next
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#begins
+next
+#attackers
+pygmy troll
+next
+#blockers
+hill giant
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:pygmy troll
+inplay:forest
+manapool:{0}
+[PLAYER2]
+graveyard:grizzly bears
+inplay:hill giant
+[END]

@@ -519,7 +519,12 @@ MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous){
 
 int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
   GameObserver * g = GameObserver::GetInstance();
-  if (defenser) defenser->blockers.remove(this);
+  if (defenser) {
+    if (g->players[0]->game->battlefield->hasCard(defenser) ||
+      g->players[1]->game->battlefield->hasCard(defenser) ) {
+      defenser->blockers.remove(this);
+    }
+  }
   WEvent * e = NEW WEventCreatureBlocker(this, defenser, opponent);
   defenser = opponent;
   if (defenser){
