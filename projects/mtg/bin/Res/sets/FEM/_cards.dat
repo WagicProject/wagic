@@ -232,6 +232,7 @@ rarity=C
 color=Black
 type=Sorcery
 mana={B}{B}
+target=player
 auto=discard:2
 [/card]
 [card]
@@ -242,6 +243,7 @@ rarity=C
 color=Black
 type=Sorcery
 mana={B}{B}
+target=player
 auto=discard:2
 [/card]
 [card]
@@ -252,6 +254,7 @@ rarity=C
 color=Black
 type=Sorcery
 mana={B}{B}
+target=player
 auto=discard:2
 [/card]
 [card]
