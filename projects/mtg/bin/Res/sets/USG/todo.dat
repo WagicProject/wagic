@@ -58,14 +58,7 @@ power=3
 subtype=Troll
 toughness=3
 [/card]
-[card]
-text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
-id=5714
-name=Angelic Chorus
-rarity=R
-type=Enchantment
-mana={3}{W}{W}
-[/card]
+
 [card]
 text=At the end of each player's turn, Antagonism deals 2 damage to that player unless one of his or her opponents was dealt damage that turn.
 id=5572
@@ -150,17 +143,7 @@ rarity=U
 type=Enchantment
 mana={1}{B}
 [/card]
-[card]
-text=
-id=5747
-name=Blanchwood Treefolk
-rarity=C
-type=Creature
-mana={4}{G}
-power=4
-subtype=Treefolk
-toughness=5
-[/card]
+
 [card]
 text={T}: Add {1} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5612
@@ -206,6 +189,7 @@ toughness=1
 [/card]
 [card]
 text=At the beginning of your precombat main phase, you may add up to X mana of any one color to your mana pool, where X is the number of Islands target opponent controls.
+auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{*}
 id=5858
 name=Carpet of Flowers
 rarity=U
@@ -239,17 +223,7 @@ rarity=R
 type=Sorcery
 mana={4}{W}{W}
 [/card]
-[card]
-text=When Cathodion is put into a graveyard from play, add {3} to your mana pool.
-id=10659
-name=Cathodion
-rarity=U
-type=Artifact Creature
-mana={3}
-power=3
-subtype=Construct
-toughness=3
-[/card]
+
 [card]
 text=Trample     At the beginning of your upkeep, sacrifice Child of Gaea unless you pay {G}{G}.     {1}{G}: Regenerate Child of Gaea.
 id=9678
@@ -288,17 +262,7 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text=Creatures you control have "{T}: Add {G} to your mana pool."
-id=5724
-name=Citanul Hierophants
-rarity=R
-type=Creature
-mana={3}{G}
-power=3
-subtype=Human Druid
-toughness=2
-[/card]
+
 [card]
 text=Destroy target enchantment.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5692
@@ -345,14 +309,7 @@ power=6
 subtype=Hellion Beast
 toughness=6
 [/card]
-[card]
-text={3}, {T}, Sacrifice Crystal Chimes: Return all enchantment cards from your graveyard to your hand.
-id=5742
-name=Crystal Chimes
-rarity=U
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=Each player returns a creature he or she controls to its owner's hand.
 id=7817
@@ -626,17 +583,7 @@ type=Enchantment
 mana={1}{R}
 subtype=Aura
 [/card]
-[card]
-text={T}: Fire Ants deals 1 damage to each other creature without flying.
-id=5568
-name=Fire Ants
-rarity=U
-type=Creature
-mana={2}{R}
-power=2
-subtype=Insect
-toughness=1
-[/card]
+
 [card]
 text=Whenever Flesh Reaver deals damage to a creature or opponent, Flesh Reaver deals that much damage to you.
 id=5654
@@ -739,14 +686,7 @@ power=2
 subtype=Goblin
 toughness=2
 [/card]
-[card]
-text=At the beginning of your draw step, draw an additional card.     At the end of your turn, discard your hand.
-id=7169
-name=Grafted Skullcap
-rarity=R
-type=Artifact
-mana={4}
-[/card]
+
 [card]
 text=When Great Whale comes into play, untap up to seven lands.
 id=10682
@@ -896,17 +836,7 @@ rarity=R
 type=Sorcery
 mana={2}{B}{B}
 [/card]
-[card]
-text=At the beginning of your upkeep, if you have a card in hand, return Imaginary Pet to its owner's hand.
-id=5772
-name=Imaginary Pet
-rarity=R
-type=Creature
-mana={1}{U}
-power=4
-subtype=Illusion
-toughness=4
-[/card]
+
 [card]
 text={T}: Destroy target creature with power 4 or greater.
 id=5678
@@ -1057,17 +987,7 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text=Defender (This creature can't attack.)  {3}: Mobile Fort gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
-id=5550
-name=Mobile Fort
-rarity=U
-type=Artifact Creature
-mana={4}
-power=0
-subtype=Wall
-toughness=6
-[/card]
+
 [card]
 text=When Monk Realist comes into play, destroy target enchantment.
 auto=may destroy target(enchantment)
@@ -1261,6 +1181,7 @@ mana={1}{W}
 [/card]
 [card]
 text=Whenever another card is put into a graveyard from anywhere, remove that card from the game.
+auto=@movedTo(*|graveyard):moveTo(Exile) ???
 id=5608
 name=Planar Void
 rarity=U
@@ -1302,14 +1223,7 @@ type=Enchantment
 mana={1}{U}
 subtype=Aura
 [/card]
-[card]
-text=Whenever a player plays an enchantment spell, counter it.
-id=8811
-name=Presence of the Master
-rarity=U
-type=Enchantment
-mana={3}{W}
-[/card]
+
 
 [card]
 text=At the beginning of your upkeep, Purging Scythe deals 2 damage to the creature with the least toughness. If two or more creatures are tied for least toughness, you choose one.
@@ -1319,14 +1233,7 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text=Until end of turn, lands you control gain "Sacrifice this land: Add {B} to your mana pool."
-id=5831
-name=Rain of Filth
-rarity=U
-type=Instant
-mana={B}
-[/card]
+
 [card]
 text=Destroy two target lands.
 id=5761
@@ -1362,17 +1269,7 @@ rarity=R
 type=Enchantment
 mana={3}{U}{U}
 [/card]
-[card]
-text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
-id=8803
-name=Reclusive Wight
-rarity=U
-type=Creature
-mana={3}{B}
-power=4
-subtype=Zombie Minion
-toughness=4
-[/card]
+
 [card]
 text=Prevent all damage that would be dealt this turn to up to two target creatures.
 id=9716
@@ -1420,14 +1317,7 @@ rarity=C
 type=Instant
 mana={1}{U}{U}
 [/card]
-[card]
-text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
-id=10408
-name=Retaliation
-rarity=U
-type=Enchantment
-mana={2}{G}
-[/card]
+
 [card]
 text=Whenever Retromancer becomes the target of a spell or ability, Retromancer deals 3 damage to that spell or ability's controller.
 id=5826
@@ -1677,28 +1567,8 @@ type=Enchantment
 mana={B}
 subtype=Aura
 [/card]
-[card]
-text=Flying     When you play a creature spell, sacrifice Skittering Skirge.
-id=5573
-name=Skittering Skirge
-rarity=C
-type=Creature
-mana={B}{B}
-power=3
-subtype=Imp
-toughness=2
-[/card]
-[card]
-text=When Sleeper Agent comes into play, target opponent gains control of it.      At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
-id=5751
-name=Sleeper Agent
-rarity=R
-type=Creature
-mana={B}
-power=3
-subtype=Minion
-toughness=3
-[/card]
+
+
 [card]
 text=Slippery Karst comes into play tapped.     {T}: Add {G} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5803
@@ -2154,17 +2024,7 @@ power=6
 subtype=Wurm
 toughness=6
 [/card]
-[card]
-text=Swampwalk     {T}: Add {B}{B}{B}{B} to your mana pool. Target opponent gains control of Witch Engine. (Play this ability only any time you could play an instant.)
-id=5836
-name=Witch Engine
-rarity=R
-type=Creature
-mana={5}{B}
-power=4
-subtype=Horror
-toughness=4
-[/card]
+
 [card]
 text={T}: Return Wizard Mentor and target creature you control to their owner's hand.
 id=8907

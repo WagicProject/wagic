@@ -1,0 +1,25 @@
+#Testing sleeper agent
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:sleeper agent
+manapool:{B}
+[PLAYER2]
+[DO]
+sleeper agent
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#first
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{0}
+[PLAYER2]
+life:18
+inplay:sleeper agent
+[END]

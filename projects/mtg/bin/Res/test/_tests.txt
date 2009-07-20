@@ -135,6 +135,7 @@ siege_gang_commander.txt
 shivan_hellkite.txt
 shock.txt
 slate_of_ancestry.txt
+sleeper_agent.txt
 soulblast.txt
 sphinx_summoner.txt
 spitting_earth.txt

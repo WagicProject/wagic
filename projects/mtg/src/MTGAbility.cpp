@@ -389,8 +389,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     Damageable * d = NULL;
     if (spell) d = spell->getNextDamageableTarget();
-    if (s.find("controller") != string::npos) d = card->controller();
-    MTGAbility * a =  NEW AADamager(id,card,d, damage);
+    int who = 0;
+    if (s.find("controller") != string::npos) who=1;
+    MTGAbility * a =  NEW AADamager(id,card,d, damage, NULL, who);
     a->oneShot = 1;
     return a;
   }

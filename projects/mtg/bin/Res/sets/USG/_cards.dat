@@ -32,6 +32,15 @@ toughness=3
 abilities=swampwalk
 [/card]
 [card]
+text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
+id=5714
+alias=129710
+name=Angelic Chorus
+rarity=R
+type=Enchantment
+mana={3}{W}{W}
+[/card]
+[card]
 text=Flying    {T}: Target attacking or blocking creature gets +1/+1 until end of turn.
 id=5781
 name=Angelic Page
@@ -128,6 +137,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+id=5747
+name=Blanchwood Treefolk
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Treefolk
+power=4
+toughness=5
+[/card]
+[card]
 text=Sacrifice Blood Vassal: Add {B}{B} to your mana pool.
 id=5737
 name=Blood Vassal
@@ -139,17 +158,6 @@ subtype=Thrull
 auto={S}:Add {B}{B}
 power=2
 toughness=2
-[/card]
-[card]
-id=5747
-name=Blanchwood Treefolk
-color=Green
-rarity=C
-mana={4}{G}
-type=Creature
-subtype=Treefolk
-power=4
-toughness=5
 [/card]
 [card]
 text=Swampwalk
@@ -203,6 +211,18 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
+text=When Cathodion is put into a graveyard from play, add {3} to your mana pool.
+auto=@movedTo(this|graveyard):Add{3}
+id=10659
+name=Cathodion
+rarity=U
+type=Artifact Creature
+mana={3}
+power=3
+subtype=Construct
+toughness=3
+[/card]
+[card]
 text=Whenever Cave Tiger becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 id=5762
 name=Cave Tiger
@@ -214,6 +234,18 @@ subtype=Cat
 auto=rampage(1/1,0)
 power=2
 toughness=2
+[/card]
+[card]
+text=Creatures you control have "{T}: Add {G} to your mana pool."
+id=5724
+name=Citanul Hierophants
+rarity=R
+type=Creature
+mana={3}{G}
+power=3
+subtype=Human Druid
+toughness=2
+auto=lord(creature|myinplay) {T}:Add{G}
 [/card]
 [card]
 text={1}, Sacrifice a permanent: You gain 1 life.
@@ -295,6 +327,15 @@ subtype=Imp
 power=2
 toughness=2
 abilities=flying,haste
+[/card]
+[card]
+text={3}, {T}, Sacrifice Crystal Chimes: Return all enchantment cards from your graveyard to your hand.
+auto={3}{T}{S}:moveTo(myHand) all(enchantment|mygraveyard)
+id=5742
+name=Crystal Chimes
+rarity=U
+type=Artifact
+mana={3}
 [/card]
 [card]
 text=Creatures with flying get -2/-0.
@@ -407,6 +448,18 @@ colour=Red
 rarity=R
 mana={X}{R}{R}
 type=Instant
+[/card]
+[card]
+text={T}: Fire Ants deals 1 damage to each other creature without flying.
+auto={T}:damage:1 all(creature[-flying]) other
+id=5568
+name=Fire Ants
+rarity=U
+type=Creature
+mana={2}{R}
+power=2
+subtype=Insect
+toughness=1
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
@@ -550,6 +603,16 @@ power=3
 toughness=2
 [/card]
 [card]
+text=At the beginning of your draw step, draw an additional card.     At the end of your turn, discard your hand.
+auto=@each my draw:draw:1
+auto=@each my end:moveTo(graveyard) all(*|myhand)
+id=7169
+name=Grafted Skullcap
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
 text=Protection from blue
 id=8806
 name=Guma
@@ -621,6 +684,18 @@ power=1
 toughness=3
 [/card]
 [card]
+text=At the beginning of your upkeep, if you have a card in hand, return Imaginary Pet to its owner's hand.
+auto=@each my upkeep:aslongas(*|myhand) moveTo(myHand)
+id=5772
+name=Imaginary Pet
+rarity=R
+type=Creature
+mana={1}{U}
+power=4
+subtype=Illusion
+toughness=4
+[/card]
+[card]
 text={T}: Add {U} to your mana pool.
 auto={T}:add {U}
 id=8326
@@ -668,6 +743,19 @@ type=Creature
 subtype=Shade
 power=1
 toughness=1
+[/card]
+[card]
+text=Defender (This creature can't attack.)  {3}: Mobile Fort gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
+abilities=defender
+auto={3}:3/-1 && -defender limit:1
+id=5550
+name=Mobile Fort
+rarity=U
+type=Artifact Creature
+mana={4}
+power=0
+subtype=Wall
+toughness=6
 [/card]
 [card]
 text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
@@ -857,6 +945,15 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text=Whenever a player plays an enchantment spell, counter it.
+auto=@movedTo(enchantment|stack):fizzle all(enchantment|stack)
+id=8811
+name=Presence of the Master
+rarity=U
+type=Enchantment
+mana={3}{W}
+[/card]
+[card]
 text=When Priest of Gix comes into play, add {B}{B}{B} to your mana pool.
 auto=Add: {B}{B}{B}
 id=9724
@@ -882,6 +979,27 @@ subtype=Elf Druid
 toughness=1
 [/card]
 [card]
+text=Until end of turn, lands you control gain "Sacrifice this land: Add {B} to your mana pool."
+auto=lord(land|mybattlefield) {S}:Add{B}
+id=5831
+name=Rain of Filth
+rarity=U
+type=Instant
+mana={B}
+[/card]
+[card]
+text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
+@each my upkeep:aslongas(*[-land]|mybattlefield) other bury
+id=8803
+name=Reclusive Wight
+rarity=U
+type=Creature
+mana={3}{B}
+power=4
+subtype=Zombie Minion
+toughness=4
+[/card]
+[card]
 text=Enchant creature      Enchanted creature has first strike.
 target=creature
 auto=first strike
@@ -892,6 +1010,15 @@ rarity=C
 mana={R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
+auto=lord(creature|myinplay) rampage(1/1,0)
+id=10408
+name=Retaliation
+rarity=U
+type=Enchantment
+mana={2}{G}
 [/card]
 [card]
 text=First strike    {1}{B}: Regenerate Sanguine Guard.
@@ -996,6 +1123,32 @@ subtype=Imp
 power=3
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=Flying     When you play a creature spell, sacrifice Skittering Skirge.
+abilities=flying
+auto=@movedTo(creature|mystack):bury
+id=5573
+name=Skittering Skirge
+rarity=C
+type=Creature
+mana={B}{B}
+power=3
+subtype=Imp
+toughness=2
+[/card]
+[card]
+text=When Sleeper Agent comes into play, target opponent gains control of it.      At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
+auto=moveTo(opponentinplay)
+auto=@each my upkeep:Damage:2 controller
+id=5751
+name=Sleeper Agent
+rarity=R
+type=Creature
+mana={B}
+power=3
+subtype=Minion
+toughness=3
 [/card]
 [card]
 text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
@@ -1223,6 +1376,19 @@ type=Artifact Creature
 subtype=Cat
 power=4
 toughness=3
+[/card]
+[card]
+text=Swampwalk     {T}: Add {B}{B}{B}{B} to your mana pool. Target opponent gains control of Witch Engine. (Play this ability only any time you could play an instant.)
+abilities=swampwalk
+auto={T}:Add{B}{B}{B}{B} && moveTo(opponentinplay)
+id=5836
+name=Witch Engine
+rarity=R
+type=Creature
+mana={5}{B}
+power=4
+subtype=Horror
+toughness=4
 [/card]
 [card]
 text=Worn Powerstone comes into play tapped.    {T}: Add 2 Mana to your mana pool.

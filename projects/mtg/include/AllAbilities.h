@@ -439,7 +439,7 @@ public:
 
         //inplay is a special zone !
         for (int i=0; i < 2; i++){
-          if (destZone == g->players[i]->game->inPlay){
+          if (destZone == g->players[i]->game->inPlay && fromZone != g->players[i]->game->inPlay && fromZone != g->players[i]->opponent()->game->inPlay){
               MTGCardInstance * copy = g->players[i]->game->putInZone(_target,  fromZone, g->players[i]->game->stack);
               Spell * spell = NEW Spell(copy);
 
@@ -1589,7 +1589,8 @@ class AForeach:public ListMaintainerAbility{
 class AADamager:public ActivatedAbility{
 public:
   int damage;
-AADamager(int _id, MTGCardInstance * _source, Damageable * _target, int _damage = 0, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost),damage(_damage){
+  int who;
+AADamager(int _id, MTGCardInstance * _source, Damageable * _target, int _damage = 0, ManaCost * _cost=NULL, int who=0):ActivatedAbility(_id,_source,_cost),damage(_damage),who(who){
     if (_target) target = _target; 
     aType = MTGAbility::DAMAGER;
  }
@@ -1597,6 +1598,9 @@ AADamager(int _id, MTGCardInstance * _source, Damageable * _target, int _damage 
   int resolve(){
     if(target){
       Damageable * _target = (Damageable *)target;
+      if (who ==1){
+        _target = ((MTGCardInstance *) target)->controller();
+      }      
       game->mLayers->stackLayer()->addDamage(source,_target, damage);
       game->mLayers->stackLayer()->resolve();
       return 1;
