@@ -1501,7 +1501,7 @@ mana={2}{R}
 [/card]
 [card]
 text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
-auto={W}{S(enchantment|myBattlefield)}:destroy target(enchantment)}
+auto={W}{S(enchantment|myBattlefield)}:destroy target(enchantment)
 auto={3}{U}{U}:fizzle target(enchantment|stack)
 id=22959
 name=Teferi's Care
