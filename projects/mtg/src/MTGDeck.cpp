@@ -465,7 +465,10 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
       }
     }
   }
-  if (subtotal == 0) return 0;
+  if (subtotal == 0){
+    if (rarity == Constants::RARITY_M) return addRandomCards(howmany, setId, Constants::RARITY_R,  _subtype, colors, nbcolors);
+    return 0;
+  }
   for (int i = 0; i < howmany; i++){
     int id = (rand() % subtotal);
     add(subcollection[id]);

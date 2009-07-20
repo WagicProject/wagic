@@ -53,15 +53,6 @@ class TargetChooserFactory{
 };
 
 
-class CardTargetChooser:public TargetChooser {
-
-protected:
-  MTGCardInstance * validTarget;
-public:
-  CardTargetChooser(MTGCardInstance * _card, MTGCardInstance * source);
-  virtual int canTarget(Targetable * target );
-};
-
 
 class TargetZoneChooser:public TargetChooser{
  public:
@@ -73,6 +64,16 @@ class TargetZoneChooser:public TargetChooser{
   TargetZoneChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1);
   virtual int canTarget(Targetable * _card);
 };
+
+class CardTargetChooser:public TargetZoneChooser {
+
+protected:
+  MTGCardInstance * validTarget;
+public:
+  CardTargetChooser(MTGCardInstance * _card, MTGCardInstance * source,int * _zones = NULL, int _nbzones = 0);
+  virtual int canTarget(Targetable * target );
+};
+
 
 class CreatureTargetChooser:public TargetZoneChooser{
  public:

@@ -253,8 +253,10 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
 
         MTGDeck * tempDeck = NEW MTGDeck(NULL,playerdata->collection->database);
-
-        tempDeck->addRandomCards(1, setIds[showPriceDialog],Constants::RARITY_R);
+        int rare_or_mythic = Constants::RARITY_R;
+        int rnd = rand() % 8;
+        if (rnd == 0) rare_or_mythic = Constants::RARITY_M;
+        tempDeck->addRandomCards(1, setIds[showPriceDialog],rare_or_mythic);
         tempDeck->addRandomCards(3, setIds[showPriceDialog],Constants::RARITY_U);
         tempDeck->addRandomCards(11, setIds[showPriceDialog],Constants::RARITY_C);
         playerdata->collection->add(tempDeck);

@@ -183,7 +183,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
       typeName = typeName.substr(0,found);
     }
     //X targets allowed ?
-    if (typeName.at(typeName.length()-1) == 's' && !Subtypes::subtypesList->find(typeName)){
+    if (typeName.at(typeName.length()-1) == 's' && !Subtypes::subtypesList->find(typeName) && typeName.compare("this")!=0){
       typeName = typeName.substr(0,typeName.length()-1);
       maxtargets = -1;
     }
@@ -200,6 +200,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
       if (!tc){
         if (typeName.compare("*")==0){
           return NEW TargetZoneChooser(zones, nbzones,card, maxtargets);
+        }else if (typeName.compare("this")==0){
+          return NEW CardTargetChooser(card,card,zones, nbzones);
         }else{
           tc =  NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card,maxtargets);
         }
@@ -334,15 +336,19 @@ int TargetChooser::targetListSet(){
 /**
   a specific Card
 **/
-CardTargetChooser::CardTargetChooser(MTGCardInstance * _card, MTGCardInstance * source):TargetChooser(source){
+CardTargetChooser::CardTargetChooser(MTGCardInstance * _card, MTGCardInstance * source,int * _zones, int _nbzones):TargetZoneChooser(_zones,_nbzones,source){
   validTarget = _card;
 }
 
 int CardTargetChooser::canTarget(Targetable * target ){
-  if (!TargetChooser::canTarget(target)) return 0;
-  if (target->typeAsTarget() == TARGET_CARD){
-    MTGCardInstance * card = (MTGCardInstance *) target;
-    if (card == validTarget) return 1;
+  if (!target) return 0;
+  if (target->typeAsTarget() != TARGET_CARD) return 0;
+  if (!nbzones && !TargetChooser::canTarget(target)) return 0;
+  if (nbzones && !TargetZoneChooser::canTarget(target)) return 0;
+  MTGCardInstance * card = (MTGCardInstance *) target;
+  while(card){
+    if(card == validTarget) return 1;
+    card = card->previous;
   }
   return 0;
 }

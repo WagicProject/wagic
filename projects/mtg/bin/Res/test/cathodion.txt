@@ -1,0 +1,21 @@
+#Testing Cathodion:
+# text=When Cathodion is put into a graveyard from play, add {3} to your mana pool.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:lightning bolt
+manapool:{R}
+[PLAYER2]
+inplay:cathodion
+[DO]
+lightning bolt
+cathodion
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:lightning bolt
+manapool:{0}
+[PLAYER2]
+graveyard:cathodion
+manapool:{3}
+[END]

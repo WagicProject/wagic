@@ -91,6 +91,18 @@ toughness=3
 subtype=Gnome
 [/card]
 [card]
+text=When Cathodion is put into a graveyard from play, add {3} to your mana pool.
+auto=@movedTo(this|graveyard):Add{3}
+id=48195
+name=Cathodion
+rarity=U
+type=Artifact Creature
+mana={3}
+power=3
+subtype=Construct
+toughness=3
+[/card]
+[card]
 text=Cloudpost comes into play tapped.     {T}: Add {1} to your mana pool for each Locus in play.
 auto=tap
 auto={T}:foreach(Locus)add:{1}

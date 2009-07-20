@@ -2408,7 +2408,8 @@ int GenericTriggeredAbility::resolve(){
 }
 
 int GenericTriggeredAbility::testDestroy(){
-  if (destroyCondition) return destroyCondition->testDestroy();
+  if (!TriggeredAbility::testDestroy()) return 0;
+  if (destroyCondition) return (destroyCondition->testDestroy());
   return t->testDestroy();
 }
 

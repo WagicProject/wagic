@@ -47,6 +47,7 @@ bottle_gnomes.txt
 boggart_arsonists.txt
 brass_man.txt
 castle.txt
+cathodion.txt
 celestial_purge.txt
 circle_of_protection.txt
 clone.txt
