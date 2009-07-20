@@ -77,26 +77,7 @@ power=1
 subtype=Human Soldier
 toughness=2
 [/card]
-[card]
-text=Enchant creature     Enchanted creature gets +2/+2 and has trample.      Whenever enchanted creature deals damage, you gain that much life.
-id=23164
-name=Armadillo Cloak
-rarity=C
-type=Enchantment
-mana={1}{G}{W}
-subtype=Aura
-[/card]
-[card]
-text={1}{W}{W}: Target creature you control gains protection from the color of your choice until end of turn.     {1}{U}{U}: Armored Guardian gains shroud until end of turn. (It can't be the target of spells or abilities.)
-id=23197
-name=Armored Guardian
-rarity=R
-type=Creature
-mana={3}{W}{U}
-power=2
-subtype=Cat Soldier
-toughness=5
-[/card]
+
 [card]
 text=Assault deals 2 damage to target creature or player.     //     Put a 3/3 green Elephant creature token into play.
 id=20579
@@ -125,14 +106,7 @@ subtype=Human Cleric
 toughness=3
 [/card]
 
-[card]
-text=Whenever a creature comes into play under your control, you may destroy target artifact or enchantment.
-id=23152
-name=Aura Shards
-rarity=U
-type=Enchantment
-mana={1}{G}{W}
-[/card]
+
 [card]
 text=Tap target untapped creature. That creature deals damage equal to its power to its controller.
 id=23171
@@ -169,17 +143,6 @@ subtype=Human Wizard
 toughness=4
 [/card]
 [card]
-text={3}{U}, {T}: Draw a card.
-id=22947
-name=Benalish Heralds
-rarity=U
-type=Creature
-mana={3}{W}
-power=2
-subtype=Human Soldier
-toughness=4
-[/card]
-[card]
 text=Kicker {2}{W} (You may pay an additional {2}{W} as you play this spell.)  If the kicker cost was paid, Benalish Lancer comes into play with two +1/+1 counters on it and with first strike.
 id=22932
 name=Benalish Lancer
@@ -190,17 +153,7 @@ power=2
 subtype=Human Knight
 toughness=2
 [/card]
-[card]
-text={W}, {T}: Tap target creature.
-id=22937
-name=Benalish Trapper
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Soldier
-toughness=2
-[/card]
+
 [card]
 text=Each player separates all lands he or she controls into two piles. For each player, an opponent chooses a pile. Destroy all lands in the chosen piles. Tap all lands in the other piles.
 id=23099
@@ -250,17 +203,7 @@ power=2
 subtype=Mongoose
 toughness=1
 [/card]
-[card]
-text={1}: Add {B} to your mana pool.
-id=23024
-name=Bog Initiate
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
+
 [card]
 text=You may play Breaking Wave any time you could play an instant if you pay {2} more to play it.       Simultaneously untap all tapped creatures and tap all untapped creatures.
 id=23012
@@ -296,17 +239,6 @@ rarity=U
 type=Sorcery
 mana={1}{G}
 [/card]
-[card]
-text={1}{W}, {T}, Sacrifice Capashen Unicorn: Destroy target artifact or enchantment.
-id=22936
-name=Capashen Unicorn
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Unicorn
-toughness=2
-[/card]
 
 [card]
 text=Play Cauldron Dance only during combat.     Return target creature card from your graveyard to play. That creature gains haste. Return it to your hand at end of turn.      You may put a creature card from your hand into play. That creature gains haste. Its controller sacrifices it at end of turn.
@@ -324,25 +256,7 @@ rarity=U
 type=Instant
 mana={1}{R}
 [/card]
-[card]
-text=Vigilance     {G}: Regenerate Charging Troll.
-id=23162
-name=Charging Troll
-rarity=U
-type=Creature
-mana={2}{G}{W}
-power=3
-subtype=Troll
-toughness=3
-[/card]
-[card]
-text={1}, {T}, Sacrifice Chromatic Sphere: Add one mana of any color to your mana pool. Draw a card.
-id=23230
-name=Chromatic Sphere
-rarity=U
-type=Artifact
-mana={1}
-[/card]
+
 [card]
 text={B}: Cinder Shade gets +1/+1 until end of turn.     {R}, Sacrifice Cinder Shade: Cinder Shade deals damage equal to its power to target creature.
 id=23172
@@ -363,13 +277,6 @@ type=Sorcery
 mana={3}{W}{U}{B}{R}{G}
 [/card]
 [card]
-text=Coastal Tower comes into play tapped. {T}: Add {W} or {U} to your mana pool.
-id=23240
-name=Coastal Tower
-rarity=U
-type=Land
-[/card]
-[card]
 text=Domain - At the beginning of each player's upkeep, that player gains 1 life for each basic land type among lands he or she controls. Then Collapsing Borders deals 3 damage to him or her.
 id=23089
 name=Collapsing Borders
@@ -385,25 +292,7 @@ rarity=R
 type=Enchantment
 mana={3}{U}
 [/card]
-[card]
-text=Remove target card in a graveyard from the game.     Draw a card.
-id=24119
-name=Cremate
-rarity=U
-type=Instant
-mana={B}
-[/card]
-[card]
-text=Protection from red     {W}: Target creature gains protection from red until end of turn.
-id=22934
-name=Crimson Acolyte
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Cleric
-toughness=1
-[/card]
+
 [card]
 text=Flying     Whenever Crosis, the Purger deals combat damage to a player, you may pay {2}{B}. If you do, choose a color. That player reveals his or her hand and discards all cards of that color.
 id=23207
@@ -416,17 +305,6 @@ subtype=Dragon
 toughness=6
 [/card]
 [card]
-text={1}, Sacrifice Crosis's Attendant: Add {U}{B}{R} to your mana pool.
-id=25837
-name=Crosis's Attendant
-rarity=U
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Golem
-toughness=3
-[/card]
-[card]
 text=Enchant creature     {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
 id=23074
 name=Crown of Flames
@@ -436,32 +314,12 @@ mana={R}
 subtype=Aura
 [/card]
 [card]
-text=Flying, protection from white     When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
-id=23320
-name=Crypt Angel
-rarity=R
-type=Creature
-mana={4}{B}
-power=3
-subtype=Angel
-toughness=3
-[/card]
-[card]
 text=Change the text of target spell or permanent by replacing all instances of one color word or basic land type with another until end of turn.       Draw a card.
 id=23008
 name=Crystal Spray
 rarity=R
 type=Instant
 mana={2}{U}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets -1/-1 and has fear.
-id=23044
-name=Cursed Flesh
-rarity=C
-type=Enchantment
-mana={B}
-subtype=Aura
 [/card]
 [card]
 text=Flying     Whenever Darigaaz, the Igniter deals combat damage to a player, you may pay {2}{R}. If you do, choose a color. That player reveals his or her hand and Darigaaz deals X damage to him or her, where X is the number of cards revealed of that color.
@@ -474,17 +332,7 @@ power=6
 subtype=Dragon
 toughness=6
 [/card]
-[card]
-text={1}, Sacrifice Darigaaz's Attendant: Add {B}{R}{G} to your mana pool.
-id=25838
-name=Darigaaz's Attendant
-rarity=U
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Golem
-toughness=3
-[/card]
+
 [card]
 text=Separate all creature cards in your graveyard into two piles. Remove the pile of an opponent's choice from the game and return the other to play.
 id=22956
@@ -561,14 +409,6 @@ type=Sorcery
 mana={1}{B}
 [/card]
 [card]
-text={T}: Add {U} or {B} to your mana pool.
-id=23218
-name=Drake-Skull Cameo
-rarity=U
-type=Artifact
-mana={3}
-[/card]
-[card]
 text=Flying     {T}: Target land becomes the basic land type of your choice until end of turn.
 id=22979
 name=Dream Thrush
@@ -579,14 +419,7 @@ power=1
 subtype=Bird
 toughness=1
 [/card]
-[card]
-text=Sacrifice a creature or land.       Draw a card.
-id=24124
-name=Dredge
-rarity=U
-type=Instant
-mana={B}
-[/card]
+
 [card]
 text=Flying     Whenever Dromar, the Banisher deals combat damage to a player, you may pay {2}{U}. If you do, choose a color. Return all creatures of that color to their owners' hands.
 id=23206
@@ -597,17 +430,6 @@ mana={3}{W}{U}{B}
 power=6
 subtype=Dragon
 toughness=6
-[/card]
-[card]
-text={1}, Sacrifice Dromar's Attendant: Add {W}{U}{B} to your mana pool.
-id=25836
-name=Dromar's Attendant
-rarity=U
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Golem
-toughness=3
 [/card]
 [card]
 text=No more than one creature can attack each turn.     No more than one creature can block each turn.
@@ -629,13 +451,6 @@ subtype=Human Minion
 toughness=1
 [/card]
 [card]
-text=Elfhame Palace comes into play tapped. {T}: Add {G} or {W} to your mana pool.
-id=23244
-name=Elfhame Palace
-rarity=U
-type=Land
-[/card]
-[card]
 text=At the beginning of your upkeep, you may search your library for a basic land card, reveal that card, and put it into your hand. If you do, you skip your draw step this turn and shuffle your library.
 id=23142
 name=Elfhame Sanctuary
@@ -643,17 +458,7 @@ rarity=U
 type=Enchantment
 mana={1}{G}
 [/card]
-[card]
-text={U}{U}, {T}: Gain control of target legendary permanent. (This effect doesn't end at end of turn.)
-id=23007
-name=Empress Galina
-rarity=R
-type=Legendary Creature
-mana={3}{U}{U}
-power=1
-subtype=Merfolk
-toughness=3
-[/card]
+
 [card]
 text=Enchant permanent     If enchanted permanent is red or green, it has "At the beginning of your upkeep, sacrifice this permanent unless you pay its mana cost."
 id=22997
@@ -663,15 +468,7 @@ type=Enchantment
 mana={U}
 subtype=Aura
 [/card]
-[card]
-text=Enchant creature     Domain - Enchanted creature gets -1/-1 for each basic land type among lands you control.
-id=23032
-name=Exotic Curse
-rarity=C
-type=Enchantment
-mana={2}{B}
-subtype=Aura
-[/card]
+
 [card]
 text=Kicker {5} (You may pay an additional {5} as you play this spell.)    Target creature gets +2/+2 until end of turn. If the kicker cost was paid, that creature gets +5/+5 until end of turn instead.
 id=23120
@@ -717,68 +514,6 @@ type=Enchantment
 mana={3}{W}
 [/card]
 [card]
-text={G}, {T}: You may put a basic land card from your hand into play.
-id=23083
-name=Firebrand Ranger
-rarity=U
-type=Creature
-mana={1}{R}
-power=2
-subtype=Human Soldier
-toughness=1
-[/card]
-[card]
-text=Creatures you control have haste.       Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
-id=23180
-name=Fires of Yavimaya
-rarity=U
-type=Enchantment
-mana={1}{R}{G}
-[/card]
-[card]
-text={R}: Firescreamer gets +1/+0 until end of turn.
-id=23017
-name=Firescreamer
-rarity=C
-type=Creature
-mana={3}{B}
-power=2
-subtype=Kavu
-toughness=2
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=26311
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=26310
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=26312
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=25967
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
 text=Destroy target land. Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
 id=23156
 name=Frenzied Tilling
@@ -787,41 +522,12 @@ type=Sorcery
 mana={3}{R}{G}
 [/card]
 [card]
-text=Protection from red
-id=23158
-name=Galina's Knight
-rarity=C
-type=Creature
-mana={W}{U}
-power=2
-subtype=Merfolk Knight
-toughness=2
-[/card]
-[card]
-text=Geothermal Crevice comes into play tapped.       {T}: Add {R} to your mana pool.       {T}, Sacrifice Geothermal Crevice: Add {B}{G} to your mana pool.
-id=23238
-name=Geothermal Crevice
-rarity=C
-type=Land
-[/card]
-[card]
 text=You may play Ghitu Fire any time you could play an instant if you pay {2} more to play it.       Ghitu Fire deals X damage to target creature or player.
 id=23086
 name=Ghitu Fire
 rarity=R
 type=Sorcery
 mana={X}{R}
-[/card]
-[card]
-text=Flying     {U}: Glimmering Angel gains shroud until end of turn. (It can't be the target of spells or abilities.)
-id=22929
-name=Glimmering Angel
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Angel
-toughness=2
 [/card]
 [card]
 text=Each player chooses from the lands he or she controls a land of each basic land type, then sacrifices the rest.
@@ -865,17 +571,6 @@ subtype=Djinn
 toughness=5
 [/card]
 [card]
-text={1}{W}{U}, {T}: Return target artifact or enchantment card from your graveyard to your hand.
-id=25977
-name=Hanna, Ship's Navigator
-rarity=R
-type=Legendary Creature
-mana={1}{W}{U}
-power=1
-subtype=Human Artificer
-toughness=2
-[/card]
-[card]
 text=As an additional cost to play Harrow, sacrifice a land.       Search your library for up to two basic land cards and put them into play. Then shuffle your library.
 id=23131
 name=Harrow
@@ -891,17 +586,7 @@ rarity=R
 type=Enchantment
 mana={2}{W}{W}
 [/card]
-[card]
-text={2}: Target blue or red creature gets +1/+0 until end of turn.
-id=23041
-name=Hate Weaver
-rarity=U
-type=Creature
-mana={1}{B}
-power=2
-subtype=Zombie Wizard
-toughness=1
-[/card]
+
 [card]
 text=Target player gains 7 life.
 id=23183
@@ -917,28 +602,6 @@ name=Holy Day
 rarity=C
 type=Instant
 mana={W}
-[/card]
-[card]
-text={B}: Hooded Kavu gains fear until end of turn.
-id=23061
-name=Hooded Kavu
-rarity=C
-type=Creature
-mana={2}{R}
-power=2
-subtype=Kavu
-toughness=2
-[/card]
-[card]
-text=Lifelink (Whenever this creature deals damage, you gain that much life.)
-id=23163
-name=Horned Cheetah
-rarity=U
-type=Creature
-mana={2}{G}{W}
-power=2
-subtype=Cat
-toughness=2
 [/card]
 [card]
 text={1}{R}{G}, {T}: Remove from the game Hunting Kavu and target creature without flying that's attacking you.
@@ -958,45 +621,6 @@ name=Hypnotic Cloud
 rarity=C
 type=Sorcery
 mana={1}{B}
-[/card]
-[card]
-text=Irrigation Ditch comes into play tapped.       {T}: Add {W} to your mana pool.       {T}, Sacrifice Irrigation Ditch: Add {G}{U} to your mana pool.
-id=23235
-name=Irrigation Ditch
-rarity=C
-type=Land
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=26301
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=25964
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=26302
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=26303
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
 [/card]
 [card]
 text=Green spells you play cost {G} more to play.
@@ -1051,17 +675,6 @@ subtype=Kavu
 toughness=4
 [/card]
 [card]
-text=When Kavu Climber comes into play, draw a card.
-id=23109
-name=Kavu Climber
-rarity=C
-type=Creature
-mana={3}{G}{G}
-power=3
-subtype=Kavu
-toughness=3
-[/card]
-[card]
 text=Whenever a creature with power 4 or greater comes into play, its controller draws a card.
 id=23144
 name=Kavu Lair
@@ -1081,17 +694,6 @@ subtype=Kavu
 toughness=3
 [/card]
 [card]
-text=Kavu Runner has haste as long as no opponent controls a white or blue creature.
-id=23079
-name=Kavu Runner
-rarity=U
-type=Creature
-mana={3}{R}
-power=3
-subtype=Kavu
-toughness=3
-[/card]
-[card]
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you play this spell.)  If the kicker cost was paid, Kavu Titan comes into play with three +1/+1 counters on it and with trample.
 id=23106
 name=Kavu Titan
@@ -1101,13 +703,6 @@ mana={1}{G}
 power=2
 subtype=Kavu
 toughness=2
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.       {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player.
-id=25930
-name=Keldon Necropolis
-rarity=R
-type=Legendary Land
 [/card]
 [card]
 text=Remove target creature you control from the game. Return that card to play under its owner's control at end of turn.
@@ -1126,17 +721,6 @@ type=Instant
 mana={1}{R}
 [/card]
 [card]
-text={W}: Llanowar Cavalry gains vigilance until end of turn.
-id=23322
-name=Llanowar Cavalry
-rarity=C
-type=Creature
-mana={2}{G}
-power=1
-subtype=Human Soldier
-toughness=4
-[/card]
-[card]
 text=Kicker {8} (You may pay an additional {8} as you play this spell.)    Trample       If the kicker cost was paid, Llanowar Elite comes into play with five +1/+1 counters on it.
 id=25363
 name=Llanowar Elite
@@ -1145,28 +729,6 @@ type=Creature
 mana={G}
 power=1
 subtype=Elf
-toughness=1
-[/card]
-[card]
-text=Protection from black
-id=23157
-name=Llanowar Knight
-rarity=C
-type=Creature
-mana={G}{W}
-power=2
-subtype=Elf Knight
-toughness=2
-[/card]
-[card]
-text={T}: Llanowar Vanguard gets +0/+4 until end of turn.
-id=23123
-name=Llanowar Vanguard
-rarity=C
-type=Creature
-mana={2}{G}
-power=1
-subtype=Dryad
 toughness=1
 [/card]
 [card]
@@ -1188,17 +750,7 @@ rarity=U
 type=Sorcery
 mana={2}{U}{B}
 [/card]
-[card]
-text=Flying     {T}: Add one mana of any color to your mana pool.
-id=23233
-name=Lotus Guardian
-rarity=R
-type=Artifact Creature
-mana={7}
-power=4
-subtype=Dragon
-toughness=4
-[/card]
+
 [card]
 text=You and target spell's controller bid life. You start the bidding with a bid of 1. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid. If you win the bidding, counter that spell.
 id=23102
@@ -1245,17 +797,7 @@ power=1
 subtype=Metathran
 toughness=3
 [/card]
-[card]
-text={B}: Regenerate Metathran Zombie.
-id=22973
-name=Metathran Zombie
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Metathran Zombie
-toughness=1
-[/card]
+
 [card]
 text={2}{R}{G}, Discard two cards at random: Meteor Storm deals 4 damage to target creature or player.
 id=23193
@@ -1263,60 +805,6 @@ name=Meteor Storm
 rarity=R
 type=Enchantment
 mana={R}{G}
-[/card]
-[card]
-text={2}: Target red or white creature gains trample until end of turn. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-id=23124
-name=Might Weaver
-rarity=U
-type=Creature
-mana={1}{G}
-power=2
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
-id=23138
-name=Molimo, Maro-Sorcerer
-rarity=R
-type=Legendary Creature
-mana={4}{G}{G}{G}
-power=*
-subtype=Elemental
-toughness=*
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=26309
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=26308
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=25966
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=26307
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
 [/card]
 [card]
 text=Enchant creature     Enchanted creature gets -2/-0.     {B}: Return Mourning to its owner's hand.
@@ -1328,39 +816,7 @@ mana={1}{B}
 subtype=Aura
 [/card]
 
-[card]
-text={U}{U}, {T}: Return target creature to its owner's hand.     {R}{R}, {T}: Nightscape Master deals 2 damage to target creature.
-id=23049
-name=Nightscape Master
-rarity=R
-type=Creature
-mana={2}{B}{B}
-power=2
-subtype=Zombie Wizard
-toughness=2
-[/card]
-[card]
-text={1}: Noble Panther gains first strike until end of turn.
-id=23147
-name=Noble Panther
-rarity=R
-type=Creature
-mana={1}{G}{W}
-power=3
-subtype=Cat
-toughness=3
-[/card]
-[card]
-text={1}{G}: Add one mana of any color to your mana pool.
-id=23111
-name=Nomadic Elf
-rarity=C
-type=Creature
-mana={1}{G}
-power=2
-subtype=Elf Nomad
-toughness=2
-[/card]
+
 [card]
 text=Obliterate can't be countered. Destroy all artifacts, creatures, and lands. They can't be regenerated.
 id=23098
@@ -1370,17 +826,6 @@ type=Sorcery
 mana={6}{R}{R}
 [/card]
 [card]
-text=Protection from black     {W}: Target creature gains protection from black until end of turn.
-id=22935
-name=Obsidian Acolyte
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Cleric
-toughness=1
-[/card]
-[card]
 text=Look at the top card of your library. You may put that card on the bottom of your library.       Draw a card.
 id=22988
 name=Opt
@@ -1388,14 +833,7 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-[card]
-text=Domain - Put a 1/1 blue Bird creature token with flying into play for each basic land type among lands you control.
-id=23187
-name=Ordered Migration
-rarity=U
-type=Sorcery
-mana={3}{W}{U}
-[/card]
+
 [card]
 text=Kicker {1} (You may pay an additional {1} as you play this spell.)    Prevent the next 2 damage that would be dealt to target creature or player this turn. If the kicker cost was paid, prevent the next 4 damage that would be dealt to that creature or player this turn instead.
 id=22945
@@ -1445,25 +883,8 @@ type=Enchantment
 mana={U}{U}
 subtype=Aura
 [/card]
-[card]
-text=Sacrifice a creature: Add one mana of any color to your mana pool.
-id=23226
-name=Phyrexian Altar
-rarity=R
-type=Artifact
-mana={3}
-[/card]
-[card]
-text=Flying     {B}: Phyrexian Battleflies gets +1/+0 until end of turn. Play this ability no more than twice each turn.
-id=23023
-name=Phyrexian Battleflies
-rarity=C
-type=Creature
-mana={B}
-power=0
-subtype=Insect
-toughness=1
-[/card]
+
+
 [card]
 text=When Phyrexian Delver comes into play, return target creature card from your graveyard to play. You lose life equal to that card's converted mana cost.
 id=23022
@@ -1519,17 +940,7 @@ power=2
 subtype=Spider
 toughness=3
 [/card]
-[card]
-text=At the beginning of your upkeep, Plague Spitter deals 1 damage to each creature and each player.       When Plague Spitter is put into a graveyard from play, Plague Spitter deals 1 damage to each creature and each player.
-id=23021
-name=Plague Spitter
-rarity=U
-type=Creature
-mana={2}{B}
-power=2
-subtype=Horror
-toughness=2
-[/card]
+
 [card]
 text=Destroy target nonblack creature and target land. They can't be regenerated.
 id=23153
@@ -1538,48 +949,8 @@ rarity=C
 type=Sorcery
 mana={4}{B}{R}
 [/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=26298
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=26299
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=25963
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=26300
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
 
-[card]
-text=Enchant creature     Enchanted creature has protection from the colors of permanents you control. This effect doesn't remove Pledge of Loyalty.
-id=22958
-name=Pledge of Loyalty
-rarity=U
-type=Enchantment
-mana={1}{W}
-subtype=Aura
-[/card]
+
 [card]
 text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.)    First strike       If the kicker cost was paid, Pouncing Kavu comes into play with two +1/+1 counters on it and with haste.
 id=23064
@@ -1702,28 +1073,8 @@ power=1
 subtype=Elf Scout
 toughness=2
 [/card]
-[card]
-text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
-id=23081
-name=Rage Weaver
-rarity=U
-type=Creature
-mana={1}{R}
-power=2
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text=Flash     Haste
-id=23148
-name=Raging Kavu
-rarity=R
-type=Creature
-mana={1}{R}{G}
-power=3
-subtype=Kavu
-toughness=1
-[/card]
+
+
 [card]
 text=Flying       {1}: Rainbow Crow becomes the color of your choice until end of turn.
 id=22994
@@ -1757,25 +1108,8 @@ power=1
 subtype=Rat
 toughness=1
 [/card]
-[card]
-text=Flying, first strike
-id=22933
-name=Razorfoot Griffin
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Griffin
-toughness=2
-[/card]
-[card]
-text={1}, Pay 2 life: Reckless Assault deals 1 damage to target creature or player.
-id=23191
-name=Reckless Assault
-rarity=R
-type=Enchantment
-mana={2}{B}{R}
-[/card]
+
+
 [card]
 text=Destroy two target nonblack creatures. You lose 5 life.
 id=23045
@@ -1792,22 +1126,8 @@ rarity=C
 type=Instant
 mana={1}{U}{B}
 [/card]
-[card]
-text=Return target creature card from your graveyard to your hand.     Draw a card.
-id=23029
-name=Recover
-rarity=C
-type=Sorcery
-mana={2}{B}
-[/card]
-[card]
-text=Return target creature to its owner's hand.       Draw a card.
-id=22985
-name=Repulse
-rarity=C
-type=Instant
-mana={2}{U}
-[/card]
+
+
 [card]
 text=Return two target cards from your graveyard to your hand. Remove Restock from the game.
 id=23145
@@ -1824,14 +1144,7 @@ rarity=C
 type=Instant
 mana={2}{W}
 [/card]
-[card]
-text=You gain 3 life.     Draw a card.
-id=22941
-name=Reviving Dose
-rarity=C
-type=Instant
-mana={2}{W}
-[/card]
+
 [card]
 text=Reveal the top three cards of your library and put one of them into your hand. You gain life equal to that card's converted mana cost. Put all other cards revealed this way into your graveyard.
 id=23196
@@ -1848,29 +1161,8 @@ rarity=U
 type=Enchantment
 mana={2}{W}
 [/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard to play.
-id=22965
-name=Reya Dawnbringer
-abilities=Legendary,flying
-rarity=R
-type=Creature
-mana={6}{W}{W}{W}
-power=4
-subtype=Angel
-toughness=6
-[/card]
-[card]
-text=Vigilance     When Riptide Crab is put into a graveyard from play, draw a card.
-id=23150
-name=Riptide Crab
-rarity=U
-type=Creature
-mana={1}{W}{U}
-power=1
-subtype=Crab
-toughness=3
-[/card]
+
+
 [card]
 text=Flying     Whenever Rith, the Awakener deals combat damage to a player, you may pay {2}{G}. If you do, choose a color. Put a 1/1 green Saproling creature token into play for each permanent of that color.
 id=23209
@@ -1881,17 +1173,6 @@ mana={3}{R}{G}{W}
 power=6
 subtype=Dragon
 toughness=6
-[/card]
-[card]
-text={1}, Sacrifice Rith's Attendant: Add {R}{G}{W} to your mana pool.
-id=25839
-name=Rith's Attendant
-rarity=U
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Golem
-toughness=3
 [/card]
 [card]
 text=Whenever Rogue Kavu attacks alone, it gets +2/+0 until end of turn.
@@ -1944,24 +1225,6 @@ mana={5}{W}
 power=5
 subtype=Djinn
 toughness=5
-[/card]
-[card]
-text=Trample, protection from blue and from red
-id=23205
-name=Sabertooth Nishoba
-rarity=R
-type=Creature
-mana={4}{G}{W}
-power=5
-subtype=Cat Beast Warrior
-toughness=5
-[/card]
-[card]
-text=Salt Marsh comes into play tapped. {T}: Add {U} or {B} to your mana pool.
-id=23241
-name=Salt Marsh
-rarity=U
-type=Land
 [/card]
 [card]
 text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.     {T}: Samite Archer deals 1 damage to target creature or player.
@@ -2029,15 +1292,6 @@ subtype=Cat
 toughness=1
 [/card]
 [card]
-text=Enchant creature     When Scavenged Weaponry comes into play, draw a card.     Enchanted creature gets +1/+1.
-id=23028
-name=Scavenged Weaponry
-rarity=C
-type=Enchantment
-mana={2}{B}
-subtype=Aura
-[/card]
-[card]
 text=Kicker {R} (You may pay an additional {R} as you play this spell.)    Scorching Lava deals 2 damage to target creature or player. If the kicker cost was paid, that creature can't be regenerated this turn and if it would be put into a graveyard this turn, remove it from the game instead.
 id=23077
 name=Scorching Lava
@@ -2062,31 +1316,12 @@ type=Sorcery
 mana={2}{R}
 [/card]
 [card]
-text={T}: Add {W} or {U} to your mana pool.
-id=23217
-name=Seashell Cameo
-rarity=U
-type=Artifact
-mana={3}
-[/card]
-[card]
 text=Your opponents play with their hands revealed.     Sacrifice Seer's Vision: Look at target player's hand and choose a card from it. That player discards that card. Play this ability only any time you could play a sorcery.
 id=23178
 name=Seer's Vision
 rarity=U
 type=Enchantment
 mana={2}{U}{B}
-[/card]
-[card]
-text={R}: Serpentine Kavu gains haste until end of turn.
-id=23105
-name=Serpentine Kavu
-rarity=C
-type=Creature
-mana={4}{G}
-power=4
-subtype=Kavu
-toughness=4
 [/card]
 [card]
 text=Enchant creature     Enchanted creature doesn't untap during its controller's untap step.     {W}: Return Shackles to its owner's hand.
@@ -2117,32 +1352,8 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
-[card]
-text={1}{R}, Sacrifice a creature: Destroy target nonbasic land.
-id=23091
-name=Shivan Harvest
-rarity=U
-type=Enchantment
-mana={1}{R}
-[/card]
-[card]
-text=Shivan Oasis comes into play tapped. {T}: Add {R} or {G} to your mana pool.
-id=23243
-name=Shivan Oasis
-rarity=U
-type=Land
-[/card]
-[card]
-text=Protection from white
-id=23160
-name=Shivan Zombie
-rarity=C
-type=Creature
-mana={B}{R}
-power=2
-subtype=Barbarian Zombie
-toughness=2
-[/card]
+
+
 [card]
 text=Protection from Kavu
 id=22978
@@ -2154,25 +1365,7 @@ power=2
 subtype=Merfolk
 toughness=2
 [/card]
-[card]
-text=Simoon deals 1 damage to each creature target opponent controls.
-id=23175
-name=Simoon
-rarity=U
-type=Instant
-mana={R}{G}
-[/card]
-[card]
-text=Skittish Kavu gets +1/+1 as long as no opponent controls a white or blue creature.
-id=23080
-name=Skittish Kavu
-rarity=U
-type=Creature
-mana={1}{R}
-power=1
-subtype=Kavu
-toughness=1
-[/card]
+
 [card]
 text=Kicker {R} (You may pay an additional {R} as you play this spell.)  Trample, haste     At end of turn, sacrifice Skizzik unless the kicker cost was paid.
 id=23096
@@ -2184,17 +1377,7 @@ power=5
 subtype=Elemental
 toughness=3
 [/card]
-[card]
-text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
-id=22996
-name=Sky Weaver
-rarity=U
-type=Creature
-mana={1}{U}
-power=2
-subtype=Metathran Wizard
-toughness=1
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature has fear.     Whenever enchanted creature deals combat damage to an opponent, you may draw a card.
 id=23168
@@ -2215,17 +1398,7 @@ power=2
 subtype=Kavu
 toughness=2
 [/card]
-[card]
-text=Forestwalk
-id=23149
-name=Slinking Serpent
-rarity=U
-type=Creature
-mana={2}{U}{B}
-power=2
-subtype=Serpent
-toughness=3
-[/card]
+
 [card]
 text=At the beginning of your upkeep, target player loses 1 life.       Sacrifice Smoldering Tar: Smoldering Tar deals 4 damage to target creature. Play this ability only any time you could play a sorcery.
 id=23179
@@ -2258,17 +1431,7 @@ rarity=R
 type=Enchantment
 mana={2}{W}
 [/card]
-[card]
-text={2}: Target green or blue creature gets +0/+1 until end of turn.
-id=22950
-name=Spirit Weaver
-rarity=U
-type=Creature
-mana={1}{W}
-power=2
-subtype=Human Wizard
-toughness=1
-[/card]
+
 [card]
 text=Counter target noncreature spell.     //     Destroy target nonblack creature. It can't be regenerated.
 id=20576
@@ -2292,17 +1455,6 @@ name=Spreading Plague
 rarity=R
 type=Enchantment
 mana={4}{B}
-[/card]
-[card]
-text={3}{U}, {T}: Tap target creature.     {3}{B}, {T}: Destroy target tapped creature.
-id=25752
-name=Stalking Assassin
-rarity=R
-type=Creature
-mana={1}{U}{B}
-power=1
-subtype=Human Assassin
-toughness=1
 [/card]
 [card]
 text=Prevent the next 2 damage that would be dealt to target creature this turn.     //     Return target permanent to its owner's hand.
@@ -2369,56 +1521,7 @@ power=6
 subtype=Djinn
 toughness=6
 [/card]
-[card]
-text=Sulfur Vent comes into play tapped.       {T}: Add {B} to your mana pool.       {T}, Sacrifice Sulfur Vent: Add {U}{R} to your mana pool.
-id=23237
-name=Sulfur Vent
-rarity=C
-type=Land
-[/card]
-[card]
-text={G}{G}, {T}: Creatures you control get +2/+2 until end of turn.     {U}{U}, {T}: Return target creature to its owner's hand.
-id=22961
-name=Sunscape Master
-rarity=R
-type=Creature
-mana={2}{W}{W}
-power=2
-subtype=Human Wizard
-toughness=2
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=26305
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=26306
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=26304
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=25965
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
+
 [card]
 text=Any number of target creatures become the color of your choice until end of turn.       Draw a card.
 id=22999
@@ -2444,22 +1547,8 @@ rarity=U
 type=Instant
 mana={1}{G}
 [/card]
-[card]
-text=Whenever a land comes into play, tap all lands its controller controls.
-id=23100
-name=Tectonic Instability
-rarity=R
-type=Enchantment
-mana={2}{R}
-[/card]
-[card]
-text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
-id=22959
-name=Teferi's Care
-rarity=U
-type=Enchantment
-mana={2}{W}
-[/card]
+
+
 [card]
 text=As Teferi's Moat comes into play, choose a color.     Creatures of the chosen color without flying can't attack you.
 id=23167
@@ -2496,28 +1585,8 @@ power=4
 subtype=Elemental
 toughness=4
 [/card]
-[card]
-text={W}, {T}: Tap target creature.     {R}, {T}: Target creature gains first strike until end of turn.
-id=23104
-name=Thornscape Apprentice
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text={R}{R}, {T}: Thornscape Master deals 2 damage to target creature.     {W}{W}, {T}: Target creature gains protection from the color of your choice until end of turn.
-id=23136
-name=Thornscape Master
-rarity=R
-type=Creature
-mana={2}{G}{G}
-power=2
-subtype=Human Wizard
-toughness=2
-[/card]
+
+
 [card]
 text={B}, {T}: Target player loses 1 life.     {G}, {T}: Target creature gets +1/+1 until end of turn.
 id=23060
@@ -2551,21 +1620,8 @@ power=1
 subtype=Merfolk Wizard
 toughness=1
 [/card]
-[card]
-text={T}: Add {G} or {W} to your mana pool.
-id=23221
-name=Tigereye Cameo
-rarity=U
-type=Artifact
-mana={3}
-[/card]
-[card]
-text=Tinder Farm comes into play tapped.       {T}: Add {G} to your mana pool.       {T}, Sacrifice Tinder Farm: Add {R}{W} to your mana pool.
-id=23239
-name=Tinder Farm
-rarity=C
-type=Land
-[/card]
+
+
 [card]
 text=Kicker {1}{W} (You may pay an additional {1}{W} as you play this spell.)    Flying       When Tolarian Emissary comes into play, if the kicker cost was paid, destroy target enchantment.
 id=22991
@@ -2577,17 +1633,7 @@ power=1
 subtype=Human Wizard
 toughness=2
 [/card]
-[card]
-text=Flying     {W}: Tower Drake gets +0/+1 until end of turn.
-id=22974
-name=Tower Drake
-rarity=C
-type=Creature
-mana={2}{U}
-power=2
-subtype=Drake
-toughness=1
-[/card]
+
 [card]
 text=Enchant creature     As Traveler's Cloak comes into play, choose a land type.     Enchanted creature has landwalk of the chosen type.     When Traveler's Cloak comes into play, draw a card.
 id=22987
@@ -2608,17 +1654,7 @@ power=2
 subtype=Treefolk Cleric
 toughness=3
 [/card]
-[card]
-text={2}{R}, {T}: Destroy target nonbasic land.
-id=23039
-name=Trench Wurm
-rarity=U
-type=Creature
-mana={3}{B}
-power=3
-subtype=Wurm
-toughness=3
-[/card]
+
 [card]
 text=Flying     Whenever Treva, the Renewer deals combat damage to a player, you may pay {2}{W}. If you do, choose a color. You gain 1 life for each permanent of that color.
 id=23210
@@ -2630,33 +1666,8 @@ power=6
 subtype=Dragon
 toughness=6
 [/card]
-[card]
-text={1}, Sacrifice Treva's Attendant: Add {G}{W}{U} to your mana pool.
-id=25840
-name=Treva's Attendant
-rarity=U
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Golem
-toughness=3
-[/card]
-[card]
-text=Domain - Tribal Flames deals X damage to target creature or player, where X is the number of basic land types among lands you control.
-id=23076
-name=Tribal Flames
-rarity=C
-type=Sorcery
-mana={1}{R}
-[/card]
-[card]
-text={T}: Add {R} or {G} to your mana pool.
-id=23220
-name=Troll-Horn Cameo
-rarity=U
-type=Artifact
-mana={3}
-[/card]
+
+
 [card]
 text=First strike, protection from legendary creatures     {B}{B}, {T}: Destroy target legendary creature. It can't be regenerated.
 id=23321
@@ -2719,17 +1730,7 @@ rarity=R
 type=Instant
 mana={U}{U}{B}
 [/card]
-[card]
-text=Flying     Urborg Drake attacks each turn if able.
-id=25975
-name=Urborg Drake
-rarity=U
-type=Creature
-mana={1}{U}{B}
-power=2
-subtype=Drake
-toughness=3
-[/card]
+
 [card]
 text=Kicker {1}{U} (You may pay an additional {1}{U} as you play this spell.)  When Urborg Emissary comes into play, if the kicker cost was paid, return target permanent to its owner's hand.
 id=23038
@@ -2752,17 +1753,7 @@ power=3
 subtype=Spirit Minion
 toughness=1
 [/card]
-[card]
-text=Other black creatures get -1/-1.
-id=23035
-name=Urborg Shambler
-rarity=U
-type=Creature
-mana={2}{B}{B}
-power=4
-subtype=Horror
-toughness=3
-[/card]
+
 [card]
 text=Kicker {3} (You may pay an additional {3} as you play this spell.)    {B}: Regenerate Urborg Skeleton.       If the kicker cost was paid, Urborg Skeleton comes into play with a +1/+1 counter on it.
 id=23020
@@ -2774,13 +1765,7 @@ power=0
 subtype=Skeleton
 toughness=1
 [/card]
-[card]
-text=Urborg Volcano comes into play tapped. {T}: Add {B} or {R} to your mana pool.
-id=23242
-name=Urborg Volcano
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=Multicolored spells cost up to {2} less to play.
 id=23227
@@ -2796,17 +1781,6 @@ name=Urza's Rage
 rarity=R
 type=Instant
 mana={2}{R}
-[/card]
-[card]
-text={T}: Add one mana of any color to your mana pool.
-id=12605
-name=Utopia Tree
-rarity=R
-type=Creature
-mana={1}{G}
-power=0
-subtype=Plant
-toughness=2
 [/card]
 [card]
 text=Kicker {X} (You may pay an additional {X} as you play this spell.)  Other Treefolk creatures and Saproling creatures get +1/+1.     When Verdeloth the Ancient comes into play, if the kicker cost was paid, put X 1/1 green Saproling creature tokens into play.
@@ -2829,17 +1803,6 @@ mana={2}{G}
 power=2
 subtype=Human Wizard
 toughness=3
-[/card]
-[card]
-text={G}: Viashino Grappler gains trample until end of turn.
-id=22930
-name=Viashino Grappler
-rarity=C
-type=Creature
-mana={2}{R}
-power=3
-subtype=Viashino
-toughness=1
 [/card]
 [card]
 text=Whenever Vicious Kavu attacks, it gets +2/+0 until end of turn.
@@ -2901,17 +1864,7 @@ power=2
 subtype=Serpent
 toughness=2
 [/card]
-[card]
-text=Protection from green
-id=23159
-name=Vodalian Zombie
-rarity=C
-type=Creature
-mana={U}{B}
-power=2
-subtype=Merfolk Zombie
-toughness=2
-[/card]
+
 [card]
 text=Choose a number. Destroy all artifacts and creatures with converted mana cost equal to that number. Then target player reveals his or her hand and discards all nonland cards with converted mana cost equal to the number.
 id=23200
@@ -2931,22 +1884,7 @@ power=2
 subtype=Snake
 toughness=2
 [/card]
-[card]
-text=Destroy target blue or black creature with flying.
-id=23130
-name=Wallop
-rarity=U
-type=Sorcery
-mana={1}{G}
-[/card]
-[card]
-text=Domain - You gain 2 life for each basic land type among lands you control.
-id=23119
-name=Wandering Stream
-rarity=C
-type=Sorcery
-mana={2}{G}
-[/card]
+
 [card]
 text=Return all permanents of the color of your choice to their owners' hands.
 id=25320
@@ -2988,15 +1926,7 @@ type=Enchantment
 mana={G}
 subtype=Aura
 [/card]
-[card]
-text=Enchant creature     Enchanted creature gets +1/+3 and has flying.
-id=24118
-name=Wings of Hope
-rarity=C
-type=Enchantment
-mana={W}{U}
-subtype=Aura
-[/card]
+
 [card]
 text=Destroy target nonland permanent if another permanent with the same name is in play.       Draw a card.
 id=22966
@@ -3012,28 +1942,6 @@ name=Worldly Counsel
 rarity=C
 type=Instant
 mana={1}{U}
-[/card]
-[card]
-text=Protection from blue
-id=23161
-name=Yavimaya Barbarian
-rarity=C
-type=Creature
-mana={R}{G}
-power=2
-subtype=Elf Barbarian
-toughness=2
-[/card]
-[card]
-text=Yavimaya Kavu's power is equal to the number of red creatures in play.     Yavimaya Kavu's toughness is equal to the number of green creatures in play.
-id=23174
-name=Yavimaya Kavu
-rarity=U
-type=Creature
-mana={2}{R}{G}
-power=*
-subtype=Kavu
-toughness=*
 [/card]
 [card]
 text=You can't play more than one spell each turn.     You may play cards in your graveyard.     If a card would be put into your graveyard from anywhere, remove it from the game instead.
@@ -3053,12 +1961,4 @@ mana={5}{U}
 power=5
 subtype=Djinn
 toughness=6
-[/card]
-[card]
-text=Zap deals 1 damage to target creature or player.       Draw a card.
-id=23075
-name=Zap
-rarity=C
-type=Instant
-mana={2}{R}
 [/card]

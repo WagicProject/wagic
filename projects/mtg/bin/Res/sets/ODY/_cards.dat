@@ -112,6 +112,18 @@ subtype=Bird Soldier
 toughness=2
 [/card]
 [card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Aven Fisher is put into a graveyard from play, you may draw a card.
+auto=@movedTo(this|graveyard]:may draw:1
+id=31815
+name=Aven Fisher
+rarity=C
+type=Creature
+mana={3}{U}
+power=2
+subtype=Bird Soldier
+toughness=2
+[/card]
+[card]
 text=Flying. {W}: Aven Flock gets +0/+1 until end of turn. 
 id=31767
 name=Aven Flock

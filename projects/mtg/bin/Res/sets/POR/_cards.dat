@@ -110,6 +110,16 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
+text=Blaze deals X damage to target creature or player.
+target=creature,player
+alias=1291
+id=4329
+name=Blaze
+rarity=U
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
 text=You gain 3 life for each creature attacking you.
 auto=foreach(creature[attacking]|opponentinplay) life:3
 id=4375
