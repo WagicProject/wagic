@@ -125,6 +125,7 @@ plague_rats.txt
 protomatter_powder.txt
 pygmy_troll.txt
 pyroclasm.txt
+rampant_growth.txt
 recover.txt
 resurrection.txt
 righteous_cause.txt

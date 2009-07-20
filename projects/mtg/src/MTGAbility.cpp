@@ -210,11 +210,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found != string::npos){
     string s1 = s.substr(0,found);
     string s2 = s.substr(found+2);
-    MultiAbility * multi = NEW MultiAbility(id, card,NULL,NULL);
+    MultiAbility * multi = NEW MultiAbility(id, card,target,NULL,NULL);
     MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
     MTGAbility * a2 = parseMagicLine(s2,id,spell, card);
     multi->Add(a1);
     multi->Add(a2);
+    multi->oneShot=1;
     return multi;
   }
 

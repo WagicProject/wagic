@@ -1131,7 +1131,7 @@ mana={1}{G}
 type=Sorcery
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 target=basic|myLibrary
-auto=moveTo(myBattlefield)
+auto=moveTo(myBattlefield) && tap
 rarity=C
 [/card]
 [card]

@@ -561,7 +561,7 @@ mana={WB}{WB}{WB}
 [/card]
 [card]
 text={T}: Target red or green creature gets -2/-0 until end of turn.
-auto={T}:-2/0 target(creature[red])
+auto={T}:-2/0 target(creature[red;green])
 id=153476
 name=Wilderness Hypnotist
 rarity=C

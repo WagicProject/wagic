@@ -1,0 +1,20 @@
+#Bug:rampant growth does not tap target
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+library:island
+hand:rampant growth
+manapool:{1}{G}
+[PLAYER2]
+[DO]
+rampant growth
+island
+island
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:island
+manapool:{0}
+graveyard:rampant growth
+[PLAYER2]
+[END]

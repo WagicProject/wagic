@@ -162,7 +162,8 @@ public:
   vector<MTGAbility *> abilities;
 
 
-  MultiAbility(int _id, MTGCardInstance * card,ManaCost * _cost, int _tap):ActivatedAbility(_id, card,_cost,0,_tap){
+  MultiAbility(int _id, MTGCardInstance * card,Targetable * _target, ManaCost * _cost, int _tap):ActivatedAbility(_id, card,_cost,0,_tap){
+    if (_target) target = _target;
   }
 
 
@@ -1648,13 +1649,14 @@ class AATapper:public ActivatedAbility{
   int resolve(){
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target){
+      while (_target->next) _target=_target->next; //This is for cards such as rampant growth
       _target->tap();
     }
     return 1;
   }
 
   const char * getMenuText(){
-    return "Tap target";
+    return "Tap";
   }
 
   AATapper * clone() const{
@@ -1675,13 +1677,14 @@ class AAUntapper:public ActivatedAbility{
   int resolve(){
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target){
-      _target->tap();
+      while (_target->next) _target=_target->next; //This is for cards such as rampant growth
+      _target->untap();
     }
     return 1;
   }
 
   const char * getMenuText(){
-    return "untap target";
+    return "Untap";
   }
 
   AAUntapper * clone() const{
