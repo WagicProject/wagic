@@ -597,17 +597,6 @@ type=Instant
 mana={W}{U}
 [/card]
 [card]
-text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
-id=174873
-name=Hissing Iguanar
-rarity=C
-type=Creature
-mana={2}{R}
-power=3
-subtype=Lizard
-toughness=1
-[/card]
-[card]
 text={T}, Remove two cards in your graveyard from the game: Draw a card.     If damage would be dealt to you, prevent that damage. Remove a card in your graveyard from the game for each 1 damage prevented this way.     When there are no cards in your graveyard, you lose the game.
 id=175125
 name=Immortal Coil
@@ -615,7 +604,6 @@ rarity=R
 type=Artifact
 mana={2}{B}{B}
 [/card]
-
 [card]
 text=Count the number of cards in your library. Your life total becomes that number.
 id=175039
@@ -1055,7 +1043,6 @@ power=6
 subtype=Beast
 toughness=4
 [/card]
-
 [card]
 text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
 id=174988
@@ -1276,18 +1263,6 @@ subtype=Vedalken Wizard
 toughness=1
 [/card]
 [card]
-text=When Sprouting Thrinax is put into a graveyard from play, put three 1/1 green Saproling creature tokens into play.
-id=174863
-name=Sprouting Thrinax
-rarity=U
-type=Creature
-mana={B}{R}{G}
-power=3
-subtype=Lizard
-toughness=3
-[/card]
-
-[card]
 text=Flying, vigilance     Players can't untap more than one creature during their untap steps.
 id=175396
 name=Stoic Angel
@@ -1439,7 +1414,6 @@ power=4
 subtype=Vampire
 toughness=4
 [/card]
-
 [card]
 text=Whenever a creature is put into a graveyard from play, you may have Vicious Shadows deal damage to target player equal to the number of cards in that player's hand.
 id=175048

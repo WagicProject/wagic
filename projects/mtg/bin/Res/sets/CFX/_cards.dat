@@ -75,6 +75,19 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
+text=Trample     When Child of Alara is put into a graveyard from play, destroy all nonland permanents. They can't be regenerated.
+id=180516
+name=Child of Alara
+rarity=M
+type=Creature
+abilities=trample,legendary
+auto=@movedTo(this|graveyard):bury all(*[-land]|inplay)
+mana={W}{U}{B}{R}{G}
+power=6
+subtype=Avatar
+toughness=6
+[/card]
+[card]
 text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
 auto=aslongas(*[red]|myinplay) haste
 auto=aslongas(*[white]|myinplay) lifelink
@@ -559,6 +572,18 @@ mana={3}{G}{G}
 power=4
 subtype=Elemental Shapeshifter
 toughness=4
+[/card]
+[card]
+text=When Tukatongue Thallid is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
+auto=@movedTo(this|graveyard):token(Saproling,creature Saproling,1/1,green)
+id=184995
+name=Tukatongue Thallid
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Fungus
+toughness=1
 [/card]
 [card]
 text=Return target creature to its owner's hand.

@@ -390,6 +390,18 @@ subtype=Dragon
 toughness=8
 [/card]
 [card]
+text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
+auto=@movedTo(this|graveyard):damage:1 target(player)
+id=174873
+name=Hissing Iguanar
+rarity=C
+type=Creature
+mana={2}{R}
+power=3
+subtype=Lizard
+toughness=1
+[/card]
+[card]
 text=
 id=174806
 name=Incurable Ogre
@@ -895,6 +907,18 @@ mana={4}{B}
 power=3
 subtype=Bird Skeleton
 toughness=2
+[/card]
+[card]
+text=When Sprouting Thrinax is put into a graveyard from play, put three 1/1 green Saproling creature tokens into play.
+auto=@movedTo(this|graveyard):token(Saproling,creature saproling, 1/1,green)*3
+id=174863
+name=Sprouting Thrinax
+rarity=U
+type=Creature
+mana={B}{R}{G}
+power=3
+subtype=Lizard
+toughness=3
 [/card]
 [card]
 text=Steelclad Serpent can't attack unless you control another artifact.

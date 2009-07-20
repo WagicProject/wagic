@@ -21,18 +21,6 @@ subtype=Golem
 toughness=*
 [/card]
 [card]
-text=Flying     When Archon of Justice is put into a graveyard from play, remove target permanent from the game.
-abilities=flying
-id=146006
-name=Archon of Justice
-rarity=R
-type=Creature
-mana={3}{W}{W}
-power=4
-subtype=Archon
-toughness=4
-[/card]
-[card]
 text=Whenever Ashling, the Extinguisher deals combat damage to a player, choose target creature that player controls. He or she sacrifices that creature.
 id=151137
 name=Ashling, the Extinguisher
@@ -510,19 +498,6 @@ name=Glamerdye
 rarity=R
 type=Instant
 mana={1}{U}
-[/card]
-[card]
-text=Flying     {U}, Sacrifice Glen Elendra Archmage: Counter target noncreature spell.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=flying,persist
-id=157977
-auto={U}{S}:fizzle(*[-creature]|stack)
-name=Glen Elendra Archmage
-rarity=R
-type=Creature
-mana={3}{U}
-power=2
-subtype=Faerie Wizard
-toughness=2
 [/card]
 [card]
 text={GU}, Sacrifice Grazing Kelpie: Put target card in a graveyard on the bottom of its owner's library.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)

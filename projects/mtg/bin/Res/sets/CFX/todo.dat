@@ -111,18 +111,6 @@ subtype=Wurm
 toughness=6
 [/card]
 [card]
-text=Trample     When Child of Alara is put into a graveyard from play, destroy all nonland permanents. They can't be regenerated.
-id=180516
-name=Child of Alara
-rarity=M
-type=Legendary Creature
-mana={W}{U}{B}{R}{G}
-power=6
-subtype=Avatar
-toughness=6
-[/card]
-
-[card]
 text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
 id=179437
 name=Conflux
@@ -807,24 +795,12 @@ type=Instant
 mana={3}{U}{U}
 [/card]
 [card]
-text=When Tukatongue Thallid is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
-id=184995
-name=Tukatongue Thallid
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Fungus
-toughness=1
-[/card]
-[card]
 text={T}: Add {1} to your mana pool.     {T}: Target land you control becomes the basic land type of your choice until end of turn.
 id=189078
 name=Unstable Frontier
 rarity=U
 type=Land
 [/card]
-
 [card]
 text={1}: Regenerate target creature with power 5 or greater.
 id=180344
