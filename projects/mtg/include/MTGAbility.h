@@ -162,7 +162,8 @@ class ListMaintainerAbility:public MTGAbility{
 class TriggerAtPhase:public TriggeredAbility{
  public:
   int phaseId;
-  TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId);
+  int who;
+  TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0);
   virtual int trigger();
   int resolve(){return 0;};
   virtual TriggerAtPhase* clone() const;
@@ -171,7 +172,7 @@ class TriggerAtPhase:public TriggeredAbility{
 class TriggerNextPhase:public TriggerAtPhase{
  public:
   int destroyActivated;
-  TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId);
+  TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0);
   virtual TriggerNextPhase* clone() const;
   virtual int testDestroy();
 

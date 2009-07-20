@@ -71,24 +71,42 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
   size_t found = magicText.find("@");
   if (found == string::npos) return NULL;
 
+  found = magicText.find(":");
+  if (found == string::npos) return NULL;
+  string s = magicText.substr(0,found);
+
   //Card Changed Zone
-  found = magicText.find("movedto(");
+  found = s.find("movedto(");
   if (found != string::npos){
-    size_t end = magicText.find (")");
-    string starget = magicText.substr(found+8,end - found - 8);
+    size_t end = s.find (")");
+    string starget = s.substr(found+8,end - found - 8);
     TargetChooserFactory tcf;
     TargetChooser *toTc = tcf.createTargetChooser(starget,card);
     toTc->targetter = NULL;
-    return NEW TrCardAddedToZone(id,card,toTc);
+
+    TargetChooser *fromTc = NULL;
+    found = s.find("from(");
+    if (found != string::npos){
+      end = s.find (")", found);
+      starget = s.substr(found+5,end - found - 5);
+      if (starget.find("|") == string::npos) starget.insert(0,"*|");
+      fromTc = tcf.createTargetChooser(starget,card);
+      fromTc->targetter = NULL;
+    }
+    return NEW TrCardAddedToZone(id,card,toTc,(TargetZoneChooser *)fromTc);
   }
 
+  int who = 0;
+  if (s.find("my") != string::npos) who = 1;
+  if (s.find("opponent") != string::npos) who = -1;
+
   //Next Time...
-  found = magicText.find("next");
+  found = s.find("next");
   if (found != string::npos){
     for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
-      found = magicText.find(Constants::MTGPhaseCodeNames[i]);
+      found = s.find(Constants::MTGPhaseCodeNames[i]);
       if (found != string::npos){
-	      return NEW TriggerNextPhase(id, card,target,i);
+	      return NEW TriggerNextPhase(id, card,target,i,who);
       }
     }
   }
@@ -99,7 +117,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
       found = magicText.find(Constants::MTGPhaseCodeNames[i]);
       if (found != string::npos){
-	      return NEW TriggerAtPhase(id, card,target,i);
+	      return NEW TriggerAtPhase(id, card,target,i,who);
       }
     }
   }
@@ -2332,16 +2350,28 @@ ostream& ListMaintainerAbility::toString(ostream& out) const
 
 
 
-TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId):TriggeredAbility(id, source,target),phaseId(_phaseId){
+TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who):TriggeredAbility(id, source,target),phaseId(_phaseId),who(who){
   GameObserver * g = GameObserver::GetInstance();
   newPhase = g->getCurrentGamePhase();
   currentPhase = newPhase;
 }
 
 int TriggerAtPhase::trigger(){
+  GameObserver * g = GameObserver::GetInstance();
   int result = 0;
   if (currentPhase != newPhase && newPhase == phaseId){
-    result = 1;
+    result = 0;
+    switch(who){
+      case 1:
+        if(g->currentPlayer == source->controller()) result = 1;
+        break;
+      case -1:
+        if(g->currentPlayer != source->controller()) result = 1;
+        break;
+      default:
+        result = 1;
+        break;
+    }
   }
   return result;
 }
@@ -2352,7 +2382,7 @@ TriggerAtPhase* TriggerAtPhase::clone() const{
     return a;
 }
 
-TriggerNextPhase::TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId):TriggerAtPhase(id, source,target,_phaseId){
+TriggerNextPhase::TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId,int who):TriggerAtPhase(id, source,target,_phaseId, who){
   destroyActivated = 0;
 }
 

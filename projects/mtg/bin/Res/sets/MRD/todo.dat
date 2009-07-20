@@ -1,23 +1,4 @@
 [card]
-text={U}, Sacrifice AEther Spellbomb: Return target creature to its owner's hand. {1}, Sacrifice AEther Spellbomb: Draw a card.
-id=48113
-name=AEther Spellbomb
-rarity=C
-type=Artifact
-mana={1}
-[/card]
-[card]
-text=
-id=49045
-name=Alpha Myr
-rarity=C
-type=Artifact Creature
-mana={2}
-power=2
-subtype=Myr
-toughness=1
-[/card]
-[card]
 text=At the beginning of your precombat main phase, add {B} to your mana pool for each charge counter on Altar of Shadows. {7}, {T}: Destroy target creature. Then put a charge counter on Altar of Shadows.
 id=48156
 name=Altar of Shadows
@@ -25,21 +6,8 @@ rarity=R
 type=Artifact
 mana={7}
 [/card]
-[card]
-text=Remove target artifact or enchantment from the game.
-id=48383
-name=Altar's Light
-rarity=U
-type=Instant
-mana={2}{W}{W}
-[/card]
-[card]
-text=(Ancient Den isn't a spell.)  {T}: Add {W} to your mana pool.
-id=46063
-name=Ancient Den
-rarity=C
-type=Artifact Land
-[/card]
+
+
 
 [card]
 text={R}, Remove the top ten cards of your library from the game: Arc-Slogger deals 2 damage to target creature or player.
@@ -70,17 +38,6 @@ type=Instant
 mana={5}{U}{U}
 [/card]
 [card]
-text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
-id=46106
-name=Atog
-rarity=U
-type=Creature
-mana={1}{R}
-power=1
-subtype=Atog
-toughness=2
-[/card]
-[card]
 text={T}: Target creature gets +X/+X until end of turn, where X is Auriok Bladewarden's power.
 id=48433
 name=Auriok Bladewarden
@@ -100,17 +57,6 @@ type=Creature
 mana={1}{W}
 power=1
 subtype=Human Soldier
-toughness=1
-[/card]
-[card]
-text={W}, {T}: Tap target artifact.
-id=45963
-name=Auriok Transfixer
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Human Scout
 toughness=1
 [/card]
 [card]
@@ -171,13 +117,6 @@ type=Artifact
 mana={5}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {2}, {T}: Tap target noncreature artifact.
-id=48916
-name=Blinkmoth Well
-rarity=U
-type=Land
-[/card]
-[card]
 text=All creatures able to block target creature this turn do so.
 id=48597
 name=Bloodscent
@@ -206,17 +145,6 @@ subtype=Golem
 toughness=7
 [/card]
 [card]
-text=Sacrifice Bottle Gnomes: You gain 3 life.
-id=46017
-name=Bottle Gnomes
-rarity=U
-type=Artifact Creature
-mana={3}
-power=1
-subtype=Gnome
-toughness=3
-[/card]
-[card]
 text=Affinity for artifacts (This spell costs {1} less to play for each artifact you control.)  Flying     Broodstar's power and toughness are each equal to the number of artifacts you control.
 id=46556
 name=Broodstar
@@ -238,17 +166,7 @@ power=1
 subtype=Ouphe
 toughness=1
 [/card]
-[card]
-text=When Cathodion is put into a graveyard from play, add {3} to your mana pool.
-id=48195
-name=Cathodion
-rarity=U
-type=Artifact Creature
-mana={3}
-power=3
-subtype=Construct
-toughness=3
-[/card]
+
 [card]
 text=Chalice of the Void comes into play with X charge counters on it.     Whenever a player plays a spell with converted mana cost equal to the number of charge counters on Chalice of the Void, counter that spell.
 id=48326
@@ -268,14 +186,7 @@ power=1
 subtype=Imp
 toughness=2
 [/card]
-[card]
-text={1}, {T}, Sacrifice Chromatic Sphere: Add one mana of any color to your mana pool. Draw a card.
-id=46046
-name=Chromatic Sphere
-rarity=C
-type=Artifact
-mana={1}
-[/card]
+
 [card]
 text=Imprint - When Chrome Mox comes into play, you may remove a nonartifact, nonland card in your hand from the game. (The removed card is imprinted on this artifact.)  {T}: Add one mana of any of the imprinted card's colors to your mana pool.
 id=47446
@@ -329,17 +240,6 @@ subtype=Boar Beast
 toughness=0
 [/card]
 [card]
-text={1}{U}: Cobalt Golem gains flying until end of turn.
-id=48053
-name=Cobalt Golem
-rarity=C
-type=Artifact Creature
-mana={4}
-power=2
-subtype=Golem
-toughness=3
-[/card]
-[card]
 text=Whenever an artifact, creature, or enchantment comes into play, its controller chooses target permanent another player controls that shares a type with it. Exchange control of those permanents.
 id=49528
 name=Confusion in the Ranks
@@ -363,25 +263,6 @@ rarity=C
 type=Enchantment
 mana={1}{B}
 subtype=Aura
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=46056
-name=Copper Myr
-rarity=C
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Myr
-toughness=1
-[/card]
-[card]
-text=Destroy target artifact, enchantment, or land.
-id=49108
-name=Creeping Mold
-rarity=U
-type=Sorcery
-mana={2}{G}{G}
 [/card]
 [card]
 text={3}, {T} or {U}, {T}: Return target creature to its owner's hand unless its controller pays {1}.
@@ -417,14 +298,6 @@ mana={1}
 subtype=Equipment
 [/card]
 [card]
-text=Destroy target artifact. Then add {G}{G}{G} to your mana pool.
-id=49060
-name=Deconstruct
-rarity=C
-type=Sorcery
-mana={2}{G}
-[/card]
-[card]
 text=Destroy target artifact with converted mana cost X. It can't be regenerated. Detonate deals X damage to that artifact's controller.
 id=46110
 name=Detonate
@@ -452,15 +325,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
-text=Enchant artifact creature     You control enchanted artifact creature.
-id=48571
-name=Domineer
-rarity=U
-type=Enchantment
-mana={1}{U}{U}
-subtype=Aura
-[/card]
-[card]
 text={3}, {T}: Put a +1/+1 counter on target creature.
 id=48325
 name=Dragon Blood
@@ -476,28 +340,7 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-[card]
-text=Protection from white At the end of your turn, you lose 4 life. Whenever a creature is put into a graveyard from play, you gain 2 life.
-id=50537
-name=Dross Harvester
-rarity=R
-type=Creature
-mana={1}{B}{B}
-power=4
-subtype=Horror
-toughness=4
-[/card]
-[card]
-text=Fear
-id=48570
-name=Dross Prowler
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Zombie
-toughness=1
-[/card]
+
 [card]
 text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from play, you may untap target artifact.
 id=46434
@@ -540,17 +383,6 @@ type=Instant
 mana={R}
 [/card]
 [card]
-text={1}{G}, Sacrifice Elf Replica: Destroy target enchantment.
-id=46057
-name=Elf Replica
-rarity=C
-type=Artifact Creature
-mana={3}
-power=2
-subtype=Elf
-toughness=2
-[/card]
-[card]
 text=Equipped creature gets +1/+1 for each card in your hand.     Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=49430
 name=Empyrial Plate
@@ -567,14 +399,7 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-[card]
-text=Search your library for an artifact card, reveal it, and put it into your hand. Then shuffle your library.
-id=48568
-name=Fabricate
-rarity=U
-type=Sorcery
-mana={2}{U}
-[/card]
+
 [card]
 text=Whenever a source an opponent controls deals damage to you, if Farsight Mask is untapped, you may draw a card.
 id=46135
@@ -723,13 +548,7 @@ rarity=U
 type=Instant
 mana={3}{R}
 [/card]
-[card]
-text=(Great Furnace isn't a spell.)  {T}: Add {R} to your mana pool.
-id=46066
-name=Great Furnace
-rarity=C
-type=Artifact Land
-[/card]
+
 [card]
 text=You can't play creature spells.
 id=48178
@@ -776,25 +595,8 @@ rarity=C
 type=Instant
 mana={2}{R}
 [/card]
-[card]
-text=Enchant artifact     Enchanted artifact doesn't untap during its controller's untap step.
-id=49443
-name=Inertia Bubble
-rarity=C
-type=Enchantment
-mana={1}{U}
-subtype=Aura
-[/card]
-[card]
-text=Target creature gets -1/-1 until end of turn for each artifact you control.
-id=48585
-target=creature
-auto=foreach(artifact|myinplay) -1/-1
-name=Irradiate
-rarity=C
-type=Instant
-mana={3}{B}
-[/card]
+
+
 [card]
 text=Imprint - When Isochron Scepter comes into play, you may remove an instant card with converted mana cost 2 or less in your hand from the game. (The removed card is imprinted on this artifact.)  {2}, {T}: You may copy the imprinted instant card. If you do, you may play the copy without paying its mana cost.
 id=46741
@@ -819,28 +621,8 @@ rarity=C
 type=Sorcery
 mana={2}{G}
 [/card]
-[card]
-text=Sacrifice an artifact: Krark-Clan Grunt gets +1/+0 and gains first strike until end of turn.
-id=45992
-name=Krark-Clan Grunt
-rarity=C
-type=Creature
-mana={2}{R}
-power=2
-subtype=Goblin Warrior
-toughness=2
-[/card]
-[card]
-text=Sacrifice an artifact: Krark-Clan Shaman deals 1 damage to each creature without flying.
-id=45994
-name=Krark-Clan Shaman
-rarity=C
-type=Creature
-mana={R}
-power=1
-subtype=Goblin Shaman
-toughness=1
-[/card]
+
+
 [card]
 text=If you would flip a coin, instead flip two coins and ignore one.
 id=48923
@@ -849,14 +631,7 @@ rarity=R
 type=Legendary Artifact
 mana={2}
 [/card]
-[card]
-text=Flash     {2}, Sacrifice Leonin Bladetrap: Leonin Bladetrap deals 2 damage to each attacking creature without flying.
-id=48378
-name=Leonin Bladetrap
-rarity=U
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=As long as Leonin Den-Guard is equipped, it gets +1/+1 and has vigilance.
 id=45958
@@ -868,17 +643,7 @@ power=1
 subtype=Cat Soldier
 toughness=3
 [/card]
-[card]
-text=Whenever an artifact comes into play, you may gain 1 life.
-id=46072
-name=Leonin Elder
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Cat Cleric
-toughness=1
-[/card]
+
 [card]
 text=Equipped creature gets +1/+1.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 id=46029
@@ -888,14 +653,7 @@ type=Artifact
 mana={1}
 subtype=Equipment
 [/card]
-[card]
-text={1}{W}: Creatures you control get +1/+1 until end of turn.
-id=49768
-name=Leonin Sun Standard
-rarity=R
-type=Artifact
-mana={2}
-[/card]
+
 [card]
 text={2}, {T}: Name a card. Target opponent guesses whether a card with that name is in your hand. You may reveal your hand. If you do and your opponent guessed wrong, draw a card.
 id=46733
@@ -951,17 +709,7 @@ power=2
 subtype=Myr
 toughness=2
 [/card]
-[card]
-text={W}, {T}: Regenerate target artifact.
-id=46071
-name=Loxodon Mender
-rarity=C
-type=Creature
-mana={5}{W}
-power=3
-subtype=Elephant Cleric
-toughness=3
-[/card]
+
 [card]
 text=At the beginning of your upkeep, the player with the lowest life total gains control of Loxodon Peacekeeper. If two or more players are tied for lowest life total, you choose one of them, and that player gains control of Loxodon Peacekeeper.
 id=48180
@@ -1004,50 +752,8 @@ power=2
 subtype=Vedalken Wizard
 toughness=2
 [/card]
-[card]
-text=Flying     Whenever an artifact comes into play under your control, you may tap target permanent.
-id=45972
-name=Lumengrid Sentinel
-rarity=U
-type=Creature
-mana={2}{U}
-power=1
-subtype=Human Wizard
-toughness=2
-[/card]
-[card]
-text=
-id=48438
-name=Lumengrid Warden
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Human Wizard
-toughness=3
-[/card]
-[card]
-text=Flying At the beginning of your upkeep, you may put a 1/1 white Spirit creature token with flying into play.
-id=46546
-name=Luminous Angel
-rarity=R
-type=Creature
-mana={4}{W}{W}{W}
-power=4
-subtype=Angel
-toughness=4
-[/card]
-[card]
-text={1}{G}: Malachite Golem gains trample until end of turn.
-id=48056
-name=Malachite Golem
-rarity=C
-type=Artifact Creature
-mana={6}
-power=5
-subtype=Golem
-toughness=3
-[/card]
+
+
 [card]
 text=Each noncreature artifact is an artifact creature with power and toughness each equal to its converted mana cost. (Equipment that's a creature can't equip a creature.)
 id=46699
@@ -1065,17 +771,7 @@ type=Artifact
 mana={2}
 subtype=Equipment
 [/card]
-[card]
-text=Sacrifice an artifact: Megatog gets +3/+3 and gains trample until end of turn.
-id=46579
-name=Megatog
-rarity=R
-type=Creature
-mana={4}{R}{R}
-power=3
-subtype=Atog
-toughness=4
-[/card]
+
 [card]
 text=Whenever a permanent becomes untapped, that permanent's controller puts the top card of his or her library into his or her graveyard.
 id=30008
@@ -1138,49 +834,8 @@ rarity=C
 type=Sorcery
 mana={1}{R}{R}
 [/card]
-[card]
-text=When Moriok Scavenger comes into play, you may return target artifact creature card from your graveyard to your hand.
-id=45965
-name=Moriok Scavenger
-rarity=C
-type=Creature
-mana={3}{B}
-power=2
-subtype=Human Rogue
-toughness=3
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=48420
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=48418
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=48417
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=48419
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
+
+
 [card]
 text=Imprint - When Mourner's Shield comes into play, you may remove target card in a graveyard from the game. (The removed card is imprinted on this artifact.)  {2}, {T}: Prevent all damage that would be dealt this turn by a source of your choice that shares a color with the imprinted card.
 id=50538
@@ -1291,17 +946,7 @@ type=Artifact
 mana={1}
 subtype=Equipment
 [/card]
-[card]
-text=Neurok Spy is unblockable as long as defending player controls an artifact.
-id=45974
-name=Neurok Spy
-rarity=C
-type=Creature
-mana={2}{U}
-power=2
-subtype=Human Rogue
-toughness=2
-[/card]
+
 [card]
 text=Equipped creature gets +1/+1 for each Swamp you control.     Equip-Pay 3 life. (Pay 3 life: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=49770
@@ -1322,17 +967,7 @@ power=4
 subtype=Zombie
 toughness=1
 [/card]
-[card]
-text={2}{B}, Sacrifice Nim Replica: Target creature gets -1/-1 until end of turn.
-id=46041
-name=Nim Replica
-rarity=C
-type=Artifact Creature
-mana={3}
-power=3
-subtype=Zombie
-toughness=1
-[/card]
+
 [card]
 text={4}, {T}: Put a fate counter on target permanent.     {5}, {T}, Sacrifice Oblivion Stone: Destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents.
 id=34901
@@ -1353,34 +988,12 @@ subtype=Ogre
 toughness=3
 [/card]
 [card]
-text=
-id=48605
-name=Omega Myr
-rarity=C
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Myr
-toughness=2
-[/card]
-[card]
 text=Choose one - Put a 5/5 green Beast creature token into play; or put five 1/1 green Insect creature tokens into play.     Entwine {G}{G}{G} (Choose both if you pay the entwine cost.)
 id=48385
 name=One Dozen Eyes
 rarity=U
 type=Sorcery
 mana={5}{G}
-[/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-id=46016
-name=Ornithopter
-rarity=U
-type=Artifact Creature
-mana={0}
-power=0
-subtype=Thopter
-toughness=2
 [/card]
 [card]
 text=Counter target spell unless its controller pays {1} for each artifact you control.
@@ -1409,49 +1022,7 @@ power=0
 subtype=Construct
 toughness=0
 [/card]
-[card]
-text={1}{B}: Regenerate Pewter Golem.
-id=48054
-name=Pewter Golem
-rarity=C
-type=Artifact Creature
-mana={5}
-power=4
-subtype=Golem
-toughness=2
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=48407
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=48406
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=48408
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=48409
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
+
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  You can't lose the game and your opponents can't win the game.
 id=48580
@@ -1470,14 +1041,6 @@ name=Power Conduit
 rarity=U
 type=Artifact
 mana={2}
-[/card]
-[card]
-text=Target creature gets +3/+3 and gains trample until end of turn.
-id=48595
-name=Predator's Strike
-rarity=C
-type=Instant
-mana={1}{G}
 [/card]
 [card]
 text=Choose one - You draw five cards and you lose 5 life; or put a black Demon creature token with flying into play with power and toughness each equal to the number of cards in your hand as the token comes into play.     Entwine {4} (Choose both if you pay the entwine cost.)
@@ -1515,14 +1078,6 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text={R}, Sacrifice Pyrite Spellbomb: Pyrite Spellbomb deals 2 damage to target creature or player.     {1}, Sacrifice Pyrite Spellbomb: Draw a card.
-id=48110
-name=Pyrite Spellbomb
-rarity=C
-type=Artifact
-mana={1}
-[/card]
-[card]
 text={U}: Quicksilver Elemental gains all activated abilities of target creature until end of turn. (If any of the abilities use that creature's name, use this creature's name instead.)  You may spend blue mana as though it were mana of any color to pay the activation costs of Quicksilver Elemental's abilities.
 id=46559
 name=Quicksilver Elemental
@@ -1542,14 +1097,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Put two 1/1 white Soldier creature tokens into play.
-id=48103
-name=Raise the Alarm
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=Target permanent you control gains protection from artifacts or from the color of your choice until end of turn.
 id=47935
 name=Razor Barrier
@@ -1557,14 +1104,7 @@ rarity=C
 type=Instant
 mana={1}{W}
 [/card]
-[card]
-text=Return target permanent to its owner's hand.
-id=49061
-name=Regress
-rarity=C
-type=Instant
-mana={2}{U}
-[/card]
+
 [card]
 text=Flying When Reiver Demon comes into play, if you played it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
 id=48427
@@ -1578,6 +1118,8 @@ toughness=6
 [/card]
 [card]
 text=Enchant artifact     Enchanted artifact has "At the beginning of your upkeep, you lose 2 life."
+target=artifact
+auto=@each my upkeep:life:-2
 id=48329
 name=Relic Bane
 rarity=U
@@ -1650,14 +1192,7 @@ rarity=U
 type=Artifact
 mana={1}
 [/card]
-[card]
-text=As Sculpting Steel comes into play, you may choose an artifact in play. If you do, Sculpting Steel comes into play as a copy of that artifact.
-id=46720
-name=Sculpting Steel
-rarity=R
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=Equipped creature gets +2/+2.     Whenever a creature dealt damage by equipped creature this turn is put into a graveyard, return that card to play under your control. Attach Scythe of the Wretched to that creature.     Equip {4}
 id=49048
@@ -1667,13 +1202,7 @@ type=Artifact
 mana={2}
 subtype=Equipment
 [/card]
-[card]
-text=(Seat of the Synod isn't a spell.)  {T}: Add {U} to your mana pool.
-id=46064
-name=Seat of the Synod
-rarity=C
-type=Artifact Land
-[/card]
+
 [card]
 text=Each player returns to play all artifact, creature, enchantment, and land cards that were put into his or her graveyard from play this turn.
 id=49009
@@ -1682,14 +1211,7 @@ rarity=R
 type=Instant
 mana={1}{W}{W}
 [/card]
-[card]
-text=Add {R}{R}{R}{R}{R} to your mana pool.
-id=34945
-name=Seething Song
-rarity=C
-type=Instant
-mana={2}{R}
-[/card]
+
 [card]
 text=Whenever Serum Tank or another artifact comes into play, put a charge counter on Serum Tank.     {3}, {T}, Remove a charge counter from Serum Tank: Draw a card.
 id=46156
@@ -1706,14 +1228,7 @@ rarity=R
 type=Enchantment
 mana={4}{U}
 [/card]
-[card]
-text=Destroy target artifact.
-id=45999
-name=Shatter
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
+
 [card]
 text=As an additional cost to play Shrapnel Blast, sacrifice an artifact. Shrapnel Blast deals 5 damage to target creature or player.
 id=49835
@@ -1722,25 +1237,8 @@ rarity=U
 type=Instant
 mana={1}{R}
 [/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=46032
-name=Silver Myr
-rarity=C
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Myr
-toughness=1
-[/card]
-[card]
-text={3}, {T} or {B}, {T}: Return target artifact creature card from your graveyard to your hand.
-id=49774
-name=Skeleton Shard
-rarity=U
-type=Artifact
-mana={3}
-[/card]
+
+
 [card]
 text=As long as Skyhunter Cub is equipped, it gets +1/+1 and has flying.
 id=48046
@@ -1752,17 +1250,7 @@ power=2
 subtype=Cat Knight
 toughness=2
 [/card]
-[card]
-text=Flying, first strike (This creature can't be blocked except by creatures with flying or reach, and it deals combat damage before creatures without first strike.)
-id=48431
-name=Skyhunter Patrol
-rarity=C
-type=Creature
-mana={2}{W}{W}
-power=2
-subtype=Cat Knight
-toughness=3
-[/card]
+
 [card]
 text=Equipped creature gets +0/+6.     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=46028
@@ -1835,17 +1323,7 @@ rarity=R
 type=Sorcery
 mana={4}{W}{W}
 [/card]
-[card]
-text={1}{W}, Sacrifice Soldier Replica: Soldier Replica deals 3 damage to target attacking or blocking creature.
-id=46025
-name=Soldier Replica
-rarity=C
-type=Artifact Creature
-mana={3}
-power=1
-subtype=Soldier
-toughness=3
-[/card]
+
 [card]
 text=When Solemn Simulacrum comes into play, you may search your library for a basic land card and put that card into play tapped. If you do, shuffle your library.     When Solemn Simulacrum is put into a graveyard from play, you may draw a card.
 id=49434
@@ -1926,17 +1404,7 @@ name=Stalking Stones
 rarity=U
 type=Land
 [/card]
-[card]
-text=Defender (This creature can't attack.)
-id=48910
-name=Steel Wall
-rarity=C
-type=Artifact Creature
-mana={1}
-power=0
-subtype=Wall
-toughness=4
-[/card]
+
 [card]
 text=Whenever you're dealt damage, put that many charge counters on Sun Droplet.     At the beginning of each upkeep, you may remove a charge counter from Sun Droplet. If you do, you gain 1 life.
 id=48931
@@ -1944,46 +1412,6 @@ name=Sun Droplet
 rarity=U
 type=Artifact
 mana={2}
-[/card]
-[card]
-text={W}, Sacrifice Sunbeam Spellbomb: You gain 5 life.     {1}, Sacrifice Sunbeam Spellbomb: Draw a card.
-id=48214
-name=Sunbeam Spellbomb
-rarity=C
-type=Artifact
-mana={1}
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=48414
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=48415
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=48416
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=48425
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
 [/card]
 [card]
 text=Equipped creature gets +5/+5.     Whenever equipped creature deals damage to a creature, remove that creature from the game.     Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
@@ -1994,14 +1422,7 @@ type=Legendary Artifact
 mana={4}
 subtype=Equipment
 [/card]
-[card]
-text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
-id=49529
-name=Sylvan Scrying
-rarity=U
-type=Sorcery
-mana={1}{G}
-[/card]
+
 [card]
 text={2}, {T}: Remove target permanent you control from the game.     {2}, Sacrifice Synod Sanctum: Return to play under your control all cards removed from the game with Synod Sanctum.
 id=46719
@@ -2021,54 +1442,7 @@ power=2
 subtype=Cat Soldier
 toughness=3
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Talisman of Dominance deals 1 damage to you.
-id=39598
-name=Talisman of Dominance
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Talisman of Impulse deals 1 damage to you.
-id=39600
-name=Talisman of Impulse
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Talisman of Indulgence deals 1 damage to you.
-id=39599
-name=Talisman of Indulgence
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {W} or {U} to your mana pool. Talisman of Progress deals 1 damage to you.
-id=39597
-name=Talisman of Progress
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Talisman of Unity deals 1 damage to you.
-id=39601
-name=Talisman of Unity
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text={1}, {T}: You gain 1 life.
-id=48913
-name=Tanglebloom
-rarity=C
-type=Artifact
-mana={1}
-[/card]
+
 [card]
 text=Whenever a player plays a creature spell, that player adds {G} to his or her mana pool.
 id=49767
@@ -2099,17 +1473,7 @@ power=2
 subtype=Elf Warrior
 toughness=1
 [/card]
-[card]
-text={1}{G}: Regenerate Tel-Jilad Exile.
-id=49436
-name=Tel-Jilad Exile
-rarity=C
-type=Creature
-mana={3}{G}
-power=2
-subtype=Troll Warrior
-toughness=3
-[/card]
+
 [card]
 text={T}: Put target permanent you own on the bottom of your library.
 id=46729
@@ -2119,14 +1483,6 @@ type=Artifact
 mana={1}
 [/card]
 [card]
-text=Destroy all enchantments.
-id=46075
-name=Tempest of Light
-rarity=U
-type=Instant
-mana={2}{W}
-[/card]
-[card]
 text=Choose one - Each player shuffles his or her hand and graveyard into his or her library; or each player draws seven cards.     Entwine {2} (Choose both if you pay the entwine cost.)
 id=49055
 name=Temporal Cascade
@@ -2134,14 +1490,7 @@ rarity=R
 type=Sorcery
 mana={5}{U}{U}
 [/card]
-[card]
-text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
-id=45988
-name=Terror
-rarity=C
-type=Instant
-mana={1}{B}
-[/card]
+
 [card]
 text=Draw three cards. Then discard two cards unless you discard an artifact card.
 id=45978
@@ -2174,17 +1523,7 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text={1}{W}: Titanium Golem gains first strike until end of turn.
-id=48052
-name=Titanium Golem
-rarity=C
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Golem
-toughness=3
-[/card]
+
 [card]
 text=Choose one - Search your library for up to two creature cards, reveal them, put them into your hand, then shuffle your library; or put up to two creature cards from your hand into play.     Entwine {2} (Choose both if you pay the entwine cost.)
 id=48122
@@ -2209,13 +1548,7 @@ rarity=R
 type=Sorcery
 mana={2}{R}
 [/card]
-[card]
-text=(Tree of Tales isn't a spell.)  {T}: Add {G} to your mana pool.
-id=46067
-name=Tree of Tales
-rarity=C
-type=Artifact Land
-[/card]
+
 [card]
 text=Triskelion comes into play with three +1/+1 counters on it.     Remove a +1/+1 counter from Triskelion: Triskelion deals 1 damage to target creature or player.
 id=46702
@@ -2227,17 +1560,7 @@ power=1
 subtype=Construct
 toughness=1
 [/card]
-[card]
-text={1}{G}: Regenerate target green creature.
-id=46117
-name=Trolls of Tel-Jilad
-rarity=U
-type=Creature
-mana={5}{G}{G}
-power=5
-subtype=Troll Shaman
-toughness=6
-[/card]
+
 [card]
 text=Destroy target Equipment. Then add {G} to your mana pool.
 id=48594
@@ -2246,35 +1569,9 @@ rarity=C
 type=Instant
 mana={G}
 [/card]
-[card]
-text=(Vault of Whispers isn't a spell.)  {T}: Add {B} to your mana pool.
-id=46065
-name=Vault of Whispers
-rarity=C
-type=Artifact Land
-[/card]
-[card]
-text=Whenever you play an artifact spell, draw a card.
-id=46557
-name=Vedalken Archmage
-rarity=R
-type=Creature
-mana={2}{U}{U}
-power=0
-subtype=Vedalken Wizard
-toughness=2
-[/card]
-[card]
-text=Whenever an artifact comes into play, Vermiculos gets +4/+4 until end of turn.
-id=47936
-name=Vermiculos
-rarity=R
-type=Creature
-mana={4}{B}
-power=1
-subtype=Horror
-toughness=1
-[/card]
+
+
+
 [card]
 text={T}: Add an amount of {G} to your mana pool equal to Viridian Joiner's power.
 id=46114
@@ -2335,17 +1632,7 @@ power=2
 subtype=Human Warrior
 toughness=2
 [/card]
-[card]
-text=Haste
-id=5585
-name=Vulshok Berserker
-rarity=C
-type=Creature
-mana={3}{R}
-power=3
-subtype=Human Berserker
-toughness=2
-[/card]
+
 [card]
 text=Equipped creature gets +4/+2 and doesn't untap during its controller's untap step.     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=48397
@@ -2385,14 +1672,7 @@ power=1
 subtype=Elemental
 toughness=1
 [/card]
-[card]
-text=Sacrifice Welding Jar: Regenerate target artifact.
-id=48328
-name=Welding Jar
-rarity=C
-type=Artifact
-mana={0}
-[/card]
+
 [card]
 text=Flying     {U}, Sacrifice Wizard Replica: Counter target spell unless its controller pays {2}.
 id=46033
@@ -2443,14 +1723,4 @@ power=2
 subtype=Elf Warrior
 toughness=2
 [/card]
-[card]
-text=Vigilance
-id=46026
-name=Yotian Soldier
-rarity=C
-type=Artifact Creature
-mana={3}
-power=1
-subtype=Soldier
-toughness=4
-[/card]
+

@@ -248,6 +248,16 @@ subtype=Spirit Avatar
 toughness=4
 [/card]
 [card]
+text=You may put a green creature card from your hand into play.
+id=154003
+target=creature[green]|myhand
+auto=moveto(myinplay)
+name=Dramatic Entrance
+rarity=R
+type=Instant
+mana={3}{G}{G}
+[/card]
+[card]
 text=Drove of Elves's power and toughness are each equal to the number of green permanents you control.     Drove of Elves can't be the target of spells or abilities your opponents control.
 id=157878
 name=Drove of Elves
@@ -281,6 +291,19 @@ name=Ember Gale
 rarity=C
 type=Sorcery
 mana={3}{R}
+[/card]
+[card]
+text=Whenever you play a black spell, Emberstrike Duo gets +1/+1 until end of turn.     Whenever you play a red spell, Emberstrike Duo gains first strike until end of turn.
+auto=@movedTo(*[red]|mystack):1/1
+auto=@movedTo(*[red]|mystack):first strike
+id=153307
+name=Emberstrike Duo
+rarity=C
+type=Creature
+mana={1}{BR}
+power=1
+subtype=Elemental Warrior Shaman
+toughness=1
 [/card]
 [card]
 text=Flying     Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
@@ -394,6 +417,19 @@ subtype=Elemental Shaman
 toughness=2
 [/card]
 [card]
+text=When Furystoke Giant comes into play, other creatures you control gain "{T}: This creature deals 2 damage to target creature or player" until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+abilities=persist
+auto=all(creature) other {T}:damage:2 target(creature,player)
+id=152069
+name=Furystoke Giant
+rarity=R
+type=Creature
+mana={3}{R}{R}
+power=3
+subtype=Giant Warrior
+toughness=3
+[/card]
+[card]
 text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
 abilities=flying
 auto=lord(creature[blue]|myinplay) 1/1 other
@@ -408,6 +444,18 @@ subtype=Faerie Knight
 toughness=3
 [/card]
 [card]
+text=Reach     Gloomwidow can't block creatures without flying.
+abilities=reach,cloud
+id=147375
+name=Gloomwidow
+rarity=U
+type=Creature
+mana={2}{G}
+power=3
+subtype=Spider
+toughness=3
+[/card]
+[card]
 text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 abilities=persist
 id=141935
@@ -418,6 +466,19 @@ mana={4}{UB}
 power=3
 subtype=Merfolk Soldier
 toughness=3
+[/card]
+[card]
+text=Whenever you play a blue spell, Gravelgill Duo gets +1/+1 until end of turn.     Whenever you play a black spell, Gravelgill Duo gains fear until end of turn.
+auto=@movedTo(*[blue]|mystack):1/1
+auto=@movedTo(*[blue]|mystack):fear
+id=153308
+name=Gravelgill Duo
+rarity=C
+type=Creature
+mana={2}{UB}
+power=2
+subtype=Merfolk Rogue Warrior
+toughness=1
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
@@ -836,6 +897,32 @@ type=Instant
 mana={1}{GW}
 [/card]
 [card]
+text=White creatures you control have "{T}: You gain 1 life."
+auto=lord(creature[white]|mybattlefield) {T}:life:1
+id=141930
+name=Resplendent Mentor
+rarity=U
+type=Creature
+mana={4}{W}
+power=2
+subtype=Kithkin Cleric
+toughness=2
+[/card]
+[card]
+text=Whenever River Kelpie or another permanent is put into play from a graveyard, draw a card.     Whenever a spell is played from a graveyard, draw a card.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+auto=@movedTo(*|graveyard) from(inPlay):draw:1
+auto=@movedTo(*|stack) from(graveyard):draw:1
+abilities=persist
+id=146094
+name=River Kelpie
+rarity=R
+type=Creature
+mana={3}{U}{U}
+power=3
+subtype=Beast
+toughness=3
+[/card]
+[card]
 text=Flying     {GW}{GW}: Rune-Cervin Rider gets +1/+1 until end of turn.
 abilities=flying
 auto={GW}{GW}:1/1
@@ -861,6 +948,19 @@ subtype=Goblin Warrior
 toughness=2
 [/card]
 [card]
+text=Whenever you play a green spell, Safehold Duo gets +1/+1 until end of turn.     Whenever you play a white spell, Safehold Duo gains vigilance until end of turn.
+auto=@movedTo(*[green]|mystack):1/1
+auto=@movedTo(*[white]|mystack):vigilance
+id=153963
+name=Safehold Duo
+rarity=C
+type=Creature
+mana={3}{GW}
+power=2
+subtype=Elf Warrior Shaman
+toughness=4
+[/card]
+[card]
 text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 abilities=persist
 id=146077
@@ -881,6 +981,29 @@ name=Safewright Quest
 rarity=C
 type=Sorcery
 mana={GW}
+[/card]
+[card]
+text=Put a -1/-1 counter on target creature.
+id=142049
+abilities=wither
+auto=damage:1
+target=creature
+name=Scar
+rarity=C
+type=Instant
+mana={BR}
+[/card]
+[card]
+text={2}{G}{W}: Target creature gets +3/+3 until end of turn. Untap that creature.
+auto={2}{G}{W}:3/3 && untap target(creature)
+id=157872
+name=Seedcradle Witch
+rarity=U
+type=Creature
+mana={GW}
+power=1
+subtype=Elf Shaman
+toughness=1
 [/card]
 [card]
 text=Trample     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
@@ -916,6 +1039,18 @@ type=Creature
 mana={1}{B}
 power=2
 subtype=Elemental Warrior
+toughness=1
+[/card]
+[card]
+text=When Somnomancer comes into play, you may tap target creature.
+auto=may tap target(creature)
+id=147399
+name=Somnomancer
+rarity=C
+type=Creature
+mana={1}{WU}
+power=2
+subtype=Kithkin Wizard
 toughness=1
 [/card]
 [card]
@@ -1010,6 +1145,18 @@ type=Creature
 mana={RG}
 power=2
 subtype=Goblin Warrior
+toughness=1
+[/card]
+[card]
+text={R}{G}: Each blocked creature gets +1/+0 and gains trample until end of turn.
+auto={R}{G}:all(creature[blocked]) 1/0 && all(creature[blocked]) trample
+id=157884
+name=Tattermunge Witch
+rarity=U
+type=Creature
+mana={1}{RG}
+power=2
+subtype=Goblin Shaman
 toughness=1
 [/card]
 [card]

@@ -1,0 +1,28 @@
+#text=At the end of your turn, you lose 4 life. Whenever a creature is put into a graveyard from play, you gain 2 life.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:swamp,plains,dross harvester,grizzly bears
+hand:terror
+[PLAYER2]
+[DO]
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+swamp
+plains
+terror
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:terror,grizzly bears
+inplay:swamp,plains,dross harvester
+life:18
+[PLAYER2]
+[END]
