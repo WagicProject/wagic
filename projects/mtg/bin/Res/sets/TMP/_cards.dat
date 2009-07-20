@@ -319,6 +319,18 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
+text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at end of turn. Play this ability only once each turn.
+auto={G}:3/0 && trample && @next end:destroy limit 1
+id=4754
+name=Crazed Armodon
+rarity=R
+type=Creature
+mana={2}{G}{G}
+power=3
+subtype=Elephant
+toughness=3
+[/card]
+[card]
 text=Enchant creature     {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
 id=4809
 name=Crown of Flames
@@ -510,6 +522,18 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text={T}: Fireslinger deals 1 damage to target creature or player and 1 damage to you.
+auto={T}:damage:1 target(creature,player) && damage:1 controller
+id=4814
+name=Fireslinger
+rarity=C
+type=Creature
+mana={1}{R}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
 text={R}: Flowstone Giant gets +2/-2 until end of turn.
 id=4816
 name=Flowstone Giant
@@ -600,6 +624,15 @@ color=White
 rarity=U
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+text={2}{W}: Creatures you control get +1/+1 until end of turn.
+auto={2}{W}:lord(creature|mybattlefield) 1/1
+id=4877
+name=Gerrard's Battle Cry
+rarity=R
+type=Enchantment
+mana={W}
 [/card]
 [card]
 text={U}: Giant Crab gains shroud until end of turn. (It can't be the target of spells or abilities.)
@@ -746,6 +779,15 @@ power=1
 toughness=4
 [/card]
 [card]
+text=Whenever an opponent plays a green spell, you draw a card.
+auto=@movedTo(*[green]|opponentstack):draw:1
+id=4705
+name=Insight
+rarity=U
+type=Enchantment
+mana={2}{U}
+[/card]
+[card]
 text={T}: Add {U} to your mana pool.
 auto={T}:add {U}
 id=4949
@@ -780,6 +822,27 @@ name=Island
 rarity=L
 type=Basic Land
 subtype=Island
+[/card]
+[card]
+text=At the beginning of your upkeep, Jinxed Idol deals 2 damage to you.       Sacrifice a creature: Target opponent gains control of Jinxed Idol. (This effect doesn't end at end of turn.)
+auto=@each my upkeep:damage:2 controller
+auto={S(creature|myinplay)}:moveTo(opponentBattlefield)
+id=4613
+name=Jinxed Idol
+rarity=R
+type=Artifact
+mana={2}
+[/card]
+[card]
+text=Kindle deals X damage to target creature or player, where X is 2 plus the number of cards named Kindle in all graveyards.
+target=creature
+auto=foreach(kindle|graveyard):damage:1
+auto=damage:2
+id=4826
+name=Kindle
+rarity=C
+type=Instant
+mana={1}{R}
 [/card]
 [card]
 text=First strike      {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
@@ -946,6 +1009,19 @@ subtype=Sliver
 toughness=2
 [/card]
 [card]
+text=Mogg Conscripts can't attack unless you've played a creature spell this turn.
+abilities=cantattack
+auto=@movedTo(creature|mystack):-cantattack
+id=4831
+name=Mogg Conscripts
+rarity=C
+type=Creature
+mana={R}
+power=2
+subtype=Goblin
+toughness=2
+[/card]
+[card]
 text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
 id=4832
 name=Mogg Fanatic
@@ -1033,6 +1109,15 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
+[/card]
+[card]
+text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
+auto=@each blockers step:foreach(creature[attacking]|opponentbattlefield):life:1
+id=4891
+name=Orim's Prayer
+rarity=U
+type=Enchantment
+mana={1}{W}{W}
 [/card]
 [card]
 text=Target player gains 8 life.
@@ -1734,6 +1819,18 @@ subtype=Thalakos Illusion
 toughness=1
 [/card]
 [card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  When Thalakos Seer leaves play, draw a card.
+auto=@movedTo(this|graveyard,exile,library,hand):draw:1
+id=4734
+name=Thalakos Seer
+rarity=C
+type=Creature
+mana={U}{U}
+power=1
+subtype=Thalakos Wizard
+toughness=1
+[/card]
+[card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow)
 id=4735
 name=Thalakos Sentry
@@ -1778,6 +1875,28 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+text=You may tap or untap target artifact, creature, or land.     Draw a card.
+id=4739
+name=Twitch
+auto=may tap target(artifact,creature,land)
+auto=draw:1
+rarity=C
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
+auto=@each upkeep:token(Saproling,Creature Saproling,1/1,green)
+id=4797
+name=Verdant Force
+rarity=R
+type=Creature
+mana={5}{G}{G}{G}
+power=7
+subtype=Elemental
+toughness=7
+[/card]
+[card]
 text=Destroy target artifact.
 id=4798
 target=artifact
@@ -1800,6 +1919,15 @@ subtype=Wall
 power=0
 toughness=5
 abilities=defender,reachshadow
+[/card]
+[card]
+text=Whenever an opponent plays a red spell, you gain 2 life.
+auto=@movedTo(*[red]|opponentstack):life:2
+id=4909
+name=Warmth
+rarity=U
+type=Enchantment
+mana={1}{W}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.       {T}, Sacrifice Wasteland: Destroy target nonbasic land.

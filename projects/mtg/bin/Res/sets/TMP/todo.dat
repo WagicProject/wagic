@@ -224,17 +224,7 @@ rarity=R
 type=Instant
 mana={2}{B}
 [/card]
-[card]
-text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at end of turn. Play this ability only once each turn.
-id=4754
-name=Crazed Armodon
-rarity=R
-type=Creature
-mana={2}{G}{G}
-power=3
-subtype=Elephant
-toughness=3
-[/card]
+
 [card]
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Cursed Scroll deals 2 damage to target creature or player.
 id=4601
@@ -523,17 +513,7 @@ rarity=R
 type=Enchantment
 mana={2}{W}{W}
 [/card]
-[card]
-text={T}: Fireslinger deals 1 damage to target creature or player and 1 damage to you.
-id=4814
-name=Fireslinger
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
+
 [card]
 text=Flying     When Flailing Drake blocks or becomes blocked by a creature, that creature gets +1/+1 until end of turn.
 id=4761
@@ -623,14 +603,7 @@ type=Enchantment
 mana={2}{U}
 subtype=Aura
 [/card]
-[card]
-text={2}{W}: Creatures you control get +1/+1 until end of turn.
-id=4877
-name=Gerrard's Battle Cry
-rarity=R
-type=Enchantment
-mana={W}
-[/card]
+
 [card]
 text={T}: Add {1} to your mana pool.     {0}: Return Ghost Town to its owner's hand. Play this ability only if it's not your turn.
 id=4932
@@ -694,14 +667,7 @@ rarity=U
 type=Instant
 mana={1}{B}
 [/card]
-[card]
-text=Whenever an opponent plays a green spell, you draw a card.
-id=4705
-name=Insight
-rarity=U
-type=Enchantment
-mana={2}{U}
-[/card]
+
 [card]
 text=Counter target activated ability from an artifact, creature, enchantment, or land. That permanent's activated abilities can't be played this turn. (Mana abilities can't be targeted.)  Draw a card.
 id=4706
@@ -745,14 +711,7 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-[card]
-text=At the beginning of your upkeep, Jinxed Idol deals 2 damage to you.       Sacrifice a creature: Target opponent gains control of Jinxed Idol. (This effect doesn't end at end of turn.)
-id=4613
-name=Jinxed Idol
-rarity=R
-type=Artifact
-mana={2}
-[/card]
+
 [card]
 text=First strike     At the beginning of your upkeep, if your opponents control no creatures, Kezzerdrix deals 4 damage to you.
 id=4667
@@ -764,14 +723,7 @@ power=4
 subtype=Rabbit Beast
 toughness=4
 [/card]
-[card]
-text=Kindle deals X damage to target creature or player, where X is 2 plus the number of cards named Kindle in all graveyards.
-id=4826
-name=Kindle
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
+
 [card]
 text={B}{B}: Destroy target creature blocking Knight of Dusk.
 id=4668
@@ -939,17 +891,7 @@ rarity=U
 type=Artifact
 mana={2}
 [/card]
-[card]
-text=Mogg Conscripts can't attack unless you've played a creature spell this turn.
-id=4831
-name=Mogg Conscripts
-rarity=C
-type=Creature
-mana={R}
-power=2
-subtype=Goblin
-toughness=2
-[/card]
+
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Mogg Hollows doesn't untap during your next untap step.
 id=4934
@@ -959,6 +901,7 @@ type=Land
 [/card]
 [card]
 text=When Mongrel Pack is put into a graveyard from play during combat, put four 1/1 green Hound creature tokens into play.
+auto=@movedTo(this|graveyard):token(Hound,Creature Hound,1/1,green)*4
 id=4771
 name=Mongrel Pack
 rarity=R
@@ -1039,14 +982,7 @@ power=1
 subtype=Human Cleric
 toughness=3
 [/card]
-[card]
-text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
-id=4891
-name=Orim's Prayer
-rarity=U
-type=Enchantment
-mana={1}{W}{W}
-[/card]
+
 [card]
 text=White spells you play cost {1} less to play.
 id=4620
@@ -1353,6 +1289,7 @@ toughness=5
 [/card]
 [card]
 text=Flying     Pay 2 life: Return Selenia, Dark Angel to its owner's hand.
+abilites=flying
 id=4916
 name=Selenia, Dark Angel
 rarity=R
@@ -1573,17 +1510,7 @@ rarity=U
 type=Land
 [/card]
 
-[card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  When Thalakos Seer leaves play, draw a card.
-id=4734
-name=Thalakos Seer
-rarity=C
-type=Creature
-mana={U}{U}
-power=1
-subtype=Thalakos Wizard
-toughness=1
-[/card]
+
 [card]
 text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
 id=4632
@@ -1640,16 +1567,7 @@ power=3
 subtype=Elephant
 toughness=3
 [/card]
-[card]
-text=You may tap or untap target artifact, creature, or land.     Draw a card.
-id=4739
-name=Twitch
-auto=may tap target(artifact,creature,land)
-auto=draw:1
-rarity=C
-type=Instant
-mana={2}{U}
-[/card]
+
 [card]
 text=Whenever a creature comes into play, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
 id=4740
@@ -1668,17 +1586,7 @@ name=Vec Townships
 rarity=U
 type=Land
 [/card]
-[card]
-text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
-id=4797
-name=Verdant Force
-rarity=R
-type=Creature
-mana={5}{G}{G}{G}
-power=7
-subtype=Elemental
-toughness=7
-[/card]
+
 [card]
 text={T}: Target creature's power or toughness becomes 1 until end of turn.
 id=4920
@@ -1699,14 +1607,7 @@ type=Enchantment
 mana={1}{U}
 subtype=Aura
 [/card]
-[card]
-text=Whenever an opponent plays a red spell, you gain 2 life.
-id=4909
-name=Warmth
-rarity=U
-type=Enchantment
-mana={1}{W}
-[/card]
+
 [card]
 text=Watchdog blocks each turn if able.     As long as Watchdog is untapped, all creatures attacking you get -1/-0.
 id=4634
