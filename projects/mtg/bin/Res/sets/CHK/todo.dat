@@ -220,14 +220,6 @@ text=Return target creature to its owner's hand. Splice onto Arcane {3}{U} (As y
 rarity=C
 [/card]
 [card]
-id=134757
-name=Counsel of the Soratami
-mana={2}{U}
-type=Sorcery
-text=Draw two cards.
-rarity=C
-[/card]
-[card]
 id=80281
 name=Cranial Extraction
 mana={3}{B}
@@ -282,15 +274,6 @@ mana={1}{U}
 type=Instant
 subtype=Arcane
 text=Target player puts the top four cards of his or her library into his or her graveyard. Splice onto Arcane {1}{U} (As you play an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
-rarity=U
-[/card]
-[card]
-id=79094
-name=Dance of Shadows
-mana={3}{B}{B}
-type=Sorcery
-subtype=Arcane
-text=Creatures you control get +1/+0 and gain fear until end of turn.
 rarity=U
 [/card]
 [card]
@@ -354,7 +337,7 @@ rarity=C
 id=78687
 name=Budoka Gardener (Dokai, Weaver of Life)
 mana={1}{G}
-type=Legendary Creature — Human Monk
+type=Legendary Creature  EHuman Monk
 power=3
 toughness=3
 text={4}{G}{G}, {T}: Put an X/X green Elemental creature token into play, where X is the number of lands you control.
@@ -382,17 +365,7 @@ toughness=2
 text=When Dripping-Tongue Zubera is put into a graveyard from play, put a 1/1 colorless Spirit creature token into play for each Zubera put into a graveyard from play this turn.
 rarity=C
 [/card]
-[card]
-id=79214
-name=Earthshaker
-mana={4}{R}{R}
-type=Creature
-subtype=Spirit
-power=4
-toughness=5
-text=Whenever you play a Spirit or Arcane spell, Earthshaker deals 2 damage to each creature without flying.
-rarity=U
-[/card]
+
 [card]
 id=80243
 name=Eerie Procession
@@ -439,15 +412,6 @@ mana={W}
 type=Instant
 subtype=Arcane
 text=Prevent all damage that would be dealt by creatures this turn.
-rarity=C
-[/card]
-[card]
-id=79155
-name=Eye of Nowhere
-mana={U}{U}
-type=Sorcery
-subtype=Arcane
-text=Return target permanent to its owner's hand.
 rarity=C
 [/card]
 [card]
@@ -498,15 +462,7 @@ type=Land
 text={T}: Add one mana of any color to your mana pool. Whenever you tap Forbidden Orchard for mana, put a 1/1 colorless Spirit creature token into play under target opponent's control.
 rarity=R
 [/card]
-[card]
-id=174928
-name=Forest
-mana=
-type=Basic Land
-subtype=Forest
-text=G
-rarity=C
-[/card]
+
 [card]
 id=50285
 name=Frostwielder
@@ -518,14 +474,7 @@ toughness=2
 text={T}: Frostwielder deals 1 damage to target creature or player. If a creature dealt damage by Frostwielder this turn would be put into a graveyard, remove it from the game instead.
 rarity=C
 [/card]
-[card]
-id=79244
-name=Gale Force
-mana={4}{G}
-type=Sorcery
-text=Gale Force deals 5 damage to each creature with flying.
-rarity=U
-[/card]
+
 [card]
 id=79862
 name=General's Kabuto
@@ -594,7 +543,7 @@ rarity=R
 id=78688
 name=Initiate of Blood (Goka the Unjust)
 mana={3}{R}
-type=Legendary Creature — Ogre Shaman
+type=Legendary Creature  EOgre Shaman
 power=4
 toughness=4
 text={T}: Goka the Unjust deals 4 damage to target creature that was dealt damage this turn.
@@ -648,17 +597,6 @@ mana=
 type=Legendary Land
 text=Hall of the Bandit Lord comes into play tapped. {T}, Pay 3 life: Add {1} to your mana pool. If that mana is spent on a creature spell, that creature has haste.
 rarity=R
-[/card]
-[card]
-id=77138
-name=Hana Kami
-mana={G}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
-rarity=U
 [/card]
 [card]
 id=75357
@@ -757,14 +695,7 @@ toughness=3
 text={2}{U}, Discard a card: Counter target spell if it has the same converted mana cost as the discarded card.
 rarity=R
 [/card]
-[card]
-id=50439
-name=Hisoka's Defiance
-mana={1}{U}
-type=Instant
-text=Counter target Spirit or Arcane spell.
-rarity=C
-[/card]
+
 [card]
 id=79149
 name=Hisoka's Guard
@@ -776,23 +707,8 @@ toughness=1
 text=You may choose not to untap Hisoka's Guard during your untap step. {1}{U}, {T}: As long as Hisoka's Guard remains tapped, target creature you control other than Hisoka's Guard has shroud. (It can't be the target of spells or abilities.)
 rarity=C
 [/card]
-[card]
-id=79144
-name=Hold the Line
-mana={1}{W}{W}
-type=Instant
-text=Blocking creatures get +7/+7 until end of turn.
-rarity=R
-[/card]
-[card]
-id=79159
-name=Honden of Cleansing Fire
-mana={3}{W}
-type=Legendary Enchantment
-subtype=Shrine
-text=At the beginning of your upkeep, you gain 2 life for each Shrine you control.
-rarity=U
-[/card]
+
+
 [card]
 id=79110
 name=Honden of Infinite Rage
@@ -802,15 +718,7 @@ subtype=Shrine
 text=At the beginning of your upkeep, Honden of Infinite Rage deals damage to target creature or player equal to the number of Shrines you control.
 rarity=U
 [/card]
-[card]
-id=79180
-name=Honden of Life's Web
-mana={4}{G}
-type=Legendary Enchantment
-subtype=Shrine
-text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token into play for each Shrine you control.
-rarity=U
-[/card]
+
 [card]
 id=79098
 name=Honden of Night's Reach
@@ -820,15 +728,7 @@ subtype=Shrine
 text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
 rarity=U
 [/card]
-[card]
-id=79176
-name=Honden of Seeing Winds
-mana={4}{U}
-type=Legendary Enchantment
-subtype=Shrine
-text=At the beginning of your upkeep, draw a card for each Shrine you control.
-rarity=U
-[/card]
+
 [card]
 id=77143
 name=Honor-Worn Shaku
@@ -858,17 +758,6 @@ power=4
 toughness=4
 text=Flying Whenever a creature becomes the target of a spell or ability, destroy that creature.
 rarity=R
-[/card]
-[card]
-id=78684
-name=Humble Budoka
-mana={1}{G}
-type=Creature
-subtype=Human Monk
-power=2
-toughness=2
-text=Shroud (This permanent can't be the target of spells or abilities.)
-rarity=C
 [/card]
 [card]
 id=79145
@@ -912,15 +801,6 @@ text=When Iname, Life Aspect is put into a graveyard from play, you may remove I
 rarity=R
 [/card]
 [card]
-id=50499
-name=Indomitable Will
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature Enchanted creature gets +1/+2.
-rarity=C
-[/card]
-[card]
 id=78688
 name=Initiate of Blood
 mana={3}{R}
@@ -930,36 +810,9 @@ power=2
 toughness=2
 text={T}: Initiate of Blood deals 1 damage to target creature that was dealt damage this turn. When that creature is put into a graveyard this turn, flip Initiate of Blood. rarity=U
 [/card]
-[card]
-id=76636
-name=Innocence Kami
-mana={3}{W}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=3
-{W}, {T}: Tap target creature. Whenever you play a Spirit or Arcane spell, untap Innocence Kami.
-rarity=U
-[/card]
-[card]
-id=79217
-name=Isamaru, Hound of Konda
-mana={W}
-type=Legendary Creature
-subtype=Hound
-power=2
-toughness=2
-rarity=R
-[/card]
-[card]
-id=190588
-name=Island
-mana=
-type=Basic Land
-subtype=Island
-text=U
-rarity=C
-[/card]
+
+
+
 [card]
 id=80531
 name=Jade Idol
@@ -968,23 +821,8 @@ type=Artifact
 text=Whenever you play a Spirit or Arcane spell, Jade Idol becomes a 4/4 Spirit artifact creature until end of turn.
 rarity=U
 [/card]
-[card]
-id=79233
-name=Journeyer's Kite
-mana={2}
-type=Artifact
-text={3}, {T}: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=78981
-name=Joyous Respite
-mana={3}{G}
-type=Sorcery
-subtype=Arcane
-text=You gain 1 life for each land you control.
-rarity=C
-[/card]
+
+
 [card]
 id=50247
 name=Jugan, the Rising Star
@@ -995,17 +833,6 @@ power=5
 toughness=5
 text=Flying When Jugan, the Rising Star is put into a graveyard from play, you may distribute five +1/+1 counters among any number of target creatures.
 rarity=R
-[/card]
-[card]
-id=80525
-name=Jukai Messenger
-mana={G}
-type=Creature
-subtype=Human Monk
-power=1
-toughness=1
-text=Forestwalk
-rarity=C
 [/card]
 [card]
 id=80280
@@ -1023,29 +850,8 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
-text={2}{U}, {T}: Draw a card. If you have nine or more cards in hand, flip Jushi Apprentice. rarity=R
-[/card]
-[card]
-id=79105
-name=Kabuto Moth
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=2
-Flying {T}: Target creature gets +1/+2 until end of turn.
-rarity=C
-[/card]
-[card]
-id=50349
-name=Kami of Ancient Law
-mana={1}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Sacrifice Kami of Ancient Law: Destroy target enchantment.
-rarity=C
+text={2}{U}, {T}: Draw a card. If you have nine or more cards in hand, flip Jushi Apprentice. 
+rarity=R
 [/card]
 [card]
 id=79195
@@ -1069,27 +875,7 @@ toughness=1
 text=Flying Soulshift 5 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
 rarity=U
 [/card]
-[card]
-id=83461
-name=Kami of Old Stone
-mana={3}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=7
-rarity=U
-[/card]
-[card]
-id=79198
-name=Kami of the Hunt
-mana={2}{G}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Whenever you play a Spirit or Arcane spell, Kami of the Hunt gets +1/+1 until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=77136
 name=Kami of the Painted Road
@@ -1121,17 +907,6 @@ subtype=Spirit
 power=1
 toughness=1
 text=Flying Whenever you play a Spirit or Arcane spell, target creature gains fear until end of turn.
-rarity=C
-[/card]
-[card]
-id=50228
-name=Kami of Twisted Reflection
-mana={1}{U}{U}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Sacrifice Kami of Twisted Reflection: Return target creature you control to its owner's hand.
 rarity=C
 [/card]
 [card]
@@ -1171,7 +946,7 @@ rarity=R
 id=78600
 name=Bushi Tenderfoot (Kenzo the Hardhearted)
 mana={W}
-type=Legendary Creature — Human Samurai
+type=Legendary Creature  EHuman Samurai
 power=3
 toughness=4
 text=Double strike; bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
@@ -1211,17 +986,6 @@ text=First strike Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 
 rarity=C
 [/card]
 [card]
-id=76652
-name=Kitsune Diviner
-mana={W}
-type=Creature
-subtype=Fox Cleric
-power=0
-toughness=1
-text={T}: Tap target Spirit.
-rarity=C
-[/card]
-[card]
 id=50437
 name=Kitsune Healer
 mana={3}{W}
@@ -1253,28 +1017,8 @@ toughness=1
 Protection from Spirits and from Arcane
 rarity=C
 [/card]
-[card]
-id=50488
-name=Kodama of the North Tree
-mana={2}{G}{G}{G}
-type=Legendary Creature
-subtype=Spirit
-power=6
-toughness=4
-text=Trample; shroud (This permanent can't be the target of spells or abilities.)
-rarity=R
-[/card]
-[card]
-id=80288
-name=Kodama of the South Tree
-mana={2}{G}{G}
-type=Legendary Creature
-subtype=Spirit
-power=4
-toughness=4
-text=Whenever you play a Spirit or Arcane spell, each other creature you control gets +1/+1 and gains trample until end of turn.
-rarity=R
-[/card]
+
+
 [card]
 id=81702
 name=Kodama's Might
@@ -1378,32 +1122,12 @@ text=Equipped creature has "{2}: This creature gets +1/+0 until end of turn." Wh
 rarity=R
 [/card]
 [card]
-id=75319
-name=Lantern Kami
-mana={W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Flying
-rarity=C
-[/card]
-[card]
 id=79080
 name=Lantern-Lit Graveyard
 mana=
 type=Land
 text={T}: Add {1} to your mana pool. {T}: Add {B} or {R} to your mana pool. Lantern-Lit Graveyard doesn't untap during your next untap step.
 rarity=U
-[/card]
-[card]
-id=79084
-name=Lava Spike
-mana={R}
-type=Sorcery
-subtype=Arcane
-text=Lava Spike deals 3 damage to target player.
-rarity=C
 [/card]
 [card]
 id=50320
@@ -1439,17 +1163,7 @@ type=Sorcery
 text=Sacrifice any number of lands. Add {1} to your mana pool for each land sacrificed this way.
 rarity=U
 [/card]
-[card]
-id=50253
-name=Marrow-Gnawer
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Rat Rogue
-power=2
-toughness=3
-text=Rat creatures have fear. {T}, Sacrifice a Rat: Put X 1/1 black Rat creature tokens into play, where X is the number of Rats you control.
-rarity=R
-[/card]
+
 [card]
 id=79215
 name=Masako the Humorless
@@ -1472,34 +1186,8 @@ toughness=3
 text={2}{G}: Target creature blocks Matsu-Tribe Decoy this turn if able. Whenever Matsu-Tribe Decoy deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 rarity=C
 [/card]
-[card]
-id=75268
-name=Meloku the Clouded Mirror
-mana={4}{U}
-type=Legendary Creature
-subtype=Moonfolk Wizard
-power=2
-toughness=4
-text=Flying {1}, Return a land you control to its owner's hand: Put a 1/1 blue Illusion creature token with flying into play.
-rarity=R
-[/card]
-[card]
-id=50449
-name=Midnight Covenant
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has "{B}: This creature gets +1/+1 until end of turn."
-rarity=C
-[/card]
-[card]
-id=79179
-name=Minamo, School at Water's Edge
-mana=
-type=Legendary Land
-text={T}: Add {U} to your mana pool. {U}, {T}: Untap target legendary permanent.
-rarity=R
-[/card]
+
+
 [card]
 id=75248
 name=Mindblaze
@@ -1517,17 +1205,6 @@ text=Whenever you draw a card, remove the top card of your library from the game
 rarity=R
 [/card]
 [card]
-id=76641
-name=Moss Kami
-mana={5}{G}
-type=Creature
-subtype=Spirit
-power=5
-toughness=5
-text=Trample
-rarity=C
-[/card]
-[card]
 id=50385
 name=Mothrider Samurai
 mana={3}{W}
@@ -1538,15 +1215,7 @@ toughness=2
 text=Flying Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
 rarity=C
 [/card]
-[card]
-id=190586
-name=Mountain
-mana=
-type=Basic Land
-subtype=Mountain
-text=R
-rarity=C
-[/card]
+
 [card]
 id=78681
 name=Myojin of Cleansing Fire
@@ -1602,15 +1271,7 @@ toughness=3
 text=Myojin of Seeing Winds comes into play with a divinity counter on it if you played it from your hand. Myojin of Seeing Winds is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Seeing Winds: Draw a card for each permanent you control.
 rarity=R
 [/card]
-[card]
-id=79188
-name=Mystic Restraints
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature When Mystic Restraints comes into play, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step.
-rarity=C
-[/card]
+
 [card]
 id=79136
 name=Nagao, Bound by Honor
@@ -1640,17 +1301,6 @@ power=1
 toughness=1
 text={B}, Sacrifice a creature: Target player discards a card. Play this ability only any time you could play a sorcery.
 rarity=U
-[/card]
-[card]
-id=80521
-name=Nezumi Cutthroat
-mana={1}{B}
-type=Creature
-subtype=Rat Warrior
-power=2
-toughness=1
-text=Fear Nezumi Cutthroat can't block.
-rarity=C
 [/card]
 [card]
 id=78678
@@ -1691,16 +1341,7 @@ type=Enchantment
 Whenever a source you control deals damage to another player, put that many theft counters on Night Dealings. {2}{B}{B}, Remove X theft counters from Night Dealings: Search your library for a nonland card with converted mana cost X, reveal it, and put it into your hand. Then shuffle your library.
 rarity=R
 [/card]
-[card]
-id=78678
-name=Nezumi Graverobber (Nighteyes the Desecrator)
-mana={1}{B}
-type=Legendary Creature — Rat Wizard
-power=4
-toughness=2
-text={4}{B}: Put target creature card in a graveyard into play under your control.
-rarity=U
-[/card]
+
 [card]
 id=50413
 name=Nine-Ringed Bo
@@ -1739,14 +1380,6 @@ text=Equipped creature gets +3/+1. Whenever equipped creature is put into a grav
 rarity=R
 [/card]
 [card]
-id=80251
-name=Okina, Temple to the Grandfathers
-mana=
-type=Legendary Land
-text={T}: Add {G} to your mana pool. {G}, {T}: Target legendary creature gets +1/+1 until end of turn.
-rarity=R
-[/card]
-[card]
 id=197016
 name=Oni Possession
 mana={2}{B}
@@ -1755,36 +1388,16 @@ subtype=Aura
 text=Enchant creature At the beginning of your upkeep, sacrifice a creature. Enchanted creature gets +3/+3 and has trample. Enchanted creature is a Demon Spirit.
 rarity=U
 [/card]
+
+
 [card]
-id=50261
-name=Orbweaver Kumo
-mana={4}{G}{G}
-type=Creature
-subtype=Spirit
+id=78975
+name=Orochi Eggwatcher (Shidako, Broodmistress)
+mana={2}{G}
+type=Legendary Creature  ESnake Shaman
 power=3
-toughness=4
-text=Reach (This creature can block creatures with flying.) Whenever you play a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
-rarity=U
-[/card]
-[card]
-id=82943
-name=Order of the Sacred Bell
-mana={3}{G}
-type=Creature
-subtype=Human Monk
-power=4
 toughness=3
-rarity=C
-[/card]
-[card]
-id=78984
-name=Ore Gorger
-mana={3}{R}{R}
-type=Creature
-subtype=Spirit
-power=3
-toughness=1
-text=Whenever you play a Spirit or Arcane spell, you may destroy target nonbasic land.
+text={G}, Sacrifice a creature: Target creature gets +3/+3 until end of turn.
 rarity=U
 [/card]
 [card]
@@ -1806,17 +1419,6 @@ Orochi Hatchery comes into play with X charge counters on it. {5}, {T}: Put a 1/
 rarity=R
 [/card]
 [card]
-id=50319
-name=Orochi Leafcaller
-mana={G}
-type=Creature
-subtype=Snake Shaman
-power=1
-toughness=1
-text={G}: Add one mana of any color to your mana pool.
-rarity=C
-[/card]
-[card]
 id=50308
 name=Orochi Ranger
 mana={1}{G}
@@ -1827,17 +1429,7 @@ toughness=1
 text=Whenever Orochi Ranger deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 rarity=C
 [/card]
-[card]
-id=75403
-name=Orochi Sustainer
-mana={1}{G}
-type=Creature
-subtype=Snake Shaman
-power=1
-toughness=2
-text={T}: Add {G} to your mana pool.
-rarity=C
-[/card]
+
 [card]
 id=197017
 name=Otherworldly Journey
@@ -1906,15 +1498,7 @@ toughness=2
 text=At the beginning of your upkeep, put a devotion counter on Pious Kitsune. Then if a creature named Eight-and-a-Half-Tails is in play, you gain 1 life for each devotion counter on Pious Kitsune. {T}, Remove a devotion counter from Pious Kitsune: You gain 1 life.
 rarity=C
 [/card]
-[card]
-id=197255
-name=Plains
-mana=
-type=Basic Land
-subtype=Plains
-text=W
-rarity=C
-[/card]
+
 [card]
 id=80242
 name=Psychic Puppetry
@@ -1922,24 +1506,6 @@ mana={1}{U}
 type=Instant
 subtype=Arcane
 text=You may tap or untap target permanent. Splice onto Arcane {U} (As you play an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
-rarity=C
-[/card]
-[card]
-id=78972
-name=Pull Under
-mana={5}{B}
-type=Instant
-subtype=Arcane
-text=Target creature gets -5/-5 until end of turn.
-rarity=C
-[/card]
-[card]
-id=50313
-name=Quiet Purity
-mana={W}
-type=Instant
-subtype=Arcane
-text=Destroy target enchantment.
 rarity=C
 [/card]
 [card]
@@ -1963,15 +1529,6 @@ text=Flash Enchant creature Whenever enchanted creature is dealt damage, its con
 rarity=C
 [/card]
 [card]
-id=79247
-name=Reach Through Mists
-mana={U}
-type=Instant
-subtype=Arcane
-text=Draw a card.
-rarity=C
-[/card]
-[card]
 id=50405
 name=Reciprocate
 mana={W}
@@ -1987,23 +1544,8 @@ type=Artifact
 text={3}: Put target card in a graveyard on the bottom of its owner's library.
 rarity=U
 [/card]
-[card]
-id=75259
-name=Rend Flesh
-mana={2}{B}
-type=Instant
-subtype=Arcane
-text=Destroy target non-Spirit creature.
-rarity=C
-[/card]
-[card]
-id=50293
-name=Rend Spirit
-mana={2}{B}
-type=Instant
-text=Destroy target Spirit.
-rarity=C
-[/card]
+
+
 [card]
 id=79125
 name=Reverse the Sands
@@ -2021,16 +1563,7 @@ subtype=Arcane
 text=Target permanent's controller sacrifices it. If he or she does, that player reveals cards from the top of his or her library until he or she reveals a permanent card that shares a card type with the sacrificed permanent, puts that card into play, then shuffles his or her library. Splice onto Arcane {2}{U}{U}
 rarity=R
 [/card]
-[card]
-id=78586
-name=River Kaijin
-mana={2}{U}
-type=Creature
-subtype=Spirit
-power=1
-toughness=4
-rarity=C
-[/card]
+
 [card]
 id=50262
 name=Ronin Houndmaster
@@ -2053,28 +1586,8 @@ toughness=3
 text={G}{G}, Sacrifice Rootrunner: Put target land on top of its owner's library. Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
 rarity=U
 [/card]
-[card]
-id=79242
-name=Ryusei, the Falling Star
-mana={5}{R}
-type=Legendary Creature
-subtype=Dragon Spirit
-power=5
-toughness=5
-text=Flying When Ryusei, the Falling Star is put into a graveyard from play, it deals 5 damage to each creature without flying.
-rarity=R
-[/card]
-[card]
-id=80254
-name=Sachi, Daughter of Seshiro
-mana={2}{G}{G}
-type=Legendary Creature
-subtype=Snake Shaman
-power=1
-toughness=3
-text=Other Snake creatures you control get +0/+1. Shamans you control have "{T}: Add {G}{G} to your mana pool."
-rarity=U
-[/card]
+
+
 [card]
 id=50510
 name=Sakura-Tribe Elder
@@ -2149,15 +1662,7 @@ type=Artifact
 text={1}: Look at the top three cards of your library, then put them back in any order. {T}: Draw a card, then put Sensei's Divining Top on top of its owner's library.
 rarity=U
 [/card]
-[card]
-id=75404
-name=Serpent Skin
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature Enchanted creature gets +1/+1. {G}: Regenerate enchanted creature.
-rarity=C
-[/card]
+
 [card]
 id=80256
 name=Seshiro the Anointed
@@ -2177,16 +1682,7 @@ type=Legendary Artifact
 text={3}, {T}: Remove from the game target instant or sorcery spell that targets you. (The spell has no effect.) {3}, {T}, Sacrifice Shell of the Last Kappa: You may play a card removed from the game with Shell of the Last Kappa without paying its mana cost.
 rarity=R
 [/card]
-[card]
-id=78975
-name=Orochi Eggwatcher (Shidako, Broodmistress)
-mana={2}{G}
-type=Legendary Creature — Snake Shaman
-power=3
-toughness=3
-text={G}, Sacrifice a creature: Target creature gets +3/+3 until end of turn.
-rarity=U
-[/card]
+
 [card]
 id=50318
 name=Shimatsu the Bloodcloaked
@@ -2199,14 +1695,6 @@ text=As Shimatsu the Bloodcloaked comes into play, sacrifice any number of perma
 rarity=R
 [/card]
 [card]
-id=79121
-name=Shinka, the Bloodsoaked Keep
-mana=
-type=Legendary Land
-text={T}: Add {R} to your mana pool. {R}, {T}: Target legendary creature gains first strike until end of turn.
-rarity=R
-[/card]
-[card]
 id=78853
 name=Shisato, Whispering Hunter
 mana={3}{G}
@@ -2215,14 +1703,6 @@ subtype=Snake Warrior
 power=2
 toughness=2
 text=At the beginning of your upkeep, sacrifice a Snake. Whenever Shisato, Whispering Hunter deals combat damage to a player, that player skips his or her next untap step.
-rarity=R
-[/card]
-[card]
-id=79186
-name=Shizo, Death's Storehouse
-mana=
-type=Legendary Land
-text={T}: Add {B} to your mana pool. {B}, {T}: Target legendary creature gains fear until end of turn.
 rarity=R
 [/card]
 [card]
@@ -2253,17 +1733,7 @@ toughness=2
 text=When Silent-Chant Zubera is put into a graveyard from play, you gain 2 life for each Zubera put into a graveyard from play this turn.
 rarity=C
 [/card]
-[card]
-id=50442
-name=Sire of the Storm
-mana={4}{U}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text=Flying Whenever you play a Spirit or Arcane spell, you may draw a card.
-rarity=U
-[/card]
+
 [card]
 id=79177
 name=Soilshaper
@@ -2274,17 +1744,6 @@ power=1
 toughness=1
 text=Whenever you play a Spirit or Arcane spell, target land becomes a 3/3 creature until end of turn. It's still a land.
 rarity=U
-[/card]
-[card]
-id=79140
-name=Sokenzan Bruiser
-mana={4}{R}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=3
-text=Mountainwalk
-rarity=C
 [/card]
 [card]
 id=50301
@@ -2374,14 +1833,7 @@ toughness=2
 text=Whenever you play a Spirit or Arcane spell, Soul of Magma deals 1 damage to target creature.
 rarity=C
 [/card]
-[card]
-id=130369
-name=Soulblast
-mana={3}{R}{R}{R}
-type=Instant
-text=As an additional cost to play Soulblast, sacrifice all creatures you control.  Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.
-rarity=R
-[/card]
+
 [card]
 id=50288
 name=Soulless Revival
@@ -2403,19 +1855,11 @@ rarity=U
 id=78679
 name=Nezumi Shortfang (Stabwhisker the Odious)
 mana={1}{B}
-type=Legendary Creature — Rat Shaman
+type=Legendary Creature  ERat Shaman
 power=3
 toughness=3
 text=At the beginning of each opponent's upkeep, that player loses 1 life for each card fewer than three in his or her hand.
 rarity=R
-[/card]
-[card]
-id=83281
-name=Stone Rain
-mana={2}{R}
-type=Sorcery
-text=Destroy target land.
-rarity=C
 [/card]
 [card]
 id=82000
@@ -2426,15 +1870,7 @@ subtype=Arcane
 text=Switch target creature's power and toughness until end of turn. Splice onto Arcane {1}{R} (As you play an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 rarity=U
 [/card]
-[card]
-id=75366
-name=Strength of Cedars
-mana={4}{G}
-type=Instant
-subtype=Arcane
-text=Target creature gets +X/+X until end of turn, where X is the number of lands you control.
-rarity=U
-[/card]
+
 [card]
 id=79168
 name=Struggle for Sanity
@@ -2462,15 +1898,7 @@ subtype=Arcane
 Swallowing Plague deals X damage to target creature and you gain X life.
 rarity=U
 [/card]
-[card]
-id=197258
-name=Swamp
-mana=
-type=Basic Land
-subtype=Swamp
-text=B
-rarity=C
-[/card]
+
 [card]
 id=80276
 name=Swirl the Mists
@@ -2508,6 +1936,8 @@ subtype=Spirit
 power=3
 toughness=3
 text=Flying Whenever you play a Spirit or Arcane spell, you may tap or untap target creature.
+abilities=flying
+auto=@movedTo(arcane,spirit|mystack):may taporuntap target(creature)
 rarity=C
 [/card]
 [card]
@@ -2586,14 +2016,7 @@ type=Enchantment
 text=Whenever one or more creatures blocks, flip a coin. If you win the flip, each blocking creature is sacrificed by its controller. Otherwise, each blocked creature is sacrificed by its controller.
 rarity=R
 [/card]
-[card]
-id=78987
-name=Time of Need
-mana={1}{G}
-type=Sorcery
-text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.
-rarity=U
-[/card]
+
 [card]
 id=129898
 name=Time Stop
@@ -2606,7 +2029,7 @@ rarity=R
 id=78691
 name=Student of Elements (Tobita, Master of Winds)
 mana={1}{U}
-type=Legendary Creature — Human Wizard
+type=Legendary Creature  EHuman Wizard
 power=3
 toughness=3
 text=Creatures you control have flying.
@@ -2616,7 +2039,7 @@ rarity=U
 id=78694
 name=Akki Lavarunner (Tok-Tok, Volcano Born)
 mana={3}{R}
-type=Legendary Creature — Goblin Shaman
+type=Legendary Creature  EGoblin Shaman
 power=2
 toughness=2
 text=Protection from red If a red source would deal damage to a player, it deals that much damage plus 1 to that player instead.
@@ -2626,7 +2049,7 @@ rarity=R
 id=78686
 name=Jushi Apprentice (Tomoya the Revealer)
 mana={1}{U}
-type=Legendary Creature — Human Wizard
+type=Legendary Creature  EHuman Wizard
 power=2
 toughness=3
 text={3}{U}{U}, {T}: Target player draws X cards, where X is the number of cards in your hand.
@@ -2649,30 +2072,12 @@ text=If a player would draw a card, that player removes that card from the game 
 rarity=R
 [/card]
 [card]
-id=134756
-name=Uncontrollable Anger
-mana={2}{R}{R}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) Enchanted creature gets +2/+2 and attacks each turn if able.
-rarity=C
-[/card]
-[card]
 id=50379
 name=Unearthly Blizzard
 mana={2}{R}
 type=Sorcery
 subtype=Arcane
 text=Up to three target creatures can't block this turn.
-rarity=C
-[/card]
-[card]
-id=77926
-name=Unnatural Speed
-mana={R}
-type=Instant
-subtype=Arcane
-text=Target creature gains haste until end of turn.
 rarity=C
 [/card]
 [card]
@@ -2714,26 +2119,6 @@ text=Reach (This creature can block creatures with flying.) Soulshift 4 (When th
 rarity=C
 [/card]
 [card]
-id=50414
-name=Vigilance
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has vigilance. (Attacking doesn't cause it to tap.)
-rarity=C
-[/card]
-[card]
-id=80520
-name=Villainous Ogre
-mana={2}{B}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=2
-text=Villainous Ogre can't block. As long as you control a Demon, Villainous Ogre has "{B}: Regenerate Villainous Ogre."
-rarity=C
-[/card]
-[card]
 id=82001
 name=Vine Kami
 mana={6}{G}
@@ -2751,16 +2136,6 @@ mana={2}{B}
 type=Sorcery
 subtype=Arcane
 text=Target player discards two cards.
-rarity=C
-[/card]
-[card]
-id=50345
-name=Wandering Ones
-mana={U}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
 rarity=C
 [/card]
 [card]
