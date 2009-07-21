@@ -1,6 +1,7 @@
 [card]
 text=Sacrifice Aerie Ouphes: Aerie Ouphes deals damage equal to its power to target creature with flying.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=153427
+abilities=persist
 name=Aerie Ouphes
 rarity=C
 type=Creature
@@ -12,6 +13,7 @@ toughness=3
 [card]
 text=Trample     Altar Golem's power and toughness are each equal to the number of creatures in play.     Altar Golem doesn't untap during your untap step.     Tap five untapped creatures you control: Untap Altar Golem.
 id=157974
+abilities=doesnotuntap
 name=Altar Golem
 rarity=R
 type=Artifact Creature
@@ -29,19 +31,6 @@ type=Legendary Creature
 mana={2}{B}{B}
 power=4
 subtype=Elemental Shaman
-toughness=4
-[/card]
-[card]
-text=Other red creatures you control get +1/+1.     Other white creatures you control get +1/+1.     Whenever you play a red spell, Balefire Liege deals 3 damage to target player.     Whenever you play a white spell, you gain 3 life.
-id=158104
-auto=lord(creature[red]) 1/1
-auto=lord(creature[white]) 1/1
-name=Balefire Liege
-rarity=R
-type=Creature
-mana={2}{RW}{RW}{RW}
-power=2
-subtype=Spirit Horror
 toughness=4
 [/card]
 [card]
@@ -227,20 +216,6 @@ power=2
 subtype=Shapeshifter
 toughness=4
 [/card]
-
-[card]
-text=Other black creatures you control get +1/+1.     Other green creatures you control get +1/+1.     At the beginning of your upkeep, you may put a 1/1 black and green Worm creature token into play.
-id=157406
-auto=lord(creature[black]) 1/1 other
-auto=lord(creature[green]) 1/1 other
-name=Creakwood Liege
-rarity=R
-type=Creature
-mana={1}{BG}{BG}{BG}
-power=2
-subtype=Horror
-toughness=2
-[/card]
 [card]
 text=At the beginning of your upkeep, destroy target creature with a -1/-1 counter on it.
 id=158103
@@ -248,19 +223,6 @@ name=Crumbling Ashes
 rarity=U
 type=Enchantment
 mana={1}{B}
-[/card]
-[card]
-text=Other white creatures you control get +1/+1.     Other black creatures you control get +1/+1.     Whenever you play a white spell, you may tap target creature.     Whenever you play a black spell, you may destroy target creature if it's tapped.
-id=157288
-auto=lord(creature[black]) 1/1 other
-auto=lord(creature[white]) 1/1 other
-name=Deathbringer Liege
-rarity=R
-type=Creature
-mana={2}{WB}{WB}{WB}
-power=3
-subtype=Horror
-toughness=4
 [/card]
 [card]
 text=Trample     Deity of Scars comes into play with two -1/-1 counters on it.     {BG}, Remove a -1/-1 counter from Deity of Scars: Regenerate Deity of Scars.
@@ -743,19 +705,6 @@ name=Monstrify
 rarity=C
 type=Sorcery
 mana={3}{G}
-[/card]
-[card]
-text=Other green creatures you control get +1/+1.     Other blue creatures you control get +1/+1.     Untap all green and/or blue creatures you control during each other player's untap step.
-id=152091
-auto=lord(creature[green]) 1/1 other
-auto=lord(creature[blue]) 1/1 other
-name=Murkfiend Liege
-rarity=R
-type=Creature
-mana={2}{GU}{GU}{GU}
-power=4
-subtype=Horror
-toughness=4
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever a creature an opponent controls with a -1/-1 counter on it is put into a graveyard, you may return that card to play under your control.

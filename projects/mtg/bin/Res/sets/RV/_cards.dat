@@ -126,7 +126,7 @@ subtype=Mountain Swamp
 [card]
 text=Basalt Monolith doesn't untap during your untap step.     {3}: Untap Basalt Monolith.     {T}: Add {3} to your mana pool.
 id=1096
-auto=doesnotuntap
+abilities=doesnotuntap
 auto={3}:untap
 auto={T}:add:{3}
 name=Basalt Monolith
@@ -251,7 +251,7 @@ mana={X}{U}{U}
 [card]
 text=Brass Man doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Man.
 id=1099
-auto=doesnotuntap
+abilities=doesnotuntap
 auto={1}:untap
 name=Brass Man
 rarity=U
@@ -1113,8 +1113,7 @@ subtype=Island
 [card]
 text=Island Fish Jasconius can't attack unless defending player controls an Island.     Jasconius doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Jasconius.     When you control no Islands, sacrifice Jasconius.
 id=1203
-abilities=islandhome
-auto=doesnotuntap
+abilities=islandhome,doesnotuntap
 auto={U}{U}{U}:untap
 name=Island Fish Jasconius
 rarity=R

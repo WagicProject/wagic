@@ -24,6 +24,21 @@ subtype=Archon
 toughness=4
 [/card]
 [card]
+text=Other red creatures you control get +1/+1.     Other white creatures you control get +1/+1.     Whenever you play a red spell, Balefire Liege deals 3 damage to target player.     Whenever you play a white spell, you gain 3 life.
+id=158104
+auto=lord(creature[red]) 1/1
+auto=lord(creature[white]) 1/1
+auto=@movedto(*[red]|mystack):damage:3 target(player)
+auto=@movedto(*[white]|mystack):life:3
+name=Balefire Liege
+rarity=R
+type=Creature
+mana={2}{RW}{RW}{RW}
+power=2
+subtype=Spirit Horror
+toughness=4
+[/card]
+[card]
 text=Remove target card in a graveyard from the game. Put a 1/1 white and black Spirit creature token with flying into play.
 target=*|graveyard
 auto=moveTo(removedfromgame)
@@ -66,6 +81,35 @@ mana={4}{B}
 power=3
 subtype=Plant Zombie
 toughness=3
+[/card]
+[card]
+text=Other black creatures you control get +1/+1.     Other green creatures you control get +1/+1.     At the beginning of your upkeep, you may put a 1/1 black and green Worm creature token into play.
+id=157406
+auto=lord(creature[black]) 1/1 other
+auto=lord(creature[green]) 1/1 other
+auto=@each my upkeep:may token(Worm,Worm Creature, 1/1,green black)
+name=Creakwood Liege
+rarity=R
+type=Creature
+mana={1}{BG}{BG}{BG}
+power=2
+subtype=Horror
+toughness=2
+[/card]
+[card]
+text=Other white creatures you control get +1/+1.     Other black creatures you control get +1/+1.     Whenever you play a white spell, you may tap target creature.     Whenever you play a black spell, you may destroy target creature if it's tapped.
+id=157288
+auto=lord(creature[black]) 1/1 other
+auto=lord(creature[white]) 1/1 other
+auto=@moveto(*[black]|mystack):may destroy target(creature[tapped])
+auto=@moveto(*[white]|mystack):may tap target(creature)
+name=Deathbringer Liege
+rarity=R
+type=Creature
+mana={2}{WB}{WB}{WB}
+power=3
+subtype=Horror
+toughness=4
 [/card]
 [card]
 text=Target creature gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
@@ -289,6 +333,20 @@ name=Mindwrack Liege
 rarity=R
 type=Creature
 mana={3}{UR}{UR}{UR}
+power=4
+subtype=Horror
+toughness=4
+[/card]
+[card]
+text=Other green creatures you control get +1/+1.     Other blue creatures you control get +1/+1.     Untap all green and/or blue creatures you control during each other player's untap step.
+id=152091
+auto=lord(creature[green]) 1/1 other
+auto=lord(creature[blue]) 1/1 other
+name=Murkfiend Liege
+auto=@each opponent untap:untap all(creature[green;blue]|myInplay)
+rarity=R
+type=Creature
+mana={2}{GU}{GU}{GU}
 power=4
 subtype=Horror
 toughness=4
