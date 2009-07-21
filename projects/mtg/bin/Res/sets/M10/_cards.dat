@@ -581,7 +581,33 @@ rarity=U
 [card]
 id=191407
 name=Forest
-mana=
+type=Basic Land
+subtype=Forest
+text=G
+auto={T}:Add{G}
+rarity=C
+[/card]
+[card]
+id=191406
+name=Forest
+type=Basic Land
+subtype=Forest
+text=G
+auto={T}:Add{G}
+rarity=C
+[/card]
+[card]
+id=191405
+name=Forest
+type=Basic Land
+subtype=Forest
+text=G
+auto={T}:Add{G}
+rarity=C
+[/card]
+[card]
+id=191409
+name=Forest
 type=Basic Land
 subtype=Forest
 text=G
@@ -762,6 +788,33 @@ rarity=R
 [/card]
 [card]
 id=191387
+name=Island
+auto={T}:Add{U}
+type=Basic Land
+subtype=Island
+text=U
+rarity=C
+[/card]
+[card]
+id=191389
+name=Island
+auto={T}:Add{U}
+type=Basic Land
+subtype=Island
+text=U
+rarity=C
+[/card]
+[card]
+id=191400
+name=Island
+auto={T}:Add{U}
+type=Basic Land
+subtype=Island
+text=U
+rarity=C
+[/card]
+[card]
+id=191390
 name=Island
 auto={T}:Add{U}
 type=Basic Land
@@ -966,6 +1019,33 @@ text=R
 rarity=C
 [/card]
 [card]
+id=191401
+name=Mountain
+auto={T}:Add{R}
+type=Basic Land
+subtype=Mountain
+text=R
+rarity=C
+[/card]
+[card]
+id=191404
+name=Mountain
+auto={T}:Add{R}
+type=Basic Land
+subtype=Mountain
+text=R
+rarity=C
+[/card]
+[card]
+id=191403
+name=Mountain
+auto={T}:Add{R}
+type=Basic Land
+subtype=Mountain
+text=R
+rarity=C
+[/card]
+[card]
 id=189896
 name=Naturalize
 mana={1}{G}
@@ -1075,6 +1155,33 @@ rarity=U
 [/card]
 [card]
 id=191382
+name=Plains
+auto={T}:Add{W}
+type=Basic Land
+subtype=Plains
+text=W
+rarity=C
+[/card]
+[card]
+id=191395
+name=Plains
+auto={T}:Add{W}
+type=Basic Land
+subtype=Plains
+text=W
+rarity=C
+[/card]
+[card]
+id=191396
+name=Plains
+auto={T}:Add{W}
+type=Basic Land
+subtype=Plains
+text=W
+rarity=C
+[/card]
+[card]
+id=191385
 name=Plains
 auto={T}:Add{W}
 type=Basic Land
@@ -1382,6 +1489,33 @@ text=B
 rarity=C
 [/card]
 [card]
+id=191391
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
+id=191381
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
+id=191399
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
 id=190564
 name=Tempest of Light
 mana={2}{W}
@@ -1389,6 +1523,15 @@ type=Instant
 text=Destroy all enchantments.
 auto=destroy all(enchantment)
 rarity=U
+[/card]
+[card]
+id=190560
+name=Terramorphic Expanse
+mana=
+type=Land
+text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
+auto={T}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+rarity=C
 [/card]
 [card]
 id=191598

@@ -812,14 +812,7 @@ type=Instant
 text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
 rarity=C
 [/card]
-[card]
-id=190560
-name=Terramorphic Expanse
-mana=
-type=Land
-text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
-rarity=C
-[/card]
+
 [card]
 id=191379
 name=Time Warp
