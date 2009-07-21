@@ -996,7 +996,7 @@ id=39507
 name=Windswept Heath
 type=Land
 text={T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card and put it into play. Then shuffle your library.
-auto={T}{S}:moveTo(myinplay) target(forest,plains) && life:-1
+auto={T}{S}:moveTo(myinplay) target(forest,plains|mylibrary) && life:-1
 rarity=R
 [/card]
 [card]
