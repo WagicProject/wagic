@@ -91,13 +91,7 @@ rarity=U
 type=Instant
 mana={G}{W}{U}
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Bant Panorama: Search your library for a basic Forest, Plains, or Island card and put it into play tapped. Then shuffle your library.
-id=174842
-name=Bant Panorama
-rarity=C
-type=Land
-[/card]
+
 [card]
 text=Flying     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  Whenever a creature you control attacks alone, it gains lifelink until end of turn.
 id=175394
@@ -395,15 +389,7 @@ rarity=U
 type=Instant
 mana={W}{U}{B}
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Esper Panorama: Search your library for a basic Plains, Island, or Swamp card and put it into play tapped. Then shuffle your library.
-id=179431
-auto={T}:add {1}
-auto={1}{T}{S}:moveto (myinplay) target(island,plains,swamp|mylibrary)
-name=Esper Panorama
-rarity=C
-type=Land
-[/card]
+
 
 [card]
 text=Artifact spells you play cost {1} less to play.
@@ -559,13 +545,7 @@ rarity=U
 type=Instant
 mana={U}{B}{R}
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Grixis Panorama: Search your library for a basic Island, Swamp, or Mountain card and put it into play tapped. Then shuffle your library.
-id=179433
-name=Grixis Panorama
-rarity=C
-type=Land
-[/card]
+
 [card]
 text=Flying     Sacrifice Gustrider Exuberant: Creatures you control with power 5 or greater gain flying until end of turn.
 id=174805
@@ -632,13 +612,7 @@ rarity=U
 type=Instant
 mana={B}{R}{G}
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it into play tapped. Then shuffle your library.
-id=179425
-name=Jund Panorama
-rarity=C
-type=Land
-[/card]
+
 [card]
 text=Reach (This can block creatures with flying.)  Cycling {2} ({2}, Discard this card: Draw a card.)
 id=175262
@@ -846,13 +820,7 @@ rarity=U
 type=Instant
 mana={R}{G}{W}
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Naya Panorama: Search your library for a basic Mountain, Forest, or Plains card and put it into play tapped. Then shuffle your library.
-id=179423
-name=Naya Panorama
-rarity=C
-type=Land
-[/card]
+
 
 [card]
 text=When Oblivion Ring comes into play, remove another target nonland permanent from the game.      When Oblivion Ring leaves play, return the removed card to play under its owner's control.

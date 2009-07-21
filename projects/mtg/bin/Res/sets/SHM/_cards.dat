@@ -319,6 +319,18 @@ subtype=Faerie
 toughness=*
 [/card]
 [card]
+text=When Farhaven Elf comes into play, you may search your library for a basic land card and put it into play tapped. If you do, shuffle your library.
+auto=may moveTo(myBattlefield) target(basic|mylibrary) && tap
+id=153289
+name=Farhaven Elf
+rarity=C
+type=Creature
+mana={2}{G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {RG}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
 auto={T}:Add{1}
 auto={RG}{T}:Add{R}{R}

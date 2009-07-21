@@ -1762,14 +1762,7 @@ type=Sorcery
 mana={3}{B}{B}
 [/card]
 
-[card]
-text=Until end of turn, all creatures gain "{T}: Tap target creature."
-id=19677
-name=Shoving Match
-rarity=U
-type=Instant
-mana={2}{U}
-[/card]
+
 [card]
 text={3}{B}: Destroy target blocking creature at end of combat.
 id=19692
@@ -1782,17 +1775,7 @@ subtype=Human Mercenary Assassin
 toughness=1
 [/card]
 
-[card]
-text={1}{G}, {T}, Discard a card: Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
-id=19728
-name=Silverglade Pathfinder
-rarity=U
-type=Creature
-mana={1}{G}
-power=1
-subtype=Dryad Spellshaper
-toughness=1
-[/card]
+
 [card]
 text=Sizzle deals 3 damage to each opponent.
 id=19611
@@ -1813,14 +1796,7 @@ subtype=Horror Mercenary
 toughness=4
 [/card]
 
-[card]
-text=Whenever an opponent plays a blue or black spell, you may put a 1/1 green Snake creature token into play.
-id=19876
-name=Snake Pit
-rarity=U
-type=Enchantment
-mana={3}{G}
-[/card]
+
 [card]
 text=Whenever Snorting Gahr becomes blocked, it gets +2/+2 until end of turn.
 id=19626

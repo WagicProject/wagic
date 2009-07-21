@@ -1044,14 +1044,7 @@ subtype=Licid
 toughness=1
 [/card]
 
-[card]
-text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
-id=4779
-name=Rampant Growth
-rarity=C
-type=Sorcery
-mana={1}{G}
-[/card]
+
 
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Rathi Dragon comes into play, sacrifice it unless you sacrifice two Mountains.

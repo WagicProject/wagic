@@ -207,6 +207,16 @@ auto=lord(sliver) {1}{S}:2/2 target(sliver)
 rarity=U
 [/card]
 [card]
+id=116733
+name=Flagstones of Trokair
+abilities=Legendary
+type=Land
+text={T}: Add {W} to your mana pool. When Flagstones of Trokair is put into a graveyard from play, you may search your library for a Plains card and put it into play tapped. If you do, shuffle your library.
+rarity=R
+auto={T}:Add{W}
+auto=@movedTo(this|graveyard):may moveTo(myBattlefield) target(plains|mylibrary) && tap
+[/card]
+[card]
 id=118906
 name=Forest
 type=Basic Land
@@ -701,6 +711,14 @@ auto=foreach(swamp|myinplay) life:1
 rarity=C
 [/card]
 [card]
+id=118874
+name=Terramorphic Expanse
+type=Land
+text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
+auto={T}{S}:moveTo(myinplay) target(basic|mylibrary) && tap
+rarity=C
+[/card]
+[card]
 id=116736
 name=Tivadar of Thorn
 mana={1}{W}{W}
@@ -837,4 +855,16 @@ text={G}: Wormwood Dryad gains forestwalk until end of turn and deals 1 damage t
 auto={G}:forestwalk && damage 1 controller
 auto={B}:swampwalk && damage 1 controller
 rarity=C
+[/card]
+[card]
+id=118884
+name=Yavimaya Dryad
+mana={1}{G}{G}
+type=Creature
+subtype=Dryad
+power=2
+toughness=1
+text=Forestwalk When Yavimaya Dryad comes into play, you may search your library for a Forest card and put it into play tapped under target player's control. If you do, shuffle your library.
+auto=may moveTo(myBattlefield) target(forest|mylibrary) && tap
+rarity=U
 [/card]

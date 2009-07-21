@@ -2786,6 +2786,15 @@ type=Instant
 mana={2}{W}
 [/card]
 [card]
+text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
+auto={T}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+id=129881
+name=Terramorphic Expanse
+rarity=C
+color=Land
+type=Land
+[/card]
+[card]
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
 target=creature[-black;-artifact]
 auto=bury

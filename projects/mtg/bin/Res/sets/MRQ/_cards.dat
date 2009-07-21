@@ -1,8 +1,7 @@
 [card]
 text=Enchant creature      Enchanted creature gets +2/+2 for each other enchantment in play.
 target=creature
-auto=foreach(enchantment|myinplay) 2/2 other
-auto=foreach(enchantment|opponentinplay) 2/2 other
+auto=foreach(enchantment|inplay) 2/2 other
 id=19634
 name=Ancestral Mask
 color=Green
@@ -1044,6 +1043,15 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Until end of turn, all creatures gain "{T}: Tap target creature."
+auto=lord(creature) {T}:tap target(creature)
+id=19677
+name=Shoving Match
+rarity=U
+type=Instant
+mana={2}{U}
+[/card]
+[card]
 text=When Silverglade Elemental comes into play, you may search your library for a Forest card and put that card into play. If you do, shuffle your library.
 auto=may moveTo(myInplay) target(Forest|myLibrary)
 id=19631
@@ -1054,6 +1062,18 @@ mana={4}{G}
 power=4
 subtype=Elemental
 toughness=4
+[/card]
+[card]
+text={1}{G}, {T}, Discard a card: Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
+auto={1}{G}{T}{S(*|myHand)}:moveTo(myBattlefield) target(basic|myLibrary) && tap
+id=19728
+name=Silverglade Pathfinder
+rarity=U
+type=Creature
+mana={1}{G}
+power=1
+subtype=Dryad Spellshaper
+toughness=1
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.     Sacrifice Skull of Ramos: Add {B} to your mana pool.
@@ -1067,15 +1087,13 @@ auto={T}:Add {B}
 auto={S}:Add {B}
 [/card]
 [card]
-text=Target player gains 5 life.
-id=19550
-name=Soothing Balm
-target=player
-auto=life:5
-color=White
-rarity=C
-mana={1}{W}
-type=Instant
+text=Whenever an opponent plays a blue or black spell, you may put a 1/1 green Snake creature token into play.
+auto=@movedTo(*[blue;black]|opponentstack):may token(Snake,Creature Snake,1/1,green)
+id=19876
+name=Snake Pit
+rarity=U
+type=Enchantment
+mana={3}{G}
 [/card]
 [card]
 text=Target player discards a card at random.

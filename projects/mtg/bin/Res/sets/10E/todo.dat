@@ -1061,14 +1061,7 @@ color=Blue
 type=Instant
 mana={1}{U}
 [/card]
-[card]
-text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
-id=129881
-name=Terramorphic Expanse
-rarity=C
-color=Land
-type=Land
-[/card]
+
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.
 id=129764

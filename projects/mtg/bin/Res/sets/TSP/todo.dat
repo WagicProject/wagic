@@ -599,14 +599,7 @@ toughness=2
 text=Echo {5}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Firemaw Kavu comes into play, it deals 2 damage to target creature. When Firemaw Kavu leaves play, it deals 4 damage to target creature.
 rarity=U
 [/card]
-[card]
-id=116733
-name=Flagstones of Trokair
-mana=
-type=Legendary Land
-text={T}: Add {W} to your mana pool. When Flagstones of Trokair is put into a graveyard from play, you may search your library for a Plains card and put it into play tapped. If you do, shuffle your library.
-rarity=R
-[/card]
+
 [card]
 id=108870
 name=Flamecore Elemental
@@ -1605,17 +1598,7 @@ toughness=2
 text=At the beginning of your upkeep, put a spore counter on Savage Thallid. Remove three spore counters from Savage Thallid: Put a 1/1 green Saproling creature token into play. Sacrifice a Saproling: Regenerate target Fungus.
 rarity=C
 [/card]
-[card]
-id=110524
-name=Scarwood Treefolk
-mana={3}{G}
-type=Creature
-subtype=Treefolk
-power=3
-toughness=5
-text=Scarwood Treefolk comes into play tapped.
-rarity=C
-[/card]
+
 [card]
 id=116745
 name=Scion of the Ur-Dragon
@@ -1936,14 +1919,7 @@ subtype=Aura
 text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature has shadow. (It can block or be blocked by only creatures with shadow.) Prevent all damage that would be dealt by enchanted creature.
 rarity=C
 [/card]
-[card]
-id=118874
-name=Terramorphic Expanse
-type=Land
-text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
-auto={T}{S}:moveTo(myinplay) target(land[basic]|mylibrary)
-rarity=C
-[/card]
+
 [card]
 id=116381
 name=Thallid Germinator
@@ -2219,17 +2195,7 @@ type=Sorcery
 text=Buyback {2}{G} (You may pay an additional {2}{G} as you play this spell. If you do, put this card into your hand as it resolves.) Put an X/X green Wurm creature token into play.
 rarity=R
 [/card]
-[card]
-id=118884
-name=Yavimaya Dryad
-mana={1}{G}{G}
-type=Creature
-subtype=Dryad
-power=2
-toughness=1
-text=Forestwalk When Yavimaya Dryad comes into play, you may search your library for a Forest card and put it into play tapped under target player's control. If you do, shuffle your library.
-rarity=U
-[/card]
+
 [card]
 id=108898
 name=Zealot il-Vec

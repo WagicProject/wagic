@@ -1241,6 +1241,16 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
+target=basic|mylibrary
+auto=moveTo(myBattlefield) && tap
+id=4779
+name=Rampant Growth
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
 id=4852
 target=player

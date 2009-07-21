@@ -35,6 +35,15 @@ subtype=Human Wizard
 toughness=2
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Bant Panorama: Search your library for a basic Forest, Plains, or Island card and put it into play tapped. Then shuffle your library.
+auto={T}:Add{1}
+auto={1}{T}{S}:moveTo(myBattlefield) target(forest,plains,island|mylibrary) && tap
+id=174842
+name=Bant Panorama
+rarity=C
+type=Land
+[/card]
+[card]
 text=Blightning deals 3 damage to target player. That player discards two cards.
 id=174917
 target=player
@@ -250,6 +259,15 @@ subtype=Elf Shaman
 toughness=1
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Esper Panorama: Search your library for a basic Plains, Island, or Swamp card and put it into play tapped. Then shuffle your library.
+id=179431
+auto={T}:Add{1}
+auto={1}{T}{S}:moveTo(myBattlefield) target(plains,island,swamp|mylibrary) && tap
+name=Esper Panorama
+rarity=C
+type=Land
+[/card]
+[card]
 text=Flash     {B}, {T}, Sacrifice an artifact: Draw a card.
 abilities=flash
 auto={B}{T}{S(artifact|myinplay)}:draw:1
@@ -362,6 +380,15 @@ mana={4}{R}{G}{G}{W}
 power=8
 subtype=Beast
 toughness=8
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Grixis Panorama: Search your library for a basic Island, Swamp, or Mountain card and put it into play tapped. Then shuffle your library.
+auto={T}:Add{1}
+auto={1}{T}{S}:moveTo(myBattlefield) target(island,swamp,mountain|mylibrary) && tap
+id=179433
+name=Grixis Panorama
+rarity=C
+type=Land
 [/card]
 [card]
 text=Defender     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
@@ -479,6 +506,15 @@ mana={1}{U}
 power=2
 subtype=Human Scout
 toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it into play tapped. Then shuffle your library.
+auto={T}:Add{1}
+auto={1}{T}{S}:moveTo(myBattlefield) target(swamp,mountain,forest|mylibrary) && tap
+id=179425
+name=Jund Panorama
+rarity=C
+type=Land
 [/card]
 [card]
 text=Jungle Shrine comes into play tapped.     {T}: Add {R}, {G}, or {W} to your mana pool.
@@ -607,6 +643,15 @@ mana={2}{G}
 power=2
 subtype=Human Shaman
 toughness=2
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Naya Panorama: Search your library for a basic Mountain, Forest, or Plains card and put it into play tapped. Then shuffle your library.
+auto={T}:Add{1}
+auto={1}{T}{S}:moveTo(myBattlefield) target(mountain,forest,plains|mylibrary) && tap
+id=179423
+name=Naya Panorama
+rarity=C
+type=Land
 [/card]
 [card]
 text={2}: Remove target creature card in a graveyard from the game. Put a 1/1 green Saproling creature token into play.

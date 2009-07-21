@@ -269,6 +269,16 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Search your library for a Plains, Island, Swamp, or Mountain card and put it into play tapped. Then shuffle your library.
+id=87970
+name=Farseek
+target=plains,island,swamp|mylibrary
+auto=moveto(myinplay) && tap
+rarity=C
+type=Sorcery
+mana={1}{G}
+[/card]
+[card]
 text=Enchant creature    When Fists of Ironwood comes into play, put two 1/1 green Saproling creature tokens into play.     Enchanted creature has trample.
 target=creature
 auto=token(Saproling,creature saproling, 1/1,green)*2
@@ -585,6 +595,15 @@ toughness=4
 abilities=vigilance
 [/card]
 [card]
+text={1}, Sacrifice a creature: Search your library for a land card with a basic land type and put it into play tapped. Then shuffle your library.
+auto={1}{S(creature|mybattlefield)}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+id=83744
+name=Perilous Forays
+rarity=U
+type=Enchantment
+mana={3}{G}{G}
+[/card]
+[card]
 text={T}: Add {W} to your mana pool.
 auto={T}: Add {W}
 id=95112
@@ -869,6 +888,31 @@ subtype=Zombie Drake
 power=2
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=Terrarion comes into play tapped.     {2}, {T}, Sacrifice Terrarion: Add two mana in any combination of colors to your mana pool.     When Terrarion is put into a graveyard from play, draw a card.
+auto=tap
+auto={2}{T}{S}:Add{G}{G}
+auto={2}{T}{S}:Add{G}{R}
+auto={2}{T}{S}:Add{G}{U}
+auto={2}{T}{S}:Add{G}{B}
+auto={2}{T}{S}:Add{G}{W}
+auto={2}{T}{S}:Add{R}{R}
+auto={2}{T}{S}:Add{R}{U}
+auto={2}{T}{S}:Add{R}{B}
+auto={2}{T}{S}:Add{R}{W}
+auto={2}{T}{S}:Add{U}{U}
+auto={2}{T}{S}:Add{U}{B}
+auto={2}{T}{S}:Add{U}{W}
+auto={2}{T}{S}:Add{B}{B}
+auto={2}{T}{S}:Add{B}{W}
+auto={2}{T}{S}:Add{W}{W}
+auto=@movedTo(this|graveyard):draw:1
+id=83629
+name=Terrarion
+rarity=C
+type=Artifact
+mana={1}
 [/card]
 [card]
 text=Defender (This creature can't attack.)   {4}: Tidewater Minion loses defender until end of turn.    {T}: Untap target permanent.
