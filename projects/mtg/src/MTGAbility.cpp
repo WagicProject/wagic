@@ -128,6 +128,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
 
 
 
+
 //Parses a string and returns the corresponding MTGAbility object
 // Returns NULL if parsing failed
 MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated){
@@ -497,25 +498,27 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     return NULL;
   }
-/*
+
 
   //counter
   found = s.find("counter(");
   if (found != string::npos){
-    int end = s.find(")", found);
-    string spt = s.substr(9,end - 1);
+    found+=8;
+    int nb = 1;
+    size_t end = s.find(")", found);
+    size_t separator = s.find(",", found);
+    if (separator != string::npos){
+      nb = atoi(s.substr(found,separator-found).c_str()); 
+      end = separator;
+    }
+    string spt = s.substr(found,end-found);
     int power, toughness;
     if ( parsePowerToughness(spt,&power, &toughness)){
-      if(tc){
-	      //TODO
-      }else{
-	      return NEW ACounters(id,card,target,power,toughness);
-      }
+      return NEW AACounter(id,card,target,power,toughness,nb);
     }
     return NULL;
   }
 
-*/
 
  
   //Change Power/Toughness
@@ -783,7 +786,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       magicText = "";
     }
 
-    MTGAbility * a = parseMagicLine(line, result, spell, card);
+    MTGAbility * a = parseMagicLine(line, result, spell, card); 
     if (dryMode){
       result = abilityEfficiency(a, card->controller(),MODE_PUTINTOPLAY);
       SAFE_DELETE(a);

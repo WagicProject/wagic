@@ -493,14 +493,7 @@ rarity=C
 type=Instant
 mana={3}{G}
 [/card]
-[card]
-text={4}, {T}: Put a -1/-1 counter on target creature.
-id=146015
-name=Gnarled Effigy
-rarity=U
-type=Artifact
-mana={4}
-[/card]
+
 [card]
 text=Flying     Other creatures are 1/1.
 id=142019

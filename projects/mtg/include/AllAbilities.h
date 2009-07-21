@@ -57,6 +57,42 @@ public:
 };
 
 
+//counters
+class AACounter: public ActivatedAbility{
+ public:
+  int nb;
+  int power;
+  int toughness;
+ AACounter(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness, int nb,ManaCost * cost=NULL, int doTap = 1):ActivatedAbility(id,_source,cost,0,doTap),power(_power),toughness(_toughness),nb(nb){
+	  target=_target;
+ }
+
+
+ int resolve(){
+   if (target){
+     MTGCardInstance * _target = (MTGCardInstance *)target;
+     if (nb>0){
+       for (int i=0; i < nb; i++){
+        _target->counters->addCounter(power, toughness);
+       }
+     }else{
+       for (int i=0; i < nb; i++){
+        _target->counters->removeCounter(power, toughness);
+       }
+     }
+     return nb;
+   }
+   return 0;
+ }
+
+  AACounter * clone() const{
+    AACounter * a =  NEW AACounter(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+
+
 class AAFizzler:public ActivatedAbility{
  public:
  AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap){
@@ -4207,30 +4243,7 @@ class ALifeModifierPutinplay: public ListMaintainerAbility{
 
 /// Work in Progress also from no on all code could be removed...
 
-//Draft for counters
-class ACounters: public MTGAbility{
- public:
-  int counter;
-  int power;
-  int toughness;
- ACounters(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness):MTGAbility(id,_source,_target),power(_power),toughness(_toughness){
-	_target->counters->addCounter(power, toughness);
- }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ACounters ::: counter : " << counter
-		<< " ; power : " << power
-		<< " ; toughness : " << toughness
-		<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
 
-  ACounters * clone() const{
-    ACounters * a =  NEW ACounters(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 ///// Not working need to work on this one 
 ///Abomination Kill blocking creature if white or green

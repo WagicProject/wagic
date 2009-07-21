@@ -468,6 +468,15 @@ subtype=Spider
 toughness=3
 [/card]
 [card]
+text={4}, {T}: Put a -1/-1 counter on target creature.
+auto={4}{T}:counter(-1/-1) target(creature)
+id=146015
+name=Gnarled Effigy
+rarity=U
+type=Artifact
+mana={4}
+[/card]
+[card]
 text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 abilities=persist
 id=141935

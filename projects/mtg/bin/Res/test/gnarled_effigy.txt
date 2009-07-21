@@ -1,0 +1,38 @@
+#text={4}, {T}: Put a -1/-1 counter on target creature.
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:gnarled effigy
+manapool:{4}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+gnarled effigy
+grizzly bears
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:gnarled effigy
+manapool:{0}
+life:19
+[PLAYER2]
+inplay:grizzly bears
+[END]

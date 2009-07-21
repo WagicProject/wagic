@@ -86,6 +86,7 @@ ghost_warden.txt
 giant_growth.txt
 giant_growth2.txt
 glimpse_the_unthinkable.txt
+gnarled_effigy.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
 goblin_king.txt
