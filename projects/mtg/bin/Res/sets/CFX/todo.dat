@@ -6,7 +6,6 @@ rarity=C
 type=Sorcery
 mana={6}{B}
 [/card]
-
 [card]
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to play creature spells.
 id=189271
@@ -33,9 +32,6 @@ rarity=C
 type=Artifact
 mana={2}
 [/card]
-
-
-
 [card]
 text=Banefire deals X damage to target creature or player.     If X is 5 or more, Banefire can't be countered by spells or abilities and the damage can't be prevented.
 id=186613
@@ -97,8 +93,6 @@ power=4
 subtype=Elemental
 toughness=4
 [/card]
-
-
 [card]
 text=Trample     Whenever Charnelhoard Wurm deals damage to an opponent, you may return target card from your graveyard to your hand.
 id=179438
@@ -126,19 +120,16 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-
-
 [card]
-text=Counter target noncreature spell. Its controller loses 2 life.
+text=Counter target noncreature spell. Its controller loses 2 life. 
+target=(*[-creature])
+auto=fizzle && damage:2 controller
 id=186327
 name=Countersquall
 rarity=U
 type=Instant
 mana={U}{B}
 [/card]
-
-
-
 [card]
 text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
 id=185143
@@ -147,8 +138,6 @@ rarity=C
 type=Instant
 mana={2}{R}
 [/card]
-
-
 [card]
 text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
 id=186392
@@ -160,7 +149,6 @@ power=2
 subtype=Human Knight
 toughness=2
 [/card]
-
 [card]
 text=Enchant creature     Enchanted creature gets +3/+3 and has flying.     Whenever enchanted creature deals damage to a player, that player discards two cards.
 id=183024
@@ -170,8 +158,6 @@ type=Enchantment
 mana={3}{U}{B}{R}
 subtype=Aura
 [/card]
-
-
 [card]
 text=Flying     At the beginning of your upkeep, return an artifact you control to its owner's hand.
 id=180158
@@ -183,21 +169,12 @@ power=4
 subtype=Jellyfish
 toughness=3
 [/card]
-
 [card]
 text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
 id=189273
 name=Exotic Orchard
 rarity=R
 type=Land
-[/card]
-[card]
-text=Domain - Search your library for a basic land card, put that card into play tapped, then shuffle your library. Exploding Borders deals X damage to target player, where X is the number of basic land types among lands you control.
-id=189378
-name=Exploding Borders
-rarity=C
-type=Sorcery
-mana={2}{R}{G}
 [/card]
 [card]
 text=Flying     Whenever another creature leaves play, you may have target player put the top two cards of his or her library into his or her graveyard.     Unearth {2}{B} ({2}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
@@ -267,7 +244,6 @@ power=0
 subtype=Human Wizard
 toughness=1
 [/card]
-
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {T}: Destroy target creature that dealt damage to you this turn.
 id=186614
@@ -298,7 +274,6 @@ power=2
 subtype=Ooze
 toughness=2
 [/card]
-
 [card]
 text={1}{R}, Sacrifice a land: Put a +1/+1 counter on Goblin Razerunners.     At the end of your turn, you may have Goblin Razerunners deal damage equal to the number of +1/+1 counters on it to target player.
 id=179487
@@ -384,7 +359,6 @@ power=2
 subtype=Zombie Horror
 toughness=2
 [/card]
-
 [card]
 text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.     {T}: Target creature is unblockable this turn.
 id=174791
@@ -396,7 +370,6 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-
 [card]
 text=Whenever an opponent draws a card, if you control a red permanent, you may have Kederekt Parasite deal 1 damage to that player.
 id=189080
@@ -408,9 +381,6 @@ power=1
 subtype=Horror
 toughness=1
 [/card]
-
-
-
 [card]
 text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
 id=175026
@@ -452,7 +422,6 @@ power=6
 subtype=Demon Dragon
 toughness=6
 [/card]
-
 [card]
 text=Domain - Equipped creature gets +1/+1 for each basic land type among lands you control.     Equip {3}
 id=180159
@@ -462,7 +431,6 @@ type=Artifact
 mana={4}
 subtype=Equipment
 [/card]
-
 [card]
 text=Prevent all noncombat damage that would be dealt to creatures you control.
 id=186615
@@ -490,7 +458,6 @@ power=1
 subtype=Human Artificer
 toughness=2
 [/card]
-
 [card]
 text=Vigilance, trample     Whenever Meglonoth blocks a creature, Meglonoth deals damage to that creature's controller equal to Meglonoth's power.
 id=179886
@@ -502,7 +469,6 @@ power=6
 subtype=Beast
 toughness=6
 [/card]
-
 [card]
 text=Trample     At the beginning of your upkeep, if you control a blue permanent, you may put a token into play that's a copy of Mirror-Sigil Sergeant.
 id=158598
@@ -536,7 +502,6 @@ power=5
 subtype=Cat Warrior
 toughness=4
 [/card]
-
 [card]
 text=Protection from artifacts
 id=183022
@@ -558,9 +523,6 @@ mana={4}{U}{B}{B}{R}
 subtype=Bolas
 toughness=5
 [/card]
-
-
-
 [card]
 text=Whenever another creature with power 5 or greater comes into play under your control, you may return target creature card from your graveyard to your hand.
 id=189873
@@ -614,7 +576,7 @@ subtype=Bird Warrior
 toughness=1
 [/card]
 [card]
-text=Protection from everything     If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
+text=Protection from everything     If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.  ##crazy bitch
 id=179496
 name=Progenitus
 rarity=M
@@ -632,25 +594,12 @@ rarity=C
 type=Sorcery
 mana={3}{R}
 [/card]
-
 [card]
 text=You have no maximum hand size.     {T}: Add {1} to your mana pool.
 id=150807
 name=Reliquary Tower
 rarity=U
 type=Land
-[/card]
-
-[card]
-text=When Rhox Meditant comes into play, if you control a green permanent, draw a card.
-id=159634
-name=Rhox Meditant
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Rhino Monk
-toughness=4
 [/card]
 [card]
 text=When Rotting Rats comes into play, each player discards a card.     Unearth {1}{B} ({1}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
@@ -670,8 +619,6 @@ name=Rupture Spire
 rarity=C
 type=Land
 [/card]
-
-
 [card]
 text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
 id=183025
@@ -691,9 +638,6 @@ rarity=R
 type=Artifact
 mana={B}{B}
 [/card]
-
-
-
 [card]
 text=When Sedraxis Alchemist comes into play, if you control a blue permanent, return target nonland permanent to its owner's hand.
 id=182306
@@ -724,7 +668,6 @@ rarity=U
 type=Sorcery
 mana={3}{G}
 [/card]
-
 [card]
 text=Vigilance     {T}: Reveal the top card of your library. If it's a land card, put it into play. Otherwise, put it into your hand.
 id=174953
@@ -755,9 +698,6 @@ rarity=R
 type=Sorcery
 mana={4}{G}
 [/card]
-
-
-
 [card]
 text=Target player gains 8 life.     Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 id=179523
@@ -774,7 +714,6 @@ rarity=R
 type=Sorcery
 mana={3}{U}{U}
 [/card]
-
 [card]
 text=Toxic Iguanar has deathtouch as long as you control a green permanent. (Whenever it deals damage to a creature, destroy that creature.)
 id=170956
@@ -812,11 +751,6 @@ power=6
 subtype=Beast
 toughness=6
 [/card]
-
-
-
-
-
 [card]
 text=Target creature gains flying until end of turn. If you control a white permanent, return View from Above to its owner's hand.
 id=183058
@@ -912,5 +846,3 @@ rarity=C
 type=Sorcery
 mana={B}
 [/card]
-
-
