@@ -177,6 +177,20 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Domain - Search your library for a basic land card, put that card into play tapped, then shuffle your library. Exploding Borders deals X damage to target player, where X is the number of basic land types among lands you control.
+auto=moveTo(myinplay) target(basic) && tap
+auto=aslongas(forest|myinplay) damage:1 target(player)
+auto=aslongas(plains|myinplay) damage:1 target(player)
+auto=aslongas(mountain|myinplay) damage:1 target(player)
+auto=aslongas(swamp|myinplay) damage:1 target(player)
+auto=aslongas(island|myinplay) damage:1 target(player)
+id=189378
+name=Exploding Borders
+rarity=C
+type=Sorcery
+mana={2}{R}{G}
+[/card]
+[card]
 text=Flying     Whenever another creature leaves play, you may have target player put the top two cards of his or her library into his or her graveyard.     Unearth {2}{B} ({2}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=189082
 name=Extractor Demon

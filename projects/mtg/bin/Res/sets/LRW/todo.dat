@@ -113,19 +113,6 @@ power=2
 subtype=Shapeshifter
 toughness=2
 [/card]
-
-
-[card]
-text=Whenever a Forest comes into play under your control, Battlewand Oak gets +2/+2 until end of turn.     Whenever you play a Treefolk spell, Battlewand Oak gets +2/+2 until end of turn.
-id=141857
-name=Battlewand Oak
-rarity=C
-type=Creature
-mana={2}{G}
-power=1
-subtype=Treefolk Warrior
-toughness=3
-[/card]
 [card]
 text=When Benthicore comes into play, put two 1/1 blue Merfolk Wizard creature tokens into play.     Tap two untapped Merfolk you control: Untap Benthicore. It gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=139696
@@ -137,7 +124,6 @@ power=5
 subtype=Elemental
 toughness=5
 [/card]
-
 [card]
 text=Changeling (This card is every creature type at all times.)  Up to two target creatures each get +2/+0 and gain all creature types until end of turn.
 id=139480
@@ -158,7 +144,6 @@ power=4
 subtype=Goblin Warrior
 toughness=1
 [/card]
-
 [card]
 text={R}, Sacrifice Boggart Forager: Target player shuffles his or her library.
 id=146168
@@ -181,7 +166,6 @@ power=2
 subtype=Goblin Shaman
 toughness=1
 [/card]
-
 [card]
 text=Champion a Goblin (When this comes into play, sacrifice it unless you remove another Goblin you control from the game. When this leaves play, that card returns to play.)  Whenever a Goblin you control deals combat damage to a player, you may put a 1/1 black Goblin Rogue creature token into play.
 id=140230
@@ -193,16 +177,6 @@ power=5
 subtype=Goblin Warrior
 toughness=5
 [/card]
-[card]
-text=Whenever another Goblin you control is put into a graveyard from play, you may have Boggart Shenanigans deal 1 damage to target player.
-id=139445
-name=Boggart Shenanigans
-rarity=U
-type=Tribal Enchantment
-mana={2}{R}
-subtype=Goblin
-[/card]
-
 [card]
 text=Swampwalk     Whenever a player plays a Goblin spell, you may pay {G}. If you do, you gain 2 life.
 id=139410
@@ -225,7 +199,6 @@ power=3
 subtype=Elemental
 toughness=3
 [/card]
-
 [card]
 text=Lifelink (Whenever this creature deals damage, you gain that much life.)  {R}, {T}, Sacrifice a creature other than Brion Stoutarm: Brion Stoutarm deals damage equal to the sacrificed creature's power to target player.
 id=140217
@@ -352,7 +325,6 @@ power=7
 subtype=Shapeshifter
 toughness=7
 [/card]
-
 [card]
 text=When Cloudgoat Ranger comes into play, put three 1/1 white Kithkin Soldier creature tokens into play.     Tap three untapped Kithkin you control: Cloudgoat Ranger gets +2/+0 and gains flying until end of turn.
 id=139664
@@ -426,7 +398,6 @@ rarity=R
 type=Instant
 mana={1}{U}{U}{U}
 [/card]
-
 [card]
 text=Flash     When Dawnfluke comes into play, prevent the next 3 damage that would be dealt to target creature or player this turn.     Evoke {W} (You may play this spell for its evoke cost. If you do, it's sacrificed when it comes into play.)
 id=145801
@@ -447,7 +418,6 @@ type=Artifact
 mana={4}
 subtype=Equipment
 [/card]
-
 [card]
 text=Prevent all combat damage that would be dealt to attacking creatures you control.
 id=140206
@@ -729,7 +699,6 @@ rarity=R
 type=Enchantment
 mana={4}{U}{U}
 [/card]
-
 [card]
 text=Noncreature spells with converted mana cost 4 or greater can't be played.     Noncreature spells with {X} in their mana costs can't be played.
 id=140188
@@ -785,15 +754,6 @@ subtype=Giant Shaman
 toughness=4
 [/card]
 [card]
-text=Giant's Ire deals 4 damage to target player. If you control a Giant, draw a card.
-id=139477
-name=Giant's Ire
-rarity=C
-type=Tribal Sorcery
-mana={3}{R}
-subtype=Giant
-[/card]
-[card]
 text=Put two 1/1 green Elf Warrior creature tokens into play. Clash with an opponent. If you win, those creatures gain deathtouch until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost. Whenever a creature with deathtouch deals damage to a creature, destroy that creature.)
 id=145984
 name=Gilt-Leaf Ambush
@@ -843,15 +803,6 @@ subtype=Faerie Wizard
 toughness=3
 [/card]
 [card]
-text=Enchant tapped creature     Enchanted creature doesn't untap during its controller's untap step.
-id=139436
-name=Glimmerdust Nap
-rarity=C
-type=Enchantment
-mana={2}{U}
-subtype=Aura
-[/card]
-[card]
 text=When Goatnapper comes into play, untap target Goat and gain control of it until end of turn. It gains haste until end of turn.
 id=142363
 name=Goatnapper
@@ -873,7 +824,6 @@ power=1
 subtype=Kithkin Rogue
 toughness=1
 [/card]
-
 [card]
 text=As an additional cost to play Goldmeadow Stalwart, reveal a Kithkin card from your hand or pay {3}.
 id=139698
@@ -885,7 +835,6 @@ power=2
 subtype=Kithkin Soldier
 toughness=2
 [/card]
-
 [card]
 text=Guile can't be blocked except by three or more creatures.     If a spell or ability you control would counter a spell, instead remove that spell from the game and you may play that card without paying its mana cost.     When Guile is put into a graveyard from anywhere, shuffle it into its owner's library.
 id=140190
@@ -909,17 +858,6 @@ subtype=Giant Warrior
 toughness=6
 [/card]
 [card]
-text={W}, {T}: Harpoon Sniper deals X damage to target attacking or blocking creature, where X is the number of Merfolk you control.
-id=139407
-name=Harpoon Sniper
-rarity=U
-type=Creature
-mana={2}{W}
-power=2
-subtype=Merfolk Archer
-toughness=2
-[/card]
-[card]
 text=Regenerate target creature. You gain life equal to that creature's toughness.
 id=145808
 name=Heal the Scars
@@ -927,7 +865,6 @@ rarity=C
 type=Instant
 mana={3}{G}
 [/card]
-
 [card]
 text=Put a token into play that's a copy of target creature. It has haste and "At end of turn, remove this permanent from the game."
 id=139468
@@ -936,15 +873,6 @@ rarity=R
 type=Sorcery
 mana={2}{R}
 [/card]
-[card]
-text={3}, Sacrifice Herbal Poultice: Regenerate target creature.
-id=139740
-name=Herbal Poultice
-rarity=C
-type=Artifact
-mana={0}
-[/card]
-
 [card]
 text=You lose 2 life and draw two cards, then clash with an opponent. If you win, repeat this process. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 id=146160
@@ -961,18 +889,6 @@ rarity=R
 type=Tribal Enchantment
 mana={1}{W}
 subtype=Elemental
-[/card]
-
-[card]
-text=When Hornet Harasser is put into a graveyard from play, target creature gets -2/-2 until end of turn.
-id=142355
-name=Hornet Harasser
-rarity=C
-type=Creature
-mana={2}{B}{B}
-power=2
-subtype=Goblin Shaman
-toughness=2
 [/card]
 [card]
 text=Haste     If a spell you control would deal damage to an opponent, prevent that damage. Put a 3/1 red Elemental Shaman creature token with haste into play for each 1 damage prevented this way.     When Hostility is put into a graveyard from anywhere, shuffle it into its owner's library.
@@ -1030,7 +946,6 @@ power=2
 subtype=Elf Shaman
 toughness=2
 [/card]
-
 [card]
 text=Other Elemental creatures you control get +1/+1.     {1}{R}, {T}: You may put an Elemental creature card from your hand into play. That creature gains haste until end of turn. Sacrifice it at end of turn.
 id=139730
@@ -1146,19 +1061,6 @@ subtype=Kithkin Soldier
 toughness=2
 [/card]
 [card]
-text=When Kinsbaile Skirmisher comes into play, target creature gets +1/+1 until end of turn.
-id=143018
-name=Kinsbaile Skirmisher
-rarity=C
-type=Creature
-mana={1}{W}
-power=2
-subtype=Kithkin Soldier
-toughness=2
-[/card]
-
-
-[card]
 text=When Kithkin Harbinger comes into play, you may search your library for a Kithkin card, reveal it, then shuffle your library and put that card on top of it.
 id=139399
 name=Kithkin Harbinger
@@ -1180,18 +1082,6 @@ power=2
 subtype=Kithkin Cleric
 toughness=2
 [/card]
-[card]
-text=Whenever an attacking Kithkin or Elf is put into your graveyard from play, you may draw a card.
-id=139497
-name=Kithkin Mourncaller
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Kithkin Scout
-toughness=2
-[/card]
-
 [card]
 text=Whenever a Goblin you control is put into a graveyard from play, you may put a +1/+1 counter on Knucklebone Witch.
 id=143609
@@ -1238,7 +1128,6 @@ rarity=C
 type=Instant
 mana={1}{R}
 [/card]
-
 [card]
 text=Enchant creature     Enchanted creature is a 0/4 Treefolk with no abilities.
 id=139703
@@ -1268,39 +1157,6 @@ mana={3}{R}
 power=3
 subtype=Giant Warrior
 toughness=3
-[/card]
-[card]
-text=Whenever you play an Elf spell, you may put a 1/1 green Elf Warrior creature token into play.
-id=139401
-name=Lys Alana Huntmaster
-rarity=C
-type=Creature
-mana={2}{G}{G}
-power=3
-subtype=Elf Warrior
-toughness=3
-[/card]
-[card]
-text={T}, Discard an Elf card: Target creature gets -X/-X until end of turn, where X is the number of Elves you control.
-id=143021
-name=Lys Alana Scarblade
-rarity=U
-type=Creature
-mana={2}{B}
-power=1
-subtype=Elf Assassin
-toughness=1
-[/card]
-[card]
-text=Other Goblin creatures you control get +1/+1.     {T}: Regenerate another target Goblin.
-id=139708
-name=Mad Auntie
-rarity=R
-type=Creature
-mana={2}{B}
-power=2
-subtype=Goblin Shaman
-toughness=2
 [/card]
 [card]
 text=Return target creature card from your graveyard to play with a mannequin counter on it. As long as that creature has a mannequin counter on it, it has "When this creature becomes the target of a spell or ability, sacrifice it."
@@ -1353,17 +1209,6 @@ subtype=Merfolk Wizard
 toughness=3
 [/card]
 [card]
-text=Other Merfolk creatures you control get +1/+1.     Whenever you play a Merfolk spell, you may tap or untap target permanent.
-id=139702
-name=Merrow Reejerey
-rarity=U
-type=Creature
-mana={2}{U}
-power=2
-subtype=Merfolk Soldier
-toughness=2
-[/card]
-[card]
 text=Whenever a nontoken creature you control attacks, you may pay {W}. If you do, put a 1/1 white Kithkin Soldier creature token into play tapped and attacking.
 id=140193
 name=Militia's Pride
@@ -1394,7 +1239,6 @@ power=4
 subtype=Faerie Wizard
 toughness=4
 [/card]
-
 [card]
 text=Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
 id=139483
@@ -1423,17 +1267,6 @@ mana={6}{B}
 power=3
 subtype=Elemental
 toughness=3
-[/card]
-[card]
-text=When Mudbutton Torchrunner is put into a graveyard from play, it deals 3 damage to target creature or player.
-id=139742
-name=Mudbutton Torchrunner
-rarity=C
-type=Creature
-mana={2}{R}
-power=1
-subtype=Goblin Warrior
-toughness=1
 [/card]
 [card]
 text=Flying     When Mulldrifter comes into play, draw two cards.     Evoke {2}{U} (You may play this spell for its evoke cost. If you do, it's sacrificed when it comes into play.)
@@ -1489,17 +1322,6 @@ subtype=Elf Warrior
 toughness=2
 [/card]
 [card]
-text=Flying     {B}, {T}: Target Faerie or Elf gains lifelink until end of turn. (Whenever it deals damage, its controller gains that much life.)
-id=139451
-name=Nectar Faerie
-rarity=U
-type=Creature
-mana={1}{B}
-power=1
-subtype=Faerie Wizard
-toughness=1
-[/card]
-[card]
 text=Needle Drop deals 1 damage to target creature or player that was dealt damage this turn.     Draw a card.
 id=146161
 name=Needle Drop
@@ -1515,17 +1337,6 @@ rarity=R
 type=Enchantment
 mana={4}{B}{B}
 subtype=Aura
-[/card]
-[card]
-text=Flying     Nightshade Stinger can't block.
-id=139456
-name=Nightshade Stinger
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Faerie Rogue
-toughness=1
 [/card]
 [card]
 text=Trample     Champion an Elemental (When this comes into play, sacrifice it unless you remove another Elemental you control from the game. When this leaves play, that card returns to play.)
@@ -1580,26 +1391,6 @@ subtype=Merfolk Rogue
 toughness=2
 [/card]
 [card]
-text=Target creature gets -1/-1 until end of turn. If you control a Faerie, draw a card.
-id=139458
-name=Peppersmoke
-rarity=C
-type=Tribal Instant
-mana={B}
-subtype=Faerie
-[/card]
-[card]
-text=Flash     Flying     When Pestermite comes into play, you may tap or untap target permanent.
-id=139428
-name=Pestermite
-rarity=C
-type=Creature
-mana={2}{U}
-power=2
-subtype=Faerie Rogue
-toughness=1
-[/card]
-[card]
 text=Prevent all combat damage that would be dealt this turn. Clash with an opponent. If you win, creatures that player controls don't untap during the player's next untap step. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 id=145815
 name=Pollen Lullaby
@@ -1630,15 +1421,6 @@ name=Profane Command
 rarity=R
 type=Sorcery
 mana={X}{B}{B}
-[/card]
-[card]
-text=Whenever another nontoken Elf is put into your graveyard from play, you may put a 1/1 green Elf Warrior creature token into play.
-id=146167
-name=Prowess of the Fair
-rarity=U
-type=Tribal Enchantment
-mana={1}{B}
-subtype=Elf
 [/card]
 [card]
 text=Flying     If noncombat damage would be dealt to you, prevent that damage. You gain life equal to the damage prevented this way.     When Purity is put into a graveyard from anywhere, shuffle it into its owner's library.
@@ -1691,15 +1473,6 @@ subtype=Faerie Wizard
 toughness=1
 [/card]
 [card]
-text=Destroy target noncreature permanent. If you control a Treefolk, draw a card.
-id=139499
-name=Rootgrapple
-rarity=C
-type=Tribal Instant
-mana={4}{G}
-subtype=Treefolk
-[/card]
-[card]
 text=Equipped creature gets +1/+1 and is every creature type.     Equip {2}
 id=139508
 name=Runed Stalactite
@@ -1707,17 +1480,6 @@ rarity=C
 type=Artifact
 mana={1}
 subtype=Equipment
-[/card]
-[card]
-text={2}{B}, Remove an Elf card in your graveyard from the game: Scarred Vinebreeder gets +3/+3 until end of turn.
-id=139674
-name=Scarred Vinebreeder
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Elf Shaman
-toughness=1
 [/card]
 [card]
 text=Counter target spell. Clash with an opponent. If you win, at the beginning of your next main phase, you may add {X} to your mana pool, where X is that spell's converted mana cost. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
@@ -1736,6 +1498,7 @@ type=Land
 [/card]
 [card]
 text=When Seedguide Ash is put into a graveyard from play, you may search your library for up to three Forest cards and put them into play tapped. If you do, shuffle your library.
+auto=@movedTo(this|graveyard):may moveTo(myinplay) target(forest|mylibrary) && tap ## for 3 times
 id=146165
 name=Seedguide Ash
 rarity=U
@@ -1806,17 +1569,6 @@ subtype=Merfolk Wizard
 toughness=1
 [/card]
 [card]
-text={T}: Target creature gets -X/-0 until end of turn, where X is the number of Merfolk and/or Faeries you control.
-id=141853
-name=Silvergill Douser
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Merfolk Wizard
-toughness=1
-[/card]
-[card]
 text=Changeling (This card is every creature type at all times.)  {1}{B}: Regenerate Skeletal Changeling.
 id=145809
 name=Skeletal Changeling
@@ -1872,17 +1624,6 @@ subtype=Faerie Wizard
 toughness=1
 [/card]
 [card]
-text=When Spiderwig Boggart comes into play, target creature gains fear until end of turn.
-id=146445
-name=Spiderwig Boggart
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Goblin Shaman
-toughness=2
-[/card]
-[card]
 text=Hideaway (This land comes into play tapped. When it does, look at the top four cards of your library, remove one from the game face down, then put the rest on the bottom of your library.)  {T}: Add {R} to your mana pool.     {R}, {T}: You may play the removed card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
 id=139514
 name=Spinerock Knoll
@@ -1907,14 +1648,6 @@ mana={2}{W}
 power=2
 subtype=Kithkin Knight
 toughness=1
-[/card]
-[card]
-text={T}, Tap an untapped creature you control: Add one mana of any color to your mana pool.
-id=139509
-name=Springleaf Drum
-rarity=C
-type=Artifact
-mana={1}
 [/card]
 [card]
 text=As an additional cost to play Squeaking Pie Sneak, reveal a Goblin card from your hand or pay {3}.     Fear
@@ -1959,32 +1692,12 @@ mana={3}{W}
 subtype=Merfolk
 [/card]
 [card]
-text=Creatures you control get +1/+1 until end of turn. If you control a Kithkin, draw a card.
-id=145799
-name=Surge of Thoughtweft
-rarity=C
-type=Tribal Instant
-mana={1}{W}
-subtype=Kithkin
-[/card]
-[card]
 text=Whenever Surgespanner becomes tapped, you may pay {1}{U}. If you do, return target permanent to its owner's hand.
 id=141828
 name=Surgespanner
 rarity=R
 type=Creature
 mana={2}{U}{U}
-power=2
-subtype=Merfolk Wizard
-toughness=2
-[/card]
-[card]
-text=Islandwalk     {1}{W}: Target Merfolk you control gains protection from the color of your choice until end of turn.
-id=140172
-name=Sygg, River Guide
-rarity=R
-type=Legendary Creature
-mana={W}{U}
 power=2
 subtype=Merfolk Wizard
 toughness=2
@@ -2173,14 +1886,6 @@ id=141883
 name=Vivid Meadow
 rarity=U
 type=Land
-[/card]
-[card]
-text={1}, Sacrifice Wanderer's Twig: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
-id=139510
-name=Wanderer's Twig
-rarity=C
-type=Artifact
-mana={1}
 [/card]
 [card]
 text=As Wanderwine Hub comes into play, you may reveal a Merfolk card from your hand. If you don't, Wanderwine Hub comes into play tapped.     {T}: Add {W} or {U} to your mana pool.
