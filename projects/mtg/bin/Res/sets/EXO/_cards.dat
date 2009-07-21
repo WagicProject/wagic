@@ -62,6 +62,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+id=6168
+name=City of Traitors
+type=Land
+text=When you play another land, sacrifice City of Traitors.  {T}: Add {2} to your mana pool.
+auto=@movedTo(land|myinplay):bury
+auto={T}:Add:2
+rarity=R
+[/card]
+[card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)   {1}{B}, {T}: Destroy target creature with shadow.
 id=6091
 name=Dauthi Cutthroat
@@ -181,6 +190,18 @@ toughness=5
 abilities=flying,cantattack
 [/card]
 [card]
+id=6138
+name=Jackalope Herd
+mana={3}{G}
+type=Creature
+subtype=Rabbit Beast
+power=4
+toughness=5
+text=When you play a spell, return Jackalope Herd to its owner's hand.
+auto=@movedTo(*|mystack):moveTo(ownerHand)
+rarity=C
+[/card]
+[card]
 text={U}: Killer Whale gains flying until end of turn.
 id=6065
 name=Killer Whale
@@ -248,6 +269,15 @@ color=Black
 rarity=C
 mana={1}{B}
 type=Instant
+[/card]
+[card]
+id=5176
+name=Null Brooch
+mana={4}
+type=Artifact
+text={2}, {T}, Discard your hand: Counter target noncreature spell.
+auto={2}{T}:fizzle target(*|[-creature]|stack) && moveTo(graveyard) all(*|myhand)
+rarity=R
 [/card]
 [card]
 text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
@@ -491,6 +521,18 @@ power=*
 toughness=*
 [/card]
 [card]
+id=6033
+name=Soul Warden
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text=Whenever another creature comes into play, you gain 1 life.
+auto=@movedTo(creature|battlefield):life:1
+rarity=U
+[/card]
+[card]
 text=Vigilance
 id=6032
 name=Standing Troops
@@ -598,6 +640,18 @@ subtype=Spirit
 power=3
 toughness=2
 abilities=flying
+[/card]
+[card]
+id=6034
+name=Welkin Hawk
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying When Welkin Hawk is put into a graveyard from play, you may search your library for a card named Welkin Hawk, reveal that card, put it into your hand, then shuffle your library.
+auto=@movedTo(this|graveyard):may moveTo(myHand) target(Welkin Hawk|mylibrary)
+rarity=C
 [/card]
 [card]
 text={U}: Whiptongue Frog gains flying until end of turn.

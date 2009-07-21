@@ -78,14 +78,7 @@ power=1
 subtype=Kithkin
 toughness=1
 [/card]
-[card]
-text=Creatures you control get +1/+1 as long as you control no nonartifact, nonwhite creatures.
-id=1602
-name=Angelic Voices
-rarity=R
-type=Enchantment
-mana={2}{W}{W}
-[/card]
+
 [card]
 text={G}{W}{U}, {T}: Prevent all combat damage that would be dealt this turn.
 id=1643
@@ -125,16 +118,7 @@ power=7
 subtype=Elder Dragon
 toughness=7
 [/card]
-[card]
-text=Legendary creatures don't untap during their controllers' untap steps. When Arena of the Ancients comes into play, tap all legendary creatures.
-id=1400
-name=Arena of the Ancients
-auto=tap all(creature[legendary])
-auto=lord(creature[legendary]) doesntuntap
-rarity=R
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=Counter target instant or Aura spell that targets a permanent you control.
 id=1515
@@ -335,14 +319,6 @@ subtype=Horror
 toughness=7
 [/card]
 [card]
-text=Creatures with mountainwalk can be blocked as though they didn't have mountainwalk.
-id=1564
-name=Crevasse
-rarity=U
-type=Enchantment
-mana={2}{R}
-[/card]
-[card]
 text=When Cyclopean Mummy is put into a graveyard from play, remove Cyclopean Mummy from the game.
 id=1433
 name=Cyclopean Mummy
@@ -462,15 +438,6 @@ name=Equinox
 rarity=C
 type=Enchantment
 mana={W}
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature     Enchanted creature has vigilance.
-id=1570
-name=Eternal Warrior
-rarity=U
-type=Enchantment
-mana={R}
 subtype=Aura
 [/card]
 [card]
@@ -660,14 +627,7 @@ rarity=U
 type=Enchantment
 mana={1}{W}
 [/card]
-[card]
-text={B}, Pay 2 life: Draw a card.
-id=1441
-name=Greed
-rarity=R
-type=Enchantment
-mana={3}{B}
-[/card]
+
 [card]
 text={2}, {T}: Put a charge counter on Green Mana Battery.       {T}, Remove any number of charge counters from Green Mana Battery: Add {G} to your mana pool, then add an additional {G} to your mana pool for each charge counter removed this way.
 id=1406
@@ -698,21 +658,7 @@ power=2
 subtype=Human Warrior
 toughness=4
 [/card]
-[card]
-text=Legendary     {T}: Add {R} to your mana pool.      {T}: Target creature loses all landwalk abilities until end of turn.
-auto={T}:Add {R}
-auto={T}:-plainswalk target(creature)
-auto={T}:-islandwalk target(creature)
-auto={T}:-swampwalk target(creature)
-auto={T}:-mountainwalk target(creature)
-auto={T}:-forestwalk target(creature) 
-id=1700
-name=Hammerheim
-color=Land
-rarity=U
-type=Land
-abilities=legendary
-[/card]
+
 [card]
 text=Any number of target creatures become white until end of turn.
 id=1617
@@ -721,14 +667,7 @@ rarity=U
 type=Instant
 mana={W}
 [/card]
-[card]
-text=Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures put into all graveyards this way.
-id=1445
-name=Hellfire
-rarity=R
-type=Sorcery
-mana={2}{B}{B}{B}
-[/card]
+
 [card]
 text=Prevent all combat damage that would be dealt this turn.
 id=1618
@@ -870,17 +809,6 @@ mana={W}{U}{B}
 power=1
 subtype=Human Cleric
 toughness=2
-[/card]
-[card]
-text=
-id=1667
-name=Lady Orca
-rarity=U
-type=Legendary Creature
-mana={5}{B}{R}
-power=7
-subtype=Demon
-toughness=4
 [/card]
 [card]
 text=If an opponent who controls at least as many lands as you do would put a land into play, that player instead puts that land into play then sacrifices a land.
@@ -1383,28 +1311,7 @@ rarity=U
 type=Instant
 mana={1}{U}
 [/card]
-[card]
-text=
-id=1684
-name=Sivitri Scarzam
-rarity=U
-type=Legendary Creature
-mana={5}{U}{B}
-power=6
-subtype=Human
-toughness=4
-[/card]
-[card]
-text=Swampwalk     Whenever a player plays a black spell, you gain 1 life.
-id=1685
-name=Sol'kanar the Swamp King
-rarity=R
-type=Legendary Creature
-mana={2}{U}{B}{R}
-power=5
-subtype=Demon
-toughness=5
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature has shroud as long as it's untapped. (It can't be the target of spells or abilities.)
 id=1504
@@ -1604,14 +1511,6 @@ id=1706
 name=Unholy Citadel
 rarity=U
 type=Land
-[/card]
-[card]
-text=Search your library for a basic land card and put that card into play. Then shuffle your library.
-id=1550
-name=Untamed Wilds
-rarity=U
-type=Sorcery
-mana={2}{G}
 [/card]
 [card]
 text=Flying     At the beginning of your upkeep, sacrifice Vaevictis Asmadi unless you pay {B}{R}{G}.     {B}: Vaevictis Asmadi gets +1/+0 until end of turn.     {R}: Vaevictis Asmadi gets +1/+0 until end of turn.     {G}: Vaevictis Asmadi gets +1/+0 until end of turn.

@@ -243,6 +243,8 @@ mana={U}
 [/card]
 [card]
 text=Blue creatures don't untap during their controllers' untap steps.     Blue creatures have "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
+auto=lord(creature[blue]) doesnotuntap
+auto=lord(creature[blue]) @each my upkeep:may {4}:untap
 id=1304
 name=Magnetic Mountain
 rarity=R
@@ -326,17 +328,7 @@ power=1
 subtype=Imp
 toughness=1
 [/card]
-[card]
-text=When Onulet is put into a graveyard from play, you gain 2 life.
-id=1130
-name=Onulet
-rarity=R
-color=Artifact
-type=Artifact Creature
-mana={3}
-power=2
-toughness=2
-[/card]
+
 [card]
 text={0}: The next 1 damage that would be dealt to Personal Incarnation this turn is dealt to its owner instead. Any player may play this ability, but only if he or she owns Personal Incarnation.     When Personal Incarnation is put into a graveyard from play, its owner loses half his or her life, rounded up.
 id=1357
@@ -519,18 +511,7 @@ color=Green
 type=Enchantment
 mana={3}{G}
 [/card]
-[card]
-text=Whenever you play an enchantment spell, you may draw a card.
-id=1272
-name=Verduran Enchantress
-rarity=R
-color=Green
-type=Creature
-mana={1}{G}{G}
-power=0
-subtype=Human Druid
-toughness=2
-[/card]
+
 [card]
 text=As Vesuvan Doppelganger comes into play, you may choose a creature in play. If you do, Vesuvan Doppelganger comes into play as a copy of that creature except for its color and gains "At the beginning of your upkeep, you may have this creature become a copy of target creature except for its color. If you do, this creature gains this ability."
 id=1230

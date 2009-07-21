@@ -1507,6 +1507,18 @@ subtype=Golem
 toughness=6
 [/card]
 [card]
+text=When Onulet is put into a graveyard from play, you gain 2 life.
+auto=@movedTo(this|graveyard):life:2
+id=1130
+name=Onulet
+rarity=R
+color=Artifact
+type=Artifact Creature
+mana={3}
+power=2
+toughness=2
+[/card]
+[card]
 text={T}: Orcish Artillery deals 2 damage to target creature or player and 3 damage to you.
 id=1309
 name=Orcish Artillery
@@ -2256,6 +2268,19 @@ type=Creature
 mana={2}{R}
 power=2
 subtype=Troll
+toughness=2
+[/card]
+[card]
+text=Whenever you play an enchantment spell, you may draw a card.
+auto=@movedTo(enchantment|mystack):may draw:1
+id=1272
+name=Verduran Enchantress
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}{G}
+power=0
+subtype=Human Druid
 toughness=2
 [/card]
 [card]

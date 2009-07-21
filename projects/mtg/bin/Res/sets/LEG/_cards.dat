@@ -48,6 +48,26 @@ power=8
 toughness=4
 [/card]
 [card]
+text=Creatures you control get +1/+1 as long as you control no nonartifact, nonwhite creatures.
+auto=lord(creature|myinplay) 1/1
+auto=aslongas(creature[-artifact;-white]|myinplay) lord(creature|myinplay) 1/1
+id=1602
+name=Angelic Voices
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+text=Legendary creatures don't untap during their controllers' untap steps. When Arena of the Ancients comes into play, tap all legendary creatures.
+auto=lord(creature[legendary]) doesnotuntap
+auto=tap all(creature[legendary]) 
+id=1400
+name=Arena of the Ancients
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
 id=1472
 name=Azure Drake
@@ -467,6 +487,15 @@ type=Instant
 mana={W}
 [/card]
 [card]
+text={B}, Pay 2 life: Draw a card.
+auto={B}:draw:1 && life:-2
+id=1441
+name=Greed
+rarity=R
+type=Enchantment
+mana={3}{B}
+[/card]
+[card]
 text={T}: Target player discards a card at random. Play this ability only during your turn.
 id=1654
 name=Gwendlyn Di Corci
@@ -488,6 +517,17 @@ color=White
 rarity=U
 mana={2}{W}
 type=Enchantment
+[/card]
+[card]
+text=Legendary     {T}: Add {R} to your mana pool.      {T}: Target creature loses all landwalk abilities until end of turn.
+auto={T}:Add {R}
+auto={T}:-plainswalk && -islandwalk && -swampwalk && -mountainwalk && -forestwalk target(creature)
+id=1700
+name=Hammerheim
+color=Land
+rarity=U
+type=Land
+abilities=legendary
 [/card]
 [card]
 id=1442
@@ -521,6 +561,17 @@ type=Creature
 subtype=Horror
 power=1
 toughness=1
+[/card]
+[card]
+text=Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures put into all graveyards this way.
+auto=foreach(creature[-black]) damage:1 controller
+auto=damage:3 controller
+auto=destroy all(creature[-black]) 
+id=1445
+name=Hellfire
+rarity=R
+type=Sorcery
+mana={2}{B}{B}{B}
 [/card]
 [card]
 id=1530
@@ -1127,6 +1178,19 @@ power=4
 subtype=Human Knight
 toughness=7
 abilities=legendary
+[/card]
+[card]
+text=Swampwalk,Legendary     Whenever a player plays a black spell, you gain 1 life.
+abilities=swampwalk,Legendary
+auto=@movedTo(*[black]|stack):life:1
+id=1685
+name=Sol'kanar the Swamp King
+rarity=R
+type=Creature
+mana={2}{U}{B}{R}
+power=5
+subtype=Demon
+toughness=5
 [/card]
 [card]
 text={T}: Destroy target blue creature.
