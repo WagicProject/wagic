@@ -4016,54 +4016,6 @@ class AGravebornMuse: public TriggeredAbility{
   }
 };
 
-// Verdant Force
-class AVerdantForce: public TriggeredAbility{
- public:
-	 list<int>types;
- AVerdantForce(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
-    string s = "Saproling Creature";
-    while (s.size()){
-      unsigned int found = s.find(" ");
-      if (found != string::npos){
-        int id = Subtypes::subtypesList->Add(s.substr(0,found));
-        types.push_back(id);
-        s = s.substr(found+1);
-      }else{
-        int id = Subtypes::subtypesList->Add(s);
-        types.push_back(id);
-        s = "";
-	  }
-	}
- }
-  int trigger(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
-    return 0;
-  }
-  int resolve(){
-    Token * myToken = NEW Token("Saproling",source,1,1);
-	list<int>::iterator it;
-    for ( it=types.begin() ; it != types.end(); it++ ){
-		myToken->addType(*it);
-	}
-    myToken->setColor(Constants::MTG_COLOR_GREEN);
-    source->controller()->game->stack->addCard(myToken);
-    Spell * spell = NEW Spell(myToken);
-    spell->resolve();
-    delete spell;
-    return 1;
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-	  out << "AVerdantForce ::: (";
-	  return TriggeredAbility::toString(out) << ")";
-  }
-
-  AVerdantForce * clone() const{
-    AVerdantForce * a =  NEW AVerdantForce(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 //Instant Steal control of a target
 class AInstantControlSteal: public InstantAbility{

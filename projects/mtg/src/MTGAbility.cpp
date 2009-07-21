@@ -852,17 +852,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
-  case 1096: //Basalt Monolith
-    {
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 3};
-      AManaProducer * ability = NEW AManaProducer(_id, card, NEW ManaCost(cost,1));
-      AUntapManaBlocker * ability2 = NEW AUntapManaBlocker(_id+1, card, NEW ManaCost(cost,1));
-      AUnBlocker * ability3 = NEW AUnBlocker(_id+1, card,card, NEW ManaCost(cost,1));
-      game->addObserver(ability);
-      game->addObserver(ability2);
-      game->addObserver(ability3);
-      break;
-    }
   case 1097: //Black Vise
     {
       game->addObserver( NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, 4));
@@ -876,12 +865,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	Spell * starget = spell->getNextSpellTarget();
 	game->mLayers->stackLayer()->Fizzle(starget);
       }
-      break;
-    }
-  case 1099: //Brass Man
-    {
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
-      game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
       break;
     }
   case 1237: //Channel
@@ -1144,11 +1127,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       card->target = ((MTGCardInstance * )a->target);
       break;
     }
-  case 1148 : //Cursed lands
-    {
-      game->addObserver(NEW AWanderlust(_id, card, card->target));
-      break;
-    }
   case 1156: //Drain Life
     {
       Damageable * target = spell->getNextDamageableTarget();
@@ -1270,34 +1248,14 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AControlStealAura(_id, card, card->target));
       break;
     }
-
   case 1200 : //Feedback
     {
       game->addObserver(NEW AWanderlust(_id, card, card->target));
       break;
     }
-
-  case 1203: //Island Fish
-    {
-      int cost[] = {Constants::MTG_COLOR_BLUE, 3};
-      game->addObserver(NEW AUntapManaBlocker(_id, card, NEW ManaCost(cost,1)));
-      game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
-      break;
-    }
-  case 1214: //Pirate Ship
-    {
-      game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
-      game->addObserver(NEW TADamager(_id+1, card, NEW ManaCost(), 1));
-      break;
-    }
   case 1218: //Psychic Venom
     {
       game->addObserver(NEW APsychicVenom(_id, card, card->target));
-      break;
-    }
-  case 1220: //Sea Serpent
-    {
-      game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
       break;
     }
   case 1221: //Serendib Efreet
@@ -1664,14 +1622,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
 //-- addon 10E---
-  case 129740: // Soul Warden
-	  {
-		  TargetChooser * tc = NULL;
-		  TargetChooserFactory tcf;
-		  tc = tcf.createTargetChooser("creature", card);
-		  game->addObserver ( NEW ALifeModifierPutinplay(_id,card,tc,1,1,1));
-		  break;
-	  }
 
 	case 129710: //Angelic Chorus
 		{
@@ -1692,31 +1642,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
             lordTargets = tcf.createTargetChooser("creature", card);
 			break;
 		}
-	case 129523: //Demon's Horn
-	      {
-      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLACK, NEW ManaCost() , 1));
-      break;
-    }
-	case 129527: //Dragon's Claw
-	      {
-      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_RED, NEW ManaCost() , 1));
-      break;
-    }
-	case 129619: //Kraken's Eye
-	      {
-      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLUE, NEW ManaCost() , 1));
-      break;
-    }
-  	case 129809: //Wurm's Tooth
-	      {
-      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_GREEN, NEW ManaCost() , 1));
-      break;
-    }
-    case 129466: //Angel's Feather
-	      {
-      game->addObserver( NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE, NEW ManaCost() , 1));
-      break;
-    }
+
 	case 129909: //Cryoclasm
 		{
 		  card->target->controller()->game->putInGraveyard(card->target);
@@ -1758,11 +1684,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		  break;
 	  }
 
-  case 129788: // Verdant Force
-	  {
-	  game->addObserver( NEW AVerdantForce(_id,card));
-	  break;
-	  }
+
   case 135215: //Sylvan Basilisk
     {
       game->addObserver( NEW ABasilik (_id ,card));

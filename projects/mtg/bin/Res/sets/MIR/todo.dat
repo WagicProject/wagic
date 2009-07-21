@@ -255,14 +255,6 @@ type=Instant
 mana={2}{R}{R}
 [/card]
 [card]
-text=Tap all nonwhite creatures.
-id=3480
-name=Blinding Light
-rarity=U
-type=Sorcery
-mana={2}{W}
-[/card]
-[card]
 text=Defender (This creature can't attack.)
 id=3430
 name=Blistering Barrier

@@ -79,6 +79,7 @@ toughness=4
 [card]
 text=Whenever a player plays a white spell, you may gain 1 life.
 id=129466
+auto=@movedTo(*[white]|stack):may life:1
 name=Angel's Feather
 rarity=U
 color=Artifact
@@ -609,6 +610,7 @@ mana={3}{R}
 text=Whenever a player plays a black spell, you may gain 1 life.
 id=129523
 name=Demon's Horn
+auto=@movedTo(*[black]|stack):may life:1
 rarity=U
 color=Artifact
 type=Artifact
@@ -662,6 +664,7 @@ mana={4}{R}{R}
 [card]
 text=Whenever a player plays a red spell, you may gain 1 life.
 id=129527
+auto=@movedTo(*[red]|stack):may life:1
 name=Dragon's Claw
 rarity=U
 color=Artifact
@@ -1404,6 +1407,7 @@ toughness=3
 text=Whenever a player plays a blue spell, you may gain 1 life.
 id=129619
 name=Kraken's Eye
+auto=@movedTo(*[blue]|stack): may life:1
 rarity=U
 color=Artifact
 type=Artifact
@@ -2512,6 +2516,7 @@ toughness=2
 [card]
 text=Whenever another creature comes into play, you gain 1 life.
 id=129740
+auto=@movedTo(*|battlefield): life:1
 name=Soul Warden
 rarity=U
 color=White
@@ -3001,6 +3006,7 @@ toughness=2
 [card]
 text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
 id=129788
+auto=@each upkeep:token(Saproling,Creature Saproling,1/1,green)
 name=Verdant Force
 rarity=R
 color=Green
@@ -3126,6 +3132,7 @@ mana={2}{W}{W}
 [card]
 text=Whenever a player plays a green spell, you may gain 1 life.
 id=129809
+auto=@movedTo(*[green]|stack): may life:1
 name=Wurm's Tooth
 rarity=U
 color=Artifact
