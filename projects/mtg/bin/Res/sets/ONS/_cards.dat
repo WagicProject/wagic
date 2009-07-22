@@ -269,7 +269,18 @@ toughness=1
 rarity=U
 [/card]
 [card]
-text=
+id=5656
+name=Elvish Vanguard
+mana={1}{G}
+type=Creature
+subtype=Elf Warrior
+power=1
+toughness=1
+text=Whenever another Elf comes into play, put a +1/+1 counter on Elvish Vanguard.
+auto=@movedTo(elf|battlefield):counter(1/1)
+rarity=R
+[/card]
+[card]
 id=39927
 name=Elvish Warrior
 mana={G}{G}

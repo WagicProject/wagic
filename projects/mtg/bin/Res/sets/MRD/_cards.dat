@@ -76,6 +76,16 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Put a +1/+1 counter on target creature.
+target=creature
+auto=counter(1/1)
+id=48116
+name=Battlegrowth
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.    {2}, {T}: Tap target noncreature artifact.
 auto={T}: Add {1}
 auto={2}{T}:Tap target(artifact[-creature])
@@ -205,6 +215,15 @@ rarity=U
 mana={1}{U}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text={3}, {T}: Put a +1/+1 counter on target creature.
+auto={3}{T}:counter(1/1) target(creature)
+id=48325
+name=Dragon Blood
+rarity=U
+type=Artifact
+mana={3}
 [/card]
 [card]
 text=Protection from white At the end of your turn, you lose 4 life. Whenever a creature is put into a graveyard from play, you gain 2 life.

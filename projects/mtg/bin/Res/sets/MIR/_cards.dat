@@ -133,6 +133,18 @@ toughness=4
 rarity=C
 [/card]
 [card]
+text={T}, Sacrifice Daring Apprentice: Counter target spell.
+auto={T}{S}:fizzle target(*|stack)
+id=3331
+name=Daring Apprentice
+rarity=R
+type=Creature
+mana={1}{U}{U}
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
 text=Destroy target nonblack creature. It can't be regenerated.
 id=3284 
 name=Dark Banishing
@@ -369,6 +381,18 @@ id=3573
 name=Grasslands
 rarity=U
 type=Land
+[/card]
+[card]
+text=At the beginning of your upkeep, put a -1/-1 counter on each creature.
+auto=@each my upkeep:all(creature) counter(-1/-1)
+id=3297
+name=Harbinger of Night
+rarity=R
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Spirit
+toughness=3
 [/card]
 [card]
 text=Flying  {1}{U}{U}: Target creature gains flying until end of turn.

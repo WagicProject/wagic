@@ -379,6 +379,15 @@ type=Enchantment
 auto={1}{U}:fizzle target(*[red]|stack)
 [/card]
 [card]
+text={3}, {T}: Put a +1/+1 counter on target creature.
+auto={3}{T}:counter(1/1) target(creature)
+id=8870
+name=Dragon Blood
+rarity=U
+type=Artifact
+mana={3}
+[/card]
+[card]
 text={B}{B}, {T}: Destroy target green creature. 
 id=5860
 name=Eastern Paladin
@@ -1255,6 +1264,27 @@ subtype=Giant
 power=4
 toughness=3
 abilities=haste
+[/card]
+[card]
+text=Put a +1/+1 counter on each creature you control.
+auto=all(creature|mybattlefield) counter(1/1)
+id=8819
+name=Titania's Boon
+rarity=U
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+text=Whenever a player plays a green spell, put a +1/+1 counter on Titania's Chosen.
+auto=@movedTo(*[green]|opponentStack):counter(1/1)
+id=5838
+name=Titania's Chosen
+rarity=U
+type=Creature
+mana={2}{G}
+power=1
+subtype=Elf Archer
+toughness=1
 [/card]
 [card]
 text={T}: Add {U} to your mana pool for each artifact you control.

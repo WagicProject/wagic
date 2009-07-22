@@ -2074,6 +2074,7 @@ subtype=Sliver
 power=3
 toughness=3
 text=All Sliver creatures have "Whenever a creature dealt damage by this creature this turn is put into a graveyard, put a +1/+1 counter on this creature."
+auto=lord(sliver)
 rarity=U
 [/card]
 [card]

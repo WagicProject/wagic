@@ -172,6 +172,18 @@ subtype=Elf Shaman
 toughness=1
 [/card]
 [card]
+text=Whenever a player plays a Giant spell, you may put a +1/+1 counter on Elvish Handservant.
+auto=@movedTo(giant|stack):may counter(1/1)
+id=146179
+name=Elvish Handservant
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf Warrior
+toughness=1
+[/card]
+[card]
 text=Put a 1/1 green Elf Warrior creature token into play for each Elf you control.
 id=139676
 name=Elvish Promenade
@@ -410,6 +422,18 @@ subtype=Goblin Shaman
 toughness=2
 [/card]
 [card]
+text={T}: Put a +1/+1 counter on target creature for each Elf you control.
+auto={T}:foreach(elf|mybattlefield) counter(1/1) target(creature)
+id=139721
+name=Immaculate Magistrate
+rarity=R
+type=Creature
+mana={3}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
 text=Other Elf creatures you control get +1/+1.     {G}, {T}: Put a 1/1 green Elf Warrior creature token into play.
 auto=lord(elf|myinplay) 1/1 other 
 auto={G}{T}:token(Elf Warrior,creature Elf Warrior,1/1,green)
@@ -519,6 +543,18 @@ mana={W}{W}
 power=2
 subtype=Kithkin Knight
 toughness=2
+[/card]
+[card]
+text=Whenever a Goblin you control is put into a graveyard from play, you may put a +1/+1 counter on Knucklebone Witch.
+auto=@movedTo(goblin|graveyard) from(myBattlefield):may counter(1/1)
+id=143609
+name=Knucklebone Witch
+rarity=R
+type=Creature
+mana={B}
+power=1
+subtype=Goblin Shaman
+toughness=1
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.

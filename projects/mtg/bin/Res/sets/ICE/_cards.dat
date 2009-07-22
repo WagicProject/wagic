@@ -51,6 +51,16 @@ type=Sorcery
 mana={2}{R}{R}
 [/card]
 [card]
+text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
+id=2663
+auto={W}{S(Enchantment|myinplay)}:destroy target(enchantment)
+auto={3}{U}{U}:fizzle target(enchantment|stack)
+name=Arenson's Aura
+rarity=C
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
 text=Enchant creature. Enchanted creature gets +1/+1. {W}:Enchanted creature gets +0/+1 until end of turn.
 id=2664
 name=Armor of Faith
@@ -112,6 +122,19 @@ auto=life:1
 rarity=C
 type=Instant
 mana={1}{W}
+[/card]
+[card]
+text={T}, Sacrifice a creature: Target creature gets +2/+2 until end of turn.     {1}{U}{U}, Sacrifice a creature: Counter target creature spell.
+id=2439
+auto={T}{S(creature|myinplay)}:2/2 target(creature)
+auto={1}{U}{U}{S(creature|myinplay)}:fizzle target(creature|stack)
+name=Brine Shaman
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Human Cleric Shaman
+toughness=1
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.

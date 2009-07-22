@@ -2034,6 +2034,19 @@ color=Land
 type=Land
 [/card]
 [card]
+text=Whenever you play a white, blue, black, or red spell, put a +1/+1 counter on Quirion Dryad.
+auto=@movedTo(*[white;blue;black;red]|myStack):counter(1/1)
+id=130489
+name=Quirion Dryad
+rarity=R
+color=Green
+type=Creature
+mana={1}{G}
+power=1
+subtype=Dryad
+toughness=1
+[/card]
+[card]
 text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
 auto={2}:haste target(creature[green;black])
 id=130997

@@ -69,16 +69,7 @@ rarity=U
 type=Artifact
 mana={3}
 [/card]
-[card]
-text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
-id=2663
-auto={W}{S(Enchantment|myinplay)}:destroy target(enchantment)
-auto={3}{U}{U}:fizzle target(enchantment|stack)
-name=Arenson's Aura
-rarity=C
-type=Enchantment
-mana={2}{W}
-[/card]
+
 [card]
 text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  {1}: Target creature gains flying until end of turn.
 id=2493
@@ -268,19 +259,7 @@ rarity=U
 type=Enchantment
 mana={2}{U}{U}
 [/card]
-[card]
-text={T}, Sacrifice a creature: Target creature gets +2/+2 until end of turn.     {1}{U}{U}, Sacrifice a creature: Counter target creature spell.
-id=2439
-auto={T}{S(creature|myinplay)}:2/2 target(creature)
-auto={1}{U}{U}{S(creature|myinplay)}:fizzle (creature)
-name=Brine Shaman
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Human Cleric Shaman
-toughness=1
-[/card]
+
 [card]
 text={1}{G}, {T}: Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
 id=2552
@@ -563,6 +542,9 @@ mana={1}{G}{G}
 [/card]
 [card]
 text=Enchant creature     Enchanted creature gets +2/+0.     At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature.
+target=creature
+auto=2/0
+auto=@each targetcontroller upkeep:counter(0/-1)
 id=2505
 name=Essence Flare
 rarity=C
@@ -1753,6 +1735,7 @@ toughness=6
 [/card]
 [card]
 text=When you control no Islands, sacrifice Skeleton Ship.     {T}: Put a -1/-1 counter on target creature.
+auto={T}:counter(-1/-1) target(creature)
 id=2737
 name=Skeleton Ship
 rarity=R
@@ -2054,6 +2037,7 @@ mana={1}{G}
 [/card]
 [card]
 text=Wiitigo comes into play with six +1/+1 counters on it.     At the beginning of your upkeep, put a +1/+1 counter on Wiitigo if it has blocked or been blocked since your last upkeep. Otherwise, remove a +1/+1 counter from it.
+auto=counter(1/1,6)
 id=2600
 name=Wiitigo
 rarity=R

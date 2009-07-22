@@ -54,7 +54,19 @@ auto=aslongas(swamp|myinplay) 0/1
 toughness=*
 [/card]
 [card]
-text=
+text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze.     At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
+auto=@each my upkeep:aslongas(*[black]|mybattlefield) may counter(1/1)
+auto=@each my upkeep:aslongas(*[green]|mybattlefield) may counter(1/1)
+id=159610
+name=Bloodhall Ooze
+rarity=R
+type=Creature
+mana={R}
+power=1
+subtype=Ooze
+toughness=1
+[/card]
+[card]
 id=184994
 name=Canyon Minotaur
 rarity=C
@@ -483,6 +495,18 @@ mana={1}{B}
 power=1
 subtype=Human Rogue
 toughness=1
+[/card]
+[card]
+text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
+auto={S(creature|myinplay)}:counter(1/1)
+id=183025
+name=Scarland Thrinax
+rarity=U
+type=Creature
+mana={B}{R}{G}
+power=2
+subtype=Lizard
+toughness=2
 [/card]
 [card]
 text={T}: Scattershot Archer deals 1 damage to each creature with flying.

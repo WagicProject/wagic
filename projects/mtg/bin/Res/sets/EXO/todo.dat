@@ -541,15 +541,7 @@ toughness=1
 text={X}{X}{B}: Destroy target nonblack creature with converted mana cost X.
 rarity=R
 [/card]
-[card]
-id=6141
-name=Predatory Hunger
-mana={G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Whenever an opponent plays a creature spell, put a +1/+1 counter on enchanted creature.
-rarity=C
-[/card]
+
 [card]
 id=6123
 name=Price of Progress

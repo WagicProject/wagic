@@ -316,6 +316,17 @@ power=3
 toughness=3
 [/card]
 [card]
+id=6141
+name=Predatory Hunger
+mana={G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Whenever an opponent plays a creature spell, put a +1/+1 counter on enchanted creature.
+target=creature
+auto=@movedTo(creature|opponentstack):counter(1/1)
+rarity=C
+[/card]
+[card]
 text=Whenever Pygmy Troll becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.   {G}: Regenerate Pygmy Troll.
 id=6131
 auto=rampage(1/1,0)

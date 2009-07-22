@@ -233,17 +233,7 @@ rarity=R
 type=Artifact
 mana={1}
 [/card]
-[card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever a creature with shadow is put into a graveyard from play, put a +1/+1 counter on Dauthi Ghoul.
-id=4649
-name=Dauthi Ghoul
-rarity=U
-type=Creature
-mana={1}{B}
-power=1
-subtype=Dauthi Zombie
-toughness=1
-[/card]
+
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Dauthi Horror can't be blocked by white creatures.
 id=4650
@@ -290,17 +280,7 @@ rarity=C
 type=Instant
 mana={1}{B}
 [/card]
-[card]
-text=Whenever an opponent plays a land, put a +1/+1 counter on Dirtcowl Wurm.
-id=4755
-name=Dirtcowl Wurm
-rarity=R
-type=Creature
-mana={4}{G}
-power=3
-subtype=Wurm
-toughness=4
-[/card]
+
 [card]
 text=Buyback {3} (You may pay an additional {3} as you play this spell. If you do, put this card into your hand as it resolves.)  Return target creature card from your graveyard to your hand.
 id=4657
@@ -423,17 +403,7 @@ type=Enchantment
 mana={X}{B}
 subtype=Aura
 [/card]
-[card]
-text={2}, {T}: Put a +1/+1 counter on Energizer.
-id=4605
-name=Energizer
-rarity=R
-type=Artifact Creature
-mana={4}
-power=2
-subtype=Juggernaut
-toughness=2
-[/card]
+
 [card]
 text={R}, {T}: Enraging Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {R} to end this effect.     Enchanted creature has haste.
 id=4811
@@ -1193,15 +1163,7 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-[card]
-text=Enchant creature     Whenever a creature is put into a graveyard from play, put a +1/+1 counter on enchanted creature.
-id=4682
-name=Sadistic Glee
-rarity=C
-type=Enchantment
-mana={B}
-subtype=Aura
-[/card]
+
 [card]
 text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
 id=4897

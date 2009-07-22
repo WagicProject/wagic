@@ -72,30 +72,8 @@ type=Instant
 mana={1}{WB}
 [/card]
 [card]
-[card]
-text=First strike     Belligerent Hatchling comes into play with four -1/-1 counters on it.     Whenever you play a red spell, remove a -1/-1 counter from Belligerent Hatchling.     Whenever you play a white spell, remove a -1/-1 counter from Belligerent Hatchling.
-abilities=first strike
-id=153478
-name=Belligerent Hatchling
-rarity=U
-type=Creature
-mana={3}{RW}
-power=6
-subtype=Elemental
-toughness=6
-[/card]
-[card]
-text=Flying     Bloodied Ghost comes into play with a -1/-1 counter on it.
-abilities=flying
-id=151098
-name=Bloodied Ghost
-rarity=U
-type=Creature
-mana={1}{WB}{WB}
-power=3
-subtype=Spirit
-toughness=3
-[/card]
+
+
 [card]
 text={T}: For each color among permanents you control, add one mana of that color to your mana pool.
 id=158901
@@ -807,18 +785,7 @@ power=2
 subtype=Noggle Rogue
 toughness=1
 [/card]
-[card]
-text=Noxious Hatchling comes into play with four -1/-1 counters on it.     Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever you play a black spell, remove a -1/-1 counter from Noxious Hatchling.     Whenever you play a green spell, remove a -1/-1 counter from Noxious Hatchling.
-abilities=wither
-id=153448
-name=Noxious Hatchling
-rarity=U
-type=Creature
-mana={3}{BG}
-power=6
-subtype=Elemental
-toughness=6
-[/card]
+
 [card]
 text=When Nucklavee comes into play, you may return target red sorcery card from your graveyard to your hand.     When Nucklavee comes into play, you may return target blue instant card from your graveyard to your hand.
 id=153058
@@ -1067,17 +1034,7 @@ rarity=C
 type=Sorcery
 mana={1}{B}
 [/card]
-[card]
-text=When Soul Snuffers comes into play, put a -1/-1 counter on each creature.
-id=142054
-name=Soul Snuffers
-rarity=U
-type=Creature
-mana={2}{B}{B}
-power=3
-subtype=Elemental Shaman
-toughness=3
-[/card]
+
 [card]
 text=Flying     You can't be the target of spells or abilities your opponents control.
 abilities=flying
@@ -1141,18 +1098,7 @@ power=2
 subtype=Elemental Shaman
 toughness=2
 [/card]
-[card]
-text=Sturdy Hatchling comes into play with four -1/-1 counters on it.     {GU}: Sturdy Hatchling gains shroud until end of turn.     Whenever you play a green spell, remove a -1/-1 counter from Sturdy Hatchling.     Whenever you play a blue spell, remove a -1/-1 counter from Sturdy Hatchling.
-auto={GU}:shroud
-id=153477
-name=Sturdy Hatchling
-rarity=U
-type=Creature
-mana={3}{GU}
-power=6
-subtype=Elemental
-toughness=6
-[/card]
+
 [card]
 text={GU}{GU}: Target creature you control becomes the color or colors of your choice until end of turn.
 id=154348
@@ -1247,18 +1193,7 @@ rarity=U
 type=Sorcery
 mana={X}{R}{R}{R}
 [/card]
-[card]
-text=Lifelink     Voracious Hatchling comes into play with four -1/-1 counters on it.     Whenever you play a white spell, remove a -1/-1 counter from Voracious Hatchling.     Whenever you play a black spell, remove a -1/-1 counter from Voracious Hatchling.
-abilities=lifelink
-id=153444
-name=Voracious Hatchling
-rarity=U
-type=Creature
-mana={3}{WB}
-power=6
-subtype=Elemental
-toughness=6
-[/card]
+
 [card]
 text=Whenever a permanent you control becomes untapped, Wake Thrasher gets +1/+1 until end of turn.
 id=157405

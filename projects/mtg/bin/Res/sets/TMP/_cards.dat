@@ -387,6 +387,19 @@ mana={2}{B}
 type=Enchantment
 [/card]
 [card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever a creature with shadow is put into a graveyard from play, put a +1/+1 counter on Dauthi Ghoul.
+abilities=shadow
+auto=@movedTo(creature[shadow]|graveyard) from(battlefield):counter(1/1)
+id=4649
+name=Dauthi Ghoul
+rarity=U
+type=Creature
+mana={1}{B}
+power=1
+subtype=Dauthi Zombie
+toughness=1
+[/card]
+[card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)
 id=4651
 name=Dauthi Marauder
@@ -424,6 +437,18 @@ mana={B}{B}
 power=2
 subtype=Dauthi Soldier
 toughness=2
+[/card]
+[card]
+text=Whenever an opponent plays a land, put a +1/+1 counter on Dirtcowl Wurm.
+auto=@movedTo(land|opponentbattlefield):counter(1/1)
+id=4755
+name=Dirtcowl Wurm
+rarity=R
+type=Creature
+mana={4}{G}
+power=3
+subtype=Wurm
+toughness=4
 [/card]
 [card]
 text=Destroy target artifact or enchantment.
@@ -471,6 +496,18 @@ subtype=Elf Warrior
 power=2
 toughness=2
 abilities=legendary
+[/card]
+[card]
+text={2}, {T}: Put a +1/+1 counter on Energizer.
+auto={2}{T}:counter(1/1)
+id=4605
+name=Energizer
+rarity=R
+type=Artifact Creature
+mana={4}
+power=2
+subtype=Juggernaut
+toughness=2
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)     Enchanted creature gets -2/-2.
@@ -1424,6 +1461,17 @@ type=Creature
 subtype=Merfolk
 power=1
 toughness=1
+[/card]
+[card]
+text=Enchant creature     Whenever a creature is put into a graveyard from play, put a +1/+1 counter on enchanted creature.
+target=creature
+auto=@movedTo(creature|graveyard) from(battlefield):counter(1/1)
+id=4682
+name=Sadistic Glee
+rarity=C
+type=Enchantment
+mana={B}
+subtype=Aura
 [/card]
 [card]
 text=Salt Flats comes into play tapped.       {T}: Add {1} to your mana pool.       {T}: Add {W} or {B} to your mana pool. Salt Flats deals 1 damage to you.

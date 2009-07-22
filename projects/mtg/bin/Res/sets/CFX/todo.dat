@@ -62,17 +62,7 @@ power=5
 subtype=Vampire
 toughness=5
 [/card]
-[card]
-text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze.     At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
-id=159610
-name=Bloodhall Ooze
-rarity=R
-type=Creature
-mana={R}
-power=1
-subtype=Ooze
-toughness=1
-[/card]
+
 [card]
 text=Equipped creature gets +1/+0.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 id=189270
@@ -633,17 +623,7 @@ name=Rupture Spire
 rarity=C
 type=Land
 [/card]
-[card]
-text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
-id=183025
-name=Scarland Thrinax
-rarity=U
-type=Creature
-mana={B}{R}{G}
-power=2
-subtype=Lizard
-toughness=2
-[/card]
+
 [card]
 text={1}{B}, {T}: Target player discards a card. Play this ability only during your turn.
 id=189084

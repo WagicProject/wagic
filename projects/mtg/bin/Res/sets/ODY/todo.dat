@@ -1709,17 +1709,7 @@ rarity=U
 type=Sorcery
 mana={B}
 [/card]
-[card]
-text=Flying     Whenever a creature with flying is put into a graveyard from play, put a +1/+1 counter on Soulcatcher.
-id=31865
-name=Soulcatcher
-rarity=U
-type=Creature
-mana={1}{W}
-power=1
-subtype=Bird Soldier
-toughness=1
-[/card]
+
 [card]
 text=Whenever Spark Mage deals combat damage to a player, you may have Spark Mage deal 1 damage to target creature that player controls.
 id=29854

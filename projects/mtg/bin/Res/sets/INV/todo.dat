@@ -682,17 +682,7 @@ rarity=R
 type=Enchantment
 mana={2}{G}
 [/card]
-[card]
-text=Kavu creatures have trample.     Whenever another Kavu comes into play, put a +1/+1 counter on Kavu Monarch.
-id=23097
-name=Kavu Monarch
-rarity=R
-type=Creature
-mana={2}{R}{R}
-power=3
-subtype=Kavu
-toughness=3
-[/card]
+
 [card]
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you play this spell.)  If the kicker cost was paid, Kavu Titan comes into play with three +1/+1 counters on it and with trample.
 id=23106

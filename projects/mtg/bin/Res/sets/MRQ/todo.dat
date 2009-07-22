@@ -1572,17 +1572,7 @@ type=Instant
 mana={1}{B}
 [/card]
 
-[card]
-text=Trample     At the beginning of your upkeep, you may put a +1/+1 counter on Rushwood Elemental.
-id=19869
-name=Rushwood Elemental
-rarity=R
-type=Creature
-mana={G}{G}{G}{G}{G}
-power=4
-subtype=Elemental
-toughness=4
-[/card]
+
 [card]
 text=Rushwood Grove comes into play tapped.       {T}: Put a storage counter on Rushwood Grove.       {T}, Remove any number of storage counters from Rushwood Grove: Add {G} to your mana pool for each storage counter removed this way.
 id=19895

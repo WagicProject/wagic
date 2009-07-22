@@ -544,17 +544,7 @@ text={T}, Sacrifice Mirror of Fate: Choose up to seven face-up exiled cards you 
 rarity=R
 [/card]
 
-[card]
-id=189909
-name=Mold Adder
-mana={G}
-type=Creature
-subtype=Fungus Snake
-power=1
-toughness=1
-text=Whenever an opponent casts a blue or black spell, you may put a +1/+1 counter on Mold Adder.
-rarity=U
-[/card]
+
 
 
 

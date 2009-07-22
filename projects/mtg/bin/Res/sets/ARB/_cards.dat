@@ -118,6 +118,19 @@ target=creature
 rarity=U
 [/card]
 [card]
+id=180605
+name=Jenara, Asura of War
+mana={G}{W}{U}
+type=Creature
+subtype=Angel
+abilities=Legendary,Flying
+auto={1}{W}:counter(1/1)
+power=3
+toughness=3
+text=Flying {1}{W}: Put a +1/+1 counter on Jenara, Asura of War.
+rarity=M
+[/card]
+[card]
 id=180587
 name=Karrthus, Tyrant of Jund
 mana={4}{B}{R}{G}

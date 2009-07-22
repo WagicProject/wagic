@@ -463,17 +463,7 @@ auto={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary) #Not quite right :(
 rarity=C
 [/card]
 
-[card]
-id=180605
-name=Jenara, Asura of War
-mana={G}{W}{U}
-type=Legendary Creature
-subtype=Angel
-power=3
-toughness=3
-text=Flying {1}{W}: Put a +1/+1 counter on Jenara, Asura of War.
-rarity=M
-[/card]
+
 [card]
 id=144286
 name=Jhessian Zombies

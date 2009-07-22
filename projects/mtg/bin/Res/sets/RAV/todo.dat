@@ -1935,17 +1935,7 @@ power=5
 subtype=Human Berserker
 toughness=5
 [/card]
-[card]
-text=Whenever a land comes into play under your control, put a +1/+1 counter on Vinelasher Kudzu.
-id=83559
-name=Vinelasher Kudzu
-rarity=R
-type=Creature
-mana={1}{G}
-power=1
-subtype=Plant
-toughness=1
-[/card]
+
 [card]
 text={2}, Sacrifice Voyager Staff: Remove target creature from the game. Return the removed card to play under its owner's control at end of turn.
 id=88991
@@ -1954,17 +1944,7 @@ rarity=U
 type=Artifact
 mana={1}
 [/card]
-[card]
-text=Flying     Whenever a card is put into an opponent's graveyard from anywhere, put a +1/+1 counter on Vulturous Zombie.
-id=89082
-name=Vulturous Zombie
-rarity=R
-type=Creature
-mana={3}{B}{G}
-power=3
-subtype=Plant Zombie
-toughness=3
-[/card]
+
 [card]
 text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way into play, then puts all enchantment cards revealed this way into play, then puts all cards revealed this way that weren't put into play on the bottom of his or her library in any order.
 id=89084

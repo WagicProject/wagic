@@ -423,14 +423,7 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
-[card]
-text={3}, {T}: Put a +1/+1 counter on target creature.
-id=8870
-name=Dragon Blood
-rarity=U
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=Flying     At the beginning of your upkeep, sacrifice Drifting Djinn unless you pay {1}{U}.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5719
@@ -1736,25 +1729,8 @@ rarity=R
 type=Sorcery
 mana={4}{U}{U}
 [/card]
-[card]
-text=Put a +1/+1 counter on each creature you control.
-id=8819
-name=Titania's Boon
-rarity=U
-type=Sorcery
-mana={3}{G}
-[/card]
-[card]
-text=Whenever a player plays a green spell, put a +1/+1 counter on Titania's Chosen.
-id=5838
-name=Titania's Chosen
-rarity=U
-type=Creature
-mana={2}{G}
-power=1
-subtype=Elf Archer
-toughness=1
-[/card]
+
+
 [card]
 text=Discard all the cards in your hand, then draw that many cards.
 id=5834

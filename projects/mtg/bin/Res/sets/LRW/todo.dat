@@ -490,17 +490,7 @@ power=2
 subtype=Elf Druid
 toughness=2
 [/card]
-[card]
-text=Whenever a player plays a Giant spell, you may put a +1/+1 counter on Elvish Handservant.
-id=146179
-name=Elvish Handservant
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf Warrior
-toughness=1
-[/card]
+
 [card]
 text=When Elvish Harbinger comes into play, you may search your library for an Elf card, reveal it, then shuffle your library and put that card on top of it.     {T}: Add one mana of any color to your mana pool.
 id=139485
@@ -935,17 +925,7 @@ rarity=C
 type=Sorcery
 mana={1}{R}
 [/card]
-[card]
-text={T}: Put a +1/+1 counter on target creature for each Elf you control.
-id=139721
-name=Immaculate Magistrate
-rarity=R
-type=Creature
-mana={3}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
-[/card]
+
 [card]
 text=Other Elemental creatures you control get +1/+1.     {1}{R}, {T}: You may put an Elemental creature card from your hand into play. That creature gains haste until end of turn. Sacrifice it at end of turn.
 id=139730
@@ -1082,17 +1062,7 @@ power=2
 subtype=Kithkin Cleric
 toughness=2
 [/card]
-[card]
-text=Whenever a Goblin you control is put into a graveyard from play, you may put a +1/+1 counter on Knucklebone Witch.
-id=143609
-name=Knucklebone Witch
-rarity=R
-type=Creature
-mana={B}
-power=1
-subtype=Goblin Shaman
-toughness=1
-[/card]
+
 [card]
 text=Target creature gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)  Draw a card.
 id=143376

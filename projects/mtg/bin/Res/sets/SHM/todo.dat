@@ -155,17 +155,7 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-[card]
-text=Chainbreaker comes into play with two -1/-1 counters on it.     {3}, {T}: Remove a -1/-1 counter from target creature.
-id=147419
-name=Chainbreaker
-rarity=C
-type=Artifact Creature
-mana={2}
-power=3
-subtype=Scarecrow
-toughness=3
-[/card]
+
 [card]
 text={T}: Target player discards a card. Play this ability only during your turn.     Put a -1/-1 counter on Cinderhaze Wretch: Untap Cinderhaze Wretch.
 id=135439
@@ -549,17 +539,7 @@ power=4
 subtype=Scarecrow
 toughness=4
 [/card]
-[card]
-text=At the beginning of your upkeep, remove a -1/-1 counter from each creature you control.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-id=153312
-name=Heartmender
-rarity=R
-type=Creature
-mana={2}{GW}{GW}
-power=2
-subtype=Elemental
-toughness=2
-[/card]
+
 [card]
 text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, draw a card."     As long as enchanted creature is black, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, that player discards a card."
 id=158769
@@ -892,17 +872,7 @@ power=3
 subtype=Merfolk Soldier
 toughness=3
 [/card]
-[card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  At the beginning of your upkeep, put a -1/-1 counter on each nonblack creature.
-id=147431
-name=Midnight Banshee
-rarity=R
-type=Creature
-mana={3}{B}{B}{B}
-power=5
-subtype=Spirit
-toughness=5
-[/card]
+
 [card]
 text=Return target artifact or enchantment card in a graveyard to its owner's hand.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 id=158756
@@ -1163,14 +1133,7 @@ rarity=R
 type=Enchantment
 mana={3}{U}
 [/card]
-[card]
-text=Puncture Bolt deals 1 damage to target creature. Put a -1/-1 counter on that creature.
-id=146071
-name=Puncture Bolt
-rarity=C
-type=Instant
-mana={1}{R}
-[/card]
+
 [card]
 text=Flying     When Puppeteer Clique comes into play, put target creature card in an opponent's graveyard into play under your control. It has haste. At the end of your turn, remove it from the game.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=146761
@@ -1342,14 +1305,7 @@ type=Sorcery
 mana={1}{U}{U}
 [/card]
 
-[card]
-text=As an additional cost to play Scarscale Ritual, put a -1/-1 counter on a creature you control.     Draw two cards.
-id=154396
-name=Scarscale Ritual
-rarity=C
-type=Sorcery
-mana={1}{UB}
-[/card]
+
 [card]
 text={1}: Scrapbasket becomes all colors until end of turn.
 id=147435
@@ -1541,15 +1497,7 @@ rarity=U
 type=Sorcery
 mana={4}{BR}
 [/card]
-[card]
-text=Enchant creature     {1}{B}: Put a -1/-1 counter on enchanted creature.
-id=142070
-name=Torture
-rarity=C
-type=Enchantment
-mana={B}
-subtype=Aura
-[/card]
+
 [card]
 text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.)  Until end of turn, target creature gets +4/+4 and gains trample, wither, and "When this creature attacks, target creature blocks it this turn if able." (It deals damage to creatures in the form of -1/-1 counters.)
 id=152075
@@ -1685,17 +1633,7 @@ power=9
 subtype=Wurm
 toughness=9
 [/card]
-[card]
-text={W}, {T}: Remove a -1/-1 counter from target creature. If you do, you gain 2 life.
-id=153985
-name=Woeleecher
-rarity=C
-type=Creature
-mana={5}{W}
-power=3
-subtype=Elemental
-toughness=5
-[/card]
+
 [card]
 text=Trample     When Woodfall Primus comes into play, destroy target noncreature permanent.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=151987

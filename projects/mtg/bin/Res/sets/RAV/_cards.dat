@@ -1049,6 +1049,18 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Whenever a land comes into play under your control, put a +1/+1 counter on Vinelasher Kudzu.
+auto=@movedTo(land|myBattlefield):counter(1/1)
+id=83559
+name=Vinelasher Kudzu
+rarity=R
+type=Creature
+mana={1}{G}
+power=1
+subtype=Plant
+toughness=1
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.  {2}{G}{W}, {T}: Put a 1/1 green Saproling creature token into play.
 id=89016
 auto={T}:Add {1} 
@@ -1070,6 +1082,19 @@ subtype=Human Soldier
 auto={2}{G}:regenerate
 power=1
 toughness=1
+[/card]
+[card]
+text=Flying     Whenever a card is put into an opponent's graveyard from anywhere, put a +1/+1 counter on Vulturous Zombie.
+abilities=flying
+auto=@movedTo(*|opponentgraveyard):counter(1/1)
+id=89082
+name=Vulturous Zombie
+rarity=R
+type=Creature
+mana={3}{B}{G}
+power=3
+subtype=Plant Zombie
+toughness=3
 [/card]
 [card]
 text={R}, Sacrifice War-Torch Goblin: War-Torch Goblin deals 2 damage to target blocking creature.

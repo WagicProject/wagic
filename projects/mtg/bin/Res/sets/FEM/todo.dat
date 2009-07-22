@@ -1,20 +1,10 @@
-[card]
-id=1838
-name=Armor Thrull
-mana={2}{B}
-type=Creature
-subtype=Thrull
-power=1
-toughness=3
-text={T}, Sacrifice Armor Thrull: Put a +1/+2 counter on target creature.
-rarity=C
-[/card]
+
 [card]
 id=1828
 name=Balm of Restoration
 mana={2}
 type=Artifact
-text={1}, {T}, Sacrifice Balm of Restoration: Choose one — You gain 2 life; or prevent the next 2 damage that would be dealt to target creature or player this turn.
+text={1}, {T}, Sacrifice Balm of Restoration: Choose one  EYou gain 2 life; or prevent the next 2 damage that would be dealt to target creature or player this turn.
 rarity=R
 [/card]
 [card]
@@ -101,17 +91,7 @@ toughness=4
 text=Black spells you play cost {B} more to play.
 rarity=U
 [/card]
-[card]
-id=1941
-name=Dwarven Armorer
-mana={R}
-type=Creature
-subtype=Dwarf
-power=0
-toughness=2
-text={R}, {T}, Discard a card: Put a +0/+1 counter or a +1/+0 counter on target creature.
-rarity=R
-[/card]
+
 [card]
 id=1942
 name=Dwarven Catapult

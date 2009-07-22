@@ -682,6 +682,19 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Kavu creatures have trample.     Whenever another Kavu comes into play, put a +1/+1 counter on Kavu Monarch.
+auto=lord(kavu) trample
+auto=@movedTo(kavu|inplay):counter(1/1)
+id=23097
+name=Kavu Monarch
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=3
+subtype=Kavu
+toughness=3
+[/card]
+[card]
 text=Kavu Runner has haste as long as no opponent controls a white or blue creature.
 id=23079
 name=Kavu Runner

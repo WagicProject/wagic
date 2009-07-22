@@ -1141,6 +1141,19 @@ auto={T}{S}:destroy target(creature[flying;attacking;blocking])
 rarity=U
 [/card]
 [card]
+text=Flying     Whenever a creature with flying is put into a graveyard from play, put a +1/+1 counter on Soulcatcher.
+abilities=flying
+auto=@movedTo(creature[flying]|graveyard) from(battlefield):counter(1/1)
+id=31865
+name=Soulcatcher
+rarity=U
+type=Creature
+mana={1}{W}
+power=1
+subtype=Bird Soldier
+toughness=1
+[/card]
+[card]
 text=Until end of turn, whenever target creature deals damage, you gain that much life.  Draw a card. 
 id=29807
 name=Spiritualize

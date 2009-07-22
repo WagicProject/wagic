@@ -161,6 +161,19 @@ subtype=Faerie Soldier
 toughness=1
 [/card]
 [card]
+text=Chainbreaker comes into play with two -1/-1 counters on it.     {3}, {T}: Remove a -1/-1 counter from target creature.
+auto=counter(-1/-1,2)
+auto={3}{T}:counter(-1/-1,-1) target(creature)
+id=147419
+name=Chainbreaker
+rarity=C
+type=Artifact Creature
+mana={2}
+power=3
+subtype=Scarecrow
+toughness=3
+[/card]
+[card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  {1}{B}: Regenerate Cinderbones.
 abilities=wither
 auto={1}{B}:regenerate
@@ -535,6 +548,19 @@ subtype=Scarecrow
 toughness=1
 [/card]
 [card]
+text=At the beginning of your upkeep, remove a -1/-1 counter from each creature you control.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+abilities=persist
+auto=@each my upkeep:all(creature|mybattlefield) counter(-1/-1,-1)
+id=153312
+name=Heartmender
+rarity=R
+type=Creature
+mana={2}{GW}{GW}
+power=2
+subtype=Elemental
+toughness=2
+[/card]
+[card]
 text=Put a 2/2 green Wolf creature token into play for each Forest you control.
 id=153996
 name=Howl of the Night Pack
@@ -674,6 +700,19 @@ type=Sorcery
 mana={5}{W}{W}
 [/card]
 [card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  At the beginning of your upkeep, put a -1/-1 counter on each nonblack creature.
+auto=@each my upkeep:all(creature[-black]) counter(-1/-1)
+abilities=wither
+id=147431
+name=Midnight Banshee
+rarity=R
+type=Creature
+mana={3}{B}{B}{B}
+power=5
+subtype=Spirit
+toughness=5
+[/card]
+[card]
 text={T}: Add {R} to your mana pool.
 auto={T}:Add{R}
 id=157888
@@ -765,6 +804,17 @@ name=Poison the Well
 rarity=C
 type=Sorcery
 mana={2}{BR}{BR}
+[/card]
+[card]
+text=Puncture Bolt deals 1 damage to target creature. Put a -1/-1 counter on that creature.
+target=creature
+auto=damage:1
+auto=counter(-1/-1)
+id=146071
+name=Puncture Bolt
+rarity=C
+type=Instant
+mana={1}{R}
 [/card]
 [card]
 text=Creatures you control have double strike.
@@ -1006,13 +1056,23 @@ mana={GW}
 [card]
 text=Put a -1/-1 counter on target creature.
 id=142049
-abilities=wither
-auto=damage:1
+auto=counter(-1/-1)
 target=creature
 name=Scar
 rarity=C
 type=Instant
 mana={BR}
+[/card]
+[card]
+text=As an additional cost to play Scarscale Ritual, put a -1/-1 counter on a creature you control.     Draw two cards.
+target=creature|mybattlefield
+auto=draw:2
+auto=counter(-1/-1)
+id=154396
+name=Scarscale Ritual
+rarity=C
+type=Sorcery
+mana={1}{UB}
 [/card]
 [card]
 text={2}{G}{W}: Target creature gets +3/+3 until end of turn. Untap that creature.
@@ -1254,6 +1314,17 @@ mana={2}{UB}
 subtype=Aura
 [/card]
 [card]
+text=Enchant creature     {1}{B}: Put a -1/-1 counter on enchanted creature.
+target=creature
+auto={1}{B}:counter(-1/-1)
+id=142070
+name=Torture
+rarity=C
+type=Enchantment
+mana={B}
+subtype=Aura
+[/card]
+[card]
 text={T}, Sacrifice a Mountain: Valleymaker deals 3 damage to target creature.     {T}, Sacrifice a Forest: Choose a player. That player adds {G}{G}{G} to his or her mana pool.
 auto={T}{S(mountain|myinplay)}:Damage:3 target(creature)
 auto={T}{S(forest|myinplay)}:Add{G}{G}{G}
@@ -1372,6 +1443,18 @@ id=146747
 name=Wooded Bastion
 rarity=R
 type=Land
+[/card]
+[card]
+text={W}, {T}: Remove a -1/-1 counter from target creature. If you do, you gain 2 life.
+auto={W}{T}:counter(-1/-1,-1) target(creature) && life:2
+id=153985
+name=Woeleecher
+rarity=C
+type=Creature
+mana={5}{W}
+power=3
+subtype=Elemental
+toughness=5
 [/card]
 [card]
 text=Flash

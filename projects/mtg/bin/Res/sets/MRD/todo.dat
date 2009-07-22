@@ -84,14 +84,7 @@ rarity=U
 type=Sorcery
 mana={2}{B}{B}
 [/card]
-[card]
-text=Put a +1/+1 counter on target creature.
-id=48116
-name=Battlegrowth
-rarity=C
-type=Instant
-mana={G}
-[/card]
+
 [card]
 text=Choose one - Destroy target creature; or return target creature card from your graveyard to play.     Entwine-Sacrifice three lands. (Choose both if you pay the entwine cost.)
 id=48588
@@ -324,14 +317,7 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-[card]
-text={3}, {T}: Put a +1/+1 counter on target creature.
-id=48325
-name=Dragon Blood
-rarity=U
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=Choose one - Tap target permanent; or untap target permanent.     Entwine {1} (Choose both if you pay the entwine cost.)
 id=48159

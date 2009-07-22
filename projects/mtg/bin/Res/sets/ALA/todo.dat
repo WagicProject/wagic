@@ -24,17 +24,7 @@ mana={2}{R}{W}
 subtype=Ajani
 toughness=3
 [/card]
-[card]
-text=Shroud     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Algae Gharial.
-id=174986
-name=Algae Gharial
-rarity=U
-type=Creature
-mana={3}{G}
-power=1
-subtype=Crocodile
-toughness=1
-[/card]
+
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  Whenever a creature you control attacks alone, you may tap target creature.
 id=174826
@@ -1011,17 +1001,7 @@ power=6
 subtype=Beast
 toughness=4
 [/card]
-[card]
-text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
-id=174988
-name=Rockslide Elemental
-rarity=U
-type=Creature
-mana={2}{R}
-power=1
-subtype=Elemental
-toughness=1
-[/card]
+
 [card]
 text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
 id=174828
@@ -1063,17 +1043,7 @@ type=Enchantment
 mana={2}{G}
 subtype=Aura
 [/card]
-[card]
-text=Flying     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Scavenger Drake.
-id=174987
-name=Scavenger Drake
-rarity=U
-type=Creature
-mana={3}{B}
-power=1
-subtype=Drake
-toughness=1
-[/card]
+
 [card]
 text=When Scourge Devil comes into play, creatures you control get +1/+0 until end of turn.     Unearth {2}{R} ({2}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=174845

@@ -1005,6 +1005,19 @@ toughness=1
 abilities=forestwalk
 [/card]
 [card]
+text=Trample     At the beginning of your upkeep, you may put a +1/+1 counter on Rushwood Elemental.
+abilities=trample
+auto=@each my upkeep:may counter(1/1)
+id=19869
+name=Rushwood Elemental
+rarity=R
+type=Creature
+mana={G}{G}{G}{G}{G}
+power=4
+subtype=Elemental
+toughness=4
+[/card]
+[card]
 text={G}, {T}, Discard a card: Regenerate target creature.
 id=19622
 auto={G}{T}{S(*|myhand)}:regenerate target(creature)

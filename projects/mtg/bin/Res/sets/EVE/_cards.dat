@@ -50,6 +50,34 @@ type=Instant
 mana={WB}
 [/card]
 [card]
+text=First strike     Belligerent Hatchling comes into play with four -1/-1 counters on it.     Whenever you play a red spell, remove a -1/-1 counter from Belligerent Hatchling.     Whenever you play a white spell, remove a -1/-1 counter from Belligerent Hatchling.
+auto=@movedTo(*[red]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[white]|mystack):counter(-1/-1,-1)
+auto=counter(-1/-1,4)
+abilities=first strike
+id=153478
+name=Belligerent Hatchling
+rarity=U
+type=Creature
+mana={3}{RW}
+power=6
+subtype=Elemental
+toughness=6
+[/card]
+[card]
+text=Flying     Bloodied Ghost comes into play with a -1/-1 counter on it.
+abilities=flying
+auto=counter(-1/-1)
+id=151098
+name=Bloodied Ghost
+rarity=U
+type=Creature
+mana={1}{WB}{WB}
+power=3
+subtype=Spirit
+toughness=3
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {UR}, {T}: Add {U}{U}, {U}{R}, or {R}{R} to your mana pool.
 auto={T}: Add {1}
 auto={UR}{T}: Add {U}{U}
@@ -377,6 +405,21 @@ subtype=Spirit Avatar
 toughness=4
 [/card]
 [card]
+text=Noxious Hatchling comes into play with four -1/-1 counters on it.     Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever you play a black spell, remove a -1/-1 counter from Noxious Hatchling.     Whenever you play a green spell, remove a -1/-1 counter from Noxious Hatchling.
+abilities=wither
+auto=@movedTo(*[black]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[green]|mystack):counter(-1/-1,-1)
+auto=counter(-1/-1,4)
+id=153448
+name=Noxious Hatchling
+rarity=U
+type=Creature
+mana={3}{BG}
+power=6
+subtype=Elemental
+toughness=6
+[/card]
+[card]
 text={1}{BG}: Regenerate Odious Trow.
 auto={1}{BG}:regenerate 
 id=150977
@@ -506,6 +549,18 @@ subtype=Elemental Warrior
 toughness=2
 [/card]
 [card]
+text=When Soul Snuffers comes into play, put a -1/-1 counter on each creature.
+auto=all(creature) counter(-1/-1)
+id=142054
+name=Soul Snuffers
+rarity=U
+type=Creature
+mana={2}{B}{B}
+power=3
+subtype=Elemental Shaman
+toughness=3
+[/card]
+[card]
 text=Swampwalk, forestwalk
 abilities=swampwalk,forestwalk
 id=151120
@@ -543,6 +598,21 @@ mana={UR}
 power=1
 subtype=Goblin
 toughness=1
+[/card]
+[card]
+text=Sturdy Hatchling comes into play with four -1/-1 counters on it.     {GU}: Sturdy Hatchling gains shroud until end of turn.     Whenever you play a green spell, remove a -1/-1 counter from Sturdy Hatchling.     Whenever you play a blue spell, remove a -1/-1 counter from Sturdy Hatchling.
+auto={GU}:shroud
+auto=@movedTo(*[blue]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[green]|mystack):counter(-1/-1,-1)
+auto=counter(-1/-1,4)
+id=153477
+name=Sturdy Hatchling
+rarity=U
+type=Creature
+mana={3}{GU}
+power=6
+subtype=Elemental
+toughness=6
 [/card]
 [card]
 text=Flying     {WB}{WB}{WB}: Regenerate target creature.
@@ -616,6 +686,21 @@ name=Unmake
 rarity=C
 type=Instant
 mana={WB}{WB}{WB}
+[/card]
+[card]
+text=Lifelink     Voracious Hatchling comes into play with four -1/-1 counters on it.     Whenever you play a white spell, remove a -1/-1 counter from Voracious Hatchling.     Whenever you play a black spell, remove a -1/-1 counter from Voracious Hatchling.
+abilities=lifelink
+auto=@movedTo(*[white]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[black]|mystack):counter(-1/-1,-1)
+auto=counter(-1/-1,4)
+id=153444
+name=Voracious Hatchling
+rarity=U
+type=Creature
+mana={3}{WB}
+power=6
+subtype=Elemental
+toughness=6
 [/card]
 [card]
 text={T}: Target red or green creature gets -2/-0 until end of turn.

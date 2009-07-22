@@ -1010,6 +1010,18 @@ abilities=shroud
 rarity=C
 [/card]
 [card]
+id=189909
+name=Mold Adder
+mana={G}
+type=Creature
+subtype=Fungus Snake
+power=1
+toughness=1
+text=Whenever an opponent casts a blue or black spell, you may put a +1/+1 counter on Mold Adder.
+auto=@movedTo(*[black;blue]|opponentStack):may counter(1/1)
+rarity=U
+[/card]
+[card]
 id=191402
 name=Mountain
 auto={T}:Add{R}
