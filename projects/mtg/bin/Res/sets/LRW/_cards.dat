@@ -87,7 +87,7 @@ toughness=1
 [card]
 text=Whenever another Goblin you control is put into a graveyard from play, you may have Boggart Shenanigans deal 1 damage to target player.
 id=139445
-auto=@movedTo(creature[goblin]|mygraveyard):damage:1 target(player)
+auto=@movedTo(creature[goblin]|graveyard) from(myinplay):may damage:1 target(player)
 name=Boggart Shenanigans
 rarity=U
 type=Enchantment
@@ -521,8 +521,8 @@ toughness=1
 [/card]
 [card]
 text=Whenever an attacking Kithkin or Elf is put into your graveyard from play, you may draw a card.
-auto=@movedTo(kithkin[attacking]|mygraveyard):draw:1
-auto=@movedTo(elf[attacking]|mygraveyard):draw:1
+auto=@movedTo(kithkin[attacking]|mygraveyard) from(inplay):draw:1
+auto=@movedTo(elf[attacking]|mygraveyard) from(inplay):draw:1
 id=139497
 name=Kithkin Mourncaller
 rarity=U
