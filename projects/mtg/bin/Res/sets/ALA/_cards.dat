@@ -67,6 +67,18 @@ type=Sorcery
 mana={1}{B}{R}
 [/card]
 [card]
+text=When Blister Beetle comes into play, target creature gets -1/-1 until end of turn.
+auto=-1/-1 target(creature)
+id=174893
+name=Blister Beetle
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Insect
+toughness=1
+[/card]
+[card]
 text=Flying     When Broodmate Dragon comes into play, put a 4/4 red Dragon creature token with flying into play.
 abilities=flying
 auto=token(Dragon,creature dragon, 4/4,flying red)
@@ -139,6 +151,17 @@ subtype=Drake
 toughness=3
 [/card]
 [card]
+text=Enchant artifact or creature. Enchanted permanent doesn't untap during its controller's untap step.
+target=creature,artifact
+auto=doesnotuntap
+id=175042
+name=Coma Veil
+rarity=C
+type=Enchantment
+mana={4}{U}
+subtype=Aura
+[/card]
+[card]
 text={1}{U}, {T}, Sacrifice Courier's Capsule: Draw two cards.
 auto={1}{U}{T}{S}:Draw:2
 id=174800
@@ -201,6 +224,18 @@ type=Creature
 mana={2}{U}
 power=1
 subtype=Human Archer
+toughness=1
+[/card]
+[card]
+text=Whenever another creature is put into a graveyard from play, you may gain 1 life.
+auto=@movedTo(creature[-this]|graveyard) from(inplay):may life:1
+id=175073
+name=Deathgreeter
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Human Shaman
 toughness=1
 [/card]
 [card]
@@ -355,6 +390,19 @@ name=Forest
 rarity=L
 type=Basic Land
 subtype=Forest
+[/card]
+[card]
+text=Flying. Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
+auto=@movedTo(artifact[-this]|myinplay):2/2
+abilities=flying
+id=174816
+name=Glaze Fiend
+rarity=C
+type=Artifact Creature
+mana={1}{B}
+power=0
+subtype=Illusion
+toughness=1
 [/card]
 [card]
 text=Trample

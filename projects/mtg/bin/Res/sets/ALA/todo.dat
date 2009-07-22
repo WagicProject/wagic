@@ -106,17 +106,6 @@ subtype=Elf Shaman
 toughness=1
 [/card]
 [card]
-text=When Blister Beetle comes into play, target creature gets -1/-1 until end of turn.
-id=174893
-name=Blister Beetle
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Insect
-toughness=1
-[/card]
-[card]
 text={T}: Blood Cultist deals 1 damage to target creature.     Whenever a creature dealt damage by Blood Cultist this turn is put into a graveyard, put a +1/+1 counter on Blood Cultist.
 id=175100
 name=Blood Cultist
@@ -215,15 +204,6 @@ type=Sorcery
 mana={G}{G}{W}{W}{W}{U}{U}
 [/card]
 [card]
-text=Enchant artifact or creature     Enchanted permanent doesn't untap during its controller's untap step.
-id=175042
-name=Coma Veil
-rarity=C
-type=Enchantment
-mana={4}{U}
-subtype=Aura
-[/card]
-[card]
 text=When Corpse Connoisseur comes into play, you may search your library for a creature card and put that card into your graveyard. If you do, shuffle your library.     Unearth {3}{B} ({3}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=176448
 name=Corpse Connoisseur
@@ -283,17 +263,6 @@ subtype=Zombie Wizard
 toughness=2
 [/card]
 [card]
-text=Whenever another creature is put into a graveyard from play, you may gain 1 life.
-id=175073
-name=Deathgreeter
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Human Shaman
-toughness=1
-[/card]
-[card]
 text={2}{B}, {T}, Sacrifice a blue creature, a black creature, and a red creature: Search your library for a card named Prince of Thralls and put it into play. Then shuffle your library.
 id=175243
 name=Demon's Herald
@@ -304,8 +273,6 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
-
-
 [card]
 text={2}{R}, {T}, Sacrifice a black creature, a red creature, and a green creature: Search your library for a card named Hellkite Overlord and put it into play. Then shuffle your library.
 id=175239
@@ -379,8 +346,6 @@ rarity=U
 type=Instant
 mana={W}{U}{B}
 [/card]
-
-
 [card]
 text=Artifact spells you play cost {1} less to play.
 id=176435
@@ -403,7 +368,6 @@ power=2
 subtype=Human Cleric
 toughness=2
 [/card]
-
 [card]
 text=At the end of your turn, if you control a creature with power 5 or greater, you may have Exuberant Firestoker deal 2 damage to target player.     {T}: Add {1} to your mana pool.
 id=175049
@@ -487,18 +451,8 @@ type=Sorcery
 mana={2}{G}
 [/card]
 [card]
-text=Flying     Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
-id=174816
-name=Glaze Fiend
-rarity=C
-type=Artifact Creature
-mana={1}{B}
-power=0
-subtype=Illusion
-toughness=1
-[/card]
-[card]
 text=At the beginning of your upkeep, put a 1/1 red Goblin creature token with haste into play.     Goblin creatures attack each turn if able.
+auto=lord(goblin) mustattack
 id=174939
 name=Goblin Assault
 rarity=R
@@ -535,7 +489,6 @@ rarity=U
 type=Instant
 mana={U}{B}{R}
 [/card]
-
 [card]
 text=Flying     Sacrifice Gustrider Exuberant: Creatures you control with power 5 or greater gain flying until end of turn.
 id=174805
@@ -582,7 +535,6 @@ rarity=R
 type=Sorcery
 mana={6}{W}{W}
 [/card]
-
 [card]
 text={B}, {T}: Target player loses 1 life.     {G}, {T}: Put a 1/1 green Saproling creature token into play.
 id=175050
@@ -602,7 +554,6 @@ rarity=U
 type=Instant
 mana={B}{R}{G}
 [/card]
-
 [card]
 text=Reach (This can block creatures with flying.)  Cycling {2} ({2}, Discard this card: Draw a card.)
 id=175262
@@ -749,6 +700,7 @@ toughness=3
 [/card]
 [card]
 text=Whenever an opponent plays a spell, that player puts the top two cards of his or her library into his or her graveyard.
+auto=@movedTo(*[-land]|opponentstack):deplete:2 
 id=175108
 name=Memory Erosion
 rarity=R
