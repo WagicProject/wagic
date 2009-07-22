@@ -514,7 +514,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     string spt = s.substr(found,end-found);
     int power, toughness;
     if ( parsePowerToughness(spt,&power, &toughness)){
-      return NEW AACounter(id,card,target,power,toughness,nb);
+      MTGAbility * a = NEW AACounter(id,card,target,power,toughness,nb);
+	  a->oneShot = 1;
+      return a;
     }
     return NULL;
   }
