@@ -90,8 +90,8 @@ subtype=Dwarf
 power=0
 toughness=2
 text={R}, {T}, Discard a card: Put a +0/+1 counter or a +1/+0 counter on target creature.
-auto={R}{T}{S(*|myhand)}:counter(0/1) target creature
-auto={R}{T}{S(*|myhand)}:counter(1/0) target creature
+auto={R}{T}{S(*|myhand)}:counter(0/1) target(creature)
+auto={R}{T}{S(*|myhand)}:counter(1/0) target(creature)
 rarity=R
 [/card]
 [card]
