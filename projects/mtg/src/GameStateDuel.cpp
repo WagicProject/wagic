@@ -119,15 +119,15 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
   
 
   MTGDeck * tempDeck = NEW MTGDeck(NULL, mParent->collection);
-  tempDeck->addRandomCards(9,-1,-1,lands[color1].c_str());
-  tempDeck->addRandomCards(9,-1,-1,lands[color2].c_str());
-  tempDeck->addRandomCards(1,-1,'U',"land",colors,nbcolors);
-  tempDeck->addRandomCards(1,-1,'R',"land",colors,nbcolors);
-  tempDeck->addRandomCards(12,-1,-1,"creature",colors,nbcolors);
-  tempDeck->addRandomCards(2,-1,-1,"sorcery",colors,nbcolors);
-  tempDeck->addRandomCards(2,-1,-1,"enchantment",colors,nbcolors);
-  tempDeck->addRandomCards(2,-1,-1,"instant",colors,nbcolors);
-  tempDeck->addRandomCards(2,-1,-1,"artifact",colors,nbcolors);
+  tempDeck->addRandomCards(9,0,0,-1,lands[color1].c_str());
+  tempDeck->addRandomCards(9,0,0,-1,lands[color2].c_str());
+  tempDeck->addRandomCards(1,0,0,'U',"land",colors,nbcolors);
+  tempDeck->addRandomCards(1,0,0,'R',"land",colors,nbcolors);
+  tempDeck->addRandomCards(12,0,0,-1,"creature",colors,nbcolors);
+  tempDeck->addRandomCards(2,0,0,-1,"sorcery",colors,nbcolors);
+  tempDeck->addRandomCards(2,0,0,-1,"enchantment",colors,nbcolors);
+  tempDeck->addRandomCards(2,0,0,-1,"instant",colors,nbcolors);
+  tempDeck->addRandomCards(2,0,0,-1,"artifact",colors,nbcolors);
 
   char * deckFile = "random";
   string deckFileSmall = "random";

@@ -5,6 +5,7 @@
 #include "../include/PlayerData.h"
 #include "../include/DeckStats.h"
 #include "../include/Translate.h"
+#include "../include/MTGDeck.h"
 
   CreditBonus::CreditBonus(int _value, string _text){
     value = _value;
@@ -93,6 +94,14 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
           GameOptions::GetInstance()->save();
+      }else if(unlocked = unlockRandomSet()) {
+          unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/set_unlocked.png", TEX_TYPE_USE_VRAM);
+          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          char buffer[4096];
+          unlockedString = MtgSets::SetsList->values[unlocked -1];
+          sprintf(buffer,"unlocked_%s", unlockedString.c_str());
+          GameOptions::GetInstance()->values[buffer] = GameOption(1);
+          GameOptions::GetInstance()->save();
       }
       if (unlocked){
         JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
@@ -137,6 +146,9 @@ void Credits::Render(){
       if (unlockedQuad){
         showMsg = 0;
         r->RenderQuad(unlockedQuad, 20, 20);
+      }
+      if(unlockedString.size()){
+        f2->DrawString(unlockedString.c_str(),SCREEN_WIDTH/2, 80,JGETEXT_CENTER);
       }
     }else{
       sprintf (buffer, _("You have been defeated").c_str());
@@ -214,4 +226,14 @@ int Credits::isRandomDeckUnlocked(){
   if (GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()) return 0;
   if (p1->life >= 20 ) return 1;
   return 0;
+}
+
+int Credits::unlockRandomSet(){
+  if (rand() % 2) return 0;
+  int setId = rand() % MtgSets::SetsList->nb_items;
+  char buffer[4096];
+  string s = MtgSets::SetsList->values[setId];
+  sprintf(buffer,"unlocked_%s", s.c_str());
+  if (GameOptions::GetInstance()->values[buffer].getIntValue() == 1 ) return 0;
+  return setId+1;
 }

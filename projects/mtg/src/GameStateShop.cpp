@@ -7,7 +7,7 @@
 #include "../include/GameApp.h"
 #include "../include/MTGDeck.h"
 #include "../include/Translate.h"
-
+#include "../include/GameOptions.h"
 
 GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {}
 
@@ -40,17 +40,55 @@ void GameStateShop::Start()
   JRenderer::GetInstance()->EnableVSync(true);
 
 
+  shop = NULL;
+  load();
+
+}
+
+
+void GameStateShop::load(){
+  SAFE_DELETE(shop);
   int sets[500];
+  int boosterSets[500];
+  int unlocked[500];
   int nbsets = 0;
+  int nbboostersets = 0;
+
+  //Unlock a default set if no set is unlocked
+  int ok = 0;
+  int defaultSet = 0;
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
-    if (mParent->collection->countBySet(i) > 80){ //Only sets with more than 80 cards can get boosters and starters
-      sets[nbsets] = i;
-      nbsets++;
+    string s = MtgSets::SetsList->values[i];
+    if (s.compare("10E") == 0) defaultSet = i;
+    char buffer[4096];
+    sprintf(buffer,"unlocked_%s", s.c_str());
+    unlocked[i] = GameOptions::GetInstance()->values[buffer].getIntValue();
+    if ( unlocked[i] ){
+      ok = 1;
     }
   }
-  if (nbsets){
+  if (!ok){
+    unlocked[defaultSet] = 1;
+    string s = MtgSets::SetsList->values[defaultSet];
+    char buffer[4096];
+    sprintf(buffer,"unlocked_%s", s.c_str());
+    GameOptions::GetInstance()->values[buffer] = GameOption(1);
+    GameOptions::GetInstance()->save();
+  }
+
+  for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
+    if (unlocked[i] ){
+      sets[nbsets] = i;
+      nbsets++;
+      if (mParent->collection->countBySet(i) > 80){ //Only sets with more than 80 cards can get boosters and starters
+        boosterSets[nbboostersets] = i;
+        nbboostersets++;
+      }
+    }
+  }
+  if (nbboostersets){
     for (int i = 0; i < SHOP_BOOSTERS; i++){
-      setIds[i] = sets[(rand() % nbsets)];
+      setIds[i] = boosterSets[(rand() % nbboostersets)];
     } 
   }else{
     for (int i = 0; i < SHOP_BOOSTERS; i++){
@@ -59,20 +97,23 @@ void GameStateShop::Start()
   }
   JQuad * mBackThumb = GameApp::CommonRes->GetQuad("back_thumb");
 
-  shop = NULL;
+  
 
   shop = NEW ShopItems(10, this, itemFont, 10, 0, mParent->collection, setIds);
   for (int i = 0; i < SHOP_BOOSTERS; i++){
     sprintf(setNames[i], "%s Booster (15 %s)",MtgSets::SetsList->values[setIds[i]].c_str(), _("cards").c_str());
-    shop->Add(setNames[i],mBack,mBackThumb, 1200);
+    shop->Add(setNames[i],mBack,mBackThumb, 700);
   }
   
-  for (int i = 0; i < 8; i++){
-    shop->Add(mParent->collection->randomCardId());
+  MTGDeck * tempDeck = NEW MTGDeck(NULL,mParent->collection);
+  tempDeck->addRandomCards(8,sets,nbsets);
+  for (map<int,int>::iterator it = tempDeck->cards.begin(); it!=tempDeck->cards.end(); it++){
+    for (int j = 0; j < it->second; j++){
+      shop->Add(it->first);
+    }
   }
-
+  delete tempDeck;
 }
-
 
 void GameStateShop::End()
 {
@@ -103,6 +144,9 @@ void GameStateShop::Update(float dt)
     if (mEngine->GetButtonClick(PSP_CTRL_START)){
       mStage = STAGE_SHOP_MENU;
     }
+    if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
+      load();
+    }
     if (shop)
       shop->Update(dt);
   }
@@ -112,10 +156,14 @@ void GameStateShop::Update(float dt)
 void GameStateShop::Render()
 {
   //Erase
-  JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
+  JRenderer * r = JRenderer::GetInstance();
+  r->ClearScreen(ARGB(0,0,0,0));
   if (mBg)JRenderer::GetInstance()->RenderQuad(mBg,0,0);
   if (shop)
     shop->Render();
+
+  r->FillRect(5,SCREEN_HEIGHT-15,110,15,ARGB(200,0,0,0));
+  itemFont->DrawString(_("press [] to refresh").c_str(),10,SCREEN_HEIGHT-12);
   if (mStage == STAGE_SHOP_MENU && menu){
     menu->Render();
   }

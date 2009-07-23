@@ -290,17 +290,24 @@ void GameStateMenu::Update(float dt)
       break;
     case MENU_STATE_MAJOR_FIRST_TIME :
       {
-	//Give the player cards from the set for which we have the most variety
-	int setId = 0;
-	int maxcards = 0;
-	for (int i=0; i< MtgSets::SetsList->nb_items; i++){
-	  int value = mParent->collection->countBySet(i);
-	  if (value > maxcards){
-	    maxcards = value;
-	    setId = i;
-	  }
-	}
-	createUsersFirstDeck(setId);
+	      //Give the player cards from the set for which we have the most variety
+	      int setId = 0;
+	      int maxcards = 0;
+	      for (int i=0; i< MtgSets::SetsList->nb_items; i++){
+	        int value = mParent->collection->countBySet(i);
+	        if (value > maxcards){
+	          maxcards = value;
+	          setId = i;
+	        }
+	      }
+        //Save this set as "unlocked"
+        string s = MtgSets::SetsList->values[setId];
+        char buffer[4096];
+        sprintf(buffer,"unlocked_%s", s.c_str());
+        GameOptions::GetInstance()->values[buffer] = GameOption(1);
+        GameOptions::GetInstance()->save();
+
+	      createUsersFirstDeck(setId);
       }
       currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
       break;
@@ -388,20 +395,21 @@ void GameStateMenu::createUsersFirstDeck(int setId){
 #endif
   MTGDeck *mCollection = NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache, mParent->collection);
   //10 lands of each
-  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Forest")){
-    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Forest");
+  int sets[] = {setId};
+  if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){
+    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Forest");
   }
-  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Plains")){
-    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Plains");
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Plains")){
+    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Plains");
   }
-  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Swamp")){
-    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Swamp");
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Swamp")){
+    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Swamp");
   }
-  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Mountain")){
-    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Mountain");
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Mountain")){
+    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Mountain");
   }
-  if (!mCollection->addRandomCards(10, setId,Constants::RARITY_L,"Island")){
-    mCollection->addRandomCards(10, -1,Constants::RARITY_L,"Island");
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Island")){
+    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Island");
   }
 
 
@@ -410,18 +418,18 @@ void GameStateMenu::createUsersFirstDeck(int setId){
 #endif
 
   //Starter Deck
-  mCollection->addRandomCards(3, setId,Constants::RARITY_R,NULL);
-  mCollection->addRandomCards(9, setId,Constants::RARITY_U,NULL);
-  mCollection->addRandomCards(48, setId,Constants::RARITY_C,NULL);
+  mCollection->addRandomCards(3, sets,1,Constants::RARITY_R,NULL);
+  mCollection->addRandomCards(9, sets,1,Constants::RARITY_U,NULL);
+  mCollection->addRandomCards(48, sets,1,Constants::RARITY_C,NULL);
 
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("2\n");
 #endif
   //Boosters
   for (int i = 0; i< 2; i++){
-    mCollection->addRandomCards(1, setId,Constants::RARITY_R);
-    mCollection->addRandomCards(3, setId,Constants::RARITY_U);
-    mCollection->addRandomCards(11, setId,Constants::RARITY_C);
+    mCollection->addRandomCards(1, sets,1,Constants::RARITY_R);
+    mCollection->addRandomCards(3, sets,1,Constants::RARITY_U);
+    mCollection->addRandomCards(11, sets,1,Constants::RARITY_C);
   }
   mCollection->save();
   SAFE_DELETE(mCollection);

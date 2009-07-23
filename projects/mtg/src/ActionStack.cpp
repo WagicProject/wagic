@@ -744,6 +744,10 @@ while( iter != mObjects.end() ){
 }
 
 void ActionStack::Fizzle(Interruptible * action){
+  if (!action){
+    OutputDebugString("==ERROR==: action is NULL in ActionStack::Fizzle\n");
+    return;
+  }
   if (action->type == ACTION_SPELL){
     Spell * spell = (Spell *) action;
     spell->source->controller()->game->putInGraveyard(spell->source);

@@ -256,9 +256,10 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         int rare_or_mythic = Constants::RARITY_R;
         int rnd = rand() % 8;
         if (rnd == 0) rare_or_mythic = Constants::RARITY_M;
-        tempDeck->addRandomCards(1, setIds[showPriceDialog],rare_or_mythic);
-        tempDeck->addRandomCards(3, setIds[showPriceDialog],Constants::RARITY_U);
-        tempDeck->addRandomCards(11, setIds[showPriceDialog],Constants::RARITY_C);
+        int sets[] = {setIds[showPriceDialog]};
+        tempDeck->addRandomCards(1, sets,1,rare_or_mythic);
+        tempDeck->addRandomCards(3, sets,1,Constants::RARITY_U);
+        tempDeck->addRandomCards(11, sets,1,Constants::RARITY_C);
         playerdata->collection->add(tempDeck);
 
         

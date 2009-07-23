@@ -29,7 +29,7 @@ class GameStateShop: public GameState, public JGuiListener
   char starterBuffer[128], boosterBuffer[128];
   char setNames[SHOP_BOOSTERS][128];
   int setIds[SHOP_BOOSTERS];
-
+  void load();
  public:
   GameStateShop(GameApp* parent);
   virtual ~GameStateShop();

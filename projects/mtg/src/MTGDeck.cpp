@@ -421,7 +421,7 @@ MTGCard * MTGDeck::getCardById(int mtgId){
 }
 
 
-int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _subtype, int * colors, int nbcolors){
+int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const char * _subtype, int * colors, int nbcolors){
   int unallowedColors[Constants::MTG_NB_COLORS+1];
   for (int i=0; i < Constants::MTG_NB_COLORS; ++i){
     if (nbcolors) unallowedColors[i] = 1;
@@ -433,7 +433,7 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
 
   int collectionTotal = database->totalCards();
   if (!collectionTotal) return 0;
-  if (setId == -1 && rarity == -1 && !_subtype && !nbcolors){
+  if (nbSets == 0 && rarity == -1 && !_subtype && !nbcolors){
     for (int i = 0; i < howmany; i++){
       add(database->randomCardId());
     }
@@ -448,17 +448,28 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
   int subtotal = 0;
   for (int i = 0; i < collectionTotal; i++){
     MTGCard * card = database->_(i);
-    if ((setId == -1 || card->setId == setId) &&
-	(rarity == -1 || card->getRarity()==rarity) &&
+    if ((rarity == -1 || card->getRarity()==rarity) &&
 	(!_subtype || card->hasSubtype(subtype))
 	){
-      int ok = 1;
-      for (int j=0; j < Constants::MTG_NB_COLORS; ++j){
-        if (unallowedColors[j] && card->hasColor(j)){
-          ok = 0;
+      int ok = 0;
+
+      if (!nbSets) ok = 1;
+      for (int j=0; j < nbSets; ++j){
+        if (card->setId == setIds[j]){
+          ok = 1;
           break;
         }
       }
+
+      if (ok){
+        for (int j=0; j < Constants::MTG_NB_COLORS; ++j){
+          if (unallowedColors[j] && card->hasColor(j)){
+            ok = 0;
+            break;
+          }
+        }
+      }
+
       if (ok){
         subcollection.push_back(card->getId());
         subtotal++;
@@ -466,7 +477,7 @@ int MTGDeck::addRandomCards(int howmany, int setId, int rarity, const char * _su
     }
   }
   if (subtotal == 0){
-    if (rarity == Constants::RARITY_M) return addRandomCards(howmany, setId, Constants::RARITY_R,  _subtype, colors, nbcolors);
+    if (rarity == Constants::RARITY_M) return addRandomCards(howmany, setIds, nbSets, Constants::RARITY_R,  _subtype, colors, nbcolors);
     return 0;
   }
   for (int i = 0; i < howmany; i++){

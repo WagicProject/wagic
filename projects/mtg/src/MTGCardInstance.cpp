@@ -304,7 +304,7 @@ int MTGCardInstance::reset(){
 Player * MTGCardInstance::controller(){
   GameObserver * game = GameObserver::GetInstance();
   if (!game) return NULL;
-  for (int i = 0; i < 2; i++){
+  for (int i = 0; i < 2; ++i){
     if (game->players[i]->game->inPlay->hasCard(this)) return  game->players[i];
     if (game->players[i]->game->stack->hasCard(this)) return  game->players[i];
     if (game->players[i]->game->graveyard->hasCard(this)) return  game->players[i];

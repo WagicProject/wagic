@@ -26,6 +26,7 @@ private:
   int isMomirUnlocked();
   int isEvilTwinUnlocked();
   int isRandomDeckUnlocked();
+  int unlockRandomSet();
 public:
   int value;
   Player * p1, *p2;
@@ -34,6 +35,7 @@ public:
   int unlocked;
   JQuad * unlockedQuad;
   JTexture * unlockedTex;
+  string unlockedString;
   vector<CreditBonus *> bonus;
   Credits();
   ~Credits();
