@@ -253,6 +253,18 @@ toughness=1
 abilities=fear
 [/card]
 [card]
+text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from play, you may untap target artifact.
+auto=@movedTo(creature[artifact]|graveyard) from(inplay):may untap(artifact)
+id=46434
+name=Dross Scorpion
+rarity=C
+type=Artifact Creature
+mana={4}
+power=3
+subtype=Scorpion
+toughness=1
+[/card]
+[card]
 text={1}{G}, Sacrifice Elf Replica: Destroy target enchantment.
 id=46057
 auto={1}{G}{S}:destroy target(enchantment)
@@ -1359,6 +1371,18 @@ mana={4}{B}
 power=1
 subtype=Horror
 toughness=1
+[/card]
+[card]
+text=When Viridian Shaman comes into play, destroy target artifact.
+auto=destroy target(creature)
+id=46119
+name=Viridian Shaman
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
 [/card]
 [card]
 text=Haste

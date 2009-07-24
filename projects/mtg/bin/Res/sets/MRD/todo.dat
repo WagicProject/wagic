@@ -326,18 +326,6 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-
-[card]
-text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from play, you may untap target artifact.
-id=46434
-name=Dross Scorpion
-rarity=C
-type=Artifact Creature
-mana={4}
-power=3
-subtype=Scorpion
-toughness=1
-[/card]
 [card]
 text=Imprint - When Duplicant comes into play, you may remove target nontoken creature from the game. (The removed card is imprinted on this artifact.)  As long as a creature card is imprinted on Duplicant, Duplicant has the power, toughness, and creature types of the last creature card imprinted on it. It's still a Shapeshifter.
 id=49439
@@ -1577,17 +1565,6 @@ rarity=C
 type=Artifact
 mana={1}
 subtype=Equipment
-[/card]
-[card]
-text=When Viridian Shaman comes into play, destroy target artifact.
-id=46119
-name=Viridian Shaman
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
 [/card]
 [card]
 text=Equipped creature has trample and can't be blocked by more than one creature.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
