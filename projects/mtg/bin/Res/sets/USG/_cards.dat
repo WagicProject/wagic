@@ -1277,6 +1277,7 @@ mana={3}{G}
 [card]
 text=Whenever a player plays a green spell, put a +1/+1 counter on Titania's Chosen.
 auto=@movedTo(*[green]|opponentStack):counter(1/1)
+auto=@movedTo(*[green]|myStack):counter(1/1)
 id=5838
 name=Titania's Chosen
 rarity=U
