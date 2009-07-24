@@ -34,17 +34,6 @@ subtype=Elemental Shaman
 toughness=4
 [/card]
 [card]
-text={T}: Tap target creature.     Whenever you play a white spell, you may untap Ballynock Trapper.
-id=153480
-name=Ballynock Trapper
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Kithkin Soldier
-toughness=2
-[/card]
-[card]
 text=Until end of turn, target creature gains "{T}: Return target nonland permanent to its owner's hand."
 id=154350
 name=Banishing Knack
@@ -71,9 +60,6 @@ rarity=U
 type=Instant
 mana={1}{WB}
 [/card]
-[card]
-
-
 [card]
 text={T}: For each color among permanents you control, add one mana of that color to your mana pool.
 id=158901
@@ -140,17 +126,7 @@ rarity=U
 type=Instant
 mana={4}{R}
 [/card]
-[card]
-text={T}: Cinder Pyromancer deals 1 damage to target player.     Whenever you play a red spell, you may untap Cinder Pyromancer.
-id=151067
-name=Cinder Pyromancer
-rarity=C
-type=Creature
-mana={2}{R}
-power=0
-subtype=Elemental Shaman
-toughness=1
-[/card]
+
 [card]
 text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has shroud. (It can't be the target of spells or abilities.)  As long as enchanted creature is red, it gets +1/+1 and has haste.
 id=152092
@@ -201,17 +177,6 @@ name=Crumbling Ashes
 rarity=U
 type=Enchantment
 mana={1}{B}
-[/card]
-[card]
-text=Trample     Deity of Scars comes into play with two -1/-1 counters on it.     {BG}, Remove a -1/-1 counter from Deity of Scars: Regenerate Deity of Scars.
-id=153488
-name=Deity of Scars
-rarity=R
-type=Creature
-mana={BG}{BG}{BG}{BG}{BG}
-power=7
-subtype=Spirit Avatar
-toughness=7
 [/card]
 [card]
 text=When Desecrator Hag comes into play, return to your hand the creature card in your graveyard with the highest power. If two or more cards are tied for highest power, you choose one of them.
@@ -340,14 +305,6 @@ mana={3}{WB}{WB}
 power=2
 subtype=Elemental Spirit
 toughness=2
-[/card]
-[card]
-text=Whenever you play a green spell, you may put a 2/2 green Wolf creature token into play.     Whenever you play a blue spell, you may put a 1/1 blue Bird creature token with flying into play.
-id=152087
-name=Fable of Wolf and Owl
-rarity=R
-type=Enchantment
-mana={3}{GU}{GU}{GU}
 [/card]
 [card]
 text=Enchant creature     As long as enchanted creature is green, it gets +1/+1 and has vigilance.     As long as enchanted creature is blue, it gets +1/+1 and has flying.
@@ -613,29 +570,6 @@ type=Enchantment
 mana={2}{W}{W}
 [/card]
 [card]
-text=Defender, flying     Whenever you play a white spell, Loyal Gyrfalcon loses defender until end of turn.
-abilities=defender,flying
-id=151059
-name=Loyal Gyrfalcon
-rarity=U
-type=Creature
-mana={3}{W}
-power=3
-subtype=Bird
-toughness=3
-[/card]
-[card]
-text=When Marshdrinker Giant comes into play, destroy target Island or Swamp an opponent controls.
-id=142015
-name=Marshdrinker Giant
-rarity=U
-type=Creature
-mana={3}{G}{G}
-power=4
-subtype=Giant Warrior
-toughness=3
-[/card]
-[card]
 text={T}: Target player removes a card in his or her graveyard from the game.      Whenever you play a black spell, you may untap Merrow Bonegnawer.
 id=151158
 name=Merrow Bonegnawer
@@ -645,17 +579,6 @@ mana={B}
 power=1
 subtype=Merfolk Rogue
 toughness=1
-[/card]
-[card]
-text={T}: Target creature gains flying until end of turn.     Whenever you play a blue spell, you may untap Merrow Levitator.
-id=151088
-name=Merrow Levitator
-rarity=C
-type=Creature
-mana={3}{U}
-power=2
-subtype=Merfolk Wizard
-toughness=3
 [/card]
 [card]
 text={1}{UR}{UR}: Copy target instant or sorcery spell that targets you. You may choose new targets for the copy.
@@ -709,17 +632,6 @@ subtype=Specter
 toughness=1
 [/card]
 [card]
-text=Nettle Sentinel doesn't untap during your untap step.     Whenever you play a green spell, you may untap Nettle Sentinel.
-id=151095
-name=Nettle Sentinel
-rarity=C
-type=Creature
-mana={G}
-power=2
-subtype=Elf Warrior
-toughness=2
-[/card]
-[card]
 text=Search target player's library for up to X cards, where X is the number of Swamps you control, and remove them from the game. Then that player shuffles his or her library.
 target=player
 id=157414
@@ -750,18 +662,6 @@ mana={1}{UR}{UR}
 power=2
 subtype=Noggle Rogue
 toughness=2
-[/card]
-[card]
-text=When Noggle Bridgebreaker comes into play, return a land you control to its owner's hand.
-id=158899
-name=Noggle Bridgebreaker
-auto=moveTo(hand) target(land|myinplay)
-rarity=C
-type=Creature
-mana={2}{UR}{UR}
-power=4
-subtype=Noggle Rogue
-toughness=3
 [/card]
 [card]
 text=When Noggle Hedge-Mage comes into play, if you control two or more Islands, you may tap two target permanents.     When Noggle Hedge-Mage comes into play, if you control two or more Mountains, you may have Noggle Hedge-Mage deal 2 damage to target player.

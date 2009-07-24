@@ -39,6 +39,19 @@ subtype=Spirit Horror
 toughness=4
 [/card]
 [card]
+text={T}: Tap target creature.     Whenever you play a white spell, you may untap Ballynock Trapper.
+auto={T}:tap target(creature)
+auto=@movedTo(*[white]|mystack):may untap
+id=153480
+name=Ballynock Trapper
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Kithkin Soldier
+toughness=2
+[/card]
+[card]
 text=Remove target card in a graveyard from the game. Put a 1/1 white and black Spirit creature token with flying into play.
 target=*|graveyard
 auto=moveTo(removedfromgame)
@@ -99,6 +112,19 @@ type=Instant
 mana={1}{WB}
 [/card]
 [card]
+text={T}: Cinder Pyromancer deals 1 damage to target player.     Whenever you play a red spell, you may untap Cinder Pyromancer.
+auto={T}:damage:1 target(player)
+auto=@movedTo(*[red]|mystack):may untap
+id=151067
+name=Cinder Pyromancer
+rarity=C
+type=Creature
+mana={2}{R}
+power=0
+subtype=Elemental Shaman
+toughness=1
+[/card]
+[card]
 text={BG}{BG}: Remove target card in a graveyard from the game. You gain 1 life.
 auto={BG}{BG}:moveTo(exile) target(*|graveyard) && life:1
 id=157206
@@ -138,6 +164,20 @@ mana={2}{WB}{WB}{WB}
 power=3
 subtype=Horror
 toughness=4
+[/card]
+[card]
+text=Trample. Deity of Scars comes into play with two -1/-1 counters on it. {BG}, Remove a -1/-1 counter from Deity of Scars: Regenerate Deity of Scars.
+abilities=trample
+auto=counter(-1/-1,2)
+auto={BG}:counter(-1/-1,-1) && regenerate
+id=153488
+name=Deity of Scars
+rarity=R
+type=Creature
+mana={BG}{BG}{BG}{BG}{BG}
+power=7
+subtype=Spirit Avatar
+toughness=7
 [/card]
 [card]
 text=Target creature gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
@@ -196,6 +236,16 @@ mana={5}{G}{G}
 power=7
 subtype=Wurm
 toughness=7
+[/card]
+[card]
+text=Whenever you play a green spell, you may put a 2/2 green Wolf creature token into play.     Whenever you play a blue spell, you may put a 1/1 blue Bird creature token with flying into play.
+auto=@movedTo(*[green]|mystack):may token(Wolf,creature wolf,2/2,green)
+auto=@movedTo(*[blue]|mystack):may token(Bird,creature bird,1/1,blue)
+id=152087
+name=Fable of Wolf and Owl
+rarity=R
+type=Enchantment
+mana={3}{GU}{GU}{GU}
 [/card]
 [card]
 text={2}: Target black creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
@@ -352,6 +402,44 @@ subtype=Spirit
 toughness=2
 [/card]
 [card]
+text=Defender, flying     Whenever you play a white spell, Loyal Gyrfalcon loses defender until end of turn.
+abilities=defender,flying
+auto=@movedTo(*[white]|mystack):-defender
+id=151059
+name=Loyal Gyrfalcon
+rarity=U
+type=Creature
+mana={3}{W}
+power=3
+subtype=Bird
+toughness=3
+[/card]
+[card]
+text=When Marshdrinker Giant comes into play, destroy target Island or Swamp an opponent controls.
+auto=destroy target(island,swamp|opponentinplay)
+id=142015
+name=Marshdrinker Giant
+rarity=U
+type=Creature
+mana={3}{G}{G}
+power=4
+subtype=Giant Warrior
+toughness=3
+[/card]
+[card]
+text={T}: Target creature gains flying until end of turn.     Whenever you play a blue spell, you may untap Merrow Levitator.
+auto={T}:flying target(creature)
+auto=@movedTo(*[blue]|mystack):may untap
+id=151088
+name=Merrow Levitator
+rarity=C
+type=Creature
+mana={3}{U}
+power=2
+subtype=Merfolk Wizard
+toughness=3
+[/card]
+[card]
 text=Other blue creatures you control get +1/+1.     Other red creatures you control get +1/+1.     {UR}{UR}{UR}{UR}: You may put a blue or red creature card from your hand into play.
 id=151132
 auto=lord(creature[blue]|myinplay) 1/1 other
@@ -380,6 +468,19 @@ subtype=Horror
 toughness=4
 [/card]
 [card]
+text=Nettle Sentinel doesn't untap during your untap step.     Whenever you play a green spell, you may untap Nettle Sentinel.
+abilities=doesnotuntap
+auto=@movedTo(*[green]|mystack):may untap
+id=151095
+name=Nettle Sentinel
+rarity=C
+type=Creature
+mana={G}
+power=2
+subtype=Elf Warrior
+toughness=2
+[/card]
+[card]
 text=Lifelink (Whenever this creature deals damage, you gain that much life.)
 abilities=lifelink
 id=150986
@@ -403,6 +504,18 @@ mana={RW}{RW}{RW}{RW}{RW}
 power=3
 subtype=Spirit Avatar
 toughness=4
+[/card]
+[card]
+text=When Noggle Bridgebreaker comes into play, return a land you control to its owner's hand.
+id=158899
+name=Noggle Bridgebreaker
+auto=moveTo(ownerhand) target(land|myinplay)
+rarity=C
+type=Creature
+mana={2}{UR}{UR}
+power=4
+subtype=Noggle Rogue
+toughness=3
 [/card]
 [card]
 text=Noxious Hatchling comes into play with four -1/-1 counters on it.     Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever you play a black spell, remove a -1/-1 counter from Noxious Hatchling.     Whenever you play a green spell, remove a -1/-1 counter from Noxious Hatchling.
