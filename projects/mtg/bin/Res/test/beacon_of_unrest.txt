@@ -1,0 +1,18 @@
+#Bug: Beacon of unrest goes to graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:beacon of unrest
+manapool:{3}{B}{B}
+[PLAYER2]
+graveyard:shivan dragon
+[DO]
+beacon of unrest
+shivan dragon
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:shivan dragon
+library:beacon of unrest
+[PLAYER2]
+[END]

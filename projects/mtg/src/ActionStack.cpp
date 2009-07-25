@@ -106,7 +106,10 @@ int Spell::resolve(){
    while (source->next){
     source = source->next;
   }
-  source = source->controller()->game->putInPlay(source);
+  if (!source->hasType("instant") &&  !source->hasType("sorcery")){    
+      source = source->controller()->game->putInPlay(source);
+  }
+  
 
   //Play SFX
   if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){

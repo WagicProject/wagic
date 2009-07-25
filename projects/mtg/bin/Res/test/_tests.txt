@@ -39,6 +39,7 @@ ascendant_evincar2.txt
 ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
+beacon_of_unrest.txt
 #befoul.txt
 blessed_wine.txt
 #blinking_spirit.txt
@@ -100,6 +101,8 @@ jump.txt
 keldon_warlord.txt
 keldon_warlord2.txt
 kird_ape.txt
+kraken_eye.txt
+kraken_eye2.txt
 kudzu.txt
 kudzu2.txt
 lhurgoyf.txt

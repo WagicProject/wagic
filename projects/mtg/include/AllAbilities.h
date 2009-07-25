@@ -63,7 +63,7 @@ class AACounter: public ActivatedAbility{
   int nb;
   int power;
   int toughness;
- AACounter(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness, int nb,ManaCost * cost=NULL, int doTap = 1):ActivatedAbility(id,_source,cost,0,doTap),power(_power),toughness(_toughness),nb(nb){
+ AACounter(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness, int nb,ManaCost * cost=NULL, int doTap = 0):ActivatedAbility(id,_source,cost,0,doTap),power(_power),toughness(_toughness),nb(nb){
 	  target=_target;
  }
 
@@ -95,7 +95,7 @@ class AACounter: public ActivatedAbility{
 
 class AAFizzler:public ActivatedAbility{
  public:
- AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap){
+ AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL, int _tap = 0):ActivatedAbility(_id, card,_cost,0,_tap){
    target = _target;
   }
 
@@ -129,11 +129,10 @@ class MayAbility:public MTGAbility{
 public:
   int triggered;
   MTGAbility * ability;
-  int deleteAbility;
+  MTGAbility * mClone;
   MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source):MTGAbility(_id,_source),ability(_ability){
     triggered = 0;
-    ability->forceDestroy = 1;
-    deleteAbility = 1;
+    mClone = NULL;
   }
 
   void Update(float dt){
@@ -150,7 +149,7 @@ public:
   }
 
   int testDestroy(){
-    if (triggered && !game->mLayers->actionLayer()->menuObject){
+    if (triggered && !game->mLayers->actionLayer()->menuObject && game->mLayers->actionLayer()->getIndexOf(mClone) ==-1){
       OutputDebugString("Destroy!\n");
       return 1;
     }
@@ -165,22 +164,14 @@ public:
 
   int reactToTargetClick(Targetable * object){
     OutputDebugString("ReactToTargetClick!\n");
-    deleteAbility = 0;
-    game->addObserver(ability);
-    return ability->reactToTargetClick(object);
+    mClone = ability->clone();
+    mClone->addToGame();
+    mClone->forceDestroy = 1;
+    return mClone->reactToTargetClick(object);
   }
 
   ~MayAbility(){
-    if (deleteAbility) SAFE_DELETE(ability);
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "MayAbility ::: triggered : " << triggered
-	<< " ; ability : " << ability
-	<< " ; deleteAbility : " << deleteAbility
-	<< " (";
-    return MTGAbility::toString(out) << ")";
+    if (!isClone) SAFE_DELETE(ability);
   }
 
   MayAbility * clone() const{
@@ -241,7 +232,7 @@ class GenericActivatedAbility:public ActivatedAbility{
   MTGAbility * ability;
   int limitPerTurn;
   int counters;
- GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 1, int limit = 0):ActivatedAbility(_id, card,_cost,0,_tap),ability(a),limitPerTurn(limit){
+ GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0):ActivatedAbility(_id, card,_cost,0,_tap),ability(a),limitPerTurn(limit){
    counters = 0;
    target = ability->target;
   }
@@ -321,7 +312,7 @@ public:
 class AADrawer:public ActivatedAbility{
  public:
   int nbcards;
- AADrawer(int _id, MTGCardInstance * card,ManaCost * _cost, int _nbcards = 1, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),nbcards(_nbcards){
+ AADrawer(int _id, MTGCardInstance * card,ManaCost * _cost, int _nbcards = 1, int _tap = 0):ActivatedAbility(_id, card,_cost,0,_tap),nbcards(_nbcards){
   }
 
   int resolve(){
@@ -346,7 +337,7 @@ class AADrawer:public ActivatedAbility{
 class AALifer:public ActivatedAbility{
  public:
   int life;
- AALifer(int _id, MTGCardInstance * card, MTGCardInstance * _target, int life, ManaCost * _cost = NULL, int _tap = 1):ActivatedAbility(_id, card,_cost,0,_tap),life(life){
+ AALifer(int _id, MTGCardInstance * card, MTGCardInstance * _target, int life, ManaCost * _cost = NULL, int _tap = 0):ActivatedAbility(_id, card,_cost,0,_tap),life(life){
    target = _target;
   }
 
@@ -1663,7 +1654,7 @@ AADamager(int _id, MTGCardInstance * _source, Damageable * _target, int _damage 
 class TADamager:public TargetAbility{
  public:
   int damage;
- TADamager(int id, MTGCardInstance * card, ManaCost * _cost, int _damage, TargetChooser * _tc = NULL, int _tap = 1):TargetAbility(id,card, _tc, _cost,0,_tap),damage(_damage){
+ TADamager(int id, MTGCardInstance * card, ManaCost * _cost, int _damage, TargetChooser * _tc = NULL, int _tap = 0):TargetAbility(id,card, _tc, _cost,0,_tap),damage(_damage){
     if (!tc) tc = NEW DamageableTargetChooser(card);
     ability = NEW AADamager(id,card,NULL,damage);
   }
@@ -3689,7 +3680,7 @@ ALavaborn * clone() const{
 class AADepleter:public ActivatedAbility{
  public:
 	 int nbcards;
-	  AADepleter(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 1):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
+	  AADepleter(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 0):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
       target = _target;
 	  }
   int resolve(){
@@ -3719,7 +3710,7 @@ class AADepleter:public ActivatedAbility{
 class AARandomDiscarder:public ActivatedAbility{
  public:
 	 int nbcards;
-	  AARandomDiscarder(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 1):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
+	  AARandomDiscarder(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 0):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
       target = _target;
 	  }
   int resolve(){

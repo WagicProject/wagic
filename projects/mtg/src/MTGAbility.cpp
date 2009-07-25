@@ -816,16 +816,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   MTGCardInstance * card = spell->source;
 
 
-  if (card->hasType("instant") || card->hasType("sorcery")){    
-    MTGPlayerCards * zones = card->controller()->game;
-    zones->putInGraveyard(card);
-  }
-
   if (spell->cursor==1) card->target =  spell->getNextCardTarget();
   _id = magicText(_id, spell);
 
   GameObserver * game = GameObserver::GetInstance();
-
+  MTGPlayerCards * zones = card->controller()->game;
 
 
   int id = card->getId();
@@ -1697,33 +1692,17 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 130553:// Beacon of Immortality
 	  {
-		int life;
-		Player * player = spell->getNextPlayerTarget();
-		MTGLibrary * library = card->controller()->game->library;
-		life = player->life;
-		player->life+=life;
-		MTGGameZone * zones[] = {card->controller()->game->inPlay,card->controller()->game->graveyard,card->controller()->game->hand};
-		for (int k = 0; k < 3; k++){
-			MTGGameZone * zone = zones[k];
-			if (zone->hasCard(card)){
-				card->controller()->game->putInZone(card,zone,library);
-				library->shuffle();
-			}
-		}
-		break;
+		  Player * player = spell->getNextPlayerTarget();
+		  player->life+=player->life;
+		  zones->putInZone(card,zones->stack,zones->library);
+		  zones->library->shuffle();
+		  break;
 	  }
    case 135262:// Beacon of Destruction & unrest
 	  {
-		MTGLibrary * library = card->controller()->game->library;
-		MTGGameZone * zones[] = {card->controller()->game->inPlay,card->controller()->game->graveyard,card->controller()->game->hand};
-		for (int k = 0; k < 3; k++){
-			MTGGameZone * zone = zones[k];
-			if (zone->hasCard(card)){
-				card->controller()->game->putInZone(card,zone,library);
-				library->shuffle();
-			}
-		}
-		break;
+		  zones->putInZone(card,zones->stack,zones->library);
+		  zones->library->shuffle();
+		  break;
 	  }
   case 129750: //Sudden Impact
 	{
@@ -1896,6 +1875,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   if (card->basicAbilities[Constants::PLAINSHOME]){
     game->addObserver(NEW AStrongLandLinkCreature(_id, card,"plains"));
   }
+
+  if (card->hasType("instant") || card->hasType("sorcery")){    
+    MTGPlayerCards * zones = card->controller()->game;
+    zones->putInZone(card,zones->stack,zones->graveyard);
+  }
+
 
 }
 
@@ -2363,7 +2348,10 @@ void GenericTriggeredAbility::Update(float dt){
 }
 
 int GenericTriggeredAbility::resolve(){
-  return ability->resolve();
+  if (ability->oneShot) return ability->resolve();
+  MTGAbility * clone = ability->clone();
+  clone->addToGame();
+  return 1;
 }
 
 int GenericTriggeredAbility::testDestroy(){

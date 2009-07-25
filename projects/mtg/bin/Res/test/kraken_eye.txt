@@ -1,0 +1,18 @@
+#Bug:Kraken's eye does nothing
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:kraken's eye
+hand:air elemental
+manapool:{3}{U}{U}
+[PLAYER2]
+[DO]
+air elemental
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:kraken's eye,air elemental
+life:21
+[PLAYER2]
+[END]

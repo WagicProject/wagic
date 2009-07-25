@@ -872,7 +872,7 @@ name=Kraken's Eye
 mana={2}
 type=Artifact
 text=Whenever a player casts a blue spell, you may gain 1 life.
-auto=@movedTo(*[blue]|stack): may life:1
+auto=@movedTo(*[blue]|stack):may life:1
 rarity=U
 [/card]
 [card]

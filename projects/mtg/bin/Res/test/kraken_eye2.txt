@@ -1,0 +1,36 @@
+#Kraken eye works ok twice in a turn ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:kraken's eye,island
+hand:air elemental,unsummon
+manapool:{3}{U}{U}
+[PLAYER2]
+[DO]
+air elemental
+choice 0
+next
+#begin
+next
+#attack
+next
+#blockers
+next
+#dmage
+next
+#end
+next
+#secondmain
+island
+unsummon
+air elemental
+choice 0
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:kraken's eye,island
+hand:air elemental
+graveyard:unsummon
+life:22
+[PLAYER2]
+[END]
