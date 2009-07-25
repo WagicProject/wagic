@@ -26,8 +26,8 @@ toughness=4
 [card]
 text=Other red creatures you control get +1/+1.     Other white creatures you control get +1/+1.     Whenever you play a red spell, Balefire Liege deals 3 damage to target player.     Whenever you play a white spell, you gain 3 life.
 id=158104
-auto=lord(creature[red]) 1/1 other
-auto=lord(creature[white]) 1/1 other
+auto=lord(creature[red]|myinplay) 1/1 other
+auto=lord(creature[white]|myinplay) 1/1 other
 auto=@movedto(*[red]|mystack):damage:3 target(player)
 auto=@movedto(*[white]|mystack):life:3
 name=Balefire Liege
