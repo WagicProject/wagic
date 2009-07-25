@@ -67,7 +67,7 @@ int DeckStats::percentVictories(){
 
 void DeckStats::load(Player * player){
   char filename[512];
-  sprintf(filename, RESPATH"/player/stats/%s.txt",player->deckFile.c_str());
+  sprintf(filename, RESPATH"/player/stats/%s.txt",player->deckFileSmall.c_str());
   load(filename);
 }
 
