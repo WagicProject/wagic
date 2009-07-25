@@ -1,0 +1,21 @@
+#Bug: Bug: taking control of bottle gnomes, then sacrificing them: opponent gets life
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:persuasion
+manapool:{3}{U}{U}
+[PLAYER2]
+inplay:bottle gnomes
+[DO]
+persuasion
+bottle gnomes
+bottle gnomes
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:persuasion
+manapool:{0}
+life:23
+[PLAYER2]
+graveyard:bottle gnomes
+[END]

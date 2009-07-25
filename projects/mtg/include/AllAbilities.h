@@ -307,18 +307,50 @@ public:
 
 };
 
+class ActivatedAbilityTP:public ActivatedAbility{
+public:
+  int who;
+  ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, ManaCost * cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbility(id,card,cost,0,doTap),who(who){
+    if (_target) target = _target;
+  }
+
+  Targetable * getTarget(){
+    switch(who){
+      case TargetChooser::TARGET_CONTROLLER:
+        if (target) return ((MTGCardInstance *)target)->controller();
+        return NULL;
+      case TargetChooser::CONTROLLER:
+        return source->controller();
+      case TargetChooser::OPPONENT:
+        return source->controller()->opponent();
+      default:
+        return target;
+    }
+   return NULL;
+  }
+};
+
 
 //Drawer, allows to draw a card for a cost:
 
-class AADrawer:public ActivatedAbility{
+class AADrawer:public ActivatedAbilityTP{
  public:
   int nbcards;
- AADrawer(int _id, MTGCardInstance * card,ManaCost * _cost, int _nbcards = 1, int _tap = 0):ActivatedAbility(_id, card,_cost,0,_tap),nbcards(_nbcards){
+  AADrawer(int _id, MTGCardInstance * card,Targetable * _target,ManaCost * _cost, int _nbcards = 1, int _tap = 0, int who=TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),nbcards(_nbcards){
   }
 
   int resolve(){
-    game->mLayers->stackLayer()->addDraw(source->controller(),nbcards);
-    game->mLayers->stackLayer()->resolve();
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+      game->mLayers->stackLayer()->addDraw(player,nbcards);
+      game->mLayers->stackLayer()->resolve();
+    }
     return 1;
   }
 
@@ -335,16 +367,20 @@ class AADrawer:public ActivatedAbility{
 };
 
 /*Gives life to target controller*/
-class AALifer:public ActivatedAbility{
+class AALifer:public ActivatedAbilityTP{
  public:
   int life;
- AALifer(int _id, MTGCardInstance * card, MTGCardInstance * _target, int life, ManaCost * _cost = NULL, int _tap = 0):ActivatedAbility(_id, card,_cost,0,_tap),life(life){
-   target = _target;
+  AALifer(int _id, MTGCardInstance * card, Targetable * _target, int life, ManaCost * _cost = NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),life(life){
   }
 
   int resolve(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    _target->controller()->life+=life;
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target){
+      if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
+        _target = ((MTGCardInstance *)_target)->controller();
+      }
+      _target->life+=life;
+    }
     return 1;
   }
 
@@ -1615,21 +1651,18 @@ class AForeach:public ListMaintainerAbility{
 };
 
 
-class AADamager:public ActivatedAbility{
+
+
+class AADamager:public ActivatedAbilityTP{
 public:
   int damage;
-  int who;
-AADamager(int _id, MTGCardInstance * _source, Damageable * _target, int _damage = 0, ManaCost * _cost=NULL, int who=0):ActivatedAbility(_id,_source,_cost),damage(_damage),who(who){
-    if (_target) target = _target; 
+AADamager(int _id, MTGCardInstance * _source, Targetable * _target, int _damage = 0, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),damage(_damage){
     aType = MTGAbility::DAMAGER;
  }
 
   int resolve(){
     if(target){
-      Damageable * _target = (Damageable *)target;
-      if (who ==1){
-        _target = ((MTGCardInstance *) target)->controller();
-      }      
+      Damageable * _target = (Damageable *) getTarget();     
       game->mLayers->stackLayer()->addDamage(source,_target, damage);
       game->mLayers->stackLayer()->resolve();
       return 1;
@@ -3678,19 +3711,25 @@ ALavaborn * clone() const{
 
 
 //Generic Millstone
-class AADepleter:public ActivatedAbility{
+class AADepleter:public ActivatedAbilityTP{
  public:
 	 int nbcards;
-	  AADepleter(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 0):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
-      target = _target;
+   AADepleter(int _id, MTGCardInstance * card, Targetable * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,card, _target,_cost,_tap,who),nbcards(nbcards){
 	  }
   int resolve(){
-    Player * player = (Player *) target;
-    if (!player) return 0;
-    MTGLibrary * library = player->game->library;
-    for (int i = 0; i < nbcards; i++){
-      if (library->nb_cards)
-	      player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+      MTGLibrary * library = player->game->library;
+      for (int i = 0; i < nbcards; i++){
+        if (library->nb_cards)
+	        player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
+      }
     }
     return 1;
   }
@@ -3708,18 +3747,24 @@ class AADepleter:public ActivatedAbility{
 
 
 //Random Discard
-class AARandomDiscarder:public ActivatedAbility{
+class AARandomDiscarder:public ActivatedAbilityTP{
  public:
 	 int nbcards;
-	  AARandomDiscarder(int _id, MTGCardInstance * card, Player * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 0):ActivatedAbility(_id,card, _cost,0,_tap),nbcards(nbcards){
-      target = _target;
+   AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target, int nbcards = 1, ManaCost * _cost=NULL, int _tap = 0,int who=TargetChooser::UNSET):ActivatedAbilityTP(_id,card, _target,_cost,_tap,who),nbcards(nbcards){
 	  }
   int resolve(){
-    Player * player = (Player *) target;
-    if (!player) return 0;
-	  for (int i = 0; i < nbcards; i++){
-	    player->game->discardRandom(player->game->hand);
-	  }
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+      for (int i = 0; i < nbcards; i++){
+	      player->game->discardRandom(player->game->hand);
+	    }
+    }
     return 1;
   }
 

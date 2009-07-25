@@ -59,6 +59,12 @@ MTGPlayerCards::~MTGPlayerCards(){
 
 void MTGPlayerCards::setOwner(Player * player){
   library->setOwner(player);
+  graveyard->setOwner(player);
+  hand->setOwner(player);
+  inPlay->setOwner(player);
+  removedFromGame->setOwner(player);
+  stack->setOwner(player);
+  garbage->setOwner(player);
 }
 
 void MTGPlayerCards::initGame(int shuffle, int draw){
@@ -122,12 +128,13 @@ MTGCardInstance * MTGPlayerCards::putInPlay(MTGCardInstance * card){
 
 MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
   MTGCardInstance * copy = NULL;
+  MTGGraveyard * grave = card->owner->game->graveyard;
   if (inPlay->hasCard(card)){
-    copy = putInZone(card,inPlay, graveyard);
+    copy = putInZone(card,inPlay, grave);
   }else if (stack->hasCard(card)){
-    copy = putInZone(card,stack, graveyard);
+    copy = putInZone(card,stack, grave);
   }else{
-    copy = putInZone(card,hand, graveyard);
+    copy = putInZone(card,hand, grave);
   }
   return copy;
 
@@ -223,7 +230,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
       if (card->isToken){ //TODO better than this ?
         return card;
       }
-      card->lastController = card->controller();
+      //card->lastController = card->controller();
       if (createCopy) {
 		    copy = NEW MTGCardInstance(card->model,card->owner->game);
 		    copy->previous = card;
@@ -285,6 +292,7 @@ void MTGGameZone::addCard(MTGCardInstance * card){
   cards.push_back(card);
   nb_cards++;
   cardsMap[card] = 1;
+  card->lastController = this->owner;
 
 }
 

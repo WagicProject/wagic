@@ -377,6 +377,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
   }
 
+
+  int who = TargetChooser::UNSET;
+  if (s.find(" controller") != string::npos) who=TargetChooser::CONTROLLER;
+  if (s.find(" opponent") != string::npos) who=TargetChooser::OPPONENT;
+  if (s.find(" targetcontroller") != string::npos) who=TargetChooser::TARGET_CONTROLLER;
+
   //Damage
   found = s.find("damage");
   if (found != string::npos){
@@ -392,9 +398,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     Damageable * d = NULL;
     if (spell) d = spell->getNextDamageableTarget();
-    int who = 0;
-    if (s.find("controller") != string::npos) who=1;
-    MTGAbility * a =  NEW AADamager(id,card,d, damage, NULL, who);
+    MTGAbility * a =  NEW AADamager(id,card,d, damage, NULL, 0, who);
     a->oneShot = 1;
     return a;
   }
@@ -412,7 +416,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       life = atoi(s.substr(start+1).c_str());
     }
 
-    MTGAbility * a =  NEW AALifer(id,card,card,life);
+    Damageable * d = NULL;
+    if (spell) d = spell->getNextPlayerTarget();
+    MTGAbility * a =  NEW AALifer(id,card,d,life,NULL,0,who);
     a->oneShot = 1;
     return a;
   }
@@ -429,7 +435,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       nbcards = atoi(s.substr(start+1).c_str());
     }
 
-    MTGAbility * a = NEW AADrawer(id,card,NULL,nbcards);
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextPlayerTarget();
+    MTGAbility * a = NEW AADrawer(id,card,t,NULL,nbcards,0,who);
     a->oneShot = 1;
     return a;
   }
@@ -445,9 +453,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }else{
       nbcards = atoi(s.substr(start+1).c_str());
     }
-    Player * player = NULL;
-    if (spell) player = spell->getNextPlayerTarget();
-    MTGAbility * a = NEW AADepleter(id,card,player,nbcards);
+
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextPlayerTarget();
+    MTGAbility * a = NEW AADepleter(id,card,t,nbcards,NULL,0,who);
     a->oneShot = 1;
     return a;
   }
@@ -477,10 +486,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       nbcards = atoi(s.substr(start+1).c_str());
     }
 
-    Player * player = NULL;
-    if (spell) player = spell->getNextPlayerTarget();
-    if (!player) player = GameObserver::GetInstance()->currentlyActing();
-    MTGAbility * a = NEW AARandomDiscarder (id, card, player,nbcards);
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextPlayerTarget();
+    MTGAbility * a = NEW AARandomDiscarder (id, card, t,nbcards,NULL,0,who);
 	  a->oneShot = 1;
     return a;
   }

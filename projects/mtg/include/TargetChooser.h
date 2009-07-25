@@ -27,6 +27,14 @@ class TargetChooser: public TargetsList {
   int forceTargetListReady;
 
  public:
+ enum{
+    UNSET = 0,
+    OPPONENT = -1,
+    CONTROLLER = 1,
+    TARGET_CONTROLLER = 2
+ };
+
+
   TargetChooser(MTGCardInstance * card = NULL, int _maxtargets = -1);
 
   MTGCardInstance * source; 
