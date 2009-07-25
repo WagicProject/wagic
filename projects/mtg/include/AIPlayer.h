@@ -71,6 +71,7 @@ class AIPlayer: public Player{
   virtual int chooseTarget(TargetChooser * tc = NULL);
   virtual int Act(float dt);
   int isAI(){return 1;};
+  int canHandleCost(MTGAbility * ability);
   int selectAbility();
   int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAction *, int,CmpAbilities> * ranking);
   int useAbility();

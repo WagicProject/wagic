@@ -142,6 +142,7 @@ void GameObserver::nextGamePhase(){
 
 int GameObserver::cancelCurrentAction(){
   SAFE_DELETE(targetChooser);
+  mLayers->actionLayer()->cancelCurrentAction();
   return 1;
 }
 

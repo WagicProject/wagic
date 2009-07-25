@@ -1,0 +1,20 @@
+#Kraken eye works ok if spell cast by opponent ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:air elemental
+manapool:{3}{U}{U}
+[PLAYER2]
+inplay:kraken's eye
+[DO]
+air elemental
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:air elemental
+life:20
+[PLAYER2]
+inplay:kraken's eye
+life:21
+[END]

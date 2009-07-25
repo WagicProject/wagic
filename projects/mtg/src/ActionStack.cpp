@@ -515,29 +515,6 @@ void ActionStack::repackDamageStacks(){
     }
     if (!found) ++iter;
   }
-
-/*
-  for (int i = mCount-1; i >=0; i--){
-    Interruptible * action = ((Interruptible *)mObjects[i]);
-    if (action->type == ACTION_DAMAGE){
-      Damage * damage = (Damage *) action;
-      for (int j = 0; j < mCount; j++){
-	      Interruptible * action2 = ((Interruptible *)mObjects[j]);
-	      if (action2->type == ACTION_DAMAGES){
-	        DamageStack * ds = (DamageStack *) action2;
-	        for (int k = 0; k< ds->mCount; k++){
-	          Damage * dsdamage = ((Damage *)ds->mObjects[k]);
-            if (dsdamage==damage){
-              //Remove(damage);
-              mObjects[i] = mObjects[mCount-1];
-              mCount--;
-            }
-	        }
-	      }
-      }
-    }
-  }
-*/
 }
 
 void ActionStack::Update(float dt){
@@ -580,27 +557,27 @@ void ActionStack::Update(float dt){
     if (getLatest(NOT_RESOLVED)){
       int currentPlayerId = 0;
       int otherPlayerId = 1;
-      if (game->currentPlayer != game->players[0]){
-	currentPlayerId = 1;
-	otherPlayerId = 0;
-      }
-      if (interruptDecision[currentPlayerId] == 0){
-	askIfWishesToInterrupt = game->players[currentPlayerId];
-	game->isInterrupting = game->players[currentPlayerId];
-	modal = 1;
-      }else if (interruptDecision[currentPlayerId] == -1){
-	game->isInterrupting = game->players[currentPlayerId];
+      if (game->currentlyActing() != game->players[0]){
+	    currentPlayerId = 1;
+	    otherPlayerId = 0;
+     }
+    if (interruptDecision[currentPlayerId] == 0){
+      askIfWishesToInterrupt = game->players[currentPlayerId];
+      game->isInterrupting = game->players[currentPlayerId];
+      modal = 1;
+    }else if (interruptDecision[currentPlayerId] == -1){
+      game->isInterrupting = game->players[currentPlayerId];
 
-      }else{
-	if (interruptDecision[otherPlayerId] == 0){
-	  askIfWishesToInterrupt = game->players[otherPlayerId];
-	  game->isInterrupting = game->players[otherPlayerId];
-	  modal = 1;
-	}else if (interruptDecision[otherPlayerId] == -1){
-	  game->isInterrupting = game->players[otherPlayerId];
-	}else{
-	  resolve();
-	}
+    }else{
+      if (interruptDecision[otherPlayerId] == 0){
+      askIfWishesToInterrupt = game->players[otherPlayerId];
+      game->isInterrupting = game->players[otherPlayerId];
+      modal = 1;
+    }else if (interruptDecision[otherPlayerId] == -1){
+      game->isInterrupting = game->players[otherPlayerId];
+    }else{
+      resolve();
+    }
       }
     }
   }else if (mode == ACTIONSTACK_TARGET){

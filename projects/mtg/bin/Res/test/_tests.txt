@@ -103,6 +103,7 @@ keldon_warlord2.txt
 kird_ape.txt
 kraken_eye.txt
 kraken_eye2.txt
+kraken_eye3.txt
 kudzu.txt
 kudzu2.txt
 lhurgoyf.txt

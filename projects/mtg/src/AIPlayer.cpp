@@ -76,7 +76,7 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
     //Make sure we can use the ability
     MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
     AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
-    if (amp){
+    if (amp  && canHandleCost(amp)){
       MTGCardInstance * card = amp->source;
       if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
         used[card] = true;
@@ -108,7 +108,7 @@ ManaCost * AIPlayer::getPotentialMana(){
     //Make sure we can use the ability
     MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
     AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
-    if (amp){
+    if (amp && canHandleCost(amp)){
       MTGCardInstance * card = amp->source;
       if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
         potentialMana->add(amp->output);
@@ -123,6 +123,19 @@ ManaCost * AIPlayer::getPotentialMana(){
 
 int AIPlayer::getEfficiency(AIAction * action){
   return action->getEfficiency();
+}
+
+int AIPlayer::canHandleCost(MTGAbility * ability){
+    //Can't handle sacrifice costs that require a target yet :(
+  if (ability->cost){
+    ExtraCosts * ec = ability->cost->extraCosts;
+    if (ec){
+      for (size_t i = 0; i < ec->costs.size(); i++){
+        if (ec->costs[i]->tc) return 0;
+      }
+    }
+  }
+  return 1;
 }
 
 int AIAction::getEfficiency(){
@@ -146,15 +159,8 @@ int AIAction::getEfficiency(){
     return 0;
   }
 
-  //Can't handle sacrifice costs that require a target yet :(
-  if (ability->cost){
-    ExtraCosts * ec = ability->cost->extraCosts;
-    if (ec){
-      for (size_t i = 0; i < ec->costs.size(); i++){
-        if (ec->costs[i]->tc) return 0;
-      }
-    }
-  }
+  if (!((AIPlayer *)p)->canHandleCost(ability)) return 0;
+
   switch (a->aType){
     case MTGAbility::DAMAGER:
       {
@@ -634,6 +640,10 @@ int AIPlayerBaka::computeActions(){
   GameObserver * g = GameObserver::GetInstance();
   Player * p = g->currentPlayer;
   if (!(g->currentlyActing() == this)) return 0;
+  if (g->mLayers->actionLayer()->menuObject){
+    g->mLayers->actionLayer()->doReactTo(0);
+    return 1;
+  }
   if (chooseTarget()) return 1;
   int currentGamePhase = g->getCurrentGamePhase();
   if (g->isInterrupting == this){ // interrupting
@@ -709,6 +719,12 @@ int AIPlayerBaka::computeActions(){
 
 int AIPlayerBaka::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
+
+  if (!(g->currentlyActing() == this)){
+    OutputDebugString("Cannot interrupt\n");
+    return 0;
+  }
+
   int currentGamePhase = g->getCurrentGamePhase();
 
   if (currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentGamePhase != oldGamePhase){

@@ -115,12 +115,19 @@ TargetChooser * ActionLayer::getCurrentTargetChooser(){
   return NULL;
 }
 
-int ActionLayer::isWaitingForAnswer(){
+int ActionLayer::cancelCurrentAction(){
+  ActionElement * ae = isWaitingForAnswer();
+  if (!ae) return 0;
+  ae->waitingForAnswer = 0; //TODO MOVE THIS IS ActionElement
+  return 1;
+}
+
+ActionElement * ActionLayer::isWaitingForAnswer(){
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
-    if(currentAction->waitingForAnswer) return 1;
+    if(currentAction->waitingForAnswer) return currentAction;
   }
-  return 0;
+  return NULL;
 }
 
 int ActionLayer::stillInUse(MTGCardInstance * card){

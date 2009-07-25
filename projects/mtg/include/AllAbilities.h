@@ -140,6 +140,7 @@ public:
     if (!triggered){
       triggered = 1;
       game->mLayers->actionLayer()->setMenuObject(source);
+      game->mLayers->stackLayer()->setIsInterrupting(source->controller());
       OutputDebugString("SetMenuObject!\n");
     }
   }

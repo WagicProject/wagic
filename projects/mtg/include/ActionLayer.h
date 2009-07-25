@@ -27,7 +27,8 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   bool CheckUserInput(u32 key);
   ActionLayer(int id, GameObserver* _game):GuiLayer(id, _game){ menuObject = NULL; abilitiesMenu = NULL; stuffHappened = 0;};
   ~ActionLayer();
-  int isWaitingForAnswer();
+  int cancelCurrentAction();
+  ActionElement * isWaitingForAnswer();
   int isReactingToTargetClick(Targetable * card);
   int receiveEvent(WEvent * event);
   int reactToTargetClick(Targetable * card);
