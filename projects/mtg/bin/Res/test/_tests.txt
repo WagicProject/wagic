@@ -131,6 +131,7 @@ pygmy_troll.txt
 pyroclasm.txt
 rampant_growth.txt
 recover.txt
+regal_force.txt
 resurrection.txt
 righteous_cause.txt
 rootwalla.txt

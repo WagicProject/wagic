@@ -276,6 +276,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int oneShot = 0;
         if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
         if (i == 3) oneShot = 1;
+        if (a->oneShot) oneShot = 1;
         switch(i){
           case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
           case 1: result =  NEW AForeach(id, card, target,lordTargets, lordIncludeSelf, a); break;

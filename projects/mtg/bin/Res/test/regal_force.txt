@@ -1,0 +1,21 @@
+#Bug: Regal force draws when new creatures come into play
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,forest
+hand:llanowar elves,regal force
+manapool:{4}{G}{G}{G}
+library:plains,mountain,swamp
+[PLAYER2]
+[DO]
+regal force
+forest
+llanowar elves
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,forest,regal force,llanowar elves
+hand:mountain,swamp
+library:plains
+[PLAYER2]
+[END]
