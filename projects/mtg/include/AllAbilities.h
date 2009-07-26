@@ -1063,9 +1063,8 @@ class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
   }
 
   const char * getMenuText(){
-    char buffer[4096];
-    sprintf(buffer, "%i/%i",power,toughness);
-    return buffer;
+    sprintf(menuText, "%i/%i",power,toughness);
+    return menuText;
   }
 
   virtual ostream& toString(ostream& out) const
