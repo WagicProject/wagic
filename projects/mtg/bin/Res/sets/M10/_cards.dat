@@ -109,11 +109,11 @@ power=0
 toughness=1
 text=Flying {T}: Add one mana of any color to your mana pool.
 abilities=flying
-auto={t}:Add{G}
-auto={t}:Add{R}
-auto={t}:Add{U}
-auto={t}:Add{B}
-auto={t}:Add{W}
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{W}
 rarity=R
 [/card]
 [card]

@@ -259,6 +259,11 @@ toughness=2
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
 abilities=flying
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{W}
 alias=1236
 id=129906
 name=Birds of Paradise

@@ -13,7 +13,11 @@ toughness=3
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
-alias=1236
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{W}
 id=83688
 name=Birds of Paradise
 color=Green
@@ -386,7 +390,7 @@ abilities=mountainwalk
 [card]
 text={B}, Sacrifice a creature: Target player loses 1 life.
 id=89038
-auto={B}{S(creature|myinplay)}:life:-1 opponent
+auto={B}{S(creature|myinplay)}:life:-1 target(player)
 name=Golgari Rotwurm
 rarity=C
 type=Creature
@@ -915,7 +919,7 @@ type=Artifact
 mana={1}
 [/card]
 [card]
-text=Defender (This creature can't attack.)   {4}: Tidewater Minion loses defender until end of turn.    {T}: Untap target permanent.
+text=Defender (This creature can't attack.) {4}: Tidewater Minion loses defender until end of turn. {T}: Untap target permanent.
 id=83679
 name=Tidewater Minion
 color=Blue

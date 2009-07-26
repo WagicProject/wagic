@@ -159,6 +159,11 @@ toughness=1
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
 abilities=Flying
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{W}
 id=1236
 name=Birds of Paradise
 rarity=R
@@ -543,6 +548,8 @@ mana={4}{G}{G}
 [/card]
 [card]
 text=Whenever a land is put into a graveyard from play, Dingus Egg deals 2 damage to that land's controller.
+auto=@movedTo(land|opponentgraveyard) from(opponentinplay):damage:2 opponent
+auto=@movedTo(land|mygraveyard) from(myinplay):damage:2 controller
 id=1105
 name=Dingus Egg
 rarity=R

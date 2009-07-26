@@ -852,7 +852,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AConvertToCreatureAura(_id, card,card->target,x,x));
       break;
     }
-  case 1094: //Ank Of Mishra
+  case 1094: //Ankh of Mishra
     {
 		TargetChooser * tc = NULL;
 		TargetChooserFactory tcf;
@@ -954,14 +954,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1105: //dingus Egg
-    {
-		TargetChooser * tc = NULL;
-		TargetChooserFactory tcf;
-		tc = tcf.createTargetChooser("land", card);
-		game->addObserver (NEW ALifeModifierPutinplay(_id,card,tc,-2,2,0));
-		break;
-    }
   case 1106: //Disrupting Scepter
     {
       ADisruptingScepter * ability = NEW ADisruptingScepter(_id,card);
@@ -1018,7 +1010,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
-  case 1351: // Island Sancturay
+  case 1351: // Island Sanctuary
     {
       game->addObserver(NEW AIslandSanctuary(_id, card));
       break;
@@ -1119,7 +1111,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, -3));
       break;
     }
-  case 1140: //Throne of bones
+  case 1140: //Throne of Bone
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
       ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLACK,NEW ManaCost(cost,1) , 1);
@@ -1215,7 +1207,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1171: //Paralysis
+  case 1171: //Paralyze
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
       game->addObserver(NEW AUntapManaBlocker(_id, card,card->target, NEW ManaCost(cost,1)));
@@ -1287,14 +1279,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1235: //Aspect of Wolf
     {
       game->addObserver(NEW AAspectOfWolf(_id, card, card->target));
-      break;
-    }
-  case 1236: //Birds of Paradise
-    {
-      for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; i++){
-	int output[]={i,1};
-	game->addObserver(NEW AManaProducer(_id + i, card, NEW ManaCost(output,1)));
-      }
       break;
     }
   case 1240: //Crumble
