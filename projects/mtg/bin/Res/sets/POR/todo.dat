@@ -274,7 +274,16 @@ power=4
 subtype=Human Mercenary Knight
 toughness=4
 [/card]
-
+[card]
+text=Target player discards two cards.
+target=player
+auto=discard:2
+id=4230
+name=Mind Rot
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
 [card]
 text=As an additional cost to play Natural Order, sacrifice a green creature.     Search your library for a green creature card and put it into play. Then shuffle your library.
 id=4307

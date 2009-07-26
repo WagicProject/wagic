@@ -828,16 +828,6 @@ type=Sorcery
 mana={1}{B}
 [/card]
 [card]
-text=Target player discards two cards.
-target=player
-auto=discard:2
-id=4230
-name=Mind Rot
-rarity=C
-type=Sorcery
-mana={2}{B}
-[/card]
-[card]
 id=4351
 name=Minotaur Warrior
 rarity=C
@@ -1498,7 +1488,7 @@ type=Sorcery
 text=Vampiric Touch deals 2 damage to target opponent and you gain 2 life.
 target=player
 auto=damage:2
-auto=life:2
+auto=life:2 controller
 id=4244
 name=Vampiric Touch
 rarity=C
