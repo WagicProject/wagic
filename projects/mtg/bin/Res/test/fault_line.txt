@@ -1,0 +1,20 @@
+#Bug: fault line has the same effect as earthquale (error in X cost)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:fault line
+manapool:{1}{R}{R}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+fault line
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:fault line
+manapool:{0}
+life:19
+[PLAYER2]
+inplay:grizzly bears
+life:19
+[END]

@@ -1062,6 +1062,12 @@ class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
     return 1;
   }
 
+  const char * getMenuText(){
+    char buffer[4096];
+    sprintf(buffer, "%i/%i",power,toughness);
+    return buffer;
+  }
+
   virtual ostream& toString(ostream& out) const
   {
     out << "APowerToughnessModifierUntilEndOfTurn ::: power : " << power
@@ -1099,6 +1105,10 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
 
   int fireAbility(){
     return resolve();
+  }
+
+  const char * getMenuText(){
+    return ability->getMenuText();
   }
 
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){

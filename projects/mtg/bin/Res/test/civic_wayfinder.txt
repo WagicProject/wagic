@@ -1,0 +1,21 @@
+#Bug: Civic wayfinder finds more than basic lands
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:civic wayfinder
+manapool:{2}{G}
+library:forest,adarkar wastes
+[PLAYER2]
+[DO]
+civic wayfinder
+choice 0
+adarkar wastes
+forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:civic wayfinder
+hand:forest
+library:adarkar wastes
+[PLAYER2]
+[END]

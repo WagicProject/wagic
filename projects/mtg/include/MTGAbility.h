@@ -205,6 +205,7 @@ class AbilityFactory{
   int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY);
  public:
   int magicText(int id, Spell * spell, MTGCardInstance * card = NULL);
+  static int computeX(Spell * spell, MTGCardInstance * card);
   int destroyAllInPlay(TargetChooser * tc, int bury = 0);
   int moveAll(TargetChooser * tc, string destinationZone);
   int damageAll(TargetChooser * tc, int damage);

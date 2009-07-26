@@ -64,6 +64,27 @@ void StackAbility::Render(){
   }else{
     mFont->DrawString(_(ability->source->getName()).c_str(),x,y-15);
   }
+
+  Targetable * _target = ability->target;
+  if (ability->tc){
+    Targetable * t = ability->tc->getNextTarget();
+    if(t) _target = t;
+  }
+  Damageable * target = NULL;
+  if (_target!= ability->source && (_target->typeAsTarget() == TARGET_CARD || _target->typeAsTarget() == TARGET_PLAYER)){
+    target = (Damageable *) _target;
+  }
+  if (target){
+    quad = target->getIcon();
+    if (quad){
+      quad->SetColor(ARGB(255,255,255,255));
+      float scale = 30 / quad->mHeight;
+      renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
+    }else{
+      if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        mFont->DrawString(_(((MTGCardInstance *)target)->name).c_str(),x+120,y);
+    }
+  }
 }
 StackAbility::StackAbility(int id,MTGAbility * _ability): Interruptible(id),ability(_ability){
   type=ACTION_ABILITY;

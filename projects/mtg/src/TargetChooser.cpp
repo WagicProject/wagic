@@ -102,6 +102,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         unsigned int found2 = attributes.find(";");
         string attribute;
         if (found2 != string::npos){
+          cd->mode = CD_OR;
           attribute = attributes.substr(0,found2);
           attributes = attributes.substr(found2+1);
         }else{
@@ -179,7 +180,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           }
         }
       }
-      if (nbminuses == 0) cd->mode = CD_OR;
+      if (nbminuses) cd->mode = CD_AND;
       typeName = typeName.substr(0,found);
     }
     //X targets allowed ?

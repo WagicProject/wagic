@@ -52,6 +52,7 @@ castle.txt
 cathodion.txt
 celestial_purge.txt
 circle_of_protection.txt
+civic_wayfinder.txt
 clone.txt
 clone2.txt
 composite_golem.txt
@@ -76,6 +77,7 @@ dross_harvester.txt
 elvish_piper.txt
 elvish_promenade.txt
 fastbond.txt
+fault_line.txt
 flare.txt
 fledgling_imp.txt 
 fledgling_imp2.txt

@@ -757,6 +757,14 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
   return BAKA_EFFECT_DONTKNOW;
 }
 
+//Returns the "X" cost that was paid for a spell
+int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
+  ManaCost * c = spell->cost->Diff(card->getManaCost());
+  int x = c->getCost(Constants::MTG_NB_COLORS);
+  delete c;
+  return x;
+}
+
 //Some basic functionalities that can be added automatically in the text file
 /*
  * Several objects are computed from the text string, and have a direct influence on what action we should take
@@ -981,7 +989,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1291: //Fireball
     {
-      int x = spell->cost->getConvertedCost() - 1; //TODO BETTER
+      int x = computeX(spell,card); 
       game->addObserver(NEW AFireball(_id, card,spell, x));
       break;
     }
@@ -1153,7 +1161,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1164: //Howl from beyond
     {
-      int x = spell->cost->getConvertedCost() - 1; //TODO, this is not enough, Spells shouls have a function like "xCost" because the spell might cost more than expected to launch
+      int x = computeX(spell,card);
       AInstantPowerToughnessModifierUntilEOT * ability = NEW AInstantPowerToughnessModifierUntilEOT( _id, card, card->target, x, 0);
       game->addObserver(ability);
       break;
@@ -1204,7 +1212,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1167: //Mind Twist
     {
-      int xCost = spell->cost->getConvertedCost() - 1;
+      int xCost = computeX(spell,card);
       for (int i = 0; i < xCost; i++){
 	game->opponent()->game->discardRandom(game->opponent()->game->hand);
       }
@@ -1231,7 +1239,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1224: //Spell Blast
     {
-      int x = spell->cost->getConvertedCost() - 1;
+      int x = computeX(spell,card);
       Spell * starget = spell->getNextSpellTarget();
       if (starget){
 	if (starget->cost->getConvertedCost() <= x) game->mLayers->stackLayer()->Fizzle(starget);
@@ -1326,7 +1334,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   case 1266: //stream of life
     {
-      int x = spell->cost->getConvertedCost() - 1; //TODO Improve that !
+      int x = computeX(spell,card);
       spell->getNextPlayerTarget()->life += x;
       break;
     }
@@ -1334,7 +1342,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   case 1231: //Volcanic Eruption
     {
-      int x = spell->cost->getConvertedCost() - 3;
+      int x = computeX(spell,card);
       int _x = x;
       MTGCardInstance * target = spell->getNextCardTarget();
       while(target && _x){
@@ -1369,15 +1377,15 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1289: //earthquake
     {
-      int x = spell->cost->getConvertedCost() - 1;
+      int x = computeX(spell,card);
       for (int i = 0; i < 2 ; i++){
-	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
-	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (!current->basicAbilities[Constants::FLYING] && current->isACreature()){
-	    game->mLayers->stackLayer()->addDamage(card, current, x);
-	  }
-	}
+	      game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
+	      for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+	        MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+	        if (!current->basicAbilities[Constants::FLYING] && current->isACreature()){
+	          game->mLayers->stackLayer()->addDamage(card, current, x);
+	        }
+	      }
       }
       break;
     }
@@ -1613,7 +1621,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 //-- addon Urza Saga---
   case 8818: //Goblin Offensive
     {
-      int x = spell->cost->getConvertedCost() - 3;
+      int x = computeX(spell,card);
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin","creature Goblin",1,1,"Red",0);
           for (int i=0; i < x; i++){
             tok->resolve();
@@ -1646,7 +1654,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	case 130542: //Flowstone Slide
 		{
 			TargetChooser * lordTargets = NULL;
-			int x = spell->cost->getConvertedCost() - 4;
+			int x = computeX(spell,card);
 			TargetChooserFactory tcf;
             lordTargets = tcf.createTargetChooser("creature", card);
 			break;
@@ -1803,7 +1811,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 	case 151114: //Rise of the Hobgoblins
     {
-      int x = spell->cost->getConvertedCost() - 2;
+      int x = computeX(spell,card);
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin Soldier","creature Goblin Soldier",1,1,"red white",0);
           for (int i=0; i < x; i++){
             tok->resolve();
@@ -1817,7 +1825,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
 	Player * player = spell->getNextPlayerTarget();
 	MTGLibrary * library = player->game->library;
-	int x = spell->cost->getConvertedCost() - 2;
+	int x = computeX(spell,card);
 	for (int i = 0; i < x; i++){
 				if (library->nb_cards)
 				player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
@@ -2107,6 +2115,7 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
 void TargetAbility::Render(){
   //TODO ?
 }
+
 
 int TargetAbility::resolve(){
   Targetable * t = tc->getNextTarget();
