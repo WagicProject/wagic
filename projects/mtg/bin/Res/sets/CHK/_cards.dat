@@ -13,7 +13,7 @@ toughness=1
 [/card]
 [card]
 text={R},{T}: Attacking creatures gain first strike until end of turn.
-id=159328
+id=50338
 name=Akki Coalflinger
 auto={R}{T}:lord(creature[attacking]) first strike
 rarity=U
@@ -64,7 +64,8 @@ mana={2}{B}{B}
 id=79248
 name=Ben-Ben, Akki Hermit
 mana={2}{R}{R}
-type=Legendary Creature
+type=Creature
+abilities=Legendary 
 subtype=Goblin Shaman
 power=1
 toughness=1

@@ -120,6 +120,18 @@ toughness=5
 abilities=defender
 [/card]
 [card]
+text=({GW} can be paid with either {G} or {W}.)  When Centaur Safeguard is put into a graveyard from play, you may gain 3 life.
+id=87959
+auto=movedto(this|graveyard):may life:3
+name=Centaur Safeguard
+rarity=C
+type=Creature
+mana={2}{GW}
+power=3
+subtype=Centaur Warrior
+toughness=1
+[/card]
+[card]
 text=Char deals 4 damage to target creature or player and 2 damage to you.
 target=creature,player
 auto=Damage:4
@@ -179,6 +191,15 @@ toughness=2
 abilities=flying,vigilance
 [/card]
 [card]
+text={3}, {T}: Tap target creature, then return Cyclopean Snare to its owner's hand.
+id=89035
+auto={3}{T}:tap target(creature) && moveto(ownerhand)
+name=Cyclopean Snare
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
 text=Sacrifice a forest: You gain 3 life.
 auto={S(forest|myinplay)}:life:3
 id=89017
@@ -211,6 +232,16 @@ auto={T}{S}:Damage:3 target(creature[attacking;blocking])
 power=3
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=Dogpile deals damage to target creature or player equal to the number of attacking creatures you control.
+id=87921
+target=creature,player
+auto=foreach(creature[attacking]|myinplay):damage:1
+name=Dogpile
+rarity=C
+type=Instant
+mana={3}{R}
 [/card]
 [card]
 text={2}{G}, {T}: Return target enchantment card from your graveyard to your hand.
@@ -273,6 +304,15 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Each player returns all creature cards from his or her graveyard to his or her hand.
+id=89015
+name=Empty the Catacombs
+auto=moveto(ownerHand) all(creature|Graveyard)
+rarity=R
+type=Sorcery
+mana={3}{B}
+[/card]
+[card]
 text=Search your library for a Plains, Island, Swamp, or Mountain card and put it into play tapped. Then shuffle your library.
 id=87970
 name=Farseek
@@ -294,6 +334,15 @@ rarity=C
 mana={1}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Until end of turn, permanents you control gain "{T}: This permanent deals 1 damage to target creature or player."
+id=83912
+auto=lord(creature|myinplay) {T}:damage:1 target(*)
+name=Flame Fusillade
+rarity=R
+type=Sorcery
+mana={3}{R}
 [/card]
 [card]
 text=Enchant creature    When Flight of Fancy comes into play, draw two cards.      Enchanted creature has flying.
@@ -388,6 +437,19 @@ toughness=2
 abilities=mountainwalk
 [/card]
 [card]
+text=({BG} can be paid with either {B} or {G}.)  {4}{B}, Sacrifice a creature: Return target creature card from your graveyard to your hand.     {4}{G}: Put a +1/+1 counter on target creature.
+id=83838
+auto={4}{B}{S(creature|myinplay)}:moveto(myhand) target(creature|mygraveyard)
+auto={4}{G}:counter(1/1) target(creature)
+name=Golgari Guildmage
+rarity=U
+type=Creature
+mana={BG}{BG}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
 text={B}, Sacrifice a creature: Target player loses 1 life.
 id=89038
 auto={B}{S(creature|myinplay)}:life:-1 target(player)
@@ -447,6 +509,18 @@ subtype=Elemental
 auto={1}{R}:3/-3
 power=3
 toughness=4
+[/card]
+[card]
+text=When Infectious Host is put into a graveyard from play, target player loses 2 life.
+id=87966
+auto=@movedto(this|graveyard):damage:2 target(player)
+name=Infectious Host
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Zombie
+toughness=1
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -765,6 +839,18 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+text=When Sell-Sword Brute is put into a graveyard from play, it deals 2 damage to you.
+id=87909
+name=Sell-Sword Brute
+auto=@movedto(this|graveyard):damage:2
+rarity=C
+type=Creature
+mana={1}{R}
+power=2
+subtype=Human Mercenary
+toughness=2
+[/card]
+[card]
 text=Swampwalk        Sacrifice Sewerdreg: Remove target card in a graveyard from the game.
 id=88995
 name=Sewerdreg
@@ -831,6 +917,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Whenever a land comes into play under your control, untap Stone-Seeder Hierophant.     {T}: Untap target land.
+id=89041
+auto=@movedto(land|myinplay):untap
+auto={T}:untap target(land)
+name=Stone-Seeder Hierophant
+rarity=C
+type=Creature
+mana={2}{G}{G}
+power=1
+subtype=Human Druid
+toughness=1
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {2}{R}{W}, {T}: Target creature gains double strike until end of turn.
 id=83794
 auto={T}:add {1}
@@ -838,6 +937,18 @@ auto={2}{R}{W}{T}:double strike target(creature)
 name=Sunhome, Fortress of the Legion
 rarity=U
 type=Land
+[/card]
+[card]
+text=Flying     When Surveilling Sprite is put into a graveyard from play, you may draw a card.
+id=87904
+auto=@movedto(this|graveyard):may draw:1
+name=Surveilling Sprite
+rarity=C
+type=Creature
+mana={1}{U}
+power=1
+subtype=Faerie Rogue
+toughness=1
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
