@@ -8,12 +8,18 @@ DeckDataWrapper::DeckDataWrapper(MTGDeck * deck){
   for (int i = 0; i <= Constants::MTG_NB_COLORS; i++){
     colors[i] = 0;
   }
+  Add(deck);
+
+  currentColor = -1;
+}
+
+int DeckDataWrapper::Add(MTGDeck * deck){
   map<int,int>::iterator it;
   for (it = deck->cards.begin(); it!=deck->cards.end(); it++){
     MTGCard * card = deck->getCardById(it->first);
     Add(card,it->second);
   }
-  currentColor = -1;
+  return 1;
 }
 
 void DeckDataWrapper::save(){

@@ -47,6 +47,7 @@ void GameStateShop::Start()
 
 
 void GameStateShop::load(){
+  if (shop) shop->saveAll();
   SAFE_DELETE(shop);
   int sets[500];
   int boosterSets[500];

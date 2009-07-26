@@ -777,7 +777,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	{
 	  MTGCard * card  = cardIndex[2];
 	  if (card){
-	    int rnd = (rand() % 20);
+	    int rnd = (rand() % 25);
 	    playerdata->credits += price;
       price = price - (rnd * price)/100;
 	    pricelist->setPrice(card->getMTGId(),price*2);

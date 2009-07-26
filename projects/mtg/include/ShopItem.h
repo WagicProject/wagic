@@ -26,7 +26,6 @@ class ShopItem:public JGuiObject{
   JQuad * thumb;
   float mScale;
   float mTargetScale;
-  DeckDataWrapper * mDDW;
 
 
  public:
@@ -37,6 +36,7 @@ class ShopItem:public JGuiObject{
   ShopItem(int id, JLBFont * font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw);
   ShopItem(int id, JLBFont * font, char* text, JQuad * _quad, JQuad * _thumb,int x, int y, bool hasFocus, int _price);
   ~ShopItem();
+  int updateCount(DeckDataWrapper * ddw);
 
   virtual void Render();
   virtual void Update(float dt);

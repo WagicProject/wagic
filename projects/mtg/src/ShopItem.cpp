@@ -20,7 +20,6 @@ ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thu
 
 ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw): JGuiObject(id), mFont(font), mX(x), mY(y), price(_price){
   mHasFocus = hasFocus;
-  mDDW = ddw;
   mScale = 1.0f;
   mTargetScale = 1.0f;
 
@@ -28,7 +27,7 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFoc
     Entering();
 
   card = collection->getCardById(_cardid);
-  nameCount = mDDW->countByName(card);
+  updateCount(ddw);
 
   quantity = 1 + (rand() % 4);
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
@@ -36,6 +35,12 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFoc
   thumb = NULL;
 }
 
+
+int ShopItem::updateCount(DeckDataWrapper * ddw){
+  if (!card) return 0;
+  nameCount = ddw->countByName(card);
+  return nameCount;
+}
 
 ShopItem::~ShopItem(){
 
@@ -242,13 +247,15 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
     if (playerdata->credits >= price){
       playerdata->credits -= price;
       if (item->card){
-	int rnd = (rand() % 5);
-	price = price + (rnd * price)/100;
-	pricelist->setPrice(item->card->getMTGId(),price);
-	playerdata->collection->add(item->card);
-	item->quantity--;
-  item->nameCount++;
-      }else{
+	    int rnd = (rand() % 25);
+	    price = price + (rnd * price)/100;
+	    pricelist->setPrice(item->card->getMTGId(),price);
+	    playerdata->collection->add(item->card);
+	    item->quantity--;
+      myCollection->Add(item->card);
+      item->nameCount++;
+      item->price = price;
+    }else{
 	      safeDeleteDisplay();
 	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
 
@@ -257,10 +264,20 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         int rnd = rand() % 8;
         if (rnd == 0) rare_or_mythic = Constants::RARITY_M;
         int sets[] = {setIds[showPriceDialog]};
+        //for (int i= 0; i <15; i++){
+        //  tempDeck->add(136218);
+        //}
         tempDeck->addRandomCards(1, sets,1,rare_or_mythic);
         tempDeck->addRandomCards(3, sets,1,Constants::RARITY_U);
         tempDeck->addRandomCards(11, sets,1,Constants::RARITY_C);
+        
         playerdata->collection->add(tempDeck);
+        myCollection->Add(tempDeck);
+
+        for (int j = 0; j < mCount; j++){
+          ShopItem * si =  ((ShopItem *)mObjects[j]);
+          si->updateCount(myCollection);
+        }
 
         
         int i = 0;
@@ -271,12 +288,6 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
             displayCards[i] = card;
 	          display->AddCard(card);
             i++;
-          }
-          for (int j = 0; j < mCount; j++){
-            ShopItem * si =  ((ShopItem *)mObjects[j]);
-            if (si->card && si->card->name.compare(c->name) == 0){
-              si->nameCount+= it->second;
-            }
           }
         }
         delete tempDeck;
@@ -289,9 +300,10 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
     break;
   case 2:
     if (item->card){
-      int rnd = (rand() % 5);
+      int rnd = (rand() % 25);
       price = price - (rnd * price)/100;
       pricelist->setPrice(item->card->getMTGId(),price);
+      item->price = price;
     }
     showPriceDialog = -1;
     break;
@@ -334,7 +346,6 @@ ostream& ShopItem::toString(ostream& out) const
 	     << " ; thumb : " << thumb
 	     << " ; mScale : " << mScale
 	     << " ; mTargetScale : " << mTargetScale
-	     << " ; mDDW : " << mDDW
 	     << " ; nameCount : " << nameCount
 	     << " ; quantity : " << quantity
 	     << " ; card : " << card

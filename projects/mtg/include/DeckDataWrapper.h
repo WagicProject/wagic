@@ -33,6 +33,7 @@ class DeckDataWrapper{
   ~DeckDataWrapper();
 
   int Add(MTGCard * card, int quantity = 1);
+  int Add(MTGDeck * deck);
   int Remove(MTGCard * card);
   MTGCard * getNext(MTGCard * previous = NULL, int color = -1);
   MTGCard * getPrevious(MTGCard * next = NULL, int color = -1);

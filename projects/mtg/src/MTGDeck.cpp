@@ -530,6 +530,7 @@ int MTGDeck::remove(int cardid){
   return 1;
 }
 
+
 int MTGDeck::remove(MTGCard * card){
   if (!card) return 0;
   return (remove(card->getId()));
