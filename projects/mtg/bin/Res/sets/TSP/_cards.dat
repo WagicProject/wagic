@@ -469,8 +469,8 @@ mana={1}{R}{R}
 type=Instant
 text=Orcish Cannonade deals 2 damage to target creature or player and 3 damage to you. Draw a card.
 target=creature,player
-auto=damage:2 && damage 3 controller
-auto=draw:1
+auto=damage:2 && damage:3 controller
+auto=draw:1 controller
 rarity=C
 [/card]
 [card]
