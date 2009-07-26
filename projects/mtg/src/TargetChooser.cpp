@@ -10,7 +10,6 @@
 TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInstance * card){
   if (!s.size()) return NULL;
 
-  GameObserver * game = GameObserver::GetInstance();
   int zones[10];
   int nbzones = 0;
   unsigned int found;
@@ -361,7 +360,6 @@ TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card,
   int id = Subtypes::subtypesList->Add(_type);
   nbtypes = 0;
   addType(id);
-  GameObserver * game = GameObserver::GetInstance();
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
 }
@@ -370,7 +368,6 @@ TypeTargetChooser::TypeTargetChooser(const char * _type, int * _zones, int nbzon
   int id = Subtypes::subtypesList->Add(_type);
   nbtypes = 0;
   addType(id);
-  GameObserver * game = GameObserver::GetInstance();
   if (nbzones == 0){
     int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
@@ -418,14 +415,12 @@ int TypeTargetChooser::canTarget(Targetable * target ){
     A Target Chooser associated to a Card Descriptor object, for fine tuning of targets description
 **/
 DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
-  GameObserver * game = GameObserver::GetInstance();
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   cd = _cd;
 }
 
 DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
-  GameObserver * game = GameObserver::GetInstance();
   if (nbzones == 0){
     int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
@@ -460,7 +455,6 @@ DescriptorTargetChooser::~DescriptorTargetChooser(){
 **/
 
 CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
-  GameObserver * game = GameObserver::GetInstance();
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   maxpower=  -1;
@@ -468,7 +462,6 @@ CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxta
 }
 
 CreatureTargetChooser::CreatureTargetChooser(int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
-  GameObserver * game = GameObserver::GetInstance();
   if (nbzones == 0){
     int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
@@ -591,7 +584,6 @@ int SpellTargetChooser::canTarget(Targetable * target){
 
 /*Spell or Permanent */
 SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets):TargetZoneChooser(card, _maxtargets){
-  GameObserver * game = GameObserver::GetInstance();
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   color = _color;
@@ -641,7 +633,6 @@ int DamageTargetChooser::canTarget(Targetable * target){
 
 /*Damage or Permanent */
 DamageOrPermanentTargetChooser::DamageOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets):TargetZoneChooser(card, _maxtargets){
-  GameObserver * game = GameObserver::GetInstance();
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   color = _color;

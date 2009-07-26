@@ -119,7 +119,6 @@ void MTGGuiPlay::adjustCardPosition(CardGui * cardg){
 }
 
 void MTGGuiPlay::setCardPosition(CardGui * cardg, int player, int playerTurn, int spellMode){
-  GameObserver * g = GameObserver::GetInstance();
   MTGCardInstance * card = cardg->card;
   if (!(cardg->x ==0 && cardg->y ==0)) return ;
   if (card->target)
@@ -268,7 +267,6 @@ void MTGGuiPlay::updateCards(){
       }
       for (int i =0; i<nb_cards; i++){
 	      CardGui * cardGui = (CardGui *)mObjects[i + offset];
-        MTGCardInstance * card = cardGui->card;
         setCardPosition(cardGui, 0, player0Mode, 0);
       }
     }else{
@@ -278,7 +276,6 @@ void MTGGuiPlay::updateCards(){
       }
       for (int i =0; i<opponent_cards; i++){
 	      CardGui * cardGui = (CardGui *)mObjects[nb_cards + i + offset];
-	      MTGCardInstance * card = cardGui->card;
         setCardPosition(cardGui, 1, !player0Mode,0);
       }
     }

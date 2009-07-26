@@ -79,22 +79,22 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
         unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
         GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
         GameOptions::GetInstance()->save();
-      }else if(unlocked = isMomirUnlocked()) {
+      }else if((unlocked = isMomirUnlocked())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/momir_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED] = GameOption(1);
           GameOptions::GetInstance()->save();
-      }else if(unlocked = isEvilTwinUnlocked()) {
+      }else if((unlocked = isEvilTwinUnlocked())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/eviltwin_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED] = GameOption(1);
           GameOptions::GetInstance()->save();
-      }else if(unlocked = isRandomDeckUnlocked()) {
+      }else if((unlocked = isRandomDeckUnlocked())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/randomdeck_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
           GameOptions::GetInstance()->save();
-      }else if(unlocked = unlockRandomSet()) {
+      }else if((unlocked = unlockRandomSet())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/set_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           char buffer[4096];

@@ -136,7 +136,7 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
   if (!isAI){ //Human Player
       mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
   }else{
-    mPlayers[playerId] =  NEW AIPlayerBaka(deck[playerId],deckFile, "random", "");
+    mPlayers[playerId] =  NEW AIPlayerBaka(deck[playerId],deckFile, deckFileSmall.c_str() , "");
   }
   delete tempDeck;
 }
@@ -144,14 +144,14 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
 
 void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
   char deckFile[] = RESPATH"/player/momir.txt";
-  char deckFileSmall[] = "momir";
+  string deckFileSmall = "momir";
   char empty[] = "";
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
   deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
   if (!isAI){ //Human Player
       mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
   }else{
-      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,deckFileSmall, empty);
+      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,deckFileSmall.c_str(), empty);
   }
   delete tempDeck;
 }

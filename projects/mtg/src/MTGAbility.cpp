@@ -604,8 +604,6 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
   MayAbility * maya = dynamic_cast<MayAbility*>(a);
   if (maya) return abilityEfficiency(maya->ability,p, mode);
 
-  GameObserver * g = GameObserver::GetInstance();
-
   ALord * alord = dynamic_cast<ALord *>(a);
   if (alord) {
     int myCards = countCards(alord->tc, p);
@@ -778,7 +776,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
   int dryMode = 0;
   if (!spell) dryMode = 1;
 
-  GameObserver * game = GameObserver::GetInstance();
   if (!card && spell) card = spell->source;
   if (!card) return 0;
   MTGCardInstance * target = card->target;
@@ -1653,10 +1650,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		}
 	case 130542: //Flowstone Slide
 		{
-			TargetChooser * lordTargets = NULL;
 			int x = computeX(spell,card);
+      MTGAbility * a = NEW AInstantPowerToughnessModifierUntilEOT(id, card, card,x,-x);
 			TargetChooserFactory tcf;
-            lordTargets = tcf.createTargetChooser("creature", card);
+      TargetChooser * lordTargets = tcf.createTargetChooser("creature", card);
+      game->addObserver(NEW ALord(id, card, lordTargets, 0, a));
 			break;
 		}
 

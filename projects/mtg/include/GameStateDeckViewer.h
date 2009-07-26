@@ -183,7 +183,6 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     //menuFont = NEW JLBFont("graphics/f3",16);
     menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
     welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
-    char buffer[100];
     int nbDecks = fillDeckMenu(welcome_menu,RESPATH"/player");
 	  welcome_menu->Add(nbDecks+1, "--NEW--");
     welcome_menu->Add(-1, "Cancel");

@@ -74,7 +74,6 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
         color = h->color2;
         value = h->value2;
       }
-      int offset = 2*i-1;
       v.x = (width/2 - 24 - 16*nbicons + 8*i)*scale;
       v.y = ((-height/2) + 16 + 8*i) * scale;
       v.Rotate(rotation);
@@ -271,7 +270,6 @@ void CardGui::RenderBig(float xpos, float ypos, int alternate){
 
   if (alternate){
     MTGCard * mtgcard = card->model;
-    JLBFont * font = GameApp::CommonRes->GetJLBFont("graphics/magic");
     CardGui::alternateRender(mtgcard, NULL, xpos + 90  , ypos + 130, 0.0f,0.9f);
     if (quad){
       float scale = 250 / quad->mHeight;
@@ -357,10 +355,10 @@ void CardGui::Render(){
     }
     if (mIcon) mIcon->SetHotSpot(16,16);
     if (card->isTapped()){
-      renderer->FillRect(myX  - myH , myY  , myH, myW,   ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
+      renderer->FillRect(myX  - myH , myY  , myH, myW,   ARGB(255,(Constants::_r[color]) /2 + 50,(Constants::_g[color]) /2 + 50,(Constants::_b[color])/ 2 + 50));
       renderer->DrawRect(myX  - myH , myY  , myH, myW,   ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
       mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.8 * mScale);
-      mFont->DrawString(buffer,myX - (myH)+4,myY + 1);
+      mFont->DrawString(buffer,myX - myH + 4, myY + 1);
       if (mIcon) renderer->RenderQuad(mIcon,myX - myH/2, myY + myW/2,M_PI_2,mScale,mScale);
       if (tc){
         if (!tc->canTarget(card)){
@@ -368,7 +366,7 @@ void CardGui::Render(){
         }
       }
     }else{
-      renderer->FillRect(myX   , myY , myW,  myH, ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
+      renderer->FillRect(myX   , myY , myW,  myH, ARGB(255,(Constants::_r[color]) /2 + 50,(Constants::_g[color]) /2 + 50,(Constants::_b[color]) /2 + 50));
       renderer->DrawRect(myX   , myY , myW,  myH, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
       mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * mScale);
       mFont->DrawString(buffer,myX+4,myY + 1);

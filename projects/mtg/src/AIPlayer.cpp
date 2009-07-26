@@ -621,7 +621,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
   return nextCardToPlay;
 }
 
-AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, char * fileSmall, char * avatarFile): AIPlayer(_deck,file, fileSmall){
+AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, const char * fileSmall, char * avatarFile): AIPlayer(_deck,file, fileSmall){
   if (fileExists(avatarFile)){
     mAvatarTex = JRenderer::GetInstance()->LoadTexture(avatarFile, TEX_TYPE_USE_VRAM);
   }else{

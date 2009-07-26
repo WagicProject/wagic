@@ -177,7 +177,6 @@ void Spell::Render(){
   else
   {
       MTGCard * mtgcard = source->model;
-      JLBFont * font = GameApp::CommonRes->GetJLBFont("graphics/magic");
       CardGui::alternateRender(mtgcard, NULL, 10 + 90 , 20 + 130, 0.0f,0.9f);
 
       quad = source->getThumb();
@@ -351,7 +350,7 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[]
   OutputDebugString(buf);
 #endif
   Spell * spell = NEW Spell(mCount,_source,_targets,_nbtargets, mana);
-  int result =  addAction(spell);
+  addAction(spell);
   if (!game->players[0]->isAI() && 
      _source->controller()==game->players[0] && 
      GameOptions::GetInstance()->values[OPTIONS_INTERRUPTMYSPELLS].getIntValue() == 0){

@@ -29,7 +29,7 @@ class TrCardAddedToZone:public TriggeredAbility{
 public:
   TargetChooser * toTc;
   TargetZoneChooser * fromTc;
-  TrCardAddedToZone(int id,MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), fromTc(fromTc),toTc(toTc){
+  TrCardAddedToZone(int id,MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), toTc(toTc),fromTc(fromTc){
   }
 
   int resolve(){
@@ -63,7 +63,7 @@ class AACounter: public ActivatedAbility{
   int nb;
   int power;
   int toughness;
- AACounter(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness, int nb,ManaCost * cost=NULL, int doTap = 0):ActivatedAbility(id,_source,cost,0,doTap),power(_power),toughness(_toughness),nb(nb){
+ AACounter(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness, int nb,ManaCost * cost=NULL, int doTap = 0):ActivatedAbility(id,_source,cost,0,doTap),nb(nb),power(_power),toughness(_toughness){
 	  target=_target;
  }
 

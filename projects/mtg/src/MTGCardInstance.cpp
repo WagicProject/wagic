@@ -417,7 +417,6 @@ int MTGCardInstance::setAttacker(int value){
 }
 
 int MTGCardInstance::toggleAttacker(){
-  GameObserver * g = GameObserver::GetInstance();
   if (!attacker){
     if (!basicAbilities[Constants::VIGILANCE]) tap();
     setAttacker(1);  
