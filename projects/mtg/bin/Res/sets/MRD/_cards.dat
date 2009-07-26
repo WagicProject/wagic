@@ -226,7 +226,7 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Protection from white At the end of your turn, you lose 4 life. Whenever a creature is put into a graveyard from play, you gain 2 life.
+text=Protection from white. At the end of your turn, you lose 4 life. Whenever a creature is put into a graveyard from play, you gain 2 life.
 abilities=protection from white
 auto=@movedTo(creature|graveyard) from(battlefield):life:2
 auto=@each my end:life:-4

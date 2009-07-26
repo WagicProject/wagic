@@ -1272,12 +1272,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW APsychicVenom(_id, card, card->target));
       break;
     }
-  case 1221: //Serendib Efreet
-    {
-      game->addObserver( NEW ASerendibEfreet(_id, card));
-      break;
-    }
-  case 1226: //Steal Artifact
+   case 1226: //Steal Artifact
     {
       game->addObserver( NEW AControlStealAura(_id, card, card->target));
       break;
@@ -1735,21 +1730,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver(NEW UntapBlocker(_id,card,card->target));
       break;
     }
-
-	  case 135197: //Stronghold Discipline
-    {
-		GameObserver * game = GameObserver::GetInstance();
-      for (int i = 0; i < 2 ; i++){
-		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-			if (current->hasType("Creature")){
-				current->controller()->life-= 1;
-			}
-		}
-	  }
-      break;
-	}
-
+	
 	case 130369: // Soulblast
     {
 	    int damage = 0;

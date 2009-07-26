@@ -124,7 +124,7 @@ mana={U}
 subtype=Aura
 [/card]
 [card]
-text=Enchant Forest or Plains     Whenever enchanted land becomes tapped, its controller loses 2 life.
+text=Enchant Forest or Plains. Whenever enchanted land becomes tapped, its controller loses 2 life.
 id=183054
 target=forest,plains
 alias=1218

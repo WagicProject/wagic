@@ -519,7 +519,7 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
-text=Legendary     {T}: Add {R} to your mana pool.      {T}: Target creature loses all landwalk abilities until end of turn.
+text=Legendary. {T}: Add {R} to your mana pool. {T}: Target creature loses all landwalk abilities until end of turn.
 auto={T}:Add {R}
 auto={T}:-plainswalk && -islandwalk && -swampwalk && -mountainwalk && -forestwalk target(creature)
 id=1700
@@ -1315,7 +1315,7 @@ toughness=4
 abilities=legendary
 [/card]
 [card]
-text=Legendary     {T}: Add {U} to your mana pool.      {T}: Target Target creature loses banding and all "bands with other" abilities until end of turn. Play this ability only during any upkeep step.
+text=Legendary. {T}: Add {U} to your mana pool. {T}: Target Target creature loses banding and all "bands with other" abilities until end of turn. Play this ability only during any upkeep step.
 auto={T}: Add {U}
 auto={T}:-banding target(creature)
 id=1705
@@ -1390,7 +1390,7 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-text=Legendary     {T}: Add {B} to your mana pool.      {T}: Target creature loses first strike or swampwalk until end of turn.
+text=Legendary. {T}: Add {B} to your mana pool. {T}: Target creature loses first strike or swampwalk until end of turn.
 auto={T}: Add {B}
 auto={T}:-swampwalk target(creature)
 auto={T}:-first strike target(creature)

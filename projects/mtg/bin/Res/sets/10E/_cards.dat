@@ -1103,6 +1103,8 @@ toughness=2
 [/card]
 [card]
 text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
+auto=@each my upkeep:foreach(zombie|myinplay) draw:1
+auto=@each my upkeep:foreach(zombie|myinplay) life:-1
 id=135256
 name=Graveborn Muse
 rarity=R
@@ -2663,6 +2665,8 @@ toughness=2
 [/card]
 [card]
 text=Each player loses 1 life for each creature he or she controls.
+auto=foreach(creature|opponentinplay) life:-1 opponent
+auto=foreach(creature|myinplay) life:-1 controller
 id=135197
 name=Stronghold Discipline
 rarity=U

@@ -1918,7 +1918,8 @@ subtype=Troll
 toughness=2
 [/card]
 [card]
-text=Flying       At the beginning of your upkeep, Serendib Efreet deals 1 damage to you.
+text=Flying. At the beginning of your upkeep, Serendib Efreet deals 1 damage to you.
+auto=@each my upkeep:life:-1
 abilities=Flying
 id=1221
 name=Serendib Efreet

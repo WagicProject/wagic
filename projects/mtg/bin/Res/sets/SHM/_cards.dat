@@ -874,7 +874,7 @@ mana={1}{R}
 [card]
 text={B}{R}: Each player loses 1 life.
 id=157880
-auto={B}{R}:damage:1 all(player)
+auto={B}{R}:life:-1 all(player)
 name=Spiteflame Witch
 rarity=U
 type=Creature

@@ -319,6 +319,17 @@ subtype=Human Knight
 toughness=2
 [/card]
 [card]
+text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
+target=*|mylibrary
+auto=moveTo(mylibrary)
+auto=life:-2 controller
+id=4215
+name=Cruel Tutor
+rarity=R
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
 text=Deep-Sea Serpent can't attack unless defending player controls an Island.
 abilities=cantattack
 auto=aslongas(island|opponentinplay) -cantattack
@@ -396,7 +407,7 @@ toughness=6
 abilities=flying
 [/card]
 [card]
-text=Flying       When Dread Reaper comes into play, you lose 5 life.
+text=Flying. When Dread Reaper comes into play, you lose 5 life.
 auto=life:-5
 id=4217
 name=Dread Reaper

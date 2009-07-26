@@ -95,14 +95,6 @@ type=Sorcery
 mana={4}{U}
 [/card]
 [card]
-text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
-id=4215
-name=Cruel Tutor
-rarity=R
-type=Sorcery
-mana={2}{B}
-[/card]
-[card]
 text=Play Deep Wood only during the declare attackers step and only if you are the defending player.     Prevent all damage that would be dealt to you this turn by attacking creatures.
 id=4292
 name=Deep Wood

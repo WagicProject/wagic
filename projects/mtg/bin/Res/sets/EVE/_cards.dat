@@ -402,7 +402,7 @@ subtype=Spirit
 toughness=2
 [/card]
 [card]
-text=Defender, flying     Whenever you play a white spell, Loyal Gyrfalcon loses defender until end of turn.
+text=Defender, flying. Whenever you play a white spell, Loyal Gyrfalcon loses defender until end of turn.
 abilities=defender,flying
 auto=@movedTo(*[white]|mystack):-defender
 id=151059
