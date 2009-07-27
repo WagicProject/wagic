@@ -978,7 +978,7 @@ toughness=1
 [/card]
 [card]
 text={T}: Add {G} to your mana pool for each Elf in play.
-auto={T}:foreach(creature[Elf])add:{G}
+auto={T}:foreach(creature[elf])add:{G}
 id=5823
 name=Priest of Titania
 rarity=C
@@ -999,7 +999,7 @@ mana={B}
 [/card]
 [card]
 text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
-@each my upkeep:aslongas(*[-land]|mybattlefield) other bury
+auto=@each my upkeep:aslongas(*[-land]|mybattlefield) other bury
 id=8803
 name=Reclusive Wight
 rarity=U
@@ -1073,7 +1073,7 @@ subtype=Aura
 [/card]
 [card]
 text={T}: Add {W} to your mana pool for each enchantment you control.
-auto={T}:foreach(Enchantment|myinplay)add:{W}
+auto={T}:foreach(enchantment|myinplay)add:{W}
 id=9674
 name=Serra's Sanctum
 rarity=R
