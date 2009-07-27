@@ -346,6 +346,15 @@ type=Artifact
 mana={2}
 [/card]
 [card]
+text={3}, {T}: Tap target creature, then return Cyclopean Snare to its owner's hand.
+id=89035
+auto={3}{T}:tap target(creature) && moveto(ownerhand)
+name=Cyclopean Snare
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
 text=At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost.
 id=83771
 name=Dark Confidant

@@ -96,7 +96,7 @@ abilities=double strike
 [card]
 text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
 id=88974
-auto=2/1 && life:-1
+auto={0}:2/1 && life:-1
 name=Carrion Howler
 rarity=U
 type=Creature
@@ -189,15 +189,6 @@ subtype=Bird
 power=1
 toughness=2
 abilities=flying,vigilance
-[/card]
-[card]
-text={3}, {T}: Tap target creature, then return Cyclopean Snare to its owner's hand.
-id=89035
-auto={3}{T}:tap target(creature) && moveto(ownerhand)
-name=Cyclopean Snare
-rarity=U
-type=Artifact
-mana={2}
 [/card]
 [card]
 text=Sacrifice a forest: You gain 3 life.
@@ -719,7 +710,7 @@ subtype=Plains
 [/card]
 [card]
 text=Whenever you play a creature spell, you may draw a card.
-auto=@movedTo(creature|mystack):draw:1
+auto=@movedTo(creature|mystack):may draw:1
 id=89083
 name=Primordial Sage
 rarity=R
