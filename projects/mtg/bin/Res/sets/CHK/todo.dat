@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=78694
 name=Akki Lavarunner
 mana={3}{R}
@@ -81,6 +81,18 @@ type=Instant
 subtype=Arcane
 text=Target creature you control gains protection from the color of your choice until end of turn. Splice onto Arcane {W} (As you play an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 rarity=C
+[/card]
+[card]
+id=77925
+alias=???
+name=Blind with Anger
+mana={3}{R}
+type=Instant
+subtype=Arcane
+text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
+target=creature[-legendary]
+auto=haste
+rarity=U
 [/card]
 [card]
 id=79166
