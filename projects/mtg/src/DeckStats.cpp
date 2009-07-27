@@ -94,7 +94,7 @@ void DeckStats::load(const char * filename){
 
 void DeckStats::save(Player * player){
   char filename[512];
-  sprintf(filename, RESPATH"/player/stats/%s.txt",player->deckFile.c_str());
+  sprintf(filename, RESPATH"/player/stats/%s.txt",player->deckFileSmall.c_str());
   save(filename);
 }
 
@@ -124,9 +124,9 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
     victory = 0;
   }
   load(player);
-  map<string,DeckStat *>::iterator it = stats.find(opponent->deckFile);
+  map<string,DeckStat *>::iterator it = stats.find(opponent->deckFileSmall);
   if (it == stats.end()){
-    stats[opponent->deckFile] = NEW DeckStat(1,victory);
+    stats[opponent->deckFileSmall] = NEW DeckStat(1,victory);
   }else{
     it->second->victories+=victory;
     it->second->nbgames+=1;
