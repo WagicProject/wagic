@@ -1,0 +1,21 @@
+#Bug: chainbreaker does not get his counters
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:chainbreaker
+[PLAYER2]
+[DO]
+chainbreaker
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:chainbreaker
+[PLAYER2]
+life:19
+[END]

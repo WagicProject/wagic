@@ -224,18 +224,6 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-id=179612
-name=Putrid Leech
-mana={B}{G}
-type=Creature
-subtype=Zombie Leech
-power=2
-toughness=2
-text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Play this ability only once each turn.
-auto={0}:2/2 && life:-2 limit:1
-rarity=C
-[/card]
-[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.
 id=179556
 name=Qasali Pridemage

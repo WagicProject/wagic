@@ -1243,12 +1243,14 @@ subtype=Wurm
 toughness=5
 [/card]
 [card]
-text=Flying     Pay 2 life: Return Selenia, Dark Angel to its owner's hand.
-abilites=flying
+text=Flying   Pay 2 life: Return Selenia, Dark Angel to its owner's hand.
 id=4916
 name=Selenia, Dark Angel
+color=White,Black
 rarity=R
-type=Legendary Creature
+type=Creature
+abilities=legendary,flying
+auto={0}:moveTo(ownerhand) && life:-2 #{0} activation costs don't work
 mana={3}{W}{B}
 power=3
 subtype=Angel

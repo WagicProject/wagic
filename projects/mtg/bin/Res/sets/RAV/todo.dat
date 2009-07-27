@@ -167,6 +167,18 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
+text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
+id=88974
+auto={0}:2/1 && life:-1 #{0}activation costs don't work in 0.8
+name=Carrion Howler
+rarity=U
+type=Creature
+mana={3}{B}
+power=2
+subtype=Zombie Wolf
+toughness=2
+[/card]
+[card]
 text=Flying     {U}: Cerulean Sphinx's owner shuffles it into his or her library.
 id=89095
 name=Cerulean Sphinx
@@ -954,6 +966,18 @@ name=Induce Paranoia
 rarity=C
 type=Instant
 mana={2}{U}{U}
+[/card]
+[card]
+text=When Infectious Host is put into a graveyard from play, target player loses 2 life.
+id=87966
+auto=@movedto(this|graveyard):damage:2 target(player) #does not work yet
+name=Infectious Host
+rarity=C
+type=Creature
+mana={2}{B}
+power=1
+subtype=Zombie
+toughness=1
 [/card]
 [card]
 text=Enchant creature     Enchanted creature has "At the end of your turn, sacrifice this creature unless it attacked this turn."

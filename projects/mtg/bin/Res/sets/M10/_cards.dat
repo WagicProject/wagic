@@ -1442,7 +1442,7 @@ subtype=Human Cleric
 power=1
 toughness=1
 text=Whenever another creature enters the battlefield, you gain 1 life.
-auto=@movedTo(*|battlefield): life:1
+auto=@movedTo(creature|battlefield): life:1
 rarity=U
 [/card]
 [card]

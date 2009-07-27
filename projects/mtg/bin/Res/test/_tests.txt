@@ -51,6 +51,7 @@ brass_man.txt
 castle.txt
 cathodion.txt
 celestial_purge.txt
+chainbreaker.txt
 circle_of_protection.txt
 civic_wayfinder.txt
 clone.txt

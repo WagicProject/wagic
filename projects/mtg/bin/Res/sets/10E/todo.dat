@@ -114,6 +114,20 @@ type=Instant
 mana={W}
 [/card]
 [card]
+text=When Bogardan Firefiend is put into a graveyard from play, it deals 2 damage to target creature.
+auto=@movedTo(this|graveyard):damage:2 target(creature)
+#can't be coded in 0.8, because you can't use "target" after "@movedTo"  unless there is a "may" condition
+id=130534
+name=Bogardan Firefiend
+rarity=C
+color=Red
+type=Creature
+mana={2}{R}
+power=2
+subtype=Elemental Spirit
+toughness=1
+[/card]
+[card]
 text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
 id=135261
 name=Cephalid Constable
@@ -290,6 +304,20 @@ name=Faerie Conclave
 rarity=U
 color=Land
 type=Land
+[/card]
+[card]
+text=When Festering Goblin is put into a graveyard from play, target creature gets -1/-1 until end of turn.
+auto=@movedTo(this|graveyard):-1/-1 target(creature)
+#can't be coded in 0.8, because you can't use "target" after "@movedTo"  unless there is a "may" condition
+id=129546
+name=Festering Goblin
+rarity=C
+color=Black
+type=Creature
+mana={B}
+power=1
+subtype=Zombie Goblin
+toughness=1
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Fog Elemental attacks or blocks, sacrifice it at end of combat.

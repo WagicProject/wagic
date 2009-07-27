@@ -881,6 +881,18 @@ mana={1}{W}
 subtype=Elemental
 [/card]
 [card]
+text=When Hornet Harasser is put into a graveyard from play, target creature gets -2/-2 until end of turn.
+auto=@movedTo(this|graveyard):-2/-2 target(creature)
+id=142355
+name=Hornet Harasser
+rarity=C
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Goblin Shaman
+toughness=2
+[/card]
+[card]
 text=Haste     If a spell you control would deal damage to an opponent, prevent that damage. Put a 3/1 red Elemental Shaman creature token with haste into play for each 1 damage prevented this way.     When Hostility is put into a graveyard from anywhere, shuffle it into its owner's library.
 id=140164
 name=Hostility
@@ -1237,6 +1249,19 @@ mana={6}{B}
 power=3
 subtype=Elemental
 toughness=3
+[/card]
+[card]
+text=When Mudbutton Torchrunner is put into a graveyard from play, it deals 3 damage to target creature or player.
+auto=@movedTo(this|graveyard):damage:3 target(creature,player)
+#@movedTo does not work with target unless there is a "may"
+id=139742
+name=Mudbutton Torchrunner
+rarity=C
+type=Creature
+mana={2}{R}
+power=1
+subtype=Goblin Warrior
+toughness=1
 [/card]
 [card]
 text=Flying     When Mulldrifter comes into play, draw two cards.     Evoke {2}{U} (You may play this spell for its evoke cost. If you do, it's sacrificed when it comes into play.)

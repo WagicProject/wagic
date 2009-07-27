@@ -820,18 +820,6 @@ auto=first strike target(creature)
 rarity=C
 [/card]
 [card]
-id=111082
-name=Viscid Lemures
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=4
-toughness=3
-text={0}: Viscid Lemures gets -1/-0 and gains swampwalk until end of turn.
-auto={0}: -1/-0 && swampwalk
-rarity=C
-[/card]
-[card]
 id=106648
 name=Watcher Sliver
 mana={3}{W}

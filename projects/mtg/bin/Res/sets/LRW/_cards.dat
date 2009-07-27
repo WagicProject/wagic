@@ -1,5 +1,4 @@
 [card]
-text=
 id=145976
 name=Axegrinder Giant
 rarity=C
@@ -410,18 +409,6 @@ subtype=Elemental
 toughness=5
 [/card]
 [card]
-text=When Hornet Harasser is put into a graveyard from play, target creature gets -2/-2 until end of turn.
-auto=@movedTo(this|graveyard):-2/-2 target(creature)
-id=142355
-name=Hornet Harasser
-rarity=C
-type=Creature
-mana={2}{B}{B}
-power=2
-subtype=Goblin Shaman
-toughness=2
-[/card]
-[card]
 text={T}: Put a +1/+1 counter on target creature for each Elf you control.
 auto={T}:foreach(elf|mybattlefield) counter(1/1) target(creature)
 id=139721
@@ -663,18 +650,6 @@ name=Mountain
 rarity=L
 type=Basic Land
 subtype=Mountain
-[/card]
-[card]
-text=When Mudbutton Torchrunner is put into a graveyard from play, it deals 3 damage to target creature or player.
-auto=@movedTo(this|graveyard):damage:3 target(creature,player)
-id=139742
-name=Mudbutton Torchrunner
-rarity=C
-type=Creature
-mana={2}{R}
-power=1
-subtype=Goblin Warrior
-toughness=1
 [/card]
 [card]
 text=Destroy target attacking or blocking creature.

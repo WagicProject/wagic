@@ -517,14 +517,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     size_t end = s.find(")", found);
     size_t separator = s.find(",", found);
     if (separator != string::npos){
-      nb = atoi(s.substr(found,separator-found).c_str()); 
+      string nbstr = s.substr(separator+1,end-separator-1);
+      nb = atoi(nbstr.c_str()); 
       end = separator;
     }
     string spt = s.substr(found,end-found);
     int power, toughness;
     if ( parsePowerToughness(spt,&power, &toughness)){
       MTGAbility * a = NEW AACounter(id,card,target,power,toughness,nb);
-	  a->oneShot = 1;
+	    a->oneShot = 1;
       return a;
     }
     return NULL;

@@ -319,6 +319,7 @@ int MTGCardInstance::canAttack(){
   if (hasSummoningSickness()) return 0;
   if (basicAbilities[Constants::DEFENSER] || basicAbilities[Constants::CANTATTACK]) return 0;
   if (!isACreature()) return 0;
+  if (!isInPlay()) return 0;
   return 1;
 }
 

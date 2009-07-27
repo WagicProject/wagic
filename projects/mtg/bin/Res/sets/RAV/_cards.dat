@@ -94,18 +94,6 @@ toughness=2
 abilities=double strike
 [/card]
 [card]
-text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
-id=88974
-auto={0}:2/1 && life:-1
-name=Carrion Howler
-rarity=U
-type=Creature
-mana={3}{B}
-power=2
-subtype=Zombie Wolf
-toughness=2
-[/card]
-[card]
 text=Defender (This creature can't attack.)  When Carven Caryatid comes into play, draw a card.
 id=89048
 auto=draw:1
@@ -500,18 +488,6 @@ subtype=Elemental
 auto={1}{R}:3/-3
 power=3
 toughness=4
-[/card]
-[card]
-text=When Infectious Host is put into a graveyard from play, target player loses 2 life.
-id=87966
-auto=@movedto(this|graveyard):damage:2 target(player)
-name=Infectious Host
-rarity=C
-type=Creature
-mana={2}{B}
-power=1
-subtype=Zombie
-toughness=1
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.

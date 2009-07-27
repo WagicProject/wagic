@@ -765,6 +765,18 @@ text=At the end of each opponent's turn, if that player didn't play a creature s
 rarity=R
 [/card]
 [card]
+id=179612
+name=Putrid Leech
+mana={B}{G}
+type=Creature
+subtype=Zombie Leech
+power=2
+toughness=2
+text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Play this ability only once each turn.
+auto={0}:2/2 && life:-2 limit:1 #{0} activation costs don't work
+rarity=C
+[/card]
+[card]
 id=175256
 name=Reborn Hope
 mana={G}{W}
