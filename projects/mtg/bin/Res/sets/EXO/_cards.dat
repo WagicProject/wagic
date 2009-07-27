@@ -66,7 +66,7 @@ id=6168
 name=City of Traitors
 type=Land
 text=When you play another land, sacrifice City of Traitors.  {T}: Add {2} to your mana pool.
-auto=@movedTo(land|myinplay):bury
+auto=@movedTo(land|mybattlefield):bury
 auto={T}:Add:2
 rarity=R
 [/card]
@@ -107,14 +107,14 @@ rarity=U
 mana={1}{B}
 type=Creature
 subtype=Dauthi Soldier
-auto=foreach(creature[shadow]|inplay) 1/0
+auto=foreach(creature[shadow]|battlefield) 1/0
 power=*
 toughness=1
 abilities=shadow
 [/card]
 [card]
 text=Enchant creature you control   {R}: Enchanted creature deals 1 damage to target creature with flying.
-target=creature|myinplay
+target=creature|mybattlefield
 auto={R}:damage:1 target(creature[flying])
 id=6114
 name=Dizzying Gaze
@@ -126,7 +126,7 @@ subtype=Aura
 [/card]
 [card]
 text=Sacrifice a Forest: Target attacking creature gets -3/-0 until end of turn.
-auto={S(forest|myinplay)}:-3/0 target(creature[attacking]) 
+auto={S(forest|mybattlefield)}:-3/0 target(creature[attacking]) 
 id=6146
 name=Elven Palisade
 color=Green
@@ -184,7 +184,7 @@ rarity=R
 mana={4}{W}{W}
 type=Creature
 subtype=Dragon
-auto={S(land|myinplay)}:-cantattack
+auto={S(land|mybattlefield)}:-cantattack
 power=5
 toughness=5
 abilities=flying,cantattack
@@ -375,7 +375,7 @@ rarity=R
 mana={3}{R}
 type=Creature
 subtype=Ape
-auto=destroy target(land[-basic])
+auto=may destroy target(land[-basic])
 power=2
 toughness=2
 [/card]
@@ -396,7 +396,7 @@ name=Resuscitate
 mana={1}{G}
 type=Instant
 text=Until end of turn, creatures you control gain "{1}: Regenerate this creature."
-auto=lord(creature|myinplay) {1}:regenerate
+auto=lord(creature|mybattlefield) {1}:regenerate
 rarity=U
 [/card]
 [card]
@@ -420,7 +420,7 @@ rarity=C
 mana={3}{G}
 type=Creature
 subtype=Crocodile
-auto={S(forest|myinplay)}:regenerate
+auto={S(forest|mybattlefield)}:regenerate
 power=3
 toughness=2
 [/card]
@@ -498,7 +498,7 @@ toughness=1
 [card]
 text=Sacrifice Skyshaper: Creatures you control gain flying until end of turn. 
 id=5227
-auto={S}:lord(creature|myinplay) flying
+auto={S}:lord(creature|mybattlefield) flying
 name=Skyshaper
 rarity=U
 mana={2}
@@ -513,7 +513,7 @@ rarity=U
 mana={G}
 type=Creature
 subtype=Elf
-auto=aslongas(land[-basic]|opponentinplay) 1/2
+auto=aslongas(land[-basic]|opponentbattlefield) 1/2
 power=1
 toughness=1
 [/card]
@@ -526,7 +526,7 @@ rarity=R
 mana={1}{G}
 type=Creature
 subtype=Beast
-auto=foreach(land[-basic]|opponentinplay) 1/1
+auto=foreach(land[-basic]|opponentbattlefield) 1/1
 abilities=trample
 power=*
 toughness=*
@@ -599,7 +599,7 @@ name=Theft of Dreams
 mana={2}{U}
 type=Sorcery
 text=Draw a card for each tapped creature target opponent controls.
-auto=foreach(creature[-tapped]|opponentinplay) draw:1
+auto=foreach(creature[-tapped]|opponentbattlefield) draw:1
 rarity=U
 [/card]
 [card]
@@ -679,7 +679,7 @@ toughness=3
 [/card]
 [card]
 text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-auto=moveTo(inPlay) target(forest|myLibrary)
+auto=moveTo(mybattlefield) target(forest|myLibrary)
 id=6135
 name=Wood Elves
 color=Green
