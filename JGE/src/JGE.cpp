@@ -46,12 +46,15 @@ u8 JGE::GetAnalogY()
 }
 
 #elif defined (LINUX)    // Unix specific code
+#include <sys/time.h>
 #include "png.h"
 #include "../Dependencies/include/fmod.h"
 
 int JGE::GetTime(void)
 {
-  return (int)time(NULL);
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+  return tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
 u8 JGE::GetAnalogX()
