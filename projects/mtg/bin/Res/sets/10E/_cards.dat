@@ -135,10 +135,10 @@ type=Enchantment
 mana={3}{W}{W}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {W} or {U} to your mana pool. Adarkar Wastes deals 1 damage to you.
+text={T}: Add {1} to your mana pool. {T}: Add {W} or {U} to your mana pool. Adarkar Wastes deals 1 damage to you.
 auto={T}:Add {1}
-auto={T}:Add {W} && Damage 1 controller
-auto={T}:Add {U} && Damage 1 controller
+auto={T}:Add {W} && Damage:1 controller
+auto={T}:Add {U} && Damage:1 controller
 id=129458
 name=Adarkar Wastes
 rarity=R
@@ -203,8 +203,8 @@ toughness=2
 text={T}: Add {1} to your mana pool.     {T}: Add {R} or {W} to your mana pool. Battlefield Forge deals 1 damage to you.
 id=129479
 auto={T}:Add {1}
-auto={T}:Add {R} && Damage 1 controller
-auto={T}:Add {W} && Damage 1 controller
+auto={T}:Add {R} && Damage:1 controller
+auto={T}:Add {W} && Damage:1 controller
 name=Battlefield Forge
 rarity=R
 color=Land
@@ -361,10 +361,10 @@ subtype=Gnome
 toughness=3
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
+text={T}: Add {1} to your mana pool. {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
 auto={T}:Add {1}
-auto={T}:Add {G} && Damage 1 controller
-auto={T}:Add {W} && Damage 1 controller
+auto={T}:Add {G} && Damage:1 controller
+auto={T}:Add {W} && Damage:1 controller
 id=129496
 name=Brushland
 rarity=R
@@ -372,10 +372,10 @@ color=Land
 type=Land
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {W} or {B} to your mana pool. Caves of Koilos deals 1 damage to you.
+text={T}: Add {1} to your mana pool. {T}: Add {W} or {B} to your mana pool. Caves of Koilos deals 1 damage to you.
 auto={T}:Add {1}
-auto={T}:Add {W} && Damage 1 controller
-auto={T}:Add {B} && Damage 1 controller
+auto={T}:Add {W} && Damage:1 controller
+auto={T}:Add {B} && Damage:1 controller
 id=129497
 name=Caves of Koilos
 rarity=R
@@ -738,7 +738,7 @@ mana={3}{U}{U}
 text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
 id=135266
 name=Elven Riders
-auto=cantbeblockedby(creature[-flying],-walls)
+auto=cantbeblockedby(creature[-flying,-wall])
 rarity=U
 color=Green
 type=Creature
@@ -1314,7 +1314,7 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Juggernaut attacks each turn if able.     Juggernaut can't be blocked by Walls.
+text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
 id=135240
 name=Juggernaut
 rarity=U
@@ -1323,7 +1323,7 @@ type=Artifact Creature
 mana={4}
 power=5
 abilities=mustattack
-auto=cantbeblockedby(walls)
+auto=cantbeblockedby(wall)
 subtype=Juggernaut
 toughness=3
 [/card]
@@ -1359,10 +1359,10 @@ subtype=Elf Druid
 toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
+text={T}: Add {1} to your mana pool. {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
 auto={T}:Add {1}
-auto={T}:Add {R} && Damage 1 controller
-auto={T}:Add {G} && Damage 1 controller
+auto={T}:Add {R} && Damage:1 controller
+auto={T}:Add {G} && Damage:1 controller
 id=129614
 name=Karplusan Forest
 rarity=R
@@ -1442,11 +1442,11 @@ subtype=Elf Druid
 toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {B} or {G} to your mana pool. Llanowar Wastes deals 1 damage to you.
+text={T}: Add {1} to your mana pool. {T}: Add {B} or {G} to your mana pool. Llanowar Wastes deals 1 damage to you.
 id=129627
 auto={T}:Add {1}
-auto={T}:Add {B} && Damage 1 controller
-auto={T}:Add {G} && Damage 1 controller
+auto={T}:Add {B} && Damage:1 controller
+auto={T}:Add {G} && Damage:1 controller
 name=Llanowar Wastes
 rarity=R
 color=Land
@@ -1590,17 +1590,6 @@ rarity=R
 color=Artifact
 type=Artifact
 mana={2}
-[/card]
-[card]
-text=Target player discards two cards.
-id=129645
-target=player
-auto=discard:2
-name=Mind Rot
-rarity=C
-color=Black
-type=Sorcery
-mana={2}{B}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Mind Stone: Draw a card.
@@ -2393,11 +2382,11 @@ subtype=Dragon
 toughness=5
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {U} or {R} to your mana pool. Shivan Reef deals 1 damage to you.
+text={T}: Add {1} to your mana pool. {T}: Add {U} or {R} to your mana pool. Shivan Reef deals 1 damage to you.
 id=129731
 auto={T}:Add {1}
-auto={T}:Add {U} && Damage 1 controller
-auto={T}:Add {R} && Damage 1 controller
+auto={T}:Add {U} && Damage:1 controller
+auto={T}:Add {R} && Damage:1 controller
 name=Shivan Reef
 rarity=R
 color=Land
@@ -2533,7 +2522,7 @@ text=Target player loses 4 life and you gain 4 life.
 id=129739
 name=Soul Feast
 target=player
-auto=damage:4
+auto=life:-4
 auto=life:4 controller
 rarity=U
 color=Black
@@ -2668,8 +2657,8 @@ mana={1}{R}
 text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.
 id=129751
 auto={T}:Add {1}
-auto={T}:Add {B} && Damage 1 controller
-auto={T}:Add {R} && Damage 1 controller
+auto={T}:Add {B} && Damage:1 controller
+auto={T}:Add {R} && Damage:1 controller
 name=Sulfurous Springs
 rarity=R
 color=Land
@@ -2924,11 +2913,11 @@ mana={2}{R}{R}
 subtype=Aura
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Underground River deals 1 damage to you.
+text={T}: Add {1} to your mana pool. {T}: Add {U} or {B} to your mana pool. Underground River deals 1 damage to you.
 id=129778
 auto={T}:Add {1}
-auto={T}:Add {U} && Damage 1 controller
-auto={T}:Add {B} && Damage 1 controller
+auto={T}:Add {U} && Damage:1 controller
+auto={T}:Add {B} && Damage:1 controller
 name=Underground River
 rarity=R
 color=Land
@@ -3137,8 +3126,8 @@ mana={2}
 text={T}: Add {1} to your mana pool.     {T}: Add {G} or {U} to your mana pool. Yavimaya Coast deals 1 damage to you.
 id=129810
 auto={T}:Add {1}
-auto={T}:Add {G} && Damage 1 controller
-auto={T}:Add {U} && Damage 1 controller
+auto={T}:Add {G} && Damage:1 controller
+auto={T}:Add {U} && Damage:1 controller
 name=Yavimaya Coast
 rarity=R
 color=Land

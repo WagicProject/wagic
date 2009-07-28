@@ -644,6 +644,17 @@ type=Instant
 mana={U}
 [/card]
 [card]
+text=Target player discards two cards.
+id=129645
+target=player
+auto=discard:2
+name=Mind Rot
+rarity=C
+color=Black
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
 text=At the beginning of your upkeep, if twenty or more creature cards are in your graveyard, you win the game.
 id=135259
 name=Mortal Combat
