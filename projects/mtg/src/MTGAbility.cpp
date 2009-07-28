@@ -1666,11 +1666,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ADreambornMuse(_id ,card));
       break;
     }
-  case 135256: //Graveborn Muse
-    {
-      game->addObserver( NEW AGravebornMuse(_id ,card));
-      break;
-    }
 
   case 129774: // Traumatize
 	  {
