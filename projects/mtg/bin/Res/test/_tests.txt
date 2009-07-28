@@ -117,7 +117,7 @@ lord_of_the_pit.txt
 lord_of_the_pit2.txt
 master_of_etherium.txt
 millstone.txt
-mind_rot.txt
+#mind_rot.txt
 nantuko_husk.txt
 necrogenesis.txt
 Nevinyrrals_Disk.txt

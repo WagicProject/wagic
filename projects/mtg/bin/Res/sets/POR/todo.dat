@@ -369,6 +369,18 @@ type=Sorcery
 mana={4}{R}{R}
 [/card]
 [card]
+text=Sacred Knight can't be blocked by black and/or red creatures.
+auto=cantbeblockedby(creature[red;black])
+id=4392
+name=Sacred Knight
+rarity=C
+type=Creature
+mana={3}{W}
+power=3
+subtype=Human Knight
+toughness=2
+[/card]
+[card]
 text=Play Scorching Winds only during the declare attackers step and only if you are the defending player.       Scorching Winds deals 1 damage to each attacking creature.
 id=4361
 name=Scorching Winds

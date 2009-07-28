@@ -1182,18 +1182,6 @@ mana={1}{W}
 type=Sorcery
 [/card]
 [card]
-text=Sacred Knight can't be blocked by black and/or red creatures.
-auto=cantbeblockedby(creature[red;black])
-id=4392
-name=Sacred Knight
-rarity=C
-type=Creature
-mana={3}{W}
-power=3
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Scorching Spear deals 1 damage to target creature or player.
 target=creature,player
 auto=Damage:1

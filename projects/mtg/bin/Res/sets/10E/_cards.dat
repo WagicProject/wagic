@@ -735,19 +735,6 @@ type=Instant
 mana={3}{U}{U}
 [/card]
 [card]
-text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
-id=135266
-name=Elven Riders
-auto=cantbeblockedby(creature[-flying,-wall])
-rarity=U
-color=Green
-type=Creature
-mana={3}{G}{G}
-power=3
-subtype=Elf
-toughness=3
-[/card]
-[card]
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 id=129533
 auto=rampage(1/1,0)
@@ -1312,20 +1299,6 @@ rarity=R
 color=Artifact
 type=Artifact
 mana={4}
-[/card]
-[card]
-text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
-id=135240
-name=Juggernaut
-rarity=U
-color=Artifact
-type=Artifact Creature
-mana={4}
-power=5
-abilities=mustattack
-auto=cantbeblockedby(wall)
-subtype=Juggernaut
-toughness=3
 [/card]
 [card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)  {T}: Kamahl, Pit Fighter deals 3 damage to target creature or player.
