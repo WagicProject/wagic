@@ -557,7 +557,7 @@ subtype=Sliver
 power=2
 toughness=2
 text=All Sliver creatures have "This creature gets +1/+1 as long as you control a Swamp." All Slivers have "{B}: Regenerate this permanent."
-auto=lord(sliver) aslongas(swamp|myinplay) 1/1
+auto=aslongas(swamp|myinplay) lord(sliver) 1/1
 auto=lord(sliver) {B}:regenerate
 rarity=R
 [/card]

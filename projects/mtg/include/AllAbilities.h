@@ -240,6 +240,7 @@ class GenericActivatedAbility:public ActivatedAbility{
 
   int resolve(){
     counters++;
+    ability->target = target; //may have been updated...
     if (ability) return ability->resolve();
     return 0;
   }

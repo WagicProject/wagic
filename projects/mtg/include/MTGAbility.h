@@ -236,6 +236,7 @@ class AManaProducer: public MTGAbility{
    void Render();
    int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
   int resolve();
+  int destroy();
   int reactToClick(MTGCardInstance *  _card);
   const char * getMenuText();
   int testDestroy();

@@ -1,0 +1,27 @@
+#Bug:barbed sliver's ability gives +1/+0 to itself
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:barbed sliver,metallic sliver
+manapool:{2}
+[PLAYER2]
+[DO]
+metallic sliver
+next
+#begin
+next
+#attackers
+metallic sliver
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:barbed sliver,metallic sliver
+[PLAYER2]
+life:18
+[END]

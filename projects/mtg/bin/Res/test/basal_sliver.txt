@@ -1,0 +1,16 @@
+#Bug:basal sliver's ability doesn't give mana
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:basal sliver,metallic sliver
+[PLAYER2]
+[DO]
+metallic sliver
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:basal sliver
+graveyard:metallic sliver
+manapool:{B}{B}
+[PLAYER2]
+[END]

@@ -39,6 +39,8 @@ ascendant_evincar2.txt
 ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
+barbed_sliver.txt
+basal_sliver.txt
 beacon_of_unrest.txt
 #befoul.txt
 blessed_wine.txt
@@ -141,6 +143,7 @@ resurrection.txt
 righteous_cause.txt
 rootwalla.txt
 royal_assassin.txt
+sedge_sliver.txt
 seismic_assault.txt
 siege_gang_commander.txt
 shivan_hellkite.txt

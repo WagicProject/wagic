@@ -244,51 +244,57 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
   //Lord, foreach, aslongas
   string lords[] = {"lord(","foreach(", "aslongas(", "all("};
-  for (int i = 0; i < 4; ++i){
-    found = s.find(lords[i]);
-    if (found != string::npos){
-      size_t header = lords[i].size();
-      size_t end = s.find(")", found+header);
-      string s1;
-      if (found == 0 || end != s.size()-1){
-        s1 = s.substr(end+1);
-      }else{
-        s1 = s.substr(0, found);
-      }
-      if (end != string::npos){
-        int lordIncludeSelf = 1;
-        size_t other = s.find("other", end);
-        if ( other != string::npos){
-          lordIncludeSelf = 0;
-          s.replace(other, 5,"");
-        }
-        string lordTargetsString = s.substr(found+header,end-found-header);
-        TargetChooserFactory tcf;
-        TargetChooser * lordTargets = tcf.createTargetChooser(lordTargetsString, card);
-        
-        
-        MTGAbility * a = parseMagicLine(s1,id,spell, card);
-        if (!a){
-          SAFE_DELETE(lordTargets);
-          return NULL;
-        }
-        MTGAbility * result = NULL;
-        int oneShot = 0;
-        if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
-        if (i == 3) oneShot = 1;
-        if (a->oneShot) oneShot = 1;
-        switch(i){
-          case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
-          case 1: result =  NEW AForeach(id, card, target,lordTargets, lordIncludeSelf, a); break;
-          case 2: result =  NEW AAsLongAs(id, card, lordTargets, lordIncludeSelf, a); break;
-          case 3: result =  NEW ALord(id, card, lordTargets,  lordIncludeSelf, a); break;
-          default: result =  NULL;
-        }
-        if (result) result->oneShot = oneShot;
-        return result;
-      }
-      return NULL;
+  found = string::npos;
+  int i = -1;
+  for (int j = 0; j < 4; ++j){
+    size_t found2 = s.find(lords[j]);
+    if (found2!=string::npos && ((found == string::npos) || found2 < found)){
+      found = found2;
+      i = j;
     }
+  }
+  if (found != string::npos){
+    size_t header = lords[i].size();
+    size_t end = s.find(")", found+header);
+    string s1;
+    if (found == 0 || end != s.size()-1){
+      s1 = s.substr(end+1);
+    }else{
+      s1 = s.substr(0, found);
+    }
+    if (end != string::npos){
+      int lordIncludeSelf = 1;
+      size_t other = s.find("other", end);
+      if ( other != string::npos){
+        lordIncludeSelf = 0;
+        s.replace(other, 5,"");
+      }
+      string lordTargetsString = s.substr(found+header,end-found-header);
+      TargetChooserFactory tcf;
+      TargetChooser * lordTargets = tcf.createTargetChooser(lordTargetsString, card);
+      
+      
+      MTGAbility * a = parseMagicLine(s1,id,spell, card);
+      if (!a){
+        SAFE_DELETE(lordTargets);
+        return NULL;
+      }
+      MTGAbility * result = NULL;
+      int oneShot = 0;
+      if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
+      if (i == 3) oneShot = 1;
+      if (a->oneShot) oneShot = 1;
+      switch(i){
+        case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
+        case 1: result =  NEW AForeach(id, card, target,lordTargets, lordIncludeSelf, a); break;
+        case 2: result =  NEW AAsLongAs(id, card, lordTargets, lordIncludeSelf, a); break;
+        case 3: result =  NEW ALord(id, card, lordTargets,  lordIncludeSelf, a); break;
+        default: result =  NULL;
+      }
+      if (result) result->oneShot = oneShot;
+      return result;
+    }
+    return NULL;
   }
 
   
@@ -2420,10 +2426,7 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
       animation -= 4 *dt;
       if (!animation) animation = -1;
       if (animation < 0){
-	      animation = 0;
-        currentlyTapping--;
 	      resolve();
-	      if (mParticleSys) mParticleSys->Stop();
       }
     }
 
@@ -2450,8 +2453,11 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
   }
 
   int AManaProducer::resolve(){
+    animation = 0;
+    if (currentlyTapping > 0) currentlyTapping--;
     controller = source->controller();
     controller->getManaPool()->add(output);
+	  if (mParticleSys) mParticleSys->Stop();
     return 1;
   }
 
@@ -2486,6 +2492,11 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
       if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
     }
     return 1;
+  }
+
+  int AManaProducer::destroy(){
+    if (animation >0) resolve(); //if we get destroyed while the animation was taking place (dirty...)
+    return MTGAbility::destroy();
   }
 
   const char * AManaProducer::getMenuText(){

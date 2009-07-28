@@ -1,0 +1,21 @@
+#Bug:sedge sliver's ability gives +1/+1 to itself
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:sedge sliver,metallic sliver,swamp
+[PLAYER2]
+[DO]
+metallic sliver
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:sedge sliver,metallic sliver,swamp
+[PLAYER2]
+life:18
+[END]
