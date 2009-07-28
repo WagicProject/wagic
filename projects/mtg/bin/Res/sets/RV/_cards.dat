@@ -59,6 +59,8 @@ subtype=Aura
 [/card]
 [card]
 text=Whenever a land comes into play, Ankh of Mishra deals 2 damage to that land's controller.
+auto=@movedTo(land|opponentBattlefield): damage:2 opponent
+auto=@movedTo(land|myBattlefield): damage:2 controller
 id=1094
 name=Ankh of Mishra
 rarity=R

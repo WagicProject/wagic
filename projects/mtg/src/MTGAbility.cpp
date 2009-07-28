@@ -859,14 +859,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AConvertToCreatureAura(_id, card,card->target,x,x));
       break;
     }
-  case 1094: //Ankh of Mishra
-    {
-		TargetChooser * tc = NULL;
-		TargetChooserFactory tcf;
-		tc = tcf.createTargetChooser("land", card);
-		game->addObserver (NEW ALifeModifierPutinplay(_id,card,tc,-2,2,1));
-		break;
-    }
   case 1095: //Armageddon clock
     {
       AArmageddonClock * ability = NEW AArmageddonClock(_id,card);
@@ -1606,9 +1598,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       int x = computeX(spell,card);
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin","creature Goblin",1,1,"Red",0);
-          for (int i=0; i < x; i++){
-            tok->resolve();
-          }   
+      for (int i=0; i < x; i++){
+        tok->resolve();
+      } 
+      delete(tok);
       break;
     }
   
@@ -1642,13 +1635,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       TargetChooser * lordTargets = tcf.createTargetChooser("creature", card);
       game->addObserver(NEW ALord(id, card, lordTargets, 0, a));
 			break;
-		}
-
-	case 129909: //Cryoclasm
-		{
-		  card->target->controller()->game->putInGraveyard(card->target);
-		  card->target->controller()->life-= 3;
-		  break;
 		}
 
   case 130373: //Lavaborn Muse
@@ -1732,44 +1718,16 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
 	}
 
-
-//--- addon shm---
-
-	case 147427: // Poison the Well
-		{
-			card->target->controller()->life-=2;
-			break;
-		}
-	case 158243: //Smash to Smithereens
-		{
-			card->target->controller()->life-=3;
-			break;
-		}
-	
-	case 146759: //Fracturing Gust
-    {
-		GameObserver * game = GameObserver::GetInstance();
-      for (int i = 0; i < 2 ; i++){
-		for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-			MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-			if (current->hasType("Artifact") || current->hasType("Enchantment")){
-				game->players[i]->game->putInGraveyard(current);
-				card->controller()->life+= 2;
-			}
-		}
-	  }
-      break;
-	}
-
 // --- addon Invasion---
     case 23195: //Artifact Mutation
     {
       card->target->controller()->game->putInGraveyard(card->target);
       int x = card->target->getManaCost()->getConvertedCost();
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling",1,1,"green",0);
-          for (int i=0; i < x; i++){
-            tok->resolve();
-          }   
+      for (int i=0; i < x; i++){
+        tok->resolve();
+      }
+      delete(tok);
       break;
     }
 //--- addon Eventide ----
@@ -1778,9 +1736,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       int x = computeX(spell,card);
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin Soldier","creature Goblin Soldier",1,1,"red white",0);
-          for (int i=0; i < x; i++){
-            tok->resolve();
-          }   
+      for (int i=0; i < x; i++){
+        tok->resolve();
+      } 
+      delete(tok);
       break;
     }
 
@@ -1805,9 +1764,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       card->target->controller()->game->putInZone(card->target, card->target->controller()->game->inPlay,card->owner->game->removedFromGame);
       int x = card->target->toughness;
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling",1,1,"green",0);
-          for (int i=0; i < x; i++){
-            tok->resolve();
-          }   
+      for (int i=0; i < x; i++){
+        tok->resolve();
+      }
+      delete(tok);
       break;
     }
 

@@ -3225,31 +3225,6 @@ class APsychicVenom:public MTGAbility{
 };
 
 
-//1221 Serendib Efreet
-class ASerendibEfreet:public MTGAbility{
- public:
- ASerendibEfreet(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-  }
-
-  void Update(float dt){
-    if (newPhase == Constants::MTG_PHASE_UPKEEP && newPhase != currentPhase && game->currentPlayer == source->controller()){
-      game->mLayers->stackLayer()->addDamage(source,game->currentPlayer,1);
-    }
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ASerendibEfreet ::: (";
-    return MTGAbility::toString(out) << ")";
-  }
-  ASerendibEfreet * clone() const{
-    ASerendibEfreet * a =  NEW ASerendibEfreet(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //1235 Aspect of Wolf
 class AAspectOfWolf:public ListMaintainerAbility{
  public:
@@ -4059,47 +4034,6 @@ class ASeedbornMuse: public TriggeredAbility{
   }
 };
 
-// Graveborn Muse
-class AGravebornMuse: public TriggeredAbility{
- public:
-	 int nbcards_life;
- AGravebornMuse(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
- nbcards_life=0;
- }
-
-   int trigger(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && ((MTGCardInstance *) source)->controller()== game->currentPlayer){
-      return 1;
-    }
-    return 0;
-  }
-
-  int resolve(){
-		  for (int j = source->controller()->game->inPlay->nb_cards-1; j >=0 ; j--){
-			  MTGCardInstance * current =  source->controller()->game->inPlay->cards[j];
-			  if (current->hasSubtype("zombie")){
-				  nbcards_life++;
-			  }
-		  }
-		  source->controller()->life-=nbcards_life;
-		  game->mLayers->stackLayer()->addDraw(source->controller(),nbcards_life);
-	return 1;
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AGravebornMuse ::: nbcards_life : " << nbcards_life
-	<< " (";
-    return TriggeredAbility::toString(out) << ")";
-  }
-
-  AGravebornMuse * clone() const{
-    AGravebornMuse * a =  NEW AGravebornMuse(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //Instant Steal control of a target
 class AInstantControlSteal: public InstantAbility{
  public:
@@ -4183,109 +4117,6 @@ class AAngelicChorus: public ListMaintainerAbility{
     return a;
   }
 };
-
-//Life/Damage for type removed/added from game - Generic Ankh of Mishra/dingus Egg
-class ALifeModifierPutinplay: public ListMaintainerAbility{
- public:
-  int init;
-   int life;
-   int PlayerTarget;
-   int AddOrRemove;
- ALifeModifierPutinplay(int id, MTGCardInstance * _source,TargetChooser * _tc,  int _life, int _PlayerTarget, int _AddOrRemove):ListMaintainerAbility(id, _source){
-	init = 0;
-	tc = _tc;
-	PlayerTarget = _PlayerTarget;
-    AddOrRemove = _AddOrRemove;
-	life = _life;
-  }
-
-  void Update(float dt){
-    ListMaintainerAbility::Update(dt);
-    init = 1;
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (tc->canTarget(card)) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    if (!init) return 0;
-	if (AddOrRemove == 1){
-		if (life <  0){
-			int damage = life * -1;
-			if (PlayerTarget == 2){
-		game->mLayers->stackLayer()->addDamage(source,card->controller(), damage);
-			}
-			if (PlayerTarget == 1){
-		game->mLayers->stackLayer()->addDamage(source,source->controller(), damage);
-			}
-			if (PlayerTarget == 0){
-		game->mLayers->stackLayer()->addDamage(source,source->controller()->opponent(), damage);
-			}
-		}
-		if (life > 0){
-			if (PlayerTarget == 2){
-				card->controller()->life+=life;			
-			}
-			if (PlayerTarget == 1){
-				source->controller()->life+=life;			
-			}
-			if (PlayerTarget == 0){
-				source->controller()->opponent()->life+=life;		
-			}
-		}
-	}
-	return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-	if (AddOrRemove == 0){
-		if (life <  0){
-			int damage = life * -1;
-			if (PlayerTarget == 2){
-		game->mLayers->stackLayer()->addDamage(source,card->controller(), damage);
-			}
-			if (PlayerTarget == 1){
-		game->mLayers->stackLayer()->addDamage(source,source->controller(), damage);
-			}
-			if (PlayerTarget == 0){
-		game->mLayers->stackLayer()->addDamage(source,source->controller()->opponent(), damage);
-			}
-		}
-		if (life > 0){
-			if (PlayerTarget == 2){
-				card->controller()->life+=life;			
-			}
-			if (PlayerTarget == 1){
-				source->controller()->life+=life;			
-			}
-			if (PlayerTarget == 0){
-				source->controller()->opponent()->life+=life;		
-			}
-		}
-	}
-	return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ALifeModifierPutinplay ::: init : " << init
-	<< " ; life : " << life
-	<< " ; PlayerTarget : " << PlayerTarget
-	<< " ; AddOrRemove : " << AddOrRemove
-	<< " (";
-    return ListMaintainerAbility::toString(out) << ")";
-  }
-  ALifeModifierPutinplay * clone() const{
-    ALifeModifierPutinplay * a =  NEW ALifeModifierPutinplay(*this);
-    a->isClone = 1;
-    return a;
-  }
-
-};
-
-
 
 
 /// Work in Progress also from no on all code could be removed...
