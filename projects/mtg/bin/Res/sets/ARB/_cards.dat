@@ -315,10 +315,11 @@ abilities=exalted
 [card]
 id=188971
 name=Slave of Bolas
-mana={3}{(}{U}{/}{R}{)}{B}
+mana={3}{UR}{B}
 type=Sorcery
 text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
 target=creature
+auto=moveTo(myBattlefield)
 auto=@next end:bury
 auto=untap
 auto=haste

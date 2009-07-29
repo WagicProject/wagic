@@ -248,7 +248,7 @@ subtype=Zombie
 power=2
 toughness=2
 text=Other Zombie creatures you control get +1/+1. {2}{B}, {T}: Exile target creature card from a graveyard. Put a 2/2 black Zombie creature token onto the battlefield.
-auto=lord(zombie|myBattlefield) 1/1
+auto=lord(zombie|myBattlefield) 1/1 other
 auto={2}{B}{T}: moveTo(Exile) target(creature|graveyard) && token(Zombie,Creature Zombie,2/2,black)
 rarity=R
 [/card]

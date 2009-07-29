@@ -818,7 +818,7 @@ subtype=Zombie Cleric
 power=1
 toughness=1
 text={T}: Each player loses 1 life for each Zombie in play.
-auto=foreach(Zombie) life:-1 all(player)
+auto={T}:foreach(Zombie) life:-1 opponent && life:-1 controller
 rarity=C
 [/card]
 [card]
