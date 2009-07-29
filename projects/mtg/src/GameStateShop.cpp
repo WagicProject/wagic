@@ -160,11 +160,15 @@ void GameStateShop::Render()
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
   if (mBg)JRenderer::GetInstance()->RenderQuad(mBg,0,0);
+
+  r->FillRect(5,SCREEN_HEIGHT-15,110,15,ARGB(200,0,0,0));
+  itemFont->SetColor(ARGB(255,255,255,255));
+  itemFont->DrawString(_("press [] to refresh").c_str(),10,SCREEN_HEIGHT-12);
+
   if (shop)
     shop->Render();
 
-  r->FillRect(5,SCREEN_HEIGHT-15,110,15,ARGB(200,0,0,0));
-  itemFont->DrawString(_("press [] to refresh").c_str(),10,SCREEN_HEIGHT-12);
+
   if (mStage == STAGE_SHOP_MENU && menu){
     menu->Render();
   }

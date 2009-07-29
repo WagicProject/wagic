@@ -220,28 +220,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return multi;
   }
 
-  //When...comes into play, you may...
-  found = s.find("may ");
-  if (found != string::npos){
-    string s1 = s.substr(found+4);
-    MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
-    if (!a1) return NULL;
-    TargetChooser * tc = NULL;
-    //Target Abilities
-    found = s.find("target(");
-    if (found != string::npos){
-      int end = s.find(")", found);
-      string starget = s.substr(found + 7,end - found - 7);
-      TargetChooserFactory tcf;
-      tc = tcf.createTargetChooser(starget, card);
-    }
-    if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
-    return NEW MayAbility(id,a1,card);
-  }
-
-
- 
-
   //Lord, foreach, aslongas
   string lords[] = {"lord(","foreach(", "aslongas(", "all("};
   found = string::npos;
@@ -297,7 +275,27 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NULL;
   }
 
-  
+  //When...comes into play, you may...
+  found = s.find("may ");
+  if (found != string::npos){
+    string s1 = s.substr(found+4);
+    MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
+    if (!a1) return NULL;
+    TargetChooser * tc = NULL;
+    //Target Abilities
+    found = s.find("target(");
+    if (found != string::npos){
+      int end = s.find(")", found);
+      string starget = s.substr(found + 7,end - found - 7);
+      TargetChooserFactory tcf;
+      tc = tcf.createTargetChooser(starget, card);
+    }
+    if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
+    return NEW MayAbility(id,a1,card);
+  }
+
+
+
   //Fizzle (counterspell...)
   found = s.find("fizzle");
   if (found != string::npos){

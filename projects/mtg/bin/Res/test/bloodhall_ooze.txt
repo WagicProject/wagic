@@ -1,0 +1,32 @@
+#Bug:bloodhal ooze gets 2 counters each upkeep no matter what
+[INIT]
+SECONDMAIN
+[PLAYER1]
+[PLAYER2]
+inplay:bloodhall ooze,grizzly bears
+[DO]
+eot
+next
+choice 0
+next
+#draw
+next
+#main
+next
+#being
+next
+#attackers
+bloodhall ooze
+next
+#blockers
+next
+#damage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:18
+[PLAYER2]
+inplay:bloodhall ooze,grizzly bears
+[END]

@@ -46,6 +46,7 @@ beacon_of_unrest.txt
 blessed_wine.txt
 #blinking_spirit.txt
 bloodfire_colossus.txt
+bloodhall_ooze.txt
 bottle_gnomes.txt
 bottle_gnomes2.txt
 boggart_arsonists.txt
