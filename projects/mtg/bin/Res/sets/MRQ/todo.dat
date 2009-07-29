@@ -1052,14 +1052,7 @@ rarity=U
 type=Enchantment
 mana={3}{G}
 [/card]
-[card]
-text=Whenever a nontoken permanent is put into a player's graveyard from play, that player loses 1 life.
-id=19706
-name=Liability
-rarity=R
-type=Enchantment
-mana={1}{B}{B}
-[/card]
+
 
 [card]
 text=At the beginning of your upkeep, sacrifice Lithophage unless you sacrifice a Mountain.

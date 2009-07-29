@@ -1050,3 +1050,15 @@ text={T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Moun
 auto={T}{S}:moveTo(myinplay) target(mountain,forest|mylibrary) && life:-1
 rarity=R
 [/card]
+[card]
+id=26689
+name=Wretched Anurid
+mana={1}{B}
+type=Creature
+subtype=Zombie Frog Beast
+power=3
+toughness=3
+text=Whenever another creature comes into play, you lose 1 life.
+auto=@movedTo(creature|battlefield): life:-1 controller
+rarity=C
+[/card]

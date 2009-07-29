@@ -741,6 +741,16 @@ subtype=Goblin
 toughness=1
 [/card]
 [card]
+text=Whenever a nontoken permanent is put into a player's graveyard from play, that player loses 1 life.
+auto=@movedTo(land,enchantment,creature,artifact|opponentGraveyard):life:-1 opponent
+auto=@movedTo(land,enchantment,creature,artifact|myGraveyard):life:-1 controller
+id=19706
+name=Liability
+rarity=R
+type=Enchantment
+mana={1}{B}{B}
+[/card]
+[card]
 text=First strike
 id=19618
 name=Lightning Hounds

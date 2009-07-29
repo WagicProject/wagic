@@ -541,17 +541,7 @@ text=Lavalanche deals X damage to target player and each creature he or she cont
 rarity=R
 [/card]
 
-[card]
-id=179555
-name=Lich Lord of Unx
-mana={1}{U}{B}
-type=Creature
-subtype=Zombie Wizard
-power=2
-toughness=2
-text={U}{B}, {T}: Put a 1/1 blue and black Zombie Wizard creature token into play. {U}{U}{B}{B}: Target player loses X life and puts the top X cards of his or her library into his or her graveyard, where X is the number of Zombies you control.
-rarity=R
-[/card]
+
 [card]
 id=180617
 name=Lightning Reaver

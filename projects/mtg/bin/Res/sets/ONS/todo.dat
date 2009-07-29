@@ -2415,14 +2415,4 @@ type=Enchantment
 text={1}: The next time you would draw a card this turn, you gain 5 life instead.
 rarity=R
 [/card]
-[card]
-id=26689
-name=Wretched Anurid
-mana={1}{B}
-type=Creature
-subtype=Zombie Frog Beast
-power=3
-toughness=3
-text=Whenever another creature comes into play, you lose 1 life.
-rarity=C
-[/card]
+

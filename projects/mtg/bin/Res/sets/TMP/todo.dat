@@ -605,14 +605,7 @@ rarity=U
 type=Instant
 mana={2}{G}
 [/card]
-[card]
-text=Whenever an opponent plays a white spell, he or she loses 2 life.
-id=4823
-name=Havoc
-rarity=U
-type=Enchantment
-mana={1}{R}
-[/card]
+
 [card]
 text=You may choose not to untap Helm of Possession during your untap step.     {2}, {T}, Sacrifice a creature: Gain control of target creature as long as you control Helm of Possession and Helm of Possession remains tapped.
 id=4611

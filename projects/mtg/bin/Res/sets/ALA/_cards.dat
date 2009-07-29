@@ -557,6 +557,19 @@ subtype=Human Scout
 toughness=1
 [/card]
 [card]
+text={B}, {T}: Target player loses 1 life.     {G}, {T}: Put a 1/1 green Saproling creature token into play.
+auto={B}{T}:life:-1 target(player)
+auto={G}{T}:token(Saproling,Creature Saproling,1/1,green)
+id=175050
+name=Jund Battlemage
+rarity=U
+type=Creature
+mana={2}{R}
+power=2
+subtype=Human Shaman
+toughness=2
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it into play tapped. Then shuffle your library.
 auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(swamp,mountain,forest|mylibrary) && tap
@@ -767,6 +780,15 @@ type=Artifact
 mana={3}
 [/card]
 [card]
+text={T}: Target player loses 1 life.
+auto={T}:life:-1 target(player)
+id=174831
+name=Onyx Goblet
+rarity=C
+type=Artifact
+mana={2}{B}
+[/card]
+[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 abilities=exalted
 id=175252
@@ -822,6 +844,18 @@ name=Protomatter Powder
 rarity=U
 type=Artifact
 mana={2}{U}
+[/card]
+[card]
+text=Counter target spell. Its controller loses 3 life and you gain 3 life.
+target=*|stack
+auto=fizzle
+auto=life:-3 targetController
+auto=life:3 controller
+id=176450
+name=Punish Ignorance
+rarity=R
+type=Instant
+mana={W}{U}{U}{B}
 [/card]
 [card]
 text=Trample     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)

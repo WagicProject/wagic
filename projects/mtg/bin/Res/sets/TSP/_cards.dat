@@ -795,7 +795,18 @@ rarity=U
 type=Land
 [/card]
 [card]
-text=
+id=108798
+name=Urborg Syphon-Mage
+mana={2}{B}
+type=Creature
+subtype=Human Spellshaper
+power=2
+toughness=2
+text={2}{B}, {T}, Discard a card: Each other player loses 2 life. You gain life equal to the life lost this way.
+auto={2}{B}{T}{S(*|myhand)}:life:-2 opponent && life:2 controller
+rarity=C
+[/card]
+[card]
 id=125866
 name=Venser's Sliver
 rarity=C

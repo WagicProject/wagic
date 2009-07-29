@@ -1,4 +1,16 @@
 [card]
+id=190579
+name=Acolyte of Xathrid
+mana={B}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=1
+text={1}{B}, {T}: Target player loses 1 life.
+auto={1}{B}{T}:life:-1 target(player)
+rarity=C
+[/card]
+[card]
 id=189884
 name=Air Elemental
 mana={3}{U}{U}
@@ -755,6 +767,20 @@ auto=foreach(forest|myBattlefield) token(Wolf,Creature Wolf,2/2,green)
 rarity=U
 [/card]
 [card]
+id=190548
+name=Howling Banshee
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=Flying When Howling Banshee enters the battlefield, each player loses 3 life.
+abilities=flying
+auto=life:-2 controller
+auto=life:-2 opponent
+rarity=U
+[/card]
+[card]
 id=191315
 name=Howling Mine
 mana={2}
@@ -1424,6 +1450,17 @@ auto={1}{R}{S(goblin|myinplay)}:damage:2 target(creature,player)
 rarity=R
 [/card]
 [card]
+id=190537
+name=Sign in Blood
+mana={B}{B}
+type=Sorcery
+text=Target player draws two cards and loses 2 life.
+target=player
+auto=draw:2
+auto=life:-2
+rarity=C
+[/card]
+[card]
 id=193750
 name=Silvercoat Lion
 mana={1}{W}
@@ -1561,8 +1598,7 @@ name=Trumpet Blast
 mana={2}{R}
 type=Instant
 text=Attacking creatures get +2/+0 until end of turn.
-target=creature[attacking]
-auto=2/0
+auto=all(creature[attacking]) 2/0
 rarity=C
 [/card]
 [card]

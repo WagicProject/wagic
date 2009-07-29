@@ -271,14 +271,7 @@ rarity=U
 type=Instant
 mana={1}{W}
 [/card]
-[card]
-text=Target player gains 2 life for each creature in play.
-id=9702
-name=Congregate
-rarity=C
-type=Instant
-mana={3}{W}
-[/card]
+
 [card]
 text=At the beginning of your upkeep, sacrifice Contamination unless you sacrifice a creature.     If a land is tapped for mana, it produces {B} instead of any other type and amount.
 id=5768
@@ -2020,14 +2013,7 @@ rarity=R
 type=Enchantment
 mana={3}{W}
 [/card]
-[card]
-text=Whenever an opponent plays a white spell, that player loses 1 life and you gain 1 life.
-id=5696
-name=Yawgmoth's Edict
-rarity=U
-type=Enchantment
-mana={1}{B}
-[/card]
+
 [card]
 text=Until end of turn, you may play cards in your graveyard.     If a card would be put into your graveyard this turn, remove that card from the game instead.
 id=5629

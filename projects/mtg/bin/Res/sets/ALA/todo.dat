@@ -548,17 +548,7 @@ rarity=R
 type=Sorcery
 mana={6}{W}{W}
 [/card]
-[card]
-text={B}, {T}: Target player loses 1 life.     {G}, {T}: Put a 1/1 green Saproling creature token into play.
-id=175050
-name=Jund Battlemage
-rarity=U
-type=Creature
-mana={2}{R}
-power=2
-subtype=Human Shaman
-toughness=2
-[/card]
+
 [card]
 text=Choose one - Remove target player's graveyard from the game; or Jund Charm deals 2 damage to each creature; or put two +1/+1 counters on target creature.
 id=137900
@@ -785,14 +775,7 @@ rarity=C
 type=Enchantment
 mana={2}{W}
 [/card]
-[card]
-text={T}: Target player loses 1 life.
-id=174831
-name=Onyx Goblet
-rarity=C
-type=Artifact
-mana={2}{B}
-[/card]
+
 [card]
 text={1}{G}, Sacrifice a non-Ooze creature: Put an X/X green Ooze creature token into play, where X is the sacrificed creature's power. Play this ability only any time you could play a sorcery.
 id=174886
@@ -824,14 +807,7 @@ subtype=Demon
 toughness=7
 [/card]
 
-[card]
-text=Counter target spell. Its controller loses 3 life and you gain 3 life.
-id=176450
-name=Punish Ignorance
-rarity=R
-type=Instant
-mana={W}{U}{U}{B}
-[/card]
+
 [card]
 text={U}, {T}: Put a 0/1 blue Homunculus artifact creature token into play.     At the beginning of your upkeep, sacrifice a Homunculus.
 id=175012

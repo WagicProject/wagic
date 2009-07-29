@@ -809,6 +809,15 @@ type=Sorcery
 mana={2}{BR}{BR}
 [/card]
 [card]
+text=Whenever a land comes into play under an opponent's control, that player loses 2 life and you gain 2 life.
+auto=@movedTo(land|opponentBattlefield):life:-2 opponent && life:2 controller
+id=146766
+name=Polluted Bonds
+rarity=R
+type=Enchantment
+mana={3}{B}{B}
+[/card]
+[card]
 text=Puncture Bolt deals 1 damage to target creature. Put a -1/-1 counter on that creature.
 target=creature
 auto=damage:1

@@ -2054,17 +2054,7 @@ subtype=Aura
 text=Enchant creature Enchanted creature gets +2/+2 and can't block. When Undying Rage is put into a graveyard from play, return Undying Rage to its owner's hand.
 rarity=U
 [/card]
-[card]
-id=108798
-name=Urborg Syphon-Mage
-mana={2}{B}
-type=Creature
-subtype=Human Spellshaper
-power=2
-toughness=2
-text={2}{B}, {T}, Discard a card: Each other player loses 2 life. You gain life equal to the life lost this way.
-rarity=C
-[/card]
+
 [card]
 id=118900
 name=Vampiric Sliver

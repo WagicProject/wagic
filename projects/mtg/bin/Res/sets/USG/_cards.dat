@@ -282,6 +282,16 @@ mana={4}{U}{U}
 subtype=Aura
 [/card]
 [card]
+text=Target player gains 2 life for each creature in play.
+target=player
+auto=foreach(creature) life:2
+id=9702
+name=Congregate
+rarity=C
+type=Instant
+mana={3}{W}
+[/card]
+[card]
 text={4}, Sacrifice Copper Gnomes: You may put an artifact card from your hand into play.
 id=8815
 auto={4}{S}:moveTo(myinplay) target(artifact|myhand)
@@ -1435,6 +1445,15 @@ color=Artifact
 rarity=U
 mana={3}
 type=Artifact
+[/card]
+[card]
+text=Whenever an opponent plays a white spell, that player loses 1 life and you gain 1 life.
+auto=@movedTo(*[white]|opponentStack): life:-1 opponent && life:1 controller
+id=5696
+name=Yawgmoth's Edict
+rarity=U
+type=Enchantment
+mana={1}{B}
 [/card]
 [card]
 text=Flying, shroud

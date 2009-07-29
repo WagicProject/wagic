@@ -730,6 +730,15 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+text=Whenever an opponent plays a white spell, he or she loses 2 life.
+auto=@movedTo(*[white]|opponentStack): life:-2 opponent
+id=4823
+name=Havoc
+rarity=U
+type=Enchantment
+mana={1}{R}
+[/card]
+[card]
 text=All Sliver creatures have haste.
 id=4824
 auto=lord(sliver) haste

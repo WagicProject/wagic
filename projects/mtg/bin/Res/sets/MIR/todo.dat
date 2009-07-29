@@ -215,17 +215,7 @@ power=1
 subtype=Unicorn
 toughness=2
 [/card]
-[card]
-text=Islandwalk       At the beginning of your upkeep, you lose 2 life.
-id=3528
-name=Benthic Djinn
-rarity=R
-type=Creature
-mana={2}{U}{B}
-power=5
-subtype=Djinn
-toughness=3
-[/card]
+
 [card]
 text=Enchant creature     Whenever enchanted creature is dealt damage, Binding Agony deals that much damage to that creature's controller.
 id=3275

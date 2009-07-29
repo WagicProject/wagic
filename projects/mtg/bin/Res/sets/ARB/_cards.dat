@@ -158,6 +158,19 @@ auto=all(creature|myinplay) 1/1
 rarity=C
 [/card]
 [card]
+id=179555
+name=Lich Lord of Unx
+mana={1}{U}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=2
+text={U}{B}, {T}: Put a 1/1 blue and black Zombie Wizard creature token into play. {U}{U}{B}{B}: Target player loses X life and puts the top X cards of his or her library into his or her graveyard, where X is the number of Zombies you control.
+auto={U}{B}{T}:token(Zombie Wizard,Creature Zombie Wizard,1/1,blue black)
+auto={U}B}{T}:foreach(zombie|myBattlefield) life:-1 && deplete:1 target(player)
+rarity=R
+[/card]
+[card]
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
 id=177922
 name=Lord of Extinction 

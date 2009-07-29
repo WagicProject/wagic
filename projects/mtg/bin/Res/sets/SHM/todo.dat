@@ -1071,14 +1071,7 @@ rarity=R
 type=Sorcery
 mana={6}{B}
 [/card]
-[card]
-text=Whenever a land comes into play under an opponent's control, that player loses 2 life and you gain 2 life.
-id=146766
-name=Polluted Bonds
-rarity=R
-type=Enchantment
-mana={3}{B}{B}
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature has "{T}: This creature deals 1 damage to target creature or player."
 id=152159

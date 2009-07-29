@@ -9,17 +9,7 @@ toughness=2
 text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) When Acidic Slime enters the battlefield, destroy target artifact, enchantment, or land.
 rarity=U
 [/card]
-[card]
-id=190579
-name=Acolyte of Xathrid
-mana={B}
-type=Creature
-subtype=Human Cleric
-power=0
-toughness=1
-text={1}{B}, {T}: Target player loses 1 life.
-rarity=C
-[/card]
+
 [card]
 id=191082
 name=Act of Treason
@@ -336,17 +326,7 @@ rarity=R
 
 
 
-[card]
-id=190548
-name=Howling Banshee
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text=Flying When Howling Banshee enters the battlefield, each player loses 3 life.
-rarity=U
-[/card]
+
 
 
 [card]
@@ -696,14 +676,7 @@ rarity=R
 
 
 
-[card]
-id=190537
-name=Sign in Blood
-mana={B}{B}
-type=Sorcery
-text=Target player draws two cards and loses 2 life.
-rarity=C
-[/card]
+
 [card]
 id=191083
 name=Silence
@@ -730,6 +703,8 @@ mana={2}{B}
 type=Enchantment
 subtype=Aura
 text=Enchant creature At the beginning of the upkeep of enchanted creature's controller, that player loses 1 life.
+target=creature
+auto=@each ??? upkeep:life:-1 targetController
 rarity=C
 [/card]
 
