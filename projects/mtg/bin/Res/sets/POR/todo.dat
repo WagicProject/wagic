@@ -315,14 +315,6 @@ subtype=Bird
 toughness=1
 [/card]
 [card]
-text=Destroy target creature. Its owner gains 4 life.
-id=4389
-name=Path of Peace
-rarity=C
-type=Sorcery
-mana={3}{W}
-[/card]
-[card]
 text=Search your library for a sorcery card and reveal that card. Shuffle your library, then put the card on top of it.
 id=4271
 name=Personal Tutor

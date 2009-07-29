@@ -997,6 +997,17 @@ power=6
 toughness=3
 [/card]
 [card]
+text=Destroy target creature. Its owner gains 4 life.
+id=4389
+target=creature
+auto=destroy
+auto=life:4 targetController
+name=Path of Peace
+rarity=C
+type=Sorcery
+mana={3}{W}
+[/card]
+[card]
 text=Phantom Warrior is unblockable.
 id=4272
 name=Phantom Warrior

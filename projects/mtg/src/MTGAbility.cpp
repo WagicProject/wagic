@@ -1338,7 +1338,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
-  case 1285: //Dwarven Warriors{
+  case 1285: //Dwarven Warriors
     {
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
       tc->maxpower = 2;
@@ -1413,11 +1413,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1346: //Green Ward
     {
       game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_GREEN));
-      break;
-    }
-  case 1352: //Karma
-    {
-	  game->addObserver(NEW ADamageForTypeControlled(_id, card,"swamp"));
       break;
     }
   case 1359: //Red Ward
@@ -1568,13 +1563,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	  break;
     }
 
-//---addon Tempest---
-    case 4801: //Ancient Rune
-    {
-      game->addObserver(NEW ADamageForTypeControlled(_id, card,"artifact"));
-      break;
-    }
-
 // --- addon Mirage ---
 
 	  case 3410: //Seed of Innocence
@@ -1605,15 +1593,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
   
-  case 5684://Path of Peace
-    {
-	Player * p = card->target->controller();
-	p->game->putInGraveyard(card->target);
-    p->life+= 4;
-	  break;
-    }
-
-
 //-- addon 10E---
 
 	case 129710: //Angelic Chorus
@@ -1640,11 +1619,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 130373: //Lavaborn Muse
     {
       game->addObserver( NEW ALavaborn(_id ,card, Constants::MTG_PHASE_UPKEEP, -3,-3));
-      break;
-    }
-  case 129722 : //Seddborn Muse
-    {
-      game->addObserver( NEW ASeedbornMuse(_id ,card));
       break;
     }
   case 135246: //Dreamborn Muse

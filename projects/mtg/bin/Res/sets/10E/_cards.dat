@@ -2246,6 +2246,7 @@ toughness=6
 [card]
 text=Untap all permanents you control during each other player's untap step.
 id=129722
+auto=@each opponent untap:untap all(*|myinplay)
 name=Seedborn Muse
 rarity=R
 color=Green
