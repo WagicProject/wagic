@@ -170,18 +170,6 @@ type=Artifact
 mana={5}
 [/card]
 [card]
-text=When Civic Wayfinder comes into play, you may search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.
-id=130522
-name=Civic Wayfinder
-rarity=C
-color=Green
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Warrior Druid
-toughness=2
-[/card]
-[card]
 text=Each creature gets +1/+1 for each other creature in play that shares a creature type with it. (For example, if a Goblin Warrior, a Goblin Scout, and a Zombie Goblin are in play, each gets +2/+2.)
 id=129502
 name=Coat of Arms
@@ -249,6 +237,7 @@ mana={1}{B}
 text=When Denizen of the Deep comes into play, return each other creature you control to its owner's hand.
 id=135250
 name=Denizen of the Deep
+auto=moveto(ownerHand) all(creature[-this]|myinplay)
 rarity=R
 color=Blue
 type=Creature
@@ -257,7 +246,6 @@ power=11
 subtype=Serpent
 toughness=11
 [/card]
-
 [card]
 text=Counter target spell. Look at the top four cards of your library, then put them back in any order.
 id=134749
@@ -616,6 +604,8 @@ subtype=Aura
 text=Whenever a player taps a land for mana, Manabarbs deals 1 damage to that player.
 id=130367
 name=Manabarbs
+auto=foreach(land[tapped]|myinplay)damage:1 controller
+auto=foreach(land[tapped]|opponentinplay)damage:1 opponent
 rarity=R
 color=Red
 type=Enchantment
@@ -629,15 +619,6 @@ rarity=R
 color=Blue
 type=Enchantment
 mana={3}{U}
-[/card]
-[card]
-text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
-id=129640
-name=Megrim
-rarity=U
-color=Black
-type=Enchantment
-mana={2}{B}
 [/card]
 [card]
 text={T}: Draw a card, then discard a card.
@@ -793,16 +774,6 @@ power=4
 subtype=Angel
 toughness=4
 [/card]
-
-[card]
-text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
-id=129690
-name=Rampant Growth
-rarity=C
-color=Green
-type=Sorcery
-mana={1}{G}
-[/card]
 [card]
 text=When Ravenous Rats comes into play, target opponent discards a card.
 id=129692
@@ -845,18 +816,6 @@ rarity=U
 color=Blue
 type=Sorcery
 mana={2}{U}
-[/card]
-[card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard to play.
-id=106384
-name=Reya Dawnbringer
-rarity=R
-color=White
-type=Legendary Creature
-mana={6}{W}{W}{W}
-power=4
-subtype=Angel
-toughness=6
 [/card]
 [card]
 text=You may have Rhox assign its combat damage as though it weren't blocked.     {2}{G}: Regenerate Rhox. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -972,35 +931,12 @@ mana={1}{R}{R}
 [card]
 text=Draw three cards, then discard a card.
 id=136217
+auto=draw:3 && moveto(graveyard) target(*|myhand)
 name=Sift
 rarity=C
 color=Blue
 type=Sorcery
 mana={3}{U}
-[/card]
-[card]
-text={T}: You may put a land card from your hand into play. Play this ability only any time you could play a sorcery.
-id=135182
-name=Skyshroud Ranger
-rarity=C
-color=Green
-type=Creature
-mana={G}
-power=1
-subtype=Elf
-toughness=1
-[/card]
-[card]
-text=When Sleeper Agent comes into play, target opponent gains control of it.      At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
-id=129803
-name=Sleeper Agent
-rarity=R
-color=Black
-type=Creature
-mana={B}
-power=3
-subtype=Minion
-toughness=3
 [/card]
 [card]
 text=Spawning Pool comes into play tapped.     {T}: Add {B} to your mana pool.     {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -1059,6 +995,7 @@ toughness=3
 text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, return a green creature you control to its owner's hand.
 id=135264
 name=Stampeding Wildebeests
+auto=@my upkeep:moveto(myhand) target(creature[green]|myBattlefield)
 rarity=U
 color=Green
 type=Creature
@@ -1092,6 +1029,8 @@ mana={1}{W}{W}
 text=At the beginning of each player's upkeep, that player returns a creature he or she controls to its owner's hand.
 id=129509
 name=Sunken Hope
+auto=@each my upkeep:moveto(ownerHand) target(creature|myinplay)
+auto=@each opponent upkeep:moveto(ownerHand) target(creature|Opponentinplay)
 rarity=R
 color=Blue
 type=Enchantment
@@ -1128,17 +1067,6 @@ mana={2}{U}{U}
 power=1
 subtype=Bird
 toughness=3
-[/card]
-[card]
-text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn. (It can attack and {T} this turn.)
-id=129767
-alias=1194
-auto=haste
-name=Threaten
-rarity=U
-color=Red
-type=Sorcery
-mana={2}{R}
 [/card]
 [card]
 text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a card from it. That player discards that card. Play this ability only any time you could play a sorcery.
@@ -1210,16 +1138,6 @@ color=Blue
 type=Instant
 mana={U}{U}
 [/card]
-
-[card]
-text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
-id=129779
-name=Underworld Dreams
-rarity=R
-color=Black
-type=Enchantment
-mana={B}{B}{B}
-[/card]
 [card]
 text=Mana pools don't empty at the end of phases or turns. (This effect stops mana burn.)
 id=130494
@@ -1241,7 +1159,6 @@ power=3
 subtype=Viashino
 toughness=2
 [/card]
-
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  As Voice of All comes into play, choose a color.      Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
 id=136290
@@ -1277,7 +1194,10 @@ subtype=Equipment
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 id=130549
 name=Windborn Muse
+auto=lord(creature|opponentinplay) cantattack
+auto=lord(creature|opponentinplay) {2}:-cantattack
 rarity=R
+abilities=flying
 color=White
 type=Creature
 mana={3}{W}
