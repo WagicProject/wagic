@@ -828,6 +828,18 @@ text=Flanking (Whenever a creature without flanking blocks this creature, the bl
 rarity=U
 [/card]
 [card]
+id=109706
+name=Harmonic Sliver
+mana={1}{G}{W}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Slivers have "When this permanent comes into play, destroy target artifact or enchantment."
+auto=lord(sliver) destroy target(artifact,enchantment)
+rarity=U
+[/card]
+[card]
 id=109731
 name=Haunting Hymn
 mana={4}{B}{B}
