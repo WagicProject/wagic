@@ -1082,19 +1082,11 @@ rarity=U
 [card]
 id=191324
 alias=1167
+target=player
 name=Mind Shatter
 mana={X}{B}{B}
 type=Sorcery
 text=Target player discards X cards at random.
-rarity=R
-[/card]
-[card]
-id=191323
-alias=1192
-name=Mind Spring
-mana={X}{U}{U}
-type=Sorcery
-text=Draw X cards.
 rarity=R
 [/card]
 [card]

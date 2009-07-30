@@ -386,6 +386,15 @@ text={T}: Draw a card, then discard a card.
 rarity=U
 [/card]
 [card]
+id=191323
+alias=1192
+name=Mind Spring
+mana={X}{U}{U}
+type=Sorcery
+text=Draw X cards.
+rarity=R
+[/card]
+[card]
 id=190555
 name=Mind Rot
 mana={2}{B}
