@@ -63,6 +63,7 @@ composite_golem.txt
 control_magic.txt
 control_magic2.txt
 control_magic3.txt
+corrupt.txt
 counsel_of_the_soratami.txt
 counterspell.txt
 counterspell2.txt
@@ -104,6 +105,8 @@ hannas_custody.txt
 howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
 icatian_priest.txt
+imaginary_pet.txt
+immaculate_magistrate.txt
 jump.txt
 keldon_warlord.txt
 keldon_warlord2.txt
@@ -138,15 +141,20 @@ protomatter_powder.txt
 pygmy_troll.txt
 pyroclasm.txt
 rampant_growth.txt
+reclusive_wight.txt
+reclusive_wight2.txt
 recover.txt
 regal_force.txt
 resurrection.txt
+rhox_meditant.txt
+rhox_meditant2.txt
 righteous_cause.txt
 rootwalla.txt
 royal_assassin.txt
 sedge_sliver.txt
 seismic_assault.txt
 siege_gang_commander.txt
+shepherd_of_rot.txt
 shivan_hellkite.txt
 shock.txt
 slate_of_ancestry.txt
@@ -161,6 +169,7 @@ stasis.txt
 steelclad_serpent1.txt
 steelclad_serpent2.txt
 stillmoon_cavalier.txt
+stronghold_discipline.txt
 sword_to_plowshares.txt
 telekinetic_sliver.txt
 terror.txt

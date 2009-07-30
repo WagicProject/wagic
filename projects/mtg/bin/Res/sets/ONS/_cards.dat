@@ -818,7 +818,7 @@ subtype=Zombie Cleric
 power=1
 toughness=1
 text={T}: Each player loses 1 life for each Zombie in play.
-auto={T}:foreach(Zombie) life:-1 opponent && life:-1 controller
+auto={T}:foreach(Zombie) life:-1 opponent && foreach(Zombie) life:-1 controller
 rarity=C
 [/card]
 [card]
@@ -999,7 +999,7 @@ subtype=Elf
 power=1
 toughness=1
 text={T}: You gain 1 life for each Elf in play.
-auto=foreach(Elf)life:1
+auto={T}:foreach(Elf) life:1
 rarity=C
 [/card]
 [card]

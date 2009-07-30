@@ -1472,7 +1472,7 @@ class AAsLongAs:public ListMaintainerAbility{
    MTGAbility * ability;
    MTGAbility * a;
   int includeSelf;
- AAsLongAs(int _id, MTGCardInstance * _source, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id, _source),ability(a){
+ AAsLongAs(int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id, _source,_target),ability(a){
     tc = _tc;
     includeSelf = _includeSelf;
     tc->targetter  = NULL;
@@ -1495,18 +1495,31 @@ class AAsLongAs:public ListMaintainerAbility{
   }
 
 
- int added(MTGCardInstance * card){
+  int _added(Damageable * d){
     if (cards.size()== 1){
-        a = ability->clone();
+      a = ability->clone();
+      if (a->oneShot){
+        a->resolve();
+        SAFE_DELETE(a);
+      }else{
         a->addToGame();
-        return 1;
       }
-      return 0;
- }
+      return 1;
+    }
+    return 0;
+  }
+
+  int added(MTGCardInstance * card){
+   return  _added(card);
+  }
+
+  int added(Player * p){
+    return _added(p);
+  }
+
 
  int removed(MTGCardInstance * card){
-
-   if (cards.size()== 0){
+   if (cards.size()== 0 && a){
      game->removeObserver(a);
      a = NULL;
      return 1;
@@ -1606,7 +1619,7 @@ class AForeach:public ListMaintainerAbility{
    MTGAbility * ability;
   int includeSelf;
   map<Damageable *, MTGAbility *> abilities;
- AForeach(int _id, MTGCardInstance * card,MTGCardInstance * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card,_target), ability(a){
+ AForeach(int _id, MTGCardInstance * card,Damageable  * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card,_target), ability(a){
     tc = _tc;
     tc->targetter = NULL;
     includeSelf = _includeSelf;
@@ -1620,6 +1633,7 @@ class AForeach:public ListMaintainerAbility{
 
   int added(MTGCardInstance * card){
       MTGAbility * a = ability->clone();
+      a->target = target;
       if (a->oneShot){
         a->resolve();
         delete(a);

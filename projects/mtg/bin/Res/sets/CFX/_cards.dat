@@ -461,6 +461,18 @@ subtype=Rhino Monk Soldier
 toughness=3
 [/card]
 [card]
+text=When Rhox Meditant comes into play, if you control a green permanent, draw a card.
+auto=aslongas(*[green]|myinplay) draw:1
+id=159634
+name=Rhox Meditant
+rarity=C
+type=Creature
+mana={3}{W}
+power=2
+subtype=Rhino Monk
+toughness=4
+[/card]
+[card]
 text={R}{W}, {T}: Sacellum Archers deals 2 damage to target attacking or blocking creature.
 auto={R}{W}{T}:damage:2 target(creature[attacking;blocking])
 id=179488

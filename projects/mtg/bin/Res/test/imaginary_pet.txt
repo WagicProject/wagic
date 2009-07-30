@@ -1,0 +1,17 @@
+#Bug: Imaginary pet does not work
+[INIT]
+SECONDMAIN
+[PLAYER1]
+[PLAYER2]
+inplay:imaginary pet
+hand:forest
+[DO]
+eot
+next
+next
+[ASSERT]
+DRAW
+[PLAYER1]
+[PLAYER2]
+hand:forest,imaginary pet
+[END]

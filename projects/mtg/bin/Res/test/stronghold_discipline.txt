@@ -1,0 +1,21 @@
+#Bug: stronghold discipline does not do correct damae
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,dragon engine
+hand:stronghold discipline
+manapool:{2}{B}{B}
+[PLAYER2]
+inplay:raging goblin
+[DO]
+stronghold discipline
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,dragon engine
+graveyard:stronghold discipline
+life:18
+[PLAYER2]
+inplay:raging goblin
+life:19
+[END]

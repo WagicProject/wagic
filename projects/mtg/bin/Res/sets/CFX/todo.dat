@@ -606,18 +606,6 @@ rarity=U
 type=Land
 [/card]
 [card]
-text=When Rhox Meditant comes into play, if you control a green permanent, draw a card.
-auto=aslongas(*[green]|myinplay) draw:1
-id=159634
-name=Rhox Meditant
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Rhino Monk
-toughness=4
-[/card]
-[card]
 text=When Rotting Rats comes into play, each player discards a card.     Unearth {1}{B} ({1}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=150833
 name=Rotting Rats

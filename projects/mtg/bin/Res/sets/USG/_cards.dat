@@ -704,6 +704,18 @@ power=1
 toughness=3
 [/card]
 [card]
+text=At the beginning of your upkeep, if you have a card in hand, return Imaginary Pet to its owner's hand.
+auto=@each my upkeep:aslongas(*|myhand) moveTo(myHand)
+id=5772
+name=Imaginary Pet
+rarity=R
+type=Creature
+mana={1}{U}
+power=4
+subtype=Illusion
+toughness=4
+[/card]
+[card]
 text={T}: Add {U} to your mana pool.
 auto={T}:add {U}
 id=8326
@@ -997,6 +1009,18 @@ name=Rain of Filth
 rarity=U
 type=Instant
 mana={B}
+[/card]
+[card]
+text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
+auto=@each my upkeep:aslongas(*[-land]|mybattlefield) other bury
+id=8803
+name=Reclusive Wight
+rarity=U
+type=Creature
+mana={3}{B}
+power=4
+subtype=Zombie Minion
+toughness=4
 [/card]
 [card]
 text=Enchant creature      Enchanted creature has first strike.

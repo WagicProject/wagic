@@ -1,0 +1,27 @@
+#Bug:immaculate magistrate puts counters on itself instead of target
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:immaculate magistrate,llanowar elves,grizzly bears
+[PLAYER2]
+[DO]
+immaculate magistrate
+grizzly bears
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damge
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:immaculate magistrate,llanowar elves,grizzly bears
+[PLAYER2]
+life:16
+[END]

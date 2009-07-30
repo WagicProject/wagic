@@ -822,18 +822,7 @@ rarity=R
 type=Sorcery
 mana={2}{B}{B}
 [/card]
-[card]
-text=At the beginning of your upkeep, if you have a card in hand, return Imaginary Pet to its owner's hand.
-auto=@each my upkeep:aslongas(*|myhand) moveTo(myHand)
-id=5772
-name=Imaginary Pet
-rarity=R
-type=Creature
-mana={1}{U}
-power=4
-subtype=Illusion
-toughness=4
-[/card]
+
 [card]
 text={T}: Destroy target creature with power 4 or greater.
 id=5678
@@ -1266,18 +1255,7 @@ rarity=R
 type=Enchantment
 mana={3}{U}{U}
 [/card]
-[card]
-text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
-auto=@each my upkeep:aslongas(*[-land]|mybattlefield) other bury
-id=8803
-name=Reclusive Wight
-rarity=U
-type=Creature
-mana={3}{B}
-power=4
-subtype=Zombie Minion
-toughness=4
-[/card]
+
 [card]
 text=Prevent all damage that would be dealt this turn to up to two target creatures.
 id=9716

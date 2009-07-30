@@ -1,0 +1,20 @@
+#Bug: corrupt does not damage player
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:8331,8330,8332
+hand:Corrupt
+manapool:{5}{B}
+[PLAYER2]
+[DO]
+corrupt
+p2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:8331,8330,8332
+graveyard:Corrupt
+life:23
+[PLAYER2]
+life:17
+[END]

@@ -1,0 +1,18 @@
+#Bug:shepherd of rot only damages one player
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:shepherd of rot
+[PLAYER2]
+inplay:Bog raiders
+[DO]
+shepherd of rot
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:shepherd of rot
+life:18
+[PLAYER2]
+inplay:Bog raiders
+life:18
+[END]

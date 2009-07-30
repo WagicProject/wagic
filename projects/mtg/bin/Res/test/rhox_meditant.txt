@@ -1,0 +1,18 @@
+#Bug:Rhox meditant does not work
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears
+hand:rhox meditant
+manapool:{3}{W}
+library:forest
+[PLAYER2]
+[DO]
+rhox meditant
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,rhox meditant
+hand:forest
+[PLAYER2]
+[END]

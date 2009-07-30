@@ -1,0 +1,17 @@
+#Bug:Reclusive Wight does not work
+[INIT]
+SECONDMAIN
+[PLAYER1]
+[PLAYER2]
+inplay:reclusive wight,forest,grizzly bears
+[DO]
+eot
+next
+next
+[ASSERT]
+DRAW
+[PLAYER1]
+[PLAYER2]
+inplay:forest,grizzly bears
+graveyard:reclusive wight
+[END]
