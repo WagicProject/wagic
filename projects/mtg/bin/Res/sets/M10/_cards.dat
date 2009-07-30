@@ -1,4 +1,15 @@
 [card]
+id=191082
+name=Act of Treason
+mana={2}{R}
+alias=129767
+target=creature
+auto=haste
+type=Sorcery
+text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. (It can attack and {T} this turn.)
+rarity=U
+[/card]
+[card]
 id=190579
 name=Acolyte of Xathrid
 mana={B}
@@ -186,6 +197,18 @@ auto=foreach(land|mybattlefield) life:1
 rarity=C
 [/card]
 [card]
+id=191096
+name=Burning Inquiry
+mana={R}
+type=Sorcery
+text=Each player draws three cards, then discards three cards at random.
+auto=draw:3 opponent
+auto=draw:3 controller
+auto=discard:3 opponent
+auto=discard:3 controller
+rarity=C
+[/card]
+[card]
 id=191061
 name=Burst of Speed
 mana={R}
@@ -284,6 +307,16 @@ power=0
 toughness=0
 text=You may have Clone enter the battlefield as a copy of any creature on the battlefield.
 auto=may copy target(creature)
+rarity=U
+[/card]
+[card]
+id=189893
+alias=1156
+target=creature,player
+name=Consume Spirit
+mana={X}{1}{B}
+type=Sorcery
+text=Spend only black mana on X.  Consume Spirit deals X damage to target creature or player and you gain X life.
 rarity=U
 [/card]
 [card]
@@ -849,6 +882,20 @@ text=U
 rarity=C
 [/card]
 [card]
+id=191073
+name=Jackal Familiar
+mana={R}
+abilities=cantattack,cantblock
+auto=aslongas(creature[attacking]|myBattlefield) -cantattack
+auto=aslongas(creature[blocking]|myBattlefield) -cantblock
+type=Creature
+subtype=Hound
+power=2
+toughness=2
+text=Jackal Familiar can't attack or block alone.
+rarity=C
+[/card]
+[card]
 id=193743
 name=Jump
 mana={U}
@@ -978,6 +1025,15 @@ auto={B}:1/1
 rarity=C
 [/card]
 [card]
+id=189904
+name=Megrim
+mana={2}{B}
+type=Enchantment
+auto=@movedTo(*|opponentgraveyard) from(opponenthand):damage:2 opponent
+text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
+rarity=U
+[/card]
+[card]
 id=191378
 name=Mesa Enchantress
 mana={1}{W}{W}
@@ -1022,6 +1078,24 @@ text=Enchant creature You control enchanted creature.
 target=creature
 alias=1194
 rarity=U
+[/card]
+[card]
+id=191324
+alias=1167
+name=Mind Shatter
+mana={X}{B}{B}
+type=Sorcery
+text=Target player discards X cards at random.
+rarity=R
+[/card]
+[card]
+id=191323
+alias=1192
+name=Mind Spring
+mana={X}{U}{U}
+type=Sorcery
+text=Draw X cards.
+rarity=R
 [/card]
 [card]
 id=189921
@@ -1574,6 +1648,17 @@ auto=destroy all(enchantment)
 rarity=U
 [/card]
 [card]
+id=193744
+name=Tendrils of Corruption
+mana={3}{B}
+target=creature
+auto=foreach(swamp|myBattlefield) damage:1
+auto=foreach(swamp|myBattlefield) life:1 controller
+type=Instant
+text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
+rarity=C
+[/card]
+[card]
 id=190560
 name=Terramorphic Expanse
 mana=
@@ -1591,6 +1676,16 @@ text=Target player puts the top five cards of his or her library into his or her
 target=player
 auto=deplete:5
 rarity=C
+[/card]
+[card]
+id=190177
+target=player
+alias=129774
+name=Traumatize
+mana={3}{U}{U}
+type=Sorcery
+text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
+rarity=R
 [/card]
 [card]
 id=191077

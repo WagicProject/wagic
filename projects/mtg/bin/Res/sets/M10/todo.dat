@@ -9,7 +9,6 @@ toughness=2
 text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) When Acidic Slime enters the battlefield, destroy target artifact, enchantment, or land.
 rarity=U
 [/card]
-
 [card]
 id=191082
 name=Act of Treason
@@ -18,7 +17,6 @@ type=Sorcery
 text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. (It can attack and {T} this turn.)
 rarity=U
 [/card]
-
 [card]
 id=191239
 name=Ajani Goldmane
@@ -28,12 +26,6 @@ subtype=Ajani
 text=+1: You gain 2 life. -1: Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn. -6: Put a white Avatar creature token onto the battlefield. It has "This creature's power and toughness are each equal to your life total."
 rarity=M
 [/card]
-
-
-
-
-
-
 [card]
 id=189907
 name=Awakener Druid
@@ -45,7 +37,6 @@ toughness=1
 text=When Awakener Druid enters the battlefield, target Forest becomes a 4/5 green Treefolk creature for as long as Awakener Druid is on the battlefield. It's still a land.
 rarity=U
 [/card]
-
 [card]
 id=191065
 name=Baneslayer Angel
@@ -57,11 +48,6 @@ toughness=5
 text=Flying, first strike, lifelink, protection from Demons and from Dragons
 rarity=M
 [/card]
-
-
-
-
-
 [card]
 id=191340
 name=Bogardan Hellkite
@@ -73,8 +59,6 @@ toughness=5
 text=Flash (You may cast this spell any time you could cast an instant.) Flying When Bogardan Hellkite enters the battlefield, it deals 5 damage divided as you choose among any number of target creatures and/or players.
 rarity=M
 [/card]
-
-
 [card]
 id=189915
 name=Bramble Creeper
@@ -87,17 +71,6 @@ text=Whenever Bramble Creeper attacks, it gets +5/+0 until end of turn.
 rarity=C
 [/card]
 [card]
-id=191096
-name=Burning Inquiry
-mana={R}
-type=Sorcery
-text=Each player draws three cards, then discards three cards at random.
-rarity=C
-[/card]
-
-
-
-[card]
 id=189914
 name=Capricious Efreet
 mana={4}{R}{R}
@@ -108,10 +81,6 @@ toughness=4
 text=At the beginning of your upkeep, choose target nonland permanent you control and up to two target nonland permanents you don't control. Destroy one of them at random.
 rarity=R
 [/card]
-
-
-
-
 [card]
 id=191242
 name=Chandra Nalaar
@@ -121,8 +90,6 @@ subtype=Chandra
 text=+1: Chandra Nalaar deals 1 damage to target player. -X: Chandra Nalaar deals X damage to target creature. -8: Chandra Nalaar deals 10 damage to target player and each creature he or she controls.
 rarity=M
 [/card]
-
-
 [card]
 id=191314
 name=Coat of Arms
@@ -130,14 +97,6 @@ mana={5}
 type=Artifact
 text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
 rarity=R
-[/card]
-[card]
-id=189893
-name=Consume Spirit
-mana={X}{1}{B}
-type=Sorcery
-text=Spend only black mana on X.  Consume Spirit deals X damage to target creature or player and you gain X life.
-rarity=U
 [/card]
 [card]
 id=190161
@@ -148,19 +107,17 @@ subtype=Aura
 text=Enchant land As Convincing Mirage enters the battlefield, choose a basic land type. Enchanted land is the chosen type.
 rarity=C
 [/card]
-
-
-
 [card]
 id=191312
 name=Darksteel Colossus
-mana={1}{1}
+mana={11}
 type=Artifact Creature
 subtype=Golem
 power=11
 toughness=11
 text=Trample Darksteel Colossus is indestructible. If Darksteel Colossus would be put into a graveyard from anywhere, reveal Darksteel Colossus and shuffle it into its owner's library instead.
 rarity=M
+abilities=indestructible
 [/card]
 [card]
 id=189924
@@ -173,13 +130,6 @@ toughness=2
 text=Reach (This creature can block creatures with flying.) Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)
 rarity=C
 [/card]
-
-
-
-
-
-
-
 [card]
 id=190198
 name=Djinn of Wishes
@@ -191,13 +141,10 @@ toughness=4
 text=Flying Djinn of Wishes enters the battlefield with three wish counters on it. {2}{U}{U}, Remove a wish counter from Djinn of Wishes: Reveal the top card of your library. You may play that card without paying its mana cost. If you don't, exile it.
 rarity=R
 [/card]
-
-
-
 [card]
 id=191091
 name=Dragonskull Summit
-mana=
+auto=aslongas(-mountain,-swamp|myBattelfield) tap
 type=Land
 text=Dragonskull Summit enters the battlefield tapped unless you control a Swamp or a Mountain. {T}: Add {B} or {R} to your mana pool.
 rarity=R
@@ -221,7 +168,6 @@ type=Land
 text=Drowned Catacomb enters the battlefield tapped unless you control an Island or a Swamp. {T}: Add {U} or {B} to your mana pool.
 rarity=R
 [/card]
-
 [card]
 id=190580
 name=Duress
@@ -230,8 +176,6 @@ type=Sorcery
 text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
 rarity=C
 [/card]
-
-
 [card]
 id=189919
 name=Fog
@@ -240,8 +184,6 @@ type=Instant
 text=Prevent all combat damage that would be dealt this turn.
 rarity=C
 [/card]
-
-
 [card]
 id=191243
 name=Garruk Wildspeaker
@@ -251,8 +193,6 @@ subtype=Garruk
 text=+1: Untap two target lands. -1: Put a 3/3 green Beast creature token onto the battlefield. -4: Creatures you control get +3/+3 and gain trample until end of turn.
 rarity=M
 [/card]
-
-
 [card]
 id=190562
 name=Glacial Fortress
@@ -261,10 +201,6 @@ type=Land
 text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. {T}: Add {W} or {U} to your mana pool.
 rarity=R
 [/card]
-
-
-
-
 [card]
 id=191597
 name=Gorgon Flail
@@ -274,7 +210,6 @@ subtype=Equipment
 text=Equipped creature gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 rarity=U
 [/card]
-
 [card]
 id=193759
 name=Great Sable Stag
@@ -286,7 +221,6 @@ toughness=3
 text=Great Sable Stag can't be countered. Protection from blue and from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything blue or black.)
 rarity=R
 [/card]
-
 [card]
 id=193766
 name=Guardian Seraph
@@ -322,13 +256,6 @@ type=Enchantment
 text=Whenever a player casts an instant or sorcery spell, each other player copies that spell. Each of those players may choose new targets for his or her copy.
 rarity=R
 [/card]
-
-
-
-
-
-
-
 [card]
 id=189920
 name=Ice Cage
@@ -380,24 +307,6 @@ text=+2: Each player draws a card. -1: Target player draws a card. -10: Target p
 rarity=M
 [/card]
 [card]
-id=191073
-name=Jackal Familiar
-mana={R}
-type=Creature
-subtype=Hound
-power=2
-toughness=2
-text=Jackal Familiar can't attack or block alone.
-rarity=C
-[/card]
-
-
-
-
-
-
-
-[card]
 id=193763
 name=Lightwielder Paladin
 mana={3}{W}{W}
@@ -417,7 +326,6 @@ subtype=Liliana
 text=+1: Target player discards a card. -2: Search your library for a card, then shuffle your library and put that card on top of it. -8: Put all creature cards in all graveyards onto the battlefield under your control.
 rarity=M
 [/card]
-
 
 [card]
 id=191388
@@ -467,14 +375,6 @@ text=At the beginning of your upkeep, put a 2/2 green Wolf creature token onto t
 rarity=M
 [/card]
 [card]
-id=189904
-name=Megrim
-mana={2}{B}
-type=Enchantment
-text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
-rarity=U
-[/card]
-[card]
 id=190174
 name=Merfolk Looter
 mana={1}{U}
@@ -485,10 +385,6 @@ toughness=1
 text={T}: Draw a card, then discard a card.
 rarity=U
 [/card]
-
-
-
-
 [card]
 id=190555
 name=Mind Rot
@@ -500,22 +396,6 @@ auto=discard:2
 rarity=C
 [/card]
 [card]
-id=191324
-name=Mind Shatter
-mana={X}{B}{B}
-type=Sorcery
-text=Target player discards X cards at random.
-rarity=R
-[/card]
-[card]
-id=191323
-name=Mind Spring
-mana={X}{U}{U}
-type=Sorcery
-text=Draw X cards.
-rarity=R
-[/card]
-[card]
 id=193878
 name=Mirror of Fate
 mana={5}
@@ -523,18 +403,6 @@ type=Artifact
 text={T}, Sacrifice Mirror of Fate: Choose up to seven face-up exiled cards you own. Exile all the cards from your library, then put the chosen cards on top of your library.
 rarity=R
 [/card]
-
-
-
-
-
-
-
-
-
-
-
-
 [card]
 id=190534
 name=Palace Guard
@@ -554,7 +422,6 @@ type=Sorcery
 text=Up to three target creatures can't block this turn.
 rarity=C
 [/card]
-
 [card]
 id=191592
 name=Pithing Needle
@@ -563,8 +430,6 @@ type=Artifact
 text=As Pithing Needle enters the battlefield, name a card. Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
 rarity=R
 [/card]
-
-
 [card]
 id=191313
 name=Platinum Angel
@@ -603,7 +468,6 @@ toughness=2
 text=All creatures able to block Prized Unicorn do so.
 rarity=U
 [/card]
-
 [card]
 id=193753
 name=Protean Hydra
@@ -615,14 +479,6 @@ toughness=0
 text=Protean Hydra enters the battlefield with X +1/+1 counters on it. If damage would be dealt to Protean Hydra, prevent that damage and remove that many +1/+1 counters from it. Whenever a +1/+1 counter is removed from Protean Hydra, put two +1/+1 counters on it at the beginning of the next end step.
 rarity=M
 [/card]
-
-
-
-
-
-
-
-
 [card]
 id=190192
 name=Rise from the Grave
@@ -631,7 +487,6 @@ type=Sorcery
 text=Put target creature card in a graveyard onto the battlefield under your control. That creature is a black Zombie in addition to its other colors and types.
 rarity=U
 [/card]
-
 [card]
 id=191057
 name=Rootbound Crag
@@ -640,8 +495,6 @@ type=Land
 text=Rootbound Crag enters the battlefield tapped unless you control a Mountain or a Forest. {T}: Add {R} or {G} to your mana pool.
 rarity=R
 [/card]
-
-
 [card]
 id=190176
 name=Safe Passage
@@ -669,14 +522,6 @@ type=Enchantment
 text=Whenever you gain life, target opponent loses that much life.
 rarity=R
 [/card]
-
-
-
-
-
-
-
-
 [card]
 id=191083
 name=Silence
@@ -685,7 +530,6 @@ type=Instant
 text=Your opponents can't cast spells this turn. (Spells cast before this resolves are unaffected.)
 rarity=R
 [/card]
-
 [card]
 id=190186
 name=Sleep
@@ -694,8 +538,6 @@ type=Sorcery
 text=Tap all creatures target player controls. Those creatures don't untap during that player's next untap step.
 rarity=U
 [/card]
-
-
 [card]
 id=190557
 name=Soul Bleed
@@ -707,7 +549,6 @@ target=creature
 auto=@each ??? upkeep:life:-1 targetController
 rarity=C
 [/card]
-
 [card]
 id=191053
 name=Sparkmage Apprentice
@@ -738,7 +579,6 @@ toughness=5
 text=Flying Whenever Sphinx Ambassador deals combat damage to a player, search that player's library for a card, then that player names a card. If you searched for a creature card that isn't the named card, you may put it onto the battlefield under your control. Then that player shuffles his or her library.
 rarity=M
 [/card]
-
 [card]
 id=191094
 name=Stone Giant
@@ -750,7 +590,6 @@ toughness=4
 text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
 rarity=U
 [/card]
-
 [card]
 id=191100
 name=Sunpetal Grove
@@ -759,7 +598,6 @@ type=Land
 text=Sunpetal Grove enters the battlefield tapped unless you control a Forest or a Plains. {T}: Add {G} or {W} to your mana pool.
 rarity=R
 [/card]
-
 [card]
 id=189910
 name=Telepathy
@@ -768,16 +606,6 @@ type=Enchantment
 text=Your opponents play with their hands revealed.
 rarity=U
 [/card]
-
-[card]
-id=193744
-name=Tendrils of Corruption
-mana={3}{B}
-type=Instant
-text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
-rarity=C
-[/card]
-
 [card]
 id=191379
 name=Time Warp
@@ -786,16 +614,6 @@ type=Sorcery
 text=Target player takes an extra turn after this one.
 rarity=M
 [/card]
-
-[card]
-id=190177
-name=Traumatize
-mana={3}{U}{U}
-type=Sorcery
-text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
-rarity=R
-[/card]
-
 [card]
 id=191322
 name=Twincast
@@ -814,8 +632,6 @@ text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him 
 rarity=U
 [/card]
 
-
-
 [card]
 id=191384
 name=Vampire Nocturnus
@@ -827,12 +643,6 @@ toughness=3
 text=Play with the top card of your library revealed. As long as the top card of your library is black, Vampire Nocturnus and other Vampire creatures you control get +2/+1 and have flying.
 rarity=M
 [/card]
-
-
-
-
-
-
 [card]
 id=190160
 name=Wall of Frost
@@ -853,8 +663,6 @@ type=Sorcery
 text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way onto the battlefield, then does the same for enchantment cards, then puts all cards revealed this way that weren't put onto the battlefield on the bottom of his or her library.
 rarity=R
 [/card]
-
-
 [card]
 id=191078
 name=Whispersilk Cloak
@@ -864,8 +672,6 @@ subtype=Equipment
 text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 rarity=U
 [/card]
-
-
 [card]
 id=191596
 name=Windstorm
@@ -874,7 +680,6 @@ type=Instant
 text=Windstorm deals X damage to each creature with flying.
 rarity=U
 [/card]
-
 [card]
 id=189885
 name=Xathrid Demon
@@ -894,5 +699,3 @@ type=Sorcery
 text=Each opponent sacrifices a land.
 rarity=C
 [/card]
-
-
