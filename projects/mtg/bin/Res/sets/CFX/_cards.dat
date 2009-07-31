@@ -211,6 +211,7 @@ text=Reach (This can block creatures with flying.)  As long as you control a red
 auto=aslongas(*[red]|myinplay) 1/0
 auto=aslongas(*[red]|myinplay) first strike
 id=184990
+abilities=reach
 name=Ember Weaver
 rarity=C
 type=Creature

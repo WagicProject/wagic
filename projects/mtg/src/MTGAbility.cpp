@@ -262,7 +262,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
       if (i == 3) oneShot = 1;
       if (a->oneShot) oneShot = 1;
-      Damageable * _target = spell->getNextDamageableTarget();
+      Damageable * _target = NULL;
+	  if (spell) _target = spell->getNextDamageableTarget();
       if (!_target) _target = target;
       switch(i){
         case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
