@@ -11,6 +11,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text={3}{W}{W}: You draw a card and target opponent gains 3 life.
+id=19661
+auto={3}{W}{W}:draw:1 controller && life:3 opponent
+name=Armistice
+rarity=R
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
 text={1}{R}, Sacrifice a Goblin: Arms Dealer deals 4 damage to target creature.
 id=19861
 name=Arms Dealer
@@ -138,6 +147,15 @@ color=Green
 rarity=U
 mana={1}{G}{G}
 type=Enchantment
+[/card]
+[card]
+text=Whenever a creature attacks you, it gets -1/-0 until end of turn.
+id=19745
+name=Briar Patch
+auto=lord(creature[attacking]|opponentinplay) -1/0
+rarity=U
+type=Enchantment
+mana={1}{G}{G}
 [/card]
 [card]
 text=Search target opponent's library for a creature card and put that card into play under your control. Then that player shuffles his or her library.
@@ -715,6 +733,7 @@ power=3
 toughness=3
 abilities=trample
 [/card]
+
 [card]
 text={R}{T}, Discard a card: Kris Mage deals 1 damage to target creature or player.
 id=19836
@@ -736,6 +755,18 @@ abilities=cantblock,flying
 rarity=C
 type=Creature
 mana={1}{R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
+text=At the beginning of your upkeep, you may have Kyren Sniper deal 1 damage to target player.
+id=19606
+auto=@each my upkeep:may damage:1 target(player)
+name=Kyren Sniper
+rarity=C
+type=Creature
+mana={2}{R}
 power=1
 subtype=Goblin
 toughness=1
@@ -799,6 +830,16 @@ type=Enchantment
 mana={2}{R}
 [/card]
 [card]
+text=Attacking creatures get +X/+0 until end of turn, where X is the number of nonbasic lands defending player controls.
+id=19850
+auto=lord(creature[attacking]|myinplay) foreach(land[-basic]|opponentinplay) 1/0
+auto=lord(creature[attacking]|opponentinplay) foreach(land[-basic]|myinplay) 1/0
+name=Mercadia's Downfall
+rarity=U
+type=Instant
+mana={2}{R}
+[/card]
+[card]
 text=Flying
 id=19581
 name=Misshapen Fiend
@@ -810,6 +851,15 @@ subtype=Horror Mercenary
 power=1
 toughness=1
 abilities=flying
+[/card]
+[card]
+text=Whenever a creature is put into a graveyard from play, you gain 1 life.
+id=136514
+auto=@movedTo(creature|graveyard) from(inplay):life:1 controller
+name=Moonlit Wake
+rarity=U
+type=Enchantment
+mana={2}{W}
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -1052,6 +1102,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Destroy target nonblack creature. It can't be regenerated. You gain life equal to its toughness.
+id=19591
+target=creature[-black]
+auto=bury
+alias=3194
+name=Sever Soul
+rarity=C
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
 text=Sacrifice Shock Troops: Shock Troops deals 2 damage to target creature or player.
 id=19609
 name=Shock Troops
@@ -1098,6 +1159,15 @@ subtype=Dryad Spellshaper
 toughness=1
 [/card]
 [card]
+text=Sizzle deals 3 damage to each opponent.
+id=19611
+name=Sizzle
+auto=damage:3 opponent
+rarity=C
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
 text={T}: Add {B} to your mana pool.     Sacrifice Skull of Ramos: Add {B} to your mana pool.
 id=19764
 name=Skull of Ramos
@@ -1116,6 +1186,16 @@ name=Snake Pit
 rarity=U
 type=Enchantment
 mana={3}{G}
+[/card]
+[card]
+text=Target player gains 5 life.
+id=19550
+target=player
+auto=life:5
+name=Soothing Balm
+rarity=C
+type=Instant
+mana={1}{W}
 [/card]
 [card]
 text=Target player discards a card at random.
@@ -1426,4 +1506,25 @@ type=Creature
 subtype=Cat
 power=3
 toughness=3
+[/card]
+[card]
+text=Destroy target Wall. It can't be regenerated. Word of Blasting deals damage equal to that Wall's converted mana cost to the Wall's controller.
+id=19852
+target=wall
+auto=bury
+alias=2660
+name=Word of Blasting
+rarity=U
+type=Instant
+mana={1}{R}
+[/card]
+[card]
+text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard.
+id=19747
+auto=@each my upkeep:deplete:1 controller
+auto=@each opponent upkeep:deplete:1 opponent
+name=Worry Beads
+rarity=R
+type=Artifact
+mana={3}
 [/card]

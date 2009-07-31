@@ -1283,7 +1283,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1240: //Crumble
     {
-      card->target->controller()->game->putInGraveyard(card->target);
       card->target->controller()->life+= card->target->getManaCost()->getConvertedCost();
       break;
     }
@@ -1517,7 +1516,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   case 2660: //Word of Blasting
     {
-      card->target->controller()->game->putInGraveyard(card->target);
       card->target->controller()->life-= card->target->getManaCost()->getConvertedCost();
       break;
     }
@@ -1558,8 +1556,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	
     case 3194: // Exile
     {
-	Player * p = card->target->controller();
-    p->game->putInZone(card->target,p->game->inPlay,card->owner->game->removedFromGame);
 	game->currentlyActing()->life+=  card->target->toughness;
 	  break;
     }

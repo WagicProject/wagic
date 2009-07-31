@@ -21,6 +21,8 @@ subtype=Aura
 [card]
 text=As an additional cost to play Altar of Bone, sacrifice a creature.       Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
 id=2717
+target=creature|mylibrary
+auto=moveto(myhand) && destroy target(creature)
 name=Altar of Bone
 rarity=R
 type=Sorcery

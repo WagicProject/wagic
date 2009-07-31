@@ -6,9 +6,6 @@ rarity=R
 type=Artifact
 mana={7}
 [/card]
-
-
-
 [card]
 text={R}, Remove the top ten cards of your library from the game: Arc-Slogger deals 2 damage to target creature or player.
 id=48436
@@ -307,18 +304,6 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Whenever an artifact is put into a graveyard from play, you may have target opponent lose 1 life.
-id=49090
-name=Disciple of the Vault
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Human Cleric
-toughness=1
-[/card]
-
-[card]
 text=Choose one - Tap target permanent; or untap target permanent.     Entwine {1} (Choose both if you pay the entwine cost.)
 id=48159
 name=Dream's Grip
@@ -461,6 +446,12 @@ mana={6}
 text=At end of turn, if you control no artifacts, sacrifice Glimmervoid.     {T}: Add one mana of any color to your mana pool.
 id=48132
 name=Glimmervoid
+auto=@each endofturn:aslongas(-artifact|myinplay)destroy
+auto={T}: add {G}
+auto={T}: add {B}
+auto={T}: add {U}
+auto={T}: add {W}
+auto={T}: add {R}
 rarity=R
 type=Land
 [/card]
@@ -486,6 +477,8 @@ mana={4}
 [card]
 text=Flying     Goblin Dirigible doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {4}. If you do, untap Goblin Dirigible.
 id=48077
+abilities=doesnotuntap,flying
+auto={4}:untap
 name=Goblin Dirigible
 rarity=U
 type=Artifact Creature
@@ -499,6 +492,8 @@ text=Goblin War Wagon doesn't untap during your untap step.     At the beginning
 id=46044
 name=Goblin War Wagon
 rarity=C
+abilities=doesnotuntap
+auto={2}:untap
 type=Artifact Creature
 mana={4}
 power=3
@@ -544,6 +539,7 @@ mana={2}{B}
 [/card]
 [card]
 text=Whenever Groffskithur becomes blocked, you may return target card named Groffskithur from your graveyard to your hand.
+auto=lord(Groffskithur[blocking]|myinplay):may moveto(myhand) target(Groffskithur|mygraveyard)
 id=48600
 name=Groffskithur
 rarity=C
@@ -758,6 +754,7 @@ mana={2}
 text=Whenever an opponent draws a card, you may pay {1}. If you do, draw a card.
 id=48919
 name=Mind's Eye
+auto=@movedTo(*|opponenthand) from(opponentlibrary):may {1}:draw:1 controller
 rarity=R
 type=Artifact
 mana={5}
@@ -773,6 +770,8 @@ mana={6}
 [card]
 text=At the beginning of your upkeep, draw a card if you had no cards in hand at the beginning of this turn. If you had a card in hand, Mindstorm Crown deals 1 damage to you.
 id=46715
+auto=@each my upkeep:aslongas(*|myhand):damage:1 controller
+auto=@each my upleep:aslongas(-*|myhand):draw:1 controller
 name=Mindstorm Crown
 rarity=U
 type=Artifact
@@ -803,13 +802,13 @@ toughness=6
 [card]
 text=Destroy target land. If that land was nonbasic, Molten Rain deals 2 damage to the land's controller.
 id=46000
+target=land
+auto=destroy && aslongas(-basic):damage:2 targetcontroller
 name=Molten Rain
 rarity=C
 type=Sorcery
 mana={1}{R}{R}
 [/card]
-
-
 [card]
 text=Imprint - When Mourner's Shield comes into play, you may remove target card in a graveyard from the game. (The removed card is imprinted on this artifact.)  {2}, {T}: Prevent all damage that would be dealt this turn by a source of your choice that shares a color with the imprinted card.
 id=50538
@@ -849,7 +848,7 @@ type=Artifact
 mana={6}
 [/card]
 [card]
-text={2}, {T}: Shuffle your library.
+text={2}{T}: Shuffle your library.
 id=48925
 name=Myr Mindservant
 rarity=U
@@ -941,7 +940,20 @@ power=4
 subtype=Zombie
 toughness=1
 [/card]
-
+[card]
+text=Pentavus comes into play with five +1/+1 counters on it.     {1}, Remove a +1/+1 counter from Pentavus: Put a 1/1 Pentavite artifact creature token with flying into play.     {1}, Sacrifice a Pentavite: Put a +1/+1 counter on Pentavus.
+id=46703
+auto=counter(1/1,5)
+auto={1}:counter(1/1,-1) && token(Pentavite,artifact creature Pentavite,1/1,flying)
+auto={1}{S(Pentavite|myinplay)}:counter(1/1,1)
+name=Pentavus
+rarity=R
+type=Artifact Creature
+mana={7}
+power=0
+subtype=Construct
+toughness=0
+[/card]
 [card]
 text={4}, {T}: Put a fate counter on target permanent.     {5}, {T}, Sacrifice Oblivion Stone: Destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents.
 id=34901
@@ -985,18 +997,6 @@ rarity=U
 type=Artifact
 mana={3}
 [/card]
-[card]
-text=Pentavus comes into play with five +1/+1 counters on it.     {1}, Remove a +1/+1 counter from Pentavus: Put a 1/1 Pentavite artifact creature token with flying into play.     {1}, Sacrifice a Pentavite: Put a +1/+1 counter on Pentavus.
-id=46703
-name=Pentavus
-rarity=R
-type=Artifact Creature
-mana={7}
-power=0
-subtype=Construct
-toughness=0
-[/card]
-
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  You can't lose the game and your opponents can't win the game.
 id=48580
@@ -1093,7 +1093,7 @@ toughness=6
 [card]
 text=Enchant artifact     Enchanted artifact has "At the beginning of your upkeep, you lose 2 life."
 target=artifact
-auto=@each my upkeep:life:-2
+auto=@each opponent upkeep:life:-2 targetcontroller
 id=48329
 name=Relic Bane
 rarity=U
@@ -1420,6 +1420,8 @@ toughness=3
 [card]
 text=Whenever a player plays a creature spell, that player adds {G} to his or her mana pool.
 id=49767
+auto=@movedto(creature|mystack):add {G}
+auto=@movedto(creature|opponentstack): add {G} opponent
 name=Tangleroot
 rarity=R
 type=Artifact
@@ -1431,6 +1433,7 @@ id=46004
 name=Tel-Jilad Archers
 rarity=C
 type=Creature
+abilities=reach,protection from artifact
 mana={4}{G}
 power=2
 subtype=Elf Archer
@@ -1538,6 +1541,9 @@ toughness=1
 [card]
 text=Destroy target Equipment. Then add {G} to your mana pool.
 id=48594
+target=equipment
+auto=destroy
+auto=add:{G}
 name=Turn to Dust
 rarity=C
 type=Instant

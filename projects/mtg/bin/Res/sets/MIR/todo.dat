@@ -1264,6 +1264,9 @@ mana={3}{R}{R}
 [card]
 text=Counter target artifact or enchantment spell. Its controller gains life equal to its converted mana cost.
 id=3496
+target=artifact,enchantment|stack
+auto=fizzle
+alias=1240
 name=Illumination
 rarity=U
 type=Instant

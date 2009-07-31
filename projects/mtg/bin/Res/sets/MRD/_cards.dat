@@ -217,6 +217,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Whenever an artifact is put into a graveyard from play, you may have target opponent lose 1 life.
+id=49090
+auto=@movedTo(artifact|graveyard) from(inplay):may life:-1 opponent
+name=Disciple of the Vault
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Human Cleric
+toughness=1
+[/card]
+[card]
 text={3}, {T}: Put a +1/+1 counter on target creature.
 auto={3}{T}:counter(1/1) target(creature)
 id=48325

@@ -445,6 +445,7 @@ subtype=Aura
 [card]
 text=Destroy target artifact. It can't be regenerated. That artifact's controller gains life equal to its converted mana cost.
 target=artifact
+auto=bury
 id=1240
 name=Crumble
 rarity=U

@@ -40,14 +40,6 @@ subtype=Human Mercenary
 toughness=2
 [/card]
 [card]
-text={3}{W}{W}: You draw a card and target opponent gains 3 life.
-id=19661
-name=Armistice
-rarity=R
-type=Enchantment
-mana={2}{W}
-[/card]
-[card]
 text=Enchant creature     Enchanted creature can't attack or block, and its activated abilities can't be played.
 id=19789
 name=Arrest
@@ -142,15 +134,6 @@ rarity=R
 type=Instant
 mana={3}{R}{R}
 [/card]
-[card]
-text=Whenever a creature attacks you, it gets -1/-0 until end of turn.
-id=19745
-name=Briar Patch
-rarity=U
-type=Enchantment
-mana={1}{G}{G}
-[/card]
-
 [card]
 text={X}{B}, {T}, Discard a card: Target creature gets +X/+0 until end of turn.
 id=19815
@@ -615,6 +598,7 @@ text={U}, {T}, Discard a card: Counter target spell or ability that targets a cr
 id=19794
 name=Diplomatic Escort
 rarity=U
+auto={U}{S(*|myhand)}{T}:fizzle target(*|stack)
 type=Creature
 mana={1}{U}
 power=1
@@ -633,6 +617,8 @@ mana={2}
 text=Nonland permanents don't untap during their controllers' untap steps.       At the beginning of your upkeep, you lose 2 life.
 id=19679
 name=Embargo
+auto=lord(-land)doesnotuntap
+auto=@each my upkeep:life:-2 controller
 rarity=R
 type=Enchantment
 mana={3}{U}
@@ -771,6 +757,7 @@ type=Land
 [card]
 text=Whenever you play a creature spell, Furious Assault deals 1 damage to target player.
 id=19848
+auto=@movedTo(creature|mystack):damage:1 target(player)
 name=Furious Assault
 rarity=C
 type=Enchantment
@@ -990,17 +977,7 @@ rarity=U
 type=Enchantment
 mana={2}{R}{R}
 [/card]
-[card]
-text=At the beginning of your upkeep, you may have Kyren Sniper deal 1 damage to target player.
-id=19606
-name=Kyren Sniper
-rarity=C
-type=Creature
-mana={2}{R}
-power=1
-subtype=Goblin
-toughness=1
-[/card]
+
 [card]
 text={1}, {T}: Put a charge counter on Kyren Toy.       {T}, Remove X charge counters from Kyren Toy: Add {1}{X} to your mana pool.
 id=19759
@@ -1065,10 +1042,11 @@ power=7
 subtype=Insect
 toughness=7
 [/card]
-
 [card]
 text=Lunge deals 2 damage to target creature and 2 damage to target player.
 id=19617
+target=creature
+auto=damage:2 && damage:2 targetController
 name=Lunge
 rarity=C
 type=Instant
@@ -1127,15 +1105,7 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-[card]
-text=Attacking creatures get +X/+0 until end of turn, where X is the number of nonbasic lands defending player controls.
-id=19850
-auto=lord(creature[attacking]) foreach(land[-basic]|opponentinplay) 1/0
-name=Mercadia's Downfall
-rarity=U
-type=Instant
-mana={2}{R}
-[/card]
+
 [card]
 text=Remove X target creature cards in your graveyard from the game. For each creature card removed this way, put a 2/2 black Zombie creature token into play.
 id=19707
@@ -1188,14 +1158,7 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text=Whenever a creature is put into a graveyard from play, you gain 1 life.
-id=136514
-name=Moonlit Wake
-rarity=U
-type=Enchantment
-mana={2}{W}
-[/card]
+
 
 [card]
 text=Enchant creature     Prevent all damage that would be dealt by enchanted creature.
@@ -1227,7 +1190,7 @@ toughness=2
 [/card]
 [card]
 text=Whenever a creature you control deals combat damage, you gain that much life.
-auto=lord(creature|myinplay) lifelink other
+auto=lord(creature|myinplay)lifelink
 id=19786
 name=Noble Purpose
 rarity=U
@@ -1295,6 +1258,7 @@ toughness=2
 [card]
 text={T}: Target creature gets +1/+1 and gains flying, first strike, and trample until end of turn.
 id=19888
+auto={T}:1/1 && flying && first strike && trample target(creature)
 name=Power Matrix
 rarity=R
 type=Artifact
@@ -1736,14 +1700,7 @@ type=Enchantment
 mana={3}{W}
 [/card]
 
-[card]
-text=Destroy target nonblack creature. It can't be regenerated. You gain life equal to its toughness.
-id=19591
-name=Sever Soul
-rarity=C
-type=Sorcery
-mana={3}{B}{B}
-[/card]
+
 
 
 [card]
@@ -1759,14 +1716,7 @@ toughness=1
 [/card]
 
 
-[card]
-text=Sizzle deals 3 damage to each opponent.
-id=19611
-name=Sizzle
-rarity=C
-type=Sorcery
-mana={2}{R}
-[/card]
+
 [card]
 text=When Skulking Fugitive becomes the target of a spell or ability, sacrifice it.
 id=19588
@@ -1798,14 +1748,6 @@ name=Snuff Out
 rarity=C
 type=Instant
 mana={3}{B}
-[/card]
-[card]
-text=Target player gains 5 life.
-id=19550
-name=Soothing Balm
-rarity=C
-type=Instant
-mana={1}{W}
 [/card]
 [card]
 text={3}{U}{U}: Shuffle your library.       {X}: Look at the top X cards of your library and put them back in any order.
@@ -1868,6 +1810,9 @@ mana={3}{U}
 text=Enchant creature     Enchanted creature has vigilance.     Sacrifice Stamina: Regenerate enchanted creature.
 id=19868
 name=Stamina
+target=creature
+auto=vigilance
+auto={S(Stamina)}:regenerate
 rarity=U
 type=Enchantment
 mana={2}{G}
@@ -1969,6 +1914,7 @@ mana={1}{U}
 text=Flying     When another creature comes into play, return Timid Drake to its owner's hand.
 id=19560
 name=Timid Drake
+auto=@movedto(creature|inplay):moveto(ownerhand) all(Timid Drake)
 rarity=U
 type=Creature
 mana={2}{U}
@@ -2040,6 +1986,7 @@ subtype=Aura
 [card]
 text=Creatures your opponents play come into play tapped.
 id=20786
+auto=lord(creature|opponentinplay)tap
 name=Uphill Battle
 rarity=U
 type=Enchantment
@@ -2065,6 +2012,7 @@ mana={3}{G}
 text=Any player may play creature and enchantment cards as though they had flash.
 id=19736
 name=Vernal Equinox
+auto=lord(enchantment,creature|hand)flash
 rarity=R
 type=Enchantment
 mana={3}{G}
@@ -2153,19 +2101,5 @@ power=3
 subtype=Unicorn Monger
 toughness=3
 [/card]
-[card]
-text=Destroy target Wall. It can't be regenerated. Word of Blasting deals damage equal to that Wall's converted mana cost to the Wall's controller.
-id=19852
-name=Word of Blasting
-rarity=U
-type=Instant
-mana={1}{R}
-[/card]
-[card]
-text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard.
-id=19747
-name=Worry Beads
-rarity=R
-type=Artifact
-mana={3}
-[/card]
+
+

@@ -1588,6 +1588,7 @@ subtype=Aura
 text=Destroy target Wall. It can't be regenerated. Word of Blasting deals damage equal to that Wall's converted mana cost to the Wall's controller.
 id=2660
 target=Wall
+auto=bury
 name=Word of Blasting
 rarity=U
 type=Instant
