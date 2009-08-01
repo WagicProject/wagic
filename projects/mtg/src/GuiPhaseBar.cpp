@@ -18,7 +18,7 @@ static int colors[] =
     ARGB(255, 255, 255, 255)
   };
 
-GuiPhaseBar::GuiPhaseBar() : phase(GameObserver::GetInstance()->phaseRing->getCurrentPhase()), angle(0.0f)
+GuiPhaseBar::GuiPhaseBar(GameObserver* game):GuiLayer(0,game), phase(GameObserver::GetInstance()->phaseRing->getCurrentPhase()), angle(0.0f)
 {
   JTexture* texture = GameApp::CommonRes->GetTexture("graphics/phasebar.png");
   if (texture)
@@ -87,7 +87,8 @@ void GuiPhaseBar::Render()
     }
 }
 
-int GuiPhaseBar::receiveEventMinus(WEvent *e)
+
+int GuiPhaseBar::receiveEvent(WEvent *e)
 {
   WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e);
   if (event)
