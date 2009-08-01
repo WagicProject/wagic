@@ -601,6 +601,19 @@ auto=1/1
 auto={S}:regenerate
 [/card]
 [card]
+id=1895
+name=Vodalian Knights
+mana={1}{U}{U}
+type=Creature
+subtype=Merfolk Knight
+power=2
+toughness=2
+text=First strike Vodalian Knights can't attack unless defending player controls an Island. When you control no Islands, sacrifice Vodalian Knights. {U}: Vodalian Knights gains flying until end of turn.
+abilities=islandhome
+auto={U}:flying
+rarity=U
+[/card]
+[card]
 text= 
 id=1899
 name=Vodalian Soldiers

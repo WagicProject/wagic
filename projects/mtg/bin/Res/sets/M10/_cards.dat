@@ -358,7 +358,7 @@ mana={B}
 type=Sorcery
 text=Destroy target green or white creature.
 target=creature[green;white]
-atuo=destroy
+auto=destroy
 rarity=U
 [/card]
 [card]

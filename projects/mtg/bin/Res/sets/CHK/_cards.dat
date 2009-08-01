@@ -156,8 +156,8 @@ name=Forest
 auto={T}:Add{G}
 type=Basic Land
 subtype=Forest
-text=G
-rarity=C
+text={G}
+rarity=L
 [/card]
 [card]
 id=79068
@@ -165,8 +165,8 @@ name=Forest
 auto={T}:Add{G}
 type=Basic Land
 subtype=Forest
-text=G
-rarity=C
+text={G}
+rarity=L
 [/card]
 [card]
 id=79078
@@ -174,8 +174,8 @@ name=Forest
 auto={T}:Add{G}
 type=Basic Land
 subtype=Forest
-text=G
-rarity=C
+text={G}
+rarity=L
 [/card]
 [card]
 id=79079
@@ -183,8 +183,8 @@ name=Forest
 auto={T}:Add{G}
 type=Basic Land
 subtype=Forest
-text=G
-rarity=C
+text={G}
+rarity=L
 [/card]
 [card]
 text=Gale Force deals 5 damage to each Creature with flying.
@@ -313,13 +313,40 @@ subtype=Hound
 toughness=2
 [/card]
 [card]
-id=190588
+id=79074
 name=Island
 auto={T}:Add{U}
 type=Basic Land
 subtype=Island
-text=U
-rarity=C
+text={U}
+rarity=L
+[/card]
+[card]
+id=79071
+name=Island
+auto={T}:Add{U}
+type=Basic Land
+subtype=Island
+text={U}
+rarity=L
+[/card]
+[card]
+id=79061
+name=Island
+auto={T}:Add{U}
+type=Basic Land
+subtype=Island
+text={U}
+rarity=L
+[/card]
+[card]
+id=79069
+name=Island
+auto={T}:Add{U}
+type=Basic Land
+subtype=Island
+text={U}
+rarity=L
 [/card]
 [card]
 id=79233
@@ -543,13 +570,40 @@ subtype=Spirit
 toughness=5
 [/card]
 [card]
-id=190586
+id=79075
 name=Mountain
 auto={T}:Add {R}
 type=Basic Land
 subtype=Mountain
-text=R
-rarity=C
+text={R}
+rarity=L
+[/card]
+[card]
+id=79070
+name=Mountain
+auto={T}:Add {R}
+type=Basic Land
+subtype=Mountain
+text={R}
+rarity=L
+[/card]
+[card]
+id=79064
+name=Mountain
+auto={T}:Add {R}
+type=Basic Land
+subtype=Mountain
+text={R}
+rarity=L
+[/card]
+[card]
+id=79077
+name=Mountain
+auto={T}:Add {R}
+type=Basic Land
+subtype=Mountain
+text={R}
+rarity=L
 [/card]
 [card]
 text=Flash   Enchant creature When Mystic Restraints comes into play, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step.
@@ -677,13 +731,40 @@ mana={3}{U}
 subtype=Arcane
 [/card]
 [card]
-id=197255
+id=79072
 name=Plains
 auto={T}:Add{W}
 type=Basic Land
 subtype=Plains
-text=W
-rarity=C
+text={W}
+rarity=L
+[/card]
+[card]
+id=79060
+name=Plains
+auto={T}:Add{W}
+type=Basic Land
+subtype=Plains
+text={W}
+rarity=L
+[/card]
+[card]
+id=79063
+name=Plains
+auto={T}:Add{W}
+type=Basic Land
+subtype=Plains
+text={W}
+rarity=L
+[/card]
+[card]
+id=79076
+name=Plains
+auto={T}:Add{W}
+type=Basic Land
+subtype=Plains
+text={W}
+rarity=L
 [/card]
 [card]
 text=Target Creature gets -5/-5 until end of turn.
@@ -873,12 +954,40 @@ auto=foreach(land|mybattlefield) 1/1
 rarity=U
 [/card]
 [card]
-id=197258
+id=79073
 name=Swamp
 auto={T}:Add{B}
 type=Basic Land
 subtype=Swamp
-rarity=C
+text={B}
+rarity=L
+[/card]
+[card]
+id=79065
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text={B}
+rarity=L
+[/card]
+[card]
+id=79066
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text={B}
+rarity=L
+[/card]
+[card]
+id=79067
+name=Swamp
+auto={T}:Add{B}
+type=Basic Land
+subtype=Swamp
+text={B}
+rarity=L
 [/card]
 [card]
 text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.
