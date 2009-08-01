@@ -2086,7 +2086,7 @@ InstantAbility::InstantAbility(int _id, MTGCardInstance * source, Damageable * _
 //Instant abilities last generally until the end of the turn
 int InstantAbility::testDestroy(){
   int newPhase = game->getCurrentGamePhase();
-  if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) return 1;
+  if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT) return 1;
   currentPhase = newPhase;
   return 0;
 

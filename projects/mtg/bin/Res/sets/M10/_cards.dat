@@ -631,7 +631,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add{G}
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191406
@@ -640,7 +640,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add{G}
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191405
@@ -649,7 +649,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add{G}
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191409
@@ -658,7 +658,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add{G}
-rarity=C
+rarity=L
 [/card]
 [card]
 id=193754
@@ -854,7 +854,7 @@ auto={T}:Add{U}
 type=Basic Land
 subtype=Island
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191389
@@ -863,7 +863,7 @@ auto={T}:Add{U}
 type=Basic Land
 subtype=Island
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191400
@@ -872,7 +872,7 @@ auto={T}:Add{U}
 type=Basic Land
 subtype=Island
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191390
@@ -881,7 +881,7 @@ auto={T}:Add{U}
 type=Basic Land
 subtype=Island
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191073
@@ -1122,7 +1122,7 @@ auto={T}:Add{R}
 type=Basic Land
 subtype=Mountain
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191401
@@ -1131,7 +1131,7 @@ auto={T}:Add{R}
 type=Basic Land
 subtype=Mountain
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191404
@@ -1140,7 +1140,7 @@ auto={T}:Add{R}
 type=Basic Land
 subtype=Mountain
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191403
@@ -1149,7 +1149,7 @@ auto={T}:Add{R}
 type=Basic Land
 subtype=Mountain
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 id=189896
@@ -1267,7 +1267,7 @@ auto={T}:Add{W}
 type=Basic Land
 subtype=Plains
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191395
@@ -1276,7 +1276,7 @@ auto={T}:Add{W}
 type=Basic Land
 subtype=Plains
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191396
@@ -1285,7 +1285,7 @@ auto={T}:Add{W}
 type=Basic Land
 subtype=Plains
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191385
@@ -1294,7 +1294,7 @@ auto={T}:Add{W}
 type=Basic Land
 subtype=Plains
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191599
@@ -1604,7 +1604,7 @@ auto={T}:Add{B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191391
@@ -1613,7 +1613,7 @@ auto={T}:Add{B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191381
@@ -1622,7 +1622,7 @@ auto={T}:Add{B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=191399
@@ -1631,7 +1631,7 @@ auto={T}:Add{B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=190564

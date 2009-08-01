@@ -2859,6 +2859,7 @@ text=Untap target creature and gain control of it until end of turn. That creatu
 id=129767
 target=creature
 auto=haste
+auto=untap
 name=Threaten
 rarity=U
 color=Red
