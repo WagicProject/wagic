@@ -358,6 +358,7 @@ mana={B}
 type=Sorcery
 text=Destroy target green or white creature.
 target=creature[green;white]
+atuo=destroy
 rarity=U
 [/card]
 [card]
@@ -833,6 +834,7 @@ toughness=2
 text=Flying Whenever Hypnotic Specter deals damage to an opponent, that player discards a card at random.
 rarity=U
 alias=1165
+abilitites=flying
 [/card]
 [card]
 id=190568
@@ -1188,7 +1190,8 @@ subtype=Nightmare Horse
 power=*
 toughness=*
 text=Flying Nightmare's power and toughness are each equal to the number of Swamps you control.
-auto=foreach(samp|myBattlefield) 1/1
+auto=foreach(swamp|myBattlefield) 1/1
+abilities=flying
 rarity=R
 [/card]
 [card]
