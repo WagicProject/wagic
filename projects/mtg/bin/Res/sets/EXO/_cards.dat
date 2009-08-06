@@ -276,7 +276,7 @@ name=Null Brooch
 mana={4}
 type=Artifact
 text={2}, {T}, Discard your hand: Counter target noncreature spell.
-auto={2}{T}:fizzle target(*|[-creature]|stack) && moveTo(graveyard) all(*|myhand)
+auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
 rarity=R
 [/card]
 [card]

@@ -424,7 +424,7 @@ toughness=6
 text=Destroy all artifacts and enchantments. You gain 2 life for each permanent destroyed this way.
 id=146759
 name=Fracturing Gust
-auto=all(artifact,enchantment) life:2
+auto=foreach(artifact,enchantment) life:2
 auto=destroy all(artifact,enchantment)
 rarity=R
 type=Instant
@@ -441,19 +441,6 @@ mana={1}{BR}{BR}
 power=2
 subtype=Elemental Shaman
 toughness=2
-[/card]
-[card]
-text=When Furystoke Giant comes into play, other creatures you control gain "{T}: This creature deals 2 damage to target creature or player" until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=persist
-auto=all(creature) other {T}:damage:2 target(creature,player)
-id=152069
-name=Furystoke Giant
-rarity=R
-type=Creature
-mana={3}{R}{R}
-power=3
-subtype=Giant Warrior
-toughness=3
 [/card]
 [card]
 text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
@@ -1242,7 +1229,7 @@ toughness=1
 [/card]
 [card]
 text={R}{G}: Each blocked creature gets +1/+0 and gains trample until end of turn.
-auto={R}{G}:all(creature[blocked]) 1/0 && all(creature[blocked]) trample
+auto={R}{G}:lord(creature[blocked]) 1/0 && lord(creature[blocked]) trample
 id=157884
 name=Tattermunge Witch
 rarity=U

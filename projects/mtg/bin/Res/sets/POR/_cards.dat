@@ -1426,7 +1426,8 @@ mana={2}{U}
 [/card]
 [card]
 text=Haste (This creature can attack the turn it comes under your control.)  When Thundermare comes into play, tap all other creatures.
-auto=tap all(creature[-Thundermare])
+auto=tap all(creature)
+auto=untap(this)
 id=4364
 abilities=haste
 name=Thundermare

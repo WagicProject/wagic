@@ -419,7 +419,19 @@ rarity=U
 type=Sorcery
 mana={RG}
 [/card]
-
+[card]
+text=When Furystoke Giant comes into play, other creatures you control gain "{T}: This creature deals 2 damage to target creature or player" until end of turn.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+abilities=persist
+auto=lord(creature|myinplay) {T}:damage:2 target(creature,player)
+id=152069
+name=Furystoke Giant
+rarity=R
+type=Creature
+mana={3}{R}{R}
+power=3
+subtype=Giant Warrior
+toughness=3
+[/card]
 [card]
 text=Ghastlord of Fugue is unblockable.     Whenever Ghastlord of Fugue deals combat damage to a player, that player reveals his or her hand. Choose a card from it. That player removes that card from the game.
 id=153297

@@ -733,6 +733,7 @@ name=Reminisce
 mana={2}{U}
 type=Sorcery
 text=Target player shuffles his or her graveyard into his or her library.
+target=player
 auto=moveTo(ownerlibrary) all(*|ownergraveyard)
 rarity=U
 [/card]

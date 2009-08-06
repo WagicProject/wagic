@@ -1688,7 +1688,7 @@ name=Trumpet Blast
 mana={2}{R}
 type=Instant
 text=Attacking creatures get +2/+0 until end of turn.
-auto=all(creature[attacking]) 2/0
+auto=lord(creature[attacking]) 2/0
 rarity=C
 [/card]
 [card]
