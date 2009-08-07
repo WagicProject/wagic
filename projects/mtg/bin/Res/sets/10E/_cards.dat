@@ -560,7 +560,7 @@ mana={2}{G}{G}
 [card]
 text=Destroy target Plains or Island. Cryoclasm deals 3 damage to that land's controller.
 target=plains,island
-auto=Damage:3 targetController
+auto=Damage:3 target Controller
 auto=destroy
 id=129909
 name=Cryoclasm
@@ -716,7 +716,7 @@ toughness=1
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-abilities=Flying
+abilities=flying
 id=129490
 name=Dusk Imp
 rarity=C
@@ -1070,7 +1070,7 @@ toughness=1
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-abilities=Flying
+abilities=flying
 id=129582
 name=Goblin Sky Raider
 rarity=C
@@ -3011,7 +3011,7 @@ mana={U}
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {B}: Vampire Bats gets +1/+0 until end of turn. Play this ability no more than twice each turn.
 abilities=flying
-auto={B}:1/0 limit 2
+auto={B}:1/0 limit:2
 id=135195
 name=Vampire Bats
 rarity=C
