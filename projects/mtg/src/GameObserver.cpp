@@ -478,29 +478,6 @@ Player * GameObserver::currentlyActing(){
   return currentActionPlayer;
 }
 
-int GameObserver::tryToTapOrUntap(MTGCardInstance * card){
-
-  int reaction = mLayers->actionLayer()->isReactingToClick(card);
-  if (reaction){
-    if (reaction == 1){
-      mLayers->actionLayer()->reactToClick(card);
-    }else{
-      //TODO, what happens when several abilities react to the click ?
-    }
-    return reaction;
-  }else{
-    if (card->isTapped() && card->controller() == currentPlayer){
-      int a = ConstraintResolver::untap(this, card);
-      return a;
-    }else{
-      //TODO Check Spells
-      //card->tap();
-      return 0;
-    }
-    return 0;
-  }
-}
-
 //TODO CORRECT THIS MESS
 int GameObserver::targetListIsSet(MTGCardInstance * card){
   if (targetChooser == NULL){
@@ -514,12 +491,3 @@ int GameObserver::targetListIsSet(MTGCardInstance * card){
   return (targetChooser->targetListSet());
 }
 
-
-int GameObserver::checkManaCost(MTGCardInstance * card){
-  ManaCost * playerMana = currentlyActing()->getManaPool();
-  ManaCost * cost = card->getManaCost();
-  if (playerMana->canAfford(cost)){
-    return 1;
-  }
-  return 0;
-}

@@ -62,10 +62,10 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   }else{
     Spell * spell = NULL;
     if (game->targetChooser){
-      spell = game->mLayers->stackLayer()->addSpell(card,game->targetChooser->targets,game->targetChooser->cursor, spellCost);
-      SAFE_DELETE(game->targetChooser);
+      spell = game->mLayers->stackLayer()->addSpell(card,game->targetChooser, spellCost);
+      game->targetChooser = NULL;
     }else{
-      spell = game->mLayers->stackLayer()->addSpell(card,NULL,0, spellCost);
+      spell = game->mLayers->stackLayer()->addSpell(card,NULL, spellCost);
     }
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
     spell->source = copy;

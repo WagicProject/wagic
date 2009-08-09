@@ -79,9 +79,6 @@ class GameObserver{
   void draw();
   int isInPlay(MTGCardInstance *  card);
   int isACreature(MTGCardInstance *  card);
-  int tryToTapOrUntap(MTGCardInstance * card);
-
-  int checkManaCost(MTGCardInstance * card);
 
   void Update(float dt);
   void Render();

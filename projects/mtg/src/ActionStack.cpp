@@ -8,6 +8,7 @@
 #include "../include/Damage.h"
 #include "../include/ManaCost.h"
 #include "../include/GameOptions.h"
+#include "../include/TargetChooser.h"
 // WALDORF - added to support drawing big cards during interrupts
 #include "../include/CardGui.h"
 #include "../include/Translate.h"
@@ -98,15 +99,16 @@ ostream& StackAbility::toString(ostream& out) const
 
 /* Spell Cast */
 
-Spell::Spell(MTGCardInstance * _source): Interruptible(0), TargetsList(){
+Spell::Spell(MTGCardInstance * _source): Interruptible(0){
   source = _source;
   mHeight= 40;
   type = ACTION_SPELL;
   cost = NEW ManaCost();
+  tc = NULL;
 }
 
 
-Spell::Spell(int id, MTGCardInstance * _source, Targetable * _targets[], int nb_targets, ManaCost * _cost): Interruptible(id), TargetsList(_targets, nb_targets),cost(_cost){
+Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _cost): Interruptible(id), tc(tc),cost(_cost){
   source = _source;
   mHeight = 40;
   type = ACTION_SPELL;
@@ -119,6 +121,7 @@ const char * Spell::getDisplayName(){
 
 Spell::~Spell(){
   SAFE_DELETE(cost);
+  SAFE_DELETE(tc);
 }
 
 int Spell::resolve(){
@@ -144,6 +147,40 @@ int Spell::resolve(){
   af.addAbilities(game->mLayers->actionLayer()->getMaxId(), this);
   return 1;
 }
+
+MTGCardInstance * Spell::getNextCardTarget(MTGCardInstance * previous){
+  if (!tc) return NULL;
+  return tc->getNextCardTarget(previous);
+}
+  Player * Spell::getNextPlayerTarget(Player * previous){
+  if (!tc) return NULL;
+  return tc->getNextPlayerTarget(previous);
+}
+  Damageable * Spell::getNextDamageableTarget(Damageable * previous){
+  if (!tc) return NULL;
+  return tc->getNextDamageableTarget(previous);
+}
+  Interruptible * Spell::getNextInterruptible(Interruptible * previous, int type){
+  if (!tc) return NULL;
+  return tc->getNextInterruptible(previous,type);
+}
+  Spell * Spell::getNextSpellTarget(Spell * previous){
+  if (!tc) return NULL;
+  return tc->getNextSpellTarget(previous);
+}
+  Damage * Spell::getNextDamageTarget(Damage * previous){
+  if (!tc) return NULL;
+   return tc->getNextDamageTarget(previous);
+}
+  Targetable * Spell::getNextTarget(Targetable * previous, int type ){
+  if (!tc) return NULL;
+   return tc->getNextTarget(previous,type);
+}
+
+  int Spell::getNbTargets(){
+    if (!tc) return 0;
+    return tc->cursor;
+  }
 
 void Spell::Render(){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
@@ -343,13 +380,13 @@ int ActionStack::addAction(Interruptible * action){
   return 1;
 }
 
-Spell * ActionStack::addSpell(MTGCardInstance * _source, Targetable * _targets[], int _nbtargets, ManaCost * mana){
+Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana){
 #if defined (WIN32) || defined (LINUX)
   char    buf[4096], *p = buf;
   sprintf(buf, "Add spell\n");
   OutputDebugString(buf);
 #endif
-  Spell * spell = NEW Spell(mCount,_source,_targets,_nbtargets, mana);
+  Spell * spell = NEW Spell(mCount,_source,tc, mana);
   addAction(spell);
   if (!game->players[0]->isAI() && 
      _source->controller()==game->players[0] && 

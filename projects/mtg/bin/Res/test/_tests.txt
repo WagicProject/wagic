@@ -83,6 +83,7 @@ elvish_piper.txt
 elvish_promenade.txt
 fastbond.txt
 fault_line.txt
+fists_of_ironwood.txt
 flare.txt
 fledgling_imp.txt 
 fledgling_imp2.txt

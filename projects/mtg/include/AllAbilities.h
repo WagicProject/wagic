@@ -3369,7 +3369,7 @@ class AEarthbind:public ABasicAbilityModifier{
 class AFireball:public InstantAbility{
  public:
  AFireball(int _id, MTGCardInstance * card, Spell * spell, int x):InstantAbility(_id, card){
-    int nbtargets = spell->cursor;
+    int nbtargets = spell->getNbTargets();
     int totaldamage = x+1-nbtargets;
     int individualdamage = 0;
     if (nbtargets) individualdamage  = totaldamage / nbtargets;

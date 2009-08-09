@@ -838,7 +838,14 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   MTGCardInstance * card = spell->source;
 
 
-  if (spell->cursor==1) card->target =  spell->getNextCardTarget();
+  if (spell->getNbTargets()==1){
+    card->target =  spell->getNextCardTarget();
+    if (card->target && !spell->tc->canTarget(card->target)){
+      MTGPlayerCards * zones = card->controller()->game;
+      zones->putInGraveyard(card);
+      return; //fizzle
+    }
+  }
   _id = magicText(_id, spell);
 
   GameObserver * game = GameObserver::GetInstance();
@@ -1242,7 +1249,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1192:	//BrainGeyser
     {
-      Player * player = ((Player * )spell->targets[0]);
+      Player * player = spell->getNextPlayerTarget();
       int x = spell->cost->getConvertedCost() - 2;
       for (int i = 0; i < x ; i++){
 	player->game->drawFromLibrary();

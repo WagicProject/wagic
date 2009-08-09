@@ -37,6 +37,7 @@ class MTGAbility;
 class Targetable;
 class DamageStack;
 class ManaCost;
+class TargetChooser;
 
 
 #define ACTIONSTACK_STANDARD 0
@@ -67,18 +68,27 @@ class NextGamePhase: public Interruptible {
   NextGamePhase(int id);
 };
 
-class Spell: public Interruptible, public TargetsList {
+class Spell: public Interruptible {
  protected:
 
  public:
+  TargetChooser * tc;
   ManaCost * cost;
   Spell(MTGCardInstance* _source);
-  Spell(int id, MTGCardInstance* _source, Targetable * _targets[], int _nbtargets, ManaCost * _cost);
+  Spell(int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost);
   ~Spell();
   int resolve();
   void Render();
   const char *getDisplayName();
   virtual ostream& toString(ostream& out) const;
+  MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);
+  Player * getNextPlayerTarget(Player * previous = 0);
+  Damageable * getNextDamageableTarget(Damageable * previous = 0);
+  Interruptible * getNextInterruptible(Interruptible * previous, int type);
+  Spell * getNextSpellTarget(Spell * previous = 0);
+  Damage * getNextDamageTarget(Damage * previous = 0);
+  Targetable * getNextTarget(Targetable * previous = 0, int type = -1);
+  int getNbTargets();
 };
 
 class StackAbility: public Interruptible {
@@ -146,7 +156,7 @@ class ActionStack :public GuiLayer{
   Player * askIfWishesToInterrupt;
   int garbageCollect();
   int addAction(Interruptible * interruptible);
-  Spell * addSpell(MTGCardInstance* card, Targetable * targets[], int nbtargets, ManaCost * mana);
+  Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana);
   int AddNextGamePhase();
   int addPutInGraveyard(MTGCardInstance * card);
   int addDraw(Player * player, int nbcards = 1);

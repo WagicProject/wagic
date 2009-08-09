@@ -1,0 +1,26 @@
+#Bug: fists of ironwood and swords to plowshares
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:fists of ironwood
+inplay:grizzly bears
+manapool:{1}{G}
+[PLAYER2]
+hand:swords to plowshares
+manapool:{W}
+[DO]
+fists of ironwood
+grizzly bears
+no
+yes
+swords to plowshares
+grizzly bears
+endinterrupt
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:fists of ironwood
+life:22
+[PLAYER2]
+graveyard:swords to plowshares
+[END]
