@@ -1,0 +1,19 @@
+#Bug:hellfire doesn't destroy
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:hellfire
+manapool:{2}{B}{B}{B}
+[PLAYER2]
+inplay:grizzly bears,dragon engine,scathe zombies
+[DO]
+hellfire
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:15
+graveyard:hellfire
+[PLAYER2]
+inplay:scathe zombies
+graveyard:grizzly bears,dragon engine
+[END]

@@ -133,7 +133,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
 // Returns NULL if parsing failed
 MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated){
   size_t found;
-  
+ 
+  string whitespaces (" \t\f\v\n\r");
+
+  found=s.find_last_not_of(whitespaces);
+  if (found!=string::npos)
+    s.erase(found+1);
+  else return NULL;
+
   //TODO This block redundant with calling function
   if (!card && spell) card = spell->source;
   if (!card) return NULL;

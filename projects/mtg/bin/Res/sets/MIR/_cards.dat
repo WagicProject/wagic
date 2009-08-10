@@ -850,7 +850,7 @@ rarity=U
 [card]
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
 id=3464
-alias=136509
+auto=foreach(mountain|myBattlefield) damage:1
 target=creature
 name=Spitting Earth
 rarity=C

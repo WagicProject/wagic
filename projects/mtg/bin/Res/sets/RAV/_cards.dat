@@ -1069,18 +1069,6 @@ power=3
 toughness=3
 [/card]
 [card]
-text=When Vedalken Dismisser comes into play, put target creature on top of its owner's library.
-auto=moveTo(ownerLibrary) target(creature)
-id=87898
-name=Vedalken Dismisser
-rarity=C
-type=Creature
-mana={5}{U}
-power=2
-subtype=Vedalken Wizard
-toughness=2
-[/card]
-[card]
 text={U}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
 id=89028
 auto={U}{T}:deplete:2 target(player)

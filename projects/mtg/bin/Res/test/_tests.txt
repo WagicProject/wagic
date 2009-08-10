@@ -103,6 +103,7 @@ goblin_king.txt
 gravedigger.txt
 #hammerfist_giant.txt
 hannas_custody.txt
+hellfire.txt
 howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
 icatian_priest.txt

@@ -1838,7 +1838,18 @@ rarity=U
 type=Sorcery
 mana={4}{U}{B}
 [/card]
-
+[card]
+text=When Vedalken Dismisser comes into play, put target creature on top of its owner's library.
+auto=moveTo(ownerLibrary) target(creature) #Can't target anything when come into play unless it is a "may" ability
+id=87898
+name=Vedalken Dismisser
+rarity=C
+type=Creature
+mana={5}{U}
+power=2
+subtype=Vedalken Wizard
+toughness=2
+[/card]
 [card]
 text=Return target creature card from your graveyard to play. If {G} was spent to play Vigor Mortis, that creature comes into play with an additional +1/+1 counter on it.
 id=88986

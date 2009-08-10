@@ -218,6 +218,11 @@ public:
     }
   }
 
+   const char * getMenuText(){
+     if (abilities.size()) return abilities[0]->getMenuText();
+     return "";
+  }
+
   MultiAbility * clone() const{
     MultiAbility * a =  NEW MultiAbility(*this);
     a->isClone = 1;
