@@ -772,6 +772,7 @@ mana={G}{G}{G}
 power=0
 subtype=Insect
 toughness=1
+abilities=flying
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.  {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token into play.
