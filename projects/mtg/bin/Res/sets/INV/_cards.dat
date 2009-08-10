@@ -1184,10 +1184,10 @@ type=Instant
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard to play.
-auto=@each my upkeep:may moveTo(myBattlefield) target(creature |mygraveyard)
+auto=@each my upkeep:may moveTo(myBattlefield) target(creature|mygraveyard)
 id=22965
 name=Reya Dawnbringer
-abilities=Legendary,flying
+abilities=legendary,flying
 rarity=R
 type=Creature
 mana={6}{W}{W}{W}
