@@ -291,8 +291,8 @@ toughness=1
 [card]
 text=Whenever an opponent plays a spell, that player draws seven cards.
 id=146166
-auto=@movedTo(*|mystack):draw:7 controller
-auto=@movedTo(*|opponentstack):draw:7 opponent
+auto=@movedTo(*[-land]|mystack):draw:7 controller
+auto=@movedTo(*[-land]|opponentstack):draw:7 opponent
 name=Forced Fruition
 rarity=R
 type=Enchantment
