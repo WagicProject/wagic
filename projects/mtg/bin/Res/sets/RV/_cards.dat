@@ -198,6 +198,7 @@ mana={1}
 [card]
 text=Enchant creature     Enchanted creature has protection from black. This effect doesn't remove Black Ward.
 target=creature
+auto=protection from black
 id=1331
 name=Black Ward
 rarity=U
@@ -227,6 +228,7 @@ mana={U}
 [card]
 text=Enchant creature     Enchanted creature has protection from blue. This effect doesn't remove Blue Ward.
 target=creature
+auto=protection from blue
 id=1333
 name=Blue Ward
 rarity=U
@@ -945,6 +947,7 @@ toughness=2
 [card]
 text=Enchant creature     Enchanted creature has protection from green. This effect doesn't remove Green Ward.
 target=creature
+auto=protection from green
 id=1346
 name=Green Ward
 rarity=U
@@ -1753,6 +1756,7 @@ mana={R}
 [card]
 text=Enchant creature     Enchanted creature has protection from red. This effect doesn't remove Red Ward.
 target=creature
+auto=protection from red
 id=1359
 name=Red Ward
 rarity=U
@@ -2526,6 +2530,7 @@ toughness=2
 [card]
 text=Enchant creature     Enchanted creature has protection from white. This effect doesn't remove White Ward.
 target=creature
+auto=protection from white
 id=1371
 name=White Ward
 rarity=U

@@ -34,7 +34,7 @@ void DuelLayers::init(){
   //3 Game
   MTGGuiPlay * play = NEW MTGGuiPlay(4, GameObserver::GetInstance());
 
-  Add(NEW GuiPhaseBar(GameObserver::GetInstance()));
+  //Add(NEW GuiPhaseBar(GameObserver::GetInstance()));
   Add(mActionStack);
   Add(mDamageResolver);
   Add(actionLayer);
@@ -44,22 +44,22 @@ void DuelLayers::init(){
 
 
 ActionStack * DuelLayers::stackLayer(){
-  return ((ActionStack *) (objects[1]));
+  return ((ActionStack *) (objects[0]));
 }
 
 DamageResolverLayer * DuelLayers::combatLayer(){
-  return ((DamageResolverLayer *) (objects[2]));
+  return ((DamageResolverLayer *) (objects[1]));
 }
 
 ActionLayer * DuelLayers::actionLayer(){
-  return ((ActionLayer *) (objects[3]));
+  return ((ActionLayer *) (objects[2]));
 }
 
 MTGGuiHand * DuelLayers::handLayer(){
-  return ((MTGGuiHand *) (objects[4]));
+  return ((MTGGuiHand *) (objects[3]));
 }
 MTGGuiPlay * DuelLayers::playLayer(){
-  return ((MTGGuiPlay *) (objects[5]));
+  return ((MTGGuiPlay *) (objects[4]));
 }
 
 

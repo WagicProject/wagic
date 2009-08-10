@@ -567,6 +567,12 @@ int MTGCardInstance::removeProtection(CardDescriptor * cd, int erase){
 }
 
 int MTGCardInstance::protectedAgainst(MTGCardInstance * card){
+  //Basic protections
+  for (int i=Constants::PROTECTIONGREEN; i <= Constants::PROTECTIONWHITE; i++){
+    if (basicAbilities[i] && card->hasColor( i - Constants::PROTECTIONGREEN + Constants::MTG_COLOR_GREEN )) return 1;
+  }
+
+  //General protections
   for (int i = 0; i < nbprotections ; i++){
     if (protections[i]->match(card)) return 1;
   }

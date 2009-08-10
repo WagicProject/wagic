@@ -1251,44 +1251,6 @@ class AStandardRegenerate:public ActivatedAbility{
   }
 };
 
-/*Gives protection to a target */
-class AProtectionFrom:public MTGAbility{
- public:
-  CardDescriptor * cd;
-  void initProtection(){
-    ((MTGCardInstance *)target)->addProtection(cd);
-  }
-
- AProtectionFrom(int _id, MTGCardInstance * _source, MTGCardInstance * _target, CardDescriptor * _cd):MTGAbility(_id, _source, _target),cd(_cd){
-    initProtection();
-  }
- AProtectionFrom(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int color):MTGAbility(_id, _source, _target){
-    cd = NEW CardDescriptor();
-    cd->colors[color] = 1;
-    initProtection();
-  }
-
-  int destroy(){
-    ((MTGCardInstance *)target)->removeProtection(cd);
-    return 1;
-  }
-
-  ~AProtectionFrom(){
-    delete(cd);
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AProtectionFrom ::: cd : " << cd
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-  AProtectionFrom * clone() const{
-    AProtectionFrom * a =  NEW AProtectionFrom(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 //Aura Enchantments that provide controller of target life or damages at a given phase of their turn
 class ARegularLifeModifierAura:public MTGAbility{

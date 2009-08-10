@@ -1409,29 +1409,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1331: //Black Ward
-    {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_BLACK));
-      break;
-    }
-  case 1333: //Blue  Ward
-    {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_BLUE));
-      break;
-    }
   case 1238: //Cockatrice
     {
       game->addObserver(NEW AOldSchoolDeathtouch(_id,card));
-      break;
-    }
-  case 1346: //Green Ward
-    {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_GREEN));
-      break;
-    }
-  case 1359: //Red Ward
-    {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_RED));
       break;
     }
   case 1362: //Reverse polarity
@@ -1473,11 +1453,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	Spell * starget = spell->getNextSpellTarget();
 	starget->source->setColor(Constants::MTG_COLOR_BLUE, 1);
       }
-      break;
-    }
-  case 1371: //White Ward
-    {
-      game->addObserver(NEW AProtectionFrom( _id,card, card->target, Constants::MTG_COLOR_WHITE));
       break;
     }
 
@@ -1762,27 +1737,16 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
 
-  /* Erwan - 2008/11/13: We want to get rid of these basicAbility things.
+  /* We want to get rid of these basicAbility things.
    * basicAbilities themselves are alright, but creating new object depending on them is dangerous
    * The main reason is that classes that add an ability to a card do NOT create these objects, and therefore do NOT
    * Work.
-   * For example, setting LIFELINK for a creature is not enough right now...
+   * For example, setting EXALTED for a creature is not enough right now...
    * It shouldn't be necessary to add an object. State based abilities could do the trick
    */
 
-
-  for (int i=Constants::PROTECTIONGREEN; i <= Constants::PROTECTIONWHITE; i++){
-    if (card->basicAbilities[i]){
-      game->addObserver(NEW AProtectionFrom(_id, card, card, i - Constants::PROTECTIONGREEN + Constants::MTG_COLOR_GREEN));
-    }
-  }
-
   if (card->basicAbilities[Constants::EXALTED]){
     game->addObserver(NEW AExalted(_id, card));
-  }
-
-  if (card->basicAbilities[Constants::DOESNOTUNTAP]){
-    game->addObserver(NEW UntapBlocker(_id, card));
   }
 
   // Tested works the first r10 did not function because of the mistake in the array of the definition

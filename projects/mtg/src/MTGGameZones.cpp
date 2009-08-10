@@ -369,14 +369,10 @@ MTGCardInstance *  MTGInPlay::getNextAttacker(MTGCardInstance * previous){
 void MTGInPlay::untapAll(){
   int i;
   for (i = 0; i < nb_cards; i ++){
-    cards[i]->setUntapping();
-    if (cards[i]->getUntapBlockers()->isEmpty()){
-#if defined (WIN32) || defined (LINUX)
-      char buf[4096];
-      sprintf(buf, "Can untap %s\n", cards[i]->getName());
-      OutputDebugString(buf);
-#endif
-      cards[i]->attemptUntap();
+    MTGCardInstance * card = cards[i];
+    card->setUntapping();
+    if (!card->basicAbilities[Constants::DOESNOTUNTAP] && card->getUntapBlockers()->isEmpty()){
+      card->attemptUntap();
     }
   }
 }

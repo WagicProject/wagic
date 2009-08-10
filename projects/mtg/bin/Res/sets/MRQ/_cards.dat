@@ -149,15 +149,6 @@ mana={1}{G}{G}
 type=Enchantment
 [/card]
 [card]
-text=Whenever a creature attacks you, it gets -1/-0 until end of turn.
-id=19745
-name=Briar Patch
-auto=lord(creature[attacking]|opponentinplay) -1/0
-rarity=U
-type=Enchantment
-mana={1}{G}{G}
-[/card]
-[card]
 text=Search target opponent's library for a creature card and put that card into play under your control. Then that player shuffles his or her library.
 target=creature|opponentLibrary
 auto=moveTo(myInplay)

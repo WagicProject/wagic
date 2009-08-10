@@ -62,7 +62,7 @@ rarity=R
 [/card]
 [card]
 id=77925
-id=129767
+alias=129767
 target=creature[-legendary]
 auto=haste
 auto=untap
