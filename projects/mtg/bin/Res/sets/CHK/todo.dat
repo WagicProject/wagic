@@ -96,18 +96,6 @@ text=Target creature you control gains protection from the color of your choice 
 rarity=C
 [/card]
 [card]
-id=77925
-alias=???
-name=Blind with Anger
-mana={3}{R}
-type=Instant
-subtype=Arcane
-text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
-target=creature[-legendary]
-auto=haste
-rarity=U
-[/card]
-[card]
 id=79166
 name=Blood Speaker
 mana={3}{B}
@@ -196,6 +184,9 @@ name=Cage of Hands
 mana={2}{W}
 type=Enchantment
 subtype=Aura
+target=creature
+auto=cantattack,cantblock
+auto={1}{W}:moveto(ownerhand)
 Enchant creature Enchanted creature can't attack or block. {1}{W}: Return Cage of Hands to its owner's hand.
 rarity=C
 [/card]
@@ -302,17 +293,6 @@ text=Target player puts the top four cards of his or her library into his or her
 rarity=U
 [/card]
 [card]
-id=80522
-name=Deathcurse Ogre
-mana={5}{B}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=3
-text=When Deathcurse Ogre is put into a graveyard from play, each player loses 3 life.
-rarity=C
-[/card]
-[card]
 id=80275
 name=Desperate Ritual
 mana={1}{R}
@@ -362,7 +342,8 @@ rarity=C
 id=78687
 name=Budoka Gardener (Dokai, Weaver of Life)
 mana={1}{G}
-type=Legendary Creature ?EHuman Monk
+type=Legendary Creature
+subtype=Human Monk
 power=3
 toughness=3
 text={4}{G}{G}, {T}: Put an X/X green Elemental creature token into play, where X is the number of lands you control.
@@ -389,16 +370,6 @@ power=1
 toughness=2
 text=When Dripping-Tongue Zubera is put into a graveyard from play, put a 1/1 colorless Spirit creature token into play for each Zubera put into a graveyard from play this turn.
 rarity=C
-[/card]
-
-[card]
-id=80243
-name=Eerie Procession
-mana={2}{U}
-type=Sorcery
-subtype=Arcane
-text=Search your library for an Arcane card, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=U
 [/card]
 [card]
 id=79205
@@ -515,6 +486,8 @@ name=Ghostly Prison
 mana={2}{W}
 type=Enchantment
 text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+auto=lord(creature|opponentinplay) cantattack
+auto=lord(creature|opponentinplay) {2}:-cantattack
 rarity=U
 [/card]
 [card]
@@ -568,7 +541,8 @@ rarity=R
 id=78688
 name=Initiate of Blood (Goka the Unjust)
 mana={3}{R}
-type=Legendary Creature ?EOgre Shaman
+type=Legendary Creature
+subtype=Ogre Shaman
 power=4
 toughness=4
 text={T}: Goka the Unjust deals 4 damage to target creature that was dealt damage this turn.
@@ -738,9 +712,11 @@ rarity=C
 id=79110
 name=Honden of Infinite Rage
 mana={2}{R}
-type=Legendary Enchantment
+type=Enchantment
 subtype=Shrine
+abilities=Legendary
 text=At the beginning of your upkeep, Honden of Infinite Rage deals damage to target creature or player equal to the number of Shrines you control.
+auto=@each my upkeep:foreach(shrine|myinplay) damage:1 target(creature,player)
 rarity=U
 [/card]
 
@@ -971,7 +947,8 @@ rarity=R
 id=78600
 name=Bushi Tenderfoot (Kenzo the Hardhearted)
 mana={W}
-type=Legendary Creature ?EHuman Samurai
+type=Legendary Creature
+subtype=Human Samurai
 power=3
 toughness=4
 text=Double strike; bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
@@ -1077,10 +1054,13 @@ rarity=R
 id=78594
 name=Konda, Lord of Eiganjo
 mana={5}{W}{W}
-type=Legendary Creature
+type=Creature
 subtype=Human Samurai
 power=3
 toughness=3
+abilities=Legendary,vigilance,indestructible
+auto=rampage(5/5,0)
+auto=aslongas(Konda, Lord of Eiganjo[blocking]|myinplay) 5/5
 text=Vigilance (Attacking doesn't cause this creature to tap.) Bushido 5 (When this blocks or becomes blocked, it gets +5/+5 until end of turn.) Konda, Lord of Eiganjo is indestructible.
 rarity=R
 [/card]
@@ -1588,7 +1568,6 @@ subtype=Arcane
 text=Target permanent's controller sacrifices it. If he or she does, that player reveals cards from the top of his or her library until he or she reveals a permanent card that shares a card type with the sacrificed permanent, puts that card into play, then shuffles his or her library. Splice onto Arcane {2}{U}{U}
 rarity=R
 [/card]
-
 [card]
 id=50262
 name=Ronin Houndmaster
@@ -1611,8 +1590,6 @@ toughness=3
 text={G}{G}, Sacrifice Rootrunner: Put target land on top of its owner's library. Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
 rarity=U
 [/card]
-
-
 [card]
 id=50510
 name=Sakura-Tribe Elder
@@ -1656,17 +1633,6 @@ power=4
 toughness=2
 text=Sacrifice Scuttling Death: Target creature gets -1/-1 until end of turn. Soulshift 4 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
 rarity=C
-[/card]
-[card]
-id=78965
-name=Seizan, Perverter of Truth
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Demon Spirit
-power=6
-toughness=5
-text=At the beginning of each player's upkeep, that player loses 2 life and draws two cards.
-rarity=R
 [/card]
 [card]
 id=78683
@@ -1880,7 +1846,8 @@ rarity=U
 id=78679
 name=Nezumi Shortfang (Stabwhisker the Odious)
 mana={1}{B}
-type=Legendary Creature ?ERat Shaman
+type=Legendary Creature
+subtype=Rat Shaman
 power=3
 toughness=3
 text=At the beginning of each opponent's upkeep, that player loses 1 life for each card fewer than three in his or her hand.
@@ -1914,6 +1881,7 @@ power=1
 toughness=1
 text=When Student of Elements has flying, flip it. rarity=U
 [/card]
+
 [card]
 id=79089
 name=Swallowing Plague

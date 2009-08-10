@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=6071
 name=AEther Tide
 mana={X}{U}
@@ -468,22 +468,12 @@ text=At the beginning of each player's upkeep, if that player has fewer cards in
 rarity=R
 [/card]
 [card]
-id=6127
-name=Ogre Shaman
-mana={3}{R}{R}
-type=Creature
-subtype=Ogre Shaman
-power=3
-toughness=3
-text={2}, Discard a card at random: Ogre Shaman deals 2 damage to target creature or player.
-rarity=R
-[/card]
-[card]
 id=6115
 name=Onslaught
 mana={R}
 type=Enchantment
 text=Whenever you play a creature spell, tap target creature.
+auto=@movedTo(creature|mystack):tap target(creature)
 rarity=C
 [/card]
 [card]
@@ -541,23 +531,12 @@ toughness=1
 text={X}{X}{B}: Destroy target nonblack creature with converted mana cost X.
 rarity=R
 [/card]
-
-[card]
-id=6123
-name=Price of Progress
-mana={1}{R}
-type=Instant
-text=Price of Progress deals 2 damage to each player for each nonbasic land he or she controls.
-auto=foreach(land[-basic]|myinplay) life:-2
-auto=foreach(land[-basic]|opponentinplay) damage:2 opponent #does not work yet
-rarity=U
-[/card]
 [card]
 id=6037
 name=Reaping the Rewards
 mana={W}
 type=Instant
-text=Buyback—Sacrifice a land. (You may sarifice a land in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) You gain 2 life.
+text=Buyback—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) You gain 2 life.
 rarity=C
 [/card]
 [card]
@@ -584,6 +563,7 @@ id=6103
 name=Recurring Nightmare
 mana={2}{B}
 type=Enchantment
+auto={S(creature|myinplay)}:moveto(myhand) && moveto(myinplay) target(creature|mygraveyard)
 text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to play. Play this ability only any time you could play a sorcery.
 rarity=R
 [/card]
@@ -659,28 +639,11 @@ auto=lord(creature[enchanted]) cantblock
 rarity=U
 [/card]
 [card]
-id=6112
-name=Sonic Burst
-mana={1}{R}
-type=Instant
-text=As an additional cost to play Sonic Burst, discard a card at random. Sonic Burst deals 4 damage to target creature or player.
-rarity=C
-[/card]
-
-[card]
 id=6158
 name=Spellbook
 mana={0}
 type=Artifact
 text=You have no maximum hand size.
-rarity=U
-[/card]
-[card]
-id=6121
-name=Spellshock
-mana={2}{R}
-type=Enchantment
-text=Whenever a player plays a spell, Spellshock deals 2 damage to that player.
 rarity=U
 [/card]
 [card]

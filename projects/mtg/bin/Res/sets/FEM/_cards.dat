@@ -609,7 +609,7 @@ subtype=Merfolk Knight
 power=2
 toughness=2
 text=First strike Vodalian Knights can't attack unless defending player controls an Island. When you control no Islands, sacrifice Vodalian Knights. {U}: Vodalian Knights gains flying until end of turn.
-abilities=islandhome
+abilities=islandhome,first strike
 auto={U}:flying
 rarity=U
 [/card]

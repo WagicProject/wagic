@@ -1211,7 +1211,8 @@ name=Open the Vaults
 mana={4}{W}{W}
 type=Sorcery
 text=Return all artifact and enchantment cards from all graveyards to the battlefield under their owners' control. (Auras with nothing to enchant remain in graveyards.)
-auto=moveTo(battlefield) all(artifact,enchantment|graveyard)
+auto=moveTo(myBattlefield) all(artifact,enchantment|myGraveyard)
+auto=moveTo(opponentBattlefield) all(artifact,enchantment|opponentGraveyard)
 rarity=R
 [/card]
 [card]

@@ -42,13 +42,6 @@ subtype=Shapeshifter
 toughness=1
 [/card]
 [card]
-text=As Ancient Amphitheater comes into play, you may reveal a Giant card from your hand. If you don't, Ancient Amphitheater comes into play tapped.     {T}: Add {R} or {W} to your mana pool.
-id=153454
-name=Ancient Amphitheater
-rarity=R
-type=Land
-[/card]
-[card]
 text=Put a flood counter on target land. That land is an Island in addition to its other types as long as it has a flood counter on it. If you control a Merfolk, draw a card.
 id=142354
 name=Aquitect's Will
@@ -86,13 +79,6 @@ name=Ashling's Prerogative
 rarity=R
 type=Enchantment
 mana={1}{R}
-[/card]
-[card]
-text=As Auntie's Hovel comes into play, you may reveal a Goblin card from your hand. If you don't, Auntie's Hovel comes into play tapped.     {T}: Add {B} or {R} to your mana pool.
-id=153457
-name=Auntie's Hovel
-rarity=R
-type=Land
 [/card]
 [card]
 text=Choose two - Destroy all artifacts; or destroy all enchantments; or destroy all creatures with converted mana cost 3 or less; or destroy all creatures with converted mana cost 4 or greater.
@@ -158,6 +144,8 @@ toughness=1
 [card]
 text=When Boggart Harbinger comes into play, you may search your library for a Goblin card, reveal it, then shuffle your library and put that card on top of it.
 id=139441
+target=goblin|mylibrary
+auto=moveto(mylibrary)
 name=Boggart Harbinger
 rarity=U
 type=Creature
@@ -275,6 +263,8 @@ toughness=4
 text=Whenever Cenn's Heir attacks, it gets +1/+1 until end of turn for each other attacking Kithkin.
 id=142360
 name=Cenn's Heir
+auto=aslongas(Cenn's Heir[attacking])foreach(Kithkin[attacking]) 1/1
+auto=aslongas(Cenn's Heir[attacking]) -1/-1
 rarity=C
 type=Creature
 mana={1}{W}
@@ -494,6 +484,12 @@ toughness=2
 [card]
 text=When Elvish Harbinger comes into play, you may search your library for an Elf card, reveal it, then shuffle your library and put that card on top of it.     {T}: Add one mana of any color to your mana pool.
 id=139485
+auto=may moveto(mylibrary) target(elf|mylibrary)
+auto={T}:add{G}
+auto={T}:add{W}
+auto={T}:add{R}
+auto={T}:add{U}
+auto={T}:add{B}
 name=Elvish Harbinger
 rarity=U
 type=Creature
@@ -562,6 +558,7 @@ subtype=Faerie
 [card]
 text=Whenever Fallowsage becomes tapped, you may draw a card.
 id=145803
+auto=aslongas(Fallowsage[tapped]) draw:1 controller
 name=Fallowsage
 rarity=U
 type=Creature
@@ -682,14 +679,6 @@ type=Instant
 mana={2}{B}
 [/card]
 [card]
-text=Whenever an opponent plays a spell, that player draws seven cards.
-id=146166
-name=Forced Fruition
-rarity=R
-type=Enchantment
-mana={4}{U}{U}
-[/card]
-[card]
 text=Noncreature spells with converted mana cost 4 or greater can't be played.     Noncreature spells with {X} in their mana costs can't be played.
 id=140188
 name=Gaddock Teeg
@@ -751,13 +740,6 @@ rarity=C
 type=Tribal Instant
 mana={2}{G}
 subtype=Elf
-[/card]
-[card]
-text=As Gilt-Leaf Palace comes into play, you may reveal an Elf card from your hand. If you don't, Gilt-Leaf Palace comes into play tapped.     {T}: Add {B} or {G} to your mana pool.
-id=153455
-name=Gilt-Leaf Palace
-rarity=R
-type=Land
 [/card]
 [card]
 text={G}, {T}: Look at the top two cards of your library, then put them back in any order.
@@ -846,14 +828,6 @@ mana={6}{R}
 power=6
 subtype=Giant Warrior
 toughness=6
-[/card]
-[card]
-text=Regenerate target creature. You gain life equal to that creature's toughness.
-id=145808
-name=Heal the Scars
-rarity=C
-type=Instant
-mana={3}{G}
 [/card]
 [card]
 text=Put a token into play that's a copy of target creature. It has haste and "At end of turn, remove this permanent from the game."
@@ -1031,17 +1005,6 @@ subtype=Elf Archer
 toughness=*
 [/card]
 [card]
-text=Whenever a Merfolk you control becomes tapped, you may gain 1 life.
-id=139406
-name=Judge of Currents
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Merfolk Wizard
-toughness=1
-[/card]
-[card]
 text=Flying     Whenever Kinsbaile Balloonist attacks, you may have target creature gain flying until end of turn.
 id=139403
 name=Kinsbaile Balloonist
@@ -1151,6 +1114,8 @@ mana={3}{B}
 [card]
 text=Flying     When Marsh Flitter comes into play, put two 1/1 black Goblin Rogue creature tokens into play.     Sacrifice a Goblin: Marsh Flitter becomes 3/3 until end of turn.
 id=139705
+auto=token(Goblin Rogue,creature Goblin Rogue,1/1,black)*2
+auto={S(goblin|myinplay)}:3/3
 name=Marsh Flitter
 rarity=U
 type=Creature
@@ -1173,6 +1138,7 @@ toughness=2
 [card]
 text=At the end of your turn, untap all Merfolk you control.
 id=139663
+auto=@each my endofturn:untap all(merfolk|myinplay)
 name=Merrow Commerce
 rarity=U
 type=Tribal Enchantment
@@ -1282,17 +1248,6 @@ rarity=C
 type=Tribal Instant
 mana={1}{B}
 subtype=Shapeshifter
-[/card]
-[card]
-text=At the beginning of your upkeep, you may have target opponent discard a card at random.     Whenever an opponent discards a card, you may put a 1/1 green Elf Warrior creature token into play.
-id=143370
-name=Nath of the Gilt-Leaf
-rarity=R
-type=Legendary Creature
-mana={3}{B}{G}
-power=4
-subtype=Elf Warrior
-toughness=4
 [/card]
 [card]
 text=Protection from Elves
@@ -1429,17 +1384,6 @@ subtype=Elemental Incarnation
 toughness=6
 [/card]
 [card]
-text=Whenever a player plays a Kithkin spell, you may have target player lose 1 life.
-id=139469
-name=Quill-Slinger Boggart
-rarity=C
-type=Creature
-mana={3}{B}
-power=3
-subtype=Goblin Warrior
-toughness=2
-[/card]
-[card]
 text=Whenever you clash, you may pay {1}. If you do, put a 3/1 red Elemental Shaman creature token into play. If you won, that token gains haste until end of turn. (This ability triggers after the clash ends.)
 id=139679
 name=Rebellion of the Flamekin
@@ -1483,13 +1427,6 @@ name=Scattering Stroke
 rarity=U
 type=Instant
 mana={2}{U}{U}
-[/card]
-[card]
-text=As Secluded Glen comes into play, you may reveal a Faerie card from your hand. If you don't, Secluded Glen comes into play tapped.     {T}: Add {U} or {B} to your mana pool.
-id=153458
-name=Secluded Glen
-rarity=R
-type=Land
 [/card]
 [card]
 text=When Seedguide Ash is put into a graveyard from play, you may search your library for up to three Forest cards and put them into play tapped. If you do, shuffle your library.
@@ -1727,6 +1664,7 @@ mana={2}
 [card]
 text=Whenever you play a Treefolk spell, you may have target creature get +3/-3 until end of turn.
 id=143015
+auto=@movedTo(Treefolk|mystack):may 3/3 target(creature)
 name=Thorntooth Witch
 rarity=U
 type=Creature
@@ -1763,17 +1701,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=When Thundercloud Shaman comes into play, it deals damage equal to the number of Giants you control to each non-Giant creature.
-id=139738
-name=Thundercloud Shaman
-rarity=U
-type=Creature
-mana={3}{R}{R}
-power=4
-subtype=Giant Shaman
-toughness=4
-[/card]
-[card]
 text={T}: Target land becomes the basic land type of your choice until end of turn. Play this ability only during your turn.
 id=142362
 name=Tideshaper Mystic
@@ -1787,6 +1714,8 @@ toughness=1
 [card]
 text=Other Treefolk creatures you control get +1/+1.     Other Treefolk and Forests you control are indestructible.
 id=139690
+auto=lord(Treefolk|myinplay) 1/1 other
+auto=lord(Treefolk|myinplay) indestructible other
 name=Timber Protector
 rarity=R
 type=Creature
@@ -1880,13 +1809,6 @@ text=Vivid Meadow comes into play tapped with two charge counters on it.     {T}
 id=141883
 name=Vivid Meadow
 rarity=U
-type=Land
-[/card]
-[card]
-text=As Wanderwine Hub comes into play, you may reveal a Merfolk card from your hand. If you don't, Wanderwine Hub comes into play tapped.     {T}: Add {W} or {U} to your mana pool.
-id=153456
-name=Wanderwine Hub
-rarity=R
 type=Land
 [/card]
 [card]
@@ -2002,17 +1924,6 @@ name=Woodland Guidance
 rarity=U
 type=Sorcery
 mana={3}{G}
-[/card]
-[card]
-text=Fear     At the beginning of your upkeep, you may return target Goblin card from your graveyard to your hand.
-id=140226
-name=Wort, Boggart Auntie
-rarity=R
-type=Legendary Creature
-mana={2}{B}{R}
-power=3
-subtype=Goblin Shaman
-toughness=3
 [/card]
 [card]
 text=Champion an Elf (When this comes into play, sacrifice it unless you remove another Elf you control from the game. When this leaves play, that card returns to play.)  {2}{G}: Put a 2/2 green Wolf creature token into play.     Each Wolf you control has deathtouch. (When it deals damage to a creature, destroy that creature.)

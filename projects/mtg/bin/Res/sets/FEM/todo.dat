@@ -1,5 +1,4 @@
-﻿
-[card]
+﻿[card]
 id=1828
 name=Balm of Restoration
 mana={2}
@@ -150,7 +149,7 @@ subtype=Elf Archer
 power=1
 toughness=1
 text={1}{G}, {T}: Target creature doesn't untap during its controller's next untap step.
-auto=doesnotuntap target(creature)
+auto={1}{G}:doesnotuntap target(creature)
 rarity=C
 [/card]
 [card]
@@ -472,6 +471,11 @@ mana=
 type=Land
 text={T}: Add one mana of any color to your mana pool. An opponent gains control of Rainbow Vale at end of turn.
 rarity=R
+auto={T}:add {G} && @end:moveto(opponentinplay)
+auto={T}:add {R} && @end:moveto(opponentinplay)
+auto={T}:add {W} && @end:moveto(opponentinplay)
+auto={T}:add {B} && @end:moveto(opponentinplay)
+auto={T}:add {U} && @end:moveto(opponentinplay)
 [/card]
 [card]
 id=2012

@@ -184,6 +184,18 @@ power=*
 toughness=*
 [/card]
 [card]
+id=179633
+name=Lorescale Coatl
+mana={1}{G}{U}
+type=Creature
+subtype=Snake
+power=2
+toughness=2
+text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
+auto=@movedTo(*|myhand) from(mylibrary):may counter(1/1)
+rarity=U
+[/card]
+[card]
 text=Creatures you control have haste.
 id=180625
 name=Madrush Cyclops 
@@ -235,6 +247,16 @@ subtype=Bird
 power=2
 toughness=2
 abilities=flying
+[/card]
+[card]
+id=179614
+name=Morbid Bloom
+target=creature|graveyard
+auto=moveto(exile)
+mana={4}{B}{G}
+type=Sorcery
+text=Remove target creature card in a graveyard from the game, then put X 1/1 green Saproling creature tokens into play, where X is the removed card's toughness.
+rarity=U
 [/card]
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.

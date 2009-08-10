@@ -855,6 +855,18 @@ subtype=Demon Minion
 toughness=5
 [/card]
 [card]
+text=At the end of each player's turn, tap all untapped Islands that player controls and Monsoon deals X damage to the player, where X is the number of Islands tapped this way.
+id=2734
+auto=@each my endofturn:foreach(island[-tapped]|myinplay):damage:1 controller
+auto=@each opponent endofturn:foreach(island[-tapped]|opponentinplay):damage:1 opponent
+auto=@each my cleanup:tap all(island[-tapped]|myinplay)
+auto=@each opponent cleanup:tap all(island[-tapped]|opponentinplay)
+name=Monsoon
+rarity=R
+type=Enchantment
+mana={2}{R}{G}
+[/card]
+[card]
 text=Swampwalk
 id=2477
 abilities=swampwalk
@@ -1092,6 +1104,19 @@ type=Instant
 mana={W}{W}
 [/card]
 [card]
+text=Untap target creature an opponent controls and gain control of it until end of turn. That creature gains haste until end of turn. When you lose control of the creature, tap it.
+id=2528
+alias=129767
+target=creature|opponentinplay
+auto=untap
+auto=haste
+auto=@next endofturn:tap
+name=Ray of Command
+rarity=C
+type=Instant
+mana={3}{U}
+[/card]
+[card]
 text=Target player puts the top card of his or her library into his or her graveyard.     Draw a card at the beginning of the next turn's upkeep.
 id=2529
 target=player
@@ -1101,6 +1126,16 @@ name=Ray of Erasure
 rarity=C
 type=Instant
 mana={U}
+[/card]
+[card]
+text=Black creatures have "This creature can't attack unless you sacrifice a land."
+id=2736
+name=Reclamation
+auto=lord(creature[black]) cantattack
+auto=lord(creature[black]) {S(land|myinplay)}:-cantattack
+rarity=R
+type=Enchantment
+mana={2}{G}{W}
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -1349,8 +1384,17 @@ subtype=Elemental Spirit
 toughness=3
 [/card]
 [card]
+text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
+id=2740
+auto={2}:damage:2 target(creature,player) && discard:1 controller
+name=Stormbind
+rarity=R
+type=Enchantment
+mana={1}{R}{G}
+[/card]
+[card]
 text={T}, Pay 1 life: Counter target white spell.
-auto={T}:fizzle(*[white]|stack) && life:1
+auto={T}:fizzle(*[white]|stack) && life:-1 controller
 id=2490
 name=Stromgald Cabal
 rarity=R
@@ -1406,6 +1450,18 @@ name=Swords to Plowshares
 rarity=U
 type=Instant
 mana={W}
+[/card]
+[card]
+text=When Tarpan is put into a graveyard from play, you gain 1 life.
+id=2591
+auto=@movedTo(this|graveyard):life:1 controller
+name=Tarpan
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Horse
+toughness=1
 [/card]
 [card]
 text=Whenever an Island an opponent controls becomes tapped, you may gain 1 life.
@@ -1583,6 +1639,18 @@ rarity=U
 type=Enchantment 
 mana={W}{U}
 subtype=Aura
+[/card]
+[card]
+text=Woolly Mammoths has trample as long as you control a snow land.
+id=2602
+auto=aslongas(snow|myinplay) trample
+name=Woolly Mammoths
+rarity=C
+type=Creature
+mana={1}{G}{G}
+power=3
+subtype=Elephant
+toughness=2
 [/card]
 [card]
 text=Destroy target Wall. It can't be regenerated. Word of Blasting deals damage equal to that Wall's converted mana cost to the Wall's controller.

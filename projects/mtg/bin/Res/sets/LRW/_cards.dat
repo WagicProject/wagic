@@ -1,4 +1,26 @@
 [card]
+text=As Ancient Amphitheater comes into play, you may reveal a Giant card from your hand. If you don't, Ancient Amphitheater comes into play tapped.     {T}: Add {R} or {W} to your mana pool.
+id=153454
+auto=tap
+auto=aslongas(giant|myHand) untap
+auto={T}:add{R}
+auto={T}:add{W}
+name=Ancient Amphitheater
+rarity=R
+type=Land
+[/card]
+[card]
+text=As Auntie's Hovel comes into play, you may reveal a Goblin card from your hand. If you don't, Auntie's Hovel comes into play tapped.     {T}: Add {B} or {R} to your mana pool.
+id=153457
+auto=tap
+auto=aslongas(goblin|myHand) untap
+auto={T}:add{B}
+auto={T}:add{R}
+name=Auntie's Hovel
+rarity=R
+type=Land
+[/card]
+[card]
 id=145976
 name=Axegrinder Giant
 rarity=C
@@ -267,6 +289,16 @@ subtype=Elemental Shaman
 toughness=1
 [/card]
 [card]
+text=Whenever an opponent plays a spell, that player draws seven cards.
+id=146166
+auto=@movedTo(*|mystack):draw:7 controller
+auto=@movedTo(*|opponentstack):draw:7 opponent
+name=Forced Fruition
+rarity=R
+type=Enchantment
+mana={4}{U}{U}
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.
 auto={T}:Add {G}
 id=143633
@@ -305,13 +337,24 @@ subtype=Forest
 [card]
 text=Giant's Ire deals 4 damage to target player. If you control a Giant, draw a card.
 auto=damage:4 target(player)
-auto=aslongas(creature[giant]|myinplay)
+auto=aslongas(creature[giant]|myinplay) draw:1 controller
 id=139477
 name=Giant's Ire
 rarity=C
 type=Sorcery
 mana={3}{R}
 subtype=Giant
+[/card]
+[card]
+text=As Gilt-Leaf Palace comes into play, you may reveal an Elf card from your hand. If you don't, Gilt-Leaf Palace comes into play tapped.     {T}: Add {B} or {G} to your mana pool.
+id=153455
+auto=tap
+auto=aslongas(elf|myHand) untap
+auto={T}:add{B}
+auto={T}:add{G}
+name=Gilt-Leaf Palace
+rarity=R
+type=Land
 [/card]
 [card]
 text=Enchant tapped creature     Enchanted creature doesn't untap during its controller's untap step.
@@ -360,6 +403,17 @@ mana={2}{W}
 power=2
 subtype=Merfolk Archer
 toughness=2
+[/card]
+[card]
+text=Regenerate target creature. You gain life equal to that creature's toughness.
+id=145808
+alias=3194
+target=creature
+auto=regenerate
+name=Heal the Scars
+rarity=C
+type=Instant
+mana={3}{G}
 [/card]
 [card]
 text=When Hearthcage Giant comes into play, put two 3/1 red Elemental Shaman creature tokens into play.     Sacrifice an Elemental: Target Giant creature gets +3/+1 until end of turn.
@@ -468,6 +522,18 @@ name=Island
 rarity=L
 type=Basic Land
 subtype=Island
+[/card]
+[card]
+text=Whenever a Merfolk you control becomes tapped, you may gain 1 life.
+id=139406
+name=Judge of Currents
+auto=aslongas(merfolk[tapped]|myinplay) may life:1 controller
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Merfolk Wizard
+toughness=1
 [/card]
 [card]
 text=When Kinsbaile Skirmisher comes into play, target creature gets +1/+1 until end of turn.
@@ -652,6 +718,20 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
+text=At the beginning of your upkeep, you may have target opponent discard a card at random.     Whenever an opponent discards a card, you may put a 1/1 green Elf Warrior creature token into play.
+id=143370
+auto=@each my upkeep:may discard:1 opponent
+auto=@movedTo(*|opponentgraveyard) from(opponenthand):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
+name=Nath of the Gilt-Leaf
+rarity=R
+type=Creature
+abilities=Legendary
+mana={3}{B}{G}
+power=4
+subtype=Elf Warrior
+toughness=4
+[/card]
+[card]
 text=Destroy target attacking or blocking creature.
 target=creature[attacking;blocking]
 auto=destroy
@@ -773,6 +853,18 @@ subtype=Kithkin Knight
 toughness=3
 [/card]
 [card]
+text=Whenever a player plays a Kithkin spell, you may have target player lose 1 life.
+id=139469
+auto=@movedTo(kithkin):may life:-1 target(player)
+name=Quill-Slinger Boggart
+rarity=C
+type=Creature
+mana={3}{B}
+power=3
+subtype=Goblin Warrior
+toughness=2
+[/card]
+[card]
 text=Enchant creature     Enchanted creature is unblockable and has shroud. (It can't be the target of spells or abilities.)
 target=creature
 auto=unblockable
@@ -831,6 +923,17 @@ mana={2}{U}
 power=1
 subtype=Faerie Soldier
 toughness=1
+[/card]
+[card]
+text=As Secluded Glen comes into play, you may reveal a Faerie card from your hand. If you don't, Secluded Glen comes into play tapped.     {T}: Add {U} or {B} to your mana pool.
+id=153458
+auto=tap
+auto=aslongas(faerie|myHand) untap
+auto={T}:add{U}
+auto={T}:add{B}
+name=Secluded Glen
+rarity=R
+type=Land
 [/card]
 [card]
 text=Flash     Flying
@@ -1021,6 +1124,31 @@ mana={R}
 subtype=Goblin Tribal
 [/card]
 [card]
+text=When Thundercloud Shaman comes into play, it deals damage equal to the number of Giants you control to each non-Giant creature.
+id=139738
+auto=foreach(giant|myinplay) damage:1 all(creature[-giant])
+name=Thundercloud Shaman
+rarity=U
+type=Creature
+mana={3}{R}{R}
+power=4
+subtype=Giant Shaman
+toughness=4
+[/card]
+[card]
+text=Other Treefolk creatures you control get +1/+1.     Other Treefolk and Forests you control are indestructible.
+id=139690
+auto=lord(Treefolk|myinplay) 1/1 other
+auto=lord(Treefolk,forest|myinplay) indestructible other
+name=Timber Protector
+rarity=R
+type=Creature
+mana={4}{G}
+power=4
+subtype=Treefolk Warrior
+toughness=6
+[/card]
+[card]
 text=Flash     Enchant creature     When Triclopean Sight comes into play, untap enchanted creature.     Enchanted creature gets +1/+1 and has vigilance.
 abilities=flash
 target=creature
@@ -1044,6 +1172,17 @@ type=Artifact
 mana={1}
 [/card]
 [card]
+text=As Wanderwine Hub comes into play, you may reveal a Merfolk card from your hand. If you don't, Wanderwine Hub comes into play tapped.     {T}: Add {W} or {U} to your mana pool.
+id=153456
+auto=tap
+auto=aslongas(merfolk|myHand) untap
+auto={T}:add{W}
+auto={T}:add{U}
+name=Wanderwine Hub
+rarity=R
+type=Land
+[/card]
+[card]
 text=Other Kithkin creatures you control get +1/+1.
 auto=lord(kithkin|myinplay) 1/1 other 
 id=139716
@@ -1054,6 +1193,19 @@ mana={W}{W}
 power=2
 subtype=Kithkin Cleric
 toughness=2
+[/card]
+[card]
+text=Fear     At the beginning of your upkeep, you may return target Goblin card from your graveyard to your hand.
+id=140226
+auto=@each my upkeep:may moveto(myhand) target(goblin|mygraveyard)
+name=Wort, Boggart Auntie
+rarity=R
+type=Creature
+abilities=Legendary
+mana={2}{B}{R}
+power=3
+subtype=Goblin Shaman
+toughness=3
 [/card]
 [card]
 text=Flash,Flying. {U}{B}, Pay 1 life: Return Wydwen, the Biting Gale to its owner's hand.

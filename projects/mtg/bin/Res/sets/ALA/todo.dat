@@ -64,16 +64,6 @@ subtype=Demon
 toughness=6
 [/card]
 [card]
-text=Enchant creature     When enchanted creature is put into a graveyard, that creature's controller loses life equal to its toughness.
-id=174817
-name=Banewasp Affliction
-rarity=C
-type=Enchantment
-mana={1}{B}
-subtype=Aura
-[/card]
-
-[card]
 text=Choose one - Destroy target artifact; or put target creature on the bottom of its owner's library; or counter target instant spell.
 id=137931
 name=Bant Charm
@@ -81,7 +71,6 @@ rarity=U
 type=Instant
 mana={G}{W}{U}
 [/card]
-
 [card]
 text=Flying     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  Whenever a creature you control attacks alone, it gains lifelink until end of turn.
 id=175394
@@ -119,6 +108,7 @@ toughness=1
 [card]
 text=Sacrifice Bloodpyre Elemental: Bloodpyre Elemental deals 4 damage to target creature. Play this ability only any time you could play a sorcery.
 id=175117
+auto={S}:damage:4 target(creature)
 name=Bloodpyre Elemental
 rarity=C
 type=Creature
@@ -175,14 +165,6 @@ mana={3}{R}{R}
 power=3
 subtype=Hellion
 toughness=3
-[/card]
-[card]
-text=Return target creature to its owner's hand. Its controller draws a card.
-id=175053
-name=Call to Heel
-rarity=C
-type=Instant
-mana={1}{U}
 [/card]
 [card]
 text=When Carrion Thrash is put into a graveyard from play, you may pay {2}. If you do, return another target creature card from your graveyard to your hand.
@@ -243,6 +225,8 @@ mana={U}{U}{B}{B}{B}{R}{R}
 [card]
 text=At the beginning of your upkeep, each player discards a card.
 id=176429
+auto=@each my upkeep:discard:1 opponent
+auto=@each my upkeep:discard:1 controller
 name=Cunning Lethemancer
 rarity=R
 type=Creature
@@ -437,6 +421,7 @@ toughness=1
 [card]
 text=If a creature would come into play under an opponent's control this turn, it comes into play under your control instead.
 id=175011
+auto=@movedto(creature|opponentinplay):moveto(myinplay)
 name=Gather Specimens
 rarity=R
 type=Instant
@@ -450,15 +435,7 @@ rarity=C
 type=Sorcery
 mana={2}{G}
 [/card]
-[card]
-text=At the beginning of your upkeep, put a 1/1 red Goblin creature token with haste into play.     Goblin creatures attack each turn if able.
-auto=lord(goblin) mustattack
-id=174939
-name=Goblin Assault
-rarity=R
-type=Enchantment
-mana={2}{R}
-[/card]
+
 [card]
 text={1}{W}, {T}: Prevent all damage that would be dealt to target creature with power 5 or greater this turn.
 id=174822
@@ -521,7 +498,7 @@ mana={W}{U}
 [/card]
 [card]
 text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
-auto=@movedTo(this|graveyard):damage:1 target(player)
+auto=@movedTo(creature[-this]|graveyard):may damage:1 target(player)
 #can't be coded in 0.8 because "@" can't be followed by "target" unless there is a "may" ability
 id=174873
 name=Hissing Iguanar
@@ -540,6 +517,7 @@ rarity=R
 type=Artifact
 mana={2}{B}{B}
 [/card]
+
 [card]
 text=Count the number of cards in your library. Your life total becomes that number.
 id=175039
@@ -611,14 +589,6 @@ mana={3}{G}
 power=1
 subtype=Elf Druid
 toughness=3
-[/card]
-[card]
-text=Target player gains 7 life and draws two cards.
-id=174976
-name=Kiss of the Amesha
-rarity=U
-type=Sorcery
-mana={4}{W}{U}
 [/card]
 [card]
 text=First strike     When Knight of the White Orchid comes into play, if an opponent controls more lands than you, you may search your library for a Plains card, put it into play, then shuffle your library.
@@ -700,15 +670,6 @@ mana={R}{G}{W}
 power=2
 subtype=Elf Shaman
 toughness=3
-[/card]
-[card]
-text=Whenever an opponent plays a spell, that player puts the top two cards of his or her library into his or her graveyard.
-auto=@movedTo(*[-land]|opponentstack):deplete:2 
-id=175108
-name=Memory Erosion
-rarity=R
-type=Enchantment
-mana={1}{U}{U}
 [/card]
 [card]
 text=Whenever a creature with power 5 or greater comes into play under your control, you may put two +1/+1 counters on it.
@@ -811,6 +772,8 @@ toughness=7
 [card]
 text={U}, {T}: Put a 0/1 blue Homunculus artifact creature token into play.     At the beginning of your upkeep, sacrifice a Homunculus.
 id=175012
+auto={U}{T}:token(Homonculus,Creature Homonclulus,0/1,blue)
+auto=@each my upkeep:bury target(homonculus|myinplay)
 name=Puppet Conjurer
 rarity=U
 type=Artifact Creature
@@ -1122,6 +1085,8 @@ mana={2}{U}
 [card]
 text=Flying     At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
 id=175107
+auto=@each my endofturn:aslongas(Sphinx Sovereign[-tapped]|myinplay) life:3 controller
+auto=@each my endofturn:aslongas(Sphinx Sovereign[tapped]|myinplay) life:-3 opponent
 name=Sphinx Sovereign
 rarity=M
 type=Artifact Creature
@@ -1297,6 +1262,9 @@ toughness=4
 text=Whenever a creature is put into a graveyard from play, you may have Vicious Shadows deal damage to target player equal to the number of cards in that player's hand.
 id=175048
 name=Vicious Shadows
+auto=@movedTo(creature|mygraveyard) from(inplay):may foreach(*|opponenthand) damage:1 opponent
+auto=@movedTo(creature|opponentgraveyard) from(inplay):may foreach(*|opponenthand) damage:1 opponent
+#the may does not work for this one...
 rarity=R
 type=Enchantment
 mana={6}{R}

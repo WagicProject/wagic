@@ -27,8 +27,8 @@ text=Other black creatures you control get +1/+1.     Other red creatures you co
 id=146065
 name=Ashenmoor Liege
 rarity=R
-auto=lord(creature[black]|myinplay) 1/1
-auto=lord(creature[red]|myinplay) 1/1
+auto=lord(creature[black]|myinplay) 1/1 other
+auto=lord(creature[red]|myinplay) 1/1 other
 type=Creature
 mana={1}{BR}{BR}{BR}
 power=4
@@ -84,15 +84,6 @@ name=Beseech the Queen
 rarity=U
 type=Sorcery
 mana={2B}{2B}{2B}
-[/card]
-[card]
-text=Enchant creature     You control enchanted creature.     At the beginning of your upkeep, put a -1/-1 counter on enchanted creature.
-id=135485
-name=Biting Tether
-rarity=U
-type=Enchantment
-mana={4}{U}
-subtype=Aura
 [/card]
 [card]
 text=Equipped creature gets +1/+0 and has wither. (It deals damage to creatures in the form of -1/-1 counters.)  Equip {2}
@@ -183,7 +174,6 @@ rarity=R
 type=Instant
 mana={3}{U}{U}
 [/card]
-
 [card]
 text=When Cragganwick Cremator comes into play, discard a card at random. If you discard a creature card this way, Cragganwick Cremator deals damage equal to that card's power to target player.
 id=159402
@@ -203,7 +193,6 @@ rarity=C
 type=Instant
 mana={R}
 [/card]
-
 [card]
 text=When Cultbrand Cinder comes into play, put a -1/-1 counter on target creature.
 id=142068
@@ -214,15 +203,6 @@ mana={4}{BR}
 power=3
 subtype=Elemental Shaman
 toughness=3
-[/card]
-[card]
-text=Enchant creature     At the beginning of each upkeep, tap enchanted creature.
-id=146079
-name=Curse of Chains
-rarity=C
-type=Enchantment
-mana={1}{WU}
-subtype=Aura
 [/card]
 [card]
 text=Sacrifice Cursecatcher: Counter target instant or sorcery spell unless its controller pays {1}.
@@ -511,6 +491,8 @@ toughness=4
 text=Flying     Whenever Goldenglow Moth blocks, you may gain 4 life.
 id=159413
 name=Goldenglow Moth
+auto=foreach(Goldenglow Moth[blocking]):may life:4 controller
+abilities=flying
 rarity=C
 type=Creature
 mana={W}
@@ -551,7 +533,6 @@ power=4
 subtype=Scarecrow
 toughness=4
 [/card]
-
 [card]
 text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, draw a card."     As long as enchanted creature is black, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, that player discards a card."
 id=158769
@@ -560,17 +541,6 @@ rarity=C
 type=Enchantment
 mana={3}{UB}
 subtype=Aura
-[/card]
-[card]
-text=At the beginning of your upkeep, if you have no cards in hand, each opponent loses 2 life.     At the beginning of each opponent's upkeep, if that player has no cards in hand, he or she loses 2 life.
-id=146095
-name=Hollowborn Barghest
-rarity=R
-type=Creature
-mana={5}{B}{B}
-power=7
-subtype=Demon Hound
-toughness=6
 [/card]
 [card]
 text=Whenever Hollowsage becomes untapped, you may have target player discard a card.
@@ -594,9 +564,12 @@ power=*
 subtype=Goblin
 toughness=*
 [/card]
+#works but will also give 3/3 to all ungry spriggan in myinplay if attacking
 [card]
 text=Trample     Whenever Hungry Spriggan attacks, it gets +3/+3 until end of turn.
 id=153997
+abilities=trample
+auto=aslongas(Hungry Spriggan[attacking]|myinplay) 3/3
 name=Hungry Spriggan
 rarity=C
 type=Creature
@@ -809,6 +782,8 @@ mana={4}{G}{G}
 [card]
 text={1}: Add {B} or {R} to your mana pool. Play this ability no more than three times each turn.
 id=141978
+auto={1}:add {B}
+auto={1}:add {R}
 name=Manaforge Cinder
 rarity=C
 type=Creature
@@ -1337,6 +1312,9 @@ toughness=2
 [card]
 text=Enchant creature     As long as enchanted creature is green, it gets +1/+1 and is indestructible. (Lethal damage and effects that say "destroy" don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.)  As long as enchanted creature is white, it gets +1/+1 and has flying.
 id=158762
+target=creature
+auto=aslongas(this[green]) indestructible
+auto=aslongas(this[green]) 1/1
 name=Shield of the Oversoul
 rarity=C
 type=Enchantment
@@ -1357,6 +1335,9 @@ toughness=3
 [card]
 text=Enchant creature     Enchanted creature doesn't untap during its controller's untap step.     Enchanted creature has "{1}, Put a -1/-1 counter on this creature: Untap this creature."
 id=158760
+target=creature
+auto=doesnotuntap
+auto={1}:counter(-1/-1) && untap
 name=Sinking Feeling
 rarity=C
 type=Enchantment
@@ -1416,14 +1397,6 @@ name=Spell Syphon
 rarity=C
 type=Instant
 mana={1}{U}
-[/card]
-[card]
-text=At the beginning of each player's draw step, that player draws an additional card.     Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
-id=146089
-name=Spiteful Visions
-rarity=R
-type=Enchantment
-mana={2}{BR}{BR}
 [/card]
 [card]
 text=Choose one - Target player discards two cards; or target player reveals his or her hand, you choose a card from it, then that player discards that card.
@@ -1522,6 +1495,9 @@ mana={4}{BR}
 [card]
 text=Remove target creature from the game. Return that card to play under its owner's control at end of turn.
 id=158752
+target=creature
+auto=moveto(exile)
+auto=@end of turn:moveto(inplay)
 name=Turn to Mist
 rarity=C
 type=Instant
@@ -1616,8 +1592,9 @@ mana={3}{R}
 [/card]
 [card]
 text=Other green creatures you control get +1/+1.     Other white creatures you control get +1/+1.     If a spell or ability an opponent controls causes you to discard Wilt-Leaf Liege, put it into play instead of putting it into your graveyard.
-auto=lord(creature[green]) 1/1
-auto=lord(creature[white]) 1/1
+auto=lord(creature[green]) 1/1 other
+auto=lord(creature[white]) 1/1 other
+auto=@movedTo(mygraveyard) from(myhand):moveto(inplay)
 id=147439
 name=Wilt-Leaf Liege
 rarity=R

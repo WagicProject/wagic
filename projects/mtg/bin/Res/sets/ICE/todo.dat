@@ -651,9 +651,8 @@ mana={2}{G}{G}
 [card]
 text=As an additional cost to play Fumarole, pay 3 life.       Destroy target creature and target land.
 id=2727
-target=creature,land
-auto=destroy
-auto=life:-3
+auto=destroy target(creature) && destroy target(land)
+auto=life:-3 controller
 name=Fumarole
 rarity=U
 type=Sorcery
@@ -1282,6 +1281,7 @@ mana={2}
 text=Whenever Marton Stromgald attacks, other attacking creatures get +1/+1 until end of turn for each attacking creature other than Marton Stromgald.     Whenever Marton Stromgald blocks, other blocking creatures get +1/+1 until end of turn for each blocking creature other than Marton Stromgald.
 id=2635
 name=Marton Stromgald
+auto=aslongas(Marton Stromgald[attacking]|myinplay):lord(creature[attacking]) foreach(creature[attacking]|myinplay) 1/1 other
 rarity=R
 type=Legendary Creature
 mana={2}{R}{R}
@@ -1393,14 +1393,7 @@ power=1
 subtype=Worm
 toughness=1
 [/card]
-[card]
-text=At the end of each player's turn, tap all untapped Islands that player controls and Monsoon deals X damage to the player, where X is the number of Islands tapped this way.
-id=2734
-name=Monsoon
-rarity=R
-type=Enchantment
-mana={2}{R}{G}
-[/card]
+
 [card]
 text={1}{R}{R}: Until end of turn, whenever you play a black spell, put a +1/+1 counter on Mountain Titan.
 id=2735
@@ -1415,6 +1408,8 @@ toughness=2
 [card]
 text=Creatures without flying don't untap during their controllers' untap steps.     At the beginning of each player's upkeep, that player may choose any number of tapped creatures without flying he or she controls and pay {2} for each creature chosen this way. If the player does, untap those creatures.
 id=2640
+auto=lord(creature[flying]) doesnotuntap
+auto=lord(creature[flying]) {2}:untap
 name=Mudslide
 rarity=R
 type=Enchantment
@@ -1618,14 +1613,7 @@ type=Enchantment
 mana={1}{W}
 subtype=Aura
 [/card]
-[card]
-text=Untap target creature an opponent controls and gain control of it until end of turn. That creature gains haste until end of turn. When you lose control of the creature, tap it.
-id=2528
-name=Ray of Command
-rarity=C
-type=Instant
-mana={3}{U}
-[/card]
+
 [card]
 text=Cumulative upkeep {1}{U}{U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  If tapped for mana, Plains produce {R}, Swamps produce {G}, Mountains produce {W}, and Forests produce {B} instead of any other type.
 id=2530
@@ -1634,14 +1622,7 @@ rarity=R
 type=Enchantment
 mana={U}{U}{U}
 [/card]
-[card]
-text=Black creatures have "This creature can't attack unless you sacrifice a land."
-id=2736
-name=Reclamation
-rarity=R
-type=Enchantment
-mana={2}{G}{W}
-[/card]
+
 [card]
 text=Enchant creature     Enchanted creature can't be blocked by red creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a red permanent.
 id=2709
@@ -1741,7 +1722,8 @@ auto={T}:counter(-1/-1) target(creature)
 id=2737
 name=Skeleton Ship
 rarity=R
-type=Legendary Creature
+abilities=lengendary,islandhome
+type=Creature
 mana={3}{U}{B}
 power=0
 subtype=Skeleton
@@ -1885,14 +1867,7 @@ power=4
 subtype=Elemental Spirit
 toughness=3
 [/card]
-[card]
-text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
-id=2740
-name=Stormbind
-rarity=R
-type=Enchantment
-mana={1}{R}{G}
-[/card]
+
 [card]
 text=Target player chooses three cards from his or her hand and puts them on top of his or her library in any order.
 id=2590
@@ -1909,17 +1884,7 @@ rarity=U
 type=Artifact
 mana={3}
 [/card]
-[card]
-text=When Tarpan is put into a graveyard from play, you gain 1 life.
-id=2591
-name=Tarpan
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Horse
-toughness=1
-[/card]
+
 [card]
 text=Destroy target land. If that land was a snow land, you gain 1 life.
 id=2592
@@ -1927,17 +1892,6 @@ name=Thermokarst
 rarity=U
 type=Sorcery
 mana={1}{G}{G}
-[/card]
-[card]
-text=Defender (This creature can't attack.)  Flying     {U}: Thunder Wall gets +1/+1 until end of turn.
-id=2540
-name=Thunder Wall
-rarity=U
-type=Creature
-mana={1}{U}{U}
-power=0
-subtype=Wall
-toughness=2
 [/card]
 [card]
 text=Timberline Ridge doesn't untap during your untap step if it has a depletion counter on it.     At the beginning of your upkeep, remove a depletion counter from Timberline Ridge.     {T}: Add {R} or {G} to your mana pool. Put a depletion counter on Timberline Ridge.
@@ -2085,17 +2039,7 @@ rarity=U
 type=Enchantment
 mana={1}{B}{B}
 [/card]
-[card]
-text=Woolly Mammoths has trample as long as you control a snow land.
-id=2602
-name=Woolly Mammoths
-rarity=C
-type=Creature
-mana={1}{G}{G}
-power=3
-subtype=Elephant
-toughness=2
-[/card]
+
 [card]
 text=Reach (This creature can block creatures with flying.)  Whenever Woolly Spider blocks a creature with flying, Woolly Spider gets +0/+2 until end of turn.
 id=2603
@@ -2118,6 +2062,8 @@ mana={U}
 [card]
 text=When Wrath of Marit Lage comes into play, tap all red creatures. Red creatures don't untap during their controllers' untap steps.
 id=2545
+auto=tap all(creature[red])
+auto=lord(creature[red])doesnotuntap
 name=Wrath of Marit Lage
 rarity=R
 type=Enchantment

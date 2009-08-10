@@ -99,6 +99,7 @@ subtype=Zombie Bird
 power=3
 toughness=2
 text=Flying When Aphetto Vulture is put into a graveyard from play, you may put target Zombie card from your graveyard on top of your library.
+auto=@movedTo(this|graveyard):may moveto(mylibrary) target(zombie|mygraveyard)
 rarity=U
 [/card]
 [card]
@@ -188,7 +189,6 @@ rarity=C
 [card]
 id=41139
 name=Barren Moor
-mana=
 type=Land
 text=Barren Moor comes into play tapped. {T}: Add {B} to your mana pool. Cycling {B} ({B}, Discard this card: Draw a card.)
 rarity=C

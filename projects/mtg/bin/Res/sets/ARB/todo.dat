@@ -31,7 +31,7 @@ rarity=U
 [card]
 id=189652
 name=Arsenal Thresher
-mana={2}{(}{W}{/}{B}{)}{U}
+mana={2}{WB}{U}
 type=Artifact Creature
 subtype=Construct
 power=2
@@ -123,6 +123,7 @@ rarity=C
 id=161291
 name=Breath of Malfegor
 mana={3}{B}{R}
+auto=damage:5 opponent
 type=Instant
 text=Breath of Malfegor deals 5 damage to each opponent.
 rarity=C
@@ -554,17 +555,6 @@ text=Fear, haste Whenever Lightning Reaver deals combat damage to a player, put 
 rarity=R
 [/card]
 [card]
-id=179633
-name=Lorescale Coatl
-mana={1}{G}{U}
-type=Creature
-subtype=Snake
-power=2
-toughness=2
-text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
-rarity=U
-[/card]
-[card]
 id=179540
 name=Maelstrom Nexus
 mana={W}{U}{B}{R}{G}
@@ -652,7 +642,7 @@ type=Creature
 subtype=Insect
 power=4
 toughness=4
-text=Monstrous Carabid attacks each turn if able. Cycling {(b/r)} ({(b/r)}, Discard this card: Draw a card.)
+text=Monstrous Carabid attacks each turn if able. Cycling {BR} ({BR}, Discard this card: Draw a card.)
 rarity=C
 [/card]
 [card]
@@ -709,6 +699,7 @@ rarity=R
 id=188962
 name=Nemesis of Reason
 mana={3}{U}{B}
+auto=aslongas(Nemesis of Reason[attacking]|myinplay) deplete:10 opponent
 type=Creature
 subtype=Leviathan Horror
 power=3

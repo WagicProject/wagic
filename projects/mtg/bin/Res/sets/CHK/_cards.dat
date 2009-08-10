@@ -61,6 +61,19 @@ auto={T}:foreach(mountain|myinplay) damage:1 target(creature[attacking])
 rarity=R
 [/card]
 [card]
+id=77925
+id=129767
+target=creature[-legendary]
+auto=haste
+auto=untap
+name=Blind with Anger
+mana={3}{R}
+type=Instant
+subtype=Arcane
+text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
+rarity=U
+[/card]
+[card]
 text={1}{R}, Sacrifice a creature: Blood Rites deals 2 damage to target Creature or player.
 auto={1}{R}{S(creature|myinplay)}:damage:2 target(creature,player)
 id=50509
@@ -127,6 +140,18 @@ mana={3}{B}{B}
 subtype=Arcane
 [/card]
 [card]
+id=80522
+name=Deathcurse Ogre
+mana={5}{B}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
+text=When Deathcurse Ogre is put into a graveyard from play, each player loses 3 life.
+auto=@movedTo(this|graveyard) from(inplay):life:-3 opponent && life:-3 controller
+rarity=C
+[/card]
+[card]
 id=79214
 name=Earthshaker
 mana={4}{R}{R}
@@ -136,6 +161,17 @@ power=4
 toughness=5
 text=Whenever you play a Spirit or Arcane spell, Earthshaker deals 2 damage to each creature without flying.
 auto=@movedTo(arcane,spirit|mystack):damage:2 all(creature[-flying])
+rarity=U
+[/card]
+[card]
+id=80243
+name=Eerie Procession
+mana={2}{U}
+type=Sorcery
+subtype=Arcane
+target=arcane|mylibrary
+auto=moveto(myhand)
+text=Search your library for an Arcane card, reveal that card, and put it into your hand. Then shuffle your library.
 rarity=U
 [/card]
 [card]
@@ -860,6 +896,20 @@ toughness=3
 auto=lord(snake|mybattlefield) 0/1 other
 auto=lord(shaman|mybattlefield) {T}:Add{G}{G}
 rarity=U
+[/card]
+[card]
+id=78965
+name=Seizan, Perverter of Truth
+mana={3}{B}{B}
+type=Creature
+abilities=Legendary 
+auto=@each my upkeep:life:-2 controller && draw:2 controller
+auto=@each opponent upkeep:life:-2 opponent && draw:2 opponent
+subtype=Demon Spirit
+power=6
+toughness=5
+text=At the beginning of each player's upkeep, that player loses 2 life and draws two cards.
+rarity=R
 [/card]
 [card]
 text=Flash   Enchant creature Enchanted creature gets +1/+1. {G}: Regenerate enchanted creature.

@@ -60,6 +60,18 @@ subtype=Kithkin Soldier
 toughness=2
 [/card]
 [card]
+text=Enchant creature     You control enchanted creature.     At the beginning of your upkeep, put a -1/-1 counter on enchanted creature.
+id=135485
+target=creature
+alias=1194
+auto=@each my upkeep:counter(-1/-1)
+name=Biting Tether
+rarity=U
+type=Enchantment
+mana={4}{U}
+subtype=Aura
+[/card]
+[card]
 text=Blazethorn Scarecrow has haste as long as you control a red creature.     Blazethorn Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)
 id=151632
 auto=aslongas(creature[red]|myinplay) haste
@@ -233,6 +245,17 @@ mana={3}{B}
 power=*
 subtype=Elemental
 toughness=*
+[/card]
+[card]
+text=Enchant creature     At the beginning of each upkeep, tap enchanted creature.
+id=146079
+target=creature
+auto=@each upkeep:tap
+name=Curse of Chains
+rarity=C
+type=Enchantment
+mana={1}{WU}
+subtype=Aura
 [/card]
 [card]
 text=Blue creatures you control are unblockable.
@@ -547,6 +570,21 @@ mana={2}{GW}{GW}
 power=2
 subtype=Elemental
 toughness=2
+[/card]
+[card]
+text=At the beginning of your upkeep, if you have no cards in hand, each opponent loses 2 life.     At the beginning of each opponent's upkeep, if that player has no cards in hand, he or she loses 2 life.
+id=146095
+auto=@each my upkeep:life:-2 opponent
+auto=@each my upkeep:aslongas(*|myhand):life:2 opponent
+auto=@each opponent upkeep:life:-2 opponent
+auto=@each opponent upkeep:aslongas(*|opponenthand):life:2 opponent
+name=Hollowborn Barghest
+rarity=R
+type=Creature
+mana={5}{B}{B}
+power=7
+subtype=Demon Hound
+toughness=6
 [/card]
 [card]
 text=Put a 2/2 green Wolf creature token into play for each Forest you control.
@@ -881,6 +919,18 @@ mana={1}{BR}
 power=2
 subtype=Elemental Shaman
 toughness=1
+[/card]
+[card]
+text=At the beginning of each player's draw step, that player draws an additional card.     Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
+id=146089
+auto=@each my upkeep:draw:1 controller
+auto=@each opponent upkeep:draw:1 opponent
+auto=@movedTo(myhand) from(mylibrary):damage:1 controller
+auto=@movedTo(opponenthand) from(opponentlibrary):damage:1 opponent
+name=Spiteful Visions
+rarity=R
+type=Enchantment
+mana={2}{BR}{BR}
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.

@@ -256,14 +256,6 @@ subtype=Elemental
 toughness=10
 [/card]
 [card]
-text=Counter target spell. Its controller draws a card.     Draw a card.
-id=153036
-name=Dream Fracture
-rarity=U
-type=Instant
-mana={1}{U}{U}
-[/card]
-[card]
 text=Flying     When Dream Thief comes into play, draw a card if you played another blue spell this turn.
 abilities=flying
 id=157207
@@ -408,7 +400,7 @@ mana={4}{BG}
 subtype=Aura
 [/card]
 [card]
-text={2}{GU}, {T}: For each counter on target permanent, put another of those counters on that permanent. ({T} is the untap symbol.)
+text={2}{GU}, {Q}: For each counter on target permanent, put another of those counters on that permanent. ({Q} is the untap symbol.)
 id=152046
 name=Gilder Bairn
 rarity=U
@@ -681,7 +673,6 @@ power=2
 subtype=Shapeshifter
 toughness=1
 [/card]
-
 [card]
 text=Noggle Bandit can't be blocked except by creatures with defender.
 id=157286
@@ -704,18 +695,6 @@ power=2
 subtype=Noggle Wizard
 toughness=2
 [/card]
-[card]
-text=When Noggle Ransacker comes into play, each player draws two cards, then discards a card at random.
-id=152032
-name=Noggle Ransacker
-rarity=U
-type=Creature
-mana={2}{UR}
-power=2
-subtype=Noggle Rogue
-toughness=1
-[/card]
-
 [card]
 text=When Nucklavee comes into play, you may return target red sorcery card from your graveyard to your hand.     When Nucklavee comes into play, you may return target blue instant card from your graveyard to your hand.
 id=153058
@@ -749,19 +728,7 @@ subtype=Goblin Shaman
 toughness=2
 [/card]
 [card]
-text=Overbeing of Myth's power and toughness are each equal to the number of cards in your hand.     At the beginning of your draw step, draw a card.
-auto=foreach(*|myhand) 1/1
-id=151151
-name=Overbeing of Myth
-rarity=R
-type=Creature
-mana={GU}{GU}{GU}{GU}{GU}
-power=*
-subtype=Spirit Avatar
-toughness=*
-[/card]
-[card]
-text={1}{W}, {Q}: Put a 1/1 white Kithkin Soldier creature token into play. ({Q} is the untap symbol.)
+text={1}{W}{Q}: Put a 1/1 white Kithkin Soldier creature token into play. ({Q} is the untap symbol.)
 id=157210
 name=Patrol Signaler
 rarity=U
@@ -830,16 +797,6 @@ mana={2}{U}
 power=2
 subtype=Merfolk Wizard
 toughness=2
-[/card]
-[card]
-text=Enchant creature     Enchanted creature can't attack or block.     At the beginning of your upkeep, you may gain 1 life.
-target=creature
-id=153435
-name=Recumbent Bliss
-rarity=C
-type=Enchantment
-mana={2}{W}
-subtype=Aura
 [/card]
 [card]
 text=Rekindled Flame deals 4 damage to target creature or player.     At the beginning of your upkeep, if an opponent has no cards in hand, you may return Rekindled Flame from your graveyard to your hand.
@@ -944,18 +901,6 @@ type=Instant
 mana={2}{GU}
 [/card]
 [card]
-text=Flying     Whenever a player plays a nonblack spell, that player loses 1 life.
-abilities=flying
-id=158900
-name=Soot Imp
-rarity=U
-type=Creature
-mana={1}{B}{B}
-power=1
-subtype=Imp
-toughness=2
-[/card]
-[card]
 text=Destroy target nongreen creature. Its controller loses 3 life if you played another black spell this turn.
 target=creature
 id=151150
@@ -964,7 +909,6 @@ rarity=C
 type=Sorcery
 mana={1}{B}
 [/card]
-
 [card]
 text=Flying     You can't be the target of spells or abilities your opponents control.
 abilities=flying

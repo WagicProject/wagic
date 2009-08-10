@@ -244,7 +244,7 @@ mana={U}
 [card]
 text=Blue creatures don't untap during their controllers' untap steps.     Blue creatures have "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
 auto=lord(creature[blue]) doesnotuntap
-auto=lord(creature[blue]) @each my upkeep:may {4}:untap
+auto=lord(creature[blue]) {4}:untap
 id=1304
 name=Magnetic Mountain
 rarity=R

@@ -280,6 +280,18 @@ auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
 rarity=R
 [/card]
 [card]
+id=6127
+name=Ogre Shaman
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre Shaman
+power=3
+toughness=3
+auto={2}:damage:2 target(creature,player) && discard:1 controller
+text={2}, Discard a card at random: Ogre Shaman deals 2 damage to target creature or player.
+rarity=R
+[/card]
+[card]
 text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
 id=5199
 name=Paladin en-Vec
@@ -325,6 +337,16 @@ text=Enchant creature Whenever an opponent plays a creature spell, put a +1/+1 c
 target=creature
 auto=@movedTo(creature|opponentstack):counter(1/1)
 rarity=C
+[/card]
+[card]
+id=6123
+name=Price of Progress
+mana={1}{R}
+type=Instant
+text=Price of Progress deals 2 damage to each player for each nonbasic land he or she controls.
+auto=foreach(land[-basic]|myinplay) damage:2 controller
+auto=foreach(land[-basic]|opponentinplay) damage:2 opponent
+rarity=U
 [/card]
 [card]
 text=Whenever Pygmy Troll becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.   {G}: Regenerate Pygmy Troll.
@@ -532,6 +554,17 @@ power=*
 toughness=*
 [/card]
 [card]
+id=6112
+name=Sonic Burst
+target=creature,player
+auto=damage:4
+auto=discard:1 controller
+mana={1}{R}
+type=Instant
+text=As an additional cost to play Sonic Burst, discard a card at random. Sonic Burst deals 4 damage to target creature or player.
+rarity=C
+[/card]
+[card]
 id=6033
 name=Soul Warden
 mana={W}
@@ -541,6 +574,16 @@ power=1
 toughness=1
 text=Whenever another creature comes into play, you gain 1 life.
 auto=@movedTo(creature|battlefield):life:1
+rarity=U
+[/card]
+[card]
+id=6121
+name=Spellshock
+mana={2}{R}
+type=Enchantment
+auto=@movedTo(*[-land]|mystack):damage:2 controller
+auto=@movedTo(*[-land]|opponentstack):damage:2 opponent
+text=Whenever a player plays a spell, Spellshock deals 2 damage to that player.
 rarity=U
 [/card]
 [card]

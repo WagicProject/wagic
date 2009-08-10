@@ -35,6 +35,17 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Enchant creature     When enchanted creature is put into a graveyard, that creature's controller loses life equal to its toughness.
+id=174817
+target=creature
+alias=1197
+name=Banewasp Affliction
+rarity=C
+type=Enchantment
+mana={1}{B}
+subtype=Aura
+[/card]
+[card]
 text={G}, {T}: Target creature gains trample until end of turn.     {U}, {T}: Target creature gains flying until end of turn.
 auto={G}{T}:trample target(creature)
 auto={U}{T}:flying target(creature)
@@ -113,6 +124,16 @@ name=Cancel
 rarity=C
 type=Instant
 mana={1}{U}{U}
+[/card]
+[card]
+text=Return target creature to its owner's hand. Its controller draws a card.
+id=175053
+target=creature
+auto=moveto(ownerhand) && draw:1 targetController
+name=Call to Heel
+rarity=C
+type=Instant
+mana={1}{U}
 [/card]
 [card]
 text={T}: Target player puts the top card of his or her library into his or her graveyard.
@@ -406,6 +427,16 @@ subtype=Illusion
 toughness=1
 [/card]
 [card]
+text=At the beginning of your upkeep, put a 1/1 red Goblin creature token with haste into play.     Goblin creatures attack each turn if able.
+auto=lord(goblin) mustattack
+auto=@each my upkeep:token(Goblin,Creature Goblin,1/1,haste red)
+id=174939
+name=Goblin Assault
+rarity=R
+type=Enchantment
+mana={2}{R}
+[/card]
+[card]
 text=Trample
 abilities=trample
 id=177596
@@ -590,6 +621,17 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Target player gains 7 life and draws two cards.
+id=174976
+target=player
+auto=life:7
+auto=draw:2
+name=Kiss of the Amesha
+rarity=U
+type=Sorcery
+mana={4}{W}{U}
+[/card]
+[card]
 text={3}{G}: Knight of the Skyward Eye gets +3/+3 until end of turn. Play this ability only once each turn.
 auto={3}{G}:3/3 limit:1
 id=175047
@@ -634,6 +676,15 @@ mana={2}{U}
 power=*
 subtype=Vedalken Wizard
 toughness=*
+[/card]
+[card]
+text=Whenever an opponent plays a spell, that player puts the top two cards of his or her library into his or her graveyard.
+auto=@movedTo(*[-land]|opponentstack):deplete:2 opponent
+id=175108
+name=Memory Erosion
+rarity=R
+type=Enchantment
+mana={1}{U}{U}
 [/card]
 [card]
 text={W}, {T}: Regenerate target artifact.
@@ -1052,7 +1103,7 @@ toughness=2
 [card]
 text=Flying     {B}, Sacrifice a creature: Regenerate Skeletal Kathari.
 abilities=flying
-auto={B},{S(creature|myinplay)}:regenerate
+auto={B}{S(creature|myinplay)}:regenerate
 id=175119
 name=Skeletal Kathari
 rarity=C
@@ -1061,6 +1112,19 @@ mana={4}{B}
 power=3
 subtype=Bird Skeleton
 toughness=2
+[/card]
+[card]
+text=Flying     At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
+id=175107
+auto=@each my endofturn:aslongas(Sphinx Sovereign[-tapped]|myinplay) life:3 controller
+auto=@each my endofturn:aslongas(Sphinx Sovereign[tapped]|myinplay) life:-3 opponent
+name=Sphinx Sovereign
+rarity=M
+type=Artifact Creature
+mana={4}{W}{U}{U}{B}
+power=6
+subtype=Sphinx
+toughness=6
 [/card]
 [card]
 text=When Sprouting Thrinax is put into a graveyard from play, put three 1/1 green Saproling creature tokens into play.

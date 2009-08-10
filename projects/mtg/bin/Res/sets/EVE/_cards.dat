@@ -173,6 +173,16 @@ type=Sorcery
 mana={2}{BG}{BG}
 [/card]
 [card]
+text=Counter target spell. Its controller draws a card.     Draw a card.
+id=153036
+target=*|stack
+auto=fizzle && draw:1 controller && draw:1 targetController
+name=Dream Fracture
+rarity=U
+type=Instant
+mana={1}{U}{U}
+[/card]
+[card]
 text=Sacrifice Duergar Assailant: Duergar Assailant deals 1 damage to target attacking or blocking creature.
 auto={S}:damage:1 target(creature[attacking;blocking])
 id=150975
@@ -490,6 +500,21 @@ subtype=Noggle Rogue
 toughness=3
 [/card]
 [card]
+text=When Noggle Ransacker comes into play, each player draws two cards, then discards a card at random.
+id=152032
+auto=draw:2 controller
+auto=draw:2 opponent
+auto=discard:1 controller
+auto=discard:1 opponent
+name=Noggle Ransacker
+rarity=U
+type=Creature
+mana={2}{UR}
+power=2
+subtype=Noggle Rogue
+toughness=1
+[/card]
+[card]
 text=Noxious Hatchling comes into play with four -1/-1 counters on it.     Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever you play a black spell, remove a -1/-1 counter from Noxious Hatchling.     Whenever you play a green spell, remove a -1/-1 counter from Noxious Hatchling.
 abilities=wither
 auto=@movedTo(*[black]|mystack):counter(-1/-1,-1)
@@ -517,6 +542,19 @@ subtype=Troll
 toughness=1
 [/card]
 [card]
+text=Overbeing of Myth's power and toughness are each equal to the number of cards in your hand.     At the beginning of your draw step, draw a card.
+auto=foreach(*|myhand) 1/1
+auto=@each my draw:draw:1
+id=151151
+name=Overbeing of Myth
+rarity=R
+type=Creature
+mana={GU}{GU}{GU}{GU}{GU}
+power=*
+subtype=Spirit Avatar
+toughness=*
+[/card]
+[card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Puncture Blast deals 3 damage to target creature or player.
 target=creature,player
 abilities=wither
@@ -526,6 +564,19 @@ name=Puncture Blast
 rarity=C
 type=Instant
 mana={2}{R}
+[/card]
+[card]
+text=Enchant creature     Enchanted creature can't attack or block.     At the beginning of your upkeep, you may gain 1 life.
+target=creature
+auto=cantattack
+auto=cantblock
+auto=@each my upkeep:may life:1 controller
+id=153435
+name=Recumbent Bliss
+rarity=C
+type=Enchantment
+mana={2}{W}
+subtype=Aura
 [/card]
 [card]
 text=When Regal Force comes into play, draw a card for each green creature you control.
@@ -631,6 +682,20 @@ type=Creature
 mana={3}{B}
 power=4
 subtype=Elemental Warrior
+toughness=2
+[/card]
+[card]
+text=Flying     Whenever a player plays a nonblack spell, that player loses 1 life.
+abilities=flying
+id=158900
+auto=@movedTo(*[-land;-black]|mystack):life:-1 controller
+auto=@movedTo(*[-land;-black]|opponentstack):life:-1 opponent
+name=Soot Imp
+rarity=U
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Imp
 toughness=2
 [/card]
 [card]

@@ -99,7 +99,7 @@ id=39505
 name=Bloodstained Mire
 type=Land
 text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
-auto={T},{S}:moveTo(myinplay) target(swamp,mountain|mylibrary) && life:-1
+auto={T}{S}:moveTo(myinplay) target(swamp,mountain|mylibrary) && life:-1 controller
 rarity=R
 [/card]
 [card]
@@ -463,7 +463,7 @@ id=41154
 target=creature
 name=Inspirit
 mana={2}{W}
-auto=untap target(creature)
+auto=untap
 auto=2/4
 type=Instant 
 rarity=U
@@ -614,8 +614,9 @@ name=Oblation
 mana={2}{W}
 type=Instant
 text=The owner of target nonland permanent shuffles it into his or her library, then draws two cards.
-auto=moveTo(ownerlibrary) target(*[-Land]|opponentinplay)
-auto=draw:2
+target=(*[-Land]|opponentinplay)
+auto=moveTo(ownerlibrary)
+auto=draw:2 targetController
 rarity=R
 [/card]
 [card]
@@ -681,7 +682,7 @@ id=39504
 name=Polluted Delta
 type=Land
 text={T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Island or Swamp card and put it into play. Then shuffle your library.
-auto={T},{S}:moveTo(myinplay) target(island,swamp|mylibrary) && life:-1
+auto={T}{S}:moveTo(myinplay) target(island,swamp|mylibrary) && life:-1 controller
 rarity=R
 [/card]
 [card]
@@ -691,7 +692,7 @@ mana={2}{B}{B}
 type=Sorcery
 text=Profane Prayers deals X damage to target creature or player and you gain X life, where X is the number of Clerics in play.
 auto=foreach(Cleric)damage:1 target(player,creature)
-auto=foreach(Cleric)life:1
+auto=foreach(Cleric)life:1 controller
 rarity=C
 [/card]
 [card]
@@ -737,6 +738,7 @@ target=player
 auto=moveTo(ownerlibrary) all(*|ownergraveyard)
 rarity=U
 [/card]
+
 [card]
 id=40656
 name=Righteous Cause
@@ -940,9 +942,10 @@ text=Untap target creature and gain control of it until end of turn. That creatu
 id=43736
 name=Threaten
 target=creature
-alias=1194
-auto=untap target(creature)
+alias=129767
+target=creature
 auto=haste
+auto=untap
 mana={2}{R}
 type=Sorcery 
 rarity=U
