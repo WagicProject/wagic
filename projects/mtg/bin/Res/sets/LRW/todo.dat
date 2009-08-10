@@ -1341,6 +1341,20 @@ subtype=Merfolk Rogue
 toughness=2
 [/card]
 [card]
+text=Flash, Flying. When Pestermite comes into play, you may tap or untap target permanent.
+abilities=flash,flying
+auto=tap target(*)
+auto=untap target(*)
+id=139428
+name=Pestermite
+rarity=C
+type=Creature
+mana={2}{U}
+power=2
+subtype=Faerie Rogue
+toughness=1
+[/card]
+[card]
 text=Prevent all combat damage that would be dealt this turn. Clash with an opponent. If you win, creatures that player controls don't untap during the player's next untap step. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 id=145815
 name=Pollen Lullaby

@@ -291,7 +291,6 @@ toughness=1
 [card]
 text=Whenever an opponent plays a spell, that player draws seven cards.
 id=146166
-auto=@movedTo(*[-land]|mystack):draw:7 controller
 auto=@movedTo(*[-land]|opponentstack):draw:7 opponent
 name=Forced Fruition
 rarity=R
@@ -549,7 +548,7 @@ toughness=2
 [/card]
 [card]
 text={G}, {T}: Target attacking creature gets +2/+2 until end of turn.
-auto={G}{T}:target(creature[attacking]) 2/2
+auto={G}{T}:2/2 target(creature[attacking])
 id=139498
 name=Kithkin Daggerdare
 rarity=C
@@ -791,20 +790,6 @@ mana={B}
 subtype=Faerie
 [/card]
 [card]
-text=Flash, Flying. When Pestermite comes into play, you may tap or untap target permanent.
-abilities=flash,flying
-auto=tap target(*)
-auto=untap target(*)
-id=139428
-name=Pestermite
-rarity=C
-type=Creature
-mana={2}{U}
-power=2
-subtype=Faerie Rogue
-toughness=1
-[/card]
-[card]
 text={T}: Add {W} to your mana pool.
 auto={T}:add{W}
 id=143630
@@ -962,7 +947,7 @@ type=Land
 [/card]
 [card]
 text={T}: Target creature gets -X/-0 until end of turn, where X is the number of Merfolk and/or Faeries you control.
-auto={T}:foreach(merfolk|myinplay) -1/0 target(creature)
+auto={T}:foreach(merfolk,faerie|myinplay) -1/0 target(creature)
 id=141853
 name=Silvergill Douser
 rarity=C
@@ -1138,8 +1123,8 @@ toughness=4
 [card]
 text=Other Treefolk creatures you control get +1/+1.     Other Treefolk and Forests you control are indestructible.
 id=139690
-auto=lord(Treefolk|myinplay) 1/1 other
-auto=lord(Treefolk,forest|myinplay) indestructible other
+auto=lord(treefolk|myinplay) 1/1 other
+auto=lord(treefolk,forest|myinplay) indestructible other
 name=Timber Protector
 rarity=R
 type=Creature
