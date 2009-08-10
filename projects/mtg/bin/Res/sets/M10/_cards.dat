@@ -1044,7 +1044,7 @@ subtype=Human Druid
 power=0
 toughness=2
 text=Whenever you cast an enchantment spell, you may draw a card.
-auto=@movedTo(enchantment|stack): may draw:1
+auto=@movedTo(enchantment|mystack): may draw:1
 rarity=R
 [/card]
 [card]
