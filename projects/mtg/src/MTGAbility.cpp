@@ -1563,7 +1563,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	
     case 3194: // Exile
     {
-	game->currentlyActing()->life+=  card->target->toughness;
+	game->currentlyActing()->life+=card->target->toughness;
 	  break;
     }
 
@@ -1739,7 +1739,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	// --- addon ARB---
     case 179614: // Morbid Bloom
     {
-      card->target->controller()->game->putInZone(card->target, card->target->controller()->game->inPlay,card->owner->game->removedFromGame);
       int x = card->target->toughness;
       ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling",1,1,"green",0);
       for (int i=0; i < x; i++){
