@@ -110,7 +110,7 @@ abilities=defender
 [card]
 text=({GW} can be paid with either {G} or {W}.)  When Centaur Safeguard is put into a graveyard from play, you may gain 3 life.
 id=87959
-auto=movedto(this|graveyard):may life:3
+auto=@movedto(this|graveyard):may life:3
 name=Centaur Safeguard
 rarity=C
 type=Creature
