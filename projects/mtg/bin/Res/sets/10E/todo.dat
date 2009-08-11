@@ -1160,6 +1160,19 @@ subtype=Viashino
 toughness=2
 [/card]
 [card]
+text=When Viridian Shaman comes into play, destroy target artifact.
+id=129792
+name=Viridian Shaman
+auto=destroy target(artifact) #does not work in 0.8
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  As Voice of All comes into play, choose a color.      Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
 id=136290
 name=Voice of All

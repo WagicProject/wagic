@@ -11,7 +11,7 @@
 #include "../include/utils.h"
 #include "../include/DeckDataWrapper.h"
 
-static const char* GAME_VERSION = "WTH?! 0.8.0 - by wololo";
+static const char* GAME_VERSION = "WTH?! 0.8.1 - by wololo";
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
@@ -175,6 +175,7 @@ void GameStateMenu::fillScroller(){
 
   DeckStats * stats = DeckStats::GetInstance();
   int totalGames = 0;
+  
   for (int j=1; j<6; j++){
     sprintf(buffer, RESPATH"/player/stats/player_deck%i.txt",j);
     if(fileExists(buffer)){
@@ -193,6 +194,7 @@ void GameStateMenu::fillScroller(){
     sprintf(buff2, _("You have played a total of %i games").c_str(),totalGames);
       scroller->Add(buff2);
   }
+  
   GameOptions * go = GameOptions::GetInstance();
 
   if (!go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()){
@@ -201,6 +203,23 @@ void GameStateMenu::fillScroller(){
   if (!go->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()){
     scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));   
   }
+  if (!go->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()){
+    scroller->Add(_("You haven't locked the random deck mode yet"));   
+  }
+  if (!go->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()){
+    scroller->Add(_("You haven't unlocked the evil twin mode yet"));   
+  }
+
+  //Unlocked sets
+  int nbunlocked = 0;
+  for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
+    string s = MtgSets::SetsList->values[i];
+    sprintf(buffer,"unlocked_%s", s.c_str());
+    if (GameOptions::GetInstance()->values[buffer].getIntValue() == 1 ) nbunlocked++;
+  }
+  sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, MtgSets::SetsList->nb_items);
+  scroller->Add(buff2);
+
 
   DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
   int totalCards = ddw->getCount();

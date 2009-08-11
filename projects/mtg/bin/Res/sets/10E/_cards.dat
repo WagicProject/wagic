@@ -3076,19 +3076,6 @@ subtype=Viashino Scout
 toughness=1
 [/card]
 [card]
-text=When Viridian Shaman comes into play, destroy target artifact.
-id=129792
-name=Viridian Shaman
-auto=may moveTo(ownergraveyard) target(artifact)
-rarity=U
-color=Green
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
-[/card]
-[card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
 abilities=defender,flying
 id=135274

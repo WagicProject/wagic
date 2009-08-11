@@ -1385,18 +1385,6 @@ subtype=Horror
 toughness=1
 [/card]
 [card]
-text=When Viridian Shaman comes into play, destroy target artifact.
-auto=destroy target(creature)
-id=46119
-name=Viridian Shaman
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
-[/card]
-[card]
 text=Haste
 id=5585
 abilities=haste

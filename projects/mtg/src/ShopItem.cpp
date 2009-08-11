@@ -264,9 +264,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         int rnd = rand() % 8;
         if (rnd == 0) rare_or_mythic = Constants::RARITY_M;
         int sets[] = {setIds[showPriceDialog]};
-        //for (int i= 0; i <15; i++){
-        //  tempDeck->add(136218);
-        //}
+
         tempDeck->addRandomCards(1, sets,1,rare_or_mythic);
         tempDeck->addRandomCards(3, sets,1,Constants::RARITY_U);
         tempDeck->addRandomCards(11, sets,1,Constants::RARITY_C);
@@ -278,8 +276,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
           ShopItem * si =  ((ShopItem *)mObjects[j]);
           si->updateCount(myCollection);
         }
-
-        
+       
         int i = 0;
         for (map<int,int>::iterator it = tempDeck->cards.begin(); it!=tempDeck->cards.end(); it++){
           MTGCard * c = tempDeck->getCardById(it->first);
@@ -292,7 +289,6 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         }
         delete tempDeck;
       }
-      //Remove(showPriceDialog);
       showPriceDialog = -1;
     }else{
       //error not enough money
@@ -303,7 +299,6 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
       int rnd = (rand() % 25);
       price = price - (rnd * price)/100;
       pricelist->setPrice(item->card->getMTGId(),price);
-      item->price = price;
     }
     showPriceDialog = -1;
     break;
