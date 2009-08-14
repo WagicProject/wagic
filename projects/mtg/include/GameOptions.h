@@ -19,6 +19,7 @@ using std::string;
 #define OPTIONS_PLASMAEFFECT "plasmaEffect"
 #define OPTIONS_INTERRUPTMYSPELLS "interruptMySpells"
 #define OPTIONS_INTERRUPTMYABILITIES "interruptMyAbilities"
+#define OPTIONS_OSD "displayOSD"
 
 // WALDORF - added
 #define OPTIONS_INTERRUPT_SECONDS "interruptSeconds"                         

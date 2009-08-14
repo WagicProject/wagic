@@ -342,6 +342,7 @@ int MTGCardInstance::canBlock(){
   if (tapped) return 0;
   if (basicAbilities[Constants::CANTBLOCK]) return 0;
   if (!isACreature())return 0;
+  if (!isInPlay()) return 0;
   return 1;
 }
 

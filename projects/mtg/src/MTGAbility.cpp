@@ -545,13 +545,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NULL;
   }
 
-
+  int forceUEOT = 0;
+  found = s.find("ueot");
+  if (found!= string::npos) forceUEOT = 1;
  
   //Change Power/Toughness
   int power, toughness;
   if ( parsePowerToughness(s,&power, &toughness)){
     if (!activated){
-      if(card->hasType("instant") || card->hasType("sorcery")){
+      if(card->hasType("instant") || card->hasType("sorcery") || forceUEOT){
         return NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness);
       }
       return NEW APowerToughnessModifier(id, card, target,power,toughness);
@@ -578,7 +580,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       int modifier = 1;
       if (found > 0 && s[found-1] == '-') modifier = 0;
       if (!activated){
-        if(card->hasType("instant") || card->hasType("sorcery") ) return NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier);   
+        if(card->hasType("instant") || card->hasType("sorcery")  || forceUEOT){ 
+           return NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier);
+        }
         return NEW ABasicAbilityModifier(id, card,target, j,modifier);
       }
       return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);

@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/MTGRules.h"
 #include "../include/Translate.h"
+#include "../include/GameOptions.h"
 
 MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
   aType=MTGAbility::PUT_INTO_PLAY;
@@ -371,6 +372,7 @@ int HUDDisplay::receiveEvent(WEvent * event){
   return 0;
 }
 void HUDDisplay::Render(){
+  if (!GameOptions::GetInstance()->values[OPTIONS_OSD].getIntValue()) return;
   if (!events.size()) return;
 
   f->SetColor(ARGB(255,255,255,255));

@@ -1,0 +1,30 @@
+#Bug: Belligerent Hatchling doesn't lose its counters
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{R}
+inplay:belligerent hatchling
+hand:shock
+[PLAYER2]
+[DO]
+shock
+p2
+next
+#begin
+next
+#attackers
+belligerent hatchling
+next
+#blockers
+next
+#damage
+next
+#end of combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:belligerent hatchling
+graveyard:shock
+[PLAYER2]
+life:15
+[END]

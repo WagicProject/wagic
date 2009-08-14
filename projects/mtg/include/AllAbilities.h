@@ -76,7 +76,7 @@ class AACounter: public ActivatedAbility{
         _target->counters->addCounter(power, toughness);
        }
      }else{
-       for (int i=0; i < nb; i++){
+       for (int i=0; i < -nb; i++){
         _target->counters->removeCounter(power, toughness);
        }
      }

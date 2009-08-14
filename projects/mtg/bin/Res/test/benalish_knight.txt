@@ -1,0 +1,28 @@
+#Bug: Benalish Knight offers to block from hand
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+hand:benalish knight
+inplay:plains,mountain,swamp
+[DO]
+grizzly bears
+next
+#blockers
+plains
+mountain
+swamp
+benalish knight
+benalish knight
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:grizzly bears
+[PLAYER2]
+inplay:plains,mountain,swamp,benalish knight
+[END]

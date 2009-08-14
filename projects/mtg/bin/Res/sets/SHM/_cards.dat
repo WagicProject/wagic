@@ -270,19 +270,6 @@ subtype=Merfolk Rogue
 toughness=2
 [/card]
 [card]
-text=Flying, haste. When you play Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to play.
-id=153972
-name=Demigod of Revenge
-auto=moveTo(myinplay) all(Demigod of Revenge|mygraveyard)
-abilities=flying,haste
-rarity=R
-type=Creature
-mana={BR}{BR}{BR}{BR}{BR}
-power=5
-subtype=Spirit Avatar
-toughness=4
-[/card]
-[card]
 text=You may put a green creature card from your hand into play.
 id=154003
 target=creature[green]|myhand
@@ -329,8 +316,8 @@ mana={3}{R}
 [/card]
 [card]
 text=Whenever you play a black spell, Emberstrike Duo gets +1/+1 until end of turn.     Whenever you play a red spell, Emberstrike Duo gains first strike until end of turn.
-auto=@movedTo(*[red]|mystack):1/1
-auto=@movedTo(*[red]|mystack):first strike
+auto=@movedTo(*[red]|mystack):1/1 ueot
+auto=@movedTo(*[red]|mystack):first strike ueot
 id=153307
 name=Emberstrike Duo
 rarity=C
@@ -514,8 +501,8 @@ toughness=3
 [/card]
 [card]
 text=Whenever you play a blue spell, Gravelgill Duo gets +1/+1 until end of turn.     Whenever you play a black spell, Gravelgill Duo gains fear until end of turn.
-auto=@movedTo(*[blue]|mystack):1/1
-auto=@movedTo(*[blue]|mystack):fear
+auto=@movedTo(*[blue]|mystack):1/1 ueot
+auto=@movedTo(*[blue]|mystack):fear ueot
 id=153308
 name=Gravelgill Duo
 rarity=C
@@ -1069,8 +1056,8 @@ toughness=2
 [/card]
 [card]
 text=Whenever you play a green spell, Safehold Duo gets +1/+1 until end of turn.     Whenever you play a white spell, Safehold Duo gains vigilance until end of turn.
-auto=@movedTo(*[green]|mystack):1/1
-auto=@movedTo(*[white]|mystack):vigilance
+auto=@movedTo(*[green]|mystack):1/1 ueot
+auto=@movedTo(*[white]|mystack):vigilance ueot
 id=153963
 name=Safehold Duo
 rarity=C
@@ -1254,8 +1241,8 @@ subtype=Swamp
 [/card]
 [card]
 text=Whenever you play a red spell, Tattermunge Duo gets +1/+1 until end of turn. Whenever you play a green spell, Tattermunge Duo gains forestwalk until end of turn.
-auto=@movedTo(*[red]|mystack):1/1
-auto=@movedTo(*[green]|mystack):forestwalk
+auto=@movedTo(*[red]|mystack):1/1 ueot
+auto=@movedTo(*[green]|mystack):forestwalk ueot
 id=153282
 name=Tattermunge Duo
 rarity=C
@@ -1291,8 +1278,8 @@ toughness=1
 [/card]
 [card]
 text=Whenever you play a white spell, Thistledown Duo gets +1/+1 until end of turn.     Whenever you play a blue spell, Thistledown Duo gains flying until end of turn.
-auto=@movedTo(*[white]|mystack):1/1
-auto=@movedTo(*[blue]|mystack):flying
+auto=@movedTo(*[white]|mystack):1/1 ueot
+auto=@movedTo(*[blue]|mystack):flying ueot
 id=153301
 name=Thistledown Duo
 rarity=C
@@ -1460,6 +1447,7 @@ toughness=4
 [card]
 text=Flying     Attacking creatures you control have lifelink.
 id=146090
+abilities=flying
 auto=lord(creature[attacking]|myinplay) lifelink
 name=Windbrisk Raptor
 rarity=R

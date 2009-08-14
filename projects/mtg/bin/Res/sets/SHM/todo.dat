@@ -235,6 +235,20 @@ subtype=Giant Warrior
 toughness=7
 [/card]
 [card]
+#This card has been reported to crash the game when played from a graveyard. Let's test it
+text=Flying, haste. When you play Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to play.
+id=153972
+name=Demigod of Revenge
+auto=moveTo(myinplay) all(Demigod of Revenge|mygraveyard)
+abilities=flying,haste
+rarity=R
+type=Creature
+mana={BR}{BR}{BR}{BR}{BR}
+power=5
+subtype=Spirit Avatar
+toughness=4
+[/card]
+[card]
 text=Trample     Whenever Deus of Calamity deals 6 or more damage to an opponent, destroy target land that player controls.
 id=146773
 name=Deus of Calamity
