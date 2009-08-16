@@ -1,4 +1,4 @@
-#Fichier de traduction Francais pour Wagic The Homebrew 0.7.0
+#Fichier de traduction Francais pour Wagic The Homebrew
 #Placez ce fichier dans Res/lang.txt (renommez-le si necessaire), la traduction devrait etre automatique
 
 #Note to translators:
@@ -6,6 +6,7 @@
 # BUT DO NOT TOUCH ANYTHING ELSE in the _cards.dat files (names and types of creatures are used by the game!)
 # If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
 #Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
+
 
 #Game menus/texts
 LOADING SET: %s=CHARGEMENT SET: %s
@@ -22,6 +23,7 @@ Music volume=Volume Musique
 SFX volume=Volume Sons
 interrupt my spells=Interrompre mes sorts
 interrupt my abilities=Interrompre mes abilites
+Display InGame extra information=Infos supplementaires durant le jeu
 Seconds to pause for an Interrupt=Secondes pour interruption
 Difficulty=Difficulte
 Image Cache Size=Taille du cache images
@@ -35,11 +37,17 @@ Choose Opponent=Choix de l'adversaire
 (easy)=(*)
 (hard)=(***)
 Random=Aleatoire
+Create your Deck!=Creez votre deck !
+Premade G/R=Deck Debutant V/R
 You have a %i%% victory ratio with Deck%i=Vous avez %i%% de reussite avec le Deck%i
 You have played %i games with Deck%i=Vous avez fait %i parties avec le Deck %i
 You have played a total of %i games=Vous avez fait un total de %i parties
 Unlock the difficult mode for more challenging duels!=Debloquez le mode difficile pour plus de challenge!
 Interested in playing Momir Basic? You'll have to unlock it first :)=Connaissez-vous le mode Momir Basic ? Essayez de le debloquer pour pouvoir l'essayer !
+You haven't unlocked the random deck mode yet=Saurez-vous debloquer le mode "Deck Aleatoire"?
+You haven't locked the random deck mode yet=Saurez-vous debloquer le mode "Deck Aleatoire"?
+You haven't unlocked the evil twin mode yet=Il vous reste le mode "Evil Twin" a debloquer
+You have unlocked %i expansions out of %i=Vous avez debloque %i extensions sur %i
 You have a total of %i cards in your collection=Vous avez un total de %i cartes dans votre collection
 The cards in your collection have an average value of %i credits=La valeur moyenne de chacune de vos cartes est de %i credits
 The shopkeeper would buy your entire collection for around %i credits=Le marchand acheterait votre collection pour environ %i credits
@@ -53,6 +61,7 @@ PRESS CIRCLE TO GO TO THE DECK EDITOR!=APPUYEZ SUR O POUR CREER UN DECK !
 
 #Shop
 credits: %i=credits: %i
+press [] to refresh=[] pour recharger
 
 #in Game
 Interrupt?=Interruption ?
@@ -145,10 +154,12 @@ cat=chat
 centaur=centaure
 elf=elfe
 forest=foret
+goblin=gobelin
 hound=chien
 human=humain
 island=ile
 knight=chevalier
+minotaur=minotaure
 mountain=montagne
 plains=plaine
 sliver=slivoide
@@ -157,6 +168,7 @@ soldier=soldat
 specter=spectre
 spider=araignee
 swamp=marais
+wall=mur
 warrior=guerrier
 wolf=loup
 wurm=guivre

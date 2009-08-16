@@ -37,34 +37,34 @@ X Interrupt - 0 No=X Unterbrechen - 0 Nein
 You have a %i%% victory ratio with Deck%i=Sie haben %i%% Erfolg mit Deck%i
 You have played %i games with Deck%i=Sie haben %i Spiel mit Deck %i gespielt
 You have played a total of %i games=Sie haben insgesamt %i Spiel gespielt
-Unlock the difficult mode for more challenging duels!=Unlock the difficult mode for more challenging duels!
-Interested in playing Momir Basic? You'll have to unlock it first :)=Interested in playing Momir Basic? You'll have to unlock it first :)
+Unlock the difficult mode for more challenging duels!=Schalte mehr schwierigkeitsmoden frei für anspruchsvollere Duelle!
+Interested in playing Momir Basic? You'll have to unlock it first :)=Interessiert im Momir Basic? Dann schalte es frei! :)
 You have a total of %i cards in your collection=Sie haben %i Karten in ihre Sammlung
-The cards in your collection have an average value of %i credits=La valeur moyenne de chacune de vos cartes est de %i credits
-The shopkeeper would buy your entire collection for around %i credits=Le marchand acheterait votre collection pour environ %i credits
-You currently have %i credits=Vous possedez %i credits
-More cards and mods at http://wololo.net/wagic=Nouvelles cartes et mods sur http://wololo.net/wagic
-These stats will be updated next time you run Wagic=Ces stats seront mises a jour au prochain demarrage de Wagic
-Yes=Oui
-No=Non
-NO DECK AVAILABLE,=PAS DE DECK DISPONIBLE,
-PRESS CIRCLE TO GO TO THE DECK EDITOR!=APPUYEZ SUR O POUR CREER UN DECK !
+The cards in your collection have an average value of %i credits=Deine Karten in deiner Sammlung haben einen Durchschinttswert von %i credits
+The shopkeeper would buy your entire collection for around %i credits=Der Shopbesitzer würde deine Sammlung fuer %i credits kaufen
+You currently have %i credits=Du besitzt momentan %i credits
+More cards and mods at http://wololo.net/wagic=Weitere karten und Mods unter http://wololo.net/wagic
+These stats will be updated next time you run Wagic=Die Statistik wird beim naechsten Start von Wagic geupdatet
+Yes=Ja
+No=Nein
+NO DECK AVAILABLE,=Keine Decks vorhanden,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=Druecke Kreis um in den Deckeditor zu gelangen !
 
 #End of Match
-Difficulty Bonus=Bonus Difficulte
-'Live dangerously and you live right' Bonus=Bonus 'Vivre dangereusement et fierement' 
-Life Delta Bonus=Bonus Points de vie
-'Decree of Theophilus' Bonus=Bonus 'Decret de Teophile'
-'Fast and Furious' Bonus=Bonus 'Rapide et Dangereux'
-Victory=Victoire
-Congratulations! You earn %i credits=Felicitations, vous gagnez %i credits
-You have been defeated=Vous avez perdu
-Player %i wins (%i)=Le joueur %i gagne (%i)
-Please support this project !=Soutenez ce projet !
-Wagic is free, open source, and developed on the little free time I have=Wagic est gratuit, open source, et developpe sur mon temps libre
-If you enjoy this game, please consider donating a few bucks=Si vous appreciez ce jeu, merci de me faire un don
-(Seriously, donate or I'll kill this cute little bunny)=(serieux si vous me faites pas un don, je tue un pokemon)
-Thanks in advance for your support.=Merci d'avance pour votre aide.
+Difficulty Bonus=Schwierigkeits Bonus
+'Live dangerously and you live right' Bonus=Wagemuedigkeits Bonus
+Life Delta Bonus=Lebens Delta Bonus
+'Decree of Theophilus' Bonus=Herabsetzung des Theophilius
+'Fast and Furious' Bonus='Drang zur Hast' Bonus
+Victory=Sieg
+Congratulations! You earn %i credits=Glueckwunsch! Du hast %i credits gewonnen
+You have been defeated=Du wurdest besiegt!
+Player %i wins (%i)=Spieler %i gewinnt (%i)
+Please support this project !=Bitte unterstuezt das Projekt !
+Wagic is free, open source, and developed on the little free time I have=Wagic ist ein Open Source Projekt das ich in meiner wenigen Freizeit entwickle
+If you enjoy this game, please consider donating a few bucks=Wenn dir das Spiel gefällt dann spende doch ein paar Moneten
+(Seriously, donate or I'll kill this cute little bunny)=(Ohne witz, Spende oder ich toete ein kleines suesses haesschen)
+Thanks in advance for your support.=Ich danke euch fuer eure Unterstuetzung.
 
 
 #Phases
@@ -82,7 +82,7 @@ End of turn=Endphase
 Cleanup=Aufraeumpahse
 
 #Stack
-Deals %i damage to=Fait %i degat(s) a
+Deals %i damage to=Fuegt %i Schaden an
 
 #Deck Editor
 Prev.=Vorher.

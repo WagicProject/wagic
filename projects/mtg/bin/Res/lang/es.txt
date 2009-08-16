@@ -1,0 +1,139 @@
+#Traducción de Wagic The Homebrew 0.7.0 al Español
+#Renombra este archivo a "_lang.txt" o substituye spa por _lang en el nombre del archivo para disfrutar de Wagic en Español
+
+#Note to translators:
+#If you want to translate cards, I suggest you translate their text (the "text=" line) directly in _cards.dat,
+# BUT DO NOT TOUCH ANYTHING ELSE in the _cards.dat files (names and types of creatures are used by the game!)
+# If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
+#Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
+
+#Game menus/texts
+Play=Jugar
+Deck Editor=Editor de Mazo
+Shop=Tienda
+Exit=Salir
+1 Player=1 Jugador
+2 Players=2 Jugadores
+Player=Jugar
+Cancel=Cancelar
+Classic=Classico
+Music volume=Volumen Musica
+SFX volume=Volumen Sonidos
+Seconds to pause for an Interrupt=Secgunndos para interrupcion
+Difficulty=Dificultad
+Image Cache Size=Cache de Imagen
+Save & Back to Main Menu=Salvar & volver al Menu
+Back to Main Menu=Volver al Menu
+Back to main menu=Volver al menu
+--NEW--=--NUEVO--
+Save=Salvar
+Choose a Deck=Elige un mazo
+Choose Opponent=Elige un Adversario
+(easy)=(*)
+(hard)=(***)
+Random=Aleatorio
+Interrupt?=Interrumpir ?
+X Interrupt - 0 No - [] No to All=X Interrumpir - 0 No - [] No a Nada
+X Interrupt - 0 No=X Interrumpir - 0 No
+You have a %i%% victory ratio with Deck%i=Tienes un %i%% de victorias con el Mazo %i
+You have played %i games with Deck%i=Has jugado un total de %i parties con el Mazo %i
+You have played a total of %i games=Has jugado un total de %i partidas
+Unlock the difficult mode for more challenging duels!=Desbloquea el modo dificul para mas competitivos duelos
+Interested in playing Momir Basic? You'll have to unlock it first :)=Estas interesado en jugar al Momir Basic? Primero deberas desbloquearlo :)
+You have a total of %i cards in your collection=Tienes un total de %i cartas en tu coleccion
+The cards in your collection have an average value of %i credits=Las cartas de tu coleccion tienen un valor medio de %i creditos
+The shopkeeper would buy your entire collection for around %i credits=El tendero compraria tu coleccion entera por aproximadamente %i creditos
+You currently have %i credits=Actualmente tienes %i creditos
+More cards and mods at http://wololo.net/wagic=Mas cartas y mods en http://wololo.net/wagic
+These stats will be updated next time you run Wagic=Esta configuracion sera aplicada la proxima vez que inicies Wagic
+Yes=Si
+No=No
+NO DECK AVAILABLE,=NO HAY MAZO DISPONIBLE,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=PRESIONA CIRCULO PARA IR AL EDITOR DE MAZO !
+
+#End of Match
+Difficulty Bonus=Bonus Dificultad
+'Live dangerously and you live right' Bonus=Bonus 'Live dangerously and you live right' 
+Life Delta Bonus=Life Delta Bonus
+'Decree of Theophilus' Bonus=Bonus 'Decret de Teophile'
+'Fast and Furious' Bonus=Bonus 'Fast and Furious'
+Victory=Victoria
+Congratulations! You earn %i credits=Felicidades, has ganado %i creditos
+You have been defeated=Has sido derrotado
+Player %i wins (%i)=El jugador %i gana (%i)
+Please support this project !=Porfavor apoya este proyecto !
+Wagic is free, open source, and developed on the little free time I have=Wagic es gratis, open source, y se desarrolla en el tiempo libre que tengo
+If you enjoy this game, please consider donating a few bucks=Si has disfrutado del juego, porfavor considera hacer una donacion para ayudarme
+(Seriously, donate or I'll kill this cute little bunny)=(Seriamente, o donas o matare a estos pequeños conejitos)
+Thanks in advance for your support.=Gracias por vuestro apoyo.
+
+
+#Phases
+Untap=Enderezar
+Upkeep=Mantenimiento
+Draw=Robar
+Main phase 1=Fase Principal 1
+Combat begins=Inicio del Combate
+Attackers=Atacantes
+Blockers=Bloqueadores
+Combat damage=Resolucion Combate
+Combat ends=Fin de combate
+Main phase 2=Fase principal 2
+End of turn=Fin del turno
+Cleanup=Limpieza
+
+#Stack
+Deals %i damage to=Hace %i a
+
+#Deck Editor
+Prev.=Prev.
+card=carta
+cards=cartas
+Next=Sig.
+Next color=Siguiente color
+Prev. color=Color anterior
+Add card=Insertar carta
+Display Deck=Mostrar mazo
+Remove Card=Eliminar carta
+Display collection=Mostrar coleccion
+Your Deck: %i cards=Tu mazo: %i cartas
+You are currently viewing your=Actualmente estas viendo tu
+collection. Press TRIANGLE=coleccion. Pulsa TRIANGULO
+to switch to your deck=para cambiar a tu mazo
+deck. Press TRIANGLE to=mazo. Pulsa TRIANGLE
+switch to your collection=para cambiar a tu coleccion
+
+Deck info=Informacion Mazo
+Sell card=Vender Carta
+#types
+artifact=artefacto
+enchantment=encantamiento
+sorcery=conjuro
+instant=instantaneo
+land=tierra
+
+#subtypes
+#please keep the english alphabetical order, makes it easier to update!
+angel=angel
+basic=basico
+bird=pajaro
+cat=gato
+centaur=centauro
+elf=elfo
+forest=bosque
+human=humano
+island=isla
+knight=caballero
+mountain=monte
+plains=llanura
+sorcerer=hechicero
+soldier=soldado
+specter=espectro
+spider=aracnido
+swamp=pantano
+warrior=guerrero
+wolf=lobo
+
+
+#card names
+#please keep this alphabetized
