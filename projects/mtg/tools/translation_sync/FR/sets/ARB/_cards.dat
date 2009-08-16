@@ -1,26 +1,15 @@
 [card]
-toughness=4
-name=Sigiled Behemoth 
-mana={4}{G}{W}
-subtype=Beast
-color=Green,White
-rarity=C
-text=Exaltation (A chaque fois qu'une creature que vous controlez attaque seule, cette creature gagne +1/+1 jusqu'a la fin du tour.)
-power=5
-id=159688
+toughness=3
+name=Jenara, Asura of War
+mana={G}{W}{U}
+subtype=Angel
+auto={1}{W}:counter(1/1)
+rarity=M
+text=Flying {1}{W}: Put a +1/+1 counter on Jenara, Asura of War.
+power=3
+id=180605
 type=Creature
-abilities=exalted
-[/card]
-[card]
-name=Terminate
-mana={B}{R}
-color=Black,Red
-target=creature
-auto=bury
-rarity=C
-text=Detruisez la creature ciblee. Elle ne peut pas etre regeneree.
-id=176449
-type=Instant
+abilities=Legendary,Flying
 [/card]
 [card]
 name=Unbender Tine
@@ -45,18 +34,6 @@ id=189650
 type=Creature
 [/card]
 [card]
-name=Magefire Wings 
-mana={U}{R}
-subtype=Aura
-color=Blue,Red
-target=creature
-auto=flying
-rarity=C
-text=Enchanter : creature.    La creature enchantee gagne +2/+0 et a le vol. 
-id=179591
-type=Enchantment
-[/card]
-[card]
 toughness=6
 name=Sphinx of the Steel Wind
 mana={5}{W}{U}{B}
@@ -68,6 +45,162 @@ power=6
 id=189641
 type=Artifact Creature
 abilities=flying,first strike,vigilance,lifelink,protection from red,protection from green
+[/card]
+[card]
+toughness=*
+name=Lord of Extinction 
+mana={3}{B}{G}
+subtype=Elemental
+color=Green,White
+auto=foreach(*|graveyard) 1/1
+rarity=M
+text=La force et l'endurance du Seigneur de l'extinction sont chacune egale au nombre de cartes dans tous les cimetieres. 
+power=*
+id=177922
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Sanity Gnawers
+mana={1}{B}{R}
+subtype=Rat
+auto=discard:1 target(player)
+rarity=U
+text=When Sanity Gnawers comes into play, target player discards a card at random.
+power=1
+id=179623
+type=Creature
+[/card]
+[card]
+auto=foreach(creature[attacking]) token(Bird Soldier,Creature Bird Soldier,1/1,white flying)
+text=Put X 1/1 white Bird Soldier creature tokens with flying into play, where X is the number of attacking creatures.
+rarity=U
+name=Flurry of Wings
+id=179605
+type=Instant
+mana={G}{W}{U}
+[/card]
+[card]
+toughness=2
+name=Vithian Renegades
+mana={1}{R}{G}
+subtype=Human Shaman
+color=Red,Green
+auto=may moveTo(graveyard) target(artifact)
+rarity=U
+text=Quand les Renegats vithiens arrivent en jeu, detruisez l'artefact cible. 
+power=3
+id=179535
+type=Creature
+[/card]
+[card]
+toughness=5
+name=Grizzled Leotau
+mana={G}{W}
+subtype=Cat
+color=Green,White
+rarity=C
+text=
+power=1
+id=189647
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Qasali Pridemage
+mana={G}{W}
+subtype=Cat Wizard
+color=Green,White
+auto={1}{S}:destroy target(artifact,enchantment)
+rarity=C
+text=Exaltation (A chaque fois qu'une creature que vous controlez attaque seule, cette creature gagne +1/+1 jusqu'a la fin du tour.)    {1}, sacrifiez le Bandemage qasali : Detruisez l'artefact ou l'enchantement cible.
+power=2
+id=179556
+type=Creature
+abilities=exalted
+[/card]
+[card]
+toughness=3
+name=Illusory Demon
+mana={1}{U}{B}
+subtype=Demon Illusion
+auto=@movedTo(*|mystack):bury
+rarity=U
+text=Flying When you play a spell, sacrifice Illusory Demon.
+power=4
+id=179596
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Leonin Armorguard
+mana={2}{G}{W}
+subtype=Cat Soldier
+auto=all(creature|myinplay) 1/1
+rarity=C
+text=When Leonin Armorguard comes into play, creatures you control get +1/+1 until end of turn.
+power=3
+id=180606
+type=Creature
+[/card]
+[card]
+auto=moveto(ownerhand) all(creature|inplay)
+auto=moveto(ownerhand) all(creature|graveyard)
+text=Return all creatures in play and all creature cards in graveyards to their owners' hands.
+rarity=R
+name=Soulquake
+id=179409
+type=Sorcery
+mana={3}{U}{U}{B}{B}
+[/card]
+[card]
+toughness=1
+name=Stun Sniper
+mana={R}{W}
+subtype=Human Archer
+auto={1}{T}:damage::1 target(creature) && tap
+rarity=U
+text={1}, {T}: Stun Sniper deals 1 damage to target creature. Tap that creature.
+power=1
+id=179589
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Sigiled Behemoth 
+mana={4}{G}{W}
+subtype=Beast
+color=Green,White
+rarity=C
+text=Exaltation (A chaque fois qu'une creature que vous controlez attaque seule, cette creature gagne +1/+1 jusqu'a la fin du tour.)
+power=5
+id=159688
+type=Creature
+abilities=exalted
+[/card]
+[card]
+name=Terminate
+mana={B}{R}
+color=Black,Red
+target=creature
+auto=bury
+rarity=C
+text=Detruisez la creature ciblee. Elle ne peut pas etre regeneree.
+id=176449
+type=Instant
+[/card]
+[card]
+name=Magefire Wings 
+mana={U}{R}
+subtype=Aura
+color=Blue,Red
+target=creature
+auto=2/0
+auto=flying
+rarity=C
+text=Enchanter : creature.    La creature enchantee gagne +2/+0 et a le vol. 
+id=179591
+type=Enchantment
 [/card]
 [card]
 toughness=1
@@ -96,19 +229,6 @@ type=Creature
 abilities=exalted
 [/card]
 [card]
-toughness=*
-name=Lord of Extinction 
-mana={3}{B}{G}
-subtype=Elemental
-color=Green,White
-auto=foreach(*|graveyard) 1/1
-rarity=M
-text=La force et l'endurance du Seigneur de l'extinction sont chacune egale au nombre de cartes dans tous les cimetieres. 
-power=*
-id=177922
-type=Creature
-[/card]
-[card]
 toughness=2
 name=Cerodon Yearling 
 mana={R}{W}
@@ -120,6 +240,18 @@ power=2
 id=180604
 type=Creature
 abilities=vigilance,haste
+[/card]
+[card]
+toughness=2
+name=Lorescale Coatl
+mana={1}{G}{U}
+subtype=Snake
+auto=@movedTo(*|myhand) from(mylibrary):may counter(1/1)
+rarity=U
+text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
+power=2
+id=179633
+type=Creature
 [/card]
 [card]
 toughness=4
@@ -135,6 +267,29 @@ type=Creature
 abilities=double strike
 [/card]
 [card]
+name=Morbid Bloom
+mana={4}{B}{G}
+target=creature|graveyard
+auto=moveto(exile)
+rarity=U
+text=Remove target creature card in a graveyard from the game, then put X 1/1 green Saproling creature tokens into play, where X is the removed card's toughness.
+type=Sorcery
+id=179614
+[/card]
+[card]
+toughness=2
+name=Lich Lord of Unx
+mana={1}{U}{B}
+subtype=Zombie Wizard
+auto={U}{B}{T}:token(Zombie Wizard,Creature Zombie Wizard,1/1,blue black)
+auto={U}{B}{T}:foreach(zombie|myBattlefield) life:-1 && deplete:1 target(player)
+rarity=R
+text={U}{B}, {T}: Put a 1/1 blue and black Zombie Wizard creature token into play. {U}{U}{B}{B}: Target player loses X life and puts the top X cards of his or her library into his or her graveyard, where X is the number of Zombies you control.
+power=2
+id=179555
+type=Creature
+[/card]
+[card]
 toughness=4
 name=Madrush Cyclops 
 mana={1}{B}{R}{G}
@@ -148,29 +303,27 @@ id=180625
 type=Creature
 [/card]
 [card]
-toughness=2
-name=Vithian Renegades
-mana={1}{R}{G}
-subtype=Human Shaman
-color=Red,Green
-auto=may moveTo(graveyard) target(artifact)
+name=Intimidation Bolt
+mana={1}{R}{W}
+target=creature
+target=creature
+auto=damage:3
+auto=lord(creature) cantattack
 rarity=U
-text=Quand les Renegats vithiens arrivent en jeu, detruisez l'artefact cible. 
-power=3
-id=179535
-type=Creature
+text=L'Eclair d'intimidation inflige 3 blessures a la creature ciblee. Les autres creatures ne peuvent pas attaquer ce tour-ci.
+type=Instant
+id=179568
 [/card]
 [card]
-toughness=5
-name=Grizzled Leotau
-mana={G}{W}
-subtype=Cat
-color=Green,White
-rarity=C
-text=
-power=1
-id=189647
-type=Creature
+name=Identity Crisis
+mana={2}{W}{W}{B}{B}
+target=player
+auto=moveTo(removedfromgame) all(*|hand)
+auto=moveTo(removedfromgame) all(*|graveyard)
+rarity=R
+text=Remove all cards in target player's hand and graveyard from the game.
+type=Sorcery
+id=175109
 [/card]
 [card]
 toughness=4
@@ -186,14 +339,16 @@ type=Artifact Creature
 abilities=flying
 [/card]
 [card]
-name=Intimidation Bolt
-mana={1}{R}{W}
-target=creature
-auto=lord(creature) cantattack
-rarity=U
-text=L'Eclair d'intimidation inflige 3 blessures a la creature ciblee. Les autres creatures ne peuvent pas attaquer ce tour-ci.
-type=Instant
-id=179568
+toughness=3
+name=Dauntless Escort
+mana={1}{G}{W}
+subtype=Rhino Soldier
+auto={S}:lord(creature|mybattlefield) indestructible
+rarity=R
+text=Sacrifice Dauntless Escort: Creatures you control are indestructible this turn.
+power=3
+id=180614
+type=Creature
 [/card]
 [card]
 toughness=2
@@ -223,6 +378,7 @@ type=Creature
 abilities=Defender, flying, shroud
 [/card]
 [card]
+auto=lord(creature|myinplay) 1/1
 auto=lord(creature|opponentinplay) -1/-1
 text=Jusqu'a la fin du tour, les creatures que vous controlez gagnent +1/+1 et les creatures que vos adversaires controlent gagnent -1/-1.
 rarity=U
@@ -232,29 +388,44 @@ type=Instant
 mana={W}{B}
 [/card]
 [card]
-toughness=2
-name=Qasali Pridemage
-mana={G}{W}
-subtype=Cat Wizard
-color=Green,White
-auto={1}{S}:destroy target(artifact,enchantment)
-rarity=C
-text=Exaltation (A chaque fois qu'une creature que vous controlez attaque seule, cette creature gagne +1/+1 jusqu'a la fin du tour.)    {1}, sacrifiez le Bandemage qasali : Detruisez l'artefact ou l'enchantement cible.
-power=2
-id=179556
-type=Creature
-abilities=exalted
+name=Slave of Bolas
+mana={3}{UR}{B}
+target=creature
+auto=moveTo(myBattlefield)
+auto=@next end:bury
+auto=untap
+auto=haste
+rarity=U
+text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
+type=Sorcery
+id=188971
 [/card]
 [card]
 name=Colossal Might 
 mana={R}{G}
 color=Red,Green
 target=creature
+auto=4/2
 auto=trample
 rarity=C
 text=La creature ciblee gagne +4/+2 et acquiert le pietinement jusqu'a la fin du tour. 
 id=179624
 type=Instant
+[/card]
+[card]
+toughness=7
+name=Karrthus, Tyrant of Jund
+mana={4}{B}{R}{G}
+subtype=Dragon
+auto=moveTo(myInPlay) all(dragon)
+auto=untap all(dragon)
+auto=lord(dragon|mybattlefield) haste other
+rarity=M
+text=Flying, haste When Karrthus, Tyrant of Jund comes into play, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
+power=7
+id=180587
+type=Creature
+abilities=flying,haste,legendary
 [/card]
 [card]
 name=Sangrite Backlash  

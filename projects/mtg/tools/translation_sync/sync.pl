@@ -31,23 +31,21 @@ my $parseCards = sub {
 		}
 		if ($line =~ /=/){
 			my ($type, $content) = split(/=/, $line);
-			$card{$type} = $content;
+			$card{$type} = [] unless $card{$type};
+			push @{$card{$type}}, $content;
 		}
 		
 	}
 	close (MYFILE);
  	
 
-	my %cards = map { $_->{id} => $_ } @cards;
+	my %cards = map { $_->{id}[0] => $_ } @cards;
 	return \%cards;
 };
 
 my $doOutput = sub {
 	my ($outFile, $data, $translation) = @_;
 	open (OUTFILE, '>' . $outFile);
-
-
-
 	
 	while ( my ($key, $value) = each(%$data) ) {
 		if (my $trans = $translation->{$key}){
@@ -55,7 +53,10 @@ my $doOutput = sub {
 		}
 		print OUTFILE "[card]\n";
 		while ( my ($k, $v) = each(%$value) ) {
-			print OUTFILE $k ."=" . $v . "\n";
+		    my @v = @$v;
+			for my $line (@v){
+				print OUTFILE $k ."=" . $line . "\n";
+			}
 		}
 		print OUTFILE "[/card]\n";
 		

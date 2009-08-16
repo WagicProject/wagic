@@ -16,10 +16,15 @@ name=Tarmogoyf
 mana={1}{G}
 subtype=Lhurgoyf
 color=Green
+auto=aslongas(artifact|graveyard) 1/1
+auto=aslongas(creature|graveyard) 1/1
+auto=aslongas(enchantment|graveyard) 1/1
+auto=aslongas(instant|graveyard) 1/1
+auto=aslongas(land|graveyard) 1/1
 auto=aslongas(sorcery|graveyard) 1/1
 rarity=R
 text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
-power=O
+power=0
 id=136142
 type=Creature
 [/card]
@@ -31,7 +36,7 @@ color=White
 target=creature
 auto=0/2
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.)     Enchant creature    Enchanted creature gets +0/+2.
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +0/+2.
 id=136200
 type=Enchantment
 abilities=flash
@@ -62,6 +67,17 @@ id=136197
 alias=1229
 [/card]
 [card]
+name=Scout's Warning
+mana={W}
+target=creature|myhand
+auto=flash
+auto=draw:1
+rarity=R
+text=The next creature card you play this turn can be played as though it had flash. Draw a card. ## Will this work?
+type=Instant
+id=126200
+[/card]
+[card]
 toughness=1
 name=Sliversmith
 mana={2}
@@ -86,6 +102,9 @@ id=126158
 type=Creature
 [/card]
 [card]
+auto={T}:Add{1}
+auto={RB}{T}:Add{B}{B}
+auto={RB}{T}:Add{B}{R}
 auto={RB}{T}:Add{R}{R}
 text={T}: Add {1} to your mana pool.     {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
 rarity=R
@@ -111,9 +130,15 @@ name=136150
 mana={7}
 subtype=Akroma's Memorial
 color=Artifact
+auto=lord(creature|myinplay) flying
+auto=lord(creature|myinplay) first strike
+auto=lord(creature|myinplay) vigilance
+auto=lord(creature|myinplay) trample
+auto=lord(creature|myinplay) haste
+auto=lord(creature|myinplay) protection from red
 auto=lord(creature|myinplay) protection from black
 rarity=R
-text=Legendary    Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
+text=Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
 id=136150
 type=Artifact
 abilities=legendary
@@ -124,14 +149,17 @@ name=Sarcomite Myr
 mana={2}{U}
 subtype=Myr
 color=Blue,Artifact
+auto={2}:flying
 auto={2}{S}:Draw:1
 rarity=C
-text={2}: Sarcomite Myr gains flying until end of turn.      {2}, Sacrifice Sarcomite Myr: Draw a card.
+text={2}: Sarcomite Myr gains flying until end of turn. {2}, Sacrifice Sarcomite Myr: Draw a card.
 power=2
 id=136212
 type=Artifact Creature
 [/card]
 [card]
+auto={T}:Add {G} && life:-1
+auto={T}:Add {W} && life:-1
 auto={1}{T}{S}:Draw:1
 text={T}: Pay 1 life: Add {G} or {W} to your mana pool.    {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
 rarity=R
@@ -158,7 +186,7 @@ color=Black
 target=creature
 auto={S(*|myhand)}:1/1
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.)     Enchant creature      Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
 id=132219
 type=Enchantment
 abilities=flash
@@ -166,7 +194,7 @@ abilities=flash
 [card]
 toughness=0
 name=Force of Savagery
-mana={2}{R}
+mana={2}{G}
 subtype=Elemental
 color=Green
 rarity=R
@@ -213,6 +241,19 @@ id=136215
 type=Enchantment
 [/card]
 [card]
+name=Leaden Fists
+mana={2}{U}
+target=creature
+subtype=Aura
+auto=3/3
+auto=doesnotuntap
+rarity=C
+text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
+id=126139
+type=Enchantment
+abilities=flash
+[/card]
+[card]
 toughness=3
 name=Nessian Courser
 mana={2}{G}
@@ -233,4 +274,14 @@ rarity=C
 power=3
 id=130676
 type=Creature
+[/card]
+[card]
+auto=foreach(creature|myinplay) draw:1
+auto=foreach(creature|myinplay) life:-1
+text=You draw X cards and you lose X life, where X is the number of creatures you control.
+rarity=U
+name=Minions' Murmurs
+id=130316
+type=Sorcery
+mana={2}{B}{B}
 [/card]

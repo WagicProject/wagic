@@ -11,6 +11,18 @@ id=2531
 type=Creature 
 [/card]
 [card]
+toughness=2
+name=Stromgald Cabal
+mana={1}{B}{B}
+subtype=Human Knight
+auto={T}:fizzle(*[white]|stack) && life:-1 controller
+rarity=R
+text={T}, Pay 1 life: Counter target white spell.
+power=2
+id=2490
+type=Creature
+[/card]
+[card]
 toughness=3
 name=Wall of Pine Needles
 mana={3}{G}
@@ -114,6 +126,19 @@ id=2620
 type=Creature 
 [/card]
 [card]
+name=Ray of Command
+mana={3}{U}
+target=creature|opponentinplay
+auto=untap
+auto=haste
+auto=@next endofturn:tap
+rarity=C
+text=Untap target creature an opponent controls and gain control of it until end of turn. That creature gains haste until end of turn. When you lose control of the creature, tap it.
+type=Instant
+id=2528
+alias=129767
+[/card]
+[card]
 subtype=Plains
 auto={T}: Add {W}
 text={T}: Ajoutez {W} a votre reserve.
@@ -190,6 +215,7 @@ type=Creature
 abilities=flying
 [/card]
 [card]
+auto=tap target(artifact,creature,land)
 auto=@next upkeep:draw:1
 text=Engagez la cible, artefact, creature ou terrain.       Piochez 1 carte au debut de l'entretien du prochain tour.
 rarity=C
@@ -241,6 +267,8 @@ type=Creature
 alias=1267
 [/card]
 [card]
+auto={T}:add {1}
+auto={T}:add {G} && Damage 1 controller
 auto={T}:add {W} && Damage 1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {G} ou {W} a votre reserve. La Broussaille vous inflige 1 blessure..
 rarity=R
@@ -253,6 +281,7 @@ name=Armor of Faith
 mana={W}
 subtype=Aura
 target=creature
+auto=1/1
 auto={W}:0/1
 rarity=C
 text=Enchanter : creature        La creature enchantee gagne +1/+1. {W}:La creature enchantee gangne +0/+1 jusqu'a la fin du tour.
@@ -282,6 +311,7 @@ type=Enchantment
 name=Stampede
 mana={1}{G}{G}
 target=creature[attacking]
+auto=1/0
 auto=trample
 rarity=R
 text=Les creatures attaquantes gagnent +1/+0 et acquierent le pietinement jusqu'a la fin du tour.
@@ -374,6 +404,7 @@ name=Wings of Aesthir
 mana={W}{U}
 subtype=Aura
 target=creature
+auto=flying,first strike
 auto=1/0
 rarity=U
 text=Enchanter : creature. La creature enchantee gagne +1/+0 et a le vol et l'initiative.
@@ -405,6 +436,7 @@ mana={0}
 name=Panic
 mana={R}
 target=creature
+auto=cantblock
 auto=@next upkeep:draw:1
 rarity=C
 text=Vous ne pouvez jouer la Panique que pendant le combat avant que les bloqueurs ne soient déclares.      La creature ciblee ne peut pas bloquer ce tour-ci.    Piochez une carte au debut de l'entretien du prochain tour.
@@ -415,7 +447,8 @@ id=2648
 name=Mind Ravel
 mana={2}{B}
 target=player
-auto=@next upkeep:draw:1
+auto=discard:1
+auto=@next upkeep:draw:1 controller
 rarity=C
 text=Le joueur cible se defausse d'une carte.     Piochez une carte au debut de l'entretien du prochain tour.
 type=Sorcery
@@ -443,19 +476,6 @@ id=2772
 type=Basic Land
 [/card]
 [card]
-toughness=*
-name=Drift of the Dead
-mana={3}{B}
-subtype=Wall
-auto=foreach(snow-covered island|myinplay) 1/1
-rarity=U
-text=Defenseur (Cette creature ne peut pas attaquer.)      La Congere macabre a une force et une endurance chacune egale au nombre de terrains neigeux que vous controlez.
-power=*
-id=2447
-type=Creature
-abilities=defender
-[/card]
-[card]
 toughness=1
 name=Kelsinko Ranger
 mana={W}
@@ -468,6 +488,25 @@ id=2693
 type=Creature 
 [/card]
 [card]
+toughness=*
+name=Drift of the Dead
+mana={3}{B}
+subtype=Wall
+auto=foreach(snow-covered forest|myinplay) 1/1
+auto=foreach(snow-covered mountain|myinplay) 1/1
+auto=foreach(snow-covered plains|myinplay) 1/1
+auto=foreach(snow-covered swamp|myinplay) 1/1
+auto=foreach(snow-covered island|myinplay) 1/1
+rarity=U
+text=Defenseur (Cette creature ne peut pas attaquer.)      La Congere macabre a une force et une endurance chacune egale au nombre de terrains neigeux que vous controlez.
+power=*
+id=2447
+type=Creature
+abilities=defender
+[/card]
+[card]
+auto={T}:add {1}
+auto={T}:add {R} && damage 1 controller
 auto={T}:add {G} && damage 1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {R} ou {G} a votre reserve. La Foret de Karpluse vous inflige 1 blessure..
 rarity=R
@@ -476,6 +515,8 @@ id=2755
 type=Land
 [/card]
 [card]
+auto={T}:add {1}
+auto={T}:add {B} && damage 1 controller
 auto={T}:add {R} && damage 1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {B} ou {R} a votre reserve. Les Sources sulfureuses vous infligent 1 blessure.
 rarity=R
@@ -506,11 +547,22 @@ id=2570
 name=Touch of Death
 mana={2}{B}
 target=player
-auto=life:1
+auto=damage:1
+auto=@next upkeep:draw:1 controller
+auto=life:1 controller
 rarity=C
 text=Le Toucher de mort inflige 1 blessure au joueur cible. Vous gagnez 1 point de vie.     Piochez une carte au debut de l'entretien du prochain tour.
 type=Sorcery
 id=2491
+[/card]
+[card]
+auto={2}:damage:2 target(creature,player) && discard:1 controller
+text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
+rarity=R
+name=Stormbind
+id=2740
+type=Enchantment
+mana={1}{R}{G}
 [/card]
 [card]
 name=Nature's Lore
@@ -552,6 +604,8 @@ id=2745
 type=Basic Land
 [/card]
 [card]
+auto={T}:add {1}
+auto={T}:add {W} && Damage 1 controller
 auto={T}:add {U} && Damage 1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {W} ou {U} a votre reserve. Les Landes d'Adarkar vous infligent 1 blessure.
 rarity=R
@@ -603,6 +657,19 @@ type=Creature
 abilities=islandwalk
 [/card]
 [card]
+toughness=1
+name=Foul Familiar
+mana={2}{B}
+subtype=Spirit
+auto={B}:moveto(ownerhand) && life:-1
+rarity=C
+text=Foul Familiar can't block.     {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
+power=3
+id=2450
+type=Creature
+abilities=cantblock
+[/card]
+[card]
 name=Stone Rain
 mana={2}{R}
 target=land
@@ -627,6 +694,7 @@ type=Enchantment
 name=Updraft
 mana={1}{U}
 target=creature
+auto=flying
 auto=@next upkeep:draw:1
 rarity=U
 text=La creature acquiert le vol jusqu'a la fin du tour.     Piochez une carte au debut du prochain tour.
@@ -669,6 +737,9 @@ toughness=1
 name=Orcish Lumberjack
 mana={R}
 subtype=Orc
+auto={T}{S(forest|myinplay)}: add {G}{G}{G}
+auto={T}{S(forest|myinplay)}: add {G}{G}{R}
+auto={T}{S(forest|myinplay)}: add {G}{R}{R}
 auto={T}{S(forest|myinplay)}: add {R}{R}{R}
 rarity=C
 text={T}, Sacrifiez une foret: Ajoutez trois manas de n'importe quelle combinaison de {R} et/ou {G} a votre reserve.
@@ -721,18 +792,6 @@ id=2568
 type=Creature 
 [/card]
 [card]
-toughness=5
-name=Folk of the Pines
-mana={4}{G}
-subtype=Dryad
-auto={1}{G}:1/0
-rarity=C
-text={1}{G}: Le Peuple des pinedes gagne +1/+0 jusqu'a la fin du tour.
-power=2
-id=2559
-type=Creature 
-[/card]
-[card]
 toughness=2
 name=Thunder Wall
 mana={1}{U}{U}
@@ -744,6 +803,18 @@ power=0
 id=2540
 type=Creature 
 abilities=defender,flying
+[/card]
+[card]
+toughness=5
+name=Folk of the Pines
+mana={4}{G}
+subtype=Dryad
+auto={1}{G}:1/0
+rarity=C
+text={1}{G}: Le Peuple des pinedes gagne +1/+0 jusqu'a la fin du tour.
+power=2
+id=2559
+type=Creature 
 [/card]
 [card]
 subtype=plains
@@ -762,6 +833,16 @@ name=Songs of the Damned
 id=2484
 type=Instant
 mana={B}
+[/card]
+[card]
+auto=lord(creature[black]) cantattack
+auto=lord(creature[black]) {S(land|myinplay)}:-cantattack
+text=Black creatures have "This creature can't attack unless you sacrifice a land."
+rarity=R
+name=Reclamation
+id=2736
+type=Enchantment
+mana={2}{G}{W}
 [/card]
 [card]
 auto=lord(creature[blocking]) 1/1
@@ -794,7 +875,8 @@ mana={3}
 name=Ray of Erasure
 mana={U}
 target=player
-auto=@next upkeep:draw:1
+auto=deplete:1
+auto=@next upkeep:draw:1 controller
 rarity=C
 text=Le joueur cible met la carte du dessus de sa bibliotheque dans son cimetiere.    Piochez une carte au debut de l'entretien du prochain tour.
 type=Instant
@@ -822,6 +904,15 @@ type=Instant
 id=2596
 [/card]
 [card]
+subtype=Swamp
+auto={T}: Add {B}
+text={T}: Ajoutez {B} a votre reserve.
+rarity=L
+name=Swamp
+id=2743
+type=Basic Land
+[/card]
+[card]
 text=1: La prochaine fois qu'une source verte de votre choix devrait vous infliger des blessures ce tour-ci, prevenez ces blessures.
 rarity=C
 name=Circle of Protection: Green
@@ -843,13 +934,17 @@ type=Creature
 abilities=mountainwalk
 [/card]
 [card]
-subtype=Swamp
-auto={T}: Add {B}
-text={T}: Ajoutez {B} a votre reserve.
-rarity=L
-name=Swamp
-id=2743
-type=Basic Land
+toughness=6
+name=Walking Wall
+mana={4}
+subtype=Wall
+auto={3}:-defender && 3/-1 limit:1
+rarity=U
+text=Defender     {3}: Walking Wall gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
+power=0
+id=2432
+type=Artifact Creature
+abilities=defender
 [/card]
 [card]
 toughness=1
@@ -879,6 +974,7 @@ abilities=foresthome
 name=Lightning Blow
 mana={1}{W}
 target=creature
+auto=first strike
 auto=@next upkeep:draw:1
 rarity=R
 text=La creature ciblee gagne l'initiative jusqu'a la fin du tour. Piochez une carte au debut de l'entretien du prochain tour.
@@ -886,6 +982,7 @@ type=Instant
 id=2702
 [/card]
 [card]
+auto=@next upkeep:draw:1
 auto=life:1
 text=Gagnez 1 point de vie. Piochez une carte au debut de l'entretien du prochain tour.
 rarity=C
@@ -917,6 +1014,16 @@ mana={1}{W}
 alias=1339
 [/card]
 [card]
+auto={W}{S(Enchantment|myinplay)}:destroy target(enchantment)
+auto={3}{U}{U}:fizzle target(enchantment|stack)
+text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
+rarity=C
+name=Arenson's Aura
+id=2663
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
 name=Dark Banishing
 mana={2}{B}
 target=creature[-black]
@@ -927,6 +1034,7 @@ type=Instant
 id=2443
 [/card]
 [card]
+auto=untap target(artifact,creature,land)
 auto=@next upkeep:draw:1
 text=Degagez la cible artefact, creature, ou terrain.       Piochez une carte au debut de l'entretien du prochain tour.
 rarity=C
@@ -968,6 +1076,8 @@ id=2608
 type=Creature 
 [/card]
 [card]
+auto={T}:add {1}
+auto={T}:add {U} && damage 1 controller
 auto={T}:add {B} && damage 1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {U} ou {B} a votre reserve. La riviere souterraine vous inflige 1 blessure.
 rarity=R
@@ -1055,6 +1165,7 @@ toughness=2
 name=Elder Druid
 mana={3}{G}
 subtype=Elf Cleric Druid
+auto={3}{G}{T}:tap target(creature,artifact,land)
 auto={3}{G}{T}:untap target(creature,artifact,land)
 rarity=R
 text={3}{G}, {T}: Vous pouvez engager ou degager l'artefact, la creature, ou le terrain cible.
@@ -1063,9 +1174,22 @@ id=2556
 type=Creature
 [/card]
 [card]
+toughness=2
+name=Order of the Sacred Torch
+mana={1}{W}{W}
+subtype=Human Knight
+auto={T}:fizzle(*[black]|stack) && life:-1
+rarity=R
+text={T}, Pay 1 life: Counter target black spell.
+power=2
+id=2705
+type=Creature
+[/card]
+[card]
 name=Fanatical Fever
 mana={2}{G}{G}
 target=creature
+auto=trample
 auto=3/0
 rarity=U
 text=La creature cible gagne le pietinement et  +3/+0 jusqu'a la fin du tour.
@@ -1094,10 +1218,24 @@ id=2548
 type=Creature 
 [/card]
 [card]
+auto=@each my endofturn:foreach(island[-tapped]|myinplay):damage:1 controller
+auto=@each opponent endofturn:foreach(island[-tapped]|opponentinplay):damage:1 opponent
+auto=@each my cleanup:tap all(island[-tapped]|myinplay)
+auto=@each opponent cleanup:tap all(island[-tapped]|opponentinplay)
+text=At the end of each player's turn, tap all untapped Islands that player controls and Monsoon deals X damage to the player, where X is the number of Islands tapped this way.
+rarity=R
+name=Monsoon
+id=2734
+type=Enchantment
+mana={2}{R}{G}
+[/card]
+[card]
 toughness=4
 name=Snow Fortress
 mana={5}
 subtype=Wall
+auto={1}:1/0
+auto={1}:0/1
 auto={3}:damage:1 target(creature[attacking;-flying])
 rarity=R
 text=Defensseur   {1}: La Forteresse des neiges gagne +1/+0 jusqu'a la fin du tour. {1}: La Forteresse des neiges gagne +0/+1 jusqu'a la fin du tour. {3}: La Forteresse des neiges inflige 1 blessure a la creature sans le vol ciblee qui vous attaque.
@@ -1107,6 +1245,7 @@ type=Artifact Creature
 abilities=defender
 [/card]
 [card]
+auto=foreach(artifact,creature|opponentgraveyard)add:{1}
 auto=foreach(artifact,creature|opponentgraveyard)life:1
 text=Pour chaque carte d'artefact ou de creature dans le cimetiere de l'adversaire cible, ajoutez 1 à votre reserve et vous gagnez 1 point de vie.
 rarity=R
@@ -1120,6 +1259,7 @@ toughness=1
 name=Pyknite
 mana={2}{G}
 subtype=Ouphe
+auto=draw:1
 auto=@next upkeep:draw:1
 rarity=C
 text=Quand le Pyknite arrive en jeu, piochez une carte au debut du prochain tour.
@@ -1148,7 +1288,8 @@ type=Basic Snow Land
 name=Flare
 mana={2}{R}
 target=creature,player
-auto=@next upkeep:draw:1
+auto=damage:1
+auto=@next upkeep:draw:1 controller
 rarity=C
 text=Le Flamboiement inflige 1 blessure a la cible, creature ou joueur.       Piochez 1 carte au debut de l'entretien du prochain tour.
 type=Instant
@@ -1197,6 +1338,18 @@ id=2481
 type=Creature
 [/card]
 [card]
+toughness=1
+name=Tarpan
+mana={G}
+subtype=Horse
+auto=@movedTo(this|graveyard):life:1 controller
+rarity=C
+text=When Tarpan is put into a graveyard from play, you gain 1 life.
+power=1
+id=2591
+type=Creature
+[/card]
+[card]
 subtype=Forest
 auto={T}: Add {G}
 text={T}: Ajoutez {G} a votre reserve.
@@ -1222,6 +1375,7 @@ name=Spectral Shield
 mana={1}{W}{U}
 subtype=Aura
 target=creature
+auto=0/2
 auto=shroud
 rarity=U
 text=Enchanter : creature     La creature enchantee gagne +0/+2 et ne peut etre la cible de sorts ou de capacitees.
@@ -1229,13 +1383,14 @@ id=2738
 type=Enchantment
 [/card]
 [card]
-target=Wall
-text=Detruisez le mur cible. Il ne peut etre regenere. Le Mot de deflagration inflige un nombre de blessure au cout converti de mana de ce mur au controleur de ce mur.
-rarity=U
 name=Word of Blasting
-id=2660
-type=Instant
 mana={1}{R}
+target=Wall
+auto=bury
+rarity=U
+text=Detruisez le mur cible. Il ne peut etre regenere. Le Mot de deflagration inflige un nombre de blessure au cout converti de mana de ce mur au controleur de ce mur.
+type=Instant
+id=2660
 [/card]
 [card]
 toughness=3
@@ -1268,6 +1423,18 @@ id=2770
 type=Basic Snow Land
 [/card]
 [card]
+toughness=2
+name=Woolly Mammoths
+mana={1}{G}{G}
+subtype=Elephant
+auto=aslongas(snow|myinplay) trample
+rarity=C
+text=Woolly Mammoths has trample as long as you control a snow land.
+power=3
+id=2602
+type=Creature
+[/card]
+[card]
 subtype=Swamp
 auto={T}: Add {B}
 text={T}: Ajoutez {B} a votre reserve.
@@ -1281,6 +1448,7 @@ toughness=1
 name=Kjeldoran Knight
 mana={W}{W}
 subtype=Human Knight
+auto={1}{W}:1/0
 auto={W}{W}:0/2
 rarity=R
 text=Regroupement {1}{W}: +1/+0 jusqu'a la fin du tour   {W}{W}: +0/+2 jusqu'a la fin du tour
@@ -1303,6 +1471,7 @@ alias=1367
 name=Vertigo
 mana={R}
 target=creature[flying]
+auto=damage:2
 auto=-flying
 rarity=U
 text=Le Vertige inflige 2 blessures à la creature ciblee avec le vol. Cette creature perd le vol jusqu'a la fin du tour.
@@ -1314,6 +1483,7 @@ toughness=1
 name=Order of the White Shield
 mana={W}{W}
 subtype=Human Knight
+auto={W}:first strike
 auto={W}{W}:1/0
 rarity=U
 text=Protection contre le noir. {W}: L'Ordre du bouclier blanc acquiert l'initiative jusqu'a la fin du tour. {W}{W}: L'Ordre du bouclier blanc gagne +1/+0 jusqu'a la fin du tour.
@@ -1355,6 +1525,7 @@ name=Krovikan Fetish
 mana={2}{B}
 subtype=Aura
 target=creature
+auto=1/1
 auto=@next upkeep:draw:1
 rarity=C
 text=Enchanter : creature.   Quand le Fétiche Krovois arrive en jeu, piochez une carte au debut de l'entretien du prochain tour.   La creature enchantee gagne +1/+1.
@@ -1365,11 +1536,25 @@ type=Enchantment
 name=Formation
 mana={1}{W}
 target=creature
+auto=banding
 auto=@next upkeep:draw:1
 rarity=R
 text=La creature ciblee acquiert le regroupement jusqu'a la fin du tour.      Piochez une carte au debut du prochain tour.
 type=Instant
 id=2685
+[/card]
+[card]
+toughness=1
+name=Brine Shaman
+mana={1}{B}
+subtype=Human Cleric Shaman
+auto={T}{S(creature|myinplay)}:2/2 target(creature)
+auto={1}{U}{U}{S(creature|myinplay)}:fizzle target(creature|stack)
+rarity=C
+text={T}, Sacrifice a creature: Target creature gets +2/+2 until end of turn.     {1}{U}{U}, Sacrifice a creature: Counter target creature spell.
+power=1
+id=2439
+type=Creature
 [/card]
 [card]
 target=creature
@@ -1400,6 +1585,7 @@ type=Artifact
 mana={2}
 [/card]
 [card]
+auto=lord(creature[green]|myinplay) 1/1
 auto=lord(creature[-green]|myinplay) 1/0  
 text=Les creatures verte que vous controlez gagnent +1/+1 jusqu'a la fin du tour.       Les creatures non-verte que vous controlez gagnent +1/+0 jusqu'a la fin du tour.
 rarity=C
@@ -1455,6 +1641,7 @@ name=Stonehands
 mana={2}{R}
 subtype=Aura
 target=creature
+auto=0/2
 auto={R}:1/0
 rarity=C
 text=Enchanter : creature.   La creature enchantee gagne +0/+2. {R}: La creature enchantee gagne +1/+0 jusqu'a la fin du tour.
@@ -1466,6 +1653,7 @@ toughness=1
 name=Knight of Stromgald
 mana={B}{B}
 subtype=Human Knight
+auto={B}:first strike
 auto={B}{B}:1/0
 rarity=U
 text=Protection contre le blanc. {B}: Le Chevalier de Stromgald acquiert l'initiative jusqu'a la fin du tour. {B}{B}: Le Chevalier de Stromgald gagne +1/+0 jusqu'a la fin du tour.

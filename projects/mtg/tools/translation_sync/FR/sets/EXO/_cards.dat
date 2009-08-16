@@ -69,6 +69,15 @@ type=Creature
 abilities=shadow
 [/card]
 [card]
+auto=lord(creature|mybattlefield) {1}:regenerate
+text=Until end of turn, creatures you control gain "{1}: Regenerate this creature."
+rarity=U
+name=Resuscitate
+id=6140
+type=Instant
+mana={1}{G}
+[/card]
+[card]
 toughness=2
 name=Paladin en-Vec
 mana={1}{W}{W}
@@ -79,7 +88,7 @@ text=Initiative, protection contre le noir, protection contre le rouge
 power=2
 id=5199
 type=Creature
-abilities=First strike, protection from black, protection from red
+abilities=first strike,protection from black,protection from red
 [/card]
 [card]
 name=Maniacal Rage
@@ -87,6 +96,7 @@ mana={1}{R}
 subtype=Aura
 color=Red
 target=creature
+auto=2/2
 auto=cantblock
 rarity=C
 text=Enchanter : creature   La creature enchantee gagne +2/+2 et ne peut pas bloquer.
@@ -121,7 +131,7 @@ name=Dauthi Warlord
 mana={1}{B}
 subtype=Dauthi Soldier
 color=Black
-auto=foreach(creature[shadow]|inplay) 1/0
+auto=foreach(creature[shadow]|battlefield) 1/0
 rarity=U
 text=Distorsion (Cette creature ne peut bloquer ou etre bloquee que par une creature ayant la distorsion.)    La force du Seigneur de guerre dauthi est egale au nombre de creatures en jeu avec la distorsion.
 power=*
@@ -143,7 +153,7 @@ type=Creature
 abilities=haste
 [/card]
 [card]
-auto={S}:lord(creature|myinplay) flying
+auto={S}:lord(creature|mybattlefield) flying
 text=Sacrifiez le Forgeciel : toutes les creatures que vous controlez acquierent le vol jusqu'a la fin du tour.
 rarity=U
 name=Skyshaper
@@ -170,11 +180,24 @@ name=Skyshroud War Beast
 mana={1}{G}
 subtype=Beast
 color=Green
-auto=foreach(land[-basic]|opponentinplay) 1/1
+auto=foreach(land[-basic]|opponentbattlefield) 1/1
 rarity=R
 text=Pietinement        Au moment ou elle arrive en jeu, choisissez un adversaire.   Sa force et son endurance sont chacune egale au nombre de terrains non-base que le joueur choisi controle.
 power=*
 id=5231
+type=Creature
+abilities=trample
+[/card]
+[card]
+toughness=3
+name=Ogre Shaman
+mana={3}{R}{R}
+subtype=Ogre Shaman
+auto={2}:damage:2 target(creature,player) && discard:1 controller
+rarity=R
+text={2}, Discard a card at random: Ogre Shaman deals 2 damage to target creature or player.
+power=3
+id=6127
 type=Creature
 [/card]
 [card]
@@ -189,6 +212,27 @@ text=Pour chaque creature qui les bloque, ces Gloutons enrages gagnent +1/+1 jus
 power=4
 id=6134
 type=Creature
+[/card]
+[card]
+auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
+text={2}, {T}, Discard your hand: Counter target noncreature spell.
+rarity=R
+name=Null Brooch
+id=5176
+type=Artifact
+mana={4}
+[/card]
+[card]
+name=Shackles
+mana={2}{W}
+target=creature
+subtype=Aura
+auto=doesnotuntap
+auto={W}:moveTo(ownerhand)
+rarity=C
+text=Enchant creature. Enchanted creature doesn't untap during its controller's untap step. {W}: Return Shackles to its owner's hand.
+id=6038
+type=Enchantment
 [/card]
 [card]
 name=Robe of Mirrors
@@ -207,6 +251,7 @@ name=Angelic Blessing
 mana={2}{W}
 color=White
 target=creature
+auto=3/3
 auto=flying
 rarity=C
 text=La creature ciblee gagne +3/+3 et le vol jusqu'a la fin du tour.
@@ -231,7 +276,7 @@ name=Reclaim
 mana={G}
 color=Green
 target=*|mygraveyard
-auto=moveTo(ownerLibrary)
+auto=moveTo(myLibrary)
 rarity=C
 text=Mettez la carte ciblee depuis votre cimetiere au-dessus de votre bibliotheque.
 id=6139
@@ -243,6 +288,7 @@ mana={B}
 subtype=Aura
 color=Black
 target=creature
+auto=-1/-1
 auto=fear
 rarity=C
 text=Enchanter : creature   La creature enchantee gagne -1/-1 et a la peur.
@@ -294,7 +340,8 @@ type=Creature
 name=Mind Over Matter
 mana={2}{U}{U}{U}{U}
 color=Blue
-auto={S(*|myhand)}:untap target(artifact;creature;land) 
+auto={S(*|myhand)}:tap target(artifact,creature,land)
+auto={S(*|myhand)}:untap target(artifact,creature,land) 
 rarity=R
 text=Defaussez-vous d'une carte: Vous pouvez engager ou degager l'artefact, la creature, ou le terrain cible.
 type=Enchantment
@@ -318,6 +365,7 @@ name=Culling the Weak
 mana={B}
 color=Black
 target=creature|myinplay
+auto=bury
 auto=Add {B}{B}{B}{B}
 rarity=C
 text=En tant que cout supplementaire pour jouer le Sacrifice des faibles, sacrifiez une creature.    Ajoutez {B}{B}{B}{B} a votre reserve.
@@ -343,6 +391,7 @@ name=Pygmy Troll
 mana={1}{G}
 subtype=Troll
 color=Green
+auto=rampage(1/1,0)
 auto={G}:regenerate
 rarity=C
 text=Pour chaque creature qui le bloque, le Troll pygmee gagne +1/+1 jusqu'a la fin du tour.   {G}: Regenerez le Troll pygmee.
@@ -364,26 +413,12 @@ id=6084
 type=Creature
 [/card]
 [card]
-toughness=2
-name=Carnophage
-mana={B}
-subtype=Zombie
-color=Black
-auto={T}:life:1
-rarity=C
-text=Au debut de votre entretien, engagez le Creophage a moins que vous ne payiez 1 point de vie.
-power=2
-id=6079
-type=Creature
-alias=1221
-[/card]
-[card]
 toughness=5
 name=Exalted Dragon
 mana={4}{W}{W}
 subtype=Dragon
 color=White
-auto={S(land|myinplay)}:-cantattack
+auto={S(land|mybattlefield)}:-cantattack
 rarity=R
 text=Vol          Le Dragon exalte ne peut attaquer a moins que vous ne sacrifiez un terrain.
 power=5
@@ -397,7 +432,7 @@ name=Rootwater Alligator
 mana={3}{G}
 subtype=Crocodile
 color=Green
-auto={S(forest|myinplay)}:regenerate
+auto={S(forest|mybattlefield)}:regenerate
 rarity=C
 text=Sacrifiez une foret : regenerez l'Alligator de Souchemer.
 power=3
@@ -420,7 +455,7 @@ name=Skyshroud Elite
 mana={G}
 subtype=Elf
 color=Green
-auto=aslongas(land[-basic]|opponentinplay) 1/2
+auto=aslongas(land[-basic]|opponentbattlefield) 1/2
 rarity=U
 text=L'Elite de Linciel gagne +1/+2 tant qu'un adversaire quelconque controle un terrain quelconque qui n'est pas un terrain de base.
 power=1
@@ -442,6 +477,39 @@ type=Creature
 abilities=legendary
 [/card]
 [card]
+name=Predatory Hunger
+mana={G}
+target=creature
+subtype=Aura
+auto=@movedTo(creature|opponentstack):counter(1/1)
+rarity=C
+text=Enchant creature Whenever an opponent plays a creature spell, put a +1/+1 counter on enchanted creature.
+id=6141
+type=Enchantment
+[/card]
+[card]
+toughness=1
+name=Welkin Hawk
+mana={1}{W}
+subtype=Bird
+auto=@movedTo(this|graveyard):may moveTo(myHand) target(Welkin Hawk|mylibrary)
+rarity=C
+text=Flying When Welkin Hawk is put into a graveyard from play, you may search your library for a card named Welkin Hawk, reveal that card, put it into your hand, then shuffle your library.
+power=1
+id=6034
+type=Creature
+[/card]
+[card]
+auto=foreach(land[-basic]|myinplay) damage:2 controller
+auto=foreach(land[-basic]|opponentinplay) damage:2 opponent
+text=Price of Progress deals 2 damage to each player for each nonbasic land he or she controls.
+rarity=U
+name=Price of Progress
+id=6123
+type=Instant
+mana={1}{R}
+[/card]
+[card]
 toughness=2
 name=Ravenous Baboons
 mana={3}{R}
@@ -455,10 +523,22 @@ id=5207
 type=Creature
 [/card]
 [card]
+toughness=1
+name=Soul Warden
+mana={W}
+subtype=Human Cleric
+auto=@movedTo(creature|battlefield):life:1
+rarity=U
+text=Whenever another creature comes into play, you gain 1 life.
+power=1
+id=6033
+type=Creature
+[/card]
+[card]
 name=Scare Tactics
 mana={1}{B}
 color=Black
-auto=lord(creature|myinplay) 1/0
+auto=lord(creature) 1/0
 rarity=C
 text=Toutes les creatures gagnent +1/+0 jusqu'a la fin du tour.
 type=Instant
@@ -488,18 +568,38 @@ type=Creature
 abilities=vigilance
 [/card]
 [card]
+auto=@movedTo(land|mybattlefield):bury
+auto={T}:Add:2
+text=When you play another land, sacrifice City of Traitors.  {T}: Add {2} to your mana pool.
+rarity=R
+name=City of Traitors
+id=6168
+type=Land
+[/card]
+[card]
 toughness=2
 name=Wayward Soul
 mana={2}{U}{U}
 subtype=Spirit
 color=Blue
-auto={U}: moveTo(ownersLibrary)
+auto={U}:moveTo(ownerLibrary)
 rarity=C
 text={U}: Mettez l'Ame retive au-dessus de la bibliotheque de son proprietaire.
 power=3
 id=5273
 type=Creature
 abilities=flying
+[/card]
+[card]
+name=Sonic Burst
+mana={1}{R}
+target=creature,player
+auto=damage:4
+auto=discard:1 controller
+rarity=C
+text=As an additional cost to play Sonic Burst, discard a card at random. Sonic Burst deals 4 damage to target creature or player.
+type=Instant
+id=6112
 [/card]
 [card]
 toughness=3
@@ -519,12 +619,24 @@ name=Dizzying Gaze
 mana={R}
 subtype=Aura
 color=Red
-target=creature|myinplay
+target=creature|mybattlefield
 auto={R}:damage:1 target(creature[flying])
 rarity=C
 text=Enchanter : creature que vous controlez   {R}: La e enchantee inflige 1 blessure a la creature avec le vol ciblee.
 id=6114
 type=Enchantment
+[/card]
+[card]
+toughness=5
+name=Jackalope Herd
+mana={3}{G}
+subtype=Rabbit Beast
+auto=@movedTo(*|mystack):moveTo(ownerHand)
+rarity=C
+text=When you play a spell, return Jackalope Herd to its owner's hand.
+power=4
+id=6138
+type=Creature
 [/card]
 [card]
 toughness=4
@@ -544,11 +656,20 @@ abilities=flying
 name=Elven Palisade
 mana={G}
 color=Green
-auto={S(forest|myinplay)}:-3/0 target(creature[attacking]) 
+auto={S(forest|mybattlefield)}:-3/0 target(creature[attacking]) 
 rarity=U
 text=Sacrifiez une foret : la creature attaquante ciblee gagne -3/-0 jusqu'a la fin du tour.
 type=Enchantment
 id=6146
+[/card]
+[card]
+auto=foreach(creature[-tapped]|opponentbattlefield) draw:1
+text=Draw a card for each tapped creature target opponent controls.
+rarity=U
+name=Theft of Dreams
+id=5254
+type=Sorcery
+mana={2}{U}
 [/card]
 [card]
 toughness=1
@@ -556,7 +677,7 @@ name=Wood Elves
 mana={2}{G}
 subtype=Elf Scout
 color=Green
-auto=moveTo(inPlay) target(forest|myLibrary)
+auto=moveTo(mybattlefield) target(forest|myLibrary)
 rarity=C
 text=Quand l'Elfe des bois arrive en jeu, cherchez une carte de foret dans votre bibliotheque et mettez cette carte en jeu. Melangez ensuite votre bibliotheque.
 power=1
@@ -588,6 +709,16 @@ text=Quand le Scribouillard arrive en jeu vous pouvez renvoyer la carte d'epheme
 power=2
 id=6067
 type=Creature
+[/card]
+[card]
+auto=@movedTo(*[-land]|mystack):damage:2 controller
+auto=@movedTo(*[-land]|opponentstack):damage:2 opponent
+text=Whenever a player plays a spell, Spellshock deals 2 damage to that player.
+rarity=U
+name=Spellshock
+id=6121
+type=Enchantment
+mana={2}{R}
 [/card]
 [card]
 toughness=5

@@ -68,6 +68,7 @@ mana={2}
 [/card]
 [card]
 subtype=Island Mountain
+auto={T}:Add {U}
 auto={T}:Add {R}
 text=
 rarity=R
@@ -86,6 +87,7 @@ type=Instant
 id=1248
 [/card]
 [card]
+auto={G}{G}:fizzle target(*[black]|stack)
 text={G}{G}: Counter target black spell.
 rarity=U
 name=Lifeforce
@@ -187,6 +189,7 @@ toughness=2
 name=Goblin King
 mana={1}{R}{R}
 subtype=Goblin
+auto=lord(goblin) 1/1 other
 auto=lord(goblin) mountainwalk other
 rarity=R
 text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
@@ -264,6 +267,7 @@ mana={1}
 [/card]
 [card]
 subtype=Plains Mountain
+auto={T}:Add {W}
 auto={T}:Add {R}
 text=
 rarity=R
@@ -276,6 +280,7 @@ toughness=2
 name=Lord of Atlantis
 mana={U}{U}
 subtype=Merfolk
+auto=lord(merfolk) 1/1 other
 auto=lord(merfolk) islandwalk other
 rarity=R
 text=Other Merfolk creatures get +1/+1 and have islandwalk.
@@ -346,6 +351,7 @@ abilities=flying
 [/card]
 [card]
 subtype=Swamp Forest
+auto={T}:Add {B}
 auto={T}:Add {G}
 text=
 rarity=R
@@ -358,6 +364,11 @@ toughness=1
 name=Birds of Paradise
 mana={G}
 subtype=Bird
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{W}
 rarity=R
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
 power=0
@@ -572,12 +583,15 @@ id=1301
 type=Creature
 [/card]
 [card]
+auto={3}:untap
+auto={T}:add:{3}
 text=Basalt Monolith doesn't untap during your untap step.     {3}: Untap Basalt Monolith.     {T}: Add {3} to your mana pool.
 rarity=U
 name=Basalt Monolith
 id=1096
 type=Artifact
 mana={3}
+abilities=doesnotuntap
 [/card]
 [card]
 toughness=1
@@ -608,6 +622,18 @@ name=Volcanic Eruption
 id=1231
 type=Sorcery
 mana={X}{U}{U}{U}
+[/card]
+[card]
+toughness=2
+name=Onulet
+mana={3}
+color=Artifact
+auto=@movedTo(this|graveyard):life:2
+rarity=R
+text=When Onulet is put into a graveyard from play, you gain 2 life.
+power=2
+id=1130
+type=Artifact Creature
 [/card]
 [card]
 toughness=8
@@ -714,10 +740,11 @@ name=Blue Ward
 mana={W}
 subtype=Aura
 target=creature
+auto=protection from blue
 rarity=U
 text=Enchant creature     Enchanted creature has protection from blue. This effect doesn't remove Blue Ward.
-type=Enchantment
 id=1333
+type=Enchantment
 [/card]
 [card]
 toughness=1
@@ -766,6 +793,7 @@ abilities=flying
 [/card]
 [card]
 subtype=Island Forest
+auto={T}:Add {U}
 auto={T}:Add {G}
 text=
 rarity=R
@@ -808,7 +836,7 @@ toughness=3
 name=Pirate Ship
 mana={4}{U}
 subtype=Human Pirate
-auto={T}:damage target(creature,player)
+auto={T}:damage:1 target(creature,player)
 rarity=R
 text=Pirate Ship can't attack unless defending player controls an Island.     {T}: Pirate Ship deals 1 damage to target creature or player.     When you control no Islands, sacrifice Pirate Ship.
 power=4
@@ -907,6 +935,7 @@ id=1171
 [/card]
 [card]
 subtype=Plains Forest
+auto={T}:Add {W}
 auto={T}:Add {G}
 text=
 rarity=R
@@ -948,10 +977,11 @@ name=White Ward
 mana={W}
 subtype=Aura
 target=creature
+auto=protection from white
 rarity=U
 text=Enchant creature     Enchanted creature has protection from white. This effect doesn't remove White Ward.
-type=Enchantment
 id=1371
+type=Enchantment
 [/card]
 [card]
 subtype=Swamp
@@ -972,8 +1002,13 @@ text=Sea Serpent can't attack unless defending player controls an Island.       
 power=5
 id=1220
 type=Creature
+abilities=islandhome
 [/card]
 [card]
+auto={2}{T}: add {B}
+auto={2}{T}: add {U}
+auto={2}{T}: add {G}
+auto={2}{T}: add {R}
 auto={2}{T}: add {W}
 text={2}, {T}: Add one mana of any color to your mana pool.
 rarity=U
@@ -1104,6 +1139,7 @@ name=Web
 mana={G}
 subtype=Aura
 target=creature
+auto=reach
 auto=0/2
 rarity=R
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +0/+2 and has reach. (It can block creatures with flying.)
@@ -1153,6 +1189,7 @@ alias=1200
 name=Nevinyrral's Disk
 mana={4}
 color=Artifact
+auto=tap
 auto={1},{T}:destroy all(artifact,creature,enchantment)
 rarity=R
 text=Nevinyrral's Disk comes into play tapped.       {1}, {T}: Destroy all artifacts, creatures, and enchantments.
@@ -1179,6 +1216,8 @@ type=Instant
 mana={B}
 [/card]
 [card]
+auto=@each upkeep:foreach(swamp|myinplay) damage:1 controller
+auto=@each upkeep:foreach(swamp|opponentinplay) damage:1 opponent
 text=At the beginning of each player's upkeep, Karma deals damage to that player equal to the number of Swamps he or she controls.
 rarity=U
 name=Karma
@@ -1213,11 +1252,13 @@ toughness=3
 name=Brass Man
 mana={1}
 subtype=Construct
+auto={1}:untap
 rarity=U
 text=Brass Man doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Man.
 power=1
 id=1099
 type=Artifact Creature
+abilities=doesnotuntap
 [/card]
 [card]
 toughness=3
@@ -1336,6 +1377,7 @@ rarity=U
 text=Enchant land     At the beginning of the upkeep of enchanted land's controller, Cursed Land deals 1 damage to that player.
 type=Enchantment
 id=1148
+alias=1200
 [/card]
 [card]
 auto={3}{T}:damage:1 target(creature,player)
@@ -1401,6 +1443,8 @@ type=Enchantment
 mana={1}{B}
 [/card]
 [card]
+auto=@movedTo(land|opponentBattlefield): damage:2 opponent
+auto=@movedTo(land|myBattlefield): damage:2 controller
 text=Whenever a land comes into play, Ankh of Mishra deals 2 damage to that land's controller.
 rarity=R
 name=Ankh of Mishra
@@ -1419,13 +1463,14 @@ type=Artifact
 id=1138
 [/card]
 [card]
-target=artifact
-text=Destroy target artifact. It can't be regenerated. That artifact's controller gains life equal to its converted mana cost.
-rarity=U
 name=Crumble
-id=1240
-type=Instant
 mana={G}
+target=artifact
+auto=bury
+rarity=U
+text=Destroy target artifact. It can't be regenerated. That artifact's controller gains life equal to its converted mana cost.
+type=Instant
+id=1240
 [/card]
 [card]
 toughness=1
@@ -1455,8 +1500,9 @@ toughness=4
 name=Serendib Efreet
 mana={2}{U}
 subtype=Efreet
+auto=@each my upkeep:life:-1
 rarity=R
-text=Flying       At the beginning of your upkeep, Serendib Efreet deals 1 damage to you.
+text=Flying. At the beginning of your upkeep, Serendib Efreet deals 1 damage to you.
 power=3
 id=1221
 type=Creature
@@ -1526,6 +1572,7 @@ mana={1}{W}
 [/card]
 [card]
 subtype=Mountain Forest
+auto={T}:Add {R}
 auto={T}:Add {G}
 text=
 rarity=R
@@ -1591,6 +1638,7 @@ name=Holy Armor
 mana={W}
 subtype=Aura
 target=creature
+auto={W}:0/1
 auto=0/2
 rarity=C
 text=Enchant creature     Enchanted creature gets +0/+2.     {W}: Enchanted creature gets +0/+1 until end of turn.
@@ -1655,6 +1703,7 @@ mana={1}
 [/card]
 [card]
 subtype=Plains Swamp
+auto={T}:Add {B}
 auto={T}:Add {W}
 text=
 rarity=R
@@ -1675,6 +1724,7 @@ type=Enchantment
 [/card]
 [card]
 subtype=Plains Island
+auto={T}:Add {U}
 auto={T}:Add {W}
 text=
 rarity=R
@@ -1757,6 +1807,7 @@ toughness=3
 name=Zombie Master
 mana={1}{B}{B}
 subtype=Zombie
+auto=lord(zombie) swampwalk other
 auto=lord(zombie)  {B}:regenerate other
 rarity=R
 text=OTher Zombie creatures have swampwalk.     Other Zombies have "{B}: Regenerate this permanent."
@@ -1882,6 +1933,7 @@ mana={X}{R}
 [/card]
 [card]
 subtype=Island Swamp
+auto={T}:Add {B}
 auto={T}:Add {U}
 text=
 rarity=R
@@ -1992,6 +2044,7 @@ toughness=2
 name=Sedge Troll
 mana={2}{R}
 subtype=Troll
+auto={B}:regenerate
 auto=aslongas(swamp|myinplay) 1/1
 rarity=R
 text=Sedge Troll gets +1/+1 as long as you control a Swamp.       {B}: Regenerate Sedge Troll.
@@ -2037,10 +2090,11 @@ name=Black Ward
 mana={W}
 subtype=Aura
 target=creature
+auto=protection from black
 rarity=U
 text=Enchant creature     Enchanted creature has protection from black. This effect doesn't remove Black Ward.
-type=Enchantment
 id=1331
+type=Enchantment
 [/card]
 [card]
 name=Holy Strength
@@ -2135,6 +2189,21 @@ type=Instant
 mana={U}
 [/card]
 [card]
+toughness=2
+name=Verduran Enchantress
+mana={1}{G}{G}
+subtype=Human Druid
+color=Green
+auto=@movedTo(enchantment|mystack):may draw:1
+rarity=R
+text=Whenever you play an enchantment spell, you may draw a card.
+power=0
+id=1272
+type=Creature
+[/card]
+[card]
+auto=@movedTo(land|opponentgraveyard) from(opponentinplay):damage:2 opponent
+auto=@movedTo(land|mygraveyard) from(myinplay):damage:2 controller
 text=Whenever a land is put into a graveyard from play, Dingus Egg deals 2 damage to that land's controller.
 rarity=R
 name=Dingus Egg
@@ -2287,6 +2356,7 @@ mana={3}{G}
 [/card]
 [card]
 subtype=Mountain Swamp
+auto={T}:Add {B}
 auto={T}:Add {R}
 text=
 rarity=R
@@ -2370,10 +2440,11 @@ name=Green Ward
 mana={W}
 subtype=Aura
 target=creature
+auto=protection from green
 rarity=U
 text=Enchant creature     Enchanted creature has protection from green. This effect doesn't remove Green Ward.
-type=Enchantment
 id=1346
+type=Enchantment
 [/card]
 [card]
 target=player,creature
@@ -2407,11 +2478,13 @@ toughness=8
 name=Island Fish Jasconius
 mana={4}{U}{U}{U}
 subtype=Fish
+auto={U}{U}{U}:untap
 rarity=R
 text=Island Fish Jasconius can't attack unless defending player controls an Island.     Jasconius doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Jasconius.     When you control no Islands, sacrifice Jasconius.
 power=6
 id=1203
 type=Creature
+abilities=islandhome,doesnotuntap
 [/card]
 [card]
 toughness=3
@@ -2431,10 +2504,11 @@ name=Red Ward
 mana={W}
 subtype=Aura
 target=creature
+auto=protection from red
 rarity=U
 text=Enchant creature     Enchanted creature has protection from red. This effect doesn't remove Red Ward.
-type=Enchantment
 id=1359
+type=Enchantment
 [/card]
 [card]
 subtype=Mountain
@@ -2455,6 +2529,7 @@ type=Instant
 mana={1}{U}
 [/card]
 [card]
+auto={B}{B}:fizzle target(*[green]|stack)
 text={B}{B}: Counter target green spell.
 rarity=U
 name=Deathgrip

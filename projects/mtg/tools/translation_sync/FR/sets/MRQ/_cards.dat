@@ -1,30 +1,4 @@
 [card]
-toughness=1
-name=Thermal Glider
-mana={2}{W}
-subtype=Human Rebel
-color=White
-rarity=C
-text=Vol, protection contre le rouge
-power=2
-id=19537
-type=Creature
-abilities=flying,protection from red
-[/card]
-[card]
-toughness=2
-name=Lightning Hounds
-mana={2}{R}{R}
-subtype=Hound
-color=Red
-rarity=C
-text=Initiative
-power=3
-id=19618
-type=Creature
-abilities=first strike
-[/card]
-[card]
 name=Intimidation
 mana={2}{B}{B}{B}
 color=Black
@@ -59,17 +33,16 @@ id=19637
 [/card]
 [card]
 toughness=4
-name=Crenellated Wall
-mana={4}
-subtype=Wall
-color=Artifact
-auto={T}:0/4 target(creature)
-rarity=U
-text=Defensseur     {T}: La creature ciblee gagne +0/+4 jusqu'a la fin du tour.
-power=0
-id=19880
-type=Artifact Creature
-abilities=defender
+name=Rushwood Elemental
+mana={G}{G}{G}{G}{G}
+subtype=Elemental
+auto=@each my upkeep:may counter(1/1)
+rarity=R
+text=Trample     At the beginning of your upkeep, you may put a +1/+1 counter on Rushwood Elemental.
+power=4
+id=19869
+type=Creature
+abilities=trample
 [/card]
 [card]
 toughness=*
@@ -86,21 +59,10 @@ type=Creature
 abilities=flying
 [/card]
 [card]
-toughness=3
-name=Ogre Taskmaster
-mana={3}{R}
-subtype=Ogre
-rarity=U
-text=Ogre Le Surveillant ogre ne peut pas bloquer.
-power=4
-id=19844
-type=Creature
-abilities=cantblock
-[/card]
-[card]
 name=Heart of Ramos
 mana={3}
 color=Artifact
+auto={T}:Add {R}
 auto={S}:Add {R}
 rarity=R
 text={T}: Ajoutez {R} a votre reserve.     Sacrifiez le Cœur de Ramos : Ajoutez {R} a votre reserve.
@@ -152,6 +114,7 @@ mana={1}{R}
 subtype=Aura
 color=Red
 target=creature
+auto=1/1
 auto=mountainwalk
 rarity=C
 text=Enchanter : creature      La creature enchantee gagne +1/+1 et a la traversee des montagnes.
@@ -202,26 +165,6 @@ id=19689
 type=Creature
 [/card]
 [card]
-name=Island
-subtype=Island
-color=Land
-auto={T}: Add {U}
-rarity=L
-text={T}: Ajoutez {U} a votre reserve.
-type=Basic Land
-id=20885
-[/card]
-[card]
-name=Swamp
-subtype=Swamp
-color=Land
-auto={T}: Add {B}
-rarity=L
-text={T}: Ajoutez {B} a votre reserve.
-type=Basic Land
-id=20890
-[/card]
-[card]
 name=Mountain
 subtype=Mountain
 color=Land
@@ -230,17 +173,6 @@ rarity=L
 text={T}: Ajoutez {R} a votre reserve.
 type=Basic Land
 id=20894
-[/card]
-[card]
-name=Rain of Tears
-mana={1}{B}{B}
-color=Black
-target=land
-auto=destroy
-rarity=U
-text=Detruisez le terrain cible.
-id=19828
-type=Sorcery
 [/card]
 [card]
 name=Cateran Summons
@@ -268,6 +200,7 @@ abilities=cantblock,flying
 name=Eye of Ramos
 mana={3}
 color=Artifact
+auto={T}:Add {U}
 auto={S}:Add {U}
 rarity=R
 text={T}: Ajoutez {U} a votre reserve.     Sacrifiez l'Œil de Ramos : Ajoutez {U} a votre reserve.
@@ -286,29 +219,6 @@ text={G}: Regenerez le Troll cornu.
 power=2
 id=19630
 type=Creature
-[/card]
-[card]
-toughness=1
-name=Kris Mage
-mana={1}{R}
-subtype=Human Spellshaper
-color=Red
-auto={R}{T}{S(*|myhand)}:damage:1 target(creature,player)
-rarity=C
-text={R}{T}, defaussez-vous d'une carte: La Mage au kriss inflige 1 blessure à une cible, creature ou joueur.
-power=1
-id=19836
-type=Creature
-[/card]
-[card]
-name=Island
-subtype=Island
-color=Land
-auto={T}: Add {U}
-rarity=L
-text={T}: Ajoutez {U} a votre reserve.
-type=Basic Land
-id=20887
 [/card]
 [card]
 toughness=2
@@ -360,55 +270,15 @@ id=19567
 type=Creature
 [/card]
 [card]
-color=Land
-auto={2}{T}:Add {G}
-text={T}: Ajoutez {1} a votre reserve.     {2}, {T}: Ajoutez un mana de n'importe quel couleur a votre reserve.
-rarity=U
-name=Henge of Ramos
-id=19768
-type=Land
-[/card]
-[card]
-name=Swamp
-subtype=Swamp
-color=Land
-auto={T}: Add {B}
-rarity=L
-text={T}: Ajoutez {B} a votre reserve.
-type=Basic Land
-id=20888
-[/card]
-[card]
-toughness=2
-name=Balloon Peddler
-mana={2}{U}
-subtype=Human Spellshaper
-color=Blue
-auto={U}{T}{S(*|myhand)}:flying target(creature)
-rarity=C
-text={U}{T}, defaussez-vous d'une carte : La creature ciblee acquiert le vol jusqu'a la fin du tour.
-power=2
-id=19558
-type=Creature
-[/card]
-[card]
 name=Skull of Ramos
 mana={3}
 color=Artifact
+auto={T}:Add {B}
 auto={S}:Add {B}
 rarity=R
 text={T}: Ajoutez {B} a votre reserve.     Sacrifiez le Crane de Ramos : Ajoutez {B} a votre reserve.
 type=Artifact
 id=19764
-[/card]
-[card]
-subtype=Forest
-auto={T}:add{G}
-text={T}:joutez {G} a votre reserve.
-rarity=L
-name=Forest
-id=20898
-type=Basic Land
 [/card]
 [card]
 toughness=6
@@ -424,37 +294,36 @@ type=Creature
 abilities=unblockable
 [/card]
 [card]
-auto=foreach(creature|myinplay)draw:1
-text=Draw a card for each creature you control.
-rarity=R
-name=Collective Unconscious
-id=19739
-type=Sorcery
-mana={4}{G}{G}
-[/card]
-[card]
-name=Maggot Therapy
-mana={2}{B}
-subtype=Aura
-color=Black
-target=creature
-auto=2/-2
+toughness=1
+name=Kyren Sniper
+mana={2}{R}
+subtype=Goblin
+auto=@each my upkeep:may damage:1 target(player)
 rarity=C
-text=Flash    Enchanter : creature     La creature enchantee gagne +2/-2.
-id=19594
-type=Enchantment
-abilities=flash
-[/card]
-[card]
-toughness=2
-name=Fresh Volunteers
-mana={1}{W}
-subtype=Human Rebel
-color=White
-rarity=C
-power=2
-id=19542
+text=At the beginning of your upkeep, you may have Kyren Sniper deal 1 damage to target player.
+power=1
+id=19606
 type=Creature
+[/card]
+[card]
+auto={3}{W}{W}:draw:1 controller && life:3 opponent
+text={3}{W}{W}: You draw a card and target opponent gains 3 life.
+rarity=R
+name=Armistice
+id=19661
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
+name=Word of Blasting
+mana={1}{R}
+target=wall
+auto=bury
+rarity=U
+text=Destroy target Wall. It can't be regenerated. Word of Blasting deals damage equal to that Wall's converted mana cost to the Wall's controller.
+type=Instant
+id=19852
+alias=2660
 [/card]
 [card]
 toughness=4
@@ -474,35 +343,12 @@ abilities=defender
 name=Spidersilk Armor
 mana={2}{G}
 color=Green
+auto=lord(creature|myinplay) 0/1 includeself
 auto=lord(creature|myinplay) reach includeself
 rarity=C
 text=Les creatures  que vous controlez gagnent +0/+1 et ont la portee. (Elles peuvent blocker les creatures avec le vol.)
 type=Enchantment
 id=19870
-[/card]
-[card]
-toughness=2
-name=Rushwood Herbalist
-mana={2}{G}
-subtype=Human Spellshaper
-auto={G}{T}{S(*|myhand)}:regenerate target(creature)
-rarity=C
-text={G}, {T}, Defaussez vous d'une carte: Regenere la creature cible.
-power=2
-id=19622
-type=Creature
-[/card]
-[card]
-toughness=1
-name=Groundskeeper
-mana={G}
-subtype=Human Druid
-auto={1}{G}:moveto(myhand) target(land[basic]|mygraveyard)
-rarity=U
-text={1}{G}: Renvoyez la carte de terrain de base ciblee depuis votre cimetiere dans votre main.
-power=1
-id=19863
-type=Creature
 [/card]
 [card]
 toughness=3
@@ -540,32 +386,10 @@ id=19570
 type=Instant
 [/card]
 [card]
-name=Specter's Wail
-mana={1}{B}
-target=player
-auto=discard:1
-rarity=C
-text=Le joueur cible se defausse d'une carte au hazard.
-type=Sorcery
-id=19597
-[/card]
-[card]
-name=Tiger Claws
-mana={1}{G}
-subtype=Aura
-color=Green
-target=creature
-auto=trample
-rarity=C
-text=Flash       Enchanter : creature      La creature enchantee gagne +1/+1 et a le pietinement.
-id=19635
-type=Enchantment
-abilities=flash
-[/card]
-[card]
 name=Horn of Ramos
 mana={3}
 color=Artifact
+auto={T}:Add {G}
 auto={S}:Add {G}
 rarity=R
 text={T}: Ajoutez {G} a votre reserve.     Sacrifiez le Cor de Ramos : Ajoutez {G}a votre reserve.
@@ -578,8 +402,8 @@ name=Highway Robber
 mana={2}{B}{B}
 subtype=Human Rogue Mercenary
 color=Black
-target=player
-auto=life:2
+auto=life:-2 opponent
+auto=life:2 controller
 rarity=C
 text=Quand le Bandit de grand chemin arrive en jeu, l'adversaire cible perd 2 points de vie et vous gagnez 2 points de vie.
 power=2
@@ -611,6 +435,7 @@ id=20892
 [/card]
 [card]
 color=Land
+auto={T}:Add {1}
 auto={T}{S(creature|myinplay)}:life:1
 text={T}: Ajoutez {1} a votre reserve.     {T}, Sacrifiez une creature: vous gagnez un point de vie. 
 rarity=R
@@ -632,29 +457,6 @@ type=Creature
 abilities=vigilance
 [/card]
 [card]
-toughness=3
-name=Boa Constrictor
-mana={4}{G}
-subtype=Snake
-color=Green
-auto={T}:3/3
-rarity=U
-text={T}: le Boa constrictor gagne +3/+3 jusqu'a la fin du tour.
-power=3
-id=19859
-type=Creature
-[/card]
-[card]
-name=Plains
-subtype=Plains
-color=Land
-auto={T}: Add {W}
-rarity=L
-text={T}: Ajoutez {W} a votre reserve.
-type=Basic Land
-id=20880
-[/card]
-[card]
 name=Island
 subtype=Island
 color=Land
@@ -663,30 +465,6 @@ rarity=L
 text={T}: Ajoutez {U} a votre reserve.
 type=Basic Land
 id=20886
-[/card]
-[card]
-toughness=4
-name=Fountain Watch
-mana={3}{W}{W}
-subtype=Human Cleric
-color=White
-auto=lord(enchantment|myinplay) shroud
-rarity=R
-text=Les artefacts et les enchantements que vous contrôlez ont le linceul. 
-power=2
-id=19784
-type=Creature
-[/card]
-[card]
-name=Hoodwink
-mana={1}{U}
-color=Blue
-target=artifact,enchantment,land
-auto=moveTo(ownerhand)
-rarity=C
-text=Renvoyez l'artefact, l'enchantement ou le terrain cible dans la main de son proprietaire.
-id=20454
-type=Instant
 [/card]
 [card]
 toughness=3
@@ -698,61 +476,6 @@ rarity=C
 power=3
 id=19605
 type=Creature
-[/card]
-[card]
-toughness=1
-name=Seismic Mage
-mana={3}{R}
-subtype=Human Spellshaper
-color=Red
-auto={2}{R}{T}{S(*|myhand)}:destroy target(land)
-rarity=R
-text={2}{R}{T}, Defaussez vous d'une carte: Detruisez le terrain cible.
-power=1
-id=19835
-type=Creature
-[/card]
-[card]
-toughness=4
-name=Stinging Barrier
-mana={2}{U}{U}
-subtype=Wall
-color=Blue
-auto={U}{T}:Damage:1 target(creature,player)
-rarity=C
-text=Defensseur        {U}, {T}: La Barriere piquante inflige 1 blessure a une cible, creature ou joueur.
-power=0
-id=19561
-type=Creature
-abilities=defender
-[/card]
-[card]
-name=Trade Routes
-mana={1}{U}
-color=Blue
-auto={1}{S(land|myhand)}:draw:1
-rarity=R
-text={1}: Renvoyez le terrain cible que vous controlez dans la main de son proprietaire.     {1}, defaussez-vous d'une carte de terrain : Piochez une carte.
-type=Enchantment
-id=19675
-[/card]
-[card]
-auto=MoveTo(removedfromgame) all(creature|graveyard)
-text=Remove all creature cards in all graveyards from the game. You gain 1 life for each card removed this way.
-rarity=R
-name=Honor the Fallen
-id=19787
-type=Instant
-mana={1}{W}
-[/card]
-[card]
-auto=damage:1 all(creature[-flying])
-text=Le tremblement inflige 1 blessure à chaque creature sans le vol.
-rarity=C
-name=Tremor
-id=19614
-type=Sorcery
-mana={R}
 [/card]
 [card]
 name=Plains
@@ -775,35 +498,13 @@ type=Enchantment
 id=19849
 [/card]
 [card]
-name=Mountain
-subtype=Mountain
-color=Land
-auto={T}: Add {R}
-rarity=L
-text={T}: Ajoutez {R} a votre reserve.
-type=Basic Land
-id=20893
-[/card]
-[card]
+auto={T}: Add {1}
 auto={3}{T}{S(land|myinplay)}:destroy target(land[-basic])
 text={T}: Ajoutez {1} a votre reserve.       {3}, {T}, Sacrifiez un terrain: Detruisez le terrain non-base cible.
 rarity=R
 name=Dust Bowl
 id=19772
 type=Land
-[/card]
-[card]
-toughness=1
-name=Nightwind Glider
-mana={2}{W}
-subtype=Human Rebel
-color=White
-rarity=C
-text=Vol, protection contre le noir
-power=2
-id=19544
-type=Creature
-abilities=flying,protection from black
 [/card]
 [card]
 toughness=2
@@ -830,45 +531,6 @@ power=2
 id=19780
 type=Creature
 abilities=vigilance
-[/card]
-[card]
-toughness=1
-name=Arms Dealer
-mana={2}{R}
-subtype=Goblin
-color=Red
-auto={1}{R}{S(goblin|myinplay)}:Damage:4 target(creature)
-rarity=U
-text={1}{R}, Sacrifiez un Gobelin: Le Vendeur d'armes inflige 4 blessures a la creature ciblee.
-power=1
-id=19861
-type=Creature
-[/card]
-[card]
-toughness=3
-name=Primeval Shambler
-mana={4}{B}
-subtype=Horror Mercenary
-color=Black
-auto={B}:1/1
-rarity=U
-text={B}: L'Escogriffe primitif gagne +1/+1 jusqu'a la fin du tour.
-power=3
-id=19824
-type=Creature
-[/card]
-[card]
-toughness=3
-name=Jhovall Rider
-mana={4}{W}
-subtype=Human Rebel
-color=White
-rarity=U
-text=Pietinement
-power=3
-id=20172
-type=Creature
-abilities=trample
 [/card]
 [card]
 toughness=1
@@ -917,74 +579,13 @@ type=Enchantment
 abilities=flash
 [/card]
 [card]
-toughness=3
-name=Giant Caterpillar
-mana={3}{G}
-subtype=Insect
-color=Green
-auto={G}{S}:token(Butterfly,creature insect token, 1/1,flying green)
-rarity=C
-text={G}, Sacrifiez la Chenille geante: Mettez en jeu, a la fin du tour, un jeton de creature verte 1/1 Insecte avec le vol appele Papillon.
-power=3
-id=20847
-type=Creature
-[/card]
-[card]
-name=Plains
-subtype=Plains
-color=Land
-auto={T}: Add {W}
-rarity=L
-text={T}: Ajoutez {W} a votre reserve.
-type=Basic Land
-id=20883
-[/card]
-[card]
-toughness=4
-name=Lumbering Satyr
-mana={2}{G}{G}
-subtype=Satyr Beast
-color=Green
-auto=lord(creature) forestwalk
+auto=@movedTo(creature|graveyard) from(inplay):life:1 controller
+text=Whenever a creature is put into a graveyard from play, you gain 1 life.
 rarity=U
-text=Toutes les creatures ont la traversee des forets.
-power=5
-id=19860
-type=Creature
-[/card]
-[card]
-toughness=3
-name=Rock Badger
-mana={4}{R}
-subtype=Badger Beast
-color=Red
-rarity=C
-text=Traversee des montagnes
-power=3
-id=19840
-type=Creature
-abilities=mountainwalk
-[/card]
-[card]
-name=Iron Lance
-mana={2}
-color=Artifact
-auto={3}{T}:first strike target(creature)
-rarity=U
-text={3}, {T}: La creature ciblee gagne l'initiative jusqu'a la fin du tour.
-type=Artifact
-id=19882
-[/card]
-[card]
-name=Stone Rain
-mana={2}{R}
-color=Red
-target=land
-auto=Destroy
-rarity=C
-text=Detruisez le terrain cible.
-id=19612
-type=Sorcery
+name=Moonlit Wake
+id=136514
+type=Enchantment
+mana={2}{W}
 [/card]
 [card]
 subtype=Forest
@@ -996,28 +597,14 @@ id=20897
 type=Basic Land
 [/card]
 [card]
-toughness=1
-name=Undertaker
-mana={1}{B}
-subtype=Human Spellshaper
-color=Black
-auto={B}{T}{S(*|myhand)}:moveTo(ownerhand) target(creature|mygraveyard)
-rarity=C
-text={B}{T}, defaussez-vous d'une carte : Renvoyez dans votre main la carte de creature ciblee depuis votre cimetiere.
-power=1
-id=21306
-type=Creature
-[/card]
-[card]
-name=Desert Twister
-mana={4}{G}{G}
-color=Green
-target=*
-auto=destroy
-rarity=U
-text=Detruisez le permanent cible.
-id=19638
-type=Sorcery
+auto=@each my upkeep:deplete:1 controller
+auto=@each opponent upkeep:deplete:1 opponent
+text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard.
+rarity=R
+name=Worry Beads
+id=19747
+type=Artifact
+mana={3}
 [/card]
 [card]
 toughness=1
@@ -1033,19 +620,6 @@ id=19540
 type=Creature
 [/card]
 [card]
-toughness=2
-name=Devout Witness
-mana={2}{W}
-subtype=Human Spellshaper
-color=White
-auto={W}{T}{S(*|myhand)}:destroy target(artifact,enchantment)
-rarity=C
-text={W}{T}, Defaussez-vous d'une carte : Detruisez l'artefact cible ou l'enchantement cible.
-power=2
-id=19536
-type=Creature
-[/card]
-[card]
 name=Disenchant
 mana={1}{W}
 color=White
@@ -1057,32 +631,6 @@ id=19548
 type=Instant
 [/card]
 [card]
-name=Flaming Sword
-mana={1}{R}
-subtype=Aura
-color=Red
-target=creature
-auto=first strike
-rarity=C
-text=Flash       Enchanter : creature      La creature enchantee gagne +1/+0 et a l'initiative.
-id=19613
-type=Enchantment
-abilities=flash
-[/card]
-[card]
-toughness=4
-name=Henge Guardian
-mana={5}
-subtype=Dragon Wurm
-color=Artifact
-auto={2}:trample
-rarity=U
-text={2}: Le Vigile du cromlech acquiert le pietinement jusqu'a la fin du tour.
-power=3
-id=19770
-type=Artifact Creature
-[/card]
-[card]
 name=Plains
 subtype=Plains
 color=Land
@@ -1091,29 +639,6 @@ rarity=L
 text={T}: Ajoutez {W} a votre reserve.
 type=Basic Land
 id=20882
-[/card]
-[card]
-toughness=1
-name=Rushwood Dryad
-mana={1}{G}
-subtype=Dryad
-color=Green
-rarity=C
-text=Traversee des forets
-power=2
-id=19627
-type=Creature
-abilities=forestwalk
-[/card]
-[card]
-name=Tooth of Ramos
-mana={3}
-color=Artifact
-auto={S}:Add {W}
-rarity=R
-text={T}: Ajoutez {W} a votre reserve.     Sacrifiez la Dent de Ramos : Ajoutez  {W} a votre reserve.
-type=Artifact
-id=19762
 [/card]
 [card]
 subtype=Forest
@@ -1138,16 +663,6 @@ alias=1267
 abilities=flying
 [/card]
 [card]
-name=Swamp
-subtype=Swamp
-color=Land
-auto={T}: Add {B}
-rarity=L
-text={T}: Ajoutez {B} a votre reserve.
-type=Basic Land
-id=20889
-[/card]
-[card]
 toughness=4
 name=Silverglade Elemental
 mana={4}{G}
@@ -1160,47 +675,6 @@ id=19631
 type=Creature
 [/card]
 [card]
-color=Land
-auto={1}{T}:Tap target(land)
-text={T}: Ajoutez {1} a votre reserve.     {1}, {T}: Engagez le terrain cible. 
-rarity=R
-name=Rishadan Port
-id=19767
-type=Land
-[/card]
-[card]
-name=Diplomatic Immunity
-mana={1}{U}
-subtype=Aura
-color=Blue
-target=creature
-auto=shroud
-rarity=C
-text=Flash       Enchanter :  creature     Linceul.      La creature enchantee a le linceul.
-id=19576
-type=Enchantment
-abilities=shroud
-[/card]
-[card]
-name=Dark Ritual
-mana={B}
-color=Black
-auto=Add {B}{B}{B}
-rarity=C
-text=Ajoutez {B}{B}{B} a votre reserve.
-type=Instant
-id=19592
-[/card]
-[card]
-subtype=Forest
-auto={T}:add{G}
-text={T}: Ajoutez {G} a votre reserve.
-rarity=L
-name=Forest
-id=20896
-type=Basic Land
-[/card]
-[card]
 name=Bribery
 mana={3}{U}{U}
 target=creature|opponentLibrary
@@ -1209,33 +683,6 @@ rarity=R
 text=Cherchez une carte de creature dans la bibliotheque de l'adversaire cible et mettez cette carte en jeu sous votre controle.     Puis ce joueur melange sa bibliotheque.
 type=Sorcery
 id=21300
-[/card]
-[card]
-toughness=2
-name=Shock Troops
-mana={3}{R}
-subtype=Human Soldier
-color=Red
-auto={S}:Damage:2 target(creature,player)
-rarity=C
-text=Sacrifiez les Troupes de choc : Les Troupes de choc infligent 2 blessures a une cible, creature ou joueur.
-power=2
-id=19609
-type=Creature
-[/card]
-[card]
-toughness=3
-name=Drake Hatchling
-mana={2}{U}
-subtype=Drake
-color=Blue
-auto={U}:1/0 limit:1
-rarity=C
-text=Vol      {U}: Le Jeune drakon gagne +1/+0 jusqu'a la fin du tour. Ne jouez cette capacite qu'une seule fois par tour.
-power=1
-id=19565
-type=Creature
-abilities=flying
 [/card]
 [card]
 toughness=1
@@ -1273,17 +720,6 @@ type=Enchantment
 mana={2}{B}
 [/card]
 [card]
-name=Soothing Balm
-mana={1}{W}
-color=White
-target=player
-auto=life:5
-rarity=C
-text=Le joueur cible gagne 5 points de vie.
-id=19550
-type=Instant
-[/card]
-[card]
 toughness=1
 name=Deadly Insect
 mana={4}{G}
@@ -1295,16 +731,6 @@ power=6
 id=19628
 type=Creature
 abilities=shroud
-[/card]
-[card]
-name=Island
-subtype=Island
-color=Land
-auto={T}: Add {U}
-rarity=L
-text={T}: Ajoutez {U} a votre reserve.
-type=Basic Land
-id=20884
 [/card]
 [card]
 auto=lord(creature[blue;white]) cantblock
@@ -1329,6 +755,745 @@ id=19578
 type=Creature
 [/card]
 [card]
+name=Ancestral Mask
+mana={2}{G}
+subtype=Aura
+color=Green
+target=creature
+auto=foreach(enchantment|inplay) 2/2 other
+rarity=C
+text=Enchanter : creature      La creature enchantee gagne +2/+2 pour chaque autre enchantement en jeu.
+id=19634
+type=Enchantment
+[/card]
+[card]
+auto=lord(creature[attacking]|myinplay) foreach(land[-basic]|opponentinplay) 1/0
+auto=lord(creature[attacking]|opponentinplay) foreach(land[-basic]|myinplay) 1/0
+text=Attacking creatures get +X/+0 until end of turn, where X is the number of nonbasic lands defending player controls.
+rarity=U
+name=Mercadia's Downfall
+id=19850
+type=Instant
+mana={2}{R}
+[/card]
+[card]
+toughness=1
+name=Thermal Glider
+mana={2}{W}
+subtype=Human Rebel
+color=White
+rarity=C
+text=Vol, protection contre le rouge
+power=2
+id=19537
+type=Creature
+abilities=flying,protection from red
+[/card]
+[card]
+toughness=2
+name=Lightning Hounds
+mana={2}{R}{R}
+subtype=Hound
+color=Red
+rarity=C
+text=Initiative
+power=3
+id=19618
+type=Creature
+abilities=first strike
+[/card]
+[card]
+toughness=4
+name=Crenellated Wall
+mana={4}
+subtype=Wall
+color=Artifact
+auto={T}:0/4 target(creature)
+rarity=U
+text=Defensseur     {T}: La creature ciblee gagne +0/+4 jusqu'a la fin du tour.
+power=0
+id=19880
+type=Artifact Creature
+abilities=defender
+[/card]
+[card]
+toughness=3
+name=Ogre Taskmaster
+mana={3}{R}
+subtype=Ogre
+rarity=U
+text=Ogre Le Surveillant ogre ne peut pas bloquer.
+power=4
+id=19844
+type=Creature
+abilities=cantblock
+[/card]
+[card]
+auto=lord(creature) {T}:tap target(creature)
+text=Until end of turn, all creatures gain "{T}: Tap target creature."
+rarity=U
+name=Shoving Match
+id=19677
+type=Instant
+mana={2}{U}
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}: Ajoutez {U} a votre reserve.
+type=Basic Land
+id=20885
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Ajoutez {B} a votre reserve.
+type=Basic Land
+id=20890
+[/card]
+[card]
+name=Rain of Tears
+mana={1}{B}{B}
+color=Black
+target=land
+auto=destroy
+rarity=U
+text=Detruisez le terrain cible.
+id=19828
+type=Sorcery
+[/card]
+[card]
+toughness=1
+name=Silverglade Pathfinder
+mana={1}{G}
+subtype=Dryad Spellshaper
+auto={1}{G}{T}{S(*|myHand)}:moveTo(myBattlefield) target(basic|myLibrary) && tap
+rarity=U
+text={1}{G}, {T}, Discard a card: Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
+power=1
+id=19728
+type=Creature
+[/card]
+[card]
+name=Sever Soul
+mana={3}{B}{B}
+target=creature[-black]
+auto=bury
+rarity=C
+text=Destroy target nonblack creature. It can't be regenerated. You gain life equal to its toughness.
+type=Sorcery
+id=19591
+alias=3194
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}: Ajoutez {U} a votre reserve.
+type=Basic Land
+id=20887
+[/card]
+[card]
+toughness=1
+name=Kris Mage
+mana={1}{R}
+subtype=Human Spellshaper
+color=Red
+auto={R}{T}{S(*|myhand)}:damage:1 target(creature,player)
+rarity=C
+text={R}{T}, defaussez-vous d'une carte: La Mage au kriss inflige 1 blessure à une cible, creature ou joueur.
+power=1
+id=19836
+type=Creature
+[/card]
+[card]
+color=Land
+auto={T}:Add {1}
+auto={2}{T}:Add {W}
+auto={2}{T}:Add {U}
+auto={2}{T}:Add {B}
+auto={2}{T}:Add {R}
+auto={2}{T}:Add {G}
+text={T}: Ajoutez {1} a votre reserve.     {2}, {T}: Ajoutez un mana de n'importe quel couleur a votre reserve.
+rarity=U
+name=Henge of Ramos
+id=19768
+type=Land
+[/card]
+[card]
+toughness=2
+name=Balloon Peddler
+mana={2}{U}
+subtype=Human Spellshaper
+color=Blue
+auto={U}{T}{S(*|myhand)}:flying target(creature)
+rarity=C
+text={U}{T}, defaussez-vous d'une carte : La creature ciblee acquiert le vol jusqu'a la fin du tour.
+power=2
+id=19558
+type=Creature
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Ajoutez {B} a votre reserve.
+type=Basic Land
+id=20888
+[/card]
+[card]
+subtype=Forest
+auto={T}:add{G}
+text={T}:joutez {G} a votre reserve.
+rarity=L
+name=Forest
+id=20898
+type=Basic Land
+[/card]
+[card]
+auto=foreach(creature|myinplay)draw:1
+text=Draw a card for each creature you control.
+rarity=R
+name=Collective Unconscious
+id=19739
+type=Sorcery
+mana={4}{G}{G}
+[/card]
+[card]
+name=Maggot Therapy
+mana={2}{B}
+subtype=Aura
+color=Black
+target=creature
+auto=2/-2
+rarity=C
+text=Flash    Enchanter : creature     La creature enchantee gagne +2/-2.
+id=19594
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+toughness=2
+name=Fresh Volunteers
+mana={1}{W}
+subtype=Human Rebel
+color=White
+rarity=C
+power=2
+id=19542
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Groundskeeper
+mana={G}
+subtype=Human Druid
+auto={1}{G}:moveto(myhand) target(land[basic]|mygraveyard)
+rarity=U
+text={1}{G}: Renvoyez la carte de terrain de base ciblee depuis votre cimetiere dans votre main.
+power=1
+id=19863
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Rushwood Herbalist
+mana={2}{G}
+subtype=Human Spellshaper
+auto={G}{T}{S(*|myhand)}:regenerate target(creature)
+rarity=C
+text={G}, {T}, Defaussez vous d'une carte: Regenere la creature cible.
+power=2
+id=19622
+type=Creature
+[/card]
+[card]
+auto=@movedTo(land,enchantment,creature,artifact|opponentGraveyard):life:-1 opponent
+auto=@movedTo(land,enchantment,creature,artifact|myGraveyard):life:-1 controller
+text=Whenever a nontoken permanent is put into a player's graveyard from play, that player loses 1 life.
+rarity=R
+name=Liability
+id=19706
+type=Enchantment
+mana={1}{B}{B}
+[/card]
+[card]
+name=Specter's Wail
+mana={1}{B}
+target=player
+auto=discard:1
+rarity=C
+text=Le joueur cible se defausse d'une carte au hazard.
+type=Sorcery
+id=19597
+[/card]
+[card]
+name=Tiger Claws
+mana={1}{G}
+subtype=Aura
+color=Green
+target=creature
+auto=1/1
+auto=trample
+rarity=C
+text=Flash       Enchanter : creature      La creature enchantee gagne +1/+1 et a le pietinement.
+id=19635
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+auto=@movedTo(*[blue;black]|opponentstack):may token(Snake,Creature Snake,1/1,green)
+text=Whenever an opponent plays a blue or black spell, you may put a 1/1 green Snake creature token into play.
+rarity=U
+name=Snake Pit
+id=19876
+type=Enchantment
+mana={3}{G}
+[/card]
+[card]
+toughness=3
+name=Boa Constrictor
+mana={4}{G}
+subtype=Snake
+color=Green
+auto={T}:3/3
+rarity=U
+text={T}: le Boa constrictor gagne +3/+3 jusqu'a la fin du tour.
+power=3
+id=19859
+type=Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Ajoutez {W} a votre reserve.
+type=Basic Land
+id=20880
+[/card]
+[card]
+toughness=4
+name=Fountain Watch
+mana={3}{W}{W}
+subtype=Human Cleric
+color=White
+auto=lord(artifact|myinplay) shroud
+auto=lord(enchantment|myinplay) shroud
+rarity=R
+text=Les artefacts et les enchantements que vous contrôlez ont le linceul. 
+power=2
+id=19784
+type=Creature
+[/card]
+[card]
+name=Hoodwink
+mana={1}{U}
+color=Blue
+target=artifact,enchantment,land
+auto=moveTo(ownerhand)
+rarity=C
+text=Renvoyez l'artefact, l'enchantement ou le terrain cible dans la main de son proprietaire.
+id=20454
+type=Instant
+[/card]
+[card]
+toughness=1
+name=Seismic Mage
+mana={3}{R}
+subtype=Human Spellshaper
+color=Red
+auto={2}{R}{T}{S(*|myhand)}:destroy target(land)
+rarity=R
+text={2}{R}{T}, Defaussez vous d'une carte: Detruisez le terrain cible.
+power=1
+id=19835
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Stinging Barrier
+mana={2}{U}{U}
+subtype=Wall
+color=Blue
+auto={U}{T}:Damage:1 target(creature,player)
+rarity=C
+text=Defensseur        {U}, {T}: La Barriere piquante inflige 1 blessure a une cible, creature ou joueur.
+power=0
+id=19561
+type=Creature
+abilities=defender
+[/card]
+[card]
+name=Trade Routes
+mana={1}{U}
+color=Blue
+auto={1}:moveTo(ownerhand) target(land|myinplay)
+auto={1}{S(land|myhand)}:draw:1
+rarity=R
+text={1}: Renvoyez le terrain cible que vous controlez dans la main de son proprietaire.     {1}, defaussez-vous d'une carte de terrain : Piochez une carte.
+type=Enchantment
+id=19675
+[/card]
+[card]
+auto=foreach(creature|graveyard)life:1
+auto=MoveTo(removedfromgame) all(creature|graveyard)
+text=Remove all creature cards in all graveyards from the game. You gain 1 life for each card removed this way.
+rarity=R
+name=Honor the Fallen
+id=19787
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+auto=damage:1 all(creature[-flying])
+text=Le tremblement inflige 1 blessure à chaque creature sans le vol.
+rarity=C
+name=Tremor
+id=19614
+type=Sorcery
+mana={R}
+[/card]
+[card]
+name=Mountain
+subtype=Mountain
+color=Land
+auto={T}: Add {R}
+rarity=L
+text={T}: Ajoutez {R} a votre reserve.
+type=Basic Land
+id=20893
+[/card]
+[card]
+toughness=1
+name=Nightwind Glider
+mana={2}{W}
+subtype=Human Rebel
+color=White
+rarity=C
+text=Vol, protection contre le noir
+power=2
+id=19544
+type=Creature
+abilities=flying,protection from black
+[/card]
+[card]
+toughness=1
+name=Arms Dealer
+mana={2}{R}
+subtype=Goblin
+color=Red
+auto={1}{R}{S(goblin|myinplay)}:Damage:4 target(creature)
+rarity=U
+text={1}{R}, Sacrifiez un Gobelin: Le Vendeur d'armes inflige 4 blessures a la creature ciblee.
+power=1
+id=19861
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Jhovall Rider
+mana={4}{W}
+subtype=Human Rebel
+color=White
+rarity=U
+text=Pietinement
+power=3
+id=20172
+type=Creature
+abilities=trample
+[/card]
+[card]
+toughness=3
+name=Primeval Shambler
+mana={4}{B}
+subtype=Horror Mercenary
+color=Black
+auto={B}:1/1
+rarity=U
+text={B}: L'Escogriffe primitif gagne +1/+1 jusqu'a la fin du tour.
+power=3
+id=19824
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Giant Caterpillar
+mana={3}{G}
+subtype=Insect
+color=Green
+auto={G}{S}:token(Butterfly,creature insect token, 1/1,flying green)
+rarity=C
+text={G}, Sacrifiez la Chenille geante: Mettez en jeu, a la fin du tour, un jeton de creature verte 1/1 Insecte avec le vol appele Papillon.
+power=3
+id=20847
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Lumbering Satyr
+mana={2}{G}{G}
+subtype=Satyr Beast
+color=Green
+auto=lord(creature) forestwalk
+rarity=U
+text=Toutes les creatures ont la traversee des forets.
+power=5
+id=19860
+type=Creature
+[/card]
+[card]
+name=Plains
+subtype=Plains
+color=Land
+auto={T}: Add {W}
+rarity=L
+text={T}: Ajoutez {W} a votre reserve.
+type=Basic Land
+id=20883
+[/card]
+[card]
+name=Iron Lance
+mana={2}
+color=Artifact
+auto={3}{T}:first strike target(creature)
+rarity=U
+text={3}, {T}: La creature ciblee gagne l'initiative jusqu'a la fin du tour.
+type=Artifact
+id=19882
+[/card]
+[card]
+toughness=3
+name=Rock Badger
+mana={4}{R}
+subtype=Badger Beast
+color=Red
+rarity=C
+text=Traversee des montagnes
+power=3
+id=19840
+type=Creature
+abilities=mountainwalk
+[/card]
+[card]
+name=Stone Rain
+mana={2}{R}
+color=Red
+target=land
+auto=Destroy
+rarity=C
+text=Detruisez le terrain cible.
+id=19612
+type=Sorcery
+[/card]
+[card]
+toughness=1
+name=Undertaker
+mana={1}{B}
+subtype=Human Spellshaper
+color=Black
+auto={B}{T}{S(*|myhand)}:moveTo(ownerhand) target(creature|mygraveyard)
+rarity=C
+text={B}{T}, defaussez-vous d'une carte : Renvoyez dans votre main la carte de creature ciblee depuis votre cimetiere.
+power=1
+id=21306
+type=Creature
+[/card]
+[card]
+name=Desert Twister
+mana={4}{G}{G}
+color=Green
+target=*
+auto=destroy
+rarity=U
+text=Detruisez le permanent cible.
+id=19638
+type=Sorcery
+[/card]
+[card]
+toughness=2
+name=Devout Witness
+mana={2}{W}
+subtype=Human Spellshaper
+color=White
+auto={W}{T}{S(*|myhand)}:destroy target(artifact,enchantment)
+rarity=C
+text={W}{T}, Defaussez-vous d'une carte : Detruisez l'artefact cible ou l'enchantement cible.
+power=2
+id=19536
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Henge Guardian
+mana={5}
+subtype=Dragon Wurm
+color=Artifact
+auto={2}:trample
+rarity=U
+text={2}: Le Vigile du cromlech acquiert le pietinement jusqu'a la fin du tour.
+power=3
+id=19770
+type=Artifact Creature
+[/card]
+[card]
+name=Flaming Sword
+mana={1}{R}
+subtype=Aura
+color=Red
+target=creature
+auto=1/0
+auto=first strike
+rarity=C
+text=Flash       Enchanter : creature      La creature enchantee gagne +1/+0 et a l'initiative.
+id=19613
+type=Enchantment
+abilities=flash
+[/card]
+[card]
+toughness=1
+name=Rushwood Dryad
+mana={1}{G}
+subtype=Dryad
+color=Green
+rarity=C
+text=Traversee des forets
+power=2
+id=19627
+type=Creature
+abilities=forestwalk
+[/card]
+[card]
+name=Tooth of Ramos
+mana={3}
+color=Artifact
+auto={T}:Add {W}
+auto={S}:Add {W}
+rarity=R
+text={T}: Ajoutez {W} a votre reserve.     Sacrifiez la Dent de Ramos : Ajoutez  {W} a votre reserve.
+type=Artifact
+id=19762
+[/card]
+[card]
+name=Dark Ritual
+mana={B}
+color=Black
+auto=Add {B}{B}{B}
+rarity=C
+text=Ajoutez {B}{B}{B} a votre reserve.
+type=Instant
+id=19592
+[/card]
+[card]
+name=Diplomatic Immunity
+mana={1}{U}
+subtype=Aura
+color=Blue
+target=creature
+auto=shroud
+rarity=C
+text=Flash       Enchanter :  creature     Linceul.      La creature enchantee a le linceul.
+id=19576
+type=Enchantment
+abilities=shroud
+[/card]
+[card]
+color=Land
+auto={T}:Add {1}
+auto={1}{T}:Tap target(land)
+text={T}: Ajoutez {1} a votre reserve.     {1}, {T}: Engagez le terrain cible. 
+rarity=R
+name=Rishadan Port
+id=19767
+type=Land
+[/card]
+[card]
+name=Swamp
+subtype=Swamp
+color=Land
+auto={T}: Add {B}
+rarity=L
+text={T}: Ajoutez {B} a votre reserve.
+type=Basic Land
+id=20889
+[/card]
+[card]
+subtype=Forest
+auto={T}:add{G}
+text={T}: Ajoutez {G} a votre reserve.
+rarity=L
+name=Forest
+id=20896
+type=Basic Land
+[/card]
+[card]
+toughness=3
+name=Drake Hatchling
+mana={2}{U}
+subtype=Drake
+color=Blue
+auto={U}:1/0 limit:1
+rarity=C
+text=Vol      {U}: Le Jeune drakon gagne +1/+0 jusqu'a la fin du tour. Ne jouez cette capacite qu'une seule fois par tour.
+power=1
+id=19565
+type=Creature
+abilities=flying
+[/card]
+[card]
+toughness=2
+name=Shock Troops
+mana={3}{R}
+subtype=Human Soldier
+color=Red
+auto={S}:Damage:2 target(creature,player)
+rarity=C
+text=Sacrifiez les Troupes de choc : Les Troupes de choc infligent 2 blessures a une cible, creature ou joueur.
+power=2
+id=19609
+type=Creature
+[/card]
+[card]
+name=Soothing Balm
+mana={1}{W}
+target=player
+auto=life:5
+rarity=C
+text=Le joueur cible gagne 5 points de vie.
+type=Instant
+id=19550
+[/card]
+[card]
+name=Island
+subtype=Island
+color=Land
+auto={T}: Add {U}
+rarity=L
+text={T}: Ajoutez {U} a votre reserve.
+type=Basic Land
+id=20884
+[/card]
+[card]
+auto=damage:3 opponent
+text=Sizzle deals 3 damage to each opponent.
+rarity=C
+name=Sizzle
+id=19611
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
 toughness=1
 name=Darting Merfolk
 mana={1}{U}
@@ -1339,18 +1504,6 @@ text={U}: Renvoyez l'Ondine dardante dans la main de son proprietaire.
 power=1
 id=19559
 type=Creature
-[/card]
-[card]
-name=Ancestral Mask
-mana={2}{G}
-subtype=Aura
-color=Green
-target=creature
-auto=foreach(enchantment|opponentinplay) 2/2 other
-rarity=C
-text=Enchanter : creature      La creature enchantee gagne +2/+2 pour chaque autre enchantement en jeu.
-id=19634
-type=Enchantment
 [/card]
 [card]
 toughness=3

@@ -3,7 +3,7 @@ toughness=1
 name=Kithkin Daggerdare
 mana={1}{G}
 subtype=Kithkin Soldier
-auto={G}{T}:target(creature[attacking]) 2/2
+auto={G}{T}:2/2 target(creature[attacking])
 rarity=C
 text={G}, {T}: Target attacking creature gets +2/+2 until end of turn.
 power=1
@@ -33,6 +33,42 @@ type=Basic Land
 [/card]
 [card]
 toughness=2
+name=Spiderwig Boggart
+mana={2}{B}
+subtype=Goblin Shaman
+auto=fear target(creature)
+rarity=C
+text=When Spiderwig Boggart comes into play, target creature gains fear until end of turn.
+power=2
+id=146445
+type=Creature
+[/card]
+[card]
+name=Heal the Scars
+mana={3}{G}
+target=creature
+auto=regenerate
+rarity=C
+text=Regenerate target creature. You gain life equal to that creature's toughness.
+type=Instant
+id=145808
+alias=3194
+[/card]
+[card]
+toughness=3
+name=Wort, Boggart Auntie
+mana={2}{B}{R}
+subtype=Goblin Shaman
+auto=@each my upkeep:may moveto(myhand) target(goblin|mygraveyard)
+rarity=R
+text=Fear     At the beginning of your upkeep, you may return target Goblin card from your graveyard to your hand.
+power=3
+id=140226
+type=Creature
+abilities=Legendary
+[/card]
+[card]
+toughness=2
 name=Tar Pitcher
 mana={3}{R}
 subtype=Goblin Shaman
@@ -48,6 +84,7 @@ toughness=1
 name=Scion of Oona
 mana={2}{U}
 subtype=Faerie Soldier
+auto=lord(faerie|myinplay) 1/1 other
 auto=lord(faerie|myinplay) shroud other
 rarity=R
 text=Flash     Flying     Other Faerie creatures you control get +1/+1.     Other Faeries you control have shroud. (A permanent with shroud can't be the target of spells or abilities.)
@@ -67,8 +104,21 @@ type=Instant
 id=139693
 [/card]
 [card]
+toughness=2
+name=Quill-Slinger Boggart
+mana={3}{B}
+subtype=Goblin Warrior
+auto=@movedTo(kithkin):may life:-1 target(player)
+rarity=C
+text=Whenever a player plays a Kithkin spell, you may have target player lose 1 life.
+power=3
+id=139469
+type=Creature
+[/card]
+[card]
 name=Eyeblight's Ending
 mana={2}{B}
+subtype=tribal
 subtype=Elf
 target=creature[-elf]
 auto=destroy
@@ -76,6 +126,17 @@ rarity=C
 text=Destroy target non-Elf creature.
 id=139449
 type=Instant
+[/card]
+[card]
+auto=tap
+auto=aslongas(faerie|myHand) untap
+auto={T}:add{U}
+auto={T}:add{B}
+text=As Secluded Glen comes into play, you may reveal a Faerie card from your hand. If you don't, Secluded Glen comes into play tapped.     {T}: Add {U} or {B} to your mana pool.
+rarity=R
+name=Secluded Glen
+id=153458
+type=Land
 [/card]
 [card]
 subtype=Mountain
@@ -91,6 +152,7 @@ name=Zephyr Net
 mana={1}{U}
 subtype=Aura
 target=creature
+auto=flying
 auto=defender
 rarity=C
 text=Enchant creature     Enchanted creature has defender and flying.
@@ -98,15 +160,43 @@ id=142357
 type=Enchantment
 [/card]
 [card]
+toughness=2
+name=Sygg, River Guide
+mana={W}{U}
+subtype=Merfolk Wizard
+auto={1}{W}:protection from black target(merfolk)
+auto={1}{W}:protection from blue target(merfolk)
+auto={1}{W}:protection from green target(merfolk)
+auto={1}{W}:protection from red target(merfolk)
+auto={1}{W}:protection from white target(merfolk)
+rarity=R
+text=Islandwalk. {1}{W}: Target Merfolk you control gains protection from the color of your choice until end of turn.
+power=2
+id=140172
+type=Creature
+abilities=legendary,islandwalk
+[/card]
+[card]
+toughness=1
+name=Elvish Handservant
+mana={G}
+subtype=Elf Warrior
+auto=@movedTo(giant|stack):may counter(1/1)
+rarity=C
+text=Whenever a player plays a Giant spell, you may put a +1/+1 counter on Elvish Handservant.
+power=1
+id=146179
+type=Creature
+[/card]
+[card]
 toughness=4
 name=Axegrinder Giant
 mana={4}{R}{R}
 subtype=Giant Warrior
 rarity=C
-text=
 power=6
-id=145976
 type=Creature
+id=145976
 [/card]
 [card]
 subtype=Island
@@ -122,6 +212,7 @@ toughness=5
 name=Sunrise Sovereign
 mana={5}{R}
 subtype=Giant Warrior
+auto=lord(giant|myinplay) 2/2 other
 auto=lord(giant|myinplay) trample other
 rarity=R
 text=Other Giant creatures you control get +2/+2 and have trample.
@@ -134,6 +225,8 @@ name=Triclopean Sight
 mana={1}{W}
 subtype=Aura
 target=creature
+auto=untap
+auto=1/1
 auto=vigilance
 rarity=C
 text=Flash     Enchant creature     When Triclopean Sight comes into play, untap enchanted creature.     Enchanted creature gets +1/+1 and has vigilance.
@@ -151,6 +244,17 @@ id=143630
 type=Basic Land
 [/card]
 [card]
+auto=tap
+auto=aslongas(giant|myHand) untap
+auto={T}:add{R}
+auto={T}:add{W}
+text=As Ancient Amphitheater comes into play, you may reveal a Giant card from your hand. If you don't, Ancient Amphitheater comes into play tapped.     {T}: Add {R} or {W} to your mana pool.
+rarity=R
+name=Ancient Amphitheater
+id=153454
+type=Land
+[/card]
+[card]
 toughness=2
 name=Wizened Cenn
 mana={W}{W}
@@ -163,6 +267,18 @@ id=139716
 type=Creature
 [/card]
 [card]
+name=Rootgrapple
+mana={4}{G}
+subtype=Treefolk
+target=*[-creature]
+auto=destroy
+auto=aslongas(treefolk[creature]|myinplay) draw:1
+rarity=C
+text=Destroy target noncreature permanent. If you control a Treefolk, draw a card.
+id=139499
+type=Tribal Instant
+[/card]
+[card]
 subtype=Forest
 auto={T}:Add {G}
 text={T}: Add {G} to your mana pool.
@@ -172,10 +288,23 @@ id=143618
 type=Basic Land
 [/card]
 [card]
+toughness=2
+name=Kinsbaile Skirmisher
+mana={1}{W}
+subtype=Kithkin Soldier
+auto=1/1 target(creature)
+rarity=C
+text=When Kinsbaile Skirmisher comes into play, target creature gets +1/+1 until end of turn.
+power=2
+id=143018
+type=Creature
+[/card]
+[card]
 toughness=5
 name=Hearthcage Giant
 mana={6}{R}{R}
 subtype=Giant Warrior
+auto=token(Elemental Shaman,creature Elemental Shaman,3/1,red)*2
 auto={S(elemental|myinplay)}:3/1
 rarity=U
 text=When Hearthcage Giant comes into play, put two 3/1 red Elemental Shaman creature tokens into play.     Sacrifice an Elemental: Target Giant creature gets +3/+1 until end of turn.
@@ -193,6 +322,29 @@ id=143635
 type=Basic Land
 [/card]
 [card]
+toughness=2
+name=Harpoon Sniper
+mana={2}{W}
+subtype=Merfolk Archer
+auto={W}{T}:foreach(merfolk|myinplay) damage:1 target(creature[attacking,blocking])
+rarity=U
+text={W}, {T}: Harpoon Sniper deals X damage to target attacking or blocking creature, where X is the number of Merfolk you control.
+power=2
+id=139407
+type=Creature
+[/card]
+[card]
+auto=tap
+auto=aslongas(elf|myHand) untap
+auto={T}:add{B}
+auto={T}:add{G}
+text=As Gilt-Leaf Palace comes into play, you may reveal an Elf card from your hand. If you don't, Gilt-Leaf Palace comes into play tapped.     {T}: Add {B} or {G} to your mana pool.
+rarity=R
+name=Gilt-Leaf Palace
+id=153455
+type=Land
+[/card]
+[card]
 subtype=Swamp
 auto={T}: Add {B}
 text={T}: Add {B} to your mana pool.
@@ -206,6 +358,7 @@ name=Protective Bubble
 mana={3}{U}
 subtype=Aura
 target=creature
+auto=unblockable
 auto=shroud
 rarity=C
 text=Enchant creature     Enchanted creature is unblockable and has shroud. (It can't be the target of spells or abilities.)
@@ -217,12 +370,22 @@ toughness=2
 name=Imperious Perfect
 mana={2}{G}
 subtype=Elf Warrior
+auto=lord(elf|myinplay) 1/1 other 
 auto={G}{T}:token(Elf Warrior,creature Elf Warrior,1/1,green)
 rarity=U
 text=Other Elf creatures you control get +1/+1.     {G}, {T}: Put a 1/1 green Elf Warrior creature token into play.
 power=2
 id=139683
 type=Creature
+[/card]
+[card]
+auto=@movedTo(*[-land]|opponentstack):draw:7 opponent
+text=Whenever an opponent plays a spell, that player draws seven cards.
+rarity=R
+name=Forced Fruition
+id=146166
+type=Enchantment
+mana={4}{U}{U}
 [/card]
 [card]
 subtype=Mountain
@@ -254,10 +417,29 @@ id=145973
 type=Enchantment
 [/card]
 [card]
+auto={1}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+text={1}, Sacrifice Wanderer's Twig: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
+rarity=C
+name=Wanderer's Twig
+id=139510
+type=Artifact
+mana={1}
+[/card]
+[card]
+auto={3}{S}:regenerate target(creature)
+text={3}, Sacrifice Herbal Poultice: Regenerate target creature.
+rarity=C
+name=Herbal Poultice
+id=139740
+type=Artifact
+mana={0}
+[/card]
+[card]
 toughness=3
 name=Brigid, Hero of Kinsbaile
 mana={2}{W}{W}
 subtype=Kithkin Archer
+auto={T}:damage:2 all(creature[attacking;blocking]|opponentinplay)
 auto={T}:damage:2 all(creature[attacking;blocking]|myinplay)
 rarity=R
 text=First strike     {T}: Brigid, Hero of Kinsbaile deals 2 damage to each attacking or blocking creature target player controls.
@@ -265,6 +447,44 @@ power=2
 id=141829
 type=Creature
 abilities=legendary,first strike
+[/card]
+[card]
+toughness=3
+name=Black Poplar Shaman
+mana={2}{B}
+subtype=Treefolk Shaman
+auto={2}{B}:regenerate target(treefolk)
+rarity=C
+text={2}{B}: Regenerate target Treefolk.
+power=1
+id=139454
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Wydwen, the Biting Gale
+mana={2}{U}{B}
+subtype=Faerie Wizard
+auto={U}{B}:moveTo(ownerhand) && life:-1
+rarity=R
+text=Flash,Flying. {U}{B}, Pay 1 life: Return Wydwen, the Biting Gale to its owner's hand.
+power=3
+id=140229
+type=Creature
+abilities=legendary,flying,flash
+[/card]
+[card]
+toughness=5
+name=Guardian of Cloverdell
+mana={5}{G}{G}
+subtype=Treefolk Shaman
+auto=token(Kithkin Soldier,creature Kithkin Soldier,1/1,white)*3
+auto={G}{S(kithkin|myinplay)}:life: 1
+rarity=U
+text=When Guardian of Cloverdell comes into play, put three 1/1 white Kithkin Soldier creature tokens into play.     {G}, Sacrifice a Kithkin: You gain 1 life.
+power=4
+id=139665
+type=Creature
 [/card]
 [card]
 toughness=1
@@ -276,18 +496,6 @@ rarity=C
 text={B}, Sacrifice a Goblin: Facevaulter gets +2/+2 until end of turn.
 power=1
 id=142361
-type=Creature
-[/card]
-[card]
-toughness=5
-name=Guardian of Cloverdell
-mana={5}{G}{G}
-subtype=Treefolk Shaman
-auto={G}{S(kithkin|myinplay)}:life: 1
-rarity=U
-text=When Guardian of Cloverdell comes into play, put three 1/1 white Kithkin Soldier creature tokens into play.     {G}, Sacrifice a Kithkin: You gain 1 life.
-power=4
-id=139665
 type=Creature
 [/card]
 [card]
@@ -312,6 +520,17 @@ type=Creature
 abilities=flash,flying
 [/card]
 [card]
+auto=tap
+auto=aslongas(goblin|myHand) untap
+auto={T}:add{B}
+auto={T}:add{R}
+text=As Auntie's Hovel comes into play, you may reveal a Goblin card from your hand. If you don't, Auntie's Hovel comes into play tapped.     {T}: Add {B} or {R} to your mana pool.
+rarity=R
+name=Auntie's Hovel
+id=153457
+type=Land
+[/card]
+[card]
 toughness=1
 name=Boggart Loggers
 mana={2}{B}
@@ -323,6 +542,16 @@ power=2
 id=139709
 type=Creature
 abilities=forestwalk
+[/card]
+[card]
+name=Prowess of the Fair
+mana={1}{B}
+subtype=Elf
+auto=@movedTo(elf[-token]|graveyard):may token(Elf Warrior,creature elf warrior,1/1,green)
+rarity=U
+text=Whenever another nontoken Elf is put into your graveyard from play, you may put a 1/1 green Elf Warrior creature token into play.
+type=Enchantment
+id=146167
 [/card]
 [card]
 subtype=Plains
@@ -344,6 +573,20 @@ type=Sorcery
 id=139676
 [/card]
 [card]
+toughness=2
+name=Merrow Reejerey
+mana={2}{U}
+subtype=Merfolk Soldier
+auto=lord(merfolk|myinplay) 1/1 other
+auto=@movedTo(merfolk|mystack):may tap target(*)
+auto=@movedTo(merfolk|mystack):may untap target(*)
+rarity=U
+text=Other Merfolk creatures you control get +1/+1.     Whenever you play a Merfolk spell, you may tap or untap target permanent.
+power=2
+id=139702
+type=Creature
+[/card]
+[card]
 toughness=5
 name=Horde of Notions
 mana={W}{U}{B}{R}{G}
@@ -355,6 +598,19 @@ power=5
 id=140219
 type=Creature
 abilities=vigilance,trample,haste,Legendary 
+[/card]
+[card]
+auto={T}:tap target(creature[-tapped]|myinplay) && Add{B}
+auto={T}:tap target(creature[-tapped]|myinplay) && Add{U}
+auto={T}:tap target(creature[-tapped]|myinplay) && Add{G}
+auto={T}:tap target(creature[-tapped]|myinplay) && Add{R}
+auto={T}:tap target(creature[-tapped]|myinplay) && Add{W}
+text={T}, Tap an untapped creature you control: Add one mana of any color to your mana pool.
+rarity=C
+name=Springleaf Drum
+id=139509
+type=Artifact
+mana={1}
 [/card]
 [card]
 toughness=4
@@ -369,10 +625,35 @@ type=Creature
 abilities=reach
 [/card]
 [card]
+toughness=1
+name=Nectar Faerie
+mana={1}{B}
+subtype=Faerie Wizard
+auto={B}{T}:lifelink target(faerie,elf)
+rarity=U
+text=Flying     {B}, {T}: Target Faerie or Elf gains lifelink until end of turn. (Whenever it deals damage, its controller gains that much life.)
+power=1
+id=139451
+type=Creature
+abilities=flying
+[/card]
+[card]
+name=Boggart Shenanigans
+mana={2}{R}
+subtype=Goblin
+auto=@movedTo(creature[goblin]|graveyard) from(myinplay):may damage:1 target(player)
+rarity=U
+text=Whenever another Goblin you control is put into a graveyard from play, you may have Boggart Shenanigans deal 1 damage to target player.
+type=Enchantment
+id=139445
+[/card]
+[card]
 toughness=*
 name=Dauntless Dourbark
 mana={3}{G}
 subtype=Treefolk Warrior
+auto=foreach(forest|myinplay) 1/1 
+auto=foreach(treefolk|myinplay) 1/1
 auto=aslongas(treefolk|myinplay) trample other
 rarity=R
 text=Dauntless Dourbark's power and toughness are each equal to the number of Forests you control plus the number of Treefolk you control.     Dauntless Dourbark has trample as long as you control another Treefolk.
@@ -402,6 +683,41 @@ type=Artifact
 mana={3}
 [/card]
 [card]
+name=Giant's Ire
+mana={3}{R}
+subtype=Giant
+auto=damage:4 target(player)
+auto=aslongas(creature[giant]|myinplay) draw:1 controller
+rarity=C
+text=Giant's Ire deals 4 damage to target player. If you control a Giant, draw a card.
+type=Sorcery
+id=139477
+[/card]
+[card]
+toughness=1
+name=Knucklebone Witch
+mana={B}
+subtype=Goblin Shaman
+auto=@movedTo(goblin|graveyard) from(myBattlefield):may counter(1/1)
+rarity=R
+text=Whenever a Goblin you control is put into a graveyard from play, you may put a +1/+1 counter on Knucklebone Witch.
+power=1
+id=143609
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Silvergill Douser
+mana={1}{U}
+subtype=Merfolk Wizard
+auto={T}:foreach(merfolk,faerie|myinplay) -1/0 target(creature)
+rarity=C
+text={T}: Target creature gets -X/-0 until end of turn, where X is the number of Merfolk and/or Faeries you control.
+power=1
+id=141853
+type=Creature
+[/card]
+[card]
 toughness=1
 name=Nightshade Stinger
 mana={B}
@@ -414,6 +730,18 @@ type=Creature
 abilities=flying,cantblock
 [/card]
 [card]
+toughness=3
+name=Lys Alana Huntmaster
+mana={2}{G}{G}
+subtype=Elf Warrior
+auto=@movedTo(elf|mystack):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
+rarity=C
+text=Whenever you play an Elf spell, you may put a 1/1 green Elf Warrior creature token into play.
+power=3
+id=139401
+type=Creature
+[/card]
+[card]
 subtype=Plains
 auto={T}:add{W}
 text={T}: Add {W} to your mana pool.
@@ -423,10 +751,23 @@ id=143621
 type=Basic Land
 [/card]
 [card]
+name=Boggart Birth Rite
+mana={B}
+subtype=tribal
+subtype=Goblin
+target=goblin(mygraveyard)
+auto=moveTo(myHand)
+rarity=C
+text=Return target Goblin card from your graveyard to your hand.
+id=142359
+type=Sorcery
+[/card]
+[card]
 name=Epic Proportions
 mana={4}{G}{G}
 subtype=Aura
 target=creature
+auto=5/5
 auto=trample
 rarity=R
 text=Flash     Enchant creature     Enchanted creature gets +5/+5 and has trample.
@@ -435,15 +776,16 @@ type=Enchantment
 abilities=flash
 [/card]
 [card]
-name=Boggart Birth Rite
-mana={B}
-subtype=Goblin
-target=goblin(mygraveyard)
-auto=moveTo(myHand)
+toughness=1
+name=Judge of Currents
+mana={1}{W}
+subtype=Merfolk Wizard
+auto=aslongas(merfolk[tapped]|myinplay) may life:1 controller
 rarity=C
-text=Return target Goblin card from your graveyard to your hand.
-id=142359
-type=Sorcery
+text=Whenever a Merfolk you control becomes tapped, you may gain 1 life.
+power=1
+id=139406
+type=Creature
 [/card]
 [card]
 toughness=2
@@ -491,6 +833,19 @@ type=Creature
 abilities=vigilance,trample
 [/card]
 [card]
+toughness=2
+name=Kithkin Mourncaller
+mana={2}{G}
+subtype=Kithkin Scout
+auto=@movedTo(kithkin[attacking]|mygraveyard) from(inplay):draw:1
+auto=@movedTo(elf[attacking]|mygraveyard) from(inplay):draw:1
+rarity=U
+text=Whenever an attacking Kithkin or Elf is put into your graveyard from play, you may draw a card.
+power=2
+id=139497
+type=Creature
+[/card]
+[card]
 toughness=1
 name=Deeptread Merrow
 mana={1}{U}
@@ -512,6 +867,31 @@ id=143629
 type=Basic Land
 [/card]
 [card]
+toughness=1
+name=Scarred Vinebreeder
+mana={1}{B}
+subtype=Elf Shaman
+auto={2}{B}:3/3 && moveTo(myremovedfromgame) target(elf|mygraveyard)
+rarity=C
+text={2}{B}, Remove an Elf card in your graveyard from the game: Scarred Vinebreeder gets +3/+3 until end of turn.
+power=1
+id=139674
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Battlewand Oak
+mana={2}{G}
+subtype=Treefolk Warrior
+auto=@movedTo(forest|myinplay) 2/2
+auto=@movedTo(treefolk|mystack) 2/2
+rarity=C
+text=Whenever a Forest comes into play under your control, Battlewand Oak gets +2/+2 until end of turn.     Whenever you play a Treefolk spell, Battlewand Oak gets +2/+2 until end of turn.
+power=1
+id=141857
+type=Creature
+[/card]
+[card]
 subtype=Forest
 auto={T}:Add {G}
 text={T}: Add {G} to your mana pool.
@@ -531,6 +911,18 @@ power=3
 id=139396
 type=Creature
 abilities=flying,first strike
+[/card]
+[card]
+toughness=4
+name=Thundercloud Shaman
+mana={3}{R}{R}
+subtype=Giant Shaman
+auto=foreach(giant|myinplay) damage:1 all(creature[-giant])
+rarity=U
+text=When Thundercloud Shaman comes into play, it deals damage equal to the number of Giants you control to each non-Giant creature.
+power=4
+id=139738
+type=Creature
 [/card]
 [card]
 toughness=3
@@ -567,6 +959,47 @@ id=139487
 type=Creature
 [/card]
 [card]
+toughness=4
+name=Nath of the Gilt-Leaf
+mana={3}{B}{G}
+subtype=Elf Warrior
+auto=@each my upkeep:may discard:1 opponent
+auto=@movedTo(*|opponentgraveyard) from(opponenthand):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
+rarity=R
+text=At the beginning of your upkeep, you may have target opponent discard a card at random.     Whenever an opponent discards a card, you may put a 1/1 green Elf Warrior creature token into play.
+power=4
+id=143370
+type=Creature
+abilities=Legendary
+[/card]
+[card]
+auto=tap
+auto=aslongas(merfolk|myHand) untap
+auto={T}:add{W}
+auto={T}:add{U}
+text=As Wanderwine Hub comes into play, you may reveal a Merfolk card from your hand. If you don't, Wanderwine Hub comes into play tapped.     {T}: Add {W} or {U} to your mana pool.
+rarity=R
+name=Wanderwine Hub
+id=153456
+type=Land
+[/card]
+[card]
+name=Surge of Thoughtweft
+mana={1}{W}
+subtype=Kithkin
+auto=lord(creature|myinplay) 1/1
+auto=aslongas(kithkin[creature]|myinplay) draw:1
+rarity=C
+text=Creatures you control get +1/+1 until end of turn. If you control a Kithkin, draw a card.
+type=Instant
+id=145799
+[/card]
+[card]
+auto={T}:Add {1}
+auto={1}{T}: Add {G}
+auto={1}{T}: Add {R}
+auto={1}{T}: Add {B}
+auto={1}{T}: Add {U}
 auto={1}{T}: Add {W}
 text={T}: Add {1} to your mana pool.     {1}, {T}: Add one mana of any color to your mana pool.
 rarity=C
@@ -584,10 +1017,34 @@ id=143628
 type=Basic Land
 [/card]
 [card]
+name=Glimmerdust Nap
+mana={2}{U}
+subtype=Aura
+target=creature[tapped]
+auto=doesnotuntap
+rarity=C
+text=Enchant tapped creature     Enchanted creature doesn't untap during its controller's untap step.
+id=139436
+type=Enchantment
+[/card]
+[card]
+toughness=1
+name=Lys Alana Scarblade
+mana={2}{B}
+subtype=Elf Assassin
+auto={T}{S(elf|myhand)}:foreach(elf|myinplay) -1/-1 target(creature)
+rarity=U
+text={T}, Discard an Elf card: Target creature gets -X/-X until end of turn, where X is the number of Elves you control.
+power=1
+id=143021
+type=Creature
+[/card]
+[card]
 toughness=3
 name=Blind-Spot Giant
 mana={2}{R}
 subtype=Giant Warrior
+auto=aslongas(Giant|myinplay) other -cantattack
 auto=aslongas(Giant|myinplay) other -cantblock
 rarity=C
 text=Blind-Spot Giant can't attack or block unless you control another Giant.
@@ -595,30 +1052,6 @@ power=4
 id=146597
 type=Creature
 abilities=cantattack,cantblock
-[/card]
-[card]
-toughness=1
-name=Kithkin Greatheart
-mana={1}{W}
-subtype=Kithkin Soldier
-auto=aslongas(giant|myinplay) first strike
-rarity=C
-text=As long as you control a Giant, Kithkin Greatheart gets +1/+1 and has first strike.
-power=2
-id=146444
-type=Creature
-[/card]
-[card]
-toughness=2
-name=Boggart Sprite-Chaser
-mana={1}{R}
-subtype=Goblin Warrior
-auto=aslongas(faerie|myinplay) flying
-rarity=C
-text=As long as you control a Faerie, Boggart Sprite-Chaser gets +1/+1 and has flying.
-power=1
-id=146446
-type=Creature
 [/card]
 [card]
 name=Tarfire
@@ -632,24 +1065,30 @@ id=139476
 type=Instant
 [/card]
 [card]
-subtype=Plains
-auto={T}:add{W}
-text={T}: Add {W} to your mana pool.
-rarity=L
-name=Plains
-id=143620
-type=Basic Land
+toughness=2
+name=Boggart Sprite-Chaser
+mana={1}{R}
+subtype=Goblin Warrior
+auto=aslongas(faerie|myinplay) 1/1
+auto=aslongas(faerie|myinplay) flying
+rarity=C
+text=As long as you control a Faerie, Boggart Sprite-Chaser gets +1/+1 and has flying.
+power=1
+id=146446
+type=Creature
 [/card]
 [card]
-name=Soaring Hope
-mana={4}{W}
-subtype=Aura
-target=creature
-auto={W}:moveTo(ownerlibrary)
+toughness=1
+name=Kithkin Greatheart
+mana={1}{W}
+subtype=Kithkin Soldier
+auto=aslongas(giant|myinplay) 1/1
+auto=aslongas(giant|myinplay) first strike
 rarity=C
-text=Enchant creature     When Soaring Hope comes into play, you gain 3 life.     Enchanted creature has flying.     {W}: Put Soaring Hope on top of its owner's library.
-id=139511
-type=Enchantment
+text=As long as you control a Giant, Kithkin Greatheart gets +1/+1 and has first strike.
+power=2
+id=146444
+type=Creature
 [/card]
 [card]
 subtype=Swamp
@@ -661,6 +1100,40 @@ id=143636
 type=Basic Land
 [/card]
 [card]
+name=Soaring Hope
+mana={4}{W}
+subtype=Aura
+target=creature
+auto=life:3
+auto=flying
+auto={W}:moveTo(ownerlibrary)
+rarity=C
+text=Enchant creature     When Soaring Hope comes into play, you gain 3 life.     Enchanted creature has flying.     {W}: Put Soaring Hope on top of its owner's library.
+id=139511
+type=Enchantment
+[/card]
+[card]
+subtype=Plains
+auto={T}:add{W}
+text={T}: Add {W} to your mana pool.
+rarity=L
+name=Plains
+id=143620
+type=Basic Land
+[/card]
+[card]
+name=Peppersmoke
+mana={B}
+subtype=Faerie
+target=creature
+auto=-1/-1
+auto=aslongas(faerie(creature)|myinplay) draw:1
+rarity=C
+text=Target creature gets -1/-1 until end of turn. If you control a Faerie, draw a card.
+id=139458
+type=Instant
+[/card]
+[card]
 toughness=1
 name=Elvish Eulogist
 mana={G}
@@ -670,6 +1143,32 @@ rarity=C
 text=Sacrifice Elvish Eulogist: You gain 1 life for each Elf card in your graveyard.
 power=1
 id=141804
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Mad Auntie
+mana={2}{B}
+subtype=Goblin Shaman
+auto=lord(goblin|myinplay) 1/1 other
+auto={T}:regenerate target(goblin)
+rarity=R
+text=Other Goblin creatures you control get +1/+1.     {T}: Regenerate another target Goblin.
+power=2
+id=139708
+type=Creature
+[/card]
+[card]
+toughness=6
+name=Timber Protector
+mana={4}{G}
+subtype=Treefolk Warrior
+auto=lord(treefolk|myinplay) 1/1 other
+auto=lord(treefolk,forest|myinplay) indestructible other
+rarity=R
+text=Other Treefolk creatures you control get +1/+1.     Other Treefolk and Forests you control are indestructible.
+power=4
+id=139690
 type=Creature
 [/card]
 [card]
@@ -686,11 +1185,24 @@ toughness=2
 name=Stonybrook Angler
 mana={1}{U}
 subtype=Merfolk Wizard
+auto={1}{U}{T}:tap target(creature)
 auto={1}{U}{T}:untap target(creature)
 rarity=C
 text={1}{U}, {T}: You may tap or untap target creature.
 power=1
 id=142358
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Immaculate Magistrate
+mana={3}{G}
+subtype=Elf Shaman
+auto={T}:foreach(elf|mybattlefield) counter(1/1) target(creature)
+rarity=R
+text={T}: Put a +1/+1 counter on target creature for each Elf you control.
+power=2
+id=139721
 type=Creature
 [/card]
 [card]

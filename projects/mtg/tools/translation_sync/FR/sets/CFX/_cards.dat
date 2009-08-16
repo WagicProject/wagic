@@ -3,6 +3,10 @@ toughness=*
 name=Matca Rioters
 mana={2}{G}
 subtype=Human Warrior
+auto=aslongas(forest|myinplay) 1/1
+auto=aslongas(island|myinplay) 1/1
+auto=aslongas(plains|myinplay) 1/1
+auto=aslongas(mountain|myinplay) 1/1
 auto=aslongas(swamp|myinplay) 1/1
 rarity=C
 text=Domaine — La force et l'endurance des Emeutiers du matca sont chacune egale au nombre de types de terrain de base parmi les terrains que vous controlez.
@@ -51,18 +55,22 @@ toughness=3
 name=Ember Weaver
 mana={2}{G}
 subtype=Spider
+auto=aslongas(*[red]|myinplay) 1/0
 auto=aslongas(*[red]|myinplay) first strike
 rarity=C
 text=Portee (Cette creature peut bloquer les creatures avec le vol.)    Tant que vous controlez un permanent rouge, la Tisseuse de braises gagne +1/+0 et a l'initiative. 
 power=2
 id=184990
 type=Creature
+abilities=reach
 [/card]
 [card]
 toughness=1
 name=Noble Hierarch
 mana={G}
 subtype=Human Druid
+auto={T}:Add{G}
+auto={T}:Add{W}
 auto={T}:Add{U}
 rarity=R
 text=Exaltation.    (A chaque fois qu'une creature que vous controlez attaque seule, cette creature gagne +1/+1 jusqu'a la fin du tour.)   {T} : Ajoutez {G}, {W} ou {U} a votre reserve. 
@@ -70,6 +78,43 @@ power=0
 id=179434
 type=Creature
 abilities=exalted
+[/card]
+[card]
+name=Controlled Instincts
+mana={U}
+subtype=Aura
+target=creature[green;red]
+auto=doesnotuntap
+rarity=U
+text=Enchant red or green creature     Enchanted creature doesn't untap during its controller's untap step.
+id=183053
+type=Enchantment
+[/card]
+[card]
+auto=aslongas(forest|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(mountain|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(plains|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(swamp|myinplay) token(Saproling,Creature Saproling,1/1,green)
+auto=aslongas(island|myinplay) token(Saproling,Creature Saproling,1/1,green)
+text=Domain - Put a 1/1 green Saproling creature token into play for each basic land type among lands you control.
+rarity=U
+name=Spore Burst
+id=185829
+type=Sorcery
+mana={3}{G}
+[/card]
+[card]
+toughness=6
+name=Child of Alara
+mana={W}{U}{B}{R}{G}
+subtype=Avatar
+auto=@movedTo(this|graveyard):bury all(*[-land]|inplay)
+rarity=M
+text=Trample     When Child of Alara is put into a graveyard from play, destroy all nonland permanents. They can't be regenerated.
+power=6
+id=180516
+type=Creature
+abilities=trample,legendary
 [/card]
 [card]
 toughness=3
@@ -85,6 +130,15 @@ type=Creature
 abilities=exalted
 [/card]
 [card]
+auto=@movedTo(enchantment|mystack):token(Angel,Creature Angel,4/4,white flying)
+text=Whenever you play an enchantment spell, put a 4/4 white Angel creature token with flying into play.
+rarity=R
+name=Sigil of the Empty Throne
+id=180271
+type=Enchantment
+mana={3}{W}{W}
+[/card]
+[card]
 auto={W}{T}:tap target(*)
 text={W}, {T}: Engagez le permanent cible.
 rarity=R
@@ -98,6 +152,7 @@ toughness=4
 name=Ethersworn Adjudicator
 mana={4}{U}
 subtype=Vedalken Knight
+auto={1}{W}{B}{T}:destroy target(creature,enchantment)
 auto={2}{U}:untap
 rarity=M
 text=Vol.    {1}{W}{B}, {T} : Detruisez la creature ou l'enchantement cible.    {2}{U} : Degagez l'Adjudicateur des Ethermentes. 
@@ -107,6 +162,10 @@ type=Artifact Creature
 abilities=flying
 [/card]
 [card]
+auto={1}{W}{T}:life:5
+auto={1}{U}{T}:Draw:1
+auto={1}{B}{T}:-2/-2 target(creature)
+auto={1}{R}{T}:damage:3 target(player)
 auto={1}{G}{T}:4/4 target(creature)
 text={1}{W}, {T} : Vous gagnez 5 points de vie.    {1}{U}, {T} : Piochez une carte, puis defaussez-vous d'une carte.    {1}{B}, {T} : La creature ciblee gagne -2/-2 jusqu'a la fin du tour.    {1}{R}, {T} : L'Obelisque d'Alara inflige 3 blessures au joueur cible.    {1}{G}, {T} : La creature ciblee gagne +4/+4 jusqu'a la fin du tour. 
 rarity=R
@@ -139,6 +198,19 @@ type=Artifact Creature
 abilities=islandwalk,trample,shroud
 [/card]
 [card]
+toughness=3
+name=Aerie Mystics
+mana={4}{W}
+subtype=Bird Wizard
+auto={1}{G}{U}:lord(creature|mybattlefield) shroud
+rarity=U
+text=Flying     {1}{G}{U}: Creatures you control gain shroud until end of turn.
+power=3
+id=153946
+type=Creature
+abilities=flying
+[/card]
+[card]
 toughness=2
 name=Valeron Outlander
 mana={G}{W}
@@ -151,10 +223,23 @@ type=Creature
 abilities=protection from black
 [/card]
 [card]
+toughness=4
+name=Rhox Meditant
+mana={3}{W}
+subtype=Rhino Monk
+auto=aslongas(*[green]|myinplay) draw:1
+rarity=C
+text=When Rhox Meditant comes into play, if you control a green permanent, draw a card.
+power=2
+id=159634
+type=Creature
+[/card]
+[card]
 toughness=3
 name=Cliffrunner Behemoth
 mana={3}{G}
 subtype=Rhino Beast
+auto=aslongas(*[red]|myinplay) haste
 auto=aslongas(*[white]|myinplay) lifelink
 rarity=R
 text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
@@ -179,22 +264,94 @@ toughness=3
 name=Canyon Minotaur
 mana={3}{R}
 subtype=Minotaur Warrior
-rarity=C
 text=
+rarity=C
 power=3
-id=184994
 type=Creature
+id=184994
+[/card]
+[card]
+toughness=1
+name=Tukatongue Thallid
+mana={G}
+subtype=Fungus
+auto=@movedTo(this|graveyard):token(Saproling,creature Saproling,1/1,green)
+rarity=C
+text=When Tukatongue Thallid is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
+power=1
+id=184995
+type=Creature
+[/card]
+[card]
+name=Might of Alara
+mana={G}
+target=creature
+auto=aslongas(forest|myInPlay) 1/1
+auto=aslongas(mountain|myInPlay) 1/1
+auto=aslongas(plains|myInPlay) 1/1
+auto=aslongas(swamp|myInPlay) 1/1
+auto=aslongas(island|myInPlay) 1/1
+rarity=C
+text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
+type=Instant
+id=150810
+[/card]
+[card]
+auto={S}:lord(creature|opponentBattlefield) -1/-1 && lord(creature|opponentBattlefield) mustattack
+text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
+rarity=C
+name=Suicidal Charge
+id=180345
+type=Enchantment
+mana={3}{B}{R}
 [/card]
 [card]
 name=Maniacal Rage
 mana={1}{R}
 subtype=Aura
 target=creature
+auto=2/2
 auto=cantblock
 rarity=C
 text=Enchanter : creature.    La creature enchantee gagne +2/+2 et ne peut pas bloquer. 
 id=182609
 type=Enchantment
+[/card]
+[card]
+toughness=2
+name=Cylian Sunsinger
+mana={1}{G}
+subtype=Elf Shaman
+auto={R}{G}{W}:lord(Cylian Sunsinger) 3/3
+rarity=R
+text={R}{G}{W}: Cylian Sunsinger and each other creature with the same name as it get +3/+3 until end of turn.
+power=2
+id=189081
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Vectis Agents
+mana={3}{U}{B}
+subtype=Human Rogue
+auto={U}{B}:-2/0 && unblockable
+rarity=C
+text={U}{B}: Vectis Agents gets -2/-0 until end of turn and is unblockable this turn.
+power=4
+id=183063
+type=Artifact Creature
+[/card]
+[card]
+toughness=2
+name=Scarland Thrinax
+mana={B}{R}{G}
+subtype=Lizard
+auto={S(creature|myinplay)}:counter(1/1)
+rarity=U
+text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
+power=2
+id=183025
+type=Creature
 [/card]
 [card]
 toughness=2
@@ -210,6 +367,19 @@ type=Creature
 abilities=haste,legendary 
 [/card]
 [card]
+toughness=1
+name=Bloodhall Ooze
+mana={R}
+subtype=Ooze
+auto=@each my upkeep:aslongas(*[black]|mybattlefield) may counter(1/1)
+auto=@each my upkeep:aslongas(*[green]|mybattlefield) may counter(1/1)
+rarity=R
+text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze.     At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
+power=1
+id=159610
+type=Creature
+[/card]
+[card]
 auto={3}{U}{T}:Draw:1
 text={3}{U}, {T}: Draw a card.
 rarity=R
@@ -219,10 +389,25 @@ type=Artifact
 mana={1}{U}{U}
 [/card]
 [card]
+name=Yoke of the Damned
+mana={1}{B}
+subtype=Aura
+target=creature
+auto=@movedTo(creature|graveyard) from(inplay):destroy
+rarity=C
+text=Enchant creature     When a creature is put into a graveyard from play, destroy enchanted creature.
+id=179891
+type=Enchantment
+[/card]
+[card]
 toughness=*
 name=Aven Trailblazer
 mana={2}{W}
 subtype=Bird Soldier
+auto=aslongas(forest|myinplay) 0/1
+auto=aslongas(island|myinplay) 0/1
+auto=aslongas(plains|myinplay) 0/1
+auto=aslongas(mountain|myinplay) 0/1
 auto=aslongas(swamp|myinplay) 0/1
 rarity=C
 text=Vol    Exaltation (A chaque fois qu'une creature que vous controlez attaque seule, elle gagne +1/+1 jusqu'a la fin du tour.) 
@@ -242,6 +427,7 @@ type=Instant
 id=183055
 [/card]
 [card]
+auto=draw:1
 auto={5}{T}{S}:Add {W}{U}{B}{R}{G}
 text=Quand la Kaleidogemme arrive en jeu, piochez une carte.    {5}, {T}, sacrifiez la Kaleidogemme : Ajoutez {W}{U}{B}{R}{G} a votre reserve. 
 rarity=C
@@ -302,6 +488,8 @@ name=Asha's Favor
 mana={2}{W}
 subtype=Aura
 target=creature
+auto=flying
+auto=first strike
 auto=vigilance
 rarity=C
 text=Enchanter : creature.     La creature enchantee a le vol, l'initiative et la vigilance. 
@@ -330,6 +518,19 @@ type=Artifact
 mana={3}{U}
 [/card]
 [card]
+toughness=2
+name=Knight of the Reliquary
+mana={1}{G}{W}
+subtype=Human Knight
+auto=foreach(land|mygraveyard) 1/1
+auto={T},{S(forest,plains|myinplay)}:moveTo(myInPlay) target(land|mylibrary)
+rarity=R
+text=Knight of the Reliquary gets +1/+1 for each land card in your graveyard.     {T}, Sacrifice a Forest or Plains: Search your library for a land card, put it into play, then shuffle your library.
+power=2
+id=189145
+type=Creature
+[/card]
+[card]
 toughness=7
 name=Nyxathid
 mana={1}{B}{B}
@@ -340,6 +541,20 @@ text=Au moment ou le Nyxathide arrive en jeu, choisissez un adversaire.    Le Ny
 power=7
 id=186616
 type=Creature
+[/card]
+[card]
+name=Drag Down
+mana={2}{B}
+target=creature
+auto=aslongas(forest|myinplay) -1/-1 
+auto=aslongas(island|myinplay) -1/-1
+auto=aslongas(plains|myinplay) -1/-1
+auto=aslongas(mountain|myinplay) -1/-1
+auto=aslongas(swamp|myinplay) -1/-1
+rarity=C
+text=Domain - Target creature gets -1/-1 until end of turn for each basic land type among lands you control.
+type=Instant
+id=179239
 [/card]
 [card]
 toughness=8
@@ -404,12 +619,27 @@ toughness=4
 name=Thornling
 mana={3}{G}{G}
 subtype=Elemental Shapeshifter
+auto={G}:haste
+auto={G}:trample
+auto={1}:+1/-1
 auto={1}:-1/+1
 rarity=M
 text={G} : Le Roncelin acquiert la celerite jusqu'a la fin du tour.    {G} : Le Roncelin acquiert le pietinement jusqu'a la fin du tour.    {G} : Le Roncelin est indestructible ce tour-ci.    {1} : Le Roncelin gagne +1/-1 jusqu'a la fin du tour.    {1} : Le Roncelin gagne -1/+1 jusqu'a la fin du tour. 
 power=4
 id=180341
 type=Creature
+[/card]
+[card]
+toughness=4
+name=Scornful AEther-Lich
+mana={3}{U}
+subtype=Zombie Wizard
+auto={W}{B}:fear && vigilance
+rarity=U
+text={W}{B}: Scornful AEther-Lich gains fear and vigilance until end of turn.
+power=2
+id=186328
+type=Artifact Creature
 [/card]
 [card]
 toughness=1
@@ -437,6 +667,10 @@ id=185828
 type=Creature
 [/card]
 [card]
+auto={1}{T}: Add {G}
+auto={1}{T}: Add {R}
+auto={1}{T}: Add {B}
+auto={1}{T}: Add {U}
 auto={1}{T}: Add {W}
 text={1}, {T} : Ajoutez un mana de la couleur de votre choix a votre reserve. 
 rarity=C
@@ -457,6 +691,18 @@ power=1
 id=180334
 type=Artifact Creature
 abilities=flying
+[/card]
+[card]
+toughness=1
+name=Dreadwing
+mana={B}
+subtype=Zombie
+auto={1}{U}{R}: 3/0 && flying
+rarity=U
+text={1}{U}{R}: Dreadwing gets +3/+0 and gains flying until end of turn.
+power=1
+id=159629
+type=Creature
 [/card]
 [card]
 toughness=2

@@ -38,6 +38,7 @@ id=3562
 type=Basic Land
 [/card]
 [card]
+auto=tap
 auto={T}{S}:moveTo(myInPlay) target(Mountain,Swamp|myLibrary)
 text=La Fosse d'huile de roche arrive en jeu engagee.       {T}, sacrifiez la Fosse d'huile de roche : Cherchez dans votre bibliotheque une carte de marais ou de montagne et mettez-la en jeu. Melangez ensuite votre bibliotheque.
 rarity=U
@@ -224,6 +225,7 @@ id=3471
 type=Creature
 [/card]
 [card]
+auto=tap
 auto={T}{S}:moveTo(myInPlay) target(Plains,Island|myLibrary)
 text=La Plaine inondee arrive en jeu engagee.      {T}, sacrifiez la Plaine inondee : Cherchez dans votre bibliotheque une carte de plaine ou d'ile et mettez-la en jeu. Melangez ensuite votre bibliotheque.
 rarity=U
@@ -291,6 +293,20 @@ id=3568
 type=Basic Land
 [/card]
 [card]
+toughness=3
+name=Benthic Djinn
+mana={2}{U}{B}
+subtype=Djinn
+auto=@each my upkeep:life:-2
+rarity=R
+text=Islandwalk       At the beginning of your upkeep, you lose 2 life.
+power=5
+id=3528
+type=Creature
+abilities=islandwalk
+[/card]
+[card]
+auto={T}: Add {1}
 auto={T}{S}:add {2}
 text={T}: Ajoutez {1} a votre reserve.  {T}:sacrifiez la Veine de cristal : Ajoutez {2} a votre reserve.
 rarity=U
@@ -337,6 +353,7 @@ name=Ritual of Steel
 mana={2}{W}
 subtype=Aura
 target=creature
+auto=0/2
 auto=@next upkeep:draw:1
 rarity=C
 text=Enchanter : creature.   Quand la Ceremonie de l'acier arrive en jeu, piochez une carte au debut de l'entretien du prochain tour.    La creature enchantee gagne +0/+2.
@@ -369,6 +386,7 @@ toughness=1
 name=Civic Guildmage
 mana={W}
 subtype=Human Wizard
+auto={G}{T}:0/1 target(creature)
 auto={U}{T}:moveTo(ownerLibrary) target(creature|myInplay)
 rarity=C
 text={G}, {T}: La creature ciblee gagne +0/+1 jusqu'a la fin du tour.     {U}, {T}: Mettez la creature ciblee que vous controlez au-dessus de la bibliotheque de son proprietaire.
@@ -390,6 +408,15 @@ type=Creature
 abilities=flying,legendary
 [/card]
 [card]
+auto=tap
+auto={T}{S}:moveTo(myInPlay) target(Plains,Forest|myLibrary)
+text=Ces Herbages arrivent en jeu engages.       {T}, sacrifiez ces Herbages : Cherchez dans votre bibliotheque une carte de plaine ou de foret et mettez-la en jeu. Melangez ensuite votre bibliotheque.
+rarity=U
+name=Grasslands
+id=3573
+type=Land
+[/card]
+[card]
 toughness=4
 name=Giant Mantis
 mana={3}{G}
@@ -402,14 +429,7 @@ type=Creature
 abilities=reach
 [/card]
 [card]
-auto={T}{S}:moveTo(myInPlay) target(Plains,Forest|myLibrary)
-text=Ces Herbages arrivent en jeu engages.       {T}, sacrifiez ces Herbages : Cherchez dans votre bibliotheque une carte de plaine ou de foret et mettez-la en jeu. Melangez ensuite votre bibliotheque.
-rarity=U
-name=Grasslands
-id=3573
-type=Land
-[/card]
-[card]
+auto=tap
 auto={T}: Add {B}
 text=Le Diamant du charbon arrive en jeu engage.  {T}: Ajoutez {B} a votre reserve.
 rarity=U
@@ -417,6 +437,15 @@ name=Charcoal Diamond
 id=3244 
 type=Artifact
 mana={2}
+[/card]
+[card]
+auto=tap all(creature[-white])
+text=Tap all nonwhite creatures.
+rarity=U
+name=Blinding Light
+id=3480
+type=Sorcery
+mana={2}{W}
 [/card]
 [card]
 subtype=Plains
@@ -443,6 +472,7 @@ alias=1285
 name=Withering Boon
 mana={1}{B}
 target=creature|stack
+auto=fizzle
 auto=life:-3
 rarity=U
 text=En tant que cout additionnel pour jouer la Faveur fletrissante, payez 3 points de vie.     Contrecarrez le sort de creature cible.
@@ -454,6 +484,7 @@ toughness=2
 name=Jungle Patrol
 mana={3}{G}
 subtype=Human Soldier
+auto={1}{G}{T}:token(Plant Wal,creature Plant Wall, 0/1,green defender)
 auto={S(Plant wall|myinplay)}:add {R}
 rarity=R
 text={1}{G}{T}: Put a 0/1 green Plant Wall creature token with defender into play.     Sacrifice a Plant Wall token: Add {R} to your mana pool.
@@ -478,6 +509,7 @@ toughness=1
 name=Shaper Guildmage
 mana={U}
 subtype=Human Wizard
+auto={W}{T}:first strike target(creature)
 auto={B}{T}:1/0 target(creature)
 rarity=C
 text={W}{T}: La creature ciblee gagne l'initiative jusqu'a la fin du tour.  {B}{T}: La creature ciblee gagne +1/+0 jusqu'a la fin du tour.
@@ -486,6 +518,7 @@ id=3362
 type=Creature
 [/card]
 [card]
+auto=tap
 auto={T}: Add {U}
 text=Le Diamant du ciel arrive en jeu engage.  {T}: Ajoutez {U} a votre reserve.
 rarity=U
@@ -519,6 +552,18 @@ type=Creature
 abilities=trample
 [/card]
 [card]
+toughness=1
+name=Daring Apprentice
+mana={1}{U}{U}
+subtype=Human Wizard
+auto={T}{S}:fizzle target(*|stack)
+rarity=R
+text={T}, Sacrifice Daring Apprentice: Counter target spell.
+power=1
+id=3331
+type=Creature
+[/card]
+[card]
 toughness=3
 name=Hazerider Drake
 mana={2}{W}{U}
@@ -543,7 +588,8 @@ type=Creature
 abilities=flying,protection from black
 [/card]
 [card]
-auto=@next upkeep:draw:1
+auto=damage:1 target(creature,player)
+auto=@next upkeep:draw:1 controller
 text=Le Flamboiement inflige 1 blessure a la cible, creature ou joueur.    Piochez 1 carte au debut de l'entretien du prochain tour.
 rarity=C
 name=Flare
@@ -611,6 +657,7 @@ type=Creature
 abilities=lifelink
 [/card]
 [card]
+auto=tap
 auto={T}: Add {W}
 text=Le Diamant du marbre arrive en jeu engage.  {T}: Ajoutez {W} a votre reserve.
 rarity=U
@@ -624,6 +671,7 @@ toughness=1
 name=Armorer Guildmage
 mana={R}
 subtype=Human Wizard
+auto={B}{T}:1/0 target(creature)
 auto={G}{T}:0/1 target(creature)
 rarity=C
 text={B}{T}: La creature ciblee gagne +1/+0 jusqu'a la fin du tour.  {G}{T}: La creature ciblee gagne +0/+1 jusqu'a la fin du tour.
@@ -653,6 +701,11 @@ id=3290
 type=Enchantment
 [/card]
 [card]
+auto={T}: Add {1}
+auto={1}{T}: Add {B}
+auto={1}{T}: Add {G}
+auto={1}{T}: Add {R}
+auto={1}{T}: Add {U}
 auto={1}{T}: Add {W}
 text={T}: Ajoutez {1} a votre reserve. {1}{T}: Ajoutez un mana de la couleur de votre choix a votre reserve.
 rarity=U
@@ -683,6 +736,8 @@ type=Sorcery
 mana={3}{R}{R}
 [/card]
 [card]
+auto=tap
+auto={T}{S}:life:4
 auto={8}{T}{S}:life:8
 text=L'Elixir de vitalite arrive en jeu engage.  {T}:sacrifiez l'Elixir de vitalite : gagnez 4 points de vie    {8}, {T}:sacrifiez l'Elixir de vitalite : gagnez 8 points de vie.
 rarity=U
@@ -747,14 +802,14 @@ type=Creature
 abilities=protection from white
 [/card]
 [card]
-target=creature
-text=L'Expectoration tellurique inflige a la creature ciblee un nombre de blessures egal au nombre de montagnes que vous controlez.
-rarity=C
 name=Spitting Earth
-id=3464
-type=Sorcery
 mana={1}{R}
-alias=136509
+target=creature
+auto=foreach(mountain|myBattlefield) damage:1
+rarity=C
+text=L'Expectoration tellurique inflige a la creature ciblee un nombre de blessures egal au nombre de montagnes que vous controlez.
+type=Sorcery
+id=3464
 [/card]
 [card]
 toughness=4
@@ -825,6 +880,7 @@ id=3386
 type=Creature
 [/card]
 [card]
+auto=tap
 auto={T}: Add {G}
 text=Le Diamant de la mousse arrive en jeu engage.  {T}: Ajoutez {G} a votre reserve. 
 rarity=U
@@ -859,6 +915,7 @@ toughness=1
 name=Sea Scryer
 mana={1}{U}
 subtype=Merfolk Wizard
+auto={T}: Add {1}
 auto={1}{T}: Add {U}
 rarity=C
 text={T}: Ajoutez {1} a votre reserve. {1}{T}: Ajoutez {U} a votre reserve.
@@ -871,6 +928,7 @@ name=Pacifism
 mana={1}{W}
 subtype=Aura
 target=creature
+auto=cantattack
 auto=cantblock
 rarity=C
 text=Enchanter : creature    La creature enchantee ne peut ni attaquer ni blocker.
@@ -890,6 +948,7 @@ id=3261
 type=Artifact Creature
 [/card]
 [card]
+auto=moveTo(myremovedfromgame) target(*|myinplay)
 auto=@next upkeep:draw:1
 text=Retirez de la partie le permanent cible que vous possedez ou que vous controlez.   Piochez une carte au debut de l'entretien du prochain tour.
 rarity=R
@@ -899,6 +958,7 @@ type=Instant
 mana={R}
 [/card]
 [card]
+auto=tap
 auto={T}: Add {R}
 text=Le Diamant du feu arrive en jeu engage.  {T}: Ajoutez {R} a votre reserve. 
 rarity=U
@@ -946,6 +1006,7 @@ type=Creature
 abilities=flying
 [/card]
 [card]
+auto=tap
 auto={T}{S}:moveTo(myInPlay) target(Mountain,Forest|myLibrary)
 text=La Vallee forestiere arrive en jeu engagee.       {T}, Ssacrifiez la Vallee forestiere : Cherchez dans votre bibliotheque une carte de montagne ou de foret et mettez cette-la en jeu. Melangez ensuite votre bibliotheque.
 rarity=U
@@ -1014,6 +1075,7 @@ type=Basic Land
 name=Alarum
 mana={1}{W}
 target=creature[-attacking]
+auto=untap
 auto=1/3
 rarity=C
 text=Degagez la creature non-attaquante ciblee. Elle gagne +1/+3 jusqu'a la fin du tour.
@@ -1037,6 +1099,7 @@ toughness=1
 name=Blighted Shaman
 mana={1}{B}
 subtype=Human Cleric Shaman
+auto={T}{S(creature|myinplay)}:2/2 target(creature)
 auto={T}{S(swamp|myinplay)}:1/1 target(creature)
 rarity=U
 text={T}:sacrifiez une creature: La creature ciblee gagne +2/+2 jusqu'a la fin du tour. {T}:sacrifiez un marais: La creature ciblee gagne +1/+1 jusqu'a la fin du tour.
@@ -1045,6 +1108,7 @@ id=3276
 type=Creature
 [/card]
 [card]
+auto=tap
 auto={T}{S}:moveTo(myInPlay) target(Island,Swamp|myLibrary)
 text=La Riviere souillee arrive en jeu engagee.       {T}, sacrifiez la Riviere souillee : Cherchez dans votre bibliotheque une carte de marais ou d'ile et mettez-la en jeu. Melangez ensuite votre bibliotheque.
 rarity=U
@@ -1062,6 +1126,18 @@ rarity=U
 text={B}{R}{T}: Le Mignon de Shauku inflige 2 blessures a la creature blanche ciblee.
 power=2
 id=3554 
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Sewer Rats
+mana={B}
+subtype=Rat
+auto={B}:1/0 && life:-1 limit:3
+rarity=C
+text={B}, Pay 1 life: Sewer Rats gets +1/+0 until end of turn. Play this ability no more than three times each turn.
+power=1
+id=3308
 type=Creature
 [/card]
 [card]
@@ -1105,6 +1181,15 @@ id=3566
 type=Basic Land
 [/card]
 [card]
+subtype=Plains
+auto={T}: Add {W}
+text={T}: Ajoutez {W} a votre reserve.
+rarity=L
+name=Plains
+id=3588 
+type=Basic Land
+[/card]
+[card]
 name=Boomerang
 mana={U}{U}
 target=*
@@ -1115,11 +1200,14 @@ type=Instant
 id=3327 
 [/card]
 [card]
-subtype=Plains
-auto={T}: Add {W}
-text={T}: Ajoutez {W} a votre reserve.
-rarity=L
-name=Plains
-id=3588 
-type=Basic Land
+toughness=3
+name=Harbinger of Night
+mana={2}{B}{B}
+subtype=Spirit
+auto=@each my upkeep:all(creature) counter(-1/-1)
+rarity=R
+text=At the beginning of your upkeep, put a -1/-1 counter on each creature.
+power=2
+id=3297
+type=Creature
 [/card]

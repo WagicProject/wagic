@@ -1,4 +1,13 @@
 [card]
+auto={2}{T}{S}:add{G}{W} && draw:1
+text={2}, {T}, Sacrifice Sungrass Egg: Add {G}{W} to your mana pool. Draw a card.
+rarity=U
+name=Sungrass Egg
+id=30750
+type=Artifact
+mana={1}
+[/card]
+[card]
 toughness=3
 name=Minotaur Explorer
 mana={1}{R}
@@ -23,6 +32,7 @@ id=29695
 type=Creature
 [/card]
 [card]
+auto=lord(*|graveyard) shroud
 auto=draw:1
 text=Quand le Sceau chtonien arrive en jeu, piochez une carte.    Les cartes dans les cimetieres ne peuvent etre la cible de sorts ou de capacites.
 rarity=R
@@ -36,6 +46,7 @@ name=Gallantry
 mana={1}{W}
 color=white
 target=Creature[blocking]
+auto=4/4
 auto=draw:1
 rarity=U
 text=La creature ciblee bloqueuse gagne +4/+4 jusqu'a la fin du tour.    Piochez une carte.
@@ -65,6 +76,12 @@ type=Creature
 abilities=reach
 [/card]
 [card]
+auto=tap
+auto={T}:add{R}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
 auto={T}{S}:Add{W}
 text=Les Hautes terres devastees arrivent en jeu engagees. {T}, Ajoutez {R} a votre reserve. {T}, sacrifiez les Hautes terres devastees : Ajoutez un mana de la couleur de votre choix a votre reserve.
 rarity=C
@@ -168,6 +185,15 @@ type=Creature
 abilities=trample
 [/card]
 [card]
+auto={2}{T}{S}:Add{B}{R} && draw:1
+text={2}, {T}, Sacrifice Shadowblood Egg: Add {B}{R} to your mana pool. Draw a card.
+rarity=U
+name=Shadowblood Egg
+id=30553
+type=Artifact
+mana={1}
+[/card]
+[card]
 toughness=6
 name=Ashen Firebeast
 mana={6}{R}{R}
@@ -225,6 +251,15 @@ id=31616
 type=Basic Land
 [/card]
 [card]
+auto=tap all(creature[-flying])
+text=Tap all creatures without flying.
+rarity=U
+name=Deluge
+id=31816
+type=Instant
+mana={2}{U}
+[/card]
+[card]
 toughness=*
 name=Magnivore
 mana={2}{R}{R}
@@ -267,6 +302,7 @@ id=29794
 type=Land
 [/card]
 [card]
+auto={3}{T}:moveTo(ownerremovedfromgame) target(*|graveyard)
 auto={1}{S}:moveTo(ownerremovedfromgame) target(*|graveyard)
 text={3},{T}: Retirez la carte ciblee d'un cimetiere de la partie.   {1}, sacrifiez la Vapogriffe : Retirez la carte ciblee d'un cimetiere de la partie.
 rarity=U
@@ -283,6 +319,15 @@ rarity=L
 name=Island
 id=31615
 type=Basic Land
+[/card]
+[card]
+auto={2}{T}{S}:Add{U}{B} && Draw:1
+text={2}, {T}, Sacrifice Darkwater Egg: Add {U}{B} to your mana pool. Draw a card.
+rarity=U
+name=Darkwater Egg
+id=30749
+type=Artifact
+mana={1}
 [/card]
 [card]
 subtype=Island
@@ -387,6 +432,7 @@ id=29979
 type=Creature
 [/card]
 [card]
+auto={T}:Add{1}
 auto={T}{S}:moveTo(myhand) target(land|mygraveyard)
 text={T}, Ajoutez {1} a votre reserve.    {T}, sacrifiez le Champ petrifie : Renvoyez la carte de terrain ciblee depuis votre cimetiere dans votre main.
 rarity=R
@@ -425,6 +471,19 @@ id=29781
 type=Creature
 [/card]
 [card]
+toughness=1
+name=Escape Artist
+mana={1}{U}
+subtype=Wizard
+auto={U}{s(*|myhand)}:moveTo(ownerhand)
+rarity=C
+text=L'As de l'evasion est imblocable.   {U}, defaussez vous d'une carte : Renvoyez l'As de l'evasion dans la main de son proprietaire.
+power=1
+id=31813
+type=Creature
+abilities=unblockable
+[/card]
+[card]
 toughness=3
 name=Aven Flock
 mana={4}{W}
@@ -439,23 +498,11 @@ type=Creature
 abilities=flying
 [/card]
 [card]
-toughness=1
-name=Escape Artist
-mana={1}{U}
-subtype=Wizard
-auto={U}{s(*|myhand)}:moveTo(ownerhand)
-rarity=C
-text=L'As de l'evasion est imblocable.   {U}, defaussez vous d'une carte : Renvoyez l'As de l'evasion dans la main de son proprietaire.
-power=1
-id=31813
-type=Creature
-abilities=unblockable
-[/card]
-[card]
 name=Touch of Invisibility
 mana={3}{U}
 color=blue
 target=Creature
+auto=unblockable
 auto=draw:1
 rarity=C
 text=La creature ciblee est imblocable ce tour-ci.     Piochez une carte.
@@ -479,6 +526,7 @@ abilities=legendary,flying
 name=Spiritualize
 mana={2}{W}
 target=creature
+auto=lifelink
 auto=draw:1
 rarity=U
 text=Jusqu'a la fin du tour, a chaque fois que la creature ciblee inflige des dommages, vous gagnez autant de points de vie.    Piochez une carte.
@@ -516,6 +564,7 @@ name=Refresh
 mana={2}{G}
 color=green
 target=creature
+auto=regenerate
 auto=draw:1
 rarity=C
 text=Regenere la creature ciblee.     Piochez une carte.
@@ -528,6 +577,7 @@ name=Thaumatog
 mana={1}{G}{W}
 subtype=Atog
 color=Green,White
+auto={s(land|myinplay)}:1/1
 auto={s(enchantment|myinplay)}:1/1
 rarity=U
 text=Sacrifiez un terrain : Le Thaumatog gagne +1/+1 jusqu'a la fin du tour.     Sacrifiez un enchantement : Le Thaumatog gagne +1/+1 jusqu'a la fin du tour.
@@ -558,6 +608,7 @@ id=31617
 type=Basic Land
 [/card]
 [card]
+auto=lord(creature|myinplay) trample
 auto=lord(creature|myinplay) 3/3
 text=Les creature que vous controlez gagnent +3/+3 et le pietinement jusqu'a la fin du tour. 
 rarity=U
@@ -567,12 +618,45 @@ type=Sorcery
 mana={2}{G}{G}{G}
 [/card]
 [card]
+name=Flame Burst
+mana={1}{R}
+target=creature,player
+auto=Damage:2
+auto=foreach(Flame Burst|graveyard) Damage:1
+rarity=C
+text=Flame Burst deals X damage to target creature or player, where X is 2 plus the number of cards named Flame Burst in all graveyards.
+type=Instant
+id=29767
+[/card]
+[card]
+auto={T}:add {1}
 auto={1}{T}:Untap target(land)
 text={T}: Ajoutez {1} a votre reserve.    {1}{T}: Degagez le terrain cible.
 rarity=R
 name=Deserted Temple
 id=30013
 type=Land
+[/card]
+[card]
+auto={2}{T}{S}:Add{W}{U} && draw:1
+text={2}, {T}, Sacrifice Skycloud Egg: Add {W}{U} to your mana pool. Draw a card.
+rarity=U
+name=Skycloud Egg
+id=29892
+type=Artifact
+mana={1}
+[/card]
+[card]
+toughness=2
+name=Aven Fisher
+mana={3}{U}
+subtype=Bird Soldier
+auto=@movedTo(this|graveyard):may draw:1
+rarity=C
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Aven Fisher is put into a graveyard from play, you may draw a card.
+power=2
+id=31815
+type=Creature
 [/card]
 [card]
 name=Zombify
@@ -606,6 +690,7 @@ type=Sorcery
 id=29954
 [/card]
 [card]
+auto=moveTo(ownerremovedfromgame) target(creature[attacking])
 auto=draw:1
 text=Retirez la creature attaquante ciblee de la partie.     Piochez une carte.
 rarity=C
@@ -624,6 +709,12 @@ id=31613
 type=Basic Land
 [/card]
 [card]
+auto=tap
+auto={T}:add{U}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
 auto={T}{S}:Add{W}
 text=Seafloor Debris comes into play tapped. Tap: Add U to your mana pool. Tap, Sacrifice Seafloor Debris: Add one mana of any color to your mana pool.
 rarity=C
@@ -632,6 +723,12 @@ id=31762
 type=Land
 [/card]
 [card]
+auto=tap
+auto={T}:Add{W}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
 auto={T}{S}:Add{W}
 text=L'Avant-poste abandonne arrive en jeu engage.   {T}: Ajoutez {W} a votre reserve.   {T}, sacrifiez l'Avant-poste abandonne : Ajoutez un mana de la couleur de votre choix a votre reserve.
 rarity=C
@@ -657,11 +754,21 @@ name=Afflict
 mana={2}{B}
 color=black
 target=Creature
+auto=-1/-1
 auto=draw:1
 rarity=C
 text=La creature ciblee gagne -1/-1 jusqu'a la fin du tour. Piochez une carte. 
 id=29740
 type=Instant 
+[/card]
+[card]
+auto={2}{T}{S}:Add{R}{G} && Draw:1
+text={2}, {T}, Sacrifice Mossfire Egg: Add {R}{G} to your mana pool. Draw a card.
+rarity=U
+name=Mossfire Egg
+id=30010
+type=Artifact
+mana={1}
 [/card]
 [card]
 toughness=2
@@ -764,6 +871,7 @@ name=Lithatog
 mana={1}{R}{G}
 subtype=Atog
 color=Red,Green
+auto={s(artifact|myinplay)}:1/1
 auto={s(land|myinplay)}:1/1
 rarity=U
 text=Sacrifiez un artefact : Le Lithatog gagne +1/+1 jusqu'a la fin du tour.   Sacrifiez un terrain : Le Lithatog gagne +1/+1 jusqu'a la fin du tour.
@@ -849,12 +957,37 @@ name=Puppeteer
 mana={2}{U}
 subtype=Human Wizard
 color=blue
+auto={U}{T}:tap target(creature)
 auto={U}{T}:untap target(creature)
 rarity=U
 text={U},{T}: Engagez ou degagez la creature ciblee. 
 power=1
 id=29819
 type=Creature
+[/card]
+[card]
+name=Muscle Burst
+mana={1}{G}
+target=creature
+auto=3/3
+auto=foreach(Muscle Burst|graveyard) 1/1
+rarity=C
+text=Target creature gets +X/+X until end of turn, where X is 3 plus the number of cards named Muscle Burst in all graveyards.
+type=Instant
+id=29788
+[/card]
+[card]
+toughness=1
+name=Soulcatcher
+mana={1}{W}
+subtype=Bird Soldier
+auto=@movedTo(creature[flying]|graveyard) from(battlefield):counter(1/1)
+rarity=U
+text=Flying     Whenever a creature with flying is put into a graveyard from play, put a +1/+1 counter on Soulcatcher.
+power=1
+id=31865
+type=Creature
+abilities=flying
 [/card]
 [card]
 toughness=2
@@ -962,6 +1095,7 @@ name=Execute
 mana={2}{B}
 target=Creature[white]
 color=black
+auto=bury
 auto=draw:1
 rarity=U
 text=Detruisez la creature blanche ciblee. Elle ne peut etre regenere. Piochez une carte. 
@@ -994,6 +1128,12 @@ id=29840
 type=Creature
 [/card]
 [card]
+auto=tap
+auto={T}:Add{B}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
 auto={T}{S}:Add{W}
 text=Les Decombres marecageux arrivent en jeu engages.    {T}: Ajoutez {B} a votre reserve.   {T}, sacrifiez les Decombres marecageux : Ajoutez un mana de n'importe quelle couleur a votre reserve.
 rarity=C
@@ -1006,6 +1146,7 @@ toughness=2
 name=Phantatog
 mana={1}{W}{U}
 subtype=Atog
+auto={s(enchantment|myinplay)}:1/1
 auto={s(*|myhand)}:1/1
 rarity=U
 text=Sacrifiez un enchantement : Le Fantatog gagne +1/+1 jusqu'a la fin du tour.   Defaussez-vous d'une carte : Le Fantatog gagne +1/+1 jusqu'a la fin du tour.
@@ -1027,6 +1168,12 @@ type=Creature
 abilities=flying
 [/card]
 [card]
+auto=tap
+auto={T}:Add{G}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
 auto={T}{S}:Add{W}
 text=Les Ruines des terrains boises arrivent en jeu engagees.    {T}, Ajoutez {G} a votre reserve.      {T}, sacrifiez les Ruines des Terrains boises : Ajoutez un mana de a couleur de votre choix a votre reserve.
 rarity=C
@@ -1056,6 +1203,11 @@ id=31627
 type=Basic Land 
 [/card]
 [card]
+auto={T}:Add{1}
+auto={T}:Add{B} && Damage 3 controller
+auto={T}:Add{G} && Damage 3 controller
+auto={T}:Add{R} && Damage 3 controller
+auto={T}:Add{U} && Damage 3 controller
 auto={T}:Add{W} && Damage 3 controller
 text={T}, Ajoutez {1} à votre reserve.     {T}, Ajoutez un mana de la couleur de votre choix à votre reserve. La Citadelle ternie vous inflige 3 blessures.
 rarity=R
@@ -1086,6 +1238,7 @@ id=29870
 type=Creature
 [/card]
 [card]
+auto={T}:add {1}
 auto={5}{T}: Add {W}{U}{B}{R}{G}
 text={T} Ajoutez {1} a votre reserve. {5}{T}: Ajoutez {W}{U}{B}{R}{G} a votre reserve.
 rarity=R
@@ -1157,6 +1310,7 @@ toughness=*
 name=Mortivore
 mana={2}{B}{B}
 subtype=Lhurgoyf
+auto=foreach(creature|graveyard) 1/1
 auto={B}:regenerate
 rarity=R
 text=La force et l'endurance du Nzcrovore sont chacune egale au nombre de cartes de creature dans tous les cimetieres. {B}: Regenerez le Necrovore.
@@ -1181,6 +1335,10 @@ toughness=3
 name=Resilient Wanderer
 mana={2}{W}{W}
 subtype=Human Nomad
+auto={S(*|myhand)}:protection from black
+auto={S(*|myhand)}:protection from green
+auto={S(*|myhand)}:protection from red
+auto={S(*|myhand)}:protection from blue
 auto={S(*|myhand)}:protection from white
 rarity=U
 text=Initiative     Defaussez-vous d'une carte : La Vagabonde resistante gagne la protection contre la couleur de votre choix jusqu'a la fin du tour.
@@ -1188,15 +1346,6 @@ power=2
 id=29804
 type=Creature
 abilities=first strike
-[/card]
-[card]
-subtype=Mountain
-auto={T}:add {R}
-text={R}
-rarity=L
-name=Mountain
-id=31623
-type=Basic Land
 [/card]
 [card]
 toughness=2
@@ -1210,6 +1359,15 @@ text={G}{T}: La creature ciblee gagne +2/+2 jusqu'a la fin du tour.
 power=2
 id=29771
 type=Creature
+[/card]
+[card]
+subtype=Mountain
+auto={T}:add {R}
+text={R}
+rarity=L
+name=Mountain
+id=31623
+type=Basic Land
 [/card]
 [card]
 subtype=Plains

@@ -64,6 +64,7 @@ name=Darkling Stalker
 mana={3}{B}
 subtype=Shade Spirit
 color=Black
+auto={B}:regenerate
 auto={B}:1/1
 rarity=C
 text={B}: Regenerez le Pisteur sombrien.       {B}: Le Pisteur sombrien gagne +1/+1 jusqu'a la fin du tour.
@@ -108,6 +109,18 @@ type=Sorcery
 id=4736
 [/card]
 [card]
+toughness=2
+name=Energizer
+mana={4}
+subtype=Juggernaut
+auto={2}{T}:counter(1/1)
+rarity=R
+text={2}, {T}: Put a +1/+1 counter on Energizer.
+power=2
+id=4605
+type=Artifact Creature
+[/card]
+[card]
 name=Tranquility
 mana={2}{G}
 color=Green
@@ -116,6 +129,17 @@ rarity=C
 text=Detruisez tous les enchantements.
 type=Sorcery
 id=4795
+[/card]
+[card]
+name=Sadistic Glee
+mana={B}
+subtype=Aura
+target=creature
+auto=@movedTo(creature|graveyard) from(battlefield):counter(1/1)
+rarity=C
+text=Enchant creature     Whenever a creature is put into a graveyard from play, put a +1/+1 counter on enchanted creature.
+id=4682
+type=Enchantment
 [/card]
 [card]
 toughness=3
@@ -130,9 +154,19 @@ id=4834
 type=Creature
 [/card]
 [card]
+auto=@movedTo(*[red]|opponentstack):life:2
+text=Whenever an opponent plays a red spell, you gain 2 life.
+rarity=U
+name=Warmth
+id=4909
+type=Enchantment
+mana={1}{W}
+[/card]
+[card]
 name=Crown of Flames
 mana={R}
 subtype=Aura
+auto=1/0
 auto={R}:moveTo(hand)
 rarity=C
 text=Enchanter : creature     {R}: La creature enchantee gagne +1/+0 jusqu'a la fin du tour.     {R}: Renvoyez la Couronne de flammes dans la main de son proprietaire.
@@ -159,6 +193,15 @@ id=4664
 type=Enchantment
 mana={B}{B}
 abilities=wither
+[/card]
+[card]
+auto=@each blockers step:foreach(creature[attacking]|opponentbattlefield):life:1
+text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
+rarity=U
+name=Orim's Prayer
+id=4891
+type=Enchantment
+mana={1}{W}{W}
 [/card]
 [card]
 toughness=3
@@ -199,6 +242,7 @@ name=Shadow Rift
 mana={U}
 color=Blue
 target=creature
+auto=shadow
 auto=draw:1
 rarity=C
 text=La creature ciblee acquiere le distorsion jusqu'a la fin du tour.    Piochez une carte.
@@ -335,6 +379,18 @@ type=Creature
 abilities=shroud
 [/card]
 [card]
+toughness=1
+name=Thalakos Seer
+mana={U}{U}
+subtype=Thalakos Wizard
+auto=@movedTo(this|graveyard,exile,library,hand):draw:1
+rarity=C
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  When Thalakos Seer leaves play, draw a card.
+power=1
+id=4734
+type=Creature
+[/card]
+[card]
 toughness=2
 name=Master Decoy
 mana={1}{W}
@@ -389,6 +445,10 @@ name=Knight of Dawn
 mana={1}{W}{W}
 subtype=Human Knight
 color=White
+auto={W}{W}:protection from white
+auto={W}{W}:protection from blue
+auto={W}{W}:protection from black
+auto={W}{W}:protection from red
 auto={W}{W}:protection from green
 rarity=U
 text=Innitiative      {W}{W}: Le Chevalier de l'aube acquiert la protection contre la couleur de votre choix jusqu'a la fin du tour.
@@ -442,6 +502,18 @@ power=2
 id=4917
 type=Creature
 abilities=flying,first strike
+[/card]
+[card]
+toughness=4
+name=Dirtcowl Wurm
+mana={4}{G}
+subtype=Wurm
+auto=@movedTo(land|opponentbattlefield):counter(1/1)
+rarity=R
+text=Whenever an opponent plays a land, put a +1/+1 counter on Dirtcowl Wurm.
+power=3
+id=4755
+type=Creature
 [/card]
 [card]
 name=Rain of Tears
@@ -572,6 +644,9 @@ type=Basic Land
 id=4928
 [/card]
 [card]
+auto=tap
+auto={T}:Add{1}
+auto={T}:Add{B} && damage 1 controller
 auto={T}:Add{G} && damage 1 controller
 text=Les Landes de pins arrivent en jeu engagees.       {T}: Ajoutez {1} a votre reserve de mana.       {T}: Ajoutez {B} ou {G} a votre reserve de mana. Les Landes de pins vous infligent 1 blessure.
 rarity=R
@@ -593,6 +668,9 @@ type=Creature
 abilities=shadow
 [/card]
 [card]
+auto=tap
+auto={T}: Add{1}
+auto={T}: Add{U} && damage 1 controller
 auto={T}: Add{R} && damage 1 controller
 text=Le Lac de Caldeira arrive en jeu engage.       {T}: Ajoutez {1} à votre réserve.       {T}: Ajoutez {U} ou {R} a votre reserve. Le Lac de Caldeira vous inflige 1 blessure.
 rarity=R
@@ -616,6 +694,8 @@ name=Skyshroud Elf
 mana={1}{G}
 subtype=Elf Druid
 color=Green
+auto={T}:Add {G}
+auto={1}:Add {W}
 auto={1}:Add {R}
 rarity=C
 text={T}: Ajoutez {G} a votre reserve de mana.    {1}: Ajoutez {W} ou {R} a votre reserve de mana.
@@ -643,6 +723,28 @@ rarity=C
 text={U}: Les Chevaucheurs de mantas acquierent le vol jusqu'a la fin du tour.
 power=1
 id=4711
+type=Creature
+[/card]
+[card]
+auto=@each my upkeep:damage:2 controller
+auto={S(creature|myinplay)}:moveTo(opponentBattlefield)
+text=At the beginning of your upkeep, Jinxed Idol deals 2 damage to you.       Sacrifice a creature: Target opponent gains control of Jinxed Idol. (This effect doesn't end at end of turn.)
+rarity=R
+name=Jinxed Idol
+id=4613
+type=Artifact
+mana={2}
+[/card]
+[card]
+toughness=2
+name=Canyon Drake
+mana={2}{R}{R}
+subtype=Drake
+auto={1}:2/0 && discard:1
+rarity=R
+text=Flying     {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
+power=1
+id=4806
 type=Creature
 [/card]
 [card]
@@ -791,6 +893,8 @@ id=4820
 type=Enchantment
 [/card]
 [card]
+auto=@each upkeep:foreach(artifact|myinplay) damage:1 controller
+auto=@each upkeep:foreach(artifact|opponentinplay) damage:1 opponent
 text=Au debut de l'entretien de chaque joueur, ces Runes anciennes infligent a ce joueur un nombre de blessures egal au nombre d'artefacts qu'il controle.
 rarity=U
 name=Ancient Runes
@@ -942,6 +1046,16 @@ id=4788
 type=Creature
 [/card]
 [card]
+auto=moveTo(Exile) all(*|inplay)
+auto=moveTo(mygraveyard) all(*|myhand)
+text=Exile all permanents. You discard your hand.
+rarity=R
+name=Apocalypse
+id=4802
+type=Sorcery
+mana={2}{R}{R}{R}
+[/card]
+[card]
 toughness=1
 name=Coiled Tinviper
 mana={3}
@@ -992,6 +1106,7 @@ name=Reality Anchor
 mana={1}{G}
 color=Green
 target=creature
+auto=-shadow
 auto=draw:1
 rarity=C
 text=La creature ciblee perd la Distorsion jusqu'a la fin du tour.     Piochez une carte.
@@ -1016,11 +1131,24 @@ name=Dismiss
 mana={2}{U}{U}
 color=Blue
 target=*|stack
+auto=fizzle
 auto=draw:1
 rarity=U
 text=Contrecarrez le sort cible.     Piochez une carte.
 id=4695
 type=Instant
+[/card]
+[card]
+toughness=1
+name=Fireslinger
+mana={1}{R}
+subtype=Human Wizard
+auto={T}:damage:1 target(creature,player) && damage:1 controller
+rarity=C
+text={T}: Fireslinger deals 1 damage to target creature or player and 1 damage to you.
+power=1
+id=4814
+type=Creature
 [/card]
 [card]
 name=Verdigris
@@ -1054,6 +1182,18 @@ rarity=C
 text=Contrecarrez le sort cible.
 id=4693
 type=Instant
+[/card]
+[card]
+toughness=2
+name=Mnemonic Sliver
+mana={2}{U}
+subtype=Sliver
+auto=lord(sliver) {2}{S}:draw:1
+rarity=U
+text=All Slivers have "{2}, Sacrifice this permanent: Draw a card."
+power=2
+id=4714
+type=Creature
 [/card]
 [card]
 toughness=3
@@ -1094,6 +1234,7 @@ mana={1}{R}
 name=Overrun
 mana={2}{G}{G}{G}
 color=Green
+auto=lord(creatures|myinplay) 3/3
 auto=lord(creatures|myinplay) trample
 rarity=U
 text=Les creatures que vous controlez gagnent +3/+3 et acquierent le pietinement jusqu'a la fin du tour.
@@ -1101,6 +1242,31 @@ type=Sorcery
 id=4777
 [/card]
 [card]
+auto=@movedTo(*[green]|opponentstack):draw:1
+text=Whenever an opponent plays a green spell, you draw a card.
+rarity=U
+name=Insight
+id=4705
+type=Enchantment
+mana={2}{U}
+[/card]
+[card]
+toughness=1
+name=Dauthi Ghoul
+mana={1}{B}
+subtype=Dauthi Zombie
+auto=@movedTo(creature[shadow]|graveyard) from(battlefield):counter(1/1)
+rarity=U
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever a creature with shadow is put into a graveyard from play, put a +1/+1 counter on Dauthi Ghoul.
+power=1
+id=4649
+type=Creature
+abilities=shadow
+[/card]
+[card]
+auto=tap
+auto={T}: Add {1}
+auto={T}: Add {U} && damage 1 controller
 auto={T}: Add {G} && damage 1 controller
 text=La Forêt de Linciel arrive en jeu engagée.     {T}: Ajoutez {1} a votre reserve de mana.     {T}: Ajoutez {U} ou {G} a votre reserve de mana. La Forêt de Linciel vous inflige 1 blessure.
 rarity=R
@@ -1109,10 +1275,20 @@ id=4940
 type=Land
 [/card]
 [card]
+auto=lord(island) doesnotuntap
+text=Islands don't untap during their controllers' untap steps.
+rarity=U
+name=Choke
+id=4753
+type=Enchantment
+mana={2}{G}
+[/card]
+[card]
 name=Gallantry
 mana={1}{W}
 color=White
 target=creature[blocking]
+auto=4/4
 auto=draw:1
 rarity=U
 text=La creature ciblee bloqueuse gagne +4/+4 jusqu'a la fin du tour.        Piochez une carte.
@@ -1144,6 +1320,37 @@ id=4816
 type=Creature
 [/card]
 [card]
+auto=@movedTo(*[white]|opponentStack): life:-2 opponent
+text=Whenever an opponent plays a white spell, he or she loses 2 life.
+rarity=U
+name=Havoc
+id=4823
+type=Enchantment
+mana={1}{R}
+[/card]
+[card]
+toughness=2
+name=Armor Sliver
+mana={2}{W}
+subtype=Sliver
+auto=lord(sliver) {2}:0/1
+rarity=U
+text=All Sliver creatures have "{2}: This creature gets +0/+1 until end of turn."
+power=2
+id=4689
+type=Creature
+[/card]
+[card]
+name=Rampant Growth
+mana={1}{G}
+target=basic|mylibrary
+auto=moveTo(myBattlefield) && tap
+rarity=C
+text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
+type=Sorcery
+id=4779
+[/card]
+[card]
 subtype=Swamp
 auto={T}: Add {B}
 text={T}: Ajoutez {B} a votre reserve de mana.
@@ -1153,6 +1360,9 @@ id=4924
 type=Basic Land
 [/card]
 [card]
+auto=tap
+auto={T}: Add{1}
+auto={T}: Add{W} && damage 1 controller
 auto={T}: Add{B} && damage 1 controller
 text=Les Salines arrivent en jeu engagées.       {T}: Ajoutez {1} a votre reserve de mana.       {T}: Ajoutez {W} or {B} a votre reserve de mana. Les Salines vous infligent 1 blessure.
 rarity=R
@@ -1174,6 +1384,7 @@ alias=1335
 name=Puppet Strings
 mana={3}
 color=Artifact
+auto={2}{T}:tap target(creature)
 auto={2}{T}:untap target(creature)
 rarity=U
 text={2}, {T}: Engagez ou desengagez la creature ciblee.
@@ -1194,6 +1405,16 @@ type=Creature
 abilities=shadow,protection from black
 [/card]
 [card]
+target=enchantment
+text=Detruisez l'enchantement cible. Vous gagnez un nombre de points de vie egale a son cout converti de mana.
+rarity=U
+name=Serene Offering
+id=4898
+type=Instant
+mana={1}{W}
+alias=1607
+[/card]
+[card]
 name=Hero's Resolve
 mana={1}{W}
 subtype=Aura
@@ -1206,19 +1427,10 @@ id=4879
 type=Enchantment
 [/card]
 [card]
-target=enchantment
-text=Detruisez l'enchantement cible. Vous gagnez un nombre de points de vie egale a son cout converti de mana.
-rarity=U
-name=Serene Offering
-id=4898
-type=Instant
-mana={1}{W}
-alias=1607
-[/card]
-[card]
 name=Stun
 mana={1}{R}
 target=creature
+auto=cantblock
 auto=draw:1
 rarity=C
 text=La creature ciblee ne peut pas bloquer ce tour-ci.       Piochez une carte.
@@ -1226,6 +1438,10 @@ type=Instant
 id=4851
 [/card]
 [card]
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{B}
 auto={T}{S}:Add{W}
 text={T}, sacrifiez le Petale de lotus : Ajoutez un mana de la couleur de votre choix a votre reserve.
 rarity=C
@@ -1240,6 +1456,7 @@ name=Eladamri, Lord of Leaves
 mana={G}{G}
 subtype=Elf Warrior
 color=Green
+auto=lord(elf) forestwalk other
 auto=lord(elf) shroud other
 rarity=R
 text=Legende      Les autres creatures elfe ont la traversee des forets.   Les autres elfes ont le linceul. (Elles ne peuvent pas etre la cible de sort ou d'effets.)
@@ -1270,6 +1487,27 @@ rarity=L
 name=Island
 id=4949
 type=Basic Land
+[/card]
+[card]
+toughness=2
+name=Barbed Sliver
+mana={2}{R}
+subtype=Sliver
+auto=lord(sliver) {2}:1/0
+rarity=U
+text=All Sliver creatures have "{2}: This creature gets +1/+0 until end of turn."
+power=2
+id=4803
+type=Creature
+[/card]
+[card]
+auto={2}{W}:lord(creature|mybattlefield) 1/1
+text={2}{W}: Creatures you control get +1/+1 until end of turn.
+rarity=R
+name=Gerrard's Battle Cry
+id=4877
+type=Enchantment
+mana={W}
 [/card]
 [card]
 subtype=Swamp
@@ -1339,6 +1577,7 @@ name=Pacifism
 mana={1}{W}
 subtype=Aura
 target=creature
+auto=cantattack
 auto=cantblock
 rarity=C
 text=Enchanter : creature      La creature enchantee ne peut ni attaquer ni blocker.
@@ -1387,6 +1626,7 @@ name=Aftershock
 mana={2}{R}{R}
 color=Black
 target=artifact,creature,land
+auto=destroy
 auto=damage 3 controller
 rarity=C
 text=Detruisez l'artefact , le terrain ou la creature cible. La Replique sismique vous inflige 3 blessures.
@@ -1394,6 +1634,7 @@ id=4800
 type=Sorcery
 [/card]
 [card]
+auto={T}: Add{1}
 auto={T}{S}:destroy target(land[-basic])
 text={T}: Ajoutez {1} a votre reserve de mana.       {T}, Sacrifiez les Terres devastees: Detruisez le terrain non-base cible.
 rarity=U
@@ -1425,6 +1666,17 @@ type=Creature
 abilities=shadow,protection from red
 [/card]
 [card]
+name=Shimmering Wings
+mana={U}
+subtype=Aura
+auto=flying
+auto={U}:moveTo(hand)
+rarity=C
+text=Enchanter : creature       La creature enchantee a le vol      {U}: Renvoyez ces Ailes chatoyantes dans la main de leur proprietaire.
+type=Enchantment
+id=4726
+[/card]
+[card]
 toughness=2
 name=Gravedigger
 mana={3}{B}
@@ -1435,26 +1687,6 @@ text=Quand le Fossoyeur arrive en jeu, vous pouvez renvoyer dans votre main la c
 power=2
 id=4665
 type=Creature
-[/card]
-[card]
-name=Shimmering Wings
-mana={U}
-subtype=Aura
-auto={U}:moveTo(hand)
-rarity=C
-text=Enchanter : creature       La creature enchantee a le vol      {U}: Renvoyez ces Ailes chatoyantes dans la main de leur proprietaire.
-type=Enchantment
-id=4726
-[/card]
-[card]
-name=Needle Storm
-mana={2}{G}
-color=Green
-auto=damage:4 all(creature[flying])
-rarity=U
-text=La Tempete d'aiguille inflige 4 blessures à chaque creature avec le vol.
-type=Sorcery
-id=4775
 [/card]
 [card]
 toughness=3
@@ -1470,6 +1702,16 @@ type=Creature
 abilities=flying
 [/card]
 [card]
+name=Needle Storm
+mana={2}{G}
+color=Green
+auto=damage:4 all(creature[flying])
+rarity=U
+text=La Tempete d'aiguille inflige 4 blessures à chaque creature avec le vol.
+type=Sorcery
+id=4775
+[/card]
+[card]
 name=Storm Front
 mana={G}
 color=Green
@@ -1478,15 +1720,6 @@ rarity=U
 text={G}{G}: Engagez la creature avec le vol ciblee.
 type=Enchantment
 id=4793
-[/card]
-[card]
-subtype=Island
-auto={T}:add {U}
-text={T}: Ajoutez {U} a votre reserve de mana.
-rarity=L
-name=Island
-id=4950
-type=Basic Land
 [/card]
 [card]
 toughness=1
@@ -1503,16 +1736,13 @@ type=Creature
 abilities=flying
 [/card]
 [card]
-toughness=4
-name=Heartwood Giant
-mana={3}{G}{G}
-subtype=Giant
-auto={T}{S(forest|myinplay)}:damage:2 target(player)
-rarity=R
-text={T}, Sacrifiez une Foret: Le Geant de Boiscoeur inflige 2 blessures au joueur cible.
-power=4
-id=4766
-type=Creature
+subtype=Island
+auto={T}:add {U}
+text={T}: Ajoutez {U} a votre reserve de mana.
+rarity=L
+name=Island
+id=4950
+type=Basic Land
 [/card]
 [card]
 toughness=3
@@ -1529,6 +1759,18 @@ type=Creature
 abilities=first strike
 [/card]
 [card]
+toughness=4
+name=Heartwood Giant
+mana={3}{G}{G}
+subtype=Giant
+auto={T}{S(forest|myinplay)}:damage:2 target(player)
+rarity=R
+text={T}, Sacrifiez une Foret: Le Geant de Boiscoeur inflige 2 blessures au joueur cible.
+power=4
+id=4766
+type=Creature
+[/card]
+[card]
 name=Hanna's Custody
 mana={2}{W}
 color=White
@@ -1539,11 +1781,22 @@ type=Enchantment
 id=4878
 [/card]
 [card]
+auto=may tap target(artifact,creature,land)
+auto=draw:1
+text=You may tap or untap target artifact, creature, or land.     Draw a card.
+rarity=C
+name=Twitch
+id=4739
+type=Instant
+mana={2}{U}
+[/card]
+[card]
 name=Frog Tongue
 mana={1}{G
 subtype=Aura
 color=C
 target=creature
+auto=reach
 auto=draw:1
 rarity=U
 text=Enchanter : creature       Quand la Langue de grenouille arrive en jeu, piochez une carte.       La creature enchantee a la portee.
@@ -1551,6 +1804,18 @@ id=4762
 type=Enchantment
 [/card]
 [card]
+name=Kindle
+mana={1}{R}
+target=creature
+auto=foreach(kindle|graveyard):damage:1
+auto=damage:2
+rarity=C
+text=Kindle deals X damage to target creature or player, where X is 2 plus the number of cards named Kindle in all graveyards.
+type=Instant
+id=4826
+[/card]
+[card]
+auto=lord(creature[black]) cantattack
 auto=lord(creature[black]) cantblock
 text=Les creatures noires ne peuvent ni attaquer ni bloquer.
 rarity=U
@@ -1585,6 +1850,18 @@ type=Creature
 abilities=shadow
 [/card]
 [card]
+toughness=7
+name=Verdant Force
+mana={5}{G}{G}{G}
+subtype=Elemental
+auto=@each upkeep:token(Saproling,Creature Saproling,1/1,green)
+rarity=R
+text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
+power=7
+id=4797
+type=Creature
+[/card]
+[card]
 toughness=1
 name=Rootwater Diver
 mana={U}
@@ -1597,6 +1874,17 @@ id=4720
 type=Creature
 [/card]
 [card]
+auto=tap
+auto={T}: Add{1}
+auto={T}: Add{R} && damage 1 controller
+auto={T}: Add{W} && damage 1 controller
+text=Les Terres galeuses arrivent en jeu engagées.     {T}: Ajoutez {1} a votre reserve de mana.     {T}: Ajoutez {R} or {W} a votre reserve de mana. Les Terres galeuses vous infligent 1 blessure.
+rarity=R
+name=Scabland
+id=4939
+type=Land
+[/card]
+[card]
 toughness=1
 name=Mogg Raider
 mana={R}
@@ -1607,14 +1895,6 @@ text=Sacrifiez un gobelin : La creature ciblee gagne +1/+1 jusqu'a la fin du tou
 power=1
 id=4833
 type=Creature
-[/card]
-[card]
-auto={T}: Add{W} && damage 1 controller
-text=Les Terres galeuses arrivent en jeu engagées.     {T}: Ajoutez {1} a votre reserve de mana.     {T}: Ajoutez {R} or {W} a votre reserve de mana. Les Terres galeuses vous infligent 1 blessure.
-rarity=R
-name=Scabland
-id=4939
-type=Land
 [/card]
 [card]
 toughness=3
@@ -1643,6 +1923,19 @@ type=Creature
 abilities=flying,swampwalk
 [/card]
 [card]
+toughness=6
+name=Sea Monster
+mana={4}{U}{U}
+subtype=Serpent
+auto=aslongas(Island|opponentinplay) -cantattack
+rarity=C
+text=Le Monstre marin ne peut attaquer a moins que le joueur defenseur ne controle une ile.
+power=6
+id=4724
+type=Creature
+abilities=cantattack
+[/card]
+[card]
 toughness=2
 name=Ranger en-Vec
 mana={1}{W}{G}
@@ -1657,19 +1950,6 @@ type=Creature
 abilities=first strike
 [/card]
 [card]
-toughness=6
-name=Sea Monster
-mana={4}{U}{U}
-subtype=Serpent
-auto=aslongas(Island|opponentinplay) -cantattack
-rarity=C
-text=Le Monstre marin ne peut attaquer a moins que le joueur defenseur ne controle une ile.
-power=6
-id=4724
-type=Creature
-abilities=cantattack
-[/card]
-[card]
 toughness=1
 name=Mogg Fanatic
 mana={R}
@@ -1679,6 +1959,18 @@ rarity=C
 text=Sacrifiez le Mogg fanatique : Le Mogg fanatique inflige 1 blessure a une cible, creature ou joueur.
 power=1
 id=4832
+type=Creature
+[/card]
+[card]
+toughness=3
+name=Crazed Armodon
+mana={2}{G}{G}
+subtype=Elephant
+auto={G}:3/0 && trample && @next end:destroy limit:1
+rarity=R
+text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at end of turn. Play this ability only once each turn.
+power=3
+id=4754
 type=Creature
 [/card]
 [card]
@@ -1738,4 +2030,17 @@ name=Perish
 id=4676
 type=Sorcery
 mana={2}{B}
+[/card]
+[card]
+toughness=2
+name=Mogg Conscripts
+mana={R}
+subtype=Goblin
+auto=@movedTo(creature|mystack):-cantattack
+rarity=C
+text=Mogg Conscripts can't attack unless you've played a creature spell this turn.
+power=2
+id=4831
+type=Creature
+abilities=cantattack
 [/card]
