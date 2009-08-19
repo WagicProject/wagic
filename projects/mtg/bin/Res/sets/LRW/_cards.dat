@@ -393,7 +393,7 @@ toughness=5
 [/card]
 [card]
 text={W}, {T}: Harpoon Sniper deals X damage to target attacking or blocking creature, where X is the number of Merfolk you control.
-auto={W}{T}:foreach(merfolk|myinplay) damage:1 target(creature[attacking,blocking])
+auto={W}{T}:foreach(merfolk|myinplay) damage:1 target(creature[attacking;blocking])
 id=139407
 name=Harpoon Sniper
 rarity=U

@@ -1565,12 +1565,13 @@ abilities=flying
 rarity=C
 [/card]
 [card]
+text=Destroy target artifact or enchantment. You gain 4 life.
 id=189875
 name=Solemn Offering
 mana={2}{W}
 type=Sorcery
-text=Destroy target artifact or enchantment. You gain 4 life.
 target=artifact,enchantment
+auto=destroy
 auto=life:4
 rarity=C
 [/card]
