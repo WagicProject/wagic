@@ -272,7 +272,7 @@ power=2
 toughness=2
 text=Other Zombie creatures you control get +1/+1. {2}{B}, {T}: Exile target creature card from a graveyard. Put a 2/2 black Zombie creature token onto the battlefield.
 auto=lord(zombie|myBattlefield) 1/1 other
-auto={2}{B}{T}: moveTo(Exile) target(creature|graveyard) && token(Zombie,Creature Zombie,2/2,black)
+auto={2}{B}{T}:moveTo(Exile) target(creature|graveyard) && token(Zombie,Creature Zombie,2/2,black)
 rarity=R
 [/card]
 [card]
@@ -1233,8 +1233,8 @@ name=Overrun
 mana={2}{G}{G}{G}
 type=Sorcery
 text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
-auto=lord(creature|myBattlefield) 3/3
-auto=lord(creature|myBattlefield) trample
+auto=lord(creatures|myBattlefield) 3/3
+auto=lord(creatures|myBattlefield) trample
 rarity=U
 [/card]
 [card]

@@ -648,7 +648,7 @@ id=4762
 name=Frog Tongue
 color=C
 rarity=U
-mana={1}{G
+mana={1}{G}
 type=Enchantment
 subtype=Aura
 [/card]
