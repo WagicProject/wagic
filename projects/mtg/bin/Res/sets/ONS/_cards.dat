@@ -146,16 +146,6 @@ toughness=4
 rarity=U
 [/card]
 [card]
-id=10720
-name=Cruel Revival
-mana={4}{B}
-type=Instant
-text=Destroy target non-Zombie creature. It can't be regenerated. Return up to one target Zombie card from your graveyard to your hand.
-auto=bury target(creature[-Zombie])
-auto=may moveto(myhand) target(Zombie|mygraveyard)
-rarity=C
-[/card]
-[card]
 id=39523
 name=Daru Cavalier
 mana={3}{W}
