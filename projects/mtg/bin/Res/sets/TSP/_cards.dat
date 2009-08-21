@@ -327,7 +327,7 @@ subtype=Human Spellshaper
 power=1
 toughness=1
 text={1}{W}, {T}, Discard a card: Put two 1/1 white Citizen creature tokens into play.
-auto={1}{W}{T}{S(*|myhand)}:token(Citizen,creature citizen, 1/1, white)*2
+auto={1}{W}{T}{S(*|myhand)}:token(Citizen,creature citizen, 1/1, white) && token(Citizen,creature citizen, 1/1, white)
 rarity=C
 [/card]
 [card]
