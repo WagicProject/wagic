@@ -128,8 +128,10 @@ void GuiMana::Render()
 bool remove_dead(ManaIcon* m) { return ManaIcon::DEAD != m->mode; }
 void GuiMana::Update(float dt)
 {
-  for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
-    (*it)->Update(dt);
+  {
+    for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
+      (*it)->Update(dt);
+  }
   vector<ManaIcon*>::iterator it = partition(manas.begin(), manas.end(), &remove_dead);
   if (it != manas.end())
     {
