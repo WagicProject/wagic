@@ -257,6 +257,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\CardSelector.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\ConstraintResolver.cpp"
 				>
 			</File>
@@ -369,7 +373,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GuiAvatars.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\GuiBackground.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GuiCardsController.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\GuiCombat.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\GuiFrame.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\GuiHand.cpp"
 				>
 			</File>
 			<File
@@ -377,7 +401,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GuiMana.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GuiPhaseBar.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\GuiPlay.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\GuiStatic.cpp"
 				>
 			</File>
 			<File
@@ -458,6 +494,10 @@
 			</File>
 			<File
 				RelativePath=".\src\PlayGuiObjectController.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Pos.cpp"
 				>
 			</File>
 			<File
@@ -590,6 +630,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\CardSelector.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\config.h"
 				>
 			</File>
@@ -674,7 +718,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\GuiAvatars.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\GuiBackground.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\GuiCardsController.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\GuiCombat.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\GuiFrame.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\GuiHand.h"
 				>
 			</File>
 			<File
@@ -682,7 +746,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\GuiMana.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\GuiPhaseBar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\GuiPlay.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\GuiStatic.h"
 				>
 			</File>
 			<File
@@ -746,6 +822,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\OSD.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\PhaseRing.h"
 				>
 			</File>
@@ -763,6 +843,10 @@
 			</File>
 			<File
 				RelativePath=".\include\PlayGuiObjectController.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Pos.h"
 				>
 			</File>
 			<File

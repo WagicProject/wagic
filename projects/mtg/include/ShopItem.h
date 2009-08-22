@@ -53,6 +53,7 @@ class ShopItem:public JGuiObject{
 
 class ShopItems:public JGuiController,public JGuiListener{
  private:
+  int showList;
   PlayerData * playerdata;
   PriceList * pricelist;
   int  mX, mY, mHeight;

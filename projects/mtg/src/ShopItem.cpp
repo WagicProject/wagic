@@ -7,17 +7,19 @@
 #include <hge/hgedistort.h>
 
 
-  float ShopItems::_x1[] = { 40,  3, 23, 99,142,182, 90,132,177,106,163};
-  float ShopItems::_y1[] = {156,174,194,166,166,162,184,185,180,211,208};
 
-  float ShopItems::_x2[] = { 44, 25, 64,128,171,211,121,165,209,143,200};
-  float ShopItems::_y2[] = {147,163,190,166,166,162,184,185,180,211,208};
+  float ShopItems::_x1[] = { 79, 20, 27,103,154,187,102,145,199,133,183};
+  float ShopItems::_y1[] = {150,193,222,167,164,156,195,190,176,220,220};
 
-  float ShopItems::_x3[] = { 86, 47, 12, 85,133,177, 73,120,170, 88,153};
-  float ShopItems::_y3[] = {152,177,216,181,180,176,203,204,198,237,232};
+  float ShopItems::_x2[] = {103, 49, 73,135,183,213,138,181,231,171,225};
+  float ShopItems::_y2[] = {155,180,218,166,166,154,195,186,177,225,216};
 
-  float ShopItems::_x4[] = { 86, 66, 58,118,164,207,108,156,205,130,199};
-  float ShopItems::_y4[] = {145,167,211,181,180,176,203,204,198,237,232};
+  float ShopItems::_x3[] = { 48, 60, 10, 96,139,190, 81,146,189, 98,191};
+  float ShopItems::_y3[] = {163,202,255,183,180,170,219,212,195,250,251};
+
+  float ShopItems::_x4[] = { 74, 88, 64,131,171,221,123,187,225,141,237};
+  float ShopItems::_y4[] = {167,187,248,182,182,168,219,208,196,258,245};
+
 
 ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thumb,  float _xy[], bool hasFocus, int _price): JGuiObject(id), mFont(font), mText(text), quad(_quad), thumb(_thumb), price(_price)
 {
@@ -160,7 +162,7 @@ void ShopItem::Render(){
     }else{
       //      if (card) CardGui::alternateRender(card,NULL,SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
     }
-    mFont->DrawString(mText.c_str(),  100,  SCREEN_HEIGHT - 30);
+    mFont->DrawString(mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 16,JGETEXT_CENTER);
   }
 }
 
@@ -265,9 +267,16 @@ void ShopItems::Update(float dt){
 	dialog->Update(dt);
       }
     }else{
+    u32 buttons[] = {PSP_CTRL_LEFT,PSP_CTRL_DOWN,PSP_CTRL_RIGHT,PSP_CTRL_UP,PSP_CTRL_SQUARE};
+    for (int i = 0; i < 5; ++i){
+      if (JGE::GetInstance()->GetButtonClick(buttons[i])){
+        showList = 500;
+      }
+    }
       SAFE_DELETE(dialog);
       JGuiController::Update(dt);
     }
+
   }
 
 }

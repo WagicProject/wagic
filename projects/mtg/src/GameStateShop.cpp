@@ -166,6 +166,7 @@ void GameStateShop::Render()
 
   itemFont->SetColor(ARGB(255,255,255,255));
   char c[4096];
+  r->FillRect(0,SCREEN_HEIGHT-17,SCREEN_WIDTH,17,ARGB(128,0,0,0));
   sprintf(c, _("press [] to refresh").c_str());
   unsigned int len = 4 + itemFont->GetStringWidth(c);
   itemFont->DrawString(c,SCREEN_WIDTH-len,SCREEN_HEIGHT-12);
