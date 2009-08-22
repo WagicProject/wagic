@@ -43,8 +43,6 @@ GameApp::GameApp(): JApp()
   players[0] = 0;
   players[1] = 0;
   gameType = GAME_TYPE_CLASSIC;
-  //gameType = GAME_TYPE_MOMIR;
-
 
 }
 
@@ -97,6 +95,8 @@ void GameApp::Create()
 
   CommonRes->CreateTexture("sets/back.jpg");
   CommonRes->CreateQuad("back", "sets/back.jpg", 0, 0, 200, 285);
+  CommonRes->GetQuad("back")->SetHotSpot(100, 145);
+
   CommonRes->CreateTexture("sets/back_thumb.jpg");
   CommonRes->CreateQuad("back_thumb", "sets/back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT);
 
@@ -166,8 +166,7 @@ void GameApp::Create()
   //CommonRes->CreateTexture("graphics/interrupt.png");
   //CommonRes->CreateQuad("interrupt", "graphics/interrupt.png", 0, 0, 256, 128);
 
-  cache = NEW TexturesCache();
-  collection = NEW MTGAllCards(cache);
+  collection = NEW MTGAllCards(&cache);
 
 
   Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", CommonRes->GetQuad("particles"));
@@ -233,7 +232,6 @@ void GameApp::Destroy()
     collection->destroyAllCards();
     SAFE_DELETE(collection);
   }
-  SAFE_DELETE(cache);
   SampleCache::DestroyInstance();
   delete(DeckStats::GetInstance());
 

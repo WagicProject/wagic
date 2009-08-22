@@ -215,7 +215,7 @@ void GameStateMenu::fillScroller(){
   scroller->Add(buff2);
 
 
-  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
+  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", &cache,mParent->collection));
   int totalCards = ddw->getCount();
   if (totalCards){
     sprintf(buff2, _("You have a total of %i cards in your collection").c_str(),totalCards);
@@ -401,7 +401,7 @@ void GameStateMenu::createUsersFirstDeck(int setId){
   sprintf(buf, "setID: %i", setId);
   OutputDebugString(buf);
 #endif
-  MTGDeck *mCollection = NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache, mParent->collection);
+  MTGDeck *mCollection = NEW MTGDeck(RESPATH"/player/collection.dat", &cache, mParent->collection);
   //10 lands of each
   int sets[] = {setId};
   if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){

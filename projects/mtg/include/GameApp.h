@@ -70,7 +70,6 @@ class GameApp:	public JApp
   int players[2];
   MTGAllCards * collection;
   int gameType;
-  TexturesCache *  cache;
   CardEffect *effect;
 
 

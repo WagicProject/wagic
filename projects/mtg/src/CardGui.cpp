@@ -29,6 +29,7 @@ void CardView::Update(float dt)
   PlayGuiObject::Update(dt);
 }
 
+
 void CardView::Render()
 {
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
@@ -102,29 +103,11 @@ void CardView::Render()
   PlayGuiObject::Render();
 }
 
-void CardGui::RenderBig(const Pos& pos){
-  JRenderer * renderer = JRenderer::GetInstance();
 
-  if (quad){
-    quad->SetColor(ARGB((int)pos.actA,255,255,255));
-    float scale = pos.actZ * 257.f / quad->mHeight;
-    renderer->RenderQuad(quad, pos.actX, pos.actY, pos.actT, scale, scale);
-    return;
-  }
-
-  JQuad * q;
-  if ((q = cache.getThumb(card)))
-    {
-      float scale = pos.actZ * 250 / q->mHeight;
-      q->SetColor(ARGB((int)pos.actA,255,255,255));
-      renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
-      return;
-    }
-
-  // If we come here, we do not have the picture.
-
+void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos){
   // Draw the "unknown" card model
-  MTGCard * mtgcard = card->model;
+  JRenderer * renderer = JRenderer::GetInstance();
+  JQuad * q;
   switch(card->getColor())
     {
     case Constants::MTG_COLOR_GREEN: q = GameApp::CommonRes->GetQuad("green"); break;
@@ -165,7 +148,7 @@ void CardGui::RenderBig(const Pos& pos){
   if (card->isCreature())
     {
       char buffer[32];
-      sprintf(buffer, "%i/%i", card->power, card->life);
+      sprintf(buffer, "%i/%i", card->power, card->toughness);
       float w = font->GetStringWidth(buffer) * 0.8;
       font->DrawString(buffer, pos.actX + 65 - w / 2, pos.actY + 106);
   }
@@ -223,6 +206,30 @@ void CardGui::RenderBig(const Pos& pos){
   }
 
   font->SetScale(backup_scale);
+}
+
+void CardGui::RenderBig(const Pos& pos){
+  JRenderer * renderer = JRenderer::GetInstance();
+
+  if (quad){
+    quad->SetColor(ARGB((int)pos.actA,255,255,255));
+    float scale = pos.actZ * 257.f / quad->mHeight;
+    renderer->RenderQuad(quad, pos.actX, pos.actY, pos.actT, scale, scale);
+    return;
+  }
+
+  JQuad * q;
+  if ((q = cache.getThumb(card)))
+    {
+      float scale = pos.actZ * 250 / q->mHeight;
+      q->SetColor(ARGB((int)pos.actA,255,255,255));
+      renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
+      return;
+    }
+
+  // If we come here, we do not have the picture.
+  MTGCard * mtgcard = card->model;
+  alternateRender(card,manaIcons,pos);
 }
 
 

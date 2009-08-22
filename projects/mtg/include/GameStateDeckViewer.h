@@ -144,7 +144,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
     playerdata = NEW PlayerData(mParent->collection);
     sellMenu = NULL;
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", &cache,mParent->collection));
     displayed_deck =  myCollection;
     myDeck = NULL;
     menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
@@ -607,9 +607,9 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
     float x_center = x_center_0 + cos((rotation + 8 - id)*M_PI/12)*(right_border-x_center_0);
     float scale = max_scale/ 1.12 * cos((x_center-x_center_0)*1.5/(right_border - x_center_0) ) + 0.2 * max_scale * cos (cos((x_center-x_center_0)*0.15/(right_border - x_center_0) ));
-    float x =  x_center - 100*scale;
+    float x =  x_center; // ;
 
-    float y = (SCREEN_HEIGHT - 285*scale)/2 + SCREEN_HEIGHT*mSlide*(scale+0.2);
+    float y = (SCREEN_HEIGHT)/2 + SCREEN_HEIGHT*mSlide*(scale+0.2);
 
     int alpha = (int) (255 * (scale + 1.0 - max_scale));
 
@@ -617,7 +617,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     JQuad * quad = backQuad;
 
     int showName = 1;
-    if (mParent->cache->isInCache(card) || last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY){
+    if (cache.isInCache(card) || last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY){
       quad = cache.getQuad(card);
       showName = 0;
     }
@@ -635,7 +635,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
         sprintf(buffer, "%s", _(card->getName()).c_str());
         float scaleBackup = mFont->GetScale();
         mFont->SetScale(scale);
-	      mFont->DrawString(buffer,x,y);
+	      mFont->DrawString(buffer,x - 100*scale ,y - 145*scale);
         mFont->SetScale(scaleBackup);
       }
     }else{
@@ -649,8 +649,8 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }
     if (last_user_activity < 3){
       int fontAlpha = alpha;
-      float qtY  = y + 0 * scale;
-      float qtX = x + 120*scale;
+      float qtY  = y -135*scale;
+      float qtX = x + 40*scale;
       char buffer[4096];
       sprintf(buffer, "x%i", displayed_deck->cards[card]);
       JLBFont * font = mFont;
@@ -725,12 +725,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   int loadDeck(int deckid){
     SAFE_DELETE(myCollection);
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", mParent->cache,mParent->collection));
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", &cache,mParent->collection));
     displayed_deck = myCollection;
     char filename[4096];
     sprintf(filename, RESPATH"/player/deck%i.txt", deckid);
     SAFE_DELETE(myDeck);
-    myDeck = NEW DeckDataWrapper(NEW MTGDeck(filename, mParent->cache,mParent->collection));
+    myDeck = NEW DeckDataWrapper(NEW MTGDeck(filename, &cache,mParent->collection));
     MTGCard * current = myDeck->getNext();
     while (current){
       int howmanyinDeck = myDeck->cards[current];

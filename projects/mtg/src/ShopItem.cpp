@@ -68,9 +68,10 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
   quantity = 1 + (rand() % 4);
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
-  //  thumb = card->getThumb();
-  //  if (!thumb)
-  thumb = GameApp::CommonRes->GetQuad("back_thumb");
+
+  thumb = cache.getThumb(card);
+
+  if (!thumb) thumb = GameApp::CommonRes->GetQuad("back_thumb");
   if (thumb){
      mesh=NEW hgeDistortionMesh(2,2);
      mesh->SetTexture(thumb->mTex);
@@ -158,9 +159,9 @@ void ShopItem::Render(){
     if (card) quad = cache.getQuad(card);
     if (quad){
       quad->SetColor(ARGB(255,255,255,255));
-      renderer->RenderQuad(quad,SCREEN_WIDTH/2 + 50,5,0, 0.9f,0.9f);
+      renderer->RenderQuad(quad,SCREEN_WIDTH - 105,SCREEN_HEIGHT/2 - 5,0, 0.9f,0.9f);
     }else{
-      //      if (card) CardGui::alternateRender(card,NULL,SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
+      //if (card) CardGui::alternateRender(card,NULL,SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
     }
     mFont->DrawString(mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 16,JGETEXT_CENTER);
   }
