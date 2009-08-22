@@ -161,7 +161,8 @@ void ShopItem::Render(){
       quad->SetColor(ARGB(255,255,255,255));
       renderer->RenderQuad(quad,SCREEN_WIDTH - 105,SCREEN_HEIGHT/2 - 5,0, 0.9f,0.9f);
     }else{
-      //if (card) CardGui::alternateRender(card,NULL,SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
+      if (card) CardGui::alternateRender(card,Pos(SCREEN_WIDTH/2 + 100 + 20,133,0.9f* 285/250, 0,255));
+
     }
     mFont->DrawString(mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 16,JGETEXT_CENTER);
   }

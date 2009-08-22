@@ -104,7 +104,7 @@ void CardView::Render()
 }
 
 
-void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos){
+void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   // Draw the "unknown" card model
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * q;
@@ -128,11 +128,12 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos
   font->SetScale(0.8 * pos.actZ);
 
   {
-    const char* name = _(card->getName()).c_str();
+    char name[4096];
+    sprintf(name, _(card->getName()).c_str());
     float w = font->GetStringWidth(name) * 0.8 * pos.actZ;
     if (w > BigWidth - 30)
       font->SetScale((BigWidth - 30) / w);
-    font->DrawString(name, pos.actX + 22 - BigWidth / 2, pos.actY + 22 - BigHeight / 2);
+    font->DrawString(name, pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (25 - BigHeight / 2)*pos.actZ);
   }
 
   // Write the description
@@ -141,7 +142,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos
     const std::vector<string> txt = card->formattedText();
     unsigned i = 0;
     for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
-      font->DrawString(it->c_str(), pos.actX + 22 - BigWidth / 2, pos.actY + 35 + 11 * i);
+      font->DrawString(it->c_str(), pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (-BigHeight/2 + 80 + 11 * i)*pos.actZ);
   }
 
   // Write the strength
@@ -150,7 +151,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos
       char buffer[32];
       sprintf(buffer, "%i/%i", card->power, card->toughness);
       float w = font->GetStringWidth(buffer) * 0.8;
-      font->DrawString(buffer, pos.actX + 65 - w / 2, pos.actY + 106);
+      font->DrawString(buffer, pos.actX + (65 - w / 2)*pos.actZ, pos.actY + (106)*pos.actZ);
   }
 
   // Mana
@@ -160,18 +161,20 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos
     unsigned int j = 0;
     unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
     unsigned char v = t + 127;
+    float yOffset = -112;
     while ((h = manacost->getHybridCost(j)))
       {
 	float scale = pos.actZ * 0.05 * cosf(2*M_PI*((float)t)/256.0);
+  
 	if (scale < 0)
 	  {
-	    renderer->RenderQuad(manaIcons[h->color1], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.4 + scale, 0.4 + scale);
-	    renderer->RenderQuad(manaIcons[h->color2], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.4 - scale, 0.4 - scale);
+	    renderer->RenderQuad(manaIcons[h->color1], pos.actX + (-12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(t-35))/256.0))*pos.actZ, 0, 0.4 + scale, 0.4 + scale);
+	    renderer->RenderQuad(manaIcons[h->color2], pos.actX + (-12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(v-35))/256.0))*pos.actZ, 0, 0.4 - scale, 0.4 - scale);
 	  }
 	else
 	  {
-	    renderer->RenderQuad(manaIcons[h->color2], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.4 - scale, 0.4 - scale);
-	    renderer->RenderQuad(manaIcons[h->color1], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.4 + scale, 0.4 + scale);
+	    renderer->RenderQuad(manaIcons[h->color2], pos.actX + (- 12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(v-35))/256.0))*pos.actZ, 0, 0.4 - scale, 0.4 - scale);
+	    renderer->RenderQuad(manaIcons[h->color1], pos.actX + (- 12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(t-35))/256.0))*pos.actZ, 0, 0.4 + scale, 0.4 + scale);
 	  }
 	++j;
       }
@@ -179,7 +182,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos
       {
 	for (int cost = manacost->getCost(i); cost > 0; --cost)
 	  {
-	    renderer->RenderQuad(manaIcons[i], pos.actX - 12*j + 75, pos.actY - 115, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+	    renderer->RenderQuad(manaIcons[i], pos.actX + (-12*j + 75)*pos.actZ, pos.actY + (yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
 	    ++j;
 	  }
       }
@@ -188,12 +191,13 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos
       {
 	char buffer[10];
 	sprintf(buffer, "%d", cost);
-	renderer->RenderQuad(manaIcons[0], pos.actX - 12*j + 75, pos.actY - 115, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+	renderer->RenderQuad(manaIcons[0], pos.actX + (- 12*j + 75)*pos.actZ, pos.actY +(yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
 	float w = font->GetStringWidth(buffer);
-	font->DrawString(buffer, pos.actX - 12*j + 76 - w/2, pos.actY - 120);
+	font->DrawString(buffer, pos.actX +(- 12*j + 76 - w/2)*pos.actZ, pos.actY + (yOffset - 5)*pos.actZ);
       }
   }
 
+  //types
   {
     string s = "";
     for (int i = card->nb_types - 1; i > 0; --i)
@@ -202,7 +206,7 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos
 	s += " - ";
       }
     s += _(Subtypes::subtypesList->find(card->types[0]));
-    font->DrawString(s.c_str(), pos.actX + 22 - BigWidth / 2, pos.actY + 17);
+    font->DrawString(s.c_str(), pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
 
   font->SetScale(backup_scale);
@@ -229,7 +233,7 @@ void CardGui::RenderBig(const Pos& pos){
 
   // If we come here, we do not have the picture.
   MTGCard * mtgcard = card->model;
-  alternateRender(card,manaIcons,pos);
+  alternateRender(card,pos);
 }
 
 

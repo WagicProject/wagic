@@ -28,7 +28,7 @@ struct CardGui : public PlayGuiObject {
   virtual void Render() = 0;
   void RenderBig(const Pos&);
   virtual void Update(float dt) = 0;
-  static void alternateRender(MTGCard * card, JQuad ** manaIcons, const Pos& pos);
+  static void alternateRender(MTGCard * card, const Pos& pos);
   virtual ostream& toString(ostream&) const;
 };
 

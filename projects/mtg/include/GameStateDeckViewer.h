@@ -639,7 +639,8 @@ class GameStateDeckViewer: public GameState, public JGuiListener
         mFont->SetScale(scaleBackup);
       }
     }else{
-      //      CardGui::alternateRender(card, mIcons, x_center, y + 142.5*scale, 0, scale);
+      Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
+      CardGui::alternateRender(card, pos);
       quad = cache.getThumb(card);
       if (quad){
          float _scale = 285 * scale / quad->mHeight;
