@@ -4,7 +4,7 @@
 #include <JGE.h>
 #include "Effects.h"
 
-class CardGui;
+struct CardGui;
 
 class CardEffect : public Effect
 {

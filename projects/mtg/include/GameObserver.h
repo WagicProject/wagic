@@ -15,7 +15,7 @@
 class MTGGamePhase;
 class MTGAbility;
 class MTGCardInstance;
-class CardGui;
+struct CardGui;
 class Player;
 class TargetChooser;
 

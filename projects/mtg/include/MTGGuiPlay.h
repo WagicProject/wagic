@@ -8,7 +8,7 @@
 
 class Player;
 class GameObserver;
-class CardGui;
+struct CardGui;
 
 class MTGGuiPlay: public PlayGuiObjectController {
  protected:
