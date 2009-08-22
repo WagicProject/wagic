@@ -34,19 +34,19 @@ ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1
 
   particleSys->FireAt(x, y);
 
-  zoomP1 = 0.2 + 0.1 * drand48();
-  zoomP2 = 0.2 + 0.1 * drand48();
-  zoomP3 = 2 * M_PI * drand48();
-  zoomP4 = 2 * M_PI * drand48();
-  zoomP5 = 0.5 + drand48();
-  zoomP6 = 0.5 + drand48();
+  zoomP1 = 0.2 + 0.1 * ((float)rand() / (float)RAND_MAX);
+  zoomP2 = 0.2 + 0.1 * ((float)rand() / (float)RAND_MAX);
+  zoomP3 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
+  zoomP4 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
+  zoomP5 = 0.5 + ((float)rand() / (float)RAND_MAX);
+  zoomP6 = 0.5 + ((float)rand() / (float)RAND_MAX);
 
-  xP1 = 2 * M_PI * drand48();
-  xP2 = 5 + 30 * drand48();
-  xP3 = 0.5 + drand48();
-  yP1 = 2 * M_PI * drand48();
-  yP2 = 5 + 10 * drand48();
-  yP3 = 0.5 + drand48();
+  xP1 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
+  xP2 = 5 + 30 * ((float)rand() / (float)RAND_MAX);
+  xP3 = 0.5 + ((float)rand() / (float)RAND_MAX);
+  yP1 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
+  yP2 = 5 + 10 * ((float)rand() / (float)RAND_MAX);
+  yP3 = 0.5 + ((float)rand() / (float)RAND_MAX);
 
   actT = 0;
   tP1 = 0;

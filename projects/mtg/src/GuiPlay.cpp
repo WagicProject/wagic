@@ -4,6 +4,9 @@
 
 #define CARD_WIDTH (31)
 
+const float GuiPlay::HORZWIDTH = 300.0f;
+const float GuiPlay::VERTHEIGHT = 80.0f;
+
 void GuiPlay::CardStack::reset(float x, float y)
 {
   this->x = 0; baseX = x;

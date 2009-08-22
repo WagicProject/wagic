@@ -7,8 +7,8 @@
 class GuiPlay : public GuiLayer
 {
  public:
-  static const float HORZWIDTH = 300.0f;
-  static const float VERTHEIGHT = 80.0f;
+  static const float HORZWIDTH;
+  static const float VERTHEIGHT;
   typedef vector<CardView*>::iterator iterator;
 
  protected:
