@@ -40,7 +40,7 @@ class GuiHand : public GuiLayer
   ~GuiHand();
   void Update(float dt);
 
-  friend class HandLimitor;
+  friend struct HandLimitor;
 };
 
 class GuiHandOpponent : public GuiHand
