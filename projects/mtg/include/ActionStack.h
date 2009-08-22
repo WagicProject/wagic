@@ -45,6 +45,9 @@ class TargetChooser;
 
 class Interruptible: public PlayGuiObject, public Targetable{
  public:
+  //TODO : remove these when they are back in PlayGuiObject
+  float x, y;
+
   int state, display;
   MTGCardInstance * source;
   virtual void Entering(){mHasFocus = true;};
@@ -53,8 +56,8 @@ class Interruptible: public PlayGuiObject, public Targetable{
   virtual int resolve(){return 0;};
   virtual void Render(){};
   int typeAsTarget(){return TARGET_STACKACTION;};
- Interruptible(int id,bool hasFocus = false):PlayGuiObject(id,40,x,y,hasFocus){state=NOT_RESOLVED;display=0;source=NULL;};
- virtual const char *getDisplayName(){return "stack object";};
+ Interruptible(bool hasFocus = false):PlayGuiObject(40,x,y,hasFocus){state=NOT_RESOLVED;display=0;source=NULL;};
+  virtual const string getDisplayName(){return "stack object";};
 #if defined (WIN32) || defined (LINUX)
   virtual void Dump();
 #endif
@@ -79,7 +82,7 @@ class Spell: public Interruptible {
   ~Spell();
   int resolve();
   void Render();
-  const char *getDisplayName();
+  const string getDisplayName();
   virtual ostream& toString(ostream& out) const;
   MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);
   Player * getNextPlayerTarget(Player * previous = 0);
@@ -123,6 +126,7 @@ class DrawAction: public Interruptible {
 
 class ActionStack :public GuiLayer{
  protected:
+  GameObserver* game;
   int interruptDecision[2];
   float timer;
   int currentState;
@@ -165,7 +169,7 @@ class ActionStack :public GuiLayer{
   void Update(float dt);
   bool CheckUserInput(u32 key);
   virtual void Render();
-  ActionStack(int id, GameObserver* _game);
+  ActionStack(GameObserver* game);
   int resolve();
   int CombatDamages();
   int CombatDamages(int firststrike);

@@ -10,6 +10,7 @@
 #include "TargetChooser.h"
 #include "PhaseRing.h"
 #include "ReplacementEffects.h"
+#include "GuiStatic.h"
 
 class MTGGamePhase;
 class MTGAbility;
@@ -30,10 +31,9 @@ class GameObserver{
   int currentRound;
   int blockersAssigned;
 
-  
+
  public:
   int blockersSorted;
-  int forceShuffleLibrary[2];
   int turn;
   int forceShuffleLibraries();
   int targetListIsSet(MTGCardInstance * card);
@@ -78,11 +78,11 @@ class GameObserver{
   void untapPhase();
   void draw();
   int isInPlay(MTGCardInstance *  card);
-  int isACreature(MTGCardInstance *  card);
+  bool isCreature(MTGCardInstance *  card);
 
   void Update(float dt);
   void Render();
-  void ButtonPressed(int, PlayGuiObject*);
+  void ButtonPressed(PlayGuiObject*);
 
   int receiveEvent(WEvent * event);
 };

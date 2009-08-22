@@ -94,6 +94,6 @@ class GameApp:	public JApp
 
 };
 
-
+extern JQuad* manaIcons[7];
 
 #endif

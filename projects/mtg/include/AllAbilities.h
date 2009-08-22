@@ -12,6 +12,7 @@
 #include "Token.h"
 #include "Counters.h"
 #include "WEvent.h"
+#include "GuiStatic.h"
 
 #include <JGui.h>
 #include <hge/hgeparticle.h>
@@ -29,8 +30,7 @@ class TrCardAddedToZone:public TriggeredAbility{
 public:
   TargetChooser * toTc;
   TargetZoneChooser * fromTc;
-  TrCardAddedToZone(int id,MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), toTc(toTc),fromTc(fromTc){
-  }
+  TrCardAddedToZone(int id, MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), toTc(toTc), fromTc(fromTc){}
 
   int resolve(){
     return 0; //This is a trigger, this function should not be called
@@ -63,8 +63,8 @@ class AACounter: public ActivatedAbility{
   int nb;
   int power;
   int toughness;
- AACounter(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness, int nb,ManaCost * cost=NULL, int doTap = 0):ActivatedAbility(id,_source,cost,0,doTap),nb(nb),power(_power),toughness(_toughness){
-	  target=_target;
+ AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, int power, int toughness, int nb, ManaCost * cost = NULL, int doTap = 0) : ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness) {
+	  target = target;
  }
 
 
@@ -1962,10 +1962,10 @@ class AAladdinsLamp: public TargetAbility{
   int nbcards;
   int init;
 
- AAladdinsLamp(int _id, MTGCardInstance * card):TargetAbility(_id,card){
+ AAladdinsLamp(int id, MTGCardInstance * card) : TargetAbility(id,card) {
     cost = NEW ManaCost();
     cost->x();
-    cd = CardDisplay(1,game,SCREEN_WIDTH/2, SCREEN_HEIGHT/2,NULL);
+    cd = CardDisplay(1, game, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, NULL);
     int zones[] = {MTGGameZone::MY_LIBRARY};
     tc = NEW TargetZoneChooser(zones,1,source);
     nbcards = 0;
@@ -2485,7 +2485,7 @@ class AGlassesOfUrza:public MTGAbility{
   CardDisplay * display;
   bool isActive;
  AGlassesOfUrza(int _id, MTGCardInstance * _source):MTGAbility(_id, _source),isActive(false){
-    display = NEW CardDisplay(0, game,SCREEN_WIDTH/2, SCREEN_HEIGHT/2,NULL);
+    display = NEW CardDisplay(0, game, SCREEN_WIDTH/2, SCREEN_HEIGHT/2,NULL);
   }
 
   void Update(float dt){
@@ -2979,7 +2979,7 @@ class APestilence: public ActivatedAbility{
     for (int i = 0; i < 2 ; i++){
       MTGInPlay * inplay = game->players[i]->game->inPlay;
       for (int j = inplay->nb_cards - 1 ; j >=0; j--){
-	if (inplay->cards[j]->isACreature()) game->mLayers->stackLayer()->addDamage(source,inplay->cards[j],1);
+	if (inplay->cards[j]->isCreature()) game->mLayers->stackLayer()->addDamage(source,inplay->cards[j],1);
       }
       game->mLayers->stackLayer()->addDamage(source,game->players[i],1);
     }
@@ -3489,7 +3489,7 @@ class ASoulNet:public ActivatedAbility{
 
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     newDead = ((PutInGraveyard *) GameObserver::GetInstance()->mLayers->stackLayer()->getPrevious(NULL,ACTION_PUTINGRAVEYARD,RESOLVED_OK));
-    if (newDead && newDead != latest && newDead->card->isACreature())
+    if (newDead && newDead != latest && newDead->card->isCreature())
       return ActivatedAbility::isReactingToClick(card,mana);
     return 0;
   }

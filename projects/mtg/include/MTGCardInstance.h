@@ -20,6 +20,7 @@ class ManaCost;
 class UntapBlockers;
 class CardDescriptor;
 class Counters;
+class Pos;
 
 #include <list>
 using namespace std;
@@ -41,6 +42,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int setDefenser(MTGCardInstance * c);
   int setAttacker(int value);
  public:
+  Pos* view;
   int regenerateTokens;
   bool isToken;
   int stillInUse();
@@ -58,7 +60,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   Player * owner;
   Counters * counters;
   int typeAsTarget(){return TARGET_CARD;}
-  const char * getDisplayName();
+  const string getDisplayName();
   MTGCardInstance * target;
   void addType(int type);
 
@@ -94,7 +96,6 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int regenerate();
   int triggerRegenerate();
   Player * controller();
-  JQuad * getIcon();
 
   ~MTGCardInstance();
   int bury();

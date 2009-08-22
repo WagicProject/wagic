@@ -1311,7 +1311,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
 	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
 	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (current->basicAbilities[Constants::FLYING] && current->isACreature()){
+	  if (current->basicAbilities[Constants::FLYING] && current->isCreature()){
 	    game->mLayers->stackLayer()->addDamage(card, current, x);
 	  }
 	}
@@ -1348,7 +1348,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	      game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
 	      for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
 	        MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	        if (current->isACreature()){
+	        if (current->isCreature()){
 	          game->mLayers->stackLayer()->addDamage(card, current, x);
 	        }
 	      }
@@ -1372,13 +1372,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       int x = computeX(spell,card);
       for (int i = 0; i < 2 ; i++){
-	      game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
-	      for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-	        MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	        if (!current->basicAbilities[Constants::FLYING] && current->isACreature()){
-	          game->mLayers->stackLayer()->addDamage(card, current, x);
-	        }
-	      }
+	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
+	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
+	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
+	  if (!current->basicAbilities[Constants::FLYING] && current->isCreature()){
+	    game->mLayers->stackLayer()->addDamage(card, current, x);
+	  }
+	}
       }
       break;
     }
@@ -2286,69 +2286,79 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
 */
 
 
-   AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost , int doTap):MTGAbility(id, card), tap(doTap){
+AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost , int doTap):MTGAbility(id, card), tap(doTap){
 
-     LOG("==Creating ManaProducer Object");
-     aType=MTGAbility::MANA_PRODUCER;
-    cost = _cost;
-    output=_output;
-    x1 = 10;
-    y1 = 220;
-    Player * player = card->controller();
-    if (player == game->players[1]) y1 = 100;
-    x = x1;
-    y = y1;
-    animation = 0.f;
-    mParticleSys = NULL;
-    menutext = "";
+  LOG("==Creating ManaProducer Object");
+  aType = MTGAbility::MANA_PRODUCER;
+  cost = _cost;
+  output = _output;
+  cout << "!" << card->view << endl;
+  if (card->view)
+    {
+      x1 = card->view->actX; y1 = card->view->actY;
+    }
+  else
+    {
+      x1 = 10; y1 = 220;
+    }
+  Player * player = card->controller();
+  if (player == game->players[1]) y1 = 100;
+  x = x1;
+  y = y1;
+  animation = 0.f;
+  mParticleSys = NULL;
+  menutext = "";
 
-    int landColor = output->getMainColor();
+  int landColor = output->getMainColor();
 
-    if (landColor == Constants::MTG_COLOR_RED){
+  switch (landColor)
+    {
+    case Constants::MTG_COLOR_RED :
       mParticleSys = NEW hgeParticleSystem("graphics/manared.psi",GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == Constants::MTG_COLOR_BLUE){
+      break;
+    case Constants::MTG_COLOR_BLUE :
       mParticleSys = NEW hgeParticleSystem("graphics/manablue.psi", GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == Constants::MTG_COLOR_GREEN){
+      break;
+    case Constants::MTG_COLOR_GREEN :
       mParticleSys = NEW hgeParticleSystem("graphics/managreen.psi", GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == Constants::MTG_COLOR_BLACK){
+      break;
+    case Constants::MTG_COLOR_BLACK :
       mParticleSys = NEW hgeParticleSystem("graphics/manablack.psi", GameApp::CommonRes->GetQuad("particles"));
-    }else if (landColor == Constants::MTG_COLOR_WHITE){
+      break;
+    case Constants::MTG_COLOR_WHITE :
       mParticleSys = NEW hgeParticleSystem("graphics/manawhite.psi", GameApp::CommonRes->GetQuad("particles"));
-    }else{
+      break;
+    default :
       mParticleSys = NEW hgeParticleSystem("graphics/mana.psi", GameApp::CommonRes->GetQuad("particles"));
     }
 
+  LOG("==ManaProducer Object Creation successful !");
+}
 
-
-    LOG("==ManaProducer Object Creation successful !");
-  }
-
-  void AManaProducer::Update(float dt){
-    if (mParticleSys) mParticleSys->Update(dt);
-    if (animation){
-      x = (1.f - animation)*x1 + animation * x0;
-      y = (1.f - animation)*y1 + animation * y0;
-      if (mParticleSys) mParticleSys->MoveTo(x, y);
-      if (mParticleSys && animation == 1.f) mParticleSys->Fire();
-      animation -= 4 *dt;
-      if (!animation) animation = -1;
-      if (animation < 0){
-	      resolve();
-      }
+void AManaProducer::Update(float dt){
+  if (mParticleSys) mParticleSys->Update(dt);
+  if (animation){
+    x = (1.f - animation)*x1 + animation * x0;
+    y = (1.f - animation)*y1 + animation * y0;
+    if (mParticleSys) mParticleSys->MoveTo(x, y);
+    if (mParticleSys && animation == 1.f) mParticleSys->Fire();
+    animation -= 4 *dt;
+    if (!animation) animation = -1;
+    if (animation < 0){
+      resolve();
     }
-
   }
+}
 
-  void AManaProducer::Render(){
-    JRenderer * renderer = JRenderer::GetInstance();
-    if (animation){
-      renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-      if (mParticleSys) mParticleSys->Render();
-      // set normal blending
-      renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-    }
-
+void AManaProducer::Render(){
+  JRenderer * renderer = JRenderer::GetInstance();
+  if (animation){
+    //    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
+    //    if (mParticleSys) mParticleSys->Render();
+    // set normal blending
+    //    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
   }
+}
 
   int AManaProducer::isReactingToClick(MTGCardInstance *  _card, ManaCost * mana){
     int result = 0;
@@ -2387,17 +2397,21 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
     currentlyTapping++;
 
     animation = 1.f;
-    CardGui * cardg = game->mLayers->playLayer()->getByCard(source);
-    if (cardg){
-      x0 = cardg->x + 15;
-      y0 = cardg->y + 20;
-    }
 
-
-    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0 && currentlyTapping < 3){
+    if (options[Options::SFXVOLUME].number > 0 && currentlyTapping < 3){
       JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/mana.wav");
       if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
     }
+
+    for (int i = Constants::MTG_NB_COLORS - 2; i >= 1; --i)
+      {
+	for (int cost = output->getCost(i); cost > 0; --cost)
+	  {
+	    WEventEngageMana e(i, source);
+	    GameObserver::GetInstance()->receiveEvent(&e);
+	  }
+      }
+
     return 1;
   }
 

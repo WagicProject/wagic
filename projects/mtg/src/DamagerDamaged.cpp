@@ -6,7 +6,7 @@ Temporary objects that store the damages dealt to/from creatures during the comb
 */
 
 
-DamagerDamaged::DamagerDamaged(CardGui * cardg, Player * _damageSelecter, bool _hasFocus):CardGui(0, cardg->card,cardg->defaultHeight,cardg->x,cardg->y, _hasFocus){
+DamagerDamaged::DamagerDamaged(MTGCardInstance* card, Player * _damageSelecter, bool _hasFocus) : card(card){
   mCount = 0;
   damageSelecter = _damageSelecter;
   damageToDeal = card->power;
@@ -37,7 +37,7 @@ int DamagerDamaged::dealOneDamage(DamagerDamaged * target){
   damageToDeal--;
 #if defined (WIN32) || defined (LINUX)
   char buf[4096];
-  sprintf(buf, "==========\n%s can still deal %i damages\n=============\n", card->getName(), damageToDeal);
+  sprintf(buf, "==========\n%s can still deal %i damages\n=============\n", card->getName().c_str(), damageToDeal);
   OutputDebugString(buf);
 #endif
   return target->addDamage(1, this);
@@ -76,9 +76,10 @@ int DamagerDamaged::removeDamagesFrom(DamagerDamaged * source){
 void DamagerDamaged::Render(Player * currentPlayer){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  CardGui::Render();
+  //  CardGui::Render();
   char buf[4096];
 
+  /*
   if (currentPlayer != damageSelecter){
     if (hasLethalDamage()){
       mFont->DrawString("X",x,y);
@@ -92,4 +93,5 @@ void DamagerDamaged::Render(Player * currentPlayer){
     mFont->DrawString(buf,x+5, y+5);
   }
   mFont->SetColor(ARGB(255,255,255,255));
+  */
 }

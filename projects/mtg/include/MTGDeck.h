@@ -4,12 +4,6 @@
 #define MTG_ERROR -1
 
 #include "../include/MTGDefinitions.h"
-
-
-
-
-
-
 #include "../include/GameApp.h"
 #include "../include/TexturesCache.h"
 

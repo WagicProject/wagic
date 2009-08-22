@@ -6,7 +6,7 @@
 #include "../include/Damage.h"
 #include "../include/Translate.h"
 
-DamageResolverLayer::DamageResolverLayer(int id, GameObserver * _game):PlayGuiObjectController(id,  _game){
+DamageResolverLayer::DamageResolverLayer(GameObserver * game) : game(game){
   currentPhase = -1;
   remainingDamageSteps = 0;
   damageStack = NULL;
@@ -106,9 +106,9 @@ DamagerDamaged * DamageResolverLayer::addIfNotExists(MTGCardInstance * card, Pla
     DamagerDamaged * item = (DamagerDamaged *)mObjects[i];
     if (item->card == card) return item;
   }
-  CardGui * cardg = game->mLayers->playLayer()->getByCard(card);
-  DamagerDamaged * item = NEW DamagerDamaged(cardg, selecter, mCount == 0);
-  Add(item);
+  //  CardGui * cardg = game->mLayers->playLayer()->getByCard(card);
+  DamagerDamaged * item = NEW DamagerDamaged(card, selecter, mCount == 0);
+  //  Add(NEW TransientCardView(card->gui));
   mCurr = 0;
   return item;
 }
@@ -116,9 +116,11 @@ DamagerDamaged * DamageResolverLayer::addIfNotExists(MTGCardInstance * card, Pla
 void DamageResolverLayer::updateAllCoordinates(){
   for (int i = 0; i < mCount; i++){
     DamagerDamaged * item = (DamagerDamaged *)mObjects[i];
+    /*
     CardGui * cardg = game->mLayers->playLayer()->getByCard(item->card);
     item->x = cardg->x;
     item->y = cardg->y;
+    */
   }
 }
 
@@ -129,9 +131,11 @@ int DamageResolverLayer::updateCoordinates(MTGCardInstance * card){
     if (item->card != card) item = NULL ;
   }
   if (!item) return 0;
+  /*
   CardGui * cardg = game->mLayers->playLayer()->getByCard(card);
   item->x = cardg->x;
   item->y = cardg->y;
+  */
   return 1;
 }
 
@@ -181,7 +185,7 @@ int DamageResolverLayer::initResolve(){
 #endif
   currentSource = NULL;
   currentChoosingPlayer = game->currentPlayer;
-  damageStack = NEW DamageStack(mCount,game);
+  damageStack = NEW DamageStack(game);
   int strike = 0;
   if (remainingDamageSteps == 2) strike = 1;
 
@@ -436,7 +440,69 @@ bool DamageResolverLayer::CheckUserInput(u32 key){
   }else if (PSP_CTRL_SQUARE == key){
     return nextPlayer();
   }else{
-    return PlayGuiObjectController::CheckUserInput(key);
+    if (!mCount)
+      return false;
+    if (game != NULL){
+      if (mActionButton == key){
+	if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed()){
+	  game->ButtonPressed((PlayGuiObject *)mObjects[mCurr]);
+	  return true;
+	}
+      }
+      if (PSP_CTRL_CROSS == key){
+	game->cancelCurrentAction();
+	return true;
+      }
+    }
+
+    last_user_move = 0;
+    switch (key)
+      {
+      case PSP_CTRL_LEFT:
+	{
+	  int n = getClosestItem(DIR_LEFT);
+	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_LEFT))
+	    {
+	      mCurr = n;
+	      mObjects[mCurr]->Entering();
+	    }
+	  return true;
+	}
+      case PSP_CTRL_RIGHT:
+	{
+	  int n = getClosestItem(DIR_RIGHT);
+	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_RIGHT))
+	    {
+	      mCurr = n;
+	      mObjects[mCurr]->Entering();
+	    }
+	  return true;
+	}
+      case PSP_CTRL_UP:
+	{
+	  int n = getClosestItem(DIR_UP);
+	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+	    {
+	      mCurr = n;
+	      mObjects[mCurr]->Entering();
+	    }
+	  return true;
+	}
+      case PSP_CTRL_DOWN:
+	{
+	  int n = getClosestItem(DIR_DOWN);
+	  if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+	    {
+	      mCurr = n;
+	      mObjects[mCurr]->Entering();
+	    }
+	  return true;
+	}
+      case PSP_CTRL_TRIANGLE:
+	showBigCards = (showBigCards + 1) % 3;
+	return true;
+      }
+    return false;
   }
   return false;
 }
@@ -455,7 +521,7 @@ void DamageResolverLayer::Render(){
     mFont->DrawString(_("Blocking Player").c_str(), 0,0);
   }
   if (currentSource){
-    currentSource->RenderBig(10, 20);
+    //    currentSource->RenderBig(10, 20);
     mFont->DrawString(_("Current Damager:").c_str(), 10, 5);
   }
   for (int i = 0; i < mCount; i++){

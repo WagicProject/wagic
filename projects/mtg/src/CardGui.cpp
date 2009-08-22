@@ -1,3 +1,4 @@
+#include "JGE.h"
 #include "../include/config.h"
 #include "../include/CardGui.h"
 #include "../include/ManaCostHybrid.h"
@@ -6,6 +7,231 @@
 #include "../include/MTGDefinitions.h"
 #include <Vector2D.h>
 
+CardGui::CardGui(MTGCardInstance* card, float x, float y) : PlayGuiObject(Height, x, y, false), quad(cache.getQuad(card)), card(card) {}
+CardGui::CardGui(MTGCardInstance* card, const Pos& ref) : PlayGuiObject(Height, ref, false), quad(cache.getQuad(card)), card(card) {}
+
+CardView::CardView(MTGCardInstance* card, float x, float y) : CardGui(card, x, y) {
+  card->view = this;
+}
+
+CardView::CardView(MTGCardInstance* card, const Pos& ref) : CardGui(card, ref) {
+  card->view = this;
+}
+
+void CardView::Update(float dt)
+{
+  PlayGuiObject::Update(dt);
+}
+
+void CardView::Render()
+{
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+
+  JRenderer * renderer = JRenderer::GetInstance();
+  GameObserver * game = GameObserver::GetInstance();
+
+  TargetChooser * tc = NULL;
+  if (game) tc = game->getCurrentTargetChooser();
+
+  if (quad) {
+    const float scale = actZ * 40 / quad->mHeight;
+    renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
+    quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+    renderer->RenderQuad(quad, actX, actY, actT, scale, scale);
+  }
+  else {
+    int color = card->getColor();
+    MTGCard * mtgcard = card->model;
+    const float scale = actZ;
+
+    renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
+
+    mFont->SetColor(ARGB(static_cast<unsigned char>(actA), 0, 0, 0));
+
+    JQuad * icon = NULL;
+    if (card->hasSubtype("plains"))
+      icon = GameApp::CommonRes->GetQuad("c_white");
+    else if (card->hasSubtype("swamp"))
+      icon = GameApp::CommonRes->GetQuad("c_black");
+    else if (card->hasSubtype("forest"))
+      icon = GameApp::CommonRes->GetQuad("c_green");
+    else if (card->hasSubtype("mountain"))
+      icon = GameApp::CommonRes->GetQuad("c_red");
+    else if (card->hasSubtype("island"))
+      icon = GameApp::CommonRes->GetQuad("c_blue");
+    if (icon) icon->SetHotSpot(16,16);
+
+    {
+      JQuad* q;
+      // Draw the "unknown" card model
+      switch(card->getColor())
+	{
+	case Constants::MTG_COLOR_GREEN: q = GameApp::CommonRes->GetQuad("green_thumb"); break;
+	case Constants::MTG_COLOR_BLUE : q = GameApp::CommonRes->GetQuad("blue_thumb"); break;
+	case Constants::MTG_COLOR_RED  : q = GameApp::CommonRes->GetQuad("red_thumb"); break;
+	case Constants::MTG_COLOR_BLACK: q = GameApp::CommonRes->GetQuad("black_thumb"); break;
+	case Constants::MTG_COLOR_WHITE: q = GameApp::CommonRes->GetQuad("white_thumb"); break;
+	default: q = GameApp::CommonRes->GetQuad("black_thumb"); break;
+	}
+      q->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+      renderer->RenderQuad(q, actX, actY, actT, scale, scale);
+    }
+
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * actZ);
+    mFont->DrawString(card->getName().c_str(), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
+    if (icon) { icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255)); renderer->RenderQuad(icon, actX, actY, 0); }
+    if (tc && !tc->canTarget(card)) renderer->FillRect(actX - actZ*Width/2, actY - actZ*Height/2, actZ*Width, actZ*Height, ARGB(200,0,0,0));
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  }
+
+  if (card->isCreature()){
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    char buffer[200];
+    sprintf(buffer, "%i/%i",card->power,card->life);
+    renderer->FillRect(actX + 2, actY + 30 - 12, 25, 12, ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
+    mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+    mFont->DrawString(buffer, actX + 4, actY + 30 - 10);
+  }
+
+  PlayGuiObject::Render();
+}
+
+void CardGui::RenderBig(const Pos& pos){
+  JRenderer * renderer = JRenderer::GetInstance();
+
+  if (quad){
+    quad->SetColor(ARGB((int)pos.actA,255,255,255));
+    float scale = pos.actZ * 257.f / quad->mHeight;
+    renderer->RenderQuad(quad, pos.actX, pos.actY, pos.actT, scale, scale);
+    return;
+  }
+
+  JQuad * q;
+  if ((q = cache.getThumb(card)))
+    {
+      float scale = pos.actZ * 250 / q->mHeight;
+      q->SetColor(ARGB((int)pos.actA,255,255,255));
+      renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
+      return;
+    }
+
+  // If we come here, we do not have the picture.
+
+  // Draw the "unknown" card model
+  MTGCard * mtgcard = card->model;
+  switch(card->getColor())
+    {
+    case Constants::MTG_COLOR_GREEN: q = GameApp::CommonRes->GetQuad("green"); break;
+    case Constants::MTG_COLOR_BLUE : q = GameApp::CommonRes->GetQuad("blue"); break;
+    case Constants::MTG_COLOR_RED  : q = GameApp::CommonRes->GetQuad("red"); break;
+    case Constants::MTG_COLOR_BLACK: q = GameApp::CommonRes->GetQuad("black"); break;
+    case Constants::MTG_COLOR_WHITE: q = GameApp::CommonRes->GetQuad("white"); break;
+    default: q = GameApp::CommonRes->GetQuad("black"); break;
+    }
+  float scale = pos.actZ * 250 / q->mHeight;
+  q->SetColor(ARGB((int)pos.actA,255,255,255));
+  renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
+
+  // Write the title
+  JLBFont * font = GameApp::CommonRes->GetJLBFont("graphics/magic");
+  float backup_scale = font->GetScale();
+  font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
+  font->SetScale(0.8 * pos.actZ);
+
+  {
+    const char* name = _(card->getName()).c_str();
+    float w = font->GetStringWidth(name) * 0.8 * pos.actZ;
+    if (w > BigWidth - 30)
+      font->SetScale((BigWidth - 30) / w);
+    font->DrawString(name, pos.actX + 22 - BigWidth / 2, pos.actY + 22 - BigHeight / 2);
+  }
+
+  // Write the description
+  {
+    font->SetScale(0.8 * pos.actZ);
+    const std::vector<string> txt = card->formattedText();
+    unsigned i = 0;
+    for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
+      font->DrawString(it->c_str(), pos.actX + 22 - BigWidth / 2, pos.actY + 35 + 11 * i);
+  }
+
+  // Write the strength
+  if (card->isCreature())
+    {
+      char buffer[32];
+      sprintf(buffer, "%i/%i", card->power, card->life);
+      float w = font->GetStringWidth(buffer) * 0.8;
+      font->DrawString(buffer, pos.actX + 65 - w / 2, pos.actY + 106);
+  }
+
+  // Mana
+  {
+    ManaCost* manacost = card->getManaCost();
+    ManaCostHybrid* h;
+    unsigned int j = 0;
+    unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
+    unsigned char v = t + 127;
+    while ((h = manacost->getHybridCost(j)))
+      {
+	float scale = pos.actZ * 0.05 * cosf(2*M_PI*((float)t)/256.0);
+	if (scale < 0)
+	  {
+	    renderer->RenderQuad(manaIcons[h->color1], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.4 + scale, 0.4 + scale);
+	    renderer->RenderQuad(manaIcons[h->color2], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.4 - scale, 0.4 - scale);
+	  }
+	else
+	  {
+	    renderer->RenderQuad(manaIcons[h->color2], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.4 - scale, 0.4 - scale);
+	    renderer->RenderQuad(manaIcons[h->color1], pos.actX - 12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0), pos.actY - 115 + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.4 + scale, 0.4 + scale);
+	  }
+	++j;
+      }
+    for (int i = Constants::MTG_NB_COLORS - 2; i >= 1; --i)
+      {
+	for (int cost = manacost->getCost(i); cost > 0; --cost)
+	  {
+	    renderer->RenderQuad(manaIcons[i], pos.actX - 12*j + 75, pos.actY - 115, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+	    ++j;
+	  }
+      }
+    // Colorless mana
+    if (int cost = manacost->getCost(0))
+      {
+	char buffer[10];
+	sprintf(buffer, "%d", cost);
+	renderer->RenderQuad(manaIcons[0], pos.actX - 12*j + 75, pos.actY - 115, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+	float w = font->GetStringWidth(buffer);
+	font->DrawString(buffer, pos.actX - 12*j + 76 - w/2, pos.actY - 120);
+      }
+  }
+
+  {
+    string s = "";
+    for (int i = card->nb_types - 1; i > 0; --i)
+      {
+	s += _(Subtypes::subtypesList->find(card->types[i]));
+	s += " - ";
+      }
+    s += _(Subtypes::subtypesList->find(card->types[0]));
+    font->DrawString(s.c_str(), pos.actX + 22 - BigWidth / 2, pos.actY + 17);
+  }
+
+  font->SetScale(backup_scale);
+}
+
+
+
+MTGCardInstance* CardView::getCard() { return card; }
+
+TransientCardView::TransientCardView(MTGCardInstance* card, float x, float y) : CardView(card, x, y){}
+TransientCardView::TransientCardView(MTGCardInstance* card, const Pos& ref) : CardView(card, ref.actX, ref.actY) {};
+void TransientCardView::Render()
+{
+  CardView::Render();
+}
+
+
+/*
 void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float y, float rotation, float scale){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAGIC_FONT);
   float backup = mFont->GetScale();
@@ -35,31 +261,6 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
   mFont->SetRotation(rotation);
   mFont->SetScale(scale);
   int color = card->getColor();
-
-  points[0].x = -width/2;
-  points[0].y = -height/2 ;
-  points[1].x = width/2;
-  points[1].y = -height/2;
-  points[2].x = width/2;
-  points[2].y = height/2;
-  points[3].x = -width/2;
-  points[3].y = height/2;
-
-  for (int i=0; i < 4; i++){
-    points[i].x *= scale;
-    points[i].y *= scale;
-    points[i].Rotate(rotation);
-  }
-
-  if (rotation == 0){
-    renderer->FillRoundRect(x+points[0].x + 2  ,y+points[0].y +2 ,width*scale-8,height*scale-8,2,ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-    renderer->FillRect(x+points[0].x + 6 ,y+points[0].y + 6 ,width*scale-12,height*scale-12,bgcolor2);
-  }else{
-    for (int i=0; i < 4; i++){
-      renderer->DrawLine(x + points[i].x,y + points[i].y,x + points[(i+1)%4].x,y + points[(i+1)%4].y,bgcolor);
-    }
-  }
-
 
   ManaCost * manacost = card->getManaCost();
   int nbicons = 0;
@@ -110,77 +311,6 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
     mFont->DrawString(buf,x+v.x,y+v.y);
   }
 
-  if (!card->formattedTextInit){
-    std::string s(card->getText());
-    s = _(s);
-    std::string::size_type found=s.find_first_of("{}");
-    while (found!=string::npos)
-      {
-	s[found]='/';
-	found=s.find_first_of("{}",found+1);
-      }
-    std::string::size_type len = 24;
-    while (s.length() > 0){
-      std::string::size_type cut = s.find_first_of("., \t)", 0);
-      if (cut >= len || cut == string::npos){
-	card->formattedText.push_back(s.substr(0,len));
-	if (s.length() > len){
-	  s = s.substr(len,s.length()-len);
-	}else{
-	  s = "";
-	}
-      }else{
-	std::string::size_type newcut = cut;
-	while (newcut < len && newcut != string::npos){
-	  cut = newcut;
-	  newcut = s.find_first_of("., \t)", newcut + 1);
-	}
-	card->formattedText.push_back(s.substr(0,cut+1));
-	if (s.length() > cut+1){
-	  s = s.substr(cut+1,s.length() - cut - 1);
-	}else{
-	  s = "";
-	}
-      }
-    }
-    card->formattedTextInit = 1;
-  }
-
-
-
-  for (std::vector<string>::size_type i=0; i < card->formattedText.size(); i++){
-    sprintf(buf, "%s", card->formattedText[i].c_str());
-    v.x = (-width/2 + 12 )*scale;
-    v.y = (50 + static_cast<signed int>(16*i - height/2)) * scale;
-    v.Rotate(rotation);
-    mFont->DrawString(buf,x+v.x,y+v.y);
-  }
-
-
-
-  v.x = ((-width/2)+10) * scale;
-  v.y = ((-height/2) + 25) * scale;
-  v.Rotate(rotation);
-  int over = strlen(_(card->getName()).c_str()) - 23;
-  float multiply = 1.4;
-  if (over > 0){
-    multiply = 1.1;
-  }
-  mFont->SetScale(scale * multiply);
-
-  mFont->SetColor(ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
-  mFont->DrawString(_(card->getName()).c_str(),x+v.x,y+v.y);
-  mFont->SetScale(scale);
-  mFont->SetColor(ARGB(255,255,255,255));
-
-
-  if (card->isACreature()){
-    v.x = (width/2-40) * scale;
-    v.y = (height/2-30) * scale;
-    v.Rotate(rotation);
-    sprintf(buf,"%i/%i",card->power,card->toughness);
-    mFont->DrawString(buf,x+v.x,y+v.y);
-  }
 
   for (int i = card->nb_types-1; i>=0; i--){
     v.x = ((-width/2)+10) * scale;
@@ -194,9 +324,12 @@ void CardGui::alternateRender(MTGCard * card, JQuad ** manaIcons, float x, float
 }
 
 
-CardGui::CardGui(int id, MTGCardInstance * _card, float desiredHeight,float _x, float _y, bool hasFocus): PlayGuiObject(id, desiredHeight, _x,  _y,  hasFocus){
+CardGui::CardGui(int id, MTGCardInstance * _card, float desiredHeight, float x, float y, bool hasFocus): PlayGuiObject(id, desiredHeight, x, y, hasFocus){
   LOG("==Creating NEW CardGui Object. CardName:");
   LOG(_card->getName());
+
+  actX = x;
+  actY = y;
 
   card = _card;
   type = GUI_CARD;
@@ -227,7 +360,7 @@ void CardGui::Update(float dt){
 
   if  (card->changedZoneRecently > 0) alpha = 255.f - 255.f * card->changedZoneRecently;
   if (mParticleSys && card->changedZoneRecently == 1.f){
-    mParticleSys->MoveTo(x+15, y+2*mHeight/3);
+    mParticleSys->MoveTo(actX + 15, actY + 2 * mHeight / 3);
     mParticleSys->Fire();
   }
   if (card->changedZoneRecently){
@@ -242,30 +375,12 @@ void CardGui::Update(float dt){
       mParticleSys = NULL;
     }
   }
+
+  actX += 10 * dt * (x - actX);
+  actY += 10 * dt * (y - actY);
+
   PlayGuiObject::Update(dt);
 }
-
-void CardGui::RenderBig(float xpos, float ypos, int alternate){
-  JQuad * quad = NULL;
-  JRenderer * renderer = JRenderer::GetInstance();
-  if (xpos == -1){
-    xpos = 300;
-    if (x > SCREEN_WIDTH / 2)
-      xpos = 10;
-  }
-  if(ypos == -1)
-    ypos = 20;
-  if (!alternate){
-    quad = card->getQuad();
-    if (quad){
-      quad->SetColor(ARGB(220,255,255,255));
-      float scale = 257.f / quad->mHeight;
-      renderer->RenderQuad(quad, xpos   , ypos , 0.0f,scale,scale);
-    }else{
-      quad = card->getThumb();
-      alternate = 1;
-    }
-  }
 
 
   if (alternate){
@@ -299,43 +414,35 @@ void CardGui::Render(){
   float rotation = M_PI_2 * tap;
   float mScale = mHeight / 64;
   float myW = 45 * mScale;
-  float myH = 60*mScale;
+  float myH = 60 * mScale;
   GameObserver * game = GameObserver::GetInstance();
   TargetChooser * tc = NULL;
   if (game) tc = game->getCurrentTargetChooser();
-  float myX = x + (32 * tap * mScale);
-  float myY = y+(20 * tap * mScale);
+  float myX = actX + (32 * tap * mScale);
+  float myY = actY + (20 * tap * mScale);
   if (quad){
     mScale = mHeight / quad->mHeight;
     myH = mHeight;
     myW = quad->mWidth * mScale;
-    myX = x + (quad->mHeight/2 * tap * mScale);
-    myY = y+(quad->mWidth/2 * tap * mScale);
+    myX = actX + (quad->mHeight/2 * tap * mScale);
+    myY = actY + (quad->mWidth/2 * tap * mScale);
   }
 
   if (mHeight-defaultHeight){
-    if (card->isTapped()){
-      renderer->FillRect(myX + 1*(mHeight-defaultHeight) - myH , myY + 1*(mHeight-defaultHeight) , myH, myW,   ARGB(128,0,0,0));
-    }else{
-      renderer->FillRect(myX + 1*(mHeight-defaultHeight)  , myY + 1*(mHeight-defaultHeight) , myW,  myH, ARGB(128,0,0,0));
-    }
+    if (card->isTapped())
+      renderer->FillRect(myX + 1 * (mHeight - defaultHeight) - myH, myY + 1 * (mHeight - defaultHeight), myH, myW, ARGB(128,0,0,0));
+    else
+      renderer->FillRect(myX + 1 * (mHeight - defaultHeight), myY + 1 * (mHeight-defaultHeight), myW, myH, ARGB(128,0,0,0));
   }
 
    if(quad){
-    quad->SetColor(ARGB( alpha,255,255,255));
+    quad->SetColor(ARGB(alpha, 255, 255, 255));
 
-    if (tc){
-      if (!tc->canTarget(card)){
-	      quad->SetColor(ARGB( alpha,50,50,50));
-      }
-    }
-    renderer->RenderQuad(quad,  myX , myY , rotation,mScale,mScale);
-    quad->SetColor(ARGB( alpha,255,255,255));
+    if (tc && !tc->canTarget(card)) quad->SetColor(ARGB(alpha, 50, 50, 50));
+    renderer->RenderQuad(quad, myX, myY ,rotation, mScale, mScale);
+    quad->SetColor(ARGB(alpha, 255, 255, 255));
   }else{
     int color = card->getColor();
-
-
-
 
     char buffer[200];
     sprintf(buffer, "%s",card->getName());
@@ -355,46 +462,39 @@ void CardGui::Render(){
     }
     if (mIcon) mIcon->SetHotSpot(16,16);
     if (card->isTapped()){
-      renderer->FillRect(myX  - myH , myY  , myH, myW,   ARGB(255,(Constants::_r[color]) /2 + 50,(Constants::_g[color]) /2 + 50,(Constants::_b[color])/ 2 + 50));
-      renderer->DrawRect(myX  - myH , myY  , myH, myW,   ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
+      renderer->FillRect(myX - myH, myY, myH, myW, ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
+      renderer->DrawRect(myX - myH, myY, myH, myW, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
       mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.8 * mScale);
-      mFont->DrawString(buffer,myX - myH + 4, myY + 1);
-      if (mIcon) renderer->RenderQuad(mIcon,myX - myH/2, myY + myW/2,M_PI_2,mScale,mScale);
-      if (tc){
-        if (!tc->canTarget(card)){
-	        renderer->FillRect(myX  - myH , myY  , myH, myW,   ARGB(200,0,0,0));
-        }
-      }
+      mFont->DrawString(buffer, myX - (myH) + 4, myY + 1);
+      if (mIcon) renderer->RenderQuad(mIcon, myX - myH / 2,myY + myW / 2, M_PI_2, mScale, mScale);
+      if (tc && !tc->canTarget(card))
+	  renderer->FillRect(myX - myH, myY, myH, myW, ARGB(200,0,0,0));
     }else{
-      renderer->FillRect(myX   , myY , myW,  myH, ARGB(255,(Constants::_r[color]) /2 + 50,(Constants::_g[color]) /2 + 50,(Constants::_b[color]) /2 + 50));
-      renderer->DrawRect(myX   , myY , myW,  myH, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
+      renderer->FillRect(myX, myY , myW,  myH, ARGB(255,Constants::_r[color]/2+50,Constants::_g[color]/2+50,Constants::_b[color]/2+50));
+      renderer->DrawRect(myX, myY , myW,  myH, ARGB(255,Constants::_r[color],Constants::_g[color],Constants::_b[color]));
       mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * mScale);
-      mFont->DrawString(buffer,myX+4,myY + 1);
-      if (mIcon) renderer->RenderQuad(mIcon,myX + myW/2, myY + myH/2,0,mScale, mScale);
-      if (tc){
-        if (!tc->canTarget(card)){
-	        renderer->FillRect(myX   , myY , myW,  myH,   ARGB(200,0,0,0));
-        }
-      }
+      mFont->DrawString(buffer, myX + 4, myY + 1);
+      if (mIcon) renderer->RenderQuad(mIcon,myX + myW/2, myY + myH / 2, 0, mScale, mScale);
+      if (tc && !tc->canTarget(card))
+	renderer->FillRect(myX, myY, myW, myH, ARGB(200,0,0,0));
     }
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  }
+   }
 
   if (tc && tc->alreadyHasTarget(card)){
-    if (card->isTapped()){
-      renderer->FillRect(myX- myH , myY  , myH, myW,   ARGB(128,255,0,0));
-    }else{
-      renderer->FillRect(myX   , myY  , myW,  myH, ARGB(128,255,0,0));
-    }
+    if (card->isTapped())
+      renderer->FillRect(myX - myH, myY, myH, myW, ARGB(128,255,0,0));
+    else
+      renderer->FillRect(myX, myY, myW, myH, ARGB(128,255,0,0));
   }
 
-  if (card->isACreature()){
+  if (card->isCreature()){
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
     sprintf(buffer, "%i/%i",card->power,card->life);
-    renderer->FillRect(x+2,y + mHeight - 12, 25 , 12 ,ARGB(128,0,0,0));
+    renderer->FillRect(actX + 2, actY + mHeight - 12, 25, 12, ARGB(128,0,0,0));
     mFont->SetColor(ARGB(255,255,255,255));
-    mFont->DrawString(buffer,x+4,y + mHeight - 10);
+    mFont->DrawString(buffer, actX + 4, actY + mHeight - 10);
   }
 
   if (mParticleSys && card->changedZoneRecently > 0){
@@ -403,17 +503,33 @@ void CardGui::Render(){
     // set normal blending
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
   }
+
+  PlayGuiObject::Render();
 }
 
-
+float CardGui::Height()
+{
+  return card->getQuad()->mHeight;
+}
+float CardGui::Width()
+{
+  return card->getQuad()->mWidth;
+}
 
 CardGui::~CardGui(){
   LOG("==Destroying CardGui object");
   LOG(this->card->getName());
   LOG("==CardGui object destruction Successful");
 }
+*/
 
+ostream& CardView::toString(ostream& out) const
+{
+  return (CardGui::toString(out) << " : CardView ::: card : " << card
+	  << ";  actX,actY : " << actX << "," << actY << "; t : " << t
+	  << " ; actT : " << actT << " ; quad : " << quad);
+}
 ostream& CardGui::toString(ostream& out) const
 {
-  return (out << "CardGui ::: mParticleSys : " << mParticleSys << " ; alpha : " << alpha << " ; card : " << card);
+  return (out << "CardGui ::: x,y " << x << "," << y);
 }

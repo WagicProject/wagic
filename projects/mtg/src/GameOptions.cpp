@@ -22,22 +22,24 @@ const char* GameOptions::phaseInterrupts[] = {
 	"interrupt Cleanup",
 	"interrupt ---"
 };
+const string Options::MUSICVOLUME = "musicVolume";
+const string Options::SFXVOLUME = "sfxVolume";
+const string Options::DIFFICULTY_MODE_UNLOCKED = "prx_handler"; //huhu
+const string Options::MOMIR_MODE_UNLOCKED = "prx_rimom"; //haha
+const string Options::DIFFICULTY = "difficulty";
+const string Options::CACHESIZE = "cacheSize";
+const string Options::PLASMAEFFECT = "plasmaEffect";
+const string Options::INTERRUPT_SECONDS = "interruptSeconds";
+const string Options::INTERRUPTMYSPELLS = "interruptMySpells";
+const string Options::INTERRUPTMYABILITIES = "interruptMyAbilities";
+const string Options::EVILTWIN_MODE_UNLOCKED = "prx_eviltwin";
+const string Options::RANDOMDECK_MODE_UNLOCKED = "prx_rnddeck";
+const string Options::OSD = "displayOSD";
 
-GameOption::GameOption(int _value){
-  value = _value;
-}
 
-int GameOption::getIntValue(){
-  return value;
-}
 
-GameOptions* GameOptions::mInstance = NULL;
-
-GameOptions * GameOptions::GetInstance(){
-  if (mInstance == NULL)
-    mInstance = NEW GameOptions();
-  return mInstance;
-}
+GameOption::GameOption(int value) : number(value){}
+GameOption::GameOption(string value) : str(value){}
 
 GameOptions::GameOptions(){
   load();
@@ -63,7 +65,7 @@ int GameOptions::save(){
   if (file){
     map<string, GameOption>::iterator it;
     for ( it=values.begin() ; it != values.end(); it++ ){
-      sprintf(writer,"%s=%d\n", it->first.c_str(), it->second.getIntValue());
+      sprintf(writer,"%s=%d\n", it->first.c_str(), it->second.number);
       file<<writer;
     }
     file.close();
@@ -71,13 +73,11 @@ int GameOptions::save(){
   return 1;
 }
 
+GameOption& GameOptions::operator[](string option_name) {
+  return values[option_name];
+}
 
 GameOptions::~GameOptions(){
 }
 
-void GameOptions::Destroy(){
-  if (mInstance){
-    delete mInstance;
-    mInstance = NULL;
-  }
-}
+GameOptions options;

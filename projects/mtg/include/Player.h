@@ -17,14 +17,14 @@ class Player: public Damageable{
  public:
   virtual void End();
   int typeAsTarget(){return TARGET_PLAYER;}
-  const char * getDisplayName();
+  const string getDisplayName();
   virtual int displayStack(){return 1;}
   JTexture * mAvatarTex;
   JQuad * mAvatar;
   int canPutLandsIntoPlay;
   MTGPlayerCards * game;
   int afterDamage();
-  Player(MTGPlayerCards * _deck, string deckFile, string deckFileSmall);
+  Player(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
   virtual ~Player();
   void unTapPhase();
   MTGInPlay * inPlay();
@@ -41,7 +41,7 @@ class Player: public Damageable{
 
 class HumanPlayer: public Player{
  public:
-  HumanPlayer(MTGPlayerCards * _deck, char * _deckFile, string _deckFileSmall);
+  HumanPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
 
 };
 

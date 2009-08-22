@@ -6,53 +6,47 @@
 using std::map;
 using std::string;
 
-#define OPTIONS_MUSICVOLUME "musicVolume"
-#define OPTIONS_SFXVOLUME "sfxVolume"
-
-#define OPTIONS_DIFFICULTY_MODE_UNLOCKED "prx_handler" //huhu
-#define OPTIONS_MOMIR_MODE_UNLOCKED "prx_rimom" //haha
-#define OPTIONS_EVILTWIN_MODE_UNLOCKED "prx_eviltwin"
-#define OPTIONS_RANDOMDECK_MODE_UNLOCKED "prx_rnddeck"
-
-#define OPTIONS_DIFFICULTY "difficulty"
-#define OPTIONS_CACHESIZE "cacheSize"
-#define OPTIONS_PLASMAEFFECT "plasmaEffect"
-#define OPTIONS_INTERRUPTMYSPELLS "interruptMySpells"
-#define OPTIONS_INTERRUPTMYABILITIES "interruptMyAbilities"
-#define OPTIONS_OSD "displayOSD"
-
-// WALDORF - added
-#define OPTIONS_INTERRUPT_SECONDS "interruptSeconds"                         
-
-
 #define OPTIONS_SAVEFILE RESPATH"/settings/options.txt"
+
+struct Options {
+  static const string MUSICVOLUME;
+  static const string SFXVOLUME;
+  static const string DIFFICULTY_MODE_UNLOCKED;
+  static const string MOMIR_MODE_UNLOCKED;
+  static const string EVILTWIN_MODE_UNLOCKED;
+  static const string RANDOMDECK_MODE_UNLOCKED;
+  static const string DIFFICULTY;
+  static const string CACHESIZE;
+  static const string PLASMAEFFECT;
+  static const string INTERRUPT_SECONDS;
+  static const string INTERRUPTMYSPELLS;
+  static const string INTERRUPTMYABILITIES;
+  static const string OSD;
+};
 
 class GameOption {
 public:
-  int value;
-  string svalue;
-  int getIntValue();
-  GameOption(int _value = 0);
+  int number;
+  string str;
+  GameOption(int value = 0);
+  GameOption(string value);
 };
 
 
 class GameOptions {
  public:
-  map<string,GameOption> values;
-  static GameOptions * GetInstance();
-  static void Destroy();
   int save();
   int load();
-  static const char * phaseInterrupts[]; 
-
- private:
+  static const char * phaseInterrupts[];
+  GameOption& operator[](string);
   GameOptions();
   ~GameOptions();
-  static GameOptions* mInstance;
 
+ private:
   static map <string,int> optionsTypes;
-
-
+  map<string,GameOption> values;
 };
+
+extern GameOptions options;
 
 #endif

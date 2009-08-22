@@ -16,7 +16,7 @@ class Player;
 
 class MTGGameZone {
  protected:
-  
+
  public:
 
    enum{
@@ -65,26 +65,27 @@ class MTGGameZone {
    };
 
    Player * owner;
-  //Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
-  vector<MTGCardInstance *> cards; //[MTG_MAX_PLAYER_CARDS];
-  map<MTGCardInstance *,int> cardsMap;
-  int nb_cards;
-  MTGGameZone();
-  ~MTGGameZone();
-  void shuffle();
-  virtual MTGCardInstance * draw();
-  void addCard(MTGCardInstance * card);
-  void debugPrint();
-  MTGCardInstance * removeCard(MTGCardInstance * card, int createCopy = 1);
-  MTGCardInstance * hasCard(MTGCardInstance * card);
-  void cleanupPhase();
-  int countByType(const char * value);
-  int hasType(const char * value);
-  void setOwner(Player * player);
-  MTGCardInstance * lastCardDrawn;
-  static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
-  static int zoneStringToId(string zoneName);
-  static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
+   //Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
+   vector<MTGCardInstance *> cards; //[MTG_MAX_PLAYER_CARDS];
+   map<MTGCardInstance *,int> cardsMap;
+   int nb_cards;
+   MTGGameZone();
+   ~MTGGameZone();
+   void shuffle();
+   virtual MTGCardInstance * draw();
+   void addCard(MTGCardInstance * card);
+   void debugPrint();
+   MTGCardInstance * removeCard(MTGCardInstance * card, int createCopy = 1);
+   MTGCardInstance * hasCard(MTGCardInstance * card);
+   void cleanupPhase();
+   int countByType(const char * value);
+   int hasType(const char * value);
+   void setOwner(Player * player);
+   MTGCardInstance * lastCardDrawn;
+   static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
+   static int zoneStringToId(string zoneName);
+   static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
+   bool needShuffle;
 };
 
 class MTGLibrary: public MTGGameZone {

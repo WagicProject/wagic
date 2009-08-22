@@ -3,14 +3,15 @@
 //-------------------------------------------------
 //TODO Fill BasicAbilities
 
-#include "../include/config.h"
-#include "../include/MTGCard.h"
-
-#include "../include/TexturesCache.h"
-#include "../include/Subtypes.h"
-
 #include <string>
 #include <stdlib.h>
+
+#include "../include/MTGDeck.h"
+#include "../include/config.h"
+#include "../include/MTGCard.h"
+#include "../include/Subtypes.h"
+#include "../include/Translate.h"
+
 using std::string;
 
 
@@ -18,12 +19,10 @@ const char * const MTGCard::Colors_To_Text[] = {"Artifact", "Green", "Blue", "Re
 
 MTGCard::MTGCard(){
   init();
-  mCache = NULL;
 }
 
-MTGCard::MTGCard(TexturesCache * cache, int set_id){
+MTGCard::MTGCard(int set_id){
   init();
-  mCache = cache;
   setId = set_id;
 }
 
@@ -32,7 +31,6 @@ const char * MTGCard::getSetName(){
 }
 
 MTGCard::MTGCard(MTGCard * source){
-  mCache = source->mCache;
   for(map<int,int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it){
     basicAbilities[it->first] = source->basicAbilities[it->first];
   }
@@ -55,7 +53,6 @@ MTGCard::MTGCard(MTGCard * source){
   toughness = source->toughness;
   mtgid = source->mtgid;
   setId = source->setId;
-  formattedTextInit = 0;
   magicText = source->magicText;
   spellTargetType = source->spellTargetType;
   alias = source->alias;
@@ -72,34 +69,63 @@ int MTGCard::init(){
     colors[i] = 0;
   }
   setId = 0;
-  formattedTextInit = 0;
   magicText = "";
   spellTargetType = "";
   alias = 0;
   return 1;
 }
 
-JQuad * MTGCard::getQuad(int type){
-  if (mCache == NULL){
-    return NULL;
-  }
-  return mCache->getQuad(this, type);
+const vector<string>& MTGCard::formattedText()
+{
+  if (ftdText.empty())
+    {
+      std::string s = _(text);
+      std::string::size_type found = s.find_first_of("{}");
+      while (found!=string::npos)
+	{
+	  s[found] = '/';
+	  found = s.find_first_of("{}", found + 1);
+	}
+      std::string::size_type len = 30;
+      while (s.length() > 0)
+	{
+	  std::string::size_type cut = s.find_first_of("., \t)", 0);
+	  if (cut >= len || cut == string::npos)
+	    {
+	      ftdText.push_back(s.substr(0,len));
+	      if (s.length() > len)
+		s = s.substr(len, s.length() - len);
+	      else
+		s = "";
+	    }
+	  else
+	    {
+	      std::string::size_type newcut = cut;
+	      while (newcut < len && newcut != string::npos)
+		{
+		  cut = newcut;
+		  newcut = s.find_first_of("., \t)", newcut + 1);
+		}
+	      ftdText.push_back(s.substr(0,cut+1));
+	      if (s.length() > cut+1)
+		s = s.substr(cut+1,s.length() - cut - 1);
+	      else
+		s = "";
+	    }
+	}
+    }
+  return ftdText;
 }
 
 
-JQuad * MTGCard::getThumb(){
-  return getQuad(CACHE_THUMB);
+bool MTGCard::isCreature(){
+  return hasSubtype("creature");
 }
-
-JQuad * MTGCard::getQuad(TexturesCache * cache){
-
-  return cache->getQuad(this);
+bool MTGCard::isLand(){
+  return hasSubtype("land");
 }
-
-
-
-int MTGCard::isACreature(){
-  return (hasSubtype("creature"));
+bool MTGCard::isSpell(){
+  return (!isCreature() && !isLand());
 }
 
 void MTGCard::setColor(int _color, int removeAllOthers){
@@ -234,51 +260,45 @@ void MTGCard::setName( string value){
   name = value;
   //This is a bug fix for plague rats and the "foreach ability"
   //Right now we add names as types, so that they get recognized
-  if (value.at(value.length()-1) == 's') Subtypes::subtypesList->Add(value); 
+  if (value.at(value.length()-1) == 's') Subtypes::subtypesList->Add(value);
 }
 
-const char * MTGCard::getName(){
-  return name.c_str();
+const string MTGCard::getName() const{
+  return name;
 }
 
 
-ManaCost *  MTGCard::getManaCost(){
+ManaCost* MTGCard::getManaCost(){
   return &manaCost;
 }
 
 
 
-int MTGCard::hasType(int _type){
-  int i;
-
-
-  for (i = 0; i<nb_types; i++){
-    if(types[i] == _type){
-      return 1;
-    }
-
-  }
-  return 0;
+bool MTGCard::hasType(int _type){
+  for (int i = 0; i<nb_types; i++)
+    if (types[i] == _type)
+      return true;
+  return false;
 }
 
-int MTGCard::hasSubtype(int _subtype){
-  return(hasType(_subtype));
+bool MTGCard::hasSubtype(int _subtype){
+  return hasType(_subtype);
 }
 
-int MTGCard::hasType(const char * _type){
+bool MTGCard::hasType(const char * _type){
   int id = Subtypes::subtypesList->Add(_type);
-  return(hasType(id));
+  return hasType(id);
 }
 
 
-int MTGCard::hasSubtype(const char * _subtype){
+bool MTGCard::hasSubtype(const char * _subtype){
   int id = Subtypes::subtypesList->Add(_subtype);
-  return(hasType(id));
+  return hasType(id);
 }
 
-int MTGCard::hasSubtype(string _subtype){
+bool MTGCard::hasSubtype(string _subtype){
   int id = Subtypes::subtypesList->Add(_subtype);
-  return(hasType(id));
+  return hasType(id);
 }
 
 
@@ -304,4 +324,3 @@ void MTGCard::setToughness(int _toughness){
 int MTGCard::getToughness(){
   return toughness;
 }
-

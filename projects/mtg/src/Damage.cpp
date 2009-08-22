@@ -4,13 +4,14 @@
 #include "../include/Counters.h"
 #include "../include/WEvent.h"
 #include "../include/Translate.h"
+#include "../include/TexturesCache.h"
 
-Damage::Damage(int id, MTGCardInstance * _source, Damageable * _target): Interruptible(id){
-  init(_source, _target, _source->getPower());
+Damage::Damage(int id, MTGCardInstance * source, Damageable * target) {
+  init(source, target, source->getPower());
 }
 
-Damage::Damage(int id, MTGCardInstance * _source, Damageable * _target, int _damage): Interruptible(id){
-  init(_source, _target, _damage);
+Damage::Damage(int id, MTGCardInstance * source, Damageable * target, int damage) {
+  init(source, target, damage);
 }
 
 void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage){
@@ -68,7 +69,7 @@ void Damage::Render(){
   sprintf(buffer, _("Deals %i damage to").c_str(), damage);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = source->getThumb();
+  JQuad * quad = cache.getThumb(source);
   if (quad){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);
@@ -92,7 +93,7 @@ ostream& Damage::toString(ostream& out) const
   return out;
 }
 
-DamageStack::DamageStack(int id, GameObserver * _game):GuiLayer(id, _game), Interruptible(id){
+DamageStack::DamageStack(GameObserver* game) : game(game){
   currentState = -1;
   type = ACTION_DAMAGES;
 }

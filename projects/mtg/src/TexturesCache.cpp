@@ -3,16 +3,15 @@
 #include "../include/GameOptions.h"
 #include <JFileSystem.h>
 
+TexturesCache cache;
+
 TexturesCache::TexturesCache(){
   nb_textures = 0;
   totalsize = 0;
   delete_previous = 0;
   lastTime = 0;
-  for (int i=0; i<MAX_CACHE_OBJECTS;i++){
+  for (int i=0; i<MAX_CACHE_OBJECTS;i++)
     cache[i] = NULL;
-  }
-  maxSize =  GameOptions::GetInstance()->values[OPTIONS_CACHESIZE].getIntValue() * 100000;
-  if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
 #ifdef WIN32
   char buf [4096];
   sprintf(buf, " Init TextureCache : %p\n", this);
@@ -65,6 +64,8 @@ void TexturesCache::removeQuad(int id){
 }
 
 int TexturesCache::cleanup(){
+  int maxSize = options[Options::CACHESIZE].number * 100000;
+  if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
   while (nb_textures >= MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
     int i = getOldestQuad();
     if (i == -1) return 0;
@@ -76,7 +77,7 @@ int TexturesCache::cleanup(){
 JQuad * TexturesCache::getQuad(MTGCard * card, int type){
   int cache_id = getCacheById(card->getId(), type);
   if (cache_id == -1){
-    
+
     //Not found in the cache, we have to load the file and put it in the cache
     if (cleanup()){
       cache_id = nb_textures;
@@ -126,6 +127,7 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
   }
   if (tex){
     quad = NEW JQuad(tex, 0.0f, 0.0f, tex->mWidth, tex->mHeight);
+    quad->SetHotSpot(tex->mWidth / 2, tex->mHeight / 2);
     nbpixels = tex->mTexHeight * tex->mTexWidth;
   }
   mtgid = card->getId();

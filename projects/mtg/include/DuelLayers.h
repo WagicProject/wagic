@@ -1,32 +1,51 @@
 #ifndef _DUELLAYERS_H_
 #define _DUELLAYERS_H_
 
-
 #include "GuiLayers.h"
+#include "CardSelector.h"
 
 class MTGGuiHand;
 class MTGGuiPlay;
 class ActionLayer;
 class ActionStack;
 class DamageResolverLayer;
+class GuiHandSelf;
+class GuiHandOpponent;
+class GuiCombat;
+class Pos;
 
-class DuelLayers: public GuiLayers{
+class DuelLayers {
+ protected:
+  int nbitems;
+  vector<GuiLayer*> objects;
+  vector<Pos*> waiters;
+  GuiCombat* combat;
+  ActionLayer* action;
+  ActionStack* stack;
+  GuiHandSelf *hand;
 
-public : 
+public:
+  DuelLayers();
+  ~DuelLayers();
+
   ActionLayer * actionLayer();
-  MTGGuiHand * handLayer();
-  MTGGuiPlay * playLayer();
   ActionStack * stackLayer();
-  DamageResolverLayer * combatLayer();
   void init();
+  virtual void Update(float dt, Player * player);
 
+  void Render();
+  void Add(GuiLayer * layer);
+  void Remove();
+  int unstoppableRenderInProgress();
+  int receiveEvent(WEvent * e);
+  float RightBoundary();
+
+  CardSelector* cs;
 };
 
 #include "ActionLayer.h"
 #include "GameObserver.h"
 #include "MTGGamePhase.h"
-#include "MTGGuiHand.h"
-#include "MTGGuiPlay.h"
 #include "ActionStack.h"
 #include "Damage.h"
 

@@ -17,11 +17,11 @@ class GuiPhaseBar : public GuiLayer
   float angle;
 
  public:
-  GuiPhaseBar(GameObserver* game);
+  GuiPhaseBar();
   ~GuiPhaseBar();
   void Update(float dt);
   virtual void Render();
-  virtual int receiveEvent(WEvent * e);
+  virtual int receiveEventMinus(WEvent * e);
 };
 
 #endif // _GUIPHASEBAR_H_

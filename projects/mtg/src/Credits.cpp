@@ -41,12 +41,11 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
   app = _app;
   showMsg = (rand() % 5);
   GameObserver * g = GameObserver::GetInstance();
-	if (!p1->isAI() && p2->isAI() && p1!= g->gameOver){
-    GameOptions * go = GameOptions::GetInstance();
+  if (!p1->isAI() && p2->isAI() && p1!= g->gameOver){
     value = 400;
     if (app->gameType != GAME_TYPE_CLASSIC) value = 200;
-    int difficulty = go->values[OPTIONS_DIFFICULTY].getIntValue();
-    if (go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue() && difficulty) {
+    int difficulty = options[Options::DIFFICULTY].number;
+    if (options[Options::DIFFICULTY_MODE_UNLOCKED].number && difficulty) {
       CreditBonus * b = NEW CreditBonus(100*difficulty, _("Difficulty Bonus"));
       bonus.push_back(b);
     }
@@ -77,31 +76,31 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
       if (unlocked){
         unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/unlocked.png", TEX_TYPE_USE_VRAM);
         unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
-        GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
-        GameOptions::GetInstance()->save();
-      }else if((unlocked = isMomirUnlocked())) {
+        options[Options::DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
+        options.save();
+      } else if ((unlocked = isMomirUnlocked())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/momir_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
-          GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED] = GameOption(1);
-          GameOptions::GetInstance()->save();
-      }else if((unlocked = isEvilTwinUnlocked())) {
+          options[Options::MOMIR_MODE_UNLOCKED] = GameOption(1);
+          options.save();
+      } else if ((unlocked = isEvilTwinUnlocked())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/eviltwin_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
-          GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED] = GameOption(1);
-          GameOptions::GetInstance()->save();
+          options[Options::EVILTWIN_MODE_UNLOCKED] = GameOption(1);
+          options.save();
       }else if((unlocked = isRandomDeckUnlocked())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/randomdeck_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
-          GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
-          GameOptions::GetInstance()->save();
+          options[Options::RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
+          options.save();
       }else if((unlocked = unlockRandomSet())) {
           unlockedTex = JRenderer::GetInstance()->LoadTexture("graphics/set_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           char buffer[4096];
           unlockedString = MtgSets::SetsList->values[unlocked -1];
           sprintf(buffer,"unlocked_%s", unlockedString.c_str());
-          GameOptions::GetInstance()->values[buffer] = GameOption(1);
-          GameOptions::GetInstance()->save();
+          options[buffer] = GameOption(1);
+          options.save();
       }
       if (unlocked){
         JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
@@ -113,9 +112,8 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     if (bonus.size()){
       CreditBonus * b = NEW CreditBonus(value, _("Victory"));
       bonus.insert(bonus.begin(),b);
-      for ( it=bonus.begin()+1 ; it < bonus.end(); ++it){
-        value+= (*it)->value;
-      }
+      for (it = bonus.begin() + 1; it < bonus.end(); ++it)
+        value += (*it)->value;
     }
 
 
@@ -186,7 +184,7 @@ void Credits::Render(){
 
 
 int Credits::isDifficultyUnlocked(){
-  if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()) return 0;
+  if (options[Options::DIFFICULTY_MODE_UNLOCKED].number) return 0;
   int nbAIDecks = 0;
   int found = 1;
   int wins = 0;
@@ -210,20 +208,20 @@ int Credits::isDifficultyUnlocked(){
 }
 
 int Credits::isMomirUnlocked(){
-  if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) return 0;
+  if (options[Options::MOMIR_MODE_UNLOCKED].number) return 0;
   if (p1->game->inPlay->countByType("land") == 8) return 1;
   return 0;
 }
 
 int Credits::isEvilTwinUnlocked(){
-  if (GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()) return 0;
+  if (options[Options::EVILTWIN_MODE_UNLOCKED].number) return 0;
   if (p1->game->inPlay->nb_cards && (p1->game->inPlay->nb_cards == p2->game->inPlay->nb_cards)) return 1;
   return 0;
 }
 
 int Credits::isRandomDeckUnlocked(){
-  if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY].getIntValue() == 0 ) return 0;
-  if (GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()) return 0;
+  if (0 == options[Options::DIFFICULTY].number) return 0;
+  if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) return 0;
   if (p1->life >= 20 ) return 1;
   return 0;
 }
@@ -234,6 +232,6 @@ int Credits::unlockRandomSet(){
   char buffer[4096];
   string s = MtgSets::SetsList->values[setId];
   sprintf(buffer,"unlocked_%s", s.c_str());
-  if (GameOptions::GetInstance()->values[buffer].getIntValue() == 1 ) return 0;
-  return setId+1;
+  if (1 == options[buffer].number) return 0;
+  return setId + 1;
 }

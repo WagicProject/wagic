@@ -14,7 +14,7 @@ class Phase{
  public:
   int id;
   Player * player;
- Phase(int _id, Player * _player):id(_id),player(_player){};
+ Phase(int id, Player *player):id(id),player(player){};
 };
 
 class PhaseRing{

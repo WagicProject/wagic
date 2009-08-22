@@ -64,7 +64,7 @@ int TestSuiteAI::Act(float dt){
 
   string action = suite->getNextAction();
   g->mLayers->stackLayer()->Dump();
-  DamageResolverLayer * drl = g->mLayers->combatLayer();
+  //  DamageResolverLayer * drl = g->mLayers->combatLayer();
 
   OutputDebugString(action.c_str());
   OutputDebugString("\n");
@@ -90,6 +90,7 @@ int TestSuiteAI::Act(float dt){
     g->userRequestNextGamePhase();
   }
   else if (action.compare("next")==0){
+    /*
     if (drl->orderingIsNeeded){
       drl->blockersOrderingDone();
       g->userRequestNextGamePhase();
@@ -100,6 +101,7 @@ int TestSuiteAI::Act(float dt){
     }else{
       g->userRequestNextGamePhase();
     }
+    */
   }else if (action.compare("yes")==0){
     g->mLayers->stackLayer()->setIsInterrupting(this);
   }else if (action.compare("endinterruption")==0){
@@ -121,7 +123,7 @@ int TestSuiteAI::Act(float dt){
     g->mLayers->actionLayer()->stuffHappened = 1;
   }else if(action.find("p1")!=string::npos || action.find("p2")!=string::npos){
     Player * p = g->players[1];
-    int start = action.find("p1");
+    unsigned int start = action.find("p1");
     if (start != string::npos) p = g->players[0];
     g->cardClick(NULL, p);
   }else{
@@ -138,6 +140,7 @@ int TestSuiteAI::Act(float dt){
         if (card) {
           OutputDebugString("Clicking ON: ");
           OutputDebugString(card->name.c_str());
+	  /*
           if (drl->mCount){
             if (drl->orderingIsNeeded){
               OutputDebugString(" Ordering Card\n");
@@ -149,6 +152,7 @@ int TestSuiteAI::Act(float dt){
           }else{
 	          g->cardClick(card,card);
           }
+	  */
         }
       }
     }else{
@@ -281,12 +285,12 @@ void TestSuite::initGame(){
       for (int k = 0; k < initState.playerData[i].zones[j].nbitems; k++){
 	      MTGCardInstance * card = getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
         char buf[4096];
-        sprintf(buf, "QUAD : %p\n", card->getQuad());
+        sprintf(buf, "QUAD : %p\n", cache.getQuad(card));
         OutputDebugString(buf);
 	      if (card && zone != p->game->library){
 	        if (zone == p->game->inPlay){
 	          MTGCardInstance * copy = p->game->putInZone(card,  p->game->library, p->game->stack);
-	          Spell * spell = NEW Spell(copy);          
+	          Spell * spell = NEW Spell(copy);
 	          spell->resolve();
             if (!summoningSickness && p->game->inPlay->nb_cards>k) p->game->inPlay->cards[k]->summoningSickness = 0;
 	          delete spell;
@@ -418,7 +422,7 @@ int TestSuite::loadNext(){
   if (currentfile >= nbfiles) return 0;
   currentfile++;
   if (!load(files[currentfile-1].c_str())) return loadNext();
-  
+
   //load(files[currentfile].c_str());
   //currentfile++;
   return currentfile;
@@ -482,7 +486,7 @@ int TestSuite::load(const char * _filename){
 
   int state = -1;
 
-  std::cout << std::endl << std::endl << "!!!" << file << std::endl << std::endl;
+  //  std::cout << std::endl << std::endl << "!!!" << file << std::endl << std::endl;
   if(file){
     cleanup();
     while(std::getline(file,s)){

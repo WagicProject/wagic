@@ -148,23 +148,19 @@ void GameStateMenu::Start(){
   JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
 
-  if (GameApp::HasMusic && !GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME].getIntValue() > 0){
+  if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
     GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
     JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
   }
 
-  if (GameApp::HasMusic && GameApp::music && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME].getIntValue() == 0){
+  if (GameApp::HasMusic && GameApp::music && options[Options::MUSICVOLUME].number == 0){
     JSoundSystem::GetInstance()->StopMusic(GameApp::music);
     SAFE_DELETE(GameApp::music);
   }
 
   hasChosenGameType = 1;
-  if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()) hasChosenGameType =0;
-  if (GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()) hasChosenGameType =0;
-
-  
-
-
+  if (options[Options::MOMIR_MODE_UNLOCKED].number) hasChosenGameType = 0;
+  if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
 }
 
 
@@ -175,7 +171,7 @@ void GameStateMenu::fillScroller(){
 
   DeckStats * stats = DeckStats::GetInstance();
   int totalGames = 0;
-  
+
   for (int j=1; j<6; j++){
     sprintf(buffer, RESPATH"/player/stats/player_deck%i.txt",j);
     if(fileExists(buffer)){
@@ -194,28 +190,26 @@ void GameStateMenu::fillScroller(){
     sprintf(buff2, _("You have played a total of %i games").c_str(),totalGames);
       scroller->Add(buff2);
   }
-  
-  GameOptions * go = GameOptions::GetInstance();
 
-  if (!go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()){
-    scroller->Add(_("Unlock the difficult mode for more challenging duels!"));   
-  }
-  if (!go->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()){
-    scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));   
-  }
-  if (!go->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()){
-    scroller->Add(_("You haven't unlocked the random deck mode yet"));   
-  }
-  if (!go->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()){
-    scroller->Add(_("You haven't unlocked the evil twin mode yet"));   
-  }
+  if (!options[Options::DIFFICULTY_MODE_UNLOCKED].number)
+    scroller->Add(_("Unlock the difficult mode for more challenging duels!"));
+  if (!options[Options::MOMIR_MODE_UNLOCKED].number)
+    scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));
+  if (!options[Options::RANDOMDECK_MODE_UNLOCKED].number)
+    scroller->Add(_("You haven't locked the random deck mode yet"));
+  if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)
+    scroller->Add(_("You haven't unlocked the evil twin mode yet"));
+  if (!options[Options::RANDOMDECK_MODE_UNLOCKED].number)
+    scroller->Add(_("You haven't unlocked the random deck mode yet"));
+  if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)
+    scroller->Add(_("You haven't unlocked the evil twin mode yet"));
 
   //Unlocked sets
   int nbunlocked = 0;
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
     string s = MtgSets::SetsList->values[i];
     sprintf(buffer,"unlocked_%s", s.c_str());
-    if (GameOptions::GetInstance()->values[buffer].getIntValue() == 1 ) nbunlocked++;
+    if (1 == options[buffer].number) nbunlocked++;
   }
   sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, MtgSets::SetsList->nb_items);
   scroller->Add(buff2);
@@ -323,20 +317,16 @@ void GameStateMenu::Update(float dt)
         string s = MtgSets::SetsList->values[setId];
         char buffer[4096];
         sprintf(buffer,"unlocked_%s", s.c_str());
-        GameOptions::GetInstance()->values[buffer] = GameOption(1);
-        GameOptions::GetInstance()->save();
-
-	      createUsersFirstDeck(setId);
+        options[buffer] = GameOption(1);
+        options.save();
+	createUsersFirstDeck(setId);
       }
       currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
       break;
     case MENU_STATE_MAJOR_MAINMENU :
       if (!scrollerSet) fillScroller();
-      if (mGuiController!=NULL){
+      if (NULL != mGuiController)
 	      mGuiController->Update(dt);
-      }
-
-      
       break;
     case MENU_STATE_MAJOR_SUBMENU :
       subMenuController->Update(dt);
@@ -345,25 +335,24 @@ void GameStateMenu::Update(float dt)
     case MENU_STATE_MAJOR_DUEL :
       if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
 	{
-    if (!hasChosenGameType){
-      currentState = MENU_STATE_MAJOR_SUBMENU;
-      JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
-      subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
+	  if (!hasChosenGameType){
+	    currentState = MENU_STATE_MAJOR_SUBMENU;
+	    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+	    subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
 	    if (subMenuController){
 	      subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
-        if (GameOptions::GetInstance()->values[OPTIONS_MOMIR_MODE_UNLOCKED].getIntValue()){
-	        subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
-        }
-        if (GameOptions::GetInstance()->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()){
-	        subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
-          subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
-        }
+	      if (options[Options::MOMIR_MODE_UNLOCKED].number)
+		subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
+	      if (options[Options::RANDOMDECK_MODE_UNLOCKED].number){
+		subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
+		subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
+	      }
 	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
-      }
-    }else{
+	    }
+	  }else{
 	    mParent->SetNextState(GAME_STATE_DUEL);
 	    currentState = MENU_STATE_MAJOR_MAINMENU;
-    }
+	  }
 	}
     }
   switch (MENU_STATE_MINOR & currentState)
@@ -484,7 +473,7 @@ void GameStateMenu::Render()
     if (yW < 2*SCREEN_HEIGHT) renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, yW, angleW);
     if (mGuiController!=NULL)
       mGuiController->Render();
-    
+
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,5,JGETEXT_RIGHT);

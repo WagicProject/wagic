@@ -61,11 +61,11 @@ class AIPlayer: public Player{
   int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
   AIStats * getStats();
  public:
-   void End(){};
+  void End(){};
   virtual int displayStack(){return 0;};
   AIStats * stats;
   ManaCost * getPotentialMana();
-  AIPlayer(MTGPlayerCards * _deck, string deckFile, string deckFileSmall);
+  AIPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
   virtual ~AIPlayer();
   virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
   virtual int chooseTarget(TargetChooser * tc = NULL);
@@ -86,7 +86,7 @@ class AIPlayerBaka: public AIPlayer{
   float timer;
   MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
  public:
-  AIPlayerBaka(MTGPlayerCards * _deck, char * deckFile, const char * deckfileSmall, char * avatarFile);
+  AIPlayerBaka(MTGPlayerCards * deck, string deckFile, string deckfileSmall, string avatarFile);
   virtual int Act(float dt);
   void initTimer();
   virtual int computeActions();

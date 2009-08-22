@@ -12,6 +12,7 @@ class CardGui;
 
 class MTGGuiPlay: public PlayGuiObjectController {
  protected:
+  GameObserver* game;
   int offset;
   Player * currentPlayer;
   MTGCardInstance * cardsGrid[SCREEN_WIDTH/5][SCREEN_HEIGHT/5];
@@ -43,14 +44,14 @@ class MTGGuiPlay: public PlayGuiObjectController {
   void adjustCardPosition(CardGui * cardg);
  public:
   CardGui * getByCard(MTGCardInstance * card);
-  MTGGuiPlay(int id, GameObserver * game);
+  MTGGuiPlay(GameObserver * game);
   ~MTGGuiPlay();
   void Update(float dt);
   bool CheckUserInput(u32 key);
   virtual void Render();
   void forceUpdateCards();
   void updateCards();
-  int receiveEvent(WEvent * e);
+  int receiveEventPlus(WEvent * e);
 };
 
 

@@ -17,13 +17,14 @@ class GuiCardscontroller;
 
 class MTGGuiHand: public GuiCardsController{
  protected:
+  GameObserver* game;
   int currentId[2];
   Player * currentPlayer;
   int mShowHand;
   float mAnimState;
   JLBFont * mFont;
  public:
-  MTGGuiHand(int id, GameObserver * _game);
+  MTGGuiHand(GameObserver*);
   void Update(float dt);
   bool CheckUserInput(u32 key);
   virtual void Render();

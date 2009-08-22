@@ -88,10 +88,12 @@ void GameObserver::nextGamePhase(){
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
   if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
     blockersAssigned = 1;
+    /*
     if (!mLayers->combatLayer()->autoOrderBlockers()){
       OutputDebugString("Player has To choose ordering!");
       return;
     }
+    */
   }
 
   phaseRing->forward();
@@ -149,18 +151,20 @@ int GameObserver::cancelCurrentAction(){
 void GameObserver::userRequestNextGamePhase(){
   if (mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)) return;
   if (getCurrentTargetChooser()) return;
-  if (mLayers->combatLayer()->isDisplayed()) return;
+  //  if (mLayers->combatLayer()->isDisplayed()) return;
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
   if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
     blockersAssigned = 1;
+    /*
     if (!mLayers->combatLayer()->autoOrderBlockers()){
       OutputDebugString("Player has To choose ordering!");
       return;
     }
+    */
   }
-  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS || 
-     opponent()->isAI() || 
-     GameOptions::GetInstance()->values[GameOptions::phaseInterrupts[currentGamePhase]].getIntValue()){
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS ||
+     opponent()->isAI() ||
+      options[GameOptions::phaseInterrupts[currentGamePhase]].number){
     mLayers->stackLayer()->AddNextGamePhase();
   }else{
     nextGamePhase();
@@ -170,30 +174,31 @@ void GameObserver::userRequestNextGamePhase(){
 int GameObserver::forceShuffleLibraries(){
   OutputDebugString("FORCING\n");
   int result = 0;
-  for (int i=0; i<2; i++){
-    if (forceShuffleLibrary[i]) {
-      forceShuffleLibrary[i] = 0;
-      players[i]->game->library->shuffle();
-      result++;
-      OutputDebugString("YAY\n");
+  if (players[0]->game->library->needShuffle)
+    {
+      players[0]->game->library->shuffle();
+      players[0]->game->library->needShuffle = false;
+      ++result;
     }
-  }
-  if (result) mLayers->playLayer()->forceUpdateCards();
+  if (players[1]->game->library->needShuffle)
+    {
+      players[1]->game->library->shuffle();
+      players[1]->game->library->needShuffle = false;
+      ++result;
+    }
   return result;
 }
 
 void GameObserver::startGame(int shuffle, int draw){
   int i;
-  for (i=0; i<nbPlayers; i++){
+  for (i=0; i<nbPlayers; i++)
     players[i]->game->initGame(shuffle, draw);
-    forceShuffleLibrary[i] = 0;
-  }
 
   //Preload images from hand
   if (!players[0]->isAI()){
     for (i=0; i< players[0]->game->hand->nb_cards; i++){
-      players[0]->game->hand->cards[i]->getThumb();
-      players[0]->game->hand->cards[i]->getQuad();
+      cache.getThumb(players[0]->game->hand->cards[i]);
+      cache.getQuad(players[0]->game->hand->cards[i]);
     }
   }
   turn = 0;
@@ -202,9 +207,8 @@ void GameObserver::startGame(int shuffle, int draw){
 
   //Difficult mode special stuff
   if (!players[0]->isAI() && players[1]->isAI()){
-    GameOptions * go = GameOptions::GetInstance(); 
-    int difficulty = go->values[OPTIONS_DIFFICULTY].getIntValue();
-    if (go->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue() && difficulty) {
+    int difficulty = options[Options::DIFFICULTY].number;
+    if (options[Options::DIFFICULTY_MODE_UNLOCKED].number && difficulty) {
       Player * p = players[1];
       for (int level=0; level < difficulty; level ++){
         MTGCardInstance * card = NULL;
@@ -218,7 +222,7 @@ void GameObserver::startGame(int shuffle, int draw){
         }
         if (card){
           MTGCardInstance * copy = p->game->putInZone(card,  p->game->library, p->game->stack);
-          Spell * spell = NEW Spell(copy);          
+          Spell * spell = NEW Spell(copy);
           spell->resolve();
           delete spell;
         }
@@ -259,8 +263,8 @@ void GameObserver::Update(float dt){
   if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS && !blockersSorted){
     player = opponent();
   }else	if (currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE){
-    DamageResolverLayer *  drl = mLayers->combatLayer();
-    if (drl->currentChoosingPlayer && drl->mCount) player = drl->currentChoosingPlayer;
+    //    DamageResolverLayer *  drl = mLayers->combatLayer();
+    //    if (drl->currentChoosingPlayer && drl->mCount) player = drl->currentChoosingPlayer;
   }
   currentActionPlayer = player;
   if (isInterrupting) player = isInterrupting;
@@ -309,39 +313,33 @@ void GameObserver::Render(){
 
 
 
-void GameObserver::ButtonPressed (int controllerId, PlayGuiObject * _object){
+void GameObserver::ButtonPressed(PlayGuiObject * target){
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("Click\n");
 #endif
-  int id = _object->GetId();
-  if (id >=0){
-    MTGCardInstance * card = ((CardGui *)_object)->card;
+  if (CardView* cardview = dynamic_cast<CardView*>(target)){
+    MTGCardInstance * card = cardview->getCard();
     cardClick(card, card);
   }
-  if (id== -6 || id == -4){ //libraries
-    GuiGameZone * zone = (GuiGameZone *)_object;
-    if (zone->showCards){
-      zone->toggleDisplay();
+  else if (GuiLibrary* library = dynamic_cast<GuiLibrary*>(target)){
+    if (library->showCards){
+      library->toggleDisplay();
       forceShuffleLibraries();
     } else {
-      int pId = (-id - 4)/2;
       TargetChooser * _tc = this->getCurrentTargetChooser();
-      if (_tc && _tc->targetsZone(players[pId]->game->library)){
-        zone->toggleDisplay();
-        forceShuffleLibrary[pId] = 1;
+      if (_tc && _tc->targetsZone(library->zone)){
+        library->toggleDisplay();
+        library->zone->needShuffle = true;
       }
     }
-    
   }
-  if (id== -5 || id == -3){ 
-    GuiGameZone * zone = (GuiGameZone *)_object;
-    zone->toggleDisplay();
-  }
-  if (id == -1 || id == -2){
+  else if (GuiGraveyard* graveyard = dynamic_cast<GuiGraveyard*>(target))
+    graveyard->toggleDisplay();
+  else if (GuiAvatar* avatar = dynamic_cast<GuiAvatar*>(target)){
 #if defined (WIN32) || defined (LINUX)
     OutputDebugString("Click Player !\n");
 #endif
-    cardClick(NULL, ((GuiAvatar *)_object)->player);
+    cardClick(NULL, avatar->player);
   }
 }
 
@@ -468,8 +466,8 @@ int GameObserver::receiveEvent(WEvent * e){
 }
 
 
-int GameObserver::isACreature(MTGCardInstance * card){
-  return card->isACreature();
+bool GameObserver::isCreature(MTGCardInstance * card){
+  return card->isCreature();
 }
 
 

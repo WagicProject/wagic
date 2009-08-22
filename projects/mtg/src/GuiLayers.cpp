@@ -2,9 +2,7 @@
 #include "../include/GuiLayers.h"
 #include "../include/Player.h"
 
-GuiLayer::GuiLayer(int id, GameObserver* _game){
-  mId = id;
-  game = _game;
+GuiLayer::GuiLayer(){
   modal = 0;
   hasFocus = false;
   mCount = 0;
@@ -42,7 +40,7 @@ int GuiLayer::getMaxId(){
 void GuiLayer::Render(){
  for (int i=0;i<mCount;i++)
     if (mObjects[i]!=NULL)
-      mObjects[i]->Render(); 
+      mObjects[i]->Render();
 }
 
 void GuiLayer::Update(float dt){
@@ -101,79 +99,5 @@ int GuiLayer::getIndexOf(JGuiObject * object){
 
 JGuiObject * GuiLayer::getByIndex(int index){
   return mObjects[index];
-}
-
-
-GuiLayers::GuiLayers(){
-  nbitems = 0;
-}
-
-GuiLayers::~GuiLayers(){
-  LOG("==Destroying GuiLayers==");
-  for (int i=0; i<nbitems; i++){
-    delete objects[i];
-  }
-  LOG("==Destroying GuiLayers Successful==");
-}
-int GuiLayers::unstoppableRenderInProgress(){
-  for (int i=0; i<nbitems; i++){
-    if (objects[i]->unstoppableRenderInProgress())
-      return 1;
-  }
-  return 0;
-}
-
-
-
-void GuiLayers::Add(GuiLayer * layer){
-  if (nbitems >=MAX_GUI_LAYERS || nbitems < 0){
-    LOG("OUT OF BOUND IN GuiLayers Add !!!");
-    return;
-  }
-  objects[nbitems] = layer;
-  nbitems++;
-}
-
-void GuiLayers::Remove(){
-  nbitems --;
-}
-
-void GuiLayers::Update(float dt, Player * currentPlayer){
-
-  for (int i=0; i<nbitems; i++){
-    objects[i]->Update(dt);
-  }
-  int isAI = currentPlayer->isAI();
-  u32 key;
-  while ((key = JGE::GetInstance()->ReadButton())){
-    for (int i=0; i<nbitems; i++){
-	    if (!isAI){
-	      if (0 != key)
-	        if (objects[i]->CheckUserInput(key)) break;
-	     }
-    }
-  }
-  if (isAI) currentPlayer->Act(dt);
-
-}
-
-void GuiLayers::Render(){
-  bool focusMakesItThrough = true;
-  for (int i = 0; i < nbitems; ++i)
-    {
-      objects[i]->hasFocus = focusMakesItThrough;
-      if (objects[i]->modal) focusMakesItThrough = false;
-    }
-  for (int i=nbitems-1; i>=0; i--){
-    objects[i]->Render();
-  }
-}
-
-
-int GuiLayers::receiveEvent(WEvent * e){
-  for (int i = 0; i < nbitems; i++){
-    objects[i]->receiveEvent(e);
-  }
-  return 1;
 }
 

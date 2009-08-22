@@ -53,7 +53,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   card->getManaCost()->doPayExtra();
   ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
   delete previousManaPool;
-  if (card->hasType("land")){   
+  if (card->hasType("land")){
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
     Spell * spell = NEW Spell(copy);
     spell->resolve();
@@ -65,9 +65,8 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
     if (game->targetChooser){
       spell = game->mLayers->stackLayer()->addSpell(card,game->targetChooser, spellCost);
       game->targetChooser = NULL;
-    }else{
+    }else
       spell = game->mLayers->stackLayer()->addSpell(card,NULL, spellCost);
-    }
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
     spell->source = copy;
   }
@@ -160,10 +159,10 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card){
     currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
 #if defined (WIN32) || defined (LINUX)
     char buf[4096];
-    sprintf(buf,"Defenser Toggle %s \n" ,card->model->getName());
+    sprintf(buf,"Defenser Toggle %s \n", card->model->getName().c_str());
     OutputDebugString(buf);
 #endif
-    candefend =  card->toggleDefenser(currentOpponent);
+    candefend = card->toggleDefenser(currentOpponent);
     result = (candefend || currentOpponent == NULL);
   }
   return 1;
@@ -201,7 +200,7 @@ MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection):MTGAbility(_id, N
   if (!initialized){
     for (size_t i = 0; i < collection->ids.size(); i++){
       MTGCard * card = collection->collection[collection->ids[i]];
-      if (card->isACreature()){
+      if (card->isCreature()){
          int convertedCost = card->getManaCost()->getConvertedCost();
          if (convertedCost>20) continue;
          pool[convertedCost].push_back(card->getMTGId());
@@ -239,7 +238,7 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard){
 int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId){
   if (!isReactingToClick(card_to_discard)) return 0;
    Player * player = game->currentlyActing();
-  ManaCost * cost = player->getManaPool(); 
+  ManaCost * cost = player->getManaPool();
   player->getManaPool()->pay(cost);
    MTGCardInstance * card = genCreature(cardId);
   player->game->putInZone(card_to_discard,  player->game->hand, player->game->graveyard);
@@ -329,7 +328,7 @@ void HUDDisplay::Update(float dt){
   if (events.size()){
     list<HUDString *>::iterator it = events.begin();
     HUDString * hs = *it;
-    if (popdelay > 1 && timestamp - hs->timestamp > 2){ 
+    if (popdelay > 1 && timestamp - hs->timestamp > 2){
       events.pop_front();
       delete hs;
       if (events.size()) popdelay = 0;
@@ -372,7 +371,7 @@ int HUDDisplay::receiveEvent(WEvent * event){
   return 0;
 }
 void HUDDisplay::Render(){
-  if (!GameOptions::GetInstance()->values[OPTIONS_OSD].getIntValue()) return;
+  if (!options[Options::OSD].number) return;
   if (!events.size()) return;
 
   f->SetColor(ARGB(255,255,255,255));
@@ -398,7 +397,7 @@ HUDDisplay::HUDDisplay(int _id):MTGAbility(_id, NULL){
   f = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   maxWidth = 0;
 }
-  
+
 HUDDisplay::~HUDDisplay(){
   list<HUDString *>::iterator it;
   for (it = events.begin(); it !=events.end(); ++it){
@@ -473,7 +472,7 @@ HUDDisplay::~HUDDisplay(){
     int destroy = 0;
     for ( it=cards.begin() ; it != cards.end(); it++ ){
       MTGCardInstance * comparison = (*it).first;
-      if (comparison!= card && !strcmp(comparison->getName(), card->getName())){
+      if (comparison != card && !(comparison->getName().compare(card->getName()))){
 	comparison->owner->game->putInGraveyard(comparison);
 	destroy = 1;
       }

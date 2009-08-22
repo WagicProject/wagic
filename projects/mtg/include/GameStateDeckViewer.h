@@ -6,8 +6,9 @@
 
 #include <JGE.h>
 
-#include "GameState.h"
-#include "SimpleMenu.h"
+#include "../include/GameState.h"
+#include "../include/SimpleMenu.h"
+#include "../include/TexturesCache.h"
 #include "../include/CardGui.h"
 #include "../include/GameOptions.h"
 #include "../include/PriceList.h"
@@ -116,7 +117,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 #if defined (WIN32) || defined (LINUX)
       char buf[4096];
       sprintf(buf,"Loadindexes[%i] is NULL\n", i);
-      if(_current) sprintf(buf, "LoadIndexes[%i]  : %s\n", i, _current->getName());
+      if(_current) sprintf(buf, "LoadIndexes[%i]  : %s\n", i, _current->getName().c_str());
       OutputDebugString(buf);
 #endif
       _current = displayed_deck->getNext(_current,colorFilter);
@@ -187,7 +188,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	  welcome_menu->Add(nbDecks+1, "--NEW--");
     welcome_menu->Add(-1, "Cancel");
 
-    if (GameApp::HasMusic && GameOptions::GetInstance()->values[OPTIONS_MUSICVOLUME].getIntValue() > 0){
+    if (GameApp::HasMusic && options[Options::MUSICVOLUME].number > 0){
       if (GameApp::music){
          JSoundSystem::GetInstance()->StopMusic(GameApp::music);
           SAFE_DELETE(GameApp::music);
@@ -617,7 +618,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
     int showName = 1;
     if (mParent->cache->isInCache(card) || last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY){
-      quad = card->getQuad(mParent->cache);
+      quad = cache.getQuad(card);
       showName = 0;
     }
 
@@ -638,8 +639,8 @@ class GameStateDeckViewer: public GameState, public JGuiListener
         mFont->SetScale(scaleBackup);
       }
     }else{
-      CardGui::alternateRender(card, mIcons, x_center, y + 142.5*scale, 0, scale);
-      quad = card->getThumb();
+      //      CardGui::alternateRender(card, mIcons, x_center, y + 142.5*scale, 0, scale);
+      quad = cache.getThumb(card);
       if (quad){
          float _scale = 285 * scale / quad->mHeight;
          quad->SetColor(ARGB(40,255,255,255));
@@ -782,7 +783,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 	    pricelist->setPrice(card->getMTGId(),price*2);
 #if defined (WIN32) || defined (LINUX)
 	    char buf[4096];
-	    sprintf(buf, "CARD'S NAME : %s", card->getName());
+	    sprintf(buf, "CARD'S NAME : %s", card->getName().c_str());
 	    OutputDebugString(buf);
 #endif
 	    playerdata->collection->remove(card->getMTGId());

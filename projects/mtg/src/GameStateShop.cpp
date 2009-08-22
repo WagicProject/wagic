@@ -67,22 +67,21 @@ void GameStateShop::load(){
     if (s.compare("10E") == 0) defaultSet = i;
     char buffer[4096];
     sprintf(buffer,"unlocked_%s", s.c_str());
-    unlocked[i] = GameOptions::GetInstance()->values[buffer].getIntValue();
-    if ( unlocked[i] ){
+    unlocked[i] = options[buffer].number;
+    if (unlocked[i])
       ok = 1;
-    }
   }
   if (!ok){
     unlocked[defaultSet] = 1;
     string s = MtgSets::SetsList->values[defaultSet];
     char buffer[4096];
     sprintf(buffer,"unlocked_%s", s.c_str());
-    GameOptions::GetInstance()->values[buffer] = GameOption(1);
-    GameOptions::GetInstance()->save();
+    options[buffer] = GameOption(1);
+    options.save();
   }
 
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
-    if (unlocked[i] ){
+    if (unlocked[i]){
       sets[nbsets] = i;
       nbsets++;
       if (mParent->collection->countBySet(i) > 80){ //Only sets with more than 80 cards can get boosters and starters

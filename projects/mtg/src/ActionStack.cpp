@@ -8,8 +8,8 @@
 #include "../include/Damage.h"
 #include "../include/ManaCost.h"
 #include "../include/GameOptions.h"
+#include "../include/TexturesCache.h"
 #include "../include/TargetChooser.h"
-// WALDORF - added to support drawing big cards during interrupts
 #include "../include/CardGui.h"
 #include "../include/Translate.h"
 
@@ -57,7 +57,7 @@ void StackAbility::Render(){
   sprintf(buffer, "%s", _(ability->getMenuText()).c_str());
   mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = ability->source->getThumb();
+  JQuad * quad = cache.getThumb(ability->source);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = 30 / quad->mHeight;
@@ -115,7 +115,7 @@ Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _
 }
 
 
-const char * Spell::getDisplayName(){
+const string Spell::getDisplayName(){
   return source->getName();
 }
 
@@ -133,10 +133,10 @@ int Spell::resolve(){
   if (!source->hasType("instant") &&  !source->hasType("sorcery")){    
       source = source->controller()->game->putInPlay(source);
   }
-  
+
 
   //Play SFX
-  if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
+  if (options[Options::SFXVOLUME].number > 0){
     JSample * sample = source->getSample();
     if (sample){
       JSoundSystem::GetInstance()->PlaySample(sample);
@@ -188,7 +188,7 @@ void Spell::Render(){
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   mFont->DrawString(_(source->name).c_str(), x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = source->getThumb();
+  JQuad * quad = cache.getThumb(source);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = mHeight  / quad->mHeight;
@@ -205,7 +205,7 @@ void Spell::Render(){
   // just overwrites it.
   // I stole the render code from RenderBig() in CardGUI.cpp
 
-  quad = source->getQuad();
+  quad = cache.getQuad(source);
   if (quad){
       quad->SetColor(ARGB(220,255,255,255));
       float scale = 257.f / quad->mHeight;
@@ -214,9 +214,9 @@ void Spell::Render(){
   else
   {
       MTGCard * mtgcard = source->model;
-      CardGui::alternateRender(mtgcard, NULL, 10 + 90 , 20 + 130, 0.0f,0.9f);
+      //      CardGui::alternateRender(mtgcard, NULL, 10 + 90 , 20 + 130, 0.0f,0.9f);
 
-      quad = source->getThumb();
+      quad = cache.getThumb(source);
       if (quad){
           float scale = 250 / quad->mHeight;
           quad->SetColor(ARGB(40,255,255,255));
@@ -276,7 +276,7 @@ void PutInGraveyard::Render(){
     mFont->DrawString(_("is exiled").c_str(), x + 30 , y, JGETEXT_LEFT);
   }
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = card->getThumb();
+  JQuad * quad = cache.getThumb(card);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = 30 / quad->mHeight;
@@ -330,11 +330,10 @@ int ActionStack::addPutInGraveyard(MTGCardInstance * card){
 int ActionStack::addAbility(MTGAbility * ability){
   StackAbility * stackAbility = NEW StackAbility(mCount,ability);
   int result = addAction(stackAbility);
-  if (!game->players[0]->isAI() && 
-     ability->source->controller()==game->players[0] && 
-     GameOptions::GetInstance()->values[OPTIONS_INTERRUPTMYABILITIES].getIntValue() == 0){
-       interruptDecision[0] = DONT_INTERRUPT;
-  }
+  if (!game->players[0]->isAI() &&
+      ability->source->controller()==game->players[0] &&
+      0 == options[Options::INTERRUPTMYABILITIES].number)
+    interruptDecision[0] = DONT_INTERRUPT;
   return result;
 }
 
@@ -388,11 +387,10 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
 #endif
   Spell * spell = NEW Spell(mCount,_source,tc, mana);
   addAction(spell);
-  if (!game->players[0]->isAI() && 
-     _source->controller()==game->players[0] && 
-     GameOptions::GetInstance()->values[OPTIONS_INTERRUPTMYSPELLS].getIntValue() == 0){
-       interruptDecision[0] = DONT_INTERRUPT;
-  }
+  if (!game->players[0]->isAI() &&
+      _source->controller()==game->players[0] &&
+      0 == options[Options::INTERRUPTMYSPELLS].number)
+    interruptDecision[0] = DONT_INTERRUPT;
   return spell;
 }
 
@@ -403,10 +401,9 @@ Interruptible * ActionStack::getAt(int id){
   return (Interruptible *)mObjects[id];
 }
 
-ActionStack::ActionStack(int id, GameObserver* _game):GuiLayer(id, _game){
-  for (int i=0; i<2; i++){
+ActionStack::ActionStack(GameObserver* game) : game(game){
+  for (int i=0; i<2; i++)
     interruptDecision[i] = 0;
-  }
   askIfWishesToInterrupt = NULL;
   timer = -1;
   currentState = -1;
@@ -644,9 +641,9 @@ void ActionStack::Update(float dt){
     // WALDORF - added code to use a game option setting to determine how
     // long the Interrupt timer should be. If it is set to zero (0), the
     // game will wait for ever for the user to make a selection.
-    if (GameOptions::GetInstance()->values[OPTIONS_INTERRUPT_SECONDS].getIntValue() > 0)
+    if (options[Options::INTERRUPT_SECONDS].number > 0)
     {
-      if (timer < 0) timer = GameOptions::GetInstance()->values[OPTIONS_INTERRUPT_SECONDS].getIntValue();
+      if (timer < 0) timer = options[Options::INTERRUPT_SECONDS].number;
       timer -= dt;
       if (timer < 0) cancelInterruptOffer();
     }
@@ -736,7 +733,7 @@ bool ActionStack::CheckUserInput(u32 key){
       return true; //Steal the input to other layers if we're visible
     }
     if (PSP_CTRL_TRIANGLE == key){
-      if (modal) {modal = 0;} else {modal = 1;}
+      if (modal) modal = 0; else modal = 1;
       return true;
     }
   }
@@ -753,13 +750,12 @@ int ActionStack::CombatDamages(){
 }
 
 int ActionStack::CombatDamages(int strike){
-  DamageStack * damages = NEW DamageStack(mCount,game);
+  DamageStack * damages = NEW DamageStack(game);
   int damageitems = damages->CombatDamages(strike);
-  if (damageitems){
+  if (damageitems)
     addAction(damages);
-  }else{
+  else
     SAFE_DELETE(damages);
-  }
   return damageitems;
 }
 
@@ -773,9 +769,8 @@ while( iter != mObjects.end() ){
     iter = mObjects.erase( iter ) ;
     mCount--;
     SAFE_DELETE(current);
-  }else {
-    ++iter ;
-  }
+  } else
+    ++iter;
 }
   return 1;
 }
@@ -842,7 +837,7 @@ void ActionStack::Render(){
     // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down
     // seconds if the user disables auto progressing interrupts by setting the seconds
     // value to zero in Options.
-    if (GameOptions::GetInstance()->values[OPTIONS_INTERRUPT_SECONDS].getIntValue() == 0)
+    if (options[Options::INTERRUPT_SECONDS].number == 0)
         sprintf(buffer, _("Interrupt?").c_str());
     else
         sprintf(buffer, "%s  %i", _("Interrupt?").c_str(),static_cast<int>(timer));
@@ -935,7 +930,7 @@ void Interruptible::Dump(){
       sstate = "unknown";
       break;
   }
-  
+
   char buf[4096];
   sprintf(buf, "    type %s(%i) - state %s(%i) - display %i\n", stype.c_str(), type,  sstate.c_str(),state, display);
     OutputDebugString(buf);

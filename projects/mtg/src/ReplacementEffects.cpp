@@ -5,7 +5,7 @@
 #include "../include/Damage.h"
 
 
-REDamagePrevention::REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource, TargetChooser *_tcTarget,int _damage,  bool _oneShot):source(_source),tcSource(_tcSource), tcTarget(_tcTarget),damage(_damage),  oneShot(_oneShot){
+REDamagePrevention::REDamagePrevention(MTGAbility * source, TargetChooser *tcSource, TargetChooser *tcTarget, int damage, bool oneShot):source(source), tcSource(tcSource), tcTarget(tcTarget), damage(damage), oneShot(oneShot){
 }
 
 WEvent * REDamagePrevention::replace (WEvent *event){

@@ -9,8 +9,10 @@ class DamageStack;
 
 class DamageResolverLayer:public PlayGuiObjectController{
  protected:
+  GameObserver* game;
   int trampleDamage();
   void updateAllCoordinates();
+
  public:
   int buttonOk;
   int orderingIsNeeded;
@@ -21,7 +23,7 @@ class DamageResolverLayer:public PlayGuiObjectController{
   DamageStack * damageStack;
   DamagerDamaged * currentSource;
 
-  DamageResolverLayer(int id, GameObserver* _game);
+  DamageResolverLayer(GameObserver* game);
   int init();
   int initResolve();
   Player * whoSelectsDamagesDealtBy(MTGCardInstance * card);

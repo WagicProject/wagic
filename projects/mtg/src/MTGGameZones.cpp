@@ -14,7 +14,6 @@
 //------------------------------
 
 MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idListSize){
-
   init();
   int i;
   collection = _collection;
@@ -25,14 +24,9 @@ MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idLi
       library->addCard(newCard);
     }
   }
-  
-
-
 }
 
-
-
-MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection,MTGDeck * deck){
+MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, MTGDeck * deck){
   init();
   collection = _collection;
   map<int,int>::iterator it;
@@ -70,7 +64,7 @@ void MTGPlayerCards::setOwner(Player * player){
 void MTGPlayerCards::initGame(int shuffle, int draw){
   if (shuffle) library->shuffle();
   if (draw){
-    for (int i=0;i<7;i++){ 
+    for (int i=0;i<7;i++){
       OutputDebugString("draw\n");
       drawFromLibrary();
     }
@@ -153,10 +147,9 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
   }
 
   if ((copy = from->removeCard(card,doCopy))){
-
-    if (GameOptions::GetInstance()->values[OPTIONS_SFXVOLUME].getIntValue() > 0){
+    if (options[Options::SFXVOLUME].number > 0){
       if (to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard){
-        if (card->isACreature()){
+        if (card->isCreature()){
           JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/graveyard.wav");
           if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
         }
@@ -170,7 +163,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         ret = NULL;
       }
     }
-    
+
     to->addCard(copy);
     copy->changedZoneRecently = 1.f;
     GameObserver *g = GameObserver::GetInstance();
@@ -200,9 +193,7 @@ int MTGPlayerCards::isInPlay(MTGCardInstance * card){
 // Zones specific code
 //--------------------------------------
 
-MTGGameZone::MTGGameZone(){
-  nb_cards= 0;
-  lastCardDrawn = NULL;
+MTGGameZone::MTGGameZone() : nb_cards(0), lastCardDrawn(NULL), needShuffle(false) {
 }
 
 MTGGameZone::~MTGGameZone(){
@@ -227,13 +218,13 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
       nb_cards--;
       cards.erase(cards.begin()+i);
 	    MTGCardInstance * copy = card;
-      if (card->isToken){ //TODO better than this ?
+      if (card->isToken) //TODO better than this ?
         return card;
-      }
       //card->lastController = card->controller();
       if (createCopy) {
 		    copy = NEW MTGCardInstance(card->model,card->owner->game);
 		    copy->previous = card;
+		    copy->view = card->view;
 		    card->next = copy;
 	    }
       copy->previousZone = this;
@@ -313,11 +304,8 @@ MTGCardInstance * MTGLibrary::draw(){
 }
 
 void MTGGameZone::debugPrint(){
-  int i;
-  for (i=0;i<nb_cards;i++){
-    MTGCard * card = cards[i];
-    fprintf(stderr, "%s", card->getName());
-  }
+  for (int i = 0; i < nb_cards; i++)
+    std::cerr << cards[i]->getName() << endl;
 }
 
 

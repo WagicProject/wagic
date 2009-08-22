@@ -27,7 +27,7 @@ int AIAction::Act(){
   return 0;
 }
 
-AIPlayer::AIPlayer(MTGPlayerCards * _deck, string file, string fileSmall): Player(_deck, file, fileSmall){
+AIPlayer::AIPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
   potentialMana = NEW ManaCost();
   nextCardToPlay = NULL;
   stats = NULL;
@@ -76,7 +76,7 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
     //Make sure we can use the ability
     MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
     AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
-    if (amp  && canHandleCost(amp)){
+    if (amp && canHandleCost(amp)){
       MTGCardInstance * card = amp->source;
       if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
         used[card] = true;
@@ -146,11 +146,11 @@ int AIAction::getEfficiency(){
   ActionStack * s = g->mLayers->stackLayer();
   Player * p = g->currentlyActing();
   if (s->has(ability)) return 0;
-  
+
   MTGAbility * a = ability;
   GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
   if (gta) a = gta->ability;
-  
+
   GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
   if (gaa) a = gaa->ability;
 
@@ -245,7 +245,7 @@ int AIPlayer::selectAbility(){
   }
 
   if (ranking.size()){
-    OutputDebugString("We have a winner\n");
+    OutputDebugString("We have a winrar\n");
     AIAction * a = ranking.begin()->first;
     int chance = 1 + rand() % 100;
     if (getEfficiency(a) < chance){
@@ -260,9 +260,9 @@ OutputDebugString("We REALLY have a winner\n");
       if (a != it2->first) delete(it2->first);
     }
   }
-  return 1;    
+  return 1;
 }
-  
+
 
 
 int AIPlayer::interruptIfICan(){
@@ -460,7 +460,7 @@ int AIPlayer::chooseBlockers(){
   while((card = cd.nextmatch(game->inPlay, card))){
     if (card->defenser && opponentsToughness[card->defenser] > 0){
       while (card->defenser){
-        
+
         g->mLayers->actionLayer()->reactToClick(a,card);
       }
     }
@@ -475,8 +475,8 @@ int AIPlayer::chooseBlockers(){
 	  set = 1;
 	}else{
 	  MTGCardInstance * attacker = card->defenser;
-	  if (opponentsToughness[attacker] <= 0 || 
-    (card->toughness <= attacker->power && opponentForce*2 <life  && !canFirstStrikeKill(card,attacker))  || 
+	  if (opponentsToughness[attacker] <= 0 ||
+    (card->toughness <= attacker->power && opponentForce*2 <life  && !canFirstStrikeKill(card,attacker))  ||
     attacker->nbOpponents()>1){
       g->mLayers->actionLayer()->reactToClick(a,card);
 	  }else{
@@ -491,11 +491,13 @@ int AIPlayer::chooseBlockers(){
 
 int AIPlayer::orderBlockers(){
   GameObserver * g = GameObserver::GetInstance();
+  /*
   DamageResolverLayer *  drl = g->mLayers->combatLayer();
   if (drl->orderingIsNeeded && g->currentPlayer==this){
     drl->blockersOrderingDone(); //TODO clever rank of blockers
     return 1;
   }
+  */
   return 0;
 }
 
@@ -509,6 +511,7 @@ int AIPlayer::combatDamages(){
   if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS) return orderBlockers();
 
   if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
+  /*
   DamageResolverLayer *  drl = gameObs->mLayers->combatLayer();
 
   if (drl->currentChoosingPlayer == this){
@@ -518,18 +521,19 @@ int AIPlayer::combatDamages(){
         OutputDebugString("YEs, AI IS THE DAMAGE DEALER");
         MTGCardInstance * attacker = current->card;
         MTGCardInstance * canardEmissaire = *(attacker->blockers.rbegin());
-        
+
         while (canardEmissaire && current->damageToDeal){
           drl->clickDamage(canardEmissaire);
         }
         result = 1;
-        
+
       }
     }
   }
 
-  
+
   if (result) return drl->nextPlayer();
+  */
   return 0;
 
 }
@@ -548,7 +552,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
   char deckFile[512];
   char avatarFile[512];
   char deckFileSmall[512];
-  
+
   if (deckid == -1){ //Evil twin
     sprintf(deckFile, opponent->deckFile.c_str());
     OutputDebugString(opponent->deckFile.c_str());
@@ -621,12 +625,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
   return nextCardToPlay;
 }
 
-AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * _deck, char * file, const char * fileSmall, char * avatarFile): AIPlayer(_deck,file, fileSmall){
-  if (fileExists(avatarFile)){
-    mAvatarTex = JRenderer::GetInstance()->LoadTexture(avatarFile, TEX_TYPE_USE_VRAM);
-  }else{
+AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * deck, string file, string fileSmall, string avatarFile) : AIPlayer(deck, file, fileSmall) {
+  if (fileExists(avatarFile.c_str()))
+    mAvatarTex = JRenderer::GetInstance()->LoadTexture(avatarFile.c_str(), TEX_TYPE_USE_VRAM);
+  else
     mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);
-  }
   if (mAvatarTex)
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
   initTimer();
@@ -682,8 +685,8 @@ int AIPlayerBaka::computeActions(){
 	      if (nextCardToPlay){
 #if defined (WIN32) || defined (LINUX)
           char buffe[4096];
-	        sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName());
-	        OutputDebugString(buffe);
+	  sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName().c_str());
+	  OutputDebugString(buffe);
 #endif
 
 	        tapLandsForMana(potentialMana,nextCardToPlay->getManaCost());
@@ -759,8 +762,6 @@ int AIPlayerBaka::Act(float dt){
     SAFE_DELETE(action);
     clickstream.pop();
   }
-
-
   return 1;
 };
 

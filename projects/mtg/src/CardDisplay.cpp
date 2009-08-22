@@ -4,8 +4,8 @@
 #include "../include/TargetChooser.h"
 #include "../include/MTGGameZones.h"
 
-CardDisplay::CardDisplay():PlayGuiObjectController(0, GameObserver::GetInstance()){
-  tc= NULL;
+CardDisplay::CardDisplay() : mId(0), game(GameObserver::GetInstance()) {
+  tc = NULL;
   listener = NULL;
   nb_displayed_items = 7;
   start_item = 0;
@@ -13,8 +13,8 @@ CardDisplay::CardDisplay():PlayGuiObjectController(0, GameObserver::GetInstance(
   y= 0;
 }
 
-CardDisplay::CardDisplay(int id, GameObserver* _game, int _x, int _y, JGuiListener * _listener, TargetChooser * _tc, int _nb_displayed_items ):PlayGuiObjectController(id, _game), x(_x), y(_y){
-  tc= _tc;
+CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListener * _listener, TargetChooser * _tc, int _nb_displayed_items ) : mId(id), game(game), x(_x), y(_y) {
+  tc = _tc;
   listener = _listener;
   nb_displayed_items = _nb_displayed_items;
   start_item = 0;
@@ -22,7 +22,7 @@ CardDisplay::CardDisplay(int id, GameObserver* _game, int _x, int _y, JGuiListen
 
 
 void CardDisplay::AddCard(MTGCardInstance * _card){
-  CardGui * card = NEW CardGui(mCount,  _card, 40, x + 5 + (mCount - start_item) * 30, y + 5, (mCount == 0));
+  CardGui * card = NEW CardView(_card, x + 5 + (mCount - start_item) * 30, y + 5);
   Add(card);
 }
 
@@ -60,7 +60,7 @@ bool CardDisplay::CheckUserInput(u32 key){
       if (listener){
 	      listener->ButtonPressed(mId, 0);
 	      return true;
-      } 
+      }
     }
 
   if (!mCount)
@@ -75,7 +75,7 @@ bool CardDisplay::CheckUserInput(u32 key){
 	    tc->toggleTarget(cardg->card);
 	    return true;
 	  }else{
-	  if (game) game->ButtonPressed(mId, cardg);
+	  if (game) game->ButtonPressed(cardg);
 	  return true;
 	}
       }
@@ -140,7 +140,7 @@ void CardDisplay::Render(){
   if (mCount && mObjects[mCurr] != NULL){
     mObjects[mCurr]->Render();
     CardGui * cardg = ((CardGui *)mObjects[mCurr]);
-    cardg->RenderBig(-1,-1,showBigCards-1);
+    //    cardg->RenderBig(-1,-1,showBigCards-1);
   }
 }
 
@@ -149,7 +149,7 @@ ostream& CardDisplay::toString(ostream& out) const
   return (out << "CardDisplay ::: x,y : " << x << "," << y << " ; start_item : " << start_item << " ; nb_displayed_items " << nb_displayed_items << " ; tc : " << tc << " ; listener : " << listener);
 }
 
-DefaultTargetDisplay::DefaultTargetDisplay(int id, GameObserver* _game, int _x, int _y,JGuiListener * _listener, int _nb_displayed_items ):CardDisplay(id, _game,  _x,  _y, _listener, NULL, _nb_displayed_items ){
+DefaultTargetDisplay::DefaultTargetDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener, int nb_displayed_items ):CardDisplay(id, game, x,  y, listener, NULL, nb_displayed_items ){
   tc = NEW TargetChooser();
 }
 

@@ -2,9 +2,9 @@
 #include "../include/ShopItem.h"
 #include "../include/GameStateShop.h"
 #include "../include/CardGui.h"
+#include "../include/TexturesCache.h"
 #include "../include/Translate.h"
 #include <hge/hgedistort.h>
-
 
 
   float ShopItems::_x1[] = { 40,  3, 23, 99,142,182, 90,132,177,106,163};
@@ -66,8 +66,9 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
   quantity = 1 + (rand() % 4);
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
-  thumb = card->getThumb();
-  if (!thumb) thumb = GameApp::CommonRes->GetQuad("back_thumb");
+  //  thumb = card->getThumb();
+  //  if (!thumb)
+  thumb = GameApp::CommonRes->GetQuad("back_thumb");
   if (thumb){
      mesh=NEW hgeDistortionMesh(2,2);
      mesh->SetTexture(thumb->mTex);
@@ -114,9 +115,8 @@ void ShopItem::Render(){
   if (!quantity){
     mFont->SetColor(ARGB(255,128,128,128));
   }
-  
- 
-  if (card){  
+
+  if (card){
     if (nameCount){
       char buffer[512];
       sprintf(buffer, "%s (%i)", _(card->name).c_str(), nameCount );
@@ -136,7 +136,7 @@ void ShopItem::Render(){
     renderer->FillPolygon(xs,ys,4,ARGB(200,0,0,0));
     x0 = mX + 230 -30;
     mFont->DrawString(mText.c_str(), x0, mY + 8,JGETEXT_RIGHT);
-    
+
   }else{
     float xs[] = {mX-5,   mX-5,   mX-5+230,mX-5+230,};
     float ys[] = {mY-5,mY-5+35,mY-5+17,mY-5+19}    ;
@@ -153,14 +153,12 @@ void ShopItem::Render(){
     //NOTHING
   }
   if (mHasFocus){
-    if (card){
-      quad = card->getQuad();
-    }
+    if (card) quad = cache.getQuad(card);
     if (quad){
       quad->SetColor(ARGB(255,255,255,255));
       renderer->RenderQuad(quad,SCREEN_WIDTH/2 + 50,5,0, 0.9f,0.9f);
     }else{
-      if (card) CardGui::alternateRender(card,NULL,SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
+      //      if (card) CardGui::alternateRender(card,NULL,SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
     }
     mFont->DrawString(mText.c_str(),  100,  SCREEN_HEIGHT - 30);
   }
@@ -336,7 +334,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         tempDeck->addRandomCards(1, sets,1,rare_or_mythic);
         tempDeck->addRandomCards(3, sets,1,Constants::RARITY_U);
         tempDeck->addRandomCards(11, sets,1,Constants::RARITY_C);
-        
+
         playerdata->collection->add(tempDeck);
         myCollection->Add(tempDeck);
 
@@ -344,7 +342,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
           ShopItem * si =  ((ShopItem *)mObjects[j]);
           si->updateCount(myCollection);
         }
-       
+
         int i = 0;
         for (map<int,int>::iterator it = tempDeck->cards.begin(); it!=tempDeck->cards.end(); it++){
           MTGCard * c = tempDeck->getCardById(it->first);

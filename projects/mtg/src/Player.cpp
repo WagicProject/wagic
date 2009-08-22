@@ -4,10 +4,10 @@
 #include "../include/DeckStats.h"
 
 
-Player::Player(MTGPlayerCards * _deck, string file, string fileSmall): Damageable(20){
+Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageable(20){
   deckFile = file;
   deckFileSmall = fileSmall;
-  game = _deck;
+  game = deck;
   game->setOwner(this);
   manaPool = NEW ManaCost();
   canPutLandsIntoPlay = 1;
@@ -26,7 +26,7 @@ Player::~Player(){
   if (mAvatar) delete mAvatar;
 }
 
-const char * Player::getDisplayName(){
+const string Player::getDisplayName(){
   GameObserver  * g = GameObserver::GetInstance();
   if (this == g->players[0]) return "Player 1";
   return "Player 2";
@@ -57,7 +57,7 @@ Player * Player::opponent(){
   return NULL;
 }
 
-HumanPlayer::HumanPlayer(MTGPlayerCards * _deck, char * file, string fileSmall):Player(_deck, file, fileSmall){
+HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
   mAvatarTex = JRenderer::GetInstance()->LoadTexture("player/avatar.jpg", TEX_TYPE_USE_VRAM);
   if (mAvatarTex)
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);

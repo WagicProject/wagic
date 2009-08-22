@@ -2,7 +2,7 @@
 #include "../include/MTGGuiHand.h"
 #include "../include/CardGui.h"
 
-MTGGuiHand::MTGGuiHand(int id, GameObserver * _game):GuiCardsController(id, _game){
+MTGGuiHand::MTGGuiHand(GameObserver* game) : game(game) {
   mShowHand = HAND_HIDE;
   mAnimState = 0;
   currentPlayer = NULL;
@@ -22,7 +22,7 @@ void MTGGuiHand::updateCards(){
     resetObjects();
     if (currentId[player->getId()] >= nb_cards) currentId[player->getId()] = nb_cards - 1;
     for (int i = 0;i<nb_cards; i++){
-      CardGui * object = NEW CardGui(i, player->game->hand->cards[i],(float)40, (float)450 - (nb_cards-i) *35, SCREEN_HEIGHT_F - mAnimState*60, i == currentId[player->getId()]);
+      CardView* object = NEW CardView(player->game->hand->cards[i], (float)450 - (nb_cards-i) *35, SCREEN_HEIGHT_F - mAnimState*60);
       Add(object);
       if ( i == currentId[player->getId()]) mCurr = i;
     }
@@ -37,7 +37,7 @@ void MTGGuiHand::Update(float dt){
   updateCards();
   for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){
-      ((CardGui *)mObjects[i])->y= SCREEN_HEIGHT - mAnimState*60;
+      ((CardGui *)mObjects[i])->y = SCREEN_HEIGHT - mAnimState*60;
     }
   }
 
@@ -79,7 +79,7 @@ bool MTGGuiHand::CheckUserInput(u32 key){
   if (mShowHand == HAND_HIDE || currentPlayer->isAI()){
     return false;
   }else{
-    GuiCardsController::CheckUserInput(key);
+    //    GuiCardsController::CheckUserInput(key);
     return true;
   }
 }
@@ -98,7 +98,7 @@ void MTGGuiHand::Render(){
     }
     if (mCount && mObjects[mCurr] != NULL){
       mObjects[mCurr]->Render();
-      if (showBigCards) ((CardGui *)mObjects[mCurr])->RenderBig(10,-1,showBigCards-1);
+      //      if (showBigCards) ((CardGui *)mObjects[mCurr])->RenderBig(10,-1,showBigCards-1);
     }
   }
 }

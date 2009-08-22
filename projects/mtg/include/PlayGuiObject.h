@@ -11,12 +11,11 @@
 #define GUI_LIBRARY 4
 
 #include <JGui.h>
+#include "Effects.h"
+#include "WEvent.h"
+#include "Pos.h"
 
-class MTGGameZone;
-class Player;
-class CardDisplay;
-
-class PlayGuiObject: public JGuiObject, public JGuiListener{
+class PlayGuiObject: public JGuiObject, public JGuiListener, public Pos{
  protected:
 
  public:
@@ -24,59 +23,17 @@ class PlayGuiObject: public JGuiObject, public JGuiListener{
   float mHeight;
   float defaultHeight;
   bool mHasFocus;
-  int x;
-  int y;
   int type;
   virtual void Entering(){mHasFocus = true;};
   virtual bool Leaving(u32 key){mHasFocus = false;return true;};
   virtual bool ButtonPressed(){return true;};
-  virtual void Render(){};
+  virtual void Render();
   virtual void Update(float dt);
-  PlayGuiObject(int id, float desiredHeight,float _x, float _y, bool hasFocus);
+  PlayGuiObject(float desiredHeight, float x, float y, bool hasFocus);
+  PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus);
   virtual void ButtonPressed(int controllerId, int controlId){};
   virtual ~PlayGuiObject(){};
-
+  vector<Effect*> effects;
 };
-
-class GuiAvatar: public PlayGuiObject{
- protected:
-
-  int avatarRed;
-  int currentLife;
- public:
-  Player * player;
-  virtual void Render();
-  GuiAvatar(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * _player);
-  virtual ostream& toString(ostream& out) const;
-};
-
-class GuiGameZone: public PlayGuiObject{
- protected:
-  MTGGameZone * zone;
-
- public:
-  CardDisplay * cd;
-  int showCards;
-  virtual void Render();
-  virtual void Update(float dt);
-  GuiGameZone(int id, float desiredHeight,float _x, float _y, bool hasFocus,MTGGameZone * _zone);
-  ~GuiGameZone();
-  virtual void ButtonPressed(int controllerId, int controlId);
-  void toggleDisplay();
-  virtual ostream& toString(ostream& out) const;
-};
-
-class GuiGraveyard: public GuiGameZone{
- public:
-  GuiGraveyard(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
-  virtual ostream& toString(ostream& out) const;
-};
-
-class GuiLibrary: public GuiGameZone{
- public:
-  GuiLibrary(int id, float desiredHeight,float _x, float _y, bool hasFocus,Player * player);
-  virtual ostream& toString(ostream& out) const;
-};
-
 
 #endif

@@ -275,7 +275,7 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     switch(conf_read_mode) {
     case 0:
       if (s[0] == '['){
-        tempCard = NEW MTGCard(mCache,set_id);
+        tempCard = NEW MTGCard(set_id);
         conf_read_mode = 1;
       }
       break;

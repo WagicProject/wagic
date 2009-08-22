@@ -28,13 +28,13 @@ class Damageable:public Targetable {
 
 class Damage: public Interruptible {
  protected:
-  void init(MTGCardInstance * _source, Damageable * _target, int _damage);
+  void init(MTGCardInstance * source, Damageable * target, int damage);
  public:
   Damageable * target;
   int damage;
   void Render();
-  Damage(int id, MTGCardInstance* _source, Damageable * _target);
-  Damage(int id, MTGCardInstance* _source, Damageable * _target, int _damage);
+  Damage(int id, MTGCardInstance* source, Damageable * target);
+  Damage(int id, MTGCardInstance* source, Damageable * target, int damage);
   int resolve();
   virtual ostream& toString(ostream& out) const;
 };
@@ -43,7 +43,7 @@ class Damage: public Interruptible {
 class DamageStack :public GuiLayer, public Interruptible{
  protected:
   int currentState;
-
+  GameObserver* game;
 
  public:
   int resolve();
@@ -51,7 +51,7 @@ class DamageStack :public GuiLayer, public Interruptible{
   int CombatDamages();//Deprecated ?
   int CombatDamages(int strike);
   virtual ostream& toString(ostream& out) const;
-  DamageStack(int id, GameObserver* _game);
+  DamageStack(GameObserver* game);
 };
 
 

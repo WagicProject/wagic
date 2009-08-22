@@ -25,23 +25,20 @@ void GameStateOptions::Start()
   JRenderer::GetInstance()->EnableVSync(true);
 
   optionsList = NEW OptionsList();
-  if (GameApp::HasMusic) optionsList->Add(NEW OptionItem(OPTIONS_MUSICVOLUME, "Music volume", 100, 10));
-  optionsList->Add(NEW OptionItem(OPTIONS_SFXVOLUME, "SFX volume", 100, 10));
-  optionsList->Add(NEW OptionItem(OPTIONS_INTERRUPTMYSPELLS, "interrupt my spells"));
-  optionsList->Add(NEW OptionItem(OPTIONS_INTERRUPTMYABILITIES, "interrupt my abilities"));
-  optionsList->Add(NEW OptionItem(OPTIONS_OSD, "Display InGame extra information"));
-  // WALDORF - added next line
-  optionsList->Add(NEW OptionItem(OPTIONS_INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
-  if (GameOptions::GetInstance()->values[OPTIONS_DIFFICULTY_MODE_UNLOCKED].getIntValue()) {
-    optionsList->Add(NEW OptionItem(OPTIONS_DIFFICULTY, "Difficulty", 3, 1));
-  }
-  optionsList->Add(NEW OptionItem(OPTIONS_CACHESIZE, "Image Cache Size", 60, 5));
+  if (GameApp::HasMusic) optionsList->Add(NEW OptionItem(Options::MUSICVOLUME, "Music volume", 100, 10));
+  optionsList->Add(NEW OptionItem(Options::SFXVOLUME, "SFX volume", 100, 10));
+  optionsList->Add(NEW OptionItem(Options::INTERRUPTMYSPELLS, "interrupt my spells"));
+  optionsList->Add(NEW OptionItem(Options::INTERRUPTMYABILITIES, "interrupt my abilities"));
+  optionsList->Add(NEW OptionItem(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
+  optionsList->Add(NEW OptionItem(Options::OSD, "Display InGame extra information"));
+  if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
+    optionsList->Add(NEW OptionItem(Options::DIFFICULTY, "Difficulty", 3, 1));
+  optionsList->Add(NEW OptionItem(Options::CACHESIZE, "Image Cache Size", 60, 5));
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
   optionsMenu = NEW SimpleMenu(102, this,mFont, 50,170);
   optionsMenu->Add(1, "Save & Back to Main Menu");
   optionsMenu->Add(2, "Back to Main Menu");
   optionsMenu->Add(3, "Cancel");
-
 }
 
 

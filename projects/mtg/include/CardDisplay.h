@@ -8,12 +8,14 @@ class MTGGameZone;
 class MTGCardInstance;
 
 class CardDisplay:public PlayGuiObjectController{
+  int mId;
+  GameObserver* game;
  public:
   int x, y , start_item, nb_displayed_items;
   TargetChooser * tc;
   JGuiListener * listener;
   CardDisplay();
-  CardDisplay(int id, GameObserver* _game, int _x, int _y, JGuiListener * _listener = NULL, TargetChooser * _tc = NULL, int _nb_displayed_items = 7 );
+  CardDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener = NULL, TargetChooser * tc = NULL, int nb_displayed_items = 7);
   void AddCard(MTGCardInstance * _card);
   void rotateLeft();
   void rotateRight();
@@ -27,7 +29,7 @@ class CardDisplay:public PlayGuiObjectController{
 
 class DefaultTargetDisplay:CardDisplay{
  public:
-  DefaultTargetDisplay(int id, GameObserver* _game, int _x, int _y,  JGuiListener * _listener, int _nb_displayed_items );
+  DefaultTargetDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener, int nb_displayed_items );
   ~DefaultTargetDisplay();
 };
 

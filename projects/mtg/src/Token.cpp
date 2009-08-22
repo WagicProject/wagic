@@ -16,6 +16,4 @@ Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness)
   attacker = 0;
   defenser = NULL;
   banding = NULL;
-  mCache = source->mCache;
-
 }

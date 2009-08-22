@@ -9,14 +9,14 @@ OptionItem::OptionItem(string _id, string _displayValue, int _maxValue, int _inc
   maxValue = _maxValue;
   increment = _increment;
   displayValue = _(_displayValue);
-  value = GameOptions::GetInstance()->values[id].getIntValue();
+  value = options[id].number;
   hasFocus = 0;
   x = 0;
   y = 0;
 }
 
 void OptionItem::setData(){
-  GameOptions::GetInstance()->values[id] = GameOption(value);
+  options[id] = GameOption(value);
 }
 
 void OptionItem::Render(){
@@ -60,8 +60,6 @@ bool OptionItem::Leaving(){
 }
 
 
-OptionItem * options[20];
-int nbitems;
 OptionsList::OptionsList(){
   nbitems = 0;
   current = -1;
@@ -100,7 +98,7 @@ void OptionsList::save(){
   for (int i = 0; i < nbitems; i++){
     options[i]->setData();
   }
-  GameOptions::GetInstance()->save();
+  ::options.save();
 }
 
 void OptionsList::Update(float dt){

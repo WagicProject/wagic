@@ -1,8 +1,6 @@
 #ifndef _GUI_LAYERS_H_
 #define _GUI_LAYERS_H_
 
-#define MAX_GUI_LAYERS 7
-
 #define DIR_DOWN 1
 #define DIR_UP 2
 #define DIR_LEFT 3
@@ -14,16 +12,13 @@
 class GameObserver;
 class Player;
 
-
 class GuiLayer{
  protected:
-  GameObserver * game;
-  int mId;
   u32	mActionButton;
  public:
   int mCount;
   int mCurr;
-  vector<JGuiObject *>mObjects;
+  vector<JGuiObject *> mObjects;
   void Add(JGuiObject * object);
   int Remove(JGuiObject * object);
   int modal;
@@ -32,7 +27,7 @@ class GuiLayer{
   int getMaxId();
   void RenderMessageBackground(float x0, float y0, float width, int height);
   void RenderMessageBackground(float y0, int height);
-  GuiLayer(int id, GameObserver* _game);
+  GuiLayer();
   virtual ~GuiLayer();
   virtual void Update(float dt);
   virtual bool CheckUserInput(u32 key){ return false; };
@@ -45,23 +40,8 @@ class GuiLayer{
     return 1;
   };
 
-  virtual int receiveEvent(WEvent * e){return 0;};
-};
-
-class GuiLayers{
- protected:
-  int nbitems;
-  GuiLayer * objects[MAX_GUI_LAYERS];
- public:
-  GuiLayers();
-  virtual void Update(float dt, Player * player);
-  void Render();
-  void Add(GuiLayer * layer);
-  void Remove();
-  int unstoppableRenderInProgress();
-  ~GuiLayers();
-   int receiveEvent(WEvent * e);
-
+  virtual int receiveEventPlus(WEvent * e){return 0;};
+  virtual int receiveEventMinus(WEvent * e){return 0;};
 };
 
 #endif

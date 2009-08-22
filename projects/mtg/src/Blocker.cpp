@@ -24,11 +24,11 @@ void UntapBlocker::init(ManaCost * _cost){
   manaCost = _cost;
 }
 
-  UntapBlocker * UntapBlocker::clone() const{
-    UntapBlocker * a =  NEW UntapBlocker(*this);
-    a->isClone = 1;
-    return a;
-  }
+UntapBlocker * UntapBlocker::clone() const{
+  UntapBlocker * a =  NEW UntapBlocker(*this);
+  a->isClone = 1;
+  return a;
+}
 
 
 //Default behaviour for blockers : they block the card they're attached to
@@ -45,7 +45,7 @@ void UntapBlocker::Update(float dt){
     _target->getUntapBlockers()->Add(this);
 #if defined (WIN32) || defined (LINUX)
     char buf[4096];
-    sprintf(buf, "Adding Blocker to %s \n", _target->model->getName());
+    sprintf(buf, "Adding Blocker to %s \n", _target->model->getName().c_str());
     OutputDebugString(buf);
 #endif
   }

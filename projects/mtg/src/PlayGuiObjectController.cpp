@@ -86,6 +86,7 @@ void PlayGuiObjectController::Update(float dt){
 
 
 bool PlayGuiObjectController::CheckUserInput(u32 key){
+  /*
   if (!mCount)
     return false;
   if (game != NULL){
@@ -148,5 +149,6 @@ bool PlayGuiObjectController::CheckUserInput(u32 key){
       showBigCards = (showBigCards + 1) % 3;
       return true;
     }
+  */
   return false;
 }

@@ -14,7 +14,7 @@ class PlayGuiObjectController : public GuiLayer{
  public:
   virtual void Update(float dt);
   virtual bool CheckUserInput(u32 key);
- PlayGuiObjectController(int id, GameObserver* _game):GuiLayer(id, _game){last_user_move=0;};
+  PlayGuiObjectController(){last_user_move=0;};
   virtual void Render(){GuiLayer::Render();};
 };
 

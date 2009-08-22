@@ -23,7 +23,7 @@
 
 
 
-MTGGuiPlay::MTGGuiPlay(int id, GameObserver * _game):PlayGuiObjectController(id, _game){
+MTGGuiPlay::MTGGuiPlay(GameObserver* game) : game(game){
   currentPlayer = NULL;
   offset = 0;
 
@@ -123,18 +123,18 @@ void MTGGuiPlay::setCardPosition(CardGui * cardg, int player, int playerTurn, in
   if (!(cardg->x ==0 && cardg->y ==0)) return ;
   if (card->target)
     return;
-  if (spellMode && (card->isACreature() || card->hasType("land"))) return;
-  if (!spellMode && !card->isACreature() && !card->hasType("land")) return;
-  if (card->isACreature()){
+  if (spellMode && (card->isCreature() || card->isLand())) return;
+  if (!spellMode && !card->isCreature() && !card->isLand()) return;
+  if (card->isCreature()){
     int x_offset = nb_creatures[player] % cards_x_limit;
     int y_offset = nb_creatures[player] / cards_x_limit;
-    cardg->x= ZX_MAIN + (Z_CARDWIDTH * x_offset);
-    cardg->y=ZY_MAIN +  ZH_CREATURES + (Z_CARDHEIGHT * y_offset) + 100 * (1-player);
+    cardg->x = ZX_MAIN + (Z_CARDWIDTH * x_offset);
+    cardg->y = ZY_MAIN +  ZH_CREATURES + (Z_CARDHEIGHT * y_offset) + 100 * (1-player);
     nb_creatures[player]++;
 
     if (playerTurn){
       if (card->isAttacker()){
-	      cardg->y=122 + 30 * (1-player);
+	cardg->y = 122 + 30 * (1-player);
         //Sets position of opponents as well
         if (player == 1){
           for (list<MTGCardInstance *>::iterator it= card->blockers.begin(); it !=card->blockers.end() ; ++it){
@@ -153,27 +153,26 @@ void MTGGuiPlay::setCardPosition(CardGui * cardg, int player, int playerTurn, in
             }
           }
         }
-        
       }
     }else{
       if (card->isDefenser()){
-	      CardGui * targetg = getByCard(card->isDefenser());
-	      if (targetg) cardg->x = targetg->x;
-	      cardg->y=122 + 30 * (1-player);
+	CardGui * targetg = getByCard(card->isDefenser());
+	if (targetg) cardg->x = targetg->x;
+	cardg->y = 122 + 30 * (1-player);
       }
     }
 
   }else if(card->hasType("land")){
     int x_offset = nb_lands[player] % cards_x_limit;
     int y_offset = nb_lands[player] / cards_x_limit;
-    cardg->x=ZX_MAIN + (Z_CARDWIDTH * x_offset);
-    cardg->y=ZY_MAIN + (Z_CARDHEIGHT * y_offset) + 200 * (1-player);
+    cardg->x = ZX_MAIN + (Z_CARDWIDTH * x_offset);
+    cardg->y = ZY_MAIN + (Z_CARDHEIGHT * y_offset) + 200 * (1-player);
     nb_lands[player]++;
   }else{
     int y_offset = nb_spells[player] % Z_SPELLS_NBCARDS;
     int x_offset = nb_spells[player] / Z_SPELLS_NBCARDS;
-    cardg->x=ZX_SPELL - (Z_CARDWIDTH * x_offset);
-    cardg->y=ZY_SPELL + (Z_CARDHEIGHT * y_offset) + 125 * (1-player);
+    cardg->x = ZX_SPELL - (Z_CARDWIDTH * x_offset);
+    cardg->y = ZY_SPELL + (Z_CARDHEIGHT * y_offset) + 125 * (1-player);
     nb_spells[player]++;
     cards_x_limit = 12 - (nb_spells[player] + 2)/ Z_SPELLS_NBCARDS;
   }
@@ -188,15 +187,14 @@ void MTGGuiPlay::setTargettingCardPosition(CardGui * cardg, int player, int play
     return;
   CardGui * targetg = getByCard(target);
   if (targetg){
-    cardg->y=targetg->y + 5;
-    cardg->x=targetg->x + 5;
+    cardg->y = targetg->y + 5;
+    cardg->x = targetg->x + 5;
   }
   adjustCardPosition(cardg);
   return;
 }
 
 void MTGGuiPlay::forceUpdateCards(){
-  GameObserver * game = GameObserver::GetInstance();
   Player * player = game->players[0];
   int player0Mode =(game->currentPlayer == player);
   int nb_cards = player->game->inPlay->nb_cards;
@@ -211,14 +209,14 @@ void MTGGuiPlay::forceUpdateCards(){
 
     for (int i = 0;i<nb_cards; i++){
       if (hasFocus) mCurr = mCount ;
-      CardGui * object = NEW CardGui(mCount, player->game->inPlay->cards[i],40, i*35 + 10, 200, hasFocus);
+      CardView* object = NEW CardView(player->game->inPlay->cards[i], i*35 + 10, 200);
       Add(object);
       hasFocus = false;
     }
     hasFocus = !player0Mode;
     for (int i = 0;i<opponent_cards; i++){
       if (hasFocus) mCurr = mCount ;
-      CardGui * object = NEW CardGui(mCount, opponent->game->inPlay->cards[i],40, i*35 + 10, 10, hasFocus);
+      CardView* object = NEW CardView(opponent->game->inPlay->cards[i], i*35 + 10, 10);
       Add(object);
       hasFocus = false;
     }
@@ -226,16 +224,17 @@ void MTGGuiPlay::forceUpdateCards(){
     currentPlayer = game->currentPlayer;
 }
 
-int MTGGuiPlay::receiveEvent(WEvent *event){
+int MTGGuiPlay::receiveEventPlus(WEvent *event){
   WEventZoneChange * e = dynamic_cast<WEventZoneChange*>(event);
   if (!e) return 0;
-  int ok = 0;
-  for (int i = 0; i < 2 ; i++){
-    Player * p = game->players[i];
-    if (e->from == p->game->inPlay || e->to == p->game->inPlay ) ok = 1;
-  }
-  if (!ok) return 0;
-  forceUpdateCards();
+  if (e->from == game->players[0]->game->inPlay || e->from == game->players[1]->game->inPlay)
+    {
+      for (vector<JGuiObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
+	if (*it == (JGuiObject*)e->card) { mObjects.erase(it); delete(*it); return 1; }
+    }
+  else if (e->to == game->players[0]->game->inPlay || e->to == game->players[1]->game->inPlay)
+    Add(NEW CardView(e->card, 500, 300));
+  //  forceUpdateCards();
   updateCards();
   return 1;
 }
@@ -296,15 +295,15 @@ void MTGGuiPlay::updateCards(){
 void MTGGuiPlay::AddPlayersGuiInfo(){
   //init with the players objects
   if (mCount == 0){
-    Add(NEW GuiAvatar(-1,50,2,155,false, GameObserver::GetInstance()->players[0]));
-    Add(NEW GuiAvatar(-2,50,2,30,false,GameObserver::GetInstance()->players[1]));
+    Add(NEW GuiAvatar(2,155,false, GameObserver::GetInstance()->players[0], GuiAvatar::BOTTOM_RIGHT, NULL));
+    Add(NEW GuiAvatar(2,30,false,GameObserver::GetInstance()->players[1], GuiAvatar::BOTTOM_RIGHT, NULL));
 
-    Add(NEW GuiGraveyard(-3,30,40,150,false, GameObserver::GetInstance()->players[0]));
-    Add(NEW GuiLibrary(-4,30,40,180,false, GameObserver::GetInstance()->players[0]));
+    Add(NEW GuiGraveyard(40,150,false, GameObserver::GetInstance()->players[0], NULL));
+    Add(NEW GuiLibrary(40,180,false, GameObserver::GetInstance()->players[0], NULL));
 
 
-    Add(NEW GuiGraveyard(-5,30,40,30,false, GameObserver::GetInstance()->players[1]));
-    Add(NEW GuiLibrary(-6,30,40,60,false, GameObserver::GetInstance()->players[1]));
+    Add(NEW GuiGraveyard(40,30,false, GameObserver::GetInstance()->players[1], NULL));
+    Add(NEW GuiLibrary(40,60,false, GameObserver::GetInstance()->players[1], NULL));
   }
 }
 
@@ -322,7 +321,7 @@ bool MTGGuiPlay::CheckUserInput(u32 key){
       return zone->cd->CheckUserInput(key);
     }
   }
-  return PlayGuiObjectController::CheckUserInput(key);
+  return true; //PlayGuiObjectController::CheckUserInput(key);
 }
 
 
@@ -439,7 +438,7 @@ void MTGGuiPlay::Render(){
     if (hasFocus && mCurr >= offset && showBigCards && !game->currentlyActing()->isAI() ){
         //For some reason RenderBig crashes when the testsuite is playing, so we add a "isAI()" test...which was supposed to be there at some point anyways...
         CardGui * cardg = ((CardGui *)mObjects[mCurr]);
-        cardg->RenderBig(-1,-1,showBigCards-1);
+        //cardg->RenderBig(-1,-1,showBigCards-1);
     }
   }
   LOG("End MTGGuiPlay Render\n");

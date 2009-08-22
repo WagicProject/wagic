@@ -67,16 +67,15 @@ void ActionLayer::Update(float dt){
     return;
   }
   modal = 0;
-  GameObserver * g = GameObserver::GetInstance();
+  GameObserver* game = GameObserver::GetInstance();
   for (int i=mCount -1 ;i>=0;i--){
     if (mObjects[i]!= NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];
-      if (currentAction->testDestroy()){
-        g->removeObserver(currentAction);
-      }
+      if (currentAction->testDestroy())
+	game->removeObserver(currentAction);
     }
   }
-  int newPhase = g->getCurrentGamePhase();
+  int newPhase = game->getCurrentGamePhase();
   for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];
@@ -138,7 +137,7 @@ int ActionLayer::stillInUse(MTGCardInstance * card){
   return 0;
 }
 
-int ActionLayer::receiveEvent(WEvent * event){
+int ActionLayer::receiveEventPlus(WEvent * event){
   int result = 0;
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
@@ -180,7 +179,7 @@ int ActionLayer::reactToTargetClick(Targetable * card){
 int ActionLayer::isReactingToClick(MTGCardInstance * card){
   int result = 0;
 
-  if (isWaitingForAnswer()) return -1; 
+  if (isWaitingForAnswer()) return -1;
 
 
   for (int i=0;i<mCount;i++){
@@ -244,7 +243,6 @@ void ActionLayer::doReactTo(int menuIndex){
 
 void ActionLayer::ButtonPressed(int controllerid, int controlid){
   if (controlid == -1){
-    
   }else{
     ActionElement * currentAction = (ActionElement *)mObjects[controlid];
     currentAction->reactToTargetClick(menuObject);

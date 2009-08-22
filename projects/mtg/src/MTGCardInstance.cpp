@@ -12,24 +12,24 @@
 #include <algorithm>
 using namespace std;
 
-MTGCardInstance::MTGCardInstance(): MTGCard(), Damageable(0){
+MTGCardInstance::MTGCardInstance(): MTGCard(), Damageable(0), view(NULL){
   LOG("==Creating MTGCardInstance==");
   initMTGCI();
   LOG("==Creating MTGCardInstance Successful==");
 }
-MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to): MTGCard(card), Damageable(card->getToughness()){
+MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to): MTGCard(card), Damageable(card->getToughness()), view(NULL){
   LOG("==Creating MTGCardInstance==");
   initMTGCI();
   model = card;
   attacker = 0;
   lifeOrig = life;
-  belongs_to=_belongs_to;
+  belongs_to = arg_belongs_to;
   owner = NULL;
-  if (_belongs_to) owner = _belongs_to->library->owner;
+  if (arg_belongs_to) owner = arg_belongs_to->library->owner;
   lastController = owner;
   defenser = NULL;
   banding = NULL;
-  life=toughness;
+  life = toughness;
   LOG("==Creating MTGCardInstance Successful==");
 
 }
@@ -60,10 +60,9 @@ void MTGCardInstance::copy(MTGCardInstance * card){
   lifeOrig = life;
   //mtgid = source->mtgid;
   //setId = source->setId;
-  formattedTextInit = 0;
   magicText = source->magicText;
   spellTargetType = source->spellTargetType;
-  alias = source->alias; 
+  alias = source->alias;
 
   //Now this is dirty...
   int backupid = mtgid;
@@ -109,7 +108,7 @@ void MTGCardInstance::initMTGCI(){
 }
 
 
-const char * MTGCardInstance::getDisplayName(){
+const string MTGCardInstance::getDisplayName(){
   return getName();
 }
 
@@ -135,7 +134,7 @@ int MTGCardInstance::isInPlay(){
 int MTGCardInstance::afterDamage(){
   if (!doDamageTest) return 0;
   doDamageTest = 0;
-  if (!isACreature()) return 0;
+  if (!isCreature()) return 0;
   if (life <=0 && isInPlay()){
     return destroy();
   }
@@ -166,10 +165,6 @@ MTGGameZone * MTGCardInstance::getCurrentZone(){
     }
   }
   return NULL;
-}
-
-JQuad * MTGCardInstance::getIcon(){
-  return getThumb();
 }
 
 int MTGCardInstance::has(int basicAbility){
@@ -271,16 +266,16 @@ return previous->stillInUse();
 }
 
 /* Summoning Sickness
- * 212.3f A creaturefs activated ability with the tap symbol or the untap symbol in its activation cost
- * canft be played unless the creature has been under its controllerfs control since the start of his or
- * her most recent turn. A creature canft attack unless it has been under its controllerfs control
- * since the start of his or her most recent turn. This rule is informally called the gsummoning
- * sicknessh rule. Ignore this rule for creatures with haste (see rule 502.5).
+ * 212.3f A creature's activated ability with the tap symbol or the untap symbol in its activation cost
+ * can't be played unless the creature has been under its controller's control since the start of his or
+ * her most recent turn. A creature can't attack unless it has been under its controller's control
+ * since the start of his or her most recent turn. This rule is informally called the "summoning
+ * sickness" rule. Ignore this rule for creatures with haste (see rule 502.5).
  */
 int MTGCardInstance::hasSummoningSickness(){
   if (!summoningSickness) return 0;
   if (basicAbilities[Constants::HASTE]) return 0;
-  if (!isACreature()) return 0;
+  if (!isCreature()) return 0;
   return 1;
 }
 
@@ -318,7 +313,7 @@ int MTGCardInstance::canAttack(){
   if (tapped) return 0;
   if (hasSummoningSickness()) return 0;
   if (basicAbilities[Constants::DEFENSER] || basicAbilities[Constants::CANTATTACK]) return 0;
-  if (!isACreature()) return 0;
+  if (!isCreature()) return 0;
   if (!isInPlay()) return 0;
   return 1;
 }
@@ -341,7 +336,7 @@ int MTGCardInstance::setToughness(int value){
 int MTGCardInstance::canBlock(){
   if (tapped) return 0;
   if (basicAbilities[Constants::CANTBLOCK]) return 0;
-  if (!isACreature())return 0;
+  if (!isCreature()) return 0;
   if (!isInPlay()) return 0;
   return 1;
 }
@@ -410,7 +405,7 @@ int MTGCardInstance::setAttacker(int value){
   Targetable * target = NULL;
   Player * p  = controller()->opponent();
   if (value) target = p;
-  if (attacker) previousTarget = p; 
+  if (attacker) previousTarget = p;
   attacker = value;
   WEvent * e = NEW WEventCreatureAttacker(this,previousTarget, target);
   GameObserver::GetInstance()->receiveEvent(e);
@@ -421,7 +416,7 @@ int MTGCardInstance::setAttacker(int value){
 int MTGCardInstance::toggleAttacker(){
   if (!attacker){
     if (!basicAbilities[Constants::VIGILANCE]) tap();
-    setAttacker(1);  
+    setAttacker(1);
     return 1;
   }else{
     //Banding needs to be debugged...
@@ -475,8 +470,8 @@ int MTGCardInstance::moveBlockerInRow(MTGCardInstance * blocker){
   list<MTGCardInstance *>::iterator it1 = find(blockers.begin(), blockers.end(), blocker);
   list<MTGCardInstance *>::iterator it2 = it1;
   if (it2 == blockers.end()) it2 = blockers.begin(); else ++it2;
-  if (it2 == blockers.end()) it2 = blockers.begin(); 
-    
+  if (it2 == blockers.end()) it2 = blockers.begin();
+
   std::iter_swap(it1,it2);
   WEvent* e = NEW WEventCreatureBlockerRank(blocker,*it2,this);
   GameObserver::GetInstance()->receiveEvent(e);

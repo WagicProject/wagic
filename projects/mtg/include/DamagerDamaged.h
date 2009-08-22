@@ -1,12 +1,12 @@
 #ifndef _DAMAGERDAMAGED_H_
 #define _DAMAGERDAMAGED_H_
 
-#include "../include/CardGui.h"
+#include "../include/MTGCardInstance.h"
 
 class Player;
 
-class DamagerDamaged:public CardGui{
- public:
+struct DamagerDamaged {
+  MTGCardInstance* card;
   Player * damageSelecter;
   int mCount;
   Damage * damages[10];
@@ -18,12 +18,9 @@ class DamagerDamaged:public CardGui{
   int removeDamagesFrom(DamagerDamaged * source);
   int sumDamages();
   int hasLethalDamage();
-  DamagerDamaged(CardGui * cardg, Player * _damageSelecter, bool _hasFocus);
+  DamagerDamaged(MTGCardInstance* card, Player * _damageSelecter, bool _hasFocus);
   ~DamagerDamaged();
   void Render(Player * currentPlayer);
-
-
-
 };
 
 

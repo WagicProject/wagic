@@ -77,7 +77,7 @@ void GameStateDuel::Start()
   playerDecksDir = RESPATH"/player";
 
   mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
-  mFont->SetBase(0);	
+  mFont->SetBase(0);
   opponentMenuFont = mFont;
 
 
@@ -116,7 +116,7 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
   int nbcolors = 3;
 
   string lands[] = {"forest", "forest", "island", "mountain", "swamp", "plains", "forest"};
-  
+
 
   MTGDeck * tempDeck = NEW MTGDeck(NULL, mParent->collection);
   tempDeck->addRandomCards(9,0,0,-1,lands[color1].c_str());
@@ -129,15 +129,14 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
   tempDeck->addRandomCards(2,0,0,-1,"instant",colors,nbcolors);
   tempDeck->addRandomCards(2,0,0,-1,"artifact",colors,nbcolors);
 
-  char * deckFile = "random";
+  string deckFile = "random";
   string deckFileSmall = "random";
 
-  deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
-  if (!isAI){ //Human Player
-      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
-  }else{
-    mPlayers[playerId] =  NEW AIPlayerBaka(deck[playerId],deckFile, deckFileSmall.c_str() , "");
-  }
+  deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
+  if (!isAI) // Human Player
+    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], deckFile, deckFileSmall);
+  else
+    mPlayers[playerId] = NEW AIPlayerBaka(deck[playerId],deckFile, deckFileSmall, "");
   delete tempDeck;
 }
 
@@ -147,12 +146,11 @@ void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
   string deckFileSmall = "momir";
   char empty[] = "";
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
-  deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
-  if (!isAI){ //Human Player
-      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
-  }else{
-      mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId],deckFile,deckFileSmall.c_str(), empty);
-  }
+  deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
+  if (!isAI) // Human Player
+    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], deckFile, deckFileSmall);
+  else
+    mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId], deckFile, deckFileSmall, empty);
   delete tempDeck;
 }
 
@@ -295,17 +293,15 @@ void GameStateDuel::Update(float dt)
       else deckmenu->Update(dt);
       break;
     case DUEL_STATE_CHOOSE_DECK2:
-      if (mParent->players[1] ==  PLAYER_TYPE_HUMAN){
+      if (mParent->players[1] ==  PLAYER_TYPE_HUMAN)
 	deckmenu->Update(dt);
-      }
       else{
 	if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
 	  if (!opponentMenu){
 	    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, opponentMenuFont, 35, 25, "Choose Opponent");
 	    opponentMenu->Add(0,"Random");
-      if (GameOptions::GetInstance()->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()){
-        opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
-      }
+	    if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
+	      opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
 	    fillDeckMenu(opponentMenu,RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
 	  }
 	  opponentMenu->Update(dt);
@@ -457,7 +453,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         break;
       }
     case DUEL_MENU_CHOOSE_DECK:
-      {  
+      {
         if (controlId < 0){
           mParent->SetNextState(GAME_STATE_DECK_VIEWER);
           return;
