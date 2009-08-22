@@ -98,9 +98,9 @@ int TestSuiteAI::Act(float dt){
       OutputDebugString("End of combat damage!\n");
       drl->nextPlayer();
       g->userRequestNextGamePhase();
-    }else{
+    }else{ */
       g->userRequestNextGamePhase();
-    }
+    /*}
     */
   }else if (action.compare("yes")==0){
     g->mLayers->stackLayer()->setIsInterrupting(this);
@@ -149,9 +149,9 @@ int TestSuiteAI::Act(float dt){
               OutputDebugString(" Damaging Card\n");
               drl->clickDamage(card);
             }
-          }else{
+          }else{*/
 	          g->cardClick(card,card);
-          }
+         /* }
 	  */
         }
       }
