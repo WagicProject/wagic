@@ -17,10 +17,10 @@ struct CardGui : public PlayGuiObject {
   JQuad* quad;
 
  public:
-  static const float Width = 28.0;
-  static const float Height = 40.0;
-  static const float BigWidth = 200.0;
-  static const float BigHeight = 285.0;
+  static const float Width;
+  static const float Height;
+  static const float BigWidth;
+  static const float BigHeight;
 
   MTGCardInstance* card;
   CardGui(MTGCardInstance* card, float x, float y);

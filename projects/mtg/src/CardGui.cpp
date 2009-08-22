@@ -7,6 +7,12 @@
 #include "../include/MTGDefinitions.h"
 #include <Vector2D.h>
 
+
+const float CardGui::Width = 28.0;
+const float CardGui::Height = 40.0;
+const float CardGui::BigWidth = 200.0;
+const float CardGui::BigHeight = 285.0;
+
 CardGui::CardGui(MTGCardInstance* card, float x, float y) : PlayGuiObject(Height, x, y, false), quad(cache.getQuad(card)), card(card) {}
 CardGui::CardGui(MTGCardInstance* card, const Pos& ref) : PlayGuiObject(Height, ref, false), quad(cache.getQuad(card)), card(card) {}
 
