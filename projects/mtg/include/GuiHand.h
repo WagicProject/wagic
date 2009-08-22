@@ -69,6 +69,7 @@ class GuiHandSelf : public GuiHand
 
   bool CheckUserInput(u32 key);
   virtual void Render();
+  void Update(float dt);
   float LeftBoundary();
 
   HandLimitor* limitor;

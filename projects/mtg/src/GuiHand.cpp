@@ -82,11 +82,19 @@ bool GuiHandSelf::CheckUserInput(u32 key)
   return false;
 }
 
+void GuiHandSelf::Update(float dt)
+{
+  if (Closed == state)
+    backpos += 10 * dt * (ClosedX - backpos);
+  else
+    backpos += 10 * dt * (OpenX - backpos);
+  GuiHand::Update(dt);
+}
+
 void GuiHandSelf::Render()
 {
   if (Closed == state)
     {
-      backpos += (ClosedX - backpos) / 100;
       JRenderer::GetInstance()->RenderQuad(back, backpos, SCREEN_HEIGHT - 250);
       float y = 48.0;
       for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
@@ -99,7 +107,6 @@ void GuiHandSelf::Render()
     }
   else
     {
-      backpos += (OpenX - backpos) / 100;
       JRenderer::GetInstance()->RenderQuad(back, backpos, SCREEN_HEIGHT - 250);
       bool flip = false;
       float y = 48.0;
