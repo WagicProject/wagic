@@ -4,7 +4,7 @@
 #include "GuiLayers.h"
 #include "CardSelector.h"
 
-class GuiAvatar;
+struct GuiAvatar;
 class GuiGraveyard;
 class GuiLibrary;
 
