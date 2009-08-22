@@ -22,12 +22,12 @@ struct HandLimitor : public Limitor
 class GuiHand : public GuiLayer
 {
  public:
-  static const float ClosedRowX = 459;
-  static const float LeftRowX = 420;
-  static const float RightRowX = 460;
+  static const float ClosedRowX;
+  static const float LeftRowX;
+  static const float RightRowX;
 
-  static const float OpenX = 394;
-  static const float ClosedX = 494;
+  static const float OpenX;
+  static const float ClosedX;
 
  protected:
   const MTGHand* hand;

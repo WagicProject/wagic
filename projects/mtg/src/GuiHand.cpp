@@ -2,6 +2,14 @@
 #include "../include/GameApp.h"
 #include "../include/GuiHand.h"
 
+const float GuiHand::ClosedRowX = 459;
+const float GuiHand::LeftRowX = 420;
+const float GuiHand::RightRowX = 460;
+
+const float GuiHand::OpenX = 394;
+const float GuiHand::ClosedX = 494;
+
+
 bool HandLimitor::select(Target* t)
 {
   vector<CardView*>::iterator it;
