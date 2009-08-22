@@ -20,7 +20,7 @@ class ManaCost;
 class UntapBlockers;
 class CardDescriptor;
 class Counters;
-class Pos;
+struct Pos;
 
 #include <list>
 using namespace std;

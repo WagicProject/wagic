@@ -12,7 +12,7 @@ class DamageResolverLayer;
 class GuiHandSelf;
 class GuiHandOpponent;
 class GuiCombat;
-class Pos;
+struct Pos;
 
 class DuelLayers {
  protected:
