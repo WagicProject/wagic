@@ -204,7 +204,7 @@ void GameStateMenu::fillScroller(){
     scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));   
   }
   if (!go->values[OPTIONS_RANDOMDECK_MODE_UNLOCKED].getIntValue()){
-    scroller->Add(_("You haven't locked the random deck mode yet"));   
+    scroller->Add(_("You haven't unlocked the random deck mode yet"));   
   }
   if (!go->values[OPTIONS_EVILTWIN_MODE_UNLOCKED].getIntValue()){
     scroller->Add(_("You haven't unlocked the evil twin mode yet"));   

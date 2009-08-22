@@ -9,6 +9,7 @@
 #include "../include/Translate.h"
 #include "../include/GameOptions.h"
 
+
 GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {}
 
 
@@ -25,6 +26,9 @@ void GameStateShop::Create(){
 
 void GameStateShop::Start()
 {
+
+
+
   menu = NULL;
   menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   itemFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
@@ -33,7 +37,7 @@ void GameStateShop::Start()
   mStage = STAGE_SHOP_SHOP;
 
   bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/shop.jpg", TEX_TYPE_USE_VRAM);
-  mBg = NEW JQuad(bgTexture, 0, 0, 400, 280);		// Create background quad for rendering.
+  mBg = NEW JQuad(bgTexture, 0, 0, 480, 272);		// Create background quad for rendering.
   mBack = GameApp::CommonRes->GetQuad("back");
 
   JRenderer::GetInstance()->ResetPrivateVRAM();
@@ -161,9 +165,11 @@ void GameStateShop::Render()
   r->ClearScreen(ARGB(0,0,0,0));
   if (mBg)JRenderer::GetInstance()->RenderQuad(mBg,0,0);
 
-  r->FillRect(5,SCREEN_HEIGHT-15,110,15,ARGB(200,0,0,0));
   itemFont->SetColor(ARGB(255,255,255,255));
-  itemFont->DrawString(_("press [] to refresh").c_str(),10,SCREEN_HEIGHT-12);
+  char c[4096];
+  sprintf(c, _("press [] to refresh").c_str());
+  unsigned int len = 4 + itemFont->GetStringWidth(c);
+  itemFont->DrawString(c,SCREEN_WIDTH-len,SCREEN_HEIGHT-12);
 
   if (shop)
     shop->Render();

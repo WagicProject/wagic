@@ -42,6 +42,9 @@ class GameStateShop: public GameState, public JGuiListener
   virtual void Render();
   virtual void ButtonPressed(int controllerId, int controlId);
 
+  
+  
+
 };
 
 

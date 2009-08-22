@@ -13,6 +13,8 @@
 #include <string>
 using std::string;
 
+class hgeDistortionMesh;
+
 #define SHOP_BOOSTERS 3
 
 class ShopItem:public JGuiObject{
@@ -20,12 +22,12 @@ class ShopItem:public JGuiObject{
   bool mHasFocus;
   JLBFont *mFont;
   string mText;
-  int mX;
-  int mY;
+  float xy[8];
   JQuad * quad;
   JQuad * thumb;
   float mScale;
   float mTargetScale;
+  hgeDistortionMesh* mesh;
 
 
  public:
@@ -33,8 +35,8 @@ class ShopItem:public JGuiObject{
   int quantity;
   MTGCard * card;
   int price;
-  ShopItem(int id, JLBFont * font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw);
-  ShopItem(int id, JLBFont * font, char* text, JQuad * _quad, JQuad * _thumb,int x, int y, bool hasFocus, int _price);
+  ShopItem(int id, JLBFont * font, int _cardid, float _xy[], bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw);
+  ShopItem(int id, JLBFont * font, char* text, JQuad * _quad, JQuad * _thumb,float _xy[], bool hasFocus, int _price);
   ~ShopItem();
   int updateCount(DeckDataWrapper * ddw);
 
@@ -74,6 +76,7 @@ class ShopItems:public JGuiController,public JGuiListener{
   virtual void ButtonPressed(int controllerId, int controlId);
   void savePriceList();
   void saveAll();
+  static float _x1[],_y1[],_x2[],_y2[],_x3[],_y3[],_x4[],_y4[];
 };
 
 #endif

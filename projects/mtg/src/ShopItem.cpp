@@ -3,10 +3,27 @@
 #include "../include/GameStateShop.h"
 #include "../include/CardGui.h"
 #include "../include/Translate.h"
+#include <hge/hgedistort.h>
 
 
-ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thumb,  int x, int y, bool hasFocus, int _price): JGuiObject(id), mFont(font), mText(text), mX(x), mY(y), quad(_quad), thumb(_thumb), price(_price)
+
+  float ShopItems::_x1[] = { 40,  3, 23, 99,142,182, 90,132,177,106,163};
+  float ShopItems::_y1[] = {156,174,194,166,166,162,184,185,180,211,208};
+
+  float ShopItems::_x2[] = { 44, 25, 64,128,171,211,121,165,209,143,200};
+  float ShopItems::_y2[] = {147,163,190,166,166,162,184,185,180,211,208};
+
+  float ShopItems::_x3[] = { 86, 47, 12, 85,133,177, 73,120,170, 88,153};
+  float ShopItems::_y3[] = {152,177,216,181,180,176,203,204,198,237,232};
+
+  float ShopItems::_x4[] = { 86, 66, 58,118,164,207,108,156,205,130,199};
+  float ShopItems::_y4[] = {145,167,211,181,180,176,203,204,198,237,232};
+
+ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thumb,  float _xy[], bool hasFocus, int _price): JGuiObject(id), mFont(font), mText(text), quad(_quad), thumb(_thumb), price(_price)
 {
+  for (int i = 0; i < 8; ++i){
+    xy[i] = _xy[i];
+  }
   quantity = 10;
   card = NULL;
   mHasFocus = hasFocus;
@@ -14,11 +31,28 @@ ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thu
   mScale = 1.0f;
   mTargetScale = 1.0f;
 
+ mesh=NEW hgeDistortionMesh(2,2);
+ mesh->SetTexture(thumb->mTex);
+ float x0,y0,w0,h0;
+ thumb->GetTextureRect(&x0,&y0,&w0,&h0);
+ mesh->SetTextureRect(x0,y0,w0,h0);
+ mesh->Clear(ARGB(0xFF,0xFF,0xFF,0xFF));
+ mesh->SetDisplacement(0, 0, xy[0],xy[1], HGEDISP_NODE);
+ mesh->SetDisplacement(1, 0, xy[2] - w0,xy[3], HGEDISP_NODE);
+ mesh->SetDisplacement(0, 1,xy[4],xy[5]-h0, HGEDISP_NODE);
+ mesh->SetDisplacement(1, 1, xy[6]-w0,xy[7]-h0, HGEDISP_NODE);
+     mesh->SetColor(1,1,ARGB(255,100,100,100));
+     mesh->SetColor(0,1,ARGB(255,100,100,100));
+     mesh->SetColor(1,0,ARGB(255,100,100,100));
+     mesh->SetColor(0,0,ARGB(255,200,200,200));
   if (hasFocus)
     Entering();
 }
 
-ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw): JGuiObject(id), mFont(font), mX(x), mY(y), price(_price){
+ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw): JGuiObject(id), mFont(font),  price(_price){
+  for (int i = 0; i < 8; ++i){
+    xy[i] = _xy[i];
+  }
   mHasFocus = hasFocus;
   mScale = 1.0f;
   mTargetScale = 1.0f;
@@ -32,7 +66,26 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, int x, int y, bool hasFoc
   quantity = 1 + (rand() % 4);
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
-  thumb = NULL;
+  thumb = card->getThumb();
+  if (!thumb) thumb = GameApp::CommonRes->GetQuad("back_thumb");
+  if (thumb){
+     mesh=NEW hgeDistortionMesh(2,2);
+     mesh->SetTexture(thumb->mTex);
+     float x0,y0,w0,h0;
+     thumb->GetTextureRect(&x0,&y0,&w0,&h0);
+     mesh->SetTextureRect(x0,y0,w0,h0);
+     mesh->Clear(ARGB(0xFF,0xFF,0xFF,0xFF));
+     mesh->SetDisplacement(0, 0, xy[0],xy[1], HGEDISP_NODE);
+     mesh->SetDisplacement(1, 0, xy[2] - w0,xy[3], HGEDISP_NODE);
+     mesh->SetDisplacement(0, 1,xy[4],xy[5]-h0, HGEDISP_NODE);
+     mesh->SetDisplacement(1, 1, xy[6]-w0,xy[7]-h0, HGEDISP_NODE);
+     mesh->SetColor(1,1,ARGB(255,100,100,100));
+     mesh->SetColor(0,1,ARGB(255,100,100,100));
+     mesh->SetColor(1,0,ARGB(255,100,100,100));
+     mesh->SetColor(0,0,ARGB(255,200,200,200));
+  }else{
+    mesh = NULL;
+  }
 }
 
 
@@ -43,7 +96,8 @@ int ShopItem::updateCount(DeckDataWrapper * ddw){
 }
 
 ShopItem::~ShopItem(){
-
+  OutputDebugString("delete shopitem\n");
+  SAFE_DELETE(mesh);
 }
 
 const char * ShopItem::getText(){
@@ -62,8 +116,7 @@ void ShopItem::Render(){
   }
   
  
-  if (card){
-    thumb = card->getThumb();
+  if (card){  
     if (nameCount){
       char buffer[512];
       sprintf(buffer, "%s (%i)", _(card->name).c_str(), nameCount );
@@ -74,9 +127,9 @@ void ShopItem::Render(){
   }
 
   JRenderer * renderer = JRenderer::GetInstance();
-  float x0 = mX;
-  float y0 = mY - (mScale > 1 ? 4 : 0);
-  if (GetId()%2){
+  //float x0 = mX;
+  //float y0 = mY - (mScale > 1 ? 4 : 0);
+ /* if (GetId()%2){
     float xs[] = {mX,   mX,   mX+230,mX+230};
     float ys[] = {mY-5+17,mY-5+19,mY-5+35,mY-5}    ;
 
@@ -89,12 +142,13 @@ void ShopItem::Render(){
     float ys[] = {mY-5,mY-5+35,mY-5+17,mY-5+19}    ;
     renderer->FillPolygon(xs,ys,4,ARGB(128,0,0,0));
      mFont->DrawString(mText.c_str(), mX + 30, mY + 8);
-  }
+  }*/
   //renderer->FillRect(mX-5, mY-5,230,35, );
 
 
-  if (thumb){
-    renderer->RenderQuad(thumb,x0,y0,0,mScale * 0.45,mScale * 0.45);
+  if (mesh){
+    mesh->Render(0,0);
+    //renderer->RenderQuad(thumb,x0,y0,0,mScale * 0.45,mScale * 0.45);
   }else{
     //NOTHING
   }
@@ -104,10 +158,11 @@ void ShopItem::Render(){
     }
     if (quad){
       quad->SetColor(ARGB(255,255,255,255));
-      renderer->RenderQuad(quad,mX + SCREEN_WIDTH/2 + 20,5,0, 0.9f,0.9f);
+      renderer->RenderQuad(quad,SCREEN_WIDTH/2 + 50,5,0, 0.9f,0.9f);
     }else{
-      if (card) CardGui::alternateRender(card,NULL,mX + SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
+      if (card) CardGui::alternateRender(card,NULL,SCREEN_WIDTH/2 + 100 + 20,133,0, 0.9f);
     }
+    mFont->DrawString(mText.c_str(),  100,  SCREEN_HEIGHT - 30);
   }
 }
 
@@ -132,6 +187,12 @@ void ShopItem::Update(float dt)
 
 void ShopItem::Entering()
 {
+  for (int i = 0; i < 2; ++i){
+    for (int j = 0; j < 2; ++j){
+      mesh->SetColor(i,j,ARGB(255,255,255,255));
+    }
+  }
+
 
   mHasFocus = true;
   mTargetScale = 1.2f;
@@ -140,6 +201,11 @@ void ShopItem::Entering()
 
 bool ShopItem::Leaving(u32 key)
 {
+ mesh->SetColor(1,1,ARGB(255,100,100,100));
+ mesh->SetColor(0,1,ARGB(255,100,100,100));
+ mesh->SetColor(1,0,ARGB(255,100,100,100));
+ mesh->SetColor(0,0,ARGB(255,200,200,200));
+
   mHasFocus = false;
   mTargetScale = 1.0f;
   return true;
@@ -171,12 +237,14 @@ void ShopItems::Add(int cardid){
   int rnd = (rand() % 20);
   int price = pricelist->getPrice(cardid);
   price = price + price * (rnd -10)/100;
-  JGuiController::Add(NEW ShopItem(mCount, mFont, cardid, mX + 10, mY + 10 + mHeight,  (mCount == 0),collection, price,myCollection));
+  float xy[] = {_x1[mCount],_y1[mCount],_x2[mCount],_y2[mCount],_x3[mCount],_y3[mCount],_x4[mCount],_y4[mCount]};
+  JGuiController::Add(NEW ShopItem(mCount, mFont, cardid, xy,  (mCount == 0),collection, price,myCollection));
   mHeight += 22;
 }
 
 void ShopItems::Add(char * text, JQuad * quad,JQuad * thumb, int price){
-  JGuiController::Add(NEW ShopItem(mCount, mFont, text, quad, thumb, mX + 10, mY + 10 + mHeight,  (mCount == 0), price));
+  float xy[] = {_x1[mCount],_y1[mCount],_x2[mCount],_y2[mCount],_x3[mCount],_y3[mCount],_x4[mCount],_y4[mCount]};
+  JGuiController::Add(NEW ShopItem(mCount, mFont, text, quad, thumb, xy,  (mCount == 0), price));
   mHeight += 22;
 }
 
@@ -220,9 +288,9 @@ void ShopItems::Render(){
   sprintf(credits,_("credits: %i").c_str(), playerdata->credits);
   unsigned int len = 4 + mFont->GetStringWidth(credits);
   mFont->SetColor(ARGB(200,0,0,0));
-  mFont->DrawString(credits, SCREEN_WIDTH - len + 2, SCREEN_HEIGHT - 13);
+  mFont->DrawString(credits, 5, SCREEN_HEIGHT - 13);
   mFont->SetColor(ARGB(255,255,255,255));
-  mFont->DrawString(credits, SCREEN_WIDTH - len, SCREEN_HEIGHT - 15);
+  mFont->DrawString(credits, 5, SCREEN_HEIGHT - 15);
   if (display) display->Render();
 }
 
@@ -336,7 +404,6 @@ ostream& ShopItem::toString(ostream& out) const
   return out << "ShopItem ::: mHasFocus : " << mHasFocus
 	     << " ; mFont : " << mFont
 	     << " ; mText : " << mText
-	     << " ; mX,mY : " << mX << "," << mY
 	     << " ; quad : " << quad
 	     << " ; thumb : " << thumb
 	     << " ; mScale : " << mScale
