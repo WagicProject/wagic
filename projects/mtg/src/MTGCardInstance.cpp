@@ -521,13 +521,16 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
       defenser->blockers.remove(this);
     }
   }
-  WEvent * e = NEW WEventCreatureBlocker(this, defenser, opponent);
+  WEvent * e = NULL;
+  if (defenser != opponent){
+    e = NEW WEventCreatureBlocker(this, defenser, opponent);
+  }
   defenser = opponent;
   if (defenser){
     defenser->blockers.push_back(this);
   }
   g->blockersSorted = false;
-  g->receiveEvent(e);
+  if (e) g->receiveEvent(e);
   //delete e;
   return 1;
 }
