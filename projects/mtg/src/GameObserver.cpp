@@ -471,6 +471,7 @@ int GameObserver::receiveEvent(WEvent * e){
     SAFE_DELETE(ev);
     eventsQueue.pop();
   }
+  return result;
 }
 
 

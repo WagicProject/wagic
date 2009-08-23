@@ -524,6 +524,7 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
   WEvent * e = NULL;
   if (defenser != opponent){
     e = NEW WEventCreatureBlocker(this, defenser, opponent);
+
   }
   defenser = opponent;
   if (defenser){
