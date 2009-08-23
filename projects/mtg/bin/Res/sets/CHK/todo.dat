@@ -187,7 +187,7 @@ subtype=Aura
 target=creature
 auto=cantattack,cantblock
 auto={1}{W}:moveto(ownerhand)
-Enchant creature Enchanted creature can't attack or block. {1}{W}: Return Cage of Hands to its owner's hand.
+text=Enchant creature Enchanted creature can't attack or block. {1}{W}: Return Cage of Hands to its owner's hand.
 rarity=C
 [/card]
 [card]

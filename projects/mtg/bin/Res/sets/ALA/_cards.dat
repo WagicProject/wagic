@@ -1116,8 +1116,8 @@ toughness=2
 [card]
 text=Flying     At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
 id=175107
-auto=@each my endofturn:aslongas(Sphinx Sovereign[-tapped]|myinplay) life:3 controller
-auto=@each my endofturn:aslongas(Sphinx Sovereign[tapped]|myinplay) life:-3 opponent
+auto=@each my endofturn:aslongas(this[-tapped]|myinplay) life:3 controller
+auto=@each my endofturn:aslongas(this[tapped]|myinplay) life:-3 opponent
 name=Sphinx Sovereign
 rarity=M
 type=Artifact Creature

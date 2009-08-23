@@ -198,7 +198,7 @@ subtype=Rabbit Beast
 power=4
 toughness=5
 text=When you play a spell, return Jackalope Herd to its owner's hand.
-auto=@movedTo(*|mystack):moveTo(ownerHand)
+auto=@movedTo(*[-land]|mystack):moveTo(ownerHand)
 rarity=C
 [/card]
 [card]

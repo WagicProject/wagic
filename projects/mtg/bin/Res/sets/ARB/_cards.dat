@@ -90,7 +90,7 @@ subtype=Demon Illusion
 power=4
 toughness=3
 text=Flying When you play a spell, sacrifice Illusory Demon.
-auto=@movedTo(*|mystack):bury
+auto=@movedTo(*[-land]|mystack):bury
 rarity=U
 [/card]
 [card]
