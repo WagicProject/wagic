@@ -462,7 +462,15 @@ void GameObserver::untapPhase(){
 
 int GameObserver::receiveEvent(WEvent * e){
   if (!e) return 0;
-  return mLayers->receiveEvent(e);
+  eventsQueue.push(e);
+  if (eventsQueue.size() > 1) return -1;
+  int result = 0;
+  while(eventsQueue.size()){
+    WEvent * ev = eventsQueue.front();
+    result +=  mLayers->receiveEvent(ev);
+    SAFE_DELETE(ev);
+    eventsQueue.pop();
+  }
 }
 
 

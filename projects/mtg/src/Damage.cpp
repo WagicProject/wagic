@@ -56,7 +56,7 @@ int Damage::resolve(){
   //Send (Damage/Replaced effect) event to listeners
 
   g->receiveEvent(e);
-  SAFE_DELETE(e);
+  //SAFE_DELETE(e);
 
   return a;
 }

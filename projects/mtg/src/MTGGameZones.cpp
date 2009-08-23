@@ -78,7 +78,7 @@ void MTGPlayerCards::drawFromLibrary(){
     GameObserver *g = GameObserver::GetInstance();
     WEvent * e = NEW WEventZoneChange(drownCard,library,hand);
     g->receiveEvent(e);
-    delete e;
+    //delete e;
   }
 }
 
@@ -115,7 +115,7 @@ MTGCardInstance * MTGPlayerCards::putInPlay(MTGCardInstance * card){
   GameObserver *g = GameObserver::GetInstance();
   WEvent * e = NEW WEventZoneChange(copy, from, inPlay);
   g->receiveEvent(e);
-  delete e;
+  //delete e;
 
   return copy;
 }
@@ -169,7 +169,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     GameObserver *g = GameObserver::GetInstance();
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
-    delete e;
+    //delete e;
     return ret;
   }
   return card; //Error

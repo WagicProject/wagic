@@ -192,7 +192,7 @@ void Spell::Render(){
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = mHeight  / quad->mHeight;
-    renderer->RenderQuad(quad, x  , y , 0,scale,scale);
+    renderer->RenderQuad(quad, x+10*scale  , y+15*scale , 0,scale,scale);
   }else{
     //
   }
@@ -209,7 +209,7 @@ void Spell::Render(){
   if (quad){
       quad->SetColor(ARGB(220,255,255,255));
       float scale = 257.f / quad->mHeight;
-      renderer->RenderQuad(quad, 10 , 20 , 0.0f,scale,scale);
+      renderer->RenderQuad(quad, 10+100*scale , 20+145*scale , 0.0f,scale,scale);
   }
   else
   {
@@ -220,7 +220,7 @@ void Spell::Render(){
       if (quad){
           float scale = 250 / quad->mHeight;
           quad->SetColor(ARGB(40,255,255,255));
-          renderer->RenderQuad(quad, 20, 20, 0.0f, scale, scale);
+          renderer->RenderQuad(quad, 20+15*scale, 20+20*scale, 0.0f, scale, scale);
       }
   }
 

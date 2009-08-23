@@ -39,7 +39,7 @@ Phase * PhaseRing::forward(){
   //Warn the layers about the phase Change
   WEvent * e = NEW WEventPhaseChange(cPhaseOld, *current);
   GameObserver::GetInstance()->receiveEvent(e);
-  delete e;
+  //delete e;
 
   return *current;
 }

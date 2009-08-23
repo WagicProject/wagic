@@ -1890,7 +1890,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
     game->currentlyActing()->getManaPool()->pay(cost);
     cost->doPayExtra();
   }
-  if (needsTapping) source->tap();
+  if (needsTapping && source->isInPlay()) source->tap();
   fireAbility();
 
   return 1;
@@ -1899,7 +1899,6 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
 
 int ActivatedAbility::reactToTargetClick(Targetable * object){
   if (!isReactingToTargetClick(object)) return 0;
-  if (needsTapping) source->tap();
   if (cost){
     if (object->typeAsTarget() == TARGET_CARD) cost->setExtraCostsAction(this, (MTGCardInstance *) object);
     OutputDebugString("React To click 2\n");
@@ -1911,6 +1910,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
     game->currentlyActing()->getManaPool()->pay(cost);
     cost->doPayExtra();
   }
+  if (needsTapping  && source->isInPlay()) source->tap();
   fireAbility();
   return 1;
 
@@ -2407,8 +2407,8 @@ void AManaProducer::Render(){
       {
 	for (int cost = output->getCost(i); cost > 0; --cost)
 	  {
-	    WEventEngageMana e(i, source);
-	    GameObserver::GetInstance()->receiveEvent(&e);
+	    WEvent * e = NEW WEventEngageMana(i, source);
+	    GameObserver::GetInstance()->receiveEvent(e);
 	  }
       }
 

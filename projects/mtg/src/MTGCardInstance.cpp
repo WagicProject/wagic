@@ -182,7 +182,7 @@ void MTGCardInstance::tap(){
   WEvent * e = NEW WEventCardTap(this, 0, 1);
   GameObserver * game = GameObserver::GetInstance();
   game->receiveEvent(e);
-  delete e;
+  //delete e;
 }
 
 void MTGCardInstance::untap(){
@@ -191,7 +191,7 @@ void MTGCardInstance::untap(){
   WEvent * e = NEW WEventCardTap(this, 1, 0);
   GameObserver * game = GameObserver::GetInstance();
   game->receiveEvent(e);
-  delete e;
+  //delete e;
 }
 
 
@@ -409,7 +409,7 @@ int MTGCardInstance::setAttacker(int value){
   attacker = value;
   WEvent * e = NEW WEventCreatureAttacker(this,previousTarget, target);
   GameObserver::GetInstance()->receiveEvent(e);
-  delete e;
+  //delete e;
   return 1;
 }
 
@@ -475,7 +475,7 @@ int MTGCardInstance::moveBlockerInRow(MTGCardInstance * blocker){
   std::iter_swap(it1,it2);
   WEvent* e = NEW WEventCreatureBlockerRank(blocker,*it2,this);
   GameObserver::GetInstance()->receiveEvent(e);
-  delete(e);
+  //delete(e);
   return 1;
 }
 
@@ -528,7 +528,7 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
   }
   g->blockersSorted = false;
   g->receiveEvent(e);
-  delete e;
+  //delete e;
   return 1;
 }
 

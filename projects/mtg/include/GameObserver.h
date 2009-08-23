@@ -11,6 +11,7 @@
 #include "PhaseRing.h"
 #include "ReplacementEffects.h"
 #include "GuiStatic.h"
+#include <queue>
 
 class MTGGamePhase;
 class MTGAbility;
@@ -18,13 +19,14 @@ class MTGCardInstance;
 struct CardGui;
 class Player;
 class TargetChooser;
-
+using namespace std;
 
 class GameObserver{
  protected:
   int reaction;
   static GameObserver * mInstance;
   MTGCardInstance * cardWaitingForTargets;
+  queue<WEvent *> eventsQueue;
 
   int nbPlayers;
   int currentPlayerId;
