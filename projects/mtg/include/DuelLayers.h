@@ -32,7 +32,7 @@ public:
   ActionStack * stackLayer();
   void init();
   virtual void Update(float dt, Player * player);
-
+  void CheckUserInput(int isAI);
   void Render();
   void Add(GuiLayer * layer);
   void Remove();

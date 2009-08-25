@@ -10,7 +10,8 @@ using std::string;
 
 TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buildDeck(playerId),"testsuite", "testsuite"){
   suite = _suite;
-  timer= 0;
+  timer = 0;
+  humanMode = 0;
   mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);
   if (mAvatarTex){
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
@@ -58,6 +59,12 @@ Interruptible * TestSuite::getActionByMTGId(int mtgid){
 int TestSuiteAI::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
   g->gameOver = NULL; // Prevent draw rule from losing the game
+  if (humanMode){
+    g->mLayers->CheckUserInput(0);
+    return 1;
+  }
+
+  
   timer+= dt;
   if (AManaProducer::currentlyTapping || timer < suite->timerLimit) return 1;
   timer = 0;
@@ -88,6 +95,11 @@ int TestSuiteAI::Act(float dt){
   if (action.compare("eot")== 0){
     if (g->getCurrentGamePhase() != Constants::MTG_PHASE_CLEANUP) suite->currentAction--;
     g->userRequestNextGamePhase();
+  }
+  else if (action.compare("human")==0){
+    OutputDebugString("You have control");
+    humanMode = 1;
+    return 1;
   }
   else if (action.compare("next")==0){
     /*

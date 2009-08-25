@@ -80,6 +80,7 @@ class TestSuiteAI:public AIPlayer{
  public:
   TestSuite * suite;
   float timer;
+  int humanMode;
   TestSuiteAI(TestSuite * suite, int playerId);
   virtual int Act(float dt);
   virtual int displayStack(){return 1;}

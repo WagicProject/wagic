@@ -43,12 +43,8 @@ void DuelLayers::init(){
   Add(NEW GuiBackground());
 }
 
-void DuelLayers::Update(float dt, Player * currentPlayer)
-{
-  for (int i = 0; i < nbitems; ++i) objects[i]->Update(dt);
-  int isAI = currentPlayer->isAI();
+void DuelLayers::CheckUserInput(int isAI){
   u32 key;
-  GameObserver * game = GameObserver::GetInstance();
   while ((key = JGE::GetInstance()->ReadButton())){
     if ((!isAI) && (0 != key))
       {
@@ -59,7 +55,16 @@ void DuelLayers::Update(float dt, Player * currentPlayer)
 	if (cs->CheckUserInput(key)) break;
       }
   }
+}
+
+void DuelLayers::Update(float dt, Player * currentPlayer)
+{
+  for (int i = 0; i < nbitems; ++i) objects[i]->Update(dt);
+  int isAI = currentPlayer->isAI();
+  GameObserver * game = GameObserver::GetInstance();
   if (isAI) currentPlayer->Act(dt);
+
+  CheckUserInput(isAI);
 }
 
 ActionStack * DuelLayers::stackLayer(){
