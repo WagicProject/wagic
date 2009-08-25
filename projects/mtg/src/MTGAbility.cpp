@@ -2100,8 +2100,8 @@ void ListMaintainerAbility::updateTargets(){
   //add new valid ones
   for (int i = 0; i < 2; i++){
     Player * p = game->players[i];
-    MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand};
-    for (int k = 0; k < 3; k++){
+    MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand,p->game->library};
+    for (int k = 0; k < 4; k++){
       MTGGameZone * zone = zones[k];
       for (int j = 0; j < zone->nb_cards; j++){
 	      if (canBeInList(zone->cards[j])){

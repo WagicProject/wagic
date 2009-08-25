@@ -1606,6 +1606,7 @@ mana={1}{R}
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
 id=4726
 name=Shimmering Wings
+target=creature
 auto=flying
 auto={U}:moveTo(hand)
 rarity=C

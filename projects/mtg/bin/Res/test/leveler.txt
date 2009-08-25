@@ -1,0 +1,16 @@
+#Bug: Leveler doesn't move library to removedfromgame
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:leveler
+library:swamp,mountain
+manapool:{5}
+[PLAYER2]
+[DO]
+leveler
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:leveler
+[PLAYER2]
+[END]

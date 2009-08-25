@@ -832,7 +832,7 @@ subtype=Specter
 power=2
 toughness=2
 text=Flying Whenever Hypnotic Specter deals damage to an opponent, that player discards a card at random.
-rarity=U
+rarity=R
 alias=1165
 abilitites=flying
 [/card]

@@ -120,6 +120,7 @@ kraken_eye2.txt
 kraken_eye3.txt
 kudzu.txt
 kudzu2.txt
+leveler.txt
 lhurgoyf.txt
 lifeforce.txt
 living_lands.txt
