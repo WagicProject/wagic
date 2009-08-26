@@ -42,7 +42,8 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
     deck[i]=NULL;
     mPlayers[i]=NULL;
   }
-
+  
+  premadeDeck = false;
   game = NULL;
   deckmenu = NULL;
   opponentMenu = NULL;
@@ -74,13 +75,9 @@ void GameStateDuel::Start()
 
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
   credits = NEW Credits();
-  playerDecksDir = RESPATH"/player";
-
   mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   mFont->SetBase(0);
   opponentMenuFont = mFont;
-
-
 
   menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
   menu->Add(12,"Back to main menu");
@@ -93,16 +90,16 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
       deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
-      int nbDecks = fillDeckMenu(deckmenu,playerDecksDir);
+      int nbDecks = fillDeckMenu(deckmenu,options.profileFile());
       if (nbDecks) decksneeded = 0;
       break;
     }
   }
 
   if (decksneeded){
-    playerDecksDir = RESPATH"/player/premade";
     deckmenu->Add(-1,"Create your Deck!","Highly recommended to get\nthe full Wagic experience!");
-    fillDeckMenu(deckmenu,playerDecksDir);
+    premadeDeck = true;
+    fillDeckMenu(deckmenu,RESPATH"/player/premade");
   }
     //mGamePhase = DUEL_STATE_ERROR_NO_DECK;
 }
@@ -142,15 +139,14 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
 
 
 void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
-  char deckFile[] = RESPATH"/player/momir.txt";
   string deckFileSmall = "momir";
   char empty[] = "";
-  MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
+  MTGDeck * tempDeck = NEW MTGDeck(options.profileFile("momir.txt").c_str(), NULL, mParent->collection);
   deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
   if (!isAI) // Human Player
-    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], deckFile, deckFileSmall);
+    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], options.profileFile("momir.txt").c_str(), deckFileSmall);
   else
-    mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId], deckFile, deckFileSmall, empty);
+    mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId], options.profileFile("momir.txt").c_str(), deckFileSmall, empty);
   delete tempDeck;
 }
 
@@ -158,7 +154,10 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
   if (decknb){
     if (!isAI){ //Human Player
       char deckFile[255];
-      sprintf(deckFile, "%s/deck%i.txt",playerDecksDir.c_str(), decknb);
+      if(premadeDeck)
+        sprintf(deckFile, RESPATH"/player/premade/deck%i.txt",decknb);
+      else
+        sprintf(deckFile, "%s/deck%i.txt",options.profileFile().c_str(), decknb);
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
       MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);

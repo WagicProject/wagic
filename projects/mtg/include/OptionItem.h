@@ -2,39 +2,188 @@
 #define _OPTION_ITEM_H_
 
 #include <JGui.h>
+#include <vector>
 #include <string>
+#include "../include/GameApp.h"
 
 using std::string;
 
-class OptionItem:public JGuiObject{
- public:
-  string displayValue, id;
-  int value;
-  int hasFocus;
-  int maxValue, increment;
-  float x, y;
-  OptionItem(string _id, string _displayValue, int _maxValue = 1, int _increment = 1);
+#define MAX_OPTION_TABS 5
+#define MAX_OPTION_ITEMS 20
+#define MAX_ONSCREEN_OPTIONS 8
+#define OPTION_CENTER 4
 
-  virtual void Render();
-  virtual void Update(float dt);
+#define OPTIONS_SUBMODE_NORMAL 0
+#define OPTIONS_SUBMODE_RELOAD 1
+#define OPTIONS_SUBMODE_PROFILE 2
+#define OPTIONS_SUBMODE_MODE 3
+#define OPTIONS_SUBMODE_THEME 4
+
+class OptionItem {
+public:
+  string displayValue, id;
+  int hasFocus;
+  bool canSelect;
+  float x, y;
+  float width, height;
+  virtual ostream& toString(ostream& out)const;
+
+  OptionItem( string _id,  string _displayValue);
+
   virtual void Entering();
   virtual bool Leaving();
-  void setData();
+  virtual void Update(float dt);
+  virtual void updateValue()=0;
+  virtual void Reload(){};
+  virtual void Render()=0;
+  virtual void setData()=0;
+  virtual int  Submode() {return OPTIONS_SUBMODE_NORMAL;};
+  virtual void cancelSubmode() {};
+  virtual void acceptSubmode() {};
+};
+
+class OptionInteger:public OptionItem{
+ public:
+  int value;
+  int maxValue, increment;
+
+  OptionInteger(string _id, string _displayValue, int _maxValue = 1, int _increment = 1);
+
+  virtual void Reload() {if(id != "") value = options[id].number;};
+  virtual void Render();
+  virtual void setData();
   virtual void updateValue(){value+=increment; if (value>maxValue) value=0;};
   virtual ostream& toString(ostream& out) const;
 };
 
+class OptionString:public OptionItem{
+ public:
+  string value;
+  OptionString(string _id, string _displayValue);
+
+  virtual void Render();
+  virtual void setData();
+  virtual void updateValue();
+  virtual void Reload() {if(id != "") value = options[id].str;};
+  virtual ostream& toString(ostream& out) const;
+  bool bShowValue;
+};
+class OptionNewProfile:public OptionString{
+ public:
+   OptionNewProfile(string _id, string _displayValue) :  OptionString(_id, _displayValue) {bShowValue=false;};
+   virtual void updateValue();
+   virtual void Update(float dt);
+   virtual int Submode();
+   bool bChanged;
+};
+
+class OptionHeader:public OptionItem{
+ public:
+  OptionHeader(string _displayValue): OptionItem("", _displayValue) { canSelect=false;};
+  virtual void Render();
+  virtual void setData() {};
+  virtual void updateValue() {};
+};
+
+class OptionText:public OptionItem{
+ public:
+  OptionText(string _displayValue): OptionItem("", _displayValue) { canSelect=false;};
+  virtual void Render();
+  virtual void setData() {};
+  virtual void updateValue() {};
+};
+
+class OptionSelect:public OptionItem{
+ public:
+  int value;
+  vector<string> selections;
+
+  virtual void addSelection(string s);
+  OptionSelect(string _id, string _displayValue): OptionItem(_id, _displayValue) {value = 0;};
+  virtual void Reload() {initSelections();};
+  virtual void Render();
+  virtual void setData();
+  virtual void initSelections();
+  virtual void updateValue(){value++; if (value > selections.size() - 1 || value < 0) value=0;};
+  virtual ostream& toString(ostream& out) const;
+};
+
+
+class OptionDirectory:public OptionSelect{
+ public:
+  virtual void Reload();
+  OptionDirectory(string _root, string _id, string _displayValue);
+private:
+  string root;
+};
+
+class OptionProfile:public OptionDirectory{
+ public:
+  OptionProfile(GameApp * _app);
+  ~OptionProfile();
+  virtual void addSelection(string s);    
+  virtual bool Leaving();
+  virtual void Entering();
+  virtual void Render();
+  virtual void Update(float dt);
+  virtual void updateValue();
+  virtual int  Submode();
+  virtual void cancelSubmode();
+  virtual void acceptSubmode();
+  void populate();
+private:  
+  bool bCheck;
+  JQuad * mAvatar;
+  JTexture * mAvatarTex;
+  GameApp * app;  
+  string preview;
+  int initialValue;
+};
+
 class OptionsList{
  public:
-  OptionItem * options[20];
+  string sectionName;
+  string failMsg;
   int nbitems;
   int current;
-  OptionsList();
+  OptionsList(string name);
   ~OptionsList();
+  bool Leaving();
+  void Entering();
   void Render();
+  void reloadValues();
   void Update(float dt);
   void Add(OptionItem * item);
   void save();
+  int Submode();
+  void acceptSubmode();
+  void cancelSubmode();
+
+  OptionItem * operator[](int);
+private:
+  OptionItem * listItems[MAX_OPTION_ITEMS];
+};
+
+class OptionsMenu
+{
+ public:
+  OptionsList * tabs[MAX_OPTION_TABS];
+  int nbitems;
+  int current;
+
+  OptionsMenu();
+  ~OptionsMenu();
+
+  bool isTab(string name);  
+  int  Submode();
+  void acceptSubmode();
+  void cancelSubmode();
+  void Render();
+  void reloadValues();
+  void Update(float dt);
+  void Add(OptionsList * tab);
+  void save();
+
 };
 
 #endif

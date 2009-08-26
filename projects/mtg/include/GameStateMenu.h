@@ -32,7 +32,7 @@ class GameStateMenu: public GameState, public JGuiListener
 
   DIR *mDip;
   struct dirent *mDit;
-  char mCurrentSetName[10];
+  char mCurrentSetName[32];
   char mCurrentSetFileName[512];
 
   int mReadConf;
@@ -52,7 +52,8 @@ class GameStateMenu: public GameState, public JGuiListener
   virtual void Render();
   virtual void ButtonPressed(int controllerId, int controlId);
 
-  int nextCardSet(); // Retrieves the next set subfolder automatically
+  int nextDirectory(char * root, char * file); // Retrieves the next directory to have matching file 
+  void resetDirectory();
   void createUsersFirstDeck(int setId);
   virtual ostream& toString(ostream& out) const;
 };

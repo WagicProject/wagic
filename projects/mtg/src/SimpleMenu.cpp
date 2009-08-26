@@ -9,11 +9,6 @@ const unsigned SimpleMenu::SIDE_SIZE = 7;
 const unsigned SimpleMenu::VMARGIN = 16;
 const unsigned SimpleMenu::HMARGIN = 30;
 const signed SimpleMenu::LINE_HEIGHT = 20;
-const char* SimpleMenu::spadeLPath = "graphics/spade_ul.png";
-const char* SimpleMenu::spadeRPath = "graphics/spade_ur.png";
-const char* SimpleMenu::jewelPath = "graphics/jewel.png";
-const char* SimpleMenu::sidePath = "graphics/menuside.png";
-const char* SimpleMenu::titleFontPath = "graphics/smallface";
 
 JQuad* SimpleMenu::spadeR = NULL;
 JQuad* SimpleMenu::spadeL = NULL;
@@ -48,10 +43,10 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
 
   JRenderer* renderer = JRenderer::GetInstance();
   
-  if (!spadeLTex)  spadeLTex= renderer->LoadTexture(spadeLPath, TEX_TYPE_USE_VRAM);
-  if (!spadeRTex) spadeRTex = renderer->LoadTexture(spadeRPath, TEX_TYPE_USE_VRAM);
+  if (!spadeLTex)  spadeLTex= renderer->LoadTexture(options.themeGraphic("spade_ul.png").c_str(), TEX_TYPE_USE_VRAM);
+  if (!spadeRTex) spadeRTex = renderer->LoadTexture(options.themeGraphic("spade_ur.png").c_str(), TEX_TYPE_USE_VRAM);
   if (!jewelTex)   jewelTex= renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
-  if (!sideTex)   sideTex = renderer->LoadTexture(sidePath, TEX_TYPE_USE_VRAM);
+  if (!sideTex)   sideTex = renderer->LoadTexture(options.themeGraphic("menuside.png").c_str(), TEX_TYPE_USE_VRAM);
 if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
   if (NULL == spadeR) spadeR = NEW JQuad(spadeRTex, 2, 1, 16, 13);
   if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
@@ -59,8 +54,8 @@ if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
 
   if (NULL == titleFont)
     {
-      GameApp::CommonRes->LoadJLBFont(titleFontPath, 7);
-      titleFont = GameApp::CommonRes->GetJLBFont(titleFontPath);
+      GameApp::CommonRes->LoadJLBFont(options.themeGraphic("smallface"), 7);
+      titleFont = GameApp::CommonRes->GetJLBFont(options.themeGraphic("smallface"));
     }
   if (NULL == stars) stars = NEW hgeParticleSystem("graphics/stars.psi", GameApp::CommonRes->GetQuad("stars"));
 
@@ -110,14 +105,13 @@ void SimpleMenu::Render(){
       selectionTargetY = selectionY = mY + VMARGIN;
       timeOpen = 0;
     }
-  mFont->SetColor(ARGB(255,255,255,255));
   JRenderer * renderer = JRenderer::GetInstance();
 
   float height = mHeight;
   if (timeOpen < 1)
     height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
-  renderer->FillRect(mX, mY, mWidth, height, ARGB(180,0,0,0));
+  renderer->FillRect(mX, mY, mWidth, height, options[Metrics::POPUP_MENU_FC].asColor(ARGB(180,0,0,0)));
 
   drawVertPole(mX, mY - 16, height + 32);
   drawVertPole(mX + mWidth, mY - 16, height + 32);
@@ -136,10 +130,10 @@ void SimpleMenu::Render(){
       {
         if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
           GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
-	        mFont->SetColor(ARGB(255,255,255,0));
+	        mFont->SetColor(options[Metrics::POPUP_MENU_TCH].asColor(ARGB(255,255,255,0)));
         }
 	else
-	  mFont->SetColor(ARGB(255,255,255,255));
+	  mFont->SetColor(options[Metrics::POPUP_MENU_TC].asColor(ARGB(150,255,255,255)));
 	(static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
       }
   }

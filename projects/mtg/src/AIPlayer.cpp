@@ -555,8 +555,8 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
 
   if (deckid == -1){ //Evil twin
     sprintf(deckFile, opponent->deckFile.c_str());
-    OutputDebugString(opponent->deckFile.c_str());
-    sprintf(avatarFile, "player/avatar.jpg");
+    OutputDebugString(opponent->deckFile.c_str());  
+    sprintf(avatarFile, "%s",options.profileFile("avatar.jpg","graphics",true,true).c_str());
     sprintf(deckFileSmall, "ai_baka_eviltwin");
   }else{
     if (!deckid){

@@ -517,6 +517,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\SimplePad.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\SimpleMenuItem.cpp"
 				>
 			</File>
@@ -863,6 +867,10 @@
 			</File>
 			<File
 				RelativePath=".\include\SimpleMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\SimplePad.h"
 				>
 			</File>
 			<File

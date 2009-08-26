@@ -240,7 +240,7 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   for (int i=0; i < SHOP_BOOSTERS; i++){
     setIds[i] = _setIds[i];
   };
-  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", NULL,_collection));
+  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), NULL,_collection));
 }
 
 

@@ -59,7 +59,7 @@ Player * Player::opponent(){
 }
 
 HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
-  mAvatarTex = JRenderer::GetInstance()->LoadTexture("player/avatar.jpg", TEX_TYPE_USE_VRAM);
+  mAvatarTex = JRenderer::GetInstance()->LoadTexture(options.profileFile("avatar.jpg","player",true,true).c_str(), TEX_TYPE_USE_VRAM);
   if (mAvatarTex)
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
 }

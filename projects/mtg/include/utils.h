@@ -57,6 +57,13 @@ void dumpStack();
 u32 ramAvailableLineareMax (void);
 u32 ramAvailable (void);
 
+#ifdef WIN32
+#include <direct.h>
+#define MAKEDIR(name) mkdir(name)
+#else
+#include <sys/stat.h>
+#define MAKEDIR(name) mkdir(name, 0777)
+#endif
 
 #endif
 

@@ -6,10 +6,12 @@
 
 #define SHOW_OPTIONS 1
 #define SHOW_OPTIONS_MENU 2
+#define SHOW_OPTIONS_PROFILE 3
 
 class GameApp;
-class OptionsList;
+class OptionsMenu;
 class SimpleMenu;
+class SimplePad;
 
 class GameStateOptions: public GameState, public JGuiListener
 {
@@ -18,8 +20,10 @@ private:
 
  public:
   SimpleMenu * optionsMenu;
+  SimpleMenu * confirmMenu;
+  OptionsMenu * optionsTabs;
+
   int mState;
-  OptionsList * optionsList;
   GameStateOptions(GameApp* parent);
   virtual ~GameStateOptions();
 

@@ -62,6 +62,9 @@ void GameApp::Create()
   //_CrtSetBreakAlloc(368);
   LOG("starting Game");
 
+  //Link this to our settings manager.
+  options.theGame = this;
+
   //Test for Music files presence
   std::ifstream file(RESPATH"/sound/Track0.mp3");
   if (file)
@@ -167,7 +170,6 @@ void GameApp::Create()
   //CommonRes->CreateQuad("interrupt", "graphics/interrupt.png", 0, 0, 256, 128);
 
   collection = NEW MTGAllCards(&cache);
-
 
   Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", CommonRes->GetQuad("particles"));
   Particles[1] = NEW hgeParticleSystem("graphics/particle2.psi", CommonRes->GetQuad("particles"));

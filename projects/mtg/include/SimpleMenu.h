@@ -16,11 +16,6 @@ class SimpleMenu:public JGuiController{
   static const unsigned VMARGIN;
   static const unsigned HMARGIN;
   static const signed LINE_HEIGHT;
-  static const char* spadeLPath;
-  static const char* spadeRPath;
-  static const char* jewelPath;
-  static const char* sidePath;
-  static const char* titleFontPath;
 
  private:
   int mHeight, mWidth, mX, mY;

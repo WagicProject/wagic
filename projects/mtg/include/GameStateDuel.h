@@ -30,9 +30,8 @@ class GameStateDuel: public GameState, public JGuiListener
   SimpleMenu * deckmenu;
   SimpleMenu * opponentMenu;
   SimpleMenu * menu;
+  bool premadeDeck;
   JLBFont* mFont, *opponentMenuFont;
-  string playerDecksDir;
-
 
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
   void loadPlayerMomir(int playerId, int isAI);

@@ -26,7 +26,7 @@ enum ENUM_MENU_STATE_MAJOR
     MENU_STATE_MAJOR_LOADING_MENU = 0x03,
     MENU_STATE_MAJOR_LOADING_CARDS = 0x04,
     MENU_STATE_MAJOR_FIRST_TIME = 0x05,
-    MENU_STATE_MAJOR_DUEL = 0x07,
+    MENU_STATE_MAJOR_DUEL = 0x06,
 
     MENU_STATE_MAJOR = 0xFF
   };
@@ -83,13 +83,13 @@ void GameStateMenu::Create()
   mReadConf = 0;
   mCurrentSetName[0] = 0;
 
-  mIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/menuicons.png", TEX_TYPE_USE_VRAM);
-  bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/menutitle.png", TEX_TYPE_USE_VRAM);
-  movingWTexture = JRenderer::GetInstance()->LoadTexture("graphics/movingW.png", TEX_TYPE_USE_VRAM);
+  mIconsTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("menuicons.png").c_str(), TEX_TYPE_USE_VRAM);
+  bgTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("menutitle.png").c_str(), TEX_TYPE_USE_VRAM);
+  movingWTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("movingW.png").c_str(), TEX_TYPE_USE_VRAM);
   mBg = NEW JQuad(bgTexture, 0, 0, 256, 166);		// Create background quad for rendering.
   mMovingW = NEW JQuad(movingWTexture, 2, 2, 84, 62);
-  if (fileExists("graphics/splash.jpg")){
-    splashTex = JRenderer::GetInstance()->LoadTexture("graphics/splash.jpg", TEX_TYPE_USE_VRAM);
+  if (fileExists(options.themeGraphic("splash.jpg").c_str())){
+    splashTex = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("splash.jpg").c_str(), TEX_TYPE_USE_VRAM);
     splashQuad = NEW JQuad(splashTex, 0, 0, 480, 272);
   }
   mBg->SetHotSpot(105,50);
@@ -105,6 +105,7 @@ void GameStateMenu::Create()
   }
 
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+  mFont->SetColor(options[Metrics::LOADING_TC].asColor());
   mGuiController = NEW JGuiController(100, this);
   if (mGuiController)
     {
@@ -173,9 +174,11 @@ void GameStateMenu::fillScroller(){
   int totalGames = 0;
 
   for (int j=1; j<6; j++){
-    sprintf(buffer, RESPATH"/player/stats/player_deck%i.txt",j);
-    if(fileExists(buffer)){
-		  stats->load(buffer);
+    
+    sprintf(buffer, "stats/player_deck%i.txt",j);
+    string deckstats = options.profileFile(buffer);
+    if(fileExists(deckstats.c_str())){
+		  stats->load(deckstats.c_str());
 		  int percentVictories = stats->percentVictories();
 
       sprintf(buff2, _("You have a %i%% victory ratio with Deck%i").c_str(),percentVictories,j);
@@ -214,8 +217,7 @@ void GameStateMenu::fillScroller(){
   sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, MtgSets::SetsList->nb_items);
   scroller->Add(buff2);
 
-
-  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", &cache,mParent->collection));
+  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), &cache,mParent->collection));
   int totalCards = ddw->getCount();
   if (totalCards){
     sprintf(buff2, _("You have a total of %i cards in your collection").c_str(),totalCards);
@@ -242,15 +244,20 @@ void GameStateMenu::fillScroller(){
   scrollerSet = 1;
   scroller->setRandom();
 }
-
-int GameStateMenu::nextCardSet(){
+void GameStateMenu::resetDirectory(){
+  if(mDip != NULL)  { 
+    closedir(mDip);
+    mDip = NULL;
+  }
+}
+int GameStateMenu::nextDirectory(char * root, char * file){
   int found = 0;
   if (!mDip){
-    mDip = opendir(RESPATH"/sets/");
+    mDip = opendir(root);
   }
 
   while (!found && (mDit = readdir(mDip))){
-    sprintf(mCurrentSetFileName, RESPATH"/sets/%s/_cards.dat", mDit->d_name);
+    sprintf(mCurrentSetFileName, "%s/%s/%s", root, mDit->d_name, file);
     std::ifstream file(mCurrentSetFileName);
     if(file){
       sprintf(mCurrentSetName, "%s", mDit->d_name);
@@ -264,7 +271,6 @@ int GameStateMenu::nextCardSet(){
   }
   return found;
 }
-
 
 void GameStateMenu::End()
 {
@@ -286,41 +292,36 @@ void GameStateMenu::Update(float dt)
       }else{
 	      mReadConf = 1;
       }
-      if (!nextCardSet()){
+      if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
 	      //How many cards total ?
 	      sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
-	      //Check for first time comer
-	      std::ifstream file(RESPATH"/player/collection.dat");
+        
+        //Force default, if necessary.
+        if(options[Options::ACTIVE_PROFILE].str == "") 
+          options[Options::ACTIVE_PROFILE].str = "Default";
+
+        //check for deleted collection / first-timer
+        std::ifstream file(options.profileFile(PLAYER_COLLECTION,"",false).c_str());
 	      if(file){
 	        file.close();
 	        currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
 	      }else{
-	        currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
+          //check for first time player!
+          file.open(options.profileFile(PLAYER_COLLECTION,"",false).c_str());
+          if(file){
+            file.close();
+            currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
+          }else{
+  	        currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
+          }
 	      }
+        resetDirectory();
         SAFE_DELETE(splashQuad);
         SAFE_DELETE(splashTex);
       }
-      break;
+      break;    
     case MENU_STATE_MAJOR_FIRST_TIME :
-      {
-	      //Give the player cards from the set for which we have the most variety
-	      int setId = 0;
-	      int maxcards = 0;
-	      for (int i=0; i< MtgSets::SetsList->nb_items; i++){
-	        int value = mParent->collection->countBySet(i);
-	        if (value > maxcards){
-	          maxcards = value;
-	          setId = i;
-	        }
-	      }
-        //Save this set as "unlocked"
-        string s = MtgSets::SetsList->values[setId];
-        char buffer[4096];
-        sprintf(buffer,"unlocked_%s", s.c_str());
-        options[buffer] = GameOption(1);
-        options.save();
-	createUsersFirstDeck(setId);
-      }
+      options.checkProfile();
       currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
       break;
     case MENU_STATE_MAJOR_MAINMENU :
@@ -395,54 +396,6 @@ void GameStateMenu::Update(float dt)
 
 
 
-void GameStateMenu::createUsersFirstDeck(int setId){
-#if defined (WIN32) || defined (LINUX)
-  char buf[4096];
-  sprintf(buf, "setID: %i", setId);
-  OutputDebugString(buf);
-#endif
-  MTGDeck *mCollection = NEW MTGDeck(RESPATH"/player/collection.dat", &cache, mParent->collection);
-  //10 lands of each
-  int sets[] = {setId};
-  if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){
-    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Forest");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Plains")){
-    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Plains");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Swamp")){
-    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Swamp");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Mountain")){
-    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Mountain");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Island")){
-    mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Island");
-  }
-
-
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("1\n");
-#endif
-
-  //Starter Deck
-  mCollection->addRandomCards(3, sets,1,Constants::RARITY_R,NULL);
-  mCollection->addRandomCards(9, sets,1,Constants::RARITY_U,NULL);
-  mCollection->addRandomCards(48, sets,1,Constants::RARITY_C,NULL);
-
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("2\n");
-#endif
-  //Boosters
-  for (int i = 0; i< 2; i++){
-    mCollection->addRandomCards(1, sets,1,Constants::RARITY_R);
-    mCollection->addRandomCards(3, sets,1,Constants::RARITY_U);
-    mCollection->addRandomCards(11, sets,1,Constants::RARITY_C);
-  }
-  mCollection->save();
-  SAFE_DELETE(mCollection);
-}
-
 
 
 void GameStateMenu::Render()
@@ -475,13 +428,13 @@ void GameStateMenu::Render()
       mGuiController->Render();
 
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-    mFont->SetColor(ARGB(128,255,255,255));
+    mFont->SetColor(options[Metrics::STATS_TC].asColor(ARGB(128,255,255,255)));
     mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,5,JGETEXT_RIGHT);
     mFont->DrawString(nbcardsStr,10, 5);
     mFont->SetScale(1.f);
-    mFont->SetColor(ARGB(255,255,255,255));
+    mFont->SetColor(options[Metrics::SCROLLER_TC].asColor());
 
-    renderer->FillRoundRect(SCREEN_WIDTH/2 - 100,SCREEN_HEIGHT-20, 191,6,5,ARGB(100,10,5,0));
+    renderer->FillRoundRect(SCREEN_WIDTH/2 - 100,SCREEN_HEIGHT-20, 191,6,5,options[Metrics::SCROLLER_FC].asColor(ARGB(100,10,5,0)));
     scroller->Render();
 
     if (subMenuController){
@@ -502,7 +455,7 @@ JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
 #endif
   switch (controllerId){
   case 101:
-    createUsersFirstDeck(controlId);
+    options.createUsersFirstDeck(controlId);
     currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
     break;
   default:

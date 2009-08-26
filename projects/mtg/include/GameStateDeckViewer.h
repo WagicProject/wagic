@@ -144,7 +144,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
     playerdata = NEW PlayerData(mParent->collection);
     sellMenu = NULL;
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", &cache,mParent->collection));
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), &cache,mParent->collection));
     displayed_deck =  myCollection;
     myDeck = NULL;
     menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
@@ -172,7 +172,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }
 
 
-    pspIconsTexture = JRenderer::GetInstance()->LoadTexture("graphics/iconspsp.png", TEX_TYPE_USE_VRAM);
+    pspIconsTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("iconspsp.png").c_str(), TEX_TYPE_USE_VRAM);
 
     for (int i=0; i < 8; i++){
       pspIcons[i] = NEW JQuad(pspIconsTexture, i*32, 0, 32, 32);
@@ -184,7 +184,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     //menuFont = NEW JLBFont("graphics/f3",16);
     menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
     welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
-    int nbDecks = fillDeckMenu(welcome_menu,RESPATH"/player");
+    int nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
 	  welcome_menu->Add(nbDecks+1, "--NEW--");
     welcome_menu->Add(-1, "Cancel");
 
@@ -726,12 +726,13 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
   int loadDeck(int deckid){
     SAFE_DELETE(myCollection);
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(RESPATH"/player/collection.dat", &cache,mParent->collection));
+    string profile = options[Options::ACTIVE_PROFILE].str;
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), &cache,mParent->collection));
     displayed_deck = myCollection;
-    char filename[4096];
-    sprintf(filename, RESPATH"/player/deck%i.txt", deckid);
+    char deckname[256];
+    sprintf(deckname,"deck%i.txt",deckid);
     SAFE_DELETE(myDeck);
-    myDeck = NEW DeckDataWrapper(NEW MTGDeck(filename, &cache,mParent->collection));
+    myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname).c_str(), &cache,mParent->collection));
     MTGCard * current = myDeck->getNext();
     while (current){
       int howmanyinDeck = myDeck->cards[current];

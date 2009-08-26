@@ -5,8 +5,14 @@
 #include <string>
 using std::map;
 using std::string;
+#include <JGE.h>
+#include "../include/SimplePad.h"
+#include "../include/GameApp.h"
 
-#define OPTIONS_SAVEFILE RESPATH"/settings/options.txt"
+#define GLOBAL_SETTINGS RESPATH"/settings/options.txt"
+#define PLAYER_SAVEFILE "data.dat"
+#define PLAYER_SETTINGS "options.txt"
+#define PLAYER_COLLECTION "collection.dat"
 
 struct Options {
   static const string MUSICVOLUME;
@@ -22,12 +28,52 @@ struct Options {
   static const string INTERRUPTMYSPELLS;
   static const string INTERRUPTMYABILITIES;
   static const string OSD;
+  static const string ACTIVE_PROFILE;
+  static const string ACTIVE_THEME;
+};
+
+struct Metrics {
+  //*_TC is text-color, *_TCH is highlighted text color
+  //*_FC is fill-color, *_FCH is highlighted fill color
+  //*_B and *_BH are for secondary text/fill colors, if needed
+  //*_X, *_Y, *_W, *_H are x, y, width and height.
+  static const string LOADING_TC;
+  static const string STATS_TC;
+  static const string SCROLLER_TC;
+  static const string SCROLLER_FC;
+  static const string MAINMENU_TC;
+  static const string POPUP_MENU_FC;
+  static const string POPUP_MENU_TC;
+  static const string POPUP_MENU_TCH;
+  static const string MSG_FAIL_TC;
+  static const string OPTION_ITEM_FC;
+  static const string OPTION_ITEM_TC;
+  static const string OPTION_ITEM_TCH;
+  static const string OPTION_HEADER_FC;
+  static const string OPTION_HEADER_TC;
+  static const string OPTION_SCROLLBAR_FC;
+  static const string OPTION_SCROLLBAR_FCH;  
+  static const string OPTION_TAB_FC;
+  static const string OPTION_TAB_FCH;  
+  static const string OPTION_TAB_TC;
+  static const string OPTION_TAB_TCH;  
+  static const string OPTION_TEXT_TC;
+  static const string OPTION_TEXT_FC;
+  static const string KEY_TC;
+  static const string KEY_TCH;  
+  static const string KEY_FC;
+  static const string KEY_FCH;
+  static const string KEYPAD_FC; 
+  static const string KEYPAD_FCH; 
+  static const string KEYPAD_TC;
 };
 
 class GameOption {
 public:
   int number;
   string str;
+  //All calls to asColor should include a fallback color for people without a theme.
+  PIXEL_TYPE asColor(PIXEL_TYPE fallback = ARGB(255,255,255,255));
   GameOption(int value = 0);
   GameOption(string value);
 };
@@ -35,18 +81,55 @@ public:
 
 class GameOptions {
  public:
+  string mFilename;
   int save();
   int load();
+
   static const char * phaseInterrupts[];
   GameOption& operator[](string);
-  GameOptions();
+  GameOptions(string filename);
   ~GameOptions();
 
  private:
-  static map <string,int> optionsTypes;
   map<string,GameOption> values;
 };
 
-extern GameOptions options;
+class GameSettings{
+public:
+  friend class GameApp;
+  GameSettings();
+  ~GameSettings();
+  int save();
+
+  SimplePad * keypadStart(string input, string * _dest = NULL, int _x = SCREEN_WIDTH/2, int _y = SCREEN_HEIGHT/2);
+  string keypadFinish();
+  void keypadShutdown();
+  void keypadTitle(string set);
+  bool keypadActive() {if(keypad) return keypad->isActive(); return false;};
+  void keypadUpdate(float dt) {if(keypad) keypad->Update(dt);};
+  void keypadRender() {if(keypad) keypad->Render();};
+  
+
+  //These return a filepath accurate to the current mode/profile/theme, and can
+  //optionally fallback to a file within a certain directory. 
+  //The sanity=false option returns the adjusted path even if the file doesn't exist.
+  string profileFile(string filename="", string fallback="", bool sanity=true,bool relative=false);
+  string modeFile(string filename, string fallback, bool relative);
+  string themeGraphic(string filename);
+
+  void checkProfile();
+  void createUsersFirstDeck(int setId); 
+
+  GameOption& operator[](string);
+  GameOptions* profileOptions;
+  GameOptions* globalOptions;
+  GameOptions* themeOptions;
+
+private:
+  GameApp * theGame;  
+  SimplePad * keypad;
+};
+
+extern GameSettings options;
 
 #endif

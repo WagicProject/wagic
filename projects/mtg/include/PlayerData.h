@@ -1,8 +1,6 @@
 #ifndef _PLAYER_DATA_H_
 #define _PLAYER_DATA_H_
 
-#define PLAYER_SAVEFILE RESPATH"/player/data.dat"
-
 #include "../include/MTGDeck.h"
 
 class PlayerData{

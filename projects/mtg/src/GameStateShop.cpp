@@ -36,7 +36,7 @@ void GameStateShop::Start()
 
   mStage = STAGE_SHOP_SHOP;
 
-  bgTexture = JRenderer::GetInstance()->LoadTexture("graphics/shop.jpg", TEX_TYPE_USE_VRAM);
+  bgTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("shop.jpg").c_str(), TEX_TYPE_USE_VRAM);
   mBg = NEW JQuad(bgTexture, 0, 0, 480, 272);		// Create background quad for rendering.
   mBack = GameApp::CommonRes->GetQuad("back");
 

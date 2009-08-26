@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/MenuItem.h"
+#include "../include/GameOptions.h"
 #include "../include/Translate.h"
 
 MenuItem::MenuItem(int id, JLBFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mX(x), mY(y)
@@ -24,9 +25,7 @@ MenuItem::MenuItem(int id, JLBFont *font, string text, int x, int y, JQuad * _of
 
 void MenuItem::Render()
 {
-
   JRenderer * renderer = JRenderer::GetInstance();
-
 
   if (mHasFocus)
     {
@@ -35,7 +34,7 @@ void MenuItem::Render()
       mParticleSys->Render();
       // set normal blending
       renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-      mFont->SetColor(ARGB(255,255,255,255));
+      mFont->SetColor(options[Metrics::MAINMENU_TC].asColor());
       onQuad->SetColor(ARGB(70,255,255,255));
       renderer->RenderQuad(onQuad, SCREEN_WIDTH  , SCREEN_HEIGHT/2 , 0,8,8);
       onQuad->SetColor(ARGB(255,255,255,255));

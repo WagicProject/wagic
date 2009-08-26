@@ -26,6 +26,7 @@
 
 
 #include "../include/GameState.h"
+#include "../include/GameOptions.h"
 
 #include "../include/MTGDeck.h"
 #include "../include/MTGCard.h"
