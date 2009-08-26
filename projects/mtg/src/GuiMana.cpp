@@ -159,7 +159,7 @@ int GuiMana::receiveEventMinus(WEvent* e)
   if (WEventConsumeMana *event = dynamic_cast<WEventConsumeMana*>(e))
     {
       for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
-	if (event->color == (*it)->color) { (*it)->Wither(); return 1; }
+	if ((event->color == (*it)->color) && (ManaIcon::ALIVE == (*it)->mode)) { (*it)->Wither(); return 1; }
       return 1;
     }
   else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
