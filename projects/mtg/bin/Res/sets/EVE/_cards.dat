@@ -111,8 +111,8 @@ toughness=3
 [card]
 text=Other black creatures you control get +1/+1.     Other green creatures you control get +1/+1.     At the beginning of your upkeep, you may put a 1/1 black and green Worm creature token into play.
 id=157406
-auto=lord(creature[black]) 1/1 other
-auto=lord(creature[green]) 1/1 other
+auto=lord(creature[black]|mybattlefield) 1/1 other
+auto=lord(creature[green]|mybattlefield) 1/1 other
 auto=@each my upkeep:may token(Worm,Worm Creature, 1/1,green black)
 name=Creakwood Liege
 rarity=R
