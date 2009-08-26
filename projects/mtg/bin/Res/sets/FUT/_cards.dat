@@ -45,6 +45,7 @@ name=Char-Rumbler
 color=Red
 rarity=U
 mana={2}{R}{R}
+auto={R}:1/0
 type=Creature
 subtype=Elemental
 power=-1

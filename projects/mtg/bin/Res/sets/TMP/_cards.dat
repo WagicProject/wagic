@@ -335,10 +335,11 @@ toughness=3
 [card]
 text=Enchant creature     {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
 id=4809
+target=creature
 name=Crown of Flames
 rarity=C
 type=Enchantment
-auto=1/0
+auto={R}:1/0
 auto={R}:moveTo(hand)
 mana={R}
 subtype=Aura
@@ -646,9 +647,9 @@ auto=reach
 auto=draw:1
 id=4762
 name=Frog Tongue
-color=C
-rarity=U
-mana={1}{G}
+color=G
+rarity=C
+mana={G}
 type=Enchantment
 subtype=Aura
 [/card]
