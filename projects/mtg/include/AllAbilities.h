@@ -150,10 +150,14 @@ public:
   }
 
   int testDestroy(){
-    if (triggered && !game->mLayers->actionLayer()->menuObject && game->mLayers->actionLayer()->getIndexOf(mClone) ==-1){
+    if (triggered){
+      if (game->mLayers->actionLayer()->menuObject) return 0;
+      if (game->mLayers->actionLayer()->getIndexOf(mClone) !=-1) return 0;
+      if (game->mLayers->actionLayer()->getIndexOf(this) !=-1) return 0;
       OutputDebugString("Destroy!\n");
       return 1;
     }
+    
     return 0;
   }
 
@@ -172,11 +176,12 @@ public:
   }
 
   ~MayAbility(){
-    if (!isClone) SAFE_DELETE(ability);
+    SAFE_DELETE(ability);
   }
 
   MayAbility * clone() const{
     MayAbility * a =  NEW MayAbility(*this);
+    a->ability = ability->clone();
     a->isClone = 1;
     return a;
   }
@@ -292,8 +297,13 @@ public:
     counters = 0;
   }
 
+   ~GenericTargetAbility(){
+     if (isClone) SAFE_DELETE(ability);
+   }
+
   GenericTargetAbility * clone() const{
     GenericTargetAbility * a =  NEW GenericTargetAbility(*this);
+    a->ability = ability->clone();
     a->isClone = 1;
     return a;
   }

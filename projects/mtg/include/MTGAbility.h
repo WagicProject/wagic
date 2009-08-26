@@ -221,28 +221,18 @@ class AManaProducer: public MTGAbility{
 
   
   string menutext;
-  float x0,y0,x1,y1,x,y;
-  float animation;
   Player * controller;
 
-
-  hgeParticleSystem * mParticleSys;
  public:
    ManaCost * output;
    int tap;
-   static int currentlyTapping;
    AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1 );
-   void Update(float dt);
-   void Render();
    int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
   int resolve();
-  int destroy();
   int reactToClick(MTGCardInstance *  _card);
   const char * getMenuText();
-  int testDestroy();
   ~AManaProducer();
   virtual AManaProducer * clone() const;
-  virtual ostream& toString(ostream& out) const;
 };
 
 #include "MTGCardInstance.h"

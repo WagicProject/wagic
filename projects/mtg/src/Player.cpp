@@ -2,6 +2,7 @@
 #include "../include/Player.h"
 #include "../include/GameObserver.h"
 #include "../include/DeckStats.h"
+#include "../include/ManaCost.h"
 
 
 Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageable(20){
@@ -9,7 +10,7 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   deckFileSmall = fileSmall;
   game = deck;
   game->setOwner(this);
-  manaPool = NEW ManaCost();
+  manaPool = NEW ManaPool(this);
   canPutLandsIntoPlay = 1;
   mAvatar = NULL;
   type_as_damageable = DAMAGEABLE_PLAYER;
@@ -21,9 +22,9 @@ void Player::End(){
 }
 
 Player::~Player(){
-  if (manaPool) delete manaPool;
-  if (mAvatarTex) delete mAvatarTex;
-  if (mAvatar) delete mAvatar;
+  SAFE_DELETE(manaPool);
+  SAFE_DELETE(mAvatarTex);
+  SAFE_DELETE(mAvatar);
 }
 
 const string Player::getDisplayName(){
@@ -63,7 +64,7 @@ HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) :
     mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
 }
 
-ManaCost * Player::getManaPool(){
+ManaPool * Player::getManaPool(){
   return manaPool;
 }
 

@@ -1,0 +1,17 @@
+#Bug: Crash when Rockslide elemental goes to graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:rockslide elemental
+manapool:{R}
+hand:shock
+[PLAYER2]
+[DO]
+shock
+rockslide elemental
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:shock,rockslide elemental
+[PLAYER2]
+[END]

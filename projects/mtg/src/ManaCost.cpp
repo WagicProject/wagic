@@ -1,10 +1,11 @@
 #include "../include/config.h"
-#include "../include/Logger.h"
 #include "../include/ManaCost.h"
 #include "../include/ManaCostHybrid.h"
 #include "../include/ExtraCost.h"
 #include "../include/TargetChooser.h"
 #include "../include/Targetable.h"
+#include "../include/Player.h"
+#include "../include/WEvent.h"
 
 #if defined (WIN32)
 
@@ -121,7 +122,6 @@ ManaCost::ManaCost(ManaCost * _manaCost){
 }
 
 ManaCost::~ManaCost(){
-  LOG("==Deleting ManaCost==");
   for (unsigned int i = 0;  i < nbhybrids ; i++){
     SAFE_DELETE(hybrids[i]);
   }
@@ -395,4 +395,59 @@ void ManaCost::Dump(){
 ostream& operator<<(ostream& out, const ManaCost& m)
 {
   return out << "(manacost)";
+}
+
+
+void ManaPool::init(){
+  ManaCost::init();
+  WEvent * e = NEW WEventEmptyManaPool(this);
+	GameObserver::GetInstance()->receiveEvent(e);
+}
+
+ManaPool::ManaPool(Player * player):ManaCost(),player(player){}
+ManaPool::ManaPool(ManaCost * _manaCost,Player * player):ManaCost(_manaCost),player(player){}
+
+int ManaPool::remove (int color, int value){
+  int result = ManaCost::remove(color, value);
+  for (int i = 0; i < value; ++i){
+   WEvent * e = NEW WEventConsumeMana(color, this);
+   GameObserver::GetInstance()->receiveEvent(e);
+  }
+  return result;
+}
+
+int ManaPool::add(int color, int value, MTGCardInstance * source ){
+  int result = ManaCost::add(color, value);
+  for (int i = 0; i < value; ++i){
+   WEvent * e = NEW WEventEngageMana(color, source,this);
+   GameObserver::GetInstance()->receiveEvent(e);
+  }
+  return result;
+}
+
+int ManaPool::add(ManaCost * _cost, MTGCardInstance * source){
+  if(!_cost) return 0;
+  int result = ManaCost::add(_cost);
+  for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++){
+    for (int j = 0; j < _cost->getCost(i); j++){
+      WEvent * e = NEW WEventEngageMana(i, source, this);
+      GameObserver::GetInstance()->receiveEvent(e);
+    }
+  }
+  return result;
+}
+int ManaPool::pay (ManaCost * _cost){
+  int current[Constants::MTG_NB_COLORS];
+  for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++){
+    current[i] = cost[i];
+  }
+  int result = ManaCost::pay(_cost);
+  for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++){
+    int value = current[i] - cost[i];
+    for (int j = 0; j <value; j++){
+      WEvent * e = NEW WEventConsumeMana(i, this);
+      GameObserver::GetInstance()->receiveEvent(e);
+    }
+  }
+  return result;
 }

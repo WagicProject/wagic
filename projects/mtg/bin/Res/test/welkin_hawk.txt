@@ -1,0 +1,18 @@
+#Bug: Crash whenWelki hawk goes to graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:welkin hawk
+manapool:{R}
+hand:shock
+[PLAYER2]
+[DO]
+shock
+welkin hawk
+choice 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:shock,welkin hawk
+[PLAYER2]
+[END]

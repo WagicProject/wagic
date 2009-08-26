@@ -22,5 +22,6 @@ WEventCreatureBlocker::WEventCreatureBlocker(MTGCardInstance * card, MTGCardInst
 
 WEventCreatureBlockerRank::WEventCreatureBlockerRank(MTGCardInstance * card, MTGCardInstance * exchangeWith, MTGCardInstance * attacker) : WEventCardUpdate(card), exchangeWith(exchangeWith), attacker(attacker){}
 
-WEventEngageMana::WEventEngageMana(int color, MTGCardInstance* card) : WEvent(), color(color), card(card) {}
-WEventConsumeMana::WEventConsumeMana(int color) : WEvent(), color(color) {}
+WEventEngageMana::WEventEngageMana(int color, MTGCardInstance* card, ManaPool * destination) : WEvent(), color(color), card(card), destination(destination) {}
+WEventConsumeMana::WEventConsumeMana(int color, ManaPool * source) : WEvent(), color(color),source(source) {}
+WEventEmptyManaPool::WEventEmptyManaPool(ManaPool * source):WEvent(),source(source){}

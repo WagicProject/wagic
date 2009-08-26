@@ -736,7 +736,7 @@ int AIPlayerBaka::Act(float dt){
   oldGamePhase = currentGamePhase;
 
   timer-= dt;
-  if (AManaProducer::currentlyTapping || timer>0){
+  if (timer>0){
     return 0;
   }
   initTimer();

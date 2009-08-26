@@ -235,8 +235,10 @@ void ActionLayer::doReactTo(int menuIndex){
     char buf[4096];
     sprintf(buf, "doReact To %i\n",controlid);
     OutputDebugString(buf);
-    ActionElement * currentAction = (ActionElement *)mObjects[controlid];
-    currentAction->reactToTargetClick(menuObject);
+    if (controlid != -1){
+      ActionElement * currentAction = (ActionElement *)mObjects[controlid];
+      currentAction->reactToTargetClick(menuObject);
+    }
     menuObject = 0;
   }
 }

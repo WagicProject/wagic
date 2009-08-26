@@ -66,7 +66,7 @@ int TestSuiteAI::Act(float dt){
 
   
   timer+= dt;
-  if (AManaProducer::currentlyTapping || timer < suite->timerLimit) return 1;
+  if (timer < suite->timerLimit) return 1;
   timer = 0;
 
   string action = suite->getNextAction();

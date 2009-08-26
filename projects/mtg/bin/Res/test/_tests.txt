@@ -154,6 +154,7 @@ resurrection.txt
 rhox_meditant.txt
 rhox_meditant2.txt
 righteous_cause.txt
+rockslide_elemental.txt
 rootwalla.txt
 royal_assassin.txt
 safehold_duo.txt
@@ -184,6 +185,7 @@ tranquil_domain.txt
 volcanic_island.txt
 wall_of_diffusion.txt
 wall_of_diffusion2.txt
+welkin_hawk.txt
 white_knight1.txt
 wrath_of_god.txt
 zombie_master.txt

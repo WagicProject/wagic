@@ -145,10 +145,10 @@ int GuiMana::receiveEventPlus(WEvent* e)
 {
   if (WEventEngageMana *event = dynamic_cast<WEventEngageMana*>(e))
     {
-      if (event->card->view)
-	manas.push_back(NEW ManaIcon(event->color, event->card->view->actX, event->card->view->actY));
+      if (event->card && event->card->view)
+	      manas.push_back(NEW ManaIcon(event->color, event->card->view->actX, event->card->view->actY));
       else
-	manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
+	      manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
       return 1;
     }
   else return 0;
@@ -162,10 +162,10 @@ int GuiMana::receiveEventMinus(WEvent* e)
 	if ((event->color == (*it)->color) && (ManaIcon::ALIVE == (*it)->mode)) { (*it)->Wither(); return 1; }
       return 1;
     }
-  else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
+  else if (WEventEmptyManaPool *event = dynamic_cast<WEventEmptyManaPool*>(e))
     {
       for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
-	(*it)->Drop();
+	      (*it)->Drop(); //TODO: split according to which manapool was emptied...
       return 1;
     }
   return 0;

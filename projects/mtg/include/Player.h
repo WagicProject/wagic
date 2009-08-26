@@ -2,17 +2,17 @@
 #define _PLAYER_H_
 
 #include "JGE.h"
-#include "ManaCost.h"
 #include "MTGGameZones.h"
 #include "Damage.h"
 #include "Targetable.h"
 
 class MTGPlayerCards;
 class MTGInPlay;
+class ManaPool;
 
 class Player: public Damageable{
  protected:
-  ManaCost * manaPool;
+  ManaPool * manaPool;
 
  public:
   virtual void End();
@@ -28,7 +28,7 @@ class Player: public Damageable{
   virtual ~Player();
   void unTapPhase();
   MTGInPlay * inPlay();
-  ManaCost * getManaPool();
+  ManaPool * getManaPool();
   void cleanupPhase();
   virtual int Act(float dt){return 0;};
   virtual int isAI(){return 0;};

@@ -6,6 +6,7 @@ class MTGGameZone;
 class Damage;
 class Phase;
 class Targetable;
+class ManaPool;
 
 class WEvent{
 public:
@@ -87,14 +88,23 @@ struct WEventCreatureBlockerRank: public WEventCardUpdate{
 struct WEventEngageMana : public WEvent {
   int color;
   MTGCardInstance* card;
-  WEventEngageMana(int color, MTGCardInstance* card);
+  ManaPool * destination;
+  WEventEngageMana(int color, MTGCardInstance* card, ManaPool * destination);
 };
 
 //Event when a mana is consumed
 //color : color
 struct WEventConsumeMana : public WEvent {
   int color;
-  WEventConsumeMana(int color);
+  ManaPool * source;
+  WEventConsumeMana(int color, ManaPool * source);
+};
+
+//Event when a manapool is emptied
+//color : color
+struct WEventEmptyManaPool : public WEvent {
+  ManaPool * source;
+  WEventEmptyManaPool(ManaPool * source);
 };
 
 #endif

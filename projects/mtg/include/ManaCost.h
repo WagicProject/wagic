@@ -10,6 +10,7 @@ class ExtraCosts;
 class ExtraCost;
 class MTGAbility;
 class MTGCardInstance;
+class Player;
 
 class ManaCost{
  protected:
@@ -21,7 +22,7 @@ class ManaCost{
  public:
   ExtraCosts * extraCosts;
   static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
-  void init();
+  virtual void init();
   void x();
   ManaCost(int _cost[], int nb_elems = 1);
   ManaCost();
@@ -65,5 +66,18 @@ class ManaCost{
 };
 
 std::ostream& operator<<(std::ostream& out, const ManaCost& m);
+
+class ManaPool:public ManaCost{
+protected:
+  Player * player;
+public:
+  void init();
+  ManaPool(Player * player);
+  ManaPool(ManaCost * _manaCost, Player * player);
+  int remove (int color, int value);
+  int add(int color, int value, MTGCardInstance * source = NULL);
+  int add(ManaCost * _cost, MTGCardInstance * source = NULL);
+  int pay (ManaCost * _cost);
+};
 
 #endif

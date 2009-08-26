@@ -15,7 +15,7 @@ void MTGGamePhase::Update(float dt){
   int newState = GameObserver::GetInstance()->getCurrentGamePhase();
   if (newState != currentState){
     activeState = ACTIVE;
-    animation = 1;
+    animation = 4;
     currentState = newState;
 
     switch (currentState){
@@ -28,7 +28,7 @@ void MTGGamePhase::Update(float dt){
 
   if (animation > 0){
     //    fprintf(stderr, "animation = %f", animation);
-    animation -= dt *5 ;
+    animation -- ;
   }else{
     activeState = INACTIVE;
     animation = 0;

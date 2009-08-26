@@ -1823,7 +1823,8 @@ int MTGAbility::removeFromGame(){
 int MTGAbility::testDestroy(){
   if (game->mLayers->stackLayer()->has(this)) return 0;
   if (waitingForAnswer) return 0;
-  if (forceDestroy) return 1;
+  if (forceDestroy == 1) return 1;
+  if (forceDestroy == -1) return 0;
   if (!game->isInPlay(source) ){
     OutputDebugString("Destroying Ability !!!\n");
     return 1;
@@ -2292,72 +2293,12 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output,
   aType = MTGAbility::MANA_PRODUCER;
   cost = _cost;
   output = _output;
-  cout << "!" << card->view << endl;
-  if (card->view)
-    {
-      x1 = card->view->actX; y1 = card->view->actY;
-    }
-  else
-    {
-      x1 = 10; y1 = 220;
-    }
-  Player * player = card->controller();
-  if (player == game->players[1]) y1 = 100;
-  x = x1;
-  y = y1;
-  animation = 0.f;
-  mParticleSys = NULL;
+ 
   menutext = "";
 
-  int landColor = output->getMainColor();
-
-  switch (landColor)
-    {
-    case Constants::MTG_COLOR_RED :
-      mParticleSys = NEW hgeParticleSystem("graphics/manared.psi",GameApp::CommonRes->GetQuad("particles"));
-      break;
-    case Constants::MTG_COLOR_BLUE :
-      mParticleSys = NEW hgeParticleSystem("graphics/manablue.psi", GameApp::CommonRes->GetQuad("particles"));
-      break;
-    case Constants::MTG_COLOR_GREEN :
-      mParticleSys = NEW hgeParticleSystem("graphics/managreen.psi", GameApp::CommonRes->GetQuad("particles"));
-      break;
-    case Constants::MTG_COLOR_BLACK :
-      mParticleSys = NEW hgeParticleSystem("graphics/manablack.psi", GameApp::CommonRes->GetQuad("particles"));
-      break;
-    case Constants::MTG_COLOR_WHITE :
-      mParticleSys = NEW hgeParticleSystem("graphics/manawhite.psi", GameApp::CommonRes->GetQuad("particles"));
-      break;
-    default :
-      mParticleSys = NEW hgeParticleSystem("graphics/mana.psi", GameApp::CommonRes->GetQuad("particles"));
-    }
+ 
 
   LOG("==ManaProducer Object Creation successful !");
-}
-
-void AManaProducer::Update(float dt){
-  if (mParticleSys) mParticleSys->Update(dt);
-  if (animation){
-    x = (1.f - animation)*x1 + animation * x0;
-    y = (1.f - animation)*y1 + animation * y0;
-    if (mParticleSys) mParticleSys->MoveTo(x, y);
-    if (mParticleSys && animation == 1.f) mParticleSys->Fire();
-    animation -= 4 *dt;
-    if (!animation) animation = -1;
-    if (animation < 0){
-      resolve();
-    }
-  }
-}
-
-void AManaProducer::Render(){
-  JRenderer * renderer = JRenderer::GetInstance();
-  if (animation){
-    //    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-    //    if (mParticleSys) mParticleSys->Render();
-    // set normal blending
-    //    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-  }
 }
 
   int AManaProducer::isReactingToClick(MTGCardInstance *  _card, ManaCost * mana){
@@ -2370,11 +2311,8 @@ void AManaProducer::Render(){
   }
 
   int AManaProducer::resolve(){
-    animation = 0;
-    if (currentlyTapping > 0) currentlyTapping--;
     controller = source->controller();
-    controller->getManaPool()->add(output);
-	  if (mParticleSys) mParticleSys->Stop();
+    controller->getManaPool()->add(output,source);
     return 1;
   }
 
@@ -2394,31 +2332,14 @@ void AManaProducer::Render(){
       cost->doPayExtra();
     }
     if (tap) source->tap();
-    currentlyTapping++;
 
-    animation = 1.f;
-
-    if (options[Options::SFXVOLUME].number > 0 && currentlyTapping < 3){
+    if (options[Options::SFXVOLUME].number > 0){
       JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/mana.wav");
       if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
     }
-
-    for (int i = Constants::MTG_NB_COLORS - 2; i >= 1; --i)
-      {
-	for (int cost = output->getCost(i); cost > 0; --cost)
-	  {
-	    WEvent * e = NEW WEventEngageMana(i, source);
-	    GameObserver::GetInstance()->receiveEvent(e);
-	  }
-      }
-
-    return 1;
+    return resolve();
   }
 
-  int AManaProducer::destroy(){
-    if (animation >0) resolve(); //if we get destroyed while the animation was taking place (dirty...)
-    return MTGAbility::destroy();
-  }
 
   const char * AManaProducer::getMenuText(){
     if (menutext.size())return menutext.c_str();
@@ -2457,17 +2378,12 @@ void AManaProducer::Render(){
     return menutext.c_str();
   }
 
-  int AManaProducer::testDestroy(){
-    if (animation >0) return 0;
-    return MTGAbility::testDestroy();
-  }
 
   AManaProducer::~AManaProducer(){
     if (isClone) return;
     LOG("==Destroying ManaProducer Object");
     SAFE_DELETE(cost);
     SAFE_DELETE(output);
-    SAFE_DELETE(mParticleSys);
     LOG("==Destroying ManaProducer Object Successful!");
   }
 
@@ -2477,19 +2393,4 @@ void AManaProducer::Render(){
     return a;
   }
 
-int AManaProducer::currentlyTapping = 0;
 
-ostream& AManaProducer::toString(ostream& out) const
-{
-  out << "AManaProducer ::: cost : " << cost
-      << " ; output : " << output
-      << " ; menutext : " << menutext
-      << " ; x0,y0 : " << x0 << "," << y0
-      << " ; x1,y1 : " << x1 << "," << y1
-      << " ; x,y : " << x << "," << y
-      << " ; animation : " << animation
-      << " ; controller : " << controller
-      << " ; tap : " << tap
-      << " (";
-  return MTGAbility::toString(out) << ")";
-}
