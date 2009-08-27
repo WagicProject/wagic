@@ -134,9 +134,9 @@ int DuelLayers::receiveEvent(WEvent * e){
       if (WEventZoneChange *event = dynamic_cast<WEventZoneChange*>(e))
 	{
 	  if (event->card->view)
-	    waiters.push_back(p = new Pos(*(event->card->view)));
+	    waiters.push_back(p = NEW Pos(*(event->card->view)));
 	  else
-	    waiters.push_back(p = new Pos(0, 0, 0, 0, 255));
+	    waiters.push_back(p = NEW Pos(0, 0, 0, 0, 255));
 	  event->card->view = p;
 	}
     }

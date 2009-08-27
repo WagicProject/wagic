@@ -87,7 +87,7 @@ PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback)
   if(str.length() < 5)
     return fallback;
 
-  for(int i=0;i<str.length();i++)  {
+  for(size_t i=0;i<str.length();i++)  {
     if(isspace(str[i]))
       continue;
     if(str[i] == ','){
@@ -175,7 +175,7 @@ GameSettings options;
 GameSettings::GameSettings()
 {
   //Load global options
-  globalOptions = new GameOptions(GLOBAL_SETTINGS);
+  globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
   //Load profile options. 
   char buf[512];
@@ -203,7 +203,7 @@ GameSettings::GameSettings()
    sprintf(buf,RESPATH"/themes/%s/metrics.txt",temp.c_str());
   }
 
-  themeOptions = new GameOptions(buf);  
+  themeOptions = NEW GameOptions(buf);  
 }
 
 GameSettings::~GameSettings(){
@@ -293,7 +293,7 @@ void GameSettings::checkProfile(){
     temp+="/stats";
     MAKEDIR(temp.c_str()); 
     temp = profileFile(PLAYER_SETTINGS,"",false);
-    profileOptions = new GameOptions(temp);
+    profileOptions = NEW GameOptions(temp);
 
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
@@ -380,7 +380,7 @@ void GameSettings::keypadTitle(string set){
 }
 SimplePad * GameSettings::keypadStart(string input, string * _dest,bool _cancel, bool _numpad, int _x,int _y ){
   if(keypad == NULL)
-    keypad = new SimplePad();
+    keypad = NEW SimplePad();
   keypad->bShowCancel = _cancel;
   keypad->bShowNumpad = _numpad;
   keypad->mX = _x;

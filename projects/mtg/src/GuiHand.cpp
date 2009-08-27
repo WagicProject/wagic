@@ -67,7 +67,7 @@ void GuiHandOpponent::Render()
 
 GuiHandSelf::GuiHandSelf(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand), state(Closed), backpos(ClosedX)
 {
-  limitor = new HandLimitor(this);
+  limitor = NEW HandLimitor(this);
 }
 bool GuiHandSelf::CheckUserInput(u32 key)
 {
