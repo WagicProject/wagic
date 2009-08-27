@@ -16,14 +16,29 @@ WResourceManager::~WResourceManager(){
   SAFE_DELETE(jrm);
 }
 
-string WResourceManager::graphicsFile(const string filename, const string specific){
+string WResourceManager::graphicsFile(const string filename, const string specific, bool bFont){
     char buf[512];
+    char file[512];
+    char lookup[512];
+   
+    if(bFont)
+      sprintf(file,"%s.dat",filename.c_str());
+    else
+      sprintf(file,"%s",filename.c_str());
+
+
+    if(stopgap.find(filename) != stopgap.end())
+      return stopgap[filename];
+
 
     //Check the specific location, if any.
     if(specific != ""){
-      sprintf(buf,"%s/%s",specific.c_str(),filename.c_str());
-      if(fileOK(buf,true))
+      sprintf(buf,"%s/%s",specific.c_str(),file);
+      sprintf(lookup,"%s/%s",specific.c_str(),file);
+      if(fileOK(lookup,true)){
+        stopgap[filename] = buf;
         return buf;
+      }
     }
 
     //Check the theme folder.
@@ -32,8 +47,11 @@ string WResourceManager::graphicsFile(const string filename, const string specif
 
     if(theme != "" || theme != "default"){
        sprintf(buf,"themes/%s/%s",theme.c_str(),filename.c_str());
-       if(fileOK(buf,true))
-         return buf;
+      sprintf(lookup,"themes/%s/%s",theme.c_str(),file);
+      if(fileOK(lookup,true)){
+        stopgap[filename] = buf;
+        return buf;
+      }
     }
 
     //Failure. Check mode graphics     
@@ -41,21 +59,30 @@ string WResourceManager::graphicsFile(const string filename, const string specif
     std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
 
     if(mode != "" && mode != "defualt"){
-    sprintf(buf,"modes/graphics/%s",mode,filename.c_str());
-    if(fileOK(buf,true))
-       return buf;      
+      sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
+      sprintf(lookup,"modes/%s/graphics/%s",mode.c_str(),file);
+      if(fileOK(lookup,true)){
+        stopgap[filename] = buf;
+        return buf;
+      }  
     }
        
      //Failure. Check graphics       
      char graphdir[512];
      sprintf(graphdir,"graphics/%s",filename.c_str());
-     if(fileOK(graphdir,true))
-       return graphdir;      
+     sprintf(lookup,"graphics/%s",file);
+      if(fileOK(lookup,true)){
+        stopgap[filename] = graphdir;
+        return graphdir;
+      }
     
      //Failure. Check sets.       
      sprintf(buf,"sets/%s",filename.c_str());
-     if(fileOK(buf,true))
-        return buf;      
+     sprintf(lookup,"sets/%s",file);
+      if(fileOK(lookup,true)){
+        stopgap[filename] = buf;
+        return buf;
+      }    
 
      //Complete abject failure. Probably a crash...
      return graphdir;
@@ -86,7 +113,7 @@ string WResourceManager::musicFile(const string filename, const string specific)
     std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
 
     if(mode != "" && mode != "defualt"){
-    sprintf(buf,"modes/sound/%s",mode,filename.c_str());
+      sprintf(buf,"modes/%s/sound/%s",mode.c_str(),filename.c_str());
     if(fileOK(buf,true))
        return buf;      
     }
@@ -125,7 +152,7 @@ string WResourceManager::sfxFile(const string filename, const string specific){
     string mode = options[Options::ACTIVE_MODE].str;
     std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
     if(mode != "" && mode != "defualt"){
-    sprintf(buf,"modes/sound/sfx/%s",mode,filename.c_str());
+      sprintf(buf,"modes/%s/sound/sfx/%s",mode.c_str(),filename.c_str());
     if(fileOK(buf,true))
        return buf;      
     }
@@ -175,7 +202,7 @@ int WResourceManager::LoadJLBFont(const string &fontName, int height){
   return jrm->LoadJLBFont(graphicsFile(fontName), height);
 }
 JLBFont* WResourceManager::GetJLBFont(const string &fontName){
-  return jrm->GetJLBFont(graphicsFile(fontName));
+  return jrm->GetJLBFont(graphicsFile(fontName, "", true));
 }
 
 JLBFont* WResourceManager::GetJLBFont(int id){

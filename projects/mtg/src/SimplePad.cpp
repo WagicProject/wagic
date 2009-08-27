@@ -16,7 +16,7 @@
 SimpleKey::SimpleKey( string _ds, int _id){
   displayValue = _ds; id = _id; 
   for(int x=0;x<4;x++) 
-    adjacency[4] = KPD_NOWHERE;
+    adjacency[x] = KPD_NOWHERE;
 }
 
 void SimplePad::linkKeys(int from, int to, int dir){

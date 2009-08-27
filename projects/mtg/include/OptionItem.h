@@ -168,6 +168,7 @@ private:
 class OptionsMenu
 {
  public:
+  JLBFont * mFont;
   OptionsList * tabs[MAX_OPTION_TABS];
   int nbitems;
   int current;

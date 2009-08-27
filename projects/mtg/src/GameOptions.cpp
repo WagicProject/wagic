@@ -196,7 +196,7 @@ GameSettings::~GameSettings(){
 
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
-   SAFE_DELETE(themeOptions);
+  SAFE_DELETE(themeOptions);
 }
 
 GameOption& GameSettings::operator[](string option_name){

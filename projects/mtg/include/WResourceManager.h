@@ -44,13 +44,14 @@ public:
    JSample * ssLoadSample(const char *fileName); 
 
   //Our new redirect system.
-  string graphicsFile(const string filename, const string specific = "");
+  string graphicsFile(const string filename, const string specific = "", bool bFont = false);
   string musicFile(const string filename, const string specific = "");
   string sfxFile(const string filename, const string specific = "");
   int fileOK(string filename, bool relative = false);
 
 private:
   JResourceManager * jrm;	
+  map<string,string> stopgap;
 };
  
 #endif

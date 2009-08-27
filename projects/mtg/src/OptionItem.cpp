@@ -214,7 +214,6 @@ void OptionProfile::updateValue(){
 }
 
 void OptionProfile::populate(){ 
-
  JRenderer * renderer = JRenderer::GetInstance();
  string temp = options[Options::ACTIVE_PROFILE].str;
  if(value < 0 || value >= selections.size()){ //TODO fail gracefully.
@@ -226,8 +225,10 @@ void OptionProfile::populate(){
  SAFE_DELETE(mAvatar); 
  SAFE_DELETE(mAvatarTex);
  mAvatarTex = JRenderer::GetInstance()->LoadTexture(options.profileFile("avatar.jpg","",true,true).c_str(), false);  
- if (mAvatarTex)
+ if (mAvatarTex){
    mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
+   renderer->BindTexture(mAvatarTex);
+ }
 
  options.checkProfile();
  PlayerData * pdata = NEW PlayerData(app->collection);
@@ -453,8 +454,6 @@ void OptionsList::Render(){
     }
   }
 
-
-
   //Always fill screen
   if(listHeight > SCREEN_HEIGHT)
   {
@@ -564,15 +563,13 @@ void OptionsMenu::Add(OptionsList * tab){
 }
 
 void OptionsMenu::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
-  
-  if (!nbitems){
+  if (nbitems == 0){
     mFont->DrawString("NO OPTIONS AVAILABLE",SCREEN_WIDTH/2, 5, JGETEXT_RIGHT);
     return;
   }
 
   JRenderer * renderer = JRenderer::GetInstance();
-  
+
   int offset = 0;
   for(int i=0;i<nbitems;i++){
     int w = mFont->GetStringWidth(tabs[i]->sectionName.c_str());
@@ -589,7 +586,7 @@ void OptionsMenu::Render(){
   }
 
   if(current > -1 && current < nbitems && tabs[current])
-   tabs[current]->Render();
+    tabs[current]->Render();
 }
 
 void OptionsMenu::Update(float dt){
@@ -625,6 +622,7 @@ void OptionsMenu::Update(float dt){
 OptionsMenu::OptionsMenu(){
   nbitems=0;
   current=0;
+  mFont = GameApp::CommonRes->GetJLBFont("f3");
   for(int x=0;x<MAX_OPTION_TABS;x++)
     tabs[x] = NULL;
 }
