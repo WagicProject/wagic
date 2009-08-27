@@ -29,25 +29,25 @@ void GameStateOptions::Start()
   OptionsList * optionsList;
 
   optionsList = NEW OptionsList("Settings");
-    
-  OptionProfile * pickProf = NEW OptionProfile(mParent);
-  optionsList->Add(pickProf);
-  OptionNewProfile * key = NEW OptionNewProfile("","New Profile");
-  key->bShowValue = false;
-  optionsList->Add(key);
-  optionsList->Add(NEW OptionHeader("General Options"));
   if (GameApp::HasMusic) optionsList->Add(NEW OptionInteger(Options::MUSICVOLUME, "Music volume", 100, 10));
   optionsList->Add(NEW OptionInteger(Options::SFXVOLUME, "SFX volume", 100, 10));
   optionsList->Add(NEW OptionInteger(Options::OSD, "Display InGame extra information"));
   if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
     optionsList->Add(NEW OptionInteger(Options::DIFFICULTY, "Difficulty", 3, 1));
-  optionsList->Add(NEW OptionHeader("Interrupts"));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));  
-  optionsList->Add(NEW OptionHeader("System Options"));
   optionsList->Add(NEW OptionInteger(Options::CACHESIZE, "Image Cache Size", 60, 5));
   optionsTabs = NEW OptionsMenu();  
+  optionsTabs->Add(optionsList);
+
+  optionsList = NEW OptionsList("Profiles");
+  OptionProfile * pickProf = NEW OptionProfile(mParent);
+  optionsList->Add(pickProf);
+  OptionNewProfile * key = NEW OptionNewProfile("","New Profile");
+  key->bShowValue = false;
+  optionsList->Add(key);
+  
   optionsTabs->Add(optionsList);
   optionsList = NEW OptionsList("Credits");
   optionsList->failMsg = "";

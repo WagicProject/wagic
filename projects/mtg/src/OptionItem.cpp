@@ -223,15 +223,11 @@ void OptionProfile::populate(){
  
  options[Options::ACTIVE_PROFILE].str = selections[value];
  
+ SAFE_DELETE(mAvatar); 
  SAFE_DELETE(mAvatarTex);
  mAvatarTex = JRenderer::GetInstance()->LoadTexture(options.profileFile("avatar.jpg","",true,true).c_str(), false);  
- if (mAvatarTex) {
-   SAFE_DELETE(mAvatar);   
+ if (mAvatarTex)
    mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
-   renderer->BindTexture(mAvatarTex); //Prevents font corruption.
- }
- else
-   mAvatar = NULL;
 
  options.checkProfile();
  PlayerData * pdata = NEW PlayerData(app->collection);

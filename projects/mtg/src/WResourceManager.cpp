@@ -13,11 +13,10 @@ WResourceManager::WResourceManager(){
   jrm = NEW JResourceManager();
 }
 WResourceManager::~WResourceManager(){
-  delete(jrm);
+  SAFE_DELETE(jrm);
 }
 
-string WResourceManager::graphicsFile(const string filename, const string specific)
-{
+string WResourceManager::graphicsFile(const string filename, const string specific){
     char buf[512];
 
     //Check the specific location, if any.
@@ -62,8 +61,7 @@ string WResourceManager::graphicsFile(const string filename, const string specif
      return graphdir;
 }
 
-string WResourceManager::musicFile(const string filename, const string specific)
-{
+string WResourceManager::musicFile(const string filename, const string specific){
     char buf[512];
 
     //Check the specific location, if any.
@@ -103,8 +101,7 @@ string WResourceManager::musicFile(const string filename, const string specific)
      return defdir;
 }
 
-string WResourceManager::sfxFile(const string filename, const string specific)
-{
+string WResourceManager::sfxFile(const string filename, const string specific){
     char buf[512];
 
     //Check the specific location, if any.
@@ -143,7 +140,7 @@ string WResourceManager::sfxFile(const string filename, const string specific)
      return defdir;
 }
 
-bool WResourceManager::fileOK(string filename, bool relative){
+int WResourceManager::fileOK(string filename, bool relative){
   
   if(relative){
     char buf[512];

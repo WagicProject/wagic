@@ -178,7 +178,6 @@ GameSettings::GameSettings()
   globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
   //Load profile options. 
-  char buf[512];
   string temp = (*globalOptions)[Options::ACTIVE_PROFILE.substr(2)].str;
   if(temp == "")
    temp = "Default";
@@ -186,24 +185,6 @@ GameSettings::GameSettings()
 
   profileOptions = NULL;
   checkProfile();
-
-  //Force a theme.
-  temp = (*profileOptions)[Options::ACTIVE_THEME].str;
-  if(temp == ""){
-    temp = "Default";
-   (*profileOptions)[Options::ACTIVE_THEME].str = "Default";
-  }
-
-  //Load theme options
-  if(temp == "Default")
-   sprintf(buf,RESPATH"/graphics/metrics.txt");
-  else{
-   sprintf(buf,RESPATH"/themes/%s/",temp.c_str());
-   MAKEDIR(buf); 
-   sprintf(buf,RESPATH"/themes/%s/metrics.txt",temp.c_str());
-  }
-
-  themeOptions = NEW GameOptions(buf);  
 }
 
 GameSettings::~GameSettings(){
@@ -284,8 +265,9 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
 
 void GameSettings::checkProfile(){
     //Load current profile's options. Doesn't save prior set.
-    if(profileOptions != NULL)
-      SAFE_DELETE(profileOptions);
+  
+    char buf[512];
+    SAFE_DELETE(profileOptions);
 
     //Force our directories to exist.
     MAKEDIR(RESPATH"/profiles");
@@ -295,6 +277,23 @@ void GameSettings::checkProfile(){
     MAKEDIR(temp.c_str()); 
     temp = profileFile(PLAYER_SETTINGS,"",false);
     profileOptions = NEW GameOptions(temp);
+
+      
+    //Force a theme.
+    temp = (*profileOptions)[Options::ACTIVE_THEME].str;
+    if(temp == ""){
+      temp = "Default";
+     (*profileOptions)[Options::ACTIVE_THEME].str = "Default";
+    }
+
+    //Load theme options
+    if(temp == "Default")
+     sprintf(buf,RESPATH"/graphics/metrics.txt");
+    else{
+     sprintf(buf,RESPATH"/themes/%s/metrics.txt",temp.c_str());
+    }
+
+    themeOptions = NEW GameOptions(buf);  
 
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
