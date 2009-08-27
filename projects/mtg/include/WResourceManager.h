@@ -10,7 +10,13 @@ public:
   WResourceManager();
   ~WResourceManager();
 
+  
   //Wrapped from JResourceManager
+  void RemoveAll(){jrm->RemoveAll();}
+  void RemoveGraphics(){jrm->RemoveGraphics();}
+  void RemoveSound(){jrm->RemoveSound();}
+  void RemoveFont(){jrm->RemoveFont();}
+
 	 int CreateTexture(const string &textureName);
 	 JTexture* GetTexture(const string &textureName);
 	 JTexture* GetTexture(int id);
@@ -41,7 +47,7 @@ public:
   string graphicsFile(const string filename, const string specific = "");
   string musicFile(const string filename, const string specific = "");
   string sfxFile(const string filename, const string specific = "");
-  bool fileOK(string filename, bool relative = false);
+  int fileOK(string filename, bool relative = false);
 
 private:
   JResourceManager * jrm;	

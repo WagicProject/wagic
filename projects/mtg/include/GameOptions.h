@@ -115,7 +115,6 @@ public:
   //optionally fallback to a file within a certain directory. 
   //The sanity=false option returns the adjusted path even if the file doesn't exist.
   string profileFile(string filename="", string fallback="", bool sanity=true,bool relative=false);
-  string modeFile(string filename, string fallback, bool relative);
 
   void checkProfile();
   void createUsersFirstDeck(int setId); 

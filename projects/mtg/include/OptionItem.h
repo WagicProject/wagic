@@ -29,6 +29,7 @@ public:
   virtual ostream& toString(ostream& out)const;
 
   OptionItem( string _id,  string _displayValue);
+  virtual ~OptionItem() {};
 
   virtual void Entering();
   virtual bool Leaving();
