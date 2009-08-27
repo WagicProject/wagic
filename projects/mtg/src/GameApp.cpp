@@ -242,6 +242,7 @@ void GameApp::Destroy()
 
   SAFE_DELETE(CommonRes);
 
+
   SAFE_DELETE(Subtypes::subtypesList);
   SAFE_DELETE(MtgSets::SetsList);
 

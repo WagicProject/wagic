@@ -127,7 +127,7 @@ int GameOptions::load(){
       bool bnumber = true; 
       string name = s.substr(0,found);
       string val = s.substr(found+1);
-      for(int x=0;x<val.size();x++) {
+      for(size_t x=0;x<val.size();x++) {
         if(!isdigit(val[x])) {
           bnumber = false;
           break;
@@ -215,6 +215,7 @@ GameSettings::~GameSettings(){
 
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
+   SAFE_DELETE(themeOptions);
 }
 
 GameOption& GameSettings::operator[](string option_name){

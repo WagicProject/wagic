@@ -8,11 +8,12 @@
 #include <JGE.h>
 #include "../include/WResourceManager.h"
 
-JResourceManager *WResourceManager::jrm = NEW JResourceManager();
 
 WResourceManager::WResourceManager(){
+  jrm = NEW JResourceManager();
 }
 WResourceManager::~WResourceManager(){
+  delete(jrm);
 }
 
 string WResourceManager::graphicsFile(const string filename, const string specific)

@@ -95,7 +95,7 @@ class OptionText:public OptionItem{
 
 class OptionSelect:public OptionItem{
  public:
-  int value;
+  size_t value;
   vector<string> selections;
 
   virtual void addSelection(string s);

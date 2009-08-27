@@ -44,7 +44,7 @@ public:
   bool fileOK(string filename, bool relative = false);
 
 private:
-  static JResourceManager * jrm;	
+  JResourceManager * jrm;	
 };
  
 #endif

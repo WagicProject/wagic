@@ -465,10 +465,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\MTGGuiPlay.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\MTGRules.cpp"
 				>
 			</File>
@@ -517,11 +513,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\SimplePad.cpp"
+				RelativePath=".\src\SimpleMenuItem.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\SimpleMenuItem.cpp"
+				RelativePath=".\src\SimplePad.cpp"
 				>
 			</File>
 			<File
@@ -818,10 +814,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\MTGGuiPlay.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\MTGRules.h"
 				>
 			</File>
@@ -874,11 +866,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\SimplePad.h"
+				RelativePath=".\include\SimpleMenuItem.h"
 				>
 			</File>
 			<File
-				RelativePath=".\include\SimpleMenuItem.h"
+				RelativePath=".\include\SimplePad.h"
 				>
 			</File>
 			<File

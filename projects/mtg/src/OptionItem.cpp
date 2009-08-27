@@ -98,7 +98,7 @@ ostream& OptionInteger::toString(ostream& out) const{
 
 void OptionSelect::initSelections(){
   //Find currently active bit in the list.
-    for(int i=0;i<selections.size();i++)
+    for(size_t i=0;i<selections.size();i++)
     {
       if(selections[i] == options[id].str)
         value = i;
