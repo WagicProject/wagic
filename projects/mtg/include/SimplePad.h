@@ -40,7 +40,7 @@ public:
 
 
 
-  SimplePad(bool numbers=false);
+  SimplePad();
   ~SimplePad();
 
   int mX; int mY; 

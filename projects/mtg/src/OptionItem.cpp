@@ -331,6 +331,9 @@ void OptionDirectory::Reload(){
   char buf[4096];
   mDip = opendir(root.c_str());
 
+  if(!mDip)
+    return;
+
   while ((mDit = readdir(mDip))){
     if(mDit->d_name[0] != '.'){    
       sprintf(buf,"%s/%s",root.c_str(),mDit->d_name);
@@ -355,6 +358,9 @@ OptionDirectory::OptionDirectory(string _root, string _id, string _displayValue)
   char buf[4096];
   root = _root;
   mDip = opendir(root.c_str());
+
+  if(!mDip)
+    return;
 
   while ((mDit = readdir(mDip))){
     if(mDit->d_name[0] != '.'){    

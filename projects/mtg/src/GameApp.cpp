@@ -95,7 +95,6 @@ void GameApp::Create()
   manaIcons[Constants::MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
-
   CommonRes->CreateTexture("sets/back.jpg");
   CommonRes->CreateQuad("back", "sets/back.jpg", 0, 0, 200, 285);
   CommonRes->GetQuad("back")->SetHotSpot(100, 145);

@@ -282,6 +282,7 @@ string GameSettings::themeGraphic(string filename)
 {
   char buf[4096];
   string theme = (*this)[Options::ACTIVE_THEME].str;
+
   if(theme == "" || theme == "default"){
     sprintf(buf,"graphics/%s",filename.c_str());
     return buf;
@@ -304,6 +305,8 @@ void GameSettings::checkProfile(){
     if(profileOptions != NULL)
       SAFE_DELETE(profileOptions);
 
+    //Force our directories to exist.
+    MAKEDIR(RESPATH"/profiles");
     string temp = profileFile("","",false,false);
     MAKEDIR(temp.c_str()); 
     temp+="/stats";
@@ -394,9 +397,11 @@ void GameSettings::keypadTitle(string set){
   if(keypad != NULL)
     keypad->title = set;
 }
-SimplePad * GameSettings::keypadStart(string input, string * _dest,int _x,int _y){
+SimplePad * GameSettings::keypadStart(string input, string * _dest,bool _cancel, bool _numpad, int _x,int _y ){
   if(keypad == NULL)
     keypad = new SimplePad();
+  keypad->bShowCancel = _cancel;
+  keypad->bShowNumpad = _numpad;
   keypad->mX = _x;
   keypad->mY = _y;
   keypad->Start(input,_dest);

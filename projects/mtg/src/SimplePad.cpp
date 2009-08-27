@@ -35,7 +35,7 @@ void SimplePad::linkKeys(int from, int to, int dir){
   }
 }
 
-SimplePad::SimplePad(bool numbers){
+SimplePad::SimplePad(){
   nbitems = 0;
   bActive = false;
   selected = 0;
