@@ -596,6 +596,22 @@ type=Enchantment
 mana={3}{B}{R}
 [/card]
 [card]
+text={G}: Thornling gains haste until end of turn.     {G}: Thornling gains trample until end of turn.     {G}: Thornling is indestructible this turn.     {1}: Thornling gets +1/-1 until end of turn.     {1}: Thornling gets -1/+1 until end of turn.
+auto={G}:haste
+auto={G}:trample
+auto={G}:indestructible
+auto={1}:+1/-1
+auto={1}:-1/+1
+id=180341
+name=Thornling
+rarity=M
+type=Creature
+mana={3}{G}{G}
+power=4
+subtype=Elemental Shapeshifter
+toughness=4
+[/card]
+[card]
 text=When Tukatongue Thallid is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
 auto=@movedTo(this|graveyard):token(Saproling,creature Saproling,1/1,green)
 id=184995

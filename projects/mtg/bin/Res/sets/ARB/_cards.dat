@@ -24,6 +24,18 @@ mana={R}{G}
 type=Instant
 [/card]
 [card]
+id=180614
+name=Dauntless Escort
+mana={1}{G}{W}
+type=Creature
+subtype=Rhino Soldier
+power=3
+toughness=3
+text=Sacrifice Dauntless Escort: Creatures you control are indestructible this turn.
+auto={S}:lord(creature|mybattlefield) indestructible
+rarity=R
+[/card]
+[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=179542
 name=Ethercaste Knight

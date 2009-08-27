@@ -1725,19 +1725,7 @@ power=1
 subtype=Merfolk Wizard
 toughness=1
 [/card]
-[card]
-text=Other Treefolk creatures you control get +1/+1.     Other Treefolk and Forests you control are indestructible.
-id=139690
-auto=lord(treefolk|myinplay) 1/1 other
-auto=lord(treefolk,forest|myinplay) indestructible other
-name=Timber Protector
-rarity=R
-type=Creature
-mana={4}{G}
-power=4
-subtype=Treefolk Warrior
-toughness=6
-[/card]
+
 [card]
 text=When Treefolk Harbinger comes into play, you may search your library for a Treefolk or Forest card, reveal it, then shuffle your library and put that card on top of it.
 id=139495

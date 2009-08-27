@@ -1121,6 +1121,19 @@ subtype=Giant Shaman
 toughness=4
 [/card]
 [card]
+text=Other Treefolk creatures you control get +1/+1.     Other Treefolk and Forests you control are indestructible.
+id=139690
+auto=lord(treefolk|myinplay) 1/1 other
+auto=lord(treefolk,forest|myinplay) indestructible other
+name=Timber Protector
+rarity=R
+type=Creature
+mana={4}{G}
+power=4
+subtype=Treefolk Warrior
+toughness=6
+[/card]
+[card]
 text=Flash     Enchant creature     When Triclopean Sight comes into play, untap enchanted creature.     Enchanted creature gets +1/+1 and has vigilance.
 abilities=flash
 target=creature

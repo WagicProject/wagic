@@ -837,6 +837,17 @@ alias=1165
 abilitites=flying
 [/card]
 [card]
+id=190568
+name=Indestructibility
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant permanent Enchanted permanent is indestructible. (Effects that say "destroy" don't destroy that permanent. An indestructible creature can't be destroyed by damage.)
+target=creature
+auto=indestructible
+rarity=R
+[/card]
+[card]
 id=191387
 name=Island
 auto={T}:Add{U}
