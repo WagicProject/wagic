@@ -150,7 +150,7 @@ void GameStateMenu::Start(){
   subMenuController = NULL;
 
   if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
-    GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/Track0.mp3");
+    GameApp::music = GameApp::CommonRes->ssLoadMusic("Track0.mp3");
     JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
   }
 

@@ -584,11 +584,11 @@ JSample * MTGCardInstance::getSample(){
   if (!sample.size()){
     for (int i = nb_types-1; i>0; i--){
       string type = Subtypes::subtypesList->find(types[i]);
-      type = "sound/sfx/" + type + ".wav";
+      type = type + ".wav";
 #ifdef WIN32
       OutputDebugString(type.c_str());
 #endif
-      if (fileExists(type.c_str())){
+      if (fileExists(GameApp::CommonRes->sfxFile(type).c_str())){
         sample = string(type);
         break;
       }
@@ -599,8 +599,8 @@ JSample * MTGCardInstance::getSample(){
       int i = it->first;
       if (!basicAbilities[i]) continue;
       string type = Constants::MTGBasicAbilities[i];
-      type = "sound/sfx/" + type + ".wav";
-      if (fileExists(type.c_str())){
+      type = type + ".wav";
+      if (fileExists(GameApp::CommonRes->sfxFile(type).c_str())){
         sample = type;
         break;
       }
@@ -608,8 +608,8 @@ JSample * MTGCardInstance::getSample(){
   }
   if (!sample.size()){
     string type = Subtypes::subtypesList->find(types[0]);
-    type = "sound/sfx/" + type + ".wav";
-    if (fileExists(type.c_str())){
+    type = type + ".wav";
+    if (fileExists(GameApp::CommonRes->sfxFile(type).c_str())){
       sample = type;
     }
   }

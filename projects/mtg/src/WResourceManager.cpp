@@ -207,3 +207,10 @@ JSample* WResourceManager::GetSample(int id){
 JTexture* WResourceManager::LoadTexture(const char* filename, int mode, int textureFormat){
   return JRenderer::GetInstance()->LoadTexture(graphicsFile(filename).c_str(),mode,textureFormat);
 }
+
+JMusic * WResourceManager::ssLoadMusic(const char *fileName){
+  return JSoundSystem::GetInstance()->LoadMusic(musicFile(fileName).c_str());
+}
+JSample * WResourceManager::ssLoadSample(const char *fileName){
+  return JSoundSystem::GetInstance()->LoadSample(sfxFile(fileName).c_str());
+}

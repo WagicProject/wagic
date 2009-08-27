@@ -158,10 +158,10 @@ JSample * SampleCache::getSample(string filename){
   map<string,SampleCached *>::iterator it = cache.find(filename);
   if (it == cache.end()){
     if (cache.size() >10) cleanOldest(); //Poor man's limit
-    JSample * sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
-    if (!sample && fileExists(filename.c_str())){ //Out of Ram ??
+    JSample * sample = GameApp::CommonRes->ssLoadSample(filename.c_str());
+    if (!sample && fileExists(GameApp::CommonRes->sfxFile(filename).c_str())){ //Out of Ram ??
       cleanCache();
-      sample = JSoundSystem::GetInstance()->LoadSample(filename.c_str());
+      sample = GameApp::CommonRes->ssLoadSample(filename.c_str());
     }
 
     cache[filename] = NEW SampleCached(lastTime, sample);

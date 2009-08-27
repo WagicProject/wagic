@@ -31,8 +31,11 @@ public:
 	 JSample* GetSample(const string &sampleName);
 	 JSample* GetSample(int id);
 
-  //Wrapped from JRenderer, if we need it.
+  //Wrapped from other bits, if we want them.
    JTexture* LoadTexture(const char* filename, int mode = 0, int textureFormat = TEXTURE_FORMAT);
+   //Wrapped from JSoundSystem
+   JMusic * ssLoadMusic(const char *fileName);
+   JSample * ssLoadSample(const char *fileName); 
 
   //Our new redirect system.
   string graphicsFile(const string filename, const string specific = "");

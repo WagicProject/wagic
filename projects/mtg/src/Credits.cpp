@@ -103,7 +103,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
           options.save();
       }
       if (unlocked){
-        JSample * sample = SampleCache::GetInstance()->getSample("sound/sfx/bonus.wav");
+        JSample * sample = SampleCache::GetInstance()->getSample("bonus.wav");
         if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
       }
     }

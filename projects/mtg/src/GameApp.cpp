@@ -66,12 +66,17 @@ void GameApp::Create()
   options.theGame = this;
 
   //Test for Music files presence
-  std::ifstream file(RESPATH"/sound/Track0.mp3");
+  string filepath = RESPATH;
+  filepath = filepath + "/" + CommonRes->musicFile("Track0.mp3");
+  std::ifstream file(filepath.c_str());
   if (file)
     file.close();
   else
     HasMusic = 0;
-  std::ifstream file2(RESPATH"/sound/Track1.mp3");
+
+  filepath = RESPATH;
+  filepath = filepath + "/" + CommonRes->musicFile("Track1.mp3");
+  std::ifstream file2(filepath.c_str());
   if (file2)
     file2.close();
   else

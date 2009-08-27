@@ -193,7 +193,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
          JSoundSystem::GetInstance()->StopMusic(GameApp::music);
           SAFE_DELETE(GameApp::music);
       }
-      GameApp::music = JSoundSystem::GetInstance()->LoadMusic("sound/track1.mp3");
+      GameApp::music = GameApp::CommonRes->ssLoadMusic("track1.mp3");
       if (GameApp::music){
 	      JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
       }
