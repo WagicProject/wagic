@@ -48,7 +48,7 @@ void CardView::Render()
   }
   else {
     int color = card->getColor();
-    MTGCard * mtgcard = card->model;
+    //MTGCard * mtgcard = card->model;
     const float scale = actZ;
 
     renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
@@ -71,7 +71,7 @@ void CardView::Render()
     {
       JQuad* q;
       // Draw the "unknown" card model
-      switch(card->getColor())
+      switch(color)
 	{
 	case Constants::MTG_COLOR_GREEN: q = GameApp::CommonRes->GetQuad("green_thumb"); break;
 	case Constants::MTG_COLOR_BLUE : q = GameApp::CommonRes->GetQuad("blue_thumb"); break;
@@ -232,7 +232,7 @@ void CardGui::RenderBig(const Pos& pos){
     }
 
   // If we come here, we do not have the picture.
-  MTGCard * mtgcard = card->model;
+  //MTGCard * mtgcard = card->model;
   alternateRender(card,pos);
 }
 

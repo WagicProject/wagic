@@ -77,9 +77,9 @@ void DamagerDamaged::Render(Player * currentPlayer){
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   //  CardGui::Render();
-  char buf[4096];
-
+  
   /*
+  char buf[4096];
   if (currentPlayer != damageSelecter){
     if (hasLethalDamage()){
       mFont->DrawString("X",x,y);

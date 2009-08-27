@@ -115,8 +115,8 @@ DamagerDamaged * DamageResolverLayer::addIfNotExists(MTGCardInstance * card, Pla
 
 void DamageResolverLayer::updateAllCoordinates(){
   for (int i = 0; i < mCount; i++){
-    DamagerDamaged * item = (DamagerDamaged *)mObjects[i];
     /*
+    DamagerDamaged * item = (DamagerDamaged *)mObjects[i];
     CardGui * cardg = game->mLayers->playLayer()->getByCard(item->card);
     item->x = cardg->x;
     item->y = cardg->y;

@@ -214,7 +214,8 @@ void Spell::Render(){
   else
   {
       MTGCard * mtgcard = source->model;
-      //      CardGui::alternateRender(mtgcard, NULL, 10 + 90 , 20 + 130, 0.0f,0.9f);
+      Pos pos = Pos(10 + 90, 20 + 130, 0.9f, 0.0, 255);
+      CardGui::alternateRender(mtgcard, pos);
 
       quad = cache.getThumb(source);
       if (quad){

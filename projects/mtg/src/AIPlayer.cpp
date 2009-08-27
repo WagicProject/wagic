@@ -490,8 +490,8 @@ int AIPlayer::chooseBlockers(){
 }
 
 int AIPlayer::orderBlockers(){
-  GameObserver * g = GameObserver::GetInstance();
   /*
+  GameObserver * g = GameObserver::GetInstance();
   DamageResolverLayer *  drl = g->mLayers->combatLayer();
   if (drl->orderingIsNeeded && g->currentPlayer==this){
     drl->blockersOrderingDone(); //TODO clever rank of blockers
@@ -504,7 +504,7 @@ int AIPlayer::orderBlockers(){
 
 
 int AIPlayer::combatDamages(){
-  int result = 0;
+  //int result = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
   int currentGamePhase = gameObs->getCurrentGamePhase();
 
