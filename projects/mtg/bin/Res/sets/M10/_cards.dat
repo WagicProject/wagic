@@ -307,7 +307,7 @@ power=0
 toughness=0
 text=You may have Clone enter the battlefield as a copy of any creature on the battlefield.
 auto=may copy target(creature)
-rarity=U
+rarity=R
 [/card]
 [card]
 id=189893
@@ -810,8 +810,8 @@ power=3
 toughness=3
 text=Flying When Howling Banshee enters the battlefield, each player loses 3 life.
 abilities=flying
-auto=life:-2 controller
-auto=life:-2 opponent
+auto=life:-3 controller
+auto=life:-3 opponent
 rarity=U
 [/card]
 [card]
