@@ -6,7 +6,7 @@
 #include <pspfpu.h>
 #endif
 
-
+#include "../include/WResourceManager.h"
 #include "../include/GameApp.h"
 #include "../include/Subtypes.h"
 #include "../include/GameStateDeckViewer.h"
@@ -18,7 +18,7 @@
 #include "../include/Translate.h"
 
 const char * const GameState::menuTexts[]= {"--NEW--","Deck 1", "Deck 2", "Deck 3", "Deck 4", "Deck 5", "Deck 6"} ;
-JResourceManager* GameApp::CommonRes = NEW JResourceManager();
+WResourceManager* GameApp::CommonRes = NEW WResourceManager();
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;
@@ -77,15 +77,15 @@ void GameApp::Create()
   else
     HasMusic = 0;
 
-  CommonRes->CreateTexture("graphics/menuicons.png");
+  CommonRes->CreateTexture("menuicons.png");
   //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
-  CommonRes->CreateQuad("c_artifact", "graphics/menuicons.png", 2 + 6*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_green", "graphics/menuicons.png", 2 + 0*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_blue", "graphics/menuicons.png", 2 + 1*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_red", "graphics/menuicons.png", 2 + 3*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_black", "graphics/menuicons.png", 2 + 2*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_white", "graphics/menuicons.png", 2 + 4*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_land", "graphics/menuicons.png", 2 + 5*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_artifact", "menuicons.png", 2 + 6*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_green", "menuicons.png", 2 + 0*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_blue", "menuicons.png", 2 + 1*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_red", "menuicons.png", 2 + 3*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_black", "menuicons.png", 2 + 2*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_white", "menuicons.png", 2 + 4*36, 38, 32, 32);
+  CommonRes->CreateQuad("c_land", "menuicons.png", 2 + 5*36, 38, 32, 32);
   manaIcons[Constants::MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
   manaIcons[Constants::MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
   manaIcons[Constants::MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
@@ -95,72 +95,71 @@ void GameApp::Create()
   manaIcons[Constants::MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
-  CommonRes->CreateTexture("sets/back.jpg");
-  CommonRes->CreateQuad("back", "sets/back.jpg", 0, 0, 200, 285);
+  CommonRes->CreateTexture("back.jpg");
+  CommonRes->CreateQuad("back", "back.jpg", 0, 0, 200, 285);
   CommonRes->GetQuad("back")->SetHotSpot(100, 145);
 
-  CommonRes->CreateTexture("sets/back_thumb.jpg");
-  CommonRes->CreateQuad("back_thumb", "sets/back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT);
+  CommonRes->CreateTexture("back_thumb.jpg");
+  CommonRes->CreateQuad("back_thumb", "back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT);
 
-  CommonRes->CreateTexture("graphics/particles.png");
-  CommonRes->CreateQuad("particles", "graphics/particles.png", 0, 0, 32, 32);
+  CommonRes->CreateTexture("particles.png");
+  CommonRes->CreateQuad("particles", "particles.png", 0, 0, 32, 32);
   CommonRes->GetQuad("particles")->SetHotSpot(16,16);
 
-  CommonRes->CreateQuad("stars", "graphics/particles.png", 64, 0, 32, 32);
+  CommonRes->CreateQuad("stars", "particles.png", 64, 0, 32, 32);
   CommonRes->GetQuad("stars")->SetHotSpot(16,16);
 
-  CommonRes->LoadJLBFont("graphics/simon",11);
-  CommonRes->GetJLBFont("graphics/simon")->SetTracking(-1);
-  CommonRes->LoadJLBFont("graphics/f3",16);
-  CommonRes->LoadJLBFont("graphics/magic",16);
+  CommonRes->LoadJLBFont("simon",11);
+  CommonRes->GetJLBFont("simon")->SetTracking(-1);
+  CommonRes->LoadJLBFont("f3",16);
+  CommonRes->LoadJLBFont("magic",16);
 
 
-  CommonRes->CreateTexture("graphics/phasebar.png");
-  CommonRes->CreateTexture("graphics/wood.png");
-  CommonRes->CreateTexture("graphics/gold.png");
-  CommonRes->CreateTexture("graphics/goldglow.png");
-  CommonRes->CreateTexture("graphics/back.jpg");
+  CommonRes->CreateTexture("phasebar.png");
+  CommonRes->CreateTexture("wood.png");
+  CommonRes->CreateTexture("gold.png");
+  CommonRes->CreateTexture("goldglow.png");
+  CommonRes->CreateTexture("backdrop.jpg");
+  CommonRes->CreateTexture("handback.png");
 
-  CommonRes->CreateTexture("graphics/handback.png");
-
-  CommonRes->CreateTexture("sets/red.jpg");
-  CommonRes->CreateTexture("sets/white.jpg");
-  CommonRes->CreateTexture("sets/blue.jpg");
-  CommonRes->CreateTexture("sets/black.jpg");
-  CommonRes->CreateTexture("sets/green.jpg");
-  CommonRes->CreateQuad("red",   "sets/red.jpg",   0, 0, 200, 285);
-  CommonRes->CreateQuad("white", "sets/white.jpg", 0, 0, 200, 285);
-  CommonRes->CreateQuad("blue",  "sets/blue.jpg",  0, 0, 200, 285);
-  CommonRes->CreateQuad("black", "sets/black.jpg", 0, 0, 200, 285);
-  CommonRes->CreateQuad("green", "sets/green.jpg", 0, 0, 200, 285);
+  CommonRes->CreateTexture("red.jpg");
+  CommonRes->CreateTexture("white.jpg");
+  CommonRes->CreateTexture("blue.jpg");
+  CommonRes->CreateTexture("black.jpg");
+  CommonRes->CreateTexture("green.jpg");
+  CommonRes->CreateQuad("red",   "red.jpg",   0, 0, 200, 285);
+  CommonRes->CreateQuad("white", "white.jpg", 0, 0, 200, 285);
+  CommonRes->CreateQuad("blue",  "blue.jpg",  0, 0, 200, 285);
+  CommonRes->CreateQuad("black", "black.jpg", 0, 0, 200, 285);
+  CommonRes->CreateQuad("green", "green.jpg", 0, 0, 200, 285);
   CommonRes->GetQuad("red")->SetHotSpot(100, 145);
   CommonRes->GetQuad("white")->SetHotSpot(100, 145);
   CommonRes->GetQuad("blue")->SetHotSpot(100, 145);
   CommonRes->GetQuad("black")->SetHotSpot(100, 145);
   CommonRes->GetQuad("green")->SetHotSpot(100, 145);
 
-  CommonRes->CreateTexture("sets/red_thumb.jpg");
-  CommonRes->CreateTexture("sets/white_thumb.jpg");
-  CommonRes->CreateTexture("sets/blue_thumb.jpg");
-  CommonRes->CreateTexture("sets/black_thumb.jpg");
-  CommonRes->CreateTexture("sets/green_thumb.jpg");
-  CommonRes->CreateQuad("red_thumb",   "sets/red_thumb.jpg",   0, 0, 28, 40);
-  CommonRes->CreateQuad("white_thumb", "sets/white_thumb.jpg", 0, 0, 28, 40);
-  CommonRes->CreateQuad("blue_thumb",  "sets/blue_thumb.jpg",  0, 0, 28, 40);
-  CommonRes->CreateQuad("black_thumb", "sets/black_thumb.jpg", 0, 0, 28, 40);
-  CommonRes->CreateQuad("green_thumb", "sets/green_thumb.jpg", 0, 0, 28, 40);
+  CommonRes->CreateTexture("red_thumb.jpg");
+  CommonRes->CreateTexture("white_thumb.jpg");
+  CommonRes->CreateTexture("blue_thumb.jpg");
+  CommonRes->CreateTexture("black_thumb.jpg");
+  CommonRes->CreateTexture("green_thumb.jpg");
+  CommonRes->CreateQuad("red_thumb",   "red_thumb.jpg",   0, 0, 28, 40);
+  CommonRes->CreateQuad("white_thumb", "white_thumb.jpg", 0, 0, 28, 40);
+  CommonRes->CreateQuad("blue_thumb",  "blue_thumb.jpg",  0, 0, 28, 40);
+  CommonRes->CreateQuad("black_thumb", "black_thumb.jpg", 0, 0, 28, 40);
+  CommonRes->CreateQuad("green_thumb", "green_thumb.jpg", 0, 0, 28, 40);
   CommonRes->GetQuad("red_thumb")->SetHotSpot(14, 20);
   CommonRes->GetQuad("white_thumb")->SetHotSpot(14, 20);
   CommonRes->GetQuad("blue_thumb")->SetHotSpot(14, 20);
   CommonRes->GetQuad("black_thumb")->SetHotSpot(14, 20);
   CommonRes->GetQuad("green_thumb")->SetHotSpot(14, 20);
 
-  CommonRes->CreateTexture("graphics/BattleIcon.png");
-  CommonRes->CreateTexture("graphics/DefenderIcon.png");
-  CommonRes->CreateTexture("graphics/shadow.png");
-  CommonRes->CreateQuad("BattleIcon", "graphics/BattleIcon.png", 0, 0, 25, 25);
-  CommonRes->CreateQuad("DefenderIcon", "graphics/DefenderIcon.png", 0, 0, 24, 23);
-  CommonRes->CreateQuad("shadow", "graphics/shadow.png", 0, 0, 1, 1);
+  CommonRes->CreateTexture("BattleIcon.png");
+  CommonRes->CreateTexture("DefenderIcon.png");
+  CommonRes->CreateTexture("shadow.png");
+  CommonRes->CreateQuad("BattleIcon", "BattleIcon.png", 0, 0, 25, 25);
+  CommonRes->CreateQuad("DefenderIcon", "DefenderIcon.png", 0, 0, 24, 23);
+  CommonRes->CreateQuad("shadow", "shadow.png", 0, 0, 1, 1);
   CommonRes->GetQuad("BattleIcon")->SetHotSpot(12, 12);
   CommonRes->GetQuad("DefenderIcon")->SetHotSpot(12, 12);
   CommonRes->GetQuad("shadow")->SetHotSpot(0.5, 0.5);
@@ -309,7 +308,7 @@ void GameApp::Render()
 {
   if (systemError.size()){
     fprintf(stderr, systemError.c_str());
-    JLBFont * mFont= CommonRes->GetJLBFont("graphics/simon");
+    JLBFont * mFont= CommonRes->GetJLBFont("simon");
     if (mFont) mFont->DrawString(systemError.c_str(),1,1);
     return;
   }

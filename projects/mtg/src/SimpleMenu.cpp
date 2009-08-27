@@ -43,10 +43,10 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
 
   JRenderer* renderer = JRenderer::GetInstance();
   
-  if (!spadeLTex)  spadeLTex= renderer->LoadTexture(options.themeGraphic("spade_ul.png").c_str(), TEX_TYPE_USE_VRAM);
-  if (!spadeRTex) spadeRTex = renderer->LoadTexture(options.themeGraphic("spade_ur.png").c_str(), TEX_TYPE_USE_VRAM);
+  if (!spadeLTex)  spadeLTex= GameApp::CommonRes->LoadTexture("spade_ul.png", TEX_TYPE_USE_VRAM);
+  if (!spadeRTex) spadeRTex = GameApp::CommonRes->LoadTexture("spade_ur.png", TEX_TYPE_USE_VRAM);
   if (!jewelTex)   jewelTex= renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
-  if (!sideTex)   sideTex = renderer->LoadTexture(options.themeGraphic("menuside.png").c_str(), TEX_TYPE_USE_VRAM);
+  if (!sideTex)   sideTex = GameApp::CommonRes->LoadTexture("menuside.png", TEX_TYPE_USE_VRAM);
 if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
   if (NULL == spadeR) spadeR = NEW JQuad(spadeRTex, 2, 1, 16, 13);
   if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
@@ -54,8 +54,8 @@ if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
 
   if (NULL == titleFont)
     {
-      GameApp::CommonRes->LoadJLBFont(options.themeGraphic("smallface"), 7);
-      titleFont = GameApp::CommonRes->GetJLBFont(options.themeGraphic("smallface"));
+      GameApp::CommonRes->LoadJLBFont("smallface", 7);
+      titleFont = GameApp::CommonRes->GetJLBFont("smallface");
     }
   if (NULL == stars) stars = NEW hgeParticleSystem("graphics/stars.psi", GameApp::CommonRes->GetQuad("stars"));
 

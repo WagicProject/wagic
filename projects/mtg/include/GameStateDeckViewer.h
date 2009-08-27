@@ -172,7 +172,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }
 
 
-    pspIconsTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("iconspsp.png").c_str(), TEX_TYPE_USE_VRAM);
+    pspIconsTexture = GameApp::CommonRes->LoadTexture("iconspsp.png", TEX_TYPE_USE_VRAM);
 
     for (int i=0; i < 8; i++){
       pspIcons[i] = NEW JQuad(pspIconsTexture, i*32, 0, 32, 32);
@@ -182,7 +182,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     backQuad = GameApp::CommonRes->GetQuad("back");
 
     //menuFont = NEW JLBFont("graphics/f3",16);
-    menuFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+    menuFont = GameApp::CommonRes->GetJLBFont("f3");
     welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
     int nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
 	  welcome_menu->Add(nbDecks+1, "--NEW--");

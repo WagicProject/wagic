@@ -74,27 +74,27 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     if (unlocked == -1){
       unlocked = isDifficultyUnlocked();
       if (unlocked){
-        unlockedTex = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("unlocked.png").c_str(), TEX_TYPE_USE_VRAM);
+        unlockedTex = GameApp::CommonRes->LoadTexture("unlocked.png", TEX_TYPE_USE_VRAM);
         unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
         options[Options::DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
         options.save();
       } else if ((unlocked = isMomirUnlocked())) {
-          unlockedTex = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("momir_unlocked.png").c_str(), TEX_TYPE_USE_VRAM);
+          unlockedTex = GameApp::CommonRes->LoadTexture("momir_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           options[Options::MOMIR_MODE_UNLOCKED] = GameOption(1);
           options.save();
       } else if ((unlocked = isEvilTwinUnlocked())) {
-          unlockedTex = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("eviltwin_unlocked.png").c_str(), TEX_TYPE_USE_VRAM);
+          unlockedTex = GameApp::CommonRes->LoadTexture("eviltwin_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           options[Options::EVILTWIN_MODE_UNLOCKED] = GameOption(1);
           options.save();
       }else if((unlocked = isRandomDeckUnlocked())) {
-          unlockedTex = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("randomdeck_unlocked.png").c_str(), TEX_TYPE_USE_VRAM);
+          unlockedTex = GameApp::CommonRes->LoadTexture("randomdeck_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           options[Options::RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
           options.save();
       }else if((unlocked = unlockRandomSet())) {
-          unlockedTex = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("set_unlocked.png").c_str(), TEX_TYPE_USE_VRAM);
+          unlockedTex = GameApp::CommonRes->LoadTexture("set_unlocked.png", TEX_TYPE_USE_VRAM);
           unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
           char buffer[4096];
           unlockedString = MtgSets::SetsList->values[unlocked -1];

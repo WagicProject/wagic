@@ -34,6 +34,7 @@ const string Options::INTERRUPTMYSPELLS = "interruptMySpells";
 const string Options::INTERRUPTMYABILITIES = "interruptMyAbilities";
 const string Options::OSD = "displayOSD";
 const string Options::ACTIVE_THEME = "Theme";
+const string Options::ACTIVE_MODE = "Mode";
 //Global options
 const string Options::ACTIVE_PROFILE = "_gProfile";
 const string Options::DIFFICULTY_MODE_UNLOCKED = "_gprx_handler"; //huhu
@@ -278,26 +279,6 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
   return buf;
 }
 
-string GameSettings::themeGraphic(string filename)
-{
-  char buf[4096];
-  string theme = (*this)[Options::ACTIVE_THEME].str;
-
-  if(theme == "" || theme == "default"){
-    sprintf(buf,"graphics/%s",filename.c_str());
-    return buf;
-  }
-
-  sprintf(buf,RESPATH"/themes/%s/%s",theme.c_str(),filename.c_str());
-  
-  if(fileExists(buf)){
-      sprintf(buf,"themes/%s/%s",theme.c_str(),filename.c_str());
-    return buf;
-  }
-
-  sprintf(buf,"graphics/%s",filename.c_str());
-  return buf;
-}
 
 
 void GameSettings::checkProfile(){

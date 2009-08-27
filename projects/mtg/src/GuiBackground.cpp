@@ -4,7 +4,7 @@
 
 GuiBackground::GuiBackground()
 {
-  JTexture* texture = GameApp::CommonRes->GetTexture("graphics/back.jpg");
+  JTexture* texture = GameApp::CommonRes->GetTexture("backdrop.jpg");
   if (texture)
     quad = NEW JQuad(texture, 0, 0, 480, 255);
   else

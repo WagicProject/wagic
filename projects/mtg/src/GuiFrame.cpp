@@ -4,7 +4,7 @@
 
 GuiFrame::GuiFrame()
 {
-  if (JTexture* woodTex = GameApp::CommonRes->GetTexture("graphics/wood.png"))
+  if (JTexture* woodTex = GameApp::CommonRes->GetTexture("wood.png"))
     wood = NEW JQuad(woodTex, 0, 0, SCREEN_WIDTH, 16);
   else
     {
@@ -12,7 +12,7 @@ GuiFrame::GuiFrame()
       GameApp::systemError += "Can't load wood texture : " __FILE__ "\n";
     }
 
-  if (JTexture* goldTex = GameApp::CommonRes->GetTexture("graphics/gold.png"))
+  if (JTexture* goldTex = GameApp::CommonRes->GetTexture("gold.png"))
     {
       gold1 = NEW JQuad(goldTex, 0, 0, SCREEN_WIDTH, 6);
       gold2 = NEW JQuad(goldTex, 0, 6, SCREEN_WIDTH, 6);
@@ -22,7 +22,7 @@ GuiFrame::GuiFrame()
       gold1 = gold2 = NULL;
       GameApp::systemError += "Can't load gold texture : " __FILE__ "\n";
     }
-  if (JTexture* goldGlowTex = GameApp::CommonRes->GetTexture("graphics/goldglow.png"))
+  if (JTexture* goldGlowTex = GameApp::CommonRes->GetTexture("goldglow.png"))
     goldGlow = NEW JQuad(goldGlowTex, 0, 1, SCREEN_WIDTH, 18);
   else
     {

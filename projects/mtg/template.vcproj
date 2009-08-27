@@ -564,6 +564,10 @@
 				RelativePath=".\src\WEvent.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\WResourceManager.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Misc"
@@ -919,6 +923,10 @@
 			</File>
 			<File
 				RelativePath=".\include\WEvent.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WResourceManager.h"
 				>
 			</File>
 		</Filter>

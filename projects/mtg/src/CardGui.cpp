@@ -122,7 +122,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
 
   // Write the title
-  JLBFont * font = GameApp::CommonRes->GetJLBFont("graphics/magic");
+  JLBFont * font = GameApp::CommonRes->GetJLBFont("magic");
   float backup_scale = font->GetScale();
   font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
   font->SetScale(0.8 * pos.actZ);

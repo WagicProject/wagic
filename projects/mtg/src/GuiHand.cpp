@@ -24,7 +24,7 @@ HandLimitor::HandLimitor(GuiHand* hand) : hand(hand) {}
 
 GuiHand::GuiHand(CardSelector* cs, MTGHand* hand) : GuiLayer(), hand(hand), cs(cs)
 {
-  JTexture* texture = GameApp::CommonRes->GetTexture("graphics/handback.png");
+  JTexture* texture = GameApp::CommonRes->GetTexture("handback.png");
   if (texture)
     {
       back = NEW JQuad(texture, 0, 0, 101, 250);

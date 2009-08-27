@@ -28,7 +28,7 @@ MTGGuiPlay::MTGGuiPlay(GameObserver* game) : game(game){
   offset = 0;
 
 
-  mPhaseBarTexture = GameApp::CommonRes->GetTexture("graphics/phasebar.png");
+  mPhaseBarTexture = GameApp::CommonRes->GetTexture("phasebar.png");
   for (int i=0; i < 12; i++){
     phaseIcons[2*i] = NEW JQuad(mPhaseBarTexture, i*28, 0, 28, 28);
     phaseIcons[2*i + 1] = NEW JQuad(mPhaseBarTexture, i*28, 28, 28, 28);
@@ -36,7 +36,7 @@ MTGGuiPlay::MTGGuiPlay(GameObserver* game) : game(game){
   mGlitter = NEW JQuad(mPhaseBarTexture, 392, 0, 5, 5);
   mGlitter->SetHotSpot(2.5,2.5);
   mGlitterAlpha = -1;
-  mFont= GameApp::CommonRes->GetJLBFont("graphics/simon");
+  mFont= GameApp::CommonRes->GetJLBFont("simon");
 
   //load all the icon images
   mIcons[Constants::MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
@@ -50,14 +50,14 @@ MTGGuiPlay::MTGGuiPlay(GameObserver* game) : game(game){
     mIcons[i]->SetHotSpot(16,16);
   }
 
-  mBgTex = GameApp::CommonRes->GetTexture("graphics/background.png");
+  mBgTex = GameApp::CommonRes->GetTexture("background.png");
   if (mBgTex) mBg = NEW JQuad(mBgTex, 0, 0, 480, 272);
   else {
     mBg = NULL;
     GameApp::systemError = "error Loading Texture mBgTex in MTGGuiPlay intialization";
   }
 
-  mBgTex2 = GameApp::CommonRes->GetTexture("graphics/back.jpg");
+  mBgTex2 = GameApp::CommonRes->GetTexture("backdrop.jpg");
   if (mBgTex2){
     mBg2 = NEW JQuad(mBgTex2, 0, 0, 480, 255);
     for (int i= 0; i < 4; i++){

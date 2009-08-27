@@ -20,7 +20,7 @@ static int colors[] =
 
 GuiPhaseBar::GuiPhaseBar() : phase(GameObserver::GetInstance()->phaseRing->getCurrentPhase()), angle(0.0f)
 {
-  JTexture* texture = GameApp::CommonRes->GetTexture("graphics/phasebar.png");
+  JTexture* texture = GameApp::CommonRes->GetTexture("phasebar.png");
   if (texture)
     quad = NEW JQuad(texture, 0, 0, Width, Height);
   else

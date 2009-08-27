@@ -6,7 +6,7 @@ MTGGuiHand::MTGGuiHand(GameObserver* game) : game(game) {
   mShowHand = HAND_HIDE;
   mAnimState = 0;
   currentPlayer = NULL;
-  mFont = GameApp::CommonRes->GetJLBFont("graphics/simon");
+  mFont = GameApp::CommonRes->GetJLBFont("simon");
   for (int i = 0; i < 2; i++){
     currentId[i] = 0;
   }

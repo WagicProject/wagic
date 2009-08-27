@@ -46,7 +46,7 @@ OptionItem::OptionItem( string _id,  string _displayValue) {
 //Option Integer 
 
 void OptionInteger::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   if (hasFocus){
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
   }else{
@@ -106,7 +106,7 @@ void OptionSelect::initSelections(){
 }
 
 void OptionSelect::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   if (hasFocus){
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
   }else{
@@ -148,7 +148,7 @@ ostream& OptionSelect::toString(ostream& out) const
 //OptionHeader
 
 void OptionHeader::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   mFont->SetColor(options[Metrics::OPTION_HEADER_TC].asColor());
  
   JRenderer * renderer = JRenderer::GetInstance();
@@ -157,7 +157,7 @@ void OptionHeader::Render(){
 }
 
 void OptionText::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   mFont->SetScale(.8);
   mFont->SetColor(options[Metrics::OPTION_TEXT_TC].asColor());
  
@@ -248,7 +248,7 @@ void OptionProfile::populate(){
 
 void OptionProfile::Render(){ 
   JRenderer * renderer = JRenderer::GetInstance();
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   mFont->SetScale(1);
   int spacing = 2+(int)mFont->GetHeight();
 
@@ -432,7 +432,7 @@ void OptionsList::Render(){
   
   //List is empty.
   if (!nbitems && failMsg != ""){
-    JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+    JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
     mFont->SetColor(options[Metrics::MSG_FAIL_TC].asColor(ARGB(255,155,155,155)));
     mFont->DrawString(failMsg.c_str(),SCREEN_WIDTH/2, 40, JGETEXT_RIGHT);
     return;
@@ -568,7 +568,7 @@ void OptionsMenu::Add(OptionsList * tab){
 }
 
 void OptionsMenu::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   
   if (!nbitems){
     mFont->DrawString("NO OPTIONS AVAILABLE",SCREEN_WIDTH/2, 5, JGETEXT_RIGHT);
@@ -710,7 +710,7 @@ void OptionsList::cancelSubmode()
 
 void OptionString::Render(){
 
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   if (hasFocus){
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
   }else{

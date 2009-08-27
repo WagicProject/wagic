@@ -30,6 +30,7 @@ struct Options {
   static const string OSD;
   static const string ACTIVE_PROFILE;
   static const string ACTIVE_THEME;
+  static const string ACTIVE_MODE;
 };
 
 struct Metrics {
@@ -115,7 +116,6 @@ public:
   //The sanity=false option returns the adjusted path even if the file doesn't exist.
   string profileFile(string filename="", string fallback="", bool sanity=true,bool relative=false);
   string modeFile(string filename, string fallback, bool relative);
-  string themeGraphic(string filename);
 
   void checkProfile();
   void createUsersFirstDeck(int setId); 

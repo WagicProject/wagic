@@ -83,13 +83,13 @@ void GameStateMenu::Create()
   mReadConf = 0;
   mCurrentSetName[0] = 0;
 
-  mIconsTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("menuicons.png").c_str(), TEX_TYPE_USE_VRAM);
-  bgTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("menutitle.png").c_str(), TEX_TYPE_USE_VRAM);
-  movingWTexture = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("movingW.png").c_str(), TEX_TYPE_USE_VRAM);
+  mIconsTexture = GameApp::CommonRes->LoadTexture("menuicons.png", TEX_TYPE_USE_VRAM);
+  bgTexture = GameApp::CommonRes->LoadTexture("menutitle.png", TEX_TYPE_USE_VRAM);
+  movingWTexture = GameApp::CommonRes->LoadTexture("movingW.png", TEX_TYPE_USE_VRAM);
   mBg = NEW JQuad(bgTexture, 0, 0, 256, 166);		// Create background quad for rendering.
   mMovingW = NEW JQuad(movingWTexture, 2, 2, 84, 62);
-  if (fileExists(options.themeGraphic("splash.jpg").c_str())){
-    splashTex = JRenderer::GetInstance()->LoadTexture(options.themeGraphic("splash.jpg").c_str(), TEX_TYPE_USE_VRAM);
+  if (fileExists(GameApp::CommonRes->graphicsFile("splash.jpg").c_str())){
+    splashTex = GameApp::CommonRes->LoadTexture("splash.jpg", TEX_TYPE_USE_VRAM);
     splashQuad = NEW JQuad(splashTex, 0, 0, 480, 272);
   }
   mBg->SetHotSpot(105,50);

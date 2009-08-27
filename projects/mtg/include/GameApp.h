@@ -20,10 +20,7 @@
 #include <JSprite.h>
 #include <JLBFont.h>
 #include <hge/hgeparticle.h>
-
-
-#include <JResourceManager.h>
-
+#include "../include/WResourceManager.h"
 
 #include "../include/GameState.h"
 #include "../include/GameOptions.h"
@@ -86,7 +83,7 @@ class GameApp:	public JApp
 
   void LoadGameStates();
   void SetNextState(int state);
-  static JResourceManager * CommonRes;
+  static WResourceManager * CommonRes;
   static hgeParticleSystem * Particles[6];
   static int HasMusic;
   static string systemError;

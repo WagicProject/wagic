@@ -53,7 +53,7 @@ void GameStateOptions::Start()
   optionsList->failMsg = "";
   optionsTabs->Add(optionsList);
 
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/f3");
+  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
   optionsMenu = NEW SimpleMenu(102, this,mFont, 50,170);
   optionsMenu->Add(1, "Save & Back to Main Menu");
   optionsMenu->Add(2, "Back to Main Menu");
@@ -136,7 +136,7 @@ void GameStateOptions::Render()
       "Please support this project with donations at http://wololo.net/wagic",
     };
 
-    JLBFont * mFont = GameApp::CommonRes->GetJLBFont("graphics/magic");
+    JLBFont * mFont = GameApp::CommonRes->GetJLBFont("magic");
     mFont->SetColor(ARGB(255,200,200,200));
     mFont->SetScale(1.0);
     float startpos = 272 - timer * 10;
