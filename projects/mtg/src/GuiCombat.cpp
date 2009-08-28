@@ -182,7 +182,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
   else if (WEventBlockersAssigned* event = dynamic_cast<WEventBlockersAssigned*>(e))
     {
       if (active) return 0; // Why do I take this event twice >.>
-      if (go->currentlyActing()->isAI()) return 0;
+      if (go->currentPlayer->isAI()) return 0;
       unsigned size = 0;
       for (vector<MTGCardInstance*>::iterator it = attackers.begin(); it != attackers.end(); ++it)
 	if (1 < (*it)->blockers.size()) ++size;
