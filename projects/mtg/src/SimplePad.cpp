@@ -179,7 +179,7 @@ void SimplePad::MoveSelection(unsigned char moveto)
   if(selected < KPD_MAX && selected >= 0) 
     priorKey = selected;
 
-  if(moveto < KPD_MAX && moveto >= 0) {
+  if(moveto < KPD_MAX) {
     selected = moveto;
   }
   else if(moveto == KPD_INPUT)

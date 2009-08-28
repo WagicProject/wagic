@@ -32,7 +32,7 @@ LIBS = -ljge300 -lhgetools -lfreetype -ljpeg -lgif -lpng -lz -lm -lmikmod -lpspp
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = WTH?!
 PSP_EBOOT_ICON = icon.png
-CXXFLAGS = -O2 -G0 -Wall -DDEVHOOK -DPSPFW3XX -fno-exceptions
+CXXFLAGS = -O2 -G0 -Wall -Werror -DDEVHOOK -DPSPFW3XX -fno-exceptions
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src
 LIBDIR = ../../JGE/lib/psp
 else
