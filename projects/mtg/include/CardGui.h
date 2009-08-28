@@ -25,9 +25,9 @@ struct CardGui : public PlayGuiObject {
   MTGCardInstance* card;
   CardGui(MTGCardInstance* card, float x, float y);
   CardGui(MTGCardInstance* card, const Pos& ref);
-  virtual void Render() = 0;
+  virtual void Render();
   void RenderBig(const Pos&);
-  virtual void Update(float dt) = 0;
+  virtual void Update(float dt);
   static void alternateRender(MTGCard * card, const Pos& pos);
   virtual ostream& toString(ostream&) const;
 };
@@ -38,41 +38,15 @@ class CardView : public CardGui {
   MTGCardInstance* getCard(); // remove this when possible
   CardView(MTGCardInstance* card, float x, float y);
   CardView(MTGCardInstance* card, const Pos& ref);
-  virtual void Render();
+  void Render(){CardGui::Render();};
   void Render(JQuad* q){Pos::Render(q);};
-  void RenderSelected();
-  virtual void Update(float dt);
   virtual ostream& toString(ostream&) const;
 };
 
-class TransientCardView : public CardView {
+class TransientCardView : public CardGui {
  public:
   TransientCardView(MTGCardInstance* card, float x, float y);
   TransientCardView(MTGCardInstance* card, const Pos& ref);
-  virtual void Render();
 };
-
-
-/*
-class CardGui: public PlayGuiObject{
- protected:
-  hgeParticleSystem * mParticleSys;
-  int alpha;
-  float actX, actY;
- public:
-  MTGCardInstance * card;
-  CardGui(int id, MTGCardInstance * _card, float desiredHeight, float _x=0, float _y=0, bool hasFocus = false);
-  virtual void Render();
-  virtual void Update(float dt);
-  virtual ostream& toString(ostream& out) const;
-
-  float Height();
-  float Width();
-
-  void RenderBig(float x=-1, float y = -1, int alternate = 0);
-  
-  ~CardGui();
-};
-*/
 
 #endif

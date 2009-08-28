@@ -9,11 +9,21 @@
 class GuiCombat : public GuiLayer
 {
  protected:
-  CardSelector* cs;
+  GameObserver* go;
+  TransientCardView* active, *activeAtk;
+  JQuad* ok_quad;
+  Pos ok;
   vector<MTGCardInstance*> attackers;
+  TransientCardView* current;
+  enum { BLK, ATK, OK, NONE } cursor_pos;
+
+  vector<TransientCardView*> atkViews;
+  vector<TransientCardView*> blkViews;
+
+  void generateBlkViews(MTGCardInstance* card);
 
  public:
-  GuiCombat(CardSelector* cs);
+  GuiCombat(GameObserver* go);
   ~GuiCombat();
   virtual void Update(float dt);
   virtual void Render();

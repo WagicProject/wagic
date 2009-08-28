@@ -466,16 +466,28 @@ MTGCardInstance * MTGCardInstance::getNextDefenser(MTGCardInstance * previous){
   return NULL;
 }
 
-int MTGCardInstance::moveBlockerInRow(MTGCardInstance * blocker){
+int MTGCardInstance::raiseBlockerRankOrder(MTGCardInstance * blocker){
   list<MTGCardInstance *>::iterator it1 = find(blockers.begin(), blockers.end(), blocker);
   list<MTGCardInstance *>::iterator it2 = it1;
-  if (it2 == blockers.end()) it2 = blockers.begin(); else ++it2;
-  if (it2 == blockers.end()) it2 = blockers.begin();
+  if (blockers.begin() == it2) ++it2; else --it2;
 
   std::iter_swap(it1,it2);
-  WEvent* e = NEW WEventCreatureBlockerRank(blocker,*it2,this);
+  WEvent* e = NEW WEventCreatureBlockerRank(*it1,*it2,this);
   GameObserver::GetInstance()->receiveEvent(e);
   //delete(e);
+  return 1;
+}
+
+int MTGCardInstance::bringBlockerToFrontOfOrder(MTGCardInstance * blocker){
+  list<MTGCardInstance *>::iterator it1 = find(blockers.begin(), blockers.end(), blocker);
+  list<MTGCardInstance *>::iterator it2 = blockers.begin();
+  if (it2 != it1)
+    {
+      std::iter_swap(it1,it2);
+      WEvent* e = NEW WEventCreatureBlockerRank(blocker,*it2,this);
+      GameObserver::GetInstance()->receiveEvent(e);
+      //delete(e);
+    }
   return 1;
 }
 

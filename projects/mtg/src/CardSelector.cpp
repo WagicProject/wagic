@@ -3,35 +3,22 @@
 #include "../include/CardGui.h"
 #include "../include/CardSelector.h"
 #include "../include/GuiHand.h"
+#include "Closest.cpp"
 
 using std::cout;
 
-#define closest(src, expr)			\
-  {									\
-  float curdist = 1000000.0f; /* This is bigger than any possible distance */ \
-  for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it) \
-    {									\
-  if (!(expr)) continue;						\
-  if ((*it)->actA < 32) continue;					\
-  if ((NULL != limitor) && (!limitor->select(*it))) continue;		\
-  if (active)								\
-    {									\
-      float dist = ((*it)->x - active->x) * ((*it)->x - active->x) +	\
-	((*it)->y - active->y) * ((*it)->y - active->y);		\
-      if (dist < curdist)						\
-	{								\
-	  curdist = dist;						\
-	  card = *it;							\
-	}								\
-    }									\
-  else									\
-    card = *it;								\
-    }									\
-{ CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.0; } \
-active = card;								\
-{ CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; } \
-}
-
+struct Left : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
+  { return ref->x - test->x > fabs(ref->y - test->y); } };
+struct Right : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
+  { return test->x - ref->x > fabs(ref->y - test->y); } };
+struct Up : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
+  { return ref->y - test->y > fabs(ref->x - test->x); } };
+struct Down : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
+  { return test->y - ref->y > fabs(ref->x - test->x); } };
+struct Diff : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
+  { return ref != test; } };
+struct True : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
+  { return true; } };
 
 template<>
 CardSelector::ObjectSelector(DuelLayers* duel) : active(NULL), showBig(true), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220) {}
@@ -58,7 +45,7 @@ void CardSelector::Remove(CardSelector::Target* card)
 	  if (active == *it)
 	    {
 	      CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.0;
-	      closest(active, active != (*it));
+	      active = closest<Diff>(cards, limitor, active);
 	      c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4;
 	    }
 	  if (active == *it) active = NULL;
@@ -83,35 +70,23 @@ bool CardSelector::CheckUserInput(u32 key)
       return true;
     }
   Target* oldactive = active;
-  Target* card = active;
   switch (key)
     {
     case PSP_CTRL_CIRCLE:
       GameObserver::GetInstance()->ButtonPressed(active);
+      return true;
       break;
     case PSP_CTRL_LEFT:
-      closest(active, (
-		       active->x - (*it)->x > fabs(active->y - (*it)->y)
-		       ));
-      if (active != oldactive) { oldactive->Leaving(key); active->Entering(); }
+      active = closest<Left>(cards, limitor, active);
       break;
     case PSP_CTRL_RIGHT:
-      closest(active, (
-		       (*it)->x - active->x > fabs(active->y - (*it)->y)
-		       ));
-      if (active != oldactive) { oldactive->Leaving(key); active->Entering(); }
+      active = closest<Right>(cards, limitor, active);
       break;
     case PSP_CTRL_UP:
-      closest(active, (
-		       active->y - (*it)->y > fabs(active->x - (*it)->x)
-		       ));
-      if (active != oldactive) { oldactive->Leaving(key); active->Entering(); }
+      active = closest<Up>(cards, limitor, active);
       break;
     case PSP_CTRL_DOWN:
-      closest(active, (
-		       (*it)->y - active->y > fabs(active->x - (*it)->x)
-		       ));
-      if (active != oldactive) { oldactive->Leaving(key); active->Entering(); }
+      active = closest<Down>(cards, limitor, active);
       break;
     case PSP_CTRL_LTRIGGER:
       showBig = !showBig;
@@ -119,6 +94,7 @@ bool CardSelector::CheckUserInput(u32 key)
     default:
       return false;
     }
+  if (active != oldactive) { oldactive->Leaving(key); active->Entering(); }
   return true;
 }
 
@@ -153,8 +129,7 @@ void CardSelector::Limit(LimitorFunctor<Target>* limitor)
   this->limitor = limitor;
   if (limitor && !limitor->select(active))
     {
-      Target* card = NULL;
-      closest(active, true);
+      active = closest<True>(cards, limitor, active);
       if (limitor && !limitor->select(active)) active = NULL;
     }
 }

@@ -30,7 +30,7 @@ void DuelLayers::init(){
 
   Add(NEW GuiMana());
   Add(stack = NEW ActionStack(go));
-  Add(combat = NEW GuiCombat(cs));
+  Add(combat = NEW GuiCombat(go));
   Add(action);
   Add(cs);
   Add(hand = NEW GuiHandSelf(cs, go->players[0]->game->hand));
@@ -49,7 +49,7 @@ void DuelLayers::CheckUserInput(int isAI){
     if ((!isAI) && (0 != key))
       {
 	if (stack->CheckUserInput(key)) break;
-	//	if (combat->CheckUserInput(key)) break;
+        if (combat->CheckUserInput(key)) break;
 	if (action->CheckUserInput(key)) break;
 	if (hand->CheckUserInput(key)) break;
 	if (cs->CheckUserInput(key)) break;

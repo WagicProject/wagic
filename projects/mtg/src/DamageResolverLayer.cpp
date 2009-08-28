@@ -359,7 +359,7 @@ bool DamageResolverLayer::blockersOrderingDone(){
 bool DamageResolverLayer::clickReorderBlocker(MTGCardInstance * blocker){
   if (!blocker->defenser) return false;
   MTGCardInstance * attacker = blocker->defenser;
-  attacker->moveBlockerInRow(blocker);
+  attacker->raiseBlockerRankOrder(blocker);
   list<MTGCardInstance *>::iterator it;
   return true;
 }

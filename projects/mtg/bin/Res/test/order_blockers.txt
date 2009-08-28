@@ -1,0 +1,28 @@
+#Testing Random discard
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Elite Vanguard,Rhox Pikemaster,Bog wraith
+[PLAYER2]
+inplay:air elemental,grizzly bears,spark elemental,drudge skeletons,vampire bats,tundra wolves,spined wurm,paladin en-vec
+[DO]
+Elite Vanguard
+Rhox Pikemaster
+Bog wraith
+next
+paladin en-vec
+paladin en-vec
+spined wurm
+spined wurm
+vampire bats
+vampire bats
+tundra wolves
+tundra wolves
+air elemental
+air elemental
+grizzly bears
+grizzly bears
+spark elemental
+drudge skeletons
+next
+human

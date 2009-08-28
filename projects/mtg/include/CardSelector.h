@@ -45,4 +45,9 @@ class ObjectSelector : public GuiLayer
 typedef ObjectSelector<> CardSelector;
 typedef LimitorFunctor<CardSelector::Target> Limitor;
 
+struct Exp
+{
+  static inline bool test(CardSelector::Target*, CardSelector::Target*);
+};
+
 #endif
