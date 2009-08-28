@@ -125,8 +125,8 @@ toughness=2
 [card]
 text=Other white creatures you control get +1/+1.     Other black creatures you control get +1/+1.     Whenever you play a white spell, you may tap target creature.     Whenever you play a black spell, you may destroy target creature if it's tapped.
 id=157288
-auto=lord(creature[black]) 1/1 other
-auto=lord(creature[white]) 1/1 other
+auto=lord(creature[black]|mybattlefield) 1/1 other
+auto=lord(creature[white]|mybattlefield) 1/1 other
 auto=@movedto(*[black]|mystack):may destroy target(creature[tapped])
 auto=@movedto(*[white]|mystack):may tap target(creature)
 name=Deathbringer Liege
@@ -438,8 +438,8 @@ toughness=4
 [card]
 text=Other green creatures you control get +1/+1.     Other blue creatures you control get +1/+1.     Untap all green and/or blue creatures you control during each other player's untap step.
 id=152091
-auto=lord(creature[green]) 1/1 other
-auto=lord(creature[blue]) 1/1 other
+auto=lord(creature[green]|mybattlefield) 1/1 other
+auto=lord(creature[blue]|mybattlefield) 1/1 other
 name=Murkfiend Liege
 auto=@each opponent untap:untap all(creature[green;blue]|myInplay)
 rarity=R
