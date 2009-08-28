@@ -105,7 +105,7 @@ class OptionSelect:public OptionItem{
   virtual void Render();
   virtual void setData();
   virtual void initSelections();
-  virtual void updateValue(){value++; if (value > selections.size() - 1 || value < 0) value=0;};
+  virtual void updateValue(){value++; if (value > selections.size() - 1) value=0;};
   virtual ostream& toString(ostream& out) const;
 };
 
@@ -138,7 +138,7 @@ private:
   JTexture * mAvatarTex;
   GameApp * app;  
   string preview;
-  int initialValue;
+  size_t initialValue;
 };
 
 class OptionsList{

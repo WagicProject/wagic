@@ -117,7 +117,7 @@ void OptionSelect::Render(){
   renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
   mFont->DrawString(displayValue.c_str(),x,y);
 
-  if(value >= 0 && value < selections.size())
+  if (value < selections.size())
     mFont->DrawString(selections[value].c_str(),width-10,y,JGETEXT_RIGHT);
   else
    mFont->DrawString("Unset",width-10,y,JGETEXT_RIGHT);
@@ -126,7 +126,7 @@ void OptionSelect::Render(){
 void OptionSelect::setData()
 {
   if(id == "") return;
-  if(value >= 0 && value < selections.size())
+  if (value < selections.size())
     options[id] = GameOption(selections[value]);
 }
 
@@ -207,7 +207,7 @@ OptionProfile::OptionProfile(GameApp * _app): OptionDirectory(RESPATH"/profiles"
 
 void OptionProfile::updateValue(){
  value++; 
- if (value > selections.size() - 1 || value < 0)
+ if (value > selections.size() - 1)
    value=0;
  
   populate();
@@ -216,7 +216,7 @@ void OptionProfile::updateValue(){
 void OptionProfile::populate(){ 
  JRenderer * renderer = JRenderer::GetInstance();
  string temp = options[Options::ACTIVE_PROFILE].str;
- if(value < 0 || value >= selections.size()){ //TODO fail gracefully.
+ if (value >= selections.size()){ //TODO fail gracefully.
    return;
  }
  
@@ -304,7 +304,7 @@ bool OptionProfile::Leaving(){
 
 void OptionProfile::cancelSubmode()
 {
-  if(initialValue < 0 || initialValue >= selections.size())
+  if (initialValue >= selections.size())
     return;
 
     options[Options::ACTIVE_PROFILE] = selections[initialValue];
@@ -313,7 +313,7 @@ void OptionProfile::cancelSubmode()
 }
 void OptionProfile::acceptSubmode()
 {
-  if(value < 0 || value >= selections.size())
+  if (value >= selections.size())
     return;
 
     options[Options::ACTIVE_PROFILE] = selections[value];
