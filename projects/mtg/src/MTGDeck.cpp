@@ -89,6 +89,9 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
   }else if(key.compare("mana")==0){
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
     card->setManaCost(value);
+  } else if(key.compare("color")==0){
+    std::transform( value.begin(), value.end(), value.begin(),::tolower );
+    card->setColor(value,1);
   }else if(key.compare("type")==0){
     switch(value.c_str()[0]){
     case 'C':

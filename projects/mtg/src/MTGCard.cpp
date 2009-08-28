@@ -128,6 +128,14 @@ bool MTGCard::isSpell(){
   return (!isCreature() && !isLand());
 }
 
+void MTGCard::setColor(string _color, int removeAllOthers){
+  if(_color.compare("blue")==0) return setColor(Constants::MTG_COLOR_BLUE,removeAllOthers);
+  if(_color.compare("red")==0) return setColor(Constants::MTG_COLOR_RED,removeAllOthers);
+  if(_color.compare("green")==0) return setColor(Constants::MTG_COLOR_GREEN,removeAllOthers);
+  if(_color.compare("black")==0) return setColor(Constants::MTG_COLOR_BLACK,removeAllOthers);
+  if(_color.compare("white")==0) return setColor(Constants::MTG_COLOR_WHITE,removeAllOthers);
+}
+
 void MTGCard::setColor(int _color, int removeAllOthers){
   if (removeAllOthers){
     for (int i=0; i<Constants::MTG_NB_COLORS; i++){

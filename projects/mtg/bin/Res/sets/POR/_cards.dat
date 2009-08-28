@@ -794,7 +794,6 @@ auto=Damage:5
 id=4348
 name=Lava Axe
 rarity=C
-color=Red
 mana={4}{R}
 type=Sorcery
 [/card]
@@ -982,7 +981,6 @@ auto=damage:4 all(creature[flying])
 id=4311
 name=Needle Storm
 rarity=U
-color=Green
 type=Sorcery
 mana={2}{G}
 [/card]
@@ -1129,7 +1127,6 @@ auto=destroy
 id=4235
 name=Rain of Tears
 rarity=U
-color=Black
 mana={1}{B}{B}
 type=Sorcery
 [/card]
@@ -1188,7 +1185,6 @@ auto=life:4
 id=4393
 name=Sacred Nectar
 rarity=C
-color=White
 mana={1}{W}
 type=Sorcery
 [/card]
@@ -1199,7 +1195,6 @@ auto=Damage:1
 id=4360
 name=Scorching Spear
 rarity=C
-color=Red
 mana={R}
 type=Sorcery
 [/card]
@@ -1513,7 +1508,6 @@ auto=life:2
 id=4403
 name=Venerable Monk
 rarity=U
-color=White
 mana={2}{W}
 type=Creature
 subtype=Human Monk Cleric
@@ -1558,7 +1552,6 @@ auto=Damage:3
 id=4366
 name=Volcanic Hammer
 rarity=C
-color=Red
 mana={1}{R}
 type=Sorcery
 [/card]
@@ -1627,7 +1620,6 @@ auto=destroy
 id=4326
 name=Winter's Grasp
 rarity=U
-color=Green
 mana={1}{G}{G}
 type=Sorcery
 [/card]

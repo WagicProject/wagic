@@ -1,0 +1,18 @@
+#Bug: Crimson kobolds should be red
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:blue elemental blast
+manapool:{U}
+[PLAYER2]
+inplay:crimson kobolds
+[DO]
+blue elemental blast
+crimson kobolds
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:blue elemental blast
+[PLAYER2]
+graveyard:crimson kobolds
+[END]

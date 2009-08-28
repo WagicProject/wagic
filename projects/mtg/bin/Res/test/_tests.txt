@@ -71,6 +71,7 @@ counterspell.txt
 counterspell2.txt
 counterspell3.txt
 counterspell4.txt
+crimson_kobolds.txt
 creature_bond.txt
 dauthi_embrace.txt
 death_ward.txt

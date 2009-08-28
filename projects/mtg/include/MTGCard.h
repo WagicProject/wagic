@@ -50,6 +50,7 @@ class MTGCard {
   MTGCard(MTGCard * source);
 
   void setColor(int _color, int removeAllOthers = 0);
+  void setColor(string _color, int removeAllOthers = 0);
   int getColor();
   int hasColor(int _color);
   const char * colorToString();

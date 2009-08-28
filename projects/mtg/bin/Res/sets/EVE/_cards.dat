@@ -329,7 +329,6 @@ text=Return all nonblue creatures to their owners' hands.
 id=142010
 name=Inundate
 auto=moveTo(ownerhand) all(creature[-blue]|inplay)
-color=Blue
 rarity=R
 type=Sorcery
 mana={3}{U}{U}{U}
