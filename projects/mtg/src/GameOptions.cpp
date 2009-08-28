@@ -93,7 +93,7 @@ PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback)
     if(str[i] == ','){
       if(temp == "")
         return fallback;
-      color[subpixel] = atoi(temp.c_str());
+      color[subpixel] = (unsigned char) atoi(temp.c_str());
       temp = "";
       subpixel++;
       continue;
@@ -106,7 +106,7 @@ PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback)
   }
 
   if(temp != "")
-    color[subpixel] = atoi(temp.c_str());
+    color[subpixel] = (unsigned char) atoi(temp.c_str());
   if(subpixel == 2)
     color[3] = 255;
 

@@ -87,11 +87,11 @@ void GameStateOptions::Update(float dt)
   else if (mState == SHOW_OPTIONS){
     
     switch(optionsTabs->Submode()){
-   //  case OPTIONS_SUBMODE_RELOAD:
-   //   optionsTabs->acceptSubmode();
-   // optionsTabs->reloadValues();
-   //   mState = SHOW_OPTIONS;
-   //    break;
+     case OPTIONS_SUBMODE_RELOAD:
+      optionsTabs->acceptSubmode();
+      optionsTabs->reloadValues();
+      mState = SHOW_OPTIONS;
+       break;
      case OPTIONS_SUBMODE_PROFILE:
       mState = SHOW_OPTIONS_PROFILE;
       break;
@@ -188,13 +188,13 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
   switch (controlId){
   case 1:
     //Load the new profile.
-    //optionsTabs->acceptSubmode();
-    //optionsTabs->reloadValues();
+    optionsTabs->acceptSubmode();
+    optionsTabs->reloadValues();
     //Reset the current settings to those of the profile...
     mState = SHOW_OPTIONS;
     break;
   case 2:
-    //optionsTabs->cancelSubmode();
+    optionsTabs->cancelSubmode();
     mState = SHOW_OPTIONS;
     break;
   }

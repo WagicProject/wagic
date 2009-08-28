@@ -250,7 +250,7 @@ void GameStateMenu::resetDirectory(){
     mDip = NULL;
   }
 }
-int GameStateMenu::nextDirectory(char * root, char * file){
+int GameStateMenu::nextDirectory(const char * root, const char * file){
   int found = 0;
   if (!mDip){
     mDip = opendir(root);

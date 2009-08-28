@@ -134,33 +134,32 @@ SimpleKey * SimplePad::Add(string display, unsigned char id){
 }
 void SimplePad::pressKey(unsigned char key){
   string input = "";
-  int tCursor = cursor;
 
   if(isalpha(key))  {
     if(bCapslock)
       input += toupper(key);
     else
       input += key;
-    
-    if(cursor < 0 || cursor > buffer.size())
-      tCursor = buffer.size();
-    else
+ 
+   if(cursor < buffer.size())
       cursor++;
-    buffer.insert(tCursor,input);
+
+    buffer.insert(cursor,input);
   }
   else if(key == KPD_CAPS)
     bCapslock = !bCapslock;
   else if(key == KPD_DEL) {
-     if(cursor < 0 || cursor > buffer.size())
-      cursor = buffer.size();
-     if(cursor == buffer.size())
-      buffer = buffer.substr(0,cursor-1);
-     else if(cursor > 0)
-      buffer = buffer.substr(0,cursor) + buffer.substr(cursor+1);
-     else 
-       return;
+    if(!buffer.size())
+      return;
 
-     cursor--;
+    if(cursor >= buffer.size()) {
+      cursor = buffer.size();
+      buffer = buffer.substr(0,cursor-1);
+    }
+    else
+      buffer = buffer.substr(0,cursor) + buffer.substr(cursor+1);
+    
+    cursor--;
   }
   else if(key == KPD_OK) 
     Finish();
@@ -206,21 +205,18 @@ void SimplePad::Update(float dt){
     else if (mEngine->GetButtonClick(PSP_CTRL_LEFT)||mEngine->GetButtonClick(PSP_CTRL_RIGHT)
       ||mEngine->GetButtonClick(PSP_CTRL_UP)||mEngine->GetButtonClick(PSP_CTRL_DOWN))
       selected = priorKey;
-  } //Moving in/from the text field.
+  } //Moving within/from the text field.
   else if(selected == KPD_INPUT){
     if (mEngine->GetButtonClick(PSP_CTRL_DOWN) )
       selected = priorKey;
-    if (mEngine->GetButtonClick(PSP_CTRL_LEFT) && cursor > -1){
-      if(cursor > buffer.size())
-        cursor = buffer.size() - 1;
-      else
+    if (mEngine->GetButtonClick(PSP_CTRL_LEFT)){
+      if(cursor > 0)
         cursor--;
     }
-    else if (mEngine->GetButtonClick(PSP_CTRL_RIGHT))
+    else if (mEngine->GetButtonClick(PSP_CTRL_RIGHT)){
       if(cursor < buffer.size())
         cursor++;
-      else
-        cursor = buffer.size() + 1;
+    }
   }
   else if(selected >= 0 && keys[selected]){
     if (mEngine->GetButtonClick(PSP_CTRL_LEFT))
@@ -239,17 +235,14 @@ void SimplePad::Update(float dt){
   if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE))
     pressKey(keys[selected]->id);
   }
-  if (mEngine->GetButtonClick(PSP_CTRL_CROSS) && buffer.size() > 0)
+  if (buffer.size() > 0 && mEngine->GetButtonClick(PSP_CTRL_CROSS))
     buffer = buffer.substr(0,buffer.size() - 1);
-  if (mEngine->GetButtonClick(PSP_CTRL_LTRIGGER)){
-    if(buffer.size() != 0 && cursor != 0)
-      if(cursor < 0 || cursor >= buffer.size())
-        cursor = buffer.size() - 1;
-      else
+  if (buffer.size() && mEngine->GetButtonClick(PSP_CTRL_LTRIGGER)){
+      if(cursor > 0)
         cursor--;
   }
   else if (mEngine->GetButtonClick(PSP_CTRL_RTRIGGER)){
-    if(cursor > -1 && cursor < buffer.size())
+    if(cursor < buffer.size())
         cursor++;
     else{
       buffer += ' ';
@@ -290,6 +283,7 @@ void SimplePad::Render(){
   int offX = 0, offY = 0;   
   int kH = mFont->GetHeight();
   int hSpacing = mFont->GetStringWidth("W");
+  int rowLen = mFont->GetStringWidth("JKLMNOPQR") + 14*7; 
   int vSpacing = 0;
   int kW = hSpacing;
   
@@ -317,17 +311,16 @@ void SimplePad::Render(){
   }
 
   //Draw cursor.
-  int cPos = cursor;
-  if(cPos > -1 && cPos < buffer.size())
+  if(cursor < buffer.size())
   {
-    kW = mFont->GetStringWidth(buffer.substr(cPos,1).c_str());
-    renderer->FillRoundRect(mX+mFont->GetStringWidth(buffer.substr(0,cPos).c_str()),mY+kH-4,
+    kW = mFont->GetStringWidth(buffer.substr(cursor,1).c_str());
+    renderer->FillRoundRect(mX+mFont->GetStringWidth(buffer.substr(0,cursor).c_str()),mY+kH-4,
       kW,4,2,options[Metrics::KEY_FCH].asColor(ARGB(150,150,150,0)));    
   }
   else
   {
-    cPos = buffer.size();
-    renderer->FillRoundRect(mX+mFont->GetStringWidth(buffer.substr(0,cPos).c_str()),mY+kH-4,
+    cursor = buffer.size();
+    renderer->FillRoundRect(mX+mFont->GetStringWidth(buffer.substr(0,cursor).c_str()),mY+kH-4,
       kW,4,2,options[Metrics::KEY_FCH].asColor(ARGB(150,150,150,0)));    
   }
   
@@ -335,7 +328,6 @@ void SimplePad::Render(){
   mFont->DrawString(buffer.c_str(),mX,mY);
   offY += kH + 12;
 
-  int rowLen[4];
   if(!bShowNumpad)
     vSpacing -= kH + 12;
     
@@ -350,23 +342,15 @@ void SimplePad::Render(){
           offX = 0;
           offY = vSpacing;
           break;
-        case KPD_9:          
-          rowLen[0] = offX;
-          break;
         case KPD_A:  
           offX = 0;
           offY = vSpacing+(kH+12)*1;
           break;
-        case KPD_Z:
-          rowLen[3] = offX;
-          break;
         case KPD_J:
-          rowLen[1] = offX;
           offX = 0;
           offY = vSpacing+(kH+12)*2;
           break;
         case KPD_S:
-          rowLen[2] = offX;
           offX = 0;
           offY = vSpacing+(kH+12)*3;
           break;
@@ -375,19 +359,19 @@ void SimplePad::Render(){
           offY = vSpacing+(kH+12)*4;
           break;
         case KPD_OK:
-          offX = rowLen[1] + hSpacing;
+          offX = rowLen + hSpacing;
           offY = vSpacing+(kH+12)*3;
           break;
         case KPD_CANCEL:
-          offX = rowLen[1] + hSpacing;
+          offX = rowLen + hSpacing;
           offY = vSpacing+(kH+12)*4;
           break;
         case KPD_DEL:
-          offX = rowLen[1] + hSpacing;
+          offX = rowLen + hSpacing;
           offY = vSpacing+(kH+12)*1;
           break;
         case KPD_CAPS:
-          offX = rowLen[1] + hSpacing;
+          offX = rowLen + hSpacing;
           offY = vSpacing+(kH+12)*2;
           break;
       }
@@ -418,8 +402,8 @@ void SimplePad::Render(){
     }
 }
 
-int SimplePad::cursorPos(){
-  if(cursor < 0 || cursor > buffer.size())
+unsigned int SimplePad::cursorPos(){
+  if(cursor > buffer.size())
     return buffer.size();
 
   return cursor;

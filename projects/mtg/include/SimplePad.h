@@ -32,7 +32,7 @@ public:
 
   string buffer;
   string title;
-  int cursorPos();
+  unsigned int cursorPos();
   bool isActive() {return bActive;};
   void Render();
   void Update(float dt);  
@@ -57,7 +57,7 @@ private:
   bool bShowCancel, bShowNumpad;
   bool bCanceled; 
   int nbitems;
-  int cursor;
+  unsigned int cursor;
   int selected;
   int priorKey; //The prior key from those places.
   SimpleKey * keys[KPD_MAX];

@@ -52,7 +52,7 @@ class GameStateMenu: public GameState, public JGuiListener
   virtual void Render();
   virtual void ButtonPressed(int controllerId, int controlId);
 
-  int nextDirectory(char * root, char * file); // Retrieves the next directory to have matching file 
+  int nextDirectory(const char * root, const char * file); // Retrieves the next directory to have matching file 
   void resetDirectory();
   void createUsersFirstDeck(int setId);
   virtual ostream& toString(ostream& out) const;

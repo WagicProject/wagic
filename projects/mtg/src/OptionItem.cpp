@@ -286,7 +286,6 @@ void OptionProfile::Update(float dt){
 }
 
 void OptionProfile::Entering(){
-  JLBFont * menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
   hasFocus = true;
   bCheck = false; 
   initialValue = value;
@@ -310,6 +309,7 @@ void OptionProfile::cancelSubmode()
     options[Options::ACTIVE_PROFILE] = selections[initialValue];
     value = initialValue;
     populate();
+    bCheck = false;
 }
 void OptionProfile::acceptSubmode()
 {
@@ -319,6 +319,7 @@ void OptionProfile::acceptSubmode()
     options[Options::ACTIVE_PROFILE] = selections[value];
     initialValue = value;
     populate(); 
+    bCheck = false;
 }
 
 //OptionDirectory
