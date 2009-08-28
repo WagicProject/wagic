@@ -3,7 +3,7 @@
 #include "../include/PlayGuiObjectController.h"
 
 class MTGCardInstance;
-class DamagerDamaged;
+struct DamagerDamaged;
 class DamageStack;
 
 
