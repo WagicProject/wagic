@@ -321,18 +321,6 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
-text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at end of turn. Play this ability only once each turn.
-auto={G}:3/0 && trample && @next end:destroy limit:1
-id=4754
-name=Crazed Armodon
-rarity=R
-type=Creature
-mana={2}{G}{G}
-power=3
-subtype=Elephant
-toughness=3
-[/card]
-[card]
 text=Enchant creature     {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
 id=4809
 target=creature

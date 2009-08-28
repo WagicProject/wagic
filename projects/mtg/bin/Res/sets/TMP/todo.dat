@@ -224,7 +224,18 @@ rarity=R
 type=Instant
 mana={2}{B}
 [/card]
-
+[card]
+text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at end of turn. Play this ability only once each turn.
+auto={G}:3/0 && trample && @next end:destroy limit:1
+id=4754
+name=Crazed Armodon
+rarity=R
+type=Creature
+mana={2}{G}{G}
+power=3
+subtype=Elephant
+toughness=3
+[/card]
 [card]
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Cursed Scroll deals 2 damage to target creature or player.
 id=4601
