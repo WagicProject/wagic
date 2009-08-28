@@ -264,6 +264,26 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Domain - At the beginning of each player's upkeep, that player gains 1 life for each basic land type among lands he or she controls. Then Collapsing Borders deals 3 damage to him or her.
+id=23089
+name=Collapsing Borders
+auto=@each my upkeep:aslongas(plains|myBattlefield) life:1 controller
+auto=@each my upkeep:aslongas(island|myBattlefield) life:1 controller
+auto=@each my upkeep:aslongas(swamp|myBattlefield) life:1 controller
+auto=@each my upkeep:aslongas(mountain|myBattlefield) life:1 controller
+auto=@each my upkeep:aslongas(forest|myBattlefield) life:1 controller
+auto=@each my upkeep:life:-3 controller
+auto=@each opponent upkeep:aslongas(plains|opponentBattlefield) life:1 opponent
+auto=@each opponent upkeep:aslongas(island|opponentBattlefield) life:1 opponent
+auto=@each opponent upkeep:aslongas(swamp|opponentBattlefield) life:1 opponent
+auto=@each opponent upkeep:aslongas(mountain|opponentBattlefield) life:1 opponent
+auto=@each opponent upkeep:aslongas(forest|opponentBattlefield) life:1 opponent
+auto=@each opponent upkeep:life:-3 opponent
+rarity=R
+type=Enchantment
+mana={3}{R}
+[/card]
+[card]
 text=Remove target card in a graveyard from the game. Draw a card.
 target=*|graveyard
 auto=moveto(removedfromgame)
