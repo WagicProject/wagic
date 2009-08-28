@@ -2108,6 +2108,16 @@ text=When Symbiotic Wurm is put into a graveyard from play, put seven 1/1 green 
 rarity=R
 [/card]
 [card]
+text=Each other player discards a card. You draw a card for each card discarded this way.
+id=39825
+name=Syphon Mind
+mana={3}{B}
+type=Sorcery
+auto=discard:1 target(player)
+auto=draw:1
+rarity=C
+[/card]
+[card]
 id=39890
 name=Taunting Elf
 mana={G}
