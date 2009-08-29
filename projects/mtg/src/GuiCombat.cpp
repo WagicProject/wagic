@@ -20,7 +20,8 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), ok(S
       GameApp::CommonRes->CreateQuad("OK", "Ok.png", 0, 0, 56, 45);
     }
   ok_quad = GameApp::CommonRes->GetQuad("OK");
-  ok_quad->SetHotSpot(28, 22);
+  if(ok_quad)
+    ok_quad->SetHotSpot(28, 22);
 }
 
 GuiCombat::~GuiCombat()
@@ -132,7 +133,9 @@ void GuiCombat::Render()
     (*it)->Render();
   for (vector<TransientCardView*>::iterator it = blkViews.begin(); it != blkViews.end(); ++it)
     (*it)->Render();
-  ok.Render(ok_quad);
+
+  if(ok_quad)
+    ok.Render(ok_quad);
 
   renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
 }
