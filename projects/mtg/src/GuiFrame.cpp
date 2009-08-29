@@ -41,6 +41,7 @@ GuiFrame::~GuiFrame()
   delete(gold2);
   delete(gold1);
   delete(wood);
+  SAFE_DELETE(goldGlow);
 }
 
 void GuiFrame::Render()

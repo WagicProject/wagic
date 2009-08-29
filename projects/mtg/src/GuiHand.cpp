@@ -40,6 +40,8 @@ GuiHand::GuiHand(CardSelector* cs, MTGHand* hand) : GuiLayer(), hand(hand), cs(c
 GuiHand::~GuiHand()
 {
   delete(back);
+  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+    delete(*it);
 }
 
 void GuiHand::Update(float dt)
@@ -69,6 +71,11 @@ GuiHandSelf::GuiHandSelf(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand), s
 {
   limitor = NEW HandLimitor(this);
 }
+
+GuiHandSelf::~GuiHandSelf(){
+  SAFE_DELETE(limitor);
+}
+
 bool GuiHandSelf::CheckUserInput(u32 key)
 {
   //u32 trigger = options[REVERSE_TRIGGERS];

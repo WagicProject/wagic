@@ -120,6 +120,12 @@ GuiMana::GuiMana()
 {
 }
 
+GuiMana::~GuiMana(){
+  for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it){
+    delete(*it);
+  }
+}
+
 void GuiMana::Render()
 {
   for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)

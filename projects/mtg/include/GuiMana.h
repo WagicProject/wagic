@@ -37,6 +37,7 @@ class GuiMana : public GuiLayer
   vector<ManaIcon*> manas;
  public:
   GuiMana();
+  ~GuiMana();
   virtual void Render();
   virtual void Update(float dt);
   virtual int receiveEventPlus(WEvent * e);

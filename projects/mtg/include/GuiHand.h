@@ -64,6 +64,7 @@ class GuiHandSelf : public GuiHand
 
  public:
   GuiHandSelf(CardSelector* cs, MTGHand* hand);
+  ~GuiHandSelf();
   virtual int receiveEventPlus(WEvent* e);
   virtual int receiveEventMinus(WEvent* e);
 

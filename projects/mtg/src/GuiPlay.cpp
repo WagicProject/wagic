@@ -97,6 +97,9 @@ GuiPlay::GuiPlay(GameObserver* game, CardSelector* cs) : game(game), cs(cs)
 
 GuiPlay::~GuiPlay()
 {
+  for (iterator it = cards.begin(); it != cards.end(); ++it){
+    delete(*it);
+  }
 }
 
 bool isSpell(CardView* c) { return c->card->isSpell(); }

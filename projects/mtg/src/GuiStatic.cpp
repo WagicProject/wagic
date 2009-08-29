@@ -137,6 +137,9 @@ GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, Gui
 
 GuiGameZone::~GuiGameZone(){
   if (cd) delete cd;
+  for (vector<TransientCardView*>::iterator it = cards.begin(); it != cards.end(); ++it){
+    delete(*it);
+  }
 }
 
 ostream& GuiGameZone::toString(ostream& out) const

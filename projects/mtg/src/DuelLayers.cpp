@@ -77,6 +77,10 @@ DuelLayers::DuelLayers() : nbitems(0) {}
 
 DuelLayers::~DuelLayers(){
   for (int i = 0; i < nbitems; ++i) delete objects[i];
+
+  for (size_t i = 0; i < waiters.size(); ++i){
+    delete(waiters[i]);
+  }
 }
 
 int DuelLayers::unstoppableRenderInProgress(){
