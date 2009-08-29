@@ -183,6 +183,7 @@ GameSettings::GameSettings()
    temp = "Default";
   (*globalOptions)[Options::ACTIVE_PROFILE.substr(2)].str = temp;
 
+  themeOptions = NULL;
   profileOptions = NULL;
   checkProfile();
 }
@@ -293,6 +294,7 @@ void GameSettings::checkProfile(){
      sprintf(buf,RESPATH"/themes/%s/metrics.txt",temp.c_str());
     }
 
+    SAFE_DELETE(themeOptions);
     themeOptions = NEW GameOptions(buf);  
 
     //Validation of collection, etc, only happens if the game is up.
