@@ -96,7 +96,8 @@ MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){
 }
 
 int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
-  if (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && !card->isAttacker()){
+  if (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer){
+    if (card->isAttacker()) return 1;
     if (card->canAttack()) return 1;
   }
   return 0;
