@@ -29,7 +29,7 @@ toughness=3
 abilities=swampwalk
 [/card]
 [card]
-text=Whenever a creature comes into play under your control, you gain life equal to its toughness.
+text=Whenever a creature enters the battlefield under your control, you gain life equal to its toughness.
 id=5714
 alias=129710
 name=Angelic Chorus
@@ -38,7 +38,7 @@ type=Enchantment
 mana={3}{W}{W}
 [/card]
 [card]
-text=Flying    {T}: Target attacking or blocking creature gets +1/+1 until end of turn.
+text=Flying   {T}: Target attacking or blocking creature gets +1/+1 until end of turn.
 id=5781
 name=Angelic Page
 rarity=C
@@ -62,7 +62,6 @@ type=Instant
 [/card]
 [card]
 text=Shroud (This permanent can't be the target of spells or abilities.)  Whenever you play an enchantment spell, draw a card.
-abilities=shroud
 auto=@movedTo(enchantment|mystack):draw:1
 id=5686
 name=Argothian Enchantress
@@ -72,6 +71,7 @@ mana={1}{G}
 power=0
 subtype=Human Druid
 toughness=1
+abilities=shroud
 [/card]
 [card]
 text=Trample
@@ -95,14 +95,14 @@ type=Enchantment
 mana={2}{U}
 [/card]
 [card]
-text=Legendary    {2}, Sacrifice a permanent: Return target creature to its owner's hand.
+text={2}, Sacrifice a permanent: Return target creature to its owner's hand.
 id=9856
 name=Barrin, Master Wizard
 rarity=R
 mana={1}{U}{U}
 type=Creature
 subtype=Human Wizard
-auto={s(*|myinplay)}:moveTo(ownerhand) target(creature|inplay)
+auto={s(*|myBattlefield)}:moveTo(ownerhand) target(creature)
 power=1
 toughness=1
 abilities=legendary
@@ -117,10 +117,10 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
+text=Enchant creature (Target a creature as you play this. This card enters the battlefield attached to that creature.)  Enchanted creature gets +1/+1 for each Forest you control.
 id=5623
 target=creature
-auto=foreach(forest|myinplay) 1/1
+auto=foreach(forest|myBattlefield) 1/1
 name=Blanchwood Armor
 rarity=U
 mana={2}{G}
@@ -162,10 +162,10 @@ toughness=3
 abilities=swampwalk
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +1/+1 for each other creature you control. 
+text=Enchant creature   Enchanted creature gets +1/+1 for each other creature you control. 
 target=creature
 auto=-1/-1
-auto=foreach(creature|myinplay) 1/1
+auto=foreach(creature|myBattlefield) 1/1
 id=5848
 name=Bravado
 rarity=C
@@ -197,8 +197,8 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
-text=When Cathodion is put into a graveyard from play, add {3} to your mana pool.
-auto=@movedTo(this|graveyard):Add{3}
+text=When Cathodion is put into a graveyard from the battlefield, add {3} to your mana pool.
+auto=@movedTo(this|graveyard) from(battlefield):Add{3}
 id=10659
 name=Cathodion
 rarity=U
@@ -225,16 +225,16 @@ text=Creatures you control have "{T}: Add {G} to your mana pool."
 id=5724
 name=Citanul Hierophants
 rarity=R
-type=Creature
 mana={3}{G}
-power=3
+type=Creature
 subtype=Human Druid
+power=3
 toughness=2
-auto=lord(creature|myinplay) {T}:Add{G}
+auto=lord(creature|myBattlefield) {T}:Add{G}
 [/card]
 [card]
 text={1}, Sacrifice a permanent: You gain 1 life.
-auto={S(*|myinplay)}:life:1
+auto={1}{S(*|myBattlefield)}:life:1
 id=8890
 name=Claws of Gix
 rarity=U
@@ -242,41 +242,41 @@ mana={0}
 type=Artifact
 [/card]
 [card]
-text=Enchant creature      Enchanted creature is unblockable.
+text=Enchant creature   Enchanted creature is unblockable.
 target=creature
 auto=unblockable
 id=5718
 name=Cloak of Mists
 rarity=C
-type=Enchantment
 mana={1}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant permanent (Target a permanent as you play this. This card comes into play attached to that permanent.)     You control enchanted permanent.
+text=Enchant permanent (Target a permanent as you play this. This card enters the battlefield attached to that permanent.)   You control enchanted permanent.
 target=*
 alias=1194
 id=10426
 name=Confiscate
 rarity=U
-type=Enchantment
 mana={4}{U}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Target player gains 2 life for each creature in play.
+text=Target player gains 2 life for each creature on the battlefield.
 target=player
 auto=foreach(creature) life:2
 id=9702
 name=Congregate
 rarity=C
-type=Instant
 mana={3}{W}
+type=Instant
 [/card]
 [card]
-text={4}, Sacrifice Copper Gnomes: You may put an artifact card from your hand into play.
+text={4}, Sacrifice Copper Gnomes: You may put an artifact card from your hand onto the battlefield.
 id=8815
-auto={4}{S}:moveTo(myinplay) target(artifact|myhand)
+auto={4}{S}:moveTo(myBattlefield) target(artifact|myhand)
 name=Copper Gnomes
 rarity=R
 mana={2}
@@ -299,12 +299,12 @@ toughness=1
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
 id=5853
 target=creature,player
-auto=foreach(swamp|myinplay) damage:1
-auto=foreach(swamp|myinplay) life:1 controller
+auto=foreach(swamp|myBattlefield) damage:1
+auto=foreach(swamp|myBattlefield) life:1 controller
 name=Corrupt
 rarity=C
-type=Sorcery
 mana={5}{B}
+type=Sorcery
 [/card]
 [card]
 text=Flying, haste
@@ -324,8 +324,8 @@ auto={3}{T}{S}:moveTo(myHand) all(enchantment|mygraveyard)
 id=5742
 name=Crystal Chimes
 rarity=U
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text=Creatures with flying get -2/-0.
@@ -341,7 +341,6 @@ text=Add {B}{B}{B} to your mana pool.
 auto=Add {B}{B}{B}
 id=5626
 name=Dark Ritual
-colour=Black
 rarity=C
 mana={B}
 type=Instant
@@ -352,7 +351,6 @@ target=artifact,enchantment
 auto=destroy
 id=5630
 name=Disenchant
-colour=White
 rarity=C
 mana={1}{W}
 type=Instant
@@ -372,8 +370,8 @@ auto={3}{T}:counter(1/1) target(creature)
 id=8870
 name=Dragon Blood
 rarity=U
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text={B}{B}, {T}: Destroy target green creature. 
@@ -437,7 +435,6 @@ text=Fault Line deals X damage to each creature without flying and each player.
 alias=1289
 id=8867
 name=Fault Line
-colour=Red
 rarity=R
 mana={X}{R}{R}
 type=Instant
@@ -448,10 +445,10 @@ auto={T}:damage:1 all(creature[-flying]) other
 id=5568
 name=Fire Ants
 rarity=U
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Insect
+power=2
 toughness=1
 [/card]
 [card]
@@ -493,14 +490,14 @@ subtype=Forest
 [card]
 text={T}: Add {G} to your mana pool for each creature you control.
 id=10422
-auto={T}:foreach(creature|myinplay)add:{G}
+auto={T}:foreach(creature|myBattlefield)add:{G}
 name=Gaea's Cradle
 rarity=R
 type=Land
 abilities=legendary
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +3/+3 and has trample.     {G}: Regenerate enchanted creature.
+text=Enchant creature   Enchanted creature gets +3/+3 and has trample.   {G}: Regenerate enchanted creature.
 target=creature
 auto=3/3
 auto=trample
@@ -525,7 +522,7 @@ mana={R}
 [/card]
 [card]
 text=Creatures you control get +1/+1.
-auto=lord(creature|myinplay) 1/1
+auto=lord(creature|myBattlefield) 1/1
 id=5835
 name=Glorious Anthem
 rarity=R
@@ -533,24 +530,24 @@ type=Enchantment
 mana={1}{W}{W}
 [/card]
 [card]
-text=When Goblin Matron comes into play, you may search your library for a Goblin card, reveal that card, and put it into your hand. If you do, shuffle your library.
+text=When Goblin Matron enters the battlefield, you may search your library for a Goblin card, reveal that card, and put it into your hand. If you do, shuffle your library.
 auto=may moveTo(myHand) target(goblin|myLibrary)
 id=8824
 name=Goblin Matron
 rarity=C
-type=Creature
 mana={2}{R}
-power=1
+type=Creature
 subtype=Goblin
+power=1
 toughness=1
 [/card]
 [card]
-text=Put X 1/1 red Goblin creature tokens into play.
+text=Put X 1/1 red Goblin creature tokens onto the battlefield.
 id=8818
 name=Goblin Offensive
 rarity=U
-type=Sorcery
 mana={X}{1}{R}{R}
+type=Sorcery
 [/card]
 [card]
 text=Goblin Raider can't block.
@@ -587,14 +584,14 @@ power=3
 toughness=2
 [/card]
 [card]
-text=At the beginning of your draw step, draw an additional card.     At the end of your turn, discard your hand.
+text=At the beginning of your draw step, draw an additional card.   At the end of your turn, discard your hand.
 auto=@each my draw:draw:1
 auto=@each my end:moveTo(graveyard) all(*|myhand)
 id=7169
 name=Grafted Skullcap
 rarity=R
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
 text=Protection from blue
@@ -643,7 +640,7 @@ mana={X}{R}
 text=Return all green permanents to their owners' hands.
 id=5674
 name=Hibernation
-auto=moveTo(ownerhand) all(*[green]|inplay)
+auto=moveTo(ownerhand) all(*[green])
 rarity=U
 mana={2}{U}
 type=Instant
@@ -666,10 +663,10 @@ auto=@each my upkeep:aslongas(*|myhand) moveTo(myHand)
 id=5772
 name=Imaginary Pet
 rarity=R
-type=Creature
 mana={1}{U}
-power=4
+type=Creature
 subtype=Illusion
+power=4
 toughness=4
 [/card]
 [card]
@@ -722,16 +719,16 @@ toughness=1
 [/card]
 [card]
 text=Defender (This creature can't attack.)  {3}: Mobile Fort gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
-abilities=defender
 auto={3}:3/-1 && -defender limit:1
 id=5550
 name=Mobile Fort
 rarity=U
-type=Artifact Creature
 mana={4}
-power=0
+type=Artifact Creature
 subtype=Wall
+power=0
 toughness=6
+abilities=defender
 [/card]
 [card]
 text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
@@ -746,7 +743,7 @@ power=2
 toughness=2
 [/card]
 [card]
-text={U}: Untap Morphling.     {U}: Morphling gains flying until end of turn.     {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.    {1}: Morphling gets -1/+1 until end of turn.
+text={U}: Untap Morphling.   {U}: Morphling gains flying until end of turn.   {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.   {1}: Morphling gets -1/+1 until end of turn.
 id=5863
 name=Morphling
 rarity=R
@@ -798,15 +795,15 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
+text=Enchant creature (Target a creature as you play this. This card enters the battlefield attached to that creature.)  Enchanted creature can't attack or block.
 id=5748
 name=Pacifism
 target=creature
 auto=cantattack
 auto=cantblock
 rarity=C
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -818,8 +815,8 @@ auto=life:4 targetController
 target=creature
 name=Path of Peace
 rarity=C
-type=Sorcery
 mana={3}{W}
+type=Sorcery
 [/card]
 [card]
 text=Flying, first strike
@@ -834,7 +831,7 @@ toughness=1
 abilities=flying,first strike
 [/card]
 [card]
-text=At end of turn, if no creatures are in play, sacrifice Pestilence.       {B}: Pestilence deals 1 damage to each creature and each player.
+text=At end of turn, if no creatures are on the battlefield, sacrifice Pestilence.   {B}: Pestilence deals 1 damage to each creature and each player.
 alias=1172
 id=5619
 name=Pestilence
@@ -845,7 +842,7 @@ type=Enchantment
 [/card]
 [card]
 text=Sacrifice a creature: Phyrexian Ghoul gets +2/+2 until end of turn.
-auto={s(creature|myinplay)}:2/2
+auto={S(creature|myBattlefield)}:2/2
 id=5652
 name=Phyrexian Ghoul
 rarity=C
@@ -856,23 +853,23 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Legendary  {T}: Add {1} to your mana pool.  {T}, Sacrifice a creature: Add {B}{B} to your mana pool. 
+text={T}: Add {1} to your mana pool.  {T}, Sacrifice a creature: Add {B}{B} to your mana pool. 
 id=10677
 name=Phyrexian Tower
 auto={T}:Add {1}
-auto={T}{s(creature|myinplay)}:Add {B}{B}
+auto={T}{s(creature|myBattlefield)}:Add {B}{B}
 rarity=R
 type=Land
 abilities=legendary
 [/card]
 [card]
 text={2}{T}: Sacrifice Pit Trap to bury target creature without flying that is attacking you.
-auto={2}{T}{S}:bury target(creature[-flying;attacking]|opponentinplay)
+auto={2}{T}{S}:bury target(creature[-flying;attacking]|opponentbattlefield)
 id=8801
 name=Pit Trap
 rarity=U
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -920,8 +917,8 @@ type=Enchantment
 mana={3}{W}
 [/card]
 [card]
-text=When Priest of Gix comes into play, add {B}{B}{B} to your mana pool.
-auto=Add: {B}{B}{B}
+text=When Priest of Gix enters the battlefield, add {B}{B}{B} to your mana pool.
+auto=Add:{B}{B}{B}
 id=9724
 name=Priest of Gix
 rarity=U
@@ -932,8 +929,8 @@ power=2
 toughness=1
 [/card]
 [card]
-text={T}: Add {G} to your mana pool for each Elf in play.
-auto={T}:foreach(creature[elf])add:{G}
+text={T}: Add {G} to your mana pool for each Elf on the battlefield.
+auto={T}:foreach(elf)add:{G}
 id=5823
 name=Priest of Titania
 rarity=C
@@ -958,14 +955,14 @@ auto=@each my upkeep:aslongas(*[-land]|mybattlefield) other bury
 id=8803
 name=Reclusive Wight
 rarity=U
-type=Creature
 mana={3}{B}
-power=4
+type=Creature
 subtype=Zombie Minion
+power=4
 toughness=4
 [/card]
 [card]
-text=Enchant creature      Enchanted creature has first strike.
+text=Enchant creature   Enchanted creature has first strike.
 target=creature
 auto=first strike
 id=10465
@@ -976,16 +973,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
-auto=lord(creature|myinplay) rampage(1/1,0)
-id=10408
-name=Retaliation
-rarity=U
-type=Enchantment
-mana={2}{G}
-[/card]
-[card]
-text=First strike    {1}{B}: Regenerate Sanguine Guard.
+text=First strike   {1}{B}: Regenerate Sanguine Guard.
 auto={1}{B}:regenerate
 id=5627
 name=Sanguine Guard
@@ -1024,7 +1012,7 @@ subtype=Aura
 [/card]
 [card]
 text={T}: Add {W} to your mana pool for each enchantment you control.
-auto={T}:foreach(enchantment|myinplay)add:{W}
+auto={T}:foreach(enchantment|myBattlefield)add:{W}
 id=9674
 name=Serra's Sanctum
 rarity=R
@@ -1044,7 +1032,7 @@ toughness=5
 abilities=flying
 [/card]
 [card]
-text=Enchant creature    Enchanted creature gets +2/+2 and has flying.    {R}: Enchanted creature gets +1/+0 until end of turn.
+text=Enchant creature    Enchanted creature gets +2/+2 and has flying.   {R}: Enchanted creature gets +1/+0 until end of turn.
 target=creature
 auto=2/2
 auto=flying
@@ -1082,7 +1070,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Flying     When you play a creature spell, sacrifice Skittering Skirge.
+text=Flying   When you play a creature spell, sacrifice Skittering Skirge.
 abilities=flying
 auto=@movedTo(creature|mystack):bury
 id=5573
@@ -1096,7 +1084,7 @@ toughness=2
 [/card]
 [card]
 text=When Sleeper Agent comes into play, target opponent gains control of it.      At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
-auto=moveTo(opponentinplay)
+auto=moveTo(opponentBattlefield)
 auto=@each my upkeep:Damage:2 controller
 id=5751
 name=Sleeper Agent
@@ -1129,7 +1117,7 @@ type=Sorcery
 mana={2}{R}
 [/card]
 [card]
-text=When Stern Proctor comes into play, return target artifact or enchantment to its owner's hand.
+text=When Stern Proctor enters the battlefield, return target artifact or enchantment to its owner's hand.
 auto=may moveTo(ownerhand) target(enchantment,artifact)
 id=5661
 name=Stern Proctor
@@ -1154,7 +1142,7 @@ type=Instant
 text=Return all lands to their owners' hands.
 id=5599
 name=Sunder
-auto=moveTo(ownerhand) all(land|inplay)
+auto=moveTo(ownerhand) all(land)
 rarity=R
 mana={3}{U}{U}
 type=Instant
@@ -1209,7 +1197,7 @@ abilities=haste
 [/card]
 [card]
 text=Put a +1/+1 counter on each creature you control.
-auto=all(creature|mybattlefield) counter(1/1)
+auto=lord(creature|mybattlefield) counter(1/1)
 id=8819
 name=Titania's Boon
 rarity=U
@@ -1223,15 +1211,15 @@ auto=@movedTo(*[green]|myStack):counter(1/1)
 id=5838
 name=Titania's Chosen
 rarity=U
-type=Creature
 mana={2}{G}
-power=1
+type=Creature
 subtype=Elf Archer
+power=1
 toughness=1
 [/card]
 [card]
 text={T}: Add {U} to your mana pool for each artifact you control.
-auto={T}:foreach(artifact|myinplay)add:{U}
+auto={T}:foreach(artifact|myBattlefield)add:{U}
 id=8883
 name=Tolarian Academy
 rarity=R
@@ -1241,7 +1229,7 @@ abilities=legendary
 [card]
 text=Treefolk Seedlings's toughness is equal to the number of Forests you control.
 id=5866
-auto=foreach(forest|myinplay) 0/1
+auto=foreach(forest|myBattlefield) 0/1
 name=Treefolk Seedlings
 rarity=U
 mana={2}{G}
@@ -1331,8 +1319,8 @@ type=Sorcery
 [card]
 text=Wirecat can't attack or block if an enchantment is in play.
 id=8834
-auto=aslongas(enchantment|inplay) cantattack
-auto=aslongas(enchantment|inplay) cantblock
+auto=aslongas(enchantment|battlefield) cantattack
+auto=aslongas(enchantment|battlefield) cantblock
 name=Wirecat
 rarity=U
 mana={4}
@@ -1342,20 +1330,20 @@ power=4
 toughness=3
 [/card]
 [card]
-text=Swampwalk     {T}: Add {B}{B}{B}{B} to your mana pool. Target opponent gains control of Witch Engine. (Play this ability only any time you could play an instant.)
-abilities=swampwalk
-auto={T}:Add{B}{B}{B}{B} && moveTo(opponentinplay)
+text=Swampwalk   {T}: Add {B}{B}{B}{B} to your mana pool. Target opponent gains control of Witch Engine. (Play this ability only any time you could play an instant.)
+auto={T}:Add{B}{B}{B}{B} && moveTo(opponentBattlefield)
 id=5836
 name=Witch Engine
 rarity=R
-type=Creature
 mana={5}{B}
-power=4
+type=Creature
 subtype=Horror
+power=4
 toughness=4
+abilities=swampwalk
 [/card]
 [card]
-text=Worn Powerstone comes into play tapped.    {T}: Add 2 Mana to your mana pool.
+text=Worn Powerstone enters the battlefield tapped.  {T}: Add 2 Mana to your mana pool.
 auto=tap
 auto={T}:Add {2}
 id=8876
@@ -1370,8 +1358,8 @@ auto=@movedTo(*[white]|opponentStack): life:-1 opponent && life:1 controller
 id=5696
 name=Yawgmoth's Edict
 rarity=U
-type=Enchantment
 mana={1}{B}
+type=Enchantment
 [/card]
 [card]
 text=Flying, shroud
@@ -1386,7 +1374,7 @@ toughness=4
 abilities=flying,shroud
 [/card]
 [card]
-text=Enchant creature      Enchanted creature gets +2/+2 and has flying and shroud. (It can't be the target of spells or abilities.)  
+text=Enchant creature   Enchanted creature gets +2/+2 and has flying and shroud. (It can't be the target of spells or abilities.)  
 target=creature
 auto=2/2
 auto=flying

@@ -1303,7 +1303,15 @@ rarity=C
 type=Instant
 mana={1}{U}{U}
 [/card]
-
+[card]
+text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
+auto=lord(creature|myBattlefield) rampage(1/1,0)
+id=10408
+name=Retaliation
+rarity=U
+type=Enchantment
+mana={2}{G}
+[/card]
 [card]
 text=Whenever Retromancer becomes the target of a spell or ability, Retromancer deals 3 damage to that spell or ability's controller.
 id=5826
