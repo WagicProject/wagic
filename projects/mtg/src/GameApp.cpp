@@ -137,9 +137,6 @@ void GameApp::Create()
   CommonRes->GetQuad("DefenderIcon")->SetHotSpot(12, 12);
   CommonRes->GetQuad("shadow")->SetHotSpot(0.5, 0.5);
 
-  //CommonRes->CreateTexture("graphics/interrupt.png");
-  //CommonRes->CreateQuad("interrupt", "graphics/interrupt.png", 0, 0, 256, 128);
-
   collection = NEW MTGAllCards(&cache);
 
   Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", CommonRes->GetQuad("particles"));
@@ -164,8 +161,6 @@ void GameApp::Create()
   mGameStates[GAME_STATE_OPTIONS] = NEW GameStateOptions(this);
   mGameStates[GAME_STATE_OPTIONS]->Create();
 
-  //mGameStates[GAME_STATE_GAME] = NEW GameStateGAME(this);
-
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
 
@@ -179,9 +174,6 @@ void GameApp::Create()
 
 void GameApp::LoadGameStates()
 {
-
-  //mGameStates[GAME_STATE_MENU]->Create();
-  //mGameStates[GAME_STATE_GAME]->Create();
 
 }
 

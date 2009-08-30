@@ -461,10 +461,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\MTGGuiHand.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\MTGRules.cpp"
 				>
 			</File>
@@ -807,10 +803,6 @@
 			</File>
 			<File
 				RelativePath=".\include\MTGGameZones.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\MTGGuiHand.h"
 				>
 			</File>
 			<File
