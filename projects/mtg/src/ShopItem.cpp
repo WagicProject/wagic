@@ -71,17 +71,8 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
 
   thumb = cache.getThumb(card);
 
-  if (!thumb){
-   switch(card->getColor())
-    {
-    case Constants::MTG_COLOR_GREEN: thumb = GameApp::CommonRes->GetQuad("green_thumb"); break;
-    case Constants::MTG_COLOR_BLUE : thumb = GameApp::CommonRes->GetQuad("blue_thumb"); break;
-    case Constants::MTG_COLOR_RED  : thumb = GameApp::CommonRes->GetQuad("red_thumb"); break;
-    case Constants::MTG_COLOR_BLACK: thumb = GameApp::CommonRes->GetQuad("black_thumb"); break;
-    case Constants::MTG_COLOR_WHITE: thumb = GameApp::CommonRes->GetQuad("white_thumb"); break;
-    default: thumb = GameApp::CommonRes->GetQuad("black_thumb"); break;
-    } 
-  }
+  if (!thumb) thumb = CardGui::alternateThumbQuad(card);
+
   if (thumb){
      mesh=NEW hgeDistortionMesh(2,2);
      mesh->SetTexture(thumb->mTex);

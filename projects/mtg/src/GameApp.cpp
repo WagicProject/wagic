@@ -127,38 +127,6 @@ void GameApp::Create()
   CommonRes->CreateTexture("backdrop.jpg");
   CommonRes->CreateTexture("handback.png");
 
-  CommonRes->CreateTexture("red.jpg");
-  CommonRes->CreateTexture("white.jpg");
-  CommonRes->CreateTexture("blue.jpg");
-  CommonRes->CreateTexture("black.jpg");
-  CommonRes->CreateTexture("green.jpg");
-  CommonRes->CreateQuad("red",   "red.jpg",   0, 0, 200, 285);
-  CommonRes->CreateQuad("white", "white.jpg", 0, 0, 200, 285);
-  CommonRes->CreateQuad("blue",  "blue.jpg",  0, 0, 200, 285);
-  CommonRes->CreateQuad("black", "black.jpg", 0, 0, 200, 285);
-  CommonRes->CreateQuad("green", "green.jpg", 0, 0, 200, 285);
-  CommonRes->GetQuad("red")->SetHotSpot(100, 145);
-  CommonRes->GetQuad("white")->SetHotSpot(100, 145);
-  CommonRes->GetQuad("blue")->SetHotSpot(100, 145);
-  CommonRes->GetQuad("black")->SetHotSpot(100, 145);
-  CommonRes->GetQuad("green")->SetHotSpot(100, 145);
-
-  CommonRes->CreateTexture("red_thumb.jpg");
-  CommonRes->CreateTexture("white_thumb.jpg");
-  CommonRes->CreateTexture("blue_thumb.jpg");
-  CommonRes->CreateTexture("black_thumb.jpg");
-  CommonRes->CreateTexture("green_thumb.jpg");
-  CommonRes->CreateQuad("red_thumb",   "red_thumb.jpg",   0, 0, 28, 40);
-  CommonRes->CreateQuad("white_thumb", "white_thumb.jpg", 0, 0, 28, 40);
-  CommonRes->CreateQuad("blue_thumb",  "blue_thumb.jpg",  0, 0, 28, 40);
-  CommonRes->CreateQuad("black_thumb", "black_thumb.jpg", 0, 0, 28, 40);
-  CommonRes->CreateQuad("green_thumb", "green_thumb.jpg", 0, 0, 28, 40);
-  CommonRes->GetQuad("red_thumb")->SetHotSpot(14, 20);
-  CommonRes->GetQuad("white_thumb")->SetHotSpot(14, 20);
-  CommonRes->GetQuad("blue_thumb")->SetHotSpot(14, 20);
-  CommonRes->GetQuad("black_thumb")->SetHotSpot(14, 20);
-  CommonRes->GetQuad("green_thumb")->SetHotSpot(14, 20);
-
   CommonRes->CreateTexture("BattleIcon.png");
   CommonRes->CreateTexture("DefenderIcon.png");
   CommonRes->CreateTexture("shadow.png");

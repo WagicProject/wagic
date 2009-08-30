@@ -10,8 +10,6 @@ TexturesCache::TexturesCache(){
   totalsize = 0;
   delete_previous = 0;
   lastTime = 0;
-  for (int i=0; i<MAX_CACHE_OBJECTS;i++)
-    cache[i] = NULL;
 #ifdef WIN32
   char buf [4096];
   sprintf(buf, " Init TextureCache : %p\n", this);
@@ -21,81 +19,102 @@ TexturesCache::TexturesCache(){
 
 TexturesCache::~TexturesCache(){
   LOG("==Destroying TexturesCache==");
-  for (int i = 0; i < nb_textures; i++){
-    delete cache[i];
+  for (map<string,CachedTexture*>::iterator it = cache.begin(); it != cache.end(); ++it){
+    delete it->second;
   }
   LOG("==Destroying TexturesCache Successful==");
 }
 
 int TexturesCache::isInCache(MTGCard * card, int type){
-  int cache_id = getCacheById(card->getId(), type);
-  if (cache_id == -1)
-    return 0;
-  return 1;
+  CachedTexture * tex = getCacheByCard(card, type);
+  if (tex) return 1;
+  return 0;
 }
 
-int TexturesCache::getCacheById(int id, int type){
-  for (int i=0; i<nb_textures;i++){
-    if (cache[i]->type == type && cache[i]->getId() == id){
-      return i;
-    }
+CachedTexture * TexturesCache::getCacheByCard(MTGCard *card, int type){
+  char _filename[512];
+  if (type == CACHE_THUMB){
+    sprintf(_filename, "sets/%s/thumbnails/%s", card->getSetName(), card->getImageName());
+  }else{
+    sprintf(_filename, "sets/%s/%s", card->getSetName(), card->getImageName());
   }
-  return -1;
+  string filename = _filename;
+  return cache[filename];
 }
 
-int TexturesCache::getOldestQuad(){
+
+int TexturesCache::removeOldestQuad(){
   int oldest = -1;
-  int result = -1;
-  for (int i= 0; i < nb_textures; i++){
-    if (oldest == -1 || oldest > cache[i]->lastTime){
-      oldest = cache[i]->lastTime;
-      result = i;
+  string result = "";
+  for (map<string,CachedTexture*>::iterator it = cache.begin(); it != cache.end(); ++it){
+    if (it->second && (oldest == -1 || oldest > it->second->lastTime)){
+      oldest = it->second->lastTime;
+      result = it->first;
     }
   }
-  return result;
+  if (oldest != -1){
+    removeQuad(result);
+    return 1;
+  }
+  return 0;
 }
 
-void TexturesCache::removeQuad(int id){
+void TexturesCache::removeQuad(string id){
   totalsize -= cache[id]->nbpixels;
   delete cache[id];
-  cache[id] = cache[nb_textures - 1];
-  cache[nb_textures - 1] = NULL;
+  cache.erase(id);
   nb_textures--;
 }
 
 int TexturesCache::cleanup(){
   int maxSize = options[Options::CACHESIZE].number * 100000;
   if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
-  while (nb_textures >= MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
-    int i = getOldestQuad();
-    if (i == -1) return 0;
-    removeQuad(i);
+  while (totalsize > maxSize){
+    int result = removeOldestQuad();
+    if (!result) return 0;
   }
   return 1;
 }
 
-JQuad * TexturesCache::getQuad(MTGCard * card, int type){
-  int cache_id = getCacheById(card->getId(), type);
-  if (cache_id == -1){
-
-    //Not found in the cache, we have to load the file and put it in the cache
+JQuad * TexturesCache::getQuad(string filename,MTGCard * card, int type){
+  CachedTexture * ctex = cache[filename];
+  if (!ctex){
     if (cleanup()){
-      cache_id = nb_textures;
-      cache[cache_id] = NEW CardTexture(card, type);
-      totalsize+= cache[cache_id]->nbpixels;
+      if (card) cache[filename] = NEW CachedTexture(card,type);
+      else cache[filename] = NEW CachedTexture(filename);
+      totalsize+= cache[filename]->nbpixels;
       fprintf(stderr, "Total Size of cache in pixels:  %i\n", totalsize);
       nb_textures++;
+    }else{
+      //Error
+      return NULL;
     }
   }
-  cache[cache_id]->lastTime = lastTime++;
-  return cache[cache_id]->getQuad();
+  cache[filename]->lastTime = lastTime++;
+  return cache[filename]->getQuad();
 }
 
-int CardTexture::getId(){
-  return mtgid;
+JQuad * TexturesCache::getQuad(MTGCard * card, int type){ 
+  char _filename[512];
+  if (type == CACHE_THUMB){
+    sprintf(_filename, "sets/%s/thumbnails/%s", card->getSetName(), card->getImageName());
+  }else{
+    sprintf(_filename, "sets/%s/%s", card->getSetName(), card->getImageName());
+  }
+  string filename = _filename;
+  return getQuad(filename,card,type);
 }
 
-CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
+
+CachedTexture::CachedTexture(string filename){
+  quad = NULL;
+  tex = NULL;
+  nbpixels = 0;
+  lastTime = 0;
+    if (fileExists(filename.c_str())) init(filename);
+}
+
+CachedTexture::CachedTexture(MTGCard * card, int _type){
   LOG("==Creating CardTexture Object");
   JFileSystem* fs = JFileSystem::GetInstance();
   char filename[100];
@@ -111,7 +130,7 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
 
   if (fileExists(filename)){
     fs->DetachZipFile();
-    tex = JRenderer::GetInstance()->LoadTexture(filename, false,GU_PSM_5551);
+    init(filename);
   }else{
     char zipname[100];
     sprintf(zipname, "Res/sets/%s/%s.zip", card->getSetName(),card->getSetName());
@@ -122,23 +141,26 @@ CardTexture::CardTexture(MTGCard * card, int _type): type(_type){
       }else{
         sprintf(filename, "%s", card->getImageName());
       }
-      tex = JRenderer::GetInstance()->LoadTexture(filename, false,GU_PSM_5551);
+      init(filename);      
     }
   }
+
+  LOG("CardTexture Object Creation succesful");
+}
+
+void CachedTexture::init(string filename){
+  tex = JRenderer::GetInstance()->LoadTexture(filename.c_str(), false,GU_PSM_5551);
   if (tex){
     quad = NEW JQuad(tex, 0.0f, 0.0f, tex->mWidth, tex->mHeight);
     quad->SetHotSpot(tex->mWidth / 2, tex->mHeight / 2);
     nbpixels = tex->mTexHeight * tex->mTexWidth;
   }
-  mtgid = card->getId();
-  LOG("CardTexture Object Creation succesful");
 }
-
-JQuad * CardTexture::getQuad(){
+JQuad * CachedTexture::getQuad(){
   return quad;
 }
 
-CardTexture::~CardTexture(){
+CachedTexture::~CachedTexture(){
   LOG("==Deleting CardTexture Object");
   SAFE_DELETE(quad);
   SAFE_DELETE(tex);

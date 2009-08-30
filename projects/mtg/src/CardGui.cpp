@@ -68,18 +68,8 @@ void CardGui::Render()
       icon = GameApp::CommonRes->GetQuad("c_blue");
     if (icon) icon->SetHotSpot(16,16);
 
-    {
-      JQuad* q;
-      // Draw the "unknown" card model
-      switch(color)
-        {
-        case Constants::MTG_COLOR_GREEN: q = GameApp::CommonRes->GetQuad("green_thumb"); break;
-        case Constants::MTG_COLOR_BLUE : q = GameApp::CommonRes->GetQuad("blue_thumb"); break;
-        case Constants::MTG_COLOR_RED  : q = GameApp::CommonRes->GetQuad("red_thumb"); break;
-        case Constants::MTG_COLOR_BLACK: q = GameApp::CommonRes->GetQuad("black_thumb"); break;
-        case Constants::MTG_COLOR_WHITE: q = GameApp::CommonRes->GetQuad("white_thumb"); break;
-        default: q = GameApp::CommonRes->GetQuad("black_thumb"); break;
-        }
+    JQuad* q = alternateThumbQuad(card);
+    if (q){
       q->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
       renderer->RenderQuad(q, actX, actY, actT, scale, scale);
     }
@@ -103,6 +93,20 @@ void CardGui::Render()
   PlayGuiObject::Render();
 }
 
+JQuad * CardGui::alternateThumbQuad(MTGCard * card){
+  JRenderer * renderer = JRenderer::GetInstance();
+  JQuad * q;
+  switch(card->getColor())
+    {
+  case Constants::MTG_COLOR_GREEN: q = cache.getQuad("sets/green_thumb.jpg");break;
+    case Constants::MTG_COLOR_BLUE : q = cache.getQuad("sets/blue_thumb.jpg");break;
+    case Constants::MTG_COLOR_RED  : q = cache.getQuad("sets/red_thumb.jpg");break;
+    case Constants::MTG_COLOR_BLACK: q = cache.getQuad("sets/black_thumb.jpg");break;
+    case Constants::MTG_COLOR_WHITE: q = cache.getQuad("sets/white_thumb.jpg");break;
+    default: q = cache.getQuad("sets/black_thumb.jpg");break;
+    }
+  return q;
+}
 
 void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   // Draw the "unknown" card model
@@ -110,12 +114,12 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   JQuad * q;
   switch(card->getColor())
     {
-    case Constants::MTG_COLOR_GREEN: q = GameApp::CommonRes->GetQuad("green"); break;
-    case Constants::MTG_COLOR_BLUE : q = GameApp::CommonRes->GetQuad("blue"); break;
-    case Constants::MTG_COLOR_RED  : q = GameApp::CommonRes->GetQuad("red"); break;
-    case Constants::MTG_COLOR_BLACK: q = GameApp::CommonRes->GetQuad("black"); break;
-    case Constants::MTG_COLOR_WHITE: q = GameApp::CommonRes->GetQuad("white"); break;
-    default: q = GameApp::CommonRes->GetQuad("black"); break;
+  case Constants::MTG_COLOR_GREEN: q = cache.getQuad("sets/green.jpg");break;
+    case Constants::MTG_COLOR_BLUE : q = cache.getQuad("sets/blue.jpg");break;
+    case Constants::MTG_COLOR_RED  : q = cache.getQuad("sets/red.jpg");break;
+    case Constants::MTG_COLOR_BLACK: q = cache.getQuad("sets/black.jpg");break;
+    case Constants::MTG_COLOR_WHITE: q = cache.getQuad("sets/white.jpg");break;
+    default: q = cache.getQuad("sets/black.jpg");break;
     }
   float scale = pos.actZ * 250 / q->mHeight;
   q->SetColor(ARGB((int)pos.actA,255,255,255));

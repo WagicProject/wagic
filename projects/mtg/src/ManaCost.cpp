@@ -381,7 +381,7 @@ void ManaCost::Dump(){
     }
   }
 
-  for (int i=0; i< nbhybrids; i++){
+  for (unsigned int i=0; i< nbhybrids; i++){
       ManaCostHybrid * h = hybrids[i];
 
       sprintf(buf, "H:{%c:%i}/{%c:%i}", Constants::MTGColorChars[h->color1], h->value1, Constants::MTGColorChars[h->color2], h->value2);
