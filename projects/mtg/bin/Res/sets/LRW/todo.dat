@@ -1005,6 +1005,19 @@ subtype=Elf Archer
 toughness=*
 [/card]
 [card]
+###CODED WRONG! THIS CANNOT BE CODED RIGHT NOW!!!!
+text=Whenever a Merfolk you control becomes tapped, you may gain 1 life.
+id=139406
+name=Judge of Currents
+auto=aslongas(merfolk[tapped]|myinplay) may life:1 controller
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Merfolk Wizard
+toughness=1
+[/card]
+[card]
 text=Flying     Whenever Kinsbaile Balloonist attacks, you may have target creature gain flying until end of turn.
 id=139403
 name=Kinsbaile Balloonist
@@ -1155,6 +1168,21 @@ mana={3}{U}
 power=2
 subtype=Merfolk Wizard
 toughness=3
+[/card]
+[card]
+###CODED WRONG! THIS CANNOT BE CODED RIGHT NOW!!!!
+text=Other Merfolk creatures you control get +1/+1.     Whenever you play a Merfolk spell, you may tap or untap target permanent.
+auto=lord(merfolk|myinplay) 1/1 other
+auto=@movedTo(merfolk|mystack):may tap target(*)
+auto=@movedTo(merfolk|mystack):may untap target(*)
+id=139702
+name=Merrow Reejerey
+rarity=U
+type=Creature
+mana={2}{U}
+power=2
+subtype=Merfolk Soldier
+toughness=2
 [/card]
 [card]
 text=Whenever a nontoken creature you control attacks, you may pay {W}. If you do, put a 1/1 white Kithkin Soldier creature token into play tapped and attacking.

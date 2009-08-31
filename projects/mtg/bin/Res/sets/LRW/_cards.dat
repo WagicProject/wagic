@@ -523,18 +523,6 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
-text=Whenever a Merfolk you control becomes tapped, you may gain 1 life.
-id=139406
-name=Judge of Currents
-auto=aslongas(merfolk[tapped]|myinplay) may life:1 controller
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Merfolk Wizard
-toughness=1
-[/card]
-[card]
 text=When Kinsbaile Skirmisher comes into play, target creature gets +1/+1 until end of turn.
 auto=1/1 target(creature)
 id=143018
@@ -585,7 +573,7 @@ subtype=Kithkin Scout
 toughness=2
 [/card]
 [card]
-text=First strike     Lifelink (Whenever this creature deals damage, you gain that much life.)
+text=First strike   Lifelink (Whenever this creature deals damage, you gain that much life.)
 abilities=first strike,lifelink
 id=139715
 name=Knight of Meadowgrain
@@ -655,20 +643,6 @@ type=Creature
 mana={2}{B}
 power=2
 subtype=Goblin Shaman
-toughness=2
-[/card]
-[card]
-text=Other Merfolk creatures you control get +1/+1.     Whenever you play a Merfolk spell, you may tap or untap target permanent.
-auto=lord(merfolk|myinplay) 1/1 other
-auto=@movedTo(merfolk|mystack):may tap target(*)
-auto=@movedTo(merfolk|mystack):may untap target(*)
-id=139702
-name=Merrow Reejerey
-rarity=U
-type=Creature
-mana={2}{U}
-power=2
-subtype=Merfolk Soldier
 toughness=2
 [/card]
 [card]
