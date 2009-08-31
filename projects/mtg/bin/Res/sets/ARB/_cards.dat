@@ -30,7 +30,7 @@ subtype=Rhino Soldier
 power=3
 toughness=3
 text=Sacrifice Dauntless Escort: Creatures you control are indestructible this turn.
-auto={S}:lord(creature|mybattlefield) indestructible
+auto={S}:all(creature|mybattlefield) indestructible
 rarity=R
 [/card]
 [card]
