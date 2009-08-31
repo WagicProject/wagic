@@ -23,6 +23,7 @@ class GuiCombat : public GuiLayer
   void removeOne(DefenserDamaged* blocker, CombatStep);
   void autoaffectDamage(AttackerDamaged* attacker, CombatStep);
   void remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after);
+  void resolve();
 
  public:
   GuiCombat(GameObserver* go);

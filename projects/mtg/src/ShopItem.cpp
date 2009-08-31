@@ -296,7 +296,6 @@ void ShopItems::Render(){
   }
   char credits[512];
   sprintf(credits,_("credits: %i").c_str(), playerdata->credits);
-  unsigned int len = 4 + mFont->GetStringWidth(credits);
   mFont->SetColor(ARGB(200,0,0,0));
   mFont->DrawString(credits, 5, SCREEN_HEIGHT - 13);
   mFont->SetColor(ARGB(255,255,255,255));

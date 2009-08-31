@@ -193,7 +193,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
 	battleField.removeAttacker(event->card);
       Replace();
     }
-  else if (WEventCreatureBlocker* event = dynamic_cast<WEventCreatureBlocker*>(e))
+  else if (dynamic_cast<WEventCreatureBlocker*>(e))
     {
       Replace();
     }

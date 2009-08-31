@@ -52,6 +52,17 @@ class DamageStack :public GuiLayer, public Interruptible{
   DamageStack(GameObserver* game);
 };
 
+class StableDamageStack : public Interruptible {
+ protected:
+  vector<Damage*> damage;
+
+ public:
+  int resolve();
+  void Render();
+  void Add(Damage*);
+  virtual ostream& toString(ostream& out) const;
+};
+
 
 
 #endif

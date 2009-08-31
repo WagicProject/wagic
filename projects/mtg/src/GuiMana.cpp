@@ -168,7 +168,7 @@ int GuiMana::receiveEventMinus(WEvent* e)
 	if ((event->color == (*it)->color) && (ManaIcon::ALIVE == (*it)->mode)) { (*it)->Wither(); return 1; }
       return 1;
     }
-  else if (WEventEmptyManaPool *event = dynamic_cast<WEventEmptyManaPool*>(e))
+  else if (dynamic_cast<WEventEmptyManaPool*>(e))
     {
       for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
 	      (*it)->Drop(); //TODO: split according to which manapool was emptied...

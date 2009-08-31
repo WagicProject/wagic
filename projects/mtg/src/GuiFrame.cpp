@@ -52,7 +52,7 @@ void GuiFrame::Render()
   renderer->RenderQuad(gold1, -sized, 16);
   renderer->RenderQuad(gold1, -sized + 479, 16);
 
-  goldGlow->SetColor(ARGB(100+(rand()%50), 255, 255, 255));
+  goldGlow->SetColor(ARGB((100+(rand()%50)), 255, 255, 255));
   renderer->RenderQuad(goldGlow, -sized, 9);
   renderer->RenderQuad(goldGlow, -sized + 480, 9);
 

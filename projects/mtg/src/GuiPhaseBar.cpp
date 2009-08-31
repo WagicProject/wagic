@@ -2,6 +2,7 @@
 #include "../include/GameApp.h"
 #include "../include/GuiPhaseBar.h"
 
+/*
 static int colors[] =
   {
     ARGB(255, 255, 255, 255),
@@ -17,6 +18,7 @@ static int colors[] =
     ARGB(255, 255, 255, 255),
     ARGB(255, 255, 255, 255)
   };
+*/
 
 GuiPhaseBar::GuiPhaseBar() : phase(GameObserver::GetInstance()->phaseRing->getCurrentPhase()), angle(0.0f)
 {

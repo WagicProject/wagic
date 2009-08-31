@@ -48,8 +48,6 @@ void CardGui::Render()
     renderer->RenderQuad(quad, actX, actY, actT, scale, scale);
   }
   else {
-    int color = card->getColor();
-    //MTGCard * mtgcard = card->model;
     const float scale = actZ;
 
     renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
@@ -95,11 +93,10 @@ void CardGui::Render()
 }
 
 JQuad * CardGui::alternateThumbQuad(MTGCard * card){
-  JRenderer * renderer = JRenderer::GetInstance();
   JQuad * q;
   switch(card->getColor())
     {
-  case Constants::MTG_COLOR_GREEN: q = cache.getQuad("sets/green_thumb.jpg");break;
+    case Constants::MTG_COLOR_GREEN: q = cache.getQuad("sets/green_thumb.jpg");break;
     case Constants::MTG_COLOR_BLUE : q = cache.getQuad("sets/blue_thumb.jpg");break;
     case Constants::MTG_COLOR_RED  : q = cache.getQuad("sets/red_thumb.jpg");break;
     case Constants::MTG_COLOR_BLACK: q = cache.getQuad("sets/black_thumb.jpg");break;

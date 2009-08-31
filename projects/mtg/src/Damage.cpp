@@ -130,3 +130,33 @@ ostream& DamageStack::toString(ostream& out) const
 {
   return (out << "DamageStack ::: currentState : " << currentState);
 }
+
+
+int StableDamageStack::resolve()
+{
+  for (vector<Damage*>::iterator it = damage.begin(); it != damage.end(); ++it)
+    if ((*it)->state == NOT_RESOLVED) (*it)->resolve();
+  for (vector<Damage*>::iterator it = damage.begin(); it != damage.end(); ++it)
+    if ((*it)->state == RESOLVED_OK) (*it)->target->afterDamage();
+  return 1;
+}
+
+void StableDamageStack::Render(){
+  int currenty = y;
+  for (vector<Damage*>::iterator it = damage.begin(); it != damage.end(); ++it)
+    {
+      if ((*it)->state == NOT_RESOLVED){
+        (*it)->x = x;
+        (*it)->y = currenty;
+        currenty += (*it)->mHeight;
+        (*it)->Render();
+      }
+    }
+}
+
+void StableDamageStack::Add(Damage* d) { damage.push_back(d); }
+
+ostream& StableDamageStack::toString(ostream& out) const
+{
+  return (out << "StableDamageStack ::: size : " << damage.size());
+}

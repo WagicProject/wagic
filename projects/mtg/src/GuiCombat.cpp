@@ -141,8 +141,8 @@ bool GuiCombat::CheckUserInput(u32 key)
         switch (step)
         {
         case ORDER        : go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); break;
-        case FIRST_STRIKE : go->receiveEvent(NEW WEventCombatStepChange(DAMAGE)); break;
-        case DAMAGE       : cursor_pos = NONE; go->userRequestNextGamePhase(); break;
+        case FIRST_STRIKE : resolve(); go->receiveEvent(NEW WEventCombatStepChange(DAMAGE)); break;
+        case DAMAGE       : resolve(); cursor_pos = NONE; go->userRequestNextGamePhase(); break;
         }
       break;
     case PSP_CTRL_TRIANGLE:
@@ -240,6 +240,20 @@ void GuiCombat::Render()
     }
 }
 
+void GuiCombat::resolve()
+{
+  StableDamageStack stack;
+  for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
+    {
+      for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
+        for (vector<Damage>::iterator d = (*q)->damages.begin(); d != (*q)->damages.end(); ++d)
+          stack.Add(&(*d));
+      for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
+        stack.Add(&(*d));
+    }
+  stack.resolve();
+}
+
 int GuiCombat::receiveEventPlus(WEvent* e)
 {
   if (WEventCreatureAttacker* event = dynamic_cast<WEventCreatureAttacker*>(e))
@@ -318,7 +332,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
     case ORDER:
       {
         if (ORDER == step) return 0; // Why do I take this twice ? >.>
-	if (go->currentPlayer->isAI()) { go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); return 1; }
+	if (!go->currentPlayer->displayStack()) { go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); return 1; }
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
           {
             (*it)->show = (1 < (*it)->blockers.size());
@@ -351,9 +365,8 @@ int GuiCombat::receiveEventMinus(WEvent* e)
       go->receiveEvent(NEW WEventCombatStepChange(DAMAGE));
       return 1;
     case DAMAGE: DAMAGE:
-      if (go->currentPlayer->isAI()) { go->userRequestNextGamePhase(); return 1; }
+      if (!go->currentPlayer->displayStack()) { go->userRequestNextGamePhase(); return 1; }
       step = event->step;
-      cursor_pos = ATK;
       for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
         autoaffectDamage(*attacker, step);
       for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -366,9 +379,11 @@ int GuiCombat::receiveEventMinus(WEvent* e)
           active->zoom = 2.7;
           activeAtk = static_cast<AttackerDamaged*>(active);
           remaskBlkViews(NULL, static_cast<AttackerDamaged*>(active));
+          cursor_pos = ATK;
         }
       else
         {
+          resolve();
           if (FIRST_STRIKE == step) go->receiveEvent(NEW WEventCombatStepChange(DAMAGE));
           else go->userRequestNextGamePhase();
         }

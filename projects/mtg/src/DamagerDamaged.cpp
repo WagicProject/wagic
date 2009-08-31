@@ -28,7 +28,7 @@ void DamagerDamaged::addDamage(int damage, DamagerDamaged* source){
       if (0 >= i->damage) damages.erase(i);
       return;
     }
-  if (0 < damage) damages.push_back(Damage(source->card, this->card,damage));
+  if (0 < damage) damages.push_back(Damage(source->card, card, damage));
   return;
 }
 
