@@ -148,6 +148,7 @@ class ListMaintainerAbility:public MTGAbility{
  ListMaintainerAbility(int _id, MTGCardInstance *_source,Damageable * _target):MTGAbility(_id, _source, _target){};
   virtual void Update(float dt);
   void updateTargets();
+  virtual bool canTarget(MTGGameZone * zone);
   virtual int canBeInList(MTGCardInstance * card) = 0;
   virtual int added(MTGCardInstance * card) = 0;
   virtual int removed(MTGCardInstance * card) = 0;
@@ -202,8 +203,8 @@ class AbilityFactory{
   int parsePowerToughness(string s, int *power, int *toughness);
   TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0);
-  int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY);
  public:
+  int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY);
   int magicText(int id, Spell * spell, MTGCardInstance * card = NULL);
   static int computeX(Spell * spell, MTGCardInstance * card);
   int destroyAllInPlay(TargetChooser * tc, int bury = 0);

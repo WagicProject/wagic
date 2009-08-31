@@ -281,10 +281,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\DamageResolverLayer.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\DeckDataWrapper.cpp"
 				>
 			</File>
@@ -655,10 +651,6 @@
 			</File>
 			<File
 				RelativePath=".\include\DamagerDamaged.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\DamageResolverLayer.h"
 				>
 			</File>
 			<File

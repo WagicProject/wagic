@@ -181,7 +181,8 @@ rarity=C
 [card]
 text=Flash (You may play this spell any time you could play an instant.)  Enchant creature  Enchanted creature gets -2/-1.
 target=creature
-auto=:-2/-1
+auto=-2/-1
+abilities=flash
 id=108892
 name=Feebleness
 rarity=C

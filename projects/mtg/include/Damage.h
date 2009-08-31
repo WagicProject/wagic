@@ -48,8 +48,6 @@ class DamageStack :public GuiLayer, public Interruptible{
  public:
   int resolve();
   void Render();
-  int CombatDamages();//Deprecated ?
-  int CombatDamages(int strike);
   virtual ostream& toString(ostream& out) const;
   DamageStack(GameObserver* game);
 };

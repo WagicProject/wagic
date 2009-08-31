@@ -98,51 +98,6 @@ DamageStack::DamageStack(GameObserver* game) : game(game){
   type = ACTION_DAMAGES;
 }
 
-int DamageStack::CombatDamages(){
-  CombatDamages(1);
-  CombatDamages(0);
-  return 1;
-}
-
-int DamageStack::CombatDamages(int strike){
-  mHeight = 0;
-  MTGInPlay * attackers = game->currentPlayer->game->inPlay;
-  MTGInPlay * defensers = game->opponent()->game->inPlay;
-
-  MTGCardInstance * attacker = attackers->getNextAttacker(NULL);
-  while (attacker != NULL){
-    int nbdefensers = defensers->nbDefensers(attacker);
-    if ((!strike && !attacker->has(Constants::FIRSTSTRIKE)) || (strike && attacker->has(Constants::FIRSTSTRIKE)) || attacker->has(Constants::DOUBLESTRIKE)){
-      if (nbdefensers == 0){
-	Damage * damage = NEW Damage(attacker, game->opponent());
-	Add(damage);
-      }else if (nbdefensers == 1){
-	Damage * damage = NEW Damage(attacker, defensers->getNextDefenser(NULL, attacker));
-	Add(damage);
-      }else{
-	//TODO Fetch list of defensers and allow user to choose targets
-	Damage * damage = NEW Damage(attacker, defensers->getNextDefenser(NULL, attacker));
-	Add(damage);
-      }
-    }
-    MTGCardInstance * defenser = defensers->getNextDefenser(NULL, attacker);
-    while (defenser != NULL){
-      if ((!strike && !defenser->has(Constants::FIRSTSTRIKE)) || (strike && defenser->has(Constants::FIRSTSTRIKE)) || defenser->has(Constants::DOUBLESTRIKE)){
-	Damage * damage = NEW Damage(defenser, attacker);
-	Add(damage);
-      }
-      defenser = defensers->getNextDefenser(defenser, attacker);
-    }
-    attacker = attackers->getNextAttacker(attacker);
-  }
-
-  for (int i = 0; i < mCount; i++){
-    Damage * damage = (Damage*)mObjects[i];
-    mHeight += damage->mHeight;
-  }
-
-  return mCount;
-}
 
 int DamageStack::resolve(){
   for (int i = mCount-1; i>= 0; i--){

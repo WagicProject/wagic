@@ -40,6 +40,7 @@ void CardGui::Render()
   TargetChooser * tc = NULL;
   if (game) tc = game->getCurrentTargetChooser();
 
+  quad = cache.getQuad(card);
   if (quad) {
     const float scale = actZ * 40 / quad->mHeight;
     renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);

@@ -2081,6 +2081,14 @@ ostream& InstantAbility::toString(ostream& out) const
   return MTGAbility::toString(out) << ")";
 }
 
+bool ListMaintainerAbility::canTarget(MTGGameZone * zone){
+  if (tc) return tc->targetsZone(zone);
+  for (int i = 0; i < 2; i++){
+    Player * p = game->players[i];
+    if (zone == p->game->inPlay) return true;
+  }
+  return false;
+}
 
 void ListMaintainerAbility::updateTargets(){
   //remove invalid ones
@@ -2104,10 +2112,12 @@ void ListMaintainerAbility::updateTargets(){
     MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand,p->game->library};
     for (int k = 0; k < 4; k++){
       MTGGameZone * zone = zones[k];
-      for (int j = 0; j < zone->nb_cards; j++){
-	      if (canBeInList(zone->cards[j])){
-	        if(cards.find(zone->cards[j]) == cards.end()){
-	          temp[zone->cards[j]] = true;
+      if (canTarget(zone)){
+        for (int j = 0; j < zone->nb_cards; j++){
+	        if (canBeInList(zone->cards[j])){
+	          if(cards.find(zone->cards[j]) == cards.end()){
+	            temp[zone->cards[j]] = true;
+            }
           }
         }
       }

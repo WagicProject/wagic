@@ -171,8 +171,6 @@ class ActionStack :public GuiLayer{
   virtual void Render();
   ActionStack(GameObserver* game);
   int resolve();
-  int CombatDamages();
-  int CombatDamages(int firststrike);
   int has(Interruptible * action);
   int has(MTGAbility * ability);
 #if defined (WIN32) || defined (LINUX)

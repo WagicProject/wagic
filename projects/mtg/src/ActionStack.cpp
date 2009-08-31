@@ -743,23 +743,6 @@ bool ActionStack::CheckUserInput(u32 key){
 
 
 
-
-int ActionStack::CombatDamages(){
-  CombatDamages(1);
-  CombatDamages(0);
-  return 1;
-}
-
-int ActionStack::CombatDamages(int strike){
-  DamageStack * damages = NEW DamageStack(game);
-  int damageitems = damages->CombatDamages(strike);
-  if (damageitems)
-    addAction(damages);
-  else
-    SAFE_DELETE(damages);
-  return damageitems;
-}
-
 //Cleans history of last turn
 int ActionStack::garbageCollect(){
 std::vector<JGuiObject *>::iterator iter = mObjects.begin() ;

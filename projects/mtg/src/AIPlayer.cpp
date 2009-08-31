@@ -38,7 +38,11 @@ AIPlayer::~AIPlayer(){
     stats->save();
     SAFE_DELETE(stats);
   }
-  //TODO delete clickstream!
+  while(!clickstream.empty()){
+    AIAction * action = clickstream.front();
+    SAFE_DELETE(action);
+    clickstream.pop();
+  }
 }
 MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random){
   for (int i = 0; i < game->hand->nb_cards; i++){
@@ -189,7 +193,13 @@ int AIAction::getEfficiency(){
       break;
     default:
       if (target){
-        efficiency = rand() % 5; //Small percentage of chance for other abilities
+        AbilityFactory af;
+        int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
+        if ((suggestion == BAKA_EFFECT_BAD && p==target->controller()) ||(suggestion == BAKA_EFFECT_GOOD && p!=target->controller())){
+          efficiency =0;
+        }else{
+          efficiency = rand() % 5; //Small percentage of chance for unknown abilities
+        }
       }else{
         efficiency = rand() % 10;
       }
