@@ -785,7 +785,7 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
 //Some basic functionalities that can be added automatically in the text file
 /*
  * Several objects are computed from the text string, and have a direct influence on what action we should take
- * (direct impact on the game such as draw a card immediately, or create a new GameObserver and add it to the Abilities,etc..)
+ * (direct impact on the game such as draw a card immediately, or create a New GameObserver and add it to the Abilities,etc..)
  * These objects are:
  *   - trigger (if there is an "@" in the string, this is a triggered ability)
  *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
@@ -1742,7 +1742,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
   /* We want to get rid of these basicAbility things.
-   * basicAbilities themselves are alright, but creating new object depending on them is dangerous
+   * basicAbilities themselves are alright, but creating New object depending on them is dangerous
    * The main reason is that classes that add an ability to a card do NOT create these objects, and therefore do NOT
    * Work.
    * For example, setting EXALTED for a creature is not enough right now...
@@ -2106,7 +2106,7 @@ void ListMaintainerAbility::updateTargets(){
 
   temp.clear();
 
-  //add new valid ones
+  //add New valid ones
   for (int i = 0; i < 2; i++){
     Player * p = game->players[i];
     MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand,p->game->library};

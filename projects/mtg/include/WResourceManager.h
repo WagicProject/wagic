@@ -43,7 +43,7 @@ public:
    JMusic * ssLoadMusic(const char *fileName);
    JSample * ssLoadSample(const char *fileName); 
 
-  //Our new redirect system.
+  //Our New redirect system.
   string graphicsFile(const string filename, const string specific = "", bool bFont = false);
   string musicFile(const string filename, const string specific = "");
   string sfxFile(const string filename, const string specific = "");

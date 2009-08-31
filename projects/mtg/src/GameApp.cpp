@@ -164,7 +164,7 @@ void GameApp::Create()
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
 
-  //  effect = new CardEffect();
+  //  effect = NEW CardEffect();
 
   char buf[512];
   sprintf(buf, "size of MTGCard : %i\n" , sizeof(MTGCard));

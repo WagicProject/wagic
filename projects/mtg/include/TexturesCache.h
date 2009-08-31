@@ -23,7 +23,6 @@ class CachedTexture{
   JQuad* quad;
  public:
   int lastTime;
-  int type;
   int nbpixels;
 
 

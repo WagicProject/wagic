@@ -1,7 +1,6 @@
 #include "../include/config.h"
 #include "../include/AIMomirPlayer.h"
 #include "../include/CardDescriptor.h"
-#include "../include/DamageResolverLayer.h"
 #include "../include/DamagerDamaged.h"
 #include "../include/AIStats.h"
 #include "../include/AllAbilities.h"

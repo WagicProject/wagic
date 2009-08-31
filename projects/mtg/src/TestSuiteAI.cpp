@@ -3,7 +3,6 @@
 #include "../include/MTGAbility.h"
 #include "../include/MTGRules.h"
 #include "../include/ActionLayer.h"
-#include "../include/DamageResolverLayer.h"
 
 #include <string>
 using std::string;

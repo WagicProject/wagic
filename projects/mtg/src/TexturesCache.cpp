@@ -114,7 +114,7 @@ CachedTexture::CachedTexture(string filename){
     if (fileExists(filename.c_str())) init(filename);
 }
 
-CachedTexture::CachedTexture(MTGCard * card, int _type){
+CachedTexture::CachedTexture(MTGCard * card, int type){
   LOG("==Creating CardTexture Object");
   JFileSystem* fs = JFileSystem::GetInstance();
   char filename[100];

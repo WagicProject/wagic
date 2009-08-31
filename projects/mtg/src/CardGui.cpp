@@ -13,8 +13,8 @@ const float CardGui::Height = 40.0;
 const float CardGui::BigWidth = 200.0;
 const float CardGui::BigHeight = 285.0;
 
-CardGui::CardGui(MTGCardInstance* card, float x, float y) : PlayGuiObject(Height, x, y, false), quad(cache.getQuad(card)), card(card) {}
-CardGui::CardGui(MTGCardInstance* card, const Pos& ref) : PlayGuiObject(Height, ref, false), quad(cache.getQuad(card)), card(card) {}
+CardGui::CardGui(MTGCardInstance* card, float x, float y) : PlayGuiObject(Height, x, y, false), card(card) {}
+CardGui::CardGui(MTGCardInstance* card, const Pos& ref) : PlayGuiObject(Height, ref, false), card(card) {}
 
 CardView::CardView(MTGCardInstance* card, float x, float y) : CardGui(card, x, y) {
   card->view = this;
@@ -40,7 +40,7 @@ void CardGui::Render()
   TargetChooser * tc = NULL;
   if (game) tc = game->getCurrentTargetChooser();
 
-  quad = cache.getQuad(card);
+  JQuad * quad = cache.getThumb(card);
   if (quad) {
     const float scale = actZ * 40 / quad->mHeight;
     renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
@@ -220,6 +220,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 void CardGui::RenderBig(const Pos& pos){
   JRenderer * renderer = JRenderer::GetInstance();
 
+  JQuad * quad = cache.getQuad(card);
   if (quad){
     quad->SetColor(ARGB((int)pos.actA,255,255,255));
     float scale = pos.actZ * 257.f / quad->mHeight;
@@ -252,7 +253,7 @@ ostream& CardView::toString(ostream& out) const
 {
   return (CardGui::toString(out) << " : CardView ::: card : " << card
           << ";  actX,actY : " << actX << "," << actY << "; t : " << t
-          << " ; actT : " << actT << " ; quad : " << quad);
+          << " ; actT : " << actT);
 }
 ostream& CardGui::toString(ostream& out) const
 {

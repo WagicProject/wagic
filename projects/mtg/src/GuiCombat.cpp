@@ -23,12 +23,14 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), acti
           GameApp::CommonRes->CreateQuad("OK", "Ok.png", 0, 0, 56, 45);
         }
       ok_quad = GameApp::CommonRes->GetQuad("OK");
-      ok_quad->SetHotSpot(28, 22);
+      if (ok_quad) ok_quad->SetHotSpot(28, 22);
     }
 }
 
 GuiCombat::~GuiCombat()
 {
+  for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
+    delete (*it);
 }
 
 template <typename T>

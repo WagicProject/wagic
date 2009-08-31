@@ -5,7 +5,6 @@
 #include "../include/ConstraintResolver.h"
 #include "../include/CardGui.h"
 #include "../include/Damage.h"
-#include "../include/DamageResolverLayer.h"
 #include "../include/ExtraCost.h"
 
 #include <JRenderer.h>

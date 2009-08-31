@@ -25,8 +25,8 @@ type=Sorcery
 [card]
 text=At the beginning of each player's upkeep, Ancient Runes deals damage to that player equal to the number of artifacts he or she controls.
 id=4801
-auto=@each upkeep:foreach(artifact|myinplay) damage:1 controller
-auto=@each upkeep:foreach(artifact|opponentinplay) damage:1 opponent
+auto=@each my upkeep:foreach(artifact|myinplay) damage:1 controller
+auto=@each opponent upkeep:foreach(artifact|opponentinplay) damage:1 opponent
 name=Ancient Runes
 rarity=U
 type=Enchantment

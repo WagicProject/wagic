@@ -14,7 +14,6 @@ class PlayGuiObject;
 
 struct CardGui : public PlayGuiObject {
  protected:
-  JQuad* quad;
 
  public:
   static const float Width;

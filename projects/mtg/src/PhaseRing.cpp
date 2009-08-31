@@ -5,7 +5,7 @@
 #include "../include/WEvent.h"
 
 
-/* Creates a new phase ring with the default rules */
+/* Creates a New phase ring with the default rules */
 PhaseRing::PhaseRing(Player* players[], int nbPlayers){
   for (int i = 0; i < nbPlayers; i++){
     for (int j = 0; j < Constants::NB_MTG_PHASES; j++){

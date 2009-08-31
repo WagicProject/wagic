@@ -187,7 +187,7 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
   else if(controllerId == 103)
   switch (controlId){
   case 1:
-    //Load the new profile.
+    //Load the New profile.
     optionsTabs->acceptSubmode();
     optionsTabs->reloadValues();
     //Reset the current settings to those of the profile...
