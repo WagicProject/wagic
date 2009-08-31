@@ -1,8 +1,6 @@
 #include "../include/config.h"
 #include "../include/AIPlayer.h"
 #include "../include/CardDescriptor.h"
-#include "../include/DamageResolverLayer.h"
-#include "../include/DamagerDamaged.h"
 #include "../include/AIStats.h"
 #include "../include/AllAbilities.h"
 #include "../include/ExtraCost.h"

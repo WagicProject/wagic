@@ -33,8 +33,8 @@ class Damage: public Interruptible {
   Damageable * target;
   int damage;
   void Render();
-  Damage(int id, MTGCardInstance* source, Damageable * target);
-  Damage(int id, MTGCardInstance* source, Damageable * target, int damage);
+  Damage(MTGCardInstance* source, Damageable * target);
+  Damage(MTGCardInstance* source, Damageable * target, int damage);
   int resolve();
   virtual ostream& toString(ostream& out) const;
 };

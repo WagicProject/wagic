@@ -106,11 +106,12 @@ DamagerDamaged * DamageResolverLayer::addIfNotExists(MTGCardInstance * card, Pla
     DamagerDamaged * item = (DamagerDamaged *)mObjects[i];
     if (item->card == card) return item;
   }
-  //  CardGui * cardg = game->mLayers->playLayer()->getByCard(card);
-  DamagerDamaged * item = NEW DamagerDamaged(card, selecter, mCount == 0);
-  //  Add(NEW TransientCardView(card->gui));
-  mCurr = 0;
-  return item;
+  // CardGui * cardg = game->mLayers->playLayer()->getByCard(card);
+  // DamagerDamaged * item = NEW DamagerDamaged(card, selecter, mCount == 0);
+  // Add(NEW TransientCardView(card->gui));
+  // mCurr = 0;
+  // return item;
+  return NULL;
 }
 
 void DamageResolverLayer::updateAllCoordinates(){
@@ -303,6 +304,7 @@ int DamageResolverLayer::trampleDamage(){
 
 int DamageResolverLayer::resolveDamages(){
   trampleDamage();
+  /*
   for (int i = 0; i < mCount ; i++){
     DamagerDamaged * current = (DamagerDamaged *) mObjects[i];
     for (int j =0; j < current->mCount ; j++){
@@ -310,6 +312,7 @@ int DamageResolverLayer::resolveDamages(){
       damageStack->Add(damage);
     }
   }
+  */
   game->mLayers->stackLayer()->addAction(damageStack);
   game->mLayers->stackLayer()->resolve(); //Wagic 2010
   remainingDamageSteps--;
@@ -525,10 +528,10 @@ void DamageResolverLayer::Render(){
     mFont->DrawString(_("Current Damager:").c_str(), 10, 5);
   }
   for (int i = 0; i < mCount; i++){
-    ((DamagerDamaged *)mObjects[i])->Render(currentChoosingPlayer);
+    ((DamagerDamaged *)mObjects[i])->Render();
   }
   if (mObjects[mCurr]){
-    ((DamagerDamaged *)mObjects[mCurr])->Render(currentChoosingPlayer);
+    ((DamagerDamaged *)mObjects[mCurr])->Render();
   }
 
 

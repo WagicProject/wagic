@@ -8,6 +8,7 @@ struct Pos {
   float x, y, zoom, t, alpha;
   Pos(float, float, float, float, float);
   virtual void Update(float dt);
+  void UpdateNow();
   virtual void Render();
   void Render(JQuad*);
 };

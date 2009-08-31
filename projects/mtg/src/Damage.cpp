@@ -6,11 +6,11 @@
 #include "../include/Translate.h"
 #include "../include/TexturesCache.h"
 
-Damage::Damage(int id, MTGCardInstance * source, Damageable * target) {
+Damage::Damage(MTGCardInstance * source, Damageable * target) {
   init(source, target, source->getPower());
 }
 
-Damage::Damage(int id, MTGCardInstance * source, Damageable * target, int damage) {
+Damage::Damage(MTGCardInstance * source, Damageable * target, int damage) {
   init(source, target, damage);
 }
 
@@ -114,21 +114,21 @@ int DamageStack::CombatDamages(int strike){
     int nbdefensers = defensers->nbDefensers(attacker);
     if ((!strike && !attacker->has(Constants::FIRSTSTRIKE)) || (strike && attacker->has(Constants::FIRSTSTRIKE)) || attacker->has(Constants::DOUBLESTRIKE)){
       if (nbdefensers == 0){
-	Damage * damage = NEW Damage (mCount, attacker, game->opponent());
+	Damage * damage = NEW Damage(attacker, game->opponent());
 	Add(damage);
       }else if (nbdefensers == 1){
-	Damage * damage = NEW Damage (mCount, attacker, defensers->getNextDefenser(NULL, attacker));
+	Damage * damage = NEW Damage(attacker, defensers->getNextDefenser(NULL, attacker));
 	Add(damage);
       }else{
 	//TODO Fetch list of defensers and allow user to choose targets
-	Damage * damage = NEW Damage (mCount, attacker, defensers->getNextDefenser(NULL, attacker));
+	Damage * damage = NEW Damage(attacker, defensers->getNextDefenser(NULL, attacker));
 	Add(damage);
       }
     }
     MTGCardInstance * defenser = defensers->getNextDefenser(NULL, attacker);
     while (defenser != NULL){
       if ((!strike && !defenser->has(Constants::FIRSTSTRIKE)) || (strike && defenser->has(Constants::FIRSTSTRIKE)) || defenser->has(Constants::DOUBLESTRIKE)){
-	Damage * damage = NEW Damage (mCount,defenser, attacker);
+	Damage * damage = NEW Damage(defenser, attacker);
 	Add(damage);
       }
       defenser = defensers->getNextDefenser(defenser, attacker);

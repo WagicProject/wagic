@@ -82,6 +82,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
   MTGCardInstance * getNextDefenser(MTGCardInstance * previous=NULL);
   int nbOpponents();
+  int stepPower(CombatStep step);
 
   int afterDamage();
 

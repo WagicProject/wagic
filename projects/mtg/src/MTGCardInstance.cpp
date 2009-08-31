@@ -630,3 +630,15 @@ JSample * MTGCardInstance::getSample(){
 
   return NULL;
 }
+
+int MTGCardInstance::stepPower(CombatStep step)
+{
+  switch (step)
+    {
+    case FIRST_STRIKE :
+      if (has(Constants::FIRSTSTRIKE) || has(Constants::DOUBLESTRIKE)) return MAX(0, power); else return 0;
+    case DAMAGE :
+      if (has(Constants::FIRSTSTRIKE)) return 0; else return MAX(0, power);
+    default : return 0;
+    }
+}

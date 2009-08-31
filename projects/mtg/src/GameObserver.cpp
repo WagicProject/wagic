@@ -88,7 +88,7 @@ void GameObserver::nextGamePhase(){
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
   if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
     blockersAssigned = 1;
-    receiveEvent(NEW WEventBlockersAssigned());
+    receiveEvent(NEW WEventCombatStepChange(ORDER));
     /*
     if (!mLayers->combatLayer()->autoOrderBlockers()){
       OutputDebugString("Player has To choose ordering!");
@@ -156,7 +156,7 @@ void GameObserver::userRequestNextGamePhase(){
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
   if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
     blockersAssigned = 1;
-    receiveEvent(NEW WEventBlockersAssigned());
+    receiveEvent(NEW WEventCombatStepChange(ORDER));
     /*
     if (!mLayers->combatLayer()->autoOrderBlockers()){
       OutputDebugString("Player has To choose ordering!");

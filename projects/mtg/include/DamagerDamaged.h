@@ -1,27 +1,35 @@
 #ifndef _DAMAGERDAMAGED_H_
 #define _DAMAGERDAMAGED_H_
 
-#include "../include/MTGCardInstance.h"
+#include "MTGCardInstance.h"
+#include "CardGui.h"
 
 class Player;
 
-struct DamagerDamaged {
-  MTGCardInstance* card;
+struct DamagerDamaged : TransientCardView {
+  bool show;
   Player * damageSelecter;
-  int mCount;
-  Damage * damages[10];
+  vector<Damage> damages;
   int damageToDeal;
 
-  int dealOneDamage(DamagerDamaged * target);
-  int addDamage(int damage, DamagerDamaged * source);
-  int removeDamagesTo(DamagerDamaged * target);
-  int removeDamagesFrom(DamagerDamaged * source);
+  void addDamage(int damage, DamagerDamaged* source);
+  int removeDamagesTo(DamagerDamaged* target);
+  int removeDamagesFrom(DamagerDamaged* source);
+  void clearDamage();
   int sumDamages();
-  int hasLethalDamage();
-  DamagerDamaged(MTGCardInstance* card, Player * _damageSelecter, bool _hasFocus);
+  bool hasLethalDamage();
+  DamagerDamaged(MTGCardInstance* card, float x, float y, bool show, Player* damageSelecter);
+  DamagerDamaged(MTGCardInstance* card, const Pos& ref, bool show, Player* damageSelecter);
+
   ~DamagerDamaged();
-  void Render(Player * currentPlayer);
+  void Render(CombatStep mode);
 };
 
+typedef DamagerDamaged DefenserDamaged;
+struct AttackerDamaged : DamagerDamaged {
+  vector<DefenserDamaged*> blockers;
+  AttackerDamaged(MTGCardInstance* card, float x, float y, bool show, Player* damageSelecter);
+  AttackerDamaged(MTGCardInstance* card, const Pos& ref, bool show, Player* damageSelecter);
+};
 
 #endif

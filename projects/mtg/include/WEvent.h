@@ -1,6 +1,8 @@
 #ifndef _WEVENT_H_
 #define _WEVENT_H_
 
+#include "PhaseRing.h"
+
 class MTGCardInstance;
 class MTGGameZone;
 class Damage;
@@ -82,9 +84,13 @@ struct WEventCreatureBlockerRank : public WEventCardUpdate {
   WEventCreatureBlockerRank(MTGCardInstance * card,MTGCardInstance * exchangeWith, MTGCardInstance * attacker);
 };
 
-//Event when blockers are assigned and need to be reordered
-struct WEventBlockersAssigned : public WEvent {
+//Event when a combat phase step ends
+struct WEventCombatStepChange : public WEvent
+{
+  CombatStep step;
+  WEventCombatStepChange(CombatStep);
 };
+
 
 //Event when a mana is engaged
 //color : color

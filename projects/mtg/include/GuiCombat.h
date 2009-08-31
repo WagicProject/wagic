@@ -5,22 +5,24 @@
 #include "WEvent.h"
 #include "CardGui.h"
 #include "MTGCardInstance.h"
+#include "DamagerDamaged.h"
 
 class GuiCombat : public GuiLayer
 {
  protected:
   GameObserver* go;
-  TransientCardView* active, *activeAtk;
-  JQuad* ok_quad;
+  DamagerDamaged* active;
+  AttackerDamaged* activeAtk;
+  static JQuad* ok_quad;
   Pos ok;
-  vector<MTGCardInstance*> attackers;
-  TransientCardView* current;
+  vector<AttackerDamaged*> attackers;
+  DamagerDamaged* current;
   enum { BLK, ATK, OK, NONE } cursor_pos;
-
-  vector<TransientCardView*> atkViews;
-  vector<TransientCardView*> blkViews;
-
-  void generateBlkViews(MTGCardInstance* card);
+  CombatStep step;
+  void addOne(DefenserDamaged* blocker, CombatStep);
+  void removeOne(DefenserDamaged* blocker, CombatStep);
+  void reaffectDamage(AttackerDamaged* attacker, CombatStep);
+  void remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after);
 
  public:
   GuiCombat(GameObserver* go);
@@ -30,7 +32,8 @@ class GuiCombat : public GuiLayer
   virtual bool CheckUserInput(u32 key);
   virtual int receiveEventPlus(WEvent* e);
   virtual int receiveEventMinus(WEvent* e);
-};
 
+  typedef vector<AttackerDamaged*>::iterator inner_iterator;
+};
 
 #endif // _GUICOMBAT_H_

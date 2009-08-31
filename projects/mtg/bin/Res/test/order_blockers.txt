@@ -2,22 +2,18 @@
 [INIT]
 COMBATATTACKERS
 [PLAYER1]
-inplay:Elite Vanguard,Rhox Pikemaster,Bog wraith
+inplay:Rootbreaker Wurm,Benthic Behemoth,Bog wraith
 [PLAYER2]
-inplay:air elemental,grizzly bears,spark elemental,drudge skeletons,vampire bats,tundra wolves,spined wurm,paladin en-vec
+inplay:air elemental,grizzly bears,spark elemental,drudge skeletons,vampire bats,spined wurm
 [DO]
-Elite Vanguard
-Rhox Pikemaster
+Rootbreaker Wurm
+Benthic Behemoth
 Bog wraith
 next
-paladin en-vec
-paladin en-vec
 spined wurm
 spined wurm
 vampire bats
 vampire bats
-tundra wolves
-tundra wolves
 air elemental
 air elemental
 grizzly bears

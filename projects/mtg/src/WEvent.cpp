@@ -24,4 +24,6 @@ WEventCreatureBlockerRank::WEventCreatureBlockerRank(MTGCardInstance * card, MTG
 
 WEventEngageMana::WEventEngageMana(int color, MTGCardInstance* card, ManaPool * destination) : WEvent(), color(color), card(card), destination(destination) {}
 WEventConsumeMana::WEventConsumeMana(int color, ManaPool * source) : WEvent(), color(color),source(source) {}
-WEventEmptyManaPool::WEventEmptyManaPool(ManaPool * source):WEvent(),source(source){}
+WEventEmptyManaPool::WEventEmptyManaPool(ManaPool * source) : WEvent(), source(source){}
+
+WEventCombatStepChange::WEventCombatStepChange(CombatStep step) : WEvent(), step(step) {};

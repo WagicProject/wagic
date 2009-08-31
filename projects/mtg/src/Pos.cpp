@@ -11,6 +11,10 @@ void Pos::Update(float dt)
   actA += 10 * dt * (alpha - actA);
 }
 
+void Pos::UpdateNow()
+{
+  actX = x; actY = y; actT = t; actZ = zoom; actA = alpha;
+}
 void Pos::Render(){}
 void Pos::Render(JQuad* quad)
 {

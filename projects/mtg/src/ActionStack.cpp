@@ -345,7 +345,7 @@ int ActionStack::addDraw(Player * player, int nb_cards){
 }
 
 int ActionStack::addDamage(MTGCardInstance * _source, Damageable * _target, int _damage){
-  Damage * damage = NEW Damage(mCount, _source, _target, _damage);
+  Damage * damage = NEW Damage(_source, _target, _damage);
   addAction(damage);
   return 1;
 }

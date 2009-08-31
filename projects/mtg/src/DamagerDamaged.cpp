@@ -5,88 +5,74 @@
 Temporary objects that store the damages dealt to/from creatures during the combat phase
 */
 
+DamagerDamaged::DamagerDamaged(MTGCardInstance* card, float x, float y, bool show, Player * damageSelecter) : TransientCardView(card, x, y), show(show), damageSelecter(damageSelecter) {}
+DamagerDamaged::DamagerDamaged(MTGCardInstance* card, const Pos& ref, bool show, Player * damageSelecter) : TransientCardView(card, ref), show(show), damageSelecter(damageSelecter) {}
 
-DamagerDamaged::DamagerDamaged(MTGCardInstance* card, Player * _damageSelecter, bool _hasFocus) : card(card){
-  mCount = 0;
-  damageSelecter = _damageSelecter;
-  damageToDeal = card->power;
-}
-
-DamagerDamaged::~DamagerDamaged(){
-  for (int i = 0; i < mCount; i++){
-    SAFE_DELETE(damages[i]);
-
-  }
-}
+DamagerDamaged::~DamagerDamaged(){}
 
 int DamagerDamaged::sumDamages(){
   int total = 0;
-  for (int i = 0; i < mCount; i++){
-    total += damages[i]->damage;
-  }
+  for (vector<Damage>::iterator i = damages.begin(); i != damages.end(); ++i)
+    total += i->damage;
   return total;
 }
 
-int DamagerDamaged::hasLethalDamage(){
-  if (sumDamages() >= card->life) return 1;
+bool DamagerDamaged::hasLethalDamage(){
+  return (sumDamages() >= card->life);
+}
+
+void DamagerDamaged::addDamage(int damage, DamagerDamaged* source){
+  for (vector<Damage>::iterator i = damages.begin(); i != damages.end(); ++i)
+    if (i->source == source->card){
+      i->damage += damage;
+      if (0 >= i->damage) damages.erase(i);
+      return;
+    }
+  if (0 < damage) damages.push_back(Damage(source->card, this->card,damage));
+  return;
+}
+
+
+int DamagerDamaged::removeDamagesFrom(DamagerDamaged* source){
+  for (vector<Damage>::iterator i = damages.begin(); i != damages.end(); ++i)
+    if (i->source == source->card){
+      int damage = i->damage;
+      damages.erase(i);
+      return damage;
+    }
   return 0;
 }
 
-int DamagerDamaged::dealOneDamage(DamagerDamaged * target){
-  if (!damageToDeal) return 0;
-  damageToDeal--;
-#if defined (WIN32) || defined (LINUX)
-  char buf[4096];
-  sprintf(buf, "==========\n%s can still deal %i damages\n=============\n", card->getName().c_str(), damageToDeal);
-  OutputDebugString(buf);
-#endif
-  return target->addDamage(1, this);
+void DamagerDamaged::clearDamage()
+{
+  damages.clear();
 }
 
-int DamagerDamaged::addDamage(int damage, DamagerDamaged * source){
-  for (int i = 0; i < mCount; i++){
-    if (damages[i]->source == source->card){
-      damages[i]->damage+= damage;
-      return damage;
-    }
-  }
-  damages[mCount] = NEW Damage(mCount, source->card, this->card,damage);
-  mCount++;
-  return damage;
-}
-
-int DamagerDamaged::removeDamagesTo(DamagerDamaged * target){
-  damageToDeal+= target->removeDamagesFrom(this);
-  return 1;
-}
-
-int DamagerDamaged::removeDamagesFrom(DamagerDamaged * source){
-  for (int i = 0; i < mCount; i++){
-    if (damages[i]->source == source->card){
-      int damage = damages[i]->damage;
-      SAFE_DELETE(damages[i]);
-      damages[i] = damages[mCount-1];
-      mCount--;
-      return damage;
-    }
-  }
-  return 0;
-}
-
-void DamagerDamaged::Render(Player * currentPlayer){
+void DamagerDamaged::Render(CombatStep mode)
+{
+  TransientCardView::Render();
   JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
-  //  CardGui::Render();
-  
-  /*
-  char buf[4096];
-  if (currentPlayer != damageSelecter){
-    if (hasLethalDamage()){
-      mFont->DrawString("X",x,y);
+
+  switch (mode)
+    {
+    case ORDER :
+      mFont->SetColor(ARGB(92,255,255,255));
+      break;
+    case FIRST_STRIKE :
+    case DAMAGE :
+     mFont->SetColor(ARGB(255, 255, 64, 0));
+     break;
     }
-    mFont->SetColor(ARGB(255,255,0,0));
+
+  char buf[6];
+  //  if (currentPlayer != damageSelecter){
+    /*    if (hasLethalDamage()){
+      mFont->DrawString("X",x,y);
+      }*/
     sprintf(buf, "%i", sumDamages());
-    mFont->DrawString(buf,x+5, y+5);
+    mFont->DrawString(buf, actX - 14 * actZ + 5, actY - 14 * actZ);
+    /*
   }else{
     mFont->SetColor(ARGB(255,0,0,255));
     sprintf(buf, "%i", damageToDeal);
@@ -95,3 +81,7 @@ void DamagerDamaged::Render(Player * currentPlayer){
   mFont->SetColor(ARGB(255,255,255,255));
   */
 }
+
+
+AttackerDamaged::AttackerDamaged(MTGCardInstance* card, float x, float y, bool show, Player * damageSelecter) : DamagerDamaged(card, x, y, show, damageSelecter) {}
+AttackerDamaged::AttackerDamaged(MTGCardInstance* card, const Pos& ref, bool show, Player * damageSelecter) : DamagerDamaged(card, ref, show, damageSelecter) {}
