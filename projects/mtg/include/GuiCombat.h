@@ -14,14 +14,14 @@ class GuiCombat : public GuiLayer
   DamagerDamaged* active;
   AttackerDamaged* activeAtk;
   static JQuad* ok_quad;
-  Pos ok;
+  Pos ok, enemy_avatar;
   vector<AttackerDamaged*> attackers;
   DamagerDamaged* current;
   enum { BLK, ATK, OK, NONE } cursor_pos;
   CombatStep step;
   void addOne(DefenserDamaged* blocker, CombatStep);
   void removeOne(DefenserDamaged* blocker, CombatStep);
-  void reaffectDamage(AttackerDamaged* attacker, CombatStep);
+  void autoaffectDamage(AttackerDamaged* attacker, CombatStep);
   void remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after);
 
  public:

@@ -13,7 +13,10 @@ struct Right : public Exp { static inline bool test(DamagerDamaged* ref, Damager
 
 JQuad* GuiCombat::ok_quad = NULL;
 
-GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), activeAtk(NULL), ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255), cursor_pos(NONE), step(DAMAGE)
+GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), activeAtk(NULL),
+					 ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255),
+					 enemy_avatar(SCREEN_WIDTH - MARGIN, TOP_LINE, 2, 0, 255),
+					 cursor_pos(NONE), step(DAMAGE)
 {
   if (NULL == ok_quad)
     {
@@ -30,7 +33,11 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), acti
 GuiCombat::~GuiCombat()
 {
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-    delete (*it);
+    {
+      for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
+	delete(*q);
+      delete (*it);
+    }
 }
 
 template <typename T>
@@ -56,6 +63,7 @@ void GuiCombat::Update(float dt)
     for (vector<DefenserDamaged*>::iterator q = activeAtk->blockers.begin(); q != activeAtk->blockers.end(); ++q)
       (*q)->Update(dt);
   ok.Update(dt);
+  enemy_avatar.Update(dt);
 }
 
 void GuiCombat::remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after)
@@ -67,11 +75,12 @@ void GuiCombat::remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after)
           (*q)->actX = MARGIN; (*q)->y = TOP_LINE;
           (*q)->zoom = 2.2; (*q)->t = 0;
         }
-      repos<DefenserDamaged>(after->blockers.begin(), after->blockers.end());
+      repos<DefenserDamaged>(after->blockers.begin(), after->blockers.end(), after->card->has(Constants::TRAMPLE) ? 0 : -1);
+      enemy_avatar.actX = MARGIN; enemy_avatar.x = SCREEN_WIDTH - MARGIN;
     }
 }
 
-void GuiCombat::reaffectDamage(AttackerDamaged* attacker, CombatStep step)
+void GuiCombat::autoaffectDamage(AttackerDamaged* attacker, CombatStep step)
 {
   attacker->clearDamage();
   unsigned damage = attacker->card->stepPower(step);
@@ -201,8 +210,26 @@ void GuiCombat::Render()
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     if ((*it)->show) (*it)->Render(step);
   if (activeAtk)
-    for (vector<DefenserDamaged*>::iterator q = activeAtk->blockers.begin(); q != activeAtk->blockers.end(); ++q)
-      (*q)->Render(step);
+    {
+      signed damage = activeAtk->card->stepPower(step);
+      for (vector<DefenserDamaged*>::iterator q = activeAtk->blockers.begin(); q != activeAtk->blockers.end(); ++q)
+	{
+	  (*q)->Render(step);
+	  damage -= (*q)->sumDamages();
+	}
+      if (damage < 0) damage = 0;
+      if (activeAtk->card->has(Constants::TRAMPLE))
+	{
+	  go->opponent()->mAvatar->SetHotSpot(18, 25);
+	  enemy_avatar.Render(go->opponent()->mAvatar);
+	  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+	  mFont->SetColor(ARGB(255, 255, 64, 0));
+	  {
+	    char buf[10]; sprintf(buf, "%i", damage);
+	    mFont->DrawString(buf, enemy_avatar.actX - 25, enemy_avatar.actY - 40);
+	  }
+	}
+    }
   if (ok_quad) ok.Render(ok_quad);
   renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
   if (FIRST_STRIKE == step)
@@ -251,7 +278,7 @@ int GuiCombat::receiveEventPlus(WEvent* e)
             (*it1)->x = (*it2)->x;
             (*it2)->x = x;
             std::iter_swap(it1, it2);
-            reaffectDamage(*it, DAMAGE);
+            autoaffectDamage(*it, DAMAGE);
           }
       return 1;
     }
@@ -291,11 +318,11 @@ int GuiCombat::receiveEventMinus(WEvent* e)
     case ORDER:
       {
         if (ORDER == step) return 0; // Why do I take this twice ? >.>
-        if (go->currentPlayer->isAI()) { go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); return 1; }
+	if (go->currentPlayer->isAI()) { go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); return 1; }
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
           {
             (*it)->show = (1 < (*it)->blockers.size());
-            reaffectDamage(*it, DAMAGE);
+            autoaffectDamage(*it, DAMAGE);
           }
         active = NULL;
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -328,7 +355,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
       step = event->step;
       cursor_pos = ATK;
       for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
-        reaffectDamage(*attacker, step);
+        autoaffectDamage(*attacker, step);
       for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
         (*it)->show = ((*it)->card->has(Constants::DOUBLESTRIKE) || ((*it)->card->has(Constants::FIRSTSTRIKE) ^ (DAMAGE == step))) && (1 < (*it)->blockers.size());
       repos<AttackerDamaged>(attackers.begin(), attackers.end(), 0);

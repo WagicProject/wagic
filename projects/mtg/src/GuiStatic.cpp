@@ -14,11 +14,6 @@ bool GuiStatic::Leaving(u32 key)
 
 GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner corner, GuiAvatars* parent) : GuiStatic(GuiAvatar::Height, x, y, hasFocus, parent), avatarRed(255), currentLife(player->life), corner(corner), player(player) {
   type = GUI_AVATAR;
-  switch (corner)
-    {
-    case TOP_LEFT : player->mAvatar->SetHotSpot(0, 0); break;
-    case BOTTOM_RIGHT : player->mAvatar->SetHotSpot(35, 50); break;
-    }
 }
 
 void GuiAvatar::Render()
@@ -41,6 +36,11 @@ void GuiAvatar::Render()
   JQuad * quad = player->mAvatar;
   if (quad)
     {
+      switch (corner)
+	{
+	case TOP_LEFT : quad->SetHotSpot(0, 0); break;
+	case BOTTOM_RIGHT : quad->SetHotSpot(35, 50); break;
+	}
       quad->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
       r->RenderQuad(quad, actX, actY, actT, actZ, actZ);
     }
