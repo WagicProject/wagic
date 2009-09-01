@@ -44,11 +44,11 @@ type=Land
 text=Exile all permanents. You discard your hand.
 id=4802
 name=Apocalypse
+rarity=R
 mana={2}{R}{R}{R}
 type=Sorcery
-auto=moveTo(Exile) all(*|inplay)
+auto=moveTo(Exile) all(*|battlefield)
 auto=moveTo(mygraveyard) all(*|myhand)
-rarity=R
 [/card]
 [card]
 text=Flying
@@ -68,10 +68,10 @@ id=4689
 name=Armor Sliver
 auto=lord(sliver) {2}:0/1
 rarity=U
-type=Creature
 mana={2}{W}
-power=2
+type=Creature
 subtype=Sliver
+power=2
 toughness=2
 [/card]
 [card]
@@ -80,10 +80,10 @@ id=4862
 name=Auratog
 rarity=R
 type=Creature
-mana={1}{W}
-auto={s(enchantment|myinplay)}:2/2
-power=1
 subtype=Atog
+mana={1}{W}
+auto={S(enchantment|myBattlefield)}:2/2
+power=1
 toughness=2
 [/card]
 [card]
@@ -92,10 +92,10 @@ id=4803
 name=Barbed Sliver
 auto=lord(sliver) {2}:1/0
 rarity=U
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Sliver
+power=2
 toughness=2
 [/card]
 [card]
@@ -111,7 +111,7 @@ toughness=1
 abilities=flying,swampwalk
 [/card]
 [card]
-text=Isalndwalk
+text=Islandwalk
 id=4690
 name=Benthic Behemoth
 rarity=R
@@ -127,11 +127,12 @@ text=Sacrifice Blood Pet: Add {B} to your mana pool.
 id=12342
 name=Blood Pet
 rarity=C
-type=Creature
 mana={B}
+type=Creature
+subtype=Thrull
+
 auto={S}: Add{B}
 power=1
-subtype=Thrull
 toughness=1
 [/card]
 [card]
@@ -148,15 +149,15 @@ text=Sacrifice Bottle Gnomes: You gain 3 life.
 id=4598
 name=Bottle Gnomes
 rarity=U
-type=Artifact Creature
 mana={3}
+type=Artifact Creature
+subtype=Gnome
 auto={S}:life:3
 power=1
-subtype=Gnome
 toughness=3
 [/card]
 [card]
-text=Caldera Lake comes into play tapped.       {T}: Add {1} to your mana pool.       {T}: Add {U} or {R} to your mana pool. Caldera Lake deals 1 damage to you.
+text=Caldera Lake enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {T}: Add {U} or {R} to your mana pool. Caldera Lake deals 1 damage to you.
 id=4930
 name=Caldera Lake
 auto=tap
@@ -179,16 +180,17 @@ toughness=3
 abilities=Reach
 [/card]
 [card]
-text=Flying     {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
+text=Flying   {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
 id=4806
 name=Canyon Drake
 rarity=R
-type=Creature
 mana={2}{R}{R}
+type=Creature
+subtype=Drake
 auto={1}:2/0 && discard:1
 power=1
-subtype=Drake
 toughness=2
+abilities=flying
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
@@ -200,16 +202,16 @@ type=Creature
 subtype=Cat
 power=2
 toughness=1
-abilities=Mountainwalk
+abilities=mountainwalk
 [/card]
 [card]
 text=Islands don't untap during their controllers' untap steps.
 id=4753
 name=Choke
 rarity=U
+mana={2}{G}
 type=Enchantment
 auto=lord(island) doesnotuntap
-mana={2}{G}
 [/card]
 [card]
 text={1}: The next time a black source of your choice would deal damage to you this turn, prevent that damage.
@@ -257,7 +259,7 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-text=All Slivers have "{2}: Regenerate this permanent."
+text=All Sliver creatures have "{2}: Regenerate this permanent."
 auto=lord(sliver) {2}:regenerate
 id=4640
 name=Clot Sliver
@@ -281,17 +283,17 @@ toughness=1
 abilities=first strike
 [/card]
 [card]
-text=Fear     When Commander Greven il-Vec comes into play, sacrifice a creature.
+text=Fear   When Commander Greven il-Vec enters the battlefield, sacrifice a creature.
 id=4643
 name=Commander Greven il-Vec
 rarity=R
-type=Creature
 mana={3}{B}{B}{B}
-abilities=Legendary,fear
-target=creature|myinplay
+type=Creature
+subtype=Human Warrior
+abilities=legendary,fear
+target=creature|myBattlefield
 auto=destroy
 power=7
-subtype=Human Warrior
 toughness=5
 [/card]
 [card]
@@ -306,16 +308,16 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
-text=Enchant creature     {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
+text=Enchant creature   {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
 id=4809
 target=creature
 name=Crown of Flames
 rarity=C
-type=Enchantment
-auto={R}:1/0
-auto={R}:moveTo(hand)
 mana={R}
+type=Enchantment
 subtype=Aura
+auto={R}:1/0
+auto={R}:moveTo(myhand)
 [/card]
 [card]
 text=Destroy target nonblack creature. It can't be regenerated.
@@ -337,7 +339,7 @@ mana={B}
 type=Instant
 [/card]
 [card]
-text={B}: Regenerate Darkling Stalker.       {B}: Darkling Stalker gets +1/+1 until end of turn.
+text={B}: Regenerate Darkling Stalker.   {B}: Darkling Stalker gets +1/+1 until end of turn.
 id=4647
 name=Darkling Stalker
 rarity=C
@@ -414,10 +416,10 @@ auto=@movedTo(land|opponentbattlefield):counter(1/1)
 id=4755
 name=Dirtcowl Wurm
 rarity=R
-type=Creature
 mana={4}{G}
-power=3
+type=Creature
 subtype=Wurm
+power=3
 toughness=4
 [/card]
 [card]
@@ -431,7 +433,7 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-text=Counter target spell.     Draw a card.
+text=Counter target spell.   Draw a card.
 id=4695
 target=*|stack
 auto=fizzle
@@ -447,11 +449,11 @@ auto=lord(creature[white]) -1/-1
 id=4658
 name=Dread of Night
 rarity=U
-type=Enchantment
 mana={B}
+type=Enchantment
 [/card]
 [card]
-text=Legendary       Other Elf creatures have forestwalk.   Other Elves have shroud. (They can't be the targets of spells or abilities.)
+text=Other Elf creatures have forestwalk.   Other Elve creatures have shroud. (They can't be the targets of spells or abilities.)
 id=4757
 name=Eladamri, Lord of Leaves
 auto=lord(elf) forestwalk other
@@ -470,14 +472,14 @@ auto={2}{T}:counter(1/1)
 id=4605
 name=Energizer
 rarity=R
-type=Artifact Creature
 mana={4}
-power=2
+type=Artifact Creature
 subtype=Juggernaut
+power=2
 toughness=2
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)     Enchanted creature gets -2/-2.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)     Enchanted creature gets -2/-2.
 id=4661
 target=creature
 auto=-2/-2
@@ -490,12 +492,11 @@ subtype=Aura
 [card]
 text={2}{B}{B}: Put a -1/-1 counter on target creature.
 id=4664
-abilities=wither
-auto={2}{B}{B}:damage:1 target(creature)
+auto={2}{B}{B}:counter(-1/-1) target(creature)
 name=Fevered Convulsions
 rarity=R
-type=Enchantment
 mana={B}{B}
+type=Enchantment
 [/card]
 [card]
 text=Flying
@@ -510,7 +511,7 @@ toughness=4
 abilities=flying
 [/card]
 [card]
-text=Flying     {R}: Firefly gets +1/+0 until end of turn.
+text=Flying   {R}: Firefly gets +1/+0 until end of turn.
 id=4813
 name=Firefly
 rarity=U
@@ -528,10 +529,10 @@ auto={T}:damage:1 target(creature,player) && damage:1 controller
 id=4814
 name=Fireslinger
 rarity=C
-type=Creature
 mana={1}{R}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=1
 [/card]
 [card]
@@ -547,7 +548,7 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Flying     {R}: Flowstone Wyvern gets +2/-2 until end of turn.
+text=Flying   {R}: Flowstone Wyvern gets +2/-2 until end of turn.
 id=4818
 name=Flowstone Wyvern
 rarity=R
@@ -596,7 +597,7 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
-text=Enchant creature       When Frog Tongue comes into play, draw a card.       Enchanted creature has reach. (It can block creatures with flying.)
+text=Enchant creature   When Frog Tongue comes into play, draw a card.   Enchanted creature has reach. (It can block creatures with flying.)
 target=creature
 auto=reach
 auto=draw:1
@@ -608,7 +609,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Target blocking creature gets +4/+4 until end of turn.        Draw a card.
+text=Target blocking creature gets +4/+4 until end of turn.   Draw a card.
 target=creature[blocking]
 auto=4/4
 auto=draw:1
@@ -620,12 +621,12 @@ type=Instant
 [/card]
 [card]
 text={2}{W}: Creatures you control get +1/+1 until end of turn.
-auto={2}{W}:lord(creature|mybattlefield) 1/1
+auto={2}{W}:lord(creature|mybattlefield) 1/1 ueot
 id=4877
 name=Gerrard's Battle Cry
 rarity=R
-type=Enchantment
 mana={W}
+type=Enchantment
 [/card]
 [card]
 text={U}: Giant Crab gains shroud until end of turn. (It can't be the target of spells or abilities.)
@@ -640,7 +641,7 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)     Enchanted creature gets +2/+2.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)     Enchanted creature gets +2/+2.
 id=4820
 target=creature
 auto=2/2
@@ -654,21 +655,21 @@ subtype=Aura
 text=Sacrifice a creature: Goblin Bombardment deals 1 damage to target creature or player.
 id=4821
 name=Goblin Bombardment
-auto={s(creature|myinplay)}:damage:1 target(creature,player)
+auto={s(creature|myBattlefield)}:damage:1 target(creature,player)
 rarity=U
 type=Enchantment
 mana={1}{R}
 [/card]
 [card]
-text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
 id=4665
 name=Gravedigger
 auto=may moveTo(myhand) target(creature|mygraveyard)
 rarity=C
-type=Creature
 mana={3}{B}
-power=2
 subtype=Zombie
+type=Creature
+power=2
 toughness=2
 [/card]
 [card]
@@ -681,7 +682,7 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
-text=Whenever an opponent plays a white spell, he or she loses 2 life.
+text=Whenever an opponent casts a white spell, he or she loses 2 life.
 auto=@movedTo(*[white]|opponentStack): life:-2 opponent
 id=4823
 name=Havoc
@@ -817,9 +818,9 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
-text=At the beginning of your upkeep, Jinxed Idol deals 2 damage to you.       Sacrifice a creature: Target opponent gains control of Jinxed Idol. (This effect doesn't end at end of turn.)
+text=At the beginning of your upkeep, Jinxed Idol deals 2 damage to you.   Sacrifice a creature: Target opponent gains control of Jinxed Idol. (This effect doesn't end at end of turn.)
 auto=@each my upkeep:damage:2 controller
-auto={S(creature|myinplay)}:moveTo(opponentBattlefield)
+auto={S(creature|mybattlefield)}:moveTo(opponentBattlefield)
 id=4613
 name=Jinxed Idol
 rarity=R
@@ -838,7 +839,7 @@ type=Instant
 mana={1}{R}
 [/card]
 [card]
-text=First strike      {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
+text=First strike   {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
 id=4883
 name=Knight of Dawn
 rarity=U
@@ -896,8 +897,8 @@ auto={T}{S}:Add{W}
 id=4614
 name=Lotus Petal
 rarity=C
-type=Artifact
 mana={0}
+type=Artifact
 [/card]
 [card]
 id=4829
@@ -937,12 +938,12 @@ toughness=1
 text=Sacrifice a Swamp: Marsh Lurker gains fear until end of turn.
 id=4673
 name=Marsh Lurker
-auto={S(swamp|myinplay)}:fear
+auto={S(swamp|myBattlefield)}:fear
 rarity=C
-type=Creature
 mana={3}{B}
-power=3
+type=Creature
 subtype=Beast
+power=3
 toughness=2
 [/card]
 [card]
@@ -958,7 +959,7 @@ power=1
 toughness=2
 [/card]
 [card]
-text=Flying       {T}: Mawcor deals 1 damage to target creature or player.
+text=Flying   {T}: Mawcor deals 1 damage to target creature or player.
 auto={T}:damage:1 target(creature,player)
 id=4712
 name=Mawcor
@@ -986,10 +987,10 @@ id=4714
 name=Mnemonic Sliver
 auto=lord(sliver) {2}{S}:draw:1
 rarity=U
-type=Creature
 mana={2}{U}
-power=2
+type=Creature
 subtype=Sliver
+power=2
 toughness=2
 [/card]
 [card]
@@ -999,10 +1000,10 @@ auto=@movedTo(creature|mystack):-cantattack
 id=4831
 name=Mogg Conscripts
 rarity=C
-type=Creature
 mana={R}
-power=2
+type=Creature
 subtype=Goblin
+power=2
 toughness=2
 [/card]
 [card]
@@ -1011,34 +1012,34 @@ id=4832
 name=Mogg Fanatic
 auto={S}:damage:1 target(creature,player)
 rarity=C
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Goblin
+power=1
 toughness=1
 [/card]
 [card]
 text=Sacrifice a Goblin: Target creature gets +1/+1 until end of turn.
 id=4833
 name=Mogg Raider
-auto={s(goblin|myinplay)}:1/1 target(creature)
+auto={s(goblin|myBattlefield)}:1/1 target(creature)
 rarity=C
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Goblin
+power=1
 toughness=1
 [/card]
 [card]
-text=Mogg Squad gets -1/-1 for each other creature in play.
-auto=foreach(creature|inplay) -1/-1 other
+text=Mogg Squad gets -1/-1 for each other creature on the battlefield.
+auto=foreach(creature|battlefield) -1/-1 other
 id=4834
 name=Mogg Squad
 rarity=U
-type=Creature
 mana={1}{R}
-power=3
+type=Creature
 subtype=Goblin
+power=3
 toughness=3
 [/card]
 [card]
@@ -1095,8 +1096,8 @@ auto=@each blockers step:foreach(creature[attacking]|opponentbattlefield):life:1
 id=4891
 name=Orim's Prayer
 rarity=U
-type=Enchantment
 mana={1}{W}{W}
+type=Enchantment
 [/card]
 [card]
 text=Target player gains 8 life.
@@ -1119,8 +1120,8 @@ type=Sorcery
 [/card]
 [card]
 text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-auto=lord(creatures|myinplay) 3/3
-auto=lord(creatures|myinplay) trample
+auto=lord(creatures|myBattlefield) 3/3
+auto=lord(creatures|myBattlefield) trample
 id=4777
 name=Overrun
 rarity=U
@@ -1140,10 +1141,10 @@ mana={1}{W}
 subtype=Aura
 [/card]
 [card]
-text=As Pallimud comes into play, choose an opponent.     Pallimud's power is equal to the number of tapped lands the chosen player controls.
+text=As Pallimud enters the battlefield, choose an opponent.   Pallimud's power is equal to the number of tapped lands the chosen player controls.
 id=4837
 name=Pallimud
-auto=foreach(land[tapped]|opponentinplay) 1/0
+auto=foreach(land[tapped]|opponentBattlefield) 1/0
 rarity=R
 type=Creature
 mana={2}{R}
@@ -1155,7 +1156,7 @@ toughness=3
 text=Discard a card: Regenerate Patchwork Gnomes.
 id=4619
 name=Patchwork Gnomes
-auto={s(*|myhand)}:regenerate
+auto={S(*|myhand)}:regenerate
 rarity=U
 type=Artifact Creature
 mana={3}
@@ -1164,13 +1165,13 @@ subtype=Gnome
 toughness=1
 [/card]
 [card]
-text={2}, Discard a card: Put a 1/1 white Pegasus creature token with flying into play.
+text={2}, Discard a card: Put a 1/1 white Pegasus creature token with flying onto the battlefield.
 id=4893
 name=Pegasus Refuge
 auto={2}{s(*|myhand)}:token(Pegasus,Pegasus Token Creature, 1/1,flying white)
 rarity=R
-type=Enchantment
 mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 text=Destroy all green creatures. Those creatures cannot be regenerated.
@@ -1204,7 +1205,7 @@ toughness=1
 abilities=shroud
 [/card]
 [card]
-text=Pine Barrens comes into play tapped.       {T}: Add {1} to your mana pool.       {T}: Add {B} or {G} to your mana pool. Pine Barrens deals 1 damage to you.
+text=Pine Barrens enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {T}: Add {B} or {G} to your mana pool. Pine Barrens deals 1 damage to you.
 id=4935
 auto=tap
 auto={T}:Add{1}
@@ -1215,14 +1216,14 @@ rarity=R
 type=Land
 [/card]
 [card]
-text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
+text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 target=basic|mylibrary
 auto=moveTo(myBattlefield) && tap
 id=4779
 name=Rampant Growth
 rarity=C
-type=Sorcery
 mana={1}{G}
+type=Sorcery
 [/card]
 [card]
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
@@ -1231,21 +1232,21 @@ target=player
 alias=129750
 name=Sudden Impact
 rarity=U
-type=Instant
 mana={3}{R}
+type=Instant
 [/card]
 [card]
-text=Flying     {B}: Pit Imp gets +1/+0 until end of turn. Play this ability no more than twice each turn.
+text=Flying   {B}: Pit Imp gets +1/+0 until end of turn. Play this ability no more than twice each turn.
 id=4677
 name=Pit Imp
-abilities=flying
 auto={B}:1/0 limit:2
 rarity=C
-type=Creature
 mana={B}
-power=0
+type=Creature
 subtype=Imp
+power=0
 toughness=1
+abilities=flying
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -1304,7 +1305,7 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
-text=First strike       {G}: Regenerate Ranger en-Vec.
+text=First strike   {G}: Regenerate Ranger en-Vec.
 id=4914
 name=Ranger en-Vec
 rarity=U
@@ -1324,12 +1325,12 @@ rarity=C
 mana={1}{B}
 type=Creature
 subtype=Rat
-auto={B}:destroy target(artifact,creature,land|myinplay)
+auto={B}:destroy target(artifact,creature,land|myBattlefield)
 power=2
 toughness=1
 [/card]
 [card]
-text=Target creature loses shadow until end of turn.     Draw a card.
+text=Target creature loses shadow until end of turn.   Draw a card.
 target=creature
 auto=-shadow
 auto=draw:1
@@ -1369,10 +1370,10 @@ id=4720
 name=Rootwater Diver
 auto={T}{S}:moveTo(myhand) target(artifact|mygraveyard)
 rarity=U
-type=Creature
 mana={U}
-power=1
+type=Creature
 subtype=Merfolk
+power=1
 toughness=1
 [/card]
 [card]
@@ -1388,7 +1389,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Enchant creature     Whenever a creature is put into a graveyard from play, put a +1/+1 counter on enchanted creature.
+text=Enchant creature   Whenever a creature is put into a graveyard from the battlefield, put a +1/+1 counter on enchanted creature.
 target=creature
 auto=@movedTo(creature|graveyard) from(battlefield):counter(1/1)
 id=4682
@@ -1399,18 +1400,18 @@ mana={B}
 subtype=Aura
 [/card]
 [card]
-text=Salt Flats comes into play tapped.       {T}: Add {1} to your mana pool.       {T}: Add {W} or {B} to your mana pool. Salt Flats deals 1 damage to you.
+text=Salt Flats comes enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {T}: Add {W} or {B} to your mana pool. Salt Flats deals 1 damage to you.
 id=4938
 auto=tap
-auto={T}: Add{1}
-auto={T}: Add{W} && damage 1 controller
-auto={T}: Add{B} && damage 1 controller
+auto={T}:Add {1}
+auto={T}:Add {W} && damage 1 controller
+auto={T}:Add {B} && damage 1 controller
 name=Salt Flats
 rarity=R
 type=Land
 [/card]
 [card]
-text=(This creature deals combat damage before creatures without first strike.)       {R}: Sandstone Warrior gets +1/+0 until end of turn.
+text=(This creature deals combat damage before creatures without first strike.)   {R}: Sandstone Warrior gets +1/+0 until end of turn.
 id=4841
 name=Sandstone Warrior
 rarity=C
@@ -1423,7 +1424,7 @@ toughness=3
 abilities=first strike
 [/card]
 [card]
-text=Scabland comes into play tapped.     {T}: Add {1} to your mana pool.     {T}: Add {R} or {W} to your mana pool. Scabland deals 1 damage to you.
+text=Scabland enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {T}: Add {R} or {W} to your mana pool. Scabland deals 1 damage to you.
 id=4939
 name=Scabland
 auto=tap
@@ -1434,7 +1435,7 @@ rarity=R
 type=Land
 [/card]
 [card]
-text=Flying     {1}{B}: Regenerate Screeching Harpy.
+text=Flying   {1}{B}: Regenerate Screeching Harpy.
 id=4684
 name=Screeching Harpy
 rarity=U
@@ -1451,12 +1452,12 @@ text=Sea Monster can't attack unless defending player controls an Island.
 id=4724
 name=Sea Monster
 abilities=cantattack
-auto=aslongas(Island|opponentinplay) -cantattack
+auto=aslongas(Island|opponentbattlefield) -cantattack
 rarity=C
-type=Creature
 mana={4}{U}{U}
-power=6
+type=Creature
 subtype=Serpent
+power=6
 toughness=6
 [/card]
 [card]
@@ -1478,8 +1479,8 @@ target=enchantment
 alias=1607
 name=Serene Offering
 rarity=U
-type=Instant
 mana={1}{W}
+type=Instant
 [/card]
 [card]
 text=Target creature gains shadow until end of turn.    Draw a card.
@@ -1497,9 +1498,9 @@ text=Shadowstorm deals 2 damage to each creature with shadow.
 id=4846
 name=Shadowstorm
 rarity=U
+mana={R}
 auto=damage:2 all(creature[shadow])
 type=Sorcery
-mana={R}
 [/card]
 [card]
 text=Destroy target artifact.
@@ -1508,19 +1509,19 @@ name=Shatter
 target=artifact
 auto=destroy
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
+text=Enchant creature (Target a creature as you play this. This card enters the battlefield attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)   {U}: Return Shimmering Wings to its owner's hand.
 id=4726
 name=Shimmering Wings
 target=creature
 auto=flying
 auto={U}:moveTo(hand)
 rarity=C
-type=Enchantment
 mana={U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1536,7 +1537,7 @@ toughness=2
 abilities=flying,first strike
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.    {1}: Add {W} or {R} to your mana pool.
+text={T}: Add {G} to your mana pool.   {1}: Add {W} or {R} to your mana pool.
 id=4789
 name=Skyshroud Elf
 rarity=C
@@ -1550,7 +1551,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Skyshroud Forest comes into play tapped.     {T}: Add {1} to your mana pool.     {T}: Add {U} or {G} to your mana pool. Skyshroud Forest deals 1 damage to you.
+text=Skyshroud Forest enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {T}: Add {U} or {G} to your mana pool. Skyshroud Forest deals 1 damage to you.
 id=4940
 name=Skyshroud Forest
 auto=tap
@@ -1573,17 +1574,17 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Flying     Discard a creature card: Skyshroud Vampire gets +2/+2 until end of turn.
+text=Flying   Discard a creature card: Skyshroud Vampire gets +2/+2 until end of turn.
 id=4686
 name=Skyshroud Vampire
-abilities=flying
 auto={S(creature|myhand)}:2/2
 rarity=U
-type=Creature
 mana={3}{B}{B}
-power=3
+type=Creature
 subtype=Vampire
+power=3
 toughness=3
+abilities=flying
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)    {1}{W}: Soltari Crusader gets +1/+0 until end of turn.
@@ -1623,7 +1624,7 @@ toughness=1
 abilities=shadow
 [/card]
 [card]
-text=Protection from black        Shadow (This creature can block or be blocked by only creatures with shadow.)
+text=Protection from black   Shadow (This creature can block or be blocked by only creatures with shadow.)
 id=4903
 name=Soltari Monk
 rarity=U
@@ -1635,7 +1636,7 @@ toughness=1
 abilities=shadow,protection from black
 [/card]
 [card]
-text=Protection from red       Shadow (This creature can block or be blocked by only creatures with shadow.)
+text=Protection from red   Shadow (This creature can block or be blocked by only creatures with shadow.)
 id=4904
 name=Soltari Priest
 rarity=U
@@ -1656,7 +1657,7 @@ mana={X}{U}
 type=Instant
 [/card]
 [card]
-text=When Staunch Defenders comes into play, you gain 4 life.
+text=When Staunch Defenders enters the battlefield, you gain 4 life.
 id=4907
 name=Staunch Defenders
 rarity=U
@@ -1668,7 +1669,7 @@ power=3
 toughness=4
 [/card]
 [card]
-text=Enchant enchantment      You control enchanted enchantment.
+text=Enchant enchantment   You control enchanted enchantment.
 target=enchantment
 alias=1194
 id=4729
@@ -1698,7 +1699,7 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
-text=Target creature can't block this turn.     Draw a card.
+text=Target creature can't block this turn.   Draw a card.
 id=4851
 name=Stun
 target=creature
@@ -1758,16 +1759,16 @@ toughness=1
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  {U}: Put Thalakos Mistfolk on top of its owner's library.
-abilities=shadow
 auto={U}:moveTo(ownerLibrary)
 id=4733
 name=Thalakos Mistfolk
 rarity=C
-type=Creature
 mana={2}{U}
-power=2
+type=Creature
 subtype=Thalakos Illusion
+power=2
 toughness=1
+abilities=shadow
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  When Thalakos Seer leaves play, draw a card.
@@ -1775,10 +1776,10 @@ auto=@movedTo(this|graveyard,exile,library,hand):draw:1
 id=4734
 name=Thalakos Seer
 rarity=C
-type=Creature
 mana={U}{U}
-power=1
+type=Creature
 subtype=Thalakos Wizard
+power=1
 toughness=1
 [/card]
 [card]
@@ -1800,8 +1801,8 @@ auto=moveTo(ownerLibrary)
 id=4736
 name=Time Ebb
 rarity=C
-type=Sorcery
 mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 id=4794
@@ -1823,25 +1824,15 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-text=You may tap or untap target artifact, creature, or land.     Draw a card.
-id=4739
-name=Twitch
-auto=may tap target(artifact,creature,land)
-auto=draw:1
-rarity=C
-type=Instant
-mana={2}{U}
-[/card]
-[card]
-text=At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control.
+text=At the beginning of each upkeep, put a 1/1 green Saproling creature token onto the battlefield under your control.
 auto=@each upkeep:token(Saproling,Creature Saproling,1/1,green)
 id=4797
 name=Verdant Force
 rarity=R
-type=Creature
 mana={5}{G}{G}{G}
-power=7
+type=Creature
 subtype=Elemental
+power=7
 toughness=7
 [/card]
 [card]
@@ -1855,7 +1846,7 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-text=Defender (This creature can't attack.)      Wall of Diffusion can block creatures with shadow as though they didn't have shadow.
+text=Defender (This creature can't attack.)   Wall of Diffusion can block creatures with shadow as though they didn't have shadow.
 id=4855
 name=Wall of Diffusion
 rarity=C
@@ -1867,7 +1858,7 @@ toughness=5
 abilities=defender,reachshadow
 [/card]
 [card]
-text=Whenever an opponent plays a red spell, you gain 2 life.
+text=Whenever an opponent casts a red spell, you gain 2 life.
 auto=@movedTo(*[red]|opponentstack):life:2
 id=4909
 name=Warmth
@@ -1876,10 +1867,10 @@ type=Enchantment
 mana={1}{W}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.       {T}, Sacrifice Wasteland: Destroy target nonbasic land.
+text={T}: Add {1} to your mana pool.   {T}, Sacrifice Wasteland: Destroy target nonbasic land.
 id=4944
 name=Wasteland
-auto={T}: Add{1}
+auto={T}:Add {1}
 auto={T}{S}:destroy target(land[-basic])
 rarity=U
 type=Land
