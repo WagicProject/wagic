@@ -443,6 +443,7 @@ int ActionStack::resolve(){
     action->state = RESOLVED_NOK;
   }
   if (action->type == ACTION_DAMAGE) ((Damage * )action)->target->afterDamage();
+/*
   if (action->type == ACTION_DAMAGES){
     DamageStack * ds = (DamageStack *) action;
     for (int i = 0; i < ds->mCount; i++){
@@ -452,7 +453,7 @@ int ActionStack::resolve(){
     unpackDamageStack(ds);
     ds->mCount = 0;
   }
-
+*/
   if (!getNext(NULL,NOT_RESOLVED)){
     for (int i = 0; i< 2 ; i++){
       interruptDecision[i] = 0;
@@ -527,6 +528,7 @@ Interruptible * ActionStack::getLatest(int state){
   return NULL;
 }
 
+/*
 void ActionStack::unpackDamageStack(DamageStack * ds){
   for (int j = 0; j < ds->mCount; j++){
     Damage * damage = ((Damage *)ds->mObjects[j]);
@@ -571,7 +573,7 @@ void ActionStack::repackDamageStacks(){
     if (!found) ++iter;
   }
 }
-
+*/
 void ActionStack::Update(float dt){
   askIfWishesToInterrupt = NULL;
   //modal = 0;
@@ -584,7 +586,7 @@ void ActionStack::Update(float dt){
   //Select Stack's display mode
   if (mode==ACTIONSTACK_STANDARD && tc && !checked){
     checked = 1;
-    unpackDamageStacks();
+    //unpackDamageStacks();
     for (int i = 0; i < mCount ; i++){
       Interruptible * current = (Interruptible *)mObjects[i];
       if (tc->canTarget(current)){
@@ -599,12 +601,12 @@ void ActionStack::Update(float dt){
       }
     }
     if (mode != ACTIONSTACK_TARGET){
-      repackDamageStacks();
+      //repackDamageStacks();
     }
   }else if (mode==ACTIONSTACK_TARGET && !tc){
     mode = ACTIONSTACK_STANDARD;
     checked = 0;
-    repackDamageStacks();
+    //repackDamageStacks();
   }
 
   if (mode == ACTIONSTACK_STANDARD){
