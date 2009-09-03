@@ -85,4 +85,7 @@ $(OBJS): objs/%.o: src/%.cpp
 $(DEPS): deps/%.d: src/%.cpp
 	@$(CXX) -MM $(CXXFLAGS) -MQ $(patsubst deps/%.d, objs/%.o, $(@)) -MQ $@ $< > $@
 
+.DEFAULT:
+	@echo $@ has been deleted : updating deps.
+
 -include $(DEPS)
