@@ -52,7 +52,6 @@ JTexture * WCachedTexture::GetTexture(){
 }
 
 bool WCachedTexture::ReleaseQuad(JQuad* quad){
- //SAFE_DELETE(texture); WTF?
  for(vector<JQuad*>::iterator i = trackedQuads.begin();i!=trackedQuads.end();i++){
    if((*i) == quad){
      SAFE_DELETE(quad);
@@ -119,7 +118,8 @@ JSample * WCachedSample::GetSample(){
 bool WResourceManager::cleanup(){
   int maxSize = options[Options::CACHESIZE].number * 100000;
   if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
-  while (totalsize > maxSize){
+
+  while (textureCache.size() > MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
     int result = RemoveOldestTexture();
     if (!result) return false;
   }
@@ -134,23 +134,33 @@ unsigned int WResourceManager::nowTime(){
   return ++lastTime;
 }
 
+void WResourceManager::clearSamples(){
+  for(map<string,WCachedSample*>::iterator it = sampleCache.begin();it!=sampleCache.end();it++)
+    SAFE_DELETE(it->second);
+  sampleCache.clear();
+}
+
 WCachedSample * WResourceManager::getCachedSample(string filename, bool makenew){
   WCachedSample * csample = sampleCache[filename];
 
   //Failed to cache it!
   if(!csample && makenew){
-    csample = NEW WCachedSample();
-
     //Space in cache, make new sample
     if(cleanup()){
+      csample = NEW WCachedSample();
       csample->sample = ssLoadSample(filename.c_str());
+      //Clean the cache
+      if(!csample->sample && fileExists(sfxFile(filename).c_str())){
+      clearSamples();
+      csample->sample = ssLoadSample(filename.c_str());
+      }
       //Failed.
       if(!csample->sample){
         for(map<string,WCachedSample*>::iterator it=sampleCache.begin();it!=sampleCache.end();it++)
-          if(it->second == NULL){
-            sampleCache.erase(it);
-            break;
-          }
+        if(it->second == NULL){
+          sampleCache.erase(it);
+          break;
+        }
         SAFE_DELETE(csample);
         return NULL;
       }
@@ -168,22 +178,21 @@ WCachedTexture * WResourceManager::getCachedTexture(string filename, bool makene
   WCachedTexture * ctex = textureCache[filename];
   //Failed to cache it!
   if(!ctex && makenew){
-    ctex = NEW WCachedTexture();
     //Space in cache, make new texture
     if(cleanup()){
-     ctex->texture = JRenderer::GetInstance()->LoadTexture(graphicsFile(filename).c_str(),mode,format);
- 
-      //Couldn't create texture, so fail.
-     if(!ctex->texture){
+       ctex = NEW WCachedTexture();
+       ctex->texture = JRenderer::GetInstance()->LoadTexture(graphicsFile(filename).c_str(),mode,format);
+
+       if(!ctex->texture){
         for(map<string,WCachedTexture*>::iterator it=textureCache.begin();it!=textureCache.end();it++)
-          if(it->second == NULL){
-            textureCache.erase(it);
-            break;
-          }
-          
-        SAFE_DELETE(ctex);
-        return NULL;
-      }
+        if(it->second == NULL){
+          textureCache.erase(it);
+          break;
+        }
+         SAFE_DELETE(ctex);
+         return NULL;
+       }
+      totalsize+=ctex->texture->mTexHeight *ctex->texture->mTexWidth;
       ctex->hit();
       textureCache[filename] = ctex;
     }
@@ -202,22 +211,22 @@ WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool
   WCachedTexture * ctex = textureCache[filename];
   //Failed to cache it!
   if(!ctex && makenew){
-    ctex = NEW WCachedTexture();
     //Space in cache, make new texture
     if(cleanup()){
+      ctex = NEW WCachedTexture();
       ctex->texture = JRenderer::GetInstance()->LoadTexture(cardFile(filename,card->getSetName()).c_str());
  
       //Couldn't create texture, so fail.
       if(!ctex->texture){
         for(map<string,WCachedTexture*>::iterator it=textureCache.begin();it!=textureCache.end();it++)
-          if(it->second == NULL){
-            textureCache.erase(it);
-            break;
-          }
-          
+        if(it->second == NULL){
+          textureCache.erase(it);
+          break;
+        }
         SAFE_DELETE(ctex);
         return NULL;
       }
+      totalsize+=ctex->texture->mTexHeight *ctex->texture->mTexWidth;
       ctex->hit();
       textureCache[filename] = ctex;
     }
@@ -264,6 +273,8 @@ bool WResourceManager::RemoveOldestTexture(){
   }
 
   if(oldest != textureCache.end()){
+    if(oldest->second && oldest->second->texture)
+      totalsize-=oldest->second->texture->mTexHeight * oldest->second->texture->mTexWidth;
     SAFE_DELETE(oldest->second)
     textureCache.erase(oldest);
     return true;
@@ -423,6 +434,7 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
     return tc->GetQuad(offX,offY,width,height);  
   }
 
+  //Texture doesn't exist, so no quad.
   return NULL;
 }
 void WResourceManager::Release(JTexture * tex){

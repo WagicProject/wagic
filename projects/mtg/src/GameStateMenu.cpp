@@ -142,8 +142,8 @@ void GameStateMenu::Start(){
   
   bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_VRAM);
   movingWTexture = resources.RetrieveTexture("movingW.png", RETRIEVE_VRAM);
-  mBg = resources.RetrieveQuad("menutitle.png");		// Create background quad for rendering.
-  mMovingW = resources.RetrieveQuad("movingW.png");
+  mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166);		// Create background quad for rendering.
+  mMovingW = resources.RetrieveQuad("movingW.png", 2, 2, 84, 62);
 
   mBg->SetHotSpot(105,50);
   mMovingW->SetHotSpot(72,16);
