@@ -60,7 +60,7 @@ class GuiHandSelf : public GuiHand
     Open,
     Closed
   } state;
-  float backpos;
+  Pos backpos;
 
  public:
   GuiHandSelf(CardSelector* cs, MTGHand* hand);
@@ -71,6 +71,7 @@ class GuiHandSelf : public GuiHand
   bool CheckUserInput(u32 key);
   virtual void Render();
   void Update(float dt);
+  void Repos();
   float LeftBoundary();
 
   HandLimitor* limitor;
