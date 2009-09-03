@@ -250,7 +250,9 @@ GameObserver::~GameObserver(){
 }
 
 void GameObserver::Update(float dt){
-  Player * player =  currentPlayer;
+  Player * player = currentPlayer;
+  if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
+    player = player->opponent();
   currentActionPlayer = player;
   if (isInterrupting) player = isInterrupting;
   mLayers->Update(dt,player);
