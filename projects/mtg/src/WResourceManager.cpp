@@ -157,8 +157,14 @@ unsigned int WResourceManager::nowTime(){
 }
 
 void WResourceManager::clearSamples(){
-  for(map<string,WCachedSample*>::iterator it = sampleCache.begin();it!=sampleCache.end();it++)
-    SAFE_DELETE(it->second);
+  map<string,WCachedSample*>::iterator next;
+  for(map<string,WCachedSample*>::iterator it = sampleCache.begin();it!=sampleCache.end();it=next){
+    next = it;
+    next++;
+    
+    if(it->second && !it->second->isLocked())
+      SAFE_DELETE(it->second);
+  }
   sampleCache.clear();
 }
 
@@ -298,8 +304,7 @@ void WResourceManager::FlattenTimes(){
 bool WResourceManager::RemoveOldestTexture(){
   map<string,WCachedTexture*>::iterator oldest;
   for(map<string,WCachedTexture*>::iterator it = textureCache.begin();it!=textureCache.end();it++){
-    if(it->second && (it->second->lastTime < oldest->second->lastTime 
-      || (oldest->second->isLocked() && !it->second->isLocked())))
+    if(it->second && !it->second->isLocked() && it->second->lastTime < oldest->second->lastTime)
       oldest = it;
   }
 
@@ -319,7 +324,7 @@ bool WResourceManager::RemoveOldestSample(){
   saved = sampleCache.begin();
 
   for(it = sampleCache.begin();it!=sampleCache.end();it++){
-    if(it->second->lastTime < saved->second->lastTime)
+    if(it->second && !it->second->isLocked() && it->second->lastTime < saved->second->lastTime)
       saved = it;
   }
 
@@ -404,11 +409,11 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int type, int style){
 }
 
 JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height, string resname, int style){
-//Check our resources.
-  if(resname == "")
+
+  if(resname == "") 
     resname = filename;
 
-  //No exactly existant quad
+  //Check our managed resources.
   JQuad * retval = GetQuad(resname);
   if(retval != NULL || style == RETRIEVE_RESOURCE)
     return retval;
@@ -416,18 +421,7 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
   //We have a managed resource named this!
   JTexture * jtex = GetTexture(filename);
   if(jtex){
-     //Check for an existing quad with this name and stats
-     JQuad * jq = GetQuad(resname);
-     if(jq && jq->mHeight == height && jq->mWidth == width && jq->mX == offX && jq->mY == offY)
-       return jq;
-
-     //Find a quad with these stats, regardless of name
-     for(vector<JQuad*>::iterator it=mQuadList.begin();it!=mQuadList.end();it++){
-       if((*it)->mHeight == height && (*it)->mWidth == width && (*it)->mX == offX && (*it)->mY == offY)
-         return (*it);
-     }
-
-     //Overwrite the existing quad, if any.
+     //Make this quad, overwriting any similarly resname'd quads.
      CreateQuad(resname,filename,offX,offY,width,height);
      return GetQuad(resname);
   }
