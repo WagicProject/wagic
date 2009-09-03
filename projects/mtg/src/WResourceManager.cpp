@@ -420,9 +420,10 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
         break;
     }
     
-    SAFE_DELETE(tc);
-    if(it != textureCache.end())
+    if(it != textureCache.end()){
+      SAFE_DELETE(it->second);
       textureCache.erase(it);
+    }
     //Pop texture & quad into resource manager
     CreateQuad(resname,filename,offX,offY,width,height);
     return GetQuad(resname);
@@ -466,7 +467,6 @@ void WResourceManager::Release(JQuad * quad){
   }
 
   if(it != textureCache.end()){
-    it->second->unlock();
     if(!it->second->isLocked()){
       SAFE_DELETE(it->second);
       textureCache.erase(it);
@@ -523,9 +523,10 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style){
           break;
     }
 
-    SAFE_DELETE(tc);
-    if(it != textureCache.end())
+    if(it != textureCache.end()){
+      SAFE_DELETE(it->second);
       textureCache.erase(it);
+    }
     //Pop texture into resource manager
     CreateTexture(filename);
     return GetTexture(filename);
@@ -569,9 +570,10 @@ JSample * WResourceManager::RetrieveSample(string filename, int style){
           break;
       }
 
-    SAFE_DELETE(tc);
-    if(it != sampleCache.end())
-    sampleCache.erase(it);
+    if(it != sampleCache.end()){
+      SAFE_DELETE(it->second);
+      sampleCache.erase(it);
+    }
     //Pop sample into resource manager
     LoadSample(filename);
     return GetSample(filename);
