@@ -114,12 +114,34 @@ WCachedSample::~WCachedSample(){
 JSample * WCachedSample::GetSample(){
   return sample;
 }
+void WResourceManager::ClearMisses(){
+  map<string,WCachedTexture*>::iterator itTex, nextTex;
+  map<string,WCachedSample*>::iterator itSfx, nextSfx;
+
+  for(itTex = textureCache.begin(); itTex != textureCache.end();itTex=nextTex){
+    nextTex = itTex;
+    nextTex++;
+
+    if(itTex->second == NULL){
+      textureCache.erase(itTex);
+    }
+  }
+  for(itSfx = sampleCache.begin(); itSfx != sampleCache.end();itSfx=nextSfx){
+    nextSfx = itSfx;
+    nextSfx++;
+
+    if(itSfx->second == NULL){
+      sampleCache.erase(itSfx);
+    }
+  }
+}
 
 bool WResourceManager::cleanup(){
   int maxSize = options[Options::CACHESIZE].number * 100000;
   if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
 
   while (textureCache.size() > MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
+    ClearMisses();
     int result = RemoveOldestTexture();
     if (!result) return false;
   }
@@ -141,6 +163,10 @@ void WResourceManager::clearSamples(){
 }
 
 WCachedSample * WResourceManager::getCachedSample(string filename, bool makenew){
+  map<string,WCachedSample*>::iterator miss = sampleCache.find(filename);
+  if(miss != sampleCache.end() && miss->second == NULL)
+    return NULL; //We've found a cache miss, so return null.
+
   WCachedSample * csample = sampleCache[filename];
 
   //Failed to cache it!
@@ -148,22 +174,24 @@ WCachedSample * WResourceManager::getCachedSample(string filename, bool makenew)
     //Space in cache, make new sample
     if(cleanup()){
       csample = NEW WCachedSample();
-      csample->sample = ssLoadSample(filename.c_str());
-      //Clean the cache
-      if(!csample->sample && fileExists(sfxFile(filename).c_str())){
-      clearSamples();
-      csample->sample = ssLoadSample(filename.c_str());
-      }
-      //Failed.
-      if(!csample->sample){
-        for(map<string,WCachedSample*>::iterator it=sampleCache.begin();it!=sampleCache.end();it++)
-        if(it->second == NULL){
-          sampleCache.erase(it);
-          break;
+      string sfile = sfxFile(filename);
+      if(sfile != ""){
+        csample->sample = JSoundSystem::GetInstance()->LoadSample(sfile.c_str());
+        //Potential cache overflow- clean the cache
+        if(!csample->sample && fileExists(sfile.c_str())){
+          clearSamples();
+          csample->sample = JSoundSystem::GetInstance()->LoadSample(sfile.c_str());
         }
+      }
+      else
+        csample->sample = NULL;
+      
+      //Failed. Leave the cache miss alone.
+      if(!csample->sample){
         SAFE_DELETE(csample);
         return NULL;
       }
+      //Success!
       csample->hit();
       sampleCache[filename] = csample;
     }
@@ -185,7 +213,7 @@ WCachedTexture * WResourceManager::getCachedTexture(string filename, bool makene
 
        if(!ctex->texture){
         for(map<string,WCachedTexture*>::iterator it=textureCache.begin();it!=textureCache.end();it++)
-        if(it->second == NULL){
+          if(it->first == filename){
           textureCache.erase(it);
           break;
         }
@@ -208,6 +236,10 @@ WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool
   if(type == CACHE_THUMB)
     filename = "thumbnails/"+filename;
 
+  map<string,WCachedTexture*>::iterator miss = textureCache.find(filename);
+  if(miss != textureCache.end() && miss->second == NULL)
+    return NULL; //We've found a cache miss, so return null.
+  
   WCachedTexture * ctex = textureCache[filename];
   //Failed to cache it!
   if(!ctex && makenew){
@@ -220,13 +252,8 @@ WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool
       else
         ctex->texture = NULL;
  
-      //Couldn't create texture, so fail.
+      //Couldn't create texture, so fail. Leave failure in cache, so we don't try again later.
       if(!ctex->texture){
-        for(map<string,WCachedTexture*>::iterator it=textureCache.begin();it!=textureCache.end();it++)
-        if(it->second == NULL){
-          textureCache.erase(it);
-          break;
-        }
         SAFE_DELETE(ctex);
         return NULL;
       }
@@ -422,7 +449,7 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
     map<string,WCachedTexture*>::iterator it = textureCache.end();
     tc = textureCache[filename];
     for(it = textureCache.begin();it!=textureCache.end();it++){
-      if(it->second == tc)
+      if(it->first == filename)
         break;
     }
     
@@ -521,12 +548,12 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style){
     if(style == RETRIEVE_LOCK || style == RETRIEVE_VRAM) tc->lock();
     else if(style == RETRIEVE_UNLOCK) tc->unlock();
   }
-  else{
+  else if(style == RETRIEVE_MANAGE){
     //Remove cache hit from cache
     tc = textureCache[filename];
     map<string,WCachedTexture*>::iterator it = textureCache.end();
       for(it = textureCache.begin();it!=textureCache.end();it++){
-        if(it->second == tc)
+        if(it->first == filename)
           break;
     }
 
@@ -540,7 +567,7 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style){
   }
 
   //Texture exists! Get it.
-  if(tc->texture != NULL){
+  if(tc && tc->texture != NULL){
     tc->hit();
     return tc->GetTexture();  
   }
@@ -569,12 +596,12 @@ JSample * WResourceManager::RetrieveSample(string filename, int style){
     if(style == RETRIEVE_LOCK || style == RETRIEVE_VRAM) tc->lock();
     else if(style == RETRIEVE_UNLOCK) tc->unlock();
   }
-  else{
+  else if(style == RETRIEVE_MANAGE){
     //Remove cache hit from cache
     tc = sampleCache[filename];
     map<string,WCachedSample*>::iterator it;
       for(it = sampleCache.begin();it!=sampleCache.end();it++){
-        if(it->second == tc)
+        if(it->first == filename)
           break;
       }
 
@@ -588,7 +615,7 @@ JSample * WResourceManager::RetrieveSample(string filename, int style){
   }
 
   //Sample exists! Get it.
-  if(tc->sample != NULL){
+  if(tc && tc->sample != NULL){
     tc->hit();
     return tc->GetSample();  
   }
@@ -774,7 +801,7 @@ string WResourceManager::sfxFile(const string filename, const string specific){
        return defdir;      
     
      //Complete abject failure. Probably a crash...
-     return defdir;
+     return "";
 }
 
 int WResourceManager::fileOK(string filename, bool relative){
@@ -886,9 +913,6 @@ int WResourceManager::LoadSample(const string &sampleName){
 
 JMusic * WResourceManager::ssLoadMusic(const char *fileName){
   return JSoundSystem::GetInstance()->LoadMusic(musicFile(fileName).c_str());
-}
-JSample * WResourceManager::ssLoadSample(const char *fileName){
-  return JSoundSystem::GetInstance()->LoadSample(sfxFile(fileName).c_str());
 }
 
 

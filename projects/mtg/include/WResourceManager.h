@@ -81,6 +81,8 @@ public:
   void Release(JQuad * quad);
   void Release(JSample * sample);
 
+  void ClearMisses();
+
   unsigned int nowTime();
 
   //Our file redirect system.
@@ -101,7 +103,6 @@ public:
  
   //Wrapped from JSoundSystem. TODO: Privatize.
   JMusic * ssLoadMusic(const char *fileName);
-  JSample * ssLoadSample(const char *fileName); 
 
 private:
   bool RemoveOldestTexture();
