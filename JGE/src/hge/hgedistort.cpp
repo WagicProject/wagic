@@ -66,7 +66,7 @@ hgeDistortionMesh::hgeDistortionMesh(const hgeDistortionMesh &dm)
 hgeDistortionMesh::~hgeDistortionMesh()
 {
 	delete[] disp_array;
-	//hge->Release();
+	SAFE_DELETE(quad);
 }
 
 hgeDistortionMesh& hgeDistortionMesh::operator= (const hgeDistortionMesh &dm)

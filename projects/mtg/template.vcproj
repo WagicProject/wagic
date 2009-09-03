@@ -533,10 +533,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\TexturesCache.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\Token.cpp"
 				>
 			</File>
@@ -879,10 +875,6 @@
 			</File>
 			<File
 				RelativePath=".\include\TextScroller.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\TexturesCache.h"
 				>
 			</File>
 			<File
