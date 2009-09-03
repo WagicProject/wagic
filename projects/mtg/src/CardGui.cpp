@@ -121,13 +121,13 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     case Constants::MTG_COLOR_WHITE: q = resources.RetrieveQuad("white.jpg");break;
     default: q = resources.RetrieveQuad("black.jpg");break;
     }
-  if(q && q->mTex)
+  if(q && q->mTex){
    q->SetHotSpot(q->mTex->mWidth/2,q->mTex->mHeight/2);
 
-  float scale = pos.actZ * 250 / q->mHeight;
-  q->SetColor(ARGB((int)pos.actA,255,255,255));
-  renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
-
+    float scale = pos.actZ * 250 / q->mHeight;
+    q->SetColor(ARGB((int)pos.actA,255,255,255));
+    renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
+  }
   // Write the title
   JLBFont * font = resources.GetJLBFont("magic");
   float backup_scale = font->GetScale();
