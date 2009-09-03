@@ -67,13 +67,35 @@ void GuiHandOpponent::Render()
     }
 }
 
-GuiHandSelf::GuiHandSelf(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand), state(Closed), backpos(ClosedX)
+GuiHandSelf::GuiHandSelf(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand), state(Closed), backpos(ClosedX, SCREEN_HEIGHT - 250, 1.0, 0, 255)
 {
   limitor = NEW HandLimitor(this);
 }
 
 GuiHandSelf::~GuiHandSelf(){
   SAFE_DELETE(limitor);
+}
+
+void GuiHandSelf::Repos()
+{
+  float y = 48.0;
+  if (Closed == state)
+    for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+      {
+        (*it)->x = ClosedRowX; (*it)->y = y;
+        y += 20;
+      }
+  else
+    {
+      bool flip = false;
+      for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+        {
+          (*it)->x = flip ? RightRowX : LeftRowX;
+          (*it)->y = y;
+          if (flip) y += 65;
+          flip = !flip;
+        }
+    }
 }
 
 bool GuiHandSelf::CheckUserInput(u32 key)
@@ -84,6 +106,8 @@ bool GuiHandSelf::CheckUserInput(u32 key)
     {
       state = (Open == state ? Closed : Open);
       cs->Limit(Open == state ? limitor : NULL);
+      backpos.x = Open == state ? OpenX : ClosedX;
+      Repos();
       return true;
     }
   return false;
@@ -91,47 +115,15 @@ bool GuiHandSelf::CheckUserInput(u32 key)
 
 void GuiHandSelf::Update(float dt)
 {
-  if (Closed == state)
-    backpos += 10 * dt * (ClosedX - backpos);
-  else
-    backpos += 10 * dt * (OpenX - backpos);
+  backpos.Update(dt);
   GuiHand::Update(dt);
 }
 
 void GuiHandSelf::Render()
 {
-  if (Closed == state)
-    {
-      JRenderer::GetInstance()->RenderQuad(back, backpos, SCREEN_HEIGHT - 250);
-      float y = 48.0;
-      for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
-	{
-	  (*it)->x += (ClosedRowX - (*it)->x) / 100;
-	  (*it)->y += (y - (*it)->y) / 70;
-	  (*it)->Render();
-	  y += 20;
-	}
-    }
-  else
-    {
-      JRenderer::GetInstance()->RenderQuad(back, backpos, SCREEN_HEIGHT - 250);
-      bool flip = false;
-      float y = 48.0;
-      for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
-	{
-	  if (flip)
-	    (*it)->x += (RightRowX - (*it)->x) / 100;
-	  else
-	    (*it)->x += (LeftRowX - (*it)->x) / 100;
-	  // I wanna write it like that. GCC doesn't want me to without -O.
-	  // I'm submitting a bug report.
-	  //	  it->x = (it->x + (flip ? RightRowX : LeftRowX)) / 2;
-	  (*it)->y += (y - (*it)->y) / 70;
-	  (*it)->Render();
-	  if (flip) y += 65;
-	  flip = !flip;
-	}
-    }
+  backpos.Render(back);
+  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+    (*it)->Render();
 }
 
 float GuiHandSelf::LeftBoundary()
@@ -155,6 +147,7 @@ int GuiHandSelf::receiveEventPlus(WEvent* e)
 	card->t = 6*M_PI;
 	cards.push_back(card);
 	cs->Add(card);
+        Repos();
 	return 1;
       }
   return 0;
@@ -169,6 +162,7 @@ int GuiHandSelf::receiveEventMinus(WEvent* e)
 	    {
 	      CardView* cv = *it;
 	      cs->Remove(cv);
+              Repos();
 	      cards.erase(it);
 	      delete cv;
 	      return 1;
@@ -211,3 +205,7 @@ int GuiHandOpponent::receiveEventMinus(WEvent* e)
     }
   return 0;
 }
+
+// I wanna write it like that. GCC doesn't want me to without -O.
+// I'm submitting a bug report.
+//	  it->x = (it->x + (flip ? RightRowX : LeftRowX)) / 2;
