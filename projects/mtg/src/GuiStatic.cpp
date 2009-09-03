@@ -114,7 +114,7 @@ void GuiGameZone::Render(){
   mFont->DrawString(buffer, actX, actY);
 
   if (showCards) cd->Render();
-  for (vector<TransientCardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
     (*it)->Render();
   PlayGuiObject::Render();
 }
@@ -124,7 +124,7 @@ void GuiGameZone::ButtonPressed(int controllerId, int controlId){
 }
 
 void GuiGameZone::Update(float dt){
-  for (vector<TransientCardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
     (*it)->Update(dt);
   if (showCards) cd->Update(dt);
   PlayGuiObject::Update(dt);
@@ -137,9 +137,8 @@ GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, Gui
 
 GuiGameZone::~GuiGameZone(){
   if (cd) delete cd;
-  for (vector<TransientCardView*>::iterator it = cards.begin(); it != cards.end(); ++it){
+  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
     delete(*it);
-  }
 }
 
 ostream& GuiGameZone::toString(ostream& out) const
@@ -158,12 +157,11 @@ int GuiGraveyard::receiveEventPlus(WEvent* e)
   if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
     if (event->to == zone)
       {
-	cout << "Goes to Graveyard " << event->card->view << endl;
-	TransientCardView* t;
+	CardView* t;
 	if (event->card->view)
-	  t = NEW TransientCardView(event->card, *(event->card->view));
+	  t = NEW CardView(event->card, *(event->card->view));
 	else
-	  t = NEW TransientCardView(event->card, x, y);
+	  t = NEW CardView(event->card, x, y);
 	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.3; t->alpha = 0;
 	cards.push_back(t);
 	return 1;
@@ -175,10 +173,10 @@ int GuiGraveyard::receiveEventMinus(WEvent* e)
 {
   if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
     if (event->from == zone)
-      for (vector<TransientCardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+      for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
 	if (event->card->previous == (*it)->card)
 	  {
-	    TransientCardView* cv = *it;
+	    CardView* cv = *it;
 	    cards.erase(it);
 	    delete cv;
 	    return 1;

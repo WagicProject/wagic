@@ -534,17 +534,10 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
     }
   }
   WEvent * e = NULL;
-  if (defenser != opponent){
-    e = NEW WEventCreatureBlocker(this, defenser, opponent);
-
-  }
+  if (defenser != opponent) e = NEW WEventCreatureBlocker(this, defenser, opponent);
   defenser = opponent;
-  if (defenser){
-    defenser->blockers.push_back(this);
-  }
-  g->blockersSorted = false;
+  if (defenser) defenser->blockers.push_back(this);
   if (e) g->receiveEvent(e);
-  //delete e;
   return 1;
 }
 

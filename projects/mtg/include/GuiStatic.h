@@ -7,7 +7,7 @@
 #include "CardGui.h"
 #include "GuiAvatars.h"
 
-class TransientCardView;
+class CardView;
 
 struct GuiStatic : public PlayGuiObject{
   GuiAvatars* parent;
@@ -35,7 +35,7 @@ struct GuiAvatar : public GuiStatic{
 struct GuiGameZone : public GuiStatic{
   static const int Width = 20;
   static const int Height = 25;
-  vector<TransientCardView*> cards;
+  vector<CardView*> cards;
 
  public:
   MTGGameZone * zone;

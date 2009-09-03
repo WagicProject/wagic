@@ -76,7 +76,7 @@ void CardGui::Render()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * actZ);
     mFont->DrawString(card->getName().c_str(), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
     if (icon) { icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255)); renderer->RenderQuad(icon, actX, actY, 0); }
-    if (tc && !tc->canTarget(card)) renderer->FillRect(actX - actZ*Width/2, actY - actZ*Height/2, actZ*Width, actZ*Height, ARGB(200,0,0,0));
+    if (tc && !tc->canTarget(card)) renderer->FillRect(actX - actZ*Width/2, actY - actZ*Height/2, actZ*Width, actZ*Height, ARGB((static_cast<unsigned char>(actA*0.75)),0,0,0));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   }
 

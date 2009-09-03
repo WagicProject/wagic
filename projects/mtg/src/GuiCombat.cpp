@@ -1,3 +1,4 @@
+#include <assert.h>
 #include "../include/config.h"
 #include "../include/GameApp.h"
 #include "../include/GuiCombat.h"
@@ -138,11 +139,14 @@ bool GuiCombat::CheckUserInput(u32 key)
           cursor_pos = BLK;
         }
       else if (OK == cursor_pos)
-        switch (step)
         {
-        case ORDER        : go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); break;
-        case FIRST_STRIKE : resolve(); go->receiveEvent(NEW WEventCombatStepChange(DAMAGE)); break;
-        case DAMAGE       : resolve(); cursor_pos = NONE; go->userRequestNextGamePhase(); break;
+          switch (step)
+            {
+            case BLOCKERS     : assert(false); break; // that should not happen
+            case ORDER        : go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); break;
+            case FIRST_STRIKE : resolve(); go->receiveEvent(NEW WEventCombatStepChange(DAMAGE)); break;
+            case DAMAGE       : resolve(); cursor_pos = NONE; go->userRequestNextGamePhase(); break;
+            }
         }
       break;
     case PSP_CTRL_TRIANGLE:
@@ -242,16 +246,20 @@ void GuiCombat::Render()
 
 void GuiCombat::resolve()
 {
-  StableDamageStack stack;
+  DamageStack* stack = NEW DamageStack();
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
-      for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
-        for (vector<Damage>::iterator d = (*q)->damages.begin(); d != (*q)->damages.end(); ++d)
-          stack.Add(&(*d));
+      if ((*it)->blockers.empty())
+        stack->Add(NEW Damage((*it)->card, go->opponent(), (*it)->card->stepPower(step)));
+      else
+        for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
+          for (vector<Damage>::iterator d = (*q)->damages.begin(); d != (*q)->damages.end(); ++d)
+            stack->Add(NEW Damage(*d));
       for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
-        stack.Add(&(*d));
+        stack->Add(NEW Damage(*d));
     }
-  stack.resolve();
+  go->mLayers->stackLayer()->Add(stack);
+  go->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
 }
 
 int GuiCombat::receiveEventPlus(WEvent* e)
@@ -306,7 +314,9 @@ int GuiCombat::receiveEventMinus(WEvent* e)
       for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
 	if ((*it)->card == event->card)
 	  {
+            AttackerDamaged* d = *it;
 	    attackers.erase(it);
+            SAFE_DELETE(d);
 	    return 1;
 	  }
       return 1;
@@ -326,68 +336,77 @@ int GuiCombat::receiveEventMinus(WEvent* e)
               }
       return 0;
     }
+  else if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
+    {
+      step = BLOCKERS;
+    }
   else if (WEventCombatStepChange* event = dynamic_cast<WEventCombatStepChange*>(e))
     switch (event->step)
-    {
-    case ORDER:
       {
-        if (ORDER == step) return 0; // Why do I take this twice ? >.>
-	if (!go->currentPlayer->displayStack()) { go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); return 1; }
-        for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-          {
-            (*it)->show = (1 < (*it)->blockers.size());
-            autoaffectDamage(*it, DAMAGE);
-          }
-        active = NULL;
-        for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-          if ((*it)->show)
+      case BLOCKERS:
+        break;
+      case ORDER:
+        {
+          if (ORDER == step) return 0; // Why do I take this twice ? >.>
+          if (!go->currentPlayer->displayStack()) { go->nextCombatStep(); return 1; }
+          for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
             {
-              (*it)->y = 210;
-              (*it)->zoom = 2.2; (*it)->t = 0;
-              if (!active) active = *it;
+              (*it)->show = (1 < (*it)->blockers.size());
+              autoaffectDamage(*it, DAMAGE);
             }
+          active = NULL;
+          for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
+            if ((*it)->show)
+              {
+                (*it)->y = 210;
+                (*it)->zoom = 2.2; (*it)->t = 0;
+                if (!active) active = *it;
+              }
+          repos<AttackerDamaged>(attackers.begin(), attackers.end(), 0);
+          if (active)
+            {
+              active->zoom = 2.7; // We know there is at least one, so this cannot be NULL
+              activeAtk = static_cast<AttackerDamaged*>(active);
+              remaskBlkViews(NULL, static_cast<AttackerDamaged*>(active));
+              cursor_pos = ATK;
+              step = ORDER;
+            }
+          else
+            go->nextCombatStep();
+          return 1;
+        }
+      case FIRST_STRIKE:
+        step = FIRST_STRIKE;
+        for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
+          if ((*attacker)->card->has(Constants::FIRSTSTRIKE) || (*attacker)->card->has(Constants::DOUBLESTRIKE)) goto DAMAGE;
+        cout << "FIRST STRIKE" << endl;
+        resolve();
+        go->nextCombatStep();
+        return 1;
+      case DAMAGE: DAMAGE:
+        step = event->step;
+        if (!go->currentPlayer->displayStack()) { cout << "DAMAGE" << endl; resolve(); go->userRequestNextGamePhase(); return 1; }
+        for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
+          autoaffectDamage(*attacker, step);
+        for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
+          (*it)->show = ((*it)->card->has(Constants::DOUBLESTRIKE) || ((*it)->card->has(Constants::FIRSTSTRIKE) ^ (DAMAGE == step))) && (1 < (*it)->blockers.size());
         repos<AttackerDamaged>(attackers.begin(), attackers.end(), 0);
+        active = NULL;
+        for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it) if ((*it)->show) { active = *it; break; }
         if (active)
           {
-            active->zoom = 2.7; // We know there is at least one, so this cannot be NULL
+            active->zoom = 2.7;
             activeAtk = static_cast<AttackerDamaged*>(active);
             remaskBlkViews(NULL, static_cast<AttackerDamaged*>(active));
             cursor_pos = ATK;
-            step = ORDER;
           }
         else
-          go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE));
+          {
+            resolve();
+            if (FIRST_STRIKE == step) go->nextCombatStep();
+            else go->userRequestNextGamePhase();
+          }
         return 1;
       }
-    case FIRST_STRIKE:
-      for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
-        if ((*attacker)->card->has(Constants::FIRSTSTRIKE) || (*attacker)->card->has(Constants::DOUBLESTRIKE)) goto DAMAGE;
-      go->receiveEvent(NEW WEventCombatStepChange(DAMAGE));
-      return 1;
-    case DAMAGE: DAMAGE:
-      if (!go->currentPlayer->displayStack()) { go->userRequestNextGamePhase(); return 1; }
-      step = event->step;
-      for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
-        autoaffectDamage(*attacker, step);
-      for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-        (*it)->show = ((*it)->card->has(Constants::DOUBLESTRIKE) || ((*it)->card->has(Constants::FIRSTSTRIKE) ^ (DAMAGE == step))) && (1 < (*it)->blockers.size());
-      repos<AttackerDamaged>(attackers.begin(), attackers.end(), 0);
-      active = NULL;
-      for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it) if ((*it)->show) { active = *it; break; }
-      if (active)
-        {
-          active->zoom = 2.7;
-          activeAtk = static_cast<AttackerDamaged*>(active);
-          remaskBlkViews(NULL, static_cast<AttackerDamaged*>(active));
-          cursor_pos = ATK;
-        }
-      else
-        {
-          resolve();
-          if (FIRST_STRIKE == step) go->receiveEvent(NEW WEventCombatStepChange(DAMAGE));
-          else go->userRequestNextGamePhase();
-        }
-      return 1;
-    }
   return 0;
 }

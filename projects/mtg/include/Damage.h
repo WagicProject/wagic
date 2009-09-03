@@ -40,7 +40,7 @@ class Damage: public Interruptible {
 };
 
 
-class DamageStack :public GuiLayer, public Interruptible{
+class DamageStack : public GuiLayer, public Interruptible{
  protected:
   int currentState;
   GameObserver* game;
@@ -49,20 +49,7 @@ class DamageStack :public GuiLayer, public Interruptible{
   int resolve();
   void Render();
   virtual ostream& toString(ostream& out) const;
-  DamageStack(GameObserver* game);
+  DamageStack();
 };
-
-class StableDamageStack : public Interruptible {
- protected:
-  vector<Damage*> damage;
-
- public:
-  int resolve();
-  void Render();
-  void Add(Damage*);
-  virtual ostream& toString(ostream& out) const;
-};
-
-
 
 #endif

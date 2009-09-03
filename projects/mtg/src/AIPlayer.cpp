@@ -56,12 +56,9 @@ MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * sou
 
 int AIPlayer::Act(float dt){
   GameObserver * gameObs = GameObserver::GetInstance();
-  if (gameObs->currentPlayer == this){
+  if (gameObs->currentPlayer == this)
     gameObs->userRequestNextGamePhase();
-    return 1;
-  }else{
-    return 1;
-  }
+  return 1;
 }
 
 
@@ -498,14 +495,14 @@ int AIPlayer::chooseBlockers(){
 }
 
 int AIPlayer::orderBlockers(){
-  /*
+
   GameObserver * g = GameObserver::GetInstance();
-  DamageResolverLayer *  drl = g->mLayers->combatLayer();
-  if (drl->orderingIsNeeded && g->currentPlayer==this){
-    drl->blockersOrderingDone(); //TODO clever rank of blockers
-    return 1;
-  }
-  */
+  if (BLOCKERS == g->combatStep && g->currentPlayer==this)
+    {
+      g->userRequestNextGamePhase(); //TODO clever rank of blockers
+      return 1;
+    }
+
   return 0;
 }
 
@@ -716,6 +713,7 @@ int AIPlayerBaka::computeActions(){
       break;
     }
   }else{
+    cout << "my turn" << endl;
     switch(currentGamePhase){
     case Constants::MTG_PHASE_COMBATBLOCKERS:
       chooseBlockers();

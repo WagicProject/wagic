@@ -31,11 +31,9 @@ class GameObserver{
   int nbPlayers;
   int currentPlayerId;
   int currentRound;
-  int blockersAssigned;
-
 
  public:
-  int blockersSorted;
+  CombatStep combatStep;
   int turn;
   int forceShuffleLibraries();
   int targetListIsSet(MTGCardInstance * card);
@@ -57,6 +55,7 @@ class GameObserver{
   void cardClick(MTGCardInstance * card,Targetable * _object = NULL );
   int enteringPhase(int phase);
   int getCurrentGamePhase();
+  void nextCombatStep();
   void userRequestNextGamePhase();
   void nextGamePhase();
   void cleanupPhase();

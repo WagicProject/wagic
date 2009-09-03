@@ -22,8 +22,6 @@ GuiAvatars::GuiAvatars(CardSelector* cs) : cs(cs), active(NULL)
 
 GuiAvatars::~GuiAvatars()
 {
-  cs->Remove(self); cs->Remove(selfGraveyard); cs->Remove(selfLibrary);
-  cs->Remove(opponent); cs->Remove(opponentGraveyard); cs->Remove(opponentLibrary);
 }
 
 void GuiAvatars::Activate(PlayGuiObject* c)

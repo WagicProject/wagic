@@ -51,8 +51,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   gameOver = NULL;
   phaseRing = NEW PhaseRing(_players,_nb_players);
   replacementEffects = NEW ReplacementEffects();
-  blockersSorted = false;
-  blockersAssigned = 0;
+  combatStep = BLOCKERS;
 }
 
 void GameObserver::setGamePhaseManager(MTGGamePhase * _phases){
@@ -79,23 +78,12 @@ void GameObserver::nextPlayer(){
   currentPlayerId = (currentPlayerId+1)%nbPlayers;
   currentPlayer = players[currentPlayerId];
   currentActionPlayer = currentPlayer;
-  blockersSorted = false;
-  blockersAssigned = 0;
-
+  combatStep = BLOCKERS;
 }
 void GameObserver::nextGamePhase(){
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
-  if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
-    blockersAssigned = 1;
-    receiveEvent(NEW WEventCombatStepChange(ORDER));
-    /*
-    if (!mLayers->combatLayer()->autoOrderBlockers()){
-      OutputDebugString("Player has To choose ordering!");
-      return;
-    }
-    */
-  }
-
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
+    if (DAMAGE != combatStep) { nextCombatStep(); return; }
   phaseRing->forward();
   Phase * cPhase = phaseRing->getCurrentPhase();
   currentGamePhase = cPhase->id;
@@ -107,6 +95,7 @@ void GameObserver::nextGamePhase(){
     cleanupPhase();
     currentPlayer->canPutLandsIntoPlay = 1;
     mLayers->actionLayer()->Update(0);
+    combatStep = BLOCKERS;
     return nextGamePhase();
   }
 
@@ -148,28 +137,30 @@ int GameObserver::cancelCurrentAction(){
   return 1;
 }
 
+void GameObserver::nextCombatStep()
+{
+  switch (combatStep)
+    {
+    case BLOCKERS     : receiveEvent(NEW WEventCombatStepChange(combatStep = ORDER)); return;
+    case ORDER        : receiveEvent(NEW WEventCombatStepChange(combatStep = FIRST_STRIKE)); return;
+    case FIRST_STRIKE : receiveEvent(NEW WEventCombatStepChange(combatStep = DAMAGE)); return;
+    case DAMAGE       : ; // Nothing : go to next phase
+    }
+}
+
 void GameObserver::userRequestNextGamePhase(){
   if (mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)) return;
   if (getCurrentTargetChooser()) return;
   //  if (mLayers->combatLayer()->isDisplayed()) return;
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
-  if (!blockersSorted && cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS){
-    blockersAssigned = 1;
-    receiveEvent(NEW WEventCombatStepChange(ORDER));
-    /*
-    if (!mLayers->combatLayer()->autoOrderBlockers()){
-      OutputDebugString("Player has To choose ordering!");
-      return;
-    }
-    */
-  }
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
+    if (DAMAGE != combatStep) { nextCombatStep(); return; }
   if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS ||
      opponent()->isAI() ||
-      options[GameOptions::phaseInterrupts[currentGamePhase]].number){
+      options[GameOptions::phaseInterrupts[currentGamePhase]].number)
     mLayers->stackLayer()->AddNextGamePhase();
-  }else{
+  else
     nextGamePhase();
-  }
 }
 
 int GameObserver::forceShuffleLibraries(){
@@ -238,15 +229,15 @@ void GameObserver::addObserver(MTGAbility * observer){
 
 
 void GameObserver::removeObserver(ActionElement * observer){
-  if (observer){
-    if (mLayers->actionLayer()->getIndexOf(observer) != -1){
-      observer->destroy();
-      mLayers->actionLayer()->Remove(observer);
+  if (observer)
+    {
+      if (mLayers->actionLayer()->getIndexOf(observer) != -1){
+        observer->destroy();
+        mLayers->actionLayer()->Remove(observer);
+      }
     }
-  }else{
-    //TODO log error
-  }
-  
+  else
+    {} //TODO log error
 }
 
 GameObserver::~GameObserver(){
@@ -256,17 +247,10 @@ GameObserver::~GameObserver(){
   SAFE_DELETE(phaseRing);
   SAFE_DELETE(replacementEffects);
   LOG("==GameObserver Destroyed==");
-
 }
 
 void GameObserver::Update(float dt){
   Player * player =  currentPlayer;
-  if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS && !blockersSorted){
-    player = opponent();
-  }else	if (currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE){
-    //    DamageResolverLayer *  drl = mLayers->combatLayer();
-    //    if (drl->currentChoosingPlayer && drl->mCount) player = drl->currentChoosingPlayer;
-  }
   currentActionPlayer = player;
   if (isInterrupting) player = isInterrupting;
   mLayers->Update(dt,player);
@@ -275,13 +259,12 @@ void GameObserver::Update(float dt){
   }
   stateEffects();
   oldGamePhase = currentGamePhase;
-
 }
 
 //applies damage to creatures after updates
 //Players life test
-void GameObserver::stateEffects(){
-
+void GameObserver::stateEffects()
+{
   if (mLayers->stackLayer()->count(0,NOT_RESOLVED) != 0) return;
   if (mLayers->actionLayer()->menuObject) return;
   if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()) return;
@@ -292,23 +275,18 @@ void GameObserver::stateEffects(){
       card->afterDamage();
     }
   }
-
-  for (int i =0; i < 2; i++){
+  for (int i =0; i < 2; i++)
     if (players[i]->life <= 0) gameOver = players[i];
-  }
-
 }
 
 
-void GameObserver::Render(){
+void GameObserver::Render()
+{
   mLayers->Render();
-  if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()){
+  if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
     JRenderer::GetInstance()->DrawRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(255,255,0,0));
-  }
-  if (waitForExtraPayment){
+  if (waitForExtraPayment)
     waitForExtraPayment->Render();
-  }
-
 }
 
 

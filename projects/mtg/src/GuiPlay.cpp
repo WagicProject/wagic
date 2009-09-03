@@ -219,6 +219,7 @@ int GuiPlay::receiveEventMinus(WEvent * e)
 	      CardView* cv = *it;
 	      cs->Remove(cv);
 	      cards.erase(it);
+              cv->card->view = NULL;
 	      delete cv;
 	      Replace();
 	      return 1;
