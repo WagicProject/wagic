@@ -13,6 +13,7 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   manaPool = NEW ManaPool(this);
   canPutLandsIntoPlay = 1;
   mAvatar = NULL;
+  mAvatarTex = NULL;
   type_as_damageable = DAMAGEABLE_PLAYER;
 }
 

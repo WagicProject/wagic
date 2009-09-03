@@ -105,7 +105,6 @@ JQuad * CardGui::alternateThumbQuad(MTGCard * card){
     }
   if(q && q->mTex)
     q->SetHotSpot(q->mTex->mWidth/2,q->mTex->mHeight/2);
-  else q = q;
   return q;
 }
 
@@ -128,7 +127,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     float scale = pos.actZ * 250 / q->mHeight;
     q->SetColor(ARGB((int)pos.actA,255,255,255));
     renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
-  }else q = q;
+  }
   // Write the title
   JLBFont * font = resources.GetJLBFont("magic");
   float backup_scale = font->GetScale();
