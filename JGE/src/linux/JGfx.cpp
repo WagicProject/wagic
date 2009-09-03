@@ -615,6 +615,7 @@ FILE* fp = fopen(filenamenew, "rb");
     if (fp == NULL)
     {
         //Failed to open file
+      jpeg_destroy_decompress(&cinfo);
         return;
     }
 
