@@ -214,7 +214,11 @@ WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool
     //Space in cache, make new texture
     if(cleanup()){
       ctex = NEW WCachedTexture();
-      ctex->texture = JRenderer::GetInstance()->LoadTexture(cardFile(filename,card->getSetName()).c_str());
+      string cardfile = cardFile(filename,card->getSetName());
+      if(cardfile != "")
+        ctex->texture = JRenderer::GetInstance()->LoadTexture(cardfile.c_str());
+      else
+        ctex->texture = NULL;
  
       //Couldn't create texture, so fail.
       if(!ctex->texture){
@@ -358,8 +362,10 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int type, int style){
     tc = getCachedCard(card,type,true);
   
   //Perform lock or unlock on entry.
-  if(style == RETRIEVE_LOCK) tc->lock();
-  else if(style == RETRIEVE_UNLOCK) tc->unlock();
+  if(tc != NULL){
+    if(style == RETRIEVE_LOCK) tc->lock();
+    else if(style == RETRIEVE_UNLOCK) tc->unlock();
+  }
 
   //Texture exists! Get quad.
   if(tc && tc->texture != NULL){
@@ -511,10 +517,11 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style){
   }
   
   //Perform lock or unlock on entry.
-  if(style == RETRIEVE_LOCK || style == RETRIEVE_VRAM) tc->lock();
-  else if(style == RETRIEVE_UNLOCK) tc->unlock();
-  //Make a new managed resource
-  else if(style == RETRIEVE_MANAGE){
+  if(style != RETRIEVE_MANAGE && tc){
+    if(style == RETRIEVE_LOCK || style == RETRIEVE_VRAM) tc->lock();
+    else if(style == RETRIEVE_UNLOCK) tc->unlock();
+  }
+  else{
     //Remove cache hit from cache
     tc = textureCache[filename];
     map<string,WCachedTexture*>::iterator it = textureCache.end();
@@ -548,7 +555,7 @@ JSample * WResourceManager::RetrieveSample(string filename, int style){
     return retval;
 
   //Check cache.
-  WCachedSample * tc;
+  WCachedSample * tc = NULL;
 
   if(style != RETRIEVE_MANAGE){
     if(style == RETRIEVE_EXISTING)
@@ -558,10 +565,11 @@ JSample * WResourceManager::RetrieveSample(string filename, int style){
   }
 
   //Perform lock or unlock on entry.
-  if(style == RETRIEVE_LOCK) tc->lock();
-  else if(style == RETRIEVE_UNLOCK) tc->unlock();
-  //Make a new managed resource
-  else if(style == RETRIEVE_MANAGE){
+  if(style != RETRIEVE_MANAGE && tc){
+    if(style == RETRIEVE_LOCK || style == RETRIEVE_VRAM) tc->lock();
+    else if(style == RETRIEVE_UNLOCK) tc->unlock();
+  }
+  else{
     //Remove cache hit from cache
     tc = sampleCache[filename];
     map<string,WCachedSample*>::iterator it;
@@ -602,7 +610,7 @@ string WResourceManager::graphicsFile(const string filename, const string specif
     string theme = options[Options::ACTIVE_THEME].str;
     std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" || theme != "default"){
+    if(theme != "" && theme != "default"){
       sprintf(buf,"themes/%s/%s",theme.c_str(),filename.c_str());
      if(fileOK(buf,true))
         return buf;
@@ -656,7 +664,7 @@ string WResourceManager::cardFile(const string filename, const string setname, c
     string theme = options[Options::ACTIVE_THEME].str;
     std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" || theme != "default"){
+    if(theme != "" && theme != "default"){
        sprintf(buf,"themes/%s/%s/%s",theme.c_str(),sets,filename.c_str());
        if(fileOK(buf,true))
          return buf;
@@ -681,13 +689,13 @@ string WResourceManager::cardFile(const string filename, const string setname, c
      //Failure. Assume it's in a zip file?
       char zipname[100];
       sprintf(zipname, "Res/sets/%s/%s.zip", setname.c_str(),setname.c_str());
-      if (fileExists(zipname)){
+      if (fileOK(zipname,false)){
         fs->AttachZipFile(zipname);
         return filename;
       }
     
      //Complete abject failure. Probably a crash...
-     return defdir;
+     return "";
 }
 
 string WResourceManager::musicFile(const string filename, const string specific){
@@ -704,7 +712,7 @@ string WResourceManager::musicFile(const string filename, const string specific)
     string theme = options[Options::ACTIVE_THEME].str;
     std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" || theme != "default"){
+    if(theme != "" && theme != "default"){
        sprintf(buf,"themes/%s/sound/%s",theme.c_str(),filename.c_str());
        if(fileOK(buf,true))
          return buf;
@@ -744,7 +752,7 @@ string WResourceManager::sfxFile(const string filename, const string specific){
     string theme = options[Options::ACTIVE_THEME].str;
     std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" || theme != "default"){
+    if(theme != "" && theme != "default"){
        sprintf(buf,"themes/%s/sound/sfx/%s",theme.c_str(),filename.c_str());
        if(fileOK(buf,true))
          return buf;
@@ -770,14 +778,18 @@ string WResourceManager::sfxFile(const string filename, const string specific){
 }
 
 int WResourceManager::fileOK(string filename, bool relative){
-  
+  char fname[512];
   if(relative){
-    char buf[512];
-    sprintf(buf,RESPATH"/%s",filename.c_str());
-    return fileExists(buf);
+    sprintf(fname,RESPATH"/%s",filename.c_str());
   }
-  
-  return fileExists(filename.c_str());
+
+  std::ifstream fichier(fname);
+  if(fichier){
+    fichier.close();
+    return 1;
+  }
+
+  return 0;
 }
 
 int WResourceManager::CreateTexture(const string &textureName) {
