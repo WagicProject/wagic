@@ -51,7 +51,7 @@ void DamagerDamaged::clearDamage()
 void DamagerDamaged::Render(CombatStep mode)
 {
   TransientCardView::Render();
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
 
   switch (mode)

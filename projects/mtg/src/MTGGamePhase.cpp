@@ -5,7 +5,7 @@
 MTGGamePhase::MTGGamePhase(int id):ActionElement(id){
   animation = 0;
   currentState = -1;
-  mFont= GameApp::CommonRes->GetJLBFont("simon");
+  mFont= resources.GetJLBFont("simon");
   mFont->SetBase(0);	// using 2nd font
 }
 

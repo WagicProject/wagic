@@ -17,13 +17,10 @@ class GameStateMenu: public GameState, public JGuiListener
   SimpleMenu* gameTypeMenu;
   int hasChosenGameType;
   JQuad * mIcons[10];
-  JTexture * mIconsTexture;
   JTexture * bgTexture;
   JTexture * movingWTexture;
   JQuad * mBg;
   JQuad * mMovingW;
-  JTexture * splashTex;
-  JQuad * splashQuad;
   float mCreditsYPos;
   int currentState;
   //JMusic * bgMusic;

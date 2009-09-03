@@ -2,7 +2,7 @@
 #include "../include/ShopItem.h"
 #include "../include/GameStateShop.h"
 #include "../include/CardGui.h"
-#include "../include/TexturesCache.h"
+#include "../include/WResourceManager.h"
 #include "../include/Translate.h"
 #include <hge/hgedistort.h>
 
@@ -69,7 +69,7 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
 
-  thumb = cache.getThumb(card);
+  thumb = resources.RetrieveCard(card,CACHE_THUMB);
 
   if (!thumb) thumb = CardGui::alternateThumbQuad(card);
 
@@ -157,7 +157,7 @@ void ShopItem::Render(){
     //NOTHING
   }
   if (mHasFocus){
-    if (card) quad = cache.getQuad(card);
+    if (card) quad = resources.RetrieveCard(card);
     if (quad){
       quad->SetColor(ARGB(255,255,255,255));
       renderer->RenderQuad(quad,SCREEN_WIDTH - 105,SCREEN_HEIGHT/2 - 5,0, 0.9f,0.9f);
@@ -168,9 +168,6 @@ void ShopItem::Render(){
     mFont->DrawString(mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 16,JGETEXT_CENTER);
   }
 }
-
-
-
 
 void ShopItem::Update(float dt)
 {
@@ -231,7 +228,7 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   for (int i=0; i < SHOP_BOOSTERS; i++){
     setIds[i] = _setIds[i];
   };
-  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), NULL,_collection));
+  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), _collection));
 }
 
 
@@ -262,7 +259,7 @@ void ShopItems::Update(float dt){
       char buffer[4096];
       sprintf(buffer,"%s : %i credits",item->getText(),price);
       if(!dialog){
-	      dialog = NEW SimpleMenu(1,this,GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+	      dialog = NEW SimpleMenu(1,this,resources.GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
 	      dialog->Add(1,"Yes");
 	      dialog->Add(2,"No");
       }
@@ -336,7 +333,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
 	      safeDeleteDisplay();
 	      display = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
 
-        MTGDeck * tempDeck = NEW MTGDeck(NULL,playerdata->collection->database);
+        MTGDeck * tempDeck = NEW MTGDeck(playerdata->collection->database);
         int rare_or_mythic = Constants::RARITY_R;
         int rnd = rand() % 8;
         if (rnd == 0) rare_or_mythic = Constants::RARITY_M;

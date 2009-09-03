@@ -18,7 +18,6 @@
 #include "../include/Translate.h"
 
 const char * const GameState::menuTexts[]= {"--NEW--","Deck 1", "Deck 2", "Deck 3", "Deck 4", "Deck 5", "Deck 6"} ;
-WResourceManager* GameApp::CommonRes = NEW WResourceManager();
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;
@@ -67,7 +66,7 @@ void GameApp::Create()
 
   //Test for Music files presence
   string filepath = RESPATH;
-  filepath = filepath + "/" + CommonRes->musicFile("Track0.mp3");
+  filepath = filepath + "/" + resources.musicFile("Track0.mp3");
   std::ifstream file(filepath.c_str());
   if (file)
     file.close();
@@ -75,76 +74,70 @@ void GameApp::Create()
     HasMusic = 0;
 
   filepath = RESPATH;
-  filepath = filepath + "/" + CommonRes->musicFile("Track1.mp3");
+  filepath = filepath + "/" + resources.musicFile("Track1.mp3");
   std::ifstream file2(filepath.c_str());
   if (file2)
     file2.close();
   else
     HasMusic = 0;
 
-  CommonRes->CreateTexture("menuicons.png");
+  resources.RetrieveTexture("menuicons.png",RETRIEVE_MANAGE);
   //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
-  CommonRes->CreateQuad("c_artifact", "menuicons.png", 2 + 6*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_green", "menuicons.png", 2 + 0*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_blue", "menuicons.png", 2 + 1*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_red", "menuicons.png", 2 + 3*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_black", "menuicons.png", 2 + 2*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_white", "menuicons.png", 2 + 4*36, 38, 32, 32);
-  CommonRes->CreateQuad("c_land", "menuicons.png", 2 + 5*36, 38, 32, 32);
-  manaIcons[Constants::MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
-  manaIcons[Constants::MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
-  manaIcons[Constants::MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
-  manaIcons[Constants::MTG_COLOR_RED] = GameApp::CommonRes->GetQuad("c_red");
-  manaIcons[Constants::MTG_COLOR_BLACK] = GameApp::CommonRes->GetQuad("c_black");
-  manaIcons[Constants::MTG_COLOR_BLUE] = GameApp::CommonRes->GetQuad("c_blue");
-  manaIcons[Constants::MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
+  manaIcons[Constants::MTG_COLOR_GREEN] = resources.RetrieveQuad("menuicons.png", 2 + 0*36, 38, 32, 32, "c_green",RETRIEVE_MANAGE);
+  manaIcons[Constants::MTG_COLOR_BLUE] = resources.RetrieveQuad("menuicons.png", 2 + 1*36, 38, 32, 32, "c_blue",RETRIEVE_MANAGE);
+  manaIcons[Constants::MTG_COLOR_RED] = resources.RetrieveQuad("menuicons.png", 2 + 3*36, 38, 32, 32, "c_red",RETRIEVE_MANAGE);
+  manaIcons[Constants::MTG_COLOR_BLACK] = resources.RetrieveQuad("menuicons.png", 2 + 2*36, 38, 32, 32, "c_black",RETRIEVE_MANAGE);
+  manaIcons[Constants::MTG_COLOR_WHITE] = resources.RetrieveQuad("menuicons.png", 2 + 4*36, 38, 32, 32, "c_white",RETRIEVE_MANAGE);
+  manaIcons[Constants::MTG_COLOR_LAND] = resources.RetrieveQuad("menuicons.png", 2 + 5*36, 38, 32, 32, "c_land",RETRIEVE_MANAGE);
+  manaIcons[Constants::MTG_COLOR_ARTIFACT] = resources.RetrieveQuad("menuicons.png", 2 + 6*36, 38, 32, 32, "c_artifact",RETRIEVE_MANAGE);
+
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
-  CommonRes->CreateTexture("back.jpg");
-  CommonRes->CreateQuad("back", "back.jpg", 0, 0, 200, 285);
-  CommonRes->GetQuad("back")->SetHotSpot(100, 145);
+  resources.RetrieveTexture("back.jpg",RETRIEVE_MANAGE);
+  resources.RetrieveQuad("back.jpg", 0, 0, 200, 285, "back",RETRIEVE_MANAGE);
+  resources.GetQuad("back")->SetHotSpot(100, 145);
 
-  CommonRes->CreateTexture("back_thumb.jpg");
-  CommonRes->CreateQuad("back_thumb", "back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT);
+  resources.RetrieveTexture("back_thumb.jpg",RETRIEVE_MANAGE);
+  resources.RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb",RETRIEVE_MANAGE);
 
-  CommonRes->CreateTexture("particles.png");
-  CommonRes->CreateQuad("particles", "particles.png", 0, 0, 32, 32);
-  CommonRes->GetQuad("particles")->SetHotSpot(16,16);
+  resources.RetrieveTexture("particles.png",RETRIEVE_MANAGE);
+  resources.RetrieveQuad("particles.png", 0, 0, 32, 32, "particles",RETRIEVE_MANAGE);
+  resources.GetQuad("particles")->SetHotSpot(16,16);
+  resources.RetrieveQuad("particles.png", 64, 0, 32, 32, "stars",RETRIEVE_MANAGE);
+  resources.GetQuad("stars")->SetHotSpot(16,16);
 
-  CommonRes->CreateQuad("stars", "particles.png", 64, 0, 32, 32);
-  CommonRes->GetQuad("stars")->SetHotSpot(16,16);
-
-  CommonRes->LoadJLBFont("simon",11);
-  CommonRes->GetJLBFont("simon")->SetTracking(-1);
-  CommonRes->LoadJLBFont("f3",16);
-  CommonRes->LoadJLBFont("magic",16);
+  resources.LoadJLBFont("simon",11);
+  resources.GetJLBFont("simon")->SetTracking(-1);
+  resources.LoadJLBFont("f3",16);
+  resources.LoadJLBFont("magic",16);
 
 
-  CommonRes->CreateTexture("phasebar.png");
-  CommonRes->CreateTexture("wood.png");
-  CommonRes->CreateTexture("gold.png");
-  CommonRes->CreateTexture("goldglow.png");
-  CommonRes->CreateTexture("backdrop.jpg");
-  CommonRes->CreateTexture("handback.png");
+  resources.RetrieveTexture("phasebar.png",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("wood.png",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("gold.png",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("goldglow.png",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("backdrop.jpg",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("handback.png",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("BattleIcon.png",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("DefenderIcon.png",RETRIEVE_MANAGE);
+  resources.RetrieveTexture("shadow.png",RETRIEVE_MANAGE);
 
-  CommonRes->CreateTexture("BattleIcon.png");
-  CommonRes->CreateTexture("DefenderIcon.png");
-  CommonRes->CreateTexture("shadow.png");
-  CommonRes->CreateQuad("BattleIcon", "BattleIcon.png", 0, 0, 25, 25);
-  CommonRes->CreateQuad("DefenderIcon", "DefenderIcon.png", 0, 0, 24, 23);
-  CommonRes->CreateQuad("shadow", "shadow.png", 0, 0, 1, 1);
-  CommonRes->GetQuad("BattleIcon")->SetHotSpot(12, 12);
-  CommonRes->GetQuad("DefenderIcon")->SetHotSpot(12, 12);
-  CommonRes->GetQuad("shadow")->SetHotSpot(0.5, 0.5);
+  resources.RetrieveQuad("BattleIcon.png", 0, 0, 25, 25,"BattleIcon",RETRIEVE_MANAGE);
+  resources.RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23,"DefenderIcon",RETRIEVE_MANAGE);
+  resources.RetrieveQuad("shadow.png", 0, 0, 1, 1,"shadow",RETRIEVE_MANAGE);
+  
+  resources.GetQuad("BattleIcon")->SetHotSpot(12, 12);
+  resources.GetQuad("DefenderIcon")->SetHotSpot(12, 12);
+  resources.GetQuad("shadow")->SetHotSpot(0.5, 0.5);
 
-  collection = NEW MTGAllCards(&cache);
+  collection = NEW MTGAllCards();
 
-  Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", CommonRes->GetQuad("particles"));
-  Particles[1] = NEW hgeParticleSystem("graphics/particle2.psi", CommonRes->GetQuad("particles"));
-  Particles[2] = NEW hgeParticleSystem("graphics/particle3.psi", CommonRes->GetQuad("particles"));
-  Particles[3] = NEW hgeParticleSystem("graphics/particle4.psi", CommonRes->GetQuad("particles"));
-  Particles[4] = NEW hgeParticleSystem("graphics/particle5.psi", CommonRes->GetQuad("particles"));
-  Particles[5] = NEW hgeParticleSystem("graphics/particle7.psi", CommonRes->GetQuad("particles"));
+  Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", resources.GetQuad("particles"));
+  Particles[1] = NEW hgeParticleSystem("graphics/particle2.psi", resources.GetQuad("particles"));
+  Particles[2] = NEW hgeParticleSystem("graphics/particle3.psi", resources.GetQuad("particles"));
+  Particles[3] = NEW hgeParticleSystem("graphics/particle4.psi", resources.GetQuad("particles"));
+  Particles[4] = NEW hgeParticleSystem("graphics/particle5.psi", resources.GetQuad("particles"));
+  Particles[5] = NEW hgeParticleSystem("graphics/particle7.psi", resources.GetQuad("particles"));
 
   mGameStates[GAME_STATE_DECK_VIEWER] = NEW GameStateDeckViewer(this);
   mGameStates[GAME_STATE_DECK_VIEWER]->Create();
@@ -197,11 +190,7 @@ void GameApp::Destroy()
     collection->destroyAllCards();
     SAFE_DELETE(collection);
   }
-  SampleCache::DestroyInstance();
   delete(DeckStats::GetInstance());
-
-  SAFE_DELETE(CommonRes);
-
 
   SAFE_DELETE(Subtypes::subtypesList);
   SAFE_DELETE(MtgSets::SetsList);
@@ -274,7 +263,7 @@ void GameApp::Render()
 {
   if (systemError.size()){
     fprintf(stderr, systemError.c_str());
-    JLBFont * mFont= CommonRes->GetJLBFont("simon");
+    JLBFont * mFont= resources.GetJLBFont("simon");
     if (mFont) mFont->DrawString(systemError.c_str(),1,1);
     return;
   }

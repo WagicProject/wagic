@@ -32,7 +32,7 @@ void CardGui::Update(float dt)
 
 void CardGui::Render()
 {
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
 
   JRenderer * renderer = JRenderer::GetInstance();
   GameObserver * game = GameObserver::GetInstance();
@@ -40,31 +40,31 @@ void CardGui::Render()
   TargetChooser * tc = NULL;
   if (game) tc = game->getCurrentTargetChooser();
 
-  JQuad * quad = cache.getThumb(card);
+  JQuad * quad = resources.RetrieveCard(card,CACHE_THUMB);
   if (quad) {
     const float scale = actZ * 40 / quad->mHeight;
-    renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
+    renderer->RenderQuad(resources.GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
     quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
     renderer->RenderQuad(quad, actX, actY, actT, scale, scale);
   }
   else {
     const float scale = actZ;
 
-    renderer->RenderQuad(GameApp::CommonRes->GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
+    renderer->RenderQuad(resources.GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
 
     mFont->SetColor(ARGB(static_cast<unsigned char>(actA), 0, 0, 0));
 
     JQuad * icon = NULL;
     if (card->hasSubtype("plains"))
-      icon = GameApp::CommonRes->GetQuad("c_white");
+      icon = resources.GetQuad("c_white");
     else if (card->hasSubtype("swamp"))
-      icon = GameApp::CommonRes->GetQuad("c_black");
+      icon = resources.GetQuad("c_black");
     else if (card->hasSubtype("forest"))
-      icon = GameApp::CommonRes->GetQuad("c_green");
+      icon = resources.GetQuad("c_green");
     else if (card->hasSubtype("mountain"))
-      icon = GameApp::CommonRes->GetQuad("c_red");
+      icon = resources.GetQuad("c_red");
     else if (card->hasSubtype("island"))
-      icon = GameApp::CommonRes->GetQuad("c_blue");
+      icon = resources.GetQuad("c_blue");
     if (icon) icon->SetHotSpot(16,16);
 
     JQuad* q = alternateThumbQuad(card);
@@ -96,13 +96,15 @@ JQuad * CardGui::alternateThumbQuad(MTGCard * card){
   JQuad * q;
   switch(card->getColor())
     {
-    case Constants::MTG_COLOR_GREEN: q = cache.getQuad("sets/green_thumb.jpg");break;
-    case Constants::MTG_COLOR_BLUE : q = cache.getQuad("sets/blue_thumb.jpg");break;
-    case Constants::MTG_COLOR_RED  : q = cache.getQuad("sets/red_thumb.jpg");break;
-    case Constants::MTG_COLOR_BLACK: q = cache.getQuad("sets/black_thumb.jpg");break;
-    case Constants::MTG_COLOR_WHITE: q = cache.getQuad("sets/white_thumb.jpg");break;
-    default: q = cache.getQuad("sets/black_thumb.jpg");break;
+    case Constants::MTG_COLOR_GREEN: q = resources.RetrieveQuad("green_thumb.jpg");break;
+    case Constants::MTG_COLOR_BLUE : q = resources.RetrieveQuad("blue_thumb.jpg");break;
+    case Constants::MTG_COLOR_RED  : q = resources.RetrieveQuad("red_thumb.jpg");break;
+    case Constants::MTG_COLOR_BLACK: q = resources.RetrieveQuad("black_thumb.jpg");break;
+    case Constants::MTG_COLOR_WHITE: q = resources.RetrieveQuad("white_thumb.jpg");break;
+    default: q = resources.RetrieveQuad("black_thumb.jpg");break;
     }
+  if(q && q->mTex)
+    q->SetHotSpot(q->mTex->mWidth/2,q->mTex->mHeight/2);
   return q;
 }
 
@@ -112,19 +114,22 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   JQuad * q;
   switch(card->getColor())
     {
-  case Constants::MTG_COLOR_GREEN: q = cache.getQuad("sets/green.jpg");break;
-    case Constants::MTG_COLOR_BLUE : q = cache.getQuad("sets/blue.jpg");break;
-    case Constants::MTG_COLOR_RED  : q = cache.getQuad("sets/red.jpg");break;
-    case Constants::MTG_COLOR_BLACK: q = cache.getQuad("sets/black.jpg");break;
-    case Constants::MTG_COLOR_WHITE: q = cache.getQuad("sets/white.jpg");break;
-    default: q = cache.getQuad("sets/black.jpg");break;
+  case Constants::MTG_COLOR_GREEN: q = resources.RetrieveQuad("green.jpg");break;
+    case Constants::MTG_COLOR_BLUE : q = resources.RetrieveQuad("blue.jpg");break;
+    case Constants::MTG_COLOR_RED  : q = resources.RetrieveQuad("red.jpg");break;
+    case Constants::MTG_COLOR_BLACK: q = resources.RetrieveQuad("black.jpg");break;
+    case Constants::MTG_COLOR_WHITE: q = resources.RetrieveQuad("white.jpg");break;
+    default: q = resources.RetrieveQuad("black.jpg");break;
     }
+  if(q && q->mTex)
+   q->SetHotSpot(q->mTex->mWidth/2,q->mTex->mHeight/2);
+
   float scale = pos.actZ * 250 / q->mHeight;
   q->SetColor(ARGB((int)pos.actA,255,255,255));
   renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
 
   // Write the title
-  JLBFont * font = GameApp::CommonRes->GetJLBFont("magic");
+  JLBFont * font = resources.GetJLBFont("magic");
   float backup_scale = font->GetScale();
   font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
   font->SetScale(0.8 * pos.actZ);
@@ -217,7 +222,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 void CardGui::RenderBig(const Pos& pos){
   JRenderer * renderer = JRenderer::GetInstance();
 
-  JQuad * quad = cache.getQuad(card);
+  JQuad * quad = resources.RetrieveCard(card);
   if (quad){
     quad->SetColor(ARGB((int)pos.actA,255,255,255));
     float scale = pos.actZ * 257.f / quad->mHeight;
@@ -226,7 +231,7 @@ void CardGui::RenderBig(const Pos& pos){
   }
 
   JQuad * q;
-  if ((q = cache.getThumb(card)))
+  if ((q = resources.RetrieveCard(card,CACHE_THUMB)))
     {
       float scale = pos.actZ * 250 / q->mHeight;
       q->SetColor(ARGB((int)pos.actA,255,255,255));

@@ -189,8 +189,8 @@ void GameObserver::startGame(int shuffle, int draw){
   //Preload images from hand
   if (!players[0]->isAI()){
     for (i=0; i< players[0]->game->hand->nb_cards; i++){
-      cache.getThumb(players[0]->game->hand->cards[i]);
-      cache.getQuad(players[0]->game->hand->cards[i]);
+      resources.RetrieveCard(players[0]->game->hand->cards[i],CACHE_THUMB);
+      resources.RetrieveCard(players[0]->game->hand->cards[i]);
     }
   }
   turn = 0;

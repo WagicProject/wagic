@@ -13,22 +13,22 @@ ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1
   switch (color)
     {
     case Constants::MTG_COLOR_RED :
-      particleSys = NEW hgeParticleSystem("graphics/manared.psi", GameApp::CommonRes->GetQuad("stars"));
+      particleSys = NEW hgeParticleSystem("graphics/manared.psi", resources.GetQuad("stars"));
       break;
     case Constants::MTG_COLOR_BLUE :
-      particleSys = NEW hgeParticleSystem("graphics/manablue.psi", GameApp::CommonRes->GetQuad("stars"));
+      particleSys = NEW hgeParticleSystem("graphics/manablue.psi", resources.GetQuad("stars"));
       break;
     case Constants::MTG_COLOR_GREEN :
-      particleSys = NEW hgeParticleSystem("graphics/managreen.psi", GameApp::CommonRes->GetQuad("stars"));
+      particleSys = NEW hgeParticleSystem("graphics/managreen.psi", resources.GetQuad("stars"));
       break;
     case Constants::MTG_COLOR_BLACK :
-      particleSys = NEW hgeParticleSystem("graphics/manablack.psi", GameApp::CommonRes->GetQuad("stars"));
+      particleSys = NEW hgeParticleSystem("graphics/manablack.psi", resources.GetQuad("stars"));
       break;
     case Constants::MTG_COLOR_WHITE :
-      particleSys = NEW hgeParticleSystem("graphics/manawhite.psi", GameApp::CommonRes->GetQuad("stars"));
+      particleSys = NEW hgeParticleSystem("graphics/manawhite.psi", resources.GetQuad("stars"));
       break;
     default :
-      particleSys = NEW hgeParticleSystem("graphics/mana.psi", GameApp::CommonRes->GetQuad("stars"));
+      particleSys = NEW hgeParticleSystem("graphics/mana.psi", resources.GetQuad("stars"));
     }
   icon = manaIcons[color];
 

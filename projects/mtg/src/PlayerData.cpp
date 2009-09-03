@@ -21,7 +21,7 @@ PlayerData::PlayerData(MTGAllCards * allcards){
   }
 
   //COLLECTION
-  collection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), allcards->mCache, allcards);
+  collection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), allcards);
 }
 
 

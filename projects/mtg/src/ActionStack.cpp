@@ -8,7 +8,7 @@
 #include "../include/Damage.h"
 #include "../include/ManaCost.h"
 #include "../include/GameOptions.h"
-#include "../include/TexturesCache.h"
+#include "../include/WResourceManager.h"
 #include "../include/TargetChooser.h"
 #include "../include/CardGui.h"
 #include "../include/Translate.h"
@@ -24,7 +24,7 @@ int NextGamePhase::resolve(){
 
 void NextGamePhase::Render(){
   int nextPhase = (GameObserver::GetInstance()->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
@@ -50,14 +50,14 @@ int StackAbility::resolve(){
   return (ability->resolve());
 }
 void StackAbility::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   sprintf(buffer, "%s", _(ability->getMenuText()).c_str());
   mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = cache.getThumb(ability->source);
+  JQuad * quad = resources.RetrieveCard(ability->source,CACHE_THUMB);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = 30 / quad->mHeight;
@@ -183,12 +183,12 @@ MTGCardInstance * Spell::getNextCardTarget(MTGCardInstance * previous){
   }
 
 void Spell::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   mFont->DrawString(_(source->name).c_str(), x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = cache.getThumb(source);
+  JQuad * quad = resources.RetrieveCard(source,CACHE_THUMB);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = mHeight  / quad->mHeight;
@@ -205,7 +205,7 @@ void Spell::Render(){
   // just overwrites it.
   // I stole the render code from RenderBig() in CardGUI.cpp
 
-  quad = cache.getQuad(source);
+  quad = resources.RetrieveCard(source);
   if (quad){
       quad->SetColor(ARGB(220,255,255,255));
       float scale = 257.f / quad->mHeight;
@@ -217,7 +217,7 @@ void Spell::Render(){
       Pos pos = Pos(10 + 90, 20 + 130, 0.9f, 0.0, 255);
       CardGui::alternateRender(mtgcard, pos);
 
-      quad = cache.getThumb(source);
+      quad = resources.RetrieveCard(source,CACHE_THUMB);
       if (quad){
           float scale = 250 / quad->mHeight;
           quad->SetColor(ARGB(40,255,255,255));
@@ -268,7 +268,7 @@ int PutInGraveyard::resolve(){
 }
 
 void PutInGraveyard::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   if (!removeFromGame){
@@ -277,7 +277,7 @@ void PutInGraveyard::Render(){
     mFont->DrawString(_("is exiled").c_str(), x + 30 , y, JGETEXT_LEFT);
   }
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = cache.getThumb(card);
+  JQuad * quad = resources.RetrieveCard(card,CACHE_THUMB);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = 30 / quad->mHeight;
@@ -305,7 +305,7 @@ int DrawAction::resolve(){
 }
 
 void DrawAction::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
@@ -789,13 +789,13 @@ void ActionStack::Render(){
       if (current->state==NOT_RESOLVED) height += current->mHeight;
     }
 
-    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+    JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(255,255,255,255));
     JRenderer * renderer = JRenderer::GetInstance();
 
-    //JQuad * back = GameApp::CommonRes->GetQuad("interrupt");
+    //JQuad * back = resources.GetQuad("interrupt");
     //float xScale = width / back->mWidth;
     //float yScale = height / back->mHeight;
     renderer->FillRoundRect(x0 + 16 ,y0 + 16 ,width +2 ,height +2  , 10, ARGB(128,0,0,0));
@@ -845,7 +845,7 @@ void ActionStack::Render(){
       if (current->display) height += current->mHeight;
     }
 
-    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+    JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 

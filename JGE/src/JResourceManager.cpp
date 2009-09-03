@@ -16,6 +16,13 @@
 #include "../include/JLBFont.h"
 #include "tinyxml/tinyxml.h"
 
+#if defined (_DEBUG) && defined (WIN32)
+#include "crtdbg.h"
+#define NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#else
+#define NEW new
+#endif
+
 JResourceManager::JResourceManager()
 {
 	//mResourceRoot = "Res/";				// default root folder
@@ -299,7 +306,7 @@ int JResourceManager::CreateQuad(const string &quadName, const string &textureNa
 		printf("creating quad:%s\n", quadName.c_str());
 
 		int id = mQuadList.size();
-		mQuadList.push_back(new JQuad(tex, x, y, width, height));
+		mQuadList.push_back(NEW JQuad(tex, x, y, width, height));
 
 		mQuadMap[quadName] = id;
 
@@ -343,7 +350,7 @@ int JResourceManager::LoadJLBFont(const string &fontName, int height)
 
 		int id = mFontList.size();
 		///////////////////////////////////////
-		mFontList.push_back(new JLBFont(path.c_str(), height, true));
+		mFontList.push_back(NEW JLBFont(path.c_str(), height, true));
 
 		mFontMap[fontName] = id;
 

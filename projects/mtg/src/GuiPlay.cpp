@@ -70,7 +70,7 @@ void GuiPlay::BattleField::EnstackAttacker(CardView* card)
   GameObserver* game = GameObserver::GetInstance();
   card->x = currentAttacker * (HORZWIDTH-20) / (attackers + 1); card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y : -20 - y);
   ++currentAttacker;
-  //  JRenderer::GetInstance()->RenderQuad(GameApp::CommonRes->GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
+  //  JRenderer::GetInstance()->RenderQuad(resources.GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
 }
 void GuiPlay::BattleField::EnstackBlocker(CardView* card)
 {

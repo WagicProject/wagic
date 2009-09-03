@@ -278,7 +278,7 @@ string SimplePad::Finish() {
 
 void SimplePad::Render(){
   //This could use some cleaning up to make margins more explicit
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont("f3");
 
   int offX = 0, offY = 0;   
   int kH = mFont->GetHeight();

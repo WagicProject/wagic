@@ -5,7 +5,7 @@
 
 #include "../include/MTGDefinitions.h"
 #include "../include/GameApp.h"
-#include "../include/TexturesCache.h"
+#include "../include/WResourceManager.h"
 
 
 #include <string>
@@ -48,16 +48,13 @@ private:
   void initCounters();
  public:
 
-  TexturesCache * mCache;
   vector<int> ids;
   map<int, MTGCard *> collection;
   MTGAllCards();
   ~MTGAllCards();
-  MTGAllCards(TexturesCache * cache);
   MTGCard * _(int id);
   void destroyAllCards();
   MTGAllCards(const char * config_file, const char * set_name);
-  MTGAllCards(const char * config_file, const char * set_name, TexturesCache * cache);
   MTGCard * getCardById(int id);
   MTGCard * getCardByName(string name);
   int load(const char * config_file, const char * setName, int autoload = 1);
@@ -80,14 +77,13 @@ class MTGDeck{
   int total_cards;
 
  public:
-   TexturesCache * mCache;
   MTGAllCards * database;
    map <int,int> cards;
   string meta_desc;
   string meta_name;
   int totalCards();
-  MTGDeck(TexturesCache * cache, MTGAllCards * _allcards);
-  MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only = 0);
+  MTGDeck(MTGAllCards * _allcards);
+  MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only = 0);
   int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const char * subtype = NULL, int * colors = NULL, int nbcolors = 0);
   int add(int cardid);
   int add(MTGDeck * deck); // adds the contents of "deck" into myself

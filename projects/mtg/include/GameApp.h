@@ -29,8 +29,6 @@
 #include "../include/MTGCard.h"
 #include "../include/MTGGameZones.h"
 
-#include "../include/TexturesCache.h"
-
 #include "../include/CardEffect.h"
 
 #define MAX_STATE			6
@@ -47,11 +45,6 @@
 #define GAME_TYPE_RANDOM2 3
 
 class MTGAllCards;
-class TexturesCache;
-
-
-
-
 
 class GameApp:	public JApp
 {
@@ -83,7 +76,6 @@ class GameApp:	public JApp
 
   void LoadGameStates();
   void SetNextState(int state);
-  static WResourceManager * CommonRes;
   static hgeParticleSystem * Particles[6];
   static int HasMusic;
   static string systemError;

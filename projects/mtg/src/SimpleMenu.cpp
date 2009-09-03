@@ -43,21 +43,21 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
 
   JRenderer* renderer = JRenderer::GetInstance();
   
-  if (!spadeLTex)  spadeLTex= GameApp::CommonRes->LoadTexture("spade_ul.png", TEX_TYPE_USE_VRAM);
-  if (!spadeRTex) spadeRTex = GameApp::CommonRes->LoadTexture("spade_ur.png", TEX_TYPE_USE_VRAM);
+  if (!spadeLTex)  spadeLTex= resources.RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
+  if (!spadeRTex) spadeRTex = resources.RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
   if (!jewelTex)   jewelTex= renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
-  if (!sideTex)   sideTex = GameApp::CommonRes->LoadTexture("menuside.png", TEX_TYPE_USE_VRAM);
-if (NULL == spadeL) spadeL = NEW JQuad(spadeLTex, 2, 1, 16, 13);
-  if (NULL == spadeR) spadeR = NEW JQuad(spadeRTex, 2, 1, 16, 13);
+  if (!sideTex)   sideTex = resources.RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
+if (NULL == spadeL) spadeL = resources.RetrieveQuad("spade_ul.png", 2, 1, 16, 13, "spade_ul", RETRIEVE_MANAGE);
+  if (NULL == spadeR) spadeR = resources.RetrieveQuad("spade_ur.png", 2, 1, 16, 13, "spade_ur", RETRIEVE_MANAGE);
   if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
-  if (NULL == side)   side   = NEW JQuad(sideTex, 1, 1, 1, 7);
+  if (NULL == side)   side   = resources.RetrieveQuad("menuside.png", 1, 1, 1, 7,"menuside", RETRIEVE_MANAGE);
 
   if (NULL == titleFont)
     {
-      GameApp::CommonRes->LoadJLBFont("smallface", 7);
-      titleFont = GameApp::CommonRes->GetJLBFont("smallface");
+      resources.LoadJLBFont("smallface", 7);
+      titleFont = resources.GetJLBFont("smallface");
     }
-  if (NULL == stars) stars = NEW hgeParticleSystem("graphics/stars.psi", GameApp::CommonRes->GetQuad("stars"));
+  if (NULL == stars) stars = NEW hgeParticleSystem("graphics/stars.psi", resources.GetQuad("stars"));
 
   stars->MoveTo(mX, mY);
 }
@@ -129,7 +129,7 @@ void SimpleMenu::Render(){
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7)
       {
         if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
-          GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
+          resources.GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
 	        mFont->SetColor(options[Metrics::POPUP_MENU_TCH].asColor(ARGB(255,255,255,0)));
         }
 	else
@@ -178,13 +178,13 @@ void SimpleMenu::Close()
 }
 
 void SimpleMenu::destroy(){
-  SAFE_DELETE(SimpleMenu::spadeR);
-  SAFE_DELETE(SimpleMenu::spadeL);
+  resources.Release(SimpleMenu::spadeR);
+  resources.Release(SimpleMenu::spadeL);
+  resources.Release(SimpleMenu::side);
+  resources.Release(SimpleMenu::spadeRTex);
+  resources.Release(SimpleMenu::spadeLTex);
+  resources.Release(SimpleMenu::sideTex);
   SAFE_DELETE(SimpleMenu::jewel);
-  SAFE_DELETE(SimpleMenu::side);
-  SAFE_DELETE(SimpleMenu::spadeRTex);
-  SAFE_DELETE(SimpleMenu::spadeLTex);
-  SAFE_DELETE(SimpleMenu::jewelTex);
-  SAFE_DELETE(SimpleMenu::sideTex);
   SAFE_DELETE(SimpleMenu::stars);
+  SAFE_DELETE(SimpleMenu::jewelTex);
 }

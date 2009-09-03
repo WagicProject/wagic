@@ -4,7 +4,7 @@
 #include "../include/Counters.h"
 #include "../include/WEvent.h"
 #include "../include/Translate.h"
-#include "../include/TexturesCache.h"
+#include "../include/WResourceManager.h"
 
 Damage::Damage(MTGCardInstance * source, Damageable * target) {
   init(source, target, source->getPower());
@@ -62,14 +62,14 @@ int Damage::resolve(){
 }
 
 void Damage::Render(){
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   sprintf(buffer, _("Deals %i damage to").c_str(), damage);
   mFont->DrawString(buffer, x + 20 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = cache.getThumb(source);
+  JQuad * quad = resources.RetrieveCard(source,CACHE_THUMB);
   if (quad){
     float scale = 30 / quad->mHeight;
     renderer->RenderQuad(quad, x  , y , 0,scale,scale);

@@ -64,18 +64,16 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
   mGuiController = NULL;
   subMenuController = NULL;
   gameTypeMenu = NULL;
-  mIconsTexture = NULL;
   //bgMusic = NULL;
   timeIndex = 0;
   angleMultiplier = MIN_ANGLE_MULTIPLIER;
   yW = 55;
   mVolume = 0;
-  splashTex = NULL;
-  splashQuad = NULL;
   scroller = NULL;
 }
 
 GameStateMenu::~GameStateMenu() {}
+
 
 void GameStateMenu::Create()
 {
@@ -83,41 +81,33 @@ void GameStateMenu::Create()
   mReadConf = 0;
   mCurrentSetName[0] = 0;
 
-  mIconsTexture = GameApp::CommonRes->LoadTexture("menuicons.png", TEX_TYPE_USE_VRAM);
-  bgTexture = GameApp::CommonRes->LoadTexture("menutitle.png", TEX_TYPE_USE_VRAM);
-  movingWTexture = GameApp::CommonRes->LoadTexture("movingW.png", TEX_TYPE_USE_VRAM);
-  mBg = NEW JQuad(bgTexture, 0, 0, 256, 166);		// Create background quad for rendering.
-  mMovingW = NEW JQuad(movingWTexture, 2, 2, 84, 62);
-  if (fileExists(GameApp::CommonRes->graphicsFile("splash.jpg").c_str())){
-    splashTex = GameApp::CommonRes->LoadTexture("splash.jpg", TEX_TYPE_USE_VRAM);
-    splashQuad = NEW JQuad(splashTex, 0, 0, 480, 272);
-  }
-  mBg->SetHotSpot(105,50);
-  mMovingW->SetHotSpot(72,16);
-  //load all the icon images
+  //load all the icon images. Menu icons are managed, so we can do this here.
   int n = 0;
+  char buf[512];
+
   for (int i=0;i<5;i++){
     for (int j=0;j<2;j++){
-	    mIcons[n] = NEW JQuad(mIconsTexture, 2 + i*36, 2 + j*36, 32, 32);
+      sprintf(buf,"menuicons%d%d",i,j);
+	    mIcons[n] = resources.RetrieveQuad("menuicons.png", 2 + i*36, 2 + j*36, 32, 32,buf);
 	    mIcons[n]->SetHotSpot(16,16);
 	    n++;
 	  }
   }
 
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   mFont->SetColor(options[Metrics::LOADING_TC].asColor());
   mGuiController = NEW JGuiController(100, this);
   if (mGuiController)
     {
-      mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",GameApp::CommonRes->GetQuad("particles"),  true));
-      mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"graphics/particle2.psi",GameApp::CommonRes->GetQuad("particles")));
-      mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"graphics/particle3.psi",GameApp::CommonRes->GetQuad("particles")));
-      mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"graphics/particle4.psi",GameApp::CommonRes->GetQuad("particles")));
-      mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"graphics/particle5.psi",GameApp::CommonRes->GetQuad("particles")));
+      mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",resources.GetQuad("particles"),  true));
+      mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"graphics/particle2.psi",resources.GetQuad("particles")));
+      mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"graphics/particle3.psi",resources.GetQuad("particles")));
+      mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"graphics/particle4.psi",resources.GetQuad("particles")));
+      mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"graphics/particle5.psi",resources.GetQuad("particles")));
     }
 
   currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
-  scroller = NEW TextScroller(GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
+  scroller = NEW TextScroller(resources.GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
   scrollerSet = 0;
 }
 
@@ -128,29 +118,16 @@ void GameStateMenu::Destroy()
   SAFE_DELETE(mGuiController);
   SAFE_DELETE(subMenuController);
   SAFE_DELETE(gameTypeMenu);
-  SAFE_DELETE(mIconsTexture);
-
-  for (int i = 0; i < 10 ; i++){
-    SAFE_DELETE(mIcons[i]);
-  }
-
-  SAFE_DELETE(mBg);
-  SAFE_DELETE(mMovingW);
-  SAFE_DELETE(movingWTexture);
-  SAFE_DELETE(bgTexture);
+  resources.Release(bgTexture);
+  resources.Release(movingWTexture);
   SAFE_DELETE(scroller);
-
 }
 
-
-
 void GameStateMenu::Start(){
-  JRenderer::GetInstance()->ResetPrivateVRAM();
-  JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
 
   if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
-    GameApp::music = GameApp::CommonRes->ssLoadMusic("Track0.mp3");
+    GameApp::music = resources.ssLoadMusic("Track0.mp3");
     JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
   }
 
@@ -162,6 +139,16 @@ void GameStateMenu::Start(){
   hasChosenGameType = 1;
   if (options[Options::MOMIR_MODE_UNLOCKED].number) hasChosenGameType = 0;
   if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
+  
+  bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_VRAM);
+  movingWTexture = resources.RetrieveTexture("movingW.png", RETRIEVE_VRAM);
+  mBg = resources.RetrieveQuad("menutitle.png");		// Create background quad for rendering.
+  mMovingW = resources.RetrieveQuad("movingW.png");
+
+  mBg->SetHotSpot(105,50);
+  mMovingW->SetHotSpot(72,16);
+  JRenderer::GetInstance()->ResetPrivateVRAM();
+  JRenderer::GetInstance()->EnableVSync(true);
 }
 
 
@@ -217,7 +204,7 @@ void GameStateMenu::fillScroller(){
   sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, MtgSets::SetsList->nb_items);
   scroller->Add(buff2);
 
-  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), &cache,mParent->collection));
+  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), mParent->collection));
   int totalCards = ddw->getCount();
   if (totalCards){
     sprintf(buff2, _("You have a total of %i cards in your collection").c_str(),totalCards);
@@ -274,8 +261,10 @@ int GameStateMenu::nextDirectory(const char * root, const char * file){
 
 void GameStateMenu::End()
 {
-
   JRenderer::GetInstance()->EnableVSync(false);
+  
+  resources.Release(bgTexture);
+  resources.Release(movingWTexture);
 }
 
 
@@ -316,9 +305,7 @@ void GameStateMenu::Update(float dt)
           }
 	      }
         resetDirectory();
-        SAFE_DELETE(splashQuad);
-        SAFE_DELETE(splashTex);
-      }
+       }
       break;    
     case MENU_STATE_MAJOR_FIRST_TIME :
       options.checkProfile();
@@ -338,7 +325,7 @@ void GameStateMenu::Update(float dt)
 	{
 	  if (!hasChosenGameType){
 	    currentState = MENU_STATE_MAJOR_SUBMENU;
-	    JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+	    JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
 	    subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
 	    if (subMenuController){
 	      subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
@@ -402,8 +389,9 @@ void GameStateMenu::Render()
 {
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->ClearScreen(ARGB(0,0,0,0));
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
+    JQuad* splashQuad = resources.RetrieveQuad("splash.jpg");
     if (splashQuad){
       renderer->RenderQuad(splashQuad,0,0);
     }else{
@@ -412,7 +400,7 @@ void GameStateMenu::Render()
       mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
     }
   }else{
-    mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+    mFont = resources.GetJLBFont(Constants::MAIN_FONT);
     PIXEL_TYPE colors[] =
       {
 	      ARGB(255, 3, 2, 0),
@@ -447,7 +435,7 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
-JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
 #if defined (WIN32) || defined (LINUX)
   char buf[4096];
   sprintf(buf, "cnotrollerId: %i", controllerId);
@@ -558,13 +546,10 @@ ostream& GameStateMenu::toString(ostream& out) const
 	     << " ; gameTypeMenu : " << gameTypeMenu
 	     << " ; hasChosenGameType : " << hasChosenGameType
 	     << " ; mIcons : " << mIcons
-	     << " ; mIconsTexture : " << mIconsTexture
 	     << " ; bgTexture : " << bgTexture
 	     << " ; movingWTexture : " << movingWTexture
 	     << " ; mBg : " << mBg
 	     << " ; mMovingW : " << mMovingW
-	     << " ; splashTex : " << splashTex
-	     << " ; splashQuad : " << splashQuad
 	     << " ; mCreditsYPos : " << mCreditsYPos
 	     << " ; currentState : " << currentState
 	     << " ; mVolume : " << mVolume

@@ -24,7 +24,7 @@ HandLimitor::HandLimitor(GuiHand* hand) : hand(hand) {}
 
 GuiHand::GuiHand(CardSelector* cs, MTGHand* hand) : GuiLayer(), hand(hand), cs(cs)
 {
-  JTexture* texture = GameApp::CommonRes->GetTexture("handback.png");
+  JTexture* texture = resources.GetTexture("handback.png");
   if (texture)
     {
       back = NEW JQuad(texture, 0, 0, 101, 250);
@@ -54,7 +54,7 @@ GuiHandOpponent::GuiHandOpponent(CardSelector* cs, MTGHand* hand) : GuiHand(cs, 
 
 void GuiHandOpponent::Render()
 {
-  JQuad * quad = GameApp::CommonRes->GetQuad("back_thumb");
+  JQuad * quad = resources.GetQuad("back_thumb");
 
   float x = 45;
   for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)

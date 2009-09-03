@@ -4,26 +4,26 @@
 
 GuiFrame::GuiFrame()
 {
-  if (JTexture* woodTex = GameApp::CommonRes->GetTexture("wood.png"))
-    wood = NEW JQuad(woodTex, 0, 0, SCREEN_WIDTH, 16);
+  if (resources.GetTexture("wood.png"))
+    wood = resources.RetrieveQuad("wood.png", 0, 0, SCREEN_WIDTH, 16);
   else
     {
       wood = NULL;
       GameApp::systemError += "Can't load wood texture : " __FILE__ "\n";
     }
 
-  if (JTexture* goldTex = GameApp::CommonRes->GetTexture("gold.png"))
+  if (resources.GetTexture("gold.png"))
     {
-      gold1 = NEW JQuad(goldTex, 0, 0, SCREEN_WIDTH, 6);
-      gold2 = NEW JQuad(goldTex, 0, 6, SCREEN_WIDTH, 6);
+      gold1 = resources.RetrieveQuad("gold.png", 0, 0, SCREEN_WIDTH, 6, "gold1");
+      gold2 = resources.RetrieveQuad("gold.png", 0, 6, SCREEN_WIDTH, 6, "gold2");
     }
   else
     {
       gold1 = gold2 = NULL;
       GameApp::systemError += "Can't load gold texture : " __FILE__ "\n";
     }
-  if (JTexture* goldGlowTex = GameApp::CommonRes->GetTexture("goldglow.png"))
-    goldGlow = NEW JQuad(goldGlowTex, 0, 1, SCREEN_WIDTH, 18);
+  if (resources.GetTexture("goldglow.png"))
+    goldGlow = resources.RetrieveQuad("goldglow.png", 0, 1, SCREEN_WIDTH, 18);
   else
     {
       goldGlow = NULL;
@@ -38,10 +38,10 @@ GuiFrame::GuiFrame()
 
 GuiFrame::~GuiFrame()
 {
-  delete(gold2);
-  delete(gold1);
-  delete(wood);
-  SAFE_DELETE(goldGlow);
+  resources.Release(gold2);
+  resources.Release(gold1);
+  resources.Release(wood);
+  resources.Release(goldGlow);
 }
 
 void GuiFrame::Render()

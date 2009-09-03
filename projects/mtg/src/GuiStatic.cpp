@@ -21,7 +21,7 @@ void GuiAvatar::Render()
   GameObserver * game = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
   int life = player->life;
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   //Avatar
   int lifeDiff = life - currentLife;
@@ -97,14 +97,14 @@ void GuiGameZone::toggleDisplay(){
 
 void GuiGameZone::Render(){
   //Texture
-  JQuad * quad = GameApp::CommonRes->GetQuad("back_thumb");
+  JQuad * quad = resources.GetQuad("back_thumb");
   float scale = defaultHeight / quad->mHeight;
   quad->SetColor(ARGB((int)(actA/2),255,255,255));
 
   JRenderer::GetInstance()->RenderQuad(quad, actX, actY, 0.0, scale, scale);
 
   //Number of cards
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[11];
   sprintf(buffer,"%i", zone->nb_cards);

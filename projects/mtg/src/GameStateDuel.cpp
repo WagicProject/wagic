@@ -75,7 +75,7 @@ void GameStateDuel::Start()
 
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
   credits = NEW Credits();
-  mFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
+  mFont = resources.GetJLBFont(Constants::MENU_FONT);
   mFont->SetBase(0);
   opponentMenuFont = mFont;
 
@@ -115,7 +115,7 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
   string lands[] = {"forest", "forest", "island", "mountain", "swamp", "plains", "forest"};
 
 
-  MTGDeck * tempDeck = NEW MTGDeck(NULL, mParent->collection);
+  MTGDeck * tempDeck = NEW MTGDeck(mParent->collection);
   tempDeck->addRandomCards(9,0,0,-1,lands[color1].c_str());
   tempDeck->addRandomCards(9,0,0,-1,lands[color2].c_str());
   tempDeck->addRandomCards(1,0,0,'U',"land",colors,nbcolors);
@@ -141,7 +141,7 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
 void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
   string deckFileSmall = "momir";
   char empty[] = "";
-  MTGDeck * tempDeck = NEW MTGDeck(options.profileFile("momir.txt").c_str(), NULL, mParent->collection);
+  MTGDeck * tempDeck = NEW MTGDeck(options.profileFile("momir.txt").c_str(), mParent->collection);
   deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
   if (!isAI) // Human Player
     mPlayers[playerId] = NEW HumanPlayer(deck[playerId], options.profileFile("momir.txt").c_str(), deckFileSmall);
@@ -160,7 +160,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
         sprintf(deckFile, "%s/deck%i.txt",options.profileFile().c_str(), decknb);
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
-      MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, mParent->collection);
+      MTGDeck * tempDeck = NEW MTGDeck(deckFile, mParent->collection);
       deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
       delete tempDeck;
       mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);

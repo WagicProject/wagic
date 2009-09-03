@@ -150,7 +150,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (options[Options::SFXVOLUME].number > 0){
       if (to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard){
         if (card->isCreature()){
-          JSample * sample = SampleCache::GetInstance()->getSample("graveyard.wav");
+          JSample * sample = resources.RetrieveSample("graveyard.wav");
           if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
         }
       }

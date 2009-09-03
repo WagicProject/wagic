@@ -587,7 +587,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
   }
 
 
-  MTGDeck * tempDeck = NEW MTGDeck(deckFile, NULL, collection);
+  MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection);
   MTGPlayerCards * deck = NEW MTGPlayerCards(collection,tempDeck);
   delete tempDeck;
   AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFile, deckFileSmall, avatarFile);

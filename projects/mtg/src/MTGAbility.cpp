@@ -2344,7 +2344,7 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output,
     if (tap) source->tap();
 
     if (options[Options::SFXVOLUME].number > 0){
-      JSample * sample = SampleCache::GetInstance()->getSample("mana.wav");
+      JSample * sample = resources.RetrieveSample("mana.wav");
       if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
     }
     return resolve();

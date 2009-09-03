@@ -4,7 +4,7 @@
 #include "MTGCard.h"
 #include "MTGGameZones.h"
 #include "MTGAbility.h"
-#include "TexturesCache.h"
+#include "WResourceManager.h"
 #include "ManaCost.h"
 #include "Blocker.h"
 #include "Damage.h"
@@ -15,7 +15,6 @@ class MTGCardInstance;
 class MTGPlayerCards;
 class MTGAbility;
 class MTGCard;
-class TexturesCache;
 class ManaCost;
 class UntapBlockers;
 class CardDescriptor;

@@ -59,7 +59,7 @@ int SacrificeCost::doPay(){
 
 void SacrificeCost::Render(){
   //TODO : real stuff
-  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   sprintf(buffer, _("sacrifice").c_str());

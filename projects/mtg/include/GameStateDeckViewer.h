@@ -8,7 +8,7 @@
 
 #include "../include/GameState.h"
 #include "../include/SimpleMenu.h"
-#include "../include/TexturesCache.h"
+#include "../include/WResourceManager.h"
 #include "../include/CardGui.h"
 #include "../include/GameOptions.h"
 #include "../include/PriceList.h"
@@ -144,13 +144,11 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
     playerdata = NEW PlayerData(mParent->collection);
     sellMenu = NULL;
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), &cache,mParent->collection));
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), mParent->collection));
     displayed_deck =  myCollection;
     myDeck = NULL;
-    menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
-    mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
-
-
+    menuFont = resources.GetJLBFont(Constants::MENU_FONT);
+    mFont = resources.GetJLBFont(Constants::MAIN_FONT);
 
 
     menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
@@ -160,29 +158,29 @@ class GameStateDeckViewer: public GameState, public JGuiListener
 
 
     //icon images
-    mIcons[Constants::MTG_COLOR_ARTIFACT] = GameApp::CommonRes->GetQuad("c_artifact");
-    mIcons[Constants::MTG_COLOR_LAND] = GameApp::CommonRes->GetQuad("c_land");
-    mIcons[Constants::MTG_COLOR_WHITE] = GameApp::CommonRes->GetQuad("c_white");
-    mIcons[Constants::MTG_COLOR_RED] = GameApp::CommonRes->GetQuad("c_red");
-    mIcons[Constants::MTG_COLOR_BLACK] = GameApp::CommonRes->GetQuad("c_black");
-    mIcons[Constants::MTG_COLOR_BLUE] = GameApp::CommonRes->GetQuad("c_blue");
-    mIcons[Constants::MTG_COLOR_GREEN] = GameApp::CommonRes->GetQuad("c_green");
+    mIcons[Constants::MTG_COLOR_ARTIFACT] = resources.GetQuad("c_artifact");
+    mIcons[Constants::MTG_COLOR_LAND] = resources.GetQuad("c_land");
+    mIcons[Constants::MTG_COLOR_WHITE] = resources.GetQuad("c_white");
+    mIcons[Constants::MTG_COLOR_RED] = resources.GetQuad("c_red");
+    mIcons[Constants::MTG_COLOR_BLACK] = resources.GetQuad("c_black");
+    mIcons[Constants::MTG_COLOR_BLUE] = resources.GetQuad("c_blue");
+    mIcons[Constants::MTG_COLOR_GREEN] = resources.GetQuad("c_green");
     for (int i=0; i < 7; i++){
       mIcons[i]->SetHotSpot(16,16);
     }
-
-
-    pspIconsTexture = GameApp::CommonRes->LoadTexture("iconspsp.png", TEX_TYPE_USE_VRAM);
+    
+    //Grab a texture in VRAM.
+    pspIconsTexture = resources.RetrieveTexture("iconspsp.png",RETRIEVE_VRAM);
 
     for (int i=0; i < 8; i++){
-      pspIcons[i] = NEW JQuad(pspIconsTexture, i*32, 0, 32, 32);
+      pspIcons[i] = resources.RetrieveQuad("iconspsp.png", i*32, 0, 32, 32);
       pspIcons[i]->SetHotSpot(16,16);
     }
 
-    backQuad = GameApp::CommonRes->GetQuad("back");
+    backQuad = resources.GetQuad("back");
 
     //menuFont = NEW JLBFont("graphics/f3",16);
-    menuFont = GameApp::CommonRes->GetJLBFont("f3");
+    menuFont = resources.GetJLBFont("f3");
     welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
     int nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
 	  welcome_menu->Add(nbDecks+1, "--NEW--");
@@ -193,7 +191,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
          JSoundSystem::GetInstance()->StopMusic(GameApp::music);
           SAFE_DELETE(GameApp::music);
       }
-      GameApp::music = GameApp::CommonRes->ssLoadMusic("track1.mp3");
+      GameApp::music = resources.ssLoadMusic("track1.mp3");
       if (GameApp::music){
 	      JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
       }
@@ -225,9 +223,10 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }
     SAFE_DELETE(welcome_menu);
     SAFE_DELETE(menu);
-    SAFE_DELETE(pspIconsTexture);
+
+    resources.Release(pspIconsTexture);
     for (int i=0; i < 8; i++){
-      SAFE_DELETE(pspIcons[i]);
+      pspIcons[i] = NULL; //The quads these point to are released with the texture.
     }
     SAFE_DELETE(myCollection);
     SAFE_DELETE(myDeck);
@@ -505,7 +504,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   }
 
   void renderOnScreenMenu(){
-    JLBFont * font = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+    JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
     font->SetColor(ARGB(255,255,255,255));
     JRenderer * r = JRenderer::GetInstance();
     float pspIconsSize = 0.5;
@@ -617,15 +616,10 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     JQuad * quad = backQuad;
 
     int showName = 1;
-    if (cache.isInCache(card) || last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY){
-      quad = cache.getQuad(card);
-      showName = 0;
-    }
-
-
-
+    quad = resources.RetrieveCard(card);
 
     if (quad){
+      showName = 0;
       int quadAlpha = alpha;
       if ( !displayed_deck->cards[card]) quadAlpha /=2;
       quad->SetColor(ARGB(mAlpha,quadAlpha,quadAlpha,quadAlpha));
@@ -641,7 +635,7 @@ class GameStateDeckViewer: public GameState, public JGuiListener
     }else{
       Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
       CardGui::alternateRender(card, pos);
-      quad = cache.getThumb(card);
+      quad = resources.RetrieveCard(card,CACHE_THUMB);
       if (quad){
          float _scale = 285 * scale / quad->mHeight;
          quad->SetColor(ARGB(40,255,255,255));
@@ -727,12 +721,12 @@ class GameStateDeckViewer: public GameState, public JGuiListener
   int loadDeck(int deckid){
     SAFE_DELETE(myCollection);
     string profile = options[Options::ACTIVE_PROFILE].str;
-    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), &cache,mParent->collection));
+    myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), mParent->collection));
     displayed_deck = myCollection;
     char deckname[256];
     sprintf(deckname,"deck%i.txt",deckid);
     SAFE_DELETE(myDeck);
-    myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname).c_str(), &cache,mParent->collection));
+    myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname).c_str(), mParent->collection));
     MTGCard * current = myDeck->getNext();
     while (current){
       int howmanyinDeck = myDeck->cards[current];

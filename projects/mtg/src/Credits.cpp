@@ -27,8 +27,7 @@
   }
 
   Credits::~Credits(){
-    SAFE_DELETE(unlockedTex);
-    SAFE_DELETE(unlockedQuad);
+    resources.Release(unlockedTex);
     for (unsigned int i = 0; i<bonus.size(); ++i)
     if (bonus[i])
       delete bonus[i];
@@ -74,28 +73,28 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     if (unlocked == -1){
       unlocked = isDifficultyUnlocked();
       if (unlocked){
-        unlockedTex = GameApp::CommonRes->LoadTexture("unlocked.png", TEX_TYPE_USE_VRAM);
-        unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+        unlockedTex = resources.RetrieveTexture("unlocked.png", RETRIEVE_VRAM);
+        unlockedQuad = resources.RetrieveQuad("unlocked.png", 2, 2, 396, 96);
         options[Options::DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
         options.save();
       } else if ((unlocked = isMomirUnlocked())) {
-          unlockedTex = GameApp::CommonRes->LoadTexture("momir_unlocked.png", TEX_TYPE_USE_VRAM);
-          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          unlockedTex = resources.RetrieveTexture("momir_unlocked.png", RETRIEVE_VRAM);
+          unlockedQuad = resources.RetrieveQuad("momir_unlocked.png", 2, 2, 396, 96);
           options[Options::MOMIR_MODE_UNLOCKED] = GameOption(1);
           options.save();
       } else if ((unlocked = isEvilTwinUnlocked())) {
-          unlockedTex = GameApp::CommonRes->LoadTexture("eviltwin_unlocked.png", TEX_TYPE_USE_VRAM);
-          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          unlockedTex = resources.RetrieveTexture("eviltwin_unlocked.png", RETRIEVE_VRAM);
+          unlockedQuad = resources.RetrieveQuad("eviltwin_unlocked.png", 2, 2, 396, 96);
           options[Options::EVILTWIN_MODE_UNLOCKED] = GameOption(1);
           options.save();
       }else if((unlocked = isRandomDeckUnlocked())) {
-          unlockedTex = GameApp::CommonRes->LoadTexture("randomdeck_unlocked.png", TEX_TYPE_USE_VRAM);
-          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          unlockedTex = resources.RetrieveTexture("randomdeck_unlocked.png", RETRIEVE_VRAM);
+          unlockedQuad = resources.RetrieveQuad("randomdeck_unlocked.png", 2, 2, 396, 96);
           options[Options::RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
           options.save();
       }else if((unlocked = unlockRandomSet())) {
-          unlockedTex = GameApp::CommonRes->LoadTexture("set_unlocked.png", TEX_TYPE_USE_VRAM);
-          unlockedQuad = NEW JQuad(unlockedTex, 2, 2, 396, 96);
+          unlockedTex = resources.RetrieveTexture("set_unlocked.png", RETRIEVE_VRAM);
+          unlockedQuad = resources.RetrieveQuad("set_unlocked.png", 2, 2, 396, 96);
           char buffer[4096];
           unlockedString = MtgSets::SetsList->values[unlocked -1];
           sprintf(buffer,"unlocked_%s", unlockedString.c_str());
@@ -103,7 +102,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
           options.save();
       }
       if (unlocked){
-        JSample * sample = SampleCache::GetInstance()->getSample("bonus.wav");
+        JSample * sample = resources.RetrieveSample("bonus.wav");
         if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
       }
     }
@@ -131,9 +130,9 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 void Credits::Render(){
   GameObserver * g = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
-  JLBFont * f = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
-  JLBFont * f2 = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
-  JLBFont * f3 = GameApp::CommonRes->GetJLBFont(Constants::MAGIC_FONT);
+  JLBFont * f = resources.GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * f2 = resources.GetJLBFont(Constants::MENU_FONT);
+  JLBFont * f3 = resources.GetJLBFont(Constants::MAGIC_FONT);
   f->SetScale(1);
   f2->SetScale(1);
   f3->SetScale(1);

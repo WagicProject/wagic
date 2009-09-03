@@ -593,7 +593,7 @@ JSample * MTGCardInstance::getSample(){
 #ifdef WIN32
       OutputDebugString(type.c_str());
 #endif
-      if (fileExists(GameApp::CommonRes->sfxFile(type).c_str())){
+      if (fileExists(resources.sfxFile(type).c_str())){
         sample = string(type);
         break;
       }
@@ -605,7 +605,7 @@ JSample * MTGCardInstance::getSample(){
       if (!basicAbilities[i]) continue;
       string type = Constants::MTGBasicAbilities[i];
       type = type + ".wav";
-      if (fileExists(GameApp::CommonRes->sfxFile(type).c_str())){
+      if (fileExists(resources.sfxFile(type).c_str())){
         sample = type;
         break;
       }
@@ -614,12 +614,12 @@ JSample * MTGCardInstance::getSample(){
   if (!sample.size()){
     string type = Subtypes::subtypesList->find(types[0]);
     type = type + ".wav";
-    if (fileExists(GameApp::CommonRes->sfxFile(type).c_str())){
+    if (fileExists(resources.sfxFile(type).c_str())){
       sample = type;
     }
   }
 
-  if (sample.size()) return SampleCache::GetInstance()->getSample(sample);
+  if (sample.size()) return resources.RetrieveSample(sample);
 
   return NULL;
 }

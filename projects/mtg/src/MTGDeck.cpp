@@ -157,7 +157,6 @@ void MTGAllCards::initCounters(){
 
 void MTGAllCards::init(){
   tempCard = NULL;
-  mCache = NULL;
   total_cards = 0;
   initCounters();
   srand(time(0));  // initialize random
@@ -197,17 +196,7 @@ void MTGAllCards::destroyAllCards(){
 }
 
 MTGAllCards::MTGAllCards(const char * config_file, const char * set_name){
-  MTGAllCards(config_file, set_name, NULL);
-}
-
-MTGAllCards::MTGAllCards(TexturesCache * cache){
   init();
-  mCache = cache;
-}
-
-MTGAllCards::MTGAllCards(const char * config_file, const char * set_name, TexturesCache * cache){
-  init();
-  mCache = cache;
   load(config_file,set_name, 0);
 }
 
@@ -350,16 +339,14 @@ MTGCard * MTGAllCards::getCardByName(string name){
 
 
 
-MTGDeck::MTGDeck(TexturesCache * cache, MTGAllCards * _allcards){
-  mCache = cache;
+MTGDeck::MTGDeck(MTGAllCards * _allcards){
   total_cards = 0;
   database = _allcards;
   filename ="";
   meta_name = "";
 }
 
-MTGDeck::MTGDeck(const char * config_file, TexturesCache * cache, MTGAllCards * _allcards, int meta_only){
-  mCache = cache;
+MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only){
   total_cards = 0;
   database = _allcards;
   filename = config_file;

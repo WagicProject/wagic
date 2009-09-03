@@ -26,19 +26,16 @@ void GameStateShop::Create(){
 
 void GameStateShop::Start()
 {
-
-
-
   menu = NULL;
-  menuFont = GameApp::CommonRes->GetJLBFont(Constants::MENU_FONT);
-  itemFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+  menuFont = resources.GetJLBFont(Constants::MENU_FONT);
+  itemFont = resources.GetJLBFont(Constants::MAIN_FONT);
 
 
   mStage = STAGE_SHOP_SHOP;
 
-  bgTexture = GameApp::CommonRes->LoadTexture("shop.jpg", TEX_TYPE_USE_VRAM);
-  mBg = NEW JQuad(bgTexture, 0, 0, 480, 272);		// Create background quad for rendering.
-  mBack = GameApp::CommonRes->GetQuad("back");
+  bgTexture = resources.RetrieveTexture("shop.jpg", RETRIEVE_VRAM);
+  mBg = resources.RetrieveQuad("shop.jpg");
+  mBack = resources.GetQuad("back");
 
   JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
@@ -99,7 +96,7 @@ void GameStateShop::load(){
       setIds[i] = (rand() % MtgSets::SetsList->nb_items);
     }
   }
-  JQuad * mBackThumb = GameApp::CommonRes->GetQuad("back_thumb");
+  JQuad * mBackThumb = resources.GetQuad("back_thumb");
 
   
 
@@ -109,7 +106,7 @@ void GameStateShop::load(){
     shop->Add(setNames[i],mBack,mBackThumb, 700);
   }
   
-  MTGDeck * tempDeck = NEW MTGDeck(NULL,mParent->collection);
+  MTGDeck * tempDeck = NEW MTGDeck(mParent->collection);
   tempDeck->addRandomCards(8,sets,nbsets);
   for (map<int,int>::iterator it = tempDeck->cards.begin(); it!=tempDeck->cards.end(); it++){
     for (int j = 0; j < it->second; j++){
@@ -122,11 +119,9 @@ void GameStateShop::load(){
 void GameStateShop::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
+  resources.Release(bgTexture);
   SAFE_DELETE(shop);
-  SAFE_DELETE(bgTexture);
-  SAFE_DELETE(mBg);
   SAFE_DELETE(menu);
-
 }
 
 void GameStateShop::Destroy(){

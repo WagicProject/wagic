@@ -26,8 +26,6 @@ using namespace std;
 #define INVALID_ID				-1
 
 class JRenderer;
-class JParticleEffect;
-class JMotionEmitter;
 class JSample;
 class JMusic;
 class JTexture;
@@ -38,33 +36,30 @@ class JResourceManager
 {
 public:
 	JResourceManager();
-	~JResourceManager();
+	virtual ~JResourceManager();
 
 	//void SetResourceRoot(const string& resourceRoot);
 	bool LoadResource(const string& resourceName);
 
 	void RemoveAll();
-	void RemoveGraphics();
-	void RemoveSound();
-	void RemoveFont();
 	
-	int CreateTexture(const string &textureName);
+	virtual int CreateTexture(const string &textureName);
 	JTexture* GetTexture(const string &textureName);
 	JTexture* GetTexture(int id);
 
-	int CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height);
+	virtual int CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height);
 	JQuad* GetQuad(const string &quadName);
 	JQuad* GetQuad(int id);
 
-	int LoadJLBFont(const string &fontName, int height);
+	virtual int LoadJLBFont(const string &fontName, int height);
 	JLBFont* GetJLBFont(const string &fontName);
 	JLBFont* GetJLBFont(int id);
 
-	int LoadMusic(const string &musicName);
+	virtual int LoadMusic(const string &musicName);
 	JMusic* GetMusic(const string &musicName);
 	JMusic* GetMusic(int id);
 
-	int LoadSample(const string &sampleName);
+	virtual int LoadSample(const string &sampleName);
 	JSample* GetSample(const string &sampleName);
 	JSample* GetSample(int id);
 
@@ -76,7 +71,7 @@ public:
 // 	JMotionEmitter* GetMotionEmitter(const string &emitterName);
 // 	JMotionEmitter* GetMotionEmitter(int id);
 
-private:
+protected:
 
 	//JRenderer *mRenderer;
 	

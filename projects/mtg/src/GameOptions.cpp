@@ -300,7 +300,7 @@ void GameSettings::checkProfile(){
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
       return; 
-    
+
     if(profileFile(PLAYER_COLLECTION) == "")
     {
       //If we had any default settings, we'd set them here.
@@ -335,7 +335,7 @@ void GameSettings::createUsersFirstDeck(int setId){
   if(theGame == NULL || theGame->collection == NULL)
     return;
 
-  MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), &cache, theGame->collection);
+  MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), theGame->collection);
   //10 lands of each
   int sets[] = {setId};
   if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){

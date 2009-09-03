@@ -296,7 +296,7 @@ void TestSuite::initGame(){
       for (int k = 0; k < initState.playerData[i].zones[j].nbitems; k++){
 	      MTGCardInstance * card = getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
         char buf[4096];
-        sprintf(buf, "QUAD : %p\n", cache.getQuad(card));
+        sprintf(buf, "QUAD : %p\n", resources.RetrieveCard(card));
         OutputDebugString(buf);
 	      if (card && zone != p->game->library){
 	        if (zone == p->game->inPlay){

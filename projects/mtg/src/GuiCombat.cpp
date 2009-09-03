@@ -21,12 +21,7 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), acti
 {
   if (NULL == ok_quad)
     {
-      if (!GameApp::CommonRes->GetTexture("Ok.png"))
-        {
-          GameApp::CommonRes->CreateTexture("Ok.png");
-          GameApp::CommonRes->CreateQuad("OK", "Ok.png", 0, 0, 56, 45);
-        }
-      ok_quad = GameApp::CommonRes->GetQuad("OK");
+      ok_quad = resources.RetrieveQuad("OK.png");
       if (ok_quad) ok_quad->SetHotSpot(28, 22);
     }
 }
@@ -226,7 +221,7 @@ void GuiCombat::Render()
 	{
 	  go->opponent()->mAvatar->SetHotSpot(18, 25);
 	  enemy_avatar.Render(go->opponent()->mAvatar);
-	  JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+	  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
 	  mFont->SetColor(ARGB(255, 255, 64, 0));
 	  {
 	    char buf[10]; sprintf(buf, "%i", damage);
@@ -238,7 +233,7 @@ void GuiCombat::Render()
   renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
   if (FIRST_STRIKE == step)
     {
-      JLBFont * mFont = GameApp::CommonRes->GetJLBFont(Constants::MAIN_FONT);
+      JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
       mFont->SetColor(ARGB(255, 64, 255, 64));
       mFont->DrawString("First strike damage", 370, 2);
     }
@@ -338,6 +333,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
     }
   else if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
     {
+      event = event;
       step = BLOCKERS;
     }
   else if (WEventCombatStepChange* event = dynamic_cast<WEventCombatStepChange*>(e))

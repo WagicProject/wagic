@@ -16,7 +16,7 @@ int GameState::fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPre
     char deckDesc[512];
     sprintf(buffer, "%s/deck%i.txt",path.c_str(),nbDecks+1);
     if(fileExists(buffer)){
-      MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,NULL,1);
+      MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,1);
       found = 1;
       nbDecks++;
       sprintf(smallDeckName, "%s_deck%i",smallDeckPrefix.c_str(),nbDecks);
