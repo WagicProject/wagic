@@ -52,7 +52,7 @@ JTexture * WCachedTexture::GetTexture(){
 }
 
 bool WCachedTexture::ReleaseQuad(JQuad* quad){
- SAFE_DELETE(texture);
+ //SAFE_DELETE(texture); WTF?
  for(vector<JQuad*>::iterator i = trackedQuads.begin();i!=trackedQuads.end();i++){
    if((*i) == quad){
      SAFE_DELETE(quad);
