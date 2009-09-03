@@ -39,7 +39,7 @@ GuiPhaseBar::~GuiPhaseBar()
 
 void GuiPhaseBar::Update(float dt)
 {
-  if (angle > 0) angle -= 3*dt; else angle = 0;
+  if (angle > 3*dt) angle -= 3*dt; else angle = 0;
 }
 
 void GuiPhaseBar::Render()
