@@ -319,6 +319,7 @@ void OptionProfile::acceptSubmode()
     options[Options::ACTIVE_PROFILE] = selections[value];
     initialValue = value;
     populate(); 
+    resources.Refresh(); //Update images, in case we've changed profiles, etc.
     bCheck = false;
 }
 

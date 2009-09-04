@@ -36,6 +36,7 @@ public:
   bool ReleaseQuad(JQuad* quad); //We're done with this quad, so delete and stop tracking. True if existed.
 protected:  
   JTexture * texture;
+  bool bVRAM;
   vector<JQuad*> trackedQuads;
 };
 
@@ -82,6 +83,8 @@ public:
   void Release(JSample * sample);
 
   void ClearMisses();
+  void ClearUnlocked();
+  void Refresh(); //Refreshes all files in cache, for when mode/profile changes.
 
   unsigned int nowTime();
 

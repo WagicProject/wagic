@@ -39,6 +39,7 @@ void WCachedResource::hit(){
 
 WCachedTexture::WCachedTexture(){
   texture = NULL;
+  bVRAM = false;
 }
 
 WCachedTexture::~WCachedTexture(){
@@ -131,6 +132,28 @@ void WResourceManager::ClearMisses(){
     nextSfx++;
 
     if(itSfx->second == NULL){
+      sampleCache.erase(itSfx);
+    }
+  }
+}
+
+void WResourceManager::ClearUnlocked(){
+  map<string,WCachedTexture*>::iterator itTex, nextTex;
+  map<string,WCachedSample*>::iterator itSfx, nextSfx;
+
+  for(itTex = textureCache.begin(); itTex != textureCache.end();itTex=nextTex){
+    nextTex = itTex;
+    nextTex++;
+
+    if(!itTex->second || (itTex->second && !itTex->second->isLocked())){
+      textureCache.erase(itTex);
+    }
+  }
+  for(itSfx = sampleCache.begin(); itSfx != sampleCache.end();itSfx=nextSfx){
+    nextSfx = itSfx;
+    nextSfx++;
+
+    if(!itSfx->second || (itSfx->second && !itSfx->second->isLocked())){
       sampleCache.erase(itSfx);
     }
   }
@@ -475,6 +498,8 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
 
   //Texture exists! Get quad.
   if(tc && tc->texture != NULL){
+    if(style == RETRIEVE_VRAM)
+      tc->bVRAM = true;
     tc->hit();
     return tc->GetQuad(offX,offY,width,height);  
   }
@@ -961,4 +986,103 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
 	}
 	else
 		return itr->second;
+}
+
+void WResourceManager::Refresh(){
+  map<string,WCachedTexture*>::iterator it;
+  vector<JQuad*>::iterator q;
+  JTexture * oldtex;
+
+  ClearMisses();
+
+  for(it = textureCache.begin();it!=textureCache.end();it++){
+    if(it->second == NULL)
+      continue;
+
+    oldtex = it->second->texture;
+    
+    //Reload the texture.
+    if(it->second->bVRAM)
+      it->second->texture = JRenderer::GetInstance()->LoadTexture(graphicsFile(it->first).c_str(),TEX_TYPE_USE_VRAM,TEXTURE_FORMAT);
+    else
+      it->second->texture = JRenderer::GetInstance()->LoadTexture(graphicsFile(it->first).c_str(),0,TEXTURE_FORMAT);
+
+    //This texture doesn't exist in our current theme. Either use the old one, or record cache miss.
+    if(!it->second->texture){
+      if(it->second->isLocked())
+        it->second->texture = oldtex;
+      else{
+        SAFE_DELETE(oldtex);
+        SAFE_DELETE(it->second);
+      }
+      continue;
+    }
+
+    //Relink quads to new texture.
+    for(q = it->second->trackedQuads.begin(); q != it->second->trackedQuads.end(); q++){
+      (*q)->mTex = it->second->texture;
+    }
+  }
+
+  //Now do some juggling so that managed resources also reload. 
+  map<JTexture *,JTexture *> oldTextures;
+  map<JTexture *,string> newNames;
+  map<JTexture *,JTexture *>::iterator oldIt;
+  vector<JTexture*>::iterator jtex;
+  map<string, int>::iterator mapping;
+  JTexture * newtex;
+
+  //Store old mappings.
+  for(mapping = mTextureMap.begin();mapping != mTextureMap.end();mapping++){
+    if(oldTextures[mTextureList[mapping->second]] == NULL){
+      newtex = JRenderer::GetInstance()->LoadTexture(graphicsFile(mapping->first).c_str(),0,TEXTURE_FORMAT);
+      oldtex = mTextureList[mapping->second];
+      if(!newtex)
+        newNames[oldtex] = mapping->first;
+      else{
+        newNames[newtex] = mapping->first;
+        JRenderer::GetInstance()->BindTexture(newtex);
+      }
+
+      oldTextures[oldtex] = newtex;
+    }
+  }
+
+  //Remap quads.
+  for(q = mQuadList.begin();q!=mQuadList.end();q++){
+    newtex = oldTextures[(*q)->mTex];
+    if(newtex != NULL)
+      (*q)->mTex = newtex;
+  }
+
+  //Rebuild mTextureList and mapping.
+  mTextureList.clear();
+  mTextureMap.clear();
+  int x = 0;
+  for(oldIt = oldTextures.begin();oldIt!=oldTextures.end();oldIt++){
+    
+    if(oldIt->second)
+      newtex = oldIt->second;
+    else
+      newtex = oldIt->first;
+    
+    mTextureList.push_back(newtex);
+    mTextureMap[newNames[newtex]] = x;
+    x++;
+  }
+  
+  //Rebuild mapping.
+  for(mapping = mTextureMap.begin();mapping != mTextureMap.end();mapping++){
+    if(oldTextures[mTextureList[mapping->second]] == NULL)
+      continue;
+  }
+
+  //Delete unused textures.
+  for(oldIt = oldTextures.begin();oldIt!=oldTextures.end();oldIt++){
+    if(!oldIt->second || !oldIt->first )
+      continue;
+
+    oldtex = oldIt->first;
+    SAFE_DELETE(oldtex);
+  }
 }
