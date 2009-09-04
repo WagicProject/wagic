@@ -27,3 +27,16 @@ WEventConsumeMana::WEventConsumeMana(int color, ManaPool * source) : WEvent(), c
 WEventEmptyManaPool::WEventEmptyManaPool(ManaPool * source) : WEvent(), source(source){}
 
 WEventCombatStepChange::WEventCombatStepChange(CombatStep step) : WEvent(), step(step) {};
+
+std::ostream& WEvent::toString(std::ostream& out) const
+{
+  return out << "EVENT";
+}
+std::ostream& WEventZoneChange::toString(std::ostream& out) const
+{
+  return out << "EVENT " << *card << " : " << *from << " → " << *to;
+}
+std::ostream& operator<<(std::ostream& out, const WEvent& m)
+{
+  return m.toString(out);
+}

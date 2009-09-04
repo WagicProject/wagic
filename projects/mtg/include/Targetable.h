@@ -8,7 +8,7 @@
 class Targetable{
  public:
   virtual int typeAsTarget() = 0;
-  virtual const string getDisplayName() = 0;
+  virtual const string getDisplayName() const = 0;
 };
 
 #endif

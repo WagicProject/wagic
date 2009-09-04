@@ -59,7 +59,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   Player * owner;
   Counters * counters;
   int typeAsTarget(){return TARGET_CARD;}
-  const string getDisplayName();
+  const string getDisplayName() const;
   MTGCardInstance * target;
   void addType(int type);
 
@@ -124,9 +124,11 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int isInPlay();
   void resetAllDamage();
   JSample * getSample();
+
+  ostream& toString(ostream&) const;
 };
 
-
+ostream& operator<<(ostream&, const MTGCardInstance&);
 
 
 #endif

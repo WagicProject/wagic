@@ -86,6 +86,8 @@ class MTGGameZone {
    static int zoneStringToId(string zoneName);
    static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
    bool needShuffle;
+
+   virtual ostream& toString(ostream&) const;
 };
 
 class MTGLibrary: public MTGGameZone {
@@ -93,23 +95,28 @@ class MTGLibrary: public MTGGameZone {
   //  MTGLibrary();
   void shuffleTopToBottom(int nbcards);
   MTGCardInstance * draw();
+  virtual ostream& toString(ostream&) const;
 };
 
 class MTGGraveyard: public MTGGameZone {
  public:
   // MTGGraveyard();
+  virtual ostream& toString(ostream&) const;
 };
 
 class MTGHand: public MTGGameZone {
  public:
+  virtual ostream& toString(ostream&) const;
 };
 
 class MTGRemovedFromGame: public MTGGameZone {
  public:
+  virtual ostream& toString(ostream&) const;
 };
 
 class MTGStack: public MTGGameZone {
  public:
+  virtual ostream& toString(ostream&) const;
 };
 
 class MTGInPlay: public MTGGameZone {
@@ -120,6 +127,7 @@ class MTGInPlay: public MTGGameZone {
   MTGCardInstance * getNextDefenser(MTGCardInstance * previous, MTGCardInstance * attacker);
   int nbDefensers( MTGCardInstance * attacker);
   int nbPartners(MTGCardInstance * attacker);
+  virtual ostream& toString(ostream&) const;
 };
 
 
@@ -153,8 +161,8 @@ class MTGPlayerCards {
   MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
   MTGCardInstance * putInPlay(MTGCardInstance * card);
   int isInPlay(MTGCardInstance * card);
-
 };
 
+ostream& operator<<(ostream&, const MTGGameZone&);
 
 #endif

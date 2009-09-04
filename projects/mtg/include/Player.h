@@ -17,7 +17,7 @@ class Player: public Damageable{
  public:
   virtual void End();
   int typeAsTarget(){return TARGET_PLAYER;}
-  const string getDisplayName();
+  const string getDisplayName() const;
   virtual int displayStack(){return 1;}
   JTexture * mAvatarTex;
   JQuad * mAvatar;
@@ -45,7 +45,6 @@ class HumanPlayer: public Player{
 
 };
 
-
-
+ostream& operator<<(ostream&, const Player&);
 
 #endif

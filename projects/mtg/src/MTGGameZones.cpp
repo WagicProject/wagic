@@ -575,3 +575,15 @@ int MTGGameZone::zoneStringToId(string zoneName){
 MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source,MTGCardInstance * target){
   return intToZone(zoneStringToId(zoneName), source,target);
 }
+
+ostream& MTGGameZone::toString(ostream& out) const { return out << "Unknown zone"; }
+ostream& MTGLibrary::toString(ostream& out) const { return out << "Library " << *owner; }
+ostream& MTGGraveyard::toString(ostream& out) const { return out << "Graveyard " << *owner; }
+ostream& MTGHand::toString(ostream& out) const { return out << "Hand " << *owner; }
+ostream& MTGRemovedFromGame::toString(ostream& out) const { return out << "RemovedFromGame " << *owner; }
+ostream& MTGStack::toString(ostream& out) const { return out << "Stack " << *owner; }
+ostream& MTGInPlay::toString(ostream& out) const { return out << "InPlay " << *owner; }
+ostream& operator<<(ostream& out, const MTGGameZone& z)
+{
+  return z.toString(out);
+}

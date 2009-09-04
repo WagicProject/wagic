@@ -108,7 +108,7 @@ void MTGCardInstance::initMTGCI(){
 }
 
 
-const string MTGCardInstance::getDisplayName(){
+const string MTGCardInstance::getDisplayName() const {
   return getName();
 }
 
@@ -634,4 +634,14 @@ int MTGCardInstance::stepPower(CombatStep step)
     default :
       if (has(Constants::FIRSTSTRIKE)) return 0; else return MAX(0, power);
     }
+}
+
+std::ostream& MTGCardInstance::toString(std::ostream& out) const
+{
+  return out << name;
+}
+
+std::ostream& operator<<(std::ostream& out, const MTGCardInstance& c)
+{
+  return c.toString(out);
 }

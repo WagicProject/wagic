@@ -28,7 +28,7 @@ Player::~Player(){
   SAFE_DELETE(mAvatar);
 }
 
-const string Player::getDisplayName(){
+const string Player::getDisplayName() const {
   GameObserver  * g = GameObserver::GetInstance();
   if (this == g->players[0]) return "Player 1";
   return "Player 2";
@@ -74,4 +74,9 @@ int Player::afterDamage(){
 void Player::cleanupPhase(){
   game->inPlay->cleanupPhase();
   game->graveyard->cleanupPhase();
+}
+
+ostream& operator<<(ostream& out, const Player& p)
+{
+  return out << p.getDisplayName();
 }

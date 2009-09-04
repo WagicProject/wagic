@@ -57,7 +57,7 @@ class Interruptible: public PlayGuiObject, public Targetable{
   virtual void Render(){};
   int typeAsTarget(){return TARGET_STACKACTION;};
  Interruptible(bool hasFocus = false):PlayGuiObject(40,x,y,hasFocus){state=NOT_RESOLVED;display=0;source=NULL;};
-  virtual const string getDisplayName(){return "stack object";};
+  virtual const string getDisplayName() const {return "stack object";};
 #if defined (WIN32) || defined (LINUX)
   virtual void Dump();
 #endif
@@ -82,7 +82,7 @@ class Spell: public Interruptible {
   ~Spell();
   int resolve();
   void Render();
-  const string getDisplayName();
+  const string getDisplayName() const;
   virtual ostream& toString(ostream& out) const;
   MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);
   Player * getNextPlayerTarget(Player * previous = 0);

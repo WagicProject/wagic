@@ -331,11 +331,8 @@ int GuiCombat::receiveEventMinus(WEvent* e)
               }
       return 0;
     }
-  else if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
-    {
-      event = event;
-      step = BLOCKERS;
-    }
+  else if (dynamic_cast<WEventPhaseChange*>(e))
+    step = BLOCKERS;
   else if (WEventCombatStepChange* event = dynamic_cast<WEventCombatStepChange*>(e))
     switch (event->step)
       {

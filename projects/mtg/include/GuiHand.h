@@ -68,10 +68,10 @@ class GuiHandSelf : public GuiHand
   virtual int receiveEventPlus(WEvent* e);
   virtual int receiveEventMinus(WEvent* e);
 
+  void Repos();
   bool CheckUserInput(u32 key);
   virtual void Render();
   void Update(float dt);
-  void Repos();
   float LeftBoundary();
 
   HandLimitor* limitor;

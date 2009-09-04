@@ -115,7 +115,7 @@ Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _
 }
 
 
-const string Spell::getDisplayName(){
+const string Spell::getDisplayName() const {
   return source->getName();
 }
 

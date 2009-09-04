@@ -1,6 +1,7 @@
 #ifndef _WEVENT_H_
 #define _WEVENT_H_
 
+#include <iostream>
 #include "PhaseRing.h"
 
 class MTGCardInstance;
@@ -21,6 +22,7 @@ public:
   int type; //Deprecated, use dynamic casting instead
   WEvent(int type = NOT_SPECIFIED);
   virtual ~WEvent() {};
+  virtual std::ostream& toString(std::ostream& out) const;
 };
 
 struct WEventZoneChange : public WEvent {
@@ -29,6 +31,7 @@ struct WEventZoneChange : public WEvent {
   MTGGameZone * to;
   WEventZoneChange(MTGCardInstance * card, MTGGameZone * from, MTGGameZone *to);
   virtual ~WEventZoneChange() {};
+  virtual std::ostream& toString(std::ostream& out) const;
 };
 
 
@@ -115,5 +118,7 @@ struct WEventEmptyManaPool : public WEvent {
   ManaPool * source;
   WEventEmptyManaPool(ManaPool * source);
 };
+
+std::ostream& operator<<(std::ostream&, const WEvent&);
 
 #endif
