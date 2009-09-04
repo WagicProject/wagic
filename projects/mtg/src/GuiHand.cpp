@@ -182,7 +182,7 @@ int GuiHandOpponent::receiveEventPlus(WEvent* e)
 	  card = NEW CardView(event->card, *(event->card->view));
 	else
 	  card = NEW CardView(event->card, ClosedRowX, 0);
-	card->t = -4*M_PI;
+	card->t = -4*M_PI; card->alpha = 255;
 	cards.push_back(card);
 	return 1;
       }
@@ -201,7 +201,7 @@ int GuiHandOpponent::receiveEventMinus(WEvent* e)
 	      delete cv;
 	      return 1;
 	    }
-      return 1;
+      return 0;
     }
   return 0;
 }

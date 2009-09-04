@@ -173,13 +173,12 @@ int GuiPlay::receiveEventPlus(WEvent * e)
 	  (game->players[1]->inPlay() == event->to))
 	{
 	  CardView * card;
-	  cout << "Play Plus " << event->card << endl;
 	  if (event->card->view)
 	    card = NEW CardView(event->card, *(event->card->view));
 	  else
 	    card = NEW CardView(event->card, 0, 0);
 	  cards.push_back(card);
-	  card->t = 0;
+	  card->t = 0; card->alpha = 255;
 	  cs->Add(card);
 	  Replace();
 	  return 1;

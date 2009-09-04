@@ -112,7 +112,7 @@ void DuelLayers::Render(){
 
 int DuelLayers::receiveEvent(WEvent * e){
 
-#if 1
+#if 0
 #define PRINT_IF(type) { type *foo = dynamic_cast<type*>(e); if (foo) cout << "Is a " #type " " << *foo << endl; }
   cout << "Received event " << e << " ";
   PRINT_IF(WEventZoneChange);
