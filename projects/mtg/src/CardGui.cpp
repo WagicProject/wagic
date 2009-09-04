@@ -17,11 +17,21 @@ CardGui::CardGui(MTGCardInstance* card, float x, float y) : PlayGuiObject(Height
 CardGui::CardGui(MTGCardInstance* card, const Pos& ref) : PlayGuiObject(Height, ref, false), card(card) {}
 
 CardView::CardView(MTGCardInstance* card, float x, float y) : CardGui(card, x, y) {
-  card->view = this;
+  const Pos* ref = card->view;
+  while (card)
+    {
+      if (ref == card->view) card->view = this;
+      card = card->next;
+    }
 }
 
 CardView::CardView(MTGCardInstance* card, const Pos& ref) : CardGui(card, ref) {
-  card->view = this;
+  const Pos* r = card->view;
+  while (card)
+    {
+      if (r == card->view) card->view = this;
+      card = card->next;
+    }
 }
 
 void CardGui::Update(float dt)

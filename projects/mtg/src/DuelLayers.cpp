@@ -135,11 +135,17 @@ int DuelLayers::receiveEvent(WEvent * e){
       Pos* p;
       if (WEventZoneChange *event = dynamic_cast<WEventZoneChange*>(e))
 	{
-	  if (event->card->view)
-	    waiters.push_back(p = NEW Pos(*(event->card->view)));
+          MTGCardInstance* card = event->card;
+	  if (card->view)
+	    waiters.push_back(p = NEW Pos(*(card->view)));
 	  else
 	    waiters.push_back(p = NEW Pos(0, 0, 0, 0, 255));
-	  event->card->view = p;
+          const Pos* ref = card->view;
+          while (card)
+            {
+              if (ref == card->view) card->view = p;
+              card = card->next;
+            }
 	}
     }
   for (int i = 0; i < nbitems; ++i)
