@@ -303,15 +303,24 @@ void WResourceManager::FlattenTimes(){
 
 bool WResourceManager::RemoveOldestTexture(){
   map<string,WCachedTexture*>::iterator oldest;
+  oldest = textureCache.end();
   for(map<string,WCachedTexture*>::iterator it = textureCache.begin();it!=textureCache.end();it++){
-    if(it->second && !it->second->isLocked() && it->second->lastTime < oldest->second->lastTime)
+    if(it->second && !it->second->isLocked() 
+      && (oldest == textureCache.end() || it->second->lastTime < oldest->second->lastTime))
       oldest = it;
   }
 
   if(oldest != textureCache.end()){
-    if(oldest->second && oldest->second->texture)
-      totalsize-=oldest->second->texture->mTexHeight * oldest->second->texture->mTexWidth;
-    SAFE_DELETE(oldest->second)
+    if(oldest->second){
+      if(!oldest->second->isLocked() ){
+        if(oldest->second->texture)
+          totalsize-=oldest->second->texture->mTexHeight * oldest->second->texture->mTexWidth;
+        SAFE_DELETE(oldest->second);
+      }
+      else
+        return false;
+    }
+    
     textureCache.erase(oldest);
     return true;
   }
@@ -321,15 +330,23 @@ bool WResourceManager::RemoveOldestTexture(){
 
 bool WResourceManager::RemoveOldestSample(){
   map<string,WCachedSample*>::iterator it, saved;
-  saved = sampleCache.begin();
+  saved = sampleCache.end();
 
   for(it = sampleCache.begin();it!=sampleCache.end();it++){
-    if(it->second && !it->second->isLocked() && it->second->lastTime < saved->second->lastTime)
+    if(it->second && !it->second->isLocked() 
+       && (saved == sampleCache.end() || it->second->lastTime < saved->second->lastTime))
       saved = it;
   }
 
   if(saved != sampleCache.end()){
-    SAFE_DELETE(saved->second);
+    if(saved->second){
+      if(!saved->second->isLocked()){
+        SAFE_DELETE(saved->second);
+      }
+      else
+        return false;
+    }
+
     sampleCache.erase(saved);
     return true;
   }

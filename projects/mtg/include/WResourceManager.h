@@ -56,7 +56,7 @@ enum ENUM_RETRIEVE_STYLE{
   RETRIEVE_LOCK,      //As above, locks cached resource.
   RETRIEVE_UNLOCK,    //As above, unlocks cached resource.
   RETRIEVE_RESOURCE,  //Only retrieves a managed resource.
-  RETRIEVE_VRAM,      //If we create the texture, use vram.
+  RETRIEVE_VRAM,      //If we create the texture, use vram. Also locks.
   RETRIEVE_MANAGE,    //Permanently adds retrieved resource to resource manager.
 };
 
