@@ -750,14 +750,16 @@ string WResourceManager::cardFile(const string filename, const string setname, c
        return defdir;      
 
      //Failure. Assume it's in a zip file?
-      char zipname[100];
-      sprintf(zipname, "Res/sets/%s/%s.zip", setname.c_str(),setname.c_str());
-      if (fileOK(zipname,false)){
-        fs->AttachZipFile(zipname);
-        return filename;
-      }
+     if(setname.size()){
+        char zipname[100];
+        sprintf(zipname, "Res/sets/%s/%s.zip", setname.c_str(),setname.c_str());
+        if (fileOK(zipname)){
+          fs->AttachZipFile(zipname);
+          return filename;
+        }
+     }
     
-     //Complete abject failure. Probably a crash...
+     //Complete failure.
      return "";
 }
 
@@ -842,13 +844,16 @@ string WResourceManager::sfxFile(const string filename, const string specific){
 
 int WResourceManager::fileOK(string filename, bool relative){
   char fname[512];
+  std::ifstream * fp = NULL;
   if(relative){
     sprintf(fname,RESPATH"/%s",filename.c_str());
+    fp = NEW std::ifstream(fname);
   }
+  else
+    fp = NEW std::ifstream(filename.c_str());
 
-  std::ifstream fichier(fname);
-  if(fichier){
-    fichier.close();
+  if(fp && *fp){
+    fp->close();
     return 1;
   }
 
