@@ -83,7 +83,7 @@ void GuiCombat::autoaffectDamage(AttackerDamaged* attacker, CombatStep step)
   for (vector<DefenserDamaged*>::iterator it = attacker->blockers.begin(); it != attacker->blockers.end(); ++it)
     {
       (*it)->clearDamage();
-      unsigned actual_damage = MIN(damage, (unsigned)MAX((*it)->card->toughness, 0));
+      unsigned actual_damage = MIN(damage, (unsigned)MAX((*it)->card->stepPower(step), 0));
       (*it)->addDamage(actual_damage, attacker);
       attacker->addDamage((*it)->card->stepPower(step), *it);
       damage -= actual_damage;
@@ -318,7 +318,6 @@ int GuiCombat::receiveEventMinus(WEvent* e)
     }
   else if (WEventCreatureBlocker* event = dynamic_cast<WEventCreatureBlocker*>(e))
     {
-      cout << "Blocker : " << event->card->name << " " << event->before << " -> " << event->after << endl;
       for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
         if ((*it)->card == event->before)
           for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
@@ -373,6 +372,8 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
           if ((*attacker)->card->has(Constants::FIRSTSTRIKE) || (*attacker)->card->has(Constants::DOUBLESTRIKE)) goto DAMAGE;
         cout << "FIRST STRIKE" << endl;
+        for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
+          autoaffectDamage(*attacker, FIRST_STRIKE);
         resolve();
         go->nextCombatStep();
         return 1;
