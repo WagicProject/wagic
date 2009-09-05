@@ -51,7 +51,7 @@
 #define RAD2DEG		57.29577951f
 #define DEG2RAD		0.017453293f
 
-#define SAFE_DELETE(x)			if (x) { delete x; x = NULL; }
+#define SAFE_DELETE(x)		do { if (x) { delete x; x = NULL; } } while(false)
 #define SAFE_DELETE_ARRAY(x)	if (x) { delete [] x; x = NULL; }
 
 
