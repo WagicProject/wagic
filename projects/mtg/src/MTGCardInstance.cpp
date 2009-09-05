@@ -105,6 +105,7 @@ void MTGCardInstance::initMTGCI(){
   next = NULL;
   lastController = NULL;
   regenerateTokens = 0;
+  blocked = false;
 }
 
 
@@ -171,10 +172,6 @@ int MTGCardInstance::has(int basicAbility){
   return basicAbilities[basicAbility];
 }
 
-
-
-
-
 //Taps the card
 void MTGCardInstance::tap(){
   if (tapped) return;
@@ -182,7 +179,6 @@ void MTGCardInstance::tap(){
   WEvent * e = NEW WEventCardTap(this, 0, 1);
   GameObserver * game = GameObserver::GetInstance();
   game->receiveEvent(e);
-  //delete e;
 }
 
 void MTGCardInstance::untap(){
@@ -191,7 +187,6 @@ void MTGCardInstance::untap(){
   WEvent * e = NEW WEventCardTap(this, 1, 0);
   GameObserver * game = GameObserver::GetInstance();
   game->receiveEvent(e);
-  //delete e;
 }
 
 
@@ -217,9 +212,6 @@ int MTGCardInstance::isTapped(){
 }
 
 void MTGCardInstance::resetAllDamage(){
-  //for (int i=0;i<nb_damages;i++){
-  //   delete damages[i];
-  //}
   nb_damages = 0;
 }
 
@@ -242,6 +234,7 @@ int MTGCardInstance::initAttackersDefensers(){
   setDefenser(NULL);
   banding = NULL;
   blockers.clear();
+  blocked = false;
   return 1;
 }
 
@@ -409,7 +402,6 @@ int MTGCardInstance::setAttacker(int value){
   attacker = value;
   WEvent * e = NEW WEventCreatureAttacker(this,previousTarget, target);
   GameObserver::GetInstance()->receiveEvent(e);
-  //delete e;
   return 1;
 }
 
@@ -491,6 +483,18 @@ int MTGCardInstance::bringBlockerToFrontOfOrder(MTGCardInstance * blocker){
   return 1;
 }
 
+int MTGCardInstance::removeBlocker(MTGCardInstance * blocker){
+  blockers.remove(blocker);
+  if (!blockers.size()) blocked = false;
+  return 1;
+}
+
+int MTGCardInstance::addBlocker(MTGCardInstance * blocker){
+  blockers.push_back(blocker);
+  blocked = true;
+  return 1;
+}
+
 //Returns opponents to this card for this turn. This * should * take into account banding
 MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous){
   GameObserver * game = GameObserver::GetInstance();
@@ -530,13 +534,13 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
   if (defenser) {
     if (g->players[0]->game->battlefield->hasCard(defenser) ||
       g->players[1]->game->battlefield->hasCard(defenser) ) {
-      defenser->blockers.remove(this);
+      defenser->removeBlocker(this);
     }
   }
   WEvent * e = NULL;
   if (defenser != opponent) e = NEW WEventCreatureBlocker(this, defenser, opponent);
   defenser = opponent;
-  if (defenser) defenser->blockers.push_back(this);
+  if (defenser) defenser->addBlocker(this);
   if (e) g->receiveEvent(e);
   return 1;
 }

@@ -852,12 +852,14 @@ int WResourceManager::fileOK(string filename, bool relative){
   else
     fp = NEW std::ifstream(filename.c_str());
 
-  if(fp && *fp){
+  int result = 0;
+  if(fp){
+    if(*fp) result = 1;
     fp->close();
-    return 1;
+    delete fp;
   }
 
-  return 0;
+  return result;
 }
 
 int WResourceManager::CreateTexture(const string &textureName) {

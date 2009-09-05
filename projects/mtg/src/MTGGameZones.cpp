@@ -214,7 +214,6 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
   cardsMap.erase(card);
   for (i=0; i<(nb_cards); i++) {
     if (cards[i] == card){
-      //cards[i] = cards[nb_cards -1];
       nb_cards--;
       cards.erase(cards.begin()+i);
 	    MTGCardInstance * copy = card;

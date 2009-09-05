@@ -39,6 +39,8 @@ class MTGCardInstance: public MTGCard, public Damageable {
   MTGCardInstance * getNextPartner();
   void initMTGCI();
   int setDefenser(MTGCardInstance * c);
+  int addBlocker(MTGCardInstance * c);
+  int removeBlocker(MTGCardInstance * c);
   int setAttacker(int value);
  public:
   Pos* view;
@@ -62,6 +64,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   const string getDisplayName() const;
   MTGCardInstance * target;
   void addType(int type);
+  bool blocked; //Blocked this turn or not?
 
   //Combat
   MTGCardInstance * defenser;
