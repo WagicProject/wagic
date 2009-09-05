@@ -75,7 +75,8 @@ void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 void GuiPlay::BattleField::EnstackBlocker(CardView* card)
 {
   GameObserver* game = GameObserver::GetInstance();
-  card->x = card->card->defenser->view->x; card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y : -20 - y);
+  if (card->card && card->card->defenser && card->card->defenser->view) card->x = card->card->defenser->view->x; 
+  card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y : -20 - y);
 }
 void GuiPlay::BattleField::Update(float dt)
 {
