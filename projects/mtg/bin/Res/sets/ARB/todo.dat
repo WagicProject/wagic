@@ -799,6 +799,18 @@ text=Defender Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Sear
 rarity=C
 [/card]
 [card]
+id=179623
+name=Sanity Gnawers
+mana={1}{B}{R}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+text=When Sanity Gnawers comes into play, target player discards a card at random.
+auto=discard:1 target(player)
+rarity=U
+[/card]
+[card]
 id=180607
 name=Sen Triplets
 mana={2}{W}{U}{B}
