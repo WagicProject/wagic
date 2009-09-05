@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/Trash.h"
 #include "../include/GuiStatic.h"
 
 GuiStatic::GuiStatic(float desiredHeight, float x, float y, bool hasFocus, GuiAvatars* parent) : PlayGuiObject(desiredHeight, x, y, hasFocus), parent(parent) {}
@@ -162,7 +163,7 @@ int GuiGraveyard::receiveEventPlus(WEvent* e)
 	  t = NEW CardView(event->card, *(event->card->view));
 	else
 	  t = NEW CardView(event->card, x, y);
-	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.3; t->alpha = 0;
+	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.6; t->alpha = 0;
 	cards.push_back(t);
 	return 1;
       }
@@ -178,7 +179,7 @@ int GuiGraveyard::receiveEventMinus(WEvent* e)
 	  {
 	    CardView* cv = *it;
 	    cards.erase(it);
-	    delete cv;
+            trash(cv);
 	    return 1;
 	  }
   return 0;

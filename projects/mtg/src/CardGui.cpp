@@ -51,17 +51,18 @@ void CardGui::Render()
   if (game) tc = game->getCurrentTargetChooser();
 
   JQuad * quad = resources.RetrieveCard(card,CACHE_THUMB);
+    JQuad* shadow = resources.GetQuad("shadow");
   if (quad) {
     const float scale = actZ * 40 / quad->mHeight;
-    renderer->RenderQuad(resources.GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
+    renderer->RenderQuad(shadow, actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
     quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
     renderer->RenderQuad(quad, actX, actY, actT, scale, scale);
   }
   else {
     const float scale = actZ;
 
-    renderer->RenderQuad(resources.GetQuad("shadow"), actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
-
+    shadow->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+    renderer->RenderQuad(shadow, actX + scale*2, actY + scale*2, actT, 28*scale, 40*scale);
     mFont->SetColor(ARGB(static_cast<unsigned char>(actA), 0, 0, 0));
 
     JQuad * icon = NULL;
@@ -86,7 +87,11 @@ void CardGui::Render()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * actZ);
     mFont->DrawString(card->getName().c_str(), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
     if (icon) { icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255)); renderer->RenderQuad(icon, actX, actY, 0); }
-    if (tc && !tc->canTarget(card)) renderer->FillRect(actX - actZ*Width/2, actY - actZ*Height/2, actZ*Width, actZ*Height, ARGB((static_cast<unsigned char>(actA*0.75)),0,0,0));
+    if (tc && !tc->canTarget(card))
+      {
+        shadow->SetColor(ARGB(static_cast<unsigned char>(actA),128,92,92));
+        renderer->RenderQuad(shadow, actX, actY, actT, 28*scale, 40*scale);
+      }
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   }
 

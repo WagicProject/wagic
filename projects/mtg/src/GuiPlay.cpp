@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/GameApp.h"
 #include "../include/GuiPlay.h"
+#include "../include/Trash.h"
 
 #define CARD_WIDTH (31)
 
@@ -219,8 +220,7 @@ int GuiPlay::receiveEventMinus(WEvent * e)
 	      CardView* cv = *it;
 	      cs->Remove(cv);
 	      cards.erase(it);
-              cv->card->view = NULL;
-	      delete cv;
+              trash(cv);
 	      Replace();
 	      return 1;
 	    }

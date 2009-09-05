@@ -1,5 +1,6 @@
 #include "../include/config.h"
 #include "../include/GameApp.h"
+#include "../include/Trash.h"
 #include "../include/GuiHand.h"
 
 const float GuiHand::ClosedRowX = 459;
@@ -164,7 +165,7 @@ int GuiHandSelf::receiveEventMinus(WEvent* e)
 	      cs->Remove(cv);
               Repos();
 	      cards.erase(it);
-	      delete cv;
+              trash(cv);
 	      return 1;
 	    }
       return 1;
@@ -198,7 +199,7 @@ int GuiHandOpponent::receiveEventMinus(WEvent* e)
 	    {
 	      CardView* cv = *it;
 	      cards.erase(it);
-	      delete cv;
+              trash(cv);
 	      return 1;
 	    }
       return 0;

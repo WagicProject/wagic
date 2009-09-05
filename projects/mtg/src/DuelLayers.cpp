@@ -1,5 +1,4 @@
 #include "../include/config.h"
-#include "../include/DuelLayers.h"
 #include "../include/MTGRules.h"
 #include "../include/GuiCombat.h"
 #include "../include/GuiBackground.h"
@@ -9,6 +8,8 @@
 #include "../include/GuiHand.h"
 #include "../include/GuiPlay.h"
 #include "../include/GuiMana.h"
+#include "../include/Trash.h"
+#include "../include/DuelLayers.h"
 
 void DuelLayers::init(){
 
@@ -78,9 +79,9 @@ DuelLayers::DuelLayers() : nbitems(0) {}
 DuelLayers::~DuelLayers(){
   for (int i = 0; i < nbitems; ++i) delete objects[i];
 
-  for (size_t i = 0; i < waiters.size(); ++i){
+  for (size_t i = 0; i < waiters.size(); ++i)
     delete(waiters[i]);
-  }
+  Trash::cleanup();
 }
 
 int DuelLayers::unstoppableRenderInProgress(){
@@ -150,6 +151,11 @@ int DuelLayers::receiveEvent(WEvent * e){
     }
   for (int i = 0; i < nbitems; ++i)
     objects[i]->receiveEventMinus(e);
+
+  if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
+    if (Constants::MTG_PHASE_BEFORE_BEGIN == event->to->id)
+      Trash::cleanup();
+
   return 1;
 }
 
