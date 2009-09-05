@@ -83,7 +83,7 @@ void GuiCombat::autoaffectDamage(AttackerDamaged* attacker, CombatStep step)
   for (vector<DefenserDamaged*>::iterator it = attacker->blockers.begin(); it != attacker->blockers.end(); ++it)
     {
       (*it)->clearDamage();
-      unsigned actual_damage = MIN(damage, (unsigned)MAX((*it)->card->stepPower(step), 0));
+      unsigned actual_damage = MIN(damage, (unsigned)MAX((*it)->card->toughness, 0));
       (*it)->addDamage(actual_damage, attacker);
       attacker->addDamage((*it)->card->stepPower(step), *it);
       damage -= actual_damage;
@@ -303,6 +303,28 @@ int GuiCombat::receiveEventPlus(WEvent* e)
 }
 int GuiCombat::receiveEventMinus(WEvent* e)
 {
+  if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+    if (go->players[0]->game->inPlay == event->from || go->players[1]->game->inPlay == event->from)
+      {
+        for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
+          if ((*it)->card == event->card)
+            {
+              AttackerDamaged* d = *it;
+              attackers.erase(it);
+              SAFE_DELETE(d);
+              return 1;
+            }
+          else
+            for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
+              if ((*q)->card == event->card->previous)
+                {
+                  DefenserDamaged* d = *q;
+                  (*it)->blockers.erase(q);
+                  SAFE_DELETE(d);
+                  return 1;
+                }
+        return 0;
+      }
   if (WEventCreatureAttacker* event = dynamic_cast<WEventCreatureAttacker*>(e))
     {
       if (NULL == event->before) return 0;
@@ -314,7 +336,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             SAFE_DELETE(d);
 	    return 1;
 	  }
-      return 1;
+      return 0;
     }
   else if (WEventCreatureBlocker* event = dynamic_cast<WEventCreatureBlocker*>(e))
     {
