@@ -541,6 +541,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Trash.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\utils.cpp"
 				>
 			</File>
@@ -883,6 +887,10 @@
 			</File>
 			<File
 				RelativePath=".\include\Translate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Trash.h"
 				>
 			</File>
 			<File
