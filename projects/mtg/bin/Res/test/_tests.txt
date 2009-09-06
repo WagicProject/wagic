@@ -161,6 +161,7 @@ royal_assassin.txt
 safehold_duo.txt
 sedge_sliver.txt
 seismic_assault.txt
+selesnya_guildmage.txt
 siege_gang_commander.txt
 shepherd_of_rot.txt
 shivan_hellkite.txt

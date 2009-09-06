@@ -131,7 +131,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
 
 //Parses a string and returns the corresponding MTGAbility object
 // Returns NULL if parsing failed
-MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated){
+MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT){
   size_t found;
  
   string whitespaces (" \t\f\v\n\r");
@@ -259,13 +259,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       TargetChooser * lordTargets = tcf.createTargetChooser(lordTargetsString, card);
       
       
-      MTGAbility * a = parseMagicLine(s1,id,spell, card);
+      MTGAbility * a = parseMagicLine(s1,id,spell, card,0,activated); //activated lords usually force an end of turn ability
       if (!a){
         SAFE_DELETE(lordTargets);
         return NULL;
       }
       MTGAbility * result = NULL;
       int oneShot = 0;
+      if (activated) oneShot = 1;
       if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
       if (i == 3) oneShot = 1;
       if (a->oneShot) oneShot = 1;
@@ -545,7 +546,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NULL;
   }
 
-  int forceUEOT = 0;
+
   found = s.find("ueot");
   if (found!= string::npos) forceUEOT = 1;
  

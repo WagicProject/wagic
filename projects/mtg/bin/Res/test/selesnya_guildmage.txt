@@ -1,0 +1,38 @@
+#Bug: Selesnya guildmage's ability doesn't wear off at the end of turn
+# {3}{W}: creatures you control gain +1/+1 until end of turn
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:selesnya guildmage,grizzly bears
+manapool:{3}{W}
+[PLAYER2]
+inplay:mountain
+hand:shock
+[DO]
+selesnya guildmage
+next
+#combat begins
+next
+#attackers
+grizzly bears
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main
+mountain
+shock
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:selesnya guildmage
+graveyard:grizzly bears
+[PLAYER2]
+inplay:mountain
+graveyard:shock
+life:17
+[END]
