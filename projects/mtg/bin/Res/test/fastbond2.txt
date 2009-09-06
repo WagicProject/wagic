@@ -1,0 +1,19 @@
+#Bug:Fastbond doesn't work properly the turn it comes into play
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:forest,mountain,plains,fastbond
+[PLAYER2]
+[DO]
+forest
+forest
+fastbond
+mountain
+plains
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:forest,mountain,plains,fastbond
+life:18
+[PLAYER2]
+[END]

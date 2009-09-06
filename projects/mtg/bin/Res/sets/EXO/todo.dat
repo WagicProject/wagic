@@ -1,4 +1,4 @@
-﻿[card]
+[card]
 id=6071
 name=AEther Tide
 mana={X}{U}
@@ -188,7 +188,7 @@ id=6120
 name=Flowstone Flood
 mana={3}{R}
 type=Sorcery
-text=Buyback—Pay 3 life, Discard a card at random (You may pay 3 life and discard a card at random in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Destroy target land.
+text=Buyback?Pay 3 life, Discard a card at random (You may pay 3 life and discard a card at random in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Destroy target land.
 rarity=U
 [/card]
 [card]
@@ -196,7 +196,7 @@ id=5157
 name=Forbid
 mana={1}{U}{U}
 type=Instant
-text=Buyback—Discard two cards. (You may discard two cards in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Counter target spell.
+text=Buyback?Discard two cards. (You may discard two cards in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Counter target spell.
 rarity=U
 [/card]
 [card]
@@ -498,7 +498,7 @@ id=6044
 name=Pegasus Stampede
 mana={1}{W}
 type=Sorcery
-text=Buyback—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Put a 1/1 white Pegasus creature token with flying into play.
+text=Buyback?Sacrifice a land. (You may sacrifice a land in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Put a 1/1 white Pegasus creature token with flying into play.
 rarity=U
 [/card]
 [card]
@@ -536,7 +536,7 @@ id=6037
 name=Reaping the Rewards
 mana={W}
 type=Instant
-text=Buyback—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) You gain 2 life.
+text=Buyback?Sacrifice a land. (You may sacrifice a land in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) You gain 2 life.
 rarity=C
 [/card]
 [card]
@@ -613,7 +613,7 @@ id=6097
 name=Slaughter
 mana={2}{B}{B}
 type=Instant
-text=Buyback—Pay 4 life. (You may pay 4 life in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Destroy target nonblack creature. It can't be regenerated.
+text=Buyback?Pay 4 life. (You may pay 4 life in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Destroy target nonblack creature. It can't be regenerated.
 rarity=U
 [/card]
 [card]
@@ -750,7 +750,18 @@ toughness=7
 text=Defender (This creature can't attack.) At end of combat, remove from the game all creatures blocked by Wall of Nets. When Wall of Nets leaves play, return to play under their owners' control all creatures removed from the game with Wall of Nets.
 rarity=R
 [/card]
-
+[card]
+text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
+auto=moveTo(mybattlefield) target(forest|myLibrary)
+id=6135
+name=Wood Elves
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Elf Scout
+power=1
+toughness=1
+[/card]
 [card]
 id=6156
 name=Workhorse

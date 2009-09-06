@@ -1612,7 +1612,7 @@ toughness=*
 [card]
 text={T}: Orcish Artillery deals 2 damage to target creature or player and 3 damage to you.
 id=129663
-alias=1309
+auto={T}:damage:2 target(creature,player) && damage:3 controller
 name=Orcish Artillery
 rarity=U
 type=Creature

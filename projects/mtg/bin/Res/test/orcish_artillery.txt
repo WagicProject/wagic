@@ -1,0 +1,21 @@
+#Bug: Orcish Artillery does not tap
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:orcish artillery
+[PLAYER2]
+inplay:grizzly bears,white knight
+[DO]
+orcish artillery
+white knight
+orcish artillery
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:orcish artillery
+life:17
+[PLAYER2]
+inplay:grizzly bears
+graveyard:white knight
+[END]

@@ -1624,18 +1624,6 @@ mana={1}{G}{G}
 type=Sorcery
 [/card]
 [card]
-text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-auto=moveTo(inPlay) target(forest|myLibrary)
-id=4327
-name=Wood Elves
-rarity=R
-type=Creature
-mana={2}{G}
-power=1
-subtype=Elf Scout
-toughness=1
-[/card]
-[card]
 text=Destroy all creatures. They can't be regenerated.
 auto=bury all(creature)
 alias=1372

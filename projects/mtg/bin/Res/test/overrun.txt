@@ -1,0 +1,30 @@
+#Bug: Overrun from M10 seems not to work properly.It has regrowth effect instead
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,dragon engine
+hand:189906
+manapool:{2}{G}{G}{G}
+[PLAYER2]
+[DO]
+189906
+next
+#begins
+next
+#attack
+grizzly bears
+dragon engine
+next
+#block
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears,dragon engine
+graveyard:189906
+[PLAYER2]
+life:11
+[END]

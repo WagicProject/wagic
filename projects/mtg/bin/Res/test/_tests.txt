@@ -85,6 +85,7 @@ dross_harvester.txt
 elvish_piper.txt
 elvish_promenade.txt
 fastbond.txt
+fastbond2.txt
 fault_line.txt
 fists_of_ironwood.txt
 flare.txt
@@ -106,6 +107,7 @@ goblin_king.txt
 gravedigger.txt
 #hammerfist_giant.txt
 hannas_custody.txt
+#harpoon_sniper.txt uncomment when damages are correctly resolved at the damage resolution step
 hellfire.txt
 howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
@@ -138,7 +140,9 @@ nightmare.txt
 northern_paladin.txt
 northern_paladin2.txt
 Nyxathid.txt
+orcish_artillery.txt
 orcish_lumberjack.txt
+overrun.txt
 paralysis.txt
 paralysis2.txt
 persuasion.txt
@@ -185,6 +189,7 @@ terror.txt
 titanic_ultimatum.txt
 tranquil_domain.txt
 volcanic_island.txt
+unstable_mutation.txt
 wall_of_diffusion.txt
 wall_of_diffusion2.txt
 welkin_hawk.txt

@@ -99,6 +99,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
   int who = 0;
   if (s.find("my") != string::npos) who = 1;
   if (s.find("opponent") != string::npos) who = -1;
+  if (s.find("targetcontroller") != string::npos) who = -2;
 
   //Next Time...
   found = s.find("next");
@@ -1288,13 +1289,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW AControlStealAura(_id, card, card->target));
       break;
     }
-  case 1228: //Unstable mutation
-    {
-      game->addObserver(NEW APowerToughnessModifier(_id, card, card->target, 3, 3));
-      game->addObserver(NEW APowerToughnessModifierRegularCounter(_id, card, card->target, Constants::MTG_PHASE_UPKEEP, -1, -1));
-      break;
-    }
-
   case 1235: //Aspect of Wolf
     {
       game->addObserver(NEW AAspectOfWolf(_id, card, card->target));
@@ -1394,11 +1388,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1243: //Fastbond
     {
       game->addObserver(NEW AFastbond(_id, card));
-      break;
-    }
-  case 1309: //Orcish Artillery
-    {
-      game->addObserver(NEW AOrcishArtillery(_id, card));
       break;
     }
   case 1326: //Wheel of fortune
@@ -2177,6 +2166,13 @@ int TriggerAtPhase::trigger(){
         break;
       case -1:
         if(g->currentPlayer != source->controller()) result = 1;
+        break;
+      case -2:
+        if(source->target) {
+          if (g->currentPlayer == source->target->controller()) result = 1;
+        }else {
+          if(g->currentPlayer == source->controller()) result = 1;
+        }
         break;
       default:
         result = 1;

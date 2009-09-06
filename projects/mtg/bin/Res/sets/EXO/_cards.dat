@@ -675,15 +675,3 @@ auto={U}:flying
 power=1
 toughness=3
 [/card]
-[card]
-text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-auto=moveTo(mybattlefield) target(forest|myLibrary)
-id=6135
-name=Wood Elves
-rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=1
-[/card]

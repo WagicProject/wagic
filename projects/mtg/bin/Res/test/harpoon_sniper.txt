@@ -1,0 +1,26 @@
+#Bug: harpoon sniper doesn't work correctly
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:harpoon sniper,coral merfolk,plains
+[DO]
+grizzly bears
+next
+#blockers
+plains
+harpoon sniper
+choice 1
+grizzly bears
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:grizzly bears
+[PLAYER2]
+inplay:harpoon sniper,coral merfolk,plains
+[END]

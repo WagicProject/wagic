@@ -1,0 +1,43 @@
+#Bug: unstable mutation doesn't give +3/+3
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:raging goblin
+hand:unstable mutation
+manapool:{U}
+[PLAYER2]
+[DO]
+unstable mutation
+raging goblin
+next
+#combat begins
+next
+#attackers
+raging goblin
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#combat
+next
+#atackers
+raging goblin
+next
+#blockers
+next
+#damage
+next
+end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:raging goblin,unstable mutation
+[PLAYER2]
+life:13
+[END]

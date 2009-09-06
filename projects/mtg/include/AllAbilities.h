@@ -973,35 +973,6 @@ class APowerToughnessModifier: public MTGAbility{
 
 };
 
-// Permanent life alteration evry turn of the target's controller. Useful only for unstable mutation currently
-class APowerToughnessModifierRegularCounter:public MTGAbility{
- public:
-  int power, toughness;
-  int phase;
- APowerToughnessModifierRegularCounter(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _phase, int _power, int _toughness):MTGAbility(id,_source,_target),power(_power),toughness(_toughness), phase(_phase){
-  }
-
-  void Update(float dt){
-    if (newPhase !=currentPhase && newPhase==phase && game->currentPlayer==((MTGCardInstance *)target)->controller()){
-      ((MTGCardInstance *)target)->power += power;
-      ((MTGCardInstance *)target)->addToToughness(toughness);
-    }
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "APowerToughnessModifierRegularCounter ::: power : " << power
-	<< " ; toughness : " << toughness
-	<< " ; phase : " << phase
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-  APowerToughnessModifierRegularCounter * clone() const{
-    APowerToughnessModifierRegularCounter * a =  NEW APowerToughnessModifierRegularCounter(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
 
 //Alteration of Power and Toughness until end of turn (TargetAbility)
 // Gives +n/+m until end of turn to any card that's a target
@@ -2763,6 +2734,11 @@ class AFastbond:public TriggeredAbility{
   int previous;
  AFastbond(int _id, MTGCardInstance * card):TriggeredAbility(_id, card){
     alreadyPlayedALand = 0;
+    if (source->controller()->canPutLandsIntoPlay == 0){
+      alreadyPlayedALand = 1;
+      source->controller()->canPutLandsIntoPlay = 1;
+    }
+    previous = source->controller()->canPutLandsIntoPlay;
   }
 
   void Update(float dt){
@@ -2773,7 +2749,7 @@ class AFastbond:public TriggeredAbility{
   }
 
   int trigger(){
-    if(source->controller()->canPutLandsIntoPlay==0 && previous ==1){
+    if(source->controller()->canPutLandsIntoPlay==0 && previous == 1){
       previous = 0;
       source->controller()->canPutLandsIntoPlay = 1;
       if (alreadyPlayedALand) return 1;
@@ -2786,6 +2762,7 @@ class AFastbond:public TriggeredAbility{
 
   int resolve(){
     game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
+    game->mLayers->stackLayer()->resolve();
     return 1;
   }
 
@@ -3412,29 +3389,6 @@ class AForceOfNature:public ActivatedAbility{
 };
 
 
-
-
-//1309 Orcish Artilery
-class AOrcishArtillery: public TADamager{
- public:
- AOrcishArtillery(int _id,MTGCardInstance * card): TADamager(_id, card, NEW ManaCost(), 2){
-  }
-
-  int resolve(){
-    TADamager::resolve();
-    game->mLayers->stackLayer()->addDamage(source,source->controller(), 3);
-    return 1;
-  }
-
-
-  AOrcishArtillery * clone() const{
-    AOrcishArtillery * a =  NEW AOrcishArtillery(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //1351 Island Sanctuary
 class AIslandSanctuary:public MTGAbility{
  public:
@@ -3755,42 +3709,6 @@ class AARandomDiscarder:public ActivatedAbilityTP{
   }
 };
 
-// Generic Karma
-class ADamageForTypeControlled: public TriggeredAbility{
- public:
-	char type[20];
- ADamageForTypeControlled(int _id, MTGCardInstance * _source,const char * _type):TriggeredAbility(_id, _source){
-  sprintf(type,"%s",_type);
-    }
-
-  int trigger(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
-    return 0;
-  }
-
-  int resolve(){
-    int totaldamage = 0;
-    MTGGameZone *  zone = game->currentPlayer->game->inPlay;
-    for (int i = 0; i < zone->nb_cards; i++){
-      if (zone->cards[i]->hasType(type)) totaldamage++;;
-    }
-    if (totaldamage) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer, totaldamage);
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADamageForTypeControlled ::: type : " << type
-	<< " (";
-    return TriggeredAbility::toString(out) << ")";
-  }
-
-  ADamageForTypeControlled * clone() const{
-    ADamageForTypeControlled * a =  NEW ADamageForTypeControlled(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 // Dreamborn Muse
 class ADreambornMuse: public TriggeredAbility{
