@@ -48,7 +48,17 @@ int Damage::resolve(){
 
   GameObserver * g = GameObserver::GetInstance();
   WEvent * e = NEW WEventDamage(this);
+
+  //Replacement Effects
   e = g->replacementEffects->replace(e);
+  if (!e) return 0;
+  WEventDamage * ev = dynamic_cast<WEventDamage*>(e);
+  if (!ev) {
+    g->receiveEvent(e);
+    return 0;
+  }
+  damage = ev->damage->damage;
+  target = ev->damage->target;
 
   int a = 0;
   if (damage) a = target->dealDamage(damage);
@@ -110,6 +120,7 @@ int DamageStack::resolve(){
     if (damage->state == RESOLVED_OK) damage->target->afterDamage();
     //damage->target->afterDamage();
   }
+
   return 1;
 }
 

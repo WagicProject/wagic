@@ -86,7 +86,7 @@ class MTGGameZone {
    static int zoneStringToId(string zoneName);
    static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
    bool needShuffle;
-
+   virtual const char * getName(){return "zone";}; 
    virtual ostream& toString(ostream&) const;
 };
 
@@ -96,27 +96,32 @@ class MTGLibrary: public MTGGameZone {
   void shuffleTopToBottom(int nbcards);
   MTGCardInstance * draw();
   virtual ostream& toString(ostream&) const;
+  const char * getName(){return "library";}
 };
 
 class MTGGraveyard: public MTGGameZone {
  public:
   // MTGGraveyard();
   virtual ostream& toString(ostream&) const;
+  const char * getName(){return "graveyard";}
 };
 
 class MTGHand: public MTGGameZone {
  public:
   virtual ostream& toString(ostream&) const;
+  const char * getName(){return "hand";}
 };
 
 class MTGRemovedFromGame: public MTGGameZone {
  public:
   virtual ostream& toString(ostream&) const;
+  const char * getName(){return "exile";}
 };
 
 class MTGStack: public MTGGameZone {
  public:
   virtual ostream& toString(ostream&) const;
+  const char * getName(){return "stack";}
 };
 
 class MTGInPlay: public MTGGameZone {
@@ -128,6 +133,7 @@ class MTGInPlay: public MTGGameZone {
   int nbDefensers( MTGCardInstance * attacker);
   int nbPartners(MTGCardInstance * attacker);
   virtual ostream& toString(ostream&) const;
+  const char * getName(){return "battlefield";}
 };
 
 

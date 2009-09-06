@@ -9,6 +9,7 @@ inplay:raging goblin
 Drudge skeletons
 swamp
 Drudge skeletons
+choice 1
 next
 raging goblin
 next

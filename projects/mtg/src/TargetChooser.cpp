@@ -264,7 +264,7 @@ bool TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
     if (source && targetter && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(targetter) )) return false;
-    if (source && targetter && card->isInPlay() && (source->controller() != card->controller()) && (card->has(Constants::OPPONENTSHROUD) || card->protectedAgainst(targetter))) return false;
+    if (source && targetter && card->isInPlay() && (targetter->controller() != card->controller()) && (card->has(Constants::OPPONENTSHROUD) || card->protectedAgainst(targetter))) return false;
     return true;
   }
   else if (target->typeAsTarget() == TARGET_STACKACTION)
