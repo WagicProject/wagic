@@ -111,11 +111,13 @@ JQuad * CardGui::alternateThumbQuad(MTGCard * card){
   JQuad * q;
   switch(card->getColor())
     {
+    case Constants::MTG_COLOR_ARTIFACT  : q = resources.RetrieveQuad("artifact_thumb.jpg");break;
     case Constants::MTG_COLOR_GREEN: q = resources.RetrieveQuad("green_thumb.jpg");break;
     case Constants::MTG_COLOR_BLUE : q = resources.RetrieveQuad("blue_thumb.jpg");break;
     case Constants::MTG_COLOR_RED  : q = resources.RetrieveQuad("red_thumb.jpg");break;
     case Constants::MTG_COLOR_BLACK: q = resources.RetrieveQuad("black_thumb.jpg");break;
     case Constants::MTG_COLOR_WHITE: q = resources.RetrieveQuad("white_thumb.jpg");break;
+    case Constants::MTG_COLOR_LAND  : q = resources.RetrieveQuad("land_thumb.jpg");break;
     default: q = resources.RetrieveQuad("black_thumb.jpg");break;
     }
   if(q && q->mTex)
@@ -129,11 +131,13 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   JQuad * q;
   switch(card->getColor())
     {
-  case Constants::MTG_COLOR_GREEN: q = resources.RetrieveQuad("green.jpg");break;
+    case Constants::MTG_COLOR_ARTIFACT: q = resources.RetrieveQuad("artifact.jpg");break;
+    case Constants::MTG_COLOR_GREEN: q = resources.RetrieveQuad("green.jpg");break;
     case Constants::MTG_COLOR_BLUE : q = resources.RetrieveQuad("blue.jpg");break;
     case Constants::MTG_COLOR_RED  : q = resources.RetrieveQuad("red.jpg");break;
     case Constants::MTG_COLOR_BLACK: q = resources.RetrieveQuad("black.jpg");break;
     case Constants::MTG_COLOR_WHITE: q = resources.RetrieveQuad("white.jpg");break;
+    case Constants::MTG_COLOR_LAND: q = resources.RetrieveQuad("land.jpg");break;
     default: q = resources.RetrieveQuad("black.jpg");break;
     }
   if(q && q->mTex){
