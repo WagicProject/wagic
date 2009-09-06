@@ -164,7 +164,6 @@ void GameObserver::userRequestNextGamePhase(){
 }
 
 int GameObserver::forceShuffleLibraries(){
-  OutputDebugString("FORCING\n");
   int result = 0;
   if (players[0]->game->library->needShuffle)
     {
@@ -296,7 +295,7 @@ void GameObserver::Render()
 
 void GameObserver::ButtonPressed(PlayGuiObject * target){
 #if defined (WIN32) || defined (LINUX)
-  OutputDebugString("Click\n");
+  OutputDebugString("GAMEOBSERVER Click\n");
 #endif
   if (CardView* cardview = dynamic_cast<CardView*>(target)){
     MTGCardInstance * card = cardview->getCard();
@@ -317,23 +316,14 @@ void GameObserver::ButtonPressed(PlayGuiObject * target){
   else if (GuiGraveyard* graveyard = dynamic_cast<GuiGraveyard*>(target))
     graveyard->toggleDisplay();
   else if (GuiAvatar* avatar = dynamic_cast<GuiAvatar*>(target)){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("Click Player !\n");
-#endif
     cardClick(NULL, avatar->player);
   }
 }
 
 void GameObserver::stackObjectClicked(Interruptible * action){
   if (targetChooser != NULL){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("target chooser ok \n");
-#endif
     int result = targetChooser->toggleTarget(action);
     if (result == TARGET_OK_FULL){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("target chooser Full \n");
-#endif
       cardClick(cardWaitingForTargets);
     }else{
       return;

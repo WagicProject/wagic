@@ -594,9 +594,6 @@ JSample * MTGCardInstance::getSample(){
     for (int i = nb_types-1; i>0; i--){
       string type = Subtypes::subtypesList->find(types[i]);
       type = type + ".wav";
-#ifdef WIN32
-      OutputDebugString(type.c_str());
-#endif
       if (fileExists(resources.sfxFile(type).c_str())){
         sample = string(type);
         break;

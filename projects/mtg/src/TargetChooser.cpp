@@ -88,14 +88,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     if (found != string::npos){
       int nbminuses = 0;
       int end = typeName.find("]");
-#ifdef WIN32
-      OutputDebugString("Advanced Attributes 1 \n");
-#endif
       string attributes = typeName.substr(found+1,end-found-1);
-#ifdef WIN32
-      OutputDebugString(attributes.c_str());
-      OutputDebugString("\n");
-#endif
       cd = NEW CardDescriptor();
       while(attributes.size()){
         unsigned int found2 = attributes.find(";");
@@ -110,17 +103,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         }
         int minus = 0;
         if (attribute[0] == '-'){
-#ifdef WIN32
-          OutputDebugString("MINUS\n");
-#endif
           minus = 1;
           nbminuses++;
           attribute=attribute.substr(1);
         }
-#ifdef WIN32
-        OutputDebugString(attribute.c_str());
-        OutputDebugString("\n");
-#endif
         //Attacker
         if (attribute.find("attacking") != string::npos){
           if (minus){
@@ -277,7 +263,7 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets): TargetsLi
 bool TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    if (source && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(source) )) return false;
+    if (source && targetter && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(targetter) )) return false;
     if (source && targetter && card->isInPlay() && (source->controller() != card->controller()) && (card->has(Constants::OPPONENTSHROUD) || card->protectedAgainst(targetter))) return false;
     return true;
   }
@@ -293,7 +279,7 @@ int TargetChooser::addTarget(Targetable * target){
 
 #if defined (WIN32) || defined (LINUX)
   char buf[4096];
-  sprintf(buf, "Nb targets : %i\n", cursor);
+  sprintf(buf, "TARGETCHOOSER Nb targets : %i\n", cursor);
   OutputDebugString(buf);
 #endif
   return targetsReadyCheck();
@@ -539,9 +525,6 @@ bool PlayerTargetChooser::canTarget(Targetable * target){
 /*Damageable Target */
 bool DamageableTargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_PLAYER){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("Targetting Player !!!\n");
-#endif
     return true;
   }
   return CreatureTargetChooser::canTarget(target);

@@ -383,7 +383,7 @@ int ActionStack::addAction(Interruptible * action){
 Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana){
 #if defined (WIN32) || defined (LINUX)
   char    buf[4096], *p = buf;
-  sprintf(buf, "Add spell\n");
+  sprintf(buf, "ACTIONSTACK Add spell\n");
   OutputDebugString(buf);
 #endif
   Spell * spell = NEW Spell(mCount,_source,tc, mana);
@@ -704,7 +704,7 @@ bool ActionStack::CheckUserInput(u32 key){
 	          mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
 	          char buf[4096];
-	          sprintf(buf, "Stack UP TO mCurr = %i\n", mCurr);
+	          sprintf(buf, "ACTIONSTACK UP TO mCurr = %i\n", mCurr);
 	          OutputDebugString(buf);
 #endif
 	        }
@@ -718,7 +718,7 @@ bool ActionStack::CheckUserInput(u32 key){
 	          mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
 	          char buf[4096];
-	          sprintf(buf, "Stack DOWN TO mCurr = %i\n", mCurr);
+	          sprintf(buf, "ACTIONSTACK DOWN TO mCurr = %i\n", mCurr);
 	          OutputDebugString(buf);
 #endif
 	        }
@@ -727,7 +727,7 @@ bool ActionStack::CheckUserInput(u32 key){
       }else if (PSP_CTRL_CIRCLE == key){
 #if defined (WIN32) || defined (LINUX)
 	      char buf[4096];
-	      sprintf(buf, "Stack CLIKED mCurr = %i\n", mCurr);
+	      sprintf(buf, "ACTIONSTACK CLIKED mCurr = %i\n", mCurr);
 	      OutputDebugString(buf);
 #endif
 	      game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
@@ -763,7 +763,7 @@ while( iter != mObjects.end() ){
 
 void ActionStack::Fizzle(Interruptible * action){
   if (!action){
-    OutputDebugString("==ERROR==: action is NULL in ActionStack::Fizzle\n");
+    OutputDebugString("ACTIONSTACK ==ERROR==: action is NULL in ActionStack::Fizzle\n");
     return;
   }
   if (action->type == ACTION_SPELL){

@@ -65,7 +65,6 @@ void MTGPlayerCards::initGame(int shuffle, int draw){
   if (shuffle) library->shuffle();
   if (draw){
     for (int i=0;i<7;i++){
-      OutputDebugString("draw\n");
       drawFromLibrary();
     }
   }

@@ -34,9 +34,9 @@ MTGCardInstance * TestSuite::getCardByMTGId(int mtgid){
     for (int j = 0; j < 4; j++){
       MTGGameZone * zone = zones[j];
       for (int k = 0; k < zone->nb_cards; k++){
-	MTGCardInstance * card = zone->cards[k];
-	if (!card) OutputDebugString ("wtf ?");
-	if (card->getMTGId() == mtgid) return card;
+	      MTGCardInstance * card = zone->cards[k];
+	      if (!card) return NULL;
+	      if (card->getMTGId() == mtgid) return card;
       }
     }
   }
@@ -71,7 +71,7 @@ int TestSuiteAI::Act(float dt){
   string action = suite->getNextAction();
   g->mLayers->stackLayer()->Dump();
   //  DamageResolverLayer * drl = g->mLayers->combatLayer();
-
+  OutputDebugString("TESTSUITE command:"); 
   OutputDebugString(action.c_str());
   OutputDebugString("\n");
 
@@ -96,7 +96,7 @@ int TestSuiteAI::Act(float dt){
     g->userRequestNextGamePhase();
   }
   else if (action.compare("human")==0){
-    OutputDebugString("You have control");
+    OutputDebugString("TESTSUITE You have control");
     humanMode = 1;
     return 1;
   }
@@ -122,7 +122,7 @@ int TestSuiteAI::Act(float dt){
       g->mLayers->stackLayer()->cancelInterruptOffer();
     }
   }else if(action.find("choice ")!=string::npos){
-    OutputDebugString("choice !!!\n");
+    OutputDebugString("TESTSUITE choice !!!\n");
     int choice = atoi(action.substr(action.find("choice ") + 7).c_str());
     g->mLayers->actionLayer()->doReactTo(choice);
   }else if(action.find(" -momir- ")!=string::npos){
@@ -141,7 +141,7 @@ int TestSuiteAI::Act(float dt){
     int mtgid = suite->getMTGId(action);
     if (mtgid){
       char buffe[512];
-      sprintf(buffe, "CARD ID : %i\n", mtgid);
+      sprintf(buffe, "TESTSUITE CARD ID : %i\n", mtgid);
       OutputDebugString(buffe);
       Interruptible * toInterrupt = suite->getActionByMTGId(mtgid);
 	    if (toInterrupt){
@@ -149,8 +149,9 @@ int TestSuiteAI::Act(float dt){
 	    }else{
         MTGCardInstance * card = suite->getCardByMTGId(mtgid);
         if (card) {
-          OutputDebugString("Clicking ON: ");
+          OutputDebugString("TESTSUITE Clicking ON: ");
           OutputDebugString(card->name.c_str());
+          OutputDebugString("\n");
 	  /*
           if (drl->mCount){
             if (drl->orderingIsNeeded){
@@ -283,7 +284,7 @@ void TestSuite::initGame(){
   }
   //Put the GameObserver in the initial state
   GameObserver * g = GameObserver::GetInstance();
-  OutputDebugString("Init Game\n");
+  OutputDebugString("TESTSUITE Init Game\n");
   g->phaseRing->goToPhase(initState.phase, g->players[0]);
   g->currentGamePhase = initState.phase;
   for (int i = 0; i < 2; i++){
@@ -295,9 +296,6 @@ void TestSuite::initGame(){
       MTGGameZone * zone = playerZones[j];
       for (int k = 0; k < initState.playerData[i].zones[j].nbitems; k++){
 	      MTGCardInstance * card = getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
-        char buf[4096];
-        sprintf(buf, "QUAD : %p\n", resources.RetrieveCard(card));
-        OutputDebugString(buf);
 	      if (card && zone != p->game->library){
 	        if (zone == p->game->inPlay){
 	          MTGCardInstance * copy = p->game->putInZone(card,  p->game->library, p->game->stack);
@@ -307,17 +305,17 @@ void TestSuite::initGame(){
 	          delete spell;
 	        }else{
 	          if (!p->game->library->hasCard(card)){
-	            LOG ("ERROR, CARD NOT FOUND IN LIBRARY\n");
+	            LOG ("TESTUITE ERROR, CARD NOT FOUND IN LIBRARY\n");
 	          }
 	          p->game->putInZone(card,p->game->library,zone);
 	        }
         }else{
-	if (!card) { LOG ("ERROR, card is NULL\n"); }
+	if (!card) { LOG ("TESTUITE ERROR, card is NULL\n"); }
         }
       }
     }
   }
-  OutputDebugString("Init Game Done !\n");
+  OutputDebugString("TESTUITE Init Game Done !\n");
 }
 
 int TestSuite::Log(const char * text){

@@ -202,7 +202,6 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
-    OutputDebugString(currentAction->getMenuText());
     result += reactToClick(currentAction,card);
     if (result) return result;
   }
@@ -233,7 +232,7 @@ void ActionLayer::doReactTo(int menuIndex){
   if (menuObject){
     int controlid = abilitiesMenu->mObjects[menuIndex]->GetId();
     char buf[4096];
-    sprintf(buf, "doReact To %i\n",controlid);
+    sprintf(buf, "ACTIONLAYER doReact To %i\n",controlid);
     OutputDebugString(buf);
     if (controlid != -1){
       ActionElement * currentAction = (ActionElement *)mObjects[controlid];

@@ -174,7 +174,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       
       MTGAbility * a = parseMagicLine(s1, id, spell, card, 1);
       if (!a){
-        OutputDebugString("Error parsing:");
+        OutputDebugString("ABILITYFACTORY Error parsing:");
         OutputDebugString(s.c_str());
         OutputDebugString("\n");
         return NULL;
@@ -837,7 +837,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
       }
       result++;
     }else{
-      OutputDebugString("ERROR: Parser returned NULL\n");
+      OutputDebugString("ABILITYFACTORY ERROR: Parser returned NULL\n");
       //return result;
     }
   }
@@ -1825,10 +1825,8 @@ int MTGAbility::testDestroy(){
   if (waitingForAnswer) return 0;
   if (forceDestroy == 1) return 1;
   if (forceDestroy == -1) return 0;
-  if (!game->isInPlay(source) ){
-    OutputDebugString("Destroying Ability !!!\n");
-    return 1;
-  }
+  if (!game->isInPlay(source) ) return 1;
+
   if (target && !game->isInPlay((MTGCardInstance *)target)){
     source->controller()->game->putInGraveyard(source);//TODO put this in a better place ???
     return 1;
@@ -1868,9 +1866,6 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (!cost) return 1;
     if (!mana) mana = player->getManaPool();
     if (!mana->canAfford(cost)) return 0;
-    char buf[4096];
-    sprintf(buf, "Will react to Click : %i\n", aType);
-    OutputDebugString(buf);
     return 1;
   }
   return 0;
@@ -1878,13 +1873,9 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
 int ActivatedAbility::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
-  OutputDebugString("React To click 1\n");
   if (cost){
     cost->setExtraCostsAction(this, card);
-    OutputDebugString("React To click 2\n");
     if (!cost->isExtraPaymentSet()){
-      OutputDebugString("React To click 3\n");
-
       game->waitForExtraPayment = cost->extraCosts;
       return 0;
     }
@@ -1902,9 +1893,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
   if (!isReactingToTargetClick(object)) return 0;
   if (cost){
     if (object->typeAsTarget() == TARGET_CARD) cost->setExtraCostsAction(this, (MTGCardInstance *) object);
-    OutputDebugString("React To click 2\n");
     if (!cost->isExtraPaymentSet()){
-      OutputDebugString("React To click 3\n");
       game->waitForExtraPayment = cost->extraCosts;
       return 0;
     }
@@ -2328,13 +2317,9 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output,
 
   int AManaProducer::reactToClick(MTGCardInstance *  _card){
     if (!isReactingToClick( _card)) return 0;
-    OutputDebugString("React To click 1\n");
     if (cost){
       cost->setExtraCostsAction(this, _card);
-      OutputDebugString("React To click 2\n");
       if (!cost->isExtraPaymentSet()){
-        OutputDebugString("React To click 3\n");
-
         GameObserver::GetInstance()->waitForExtraPayment = cost->extraCosts;
         return 0;
       }
