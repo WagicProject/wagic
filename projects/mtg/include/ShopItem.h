@@ -53,7 +53,6 @@ class ShopItem:public JGuiObject{
 
 class ShopItems:public JGuiController,public JGuiListener{
  private:
-  int showList;
   PlayerData * playerdata;
   PriceList * pricelist;
   int  mX, mY, mHeight;
@@ -67,6 +66,7 @@ class ShopItems:public JGuiController,public JGuiListener{
   void safeDeleteDisplay();
     DeckDataWrapper * myCollection;
  public:
+  bool showCardList;
   ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]);
   ~ShopItems();
   void Render();

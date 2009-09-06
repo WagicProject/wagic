@@ -229,6 +229,7 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
     setIds[i] = _setIds[i];
   };
   myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), _collection));
+  showCardList = true;
 }
 
 
@@ -264,15 +265,18 @@ void ShopItems::Update(float dt){
 	      dialog->Add(2,"No");
       }
       else{
-	dialog->Update(dt);
+	      dialog->Update(dt);
       }
     }else{
-    u32 buttons[] = {PSP_CTRL_LEFT,PSP_CTRL_DOWN,PSP_CTRL_RIGHT,PSP_CTRL_UP,PSP_CTRL_SQUARE};
-    for (int i = 0; i < 5; ++i){
-      if (JGE::GetInstance()->GetButtonClick(buttons[i])){
-        showList = 500;
+      u32 buttons[] = {PSP_CTRL_LEFT,PSP_CTRL_DOWN,PSP_CTRL_RIGHT,PSP_CTRL_UP,PSP_CTRL_CIRCLE};
+      for (int i = 0; i < 5; ++i){
+        if (JGE::GetInstance()->GetButtonClick(buttons[i])){
+          showCardList = false;
+        }
       }
-    }
+      if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_TRIANGLE)){
+          showCardList = !showCardList;
+      }
       SAFE_DELETE(dialog);
       JGuiController::Update(dt);
     }
@@ -298,6 +302,23 @@ void ShopItems::Render(){
   mFont->SetColor(ARGB(255,255,255,255));
   mFont->DrawString(credits, 5, SCREEN_HEIGHT - 15);
   if (display) display->Render();
+
+  if (showCardList){
+    JRenderer * r = JRenderer::GetInstance(); 
+    r->FillRoundRect(290,5, 160, mCount * 20 + 15,5,ARGB(200,0,0,0));
+   
+    for (int i = 0; i< mCount; ++i){
+      if (!mObjects[i]) continue;
+      ShopItem * s = (ShopItem *)(mObjects[i]);
+      if (i == mCurr)  mFont->SetColor(ARGB(255,255,255,0));
+      else  mFont->SetColor(ARGB(255,255,255,255));
+      char buffer[512];
+      sprintf(buffer, "%s", s->getText());
+      float x = 300;
+      float y = 10 + 20*i;
+      mFont->DrawString(buffer,x,y);
+    }
+  }
 }
 
 void ShopItems::pricedialog(int id, int mode){
