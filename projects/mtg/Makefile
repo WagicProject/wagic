@@ -30,8 +30,10 @@ BUILD_PRX = 1
 LIBS = -ljge300 -lhgetools -lfreetype -ljpeg -lgif -lpng -lz -lm -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspmp3 -lpspgum -lpspgu -lpsprtc -lstdc++ -lpspfpu
 
 EXTRA_TARGETS = EBOOT.PBP
-PSP_EBOOT_TITLE = WTH?!
+PSP_EBOOT_TITLE = Wagic, the Homebrew?!
 PSP_EBOOT_ICON = icon.png
+PSP_EBOOT_UNKPNG = NULL
+PSP_EBOOT_PIC1 = pic1.png
 CXXFLAGS = -O2 -G0 -Wall -Werror -DDEVHOOK -DPSPFW3XX -fno-exceptions
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src
 LIBDIR = ../../JGE/lib/psp

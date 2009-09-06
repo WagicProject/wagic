@@ -77,9 +77,7 @@ void GameStateOptions::End()
 
 void GameStateOptions::Update(float dt)
 {
-
-  if(optionsTabs->isTab("Credits"))
-    timer += dt;
+  timer += dt;
 
   if(options.keypadActive()){
     options.keypadUpdate(dt);
@@ -115,8 +113,7 @@ void GameStateOptions::Render()
   //Erase
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 
-  if(optionsTabs->isTab("Credits")){
-    const char * const CreditsText[] = {
+  const char * const CreditsText[] = {
       "Wagic, The Homebrew?! by WilLoW",
       "",
       "updates, new cards, and more on http://wololo.net/wagic",
@@ -135,23 +132,24 @@ void GameStateOptions::Render()
       "Please support this project with donations at http://wololo.net/wagic",
     };
 
-    JLBFont * mFont = resources.GetJLBFont("magic");
-    mFont->SetColor(ARGB(255,200,200,200));
-    mFont->SetScale(1.0);
-    float startpos = 272 - timer * 10;
-    float pos = startpos;
-    int size = sizeof(CreditsText) / sizeof(CreditsText[0]);
-    
-      for (int i = 0; i < size; i++){
-      pos = startpos +20*i;
-      if (pos > -20){
-        mFont->DrawString(_(CreditsText[i]).c_str(),SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
-      }
+  JLBFont * mFont = resources.GetJLBFont("magic");
+  mFont->SetColor(ARGB(255,200,200,200));
+  mFont->SetScale(1.0);
+  float startpos = 272 - timer * 10;
+  float pos = startpos;
+  int size = sizeof(CreditsText) / sizeof(CreditsText[0]);
+  
+  for (int i = 0; i < size; i++){
+    pos = startpos +20*i;
+    if (pos > -20){
+      mFont->DrawString(_(CreditsText[i]).c_str(),SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
     }
-
-    if (pos < -20) timer = 0;
-    mFont->SetScale(1.f);
   }
+
+  if (pos < -20) 
+    timer = 0;
+
+  mFont->SetScale(1.f);
 
   optionsTabs->Render();
 

@@ -120,7 +120,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     PlayerData * playerdata = NEW PlayerData(app->collection);
     playerdata->credits+= value;
     playerdata->save();
-    delete playerdata;
+    SAFE_DELETE(playerdata);
 
   }else{
       unlocked = 0;
