@@ -630,8 +630,10 @@ int MTGCardInstance::stepPower(CombatStep step)
   switch (step)
     {
     case FIRST_STRIKE :
+    case END_FIRST_STRIKE :
       if (has(Constants::FIRSTSTRIKE) || has(Constants::DOUBLESTRIKE)) return MAX(0, power); else return 0;
     case DAMAGE :
+    case END_DAMAGE :
     default :
       if (has(Constants::FIRSTSTRIKE)) return 0; else return MAX(0, power);
     }

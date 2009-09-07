@@ -61,7 +61,9 @@ void DamagerDamaged::Render(CombatStep mode)
       mFont->SetColor(ARGB(92,255,255,255));
       break;
     case FIRST_STRIKE :
+    case END_FIRST_STRIKE :
     case DAMAGE :
+    case END_DAMAGE :
      mFont->SetColor(ARGB(255, 255, 64, 0));
      break;
     }

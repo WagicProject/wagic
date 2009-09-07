@@ -10,7 +10,7 @@ using std::list;
 
 class Player;
 
-typedef enum { BLOCKERS, ORDER, FIRST_STRIKE, DAMAGE } CombatStep;
+typedef enum { BLOCKERS, ORDER, FIRST_STRIKE, END_FIRST_STRIKE, DAMAGE, END_DAMAGE } CombatStep;
 class Phase{
  public:
   int id;

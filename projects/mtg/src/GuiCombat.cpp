@@ -76,6 +76,16 @@ void GuiCombat::remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after)
     }
 }
 
+void GuiCombat::validateDamage()
+{
+  switch (step)
+    {
+    case FIRST_STRIKE : resolve(); go->nextCombatStep(); break;
+    case DAMAGE       : resolve(); go->userRequestNextGamePhase(); break;
+    default: cout << "COMBAT : Cannot validate damage in this phase" << endl; break;
+    }
+}
+
 void GuiCombat::autoaffectDamage(AttackerDamaged* attacker, CombatStep step)
 {
   attacker->clearDamage();
@@ -115,18 +125,20 @@ bool GuiCombat::CheckUserInput(u32 key)
     {
     case PSP_CTRL_CIRCLE:
       if (BLK == cursor_pos)
-        if (ORDER == step) { activeAtk->card->raiseBlockerRankOrder(active->card); }
-        else
-          {
-            signed damage = activeAtk->card->stepPower(step);
-            for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); *it != active; ++it)
-              damage -= (*it)->sumDamages();
-            signed now = active->sumDamages();
-            damage -= now;
-            if (damage > 0) addOne(active, step);
-            else
-              for (now -= active->card->toughness; now >= 0; --now) removeOne(active, step);
-          }
+        {
+          if (ORDER == step) go->cardClick(active->card); //  { activeAtk->card->raiseBlockerRankOrder(active->card); }
+          else
+            {
+              signed damage = activeAtk->card->stepPower(step);
+              for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); *it != active; ++it)
+                damage -= (*it)->sumDamages();
+              signed now = active->sumDamages();
+              damage -= now;
+              if (damage > 0) addOne(active, step);
+              else
+                for (now -= active->card->toughness; now >= 0; --now) removeOne(active, step);
+            }
+        }
       else if (ATK == cursor_pos)
         {
           active = activeAtk->blockers.front();
@@ -137,10 +149,12 @@ bool GuiCombat::CheckUserInput(u32 key)
         {
           switch (step)
             {
-            case BLOCKERS     : assert(false); break; // that should not happen
-            case ORDER        : go->receiveEvent(NEW WEventCombatStepChange(FIRST_STRIKE)); break;
-            case FIRST_STRIKE : resolve(); go->receiveEvent(NEW WEventCombatStepChange(DAMAGE)); break;
-            case DAMAGE       : resolve(); cursor_pos = NONE; go->userRequestNextGamePhase(); break;
+            case BLOCKERS         : assert(false); break; // that should not happen
+            case ORDER            : go->userRequestNextGamePhase(); break;
+            case FIRST_STRIKE     :
+            case DAMAGE           : validateDamage(); break;
+            case END_FIRST_STRIKE :
+            case END_DAMAGE       : break; // nothing;
             }
         }
       break;
@@ -239,13 +253,17 @@ void GuiCombat::Render()
     }
 }
 
-void GuiCombat::resolve()
+int GuiCombat::resolve() // Returns the number of damage objects dealt this turn.
 {
   DamageStack* stack = NEW DamageStack();
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
       if ((*it)->blockers.empty())
-        stack->Add(NEW Damage((*it)->card, go->opponent(), (*it)->card->stepPower(step)));
+        {
+          int dmg = (*it)->card->stepPower(step);
+          if (dmg > 0)
+            stack->Add(NEW Damage((*it)->card, go->opponent(), dmg));
+        }
       else
         for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
           for (vector<Damage>::iterator d = (*q)->damages.begin(); d != (*q)->damages.end(); ++d)
@@ -254,7 +272,9 @@ void GuiCombat::resolve()
         stack->Add(NEW Damage(*d));
     }
   go->mLayers->stackLayer()->Add(stack);
-  go->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
+  int v = stack->mCount;
+  if (v > 0) go->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
+  return v;
 }
 
 int GuiCombat::receiveEventPlus(WEvent* e)
@@ -307,9 +327,10 @@ int GuiCombat::receiveEventMinus(WEvent* e)
     if (go->players[0]->game->inPlay == event->from || go->players[1]->game->inPlay == event->from)
       {
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-          if ((*it)->card == event->card)
+          if ((*it)->card == event->card->previous)
             {
               AttackerDamaged* d = *it;
+              if (activeAtk == *it) activeAtk = NULL;
               attackers.erase(it);
               SAFE_DELETE(d);
               return 1;
@@ -352,8 +373,11 @@ int GuiCombat::receiveEventMinus(WEvent* e)
               }
       return 0;
     }
-  else if (dynamic_cast<WEventPhaseChange*>(e))
-    step = BLOCKERS;
+  else if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
+    {
+      if (Constants::MTG_PHASE_COMBATDAMAGE == event->to->id) step = BLOCKERS;
+      else cursor_pos = NONE;
+    }
   else if (WEventCombatStepChange* event = dynamic_cast<WEventCombatStepChange*>(e))
     switch (event->step)
       {
@@ -379,25 +403,33 @@ int GuiCombat::receiveEventMinus(WEvent* e)
           repos<AttackerDamaged>(attackers.begin(), attackers.end(), 0);
           if (active)
             {
-              active->zoom = 2.7; // We know there is at least one, so this cannot be NULL
+              active->zoom = 2.7;
               activeAtk = static_cast<AttackerDamaged*>(active);
               remaskBlkViews(NULL, static_cast<AttackerDamaged*>(active));
               cursor_pos = ATK;
               step = ORDER;
             }
           else
-            go->nextCombatStep();
+            go->userRequestNextGamePhase();
           return 1;
         }
       case FIRST_STRIKE:
         step = FIRST_STRIKE;
         for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
           if ((*attacker)->card->has(Constants::FIRSTSTRIKE) || (*attacker)->card->has(Constants::DOUBLESTRIKE)) goto DAMAGE;
-        cout << "FIRST STRIKE" << endl;
+        go->nextCombatStep();
+        break;
+      case END_FIRST_STRIKE:
+        step = END_FIRST_STRIKE;
         for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
           autoaffectDamage(*attacker, FIRST_STRIKE);
-        resolve();
-        go->nextCombatStep();
+        if (0 == resolve())
+          go->nextCombatStep();
+        else
+          {
+            cout << "ASK INTERRUPT" << endl;
+            go->mLayers->stackLayer()->AddNextGamePhase();
+          }
         return 1;
       case DAMAGE: DAMAGE:
         step = event->step;
@@ -417,11 +449,11 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             cursor_pos = ATK;
           }
         else
-          {
-            resolve();
-            if (FIRST_STRIKE == step) go->nextCombatStep();
-            else go->userRequestNextGamePhase();
-          }
+          go->nextCombatStep();
+        return 1;
+      case END_DAMAGE:
+        step = END_DAMAGE;
+        if (resolve()) go->userRequestNextGamePhase();
         return 1;
       }
   return 0;

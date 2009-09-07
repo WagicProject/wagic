@@ -38,6 +38,7 @@ struct WEventZoneChange : public WEvent {
 struct WEventDamage : public WEvent {
   Damage * damage;
   WEventDamage(Damage * damage);
+  virtual std::ostream& toString(std::ostream& out) const;
 };
 
 struct WEventPhaseChange : public WEvent {

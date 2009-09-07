@@ -82,11 +82,11 @@ void GameObserver::nextPlayer(){
 }
 void GameObserver::nextGamePhase(){
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
-  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
-    if (DAMAGE != combatStep) { nextCombatStep(); return; }
   phaseRing->forward();
   Phase * cPhase = phaseRing->getCurrentPhase();
   currentGamePhase = cPhase->id;
+  if (Constants::MTG_PHASE_COMBATDAMAGE == currentGamePhase)
+    nextCombatStep();
   if (currentPlayer != cPhase->player) nextPlayer();
 
 
@@ -99,16 +99,14 @@ void GameObserver::nextGamePhase(){
     return nextGamePhase();
   }
 
-  for (int i=0; i < 2; i++){
+  for (int i = 0; i < 2; ++i)
     players[i]->getManaPool()->init();
-  }
 
   //After End of turn
   if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT){
     //Auto Hand cleaning, in case the player didn't do it himself
-    while(currentPlayer->game->hand->nb_cards > 7){
+    while(currentPlayer->game->hand->nb_cards > 7)
       currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
-    }
     mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
     mLayers->actionLayer()->Update(0);
     for (int i=0; i < 2; i++){
@@ -141,26 +139,24 @@ void GameObserver::nextCombatStep()
 {
   switch (combatStep)
     {
-    case BLOCKERS     : receiveEvent(NEW WEventCombatStepChange(combatStep = ORDER)); return;
-    case ORDER        : receiveEvent(NEW WEventCombatStepChange(combatStep = FIRST_STRIKE)); return;
-    case FIRST_STRIKE : receiveEvent(NEW WEventCombatStepChange(combatStep = DAMAGE)); return;
-    case DAMAGE       : ; // Nothing : go to next phase
+    case BLOCKERS         : receiveEvent(NEW WEventCombatStepChange(combatStep = ORDER)); return;
+    case ORDER            : receiveEvent(NEW WEventCombatStepChange(combatStep = FIRST_STRIKE)); return;
+    case FIRST_STRIKE     : receiveEvent(NEW WEventCombatStepChange(combatStep = END_FIRST_STRIKE)); return;
+    case END_FIRST_STRIKE : receiveEvent(NEW WEventCombatStepChange(combatStep = DAMAGE)); return;
+    case DAMAGE           : receiveEvent(NEW WEventCombatStepChange(combatStep = END_DAMAGE)); return;
+    case END_DAMAGE       : ; // Nothing : go to next phase
     }
 }
 
 void GameObserver::userRequestNextGamePhase(){
   if (mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)) return;
   if (getCurrentTargetChooser()) return;
-  //  if (mLayers->combatLayer()->isDisplayed()) return;
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE)
+    if (FIRST_STRIKE == combatStep || END_FIRST_STRIKE == combatStep || DAMAGE == combatStep) { nextCombatStep(); return; }
   if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
-    if (DAMAGE != combatStep) { nextCombatStep(); return; }
-  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS ||
-     opponent()->isAI() ||
-      options[GameOptions::phaseInterrupts[currentGamePhase]].number)
-    mLayers->stackLayer()->AddNextGamePhase();
-  else
-    nextGamePhase();
+    if (BLOCKERS == combatStep) { nextCombatStep(); return; }
+  nextGamePhase();
 }
 
 int GameObserver::forceShuffleLibraries(){
@@ -356,11 +352,10 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
     }else{
       result = targetChooser->toggleTarget(clickedPlayer);
     }
-    if (result == TARGET_OK_FULL){
+    if (result == TARGET_OK_FULL)
       card = cardWaitingForTargets;
-    }else{
+    else
       return;
-    }
   }
 
   if (waitForExtraPayment){
@@ -373,6 +368,12 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
     }
     return;
   }
+
+  if (ORDER == combatStep)
+    {
+      card->defenser->raiseBlockerRankOrder(card);
+      return;
+    }
 
   if (card){
     reaction = mLayers->actionLayer()->isReactingToClick(card);
@@ -468,4 +469,3 @@ int GameObserver::targetListIsSet(MTGCardInstance * card){
   }
   return (targetChooser->targetListSet());
 }
-

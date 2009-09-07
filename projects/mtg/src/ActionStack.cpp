@@ -18,7 +18,7 @@
 */
 
 int NextGamePhase::resolve(){
-  GameObserver::GetInstance()->nextGamePhase();
+  GameObserver::GetInstance()->userRequestNextGamePhase();
   return 1;
 }
 

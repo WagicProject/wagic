@@ -2,20 +2,20 @@
 [INIT]
 COMBATATTACKERS
 [PLAYER1]
-inplay:1370
+inplay:white knight
 [PLAYER2]
-inplay:1290
+inplay:fire elemental
 [DO]
-1370
+white knight
 next
-1290
+fire elemental
 next
 next
-1370
+fire elemental
 [ASSERT]
 COMBATEND
 [PLAYER1]
-graveyard:1370
+graveyard:white knight
 [PLAYER2]
-inplay:1290
+inplay:fire elemental
 [END]

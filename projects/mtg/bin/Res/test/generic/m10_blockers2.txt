@@ -15,7 +15,7 @@ Drudge Skeletons
 next
 #blockers order
 dragon engine
-dragon engine
+Drudge Skeletons
 next
 #combat damage
 next

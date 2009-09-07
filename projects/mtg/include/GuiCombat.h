@@ -19,11 +19,12 @@ class GuiCombat : public GuiLayer
   DamagerDamaged* current;
   enum { BLK, ATK, OK, NONE } cursor_pos;
   CombatStep step;
+  void validateDamage();
   void addOne(DefenserDamaged* blocker, CombatStep);
   void removeOne(DefenserDamaged* blocker, CombatStep);
   void autoaffectDamage(AttackerDamaged* attacker, CombatStep);
   void remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after);
-  void resolve();
+  int resolve();
 
  public:
   GuiCombat(GameObserver* go);

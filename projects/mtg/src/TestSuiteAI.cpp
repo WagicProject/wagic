@@ -100,27 +100,15 @@ int TestSuiteAI::Act(float dt){
     humanMode = 1;
     return 1;
   }
-  else if (action.compare("next")==0){
-    /*
-    if (drl->orderingIsNeeded){
-      drl->blockersOrderingDone();
+  else if (action.compare("next")==0)
       g->userRequestNextGamePhase();
-    }else if (drl->mCount){
-      OutputDebugString("End of combat damage!\n");
-      drl->nextPlayer();
-      g->userRequestNextGamePhase();
-    }else{ */
-      g->userRequestNextGamePhase();
-    /*}
-    */
-  }else if (action.compare("yes")==0){
+  else if (action.compare("yes")==0)
     g->mLayers->stackLayer()->setIsInterrupting(this);
-  }else if (action.compare("endinterruption")==0){
+  else if (action.compare("endinterruption")==0)
     g->mLayers->stackLayer()->endOfInterruption();
-  }else if(action.compare("no")==0){
-    if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
+  else if(action.compare("no")==0){
+    if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this)
       g->mLayers->stackLayer()->cancelInterruptOffer();
-    }
   }else if(action.find("choice ")!=string::npos){
     OutputDebugString("TESTSUITE choice !!!\n");
     int choice = atoi(action.substr(action.find("choice ") + 7).c_str());
@@ -144,27 +132,15 @@ int TestSuiteAI::Act(float dt){
       sprintf(buffe, "TESTSUITE CARD ID : %i\n", mtgid);
       OutputDebugString(buffe);
       Interruptible * toInterrupt = suite->getActionByMTGId(mtgid);
-	    if (toInterrupt){
-	      g->stackObjectClicked(toInterrupt);
-	    }else{
+      if (toInterrupt)
+        g->stackObjectClicked(toInterrupt);
+      else{
         MTGCardInstance * card = suite->getCardByMTGId(mtgid);
         if (card) {
           OutputDebugString("TESTSUITE Clicking ON: ");
           OutputDebugString(card->name.c_str());
           OutputDebugString("\n");
-	  /*
-          if (drl->mCount){
-            if (drl->orderingIsNeeded){
-              OutputDebugString(" Ordering Card\n");
-              drl->clickReorderBlocker(card);
-            }else{
-              OutputDebugString(" Damaging Card\n");
-              drl->clickDamage(card);
-            }
-          }else{*/
-	          g->cardClick(card,card);
-         /* }
-	  */
+          g->cardClick(card,card);
         }
       }
     }else{
@@ -414,7 +390,9 @@ TestSuite::TestSuite(const char * filename,MTGAllCards* _collection){
   ofstream file2 (RESPATH"/test/results.html");
   if (file2){
     file2 << "<html><head>";
+#ifdef WIN32
     file2 << "<meta http-equiv=\"refresh\" content=\"10\" >";
+#endif
     file2 << "<STYLE type='text/css'>";
     file2 << ".success {color:green}\n";
     file2 << ".error {color:red}\n";

@@ -16,6 +16,8 @@ swamp
 benalish knight
 benalish knight
 next
+#first strike
+next
 #damage
 next
 #end

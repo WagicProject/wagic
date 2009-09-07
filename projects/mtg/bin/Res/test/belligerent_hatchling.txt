@@ -17,6 +17,8 @@ belligerent hatchling
 next
 #blockers
 next
+#first strike
+next
 #damage
 next
 #end of combat

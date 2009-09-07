@@ -124,8 +124,10 @@ int DuelLayers::receiveEvent(WEvent * e){
   PRINT_IF(WEventCreatureAttacker);
   PRINT_IF(WEventCreatureBlocker);
   PRINT_IF(WEventCreatureBlockerRank);
+  PRINT_IF(WEventCombatStepChange);
   PRINT_IF(WEventEngageMana);
   PRINT_IF(WEventConsumeMana);
+  PRINT_IF(WEventEmptyManaPool);
 #endif
 
   int used = 0;
