@@ -79,6 +79,11 @@ struct WEventCreatureBlocker : public WEventCardUpdate {
   WEventCreatureBlocker(MTGCardInstance * card,MTGCardInstance * from,MTGCardInstance * to);
 };
 
+//Event sent when blockers have been chosen and they
+//cannot be changed any more.
+struct WEventBlockersChosen : public WEvent {
+};
+
 //Event when a blocker is reordered
 //exchangeWith: exchange card's position with exchangeWith's position
 //attacker:both card and exchangeWith *should* be in attacker's "blockers" list.

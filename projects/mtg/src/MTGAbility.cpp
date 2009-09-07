@@ -607,139 +607,42 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
   if (!a) return BAKA_EFFECT_DONTKNOW;
 
-  GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
-  if (gta) {
+  if (GenericTargetAbility * abi = dynamic_cast<GenericTargetAbility*>(a)) {
     if (mode == MODE_PUTINTOPLAY) return BAKA_EFFECT_GOOD;
-    return abilityEfficiency(gta->ability,p, mode);
+    return abilityEfficiency(abi->ability,p, mode);
   }
-  
-  GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
-  if (gaa) {
+  if (GenericActivatedAbility * abi = dynamic_cast<GenericActivatedAbility*>(a)) {
     if (mode == MODE_PUTINTOPLAY) return BAKA_EFFECT_GOOD;
-    return abilityEfficiency(gaa->ability,p, mode);
+    return abilityEfficiency(abi->ability,p, mode);
   }
-  
-  MultiAbility * mua = dynamic_cast<MultiAbility*>(a);
-  if (mua) return abilityEfficiency(mua->abilities[0],p, mode);
-
-  MayAbility * maya = dynamic_cast<MayAbility*>(a);
-  if (maya) return abilityEfficiency(maya->ability,p, mode);
-
-  ALord * alord = dynamic_cast<ALord *>(a);
-  if (alord) {
-    int myCards = countCards(alord->tc, p);
-    int theirCards = countCards(alord->tc, p->opponent());
-    int efficiency = abilityEfficiency(alord->ability,p, mode);
+  if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a)) return abilityEfficiency(abi->abilities[0],p, mode);
+  if (MayAbility * abi = dynamic_cast<MayAbility*>(a)) return abilityEfficiency(abi->ability,p, mode);
+  if (ALord * abi = dynamic_cast<ALord *>(a)) {
+    int myCards = countCards(abi->tc, p);
+    int theirCards = countCards(abi->tc, p->opponent());
+    int efficiency = abilityEfficiency(abi->ability,p, mode);
     if (myCards > theirCards) return efficiency;
     return -efficiency;
   }
-
-  AAsLongAs * ala = dynamic_cast<AAsLongAs *>(a);
-  if (ala) {
-    return abilityEfficiency(ala->ability,p, mode);
-  }
-
-  AForeach * af = dynamic_cast<AForeach *>(a);
-  if (af) {
-    return abilityEfficiency(af->ability,p, mode);
-  }
-
-  AAFizzler  * aaf = dynamic_cast<AAFizzler *>(a);
-  if (aaf){
-    return BAKA_EFFECT_BAD;
-  }
-
-  AAUntapper * aau = dynamic_cast<AAUntapper *>(a);
-  if (aau){
-    return BAKA_EFFECT_GOOD;
-  }
-
-
-  AATapper * aat = dynamic_cast<AATapper *>(a);
-  if (aat){
-    return BAKA_EFFECT_BAD;
-  }
-
-
-  ATokenCreator * aatc = dynamic_cast<ATokenCreator *>(a);
-  if (aatc){
-    return BAKA_EFFECT_GOOD;
-  }
-
-
-  AAMover * aam = dynamic_cast<AAMover *>(a);
-  if (aam){
-    //TODO
-    return BAKA_EFFECT_BAD;
-  }
-
-
-  AACopier * aac = dynamic_cast<AACopier  *>(a);
-  if (aac){
-    return BAKA_EFFECT_GOOD;
-  }
-
-
-  AADestroyer * aad = dynamic_cast<AADestroyer *>(a);
-  if (aad){
-    return BAKA_EFFECT_BAD;
-  }
-
-  AStandardRegenerate * asr = dynamic_cast<AStandardRegenerate *>(a);
-  if (asr){
-    return BAKA_EFFECT_GOOD;
-  }
-
-  AADamager * aada = dynamic_cast<AADamager *>(a);
-  if (aada){
-    return BAKA_EFFECT_BAD;
-  }
-
-
-  AALifer * aal = dynamic_cast<AALifer *>(a);
-  if (aal){
-    if (aal->life > 0) return BAKA_EFFECT_GOOD;
-    return BAKA_EFFECT_BAD;
-  }
-
-
-  AADepleter * aade = dynamic_cast<AADepleter *>(a);
-  if (aade){
-    return BAKA_EFFECT_BAD;
-  }
-
-
-  AADrawer * aadr = dynamic_cast<AADrawer *>(a);
-  if (aadr){
-    return BAKA_EFFECT_GOOD;
-  }
-
-  AARandomDiscarder * aard = dynamic_cast<AARandomDiscarder *>(a);
-  if (aard){
-    return BAKA_EFFECT_BAD;
-  }
-
-  ARampageAbility * ara = dynamic_cast<ARampageAbility *>(a);
-  if (ara){
-    return BAKA_EFFECT_GOOD;
-  }
-
-  AInstantPowerToughnessModifierUntilEOT * aiptm = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a);
-  if (aiptm){
-    if (aiptm->power>=0 && aiptm->toughness>=0) return BAKA_EFFECT_GOOD;
-    return BAKA_EFFECT_BAD;
-  }
-
-  APowerToughnessModifier * aptm = dynamic_cast<APowerToughnessModifier *>(a);
-  if (aptm){
-    if (aptm->power>=0 && aptm->toughness>=0) return BAKA_EFFECT_GOOD;
-    return BAKA_EFFECT_BAD;
-  }
-
-  APowerToughnessModifierUntilEndOfTurn * aptmu = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a);
-  if (aptmu){
-    return abilityEfficiency(aptmu->ability, p, mode);
-  }
+  if (AAsLongAs * abi = dynamic_cast<AAsLongAs *>(a)) return abilityEfficiency(abi->ability,p, mode);
+  if (AForeach * abi = dynamic_cast<AForeach *>(a)) return abilityEfficiency(abi->ability,p, mode);
+  if (dynamic_cast<AAFizzler *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<AAUntapper *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<AATapper *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<ATokenCreator *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<AAMover *>(a)) return BAKA_EFFECT_BAD; //TODO
+  if (dynamic_cast<AACopier *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<AADestroyer *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<AStandardRegenerate *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<AStandardRegenerate *>(a)) return BAKA_EFFECT_BAD;
+  if (AALifer * abi = dynamic_cast<AALifer *>(a)) return abi->life > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+  if (dynamic_cast<AADepleter *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<AADrawer *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<AARandomDiscarder *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<ARampageAbility *>(a)) return BAKA_EFFECT_GOOD;
+  if (AInstantPowerToughnessModifierUntilEOT * abi = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a)) return (abi->power>=0 && abi->toughness>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+  if (APowerToughnessModifier * abi = dynamic_cast<APowerToughnessModifier *>(a)) return (abi->power>=0 && abi->toughness>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+  if (APowerToughnessModifierUntilEndOfTurn * abi = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a)) return abilityEfficiency(abi->ability, p, mode);
 
   map<int,bool> badAbilities;
   badAbilities[Constants::CANTATTACK] = true;
@@ -749,30 +652,16 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
   badAbilities[Constants::DOESNOTUNTAP] = true;
   badAbilities[Constants::MUSTATTACK] = true;
 
-  AInstantBasicAbilityModifierUntilEOT * aibam = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a);
-  if (aibam){
-    int result = BAKA_EFFECT_GOOD;
-    if (badAbilities[aibam->ability]) result = BAKA_EFFECT_BAD;
-    if (aibam->value <= 0) result = -result;
-    return result;
+  if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a)) {
+      int result = badAbilities[abi->ability] ? BAKA_EFFECT_BAD : BAKA_EFFECT_GOOD;
+      return (abi->value <= 0) ? result : -result;
+    }
+  if (ABasicAbilityModifier * abi = dynamic_cast<ABasicAbilityModifier *>(a)){
+    int result = (badAbilities[abi->ability]) ? BAKA_EFFECT_BAD : BAKA_EFFECT_GOOD;
+    return (abi->modifier <= 0) ? result : -result;
   }
-
-  ABasicAbilityModifier * abam = dynamic_cast<ABasicAbilityModifier *>(a);
-  if (abam){
-    int result = BAKA_EFFECT_GOOD;
-    if (badAbilities[abam->ability]) result = BAKA_EFFECT_BAD;
-    if (abam->modifier <= 0) result = -result;
-    return result;
-  }
-
-  ABasicAbilityAuraModifierUntilEOT * abamu = dynamic_cast<ABasicAbilityAuraModifierUntilEOT *>(a);
-  if (abamu){
-    return abilityEfficiency(abamu->ability, p, mode);
-  }
-
-  AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
-  if (amp) return BAKA_EFFECT_GOOD;
-
+  if (ABasicAbilityAuraModifierUntilEOT * abi = dynamic_cast<ABasicAbilityAuraModifierUntilEOT *>(a)) return abilityEfficiency(abi->ability, p, mode);
+  if (dynamic_cast<AManaProducer*>(a)) return BAKA_EFFECT_GOOD;
   return BAKA_EFFECT_DONTKNOW;
 }
 

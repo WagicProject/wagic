@@ -3881,26 +3881,24 @@ class ARampageAbility:public MTGAbility{
  ARampageAbility(int _id, MTGCardInstance * _source,int _PowerModifier, int _ToughnessModifier, int _MaxOpponent):MTGAbility(_id, _source){
     PowerModifier = _PowerModifier;
     ToughnessModifier = _ToughnessModifier;
-	  MaxOpponent = _MaxOpponent;
+    MaxOpponent = _MaxOpponent;
     nbOpponents = 0;
   }
-  void Update(float dt){
-    if (newPhase != currentPhase){
-      if( source->isAttacker() && newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
-        nbOpponents = source->blockers.size();
-        for (int i = MaxOpponent; i < nbOpponents; i++){
-	        source->power+= PowerModifier;
-	        source->addToToughness(ToughnessModifier);
+  int receiveEvent(WEvent * event) {
+    if (dynamic_cast<WEventBlockersChosen*>(event)) {
+      nbOpponents = source->blockers.size();
+      source->power += PowerModifier * (nbOpponents - MaxOpponent);
+      source->addToToughness(ToughnessModifier * (nbOpponents - MaxOpponent));
+    }
+    else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event)) {
+      if (Constants::MTG_PHASE_AFTER_EOT == pe->to->id)
+        {
+          source->power -= PowerModifier * (nbOpponents - MaxOpponent);
+          source->addToToughness(-ToughnessModifier * (nbOpponents - MaxOpponent));
+          nbOpponents = 0;
         }
-      }
-      if( newPhase == Constants::MTG_PHASE_AFTER_EOT ){
-	      for (int i = MaxOpponent; i < nbOpponents; i++){
-		      source->power-= PowerModifier;
-		      source->addToToughness(-ToughnessModifier);
-	      }
-        nbOpponents = 0;
-      }
-	  }
+    }
+    return 1;
   }
 
   ARampageAbility * clone() const{

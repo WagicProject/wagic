@@ -139,7 +139,8 @@ void GameObserver::nextCombatStep()
 {
   switch (combatStep)
     {
-    case BLOCKERS         : receiveEvent(NEW WEventCombatStepChange(combatStep = ORDER)); return;
+    case BLOCKERS         : receiveEvent(NEW WEventBlockersChosen());
+                            receiveEvent(NEW WEventCombatStepChange(combatStep = ORDER)); return;
     case ORDER            : receiveEvent(NEW WEventCombatStepChange(combatStep = FIRST_STRIKE)); return;
     case FIRST_STRIKE     : receiveEvent(NEW WEventCombatStepChange(combatStep = END_FIRST_STRIKE)); return;
     case END_FIRST_STRIKE : receiveEvent(NEW WEventCombatStepChange(combatStep = DAMAGE)); return;
