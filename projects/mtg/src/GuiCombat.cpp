@@ -282,14 +282,12 @@ int GuiCombat::receiveEventPlus(WEvent* e)
   if (WEventCreatureAttacker* event = dynamic_cast<WEventCreatureAttacker*>(e))
     {
       if (NULL == event->after) return 0;
-      cout << "Attacker : " << event->card->name << " " << event->before << " -> " << event->after << endl;
       AttackerDamaged* t = NEW AttackerDamaged(event->card, *(event->card->view), true, NULL);
       attackers.push_back(t);
       return 1;
     }
   else if (WEventCreatureBlocker* event = dynamic_cast<WEventCreatureBlocker*>(e))
     {
-      cout << "Blocker : " << event->card->name << " " << event->before << " -> " << event->after << endl;
       for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
         if ((*it)->card == event->after)
           {
@@ -302,7 +300,6 @@ int GuiCombat::receiveEventPlus(WEvent* e)
     }
   else if (WEventCreatureBlockerRank* event = dynamic_cast<WEventCreatureBlockerRank*>(e))
     {
-      cout << "Order : " << event->card->name << " -> " << event->exchangeWith->name << endl;
       for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
         if ((*it)->card == event->attacker)
           {
@@ -331,6 +328,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             {
               AttackerDamaged* d = *it;
               if (activeAtk == *it) activeAtk = NULL;
+              for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q) delete(*q);
               attackers.erase(it);
               SAFE_DELETE(d);
               return 1;
@@ -426,14 +424,11 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         if (0 == resolve())
           go->nextCombatStep();
         else
-          {
-            cout << "ASK INTERRUPT" << endl;
-            go->mLayers->stackLayer()->AddNextGamePhase();
-          }
+          go->mLayers->stackLayer()->AddNextGamePhase();
         return 1;
       case DAMAGE: DAMAGE:
         step = event->step;
-        if (!go->currentPlayer->displayStack()) { cout << "DAMAGE" << endl; resolve(); go->userRequestNextGamePhase(); return 1; }
+        if (!go->currentPlayer->displayStack()) { resolve(); go->userRequestNextGamePhase(); return 1; }
         for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
           autoaffectDamage(*attacker, step);
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
