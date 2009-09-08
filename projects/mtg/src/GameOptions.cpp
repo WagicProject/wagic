@@ -75,12 +75,9 @@ const string Metrics::KEYPAD_TC = "_tKeypadTC";
 
 
 GameOption::GameOption(int value) : number(value){}
-GameOption::GameOption(string value) : str(value){}
+GameOption::GameOption(string value) : number(0), str(value) {}
 
 bool GameOption::isDefault(){
-  if(number != 0)
-    return false;
-
   string test = str;
   std::transform(test.begin(),test.end(),test.begin(),::tolower);
   
@@ -234,10 +231,9 @@ int GameSettings::save(){
 string GameSettings::profileFile(string filename, string fallback,bool sanity, bool relative)
 {
   char buf[512];
-  string profile =(*this)[Options::ACTIVE_PROFILE].str;
-  std::transform(profile.begin(),profile.end(),profile.begin(),::tolower);
+  string profile = (*this)[Options::ACTIVE_PROFILE].str;
 
-  if(profile != "" && profile != "default")  {
+  if(!(*this)[Options::ACTIVE_PROFILE].isDefault())  {
      //No file, return root of profile directory
      if(filename == ""){ 
        sprintf(buf,"%sprofiles/%s",( relative ? "" : RESPATH"/" ),profile.c_str());
@@ -285,9 +281,8 @@ void GameSettings::checkProfile(){
     
     SAFE_DELETE(profileOptions);
     profileOptions = NEW GameOptions(temp);
-
-      
-    //Force a theme.
+    
+    //Force a profile.
     if((*profileOptions)[Options::ACTIVE_THEME].isDefault()){
       temp = "Default";
      (*profileOptions)[Options::ACTIVE_THEME].str = "Default";
@@ -309,7 +304,8 @@ void GameSettings::checkProfile(){
     if(theGame == NULL || theGame->collection == NULL)
       return; 
 
-    if(profileFile(PLAYER_COLLECTION) == "")
+    string pcFile = profileFile(PLAYER_COLLECTION);
+    if(!pcFile.size() || !fileExists(pcFile.c_str()))
     {
       //If we had any default settings, we'd set them here.
       
