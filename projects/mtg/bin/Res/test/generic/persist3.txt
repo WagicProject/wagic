@@ -1,0 +1,21 @@
+#Testing Persist
+#bug : When controlling some boosting cards (Glorious Anthem, Honor of the Pure...), returning persist creatures usually come back with their regular P-1/T-1 but are not boosted like they should.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Lingering Tormentor,bad moon,prodigal sorcerer
+hand:lightning bolt
+manapool:{R}
+[PLAYER2]
+[DO]
+lightning bolt
+lingering tormentor
+prodigal sorcerer
+lingering tormentor
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Lingering Tormentor,bad moon,prodigal sorcerer
+graveyard:lightning bolt
+[PLAYER2]
+[END]

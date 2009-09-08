@@ -14,6 +14,7 @@ generic/legendary.txt
 generic/lifelink.txt
 generic/persist.txt
 generic/persist2.txt
+generic/persist3.txt
 generic/phases.txt
 generic/rampage.txt
 generic/regenerate.txt
@@ -126,6 +127,7 @@ kudzu.txt
 kudzu2.txt
 leveler.txt
 lhurgoyf.txt
+liability.txt
 lifeforce.txt
 living_lands.txt
 lord_of_the_pit.txt
@@ -187,6 +189,7 @@ stronghold_discipline.txt
 sword_to_plowshares.txt
 telekinetic_sliver.txt
 terror.txt
+terror2.txt
 titanic_ultimatum.txt
 tranquil_domain.txt
 volcanic_island.txt

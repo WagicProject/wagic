@@ -1518,7 +1518,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 130553:// Beacon of Immortality
 	  {
 		  Player * player = spell->getNextPlayerTarget();
-		  player->life+=player->life;
+		  if (player->life < (INT_MAX / 4) ) player->life += player->life;
 		  zones->putInZone(card,zones->stack,zones->library);
 		  zones->library->shuffle();
 		  break;

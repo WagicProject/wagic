@@ -929,8 +929,8 @@ mana={1}{G}
 [/card]
 [card]
 text={T}: Orcish Cannoneers deals 2 damage to target creature or player and 3 damage to you.
+auto={T}:damage:2 target(creature,player) && damage:3 controller
 id=2641
-alias=1309
 name=Orcish Cannoneers
 rarity=U
 type=Creature 

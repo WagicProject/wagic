@@ -55,6 +55,8 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     }
 
     int diff = p1->life - p2->life;
+    if (diff < 0) diff = 0;
+    if (diff > 500) diff = 500;
     if (diff){
       CreditBonus * b = NEW CreditBonus(diff, _("Life Delta Bonus"));
       bonus.push_back(b);
@@ -62,6 +64,11 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 
     if (p1->game->library->nb_cards == 0) {
       CreditBonus * b = NEW CreditBonus(391, _("'Decree of Theophilus' Bonus"));
+      bonus.push_back(b);
+    }
+
+    if ((p2->game->library->nb_cards == 0) && p1->game->library->nb_cards) {
+      CreditBonus * b = NEW CreditBonus(p1->game->library->nb_cards * 3, _("Miller Bonus"));
       bonus.push_back(b);
     }
 

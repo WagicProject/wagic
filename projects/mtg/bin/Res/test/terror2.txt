@@ -1,0 +1,19 @@
+#Bug: terror can be cast on black creatures
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Terror
+manapool:{B}{B}
+[PLAYER2]
+inplay:bog wraith
+[DO]
+terror
+bog wraith
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:Terror
+manapool:{B}{B}
+[PLAYER2]
+inplay:bog wraith
+[END]

@@ -1,0 +1,18 @@
+#Bug: depleting shouldn't trigger liability
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:ambassador laquatus,liability
+manapool:{3}
+[PLAYER2]
+library:swamp,mountain,plains
+[DO]
+ambassador laquatus
+p2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:ambassador laquatus,liability
+[PLAYER2]
+graveyard:swamp,mountain,plains
+[END]

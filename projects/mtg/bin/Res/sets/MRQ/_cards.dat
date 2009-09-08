@@ -715,8 +715,8 @@ toughness=1
 [/card]
 [card]
 text=Whenever a nontoken permanent is put into a player's graveyard from play, that player loses 1 life.
-auto=@movedTo(land,enchantment,creature,artifact|opponentGraveyard):life:-1 opponent
-auto=@movedTo(land,enchantment,creature,artifact|myGraveyard):life:-1 controller
+auto=@movedTo(land,enchantment,creature,artifact|opponentGraveyard) from(battlefield):life:-1 opponent
+auto=@movedTo(land,enchantment,creature,artifact|myGraveyard) from(battlefield):life:-1 controller
 id=19706
 name=Liability
 rarity=R
