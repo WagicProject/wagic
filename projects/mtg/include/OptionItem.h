@@ -24,6 +24,7 @@ public:
   string displayValue, id;
   int hasFocus;
   bool canSelect;
+  bool bHidden;
   float x, y;
   float width, height;
   virtual ostream& toString(ostream& out)const;
@@ -31,6 +32,7 @@ public:
   OptionItem( string _id,  string _displayValue);
   virtual ~OptionItem() {};
 
+  virtual bool Selectable() {return (canSelect && !bHidden);};
   virtual void Entering();
   virtual bool Leaving();
   virtual void Update(float dt);
@@ -69,6 +71,7 @@ class OptionString:public OptionItem{
   virtual ostream& toString(ostream& out) const;
   bool bShowValue;
 };
+
 class OptionNewProfile:public OptionString{
  public:
    OptionNewProfile(string _id, string _displayValue) :  OptionString(_id, _displayValue) {bShowValue=false;};
@@ -116,6 +119,11 @@ class OptionDirectory:public OptionSelect{
   OptionDirectory(string _root, string _id, string _displayValue);
 private:
   string root;
+};
+
+class OptionTheme:public OptionDirectory{
+ public:
+  OptionTheme();
 };
 
 class OptionProfile:public OptionDirectory{

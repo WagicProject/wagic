@@ -43,11 +43,13 @@ void GameStateOptions::Start()
   optionsTabs->Add(optionsList);
 
   optionsList = NEW OptionsList("Profiles");
-  OptionProfile * pickProf = NEW OptionProfile(mParent);
-  optionsList->Add(pickProf);
   OptionNewProfile * key = NEW OptionNewProfile("","New Profile");
   key->bShowValue = false;
   optionsList->Add(key);
+  OptionProfile * pickProf = NEW OptionProfile(mParent);
+  optionsList->Add(pickProf);
+  OptionTheme * theme = NEW OptionTheme();  
+  optionsList->Add(theme);
   
   optionsTabs->Add(optionsList);
   optionsList = NEW OptionsList("Credits");

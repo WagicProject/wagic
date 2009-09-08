@@ -149,6 +149,14 @@ void GameStateMenu::Start(){
   mMovingW->SetHotSpot(72,16);
   JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
+
+  //How many cards total ?
+  PlayerData * playerdata = NEW PlayerData(mParent->collection);
+  if(!options[Options::ACTIVE_PROFILE].isDefault())
+    sprintf(nbcardsStr, "%s: %i of %i cards", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
+  else
+    sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
+  SAFE_DELETE(playerdata);
 }
 
 
@@ -221,7 +229,7 @@ void GameStateMenu::fillScroller(){
 
   PlayerData * playerdata = NEW PlayerData(mParent->collection);
   sprintf(buff2, _("You currently have %i credits").c_str(),playerdata->credits);
-  delete playerdata;
+  SAFE_DELETE(playerdata);
   scroller->Add(buff2);
 
   scroller->Add(_("More cards and mods at http://wololo.net/wagic"));
@@ -282,9 +290,6 @@ void GameStateMenu::Update(float dt)
 	      mReadConf = 1;
       }
       if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
-	      //How many cards total ?
-	      sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
-        
         //Force default, if necessary.
         if(options[Options::ACTIVE_PROFILE].str == "") 
           options[Options::ACTIVE_PROFILE].str = "Default";
@@ -304,8 +309,16 @@ void GameStateMenu::Update(float dt)
   	        currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
           }
 	      }
+        
+        //List active profile and database size.        
+        PlayerData * playerdata = NEW PlayerData(mParent->collection);
+        if(!options[Options::ACTIVE_PROFILE].isDefault())
+          sprintf(nbcardsStr, "%s: %i of %i cards", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
+        else
+          sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
+        SAFE_DELETE(playerdata);
         resetDirectory();
-       }
+      }
       break;    
     case MENU_STATE_MAJOR_FIRST_TIME :
       options.checkProfile();

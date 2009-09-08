@@ -179,7 +179,7 @@ unsigned int WResourceManager::nowTime(){
   return ++lastTime;
 }
 
-void WResourceManager::clearSamples(){
+void WResourceManager::ClearSamples(){
   map<string,WCachedSample*>::iterator next;
   for(map<string,WCachedSample*>::iterator it = sampleCache.begin();it!=sampleCache.end();it=next){
     next = it;
@@ -208,7 +208,7 @@ WCachedSample * WResourceManager::getCachedSample(string filename, bool makenew)
         csample->sample = JSoundSystem::GetInstance()->LoadSample(sfile.c_str());
         //Potential cache overflow- clean the cache
         if(!csample->sample && fileExists(sfile.c_str())){
-          clearSamples();
+          ClearSamples();
           csample->sample = JSoundSystem::GetInstance()->LoadSample(sfile.c_str());
         }
       }
@@ -450,6 +450,11 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int type, int style){
 
 JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height, string resname, int style){
 
+  for(vector<string>::iterator it=mTextureMissing.begin();it!=mTextureMissing.end();it++){
+    if((*it) == filename)
+      return NULL;
+  }
+
   if(resname == "") 
     resname = filename;
 
@@ -504,7 +509,8 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
     return tc->GetQuad(offX,offY,width,height);  
   }
 
-  //Texture doesn't exist, so no quad.
+  //Texture doesn't exist, so no quad. Record miss.
+  mTextureMissing.push_back(filename);
   return NULL;
 }
 void WResourceManager::Release(JTexture * tex){
@@ -578,6 +584,13 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style){
   else
     tc = getCachedTexture(filename);
   }
+
+  if(style == RETRIEVE_MANAGE){
+    for(vector<string>::iterator it = mTextureMissing.begin();it!=mTextureMissing.end();it++){
+      if((*it) == filename)
+        return NULL;
+    }
+  }
   
   //Perform lock or unlock on entry.
   if(style != RETRIEVE_MANAGE && tc){
@@ -598,8 +611,13 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style){
       textureCache.erase(it);
     }
     //Pop texture into resource manager
-    CreateTexture(filename);
-    return GetTexture(filename);
+    int val = CreateTexture(filename);
+    if(val == INVALID_ID){
+      mTextureMissing.push_back(filename);
+      return NULL;//file not found
+    }
+
+    return GetTexture(val);
   }
 
   //Texture exists! Get it.
@@ -863,7 +881,8 @@ int WResourceManager::fileOK(string filename, bool relative){
 }
 
 int WResourceManager::CreateTexture(const string &textureName) {
-	map<string, int>::iterator itr = mTextureMap.find(textureName);
+	int id = INVALID_ID;
+  map<string, int>::iterator itr = mTextureMap.find(textureName);
 
 	if (itr == mTextureMap.end())
 	{
@@ -873,14 +892,18 @@ int WResourceManager::CreateTexture(const string &textureName) {
 
 		JTexture *tex = JRenderer::GetInstance()->LoadTexture(path.c_str());
 
-		if (tex == NULL)
-			return INVALID_ID;
-
-		int id = mTextureList.size();
+		if (tex != NULL)
+    {
+		id = mTextureList.size();
 		mTextureList.push_back(tex);
 		mTextureMap[textureName] = id;
+    }
+    else
+    {
 
-		return id;
+    }
+
+    return id;
 	}
 	else
 		return itr->second;
@@ -1000,7 +1023,9 @@ void WResourceManager::Refresh(){
   vector<JQuad*>::iterator q;
   JTexture * oldtex;
 
+  mTextureMissing.clear();
   ClearMisses();
+  ClearSamples();
 
   for(it = textureCache.begin();it!=textureCache.end();it++){
     if(it->second == NULL)

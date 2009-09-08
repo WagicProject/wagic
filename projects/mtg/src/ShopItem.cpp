@@ -364,6 +364,22 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         tempDeck->addRandomCards(3, sets,1,Constants::RARITY_U);
         tempDeck->addRandomCards(11, sets,1,Constants::RARITY_C);
 
+        //Check for duplicates. Does not guarentee none, just makes them extremely unlikely.
+        //Code is kind of inefficient, but shouldn't be used often enough to matter.
+        int loops=0;
+         for(map<int,int>::iterator it = tempDeck->cards.begin();it!= tempDeck->cards.end() && loops < 15;it++,loops++){
+          int dupes = it->second - 1;
+          if(dupes <= 0)
+            continue;
+
+          for(int x=0;x<dupes;x++)
+            tempDeck->remove(it->first);
+
+          int rarity = (int) tempDeck->database->getCardById(it->first)->getRarity();
+          tempDeck->addRandomCards(dupes,&rarity);
+          it = tempDeck->cards.begin(); 
+        }
+   
         playerdata->collection->add(tempDeck);
         myCollection->Add(tempDeck);
 

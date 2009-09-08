@@ -77,6 +77,19 @@ const string Metrics::KEYPAD_TC = "_tKeypadTC";
 GameOption::GameOption(int value) : number(value){}
 GameOption::GameOption(string value) : str(value){}
 
+bool GameOption::isDefault(){
+  if(number != 0)
+    return false;
+
+  string test = str;
+  std::transform(test.begin(),test.end(),test.begin(),::tolower);
+  
+  if(!test.size() || test == "default")
+    return true;
+
+  return false;
+}
+
 PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback)
 {
   unsigned char color[4];
@@ -177,14 +190,9 @@ GameSettings::GameSettings()
   //Load global options
   globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
-  //Load profile options. 
-  string temp = (*globalOptions)[Options::ACTIVE_PROFILE.substr(2)].str;
-  if(temp == "")
-   temp = "Default";
-  (*globalOptions)[Options::ACTIVE_PROFILE.substr(2)].str = temp;
-
-  themeOptions = NULL;
   profileOptions = NULL;
+  themeOptions = NULL;
+  
   checkProfile();
 }
 
@@ -227,8 +235,9 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
 {
   char buf[512];
   string profile =(*this)[Options::ACTIVE_PROFILE].str;
+  std::transform(profile.begin(),profile.end(),profile.begin(),::tolower);
 
-  if(profile != "" && profile != "Default")  {
+  if(profile != "" && profile != "default")  {
      //No file, return root of profile directory
      if(filename == ""){ 
        sprintf(buf,"%sprofiles/%s",( relative ? "" : RESPATH"/" ),profile.c_str());
@@ -262,13 +271,9 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
   return buf;
 }
 
-
-
 void GameSettings::checkProfile(){
-    //Load current profile's options. Doesn't save prior set.
-  
+    //Load current profile's options. Doesn't save prior set.  
     char buf[512];
-    SAFE_DELETE(profileOptions);
 
     //Force our directories to exist.
     MAKEDIR(RESPATH"/profiles");
@@ -277,14 +282,17 @@ void GameSettings::checkProfile(){
     temp+="/stats";
     MAKEDIR(temp.c_str()); 
     temp = profileFile(PLAYER_SETTINGS,"",false);
+    
+    SAFE_DELETE(profileOptions);
     profileOptions = NEW GameOptions(temp);
 
       
     //Force a theme.
-    temp = (*profileOptions)[Options::ACTIVE_THEME].str;
-    if(temp == ""){
+    if((*profileOptions)[Options::ACTIVE_THEME].isDefault()){
       temp = "Default";
      (*profileOptions)[Options::ACTIVE_THEME].str = "Default";
+    }else{
+      temp = (*profileOptions)[Options::ACTIVE_THEME].str;
     }
 
     //Load theme options
@@ -295,7 +303,7 @@ void GameSettings::checkProfile(){
     }
 
     SAFE_DELETE(themeOptions);
-    themeOptions = NEW GameOptions(buf);  
+    themeOptions = NEW GameOptions(buf); 
 
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
@@ -323,6 +331,7 @@ void GameSettings::checkProfile(){
       profileOptions->save();
       createUsersFirstDeck(setId);
     }
+
 }
 
 void GameSettings::createUsersFirstDeck(int setId){

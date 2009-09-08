@@ -7,7 +7,7 @@
 #include "MTGCard.h"
 
 #define CACHE_SIZE_PIXELS 2000000
-#define MAX_CACHE_OBJECTS 100
+#define MAX_CACHE_OBJECTS 200
 
 class WCachedResource{
 public:
@@ -84,6 +84,7 @@ public:
 
   void ClearMisses();
   void ClearUnlocked();
+  void ClearSamples();
   void Refresh(); //Refreshes all files in cache, for when mode/profile changes.
 
   unsigned int nowTime();
@@ -111,7 +112,6 @@ private:
   bool RemoveOldestTexture();
   bool RemoveOldestSample();
   bool cleanup();
-  void clearSamples();
 
   WCachedTexture * getCachedTexture(string filename, bool makenew = true, int mode = 0, int format = TEXTURE_FORMAT);
   WCachedTexture * getCachedCard(MTGCard * card, int type = CACHE_CARD, bool makenew = true);
@@ -121,6 +121,8 @@ private:
   //For cached stuff
   map<string,WCachedTexture*> textureCache;
   map<string,WCachedSample*> sampleCache;
+  
+  vector<string> mTextureMissing; //For managed textures.
 
   //Current access time.
   int lastTime;

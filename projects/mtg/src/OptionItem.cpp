@@ -39,6 +39,7 @@ OptionItem::OptionItem( string _id,  string _displayValue) {
  displayValue = _(_displayValue);
  canSelect=true;
  hasFocus=false;
+ bHidden=false;
  width = SCREEN_WIDTH;
  height = 20;
 }
@@ -406,7 +407,7 @@ void OptionsList::Entering(){
   //Try to force a selectable option.
   if(current == -1){
     for (int i = 0 ; i < nbitems; i++){
-      if(listItems[i]->canSelect) {
+      if(listItems[i]->Selectable()) {
         current = i;
         listItems[current]->Entering();
         break;
@@ -440,7 +441,7 @@ void OptionsList::Render(){
   //Force a selectable option.
   if(current == -1){
     for (int i = 0 ; i < nbitems; i++){
-      if(listItems[i]->canSelect) {
+      if(listItems[i]->Selectable()) {
         current = i;
         listItems[current]->Entering();
         break;
@@ -450,7 +451,7 @@ void OptionsList::Render(){
   //Find out how large our list is.
   for (int pos=0;pos < nbitems; pos++){
     listHeight+=listItems[pos]->height+5;
-    if(listItems[pos]->canSelect){
+    if(listItems[pos]->Selectable()){
       listSelectable++;
       if(pos < current) adjustedCurrent++;
     }
@@ -460,14 +461,20 @@ void OptionsList::Render(){
   if(listHeight > SCREEN_HEIGHT)
   {
     width -= 10;    
-    for (start=current;start > 0; start--)    {
+    for (start=current;start > 0; start--){
+      if(listItems[start]->bHidden)
+        continue;
+
       vHeight += listItems[start]->height+5;
       if(vHeight >= (SCREEN_HEIGHT-60)/2)
         break;
     }
     vHeight = 0;
-    for (nowPos=nbitems;nowPos > 1; nowPos--)  
+    for (nowPos=nbitems;nowPos > 1; nowPos--){
+       if(listItems[start]->bHidden)
+        continue;
       vHeight += listItems[nowPos-1]->height+5;
+    }
 
     if(vHeight <= SCREEN_HEIGHT-40 && nowPos < start)
       start = nowPos;
@@ -481,6 +488,9 @@ void OptionsList::Render(){
   if(start >= 0)
   {
     for (int pos=0;pos < nbitems; pos++){
+      if(listItems[pos]->bHidden)
+        continue;
+
       if(pos < start){
         vHeight += listItems[pos]->height + 5;
         continue;
@@ -523,9 +533,9 @@ void OptionsList::Update(float dt){
   {
     if (potential > 0){
       potential--;
-      while(potential > 0 && listItems[potential]->canSelect == false)
+      while(potential > 0 && listItems[potential]->Selectable() == false)
         potential--;
-      if(potential < 0 || !listItems[potential]->canSelect)
+      if(potential < 0 || !listItems[potential]->Selectable())
         potential = -1;
       else if(listItems[current]->Leaving()){
           current = potential;
@@ -537,9 +547,9 @@ void OptionsList::Update(float dt){
   { 
     if (potential < nbitems-1){
       potential++;
-      while(potential < nbitems-1 && listItems[potential]->canSelect == false)
+      while(potential < nbitems-1 && listItems[potential]->Selectable() == false)
         potential++;
-      if(potential == nbitems || !listItems[potential]->canSelect)
+      if(potential == nbitems || !listItems[potential]->Selectable())
         potential = -1;
       else if(potential != current && listItems[current]->Leaving()){
           current = potential;
@@ -647,7 +657,7 @@ bool OptionsMenu::isTab(string name){
     return true;
 
   return false;
-};
+}
 
 int OptionsMenu::Submode()
 {
@@ -664,8 +674,8 @@ void OptionsMenu::acceptSubmode()
 }
 void OptionsMenu::reloadValues()
 {
- if(current > -1 && current < nbitems)
-    tabs[current]->reloadValues();
+ for(int i=0;i<nbitems;i++)
+    tabs[i]->reloadValues();
 }
 
 void OptionsMenu::cancelSubmode()
@@ -764,12 +774,13 @@ int OptionNewProfile::Submode(){
   }  
   return OPTIONS_SUBMODE_NORMAL;
 }
+
 OptionString::OptionString(string _id, string _displayValue): OptionItem(_id, _displayValue)
 {
   bShowValue=true;
   if(_id != "")
     value=options[_id].str;
-};
+}
 
 ostream& OptionString::toString(ostream& out) const{
 return out << "OptionString ::: displayValue : " << displayValue
@@ -777,4 +788,13 @@ return out << "OptionString ::: displayValue : " << displayValue
        << " ; value : " << value
 	     << " ; hasFocus : " << hasFocus
 	     << " ; x,y : " << x << "," << y;
+}
+
+OptionTheme::OptionTheme(): OptionDirectory(RESPATH"/themes",Options::ACTIVE_THEME, "Current Theme"){
+  addSelection("Default");
+  sort(selections.begin(),selections.end());
+  initSelections();
+  hasFocus=false;
+  if(selections.size() == 1)
+    bHidden = true;
 }

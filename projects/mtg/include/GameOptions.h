@@ -75,6 +75,7 @@ public:
   string str;
   //All calls to asColor should include a fallback color for people without a theme.
   PIXEL_TYPE asColor(PIXEL_TYPE fallback = ARGB(255,255,255,255));
+  bool isDefault(); //Returns true when  number is 0 abd string is "" or "default"
   GameOption(int value = 0);
   GameOption(string value);
 };
