@@ -5,6 +5,7 @@
 #define TESTSUITE 1
 #else
 #define OutputDebugString(val) {}
+#define INT_MAX INT32_MAX
 #endif
 
 #if defined (_DEBUG) && defined (WIN32)
