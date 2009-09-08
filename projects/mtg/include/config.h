@@ -5,8 +5,11 @@
 #define TESTSUITE 1
 #else
 #define OutputDebugString(val) {}
-#define INT_MAX INT32_MAX
 #endif
+
+
+#include "limits.h"
+
 
 #if defined (_DEBUG) && defined (WIN32)
 #include "crtdbg.h"
