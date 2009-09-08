@@ -81,7 +81,6 @@ void GameObserver::nextPlayer(){
   combatStep = BLOCKERS;
 }
 void GameObserver::nextGamePhase(){
-  Phase * cPhaseOld = phaseRing->getCurrentPhase();
   phaseRing->forward();
   Phase * cPhase = phaseRing->getCurrentPhase();
   currentGamePhase = cPhase->id;
