@@ -353,6 +353,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GameStateDeckViewer.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GameStateDuel.cpp"
 				>
 			</File>
