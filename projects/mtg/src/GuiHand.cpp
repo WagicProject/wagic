@@ -13,9 +13,9 @@ const float GuiHand::ClosedX = 494;
 
 bool HandLimitor::select(Target* t)
 {
-  vector<CardView*>::iterator it;
-  it = find(hand->cards.begin(), hand->cards.end(), t);
-  return (it != hand->cards.end());
+  if (CardView* c = dynamic_cast<CardView*>(t))
+    return hand->isInHand(c);
+  else return false;
 }
 bool HandLimitor::greyout(Target* t)
 {
@@ -49,6 +49,13 @@ void GuiHand::Update(float dt)
 {
   for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
     (*it)->Update(dt);
+}
+
+bool GuiHand::isInHand(CardView* card)
+{
+  vector<CardView*>::iterator it;
+  it = find(cards.begin(), cards.end(), card);
+  return (it != cards.end());
 }
 
 GuiHandOpponent::GuiHandOpponent(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand) {}

@@ -30,6 +30,8 @@ class ObjectSelector : public GuiLayer
  LimitorFunctor<T>* limitor;
  Pos bigpos;
 
+ T* handLast; T* playLast;
+
  public:
  ObjectSelector(DuelLayers*);
  void Add(T*);

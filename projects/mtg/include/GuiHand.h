@@ -39,6 +39,7 @@ class GuiHand : public GuiLayer
   GuiHand(CardSelector* cs, MTGHand* hand);
   ~GuiHand();
   void Update(float dt);
+  bool isInHand(CardView*);
 
   friend struct HandLimitor;
 };
