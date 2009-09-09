@@ -238,7 +238,8 @@ WCachedTexture * WResourceManager::getCachedTexture(string filename, bool makene
     //Space in cache, make new texture
     if(cleanup()){
        ctex = NEW WCachedTexture();
-       ctex->texture = JRenderer::GetInstance()->LoadTexture(graphicsFile(filename).c_str(),mode,format);
+       //Within limits, keep removing items from cache until we can create this
+       ctex->texture = attemptTexture(graphicsFile(filename));       
 
        if(!ctex->texture){
         for(map<string,WCachedTexture*>::iterator it=textureCache.begin();it!=textureCache.end();it++)
@@ -263,6 +264,32 @@ WCachedTexture * WResourceManager::getCachedTexture(string filename, bool makene
   return ctex;
 }
 
+JTexture * WResourceManager::attemptTexture(string filename, int mode, int format){
+  JTexture * result = JRenderer::GetInstance()->LoadTexture(filename.c_str(),mode,format);
+
+  if(result == NULL){
+    if(!fileExists(filename.c_str()))
+      return NULL;
+
+    for(int attempt=0;attempt<10;attempt++){
+      if(!RemoveOldestTexture()) 
+        break;
+      result = JRenderer::GetInstance()->LoadTexture(filename.c_str(),mode,format);
+      if(result)
+        break;
+    }
+
+    //Still no result, so clear cache entirely, then try again.
+    if(!result){
+      ClearUnlocked();
+      result = JRenderer::GetInstance()->LoadTexture(filename.c_str(),mode,format);
+    }
+  }
+
+  return result;
+}
+
+
 WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool makenew){
   string filename = card->getImageName();
   if(type == CACHE_THUMB)
@@ -273,17 +300,19 @@ WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool
     return NULL; //We've found a cache miss, so return null.
   
   WCachedTexture * ctex = textureCache[filename];
-  //Failed to cache it!
+  //Failed to find it in cache!
   if(!ctex && makenew){
-    //Space in cache, make new texture
     if(cleanup()){
+      //Space in cache, make new texture
       ctex = NEW WCachedTexture();
-      string cardfile = cardFile(filename,card->getSetName());
-      if(cardfile != "")
-        ctex->texture = JRenderer::GetInstance()->LoadTexture(cardfile.c_str());
+      string cfile = cardFile(filename,card->getSetName());
+      if(cfile != ""){
+        //Within limits, keep removing items from cache until we can create this
+        ctex->texture = attemptTexture(cfile);
+      }
       else
         ctex->texture = NULL;
- 
+
       //Couldn't create texture, so fail. Leave failure in cache, so we don't try again later.
       if(!ctex->texture){
         SAFE_DELETE(ctex);
