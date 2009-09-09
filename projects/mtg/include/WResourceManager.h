@@ -128,7 +128,7 @@ private:
   int lastTime;
   //Statistics of record.
   int nb_textures;
-  int totalsize;
+  long totalsize;
 };
 
 extern WResourceManager resources;

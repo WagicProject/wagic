@@ -160,7 +160,7 @@ void WResourceManager::ClearUnlocked(){
 }
 
 bool WResourceManager::cleanup(){
-  int maxSize = options[Options::CACHESIZE].number * 100000;
+  long maxSize = options[Options::CACHESIZE].number * 100000;
   if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
 
   while (textureCache.size() > MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
@@ -249,7 +249,10 @@ WCachedTexture * WResourceManager::getCachedTexture(string filename, bool makene
          SAFE_DELETE(ctex);
          return NULL;
        }
-      totalsize+=ctex->texture->mTexHeight *ctex->texture->mTexWidth;
+      totalsize+=ctex->texture->mTexHeight *ctex->texture->mTexWidth;   
+      char buf[512];
+      sprintf(buf,"Cache size: %ld\n",totalsize);
+      OutputDebugString(buf);
       ctex->hit();
       textureCache[filename] = ctex;
     }
@@ -287,6 +290,9 @@ WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool
         return NULL;
       }
       totalsize+=ctex->texture->mTexHeight *ctex->texture->mTexWidth;
+      char buf[512];
+      sprintf(buf,"Cache size: %ld\n",totalsize);
+      OutputDebugString(buf);
       ctex->hit();
       textureCache[filename] = ctex;
     }
@@ -525,6 +531,8 @@ void WResourceManager::Release(JTexture * tex){
   if(it != textureCache.end()){
     it->second->unlock();
     if(!it->second->isLocked()){
+      if(it->second->texture)
+      totalsize-=it->second->texture->mTexHeight * it->second->texture->mTexWidth;
       SAFE_DELETE(it->second);
       textureCache.erase(it);
     }
@@ -1044,10 +1052,17 @@ void WResourceManager::Refresh(){
       if(it->second->isLocked())
         it->second->texture = oldtex;
       else{
+        if(oldtex)
+          totalsize -= oldtex->mTexHeight * oldtex->mTexWidth;
+
         SAFE_DELETE(oldtex);
         SAFE_DELETE(it->second);
       }
       continue;
+    }
+    else{
+      //Alright, log the new size.
+      totalsize += it->second->texture->mTexHeight * it->second->texture->mTexWidth;
     }
 
     //Relink quads to new texture.
