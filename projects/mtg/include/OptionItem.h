@@ -47,10 +47,12 @@ public:
 
 class OptionInteger:public OptionItem{
  public:
-  int value;
+  int value;              //Current value.
+  int defValue;           //Default value.
+  string strDefault;      //What to call the default value.
   int maxValue, increment;
 
-  OptionInteger(string _id, string _displayValue, int _maxValue = 1, int _increment = 1);
+  OptionInteger(string _id, string _displayValue, int _maxValue = 1, int _increment = 1, int _defV = 0, string _sDef = "");
 
   virtual void Reload() {if(id != "") value = options[id].number;};
   virtual void Render();
@@ -124,6 +126,14 @@ private:
 class OptionTheme:public OptionDirectory{
  public:
   OptionTheme();
+};
+
+class OptionVolume: public OptionInteger{
+ public:
+   OptionVolume(string _id, string _displayName, bool _bMusic = false);
+   virtual void updateValue();
+private:
+   bool bMusic;
 };
 
 class OptionProfile:public OptionDirectory{

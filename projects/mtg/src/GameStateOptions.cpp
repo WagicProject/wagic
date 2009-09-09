@@ -20,7 +20,6 @@ GameStateOptions::~GameStateOptions() {
 
 void GameStateOptions::Start()
 {
-
   timer =  0;
   mState = SHOW_OPTIONS;
   JRenderer::GetInstance()->ResetPrivateVRAM();
@@ -29,16 +28,17 @@ void GameStateOptions::Start()
   OptionsList * optionsList;
 
   optionsList = NEW OptionsList("Settings");
+  
   optionsList->Add(NEW OptionHeader("General Options"));
-  if (GameApp::HasMusic) optionsList->Add(NEW OptionInteger(Options::MUSICVOLUME, "Music volume", 100, 10));
-  optionsList->Add(NEW OptionInteger(Options::SFXVOLUME, "SFX volume", 100, 10));
+  if (GameApp::HasMusic) optionsList->Add(NEW OptionVolume(Options::MUSICVOLUME, "Music volume", true));
+  optionsList->Add(NEW OptionVolume(Options::SFXVOLUME, "SFX volume"));
   optionsList->Add(NEW OptionInteger(Options::OSD, "Display InGame extra information"));
   if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
     optionsList->Add(NEW OptionInteger(Options::DIFFICULTY, "Difficulty", 3, 1));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));  
-  optionsList->Add(NEW OptionInteger(Options::CACHESIZE, "Image Cache Size", 60, 5));
+  optionsList->Add(NEW OptionInteger(Options::CACHESIZE, "Image Cache Size", 60, 5,0,"Default"));
   optionsTabs = NEW OptionsMenu();  
   optionsTabs->Add(optionsList);
 

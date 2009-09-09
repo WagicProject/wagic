@@ -290,6 +290,7 @@ void GameStateMenu::Update(float dt)
 	      mReadConf = 1;
       }
       if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
+
         //Force default, if necessary.
         if(options[Options::ACTIVE_PROFILE].str == "") 
           options[Options::ACTIVE_PROFILE].str = "Default";
@@ -300,15 +301,8 @@ void GameStateMenu::Update(float dt)
 	        file.close();
 	        currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
 	      }else{
-          //check for first time player!
-          file.open(options.profileFile(PLAYER_COLLECTION,"",false).c_str());
-          if(file){
-            file.close();
-            currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
-          }else{
-  	        currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
-          }
-	      }
+  	      currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
+        }
         
         //List active profile and database size.        
         PlayerData * playerdata = NEW PlayerData(mParent->collection);
@@ -321,8 +315,8 @@ void GameStateMenu::Update(float dt)
       }
       break;    
     case MENU_STATE_MAJOR_FIRST_TIME :
-      options.checkProfile();
       currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
+      options.checkProfile(); //Handles building a new deck, if needed.
       break;
     case MENU_STATE_MAJOR_MAINMENU :
       if (!scrollerSet) fillScroller();

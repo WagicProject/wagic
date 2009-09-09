@@ -187,10 +187,10 @@ GameSettings::GameSettings()
   //Load global options
   globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
+  //reloadProfile should be called for the rest.
+  theGame = NULL;
   profileOptions = NULL;
   themeOptions = NULL;
-  
-  checkProfile();
 }
 
 GameSettings::~GameSettings(){
@@ -220,8 +220,17 @@ int GameSettings::save(){
   if(globalOptions)
     globalOptions->save();
 
-  if(profileOptions)
+  if(profileOptions){
+    //Force our directories to exist.
+    MAKEDIR(RESPATH"/profiles");
+    string temp = profileFile("","",false,false);
+    MAKEDIR(temp.c_str()); 
+    temp+="/stats";
+    MAKEDIR(temp.c_str()); 
+    temp = profileFile(PLAYER_SETTINGS,"",false);
+
     profileOptions->save();
+  }
 
   checkProfile();
 
@@ -267,38 +276,30 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
   return buf;
 }
 
+void GameSettings::reloadProfile(bool images){
+    SAFE_DELETE(profileOptions);
+    SAFE_DELETE(themeOptions);
+    checkProfile();
+    if(images)
+      resources.Refresh(); //Update images
+}
+
 void GameSettings::checkProfile(){
-    //Load current profile's options. Doesn't save prior set.  
     char buf[512];
 
-    //Force our directories to exist.
-    MAKEDIR(RESPATH"/profiles");
-    string temp = profileFile("","",false,false);
-    MAKEDIR(temp.c_str()); 
-    temp+="/stats";
-    MAKEDIR(temp.c_str()); 
-    temp = profileFile(PLAYER_SETTINGS,"",false);
+    //If it doesn't exist, load current profile.
+    if(!profileOptions)
+      profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS,"",false));
     
-    SAFE_DELETE(profileOptions);
-    profileOptions = NEW GameOptions(temp);
-    
-    //Force a profile.
-    if((*profileOptions)[Options::ACTIVE_THEME].isDefault()){
-      temp = "Default";
-     (*profileOptions)[Options::ACTIVE_THEME].str = "Default";
-    }else{
-      temp = (*profileOptions)[Options::ACTIVE_THEME].str;
-    }
-
     //Load theme options
-    if(temp == "Default")
-     sprintf(buf,RESPATH"/graphics/metrics.txt");
-    else{
-     sprintf(buf,RESPATH"/themes/%s/metrics.txt",temp.c_str());
+    if(!themeOptions){
+      if(!profileOptions || (*profileOptions)[Options::ACTIVE_THEME].isDefault())
+       sprintf(buf,RESPATH"/graphics/metrics.txt");
+      else
+       sprintf(buf,RESPATH"/themes/%s/metrics.txt",(*profileOptions)[Options::ACTIVE_THEME].str.c_str());
+      
+      themeOptions = NEW GameOptions(buf); 
     }
-
-    SAFE_DELETE(themeOptions);
-    themeOptions = NEW GameOptions(buf); 
 
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
@@ -309,7 +310,7 @@ void GameSettings::checkProfile(){
     {
       //If we had any default settings, we'd set them here.
       
-      //Give the player cards from the set for which we have the most variety
+      //Find the set for which we have the most variety
       int setId = 0;
       int maxcards = 0;
       for (int i=0; i< MtgSets::SetsList->nb_items; i++){
@@ -319,15 +320,17 @@ void GameSettings::checkProfile(){
           setId = i;
         }
       }
+
       //Save this set as "unlocked"
       char buffer[4096];
       string s = MtgSets::SetsList->values[setId];
       sprintf(buffer,"unlocked_%s", s.c_str());
       (*profileOptions)[buffer]=1;
       profileOptions->save();
+
+      //Give the player their first deck
       createUsersFirstDeck(setId);
     }
-
 }
 
 void GameSettings::createUsersFirstDeck(int setId){

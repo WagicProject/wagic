@@ -43,6 +43,15 @@ GameApp::GameApp(): JApp()
   players[1] = 0;
   gameType = GAME_TYPE_CLASSIC;
 
+  
+  mCurrentState = NULL;
+  mNextState = NULL;
+  collection = NULL;
+  
+  for(int i=0;i<6;i++)
+    Particles[i] = NULL;
+ 
+  music = NULL;
 }
 
 
@@ -63,6 +72,9 @@ void GameApp::Create()
 
   //Link this to our settings manager.
   options.theGame = this;
+
+  //Ensure that options are properly loaded before loading files.
+  options.reloadProfile();
 
   //Test for Music files presence
   string filepath = RESPATH;
@@ -200,7 +212,7 @@ void GameApp::Destroy()
 
   SimpleMenu::destroy();
 
-
+  options.theGame = NULL;
   LOG("==Destroying GameApp Successful==");
 
 }

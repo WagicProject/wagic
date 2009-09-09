@@ -64,13 +64,17 @@ void OptionInteger::Render(){
       sprintf(buf,_("No").c_str());
     }
   }else{
-    sprintf(buf, "%i", value);
+    if(value == defValue && strDefault.size())
+      sprintf(buf, "%s", strDefault.c_str());
+    else
+      sprintf(buf, "%i", value);
   }
   mFont->DrawString(buf,width -10 ,y,JGETEXT_RIGHT);
 }
 
-OptionInteger::OptionInteger(string _id, string _displayValue, int _maxValue, int _increment): OptionItem(_id, _displayValue){
- 
+OptionInteger::OptionInteger(string _id, string _displayValue, int _maxValue, int _increment, int _defV, string _sDef): OptionItem(_id, _displayValue){
+  defValue = _defV;
+  strDefault = _sDef;
   maxValue = _maxValue;
   increment = _increment;
   value = ::options[id].number;
@@ -231,7 +235,7 @@ void OptionProfile::populate(){
    renderer->BindTexture(mAvatarTex);
  }
 
- options.checkProfile();
+ options.reloadProfile(); 
  PlayerData * pdata = NEW PlayerData(app->collection);
 
  options[Options::ACTIVE_PROFILE] = temp;
@@ -320,7 +324,6 @@ void OptionProfile::acceptSubmode()
     options[Options::ACTIVE_PROFILE] = selections[value];
     initialValue = value;
     populate(); 
-    resources.Refresh(); //Update images, in case we've changed profiles, etc.
     bCheck = false;
 }
 
@@ -759,7 +762,7 @@ void OptionNewProfile::Update(float dt){
     
     if(temp != value){
     options[Options::ACTIVE_PROFILE] = value;
-    options.checkProfile();
+    options.reloadProfile();
     }
     value = "";
     bChanged = true;
@@ -797,4 +800,14 @@ OptionTheme::OptionTheme(): OptionDirectory(RESPATH"/themes",Options::ACTIVE_THE
   hasFocus=false;
   if(selections.size() == 1)
     bHidden = true;
+}
+
+void OptionVolume::updateValue(){
+  value+=increment; 
+  if (value>maxValue) 
+    value=0;
+}
+
+OptionVolume::OptionVolume(string _id, string _displayName, bool _bMusic): OptionInteger(_id, _displayName, 100, 10,0,"Muted") {
+  bMusic = _bMusic;
 }

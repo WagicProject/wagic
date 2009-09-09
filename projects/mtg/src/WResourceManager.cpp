@@ -935,10 +935,6 @@ int WResourceManager::CreateTexture(const string &textureName) {
 		mTextureList.push_back(tex);
 		mTextureMap[textureName] = id;
     }
-    else
-    {
-
-    }
 
     return id;
 	}
