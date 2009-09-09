@@ -299,6 +299,9 @@ WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool
   if(miss != textureCache.end() && miss->second == NULL)
     return NULL; //We've found a cache miss, so return null.
   
+  if(miss == textureCache.end() && !makenew)
+    return NULL; //cache empty and don't want to create
+
   WCachedTexture * ctex = textureCache[filename];
   //Failed to find it in cache!
   if(!ctex && makenew){

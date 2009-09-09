@@ -546,7 +546,11 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   JQuad * quad = backQuad;
 
   int showName = 1;
-  quad = resources.RetrieveCard(card);
+  if (resources.RetrieveCard(card,CACHE_CARD,RETRIEVE_EXISTING) || last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY){
+    quad = resources.RetrieveCard(card);
+    showName = 0;
+  }
+
 
   if (quad){
     showName = 0;
