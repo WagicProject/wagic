@@ -474,6 +474,7 @@ mana={R}
 type=Enchantment
 text=Whenever you play a creature spell, tap target creature.
 auto=@movedTo(creature|mystack):tap target(creature)
+#0.8 @movedTo wont work with target, may is needed
 rarity=C
 [/card]
 [card]

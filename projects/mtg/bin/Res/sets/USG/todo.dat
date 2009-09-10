@@ -1167,7 +1167,7 @@ mana={1}{W}
 [/card]
 [card]
 text=Whenever another card is put into a graveyard from anywhere, remove that card from the game.
-auto=@movedTo(*|graveyard):moveTo(Exile) ???
+auto=@movedTo(*[-this]|graveyard):moveTo(Exile) ???
 id=5608
 name=Planar Void
 rarity=U

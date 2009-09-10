@@ -11,19 +11,6 @@ subtype=Human Soldier
 toughness=1
 [/card]
 [card]
-text=Shroud     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Algae Gharial.
-abilities=shroud
-auto=@movedTo(creature|graveyard) from(inplay):may counter(1/1)
-id=174986
-name=Algae Gharial
-rarity=U
-type=Creature
-mana={3}{G}
-power=1
-subtype=Crocodile
-toughness=1
-[/card]
-[card]
 text=Arcane Sanctum comes into play tapped.     {T}: Add {W}, {U}, or {B} to your mana pool.
 auto=tap
 auto={T}:Add{W}
@@ -965,19 +952,6 @@ id=174877
 name=Savage Lands
 rarity=U
 type=Land
-[/card]
-[card]
-text=Flying     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Scavenger Drake.
-abilities=flying
-auto=@movedTo(creature|graveyard) from(inplay):may counter(1/1)
-id=174987
-name=Scavenger Drake
-rarity=U
-type=Creature
-mana={3}{B}
-power=1
-subtype=Drake
-toughness=1
 [/card]
 [card]
 text=Seaside Citadel comes into play tapped.     {T}: Add {G}, {W}, or {U} to your mana pool.

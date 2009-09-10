@@ -254,7 +254,7 @@ abilities=fear
 [/card]
 [card]
 text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from play, you may untap target artifact.
-auto=@movedTo(creature[artifact]|graveyard) from(inplay):may untap(artifact)
+auto=@movedTo(creature[artifact]|graveyard) from(inplay):may untap target(artifact)
 id=46434
 name=Dross Scorpion
 rarity=C
