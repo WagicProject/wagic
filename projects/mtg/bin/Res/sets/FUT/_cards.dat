@@ -1,11 +1,10 @@
 [card]
 text=Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
 id=136150
-name=136150
+name=Akroma's Memorial
 rarity=R
 mana={7}
 type=Artifact
-subtype=Akroma's Memorial
 auto=lord(creature|myinplay) flying
 auto=lord(creature|myinplay) first strike
 auto=lord(creature|myinplay) vigilance
