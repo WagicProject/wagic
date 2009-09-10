@@ -1065,6 +1065,18 @@ text=Cascade (When you play this spell, remove cards from the top of your librar
 rarity=C
 [/card]
 [card]
+text=When Vithian Renegades comes into play, destroy target artifact.
+id=179535
+auto=destroy target(artifact)
+name=Vithian Renegades
+rarity=U
+mana={1}{R}{G}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=2
+[/card]
+[card]
 id=180592
 name=Wargate
 mana={X}{G}{W}{U}

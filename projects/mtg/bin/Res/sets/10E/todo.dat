@@ -72,6 +72,7 @@ toughness=8
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)   When Aven Cloudchaser comes into play, destroy target enchantment.
 id=129470
 name=Aven Cloudchaser
+auto=destroy target(enchantment)
 rarity=C
 color=White
 type=Creature

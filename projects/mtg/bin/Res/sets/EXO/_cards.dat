@@ -364,18 +364,6 @@ toughness=1
 abilities=haste
 [/card]
 [card]
-text=When Ravenous Baboons comes into play, destroy target nonbasic land.
-id=5207
-name=Ravenous Baboons
-rarity=R
-mana={3}{R}
-type=Creature
-subtype=Ape
-auto=may destroy target(land[-basic])
-power=2
-toughness=2
-[/card]
-[card]
 text=Put target card from your graveyard on top of your library.
 target=*|mygraveyard
 auto=moveTo(myLibrary)

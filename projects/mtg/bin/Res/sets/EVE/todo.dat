@@ -592,6 +592,18 @@ type=Enchantment
 mana={2}{W}{W}
 [/card]
 [card]
+text=When Marshdrinker Giant comes into play, destroy target Island or Swamp an opponent controls.
+auto=destroy target(island,swamp|opponentinplay)
+id=142015
+name=Marshdrinker Giant
+rarity=U
+type=Creature
+mana={3}{G}{G}
+power=4
+subtype=Giant Warrior
+toughness=3
+[/card]
+[card]
 text={T}: Target player removes a card in his or her graveyard from the game.      Whenever you play a black spell, you may untap Merrow Bonegnawer.
 id=151158
 name=Merrow Bonegnawer

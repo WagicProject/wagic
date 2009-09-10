@@ -700,19 +700,6 @@ auto={T}{S}:moveTo(myinplay) target(basic|mylibrary) && tap
 rarity=C
 [/card]
 [card]
-id=116736
-name=Tivadar of Thorn
-mana={1}{W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=First strike, protection from red When Tivadar of Thorn comes into play, destroy target Goblin.
-abilities=first strike, protection from red, legendary
-auto=destroy target(goblin)
-rarity=R
-[/card]
-[card]
 id=108907
 name=Tolarian Sentinel
 mana={3}{U}
