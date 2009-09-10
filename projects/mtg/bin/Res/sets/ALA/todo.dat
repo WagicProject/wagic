@@ -247,6 +247,19 @@ subtype=Zombie Wizard
 toughness=2
 [/card]
 [card]
+text=Whenever another creature is put into a graveyard from play, you may gain 1 life.
+auto=@movedTo(creature[-this]|graveyard) from(inplay):may life:1
+#0.8 there is no "[-this]"
+id=175073
+name=Deathgreeter
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Human Shaman
+toughness=1
+[/card]
+[card]
 text={2}{B}, {T}, Sacrifice a blue creature, a black creature, and a red creature: Search your library for a card named Prince of Thralls and put it into play. Then shuffle your library.
 id=175243
 name=Demon's Herald
@@ -435,7 +448,20 @@ rarity=C
 type=Sorcery
 mana={2}{G}
 [/card]
-
+[card]
+text=Flying. Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
+auto=@movedTo(artifact[-this]|myinplay):2/2
+#0.8 there is no "[-this]"
+abilities=flying
+id=174816
+name=Glaze Fiend
+rarity=C
+type=Artifact Creature
+mana={1}{B}
+power=0
+subtype=Illusion
+toughness=1
+[/card]
 [card]
 text={1}{W}, {T}: Prevent all damage that would be dealt to target creature with power 5 or greater this turn.
 id=174822
@@ -499,7 +525,7 @@ mana={W}{U}
 [card]
 text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
 auto=@movedTo(creature[-this]|graveyard):may damage:1 target(player)
-#can't be coded in 0.8 because "@" can't be followed by "target" unless there is a "may" ability
+#can't be coded in 0.8 because there is no "[-this]" plus it will crash if this creatures dies
 id=174873
 name=Hissing Iguanar
 rarity=C
@@ -905,7 +931,20 @@ power=6
 subtype=Beast
 toughness=4
 [/card]
-
+[card]
+text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
+abilities=first strike
+auto=@movedTo(creature[-this]|graveyard) from(inplay):may counter(1/1)
+#will crash in 0.8, there is no "[-this]" and it will trigger its own effect when it dies causing crash
+id=174988
+name=Rockslide Elemental
+rarity=U
+type=Creature
+mana={2}{R}
+power=1
+subtype=Elemental
+toughness=1
+[/card]
 [card]
 text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
 id=174828

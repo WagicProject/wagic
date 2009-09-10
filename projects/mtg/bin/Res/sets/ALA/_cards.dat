@@ -249,18 +249,6 @@ subtype=Human Archer
 toughness=1
 [/card]
 [card]
-text=Whenever another creature is put into a graveyard from play, you may gain 1 life.
-auto=@movedTo(creature[-this]|graveyard) from(inplay):may life:1
-id=175073
-name=Deathgreeter
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Human Shaman
-toughness=1
-[/card]
-[card]
 text=First strike     Shroud (This creature can't be the target of spells or abilities.)
 abilities=first strike,shroud
 id=175121
@@ -412,19 +400,6 @@ name=Forest
 rarity=L
 type=Basic Land
 subtype=Forest
-[/card]
-[card]
-text=Flying. Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
-auto=@movedTo(artifact[-this]|myinplay):2/2
-abilities=flying
-id=174816
-name=Glaze Fiend
-rarity=C
-type=Artifact Creature
-mana={1}{B}
-power=0
-subtype=Illusion
-toughness=1
 [/card]
 [card]
 text=At the beginning of your upkeep, put a 1/1 red Goblin creature token with haste into play.     Goblin creatures attack each turn if able.
@@ -955,19 +930,6 @@ mana={5}{W}{W}
 power=5
 subtype=Rhino Soldier
 toughness=7
-[/card]
-[card]
-text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
-abilities=first strike
-auto=@movedTo(creature|graveyard) from(inplay):may counter(1/1)
-id=174988
-name=Rockslide Elemental
-rarity=U
-type=Creature
-mana={2}{R}
-power=1
-subtype=Elemental
-toughness=1
 [/card]
 [card]
 text=Target creature gets +3/+3 and gains double strike until end of turn.
