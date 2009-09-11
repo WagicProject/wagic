@@ -621,7 +621,7 @@ type=Instant
 [/card]
 [card]
 text={2}{W}: Creatures you control get +1/+1 until end of turn.
-auto={2}{W}:lord(creature|mybattlefield) 1/1 ueot
+auto={2}{W}:lord(creature|mybattlefield) 1/1
 id=4877
 name=Gerrard's Battle Cry
 rarity=R

@@ -891,7 +891,7 @@ toughness=4
 [card]
 text={1}{B}{B}, {T}, Discard a card: Creatures target player controls attack this turn if able.
 id=19699
-auto={1}{B}{B}{T}{S(*|myhand)}:lord(creature|opponentinplay) mustattack ueot
+auto={1}{B}{B}{T}{S(*|myhand)}:lord(creature|opponentinplay) mustattack 
 name=Instigator
 rarity=R
 type=Creature

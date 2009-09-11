@@ -474,7 +474,7 @@ toughness=1
 [card]
 text=Sacrifice Skyshaper: Creatures you control gain flying until end of turn. 
 id=5227
-auto={S}:lord(creature|mybattlefield) flying ueot
+auto={S}:lord(creature|mybattlefield) flying 
 name=Skyshaper
 rarity=U
 mana={2}

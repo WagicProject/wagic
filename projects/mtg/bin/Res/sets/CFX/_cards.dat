@@ -1,7 +1,7 @@
 [card]
 text=Flying     {1}{G}{U}: Creatures you control gain shroud until end of turn.
 abilities=flying
-auto={1}{G}{U}:lord(creature|mybattlefield) shroud ueot
+auto={1}{G}{U}:lord(creature|mybattlefield) shroud 
 id=153946
 name=Aerie Mystics
 rarity=U
@@ -157,7 +157,7 @@ mana={3}{U}
 [/card]
 [card]
 text={R}{G}{W}: Cylian Sunsinger and each other creature with the same name as it get +3/+3 until end of turn.
-auto={R}{G}{W}:lord(Cylian Sunsinger) 3/3 ueot
+auto={R}{G}{W}:lord(Cylian Sunsinger) 3/3 
 id=189081
 name=Cylian Sunsinger
 rarity=R
@@ -588,7 +588,7 @@ mana={3}{G}
 [/card]
 [card]
 text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
-auto={S}:lord(creature|opponentBattlefield) -1/-1 ueot && lord(creature|opponentBattlefield) mustattack ueot
+auto={S}:lord(creature|opponentBattlefield) -1/-1  && lord(creature|opponentBattlefield) mustattack 
 id=180345
 name=Suicidal Charge
 rarity=C

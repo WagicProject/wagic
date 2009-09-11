@@ -14,7 +14,7 @@ toughness=1
 text={R},{T}: Attacking creatures gain first strike until end of turn.
 id=50338
 name=Akki Coalflinger
-auto={R}{T}:lord(creature[attacking]) first strike ueot
+auto={R}{T}:lord(creature[attacking]) first strike 
 rarity=U
 type=Creature
 mana={1}{R}{R}
@@ -494,7 +494,7 @@ subtype=Spirit
 abilities=legendary
 power=4
 toughness=4
-auto=@movedTo(arcane,spirit|mystack):lord(creature|mybattlefield) 1/1 other ueot && lord(creature|mybattlefield) trample other ueot
+auto=@movedTo(arcane,spirit|mystack):lord(creature|mybattlefield) 1/1 other  && lord(creature|mybattlefield) trample other 
 rarity=R
 [/card]
 [card]

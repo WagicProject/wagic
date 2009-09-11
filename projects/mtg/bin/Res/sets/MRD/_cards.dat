@@ -605,7 +605,7 @@ abilities=flying
 [/card]
 [card]
 text={1}{W}: Creatures you control get +1/+1 until end of turn.
-auto={1}{W}:lord(creature|mybattlefield) 1/1 ueot
+auto={1}{W}:lord(creature|mybattlefield) 1/1 
 id=49768
 name=Leonin Sun Standard
 rarity=R
