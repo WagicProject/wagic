@@ -578,7 +578,7 @@ toughness=2
 text=Flying. Other creatures you control with flying get +0/+1. {T}: Other creatures you control with flying get +1/+0 until end of turn.
 abilities=flying
 auto=lord(creature[flying]|myinplay) 0/1 other
-auto={T}:lord(creature[flying]|myinplay) 1/0 other
+auto={T}:lord(creature[flying]|myinplay) 1/0 other ueot
 rarity=R
 [/card]
 [card]

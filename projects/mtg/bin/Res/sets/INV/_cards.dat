@@ -1392,7 +1392,7 @@ toughness=1
 [/card]
 [card]
 text={G}{G}, {T}: Creatures you control get +2/+2 until end of turn.     {U}{U}, {T}: Return target creature to its owner's hand.
-auto={G}{G}{T}:lord(creature|myinplay) 2/2
+auto={G}{G}{T}:lord(creature|myinplay) 2/2 ueot
 auto={U}{U}{T}:moveTo(ownerhand) target(creature)
 id=22961
 name=Sunscape Master

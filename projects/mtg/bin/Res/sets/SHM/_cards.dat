@@ -1266,7 +1266,7 @@ toughness=1
 [/card]
 [card]
 text={R}{G}: Each blocked creature gets +1/+0 and gains trample until end of turn.
-auto={R}{G}:lord(creature[blocked]) 1/0 && lord(creature[blocked]) trample
+auto={R}{G}:lord(creature[blocked]) 1/0 ueot && lord(creature[blocked]) trample ueot
 id=157884
 name=Tattermunge Witch
 rarity=U
