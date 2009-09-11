@@ -380,6 +380,7 @@ text={T}: Add {1} to your mana pool.  {1}{R}, {T}: Put a 0/1 red Kobold creature
 id=113553
 auto={T}:Add {1} 
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
+abilities=legendary
 name=Kher Keep
 rarity=R
 type=Land
