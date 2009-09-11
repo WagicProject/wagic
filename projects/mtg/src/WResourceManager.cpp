@@ -163,8 +163,8 @@ bool WResourceManager::cleanup(){
   long maxSize = options[Options::CACHESIZE].number * 100000;
   if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
 
+  ClearMisses();
   while (textureCache.size() > MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
-    ClearMisses();
     int result = RemoveOldestTexture();
     if (!result) return false;
   }

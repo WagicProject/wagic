@@ -543,12 +543,17 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   int alpha = (int) (255 * (scale + 1.0 - max_scale));
 
   if (!card) return;
-  JQuad * quad = backQuad;
+  JQuad * quad = NULL;
 
-  int showName = 1;
-  if (resources.RetrieveCard(card,CACHE_CARD,RETRIEVE_EXISTING) || last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY){
-    quad = resources.RetrieveCard(card);
-    showName = 0;
+  int showName = 0;
+  quad = resources.RetrieveCard(card,CACHE_CARD,RETRIEVE_EXISTING);
+  if (!quad){
+    if(last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY)
+      quad = resources.RetrieveCard(card);
+    else{
+      quad = backQuad;
+      showName = 1;
+    }
   }
 
 

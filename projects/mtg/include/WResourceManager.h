@@ -80,7 +80,6 @@ public:
   WResourceManager();
   ~WResourceManager();
   
-  bool isCardInCache(MTGCard * card, int type = CACHE_CARD);
   JQuad * RetrieveCard(MTGCard * card, int type = CACHE_CARD, int style = RETRIEVE_NORMAL);
   JSample * RetrieveSample(string filename, int style = RETRIEVE_NORMAL);
   JTexture * RetrieveTexture(string filename, int style = RETRIEVE_NORMAL);
