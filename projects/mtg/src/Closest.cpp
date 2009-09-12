@@ -23,8 +23,6 @@ static inline Target* closest(vector<Target*>& cards, Limitor* limitor, Target* 
       else
         card = *it;
     }
-  { CardView* c = dynamic_cast<CardView*>(ref); if (c) c->zoom = 1.0; }
-  { CardView* c = dynamic_cast<CardView*>(card); if (c) c->zoom = 1.4; }
   return card;
 }
 

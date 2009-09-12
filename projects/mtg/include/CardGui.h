@@ -3,11 +3,12 @@
 #ifndef _CARD_GUI_H_
 #define _CARD_GUI_H_
 
+#include <hge/hgeparticle.h>
 #include <JGui.h>
 #include "Pos.h"
 #include "PlayGuiObject.h"
 #include "MTGCardInstance.h"
-#include <hge/hgeparticle.h>
+#include "CardSelector.h"
 
 class MTGCardInstance;
 class PlayGuiObject;
@@ -34,10 +35,11 @@ struct CardGui : public PlayGuiObject {
 
 class CardView : public CardGui {
  public:
+  const CardSelector::SelectorZone owner;
 
   MTGCardInstance* getCard(); // remove this when possible
-  CardView(MTGCardInstance* card, float x, float y);
-  CardView(MTGCardInstance* card, const Pos& ref);
+  CardView(const CardSelector::SelectorZone, MTGCardInstance* card, float x, float y);
+  CardView(const CardSelector::SelectorZone, MTGCardInstance* card, const Pos& ref);
   void Render(){CardGui::Render();};
   void Render(JQuad* q){Pos::Render(q);};
   virtual ostream& toString(ostream&) const;

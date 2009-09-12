@@ -22,7 +22,7 @@ CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListene
 
 
 void CardDisplay::AddCard(MTGCardInstance * _card){
-  CardGui * card = NEW CardView(_card, x + 5 + (mCount - start_item) * 30, y + 5);
+  CardGui * card = NEW CardView(CardSelector::nullZone, _card, x + 5 + (mCount - start_item) * 30, y + 5);
   Add(card);
 }
 

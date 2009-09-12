@@ -10,7 +10,6 @@ const float GuiHand::RightRowX = 460;
 const float GuiHand::OpenX = 394;
 const float GuiHand::ClosedX = 494;
 
-
 bool HandLimitor::select(Target* t)
 {
   if (CardView* c = dynamic_cast<CardView*>(t))
@@ -149,9 +148,9 @@ int GuiHandSelf::receiveEventPlus(WEvent* e)
       {
 	CardView* card;
 	if (event->card->view)
-	  card = NEW CardView(event->card, *(event->card->view));
+	  card = NEW CardView(CardSelector::handZone, event->card, *(event->card->view));
 	else
-	  card = NEW CardView(event->card, ClosedRowX, 0);
+	  card = NEW CardView(CardSelector::handZone, event->card, ClosedRowX, 0);
 	card->t = 6*M_PI;
 	cards.push_back(card);
 	cs->Add(card);
@@ -187,9 +186,9 @@ int GuiHandOpponent::receiveEventPlus(WEvent* e)
       {
 	CardView* card;
 	if (event->card->view)
-	  card = NEW CardView(event->card, *(event->card->view));
+	  card = NEW CardView(CardSelector::handZone, event->card, *(event->card->view));
 	else
-	  card = NEW CardView(event->card, ClosedRowX, 0);
+	  card = NEW CardView(CardSelector::handZone, event->card, ClosedRowX, 0);
 	card->t = -4*M_PI; card->alpha = 255;
 	cards.push_back(card);
 	return 1;

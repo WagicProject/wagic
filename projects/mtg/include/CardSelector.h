@@ -22,6 +22,11 @@ struct LimitorFunctor
 template <typename T=PlayGuiObject>
 class ObjectSelector : public GuiLayer
 {
+ public:
+ typedef enum {
+   nullZone, handZone, playZone
+ } SelectorZone;
+
  protected:
  vector<T*> cards;
  T* active;
@@ -29,8 +34,7 @@ class ObjectSelector : public GuiLayer
  DuelLayers* duel;
  LimitorFunctor<T>* limitor;
  Pos bigpos;
-
- T* handLast; T* playLast;
+ map<const SelectorZone, T*> lasts;
 
  public:
  ObjectSelector(DuelLayers*);

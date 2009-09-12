@@ -16,7 +16,7 @@ const float CardGui::BigHeight = 285.0;
 CardGui::CardGui(MTGCardInstance* card, float x, float y) : PlayGuiObject(Height, x, y, false), card(card) {}
 CardGui::CardGui(MTGCardInstance* card, const Pos& ref) : PlayGuiObject(Height, ref, false), card(card) {}
 
-CardView::CardView(MTGCardInstance* card, float x, float y) : CardGui(card, x, y) {
+CardView::CardView(const CardSelector::SelectorZone owner, MTGCardInstance* card, float x, float y) : CardGui(card, x, y), owner(owner) {
   const Pos* ref = card->view;
   while (card)
     {
@@ -25,7 +25,7 @@ CardView::CardView(MTGCardInstance* card, float x, float y) : CardGui(card, x, y
     }
 }
 
-CardView::CardView(MTGCardInstance* card, const Pos& ref) : CardGui(card, ref) {
+CardView::CardView(const CardSelector::SelectorZone owner, MTGCardInstance* card, const Pos& ref) : CardGui(card, ref), owner(owner) {
   const Pos* r = card->view;
   while (card)
     {

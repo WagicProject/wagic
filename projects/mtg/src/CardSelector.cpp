@@ -94,7 +94,25 @@ bool CardSelector::CheckUserInput(u32 key)
     default:
       return false;
     }
-  if (active != oldactive) { oldactive->Leaving(key); active->Entering(); }
+  if (active != oldactive)
+    {
+      SelectorZone oldowner, owner;
+      if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
+      if (CardView *q = dynamic_cast<CardView*>(active))       owner = q->owner; else    owner = nullZone;
+      if (oldowner != owner)
+        {
+          if (nullZone != owner)
+            if (PlayGuiObject* old = lasts[owner]) active = old;
+          lasts[oldowner] = oldactive;
+        }
+    }
+  if (active != oldactive)
+    {
+      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
+      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
+      oldactive->Leaving(key);
+      active->Entering();
+    }
   return true;
 }
 

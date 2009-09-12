@@ -176,9 +176,9 @@ int GuiPlay::receiveEventPlus(WEvent * e)
 	{
 	  CardView * card;
 	  if (event->card->view)
-	    card = NEW CardView(event->card, *(event->card->view));
+	    card = NEW CardView(CardSelector::playZone, event->card, *(event->card->view));
 	  else
-	    card = NEW CardView(event->card, 0, 0);
+	    card = NEW CardView(CardSelector::playZone, event->card, 0, 0);
 	  cards.push_back(card);
 	  card->t = 0; card->alpha = 255;
 	  cs->Add(card);

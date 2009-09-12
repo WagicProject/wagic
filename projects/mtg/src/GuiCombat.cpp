@@ -175,8 +175,20 @@ bool GuiCombat::CheckUserInput(u32 key)
           activeAtk = static_cast<AttackerDamaged*>(active);
           cursor_pos = ATK;
           break;
-	case ATK  : active = closest<Left>(attackers, NULL, static_cast<AttackerDamaged*>(active)); activeAtk = static_cast<AttackerDamaged*>(active); break;
-	case BLK  : active = closest<Left>(activeAtk->blockers, NULL, static_cast<DefenserDamaged*>(active)); break;
+	case ATK  :
+          {
+            DamagerDamaged* old = active;
+            active = closest<Left>(attackers, NULL, static_cast<AttackerDamaged*>(active)); activeAtk = static_cast<AttackerDamaged*>(active);
+            if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+          }
+          break;
+	case BLK  :
+          {
+            DamagerDamaged* old = active;
+            active = closest<Left>(activeAtk->blockers, NULL, static_cast<DefenserDamaged*>(active));
+            if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+          }
+      break;
 	}
       break;
     case PSP_CTRL_RIGHT:
@@ -184,10 +196,24 @@ bool GuiCombat::CheckUserInput(u32 key)
 	{
 	case NONE :
 	case OK   : break;
-	case BLK  : active = closest<Right>(activeAtk->blockers, NULL, static_cast<DefenserDamaged*>(active)); break;
-	case ATK  : active = closest<Right>(attackers, NULL, static_cast<AttackerDamaged*>(active));
-	  if (active == oldActive) { active = activeAtk = NULL; cursor_pos = OK; }
-          else activeAtk = static_cast<AttackerDamaged*>(active);
+	case BLK  :
+          {
+            DamagerDamaged* old = active;
+            active = closest<Right>(activeAtk->blockers, NULL, static_cast<DefenserDamaged*>(active));
+            if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+          }
+          break;
+	case ATK  :
+          {
+            DamagerDamaged* old = active;
+            active = closest<Right>(attackers, NULL, static_cast<AttackerDamaged*>(active));
+            if (active == oldActive) { active = activeAtk = NULL; cursor_pos = OK; }
+            else
+              {
+                if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+                activeAtk = static_cast<AttackerDamaged*>(active);
+              }
+          }
 	  break;
 	}
       break;
