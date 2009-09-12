@@ -1,0 +1,32 @@
+#Bug: Sedcradle witch does not work
+# {2}{G}{W}: Target creature gets +3/+3 until end of turn. Untap that creature.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:prodigal sorcerer,seedcradle witch
+manapool:{2}{G}{W}
+[PLAYER2]
+[DO]
+prodigal sorcerer
+p2
+seedcradle witch
+prodigal sorcerer
+next
+#begin
+next
+#attackers
+prodigal sorcerer
+choice 0
+next
+#blockers
+next
+#damages
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:prodigal sorcerer,seedcradle witch
+[PLAYER2]
+life:15
+[END]
