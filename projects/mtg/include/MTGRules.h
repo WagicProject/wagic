@@ -112,6 +112,19 @@ class MTGLifelinkRule:public MTGAbility{
   virtual MTGLifelinkRule * clone() const;
 };
 
+/* Deathtouch */
+class MTGDeathtouchRule:public MTGAbility{
+  public:
+  MTGDeathtouchRule(int _id);
+
+  int receiveEvent(WEvent * event);
+
+  int testDestroy();
+  const char * getMenuText(){return "Deathtouch";}
+
+  virtual MTGDeathtouchRule * clone() const;
+};
+
 
 /* HUD Display */
 

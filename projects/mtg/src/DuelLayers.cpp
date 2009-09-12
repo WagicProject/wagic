@@ -26,6 +26,7 @@ void DuelLayers::init(){
   action->Add(NEW MTGLegendRule(-1));
   action->Add(NEW MTGPersistRule(-1));
   action->Add(NEW MTGLifelinkRule(-1));
+  action->Add(NEW MTGDeathtouchRule(-1));
   //Other display elements
   action->Add(NEW HUDDisplay(-1));
 

@@ -612,6 +612,18 @@ subtype=Elemental Shapeshifter
 toughness=4
 [/card]
 [card]
+text=Toxic Iguanar has deathtouch as long as you control a green permanent. (Whenever it deals damage to a creature, destroy that creature.)
+id=170956
+name=Toxic Iguanar
+auto=aslongas(*[green]|mybattlefield) deathtouch
+rarity=C
+type=Creature
+mana={R}
+power=1
+subtype=Lizard
+toughness=1
+[/card]
+[card]
 text=When Tukatongue Thallid is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
 auto=@movedTo(this|graveyard):token(Saproling,creature Saproling,1/1,green)
 id=184995

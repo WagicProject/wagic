@@ -51,6 +51,8 @@ const char* Constants::MTGBasicAbilities[] = {
 "doesnotuntap",
 "opponentshroud",
 "indestructible",
+"intimidate",
+"deathtouch"
 };
 
 

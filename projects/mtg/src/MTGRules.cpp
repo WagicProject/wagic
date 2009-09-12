@@ -169,6 +169,8 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card){
   return 1;
 }
 
+
+
 //The Block rule is never destroyed
 int MTGBlockRule::testDestroy(){
   return 0;
@@ -526,3 +528,38 @@ HUDDisplay::~HUDDisplay(){
     a->isClone = 1;
     return a;
   }
+
+
+   /* Deathtouch */
+  MTGDeathtouchRule::MTGDeathtouchRule(int _id):MTGAbility(_id,NULL){};
+
+  int  MTGDeathtouchRule::receiveEvent(WEvent * event){
+    if (event->type == WEvent::DAMAGE){
+      WEventDamage * e = (WEventDamage *) event;
+
+      Damage * d = e->damage;
+      if (d->damage <= 0) return 0;
+
+      MTGCardInstance * card = d->source;
+      if (!card) return 0;
+
+      if (d->target->type_as_damageable != DAMAGEABLE_MTGCARDINSTANCE) return 0;
+      MTGCardInstance * _target =  (MTGCardInstance *) (d->target);
+      
+      if (card->basicAbilities[Constants::DEATHTOUCH]){
+        _target->destroy();
+        return 1;
+      }
+    }
+    return 0;
+  }
+
+  int  MTGDeathtouchRule::testDestroy(){return 0;}
+
+ 
+  MTGDeathtouchRule *  MTGDeathtouchRule::clone() const{
+    MTGDeathtouchRule * a =  NEW MTGDeathtouchRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+

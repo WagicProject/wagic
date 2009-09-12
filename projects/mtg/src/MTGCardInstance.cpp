@@ -343,6 +343,19 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   if (opponent->protectedAgainst(this)) return 0;
   if (opponent->basicAbilities[Constants::UNBLOCKABLE]) return 0;
   if (opponent->basicAbilities[Constants::FEAR] && !(hasColor(Constants::MTG_COLOR_ARTIFACT) || hasColor(Constants::MTG_COLOR_BLACK))) return 0;
+
+  //intimidate
+  if (opponent->basicAbilities[Constants::INTIMIDATE] && !(hasColor(Constants::MTG_COLOR_ARTIFACT))){
+    int canblock = 0;
+    for (int i = Constants::PROTECTIONGREEN; i <= Constants::PROTECTIONWHITE; ++i){
+      if(hasColor(i) && opponent->hasColor(i)){
+        canblock = 1;
+        break;
+      }
+    }
+    if (!canblock) return 0;
+  }
+
   if (opponent->basicAbilities[Constants::FLYING] && !( basicAbilities[Constants::FLYING] || basicAbilities[Constants::REACH])) return 0;
   //Can block only creatures with flying if has cloud
   if (basicAbilities[Constants::CLOUD] && !( opponent->basicAbilities[Constants::FLYING])) return 0;

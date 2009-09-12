@@ -2,8 +2,7 @@
 #Generic engine features
 ########################
 generic/attacks_each_turn.txt
-generic/m10_blockers.txt
-generic/m10_blockers2.txt
+generic/deathtouch.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt
@@ -12,6 +11,8 @@ generic/hybrid_mana_2.txt
 generic/hybrid_mana_3.txt
 generic/legendary.txt
 generic/lifelink.txt
+generic/m10_blockers.txt
+generic/m10_blockers2.txt
 generic/persist.txt
 generic/persist2.txt
 generic/persist3.txt

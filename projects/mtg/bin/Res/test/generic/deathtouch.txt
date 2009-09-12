@@ -1,0 +1,23 @@
+#Testing Deathtouch
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Toxic Iguanar,grizzly bears
+[PLAYER2]
+inplay:wall of fire
+[DO]
+Toxic Iguanar
+next
+#blockers
+wall of fire
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Toxic Iguanar,grizzly bears
+[PLAYER2]
+graveyard:wall of fire
+[END]
