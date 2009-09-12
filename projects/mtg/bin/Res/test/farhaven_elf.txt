@@ -1,0 +1,23 @@
+#Bug:farhaven elf taps itself
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:farhaven elf
+library:forest
+manapool:{2}{G}
+[PLAYER2]
+inplay:royal assassin
+[DO]
+farhaven elf
+choice 0
+forest
+eot
+royal assassin
+farhaven elf
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:farhaven elf,forest
+[PLAYER2]
+inplay:royal assassin
+[END]

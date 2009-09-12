@@ -217,10 +217,13 @@ public:
   }
 
   ~MultiAbility(){
-    vector<int>::size_type sz = abilities.size();
-    for (unsigned int i = 0; i < sz; i++){
-      delete abilities[i];
+    if (!isClone){
+      vector<int>::size_type sz = abilities.size();
+      for (unsigned int i = 0; i < sz; i++){
+        delete abilities[i];
+      }
     }
+    abilities.clear();
   }
 
    const char * getMenuText(){

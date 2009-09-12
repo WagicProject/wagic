@@ -88,6 +88,7 @@ drift_of_the_dead.txt
 dross_harvester.txt
 elvish_piper.txt
 elvish_promenade.txt
+farhaven_elf.txt
 fastbond.txt
 fastbond2.txt
 fault_line.txt

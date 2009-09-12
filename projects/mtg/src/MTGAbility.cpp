@@ -142,6 +142,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     s.erase(found+1);
   else return NULL;
 
+  found=s.find_first_not_of(whitespaces);
+  if (found!=string::npos)
+    s.erase(0,found);
+  else return NULL;
+
   //TODO This block redundant with calling function
   if (!card && spell) card = spell->source;
   if (!card) return NULL;
@@ -212,6 +217,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     SAFE_DELETE(cost);
   }
 
+
+  //When...comes into play, you may...
+  found = s.find("may ");
+  if (found == 0){
+    string s1 = s.substr(found+4);
+    MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
+    if (!a1) return NULL;
+    TargetChooser * tc = NULL;
+    //Target Abilities
+    found = s.find("target(");
+    if (found != string::npos){
+      int end = s.find(")", found);
+      string starget = s.substr(found + 7,end - found - 7);
+      TargetChooserFactory tcf;
+      tc = tcf.createTargetChooser(starget, card);
+    }
+    if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
+    return NEW MayAbility(id,a1,card);
+  }
 
 
   //Multiple abilities for ONE cost
@@ -286,26 +310,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     return NULL;
   }
-
-  //When...comes into play, you may...
-  found = s.find("may ");
-  if (found != string::npos){
-    string s1 = s.substr(found+4);
-    MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
-    if (!a1) return NULL;
-    TargetChooser * tc = NULL;
-    //Target Abilities
-    found = s.find("target(");
-    if (found != string::npos){
-      int end = s.find(")", found);
-      string starget = s.substr(found + 7,end - found - 7);
-      TargetChooserFactory tcf;
-      tc = tcf.createTargetChooser(starget, card);
-    }
-    if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
-    return NEW MayAbility(id,a1,card);
-  }
-
 
 
   //Fizzle (counterspell...)
