@@ -553,7 +553,7 @@ abilities=vigilance
 [card]
 text={G}, Discard a creature card: Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
 id=6150
-auto={S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
+auto={G}{S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
 name=Survival of the Fittest
 rarity=R
 mana={1}{G}
