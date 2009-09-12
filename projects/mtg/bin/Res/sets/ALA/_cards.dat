@@ -919,6 +919,19 @@ subtype=Rhino Soldier
 toughness=7
 [/card]
 [card]
+text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
+abilities=first strike
+auto=@movedTo(creature|graveyard) from(inplay):may counter(1/1)
+id=174988
+name=Rockslide Elemental
+rarity=U
+type=Creature
+mana={2}{R}
+power=1
+subtype=Elemental
+toughness=1
+[/card]
+[card]
 text=Target creature gets +3/+3 and gains double strike until end of turn.
 target=creature
 auto=3/3

@@ -945,20 +945,6 @@ subtype=Beast
 toughness=4
 [/card]
 [card]
-text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
-abilities=first strike
-auto=@movedTo(creature[-this]|graveyard) from(inplay):may counter(1/1)
-#will crash in 0.8, there is no "[-this]" and it will trigger its own effect when it dies causing crash
-id=174988
-name=Rockslide Elemental
-rarity=U
-type=Creature
-mana={2}{R}
-power=1
-subtype=Elemental
-toughness=1
-[/card]
-[card]
 text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
 id=174828
 name=Sacellum Godspeaker
