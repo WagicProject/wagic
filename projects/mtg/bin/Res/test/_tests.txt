@@ -109,7 +109,7 @@ goblin_king.txt
 gravedigger.txt
 #hammerfist_giant.txt
 hannas_custody.txt
-#harpoon_sniper.txt uncomment when damages are correctly resolved at the damage resolution step
+harpoon_sniper.txt 
 hellfire.txt
 howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
@@ -167,6 +167,7 @@ rootwalla.txt
 royal_assassin.txt
 safehold_duo.txt
 sedge_sliver.txt
+seedcradle_witch.txt
 seismic_assault.txt
 selesnya_guildmage.txt
 siege_gang_commander.txt
