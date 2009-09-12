@@ -1,0 +1,33 @@
+#Bug:lifelink and wither
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Wildslayer Elves
+hand:Armadillo Cloak
+manapool:{1}{G}{W}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+armadillo cloak
+Wildslayer Elves
+next
+#begin
+next
+#attackers
+Wildslayer elves
+next
+#blockers
+grizzly bears
+next
+#combat damage
+next
+combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:20
+[END]

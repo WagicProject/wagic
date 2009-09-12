@@ -28,23 +28,6 @@ void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage){
 int Damage::resolve(){
   if (damage <0) damage = 0; //Negative damages cannot happen
   state = RESOLVED_OK;
-  if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    if ((_target)->protectedAgainst(source)) damage = 0;
-    // Damage for WITHER on creatures
-
-    if (!damage){
-      state = RESOLVED_NOK;
-      return 0;
-    }
-    if (source->has(Constants::WITHER)){
-      for (int i = 0; i < damage; i++){
-	      _target->counters->addCounter(-1, -1);
-      }
-      return 1;
-    }
-    _target->doDamageTest = 1;
-  }
 
   GameObserver * g = GameObserver::GetInstance();
   WEvent * e = NEW WEventDamage(this);
@@ -60,8 +43,30 @@ int Damage::resolve(){
   damage = ev->damage->damage;
   target = ev->damage->target;
 
-  int a = 0;
-  if (damage) a = target->dealDamage(damage);
+  if (!damage) return 0;
+
+  if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    if ((_target)->protectedAgainst(source)) damage = 0;
+
+    if (!damage){
+      state = RESOLVED_NOK;
+      delete (e);
+      return 0;
+    }
+    _target->doDamageTest = 1;
+  }
+  
+  int a = damage;
+  // Damage for WITHER on creatures. This should probably go in replacement effects
+  if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE && source->has(Constants::WITHER)){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (int i = 0; i < damage; i++){
+      _target->counters->addCounter(-1, -1);
+    }
+  }else{ //Normal case
+     a = target->dealDamage(damage);
+  }
 
   //Send (Damage/Replaced effect) event to listeners
 
