@@ -112,7 +112,9 @@ bool GuiHandSelf::CheckUserInput(u32 key)
   if (trigger == key)
     {
       state = (Open == state ? Closed : Open);
+      if (Open == state) cs->Push();
       cs->Limit(Open == state ? limitor : NULL);
+      if (Closed == state) cs->Pop();
       backpos.x = Open == state ? OpenX : ClosedX;
       Repos();
       return true;
@@ -169,8 +171,8 @@ int GuiHandSelf::receiveEventMinus(WEvent* e)
 	    {
 	      CardView* cv = *it;
 	      cs->Remove(cv);
-              Repos();
 	      cards.erase(it);
+              Repos();
               trash(cv);
 	      return 1;
 	    }

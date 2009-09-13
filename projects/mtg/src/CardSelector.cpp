@@ -55,6 +55,46 @@ void CardSelector::Remove(CardSelector::Target* card)
     }
 }
 
+template <>
+CardSelector::Target* CardSelector::fetchMemory(SelectorMemory& memory)
+{
+  if (NULL == memory.object) return NULL;
+  for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
+    {
+      if (*it == memory.object)
+        {
+          if ((NULL == limitor) || (limitor->select(memory.object)))
+            return memory.object;
+          else break;
+        }
+    }
+  // We come here if the card is not in the selector any more, or if
+  // it is there but it is now refused by the limitor.
+  return closest<True>(cards, limitor, memory.x, memory.y);
+}
+template<>
+void CardSelector::Push()
+{
+  memoryStack.push(SelectorMemory(active));
+}
+template<>
+void CardSelector::Pop()
+{
+  Target* oldactive = active;
+  if (!memoryStack.empty())
+    {
+      active = fetchMemory(memoryStack.top());
+      memoryStack.pop();
+    }
+  if (active != oldactive)
+    {
+      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
+      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
+      if (oldactive) oldactive->Leaving(0);
+      if (active) active->Entering();
+    }
+}
+
 template<>
 bool CardSelector::CheckUserInput(u32 key)
 {
@@ -102,16 +142,17 @@ bool CardSelector::CheckUserInput(u32 key)
       if (oldowner != owner)
         {
           if (nullZone != owner)
-            if (PlayGuiObject* old = lasts[owner]) active = old;
-          lasts[oldowner] = oldactive;
+            if (PlayGuiObject* old = fetchMemory(lasts[owner]))
+              active = old;
+          lasts[oldowner] = SelectorMemory(oldactive);
         }
     }
   if (active != oldactive)
     {
       { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
       { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
-      oldactive->Leaving(key);
-      active->Entering();
+      if (oldactive) oldactive->Leaving(0);
+      if (active) active->Entering();
     }
   return true;
 }
@@ -147,7 +188,15 @@ void CardSelector::Limit(LimitorFunctor<Target>* limitor)
   this->limitor = limitor;
   if (limitor && !limitor->select(active))
     {
+      Target* oldactive = active;
       active = closest<True>(cards, limitor, active);
       if (limitor && !limitor->select(active)) active = NULL;
+      if (active != oldactive)
+        {
+          { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
+          { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
+          if (oldactive) oldactive->Leaving(0);
+          if (active) active->Entering();
+        }
     }
 }

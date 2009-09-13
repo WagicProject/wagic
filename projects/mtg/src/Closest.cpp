@@ -26,4 +26,23 @@ static inline Target* closest(vector<Target*>& cards, Limitor* limitor, Target* 
   return card;
 }
 
+template <typename T, typename Target>
+static inline Target* closest(vector<Target*>& cards, Limitor* limitor, float x, float y)
+{
+  Target* card = NULL;
+  float curdist = 1000000.0f; // This is bigger than any possible distance
+  for (typename vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
+    {
+      if ((*it)->actA < 32) continue;
+      if ((NULL != limitor) && (!limitor->select(*it))) continue;
+      float dist = ((*it)->x - x) * ((*it)->x - x) + ((*it)->y - y) * ((*it)->y - y);
+      if (dist < curdist)
+        {
+          curdist = dist;
+          card = *it;
+        }
+    }
+  return card;
+}
+
 #endif

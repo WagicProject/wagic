@@ -2,6 +2,7 @@
 #define _CARDSELECTOR_H_
 
 #include <vector>
+#include <stack>
 #include "GuiLayers.h"
 #include "DuelLayers.h"
 #include "Pos.h"
@@ -26,6 +27,13 @@ class ObjectSelector : public GuiLayer
  typedef enum {
    nullZone, handZone, playZone
  } SelectorZone;
+ struct SelectorMemory
+ {
+   T* object;
+   float x, y;
+   SelectorMemory(T* object) : object(object) { if (object) { x = object->x; y = object->y; } };
+   SelectorMemory() { object = NULL; x = y = 0; };
+ };
 
  protected:
  vector<T*> cards;
@@ -34,7 +42,10 @@ class ObjectSelector : public GuiLayer
  DuelLayers* duel;
  LimitorFunctor<T>* limitor;
  Pos bigpos;
- map<const SelectorZone, T*> lasts;
+ map<const SelectorZone, SelectorMemory> lasts;
+ stack<SelectorMemory> memoryStack;
+
+ T* fetchMemory(SelectorMemory&);
 
  public:
  ObjectSelector(DuelLayers*);
@@ -44,6 +55,8 @@ class ObjectSelector : public GuiLayer
  void Update(float dt);
  void Render();
  void Limit(LimitorFunctor<T>* limitor);
+ void Push();
+ void Pop();
 
  typedef T Target;
 };

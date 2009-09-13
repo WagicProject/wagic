@@ -28,7 +28,7 @@ void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage){
 int Damage::resolve(){
   if (damage <0) damage = 0; //Negative damages cannot happen
   state = RESOLVED_OK;
-
+    cout << "RESOLVE " << damage << " >> " << _target->name << endl;
   GameObserver * g = GameObserver::GetInstance();
   WEvent * e = NEW WEventDamage(this);
 
