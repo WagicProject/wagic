@@ -24,6 +24,26 @@ PhaseRing::~PhaseRing(){
   }
 }
 
+//This needs to be controlled either by GameObserver or PhaseRing in the future
+bool PhaseRing::extraDamagePhase(int id){
+  GameObserver * g = GameObserver::GetInstance();
+  if (id != Constants::MTG_PHASE_COMBATEND) return false;
+  if (g->combatStep != END_FIRST_STRIKE) return false;
+  MTGGameZone * z = g->currentPlayer->game->inPlay;
+  for (int i= 0; i < z->nb_cards; ++i){
+    MTGCardInstance * card = z->cards[i];
+    if (card->isAttacker() && !(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE))) return true;
+  }
+  return false;
+}
+
+const char *  PhaseRing::phaseName(int id){
+  if (extraDamagePhase(id)) return "Combat Damage (2)";
+  return Constants::MTGPhaseNames[id];
+}
+
+
+
 Phase * PhaseRing::getCurrentPhase(){
   if (current == ring.end()){
     current = ring.begin();

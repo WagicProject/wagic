@@ -12,25 +12,30 @@
 #include "../include/TargetChooser.h"
 #include "../include/CardGui.h"
 #include "../include/Translate.h"
-
 /*
   NextGamePhase requested by user
 */
 
 int NextGamePhase::resolve(){
-  GameObserver::GetInstance()->userRequestNextGamePhase();
+  GameObserver::GetInstance()->nextGamePhase();
   return 1;
 }
 
+
+
 void NextGamePhase::Render(){
-  int nextPhase = (GameObserver::GetInstance()->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
+  GameObserver * g = GameObserver::GetInstance();
+  int nextPhase = (g->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
+
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
   int playerId = 1;
-  if (GameObserver::GetInstance()->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
-  sprintf(buffer, "%s %i : -> %s", _("Player").c_str(), playerId, _(Constants::MTGPhaseNames[nextPhase]).c_str());
+  if (g->currentActionPlayer == GameObserver::GetInstance()->players[1]) playerId = 2;
+
+  sprintf(buffer, "%s %i : -> %s", _("Player").c_str(), playerId, _(PhaseRing::phaseName(nextPhase)).c_str());
+
   mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
 }
 

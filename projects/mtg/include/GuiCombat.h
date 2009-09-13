@@ -31,6 +31,7 @@ class GuiCombat : public GuiLayer
   ~GuiCombat();
   virtual void Update(float dt);
   virtual void Render();
+  bool clickOK();
   virtual bool CheckUserInput(u32 key);
   virtual int receiveEventPlus(WEvent* e);
   virtual int receiveEventMinus(WEvent* e);

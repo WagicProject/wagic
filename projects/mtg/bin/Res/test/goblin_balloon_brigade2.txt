@@ -8,30 +8,7 @@ life:20
 inplay:1302
 [DO]
 next
-#untap 2
-next
-#upkeep 2
-next
-#draw 2
-next
-#main 2
-next
-#combatbegin 2
-next
-#attackers 2
-next
-#blockers 2
-next
-#combatdamage 2
-next
-#endofcombat 2
-next
-#main phase II 2
-next
-#eot 2
-next
-#cleanup2
-next
+eot
 #untap
 next
 #upkeep

@@ -497,8 +497,9 @@ int AIPlayer::chooseBlockers(){
 int AIPlayer::orderBlockers(){
 
   GameObserver * g = GameObserver::GetInstance();
-  if (BLOCKERS == g->combatStep && g->currentPlayer==this)
+  if (ORDER == g->combatStep && g->currentPlayer==this)
     {
+      OutputDebugString("AIPLAYER: order blockers\n");
       g->userRequestNextGamePhase(); //TODO clever rank of blockers
       return 1;
     }
@@ -747,7 +748,6 @@ int AIPlayerBaka::Act(float dt){
   }
   initTimer();
   if (combatDamages()){
-    OutputDebugString("Damages and NOTHING ELSE\n");
     return 0;
   }
   interruptIfICan();

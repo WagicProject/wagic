@@ -28,10 +28,6 @@ next
 #attackers 2
 1250
 next
-#blockers 2
-next
-#combatdamage 2
-next
 #endofcombat 2
 1250
 [ASSERT]

@@ -81,7 +81,7 @@ void GuiCombat::validateDamage()
   switch (step)
     {
     case FIRST_STRIKE : resolve(); go->nextCombatStep(); break;
-    case DAMAGE       : resolve(); go->userRequestNextGamePhase(); break;
+    case DAMAGE       : resolve(); go->nextGamePhase(); break;
     default: cout << "COMBAT : Cannot validate damage in this phase" << endl; break;
     }
 }
@@ -117,6 +117,19 @@ void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep step)
     if (!(*it)->hasLethalDamage()) { (*it)->addDamage(1, activeAtk); break; }
 }
 
+bool GuiCombat::clickOK(){
+  switch (step)
+    {
+    case BLOCKERS         : assert(false); return false; // that should not happen
+    case ORDER            : go->nextGamePhase(); return true;
+    case FIRST_STRIKE     : return false;
+    case DAMAGE           : validateDamage(); return true;
+    case END_FIRST_STRIKE : return false;
+    case END_DAMAGE       : return false; // nothing;
+    }
+  return false;
+}
+
 bool GuiCombat::CheckUserInput(u32 key)
 {
   if (NONE == cursor_pos) return false;
@@ -147,15 +160,7 @@ bool GuiCombat::CheckUserInput(u32 key)
         }
       else if (OK == cursor_pos)
         {
-          switch (step)
-            {
-            case BLOCKERS         : assert(false); break; // that should not happen
-            case ORDER            : go->userRequestNextGamePhase(); break;
-            case FIRST_STRIKE     :
-            case DAMAGE           : validateDamage(); break;
-            case END_FIRST_STRIKE :
-            case END_DAMAGE       : break; // nothing;
-            }
+           clickOK();
         }
       break;
     case PSP_CTRL_TRIANGLE:
@@ -297,9 +302,13 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
       for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
         stack->Add(NEW Damage(*d));
     }
-  go->mLayers->stackLayer()->Add(stack);
   int v = stack->mCount;
-  if (v > 0) go->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
+  if (v > 0){
+    go->mLayers->stackLayer()->Add(stack);
+    go->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
+  }else{
+    SAFE_DELETE(stack);
+  }
   return v;
 }
 
@@ -434,7 +443,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
               step = ORDER;
             }
           else
-            go->userRequestNextGamePhase();
+            go->nextGamePhase();
           return 1;
         }
       case FIRST_STRIKE:
@@ -449,12 +458,15 @@ int GuiCombat::receiveEventMinus(WEvent* e)
           autoaffectDamage(*attacker, FIRST_STRIKE);
         if (0 == resolve())
           go->nextCombatStep();
-        else
-          go->mLayers->stackLayer()->AddNextGamePhase();
+        //else go->mLayers->stackLayer()->AddNextGamePhase(); //uncomment to add "interrupt" offer after first strike, rather than giving priority to current player
         return 1;
       case DAMAGE: DAMAGE:
         step = event->step;
-        if (!go->currentPlayer->displayStack()) { resolve(); go->userRequestNextGamePhase(); return 1; }
+        if (!go->currentPlayer->displayStack()) { 
+          //resolve(); 
+          go->nextGamePhase(); 
+          return 1; 
+        }
         for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
           autoaffectDamage(*attacker, step);
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -474,7 +486,8 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         return 1;
       case END_DAMAGE:
         step = END_DAMAGE;
-        if (resolve()) go->userRequestNextGamePhase();
+        if (0 == resolve())
+          go->nextGamePhase();
         return 1;
       }
   return 0;

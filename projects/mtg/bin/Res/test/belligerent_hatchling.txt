@@ -17,9 +17,7 @@ belligerent hatchling
 next
 #blockers
 next
-#first strike
-next
-#damage
+#first strike damage
 next
 #end of combat
 [ASSERT]

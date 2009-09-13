@@ -9,10 +9,6 @@ next
 next
 #attackers
 next
-#blockers
-next
-#damage
-next
 #combat end
 [ASSERT]
 COMBATEND

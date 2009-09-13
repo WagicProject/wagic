@@ -10,8 +10,11 @@ white knight
 next
 fire elemental
 next
+#combat damage first strike
 next
-fire elemental
+#combat damage
+next
+#ocombat end
 [ASSERT]
 COMBATEND
 [PLAYER1]

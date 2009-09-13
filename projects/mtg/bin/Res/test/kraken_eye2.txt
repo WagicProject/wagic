@@ -14,10 +14,6 @@ next
 next
 #attack
 next
-#blockers
-next
-#dmage
-next
 #end
 next
 #secondmain

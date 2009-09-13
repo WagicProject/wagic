@@ -16,9 +16,7 @@ swamp
 benalish knight
 benalish knight
 next
-#first strike
-next
-#damage
+#first strike damage
 next
 #end
 [ASSERT]

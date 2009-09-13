@@ -19,10 +19,6 @@ next
 #attackers
 1250
 next
-#blockers
-next
-#damages
-next
 #combat end
 [ASSERT]
 COMBATEND

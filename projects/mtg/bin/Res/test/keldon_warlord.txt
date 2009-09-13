@@ -33,23 +33,7 @@ next
 1393
 1229
 1308
-next
-#combatbegin 2
-next
-#combatattackers 2
-next
-#combatblockers 2
-next
-#combatdamage 2
-next
-#endofcombat 2
-next
-#main phase II  2
-next
-#eot  2
-next
-#cleanup 2
-next
+eot
 #untap 
 next
 #upkeep 

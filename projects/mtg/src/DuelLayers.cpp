@@ -71,6 +71,10 @@ ActionStack * DuelLayers::stackLayer(){
   return stack;
 }
 
+GuiCombat * DuelLayers::combatLayer(){
+  return combat;
+}
+
 ActionLayer * DuelLayers::actionLayer(){
   return action;
 }

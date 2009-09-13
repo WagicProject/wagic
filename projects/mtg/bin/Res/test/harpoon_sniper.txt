@@ -14,9 +14,7 @@ harpoon sniper
 choice 1
 grizzly bears
 next
-#damage
-next
-#combat end
+#combat end (no combat damage because no attacking creatures)
 [ASSERT]
 COMBATEND
 [PLAYER1]

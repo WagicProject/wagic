@@ -27,7 +27,7 @@ class MTGAttackRule:public MTGAbility{
   virtual ostream& toString(ostream& out) const;
   MTGAttackRule(int _id);
   const char * getMenuText(){return "Attacker";}
-  void Update(float dt);
+  int receiveEvent(WEvent * event);
   virtual MTGAttackRule * clone() const;
 };
 

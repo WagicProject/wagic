@@ -7,8 +7,6 @@ inplay:Steelclad Serpent
 [DO]
 Steelclad Serpent
 next
-next
-next
 [ASSERT]
 COMBATEND
 [PLAYER1]

@@ -14,7 +14,7 @@ next
 1370
 next
 next
-1370
+next
 [ASSERT]
 COMBATEND
 [PLAYER1]

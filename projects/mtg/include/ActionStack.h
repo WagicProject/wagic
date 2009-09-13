@@ -66,6 +66,7 @@ class Interruptible: public PlayGuiObject, public Targetable{
 class NextGamePhase: public Interruptible {
  public:
   int resolve();
+  bool extraDamagePhase();
   void Render();
   virtual ostream& toString(ostream& out) const;
   NextGamePhase(int id);

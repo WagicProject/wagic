@@ -3,6 +3,7 @@
 #include "../include/MTGAbility.h"
 #include "../include/MTGRules.h"
 #include "../include/ActionLayer.h"
+#include "../include/GuiCombat.h"
 
 #include <string>
 using std::string;
@@ -100,8 +101,11 @@ int TestSuiteAI::Act(float dt){
     humanMode = 1;
     return 1;
   }
-  else if (action.compare("next")==0)
-      g->userRequestNextGamePhase();
+  else if (action.compare("next")==0){
+    GuiCombat * gc = g->mLayers->combatLayer();
+    if (ORDER == g->combatStep || DAMAGE == g->combatStep) gc->clickOK();
+    else g->userRequestNextGamePhase();
+  }
   else if (action.compare("yes")==0)
     g->mLayers->stackLayer()->setIsInterrupting(this);
   else if (action.compare("endinterruption")==0)

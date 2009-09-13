@@ -19,6 +19,8 @@ class Phase{
 };
 
 class PhaseRing{
+private:
+  static bool extraDamagePhase(int id);
  public:
   list<Phase *> ring;
   list<Phase *>::iterator current;
@@ -30,6 +32,8 @@ class PhaseRing{
   int addPhase(Phase * phase);
   int addPhaseBefore(int id, Player* player,int after_id, Player * after_player, int allOccurences = 1);
   int removePhase (int id, Player * player, int allOccurences = 1);
+  static const char *  phaseName(int id);
+  
 };
 
 #endif

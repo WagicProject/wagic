@@ -81,11 +81,28 @@ void GameObserver::nextPlayer(){
   combatStep = BLOCKERS;
 }
 void GameObserver::nextGamePhase(){
+  Phase * cPhaseOld = phaseRing->getCurrentPhase();
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE)
+    if (FIRST_STRIKE == combatStep || END_FIRST_STRIKE == combatStep || DAMAGE == combatStep) { 
+      nextCombatStep(); return; 
+    }
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
+    if (BLOCKERS == combatStep) { nextCombatStep(); return; }
+
   phaseRing->forward();
+
+  //Go directly to end of combat if no attackers
+  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATATTACKERS && !(currentPlayer->game->inPlay->getNextAttacker(NULL))){
+    phaseRing->forward();
+    phaseRing->forward();
+  }
+  
   Phase * cPhase = phaseRing->getCurrentPhase();
   currentGamePhase = cPhase->id;
+
   if (Constants::MTG_PHASE_COMBATDAMAGE == currentGamePhase)
     nextCombatStep();
+
   if (currentPlayer != cPhase->player) nextPlayer();
 
 
@@ -152,11 +169,16 @@ void GameObserver::userRequestNextGamePhase(){
   if (mLayers->stackLayer()->getNext(NULL,0,NOT_RESOLVED)) return;
   if (getCurrentTargetChooser()) return;
   Phase * cPhaseOld = phaseRing->getCurrentPhase();
-  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE)
-    if (FIRST_STRIKE == combatStep || END_FIRST_STRIKE == combatStep || DAMAGE == combatStep) { nextCombatStep(); return; }
-  if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
-    if (BLOCKERS == combatStep) { nextCombatStep(); return; }
-  nextGamePhase();
+
+
+  if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) ||
+    cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE ||
+     opponent()->isAI() ||
+      options[GameOptions::phaseInterrupts[currentGamePhase]].number)
+    mLayers->stackLayer()->AddNextGamePhase();
+  else
+    nextGamePhase();
+
 }
 
 int GameObserver::forceShuffleLibraries(){

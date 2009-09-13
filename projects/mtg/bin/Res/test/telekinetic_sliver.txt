@@ -14,10 +14,6 @@ next
 #attackers
 grizzly bears
 next
-#blockers
-next
-#damage
-next
 #combat ends
 [ASSERT]
 COMBATEND
