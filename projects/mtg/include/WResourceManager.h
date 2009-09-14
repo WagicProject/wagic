@@ -29,7 +29,7 @@ enum ENUM_RETRIEVE_STYLE{
   RETRIEVE_VRAM,      //Retrieve it, and use vram if have to we create it. Must still remove it.
   RETRIEVE_MANAGE,    //Makes resource permanent.
   RETRIEVE_THUMB,     //Retrieve it as a thumbnail.
-  CACHE_THUMB = RETRIEVE_THUMB, //Backwords compatibility. 
+  CACHE_THUMB = RETRIEVE_THUMB, //Backwards compatibility. 
 };
 
 enum ENUM_CACHE_SUBTYPE{

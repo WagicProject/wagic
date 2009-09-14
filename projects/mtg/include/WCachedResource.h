@@ -2,6 +2,12 @@
 #define _WCACHEDRESOURCE_H_
 #include <hge/hgeparticle.h>
 
+#if defined WIN32 || defined LINUX
+#define INVALID_MTEX ((GLuint) -1)
+#else
+#define INVALID_MTEX -1
+#endif
+
 class WResource{
 public:
   friend class WResourceManager;
