@@ -102,8 +102,10 @@ void GameStateDeckViewer::Start()
   //Grab a texture in VRAM.
   pspIconsTexture = resources.RetrieveTexture("iconspsp.png",RETRIEVE_VRAM);
 
+  char buf[512];
   for (int i=0; i < 8; i++){
-    pspIcons[i] = resources.RetrieveQuad("iconspsp.png", i*32, 0, 32, 32);
+    sprintf(buf,"iconspsp%d",i);
+    pspIcons[i] = resources.RetrieveQuad("iconspsp.png", i*32, 0, 32, 32,buf);
     pspIcons[i]->SetHotSpot(16,16);
   }
 
@@ -156,7 +158,7 @@ void GameStateDeckViewer::End()
 
   resources.Release(pspIconsTexture);
   for (int i=0; i < 8; i++){
-    pspIcons[i] = NULL; //The quads these point to are released with the texture.
+    resources.Release(pspIcons[i]);
   }
   SAFE_DELETE(myCollection);
   SAFE_DELETE(myDeck);

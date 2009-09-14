@@ -414,7 +414,7 @@ void GameStateMenu::Render()
   renderer->ClearScreen(ARGB(0,0,0,0));
   JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
-    JQuad* splashQuad = resources.RetrieveQuad("splash.jpg");
+    JQuad* splashQuad = resources.RetrieveTempQuad("splash.jpg");
     if (splashQuad){
       renderer->RenderQuad(splashQuad,0,0);
     }else{
