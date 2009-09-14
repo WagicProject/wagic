@@ -154,6 +154,9 @@ paralysis2.txt
 persuasion.txt
 plague_rats.txt
 protomatter_powder.txt
+prowess_of_the_fair.txt
+prowess_of_the_fair2.txt
+prowess_of_the_fair3.txt
 pygmy_troll.txt
 pyroclasm.txt
 rampant_growth.txt

@@ -12,7 +12,14 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 
   int zones[10];
   int nbzones = 0;
-  unsigned int found;
+  size_t found;
+  bool other = false;
+
+  found = s.find("other ");
+  if (found == 0){
+    other = true;
+    s=s.substr(6);
+  }
 
   found = s.find("player");
   if (found != string::npos){
@@ -20,7 +27,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     unsigned int several = s.find_first_of('s',5);
     if (several != string::npos) maxtargets = -1;
     found = s.find("creature");
-    if (found != string::npos) return NEW DamageableTargetChooser(card,maxtargets); //Any Damageable target (player, creature)
+    if (found != string::npos) return NEW DamageableTargetChooser(card,maxtargets,other); //Any Damageable target (player, creature)
     return NEW PlayerTargetChooser(card,maxtargets); //Any player
   }
 
@@ -177,7 +184,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
       if (!tc){
         if (typeName.compare("*")!=0) cd->setSubtype(typeName);
 
-        tc = NEW DescriptorTargetChooser(cd,zones,nbzones,card,maxtargets);
+        tc = NEW DescriptorTargetChooser(cd,zones,nbzones,card,maxtargets,other);
       }else{
         delete(cd);
         return NULL;
@@ -185,11 +192,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     }else{
       if (!tc){
         if (typeName.compare("*")==0){
-          return NEW TargetZoneChooser(zones, nbzones,card, maxtargets);
+          return NEW TargetZoneChooser(zones, nbzones,card, maxtargets,other);
         }else if (typeName.compare("this")==0){
           return NEW CardTargetChooser(card,card,zones, nbzones);
         }else{
-          tc =  NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card,maxtargets);
+          tc =  NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card,maxtargets,other);
         }
       }else{
         ((TypeTargetChooser *)tc)->addType(typeName.c_str());
@@ -251,11 +258,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card
 }
 
 
-TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets): TargetsList(){
+TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets, bool _other): TargetsList(){
   forceTargetListReady = 0;
   source = card;
   targetter = card;
   maxtargets = _maxtargets;
+  other = _other;
 }
 
 //Default targetter : every card can be targetted, unless it is protected from the targetter card
@@ -263,6 +271,13 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets): TargetsLi
 bool TargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
+    if (other){
+      MTGCardInstance * tempcard = card;
+      while (tempcard) {
+        if (tempcard == source) return false;
+        tempcard = tempcard->previous;
+      }
+    }
     if (source && targetter && card->isInPlay() && (card->has(Constants::SHROUD)|| card->protectedAgainst(targetter) )) return false;
     if (source && targetter && card->isInPlay() && (targetter->controller() != card->controller()) && (card->has(Constants::OPPONENTSHROUD) || card->protectedAgainst(targetter))) return false;
     return true;
@@ -342,7 +357,7 @@ bool CardTargetChooser::canTarget(Targetable * target ){
 /**
    Choose anything that has a given list of types
 **/
-TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card, int _maxtargets,bool other):TargetZoneChooser(card, _maxtargets,other){
   int id = Subtypes::subtypesList->Add(_type);
   nbtypes = 0;
   addType(id);
@@ -350,7 +365,7 @@ TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card,
   init(default_zones,2);
 }
 
-TypeTargetChooser::TypeTargetChooser(const char * _type, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+TypeTargetChooser::TypeTargetChooser(const char * _type, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets,bool other):TargetZoneChooser(card, _maxtargets,other){
   int id = Subtypes::subtypesList->Add(_type);
   nbtypes = 0;
   addType(id);
@@ -400,13 +415,13 @@ bool TypeTargetChooser::canTarget(Targetable * target){
 /**
     A Target Chooser associated to a Card Descriptor object, for fine tuning of targets description
 **/
-DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   cd = _cd;
 }
 
-DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
   if (nbzones == 0){
     int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
@@ -440,14 +455,14 @@ DescriptorTargetChooser::~DescriptorTargetChooser(){
    Choose a creature
 **/
 
-CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   maxpower=  -1;
   maxtoughness=  -1;
 }
 
-CreatureTargetChooser::CreatureTargetChooser(int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+CreatureTargetChooser::CreatureTargetChooser(int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
   if (nbzones == 0){
     int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
     init(default_zones,2);
@@ -472,11 +487,11 @@ bool CreatureTargetChooser::canTarget(Targetable * target){
 
 
 /* TargetzoneChooser targets everything in a given zone */
-TargetZoneChooser::TargetZoneChooser(MTGCardInstance * card, int _maxtargets):TargetChooser(card,_maxtargets){
+TargetZoneChooser::TargetZoneChooser(MTGCardInstance * card, int _maxtargets, bool other):TargetChooser(card,_maxtargets, other){
   init(NULL,0);
 }
 
-TargetZoneChooser::TargetZoneChooser(int * _zones, int _nbzones,MTGCardInstance * card, int _maxtargets):TargetChooser(card,_maxtargets){
+TargetZoneChooser::TargetZoneChooser(int * _zones, int _nbzones,MTGCardInstance * card, int _maxtargets, bool other):TargetChooser(card,_maxtargets, other){
   init(_zones, _nbzones);
 }
 
@@ -535,7 +550,7 @@ bool DamageableTargetChooser::canTarget(Targetable * target){
 
 
 
-SpellTargetChooser::SpellTargetChooser(MTGCardInstance * card,int _color, int _maxtargets ):TargetChooser(card, _maxtargets){
+SpellTargetChooser::SpellTargetChooser(MTGCardInstance * card,int _color, int _maxtargets, bool other ):TargetChooser(card, _maxtargets, other){
   color = _color;
 }
 
@@ -555,7 +570,7 @@ bool SpellTargetChooser::canTarget(Targetable * target){
 
 
 /*Spell or Permanent */
-SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   color = _color;
@@ -600,7 +615,7 @@ bool DamageTargetChooser::canTarget(Targetable * target){
 
 
 /*Damage or Permanent */
-DamageOrPermanentTargetChooser::DamageOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets):TargetZoneChooser(card, _maxtargets){
+DamageOrPermanentTargetChooser::DamageOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
   color = _color;

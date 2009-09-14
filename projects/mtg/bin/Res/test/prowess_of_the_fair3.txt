@@ -1,0 +1,19 @@
+#Prowess of the fair disenchanted: shouldn't trigger its ability
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:disenchant
+manapool:{1}{W}
+[PLAYER2]
+inplay:prowess of the fair
+[DO]
+disenchant
+prowess of the fair
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:disenchant
+[PLAYER2]
+graveyard:prowess of the fair
+[END]

@@ -1,0 +1,21 @@
+#Bug:Prowess of the fair works even when a card is dicarded from hand
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Specter's Wail
+manapool:{1}{B}
+[PLAYER2]
+inplay:prowess of the fair
+hand:llanowar elves
+[DO]
+Specter's Wail
+p2
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Specter's Wail
+[PLAYER2]
+graveyard:llanowar elves
+inplay:prowess of the fair
+[END]

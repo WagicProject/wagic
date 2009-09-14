@@ -1,0 +1,20 @@
+#Prowess of the fair
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:shock
+manapool:{R}
+[PLAYER2]
+inplay:prowess of the fair,llanowar elves
+[DO]
+shock
+llanowar elves
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:shock
+[PLAYER2]
+graveyard:llanowar elves
+inplay:prowess of the fair,*
+[END]
