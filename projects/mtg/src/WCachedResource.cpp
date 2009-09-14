@@ -66,12 +66,16 @@ WCachedTexture::~WCachedTexture(){
   if(!trackedQuads.size())
     return;
 
-  map<JQuad*,string>::iterator it, nit;
+  vector<WTrackedQuad*>::iterator it;
+  WTrackedQuad * tq = NULL;
 
-  for(it=trackedQuads.begin();it!=trackedQuads.end();it=nit){
-   nit = it;
-   nit++;
-   trackedQuads.erase(it);
+  for(it=trackedQuads.begin();it!=trackedQuads.end();it++){
+   tq = (*it);
+   if(!tq) 
+     continue;
+
+   SAFE_DELETE(tq->quad);
+   SAFE_DELETE(tq);
   }
   trackedQuads.clear();
 }
@@ -79,29 +83,52 @@ WCachedTexture::~WCachedTexture(){
 JTexture * WCachedTexture::Actual(){
   return texture;
 }
+bool WCachedTexture::isLocked(){
+  if(locks != WRES_UNLOCKED)
+    return true;
+
+  for(vector<WTrackedQuad*>::iterator it=trackedQuads.begin();it!=trackedQuads.end();it++){
+    if((*it)->isLocked())
+      return true;
+  }
+
+  return false;
+}
 
 bool WCachedTexture::ReleaseQuad(JQuad* quad){
 #ifdef DEBUG_CACHE
   OutputDebugString("Quad released.\n");
 #endif
+  if(quad == NULL)
+    return false;
 
- for(map<JQuad*,string>::iterator i = trackedQuads.begin();i!=trackedQuads.end();i++){
-   if(i->first == quad ){
-     unlock();
-     trackedQuads.erase(i);
-     return true;
+ WTrackedQuad * tq = NULL;
+ for(vector<WTrackedQuad*>::iterator it = trackedQuads.begin();it!=trackedQuads.end();it++){
+   if((*it) && (*it)->quad == quad ){
+     tq = (*it);
+     tq->unlock();
+
+     if(!tq->isLocked()){
+      SAFE_DELETE(tq->quad);
+      SAFE_DELETE(tq);
+      trackedQuads.erase(it);
+     }
+
+     return true; //Returns true when found, not released.
    }
  }
  return false;
 }
 
-JQuad * WCachedTexture::GetQuad(float offX, float offY, float width, float height,string resname){
+WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float width, float height,string resname){
   if(texture == NULL)
     return NULL;
 
-  JQuad * jq = NULL;
+  bool allocated = false;
+  WTrackedQuad * tq = NULL;
+  JQuad * quad = NULL;
 
-  map<JQuad*,string>::iterator it;
+  vector<WTrackedQuad*>::iterator it;
   std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
 
   if(width == 0.0f || width > texture->mWidth)
@@ -109,40 +136,73 @@ JQuad * WCachedTexture::GetQuad(float offX, float offY, float width, float heigh
   if(height == 0.0f || height > texture->mHeight)
       height = texture->mHeight;
 
-
   for(it = trackedQuads.begin();it!=trackedQuads.end();it++){
-    if(it->second == resname){
-      jq = it->first;
+    if((*it) && (*it)->resname == resname){
+      tq = (*it);
+      break;
     }
   }
 
-  if(jq == NULL){
-    jq = NEW JQuad(texture,offX,offY,width,height);
-    if(!jq) {
+  if(tq == NULL){
+    allocated = true;
+    tq = NEW WTrackedQuad(resname);
+
+    if(!tq) {
       //Probably out of memory. Try again.
       resources.Cleanup();
-      jq = NEW JQuad(texture,offX,offY,width,height);
+      tq = NEW WTrackedQuad(resname);
+    }
+  }
+
+  if(tq == NULL)
+    return NULL;
+
+  quad = tq->quad;
+
+  if(quad == NULL){
+    quad = NEW JQuad(texture,offX,offY,width,height);
+    if(!quad) {
+      //Probably out of memory. Try again.
+      resources.Cleanup();
+      quad = NEW JQuad(texture,offX,offY,width,height);
     }
 
-    if(!jq)
+    if(!quad){
+      if(allocated)
+        SAFE_DELETE(tq);
       return NULL; //Probably a crash.
+    }
 
-    trackedQuads[jq] = resname;
-    return jq;
-  }else{
+    tq->quad = quad;
+    trackedQuads.push_back(tq);
+    return tq;
+  }
+  else{
     //Update JQ's values to what we called this with.
-    jq->SetTextureRect(offX,offY,width,height);
-    return jq;
+    quad->SetTextureRect(offX,offY,width,height);
+    return tq;
   }
 
   return NULL;
 }
+
+JQuad * WCachedTexture::GetQuad(float offX, float offY, float width, float height,string resname){
+  WTrackedQuad * tq = GetTrackedQuad(offX,offY,width,height,resname);
+
+  if(tq)
+    return tq->quad;
+
+  return NULL;
+}
+
+
 JQuad * WCachedTexture::GetQuad(string resname){
-  map<JQuad*,string>::iterator it;
+  vector<WTrackedQuad*>::iterator it;
   std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
+
   for(it = trackedQuads.begin();it!=trackedQuads.end();it++){
-      if(it->second == resname){
-        return it->first;
+    if((*it) && (*it)->resname == resname){
+      return (*it)->quad;
       }
   }
 
@@ -181,9 +241,9 @@ void WCachedTexture::Refresh(string filename){
   else
     SAFE_DELETE(old);
 
-  for(map<JQuad*,string>::iterator it=trackedQuads.begin();it!=trackedQuads.end();it++){
-    if(it->first)
-      it->first->mTex = texture;
+  for(vector<WTrackedQuad*>::iterator it=trackedQuads.begin();it!=trackedQuads.end();it++){
+    if((*it) && (*it)->quad)
+      (*it)->quad->mTex = texture;
   }    
 }
 
@@ -384,4 +444,36 @@ WCachedParticles::~WCachedParticles(){
 void WCachedParticles::Nullify(){
   if(particles)
     particles = NULL;
+}
+
+//WTrackedQuad
+void WTrackedQuad::Nullify() {
+  quad = NULL;
+}
+
+#if defined DEBUG_CACHE
+int WTrackedQuad::totalTracked = 0;
+#endif
+
+unsigned long WTrackedQuad::size() {
+  return sizeof(JQuad);
+}
+bool WTrackedQuad::isGood(){
+  return (quad != NULL);
+}
+WTrackedQuad::WTrackedQuad(string _resname) {
+#if defined DEBUG_CACHE
+  OutputDebugString("Tracked quad created.\n");
+  totalTracked++;
+#endif
+  quad = NULL; resname = _resname;
+}
+WTrackedQuad::~WTrackedQuad() {
+#if defined DEBUG_CACHE
+  char buf[512];  
+  totalTracked--;
+  sprintf(buf,"~WTrackedQuad(). %d left.\n",totalTracked);
+  OutputDebugString(buf);
+#endif
+  if(quad) SAFE_DELETE(quad);
 }
