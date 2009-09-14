@@ -152,11 +152,27 @@ void GameStateMenu::Start(){
 
   //How many cards total ?
   PlayerData * playerdata = NEW PlayerData(mParent->collection);
-  if(!options[Options::ACTIVE_PROFILE].isDefault())
-    sprintf(nbcardsStr, "%s: %i of %i cards", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
+  if(playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
+    sprintf(nbcardsStr, "%s: %i cards (%i)", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
   else
     sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
+
   SAFE_DELETE(playerdata);
+
+#if defined DEBUG_CACHE
+  resources.ClearUnlocked();  //So we can tell if we've any extra locks.
+
+  if(!resources.menuCached)  
+    resources.menuCached = resources.CountCached();
+    
+  if(resources.CountCached() != resources.menuCached){
+    char buf[512];
+    unsigned int i = resources.CountCached()-resources.menuCached;
+    sprintf(buf,"Warning: %u leftover locked items.",i);
+    resources.debugMessage = buf;
+  }
+  
+#endif
 }
 
 
@@ -306,8 +322,8 @@ void GameStateMenu::Update(float dt)
         
         //List active profile and database size.        
         PlayerData * playerdata = NEW PlayerData(mParent->collection);
-        if(!options[Options::ACTIVE_PROFILE].isDefault())
-          sprintf(nbcardsStr, "%s: %i of %i cards", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
+        if(playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
+          sprintf(nbcardsStr, "%s: %i cards (%i)", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
         else
           sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
         SAFE_DELETE(playerdata);

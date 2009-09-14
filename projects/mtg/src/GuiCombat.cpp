@@ -19,7 +19,7 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), acti
 					 enemy_avatar(SCREEN_WIDTH - MARGIN, TOP_LINE, 2, 0, 255),
 					 cursor_pos(NONE), step(DAMAGE)
 {
-  if (NULL == ok_quad)
+    if(NULL == ok_quad)
     {
       ok_quad = resources.RetrieveQuad("OK.png");
       if (ok_quad) ok_quad->SetHotSpot(28, 22);
@@ -28,6 +28,9 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), acti
 
 GuiCombat::~GuiCombat()
 {
+  if(ok_quad)
+    resources.Release(ok_quad);
+
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
       for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)

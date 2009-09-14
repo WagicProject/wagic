@@ -42,7 +42,7 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
     deck[i]=NULL;
     mPlayers[i]=NULL;
   }
-  
+  resources.LargeCache();
   premadeDeck = false;
   game = NULL;
   deckmenu = NULL;
@@ -63,6 +63,7 @@ GameStateDuel::~GameStateDuel() {
 void GameStateDuel::Start()
 {
   JRenderer * renderer = JRenderer::GetInstance();
+  resources.SmallCache();
   renderer->ResetPrivateVRAM();
   renderer->EnableVSync(true);
 
@@ -217,7 +218,7 @@ void GameStateDuel::End()
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("Ending GamestateDuel\n");
 #endif
-
+  resources.SmallCache();
   SAFE_DELETE(deckmenu);
   JRenderer::GetInstance()->EnableVSync(false);
   if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();

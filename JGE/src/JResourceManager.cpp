@@ -39,14 +39,6 @@ JResourceManager::JResourceManager()
 	mFontList.reserve(4);
 	mFontMap.clear();
 
-	mMusicList.clear();
-	mMusicList.reserve(4);
-	mMusicMap.clear();
-
-	mSampleList.clear();
-	mSampleList.reserve(8);
-	mSampleMap.clear();
-
 // 	mParticleEffectList.clear();
 // 	mParticleEffectList.reserve(8);
 // 	mParticleEffectMap.clear();
@@ -83,31 +75,6 @@ void JResourceManager::RemoveAll()
 
 	mFontList.clear();
 	mFontMap.clear();
-
-	for (vector<JMusic *>::iterator music = mMusicList.begin(); music != mMusicList.end(); ++music)
-		delete *music;
-
-	mMusicList.clear();
-	mMusicMap.clear();
-
-	for (vector<JSample *>::iterator sample = mSampleList.begin(); sample != mSampleList.end(); ++sample)
-		delete *sample;
-
-	mSampleList.clear();
-	mSampleMap.clear();
-
-// 	for (vector<JParticleEffect *>::iterator effect = mParticleEffectList.begin(); effect != mParticleEffectList.end(); ++effect)
-// 		delete *effect;
-//
-// 	mParticleEffectList.clear();
-// 	mParticleEffectMap.clear();
-//
-// 	for (vector<JMotionEmitter *>::iterator emitter = mMotionEmitterList.begin(); emitter != mMotionEmitterList.end(); ++emitter)
-// 		delete *emitter;
-//
-// 	mMotionEmitterList.clear();
-// 	mMotionEmitterMap.clear();
-
 }
 
 
@@ -211,14 +178,6 @@ bool JResourceManager::LoadResource(const string& resourceName)
 				}
 				else if (strcmp(element->Value(), "font")==0)
 				{
-				}
-				else if (strcmp(element->Value(), "music")==0)
-				{
-					LoadMusic(element->Attribute("name"));
-				}
-				else if (strcmp(element->Value(), "sample")==0)
-				{
-					LoadSample(element->Attribute("name"));
 				}
 // 				else if (strcmp(element->Value(), "effect")==0)
 // 				{
@@ -376,98 +335,6 @@ JLBFont *JResourceManager::GetJLBFont(int id)
 {
 	if (id >=0 && id < (int)mFontList.size())
 		return mFontList[id];
-	else
-		return NULL;
-}
-
-
-int JResourceManager::LoadMusic(const string &musicName)
-{
-	map<string, int>::iterator itr = mMusicMap.find(musicName);
-
-	if (itr == mMusicMap.end())
-	{
-		string path = /*mResourceRoot + */musicName;
-
-		printf("creating music:%s\n", path.c_str());
-
-		JMusic *music = JSoundSystem::GetInstance()->LoadMusic(path.c_str());
-		if (music == NULL)
-			return INVALID_ID;
-
-		int id = mMusicList.size();
-		mMusicList.push_back(music);
-
-		mMusicMap[musicName] = id;
-
-		return id;
-	}
-	else
-		return itr->second;
-}
-
-
-JMusic *JResourceManager::GetMusic(const string &musicName)
-{
-	map<string, int>::iterator itr = mMusicMap.find(musicName);
-
-	if (itr == mMusicMap.end())
-		return NULL;
-	else
-		return mMusicList[itr->second];
-}
-
-
-JMusic *JResourceManager::GetMusic(int id)
-{
-	if (id >=0 && id < (int)mMusicList.size())
-		return mMusicList[id];
-	else
-		return NULL;
-}
-
-
-int JResourceManager::LoadSample(const string &sampleName)
-{
-	map<string, int>::iterator itr = mSampleMap.find(sampleName);
-
-	if (itr == mSampleMap.end())
-	{
-		string path = /*mResourceRoot + */sampleName;
-
-		printf("creating sample:%s\n", path.c_str());
-
-		JSample *sample = JSoundSystem::GetInstance()->LoadSample(path.c_str());
-		if (sample == NULL)
-			return INVALID_ID;
-
-		int id = mSampleList.size();
-		mSampleList.push_back(sample);
-
-		mSampleMap[sampleName] = id;
-
-		return id;
-	}
-	else
-		return itr->second;
-}
-
-
-JSample *JResourceManager::GetSample(const string &sampleName)
-{
-	map<string, int>::iterator itr = mSampleMap.find(sampleName);
-
-	if (itr == mSampleMap.end())
-		return NULL;
-	else
-		return mSampleList[itr->second];
-}
-
-
-JSample *JResourceManager::GetSample(int id)
-{
-	if (id >=0 && id < (int)mSampleList.size())
-		return mSampleList[id];
 	else
 		return NULL;
 }

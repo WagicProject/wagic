@@ -604,37 +604,40 @@ int MTGCardInstance::protectedAgainst(MTGCardInstance * card){
 
 /* Choose a sound sample to associate to that card */
 JSample * MTGCardInstance::getSample(){
-  if (!sample.size()){
-    for (int i = nb_types-1; i>0; i--){
-      string type = Subtypes::subtypesList->find(types[i]);
-      type = type + ".wav";
-      if (fileExists(resources.sfxFile(type).c_str())){
-        sample = string(type);
-        break;
-      }
-    }
-  }
-  if (!sample.size()){
-    for(map<int,int>::const_iterator it = basicAbilities.begin(); it != basicAbilities.end(); ++it){
-      int i = it->first;
-      if (!basicAbilities[i]) continue;
-      string type = Constants::MTGBasicAbilities[i];
-      type = type + ".wav";
-      if (fileExists(resources.sfxFile(type).c_str())){
-        sample = type;
-        break;
-      }
-    }
-  }
-  if (!sample.size()){
-    string type = Subtypes::subtypesList->find(types[0]);
+  JSample * js;
+
+  if(sample.size())
+    return resources.RetrieveSample(sample);
+
+  for (int i = nb_types-1; i>0; i--){
+    string type = Subtypes::subtypesList->find(types[i]);
     type = type + ".wav";
-    if (fileExists(resources.sfxFile(type).c_str())){
-      sample = type;
+    js = resources.RetrieveSample(type);
+    if (js){
+      sample = string(type);
+      return js;
     }
   }
 
-  if (sample.size()) return resources.RetrieveSample(sample);
+  for(map<int,int>::const_iterator it = basicAbilities.begin(); it != basicAbilities.end(); ++it){
+    int i = it->first;
+    if (!basicAbilities[i]) continue;
+    string type = Constants::MTGBasicAbilities[i];
+    type = type + ".wav";
+    js = resources.RetrieveSample(type);
+    if (js){
+      sample = string(type);
+      return js;
+    }
+  }
+
+  string type = Subtypes::subtypesList->find(types[0]);
+  type = type + ".wav";
+  js = resources.RetrieveSample(type);
+  if (js){
+    sample = string(type);
+    return js;
+  }
 
   return NULL;
 }

@@ -12,10 +12,13 @@ TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buil
   suite = _suite;
   timer = 0;
   humanMode = 0;
-  mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);
-  if (mAvatarTex){
-    mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
-  }
+
+  mAvatarTex = resources.RetrieveTexture("baka.jpg",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
+  if(mAvatarTex)
+  mAvatar = resources.RetrieveQuad("baka.jpg", 0, 0, 35, 50,"bakaAvatar",RETRIEVE_NORMAL,TEXTURE_SUB_AVATAR);
+  else 
+    mAvatar = NULL;
+
 }
 
 int TestSuite::getMTGId(string cardName){

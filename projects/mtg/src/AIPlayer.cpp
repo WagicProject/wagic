@@ -562,7 +562,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
   if (deckid == -1){ //Evil twin
     sprintf(deckFile, opponent->deckFile.c_str());
     OutputDebugString(opponent->deckFile.c_str());  
-    sprintf(avatarFile, "%s",options.profileFile("avatar.jpg","graphics",true,true).c_str());
+    sprintf(avatarFile, "baka.jpg");
     sprintf(deckFileSmall, "ai_baka_eviltwin");
   }else{
     if (!deckid){
@@ -583,10 +583,9 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
       deckid = 1 + rand() % (nbdecks);
     }
     sprintf(deckFile, RESPATH"/ai/baka/deck%i.txt",deckid);
-    sprintf(avatarFile, "ai/baka/avatars/avatar%i.jpg",deckid);
+    sprintf(avatarFile, "avatar%i.jpg",deckid);
     sprintf(deckFileSmall, "ai_baka_deck%i",deckid);
   }
-
 
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection);
   MTGPlayerCards * deck = NEW MTGPlayerCards(collection,tempDeck);
@@ -632,12 +631,18 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
 }
 
 AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * deck, string file, string fileSmall, string avatarFile) : AIPlayer(deck, file, fileSmall) {
-  if (fileExists(avatarFile.c_str()))
-    mAvatarTex = JRenderer::GetInstance()->LoadTexture(avatarFile.c_str(), TEX_TYPE_USE_VRAM);
-  else
-    mAvatarTex = JRenderer::GetInstance()->LoadTexture("ai/baka/avatar.jpg", TEX_TYPE_USE_VRAM);
-  if (mAvatarTex)
-    mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
+  mAvatarTex = resources.RetrieveTexture(avatarFile,RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
+  
+  if(!mAvatarTex){
+    avatarFile = "baka.jpg";
+    mAvatarTex = resources.RetrieveTexture(avatarFile,RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
+  }
+
+  if(mAvatarTex)
+    mAvatar = resources.RetrieveQuad(avatarFile, 0, 0, 35, 50,"bakaAvatar",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
+  else 
+    mAvatar = NULL;
+
   initTimer();
 }
 

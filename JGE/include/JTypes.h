@@ -147,6 +147,7 @@ typedef uint32_t u32;
   #define GU_PSM_8888 0
   #define GU_PSM_5551 0
   #define GU_PSM_4444 0
+  #define GU_PSM_5650 0
 	#define PIXEL_TYPE				DWORD
 
 #else	// PSP

@@ -202,6 +202,8 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 			delete[] buffer;
 			fileSystem->CloseFile();
 		}
+    else
+      sample->mSample = NULL;
 
 	}
 

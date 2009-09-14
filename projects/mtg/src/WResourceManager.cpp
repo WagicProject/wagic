@@ -9,168 +9,107 @@
 #include <JFileSystem.h>
 #include "../include/WResourceManager.h"
 
-
 WResourceManager resources;
 
-WCachedResource::WCachedResource(){
-  locks = 0;
-  lastTime = resources.nowTime();
+unsigned int vTime = 0;
+
+//WResourceManager
+void WResourceManager::DebugRender(){
+  JRenderer* renderer = JRenderer::GetInstance();
+  JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
+  
+  if(!font || !renderer)
+    return;
+  
+  font->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  renderer->FillRect(0,0,SCREEN_WIDTH,20,ARGB(128,155,0,0));
+#ifdef DEBUG_CACHE
+  if(debugMessage.size())
+    renderer->FillRect(0,SCREEN_HEIGHT-30,SCREEN_WIDTH,40,ARGB(128,155,0,0));
+  else
+#endif
+    renderer->FillRect(0,SCREEN_HEIGHT-20,SCREEN_WIDTH,40,ARGB(128,155,0,0));
+  char buf[512];
+
+  
+  unsigned long man = 0;
+  unsigned int misses = 0;
+
+  if(textureWCache.cacheItems < textureWCache.cache.size())
+    misses = textureWCache.cache.size()-textureWCache.cacheItems;
+
+  if(textureWCache.totalSize > textureWCache.cacheSize)
+    man = textureWCache.totalSize - textureWCache.cacheSize;
+
+  sprintf(buf,"Textures %u+%u (of %u) items (%u misses), Pixels: %lu+%lu (of %lu)",
+    textureWCache.cacheItems, textureWCache.managed.size(),textureWCache.maxCached,
+    misses,textureWCache.cacheSize,man,textureWCache.maxCacheSize);
+  font->DrawString(buf, 10,5);
+
+
+
+  sprintf(buf,"Total Size: %lu (%lu cached, %lu managed)",Size(),SizeCached(),SizeManaged());
+  font->DrawString(buf, SCREEN_WIDTH-10,SCREEN_HEIGHT-15,JGETEXT_RIGHT);
+
+#ifdef DEBUG_CACHE
+  if(debugMessage.size())
+    font->DrawString(debugMessage.c_str(), SCREEN_WIDTH-10,SCREEN_HEIGHT-25,JGETEXT_RIGHT);
+#endif
 }
 
-bool WCachedResource::isLocked(){
-  return (locks != 0);
+unsigned long WResourceManager::Size(){
+  unsigned long res = 0;
+  res += textureWCache.totalSize;
+  res += sampleWCache.totalSize;
+  res += psiWCache.totalSize;
+  return res;
 }
 
-void WCachedResource::lock(){
-  if(locks < 255)
-    locks++;
+unsigned long WResourceManager::SizeCached(){
+  unsigned long res = 0;
+  res += textureWCache.cacheSize;
+  res += sampleWCache.cacheSize;
+  res += psiWCache.cacheSize;
+  return res;  
 }
 
-void WCachedResource::unlock(bool force){
-  if(force)
-    locks = 0;
-  else if(locks > 0)
-    locks--;
+unsigned long WResourceManager::SizeManaged(){
+  unsigned long res = 0;
+  if(textureWCache.totalSize > textureWCache.cacheSize)
+    res += textureWCache.totalSize - textureWCache.cacheSize;
+
+  if(sampleWCache.totalSize > sampleWCache.cacheSize)
+    res += sampleWCache.totalSize - sampleWCache.cacheSize;
+
+  if(psiWCache.totalSize > psiWCache.cacheSize)
+    res += psiWCache.totalSize - psiWCache.cacheSize;
+
+  return res;  
 }
-
-void WCachedResource::hit(){
-  lastTime = resources.nowTime();
+unsigned int WResourceManager::Count(){
+  unsigned int count = 0;
+  count += textureWCache.cacheItems;
+  count += textureWCache.managed.size();
+  count += sampleWCache.cacheItems;
+  count += sampleWCache.managed.size();
+  count += psiWCache.cacheItems;
+  count += psiWCache.managed.size();
+  return count;
 }
-
-WCachedTexture::WCachedTexture(){
-  texture = NULL;
-  bVRAM = false;
+unsigned int WResourceManager::CountCached(){
+  unsigned int count = 0;
+  count += textureWCache.cacheItems;
+  count += sampleWCache.cacheItems;
+  count += psiWCache.cacheItems;
+  return count;
 }
-
-WCachedTexture::~WCachedTexture(){
-  SAFE_DELETE(texture);
-  for(vector<JQuad*>::iterator i = trackedQuads.begin();i!=trackedQuads.end();i++)
-    SAFE_DELETE((*i));
+unsigned int WResourceManager::CountManaged(){
+  unsigned int count = 0;
+  count += textureWCache.managed.size();
+  count += sampleWCache.managed.size();
+  count += psiWCache.managed.size();
+  return count;
 }
-
-JTexture * WCachedTexture::GetTexture(){
-  return texture;
-}
-
-bool WCachedTexture::ReleaseQuad(JQuad* quad){
- for(vector<JQuad*>::iterator i = trackedQuads.begin();i!=trackedQuads.end();i++){
-   if((*i) == quad){
-     SAFE_DELETE(quad);
-     trackedQuads.erase(i);
-     return true;
-   }
- }
- return false;
-}
-
-JQuad * WCachedTexture::GetQuad(float offX, float offY, float width, float height){
-  if(texture == NULL)
-    return NULL;
-
- if(width == 0.0f)
-      width = texture->mWidth;
- if(height == 0.0f)
-      height = texture->mHeight;
-
-  vector<JQuad*>::iterator it;
-  for(it = trackedQuads.begin();it!=trackedQuads.end();it++)
-    if((*it)->mHeight == height && (*it)->mWidth == width
-      && (*it)->mX == offX && (*it)->mY == offY)
-      return (*it);
-
-  JQuad * jq = NEW JQuad(texture,offX,offY,width,height);
-  trackedQuads.push_back(jq);
-  return jq;
-}
-
-JQuad * WCachedTexture::GetCard(float offX, float offY, float width, float height){
- if(texture == NULL)
-    return NULL;
-
- if(width == 0.0f)
-      width = texture->mWidth;
- if(height == 0.0f)
-      height = texture->mHeight;
-
-  vector<JQuad*>::iterator it;
-  for(it = trackedQuads.begin();it!=trackedQuads.end();it++)
-    if((*it)->mHeight == height && (*it)->mWidth == width
-      && (*it)->mX == offX && (*it)->mY == offY)
-      return (*it);
-
-  JQuad * jq = NEW JQuad(texture,offX,offY,width,height);
-  jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);
-  trackedQuads.push_back(jq);
-  return jq;
-}
-
-WCachedSample::WCachedSample(){
-  sample = NULL;
-}
-
-WCachedSample::~WCachedSample(){
-  SAFE_DELETE(sample);
-}
-
-JSample * WCachedSample::GetSample(){
-  return sample;
-}
-void WResourceManager::ClearMisses(){
-  map<string,WCachedTexture*>::iterator itTex, nextTex;
-  map<string,WCachedSample*>::iterator itSfx, nextSfx;
-
-  for(itTex = textureCache.begin(); itTex != textureCache.end();itTex=nextTex){
-    nextTex = itTex;
-    nextTex++;
-
-    if(itTex->second == NULL){
-      textureCache.erase(itTex);
-    }
-  }
-  for(itSfx = sampleCache.begin(); itSfx != sampleCache.end();itSfx=nextSfx){
-    nextSfx = itSfx;
-    nextSfx++;
-
-    if(itSfx->second == NULL){
-      sampleCache.erase(itSfx);
-    }
-  }
-}
-
-void WResourceManager::ClearUnlocked(){
-  map<string,WCachedTexture*>::iterator itTex, nextTex;
-  map<string,WCachedSample*>::iterator itSfx, nextSfx;
-
-  for(itTex = textureCache.begin(); itTex != textureCache.end();itTex=nextTex){
-    nextTex = itTex;
-    nextTex++;
-
-    if(!itTex->second || (itTex->second && !itTex->second->isLocked())){
-      textureCache.erase(itTex);
-    }
-  }
-  for(itSfx = sampleCache.begin(); itSfx != sampleCache.end();itSfx=nextSfx){
-    nextSfx = itSfx;
-    nextSfx++;
-
-    if(!itSfx->second || (itSfx->second && !itSfx->second->isLocked())){
-      sampleCache.erase(itSfx);
-    }
-  }
-}
-
-bool WResourceManager::cleanup(){
-  long maxSize = options[Options::CACHESIZE].number * 100000;
-  if (!maxSize) maxSize = CACHE_SIZE_PIXELS;
-
-  ClearMisses();
-  while (textureCache.size() > MAX_CACHE_OBJECTS - 1 || totalsize > maxSize){
-    int result = RemoveOldestTexture();
-    if (!result) return false;
-  }
-  return true;
-}
-
 
 unsigned int WResourceManager::nowTime(){
   if(lastTime == 65535)
@@ -179,240 +118,19 @@ unsigned int WResourceManager::nowTime(){
   return ++lastTime;
 }
 
-void WResourceManager::ClearSamples(){
-  map<string,WCachedSample*>::iterator next;
-  for(map<string,WCachedSample*>::iterator it = sampleCache.begin();it!=sampleCache.end();it=next){
-    next = it;
-    next++;
-    
-    if(it->second && !it->second->isLocked())
-      SAFE_DELETE(it->second);
-  }
-  sampleCache.clear();
-}
-
-WCachedSample * WResourceManager::getCachedSample(string filename, bool makenew){
-  map<string,WCachedSample*>::iterator miss = sampleCache.find(filename);
-  if(miss != sampleCache.end() && miss->second == NULL)
-    return NULL; //We've found a cache miss, so return null.
-
-  WCachedSample * csample = sampleCache[filename];
-
-  //Failed to cache it!
-  if(!csample && makenew){
-    //Space in cache, make new sample
-    if(cleanup()){
-      csample = NEW WCachedSample();
-      string sfile = sfxFile(filename);
-      if(sfile != ""){
-        csample->sample = JSoundSystem::GetInstance()->LoadSample(sfile.c_str());
-        //Potential cache overflow- clean the cache
-        if(!csample->sample && fileExists(sfile.c_str())){
-          ClearSamples();
-          csample->sample = JSoundSystem::GetInstance()->LoadSample(sfile.c_str());
-        }
-      }
-      else
-        csample->sample = NULL;
-      
-      //Failed. Leave the cache miss alone.
-      if(!csample->sample){
-        SAFE_DELETE(csample);
-        return NULL;
-      }
-      //Success!
-      csample->hit();
-      sampleCache[filename] = csample;
-    }
-    else
-      return NULL; //Error.
-  }
-
-  return csample;
-}
-
-WCachedTexture * WResourceManager::getCachedTexture(string filename, bool makenew, int mode, int format){
-  WCachedTexture * ctex = textureCache[filename];
-  //Failed to cache it!
-  if(!ctex && makenew){
-    //Space in cache, make new texture
-    if(cleanup()){
-       ctex = NEW WCachedTexture();
-       //Within limits, keep removing items from cache until we can create this
-       ctex->texture = attemptTexture(graphicsFile(filename));       
-
-       if(!ctex->texture){
-        for(map<string,WCachedTexture*>::iterator it=textureCache.begin();it!=textureCache.end();it++)
-          if(it->first == filename){
-          textureCache.erase(it);
-          break;
-        }
-         SAFE_DELETE(ctex);
-         return NULL;
-       }
-      totalsize+=ctex->texture->mTexHeight *ctex->texture->mTexWidth;   
-      char buf[512];
-      sprintf(buf,"Cache size: %ld\n",totalsize);
-      OutputDebugString(buf);
-      ctex->hit();
-      textureCache[filename] = ctex;
-    }
-    else
-      return NULL; //Error.
-  }
-
-  return ctex;
-}
-
-JTexture * WResourceManager::attemptTexture(string filename, int mode, int format){
-  JTexture * result = JRenderer::GetInstance()->LoadTexture(filename.c_str(),mode,format);
-
-  if(result == NULL){
-    if(!fileExists(filename.c_str()))
-      return NULL;
-
-    for(int attempt=0;attempt<10;attempt++){
-      if(!RemoveOldestTexture()) 
-        break;
-      result = JRenderer::GetInstance()->LoadTexture(filename.c_str(),mode,format);
-      if(result)
-        break;
-    }
-
-    //Still no result, so clear cache entirely, then try again.
-    if(!result){
-      ClearUnlocked();
-      result = JRenderer::GetInstance()->LoadTexture(filename.c_str(),mode,format);
-    }
-  }
-
-  return result;
-}
-
-
-WCachedTexture * WResourceManager:: getCachedCard(MTGCard * card, int type, bool makenew){
-  string filename = card->getImageName();
-  if(type == CACHE_THUMB)
-    filename = "thumbnails/"+filename;
-
-  map<string,WCachedTexture*>::iterator miss = textureCache.find(filename);
-  if(miss != textureCache.end() && miss->second == NULL)
-    return NULL; //We've found a cache miss, so return null.
-  
-  if(miss == textureCache.end() && !makenew)
-    return NULL; //cache empty and don't want to create
-
-  WCachedTexture * ctex = textureCache[filename];
-  //Failed to find it in cache!
-  if(!ctex && makenew){
-    if(cleanup()){
-      //Space in cache, make new texture
-      ctex = NEW WCachedTexture();
-      string cfile = cardFile(filename,card->getSetName());
-      if(cfile != ""){
-        //Within limits, keep removing items from cache until we can create this
-        ctex->texture = attemptTexture(cfile);
-      }
-      else
-        ctex->texture = NULL;
-
-      //Couldn't create texture, so fail. Leave failure in cache, so we don't try again later.
-      if(!ctex->texture){
-        SAFE_DELETE(ctex);
-        return NULL;
-      }
-      totalsize+=ctex->texture->mTexHeight *ctex->texture->mTexWidth;
-      char buf[512];
-      sprintf(buf,"Cache size: %ld\n",totalsize);
-      OutputDebugString(buf);
-      ctex->hit();
-      textureCache[filename] = ctex;
-    }
-    else
-      return NULL; //Error.
-  }
-
-  return ctex;
-}
-
 void WResourceManager::FlattenTimes(){
-  unsigned int youngest = 65535;
-  unsigned int oldest = 0;
+  unsigned int t;
+  lastTime = sampleWCache.Flatten();  
 
-  for (map<string,WCachedTexture*>::iterator it = textureCache.begin(); it != textureCache.end(); ++it){
-    if(!it->second) continue;
-    if(it->second->lastTime < youngest) youngest = it->second->lastTime;
-    if(it->second->lastTime > oldest) oldest = it->second->lastTime;
-  }
-  for (map<string,WCachedSample*>::iterator it = sampleCache.begin(); it != sampleCache.end(); ++it){
-    if(!it->second) continue;
-    if(it->second->lastTime < youngest) youngest = it->second->lastTime;
-    if(it->second->lastTime > oldest) oldest = it->second->lastTime;
-  }
+  t = textureWCache.Flatten();
+  if(t > lastTime)
+    lastTime = t;
 
-  for (map<string,WCachedSample*>::iterator it = sampleCache.begin(); it != sampleCache.end(); ++it){
-    if(!it->second) continue;
-    it->second->lastTime -= youngest;
-  }
-  for (map<string,WCachedTexture*>::iterator it = textureCache.begin(); it != textureCache.end(); ++it){
-    if(!it->second) continue;
-    it->second->lastTime -= youngest;
-  }
-
-  lastTime = oldest;
+  t = psiWCache.Flatten();
+  if(t > lastTime)
+    lastTime = t;
 }
 
-bool WResourceManager::RemoveOldestTexture(){
-  map<string,WCachedTexture*>::iterator oldest;
-  oldest = textureCache.end();
-  for(map<string,WCachedTexture*>::iterator it = textureCache.begin();it!=textureCache.end();it++){
-    if(it->second && !it->second->isLocked() 
-      && (oldest == textureCache.end() || it->second->lastTime < oldest->second->lastTime))
-      oldest = it;
-  }
-
-  if(oldest != textureCache.end()){
-    if(oldest->second){
-      if(!oldest->second->isLocked() ){
-        if(oldest->second->texture)
-          totalsize-=oldest->second->texture->mTexHeight * oldest->second->texture->mTexWidth;
-        SAFE_DELETE(oldest->second);
-      }
-      else
-        return false;
-    }
-    
-    textureCache.erase(oldest);
-    return true;
-  }
-
-  return false;
-}
-
-bool WResourceManager::RemoveOldestSample(){
-  map<string,WCachedSample*>::iterator it, saved;
-  saved = sampleCache.end();
-
-  for(it = sampleCache.begin();it!=sampleCache.end();it++){
-    if(it->second && !it->second->isLocked() 
-       && (saved == sampleCache.end() || it->second->lastTime < saved->second->lastTime))
-      saved = it;
-  }
-
-  if(saved != sampleCache.end()){
-    if(saved->second){
-      if(!saved->second->isLocked()){
-        SAFE_DELETE(saved->second);
-      }
-      else
-        return false;
-    }
-
-    sampleCache.erase(saved);
-    return true;
-  }
-  return false;
-}
 WResourceManager::WResourceManager(){	
 
   #ifdef WIN32
@@ -420,301 +138,328 @@ WResourceManager::WResourceManager(){
   sprintf(buf, " Init WResourceManager : %p\n", this);
   OutputDebugString(buf);
   #endif
-
+#ifdef DEBUG_CACHE
+  menuCached = 0;
+#endif
   mTextureList.clear();
-	mTextureList.reserve(16);
+	mTextureList.reserve(0);
 	mTextureMap.clear();
 
 	mQuadList.clear();
-	mQuadList.reserve(128);
+	mQuadList.reserve(0);
 	mQuadMap.clear();
 
 	mFontList.clear();
 	mFontList.reserve(4);
 	mFontMap.clear();
 
-	mMusicList.clear();
-	mMusicList.reserve(4);
-	mMusicMap.clear();
-
-	mSampleList.clear();
-	mSampleList.reserve(8);
-	mSampleMap.clear();
-
-  nb_textures = 0;
-  totalsize = 0;
+  psiWCache.Resize(SMALL_CACHE_LIMIT,6);      //Plenty of room for mana symbols, or whatever.
+  sampleWCache.Resize(SMALL_CACHE_LIMIT,0);   //This guy only exists so we can track misses.
+  textureWCache.Resize(LARGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
   lastTime = 0;
 }
 WResourceManager::~WResourceManager(){
-
   LOG("==Destroying WResourceManager==");
-  for (map<string,WCachedTexture*>::iterator it = textureCache.begin(); it != textureCache.end(); ++it){
-    delete it->second;
-  }
-  for (map<string,WCachedSample*>::iterator it = sampleCache.begin(); it != sampleCache.end(); ++it){
-    delete it->second;
-  }
-
-  textureCache.clear();
-  sampleCache.clear();
-
   RemoveAll();
   LOG("==Successfully Destroyed WResourceManager==");
-
 }
 
-JQuad * WResourceManager::RetrieveCard(MTGCard * card, int type, int style){
+JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
   //Cards are never, ever resource managed, so just check cache.
-  WCachedTexture * tc;
-  if(style == RETRIEVE_EXISTING)
-    tc = getCachedCard(card,type,false);
-  else
-    tc = getCachedCard(card,type,true);
-  
-  //Perform lock or unlock on entry.
-  if(tc != NULL){
-    if(style == RETRIEVE_LOCK) tc->lock();
-    else if(style == RETRIEVE_UNLOCK) tc->unlock();
+
+  submode = submode | TEXTURE_SUB_CARD;
+
+  string filename = card->getSetName();
+  filename += "/";
+  filename += card->getImageName();
+  WCachedTexture * res = NULL;
+
+  //Aliases.
+  if(style == RETRIEVE_VRAM){
+    submode = submode | TEXTURE_SUB_VRAM;
+    style = RETRIEVE_LOCK;
+  } 
+  else if(style == RETRIEVE_THUMB){
+    submode = submode | TEXTURE_SUB_THUMB;
+    style = RETRIEVE_NORMAL;
   }
 
-  //Texture exists! Get quad.
-  if(tc && tc->texture != NULL){
-    tc->hit();
-    return tc->GetCard();  
+  res = textureWCache.Retrieve(filename,style,submode|TEXTURE_SUB_5551);  //Force RGBA5650. JPG doesn't support transparency anyways.
+
+  if(res) //A non-null result will always be good.
+    return res->GetCard();
+
+  return NULL;
+}
+
+int WResourceManager::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height){
+  if(!quadName.size() || !textureName.size())
+    return INVALID_ID;
+  
+  string resname = quadName;
+  std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
+
+  vector<WManagedQuad>::iterator it;
+  int pos = 0;
+  for(it = managedQuads.begin();it!=managedQuads.end();it++,pos++){
+    if(it->resname == resname)
+      return pos;
+  }
+
+  WCachedTexture * jtex = textureWCache.Retrieve(textureName,RETRIEVE_MANAGE);
+  
+  //Somehow, jtex wasn't promoted.
+  if(RETRIEVE_MANAGE && jtex && !jtex->isPermanent())
+    return INVALID_ID; 
+
+  if(jtex){
+     JQuad * jq = jtex->GetQuad(x,y,width,height,quadName);  
+     
+    if(jq){
+      WManagedQuad mq;
+      mq.resname = resname;
+      mq.texture = jtex;
+      managedQuads.push_back(mq);
+    }
+
+    return (int) (managedQuads.size() - 1);
+  }
+
+  return INVALID_ID;
+}
+
+JQuad * WResourceManager::GetQuad(const string &quadName){
+  string lookup = quadName;
+  std::transform(lookup.begin(),lookup.end(),lookup.begin(),::tolower);
+  
+  for(vector<WManagedQuad>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
+    if(it->resname == lookup)
+      return it->texture->GetQuad(lookup);
   }
 
   return NULL;
 }
 
-JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height, string resname, int style){
+JQuad * WResourceManager::GetQuad(int id){
+  if(id < 0 || id >= (int) managedQuads.size())
+    return NULL;
 
-  for(vector<string>::iterator it=mTextureMissing.begin();it!=mTextureMissing.end();it++){
-    if((*it) == filename)
-      return NULL;
-  }
+  WCachedTexture * jtex = managedQuads[id].texture;
+  if(!jtex)
+    return NULL;
 
-  if(resname == "") 
+  return jtex->GetQuad(managedQuads[id].resname);
+}
+
+JQuad * WResourceManager::RetrieveTempQuad(string filename){
+  return RetrieveQuad(filename,0,0,0,0,"",RETRIEVE_NORMAL);
+}
+
+JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height, string resname, int style, int submode){
+  JQuad * jq = NULL;
+
+  //Lookup managed resources, but only with a real resname.
+  if(resname.size() && (style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE)){
+   jq = GetQuad(resname); 
+   if(jq || style == RETRIEVE_RESOURCE)
+     return jq;
+  }  
+
+  //Resname defaults to filename.
+  if(!resname.size())
     resname = filename;
 
-  //Check our managed resources.
-  JQuad * retval = GetQuad(resname);
-  if(retval != NULL || style == RETRIEVE_RESOURCE)
-    return retval;
+  //No quad, but we have a managed texture for this!
+  WCachedTexture * jtex = textureWCache.Retrieve(filename,style,submode);
 
-  //We have a managed resource named this!
-  JTexture * jtex = GetTexture(filename);
+  //Somehow, jtex wasn't promoted.
+  if(style == RETRIEVE_MANAGE && jtex && !jtex->isPermanent())
+    return NULL;  
+
+  //Make this quad, overwriting any similarly resname'd quads.
   if(jtex){
-     //Make this quad, overwriting any similarly resname'd quads.
-     CreateQuad(resname,filename,offX,offY,width,height);
-     return GetQuad(resname);
-  }
-
-  //If we don't have an existing texture, check cache.
-  WCachedTexture * tc = NULL;
-  if(style != RETRIEVE_MANAGE){
-  if(style == RETRIEVE_EXISTING)
-    tc = getCachedTexture(filename,false);
-  else if(style == RETRIEVE_VRAM)
-    tc = getCachedTexture(filename,true,TEX_TYPE_USE_VRAM);
-  else
-    tc = getCachedTexture(filename);
-  }
-  
-  //Quads never mess with locks. Ever.
-  if(style == RETRIEVE_MANAGE){
-    //Remove cache hit from cache
-    map<string,WCachedTexture*>::iterator it = textureCache.end();
-    tc = textureCache[filename];
-    for(it = textureCache.begin();it!=textureCache.end();it++){
-      if(it->first == filename)
-        break;
+     jq = jtex->GetQuad(offX,offY,width,height,resname);  
+     
+    if(style == RETRIEVE_MANAGE && resname != ""){
+      WManagedQuad mq;
+      mq.resname = resname;
+      mq.texture = jtex;
+      managedQuads.push_back(mq);
     }
-    
-    if(it != textureCache.end()){
-      SAFE_DELETE(it->second);
-      textureCache.erase(it);
-    }
-    //Pop texture & quad into resource manager
-    CreateQuad(resname,filename,offX,offY,width,height);
-    return GetQuad(resname);
+
+    return jq;
   }
 
-  //Texture exists! Get quad.
-  if(tc && tc->texture != NULL){
-    if(style == RETRIEVE_VRAM)
-      tc->bVRAM = true;
-    tc->hit();
-    return tc->GetQuad(offX,offY,width,height);  
-  }
-
-  //Texture doesn't exist, so no quad. Record miss.
-  mTextureMissing.push_back(filename);
+  //Texture doesn't exist, so no quad.
   return NULL;
 }
 void WResourceManager::Release(JTexture * tex){
-  if(tex == NULL)
+  if(!tex)
     return;
-  map<string,WCachedTexture*>::iterator it;
-  for(it = textureCache.begin();it!=textureCache.end();it++){
-    if(it->second && it->second->texture == tex)
-      break;
-  }
 
-  if(it != textureCache.end()){
-    it->second->unlock();
-    if(!it->second->isLocked()){
-      if(it->second->texture)
-      totalsize-=it->second->texture->mTexHeight * it->second->texture->mTexWidth;
-      SAFE_DELETE(it->second);
-      textureCache.erase(it);
-    }
-  }
+  textureWCache.Release(tex);
 }
 
 void WResourceManager::Release(JQuad * quad){
-  map<string,WCachedTexture*>::iterator it;
-    if(quad == NULL)
+  if(!quad)
     return;
 
-  for(it = textureCache.begin();it!=textureCache.end();it++){
+  map<string,WCachedTexture*>::iterator it;
+  for(it = textureWCache.cache.begin();it!=textureWCache.cache.end();it++){
     if(it->second && it->second->ReleaseQuad(quad))
       break;
   }
 
-  if(it != textureCache.end()){
-    if(!it->second->isLocked()){
-      SAFE_DELETE(it->second);
-      textureCache.erase(it);
-    }
-  }
+  if(it != textureWCache.cache.end() && it->second)
+    textureWCache.RemoveItem(it->second,false); //won't remove locked.
 }
 
+void WResourceManager::ClearMisses(){
+  textureWCache.ClearMisses();
+  sampleWCache.ClearMisses();
+  psiWCache.ClearMisses();
+}
+
+void WResourceManager::ClearUnlocked(){
+  textureWCache.ClearUnlocked();
+  sampleWCache.ClearUnlocked();
+  psiWCache.ClearUnlocked();
+}
+
+bool WResourceManager::Cleanup(){
+  int check = 0;
+
+  if(textureWCache.Cleanup())
+    check++;
+  if(sampleWCache.Cleanup())
+    check++;
+  if(psiWCache.Cleanup())
+    check++;
+
+  return (check > 0);
+}
 void WResourceManager::Release(JSample * sample){
-  if(sample == NULL)
+  if(!sample)
     return;
 
-  map<string,WCachedSample*>::iterator it;
-  for(it = sampleCache.begin();it!=sampleCache.end();it++){
-    if(it->second && it->second->sample == sample)
-      break;
-  }
-
-  if(it != sampleCache.end()){
-    it->second->unlock();
-    if(!it->second->isLocked()){
-      SAFE_DELETE(it->second);
-      sampleCache.erase(it);
-    }
-  }
+  sampleWCache.Release(sample);
 }
 
-JTexture * WResourceManager::RetrieveTexture(string filename, int style){
-//Check our resources.
-  JTexture * retval = GetTexture(filename);
-  if(retval != NULL || style == RETRIEVE_RESOURCE)
-    return retval;
+JTexture * WResourceManager::RetrieveTexture(string filename, int style, int submode){
+  WCachedTexture * res = NULL;
 
-  //Check cache.
-  WCachedTexture * tc = NULL;
-  if(style != RETRIEVE_MANAGE){
-  if(style == RETRIEVE_EXISTING)
-    tc = getCachedTexture(filename,false);
-  else if(style == RETRIEVE_VRAM)
-    tc = getCachedTexture(filename,true,TEX_TYPE_USE_VRAM);
-  else
-    tc = getCachedTexture(filename);
+  //Aliases.
+  if(style == RETRIEVE_VRAM){
+    submode = submode | TEXTURE_SUB_VRAM;
+    style = RETRIEVE_LOCK;
+  } 
+  else if(style == RETRIEVE_THUMB){
+    submode = submode | TEXTURE_SUB_THUMB;
+    style = RETRIEVE_NORMAL;
   }
 
-  if(style == RETRIEVE_MANAGE){
-    for(vector<string>::iterator it = mTextureMissing.begin();it!=mTextureMissing.end();it++){
-      if((*it) == filename)
-        return NULL;
+  res = textureWCache.Retrieve(filename,style,submode);
+
+  if(res){ //a non-null result will always be good.
+    JTexture * t = res->Actual();
+    JRenderer::GetInstance()->BindTexture(t);
+    return t;
+  }
+#ifdef DEBUG_CACHE
+  else{
+    switch(textureWCache.mError){
+      case CACHE_ERROR_NONE:
+        debugMessage = "Not in cache: ";
+        break;
+      case CACHE_ERROR_404:
+        debugMessage = "File not found: ";
+        break;
+      case CACHE_ERROR_BAD:
+        debugMessage = "Cache bad: ";
+        break;
+      case CACHE_ERROR_NOT_MANAGED:
+        debugMessage = "Resource not managed: ";
+        break;
+      case CACHE_ERROR_LOST:
+        debugMessage = "Resource went bad, potential memory leak: ";
+        break;
+      default:
+        debugMessage = "Unspecified error: ";
     }
+    debugMessage += filename;
   }
+#endif
+
+  return NULL;
+}
+
+int WResourceManager::CreateTexture(const string &textureName) {
+  JTexture * jtex = RetrieveTexture(textureName,RETRIEVE_MANAGE);
   
-  //Perform lock or unlock on entry.
-  if(style != RETRIEVE_MANAGE && tc){
-    if(style == RETRIEVE_LOCK || style == RETRIEVE_VRAM) tc->lock();
-    else if(style == RETRIEVE_UNLOCK) tc->unlock();
-  }
-  else if(style == RETRIEVE_MANAGE){
-    //Remove cache hit from cache
-    tc = textureCache[filename];
-    map<string,WCachedTexture*>::iterator it = textureCache.end();
-      for(it = textureCache.begin();it!=textureCache.end();it++){
-        if(it->first == filename)
-          break;
-    }
+  if(jtex)
+    return (int) jtex->mTexId;  //Because it's unsigned on windows/linux.
 
-    if(it != textureCache.end()){
-      SAFE_DELETE(it->second);
-      textureCache.erase(it);
-    }
-    //Pop texture into resource manager
-    int val = CreateTexture(filename);
-    if(val == INVALID_ID){
-      mTextureMissing.push_back(filename);
-      return NULL;//file not found
-    }
-
-    return GetTexture(val);
-  }
-
-  //Texture exists! Get it.
-  if(tc && tc->texture != NULL){
-    tc->hit();
-    return tc->GetTexture();  
-  }
-
-  return retval;
+  return INVALID_ID;
 }
 
-JSample * WResourceManager::RetrieveSample(string filename, int style){
-//Check our resources.
-  JSample * retval = GetSample(filename);
-  if(retval != NULL || style == RETRIEVE_RESOURCE)
-    return retval;
+JTexture* WResourceManager::GetTexture(const string &textureName){
+  JTexture * jtex = RetrieveTexture(textureName,RETRIEVE_RESOURCE);
+  return jtex;
+}
 
-  //Check cache.
-  WCachedSample * tc = NULL;
+JTexture* WResourceManager::GetTexture(int id){
+  map<string,WCachedTexture*>::iterator it;
+  JTexture *jtex = NULL;
 
-  if(style != RETRIEVE_MANAGE){
-    if(style == RETRIEVE_EXISTING)
-      tc = getCachedSample(filename,false);
-    else
-      tc = getCachedSample(filename);
-  }
+  if(id == INVALID_ID)
+    return NULL;
 
-  //Perform lock or unlock on entry.
-  if(style != RETRIEVE_MANAGE && tc){
-    if(style == RETRIEVE_LOCK || style == RETRIEVE_VRAM) tc->lock();
-    else if(style == RETRIEVE_UNLOCK) tc->unlock();
-  }
-  else if(style == RETRIEVE_MANAGE){
-    //Remove cache hit from cache
-    tc = sampleCache[filename];
-    map<string,WCachedSample*>::iterator it;
-      for(it = sampleCache.begin();it!=sampleCache.end();it++){
-        if(it->first == filename)
-          break;
-      }
-
-    if(it != sampleCache.end()){
-      SAFE_DELETE(it->second);
-      sampleCache.erase(it);
+  for(it = textureWCache.managed.begin();it!= textureWCache.managed.end(); it++){
+    if(it->second){
+      jtex = it->second->Actual();
+      if(jtex->mTexId == id)
+        return jtex;
     }
-    //Pop sample into resource manager
-    LoadSample(filename);
-    return GetSample(filename);
   }
+
+  return jtex;
+}
+
+hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * texture, int style, int submode){
+  
+  if(!texture)
+    return NULL;
+
+  WCachedParticles * res = psiWCache.Retrieve(filename,style,submode);
+
+  if(res) //A non-null result will always be good.
+  {
+    hgeParticleSystemInfo * i = res->Actual();
+    i->sprite = texture;
+    return i;
+  }
+
+  return NULL;
+}
+
+JSample * WResourceManager::RetrieveSample(string filename, int style, int submode){
+  //Check cache. This just tracks misses.
+  WCachedSample * tc = NULL;
+  tc = sampleWCache.Get(filename,submode);
 
   //Sample exists! Get it.
-  if(tc && tc->sample != NULL){
-    tc->hit();
-    return tc->GetSample();  
+  if(tc && tc->isGood()){
+    JSample * js = tc->Actual();
+
+    //Samples are freed when played, so remove this. Because maxCached is 0, this will Nullify() first.
+    sampleWCache.RemoveItem(tc,true);
+    //Adjust sizes accordingly.
+    sampleWCache.cacheSize = 0;
+    sampleWCache.totalSize = 0;
+    return js;  
   }
 
-  return retval;
+  return NULL;
 }
 
 string WResourceManager::graphicsFile(const string filename, const string specific){
@@ -762,21 +507,74 @@ string WResourceManager::graphicsFile(const string filename, const string specif
      return graphdir;
 }
 
-string WResourceManager::cardFile(const string filename, const string setname, const string specific){
+
+string WResourceManager::avatarFile(const string filename, const string specific){
+    char buf[512];
+   
+    //Check the specific location, if any.
+    if(specific != ""){
+      sprintf(buf,"%s/%s",specific.c_str(),filename.c_str());
+      if(fileOK(buf,true))
+        return buf;
+    }
+  
+    //Check the profile folder.
+    string profile = options[Options::ACTIVE_PROFILE].str;
+    std::transform(profile.begin(), profile.end(), profile.begin(), ::tolower);
+    if(profile != "" && profile != "default"){
+      sprintf(buf,"profiles/%s/%s",profile.c_str(),filename.c_str());
+     if(fileOK(buf,true))
+        return buf;
+    }else{
+      sprintf(buf,"player/%s",filename.c_str());
+     if(fileOK(buf,true))
+        return buf;
+    }
+
+    //Check the theme folder.
+    string theme = options[Options::ACTIVE_THEME].str;
+    std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
+
+    if(theme != "" && theme != "default"){
+      sprintf(buf,"themes/%s/%s",theme.c_str(),filename.c_str());
+     if(fileOK(buf,true))
+        return buf;
+    }
+
+    //Failure. Check mode graphics     
+    string mode = options[Options::ACTIVE_MODE].str;
+    std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
+
+    if(mode != "" && mode != "defualt"){
+      sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
+      if(fileOK(buf,true))
+        return buf;
+    }
+
+    //Failure. Check Baka
+    sprintf(buf,"ai/baka/avatars/%s",filename.c_str());
+     if(fileOK(buf,true))
+        return buf;
+       
+     //Failure. Check graphics       
+     char graphdir[512];
+     sprintf(graphdir,"graphics/%s",filename.c_str());
+      if(fileOK(graphdir,true))
+        return graphdir;
+    
+     //Complete abject failure. Probably a crash...
+     return graphdir;
+}
+
+string WResourceManager::cardFile(const string filename, const string specific){
     JFileSystem* fs = JFileSystem::GetInstance();
     char buf[512];
-    char sets[512];
 
     fs->DetachZipFile();
 
-    if(setname != "")
-      sprintf(sets,"sets/%s",setname.c_str());
-    else
-      sprintf(sets,"sets");
-
     //Check the specific location, if any.
     if(specific != ""){
-      sprintf(buf,"%s/%s/%s",specific.c_str(),sets,filename.c_str());
+      sprintf(buf,"%s/sets/%s",specific.c_str(),filename.c_str());
       if(fileOK(buf,true))
         return buf;
     }
@@ -786,7 +584,7 @@ string WResourceManager::cardFile(const string filename, const string setname, c
     std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
     if(theme != "" && theme != "default"){
-       sprintf(buf,"themes/%s/%s/%s",theme.c_str(),sets,filename.c_str());
+       sprintf(buf,"themes/%s/sets/%s",theme.c_str(),filename.c_str());
        if(fileOK(buf,true))
          return buf;
     }
@@ -796,27 +594,37 @@ string WResourceManager::cardFile(const string filename, const string setname, c
     std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
 
     if(mode != "" && mode != "defualt"){
-      sprintf(buf,"modes/%s/%s/%s",mode.c_str(),sets,filename.c_str());
+      sprintf(buf,"modes/%s/sets/%s",mode.c_str(),filename.c_str());
     if(fileOK(buf,true))
        return buf;      
     }
        
      //Failure. Check sets       
      char defdir[512];
-     sprintf(defdir,"%s/%s",sets,filename.c_str());
+     sprintf(defdir,"sets/%s",filename.c_str());
      if(fileOK(defdir,true))
        return defdir;      
 
      //Failure. Assume it's in a zip file?
-     if(setname.size()){
-        char zipname[100];
-        sprintf(zipname, "Res/sets/%s/%s.zip", setname.c_str(),setname.c_str());
-        if (fileOK(zipname)){
-          fs->AttachZipFile(zipname);
-          return filename;
-        }
+     string::size_type i;
+     for(i = 0;i < filename.size();i++){
+      if(filename[i] == '\\' || filename[i] == '/')
+          break;
+     } 
+
+     if(i != filename.size()){
+       string set = filename.substr(0,i);
+
+       if(set.size()){
+          char zipname[512];
+          sprintf(zipname, "Res/sets/%s/%s.zip", set.c_str(),set.c_str());
+          if (fileOK(zipname)){
+            fs->AttachZipFile(zipname);
+            return filename.substr(i+1);
+          }
+       }
      }
-    
+
      //Complete failure.
      return "";
 }
@@ -920,31 +728,6 @@ int WResourceManager::fileOK(string filename, bool relative){
   return result;
 }
 
-int WResourceManager::CreateTexture(const string &textureName) {
-	int id = INVALID_ID;
-  map<string, int>::iterator itr = mTextureMap.find(textureName);
-
-	if (itr == mTextureMap.end())
-	{
-		string path = graphicsFile(textureName);
-
-		printf("creating texture:%s\n", path.c_str());
-
-		JTexture *tex = JRenderer::GetInstance()->LoadTexture(path.c_str());
-
-		if (tex != NULL)
-    {
-		id = mTextureList.size();
-		mTextureList.push_back(tex);
-		mTextureMap[textureName] = id;
-    }
-
-    return id;
-	}
-	else
-		return itr->second;
-}
-
 int WResourceManager::LoadJLBFont(const string &fontName, int height){
   map<string, int>::iterator itr = mFontMap.find(fontName);
 
@@ -964,53 +747,24 @@ int WResourceManager::LoadJLBFont(const string &fontName, int height){
 	else
 		return itr->second;
 }
-
-int WResourceManager::LoadMusic(const string &musicName){
-  	map<string, int>::iterator itr = mMusicMap.find(musicName);
-
-	if (itr == mMusicMap.end())
-	{
-		string path = musicFile(musicName);
-
-		printf("creating music:%s\n", path.c_str());
-
-		JMusic *music = JSoundSystem::GetInstance()->LoadMusic(path.c_str());
-		if (music == NULL)
-			return INVALID_ID;
-
-		int id = mMusicList.size();
-		mMusicList.push_back(music);
-
-		mMusicMap[musicName] = id;
-
-		return id;
-	}
-	else
-		return itr->second;
+void WResourceManager::LargeCache(){
+#if (defined WIN32 || defined LINUX) && !defined DEBUG_CACHE
+  return;
+#else 
+    //Does not check option so we can use large cache during 
+    //deck editor, when it's pretty much always safe.
+    textureWCache.Resize(LARGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
+    textureWCache.Cleanup();
+#endif
 }
-
-int WResourceManager::LoadSample(const string &sampleName){
-  map<string, int>::iterator itr = mSampleMap.find(sampleName);
-
-	if (itr == mSampleMap.end())
-	{
-		string path = sfxFile(sampleName);
-
-		printf("creating sample:%s\n", path.c_str());
-
-		JSample *sample = JSoundSystem::GetInstance()->LoadSample(path.c_str());
-		if (sample == NULL)
-			return INVALID_ID;
-
-		int id = mSampleList.size();
-		mSampleList.push_back(sample);
-
-		mSampleMap[sampleName] = id;
-
-		return id;
-	}
-	else
-		return itr->second;
+void WResourceManager::SmallCache(){
+#if (defined WIN32 || defined LINUX) && !defined DEBUG_CACHE
+  return;
+#else
+  if(options[Options::CACHESIZE].number == 0){
+    textureWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHE_OBJECTS);
+    textureWCache.Cleanup();}
+#endif
 }
 
 JMusic * WResourceManager::ssLoadMusic(const char *fileName){
@@ -1018,86 +772,14 @@ JMusic * WResourceManager::ssLoadMusic(const char *fileName){
 }
 
 
-//Unmodified from JResourceManager
-
-int WResourceManager::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height){
-  map<string, int>::iterator itr = mQuadMap.find(quadName);
-
-	if (itr == mQuadMap.end())
-	{
-		JTexture *tex = GetTexture(textureName);
-		if (tex == NULL)
-		{
-			int texId = CreateTexture(textureName);		// load texture if necessary
-			tex = GetTexture(texId);
-		}
-
-		if (tex == NULL)								// no texture, no quad...
-			return INVALID_ID;
-
-		printf("creating quad:%s\n", quadName.c_str());
-
-		int id = mQuadList.size();
-    if(width == 0.0f)
-      width = tex->mWidth;
-    if(height == 0.0f)
-      height = tex->mHeight;
-
-		mQuadList.push_back(NEW JQuad(tex, x, y, width, height));
-
-		mQuadMap[quadName] = id;
-
-		return id;
-
-	}
-	else
-		return itr->second;
-}
-
 void WResourceManager::Refresh(){
+  //Really easy cache relinking.
+  sampleWCache.Refresh();
+  textureWCache.Refresh();
+  psiWCache.Refresh();
+
   map<string,WCachedTexture*>::iterator it;
   vector<JQuad*>::iterator q;
-  JTexture * oldtex;
-
-  mTextureMissing.clear();
-  ClearMisses();
-  ClearSamples();
-
-  for(it = textureCache.begin();it!=textureCache.end();it++){
-    if(it->second == NULL)
-      continue;
-
-    oldtex = it->second->texture;
-    
-    //Reload the texture.
-    if(it->second->bVRAM)
-      it->second->texture = JRenderer::GetInstance()->LoadTexture(graphicsFile(it->first).c_str(),TEX_TYPE_USE_VRAM,TEXTURE_FORMAT);
-    else
-      it->second->texture = JRenderer::GetInstance()->LoadTexture(graphicsFile(it->first).c_str(),0,TEXTURE_FORMAT);
-
-    //This texture doesn't exist in our current theme. Either use the old one, or record cache miss.
-    if(!it->second->texture){
-      if(it->second->isLocked())
-        it->second->texture = oldtex;
-      else{
-        if(oldtex)
-          totalsize -= oldtex->mTexHeight * oldtex->mTexWidth;
-
-        SAFE_DELETE(oldtex);
-        SAFE_DELETE(it->second);
-      }
-      continue;
-    }
-    else{
-      //Alright, log the new size.
-      totalsize += it->second->texture->mTexHeight * it->second->texture->mTexWidth;
-    }
-
-    //Relink quads to new texture.
-    for(q = it->second->trackedQuads.begin(); q != it->second->trackedQuads.end(); q++){
-      (*q)->mTex = it->second->texture;
-    }
-  }
 
   //Now do some juggling so that managed resources also reload. 
   map<JTexture *,JTexture *> oldTextures;
@@ -1106,6 +788,7 @@ void WResourceManager::Refresh(){
   vector<JTexture*>::iterator jtex;
   map<string, int>::iterator mapping;
   JTexture * newtex;
+  JTexture * oldtex = NULL;
 
   //Store old mappings.
   for(mapping = mTextureMap.begin();mapping != mTextureMap.end();mapping++){
@@ -1157,7 +840,555 @@ void WResourceManager::Refresh(){
     if(!oldIt->second || !oldIt->first )
       continue;
 
-    oldtex = oldIt->first;
     SAFE_DELETE(oldtex);
   }
+}
+
+//WCache
+template <class cacheItem,class cacheActual> 
+bool WCache<cacheItem, cacheActual>::RemoveOldest(){
+  typename map<string,cacheItem*> ::iterator oldest = cache.end();
+
+  for(typename map<string,cacheItem *>::iterator it = cache.begin();it!=cache.end();it++){
+    if(it->second && !it->second->isLocked() 
+      && (oldest == cache.end() || it->second->lastTime < oldest->second->lastTime))
+      oldest = it;
+  }
+
+  if(oldest != cache.end() && oldest->second && !oldest->second->isLocked()){
+    unsigned long isize = oldest->second->size();
+    cacheSize -= isize;
+    totalSize -= isize;
+    cacheItems--;
+#if defined DEBUG_CACHE
+    lastExpired = oldest->first;
+#endif
+    Delete(oldest->second);
+    cache.erase(oldest);
+    return true;
+  }
+
+  return false;
+
+}
+template <class cacheItem, class cacheActual>
+void WCache<cacheItem, cacheActual>::Clear(){
+  typename map<string,cacheItem*>::iterator it, next;
+
+  for(it = cache.begin(); it != cache.end();it=next){
+    next = it;
+    next++;
+
+      if(it->second){
+        unsigned long isize = it->second->size();
+        totalSize -= isize;
+        cacheSize -= isize;
+        Delete(it->second);
+        cacheItems--;
+      }
+      cache.erase(it);
+  }
+  for(it = managed.begin(); it != managed.end();it=next){
+    next = it;
+    next++;
+
+    if(!it->second)
+      managed.erase(it);
+  }
+}
+
+template <class cacheItem, class cacheActual>
+void WCache<cacheItem, cacheActual>::ClearUnlocked(){
+  typename map<string,cacheItem*>::iterator it, next;
+
+  for(it = cache.begin(); it != cache.end();it=next){
+    next = it;
+    next++;
+
+      if(it->second && !it->second->isLocked()){
+        unsigned long isize = it->second->size();
+        totalSize -= isize;
+        cacheSize -= isize;
+        Delete(it->second);
+        cacheItems--;
+        cache.erase(it);
+      }
+      else if(!it->second){
+        cache.erase(it);
+      }
+  }
+}
+
+template <class cacheItem, class cacheActual>
+void WCache<cacheItem, cacheActual>::ClearMisses(){
+  typename map<string,cacheItem*>::iterator it, next;
+
+  for(it = cache.begin(); it != cache.end();it=next){
+    next = it;
+    next++;
+
+    if(!it->second)
+      cache.erase(it);
+  }
+  for(it = managed.begin(); it != managed.end();it=next){
+    next = it;
+    next++;
+
+    if(!it->second)
+      managed.erase(it);
+  }
+}
+template <class cacheItem, class cacheActual>
+void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items){
+    maxCacheSize = size;
+
+  if(items > MAX_CACHE_OBJECTS || items < 0)
+    maxCached = MAX_CACHE_OBJECTS;
+  else
+    maxCached = items;
+}
+template <class cacheItem, class cacheActual>
+cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submode){
+//  Cleanup();  
+
+  if(submode & CACHE_EXISTING){ //Should never get this far.
+    mError = CACHE_ERROR_NOT_CACHED;
+    return NULL;
+  }
+
+  cacheItem* item = NEW cacheItem;
+
+  mError = CACHE_ERROR_NONE;
+
+  if(item == NULL || !item->Attempt(filename,submode,mError)){
+    //No such file. Fail.
+    if(mError == CACHE_ERROR_404){
+      Delete(item);
+      return NULL;
+    }
+
+
+    for(int attempt=0;attempt<10;attempt++){
+      if(!RemoveOldest()) 
+        break;
+      
+      if(!item)
+        item = NEW cacheItem ;
+
+      if(item && item->Attempt(filename,submode,mError))
+        break;
+    }
+
+
+    //Still no result, so clear cache entirely, then try again.
+    if(!item || !item->isGood()){
+      ClearUnlocked();
+      if(!item) item = NEW(cacheItem);
+      item->Attempt(filename,submode,mError);
+    }
+
+    //Worst cache scenerio. Clear every cache we've got.
+    if(!item || !item->isGood()){
+      resources.ClearUnlocked();
+      if(!item) item = NEW(cacheItem);
+      item->Attempt(filename,submode,mError);
+    }
+  }
+
+  if(item && !item->isGood()){
+    Delete(item);
+    mError = CACHE_ERROR_BAD;
+  }
+  else
+    mError = CACHE_ERROR_NONE;
+ 
+  Cleanup();  
+  return item;
+}
+
+template <class cacheItem, class cacheActual>
+cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style, int submode){
+  //Check cache.
+  cacheItem * tc = NULL;
+
+  if(style == RETRIEVE_EXISTING || style == RETRIEVE_RESOURCE)
+    tc = Get(filename,style,submode|CACHE_EXISTING);
+  else
+    tc = Get(filename,style,submode);
+
+  //Retrieve resource only works on permanent items.
+  if(style == RETRIEVE_RESOURCE && tc && !tc->isPermanent()){
+    mError = CACHE_ERROR_NOT_MANAGED;
+    return NULL;
+  }
+  
+  //Perform lock or unlock on entry.
+  if(tc){
+    if(style == RETRIEVE_LOCK) tc->lock();
+    else if(style == RETRIEVE_UNLOCK) tc->unlock();
+    else if(style == RETRIEVE_MANAGE && !tc->isPermanent()) {
+      //Unlink the managed resource from the cache.
+      UnlinkCache(tc);
+      
+      //Post it in managed resources.
+      managed[makeID(filename,submode)] = tc;
+      tc->deadbolt();
+    }
+  }
+
+  //Resource exists! 
+  if(tc){
+    if(tc->isGood()){
+      tc->hit();    
+      return tc;  //Everything fine.
+    }
+    else{
+      //Something went wrong.
+      Delete(tc);
+    }
+  }
+
+  //Record managed failure. Cache failure is recorded in Get().
+  if(style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE)
+   managed[makeID(filename,submode)] = NULL; 
+
+  return NULL;
+}
+template <class cacheItem, class cacheActual>
+string WCache<cacheItem, cacheActual>::makeID(string id, int submode){
+  string lookup = id;
+  
+  //To differentiate between cached thumbnails and the real thing.
+  if(submode & TEXTURE_SUB_THUMB)
+    lookup.insert(0,"T");
+  
+  return lookup;
+}
+
+template <class cacheItem, class cacheActual>
+string WCache<cacheItem, cacheActual>::makeFilename(string id, int submode){
+  //To differentiate between cached thumbnails and the real thing.
+  if(submode & TEXTURE_SUB_THUMB)
+    return id.substr(1);
+  
+  return id;
+}
+
+template <class cacheItem, class cacheActual>
+cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submode){
+  typename map<string,cacheItem*>::iterator it;
+  string lookup = makeID(id,submode);  
+
+  //Check for managed resources first. Always
+  it = managed.end();
+  for(it = managed.begin();it!=managed.end();it++){
+    if(it->first == lookup)
+      break;
+  }  
+  //Something is managed.
+  if(it != managed.end()) {
+     if(!it->second && style == RETRIEVE_RESOURCE)
+        return NULL;     //A miss. 
+     else
+        return it->second; //A hit.
+  }
+  //Failed to find managed resource and won't create one. Record a miss.
+  else if(style == RETRIEVE_RESOURCE){
+    managed[lookup] = NULL;
+    return NULL;
+  }
+
+  //Not managed, so look in cache.
+  if(it == managed.end() && style != RETRIEVE_MANAGE && style != RETRIEVE_RESOURCE ){
+    it = cache.end();
+    for(it = cache.begin();it!=cache.end();it++){
+      if(it->first == lookup)
+        break;
+    }
+    //Well, we've found something...
+    if(it != cache.end()) {
+       if(!it->second && (submode & CACHE_EXISTING))
+         return NULL;     //A miss.
+       else
+         return it->second; //A hit.
+    }
+  }  
+
+  cacheItem * item = NULL;
+  
+  if(style != RETRIEVE_MANAGE)
+    item = cache[lookup];   //We don't know about this one yet.
+ 
+  //Found something.
+  if(item){
+     //Item went bad?
+    if(!item->isGood()){
+
+      //If we're allowed, attempt to revive it.
+      if(!(submode & CACHE_EXISTING))
+        item->Attempt(id,submode,mError);
+
+      //Still bad, so remove it and return NULL 
+      if(submode & CACHE_EXISTING || !item->isGood()){
+        if(!item->isLocked()){
+          RemoveItem(item);    //Delete it.
+          mError = CACHE_ERROR_BAD;
+        }
+        //Worst case scenerio. Hopefully never happens.... hasn't so far.
+        else{
+          item->Nullify();          //We're giving up on anything allocated here. 
+          mError = CACHE_ERROR_LOST; //This is a potential memory leak, but might prevent a crash. 
+        }
+        return NULL;
+      }
+    }
+
+    //Alright, everythings fine!
+    mError = CACHE_ERROR_NONE;  
+    return item;
+  }
+  
+  //Didn't exist in cache.
+  if(submode & CACHE_EXISTING ){  
+    RemoveMiss(lookup);
+    mError = CACHE_ERROR_NOT_CACHED;
+    return NULL;
+  }
+  else{
+    //Space in cache, make new texture
+     item = AttemptNew(id,submode);       
+
+     //Couldn't make new item.
+     if(item && !item->isGood())
+       Delete(item);
+  }
+    
+   if(style == RETRIEVE_MANAGE){
+     if(item){
+      managed[lookup] = item; //Record a hit.
+      item->deadbolt(); //Make permanent.
+     }
+     else if(mError == CACHE_ERROR_404)
+      managed[lookup] = item;  //File not found. Record a miss
+   }
+   else{
+    if(!item && mError != CACHE_ERROR_404)
+     RemoveMiss(lookup);
+    else
+     cache[lookup] = item;
+   }
+
+   //Succeeded in making a new item.
+   if(item){
+    unsigned long isize =item->size();   
+    totalSize += isize;
+    
+    mError = CACHE_ERROR_NONE;
+    if(style != RETRIEVE_MANAGE){
+      cacheItems++;
+      cacheSize += isize;
+    }
+
+    return item;
+  }
+
+  //Failure.
+  return NULL;
+}
+
+template <class cacheItem, class cacheActual>
+void WCache<cacheItem, cacheActual>::Refresh(){
+  typename map<string,cacheItem*>::iterator it;
+  ClearUnlocked();
+
+  for(it = cache.begin();it!=cache.end();it++){
+    if(it->second){
+      it->second->Refresh(makeFilename(it->first,it->second->loadedMode));
+    }
+  } 
+  for(it = managed.begin();it!=managed.end();it++){
+    if(it->second){
+      it->second->Refresh(makeFilename(it->first,it->second->loadedMode));
+    }
+  }
+}
+
+template <class cacheItem, class cacheActual>
+WCache<cacheItem, cacheActual>::WCache(){
+  cacheSize = 0;
+  totalSize = 0;
+
+  maxCacheSize = SMALL_CACHE_LIMIT;
+
+  maxCached = MAX_CACHE_OBJECTS;
+  cacheItems = 0;
+  mError = CACHE_ERROR_NONE;
+}
+
+template <class cacheItem, class cacheActual>
+WCache<cacheItem, cacheActual>::~WCache(){
+  typename map<string,cacheItem*>::iterator it;
+
+  for(it=cache.begin();it!=cache.end();it++){
+    if(!it->second)
+      continue;
+
+    Delete(it->second);
+  }
+
+  for(it=managed.begin();it!=managed.end();it++){
+    if(!it->second)
+      continue;
+
+    Delete(it->second);
+  }
+}
+
+
+template <class cacheItem, class cacheActual>
+bool WCache<cacheItem, cacheActual>::Cleanup(){
+  while(cacheItems < cache.size() && cache.size() - cacheItems > MAX_CACHE_MISSES){
+    RemoveMiss();
+  }
+
+  while (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize ){
+    if (!RemoveOldest()) 
+      return false;
+  } 
+  return true;
+}
+
+template <class cacheItem, class cacheActual>
+unsigned int WCache<cacheItem, cacheActual>::Flatten(){
+  unsigned int youngest = 65535;
+  unsigned int oldest = 0;
+
+  for (typename map<string,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
+    if(!it->second) continue;
+    if(it->second->lastTime < youngest) youngest = it->second->lastTime;
+    if(it->second->lastTime > oldest) oldest = it->second->lastTime;
+  }
+
+  for (typename map<string,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
+    if(!it->second) continue;
+      it->second->lastTime -= youngest;
+  }
+
+  return (oldest - youngest);
+}
+
+template <class cacheItem, class cacheActual>
+bool WCache<cacheItem, cacheActual>::RemoveMiss(string id){
+  typename map<string,cacheItem*>::iterator it = cache.end();
+
+  for(it = cache.begin();it!=cache.end();it++){
+    if((id == "" || it->first == id) && it->second == NULL)
+          break;
+  }
+
+  if(it != cache.end())
+  {
+    cache.erase(it);
+    return true; 
+  }
+
+  return false;
+}
+
+template <class cacheItem, class cacheActual>
+bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem * item, bool force){
+  typename map<string,cacheItem*>::iterator it = cache.end();
+
+  if(item == NULL)
+    return false;   //Use RemoveMiss to remove cache misses, not this.
+
+  for(it = cache.begin();it!=cache.end();it++){
+    if(it->second == item)
+      break;
+  }
+  if(it != cache.end() && it->second && (force || !it->second->isLocked())){
+    unsigned long isize = it->second->size();
+    totalSize -= isize;
+    cacheSize -= isize;
+
+    cacheItems--;
+#if defined DEBUG_CACHE
+    lastRemoved = it->first;
+#endif
+    Delete(it->second);
+    cache.erase(it);
+    return true;
+  }
+
+  return false;
+}
+
+template <class cacheItem, class cacheActual>
+bool WCache<cacheItem, cacheActual>::UnlinkCache(cacheItem * item){
+  typename map<string,cacheItem*>::iterator it = cache.end();
+
+  if(item == NULL)
+    return false;   //Use RemoveMiss to remove cache misses, not this.
+
+  for(it = cache.begin();it!=cache.end();it++){
+    if(it->second == item)
+      break;
+  }
+  if(it != cache.end() && it->second){
+    it->second = NULL;  
+    unsigned long isize = item->size();
+
+    cacheSize-=isize; 
+    cacheItems--;
+    cache.erase(it);
+    return true;
+  }
+
+  return false;
+}
+
+template <class cacheItem, class cacheActual>
+bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
+  if(!item)
+    return false;
+
+  if(maxCached == 0)
+    item->Nullify();
+
+  SAFE_DELETE(item);
+  return true;
+}
+
+template <class cacheItem, class cacheActual>
+bool WCache<cacheItem, cacheActual>::Release(cacheActual* actual){
+  if(!actual)
+    return false;
+
+  typename map<string,cacheItem*>::iterator it;
+  for(it=cache.begin();it!=cache.end();it++){    
+    if(it->second && it->second->compare(actual))
+      break;
+  }
+  
+  if(it == cache.end())
+    return false; //Not here, can't release.
+
+  if(it->second){
+    it->second->unlock(); //Release one lock.
+    if(it->second->isLocked())
+      return true; //Still locked, won't delete.
+
+    unsigned long isize = it->second->size();
+    totalSize -= isize;
+    cacheSize -= isize;
+    cacheItems--;
+#if defined DEBUG_CACHE
+    lastReleased = it->first;
+#endif
+    Delete(it->second);
+  }
+
+  //Released!
+  cache.erase(it);
+  return true;
 }

@@ -57,7 +57,13 @@ if (NULL == spadeL) spadeL = resources.RetrieveQuad("spade_ul.png", 2, 1, 16, 13
       resources.LoadJLBFont("smallface", 7);
       titleFont = resources.GetJLBFont("smallface");
     }
-  if (NULL == stars) stars = NEW hgeParticleSystem("graphics/stars.psi", resources.GetQuad("stars"));
+  
+  if (NULL == stars){ 
+    JQuad * starQuad = resources.GetQuad("stars");
+    hgeParticleSystemInfo * psi = resources.RetrievePSI("stars.psi", starQuad);
+    if(psi)
+      stars = NEW hgeParticleSystem(psi);
+  }
 
   stars->MoveTo(mX, mY);
 }

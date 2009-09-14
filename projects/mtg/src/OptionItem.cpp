@@ -235,7 +235,6 @@ void OptionProfile::populate(){
    renderer->BindTexture(mAvatarTex);
  }
 
- options.reloadProfile(); 
  PlayerData * pdata = NEW PlayerData(app->collection);
 
  options[Options::ACTIVE_PROFILE] = temp;
@@ -313,7 +312,8 @@ void OptionProfile::cancelSubmode()
 
     options[Options::ACTIVE_PROFILE] = selections[initialValue];
     value = initialValue;
-    populate();
+    options.reloadProfile(false);
+    populate(); 
     bCheck = false;
 }
 void OptionProfile::acceptSubmode()
@@ -323,6 +323,7 @@ void OptionProfile::acceptSubmode()
 
     options[Options::ACTIVE_PROFILE] = selections[value];
     initialValue = value;
+    options.reloadProfile();
     populate(); 
     bCheck = false;
 }
@@ -762,7 +763,7 @@ void OptionNewProfile::Update(float dt){
     
     if(temp != value){
     options[Options::ACTIVE_PROFILE] = value;
-    options.reloadProfile();
+    options.reloadProfile(false);
     }
     value = "";
     bChanged = true;

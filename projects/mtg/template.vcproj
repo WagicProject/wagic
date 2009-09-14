@@ -557,6 +557,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\WCachedResource.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\WResourceManager.cpp"
 				>
 			</File>
@@ -907,6 +911,10 @@
 			</File>
 			<File
 				RelativePath=".\include\WResourceManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WCachedResource.h"
 				>
 			</File>
 		</Filter>

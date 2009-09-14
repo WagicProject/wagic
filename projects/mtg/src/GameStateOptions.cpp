@@ -38,7 +38,7 @@ void GameStateOptions::Start()
   optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));  
-  optionsList->Add(NEW OptionInteger(Options::CACHESIZE, "Image Cache Size", 60, 5,0,"Default"));
+  optionsList->Add(NEW OptionInteger(Options::CACHESIZE, "Use large cache"));
   optionsTabs = NEW OptionsMenu();  
   optionsTabs->Add(optionsList);
 

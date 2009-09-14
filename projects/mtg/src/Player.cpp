@@ -24,8 +24,8 @@ void Player::End(){
 
 Player::~Player(){
   SAFE_DELETE(manaPool);
-  SAFE_DELETE(mAvatarTex);
-  SAFE_DELETE(mAvatar);
+  resources.Release(mAvatar);
+  resources.Release(mAvatarTex);
 }
 
 const string Player::getDisplayName() const {
@@ -57,9 +57,11 @@ Player * Player::opponent(){
 }
 
 HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
-  mAvatarTex = JRenderer::GetInstance()->LoadTexture(options.profileFile("avatar.jpg","player",true,true).c_str(), TEX_TYPE_USE_VRAM);
+  mAvatarTex = resources.RetrieveTexture("avatar.jpg",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
   if (mAvatarTex)
-    mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
+    mAvatar = resources.RetrieveQuad("avatar.jpg",0,0,35,50,"playerAvatar",RETRIEVE_NORMAL,TEXTURE_SUB_AVATAR);
+  else 
+    mAvatar = NULL;
 }
 
 ManaPool * Player::getManaPool(){

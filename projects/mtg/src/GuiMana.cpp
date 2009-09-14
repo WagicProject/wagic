@@ -10,26 +10,93 @@ const float ManaIcon::DESTY = 20;
 
 ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1), mode(ALIVE), color(color)
 {
+  hgeParticleSystemInfo * psi = NULL; 
+  JQuad * mq = resources.GetQuad("stars");
+
+  if(!mq){
+    particleSys = NULL;
+    return;
+  }
+
   switch (color)
     {
     case Constants::MTG_COLOR_RED :
-      particleSys = NEW hgeParticleSystem("graphics/manared.psi", resources.GetQuad("stars"));
+      psi = resources.RetrievePSI("manared.psi",mq);
       break;
     case Constants::MTG_COLOR_BLUE :
-      particleSys = NEW hgeParticleSystem("graphics/manablue.psi", resources.GetQuad("stars"));
+      psi = resources.RetrievePSI("manablue.psi",mq);
       break;
     case Constants::MTG_COLOR_GREEN :
-      particleSys = NEW hgeParticleSystem("graphics/managreen.psi", resources.GetQuad("stars"));
+      psi = resources.RetrievePSI("managreen.psi",mq);
       break;
     case Constants::MTG_COLOR_BLACK :
-      particleSys = NEW hgeParticleSystem("graphics/manablack.psi", resources.GetQuad("stars"));
+      psi = resources.RetrievePSI("manablack.psi",mq);
       break;
     case Constants::MTG_COLOR_WHITE :
-      particleSys = NEW hgeParticleSystem("graphics/manawhite.psi", resources.GetQuad("stars"));
+      psi = resources.RetrievePSI("manawhite.psi",mq);
       break;
     default :
-      particleSys = NEW hgeParticleSystem("graphics/mana.psi", resources.GetQuad("stars"));
+      psi = resources.RetrievePSI("mana.psi",mq);
     }
+
+  if(!psi){
+    psi = NEW hgeParticleSystemInfo();
+    hgeParticleSystemInfo * defaults = resources.RetrievePSI("mana.psi",mq);
+    if(defaults){
+      memcpy(psi,defaults,sizeof(hgeParticleSystemInfo));
+    }
+    else{
+      memset(psi,0,sizeof(hgeParticleSystemInfo));
+
+      //Default values for particle system! Cribbed from mana.psi
+      //Really, we should just be loading that and then changing colors...
+      /*psi->nEmission = 114;
+      psi->fLifetime = -1;
+      psi->fParticleLifeMin = 1.1507937;
+      psi->fParticleLifeMax = 1.4682540;
+      psi->fSpeedMin = 0.0099999998;
+      psi->fSizeStart = 0.5;
+      psi->fSizeEnd = 0.69999999;
+      psi->fSizeVar = 0.25396827;
+      psi->fSpinStart = -5.5555553;
+      psi->fAlphaVar = 0.77777779;
+      psi->sprite = mq;*/
+    }
+
+    switch(color){
+      case Constants::MTG_COLOR_RED :
+        psi->colColorStart.SetHWColor(ARGB(161,240,40,44));
+        psi->colColorEnd.SetHWColor(ARGB(14,242,155,153));
+        break;
+      case Constants::MTG_COLOR_BLUE :
+        psi->colColorStart.SetHWColor(ARGB(161,28,40,224));
+        psi->colColorEnd.SetHWColor(ARGB(14,255,255,255));
+        break;
+      case Constants::MTG_COLOR_GREEN :
+        psi->colColorStart.SetHWColor(ARGB(161,36,242,44));
+        psi->colColorEnd.SetHWColor(ARGB(14,129,244,153));
+        break;
+      case Constants::MTG_COLOR_BLACK :
+        psi->colColorStart.SetHWColor(ARGB(161,210,117,210));
+        psi->colColorEnd.SetHWColor(ARGB(14,80,56,80));
+        break;
+      case Constants::MTG_COLOR_WHITE :
+        psi->colColorStart.SetHWColor(ARGB(151,151,127,38));
+        psi->colColorEnd.SetHWColor(ARGB(8,255,255,255));
+        break;
+      default:
+        psi->colColorStart.SetHWColor(ARGB(161,236,242,232));
+        psi->colColorEnd.SetHWColor(ARGB(14,238,244,204));
+        break;
+    }
+    
+    particleSys = NEW hgeParticleSystem(psi);
+    SAFE_DELETE(psi); //Not handled by cache, so kill it here.
+  }
+  else
+    particleSys = NEW hgeParticleSystem(psi); //Cache will clean psi up later.
+  
+
   icon = manaIcons[color];
 
   particleSys->FireAt(x, y);
@@ -59,6 +126,9 @@ ManaIcon::~ManaIcon()
 
 void ManaIcon::Render()
 {
+  if(!particleSys)
+    return; 
+
   JRenderer* renderer = JRenderer::GetInstance();
 
   renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);

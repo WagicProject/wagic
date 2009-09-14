@@ -106,17 +106,17 @@ void GameApp::Create()
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
   resources.RetrieveTexture("back.jpg",RETRIEVE_MANAGE);
-  resources.RetrieveQuad("back.jpg", 0, 0, 200, 285, "back",RETRIEVE_MANAGE);
-  resources.GetQuad("back")->SetHotSpot(100, 145);
+  JQuad * jq = resources.RetrieveQuad("back.jpg", 0, 0, 200, 285, "back",RETRIEVE_MANAGE);
+  jq->SetHotSpot(100, 145);
 
   resources.RetrieveTexture("back_thumb.jpg",RETRIEVE_MANAGE);
   resources.RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb",RETRIEVE_MANAGE);
 
   resources.RetrieveTexture("particles.png",RETRIEVE_MANAGE);
-  resources.RetrieveQuad("particles.png", 0, 0, 32, 32, "particles",RETRIEVE_MANAGE);
-  resources.GetQuad("particles")->SetHotSpot(16,16);
-  resources.RetrieveQuad("particles.png", 64, 0, 32, 32, "stars",RETRIEVE_MANAGE);
-  resources.GetQuad("stars")->SetHotSpot(16,16);
+  jq = resources.RetrieveQuad("particles.png", 0, 0, 32, 32, "particles",RETRIEVE_MANAGE);
+  jq->SetHotSpot(16,16);
+  jq = resources.RetrieveQuad("particles.png", 64, 0, 32, 32, "stars",RETRIEVE_MANAGE);
+  jq->SetHotSpot(16,16);
 
   resources.LoadJLBFont("simon",11);
   resources.GetJLBFont("simon")->SetTracking(-1);
@@ -134,14 +134,13 @@ void GameApp::Create()
   resources.RetrieveTexture("DefenderIcon.png",RETRIEVE_MANAGE);
   resources.RetrieveTexture("shadow.png",RETRIEVE_MANAGE);
 
-  resources.RetrieveQuad("BattleIcon.png", 0, 0, 25, 25,"BattleIcon",RETRIEVE_MANAGE);
-  resources.RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23,"DefenderIcon",RETRIEVE_MANAGE);
-  resources.RetrieveQuad("shadow.png", 0, 0, 1, 1,"shadow",RETRIEVE_MANAGE);
+  jq = resources.RetrieveQuad("BattleIcon.png", 0, 0, 25, 25,"BattleIcon",RETRIEVE_MANAGE);
+  jq->SetHotSpot(12, 12);
+  jq = resources.RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23,"DefenderIcon",RETRIEVE_MANAGE);
+  jq->SetHotSpot(12, 12);
+  jq = resources.RetrieveQuad("shadow.png", 0, 0, 1, 1,"shadow",RETRIEVE_MANAGE);
+  jq->SetHotSpot(0.5, 0.5);
   
-  resources.GetQuad("BattleIcon")->SetHotSpot(12, 12);
-  resources.GetQuad("DefenderIcon")->SetHotSpot(12, 12);
-  resources.GetQuad("shadow")->SetHotSpot(0.5, 0.5);
-
   collection = NEW MTGAllCards();
 
   Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", resources.GetQuad("particles"));
@@ -284,6 +283,9 @@ void GameApp::Render()
       mCurrentState->Render();
     }
 
+#ifdef DEBUG_CACHE
+  resources.DebugRender();
+#endif
 
 }
 

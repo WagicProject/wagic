@@ -133,7 +133,8 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 	if (sample)
 	{
 		sample->mSample = new WAVDATA;
-		loadWaveData(sample->mSample, s, 1);
+		if(!loadWaveData(sample->mSample, s, 1))
+      sample->mSample = NULL;
 	}
 
 	return sample;
