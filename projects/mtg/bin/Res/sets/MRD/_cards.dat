@@ -1,5 +1,5 @@
 [card]
-text={U}, Sacrifice AEther Spellbomb: Return target creature to its owner's hand.     {1}, Sacrifice AEther Spellbomb: Draw a card.
+text={U}, Sacrifice AEther Spellbomb: Return target creature to its owner's hand.   {1}, Sacrifice AEther Spellbomb: Draw a card.
 auto={U}{S}:moveTo(ownerhand) target(creature)
 auto={1}{S}:draw:1
 id=48113
@@ -19,9 +19,9 @@ power=2
 toughness=1
 [/card]
 [card]
-text=Remove target artifact or enchantment from the game.
+text=Exile target artifact or enchantment.
 target=artifact,enchantment
-auto=moveTo(removedFromGame)
+auto=moveTo(exile)
 id=48383
 name=Altar's Light
 rarity=U
@@ -33,6 +33,7 @@ text=(Ancient Den isn't a spell.)  {T}: Add {W} to your mana pool.
 id=46063
 name=Ancient Den
 rarity=C
+auto={T}:Add {W}
 type=Land
 subtype=artifact
 [/card]
@@ -43,13 +44,13 @@ auto=fizzle
 id=45976
 name=Annul
 rarity=C
-type=Instant
 mana={U}
+type=Instant
 [/card]
 [card]
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
+auto={S(artifact|myBattlefield)}:2/2
 id=46106
-alias=1280
 name=Atog
 rarity=U
 mana={1}{R}
@@ -77,11 +78,11 @@ auto=counter(1/1)
 id=48116
 name=Battlegrowth
 rarity=C
-type=Instant
 mana={G}
+type=Instant
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.    {2}, {T}: Tap target noncreature artifact.
+text={T}: Add {1} to your mana pool.   {2}, {T}: Tap target noncreature artifact.
 auto={T}: Add {1}
 auto={2}{T}:Tap target(artifact[-creature])
 id=48916
@@ -91,7 +92,7 @@ type=Land
 [/card]
 [card]
 text=Sacrifice Bottle Gnomes: You gain 3 life.
-auto={s}:life:3
+auto={S}:life:3
 id=46017
 name=Bottle Gnomes
 rarity=U
@@ -100,35 +101,34 @@ type=Artifact Creature
 subtype=Gnome
 power=1
 toughness=3
-subtype=Gnome
 [/card]
 [card]
-text=When Cathodion is put into a graveyard from play, add {3} to your mana pool.
+text=When Cathodion is put into a graveyard from the battlefield, add {3} to your mana pool.
 auto=@movedTo(this|graveyard):Add{3}
 id=48195
 name=Cathodion
 rarity=U
-type=Artifact Creature
 mana={3}
-power=3
+type=Artifact Creature
 subtype=Construct
+power=3
 toughness=3
 [/card]
 [card]
 text={1}, {T}, Sacrifice Chromatic Sphere: Add one mana of any color to your mana pool. Draw a card.
-auto={1}{T}{S}:Add{G} && Draw:1
-auto={1}{T}{S}:Add{R} && Draw:1
-auto={1}{T}{S}:Add{U} && Draw:1
-auto={1}{T}{S}:Add{B} && Draw:1
-auto={1}{T}{S}:Add{W} && Draw:1
+auto={1}{T}{S}:Add{G} && Draw:1 controller
+auto={1}{T}{S}:Add{R} && Draw:1 controller
+auto={1}{T}{S}:Add{U} && Draw:1 controller
+auto={1}{T}{S}:Add{B} && Draw:1 controller
+auto={1}{T}{S}:Add{W} && Draw:1 controller
 id=46046
 name=Chromatic Sphere
 rarity=C
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
-text=Cloudpost comes into play tapped.     {T}: Add {1} to your mana pool for each Locus in play.
+text=Cloudpost comes into play tapped.   {T}: Add {1} to your mana pool for each Locus in play.
 auto=tap
 auto={T}:foreach(Locus)add:{1}
 id=49050
@@ -166,7 +166,7 @@ text=Copperhoof Vorrac gets +1/+1 for each untapped permanent your opponents con
 id=48603
 name=Copperhoof Vorrac
 mana={3}{G}{G}
-auto=foreach(*[-tapped]|opponentinplay) 1/1
+auto=foreach(*[-tapped]|opponentBattlefield) 1/1
 type=Creature
 subtype=Boar Beast
 power=2
@@ -206,15 +206,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Whenever an artifact is put into a graveyard from play, you may have target opponent lose 1 life.
+text=Whenever an artifact is put into a graveyard from the battlefield, you may have target opponent lose 1 life.
 id=49090
-auto=@movedTo(artifact|graveyard) from(inplay):may life:-1 opponent
+auto=@movedTo(artifact|graveyard) from(battlefield):may life:-1 opponent
 name=Disciple of the Vault
 rarity=C
-type=Creature
 mana={B}
-power=1
+type=Creature
 subtype=Human Cleric
+power=1
 toughness=1
 [/card]
 [card]
@@ -223,22 +223,22 @@ auto={3}{T}:counter(1/1) target(creature)
 id=48325
 name=Dragon Blood
 rarity=U
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
-text=Protection from white. At the end of your turn, you lose 4 life. Whenever a creature is put into a graveyard from play, you gain 2 life.
-abilities=protection from white
+text=Protection from white.    At the end of your turn, you lose 4 life.   Whenever a creature is put into a graveyard from the battlefield, you gain 2 life.
 auto=@movedTo(creature|graveyard) from(battlefield):life:2
-auto=@each my end:life:-4
+auto=@each my end:life:-4 controller
 id=50537
 name=Dross Harvester
 rarity=R
-type=Creature
 mana={1}{B}{B}
-power=4
+type=Creature
 subtype=Horror
+power=4
 toughness=4
+abilities=protection from white
 [/card]
 [card]
 text=Fear
@@ -253,15 +253,15 @@ toughness=1
 abilities=fear
 [/card]
 [card]
-text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from play, you may untap target artifact.
-auto=@movedTo(creature[artifact]|graveyard) from(inplay):may untap target(artifact)
+text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from the battlefield, you may untap target artifact.
+auto=@movedTo(creature[artifact]|graveyard) from(battlefield):may untap target(artifact)
 id=46434
 name=Dross Scorpion
 rarity=C
-type=Artifact Creature
 mana={4}
-power=3
+type=Artifact Creature
 subtype=Scorpion
+power=3
 toughness=1
 [/card]
 [card]
@@ -283,8 +283,8 @@ auto=moveTo(myhand)
 id=48568
 name=Fabricate
 rarity=U
-type=Sorcery
 mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 text=Trample
@@ -352,15 +352,16 @@ name=Galvanic Key
 rarity=C
 mana={2}
 type=Artifact
+abilities=flash
 [/card]
 [card]
 text={T}: Add three mana of any one color to your mana pool.
 id=48189
-auto={T}:add {B}{B}{B}
-auto={T}:add {G}{G}{G}
-auto={T}:add {R}{R}{R}
-auto={T}:add {U}{U}{U}
-auto={T}:add {W}{W}{W}
+auto={T}:Add {B}{B}{B}
+auto={T}:Add {G}{G}{G}
+auto={T}:Add {R}{R}{R}
+auto={T}:Add {U}{U}{U}
+auto={T}:Add {W}{W}{W}
 name=Gilded Lotus
 rarity=R
 mana={5}
@@ -393,7 +394,7 @@ abilities=first strike,haste
 [card]
 text={T}: Add {W} to your mana pool.
 id=46024
-auto={T}:add {W}
+auto={T}:Add {W}
 name=Gold Myr
 rarity=C
 mana={2}
@@ -453,14 +454,14 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-text=Enchant artifact     Enchanted artifact doesn't untap during its controller's untap step.
+text=Enchant artifact   Enchanted artifact doesn't untap during its controller's untap step.
 target=artifact
 auto=doesnotuntap
 id=49443
 name=Inertia Bubble
 rarity=C
-type=Enchantment
 mana={1}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -479,11 +480,11 @@ toughness=1
 text=Target creature gets -1/-1 until end of turn for each artifact you control.
 id=48585
 target=creature
-auto=foreach(artifact|myinplay) -1/-1
+auto=foreach(artifact|myBattlefield) -1/-1
 name=Irradiate
 rarity=C
-type=Instant
 mana={3}{B}
+type=Instant
 [/card]
 [card]
 text={U}
@@ -523,26 +524,27 @@ subtype=Island
 [/card]
 [card]
 text=Sacrifice an artifact: Krark-Clan Grunt gets +1/+0 and gains first strike until end of turn.
-auto={S(artifact|myInPlay)}:1/0 && fisrt strike
+auto={S(artifact|myBattlefield)}:1/0 && first strike
 id=45992
 name=Krark-Clan Grunt
 rarity=C
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Goblin Warrior
+
+power=2
 toughness=2
 [/card]
 [card]
 text=Sacrifice an artifact: Krark-Clan Shaman deals 1 damage to each creature without flying.
-auto={S(artifact|myinplay)}:damage:1 all(creature[-flying])
+auto={S(artifact|myBattlefield)}:damage:1 all(creature[-flying])
 id=45994
 name=Krark-Clan Shaman
 rarity=C
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Goblin Shaman
+power=1
 toughness=1
 [/card]
 [card]
@@ -559,36 +561,36 @@ toughness=1
 [/card]
 [card]
 text=Artifacts you control can't be the targets of spells or abilities your opponents control.
-auto=lord(artifact|myinplay) opponentshroud
+auto=lord(artifact|myBattlefield) opponentshroud
 id=46550
 name=Leonin Abunas
 rarity=R
-type=Creature
 mana={3}{W}
-power=2
+type=Creature
 subtype=Cat Cleric
+power=2
 toughness=5
 [/card]
 [card]
-text=Flash     {2}, Sacrifice Leonin Bladetrap: Leonin Bladetrap deals 2 damage to each attacking creature without flying.
-abilities=flash
+text=Flash   {2}, Sacrifice Leonin Bladetrap: Leonin Bladetrap deals 2 damage to each attacking creature without flying.
 auto={S}:damage:2 all(creature[attacking;-flying])
 id=48378
 name=Leonin Bladetrap
 rarity=U
-type=Artifact
 mana={3}
+type=Artifact
+abilities=flash
 [/card]
 [card]
-text=Whenever an artifact comes into play, you may gain 1 life.
+text=Whenever an artifact enters the battlefield, you may gain 1 life.
 auto=@movedTo(artifact|battlefield):may life:1
 id=46072
 name=Leonin Elder
 rarity=C
-type=Creature
 mana={W}
-power=1
+type=Creature
 subtype=Cat Cleric
+power=1
 toughness=1
 [/card]
 [card]
@@ -605,37 +607,37 @@ abilities=flying
 [/card]
 [card]
 text={1}{W}: Creatures you control get +1/+1 until end of turn.
-auto={1}{W}:lord(creature|mybattlefield) 1/1 
+auto={1}{W}:lord(creature|myBattlefield) 1/1 
 id=49768
 name=Leonin Sun Standard
 rarity=R
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
-text=When Leveler comes into play, remove all cards in your library from the game.
-auto=moveTo(myremovedfromgame) all(*|mylibrary)
+text=When Leveler comes enters the battlefield, exile all cards in your library.
+auto=moveTo(myExile) all(*|myLibrary)
 id=46708
 name=Leveler
 rarity=R
-type=Artifact Creature
 mana={5}
-power=10
+type=Artifact Creature
 subtype=Juggernaut
+power=10
 toughness=10
 [/card]
 [card]
-text=Flying When Looming Hoverguard comes into play, put target artifact on top of its owner's library.
+text=Flying   When Looming Hoverguard enters the battlefield, put target artifact on top of its owner's library.
+auto=may moveTo(ownerLibrary) target(artifact)
 id=48114
 name=Looming Hoverguard
 rarity=U
-type=Creature
 mana={4}{U}{U}
-power=3
+type=Creature
 subtype=Drone
+power=3
 toughness=3
 abilities=flying
-auto=may moveTo(ownerlibrary) target(artifact)
 [/card]
 [card]
 text={W}, {T}: Regenerate target artifact.
@@ -643,24 +645,24 @@ auto={W}{T}:regenerate target(artifact)
 id=46071
 name=Loxodon Mender
 rarity=C
-type=Creature
 mana={5}{W}
-power=3
+type=Creature
 subtype=Elephant Cleric
+power=3
 toughness=3
 [/card]
 [card]
-text=Flying     Whenever an artifact comes into play under your control, you may tap target permanent.
-abilities=flying
-auto=@movedTo(artifact|mybattlefield):may tap target(*)
+text=Flying   Whenever an artifact enters the battlefield under your control, you may tap target permanent.
+auto=@movedTo(artifact|myBattlefield):may tap target(*)
 id=45972
 name=Lumengrid Sentinel
 rarity=U
-type=Creature
 mana={2}{U}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=2
+abilities=flying
 [/card]
 [card]
 id=48438
@@ -673,22 +675,22 @@ power=1
 toughness=3
 [/card]
 [card]
-text=Flying At the beginning of your upkeep, you may put a 1/1 white Spirit creature token with flying into play.
-abilities=flying
+text=Flying At the beginning of your upkeep, you may put a 1/1 white Spirit creature token with flying onto the battlefield.
 auto=@each my upkeep:may token(Spirit,Creature Spirit,1/1,white flying)
 id=46546
 name=Luminous Angel
 rarity=R
-type=Creature
 mana={4}{W}{W}{W}
-power=4
+type=Creature
 subtype=Angel
+power=4
 toughness=4
+abilities=flying
 [/card]
 [card]
 text={1}{G}: Malachite Golem gains trample until end of turn.
-id=48056
 auto={1}{G}:trample
+id=48056
 name=Malachite Golem
 rarity=C
 mana={6}
@@ -708,26 +710,26 @@ type=Enchantment
 [/card]
 [card]
 text=Sacrifice an artifact: Megatog gets +3/+3 and gains trample until end of turn.
-auto={S(artifact|myinplay)}:3/3 && trample
+auto={S(artifact|myBattlefield)}:3/3 && trample
 id=46579
 name=Megatog
 rarity=R
-type=Creature
 mana={4}{R}{R}
-power=3
+type=Creature
 subtype=Atog
+power=3
 toughness=4
 [/card]
 [card]
-text=When Moriok Scavenger comes into play, you may return target artifact creature card from your graveyard to your hand.
+text=When Moriok Scavenger enters the battlefield, you may return target artifact creature card from your graveyard to your hand.
 auto=may moveTo(myhand) target(artifact|mygraveyard)
 id=45965
 name=Moriok Scavenger
 rarity=C
-type=Creature
 mana={3}{B}
-power=2
+type=Creature
 subtype=Human Rogue
+power=2
 toughness=3
 [/card]
 [card]
@@ -767,38 +769,28 @@ rarity=L
 subtype=Mountain
 [/card]
 [card]
-text={B}, Sacrifice Necrogen Spellbomb: Target player discards a card.     {1}, Sacrifice Necrogen Spellbomb: Draw a card.
-id=46055
-auto={B}{S}:discard:1 target(player)
-auto={1}{S}:draw:1
-name=Necrogen Spellbomb
-rarity=C
-type=Artifact
-mana={1}
-[/card]
-[card]
 text=Neurok Spy is unblockable as long as defending player controls an artifact.
 id=45974
 name=Neurok Spy
+rarity=C
 mana={2}{U}
 type=Creature
 subtype=Human Rogue
-auto=aslongas(artifact|opponentinplay) unblockable
+auto=aslongas(artifact|opponentBattlefield) unblockable
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
 text=Nim Lasher gets +1/+0 for each artifact you control.
 id=12394
 name=Nim Lasher
+rarity=C
 mana={2}{B}
 type=Creature
 subtype=Zombie
-auto=foreach(artifact|myinplay) 1/0
+auto=foreach(artifact|myBattlefield) 1/0
 power=1
 toughness=1
-rarity=C
 [/card]
 [card]
 text={2}{B}, Sacrifice Nim Replica: Target creature gets -1/-1 until end of turn.
@@ -816,30 +808,30 @@ toughness=1
 text=Nim Shambler gets +1/+0 for each artifact you control. Sacrifice a creature: Regenerate Nim Shambler.
 id=48126
 name=Nim Shambler
+rarity=U
 mana={2}{B}{B}
 type=Creature
 subtype=Zombie
-auto=foreach(artifact|myinplay) 1/0
-auto={s(creature|myinplay)}:regenerate
+auto=foreach(artifact|myBattlefield) 1/0
+auto={S(creature|myBattlefield)}:regenerate
 power=2
 toughness=1
-rarity=U
 [/card]
 [card]
-text=Flying. Nim Shrieker gets +1/+0 for each artifact you control.
+text=Flying.   Nim Shrieker gets +1/+0 for each artifact you control.
 id=48584
-abilities=flying
 name=Nim Shrieker
-auto=foreach(artifact|myinplay) 1/0
+auto=foreach(artifact|myBattlefield) 1/0
+rarity=C
 mana={3}{B}
 type=Creature
 subtype=Zombie
 power=0
 toughness=1
-rarity=C
+abilities=flying
 [/card]
 [card]
-text={2}, {T}: Put a 0/1 Pest artifact creature token into play.
+text={2}, {T}: Put a 0/1 Pest artifact creature token onto the battlefield.
 id=50104
 auto={2}{T}:token(Pest,artifact token creature pest, 0/1, artifact)
 name=Nuisance Engine
@@ -919,15 +911,15 @@ subtype=Plains
 [/card]
 [card]
 text=Plated Slagwurm can't be the target of spells or abilities your opponents control.
-abilities=opponentshroud
 id=47781
 name=Plated Slagwurm
 rarity=R
-type=Creature
 mana={4}{G}{G}{G}
-power=8
+type=Creature
 subtype=Wurm
+power=8
 toughness=8
+abilities=opponentshroud
 [/card]
 [card]
 text=Target creature gets +3/+3 and gains trample until end of turn.
@@ -941,7 +933,7 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-text={R}, Sacrifice Pyrite Spellbomb: Pyrite Spellbomb deals 2 damage to target creature or player.      {1}, Sacrifice Pyrite Spellbomb: Draw a card.
+text={R}, Sacrifice Pyrite Spellbomb: Pyrite Spellbomb deals 2 damage to target creature or player.   {1}, Sacrifice Pyrite Spellbomb: Draw a card.
 auto={R}{S}:Damage:2 target(creature,player)
 auto={1}{S}:draw:1
 id=48110
@@ -951,7 +943,7 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-text=Put two 1/1 white Soldier creature tokens into play.
+text=Put two 1/1 white Soldier creature tokens onto the battlefield.
 auto=token(Soldier,creature token soldier, 1/1,white)*2
 id=48103
 name=Raise the Alarm
@@ -970,13 +962,13 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-text=As Sculpting Steel comes into play, you may choose an artifact in play. If you do, Sculpting Steel comes into play as a copy of that artifact.
+text=As Sculpting Steel enters the battlefield, you may choose an artifact on the battlefield. If you do, Sculpting Steel enters the battlefield as a copy of that artifact.
 auto=may copy target(artifact)
 id=46720
 name=Sculpting Steel
 rarity=R
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text=(Seat of the Synod isn't a spell.)  {T}: Add {U} to your mana pool.
@@ -1057,17 +1049,17 @@ text=Defender (This creature can't attack.)
 id=48910
 name=Steel Wall
 rarity=C
-type=Artifact Creature
 mana={1}
-abilities=defender
-power=0
+type=Artifact Creature
 subtype=Wall
+power=0
 toughness=4
+abilities=defender
 [/card]
 [card]
 text={W}, Sacrifice Sunbeam Spellbomb: You gain 5 life.       {1}, Sacrifice Sunbeam Spellbomb: Draw a card.
-auto={W}{S}:life:5
-auto={1}{S}:draw:1
+auto={W}{S}:life:5 controller
+auto={1}{S}:draw:1 controller
 id=48214
 name=Sunbeam Spellbomb
 rarity=C
@@ -1116,11 +1108,11 @@ auto=moveTo(myhand) target(land|mylibrary)
 id=49529
 name=Sylvan Scrying
 rarity=U
-type=Sorcery
 mana={1}{G}
+type=Sorcery
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Talisman of Dominance deals 1 damage to you.
+text={T}: Add {1} to your mana pool.   {T}: Add {U} or {B} to your mana pool. Talisman of Dominance deals 1 damage to you.
 id=39598
 name=Talisman of Dominance
 auto={T}:Add {1}
@@ -1131,7 +1123,7 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Talisman of Impulse deals 1 damage to you.
+text={T}: Add {1} to your mana pool.   {T}: Add {R} or {G} to your mana pool. Talisman of Impulse deals 1 damage to you.
 id=39600
 name=Talisman of Impulse
 auto={T}:Add {1}
@@ -1142,7 +1134,7 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {B} or {R} to your mana pool. Talisman of Indulgence deals 1 damage to you.
+text={T}: Add {1} to your mana pool.   {T}: Add {B} or {R} to your mana pool. Talisman of Indulgence deals 1 damage to you.
 id=39599
 name=Talisman of Indulgence
 auto={T}:Add {1}
@@ -1153,7 +1145,7 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {W} or {U} to your mana pool. Talisman of Progress deals 1 damage to you.
+text={T}: Add {1} to your mana pool.   {T}: Add {W} or {U} to your mana pool. Talisman of Progress deals 1 damage to you.
 id=39597
 name=Talisman of Progress
 auto={T}:Add {1}
@@ -1164,7 +1156,7 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {T}: Add {G} or {W} to your mana pool. Talisman of Unity deals 1 damage to you.
+text={T}: Add {1} to your mana pool.   {T}: Add {G} or {W} to your mana pool. Talisman of Unity deals 1 damage to you.
 id=39601
 name=Talisman of Unity
 auto={T}:Add {1}
@@ -1186,8 +1178,8 @@ type=Artifact
 text={1}{G}: Regenerate Tel-Jilad Exile.
 id=49436
 name=Tel-Jilad Exile
-mana={3}{G}
 rarity=C
+mana={3}{G}
 type=Creature
 subtype=Troll Warrior
 power=2
@@ -1272,15 +1264,15 @@ subtype=Artifact
 [card]
 text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 auto={1}{G}:regenerate
-abilities=opponentshroud
 id=49828
 name=Troll Ascetic
 rarity=R
-type=Creature
 mana={1}{G}{G}
-power=3
+type=Creature
 subtype=Troll Shaman
+power=3
 toughness=2
+abilities=opponentshroud
 [/card]
 [card]
 text={1}{G}: Regenerate target green creature.
@@ -1288,10 +1280,10 @@ auto={1}{G}:regenerate target(creature[green])
 id=46117
 name=Trolls of Tel-Jilad
 rarity=U
-type=Creature
 mana={5}{G}{G}
-power=5
+type=Creature
 subtype=Troll Shaman
+power=5
 toughness=6
 [/card]
 [card]
@@ -1304,33 +1296,32 @@ type=Land
 subtype=Artifact
 [/card]
 [card]
-text=Whenever you play an artifact spell, draw a card.
-auto=@movedTo(artifact|mystack):draw:1
+text=Whenever you cast an artifact spell, draw a card.
+auto=@movedTo(artifact|mystack):draw:1 controller
 id=46557
 name=Vedalken Archmage
 rarity=R
-type=Creature
 mana={2}{U}{U}
-power=0
+type=Creature
 subtype=Vedalken Wizard
+power=0
 toughness=2
 [/card]
 [card]
-text=Whenever an artifact comes into play, Vermiculos gets +4/+4 until end of turn.
-auto=@movedTo(artifact|mybattlefield):4/4
+text=Whenever an artifact enters the battlefield, Vermiculos gets +4/+4 until end of turn.
+auto=@movedTo(artifact|myBattlefield):4/4
 id=47936
 name=Vermiculos
 rarity=R
-type=Creature
 mana={4}{B}
-power=1
+type=Creature
 subtype=Horror
+power=1
 toughness=1
 [/card]
 [card]
 text=Haste
 id=5585
-abilities=haste
 name=Vulshok Berserker
 rarity=C
 mana={3}{R}
@@ -1338,19 +1329,7 @@ type=Creature
 subtype=Human Berserker
 power=3
 toughness=2
-[/card]
-[card]
-text=Defender (This creature can't attack.)  Pay 1 life: Wall of Blood gets +1/+1 until end of turn.
-auto=1/1 && life:-1
-abilities=defender
-id=48184
-name=Wall of Blood
-rarity=U
-type=Creature
-mana={2}{B}
-power=0
-subtype=Wall
-toughness=2
+abilities=haste
 [/card]
 [card]
 text=Sacrifice Welding Jar: Regenerate target artifact.
@@ -1358,8 +1337,8 @@ auto={S}:regenerate target(artifact)
 id=48328
 name=Welding Jar
 rarity=C
-type=Artifact
 mana={0}
+type=Artifact
 [/card]
 [card]
 text=Vigilance
