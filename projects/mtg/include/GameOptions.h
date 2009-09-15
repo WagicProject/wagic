@@ -31,6 +31,7 @@ struct Options {
   static const string ACTIVE_PROFILE;
   static const string ACTIVE_THEME;
   static const string ACTIVE_MODE;
+  static const string HANDMODE;
 };
 
 struct Metrics {

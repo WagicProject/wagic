@@ -417,7 +417,7 @@ JTexture* WResourceManager::GetTexture(int id){
   for(it = textureWCache.managed.begin();it!= textureWCache.managed.end(); it++){
     if(it->second){
       jtex = it->second->Actual();
-      if(jtex->mTexId == id)
+      if(id == (int) jtex->mTexId)
         return jtex;
     }
   }

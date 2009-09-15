@@ -234,7 +234,7 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   }
 
   //Failure of a different sort.
-  if(texture->mTexId == -1){
+  if(texture->mTexId == INVALID_MTEX){
     SAFE_DELETE(texture);
     error = CACHE_ERROR_BAD;
     return false;
