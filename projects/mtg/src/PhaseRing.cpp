@@ -24,15 +24,17 @@ PhaseRing::~PhaseRing(){
   }
 }
 
-//This needs to be controlled either by GameObserver or PhaseRing in the future
+//Tells if next phase will be another Damage phase rather than combat ends
 bool PhaseRing::extraDamagePhase(int id){
   GameObserver * g = GameObserver::GetInstance();
   if (id != Constants::MTG_PHASE_COMBATEND) return false;
   if (g->combatStep != END_FIRST_STRIKE) return false;
-  MTGGameZone * z = g->currentPlayer->game->inPlay;
-  for (int i= 0; i < z->nb_cards; ++i){
-    MTGCardInstance * card = z->cards[i];
-    if (card->isAttacker() && !(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE))) return true;
+  for (int j = 0; j < 2; ++j){
+    MTGGameZone * z = g->players[j]->game->inPlay;
+    for (int i= 0; i < z->nb_cards; ++i){
+      MTGCardInstance * card = z->cards[i];
+      if ((card->isAttacker() || card->isDefenser()) && !(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE))) return true;
+    }
   }
   return false;
 }

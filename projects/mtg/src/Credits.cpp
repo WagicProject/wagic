@@ -40,6 +40,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
   app = _app;
   showMsg = (rand() % 5);
   GameObserver * g = GameObserver::GetInstance();
+  if (!g->turn) return;
   if (!p1->isAI() && p2->isAI() && p1!= g->gameOver){
     value = 400;
     if (app->gameType != GAME_TYPE_CLASSIC) value = 200;
@@ -144,28 +145,31 @@ void Credits::Render(){
   f2->SetScale(1);
   f3->SetScale(1);
   char buffer[512];
-  if (!p1->isAI() && p2->isAI() ){
-    if (g->gameOver != p1){
-      sprintf (buffer, _("Congratulations! You earn %i credits").c_str(), value);
-      if (unlockedQuad){
-        showMsg = 0;
-        r->RenderQuad(unlockedQuad, 20, 20);
-      }
-      if(unlockedString.size()){
-        f2->DrawString(unlockedString.c_str(),SCREEN_WIDTH/2, 80,JGETEXT_CENTER);
+  if (!g->turn){
+    sprintf(buffer, _("Please check your deck (not enough cards?)").c_str() );
+  }else{
+    if (!p1->isAI() && p2->isAI() ){
+      if (g->gameOver != p1){
+        sprintf (buffer, _("Congratulations! You earn %i credits").c_str(), value);
+        if (unlockedQuad){
+          showMsg = 0;
+          r->RenderQuad(unlockedQuad, 20, 20);
+        }
+        if(unlockedString.size()){
+          f2->DrawString(unlockedString.c_str(),SCREEN_WIDTH/2, 80,JGETEXT_CENTER);
+        }
+      }else{
+        sprintf (buffer, _("You have been defeated").c_str());
       }
     }else{
-      sprintf (buffer, _("You have been defeated").c_str());
+      int winner = 2;
+      if (g->gameOver !=p1){
+        winner = 1;
+      }
+      int p0life = p1->life;
+      sprintf(buffer, _("Player %i wins (%i)").c_str(), winner, p0life );
     }
-  }else{
-    int winner = 2;
-    if (g->gameOver !=p1){
-      winner = 1;
-    }
-    int p0life = p1->life;
-    sprintf(buffer, _("Player %i wins (%i)").c_str(), winner, p0life );
   }
-
 
   float y = 130;
   if (showMsg == 1) y = 50;
