@@ -21,7 +21,7 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), acti
 {
     if(NULL == ok_quad)
     {
-      ok_quad = resources.RetrieveQuad("OK.png");
+      ok_quad = resources.RetrieveQuad("Ok.png");
       if (ok_quad) ok_quad->SetHotSpot(28, 22);
     }
 }
