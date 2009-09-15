@@ -11,6 +11,19 @@ subtype=Human Soldier
 toughness=1
 [/card]
 [card]
+text=Shroud     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Algae Gharial.
+abilities=shroud
+auto=@movedTo(other creature|graveyard) from(inplay):may counter(1/1)
+id=174986
+name=Algae Gharial
+rarity=U
+type=Creature
+mana={3}{G}
+power=1
+subtype=Crocodile
+toughness=1
+[/card]
+[card]
 text=Arcane Sanctum comes into play tapped.     {T}: Add {W}, {U}, or {B} to your mana pool.
 auto=tap
 auto={T}:Add{W}
@@ -236,6 +249,18 @@ subtype=Human Archer
 toughness=1
 [/card]
 [card]
+text=Whenever another creature is put into a graveyard from play, you may gain 1 life.
+auto=@movedTo(other creature|graveyard) from(inplay):may life:1
+id=175073
+name=Deathgreeter
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Human Shaman
+toughness=1
+[/card]
+[card]
 text=First strike     Shroud (This creature can't be the target of spells or abilities.)
 abilities=first strike,shroud
 id=175121
@@ -389,6 +414,19 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
+text=Flying. Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
+auto=@movedTo(other artifact|myinplay):2/2
+abilities=flying
+id=174816
+name=Glaze Fiend
+rarity=C
+type=Artifact Creature
+mana={1}{B}
+power=0
+subtype=Illusion
+toughness=1
+[/card]
+[card]
 text=At the beginning of your upkeep, put a 1/1 red Goblin creature token with haste into play.     Goblin creatures attack each turn if able.
 auto=lord(goblin) mustattack
 auto=@each my upkeep:token(Goblin,Creature Goblin,1/1,haste red)
@@ -469,6 +507,18 @@ mana={4}{B}{R}{R}{G}
 power=8
 subtype=Dragon
 toughness=8
+[/card]
+[card]
+text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
+auto=@movedTo(other creature|graveyard):may damage:1 target(player)
+id=174873
+name=Hissing Iguanar
+rarity=C
+type=Creature
+mana={2}{R}
+power=3
+subtype=Lizard
+toughness=1
 [/card]
 [card]
 text=
@@ -965,6 +1015,19 @@ id=174877
 name=Savage Lands
 rarity=U
 type=Land
+[/card]
+[card]
+text=Flying. Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Scavenger Drake.
+abilities=flying
+auto=@movedTo(other creature|graveyard) from(inplay):may counter(1/1)
+id=174987
+name=Scavenger Drake
+rarity=U
+type=Creature
+mana={3}{B}
+power=1
+subtype=Drake
+toughness=1
 [/card]
 [card]
 text=Seaside Citadel comes into play tapped.     {T}: Add {G}, {W}, or {U} to your mana pool.

@@ -24,20 +24,7 @@ mana={2}{R}{W}
 subtype=Ajani
 toughness=3
 [/card]
-[card]
-text=Shroud     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Algae Gharial.
-abilities=shroud
-auto=@movedTo(creature[-this]|graveyard) from(inplay):may counter(1/1)
-#0.8 doesnt have "[-this]" when this creature dies, it triggers its own effect, causing crash
-id=174986
-name=Algae Gharial
-rarity=U
-type=Creature
-mana={3}{G}
-power=1
-subtype=Crocodile
-toughness=1
-[/card]
+
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  Whenever a creature you control attacks alone, you may tap target creature.
 id=174826
@@ -259,19 +246,7 @@ power=2
 subtype=Zombie Wizard
 toughness=2
 [/card]
-[card]
-text=Whenever another creature is put into a graveyard from play, you may gain 1 life.
-auto=@movedTo(creature[-this]|graveyard) from(inplay):may life:1
-#0.8 there is no "[-this]"
-id=175073
-name=Deathgreeter
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Human Shaman
-toughness=1
-[/card]
+
 [card]
 text={2}{B}, {T}, Sacrifice a blue creature, a black creature, and a red creature: Search your library for a card named Prince of Thralls and put it into play. Then shuffle your library.
 id=175243
@@ -461,20 +436,7 @@ rarity=C
 type=Sorcery
 mana={2}{G}
 [/card]
-[card]
-text=Flying. Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
-auto=@movedTo(artifact[-this]|myinplay):2/2
-#0.8 there is no "[-this]"
-abilities=flying
-id=174816
-name=Glaze Fiend
-rarity=C
-type=Artifact Creature
-mana={1}{B}
-power=0
-subtype=Illusion
-toughness=1
-[/card]
+
 [card]
 text={1}{W}, {T}: Prevent all damage that would be dealt to target creature with power 5 or greater this turn.
 id=174822
@@ -535,19 +497,7 @@ rarity=C
 type=Instant
 mana={W}{U}
 [/card]
-[card]
-text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
-auto=@movedTo(creature[-this]|graveyard):may damage:1 target(player)
-#can't be coded in 0.8 because there is no "[-this]" plus it will crash if this creatures dies
-id=174873
-name=Hissing Iguanar
-rarity=C
-type=Creature
-mana={2}{R}
-power=3
-subtype=Lizard
-toughness=1
-[/card]
+
 [card]
 text={T}, Remove two cards in your graveyard from the game: Draw a card.     If damage would be dealt to you, prevent that damage. Remove a card in your graveyard from the game for each 1 damage prevented this way.     When there are no cards in your graveyard, you lose the game.
 id=175125
@@ -985,20 +935,7 @@ type=Enchantment
 mana={2}{G}
 subtype=Aura
 [/card]
-[card]
-text=Flying     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Scavenger Drake.
-abilities=flying
-auto=@movedTo(creature|graveyard) from(inplay):may counter(1/1)
-#0.8 doesnt have "[-this]" when this creature dies, it triggers its own effect, causing crash
-id=174987
-name=Scavenger Drake
-rarity=U
-type=Creature
-mana={3}{B}
-power=1
-subtype=Drake
-toughness=1
-[/card]
+
 [card]
 text=When Scourge Devil comes into play, creatures you control get +1/+0 until end of turn.     Unearth {2}{R} ({2}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=174845
