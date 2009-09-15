@@ -23,13 +23,13 @@ enum ENUM_WRES_INFO{
 enum ENUM_RETRIEVE_STYLE{
   RETRIEVE_EXISTING,  //Only returns a resource if it already exists. Does not lock or unlock.
   RETRIEVE_NORMAL,    //Returns or creates a resource. Does not change lock status.
-  RETRIEVE_LOCK,      //As above, locks cached resource.
-  RETRIEVE_UNLOCK,    //As above, unlocks cached resource.
+  RETRIEVE_LOCK,      //As above, locks cached resource. Not for quads.
+  RETRIEVE_UNLOCK,    //As above, unlocks cached resource. Not for quads.
   RETRIEVE_RESOURCE,  //Only retrieves a managed resource. Does not make a new one.
   RETRIEVE_VRAM,      //Retrieve it, and use vram if have to we create it. Must still remove it.
   RETRIEVE_MANAGE,    //Makes resource permanent.
   RETRIEVE_THUMB,     //Retrieve it as a thumbnail.
-  CACHE_THUMB = RETRIEVE_THUMB, //Backwards compatibility. 
+  CACHE_THUMB = RETRIEVE_THUMB, //Backwords compatibility. 
 };
 
 enum ENUM_CACHE_SUBTYPE{
@@ -104,9 +104,7 @@ protected:
 #endif
 };
 
-class WManagedQuad {
-public:
-  WManagedQuad() {texture = NULL;};
+struct WManagedQuad {
   WCachedTexture * texture;
   string resname;
 };
@@ -185,7 +183,7 @@ private:
   WCache<WCachedTexture,JTexture> textureWCache;
   WCache<WCachedSample,JSample> sampleWCache;
   WCache<WCachedParticles,hgeParticleSystemInfo> psiWCache;
-  vector<WManagedQuad*> managedQuads;
+  vector<WManagedQuad> managedQuads;
   
   //Statistics of record.
   unsigned int lastTime;

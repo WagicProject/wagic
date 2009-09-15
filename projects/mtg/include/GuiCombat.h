@@ -13,7 +13,7 @@ class GuiCombat : public GuiLayer
   GameObserver* go;
   DamagerDamaged* active;
   AttackerDamaged* activeAtk;
-  static JTexture* ok_tex;
+  static JQuad* ok_quad;
   Pos ok, enemy_avatar;
   vector<AttackerDamaged*> attackers;
   DamagerDamaged* current;

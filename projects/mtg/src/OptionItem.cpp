@@ -526,6 +526,7 @@ void OptionsList::save(){
   for (int i = 0; i < nbitems; i++){
     listItems[i]->setData();
   }
+  ::options.save();
 }
 
 void OptionsList::Update(float dt){
@@ -651,8 +652,6 @@ void OptionsMenu::save(){
   for(int x=0;x<MAX_OPTION_TABS;x++)
     if(tabs[x] != NULL) 
        tabs[x]->save();
-  
-  ::options.save();
 }
 
 bool OptionsMenu::isTab(string name){

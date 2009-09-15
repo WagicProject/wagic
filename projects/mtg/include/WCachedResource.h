@@ -2,12 +2,6 @@
 #define _WCACHEDRESOURCE_H_
 #include <hge/hgeparticle.h>
 
-#if defined WIN32 || defined LINUX
-#define INVALID_MTEX ((GLuint) -1)
-#else
-#define INVALID_MTEX -1
-#endif
-
 class WResource{
 public:
   friend class WResourceManager;
@@ -18,47 +12,24 @@ public:
 
   virtual void Nullify()=0; //For when our size is 0, so we don't free anything by mistake.
   virtual unsigned long size()=0; //Size of cached item in bytes.
+  virtual void Refresh(string filename)=0; //Basically calls Attempt(filename) and remaps in situ.
   virtual bool isGood()=0;  //Return true if this has data.
-  virtual bool isLocked();    //Is the resource locked?
-  virtual void lock();    //Lock it.
-  virtual void unlock(bool force = false);  //Unlock it. Forcing a lock will also remove "permanent" status.
-
-  bool isPermanent(); //Is the resource permanent?
-  void deadbolt();    //Make it permanent.
-  void hit();     //Update resource's last used time.
+  virtual bool Attempt(string filename, int submode, int & error)=0;  //Returns true if we've loaded our data and isGood().
 
 protected:
+  bool isLocked();    //Is the resource locked?
+  bool isPermanent(); //Is the resource permanent?
+  void lock();    //Lock it.
+  void deadbolt();    //Make it permanent.
+  void unlock(bool force = false);  //Unlock it. Forcing a lock will also remove "permanent" status.
+  void hit();     //Update resource's last used time.
+
   int loadedMode;   //What submode settings were we loaded with? (For refresh)
   unsigned int lastTime;  //When was the last time we were hit?
   unsigned char locks; //Remember to unlock when we're done using locked stuff, or else this'll be useless.
 };
 
-class WCachedResource: public WResource {
-public:
-  friend class WResourceManager;
-  template<class cacheItem,class cacheActual> friend class WCache;
-
-  virtual void Refresh(string filename)=0; //Basically calls Attempt(filename) and remaps in situ.
-  virtual bool Attempt(string filename, int submode, int & error)=0;  //Returns true if we've loaded our data and isGood().
-};
-
-
-class WTrackedQuad: public WResource {
-public:
-  WTrackedQuad(string _resname);
-  ~WTrackedQuad();
-  void Nullify();
-  unsigned long size();
-  bool isGood();
-
-  string resname;
-  JQuad * quad;
-#ifdef DEBUG_CACHE
-  static int totalTracked;
-#endif
-};
-
-class WCachedTexture: public WCachedResource{
+class WCachedTexture: public WResource{
 public:
   friend class WResourceManager;
   template<class cacheItem,class cacheActual> friend class WCache;
@@ -67,28 +38,23 @@ public:
 
   void Refresh(string filename);
   unsigned long size();  
-  bool isGood(); 
-  bool isLocked();
+  bool isGood();
   bool Attempt(string filename, int submode, int & error);
   bool compare(JTexture * t) {return (t == texture);};
 
   void Nullify();
   JTexture * Actual(); //Return this texture as is. Does not make a new one.
   JQuad * GetQuad(string resname);
-  
-  WTrackedQuad* GetTrackedQuad(float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,string resname=""); //Get us a new/existing quad.
-
-  JQuad * GetQuad(float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,string resname=""); //Alias to GetTrackedQuad.
+  JQuad * GetQuad(float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,string resname=""); //Get us a new/existing quad.
   JQuad * GetCard(float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,string resname=""); //Same as above, but centered when new.
-
   bool ReleaseQuad(JQuad* quad); //We're done with this quad, so delete and stop tracking. True if existed.
 protected:  
   JTexture * texture;
   bool bVRAM;
-  vector<WTrackedQuad*> trackedQuads;
+  map<JQuad*,string> trackedQuads;
 };
 
-class WCachedParticles: public WCachedResource{
+class WCachedParticles: public WResource{
 public:
   friend class WResourceManager;
   template<class cacheItem,class cacheActual> friend class WCache;
@@ -107,7 +73,7 @@ protected:
   hgeParticleSystemInfo * particles;
 };
 
-class WCachedSample: public WCachedResource{
+class WCachedSample: public WResource{
 public:
   friend class WResourceManager;
   template<class cacheItem,class cacheActual> friend class WCache;

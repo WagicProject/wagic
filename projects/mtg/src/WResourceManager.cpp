@@ -54,7 +54,6 @@ void WResourceManager::DebugRender(){
 #ifdef DEBUG_CACHE
   if(debugMessage.size())
     font->DrawString(debugMessage.c_str(), SCREEN_WIDTH-10,SCREEN_HEIGHT-25,JGETEXT_RIGHT);
-
 #endif
 }
 
@@ -162,11 +161,6 @@ WResourceManager::WResourceManager(){
 WResourceManager::~WResourceManager(){
   LOG("==Destroying WResourceManager==");
   RemoveAll();
-  for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
-    WManagedQuad* wm = *it;
-    SAFE_DELETE(wm);
-  }
-  managedQuads.clear();
   LOG("==Successfully Destroyed WResourceManager==");
 }
 
@@ -205,10 +199,10 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
   string resname = quadName;
   std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
 
-  vector<WManagedQuad*>::iterator it;
+  vector<WManagedQuad>::iterator it;
   int pos = 0;
   for(it = managedQuads.begin();it!=managedQuads.end();it++,pos++){
-    if((*it)->resname == resname)
+    if(it->resname == resname)
       return pos;
   }
 
@@ -222,10 +216,9 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
      JQuad * jq = jtex->GetQuad(x,y,width,height,quadName);  
      
     if(jq){
-      WManagedQuad * mq;
-      mq = NEW WManagedQuad();
-      mq->resname = resname;
-      mq->texture = jtex;
+      WManagedQuad mq;
+      mq.resname = resname;
+      mq.texture = jtex;
       managedQuads.push_back(mq);
     }
 
@@ -239,9 +232,9 @@ JQuad * WResourceManager::GetQuad(const string &quadName){
   string lookup = quadName;
   std::transform(lookup.begin(),lookup.end(),lookup.begin(),::tolower);
   
-  for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
-    if((*it)->resname == lookup)
-      return (*it)->texture->GetQuad(lookup);
+  for(vector<WManagedQuad>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
+    if(it->resname == lookup)
+      return it->texture->GetQuad(lookup);
   }
 
   return NULL;
@@ -251,11 +244,11 @@ JQuad * WResourceManager::GetQuad(int id){
   if(id < 0 || id >= (int) managedQuads.size())
     return NULL;
 
-  WCachedTexture * jtex = managedQuads[id]->texture;
+  WCachedTexture * jtex = managedQuads[id].texture;
   if(!jtex)
     return NULL;
 
-  return jtex->GetQuad(managedQuads[id]->resname);
+  return jtex->GetQuad(managedQuads[id].resname);
 }
 
 JQuad * WResourceManager::RetrieveTempQuad(string filename){
@@ -272,26 +265,12 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
      return jq;
   }  
 
-  //Aliases.
-  if(style == RETRIEVE_VRAM){
-    submode = submode | TEXTURE_SUB_VRAM;
-    style = RETRIEVE_LOCK;
-  } 
-  else if(style == RETRIEVE_THUMB){
-    submode = submode | TEXTURE_SUB_THUMB;
-    style = RETRIEVE_NORMAL;
-  }
-
   //Resname defaults to filename.
   if(!resname.size())
     resname = filename;
 
   //No quad, but we have a managed texture for this!
-  WCachedTexture * jtex = NULL;
-  if(style == RETRIEVE_MANAGE)
-    jtex = textureWCache.Retrieve(filename,RETRIEVE_MANAGE,submode);
-  else
-    jtex = textureWCache.Retrieve(filename,RETRIEVE_NORMAL,submode);
+  WCachedTexture * jtex = textureWCache.Retrieve(filename,style,submode);
 
   //Somehow, jtex wasn't promoted.
   if(style == RETRIEVE_MANAGE && jtex && !jtex->isPermanent())
@@ -299,26 +278,16 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
 
   //Make this quad, overwriting any similarly resname'd quads.
   if(jtex){
-     WTrackedQuad * tq = jtex->GetTrackedQuad(offX,offY,width,height,resname);  
-
-    if(tq == NULL)
-      return NULL;
-
+     jq = jtex->GetQuad(offX,offY,width,height,resname);  
+     
     if(style == RETRIEVE_MANAGE && resname != ""){
-      WManagedQuad * mq = NEW WManagedQuad();
-      mq->resname = resname;
-      mq->texture = jtex;
+      WManagedQuad mq;
+      mq.resname = resname;
+      mq.texture = jtex;
       managedQuads.push_back(mq);
     }
 
-    if(style == RETRIEVE_LOCK)
-      tq->lock();
-    else if(style == RETRIEVE_UNLOCK)
-      tq->unlock();
-    else if(style == RETRIEVE_MANAGE)
-      tq->deadbolt();
-
-    return tq->quad;
+    return jq;
   }
 
   //Texture doesn't exist, so no quad.
@@ -448,7 +417,7 @@ JTexture* WResourceManager::GetTexture(int id){
   for(it = textureWCache.managed.begin();it!= textureWCache.managed.end(); it++){
     if(it->second){
       jtex = it->second->Actual();
-      if(id == (int) jtex->mTexId)
+      if(jtex->mTexId == id)
         return jtex;
     }
   }

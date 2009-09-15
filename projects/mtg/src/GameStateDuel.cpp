@@ -73,7 +73,6 @@ void GameStateDuel::Start()
   testSuite = NEW TestSuite(RESPATH"/test/_tests.txt",mParent->collection);
 #endif
 
-  resources.RetrieveTexture("OK.png",RETRIEVE_LOCK);
 
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
   credits = NEW Credits();
@@ -219,7 +218,6 @@ void GameStateDuel::End()
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("Ending GamestateDuel\n");
 #endif
-  resources.Release(resources.RetrieveTexture("OK.png"));
   resources.SmallCache();
   SAFE_DELETE(deckmenu);
   JRenderer::GetInstance()->EnableVSync(false);
