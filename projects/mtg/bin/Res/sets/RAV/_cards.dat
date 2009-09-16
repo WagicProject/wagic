@@ -394,6 +394,15 @@ toughness=2
 abilities=mountainwalk
 [/card]
 [card]
+text=Whenever a nontoken creature you control is put into a graveyard from play, put a 1/1 green Saproling creature token into play.
+id=89069
+auto=@movedto(creature|graveyard) from(inplay):token(Saproling,creature saproling, 1/1,green)
+name=Golgari Germination
+rarity=U
+type=Enchantment
+mana={1}{B}{G}
+[/card]
+[card]
 text=({BG} can be paid with either {B} or {G}.)  {4}{B}, Sacrifice a creature: Return target creature card from your graveyard to your hand.     {4}{G}: Put a +1/+1 counter on target creature.
 id=83838
 auto={4}{B}{S(creature|myinplay)}:moveto(myhand) target(creature|mygraveyard)

@@ -667,7 +667,7 @@ toughness=3
 [card]
 text=Kavu creatures have trample.     Whenever another Kavu comes into play, put a +1/+1 counter on Kavu Monarch.
 auto=lord(kavu) trample
-auto=@movedTo(kavu|inplay):counter(1/1)
+auto=@movedTo(other kavu|inplay):counter(1/1)
 id=23097
 name=Kavu Monarch
 rarity=R

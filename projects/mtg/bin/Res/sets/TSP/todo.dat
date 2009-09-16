@@ -847,17 +847,7 @@ type=Instant
 text=Target player discards two cards. If you played this spell during your main phase, that player discards four cards instead.
 rarity=U
 [/card]
-[card]
-id=118873
-name=Herd Gnarr
-mana={3}{G}
-type=Creature
-subtype=Beast
-power=2
-toughness=2
-text=Whenever another creature comes into play under your control, Herd Gnarr gets +2/+2 until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=116387
 name=Hivestone

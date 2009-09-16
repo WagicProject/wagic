@@ -315,6 +315,18 @@ subtype=Wurm
 toughness=6
 [/card]
 [card]
+id=118873
+name=Herd Gnarr
+mana={3}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+text=Whenever another creature comes into play under your control, Herd Gnarr gets +2/+2 until end of turn.
+auto=@movedTo(other artifact|myinplay):2/2 ueot
+rarity=C
+[/card]
+[card]
 id=108900
 name=Icatian Crier
 mana={2}{W}

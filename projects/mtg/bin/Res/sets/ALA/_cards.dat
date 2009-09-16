@@ -415,7 +415,7 @@ subtype=Forest
 [/card]
 [card]
 text=Flying. Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
-auto=@movedTo(other artifact|myinplay):2/2
+auto=@movedTo(other artifact|myinplay):2/2 ueot
 abilities=flying
 id=174816
 name=Glaze Fiend
@@ -510,7 +510,7 @@ toughness=8
 [/card]
 [card]
 text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
-auto=@movedTo(other creature|graveyard):may damage:1 target(player)
+auto=@movedTo(other creature|graveyard) from(inplay):may damage:1 target(player)
 id=174873
 name=Hissing Iguanar
 rarity=C
@@ -971,7 +971,7 @@ toughness=7
 [card]
 text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
 abilities=first strike
-auto=@movedTo(creature|graveyard) from(inplay):may counter(1/1)
+auto=@movedTo(other creature|graveyard) from(inplay):may counter(1/1)
 id=174988
 name=Rockslide Elemental
 rarity=U
