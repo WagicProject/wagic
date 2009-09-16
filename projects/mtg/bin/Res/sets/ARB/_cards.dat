@@ -352,7 +352,7 @@ subtype=Human Archer
 power=1
 toughness=1
 text={1}, {T}: Stun Sniper deals 1 damage to target creature. Tap that creature.
-auto={1}{T}:damage::1 target(creature) && tap
+auto={1}{T}:damage:1 target(creature) && tap
 rarity=U
 [/card]
 [card]

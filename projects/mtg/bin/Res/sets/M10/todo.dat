@@ -9,14 +9,7 @@ toughness=2
 text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) When Acidic Slime enters the battlefield, destroy target artifact, enchantment, or land.
 rarity=U
 [/card]
-[card]
-id=191082
-name=Act of Treason
-mana={2}{R}
-type=Sorcery
-text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. (It can attack and {T} this turn.)
-rarity=U
-[/card]
+
 [card]
 id=191239
 name=Ajani Goldmane
