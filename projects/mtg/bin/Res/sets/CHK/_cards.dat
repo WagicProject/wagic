@@ -548,7 +548,7 @@ auto={1}:moveTo(ownerhand) target(land|mybattlefield) && token(Illusion,Creature
 rarity=R
 [/card]
 [card]
-text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn.E
+text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn.
 target=creature
 auto={B}:1/1
 id=50449
@@ -1012,7 +1012,7 @@ rarity=U
 text=Enchant Creature     Flash     Enchanted Creature gets +2/+2 and attacks each turn if able.
 abilities=flash
 target=creature
-auto=:2/2
+auto=2/2
 auto=mustattack
 id=50315
 name=Uncontrollable Anger
