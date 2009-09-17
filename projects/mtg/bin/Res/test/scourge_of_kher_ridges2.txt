@@ -1,0 +1,22 @@
+#Damage all OTHER creature with flying
+#name=Scourge of Kher Ridges
+#text=Flying {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying. {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Scourge of Kher Ridges
+manapool:{5}{R}
+[PLAYER2]
+inplay:grizzly bears,Honor Guard,Bloodrock Cyclops,Angelic Wall,Angelic Wall,Lord of the Pit
+[DO]
+Scourge of Kher Ridges
+choice 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Scourge of Kher Ridges
+manapool:{0}
+[PLAYER2]
+inplay:grizzly bears,Honor Guard,Bloodrock Cyclops,Lord of the Pit
+graveyard:Angelic Wall,Angelic Wall
+[END]

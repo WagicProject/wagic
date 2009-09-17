@@ -583,6 +583,19 @@ type=Instant
 mana={W}
 [/card]
 [card]
+text=When Denizen of the Deep comes into play, return each other creature you control to its owner's hand.
+id=135250
+name=Denizen of the Deep
+auto=moveto(ownerHand) all(other creature|myinplay)
+rarity=R
+color=Blue
+type=Creature
+mana={6}{U}{U}
+power=11
+subtype=Serpent
+toughness=11
+[/card]
+[card]
 text=Search your library for a card and put that card into your hand. Then shuffle your library.
 target=*|mylibrary
 auto=moveTo(myHand)

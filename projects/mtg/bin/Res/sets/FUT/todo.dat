@@ -1084,20 +1084,7 @@ toughness=1
 text={W}, Sacrifice Samite Censer-Bearer: Prevent the next 1 damage that would be dealt to each creature you control this turn.
 rarity=C
 [/card]
-[card]
-id=136161
-name=Scourge of Kher Ridges
-mana={6}{R}{R}
-type=Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying. {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
-auto={1}{R}:damage:2 all(creature[-flying])
-auto={5}{R}:damage:6 all(creature[flying])
-abilities=flying
-rarity=R
-[/card]
+
 [card]
 id=136158
 name=Second Wind
