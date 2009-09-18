@@ -220,17 +220,7 @@ type=Instant
 text=The next 1 damage that would be dealt to target creature this turn is dealt to another target creature instead. Draw a card.
 rarity=C
 [/card]
-[card]
-id=107317
-name=Celestial Ancient
-mana={3}{W}{W}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-text=Flying Whenever you cast an enchantment spell, put a +1/+1 counter on each creature you control.
-rarity=R
-[/card]
+
 [card]
 id=97106
 name=Coiling Oracle
@@ -379,17 +369,7 @@ type=Enchantment
 text=({(w/u)} can be paid with either {W} or {U}.) Whenever a player casts a noncreature spell, counter that spell. That player puts X 1/1 white and blue Bird creature tokens with flying onto the battlefield, where X is the spell's converted mana cost.
 rarity=R
 [/card]
-[card]
-id=107322
-name=Dread Slag
-mana={3}{B}{R}
-type=Creature
-subtype=Horror
-power=9
-toughness=9
-text=Trample Dread Slag gets -4/-4 for each card in your hand.
-rarity=R
-[/card]
+
 [card]
 id=111258
 name=Drekavac
@@ -595,17 +575,7 @@ toughness=3
 text=Protection from monocolored
 rarity=C
 [/card]
-[card]
-id=107467
-name=Haazda Exonerator
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text={T}, Sacrifice Haazda Exonerator: Destroy target Aura.
-rarity=C
-[/card]
+
 [card]
 id=107272
 name=Haazda Shield Mate
@@ -653,7 +623,8 @@ id=107315
 name=Hide // Seek (Hide)
 mana={R}{W}
 type=Instant
-text=Put target artifact or enchantment on the bottom of its owner's library. rarity=R
+text=Put target artifact or enchantment on the bottom of its owner's library. 
+rarity=R
 [/card]
 [card]
 id=107387
@@ -667,7 +638,7 @@ id=111281
 name=Ignorant Bliss
 mana={1}{R}
 type=Instant
-Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
+text=Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
 rarity=U
 [/card]
 [card]
@@ -737,6 +708,7 @@ mana={3}{G}{U}
 type=Enchantment
 subtype=Aura
 text=Enchant land Enchanted land has "{G}{U}, {T}: Put a 2/2 green and blue Drake creature token with flying onto the battlefield."
+target=land
 rarity=U
 [/card]
 [card]
@@ -796,17 +768,7 @@ toughness=1
 text=({(w/u)} can be paid with either {W} or {U}.) {T}: Tap target creature.
 rarity=C
 [/card]
-[card]
-id=107260
-name=Mistral Charger
-mana={1}{W}
-type=Creature
-subtype=Pegasus
-power=2
-toughness=1
-text=Flying
-rarity=U
-[/card]
+
 [card]
 id=107506
 name=Momir Vig, Simic Visionary
@@ -1120,17 +1082,7 @@ toughness=2
 text=({(b/r)} can be paid with either {B} or {R}.) {3}{B}, Discard a card: Target creature gets -2/-2 until end of turn. {3}{R}: Put a 2/1 red Goblin creature token with haste onto the battlefield. Exile it at the beginning of the next end step.
 rarity=U
 [/card]
-[card]
-id=97074
-name=Rakdos Ickspitter
-mana={1}{B}{R}
-type=Creature
-subtype=Thrull
-power=1
-toughness=1
-text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
-rarity=C
-[/card]
+
 [card]
 id=111188
 name=Rakdos Pit Dragon
@@ -1151,14 +1103,7 @@ subtype=Equipment
 text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. Equip {2}
 rarity=R
 [/card]
-[card]
-id=97098
-name=Rakdos Signet
-mana={2}
-type=Artifact
-text={1}, {T}: Add {B}{R} to your mana pool.
-rarity=C
-[/card]
+
 [card]
 id=107438
 name=Rakdos the Defiler
@@ -1170,17 +1115,7 @@ toughness=6
 text=Flying, trample Whenever Rakdos the Defiler attacks, sacrifice half the non-Demon permanents you control, rounded up. Whenever Rakdos deals combat damage to a player, that player sacrifices half the non-Demon permanents he or she controls, rounded up.
 rarity=R
 [/card]
-[card]
-id=107273
-name=Ratcatcher
-mana={4}{B}{B}
-type=Creature
-subtype=Ogre Rogue
-power=4
-toughness=4
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) At the beginning of your upkeep, you may search your library for a Rat card, reveal it, and put it into your hand. If you do, shuffle your library.
-rarity=R
-[/card]
+
 [card]
 id=107375
 name=Research // Development (Research)
@@ -1188,15 +1123,7 @@ mana={G}{U}
 type=Instant
 text=Choose up to four cards you own from outside the game and shuffle them into your library. rarity=R
 [/card]
-[card]
-id=97076
-name=Riot Spikes
-mana={(}{B}{/}{R}{)}
-type=Enchantment
-subtype=Aura
-({(b/r)} can be paid with either {B} or {R}.) Enchant creature Enchanted creature gets +2/-1.
-rarity=C
-[/card]
+
 [card]
 id=107423
 name=Rise // Fall (Rise)
@@ -1231,22 +1158,8 @@ toughness=2
 text={R}, Sacrifice Sandstorm Eidolon: Target creature can't block this turn. Whenever you cast a multicolored spell, you may return Sandstorm Eidolon from your graveyard to your hand.
 rarity=C
 [/card]
-[card]
-id=107534
-name=Seal of Doom
-mana={2}{B}
-type=Enchantment
-text=Sacrifice Seal of Doom: Destroy target nonblack creature. It can't be regenerated.
-rarity=C
-[/card]
-[card]
-id=107531
-name=Seal of Fire
-mana={R}
-type=Enchantment
-text=Sacrifice Seal of Fire: Seal of Fire deals 2 damage to target creature or player.
-rarity=C
-[/card]
+
+
 [card]
 id=107315
 name=Hide // Seek (Seek)
@@ -1255,26 +1168,8 @@ type=Instant
 text= Search target opponent's library for a card and exile it. You gain life equal to its converted mana cost. Then that player shuffles his or her library.
 rarity=R
 [/card]
-[card]
-id=97084
-name=Shielding Plax
-mana={2}{(}{G}{/}{U}{)}
-type=Enchantment
-subtype=Aura
-text=({(g/u)} can be paid with either {G} or {U}.) Enchant creature When Shielding Plax enters the battlefield, draw a card. Enchanted creature can't be the target of spells or abilities your opponents control.
-rarity=C
-[/card]
-[card]
-id=107313
-name=Silkwing Scout
-mana={2}{U}
-type=Creature
-subtype=Faerie Scout
-power=2
-toughness=1
-text=Flying {G}, Sacrifice Silkwing Scout: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
-rarity=C
-[/card]
+
+
 [card]
 id=107347
 name=Simic Basilisk
@@ -1316,36 +1211,9 @@ toughness=0
 text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
 rarity=C
 [/card]
-[card]
-id=107565
-name=Simic Ragworm
-mana={3}{G}
-type=Creature
-subtype=Worm
-power=3
-toughness=3
-text={U}: Untap Simic Ragworm.
-rarity=C
-[/card]
-[card]
-id=97079
-name=Simic Signet
-mana={2}
-type=Artifact
-text={1}, {T}: Add {G}{U} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=111204
-name=Simic Sky Swallower
-mana={5}{G}{U}
-type=Creature
-subtype=Leviathan
-power=6
-toughness=6
-text=Flying; trample; shroud (This permanent can't be the target of spells or abilities.)
-rarity=R
-[/card]
+
+
+
 [card]
 id=107532
 name=Pure // Simple (Simple)
@@ -1354,14 +1222,7 @@ type=Sorcery
 text= Destroy all Auras and Equipment.
 rarity=U
 [/card]
-[card]
-id=107326
-name=Skullmead Cauldron
-mana={4}
-type=Artifact
-text={T}: You gain 1 life. {T}, Discard a card: You gain 3 life.
-rarity=U
-[/card]
+
 [card]
 id=97109
 name=Sky Hussar
@@ -1403,17 +1264,7 @@ toughness=1
 text=Defender (This creature can't attack.) {B}: Slithering Shade gets +1/+1 until end of turn. Hellbent  ESlithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
 rarity=U
 [/card]
-[card]
-id=107440
-name=Soulsworn Jury
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=4
-text=Defender (This creature can't attack.) {1}{U}, Sacrifice Soulsworn Jury: Counter target creature spell.
-rarity=C
-[/card]
+
 [card]
 id=107281
 name=Spell Snare
@@ -1613,17 +1464,7 @@ subtype=Aura
 text=Enchant Forest As Utopia Sprawl enters the battlefield, choose a color. Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
 rarity=C
 [/card]
-[card]
-id=107276
-name=Utvara Scalper
-mana={1}{R}
-type=Creature
-subtype=Goblin Scout
-power=1
-toughness=2
-text=Flying Utvara Scalper attacks each turn if able.
-rarity=C
-[/card]
+
 [card]
 id=107431
 name=Valor Made Real
@@ -1643,17 +1484,7 @@ toughness=2
 text={G}, Sacrifice Verdant Eidolon: Add three mana of any one color to your mana pool. Whenever you cast a multicolored spell, you may return Verdant Eidolon from your graveyard to your hand.
 rarity=C
 [/card]
-[card]
-id=107477
-name=Vesper Ghoul
-mana={2}{B}
-type=Creature
-subtype=Zombie Druid
-power=1
-toughness=1
-text={T}, Pay 1 life: Add one mana of any color to your mana pool.
-rarity=C
-[/card]
+
 [card]
 id=107321
 name=Vigean Graftmage
@@ -1684,14 +1515,7 @@ type=Instant
 text=Choose a card type, then reveal the top four cards of your library. Put all cards of the chosen type revealed this way into your hand and the rest into your graveyard. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 rarity=U
 [/card]
-[card]
-id=107397
-name=Vision Skeins
-mana={1}{U}
-type=Instant
-text=Each player draws two cards.
-rarity=C
-[/card]
+
 [card]
 id=97096
 name=Voidslime
@@ -1700,17 +1524,7 @@ type=Instant
 text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
 rarity=R
 [/card]
-[card]
-id=111226
-name=Wakestone Gargoyle
-mana={3}{W}
-type=Creature
-subtype=Gargoyle
-power=3
-toughness=4
-text=Defender (This creature can't attack.) Flying {1}{W}: Creatures you control with defender can attack this turn as though they didn't have defender.
-rarity=R
-[/card]
+
 [card]
 id=97092
 name=Walking Archive
@@ -1768,14 +1582,7 @@ type=Sorcery
 text=Target player discards his or her hand.
 rarity=R
 [/card]
-[card]
-id=111202
-name=Wrecking Ball
-mana={2}{B}{R}
-type=Instant
-text=Destroy target creature or land.
-rarity=C
-[/card]
+
 [card]
 id=107413
 name=Writ of Passage
