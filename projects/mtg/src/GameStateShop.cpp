@@ -119,6 +119,7 @@ void GameStateShop::load(){
 void GameStateShop::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
+  resources.Release(mBg);
   resources.Release(bgTexture);
   SAFE_DELETE(shop);
   SAFE_DELETE(menu);

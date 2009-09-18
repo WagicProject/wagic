@@ -7,17 +7,28 @@
 #include "MTGCard.h"
 #include "WCachedResource.h"
 
-//Hard Limits.
+//Soft limits.
+#define HUGE_CACHE_LIMIT 10000000
+#define HUGE_CACHE_ITEMS 400
+
 #define LARGE_CACHE_LIMIT 5000000
-#define SMALL_CACHE_LIMIT 2000000
-#define MAX_CACHE_OBJECTS 200
+#define LARGE_CACHE_ITEMS 300
+
+#define SMALL_CACHE_LIMIT 1000000
+#define SMALL_CACHE_ITEMS 200
+
+
+//Hard Limits.
+#define MAX_CACHE_OBJECTS 400
 #define MAX_CACHE_ATTEMPTS 10
 #define MAX_CACHE_MISSES 200
+#define MAX_CACHED_SAMPLES 0
 
 enum ENUM_WRES_INFO{
   WRES_UNLOCKED = 0,      //Resource is unlocked.
   WRES_MAX_LOCK = 250,    //Maximum number of locks for a resource.
   WRES_PERMANENT = 251,   //Resource is permanent (ie, managed)  
+  WRES_UNDERLOCKED = 252, //Resource was released too many times.
 };
 
 enum ENUM_RETRIEVE_STYLE{
@@ -166,8 +177,7 @@ public:
   //Wrapped from JSoundSystem. TODO: Privatize.
   JMusic * ssLoadMusic(const char *fileName);
 
-  void LargeCache();
-  void SmallCache();
+  void CacheForState(int state);
 
   void DebugRender();
 
@@ -183,7 +193,7 @@ private:
   WCache<WCachedTexture,JTexture> textureWCache;
   WCache<WCachedSample,JSample> sampleWCache;
   WCache<WCachedParticles,hgeParticleSystemInfo> psiWCache;
-  vector<WManagedQuad> managedQuads;
+  vector<WManagedQuad*> managedQuads;
   
   //Statistics of record.
   unsigned int lastTime;

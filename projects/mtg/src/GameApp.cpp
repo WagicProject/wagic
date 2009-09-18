@@ -248,6 +248,14 @@ void GameApp::Update()
 	      mCurrentState->End();
 
       mCurrentState = mNextState;
+
+      //Automate cache resizing.
+        for(int x=0;x<MAX_STATE;x++){
+          if(mNextState == mGameStates[x]){
+            resources.CacheForState(x);
+            break;
+          }
+        }
      
 
 #if defined (WIN32) || defined (LINUX)

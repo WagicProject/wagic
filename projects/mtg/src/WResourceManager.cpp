@@ -41,9 +41,9 @@ void WResourceManager::DebugRender(){
   if(textureWCache.totalSize > textureWCache.cacheSize)
     man = textureWCache.totalSize - textureWCache.cacheSize;
 
-  sprintf(buf,"Textures %u+%u (of %u) items (%u misses), Pixels: %lu+%lu (of %lu)",
+  sprintf(buf,"Textures %u+%u (of %u) items (%u misses), Pixels: %lu (of %lu) + %lu",
     textureWCache.cacheItems, textureWCache.managed.size(),textureWCache.maxCached,
-    misses,textureWCache.cacheSize,man,textureWCache.maxCacheSize);
+    misses,textureWCache.cacheSize,textureWCache.maxCacheSize,man);
   font->DrawString(buf, 10,5);
 
 
@@ -54,6 +54,7 @@ void WResourceManager::DebugRender(){
 #ifdef DEBUG_CACHE
   if(debugMessage.size())
     font->DrawString(debugMessage.c_str(), SCREEN_WIDTH-10,SCREEN_HEIGHT-25,JGETEXT_RIGHT);
+
 #endif
 }
 
@@ -154,13 +155,19 @@ WResourceManager::WResourceManager(){
 	mFontMap.clear();
 
   psiWCache.Resize(SMALL_CACHE_LIMIT,6);      //Plenty of room for mana symbols, or whatever.
-  sampleWCache.Resize(SMALL_CACHE_LIMIT,0);   //This guy only exists so we can track misses.
+  sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
   textureWCache.Resize(LARGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
   lastTime = 0;
 }
 WResourceManager::~WResourceManager(){
   LOG("==Destroying WResourceManager==");
   RemoveAll();
+
+  for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
+    WManagedQuad* wm = *it;
+    SAFE_DELETE(wm);
+  }
+  managedQuads.clear();
   LOG("==Successfully Destroyed WResourceManager==");
 }
 
@@ -172,23 +179,13 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
   string filename = card->getSetName();
   filename += "/";
   filename += card->getImageName();
-  WCachedTexture * res = NULL;
+  JQuad * jq = RetrieveQuad(filename,0,0,0,0,filename,style,submode|TEXTURE_SUB_5551);
 
-  //Aliases.
-  if(style == RETRIEVE_VRAM){
-    submode = submode | TEXTURE_SUB_VRAM;
-    style = RETRIEVE_LOCK;
-  } 
-  else if(style == RETRIEVE_THUMB){
-    submode = submode | TEXTURE_SUB_THUMB;
-    style = RETRIEVE_NORMAL;
+  if(jq){
+    jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);  
+    return jq;
   }
-
-  res = textureWCache.Retrieve(filename,style,submode|TEXTURE_SUB_5551);  //Force RGBA5650. JPG doesn't support transparency anyways.
-
-  if(res) //A non-null result will always be good.
-    return res->GetCard();
-
+  
   return NULL;
 }
 
@@ -199,10 +196,10 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
   string resname = quadName;
   std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
 
-  vector<WManagedQuad>::iterator it;
+  vector<WManagedQuad*>::iterator it;
   int pos = 0;
   for(it = managedQuads.begin();it!=managedQuads.end();it++,pos++){
-    if(it->resname == resname)
+    if((*it)->resname == resname)
       return pos;
   }
 
@@ -213,12 +210,14 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
     return INVALID_ID; 
 
   if(jtex){
-     JQuad * jq = jtex->GetQuad(x,y,width,height,quadName);  
+     WTrackedQuad * tq = jtex->GetTrackedQuad(x,y,width,height,quadName);  
      
-    if(jq){
-      WManagedQuad mq;
-      mq.resname = resname;
-      mq.texture = jtex;
+    if(tq){
+      tq->deadbolt();
+      WManagedQuad * mq;
+      mq = NEW WManagedQuad();
+      mq->resname = resname;
+      mq->texture = jtex;
       managedQuads.push_back(mq);
     }
 
@@ -232,9 +231,9 @@ JQuad * WResourceManager::GetQuad(const string &quadName){
   string lookup = quadName;
   std::transform(lookup.begin(),lookup.end(),lookup.begin(),::tolower);
   
-  for(vector<WManagedQuad>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
-    if(it->resname == lookup)
-      return it->texture->GetQuad(lookup);
+  for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
+    if((*it)->resname == lookup)
+      return (*it)->texture->GetQuad(lookup);
   }
 
   return NULL;
@@ -244,11 +243,11 @@ JQuad * WResourceManager::GetQuad(int id){
   if(id < 0 || id >= (int) managedQuads.size())
     return NULL;
 
-  WCachedTexture * jtex = managedQuads[id].texture;
+  WCachedTexture * jtex = managedQuads[id]->texture;
   if(!jtex)
     return NULL;
 
-  return jtex->GetQuad(managedQuads[id].resname);
+  return jtex->GetQuad(managedQuads[id]->resname);
 }
 
 JQuad * WResourceManager::RetrieveTempQuad(string filename){
@@ -265,12 +264,28 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
      return jq;
   }  
 
+  //Aliases.
+  if(style == RETRIEVE_VRAM){
+    submode = submode | TEXTURE_SUB_VRAM;
+    style = RETRIEVE_LOCK;
+  } 
+  else if(style == RETRIEVE_THUMB){
+    submode = submode | TEXTURE_SUB_THUMB;
+    style = RETRIEVE_NORMAL;
+  }
+
   //Resname defaults to filename.
   if(!resname.size())
     resname = filename;
 
   //No quad, but we have a managed texture for this!
-  WCachedTexture * jtex = textureWCache.Retrieve(filename,style,submode);
+  WCachedTexture * jtex = NULL;
+  if(style == RETRIEVE_MANAGE)
+    jtex = textureWCache.Retrieve(filename,RETRIEVE_MANAGE,submode);
+  else if(style == RETRIEVE_EXISTING)
+    jtex = textureWCache.Retrieve(filename,RETRIEVE_EXISTING,submode);
+  else
+    jtex = textureWCache.Retrieve(filename,RETRIEVE_NORMAL,submode);
 
   //Somehow, jtex wasn't promoted.
   if(style == RETRIEVE_MANAGE && jtex && !jtex->isPermanent())
@@ -278,16 +293,26 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
 
   //Make this quad, overwriting any similarly resname'd quads.
   if(jtex){
-     jq = jtex->GetQuad(offX,offY,width,height,resname);  
-     
+     WTrackedQuad * tq = jtex->GetTrackedQuad(offX,offY,width,height,resname);  
+
+    if(tq == NULL)
+      return NULL;
+
     if(style == RETRIEVE_MANAGE && resname != ""){
-      WManagedQuad mq;
-      mq.resname = resname;
-      mq.texture = jtex;
+      WManagedQuad * mq = NEW WManagedQuad();
+      mq->resname = resname;
+      mq->texture = jtex;
       managedQuads.push_back(mq);
     }
 
-    return jq;
+    if(style == RETRIEVE_LOCK)
+      tq->lock();
+    else if(style == RETRIEVE_UNLOCK)
+      tq->unlock();
+    else if(style == RETRIEVE_MANAGE)
+      tq->deadbolt();
+
+    return tq->quad;
   }
 
   //Texture doesn't exist, so no quad.
@@ -310,8 +335,9 @@ void WResourceManager::Release(JQuad * quad){
       break;
   }
 
-  if(it != textureWCache.cache.end() && it->second)
-    textureWCache.RemoveItem(it->second,false); //won't remove locked.
+  //Releasing a quad doesn't release the associated texture-- it might be needed later.
+  //if(it != textureWCache.cache.end() && it->second)
+  // textureWCache.RemoveItem(it->second,false); //won't remove locked.
 }
 
 void WResourceManager::ClearMisses(){
@@ -444,6 +470,7 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * t
 
 JSample * WResourceManager::RetrieveSample(string filename, int style, int submode){
   //Check cache. This just tracks misses.
+  return NULL;
   WCachedSample * tc = NULL;
   tc = sampleWCache.Get(filename,submode);
 
@@ -747,23 +774,32 @@ int WResourceManager::LoadJLBFont(const string &fontName, int height){
 	else
 		return itr->second;
 }
-void WResourceManager::LargeCache(){
+void WResourceManager::CacheForState(int state){
 #if (defined WIN32 || defined LINUX) && !defined DEBUG_CACHE
+  textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
   return;
 #else 
-    //Does not check option so we can use large cache during 
-    //deck editor, when it's pretty much always safe.
-    textureWCache.Resize(LARGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
-    textureWCache.Cleanup();
-#endif
-}
-void WResourceManager::SmallCache(){
-#if (defined WIN32 || defined LINUX) && !defined DEBUG_CACHE
-  return;
-#else
-  if(options[Options::CACHESIZE].number == 0){
-    textureWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHE_OBJECTS);
-    textureWCache.Cleanup();}
+  switch(state){
+    //Default is not to change cache sizes.
+    case GAME_STATE_MENU:
+    case GAME_STATE_OPTIONS:
+      break;
+    //Duels use a smaller cache, so there's more room for game stuff.
+    case GAME_STATE_DUEL:
+      textureWCache.Resize(SMALL_CACHE_LIMIT,SMALL_CACHE_ITEMS);
+      sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
+      Cleanup();
+      break;
+      //Deck editor and shop are entirely cache safe, so give it near infinite resources.
+    case GAME_STATE_SHOP:
+    case GAME_STATE_DECK_VIEWER:
+      textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
+      break;
+      //Anything unknown, use large cache.
+    default:
+      textureWCache.Resize(LARGE_CACHE_LIMIT,LARGE_CACHE_ITEMS);
+      break;
+  }
 #endif
 }
 
@@ -949,8 +985,6 @@ void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items){
 }
 template <class cacheItem, class cacheActual>
 cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submode){
-//  Cleanup();  
-
   if(submode & CACHE_EXISTING){ //Should never get this far.
     mError = CACHE_ERROR_NOT_CACHED;
     return NULL;
@@ -962,7 +996,7 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
 
   if(item == NULL || !item->Attempt(filename,submode,mError)){
     //No such file. Fail.
-    if(mError == CACHE_ERROR_404){
+    if(item && mError == CACHE_ERROR_404){
       Delete(item);
       return NULL;
     }
@@ -1001,8 +1035,10 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
   }
   else
     mError = CACHE_ERROR_NONE;
- 
+
+  item->lock();
   Cleanup();  
+  item->unlock();
   return item;
 }
 
@@ -1189,6 +1225,9 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
       cacheSize += isize;
     }
 
+    item->lock();
+    Cleanup();  //Strictly enforce limits.
+    item->unlock();
     return item;
   }
 
@@ -1297,7 +1336,7 @@ bool WCache<cacheItem, cacheActual>::RemoveMiss(string id){
 
 template <class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem * item, bool force){
-  typename map<string,cacheItem*>::iterator it = cache.end();
+  typename map<string,cacheItem*>::iterator it;
 
   if(item == NULL)
     return false;   //Use RemoveMiss to remove cache misses, not this.
@@ -1351,7 +1390,11 @@ template <class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
   if(!item)
     return false;
-
+#ifdef DEBUG_CACHE
+  char buf[512];
+  sprintf(buf,"Cache: Delete [%d]\n",(int)item);
+  //OutputDebugString(buf);
+#endif
   if(maxCached == 0)
     item->Nullify();
 

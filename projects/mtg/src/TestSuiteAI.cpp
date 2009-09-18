@@ -15,7 +15,7 @@ TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buil
 
   mAvatarTex = resources.RetrieveTexture("baka.jpg",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
   if(mAvatarTex)
-  mAvatar = resources.RetrieveQuad("baka.jpg", 0, 0, 35, 50,"bakaAvatar",RETRIEVE_NORMAL,TEXTURE_SUB_AVATAR);
+  mAvatar = resources.RetrieveQuad("baka.jpg", 0, 0, 35, 50,"bakaAvatar",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
   else 
     mAvatar = NULL;
 

@@ -26,6 +26,8 @@ Player::~Player(){
   SAFE_DELETE(manaPool);
   resources.Release(mAvatar);
   resources.Release(mAvatarTex);
+  mAvatar = NULL;
+  mAvatarTex = NULL;
 }
 
 const string Player::getDisplayName() const {
@@ -59,7 +61,7 @@ Player * Player::opponent(){
 HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
   mAvatarTex = resources.RetrieveTexture("avatar.jpg",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
   if (mAvatarTex)
-    mAvatar = resources.RetrieveQuad("avatar.jpg",0,0,35,50,"playerAvatar",RETRIEVE_NORMAL,TEXTURE_SUB_AVATAR);
+    mAvatar = resources.RetrieveQuad("avatar.jpg",0,0,35,50,"playerAvatar",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
   else 
     mAvatar = NULL;
 }

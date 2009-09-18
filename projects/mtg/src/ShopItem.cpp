@@ -29,6 +29,7 @@ ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thu
   quantity = 10;
   card = NULL;
   mHasFocus = hasFocus;
+  mRelease = false;
 
   mScale = 1.0f;
   mTargetScale = 1.0f;
@@ -56,6 +57,7 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
     xy[i] = _xy[i];
   }
   mHasFocus = hasFocus;
+  mRelease = false;
   mScale = 1.0f;
   mTargetScale = 1.0f;
 
@@ -69,9 +71,12 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
 
-  thumb = resources.RetrieveCard(card,CACHE_THUMB);
+  thumb = resources.RetrieveCard(card,RETRIEVE_LOCK,TEXTURE_SUB_THUMB);
 
-  if (!thumb) thumb = CardGui::alternateThumbQuad(card);
+  if (!thumb)
+    thumb = CardGui::alternateThumbQuad(card);
+  else
+    mRelease = true;
 
   if (thumb){
      mesh=NEW hgeDistortionMesh(2,2);
@@ -102,6 +107,9 @@ int ShopItem::updateCount(DeckDataWrapper * ddw){
 
 ShopItem::~ShopItem(){
   OutputDebugString("delete shopitem\n");
+  if(mRelease){
+    resources.Release(thumb);
+  }
   SAFE_DELETE(mesh);
 }
 

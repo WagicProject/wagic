@@ -12,24 +12,23 @@ struct Left : public Exp { static inline bool test(DamagerDamaged* ref, DamagerD
 struct Right : public Exp { static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
   { return ref->y == test->y && ref->x < test->x && test->show; } };
 
-JQuad* GuiCombat::ok_quad = NULL;
+JTexture* GuiCombat::ok_tex = NULL;
 
 GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), activeAtk(NULL),
 					 ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255),
 					 enemy_avatar(SCREEN_WIDTH - MARGIN, TOP_LINE, 2, 0, 255),
 					 cursor_pos(NONE), step(DAMAGE)
 {
-    if(NULL == ok_quad)
+    if(NULL == ok_tex)
     {
-      ok_quad = resources.RetrieveQuad("Ok.png");
-      if (ok_quad) ok_quad->SetHotSpot(28, 22);
+      ok_tex = resources.RetrieveTexture("Ok.png",RETRIEVE_LOCK);
     }
 }
 
 GuiCombat::~GuiCombat()
 {
-  if(ok_quad)
-    resources.Release(ok_quad);
+  if(ok_tex)
+    resources.Release(ok_tex);
 
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
@@ -277,7 +276,11 @@ void GuiCombat::Render()
 	  }
 	}
     }
-  if (ok_quad) ok.Render(ok_quad);
+  if (ok_tex) {
+    JQuad *ok_quad = resources.RetrieveTempQuad("Ok.png");
+    ok_quad->SetHotSpot(28, 22);
+    ok.Render(ok_quad);
+  }
   renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
   if (FIRST_STRIKE == step)
     {

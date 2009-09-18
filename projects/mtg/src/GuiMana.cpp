@@ -41,6 +41,8 @@ ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1
 
   if(!psi){
     psi = NEW hgeParticleSystemInfo();
+    if(!psi)
+      return;
     hgeParticleSystemInfo * defaults = resources.RetrievePSI("mana.psi",mq);
     if(defaults){
       memcpy(psi,defaults,sizeof(hgeParticleSystemInfo));
@@ -50,7 +52,7 @@ ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1
 
       //Default values for particle system! Cribbed from mana.psi
       //Really, we should just be loading that and then changing colors...
-      /*psi->nEmission = 114;
+      psi->nEmission = 114;
       psi->fLifetime = -1;
       psi->fParticleLifeMin = 1.1507937;
       psi->fParticleLifeMax = 1.4682540;
@@ -60,7 +62,7 @@ ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1
       psi->fSizeVar = 0.25396827;
       psi->fSpinStart = -5.5555553;
       psi->fAlphaVar = 0.77777779;
-      psi->sprite = mq;*/
+      psi->sprite = mq;
     }
 
     switch(color){
@@ -91,7 +93,7 @@ ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1
     }
     
     particleSys = NEW hgeParticleSystem(psi);
-    SAFE_DELETE(psi); //Not handled by cache, so kill it here.
+    SAFE_DELETE(psi); //This version of psi is not handled by cache, so kill it here.
   }
   else
     particleSys = NEW hgeParticleSystem(psi); //Cache will clean psi up later.
@@ -212,7 +214,7 @@ void GuiMana::Update(float dt)
   if (it != manas.end())
     {
       for (vector<ManaIcon*>::iterator q = it; q != manas.end(); ++q)
-	SAFE_DELETE(*q);
+	      SAFE_DELETE(*q);
       manas.erase(it, manas.end());
     }
 }

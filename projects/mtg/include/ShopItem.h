@@ -20,6 +20,7 @@ class hgeDistortionMesh;
 class ShopItem:public JGuiObject{
  private:
   bool mHasFocus;
+  bool mRelease;
   JLBFont *mFont;
   string mText;
   float xy[8];
