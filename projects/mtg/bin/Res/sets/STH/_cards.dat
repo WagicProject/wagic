@@ -15,8 +15,7 @@ name=Awakening
 color=Green
 rarity=R
 mana={2}{G}{G}
-auto=@each my upkeep:untap all(creature,land|myBattlefield)
-auto=@each opponent upkeep:untap all(creature,land|myBattlefield)
+auto=@each upkeep:untap all(creature,land)
 type=Enchantment
 [/card]
 [card]
