@@ -1,0 +1,585 @@
+[card]
+text=Flying   When Angel of Despair enters the battlefield, destroy target permanent.
+target=*
+auto=destroy
+id=83869
+name=Angel of Despair
+color=White,Black
+rarity=R
+mana={3}{W}{W}{B}{B}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+abilities=flying
+[/card]
+[card]
+text=Whenever an opponent discards a card, Abyssal Nocturnus gets +2/+2 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
+id=96858
+name=Abyssal Nocturnus
+color=Black
+rarity=R
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+auto=@movedTo(*|opponentgraveyard) from(opponenthand):2/2
+auto=@movedTo(*|opponentgraveyard) from(opponenthand):fear
+power=2
+toughness=2
+[/card]
+[card]
+text=At the beginning of your upkeep, each opponent loses 1 life. You gain life equal to the life lost this way.
+id=96892
+name=Agent of Masks
+color=White,Black
+rarity=U
+mana={3}{W}{B}
+type=Creature
+subtype=Human Advisor
+auto=@each my upkeep:life:-1 opponent
+auto=@each my upkeep:life:1 controller
+power=2
+toughness=3
+[/card]
+[card]
+text=Remove target land from the game.
+target=land
+auto=moveTo(removedFromGame)
+id=96969
+name=Caustic Rain
+color=Black
+rarity=U
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Target creature with flying loses flying until end of turn. Crash Landing deals damage to that creature equal to the number of Forests you control.
+target=creature(flying)
+auto=-flying
+auto=foreach(forest|myinplay) damage:1
+id=96918
+name=Crash Landing
+color=Green
+rarity=U
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+text=Remove target card in a graveyard from the game.   Draw a card.
+target=*|graveyard
+auto=moveto(removedfromgame)
+auto=draw:1
+id=96936
+name=Cremate
+rarity=U
+type=Instant
+mana={B}
+[/card]
+[card]
+text=Flying   Daggerclaw Imp can't block.
+id=96949
+name=Daggerclaw Imp
+color=Black
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Imp
+power=3
+toughness=1
+abilities=flying,cantblock
+[/card]
+[card]
+text=({WB} can be paid with either White or Black.)   At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
+auto=@each my upkeep:may moveTo(myBattlefield) target(creature|graveyard)
+id=97193
+name=Debtors' Knell
+color=White,Black
+rarity=R
+mana={4}{BW}{BW}{BW}
+type=Enchantment
+[/card]
+[card]
+text=Douse in Gloom deals 2 damage to target creature and you gain 2 life.
+target=creature
+auto=Damage:2
+auto=life:2 controller
+id=97221
+name=Douse in Gloom
+color=Black
+rarity=C
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+text=Nonbasic landwalk
+id=96848
+name=Dryad Sophisticate
+color=Green
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Dryad
+auto=aslongas(land[-basic]|opponentBattlefield) unblockable
+power=2
+toughness=1
+[/card]
+[card]
+text=Each land gets +2/+2 as long as it's a creature.
+auto=lord(land) 2/2
+id=97238
+name=Earth Surge
+color=Green
+rarity=R
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+text=Counter target nonblue spell.
+id=96890
+target=*[-blue]|stack
+auto=fizzle
+name=Frazzle
+rarity=U
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+text={T}: Gelectrode deals 1 damage to target creature or player.   Whenever you cast an instant or sorcery spell, you may untap Gelectrode.
+id=96891
+name=Gelectrode
+color=Blue,Red
+rarity=U
+mana={1}{U}{R}
+type=Creature
+subytpe=Weird
+auto={T}:damage:1 target(creature,player)
+auto=@movedTo(instant,sorcery|mystack):may untap
+power=0
+toughness=1
+[/card]
+[card]
+text=First Strike   {3}{G}: Ghor-Clan Bloodscale gets +2/+2 until end of turn. Play this ability only once each turn.
+id=96834
+name=Ghor-Clan Bloodscale
+colour=Red
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Beast
+auto={3}{G}:2/2 limit 1
+power=2
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text=Flying   {T}: Target attacking or blocking creature gets +1/+1 until end of turn.
+id=96901
+name=Ghost Warden
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Spirit
+auto={T}:1/1 target(creature[attacking;blocking])
+power=1
+toughness=1
+[/card]
+[card]
+text=Trample, haste, shroud
+id=106576
+name=Giant Solifuge
+colour=Red,Green
+rarity=R
+mana={2}{RG}{RG}
+type=Creature
+subtype=Insect
+power=4
+toughness=1
+abilities=trample,haste,shroud
+[/card]
+[card]
+text={3}{R}, Sacrifice a land: Gruul Guildmage deals 2 damage to target player.   {3}{G}: Target creature gets +2/+2 until end of turn.
+id=96837
+name=Gruul Guildmage
+colour=Red,Green
+rarity=U
+mana={RG}{RG}
+type=Creature
+subtype=Human Shaman
+auto={3}{R}{S(land|myBattlefield)}:Damage:2 target(creature,player)
+auto={3}{G}:2/2 target(creature,player)
+power=2
+toughness=2
+[/card]
+[card]
+text={1}, {T}: Add {R}{G} to your mana pool.
+auto={1}{T}:Add {R}{G}
+id=96859
+name=Gruul Signet
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=When Hatching Plans is put into a graveyard from the battlefield, draw three cards.
+id=96873
+auto=@movedto(this|graveyard) from(mybattlefield):draw:3
+name=Hatching Plans
+rarity=R
+type=Enchantment
+mana={1}{U}
+[/card]
+[card]
+text={1}, {T}: Add {U}{R} to your mana pool.
+auto={1}{T}:Add {U}{R}
+id=96867
+name=Izzet Signet
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Vigilance   {4}{W}: Lionheart Maverick gets +1/+2 until end of turn.
+id=96841
+name=Lionheart Maverick
+color=White
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Knight
+auto={4}{W}:1/2
+power=1
+toughness=1
+abilities=vigilance
+[/card]
+[card]
+text={W}, Sacrifice a creature: Target creature can't attack this turn.
+id=107696
+name=Martyred Rusalka
+color=White
+rarity=U
+mana={W}
+type=Creature
+subtype=Spirit
+auto={W}{S(creature|myBattlefield)}:cantattack target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Destroy target creature or enchantment.
+target=creature,enchantment
+auto=destroy
+id=96930
+name=Mortify
+color=White,Black
+rarity=U
+mana={1}{W}{B}
+type=Instant
+[/card]
+[card]
+text=({WB} can be paid with either {W} or {B}.)   Flying, lifelink
+id=96910
+name=Mourning Thrull
+color=White,Black
+rarity=C
+mana={1}{WB}
+type=Creature
+subtype=Thrull
+power=1
+toughness=1
+abilities=flying,lifelink
+[/card]
+[card]
+text=({WB} can be paid with either {W} or {B}.)   {2}{W}: Target player gains 1 life.     {2}{B}: Each player loses 1 life.
+id=96921
+name=Orzhov Guildmage
+colour=White,Black
+rarity=U
+mana={WB}{WB}
+type=Creature
+subtype=Human Wizard
+auto={2}{W}:life:1 target(player)
+auto={2}{B}:damage:1 all(player)
+power=2
+toughness=2
+[/card]
+[card]
+text={1}, {T}: Add {W}{B} to your mana pool.
+auto={1}{T}:Add {W}{B}
+id=96870
+name=Orzhov Signet
+color=Artifact
+rarity=C
+mana={2}
+type=Artifact
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {3}{W}{B}, {T}: Target player loses 1 life and you gain 1 life.
+auto={T}:Add {1}
+auto={3}{W}{B}{T}:damage:1 target(player) && life:1 controller
+id=97206
+name=Orzhova, the Church of Deals
+rarity=U
+type=Land
+[/card]
+[card]
+text={W}, {T}: Tap target creature. 
+id=96974
+name=Ostiary Thrull
+color=Black
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Thrull
+auto={W}{T}:tap target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't attack or block.   Enchanted creature has "At the beginning of your upkeep, you lose 1 life."
+target=creature
+auto=cantattack
+auto=cantblock
+alias=1148
+id=96882
+name=Pillory of the Sleepless
+color=White,Black
+rarity=C
+mana={1}{W}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={B}, Sacrifice a creature: Target creature gets -1/-1 until end of turn.
+id=107691
+name=Plagued Rusalka
+color=Black
+rarity=U
+mana={B}
+type=Creature
+subtype=Spirit
+auto={B}{S(creature|myBattlefield)}:-1/-1 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Whenever another creature enters the battlefield, its controller loses 1 life.
+id=107099
+name=Poisonbelly Ogre
+color=Black
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Ogre Warrior
+auto=@moveTo(creature|myBattlefield) from(graveyard,exile,hand,library): life:-1 controller
+auto=@moveTo(creature|opponentBattlefield) from(graveyard,exile,hand,library): life:-1 opponent
+power=3
+toughness=3
+[/card]
+[card]
+text={3}{B}{T}: Target creature gains swampwalk until end of turn.    {1}{B}: Regenerate Restless Bones. 
+id=96855
+name=Restless Bones
+color=Black
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Skeleton
+auto={3}{B}{T}:swampwalk target(creature)
+auto={1}{B}:regenerate
+power=1
+toughness=1
+[/card]
+[card]
+text=At the beginning of your upkeep, Rumbling Slum deals 1 damage to each player.
+id=97199
+name=Rumbling Slum
+color=Red,Green
+rarity=R
+mana={1}{R}{G}{G}
+type=Creature
+subtype=Elemental
+auto=@each my upkeep:damage:1 all(player)
+power=5
+toughness=5
+[/card]
+[card]
+text={R}, Sacrifice a creature: Scorched Rusalka deals 1 damage to target player.
+id=107698
+name=Scorched Rusalka
+color=Red
+rarity=U
+mana={R}
+type=Creature
+subtype=Spirit
+auto={R}{S(creature|myBattlefield)}:damage:1 target(player)
+power=1
+toughness=1
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)      Enchanted creature has first strike.      {1}{B}: Enchanted creature gets +2/+2 until end of turn.
+target=creature
+auto={1}{B}:1/2
+auto=first strike
+id=96944
+name=Shadow Lance
+color=White
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Flying   When Skeletal Vampire enters the battlefield, put two 1/1 black Bat creature tokens with flying onto the battlefield.   {3}{B}{B}, Sacrifice a Bat: Put two 1/1 black Bat creature tokens with flying onto the battlefield.   Sacrifice a Bat: Regenerate Skeletal Vampire.
+id=96899
+name=Skeletal Vampire
+color=Black
+rarity=R
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire Skeleton
+auto=token(Bat,creature bat, 1/1,flying bat)*2
+auto={4}{B}{B}{S(bat|myBattlefield)}:token(Bat,creature bat,1/1,flying,black) && token(Bat,creature bat,1/1,flying,black)
+auto={S(bat|myBattlefield)}:regenerate
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text={R}, Sacrifice a creature: Gain 1 life.
+id=107692
+name=Starved Rusalka
+color=Green
+rarity=U
+mana={G}
+type=Creature
+subtype=Spirit
+auto={G}{S(creature|myBattlefield)}:life:1
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying   Stratozeppelid can block only creatures with flying.
+id=96927
+name=Stratozeppelid
+color=Blue
+rarity=U
+mana={4}{U}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+abilities=flying,cloud
+[/card]
+[card]
+id=106575
+name=Streetbreaker Wurm
+colour=Red,Green
+rarity=C
+mana={4}{R}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=4
+[/card]
+[card]
+text=Untap all creatures you control.   Draw a card.
+auto=lord(creatures|myBattlefield) untap
+auto=draw:1
+id=83739
+name=To Arms!
+color=White
+rarity=U
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text=Flying   {1}{R}: Torch Drake gets +1/+0 until end of turn.
+id=97218
+name=Torch Drake
+color=Blue
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Drake
+auto={1}{R}:1/0
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control.   {1}, Remove a +1/+1 counter from Ulasht: Choose one — Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
+id=97212
+name=Ulasht the Hate Seed
+color=Red,Green
+rarity=R
+mana={2}{R}{G}
+type=Creature
+subtype=Hellion Hydra
+auto=foreach(creature[red;-ulasht the hate seed]|myBattlefield) counter(1/1)
+auto=foreach(creature[green;-ulasht the hate seed]|myBattlefield) counter(1/1)
+auto={1}:counter(1/1,-1) && damage:1 target(creature)
+auto={1}:token(Saproling,creature saproling,1/1,green) && counter(1/1,-1)
+power=0
+toughness=0
+abilities=legendary
+[/card]
+[card]
+text=Flying   Whenever you cast an instant or sorcery spell, Wee Dragonauts gets +2/+0 until end of turn.
+id=96903
+name=Wee Dragonauts
+color=Blue,Red
+rarity=C
+mana={1}{U}{R}
+type=Creature
+subytpe=Faerie Wizard
+auto=@movedTo(instant,sorcery|mystack):2/0
+power=1
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Sacrifice Wild Cantor: Add one mana of any color to your mana pool.
+id=96934
+name=Wild Cantor
+colour=Red,Green
+rarity=C
+mana={RG}
+type=Creature
+subtype=Human Druid
+auto={S}:Add {W}
+auto={S}:Add {U}
+auto={S}:Add {B}
+auto={S}:Add {R}
+auto={S}:Add {G}
+power=1
+toughness=1
+[/card]
+[card]
+text=Target creature gets +2/+2 and gains trample until end of turn.    Draw a card.
+target=creature
+auto=2/2
+auto=trample
+auto=draw:1
+id=107097
+name=Wildsize
+color=Green
+rarity=C
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+text=Enchant green creature   Enchanted creature gets +6/+6.   {G}{G}{G}, Sacrifice Wurmweaver Coil: Put a 6/6 green Wurm creature token onto the battlefield.           
+target=creature[green]
+auto=6/6
+auto={G}{G}{G}{S}:token(Wurm,creature wurm,6/6,green)
+id=97230
+name=Wurmweaver Coil
+color=Green
+rarity=R
+mana={4}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]

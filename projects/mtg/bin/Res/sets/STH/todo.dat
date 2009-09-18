@@ -1,0 +1,1365 @@
+[card]
+id=5108
+name=Acidic Sliver
+mana={B}{R}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Slivers have "{2}, Sacrifice this permanent: This permanent deals 2 damage to target creature or player."
+rarity=U
+[/card]
+[card]
+id=5109
+name=Amok
+mana={1}{R}
+type=Enchantment
+text={1}, Discard a card at random: Put a +1/+1 counter on target creature.
+rarity=R
+[/card]
+[card]
+id=5110
+name=Awakening
+mana={2}{G}{G}
+type=Enchantment
+text=At the beginning of each upkeep, untap all creatures and lands.
+rarity=R
+[/card]
+[card]
+id=5111
+name=Bandage
+mana={W}
+type=Instant
+text=Prevent the next 1 damage that would be dealt to target creature or player this turn. Draw a card.
+rarity=C
+[/card]
+[card]
+id=5113
+name=Bottomless Pit
+mana={1}{B}{B}
+type=Enchantment
+text=At the beginning of each player's upkeep, that player discards a card at random.
+rarity=U
+[/card]
+[card]
+id=5114
+name=Brush with Death
+mana={2}{B}
+type=Sorcery
+text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) Target opponent loses 2 life. You gain 2 life.
+rarity=C
+[/card]
+[card]
+id=5115
+name=Bullwhip
+mana={4}
+type=Artifact
+text={2}, {T}: Bullwhip deals 1 damage to target creature. That creature attacks this turn if able.
+rarity=U
+[/card]
+[card]
+id=5116
+name=Burgeoning
+mana={G}
+type=Enchantment
+text=Whenever an opponent plays a land, you may put a land card from your hand onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=5117
+name=Calming Licid
+mana={2}{W}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+text={W}, {T}: Calming Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {W} to end this effect. Enchanted creature can't attack.
+rarity=U
+[/card]
+[card]
+id=5118
+name=Cannibalize
+mana={1}{B}
+type=Sorcery
+text=Choose two target creatures controlled by the same player. Exile one of those creatures and put two +1/+1 counters on the other.
+rarity=C
+[/card]
+[card]
+id=5217
+name=Carnassid
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=4
+text=Trample  {1}{G}: Regenerate Carnassid.
+rarity=R
+[/card]
+[card]
+id=5121
+name=Change of Heart
+mana={W}
+type=Instant
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Target creature can't attack this turn.
+rarity=C
+[/card]
+[card]
+id=5122
+name=Cloud Spirit
+mana={2}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=1
+text=Flying Cloud Spirit can block only creatures with flying.
+rarity=U
+[/card]
+[card]
+id=5123
+name=Constant Mists
+mana={1}{G}
+type=Instant
+text=Buyback—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) Prevent all combat damage that would be dealt this turn.
+rarity=U
+[/card]
+[card]
+id=5125
+name=Contemplation
+mana={1}{W}{W}
+type=Enchantment
+text=Whenever you cast a spell, you gain 1 life.
+rarity=U
+[/card]
+[card]
+id=5126
+name=Contempt
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Whenever enchanted creature attacks, return it and Contempt to their owners' hands at end of combat.
+rarity=C
+[/card]
+[card]
+id=5127
+name=Conviction
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+3. {W}: Return Conviction to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=5129
+name=Convulsing Licid
+mana={2}{R}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+text={R}, {T}: Convulsing Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {R} to end this effect. Enchanted creature can't block.
+rarity=U
+[/card]
+[card]
+id=5128
+name=Corrupting Licid
+mana={2}{B}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+text={B}, {T}: Corrupting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {B} to end this effect. Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
+rarity=U
+[/card]
+[card]
+id=5130
+name=Craven Giant
+mana={2}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=1
+text=Craven Giant can't block.
+rarity=C
+[/card]
+[card]
+id=5131
+name=Crossbow Ambush
+mana={G}
+type=Instant
+text=Creatures you control gain reach until end of turn. (They can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=5106
+name=Crovax the Cursed
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Vampire
+power=0
+toughness=0
+text=Crovax the Cursed enters the battlefield with four +1/+1 counters on it. At the beginning of your upkeep, you may sacrifice a creature. If you do, put a +1/+1 counter on Crovax. If you don't, remove a +1/+1 counter from Crovax. {B}: Crovax gains flying until end of turn.
+rarity=R
+[/card]
+[card]
+id=5134
+name=Crystalline Sliver
+mana={W}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Slivers have shroud. (They can't be the targets of spells or abilities.)
+rarity=U
+[/card]
+[card]
+id=5135
+name=Dauthi Trapper
+mana={2}{B}
+type=Creature
+subtype=Dauthi Minion
+power=1
+toughness=1
+text={T}: Target creature gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
+rarity=U
+[/card]
+[card]
+id=5137
+name=Death Stroke
+mana={B}{B}
+type=Sorcery
+text=Destroy target tapped creature.
+rarity=C
+[/card]
+[card]
+id=5105
+name=Dream Halls
+mana={3}{U}{U}
+type=Enchantment
+text=Rather than pay the mana cost for a spell, its controller may discard a card that shares a color with that spell.
+rarity=R
+[/card]
+[card]
+id=5140
+name=Dream Prowler
+mana={2}{U}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=5
+text=Dream Prowler is unblockable as long as it's attacking alone.
+rarity=U
+[/card]
+[card]
+id=5141
+name=Duct Crawler
+mana={R}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+text={1}{R}: Target creature can't block Duct Crawler this turn.
+rarity=C
+[/card]
+[card]
+id=5142
+name=Dungeon Shade
+mana={3}{B}
+type=Creature
+subtype=Shade Spirit
+power=1
+toughness=1
+text=Flying {B}: Dungeon Shade gets +1/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5144
+name=Elven Rite
+mana={1}{G}
+type=Sorcery
+text=Distribute two +1/+1 counters among one or two target creatures.
+rarity=U
+[/card]
+[card]
+id=5145
+name=Endangered Armodon
+mana={2}{G}{G}
+type=Creature
+subtype=Elephant
+power=4
+toughness=5
+text=When you control a creature with toughness 2 or less, sacrifice Endangered Armodon.
+rarity=C
+[/card]
+[card]
+id=5124
+name=Ensnaring Bridge
+mana={3}
+type=Artifact
+text=Creatures with power greater than the number of cards in your hand can't attack.
+rarity=R
+[/card]
+[card]
+id=5147
+name=Evacuation
+mana={3}{U}{U}
+type=Instant
+text=Return all creatures to their owners' hands.
+rarity=R
+[/card]
+[card]
+id=5148
+name=Fanning the Flames
+mana={X}{R}{R}
+type=Sorcery
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Fanning the Flames deals X damage to target creature or player.
+rarity=U
+[/card]
+[card]
+id=5150
+name=Flame Wave
+mana={3}{R}{R}{R}{R}
+type=Sorcery
+text=Flame Wave deals 4 damage to target player and each creature he or she controls.
+rarity=U
+[/card]
+[card]
+id=5151
+name=Fling
+mana={1}{R}
+type=Instant
+text=As an additional cost to cast Fling, sacrifice a creature. Fling deals damage equal to the sacrificed creature's power to target creature or player.
+rarity=C
+[/card]
+[card]
+id=5152
+name=Flowstone Blade
+mana={R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature {R}: Enchanted creature gets +1/-1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5153
+name=Flowstone Hellion
+mana={4}{R}
+type=Creature
+subtype=Hellion Beast
+power=3
+toughness=3
+text=Haste {0}: Flowstone Hellion gets +1/-1 until end of turn.
+rarity=U
+[/card]
+[card]
+id=5154
+name=Flowstone Mauler
+mana={4}{R}{R}
+type=Creature
+subtype=Beast
+power=4
+toughness=5
+text=Trample {R}: Flowstone Mauler gets +1/-1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=5156
+name=Flowstone Shambler
+mana={2}{R}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+text={R}: Flowstone Shambler gets +1/-1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5158
+name=Foul Imp
+mana={B}{B}
+type=Creature
+subtype=Imp
+power=2
+toughness=2
+text=Flying When Foul Imp enters the battlefield, you lose 2 life.
+rarity=U
+[/card]
+[card]
+id=5160
+name=Furnace Spirit
+mana={2}{R}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text=Haste {R}: Furnace Spirit gets +1/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5162
+name=Gliding Licid
+mana={2}{U}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+text={U}, {T}: Gliding Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {U} to end this effect. Enchanted creature has flying.
+rarity=U
+[/card]
+[card]
+id=5136
+name=Grave Pact
+mana={1}{B}{B}{B}
+type=Enchantment
+text=Whenever a creature you control is put into a graveyard from the battlefield, each other player sacrifices a creature.
+rarity=R
+[/card]
+[card]
+id=5163
+name=Hammerhead Shark
+mana={1}{U}
+type=Creature
+subtype=Fish
+power=2
+toughness=3
+text=Hammerhead Shark can't attack unless defending player controls an Island.
+rarity=C
+[/card]
+[card]
+id=5164
+name=Heartstone
+mana={3}
+type=Artifact
+text=Activated abilities of creatures cost {1} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
+rarity=U
+[/card]
+[card]
+id=5165
+name=Heat of Battle
+mana={1}{R}
+type=Enchantment
+text=Whenever a creature blocks, Heat of Battle deals 1 damage to that creature's controller.
+rarity=U
+[/card]
+[card]
+id=5166
+name=Hermit Druid
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+text={G}, {T}: Reveal cards from the top of your library until you reveal a basic land card. Put that card into your hand and all other cards revealed this way into your graveyard.
+rarity=R
+[/card]
+[card]
+id=5167
+name=Hesitation
+mana={1}{U}
+type=Enchantment
+text=When a player casts a spell, sacrifice Hesitation. If you do, counter that spell.
+rarity=U
+[/card]
+[card]
+id=5168
+name=Hibernation Sliver
+mana={U}{B}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Slivers have "Pay 2 life: Return this permanent to its owner's hand."
+rarity=U
+[/card]
+[card]
+id=5169
+name=Hidden Retreat
+mana={2}{W}
+type=Enchantment
+text=Put a card from your hand on top of your library: Prevent all damage that would be dealt by target instant or sorcery spell this turn.
+rarity=R
+[/card]
+[card]
+id=5170
+name=Honor Guard
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text={W}: Honor Guard gets +0/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5172
+name=Horn of Greed
+mana={3}
+type=Artifact
+text=Whenever a player plays a land, that player draws a card.
+rarity=R
+[/card]
+[card]
+id=5173
+name=Hornet Cannon
+mana={4}
+type=Artifact
+text={3}, {T}: Put a 1/1 colorless Insect artifact creature token with flying and haste named Hornet onto the battlefield. Destroy that creature at the beginning of the next end step.
+rarity=U
+[/card]
+[card]
+id=5174
+name=Intruder Alarm
+mana={2}{U}
+type=Enchantment
+text=Creatures don't untap during their controllers' untap steps. Whenever a creature enters the battlefield, untap all creatures.
+rarity=R
+[/card]
+[card]
+id=5175
+name=Invasion Plans
+mana={2}{R}
+type=Enchantment
+text=All creatures block each turn if able. The attacking player chooses how each creature blocks each turn.
+rarity=R
+[/card]
+[card]
+id=5177
+name=Jinxed Ring
+mana={2}
+type=Artifact
+text=Whenever a nontoken permanent is put into your graveyard from the battlefield, Jinxed Ring deals 1 damage to you. Sacrifice a creature: Target opponent gains control of Jinxed Ring. (This effect lasts indefinitely.)
+rarity=R
+[/card]
+[card]
+id=5178
+name=Lab Rats
+mana={B}
+type=Sorcery
+text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) Put a 1/1 black Rat creature token onto the battlefield.
+rarity=C
+[/card]
+[card]
+id=5179
+name=Lancers en-Kor
+mana={3}{W}{W}
+type=Creature
+subtype=Kor Soldier
+power=3
+toughness=3
+text=Trample {0}: The next 1 damage that would be dealt to Lancers en-Kor this turn is dealt to target creature you control instead.
+rarity=U
+[/card]
+[card]
+id=5180
+name=Leap
+mana={U}
+type=Instant
+text=Target creature gains flying until end of turn.  Draw a card.
+rarity=C
+[/card]
+[card]
+id=5181
+name=Lowland Basilisk
+mana={2}{G}
+type=Creature
+subtype=Basilisk
+power=1
+toughness=3
+text=Whenever Lowland Basilisk deals damage to a creature, destroy that creature at end of combat.
+rarity=C
+[/card]
+[card]
+id=5182
+name=Mana Leak
+mana={1}{U}
+type=Instant
+text=Counter target spell unless its controller pays {3}.
+rarity=C
+[/card]
+[card]
+id=5183
+name=Mask of the Mimic
+mana={U}
+type=Instant
+text=As an additional cost to cast Mask of the Mimic, sacrifice a creature. Search your library for a card with the same name as target nontoken creature and put that card onto the battlefield. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=5185
+name=Megrim
+mana={2}{B}
+type=Enchantment
+text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
+rarity=U
+[/card]
+[card]
+id=5186
+name=Mind Games
+mana={U}
+type=Instant
+text=Buyback {2}{U} (You may pay an additional {2}{U} as you cast this spell. If you do, put this card into your hand as it resolves.) Tap target artifact, creature, or land.
+rarity=C
+[/card]
+[card]
+id=5187
+name=Mind Peel
+mana={B}
+type=Sorcery
+text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) Target player discards a card.
+rarity=U
+[/card]
+[card]
+id=5188
+name=Mindwarper
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=0
+toughness=0
+text=Mindwarper enters the battlefield with three +1/+1 counters on it. {2}{B}, Remove a +1/+1 counter from Mindwarper: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+rarity=R
+[/card]
+[card]
+id=5101
+name=Mob Justice
+mana={1}{R}
+type=Sorcery
+text=Mob Justice deals damage to target player equal to the number of creatures you control.
+rarity=C
+[/card]
+[card]
+id=4980
+name=Mogg Bombers
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=4
+text=When another creature enters the battlefield, sacrifice Mogg Bombers. If you do, it deals 3 damage to target player.
+rarity=C
+[/card]
+[card]
+id=5100
+name=Mogg Flunkies
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=3
+text=Mogg Flunkies can't attack or block alone.
+rarity=C
+[/card]
+[card]
+id=5107
+name=Mogg Infestation
+mana={3}{R}{R}
+type=Sorcery
+text=Destroy all creatures target player controls. For each creature put into a graveyard this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
+rarity=R
+[/card]
+[card]
+id=5120
+name=Mogg Maniac
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+text=Whenever Mogg Maniac is dealt damage, it deals that much damage to target opponent.
+rarity=U
+[/card]
+[card]
+id=5191
+name=Morgue Thrull
+mana={2}{B}
+type=Creature
+subtype=Thrull
+power=2
+toughness=2
+text=Sacrifice Morgue Thrull: Put the top three cards of your library into your graveyard.
+rarity=C
+[/card]
+[card]
+id=5192
+name=Mortuary
+mana={3}{B}
+type=Enchantment
+text=Whenever a creature is put into your graveyard from the battlefield, put that card on top of your library.
+rarity=R
+[/card]
+[card]
+id=5193
+name=Mox Diamond
+mana={0}
+type=Artifact
+text=If Mox Diamond would enter the battlefield, you may discard a land card instead. If you do, put Mox Diamond onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add one mana of any color to your mana pool.
+rarity=R
+[/card]
+[card]
+id=5194
+name=Mulch
+mana={1}{G}
+type=Sorcery
+text=Reveal the top four cards of your library. Put all land cards revealed this way into your hand and all other cards revealed this way into your graveyard.
+rarity=C
+[/card]
+[card]
+id=5196
+name=Nomads en-Kor
+mana={W}
+type=Creature
+subtype=Kor Nomad Soldier
+power=1
+toughness=1
+text={0}: The next 1 damage that would be dealt to Nomads en-Kor this turn is dealt to target creature you control instead.
+rarity=C
+[/card]
+[card]
+id=5198
+name=Overgrowth
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant land (Target a land as you cast this. This card enters the battlefield attached to that land.) Whenever enchanted land is tapped for mana, its controller adds {G}{G} to his or her mana pool (in addition to the mana the land produces).
+rarity=C
+[/card]
+[card]
+id=5202
+name=Portcullis
+mana={4}
+type=Artifact
+text=Whenever a creature enters the battlefield, if there are two or more other creatures on the battlefield, exile that creature. Return that card to the battlefield under its owner's control when Portcullis leaves the battlefield.
+rarity=R
+[/card]
+[card]
+id=5149
+name=Primal Rage
+mana={1}{G}
+type=Enchantment
+text=Creatures you control have trample. (If a creature you control would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
+rarity=U
+[/card]
+[card]
+id=5203
+name=Provoke
+mana={1}{G}
+type=Instant
+text=Untap target creature you don't control. That creature blocks this turn if able.  Draw a card.
+rarity=C
+[/card]
+[card]
+id=5204
+name=Pursuit of Knowledge
+mana={3}{W}
+type=Enchantment
+text=If you would draw a card, you may put a study counter on Pursuit of Knowledge instead.  Remove three study counters from Pursuit of Knowledge, Sacrifice Pursuit of Knowledge: Draw seven cards.
+rarity=R
+[/card]
+[card]
+id=5205
+name=Rabid Rats
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+text={T}: Target blocking creature gets -1/-1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5206
+name=Ransack
+mana={3}{U}
+type=Sorcery
+text=Look at the top five cards of target player's library. Put any number of them on the bottom of that library in any order and the rest on top of the library in any order.
+rarity=U
+[/card]
+[card]
+id=5209
+name=Rebound
+mana={1}{U}
+type=Instant
+text=Change the target of target spell that targets only a player. The new target must be a player.
+rarity=U
+[/card]
+[card]
+id=5210
+name=Reins of Power
+mana={2}{U}{U}
+type=Instant
+text=Untap all creatures you control and all creatures target opponent controls. You and that opponent each gain control of all creatures the other controls until end of turn. Those creatures gain haste until end of turn.
+rarity=R
+[/card]
+[card]
+id=5211
+name=Revenant
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=*
+toughness=*
+text=Flying Revenant's power and toughness are each equal to the number of creature cards in your graveyard.
+rarity=R
+[/card]
+[card]
+id=5212
+name=Rolling Stones
+mana={1}{W}
+type=Enchantment
+text=Wall creatures can attack as though they didn't have defender.
+rarity=R
+[/card]
+[card]
+id=5213
+name=Ruination
+mana={3}{R}
+type=Sorcery
+text=Destroy all nonbasic lands.
+rarity=R
+[/card]
+[card]
+id=5214
+name=Sacred Ground
+mana={1}{W}
+type=Enchantment
+text=Whenever a spell or ability an opponent controls causes a land to be put into your graveyard from the battlefield, return that card to the battlefield.
+rarity=R
+[/card]
+[card]
+id=5215
+name=Samite Blessing
+mana={W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has "{T}: The next time a source of your choice would deal damage to target creature this turn, prevent that damage."
+rarity=C
+[/card]
+[card]
+id=5138
+name=Scapegoat
+mana={W}
+type=Instant
+text=As an additional cost to cast Scapegoat, sacrifice a creature. Return any number of target creatures you control to their owner's hand.
+rarity=U
+[/card]
+[card]
+id=5218
+name=Seething Anger
+mana={R}
+type=Sorcery
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Target creature gets +3/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5219
+name=Serpent Warrior
+mana={2}{B}
+type=Creature
+subtype=Snake Warrior
+power=3
+toughness=3
+text=When Serpent Warrior enters the battlefield, you lose 3 life.
+rarity=C
+[/card]
+[card]
+id=5220
+name=Shaman en-Kor
+mana={1}{W}
+type=Creature
+subtype=Kor Shaman Cleric
+power=1
+toughness=2
+text={0}: The next 1 damage that would be dealt to Shaman en-Kor this turn is dealt to target creature you control instead. {1}{W}: The next time a source of your choice would deal damage to target creature this turn, that damage is dealt to Shaman en-Kor instead.
+rarity=R
+[/card]
+[card]
+id=5155
+name=Shard Phoenix
+mana={4}{R}
+type=Creature
+subtype=Phoenix
+power=2
+toughness=2
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) Sacrifice Shard Phoenix: Shard Phoenix deals 2 damage to each creature without flying. {R}{R}{R}: Return Shard Phoenix from your graveyard to your hand. Activate this ability only during your upkeep.
+rarity=R
+[/card]
+[card]
+id=5222
+name=Shifting Wall
+mana={X}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=0
+text=Defender (This creature can't attack.) Shifting Wall enters the battlefield with X +1/+1 counters on it.
+rarity=U
+[/card]
+[card]
+id=5143
+name=Shock
+mana={R}
+type=Instant
+text=Shock deals 2 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=5223
+name=Sift
+mana={3}{U}
+type=Sorcery
+text=Draw three cards, then discard a card.
+rarity=C
+[/card]
+[card]
+id=5103
+name=Silver Wyvern
+mana={3}{U}{U}
+type=Creature
+subtype=Drake
+power=4
+toughness=3
+text=Flying {U}: Change the target of target spell or ability that targets only Silver Wyvern. The new target must be a creature.
+rarity=R
+[/card]
+[card]
+id=5226
+name=Skeleton Scavengers
+mana={2}{B}
+type=Creature
+subtype=Skeleton
+power=0
+toughness=0
+text=Skeleton Scavengers enters the battlefield with a +1/+1 counter on it. Pay {1} for each +1/+1 counter on Skeleton Scavengers: Regenerate Skeleton Scavengers. When it regenerates this way, put a +1/+1 counter on it.
+rarity=R
+[/card]
+[card]
+id=5228
+name=Skyshroud Archer
+mana={G}
+type=Creature
+subtype=Elf Archer
+power=1
+toughness=1
+text={T}: Target creature with flying gets -1/-1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=5224
+name=Skyshroud Falcon
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying, vigilance
+rarity=C
+[/card]
+[card]
+id=5230
+name=Skyshroud Troopers
+mana={3}{G}
+type=Creature
+subtype=Elf Druid Warrior
+power=3
+toughness=3
+text={T}: Add {G} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=5233
+name=Sliver Queen
+mana={W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Sliver
+power=7
+toughness=7
+text={2}: Put a 1/1 colorless Sliver creature token onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=5234
+name=Smite
+mana={W}
+type=Instant
+text=Destroy target blocked creature.
+rarity=C
+[/card]
+[card]
+id=5235
+name=Soltari Champion
+mana={2}{W}
+type=Creature
+subtype=Soltari Soldier
+power=2
+toughness=2
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) Whenever Soltari Champion attacks, all other creatures you control get +1/+1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=5237
+name=Spike Breeder
+mana={3}{G}
+type=Creature
+subtype=Spike
+power=0
+toughness=0
+text=Spike Breeder enters the battlefield with three +1/+1 counters on it. {2}, Remove a +1/+1 counter from Spike Breeder: Put a +1/+1 counter on target creature. {2}, Remove a +1/+1 counter from Spike Breeder: Put a 1/1 green Spike creature token onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=5238
+name=Spike Colony
+mana={4}{G}
+type=Creature
+subtype=Spike
+power=0
+toughness=0
+text=Spike Colony enters the battlefield with four +1/+1 counters on it. {2}, Remove a +1/+1 counter from Spike Colony: Put a +1/+1 counter on target creature.
+rarity=C
+[/card]
+[card]
+id=5239
+name=Spike Feeder
+mana={1}{G}{G}
+type=Creature
+subtype=Spike
+power=0
+toughness=0
+text=Spike Feeder enters the battlefield with two +1/+1 counters on it. {2}, Remove a +1/+1 counter from Spike Feeder: Put a +1/+1 counter on target creature. Remove a +1/+1 counter from Spike Feeder: You gain 2 life.
+rarity=U
+[/card]
+[card]
+id=5241
+name=Spike Soldier
+mana={2}{G}{G}
+type=Creature
+subtype=Spike Soldier
+power=0
+toughness=0
+text=Spike Soldier enters the battlefield with three +1/+1 counters on it. {2}, Remove a +1/+1 counter from Spike Soldier: Put a +1/+1 counter on target creature. Remove a +1/+1 counter from Spike Soldier: Spike Soldier gets +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=5242
+name=Spike Worker
+mana={2}{G}
+type=Creature
+subtype=Spike
+power=0
+toughness=0
+text=Spike Worker enters the battlefield with two +1/+1 counters on it. {2}, Remove a +1/+1 counter from Spike Worker: Put a +1/+1 counter on target creature.
+rarity=C
+[/card]
+[card]
+id=5243
+name=Spindrift Drake
+mana={U}
+type=Creature
+subtype=Drake
+power=2
+toughness=1
+text=Flying At the beginning of your upkeep, sacrifice Spindrift Drake unless you pay {U}.
+rarity=C
+[/card]
+[card]
+id=5190
+name=Spined Sliver
+mana={R}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=Whenever a Sliver becomes blocked, that Sliver gets +1/+1 until end of turn for each creature blocking it.
+rarity=U
+[/card]
+[card]
+id=5245
+name=Spined Wurm
+mana={4}{G}
+type=Creature
+subtype=Wurm
+power=5
+toughness=4
+rarity=C
+[/card]
+[card]
+id=5236
+name=Spirit en-Kor
+mana={3}{W}
+type=Creature
+subtype=Kor Spirit
+power=2
+toughness=2
+text=Flying {0}: The next 1 damage that would be dealt to Spirit en-Kor this turn is dealt to target creature you control instead.
+rarity=C
+[/card]
+[card]
+id=5246
+name=Spitting Hydra
+mana={3}{R}{R}
+type=Creature
+subtype=Hydra
+power=0
+toughness=0
+text=Spitting Hydra enters the battlefield with four +1/+1 counters on it. {1}{R}, Remove a +1/+1 counter from Spitting Hydra: Spitting Hydra deals 1 damage to target creature.
+rarity=R
+[/card]
+[card]
+id=5247
+name=Stronghold Assassin
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie Assassin
+power=2
+toughness=1
+text={T}, Sacrifice a creature: Destroy target nonblack creature.
+rarity=R
+[/card]
+[card]
+id=5249
+name=Stronghold Taskmaster
+mana={2}{B}{B}
+type=Creature
+subtype=Giant Minion
+power=4
+toughness=3
+text=Other black creatures get -1/-1.
+rarity=U
+[/card]
+[card]
+id=5250
+name=Sword of the Chosen
+mana={2}
+type=Legendary Artifact
+text={T}: Target legendary creature gets +2/+2 until end of turn.
+rarity=R
+[/card]
+[card]
+id=5251
+name=Temper
+mana={X}{1}{W}
+type=Instant
+text=Prevent the next X damage that would be dealt to target creature this turn. For each 1 damage prevented this way, put a +1/+1 counter on that creature.
+rarity=U
+[/card]
+[card]
+id=5252
+name=Tempting Licid
+mana={2}{G}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+text={G}, {T}: Tempting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {G} to end this effect. All creatures able to block enchanted creature do so.
+rarity=U
+[/card]
+[card]
+id=5253
+name=Thalakos Deceiver
+mana={3}{U}
+type=Creature
+subtype=Thalakos Wizard
+power=1
+toughness=1
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) Whenever Thalakos Deceiver attacks and isn't blocked, you may sacrifice it. If you do, gain control of target creature. (This effect lasts indefinitely.)
+rarity=R
+[/card]
+[card]
+id=5255
+name=Tidal Surge
+mana={1}{U}
+type=Sorcery
+text=Tap up to three target creatures without flying.
+rarity=C
+[/card]
+[card]
+id=5256
+name=Tidal Warrior
+mana={U}
+type=Creature
+subtype=Merfolk Warrior
+power=1
+toughness=1
+text={T}: Target land becomes an Island until end of turn.
+rarity=C
+[/card]
+[card]
+id=5257
+name=Torment
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets -3/-0.
+rarity=C
+[/card]
+[card]
+id=5195
+name=Tortured Existence
+mana={B}
+type=Enchantment
+text={B}, Discard a creature card: Return target creature card from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=5258
+name=Venerable Monk
+mana={2}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=2
+toughness=2
+text=When Venerable Monk enters the battlefield, you gain 2 life.
+rarity=U
+[/card]
+[card]
+id=5259
+name=Verdant Touch
+mana={1}{G}
+type=Sorcery
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Target land becomes a 2/2 creature that's still a land. (This effect lasts indefinitely.)
+rarity=R
+[/card]
+[card]
+id=5197
+name=Victual Sliver
+mana={G}{W}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Slivers have "{2}, Sacrifice this permanent: You gain 4 life."
+rarity=U
+[/card]
+[card]
+id=5260
+name=Volrath's Gardens
+mana={1}{G}
+type=Enchantment
+text={2}, Tap an untapped creature you control: You gain 2 life. Activate this ability only any time you could cast a sorcery.
+rarity=R
+[/card]
+[card]
+id=5261
+name=Volrath's Laboratory
+mana={5}
+type=Artifact
+text=As Volrath's Laboratory enters the battlefield, choose a color and a creature type. {5}, {T}: Put a 2/2 creature token of the chosen color and type onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=5262
+name=Volrath's Shapeshifter
+mana={1}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=1
+text=As long as the top card of your graveyard is a creature card, Volrath's Shapeshifter has the full text of that card and has the text "{2}: Discard a card." (Volrath's Shapeshifter has that card's name, mana cost, color, types, abilities, power, and toughness.) {2}: Discard a card.
+rarity=R
+[/card]
+[card]
+id=5263
+name=Volrath's Stronghold
+mana=
+type=Legendary Land
+text={T}: Add {1} to your mana pool.  {1}{B}, {T}: Put target creature card from your graveyard on top of your library.
+rarity=R
+[/card]
+[card]
+id=5264
+name=Walking Dream
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=3
+toughness=3
+text=Walking Dream is unblockable.  Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.
+rarity=U
+[/card]
+[card]
+id=5265
+name=Wall of Blossoms
+mana={1}{G}
+type=Creature
+subtype=Plant Wall
+power=0
+toughness=4
+text=Defender (This creature can't attack.) When Wall of Blossoms enters the battlefield, draw a card.
+rarity=U
+[/card]
+[card]
+id=5267
+name=Wall of Essence
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+text=Defender (This creature can't attack.) Whenever Wall of Essence is dealt combat damage, you gain that much life.
+rarity=U
+[/card]
+[card]
+id=5268
+name=Wall of Razors
+mana={1}{R}
+type=Creature
+subtype=Wall
+power=4
+toughness=1
+text=Defender (This creature can't attack.) First strike
+rarity=U
+[/card]
+[card]
+id=5269
+name=Wall of Souls
+mana={1}{B}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+text=Defender (This creature can't attack.) Whenever Wall of Souls is dealt combat damage, it deals that much damage to target opponent.
+rarity=U
+[/card]
+[card]
+id=5270
+name=Wall of Tears
+mana={1}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+text=Defender (This creature can't attack.) Whenever Wall of Tears blocks a creature, return that creature to its owner's hand at end of combat.
+rarity=U
+[/card]
+[card]
+id=5271
+name=Warrior Angel
+mana={4}{W}{W}
+type=Creature
+subtype=Angel Warrior
+power=3
+toughness=4
+text=Flying Whenever Warrior Angel deals damage, you gain that much life.
+rarity=R
+[/card]
+[card]
+id=5272
+name=Warrior en-Kor
+mana={W}{W}
+type=Creature
+subtype=Kor Warrior Knight
+power=2
+toughness=2
+text={0}: The next 1 damage that would be dealt to Warrior en-Kor this turn is dealt to target creature you control instead.
+rarity=U
+[/card]
+[card]
+id=5274
+name=Youthful Knight
+mana={1}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=1
+text=First strike (This creature deals combat damage before creatures without first strike.)
+rarity=C
+[/card]

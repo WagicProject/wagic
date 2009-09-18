@@ -1,0 +1,12 @@
+[card]
+id=97107
+name=Assault Zeppelid
+abilities=flying,trample
+mana={2}{G}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+text=Flying, trample
+rarity=C
+[/card]

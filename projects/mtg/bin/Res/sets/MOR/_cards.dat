@@ -1,0 +1,276 @@
+[card]
+text=When Ambassador Oak comes enters the battlefield, put a 1/1 green Elf Warrior creature token onto the battlefield.
+id=152998
+name=Ambassador Oak
+auto=token(Elf Warrior,creature elf,1/1,green)
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Treefolk Warrior
+power=3
+toughness=3
+[/card]
+[card]
+text=At the beginning of your upkeep, you lose 1 life and put a 1/1 black Faerie Rogue creature token with flying into play.
+auto=@each my upkeep:life-1 controller
+auto=@each my upkeep:token(Faerie,creature faerie,1/1,flying black)
+id=152648
+name=Bitterblossom
+rarity=R
+mana={1}{B}
+type=Enchantment
+subtype=Faerie
+[/card]
+[card]
+text={T}, Pay 1 life: Add {G} to your mana pool.
+id=152705
+auto={T}:Add {G} && life:-1 controller
+name=Blightsoil Druid
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=2
+[/card]
+[card]
+text=Trample Borderland Behemoth gets +4/+4 for each other Giant you control.
+id=153102
+name=Borderland Behemoth
+auto=foreach(giant|myBattlefield):4/4 other
+rarity=R
+mana={5}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=4
+toughness=4
+abilities=trample
+[/card]
+[card]
+text=Enchant creature {1}{W}: Put a +1/+1 counter on enchanted creature.
+id=152838
+name=Daily Regimen
+target=creature
+auto={1}{W}:counter(1/1)
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Return target nonland permanent to its owner's hand.
+id=152727
+name=Disperse
+target=creature,artifact,enchantment
+auto=moveTo(ownerHand)
+rarity=C
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+text=
+id=153003
+name=Elvish Warrior
+rarity=C
+mana={G}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=3
+[/card]
+[card]
+text=Flying   {U}: Put Fencer Clique on top of its owner's library.
+id=157424
+name=Fencer Clique
+rarity=C
+mana={2}{U}{U}
+auto={U}:moveTo(ownerlibrary)
+type=Creature
+subtype=Faerie Soldier
+power=3
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Festercreep comes into play with a +1/+1 counter on it. {1}{B}, Remove a +1/+1 counter from Festercreep: All other creatures get -1/-1 until end of turn.
+id=152944
+name=Festercreep
+rarity=C
+mana={1}{B}
+auto=counter(1/1)
+auto={1}{B}:counter(1/1,-1) && lord(creature) -1/-1
+type=Creature
+subtype=Elemental
+power=0
+toughness=0
+[/card]
+[card]
+text=Search your library for an enchantment card, reveal it, and put it into your hand. Then shuffle your library.
+id=152938
+name=Idyllic Tutor
+rarity=R
+mana={2}{W}
+auto=moveTo(myhand) target(enchantment|myLibrary)
+type=Sorcery
+[/card]
+[card]
+text=
+id=152967
+name=Indomitable Ancients
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Treefolk Warrior
+power=2
+toughness=10
+[/card]
+[card]
+text=Target creature gets +1/+0 and gains first strike until end of turn.
+id=152563
+name=Kindled Fury
+target=creature
+auto=1/0
+auto=first strike
+rarity=C
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Inspired Sprite
+mana={U}{3}
+type=Creature
+subtype=Faerie Wizard
+text=Flash. Flying. Whenever you cast a Wizard spell, you may untap Inspired Sprite. {T}: Draw a card, then discard a card.
+abilities=flash,flying
+auto=@movedTo(wizard|mystack):may untap
+auto={T}:draw:1 && moveto(graveyard) target(*|myhand)
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Knight creatures you control have double strike.
+id=153279
+auto=lord(creature|mybattlefield) double strike
+name=Kinsbaile Cavalier
+rarity=R
+mana={3}{W}
+type=Creature
+subtype=Kithkin Knight
+power=2
+toughness=2
+[/card]
+[card]
+text=Target player discards X cards at random.
+id=157422
+name=Mind Shatter
+alias=1167
+rarity=R
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Draw X cards.
+id=152628
+name=Mind Spring
+alias=1192
+rarity=R
+mana={X}{U}{U}
+type=Sorcery
+[/card]
+[card]
+text=Counter target noncreature spell.
+id=152570
+target=*(-creature)|stack
+auto=fizzle
+name=Negate
+rarity=C
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+text=Fear
+id=152718
+name=Prickly Boggart
+rarity=C
+mana={B}
+type=Creature
+subtype=Goblin Rogue
+power=1
+toughness=1
+abilities=fear
+[/card]
+[card]
+text=Sacrifice an Elemental: Seething Pathblazer gets +2/+0 and gains first strike until end of turn.
+id=153101
+name=Seething Pathblazer
+auto={S(elemental|myBattlefield)}:2/0 && first strike
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Elemental Warrior
+power=2
+toughness=2
+[/card]
+[card]
+Name=Shinewend
+Mana={1}{W}
+Type=Creature
+subtype=Elemental
+Text=Flying. Shinewend enters the battlefield with a +1/+1 counter on it. {1}{W}, Remove a +1/+1 counter from Shinewend: Destroy target enchantment.
+auto=counter(1/1,1)
+auto={1}{W}:counter(1/1,-1) && destroy target(enchantment)
+abilities=flying
+Power=0
+toughness=0
+Rarity=C
+[/card]
+[card]
+Name=Stingmoggie
+Mana={3}{R}
+Type=Creature
+subtype=Elemental
+Text=Stingmoggie enters the battlefield with two +1/+1 counters on it. {3}{R}, Remove a +1/+1 counter from Stingmoggie: Destroy target artifact or land.
+auto=counter(1/1,2)
+auto={1}{W}:counter(1/1,-1) && destroy target(artifact,land)
+Power=0
+toughness=0
+Rarity=C
+[/card]
+[card]
+text=Vengeful Firebrand has haste as long as a Warrior card is in your graveyard. R: Vengeful Firebrand gets +1/+0 until end of turn.
+id=153153
+name=Vengeful Firebrand
+auto=aslongas(warrior|mygraveyard) haste
+auto={R}:1/0
+rarity=R
+mana={3}{R}
+type=Creature
+subtype=Elemental Warrior
+power=5
+toughness=2
+[/card]
+[card]
+text=Destroy target nonblack creature. Put a 1/1 black Faerie Rogue creature token with flying into play.
+id=157426
+target=creature[-black]
+auto=destroy
+auto=token(Faerie Rogue,Creature Faerie,1/1,flying black)
+name=Violet Pall
+rarity=C
+mana={4}{B}
+type=Tribal Instant
+subtype=Faerie
+[/card]
+[card]
+text={3}{B}, Sacrifice a Goblin: Put two 1/1 black Goblin Rogue creature tokens onto the battlefield.
+id=153011
+auto={3}{B}{S(goblin|myBattlefield)}:token(Goblin Rogue,Creature Goblin,1/1,black) && token(Goblin Rogue,Creature Goblin,1/1,black)
+name=Weirding Shaman
+rarity=R
+mana={1}{B}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
+[/card]

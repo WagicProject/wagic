@@ -1,0 +1,1787 @@
+[card]
+id=111192
+name=ÁEhermage's Touch
+mana={2}{W}{U}
+type=Instant
+text=Reveal the top four cards of your library. You may put a creature card from among them onto the battlefield. It has "At the beginning of your end step, return this creature to its owner's hand." Then put the rest of the cards revealed this way on the bottom of your library in any order.
+rarity=R
+[/card]
+[card]
+id=97110
+name=Anthem of Rakdos
+mana={2}{B}{R}{R}
+type=Enchantment
+text=Whenever a creature you control attacks, it gets +2/+0 until end of turn and Anthem of Rakdos deals 1 damage to you. Hellbent  EAs long as you have no cards in hand, if a source you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+rarity=R
+[/card]
+[card]
+id=107472
+name=Aquastrand Spider
+mana={1}{G}
+type=Creature
+subtype=Spider Mutant
+power=0
+toughness=0
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {G}: Target creature with a +1/+1 counter on it gains reach until end of turn. (It can block creatures with flying.)
+rarity=C
+[/card]
+
+[card]
+id=110639
+name=Aurora Eidolon
+mana={3}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text={W}, Sacrifice Aurora Eidolon: Prevent the next 3 damage that would be dealt to target creature or player this turn. Whenever you cast a multicolored spell, you may return Aurora Eidolon from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=107437
+name=Avatar of Discord
+mana={(}{B}{/}{R}{)}{(}{B}{/}{R}{)}{(}{B}{/}{R}{)}
+type=Creature
+subtype=Avatar
+power=5
+toughness=3
+text=({(b/r)} can be paid with either {B} or {R}.) Flying When Avatar of Discord enters the battlefield, sacrifice it unless you discard two cards.
+rarity=R
+[/card]
+[card]
+id=111256
+name=Azorius ÁEhermage
+mana={1}{W}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text=Whenever a permanent is returned to your hand, you may pay {1}. If you do, draw a card.
+rarity=U
+[/card]
+[card]
+id=97087
+name=Azorius Chancery
+mana=
+type=Land
+text=Azorius Chancery enters the battlefield tapped. When Azorius Chancery enters the battlefield, return a land you control to its owner's hand. {T}: Add {W}{U} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=97101
+name=Azorius First-Wing
+mana={W}{U}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+text=Flying, protection from enchantments
+rarity=C
+[/card]
+[card]
+id=97077
+name=Azorius Guildmage
+mana={(}{W}{/}{U}{)}{(}{W}{/}{U}{)}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+text=({(w/u)} can be paid with either {W} or {U}.) {2}{W}: Tap target creature. {2}{U}: Counter target activated ability. (Mana abilities can't be targeted.)
+rarity=U
+[/card]
+[card]
+id=107577
+name=Azorius Herald
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text=Azorius Herald is unblockable. When Azorius Herald enters the battlefield, you gain 4 life. When Azorius Herald enters the battlefield, sacrifice it unless {U} was spent to cast it.
+rarity=U
+[/card]
+[card]
+id=107427
+name=Azorius Ploy
+mana={1}{W}{W}{U}
+type=Instant
+text=Prevent all combat damage target creature would deal this turn. Prevent all combat damage that would be dealt to target creature this turn.
+rarity=U
+[/card]
+[card]
+id=97085
+name=Azorius Signet
+mana={2}
+type=Artifact
+text={1}, {T}: Add {W}{U} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=111225
+name=Beacon Hawk
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying Whenever Beacon Hawk deals combat damage to a player, you may untap target creature. {W}: Beacon Hawk gets +0/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=107277
+name=Biomantic Mastery
+mana={4}{(}{G}{/}{U}{)}{(}{G}{/}{U}{)}{(}{G}{/}{U}{)}
+type=Sorcery
+text=({(g/u)} can be paid with either {G} or {U}.) Draw a card for each creature target player controls, then draw a card for each creature another target player controls.
+rarity=R
+[/card]
+[card]
+id=107307
+name=Blessing of the Nephilim
+mana={W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+1 for each of its colors.
+rarity=U
+[/card]
+[card]
+id=97102
+name=Blood Crypt
+mana=
+type=Land
+subtype=Swamp Mountain
+text=({T}: Add {B} or {R} to your mana pool.) As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
+rarity=R
+[/card]
+[card]
+id=107306
+name=Bond of Agony
+mana={X}{B}
+type=Sorcery
+text=As an additional cost to cast Bond of Agony, pay X life. Each other player loses X life.
+rarity=U
+[/card]
+[card]
+id=107373
+name=Bound // Determined (Bound)
+mana={3}{B}{G}
+type=Instant
+text=Sacrifice a creature. Return up to X cards from your graveyard to your hand, where X is the number of colors that creature was. Exile this card. rarity=R
+[/card]
+[card]
+id=107537
+name=Brace for Impact
+mana={4}{W}
+type=Instant
+Prevent all damage that would be dealt to target multicolored creature this turn. For each 1 damage prevented this way, put a +1/+1 counter on that creature.
+rarity=U
+[/card]
+[card]
+id=107340
+name=Brain Pry
+mana={1}{B}
+type=Sorcery
+text=Name a nonland card. Target player reveals his or her hand. That player discards a card with that name. If he or she can't, you draw a card.
+rarity=U
+[/card]
+[card]
+id=97088
+name=Breeding Pool
+mana=
+type=Land
+subtype=Forest Island
+text=({T}: Add {G} or {U} to your mana pool.) As Breeding Pool enters the battlefield, you may pay 2 life. If you don't, Breeding Pool enters the battlefield tapped.
+rarity=R
+[/card]
+[card]
+id=107327
+name=Bronze Bombshell
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=1
+text=When a player other than Bronze Bombshell's owner controls it, that player sacrifices it. If the player does, Bronze Bombshell deals 7 damage to him or her.
+rarity=R
+[/card]
+[card]
+id=107258
+name=Cackling Flames
+mana={3}{R}
+type=Instant
+text=Cackling Flames deals 3 damage to target creature or player. Hellbent  ECackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
+rarity=C
+[/card]
+[card]
+id=107310
+name=Carom
+mana={1}{W}
+type=Instant
+text=The next 1 damage that would be dealt to target creature this turn is dealt to another target creature instead. Draw a card.
+rarity=C
+[/card]
+[card]
+id=107317
+name=Celestial Ancient
+mana={3}{W}{W}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+text=Flying Whenever you cast an enchantment spell, put a +1/+1 counter on each creature you control.
+rarity=R
+[/card]
+[card]
+id=97106
+name=Coiling Oracle
+mana={G}{U}
+type=Creature
+subtype=Snake Elf Druid
+power=1
+toughness=1
+text=When Coiling Oracle enters the battlefield, reveal the top card of your library. If it's a land card, put it onto the battlefield. Otherwise, put that card into your hand.
+rarity=C
+[/card]
+[card]
+id=107494
+name=Condemn
+mana={W}
+type=Instant
+text=Put target attacking creature on the bottom of its owner's library. Its controller gains life equal to its toughness.
+rarity=U
+[/card]
+[card]
+id=107265
+name=Court Hussar
+mana={2}{U}
+type=Creature
+subtype=Vedalken Knight
+power=1
+toughness=3
+text=Vigilance When Court Hussar enters the battlefield, look at the top three cards of your library, then put one of them into your hand and the rest on the bottom of your library in any order. When Court Hussar enters the battlefield, sacrifice it unless {W} was spent to cast it.
+rarity=U
+[/card]
+[card]
+id=107285
+name=Crime // Punishment (Crime)
+mana={3}{W}{B}
+type=Sorcery
+text=Put target creature or enchantment card in an opponent's graveyard onto the battlefield under your control. rarity=R
+[/card]
+[card]
+id=107336
+name=Crypt Champion
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+Double strike When Crypt Champion enters the battlefield, each player puts a creature card with converted mana cost 3 or less from his or her graveyard onto the battlefield. When Crypt Champion enters the battlefield, sacrifice it unless {R} was spent to cast it.
+rarity=U
+[/card]
+[card]
+id=107353
+name=Cytoplast Manipulator
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard Mutant
+power=0
+toughness=0
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {U}, {T}: Gain control of target creature with a +1/+1 counter on it for as long as Cytoplast Manipulator remains on the battlefield.
+rarity=R
+[/card]
+[card]
+id=107507
+name=Cytoplast Root-Kin
+mana={2}{G}{G}
+type=Creature
+subtype=Elemental Mutant
+power=0
+toughness=0
+text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) When Cytoplast Root-Kin enters the battlefield, put a +1/+1 counter on each other creature you control that has a +1/+1 counter on it. {2}: Move a +1/+1 counter from target creature you control onto Cytoplast Root-Kin.
+rarity=R
+[/card]
+[card]
+id=107346
+name=Cytoshape
+mana={1}{G}{U}
+type=Instant
+text=Choose a nonlegendary creature on the battlefield. Target creature becomes a copy of that creature until end of turn.
+rarity=R
+[/card]
+[card]
+id=107312
+name=Cytospawn Shambler
+mana={6}{G}
+type=Creature
+subtype=Elemental Mutant
+power=0
+toughness=0
+text=Graft 6 (This creature enters the battlefield with six +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {G}: Target creature with a +1/+1 counter on it gains trample until end of turn.
+rarity=C
+[/card]
+[card]
+id=107435
+name=Delirium Skeins
+mana={2}{B}
+type=Sorcery
+text=Each player discards three cards.
+rarity=C
+[/card]
+[card]
+id=107464
+name=Supply // Demand (Demand)
+mana={1}{W}{U}
+type=Sorcery
+text= Search your library for a multicolored card, reveal it, and put it into your hand. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=107252
+name=Demonfire
+mana={X}{R}
+type=Sorcery
+text=Demonfire deals X damage to target creature or player. If a creature dealt damage this way would be put into a graveyard this turn, exile it instead. Hellbent  EIf you have no cards in hand, Demonfire can't be countered by spells or abilities and the damage can't be prevented.
+rarity=R
+[/card]
+[card]
+id=107599
+name=Demon's Jester
+mana={3}{B}
+type=Creature
+subtype=Imp
+power=2
+toughness=2
+text=Flying Hellbent  EDemon's Jester gets +2/+1 as long as you have no cards in hand.
+rarity=C
+[/card]
+[card]
+id=107373
+name=Bound // Determined (Determined)
+mana={G}{U}
+type=Instant
+text= Other spells you control can't be countered by spells or abilities this turn. Draw a card.
+rarity=R
+[/card]
+[card]
+id=107375
+name=Research // Development (Development)
+mana={3}{U}{R}
+type=Instant
+text= Put a 3/1 red Elemental creature token onto the battlefield unless any opponent has you draw a card. Repeat this process two more times.
+rarity=R
+[/card]
+[card]
+id=107428
+name=Dovescape
+mana={3}{(}{W}{/}{U}{)}{(}{W}{/}{U}{)}{(}{W}{/}{U}{)}
+type=Enchantment
+text=({(w/u)} can be paid with either {W} or {U}.) Whenever a player casts a noncreature spell, counter that spell. That player puts X 1/1 white and blue Bird creature tokens with flying onto the battlefield, where X is the spell's converted mana cost.
+rarity=R
+[/card]
+[card]
+id=107322
+name=Dread Slag
+mana={3}{B}{R}
+type=Creature
+subtype=Horror
+power=9
+toughness=9
+text=Trample Dread Slag gets -4/-4 for each card in your hand.
+rarity=R
+[/card]
+[card]
+id=111258
+name=Drekavac
+mana={1}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+text=When Drekavac enters the battlefield, sacrifice it unless you discard a noncreature card.
+rarity=U
+[/card]
+[card]
+id=107369
+name=Elemental Resonance
+mana={2}{G}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant permanent At the beginning of your precombat main phase, add mana equal to enchanted permanent's mana cost to your mana pool. (Mana cost includes color. If a mana symbol has multiple colors, choose one.)
+rarity=R
+[/card]
+[card]
+id=107445
+name=Odds // Ends (Ends)
+mana={3}{R}{W}
+type=Instant
+text= Target player sacrifices two attacking creatures.
+rarity=R
+[/card]
+[card]
+id=107342
+name=Enemy of the Guildpact
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=2
+text=Protection from multicolored
+rarity=C
+[/card]
+[card]
+id=110640
+name=Enigma Eidolon
+mana={3}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text={U}, Sacrifice Enigma Eidolon: Target player puts the top three cards of his or her library into his or her graveyard. Whenever you cast a multicolored spell, you may return Enigma Eidolon from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=110641
+name=Entropic Eidolon
+mana={3}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text={B}, Sacrifice Entropic Eidolon: Target player loses 1 life and you gain 1 life. Whenever you cast a multicolored spell, you may return Entropic Eidolon from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=107259
+name=Trial // Error (Error)
+mana={U}{B}
+type=Instant
+text= Counter target multicolored spell.
+rarity=U
+[/card]
+[card]
+id=97093
+name=Evolution Vat
+mana={3}
+type=Artifact
+text={3}, {T}: Tap target creature and put a +1/+1 counter on it. Until end of turn, that creature gains "{2}{G}{U}: Double the number of +1/+1 counters on this creature."
+rarity=R
+[/card]
+[card]
+id=107385
+name=Experiment Kraj
+mana={2}{G}{G}{U}{U}
+type=Legendary Creature
+subtype=Ooze Mutant
+power=4
+toughness=6
+text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. {T}: Put a +1/+1 counter on target creature.
+rarity=R
+[/card]
+[card]
+id=107423
+name=Rise // Fall (Fall)
+mana={B}{R}
+type=Sorcery
+text= Target player reveals two cards at random from his or her hand, then discards each nonland card revealed this way.
+rarity=U
+[/card]
+[card]
+id=111203
+name=Fertile Imagination
+mana={2}{G}{G}
+type=Sorcery
+text=Choose a card type. Target opponent reveals his or her hand. Put two 1/1 green Saproling creature tokens onto the battlefield for each card of the chosen type revealed this way. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
+rarity=U
+[/card]
+[card]
+id=107337
+name=Flame-Kin War Scout
+mana={3}{R}
+type=Creature
+subtype=Elemental Scout
+power=2
+toughness=4
+text=When another creature enters the battlefield, sacrifice Flame-Kin War Scout. If you do, Flame-Kin War Scout deals 4 damage to that creature.
+rarity=U
+[/card]
+[card]
+id=111247
+name=Flaring Flame-Kin
+mana={2}{R}
+type=Creature
+subtype=Elemental Warrior
+power=2
+toughness=2
+text=As long as Flaring Flame-Kin is enchanted, it gets +2/+2, has trample, and has "{R}: Flaring Flame-Kin gets +1/+0 until end of turn."
+rarity=U
+[/card]
+[card]
+id=107264
+name=Flash Foliage
+mana={2}{G}
+type=Instant
+text=Cast Flash Foliage only during combat after blockers are declared. Put a 1/1 green Saproling creature token onto the battlefield blocking target creature attacking you.  Draw a card.
+rarity=U
+[/card]
+[card]
+id=107253
+name=Freewind Equenaut
+mana={2}{W}
+type=Creature
+subtype=Human Archer
+power=2
+toughness=2
+text=Flying As long as Freewind Equenaut is enchanted, it has "{T}: Freewind Equenaut deals 2 damage to target attacking or blocking creature."
+rarity=C
+[/card]
+[card]
+id=107504
+name=Ghost Quarter
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. {T}, Sacrifice Ghost Quarter: Destroy target land. Its controller may search his or her library for a basic land card, put it onto the battlefield, then shuffle his or her library.
+rarity=U
+[/card]
+[card]
+id=107526
+name=Gnat Alley Creeper
+mana={2}{R}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=1
+text=Gnat Alley Creeper can't be blocked by creatures with flying.
+rarity=U
+[/card]
+[card]
+id=107542
+name=Gobhobbler Rats
+mana={B}{R}
+type=Creature
+subtype=Rat
+power=2
+toughness=2
+text=Hellbent  EAs long as you have no cards in hand, Gobhobbler Rats gets +1/+0 and has "{B}: Regenerate Gobhobbler Rats."
+rarity=C
+[/card]
+[card]
+id=107395
+name=Govern the Guildless
+mana={5}{U}
+type=Sorcery
+text=Gain control of target monocolored creature. Forecast  E{1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
+rarity=R
+[/card]
+[card]
+id=107329
+name=Grand Arbiter Augustin IV
+mana={2}{W}{U}
+type=Legendary Creature
+subtype=Human Advisor
+power=2
+toughness=3
+text=White spells you cast cost {1} less to cast. Blue spells you cast cost {1} less to cast. Spells your opponents cast cost {1} more to cast.
+rarity=R
+[/card]
+[card]
+id=107583
+name=Guardian of the Guildpact
+mana={3}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=3
+text=Protection from monocolored
+rarity=C
+[/card]
+[card]
+id=107467
+name=Haazda Exonerator
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={T}, Sacrifice Haazda Exonerator: Destroy target Aura.
+rarity=C
+[/card]
+[card]
+id=107272
+name=Haazda Shield Mate
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text=At the beginning of your upkeep, sacrifice Haazda Shield Mate unless you pay {W}{W}. {W}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+rarity=R
+[/card]
+[card]
+id=97071
+name=Hallowed Fountain
+mana=
+type=Land
+subtype=Plains Island
+text=({T}: Add {W} or {U} to your mana pool.) As Hallowed Fountain enters the battlefield, you may pay 2 life. If you don't, Hallowed Fountain enters the battlefield tapped.
+rarity=R
+[/card]
+[card]
+id=107535
+name=Helium Squirter
+mana={4}{U}
+type=Creature
+subtype=Beast Mutant
+power=0
+toughness=0
+text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {1}: Target creature with a +1/+1 counter on it gains flying until end of turn.
+rarity=C
+[/card]
+[card]
+id=97100
+name=Hellhole Rats
+mana={2}{B}{R}
+type=Creature
+subtype=Rat
+power=2
+toughness=2
+text=Haste When Hellhole Rats enters the battlefield, target player discards a card. Hellhole Rats deals damage to that player equal to that card's converted mana cost.
+rarity=U
+[/card]
+[card]
+id=107315
+name=Hide // Seek (Hide)
+mana={R}{W}
+type=Instant
+text=Put target artifact or enchantment on the bottom of its owner's library. rarity=R
+[/card]
+[card]
+id=107387
+name=Hit // Run (Hit)
+mana={1}{B}{R}
+type=Instant
+Target player sacrifices an artifact or creature. Hit deals damage to that player equal to that permanent's converted mana cost. rarity=U
+[/card]
+[card]
+id=111281
+name=Ignorant Bliss
+mana={1}{R}
+type=Instant
+Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
+rarity=U
+[/card]
+[card]
+id=107377
+name=Indrik Stomphowler
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=When Indrik Stomphowler enters the battlefield, destroy target artifact or enchantment.
+rarity=U
+[/card]
+[card]
+id=107308
+name=Infernal Tutor
+mana={1}{B}
+type=Sorcery
+text=Reveal a card from your hand. Search your library for a card with the same name as that card, reveal it, put it into your hand, then shuffle your library. Hellbent  EIf you have no cards in hand, instead search your library for a card, put it into your hand, then shuffle your library.
+rarity=R
+[/card]
+[card]
+id=107448
+name=Isperia the Inscrutable
+mana={1}{W}{W}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=6
+text=Flying Whenever Isperia the Inscrutable deals combat damage to a player, name a card. That player reveals his or her hand. If he or she reveals the named card, search your library for a creature card with flying, reveal it, put it into your hand, then shuffle your library.
+rarity=R
+[/card]
+[card]
+id=97086
+name=Jagged Poppet
+mana={1}{B}{R}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=4
+text=Whenever Jagged Poppet is dealt damage, discard that many cards. Hellbent  EWhenever Jagged Poppet deals combat damage to a player, if you have no cards in hand, that player discards cards equal to the damage.
+rarity=U
+[/card]
+[card]
+id=107493
+name=Kill-Suit Cultist
+mana={R}
+type=Creature
+subtype=Goblin Berserker
+power=1
+toughness=1
+text=Kill-Suit Cultist attacks each turn if able. {B}, Sacrifice Kill-Suit Cultist: The next time damage would be dealt to target creature this turn, destroy that creature instead.
+rarity=C
+[/card]
+[card]
+id=107446
+name=Kindle the Carnage
+mana={1}{R}{R}
+type=Sorcery
+text=Discard a card at random. If you do, Kindle the Carnage deals damage equal to that card's converted mana cost to each creature. You may repeat this process any number of times.
+rarity=U
+[/card]
+[card]
+id=107557
+name=Leafdrake Roost
+mana={3}{G}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant land Enchanted land has "{G}{U}, {T}: Put a 2/2 green and blue Drake creature token with flying onto the battlefield."
+rarity=U
+[/card]
+[card]
+id=107568
+name=Loaming Shaman
+mana={2}{G}
+type=Creature
+subtype=Centaur Shaman
+power=3
+toughness=2
+text=When Loaming Shaman enters the battlefield, target player shuffles any number of target cards from his or her graveyard into his or her library.
+rarity=R
+[/card]
+[card]
+id=107363
+name=Lyzolda, the Blood Witch
+mana={1}{B}{R}
+type=Legendary Creature
+subtype=Human Cleric
+power=3
+toughness=1
+text={2}, Sacrifice a creature: Lyzolda, the Blood Witch deals 2 damage to target creature or player if the sacrificed creature was red. Draw a card if the sacrificed creature was black.
+rarity=R
+[/card]
+[card]
+id=97116
+name=Macabre Waltz
+mana={1}{B}
+type=Sorcery
+text=Return up to two target creature cards from your graveyard to your hand, then discard a card.
+rarity=C
+[/card]
+[card]
+id=111259
+name=Magewright's Stone
+mana={2}
+type=Artifact
+text={1}, {T}: Untap target creature that has an activated ability with {T} in its cost.
+rarity=U
+[/card]
+[card]
+id=107320
+name=Might of the Nephilim
+mana={1}{G}
+type=Instant
+text=Target creature gets +2/+2 until end of turn for each of its colors.
+rarity=U
+[/card]
+[card]
+id=97083
+name=Minister of Impediments
+mana={2}{(}{W}{/}{U}{)}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+text=({(w/u)} can be paid with either {W} or {U}.) {T}: Tap target creature.
+rarity=C
+[/card]
+[card]
+id=107260
+name=Mistral Charger
+mana={1}{W}
+type=Creature
+subtype=Pegasus
+power=2
+toughness=1
+text=Flying
+rarity=U
+[/card]
+[card]
+id=107506
+name=Momir Vig, Simic Visionary
+mana={3}{G}{U}
+type=Legendary Creature
+subtype=Elf Wizard
+power=2
+toughness=2
+text=Whenever you cast a green creature spell, you may search your library for a creature card and reveal it. If you do, shuffle your library and put that card on top of it. Whenever you cast a blue creature spell, reveal the top card of your library. If it's a creature card, put that card into your hand.
+rarity=R
+[/card]
+[card]
+id=107553
+name=Muse Vessel
+mana={4}
+type=Artifact
+text={3}, {T}: Target player exiles a card from his or her hand. Activate this ability only any time you could cast a sorcery. {1}: Choose a card exiled with Muse Vessel. You may play that card this turn.
+rarity=R
+[/card]
+[card]
+id=107374
+name=Nettling Curse
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Whenever enchanted creature attacks or blocks, its controller loses 3 life. {1}{R}: Enchanted creature attacks this turn if able.
+rarity=C
+[/card]
+[card]
+id=107415
+name=Nightcreep
+mana={B}{B}
+type=Instant
+text=Until end of turn, all creatures become black and all lands become Swamps.
+rarity=U
+[/card]
+[card]
+id=107517
+name=Nihilistic Glee
+mana={2}{B}{B}
+type=Enchantment
+text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. Hellbent  E{1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
+rarity=R
+[/card]
+[card]
+id=97091
+name=Novijen Sages
+mana={4}{U}{U}
+type=Creature
+subtype=Human Advisor Mutant
+power=0
+toughness=0
+text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {1}, Remove two +1/+1 counters from among creatures you control: Draw a card.
+rarity=R
+[/card]
+[card]
+id=97099
+name=Novijen, Heart of Progress
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. {G}{U}, {T}: Put a +1/+1 counter on each creature that entered the battlefield this turn.
+rarity=U
+[/card]
+[card]
+id=107328
+name=Ocular Halo
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has "{T}: Draw a card." {W}: Enchanted creature gains vigilance until end of turn.
+rarity=C
+[/card]
+[card]
+id=107445
+name=Odds // Ends (Odds)
+mana={U}{R}
+type=Instant
+text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. rarity=R
+[/card]
+[card]
+id=107389
+name=Ogre Gatecrasher
+mana={3}{R}
+type=Creature
+subtype=Ogre Rogue
+power=3
+toughness=3
+When Ogre Gatecrasher enters the battlefield, destroy target creature with defender.
+rarity=C
+[/card]
+[card]
+id=83737
+name=Omnibian
+mana={1}{G}{G}{U}
+type=Creature
+subtype=Frog
+power=3
+toughness=3
+text={T}: Target creature becomes a 3/3 Frog until end of turn.
+rarity=R
+[/card]
+[card]
+id=97111
+name=Overrule
+mana={X}{W}{U}
+type=Instant
+text=Counter target spell unless its controller pays {X}. You gain X life.
+rarity=C
+[/card]
+[card]
+id=97105
+name=Pain Magnification
+mana={1}{B}{R}
+type=Enchantment
+text=Whenever an opponent is dealt 3 or more damage by a single source, that player discards a card.
+rarity=U
+[/card]
+[card]
+id=107433
+name=Paladin of Prahv
+mana={4}{W}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=4
+text=Whenever Paladin of Prahv deals damage, you gain that much life. Forecast  E{1}{W}, Reveal Paladin of Prahv from your hand: Whenever target creature deals damage this turn, you gain that much life. (Activate this ability only during your upkeep and only once each turn.)
+rarity=U
+[/card]
+[card]
+id=97118
+name=Palliation Accord
+mana={3}{W}{U}
+type=Enchantment
+text=Whenever a creature an opponent controls becomes tapped, put a shield counter on Palliation Accord. Remove a shield counter from Palliation Accord: Prevent the next 1 damage that would be dealt to you this turn.
+rarity=U
+[/card]
+[card]
+id=107549
+name=Patagia Viper
+mana={3}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=1
+text=Flying When Patagia Viper enters the battlefield, put two 1/1 green and blue Snake creature tokens onto the battlefield. When Patagia Viper enters the battlefield, sacrifice it unless {U} was spent to cast it.
+rarity=U
+[/card]
+[card]
+id=107279
+name=Pillar of the Paruns
+mana=
+type=Land
+text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast multicolored spells.
+rarity=R
+[/card]
+[card]
+id=97104
+name=Plaxcaster Frogling
+mana={1}{G}{U}
+type=Creature
+subtype=Frog Mutant
+power=0
+toughness=0
+text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {2}: Target creature with a +1/+1 counter on it gains shroud until end of turn. (It can't be the target of spells or abilities.)
+rarity=U
+[/card]
+[card]
+id=107286
+name=Plaxmanta
+mana={1}{U}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+text=Flash When Plaxmanta enters the battlefield, creatures you control gain shroud until end of turn. (They can't be the targets of spells or abilities.) When Plaxmanta enters the battlefield, sacrifice it unless {G} was spent to cast it.
+rarity=U
+[/card]
+[card]
+id=107379
+name=Plumes of Peace
+mana={1}{W}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. Forecast  E{W}{U}, Reveal Plumes of Peace from your hand: Tap target creature. (Activate this ability only during your upkeep and only once each turn.)
+rarity=C
+[/card]
+[card]
+id=97117
+name=Prahv, Spires of Order
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. {4}{W}{U}, {T}: Prevent all damage a source of your choice would deal this turn.
+rarity=U
+[/card]
+[card]
+id=97097
+name=Pride of the Clouds
+mana={W}{U}
+type=Creature
+subtype=Elemental Cat
+power=1
+toughness=1
+text=Flying Pride of the Clouds gets +1/+1 for each other creature with flying on the battlefield. Forecast  E{2}{W}{U}, Reveal Pride of the Clouds from your hand: Put a 1/1 white and blue Bird creature token with flying onto the battlefield. (Activate this ability only during your upkeep and only once each turn.)
+rarity=R
+[/card]
+[card]
+id=107341
+name=Proclamation of Rebirth
+mana={2}{W}
+type=Sorcery
+text=Return up to three target creature cards with converted mana cost 1 or less from your graveyard to the battlefield. Forecast  E{5}{W}, Reveal Proclamation of Rebirth from your hand: Return target creature card with converted mana cost 1 or less from your graveyard to the battlefield. (Activate this ability only during your upkeep and only once each turn.)
+rarity=R
+[/card]
+[card]
+id=107466
+name=Proper Burial
+mana={3}{W}
+type=Enchantment
+text=Whenever a creature you control is put into a graveyard from the battlefield, you gain life equal to that creature's toughness.
+rarity=R
+[/card]
+[card]
+id=107598
+name=Protean Hulk
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+text=When Protean Hulk is put into a graveyard from the battlefield, search your library for any number of creature cards with total converted mana cost 6 or less and put them onto the battlefield. Then shuffle your library.
+rarity=R
+[/card]
+[card]
+id=107254
+name=Psychic Possession
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant opponent Skip your draw step. Whenever enchanted opponent draws a card, you may draw a card.
+rarity=R
+[/card]
+[card]
+id=107338
+name=Psychotic Fury
+mana={1}{R}
+type=Instant
+text=Target multicolored creature gains double strike until end of turn. Draw a card.
+rarity=C
+[/card]
+[card]
+id=107285
+name=Crime // Punishment (Punishment)
+mana={X}{B}{G}
+type=Sorcery
+text= Destroy each artifact, creature, and enchantment with converted mana cost X.
+rarity=R
+[/card]
+[card]
+id=107532
+name=Pure // Simple (Pure)
+mana={1}{R}{G}
+type=Sorcery
+text=Destroy target multicolored permanent. rarity=U
+[/card]
+[card]
+id=107570
+name=Ragamuffyn
+mana={2}{B}
+type=Creature
+subtype=Zombie Cleric
+power=2
+toughness=2
+Hellbent  E{T}, Sacrifice a creature or land: Draw a card. Activate this ability only if you have no cards in hand.
+rarity=U
+[/card]
+[card]
+id=107358
+name=Rain of Gore
+mana={B}{R}
+type=Enchantment
+text=If a spell or ability would cause its controller to gain life, that player loses that much life instead.
+rarity=R
+[/card]
+[card]
+id=107543
+name=Rakdos Augermage
+mana={B}{B}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+text=First strike {T}: Reveal your hand and discard a card of target opponent's choice. Then that player reveals his or her hand and discards a card of your choice. Activate this ability only any time you could cast a sorcery.
+rarity=R
+[/card]
+[card]
+id=97082
+name=Rakdos Carnarium
+mana=
+type=Land
+text=Rakdos Carnarium enters the battlefield tapped. When Rakdos Carnarium enters the battlefield, return a land you control to its owner's hand. {T}: Add {B}{R} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=97108
+name=Rakdos Guildmage
+mana={(}{B}{/}{R}{)}{(}{B}{/}{R}{)}
+type=Creature
+subtype=Zombie Shaman
+power=2
+toughness=2
+text=({(b/r)} can be paid with either {B} or {R}.) {3}{B}, Discard a card: Target creature gets -2/-2 until end of turn. {3}{R}: Put a 2/1 red Goblin creature token with haste onto the battlefield. Exile it at the beginning of the next end step.
+rarity=U
+[/card]
+[card]
+id=97074
+name=Rakdos Ickspitter
+mana={1}{B}{R}
+type=Creature
+subtype=Thrull
+power=1
+toughness=1
+text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
+rarity=C
+[/card]
+[card]
+id=111188
+name=Rakdos Pit Dragon
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=3
+toughness=3
+text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. Hellbent  ERakdos Pit Dragon has double strike as long as you have no cards in hand.
+rarity=R
+[/card]
+[card]
+id=97119
+name=Rakdos Riteknife
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. Equip {2}
+rarity=R
+[/card]
+[card]
+id=97098
+name=Rakdos Signet
+mana={2}
+type=Artifact
+text={1}, {T}: Add {B}{R} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=107438
+name=Rakdos the Defiler
+mana={2}{B}{B}{R}{R}
+type=Legendary Creature
+subtype=Demon
+power=7
+toughness=6
+text=Flying, trample Whenever Rakdos the Defiler attacks, sacrifice half the non-Demon permanents you control, rounded up. Whenever Rakdos deals combat damage to a player, that player sacrifices half the non-Demon permanents he or she controls, rounded up.
+rarity=R
+[/card]
+[card]
+id=107273
+name=Ratcatcher
+mana={4}{B}{B}
+type=Creature
+subtype=Ogre Rogue
+power=4
+toughness=4
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) At the beginning of your upkeep, you may search your library for a Rat card, reveal it, and put it into your hand. If you do, shuffle your library.
+rarity=R
+[/card]
+[card]
+id=107375
+name=Research // Development (Research)
+mana={G}{U}
+type=Instant
+text=Choose up to four cards you own from outside the game and shuffle them into your library. rarity=R
+[/card]
+[card]
+id=97076
+name=Riot Spikes
+mana={(}{B}{/}{R}{)}
+type=Enchantment
+subtype=Aura
+({(b/r)} can be paid with either {B} or {R}.) Enchant creature Enchanted creature gets +2/-1.
+rarity=C
+[/card]
+[card]
+id=107423
+name=Rise // Fall (Rise)
+mana={U}{B}
+type=Sorcery
+text=Return target creature card in a graveyard and target creature on the battlefield to their owners' hands. rarity=U
+[/card]
+[card]
+id=97072
+name=Rix Maadi, Dungeon Palace
+mana=
+type=Land
+{T}: Add {1} to your mana pool. {1}{B}{R}, {T}: Each player discards a card. Activate this ability only any time you could cast a sorcery.
+rarity=U
+[/card]
+[card]
+id=107387
+name=Hit // Run (Run)
+mana={3}{R}{G}
+type=Instant
+text= Attacking creatures you control get +1/+0 until end of turn for each other attacking creature.
+rarity=U
+[/card]
+[card]
+id=110637
+name=Sandstorm Eidolon
+mana={3}{R}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text={R}, Sacrifice Sandstorm Eidolon: Target creature can't block this turn. Whenever you cast a multicolored spell, you may return Sandstorm Eidolon from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=107534
+name=Seal of Doom
+mana={2}{B}
+type=Enchantment
+text=Sacrifice Seal of Doom: Destroy target nonblack creature. It can't be regenerated.
+rarity=C
+[/card]
+[card]
+id=107531
+name=Seal of Fire
+mana={R}
+type=Enchantment
+text=Sacrifice Seal of Fire: Seal of Fire deals 2 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=107315
+name=Hide // Seek (Seek)
+mana={W}{B}
+type=Instant
+text= Search target opponent's library for a card and exile it. You gain life equal to its converted mana cost. Then that player shuffles his or her library.
+rarity=R
+[/card]
+[card]
+id=97084
+name=Shielding Plax
+mana={2}{(}{G}{/}{U}{)}
+type=Enchantment
+subtype=Aura
+text=({(g/u)} can be paid with either {G} or {U}.) Enchant creature When Shielding Plax enters the battlefield, draw a card. Enchanted creature can't be the target of spells or abilities your opponents control.
+rarity=C
+[/card]
+[card]
+id=107313
+name=Silkwing Scout
+mana={2}{U}
+type=Creature
+subtype=Faerie Scout
+power=2
+toughness=1
+text=Flying {G}, Sacrifice Silkwing Scout: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
+rarity=C
+[/card]
+[card]
+id=107347
+name=Simic Basilisk
+mana={4}{G}{G}
+type=Creature
+subtype=Basilisk Mutant
+power=0
+toughness=0
+text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {1}{G}: Until end of turn, target creature with a +1/+1 counter on it gains "Whenever this creature deals combat damage to a creature, destroy that creature at end of combat."
+rarity=U
+[/card]
+[card]
+id=97089
+name=Simic Growth Chamber
+mana=
+type=Land
+text=Simic Growth Chamber enters the battlefield tapped. When Simic Growth Chamber enters the battlefield, return a land you control to its owner's hand. {T}: Add {G}{U} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=97078
+name=Simic Guildmage
+mana={(}{G}{/}{U}{)}{(}{G}{/}{U}{)}
+type=Creature
+subtype=Elf Wizard
+power=2
+toughness=2
+text=({(g/u)} can be paid with either {G} or {U}.) {1}{G}: Move a +1/+1 counter from target creature onto another target creature with the same controller. {1}{U}: Attach target Aura enchanting a permanent to another permanent with the same controller.
+rarity=U
+[/card]
+[card]
+id=107441
+name=Simic Initiate
+mana={G}
+type=Creature
+subtype=Human Mutant
+power=0
+toughness=0
+text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
+rarity=C
+[/card]
+[card]
+id=107565
+name=Simic Ragworm
+mana={3}{G}
+type=Creature
+subtype=Worm
+power=3
+toughness=3
+text={U}: Untap Simic Ragworm.
+rarity=C
+[/card]
+[card]
+id=97079
+name=Simic Signet
+mana={2}
+type=Artifact
+text={1}, {T}: Add {G}{U} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=111204
+name=Simic Sky Swallower
+mana={5}{G}{U}
+type=Creature
+subtype=Leviathan
+power=6
+toughness=6
+text=Flying; trample; shroud (This permanent can't be the target of spells or abilities.)
+rarity=R
+[/card]
+[card]
+id=107532
+name=Pure // Simple (Simple)
+mana={1}{G}{W}
+type=Sorcery
+text= Destroy all Auras and Equipment.
+rarity=U
+[/card]
+[card]
+id=107326
+name=Skullmead Cauldron
+mana={4}
+type=Artifact
+text={T}: You gain 1 life. {T}, Discard a card: You gain 3 life.
+rarity=U
+[/card]
+[card]
+id=97109
+name=Sky Hussar
+mana={3}{W}{U}
+type=Creature
+subtype=Human Knight
+power=4
+toughness=3
+text=Flying When Sky Hussar enters the battlefield, untap all creatures you control. Forecast  ETap two untapped white and/or blue creatures you control, Reveal Sky Hussar from your hand: Draw a card. (Activate this ability only during your upkeep and only once each turn.)
+rarity=U
+[/card]
+[card]
+id=107449
+name=Skyscribing
+mana={X}{U}{U}
+type=Sorcery
+text=Each player draws X cards. Forecast  E{2}{U}, Reveal Skyscribing from your hand: Each player draws a card. (Activate this ability only during your upkeep and only once each turn.)
+rarity=U
+[/card]
+[card]
+id=97073
+name=Slaughterhouse Bouncer
+mana={4}{B}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
+text=Hellbent  EWhen Slaughterhouse Bouncer is put into a graveyard from the battlefield, if you have no cards in hand, target creature gets -3/-3 until end of turn.
+rarity=C
+[/card]
+[card]
+id=111283
+name=Slithering Shade
+mana={B}
+type=Creature
+subtype=Shade
+power=0
+toughness=1
+text=Defender (This creature can't attack.) {B}: Slithering Shade gets +1/+1 until end of turn. Hellbent  ESlithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
+rarity=U
+[/card]
+[card]
+id=107440
+name=Soulsworn Jury
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=4
+text=Defender (This creature can't attack.) {1}{U}, Sacrifice Soulsworn Jury: Counter target creature spell.
+rarity=C
+[/card]
+[card]
+id=107281
+name=Spell Snare
+mana={U}
+type=Instant
+text=Counter target spell with converted mana cost 2.
+rarity=U
+[/card]
+[card]
+id=107263
+name=Sporeback Troll
+mana={3}{G}
+type=Creature
+subtype=Troll Mutant
+power=0
+toughness=0
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {1}{G}: Regenerate target creature with a +1/+1 counter on it.
+rarity=C
+[/card]
+[card]
+id=111220
+name=Sprouting Phytohydra
+mana={4}{G}
+type=Creature
+subtype=Plant Hydra
+power=0
+toughness=2
+text=Defender (This creature can't attack.) Whenever Sprouting Phytohydra is dealt damage, you may put a token that's a copy of Sprouting Phytohydra onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=107303
+name=Squealing Devil
+mana={1}{R}
+type=Creature
+subtype=Devil
+power=2
+toughness=1
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) When Squealing Devil enters the battlefield, you may pay {X}. If you do, target creature gets +X/+0 until end of turn. When Squealing Devil enters the battlefield, sacrifice it unless {B} was spent to cast it.
+rarity=U
+[/card]
+[card]
+id=107301
+name=Stalking Vengeance
+mana={5}{R}{R}
+type=Creature
+subtype=Avatar
+power=5
+toughness=5
+text=Haste Whenever another creature you control is put into a graveyard from the battlefield, it deals damage equal to its power to target player.
+rarity=R
+[/card]
+[card]
+id=97115
+name=Steeling Stance
+mana={1}{W}{W}
+type=Instant
+text=Creatures you control get +1/+1 until end of turn. Forecast  E{W}, Reveal Steeling Stance from your hand: Target creature gets +1/+1 until end of turn. (Activate this ability only during your upkeep and only once each turn.)
+rarity=C
+[/card]
+[card]
+id=107527
+name=Stoic Ephemera
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=5
+toughness=5
+text=Defender (This creature can't attack.) Flying When Stoic Ephemera blocks, sacrifice it at end of combat.
+rarity=U
+[/card]
+[card]
+id=107505
+name=Stomp and Howl
+mana={2}{G}
+type=Sorcery
+text=Destroy target artifact and target enchantment.
+rarity=U
+[/card]
+[card]
+id=107300
+name=Stormscale Anarch
+mana={2}{R}{R}
+type=Creature
+subtype=Viashino Shaman
+power=2
+toughness=2
+text={2}{R}, Discard a card at random: Stormscale Anarch deals 2 damage to target creature or player. If the discarded card was multicolored, Stormscale Anarch deals 4 damage to that creature or player instead.
+rarity=R
+[/card]
+[card]
+id=107371
+name=Street Savvy
+mana={G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +0/+2 and can block creatures with landwalk abilities as though they didn't have those abilities.
+rarity=C
+[/card]
+[card]
+id=107464
+name=Supply // Demand (Supply)
+mana={X}{G}{W}
+type=Sorcery
+text=Put X 1/1 green Saproling creature tokens onto the battlefield. rarity=U
+[/card]
+[card]
+id=107284
+name=Swift Silence
+mana={2}{W}{U}{U}
+type=Instant
+Counter all other spells. Draw a card for each spell countered this way.
+rarity=R
+[/card]
+[card]
+id=107597
+name=Taste for Mayhem
+mana={R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/+0. Hellbent  EEnchanted creature gets an additional +2/+0 as long as you have no cards in hand.
+rarity=C
+[/card]
+[card]
+id=107390
+name=Thrive
+mana={X}{G}
+type=Sorcery
+text=Put a +1/+1 counter on each of X target creatures.
+rarity=C
+[/card]
+[card]
+id=107408
+name=Tidespout Tyrant
+mana={5}{U}{U}{U}
+type=Creature
+subtype=Djinn
+power=5
+toughness=5
+text=Flying Whenever you cast a spell, return target permanent to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=107362
+name=Transguild Courier
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+text=Transguild Courier is all colors (even if this card isn't on the battlefield).
+rarity=U
+[/card]
+[card]
+id=107259
+name=Trial // Error (Trial)
+mana={W}{U}
+type=Instant
+text=Return all creatures blocking or blocked by target creature to their owner's hand. rarity=U
+[/card]
+[card]
+id=97112
+name=Trygon Predator
+mana={1}{G}{U}
+type=Creature
+subtype=Beast
+power=2
+toughness=3
+Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
+rarity=U
+[/card]
+[card]
+id=97114
+name=Twinstrike
+mana={3}{B}{R}
+type=Instant
+text=Twinstrike deals 2 damage to each of two target creatures. Hellbent  EDestroy those creatures instead if you have no cards in hand.
+rarity=U
+[/card]
+[card]
+id=107451
+name=Unliving Psychopath
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Assassin
+power=0
+toughness=4
+text={B}: Unliving Psychopath gets +1/-1 until end of turn. {B}, {T}: Destroy target creature with power less than Unliving Psychopath's power.
+rarity=R
+[/card]
+[card]
+id=107569
+name=Utopia Sprawl
+mana={G}
+type=Enchantment
+subtype=Aura
+text=Enchant Forest As Utopia Sprawl enters the battlefield, choose a color. Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
+rarity=C
+[/card]
+[card]
+id=107276
+name=Utvara Scalper
+mana={1}{R}
+type=Creature
+subtype=Goblin Scout
+power=1
+toughness=2
+text=Flying Utvara Scalper attacks each turn if able.
+rarity=C
+[/card]
+[card]
+id=107431
+name=Valor Made Real
+mana={W}
+type=Instant
+text=Target creature can block any number of creatures this turn.
+rarity=C
+[/card]
+[card]
+id=110638
+name=Verdant Eidolon
+mana={3}{G}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text={G}, Sacrifice Verdant Eidolon: Add three mana of any one color to your mana pool. Whenever you cast a multicolored spell, you may return Verdant Eidolon from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=107477
+name=Vesper Ghoul
+mana={2}{B}
+type=Creature
+subtype=Zombie Druid
+power=1
+toughness=1
+text={T}, Pay 1 life: Add one mana of any color to your mana pool.
+rarity=C
+[/card]
+[card]
+id=107321
+name=Vigean Graftmage
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard Mutant
+power=0
+toughness=0
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {1}{U}: Untap target creature with a +1/+1 counter on it.
+rarity=U
+[/card]
+[card]
+id=107293
+name=Vigean Hydropon
+mana={1}{G}{U}
+type=Creature
+subtype=Plant Mutant
+power=0
+toughness=0
+text=Graft 5 (This creature enters the battlefield with five +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) Vigean Hydropon can't attack or block.
+rarity=C
+[/card]
+[card]
+id=97120
+name=Vigean Intuition
+mana={3}{G}{U}
+type=Instant
+text=Choose a card type, then reveal the top four cards of your library. Put all cards of the chosen type revealed this way into your hand and the rest into your graveyard. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
+rarity=U
+[/card]
+[card]
+id=107397
+name=Vision Skeins
+mana={1}{U}
+type=Instant
+text=Each player draws two cards.
+rarity=C
+[/card]
+[card]
+id=97096
+name=Voidslime
+mana={G}{U}{U}
+type=Instant
+text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
+rarity=R
+[/card]
+[card]
+id=111226
+name=Wakestone Gargoyle
+mana={3}{W}
+type=Creature
+subtype=Gargoyle
+power=3
+toughness=4
+text=Defender (This creature can't attack.) Flying {1}{W}: Creatures you control with defender can attack this turn as though they didn't have defender.
+rarity=R
+[/card]
+[card]
+id=97092
+name=Walking Archive
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=1
+toughness=1
+text=Defender (This creature can't attack.) Walking Archive enters the battlefield with a +1/+1 counter on it. At the beginning of each player's upkeep, that player draws a card for each +1/+1 counter on Walking Archive. {2}{W}{U}: Put a +1/+1 counter on Walking Archive.
+rarity=R
+[/card]
+[card]
+id=107492
+name=War's Toll
+mana={3}{R}
+type=Enchantment
+text=Whenever an opponent taps a land for mana, tap all lands that player controls. If a creature an opponent controls attacks, all creatures that opponent controls attack if able.
+rarity=R
+[/card]
+[card]
+id=107551
+name=Weight of Spires
+mana={R}
+type=Instant
+text=Weight of Spires deals damage to target creature equal to the number of nonbasic lands that creature's controller controls.
+rarity=U
+[/card]
+[card]
+id=97075
+name=Whiptail Moloch
+mana={4}{R}
+type=Creature
+subtype=Lizard
+power=6
+toughness=3
+text=When Whiptail Moloch enters the battlefield, it deals 3 damage to target creature you control.
+rarity=C
+[/card]
+[card]
+id=97094
+name=Windreaver
+mana={3}{W}{U}
+type=Creature
+subtype=Elemental
+power=1
+toughness=3
+text=Flying {W}: Windreaver gains vigilance until end of turn. {W}: Windreaver gets +0/+1 until end of turn. {U}: Switch Windreaver's power and toughness until end of turn. {U}: Return Windreaver to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=107562
+name=Wit's End
+mana={5}{B}{B}
+type=Sorcery
+text=Target player discards his or her hand.
+rarity=R
+[/card]
+[card]
+id=111202
+name=Wrecking Ball
+mana={2}{B}{R}
+type=Instant
+text=Destroy target creature or land.
+rarity=C
+[/card]
+[card]
+id=107413
+name=Writ of Passage
+mana={U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Whenever enchanted creature attacks, if its power is 2 or less, it's unblockable this turn. Forecast  E{1}{U}, Reveal Writ of Passage from your hand: Target creature with power 2 or less is unblockable this turn. (Activate this ability only during your upkeep and only once each turn.)
+rarity=C
+[/card]

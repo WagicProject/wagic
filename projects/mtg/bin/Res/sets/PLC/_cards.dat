@@ -1,0 +1,342 @@
+[card]
+text=First strike, protection from white
+id=130715
+name=Blood Knight
+rarity=U
+type=Creature
+subtype=human knight
+mana={R}{R}
+power=2
+toughness=2
+abilities=first strike,protection from white
+color=Red
+[/card]
+[card]
+text=Target creature gets +3/+3 until end of turn.
+target=creature
+auto=3/3
+id=122373
+name=Brute Force
+rarity=C
+color=Red
+type=Instant
+mana={R}
+[/card]
+[card]
+text=Other white creatures get +1/+1. Nonwhite creatures get -1/-1. Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
+abilities=legendary
+auto=lord(creature[white]) 1/1
+auto=loard(creature[-white] -1/-1
+auto={0}life:-2:moveTo(ownerhand)
+id=122487
+name=Crovax, Ascendant Hero
+rarity=R
+color=White
+type=Creature
+mana={4}{W}{W}
+power=4
+subtype=Human Lord
+toughness=4
+[/card]
+[card]
+text=Destroy all creatures. They can't be regenerated.
+auto=bury all(creature)
+id=122423
+name=Damnation
+rarity=R
+type=Sorcery
+mana={2}{B}{B}
+color=Black
+[/card]
+[card]
+text=Creatures you control get +1/+1.
+auto=lord(creature|myinplay) 1/1
+id=122367
+name=Gaea's Anthem
+rarity=R
+type=Enchantment
+mana={1}{G}{G}
+color=Green
+[/card]
+[card]
+text=Trample, haste     At end of turn, sacrifice Groundbreaker.
+abilities=trample,haste
+auto=@next endofturn:bury
+id=122429
+name=Groundbreaker
+rarity=R
+color=Green
+type=Creature
+mana={G}{G}{G}
+power=6
+subtype=Elemental
+toughness=1
+[/card]
+[card]
+text=Draw three cards.
+auto=draw:3
+id=122362
+name=Harmonize
+rarity=U
+color=Green
+type=Sorcery
+mana={2}{G}{G}
+[/card]
+[card]
+text=Hedge Troll gets +1/+1 as long as you control a Plains.     {W}: Regenerate Hedge Troll.
+auto=aslongas(plains|myinplay) 1/1
+auto={W}:regenerate
+id=122405
+name=Hedge Troll
+rarity=U
+color=Green
+type=Creature
+mana={2}{G}
+power=2
+subtype=Troll Cleric
+toughness=2
+[/card]
+[card]
+text=Flying     {W}{W}{W}: Regenerate Malach of the Dawn.
+abilities=flying
+auto={W}{W}{W}:regenerate
+id=122481
+name=Malach of the Dawn
+rarity=U
+color=White
+type=Creature
+mana={2}{W}{W}
+power=2
+subtype=Angel
+toughness=4
+[/card]
+[card]
+text=Sunlance deals 3 damage to target nonwhite creature.
+target=creature[-white]
+auto=Damage:3
+id=122355
+name=Sunlance
+rarity=C
+color=White
+type=Sorcery
+mana={w}
+[/card]
+[card]
+text=Flying, Vigilance
+id=125873
+name=Serra Sphinx
+rarity=R
+type=Creature
+subtype=Sphinx
+mana={3}{U}{U}
+power=4
+toughness=4
+abilities=vigilance,flying
+color=Blue
+[/card]
+[card]
+text=Swampwalk {G}: Regenerate Mire Boa.
+id=122420
+name=Mire Boa
+rarity=C
+type=Creature
+subtype=Snake
+mana={1}{G}
+power=2
+toughness=1
+auto={G}:regenerate
+abilities=swampwalk
+color=Green
+[/card]
+[card]
+text=Reach
+id=122268
+name=Needlepeak Spider
+rarity=C
+type=Creature
+subtype=Spider
+mana={3}{R}
+power=4
+toughness=2
+abilities=reach
+color=Red
+[/card]
+[card]
+text={T}:Prodigal Pyromancer deals 1 damage to target creature or player.
+id=134752
+name=Prodigal Pyromancer
+rarity=C
+type=Creature
+subtype=Human Wizard
+mana={2}{R}
+power=1
+toughness=1
+auto={T}:damage:1 target(creature,player)
+color=Red
+[/card]
+#[card]
+#text=At end of turn, if no creatures are in play, sacrifice Pyrohemia.     {R}: Pyrohemia #deals 1 damage to each creature and each player.
+#alias=1172
+#id=122436
+#name=Pyrohemia
+#rarity=U
+#type=Enchantment
+#mana={2}{R}{R}
+#color=Red
+#[/card]
+[card]
+text={B}, {T}:Tap target creature.
+id=130718
+name=Rathi Trapper
+rarity=C
+type=Creature
+subtype=Human Rebel Rogue
+mana={1}{B}
+power=1
+toughness=2
+auto={B}{T}:tap target(creature)
+color=Black
+[/card]
+[card]
+text={W}:Regenerate Revered Dead.
+id=122282
+name=Revered Dead
+rarity=C
+type=Creature
+subtype=Spirit Soldier
+mana={1}{W}
+power=1
+toughness=1
+auto={W}:regenerate
+color=White
+[/card]
+[card]
+text=Destroy target nonwhite permanent.
+target=*[-white]
+auto=destroy
+id=122435
+name=Saltblast
+rarity=U
+color=White
+type=Sorcery
+mana={3}{W}{W}
+[/card]
+[card]
+text={T}:Target creature gets -2/-0 until end of turn. 
+id=124037
+name=Saltfield Recluse
+rarity=C
+type=Creature
+subtype=Human Rebel Cleric
+mana={2}{W}
+power=1
+toughness=2
+auto={T}:-2/-0 target(creature)
+color=White
+[/card]
+[card]
+text=Sacrifice Seal of Primordium: Destroy target artifact or enchantment.
+auto={S}:destroy target(artifact,enchantment)
+id=130816
+name=Seal of Primordium
+rarity=C
+type=Enchantment
+mana={1}{G}
+color=Green
+[/card]
+[card]
+text=Enchant creature     Enchanted creature can't attack or block. Enchanted creature has "{T}:Add one mana of any color to your mana pool."
+auto=cantattack,cantblock
+auto={T}:add:{W}
+auto={T}:add:{U}
+auto={T}:add:{B}
+auto={T}:add:{R}
+auto={T}:add:{G}
+id=131004
+name=Utopia Vow
+rarity=C
+type=Enchantment
+mana={1}{G}
+color=Green
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature     Enchanted creature has lifelink.
+auto=lifelink
+id=122366
+name=Vampiric link
+rarity=U
+type=Enchantment
+mana={B}
+color=Black
+subtype=Aura
+[/card]
+[card]
+text=All Sliver creatures have trample.
+id=126015
+name=Battering Sliver
+rarity=C
+type=Creature
+subtype=Sliver
+mana={5}{R}
+power=4
+toughness=4
+auto=lord(Sliver) trample
+abilities=trample
+color=Red
+[/card]
+[card]
+text=All Sliver creatures have haste.
+id=126018
+name=Reflex Sliver
+rarity=C
+type=Creature
+subtype=Sliver
+mana={3}{G}
+power=2
+toughness=2
+auto=lord(Sliver) haste
+abilities=haste
+color=Green
+[/card]
+[card]
+text=All Sliver creatures get +1/+1.
+id=125879
+name=Sinew Sliver
+rarity=C
+type=Creature
+subtype=Sliver
+mana={1}{W}
+power=2
+toughness=2
+auto=lord(Sliver) 1/1
+color=White
+[/card]
+[card]
+text=All Sliver creatures have first strike.
+id=126022
+name=Spitting Sliver
+rarity=C
+type=Creature
+subtype=Sliver
+mana={4}{B}
+power=3
+toughness=3
+auto=lord(Sliver) first strike
+abilities=first strike
+color=Black
+[/card]
+[card]
+text=All Sliver creatures have vigilance.
+id=124044
+name=Synchronous Sliver
+rarity=C
+type=Creature
+subtype=Sliver
+mana={4}{U}
+power=3
+toughness=3
+auto=lord(Sliver) vigilance
+abilities=vigilance
+color=Blue
+[/card]

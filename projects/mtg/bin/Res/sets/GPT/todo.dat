@@ -1,0 +1,1600 @@
+[card]
+id=96953
+name=Absolver Thrull
+mana={3}{W}
+type=Creature
+subtype=Thrull Cleric
+power=2
+toughness=3
+text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Absolver Thrull enters the battlefield or the creature it haunts is put into a graveyard, destroy target enchantment.
+rarity=C
+[/card]
+[card]
+id=96858
+name=Abyssal Nocturnus
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+power=2
+toughness=2
+text=Whenever an opponent discards a card, Abyssal Nocturnus gets +2/+2 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
+rarity=R
+[/card]
+[card]
+id=96924
+name=Ætherplasm
+mana={2}{U}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=1
+text=Whenever Ætherplasm blocks a creature, you may return Ætherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
+rarity=U
+[/card]
+[card]
+id=96892
+name=Agent of Masks
+mana={3}{W}{B}
+type=Creature
+subtype=Human Advisor
+power=2
+toughness=3
+text=At the beginning of your upkeep, each opponent loses 1 life. You gain life equal to the life lost this way.
+rarity=U
+[/card]
+[card]
+id=83869
+name=Angel of Despair
+mana={3}{W}{W}{B}{B}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+text=Flying When Angel of Despair enters the battlefield, destroy target permanent.
+rarity=R
+[/card]
+[card]
+id=96964
+name=Battering Wurm
+mana={6}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=3
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) Creatures with power less than Battering Wurm's power can't block it.
+rarity=U
+[/card]
+[card]
+id=107689
+name=Beastmaster's Magemark
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Creatures you control that are enchanted get +1/+1. Whenever a creature you control that's enchanted becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+rarity=C
+[/card]
+[card]
+id=96962
+name=Belfry Spirit
+mana={3}{W}{W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text=Flying Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Belfry Spirit enters the battlefield or the creature it haunts is put into a graveyard, put two 1/1 black Bat creature tokens with flying onto the battlefield.
+rarity=U
+[/card]
+[card]
+id=96951
+name=Benediction of Moons
+mana={W}
+type=Sorcery
+text=You gain 1 life for each player. Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) When the creature Benediction of Moons haunts is put into a graveyard, you gain 1 life for each player.
+rarity=C
+[/card]
+[card]
+id=96857
+name=Bioplasm
+mana={3}{G}{G}
+type=Creature
+subtype=Ooze
+power=4
+toughness=4
+text=Whenever Bioplasm attacks, exile the top card of your library. If it's a creature card, Bioplasm gets +X/+Y until end of turn, where X is the exiled creature card's power and Y is its toughness.
+rarity=R
+[/card]
+[card]
+id=97227
+name=Blind Hunter
+mana={2}{W}{B}
+type=Creature
+subtype=Bat
+power=2
+toughness=2
+text=Flying Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Blind Hunter enters the battlefield or the creature it haunts is put into a graveyard, target player loses 2 life and you gain 2 life.
+rarity=C
+[/card]
+[card]
+id=96836
+name=Bloodscale Prowler
+mana={2}{R}
+type=Creature
+subtype=Viashino Warrior
+power=3
+toughness=1
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.)
+rarity=C
+[/card]
+[card]
+id=97229
+name=Borborygmos
+mana={3}{R}{R}{G}{G}
+type=Legendary Creature
+subtype=Cyclops
+power=6
+toughness=7
+text=Trample Whenever Borborygmos deals combat damage to a player, put a +1/+1 counter on each creature you control.
+rarity=R
+[/card]
+[card]
+id=96898
+name=Burning-Tree Bloodscale
+mana={2}{R}{G}
+type=Creature
+subtype=Viashino Berserker
+power=2
+toughness=2
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) {2}{R}: Target creature can't block Burning-Tree Bloodscale this turn. {2}{G}: Target creature blocks Burning-Tree Bloodscale this turn if able.
+rarity=C
+[/card]
+[card]
+id=97205
+name=Burning-Tree Shaman
+mana={1}{R}{G}
+type=Creature
+subtype=Centaur Shaman
+power=3
+toughness=4
+text=Whenever a player activates an ability that isn't a mana ability, Burning-Tree Shaman deals 1 damage to that player.
+rarity=R
+[/card]
+[card]
+id=97219
+name=Castigate
+mana={W}{B}
+type=Sorcery
+text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
+rarity=C
+[/card]
+[card]
+id=96969
+name=Caustic Rain
+mana={2}{B}{B}
+type=Sorcery
+text=Exile target land.
+rarity=U
+[/card]
+[card]
+id=96907
+name=Cerebral Vortex
+mana={1}{U}{R}
+type=Instant
+text=Target player draws two cards, then Cerebral Vortex deals damage to that player equal to the number of cards he or she has drawn this turn.
+rarity=R
+[/card]
+[card]
+id=97194
+name=Conjurer's Ban
+mana={W}{B}
+type=Sorcery
+text=Name a card. Until your next turn, the named card can't be played. Draw a card.
+rarity=U
+[/card]
+[card]
+id=96918
+name=Crash Landing
+mana={2}{G}
+type=Instant
+text=Target creature with flying loses flying until end of turn. Crash Landing deals damage to that creature equal to the number of Forests you control.
+rarity=U
+[/card]
+[card]
+id=96936
+name=Cremate
+mana={B}
+type=Instant
+text=Exile target card from a graveyard. Draw a card.
+rarity=U
+[/card]
+[card]
+id=96961
+name=Cry of Contrition
+mana={B}
+type=Sorcery
+text=Target player discards a card. Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) When the creature Cry of Contrition haunts is put into a graveyard, target player discards a card.
+rarity=C
+[/card]
+[card]
+id=96876
+name=Cryptwailing
+mana={3}{B}
+type=Enchantment
+text={1}, Exile two creature cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+rarity=U
+[/card]
+[card]
+id=83733
+name=Crystal Seer
+mana={4}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+text=When Crystal Seer enters the battlefield, look at the top four cards of your library, then put them back in any order. {4}{U}: Return Crystal Seer to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=97215
+name=Culling Sun
+mana={2}{W}{W}{B}
+type=Sorcery
+text=Destroy each creature with converted mana cost 3 or less.
+rarity=R
+[/card]
+[card]
+id=96949
+name=Daggerclaw Imp
+mana={2}{B}
+type=Creature
+subtype=Imp
+power=3
+toughness=1
+text=Flying Daggerclaw Imp can't block.
+rarity=U
+[/card]
+[card]
+id=97193
+name=Debtors' Knell
+mana={4}{(}{W}{/}{B}{)}{(}{W}{/}{B}{)}{(}{W}{/}{B}{)}
+type=Enchantment
+text=({(w/b)} can be paid with either {W} or {B}.) At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
+rarity=R
+[/card]
+[card]
+id=97197
+name=Djinn Illuminatus
+mana={5}{(}{U}{/}{R}{)}{(}{U}{/}{R}{)}
+type=Creature
+subtype=Djinn
+power=3
+toughness=5
+text=({(u/r)} can be paid with either {U} or {R}.) Flying Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
+rarity=R
+[/card]
+[card]
+id=97221
+name=Douse in Gloom
+mana={2}{B}
+type=Instant
+text=Douse in Gloom deals 2 damage to target creature and you gain 2 life.
+rarity=C
+[/card]
+[card]
+id=96929
+name=Droning Bureaucrats
+mana={3}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=4
+text={X}, {T}: Each creature with converted mana cost X can't attack or block this turn.
+rarity=U
+[/card]
+[card]
+id=107687
+name=Drowned Rusalka
+mana={U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={U}, Sacrifice a creature: Discard a card, then draw a card.
+rarity=U
+[/card]
+[card]
+id=96848
+name=Dryad Sophisticate
+mana={1}{G}
+type=Creature
+subtype=Dryad
+power=2
+toughness=1
+text=Nonbasic landwalk
+rarity=U
+[/card]
+[card]
+id=107091
+name=Dune-Brood Nephilim
+mana={B}{R}{G}{W}
+type=Creature
+subtype=Nephilim
+power=3
+toughness=3
+text=Whenever Dune-Brood Nephilim deals combat damage to a player, put a 1/1 colorless Sand creature token onto the battlefield for each land you control.
+rarity=R
+[/card]
+[card]
+id=97238
+name=Earth Surge
+mana={3}{G}
+type=Enchantment
+text=Each land gets +2/+2 as long as it's a creature.
+rarity=R
+[/card]
+[card]
+id=96829
+name=Electrolyze
+mana={1}{U}{R}
+type=Instant
+text=Electrolyze deals 2 damage divided as you choose among any number of target creatures and/or players. Draw a card.
+rarity=U
+[/card]
+[card]
+id=97225
+name=Exhumer Thrull
+mana={5}{B}
+type=Creature
+subtype=Thrull
+power=3
+toughness=3
+text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Exhumer Thrull enters the battlefield or the creature it haunts is put into a graveyard, return target creature card from your graveyard to your hand.
+rarity=U
+[/card]
+[card]
+id=107681
+name=Fencer's Magemark
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Creatures you control that are enchanted get +1/+1 and have first strike.
+rarity=C
+[/card]
+[card]
+id=96945
+name=Feral Animist
+mana={1}{R}{G}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
+text={3}: Feral Animist gets +X/+0 until end of turn, where X is its power.
+rarity=U
+[/card]
+[card]
+id=96890
+name=Frazzle
+mana={3}{U}
+type=Instant
+text=Counter target nonblue spell.
+rarity=U
+[/card]
+[card]
+id=96877
+name=Gatherer of Graces
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=2
+text=Gatherer of Graces gets +1/+1 for each Aura attached to it. Sacrifice an Aura: Regenerate Gatherer of Graces.
+rarity=U
+[/card]
+[card]
+id=96891
+name=Gelectrode
+mana={1}{U}{R}
+type=Creature
+subtype=Weird
+power=0
+toughness=1
+text={T}: Gelectrode deals 1 damage to target creature or player. Whenever you cast an instant or sorcery spell, you may untap Gelectrode.
+rarity=U
+[/card]
+[card]
+id=96834
+name=Ghor-Clan Bloodscale
+mana={3}{R}
+type=Creature
+subtype=Viashino Warrior
+power=2
+toughness=1
+text=First strike {3}{G}: Ghor-Clan Bloodscale gets +2/+2 until end of turn. Activate this ability only once each turn.
+rarity=U
+[/card]
+[card]
+id=96849
+name=Ghor-Clan Savage
+mana={3}{G}{G}
+type=Creature
+subtype=Centaur Berserker
+power=2
+toughness=3
+text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.)
+rarity=C
+[/card]
+[card]
+id=96908
+name=Ghost Council of Orzhova
+mana={W}{W}{B}{B}
+type=Legendary Creature
+subtype=Spirit
+power=4
+toughness=4
+text=When Ghost Council of Orzhova enters the battlefield, target opponent loses 1 life and you gain 1 life. {1}, Sacrifice a creature: Exile Ghost Council of Orzhova. Return it to the battlefield under its owner's control at the beginning of the next end step.
+rarity=R
+[/card]
+[card]
+id=96901
+name=Ghost Warden
+mana={1}{W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={T}: Target creature gets +1/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=96842
+name=Ghostway
+mana={2}{W}
+type=Instant
+text=Exile each creature you control. Return those creatures to the battlefield under their owners' control at the beginning of the next end step.
+rarity=R
+[/card]
+[card]
+id=106576
+name=Giant Solifuge
+mana={2}{(}{R}{/}{G}{)}{(}{R}{/}{G}{)}
+type=Creature
+subtype=Insect
+power=4
+toughness=1
+text=({(r/g)} can be paid with either {R} or {G}.) Trample; haste; shroud (This permanent can't be the target of spells or abilities.)
+rarity=R
+[/card]
+[card]
+id=96864
+name=Gigadrowse
+mana={U}
+type=Instant
+text=Replicate {U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Tap target permanent.
+rarity=C
+[/card]
+[card]
+id=107094
+name=Glint-Eye Nephilim
+mana={U}{B}{R}{G}
+type=Creature
+subtype=Nephilim
+power=2
+toughness=2
+text=Whenever Glint-Eye Nephilim deals combat damage to a player, draw that many cards. {1}, Discard a card: Glint-Eye Nephilim gets +1/+1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=97211
+name=Goblin Flectomancer
+mana={U}{R}{R}
+type=Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+text=Sacrifice Goblin Flectomancer: You may change the targets of target instant or sorcery spell.
+rarity=U
+[/card]
+[card]
+id=96935
+name=Godless Shrine
+mana=
+type=Land
+subtype=Plains Swamp
+text=({T}: Add {W} or {B} to your mana pool.) As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
+rarity=R
+[/card]
+[card]
+id=97228
+name=Graven Dominator
+mana={4}{W}{W}
+type=Creature
+subtype=Gargoyle
+power=4
+toughness=4
+text=Flying Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Graven Dominator enters the battlefield or the creature it haunts is put into a graveyard, each other creature becomes 1/1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=96833
+name=Gristleback
+mana={2}{G}
+type=Creature
+subtype=Boar Beast
+power=2
+toughness=2
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) Sacrifice Gristleback: You gain life equal to Gristleback's power.
+rarity=U
+[/card]
+[card]
+id=96837
+name=Gruul Guildmage
+mana={(}{R}{/}{G}{)}{(}{R}{/}{G}{)}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+text=({(r/g)} can be paid with either {R} or {G}.) {3}{R}, Sacrifice a land: Gruul Guildmage deals 2 damage to target player. {3}{G}: Target creature gets +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=107683
+name=Gruul Nodorog
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text={R}: Gruul Nodorog can't be blocked this turn except by two or more creatures.
+rarity=C
+[/card]
+[card]
+id=96887
+name=Gruul Scrapper
+mana={3}{G}
+type=Creature
+subtype=Human Berserker
+power=3
+toughness=2
+text=When Gruul Scrapper enters the battlefield, if {R} was spent to cast Gruul Scrapper, it gains haste until end of turn.
+rarity=C
+[/card]
+[card]
+id=96859
+name=Gruul Signet
+mana={2}
+type=Artifact
+text={1}, {T}: Add {R}{G} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=97223
+name=Gruul Turf
+mana=
+type=Land
+text=Gruul Turf enters the battlefield tapped. When Gruul Turf enters the battlefield, return a land you control to its owner's hand. {T}: Add {R}{G} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=107098
+name=Gruul War Plow
+mana={4}
+type=Artifact
+text=Creatures you control have trample. {1}{R}{G}: Gruul War Plow becomes a 4/4 Juggernaut artifact creature until end of turn.
+rarity=R
+[/card]
+[card]
+id=107688
+name=Guardian's Magemark
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+text=Flash Enchant creature Creatures you control that are enchanted get +1/+1.
+rarity=C
+[/card]
+[card]
+id=96843
+name=Harrier Griffin
+mana={5}{W}
+type=Creature
+subtype=Griffin
+power=3
+toughness=3
+text=Flying At the beginning of your upkeep, tap target creature.
+rarity=U
+[/card]
+[card]
+id=96873
+name=Hatching Plans
+mana={1}{U}
+type=Enchantment
+text=When Hatching Plans is put into a graveyard from the battlefield, draw three cards.
+rarity=R
+[/card]
+[card]
+id=96922
+name=Hissing Miasma
+mana={1}{B}{B}
+type=Enchantment
+text=Whenever a creature attacks you, its controller loses 1 life.
+rarity=U
+[/card]
+[card]
+id=96840
+name=Hypervolt Grasp
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has "{T}: This creature deals 1 damage to target creature or player." {1}{U}: Return Hypervolt Grasp to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=107684
+name=Infiltrator's Magemark
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Creatures you control that are enchanted get +1/+1 and can't be blocked except by creatures with defender.
+rarity=C
+[/card]
+[card]
+id=107092
+name=Ink-Treader Nephilim
+mana={R}{G}{W}{U}
+type=Creature
+subtype=Nephilim
+power=3
+toughness=3
+text=Whenever a player casts an instant or sorcery spell, if Ink-Treader Nephilim is the only target of that spell, copy the spell for each other creature that spell could target. Each copy targets a different one of those creatures.
+rarity=R
+[/card]
+[card]
+id=83630
+name=Invoke the Firemind
+mana={X}{U}{U}{R}
+type=Sorcery
+text=Choose one — Draw X cards; or Invoke the Firemind deals X damage to target creature or player.
+rarity=R
+[/card]
+[card]
+id=97220
+name=Izzet Boilerworks
+mana=
+type=Land
+text=Izzet Boilerworks enters the battlefield tapped. When Izzet Boilerworks enters the battlefield, return a land you control to its owner's hand. {T}: Add {U}{R} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=97202
+name=Izzet Chronarch
+mana={3}{U}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=When Izzet Chronarch enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=96966
+name=Izzet Guildmage
+mana={(}{U}{/}{R}{)}{(}{U}{/}{R}{)}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=({(u/r)} can be paid with either {U} or {R}.) {2}{U}: Copy target instant spell you control with converted mana cost 2 or less. You may choose new targets for the copy. {2}{R}: Copy target sorcery spell you control with converted mana cost 2 or less. You may choose new targets for the copy.
+rarity=U
+[/card]
+[card]
+id=96867
+name=Izzet Signet
+mana={2}
+type=Artifact
+text={1}, {T}: Add {U}{R} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=97207
+name=Killer Instinct
+mana={4}{R}{G}
+type=Enchantment
+text=At the beginning of your upkeep, reveal the top card of your library. If it's a creature card, put it onto the battlefield. That creature gains haste until end of turn. Sacrifice it at the beginning of the next end step.
+rarity=R
+[/card]
+[card]
+id=107680
+name=Leap of Flame
+mana={U}{R}
+type=Instant
+text=Replicate {U}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Target creature gets +1/+0 and gains flying and first strike until end of turn.
+rarity=C
+[/card]
+[card]
+id=107695
+name=Leyline of Lifeforce
+mana={2}{G}{G}
+type=Enchantment
+text=If Leyline of Lifeforce is in your opening hand, you may begin the game with it on the battlefield. Creature spells can't be countered.
+rarity=R
+[/card]
+[card]
+id=107686
+name=Leyline of Lightning
+mana={2}{R}{R}
+type=Enchantment
+text=If Leyline of Lightning is in your opening hand, you may begin the game with it on the battlefield. Whenever you cast a spell, you may pay {1}. If you do, Leyline of Lightning deals 1 damage to target player.
+rarity=R
+[/card]
+[card]
+id=107697
+name=Leyline of Singularity
+mana={2}{U}{U}
+type=Enchantment
+text=If Leyline of Singularity is in your opening hand, you may begin the game with it on the battlefield. All nonland permanents are legendary.
+rarity=R
+[/card]
+[card]
+id=107699
+name=Leyline of the Meek
+mana={2}{W}{W}
+type=Enchantment
+text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield. Creature tokens get +1/+1.
+rarity=R
+[/card]
+[card]
+id=107682
+name=Leyline of the Void
+mana={2}{B}{B}
+type=Enchantment
+text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. If a card would be put into an opponent's graveyard from anywhere, exile it instead.
+rarity=R
+[/card]
+[card]
+id=96841
+name=Lionheart Maverick
+mana={W}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+text=Vigilance {4}{W}: Lionheart Maverick gets +1/+2 until end of turn.
+rarity=C
+[/card]
+[card]
+id=96874
+name=Living Inferno
+mana={6}{R}{R}
+type=Creature
+subtype=Elemental
+power=8
+toughness=5
+text={T}: Living Inferno deals damage equal to its power divided as you choose among any number of target creatures. Each of those creatures deals damage equal to its power to Living Inferno.
+rarity=R
+[/card]
+[card]
+id=107696
+name=Martyred Rusalka
+mana={W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={W}, Sacrifice a creature: Target creature can't attack this turn.
+rarity=U
+[/card]
+[card]
+id=106568
+name=Mimeofacture
+mana={3}{U}
+type=Sorcery
+text=Replicate {3}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Choose target permanent an opponent controls. Search that player's library for a card with the same name and put it onto the battlefield under your control. Then that player shuffles his or her library.
+rarity=R
+[/card]
+[card]
+id=107096
+name=Mizzium Transreliquat
+mana={3}
+type=Artifact
+text={3}: Mizzium Transreliquat becomes a copy of target artifact until end of turn. {1}{U}{R}: Mizzium Transreliquat becomes a copy of target artifact and gains this ability.
+rarity=R
+[/card]
+[card]
+id=97192
+name=Moratorium Stone
+mana={1}
+type=Artifact
+text={2}, {T}: Exile target card from a graveyard. {2}{W}{B}, {T}, Sacrifice Moratorium Stone: Exile target nonland card from a graveyard, all other cards from graveyards with the same name as that card, and all permanents with that name.
+rarity=R
+[/card]
+[card]
+id=96930
+name=Mortify
+mana={1}{W}{B}
+type=Instant
+text=Destroy target creature or enchantment.
+rarity=U
+[/card]
+[card]
+id=96910
+name=Mourning Thrull
+mana={1}{(}{W}{/}{B}{)}
+type=Creature
+subtype=Thrull
+power=1
+toughness=1
+text=({(w/b)} can be paid with either {W} or {B}.) Flying Whenever Mourning Thrull deals damage, you gain that much life.
+rarity=C
+[/card]
+[card]
+id=107685
+name=Necromancer's Magemark
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Creatures you control that are enchanted get +1/+1. If a creature you control that's enchanted would be put into a graveyard, return it to its owner's hand instead.
+rarity=C
+[/card]
+[card]
+id=96937
+name=Nivix, Aerie of the Firemind
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. {2}{U}{R}, {T}: Exile the top card of your library. Until your next turn, you may cast that card if it's an instant or sorcery.
+rarity=U
+[/card]
+[card]
+id=96952
+name=Niv-Mizzet, the Firemind
+mana={2}{U}{U}{R}{R}
+type=Legendary Creature
+subtype=Dragon Wizard
+power=4
+toughness=4
+text=Flying Whenever you draw a card, Niv-Mizzet, the Firemind deals 1 damage to target creature or player. {T}: Draw a card.
+rarity=R
+[/card]
+[card]
+id=97236
+name=Ogre Savant
+mana={4}{R}
+type=Creature
+subtype=Ogre Wizard
+power=3
+toughness=2
+text=When Ogre Savant enters the battlefield, if {U} was spent to cast Ogre Savant, return target creature to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=96938
+name=Order of the Stars
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=1
+text=Defender (This creature can't attack.) As Order of the Stars enters the battlefield, choose a color. Order of the Stars has protection from the chosen color.
+rarity=U
+[/card]
+[card]
+id=96871
+name=Orzhov Basilica
+mana=
+type=Land
+text=Orzhov Basilica enters the battlefield tapped. When Orzhov Basilica enters the battlefield, return a land you control to its owner's hand. {T}: Add {W}{B} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=96893
+name=Orzhov Euthanist
+mana={2}{B}
+type=Creature
+subtype=Human Assassin
+power=2
+toughness=2
+text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Orzhov Euthanist enters the battlefield or the creature it haunts is put into a graveyard, destroy target creature that was dealt damage this turn.
+rarity=C
+[/card]
+[card]
+id=96921
+name=Orzhov Guildmage
+mana={(}{W}{/}{B}{)}{(}{W}{/}{B}{)}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=({(w/b)} can be paid with either {W} or {B}.) {2}{W}: Target player gains 1 life. {2}{B}: Each player loses 1 life.
+rarity=U
+[/card]
+[card]
+id=96844
+name=Orzhov Pontiff
+mana={1}{W}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Orzhov Pontiff enters the battlefield or the creature it haunts is put into a graveyard, choose one — creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=96870
+name=Orzhov Signet
+mana={2}
+type=Artifact
+text={1}, {T}: Add {W}{B} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=97206
+name=Orzhova, the Church of Deals
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. {3}{W}{B}, {T}: Target player loses 1 life and you gain 1 life.
+rarity=U
+[/card]
+[card]
+id=96974
+name=Ostiary Thrull
+mana={3}{B}
+type=Creature
+subtype=Thrull
+power=2
+toughness=2
+text={W}, {T}: Tap target creature.
+rarity=C
+[/card]
+[card]
+id=97217
+name=Parallectric Feedback
+mana={3}{R}
+type=Instant
+text=Parallectric Feedback deals damage to target spell's controller equal to that spell's converted mana cost.
+rarity=R
+[/card]
+[card]
+id=96897
+name=Petrahydrox
+mana={3}{(}{U}{/}{R}{)}
+type=Creature
+subtype=Weird
+power=3
+toughness=3
+text=({(u/r)} can be paid with either {U} or {R}.) When Petrahydrox becomes the target of a spell or ability, return Petrahydrox to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=96853
+name=Petrified Wood-Kin
+mana={6}{G}
+type=Creature
+subtype=Elemental Warrior
+power=3
+toughness=3
+text=Petrified Wood-Kin can't be countered. Bloodthirst X (This creature enters the battlefield with X +1/+1 counters on it, where X is the damage dealt to your opponents this turn.) Protection from instants
+rarity=R
+[/card]
+[card]
+id=96882
+name=Pillory of the Sleepless
+mana={1}{W}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature can't attack or block. Enchanted creature has "At the beginning of your upkeep, you lose 1 life."
+rarity=C
+[/card]
+[card]
+id=107691
+name=Plagued Rusalka
+mana={B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={B}, Sacrifice a creature: Target creature gets -1/-1 until end of turn.
+rarity=U
+[/card]
+[card]
+id=107099
+name=Poisonbelly Ogre
+mana={4}{B}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
+text=Whenever another creature enters the battlefield, its controller loses 1 life.
+rarity=C
+[/card]
+[card]
+id=96931
+name=Predatory Focus
+mana={3}{G}{G}
+type=Sorcery
+text=You may have creatures you control assign their combat damage this turn as though they weren't blocked.
+rarity=U
+[/card]
+[card]
+id=107694
+name=Primeval Light
+mana={3}{G}
+type=Sorcery
+text=Destroy all enchantments target player controls.
+rarity=U
+[/card]
+[card]
+id=96845
+name=Pyromatics
+mana={1}{R}
+type=Instant
+text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Pyromatics deals 1 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=96826
+name=Quicken
+mana={U}
+type=Instant
+text=The next sorcery card you cast this turn can be cast as though it had flash. Draw a card.
+rarity=R
+[/card]
+[card]
+id=97200
+name=Rabble-Rouser
+mana={3}{R}
+type=Creature
+subtype=Goblin Shaman
+power=1
+toughness=1
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) {R}, {T}: Attacking creatures get +X/+0 until end of turn, where X is Rabble-Rouser's power.
+rarity=U
+[/card]
+[card]
+id=96827
+name=Repeal
+mana={X}{U}
+type=Instant
+text=Return target nonland permanent with converted mana cost X to its owner's hand. Draw a card.
+rarity=C
+[/card]
+[card]
+id=96855
+name=Restless Bones
+mana={2}{B}
+type=Creature
+subtype=Skeleton
+power=1
+toughness=1
+text={3}{B}, {T}: Target creature gains swampwalk until end of turn. {1}{B}: Regenerate Restless Bones.
+rarity=C
+[/card]
+[card]
+id=96972
+name=Revenant Patriarch
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=3
+text=When Revenant Patriarch enters the battlefield, if {W} was spent to cast Revenant Patriarch, target player skips his or her next combat phase. Revenant Patriarch can't block.
+rarity=U
+[/card]
+[card]
+id=97199
+name=Rumbling Slum
+mana={1}{R}{G}{G}
+type=Creature
+subtype=Elemental
+power=5
+toughness=5
+text=At the beginning of your upkeep, Rumbling Slum deals 1 damage to each player.
+rarity=R
+[/card]
+[card]
+id=96916
+name=Runeboggle
+mana={2}{U}
+type=Instant
+text=Counter target spell unless its controller pays {1}. Draw a card.
+rarity=C
+[/card]
+[card]
+id=97190
+name=Sanguine Praetor
+mana={6}{B}{B}
+type=Creature
+subtype=Avatar
+power=7
+toughness=5
+text={B}, Sacrifice a creature: Destroy each creature with the same converted mana cost as the sacrificed creature.
+rarity=R
+[/card]
+[card]
+id=97216
+name=Savage Twister
+mana={X}{R}{G}
+type=Sorcery
+text=Savage Twister deals X damage to each creature.
+rarity=U
+[/card]
+[card]
+id=96904
+name=Scab-Clan Mauler
+mana={R}{G}
+type=Creature
+subtype=Human Berserker
+power=1
+toughness=1
+text=Bloodthirst 2 (If an opponent was dealt damage this turn, this creature enters the battlefield with two +1/+1 counters on it.) Trample
+rarity=C
+[/card]
+[card]
+id=97204
+name=Schismotivate
+mana={1}{U}{R}
+type=Instant
+text=Target creature gets +4/+0 until end of turn. Another target creature gets -4/-0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=107698
+name=Scorched Rusalka
+mana={R}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={R}, Sacrifice a creature: Scorched Rusalka deals 1 damage to target player.
+rarity=U
+[/card]
+[card]
+id=96888
+name=Seize the Soul
+mana={2}{B}{B}
+type=Instant
+text=Destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield. Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) When the creature Seize the Soul haunts is put into a graveyard, destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=96944
+name=Shadow Lance
+mana={W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has first strike. {1}{B}: Enchanted creature gets +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=97233
+name=Shattering Spree
+mana={R}
+type=Sorcery
+text=Replicate {R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Destroy target artifact.
+rarity=U
+[/card]
+[card]
+id=96954
+name=Shrieking Grotesque
+mana={2}{W}
+type=Creature
+subtype=Gargoyle
+power=2
+toughness=1
+text=Flying When Shrieking Grotesque enters the battlefield, if {B} was spent to cast Shrieking Grotesque, target player discards a card.
+rarity=C
+[/card]
+[card]
+id=97234
+name=Siege of Towers
+mana={1}{R}
+type=Sorcery
+text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Target Mountain becomes a 3/1 creature. It's still a land.
+rarity=R
+[/card]
+[card]
+id=96825
+name=Silhana Ledgewalker
+mana={1}{G}
+type=Creature
+subtype=Elf Rogue
+power=1
+toughness=1
+text=Silhana Ledgewalker can't be blocked except by creatures with flying. Silhana Ledgewalker can't be the target of spells or abilities your opponents control.
+rarity=C
+[/card]
+[card]
+id=96863
+name=Silhana Starfletcher
+mana={2}{G}
+type=Creature
+subtype=Elf Druid Archer
+power=1
+toughness=3
+text=Reach (This creature can block creatures with flying.) As Silhana Starfletcher enters the battlefield, choose a color. {T}: Add one mana of the chosen color to your mana pool.
+rarity=C
+[/card]
+[card]
+id=96889
+name=Sinstriker's Will
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has "{T}: This creature deals damage equal to its power to target attacking or blocking creature."
+rarity=U
+[/card]
+[card]
+id=96970
+name=Skarrg, the Rage Pits
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. {R}{G}, {T}: Target creature gets +1/+1 and gains trample until end of turn.
+rarity=U
+[/card]
+[card]
+id=96957
+name=Skarrgan Firebird
+mana={4}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
+text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.) Flying {R}{R}{R}: Return Skarrgan Firebird from your graveyard to your hand. Activate this ability only if an opponent was dealt damage this turn.
+rarity=R
+[/card]
+[card]
+id=96940
+name=Skarrgan Pit-Skulk
+mana={G}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) Creatures with power less than Skarrgan Pit-Skulk's power can't block it.
+rarity=C
+[/card]
+[card]
+id=97222
+name=Skarrgan Skybreaker
+mana={4}{R}{R}{G}
+type=Creature
+subtype=Giant Shaman
+power=3
+toughness=3
+text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.) {1}, Sacrifice Skarrgan Skybreaker: Skarrgan Skybreaker deals damage equal to its power to target creature or player.
+rarity=U
+[/card]
+[card]
+id=96899
+name=Skeletal Vampire
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire Skeleton
+power=3
+toughness=3
+text=Flying When Skeletal Vampire enters the battlefield, put two 1/1 black Bat creature tokens with flying onto the battlefield. {3}{B}{B}, Sacrifice a Bat: Put two 1/1 black Bat creature tokens with flying onto the battlefield. Sacrifice a Bat: Regenerate Skeletal Vampire.
+rarity=R
+[/card]
+[card]
+id=96835
+name=Sky Swallower
+mana={3}{U}{U}
+type=Creature
+subtype=Leviathan
+power=8
+toughness=8
+text=Flying When Sky Swallower enters the battlefield, target opponent gains control of all other permanents you control.
+rarity=R
+[/card]
+[card]
+id=96838
+name=Skyrider Trainee
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+text=As long as Skyrider Trainee is enchanted, it has flying.
+rarity=C
+[/card]
+[card]
+id=96932
+name=Smogsteed Rider
+mana={2}{B}{B}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=Whenever Smogsteed Rider attacks, each other attacking creature gains fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.)
+rarity=U
+[/card]
+[card]
+id=97231
+name=Souls of the Faultless
+mana={W}{B}{B}
+type=Creature
+subtype=Spirit
+power=0
+toughness=4
+text=Defender (This creature can't attack.) Whenever Souls of the Faultless is dealt combat damage, you gain that much life and attacking player loses that much life.
+rarity=U
+[/card]
+[card]
+id=96865
+name=Spelltithe Enforcer
+mana={3}{W}{W}
+type=Creature
+subtype=Elephant Wizard
+power=3
+toughness=3
+text=Whenever an opponent casts a spell, that player sacrifices a permanent unless he or she pays {1}.
+rarity=R
+[/card]
+[card]
+id=107692
+name=Starved Rusalka
+mana={G}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={G}, Sacrifice a creature: You gain 1 life.
+rarity=U
+[/card]
+[card]
+id=96923
+name=Steam Vents
+mana=
+type=Land
+subtype=Island Mountain
+text=({T}: Add {U} or {R} to your mana pool.) As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
+rarity=R
+[/card]
+[card]
+id=97201
+name=Steamcore Weird
+mana={3}{U}
+type=Creature
+subtype=Weird
+power=1
+toughness=3
+text=When Steamcore Weird enters the battlefield, if {R} was spent to cast Steamcore Weird, it deals 2 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=96928
+name=Stitch in Time
+mana={1}{U}{R}
+type=Sorcery
+text=Flip a coin. If you win the flip, take an extra turn after this one.
+rarity=R
+[/card]
+[card]
+id=96896
+name=Stomping Ground
+mana=
+type=Land
+subtype=Mountain Forest
+text=({T}: Add {R} or {G} to your mana pool.) As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
+rarity=R
+[/card]
+[card]
+id=96968
+name=Storm Herd
+mana={8}{W}{W}
+type=Sorcery
+text=Put X 1/1 white Pegasus creature tokens with flying onto the battlefield, where X is your life total.
+rarity=R
+[/card]
+[card]
+id=96927
+name=Stratozeppelid
+mana={4}{U}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=Flying Stratozeppelid can block only creatures with flying.
+rarity=U
+[/card]
+[card]
+id=106575
+name=Streetbreaker Wurm
+mana={3}{R}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=4
+rarity=C
+[/card]
+[card]
+id=107095
+name=Sword of the Paruns
+mana={4}
+type=Artifact
+subtype=Equipment
+text=As long as equipped creature is tapped, tapped creatures you control get +2/+0. As long as equipped creature is untapped, untapped creatures you control get +0/+2. {3}: You may tap or untap equipped creature. Equip {3}
+rarity=R
+[/card]
+[card]
+id=83546
+name=Teysa, Orzhov Scion
+mana={1}{W}{B}
+type=Legendary Creature
+subtype=Human Advisor
+power=2
+toughness=3
+text=Sacrifice three white creatures: Exile target creature. Whenever another black creature you control is put into a graveyard from the battlefield, put a 1/1 white Spirit creature token with flying onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=96946
+name=Thunderheads
+mana={2}{U}
+type=Instant
+text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) Put a 3/3 blue Weird creature token with defender and flying onto the battlefield. Exile it at the beginning of the next end step.
+rarity=U
+[/card]
+[card]
+id=97208
+name=Tibor and Lumia
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+text=Whenever you cast a blue spell, target creature gains flying until end of turn. Whenever you cast a red spell, Tibor and Lumia deals 1 damage to each creature without flying.
+rarity=R
+[/card]
+[card]
+id=96960
+name=Tin Street Hooligan
+mana={1}{R}
+type=Creature
+subtype=Goblin Rogue
+power=2
+toughness=1
+text=When Tin Street Hooligan enters the battlefield, if {G} was spent to cast Tin Street Hooligan, destroy target artifact.
+rarity=C
+[/card]
+[card]
+id=83739
+name=To Arms!
+mana={1}{W}
+type=Instant
+text=Untap all creatures you control. Draw a card.
+rarity=U
+[/card]
+[card]
+id=97218
+name=Torch Drake
+mana={3}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+text=Flying {1}{R}: Torch Drake gets +1/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=96906
+name=Train of Thought
+mana={1}{U}
+type=Sorcery
+text=Replicate {1}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) Draw a card.
+rarity=C
+[/card]
+[card]
+id=97212
+name=Ulasht, the Hate Seed
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Hellion Hydra
+power=0
+toughness=0
+text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control. {1}, Remove a +1/+1 counter from Ulasht: Choose one — Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=96851
+name=Vacuumelt
+mana={2}{U}
+type=Sorcery
+text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Return target creature to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=96920
+name=Vedalken Plotter
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=1
+text=When Vedalken Plotter enters the battlefield, exchange control of target land you control and target land an opponent controls.
+rarity=U
+[/card]
+[card]
+id=96860
+name=Vertigo Spawn
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=0
+toughness=3
+text=Defender (This creature can't attack.) Whenever Vertigo Spawn blocks a creature, tap that creature. That creature doesn't untap during its controller's next untap step.
+rarity=U
+[/card]
+[card]
+id=96903
+name=Wee Dragonauts
+mana={1}{U}{R}
+type=Creature
+subtype=Faerie Wizard
+power=1
+toughness=3
+text=Flying Whenever you cast an instant or sorcery spell, Wee Dragonauts gets +2/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=96934
+name=Wild Cantor
+mana={(}{R}{/}{G}{)}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+text=({(r/g)} can be paid with either {R} or {G}.) Sacrifice Wild Cantor: Add one mana of any color to your mana pool.
+rarity=C
+[/card]
+[card]
+id=107097
+name=Wildsize
+mana={2}{G}
+type=Instant
+text=Target creature gets +2/+2 and gains trample until end of turn. Draw a card.
+rarity=C
+[/card]
+[card]
+id=107090
+name=Witch-Maw Nephilim
+mana={G}{W}{U}{B}
+type=Creature
+subtype=Nephilim
+power=1
+toughness=1
+text=Whenever you cast a spell, you may put two +1/+1 counters on Witch-Maw Nephilim. Whenever Witch-Maw Nephilim attacks, it gains trample until end of turn if its power is 10 or greater.
+rarity=R
+[/card]
+[card]
+id=97203
+name=Withstand
+mana={2}{W}
+type=Instant
+text=Prevent the next 3 damage that would be dealt to target creature or player this turn. Draw a card.
+rarity=C
+[/card]
+[card]
+id=107693
+name=Wreak Havoc
+mana={2}{R}{G}
+type=Sorcery
+text=Wreak Havoc can't be countered by spells or abilities. Destroy target artifact or land.
+rarity=U
+[/card]
+[card]
+id=97230
+name=Wurmweaver Coil
+mana={4}{G}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant green creature Enchanted creature gets +6/+6. {G}{G}{G}, Sacrifice Wurmweaver Coil: Put a 6/6 green Wurm creature token onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=107093
+name=Yore-Tiller Nephilim
+mana={W}{U}{B}{R}
+type=Creature
+subtype=Nephilim
+power=2
+toughness=2
+text=Whenever Yore-Tiller Nephilim attacks, return target creature card from your graveyard to the battlefield tapped and attacking.
+rarity=R
+[/card]
