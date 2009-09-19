@@ -811,6 +811,9 @@ void WResourceManager::CacheForState(int state){
   textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
   return;
 #else 
+#if defined DEBUG_CACHE
+  textureWCache.Clear();
+#endif
   switch(state){
     //Default is not to change cache sizes.
     case GAME_STATE_MENU:
@@ -1203,38 +1206,32 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
     return NULL;
   }
 
-  //Not managed, so look in cache.
-  if(it == managed.end() && style != RETRIEVE_MANAGE && style != RETRIEVE_RESOURCE ){
-    it = cache.end();
-    for(it = cache.begin();it!=cache.end();it++){
-      if(it->first == lookup)
-        break;
-    }
-    //Well, we've found something...
-    if(it != cache.end()) {
-       if(!it->second && (submode & CACHE_EXISTING))
-         return NULL;     //A miss.
-       else
-         return it->second; //A hit.
-    }
-  }  
-
   cacheItem * item = NULL;
-  
+ 
   if(style != RETRIEVE_MANAGE)
     item = cache[lookup];   //We don't know about this one yet.
- 
+
+  //We only want already existing things.
+  if(submode & CACHE_EXISTING || style == RETRIEVE_EXISTING){
+    //Didn't exist in cache.
+    if(!item){
+      mError = CACHE_ERROR_NOT_CACHED;
+      RemoveMiss(lookup);
+    }
+    
+    return item;
+  }
+
   //Found something.
   if(item){
      //Item went bad?
     if(!item->isGood()){
 
-      //If we're allowed, attempt to revive it.
-      if(!(submode & CACHE_EXISTING))
-        item->Attempt(id,submode,mError);
+      //Attempt to revive it.
+      item->Attempt(id,submode,mError);
 
       //Still bad, so remove it and return NULL 
-      if(submode & CACHE_EXISTING || !item->isGood()){
+      if(!item->isGood()){
         if(!item->isLocked()){
           RemoveItem(item);    //Delete it.
           mError = CACHE_ERROR_BAD;
@@ -1252,32 +1249,26 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
     mError = CACHE_ERROR_NONE;  
     return item;
   }
-  
-  //Didn't exist in cache.
-  if(submode & CACHE_EXISTING ){  
-    RemoveMiss(lookup);
-    mError = CACHE_ERROR_NOT_CACHED;
-    return NULL;
-  }
-  else{
-    //Space in cache, make new texture
-     item = AttemptNew(id,submode);       
 
-     //Couldn't make GOOD new item.
-     if(item && !item->isGood())
-     {
-      if(garbage.size() < MAX_CACHE_GARBAGE){
-        item->Trash();
-        garbage.push_back(item);
-      }
-      else
-        SAFE_DELETE(item);
-     }
+  //Space in cache, make new texture
+   item = AttemptNew(id,submode);       
+
+   //Couldn't make GOOD new item.
+   if(item && !item->isGood())
+   {
+    if(garbage.size() < MAX_CACHE_GARBAGE){
+      item->Trash();
+      garbage.push_back(item);
+    }
+    else
+      SAFE_DELETE(item);
+
   }
     
    if(style == RETRIEVE_MANAGE){
      if(item){
-      managed[lookup] = item; //Record a hit.
+      UnlinkCache(item);  //Remove from cached section.
+      managed[lookup] = item; //Promote to managed.
       item->deadbolt(); //Make permanent.
      }
      else if(mError == CACHE_ERROR_404)
@@ -1285,9 +1276,9 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
    }
    else{
     if(!item && mError != CACHE_ERROR_404)
-     RemoveMiss(lookup);
+     RemoveMiss(lookup);  //If file not found, record miss.
     else
-     cache[lookup] = item;
+     cache[lookup] = item;  //Record item.
    }
 
    //Succeeded in making a new item.
