@@ -340,6 +340,7 @@ void WCachedTexture::Trash(){
    if(WCachedTexture::garbageTQs.size() > MAX_CACHE_GARBAGE)
     SAFE_DELETE(tq);
    else{
+    tq->Trash();
     WCachedTexture::garbageTQs.push_back(tq);
    }
   }
