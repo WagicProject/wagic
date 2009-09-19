@@ -548,8 +548,12 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   JQuad * quad = NULL;
 
   int showName = 0;
+#ifdef DEBUG_CACHE
+  quad = resources.RetrieveCard(card,RETRIEVE_NORMAL);
+#else
   quad = resources.RetrieveCard(card,RETRIEVE_EXISTING);
-  if (!quad){
+#endif
+  if (!quad && resources.RetrieveError() != CACHE_ERROR_404){
     if(last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY)
       quad = resources.RetrieveCard(card);
     else{

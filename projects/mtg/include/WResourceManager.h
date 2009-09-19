@@ -6,17 +6,21 @@
 #include "MTGDeck.h"
 #include "MTGCard.h"
 #include "WCachedResource.h"
+#include <list>
 
 //Soft limits.
-#define HUGE_CACHE_LIMIT 10000000
-#define HUGE_CACHE_ITEMS 400
+//For values higher than ~8000000, we run the danger of hitting our reserved space in deck editor.
+#define HUGE_CACHE_LIMIT  8000000 
+#define LARGE_CACHE_LIMIT 6000000
+#define SMALL_CACHE_LIMIT 3000000
 
-#define LARGE_CACHE_LIMIT 5000000
-#define LARGE_CACHE_ITEMS 300
+#define HUGE_CACHE_ITEMS  200
+#define LARGE_CACHE_ITEMS 150
+#define SMALL_CACHE_ITEMS 100
 
-#define SMALL_CACHE_LIMIT 1000000
-#define SMALL_CACHE_ITEMS 200
-
+//We keep a certain amount of space reserved for non-cache use.
+//This value was chosen to guarantee space for image loading.
+#define CACHE_SPACE_RESERVED (512*512*sizeof(PIXEL_TYPE)) 
 
 //Hard Limits.
 #define MAX_CACHE_OBJECTS HUGE_CACHE_ITEMS
@@ -30,6 +34,7 @@ enum ENUM_WRES_INFO{
   WRES_MAX_LOCK = 250,    //Maximum number of locks for a resource.
   WRES_PERMANENT = 251,   //Resource is permanent (ie, managed)  
   WRES_UNDERLOCKED = 252, //Resource was released too many times.
+  WRES_TRASH = 253,       //Resource is trash, and can be recycled.
 };
 
 enum ENUM_RETRIEVE_STYLE{
@@ -60,12 +65,13 @@ enum ENUM_CACHE_SUBTYPE{
 
 enum ENUM_CACHE_ERROR{
   CACHE_ERROR_NONE = 0,
-  CACHE_ERROR_NOT_CACHED = CACHE_ERROR_NONE,
-  CACHE_ERROR_404,
-  CACHE_ERROR_BAD,  //Something went wrong with item->attempt()
-  CACHE_ERROR_BAD_ALLOC, //Couldn't allocate item
-  CACHE_ERROR_LOST,
+  CACHE_ERROR_NOT_CACHED,
   CACHE_ERROR_NOT_MANAGED,
+  CACHE_ERROR_404,
+  CACHE_ERROR_BAD,       //Something went wrong with item->attempt()
+  CACHE_ERROR_BAD_ALLOC, //Couldn't allocate item
+  CACHE_ERROR_FULL,      //Cache is at maxCached.
+  CACHE_ERROR_LOST,
 };
 
 template <class cacheItem, class cacheActual> 
@@ -89,19 +95,21 @@ public:
   void Resize(unsigned long size, int items); //Sets new limits, then enforces them. Lock safe, so not a "hard limit".
 
 protected:
-  bool RemoveItem(cacheItem * item, bool force = true); //Removes an item, deleting it. if(force), ignores locks / permanent
-  bool UnlinkCache(cacheItem * item); //Removes an item from our cache, does not delete it. Use with care.
-  bool Delete(cacheItem * item); //SAFE_DELETE and garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
-  cacheItem* Get(string id, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve.
-  cacheItem* AttemptNew(string filename, int submode);   //Attempts a new cache item, progressively clearing cache if it fails.
-  cacheItem* Recycle(); //Returns a cache item from the trash.
+  bool RemoveItem(cacheItem* item, bool force = true); //Removes an item, deleting it. if(force), ignores locks / permanent
+  bool Delete(cacheItem* item); //Garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
+  
+  bool AttemptNew(cacheItem* item, int submode);   //Attempts to load item, progressively clearing mCache if it fails.
+  cacheItem* Get(string id, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve. Guarenteed isGood().  
+  cacheItem* Recycle(); //Returns a cache item from the trash, or (worst possible case) pops a new one onto mCache.
+
+  void RecordMiss(string miss);
 
   string makeID(string filename, int submode);  //Makes an ID appropriate to the submode.
   string makeFilename(string id, int submode);  //Makes a filename from an ID.
 
-  map<string,cacheItem*> cache; 
-  map<string,cacheItem*> managed;  //Cache can be arbitrarily large, so managed items are seperate.
-  vector<cacheItem*> garbage;      //Garbage collection.
+  cacheItem mCached[MAX_CACHE_OBJECTS];        
+  list<cacheItem> mManaged;      //Cache and managed items are seperate to improve performance.
+  list<string> mMisses;
   unsigned long totalSize;
   unsigned long cacheSize;
   
@@ -137,6 +145,8 @@ public:
   JQuad * RetrieveQuad(string filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f, string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL);
   JQuad * RetrieveTempQuad(string filename);
   hgeParticleSystemInfo * RetrievePSI(string filename, JQuad * texture, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
+
+  int RetrieveError(); //Returns the error from the last call to ANY retrieve function.
 
   void Release(JTexture * tex);
   void Release(JQuad * quad);
@@ -202,6 +212,7 @@ private:
   
   //Statistics of record.
   unsigned int lastTime;
+  int lastError;
 };
 
 extern WResourceManager resources;

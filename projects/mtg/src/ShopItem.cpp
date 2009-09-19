@@ -384,7 +384,7 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
             tempDeck->remove(it->first);
 
           int rarity = (int) tempDeck->database->getCardById(it->first)->getRarity();
-          tempDeck->addRandomCards(dupes,&rarity);
+          tempDeck->addRandomCards(dupes,sets,1,rarity);
           it = tempDeck->cards.begin(); 
         }
    
