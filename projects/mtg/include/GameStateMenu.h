@@ -20,6 +20,7 @@ class GameStateMenu: public GameState, public JGuiListener
   JTexture * bgTexture;
   JTexture * movingWTexture;
   JQuad * mBg;
+  JQuad * mSplash;
   JQuad * mMovingW;
   float mCreditsYPos;
   int currentState;

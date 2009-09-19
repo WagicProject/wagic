@@ -69,6 +69,7 @@ int MTGCard::init(){
     colors[i] = 0;
   }
   setId = 0;
+  mtgid = 0;
   magicText = "";
   spellTargetType = "";
   alias = 0;

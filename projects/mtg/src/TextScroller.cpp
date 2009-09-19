@@ -32,6 +32,8 @@ void TextScroller::Reset(){
 }
 
 void TextScroller::Update(float dt){
+  if(!strings.size())
+    return;
   start+=mSpeed*dt;
   if (start > mFont->GetStringWidth(mText.c_str())){
     start = -mWidth;

@@ -19,10 +19,11 @@
 
 
 //Hard Limits.
-#define MAX_CACHE_OBJECTS 400
+#define MAX_CACHE_OBJECTS HUGE_CACHE_ITEMS
 #define MAX_CACHE_ATTEMPTS 10
 #define MAX_CACHE_MISSES 200
 #define MAX_CACHED_SAMPLES 0
+#define MAX_CACHE_GARBAGE 10
 
 enum ENUM_WRES_INFO{
   WRES_UNLOCKED = 0,      //Resource is unlocked.
@@ -61,7 +62,8 @@ enum ENUM_CACHE_ERROR{
   CACHE_ERROR_NONE = 0,
   CACHE_ERROR_NOT_CACHED = CACHE_ERROR_NONE,
   CACHE_ERROR_404,
-  CACHE_ERROR_BAD,
+  CACHE_ERROR_BAD,  //Something went wrong with item->attempt()
+  CACHE_ERROR_BAD_ALLOC, //Couldn't allocate item
   CACHE_ERROR_LOST,
   CACHE_ERROR_NOT_MANAGED,
 };
@@ -89,15 +91,17 @@ public:
 protected:
   bool RemoveItem(cacheItem * item, bool force = true); //Removes an item, deleting it. if(force), ignores locks / permanent
   bool UnlinkCache(cacheItem * item); //Removes an item from our cache, does not delete it. Use with care.
-  bool Delete(cacheItem * item); //Call SAFE_DELETE on cacheItem. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
+  bool Delete(cacheItem * item); //SAFE_DELETE and garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
   cacheItem* Get(string id, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve.
   cacheItem* AttemptNew(string filename, int submode);   //Attempts a new cache item, progressively clearing cache if it fails.
+  cacheItem* Recycle(); //Returns a cache item from the trash.
 
   string makeID(string filename, int submode);  //Makes an ID appropriate to the submode.
   string makeFilename(string id, int submode);  //Makes a filename from an ID.
 
   map<string,cacheItem*> cache; 
   map<string,cacheItem*> managed;  //Cache can be arbitrarily large, so managed items are seperate.
+  vector<cacheItem*> garbage;      //Garbage collection.
   unsigned long totalSize;
   unsigned long cacheSize;
   
@@ -138,6 +142,7 @@ public:
   void Release(JQuad * quad);
   void Release(JSample * sample);
 
+  bool RemoveOldest();
   
   bool Cleanup();       //Force a cleanup. Return false if nothing removed.
   void ClearMisses();   //Remove all cache misses.

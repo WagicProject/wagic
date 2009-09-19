@@ -64,6 +64,9 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
   mGuiController = NULL;
   subMenuController = NULL;
   gameTypeMenu = NULL;
+  mSplash = NULL;
+  mBg = NULL;
+  mMovingW = NULL;
   //bgMusic = NULL;
   timeIndex = 0;
   angleMultiplier = MIN_ANGLE_MULTIPLIER;
@@ -315,6 +318,7 @@ void GameStateMenu::Update(float dt)
         std::ifstream file(options.profileFile(PLAYER_COLLECTION,"",false).c_str());
 	      if(file){
 	        file.close();
+          resources.Release(mSplash);
 	        currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
 	      }else{
   	      currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
@@ -414,9 +418,10 @@ void GameStateMenu::Render()
   renderer->ClearScreen(ARGB(0,0,0,0));
   JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
-    JQuad* splashQuad = resources.RetrieveTempQuad("splash.jpg");
-    if (splashQuad){
-      renderer->RenderQuad(splashQuad,0,0);
+    if(!mSplash)
+     mSplash = resources.RetrieveQuad("splash.jpg");
+    if (mSplash){
+      renderer->RenderQuad(mSplash,0,0);
     }else{
       char text[512];
       sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);

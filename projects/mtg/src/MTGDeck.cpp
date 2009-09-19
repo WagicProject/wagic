@@ -279,7 +279,7 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
           char outBuf[4096];
           sprintf(outBuf,"warning, card id collision! : %i - %s\n", newId, tempCard->name.c_str());
           OutputDebugString (outBuf);
-          delete tempCard;
+          SAFE_DELETE(tempCard);
         }else{
           ids.push_back(newId);
           collection[newId] = tempCard;

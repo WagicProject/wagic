@@ -213,6 +213,7 @@ power=2
 toughness=2
 [/card]
 [card]
+id=152659
 Name=Shinewend
 Mana={1}{W}
 Type=Creature
@@ -226,6 +227,7 @@ toughness=0
 Rarity=C
 [/card]
 [card]
+id=152704
 Name=Stingmoggie
 Mana={3}{R}
 Type=Creature

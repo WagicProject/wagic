@@ -163,7 +163,7 @@ color=Red
 [/card]
 [card]
 text={T}:Prodigal Pyromancer deals 1 damage to target creature or player.
-id=134752
+id=122338
 name=Prodigal Pyromancer
 rarity=C
 type=Creature

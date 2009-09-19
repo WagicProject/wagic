@@ -10,8 +10,29 @@
 #include "../include/WResourceManager.h"
 
 WResourceManager resources;
-
 unsigned int vTime = 0;
+
+void handle_new_failure(){
+  OutputDebugString("NEW failed. Attempting to clear cache.");
+#ifdef DEBUG_CACHE
+  resources.debugMessage = "Emergency cache cleanup!";
+#endif
+  if(!resources.RemoveOldest()){
+    OutputDebugString("Nothing to clear from cache. Abort.");
+    abort();
+  }
+}
+
+bool WResourceManager::RemoveOldest(){
+ if(sampleWCache.RemoveOldest())
+   return true;
+ if(textureWCache.RemoveOldest())
+   return true;
+ if(psiWCache.RemoveOldest())
+   return true;
+
+ return false;
+}
 
 //WResourceManager
 void WResourceManager::DebugRender(){
@@ -168,18 +189,27 @@ WResourceManager::~WResourceManager(){
     SAFE_DELETE(wm);
   }
   managedQuads.clear();
+
+  //Remove all our reserved WTrackedQuads from WCachedTexture
+  vector<WTrackedQuad*>::iterator g;
+  for(g=WCachedTexture::garbageTQs.begin();g!=WCachedTexture::garbageTQs.end();g++){
+    WTrackedQuad * tq = *g;
+    SAFE_DELETE(tq);
+  }
   LOG("==Successfully Destroyed WResourceManager==");
 }
 
 JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
   //Cards are never, ever resource managed, so just check cache.
+  if(!card)
+    return NULL;
 
   submode = submode | TEXTURE_SUB_CARD;
 
   string filename = card->getSetName();
   filename += "/";
   filename += card->getImageName();
-  JQuad * jq = RetrieveQuad(filename,0,0,0,0,filename,style,submode|TEXTURE_SUB_5551);
+  JQuad * jq = RetrieveQuad(filename,0,0,0,0,"",style,submode|TEXTURE_SUB_5551);
 
   if(jq){
     jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);  
@@ -335,9 +365,8 @@ void WResourceManager::Release(JQuad * quad){
       break;
   }
 
-  //Releasing a quad doesn't release the associated texture-- it might be needed later.
-  //if(it != textureWCache.cache.end() && it->second)
-  // textureWCache.RemoveItem(it->second,false); //won't remove locked.
+  if(it != textureWCache.cache.end() && it->second)
+   textureWCache.RemoveItem(it->second,false); //won't remove locked.
 }
 
 void WResourceManager::ClearMisses(){
@@ -399,6 +428,9 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
         break;
       case CACHE_ERROR_404:
         debugMessage = "File not found: ";
+        break;
+      case CACHE_ERROR_BAD_ALLOC:
+        debugMessage = "Out of memory: ";
         break;
       case CACHE_ERROR_BAD:
         debugMessage = "Cache bad: ";
@@ -892,10 +924,6 @@ bool WCache<cacheItem, cacheActual>::RemoveOldest(){
   }
 
   if(oldest != cache.end() && oldest->second && !oldest->second->isLocked()){
-    unsigned long isize = oldest->second->size();
-    cacheSize -= isize;
-    totalSize -= isize;
-    cacheItems--;
 #if defined DEBUG_CACHE
     lastExpired = oldest->first;
 #endif
@@ -915,13 +943,8 @@ void WCache<cacheItem, cacheActual>::Clear(){
     next = it;
     next++;
 
-      if(it->second){
-        unsigned long isize = it->second->size();
-        totalSize -= isize;
-        cacheSize -= isize;
+      if(it->second)
         Delete(it->second);
-        cacheItems--;
-      }
       cache.erase(it);
   }
   for(it = managed.begin(); it != managed.end();it=next){
@@ -942,11 +965,7 @@ void WCache<cacheItem, cacheActual>::ClearUnlocked(){
     next++;
 
       if(it->second && !it->second->isLocked()){
-        unsigned long isize = it->second->size();
-        totalSize -= isize;
-        cacheSize -= isize;
         Delete(it->second);
-        cacheItems--;
         cache.erase(it);
       }
       else if(!it->second){
@@ -983,6 +1002,19 @@ void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items){
   else
     maxCached = items;
 }
+
+template <class cacheItem, class cacheActual>
+cacheItem* WCache<cacheItem, cacheActual>::Recycle(){
+  typename vector<cacheItem*>::iterator it = garbage.begin();
+  if(it == garbage.end())
+    return NULL;
+
+  cacheItem * item = (*it);
+  garbage.erase(it);
+
+  return item;  
+}
+
 template <class cacheItem, class cacheActual>
 cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submode){
   if(submode & CACHE_EXISTING){ //Should never get this far.
@@ -990,24 +1022,46 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
     return NULL;
   }
 
-  cacheItem* item = NEW cacheItem;
+  cacheItem* item = NULL;
 
-  mError = CACHE_ERROR_NONE;
+  item = Recycle();
+
+  if(item == NULL){
+    try{
+      item = NEW cacheItem;
+      mError = CACHE_ERROR_NONE;
+    }
+    catch(std::bad_alloc){
+      SAFE_DELETE(item);
+    }
+  }
 
   if(item == NULL || !item->Attempt(filename,submode,mError)){
     //No such file. Fail.
     if(item && mError == CACHE_ERROR_404){
-      Delete(item);
+      if(garbage.size() < MAX_CACHE_GARBAGE){
+        item->Trash();
+        garbage.push_back(item);
+      }
+      else
+        SAFE_DELETE(item);
+      
       return NULL;
     }
-
 
     for(int attempt=0;attempt<10;attempt++){
       if(!RemoveOldest()) 
         break;
       
-      if(!item)
-        item = NEW cacheItem ;
+      if(!item){
+        try{
+            item = NEW cacheItem;
+        }
+        catch(std::bad_alloc){
+          SAFE_DELETE(item);
+          continue;
+        }
+      }
 
       if(item && item->Attempt(filename,submode,mError))
         break;
@@ -1024,14 +1078,29 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
     //Worst cache scenerio. Clear every cache we've got.
     if(!item || !item->isGood()){
       resources.ClearUnlocked();
-      if(!item) item = NEW(cacheItem);
+      if(!item){
+        try{
+        item = NEW(cacheItem);
+        }
+        catch(std::bad_alloc){
+          mError = CACHE_ERROR_BAD_ALLOC;
+          SAFE_DELETE(item);
+          return NULL;
+        }
+      }
       item->Attempt(filename,submode,mError);
     }
   }
 
   if(item && !item->isGood()){
-    Delete(item);
+    if(garbage.size() < MAX_CACHE_GARBAGE){
+      item->Trash();
+      garbage.push_back(item);
+    }
+    else
+      SAFE_DELETE(item);
     mError = CACHE_ERROR_BAD;
+    return NULL;
   }
   else
     mError = CACHE_ERROR_NONE;
@@ -1194,9 +1263,16 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
     //Space in cache, make new texture
      item = AttemptNew(id,submode);       
 
-     //Couldn't make new item.
+     //Couldn't make GOOD new item.
      if(item && !item->isGood())
-       Delete(item);
+     {
+      if(garbage.size() < MAX_CACHE_GARBAGE){
+        item->Trash();
+        garbage.push_back(item);
+      }
+      else
+        SAFE_DELETE(item);
+     }
   }
     
    if(style == RETRIEVE_MANAGE){
@@ -1216,7 +1292,7 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
 
    //Succeeded in making a new item.
    if(item){
-    unsigned long isize =item->size();   
+    unsigned long isize = item->size();   
     totalSize += isize;
     
     mError = CACHE_ERROR_NONE;
@@ -1225,9 +1301,6 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
       cacheSize += isize;
     }
 
-    item->lock();
-    Cleanup();  //Strictly enforce limits.
-    item->unlock();
     return item;
   }
 
@@ -1272,14 +1345,21 @@ WCache<cacheItem, cacheActual>::~WCache(){
     if(!it->second)
       continue;
 
-    Delete(it->second);
+    //Delete(it->second);
+    SAFE_DELETE(it->second);
   }
 
   for(it=managed.begin();it!=managed.end();it++){
     if(!it->second)
       continue;
 
-    Delete(it->second);
+    //Delete(it->second);
+    SAFE_DELETE(it->second);
+  }
+
+  typename vector<cacheItem*>::iterator g;
+  for(g=garbage.begin();g!=garbage.end();g++){
+    SAFE_DELETE(*g);
   }
 }
 
@@ -1346,11 +1426,7 @@ bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem * item, bool force){
       break;
   }
   if(it != cache.end() && it->second && (force || !it->second->isLocked())){
-    unsigned long isize = it->second->size();
-    totalSize -= isize;
-    cacheSize -= isize;
 
-    cacheItems--;
 #if defined DEBUG_CACHE
     lastRemoved = it->first;
 #endif
@@ -1377,7 +1453,7 @@ bool WCache<cacheItem, cacheActual>::UnlinkCache(cacheItem * item){
     it->second = NULL;  
     unsigned long isize = item->size();
 
-    cacheSize-=isize; 
+    cacheSize -= isize; 
     cacheItems--;
     cache.erase(it);
     return true;
@@ -1398,7 +1474,22 @@ bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
   if(maxCached == 0)
     item->Nullify();
 
-  SAFE_DELETE(item);
+    unsigned long isize = item->size();
+    totalSize -= isize;
+    cacheSize -= isize;
+#ifdef DEBUG_CACHE
+    if(cacheItems == 0)
+      OutputDebugString("cacheItems out of sync.\n");
+#endif
+
+    cacheItems--;
+
+    if(garbage.size() > MAX_CACHE_GARBAGE)
+      SAFE_DELETE(item);
+    else{
+      item->Trash();
+      garbage.push_back(item);
+    }
   return true;
 }
 
@@ -1419,12 +1510,8 @@ bool WCache<cacheItem, cacheActual>::Release(cacheActual* actual){
   if(it->second){
     it->second->unlock(); //Release one lock.
     if(it->second->isLocked())
-      return true; //Still locked, won't delete.
+      return true; //Still locked, won't delete, not technically a failure.
 
-    unsigned long isize = it->second->size();
-    totalSize -= isize;
-    cacheSize -= isize;
-    cacheItems--;
 #if defined DEBUG_CACHE
     lastReleased = it->first;
 #endif
