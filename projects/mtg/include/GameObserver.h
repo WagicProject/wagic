@@ -6,7 +6,6 @@
 #include "DuelLayers.h"
 #include "MTGCardInstance.h"
 #include "PlayGuiObject.h"
-#include "DuelLayers.h"
 #include "TargetChooser.h"
 #include "PhaseRing.h"
 #include "ReplacementEffects.h"
@@ -30,7 +29,6 @@ class GameObserver{
 
   int nbPlayers;
   int currentPlayerId;
-  int currentRound;
 
  public:
   CombatStep combatStep;
@@ -53,7 +51,6 @@ class GameObserver{
   void stackObjectClicked(Interruptible * action);
 
   void cardClick(MTGCardInstance * card,Targetable * _object = NULL );
-  int enteringPhase(int phase);
   int getCurrentGamePhase();
   void nextCombatStep();
   void userRequestNextGamePhase();

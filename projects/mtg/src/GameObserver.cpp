@@ -1,6 +1,5 @@
 #include "../include/config.h"
 #include "../include/GameObserver.h"
-
 #include "../include/GameOptions.h"
 #include "../include/ConstraintResolver.h"
 #include "../include/CardGui.h"
@@ -42,7 +41,6 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   isInterrupting = NULL;
   currentPlayerId = 0;
   nbPlayers = _nb_players;
-  currentRound  = 1;
   currentGamePhase = -1;
   targetChooser = NULL;
   cardWaitingForTargets = NULL;
@@ -68,10 +66,6 @@ Player * GameObserver::opponent(){
   return players[index];
 }
 
-int GameObserver::enteringPhase(int phase){
-  //TODO
-  return 0;
-}
 
 void GameObserver::nextPlayer(){
   turn++;
