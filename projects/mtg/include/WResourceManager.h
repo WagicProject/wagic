@@ -9,10 +9,10 @@
 #include <list>
 
 //Soft limits.
-//For values higher than ~8000000, we run the danger of hitting our reserved space in deck editor.
-#define HUGE_CACHE_LIMIT  8000000 
-#define LARGE_CACHE_LIMIT 6000000
-#define SMALL_CACHE_LIMIT 3000000
+//For values higher than ~6000000, we run the danger of hitting our reserved space in deck editor.
+#define HUGE_CACHE_LIMIT  6000000 
+#define LARGE_CACHE_LIMIT 4000000
+#define SMALL_CACHE_LIMIT 2000000
 
 #define HUGE_CACHE_ITEMS  200
 #define LARGE_CACHE_ITEMS 150

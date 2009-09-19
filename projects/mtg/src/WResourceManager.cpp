@@ -1020,36 +1020,6 @@ bool WCache<cacheItem, cacheActual>::AttemptNew(cacheItem* item, int submode){
     return false;
   }
 
-  //Keep a bit of memory in reserve.
-  if(CACHE_SPACE_RESERVED > 0){
-    char * test = (char*)malloc(CACHE_SPACE_RESERVED);;
-    int tries = 0;
-    while(!test && tries++ < MAX_CACHE_ATTEMPTS){
-      if(!RemoveOldest()) 
-        break;
-
-      test = (char*)malloc(CACHE_SPACE_RESERVED);
-    }
-
-    if(test){
-      free(test);
-      test = NULL;
-    }
-    else{
-      resources.ClearUnlocked();
-      test = (char*)malloc(CACHE_SPACE_RESERVED);
-
-      if(test){
-        free(test);
-        test = NULL;
-      }
-      else{
-        mError = CACHE_ERROR_BAD_ALLOC;
-        return false;
-      } 
-    }
-  }
-
   string filename = makeFilename(item->id,submode);
   
   if(!item->Attempt(filename,submode,mError)){
@@ -1064,7 +1034,7 @@ bool WCache<cacheItem, cacheActual>::AttemptNew(cacheItem* item, int submode){
       if(!RemoveOldest()) 
         break;
       
-      if(item->Attempt(filename,submode,mError))
+      if(item->Attempt(filename,submode,mError) && item->isGood())
         break;
 
       //Failed attempt. Trash this.
@@ -1072,18 +1042,20 @@ bool WCache<cacheItem, cacheActual>::AttemptNew(cacheItem* item, int submode){
     }
 
     if(!item->isGood()){
+      item->Trash();
       Cleanup();
       item->Attempt(filename,submode,mError);
     }
     //Still no result, so clear cache entirely, then try again.
     if(!item->isGood()){
+      item->Trash();
       ClearUnlocked();
       item->Attempt(filename,submode,mError);
     }
   }
 
   //Final failure. Trash it.
-  if(!item->isGood()){
+  if(item && !item->isGood()){
     item->Trash();
     mError = CACHE_ERROR_BAD;
     return false;
