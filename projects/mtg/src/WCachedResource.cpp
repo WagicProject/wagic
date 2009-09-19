@@ -16,16 +16,13 @@ WResource::~WResource(){
   return;
 }
 WResource::WResource(){
-  locks = WRES_TRASH;
+  locks = WRES_UNLOCKED;
   lastTime = resources.nowTime();
   loadedMode = 0;
 }
 
 bool WResource::isLocked(){
-  return (locks != WRES_UNLOCKED && locks != WRES_TRASH);
-}
-bool WResource::isTrash(){
-  return (locks == WRES_TRASH);
+  return (locks != WRES_UNLOCKED);
 }
 
 bool WResource::isPermanent(){
@@ -65,17 +62,10 @@ void WResource::hit(){
 vector<WTrackedQuad*> WCachedTexture::garbageTQs;
 
 WCachedTexture::WCachedTexture(){
-#ifdef DEBUG_CACHE
-  OutputDebugString("Cached texture created.\n");
-#endif
   texture = NULL;
 }
 
 WCachedTexture::~WCachedTexture(){
-#ifdef DEBUG_CACHE
-  OutputDebugString("Cached texture destroyed.\n");
-#endif
-  
   if(texture)
     SAFE_DELETE(texture);
 
@@ -108,12 +98,6 @@ bool WCachedTexture::isLocked(){
 }
 
 bool WCachedTexture::ReleaseQuad(JQuad* quad){
-#ifdef DEBUG_CACHE
-  char buf[512];
-
-  sprintf(buf,"ReleaseQuad: %d.\n", (int) quad);
-  OutputDebugString(buf);
-#endif
   if(quad == NULL)
     return false;
 
@@ -174,10 +158,8 @@ WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float widt
       tq = *gtq;
       garbageTQs.erase(gtq);
     }
-    else{
+    else
       tq = NEW WTrackedQuad(resname);
-      tq->unlock(true);
-    }
   }
 
   if(tq == NULL)
@@ -249,9 +231,6 @@ unsigned long WCachedTexture::size(){
 }
 
 bool WCachedTexture::isGood(){
-  if(locks == WRES_TRASH)
-    return false;
-
   if(!texture)
     return false;
 
@@ -329,9 +308,6 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
     return false;
   }
   
-  if(locks == WRES_TRASH)
-    locks = WRES_UNLOCKED;
-
   error = CACHE_ERROR_NONE;
   return true;    
 } 
@@ -341,11 +317,6 @@ void WCachedTexture::Nullify(){
     texture = NULL;
 }
 void WCachedTexture::Trash(){
-  id = "";
-  locks = WRES_TRASH;
-#ifdef DEBUG_CACHE
-  OutputDebugString("WCachedTexture::Trash()\n");
-#endif
     SAFE_DELETE(texture);
     
   vector<WTrackedQuad*>::iterator it;
@@ -371,25 +342,14 @@ void WCachedSample::Nullify(){
 }
 
 void WCachedSample::Trash(){
-  id = "";
-  locks = WRES_TRASH;
-#ifdef DEBUG_CACHE
-  OutputDebugString("WCachedSample::Trash()\n");
-#endif
   SAFE_DELETE(sample);
 }
 
 WCachedSample::WCachedSample(){
-#ifdef DEBUG_CACHE
-  OutputDebugString("Cached sample created.\n");
-#endif
   sample = NULL;
 }
 
 WCachedSample::~WCachedSample(){
-#ifdef DEBUG_CACHE
-  OutputDebugString("Cached sample destroyed.\n");
-#endif
   SAFE_DELETE(sample);
 }
 
@@ -409,9 +369,6 @@ unsigned long WCachedSample::size(){
 } 
 
 bool WCachedSample::isGood(){
-  if(locks == WRES_TRASH)
-    return false;
-
   if(!sample || !sample->mSample)
     return false;
 
@@ -436,18 +393,12 @@ bool WCachedSample::Attempt(string filename, int submode, int & error){
     return false;
   }
 
-  if(locks == WRES_TRASH)
-    locks = WRES_UNLOCKED;
-
   return true;
 }
 
 //WCachedParticles
 
 bool WCachedParticles::isGood(){
-  if(locks == WRES_TRASH)
-    return false;
-
   if(!particles)
     return false;
   return true;
@@ -493,10 +444,6 @@ bool WCachedParticles::Attempt(string filename, int submode, int & error){
 
 	particles->sprite=NULL;
   error = CACHE_ERROR_NONE;
-
-  if(locks == WRES_TRASH)
-    locks = WRES_UNLOCKED;
-
   return true;
 }
 
@@ -505,15 +452,9 @@ hgeParticleSystemInfo * WCachedParticles::Actual(){
 }
 
 WCachedParticles::WCachedParticles(){
-#ifdef DEBUG_CACHE
-  OutputDebugString("Cached particles created.\n");
-#endif
   particles = NULL;  
 }
 WCachedParticles::~WCachedParticles(){
-#ifdef DEBUG_CACHE
-  OutputDebugString("Cached particles destroyed.\n");
-#endif
   SAFE_DELETE(particles);  
 }
 
@@ -523,11 +464,6 @@ void WCachedParticles::Nullify(){
 }
 
 void WCachedParticles::Trash(){
-  id = "";
-  locks = WRES_TRASH;
-#ifdef DEBUG_CACHE
-  OutputDebugString("WCachedParticles::Trash()\n");
-#endif
   SAFE_DELETE(particles);
 }
 
@@ -537,11 +473,6 @@ void WTrackedQuad::Nullify() {
 }
 
 void WTrackedQuad::Trash(){
-  id = "";
-  locks = WRES_TRASH;
-#ifdef DEBUG_CACHE
-  OutputDebugString("WTrackedQuad::Trash()\n");
-#endif
   resname.clear();
   SAFE_DELETE(quad);
 }
@@ -554,9 +485,6 @@ unsigned long WTrackedQuad::size() {
   return sizeof(JQuad);
 }
 bool WTrackedQuad::isGood(){
-  if(locks == WRES_TRASH)
-    return false;
-
   return (quad != NULL);
 }
 WTrackedQuad::WTrackedQuad(string _resname) {

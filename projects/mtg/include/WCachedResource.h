@@ -21,7 +21,6 @@ public:
   virtual unsigned long size()=0; //Size of cached item in bytes.
   virtual bool isGood()=0;  //Return true if this has data.
   virtual bool isLocked();    //Is the resource locked?
-  virtual bool isTrash();    //Is the resource locked?
   virtual void lock();    //Lock it.
   virtual void unlock(bool force = false);  //Unlock it. Forcing a lock will also remove "permanent" status.
 
@@ -30,7 +29,6 @@ public:
   void hit();     //Update resource's last used time.
 
 protected:
-  string id;        //Our lookup value.
   int loadedMode;   //What submode settings were we loaded with? (For refresh)
   unsigned int lastTime;  //When was the last time we were hit?
   unsigned char locks; //Remember to unlock when we're done using locked stuff, or else this'll be useless.
@@ -112,7 +110,7 @@ public:
   bool compare(hgeParticleSystemInfo * p) {return (p == particles);};
 
   hgeParticleSystemInfo * Actual();
-protected:  
+protected:   
   hgeParticleSystemInfo * particles;
 };
 

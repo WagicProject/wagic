@@ -11,18 +11,9 @@
 
 WResourceManager resources;
 unsigned int vTime = 0;
-
-void handle_new_failure(){
-  OutputDebugString("NEW failed. Attempting to clear cache.");
-#ifdef DEBUG_CACHE
-  resources.debugMessage = "Emergency cache cleanup!";
-#endif
-  if(!resources.RemoveOldest()){
-    OutputDebugString("Nothing to clear from cache. Abort.");
-    abort();
-  }
+int WResourceManager::RetrieveError(){
+  return lastError;
 }
-
 bool WResourceManager::RemoveOldest(){
  if(sampleWCache.RemoveOldest())
    return true;
@@ -35,9 +26,6 @@ bool WResourceManager::RemoveOldest(){
 }
 
 //WResourceManager
-int WResourceManager::RetrieveError(){
-  return lastError;
-}
 void WResourceManager::DebugRender(){
   JRenderer* renderer = JRenderer::GetInstance();
   JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
@@ -57,13 +45,17 @@ void WResourceManager::DebugRender(){
 
   
   unsigned long man = 0;
-  
+  unsigned int misses = 0;
+
+  if(textureWCache.cacheItems < textureWCache.cache.size())
+    misses = textureWCache.cache.size()-textureWCache.cacheItems;
+
   if(textureWCache.totalSize > textureWCache.cacheSize)
     man = textureWCache.totalSize - textureWCache.cacheSize;
 
   sprintf(buf,"Textures %u+%u (of %u) items (%u misses), Pixels: %lu (of %lu) + %lu",
-    textureWCache.cacheItems, textureWCache.mManaged.size(),textureWCache.maxCached,
-    textureWCache.mMisses.size(),textureWCache.cacheSize,textureWCache.maxCacheSize,man);
+    textureWCache.cacheItems, textureWCache.managed.size(),textureWCache.maxCached,
+    misses,textureWCache.cacheSize,textureWCache.maxCacheSize,man);
   font->DrawString(buf, 10,5);
 
 
@@ -110,11 +102,11 @@ unsigned long WResourceManager::SizeManaged(){
 unsigned int WResourceManager::Count(){
   unsigned int count = 0;
   count += textureWCache.cacheItems;
-  count += textureWCache.mManaged.size();
+  count += textureWCache.managed.size();
   count += sampleWCache.cacheItems;
-  count += sampleWCache.mManaged.size();
+  count += sampleWCache.managed.size();
   count += psiWCache.cacheItems;
-  count += psiWCache.mManaged.size();
+  count += psiWCache.managed.size();
   return count;
 }
 unsigned int WResourceManager::CountCached(){
@@ -126,9 +118,9 @@ unsigned int WResourceManager::CountCached(){
 }
 unsigned int WResourceManager::CountManaged(){
   unsigned int count = 0;
-  count += textureWCache.mManaged.size();
-  count += sampleWCache.mManaged.size();
-  count += psiWCache.mManaged.size();
+  count += textureWCache.managed.size();
+  count += sampleWCache.managed.size();
+  count += psiWCache.managed.size();
   return count;
 }
 
@@ -210,7 +202,7 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
   filename += "/";
   filename += card->getImageName();
   JQuad * jq = RetrieveQuad(filename,0,0,0,0,"",style,submode|TEXTURE_SUB_5551);
-
+  lastError = textureWCache.mError;
   if(jq){
     jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);  
     return jq;
@@ -234,6 +226,7 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
   }
 
   WCachedTexture * jtex = textureWCache.Retrieve(textureName,RETRIEVE_MANAGE);
+  lastError = textureWCache.mError;
   
   //Somehow, jtex wasn't promoted.
   if(RETRIEVE_MANAGE && jtex && !jtex->isPermanent())
@@ -361,14 +354,14 @@ void WResourceManager::Release(JQuad * quad){
   if(!quad)
     return;
 
-  int i;
-  for(i = 0; i < MAX_CACHE_OBJECTS;i++){
-    if(textureWCache.mCached[i].isGood() && textureWCache.mCached[i].ReleaseQuad(quad))
+  map<string,WCachedTexture*>::iterator it;
+  for(it = textureWCache.cache.begin();it!=textureWCache.cache.end();it++){
+    if(it->second && it->second->ReleaseQuad(quad))
       break;
   }
 
-  if(i != MAX_CACHE_OBJECTS)
-   textureWCache.RemoveItem(&textureWCache.mCached[i],false); //won't remove locked.
+  if(it != textureWCache.cache.end() && it->second)
+   textureWCache.RemoveItem(it->second,false); //won't remove locked.
 }
 
 void WResourceManager::ClearMisses(){
@@ -416,6 +409,7 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
   }
 
   res = textureWCache.Retrieve(filename,style,submode);
+  lastError = textureWCache.mError;
 
   if(res){ //a non-null result will always be good.
     JTexture * t = res->Actual();
@@ -440,11 +434,8 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
       case CACHE_ERROR_NOT_MANAGED:
         debugMessage = "Resource not managed: ";
         break;
-      case CACHE_ERROR_NOT_CACHED:
-        debugMessage = "Resource not cached: ";
-        break;
       case CACHE_ERROR_LOST:
-        debugMessage = "Resource went bad: ";
+        debugMessage = "Resource went bad, potential memory leak: ";
         break;
       default:
         debugMessage = "Unspecified error: ";
@@ -452,7 +443,6 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
     debugMessage += filename;
   }
 #endif
-  lastError = textureWCache.mError;
 
   return NULL;
 }
@@ -472,26 +462,21 @@ JTexture* WResourceManager::GetTexture(const string &textureName){
 }
 
 JTexture* WResourceManager::GetTexture(int id){
+  map<string,WCachedTexture*>::iterator it;
+  JTexture *jtex = NULL;
 
-  if(id == INVALID_ID || id < 0 || id > (int) textureWCache.mManaged.size())
+  if(id == INVALID_ID)
     return NULL;
 
-  int pos = 0;
-  list<WCachedTexture>::iterator i;
-  for(i = textureWCache.mManaged.begin();i!=textureWCache.mManaged.end();i++){
-    if(pos == id)
-      break;
-    pos++;
+  for(it = textureWCache.managed.begin();it!= textureWCache.managed.end(); it++){
+    if(it->second){
+      jtex = it->second->Actual();
+      if(id == (int) jtex->mTexId)
+        return jtex;
+    }
   }
 
-  if(i == textureWCache.mManaged.end())
-    return NULL;
-
-  WCachedTexture * wct = &(*i);
-  if(wct->isGood())
-    return wct->Actual();
-
-  return NULL;
+  return jtex;
 }
 
 hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * texture, int style, int submode){
@@ -500,6 +485,7 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * t
     return NULL;
 
   WCachedParticles * res = psiWCache.Retrieve(filename,style,submode);
+  lastError = psiWCache.mError;
 
   if(res) //A non-null result will always be good.
   {
@@ -508,33 +494,28 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * t
     return i;
   }
 
-  lastError = psiWCache.mError;
   return NULL;
 }
 
 JSample * WResourceManager::RetrieveSample(string filename, int style, int submode){
   //Check cache. This just tracks misses.
   return NULL;
-  WCachedSample * it;
-  it = sampleWCache.Get(filename,submode);
-
-  if(it == NULL)
-    return NULL;
+  WCachedSample * tc = NULL;
+  tc = sampleWCache.Get(filename,submode);
+  lastError = sampleWCache.mError;
 
   //Sample exists! Get it.
-  if(it->isGood()){
-    JSample * js = it->Actual();
+  if(tc && tc->isGood()){
+    JSample * js = tc->Actual();
 
-    it->Nullify(); //Samples are freed when played, not managed by us.
-    it->Trash();
-
+    //Samples are freed when played, so remove this. Because maxCached is 0, this will Nullify() first.
+    sampleWCache.RemoveItem(tc,true);
     //Adjust sizes accordingly.
     sampleWCache.cacheSize = 0;
     sampleWCache.totalSize = 0;
     return js;  
   }
 
-  lastError = sampleWCache.mError;
   return NULL;
 }
 
@@ -839,16 +820,16 @@ void WResourceManager::CacheForState(int state){
       sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
       Cleanup();
       break;
-      //Shop is almost entirely cache safe, so give it near infinite resources.
+      //Deck editor and shop are entirely cache safe, so give it near infinite resources.
     case GAME_STATE_SHOP:
-      textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS); 
-      break;
     case GAME_STATE_DECK_VIEWER:
-      textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS); 
+      textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
+      Cleanup();
       break;
       //Anything unknown, use large cache.
     default:
       textureWCache.Resize(LARGE_CACHE_LIMIT,LARGE_CACHE_ITEMS);
+      Cleanup();
       break;
   }
 #endif
@@ -934,47 +915,80 @@ void WResourceManager::Refresh(){
 //WCache
 template <class cacheItem,class cacheActual> 
 bool WCache<cacheItem, cacheActual>::RemoveOldest(){
-  int oldest = -1;
+  typename map<string,cacheItem*> ::iterator oldest = cache.end();
 
-  for(int i = 0;i< MAX_CACHE_OBJECTS;i++){
-    if(mCached[i].isGood() && !mCached[i].isLocked() 
-      && (oldest == -1 || mCached[i].lastTime < mCached[oldest].lastTime))
-      oldest = i;
+  for(typename map<string,cacheItem *>::iterator it = cache.begin();it!=cache.end();it++){
+    if(it->second && !it->second->isLocked() 
+      && (oldest == cache.end() || it->second->lastTime < oldest->second->lastTime))
+      oldest = it;
   }
 
-  if(oldest != -1 && mCached[oldest].isGood() && !mCached[oldest].isLocked()){
-#if defined DEBUG_CACHE
-    lastExpired = mCached[oldest].id;
-#endif
-    Delete(&mCached[oldest]);
+  if(oldest != cache.end() && oldest->second && !oldest->second->isLocked()){
+    Delete(oldest->second);
+    cache.erase(oldest);
     return true;
   }
 
   return false;
+
 }
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::Clear(){
-  typename list<cacheItem*>::iterator it;
+  typename map<string,cacheItem*>::iterator it, next;
 
-  for(int i = 0; i < MAX_CACHE_OBJECTS;i++){
-    if(!mCached[i].isTrash())
-      Delete(&mCached[i]);
+  for(it = cache.begin(); it != cache.end();it=next){
+    next = it;
+    next++;
+
+      if(it->second)
+        Delete(it->second);
+      cache.erase(it);
+  }
+  for(it = managed.begin(); it != managed.end();it=next){
+    next = it;
+    next++;
+
+    if(!it->second)
+      managed.erase(it);
   }
 }
 
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::ClearUnlocked(){
-  typename list<cacheItem>::iterator it;
+  typename map<string,cacheItem*>::iterator it, next;
 
-  for(int i = 0; i < MAX_CACHE_OBJECTS;i++){
-    if(mCached[i].isGood() && !mCached[i].isLocked())
-      Delete(&mCached[i]);
+  for(it = cache.begin(); it != cache.end();it=next){
+    next = it;
+    next++;
+
+      if(it->second && !it->second->isLocked()){
+        Delete(it->second);
+        cache.erase(it);
+      }
+      else if(!it->second){
+        cache.erase(it);
+      }
   }
 }
 
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::ClearMisses(){
-  mMisses.clear();
+  typename map<string,cacheItem*>::iterator it, next;
+
+  for(it = cache.begin(); it != cache.end();it=next){
+    next = it;
+    next++;
+
+    if(!it->second)
+      cache.erase(it);
+  }
+  for(it = managed.begin(); it != managed.end();it=next){
+    next = it;
+    next++;
+
+    if(!it->second)
+      managed.erase(it);
+  }
 }
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items){
@@ -988,118 +1002,159 @@ void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items){
 
 template <class cacheItem, class cacheActual>
 cacheItem* WCache<cacheItem, cacheActual>::Recycle(){
-
-  int i;
-  for(i = 0; i < MAX_CACHE_OBJECTS;i++){
-    if(mCached[i].isTrash())
-      break;
-  }
-
-  if(i == MAX_CACHE_OBJECTS){    
-    mError = CACHE_ERROR_FULL;
+  typename vector<cacheItem*>::iterator it = garbage.begin();
+  if(it == garbage.end())
     return NULL;
-  }
 
-  return &mCached[i];  
+  cacheItem * item = (*it);
+  garbage.erase(it);
+
+  return item;  
 }
 
 template <class cacheItem, class cacheActual>
-bool WCache<cacheItem, cacheActual>::AttemptNew(cacheItem* item, int submode){
+cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submode){
   if(submode & CACHE_EXISTING){ //Should never get this far.
     mError = CACHE_ERROR_NOT_CACHED;
-    return false;
+    return NULL;
   }
 
-  //We weren't passed a valid item, so get one.
-  if(item == NULL || !item->isTrash())
-    item = Recycle();
+  cacheItem* item = NULL;
 
-  //Weren't able to get an item. Fail.
+  item = Recycle();
+
   if(item == NULL){
-    mError = CACHE_ERROR_BAD_ALLOC;
-    return false;
+    try{
+      item = NEW cacheItem;
+      mError = CACHE_ERROR_NONE;
+    }
+    catch(std::bad_alloc){
+      SAFE_DELETE(item);
+    }
   }
 
-  string filename = makeFilename(item->id,submode);
-  
-  if(!item->Attempt(filename,submode,mError)){
+  if(item == NULL || !item->Attempt(filename,submode,mError)){
     //No such file. Fail.
-    if(!item->isGood() && mError == CACHE_ERROR_404){
-      item->Trash();
-      return false;
+    if(item && mError == CACHE_ERROR_404){
+      if(garbage.size() < MAX_CACHE_GARBAGE){
+        item->Trash();
+        garbage.push_back(item);
+      }
+      else
+        SAFE_DELETE(item);
+      
+      return NULL;
     }
 
-    //Make several attempts, removing bits of the cache.
-    for(int attempt=0;attempt<MAX_CACHE_ATTEMPTS;attempt++){
+    for(int attempt=0;attempt<10;attempt++){
       if(!RemoveOldest()) 
         break;
       
-      if(item->Attempt(filename,submode,mError) && item->isGood())
-        break;
+      if(!item){
+        try{
+            item = NEW cacheItem;
+        }
+        catch(std::bad_alloc){
+          SAFE_DELETE(item);
+          continue;
+        }
+      }
 
-      //Failed attempt. Trash this.
-      item->Trash();
+      if(item && item->Attempt(filename,submode,mError))
+        break;
     }
 
-    if(!item->isGood()){
-      item->Trash();
-      Cleanup();
+
+    //Still no result, so clear cache entirely, then try again.
+    if(!item || !item->isGood()){
+      ClearUnlocked();
+      if(!item) item = NEW(cacheItem);
       item->Attempt(filename,submode,mError);
     }
-    //Still no result, so clear cache entirely, then try again.
-    if(!item->isGood()){
-      item->Trash();
-      ClearUnlocked();
+
+    //Worst cache scenerio. Clear every cache we've got.
+    if(!item || !item->isGood()){
+      resources.ClearUnlocked();
+      if(!item){
+        try{
+        item = NEW(cacheItem);
+        }
+        catch(std::bad_alloc){
+          mError = CACHE_ERROR_BAD_ALLOC;
+          SAFE_DELETE(item);
+          return NULL;
+        }
+      }
       item->Attempt(filename,submode,mError);
     }
   }
 
-  //Final failure. Trash it.
   if(item && !item->isGood()){
-    item->Trash();
+    if(garbage.size() < MAX_CACHE_GARBAGE){
+      item->Trash();
+      garbage.push_back(item);
+    }
+    else
+      SAFE_DELETE(item);
     mError = CACHE_ERROR_BAD;
-    return false;
+    return NULL;
   }
   else
     mError = CACHE_ERROR_NONE;
 
-  //Strictly enforce limits.
   item->lock();
   Cleanup();  
   item->unlock();
-
-  return true;
+  return item;
 }
 
 template <class cacheItem, class cacheActual>
 cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style, int submode){
   //Check cache.
-  cacheItem* item;
+  cacheItem * tc = NULL;
 
   if(style == RETRIEVE_EXISTING || style == RETRIEVE_RESOURCE)
-    item = Get(filename,style,submode|CACHE_EXISTING);
+    tc = Get(filename,style,submode|CACHE_EXISTING);
   else
-    item = Get(filename,style,submode);
-
-  //Get failed.
-  if(item == NULL || mError != CACHE_ERROR_NONE){
-    return NULL;
-  }
+    tc = Get(filename,style,submode);
 
   //Retrieve resource only works on permanent items.
-  if(style == RETRIEVE_RESOURCE && !item->isPermanent()){
+  if(style == RETRIEVE_RESOURCE && tc && !tc->isPermanent()){
     mError = CACHE_ERROR_NOT_MANAGED;
     return NULL;
   }
-
+  
   //Perform lock or unlock on entry.
-  if(style == RETRIEVE_LOCK) item->lock();
-  else if(style == RETRIEVE_UNLOCK) item->unlock();
-  else if(style == RETRIEVE_MANAGE) item->deadbolt();
+  if(tc){
+    if(style == RETRIEVE_LOCK) tc->lock();
+    else if(style == RETRIEVE_UNLOCK) tc->unlock();
+    else if(style == RETRIEVE_MANAGE && !tc->isPermanent()) {
+      //Unlink the managed resource from the cache.
+      UnlinkCache(tc);
+      
+      //Post it in managed resources.
+      managed[makeID(filename,submode)] = tc;
+      tc->deadbolt();
+    }
+  }
 
-  //All is well!
-  item->hit();
-  return item;
+  //Resource exists! 
+  if(tc){
+    if(tc->isGood()){
+      tc->hit();    
+      return tc;  //Everything fine.
+    }
+    else{
+      //Something went wrong.
+      Delete(tc);
+    }
+  }
+
+  //Record managed failure. Cache failure is recorded in Get().
+  if(style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE)
+   managed[makeID(filename,submode)] = NULL; 
+
+  return NULL;
 }
 template <class cacheItem, class cacheActual>
 string WCache<cacheItem, cacheActual>::makeID(string id, int submode){
@@ -1121,165 +1176,150 @@ string WCache<cacheItem, cacheActual>::makeFilename(string id, int submode){
   return id;
 }
 
-template <class cacheItem, class cacheActual> 
-void WCache<cacheItem, cacheActual>::RecordMiss(string miss){
-  list<string>::iterator it;
-  for(it=mMisses.begin();it!=mMisses.end();it++){
-    if(*it == miss)
-      return;
-  }
-
-  mMisses.push_back(miss);
-}
-
 template <class cacheItem, class cacheActual>
-cacheItem* WCache<cacheItem, cacheActual>::Get(string id, int style, int submode){
-  typename list<cacheItem>::iterator it;
-  cacheItem * item = NULL;
-  int i = 0;
+cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submode){
+  typename map<string,cacheItem*>::iterator it;
   string lookup = makeID(id,submode);  
-  
-  //Start with no errors.
-  mError = CACHE_ERROR_NONE;
-
-  
-  //Check for misses.
-  list<string>::iterator miss;
-  for(miss = mMisses.begin();miss != mMisses.end();miss++){
-    if(*miss == lookup){
-      mError = CACHE_ERROR_404;
-      return NULL;
-    }
-  }
 
   //Check for managed resources first. Always
-  for(it = mManaged.begin();it!=mManaged.end();it++){
-    if(it->id == lookup)
+  it = managed.end();
+  for(it = managed.begin();it!=managed.end();it++){
+    if(it->first == lookup)
       break;
   }  
   //Something is managed.
-  if(it != mManaged.end() && it->isGood()) {
-     mError = CACHE_ERROR_NONE;
-     return &(*it);
+  if(it != managed.end()) {
+     if(!it->second && style == RETRIEVE_RESOURCE)
+        return NULL;     //A miss. 
+     else
+        return it->second; //A hit.
   }
   //Failed to find managed resource and won't create one. Record a miss.
   else if(style == RETRIEVE_RESOURCE){
-    mError = CACHE_ERROR_NOT_MANAGED;
+    managed[lookup] = NULL;
     return NULL;
   }
 
   //Not managed, so look in cache.
-  if(style != RETRIEVE_RESOURCE ){
-    for(i= 0;i<MAX_CACHE_OBJECTS;i++){
-      item = &mCached[i];
-      if(item->id == lookup)
+  if(it == managed.end() && style != RETRIEVE_MANAGE && style != RETRIEVE_RESOURCE ){
+    it = cache.end();
+    for(it = cache.begin();it!=cache.end();it++){
+      if(it->first == lookup)
         break;
     }
-
-    if(i >= MAX_CACHE_OBJECTS)
-      item = NULL;
-
     //Well, we've found something...
-    if(item != NULL && item->isGood()) {
-       mError = CACHE_ERROR_NONE;
-       return item; //A hit.
-    }
-    //Didn't find anything. Die here, if we must.
-    else if(style == RETRIEVE_EXISTING || submode & CACHE_EXISTING){
-      mError = CACHE_ERROR_NOT_CACHED; 
-      return NULL;
+    if(it != cache.end()) {
+       if(!it->second && (submode & CACHE_EXISTING))
+         return NULL;     //A miss.
+       else
+         return it->second; //A hit.
     }
   }  
+
+  cacheItem * item = NULL;
   
-  //If we've got an item that went bad, trash it so we can recycle it.
-  if(item != NULL && !item->isGood() && !item->isTrash()){
-    item->Trash();
-  }
-
-  //Give us a managed item
-  if(style == RETRIEVE_MANAGE){
-    //This was formerly in cache, so promote it
-    if(item != NULL){
-      if(item->isGood()){
-        mManaged.push_front(*item);
-        item->Trash();
-        mError = CACHE_ERROR_NONE;
-        it = mManaged.begin();
-        return &(*it);
-      }
-      else{
-        //It went bad, so trash it and manage something new.
-        item->Trash();
-      }
-    }
-    else{
-      cacheItem temp;
-      mManaged.push_front(temp);
-      it = mManaged.begin();
-      item = &(*it);
-    }
-  }
-  //Give us a cached item.
-  else{
-    if(item != NULL && !item->isTrash()) {
-      mError = CACHE_ERROR_LOST;
-      return NULL; //Something went wrong. TODO: Proper error message.
-    }
-
-    item = Recycle();
-  }
-
-  if(mError != CACHE_ERROR_NONE)
-    return NULL;
+  if(style != RETRIEVE_MANAGE)
+    item = cache[lookup];   //We don't know about this one yet.
  
-  //If we've reached this point, we've got an item to fill.
-  item->id = lookup; //Asign the new lookup value.
-  AttemptNew(item,submode);  //Try to fill it.
+  //Found something.
+  if(item){
+     //Item went bad?
+    if(!item->isGood()){
 
-  //No errors, so good!
-  if(item->isGood()){
+      //If we're allowed, attempt to revive it.
+      if(!(submode & CACHE_EXISTING))
+        item->Attempt(id,submode,mError);
+
+      //Still bad, so remove it and return NULL 
+      if(submode & CACHE_EXISTING || !item->isGood()){
+        if(!item->isLocked()){
+          RemoveItem(item);    //Delete it.
+          mError = CACHE_ERROR_BAD;
+        }
+        //Worst case scenerio. Hopefully never happens.... hasn't so far.
+        else{
+          item->Nullify();          //We're giving up on anything allocated here. 
+          mError = CACHE_ERROR_LOST; //This is a potential memory leak, but might prevent a crash. 
+        }
+        return NULL;
+      }
+    }
+
+    //Alright, everythings fine!
+    mError = CACHE_ERROR_NONE;  
+    return item;
+  }
+  
+  //Didn't exist in cache.
+  if(submode & CACHE_EXISTING ){  
+    RemoveMiss(lookup);
+    mError = CACHE_ERROR_NOT_CACHED;
+    return NULL;
+  }
+  else{
+    //Space in cache, make new texture
+     item = AttemptNew(id,submode);       
+
+     //Couldn't make GOOD new item.
+     if(item && !item->isGood())
+     {
+      if(garbage.size() < MAX_CACHE_GARBAGE){
+        item->Trash();
+        garbage.push_back(item);
+      }
+      else
+        SAFE_DELETE(item);
+     }
+  }
+    
+   if(style == RETRIEVE_MANAGE){
+     if(item){
+      managed[lookup] = item; //Record a hit.
+      item->deadbolt(); //Make permanent.
+     }
+     else if(mError == CACHE_ERROR_404)
+      managed[lookup] = item;  //File not found. Record a miss
+   }
+   else{
+    if(!item && mError != CACHE_ERROR_404)
+     RemoveMiss(lookup);
+    else
+     cache[lookup] = item;
+   }
+
+   //Succeeded in making a new item.
+   if(item){
     unsigned long isize = item->size();   
     totalSize += isize;
     
+    mError = CACHE_ERROR_NONE;
     if(style != RETRIEVE_MANAGE){
       cacheItems++;
       cacheSize += isize;
     }
 
-    mError = CACHE_ERROR_NONE;  
     return item;
   }
-  //Failed. Record miss.
-  else if(mError == CACHE_ERROR_404){
-    RecordMiss(lookup); 
-  }    
- 
-  //Failure.
-  if(item && !item->isGood())
-    item->Trash();
 
-  mError = CACHE_ERROR_BAD;
+  //Failure.
   return NULL;
 }
 
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::Refresh(){
+  typename map<string,cacheItem*>::iterator it;
   ClearUnlocked();
 
-
-  for(int i = 0;i < MAX_CACHE_OBJECTS;i++){
-    cacheItem * item = &mCached[i];
-    if(item->isGood()){
-      item->Refresh(makeFilename(item->id,item->loadedMode));
+  for(it = cache.begin();it!=cache.end();it++){
+    if(it->second){
+      it->second->Refresh(makeFilename(it->first,it->second->loadedMode));
     }
   } 
-  typename list<cacheItem>::iterator it;
-  for(it = mManaged.begin();it!=mManaged.end();it++){
-    if(it->isGood()){
-      it->Refresh(makeFilename(it->id,it->loadedMode));
+  for(it = managed.begin();it!=managed.end();it++){
+    if(it->second){
+      it->second->Refresh(makeFilename(it->first,it->second->loadedMode));
     }
   }
-  mMisses.clear();
 }
 
 template <class cacheItem, class cacheActual>
@@ -1296,17 +1336,38 @@ WCache<cacheItem, cacheActual>::WCache(){
 
 template <class cacheItem, class cacheActual>
 WCache<cacheItem, cacheActual>::~WCache(){
-  //Vectors take care of themselves.
+  typename map<string,cacheItem*>::iterator it;
+
+  for(it=cache.begin();it!=cache.end();it++){
+    if(!it->second)
+      continue;
+
+    //Delete(it->second);
+    SAFE_DELETE(it->second);
+  }
+
+  for(it=managed.begin();it!=managed.end();it++){
+    if(!it->second)
+      continue;
+
+    //Delete(it->second);
+    SAFE_DELETE(it->second);
+  }
+
+  typename vector<cacheItem*>::iterator g;
+  for(g=garbage.begin();g!=garbage.end();g++){
+    SAFE_DELETE(*g);
+  }
 }
 
 
 template <class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::Cleanup(){
-  while(mMisses.size() > MAX_CACHE_MISSES){
+  while(cacheItems < cache.size() && cache.size() - cacheItems > MAX_CACHE_MISSES){
     RemoveMiss();
   }
 
-  while (cacheItems > MAX_CACHE_OBJECTS - 1 || cacheItems > maxCached || cacheSize > maxCacheSize ){
+  while (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize ){
     if (!RemoveOldest()) 
       return false;
   } 
@@ -1318,18 +1379,15 @@ unsigned int WCache<cacheItem, cacheActual>::Flatten(){
   unsigned int youngest = 65535;
   unsigned int oldest = 0;
 
-  for (int i = 0; i < MAX_CACHE_OBJECTS; i++){
-    cacheItem * it = &mCached[i];
-    if(!it->isGood()) continue;
-    if(it->lastTime < youngest) youngest = it->lastTime;
-    if(it->lastTime > oldest) oldest = it->lastTime;
+  for (typename map<string,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
+    if(!it->second) continue;
+    if(it->second->lastTime < youngest) youngest = it->second->lastTime;
+    if(it->second->lastTime > oldest) oldest = it->second->lastTime;
   }
 
-  for (int i = 0; i < MAX_CACHE_OBJECTS; i++){
-    cacheItem * it = &mCached[i];
-
-    if(!it->isGood()) continue;
-      it->lastTime -= youngest;
+  for (typename map<string,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
+    if(!it->second) continue;
+      it->second->lastTime -= youngest;
   }
 
   return (oldest - youngest);
@@ -1337,16 +1395,16 @@ unsigned int WCache<cacheItem, cacheActual>::Flatten(){
 
 template <class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::RemoveMiss(string id){
-  typename list<string>::iterator it = mMisses.end();
+  typename map<string,cacheItem*>::iterator it = cache.end();
 
-  for(it = mMisses.begin();it!=mMisses.end();it++){
-    if((id == "" || *it == id))
+  for(it = cache.begin();it!=cache.end();it++){
+    if((id == "" || it->first == id) && it->second == NULL)
           break;
   }
 
-  if(it != mMisses.end())
+  if(it != cache.end())
   {
-    mMisses.erase(it);
+    cache.erase(it);
     return true; 
   }
 
@@ -1354,9 +1412,19 @@ bool WCache<cacheItem, cacheActual>::RemoveMiss(string id){
 }
 
 template <class cacheItem, class cacheActual>
-bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem* item, bool force){
-  if(item && !item->isLocked()){
-    Delete(item);
+bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem * item, bool force){
+  typename map<string,cacheItem*>::iterator it;
+
+  if(item == NULL)
+    return false;   //Use RemoveMiss to remove cache misses, not this.
+
+  for(it = cache.begin();it!=cache.end();it++){
+    if(it->second == item)
+      break;
+  }
+  if(it != cache.end() && it->second && (force || !it->second->isLocked())){
+    Delete(it->second);
+    cache.erase(it);
     return true;
   }
 
@@ -1364,32 +1432,52 @@ bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem* item, bool force){
 }
 
 template <class cacheItem, class cacheActual>
-bool WCache<cacheItem, cacheActual>::Delete(cacheItem* item){
-//No need to delete this.
-  if(item == NULL || item->isTrash())
+bool WCache<cacheItem, cacheActual>::UnlinkCache(cacheItem * item){
+  typename map<string,cacheItem*>::iterator it = cache.end();
+
+  if(item == NULL)
+    return false;   //Use RemoveMiss to remove cache misses, not this.
+
+  for(it = cache.begin();it!=cache.end();it++){
+    if(it->second == item)
+      break;
+  }
+  if(it != cache.end() && it->second){
+    it->second = NULL;  
+    unsigned long isize = item->size();
+
+    cacheSize -= isize; 
+    cacheItems--;
+    cache.erase(it);
+    return true;
+  }
+
+  return false;
+}
+
+template <class cacheItem, class cacheActual>
+bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
+  if(!item)
     return false;
-
-#ifdef DEBUG_CACHE
-  char buf[512];
-  sprintf(buf,"WCache::Delete %s\n",item->id.c_str());
-  OutputDebugString(buf);
-#endif
-
   if(maxCached == 0)
     item->Nullify();
 
-  unsigned long isize = item->size();
-  totalSize -= isize;
-  cacheSize -= isize;
-
+    unsigned long isize = item->size();
+    totalSize -= isize;
+    cacheSize -= isize;
 #ifdef DEBUG_CACHE
     if(cacheItems == 0)
       OutputDebugString("cacheItems out of sync.\n");
 #endif
 
-  cacheItems--;
+    cacheItems--;
 
-  item->Trash();
+    if(garbage.size() > MAX_CACHE_GARBAGE)
+      SAFE_DELETE(item);
+    else{
+      item->Trash();
+      garbage.push_back(item);
+    }
   return true;
 }
 
@@ -1398,29 +1486,24 @@ bool WCache<cacheItem, cacheActual>::Release(cacheActual* actual){
   if(!actual)
     return false;
 
-  int i;
-
-  for(i = 0;i < MAX_CACHE_OBJECTS;i++){    
-    if(!mCached[i].isGood())
-      continue;
-
-    if(mCached[i].compare(actual))
+  typename map<string,cacheItem*>::iterator it;
+  for(it=cache.begin();it!=cache.end();it++){    
+    if(it->second && it->second->compare(actual))
       break;
   }
   
-  if(i == MAX_CACHE_OBJECTS)
+  if(it == cache.end())
     return false; //Not here, can't release.
 
-  //Release one lock.
-  mCached[i].unlock(); 
+  if(it->second){
+    it->second->unlock(); //Release one lock.
+    if(it->second->isLocked())
+      return true; //Still locked, won't delete, not technically a failure.
 
-  //Still locked, won't delete, not technically a failure.
-  if(mCached[i].isLocked())
-    return true; 
+    Delete(it->second);
+  }
 
-#if defined DEBUG_CACHE
-  lastReleased = mCached[i].id;
-#endif
-  Delete(&mCached[i]);
+  //Released!
+  cache.erase(it);
   return true;
 }
