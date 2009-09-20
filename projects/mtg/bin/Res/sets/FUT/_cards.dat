@@ -35,6 +35,18 @@ power=2
 toughness=3
 [/card]
 [card]
+id=130334
+name=Bound in Silence
+mana={2}{W}
+target=creature
+auto=cantattack
+auto=cantblock
+type=Enchantment
+subtype=Tribal Rebel Aura
+text=Enchant creature Enchanted creature can't attack or block.
+rarity=U
+[/card]
+[card]
 text={R}: Char-Rumbler gets +1/+0 until end of turn.
 id=130582
 name=Char-Rumbler
@@ -70,6 +82,18 @@ mana={1}{R}
 auto=lord(creature|myinplay) haste
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+id=130699
+name=Fatal Attraction
+mana={2}{R}
+target=creature
+auto=damage:2
+auto=@each my upkeep:damage:4
+type=Enchantment
+subtype=Aura
+text=Enchant creature When Fatal Attraction comes into play, it deals 2 damage to enchanted creature. At the beginning of your upkeep, Fatal Attraction deals 4 damage to enchanted creature.
+rarity=C
 [/card]
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)    {T}: Enchanted creature gets +2/-2 until end of turn.
@@ -128,6 +152,16 @@ rarity=R
 type=Land
 [/card]
 [card]
+id=130595
+name=Grove of the Burnwillows
+type=Land
+text={T}: Add {1} to your mana pool. {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
+auto={T}:add [1]
+auto={T}:add {R} && life:1 opponent
+auto={T}:add {G} && life:1 opponent
+rarity=R
+[/card]
+[card]
 text={T}: Pay 1 life: Add {G} or {W} to your mana pool.    {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
 auto={T}:Add {G} && life:-1
 auto={T}:Add {W} && life:-1
@@ -148,6 +182,17 @@ text=Flash (You may play this spell any time you could play an instant.) Enchant
 abilities=flash
 auto=3/3
 auto=doesnotuntap
+rarity=C
+[/card]
+[card]
+id=130691
+name=Lucent Liminid
+mana={3}{W}{W}
+type=Creature
+subtype=Elemental Enchantment
+power=3
+toughness=3
+text=Flying
 rarity=C
 [/card]
 [card]
@@ -191,6 +236,16 @@ type=Creature
 subtype=Centaur Warrior
 power=3
 toughness=3
+[/card]
+[card]
+id=136045
+name=Nimbus Maze
+type=Land
+text={T}: Add {1} to your mana pool. {T}: Add {W} to your mana pool. Play this ability only if you control an Island. {T}: Add {U} to your mana pool. Play this ability only if you control a Plains.
+auto={T}:add{1}
+auto=aslongas(plains|myinplay) {T}:add{W}
+auto=aslongas(island|myinplay) {T}:add{U}
+rarity=R
 [/card]
 [card]
 text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
