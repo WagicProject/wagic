@@ -818,13 +818,13 @@ void WResourceManager::CacheForState(int state){
     case GAME_STATE_DUEL:
       textureWCache.Resize(SMALL_CACHE_LIMIT,SMALL_CACHE_ITEMS);
       sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
-      Cleanup();
+      ClearUnlocked();
       break;
       //Deck editor and shop are entirely cache safe, so give it near infinite resources.
     case GAME_STATE_SHOP:
     case GAME_STATE_DECK_VIEWER:
       textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
-      Cleanup();
+      ClearUnlocked();
       break;
       //Anything unknown, use large cache.
     default:

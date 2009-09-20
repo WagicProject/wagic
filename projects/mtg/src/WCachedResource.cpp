@@ -477,10 +477,6 @@ void WTrackedQuad::Trash(){
   SAFE_DELETE(quad);
 }
 
-#if defined DEBUG_CACHE
-int WTrackedQuad::totalTracked = 0;
-#endif
-
 unsigned long WTrackedQuad::size() {
   return sizeof(JQuad);
 }
@@ -488,18 +484,8 @@ bool WTrackedQuad::isGood(){
   return (quad != NULL);
 }
 WTrackedQuad::WTrackedQuad(string _resname) {
-#if defined DEBUG_CACHE
-  OutputDebugString("WTrackedQuad().\n");
-  totalTracked++;
-#endif
   quad = NULL; resname = _resname;
 }
 WTrackedQuad::~WTrackedQuad() {
-#if defined DEBUG_CACHE
-  char buf[512];  
-  totalTracked--;  
-  sprintf(buf,"~WTrackedQuad() {%d}. %d left.\n", (int) quad,totalTracked);
-  OutputDebugString(buf);
-#endif
   if(quad) SAFE_DELETE(quad);
 }

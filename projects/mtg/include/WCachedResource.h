@@ -57,9 +57,6 @@ public:
 
   string resname;
   JQuad * quad;
-#ifdef DEBUG_CACHE
-  static int totalTracked;
-#endif
 };
 
 class WCachedTexture: public WCachedResource{
