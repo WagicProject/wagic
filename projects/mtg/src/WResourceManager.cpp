@@ -809,6 +809,7 @@ void WResourceManager::CacheForState(int state){
   textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
   return;
 #else 
+
   switch(state){
     //Default is not to change cache sizes.
     case GAME_STATE_MENU:
@@ -816,7 +817,10 @@ void WResourceManager::CacheForState(int state){
       break;
     //Duels use a smaller cache, so there's more room for game stuff.
     case GAME_STATE_DUEL:
-      textureWCache.Resize(SMALL_CACHE_LIMIT,SMALL_CACHE_ITEMS);
+      if (options[Options::CACHESIZE].number)
+        textureWCache.Resize(LARGE_CACHE_LIMIT,LARGE_CACHE_ITEMS);
+      else
+        textureWCache.Resize(SMALL_CACHE_LIMIT,SMALL_CACHE_ITEMS);
       sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
       ClearUnlocked();
       break;
