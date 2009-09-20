@@ -317,7 +317,7 @@ void WCachedTexture::Nullify(){
     texture = NULL;
 }
 void WCachedTexture::Trash(){
-    SAFE_DELETE(texture);
+  SAFE_DELETE(texture);
     
   vector<WTrackedQuad*>::iterator it;
   WTrackedQuad * tq = NULL;

@@ -14,7 +14,7 @@
 #define LARGE_CACHE_LIMIT 5000000
 #define LARGE_CACHE_ITEMS 200
 
-#define SMALL_CACHE_LIMIT 2000000
+#define SMALL_CACHE_LIMIT 1000000
 #define SMALL_CACHE_ITEMS 100
 
 
@@ -22,7 +22,7 @@
 #define MAX_CACHE_OBJECTS HUGE_CACHE_ITEMS
 #define MAX_CACHE_ATTEMPTS 10
 #define MAX_CACHE_MISSES 200
-#define MAX_CACHED_SAMPLES 0
+#define MAX_CACHED_SAMPLES 4
 #define MAX_CACHE_GARBAGE 10
 
 enum ENUM_WRES_INFO{
@@ -137,7 +137,6 @@ public:
   void Release(JTexture * tex);
   void Release(JQuad * quad);
   void Release(JSample * sample);
-
   bool RemoveOldest();
   
   bool Cleanup();       //Force a cleanup. Return false if nothing removed.

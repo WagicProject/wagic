@@ -86,7 +86,6 @@ public:
   bool ReleaseQuad(JQuad* quad); //We're done with this quad, so delete and stop tracking. True if existed.
 protected:  
   JTexture * texture;
-  bool bVRAM;
   vector<WTrackedQuad*> trackedQuads;
   static vector<WTrackedQuad*> garbageTQs;
 };

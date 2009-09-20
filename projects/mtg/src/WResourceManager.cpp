@@ -29,6 +29,7 @@ bool WResourceManager::RemoveOldest(){
 void WResourceManager::DebugRender(){
   JRenderer* renderer = JRenderer::GetInstance();
   JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
+  font->SetColor(ARGB(255,255,255,255));
   
   if(!font || !renderer)
     return;
@@ -274,7 +275,7 @@ JQuad * WResourceManager::GetQuad(int id){
 }
 
 JQuad * WResourceManager::RetrieveTempQuad(string filename){
-  return RetrieveQuad(filename,0,0,0,0,"",RETRIEVE_NORMAL);
+  return RetrieveQuad(filename,0,0,0,0,"temporary",RETRIEVE_NORMAL);
 }
 
 JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height, string resname, int style, int submode){
@@ -501,18 +502,12 @@ JSample * WResourceManager::RetrieveSample(string filename, int style, int submo
   //Check cache. This just tracks misses.
   return NULL;
   WCachedSample * tc = NULL;
-  tc = sampleWCache.Get(filename,submode);
+  tc = sampleWCache.Retrieve(filename,style,submode);
   lastError = sampleWCache.mError;
 
   //Sample exists! Get it.
   if(tc && tc->isGood()){
     JSample * js = tc->Actual();
-
-    //Samples are freed when played, so remove this. Because maxCached is 0, this will Nullify() first.
-    sampleWCache.RemoveItem(tc,true);
-    //Adjust sizes accordingly.
-    sampleWCache.cacheSize = 0;
-    sampleWCache.totalSize = 0;
     return js;  
   }
 
@@ -1167,7 +1162,7 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style,
     }
     else{
       //Something went wrong.
-      Delete(tc);
+      RemoveItem(tc);
     }
   }
 
@@ -1359,11 +1354,11 @@ template <class cacheItem, class cacheActual>
 WCache<cacheItem, cacheActual>::~WCache(){
   typename map<string,cacheItem*>::iterator it;
 
+  //Delete from cache & managed
   for(it=cache.begin();it!=cache.end();it++){
     if(!it->second)
       continue;
-
-    //Delete(it->second);
+    
     SAFE_DELETE(it->second);
   }
 
@@ -1371,10 +1366,10 @@ WCache<cacheItem, cacheActual>::~WCache(){
     if(!it->second)
       continue;
 
-    //Delete(it->second);
     SAFE_DELETE(it->second);
   }
 
+  //Clean up all the garbage
   typename vector<cacheItem*>::iterator g;
   for(g=garbage.begin();g!=garbage.end();g++){
     SAFE_DELETE(*g);
@@ -1497,6 +1492,8 @@ bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
       SAFE_DELETE(item);
     else{
       item->Trash();
+      item->lastTime = 0;
+      item->loadedMode = 0;
       garbage.push_back(item);
     }
   return true;
@@ -1520,11 +1517,10 @@ bool WCache<cacheItem, cacheActual>::Release(cacheActual* actual){
     it->second->unlock(); //Release one lock.
     if(it->second->isLocked())
       return true; //Still locked, won't delete, not technically a failure.
-
-    Delete(it->second);
   }
 
   //Released!
+  Delete(it->second);
   cache.erase(it);
   return true;
 }

@@ -163,7 +163,7 @@ void GameStateMenu::Start(){
   SAFE_DELETE(playerdata);
 
 #if defined DEBUG_CACHE
-  resources.ClearUnlocked();  //So we can tell if we've any extra locks.
+  /*resources.ClearUnlocked();  //So we can tell if we've any extra locks.
 
   if(!resources.menuCached)  
     resources.menuCached = resources.CountCached();
@@ -174,7 +174,7 @@ void GameStateMenu::Start(){
     sprintf(buf,"Warning: %u leftover locked items.",i);
     resources.debugMessage = buf;
   }
-  
+  */
 #endif
 }
 
@@ -292,6 +292,10 @@ void GameStateMenu::End()
   
   resources.Release(bgTexture);
   resources.Release(movingWTexture);
+
+  
+  resources.Release(mBg);
+  resources.Release(mMovingW);
 }
 
 
