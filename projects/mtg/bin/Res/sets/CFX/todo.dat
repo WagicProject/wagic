@@ -52,18 +52,6 @@ subtype=Beast
 toughness=3
 [/card]
 [card]
-text=Flying, trample     At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way.     Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
-id=180267
-name=Blood Tyrant
-rarity=R
-type=Creature
-mana={4}{U}{B}{R}
-power=5
-subtype=Vampire
-toughness=5
-[/card]
-
-[card]
 text=Equipped creature gets +1/+0.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 id=189270
 name=Bone Saw
@@ -111,9 +99,10 @@ type=Instant
 mana={U}
 [/card]
 [card]
+#Does not work in WTH 0.8.1....
 text=Counter target noncreature spell. Its controller loses 2 life. 
-target=(*[-creature])
-auto=fizzle && damage:2 controller
+target=*[-creature]|stack
+auto=fizzle && life:-2 targetController
 id=186327
 name=Countersquall
 rarity=U
@@ -123,6 +112,9 @@ mana={U}{B}
 [card]
 text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
 id=185143
+target=creature
+auto=aslongas(*[black]|myinplay):destroy
+auto=damage:2
 name=Dark Temper
 rarity=C
 type=Instant
@@ -168,7 +160,7 @@ type=Land
 [/card]
 [card]
 text=Domain - Search your library for a basic land card, put that card into play tapped, then shuffle your library. Exploding Borders deals X damage to target player, where X is the number of basic land types among lands you control.
-auto=moveTo(myinplay) target(basic) && tap
+auto=moveTo(myinplay) target(basic|mylibrary) && tap
 auto=aslongas(forest|myinplay) damage:1 target(player)
 auto=aslongas(plains|myinplay) damage:1 target(player)
 auto=aslongas(mountain|myinplay) damage:1 target(player)
@@ -228,14 +220,6 @@ mana={2}{B}
 power=2
 subtype=Human Wizard
 toughness=2
-[/card]
-[card]
-text=At the beginning of each player's draw step, that player draws two additional cards.
-id=189147
-name=Font of Mythos
-rarity=R
-type=Artifact
-mana={4}
 [/card]
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {U}, {T}: Draw a card, then discard a card.
@@ -375,17 +359,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
-text=Whenever an opponent draws a card, if you control a red permanent, you may have Kederekt Parasite deal 1 damage to that player.
-id=189080
-name=Kederekt Parasite
-rarity=R
-type=Creature
-mana={B}
-power=1
-subtype=Horror
-toughness=1
-[/card]
-[card]
 text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
 id=175026
 name=Lapse of Certainty
@@ -476,6 +449,7 @@ toughness=6
 [card]
 text=Trample     At the beginning of your upkeep, if you control a blue permanent, you may put a token into play that's a copy of Mirror-Sigil Sergeant.
 id=158598
+auto=@each my upkeep:aslongas(*[blue]|myinplay) may token(Mirror-Sigil Sergeant,Creature Rhino Soldier,4/4,white)
 name=Mirror-Sigil Sergeant
 rarity=M
 type=Creature

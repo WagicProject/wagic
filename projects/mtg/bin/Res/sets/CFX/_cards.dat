@@ -67,6 +67,18 @@ subtype=Ooze
 toughness=1
 [/card]
 [card]
+text=Flying, trample     At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way.     Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
+id=180267
+auto=@each my upkeep:life:-1 opponent && life:-1 controller && counter(1/1,2)
+name=Blood Tyrant
+rarity=R
+type=Creature
+mana={4}{U}{B}{R}
+power=5
+subtype=Vampire
+toughness=5
+[/card]
+[card]
 id=184994
 name=Canyon Minotaur
 rarity=C
@@ -247,6 +259,16 @@ subtype=Vedalken Knight
 toughness=4
 [/card]
 [card]
+text=At the beginning of each player's draw step, that player draws two additional cards.
+id=189147
+auto=@each my draw:draw:2 controller
+auto=@each opponent draw:draw:2 opponent
+name=Font of Mythos
+rarity=R
+type=Artifact
+mana={4}
+[/card]
+[card]
 text=
 id=179443
 name=Fusion Elemental
@@ -280,6 +302,18 @@ mana={7}{U}{U}
 power=7
 subtype=Leviathan
 toughness=11
+[/card]
+[card]
+text=Whenever an opponent draws a card, if you control a red permanent, you may have Kederekt Parasite deal 1 damage to that player.
+id=189080
+auto=@movedTo(*|opponenthand) from(opponentlibrary):aslongas(*[red]|myinplay) may damage:1 opponent
+name=Kederekt Parasite
+rarity=R
+type=Creature
+mana={B}
+power=1
+subtype=Horror
+toughness=1
 [/card]
 [card]
 text=Knight of the Reliquary gets +1/+1 for each land card in your graveyard.     {T}, Sacrifice a Forest or Plains: Search your library for a land card, put it into play, then shuffle your library.
