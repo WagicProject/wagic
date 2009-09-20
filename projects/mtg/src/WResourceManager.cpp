@@ -822,18 +822,18 @@ void WResourceManager::CacheForState(int state){
       else
         textureWCache.Resize(SMALL_CACHE_LIMIT,SMALL_CACHE_ITEMS);
       sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
-      ClearUnlocked();
+      //ClearUnlocked();
       break;
       //Deck editor and shop are entirely cache safe, so give it near infinite resources.
     case GAME_STATE_SHOP:
     case GAME_STATE_DECK_VIEWER:
       textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
-      ClearUnlocked();
+      //ClearUnlocked();
       break;
       //Anything unknown, use large cache.
     default:
       textureWCache.Resize(LARGE_CACHE_LIMIT,LARGE_CACHE_ITEMS);
-      Cleanup();
+      //Cleanup();
       break;
   }
 #endif
@@ -1027,18 +1027,47 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
 
   item = Recycle();
 
+  //There was nothing to recycle. Make absolutely certain we have an item.
   if(item == NULL){
-    try{
-      item = NEW cacheItem;
+    item = NEW cacheItem;
+    if(item)
       mError = CACHE_ERROR_NONE;
-    }
-    catch(std::bad_alloc){
-      SAFE_DELETE(item);
+    else{
+      //Try a few times to get an item.
+      for(int attempt=0;attempt<MAX_CACHE_ATTEMPTS;attempt++){
+        if(!RemoveOldest() || item)
+          break;
+         item = NEW cacheItem;
+      }
+
+      //We /really/ shouldn't get this far.
+      if(!item){
+        resources.ClearUnlocked();
+        item = NEW cacheItem;
+        if(!item){
+          //Nothing let us make an item. Failure.
+          mError = CACHE_ERROR_BAD_ALLOC;
+          return NULL;
+        }
+      }
     }
   }
 
-  if(item == NULL || !item->Attempt(filename,submode,mError)){
-    //No such file. Fail.
+  //Attempt to populate item. 
+  mError = CACHE_ERROR_NONE;
+  for(int attempts = 0; attempts < MAX_CACHE_ATTEMPTS;attempts++)
+  {
+    //We use try/catch so any memory alloc'd in Attempt isn't lost.
+    try{
+      //If we don't get a good item, remove oldest cache and continue trying.
+      if(!item->Attempt(filename,submode,mError) || !item->isGood())
+        throw std::bad_alloc();
+    }
+    catch(std::bad_alloc){
+      RemoveOldest();
+    }
+
+    //No such file. Fail on first try.
     if(item && mError == CACHE_ERROR_404){
       if(garbage.size() < MAX_CACHE_GARBAGE){
         item->Trash();
@@ -1050,62 +1079,50 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
       return NULL;
     }
 
-    for(int attempt=0;attempt<10;attempt++){
-      if(!RemoveOldest()) 
-        break;
-      
-      if(!item){
-        try{
-            item = NEW cacheItem;
-        }
-        catch(std::bad_alloc){
-          SAFE_DELETE(item);
-          continue;
-        }
-      }
-
-      if(item && item->Attempt(filename,submode,mError))
-        break;
+    //Succeeded, so enforce limits and return.
+    if(item->isGood()){
+      mError = CACHE_ERROR_NONE;
+      item->lock();
+      Cleanup();  
+      item->unlock();
+      return item;
     }
+  }
 
-
-    //Still no result, so clear cache entirely, then try again.
-    if(!item || !item->isGood()){
-      ClearUnlocked();
-      if(!item) item = NEW(cacheItem);
-      item->Attempt(filename,submode,mError);
+  //Still no result, so clear local cache, then try again.
+  if(!item->isGood()){
+    ClearUnlocked();
+    try{
+      if(!item->Attempt(filename,submode,mError) || !item->isGood())
+        throw std::bad_alloc();
     }
-
-    //Worst cache scenerio. Clear every cache we've got.
-    if(!item || !item->isGood()){
+    catch(std::bad_alloc){
+      //Failed, so clear every cache we've got in prep for the next try.
       resources.ClearUnlocked();
-      if(!item){
-        try{
-        item = NEW(cacheItem);
+    }
+ 
+    try{
+      if(!item->Attempt(filename,submode,mError) || !item->isGood())
+        throw std::bad_alloc();
+    }
+    catch(std::bad_alloc){
+      //Complete failure. Trash this object and return NULL.
+      if(item && !item->isGood()){
+        if(garbage.size() < MAX_CACHE_GARBAGE){
+          item->Trash();
+          garbage.push_back(item);
         }
-        catch(std::bad_alloc){
-          mError = CACHE_ERROR_BAD_ALLOC;
+        else
           SAFE_DELETE(item);
-          return NULL;
-        }
+
+        mError = CACHE_ERROR_BAD;
+        return NULL;
       }
-      item->Attempt(filename,submode,mError);
     }
   }
-
-  if(item && !item->isGood()){
-    if(garbage.size() < MAX_CACHE_GARBAGE){
-      item->Trash();
-      garbage.push_back(item);
-    }
-    else
-      SAFE_DELETE(item);
-    mError = CACHE_ERROR_BAD;
-    return NULL;
-  }
-  else
-    mError = CACHE_ERROR_NONE;
-
+  
+  //Success! Enforce cache limits, then return.
+  mError = CACHE_ERROR_NONE;
   item->lock();
   Cleanup();  
   item->unlock();

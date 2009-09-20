@@ -34,7 +34,7 @@ PSP_EBOOT_TITLE = Wagic, the Homebrew?!
 PSP_EBOOT_ICON = icon.png
 PSP_EBOOT_UNKPNG = NULL
 #PSP_EBOOT_PIC1 = pic1.png
-CXXFLAGS = -O2 -G0 -Wall -Werror -DDEVHOOK -DPSPFW3XX -fno-exceptions
+CXXFLAGS = -O2 -G0 -Wall -Werror -DDEVHOOK -DPSPFW3XX 
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src
 LIBDIR = ../../JGE/lib/psp
 else
@@ -54,7 +54,7 @@ LDFLAGS = $(LIBS)
 
 
 
-debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -fno-exceptions -ggdb3 -D_DEBUG -DDEBUG -DLINUX $(INCDIR)
+debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -ggdb3 -D_DEBUG -DDEBUG -DLINUX $(INCDIR)
 
 
 
