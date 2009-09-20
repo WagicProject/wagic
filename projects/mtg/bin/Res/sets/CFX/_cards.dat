@@ -75,6 +75,7 @@ rarity=R
 type=Creature
 mana={4}{U}{B}{R}
 power=5
+abilities=flying,trample
 subtype=Vampire
 toughness=5
 [/card]
