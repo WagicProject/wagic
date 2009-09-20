@@ -67,9 +67,8 @@ int DeckStats::percentVictories(){
 
 void DeckStats::load(Player * player){
   char filename[512];
-  sprintf(filename, RESPATH"/profile/%s/stats/%s.txt",
-    options[Options::ACTIVE_PROFILE].str.c_str(),player->deckFileSmall.c_str());
-  load(filename);
+  sprintf(filename,"stats/%s.txt",player->deckFileSmall.c_str());
+  load(options.profileFile(filename).c_str());
 }
 
 void DeckStats::load(const char * filename){
@@ -95,9 +94,8 @@ void DeckStats::load(const char * filename){
 
 void DeckStats::save(Player * player){
   char filename[512];
-  sprintf(filename, RESPATH"/profile/%s/stats/%s.txt",
-    options[Options::ACTIVE_PROFILE].str.c_str(),player->deckFileSmall.c_str());
-  save(filename);
+  sprintf(filename,"stats/%s.txt",player->deckFileSmall.c_str());
+  save(options.profileFile(filename).c_str());
 }
 
 void DeckStats::save(const char * filename){
