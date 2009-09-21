@@ -493,7 +493,7 @@ power=2
 toughness=2
 text=Other Elf creatures you control get +1/+1. {T}: Add {G} to your mana pool for each Elf you control.
 auto=lord(elf|myBattlefield) 1/1 other
-auto={T}:foreach(elf|myBattlefield) add{G}
+auto={T}:foreach(elf|myBattlefield) add:{G}
 rarity=R
 [/card]
 [card]
