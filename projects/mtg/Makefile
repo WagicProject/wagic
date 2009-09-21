@@ -35,7 +35,7 @@ PSP_EBOOT_ICON = icon.png
 #PSP_EBOOT_ICON1 = icon1.pmf
 PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
-CXXFLAGS = -O2 -G0 -Wall -Werror -DDEVHOOK -DPSPFW3XX 
+CFLAGS = -G0 -DPSPFW3XX
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src
 LIBDIR = ../../JGE/lib/psp
 else
@@ -43,19 +43,22 @@ OBJS += objs/TestSuiteAI.o
 INCDIR = -I ../../JGE/include -I ../../JGE/src
 LIBDIR = -L ../../JGE/lib/linux -L ../../JGE
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lglut -lhgetools -lfmod-3.75
-CFLAGS = $(INCDIR) -O2 -Wall -W -Werror -Wno-unused -DDEVHOOK -DLINUX
-CXXFLAGS += $(CFLAGS) -fno-exceptions
+CFLAGS = $(INCDIR) -DLINUX
 ASFLAGS = $(CXXFLAGS)
 
 all: $(DEFAULT_RULE)
 
 endif
 
+CFLAGS := -O2 -Wall -W -Werror -Wno-unused -DDEVHOOK $(CFLAGS)
+CXXFLAGS += $(CFLAGS)
+# -fno-exceptions
+
 LDFLAGS = $(LIBS)
 
 
 
-debug: CXXFLAGS = -Wall -W -Werror -Wno-unused -DDEVHOOK -DPSPFW3XX -ggdb3 -D_DEBUG -DDEBUG -DLINUX $(INCDIR)
+debug: CXXFLAGS += -ggdb3 -D_DEBUG -DDEBUG
 
 
 
