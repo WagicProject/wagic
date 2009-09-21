@@ -749,7 +749,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 		LoadJPG(textureInfo, filename);
 	else if(strstr(filename, ".gif")!=NULL || strstr(filename, ".GIF")!=NULL)
 		LoadGIF(textureInfo,filename);
-	else
+	else if(strstr(filename, ".png")!=NULL || strstr(filename, ".PNG")!=NULL)
 		LoadPNG(textureInfo, filename);
 
 	if (textureInfo.mBits == NULL)
