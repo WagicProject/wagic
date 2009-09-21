@@ -499,8 +499,6 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * t
 }
 
 JSample * WResourceManager::RetrieveSample(string filename, int style, int submode){
-  //Check cache. This just tracks misses.
-  return NULL;
   WCachedSample * tc = NULL;
   tc = sampleWCache.Retrieve(filename,style,submode);
   lastError = sampleWCache.mError;
