@@ -23,6 +23,7 @@ class GameStateShop: public GameState, public JGuiListener
   JLBFont * itemFont;
   JQuad * mBg;
   JTexture * bgTexture;
+  JTexture * altThumb[7];
   JQuad * mBack;
   SimpleMenu * menu;
   int mStage;
