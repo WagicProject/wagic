@@ -196,6 +196,7 @@ private:
   vector<WManagedQuad*> managedQuads;
   
   //Statistics of record.
+  string attachedZip;
   unsigned int lastTime;
   int lastError;
 };

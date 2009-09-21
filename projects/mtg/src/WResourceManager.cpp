@@ -620,7 +620,6 @@ string WResourceManager::cardFile(const string filename, const string specific){
     JFileSystem* fs = JFileSystem::GetInstance();
     char buf[512];
 
-    fs->DetachZipFile();
 
     //Check the specific location, if any.
     if(specific != ""){
@@ -669,7 +668,12 @@ string WResourceManager::cardFile(const string filename, const string specific){
           char zipname[512];
           sprintf(zipname, "Res/sets/%s/%s.zip", set.c_str(),set.c_str());
           if (fileOK(zipname)){
-            fs->AttachZipFile(zipname);
+            if(attachedZip != zipname)
+            {  
+              fs->DetachZipFile();
+              attachedZip = zipname;
+              fs->AttachZipFile(zipname);
+            }
             return filename.substr(i+1);
           }
        }
