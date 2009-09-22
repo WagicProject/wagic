@@ -748,7 +748,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     card->target =  spell->getNextCardTarget();
     if (card->target && !spell->tc->canTarget(card->target)){
       MTGPlayerCards * zones = card->controller()->game;
-      zones->putInGraveyard(card);
+      zones->putInZone(card,spell->from,card->owner->game->graveyard);
       return; //fizzle
     }
   }
@@ -1523,13 +1523,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	  {
 		  Player * player = spell->getNextPlayerTarget();
 		  if (player->life < (INT_MAX / 4) ) player->life += player->life;
-		  zones->putInZone(card,zones->stack,zones->library);
+		  zones->putInZone(card,spell->from,zones->library);
 		  zones->library->shuffle();
 		  break;
 	  }
    case 135262:// Beacon of Destruction & unrest
 	  {
-		  zones->putInZone(card,zones->stack,zones->library);
+		  zones->putInZone(card,spell->from,zones->library);
 		  zones->library->shuffle();
 		  break;
 	  }

@@ -691,7 +691,7 @@ toughness=*
 [/card]
 [card]
 text=Whenever an opponent plays a spell, that player puts the top two cards of his or her library into his or her graveyard.
-auto=@movedTo(*[-land]|opponentstack):deplete:2 opponent
+auto=@movedTo(*|opponentstack):deplete:2 opponent
 id=175108
 name=Memory Erosion
 rarity=R

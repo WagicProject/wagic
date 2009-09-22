@@ -110,6 +110,7 @@ Spell::Spell(MTGCardInstance * _source): Interruptible(0){
   type = ACTION_SPELL;
   cost = NEW ManaCost();
   tc = NULL;
+  from = _source->getCurrentZone();
 }
 
 
@@ -117,6 +118,7 @@ Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _
   source = _source;
   mHeight = 40;
   type = ACTION_SPELL;
+  from = _source->getCurrentZone();
 }
 
 
@@ -132,11 +134,13 @@ Spell::~Spell(){
 int Spell::resolve(){
   GameObserver * game = GameObserver::GetInstance();
   //TODO Remove target if it's not targettable anymore
-   while (source->next){
+  /* while (source->next){
     source = source->next;
-  }
-  if (!source->hasType("instant") &&  !source->hasType("sorcery")){    
-      source = source->controller()->game->putInPlay(source);
+  }*/
+  if (!source->hasType("instant") &&  !source->hasType("sorcery")){
+      Player * p = source->controller();
+      source = p->game->putInZone(source,from,p->game->battlefield);
+      from = p->game->battlefield;
   }
 
 

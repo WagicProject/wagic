@@ -76,6 +76,7 @@ class Spell: public Interruptible {
  protected:
 
  public:
+  MTGGameZone * from;
   TargetChooser * tc;
   ManaCost * cost;
   Spell(MTGCardInstance* _source);

@@ -136,6 +136,7 @@ living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
 master_of_etherium.txt
+memory_erosion.txt
 millstone.txt
 #mind_rot.txt
 mobile_fort.txt

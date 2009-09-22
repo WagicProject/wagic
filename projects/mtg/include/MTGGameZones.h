@@ -152,6 +152,7 @@ class MTGPlayerCards {
   MTGRemovedFromGame * removedFromGame;
   MTGRemovedFromGame * exile; //alias to removedFromZone
   MTGGameZone * garbage;
+  MTGGameZone * temp;
 
   MTGAllCards * collection;
 

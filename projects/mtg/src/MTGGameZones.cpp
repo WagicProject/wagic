@@ -49,6 +49,7 @@ MTGPlayerCards::~MTGPlayerCards(){
   SAFE_DELETE(stack);
   SAFE_DELETE(removedFromGame);
   SAFE_DELETE(garbage);
+  SAFE_DELETE(temp);
 }
 
 void MTGPlayerCards::setOwner(Player * player){
@@ -59,6 +60,7 @@ void MTGPlayerCards::setOwner(Player * player){
   removedFromGame->setOwner(player);
   stack->setOwner(player);
   garbage->setOwner(player);
+  temp->setOwner(player);
 }
 
 void MTGPlayerCards::initGame(int shuffle, int draw){
@@ -71,13 +73,12 @@ void MTGPlayerCards::initGame(int shuffle, int draw){
 }
 
 void MTGPlayerCards::drawFromLibrary(){
-  MTGCardInstance * drownCard = library->draw();
-  if(drownCard){
-    hand->addCard(drownCard);
+  MTGCardInstance * drawnCard = library->draw();
+  if(drawnCard){
+    hand->addCard(drawnCard);
     GameObserver *g = GameObserver::GetInstance();
-    WEvent * e = NEW WEventZoneChange(drownCard,library,hand);
+    WEvent * e = NEW WEventZoneChange(drawnCard,library,hand);
     g->receiveEvent(e);
-    //delete e;
   }
 }
 
@@ -92,6 +93,7 @@ void MTGPlayerCards::init(){
   removedFromGame = NEW MTGRemovedFromGame();
   exile = removedFromGame;
   garbage = NEW MTGGameZone();
+  temp = NEW MTGGameZone();
 }
 
 

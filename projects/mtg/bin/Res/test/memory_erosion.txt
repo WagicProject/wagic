@@ -1,0 +1,18 @@
+#Bug: Lands use thestack
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:plains
+library:swamp,mountains
+[PLAYER2]
+inplay:memory erosion
+[DO]
+plains
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:plains
+library:swamp,mountains
+[PLAYER2]
+inplay:memory erosion
+[END]

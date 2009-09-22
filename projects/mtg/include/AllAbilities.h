@@ -475,10 +475,8 @@ public:
       for ( it=abilities.begin() ; it != abilities.end(); it++ ){
         myToken->basicAbilities[*it] = 1;
       }
-      source->controller()->game->stack->addCard(myToken);
+      source->controller()->game->temp->addCard(myToken);
       Spell * spell = NEW Spell(myToken);
-
-
       spell->resolve();
       delete spell;
     }
@@ -524,9 +522,8 @@ public:
         //inplay is a special zone !
         for (int i=0; i < 2; i++){
           if (destZone == g->players[i]->game->inPlay && fromZone != g->players[i]->game->inPlay && fromZone != g->players[i]->opponent()->game->inPlay){
-              MTGCardInstance * copy = g->players[i]->game->putInZone(_target,  fromZone, g->players[i]->game->stack);
+              MTGCardInstance * copy = g->players[i]->game->putInZone(_target,  fromZone, g->players[i]->game->temp);
               Spell * spell = NEW Spell(copy);
-
               spell->resolve();
               delete spell;
               return 1;
@@ -2656,10 +2653,8 @@ class AAnimateDead:public MTGAbility{
 
     //Put the card in play again, with all its abilities !
     //AbilityFactory af;
-    MTGCardInstance * copy = source->controller()->game->putInZone(card,  _target->controller()->game->graveyard, source->controller()->game->stack);
+    MTGCardInstance * copy = source->controller()->game->putInZone(card,  _target->controller()->game->graveyard, source->controller()->game->temp);
     Spell * spell = NEW Spell(copy);
-    //af.addAbilities(game->mLayers->actionLayer()->getMaxId(), spell);
-
     spell->resolve();
     target = spell->source;
     card = spell->source;
