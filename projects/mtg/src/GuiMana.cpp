@@ -10,7 +10,7 @@ const float ManaIcon::DESTY = 20;
 
 ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1), mode(ALIVE), color(color)
 {
-  hgeParticleSystemInfo * psi = NULL; 
+  hgeParticleSystemInfo * psi = NULL;
   JQuad * mq = resources.GetQuad("stars");
 
   if(!mq){
@@ -91,13 +91,13 @@ ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1
         psi->colColorEnd.SetHWColor(ARGB(14,238,244,204));
         break;
     }
-    
+
     particleSys = NEW hgeParticleSystem(psi);
     SAFE_DELETE(psi); //This version of psi is not handled by cache, so kill it here.
   }
   else
     particleSys = NEW hgeParticleSystem(psi); //Cache will clean psi up later.
-  
+
 
   icon = manaIcons[color];
 
@@ -129,7 +129,7 @@ ManaIcon::~ManaIcon()
 void ManaIcon::Render()
 {
   if(!particleSys)
-    return; 
+    return;
 
   JRenderer* renderer = JRenderer::GetInstance();
 
@@ -138,7 +138,7 @@ void ManaIcon::Render()
   renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
   renderer->RenderQuad(icon, actX, actY, actT, actZ + zoomP1 * sinf(M_PI * zoomP3), actZ + zoomP2 * cosf(M_PI * zoomP4));
 }
-void ManaIcon::Update(float dt)
+void ManaIcon::Update(float dt, float shift)
 {
   xP1 += xP3 * dt;
   actX = x + xP2 * sinf(M_PI * xP1);
@@ -163,7 +163,7 @@ void ManaIcon::Update(float dt)
       break;
     case ALIVE :
       x += 10 * dt * (DESTX - x);
-      y += 10 * dt * (DESTY - y);
+      y += 10 * dt * (DESTY + shift - y);
       yP1 += yP3 * dt;
       actY = y + yP2 * sinf(M_PI * yP1);
       break;
@@ -200,6 +200,7 @@ GuiMana::~GuiMana(){
 
 void GuiMana::Render()
 {
+
   for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
     (*it)->Render();
 }
@@ -207,14 +208,15 @@ bool remove_dead(ManaIcon* m) { return ManaIcon::DEAD != m->mode; }
 void GuiMana::Update(float dt)
 {
   {
+    float shift = 0;
     for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
-      (*it)->Update(dt);
+      { (*it)->Update(dt, shift); shift += 15; }
   }
   vector<ManaIcon*>::iterator it = partition(manas.begin(), manas.end(), &remove_dead);
   if (it != manas.end())
     {
       for (vector<ManaIcon*>::iterator q = it; q != manas.end(); ++q)
-	      SAFE_DELETE(*q);
+        SAFE_DELETE(*q);
       manas.erase(it, manas.end());
     }
 }
@@ -224,9 +226,9 @@ int GuiMana::receiveEventPlus(WEvent* e)
   if (WEventEngageMana *event = dynamic_cast<WEventEngageMana*>(e))
     {
       if (event->card && event->card->view)
-	      manas.push_back(NEW ManaIcon(event->color, event->card->view->actX, event->card->view->actY));
+        manas.push_back(NEW ManaIcon(event->color, event->card->view->actX, event->card->view->actY));
       else
-	      manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
+        manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
       return 1;
     }
   else return 0;
@@ -243,7 +245,7 @@ int GuiMana::receiveEventMinus(WEvent* e)
   else if (dynamic_cast<WEventEmptyManaPool*>(e))
     {
       for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
-	      (*it)->Drop(); //TODO: split according to which manapool was emptied...
+        (*it)->Drop(); //TODO: split according to which manapool was emptied...
       return 1;
     }
   return 0;

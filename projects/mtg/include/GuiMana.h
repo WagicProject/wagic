@@ -24,7 +24,7 @@ class ManaIcon : public Pos
   enum { ALIVE, WITHERING, DROPPING, DEAD } mode;
   int color;
   void Render();
-  void Update(float dt);
+  void Update(float dt, float shift);
   void Wither();
   void Drop();
   ManaIcon(int color, float x, float y);
