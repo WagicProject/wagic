@@ -668,12 +668,7 @@ string WResourceManager::cardFile(const string filename, const string specific){
           char zipname[512];
           sprintf(zipname, "Res/sets/%s/%s.zip", set.c_str(),set.c_str());
           if (fileOK(zipname)){
-            if(attachedZip != zipname)
-            {  
-              fs->DetachZipFile();
-              attachedZip = zipname;
-              fs->AttachZipFile(zipname);
-            }
+            fs->AttachZipFile(zipname);
             return filename.substr(i+1);
           }
        }
