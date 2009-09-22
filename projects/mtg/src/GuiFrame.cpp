@@ -47,7 +47,7 @@ GuiFrame::~GuiFrame()
 void GuiFrame::Render()
 {
   JRenderer* renderer = JRenderer::GetInstance();
-  float sized = step; if (sized > SCREEN_WIDTH) sized -= SCREEN_WIDTH;
+  float sized = step / 4; if (sized > SCREEN_WIDTH) sized -= SCREEN_WIDTH;
   renderer->RenderQuad(wood, 0, 0);
   renderer->RenderQuad(gold1, -sized, 16);
   renderer->RenderQuad(gold1, -sized + 479, 16);
