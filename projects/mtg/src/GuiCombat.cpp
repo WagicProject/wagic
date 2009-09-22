@@ -2,6 +2,7 @@
 #include "../include/config.h"
 #include "../include/GameApp.h"
 #include "../include/GuiCombat.h"
+#include "../include/AIPlayer.h"
 #include "Closest.cpp"
 
 static const float MARGIN = 70;
@@ -469,7 +470,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
       case DAMAGE: DAMAGE:
         step = event->step;
         if (!go->currentPlayer->displayStack()) { 
-          //resolve(); 
+          ((AIPlayer *)go->currentPlayer)->affectCombatDamages(step); 
           go->nextGamePhase(); 
           return 1; 
         }

@@ -1,0 +1,27 @@
+#Bug: Mobile Fort doesn't get +3/-1
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:mobile fort
+manapool:{3}
+[PLAYER2]
+[DO]
+mobile fort
+next
+#beign
+next
+#attackers
+mobile fort
+next
+#blockers
+next
+#damage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:mobile fort
+[PLAYER2]
+life:17
+[END]

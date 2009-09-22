@@ -1,0 +1,12 @@
+#Scenario: control magic on a creature: it gets duplicated ???
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:control magic
+manapool:{2}{U}{U}
+[PLAYER2]
+inplay:air elemental
+[DO]
+human
+[ASSERT]
+[END]

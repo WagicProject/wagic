@@ -1,0 +1,2 @@
+In this folder, we put tests that are not supposed to be 100% automated.
+you switch the control of each Test suite player to Human or AI, to monitor the behavior of the game given a specific starting state

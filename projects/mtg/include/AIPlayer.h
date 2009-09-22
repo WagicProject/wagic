@@ -70,6 +70,7 @@ class AIPlayer: public Player{
   virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
   virtual int chooseTarget(TargetChooser * tc = NULL);
   virtual int Act(float dt);
+  virtual int affectCombatDamages(CombatStep);
   int isAI(){return 1;};
   int canHandleCost(MTGAbility * ability);
   int selectAbility();

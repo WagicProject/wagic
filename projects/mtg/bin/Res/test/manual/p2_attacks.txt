@@ -1,0 +1,16 @@
+#Bug: AI player 2 attacks: no damage is dealt
+#This is a test switching both players to AI mode, it IS NOT SUPPOSED TO Succeed, just for testers to visually confirm stuff
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:dancing scimitar
+[PLAYER2]
+inplay:cloud sprite,briarberry cohort,white knight
+[DO]
+ai
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+[PLAYER2]
+[END]

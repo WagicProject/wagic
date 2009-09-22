@@ -15,18 +15,20 @@ class GuiCombat : public GuiLayer
   AttackerDamaged* activeAtk;
   static JTexture* ok_tex;
   Pos ok, enemy_avatar;
-  vector<AttackerDamaged*> attackers;
   DamagerDamaged* current;
   enum { BLK, ATK, OK, NONE } cursor_pos;
   CombatStep step;
   void validateDamage();
   void addOne(DefenserDamaged* blocker, CombatStep);
   void removeOne(DefenserDamaged* blocker, CombatStep);
-  void autoaffectDamage(AttackerDamaged* attacker, CombatStep);
   void remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after);
   int resolve();
 
  public:
+
+  vector<AttackerDamaged*> attackers;
+  void autoaffectDamage(AttackerDamaged* attacker, CombatStep);
+
   GuiCombat(GameObserver* go);
   ~GuiCombat();
   virtual void Update(float dt);

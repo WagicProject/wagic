@@ -8,16 +8,18 @@
 #include <string>
 using std::string;
 
-TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayer(_suite->buildDeck(playerId),"testsuite", "testsuite"){
+
+enum ENUM_PLAY_MODE
+  {
+    MODE_TEST_SUITE,
+    MODE_HUMAN,
+    MODE_AI,
+  };
+
+TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayerBaka(_suite->buildDeck(playerId),"testsuite", "testsuite","baka.jpg"){
   suite = _suite;
   timer = 0;
-  humanMode = 0;
-
-  mAvatarTex = resources.RetrieveTexture("baka.jpg",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
-  if(mAvatarTex)
-  mAvatar = resources.RetrieveQuad("baka.jpg", 0, 0, 35, 50,"bakaAvatar",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
-  else 
-    mAvatar = NULL;
+  playMode = MODE_TEST_SUITE;
 
 }
 
@@ -58,11 +60,16 @@ Interruptible * TestSuite::getActionByMTGId(int mtgid){
   return NULL;
 }
 
+int TestSuiteAI::displayStack(){
+  if (playMode == MODE_AI) return 0;
+  return 1;
+}
 
 int TestSuiteAI::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
   g->gameOver = NULL; // Prevent draw rule from losing the game
-  if (humanMode){
+  if (playMode == MODE_AI) return AIPlayerBaka::Act(dt);
+  if (playMode == MODE_HUMAN){
     g->mLayers->CheckUserInput(0);
     return 1;
   }
@@ -101,7 +108,12 @@ int TestSuiteAI::Act(float dt){
   }
   else if (action.compare("human")==0){
     OutputDebugString("TESTSUITE You have control");
-    humanMode = 1;
+    playMode = MODE_HUMAN;
+    return 1;
+  }
+  else if (action.compare("ai")==0){
+    OutputDebugString("TESTSUITE Switching to AI");
+    playMode = MODE_AI;
     return 1;
   }
   else if (action.compare("next")==0){

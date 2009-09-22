@@ -26,7 +26,8 @@ enum ENUM_DUEL_STATE
     DUEL_STATE_CANCEL,
     DUEL_STATE_PLAY,
     DUEL_STATE_BACK_TO_MAIN_MENU,
-    DUEL_STATE_MENU
+    DUEL_STATE_MENU,
+    DUEL_STATE_ERROR
   };
 
 enum ENUM_DUEL_MENUS
@@ -275,7 +276,11 @@ void GameStateDuel::Update(float dt)
 	        sprintf(buf, "nb cards in player2's graveyard : %i\n",mPlayers[1]->game->graveyard->nb_cards);
 	        LOG(buf);
 	      }else{
-	        mGamePhase = DUEL_STATE_END;
+          if (!game){
+            mGamePhase = DUEL_STATE_ERROR;
+          }else{
+	          mGamePhase = DUEL_STATE_END;
+          }
 	      }
       }
 #endif
@@ -400,6 +405,13 @@ void GameStateDuel::Render()
         JRenderer * r = JRenderer::GetInstance();
 	      r->ClearScreen(ARGB(200,0,0,0));
 	      credits->Render();
+	      break;
+      }
+    case DUEL_STATE_ERROR:
+      {
+        JRenderer * r = JRenderer::GetInstance();
+	      r->ClearScreen(ARGB(200,0,0,0));
+	      mFont->DrawString(_("AN ERROR OCCURED, CHECK FILE NAMES").c_str(),0,SCREEN_HEIGHT/2);
 	      break;
       }
     case DUEL_STATE_CHOOSE_DECK1:

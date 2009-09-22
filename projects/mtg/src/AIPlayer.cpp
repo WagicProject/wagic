@@ -4,6 +4,7 @@
 #include "../include/AIStats.h"
 #include "../include/AllAbilities.h"
 #include "../include/ExtraCost.h"
+#include "../include/GuiCombat.h"
 
 const char * const MTG_LAND_TEXTS[] = {"artifact","forest","island","mountain","swamp","plains","other lands"};
 
@@ -250,13 +251,12 @@ int AIPlayer::selectAbility(){
   }
 
   if (ranking.size()){
-    OutputDebugString("We have a winrar\n");
     AIAction * a = ranking.begin()->first;
     int chance = 1 + rand() % 100;
     if (getEfficiency(a) < chance){
       a = NULL;
     }else{
-OutputDebugString("We REALLY have a winner\n");
+      OutputDebugString("AIPlayer:Using Activated ability\n");
       tapLandsForMana(pMana, a->ability->cost);
       clickstream.push(a);
     }
@@ -507,8 +507,15 @@ int AIPlayer::orderBlockers(){
   return 0;
 }
 
+int AIPlayer::affectCombatDamages(CombatStep step){
+  GameObserver * g = GameObserver::GetInstance();
+  GuiCombat *  gc = g->mLayers->combatLayer();
+  for (vector<AttackerDamaged*>::iterator attacker = gc->attackers.begin(); attacker != gc->attackers.end(); ++attacker)
+          gc->autoaffectDamage(*attacker, step);
+  return 1;
+}
 
-
+//TODO: Deprecate combatDamages
 int AIPlayer::combatDamages(){
   //int result = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
@@ -736,7 +743,6 @@ int AIPlayerBaka::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
 
   if (!(g->currentlyActing() == this)){
-    OutputDebugString("Cannot interrupt\n");
     return 0;
   }
 

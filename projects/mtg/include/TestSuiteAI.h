@@ -76,14 +76,14 @@ class TestSuite{
 
 };
 
-class TestSuiteAI:public AIPlayer{
+class TestSuiteAI:public AIPlayerBaka{
  public:
   TestSuite * suite;
   float timer;
-  int humanMode;
+  int playMode;
   TestSuiteAI(TestSuite * suite, int playerId);
   virtual int Act(float dt);
-  virtual int displayStack(){return 1;}
+  virtual int displayStack();
 
 };
 

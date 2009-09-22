@@ -1,0 +1,11 @@
+#Scenario: simple attack with grizzly bears
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+[DO]
+human
+next
+[ASSERT]
+[END]

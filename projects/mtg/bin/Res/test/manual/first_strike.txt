@@ -1,0 +1,11 @@
+#Scenario: simple attack with white knight
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:white knight
+[PLAYER2]
+[DO]
+human
+next
+[ASSERT]
+[END]

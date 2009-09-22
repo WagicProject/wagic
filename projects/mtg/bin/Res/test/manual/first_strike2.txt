@@ -1,0 +1,13 @@
+#Scenario: simple attack with white knight + grizzly bears
+#Attack with both.
+#There should be a request for interruption between the two damage assignation steps, so that users can cast spells
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:white knight,grizzly bears
+[PLAYER2]
+[DO]
+human
+next
+[ASSERT]
+[END]
