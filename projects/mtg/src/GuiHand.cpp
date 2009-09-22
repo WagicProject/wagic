@@ -2,6 +2,7 @@
 #include "../include/GameApp.h"
 #include "../include/Trash.h"
 #include "../include/GuiHand.h"
+#include "../include/OptionItem.h"
 
 const float GuiHand::ClosedRowX = 459;
 const float GuiHand::LeftRowX = 420;
@@ -9,6 +10,8 @@ const float GuiHand::RightRowX = 460;
 
 const float GuiHand::OpenX = 394;
 const float GuiHand::ClosedX = 494;
+const float GuiHand::OpenY = SCREEN_HEIGHT - 50;
+const float GuiHand::ClosedY = SCREEN_HEIGHT;
 
 bool HandLimitor::select(Target* t)
 {
@@ -77,6 +80,13 @@ void GuiHandOpponent::Render()
 GuiHandSelf::GuiHandSelf(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand), state(Closed), backpos(ClosedX, SCREEN_HEIGHT - 250, 1.0, 0, 255)
 {
   limitor = NEW HandLimitor(this);
+  if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
+    {
+      backpos.t = M_PI/2;
+      backpos.y = ClosedY;
+      backpos.x = SCREEN_WIDTH - 30 * 7 - 14;
+      backpos.UpdateNow();
+    }
 }
 
 GuiHandSelf::~GuiHandSelf(){
@@ -86,7 +96,7 @@ GuiHandSelf::~GuiHandSelf(){
 void GuiHandSelf::Repos()
 {
   float y = 48.0;
-  if (Closed == state)
+  if (Closed == state && OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number)
     for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
       {
         (*it)->x = ClosedRowX; (*it)->y = y;
@@ -94,13 +104,30 @@ void GuiHandSelf::Repos()
       }
   else
     {
-      bool flip = false;
-      for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+      bool q = (Closed == state);
+      if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
         {
-          (*it)->x = flip ? RightRowX : LeftRowX;
-          (*it)->y = y;
-          if (flip) y += 65;
-          flip = !flip;
+          y = SCREEN_WIDTH - 30;
+          for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+            {
+              (*it)->x = y;
+              (*it)->y = SCREEN_HEIGHT - 30;
+              y -= 30;
+              (*it)->alpha = (q ? 0 : 255);
+            }
+          backpos.x = y + SCREEN_HEIGHT - 14;
+        }
+      else
+        {
+          bool flip = false;
+          for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+            {
+              (*it)->x = flip ? RightRowX : LeftRowX;
+              (*it)->y = y;
+              if (flip) y += 65;
+              flip = !flip;
+              (*it)->alpha = (q ? 0 : 255);
+            }
         }
     }
 }
@@ -113,9 +140,25 @@ bool GuiHandSelf::CheckUserInput(u32 key)
     {
       state = (Open == state ? Closed : Open);
       if (Open == state) cs->Push();
-      cs->Limit(Open == state ? limitor : NULL);
+      cs->Limit(Open == state ? limitor : NULL, CardSelector::handZone);
       if (Closed == state) cs->Pop();
-      backpos.x = Open == state ? OpenX : ClosedX;
+      if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
+        backpos.y = Open == state ? OpenY : ClosedY;
+      else
+        backpos.x = Open == state ? OpenX : ClosedX;
+      if (Open == state && OptionClosedHand::INVISIBLE == options[Options::CLOSEDHAND].number)
+        {
+          if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
+            for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+              {
+                (*it)->y = SCREEN_HEIGHT + 30; (*it)->UpdateNow();
+              }
+          else
+            for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+              {
+                (*it)->x = SCREEN_WIDTH + 30; (*it)->UpdateNow();
+              }
+        }
       Repos();
       return true;
     }
@@ -131,15 +174,17 @@ void GuiHandSelf::Update(float dt)
 void GuiHandSelf::Render()
 {
   backpos.Render(back);
-  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
-    (*it)->Render();
+  if (OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number || state == Open)
+    for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+      (*it)->Render();
 }
 
 float GuiHandSelf::LeftBoundary()
 {
   float min = SCREEN_WIDTH + 10;
-  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
-    if ((*it)->x - CardGui::Width / 2 < min) min = (*it)->x - CardGui::Width / 2;
+  if (OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number || state == Open)
+    for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+      if ((*it)->x - CardGui::Width / 2 < min) min = (*it)->x - CardGui::Width / 2;
   return min;
 }
 
@@ -191,7 +236,7 @@ int GuiHandOpponent::receiveEventPlus(WEvent* e)
 	  card = NEW CardView(CardSelector::handZone, event->card, *(event->card->view));
 	else
 	  card = NEW CardView(CardSelector::handZone, event->card, ClosedRowX, 0);
-	card->t = -4*M_PI; card->alpha = 255;
+        card->alpha = 255; card->t = -4*M_PI;
 	cards.push_back(card);
 	return 1;
       }

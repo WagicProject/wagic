@@ -42,6 +42,8 @@ const string Options::MOMIR_MODE_UNLOCKED = "_gprx_rimom"; //haha
 const string Options::EVILTWIN_MODE_UNLOCKED = "_gprx_eviltwin";
 const string Options::RANDOMDECK_MODE_UNLOCKED = "_gprx_rnddeck";
 const string Options::CACHESIZE = "_gcacheSize";
+const string Options::CLOSEDHAND = "closed_hand";
+const string Options::HANDDIRECTION = "hand_direction";
 //Theme metrics
 const string Metrics::LOADING_TC = "_tLoadingTC";
 const string Metrics::STATS_TC = "_tStatsTC";
@@ -76,6 +78,7 @@ const string Metrics::KEYPAD_TC = "_tKeypadTC";
 
 GameOption::GameOption(int value) : number(value){}
 GameOption::GameOption(string value) : number(0), str(value) {}
+GameOption::GameOption(int num, string str) : number(num), str(str) {}
 
 bool GameOption::isDefault(){
   string test = str;
@@ -203,7 +206,6 @@ GameSettings::~GameSettings(){
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(themeOptions);
-  SAFE_DELETE(keypad);
 }
 
 GameOption& GameSettings::operator[](string option_name){
@@ -224,11 +226,11 @@ int GameSettings::save(){
   if(profileOptions){
     //Force our directories to exist.
     MAKEDIR(RESPATH"/profiles");
-    string temp = profileFile();
+    string temp = profileFile("","",false,false);
     MAKEDIR(temp.c_str()); 
     temp+="/stats";
     MAKEDIR(temp.c_str()); 
-    temp = profileFile(PLAYER_SETTINGS);
+    temp = profileFile(PLAYER_SETTINGS,"",false);
 
     profileOptions->save();
   }
@@ -290,7 +292,7 @@ void GameSettings::checkProfile(){
 
     //If it doesn't exist, load current profile.
     if(!profileOptions)
-      profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS));
+      profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS,"",false));
     
     //Load theme options
     if(!themeOptions){
@@ -344,7 +346,7 @@ void GameSettings::createUsersFirstDeck(int setId){
   if(theGame == NULL || theGame->collection == NULL)
     return;
 
-  MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), theGame->collection);
+  MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), theGame->collection);
   //10 lands of each
   int sets[] = {setId};
   if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){

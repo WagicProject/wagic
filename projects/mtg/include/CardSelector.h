@@ -54,7 +54,7 @@ class ObjectSelector : public GuiLayer
  bool CheckUserInput(u32 key);
  void Update(float dt);
  void Render();
- void Limit(LimitorFunctor<T>* limitor);
+ void Limit(LimitorFunctor<T>* limitor, SelectorZone);
  void Push();
  void Pop();
 

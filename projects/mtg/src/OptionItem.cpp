@@ -810,6 +810,59 @@ void OptionVolume::updateValue(){
     value=0;
 }
 
-OptionVolume::OptionVolume(string _id, string _displayName, bool _bMusic): OptionInteger(_id, _displayName, 100, 10,0,"Muted") {
-  bMusic = _bMusic;
+OptionVolume::OptionVolume(string id, string displayName, bool music): OptionInteger(id, displayName, 100, 10, 0, "Muted") {
+  bMusic = music;
 }
+
+void OptionEnum::setData()
+{
+  options[id] = GameOption(values[index].first, values[index].second);
+}
+
+void OptionEnum::updateValue()
+{
+  ++index;
+  if (index >= values.size()) index = 0;
+}
+
+void OptionEnum::Render()
+{
+  JLBFont * mFont = resources.GetJLBFont("f3");
+  if (hasFocus)
+    mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
+  else
+    mFont->SetColor(options[Metrics::OPTION_ITEM_TC].asColor());
+  JRenderer * renderer = JRenderer::GetInstance();
+  renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
+  mFont->DrawString(displayValue.c_str(),x,y);
+  mFont->DrawString(values[index].second.c_str(), width -10, y, JGETEXT_RIGHT);
+}
+
+void OptionEnum::Reload()
+{
+  for (vector<assoc>::iterator it = values.begin(); it != values.end(); ++it)
+    if (it->second == options[id].str)
+      {
+        index = it - values.begin();
+        return;
+      }
+  index = 0;
+}
+
+ostream& OptionEnum::toString(ostream& out) const
+{
+  return (out << values[index].second);
+}
+
+OptionClosedHand::OptionClosedHand(string id, string displayName) : OptionEnum(id, displayName)
+{
+  values.push_back(assoc(INVISIBLE, "invisible"));
+  values.push_back(assoc(VISIBLE,   "visible"));
+  Reload();
+};
+OptionHandDirection::OptionHandDirection(string id, string displayName) : OptionEnum(id, displayName)
+{
+  values.push_back(assoc(VERTICAL,   "vertical"));
+  values.push_back(assoc(HORIZONTAL, "horizontal"));
+  Reload();
+};

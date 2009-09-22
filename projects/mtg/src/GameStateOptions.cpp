@@ -42,6 +42,11 @@ void GameStateOptions::Start()
   optionsTabs = NEW OptionsMenu();  
   optionsTabs->Add(optionsList);
 
+  optionsList = NEW OptionsList("Game");
+  optionsList->Add(NEW OptionClosedHand(Options::CLOSEDHAND, "Closed hand"));
+  optionsList->Add(NEW OptionHandDirection(Options::HANDDIRECTION, "Hand direction"));
+  optionsTabs->Add(optionsList);
+
   optionsList = NEW OptionsList("Profiles");
   OptionNewProfile * key = NEW OptionNewProfile("","New Profile");
   key->bShowValue = false;

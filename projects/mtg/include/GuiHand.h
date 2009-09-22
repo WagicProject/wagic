@@ -28,6 +28,8 @@ class GuiHand : public GuiLayer
 
   static const float OpenX;
   static const float ClosedX;
+  static const float OpenY;
+  static const float ClosedY;
 
  protected:
   const MTGHand* hand;

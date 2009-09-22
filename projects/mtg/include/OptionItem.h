@@ -106,7 +106,7 @@ class OptionSelect:public OptionItem{
 
   virtual void addSelection(string s);
   OptionSelect(string _id, string _displayValue): OptionItem(_id, _displayValue) {value = 0;};
-  virtual void Reload() {initSelections();};
+  virtual void Reload(){initSelections();};
   virtual void Render();
   virtual void setData();
   virtual void initSelections();
@@ -204,6 +204,31 @@ class OptionsMenu
   void Add(OptionsList * tab);
   void save();
 
+};
+
+class OptionEnum : public OptionItem {
+ protected:
+  typedef pair<int, string> assoc;
+  unsigned index;
+  vector<assoc> values;
+ public:
+ OptionEnum(string id, string displayValue) : OptionItem(id, displayValue), index(0) {};
+  virtual void Reload();
+  virtual void Render();
+  virtual void setData();
+  virtual void updateValue();
+  virtual ostream& toString(ostream& out) const;
+};
+
+class OptionClosedHand : public OptionEnum {
+ public:
+  enum { INVISIBLE = 0, VISIBLE = 1 };
+  OptionClosedHand(string id, string displayValue);
+};
+class OptionHandDirection : public OptionEnum {
+ public:
+  enum { VERTICAL = 0, HORIZONTAL = 1};
+  OptionHandDirection(string id, string displayValue);
 };
 
 #endif

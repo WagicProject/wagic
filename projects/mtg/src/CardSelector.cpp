@@ -85,6 +85,9 @@ void CardSelector::Pop()
     {
       active = fetchMemory(memoryStack.top());
       memoryStack.pop();
+      SelectorZone oldowner;
+      if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
+      if (nullZone != oldowner) lasts[oldowner] = SelectorMemory(oldactive);
     }
   if (active != oldactive)
     {
@@ -183,13 +186,21 @@ void CardSelector::Render()
 }
 
 template<>
-void CardSelector::Limit(LimitorFunctor<Target>* limitor)
+void CardSelector::Limit(LimitorFunctor<Target>* limitor, SelectorZone destzone)
 {
   this->limitor = limitor;
   if (limitor && !limitor->select(active))
     {
       Target* oldactive = active;
-      active = closest<True>(cards, limitor, active);
+      SelectorZone oldowner;
+      if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
+      if (oldowner != destzone)
+        {
+          if (nullZone != destzone)
+            if (PlayGuiObject* old = fetchMemory(lasts[destzone]))
+              active = old;
+          lasts[oldowner] = SelectorMemory(oldactive);
+        }
       if (limitor && !limitor->select(active)) active = NULL;
       if (active != oldactive)
         {

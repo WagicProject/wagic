@@ -31,7 +31,8 @@ struct Options {
   static const string ACTIVE_PROFILE;
   static const string ACTIVE_THEME;
   static const string ACTIVE_MODE;
-  static const string HANDMODE;
+  static const string CLOSEDHAND;
+  static const string HANDDIRECTION;
 };
 
 struct Metrics {
@@ -78,7 +79,8 @@ public:
   PIXEL_TYPE asColor(PIXEL_TYPE fallback = ARGB(255,255,255,255));
   bool isDefault(); //Returns true when  number is 0 abd string is "" or "default"
   GameOption(int value = 0);
-  GameOption(string value);
+  GameOption(string);
+  GameOption(int, string);
 };
 
 
@@ -116,7 +118,7 @@ public:
   //These return a filepath accurate to the current mode/profile/theme, and can
   //optionally fallback to a file within a certain directory. 
   //The sanity=false option returns the adjusted path even if the file doesn't exist.
-  string profileFile(string filename="", string fallback="", bool sanity=false,bool relative=false);
+  string profileFile(string filename="", string fallback="", bool sanity=true,bool relative=false);
 
   void reloadProfile(bool images = true); //Reloads profile using current options[ACTIVE_PROFILE]
   void checkProfile();  //Confirms that a profile is loaded and contains a collection.
