@@ -35,7 +35,7 @@ PSP_EBOOT_ICON = icon.png
 #PSP_EBOOT_ICON1 = icon1.pmf
 PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
-CFLAGS = -G0 -DPSPFW3XX
+CFLAGS = -G0 -DPSPFW3XX -DDEVHOOK
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src
 LIBDIR = ../../JGE/lib/psp
 else
@@ -46,11 +46,12 @@ LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lglut -lhgetools -l
 CFLAGS = $(INCDIR) -DLINUX
 ASFLAGS = $(CXXFLAGS)
 
+all: CFLAGS += -O2
 all: $(DEFAULT_RULE)
 
 endif
 
-CFLAGS := -O2 -Wall -W -Werror -Wno-unused -DDEVHOOK $(CFLAGS)
+CFLAGS := -Wall -W -Werror -Wno-unused $(CFLAGS)
 CXXFLAGS += $(CFLAGS)
 # -fno-exceptions
 
