@@ -1,0 +1,50 @@
+#NAME:CD Orochi Sustainer
+#
+#DESC: "The deck that a Orochi Sustainer
+#DESC: would (and could) assemble"
+#DESC: (v1.0)
+#DESC:
+#DESC: Salute our sinuosity
+#DESC: Love our litheness
+#DESC: Enjoy our embrace
+#DESC:
+#DESC: Care for a kiss?
+#DESC: Soon you will sleep ...
+
+Orochi Sustainer (CHK)   *3 # Orochi Snake Shaman
+Orochi Leafcaller (CHK)  *3 # Orochi Snake Shaman
+Sachi, Daughter of Seshiro (CHK) *1 # toughness bonus to snakes
+
+Anaconda (POR)*2 # 18 snakes
+Anaconda (UZS)*2
+Hornet Cobra (LEG)*4
+Python (POR)  *4
+Skeletal Snake (POR)  *2
+Mold Adder (M10)  *2 # only good against 2 colors
+Boa Constrictor (MRQ) *1 # AI can't handle ability
+Serpent Warrior (POR) *1 # AI doesn't realize the life loss
+
+Weakness (M10)*2 # 11 spells which simulate poison effects
+Paralyze (RV) *4
+Last Gasp (RAV)   *2
+Terror (10E)  *2
+Fevered Convulsions (TMP) *1
+
+Forest (10E) *11
+Swamp (10E) *13
+
+
+# Cards considered, but not included:
+# Creakwood Liege - not a snake
+# Coiled Tinviper - mechanical snake, bad thematic fit
+# Plague Wind - considered as endgame surprise, but doesn't fit
+#   the theme well enough
+
+# Cards removed from the deck:
+# Serpent Assassin - AI kills its own creatures with it.
+
+# Notes:
+# I haven't found any information about the Orochi, so I can't
+# tell whether they fit to the rest of the cards apart from the
+# fact that they are snakes. If they don't fit, replacement
+# suggestions are welcome.

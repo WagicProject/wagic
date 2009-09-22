@@ -1,0 +1,25 @@
+#NAME:Jihad
+#DESC:Mono-White deck with cheap,
+#DESC:effective creatures and
+#DESC:many pump effects.
+#DESC:Designed as a tribute to
+#DESC:the Jihad card from
+#DESC:Arabian Nights!
+#DESC:v1.0 2009 09 16
+Crusade (RV) *4
+Glorious Anthem (10E) *4
+Honor of the Pure (M10) *4
+Armored Ascension (M10) *2
+Swords to Plowshares (ICE) *4
+Disenchant (TMP) *3
+Paladin en-Vec (10E) *2
+Knight of Meadowgrain (LRW) *4
+Kitchen Finks (SHM) *3
+Spectral Procession (SHM) *4
+Stillmoon Cavalier (EVE) *3
+Plains (10E) *4
+Plains (M10) *4
+Plains (ALA) *4
+Plains (LRW) *4
+Plains (SHM) *4
+Plains (RAV) *3

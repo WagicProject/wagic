@@ -1,0 +1,81 @@
+#NAME:Soldiers
+#DESC:Soldiers are prepared for war,
+#DESC:they are useful in their way, 
+#DESC:but they must be commanded 
+#DESC:as the builder commands the stone.
+#DESC:Disciplined and dedicated, 
+#DESC:they will held their ranks to the end, 
+#DESC:even in the face of tremendous losses.
+#4x Akrasan Squire - human soldier {W}, 1/1 exalted
+174963
+174963
+174963
+174963
+#4x Armored Ascension - {3}{W} - enchant creature - +1/+1 for each plains
+146041
+146041
+146041
+146041
+#2x Aven Squire - Bird soldier {1}{W},1/1 flying,exalted
+184992
+184992
+#4x Veteran Armorer - {1}{W} - 2/2 creature you control get +0/+1
+87950
+87950
+87950
+87950
+#4x Ballynock Cohort, Kithkin Soldier {2}{W}, 2/2, first strike +1/+1 as long as you control another white creature.
+142045
+142045
+142045
+142045
+#2x Aven Trailblazer, {2}{W} 2/*, bird soldier flying, domain (toughness = basic land you control)
+180278
+180278
+#2x Castle {3}{W} - Enchantment, untapped creature you control get +0/+2
+1334
+1334
+#4x Field Marshal {1}{W}{W} - 2/2 - other soldier get +1/+1 and first strike
+135258
+135258
+135258
+135258
+#4x Glorious Anthem {1}{W}{W} - Enchantment - creature you control get +1/++
+129572
+129572
+129572
+129572
+#2x Serra Zealot {W} - 1/1 - First strike
+5707
+5707
+#4x Mobilization {2}{W} - Soldier get vigilance - {2}{W} put a 1/1 soldier in play
+129716
+129716
+129716
+129716
+#20x plains
+1395
+1395
+1395
+1395
+129680
+129680
+129680
+129680
+129681
+129681
+129681
+129681
+129682
+129682
+129682
+129682
+129683
+129683
+129683
+129683
+#4x Soltari Foot Soldier, {W}, 1/1 shadow
+4901
+4901
+4901
+4901

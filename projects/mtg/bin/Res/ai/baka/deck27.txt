@@ -1,0 +1,93 @@
+#NAME:Tsabo
+#DESC:"Death is such an exquisite sensation.
+#DESC:Your life was meaningless, 
+#DESC:but your death will glorify Yawgmoth.
+#DESC:Rise, metathran. 
+#DESC:You shall serve a nobler cause 
+#DESC:in death. 
+#DESC:Every last one of you 
+#DESC:will become my servant. 
+#DESC:It's a shame you won't live 
+#DESC:to see the irony.
+#DESC:Do you think you can stop me? 
+#DESC:There's nothing I wouldn't give 
+#DESC:to achieve victory. 
+#DESC:Can you say the same?"
+#DESC:Tsabo Tavoc
+#4x Glen Elendra Liege {1}{UB}{UB}{UB} - flying lord black/blue creature +1/+1
+146743
+146743
+146743
+146743
+#4x Lord of atlantis -{U}{U} 1/1 Lord merfolk +1/+1
+1206
+1206
+1206
+1206
+#4x Lord of the Undead - {1}{B}{B} - 2/2 Lord zombie +1/+1
+129629
+129629
+129629
+129629
+#2x Sanguine Guard {1}{B}{B} - Zombie 2/2 first strike {1}{B}:regenerate
+5627
+5627
+#2x Walking dead {1}{B} - 1/1 zombie, {B}:regenerate
+1466
+1466
+#4x Oona's Gatewarden {BU} - defender flying faerie 2/1 wither
+141975
+141975
+141975
+141975
+#2x Marauding Knight, Zombie {2}{B}{B}, protection from white 2/2 +1/+1 for each plains|opponentinplay
+23053
+23053
+#2x Methatran Zombie, {1}{U}, 1/1
+22973
+22973
+#2x Inkfathom Infiltrator {UB}{UB} -  Merfolk 2/1 cantblock, unblockable
+154401
+154401
+#2x Stillmoon Cavalier {1}{WB}{WB} - Zombie knight 2/1 protection from white and black {WB}:flying {WB}:first strike
+153037
+153037
+#4x Vodalian zombie {B}{U}, zombie merfolk 2/2 protection from green
+23159
+23159
+23159
+23159
+#1x Wasp lancer {BU}{BU}{BU} 3/2 faerie flying
+153967
+#1x Deepchanel Mentor {5}{U}, 2/2 merfolk lord blue creature:unblockable
+141981
+#2x Zombie master {1}{B}{B} - 2/3 zombie lord swampwalk {B}:regenerate
+1188
+1188
+#4x Zombie outlander {B}{U} - 2/2 protection from green
+185138
+185138
+185138
+185138
+#Island
+129606
+129606
+129606
+129606
+129607
+129607
+129608
+129608
+129609
+129609
+#Swamp
+129754
+129754
+129754
+129754
+129755
+129755
+129756
+129756
+129757
+129757

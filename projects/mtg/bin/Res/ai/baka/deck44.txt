@@ -1,0 +1,62 @@
+#NAME:CD Glen Elendra Archmage
+#
+#DESC: "The deck that a Glen Elendra Archmage
+#DESC: would (and could) assemble"
+#DESC: (v1.0)
+#DESC:
+#DESC: Now we're here
+#DESC: Now we're there
+#DESC: Now we're gone
+#DESC: Now we're back
+#DESC:
+#DESC: But what happened to your defenses?
+
+Glen Elendra Archmage (EVE) *4 # ability is currently buggy ...
+
+Heartmender (SHM) *4 # continuously removes -1/-1 counters
+ # from all others
+Kitchen Finks (SHM)   *4 # brings 2 life everytime it persists
+Safehold Elite (SHM)  *4 # cheap early defense
+Gravelgill Axeshark (SHM) *2 # 3/3 creature
+Kithkin Spellduster (EVE) *2 # Enchantment removal
+Restless Apparition (EVE) *4 # can get +3/+3 bonus
+River Kelpie (SHM)*2 # card drawer, only *2 to prevent the
+ # AI from decking itself out
+
+Oona's Gatewarden (SHM)   *4 # good cheap defense & fits the theme
+Plumeveil (SHM)   *2 # great defense & fits the theme
+
+Wrath of God (10E)*4 # destroys all creatures
+
+Plains (10E) *14
+Island (10E) *10
+
+
+# Cards considered, but not included:
+# Rendclaw Trow - has persist & wither, but needs BG mana
+# Lingering Tormentor - has persist * Fear, but needs B mana
+# Scuzzback Marauders - has persist & high attack, but needs BR
+#   mana. High attack not necessary once Wrath of God is cast
+# Rattleblaze Scarecrow - too expensive for conditional persist
+# Wingrattle Scarecrow - only conditional persist
+# Gaea's Cradle - AI doesn't use the mana, dubious thematic fit
+# Cauldron Haze - effect only til end of turn, too short
+# Trapjaw Kelpie - very expensive, AI doesn't use flash
+
+# Cards removed from the deck:
+# none
+
+# Notes:
+# The AI seemed pretty reluctant to cast Wrath in the test runs,
+# although it did use the card from time to time
+#
+# River Kelpie: The AI is in danger of decking itself out if it
+# has many Wither creatures, 2 Kelpies, and casts Wrath of God.
+# I already reduced the Kelpies after the AI had to draw 40 cards
+# in one test run, but even 2 may be too much. Will have to be
+# watched.
+#
+# Restless Apparition: May actually prevent the Heartmender and
+# Wrath of God from being played if the AI uses its plains to pump
+# the apparition before checking whether it could use those plains
+# to play spells. This will have to be watched too.

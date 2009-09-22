@@ -1,0 +1,24 @@
+#NAME:Elfball
+#DESC:Green, aggro-combo deck
+#DESC:capable of generating huge amount
+#DESC:of mana and an endless stream
+#DESC:of elvish warriors!
+#DESC:v1.2 2009 09 17
+Llanowar Elves (M10) *4
+Wellwisher (ONS) *4
+Elvish Vanguard (ONS) *4
+Elvish Visionary (M10) *4
+Elvish Hexhunter (SHM) *4
+Elvish Promenade (LRW) *4
+Elvish Archdruid (M10) *4
+Imperious Perfect (LRW) *4
+Drove of Elves (SHM) *1
+Heedless One (ONS) *3
+Overrun (10E) *2
+Forest (10E) *4
+Forest (M10) *4
+Forest (ALA) *4
+Forest (LRW) *4
+Forest (RAV) *4
+Pendelhaven (LEG) *1
+Gaea's Cradle (USG) *1

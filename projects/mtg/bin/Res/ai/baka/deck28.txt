@@ -1,0 +1,75 @@
+#NAME:Depletion
+#DESC:More than one mage 
+#DESC:has been driven insane by
+#DESC:the howl of the mine,
+#DESC:Dreamborn Muse's voice,
+#DESC:and Mortivore's breath. 
+#DESC:Prepare to discover the truth
+#DESC:of the House Dimir.
+#4x Animate Dead
+1143
+1143
+1143
+1143
+#2x Control Magic
+1194
+1194
+#2x Ray of Erasure
+2529
+2529
+#4x Glimpse the Unthinkable
+83597
+83597
+83597
+83597
+#2x Psychic Drain
+89114
+89114
+#4x Howling Mine
+129598
+129598
+129598
+129598
+#2x Mortivore
+129648
+129648
+#2x Terror
+135199
+135199
+#2x Dreamborn Muse
+135246
+135246
+#2x Unsummon
+136218
+136218
+#4x Oona's Gatewarden
+141975
+141975
+141975
+141975
+#2x Glen Elendra Liege
+146743
+146743
+#10x Swamp
+129754
+129754
+129754
+129754
+129755
+129755
+129755
+129755
+129757
+129757
+#10x Island
+129607
+129607
+129608
+129608
+129608
+129608
+129609
+129609
+129609
+129609
+

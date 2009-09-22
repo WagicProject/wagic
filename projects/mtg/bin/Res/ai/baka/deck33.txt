@@ -1,0 +1,21 @@
+#NAME:Spectral Rack
+#DESC:Mono black deck with
+#DESC:disruption and good
+#DESC:removal.
+#DESC:v1.0 2009 09 17
+The Rack (RV) *4
+Doom Blade (M10) *4
+Last Gasp (RAV) *4
+Hymn to Tourach (FEM) *4
+Black Knight (M10) *4
+Hypnotic Specter (10E) *4
+Nyxathid (CFX) *4
+Graveborn Muse (10E) *4
+Tendrils of Corruption (M10) *4   
+Gargoyle Castle (M10) *4
+Volrath's Stronghold (TMP) *1
+Swamp (10E) *4
+Swamp (M10) *4
+Swamp (ALA) *4
+Swamp (LRW) *4
+Swamp (RAV) *3

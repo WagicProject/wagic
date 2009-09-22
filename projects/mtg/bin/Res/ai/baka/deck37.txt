@@ -1,0 +1,47 @@
+#NAME:CD Terravore
+#
+#DESC: "The deck that a Terravore
+#DESC: would (and could) assemble."
+#DESC: (v1.0)
+#DESC:
+#DESC: Your homeland is my lunch.
+#
+
+Birds of Paradise (10E)   *4  # mana source
+Vine Trellis (MRQ)*4  # mana source and defender
+
+Carven Caryatid (RAV) *3  # card drawer and defender
+Collective Unconscious (MRQ)  *2  # card drawer
+
+Knight of the Reliquary (CFX) *4  # attacker
+Terravore (ODY)   *4  # attacker
+
+Armageddon (POR)  *4  # puts lands into graveyard
+Kudzu (RV)*1  # should be 4, but the AI puts
+  # several Kudzus on one land,
+  # which causes a crash
+Winter's Grasp (TMP)  *2  # weak replacement for Kudzu
+
+Nature's Lore (ICE)   *4  # land fetcher for fast buildup
+Rampant Growth (10E)  *4  # land fetcher for fast buildup
+
+Grasslands (MIR)  *4  # two land fetchers which put
+Mountain Valley (MIR) *4  # themself into the graveyard,
+  # feeding the Terravore and the
+  # Knight
+
+Forest (M10)  *8
+Plains (10E)  *6
+Flagstones of Trokair (TSP)   *2
+
+#
+# Cards considered, but not included:
+# Foratog - eats forests (which is good), but the AI doesn't use
+this ability.
+# Terramorphic Expanse - crashes game
+# Windswept Heath - crashes game
+# Elves, Orochi Sustainer - more mana sources not needed
+#
+# Cards removed from the deck:
+# 3 more Kudzu- game crashes when a land with two Kudzu on it is
+#   tapped

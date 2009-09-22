@@ -1,0 +1,86 @@
+#NAME:CD Prodigal Pyromancer
+#
+#DESC: "The deck that a Prodigal Pyromancer
+#DESC: would (and could) assemble"
+#DESC: (v1.0)
+#DESC:
+#DESC: Well protected by solid stone
+#DESC: I scorch you with lances of fire
+#
+
+Prodigal Pyromancer (10E)   *1 # actually the deck evolved to a
+   # state where it would fare better
+   # without its main creature ...
+
+Wall of Diffusion (TMP) *4 # 12 walls for defense
+Wall of Earth (LEG) *4
+Wall of Stone (RV)  *4
+
+Beacon of Destruction (10E) *3 # 19 direct damage spells
+Flame Burst (ODY)   *4
+Lava Spike (CHK)*4
+Lightning Bolt (M10)*4
+Volcanic Hammer (POR)   *4 # weaker replacement for Kindle
+   # (which is buggy in 0.8.1)
+
+Howling Mine (10E)  *4 # accelerates the game, makes more
+   # damage spells available
+
+Mountain (10E)  *24
+
+
+# Cards considered, but not included:
+# Shock - nice damager per cost ratio, but 2 damage is too little,
+#   especially since the AI likes to use it on creatures with
+#   toughness >2
+# Steam Blast - nice effect on all creatures and players, but
+#   damage amplitude of 2 is just a bit too little.
+#
+# Aetherflame Wall - no need for a 4th wall
+# Ball Lightning - powerful card, but the AI sometimes just casts
+#   it and then doesn't attack with it, so the card is wasted
+# Blaze - AI currently casts spells with "X" cost for too weak an
+#   effect
+# Char - damage per cost ratio too low, and damages caster as well
+# Earthquake - difficult to fine-tune for the AI: too little mana
+#   and the effect might be wasted, too much mana and the effect
+#   might be dangerous for the AI and its creatures as well.
+# Fault Line - more expensive than Earthquake for same effect
+# Fire Tempest - very expensive, and too dangerous for the AI
+# Fireball - AI doesn't choose targets well
+# Flame Javelin - 3 mana for 4 damage is too expensive
+# Flamewave Invoker - ability too expensive compared to Beacon of
+#   Destruction
+# Lava Axe - Too expensive for one-time use, esp. since red mana
+#   acceleration is currently not possible
+# Lightning Blast - Too expensive
+# Puncture Blast - damage per cost ratio too low. Wither damage
+#   would help against big creatures, but so do the walls, and the
+#   opponent hopefully won't last long enough to bring many big
+#   creatures out anyway.
+# Puncture Bolt - effect too weak
+# Scorching Spear - effect too weak
+# Sonic Burst - AI doesn't make smart discarding decisions
+# Zap - too little damage, the AI often uses it on a creature
+#   that doesn't get killed by it, so the card is wasted.
+# Jayemdae Tome - casting cost and ability cost too expensive in
+#   that deck; Howling Mine serves the same purpose, and hopefully
+#   the opponent will be dead before he can make much use of the
+#   cards he draws.
+
+# Cards removed from the deck:
+# Kindle - buggy, cannot target player. Bug already fixed in SVN.
+#   Swap Kindle in for Volcanic Hammer for next Wagic release.
+
+# Notes:
+#
+# The AI doesn't target the damage spells well, often wasting them
+# on creatures that are tough enough to survive the damage.
+#
+# Oddly, the AI often doesn't block attackers although it could.
+#
+# Also, the AI summons walls even if no enemy creatures are on the
+# battlefield. This could be useful in case the opponent has
+# creatures with Haste, but nevertheless the AI would fare better
+# if it prioritized other spells over wall summoning as long as no
+# enemy cretaures are out.

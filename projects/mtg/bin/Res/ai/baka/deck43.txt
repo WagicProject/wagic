@@ -1,0 +1,62 @@
+#NAME:CD Heartmender
+#
+#DESC: "The deck that a Heartmender
+#DESC: would (and could) assemble"
+#DESC: (v1.0)
+#DESC:
+#DESC: No matter who
+#DESC: No matter what
+#DESC: We heal.
+#DESC: The good and the bad
+#DESC: The calm and the mad
+#DESC: The live and the dead
+#DESC: We heal.
+
+Heartmender (SHM) *4 # continuously removes -1/-1 counters
+ # from all others
+Kitchen Finks (SHM)   *4 # brings 2 life everytime it persists
+Safehold Elite (SHM)  *4 # cheap early defense
+Lingering Tormentor (EVE) *4 # attacker with Fear
+Rendclaw Trow (EVE)   *4 # has Wither
+Gravelgill Axeshark (SHM) *3 # 3/3 creature
+Scuzzback Marauders (SHM) *3 # 5/2 attacker
+Restless Apparition (EVE) *2 # can get +3/+3 bonus, but does the
+ # AI use that ability?
+
+Vine Trellis (MRQ)*4 # cheap defender and mana source
+
+Animate Dead (RV) *4 # to bring back creatures that were
+ # killed before the Heartmenders came
+ # online
+
+Forest (10E) *12
+Swamp (10E) *12
+
+
+# Cards considered, but not included:
+# Kithkin Spellduster - has Persist, but is expensive & needs W
+# River Kelpie - has Persist, but is expensive & needs blue mana
+# Rattleblaze Scarecrow - too expensive for conditional persist
+# Wingrattle Scarecrow - only conditional persist
+# Gaea's Cradle - AI doesn't use the mana, bad thematic fit
+# Cauldron Haze - effect only til end of turn, too short
+# Trapjaw Kelpie - very expensive, AI doesn't use flash
+# Sadistic Glee - Might help in a deck where so many creatures go
+#   to the Graveyard, then again it might not if it's the
+#   enchanted creature that dies. The point is currently moot
+#   though since the AI casts the spell on its opponents anyway
+
+# Cards removed from the deck:
+# none
+
+# Notes:
+# Doesn't perform as well as I'd like it to. The deck is very
+# dependent on the Heartmenders, and sometimes they take a long
+# time to come out. Suggestions?
+#
+# Animate Dead seems to choose targets randomly and sometimes
+# picks bad ones. But it still works well in this deck if it
+# targets creatures with Persist, because when these get killed
+# while they are animated dead, they return from the graveyard
+# without the animation enchantment. It would be nice if "Animate
+# Dead" could prioritize the Kitchen Fink as targets.

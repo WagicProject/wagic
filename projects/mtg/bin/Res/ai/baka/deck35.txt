@@ -1,0 +1,82 @@
+#NAME:CD Might Sliver
+#
+#DESC: "The deck that a Might Sliver
+#DESC: would (and could) assemble."
+#DESC: (v1.0)
+#DESC:
+#DESC:The Hive reaches your doorstep ...
+#
+#
+
+Winged Sliver (TMP) *2
+# gives Flying
+
+Horned Sliver (TMP) *3
+# gives Trample, also 2/2 isn't bad for a 3-drop creature that
+# will be pumped by others
+
+Muscle Sliver (TMP) *4
+# cheap, and the +1/+1 bonus is cumulative and can't be misused
+# by the AI
+
+Heart Sliver (TMP) *3
+# gives Haste
+
+Talon Sliver (TMP) *3
+# gives First Strike
+
+Watcher Sliver (TSP) *2
+# nice cumulative +0/+2 bonus, but too expensive to have more of
+# them, and we only have 3 plains in the deck
+
+Shadow Sliver (TSP) *1
+# might be great or bad - thrown in as an element of surprise
+
+Bonesplitter Sliver (TSP) *4
+# nice cumulative +2/+0 bonus
+
+Fury Sliver (TSP) *2
+# gives double strike, only 2 because it's a 6-drop creature
+
+Might Sliver (TSP) *4
+# nice cumulative +2/+2 bonus
+
+Spinneret Sliver (TSP) *4
+# 2/2 Sliver for only 2 mana, also gives Reach to all slivers,
+# which is good because we only have 2 Winged Slivers in the deck,
+# and those might not even be played because we have few Islands.
+
+Gemhide Sliver (TSP) *4
+# Additional mana source to get Might Slivers out faster
+
+Forest (M10)   *12
+# (most slivers in the deck are green)
+Island (M10)   *3
+# only 3 blue creatures in the deck
+Mountain (M10) *6
+Plains (M10)   *3
+# only 5 white creatures in the deck
+
+#
+# Cards considered, but not included:
+# Basal Sliver - AI too eager to sacrifice
+# Clot Sliver - would be the only black sliver left after Basal
+   Sliver was taken out; also: AI not too smart with regeneration
+# Sedge Sliver - no swamps in deck (since all black slivers were
+#   taken out)
+# Firewake Sliver - AI too eager to sacrifice
+# Mnemonic Sliver - AI too eager to sacrifice
+# Telekinetic Sliver - AI doesn't make smart tapping definitions
+# Quilled Sliver - AI can't target ability in a smart way
+# Armored Sliver - AI can't decide well when to use ability
+# Barbed Sliver - AI can't decide well when to use ability
+# Venser's Sliver - doesn't strengthen other slivers
+# Sliversmith - doesn't profit from other slivers. Its tokens
+#   do, but the AI isn't smart in deciding which cards to discard
+# Metallic Sliver - is cheap, but doesn't strengthen other slivers
+#
+# Cards removed from the deck:
+# 20 dual lands - AI only uses the first "auto" rule for each
+#   dual land. Therefore none of the chosen lands produced green
+#   mana, the AI treated most dual lands as islands, and the deck
+#   never got sliver production started.

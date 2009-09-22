@@ -1,0 +1,52 @@
+#NAME:CD Zuberi Golden Feather
+#
+#DESC: "The deck that Zuberi, Golden Feather,
+#DESC: would (and could) assemble"
+#DESC: (v1.0)
+#DESC:
+#DESC: Winged fighters
+#DESC: for honor and justice
+#DESC: cross the chasm
+#DESC: to take their revenge
+#
+
+Zuberi, Golden Feather (MIR) *1  # Perhaps add more when the AI
+ # learns to hold them back
+Suntail Hawk (10E)*4  # cheap flyer
+Courier Hawk (RAV)*4  # cheap flyer
+Wild Griffin (10E)*3  # balanced 3-drop flyer
+Griffin Sentinel (M10)*3  # defensive 3-drop flyer
+Razorfoot Griffin (M10)   *2  # offensive 4-drop flyer
+Ekundu Griffin (MIR)  *2  # same as Razorfoot Griffin
+Spotted Griffin (POR) *2  # defensive 4-drop flyer
+Teremko Griffin (MIR) *1  # only 1, AI doesn't grasp Banding
+Divebomber Griffin (RAV)  *1  # only 1, AI doesn't use ability
+Windbrisk Raptor (SHM)*1  # not a griffin, but a bird, and
+  # fits well as an endgame surprise
+
+Moat (LEG)*4  # 4 because it's important for this
+  # deck to keep strong attackers away
+
+Blessing (RV) *2  # \  6 enchantments to reinforce the
+Holy Strength (10E)   *2  #  > holy nature of the griffins -
+Honor of the Pure (M10)   *2  # /  and the creatures need buffs
+Swords to Plowshares (RV) *2  # reinforces the aggresiveness of
+  # the griffin theme, and stalls the
+  # the game until Moat comes in
+
+Plains (10E) *24
+
+# Cards considered, but not included:
+# Loyal Gyrfalcon - too expensive for a non-griffin in this deck
+# Crusade - Weaker than Honor of the Pure
+
+# Cards removed from the deck:
+# Welkin Hawk - not a griffin, and can crash the game in 0.8.1
+# Righteousness - AI doesn't use it
+
+# Notes:
+# Flavor deck, might be more competitive if it included bird
+# soldiers and global enchantments (Crusade, Glorious Anthem), but
+# I wanted to limit the theme of this deck to "animal" griffins
+# and birds, which excluded the "civilized" Aven and the more
+# civilized enchantments.

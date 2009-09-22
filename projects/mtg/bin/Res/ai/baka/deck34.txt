@@ -1,0 +1,55 @@
+#NAME:CD Kobold Overlord
+#
+#DESC: "The deck that a Kobold Overlord
+#DESC: would (and could) assemble."
+#DESC: (v1.05)
+#DESC:
+#DESC:You may think we are weak
+#DESC:But we are many
+#DESC:And sometimes we can hire
+#DESC:A powerful mercenary
+#
+Mountain (10E)  *24
+Crimson Kobolds (LEG)   *4
+Crookshank Kobolds (LEG)*4
+Kobold Drill Sergeant (LEG) *4
+Kobold Overlord (LEG)   *4
+Kobold Taskmaster (LEG) *4
+Kobolds of Kher Keep (LEG)  *4
+Keldon Warlord (RV) *4
+#   Doesn't fit the theme too well (would a Keldon Warlord really
+#   work as a mercenary for a Kobold Overlord?), but without it
+#   the deck would be too weak, and a deck full of weak
+#   creatures is exactly the environment where a Keldon Warlord
+#   thrives.
+Wheel of Fortune (RV)   *1
+#To get a new hand (hopefully) full of cheap kobolds once the
+#previous hand has been used up. Only 1 because it's
+#restricted.
+Slate of Ancestry (ONS) *3
+#To draw more cards (check whether the AI overuses it and
+#decks itself out)
+Howling Mine (10E)  *4
+#
+#
+# Cards considered, but not included:
+# Orcish Oriflamme - would match the deck's focus of
+#   strengthening the creatures, but is too expensive. Perhaps add
+#   it when mana acceleration via Brightstone Ritual works.
+#
+# Cards removed from he deck:
+# 3 x Bravado (USG) (ID 5848)
+# The card's name and illustration don't really fit the "kobold"
+# theme, but the effect (strength through numbers) definitely
+# does.
+# Removed because the AI cast it on its opponent's creatures.
+#
+# 4 x Brightstone Ritual (ONS) (ID 39846)
+# for mana acceleration
+# Removed because the AI doesn't use the mana.
+#
+# 2 x Kher Keep (TSP) (ID 113553)
+# For bringing additional kobolds into play
+# AI taps Kher Keep for mana and then can't
+# use that mana to produce a kobold token.
+#

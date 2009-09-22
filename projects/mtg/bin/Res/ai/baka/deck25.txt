@@ -1,0 +1,71 @@
+#NAME:Lafiel
+#DESC: A mostly green, half elf deck controlled 
+#DESC: by an influental elf-princess called Lafiel.
+#DESC: Don't be fooled by the beauty of the elves 
+#DESC: or you lose for sure! 
+#DESC: (Wagic 0.81 Deck & Avatar by Nakano)
+
+#v0.1 / 01.09.2009
+# Initial release
+
+#v0.2 / 02.09.2009
+# - Swamp (10E) *1 = 0
+# - Algae Gharial (ALA) *3 = 0
+# - Centaur Glade (ONS) *1 = 0
+# - Farhaven Elf (SHM) *2 = 0
+# + Forest (10E) *1 = 12
+# + Birds of Paradise (RAV) *2 = 3
+# + Civic Wayfinder (10E) *2 = 4
+# + Regal Force (EVE) *1 = 2
+# + Lorescale Coatl (ARB) *2 = 4
+
+#Mana (16)
+Forest (10E) *12
+Island (10E) *2
+Mountain (10E) *2
+
+#Green (30)
+Birds of Paradise (RAV) *3
+Blanchwood Armor (USG) *1
+Civic Wayfinder (10E) *4
+Cloudcrown Oak (LRW) *2
+Collective Unconscious (MRQ) *1
+Druid of the Anima (ALA) *2
+Elvish Piper (10E) *1
+Elvish Promenade (LRW) *1
+Howl of the Night Pack (SHM) *1
+Immaculate Magistrate (LRW) *1
+Imperious Perfect (LRW) *1
+Juvenile Gloomwidow (SHM) *1
+Llanowar Elves (10E) *1
+Lys Alana Huntmaster (LRW) *1
+Nomadic Elf (INV) *1
+Primal Rage (10E) *1
+Primordial Sage (RAV) *1
+Regal Force (EVE) *2
+Spidersilk Armor (MRQ) *1
+Thicket Basilisk (RV) *1
+Wellwisher (ONS) *2
+
+#Blue (1)
+Levitation (M10) *1
+
+#Red (6)
+Battle Squadron (MRQ) *1
+Dragon Fodder (ALA) *1
+Keldon Warlord (RV) *1
+Lava Axe (POR) *1
+Pyroclasm (ICE) *2
+
+#Black (1)
+Prowess of the Fair (LRW) *1
+
+#Multicolor (4)
+Lorescale Coatl (ARB) *4
+
+#Artifact (2)
+Obelisk of Bant (ALA) *1
+Obelisk of Grixis (ALA) *1
+
+#MANA + GREEN + BLUE + RED + BLACK + MULTI + ARTIFACT
+#16   + 30    + 1    + 6   + 1     + 4     + 2    =60
