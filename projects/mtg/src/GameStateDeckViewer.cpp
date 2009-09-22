@@ -9,6 +9,8 @@
 GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   bgMusic = NULL;
   scrollSpeed = MED_SPEED;
+  nbDecks = 0;
+  deckNum = 0;
 }
 
 GameStateDeckViewer::~GameStateDeckViewer() {
@@ -67,14 +69,27 @@ void GameStateDeckViewer::switchDisplay(){
   loadIndexes();
 }
 
+void GameStateDeckViewer::updateDecks(){
+  SAFE_DELETE(welcome_menu);
+
+  welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
+  nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
+  deckNum = 0;
+  newDeckname = "";
+  welcome_menu->Add(nbDecks+1, "--NEW--");
+  welcome_menu->Add(-1, "Cancel");
+
+}
+
 void GameStateDeckViewer::Start()
 {
+  newDeckname = "";
   hudAlpha = 0;
   delSellMenu = 0;
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
   playerdata = NEW PlayerData(mParent->collection);
   sellMenu = NULL;
-  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), mParent->collection));
+  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
   displayed_deck =  myCollection;
   myDeck = NULL;
   menuFont = resources.GetJLBFont(Constants::MENU_FONT);
@@ -83,8 +98,10 @@ void GameStateDeckViewer::Start()
 
   menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
   menu->Add(11,"Save");
-  menu->Add(12,"Back to main menu");
-  menu->Add(13, "Cancel");
+  menu->Add(12,"Rename deck");
+  menu->Add(13,"Switch decks without saving");
+  menu->Add(14,"Back to main menu");
+  menu->Add(15,"Cancel");
 
 
   //icon images
@@ -114,7 +131,8 @@ void GameStateDeckViewer::Start()
   //menuFont = NEW JLBFont("graphics/f3",16);
   menuFont = resources.GetJLBFont("f3");
   welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
-  int nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
+  nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
+  deckNum = 0;
   welcome_menu->Add(nbDecks+1, "--NEW--");
   welcome_menu->Add(-1, "Cancel");
 
@@ -135,6 +153,7 @@ void GameStateDeckViewer::Start()
   mRotation = 0;
   mSlide = 0;
   mAlpha = 255;
+  newDeckname = "";
   //mEngine->ResetPrivateVRAM();
   //mEngine->EnableVSync(true);
   currentCard = NULL;
@@ -189,6 +208,22 @@ int GameStateDeckViewer::Remove(MTGCard * card){
 
 void GameStateDeckViewer::Update(float dt)
 {
+  if(options.keypadActive()){
+    options.keypadUpdate(dt);
+
+    if(newDeckname != ""){
+      newDeckname = options.keypadFinish();
+
+      if(newDeckname != ""){    
+        loadDeck(deckNum);
+        if(myDeck && myDeck->parent)
+          myDeck->parent->meta_name = newDeckname;
+      }
+      newDeckname = "";
+    }
+    //Prevent screen from updating.
+    return;    
+  }
   //    mParent->effect->UpdateBig(dt);
   hudAlpha = 255-(last_user_activity * 500);
   if (hudAlpha < 0) hudAlpha = 0;
@@ -660,13 +695,15 @@ void GameStateDeckViewer::Render()
   }
   if (sellMenu) sellMenu->Render();
 
+  if(options.keypadActive())
+    options.keypadRender();
 }
 
 
 int GameStateDeckViewer::loadDeck(int deckid){
   SAFE_DELETE(myCollection);
   string profile = options[Options::ACTIVE_PROFILE].str;
-  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), mParent->collection));
+  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
   displayed_deck = myCollection;
   char deckname[256];
   sprintf(deckname,"deck%i.txt",deckid);
@@ -692,11 +729,20 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
       case 10:
         if (controlId == -1){
           mParent->SetNextState(GAME_STATE_MENU);
-          return;
+          break;
+        }
+        else if(controlId == nbDecks+1){
+          char buf[512];
+          deckNum = controlId;
+          sprintf(buf,"deck%i",deckNum);
+          options.keypadStart(buf,&newDeckname);
+          options.keypadTitle("Deck name");  
+          //Fallthrough to deck editing.
         }
         loadDeck(controlId);
         mStage = STAGE_WAITING;
-        return;
+        deckNum = controlId;
+        break;
   }
 
   switch (controlId)
@@ -709,9 +755,19 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
     mStage =  STAGE_WAITING;
     break;
   case 12:
-    mParent->SetNextState(GAME_STATE_MENU);
+    if(myDeck && myDeck->parent){
+    options.keypadStart(myDeck->parent->meta_name,&newDeckname);
+    options.keypadTitle("Rename deck");
+    }
     break;
   case 13:
+    updateDecks();
+    mStage =  STAGE_WELCOME;
+    break;
+  case 14:
+    mParent->SetNextState(GAME_STATE_MENU);
+    break;
+  case 15:
     mStage =  STAGE_WAITING;
     break;
   case 20:
@@ -735,5 +791,4 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
     delSellMenu = 1;
     break;
   }
-
 }

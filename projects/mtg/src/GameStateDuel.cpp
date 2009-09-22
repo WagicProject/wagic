@@ -139,12 +139,12 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
 void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
   string deckFileSmall = "momir";
   char empty[] = "";
-  MTGDeck * tempDeck = NEW MTGDeck(options.profileFile("momir.txt").c_str(), mParent->collection);
+  MTGDeck * tempDeck = NEW MTGDeck(options.profileFile("momir.txt","",true).c_str(), mParent->collection);
   deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
   if (!isAI) // Human Player
-    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], options.profileFile("momir.txt").c_str(), deckFileSmall);
+    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], options.profileFile("momir.txt","",true).c_str(), deckFileSmall);
   else
-    mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId], options.profileFile("momir.txt").c_str(), deckFileSmall, empty);
+    mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId], options.profileFile("momir.txt","",true).c_str(), deckFileSmall, empty);
   delete tempDeck;
 }
 

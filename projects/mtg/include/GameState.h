@@ -30,8 +30,6 @@ class GameState
   JGE* mEngine;
 
  public:
-
-  static const char * const menuTexts[];
   GameState(GameApp* parent);
   virtual ~GameState() {}
 

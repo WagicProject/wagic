@@ -17,7 +17,6 @@
 #include "../include/DeckStats.h"
 #include "../include/Translate.h"
 
-const char * const GameState::menuTexts[]= {"--NEW--","Deck 1", "Deck 2", "Deck 3", "Deck 4", "Deck 5", "Deck 6"} ;
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;

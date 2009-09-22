@@ -53,7 +53,8 @@ private:
   float mSlide;
   int mAlpha;
   int mStage;
-
+  int nbDecks;
+  int deckNum;
   int colorFilter;
   JMusic * bgMusic;
   JQuad * backQuad;
@@ -74,11 +75,12 @@ private:
   int hudAlpha;
   float scrollSpeed;
   int delSellMenu;
+  string newDeckname;
 
 public:
   GameStateDeckViewer(GameApp* parent);
   virtual ~GameStateDeckViewer();
-
+  void updateDecks();
   void rotateCards(int direction);
   void loadIndexes(MTGCard * current = NULL);
   void switchDisplay();

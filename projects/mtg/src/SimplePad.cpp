@@ -189,14 +189,16 @@ void SimplePad::MoveSelection(unsigned char moveto)
 void SimplePad::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
   
-  //We can always confirm!
+  //Start button changes capslock setting.
   if(mEngine->GetButtonClick(PSP_CTRL_START))
   {
     if(selected != KPD_OK)
       selected = KPD_OK;
     else
       Finish();
-    return;
+   }
+  else if(mEngine->GetButtonClick(PSP_CTRL_SELECT)){
+    bCapslock = !bCapslock;
   }
 
   if(selected == KPD_SPACE){
@@ -253,6 +255,8 @@ void SimplePad::Update(float dt){
   mX = 50;
   mY = 50;
 
+  //Clear input buffer.
+  mEngine->ResetInput();
 }
 void SimplePad::Start(string value, string * _dest) {
   bActive = true;
@@ -261,10 +265,19 @@ void SimplePad::Start(string value, string * _dest) {
   original = buffer;
   dest = _dest;
   cursor = buffer.size();
+  //Clear input buffer.
+  JGE * mEngine = JGE::GetInstance();
+  mEngine->ResetInput();
 }
 
 string SimplePad::Finish() {
   bActive = false;
+  
+  //Clear input buffer.
+  JGE * mEngine = JGE::GetInstance();
+  mEngine->ResetInput();
+
+  //Return result.
   if(bCanceled){
     dest = NULL;
     return original;
@@ -290,14 +303,12 @@ void SimplePad::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
 
   
-  if(title != "")
-    vSpacing = kH+8;
-  else
-    vSpacing = 0;
+  vSpacing = kH+8;
+ 
 
   offY = vSpacing;
   if(bShowNumpad)
-  offY += kH+14;
+    offY += kH+14;
   //Draw Keypad Background.
   renderer->FillRoundRect(mX-kW,mY-kH,(kW+12)*11,(kH+14)*5+offY,2,options[Metrics::POPUP_MENU_FC].asColor(ARGB(180,0,0,0)));
   offY = vSpacing;
@@ -307,8 +318,8 @@ void SimplePad::Render(){
   //Draw text-entry title, if we've got one.
   if(title != ""){
     mFont->DrawString(title.c_str(),mX,mY);
-    mY+=kH+12;
   }
+    mY+=kH+12;
 
   //Draw cursor.
   if(cursor < buffer.size())

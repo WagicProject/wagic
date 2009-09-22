@@ -231,7 +231,7 @@ void GameStateMenu::fillScroller(){
   sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, MtgSets::SetsList->nb_items);
   scroller->Add(buff2);
 
-  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), mParent->collection));
+  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
   int totalCards = ddw->getCount();
   if (totalCards){
     sprintf(buff2, _("You have a total of %i cards in your collection").c_str(),totalCards);
@@ -319,7 +319,7 @@ void GameStateMenu::Update(float dt)
           options[Options::ACTIVE_PROFILE].str = "Default";
 
         //check for deleted collection / first-timer
-        std::ifstream file(options.profileFile(PLAYER_COLLECTION,"",false).c_str());
+        std::ifstream file(options.profileFile(PLAYER_COLLECTION).c_str());
 	      if(file){
 	        file.close();
           resources.Release(mSplash);

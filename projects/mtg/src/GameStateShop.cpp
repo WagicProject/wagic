@@ -23,7 +23,6 @@ void GameStateShop::Create(){
 }
 
 
-
 void GameStateShop::Start()
 {
   menu = NULL;

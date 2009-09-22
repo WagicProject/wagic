@@ -203,6 +203,7 @@ GameSettings::~GameSettings(){
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(themeOptions);
+  SAFE_DELETE(keypad);
 }
 
 GameOption& GameSettings::operator[](string option_name){
@@ -223,11 +224,11 @@ int GameSettings::save(){
   if(profileOptions){
     //Force our directories to exist.
     MAKEDIR(RESPATH"/profiles");
-    string temp = profileFile("","",false,false);
+    string temp = profileFile();
     MAKEDIR(temp.c_str()); 
     temp+="/stats";
     MAKEDIR(temp.c_str()); 
-    temp = profileFile(PLAYER_SETTINGS,"",false);
+    temp = profileFile(PLAYER_SETTINGS);
 
     profileOptions->save();
   }
@@ -289,7 +290,7 @@ void GameSettings::checkProfile(){
 
     //If it doesn't exist, load current profile.
     if(!profileOptions)
-      profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS,"",false));
+      profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS));
     
     //Load theme options
     if(!themeOptions){
@@ -343,7 +344,7 @@ void GameSettings::createUsersFirstDeck(int setId){
   if(theGame == NULL || theGame->collection == NULL)
     return;
 
-  MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), theGame->collection);
+  MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), theGame->collection);
   //10 lands of each
   int sets[] = {setId};
   if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){
