@@ -19,8 +19,10 @@ class MTGPutInPlayRule:public MTGAbility{
   virtual MTGPutInPlayRule * clone() const;
 };
 
-class MTGAttackRule:public MTGAbility{
+class MTGAttackRule:public MTGAbility, public Limitor{
  public:
+  virtual bool select(Target*);
+  virtual bool greyout(Target*);
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   int reactToClick(MTGCardInstance * card);
   int testDestroy();

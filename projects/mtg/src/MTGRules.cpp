@@ -91,6 +91,20 @@ ostream& MTGPutInPlayRule::toString(ostream& out) const
   }
 
 
+
+bool MTGAttackRule::select(Target* t)
+{
+  if (CardView* c = dynamic_cast<CardView*>(t)) {
+    MTGCardInstance * card = c->getCard();
+    if (card->canAttack()) return true;
+  }
+  return false;
+}
+bool MTGAttackRule::greyout(Target* t)
+{
+  return true;
+}
+
 MTGAttackRule::MTGAttackRule(int _id):MTGAbility(_id,NULL){
   aType=MTGAbility::MTG_ATTACK_RULE;
 }
@@ -120,6 +134,14 @@ int MTGAttackRule::receiveEvent(WEvent *e){
 
 int MTGAttackRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
+
+  //Graphically select the next card that can attack
+  if(!card->isAttacker()){
+    CardSelector * cs = game->mLayers->cs;
+    cs->Limit(this,CardSelector::playZone);
+    cs->CheckUserInput(PSP_CTRL_RIGHT);
+    cs->Limit(NULL,CardSelector::playZone);
+  }
   card->toggleAttacker();
   return 1;
 }
