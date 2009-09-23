@@ -324,6 +324,8 @@ void GameStateMenu::Update(float dt)
 	      }else{
   	      currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
         }
+        //Reload list of unlocked sets, now that we know about the sets.
+        options.reloadProfile();
         
         //List active profile and database size.        
         PlayerData * playerdata = NEW PlayerData(mParent->collection);

@@ -92,8 +92,9 @@ int Options::getID(string name){
   }
 
   //Is it an unlocked set?
+  string setname = name.substr(strlen("unlocked_"));
   if(MtgSets::SetsList){
-    int unlocked = MtgSets::SetsList->find(name);
+    int unlocked = MtgSets::SetsList->find(setname);
     if(unlocked != -1)
       return Options::optionSet(unlocked);  
   }
