@@ -98,7 +98,7 @@ void GameStateDeckViewer::Start()
 
   menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
   menu->Add(11,"Save");
-  menu->Add(12,"Rename deck");
+  menu->Add(12,"Save & Rename");
   menu->Add(13,"Switch decks without saving");
   menu->Add(14,"Back to main menu");
   menu->Add(15,"Cancel");
@@ -216,8 +216,10 @@ void GameStateDeckViewer::Update(float dt)
 
       if(newDeckname != ""){    
         loadDeck(deckNum);
-        if(myDeck && myDeck->parent)
+        if(myDeck && myDeck->parent){
           myDeck->parent->meta_name = newDeckname;
+          myDeck->save();
+        }
       }
       newDeckname = "";
     }
@@ -708,7 +710,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
   char deckname[256];
   sprintf(deckname,"deck%i.txt",deckid);
   SAFE_DELETE(myDeck);
-  myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname).c_str(), mParent->collection));
+  myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname,"",false,false).c_str(), mParent->collection));
   MTGCard * current = myDeck->getNext();
   while (current){
     int howmanyinDeck = myDeck->cards[current];

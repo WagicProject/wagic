@@ -145,6 +145,15 @@ void SimplePad::pressKey(unsigned char key){
       cursor++;
 
     buffer.insert(cursor,input);
+
+   //Auto swap capitalization
+   if(bCapslock && buffer.size() == 1)
+     bCapslock = !bCapslock;
+  }
+  else if(key == KPD_SPACE){  
+    if(cursor < buffer.size())
+      cursor++;
+    buffer.insert(cursor," ");
   }
   else if(key == KPD_CAPS)
     bCapslock = !bCapslock;
