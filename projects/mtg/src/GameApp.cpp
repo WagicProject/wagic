@@ -72,7 +72,7 @@ void GameApp::Create()
   //Link this to our settings manager.
   options.theGame = this;
 
-  //Ensure that options are properly loaded before loading files.
+  //Ensure that options are partially loaded before loading files.
   options.reloadProfile();
 
   //Test for Music files presence
@@ -184,6 +184,9 @@ void GameApp::LoadGameStates()
 void GameApp::Destroy()
 {
   LOG("==Destroying GameApp==");
+  //Save game options before we destroy everything.
+  options.save();
+
   for (int i=GAME_STATE_MENU;i<=MAX_STATE-1;i++)
     {
       if (mGameStates[i]){

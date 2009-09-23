@@ -93,7 +93,7 @@ int Options::getID(string name){
 
   //Is it an unlocked set?
   string setname = name.substr(strlen("unlocked_"));
-  if(MtgSets::SetsList){
+  if(MtgSets::SetsList && MtgSets::SetsList->nb_items){
     int unlocked = MtgSets::SetsList->find(setname);
     if(unlocked != -1)
       return Options::optionSet(unlocked);  
@@ -434,12 +434,7 @@ GameSettings::GameSettings()
 }
 
 GameSettings::~GameSettings(){
-  if(globalOptions)
-    globalOptions->save();
-
-  if(profileOptions)
-    profileOptions->save();
-
+  //Destructor no longer saves, to prevent conflicts when MtgSets::SetsList == NULL
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(themeOptions);
