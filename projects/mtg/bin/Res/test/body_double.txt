@@ -1,0 +1,41 @@
+# Copying dead things
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Body Double
+manapool:{4}{U}
+graveyard:Grizzly Bears
+[PLAYER2]
+[DO]
+Body Double
+choice 0
+Grizzly Bears
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main1
+next
+#combat begin
+next
+#attackers
+Body Double
+next
+#blockers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Body Double
+graveyard:Grizzly Bears
+manapool:{0}
+[PLAYER2]
+life:18
+[END]

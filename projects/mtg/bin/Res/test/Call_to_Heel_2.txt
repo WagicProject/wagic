@@ -1,0 +1,22 @@
+#testing && with targetcontroller on player 2
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Call to Heel
+manapool:{U}{1}
+[PLAYER2]
+inplay:grizzly bears
+library:Angelic Wall
+[DO]
+Call to Heel
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Call to Heel
+manapool:{0}
+life:20
+[PLAYER2]
+hand:Angelic Wall,grizzly bears
+life:20
+[END]
