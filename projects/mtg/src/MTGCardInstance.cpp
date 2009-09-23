@@ -92,7 +92,7 @@ void MTGCardInstance::initMTGCI(){
   tapped = 0;
   untapBlockers = NULL;
   untapping = 0;
-  summoningSickness = 0;
+  summoningSickness = 1;
   target = NULL;
   nbprotections = 0;
   type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;

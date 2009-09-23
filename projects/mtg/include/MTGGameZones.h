@@ -166,7 +166,6 @@ class MTGPlayerCards {
   void showHand();
   MTGCardInstance * putInGraveyard(MTGCardInstance * card);
   MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
-  MTGCardInstance * putInPlay(MTGCardInstance * card);
   int isInPlay(MTGCardInstance * card);
 };
 

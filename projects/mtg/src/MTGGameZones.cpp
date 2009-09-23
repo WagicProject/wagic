@@ -101,26 +101,6 @@ void MTGPlayerCards::showHand(){
   hand->debugPrint();
 }
 
-
-MTGCardInstance * MTGPlayerCards::putInPlay(MTGCardInstance * card){
-  MTGGameZone * from = hand;
-  MTGCardInstance * copy = hand->removeCard(card);
-  if(!copy){
-    copy = stack->removeCard(card); //Which one is it ???
-    from = stack;
-  }
-  inPlay->addCard(copy);
-  copy->summoningSickness = 1;
-  copy->changedZoneRecently = 1.f;
-
-  GameObserver *g = GameObserver::GetInstance();
-  WEvent * e = NEW WEventZoneChange(copy, from, inPlay);
-  g->receiveEvent(e);
-  //delete e;
-
-  return copy;
-}
-
 MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
   MTGCardInstance * copy = NULL;
   MTGGraveyard * grave = card->owner->game->graveyard;

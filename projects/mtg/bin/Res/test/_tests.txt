@@ -20,6 +20,7 @@ generic/phases.txt
 generic/rampage.txt
 generic/regenerate.txt
 generic/sacrifice.txt
+generic/summoning_sickness.txt
 generic/wither.txt
 ########################
 #Specific Cards

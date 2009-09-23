@@ -1,0 +1,23 @@
+#Bug: all creatures have haste
+SummoningSickness
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:grizzly bears
+manapool:{1}{G}
+[PLAYER2]
+[DO]
+grizzly bears
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+[END]
