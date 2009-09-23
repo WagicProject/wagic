@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/GameApp.h"
 #include "../include/GuiPhaseBar.h"
+#include "../include/Translate.h"
 
 /*
 static int colors[] =
@@ -47,6 +48,7 @@ void GuiPhaseBar::Render()
   static const float ICONSCALE = 1.5;
   static const unsigned CENTER = SCREEN_HEIGHT / 2 + 10;
   JRenderer* renderer = JRenderer::GetInstance();
+  GameObserver * g = GameObserver::GetInstance();
   unsigned p = (phase->id + Phases - 4) * (Width+1);
   float scale;
   float start = CENTER + (Width / 2) * angle * ICONSCALE / (M_PI / 6) - ICONSCALE * Width / 4;
@@ -87,6 +89,28 @@ void GuiPhaseBar::Render()
       quad->SetTextureRect(p % (Phases * (Width+1)), Height, Width, Height);
       renderer->RenderQuad(quad, 0, start, 0.0, scale, scale);
     }
+
+  //print phase name
+  JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
+  string currentP = "your turn";
+  string interrupt = "";
+  if (g->currentPlayer == g->players[1]){
+    currentP = "opponent's turn";
+  }
+	font->SetColor(ARGB(255, 255, 255, 255));
+  if (g->currentlyActing()->isAI()){
+    font->SetColor(ARGB(255, 128, 128, 128));
+  }
+  if (g->currentlyActing() != g->currentPlayer){
+    if (g->currentPlayer == g->players[0]) {
+      interrupt = " - opponent plays";
+    }else{
+      interrupt = " - you play";
+    }
+  }
+
+	char buf[64]; sprintf(buf, "(%s%s) %s", currentP.c_str(),interrupt.c_str(),_(PhaseRing::phaseName(phase->id)).c_str());
+	font->DrawString(buf, SCREEN_WIDTH-5, 2,JGETEXT_RIGHT);
 }
 
 int GuiPhaseBar::receiveEventMinus(WEvent *e)
