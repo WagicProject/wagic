@@ -48,7 +48,7 @@ void GameStateOptions::Start()
   optionsTabs->Add(optionsList);
 
   optionsList = NEW OptionsList("Profiles");
-  OptionNewProfile * key = NEW OptionNewProfile("","New Profile");
+  OptionNewProfile * key = NEW OptionNewProfile("New Profile");
   key->bShowValue = false;
   optionsList->Add(key);
   OptionProfile * pickProf = NEW OptionProfile(mParent);

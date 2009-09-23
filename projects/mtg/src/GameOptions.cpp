@@ -2,49 +2,188 @@
 #include "../include/utils.h"
 #include "../include/MTGDeck.h"
 #include "../include/GameOptions.h"
+#include "../include/OptionItem.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <stdlib.h>
 #include <JGE.h>
 
-const char* GameOptions::phaseInterrupts[] = {
-	"interrupt ---",
-	"interrupt Untap",
-	"interrupt Upkeep",
-	"interrupt Draw",
-	"interrupt Main phase 1",
-	"interrupt Combat begins",
-	"interrupt Attackers",
-	"interrupt Blockers",
-	"interrupt Combat damage",
-	"interrupt Combat ends",
-	"interrupt Main phase 2",
-	"interrupt End of turn",
-	"interrupt Cleanup",
-	"interrupt ---"
-};
-//Profile options
-const string Options::MUSICVOLUME = "musicVolume";
-const string Options::SFXVOLUME = "sfxVolume";
-const string Options::DIFFICULTY = "difficulty";
-const string Options::PLASMAEFFECT = "plasmaEffect";
-const string Options::INTERRUPT_SECONDS = "interruptSeconds";
-const string Options::INTERRUPTMYSPELLS = "interruptMySpells";
-const string Options::INTERRUPTMYABILITIES = "interruptMyAbilities";
-const string Options::OSD = "displayOSD";
-const string Options::ACTIVE_THEME = "Theme";
-const string Options::ACTIVE_MODE = "Mode";
+const char * Options::optionNames[] = {
+//Options set on a per-profile basis
+  "Theme",
+  "Mode",
+  "musicVolume",
+  "sfxVolume",
+  "difficulty",
+  "plasmaEffect",
+  "displayOSD",
+  "closed_hand",
+  "hand_direction",
+  "interruptSeconds",
+  "interruptMySpells",
+  "interruptMyAbilities",
+//General interrupts
+  "interruptBeforeBegin",
+  "interruptUntap",
+  "interruptUpkeep",
+  "interruptDraw",
+  "interruptFirstMain",
+  "interruptBeginCombat",
+  "interruptAttackers",
+  "interruptBlockers",
+  "interruptDamage",
+  "interruptEndCombat",
+  "interruptSecondMain",
+  "interruptEndTurn",
+  "interruptCleanup",
+  "interruptAfterEnd",
 //Global options
-const string Options::ACTIVE_PROFILE = "_gProfile";
-const string Options::DIFFICULTY_MODE_UNLOCKED = "_gprx_handler"; //huhu
-const string Options::MOMIR_MODE_UNLOCKED = "_gprx_rimom"; //haha
-const string Options::EVILTWIN_MODE_UNLOCKED = "_gprx_eviltwin";
-const string Options::RANDOMDECK_MODE_UNLOCKED = "_gprx_rnddeck";
-const string Options::CACHESIZE = "_gcacheSize";
-const string Options::CLOSEDHAND = "closed_hand";
-const string Options::HANDDIRECTION = "hand_direction";
+  "_gProfile",
+  "_gprx_handler",
+  "_gprx_rimom",
+  "_gprx_eviltwin",
+  "_gprx_rnddeck",
+  "_gcacheSize",
 //Theme metrics
+  "_tLoadingTC",
+  "_tStatsTC",
+  "_tScrollerTC",
+  "_tScrollerFC",
+  "_tMainMenuTC",
+  "_tPopupMenuFC",
+  "_tPopupMenuTC",
+  "_tPopupMenuTCH",
+  "_tMsgFailTC",
+  "_tOptionItemFC",
+  "_tOptionItemTC",
+  "_tOptionItemTCH",
+  "_tOptionHeaderFC",
+  "_tOptionHeaderTC",
+  "_tOptionScrollbarFC",
+  "_tOptionScrollbarFCH",  
+  "_tOptionHeaderFC",
+  "_tOptionHeaderFCH",  
+  "_tOptionTabTC",
+  "_tOptionHeaderTCH",  
+  "_tOptionTextTC",
+  "_tOptionTextFC",    
+  "_tKeyTC",
+  "_tKeyTCH",
+  "_tKeyFC",  
+  "_tKeyFCH", 
+  "_tKeypadFC",  
+  "_tKeypadFCH",  
+  "_tKeypadTC"
+};
+int Options::getID(string name){
+  if(!name.size())
+    INVALID_OPTION;
+
+  std::transform(name.begin(),name.end(),name.begin(),::tolower);
+
+  //Is it a named option?
+  for(int x = 0; x < LAST_NAMED; x++){
+    string lower = Options::optionNames[x];
+    std::transform(lower.begin(),lower.end(),lower.begin(),::tolower);
+
+    if(lower == name)
+      return x;
+  }
+
+  //Is it an unlocked set?
+  if(MtgSets::SetsList){
+    int unlocked = MtgSets::SetsList->find(name);
+    if(unlocked != -1)
+      return Options::optionSet(unlocked);  
+  }
+
+  //Failure.
+  return INVALID_OPTION;
+}
+
+string Options::getName(int option){
+  //Invalid options
+  if(option < 0)
+    return "";
+
+  //Standard named options
+  if(option < LAST_NAMED)
+    return optionNames[option];
+  
+  //Unlocked sets.
+  if(MtgSets::SetsList){
+    int setID = option - SET_UNLOCKS;
+    if(setID >= 0 && setID < MtgSets::SetsList->nb_items){
+      char buf[512];
+      sprintf(buf,"unlocked_%s",MtgSets::SetsList->values[setID].c_str());
+      return buf;
+    }
+  }
+
+  //Failed.
+  return "";
+}
+
+int Options::optionSet(int setID){
+  //Sanity check if possible
+  if(setID < 0 || (MtgSets::SetsList && setID > MtgSets::SetsList->nb_items))
+    return INVALID_OPTION;
+
+  return SET_UNLOCKS + setID;  
+}
+
+int Options::optionInterrupt(int gamePhase){
+  //Huge, nearly illegible switch block spread out to improve readability.
+  switch(gamePhase){
+      case Constants::MTG_PHASE_BEFORE_BEGIN:
+        return INTERRUPT_BEFOREBEGIN;
+
+      case Constants::MTG_PHASE_UNTAP:
+        return INTERRUPT_UNTAP;
+
+      case Constants::MTG_PHASE_UPKEEP:
+        return INTERRUPT_UPKEEP;
+
+      case Constants::MTG_PHASE_DRAW:
+        return INTERRUPT_DRAW;
+
+      case Constants::MTG_PHASE_FIRSTMAIN:
+        return INTERRUPT_FIRSTMAIN;
+
+      case Constants::MTG_PHASE_COMBATBEGIN:
+        return INTERRUPT_BEGINCOMBAT;
+
+      case Constants::MTG_PHASE_COMBATATTACKERS:
+        return INTERRUPT_ATTACKERS;
+
+      case Constants::MTG_PHASE_COMBATBLOCKERS:
+        return INTERRUPT_BLOCKERS;
+
+      case Constants::MTG_PHASE_COMBATDAMAGE:
+        return INTERRUPT_DAMAGE;
+
+      case Constants::MTG_PHASE_COMBATEND:
+        return INTERRUPT_ENDCOMBAT;
+
+      case Constants::MTG_PHASE_SECONDMAIN:
+        return INTERRUPT_SECONDMAIN;
+
+      case Constants::MTG_PHASE_ENDOFTURN:
+        return INTERRUPT_ENDTURN;
+
+      case Constants::MTG_PHASE_CLEANUP:
+        return INTERRUPT_CLEANUP;
+
+      case Constants::MTG_PHASE_AFTER_EOT:
+        return INTERRUPT_AFTEREND;
+  }
+
+  return INVALID_OPTION;
+}
+
+//Theme metrics
+/*
 const string Metrics::LOADING_TC = "_tLoadingTC";
 const string Metrics::STATS_TC = "_tStatsTC";
 const string Metrics::SCROLLER_TC = "_tScrollerTC";
@@ -73,7 +212,7 @@ const string Metrics::KEY_FC = "_tKeyFC";
 const string Metrics::KEY_FCH = "_tKeyFCH"; 
 const string Metrics::KEYPAD_FC = "_tKeypadFC";  
 const string Metrics::KEYPAD_FCH = "_tKeypadFCH";  
-const string Metrics::KEYPAD_TC = "_tKeypadTC";  
+const string Metrics::KEYPAD_TC = "_tKeypadTC";  */
 
 
 GameOption::GameOption(int value) : number(value){}
@@ -130,6 +269,59 @@ GameOptions::GameOptions(string filename){
   mFilename = filename;
   load();
 }
+
+bool GameOptions::read_default(int id, string input){
+  bool bNumeric = true;
+  
+  if(!input.size()){
+    values[id] = GameOption(0);
+    return true; //Default reader doesn't care about invalid formatting.
+  }
+
+  //Is it a number?
+  for(size_t x=0;x<input.size();x++) {
+    if(!isdigit(input[x])) {
+      bNumeric = false;
+      break;
+    }
+  }
+
+  if(bNumeric)
+    values[id] = GameOption(atoi(input.c_str()));
+  else
+    values[id] = GameOption(input);
+
+  return true;
+}
+bool GameOptions::read_enum(int id, string input, EnumDefinition * def){
+  if(!def) 
+    return false;
+
+  std::transform(input.begin(),input.end(),input.begin(),::tolower);
+
+  vector<EnumDefinition::assoc>::iterator it;
+  for(it=def->values.begin();it != def->values.end();it++){
+    if(it->second == input){
+      values[id] = GameOption(it->first);
+      return true;
+    }
+  }
+  
+  return false;
+}
+bool GameOptions::load_option(int id, string input){
+  switch(id){
+   case Options::HANDDIRECTION:
+     return read_enum(id, input, OptionHandDirection::getDefinition());
+   case Options::CLOSEDHAND:
+     return read_enum(id, input, OptionClosedHand::getDefinition());
+   default:
+     return read_default(id, input);
+  }
+
+  return false;
+}
+
 int GameOptions::load(){
   std::ifstream file(mFilename.c_str());
   std::string s;
@@ -137,47 +329,91 @@ int GameOptions::load(){
   if(file){
     while(std::getline(file,s)){
       int found =s.find("=");
-      bool bnumber = true; 
       string name = s.substr(0,found);
       string val = s.substr(found+1);
-      for(size_t x=0;x<val.size();x++) {
-        if(!isdigit(val[x])) {
-          bnumber = false;
-          break;
-        }
-      }
-      if(bnumber)
-        values[name] = GameOption(atoi(val.c_str()));
-      else
-        values[name] = GameOption(val);
+      int id = Options::getID(name);      
+      if(id == INVALID_OPTION)
+        continue;
+
+      load_option(id,val);
     }
     file.close();
   }
   return 1;
+}
+
+bool GameOptions::save_option(std::ofstream * file, int id, string name, GameOption * opt){
+  if(!opt)
+    return false;
+
+  switch(id){
+   case Options::HANDDIRECTION:
+     return write_enum(file, name, opt, OptionHandDirection::getDefinition());
+   case Options::CLOSEDHAND:
+     return write_enum(file, name, opt, OptionClosedHand::getDefinition());
+   default:
+     return write_default(file, name, opt);
+  }
+
+  return false;
+}
+
+bool GameOptions::write_default(std::ofstream * file, string name, GameOption * opt){
+  char writer[1024];
+
+  if(!file || !opt)
+    return false;
+
+   if(opt->str ==""){
+     	if(opt->number == 0) //This is absolutely default. No need to write it.
+	      return true;
+
+      //It's a number!
+      sprintf(writer,"%s=%d\n", name.c_str(), opt->number);
+	  }
+	  else
+	    sprintf(writer,"%s=%s\n", name.c_str(), opt->str.c_str());
+  
+  (*file)<<writer;
+  return true;
+}
+
+bool GameOptions::write_enum(std::ofstream * file, string name, GameOption * opt, EnumDefinition * def){
+
+  if(!file || !def || !opt)
+    return false;
+
+  if(opt->number < 0 || opt->number >= (int) def->values.size())
+    return false;
+
+  char writer[1024];
+  sprintf(writer,"%s=%s\n", name.c_str(), def->values[opt->number].second.c_str());
+
+  (*file)<<writer;
+  return true;
 }
 
 int GameOptions::save(){
   std::ofstream file(mFilename.c_str());
-  char writer[1024];
   if (file){
-    map<string, GameOption>::iterator it;
+    map<int, GameOption>::iterator it;
     for ( it=values.begin() ; it != values.end(); it++ ){
-		if(it->second.str ==""){
-		  sprintf(writer,"%s=%d\n", it->first.c_str(), it->second.number);
-		  if(it->second.number==0)
-		    continue;
-		}
-		else
-		  sprintf(writer,"%s=%s\n", it->first.c_str(), it->second.str.c_str());
-      file<<writer;
+      
+      //Check that this is a valid option.
+      string name = Options::getName(it->first);
+      if(!name.size())
+        continue;
+
+      //Save it.
+      save_option(&file, it->first, name, &it->second);
     }
-    file.close();
+      file.close();
   }
   return 1;
 }
 
-GameOption& GameOptions::operator[](string option_name) {
-  return values[option_name];
+GameOption& GameOptions::operator[](int optionID) {
+  return values[optionID];
 }
 
 GameOptions::~GameOptions(){
@@ -206,18 +442,34 @@ GameSettings::~GameSettings(){
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(themeOptions);
+
+  SAFE_DELETE(OptionHandDirection::definition);
+  SAFE_DELETE(OptionClosedHand::definition);
 }
 
-GameOption& GameSettings::operator[](string option_name){
-  if(option_name.size() > 2){
-   if(option_name[0] == '_' && option_name[1] == 't')
-    return (*themeOptions)[option_name.substr(2)];
-   else if(option_name[0] == '_' && option_name[1] == 'g')
-    return (*globalOptions)[option_name.substr(2)];
+GameOption GameSettings::invalid_option = GameOption(0);
+
+GameOption& GameSettings::operator[](int optionID){
+  string option_name = Options::getName(optionID);
+  
+  //Last chance sanity checking.
+  if(!option_name.size()){
+    OutputDebugString("Error: Accessing invalid option.\n");
+    invalid_option.number = 0;
+    invalid_option.str = "";
+    return invalid_option;  
   }
 
-  return (*profileOptions)[option_name];
+  if(option_name.size() > 2){
+   if(option_name[0] == '_' && option_name[1] == 't')
+    return (*themeOptions)[optionID];
+   else if(option_name[0] == '_' && option_name[1] == 'g')
+    return (*globalOptions)[optionID];
+  }
+
+  return (*profileOptions)[optionID];
 }
+
 
 int GameSettings::save(){
   if(globalOptions)
@@ -308,7 +560,7 @@ void GameSettings::checkProfile(){
     if(theGame == NULL || theGame->collection == NULL)
       return; 
 
-    string pcFile = profileFile(PLAYER_COLLECTION);
+    string pcFile = profileFile(PLAYER_COLLECTION,"",false);
     if(!pcFile.size() || !fileExists(pcFile.c_str()))
     {
       //If we had any default settings, we'd set them here.
@@ -324,11 +576,21 @@ void GameSettings::checkProfile(){
         }
       }
 
+      //Make the proper directories
+      if(profileOptions){
+        //Force our directories to exist.
+        MAKEDIR(RESPATH"/profiles");
+        string temp = profileFile("","",false,false);
+        MAKEDIR(temp.c_str()); 
+        temp+="/stats";
+        MAKEDIR(temp.c_str()); 
+        temp = profileFile(PLAYER_SETTINGS,"",false);
+
+        profileOptions->save();
+      }
+
       //Save this set as "unlocked"
-      char buffer[4096];
-      string s = MtgSets::SetsList->values[setId];
-      sprintf(buffer,"unlocked_%s", s.c_str());
-      (*profileOptions)[buffer]=1;
+      (*profileOptions)[Options::optionSet(setId)]=1;
       profileOptions->save();
 
       //Give the player their first deck
@@ -410,4 +672,14 @@ string GameSettings::keypadFinish(){
 
 void GameSettings::keypadShutdown(){
   SAFE_DELETE(keypad);
+}
+
+int EnumDefinition::findIndex(int value){
+  vector<assoc>::iterator it;
+  for(it = values.begin();it!=values.end();it++){
+    if(it->first == value)
+      return it - values.begin();
+  }
+
+  return 0; //Default!
 }

@@ -188,7 +188,6 @@ void GameStateMenu::fillScroller(){
   int totalGames = 0;
 
   for (int j=1; j<6; j++){
-    
     sprintf(buffer, "stats/player_deck%i.txt",j);
     string deckstats = options.profileFile(buffer);
     if(fileExists(deckstats.c_str())){
@@ -224,9 +223,7 @@ void GameStateMenu::fillScroller(){
   //Unlocked sets
   int nbunlocked = 0;
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
-    string s = MtgSets::SetsList->values[i];
-    sprintf(buffer,"unlocked_%s", s.c_str());
-    if (1 == options[buffer].number) nbunlocked++;
+    if (1 == options[Options::optionSet(i)].number) nbunlocked++;
   }
   sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, MtgSets::SetsList->nb_items);
   scroller->Add(buff2);

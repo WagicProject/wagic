@@ -71,18 +71,14 @@ void GameStateShop::load(){
   for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
     string s = MtgSets::SetsList->values[i];
     if (s.compare("10E") == 0) defaultSet = i;
-    char buffer[4096];
-    sprintf(buffer,"unlocked_%s", s.c_str());
-    unlocked[i] = options[buffer].number;
+    
+    unlocked[i] = options[Options::optionSet(i)].number;
     if (unlocked[i])
       ok = 1;
   }
   if (!ok){
     unlocked[defaultSet] = 1;
-    string s = MtgSets::SetsList->values[defaultSet];
-    char buffer[4096];
-    sprintf(buffer,"unlocked_%s", s.c_str());
-    options[buffer] = GameOption(1);
+    options[Options::optionSet(defaultSet)] = GameOption(1);
     options.save();
   }
 

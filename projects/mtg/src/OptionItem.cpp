@@ -1,8 +1,6 @@
 #include "../include/config.h"
 #include "../include/OptionItem.h"
-#include "../include/GameApp.h"
 #include <JGE.h>
-#include "../include/GameOptions.h"
 #include "../include/PlayerData.h"
 #include "../include/Translate.h"
 #include <dirent.h>
@@ -34,7 +32,7 @@ return out << "OptionItem ::: displayValue : " << displayValue
 	     << " ; x,y : " << x << "," << y;
 }
 
-OptionItem::OptionItem( string _id,  string _displayValue) {
+OptionItem::OptionItem( int _id,  string _displayValue) {
  id = _id;
  displayValue = _(_displayValue);
  canSelect=true;
@@ -72,7 +70,7 @@ void OptionInteger::Render(){
   mFont->DrawString(buf,width -10 ,y,JGETEXT_RIGHT);
 }
 
-OptionInteger::OptionInteger(string _id, string _displayValue, int _maxValue, int _increment, int _defV, string _sDef): OptionItem(_id, _displayValue){
+OptionInteger::OptionInteger(int _id, string _displayValue, int _maxValue, int _increment, int _defV, string _sDef): OptionItem(_id, _displayValue){
   defValue = _defV;
   strDefault = _sDef;
   maxValue = _maxValue;
@@ -84,7 +82,7 @@ OptionInteger::OptionInteger(string _id, string _displayValue, int _maxValue, in
 }
 
 void OptionInteger::setData(){
-  if(id != "") 
+  if(id != INVALID_OPTION) 
     options[id] = GameOption(value);
 }
 
@@ -130,7 +128,8 @@ void OptionSelect::Render(){
 
 void OptionSelect::setData()
 {
-  if(id == "") return;
+  if(id == INVALID_OPTION) return;
+
   if (value < selections.size())
     options[id] = GameOption(selections[value]);
 }
@@ -356,7 +355,7 @@ void OptionDirectory::Reload(){
   initSelections();
 }
 
-OptionDirectory::OptionDirectory(string _root, string _id, string _displayValue): OptionSelect(_id, _displayValue){
+OptionDirectory::OptionDirectory(string _root, int _id, string _displayValue): OptionSelect(_id, _displayValue){
   DIR *mDip;
   struct dirent *mDit;
   char buf[4096];
@@ -741,8 +740,8 @@ void OptionString::Render(){
 }
 
 void OptionString::setData(){
-  if(id != "") 
-  options[id] = GameOption(value);
+  if(id != INVALID_OPTION) 
+    options[id] = GameOption(value);
 }
 void OptionString::updateValue(){
     options.keypadStart(value,&value);
@@ -780,10 +779,10 @@ int OptionNewProfile::Submode(){
   return OPTIONS_SUBMODE_NORMAL;
 }
 
-OptionString::OptionString(string _id, string _displayValue): OptionItem(_id, _displayValue)
+OptionString::OptionString(int _id, string _displayValue): OptionItem(_id, _displayValue)
 {
   bShowValue=true;
-  if(_id != "")
+  if(id != INVALID_OPTION) 
     value=options[_id].str;
 }
 
@@ -810,23 +809,31 @@ void OptionVolume::updateValue(){
     value=0;
 }
 
-OptionVolume::OptionVolume(string id, string displayName, bool music): OptionInteger(id, displayName, 100, 10, 0, "Muted") {
+OptionVolume::OptionVolume(int id, string displayName, bool music): OptionInteger(id, displayName, 100, 10, 0, "Muted") {
   bMusic = music;
 }
 
 void OptionEnum::setData()
 {
-  options[id] = GameOption(values[index].first, values[index].second);
+  EnumDefinition * def = ourDefined();
+  if(def)
+    options[id] = GameOption(def->values[index].first);
 }
 
 void OptionEnum::updateValue()
 {
+  EnumDefinition * def = ourDefined();
+  if(!def)
+    return;
+
   ++index;
-  if (index >= values.size()) index = 0;
+  if (index >= def->values.size()) index = 0;
 }
 
 void OptionEnum::Render()
 {
+  EnumDefinition * def = ourDefined();
+
   JLBFont * mFont = resources.GetJLBFont("f3");
   if (hasFocus)
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
@@ -835,34 +842,66 @@ void OptionEnum::Render()
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
   mFont->DrawString(displayValue.c_str(),x,y);
-  mFont->DrawString(values[index].second.c_str(), width -10, y, JGETEXT_RIGHT);
+  
+  if(def)
+    mFont->DrawString(def->values[index].second.c_str(), width -10, y, JGETEXT_RIGHT);
+  else
+    mFont->DrawString("Default", width -10, y, JGETEXT_RIGHT);
 }
-
+OptionEnum::OptionEnum(int id, string displayValue) : OptionItem(id, displayValue){
+  Reload();
+}
 void OptionEnum::Reload()
 {
-  for (vector<assoc>::iterator it = values.begin(); it != values.end(); ++it)
-    if (it->second == options[id].str)
-      {
-        index = it - values.begin();
-        return;
-      }
-  index = 0;
+  EnumDefinition * def = ourDefined();
+  if(def != NULL)
+    index = def->findIndex(options[id].number);
+}
+
+EnumDefinition * OptionEnum::getDefinition(){
+  return NULL;
 }
 
 ostream& OptionEnum::toString(ostream& out) const
 {
-  return (out << values[index].second);
+  EnumDefinition * def = ourDefined();
+
+  if(!def)
+    return (out << "OptionEnum ::: INVALID");
+
+  return (out << "OptionEnum ::: " << def->values[index].second);
 }
 
-OptionClosedHand::OptionClosedHand(string id, string displayName) : OptionEnum(id, displayName)
+EnumDefinition * OptionClosedHand::definition = NULL;
+
+EnumDefinition * OptionClosedHand::getDefinition(){
+ if(!definition){
+    definition = NEW EnumDefinition();
+    definition->values.push_back(EnumDefinition::assoc(INVISIBLE, "invisible"));
+    definition->values.push_back(EnumDefinition::assoc(VISIBLE, "visible"));
+  }
+ return definition;
+}
+
+OptionClosedHand::OptionClosedHand(int id, string displayName) : OptionEnum(id, displayName)
 {
-  values.push_back(assoc(INVISIBLE, "invisible"));
-  values.push_back(assoc(VISIBLE,   "visible"));
+  getDefinition();
   Reload();
 };
-OptionHandDirection::OptionHandDirection(string id, string displayName) : OptionEnum(id, displayName)
+
+EnumDefinition * OptionHandDirection::definition = NULL;
+
+EnumDefinition * OptionHandDirection::getDefinition(){
+ if(!definition){
+    definition = NEW EnumDefinition();
+    definition->values.push_back(EnumDefinition::assoc(VERTICAL, "vertical"));
+    definition->values.push_back(EnumDefinition::assoc(HORIZONTAL, "horizontal"));
+  }
+ return definition;
+}
+
+OptionHandDirection::OptionHandDirection(int id, string displayName) : OptionEnum(id, displayName)
 {
-  values.push_back(assoc(VERTICAL,   "vertical"));
-  values.push_back(assoc(HORIZONTAL, "horizontal"));
+  getDefinition();
   Reload();
 };

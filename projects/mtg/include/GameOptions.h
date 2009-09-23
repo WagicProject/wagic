@@ -14,25 +14,95 @@ using std::string;
 #define PLAYER_SETTINGS "options.txt"
 #define PLAYER_COLLECTION "collection.dat"
 
-struct Options {
-  static const string MUSICVOLUME;
-  static const string SFXVOLUME;
-  static const string DIFFICULTY_MODE_UNLOCKED;
-  static const string MOMIR_MODE_UNLOCKED;
-  static const string EVILTWIN_MODE_UNLOCKED;
-  static const string RANDOMDECK_MODE_UNLOCKED;
-  static const string DIFFICULTY;
-  static const string CACHESIZE;
-  static const string PLASMAEFFECT;
-  static const string INTERRUPT_SECONDS;
-  static const string INTERRUPTMYSPELLS;
-  static const string INTERRUPTMYABILITIES;
-  static const string OSD;
-  static const string ACTIVE_PROFILE;
-  static const string ACTIVE_THEME;
-  static const string ACTIVE_MODE;
-  static const string CLOSEDHAND;
-  static const string HANDDIRECTION;
+#define INVALID_OPTION -1
+
+//Note to self-- provide some form of options initialization.
+
+class Options {
+public:
+  friend class GameSettings;
+  enum {
+    //Values /must/ match ordering in optionNames, or everything loads wrong.
+    //Profile settings    
+    ACTIVE_THEME,
+    ACTIVE_MODE,
+    MUSICVOLUME,
+    SFXVOLUME,
+    DIFFICULTY,
+    PLASMAEFFECT,
+    OSD,
+    CLOSEDHAND,
+    HANDDIRECTION,
+    INTERRUPT_SECONDS,
+    //My interrupts    
+    INTERRUPTMYSPELLS,
+    INTERRUPTMYABILITIES,
+    //Other interrupts
+    INTERRUPT_BEFOREBEGIN,
+    INTERRUPT_UNTAP,
+    INTERRUPT_UPKEEP,
+    INTERRUPT_DRAW,
+    INTERRUPT_FIRSTMAIN,
+    INTERRUPT_BEGINCOMBAT,
+    INTERRUPT_ATTACKERS,
+    INTERRUPT_BLOCKERS,
+    INTERRUPT_DAMAGE,
+    INTERRUPT_ENDCOMBAT,
+    INTERRUPT_SECONDMAIN,
+    INTERRUPT_ENDTURN,
+    INTERRUPT_CLEANUP,
+    INTERRUPT_AFTEREND,
+    //Global settings
+    ACTIVE_PROFILE,
+    DIFFICULTY_MODE_UNLOCKED,
+    MOMIR_MODE_UNLOCKED,
+    EVILTWIN_MODE_UNLOCKED,
+    RANDOMDECK_MODE_UNLOCKED,    
+    CACHESIZE,
+    //Theme metrics. These will be phased out fairly soon.
+    THEME_METRICS, //Start of theme metrics.
+    LOADING_TC = THEME_METRICS,
+    STATS_TC,
+    SCROLLER_TC,
+    SCROLLER_FC,
+    MAINMENU_TC,
+    POPUP_MENU_FC,
+    POPUP_MENU_TC,
+    POPUP_MENU_TCH,
+    MSG_FAIL_TC,
+    OPTION_ITEM_FC,
+    OPTION_ITEM_TC,
+    OPTION_ITEM_TCH,
+    OPTION_HEADER_FC,
+    OPTION_HEADER_TC,
+    OPTION_SCROLLBAR_FC,
+    OPTION_SCROLLBAR_FCH,  
+    OPTION_TAB_FC,
+    OPTION_TAB_FCH,  
+    OPTION_TAB_TC,
+    OPTION_TAB_TCH,  
+    OPTION_TEXT_TC,
+    OPTION_TEXT_FC,
+    KEY_TC,
+    KEY_TCH,  
+    KEY_FC,
+    KEY_FCH,
+    KEYPAD_FC, 
+    KEYPAD_FCH, 
+    KEYPAD_TC,
+
+    LAST_NAMED, //Any option after this does not look up in optionNames.
+    SET_UNLOCKS = LAST_NAMED + 1, //For sets.
+  };
+  
+  static int optionSet(int setID);
+  static int optionInterrupt(int gamePhase);
+
+  static int getID(string name);
+  static string getName(int option);
+
+private:
+  static const char* optionNames[];
 };
 
 struct Metrics {
@@ -40,35 +110,37 @@ struct Metrics {
   //*_FC is fill-color, *_FCH is highlighted fill color
   //*_B and *_BH are for secondary text/fill colors, if needed
   //*_X, *_Y, *_W, *_H are x, y, width and height.
-  static const string LOADING_TC;
-  static const string STATS_TC;
-  static const string SCROLLER_TC;
-  static const string SCROLLER_FC;
-  static const string MAINMENU_TC;
-  static const string POPUP_MENU_FC;
-  static const string POPUP_MENU_TC;
-  static const string POPUP_MENU_TCH;
-  static const string MSG_FAIL_TC;
-  static const string OPTION_ITEM_FC;
-  static const string OPTION_ITEM_TC;
-  static const string OPTION_ITEM_TCH;
-  static const string OPTION_HEADER_FC;
-  static const string OPTION_HEADER_TC;
-  static const string OPTION_SCROLLBAR_FC;
-  static const string OPTION_SCROLLBAR_FCH;  
-  static const string OPTION_TAB_FC;
-  static const string OPTION_TAB_FCH;  
-  static const string OPTION_TAB_TC;
-  static const string OPTION_TAB_TCH;  
-  static const string OPTION_TEXT_TC;
-  static const string OPTION_TEXT_FC;
-  static const string KEY_TC;
-  static const string KEY_TCH;  
-  static const string KEY_FC;
-  static const string KEY_FCH;
-  static const string KEYPAD_FC; 
-  static const string KEYPAD_FCH; 
-  static const string KEYPAD_TC;
+  enum {
+    LOADING_TC = Options::THEME_METRICS,
+    STATS_TC,
+    SCROLLER_TC,
+    SCROLLER_FC,
+    MAINMENU_TC,
+    POPUP_MENU_FC,
+    POPUP_MENU_TC,
+    POPUP_MENU_TCH,
+    MSG_FAIL_TC,
+    OPTION_ITEM_FC,
+    OPTION_ITEM_TC,
+    OPTION_ITEM_TCH,
+    OPTION_HEADER_FC,
+    OPTION_HEADER_TC,
+    OPTION_SCROLLBAR_FC,
+    OPTION_SCROLLBAR_FCH,  
+    OPTION_TAB_FC,
+    OPTION_TAB_FCH,  
+    OPTION_TAB_TC,
+    OPTION_TAB_TCH,  
+    OPTION_TEXT_TC,
+    OPTION_TEXT_FC,
+    KEY_TC,
+    KEY_TCH,  
+    KEY_FC,
+    KEY_FCH,
+    KEYPAD_FC, 
+    KEYPAD_FCH, 
+    KEYPAD_TC,
+  };
 };
 
 class GameOption {
@@ -83,6 +155,12 @@ public:
   GameOption(int, string);
 };
 
+struct EnumDefinition {
+  int findIndex(int value);
+
+  typedef pair<int, string> assoc;
+  vector<assoc> values;
+};
 
 class GameOptions {
  public:
@@ -90,13 +168,20 @@ class GameOptions {
   int save();
   int load();
 
-  static const char * phaseInterrupts[];
-  GameOption& operator[](string);
+  GameOption& operator[](int);
   GameOptions(string filename);
   ~GameOptions();
 
  private:
-  map<string,GameOption> values;
+  bool load_option(int id, string input); //Sends an option to the proper reader.
+  bool read_default(int id, string input);
+  bool read_enum(int id, string input, EnumDefinition * def);
+
+  bool save_option(std::ofstream * file, int id, string name, GameOption * opt); //Sends an option to the proper writer.
+  bool write_default(std::ofstream * file, string name, GameOption * opt);
+  bool write_enum(std::ofstream * file, string name, GameOption * opt, EnumDefinition * def);
+
+  map<int,GameOption> values;
 };
 
 class GameSettings{
@@ -124,10 +209,12 @@ public:
   void checkProfile();  //Confirms that a profile is loaded and contains a collection.
   void createUsersFirstDeck(int setId); 
 
-  GameOption& operator[](string);
+  GameOption& operator[](int);
   GameOptions* profileOptions;
   GameOptions* globalOptions;
   GameOptions* themeOptions;
+
+  static GameOption invalid_option;
 
 private:
   GameApp * theGame;  

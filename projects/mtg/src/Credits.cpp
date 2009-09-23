@@ -103,10 +103,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
       }else if((unlocked = unlockRandomSet())) {
           unlockedTex = resources.RetrieveTexture("set_unlocked.png", RETRIEVE_VRAM);
           unlockedQuad = resources.RetrieveQuad("set_unlocked.png", 2, 2, 396, 96);
-          char buffer[4096];
-          unlockedString = MtgSets::SetsList->values[unlocked -1];
-          sprintf(buffer,"unlocked_%s", unlockedString.c_str());
-          options[buffer] = GameOption(1);
+          options[Options::optionSet(unlocked - 1)] = GameOption(1);
           options.save();
       }
       if (unlocked){
@@ -239,9 +236,9 @@ int Credits::isRandomDeckUnlocked(){
 int Credits::unlockRandomSet(){
   if (rand() % 2) return 0;
   int setId = rand() % MtgSets::SetsList->nb_items;
-  char buffer[4096];
-  string s = MtgSets::SetsList->values[setId];
-  sprintf(buffer,"unlocked_%s", s.c_str());
-  if (1 == options[buffer].number) return 0;
-  return setId + 1;
+
+  if (1 == options[Options::optionSet(setId)].number) 
+    return 0;
+
+  return setId + 1; //We add 1 here to show success/failure. Be sure to subtract later.
 }

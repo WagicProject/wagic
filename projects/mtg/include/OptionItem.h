@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "../include/GameApp.h"
+#include "../include/GameOptions.h"
 
 using std::string;
 
@@ -21,7 +22,8 @@ using std::string;
 
 class OptionItem {
 public:
-  string displayValue, id;
+  string displayValue;
+  int id;
   int hasFocus;
   bool canSelect;
   bool bHidden;
@@ -29,7 +31,7 @@ public:
   float width, height;
   virtual ostream& toString(ostream& out)const;
 
-  OptionItem( string _id,  string _displayValue);
+  OptionItem( int _id,  string _displayValue);
   virtual ~OptionItem() {};
 
   virtual bool Selectable() {return (canSelect && !bHidden);};
@@ -52,9 +54,9 @@ class OptionInteger:public OptionItem{
   string strDefault;      //What to call the default value.
   int maxValue, increment;
 
-  OptionInteger(string _id, string _displayValue, int _maxValue = 1, int _increment = 1, int _defV = 0, string _sDef = "");
+  OptionInteger(int _id, string _displayValue, int _maxValue = 1, int _increment = 1, int _defV = 0, string _sDef = "");
 
-  virtual void Reload() {if(id != "") value = options[id].number;};
+  virtual void Reload() {if(id != INVALID_OPTION) value = options[id].number;};
   virtual void Render();
   virtual void setData();
   virtual void updateValue(){value+=increment; if (value>maxValue) value=0;};
@@ -64,19 +66,19 @@ class OptionInteger:public OptionItem{
 class OptionString:public OptionItem{
  public:
   string value;
-  OptionString(string _id, string _displayValue);
+  OptionString(int _id, string _displayValue);
 
   virtual void Render();
   virtual void setData();
   virtual void updateValue();
-  virtual void Reload() {if(id != "") value = options[id].str;};
+  virtual void Reload() {if(id != INVALID_OPTION) value = options[id].str;};
   virtual ostream& toString(ostream& out) const;
   bool bShowValue;
 };
 
 class OptionNewProfile:public OptionString{
  public:
-   OptionNewProfile(string _id, string _displayValue) :  OptionString(_id, _displayValue) {bShowValue=false;};
+   OptionNewProfile(string _displayValue) :  OptionString(INVALID_OPTION, _displayValue) {bShowValue=false;};
    virtual void updateValue();
    virtual void Update(float dt);
    virtual int Submode();
@@ -85,7 +87,7 @@ class OptionNewProfile:public OptionString{
 
 class OptionHeader:public OptionItem{
  public:
-  OptionHeader(string _displayValue): OptionItem("", _displayValue) { canSelect=false;};
+  OptionHeader(string _displayValue): OptionItem(INVALID_OPTION, _displayValue) { canSelect=false;};
   virtual void Render();
   virtual void setData() {};
   virtual void updateValue() {};
@@ -93,7 +95,7 @@ class OptionHeader:public OptionItem{
 
 class OptionText:public OptionItem{
  public:
-  OptionText(string _displayValue): OptionItem("", _displayValue) { canSelect=false;};
+  OptionText(string _displayValue): OptionItem(INVALID_OPTION, _displayValue) { canSelect=false;};
   virtual void Render();
   virtual void setData() {};
   virtual void updateValue() {};
@@ -105,7 +107,7 @@ class OptionSelect:public OptionItem{
   vector<string> selections;
 
   virtual void addSelection(string s);
-  OptionSelect(string _id, string _displayValue): OptionItem(_id, _displayValue) {value = 0;};
+  OptionSelect(int _id, string _displayValue): OptionItem(_id, _displayValue) {value = 0;};
   virtual void Reload(){initSelections();};
   virtual void Render();
   virtual void setData();
@@ -118,7 +120,7 @@ class OptionSelect:public OptionItem{
 class OptionDirectory:public OptionSelect{
  public:
   virtual void Reload();
-  OptionDirectory(string _root, string _id, string _displayValue);
+  OptionDirectory(string _root, int _id, string _displayValue);
 private:
   string root;
 };
@@ -130,7 +132,7 @@ class OptionTheme:public OptionDirectory{
 
 class OptionVolume: public OptionInteger{
  public:
-   OptionVolume(string _id, string _displayName, bool _bMusic = false);
+   OptionVolume(int _id, string _displayName, bool _bMusic = false);
    virtual void updateValue();
 private:
    bool bMusic;
@@ -208,27 +210,43 @@ class OptionsMenu
 
 class OptionEnum : public OptionItem {
  protected:
-  typedef pair<int, string> assoc;
   unsigned index;
-  vector<assoc> values;
  public:
- OptionEnum(string id, string displayValue) : OptionItem(id, displayValue), index(0) {};
+  OptionEnum(int id, string displayValue);
   virtual void Reload();
   virtual void Render();
   virtual void setData();
   virtual void updateValue();
+  //ourDefined is a virtual wrapper for getDefinition()
+  virtual EnumDefinition * ourDefined() const {return getDefinition();}; 
+
+  static EnumDefinition * getDefinition();
   virtual ostream& toString(ostream& out) const;
 };
 
 class OptionClosedHand : public OptionEnum {
  public:
+   friend class GameSettings;
   enum { INVISIBLE = 0, VISIBLE = 1 };
-  OptionClosedHand(string id, string displayValue);
+  OptionClosedHand(int id, string displayValue);
+
+  static EnumDefinition * getDefinition();
+  EnumDefinition * ourDefined() const { return getDefinition();};
+ 
+private:
+  static EnumDefinition * definition;
 };
 class OptionHandDirection : public OptionEnum {
  public:
+   friend class GameSettings;
   enum { VERTICAL = 0, HORIZONTAL = 1};
-  OptionHandDirection(string id, string displayValue);
+  OptionHandDirection(int id, string displayValue);
+  
+  static EnumDefinition * getDefinition();
+  EnumDefinition * ourDefined() const { return getDefinition();};
+
+private:
+  static EnumDefinition * definition;
 };
 
 #endif

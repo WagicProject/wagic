@@ -168,7 +168,7 @@ void GameObserver::userRequestNextGamePhase(){
   if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) ||
     cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE ||
      opponent()->isAI() ||
-      options[GameOptions::phaseInterrupts[currentGamePhase]].number)
+     options[Options::optionInterrupt(currentGamePhase)].number)
     mLayers->stackLayer()->AddNextGamePhase();
   else
     nextGamePhase();
