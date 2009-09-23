@@ -33,8 +33,6 @@ GuiCombat::~GuiCombat()
 
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
-      for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
-	delete(*q);
       delete (*it);
     }
 }
@@ -370,7 +368,6 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             {
               AttackerDamaged* d = *it;
               if (activeAtk == *it) activeAtk = NULL;
-              for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q) delete(*q);
               attackers.erase(it);
               SAFE_DELETE(d);
               return 1;

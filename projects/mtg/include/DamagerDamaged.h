@@ -30,6 +30,7 @@ struct AttackerDamaged : DamagerDamaged {
   vector<DefenserDamaged*> blockers;
   AttackerDamaged(MTGCardInstance* card, float x, float y, bool show, Player* damageSelecter);
   AttackerDamaged(MTGCardInstance* card, const Pos& ref, bool show, Player* damageSelecter);
+  ~AttackerDamaged();
 };
 
 #endif

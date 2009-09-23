@@ -88,3 +88,8 @@ void DamagerDamaged::Render(CombatStep mode)
 
 AttackerDamaged::AttackerDamaged(MTGCardInstance* card, float x, float y, bool show, Player * damageSelecter) : DamagerDamaged(card, x, y, show, damageSelecter) {}
 AttackerDamaged::AttackerDamaged(MTGCardInstance* card, const Pos& ref, bool show, Player * damageSelecter) : DamagerDamaged(card, ref, show, damageSelecter) {}
+
+AttackerDamaged::~AttackerDamaged(){
+for (vector<DefenserDamaged*>::iterator q = blockers.begin(); q != blockers.end(); ++q)
+	delete(*q);
+}
