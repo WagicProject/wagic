@@ -1067,7 +1067,7 @@ rarity=C
 mana={1}{R}
 type=Creature
 subtype=Viashino Warrior
-auto={T}:1/-1
+auto={R}:1/-1
 power=1
 toughness=2
 [/card]
