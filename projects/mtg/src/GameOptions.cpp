@@ -442,7 +442,7 @@ GameSettings::~GameSettings(){
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(themeOptions);
-
+  SAFE_DELETE(keypad);
   SAFE_DELETE(OptionHandDirection::definition);
   SAFE_DELETE(OptionClosedHand::definition);
 }
