@@ -99,6 +99,7 @@ void GuiCombat::autoaffectDamage(AttackerDamaged* attacker, CombatStep step)
       attacker->addDamage((*it)->card->stepPower(step), *it);
       damage -= actual_damage;
     }
+  if (damage > 0 && attacker->blockers.size() > 0 && !attacker->card->has(Constants::TRAMPLE)) attacker->blockers[0]->addDamage(damage, attacker);
 }
 
 void GuiCombat::addOne(DefenserDamaged* blocker, CombatStep step)
@@ -115,7 +116,8 @@ void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep step)
 {
   blocker->addDamage(-1, activeAtk);
   for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); it != activeAtk->blockers.end(); ++it)
-    if (!(*it)->hasLethalDamage()) { (*it)->addDamage(1, activeAtk); break; }
+    if (!(*it)->hasLethalDamage()) { (*it)->addDamage(1, activeAtk); return; }
+  if (!activeAtk->card->has(Constants::TRAMPLE) && activeAtk->blockers.size() > 0) activeAtk->blockers.back()->addDamage(1, activeAtk);
 }
 
 bool GuiCombat::clickOK(){
@@ -301,16 +303,14 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
   DamageStack* stack = NEW DamageStack();
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
-      if ((*it)->blockers.empty())
-        {
-          int dmg = (*it)->card->stepPower(step);
-          if (dmg > 0)
-            stack->Add(NEW Damage((*it)->card, go->opponent(), dmg));
-        }
-      else
+      signed dmg = (*it)->card->stepPower(step);
         for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
-          for (vector<Damage>::iterator d = (*q)->damages.begin(); d != (*q)->damages.end(); ++d)
-            stack->Add(NEW Damage(*d));
+          {
+            for (vector<Damage>::iterator d = (*q)->damages.begin(); d != (*q)->damages.end(); ++d)
+              stack->Add(NEW Damage(*d));
+            dmg -= (*q)->sumDamages();
+          }
+        if (dmg > 0) stack->Add(NEW Damage((*it)->card, go->opponent(), dmg));
       for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
         stack->Add(NEW Damage(*d));
     }
@@ -318,9 +318,8 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
   if (v > 0){
     go->mLayers->stackLayer()->Add(stack);
     go->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
-  }else{
+  }else
     SAFE_DELETE(stack);
-  }
   return v;
 }
 

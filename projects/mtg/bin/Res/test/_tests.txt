@@ -39,7 +39,7 @@ arcanis_the_omnipotent.txt
 arcanis_the_omnipotent2.txt
 ardakar_wastes.txt
 argothian_enchantress.txt
-#armadillo_cloak.txt #TODO restore when damages are completely assigned
+armadillo_cloak.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
 ascendant_evincar3.txt
@@ -99,7 +99,7 @@ fastbond2.txt
 fault_line.txt
 fists_of_ironwood.txt
 flare.txt
-fledgling_imp.txt 
+fledgling_imp.txt
 fledgling_imp2.txt
 foratog.txt
 force_of_nature.txt
@@ -117,7 +117,7 @@ goblin_king.txt
 gravedigger.txt
 #hammerfist_giant.txt
 hannas_custody.txt
-harpoon_sniper.txt 
+harpoon_sniper.txt
 hellfire.txt
 howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
