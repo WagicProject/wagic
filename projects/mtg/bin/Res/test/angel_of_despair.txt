@@ -1,0 +1,21 @@
+#creature comes into play and destroy stuff
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Angel of Despair
+manapool:{3}{W}{W}{B}{B}
+[PLAYER2]
+inplay:129586
+[DO]
+Angel of Despair
+129586
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Angel of Despair
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:129586
+life:20
+[END]

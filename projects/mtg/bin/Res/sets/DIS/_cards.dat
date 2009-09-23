@@ -11,6 +11,15 @@ text=Flying, trample
 rarity=C
 [/card]
 [card]
+id=97085
+name=Azorius Signet
+mana={2}
+type=Artifact
+text={1}, {T}: Add {W}{U} to your mana pool.
+auto={1}{T}:add{W}{U}
+rarity=C
+[/card]
+[card]
 id=107317
 name=Celestial Ancient
 mana={3}{W}{W}
@@ -59,6 +68,19 @@ toughness=1
 text=Flying
 abilities=flying
 rarity=U
+[/card]
+[card]
+id=107389
+name=Ogre Gatecrasher
+target=creature[defender]
+mana={3}{R}
+type=Creature
+subtype=Ogre Rogue
+power=3
+toughness=3
+text=When Ogre Gatecrasher enters the battlefield, destroy target creature with defender.
+auto=destroy
+rarity=C
 [/card]
 [card]
 id=97074
@@ -129,7 +151,7 @@ name=Shielding Plax
 mana={2}{GU}
 type=Enchantment
 subtype=Aura
-text=({(g/u)} can be paid with either {G} or {U}.) Enchant creature When Shielding Plax enters the battlefield, draw a card. Enchanted creature can't be the target of spells or abilities your opponents control.
+text=({GU} can be paid with either {G} or {U}.) Enchant creature. When Shielding Plax enters the battlefield, draw a card. Enchanted creature can't be the target of spells or abilities your opponents control.
 target=creature
 auto=opponentshroud
 auto=draw:1
@@ -203,6 +225,16 @@ text=Defender (This creature can't attack.) {1}{U}, Sacrifice Soulsworn Jury: Co
 abilities=defender
 auto={1}{U}{S}:fizzle target(creature|stack)
 rarity=C
+[/card]
+[card]
+id=107284
+name=Swift Silence
+mana={2}{W}{U}{U}
+type=Instant
+text=Counter all other spells. Draw a card for each spell countered this way.
+auto=foreach(other *|stack) draw:1
+auto=fizzle all(other *|stack)
+rarity=R
 [/card]
 [card]
 id=107276

@@ -26,6 +26,7 @@ generic/wither.txt
 #Specific Cards
 ########################
 afflict.txt
+angel_of_despair.txt
 akron_legionnaire.txt
 Amugaba.txt
 anarchy.txt

@@ -11,7 +11,7 @@ id=97110
 name=Anthem of Rakdos
 mana={2}{B}{R}{R}
 type=Enchantment
-text=Whenever a creature you control attacks, it gets +2/+0 until end of turn and Anthem of Rakdos deals 1 damage to you. Hellbent  EAs long as you have no cards in hand, if a source you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+text=Whenever a creature you control attacks, it gets +2/+0 until end of turn and Anthem of Rakdos deals 1 damage to you. Hellbent - As long as you have no cards in hand, if a source you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
 rarity=R
 [/card]
 [card]
@@ -40,7 +40,7 @@ rarity=C
 [card]
 id=107437
 name=Avatar of Discord
-mana={(}{B}{/}{R}{)}{(}{B}{/}{R}{)}{(}{B}{/}{R}{)}
+mana={BR}{BR}{BR}
 type=Creature
 subtype=Avatar
 power=5
@@ -81,7 +81,7 @@ rarity=C
 [card]
 id=97077
 name=Azorius Guildmage
-mana={(}{W}{/}{U}{)}{(}{W}{/}{U}{)}
+mana={WU}{WU}
 type=Creature
 subtype=Vedalken Wizard
 power=2
@@ -108,14 +108,7 @@ type=Instant
 text=Prevent all combat damage target creature would deal this turn. Prevent all combat damage that would be dealt to target creature this turn.
 rarity=U
 [/card]
-[card]
-id=97085
-name=Azorius Signet
-mana={2}
-type=Artifact
-text={1}, {T}: Add {W}{U} to your mana pool.
-rarity=C
-[/card]
+
 [card]
 id=111225
 name=Beacon Hawk
@@ -130,7 +123,7 @@ rarity=C
 [card]
 id=107277
 name=Biomantic Mastery
-mana={4}{(}{G}{/}{U}{)}{(}{G}{/}{U}{)}{(}{G}{/}{U}{)}
+mana={4}{GU}{GU}{GU}
 type=Sorcery
 text=({(g/u)} can be paid with either {G} or {U}.) Draw a card for each creature target player controls, then draw a card for each creature another target player controls.
 rarity=R
@@ -173,7 +166,7 @@ id=107537
 name=Brace for Impact
 mana={4}{W}
 type=Instant
-Prevent all damage that would be dealt to target multicolored creature this turn. For each 1 damage prevented this way, put a +1/+1 counter on that creature.
+text=Prevent all damage that would be dealt to target multicolored creature this turn. For each 1 damage prevented this way, put a +1/+1 counter on that creature.
 rarity=U
 [/card]
 [card]
@@ -209,7 +202,7 @@ id=107258
 name=Cackling Flames
 mana={3}{R}
 type=Instant
-text=Cackling Flames deals 3 damage to target creature or player. Hellbent  ECackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
+text=Cackling Flames deals 3 damage to target creature or player. Hellbent - Cackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
 rarity=C
 [/card]
 [card]
@@ -256,7 +249,8 @@ id=107285
 name=Crime // Punishment (Crime)
 mana={3}{W}{B}
 type=Sorcery
-text=Put target creature or enchantment card in an opponent's graveyard onto the battlefield under your control. rarity=R
+text=Put target creature or enchantment card in an opponent's graveyard onto the battlefield under your control.
+rarity=R
 [/card]
 [card]
 id=107336
@@ -266,7 +260,7 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=2
-Double strike When Crypt Champion enters the battlefield, each player puts a creature card with converted mana cost 3 or less from his or her graveyard onto the battlefield. When Crypt Champion enters the battlefield, sacrifice it unless {R} was spent to cast it.
+text=Double strike When Crypt Champion enters the battlefield, each player puts a creature card with converted mana cost 3 or less from his or her graveyard onto the battlefield. When Crypt Champion enters the battlefield, sacrifice it unless {R} was spent to cast it.
 rarity=U
 [/card]
 [card]
@@ -331,7 +325,7 @@ id=107252
 name=Demonfire
 mana={X}{R}
 type=Sorcery
-text=Demonfire deals X damage to target creature or player. If a creature dealt damage this way would be put into a graveyard this turn, exile it instead. Hellbent  EIf you have no cards in hand, Demonfire can't be countered by spells or abilities and the damage can't be prevented.
+text=Demonfire deals X damage to target creature or player. If a creature dealt damage this way would be put into a graveyard this turn, exile it instead. Hellbent - If you have no cards in hand, Demonfire can't be countered by spells or abilities and the damage can't be prevented.
 rarity=R
 [/card]
 [card]
@@ -342,7 +336,7 @@ type=Creature
 subtype=Imp
 power=2
 toughness=2
-text=Flying Hellbent  EDemon's Jester gets +2/+1 as long as you have no cards in hand.
+text=Flying Hellbent - Demon's Jester gets +2/+1 as long as you have no cards in hand.
 rarity=C
 [/card]
 [card]
@@ -542,7 +536,7 @@ type=Creature
 subtype=Rat
 power=2
 toughness=2
-text=Hellbent  EAs long as you have no cards in hand, Gobhobbler Rats gets +1/+0 and has "{B}: Regenerate Gobhobbler Rats."
+text=Hellbent - - As long as you have no cards in hand, Gobhobbler Rats gets +1/+0 and has "{B}: Regenerate Gobhobbler Rats."
 rarity=C
 [/card]
 [card]
@@ -550,7 +544,7 @@ id=107395
 name=Govern the Guildless
 mana={5}{U}
 type=Sorcery
-text=Gain control of target monocolored creature. Forecast  E{1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
+text=Gain control of target monocolored creature. Forecast - {1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
 rarity=R
 [/card]
 [card]
@@ -657,7 +651,7 @@ id=107308
 name=Infernal Tutor
 mana={1}{B}
 type=Sorcery
-text=Reveal a card from your hand. Search your library for a card with the same name as that card, reveal it, put it into your hand, then shuffle your library. Hellbent  EIf you have no cards in hand, instead search your library for a card, put it into your hand, then shuffle your library.
+text=Reveal a card from your hand. Search your library for a card with the same name as that card, reveal it, put it into your hand, then shuffle your library. Hellbent - If you have no cards in hand, instead search your library for a card, put it into your hand, then shuffle your library.
 rarity=R
 [/card]
 [card]
@@ -679,7 +673,7 @@ type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=4
-text=Whenever Jagged Poppet is dealt damage, discard that many cards. Hellbent  EWhenever Jagged Poppet deals combat damage to a player, if you have no cards in hand, that player discards cards equal to the damage.
+text=Whenever Jagged Poppet is dealt damage, discard that many cards. Hellbent - Whenever Jagged Poppet deals combat damage to a player, if you have no cards in hand, that player discards cards equal to the damage.
 rarity=U
 [/card]
 [card]
@@ -810,7 +804,7 @@ id=107517
 name=Nihilistic Glee
 mana={2}{B}{B}
 type=Enchantment
-text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. Hellbent  E{1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
+text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. Hellbent - {1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
 rarity=R
 [/card]
 [card]
@@ -848,17 +842,7 @@ mana={U}{R}
 type=Instant
 text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. rarity=R
 [/card]
-[card]
-id=107389
-name=Ogre Gatecrasher
-mana={3}{R}
-type=Creature
-subtype=Ogre Rogue
-power=3
-toughness=3
-When Ogre Gatecrasher enters the battlefield, destroy target creature with defender.
-rarity=C
-[/card]
+
 [card]
 id=83737
 name=Omnibian
@@ -894,7 +878,7 @@ type=Creature
 subtype=Human Knight
 power=3
 toughness=4
-text=Whenever Paladin of Prahv deals damage, you gain that much life. Forecast  E{1}{W}, Reveal Paladin of Prahv from your hand: Whenever target creature deals damage this turn, you gain that much life. (Activate this ability only during your upkeep and only once each turn.)
+text=Whenever Paladin of Prahv deals damage, you gain that much life. Forecast - {1}{W}, Reveal Paladin of Prahv from your hand: Whenever target creature deals damage this turn, you gain that much life. (Activate this ability only during your upkeep and only once each turn.)
 rarity=U
 [/card]
 [card]
@@ -952,7 +936,7 @@ name=Plumes of Peace
 mana={1}{W}{U}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. Forecast  E{W}{U}, Reveal Plumes of Peace from your hand: Tap target creature. (Activate this ability only during your upkeep and only once each turn.)
+text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. Forecast - {W}{U}, Reveal Plumes of Peace from your hand: Tap target creature. (Activate this ability only during your upkeep and only once each turn.)
 rarity=C
 [/card]
 [card]
@@ -971,7 +955,7 @@ type=Creature
 subtype=Elemental Cat
 power=1
 toughness=1
-text=Flying Pride of the Clouds gets +1/+1 for each other creature with flying on the battlefield. Forecast  E{2}{W}{U}, Reveal Pride of the Clouds from your hand: Put a 1/1 white and blue Bird creature token with flying onto the battlefield. (Activate this ability only during your upkeep and only once each turn.)
+text=Flying Pride of the Clouds gets +1/+1 for each other creature with flying on the battlefield. Forecast - {2}{W}{U}, Reveal Pride of the Clouds from your hand: Put a 1/1 white and blue Bird creature token with flying onto the battlefield. (Activate this ability only during your upkeep and only once each turn.)
 rarity=R
 [/card]
 [card]
@@ -979,7 +963,7 @@ id=107341
 name=Proclamation of Rebirth
 mana={2}{W}
 type=Sorcery
-text=Return up to three target creature cards with converted mana cost 1 or less from your graveyard to the battlefield. Forecast  E{5}{W}, Reveal Proclamation of Rebirth from your hand: Return target creature card with converted mana cost 1 or less from your graveyard to the battlefield. (Activate this ability only during your upkeep and only once each turn.)
+text=Return up to three target creature cards with converted mana cost 1 or less from your graveyard to the battlefield. Forecast - {5}{W}, Reveal Proclamation of Rebirth from your hand: Return target creature card with converted mana cost 1 or less from your graveyard to the battlefield. (Activate this ability only during your upkeep and only once each turn.)
 rarity=R
 [/card]
 [card]
@@ -1041,7 +1025,7 @@ type=Creature
 subtype=Zombie Cleric
 power=2
 toughness=2
-Hellbent  E{T}, Sacrifice a creature or land: Draw a card. Activate this ability only if you have no cards in hand.
+text=Hellbent - {T}, Sacrifice a creature or land: Draw a card. Activate this ability only if you have no cards in hand.
 rarity=U
 [/card]
 [card]
@@ -1069,12 +1053,14 @@ name=Rakdos Carnarium
 mana=
 type=Land
 text=Rakdos Carnarium enters the battlefield tapped. When Rakdos Carnarium enters the battlefield, return a land you control to its owner's hand. {T}: Add {B}{R} to your mana pool.
+auto=moveTo(ownerhand) target(land)
+auto={T}:add:{B}{R}
 rarity=C
 [/card]
 [card]
 id=97108
 name=Rakdos Guildmage
-mana={(}{B}{/}{R}{)}{(}{B}{/}{R}{)}
+mana={BR}{BR}
 type=Creature
 subtype=Zombie Shaman
 power=2
@@ -1091,7 +1077,7 @@ type=Creature
 subtype=Dragon
 power=3
 toughness=3
-text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. Hellbent  ERakdos Pit Dragon has double strike as long as you have no cards in hand.
+text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
 rarity=R
 [/card]
 [card]
@@ -1121,7 +1107,8 @@ id=107375
 name=Research // Development (Research)
 mana={G}{U}
 type=Instant
-text=Choose up to four cards you own from outside the game and shuffle them into your library. rarity=R
+text=Choose up to four cards you own from outside the game and shuffle them into your library.
+rarity=R
 [/card]
 
 [card]
@@ -1129,14 +1116,15 @@ id=107423
 name=Rise // Fall (Rise)
 mana={U}{B}
 type=Sorcery
-text=Return target creature card in a graveyard and target creature on the battlefield to their owners' hands. rarity=U
+text=Return target creature card in a graveyard and target creature on the battlefield to their owners' hands.
+rarity=U
 [/card]
 [card]
 id=97072
 name=Rix Maadi, Dungeon Palace
 mana=
 type=Land
-{T}: Add {1} to your mana pool. {1}{B}{R}, {T}: Each player discards a card. Activate this ability only any time you could cast a sorcery.
+text={T}: Add {1} to your mana pool. {1}{B}{R}, {T}: Each player discards a card. Activate this ability only any time you could cast a sorcery.
 rarity=U
 [/card]
 [card]
@@ -1187,12 +1175,15 @@ name=Simic Growth Chamber
 mana=
 type=Land
 text=Simic Growth Chamber enters the battlefield tapped. When Simic Growth Chamber enters the battlefield, return a land you control to its owner's hand. {T}: Add {G}{U} to your mana pool.
+auto=moveTo(ownerhand) target(land)
+auto=tap
+auto={T}:addd:{G}{U}
 rarity=C
 [/card]
 [card]
 id=97078
 name=Simic Guildmage
-mana={(}{G}{/}{U}{)}{(}{G}{/}{U}{)}
+mana={GU}{GU}
 type=Creature
 subtype=Elf Wizard
 power=2
@@ -1231,7 +1222,7 @@ type=Creature
 subtype=Human Knight
 power=4
 toughness=3
-text=Flying When Sky Hussar enters the battlefield, untap all creatures you control. Forecast  ETap two untapped white and/or blue creatures you control, Reveal Sky Hussar from your hand: Draw a card. (Activate this ability only during your upkeep and only once each turn.)
+text=Flying When Sky Hussar enters the battlefield, untap all creatures you control. Forecast - Tap two untapped white and/or blue creatures you control, Reveal Sky Hussar from your hand: Draw a card. (Activate this ability only during your upkeep and only once each turn.)
 rarity=U
 [/card]
 [card]
@@ -1239,7 +1230,7 @@ id=107449
 name=Skyscribing
 mana={X}{U}{U}
 type=Sorcery
-text=Each player draws X cards. Forecast  E{2}{U}, Reveal Skyscribing from your hand: Each player draws a card. (Activate this ability only during your upkeep and only once each turn.)
+text=Each player draws X cards. Forecast - {2}{U}, Reveal Skyscribing from your hand: Each player draws a card. (Activate this ability only during your upkeep and only once each turn.)
 rarity=U
 [/card]
 [card]
@@ -1250,7 +1241,7 @@ type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=3
-text=Hellbent  EWhen Slaughterhouse Bouncer is put into a graveyard from the battlefield, if you have no cards in hand, target creature gets -3/-3 until end of turn.
+text=Hellbent - When Slaughterhouse Bouncer is put into a graveyard from the battlefield, if you have no cards in hand, target creature gets -3/-3 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -1261,7 +1252,7 @@ type=Creature
 subtype=Shade
 power=0
 toughness=1
-text=Defender (This creature can't attack.) {B}: Slithering Shade gets +1/+1 until end of turn. Hellbent  ESlithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
+text=Defender (This creature can't attack.) {B}: Slithering Shade gets +1/+1 until end of turn. Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
 rarity=U
 [/card]
 
@@ -1322,7 +1313,7 @@ id=97115
 name=Steeling Stance
 mana={1}{W}{W}
 type=Instant
-text=Creatures you control get +1/+1 until end of turn. Forecast  E{W}, Reveal Steeling Stance from your hand: Target creature gets +1/+1 until end of turn. (Activate this ability only during your upkeep and only once each turn.)
+text=Creatures you control get +1/+1 until end of turn. Forecast - {W}, Reveal Steeling Stance from your hand: Target creature gets +1/+1 until end of turn. (Activate this ability only during your upkeep and only once each turn.)
 rarity=C
 [/card]
 [card]
@@ -1342,6 +1333,8 @@ name=Stomp and Howl
 mana={2}{G}
 type=Sorcery
 text=Destroy target artifact and target enchantment.
+auto=destroy target(artifact)
+auto=destroy target(enchantment)
 rarity=U
 [/card]
 [card]
@@ -1371,21 +1364,14 @@ mana={X}{G}{W}
 type=Sorcery
 text=Put X 1/1 green Saproling creature tokens onto the battlefield. rarity=U
 [/card]
-[card]
-id=107284
-name=Swift Silence
-mana={2}{W}{U}{U}
-type=Instant
-Counter all other spells. Draw a card for each spell countered this way.
-rarity=R
-[/card]
+
 [card]
 id=107597
 name=Taste for Mayhem
 mana={R}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+0. Hellbent  EEnchanted creature gets an additional +2/+0 as long as you have no cards in hand.
+text=Enchant creature Enchanted creature gets +2/+0. Hellbent - Enchanted creature gets an additional +2/+0 as long as you have no cards in hand.
 rarity=C
 [/card]
 [card]
@@ -1423,7 +1409,8 @@ id=107259
 name=Trial // Error (Trial)
 mana={W}{U}
 type=Instant
-text=Return all creatures blocking or blocked by target creature to their owner's hand. rarity=U
+text=Return all creatures blocking or blocked by target creature to their owner's hand.
+rarity=U
 [/card]
 [card]
 id=97112
@@ -1433,7 +1420,7 @@ type=Creature
 subtype=Beast
 power=2
 toughness=3
-Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
+text=Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
 rarity=U
 [/card]
 [card]
@@ -1441,7 +1428,7 @@ id=97114
 name=Twinstrike
 mana={3}{B}{R}
 type=Instant
-text=Twinstrike deals 2 damage to each of two target creatures. Hellbent  EDestroy those creatures instead if you have no cards in hand.
+text=Twinstrike deals 2 damage to each of two target creatures. Hellbent - Destroy those creatures instead if you have no cards in hand.
 rarity=U
 [/card]
 [card]
@@ -1589,6 +1576,6 @@ name=Writ of Passage
 mana={U}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Whenever enchanted creature attacks, if its power is 2 or less, it's unblockable this turn. Forecast  E{1}{U}, Reveal Writ of Passage from your hand: Target creature with power 2 or less is unblockable this turn. (Activate this ability only during your upkeep and only once each turn.)
+text=Enchant creature Whenever enchanted creature attacks, if its power is 2 or less, it's unblockable this turn. Forecast - {1}{U}, Reveal Writ of Passage from your hand: Target creature with power 2 or less is unblockable this turn. (Activate this ability only during your upkeep and only once each turn.)
 rarity=C
 [/card]
