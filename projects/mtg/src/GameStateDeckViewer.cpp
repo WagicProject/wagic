@@ -220,6 +220,12 @@ void GameStateDeckViewer::Update(float dt)
           myDeck->parent->meta_name = newDeckname;
           myDeck->save();
         }
+        mStage = STAGE_WAITING;
+      }
+      //They cancelled, so dump them back to where they were.
+      else {
+        updateDecks();
+        mStage = STAGE_WELCOME;
       }
       newDeckname = "";
     }
@@ -738,8 +744,12 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           deckNum = controlId;
           sprintf(buf,"deck%i",deckNum);
           options.keypadStart(buf,&newDeckname);
-          options.keypadTitle("Deck name");  
-          //Fallthrough to deck editing.
+          options.keypadTitle("Deck name"); 
+          loadDeck(controlId);
+          deckNum = controlId; 
+          //Doesn't fallthrough to deck editing.
+          //Only change states when keypad finished.
+          break;
         }
         loadDeck(controlId);
         mStage = STAGE_WAITING;
