@@ -47,29 +47,26 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int
   if (!spadeRTex) spadeRTex = resources.RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
   if (!jewelTex)   jewelTex= renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
   if (!sideTex)   sideTex = resources.RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
-if (NULL == spadeL) spadeL = resources.RetrieveQuad("spade_ul.png", 2, 1, 16, 13, "spade_ul", RETRIEVE_MANAGE);
+  if (NULL == spadeL) spadeL = resources.RetrieveQuad("spade_ul.png", 2, 1, 16, 13, "spade_ul", RETRIEVE_MANAGE);
   if (NULL == spadeR) spadeR = resources.RetrieveQuad("spade_ur.png", 2, 1, 16, 13, "spade_ur", RETRIEVE_MANAGE);
   if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
   if (NULL == side)   side   = resources.RetrieveQuad("menuside.png", 1, 1, 1, 7,"menuside", RETRIEVE_MANAGE);
 
-  if (NULL == titleFont)
-    {
+  if (NULL == titleFont) {
       resources.LoadJLBFont("smallface", 7);
       titleFont = resources.GetJLBFont("smallface");
-    }
+  }
   
-  if (NULL == stars){ 
+  if (NULL == stars) { 
     JQuad * starQuad = resources.GetQuad("stars");
     hgeParticleSystemInfo * psi = resources.RetrievePSI("stars.psi", starQuad);
-    if(psi)
-      stars = NEW hgeParticleSystem(psi);
+    if(psi) stars = NEW hgeParticleSystem(psi);
   }
 
   stars->MoveTo(mX, mY);
 }
 
-void SimpleMenu::drawHorzPole(int x, int y, int width)
-{
+void SimpleMenu::drawHorzPole(int x, int y, int width) {
   JRenderer* renderer = JRenderer::GetInstance();
 
   renderer->RenderQuad(side, x + 5 , y - SIDE_SIZE / 2, 0, width - 10);
@@ -81,8 +78,8 @@ void SimpleMenu::drawHorzPole(int x, int y, int width)
   renderer->RenderQuad(jewel, x, y - 1);
   renderer->RenderQuad(jewel, x + width - 1, y - 1);
 }
-void SimpleMenu::drawVertPole(int x, int y, int height)
-{
+
+void SimpleMenu::drawVertPole(int x, int y, int height) {
   JRenderer* renderer = JRenderer::GetInstance();
 
   renderer->RenderQuad(side, x - SIDE_SIZE / 2, y + height - 5, -M_PI/2, height - 10);
@@ -95,27 +92,30 @@ void SimpleMenu::drawVertPole(int x, int y, int height)
   renderer->RenderQuad(jewel, x - 1, y + height - 1);
 }
 
-void SimpleMenu::Render(){
-  if (0 == mWidth)
-    {
-      for (int i = startId; i < startId + mCount; ++i)
-	{
-	  int width = (static_cast<SimpleMenuItem*>(mObjects[i]))->GetWidth();
-	  if (mWidth < width) mWidth = width;
-	}
-      if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) mWidth = titleFont->GetStringWidth(title.c_str());
-      mWidth += 2*HMARGIN;
-      for (int i = startId; i < startId + mCount; ++i)
-	static_cast<SimpleMenuItem*>(mObjects[i])->Relocate(mX + mWidth / 2, mY + VMARGIN + i * LINE_HEIGHT);
-      stars->Fire();
-      selectionTargetY = selectionY = mY + VMARGIN;
-      timeOpen = 0;
+void SimpleMenu::Render() {
+  if (0 == mWidth) {
+    float sY = mY + VMARGIN;
+    for (int i = startId; i < startId + mCount; ++i) {
+	    int width = (static_cast<SimpleMenuItem*>(mObjects[i]))->GetWidth();
+	    if (mWidth < width) mWidth = width;
+	  }
+    if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) mWidth = titleFont->GetStringWidth(title.c_str());
+    mWidth += 2*HMARGIN;
+    for (int i = startId; i < startId + mCount; ++i) {
+      float y = mY + VMARGIN + i * LINE_HEIGHT;
+	    SimpleMenuItem * smi = static_cast<SimpleMenuItem*>(mObjects[i]);
+      smi->Relocate(mX + mWidth / 2, y);
+      if (smi->hasFocus()) sY = y;
     }
+    stars->Fire();
+    selectionTargetY = selectionY = sY;
+    timeOpen = 0;
+  }
+
   JRenderer * renderer = JRenderer::GetInstance();
 
   float height = mHeight;
-  if (timeOpen < 1)
-    height *= timeOpen > 0 ? timeOpen : -timeOpen;
+  if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
   renderer->FillRect(mX, mY, mWidth, height, options[Metrics::POPUP_MENU_FC].asColor(ARGB(180,0,0,0)));
 
@@ -132,18 +132,16 @@ void SimpleMenu::Render(){
     titleFont->DrawString(title.c_str(), mX+mWidth/2, mY - 3, JGETEXT_CENTER);
   for (int i = startId; i < startId + maxItems ; i++){
     if (i > mCount-1) break;
-    if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7)
-      {
-        if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
-          resources.GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
-	        mFont->SetColor(options[Metrics::POPUP_MENU_TCH].asColor(ARGB(255,255,255,0)));
-        }
-	else
-	  mFont->SetColor(options[Metrics::POPUP_MENU_TC].asColor(ARGB(150,255,255,255)));
-	(static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
+    if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7) {
+      if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
+        resources.GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
+	      mFont->SetColor(options[Metrics::POPUP_MENU_TCH].asColor(ARGB(255,255,255,0)));
+      } else {
+        mFont->SetColor(options[Metrics::POPUP_MENU_TC].asColor(ARGB(150,255,255,255)));
       }
+	    (static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
+    }
   }
-
   drawHorzPole(mX - 25, mY + height, mWidth + 50);
 }
 
@@ -158,23 +156,25 @@ void SimpleMenu::Update(float dt){
   selectionT += 3*dt;
   selectionY += (selectionTargetY - selectionY) * 8 * dt;
   stars->MoveTo(mX + HMARGIN + ((mWidth-2*HMARGIN)*(1+cos(selectionT))/2), selectionY + 5 * cos(selectionT*2.35) + LINE_HEIGHT / 2 - LINE_HEIGHT * startId);
-  if (timeOpen < 0)
-    {
-      timeOpen += dt * 10;
-      if (timeOpen >= 0) { timeOpen = 0; closed = true; }
-    }
-  else
-    {
-      closed = false;
-      timeOpen += dt * 10;
-    }
+  if (timeOpen < 0) {
+    timeOpen += dt * 10;
+    if (timeOpen >= 0) { timeOpen = 0; closed = true; }
+  } else {
+    closed = false;
+    timeOpen += dt * 10;
+  }
 }
 
-void SimpleMenu::Add(int id, const char * text,string desc){
+void SimpleMenu::Add(int id, const char * text,string desc, bool forceFocus){
   SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, mFont, text, 0, mY + VMARGIN + mCount*LINE_HEIGHT, (mCount == 0));
   smi->desc = desc;
   JGuiController::Add(smi);
   if (mCount <= maxItems) mHeight += LINE_HEIGHT;
+  if (forceFocus){
+    mObjects[mCurr]->Leaving(PSP_CTRL_DOWN);
+    mCurr = mCount-1;
+    smi->Entering();
+  }
 }
 
 void SimpleMenu::Close()

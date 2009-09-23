@@ -139,6 +139,7 @@ master_of_etherium.txt
 memory_erosion.txt
 millstone.txt
 #mind_rot.txt
+moat.txt
 mobile_fort.txt
 nantuko_husk.txt
 necrogenesis.txt

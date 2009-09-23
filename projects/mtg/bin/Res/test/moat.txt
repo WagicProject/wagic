@@ -1,0 +1,23 @@
+#Bug: http://code.google.com/p/wagic/issues/detail?id=2
+#Moat doesn't prevent creatures from attacking
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:moat,grizzly bears,air elemental
+[PLAYER2]
+[DO]
+grizzly bears
+air elemental
+next
+#blockers
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:moat,grizzly bears,air elemental
+[PLAYER2]
+life:16
+[END]

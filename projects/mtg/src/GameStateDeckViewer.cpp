@@ -284,7 +284,7 @@ void GameStateDeckViewer::Update(float dt)
           sprintf(buffer,"%s : %i %s",_(card->getName()).c_str(),price,_("credits").c_str());
           sellMenu = NEW SimpleMenu(2,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
           sellMenu->Add(20,"Yes");
-          sellMenu->Add(21,"No");
+          sellMenu->Add(21,"No","",true);
         }
       }
       break;
