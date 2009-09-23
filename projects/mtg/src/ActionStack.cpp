@@ -684,12 +684,13 @@ void ActionStack::endOfInterruption(){
 
 
 bool ActionStack::CheckUserInput(u32 key){
+  u32 trigger = (options[Options::REVERSETRIGGERS].number ? PSP_CTRL_RTRIGGER : PSP_CTRL_LTRIGGER);
   if (mode == ACTIONSTACK_STANDARD){
     if (askIfWishesToInterrupt){
       if (PSP_CTRL_CROSS == key){
 	      setIsInterrupting(askIfWishesToInterrupt);
 	      return true;
-      }else if ((PSP_CTRL_CIRCLE == key) || (PSP_CTRL_RTRIGGER == key) ){
+      }else if ((PSP_CTRL_CIRCLE == key) || (trigger == key) ){
 	      cancelInterruptOffer();
 	      return true;
       }else if ((PSP_CTRL_SQUARE == key)){

@@ -40,7 +40,8 @@ void MTGGamePhase::Update(float dt){
 bool MTGGamePhase::CheckUserInput(u32 key){
   GameObserver * game = GameObserver::GetInstance();
   if (activeState == INACTIVE){
-    if ((PSP_CTRL_RTRIGGER == key) && game->currentActionPlayer == game->currentlyActing())
+    u32 trigger = (options[Options::REVERSETRIGGERS].number ? PSP_CTRL_RTRIGGER : PSP_CTRL_LTRIGGER);
+    if ((trigger == key) && game->currentActionPlayer == game->currentlyActing())
       {
 	activeState = ACTIVE;
 	game->userRequestNextGamePhase();

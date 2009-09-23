@@ -232,7 +232,14 @@ bool GuiCombat::CheckUserInput(u32 key)
       addOne(active, step);
       break;
     case PSP_CTRL_SQUARE:
+      active = activeAtk = NULL; cursor_pos = OK;
+      break;
     case PSP_CTRL_RTRIGGER:
+      if (!options[Options::REVERSETRIGGERS].number) return false;
+      active = activeAtk = NULL; cursor_pos = OK;
+      break;
+    case PSP_CTRL_LTRIGGER:
+      if (options[Options::REVERSETRIGGERS].number) return false;
       active = activeAtk = NULL; cursor_pos = OK;
       break;
     }

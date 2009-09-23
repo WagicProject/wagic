@@ -131,7 +131,7 @@ bool CardSelector::CheckUserInput(u32 key)
     case PSP_CTRL_DOWN:
       active = closest<Down>(cards, limitor, active);
       break;
-    case PSP_CTRL_LTRIGGER:
+    case PSP_CTRL_TRIANGLE:
       showBig = !showBig;
       return true;
     default:
