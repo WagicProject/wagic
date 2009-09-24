@@ -472,15 +472,17 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         return 1;
       case DAMAGE: DAMAGE:
         step = event->step;
-        if (!go->currentPlayer->displayStack()) { 
-          ((AIPlayer *)go->currentPlayer)->affectCombatDamages(step); 
-          go->nextGamePhase(); 
-          return 1; 
+        if (!go->currentPlayer->displayStack()) {
+          ((AIPlayer *)go->currentPlayer)->affectCombatDamages(step);
+          go->nextGamePhase();
+          return 1;
         }
         for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
           autoaffectDamage(*attacker, step);
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-          (*it)->show = ((*it)->card->has(Constants::DOUBLESTRIKE) || ((*it)->card->has(Constants::FIRSTSTRIKE) ^ (DAMAGE == step))) && (1 < (*it)->blockers.size());
+          (*it)->show = ((*it)->card->has(Constants::DOUBLESTRIKE) || ((*it)->card->has(Constants::FIRSTSTRIKE) ^ (DAMAGE == step))) &&
+            (((*it)->card->has(Constants::TRAMPLE) ? 0 : 1) < (*it)->blockers.size()
+             );
         repos<AttackerDamaged>(attackers.begin(), attackers.end(), 0);
         active = NULL;
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it) if ((*it)->show) { active = *it; break; }
