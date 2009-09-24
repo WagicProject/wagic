@@ -329,7 +329,7 @@ toughness=1
 [card]
 text=Return target nonland permanent or suspended card to its owner's hand.
 target=*[-land]
-alias=1229
+auto=moveTo(ownerhand)
 id=136197
 name=Venser's Diffusion
 rarity=C
