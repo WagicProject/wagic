@@ -746,6 +746,19 @@ toughness=6
 abilities=defender
 [/card]
 [card]
+text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
+target=enchantment|mygraveyard
+auto=moveTo(myhand)
+id=5706
+name=Monk Idealist
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=2
+toughness=2
+[/card]
+[card]
 text={U}: Untap Morphling.   {U}: Morphling gains flying until end of turn.   {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.   {1}: Morphling gets -1/+1 until end of turn.
 id=5863
 name=Morphling
@@ -1118,6 +1131,19 @@ auto=damage:2 all(creature,player)
 rarity=U
 type=Sorcery
 mana={2}{R}
+[/card]
+[card]
+text=When Stern Proctor enters the battlefield, return target artifact or enchantment to its owner's hand.
+target=enchantment,artifact
+auto=moveTo(ownerhand)
+id=5661
+name=Stern Proctor
+rarity=U
+mana={U}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
 [/card]
 [card]
 text=Target player draws X cards.

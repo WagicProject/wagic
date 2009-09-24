@@ -960,18 +960,7 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
-auto=moveTo(myhand) target(enchantment|mygraveyard)
-id=5706
-name=Monk Idealist
-rarity=U
-mana={2}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=2
-toughness=2
-[/card]
+
 [card]
 text=When Monk Realist comes into play, destroy target enchantment.
 auto=may destroy target(enchantment)
@@ -1665,18 +1654,7 @@ type=Enchantment
 mana={G}
 subtype=Aura
 [/card]
-[card]
-text=When Stern Proctor enters the battlefield, return target artifact or enchantment to its owner's hand.
-auto=moveTo(ownerhand) target(enchantment,artifact)
-id=5661
-name=Stern Proctor
-rarity=U
-mana={U}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
-[/card]
+
 [card]
 text=If a red spell would deal damage to a creature or player, it deals that much damage plus 1 to that creature or player instead.
 id=5638

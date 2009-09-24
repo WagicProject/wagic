@@ -488,6 +488,19 @@ subtype=Spirit Avatar
 toughness=4
 [/card]
 [card]
+text=When Noggle Bridgebreaker comes into play, return a land you control to its owner's hand.
+id=158899
+name=Noggle Bridgebreaker
+target=land|myinplay
+auto=moveTo(ownerhand)
+rarity=C
+type=Creature
+mana={2}{UR}{UR}
+power=4
+subtype=Noggle Rogue
+toughness=3
+[/card]
+[card]
 text=When Noggle Ransacker comes into play, each player draws two cards, then discards a card at random.
 id=152032
 auto=draw:2 controller
