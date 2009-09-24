@@ -222,11 +222,6 @@ void GameStateDeckViewer::Update(float dt)
         }
         mStage = STAGE_WAITING;
       }
-      //They cancelled, so dump them back to where they were.
-      else {
-        updateDecks();
-        mStage = STAGE_WELCOME;
-      }
       newDeckname = "";
     }
     //Prevent screen from updating.
@@ -737,18 +732,6 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
       case 10:
         if (controlId == -1){
           mParent->SetNextState(GAME_STATE_MENU);
-          break;
-        }
-        else if(controlId == nbDecks+1){
-          char buf[512];
-          deckNum = controlId;
-          sprintf(buf,"deck%i",deckNum);
-          options.keypadStart(buf,&newDeckname);
-          options.keypadTitle("Deck name"); 
-          loadDeck(controlId);
-          deckNum = controlId; 
-          //Doesn't fallthrough to deck editing.
-          //Only change states when keypad finished.
           break;
         }
         loadDeck(controlId);
