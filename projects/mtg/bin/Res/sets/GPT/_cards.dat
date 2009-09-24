@@ -89,16 +89,6 @@ toughness=1
 abilities=flying,cantblock
 [/card]
 [card]
-text=({WB} can be paid with either White or Black.)   At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
-auto=@each my upkeep:may moveTo(myBattlefield) target(creature|graveyard)
-id=97193
-name=Debtors' Knell
-color=White,Black
-rarity=R
-mana={4}{BW}{BW}{BW}
-type=Enchantment
-[/card]
-[card]
 text=Douse in Gloom deals 2 damage to target creature and you gain 2 life.
 target=creature
 auto=Damage:2

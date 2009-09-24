@@ -253,12 +253,14 @@ text=Flying Daggerclaw Imp can't block.
 rarity=U
 [/card]
 [card]
+text=({WB} can be paid with either White or Black.)   At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
+auto=@each my upkeep:moveTo(myBattlefield) target(creature|graveyard)
 id=97193
 name=Debtors' Knell
-mana={4}{(}{W}{/}{B}{)}{(}{W}{/}{B}{)}{(}{W}{/}{B}{)}
-type=Enchantment
-text=({(w/b)} can be paid with either {W} or {B}.) At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
+color=White,Black
 rarity=R
+mana={4}{BW}{BW}{BW}
+type=Enchantment
 [/card]
 [card]
 id=97197

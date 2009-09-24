@@ -98,8 +98,9 @@ type=Creature
 subtype=Zombie Bird
 power=3
 toughness=2
-text=Flying When Aphetto Vulture is put into a graveyard from play, you may put target Zombie card from your graveyard on top of your library.
-auto=@movedTo(this|graveyard):may moveto(mylibrary) target(zombie|mygraveyard)
+text=Flying. When Aphetto Vulture is put into a graveyard from play, you may put target Zombie card from your graveyard on top of your library.
+auto=@movedTo(this|graveyard) from(inplay):may moveto(mylibrary) target(zombie|mygraveyard) ##don't understand why this doesnt work...
+abilities=flying
 rarity=U
 [/card]
 [card]
