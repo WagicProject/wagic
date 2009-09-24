@@ -1,0 +1,19 @@
+# testing target=creature[anything]
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Ogre Gatecrasher
+manapool:{3}{R}
+[PLAYER2]
+inplay:Angelic Wall
+[DO]
+Ogre Gatecrasher
+Angelic Wall
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Ogre Gatecrasher
+[PLAYER2]
+graveyard:Angelic Wall
+life:20
+[END]
