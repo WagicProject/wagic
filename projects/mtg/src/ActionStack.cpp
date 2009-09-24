@@ -452,17 +452,7 @@ int ActionStack::resolve(){
     action->state = RESOLVED_NOK;
   }
   if (action->type == ACTION_DAMAGE) ((Damage * )action)->target->afterDamage();
-/*
-  if (action->type == ACTION_DAMAGES){
-    DamageStack * ds = (DamageStack *) action;
-    for (int i = 0; i < ds->mCount; i++){
-      Damage * damage = ((Damage *) ds->mObjects[i]);
-      damage->state = ds->state;
-    }
-    unpackDamageStack(ds);
-    ds->mCount = 0;
-  }
-*/
+
   if (!getNext(NULL,NOT_RESOLVED)){
     for (int i = 0; i< 2 ; i++){
       interruptDecision[i] = 0;
@@ -537,52 +527,6 @@ Interruptible * ActionStack::getLatest(int state){
   return NULL;
 }
 
-/*
-void ActionStack::unpackDamageStack(DamageStack * ds){
-  for (int j = 0; j < ds->mCount; j++){
-    Damage * damage = ((Damage *)ds->mObjects[j]);
-    Add(damage);
-  }
-}
-
-void ActionStack::unpackDamageStacks(){
-  for (int i = mCount-1; i >=0; i--){
-    Interruptible * action = ((Interruptible *)mObjects[i]);
-    if (action->type == ACTION_DAMAGES){
-      DamageStack * ds = (DamageStack *) action;
-      unpackDamageStack(ds);
-    }
-  }
-}
-
-void ActionStack::repackDamageStacks(){
-  std::vector<JGuiObject *>::iterator iter = mObjects.begin() ;
-
-  while( iter != mObjects.end() ){
-    Interruptible * action = ((Interruptible *) *iter);
-    int found = 0;
-    if (action->type == ACTION_DAMAGE){
-      Damage * damage = (Damage *) action;
-      for (int j = 0; j < mCount; j++){
-        Interruptible * action2 = ((Interruptible *)mObjects[j]);
-        if (action2->type == ACTION_DAMAGES){
-          DamageStack * ds = (DamageStack *) action2;
-          for (int k = 0; k< ds->mCount; k++){
-            Damage * dsdamage = ((Damage *)ds->mObjects[k]);
-            if (dsdamage==damage){
-              //Remove(damage);
-              iter = mObjects.erase( iter ) ;
-              found = 1;
-              mCount--;
-            }
-          }
-        }
-      }
-    }
-    if (!found) ++iter;
-  }
-}
-*/
 void ActionStack::Update(float dt){
   askIfWishesToInterrupt = NULL;
   //modal = 0;

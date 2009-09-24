@@ -135,11 +135,6 @@ class ActionStack :public GuiLayer{
   int mode;
   int checked;
 
-/*
-  void unpackDamageStacks();
-  void unpackDamageStack(DamageStack * ds);
-  void repackDamageStacks();
-*/
  public:
 
    enum{

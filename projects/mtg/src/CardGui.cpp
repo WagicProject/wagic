@@ -238,6 +238,10 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   font->SetScale(backup_scale);
 }
 
+void CardGui::alternateRenderBig(const Pos& pos){
+  alternateRender(card,pos);
+}
+
 void CardGui::RenderBig(const Pos& pos){
   JRenderer * renderer = JRenderer::GetInstance();
 

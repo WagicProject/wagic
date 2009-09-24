@@ -7,6 +7,14 @@
 
 using std::cout;
 
+enum {
+  BIG_MODE_SHOW = 0,
+  BIG_MODE_TEXT = 1,
+  BIG_MODE_HIDE = 2,
+  NB_BIG_MODES = 3
+};
+
+
 struct Left : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
   { return ref->x - test->x > fabs(ref->y - test->y); } };
 struct Right : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
@@ -21,7 +29,7 @@ struct True : public Exp { static inline bool test(CardSelector::Target* ref, Ca
   { return true; } };
 
 template<>
-CardSelector::ObjectSelector(DuelLayers* duel) : active(NULL), showBig(true), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220) {}
+CardSelector::ObjectSelector(DuelLayers* duel) : active(NULL), bigMode(BIG_MODE_SHOW), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220) {}
 
 template<>
 void CardSelector::Add(CardSelector::Target* target)
@@ -132,7 +140,7 @@ bool CardSelector::CheckUserInput(u32 key)
       active = closest<Down>(cards, limitor, active);
       break;
     case PSP_CTRL_TRIANGLE:
-      showBig = !showBig;
+      bigMode = (bigMode+1) % NB_BIG_MODES;
       return true;
     default:
       return false;
@@ -179,9 +187,18 @@ void CardSelector::Render()
   if (active)
     {
       active->Render();
-      if (CardView* c = dynamic_cast<CardView*>(active))
-	if (showBig)
-	  c->RenderBig(bigpos);
+      if (CardView* c = dynamic_cast<CardView*>(active)){
+        switch(bigMode){
+        case BIG_MODE_SHOW:
+          c->RenderBig(bigpos);
+          break;
+        case BIG_MODE_TEXT:
+          c->alternateRenderBig(bigpos);
+          break;
+        default:
+          break;
+        }
+      }
     }
 }
 

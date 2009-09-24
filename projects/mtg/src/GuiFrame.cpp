@@ -23,7 +23,7 @@ GuiFrame::GuiFrame()
       GameApp::systemError += "Can't load gold texture : " __FILE__ "\n";
     }
   if (resources.GetTexture("goldglow.png"))
-    goldGlow = resources.RetrieveQuad("goldglow.png", 0, 1, SCREEN_WIDTH, 18);
+    goldGlow = resources.RetrieveQuad("goldglow.png", 1, 1, SCREEN_WIDTH - 2, 18);
   else
     {
       goldGlow = NULL;

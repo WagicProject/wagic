@@ -38,7 +38,7 @@ class ObjectSelector : public GuiLayer
  protected:
  vector<T*> cards;
  T* active;
- bool showBig;
+ int bigMode;
  DuelLayers* duel;
  LimitorFunctor<T>* limitor;
  Pos bigpos;
