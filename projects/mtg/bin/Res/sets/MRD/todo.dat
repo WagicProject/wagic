@@ -1595,18 +1595,7 @@ type=Artifact
 mana={1}
 subtype=Equipment
 [/card]
-[card]
-text=When Viridian Shaman comes into play, destroy target artifact.
-auto=destroy target(artifact) #does not work in 0.8
-id=46119
-name=Viridian Shaman
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
-[/card]
+
 [card]
 text=Equipped creature has trample and can't be blocked by more than one creature.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=46053

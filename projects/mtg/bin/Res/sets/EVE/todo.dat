@@ -593,7 +593,8 @@ mana={2}{W}{W}
 [/card]
 [card]
 text=When Marshdrinker Giant comes into play, destroy target Island or Swamp an opponent controls.
-auto=destroy target(island,swamp|opponentinplay)
+target=island,swamp|opponentinplay
+auto=destroy
 id=142015
 name=Marshdrinker Giant
 rarity=U

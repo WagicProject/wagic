@@ -532,18 +532,7 @@ toughness=1
 text={X}{X}{B}: Destroy target nonblack creature with converted mana cost X.
 rarity=R
 [/card]
-[card]
-text=When Ravenous Baboons comes into play, destroy target nonbasic land.
-id=5207
-name=Ravenous Baboons
-rarity=R
-mana={3}{R}
-type=Creature
-subtype=Ape
-auto=destroy target(land[-basic])
-power=2
-toughness=2
-[/card]
+
 [card]
 id=6037
 name=Reaping the Rewards

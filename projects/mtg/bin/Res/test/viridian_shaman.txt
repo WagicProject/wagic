@@ -1,0 +1,21 @@
+#comes into play, destroy target artifact
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Viridian Shaman
+manapool:{2}{G}
+[PLAYER2]
+inplay:Bottle Gnomes
+[DO]
+Viridian Shaman
+Bottle Gnomes
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Viridian Shaman
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:Bottle Gnomes
+life:20
+[END]

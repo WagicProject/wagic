@@ -1339,3 +1339,16 @@ power=1
 toughness=4
 abilities=vigilance
 [/card]
+[card]
+text=When Viridian Shaman comes into play, destroy target artifact.
+target=artifact
+auto=destroy
+id=46119
+name=Viridian Shaman
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
