@@ -1,0 +1,19 @@
+#comes into play and move target
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Looming Hoverguard
+manapool:{4}{U}{U}
+[PLAYER2]
+inplay:Dragon Engine
+[DO]
+Looming Hoverguard
+Dragon Engine
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Looming Hoverguard
+[PLAYER2]
+library:Dragon Engine
+life:20
+[END]
