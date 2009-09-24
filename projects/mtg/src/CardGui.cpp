@@ -50,20 +50,28 @@ void CardGui::Render()
   TargetChooser * tc = NULL;
   if (game) tc = game->getCurrentTargetChooser();
 
+  bool alternate = true;
   JQuad * quad = resources.RetrieveCard(card,CACHE_THUMB);
-    JQuad* shadow = resources.GetQuad("shadow");
+  if (quad) alternate = false;
+  else quad = alternateThumbQuad(card);
+
+  float cardScale = quad ? 40 / quad->mHeight : 1;
+  float scale = actZ * cardScale;
+
+  JQuad* shadow = resources.GetQuad("shadow");
+  shadow->SetColor(ARGB(static_cast<unsigned char>(actA),128,255,255));
+  renderer->RenderQuad(shadow, actX + (actZ-1)*15, actY + (actZ-1)*15, actT, 28*actZ, 40*actZ); 
+
   if (quad) {
-    const float scale = actZ * 40 / quad->mHeight;
-    renderer->RenderQuad(shadow, actX + (scale-1)*15, actY + (scale-1)*15, actT, 28*scale, 40*scale);
     quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
     renderer->RenderQuad(quad, actX, actY, actT, scale, scale);
   }
-  else {
-    const float scale = actZ;
 
-    shadow->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-    renderer->RenderQuad(shadow, actX + scale*2, actY + scale*2, actT, 28*scale, 40*scale);
+  if (alternate) {
     mFont->SetColor(ARGB(static_cast<unsigned char>(actA), 0, 0, 0));
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * actZ);
+    mFont->DrawString(card->getName().c_str(), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 
     JQuad * icon = NULL;
     if (card->hasSubtype("plains"))
@@ -76,32 +84,30 @@ void CardGui::Render()
       icon = resources.GetQuad("c_red");
     else if (card->hasSubtype("island"))
       icon = resources.GetQuad("c_blue");
-    if (icon) icon->SetHotSpot(16,16);
 
-    JQuad* q = alternateThumbQuad(card);
-    if (q){
-      q->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-      renderer->RenderQuad(q, actX, actY, actT, scale, scale);
+    if (icon){
+      icon->SetHotSpot(16,16);
+      icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255)); 
+      renderer->RenderQuad(icon, actX, actY, 0); 
     }
-
-    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * actZ);
-    mFont->DrawString(card->getName().c_str(), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
-    if (icon) { icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255)); renderer->RenderQuad(icon, actX, actY, 0); }
-    if (tc && !tc->canTarget(card))
-      {
-        shadow->SetColor(ARGB(static_cast<unsigned char>(actA),128,92,92));
-        renderer->RenderQuad(shadow, actX, actY, actT, 28*scale, 40*scale);
-      }
-    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    
   }
 
   if (card->isCreature()){
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
     sprintf(buffer, "%i/%i",card->power,card->life);
-    renderer->FillRect(actX + 2, actY + 30 - 12, 25, 12, ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
+    renderer->FillRect(actX - (12*actZ) , actY + 6* actZ, 25*actZ, 12*actZ, ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
     mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-    mFont->DrawString(buffer, actX + 4, actY + 30 - 10);
+    mFont->SetScale(actZ);
+    mFont->DrawString(buffer, actX - 10*actZ , actY + 8*actZ);
+    mFont->SetScale(1);
+  }
+
+  if (tc && !tc->canTarget(card)) {
+    shadow->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+    renderer->RenderQuad(shadow, actX, actY, actT, 28*actZ + 1, 40*actZ);
+    renderer->RenderQuad(shadow, actX, actY, actT, 28*actZ + 1, 40*actZ); //Rendering it twice because shadow.png stupidly alreay has some transparency
   }
 
   PlayGuiObject::Render();
