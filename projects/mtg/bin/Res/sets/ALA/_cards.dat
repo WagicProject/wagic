@@ -80,7 +80,8 @@ mana={1}{B}{R}
 [/card]
 [card]
 text=When Blister Beetle comes into play, target creature gets -1/-1 until end of turn.
-auto=-1/-1 target(creature)
+target=creature
+auto=-1/-1 ueot
 id=174893
 name=Blister Beetle
 rarity=C
