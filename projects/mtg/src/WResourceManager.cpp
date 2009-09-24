@@ -194,7 +194,7 @@ WResourceManager::~WResourceManager(){
 
 JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
   //Cards are never, ever resource managed, so just check cache.
-  if(!card)
+  if(!card || options[Options::DISABLECARDS].number)
     return NULL;
 
   submode = submode | TEXTURE_SUB_CARD;

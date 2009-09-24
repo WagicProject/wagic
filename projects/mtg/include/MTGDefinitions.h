@@ -114,6 +114,7 @@ class Constants
     MAIN_FONT = 0,
     MENU_FONT = 1,
     MAGIC_FONT = 2,
+    OPTION_FONT = 1,
   };
 
   static char MTGColorChars[];

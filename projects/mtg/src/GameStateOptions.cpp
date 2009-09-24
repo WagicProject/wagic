@@ -46,6 +46,7 @@ void GameStateOptions::Start()
   optionsList->Add(NEW OptionClosedHand(Options::CLOSEDHAND, "Closed hand"));
   optionsList->Add(NEW OptionHandDirection(Options::HANDDIRECTION, "Hand direction"));
   optionsList->Add(NEW OptionInteger(Options::REVERSETRIGGERS, "Reverse left and right triggers"));
+  optionsList->Add(NEW OptionInteger(Options::DISABLECARDS,"Disable card image loading"));
   optionsTabs->Add(optionsList);
 
   optionsList = NEW OptionsList("Profiles");

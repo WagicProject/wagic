@@ -45,7 +45,7 @@ OptionItem::OptionItem( int _id,  string _displayValue) {
 //Option Integer 
 
 void OptionInteger::Render(){
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   if (hasFocus){
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
   }else{
@@ -109,7 +109,7 @@ void OptionSelect::initSelections(){
 }
 
 void OptionSelect::Render(){
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   if (hasFocus){
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
   }else{
@@ -152,7 +152,7 @@ ostream& OptionSelect::toString(ostream& out) const
 //OptionHeader
 
 void OptionHeader::Render(){
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetColor(options[Metrics::OPTION_HEADER_TC].asColor());
  
   JRenderer * renderer = JRenderer::GetInstance();
@@ -161,7 +161,7 @@ void OptionHeader::Render(){
 }
 
 void OptionText::Render(){
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetScale(.8);
   mFont->SetColor(options[Metrics::OPTION_TEXT_TC].asColor());
  
@@ -248,7 +248,7 @@ void OptionProfile::populate(){
 
 void OptionProfile::Render(){ 
   JRenderer * renderer = JRenderer::GetInstance();
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetScale(1);
   int spacing = 2+(int)mFont->GetHeight();
 
@@ -435,7 +435,7 @@ void OptionsList::Render(){
   
   //List is empty.
   if (!nbitems && failMsg != ""){
-    JLBFont * mFont = resources.GetJLBFont("f3");
+    JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
     mFont->SetColor(options[Metrics::MSG_FAIL_TC].asColor(ARGB(255,155,155,155)));
     mFont->DrawString(failMsg.c_str(),SCREEN_WIDTH/2, 40, JGETEXT_RIGHT);
     return;
@@ -636,7 +636,7 @@ void OptionsMenu::Update(float dt){
 OptionsMenu::OptionsMenu(){
   nbitems=0;
   current=0;
-  mFont = resources.GetJLBFont("f3");
+  mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   for(int x=0;x<MAX_OPTION_TABS;x++)
     tabs[x] = NULL;
 }
@@ -720,7 +720,7 @@ void OptionsList::cancelSubmode()
 
 void OptionString::Render(){
 
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   if (hasFocus){
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
   }else{
@@ -834,7 +834,7 @@ void OptionEnum::Render()
 {
   EnumDefinition * def = ourDefined();
 
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   if (hasFocus)
     mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
   else

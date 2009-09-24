@@ -20,6 +20,8 @@ const char * Options::optionNames[] = {
   "displayOSD",
   "closed_hand",
   "hand_direction",
+  "reverse_triggers",
+  "disable_cards",
   "interruptSeconds",
   "interruptMySpells",
   "interruptMyAbilities",
@@ -457,13 +459,20 @@ GameOption& GameSettings::operator[](int optionID){
   }
 
   if(option_name.size() > 2){
-   if(option_name[0] == '_' && option_name[1] == 't')
-    return (*themeOptions)[optionID];
-   else if(option_name[0] == '_' && option_name[1] == 'g')
-    return (*globalOptions)[optionID];
+   if(option_name[0] == '_' && option_name[1] == 't'){
+     if(themeOptions)
+      return (*themeOptions)[optionID];
+    }
+   else if(option_name[0] == '_' && option_name[1] == 'g'){
+    if(globalOptions)
+      return (*globalOptions)[optionID];
+   }
   }
 
-  return (*profileOptions)[optionID];
+  if(profileOptions)
+    return (*profileOptions)[optionID];
+
+  return invalid_option;
 }
 
 
