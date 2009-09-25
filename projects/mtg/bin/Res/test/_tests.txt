@@ -219,6 +219,7 @@ wall_of_diffusion2.txt
 welkin_hawk.txt
 white_knight1.txt
 wrath_of_god.txt
+wrath_of_god2.txt
 zombie_master.txt
 zombify.txt
 ########################
