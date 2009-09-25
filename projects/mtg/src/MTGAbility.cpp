@@ -658,13 +658,14 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
 
   if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a)) {
       int result = badAbilities[abi->ability] ? BAKA_EFFECT_BAD : BAKA_EFFECT_GOOD;
-      return (abi->value <= 0) ? result : -result;
+      return (abi->value > 0) ? result : -result;
     }
   if (ABasicAbilityModifier * abi = dynamic_cast<ABasicAbilityModifier *>(a)){
     int result = (badAbilities[abi->ability]) ? BAKA_EFFECT_BAD : BAKA_EFFECT_GOOD;
-    return (abi->modifier <= 0) ? result : -result;
+    return (abi->modifier > 0) ? result : -result;
   }
-  if (ABasicAbilityAuraModifierUntilEOT * abi = dynamic_cast<ABasicAbilityAuraModifierUntilEOT *>(a)) return abilityEfficiency(abi->ability, p, mode);
+  if (ABasicAbilityAuraModifierUntilEOT * abi = dynamic_cast<ABasicAbilityAuraModifierUntilEOT *>(a)) 
+    return abilityEfficiency(abi->ability, p, mode);
   if (dynamic_cast<AManaProducer*>(a)) return BAKA_EFFECT_GOOD;
   return BAKA_EFFECT_DONTKNOW;
 }

@@ -1,0 +1,16 @@
+#Bug:ai casts fear on opponent's creature
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,8333,8330
+hand:fear
+[PLAYER2]
+inplay:lord of atlantis
+[DO]
+ai
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+[PLAYER2]
+[END]
