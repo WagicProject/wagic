@@ -329,7 +329,7 @@ mana={3}{R}
 [/card]
 [card]
 text=Whenever you play a black spell, Emberstrike Duo gets +1/+1 until end of turn.     Whenever you play a red spell, Emberstrike Duo gains first strike until end of turn.
-auto=@movedTo(*[red]|mystack):1/1 ueot
+auto=@movedTo(*[black]|mystack):1/1 ueot
 auto=@movedTo(*[red]|mystack):first strike ueot
 id=153307
 name=Emberstrike Duo
