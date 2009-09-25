@@ -42,17 +42,7 @@ toughness=3
 text=At the beginning of your upkeep, each opponent loses 1 life. You gain life equal to the life lost this way.
 rarity=U
 [/card]
-[card]
-id=83869
-name=Angel of Despair
-mana={3}{W}{W}{B}{B}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-text=Flying When Angel of Despair enters the battlefield, destroy target permanent.
-rarity=R
-[/card]
+
 [card]
 id=96964
 name=Battering Wurm
@@ -664,17 +654,7 @@ type=Land
 text=Izzet Boilerworks enters the battlefield tapped. When Izzet Boilerworks enters the battlefield, return a land you control to its owner's hand. {T}: Add {U}{R} to your mana pool.
 rarity=C
 [/card]
-[card]
-id=97202
-name=Izzet Chronarch
-mana={3}{U}{R}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=When Izzet Chronarch enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
-rarity=C
-[/card]
+
 [card]
 id=96966
 name=Izzet Guildmage
@@ -994,17 +974,7 @@ toughness=1
 text={B}, Sacrifice a creature: Target creature gets -1/-1 until end of turn.
 rarity=U
 [/card]
-[card]
-id=107099
-name=Poisonbelly Ogre
-mana={4}{B}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=3
-text=Whenever another creature enters the battlefield, its controller loses 1 life.
-rarity=C
-[/card]
+
 [card]
 id=96931
 name=Predatory Focus
@@ -1262,17 +1232,7 @@ toughness=3
 text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.) {1}, Sacrifice Skarrgan Skybreaker: Skarrgan Skybreaker deals damage equal to its power to target creature or player.
 rarity=U
 [/card]
-[card]
-id=96899
-name=Skeletal Vampire
-mana={4}{B}{B}
-type=Creature
-subtype=Vampire Skeleton
-power=3
-toughness=3
-text=Flying When Skeletal Vampire enters the battlefield, put two 1/1 black Bat creature tokens with flying onto the battlefield. {3}{B}{B}, Sacrifice a Bat: Put two 1/1 black Bat creature tokens with flying onto the battlefield. Sacrifice a Bat: Regenerate Skeletal Vampire.
-rarity=R
-[/card]
+
 [card]
 id=96835
 name=Sky Swallower

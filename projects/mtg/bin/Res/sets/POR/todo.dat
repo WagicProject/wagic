@@ -241,19 +241,7 @@ rarity=R
 type=Sorcery
 mana={R}{R}
 [/card]
-[card]
-text=When Man-o'-War comes into play, return target creature to its owner's hand.
-alias=1229
-id=4266
-target=creature
-name=Man-o'-War
-mana={2}{U}
-rarity=U
-type=Creature
-subtype=Jellyfish
-power=2
-toughness=2
-[/card]
+
 [card]
 text=When Mercenary Knight comes into play, sacrifice it unless you discard a creature card.
 id=4228

@@ -759,6 +759,20 @@ power=2
 toughness=2
 [/card]
 [card]
+text=When Monk Realist comes into play, destroy target enchantment.
+target=enchantment
+auto=destroy
+id=5708
+name=Monk Realist
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=1
+toughness=1
+[/card]
+[card]
 text={U}: Untap Morphling.   {U}: Morphling gains flying until end of turn.   {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.   {1}: Morphling gets -1/+1 until end of turn.
 id=5863
 name=Morphling

@@ -818,6 +818,19 @@ power=4
 toughness=2
 [/card]
 [card]
+text=When Man-o'-War comes into play, return target creature to its owner's hand.
+id=4266
+target=creature
+auto=moveTo(ownerhand)
+name=Man-o'-War
+mana={2}{U}
+rarity=U
+type=Creature
+subtype=Jellyfish
+power=2
+toughness=2
+[/card]
+[card]
 id=4267
 name=Merfolk of the Pearl Trident
 rarity=C

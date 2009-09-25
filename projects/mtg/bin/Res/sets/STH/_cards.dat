@@ -545,7 +545,7 @@ type=Enchantment
 [/card]
 [card]
 text=When Venerable Monk enters the battlefield, you gain 2 life.
-auto=life:2
+auto=life:2 controller
 id=5258
 name=Venerable Monk
 color=White
@@ -584,7 +584,7 @@ text=Defender   When Wall of Blossoms enters the battlefield, draw a card.
 id=5265
 auto=draw:1 controller
 name=Wall of Blossoms
-colour=Green
+color=Green
 rarity=U
 mana={1}{G}
 type=Creature

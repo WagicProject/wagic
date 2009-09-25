@@ -1060,6 +1060,19 @@ mana={1}{W}
 subtype=Aura
 [/card]
 [card]
+text=When Quirion Trailblazer comes into play, you may search your library for a basic land card and put that card into play tapped. If you do, shuffle your library.
+id=23110
+target=land[basic]
+auto=moveTo(myinplay) && tap
+name=Quirion Trailblazer
+rarity=C
+type=Creature
+mana={3}{G}
+power=1
+subtype=Elf Scout
+toughness=2
+[/card]
+[card]
 text={2}: Target black or green creature gains haste until end of turn. (It can attack and {T} this turn.)
 id=23081
 name=Rage Weaver

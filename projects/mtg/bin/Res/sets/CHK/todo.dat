@@ -2186,14 +2186,3 @@ toughness=5
 text=Flying When Yosei, the Morning Star is put into a graveyard from play, target player skips his or her next untap step. Tap up to five target permanents that player controls.
 rarity=R
 [/card]
-[card]
-id=80274
-name=Zo-Zu the Punisher
-mana={1}{R}{R}
-type=Legendary Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
-text=Whenever a land comes into play, Zo-Zu the Punisher deals 2 damage to that land's controller.
-rarity=R
-[/card]

@@ -961,19 +961,7 @@ type=Artifact
 mana={5}
 [/card]
 
-[card]
-text=When Monk Realist comes into play, destroy target enchantment.
-auto=may destroy target(enchantment)
-id=5708
-name=Monk Realist
-color=White
-rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=1
-toughness=1
-[/card]
+
 [card]
 text=Sacrifice No Rest for the Wicked: Return to your hand all creature cards that were put into your graveyard from play this turn.
 id=8802

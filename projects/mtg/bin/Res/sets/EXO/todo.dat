@@ -752,18 +752,7 @@ toughness=7
 text=Defender (This creature can't attack.) At end of combat, remove from the game all creatures blocked by Wall of Nets. When Wall of Nets leaves play, return to play under their owners' control all creatures removed from the game with Wall of Nets.
 rarity=R
 [/card]
-[card]
-text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-auto=moveTo(mybattlefield) target(forest|myLibrary)
-id=6135
-name=Wood Elves
-rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=1
-[/card]
+
 [card]
 id=6156
 name=Workhorse

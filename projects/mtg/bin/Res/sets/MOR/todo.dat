@@ -689,17 +689,7 @@ toughness=3
 text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 rarity=U
 [/card]
-[card]
-id=152699
-name=Merrow Witsniper
-mana={U}
-type=Creature
-subtype=Merfolk Rogue
-power=1
-toughness=1
-text=When Merrow Witsniper enters the battlefield, target player puts the top card of his or her library into his or her graveyard.
-rarity=C
-[/card]
+
 [card]
 id=157422
 name=Mind Shatter

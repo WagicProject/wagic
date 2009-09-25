@@ -991,21 +991,7 @@ power=0
 subtype=Golem
 toughness=6
 [/card]
-[card]
-text=Flying      When Keening Banshee comes into play, target creature gets -2/-2 until end of turn.
-id=83599
-name=Keening Banshee
-target=creature
-auto=-2/-2
-rarity=C
-color=Black
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-abilities=flying
-[/card]
+
 [card]
 text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
 id=89008

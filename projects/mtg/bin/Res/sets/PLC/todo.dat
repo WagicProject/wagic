@@ -1320,17 +1320,7 @@ toughness=6
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
 rarity=U
 [/card]
-[card]
-id=122477
-name=Whitemane Lion
-mana={1}{W}
-type=Creature
-subtype=Cat
-power=2
-toughness=2
-text=Flash (You may cast this spell any time you could cast an instant.) When Whitemane Lion enters the battlefield, return a creature you control to its owner's hand.
-rarity=C
-[/card]
+
 [card]
 id=122468
 name=Wild Pair

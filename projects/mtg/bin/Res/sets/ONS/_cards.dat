@@ -248,6 +248,19 @@ toughness=2
 rarity=C
 [/card]
 [card]
+id=12463
+name=Elvish Pioneer
+mana={G}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=1
+text=When Elvish Pioneer comes into play, you may put a basic land card from your hand into play tapped.
+target=land[basic]|myhand
+auto=moveTo(myinplay) && tap
+rarity=C
+[/card]
+[card]
 text={G}, {T}, Sacrifice Elvish Scrapper: Destroy target artifact.
 id=13778
 name=Elvish Scrapper
@@ -1028,6 +1041,18 @@ auto=foreach(elf) 1/1
 rarity=C
 [/card]
 [card]
+id=39703
+name=Wirewood Savage
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=2
+text=Whenever a Beast comes into play, you may draw a card.
+auto=@movedTo(beast|inplay):may draw:1
+rarity=C
+[/card]
+[card]
 id=39506
 name=Wooded Foothills
 mana=
@@ -1036,7 +1061,6 @@ text={T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Moun
 auto={T}{S}:moveTo(myBattlefield) target(mountain,forest|mylibrary) && life:-1 controller
 rarity=R
 [/card]
-text=Whenever another creature enters the battlefield, you lose 1 life.
 [card]
 id=26689
 name=Wretched Anurid
@@ -1045,6 +1069,7 @@ type=Creature
 subtype=Zombie Frog Beast
 power=3
 toughness=3
+text=Whenever another creature enters the battlefield, you lose 1 life.
 auto=@movedTo(creature|battlefield): life:-1 controller
 rarity=C
 [/card]

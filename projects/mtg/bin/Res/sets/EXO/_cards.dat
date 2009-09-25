@@ -546,8 +546,8 @@ id=6121
 name=Spellshock
 mana={2}{R}
 type=Enchantment
-auto=@movedTo(*[-land]|mystack):damage:2 controller
-auto=@movedTo(*[-land]|opponentstack):damage:2 opponent
+auto=@movedTo(*|mystack):damage:2 controller
+auto=@movedTo(*|opponentstack):damage:2 opponent
 text=Whenever a player plays a spell, Spellshock deals 2 damage to that player.
 rarity=U
 [/card]
@@ -675,4 +675,17 @@ subtype=Frog
 auto={U}:flying
 power=1
 toughness=3
+[/card]
+[card]
+text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
+target=forest|myLibrary
+auto=moveTo(mybattlefield) 
+id=6135
+name=Wood Elves
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Elf Scout
+power=1
+toughness=1
 [/card]

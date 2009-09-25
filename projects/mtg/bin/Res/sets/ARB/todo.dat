@@ -707,17 +707,7 @@ toughness=7
 text=Whenever Nemesis of Reason attacks, defending player puts the top ten cards of his or her library into his or her graveyard.
 rarity=R
 [/card]
-[card]
-id=179580
-name=Nulltread Gargantuan
-mana={1}{G}{U}
-type=Creature
-subtype=Beast
-power=5
-toughness=6
-text=When Nulltread Gargantuan comes into play, put a creature you control on top of its owner's library.
-rarity=U
-[/card]
+
 [card]
 id=183007
 name=Offering to Asha

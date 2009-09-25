@@ -635,17 +635,7 @@ type=Instant
 text=Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
 rarity=U
 [/card]
-[card]
-id=107377
-name=Indrik Stomphowler
-mana={4}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=When Indrik Stomphowler enters the battlefield, destroy target artifact or enchantment.
-rarity=U
-[/card]
+
 [card]
 id=107308
 name=Infernal Tutor
@@ -1539,17 +1529,7 @@ type=Instant
 text=Weight of Spires deals damage to target creature equal to the number of nonbasic lands that creature's controller controls.
 rarity=U
 [/card]
-[card]
-id=97075
-name=Whiptail Moloch
-mana={4}{R}
-type=Creature
-subtype=Lizard
-power=6
-toughness=3
-text=When Whiptail Moloch enters the battlefield, it deals 3 damage to target creature you control.
-rarity=C
-[/card]
+
 [card]
 id=97094
 name=Windreaver

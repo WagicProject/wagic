@@ -445,3 +445,17 @@ mana={B}
 color=Black
 subtype=Aura
 [/card]
+[card]
+id=122477
+name=Whitemane Lion
+mana={1}{W}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+text=Flash (You may cast this spell any time you could cast an instant.) When Whitemane Lion enters the battlefield, return a creature you control to its owner's hand.
+target=creature|myinplay
+auto=moveTo(ownerhand)
+abilities=flash
+rarity=C
+[/card]

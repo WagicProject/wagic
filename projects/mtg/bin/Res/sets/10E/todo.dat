@@ -647,18 +647,7 @@ color=Black
 type=Enchantment
 mana={2}{B}{B}
 [/card]
-[card]
-text=First strike (This creature deals combat damage before creatures without first strike.)  When Nekrataal comes into play, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
-id=129658
-name=Nekrataal
-rarity=U
-color=Black
-type=Creature
-mana={2}{B}{B}
-power=2
-subtype=Human Assassin
-toughness=1
-[/card]
+
 [card]
 text=Sacrifice No Rest for the Wicked: Return to your hand all creature cards that were put into your graveyard from play this turn.
 id=136283

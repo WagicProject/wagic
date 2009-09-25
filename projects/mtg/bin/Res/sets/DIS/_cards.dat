@@ -58,6 +58,19 @@ auto={T}{S}:destroy target(aura)
 rarity=C
 [/card]
 [card]
+id=107377
+name=Indrik Stomphowler
+target=artifact,enchantment
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=When Indrik Stomphowler enters the battlefield, destroy target artifact or enchantment.
+auto=destroy
+rarity=U
+[/card]
+[card]
 id=107260
 name=Mistral Charger
 mana={1}{W}
@@ -286,6 +299,19 @@ text=Defender (This creature can't attack.) Flying {1}{W}: Creatures you control
 abilities=defender,flying
 auto={1}{W}:lord(creature|mybattlefield) -defender
 rarity=R
+[/card]
+[card]
+id=97075
+name=Whiptail Moloch
+mana={4}{R}
+type=Creature
+subtype=Lizard
+power=6
+toughness=3
+text=When Whiptail Moloch enters the battlefield, it deals 3 damage to target creature you control.
+target=creature|myinplay
+auto=damage:3
+rarity=C
 [/card]
 [card]
 id=111202

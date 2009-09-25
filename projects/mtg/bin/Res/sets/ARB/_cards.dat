@@ -250,6 +250,19 @@ text=Remove target creature card in a graveyard from the game, then put X 1/1 gr
 rarity=U
 [/card]
 [card]
+id=179580
+name=Nulltread Gargantuan
+mana={1}{G}{U}
+type=Creature
+subtype=Beast
+text=When Nulltread Gargantuan comes into play, put a creature you control on top of its owner's library.
+target=creature|myinplay
+auto=moveTo(ownerlibrary)
+power=5
+toughness=6
+rarity=U
+[/card]
+[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.
 id=179556
 name=Qasali Pridemage

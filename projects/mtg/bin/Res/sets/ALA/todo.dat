@@ -1295,17 +1295,7 @@ rarity=C
 type=Sorcery
 mana={4}{R}
 [/card]
-[card]
-text=Flying     When Welkin Guide comes into play, target creature gets +2/+2 and gains flying until end of turn.
-id=178096
-name=Welkin Guide
-rarity=C
-type=Creature
-mana={4}{W}
-power=2
-subtype=Bird Cleric
-toughness=2
-[/card]
+
 [card]
 text=Whenever a creature with power 5 or greater comes into play under your control, you may have Where Ancients Tread deal 5 damage to target creature or player.
 id=175115

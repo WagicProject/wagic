@@ -1050,19 +1050,7 @@ power=2
 subtype=Kithkin Cleric
 toughness=2
 [/card]
-[card]
-###THIS CARD IS NOT ABLE TO GIVE +1/+1 TO ITSELF WHEN ENTERING THE BATTLEFIELD FOR NOW! (WAGIC 0.8.1)
-text=When Kinsbaile Skirmisher enters the battlefield, target creature gets +1/+1 until end of turn.
-auto=1/1 target(creature)
-id=143018
-name=Kinsbaile Skirmisher
-rarity=C
-type=Creature
-mana={1}{W}
-power=2
-subtype=Kithkin Soldier
-toughness=2
-[/card]
+
 [card]
 text=Target creature gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)  Draw a card.
 id=143376
@@ -1609,19 +1597,7 @@ power=1
 subtype=Faerie Wizard
 toughness=1
 [/card]
-[card]
-###SEE KITHKIN SKIRMISHER!!!
-text=When Spiderwig Boggart enters the battlefield, target creature gains fear until end of turn.
-auto=fear target(creature)
-id=146445
-name=Spiderwig Boggart
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Goblin Shaman
-toughness=2
-[/card]
+
 [card]
 text=Hideaway (This land comes into play tapped. When it does, look at the top four cards of your library, remove one from the game face down, then put the rest on the bottom of your library.)  {T}: Add {R} to your mana pool.     {R}, {T}: You may play the removed card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
 id=139514

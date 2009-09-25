@@ -372,17 +372,7 @@ toughness=2
 text={R}: Flowstone Shambler gets +1/-1 until end of turn.
 rarity=C
 [/card]
-[card]
-id=5158
-name=Foul Imp
-mana={B}{B}
-type=Creature
-subtype=Imp
-power=2
-toughness=2
-text=Flying When Foul Imp enters the battlefield, you lose 2 life.
-rarity=U
-[/card]
+
 [card]
 id=5160
 name=Furnace Spirit
@@ -849,17 +839,7 @@ type=Sorcery
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Target creature gets +3/+0 until end of turn.
 rarity=C
 [/card]
-[card]
-id=5219
-name=Serpent Warrior
-mana={2}{B}
-type=Creature
-subtype=Snake Warrior
-power=3
-toughness=3
-text=When Serpent Warrior enters the battlefield, you lose 3 life.
-rarity=C
-[/card]
+
 [card]
 id=5220
 name=Shaman en-Kor
@@ -1199,17 +1179,7 @@ type=Enchantment
 text={B}, Discard a creature card: Return target creature card from your graveyard to your hand.
 rarity=C
 [/card]
-[card]
-id=5258
-name=Venerable Monk
-mana={2}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=2
-toughness=2
-text=When Venerable Monk enters the battlefield, you gain 2 life.
-rarity=U
-[/card]
+
 [card]
 id=5259
 name=Verdant Touch
@@ -1275,17 +1245,7 @@ toughness=3
 text=Walking Dream is unblockable.  Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.
 rarity=U
 [/card]
-[card]
-id=5265
-name=Wall of Blossoms
-mana={1}{G}
-type=Creature
-subtype=Plant Wall
-power=0
-toughness=4
-text=Defender (This creature can't attack.) When Wall of Blossoms enters the battlefield, draw a card.
-rarity=U
-[/card]
+
 [card]
 id=5267
 name=Wall of Essence

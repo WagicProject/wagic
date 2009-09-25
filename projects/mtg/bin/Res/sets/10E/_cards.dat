@@ -1624,6 +1624,20 @@ type=Sorcery
 mana={3}{G}{G}
 [/card]
 [card]
+text=First strike (This creature deals combat damage before creatures without first strike.)  When Nekrataal comes into play, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
+id=129658
+name=Nekrataal
+target=creature[-black,-artifact]
+auto=bury
+color=Black
+type=Creature
+mana={2}{B}{B}
+power=2
+subtype=Human Assassin
+toughness=1
+rarity=U
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
 abilities=flying
 id=129659

@@ -1309,17 +1309,7 @@ type=Sorcery
 mana={4}{W}{W}
 [/card]
 
-[card]
-text=When Solemn Simulacrum comes into play, you may search your library for a basic land card and put that card into play tapped. If you do, shuffle your library.     When Solemn Simulacrum is put into a graveyard from play, you may draw a card.
-id=49434
-name=Solemn Simulacrum
-rarity=R
-type=Artifact Creature
-mana={4}
-power=2
-subtype=Golem
-toughness=2
-[/card]
+
 [card]
 text=Affinity for artifacts (This spell costs {1} less to play for each artifact you control.)  Flying
 id=45973

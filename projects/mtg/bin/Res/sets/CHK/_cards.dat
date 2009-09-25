@@ -1065,3 +1065,17 @@ power=1
 subtype=Spirit
 toughness=1
 [/card]
+[card]
+id=80274
+name=Zo-Zu the Punisher
+mana={1}{R}{R}
+type=Legendary Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+text=Whenever a land comes into play, Zo-Zu the Punisher deals 2 damage to that land's controller.
+auto=@movedTo(land|myinplay):damage:2 controller
+auto=@movedTo(land|opponentinplay):damage:2 opponent
+abilities=legendary
+rarity=R
+[/card]

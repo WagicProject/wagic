@@ -751,17 +751,7 @@ subtype=Aura
 text=Enchant land. Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool for each Elf in play (in addition to the mana the land produces).
 rarity=C
 [/card]
-[card]
-id=12463
-name=Elvish Pioneer
-mana={G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-text=When Elvish Pioneer comes into play, you may put a basic land card from your hand into play tapped.
-rarity=C
-[/card]
+
 
 [card]
 id=35514
@@ -2377,17 +2367,7 @@ toughness=1
 text=When Wirewood Herald is put into a graveyard from play, you may search your library for an Elf card, reveal that card, put it into your hand, then shuffle your library.
 rarity=C
 [/card]
-[card]
-id=39703
-name=Wirewood Savage
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
-text=Whenever a Beast comes into play, you may draw a card.
-rarity=C
-[/card]
+
 [card]
 id=41150
 name=Withering Hex

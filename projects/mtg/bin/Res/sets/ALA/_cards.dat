@@ -1272,6 +1272,21 @@ subtype=Bird Soldier
 toughness=4
 [/card]
 [card]
+text=Flying. When Welkin Guide comes into play, target creature gets +2/+2 and gains flying until end of turn.
+id=178096
+target=creature
+auto=2/2 ueot
+auto=flying ueot
+name=Welkin Guide
+rarity=C
+type=Creature
+mana={4}{W}
+power=2
+subtype=Bird Cleric
+toughness=2
+abilities=flying
+[/card]
+[card]
 text=Wild Nacatl gets +1/+1 as long as you control a Mountain.     Wild Nacatl gets +1/+1 as long as you control a Plains.
 auto=aslongas(mountain|myinplay) 1/1
 auto=aslongas(plains|myinplay) 1/1
