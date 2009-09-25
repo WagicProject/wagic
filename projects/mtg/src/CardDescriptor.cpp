@@ -112,21 +112,21 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
 
 
   if (attacker == 1){
-    if ((int)defenser == 1){
+    if (defenser == &AnyCard){
       if (!card->attacker && !card->defenser) match = NULL;
     }else{
       if (!card->attacker) match = NULL;
     }
   }else if (attacker == -1){
-    if ((int)defenser == -1){
+    if (defenser == &NoCard){
       if (card->attacker || card->defenser) match = NULL;
     }else{
       if (card->attacker) match = NULL;
     }
   }else{
-    if ((int)defenser == -1){
+    if (defenser == &NoCard){
       if (card->defenser) match = NULL;
-    }else if ((int)defenser == 1){
+    }else if (defenser == &AnyCard){
       if (!card->defenser) match = NULL;
     }else{
       // we don't care about the attack/blocker state

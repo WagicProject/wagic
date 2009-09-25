@@ -124,9 +124,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           //Blocker
         }else if (attribute.find("blocking") != string::npos){
           if (minus){
-	          cd->defenser = (MTGCardInstance *)-1; //Oh yeah, that's ugly....
+            cd->defenser = & MTGCardInstance::NoCard;
           }else{
-	          cd->defenser = (MTGCardInstance *)1;
+	          cd->defenser = & MTGCardInstance::AnyCard;
           }
         //Tapped, untapped
         }else if (attribute.find("tapped") != string::npos){

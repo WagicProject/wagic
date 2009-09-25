@@ -129,6 +129,10 @@ class MTGCardInstance: public MTGCard, public Damageable {
   JSample * getSample();
 
   ostream& toString(ostream&) const;
+
+  static MTGCardInstance AnyCard;
+  static MTGCardInstance NoCard;
+
 };
 
 ostream& operator<<(ostream&, const MTGCardInstance&);
