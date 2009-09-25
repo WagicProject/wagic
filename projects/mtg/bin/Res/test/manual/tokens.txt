@@ -1,0 +1,20 @@
+#does wrath of god destroy all creature including tokens?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:193751,Wrath of God
+manapool:{3}{R}{R}{2}{W}{W}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+193751
+wrath of god
+human
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:193751,wrath of god
+manapool:{0}
+[PLAYER2]
+graveyard:Grizzly Bears
+[END]

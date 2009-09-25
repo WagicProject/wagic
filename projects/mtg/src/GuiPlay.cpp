@@ -216,7 +216,7 @@ int GuiPlay::receiveEventMinus(WEvent * e)
       if ((game->players[0]->inPlay() == event->from) ||
 	  (game->players[1]->inPlay() == event->from))
 	for (iterator it = cards.begin(); it != cards.end(); ++it)
-	  if (event->card->previous == (*it)->card)
+	  if (event->card->previous == (*it)->card || event->card == (*it)->card )
 	    {
 	      CardView* cv = *it;
 	      cs->Remove(cv);
