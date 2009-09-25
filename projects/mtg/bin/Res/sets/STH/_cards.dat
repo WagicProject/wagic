@@ -1,11 +1,23 @@
 [card]
+text=All Slivers have "{2}, Sacrifice this permanent: This permanent deals 2 damage to target creature or player."
+id=5108
+name=Acidic Sliver
+mana={B}{R}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+auto=lord(sliver) {2}{s}:damage:2 target(creature,player)
+rarity=U
+[/card]
+[card]
 text={1}, Discard a card at random: Put a +1/+1 counter on target creature.
 id=5109
 name=Amok
 color=Red
 rarity=R
 mana={1}{R}
-auto={1}:counter(1/1) target(creature) && discard:1
+auto={1}:counter(1/1,1) target(creature) && discard:1
 type=Enchantment
 [/card]
 [card]
@@ -30,6 +42,15 @@ auto=@each opponent upkeep:discard:1 opponent
 type=Enchantment
 [/card]
 [card]
+id=5115
+name=Bullwhip
+mana={4}
+type=Artifact
+text={2}, {T}: Bullwhip deals 1 damage to target creature. That creature attacks this turn if able.
+auto={2}{T}:mustattack ueot &&  damage:1 target(creature)
+rarity=U
+[/card]
+[card]
 text=Trample   {1}{G}: Regenerate Carnassid. 
 id=5217
 name=Carnassid
@@ -44,7 +65,7 @@ toughness=4
 abilities=trample
 [/card]
 [card]
-text=Flying   Cloud Spirit can block only creatures with flying.
+text=Flying. Cloud Spirit can block only creatures with flying.
 abilities=cloud,flying
 id=5122
 name=Cloud Spirit
@@ -67,7 +88,7 @@ mana={1}{W}{W}
 type=Enchantment
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +1/+3.   {W}: Return Conviction to its owner's hand.
+text=Enchant creature. Enchanted creature gets +1/+3. {W}: Return Conviction to its owner's hand.
 id=5127
 name=Conviction
 color=White
@@ -106,7 +127,7 @@ text=All Slivers have shroud. (They can't be the targets of spells or abilities.
 id=5134
 auto=lord(sliver) shroud
 name=Crystalline Sliver
-colour=White,Blue
+color=White,Blue
 rarity=U
 mana={W}{U}
 type=Creature
@@ -118,7 +139,7 @@ toughness=2
 text={T}: Target creature gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
 id=5135
 name=Dauthi Trapper
-colour=Black
+color=Black
 rarity=U
 mana={2}{B}
 type=Creature
@@ -129,7 +150,7 @@ toughness=1
 [/card]
 [card]
 text=Destroy target tapped creature.
-target=creature(tapped)
+target=creature[tapped]
 auto=destroy
 id=5137
 name=Death Stroke
@@ -139,10 +160,10 @@ mana={B}{B}
 type=Sorcery
 [/card]
 [card]
-text=Flying   {B}: Dungeon Shade gets +1/+1 until end of turn.
+text=Flying. {B}: Dungeon Shade gets +1/+1 until end of turn.
 id=5142
 name=Dungeon Shade
-colour=Black
+color=Black
 rarity=C
 mana={3}{B}
 type=Creature
@@ -163,7 +184,7 @@ mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
-text=Enchant creature   {R}: Enchanted creature gets +1/-1 until end of turn.
+text=Enchant creature. {R}: Enchanted creature gets +1/-1 until end of turn.
 target=creature
 auto={R}:1/-1
 id=5152
@@ -205,7 +226,7 @@ toughness=2
 text=Flying   When Foul Imp enters the battlefield, you lose 2 life.
 id=5158
 name=Foul Imp
-colour=Black
+color=Black
 rarity=C
 mana={B}{B}
 type=Creature
@@ -216,7 +237,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Haste   {R}: Furnace Spirit gets +1/+0 until end of turn.
+text=Haste. {R}: Furnace Spirit gets +1/+0 until end of turn.
 id=5160
 name=Furnace Spirit
 color=Red
@@ -233,7 +254,7 @@ abilities=haste
 text=Islandhome (It can't attack unless defending player controls an Island.)
 id=5163
 name=Hammerhead Shark
-colour=Blue
+color=Blue
 rarity=C
 mana={1}{U}
 type=Creature
@@ -263,8 +284,8 @@ color=Artifact
 rarity=R
 mana={3}
 type=Artifact
-auto=@each movedTo(land|myBattlefield) from(myhand):draw:1 controller
-auto=@each movedTo(land|opponentBattlefield) from(opponenthand):draw:1 opponent
+auto=@movedTo(land|myBattlefield) from(myhand):draw:1 controller
+auto=@movedTo(land|opponentBattlefield) from(opponenthand):draw:1 opponent
 [/card]
 [card]
 text=Creatures don't untap during their controllers' untap steps.   Whenever a creature enters the battlefield, untap all creatures.
@@ -274,8 +295,8 @@ color=Blue
 rarity=R
 mana={2}{U}
 auto=lord(creature) doesnotuntap
-auto=@each movedTo(creature|myBattlefield):untap all(creature)
-auto=@each movedTo(creature|opponentBattlefield):untap all(creature)
+auto=@movedTo(creature|myBattlefield):untap all(creature)
+auto=@movedTo(creature|opponentBattlefield):untap all(creature)
 type=Enchantment
 [/card]
 [card]
@@ -330,7 +351,7 @@ abilities=cantattack,cantblock
 text=Sacrifice Morgue Thrull: Put the top three cards of your library into your graveyard.
 id=5191
 name=Morgue Thrull
-colour=Black
+color=Black
 rarity=U
 mana={2}{B}
 type=Creature
@@ -353,7 +374,7 @@ mana={1}{G}
 text={T}: Target blocking creature gets -1/-1 until end of turn.
 id=5205
 name=Rabid Rats
-colour=Black
+color=Black
 rarity=C
 mana={1}{B}
 type=Creature
@@ -381,7 +402,7 @@ text=Wall creatures can attack as though they didn't have defender.
 id=5212
 auto=lord(wall) -defender
 name=Rolling Stones
-colour=White
+color=White
 rarity=R
 mana={1}{W}
 type=Enchantment
@@ -400,7 +421,7 @@ type=Sorcery
 text=When Serpent Warrior enters the battlefield, you lose 3 life.
 id=5219
 name=Serpent Warrior
-colour=Black
+color=Black
 rarity=C
 mana={2}{B}
 type=Creature
@@ -424,7 +445,7 @@ type=Instant
 text={T}: Target creature with flying gets -1/-1 until end of turn.
 id=5228
 name=Skyshroud Archer
-colour=Green
+color=Green
 rarity=C
 mana={G}
 type=Creature
@@ -437,7 +458,7 @@ toughness=1
 text=Flying,vigilance
 id=5224
 name=Skyshroud Falcon
-colour=White
+color=White
 rarity=C
 mana={1}{W}
 type=Creature
@@ -450,7 +471,7 @@ abilities=flying,vigilance
 text={T}: Add {G} to your mana pool.
 id=5230
 name=Skyshroud Troopers
-colour=Green
+color=Green
 rarity=C
 mana={3}{G}
 type=Creature
@@ -474,6 +495,18 @@ toughness=7
 abilities=legendary
 [/card]
 [card]
+text=Whenever a Sliver becomes blocked, that Sliver gets +1/+1 until end of turn for each creature blocking it.
+id=5190
+name=Spined Sliver
+mana={R}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+auto=lord(sliver) rampage(1/1,1)
+rarity=U
+[/card]
+[card]
 id=5245
 name=Spined Wurm
 color=Green
@@ -485,11 +518,24 @@ power=5
 toughness=4
 [/card]
 [card]
+text=Spitting Hydra enters the battlefield with four +1/+1 counters on it. {1}{R}, Remove a +1/+1 counter from Spitting Hydra: Spitting Hydra deals 1 damage to target creature.
+id=5246
+name=Spitting Hydra
+mana={3}{R}{R}
+type=Creature
+subtype=Hydra
+power=0
+toughness=0
+auto=counter(1/1,4)
+auto={1}{R}:counter(1/1,-1) && damage:1 target(creature)
+rarity=R
+[/card]
+[card]
 text={T}, Sacrifice a creature: Destroy target nonblack creature.
 auto={T}{S(creature|myBattlefield)}:destroy target(creature[-black])
 id=5247
 name=Stronghold Assassin
-colour=Black
+color=Black
 rarity=R
 mana={1}{B}{B}
 type=Creature
@@ -502,7 +548,7 @@ text=Other black creatures get -1/-1.
 auto=lord(creature[black]) -1/-1 other
 id=5249
 name=Stronghold Taskmaster
-colour=Black
+color=Black
 rarity=U
 mana={2}{B}{B}
 type=Creature
@@ -522,7 +568,7 @@ type=Artifact
 abilities=legendary
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets -3/-0.
+text=Enchant creature. Enchanted creature gets -3/-0.
 target=creature
 auto=-3/0
 id=5257
@@ -597,7 +643,7 @@ abilities=defender
 text=Defender, first strike    
 id=5268
 name=Wall of Razors
-colour=R
+color=R
 rarity=U
 mana={1}{R}
 type=Creature
@@ -610,7 +656,7 @@ abilities=defender,first strike
 text=Flying,lifelink
 id=5271
 name=Warrior Angel
-colour=White
+color=White
 rarity=R
 mana={4}{W}{W}
 type=Creature

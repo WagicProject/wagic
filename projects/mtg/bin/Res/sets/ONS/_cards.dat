@@ -1,6 +1,6 @@
 [card]
 text=When Accursed Centaur enters the battlefield, sacrifice a creature.
-target=creature(myBattlefield)
+target=creature[myBattlefield]
 auto=destroy
 id=26715
 name=Accursed Centaur

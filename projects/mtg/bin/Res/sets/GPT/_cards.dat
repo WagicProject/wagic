@@ -54,7 +54,7 @@ type=Sorcery
 [/card]
 [card]
 text=Target creature with flying loses flying until end of turn. Crash Landing deals damage to that creature equal to the number of Forests you control.
-target=creature(flying)
+target=creature[flying]
 auto=-flying
 auto=foreach(forest|myinplay) damage:1
 id=96918

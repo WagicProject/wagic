@@ -396,6 +396,20 @@ toughness=1
 rarity=C
 [/card]
 [card]
+text=Ember Beast can't attack or block alone.
+id=29752
+name=Ember Beast
+rarity=C
+type=Creature
+mana={2}{R}
+power=3
+subtype=Beast
+toughness=4
+auto=aslongas(creature[attacking|myBattlefield) -cantattack
+auto=aslongas(creature[blocking|myBattlefield) -cantblock
+abilities=cantattack,cantblock
+[/card]
+[card]
 text=Search your library for a card and put that card into your graveyard. Then shuffle your library.
 target=*|myLibrary
 auto=moveTo(myGraveyard)

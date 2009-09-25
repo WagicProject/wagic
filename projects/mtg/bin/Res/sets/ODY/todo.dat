@@ -676,17 +676,7 @@ rarity=C
 type=Instant
 mana={2}{G}{G}
 [/card]
-[card]
-text=Ember Beast can't attack or block alone.
-id=29752
-name=Ember Beast
-rarity=C
-type=Creature
-mana={2}{R}
-power=3
-subtype=Beast
-toughness=4
-[/card]
+
 [card]
 text=Prevent the next 4 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.       Flashback {1}{W} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=29703
