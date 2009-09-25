@@ -131,6 +131,7 @@ kird_ape.txt
 kraken_eye.txt
 kraken_eye2.txt
 kraken_eye3.txt
+kraken_eye4.txt
 kudzu.txt
 kudzu2.txt
 leveler.txt

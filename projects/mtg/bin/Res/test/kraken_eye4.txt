@@ -1,0 +1,33 @@
+#Bug: http://code.google.com/p/wagic/issues/detail?id=48
+#Kraken eye adds items to the menu
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:kraken's eye,island
+hand:air elemental,unsummon
+manapool:{3}{U}{U}
+[PLAYER2]
+[DO]
+air elemental
+choice 0
+next
+#begin
+next
+#attack
+next
+#end
+next
+#secondmain
+island
+unsummon
+air elemental
+choice 1
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:kraken's eye,island
+hand:air elemental
+graveyard:unsummon
+life:21
+[PLAYER2]
+[END]

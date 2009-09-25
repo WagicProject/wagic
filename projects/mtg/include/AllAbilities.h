@@ -135,6 +135,7 @@ public:
     mClone = NULL;
   }
 
+
   void Update(float dt){
     MTGAbility::Update(dt);
     if (!triggered){
@@ -150,15 +151,12 @@ public:
   }
 
   int testDestroy(){
-    if (triggered){
-      if (game->mLayers->actionLayer()->menuObject) return 0;
-      if (game->mLayers->actionLayer()->getIndexOf(mClone) !=-1) return 0;
-      if (game->mLayers->actionLayer()->getIndexOf(this) !=-1) return 0;
-      OutputDebugString("Destroy!\n");
-      return 1;
-    }
-    
-    return 0;
+    if (!triggered) return 0;
+    if (game->mLayers->actionLayer()->menuObject) return 0;
+    if (game->mLayers->actionLayer()->getIndexOf(mClone) !=-1) return 0;
+    //if (game->mLayers->actionLayer()->getIndexOf(this) !=-1) return 0;
+    OutputDebugString("Destroy!\n");
+    return 1;
   }
 
   int isReactingToTargetClick(Targetable * card){
