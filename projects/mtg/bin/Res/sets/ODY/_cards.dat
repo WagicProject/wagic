@@ -405,8 +405,8 @@ mana={2}{R}
 power=3
 subtype=Beast
 toughness=4
-auto=aslongas(creature[attacking|myBattlefield) -cantattack
-auto=aslongas(creature[blocking|myBattlefield) -cantblock
+auto=aslongas(creature[attacking]|myBattlefield) -cantattack
+auto=aslongas(creature[blocking]|myBattlefield) -cantblock
 abilities=cantattack,cantblock
 [/card]
 [card]
