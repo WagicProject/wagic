@@ -16,7 +16,6 @@ const char * Options::optionNames[] = {
   "musicVolume",
   "sfxVolume",
   "difficulty",
-  "plasmaEffect",
   "displayOSD",
   "closed_hand",
   "hand_direction",
