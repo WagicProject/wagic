@@ -527,23 +527,6 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control.   {1}, Remove a +1/+1 counter from Ulasht: Choose one - Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
-id=97212
-name=Ulasht the Hate Seed
-color=Red,Green
-rarity=R
-mana={2}{R}{G}
-type=Creature
-subtype=Hellion Hydra
-auto=foreach(other creature[red]|myBattlefield) counter(1/1,1)
-auto=foreach(other creature[green]|myBattlefield) counter(1/1,1)
-auto={1}:counter(1/1,-1) && damage:1 target(creature)
-auto={1}:token(Saproling,creature saproling,1/1,green) && counter(1/1,-1)
-power=0
-toughness=0
-abilities=legendary
-[/card]
-[card]
 text=Flying. Whenever you cast an instant or sorcery spell, Wee Dragonauts gets +2/+0 until end of turn.
 id=96903
 name=Wee Dragonauts

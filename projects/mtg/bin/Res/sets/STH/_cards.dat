@@ -518,19 +518,6 @@ power=5
 toughness=4
 [/card]
 [card]
-text=Spitting Hydra enters the battlefield with four +1/+1 counters on it. {1}{R}, Remove a +1/+1 counter from Spitting Hydra: Spitting Hydra deals 1 damage to target creature.
-id=5246
-name=Spitting Hydra
-mana={3}{R}{R}
-type=Creature
-subtype=Hydra
-power=0
-toughness=0
-auto=counter(1/1,4)
-auto={1}{R}:counter(1/1,-1) && damage:1 target(creature)
-rarity=R
-[/card]
-[card]
 text={T}, Sacrifice a creature: Destroy target nonblack creature.
 auto={T}{S(creature|myBattlefield)}:destroy target(creature[-black])
 id=5247
