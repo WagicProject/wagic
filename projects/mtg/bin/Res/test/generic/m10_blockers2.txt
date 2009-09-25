@@ -17,6 +17,8 @@ next
 dragon engine
 Drudge Skeletons
 next
+#combat damage -> Gui
+next
 #combat damage
 next
 #combat end

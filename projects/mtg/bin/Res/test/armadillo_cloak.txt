@@ -19,9 +19,11 @@ next
 #blockers
 grizzly bears
 next
-#combat damage
+#combat damage ->Guicombat
 next
-combat end
+#combat damage assigned
+next
+#combat end
 [ASSERT]
 COMBATEND
 [PLAYER1]
@@ -29,5 +31,5 @@ inplay:Wildslayer Elves,Armadillo Cloak
 life:25
 [PLAYER2]
 graveyard:grizzly bears
-life:20
+life:17
 [END]

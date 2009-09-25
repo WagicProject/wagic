@@ -81,8 +81,8 @@ void GuiCombat::validateDamage()
 {
   switch (step)
     {
-    case FIRST_STRIKE : resolve(); go->nextCombatStep(); break;
-    case DAMAGE       : resolve(); go->nextGamePhase(); break;
+    case FIRST_STRIKE : go->nextCombatStep(); break;
+    case DAMAGE       : go->nextGamePhase(); break;
     default: cout << "COMBAT : Cannot validate damage in this phase" << endl; break;
     }
 }
@@ -121,6 +121,7 @@ void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep step)
 }
 
 bool GuiCombat::clickOK(){
+  cursor_pos = NONE;
   switch (step)
     {
     case BLOCKERS         : assert(false); return false; // that should not happen
