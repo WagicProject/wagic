@@ -227,30 +227,30 @@ toughness=2
 [/card]
 [card]
 id=152659
-Name=Shinewend
-Mana={1}{W}
-Type=Creature
+name=Shinewend
+mana={1}{W}
+type=Creature
 subtype=Elemental
-Text=Flying. Shinewend enters the battlefield with a +1/+1 counter on it. {1}{W}, Remove a +1/+1 counter from Shinewend: Destroy target enchantment.
+text=Flying. Shinewend enters the battlefield with a +1/+1 counter on it. {1}{W}, Remove a +1/+1 counter from Shinewend: Destroy target enchantment.
 auto=counter(1/1,1)
 auto={1}{W}:counter(1/1,-1) && destroy target(enchantment)
 abilities=flying
-Power=0
+power=0
 toughness=0
-Rarity=C
+rarity=C
 [/card]
 [card]
 id=152704
-Name=Stingmoggie
-Mana={3}{R}
-Type=Creature
+name=Stingmoggie
+mana={3}{R}
+type=Creature
 subtype=Elemental
-Text=Stingmoggie enters the battlefield with two +1/+1 counters on it. {3}{R}, Remove a +1/+1 counter from Stingmoggie: Destroy target artifact or land.
+text=Stingmoggie enters the battlefield with two +1/+1 counters on it. {3}{R}, Remove a +1/+1 counter from Stingmoggie: Destroy target artifact or land.
 auto=counter(1/1,2)
 auto={1}{W}:counter(1/1,-1) && destroy target(artifact,land)
-Power=0
+power=0
 toughness=0
-Rarity=C
+rarity=C
 [/card]
 [card]
 text=Vengeful Firebrand has haste as long as a Warrior card is in your graveyard. R: Vengeful Firebrand gets +1/+0 until end of turn.
