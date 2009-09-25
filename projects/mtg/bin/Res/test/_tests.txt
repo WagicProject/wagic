@@ -198,6 +198,7 @@ sleeper_agent.txt
 soulblast.txt
 sphinx_summoner.txt
 spitting_earth.txt
+#spitting_hydra.txt #bug with taking away counter
 spark_elemental.txt
 spirit_link.txt
 spoils_of_evil.txt

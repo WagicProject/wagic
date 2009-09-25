@@ -114,16 +114,6 @@ power=2
 toughness=1
 [/card]
 [card]
-text=Each land gets +2/+2 as long as it's a creature.
-auto=lord(land) 2/2
-id=97238
-name=Earth Surge
-color=Green
-rarity=R
-mana={3}{G}
-type=Enchantment
-[/card]
-[card]
 text=Counter target nonblue spell.
 id=96890
 target=*[-blue]|stack
@@ -141,7 +131,7 @@ color=Blue,Red
 rarity=U
 mana={1}{U}{R}
 type=Creature
-subytpe=Weird
+subtype=Weird
 auto={T}:damage:1 target(creature,player)
 auto=@movedTo(instant,sorcery|mystack):may untap
 power=0
@@ -151,7 +141,7 @@ toughness=1
 text=First Strike   {3}{G}: Ghor-Clan Bloodscale gets +2/+2 until end of turn. Play this ability only once each turn.
 id=96834
 name=Ghor-Clan Bloodscale
-colour=Red
+color=Red
 rarity=U
 mana={3}{R}
 type=Creature
@@ -178,7 +168,7 @@ toughness=1
 text=Trample, haste, shroud
 id=106576
 name=Giant Solifuge
-colour=Red,Green
+color=Red,Green
 rarity=R
 mana={2}{RG}{RG}
 type=Creature
@@ -191,13 +181,13 @@ abilities=trample,haste,shroud
 text={3}{R}, Sacrifice a land: Gruul Guildmage deals 2 damage to target player.   {3}{G}: Target creature gets +2/+2 until end of turn.
 id=96837
 name=Gruul Guildmage
-colour=Red,Green
+color=Red,Green
 rarity=U
 mana={RG}{RG}
 type=Creature
 subtype=Human Shaman
-auto={3}{R}{S(land|myBattlefield)}:Damage:2 target(creature,player)
-auto={3}{G}:2/2 target(creature,player)
+auto={3}{R}{S(land|myBattlefield)}:Damage:2 target(player)
+auto={3}{G}:2/2 target(creature)
 power=2
 toughness=2
 [/card]
@@ -298,7 +288,7 @@ abilities=flying,lifelink
 text=({WB} can be paid with either {W} or {B}.)   {2}{W}: Target player gains 1 life.     {2}{B}: Each player loses 1 life.
 id=96921
 name=Orzhov Guildmage
-colour=White,Black
+color=White,Black
 rarity=U
 mana={WB}{WB}
 type=Creature
@@ -424,7 +414,7 @@ toughness=1
 [card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)      Enchanted creature has first strike.      {1}{B}: Enchanted creature gets +2/+2 until end of turn.
 target=creature
-auto={1}{B}:1/2
+auto={1}{B}:2/2
 auto=first strike
 id=96944
 name=Shadow Lance
@@ -433,6 +423,16 @@ rarity=U
 mana={W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text={T}: Add {1} to your mana pool. {R}{G}, {T}: Target creature gets +1/+1 and gains trample until end of turn.
+id=96970
+name=Skarrg, the Rage Pits
+mana=
+type=Land
+auto={T}:add{1}
+auto={R}{G}{T}:1/1 && trample target(creature)
+rarity=U
 [/card]
 [card]
 text=Flying   When Skeletal Vampire enters the battlefield, put two 1/1 black Bat creature tokens with flying onto the battlefield.   {3}{B}{B}, Sacrifice a Bat: Put two 1/1 black Bat creature tokens with flying onto the battlefield.   Sacrifice a Bat: Regenerate Skeletal Vampire.
@@ -479,13 +479,27 @@ abilities=flying,cloud
 [card]
 id=106575
 name=Streetbreaker Wurm
-colour=Red,Green
+color=Red,Green
 rarity=C
 mana={4}{R}{G}
 type=Creature
 subtype=Wurm
 power=6
 toughness=4
+[/card]
+[card]
+id=97208
+name=Tibor and Lumia
+mana={2}{U}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+text=Whenever you cast a blue spell, target creature gains flying until end of turn. Whenever you cast a red spell, Tibor and Lumia deals 1 damage to each creature without flying.
+auto=@movedTo(*[blue]|mystack):flying target(creature)
+auto=@movedTo(*[red]|mystack):damage:1 all(creature[-flying])
+abilities=legendary
+rarity=R
 [/card]
 [card]
 text=Untap all creatures you control.   Draw a card.
@@ -513,7 +527,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control.   {1}, Remove a +1/+1 counter from Ulasht: Choose one — Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
+text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control.   {1}, Remove a +1/+1 counter from Ulasht: Choose one - Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
 id=97212
 name=Ulasht the Hate Seed
 color=Red,Green
@@ -521,8 +535,8 @@ rarity=R
 mana={2}{R}{G}
 type=Creature
 subtype=Hellion Hydra
-auto=foreach(creature[red;-ulasht the hate seed]|myBattlefield) counter(1/1)
-auto=foreach(creature[green;-ulasht the hate seed]|myBattlefield) counter(1/1)
+auto=foreach(other creature[red]|myBattlefield) counter(1/1,1)
+auto=foreach(other creature[green]|myBattlefield) counter(1/1,1)
 auto={1}:counter(1/1,-1) && damage:1 target(creature)
 auto={1}:token(Saproling,creature saproling,1/1,green) && counter(1/1,-1)
 power=0
@@ -530,14 +544,14 @@ toughness=0
 abilities=legendary
 [/card]
 [card]
-text=Flying   Whenever you cast an instant or sorcery spell, Wee Dragonauts gets +2/+0 until end of turn.
+text=Flying. Whenever you cast an instant or sorcery spell, Wee Dragonauts gets +2/+0 until end of turn.
 id=96903
 name=Wee Dragonauts
 color=Blue,Red
 rarity=C
 mana={1}{U}{R}
 type=Creature
-subytpe=Faerie Wizard
+subtype=Faerie Wizard
 auto=@movedTo(instant,sorcery|mystack):2/0
 power=1
 toughness=3
@@ -547,7 +561,7 @@ abilities=flying
 text=Sacrifice Wild Cantor: Add one mana of any color to your mana pool.
 id=96934
 name=Wild Cantor
-colour=Red,Green
+color=Red,Green
 rarity=C
 mana={RG}
 type=Creature

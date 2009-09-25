@@ -1,0 +1,26 @@
+#counter(1/1,-1) && damage:1 target(creature)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Spitting Hydra
+manapool:{1}{R}{1}{R}{1}{R}{1}{R}
+[PLAYER2]
+inplay:Angelic Wall
+[DO]
+Spitting Hydra
+Angelic Wall
+Spitting Hydra
+Angelic Wall
+Spitting Hydra
+Angelic Wall
+Spitting Hydra
+Angelic Wall
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Spitting Hydra
+life:20
+[PLAYER2]
+graveyard:Angelic Wall
+life:20
+[END]
