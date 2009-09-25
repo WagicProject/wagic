@@ -1126,7 +1126,20 @@ type=Enchantment
 text=Whenever a creature you control attacks, it gets +1/+0 until end of turn for each other attacking creature that shares a creature type with it.
 rarity=R
 [/card]
-
+[card]
+id=152659
+name=Shinewend
+mana={1}{W}
+type=Creature
+subtype=Elemental
+text=Flying. Shinewend enters the battlefield with a +1/+1 counter on it. {1}{W}, Remove a +1/+1 counter from Shinewend: Destroy target enchantment.
+auto=counter(1/1,1)
+auto={1}{W}:counter(1/1,-1) && destroy target(enchantment)
+abilities=flying
+power=0
+toughness=0
+rarity=C
+[/card]
 [card]
 id=152590
 name=Sigil Tracer
@@ -1182,7 +1195,19 @@ toughness=5
 text=Flying At the beginning of the end step, if you control no Goblins, sacrifice Stenchskipper.
 rarity=R
 [/card]
-
+[card]
+id=152704
+name=Stingmoggie
+mana={3}{R}
+type=Creature
+subtype=Elemental
+text=Stingmoggie enters the battlefield with two +1/+1 counters on it. {3}{R}, Remove a +1/+1 counter from Stingmoggie: Destroy target artifact or land.
+auto=counter(1/1,2)
+auto={1}{W}:counter(1/1,-1) && destroy target(artifact,land)
+power=0
+toughness=0
+rarity=C
+[/card]
 [card]
 id=152917
 name=Stinkdrinker Bandit
