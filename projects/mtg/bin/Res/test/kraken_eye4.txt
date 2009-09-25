@@ -28,6 +28,6 @@ SECONDMAIN
 inplay:kraken's eye,island
 hand:air elemental
 graveyard:unsummon
-life:21
+life:22
 [PLAYER2]
 [END]
