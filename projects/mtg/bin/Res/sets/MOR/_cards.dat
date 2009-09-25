@@ -194,7 +194,7 @@ type=Sorcery
 [card]
 text=Counter target noncreature spell.
 id=152570
-target=*(-creature)|stack
+target=*[-creature]|stack
 auto=fizzle
 name=Negate
 rarity=C
