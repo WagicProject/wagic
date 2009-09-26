@@ -197,34 +197,70 @@ type=Artifact
 [card]
 text={T}: Add {G} to your mana pool.
 auto={T}: Add {G}
+id=195158
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=195177
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=195183
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=195192
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=201959
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=201960
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=201961
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
 id=201962
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
-id=
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
-id=
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
-id=
 name=Forest
 rarity=L
 type=Basic Land
@@ -238,7 +274,7 @@ rarity=U
 mana={1}{G}
 type=Creature
 subtype=Elf Scout
-auto={3}{G}{T}:moveTo(myBattlefield) target(land[basic]|myLibrary)
+auto={3}{G}{T}:moveTo(myBattlefield) target(land[basic]|myLibrary) && tap
 power=1
 toughness=1
 [/card]
@@ -387,6 +423,49 @@ power=2
 toughness=1
 [/card]
 [card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=195161
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=195165
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=195170
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=195187
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}: Add {U}
+id=201963
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -400,7 +479,7 @@ subtype=Island
 [card]
 text={T}: Add {U} to your mana pool.
 auto={T}: Add {U}
-id=
+id=201965
 name=Island
 rarity=L
 type=Basic Land
@@ -409,16 +488,7 @@ subtype=Island
 [card]
 text={T}: Add {U} to your mana pool.
 auto={T}: Add {U}
-id=
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
-id=
+id=201966
 name=Island
 rarity=L
 type=Basic Land
@@ -614,6 +684,42 @@ toughness=4
 [card]
 text={T}: Add {R} to your mana pool.
 auto={T}: Add {R}
+id=195171
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=195178
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=195181
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
+id=195184
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}: Add {R}
 id=201967
 name=Mountain
 rarity=L
@@ -623,7 +729,7 @@ subtype=Mountain
 [card]
 text={T}: Add {R} to your mana pool.
 auto={T}: Add {R}
-id=
+id=201968
 name=Mountain
 rarity=L
 type=Basic Land
@@ -632,7 +738,7 @@ subtype=Mountain
 [card]
 text={T}: Add {R} to your mana pool.
 auto={T}: Add {R}
-id=
+id=201969
 name=Mountain
 rarity=L
 type=Basic Land
@@ -641,7 +747,7 @@ subtype=Mountain
 [card]
 text={T}: Add {R} to your mana pool.
 auto={T}: Add {R}
-id=
+id=201970
 name=Mountain
 rarity=L
 type=Basic Land
@@ -734,8 +840,8 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=190395
-id=
+text=
+id=190395
 name=Pillarfield Ox
 rarity=C
 mana={3}{W}
@@ -757,7 +863,7 @@ type=Land
 [card]
 text={T}: Add {W} to your mana pool.
 auto={T}: Add {W}
-id=
+id=195163
 name=Plains
 rarity=L
 type=Basic Land
@@ -766,7 +872,7 @@ subtype=Plains
 [card]
 text={T}: Add {W} to your mana pool.
 auto={T}: Add {W}
-id=
+id=195173
 name=Plains
 rarity=L
 type=Basic Land
@@ -775,7 +881,7 @@ subtype=Plains
 [card]
 text={T}: Add {W} to your mana pool.
 auto={T}: Add {W}
-id=
+id=195179
 name=Plains
 rarity=L
 type=Basic Land
@@ -784,7 +890,43 @@ subtype=Plains
 [card]
 text={T}: Add {W} to your mana pool.
 auto={T}: Add {W}
-id=
+id=195196
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=201971
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=201972
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=201973
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}: Add {W}
+id=201974
 name=Plains
 rarity=L
 type=Basic Land
@@ -1008,7 +1150,7 @@ toughness=1
 [card]
 text={T}: Add {B} to your mana pool.
 auto={T}: Add {B}
-id=
+id=195157
 name=Swamp
 rarity=L
 type=Basic Land
@@ -1017,7 +1159,7 @@ subtype=Swamp
 [card]
 text={T}: Add {B} to your mana pool.
 auto={T}: Add {B}
-id=
+id=195159
 name=Swamp
 rarity=L
 type=Basic Land
@@ -1026,7 +1168,7 @@ subtype=Swamp
 [card]
 text={T}: Add {B} to your mana pool.
 auto={T}: Add {B}
-id=
+id=195172
 name=Swamp
 rarity=L
 type=Basic Land
@@ -1035,7 +1177,43 @@ subtype=Swamp
 [card]
 text={T}: Add {B} to your mana pool.
 auto={T}: Add {B}
-id=
+id=195194
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=201975
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=201976
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=201977
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}: Add {B}
+id=201978
 name=Swamp
 rarity=L
 type=Basic Land
