@@ -554,14 +554,7 @@ toughness=2
 text=Flash Flying Whenever you cast a Wizard spell, you may untap Inspired Sprite. {T}: Draw a card, then discard a card.
 rarity=U
 [/card]
-[card]
-id=152563
-name=Kindled Fury
-mana={R}
-type=Instant
-text=Target creature gets +1/+0 and gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
-rarity=C
-[/card]
+
 [card]
 id=152977
 name=Kinsbaile Borderguard

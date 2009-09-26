@@ -938,6 +938,7 @@ name=Kindled Fury
 mana={R}
 type=Instant
 text=Target creature gets +1/+0 and gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
+target=creature
 auto=1/0
 auto=first strike
 rarity=C
