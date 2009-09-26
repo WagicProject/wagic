@@ -215,9 +215,9 @@ public:
   }
 
   ~MultiAbility(){
-    if (!isClone){
+   if (!isClone){
       vector<int>::size_type sz = abilities.size();
-      for (unsigned int i = 0; i < sz; i++){
+      for (size_t i = 0; i < sz; i++){
         delete abilities[i];
       }
     }

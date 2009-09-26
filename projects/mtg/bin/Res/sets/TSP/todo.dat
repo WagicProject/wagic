@@ -109,6 +109,19 @@ text=Flash Flying When Bogardan Hellkite comes into play, it deals 5 damage divi
 rarity=R
 [/card]
 [card]
+id=108901
+name=Bogardan Rager
+mana={5}{R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=4
+text=Flash (You may play this spell any time you could play an instant.) When Bogardan Rager comes into play, target creature gets +4/+0 until end of turn.
+abilities=flash
+auto=4/0 target(creature)
+rarity=C
+[/card]
+[card]
 id=118895
 name=Brine Elemental
 mana={4}{U}{U}

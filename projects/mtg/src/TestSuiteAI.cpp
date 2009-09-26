@@ -379,7 +379,11 @@ int TestSuite::assertGame(){
       }
     }
   }
-  if (error) return 0;
+  nbTests++;
+  if (error) {
+    nbFailed++;
+    return 0;
+  }
   Log("<span class=\"success\">==Test Succesful !==</span>");
   return 1;
 }
@@ -391,6 +395,8 @@ TestSuite::TestSuite(const char * filename,MTGAllCards* _collection){
   std::string s;
   nbfiles = 0;
   currentfile = 0;
+  nbFailed = 0;
+  nbTests = 0;
   int comment = 0;
   if(file){
     while(std::getline(file,s)){

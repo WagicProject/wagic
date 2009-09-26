@@ -181,31 +181,22 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
 
 #ifdef TESTSUITE
 void GameStateDuel::loadTestSuitePlayers(){
-  OutputDebugString ("loading suite 1\n");
   if (!testSuite) return;
   for (int i = 0; i < 2; i++){
     SAFE_DELETE(mPlayers[i]);
     SAFE_DELETE(deck[i]);
     mPlayers[i] = NEW TestSuiteAI(testSuite, i);
-    OutputDebugString ("loading suite 2\n");
     deck[i] = mPlayers[i]->game;
   }
   mParent->gameType = testSuite->gameType;
-  if (game) delete game;
-  game = NULL;
-  if (!game){
-    GameObserver::Init(mPlayers, 2);
-    OutputDebugString ("loading suite 3\n");
-    game = GameObserver::GetInstance();
-    OutputDebugString ("loading suite 4\n");
-    game->startGame(0,0);
-    OutputDebugString ("loading suite 5\n");
-
-    if (mParent->gameType == GAME_TYPE_MOMIR){
-      game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
-      for (int i = 0; i < 2; i++){
-        game->players[i]->life+=4;
-      }
+  SAFE_DELETE(game);
+  GameObserver::Init(mPlayers, 2);
+  game = GameObserver::GetInstance();
+  game->startGame(0,0);
+  if (mParent->gameType == GAME_TYPE_MOMIR){
+    game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
+    for (int i = 0; i < 2; i++){
+      game->players[i]->life+=4;
     }
   }
 }
@@ -405,6 +396,21 @@ void GameStateDuel::Render()
         JRenderer * r = JRenderer::GetInstance();
 	      r->ClearScreen(ARGB(200,0,0,0));
 	      credits->Render();
+#ifdef TESTSUITE
+	      if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
+          r->ClearScreen(ARGB(255,0,0,0));
+          char buf[4096];
+          int nbFailed = testSuite->nbFailed;
+          int nbTests = testSuite->nbTests;
+          if (!nbFailed){
+            sprintf(buf, "All %i tests successful!", nbTests);
+          }else{
+            sprintf(buf, "%i tests out of %i FAILED!", nbFailed, nbTests);
+          }
+          
+          mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
+        }
+#endif
 	      break;
       }
     case DUEL_STATE_ERROR:

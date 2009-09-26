@@ -18,6 +18,7 @@ class WEvent;
 
 class ActionLayer: public GuiLayer, public JGuiListener{
  public:
+  vector <ActionElement *> garbage;
   Targetable * menuObject;
   SimpleMenu * abilitiesMenu;
   int stuffHappened;
@@ -42,6 +43,8 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   void doReactTo(int menuIndex);
   TargetChooser * getCurrentTargetChooser();
   MTGAbility * getAbility(int type);
+  int moveToGarbage(ActionElement * e);
+  int cleanGarbage();
 };
 
 

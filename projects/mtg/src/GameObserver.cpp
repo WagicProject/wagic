@@ -117,6 +117,7 @@ void GameObserver::nextGamePhase(){
     //Auto Hand cleaning, in case the player didn't do it himself
     while(currentPlayer->game->hand->nb_cards > 7)
       currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
+    mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
     mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
     mLayers->actionLayer()->Update(0);
     for (int i=0; i < 2; i++){
@@ -240,13 +241,8 @@ void GameObserver::addObserver(MTGAbility * observer){
 
 
 void GameObserver::removeObserver(ActionElement * observer){
-  if (observer)
-    {
-      if (mLayers->actionLayer()->getIndexOf(observer) != -1){
-        observer->destroy();
-        mLayers->actionLayer()->Remove(observer);
-      }
-    }
+  if (observer)mLayers->actionLayer()->moveToGarbage(observer);
+
   else
     {} //TODO log error
 }

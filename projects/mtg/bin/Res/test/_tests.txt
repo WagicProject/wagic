@@ -94,6 +94,7 @@ dross_harvester.txt
 elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt
+flagstones.txt
 farhaven_elf.txt
 fastbond.txt
 fastbond2.txt

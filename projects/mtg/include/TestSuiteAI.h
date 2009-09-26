@@ -60,6 +60,7 @@ class TestSuite{
   string files[1024];
   int nbfiles;
   int currentfile;
+  int nbFailed, nbTests;
   int load(const char * filename);
   TestSuite(const char * filename,MTGAllCards* _collection);
   void initGame();

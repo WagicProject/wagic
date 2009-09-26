@@ -14,6 +14,27 @@ MTGAbility* ActionLayer::getAbility(int type){
   return NULL;
 }
 
+int ActionLayer::moveToGarbage(ActionElement * e){
+  int i = getIndexOf(e);
+  if (i != -1){
+    e->destroy();
+    mObjects.erase(mObjects.begin()+i);
+    mCount--;
+    garbage.push_back(e);
+    return 1;
+  }
+  return 0;
+        
+}
+
+int ActionLayer::cleanGarbage(){
+  for (size_t i = 0; i < garbage.size(); ++i){
+    delete(garbage[i]);
+  }
+  garbage.clear();
+  return 1;
+}
+
 int ActionLayer::reactToClick(ActionElement * ability, MTGCardInstance * card){
   int result = ability->reactToClick(card);
   if (result) stuffHappened = 1;
@@ -72,7 +93,7 @@ void ActionLayer::Update(float dt){
     if (mObjects[i]!= NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];
       if (currentAction->testDestroy())
-	game->removeObserver(currentAction);
+	      game->removeObserver(currentAction);
     }
   }
   int newPhase = game->getCurrentGamePhase();
@@ -254,4 +275,5 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid){
 
 ActionLayer::~ActionLayer(){
   SAFE_DELETE(abilitiesMenu);
+  cleanGarbage();
 }
