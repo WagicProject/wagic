@@ -35,17 +35,6 @@ text=Choose a color. White creatures you control gain protection from the chosen
 rarity=U
 [/card]
 [card]
-id=185697
-name=Caravan Hurda
-mana={4}{W}
-type=Creature
-subtype=Giant
-power=1
-toughness=5
-text=Lifelink (Damage dealt by this creature also causes you to gain that much life.)
-rarity=C
-[/card]
-[card]
 id=198524
 name=Celestial Mantle
 mana={3}{W}{W}{W}
@@ -100,7 +89,7 @@ type=Creature
 subtype=Angel
 power=3
 toughness=3
-text=Flying Landfall — Whenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying onto the battlefield.
+text=Flying Landfall  EWhenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying onto the battlefield.
 rarity=R
 [/card]
 [card]
@@ -352,7 +341,7 @@ type=Creature
 subtype=Cat
 power=0
 toughness=1
-text=Landfall — Whenever a land enters the battlefield under your control, Steppe Lynx gets +2/+2 until end of turn.
+text=Landfall  EWhenever a land enters the battlefield under your control, Steppe Lynx gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -360,7 +349,7 @@ id=177551
 name=Sunspring Expedition
 mana={W}
 type=Enchantment
-text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
 rarity=C
 [/card]
 [card]
@@ -384,13 +373,13 @@ rarity=R
 [/card]
 [card]
 id=170993
-name=Æther Figment
+name=ÁEher Figment
 mana={1}{U}
 type=Creature
 subtype=Illusion
 power=1
 toughness=1
-text=Kicker {3} (You may pay an additional {3} as you cast this spell.) Æther Figment is unblockable. If Æther Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) ÁEher Figment is unblockable. If ÁEher Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
 rarity=U
 [/card]
 [card]
@@ -459,7 +448,7 @@ type=Creature
 subtype=Crab
 power=0
 toughness=2
-text=Landfall — Whenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
+text=Landfall  EWhenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
 rarity=U
 [/card]
 [card]
@@ -475,7 +464,7 @@ id=185711
 name=Ior Ruin Expedition
 mana={1}{U}
 type=Enchantment
-text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
 rarity=C
 [/card]
 [card]
@@ -605,7 +594,7 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=2
-text=Flying Landfall — Whenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
+text=Flying Landfall  EWhenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
 rarity=R
 [/card]
 [card]
@@ -638,7 +627,7 @@ type=Creature
 subtype=Serpent
 power=5
 toughness=5
-text=Defender Landfall — Whenever a land enters the battlefield under your control, Shoal Serpent loses defender until end of turn.
+text=Defender Landfall  EWhenever a land enters the battlefield under your control, Shoal Serpent loses defender until end of turn.
 rarity=C
 [/card]
 [card]
@@ -765,7 +754,7 @@ type=Creature
 subtype=Fish
 power=2
 toughness=2
-text=Flying Landfall — Whenever a land enters the battlefield under your control, Windrider Eel gets +2/+2 until end of turn.
+text=Flying Landfall  EWhenever a land enters the battlefield under your control, Windrider Eel gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -814,7 +803,7 @@ type=Creature
 subtype=Vampire Spirit
 power=2
 toughness=1
-text=Bloodghast can't block. Bloodghast has haste as long as an opponent has 10 or less life. Landfall — Whenever a land enters the battlefield under your control, you may return Bloodghast from your graveyard to the battlefield.
+text=Bloodghast can't block. Bloodghast has haste as long as an opponent has 10 or less life. Landfall  EWhenever a land enters the battlefield under your control, you may return Bloodghast from your graveyard to the battlefield.
 rarity=R
 [/card]
 [card]
@@ -890,7 +879,7 @@ id=180127
 name=Grim Discovery
 mana={1}{B}
 type=Sorcery
-text=Choose one or both — Return target creature card from your graveyard to your hand; and/or return target land card from your graveyard to your hand.
+text=Choose one or both  EReturn target creature card from your graveyard to your hand; and/or return target land card from your graveyard to your hand.
 rarity=C
 [/card]
 [card]
@@ -923,7 +912,7 @@ type=Creature
 subtype=Crocodile
 power=3
 toughness=1
-text=Hagra Crocodile can't block. Landfall — Whenever a land enters the battlefield under your control, Hagra Crocodile gets +2/+2 until end of turn.
+text=Hagra Crocodile can't block. Landfall  EWhenever a land enters the battlefield under your control, Hagra Crocodile gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -1053,7 +1042,7 @@ type=Legendary Creature
 subtype=Demon
 power=3
 toughness=3
-text=Landfall — Whenever a land enters the battlefield under your control, you may have target player lose 3 life. If you do, put three +1/+1 counters on Ob Nixilis, the Fallen.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may have target player lose 3 life. If you do, put three +1/+1 counters on Ob Nixilis, the Fallen.
 rarity=M
 [/card]
 [card]
@@ -1095,7 +1084,7 @@ id=177586
 name=Soul Stair Expedition
 mana={B}
 type=Enchantment
-text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Soul Stair Expedition. Remove three quest counters from Soul Stair Expedition and sacrifice it: Return up to two target creature cards from your graveyard to your hand.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Soul Stair Expedition. Remove three quest counters from Soul Stair Expedition and sacrifice it: Return up to two target creature cards from your graveyard to your hand.
 rarity=C
 [/card]
 [card]
@@ -1106,7 +1095,7 @@ type=Creature
 subtype=Surrakar
 power=2
 toughness=1
-text=Landfall — Whenever a land enters the battlefield under your control, Surrakar Marauder gains intimidate until end of turn. (It can't be blocked except by artifact creatures and/or creatures that share a color with it.)
+text=Landfall  EWhenever a land enters the battlefield under your control, Surrakar Marauder gains intimidate until end of turn. (It can't be blocked except by artifact creatures and/or creatures that share a color with it.)
 rarity=C
 [/card]
 [card]
@@ -1210,7 +1199,7 @@ type=Creature
 subtype=Elemental Beast
 power=4
 toughness=4
-text=Landfall — Whenever a land enters the battlefield under your control, Geyser Glider gains flying until end of turn.
+text=Landfall  EWhenever a land enters the battlefield under your control, Geyser Glider gains flying until end of turn.
 rarity=U
 [/card]
 [card]
@@ -1385,7 +1374,7 @@ type=Creature
 subtype=Insect
 power=1
 toughness=1
-text=First strike Landfall — Whenever a land enters the battlefield under your control, Plated Geopede gets +2/+2 until end of turn.
+text=First strike Landfall  EWhenever a land enters the battlefield under your control, Plated Geopede gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -1512,7 +1501,7 @@ id=183403
 name=Zektar Shrine Expedition
 mana={1}{R}
 type=Enchantment
-text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
 rarity=C
 [/card]
 [card]
@@ -1532,7 +1521,7 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
-text=Landfall — Whenever a land enters the battlefield under your control, Baloth Woodcrasher gets +4/+4 and gains trample until end of turn.
+text=Landfall  EWhenever a land enters the battlefield under your control, Baloth Woodcrasher gets +4/+4 and gains trample until end of turn.
 rarity=U
 [/card]
 [card]
@@ -1588,7 +1577,7 @@ type=Creature
 subtype=Antelope
 power=2
 toughness=2
-text=Landfall — Whenever a land enters the battlefield under your control, you may gain 2 life.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may gain 2 life.
 rarity=C
 [/card]
 [card]
@@ -1626,7 +1615,7 @@ id=186320
 name=Khalni Heart Expedition
 mana={1}{G}
 type=Enchantment
-text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Khalni Heart Expedition. Remove three quest counters from Khalni Heart Expedition and sacrifice it: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Khalni Heart Expedition. Remove three quest counters from Khalni Heart Expedition and sacrifice it: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
 rarity=C
 [/card]
 [card]
@@ -1637,7 +1626,7 @@ type=Creature
 subtype=Snake
 power=2
 toughness=1
-text=Landfall — Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
+text=Landfall  EWhenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
 rarity=M
 [/card]
 [card]
@@ -1737,7 +1726,7 @@ type=Creature
 subtype=Beast
 power=6
 toughness=6
-text=Trample Landfall — Whenever a land enters the battlefield under your control, you may put a 4/4 green Beast creature token onto the battlefield.
+text=Trample Landfall  EWhenever a land enters the battlefield under your control, you may put a 4/4 green Beast creature token onto the battlefield.
 rarity=M
 [/card]
 [card]
@@ -1837,7 +1826,7 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
-text=Landfall — Whenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
+text=Landfall  EWhenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -1859,7 +1848,7 @@ type=Creature
 subtype=Basilisk
 power=2
 toughness=1
-text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) Landfall — Whenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
+text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) Landfall  EWhenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
 rarity=U
 [/card]
 [card]
@@ -1908,7 +1897,7 @@ name=Adventuring Gear
 mana={1}
 type=Artifact
 subtype=Equipment
-text=Landfall — Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+text=Landfall  EWhenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 rarity=C
 [/card]
 [card]
@@ -1950,7 +1939,7 @@ id=189006
 name=Eternity Vessel
 mana={6}
 type=Artifact
-text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall — Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
+text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall  EWhenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
 rarity=M
 [/card]
 [card]
@@ -1987,7 +1976,7 @@ type=Artifact Creature
 subtype=Construct
 power=1
 toughness=1
-text=Landfall — Whenever a land enters the battlefield under your control, Hedron Scrabbler gets +1/+1 until end of turn.
+text=Landfall  EWhenever a land enters the battlefield under your control, Hedron Scrabbler gets +1/+1 until end of turn.
 rarity=C
 [/card]
 [card]

@@ -42,6 +42,7 @@ struct GuiGameZone : public GuiStatic{
   CardDisplay * cd;
   int showCards;
   virtual void Render();
+  virtual bool CheckUserInput(u32 key);
   virtual void Update(float dt);
   GuiGameZone(float x, float y, bool hasFocus, MTGGameZone * zone, GuiAvatars* parent);
   ~GuiGameZone();

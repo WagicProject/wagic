@@ -99,8 +99,8 @@ void CardSelector::Pop()
     }
   if (active != oldactive)
     {
-      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
-      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
+      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; } //Is this needed, I think it is one in Leaving(0) ?
+      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; } //Is this needed, I think it is one in Entering() ?
       if (oldactive) oldactive->Leaving(0);
       if (active) active->Entering();
     }
@@ -123,6 +123,9 @@ bool CardSelector::CheckUserInput(u32 key)
   Target* oldactive = active;
   switch (key)
     {
+    case PSP_CTRL_CROSS:
+      GameObserver::GetInstance()->cancelCurrentAction();
+      return true;
     case PSP_CTRL_CIRCLE:
       GameObserver::GetInstance()->ButtonPressed(active);
       return true;
@@ -160,8 +163,8 @@ bool CardSelector::CheckUserInput(u32 key)
     }
   if (active != oldactive)
     {
-      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
-      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
+      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; } //Is this needed, I think it is one in Leaving(0) ?
+      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; } //Is this needed, I think it is one in Entering() ?
       if (oldactive) oldactive->Leaving(0);
       if (active) active->Entering();
     }

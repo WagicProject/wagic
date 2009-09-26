@@ -1,0 +1,20 @@
+#Bug:graveyard access
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+library:plains,mountain,grizzly bears,swamp,island,forest,raging goblin,royal assassin,fireball
+hand:demonic tutor,diabolic tutor
+manapool:{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}
+[PLAYER2]
+[DO]
+human
+human
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:17
+[END]

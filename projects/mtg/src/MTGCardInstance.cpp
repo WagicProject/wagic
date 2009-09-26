@@ -54,15 +54,12 @@ void MTGCardInstance::copy(MTGCardInstance * card){
 
   text = source->text;
   name = source->name;
-  //strcpy(image_name, source->image_name);
 
-  //rarity = source->rarity;
   power = source->power;
   toughness = source->toughness;
   life = toughness;
   lifeOrig = life;
-  //mtgid = source->mtgid;
-  //setId = source->setId;
+
   magicText = source->magicText;
   spellTargetType = source->spellTargetType;
   alias = source->alias;

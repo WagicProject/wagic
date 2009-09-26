@@ -12,6 +12,7 @@ class CardDisplay:public PlayGuiObjectController{
   GameObserver* game;
  public:
   int x, y , start_item, nb_displayed_items;
+  MTGGameZone * zone;
   TargetChooser * tc;
   JGuiListener * listener;
   CardDisplay();
@@ -20,6 +21,7 @@ class CardDisplay:public PlayGuiObjectController{
   void rotateLeft();
   void rotateRight();
   bool CheckUserInput(u32 key);
+  virtual void Update(float dt);
   void Render();
   void init(MTGGameZone * zone);
   virtual ostream& toString(ostream& out) const;

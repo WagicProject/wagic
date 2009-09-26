@@ -12,6 +12,7 @@ class DamageResolverLayer;
 class GuiHandSelf;
 class GuiHandOpponent;
 class GuiCombat;
+class GuiAvatars;
 struct Pos;
 
 class DuelLayers {
@@ -23,6 +24,7 @@ class DuelLayers {
   ActionLayer* action;
   ActionStack* stack;
   GuiHandSelf *hand;
+  GuiAvatars * avatars;
 
 public:
   DuelLayers();

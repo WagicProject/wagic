@@ -2,6 +2,8 @@
 #include "../include/GameApp.h"
 #include "../include/GuiAvatars.h"
 
+#define LIB_GRAVE_OFFSET 230
+
 GuiAvatars::GuiAvatars(CardSelector* cs) : cs(cs), active(NULL)
 {
   Add(self           = NEW GuiAvatar   (SCREEN_WIDTH, SCREEN_HEIGHT, false,
@@ -52,6 +54,15 @@ int GuiAvatars::receiveEventMinus(WEvent* e)
   return 1;
 }
 
+bool GuiAvatars::CheckUserInput(u32 key){
+  if (self->CheckUserInput(key)) return true;
+  if (opponent->CheckUserInput(key)) return true;
+  if (selfGraveyard->CheckUserInput(key)) return true;
+  if (opponentGraveyard->CheckUserInput(key)) return true;
+  if (selfLibrary->CheckUserInput(key)) return true;
+  if (opponentLibrary->CheckUserInput(key)) return true;
+  return false;
+}
 
 void GuiAvatars::Update(float dt)
 {

@@ -124,6 +124,11 @@ void GuiGameZone::ButtonPressed(int controllerId, int controlId){
   GameObserver::GetInstance()->ButtonPressed(this);
 }
 
+bool GuiGameZone::CheckUserInput(u32 key){
+  if (showCards) return cd->CheckUserInput(key);
+  return false;
+}
+
 void GuiGameZone::Update(float dt){
   for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
     (*it)->Update(dt);
@@ -133,6 +138,7 @@ void GuiGameZone::Update(float dt){
 
 GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, GuiAvatars* parent): GuiStatic(GuiGameZone::Height, x, y, hasFocus, parent), zone(zone){
   cd = NEW CardDisplay(0, GameObserver::GetInstance(), x, y, this);
+  cd->zone = zone;
   showCards = 0;
 }
 

@@ -39,7 +39,7 @@ void DuelLayers::init(){
   Add(NEW GuiHandOpponent(cs, go->players[1]->game->hand));
   Add(NEW GuiPlay(go, cs));
 
-  Add(NEW GuiAvatars(cs));
+  Add(avatars = NEW GuiAvatars(cs));
   Add(NEW GuiPhaseBar());
   Add(NEW GuiFrame());
   Add(NEW GuiBackground());
@@ -53,6 +53,7 @@ void DuelLayers::CheckUserInput(int isAI){
 	if (stack->CheckUserInput(key)) break;
         if (combat->CheckUserInput(key)) break;
 	if (action->CheckUserInput(key)) break;
+  if (avatars->CheckUserInput(key)) break;
 	if (hand->CheckUserInput(key)) break;
 	if (cs->CheckUserInput(key)) break;
       }

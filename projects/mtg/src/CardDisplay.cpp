@@ -11,6 +11,7 @@ CardDisplay::CardDisplay() : mId(0), game(GameObserver::GetInstance()) {
   start_item = 0;
   x= 0;
   y= 0;
+  zone = NULL;
 }
 
 CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListener * _listener, TargetChooser * _tc, int _nb_displayed_items ) : mId(id), game(game), x(_x), y(_y) {
@@ -18,21 +19,26 @@ CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListene
   listener = _listener;
   nb_displayed_items = _nb_displayed_items;
   start_item = 0;
+  if (x + nb_displayed_items * 30 + 25 > SCREEN_WIDTH) x = SCREEN_WIDTH - (nb_displayed_items * 30 + 25);
+  if (y + 55 > SCREEN_HEIGHT) y = SCREEN_HEIGHT - 55;
+  zone = NULL;
 }
 
 
 void CardDisplay::AddCard(MTGCardInstance * _card){
-  CardGui * card = NEW CardView(CardSelector::nullZone, _card, x + 5 + (mCount - start_item) * 30, y + 5);
+  CardGui * card = NEW CardView(CardSelector::nullZone, _card, x + 20 + (mCount - start_item) * 30, y + 25);
   Add(card);
 }
 
 
 void CardDisplay::init(MTGGameZone * zone){
   resetObjects();
+  if (!zone) return; 
   start_item = 0;
   for (int i= 0; i< zone->nb_cards; i++){
     AddCard(zone->cards[i]);
   }
+  if (mObjects[0]) mObjects[0]->Entering();
 }
 
 void CardDisplay::rotateLeft(){
@@ -53,6 +59,22 @@ void CardDisplay::rotateRight(){
   start_item ++;
 }
 
+
+
+void CardDisplay::Update(float dt){
+  bool update = false;
+
+  if (zone){
+    size_t size =  zone->cards.size();
+    for (int i = start_item; i< start_item + nb_displayed_items && i < mCount; i++){
+      if (i > size - 1) {update = true; break;}
+      CardGui * cardg = (CardGui *)mObjects[i];
+      if (cardg->card != zone->cards[i]) update = true;
+    }
+  }
+  PlayGuiObjectController::Update(dt);
+  if (update) init(zone);
+}
 
 bool CardDisplay::CheckUserInput(u32 key){
   if (PSP_CTRL_CROSS == key)
