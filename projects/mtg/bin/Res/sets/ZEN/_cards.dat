@@ -1,0 +1,12 @@
+[card]
+text=Lifelink (Damage dealt by this creature also causes you to gain that much life.)
+id=185697
+name=Caravan Hurda
+mana={4}{W}
+type=Creature
+subtype=Giant
+power=1
+toughness=5
+abilities=lifelink
+rarity=C
+[/card]
