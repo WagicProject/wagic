@@ -1,17 +1,4 @@
 [card]
-text=When Accursed Centaur enters the battlefield, sacrifice a creature.
-target=creature[myBattlefield]
-auto=destroy
-id=26715
-name=Accursed Centaur
-mana={B}
-type=Creature
-subtype=Zombie Centaur
-power=2
-toughness=2
-rarity=C
-[/card]
-[card]
 text=Draw a card for each Bird on the battlefield.
 id=39889
 name=Airborne Aid
