@@ -169,5 +169,5 @@ int DuelLayers::receiveEvent(WEvent * e){
 
 float DuelLayers::RightBoundary()
 {
-  return hand->LeftBoundary();
+  return MIN (hand->LeftBoundary(), avatars->LeftBoundarySelf());
 }

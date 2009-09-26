@@ -27,6 +27,7 @@ class GuiAvatars : public GuiLayer
   int receiveEventPlus(WEvent*);
   int receiveEventMinus(WEvent*);
   bool CheckUserInput(u32 key);
+  float LeftBoundarySelf();
 };
 
 #endif // _GUIAVATARS_H_

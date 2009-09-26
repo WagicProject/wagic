@@ -269,7 +269,6 @@ void CardGui::RenderBig(const Pos& pos){
     }
 
   // If we come here, we do not have the picture.
-  //MTGCard * mtgcard = card->model;
   alternateRender(card,pos);
 }
 

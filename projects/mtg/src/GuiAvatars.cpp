@@ -22,6 +22,10 @@ GuiAvatars::GuiAvatars(CardSelector* cs) : cs(cs), active(NULL)
   selfGraveyard->alpha = selfLibrary->alpha = opponentGraveyard->alpha = opponentLibrary->alpha = 0;
 }
 
+float GuiAvatars::LeftBoundarySelf(){
+  return SCREEN_WIDTH - 10;
+}
+
 GuiAvatars::~GuiAvatars()
 {
 }
