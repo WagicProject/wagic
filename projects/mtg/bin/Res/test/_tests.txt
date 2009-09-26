@@ -25,8 +25,8 @@ generic/wither.txt
 ########################
 #Specific Cards
 ########################
+act_of_treason.txt
 afflict.txt
-angel_of_despair.txt
 akron_legionnaire.txt
 Amugaba.txt
 anarchy.txt
@@ -93,6 +93,7 @@ drift_of_the_dead.txt
 dross_harvester.txt
 elvish_piper.txt
 elvish_promenade.txt
+emblem_of_the_warmind.txt
 farhaven_elf.txt
 fastbond.txt
 fastbond2.txt
@@ -139,7 +140,6 @@ lhurgoyf.txt
 liability.txt
 lifeforce.txt
 living_lands.txt
-looming_hoverguard.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
 master_of_etherium.txt
@@ -156,7 +156,6 @@ nightmare.txt
 northern_paladin.txt
 northern_paladin2.txt
 Nyxathid.txt
-ogre_gatecrasher.txt
 orcish_artillery.txt
 orcish_lumberjack.txt
 overrun.txt
@@ -213,7 +212,6 @@ terror.txt
 terror2.txt
 titanic_ultimatum.txt
 tranquil_domain.txt
-viridian_shaman.txt
 volcanic_island.txt
 unstable_mutation.txt
 wall_of_diffusion.txt

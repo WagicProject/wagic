@@ -400,19 +400,6 @@ auto={T}:Untap target(*)
 type=Artifact
 [/card]
 [card]
-text=When Vithian Renegades comes into play, destroy target artifact.
-id=179535
-target=artifact
-auto=destroy
-name=Vithian Renegades
-rarity=U
-mana={1}{R}{G}
-type=Creature
-subtype=Human Shaman
-power=3
-toughness=2
-[/card]
-[card]
 text=Defender, flying, shroud
 id=179601
 name=Wall of Denial

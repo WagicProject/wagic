@@ -311,7 +311,22 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-
+[card]
+text=Flying. When Dark Hatchling comes into play, destroy target nonblack creature. It can't be regenerated.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+target=creature[-black]
+auto=bury
+id=5852
+name=Dark Hatchling
+color=Black
+rarity=R
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=3
+toughness=3
+abilities=flying
+[/card]
 [card]
 text=All creatures are black.
 id=5622
@@ -960,7 +975,35 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-
+[card]
+text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+target=enchantment|mygraveyard
+auto=moveTo(myhand)
+id=5706
+name=Monk Idealist
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=2
+toughness=2
+[/card]
+[card]
+text=When Monk Realist comes into play, destroy target enchantment.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+target=enchantment
+auto=destroy
+id=5708
+name=Monk Realist
+color=White
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Monk Cleric
+power=1
+toughness=1
+[/card]
 
 [card]
 text=Sacrifice No Rest for the Wicked: Return to your hand all creature cards that were put into your graveyard from play this turn.
@@ -1642,7 +1685,20 @@ type=Enchantment
 mana={G}
 subtype=Aura
 [/card]
-
+[card]
+text=When Stern Proctor enters the battlefield, return target artifact or enchantment to its owner's hand.
+target=enchantment,artifact
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+auto=moveTo(ownerhand)
+id=5661
+name=Stern Proctor
+rarity=U
+mana={U}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
 [card]
 text=If a red spell would deal damage to a creature or player, it deals that much damage plus 1 to that creature or player instead.
 id=5638

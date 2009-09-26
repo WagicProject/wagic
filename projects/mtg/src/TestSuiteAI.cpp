@@ -75,7 +75,7 @@ int TestSuiteAI::Act(float dt){
   }
 
   
-  timer+= dt;
+  timer+= 1;
   if (timer < suite->timerLimit) return 1;
   timer = 0;
 
@@ -271,11 +271,11 @@ void TestSuite::initGame(){
   //The first test runs slowly, the other ones run faster.
   //This way a human can see what happens when testing a specific file,
   // or go faster when it comes to the whole test suite.
-  //Warning, putting this value too low (< 0.25) will give unexpected results
+  //Warning, putting this value too low (< 3) will give unexpected results
   if (!timerLimit){
-    timerLimit = 0.5;
+    timerLimit = 40;
   }else{
-    timerLimit = 0.1;
+    timerLimit = 3;
   }
   //Put the GameObserver in the initial state
   GameObserver * g = GameObserver::GetInstance();

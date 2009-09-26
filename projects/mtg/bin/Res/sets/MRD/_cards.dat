@@ -626,20 +626,7 @@ subtype=Juggernaut
 power=10
 toughness=10
 [/card]
-[card]
-text=Flying. When Looming Hoverguard enters the battlefield, put target artifact on top of its owner's library.
-target=artifact
-auto=moveTo(ownerLibrary)
-id=48114
-name=Looming Hoverguard
-rarity=U
-mana={4}{U}{U}
-type=Creature
-subtype=Drone
-power=3
-toughness=3
-abilities=flying
-[/card]
+
 [card]
 text={W}, {T}: Regenerate target artifact.
 auto={W}{T}:regenerate target(artifact)
@@ -1366,17 +1353,4 @@ subtype=Soldier
 power=1
 toughness=4
 abilities=vigilance
-[/card]
-[card]
-text=When Viridian Shaman comes into play, destroy target artifact.
-target=artifact
-auto=destroy
-id=46119
-name=Viridian Shaman
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
 [/card]

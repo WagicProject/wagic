@@ -12,16 +12,31 @@ rarity=C
 
 [card]
 id=96924
-name=Ætherplasm
+name=AEtherplasm
 mana={2}{U}{U}
 type=Creature
 subtype=Illusion
 power=1
 toughness=1
-text=Whenever Ætherplasm blocks a creature, you may return Ætherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
+text=Whenever ÁEherplasm blocks a creature, you may return ÁEherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
 rarity=U
 [/card]
-
+[card]
+text=Flying   When Angel of Despair enters the battlefield, destroy target permanent.
+target=*
+#Does not work currently. "When ... enters the battlefield ... target..." does not work unless there is a "may" condition
+auto=destroy
+id=83869
+name=Angel of Despair
+color=White,Black
+rarity=R
+mana={3}{W}{W}{B}{B}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+abilities=flying
+[/card]
 
 [card]
 id=96964
@@ -504,7 +519,7 @@ id=83630
 name=Invoke the Firemind
 mana={X}{U}{U}{R}
 type=Sorcery
-text=Choose one — Draw X cards; or Invoke the Firemind deals X damage to target creature or player.
+text=Choose one  EDraw X cards; or Invoke the Firemind deals X damage to target creature or player.
 rarity=R
 [/card]
 [card]
@@ -515,7 +530,20 @@ type=Land
 text=Izzet Boilerworks enters the battlefield tapped. When Izzet Boilerworks enters the battlefield, return a land you control to its owner's hand. {T}: Add {U}{R} to your mana pool.
 rarity=C
 [/card]
-
+[card]
+id=97202
+name=Izzet Chronarch
+mana={3}{U}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=When Izzet Chronarch enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+target=instant,sorcery
+auto=moveTo(myhand)
+rarity=C
+[/card]
 [card]
 id=96966
 name=Izzet Guildmage
@@ -704,7 +732,7 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
-text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Orzhov Pontiff enters the battlefield or the creature it haunts is put into a graveyard, choose one — creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
+text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Orzhov Pontiff enters the battlefield or the creature it haunts is put into a graveyard, choose one  Ecreatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
 rarity=R
 [/card]
 

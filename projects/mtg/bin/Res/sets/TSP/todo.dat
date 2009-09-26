@@ -2001,7 +2001,21 @@ type=Artifact
 text={T}: Add {W} to your mana pool. {1}{W}{W}: Thunder Totem becomes a 2/2 white Spirit artifact creature with flying and first strike until end of turn.
 rarity=U
 [/card]
-
+[card]
+id=116736
+name=Tivadar of Thorn
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+text=First strike, protection from red When Tivadar of Thorn comes into play, destroy target Goblin.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+abilities=first strike, protection from red, legendary
+target=goblin
+auto=destroy
+power=2
+toughness=2
+rarity=R
+[/card]
 [card]
 id=108857
 name=Traitor's Clutch

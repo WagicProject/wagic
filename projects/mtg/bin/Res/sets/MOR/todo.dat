@@ -540,7 +540,7 @@ type=Creature
 subtype=Merfolk Wizard
 power=2
 toughness=1
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Ink Dissolver, you may reveal it. If you do, each opponent puts the top three cards of his or her library into his or her graveyard.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Ink Dissolver, you may reveal it. If you do, each opponent puts the top three cards of his or her library into his or her graveyard.
 rarity=C
 [/card]
 [card]
@@ -592,7 +592,7 @@ type=Creature
 subtype=Kithkin Soldier
 power=2
 toughness=2
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Kithkin Zephyrnaut, you may reveal it. If you do, Kithkin Zephyrnaut gets +2/+2 and gains flying and vigilance until end of turn.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Kithkin Zephyrnaut, you may reveal it. If you do, Kithkin Zephyrnaut gets +2/+2 and gains flying and vigilance until end of turn.
 rarity=C
 [/card]
 [card]
@@ -623,7 +623,7 @@ type=Creature
 subtype=Treefolk Shaman
 power=3
 toughness=5
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Leaf-Crowned Elder, you may reveal it. If you do, you may play that card without paying its mana cost.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Leaf-Crowned Elder, you may reveal it. If you do, you may play that card without paying its mana cost.
 rarity=R
 [/card]
 [card]
@@ -689,7 +689,20 @@ toughness=3
 text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 rarity=U
 [/card]
-
+[card]
+id=152699
+name=Merrow Witsniper
+target=player
+mana={U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=1
+text=When Merrow Witsniper enters the battlefield, target player puts the top card of his or her library into his or her graveyard.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+auto=deplete:1
+rarity=C
+[/card]
 [card]
 id=157422
 name=Mind Shatter
@@ -756,7 +769,7 @@ type=Creature
 subtype=Goblin Warrior
 power=1
 toughness=1
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Mudbutton Clanger, you may reveal it. If you do, Mudbutton Clanger gets +1/+1 until end of turn.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Mudbutton Clanger, you may reveal it. If you do, Mudbutton Clanger gets +1/+1 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -803,7 +816,7 @@ type=Creature
 subtype=Faerie Wizard
 power=3
 toughness=2
-text=Flying Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Nightshade Schemers, you may reveal it. If you do, each opponent loses 2 life.
+text=Flying Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Nightshade Schemers, you may reveal it. If you do, each opponent loses 2 life.
 rarity=U
 [/card]
 [card]
@@ -931,7 +944,7 @@ type=Creature
 subtype=Elemental Shaman
 power=3
 toughness=3
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Pyroclast Consul, you may reveal it. If you do, Pyroclast Consul deals 2 damage to each creature.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Pyroclast Consul, you may reveal it. If you do, Pyroclast Consul deals 2 damage to each creature.
 rarity=U
 [/card]
 [card]
@@ -1107,7 +1120,7 @@ type=Creature
 subtype=Goblin Shaman
 power=2
 toughness=2
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Sensation Gorger, you may reveal it. If you do, each player discards his or her hand and draws four cards.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Sensation Gorger, you may reveal it. If you do, each player discards his or her hand and draws four cards.
 rarity=R
 [/card]
 [card]
@@ -1181,7 +1194,7 @@ type=Creature
 subtype=Goblin Shaman
 power=3
 toughness=2
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Squeaking Pie Grubfellows, you may reveal it. If you do, each opponent discards a card.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Squeaking Pie Grubfellows, you may reveal it. If you do, each opponent discards a card.
 rarity=C
 [/card]
 [card]
@@ -1406,7 +1419,7 @@ type=Creature
 subtype=Giant Wizard
 power=4
 toughness=4
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Wandering Graybeard, you may reveal it. If you do, you gain 4 life.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Wandering Graybeard, you may reveal it. If you do, you gain 4 life.
 rarity=U
 [/card]
 [card]
@@ -1437,7 +1450,7 @@ type=Creature
 subtype=Merfolk Wizard
 power=3
 toughness=3
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Waterspout Weavers, you may reveal it. If you do, each creature you control gains flying until end of turn.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Waterspout Weavers, you may reveal it. If you do, each creature you control gains flying until end of turn.
 rarity=U
 [/card]
 [card]
@@ -1479,7 +1492,7 @@ type=Creature
 subtype=Elf Warrior
 power=3
 toughness=2
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Winnower Patrol, you may reveal it. If you do, put a +1/+1 counter on Winnower Patrol.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Winnower Patrol, you may reveal it. If you do, put a +1/+1 counter on Winnower Patrol.
 rarity=C
 [/card]
 [card]
@@ -1490,6 +1503,6 @@ type=Creature
 subtype=Elf Shaman
 power=2
 toughness=2
-text=Kinship — At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Wolf-Skull Shaman, you may reveal it. If you do, put a 2/2 green Wolf creature token onto the battlefield.
+text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Wolf-Skull Shaman, you may reveal it. If you do, put a 2/2 green Wolf creature token onto the battlefield.
 rarity=U
 [/card]

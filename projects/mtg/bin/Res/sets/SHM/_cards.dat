@@ -247,19 +247,6 @@ subtype=Elemental
 toughness=*
 [/card]
 [card]
-text=When Cultbrand Cinder comes into play, put a -1/-1 counter on target creature.
-id=142068
-target=creature
-auto=counter(-1/-1,1)
-name=Cultbrand Cinder
-rarity=C
-type=Creature
-mana={4}{BR}
-power=3
-subtype=Elemental Shaman
-toughness=3
-[/card]
-[card]
 text=Enchant creature     At the beginning of each upkeep, tap enchanted creature.
 id=146079
 target=creature

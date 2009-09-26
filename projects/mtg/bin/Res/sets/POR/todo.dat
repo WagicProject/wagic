@@ -169,6 +169,20 @@ subtype=Dragon
 toughness=6
 [/card]
 [card]
+text=When Fire Imp comes into play, it deals 2 damage to target creature.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+target=creature
+auto=damage:2
+id=4337
+name=Fire Imp
+rarity=U
+mana={2}{R}
+type=Creature
+subytpe=Imp
+power=2
+toughness=1
+[/card]
+[card]
 text=When Fire Snake is put into a graveyard from play, destroy target land.
 id=4338
 name=Fire Snake
@@ -241,7 +255,20 @@ rarity=R
 type=Sorcery
 mana={R}{R}
 [/card]
-
+[card]
+text=When Man-o'-War comes into play, return target creature to its owner's hand.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+id=4266
+target=creature
+auto=moveTo(ownerhand)
+name=Man-o'-War
+mana={2}{U}
+rarity=U
+type=Creature
+subtype=Jellyfish
+power=2
+toughness=2
+[/card]
 [card]
 text=When Mercenary Knight comes into play, sacrifice it unless you discard a creature card.
 id=4228

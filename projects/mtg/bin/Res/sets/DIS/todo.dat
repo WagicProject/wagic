@@ -635,7 +635,20 @@ type=Instant
 text=Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
 rarity=U
 [/card]
-
+[card]
+id=107377
+name=Indrik Stomphowler
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+target=artifact,enchantment
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=When Indrik Stomphowler enters the battlefield, destroy target artifact or enchantment.
+auto=destroy
+rarity=U
+[/card]
 [card]
 id=107308
 name=Infernal Tutor
@@ -832,7 +845,20 @@ mana={U}{R}
 type=Instant
 text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. rarity=R
 [/card]
-
+[card]
+id=107389
+name=Ogre Gatecrasher
+target=creature[defender]
+#does not work. "When ... enters the battelfield ...target ..." is not supported unless there is a "may"
+mana={3}{R}
+type=Creature
+subtype=Ogre Rogue
+power=3
+toughness=3
+text=When Ogre Gatecrasher enters the battlefield, destroy target creature with defender.
+auto=destroy
+rarity=C
+[/card]
 [card]
 id=83737
 name=Omnibian
@@ -1529,7 +1555,20 @@ type=Instant
 text=Weight of Spires deals damage to target creature equal to the number of nonbasic lands that creature's controller controls.
 rarity=U
 [/card]
-
+[card]
+id=97075
+name=Whiptail Moloch
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+mana={4}{R}
+type=Creature
+subtype=Lizard
+power=6
+toughness=3
+text=When Whiptail Moloch enters the battlefield, it deals 3 damage to target creature you control.
+target=creature|myinplay
+auto=damage:3
+rarity=C
+[/card]
 [card]
 id=97094
 name=Windreaver

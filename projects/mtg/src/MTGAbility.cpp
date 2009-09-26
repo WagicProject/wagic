@@ -1710,11 +1710,7 @@ int MTGAbility::testDestroy(){
   if (forceDestroy == 1) return 1;
   if (forceDestroy == -1) return 0;
   if (!game->isInPlay(source) ) return 1;
-
-  if (target && !game->isInPlay((MTGCardInstance *)target)){
-    source->controller()->game->putInGraveyard(source);//TODO put this in a better place ???
-    return 1;
-  }
+  if (target && !game->isInPlay((MTGCardInstance *)target)) return 1;
   return 0;
 }
 

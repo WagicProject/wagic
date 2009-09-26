@@ -1,19 +1,4 @@
 [card]
-text=Flying   When Angel of Despair enters the battlefield, destroy target permanent.
-target=*
-auto=destroy
-id=83869
-name=Angel of Despair
-color=White,Black
-rarity=R
-mana={3}{W}{W}{B}{B}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-abilities=flying
-[/card]
-[card]
 text=Whenever an opponent discards a card, Abyssal Nocturnus gets +2/+2 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
 id=96858
 name=Abyssal Nocturnus
@@ -209,19 +194,6 @@ name=Hatching Plans
 rarity=R
 type=Enchantment
 mana={1}{U}
-[/card]
-[card]
-id=97202
-name=Izzet Chronarch
-mana={3}{U}{R}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=When Izzet Chronarch enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
-target=instant,sorcery
-auto=moveTo(myhand)
-rarity=C
 [/card]
 [card]
 text={1}, {T}: Add {U}{R} to your mana pool.

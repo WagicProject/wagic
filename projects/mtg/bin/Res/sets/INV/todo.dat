@@ -313,7 +313,21 @@ type=Enchantment
 mana={R}
 subtype=Aura
 [/card]
-
+[card]
+text=Flying, protection from white. When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
+id=23320
+name=Crypt Angel
+target=creature[blue;red]|mygraveyard
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+auto=moveTo(myhand)
+rarity=R
+type=Creature
+mana={4}{B}
+power=3
+subtype=Angel
+toughness=3
+abilities=flying,protection from white 
+[/card]
 [card]
 text=Change the text of target spell or permanent by replacing all instances of one color word or basic land type with another until end of turn.       Draw a card.
 id=23008

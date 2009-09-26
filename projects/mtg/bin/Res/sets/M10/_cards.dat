@@ -1577,19 +1577,6 @@ auto=life:4
 rarity=C
 [/card]
 [card]
-id=191053
-name=Sparkmage Apprentice
-target=creature,player
-mana={1}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text=When Sparkmage Apprentice enters the battlefield, it deals 1 damage to target creature or player.
-auto=damage:1
-rarity=C
-[/card]
-[card]
 id=189899
 name=Stampeding Rhino
 mana={4}{G}

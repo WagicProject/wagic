@@ -161,19 +161,6 @@ power=2
 toughness=2
 [/card]
 [card]
-id=152699
-name=Merrow Witsniper
-target=player
-mana={U}
-type=Creature
-subtype=Merfolk Rogue
-power=1
-toughness=1
-text=When Merrow Witsniper enters the battlefield, target player puts the top card of his or her library into his or her graveyard.
-auto=deplete:1
-rarity=C
-[/card]
-[card]
 text=Target player discards X cards at random.
 id=157422
 name=Mind Shatter

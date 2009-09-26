@@ -520,21 +520,7 @@ auto={T}:forestwalk target(creature)
 power=1
 toughness=2
 [/card]
-[card]
-text=Flying. When Keening Banshee comes into play, target creature gets -2/-2 until end of turn.
-id=83599
-name=Keening Banshee
-target=creature
-auto=-2/-2 ueot
-rarity=C
-color=Black
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-abilities=flying
-[/card]
+
 [card]
 text=Target creature gets -3/-3 until end of turn.
 id=89056
@@ -851,19 +837,7 @@ power=3
 toughness=2
 abilities=flying
 [/card]
-[card]
-text=When Sparkmage Apprentice comes into play, it deals 1 damage to target creature or player.
-id=87967
-name=Sparkmage Apprentice
-target=creature,player
-auto=Damage:1
-rarity=C
-mana={1}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
+
 [card]
 text=Whenever a land comes into play under your control, untap Stone-Seeder Hierophant.     {T}: Untap target land.
 id=89041

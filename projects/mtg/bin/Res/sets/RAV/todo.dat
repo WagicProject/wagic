@@ -991,7 +991,22 @@ power=0
 subtype=Golem
 toughness=6
 [/card]
-
+[card]
+text=Flying. When Keening Banshee comes into play, target creature gets -2/-2 until end of turn.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+id=83599
+name=Keening Banshee
+target=creature
+auto=-2/-2 ueot
+rarity=C
+color=Black
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+abilities=flying
+[/card]
 [card]
 text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
 id=89008
@@ -1587,6 +1602,20 @@ mana={4}{B}{B}{G}{G}
 power=7
 subtype=Gorgon
 toughness=5
+[/card]
+[card]
+text=When Sparkmage Apprentice comes into play, it deals 1 damage to target creature or player.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+id=87967
+name=Sparkmage Apprentice
+target=creature,player
+auto=Damage:1
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
 [/card]
 [card]
 text=When Spawnbroker comes into play, you may exchange control of target creature you control and target creature with power less than or equal to that creature's power an opponent controls.

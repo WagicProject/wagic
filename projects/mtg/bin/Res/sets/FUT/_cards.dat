@@ -73,9 +73,9 @@ toughness=1
 abilities=flying
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)    Creatures you control have haste.
+text=Enchant creature you control(Target a creature as you play this. This card comes into play attached to that creature.)    Creatures you control have haste.
 id=136215
-target=creature
+target=creature|myBattlefield
 name=Emblem of the Warmind
 rarity=U
 mana={1}{R}

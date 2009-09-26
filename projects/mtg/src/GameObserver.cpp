@@ -286,6 +286,11 @@ void GameObserver::stateEffects()
     for (int j = zone->nb_cards-1 ; j>=0; j--){
       MTGCardInstance * card = zone->cards[j];
       card->afterDamage();
+
+      //Remove auras that don't have a valid target anymore
+      if (card->target && !isInPlay(card->target)){
+        players[i]->game->putInGraveyard(card);
+      }
     }
   }
   for (int i =0; i < 2; i++)

@@ -95,6 +95,20 @@ subtype=Elf Shaman
 toughness=1
 [/card]
 [card]
+text=When Blister Beetle comes into play, target creature gets -1/-1 until end of turn.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+target=creature
+auto=-1/-1 ueot
+id=174893
+name=Blister Beetle
+rarity=C
+type=Creature
+mana={1}{B}
+power=1
+subtype=Insect
+toughness=1
+[/card]
+[card]
 text={T}: Blood Cultist deals 1 damage to target creature.     Whenever a creature dealt damage by Blood Cultist this turn is put into a graveyard, put a +1/+1 counter on Blood Cultist.
 id=175100
 name=Blood Cultist
@@ -1295,7 +1309,22 @@ rarity=C
 type=Sorcery
 mana={4}{R}
 [/card]
-
+[card]
+text=Flying. When Welkin Guide comes into play, target creature gets +2/+2 and gains flying until end of turn.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+id=178096
+target=creature
+auto=2/2 ueot
+auto=flying ueot
+name=Welkin Guide
+rarity=C
+type=Creature
+mana={4}{W}
+power=2
+subtype=Bird Cleric
+toughness=2
+abilities=flying
+[/card]
 [card]
 text=Whenever a creature with power 5 or greater comes into play under your control, you may have Where Ancients Tread deal 5 damage to target creature or player.
 id=175115

@@ -679,7 +679,21 @@ power=2
 subtype=Myr
 toughness=2
 [/card]
-
+[card]
+text=Flying. When Looming Hoverguard enters the battlefield, put target artifact on top of its owner's library.
+target=artifact
+#does not work. "When ...enters the battlefield ... target..." does not work unless there is a "may"
+auto=moveTo(ownerLibrary)
+id=48114
+name=Looming Hoverguard
+rarity=U
+mana={4}{U}{U}
+type=Creature
+subtype=Drone
+power=3
+toughness=3
+abilities=flying
+[/card]
 [card]
 text=At the beginning of your upkeep, the player with the lowest life total gains control of Loxodon Peacekeeper. If two or more players are tied for lowest life total, you choose one of them, and that player gains control of Loxodon Peacekeeper.
 id=48180
@@ -1573,7 +1587,20 @@ type=Artifact
 mana={1}
 subtype=Equipment
 [/card]
-
+[card]
+text=When Viridian Shaman comes into play, destroy target artifact.
+target=artifact
+#"when ... comes into play .. target..." are not supported unless there is a "may"
+auto=destroy
+id=46119
+name=Viridian Shaman
+rarity=U
+type=Creature
+mana={2}{G}
+power=2
+subtype=Elf Shaman
+toughness=2
+[/card]
 [card]
 text=Equipped creature has trample and can't be blocked by more than one creature.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=46053

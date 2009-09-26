@@ -193,7 +193,20 @@ rarity=C
 type=Instant
 mana={R}
 [/card]
-
+[card]
+text=When Cultbrand Cinder comes into play, put a -1/-1 counter on target creature.
+#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
+id=142068
+target=creature
+auto=counter(-1/-1,1)
+name=Cultbrand Cinder
+rarity=C
+type=Creature
+mana={4}{BR}
+power=3
+subtype=Elemental Shaman
+toughness=3
+[/card]
 [card]
 text=Sacrifice Cursecatcher: Counter target instant or sorcery spell unless its controller pays {1}.
 id=158763

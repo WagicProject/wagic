@@ -270,20 +270,7 @@ subtype=Sliver
 power=1
 toughness=1
 [/card]
-[card]
-text=Flying     When Cloudchaser Eagle comes into play, destroy target enchantment.
-abilities=flying
-id=4871
-name=Cloudchaser Eagle
-target=enchantment
-auto=destroy 
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Bird
-toughness=2
-[/card]
+
 [card]
 text=First strike
 id=4599

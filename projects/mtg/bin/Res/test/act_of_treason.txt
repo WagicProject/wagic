@@ -1,0 +1,42 @@
+#Bug: Act of Treason doesn't untap
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+hand:act of treason
+inplay:mountain,plains,swamp
+[DO]
+grizzly bears
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+mountain
+plains
+swamp
+act of treason
+grizzly bears
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:18
+[PLAYER2]
+inplay:mountain,plains,swamp,grizzly bears
+graveyard:act of treason
+life:18
+[END]

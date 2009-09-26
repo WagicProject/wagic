@@ -1,0 +1,23 @@
+#Bug: Emblem of the warmind doesn't go to graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,plains,swamp,forest,mountain
+hand:emblem of the warmind,terror
+[PLAYER2]
+[DO]
+forest
+mountain
+emblem of the warmind
+grizzly bears
+plains
+swamp
+terror
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:plains,swamp,forest,mountain
+graveyard:emblem of the warmind,terror,grizzly bears
+[PLAYER2]
+[END]

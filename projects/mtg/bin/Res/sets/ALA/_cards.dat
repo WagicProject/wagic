@@ -78,19 +78,7 @@ rarity=C
 type=Sorcery
 mana={1}{B}{R}
 [/card]
-[card]
-text=When Blister Beetle comes into play, target creature gets -1/-1 until end of turn.
-target=creature
-auto=-1/-1 ueot
-id=174893
-name=Blister Beetle
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Insect
-toughness=1
-[/card]
+
 [card]
 text=Flying     When Broodmate Dragon comes into play, put a 4/4 red Dragon creature token with flying into play.
 abilities=flying
@@ -1271,21 +1259,7 @@ power=2
 subtype=Bird Soldier
 toughness=4
 [/card]
-[card]
-text=Flying. When Welkin Guide comes into play, target creature gets +2/+2 and gains flying until end of turn.
-id=178096
-target=creature
-auto=2/2 ueot
-auto=flying ueot
-name=Welkin Guide
-rarity=C
-type=Creature
-mana={4}{W}
-power=2
-subtype=Bird Cleric
-toughness=2
-abilities=flying
-[/card]
+
 [card]
 text=Wild Nacatl gets +1/+1 as long as you control a Mountain.     Wild Nacatl gets +1/+1 as long as you control a Plains.
 auto=aslongas(mountain|myinplay) 1/1
