@@ -218,7 +218,7 @@ int GuiPlay::receiveEventMinus(WEvent * e)
 	for (iterator it = cards.begin(); it != cards.end(); ++it)
 	  if (event->card->previous == (*it)->card || event->card == (*it)->card )
 	    {
-        if (event->card->previous->attacker) battleField.removeAttacker(event->card->previous);
+        if (event->card->previous && event->card->previous->attacker) battleField.removeAttacker(event->card->previous);
         else if (event->card->attacker) battleField.removeAttacker(event->card);
 	      CardView* cv = *it;
 	      cs->Remove(cv);
