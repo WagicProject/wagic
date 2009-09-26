@@ -44,30 +44,11 @@ text=Enchant creature Enchanted creature gets +3/+3. Whenever enchanted creature
 rarity=R
 [/card]
 [card]
-id=177546
-name=Cliff Threader
-mana={1}{W}
-type=Creature
-subtype=Kor Scout
-power=2
-toughness=1
-text=Mountainwalk
-rarity=C
-[/card]
-[card]
 id=195626
 name=Conqueror's Pledge
 mana={2}{W}{W}{W}
 type=Sorcery
 text=Kicker {6} (You may pay an additional {6} as you cast this spell.) Put six 1/1 white Kor Soldier creature tokens onto the battlefield. If Conqueror's Pledge was kicked, put twelve of those tokens onto the battlefield instead.
-rarity=R
-[/card]
-[card]
-id=186309
-name=Day of Judgment
-mana={2}{W}{W}
-type=Sorcery
-text=Destroy all creatures.
 rarity=R
 [/card]
 [card]
@@ -79,17 +60,6 @@ subtype=Kor Cleric
 power=2
 toughness=2
 text=Protection from black When Devout Lightcaster enters the battlefield, exile target black permanent.
-rarity=R
-[/card]
-[card]
-id=190399
-name=Emeria Angel
-mana={2}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=3
-text=Flying Landfall  EWhenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying onto the battlefield.
 rarity=R
 [/card]
 [card]
@@ -132,17 +102,6 @@ power=2
 toughness=3
 text=Whenever Kabira Evangel or another Ally enters the battlefield under your control, you may choose a color. If you do, Allies you control gain protection from the chosen color until end of turn.
 rarity=R
-[/card]
-[card]
-id=191356
-name=Kazandu Blademaster
-mana={W}{W}
-type=Creature
-subtype=Human Soldier Ally
-power=1
-toughness=1
-text=First strike, vigilance Whenever Kazandu Blademaster or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Kazandu Blademaster.
-rarity=U
 [/card]
 [card]
 id=177530
@@ -220,15 +179,7 @@ power=2
 toughness=3
 text=Flying When Kor Skyfisher enters the battlefield, return a permanent you control to its owner's hand.
 rarity=C
-[/card]
-[card]
-id=188999
-name=Landbind Ritual
-mana={3}{W}{W}
-type=Sorcery
-text=You gain 2 life for each Plains you control.
-rarity=U
-[/card]
+[/card
 [card]
 id=197889
 name=Luminarch Ascension
@@ -236,34 +187,6 @@ mana={1}{W}
 type=Enchantment
 text=At the beginning of each opponent's end step, if you didn't lose life this turn, you may put a quest counter on Luminarch Ascension. (Damage causes loss of life.) {1}{W}: Put a 4/4 white Angel creature token with flying onto the battlefield. Activate this ability only if Luminarch Ascension has four or more quest counters on it.
 rarity=R
-[/card]
-[card]
-id=195628
-name=Makindi Shieldmate
-mana={2}{W}
-type=Creature
-subtype=Kor Soldier Ally
-power=0
-toughness=3
-text=Defender Whenever Makindi Shieldmate or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Makindi Shieldmate.
-rarity=C
-[/card]
-[card]
-id=180360
-name=Narrow Escape
-mana={2}{W}
-type=Instant
-text=Return target permanent you control to its owner's hand. You gain 4 life.
-rarity=C
-[/card]
-[card]
-id=180346
-name=Nimbus Wings
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+2 and has flying.
-rarity=C
 [/card]
 [card]
 id=171001
@@ -274,27 +197,6 @@ subtype=Spirit
 power=1
 toughness=2
 text=Flying {T}: Prevent the next 1 damage that would be dealt to target player this turn.
-rarity=C
-[/card]
-[card]
-id=192210
-name=Ondu Cleric
-mana={1}{W}
-type=Creature
-subtype=Kor Cleric Ally
-power=1
-toughness=1
-text=Whenever Ondu Cleric or another Ally enters the battlefield under your control, you may gain life equal to the number of Allies you control.
-rarity=C
-[/card]
-[card]
-id=190395
-name=Pillarfield Ox
-mana={3}{W}
-type=Creature
-subtype=Ox
-power=2
-toughness=4
 rarity=C
 [/card]
 [card]
@@ -315,33 +217,11 @@ text=Whenever you cast a creature spell, you may put a quest counter on Quest fo
 rarity=U
 [/card]
 [card]
-id=193399
-name=Shepherd of the Lost
-mana={4}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=3
-text=Flying, first strike, vigilance
-rarity=U
-[/card]
-[card]
 id=178119
 name=Shieldmate's Blessing
 mana={W}
 type=Instant
 text=Prevent the next 3 damage that would be dealt to target creature or player this turn.
-rarity=C
-[/card]
-[card]
-id=171012
-name=Steppe Lynx
-mana={W}
-type=Creature
-subtype=Cat
-power=0
-toughness=1
-text=Landfall  EWhenever a land enters the battlefield under your control, Steppe Lynx gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -400,25 +280,6 @@ text=At the beginning of each end step, if you drew two or more cards this turn,
 rarity=R
 [/card]
 [card]
-id=183417
-name=Caller of Gales
-mana={U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
-text={1}{U}, {T}: Target creature gains flying until end of turn.
-rarity=C
-[/card]
-[card]
-id=189001
-name=Cancel
-mana={1}{U}{U}
-type=Instant
-text=Counter target spell.
-rarity=C
-[/card]
-[card]
 id=186322
 name=Cosi's Trickster
 mana={U}
@@ -441,17 +302,6 @@ text=Defender, flying {T}: Put Gomazoa and each creature it's blocking on top of
 rarity=U
 [/card]
 [card]
-id=180348
-name=Hedron Crab
-mana={U}
-type=Creature
-subtype=Crab
-power=0
-toughness=2
-text=Landfall  EWhenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
-rarity=U
-[/card]
-[card]
 id=178151
 name=Into the Roil
 mana={1}{U}
@@ -465,16 +315,6 @@ name=Ior Ruin Expedition
 mana={1}{U}
 type=Enchantment
 text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
-rarity=C
-[/card]
-[card]
-id=177585
-name=Kraken Hatchling
-mana={U}
-type=Creature
-subtype=Kraken
-power=0
-toughness=4
 rarity=C
 [/card]
 [card]
@@ -520,17 +360,6 @@ text=Whenever a spell or ability you control counters a spell, you may put a 1/1
 rarity=R
 [/card]
 [card]
-id=189625
-name=Merfolk Seastalkers
-mana={3}{U}
-type=Creature
-subtype=Merfolk Scout
-power=2
-toughness=3
-text=Islandwalk {2}{U}: Tap target creature without flying.
-rarity=U
-[/card]
-[card]
 id=170978
 name=Merfolk Wayfinder
 mana={2}{U}
@@ -549,15 +378,6 @@ type=Instant
 subtype=Trap
 text=If an opponent cast three or more spells this turn, you may pay {0} rather than pay Mindbreak Trap's mana cost. Exile any number of target spells.
 rarity=M
-[/card]
-[card]
-id=178109
-name=Paralyzing Grasp
-mana={2}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature doesn't untap during its controller's untap step.
-rarity=C
 [/card]
 [card]
 id=195635
@@ -596,50 +416,6 @@ power=3
 toughness=2
 text=Flying Landfall  EWhenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
 rarity=R
-[/card]
-[card]
-id=195629
-name=Sea Gate Loremaster
-mana={4}{U}
-type=Creature
-subtype=Merfolk Wizard Ally
-power=1
-toughness=3
-text={T}: Draw a card for each Ally you control.
-rarity=R
-[/card]
-[card]
-id=195631
-name=Seascape Aerialist
-mana={4}{U}
-type=Creature
-subtype=Merfolk Wizard Ally
-power=2
-toughness=3
-text=Whenever Seascape Aerialist or another Ally enters the battlefield under your control, you may have Ally creatures you control gain flying until end of turn.
-rarity=U
-[/card]
-[card]
-id=177517
-name=Shoal Serpent
-mana={5}{U}
-type=Creature
-subtype=Serpent
-power=5
-toughness=5
-text=Defender Landfall  EWhenever a land enters the battlefield under your control, Shoal Serpent loses defender until end of turn.
-rarity=C
-[/card]
-[card]
-id=192211
-name=Sky Ruin Drake
-mana={4}{U}
-type=Creature
-subtype=Drake
-power=2
-toughness=5
-text=Flying
-rarity=C
 [/card]
 [card]
 id=178144
@@ -681,14 +457,6 @@ text=Enchant land When Spreading Seas enters the battlefield, draw a card. Encha
 rarity=C
 [/card]
 [card]
-id=191360
-name=Summoner's Bane
-mana={2}{U}{U}
-type=Instant
-text=Counter target creature spell. Put a 2/2 blue Illusion creature token onto the battlefield.
-rarity=U
-[/card]
-[card]
 id=180482
 name=Tempest Owl
 mana={1}{U}
@@ -716,45 +484,12 @@ text=Search your library for a Trap card, reveal it, and put it into your hand. 
 rarity=U
 [/card]
 [card]
-id=180447
-name=Umara Raptor
-mana={2}{U}
-type=Creature
-subtype=Bird Ally
-power=1
-toughness=1
-text=Flying Whenever Umara Raptor or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Umara Raptor.
-rarity=C
-[/card]
-[card]
-id=191353
-name=Welkin Tern
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=2
-toughness=1
-text=Flying Welkin Tern can block only creatures with flying.
-rarity=C
-[/card]
-[card]
 id=197526
 name=Whiplash Trap
 mana={3}{U}{U}
 type=Instant
 subtype=Trap
 text=If an opponent had two or more creatures enter the battlefield under his or her control this turn, you may pay {U} rather than pay Whiplash Trap's mana cost. Return two target creatures to their owners' hands.
-rarity=C
-[/card]
-[card]
-id=170982
-name=Windrider Eel
-mana={3}{U}
-type=Creature
-subtype=Fish
-power=2
-toughness=2
-text=Flying Landfall  EWhenever a land enters the battlefield under your control, Windrider Eel gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -767,17 +502,6 @@ power=2
 toughness=2
 text=Whenever Bala Ged Thief or another Ally enters the battlefield under your control, target player reveals a number of cards from his or her hand equal to the number of Allies you control. You choose one of them. That player discards that card.
 rarity=R
-[/card]
-[card]
-id=180362
-name=Blood Seeker
-mana={1}{B}
-type=Creature
-subtype=Vampire Shaman
-power=1
-toughness=1
-text=Whenever a creature enters the battlefield under an opponent's control, you may have that player lose 1 life.
-rarity=C
 [/card]
 [card]
 id=170995
@@ -807,41 +531,11 @@ text=Bloodghast can't block. Bloodghast has haste as long as an opponent has 10 
 rarity=R
 [/card]
 [card]
-id=177500
-name=Bog Tatters
-mana={4}{B}
-type=Creature
-subtype=Wraith
-power=4
-toughness=2
-text=Swampwalk
-rarity=C
-[/card]
-[card]
-id=178121
-name=Crypt Ripper
-mana={2}{B}{B}
-type=Creature
-subtype=Shade
-power=2
-toughness=2
-text=Haste {B}: Crypt Ripper gets +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=178137
 name=Desecrated Earth
 mana={4}{B}
 type=Sorcery
 text=Destroy target land. Its controller discards a card.
-rarity=C
-[/card]
-[card]
-id=180115
-name=Disfigure
-mana={B}
-type=Instant
-text=Target creature gets -2/-2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -862,17 +556,6 @@ power=2
 toughness=2
 text=Kicker {B} (You may pay an additional {B} as you cast this spell.) When Gatekeeper of Malakir enters the battlefield, if it was kicked, target player sacrifices a creature.
 rarity=U
-[/card]
-[card]
-id=192226
-name=Giant Scorpion
-mana={2}{B}
-type=Creature
-subtype=Scorpion
-power=1
-toughness=3
-text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)
-rarity=C
 [/card]
 [card]
 id=180127
@@ -905,28 +588,6 @@ text=As long as an opponent has 10 or less life, Guul Draz Vampire gets +2/+1 an
 rarity=C
 [/card]
 [card]
-id=170998
-name=Hagra Crocodile
-mana={3}{B}
-type=Creature
-subtype=Crocodile
-power=3
-toughness=1
-text=Hagra Crocodile can't block. Landfall  EWhenever a land enters the battlefield under your control, Hagra Crocodile gets +2/+2 until end of turn.
-rarity=C
-[/card]
-[card]
-id=197404
-name=Hagra Diabolist
-mana={4}{B}
-type=Creature
-subtype=Ogre Shaman Ally
-power=3
-toughness=2
-text=Whenever Hagra Diabolist or another Ally enters the battlefield under your control, you may have target player lose life equal to the number of Allies you control.
-rarity=U
-[/card]
-[card]
 id=185752
 name=Halo Hunter
 mana={2}{B}{B}{B}
@@ -949,14 +610,6 @@ text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) Fl
 rarity=C
 [/card]
 [card]
-id=180435
-name=Hideous End
-mana={1}{B}{B}
-type=Instant
-text=Destroy target nonblack creature. Its controller loses 2 life.
-rarity=C
-[/card]
-[card]
 id=185704
 name=Kalitas, Bloodchief of Ghet
 mana={5}{B}{B}
@@ -966,17 +619,6 @@ power=5
 toughness=5
 text={B}{B}{B}, {T}: Destroy target creature. If that creature is put into a graveyard this way, put a black Vampire creature token onto the battlefield. Its power is equal to that creature's power and its toughness is equal to that creature's toughness.
 rarity=M
-[/card]
-[card]
-id=190398
-name=Malakir Bloodwitch
-mana={3}{B}{B}
-type=Creature
-subtype=Vampire Shaman
-power=4
-toughness=4
-text=Flying, protection from white When Malakir Bloodwitch enters the battlefield, each opponent loses life equal to the number of Vampires you control. You gain life equal to the life lost this way.
-rarity=R
 [/card]
 [card]
 id=177543
@@ -995,17 +637,6 @@ text=Target player discards a card for each Swamp you control.
 rarity=U
 [/card]
 [card]
-id=180415
-name=Mindless Null
-mana={2}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-text=Mindless Null can't block unless you control a Vampire.
-rarity=C
-[/card]
-[card]
 id=190401
 name=Mire Blight
 mana={B}
@@ -1022,28 +653,6 @@ type=Instant
 subtype=Trap
 text=If an opponent gained life this turn, you may pay {B} rather than pay Needlebite Trap's mana cost. Target player loses 5 life and you gain 5 life.
 rarity=U
-[/card]
-[card]
-id=197403
-name=Nimana Sell-Sword
-mana={3}{B}
-type=Creature
-subtype=Human Warrior Ally
-power=2
-toughness=2
-text=Whenever Nimana Sell-Sword or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Nimana Sell-Sword.
-rarity=C
-[/card]
-[card]
-id=192219
-name=Ob Nixilis, the Fallen
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Demon
-power=3
-toughness=3
-text=Landfall  EWhenever a land enters the battlefield under your control, you may have target player lose 3 life. If you do, put three +1/+1 counters on Ob Nixilis, the Fallen.
-rarity=M
 [/card]
 [card]
 id=180448
@@ -1088,17 +697,6 @@ text=Landfall  EWhenever a land enters the battlefield under your control, you
 rarity=C
 [/card]
 [card]
-id=180465
-name=Surrakar Marauder
-mana={1}{B}
-type=Creature
-subtype=Surrakar
-power=2
-toughness=1
-text=Landfall  EWhenever a land enters the battlefield under your control, Surrakar Marauder gains intimidate until end of turn. (It can't be blocked except by artifact creatures and/or creatures that share a color with it.)
-rarity=C
-[/card]
-[card]
 id=192232
 name=Vampire Hexmage
 mana={B}{B}
@@ -1121,33 +719,11 @@ text=At the beginning of your upkeep, you lose 1 life unless an opponent has 10 
 rarity=C
 [/card]
 [card]
-id=185707
-name=Vampire Nighthawk
-mana={1}{B}{B}
-type=Creature
-subtype=Vampire Shaman
-power=2
-toughness=3
-text=Flying Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) Lifelink (Damage dealt by this creature also causes you to gain that much life.)
-rarity=U
-[/card]
-[card]
 id=178150
 name=Vampire's Bite
 mana={B}
 type=Instant
 text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) Target creature gets +3/+0 until end of turn. If Vampire's Bite was kicked, that creature gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
-rarity=C
-[/card]
-[card]
-id=180350
-name=Bladetusk Boar
-mana={3}{R}
-type=Creature
-subtype=Boar
-power=3
-toughness=2
-text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.)
 rarity=C
 [/card]
 [card]
@@ -1168,14 +744,6 @@ text=+1: Discard a card. If a red card is discarded this way, Chandra Ablaze dea
 rarity=M
 [/card]
 [card]
-id=190406
-name=Demolish
-mana={3}{R}
-type=Sorcery
-text=Destroy target artifact or land.
-rarity=U
-[/card]
-[card]
 id=191373
 name=Electropotence
 mana={2}{R}
@@ -1190,17 +758,6 @@ mana={R}{R}{R}{R}
 type=Sorcery
 text=Kicker {5} (You may pay an additional {5} as you cast this spell.) Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step. If Elemental Appeal was kicked, that creature gets +7/+0 until end of turn.
 rarity=R
-[/card]
-[card]
-id=197887
-name=Geyser Glider
-mana={3}{R}{R}
-type=Creature
-subtype=Elemental Beast
-power=4
-toughness=4
-text=Landfall  EWhenever a land enters the battlefield under your control, Geyser Glider gains flying until end of turn.
-rarity=U
 [/card]
 [card]
 id=177501
@@ -1247,15 +804,6 @@ text=When Goblin Shortcutter enters the battlefield, target creature can't block
 rarity=C
 [/card]
 [card]
-id=185701
-name=Goblin War Paint
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+2 and has haste.
-rarity=C
-[/card]
-[card]
 id=192215
 name=Hellfire Mongrel
 mana={2}{R}
@@ -1278,17 +826,6 @@ text=Flying, haste Whenever Hellkite Charger attacks, you may pay {5}{R}{R}. If 
 rarity=R
 [/card]
 [card]
-id=180467
-name=Highland Berserker
-mana={1}{R}
-type=Creature
-subtype=Human Berserker Ally
-power=2
-toughness=1
-text=Whenever Highland Berserker or another Ally enters the battlefield under your control, you may have Ally creatures you control gain first strike until end of turn.
-rarity=C
-[/card]
-[card]
 id=197530
 name=Inferno Trap
 mana={3}{R}
@@ -1296,17 +833,6 @@ type=Instant
 subtype=Trap
 text=If you've been dealt damage by two or more creatures this turn, you may pay {R} rather than pay Inferno Trap's mana cost. Inferno Trap deals 4 damage to target creature.
 rarity=U
-[/card]
-[card]
-id=190408
-name=Kazuul Warlord
-mana={4}{R}
-type=Creature
-subtype=Minotaur Warrior Ally
-power=3
-toughness=3
-text=Whenever Kazuul Warlord or another Ally enters the battlefield under your control, you may put a +1/+1 counter on each Ally creature you control.
-rarity=R
 [/card]
 [card]
 id=197528
@@ -1323,25 +849,6 @@ name=Magma Rift
 mana={2}{R}
 type=Sorcery
 text=As an additional cost to cast Magma Rift, sacrifice a land. Magma Rift deals 5 damage to target creature.
-rarity=C
-[/card]
-[card]
-id=186324
-name=Mark of Mutiny
-mana={2}{R}
-type=Sorcery
-text=Gain control of target creature until end of turn. Put a +1/+1 counter on it and untap it. That creature gains haste until end of turn.
-rarity=U
-[/card]
-[card]
-id=191359
-name=Molten Ravager
-mana={2}{R}
-type=Creature
-subtype=Elemental
-power=0
-toughness=4
-text={R}: Molten Ravager gets +1/+0 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -1365,17 +872,6 @@ power=4
 toughness=4
 text={1}{R}{R}: Put a blaze counter on target land without a blaze counter on it. For as long as that land has a blaze counter on it, it has "At the beginning of your upkeep, this land deals 1 damage to you." (The land continues to burn after Obsidian Fireheart has left the battlefield.)
 rarity=M
-[/card]
-[card]
-id=170977
-name=Plated Geopede
-mana={1}{R}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-text=First strike Landfall  EWhenever a land enters the battlefield under your control, Plated Geopede gets +2/+2 until end of turn.
-rarity=C
 [/card]
 [card]
 id=192217
@@ -1422,40 +918,6 @@ text=If an opponent drew three or more cards this turn, you may pay {R} rather t
 rarity=U
 [/card]
 [card]
-id=180134
-name=Seismic Shudder
-mana={1}{R}
-type=Instant
-text=Seismic Shudder deals 1 damage to each creature without flying.
-rarity=C
-[/card]
-[card]
-id=180505
-name=Shatterskull Giant
-mana={2}{R}{R}
-type=Creature
-subtype=Giant Warrior
-power=4
-toughness=3
-rarity=C
-[/card]
-[card]
-id=178136
-name=Slaughter Cry
-mana={2}{R}
-type=Instant
-text=Target creature gets +3/+0 and gains first strike until end of turn.
-rarity=C
-[/card]
-[card]
-id=180495
-name=Spire Barrage
-mana={4}{R}
-type=Sorcery
-text=Spire Barrage deals damage to target creature or player equal to the number of Mountains you control.
-rarity=C
-[/card]
-[card]
 id=180423
 name=Torch Slinger
 mana={2}{R}
@@ -1464,17 +926,6 @@ subtype=Goblin Shaman
 power=2
 toughness=2
 text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) When Torch Slinger enters the battlefield, if it was kicked, it deals 2 damage to target creature.
-rarity=C
-[/card]
-[card]
-id=192229
-name=Tuktuk Grunts
-mana={4}{R}
-type=Creature
-subtype=Goblin Warrior Ally
-power=2
-toughness=2
-text=Haste Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.
 rarity=C
 [/card]
 [card]
@@ -1514,17 +965,6 @@ text=If an opponent had an artifact enter the battlefield under his or her contr
 rarity=U
 [/card]
 [card]
-id=192231
-name=Baloth Woodcrasher
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=Landfall  EWhenever a land enters the battlefield under your control, Baloth Woodcrasher gets +4/+4 and gains trample until end of turn.
-rarity=U
-[/card]
-[card]
 id=185703
 name=Beast Hunt
 mana={3}{G}
@@ -1550,17 +990,6 @@ text=If a noncreature permanent under your control was destroyed this turn by a 
 rarity=U
 [/card]
 [card]
-id=180361
-name=Frontier Guide
-mana={1}{G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=1
-text={3}{G}, {T}: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
-rarity=U
-[/card]
-[card]
 id=195627
 name=Gigantiform
 mana={3}{G}{G}
@@ -1570,45 +999,12 @@ text=Kicker {4} Enchant creature Enchanted creature is 8/8 and has trample. When
 rarity=R
 [/card]
 [card]
-id=189621
-name=Grazing Gladehart
-mana={2}{G}
-type=Creature
-subtype=Antelope
-power=2
-toughness=2
-text=Landfall  EWhenever a land enters the battlefield under your control, you may gain 2 life.
-rarity=C
-[/card]
-[card]
-id=185694
-name=Greenweaver Druid
-mana={2}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-text={T}: Add {G}{G} to your mana pool.
-rarity=U
-[/card]
-[card]
 id=180408
 name=Harrow
 mana={2}{G}
 type=Instant
 text=As an additional cost to cast Harrow, sacrifice a land. Search your library for up to two basic land cards and put them onto the battlefield. Then shuffle your library.
 rarity=U
-[/card]
-[card]
-id=192227
-name=Joraga Bard
-mana={3}{G}
-type=Creature
-subtype=Elf Rogue Ally
-power=1
-toughness=4
-text=Whenever Joraga Bard or another Ally enters the battlefield under your control, you may have Ally creatures you control gain vigilance until end of turn.
-rarity=C
 [/card]
 [card]
 id=186320
@@ -1683,17 +1079,6 @@ text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) Re
 rarity=C
 [/card]
 [card]
-id=178138
-name=Oran-Rief Survivalist
-mana={1}{G}
-type=Creature
-subtype=Human Warrior Ally
-power=1
-toughness=1
-text=Whenever Oran-Rief Survivalist or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Oran-Rief Survivalist.
-rarity=C
-[/card]
-[card]
 id=169958
 name=Predatory Urge
 mana={3}{G}
@@ -1701,14 +1086,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature has "{T}: This creature deals damage equal to its power to target creature. That creature deals damage equal to its power to this creature."
 rarity=R
-[/card]
-[card]
-id=193407
-name=Primal Bellow
-mana={G}
-type=Instant
-text=Target creature gets +1/+1 until end of turn for each Forest you control.
-rarity=U
 [/card]
 [card]
 id=195572
@@ -1719,42 +1096,11 @@ text=Whenever a creature you control deals combat damage to a creature, you may 
 rarity=U
 [/card]
 [card]
-id=192222
-name=Rampaging Baloths
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=6
-text=Trample Landfall  EWhenever a land enters the battlefield under your control, you may put a 4/4 green Beast creature token onto the battlefield.
-rarity=M
-[/card]
-[card]
 id=178115
 name=Relic Crush
 mana={4}{G}
 type=Instant
 text=Destroy target artifact or enchantment and up to one other target artifact or enchantment.
-rarity=C
-[/card]
-[card]
-id=197405
-name=River Boa
-mana={1}{G}
-type=Creature
-subtype=Snake
-power=2
-toughness=1
-text=Islandwalk {G}: Regenerate River Boa.
-rarity=U
-[/card]
-[card]
-id=186316
-name=Savage Silhouette
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+2 and has "{1}{G}: Regenerate this creature."
 rarity=C
 [/card]
 [card]
@@ -1819,17 +1165,6 @@ text=Terra Stomper can't be countered. Trample
 rarity=R
 [/card]
 [card]
-id=170971
-name=Territorial Baloth
-mana={4}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=Landfall  EWhenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
-rarity=C
-[/card]
-[card]
 id=180458
 name=Timbermaw Larva
 mana={3}{G}
@@ -1852,43 +1187,11 @@ text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can 
 rarity=U
 [/card]
 [card]
-id=169971
-name=Turntimber Ranger
-mana={3}{G}{G}
-type=Creature
-subtype=Elf Scout Ally
-power=2
-toughness=2
-text=Whenever Turntimber Ranger or another Ally enters the battlefield under your control, you may put a 2/2 green Wolf creature token onto the battlefield. If you do, put a +1/+1 counter on Turntimber Ranger.
-rarity=R
-[/card]
-[card]
-id=180454
-name=Vastwood Gorger
-mana={5}{G}
-type=Creature
-subtype=Wurm
-power=5
-toughness=6
-rarity=C
-[/card]
-[card]
 id=177571
 name=Vines of Vastwood
 mana={G}
 type=Instant
 text=Kicker {G} (You may pay an additional {G} as you cast this spell.) Target creature can't be the target of spells or abilities your opponents control this turn. If Vines of Vastwood was kicked, that creature gets +4/+4 until end of turn.
-rarity=C
-[/card]
-[card]
-id=189620
-name=Zendikar Farguide
-mana={4}{G}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-text=Forestwalk
 rarity=C
 [/card]
 [card]
@@ -1919,14 +1222,6 @@ text=Equipped creature can't be blocked by Vampires or Zombies. Equipped creatur
 rarity=U
 [/card]
 [card]
-id=193406
-name=Carnage Altar
-mana={2}
-type=Artifact
-text={3}, Sacrifice a creature: Draw a card.
-rarity=U
-[/card]
-[card]
 id=193398
 name=Eldrazi Monument
 mana={5}
@@ -1941,14 +1236,6 @@ mana={6}
 type=Artifact
 text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall  EWhenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
 rarity=M
-[/card]
-[card]
-id=193405
-name=Expedition Map
-mana={1}
-type=Artifact
-text={2}, {T}, Sacrifice Expedition Map: Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
-rarity=C
 [/card]
 [card]
 id=190396
@@ -1969,17 +1256,6 @@ text=Equipped creature has double strike. Whenever equipped creature attacks, yo
 rarity=R
 [/card]
 [card]
-id=193394
-name=Hedron Scrabbler
-mana={2}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=1
-text=Landfall  EWhenever a land enters the battlefield under your control, Hedron Scrabbler gets +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=198519
 name=Khalni Gem
 mana={4}
@@ -1994,16 +1270,6 @@ mana={0}
 type=Artifact
 subtype=Equipment
 text=Equipped creature gets +0/+2 and has reach. (It can block creatures with flying.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=C
-[/card]
-[card]
-id=190397
-name=Stonework Puma
-mana={3}
-type=Artifact Creature
-subtype=Cat Ally
-power=2
-toughness=2
 rarity=C
 [/card]
 [card]
@@ -2025,68 +1291,12 @@ text=Equipped creature gets +2/+1. Equip {2}
 rarity=U
 [/card]
 [card]
-id=189638
-name=Akoum Refuge
-mana=
-type=Land
-text=Akoum Refuge enters the battlefield tapped. When Akoum Refuge enters the battlefield, you gain 1 life. {T}: Add {B} or {R} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=177584
-name=Arid Mesa
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Arid Mesa: Search your library for a Mountain or Plains card and put it onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=190394
-name=Crypt of Agadeem
-mana=
-type=Land
-text=Crypt of Agadeem enters the battlefield tapped. {T}: Add {B} to your mana pool. {2}, {T}: Add {B} to your mana pool for each black creature card in your graveyard.
-rarity=R
-[/card]
-[card]
 id=190414
 name=Emeria, the Sky Ruin
 mana=
 type=Land
 text=Emeria, the Sky Ruin enters the battlefield tapped. At the beginning of your upkeep, if you control seven or more Plains, you may return target creature card from your graveyard to the battlefield. {T}: Add {W} to your mana pool.
 rarity=R
-[/card]
-[card]
-id=189631
-name=Graypelt Refuge
-mana=
-type=Land
-text=Graypelt Refuge enters the battlefield tapped. When Graypelt Refuge enters the battlefield, you gain 1 life. {T}: Add {G} or {W} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=189627
-name=Jwar Isle Refuge
-mana=
-type=Land
-text=Jwar Isle Refuge enters the battlefield tapped. When Jwar Isle Refuge enters the battlefield, you gain 1 life. {T}: Add {U} or {B} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=169963
-name=Kabira Crossroads
-mana=
-type=Land
-text=Kabira Crossroads enters the battlefield tapped. When Kabira Crossroads enters the battlefield, you gain 2 life. {T}: Add {W} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=189635
-name=Kazandu Refuge
-mana=
-type=Land
-text=Kazandu Refuge enters the battlefield tapped. When Kazandu Refuge enters the battlefield, you gain 1 life. {T}: Add {R} or {G} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=190412
@@ -2097,52 +1307,12 @@ text=Magosi, the Waterveil enters the battlefield tapped. {T}: Add {U} to your m
 rarity=R
 [/card]
 [card]
-id=191371
-name=Marsh Flats
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card and put it onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=190413
-name=Misty Rainforest
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
-[card]
 id=190417
 name=Oran-Rief, the Vastwood
 mana=
 type=Land
 text=Oran-Rief, the Vastwood enters the battlefield tapped. {T}: Add {G} to your mana pool. {T}: Put a +1/+1 counter on each green creature that entered the battlefield this turn.
 rarity=R
-[/card]
-[card]
-id=169975
-name=Piranha Marsh
-mana=
-type=Land
-text=Piranha Marsh enters the battlefield tapped. When Piranha Marsh enters the battlefield, target player loses 1 life. {T}: Add {B} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=190393
-name=Scalding Tarn
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Scalding Tarn: Search your library for an Island or Mountain card and put it onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=189626
-name=Sejiri Refuge
-mana=
-type=Land
-text=Sejiri Refuge enters the battlefield tapped. When Sejiri Refuge enters the battlefield, you gain 1 life. {T}: Add {W} or {U} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=177541
@@ -2174,14 +1344,6 @@ name=Valakut, the Molten Pinnacle
 mana=
 type=Land
 text=Valakut, the Molten Pinnacle enters the battlefield tapped. Whenever a Mountain enters the battlefield under your control, if you control at least five other Mountains, you may have Valakut, the Molten Pinnacle deal 3 damage to target creature or player. {T}: Add {R} to your mana pool.
-rarity=R
-[/card]
-[card]
-id=193400
-name=Verdant Catacombs
-mana=
-type=Land
-text={T}, Pay 1 life, Sacrifice Verdant Catacombs: Search your library for a Swamp or Forest card and put it onto the battlefield. Then shuffle your library.
 rarity=R
 [/card]
 [card]

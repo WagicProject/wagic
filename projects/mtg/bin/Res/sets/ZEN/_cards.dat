@@ -30,6 +30,42 @@ power=4
 toughness=4
 [/card]
 [card]
+text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.)
+id=180350
+name=Bladetusk Boar
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Boar
+power=3
+toughness=2
+abilities=intimidate
+[/card]
+[card]
+text=Whenever a creature enters the battlefield under an opponent's control, you may have that player lose 1 life.
+id=180362
+name=Blood Seeker
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Vampire Shaman
+auto=@movedTo(creature|opponentBattlefield):life:-1 opponent
+power=1
+toughness=1
+[/card]
+[card]
+text=Swampwalk
+id=177500
+name=Bog Tatters
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Wraith
+power=4
+toughness=2
+abilities=swampwalk
+[/card]
+[card]
 text={1}{U}{T}: Target creature gains flying until end of turn.
 id=183417
 name=Caller of Gales
@@ -67,10 +103,23 @@ name=Caravan Hurda
 rarity=C
 mana={4}{W}
 type=Creature
-subtype=Beast
+subtype=Giant
 power=1
 toughness=5
 abilities=lifelink
+[/card]
+[card]
+text=Haste {B}: Crypt Ripper gets +1/+1 until end of turn.
+id=178121
+name=Crypt Ripper
+rarity=C
+mana={2}{B}{B}
+type=Creature
+subtype=Shade
+auto={B}:1/1
+power=2
+toughness=2
+abilities=haste
 [/card]
 [card]
 text=Mountainwalk
@@ -114,6 +163,16 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+text=Target creature gets -2/-2 until end of turn.
+id=180115
+target=creature
+auto=-2/-2
+name=Disfigure
+rarity=C
+mana={B}
+type=Instant
+[/card]
+[card]
 text=Flying   Landfall — Whenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying into the battlefield.
 id=190399
 name=Emeria Angel
@@ -125,6 +184,15 @@ auto=@movedTo(land|myBattlefield):token(Bird,creature bird, 1/1,flying white)
 power=3
 toughness=3
 abilities=flying
+[/card]
+[card]
+text={2}, {T}, Sacrifice Expedition Map: Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
+auto={2}{T}{S}:moveTo(ownerhand) target(land|myLibrary)
+id=193405
+name=Expedition Map
+rarity=C
+mana={1}
+type=Artifact
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
@@ -163,6 +231,18 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
+text={3}{G}, {T}: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
+id=180361
+name=Frontier Guide
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Elf Scout
+auto={3}{G}{T}:moveTo(myBattlefield) target(land[basic]|myLibrary)
+power=1
+toughness=1
+[/card]
+[card]
 text=Landfall - Whenever a land enters the battlefield under your control, Geyser Glider gains flying until end of turn.
 id=197887
 name=Geyser Glider
@@ -175,6 +255,29 @@ power=4
 toughness=4
 [/card]
 [card]
+text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)
+id=192226
+name=Giant Scorpion
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Scorpion
+power=1
+toughness=3
+abilities=deathtouch
+[/card]
+[card]
+text=Enchant creature Enchanted creature gets +2/+2 and has haste.
+auto=haste
+auto=2/2
+id=185701
+name=Goblin War Paint
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Graypelt Refuge enters the battlefield tapped.   When Graypelt Refuge enters the battlefield, you gain 1 life.   {T}: Add {W} or {G} to your mana pool.
 id=189631
 name=Graypelt Refuge
@@ -184,6 +287,56 @@ auto=life:1
 auto={T}:Add {W}
 auto={T}:Add {G}
 type=Land
+[/card]
+[card]
+text=Landfall - Whenever a land enters the battlefield under your control, you may gain 2 life.
+id=189621
+name=Grazing Gladehart
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Antelope
+auto=@movedTo(land|myBattlefield):life:2
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Add {G}{G} to your mana pool.
+id=185694
+name=Greenweaver Druid
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+auto={T}:Add {G}{G}
+power=1
+toughness=1
+[/card]
+[card]
+text=Hagra Crocodile can't block. Landfall - Whenever a land enters the battlefield under your control, Hagra Crocodile gets +2/+2 until end of turn.
+id=170998
+name=Hagra Crocodile
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Crocodile
+auto=@movedTo(land|myBattlefield):2/2
+power=3
+toughness=1
+abilities=cantblock
+[/card]
+[card]
+text=Whenever Hagra Diabolist or another Ally enters the battlefield under your control, you may have target player lose life equal to the number of Allies you control.
+id=197404
+name=Hagra Diabolist
+rarity=U
+mana={4}{B}
+type=Creature
+subtype=Ogre Shaman Ally
+auto=may foreach(ally|myBattlefield) life:-1 opponent
+auto=@movedTo(other ally|myBattlefield):foreach(ally|myBattlefield) life:-1 opponent
+power=3
+toughness=2
 [/card]
 [card]
 text=Landfall - Whenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
@@ -198,6 +351,18 @@ power=0
 toughness=2
 [/card]
 [card]
+text=Landfall - Whenever a land enters the battlefield under your control, Hedron Scrabbler gets +1/+1 until end of turn.
+id=193394
+name=Hedron Scrabbler
+rarity=C
+mana={2}
+type=Artifact Creature
+subtype=Construct
+auto=@movedTo(land|myBattlefield):1/1
+power=1
+toughness=1
+[/card]
+[card]
 text=Destroy target nonblack creature. Its controller loses 2 life.
 target=creature[-black]
 auto=destroy
@@ -207,6 +372,21 @@ name=Hideous End
 rarity=C
 mana={1}{B}{B}
 type=Instant
+[/card]
+[card]
+text=Whenever Highland Berserker or another Ally enters the battlefield under your control, you may have Ally creatures you control gain first strike until end of turn.
+id=180467
+name=Highland Berserker
+rarity=C
+mana={1}{R}
+auto=may lord(ally|myBattlefield) first strike ueot
+auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) first strike ueot
+type=Creature
+subtype=Human Berserker Ally
+power=2
+toughness=1
+[/card]
+[card]
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -245,6 +425,19 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
+text=Whenever Joraga Bard or another Ally enters the battlefield under your control, you may have Ally creatures you control gain vigilance until end of turn.
+id=192227
+name=Joraga Bard
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Elf Rogue Ally
+auto=may lord(ally|myBattlefield) vigilance ueot
+auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) vigilance ueot
+power=1
+toughness=4
+[/card]
+[card]
 text=Jwar Isle Refuge enters the battlefield tapped.   When Jwar Isle Refuge enters the battlefield, you gain 1 life.   {T}: Add {U} or {B} to your mana pool.
 id=189627
 name=Jwar Isle Refuge
@@ -254,6 +447,16 @@ auto=life:1
 auto={T}:Add {U}
 auto={T}:Add {B}
 type=Land
+[/card]
+[card]
+text=Kabira Crossroads enters the battlefield tapped. When Kabira Crossroads enters the battlefield, you gain 2 life. {T}: Add {W} to your mana pool.
+id=169963
+name=Kabira Crossroads
+auto=tap
+auto=life:2
+auto={T}:Add {W}
+type=Land
+rarity=C
 [/card]
 [card]
 text=First strike, vigilance   Whenever Kazandu Blademaster or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Kazandu Blademaster.
@@ -323,10 +526,36 @@ mana={2}{W}
 type=Creature
 subtype=Kor Soldier Ally
 auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):counter(1/1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1)
 power=0
 toughness=3
 abilities=defender
+[/card]
+[card]
+text=Flying, protection from white   When Malakir Bloodwitch enters the battlefield, each opponent loses life equal to the number of Vampires you control. You gain life equal to the life lost this way.
+id=190398
+name=Malakir Bloodwitch
+rarity=R
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire Shaman
+auto=foreach(vampire|myBattlefield) life:-1 opponent
+auto=foreach(vampire|myBattlefield) life:1 controller
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
+text=Gain control of target creature until end of turn. Put a +1/+1 counter on it and untap it. That creature gains haste until end of turn.
+alias=129767
+id=186324
+name=Mark of Mutiny
+auto=untap
+auto=haste
+auto=counter(1/1)
+rarity=U
+mana={2}{R}
+type=Sorcery
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card and put it onto the battlefield. Then shuffle your library.
@@ -350,12 +579,37 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
+text=Mindless Null can't block unless you control a Vampire.
+id=180415
+name=Mindless Null
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Zombie
+auto=aslongas(vampire|myBattlefield) -cantblock
+power=2
+toughness=2
+abilities=cantblock
+[/card]
+[card]
 text={T}, Pay 1 Life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.
 id=190413
 name=Misty Rainforest
 rarity=R
 auto={T}{S}:moveTo(myBattlefield) target(forest,island|mylibrary) && life:-1 controller
 type=Land
+[/card]
+[card]
+text={R}: Molten Ravager gets +1/+0 until end of turn.
+id=191359
+name=Molten Ravager
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Elemental
+auto={R}:1/0
+power=0
+toughness=4
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -405,6 +659,19 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+text=Whenever Nimana Sell-Sword or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Nimana Sell-Sword.
+id=197403
+name=Nimana Sell-Sword
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Human Warrior Ally
+auto=may counter(1/1)
+auto=@movedTo(ally|myBattlefield):may counter(1/1)
+power=2
+toughness=2
+[/card]
+[card]
 text=Enchant creature   Enchanted creature gets +1/+2 and has flying.
 target=creature
 auto=1/2
@@ -424,7 +691,7 @@ rarity=M
 mana={3}{B}{B}
 type=Creature
 subtype=Demon
-auto=@movedTo(land|myBattlefield):counter(1/1,3) && life:-3 opponent
+auto=@movedTo(land|myBattlefield):may counter(1/1,3) && life:-3 opponent
 power=3
 toughness=3
 abilities=legendary
@@ -438,7 +705,7 @@ mana={2}{W}
 type=Creature
 subtype=Kor Cleric Ally
 auto=may foreach(ally|myBattlefield) life:1
-auto=@movedTo(other ally|myBattlefield):foreach(ally|myBattlefield) life:1
+auto=@movedTo(other ally|myBattlefield):may foreach(ally|myBattlefield) life:1
 power=1
 toughness=1
 [/card]
@@ -451,7 +718,7 @@ mana={1}{G}
 type=Creature
 subtype=Human Warrior Ally
 auto=may counter(1/1)
-auto=@movedTo(ally|myBattlefield):counter(1/1)
+auto=@movedTo(ally|myBattlefield):may counter(1/1)
 power=1
 toughness=1 
 [/card]
@@ -476,6 +743,16 @@ type=Creature
 subtype=OX
 power=2
 toughness=4
+[/card]
+[card]
+text=Piranha Marsh enters the battlefield tapped. When Piranha Marsh enters the battlefield, target player loses 1 life. {T}: Add {B} to your mana pool.
+id=169975
+name=Piranha Marsh
+auto=tap
+auto=life:-1 opponent
+auto={T}:Add {B}
+rarity=C
+type=Land
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -527,6 +804,16 @@ toughness=1
 abilities=first strike
 [/card]
 [card]
+text=Target creature gets +1/+1 until end of turn for each Forest you control.
+target=creature
+auto=foreach(forest|myBattlefield) 1/1
+id=193407
+name=Primal Bellow
+rarity=U
+mana={G}
+type=Instant
+[/card]
+[card]
 text=Trample   Landfall - Whenever a land enters the battlefield under your control, you may put a 4/4 green Beast creature token onto the battlefield.
 id=192222
 name=Rampaging Baloths
@@ -553,6 +840,18 @@ auto={G}:regenerate
 abilities=islandwalk
 [/card]
 [card]
+text=Enchant creature Enchanted creature gets +2/+2 and has "{1}{G}: Regenerate this creature."
+target=creature
+auto=2/2
+auto={1}{G}:regenerate
+id=186316
+name=Savage Silhouette
+rarity=C
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={T}, Pay 1 Life, Sacrifice Scalding Tarn: Search your library for a Island or Mountain card and put it onto the battlefield. Then shuffle your library.
 id=190393
 name=Scalding Tarn
@@ -562,7 +861,7 @@ type=Land
 [/card]
 [card]
 text={T}: Draw a card for each Ally you control.
-id=
+id=195629
 name=Sea Gate Loremaster
 rarity=R
 mana={4}{U}
@@ -574,20 +873,39 @@ toughness=3
 [/card]
 [card]
 text=When Seascape Aerialist or another Ally enters the battlefield under your control, Allies you control gain flying until end of turn.
-id=
+id=195631
 name=Seascape Aerialist
 rarity=U
 mana={4}{U}
 type=Creature
 subtype=Merfolk Wizard Ally
-auto=lord(ally|myBattlefield) flying ueot
-auto=@movedTo(other ally|myBattlefield):lord(ally|myBattlefield) flying ueot
+auto=may lord(ally|myBattlefield) flying ueot
+auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) flying ueot
 power=2
 toughness=3
 [/card]
 [card]
+text=Seismic Shudder deals 1 damage to each creature without flying.
+auto=damage:1 all(creature[flying])
+id=180134
+name=Seismic Shudder
+rarity=C
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+id=180505
+name=Shatterskull Giant
+rarity=C
+mana={2}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=4
+toughness=3
+[/card]
+[card]
 text=Flying, first strike, vigilance
-id=
+id=193399
 name=Shepherd of the Lost
 rarity=U
 mana={4}{W}
@@ -599,7 +917,7 @@ abilities=flying,first strike,vigilance
 [/card]
 [card]
 text=Defender   Landfall - Whenever a land enters the battlefield under your control, Shoal Serpent loses defender until end of turn
-id=
+id=177517
 name=Shoal Serpent
 rarity=C
 mana={5}{U}
@@ -611,8 +929,8 @@ toughness=5
 abilities=defender
 [/card]
 [card]
-text=
-id=
+text=Flying
+id=192211
 name=Sky Ruin Drake
 rarity=C
 mana={4}{U}
@@ -623,8 +941,28 @@ toughness=5
 abilities=flying
 [/card]
 [card]
+text=Target creature gets +3/+0 and gains first strike until end of turn.
+auto=3/0
+auto=first strike
+id=178136
+name=Slaughter Cry
+rarity=C
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+text=Spire Barrage deals damage to target creature or player equal to the number of Mountains you control.
+target=creature,player
+auto=foreach(mountain|myBattlefield) damage:1
+id=180495
+name=Spire Barrage
+mana={4}{R}
+type=Sorcery
+rarity=C
+[/card]
+[card]
 text=Landfall - Whenever a land enters the battlefield under your control, Steppe Lynx gets +2/+2 until end of turn. 
-id=
+id=171012
 name=Steppe Lynx
 rarity=C
 mana={W}
@@ -632,6 +970,39 @@ type=Creature
 subtype=Cat
 auto=@movedTo(land|myBattlefield):2/2
 power=0
+toughness=1
+[/card]
+[card]
+id=190397
+name=Stonework Puma
+rarity=C
+mana={3}
+type=Artifact Creature
+subtype=Cat Ally
+power=2
+toughness=2
+[/card]
+[card]
+text=Counter target creature spell. Put a 2/2 blue Illusion creature token onto the battlefield.
+target=creature|stack
+auto=fizzle
+auto=token(Illusion,Creature Illusion,2/2,blue) controller
+id=191360
+name=Summoner's Bane
+rarity=U
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+text=Landfall - Whenever a land enters the battlefield under your control, Surrakar Marauder gains intimidate until end of turn. (It can't be blocked except by artifact creatures and/or creatures that share a color with it.)
+id=180465
+name=Surrakar Marauder
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Surrakar
+auto=@movedTo(land|myBattlefield):intimidate
+power=2
 toughness=1
 [/card]
 [card]
@@ -671,30 +1042,104 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
+text=Landfall - Whenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
+id=170971
+name=Territorial Baloth
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Beast
+auto=@movedTo(land|myBattlefield):2/2
+power=4
+toughness=4
+[/card]
+[card]
+text=Haste   Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.
+id=192229
+name=Tuktuk Grunts
+rarity=C
+mana={4}{R}
+type=Creature
+subtype=Goblin Warrior Ally
+auto=may counter(1/1)
+auto=@movedTo(other ally|myBattlefield):counter(1/1)
+power=2
+toughness=2
+abilities=haste
+[/card]
+[card]
 text=Whenever Turntimber Ranger or another Ally enters the battlefield under your control, you may put a 2/2 green Wolf creature token onto the battlefield. If you do, put a +1/+1 counter on Turntimber Ranger.
-id=
+id=169971
 name=Turntimber Ranger
 rarity=R
 mana={3}{G}{G}
 type=Creature
 subtype=Elf Scout Ally
 auto=counter(1/1)
-auto=token(Wolf,Creature Wolf,2/2,green)
-auto=@movedTo(ally|myBattlefield):token(Wolf,Creature Wolf,2/2,green) && counter(1/1)
+auto=may token(Wolf,Creature Wolf,2/2,green)
+auto=@movedTo(ally|myBattlefield):may token(Wolf,Creature Wolf,2/2,green) && counter(1/1)
 power=2
 toughness=2
 [/card]
 [card]
-text={T}, Pay 1 Life, Sacrifice Verdant Marsh: Search your library for a Swamp or Forest card and put it onto the battlefield. Then shuffle your library.
-id=
-name=Verdant Marsh
+text=Flying   Whenever Umara Raptor or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Umara Raptor.
+id=180447
+name=Umara Raptor
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Bird Ally
+auto=may counter(1/1)
+auto=@movedTo(other ally|myBattlefield):counter(1/1)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Flying   Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)   Lifelink (Damage dealt by this creature also causes you to gain that much life.)
+id=185707
+name=Vampire Nighthawk
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Vampire Shaman
+power=2
+toughness=3
+abilities=flying,deathtouch,lifelink
+[/card]
+[card]
+id=180454
+name=Vastwood Gorger
+rarity=C
+mana={5}{G}
+type=Creature
+subtype=Wurm
+power=5
+toughness=6
+[/card]
+[card]
+text={T}, Pay 1 Life, Sacrifice Verdant Catacombs: Search your library for a Swamp or Forest card and put it onto the battlefield. Then shuffle your library.
+id=193400
+name=Verdant Catacombs
 rarity=R
 auto={T}{S}:moveTo(myBattlefield) target(swamp,forest|mylibrary) && life:-1 controller
 type=Land
 [/card]
 [card]
+text=Flying   Welkin Tern can block only creatures with flying.
+id=191353
+name=Welkin Tern
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=1
+abilities=flying,cloud
+[/card]
+[card]
 text=Flying   Landfall - Whenever a land enters the battlefield under your control, Windrider Eel gets +2/+2 until end of turn.
-id=
+id=170982
 name=Windrider Eel
 rarity=C
 mana={3}{U}
@@ -704,4 +1149,16 @@ auto=@movedTo(land|myBattlefield):2/2
 power=2
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=Forestwalk
+id=189620
+name=Zendikar Farguide
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+abilities=forestwalk
 [/card]
