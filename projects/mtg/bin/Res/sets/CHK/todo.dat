@@ -87,6 +87,17 @@ text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of 
 rarity=C
 [/card]
 [card]
+text=Destroy target land or nonblack creature. It can't be regenerated.
+target=creature[-black],land
+#That kind of targetting is not suppoert in Wagic 0.9
+auto=bury
+id=50291
+name=Befoul
+rarity=C
+type=Sorcery
+mana={2}{B}{B}
+[/card]
+[card]
 id=50451
 name=Blessed Breath
 mana={W}

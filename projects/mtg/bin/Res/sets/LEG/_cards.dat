@@ -1315,7 +1315,8 @@ abilities=legendary
 [/card]
 [card]
 text=Search your library for a basic land card and put that card into play. Then shuffle your library.
-auto=moveTo(myInPlay) target(land[basic]|myLibrary)
+target=basic|myLibrary
+auto=moveTo(myInPlay)
 id=1550
 name=Untamed Wilds
 rarity=U
