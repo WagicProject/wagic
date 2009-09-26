@@ -65,7 +65,7 @@ void CardDisplay::Update(float dt){
   bool update = false;
 
   if (zone){
-    size_t size =  zone->cards.size();
+    int size = zone->cards.size();
     for (int i = start_item; i< start_item + nb_displayed_items && i < mCount; i++){
       if (i > size - 1) {update = true; break;}
       CardGui * cardg = (CardGui *)mObjects[i];
