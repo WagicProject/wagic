@@ -947,11 +947,13 @@ rarity=C
 id=75286
 name=Keiga, the Tide Star
 mana={5}{U}
-type=Legendary Creature
+type=Creature
 subtype=Dragon Spirit
 power=5
 toughness=5
-text=Flying When Keiga, the Tide Star is put into a graveyard from play, gain control of target creature.
+text=Flying. When Keiga, the Tide Star is put into a graveyard from play, gain control of target creature.
+abilities=legendary,flying
+auto=@movedTo(this|graveyard) from(inplay):moveTo(myinplay) target(creature)
 rarity=R
 [/card]
 [card]
