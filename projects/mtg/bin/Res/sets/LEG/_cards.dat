@@ -791,6 +791,7 @@ abilities=legendary
 [/card]
 [card]
 text=Whenever a Mountain an opponent controls becomes tapped, you gain 1 life.
+auto=@tapped(mountain|opponentBattlefield):life:1 controller
 id=1625
 name=Lifeblood
 rarity=R

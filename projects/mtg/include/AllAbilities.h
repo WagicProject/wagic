@@ -23,6 +23,71 @@ using std::map;
 
 
 //
+// Misc classes
+//
+class WParsedInt{
+public:
+  int intValue;
+
+ int computeX(Spell * spell, MTGCardInstance * card){
+  ManaCost * c = spell->cost->Diff(card->getManaCost());
+  int x = c->getCost(Constants::MTG_NB_COLORS);
+  delete c;
+  return x;
+ }
+ WParsedInt(){
+   intValue = 0;
+ }
+
+  WParsedInt(string s, Spell * spell, MTGCardInstance * card){
+    int multiplier = 1;
+    if (s[0] == '-'){
+      s = s.substr(1);
+      multiplier = -1;
+    }
+    if (s == "x" || s == "X"){
+      intValue = computeX(spell,card);
+    }else{
+      intValue = atoi(s.c_str());
+    }
+    intValue *= multiplier;
+  }
+
+  int getValue(){
+    return intValue;
+  }
+};
+
+class WParsedPT{
+public:
+  bool ok;
+  WParsedInt power,toughness;
+
+  WParsedPT(int p, int t){
+    power.intValue = p;
+    toughness.intValue = t;
+    ok = true;
+  }
+
+  WParsedPT(string s, Spell * spell, MTGCardInstance * card){
+    size_t found = s.find("/");
+    ok = false;
+    if (found != string::npos){
+      size_t end = s.find(" ", found);
+      if (end == string::npos) end = s.size();
+      size_t start = s.find_last_of(" ",found);
+      if (start == string::npos) start = 0;
+      else start++;
+
+      power = WParsedInt(s.substr(start,found - start), spell, card);
+      toughness = WParsedInt(s.substr(found+1,end-found-1), spell, card);
+
+      ok = true;
+    }
+  }
+};
+
+//
 //Triggers
 //
 
@@ -51,6 +116,36 @@ public:
 
   TrCardAddedToZone * clone() const{
     TrCardAddedToZone * a =  NEW TrCardAddedToZone(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+
+class TrCardTapped:public TriggeredAbility{
+public:
+  TargetChooser * tc;
+  bool tap;
+  TrCardTapped(int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true):TriggeredAbility(id,source), tc(tc),tap(tap){}
+
+  int resolve(){
+    return 0; //This is a trigger, this function should not be called
+  }
+
+  int triggerOnEvent(WEvent * event){
+    WEventCardTap * e = dynamic_cast<WEventCardTap *>(event);
+    if (!e) return 0;
+    if (e->before == e->after) return 0;
+    if (e->after != tap) return 0;
+    if (!tc->canTarget(e->card)) return 0;
+    return 1;
+  }
+
+  ~TrCardTapped(){
+    SAFE_DELETE(tc);
+  }
+
+  TrCardTapped * clone() const{
+    TrCardTapped * a =  NEW TrCardTapped(*this);
     a->isClone = 1;
     return a;
   }
@@ -935,38 +1030,33 @@ class AUntaperOnceDuringTurn:public AUnBlocker{
 //Alteration of Power and Toughness  (enchantments)
 class APowerToughnessModifier: public MTGAbility{
  public:
-  int power, toughness;
- APowerToughnessModifier(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness):MTGAbility(id,_source,_target),power(_power),toughness(_toughness){
+  WParsedPT * wppt;
+ APowerToughnessModifier(int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt):MTGAbility(id,_source,_target),wppt(wppt){
 
   }
 
  int addToGame(){
    MTGCardInstance * _target = (MTGCardInstance *)target;
-    _target->power += power;
-    _target->addToToughness(toughness);
+   _target->power += wppt->power.getValue();
+    _target->addToToughness(wppt->toughness.getValue());
     return MTGAbility::addToGame();
  }
 
   int destroy(){
-    ((MTGCardInstance *)target)->power -= power;
-    ((MTGCardInstance *)target)->addToToughness(-toughness);
+    ((MTGCardInstance *)target)->power -= wppt->power.getValue();
+    ((MTGCardInstance *)target)->addToToughness(- wppt->toughness.getValue());
     return 1;
   }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "APowerToughnessModifier ::: power : " << power
-	<< " ; toughness : " << toughness
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
+
   APowerToughnessModifier * clone() const{
     APowerToughnessModifier * a =  NEW APowerToughnessModifier(*this);
+    a->wppt = NEW WParsedPT(*(a->wppt));
     a->isClone = 1;
     return a;
   }
 
   ~APowerToughnessModifier(){
-    OutputDebugString ("DELETING POWERTOUGHNESS");
+    delete(wppt);
   }
 
 };
@@ -978,9 +1068,9 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
  public:
   MTGCardInstance * mTargets[50];
   int nbTargets;
-  int power, toughness;
+  WParsedPT * wppt;
 
- ATargetterPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, int _power, int _toughness,  ManaCost * _cost, TargetChooser * _tc = NULL, int doTap=1):TargetAbility(_id,_source,_tc,_cost,0,doTap),power(_power),toughness(_toughness){
+ ATargetterPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, WParsedPT * wppt,  ManaCost * _cost, TargetChooser * _tc = NULL, int doTap=1):TargetAbility(_id,_source,_tc,_cost,0,doTap),wppt(wppt){
     if (!tc) tc = NEW CreatureTargetChooser(_source);
     nbTargets = 0;
   }
@@ -991,8 +1081,8 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
       for (int i = 0; i < nbTargets; i++){
 	MTGCardInstance * mTarget = mTargets[i];
 	if(mTarget){
-	  mTarget->power-=power;
-	  mTarget->addToToughness(-toughness);
+	  mTarget->power-=wppt->power.getValue();
+	  mTarget->addToToughness(-wppt->toughness.getValue());
 	}
       }
       nbTargets = 0;
@@ -1005,64 +1095,59 @@ class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
     MTGCardInstance * mTarget = tc->getNextCardTarget();
     if (mTarget){
       mTargets[nbTargets] = mTarget;
-      mTarget->power+= power;
-      mTarget->addToToughness(toughness);
+      mTarget->power+= wppt->power.getValue();
+      mTarget->addToToughness(wppt->toughness.getValue());
       nbTargets++;
     }
     return 1;
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ATargetterPowerToughnessModifierUntilEOT ::: mTargets : " << mTargets
-	<< " ; nbTargets : " << nbTargets
-	<< " ; power : " << power
-	<< " ; toughness : " << toughness
-	<< " (";
-    return TargetAbility::toString(out) << ")";
-  }
   ATargetterPowerToughnessModifierUntilEOT * clone() const{
     ATargetterPowerToughnessModifierUntilEOT * a =  NEW ATargetterPowerToughnessModifierUntilEOT(*this);
+    a->wppt = NEW WParsedPT(*(a->wppt));
     a->isClone = 1;
     return a;
+  }
+
+  ~ATargetterPowerToughnessModifierUntilEOT(){
+    delete(wppt);
   }
 };
 
 //Alteration of Power and toughness until end of turn (instant)
 class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
  public:
-  int power, toughness;
- AInstantPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness): InstantAbility(_id, _source, _target), power(_power), toughness(_toughness){
+  WParsedPT * wppt;
+ AInstantPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt): InstantAbility(_id, _source, _target), wppt(wppt){
   }
 
   int resolve(){
-    ((MTGCardInstance *)target)->power +=power;
-    ((MTGCardInstance *)target)->addToToughness(toughness);
+    ((MTGCardInstance *)target)->power +=wppt->power.getValue();
+    ((MTGCardInstance *)target)->addToToughness(wppt->toughness.getValue());
     return 1;
   }
 
   int destroy(){
-    ((MTGCardInstance *)target)->power -=power;
-    ((MTGCardInstance *)target)->addToToughness(-toughness);
+    ((MTGCardInstance *)target)->power -=wppt->power.getValue();
+    ((MTGCardInstance *)target)->addToToughness(-wppt->toughness.getValue());
     return 1;
   }
 
   const char * getMenuText(){
-    sprintf(menuText, "%i/%i",power,toughness);
+    sprintf(menuText, "%i/%i",wppt->power.getValue(),wppt->toughness.getValue());
     return menuText;
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "APowerToughnessModifierUntilEndOfTurn ::: power : " << power
-	<< " ; toughness : " << toughness
-	<< " (";
-    return InstantAbility::toString(out) << ")";
-  }
+
   AInstantPowerToughnessModifierUntilEOT * clone() const{
     AInstantPowerToughnessModifierUntilEOT * a =  NEW AInstantPowerToughnessModifierUntilEOT(*this);
+    a->wppt = NEW WParsedPT(*(a->wppt));
     a->isClone = 1;
     return a;
+  }
+
+  ~AInstantPowerToughnessModifierUntilEOT(){
+    delete wppt;
   }
 };
 
@@ -1074,10 +1159,10 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
   AInstantPowerToughnessModifierUntilEOT * ability;
   int counters;
   int maxcounters;
- APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness,  ManaCost * _cost = NULL, int _maxcounters = 0):ActivatedAbility(id,_source,_cost,0,0),maxcounters(_maxcounters){
+ APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,  ManaCost * _cost = NULL, int _maxcounters = 0):ActivatedAbility(id,_source,_cost,0,0),maxcounters(_maxcounters){
     counters = 0;
     target=_target;
-    ability = NEW AInstantPowerToughnessModifierUntilEOT(id,_source,_target,_power,_toughness);
+    ability = NEW AInstantPowerToughnessModifierUntilEOT(id,_source,_target,wppt);
   }
 
   void Update(float dt){
@@ -3270,7 +3355,7 @@ class AWanderlust:public TriggeredAbility{
 //1284 Dragon Whelp
 class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
  public:
- ADragonWhelp(int id, MTGCardInstance * card):APowerToughnessModifierUntilEndOfTurn(id, card, card, 1, 0, NEW ManaCost()){
+ ADragonWhelp(int id, MTGCardInstance * card):APowerToughnessModifierUntilEndOfTurn(id, card, card, NEW WParsedPT(1, 0), NEW ManaCost()){
     cost->add(Constants::MTG_COLOR_RED, 1);
   }
 
@@ -3770,51 +3855,6 @@ class AShieldOfTheAge: public TargetAbility{
   }
 };
 
-
-// GiveLifeForTappedType
-class AGiveLifeForTappedType:public MTGAbility{
- public:
-  char type[20];
-  int nbtypestapped;
-
-  int counttypesTapped(){
-    int result = 0;
-    MTGInPlay * inplay = source->controller()->opponent()->game->inPlay;
-    for (int i = 0; i < inplay->nb_cards; i++){
-      MTGCardInstance * card = inplay->cards[i];
-      if (card->isTapped() && card->hasType(type)) result++;
-    }
-    return result;
-  }
-
- AGiveLifeForTappedType(int _id, MTGCardInstance * source, const char * _type):MTGAbility(_id, source){
-    sprintf(type,"%s",_type);{
-      nbtypestapped = counttypesTapped();
-    }
-  }
-
-  void Update(float dt){
-    int newcount = counttypesTapped();
-    for (int i=0; i < newcount - nbtypestapped; i++){
-      source->controller()->life++;
-    }
-    nbtypestapped = newcount;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AGiveLifeForTappedType ::: type : " << type
-	<< " ; nbtypestapped : " << nbtypestapped
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-
-  AGiveLifeForTappedType * clone() const{
-    AGiveLifeForTappedType * a =  NEW AGiveLifeForTappedType(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 //Minion of Leshrac
 class AMinionofLeshrac: public TargetAbility{

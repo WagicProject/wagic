@@ -855,6 +855,7 @@ name=Flowstone Slide
 rarity=R
 type=Sorcery
 mana={X}{2}{R}{R}
+auto=lord(creature) x/-x
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.

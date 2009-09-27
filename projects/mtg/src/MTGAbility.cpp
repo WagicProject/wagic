@@ -96,6 +96,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     return NEW TrCardAddedToZone(id,card,toTc,(TargetZoneChooser *)fromTc);
   }
 
+  //Card Tapped
+  found = s.find("tapped(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+7,end - found - 7);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardTapped(id,card,tc);
+  }
+
   int who = 0;
   if (s.find("my") != string::npos) who = 1;
   if (s.find("opponent") != string::npos) who = -1;
@@ -556,15 +568,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found!= string::npos) forceUEOT = 1;
  
   //Change Power/Toughness
-  int power, toughness;
-  if ( parsePowerToughness(s,&power, &toughness)){
+  WParsedPT * wppt = NEW WParsedPT(s,spell,card);
+  if (wppt->ok){
     if (!activated){
       if(card->hasType("instant") || card->hasType("sorcery") || forceUEOT){
-        return NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,power,toughness);
+        return NEW AInstantPowerToughnessModifierUntilEOT(id, card, target,wppt);
       }
-      return NEW APowerToughnessModifier(id, card, target,power,toughness);
+      return NEW APowerToughnessModifier(id, card, target,wppt);
     }
-    return NEW APowerToughnessModifierUntilEndOfTurn(id,card,target,power,toughness);
+    return NEW APowerToughnessModifierUntilEndOfTurn(id,card,target,wppt);
+  }else{
+    delete wppt;
   }
 
 
@@ -644,8 +658,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
   if (dynamic_cast<AADrawer *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AARandomDiscarder *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<ARampageAbility *>(a)) return BAKA_EFFECT_GOOD;
-  if (AInstantPowerToughnessModifierUntilEOT * abi = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a)) return (abi->power>=0 && abi->toughness>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
-  if (APowerToughnessModifier * abi = dynamic_cast<APowerToughnessModifier *>(a)) return (abi->power>=0 && abi->toughness>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+  if (AInstantPowerToughnessModifierUntilEOT * abi = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+  if (APowerToughnessModifier * abi = dynamic_cast<APowerToughnessModifier *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (APowerToughnessModifierUntilEndOfTurn * abi = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a)) return abilityEfficiency(abi->ability, p, mode);
 
   map<int,bool> badAbilities;
@@ -966,11 +980,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1205: //Lifetap
-    {
-      game->addObserver(NEW AGiveLifeForTappedType(_id, card, "forest"));
-      break;
-    }
+
   case 1259: //Living lands
     {
       game->addObserver(NEW AConvertLandToCreatures(id, card, "forest"));
@@ -1062,13 +1072,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
-  case 1164: //Howl from beyond
+  /*case 1164: //Howl from beyond
     {
       int x = computeX(spell,card);
       AInstantPowerToughnessModifierUntilEOT * ability = NEW AInstantPowerToughnessModifierUntilEOT( _id, card, card->target, x, 0);
       game->addObserver(ability);
       break;
-    }
+    }*/
   case 1202: //Hurkyl's Recall
     {
       Player * player = spell->getNextPlayerTarget();
@@ -1361,11 +1371,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->currentlyActing()->life+= card->target->getManaCost()->getConvertedCost();
       break;
     }
-  case 1625: //Lifeblood
-    {
-      game->addObserver(NEW AGiveLifeForTappedType (_id, card, "island"));
-      break;
-    }
   case 1480: //Energy Tap
 	{
 	card->target->tap();
@@ -1377,7 +1382,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	{
 	int toughness = card->target->getManaCost()->getConvertedCost();
 	int power = 0;
-	game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, card->target,power,toughness));
+	game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, card->target, NEW WParsedPT(power,toughness)));
 	}
   
   case 1703: //Pendelhaven
@@ -1385,7 +1390,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
       tc->maxpower = 1;
       tc->maxtoughness =1;
-      game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(),tc));
+      game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, NEW WParsedPT(1,2), NEW ManaCost(),tc));
       break;
     }
 
@@ -1394,11 +1399,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 2660: //Word of Blasting
     {
       card->target->controller()->life-= card->target->getManaCost()->getConvertedCost();
-      break;
-    }
-  case 2593: //Thoughtleech
-    {
-      game->addObserver(NEW AGiveLifeForTappedType (_id, card, "island"));
       break;
     }
   case 2474: //Minion of Leshrac
@@ -1425,7 +1425,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
       tc->maxpower = 1;
       tc->maxtoughness =1;
-      game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, 1,2, NEW ManaCost(cost,1),tc));
+      game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, NEW WParsedPT(1,2), NEW ManaCost(cost,1),tc));
       break;
     }
 
@@ -1480,16 +1480,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 			game->addObserver( NEW AInstantControlSteal(_id,card,card->target));
 			break;
 		}
-	case 130542: //Flowstone Slide
-		{
-			int x = computeX(spell,card);
-      MTGAbility * a = NEW AInstantPowerToughnessModifierUntilEOT(id, card, card,x,-x);
-			TargetChooserFactory tcf;
-      TargetChooser * lordTargets = tcf.createTargetChooser("creature", card);
-      game->addObserver(NEW ALord(id, card, lordTargets, 0, a));
-			break;
-		}
-
   case 130373: //Lavaborn Muse
     {
       game->addObserver( NEW ALavaborn(_id ,card, Constants::MTG_PHASE_UPKEEP, -3,-3));

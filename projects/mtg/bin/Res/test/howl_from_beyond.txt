@@ -1,0 +1,28 @@
+#Test: Parse X cost
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{5}{B}
+inplay:grizzly bears
+hand:howl from beyond
+[PLAYER2]
+[DO]
+howl from beyond
+grizzly bears
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+[ASSERT]
+COMBATDAMAGE
+[PLAYER1]
+inplay:grizzly bears
+graveyard:howl from beyond
+[PLAYER2]
+life:13
+[END]

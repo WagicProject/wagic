@@ -549,11 +549,11 @@ toughness=2
 text=Target creature gets +X/+0 until end of turn.
 id=2456
 target=creature
-alias=1164
 name=Howl from Beyond
 rarity=C
 type=Instant
 mana={X}{B}
+auto=X/0
 [/card]
 [card]
 text=Hurricane deals X damage to each creature with flying and each player.
@@ -1465,6 +1465,7 @@ toughness=1
 [/card]
 [card]
 text=Whenever an Island an opponent controls becomes tapped, you may gain 1 life.
+auto=@tapped(island|opponentBattlefield):life:1 controller
 id=2593
 name=Thoughtleech
 rarity=U

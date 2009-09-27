@@ -103,6 +103,7 @@ fists_of_ironwood.txt
 flare.txt
 fledgling_imp.txt
 fledgling_imp2.txt
+flowstone_slide.txt
 foratog.txt
 force_of_nature.txt
 force_of_nature2.txt
@@ -121,6 +122,7 @@ gravedigger.txt
 hannas_custody.txt
 harpoon_sniper.txt
 hellfire.txt
+howl_from_beyond.txt
 howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
 icatian_priest.txt
@@ -140,6 +142,7 @@ leveler.txt
 lhurgoyf.txt
 liability.txt
 lifeforce.txt
+lifetap.txt
 living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt

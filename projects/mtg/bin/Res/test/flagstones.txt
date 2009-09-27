@@ -1,0 +1,21 @@
+#Bug: Flagstones of trokair crash the game when going to graveyard
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:flagstones of trokair
+manapool:{2}{R}
+hand:stone rain
+library:plains
+[PLAYER2]
+[DO]
+stone rain
+flagstones of trokair
+choice 0
+plains
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:plains
+graveyard:stone rain,flagstones of trokair
+[PLAYER2]
+[END]

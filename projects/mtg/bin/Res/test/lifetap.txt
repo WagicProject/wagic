@@ -1,0 +1,18 @@
+#Test: @tapped trigger
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:forest
+[PLAYER2]
+inplay:lifetap
+[DO]
+forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{G}
+inplay:forest
+[PLAYER2]
+inplay:lifetap
+life:21
+[END]

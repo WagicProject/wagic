@@ -1,0 +1,28 @@
+#Test: Parse X cost
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{1}{2}{R}{R}
+inplay:grizzly bears,dragon engine
+hand:Flowstone slide
+[PLAYER2]
+[DO]
+Flowstone slide
+next
+#begin
+next
+#attackers
+grizzly bears
+dragon engine
+next
+#blockers
+next
+#damage
+[ASSERT]
+COMBATDAMAGE
+[PLAYER1]
+inplay:grizzly bears,dragon engine
+graveyard:Flowstone slide
+[PLAYER2]
+life:15
+[END]

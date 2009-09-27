@@ -1015,6 +1015,7 @@ name=Howl from Beyond
 rarity=C
 type=Instant
 mana={X}{B}
+auto=X/0
 [/card]
 [card]
 text=At the beginning of each player's draw step, if Howling Mine is untapped, that player draws a card.
@@ -1288,6 +1289,7 @@ mana={G}
 [/card]
 [card]
 text=Whenever a Forest an opponent controls becomes tapped, you gain 1 life.
+auto=@tapped(forest|opponentBattlefield):life:1 controller
 id=1205
 name=Lifetap
 rarity=U
