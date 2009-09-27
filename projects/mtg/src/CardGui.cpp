@@ -241,6 +241,40 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     font->DrawString(s.c_str(), pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
 
+  //expansion and rarity
+  font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
+  {
+    char buf[512];
+    switch(card->getRarity()){
+      case Constants::RARITY_M:
+      case Constants::RARITY_R:
+        sprintf(buf,"%s Rare",MtgSets::SetsList->values[card->setId].c_str());
+        break;
+      case Constants::RARITY_U:
+        sprintf(buf,"%s Uncommon",MtgSets::SetsList->values[card->setId].c_str());
+        break;
+      case Constants::RARITY_C:
+        sprintf(buf,"%s Common",MtgSets::SetsList->values[card->setId].c_str());
+        break;
+      default:
+        sprintf(buf,"%s",MtgSets::SetsList->values[card->setId].c_str());
+        break;
+    }
+    
+    switch(card->getColor())
+    {
+    case Constants::MTG_COLOR_BLACK: 
+    case Constants::MTG_COLOR_LAND: 
+      font->SetColor(ARGB((int)pos.actA,255,255,255));
+      font->DrawString(buf, pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+      break;
+    default:
+      font->DrawString(buf, pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+      break; //Leave black
+    }
+    
+  }
+
   font->SetScale(backup_scale);
 }
 
