@@ -361,6 +361,7 @@ toughness=3
 [card]
 text=Kicker {2}{U} (You may pay an additional {2}{U} as you play this spell.)    Destroy target artifact or enchantment.       If the kicker cost was paid, draw two cards.
 id=22946
+mana={2}{W}
 kicker={2}{U}
 name=Dismantling Blow
 target=artifact,enchantment
@@ -368,7 +369,6 @@ auto=destroy
 auto=kicker draw:2 controller
 rarity=C
 type=Instant
-mana={2}{W}
 [/card]
 [card]
 text={T}: Add {U} or {B} to your mana pool.
