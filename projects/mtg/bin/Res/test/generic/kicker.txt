@@ -1,0 +1,23 @@
+#Test Kicker (cost not paid, grizzly bears shouldn't get 4/4)
+# Vines of Vastwood on grizzly bears
+# text=Kicker {G} (You may pay an additional {G} as you cast this spell.) Target creature can't be the target of spells or abilities your opponents control this turn. If Vines of Vastwood was kicked, that creature gets +4/+4 until end of turn.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,mountain
+hand:Vines of Vastwood,shock
+manapool:{G}
+[PLAYER2]
+[DO]
+Vines of Vastwood
+grizzly bears
+mountain
+shock
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:shock,grizzly bears,Vines of Vastwood
+inplay:mountain
+[PLAYER2]
+[END]

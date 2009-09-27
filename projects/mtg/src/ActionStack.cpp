@@ -114,13 +114,16 @@ Spell::Spell(MTGCardInstance * _source): Interruptible(0){
 }
 
 
-Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _cost): Interruptible(id), tc(tc),cost(_cost){
+Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _cost, int payResult): Interruptible(id), tc(tc),cost(_cost), payResult(payResult){
   source = _source;
   mHeight = 40;
   type = ACTION_SPELL;
   from = _source->getCurrentZone();
 }
 
+bool Spell::kickerWasPaid(){
+  return (payResult == ManaCost::MANA_PAID_WITH_KICKER);
+}
 
 const string Spell::getDisplayName() const {
   return source->getName();
@@ -389,13 +392,13 @@ int ActionStack::addAction(Interruptible * action){
   return 1;
 }
 
-Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana){
+Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana, int payResult){
 #if defined (WIN32) || defined (LINUX)
   char    buf[4096], *p = buf;
   sprintf(buf, "ACTIONSTACK Add spell\n");
   OutputDebugString(buf);
 #endif
-  Spell * spell = NEW Spell(mCount,_source,tc, mana);
+  Spell * spell = NEW Spell(mCount,_source,tc, mana,payResult);
   addAction(spell);
   if (!game->players[0]->isAI() &&
       _source->controller()==game->players[0] &&

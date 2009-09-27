@@ -49,7 +49,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
     return 0;
   }
   ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-  player->getManaPool()->pay(card->getManaCost());
+  int payResult = player->getManaPool()->pay(card->getManaCost());
   card->getManaCost()->doPayExtra();
   ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
   delete previousManaPool;
@@ -64,10 +64,10 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
     Spell * spell = NULL;
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
     if (game->targetChooser){    
-      spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost);
+      spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult);
       game->targetChooser = NULL;
     }else{
-      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost);
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult);
     }
   }
   return 1;

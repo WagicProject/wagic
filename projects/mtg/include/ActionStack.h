@@ -79,11 +79,13 @@ class Spell: public Interruptible {
   MTGGameZone * from;
   TargetChooser * tc;
   ManaCost * cost;
+  int payResult;
   Spell(MTGCardInstance* _source);
-  Spell(int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost);
+  Spell(int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost, int payResult);
   ~Spell();
   int resolve();
   void Render();
+  bool kickerWasPaid();
   const string getDisplayName() const;
   virtual ostream& toString(ostream& out) const;
   MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);
@@ -158,7 +160,7 @@ class ActionStack :public GuiLayer{
   Player * askIfWishesToInterrupt;
   int garbageCollect();
   int addAction(Interruptible * interruptible);
-  Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana);
+  Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult);
   int AddNextGamePhase();
   int addPutInGraveyard(MTGCardInstance * card);
   int addDraw(Player * player, int nbcards = 1);

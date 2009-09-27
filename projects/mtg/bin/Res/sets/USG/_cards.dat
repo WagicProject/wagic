@@ -827,7 +827,6 @@ text=At end of turn, if no creatures are on the battlefield, sacrifice Pestilenc
 alias=1172
 id=5619
 name=Pestilence
-colour=Black
 rarity=C
 mana={2}{B}{B}
 type=Enchantment

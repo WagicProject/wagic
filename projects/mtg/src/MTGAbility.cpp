@@ -229,7 +229,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     SAFE_DELETE(cost);
   }
 
-
+  //kicker cost
+  found = s.find("kicker ");
+  if (found == 0){
+    if (spell->kickerWasPaid()){
+      string s1 = s.substr(found+7);
+      return parseMagicLine(s1,id,spell, card);
+    }
+    return NULL;
+  }
   //When...comes into play, you may...
   found = s.find("may ");
   if (found == 0){
@@ -286,10 +294,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     if (end != string::npos){
       int lordIncludeSelf = 1;
-      size_t other = s.find("other", end);
+      size_t other = s1.find("other");
       if ( other != string::npos){
         lordIncludeSelf = 0;
-        s.replace(other, 5,"");
+        s1.replace(other, 5,"");
       }
       string lordTargetsString = s.substr(found+header,end-found-header);
       TargetChooserFactory tcf;
@@ -596,7 +604,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //Gain/loose Ability
   for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
     found = s.find(Constants::MTGBasicAbilities[j]);
-    if (found!= string::npos){
+    if (found == 0 || found == 1){
       int modifier = 1;
       if (found > 0 && s[found-1] == '-') modifier = 0;
       if (!activated){

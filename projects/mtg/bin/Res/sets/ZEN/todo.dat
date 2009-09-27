@@ -1187,14 +1187,6 @@ text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can 
 rarity=U
 [/card]
 [card]
-id=177571
-name=Vines of Vastwood
-mana={G}
-type=Instant
-text=Kicker {G} (You may pay an additional {G} as you cast this spell.) Target creature can't be the target of spells or abilities your opponents control this turn. If Vines of Vastwood was kicked, that creature gets +4/+4 until end of turn.
-rarity=C
-[/card]
-[card]
 id=178135
 name=Adventuring Gear
 mana={1}

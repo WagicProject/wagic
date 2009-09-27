@@ -635,7 +635,7 @@ toughness=2
 [/card]
 [card]
 text=Sacrifice Moonglove Extract: Moonglove Extract deals 2 damage to target creature or player.
-auot={S}:damage:2 target(creature,player)
+auto={S}:damage:2 target(creature,player)
 id=139506
 name=Moonglove Extract
 rarity=C

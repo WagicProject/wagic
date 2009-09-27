@@ -20,7 +20,12 @@ class ManaCost{
   int extraCostsIsCopy;
   
  public:
+   enum{
+     MANA_PAID = 1,
+     MANA_PAID_WITH_KICKER = 2
+   };
   ExtraCosts * extraCosts;
+  ManaCost * kicker;
   static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
   virtual void init();
   void x();

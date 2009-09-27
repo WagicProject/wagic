@@ -690,7 +690,7 @@ subtype=Spider
 power=2
 toughness=4
 text=Reach (This creature can block creatures with flying.)
-abilites=reach
+abilities=reach
 rarity=C
 [/card]
 [card]

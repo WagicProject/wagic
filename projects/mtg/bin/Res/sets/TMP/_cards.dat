@@ -303,7 +303,6 @@ id=4693
 target=*|stack
 auto=fizzle
 name=Counterspell
-Color=Blue
 rarity=C
 mana={U}{U}
 type=Instant

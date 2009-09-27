@@ -141,7 +141,14 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
     }
   }else if(key.compare("toughness")==0){
     card->setToughness(atoi(value.c_str()));
+  }else if(key.compare("kicker")==0){
+    std::transform( value.begin(), value.end(), value.begin(),::tolower );
+    if (ManaCost * cost = card->getManaCost()){
+      cost->kicker = ManaCost::parseManaCost(value);
+    }
   }else{
+    string error = "MTGDECK Parsing Error:" + s + "\n";
+    OutputDebugString(error.c_str());
   }
 
 

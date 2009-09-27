@@ -173,7 +173,7 @@ mana={B}
 type=Instant
 [/card]
 [card]
-text=Flying   Landfall ó Whenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying into the battlefield.
+text=Flying   Landfall ÅEWhenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying into the battlefield.
 id=190399
 name=Emeria Angel
 rarity=R
@@ -1302,6 +1302,18 @@ name=Verdant Catacombs
 rarity=R
 auto={T}{S}:moveTo(myBattlefield) target(swamp,forest|mylibrary) && life:-1 controller
 type=Land
+[/card]
+[card]
+text=Kicker {G} (You may pay an additional {G} as you cast this spell.) Target creature can't be the target of spells or abilities your opponents control this turn. If Vines of Vastwood was kicked, that creature gets +4/+4 until end of turn.
+id=177571
+target=creature
+name=Vines of Vastwood
+mana={G}
+kicker={G}
+auto=opponentshroud
+auto=kicker 4/4
+type=Instant
+rarity=C
 [/card]
 [card]
 text=Flying   Welkin Tern can block only creatures with flying.

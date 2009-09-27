@@ -128,6 +128,8 @@ ManaCost::~ManaCost(){
   if (!extraCostsIsCopy) {
     SAFE_DELETE(extraCosts);
   }
+
+  SAFE_DELETE(kicker);
 }
 
 void ManaCost::x(){
@@ -142,12 +144,16 @@ void ManaCost::init(){
   nbhybrids = 0;
   extraCosts = NULL;
   extraCostsIsCopy = 0;
+  kicker = NULL;
 }
 
 
 void ManaCost::copy(ManaCost * _manaCost){
   for (unsigned int i = 0; i <= Constants::MTG_NB_COLORS; i++){
     cost[i] = _manaCost->getCost(i);
+  }
+  for (unsigned int i = 0;  i < nbhybrids ; i++){
+    SAFE_DELETE(hybrids[i]);
   }
   for (unsigned int i = 0; i < _manaCost->nbhybrids; i++){
     hybrids[i] = NEW ManaCostHybrid((*_manaCost->hybrids[i]));
@@ -159,6 +165,12 @@ void ManaCost::copy(ManaCost * _manaCost){
     if(!extraCostsIsCopy) SAFE_DELETE(extraCosts);
     extraCosts = _manaCost->extraCosts;
     extraCostsIsCopy = 1;
+  }
+
+  SAFE_DELETE(kicker);
+  if (_manaCost->kicker){
+    kicker = NEW ManaCost();
+    kicker->copy(_manaCost->kicker);
   }
 }
 
@@ -267,12 +279,24 @@ int ManaCost::setExtraCostsAction(MTGAbility * action, MTGCardInstance * card){
 }
 
 int ManaCost::pay(ManaCost * _cost){
-  ManaCost * diff = Diff(_cost);
+  int result = MANA_PAID;
+  ManaCost * toPay = NEW ManaCost();
+  toPay->copy(_cost);
+  if (toPay->kicker){
+    toPay->add(toPay->kicker);
+    if (!canAfford(toPay)){
+      toPay->copy(_cost);
+    }else{
+      result = MANA_PAID_WITH_KICKER;
+    }
+  }
+  ManaCost * diff = Diff(toPay);
   for (int i=0; i < Constants::MTG_NB_COLORS; i++){
     cost[i] = diff->getCost(i);
   }
   delete diff;
-  return 1;
+  delete toPay;
+  return result;
   //TODO return 0 if can't afford the cost!
 }
 
