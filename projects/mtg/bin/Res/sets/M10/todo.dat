@@ -112,17 +112,7 @@ text=Trample Darksteel Colossus is indestructible. If Darksteel Colossus would b
 rarity=M
 abilities=indestructible
 [/card]
-[card]
-id=189924
-name=Deadly Recluse
-mana={1}{G}
-type=Creature
-subtype=Spider
-power=1
-toughness=2
-text=Reach (This creature can block creatures with flying.) Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)
-rarity=C
-[/card]
+
 [card]
 id=190198
 name=Djinn of Wishes
