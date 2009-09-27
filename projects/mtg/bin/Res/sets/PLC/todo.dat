@@ -11,13 +11,13 @@ rarity=R
 [/card]
 [card]
 id=124504
-name=Æther Membrane
+name=ÁEher Membrane
 mana={1}{R}{R}
 type=Creature
 subtype=Wall
 power=0
 toughness=5
-text=Defender; reach (This creature can block creatures with flying.) Whenever Æther Membrane blocks a creature, return that creature to its owner's hand at end of combat.
+text=Defender; reach (This creature can block creatures with flying.) Whenever ÁEher Membrane blocks a creature, return that creature to its owner's hand at end of combat.
 rarity=U
 [/card]
 [card]
@@ -200,17 +200,7 @@ type=Enchantment
 text=As Circle of Affliction enters the battlefield, choose a color. Whenever a source of the chosen color deals damage to you, you may pay {1}. If you do, target player loses 1 life and you gain 1 life.
 rarity=U
 [/card]
-[card]
-id=122290
-name=Citanul Woodreaders
-mana={2}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=4
-text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) When Citanul Woodreaders enters the battlefield, if it was kicked, draw two cards.
-rarity=C
-[/card]
+
 [card]
 id=110536
 name=Cradle to Grave
@@ -251,7 +241,7 @@ id=124080
 name=Dawn Charm
 mana={1}{W}
 type=Instant
-text=Choose one — Prevent all combat damage that would be dealt this turn; or regenerate target creature; or counter target spell that targets you.
+text=Choose one  EPrevent all combat damage that would be dealt this turn; or regenerate target creature; or counter target spell that targets you.
 rarity=C
 [/card]
 [card]
@@ -386,7 +376,7 @@ id=124047
 name=Evolution Charm
 mana={1}{G}
 type=Instant
-text=Choose one — Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library; or return target creature card from your graveyard to your hand; or target creature gains flying until end of turn.
+text=Choose one  ESearch your library for a basic land card, reveal it, put it into your hand, then shuffle your library; or return target creature card from your graveyard to your hand; or target creature gains flying until end of turn.
 rarity=C
 [/card]
 [card]
@@ -440,7 +430,7 @@ rarity=U
 [/card]
 [card]
 id=122402
-name=Frozen Æther
+name=Frozen ÁEher
 mana={3}{U}
 type=Enchantment
 text=Artifacts, creatures, and lands your opponents control enter the battlefield tapped.
@@ -462,7 +452,7 @@ id=124039
 name=Fury Charm
 mana={1}{R}
 type=Instant
-text=Choose one — Destroy target artifact; or target creature gets +1/+1 and gains trample until end of turn; or remove two time counters from target permanent or suspended card.
+text=Choose one  EDestroy target artifact; or target creature gets +1/+1 and gains trample until end of turn; or remove two time counters from target permanent or suspended card.
 rarity=C
 [/card]
 
@@ -515,7 +505,7 @@ id=122371
 name=Healing Leaves
 mana={G}
 type=Instant
-text=Choose one — Target player gains 3 life; or prevent the next 3 damage that would be dealt to target creature or player this turn.
+text=Choose one  ETarget player gains 3 life; or prevent the next 3 damage that would be dealt to target creature or player this turn.
 rarity=C
 [/card]
 
@@ -715,7 +705,7 @@ id=124034
 name=Midnight Charm
 mana={B}
 type=Instant
-text=Choose one — Midnight Charm deals 1 damage to target creature and you gain 1 life; or target creature gains first strike until end of turn; or tap target creature.
+text=Choose one  EMidnight Charm deals 1 damage to target creature and you gain 1 life; or target creature gains first strike until end of turn; or tap target creature.
 rarity=C
 [/card]
 
@@ -830,7 +820,7 @@ id=124066
 name=Piracy Charm
 mana={U}
 type=Instant
-text=Choose one — Target creature gains islandwalk until end of turn; or target creature gets +2/-1 until end of turn; or target player discards a card.
+text=Choose one  ETarget creature gains islandwalk until end of turn; or target creature gets +2/-1 until end of turn; or target player discards a card.
 rarity=C
 [/card]
 [card]
@@ -863,17 +853,7 @@ toughness=2
 text=All Slivers have "{2}, {T}: Regenerate target Sliver."
 rarity=C
 [/card]
-[card]
-id=122323
-name=Pouncing Wurm
-mana={3}{G}
-type=Creature
-subtype=Wurm
-power=3
-toughness=3
-text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) If Pouncing Wurm was kicked, it enters the battlefield with three +1/+1 counters on it and with haste.
-rarity=U
-[/card]
+
 [card]
 id=124757
 name=Primal Plasma
@@ -1187,7 +1167,7 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Timebender is turned face up, choose one — Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
+text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Timebender is turned face up, choose one  ERemove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
 rarity=U
 [/card]
 [card]
@@ -1195,7 +1175,7 @@ id=129012
 name=Timecrafting
 mana={X}{R}
 type=Instant
-text=Choose one — Remove X time counters from target permanent or suspended card; or put X time counters on target permanent with a time counter on it or suspended card.
+text=Choose one  ERemove X time counters from target permanent or suspended card; or put X time counters on target permanent with a time counter on it or suspended card.
 rarity=U
 [/card]
 [card]
