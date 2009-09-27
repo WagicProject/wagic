@@ -827,6 +827,19 @@ type=Instant
 mana={WB}{WB}{WB}
 [/card]
 [card]
+text=Gain control of target creature until end of turn. Untap that creature. It gets +X/+0 and gains haste until end of turn.
+id=157202
+alias=129767
+target=creature
+auto=haste
+auto=untap
+auto=X/0
+name=Unwilling Recruit
+rarity=U
+type=Sorcery
+mana={X}{R}{R}{R}
+[/card]
+[card]
 text=Lifelink     Voracious Hatchling comes into play with four -1/-1 counters on it.     Whenever you play a white spell, remove a -1/-1 counter from Voracious Hatchling.     Whenever you play a black spell, remove a -1/-1 counter from Voracious Hatchling.
 abilities=lifelink
 auto=@movedTo(*[white]|mystack):counter(-1/-1,-1)

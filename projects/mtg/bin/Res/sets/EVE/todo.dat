@@ -1072,16 +1072,7 @@ rarity=U
 type=Instant
 mana={2}{UR}
 [/card]
-[card]
-text=Gain control of target creature until end of turn. Untap that creature. It gets +X/+0 and gains haste until end of turn.
-target=creature
-auto=:haste
-id=157202
-name=Unwilling Recruit
-rarity=U
-type=Sorcery
-mana={X}{R}{R}{R}
-[/card]
+
 
 [card]
 text=Whenever a permanent you control becomes untapped, Wake Thrasher gets +1/+1 until end of turn.

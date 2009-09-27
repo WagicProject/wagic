@@ -519,7 +519,7 @@ id=83630
 name=Invoke the Firemind
 mana={X}{U}{U}{R}
 type=Sorcery
-text=Choose one  EDraw X cards; or Invoke the Firemind deals X damage to target creature or player.
+text=Choose one - Draw X cards; or Invoke the Firemind deals X damage to target creature or player.
 rarity=R
 [/card]
 [card]

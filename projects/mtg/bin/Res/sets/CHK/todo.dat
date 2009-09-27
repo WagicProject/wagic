@@ -1899,7 +1899,7 @@ name=Swallowing Plague
 mana={X}{B}{B}
 type=Sorcery
 subtype=Arcane
-Swallowing Plague deals X damage to target creature and you gain X life.
+text=Swallowing Plague deals X damage to target creature and you gain X life.
 rarity=U
 [/card]
 
