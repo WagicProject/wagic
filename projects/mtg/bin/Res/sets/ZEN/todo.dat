@@ -18,14 +18,7 @@ subtype=Trap
 text=If four or more creatures are attacking, you may pay {1}{W} rather than pay Arrow Volley Trap's mana cost. Arrow Volley Trap deals 5 damage divided as you choose among any number of target attacking creatures.
 rarity=U
 [/card]
-[card]
-id=180509
-name=Bold Defense
-mana={2}{W}
-type=Instant
-text=Kicker {3}{W} (You may pay an additional {3}{W} as you cast this spell.) Creatures you control get +1/+1 until end of turn. If Bold Defense was kicked, instead creatures you control get +2/+2 and gain first strike until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=185734
 name=Brave the Elements
@@ -43,14 +36,7 @@ subtype=Aura
 text=Enchant creature Enchanted creature gets +3/+3. Whenever enchanted creature deals combat damage to a player, double its controller's life total.
 rarity=R
 [/card]
-[card]
-id=195626
-name=Conqueror's Pledge
-mana={2}{W}{W}{W}
-type=Sorcery
-text=Kicker {6} (You may pay an additional {6} as you cast this spell.) Put six 1/1 white Kor Soldier creature tokens onto the battlefield. If Conqueror's Pledge was kicked, put twelve of those tokens onto the battlefield instead.
-rarity=R
-[/card]
+
 [card]
 id=191374
 name=Devout Lightcaster
@@ -114,17 +100,7 @@ toughness=2
 text=Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) Flying When Kor Aeronaut enters the battlefield, if it was kicked, target creature gains flying until end of turn.
 rarity=U
 [/card]
-[card]
-id=170991
-name=Kor Cartographer
-mana={3}{W}
-type=Creature
-subtype=Kor Scout
-power=2
-toughness=2
-text=When Kor Cartographer enters the battlefield, you may search your library for a Plains card, put it onto the battlefield tapped, then shuffle your library.
-rarity=C
-[/card]
+
 [card]
 id=177542
 name=Kor Duelist
@@ -251,17 +227,7 @@ toughness=4
 text=At the beginning of your upkeep, you may choose a card type. If you do, each player sacrifices a permanent of that type.
 rarity=R
 [/card]
-[card]
-id=170993
-name=ÁEher Figment
-mana={1}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=1
-text=Kicker {3} (You may pay an additional {3} as you cast this spell.) ÁEher Figment is unblockable. If ÁEher Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
-rarity=U
-[/card]
+
 [card]
 id=197538
 name=Archive Trap
@@ -301,14 +267,7 @@ toughness=3
 text=Defender, flying {T}: Put Gomazoa and each creature it's blocking on top of their owners' libraries, then those players shuffle their libraries.
 rarity=U
 [/card]
-[card]
-id=178151
-name=Into the Roil
-mana={1}{U}
-type=Instant
-text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) Return target nonland permanent to its owner's hand. If Into the Roil was kicked, draw a card.
-rarity=C
-[/card]
+
 [card]
 id=185711
 name=Ior Ruin Expedition
@@ -475,14 +434,7 @@ type=Sorcery
 text=Target player reveals his or her hand and discards all Trap cards.
 rarity=C
 [/card]
-[card]
-id=192223
-name=Trapmaker's Snare
-mana={1}{U}
-type=Instant
-text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
-rarity=U
-[/card]
+
 [card]
 id=197526
 name=Whiplash Trap
@@ -620,14 +572,7 @@ toughness=5
 text={B}{B}{B}, {T}: Destroy target creature. If that creature is put into a graveyard this way, put a black Vampire creature token onto the battlefield. Its power is equal to that creature's power and its toughness is equal to that creature's toughness.
 rarity=M
 [/card]
-[card]
-id=177543
-name=Marsh Casualties
-mana={B}{B}
-type=Sorcery
-text=Kicker {3} (You may pay an additional {3} as you cast this spell.) Creatures target player controls get -1/-1 until end of turn. If Marsh Casualties was kicked, those creatures get -2/-2 until end of turn instead.
-rarity=U
-[/card]
+
 [card]
 id=193403
 name=Mind Sludge
@@ -718,22 +663,8 @@ toughness=2
 text=At the beginning of your upkeep, you lose 1 life unless an opponent has 10 or less life.
 rarity=C
 [/card]
-[card]
-id=178150
-name=Vampire's Bite
-mana={B}
-type=Instant
-text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) Target creature gets +3/+0 until end of turn. If Vampire's Bite was kicked, that creature gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
-rarity=C
-[/card]
-[card]
-id=177558
-name=Burst Lightning
-mana={R}
-type=Instant
-text=Kicker {4} (You may pay an additional {4} as you cast this spell.) Burst Lightning deals 2 damage to target creature or player. If Burst Lightning was kicked, it deals 4 damage to that creature or player instead.
-rarity=C
-[/card]
+
+
 [card]
 id=195402
 name=Chandra Ablaze
@@ -759,17 +690,7 @@ type=Sorcery
 text=Kicker {5} (You may pay an additional {5} as you cast this spell.) Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step. If Elemental Appeal was kicked, that creature gets +7/+0 until end of turn.
 rarity=R
 [/card]
-[card]
-id=177501
-name=Goblin Bushwhacker
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-text=Kicker {R} (You may pay an additional {R} as you cast this spell.) When Goblin Bushwhacker enters the battlefield, if it was kicked, creatures you control get +1/+0 and gain haste until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=170987
 name=Goblin Guide
@@ -851,17 +772,7 @@ type=Sorcery
 text=As an additional cost to cast Magma Rift, sacrifice a land. Magma Rift deals 5 damage to target creature.
 rarity=C
 [/card]
-[card]
-id=195634
-name=Murasa Pyromancer
-mana={4}{R}{R}
-type=Creature
-subtype=Human Shaman Ally
-power=3
-toughness=2
-text=Whenever Murasa Pyromancer or another Ally enters the battlefield under your control, you may have Murasa Pyromancer deal damage to target creature equal to the number of Allies you control.
-rarity=U
-[/card]
+
 [card]
 id=192224
 name=Obsidian Fireheart
@@ -989,15 +900,7 @@ subtype=Trap
 text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. Put four 1/1 green Snake creature tokens onto the battlefield.
 rarity=U
 [/card]
-[card]
-id=195627
-name=Gigantiform
-mana={3}{G}{G}
-type=Enchantment
-subtype=Aura
-text=Kicker {4} Enchant creature Enchanted creature is 8/8 and has trample. When Gigantiform enters the battlefield, if it was kicked, you may search your library for a card named Gigantiform, put it onto the battlefield, then shuffle your library.
-rarity=R
-[/card]
+
 [card]
 id=180408
 name=Harrow
@@ -1134,17 +1037,7 @@ subtype=Trap
 text=If a creature spell you cast this turn was countered by a spell or ability an opponent controlled, you may pay {0} rather than pay Summoning Trap's mana cost. Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in any order.
 rarity=R
 [/card]
-[card]
-id=180457
-name=Tajuru Archer
-mana={2}{G}
-type=Creature
-subtype=Elf Archer Ally
-power=1
-toughness=2
-text=Whenever Tajuru Archer or another Ally enters the battlefield under your control, you may have Tajuru Archer deal damage to target creature with flying equal to the number of Allies you control.
-rarity=U
-[/card]
+
 [card]
 id=191355
 name=Tanglesap
@@ -1345,41 +1238,5 @@ mana=
 type=Basic Land
 subtype=Plains
 text=W
-rarity=C
-[/card]
-[card]
-id=201964
-name=Island
-mana=
-type=Basic Land
-subtype=Island
-text=U
-rarity=C
-[/card]
-[card]
-id=201978
-name=Swamp
-mana=
-type=Basic Land
-subtype=Swamp
-text=B
-rarity=C
-[/card]
-[card]
-id=201967
-name=Mountain
-mana=
-type=Basic Land
-subtype=Mountain
-text=R
-rarity=C
-[/card]
-[card]
-id=201962
-name=Forest
-mana=
-type=Basic Land
-subtype=Forest
-text=G
 rarity=C
 [/card]

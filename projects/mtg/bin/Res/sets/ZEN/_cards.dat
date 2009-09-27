@@ -1,4 +1,18 @@
 [card]
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) AETher Figment is unblockable. If AETher Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
+id=170993
+name=AEther Figment
+mana={1}{U}
+kicker={3}
+abilities=unblockable
+auto=kicker token(1/1,2)
+type=Creature
+subtype=Illusion
+power=1
+toughness=1
+rarity=U
+[/card]
+[card]
 text=Akoum Refuge enters the battlefield tapped.   When Akoum Refuge enters the battlefield, you gain 1 life.   {T}: Add {B} or {R} to your mana pool.
 id=189638
 name=Akoum Refuge
@@ -66,6 +80,30 @@ toughness=2
 abilities=swampwalk
 [/card]
 [card]
+text=Kicker {3}{W} (You may pay an additional {3}{W} as you cast this spell.) Creatures you control get +1/+1 until end of turn. If Bold Defense was kicked, instead creatures you control get +2/+2 and gain first strike until end of turn.
+id=180509
+name=Bold Defense
+mana={2}{W}
+kicker={3}{W}
+auto=lord(creature|myBattlefield) 1/1
+kicker=lord(creature|myBattlefield) 1/1
+kicker=lord(creature|myBattlefield) first strike
+type=Instant
+rarity=C
+[/card]
+[card]
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) Burst Lightning deals 2 damage to target creature or player. If Burst Lightning was kicked, it deals 4 damage to that creature or player instead.
+id=177558
+name=Burst Lightning
+mana={R}
+kicker={4}
+target=creature,player
+auto=damage:2
+auto=kicker damage:2
+type=Instant
+rarity=C
+[/card]
+[card]
 text={1}{U}{T}: Target creature gains flying until end of turn.
 id=183417
 name=Caller of Gales
@@ -107,6 +145,17 @@ subtype=Giant
 power=1
 toughness=5
 abilities=lifelink
+[/card]
+[card]
+text=Kicker {6} (You may pay an additional {6} as you cast this spell.) Put six 1/1 white Kor Soldier creature tokens onto the battlefield. If Conqueror's Pledge was kicked, put twelve of those tokens onto the battlefield instead.
+id=195626
+name=Conqueror's Pledge
+mana={2}{W}{W}{W}
+kicker={6}
+auto=token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
+auto=kicker token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
+type=Sorcery
+rarity=R
 [/card]
 [card]
 text=Haste {B}: Crypt Ripper gets +1/+1 until end of turn.
@@ -303,6 +352,34 @@ toughness=3
 abilities=deathtouch
 [/card]
 [card]
+text=Kicker {4} Enchant creature Enchanted creature is 8/8 and has trample. When Gigantiform enters the battlefield, if it was kicked, you may search your library for a card named Gigantiform, put it onto the battlefield, then shuffle your library.
+id=195627
+name=Gigantiform
+mana={3}{G}{G}
+kicker={4}
+target=creature
+auto=8/8
+auto=trample
+auto=kicker may moveTo(myBattlefield) target(Gigantiform|myLibrary)
+type=Enchantment
+subtype=Aura
+rarity=R
+[/card]
+[card]
+text=Kicker {R} (You may pay an additional {R} as you cast this spell.) When Goblin Bushwhacker enters the battlefield, if it was kicked, creatures you control get +1/+0 and gain haste until end of turn.
+id=177501
+name=Goblin Bushwhacker
+mana={R}
+kicker={R}
+type=Creature
+subtype=Goblin Warrior
+power=1
+toughness=1
+auto=kicker all(creature|myBattlefield) 1/0
+auto=kicker all(creature|myBattlefield) haste
+rarity=C
+[/card]
+[card]
 text=Enchant creature Enchanted creature gets +2/+2 and has haste.
 auto=haste
 auto=2/2
@@ -421,6 +498,18 @@ type=Creature
 subtype=Human Berserker Ally
 power=2
 toughness=1
+[/card]
+[card]
+text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) Return target nonland permanent to its owner's hand. If Into the Roil was kicked, draw a card.
+id=178151
+name=Into the Roil
+mana={1}{U}
+kicker={1}{U}
+target=*[-land]
+auto=moveTo(ownerhand)
+auto=kicker draw:1
+type=Instant
+rarity=C
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -567,6 +656,18 @@ power=3
 toughness=3
 [/card]
 [card]
+id=170991
+name=Kor Cartographer
+mana={3}{W}
+type=Creature
+subtype=Kor Scout
+power=2
+toughness=2
+text=When Kor Cartographer enters the battlefield, you may search your library for a Plains card, put it onto the battlefield tapped, then shuffle your library.
+auto=may moveTo(myBattlefield) target(plains|mylibrary) && tap
+rarity=C
+[/card]
+[card]
 text=
 id=177585
 name=Kraken Hatchling
@@ -626,6 +727,17 @@ auto=counter(1/1)
 rarity=U
 mana={2}{R}
 type=Sorcery
+[/card]
+[card]
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) Creatures target player controls get -1/-1 until end of turn. If Marsh Casualties was kicked, those creatures get -2/-2 until end of turn instead.
+id=177543
+name=Marsh Casualties
+mana={B}{B}
+kicker={3}
+auto=lord(creature|opponentBattlefield) -1/-1
+auto=kicked lord(creature|opponentBattlefield) -1/-1
+type=Sorcery
+rarity=U
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card and put it onto the battlefield. Then shuffle your library.
@@ -752,6 +864,19 @@ name=Mountain
 rarity=L
 type=Basic Land
 subtype=Mountain
+[/card]
+[card]
+text=Whenever Murasa Pyromancer or another Ally enters the battlefield under your control, you may have Murasa Pyromancer deal damage to target creature equal to the number of Allies you control.
+id=195634
+name=Murasa Pyromancer
+mana={4}{R}{R}
+type=Creature
+subtype=Human Shaman Ally
+power=3
+toughness=2
+auto=may foreach(ally|mybattlefield) damage:1 target(creature)
+auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature)
+rarity=U
 [/card]
 [card]
 text=Return target permanent you control to its owner's hand. You gain 4 life.
@@ -1220,6 +1345,19 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
+text=Whenever Tajuru Archer or another Ally enters the battlefield under your control, you may have Tajuru Archer deal damage to target creature with flying equal to the number of Allies you control.
+id=180457
+name=Tajuru Archer
+mana={2}{G}
+type=Creature
+subtype=Elf Archer Ally
+power=1
+toughness=2
+auto=may foreach(ally|mybattlefield) damage:1 target(creature[flying])
+auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature[flying])
+rarity=U
+[/card]
+[card]
 text=Landfall - Whenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
 id=170971
 name=Territorial Baloth
@@ -1230,6 +1368,16 @@ subtype=Beast
 auto=@movedTo(land|myBattlefield):2/2
 power=4
 toughness=4
+[/card]
+[card]
+id=192223
+name=Trapmaker's Snare
+mana={1}{U}
+type=Instant
+text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
+target=trap|mylibrary
+auto=moveTo(myhand)
+rarity=U
 [/card]
 [card]
 text=Haste   Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.
@@ -1284,6 +1432,18 @@ subtype=Vampire Shaman
 power=2
 toughness=3
 abilities=flying,deathtouch,lifelink
+[/card]
+[card]
+text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) Target creature gets +3/+0 until end of turn. If Vampire's Bite was kicked, that creature gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
+id=178150
+name=Vampire's Bite
+mana={B}
+kicker={2}{B}
+target=creature
+auto=3/0
+auto=kicker lifelink
+type=Instant
+rarity=C
 [/card]
 [card]
 id=180454
