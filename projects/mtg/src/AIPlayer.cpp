@@ -293,7 +293,7 @@ int AIPlayer::effectBadOrGood(MTGCardInstance * card){
 
 
 int AIPlayer::chooseTarget(TargetChooser * tc){
-  Targetable * potentialTargets[50];
+  vector<Targetable *>potentialTargets;
   int nbtargets = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
   int checkOnly = 0;
@@ -313,7 +313,7 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
 
   if (!tc->alreadyHasTarget(target) &&  tc->canTarget(target) && nbtargets < 50){
     for (int i = 0; i < 3; i++){ //Increase probability to target a player when this is possible
-      potentialTargets[nbtargets] = target;
+      potentialTargets.push_back(target);
       nbtargets++;
     }
     if (checkOnly) return 1;
@@ -337,7 +337,7 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
 	  }
 	}
 	for (int l=0; l < multiplier; l++){
-	  potentialTargets[nbtargets] = card;
+	  potentialTargets.push_back(card);
 	  nbtargets++;
 	}
       }
@@ -524,29 +524,7 @@ int AIPlayer::combatDamages(){
   if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS) return orderBlockers();
 
   if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
-  /*
-  DamageResolverLayer *  drl = gameObs->mLayers->combatLayer();
 
-  if (drl->currentChoosingPlayer == this){
-    for (int i = 0; i < drl->mCount; i++){
-      DamagerDamaged * current = (DamagerDamaged *) drl->mObjects[i];
-      if (current->damageSelecter == this){
-        OutputDebugString("YEs, AI IS THE DAMAGE DEALER");
-        MTGCardInstance * attacker = current->card;
-        MTGCardInstance * canardEmissaire = *(attacker->blockers.rbegin());
-
-        while (canardEmissaire && current->damageToDeal){
-          drl->clickDamage(canardEmissaire);
-        }
-        result = 1;
-
-      }
-    }
-  }
-
-
-  if (result) return drl->nextPlayer();
-  */
   return 0;
 
 }
@@ -611,6 +589,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
   cd.setType(type);
   card = NULL;
   while((card = cd.nextmatch(game->hand, card))){
+    if (card->hasType("land") && !this->canPutLandsIntoPlay) continue;
     int currentCost = card->getManaCost()->getConvertedCost();
     if (currentCost > maxCost && potentialMana->canAfford(card->getManaCost())){
       TargetChooserFactory * tcf = NEW TargetChooserFactory();
@@ -676,6 +655,7 @@ int AIPlayerBaka::computeActions(){
     switch(currentGamePhase){
     case Constants::MTG_PHASE_FIRSTMAIN:
     case Constants::MTG_PHASE_SECONDMAIN:
+    {
       if (canPutLandsIntoPlay){
 	      //Attempt to put land into play
 	      cd.init();
@@ -689,17 +669,21 @@ int AIPlayerBaka::computeActions(){
       }
 
 	    //No mana, try to get some
-	    getPotentialMana();
-	    if (potentialMana->getConvertedCost() > 0){
+	    SAFE_DELETE(potentialMana);
+      ManaCost * currentMana = manaPool;
+      if (!currentMana->getConvertedCost()){
+        currentMana = getPotentialMana();
+      }
+	    if (currentMana->getConvertedCost() > 0){
 
 
 	      //look for the most expensive creature we can afford
-	      nextCardToPlay = FindCardToPlay(potentialMana, "creature");
+	      nextCardToPlay = FindCardToPlay(currentMana, "creature");
 	      //Let's Try an enchantment maybe ?
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "enchantment");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "artifact");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "instant");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(potentialMana, "sorcery");
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "artifact");
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
+	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
 	      if (nextCardToPlay){
 #if defined (WIN32) || defined (LINUX)
           char buffe[4096];
@@ -707,7 +691,7 @@ int AIPlayerBaka::computeActions(){
 	  OutputDebugString(buffe);
 #endif
 
-	        tapLandsForMana(potentialMana,nextCardToPlay->getManaCost());
+	        if (currentMana == potentialMana) tapLandsForMana(currentMana,nextCardToPlay->getManaCost());
           AIAction * a = NEW AIAction(nextCardToPlay);
 	        clickstream.push(a);
           return 1;
@@ -718,6 +702,7 @@ int AIPlayerBaka::computeActions(){
         selectAbility();
       }
       break;
+    }
     case Constants::MTG_PHASE_COMBATATTACKERS:
       chooseAttackers();
       break;

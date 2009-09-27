@@ -49,6 +49,9 @@ class GuiPlay : public GuiLayer
     float height;
 
   public:
+    int red;
+    int colorFlow;
+
     void addAttacker(MTGCardInstance*);
     void removeAttacker(MTGCardInstance*);
     void reset(float x, float y);

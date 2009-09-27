@@ -61,9 +61,9 @@ void GuiPlay::VertStack::Enstack(CardView* card)
 
 inline float GuiPlay::VertStack::nextX() { return x + CARD_WIDTH; }
 
-GuiPlay::BattleField::BattleField(float width) : HorzStack(width), attackers(0), blockers(0), height(0.0) {}
+GuiPlay::BattleField::BattleField(float width) : HorzStack(width), attackers(0), blockers(0), height(0.0), red(0), colorFlow(0) {}
 const float GuiPlay::BattleField::HEIGHT = 80.0f;
-void GuiPlay::BattleField::addAttacker(MTGCardInstance*) { ++attackers; }
+void GuiPlay::BattleField::addAttacker(MTGCardInstance*) { ++attackers; colorFlow = 1; }
 void GuiPlay::BattleField::removeAttacker(MTGCardInstance*) { --attackers; }
 void GuiPlay::BattleField::reset(float x, float y) { HorzStack::reset(x, y); currentAttacker = 1; }
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
@@ -86,11 +86,17 @@ void GuiPlay::BattleField::Update(float dt)
     height -= 10 * dt * height;
   else
     height += 10 * dt * (HEIGHT - height);
+
+  if (colorFlow){
+    red+= colorFlow * 300 *  dt;
+    if (red < 0) red = 0;
+    if (red > 70) red = 70;
+  }
 }
 void GuiPlay::BattleField::Render()
 {
   if (height > 3)
-    JRenderer::GetInstance()->FillRect(22, SCREEN_HEIGHT / 2 + 10 - height / 2, 250, height, ARGB(127, 0, 0, 0));
+    JRenderer::GetInstance()->FillRect(22, SCREEN_HEIGHT / 2 + 10 - height / 2, 250, height, ARGB(127, red, 0, 0));
 }
 
 GuiPlay::GuiPlay(GameObserver* game, CardSelector* cs) : game(game), cs(cs)
@@ -207,6 +213,10 @@ int GuiPlay::receiveEventPlus(WEvent * e)
 	event->card->view->actT = event->after ? M_PI / 2 : 0;
       return 1;
     }
+  else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
+  {
+    if (Constants::MTG_PHASE_COMBATEND == event->to->id) battleField.colorFlow = -1;
+  }
   return 0;
 }
 int GuiPlay::receiveEventMinus(WEvent * e)
