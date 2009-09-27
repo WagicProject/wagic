@@ -1223,8 +1223,10 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
     }
     //Well, we've found something...
     if(it != cache.end()) {
-       if(!it->second && (submode & CACHE_EXISTING))
+      if(!it->second && (submode & CACHE_EXISTING)){
+         mError = CACHE_ERROR_404;
          return NULL;     //A miss.
+      }
        else
          return it->second; //A hit.
     }
