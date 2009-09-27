@@ -38,12 +38,12 @@ void CardDisplay::init(MTGGameZone * zone){
   for (int i= 0; i< zone->nb_cards; i++){
     AddCard(zone->cards[i]);
   }
-  if (mObjects[0]) mObjects[0]->Entering();
+  if (mCount) mObjects[0]->Entering();
 }
 
 void CardDisplay::rotateLeft(){
   if (start_item==0) return;
-  for (int i= 0; i<mCount; i++){
+  for (int i = 0; i<mCount; i++){
     CardGui * cardg = (CardGui *)mObjects[i];
     cardg->x+=30;
   }
