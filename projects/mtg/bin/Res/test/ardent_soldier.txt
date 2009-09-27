@@ -1,5 +1,4 @@
 #Testing Kicker with counter
-#BUG: kicker + counter = increase toughness, no change in power
 [INIT]
 FIRSTMAIN
 [PLAYER1]
