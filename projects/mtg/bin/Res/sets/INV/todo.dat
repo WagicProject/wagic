@@ -139,11 +139,12 @@ name=Benalish Lancer
 rarity=C
 type=Creature
 mana={2}{W}
+kicker={2}{W}
+auto=kicker counter(1/1,2) && first strike
 power=2
 subtype=Human Knight
 toughness=2
 [/card]
-
 [card]
 text=Each player separates all lands he or she controls into two piles. For each player, an opponent chooses a pile. Destroy all lands in the chosen piles. Tap all lands in the other piles.
 id=23099
@@ -373,14 +374,7 @@ power=9
 subtype=Horror
 toughness=9
 [/card]
-[card]
-text=Kicker {2}{U} (You may pay an additional {2}{U} as you play this spell.)    Destroy target artifact or enchantment.       If the kicker cost was paid, draw two cards.
-id=22946
-name=Dismantling Blow
-rarity=C
-type=Instant
-mana={2}{W}
-[/card]
+
 [card]
 text=Counter target instant or sorcery spell unless its controller pays {1}.       Draw a card.
 id=23000
@@ -451,6 +445,8 @@ name=Duskwalker
 rarity=C
 type=Creature
 mana={B}
+kicker={3}{B}
+auto=kicker counter(1/1,2) && fear
 power=1
 subtype=Human Minion
 toughness=1
@@ -657,17 +653,7 @@ power=2
 subtype=Bird Wizard
 toughness=2
 [/card]
-[card]
-text=Kicker {4} (You may pay an additional {4} as you play this spell.)  Kavu Aggressor can't block.     If the kicker cost was paid, Kavu Aggressor comes into play with a +1/+1 counter on it.
-id=23063
-name=Kavu Aggressor
-rarity=C
-type=Creature
-mana={2}{R}
-power=3
-subtype=Kavu
-toughness=2
-[/card]
+
 [card]
 text=Kavu Chameleon can't be countered.     {G}: Kavu Chameleon becomes the color of your choice until end of turn.
 id=23125
@@ -695,6 +681,8 @@ name=Kavu Titan
 rarity=R
 type=Creature
 mana={1}{G}
+kicker={2}{G}
+auto=kicker counter(1/1,3) && trample
 power=2
 subtype=Kavu
 toughness=2
@@ -715,17 +703,7 @@ rarity=U
 type=Instant
 mana={1}{R}
 [/card]
-[card]
-text=Kicker {8} (You may pay an additional {8} as you play this spell.)    Trample       If the kicker cost was paid, Llanowar Elite comes into play with five +1/+1 counters on it.
-id=25363
-name=Llanowar Elite
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf
-toughness=1
-[/card]
+
 [card]
 text=Whenever Loafing Giant attacks or blocks, put the top card of your library into your graveyard. If that card is a land card, prevent all combat damage that Loafing Giant would deal this turn.
 id=23092
@@ -924,17 +902,7 @@ power=2
 subtype=Minion
 toughness=2
 [/card]
-[card]
-text=Kicker {3} (You may pay an additional {3} as you play this spell.)  Reach (This creature can block creatures with flying.)  If the kicker cost was paid, Pincer Spider comes into play with a +1/+1 counter on it.
-id=23107
-name=Pincer Spider
-rarity=C
-type=Creature
-mana={2}{G}
-power=2
-subtype=Spider
-toughness=3
-[/card]
+
 
 [card]
 text=Destroy target nonblack creature and target land. They can't be regenerated.
@@ -946,17 +914,7 @@ mana={4}{B}{R}
 [/card]
 
 
-[card]
-text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.)    First strike       If the kicker cost was paid, Pouncing Kavu comes into play with two +1/+1 counters on it and with haste.
-id=23064
-name=Pouncing Kavu
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Kavu
-toughness=1
-[/card]
+
 [card]
 text=Domain - {3}, {T}: Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
 id=23222
@@ -1739,17 +1697,7 @@ subtype=Spirit Minion
 toughness=1
 [/card]
 
-[card]
-text=Kicker {3} (You may pay an additional {3} as you play this spell.)    {B}: Regenerate Urborg Skeleton.       If the kicker cost was paid, Urborg Skeleton comes into play with a +1/+1 counter on it.
-id=23020
-name=Urborg Skeleton
-rarity=C
-type=Creature
-mana={B}
-power=0
-subtype=Skeleton
-toughness=1
-[/card]
+
 
 [card]
 text=Multicolored spells cost up to {2} less to play.
@@ -1838,17 +1786,7 @@ power=1
 subtype=Merfolk
 toughness=2
 [/card]
-[card]
-text=Kicker {2} (You may pay an additional {2} as you play this spell.)  Vodalian Serpent can't attack unless defending player controls an Island.     If the kicker cost was paid, Vodalian Serpent comes into play with four +1/+1 counters on it.
-id=22976
-name=Vodalian Serpent
-rarity=C
-type=Creature
-mana={3}{U}
-power=2
-subtype=Serpent
-toughness=2
-[/card]
+
 
 [card]
 text=Choose a number. Destroy all artifacts and creatures with converted mana cost equal to that number. Then target player reveals his or her hand and discards all nonland cards with converted mana cost equal to the number.
