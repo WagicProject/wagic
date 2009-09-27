@@ -1656,38 +1656,6 @@ rarity=U
 type=Artifact
 mana={2}
 [/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=3578
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=3580
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=3579
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-id=3577
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
 
 [card]
 text=Flying       {W}, {T}: Return Mtenda Griffin to its owner's hand and return target Griffin card in your graveyard to your hand. Play this ability only during your upkeep.
@@ -1752,14 +1720,16 @@ toughness=4
 [/card]
 [card]
 text=Banding, trample
-id=3505
+#banding not suppoerted
+id=3505 
 name=Noble Elephant
-rarity=C
+abilities=trample,banding
 type=Creature
+subtype=Elephant
 mana={3}{W}
 power=2
-subtype=Elephant
 toughness=2
+rarity=C
 [/card]
 [card]
 text=Black creatures get +2/+0 until end of turn.
@@ -2638,14 +2608,16 @@ mana={R}
 [/card]
 [card]
 text=Banding, flying
-id=3518
+#banding not supported
+id=3518 
 name=Teremko Griffin
-rarity=C
+abilities=flying,banding
 type=Creature
+subtype=Griffin
 mana={3}{W}
 power=2
-subtype=Griffin
 toughness=2
+rarity=C
 [/card]
 [card]
 text=Enchant creature     When Thirst comes into play, tap enchanted creature.     Enchanted creature doesn't untap during its controller's untap step.     At the beginning of your upkeep, sacrifice Thirst unless you pay {U}.

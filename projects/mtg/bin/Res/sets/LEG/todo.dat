@@ -530,6 +530,17 @@ type=Artifact
 mana={5}
 [/card]
 [card]
+text=Wall creatures you control get +1/+0 and have banding.
+auto=lord(wall|myinplay) 1/0
+auto=lord(wall|myinplay) banding
+#banding not supported anymore
+id=1612
+name=Fortified Area
+rarity=U
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
 text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep.
 id=1652
 name=Gabriel Angelfire
@@ -1293,6 +1304,18 @@ type=Artifact
 mana={6}
 [/card]
 [card]
+text={T}: Target creature loses all "bands with other" abilities until end of turn.
+id=1544
+name=Shelkin Brownie
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Ouphe
+auto={T}:-banding target(creature)
+power=1
+toughness=1
+[/card]
+[card]
 text={B}, {T}: All damage that would be dealt to you this turn by target attacking creature is dealt to Shimian Night Stalker instead.
 id=1456
 name=Shimian Night Stalker
@@ -1464,6 +1487,16 @@ mana={2}{U}
 power=0
 subtype=Elemental
 toughness=2
+[/card]
+[card]
+text=Legendary. {T}: Add {U} to your mana pool. {T}: Target Target creature loses banding and all "bands with other" abilities until end of turn. Play this ability only during any upkeep step.
+auto={T}: Add {U}
+auto={T}:-banding target(creature)
+id=1705
+name=Tolaria
+rarity=U
+type=Land
+abilities=legendary
 [/card]
 [card]
 text=Any number of target creatures become black until end of turn.

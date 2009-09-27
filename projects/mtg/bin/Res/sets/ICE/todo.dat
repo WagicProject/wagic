@@ -163,6 +163,16 @@ type=Artifact
 mana={1}
 [/card]
 [card]
+text={2}: Target creature gains banding until end of turn.
+#banding not supported in Wagic 0.9
+id=2399
+name=Baton of Morale
+auto={2}:banding target(creature)
+rarity=U
+type=Artifact
+mana={2}
+[/card]
+[card]
 text=Untap all white creatures you control.       Whenever a creature blocks this turn, it gets +0/+1 until end of turn.
 id=2665
 auto=untap all(creature[white]|myinplay)
@@ -371,6 +381,18 @@ type=Enchantment
 mana={2}{W}
 [/card]
 [card]
+text=Enchant creature. Enchanted creature has banding.
+#banding unsupported
+id=2678
+target=creature
+auto=banding
+name=Cooperation
+rarity=C
+type=Enchantment 
+mana={2}{W}
+subtype=Aura
+[/card]
+[card]
 text={4}, {T}: Attach target Aura attached to a creature to another creature.
 id=2401
 name=Crown of the Ages
@@ -413,6 +435,7 @@ rarity=U
 type=Instant
 mana={B}
 [/card]
+
 [card]
 text=Look at the top five cards of your library. Put one of them into your hand and the rest on top of your library in any order.
 id=2720
@@ -420,6 +443,19 @@ name=Diabolic Vision
 rarity=U
 type=Sorcery
 mana={U}{B}
+[/card]
+[card]
+text=Dire Wolves has banding as long as you control a Plains.
+#banding unsupported
+auto=aslongas(plains|myinplay) banding
+id=2554
+name=Dire Wolves
+rarity=C
+type=Creature
+mana={2}{G}
+power=2
+subtype=Wolf
+toughness=2
 [/card]
 [card]
 text=At end of combat, put a paralyzation counter on all creatures blocking or blocked by Dread Wight and tap those creatures. They gain "If this creature has a paralyzation counter on it, it doesn't untap during its controller's untap step" and "{4}: Remove a paralyzation counter from this creature."
@@ -612,6 +648,18 @@ name=Forgotten Lore
 rarity=U
 type=Sorcery
 mana={G}
+[/card]
+[card]
+text=Target creature gains banding until end of turn. Draw a card at the beginning of the next turn's upkeep.
+#Banding unsupported in Wagic 0.9
+id=2685
+target=creature
+auto=banding
+auto=@next upkeep:draw:1
+name=Formation
+rarity=R
+type=Instant
+mana={1}{W}
 [/card]
 [card]
 text=Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.     Draw a card at the beginning of the next turn's upkeep.
@@ -1127,6 +1175,34 @@ subtype=Human Soldier
 toughness=1
 [/card]
 [card]
+text=Banding {1}{W}: +1/+0 until end of turn {W}{W}: +0/+2 until end of turn
+#banding unsupported in 0.9
+abilities=Banding
+auto={1}{W}:1/0
+auto={W}{W}:0/2
+id=2696
+name=Kjeldoran Knight
+rarity=R
+type=Creature 
+mana={W}{W}
+power=1
+subtype=Human Knight
+toughness=1
+[/card]
+[card]
+text=Banding, first strike
+#banding unsupported in 0.9
+id=2697
+abilities=banding,first strike
+name=Kjeldoran Phalanx
+rarity=R
+type=Creature 
+mana={5}{W}
+power=2
+subtype=Human Soldier
+toughness=5
+[/card]
+[card]
 text={T}: All combat damage that would be dealt to you by unblocked creatures this turn is dealt to Kjeldoran Royal Guard instead.
 id=2698
 name=Kjeldoran Royal Guard
@@ -1136,6 +1212,45 @@ mana={3}{W}{W}
 power=2
 subtype=Human Soldier
 toughness=5
+[/card]
+[card]
+#banding unsupported in 0.9
+text=Banding, flying, first strike
+abilities=banding,flying,first strike
+id=2699
+name=Kjeldoran Skycaptain
+rarity=U
+type=Creature 
+mana={4}{W}
+power=2
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
+#banding unsupported in 0.9
+text=Banding, flying, first strike
+id=2700
+abilities=banding,flying,first strike
+name=Kjeldoran Skyknight
+rarity=C
+type=Creature 
+mana={2}{W}
+power=1
+subtype=Human Knight
+toughness=1
+[/card]
+[card]
+#banding unsupported in 0.9
+text=Banding
+abilities=banding
+id=2701
+name=Kjeldoran Warrior
+rarity=C
+type=Creature 
+mana={W}
+power=1
+subtype=Human Warrior
+toughness=1
 [/card]
 [card]
 text={2}{R}: Target creature gets +1/+0 until end of turn.     {U}{U}: Target creature you control gains flying until end of turn. Sacrifice it at end of turn.
@@ -1695,6 +1810,18 @@ subtype=Angel
 toughness=4
 [/card]
 [card]
+text=Banding
+abilities=banding
+id=2712
+name=Shield Bearer
+rarity=C
+type=Creature 
+mana={1}{W}
+power=0
+subtype=Human Soldier
+toughness=3
+[/card]
+[card]
 text=At the beginning of your upkeep, you may have Shyft become the color or colors of your choice. (This effect doesn't end at end of turn.)
 id=2532
 name=Shyft
@@ -1965,6 +2092,18 @@ name=Vibrating Sphere
 rarity=R
 type=Artifact
 mana={4}
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Banding
+abilities=banding,defender
+id=2433
+name=Wall of Shields
+rarity=U
+type=Artifact Creature
+mana={3}
+power=0
+toughness=4
+subtype=Wall
 [/card]
 [card]
 text=Prevent all combat damage that would be dealt by target attacking creature this turn.

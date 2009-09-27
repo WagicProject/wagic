@@ -95,15 +95,6 @@ subtype=Bear
 toughness=2
 [/card]
 [card]
-text={2}: Target creature gains banding until end of turn.
-id=2399
-name=Baton of Morale
-auto={2}:banding target(creature)
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=Green creatures you control get +1/+1 until end of turn.       Nongreen creatures you control get +1/+0 until end of turn.
 id=2611
 auto=lord(creature[green]|myinplay) 1/1
@@ -225,17 +216,6 @@ type=Instant
 mana={U}{U}
 [/card]
 [card]
-text=Enchant creature. Enchanted creature has banding.
-id=2678
-target=creature
-auto=banding
-name=Cooperation
-rarity=C
-type=Enchantment 
-mana={2}{W}
-subtype=Aura
-[/card]
-[card]
 text=Destroy target nonblack creature. It can't be regenerated.
 id=2443
 target=creature[-black]
@@ -272,18 +252,6 @@ name=Despotic Scepter
 rarity=R
 type=Artifact
 mana={1}
-[/card]
-[card]
-text=Dire Wolves has banding as long as you control a Plains.
-auto=aslongas(plains|myinplay) banding
-id=2554
-name=Dire Wolves
-rarity=C
-type=Creature
-mana={2}{G}
-power=2
-subtype=Wolf
-toughness=2
 [/card]
 [card]
 text=Destroy target artifact or enchantment.
@@ -429,17 +397,6 @@ name=Forest
 rarity=L
 type=Basic Land
 subtype=Forest
-[/card]
-[card]
-text=Target creature gains banding until end of turn. Draw a card at the beginning of the next turn's upkeep.
-id=2685
-target=creature
-auto=banding
-auto=@next upkeep:draw:1
-name=Formation
-rarity=R
-type=Instant
-mana={1}{W}
 [/card]
 [card]
 text=Foul Familiar can't block.     {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
@@ -695,68 +652,6 @@ mana={3}{W}{G}
 power=2
 subtype=Elemental Beast
 toughness=4
-[/card]
-[card]
-text=Banding, first strike
-id=2697
-abilities=banding,first strike
-name=Kjeldoran Phalanx
-rarity=R
-type=Creature 
-mana={5}{W}
-power=2
-subtype=Human Soldier
-toughness=5
-[/card]
-[card]
-text=Banding {1}{W}: +1/+0 until end of turn {W}{W}: +0/+2 until end of turn
-abilities=Banding
-auto={1}{W}:1/0
-auto={W}{W}:0/2
-id=2696
-name=Kjeldoran Knight
-rarity=R
-type=Creature 
-mana={W}{W}
-power=1
-subtype=Human Knight
-toughness=1
-[/card]
-[card]
-text=Banding, flying, first strike
-abilities=banding,flying,first strike
-id=2699
-name=Kjeldoran Skycaptain
-rarity=U
-type=Creature 
-mana={4}{W}
-power=2
-subtype=Human Soldier
-toughness=2
-[/card]
-[card]
-text=Banding, flying, first strike
-id=2700
-abilities=banding,flying,first strike
-name=Kjeldoran Skyknight
-rarity=C
-type=Creature 
-mana={2}{W}
-power=1
-subtype=Human Knight
-toughness=1
-[/card]
-[card]
-text=Banding
-abilities=banding
-id=2701
-name=Kjeldoran Warrior
-rarity=C
-type=Creature 
-mana={W}
-power=1
-subtype=Human Warrior
-toughness=1
 [/card]
 [card]
 text=Protection from white. {B}: Knight of Stromgald gains first strike until end of turn. {B}{B}: Knight of Stromgald gets +1/+0 until end of turn.
@@ -1206,18 +1101,6 @@ subtype=Yeti
 toughness=5
 [/card]
 [card]
-text=Banding
-abilities=banding
-id=2712
-name=Shield Bearer
-rarity=C
-type=Creature 
-mana={1}{W}
-power=0
-subtype=Human Soldier
-toughness=3
-[/card]
-[card]
 text={2}: Prevent the next 1 damage that would be dealt to you this turn.
 id=2421
 name=Shield of the Ages
@@ -1599,18 +1482,6 @@ mana={3}{G}
 power=3
 subtype=Plant Wall
 toughness=3
-[/card]
-[card]
-text=Defender (This creature can't attack.)  Banding
-abilities=banding,defender
-id=2433
-name=Wall of Shields
-rarity=U
-type=Artifact Creature
-mana={3}
-power=0
-toughness=4
-subtype=Wall
 [/card]
 [card]
 text={3}, {T}: Target creature gains trample until end of turn.

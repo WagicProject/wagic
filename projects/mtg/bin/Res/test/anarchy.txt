@@ -6,7 +6,7 @@ hand:2606
 manapool:{2}{R}{R}
 inplay:2672,2718
 [PLAYER2]
-inplay:2697,2732, 1393, 2771
+inplay:2732, 1393, 2771
 [DO]
 2606
 [ASSERT]
@@ -16,6 +16,6 @@ graveyard:2606,2672
 inplay:2718
 manapool:{0}
 [PLAYER2]
-graveyard:2732,2697
+graveyard:2732
 inplay:1393,2771
 [END]

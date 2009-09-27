@@ -381,16 +381,6 @@ type=Instant
 mana={1}{U}
 [/card]
 [card]
-text=Wall creatures you control get +1/+0 and have banding.
-auto=lord(wall|myinplay) 1/0
-auto=lord(wall|myinplay) banding
-id=1612
-name=Fortified Area
-rarity=U
-mana={1}{W}{W}
-type=Enchantment
-[/card]
-[card]
 text=Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
 id=1574
 auto=rampage(2/2,1)
@@ -1071,18 +1061,6 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-text={T}: Target creature loses all "bands with other" abilities until end of turn.
-id=1544
-name=Shelkin Brownie
-rarity=C
-mana={1}{G}
-type=Creature
-subtype=Ouphe
-auto={T}:-banding target(creature)
-power=1
-toughness=1
-[/card]
-[card]
 text=Legendary
 id=1684
 name=Sivitri Scarzam
@@ -1232,16 +1210,6 @@ type=Creature
 subtype=Human Advisor
 power=4
 toughness=4
-abilities=legendary
-[/card]
-[card]
-text=Legendary. {T}: Add {U} to your mana pool. {T}: Target Target creature loses banding and all "bands with other" abilities until end of turn. Play this ability only during any upkeep step.
-auto={T}: Add {U}
-auto={T}:-banding target(creature)
-id=1705
-name=Tolaria
-rarity=U
-type=Land
 abilities=legendary
 [/card]
 [card]

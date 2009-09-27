@@ -6,7 +6,7 @@ hand:1372
 manapool:{2}{W}{W}
 inplay:1188,1145,1250,1236,1092,1385
 [PLAYER2]
-inplay:1323,1268,1151,1393
+inplay:1323,1151,1393
 [DO]
 1372
 [ASSERT]
@@ -16,6 +16,6 @@ graveyard:1188,1145,1250,1236,1372
 inplay:1092,1385
 manapool:{0}
 [PLAYER2]
-graveyard:1323,1268
+graveyard:1323
 inplay:1393,1151
 [END]

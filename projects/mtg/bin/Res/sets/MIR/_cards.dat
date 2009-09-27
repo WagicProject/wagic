@@ -633,18 +633,6 @@ rarity=U
 type=Land
 [/card]
 [card]
-text=Banding, trample
-id=3505 
-name=Noble Elephant
-abilities=trample,banding
-type=Creature
-subtype=Elephant
-mana={3}{W}
-power=2
-toughness=2
-rarity=C
-[/card]
-[card]
 text=Black creatures get +2/+0 until end of turn.
 id=3301 
 name=Nocturnal Raid
@@ -946,18 +934,6 @@ auto=@next upkeep:draw:1
 type=Instant
 mana={R}
 rarity=R
-[/card]
-[card]
-text=Banding, flying
-id=3518 
-name=Teremko Griffin
-abilities=flying,banding
-type=Creature
-subtype=Griffin
-mana={3}{W}
-power=2
-toughness=2
-rarity=C
 [/card]
 [card]
 text=Destroy all non-Aura enchantments.

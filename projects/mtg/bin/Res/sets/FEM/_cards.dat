@@ -265,58 +265,6 @@ target=player
 auto=discard:2
 [/card]
 [card]
-text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
-id=1981
-name=Icatian Infantry
-rarity=C
-type=Creature
-subtype=Human Soldier
-mana={W}
-power=1
-toughness=1
-auto={1}:banding
-auto={1}:first strike
-[/card]
-[card]
-text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
-id=1982
-name=Icatian Infantry
-rarity=C
-type=Creature
-subtype=Human Soldier
-mana={W}
-power=1
-toughness=1
-auto={1}:banding
-auto={1}:first strike
-[/card]
-[card]
-text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
-id=1983
-name=Icatian Infantry
-rarity=C
-type=Creature
-subtype=Human Soldier
-mana={W}
-power=1
-toughness=1
-auto={1}:banding
-auto={1}:first strike
-[/card]
-[card]
-text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
-id=1984
-name=Icatian Infantry
-rarity=C
-type=Creature
-subtype=Human Soldier
-mana={W}
-power=1
-toughness=1
-auto={1}:banding
-auto={1}:first strike
-[/card]
-[card]
 text={1}{W}: Target Soldier creature gets +1/+0 until end of turn.
 id=1988
 name=Icatian Lieutenant
@@ -327,18 +275,6 @@ mana={W}{W}
 power=1
 toughness=2
 auto={1}{W}:target(soldier) 1/0
-[/card]
-[card]
-text=Banding
-id=1992
-name=Icatian Phalanx
-rarity=U
-type=Creature
-subtype=Human Soldier
-mana={4}{W}
-power=2
-toughness=4
-abilities=banding
 [/card]
 [card]
 text={1}{W}{W}: Target creature gets +1/+1 until end of turn.
