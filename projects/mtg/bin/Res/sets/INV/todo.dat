@@ -66,17 +66,7 @@ power=2
 subtype=Leech
 toughness=2
 [/card]
-[card]
-text=Kicker {2} (You may pay an additional {2} as you play this spell.)  Vigilance     If the kicker cost was paid, Ardent Soldier comes into play with a +1/+1 counter on it.
-id=22931
-name=Ardent Soldier
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Soldier
-toughness=2
-[/card]
+
 
 [card]
 text=Assault deals 2 damage to target creature or player.     //     Put a 3/3 green Elephant creature token into play.

@@ -40,6 +40,7 @@ ankh_of_mishra.txt
 arcanis_the_omnipotent.txt
 arcanis_the_omnipotent2.txt
 ardakar_wastes.txt
+ardent_soldier.txt
 argothian_enchantress.txt
 armadillo_cloak.txt
 ascendant_evincar.txt

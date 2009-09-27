@@ -78,6 +78,20 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Kicker {2} (You may pay an additional {2} as you play this spell.)  Vigilance     If the kicker cost was paid, Ardent Soldier comes into play with a +1/+1 counter on it.
+id=22931
+name=Ardent Soldier
+rarity=C
+type=Creature
+mana={1}{W}
+kicker={2}
+auto=Vigilance
+auto=kicker counter{1/1,1}
+power=1
+subtype=Human Soldier
+toughness=2
+[/card]
+[card]
 text=Enchant creature      Enchanted creature gets +2/+2 and has trample.     Whenever enchanted creature deals damage, you gain that much life.
 target=creature
 auto=2/2

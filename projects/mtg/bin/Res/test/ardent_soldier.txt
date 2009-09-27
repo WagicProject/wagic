@@ -1,0 +1,34 @@
+#Testing Kicker with counter
+#BUG: kicker + counter = increase toughness, no change in power
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Ardent Soldier,shock
+inplay:mountain
+manapool:{1}{W}{2}
+[PLAYER2]
+[DO]
+Ardent Soldier
+eot
+eot
+next
+next
+next
+next
+next
+Ardent Soldier
+next
+next
+next
+next
+mountain
+shock
+Ardent Soldier
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Ardent Soldier,mountain
+graveyard:shock
+[PLAYER2]
+life:18
+[END]
