@@ -607,6 +607,7 @@ toughness=2
 text=When Rise of the Hobgoblins comes into play, you may pay {X}. If you do, put X 1/1 red and white Goblin Soldier creature tokens into play.     {RW}: Red creatures and white creatures you control gain first strike until end of turn.
 id=151114
 auto={RW}:lord(creature[white;red]|myinplay) first strike 
+auto=Token(Goblin Soldier,Creature Goblin Soldier,1/1,red white)*x
 name=Rise of the Hobgoblins
 rarity=R
 type=Enchantment

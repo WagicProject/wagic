@@ -117,6 +117,7 @@ gnarled_effigy.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
 goblin_king.txt
+goblin_offensive.txt
 gravedigger.txt
 #hammerfist_giant.txt
 hannas_custody.txt

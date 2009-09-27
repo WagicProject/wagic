@@ -367,9 +367,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     int power, toughness;
     parsePowerToughness(spt,&power, &toughness);
     string sabilities = s.substr(end+1);
-    int multiplier = 1;
+    WParsedInt * multiplier = NULL; 
     found = s.find("*");
-    if (found != string::npos)multiplier = atoi(s.substr(found+1).c_str());
+    if (found != string::npos)multiplier = NEW WParsedInt(s.substr(found+1),spell,card);
     ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power,toughness,sabilities,0, multiplier);
     tok->oneShot = 1;
     return tok;
@@ -1453,20 +1453,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	  }
       break;
 	}
-
-
-//-- addon Urza Saga---
-  case 8818: //Goblin Offensive
-    {
-      int x = computeX(spell,card);
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin","creature Goblin",1,1,"Red",0);
-      for (int i=0; i < x; i++){
-        tok->resolve();
-      } 
-      delete(tok);
-      break;
-    }
-  
+ 
 //-- addon 10E---
 
 	case 129710: //Angelic Chorus
@@ -1557,7 +1544,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	}
 
 // --- addon Invasion---
-    case 23195: //Artifact Mutation
+   case 23195: //Artifact Mutation
     {
       card->target->controller()->game->putInGraveyard(card->target);
       int x = card->target->getManaCost()->getConvertedCost();
@@ -1565,18 +1552,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       for (int i=0; i < x; i++){
         tok->resolve();
       }
-      delete(tok);
-      break;
-    }
-//--- addon Eventide ----
-
-	case 151114: //Rise of the Hobgoblins
-    {
-      int x = computeX(spell,card);
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Goblin Soldier","creature Goblin Soldier",1,1,"red white",0);
-      for (int i=0; i < x; i++){
-        tok->resolve();
-      } 
       delete(tok);
       break;
     }

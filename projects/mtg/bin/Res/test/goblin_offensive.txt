@@ -1,0 +1,16 @@
+#Test: X for tokens
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{5}{1}{R}{R}
+hand:goblin offensive
+[PLAYER2]
+[DO]
+goblin offensive
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:*,*,*,*,*
+graveyard:goblin offensive
+[PLAYER2]
+[END]

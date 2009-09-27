@@ -546,6 +546,7 @@ toughness=1
 text=Put X 1/1 red Goblin creature tokens onto the battlefield.
 id=8818
 name=Goblin Offensive
+auto=token(Goblin,Creature Goblin,1/1,red)*x
 rarity=U
 mana={X}{1}{R}{R}
 type=Sorcery

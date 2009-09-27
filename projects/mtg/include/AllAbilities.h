@@ -35,8 +35,8 @@ public:
   delete c;
   return x;
  }
- WParsedInt(){
-   intValue = 0;
+ WParsedInt(int value = 0){
+   intValue = value;
  }
 
   WParsedInt(string s, Spell * spell, MTGCardInstance * card){
@@ -517,12 +517,12 @@ public:
   list<int>colors;
   int power, toughness;
   string name;
-  int multiplier;
-  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap, int _multiplier = 1):ActivatedAbility(_id,_source,_cost,0,_doTap){
+  WParsedInt * multiplier;
+  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap, WParsedInt * multiplier = NULL):ActivatedAbility(_id,_source,_cost,0,_doTap), multiplier(multiplier){
     power = _power;
     toughness = _toughness;
     name = sname;
-    multiplier = _multiplier;
+    if(!multiplier) this->multiplier = NEW WParsedInt(1);
 
 //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
@@ -556,7 +556,7 @@ public:
   }
 
   int resolve(){
-    for (int i = 0; i < multiplier; ++i){
+    for (int i = 0; i < multiplier->getValue(); ++i){
       Token * myToken = NEW Token(name,source,power,toughness);
       list<int>::iterator it;
       for ( it=types.begin() ; it != types.end(); it++ ){
@@ -592,6 +592,12 @@ public:
     ATokenCreator * a =  NEW ATokenCreator(*this);
     a->isClone = 1;
     return a;
+  }
+
+  ~ATokenCreator(){
+    if (!isClone){
+      delete(multiplier);
+    }
   }
 
 };
