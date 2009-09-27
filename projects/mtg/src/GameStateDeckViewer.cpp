@@ -586,20 +586,21 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   JQuad * quad = NULL;
 
   int showName = 0;
-#ifdef DEBUG_CACHE
-  quad = resources.RetrieveCard(card,RETRIEVE_NORMAL);
-#else
-  quad = resources.RetrieveCard(card,RETRIEVE_EXISTING);
-#endif
-  if (!quad && resources.RetrieveError() != CACHE_ERROR_404){
-    if(last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY)
-      quad = resources.RetrieveCard(card);
-    else{
-      quad = backQuad;
-      showName = 1;
+  int cacheError = CACHE_ERROR_NONE;
+
+  if(!options[Options::DISABLECARDS].number){
+    quad = resources.RetrieveCard(card,RETRIEVE_EXISTING);
+    cacheError = resources.RetrieveError();
+    if (!quad && cacheError != CACHE_ERROR_404){
+      if(last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY)
+        quad = resources.RetrieveCard(card);
+      else{
+        quad = backQuad;
+        showName = 1;
+      }
     }
   }
-
+  
 
   if (quad){
     showName = 0;
@@ -723,6 +724,8 @@ int GameStateDeckViewer::loadDeck(int deckid){
     }
     current = myDeck->getNext(current);
   }
+  currentCard = NULL;
+  loadIndexes();
   return 1;
 }
 

@@ -814,20 +814,21 @@ void WResourceManager::CacheForState(int state){
       else
         textureWCache.Resize(SMALL_CACHE_LIMIT,SMALL_CACHE_ITEMS);
       sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
-      //ClearUnlocked();
       break;
       //Deck editor and shop are entirely cache safe, so give it near infinite resources.
     case GAME_STATE_SHOP:
     case GAME_STATE_DECK_VIEWER:
       textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
-      //ClearUnlocked();
       break;
       //Anything unknown, use large cache.
     default:
       textureWCache.Resize(LARGE_CACHE_LIMIT,LARGE_CACHE_ITEMS);
-      //Cleanup();
       break;
   }
+  
+  //Switching game states clears the cache on PSP.
+  ClearUnlocked();
+
 #endif
 }
 
