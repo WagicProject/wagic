@@ -1295,8 +1295,8 @@ type=Sorcery
 target=creature
 mana={1}{R}
 kicker={G}
-auto=first strike
-auto=kicker 1/1
+auto=lord(creature|myinplay) first strike
+auto=kicker lord(creature|myinplay) 1/1
 rarity=C
 [/card]
 [card]
