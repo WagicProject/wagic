@@ -247,7 +247,7 @@ rarity=C
 mana={G}
 type=Creature
 subtype=Elf Druid
-auto={T}:Add {B} && Damage 1 controller
+auto={T}:Add {B} && damage:1 controller
 power=1
 toughness=1
 [/card]

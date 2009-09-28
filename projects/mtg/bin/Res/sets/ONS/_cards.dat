@@ -406,12 +406,12 @@ id=39647
 name=Grand Coliseum
 auto=tap
 auto={T}:Add {1}
-auto={T}:Add {B} && damage 1 controller
-auto={T}:Add {G} && damage 1 controller
-auto={T}:Add {R} && damage 1 controller
-auto={T}:Add {U} && damage 1 controller
-auto={T}:Add {W} && damage 1 controller
-type=Land 
+auto={T}:Add {B} && damage:1 controller
+auto={T}:Add {G} && damage:1 controller
+auto={T}:Add {R} && damage:1 controller
+auto={T}:Add {U} && damage:1 controller
+auto={T}:Add {W} && damage:1 controller
+type=Land
 rarity=R
 [/card]
 [card]

@@ -818,8 +818,8 @@ subtype=Dryad
 power=3
 toughness=1
 text={G}: Wormwood Dryad gains forestwalk until end of turn and deals 1 damage to you. {B}: Wormwood Dryad gains swampwalk until end of turn and deals 1 damage to you.
-auto={G}:forestwalk && damage 1 controller
-auto={B}:swampwalk && damage 1 controller
+auto={G}:forestwalk && damage:1 controller
+auto={B}:swampwalk && damage:1 controller
 rarity=C
 [/card]
 [card]
