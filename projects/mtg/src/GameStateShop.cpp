@@ -26,8 +26,6 @@ void GameStateShop::Create(){
 void GameStateShop::Start()
 {
   menu = NULL;
-  menuFont = resources.GetJLBFont(Constants::MENU_FONT);
-  itemFont = resources.GetJLBFont(Constants::MAIN_FONT);
 
 
   mStage = STAGE_SHOP_SHOP;
@@ -42,9 +40,13 @@ void GameStateShop::Start()
   altThumb[4] = resources.RetrieveTexture("black_thumb.jpg", RETRIEVE_LOCK);
   altThumb[5] = resources.RetrieveTexture("white_thumb.jpg", RETRIEVE_LOCK);
   altThumb[6] = resources.RetrieveTexture("land_thumb.jpg", RETRIEVE_LOCK);
+  altThumb[7] = resources.RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
 
   mBg = resources.RetrieveQuad("shop.jpg");
   mBack = resources.GetQuad("back");
+
+  menuFont = resources.GetJLBFont(Constants::MENU_FONT);
+  itemFont = resources.GetJLBFont(Constants::MAIN_FONT);
 
   JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
@@ -128,7 +130,7 @@ void GameStateShop::End()
   resources.Release(bgTexture);
 
   //Release alternate thumbnails.
-  for(int i=0;i<7;i++){
+  for(int i=0;i<8;i++){
     resources.Release(altThumb[i]);
   }
 
@@ -169,23 +171,14 @@ void GameStateShop::Render()
   //Erase
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
-  if (mBg)JRenderer::GetInstance()->RenderQuad(mBg,0,0);
-
-  itemFont->SetColor(ARGB(255,255,255,255));
-  char c[4096];
-  r->FillRect(0,SCREEN_HEIGHT-17,SCREEN_WIDTH,17,ARGB(128,0,0,0));
-  sprintf(c, _("[]:other cards /\\:list").c_str());
-  unsigned int len = 4 + itemFont->GetStringWidth(c);
-  itemFont->DrawString(c,SCREEN_WIDTH-len,SCREEN_HEIGHT-12);
+  if (mBg) r->RenderQuad(mBg,0,0);
 
   if (shop)
     shop->Render();
 
-
   if (mStage == STAGE_SHOP_MENU && menu){
     menu->Render();
   }
-
 }
 
 void GameStateShop::ButtonPressed(int controllerId, int controlId)

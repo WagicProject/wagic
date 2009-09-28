@@ -19,6 +19,7 @@ class hgeDistortionMesh;
 
 class ShopItem:public JGuiObject{
  private:
+  friend class ShopItems;
   bool mHasFocus;
   bool mRelease;
   JLBFont *mFont;
@@ -58,6 +59,7 @@ class ShopItems:public JGuiController,public JGuiListener{
   PriceList * pricelist;
   int  mX, mY, mHeight;
   JLBFont* mFont;
+  JQuad * mBgAA;
   MTGAllCards * collection;
   SimpleMenu * dialog;
   int showPriceDialog;

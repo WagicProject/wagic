@@ -8,17 +8,17 @@
 
 
 
-  float ShopItems::_x1[] = { 79, 20, 27,103,154,187,102,145,199,133,183};
-  float ShopItems::_y1[] = {150,193,222,167,164,156,195,190,176,220,220};
+  float ShopItems::_x1[] = { 79, 19, 27,103,154,187,102,144,198,133,183};
+  float ShopItems::_y1[] = {150,194,222,167,164,156,195,190,175,220,220};
 
-  float ShopItems::_x2[] = {103, 49, 73,135,183,213,138,181,231,171,225};
-  float ShopItems::_y2[] = {155,180,218,166,166,154,195,186,177,225,216};
+  float ShopItems::_x2[] = {103, 48, 74,135,183,215,138,181,231,171,225};
+  float ShopItems::_y2[] = {155,179,218,165,166,155,195,186,177,225,216};
 
-  float ShopItems::_x3[] = { 48, 60, 10, 96,139,190, 81,146,189, 98,191};
-  float ShopItems::_y3[] = {163,202,255,183,180,170,219,212,195,250,251};
+  float ShopItems::_x3[] = { 48, 61, 9, 96,139,190, 81,146,187, 97,191};
+  float ShopItems::_y3[] = {164,205,257,184,180,170,219,212,195,251,252};
 
-  float ShopItems::_x4[] = { 74, 88, 64,131,171,221,123,187,225,141,237};
-  float ShopItems::_y4[] = {167,187,248,182,182,168,219,208,196,258,245};
+  float ShopItems::_x4[] = { 76, 90, 65,131,171,221,123,187,225,141,237};
+  float ShopItems::_y4[] = {169,188,250,182,182,168,220,208,198,259,245};
 
 
 ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thumb,  float _xy[], bool hasFocus, int _price): JGuiObject(id), mFont(font), mText(text), quad(_quad), thumb(_thumb), price(_price)
@@ -173,7 +173,6 @@ void ShopItem::Render(){
       if (card) CardGui::alternateRender(card,Pos(SCREEN_WIDTH - 105,SCREEN_HEIGHT/2 - 5,0.9f* 285/250, 0,255));
 
     }
-    mFont->DrawString(mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 16,JGETEXT_CENTER);
   }
 }
 
@@ -238,6 +237,10 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   };
   myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), _collection));
   showCardList = true;
+
+  mBgAA = resources.RetrieveQuad("shop_aliasing.png");
+  if(mBgAA)
+    mBgAA->SetTextureRect(0,0,250,120); 
 }
 
 
@@ -296,6 +299,13 @@ void ShopItems::Update(float dt){
 
 void ShopItems::Render(){
   JGuiController::Render();
+  JRenderer * r = JRenderer::GetInstance(); 
+  
+  if (display) display->Render();
+
+  if (mBgAA) 
+    r->RenderQuad(mBgAA,0,SCREEN_HEIGHT-128);
+
   if (showPriceDialog==-1){
 
   }else{
@@ -303,16 +313,29 @@ void ShopItems::Render(){
       dialog->Render();
     }
   }
+
+  mFont->SetColor(ARGB(255,255,255,255));
+  char c[4096];
+  r->FillRect(0,SCREEN_HEIGHT-17,SCREEN_WIDTH,17,ARGB(128,0,0,0));
+  sprintf(c, _("[]:other cards /\\:list").c_str());
+  unsigned int len = 4 + mFont->GetStringWidth(c);
+  mFont->DrawString(c,SCREEN_WIDTH-len,SCREEN_HEIGHT-14);
+
   char credits[512];
   sprintf(credits,_("credits: %i").c_str(), playerdata->credits);
   mFont->SetColor(ARGB(200,0,0,0));
-  mFont->DrawString(credits, 5, SCREEN_HEIGHT - 13);
+  mFont->DrawString(credits, 5, SCREEN_HEIGHT - 12);
   mFont->SetColor(ARGB(255,255,255,255));
-  mFont->DrawString(credits, 5, SCREEN_HEIGHT - 15);
-  if (display) display->Render();
+  mFont->DrawString(credits, 5, SCREEN_HEIGHT - 14);
+  
+  if(mCurr >= 0){
+    mFont->SetColor(ARGB(255,255,255,0));
+    ShopItem * item = ((ShopItem *)mObjects[mCurr]);
+    mFont->DrawString(item->mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 14,JGETEXT_CENTER);
+    mFont->SetColor(ARGB(255,255,255,255));
+  }
 
   if (showCardList){
-    JRenderer * r = JRenderer::GetInstance(); 
     r->FillRoundRect(290,5, 160, mCount * 20 + 15,5,ARGB(200,0,0,0));
    
     for (int i = 0; i< mCount; ++i){
@@ -448,6 +471,7 @@ ShopItems::~ShopItems(){
   SAFE_DELETE(dialog);
   safeDeleteDisplay();
   SAFE_DELETE(myCollection);
+  resources.Release(mBgAA);
 }
 
 ostream& ShopItem::toString(ostream& out) const
