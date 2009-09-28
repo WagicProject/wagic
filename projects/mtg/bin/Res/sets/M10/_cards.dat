@@ -723,7 +723,7 @@ subtype=Goblin Warrior
 power=1
 toughness=3
 text={T}: Goblin Artillery deals 2 damage to target creature or player and 3 damage to you.
-auto={T}:damage:2 target(player) && damage:3 controller
+auto={T}:damage:2 target(player,creature) && damage:3 controller
 rarity=U
 [/card]
 [card]
