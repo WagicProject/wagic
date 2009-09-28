@@ -222,14 +222,7 @@ power=4
 subtype=Giant
 toughness=4
 [/card]
-[card]
-text=Kicker {2} (You may pay an additional {2} as you play this spell.)    Canopy Surge deals 1 damage to each creature with flying and each player. If the kicker cost was paid, Canopy Surge deals 4 damage to each creature with flying and each player instead.
-id=23134
-name=Canopy Surge
-rarity=U
-type=Sorcery
-mana={1}{G}
-[/card]
+
 
 [card]
 text=Play Cauldron Dance only during combat.     Return target creature card from your graveyard to play. That creature gains haste. Return it to your hand at end of turn.      You may put a creature card from your hand into play. That creature gains haste. Its controller sacrifices it at end of turn.
@@ -470,14 +463,7 @@ mana={U}
 subtype=Aura
 [/card]
 
-[card]
-text=Kicker {5} (You may pay an additional {5} as you play this spell.)    Target creature gets +2/+2 until end of turn. If the kicker cost was paid, that creature gets +5/+5 until end of turn instead.
-id=23120
-name=Explosive Growth
-rarity=C
-type=Instant
-mana={G}
-[/card]
+
 [card]
 text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
 id=22998
@@ -1228,14 +1214,7 @@ rarity=R
 type=Sorcery
 mana={3}{G}
 [/card]
-[card]
-text=Kicker {G} (You may pay an additional {G} as you play this spell.)    Creatures you control gain first strike until end of turn. If the kicker cost was paid, they get +1/+1 until end of turn.
-id=23078
-name=Savage Offensive
-rarity=C
-type=Sorcery
-mana={1}{R}
-[/card]
+
 [card]
 text=Scarred Puma can't attack unless a black or green creature also attacks.
 id=23067

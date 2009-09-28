@@ -205,6 +205,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Kicker {2} (You may pay an additional {2} as you play this spell.)    Canopy Surge deals 1 damage to each creature with flying and each player. If the kicker cost was paid, Canopy Surge deals 4 damage to each creature with flying and each player instead.
+id=23134
+name=Canopy Surge
+rarity=U
+type=Sorcery
+mana={1}{G}
+kicker={2}
+auto=damage:1 all(creature[flying])
+auto=damage:1 all(player)
+auto=kicker damage:3 all(creature[flying])
+auto=kicker damage:3 all(player)
+[/card]
+[card]
 text={1}{W}, {T}, Sacrifice Capashen Unicorn: Destroy target artifact or enchantment.
 id=22936
 name=Capashen Unicorn
@@ -464,6 +477,18 @@ rarity=C
 type=Enchantment
 mana={2}{B}
 subtype=Aura
+[/card]
+[card]
+text=Kicker {5} (You may pay an additional {5} as you play this spell.)    Target creature gets +2/+2 until end of turn. If the kicker cost was paid, that creature gets +5/+5 until end of turn instead.
+id=23120
+name=Explosive Growth
+target=creature
+type=Instant
+mana={G}
+kicker={5}
+auto=2/2
+auto=3/3
+rarity=C
 [/card]
 [card]
 text=Creatures you control have haste.     Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
@@ -1261,6 +1286,18 @@ id=23241
 name=Salt Marsh
 rarity=U
 type=Land
+[/card]
+[card]
+text=Kicker {G} (You may pay an additional {G} as you play this spell.)    Creatures you control gain first strike until end of turn. If the kicker cost was paid, they get +1/+1 until end of turn.
+id=23078
+name=Savage Offensive
+type=Sorcery
+target=creature
+mana={1}{R}
+kicker={G}
+auto=first strike
+auto=kicker 1/1
+rarity=C
 [/card]
 [card]
 text=Enchant creature      When Scavenged Weaponry comes into play, draw a card.    Enchanted creature gets +1/+1.
