@@ -162,10 +162,9 @@ toughness=3
 abilities=swampwalk
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +1/+1 for each other creature you control. 
+text=Enchant creature. Enchanted creature gets +1/+1 for each other creature you control. 
 target=creature
-auto=-1/-1
-auto=foreach(creature|myBattlefield) 1/1
+auto=foreach(other creature|myBattlefield) 1/1
 id=5848
 name=Bravado
 rarity=C
