@@ -159,7 +159,7 @@ class AACounter: public ActivatedAbility{
   int power;
   int toughness;
  AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, int power, int toughness, int nb, ManaCost * cost = NULL, int doTap = 0) : ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness) {
-	  target = target;
+	  this->target = target;
  }
 
 

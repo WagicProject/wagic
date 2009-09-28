@@ -31,6 +31,7 @@ using std::map;
 #define BAKA_EFFECT_DONTKNOW 0
 #define MODE_PUTINTOPLAY 1
 #define MODE_ABILITY 2
+#define MODE_TARGET 3
 
 #define COUNT_POWER 1
 
@@ -205,7 +206,7 @@ class AbilityFactory{
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0);
  public:
   int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY);
-  int magicText(int id, Spell * spell, MTGCardInstance * card = NULL);
+  int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY);
   static int computeX(Spell * spell, MTGCardInstance * card);
   int destroyAllInPlay(TargetChooser * tc, int bury = 0);
   int moveAll(TargetChooser * tc, string destinationZone);

@@ -219,6 +219,7 @@ telekinetic_sliver.txt
 terror.txt
 terror2.txt
 titanic_ultimatum.txt
+torture.txt
 tranquil_domain.txt
 unwilling_recruit.txt
 volcanic_island.txt

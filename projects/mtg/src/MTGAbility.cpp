@@ -655,6 +655,11 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
   if (dynamic_cast<AAFizzler *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<AAUntapper *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AATapper *>(a)) return BAKA_EFFECT_BAD;
+  if (AACounter * ac = dynamic_cast<AACounter *>(a)) {
+    bool negative_effect = ac->power < 0 || ac->toughness < 0;
+    if ((ac->nb > 0 && negative_effect) || (ac->nb < 0 && !negative_effect)) return BAKA_EFFECT_BAD;
+    return BAKA_EFFECT_GOOD ;
+  }
   if (dynamic_cast<ATokenCreator *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AAMover *>(a)) return BAKA_EFFECT_BAD; //TODO
   if (dynamic_cast<AACopier *>(a)) return BAKA_EFFECT_GOOD;
@@ -709,7 +714,7 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
  *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
  *   - doTap (a dirty way to know if tapping is included in the cost...
  */
-int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
+int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int mode){
   int dryMode = 0;
   if (!spell) dryMode = 1;
 
@@ -741,7 +746,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card){
 
     MTGAbility * a = parseMagicLine(line, result, spell, card); 
     if (dryMode){
-      result = abilityEfficiency(a, card->controller(),MODE_PUTINTOPLAY);
+      result = abilityEfficiency(a, card->controller(),mode);
       SAFE_DELETE(a);
       return result;
     }

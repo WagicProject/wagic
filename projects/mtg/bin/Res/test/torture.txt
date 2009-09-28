@@ -1,0 +1,32 @@
+#Bug: Torture doesn't put counters
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,swamp,mountain
+hand:torture
+manapool:{B}
+[PLAYER2]
+[DO]
+torture
+grizzly bears
+swamp
+mountain
+torture
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears,swamp,mountain,torture
+[PLAYER2]
+life:19
+[END]

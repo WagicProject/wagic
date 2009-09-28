@@ -1,0 +1,20 @@
+#Bug:Does torture correctly cast torture on opponent's creatures ?
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+hand:torture
+inplay:air elemental,swamp,plains
+[DO]
+ai
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:17
+[END]
