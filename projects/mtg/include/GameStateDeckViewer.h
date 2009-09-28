@@ -40,6 +40,38 @@ enum
 #define MED_SPEED 5.0
 #define LOW_SPEED 1.5
 
+static const int STATS_FOR_TURNS = 8;
+static const int STATS_MAX_MANA_COST = 9; 
+
+// Struct to hold statistics-related stuff
+struct StatsWrapper {
+  // Stats parameters and status 
+  int currentPage;
+  int pageCount;
+  bool needUpdate;
+
+  // Actual stats
+  int percentVictories;
+  int gamesPlayed;
+  int cardCount;
+  int countLands;
+  int totalPrice;
+  int totalManaCost;
+  float avgManaCost;
+
+  int countCreatures, countSpells, countInstants, countEnchantments, countSorceries, countArtifacts;
+
+  float noLandsProbInTurn[STATS_FOR_TURNS];
+  float noCreaturesProbInTurn[STATS_FOR_TURNS];
+
+  int countCardsPerCost[STATS_MAX_MANA_COST+1];
+  int countCardsPerCostAndColor[STATS_MAX_MANA_COST+1][Constants::MTG_NB_COLORS+1];
+  int totalCostPerColor[Constants::MTG_NB_COLORS+1];
+  int totalColoredSymbols;
+
+  vector<int> aiVictoryRatio;
+  vector<string> aiDeckNames;
+};
 
 class GameStateDeckViewer: public GameState, public JGuiListener
 {
@@ -76,6 +108,7 @@ private:
   float scrollSpeed;
   int delSellMenu;
   string newDeckname;
+  StatsWrapper stw;
 
 public:
   GameStateDeckViewer(GameApp* parent);
@@ -98,8 +131,12 @@ public:
   virtual void Render();
   int loadDeck(int deckid);
   virtual void ButtonPressed(int controllerId, int controlId);
-
+  void updateStats();
+  int countCardsByType(const char * _type);
 };
 
+// n cards total, a of them are desired, x drawn 
+// returns probability of no A's
+float noLuck(int n, int a, int x);
 
 #endif
