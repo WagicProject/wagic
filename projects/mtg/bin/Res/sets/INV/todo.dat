@@ -914,7 +914,20 @@ mana={4}{B}{R}
 [/card]
 
 
-
+[card]
+text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.) First strike. If the kicker cost was paid, Pouncing Kavu comes into play with two +1/+1 counters on it and with haste.
+id=23064
+name=Pouncing Kavu
+rarity=C
+type=Creature
+mana={1}{R}
+kicker={2}{R}
+abilities=first strike
+auto=kicker counter(1/1,2)
+power=1
+subtype=Kavu
+toughness=1
+[/card]
 [card]
 text=Domain - {3}, {T}: Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
 id=23222

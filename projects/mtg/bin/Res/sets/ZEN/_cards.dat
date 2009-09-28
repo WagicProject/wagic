@@ -86,8 +86,8 @@ name=Bold Defense
 mana={2}{W}
 kicker={3}{W}
 auto=lord(creature|myBattlefield) 1/1
-kicker=lord(creature|myBattlefield) 1/1
-kicker=lord(creature|myBattlefield) first strike
+auto=kicker lord(creature|myBattlefield) 1/1
+auto=kicker lord(creature|myBattlefield) first strike
 type=Instant
 rarity=C
 [/card]
@@ -735,7 +735,7 @@ name=Marsh Casualties
 mana={B}{B}
 kicker={3}
 auto=lord(creature|opponentBattlefield) -1/-1
-auto=kicked lord(creature|opponentBattlefield) -1/-1
+auto=kicker lord(creature|opponentBattlefield) -1/-1
 type=Sorcery
 rarity=U
 [/card]

@@ -1114,20 +1114,6 @@ mana={1}{W}
 subtype=Aura
 [/card]
 [card]
-text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.) First strike. If the kicker cost was paid, Pouncing Kavu comes into play with two +1/+1 counters on it and with haste.
-id=23064
-name=Pouncing Kavu
-rarity=C
-type=Creature
-mana={1}{R}
-kicker={2}{R}
-abilities=first strike
-auto=kicker counter(1/1,2)
-power=1
-subtype=Kavu
-toughness=1
-[/card]
-[card]
 text=When Quirion Trailblazer comes into play, you may search your library for a basic land card and put that card into play tapped. If you do, shuffle your library.
 id=23110
 target=land[basic]
