@@ -147,7 +147,7 @@ subtype=Aura
 [/card]
 [card]
 text=As Copy Enchantment comes into play, you may choose an enchantment in play. If you do, Copy Enchantment comes into play as a copy of that enchantment.
-auto=may copy target(artifact)
+auto=may copy target(enchantment)
 id=83807
 name=Copy Enchantment
 rarity=R
