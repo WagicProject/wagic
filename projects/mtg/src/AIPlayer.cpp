@@ -590,6 +590,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
   card = NULL;
   while((card = cd.nextmatch(game->hand, card))){
     if (card->hasType("land") && !this->canPutLandsIntoPlay) continue;
+    if (card->has(Constants::LEGENDARY) && game->inPlay->findByName(card->name)) continue;
     int currentCost = card->getManaCost()->getConvertedCost();
     if (currentCost > maxCost && potentialMana->canAfford(card->getManaCost())){
       TargetChooserFactory * tcf = NEW TargetChooserFactory();
@@ -656,17 +657,6 @@ int AIPlayerBaka::computeActions(){
     case Constants::MTG_PHASE_FIRSTMAIN:
     case Constants::MTG_PHASE_SECONDMAIN:
     {
-      if (canPutLandsIntoPlay){
-	      //Attempt to put land into play
-	      cd.init();
-	      cd.setColor(Constants::MTG_COLOR_LAND);
-	      card = cd.match(game->hand);
-	      if (card){
-          AIAction * a = NEW AIAction(card);
-	        clickstream.push(a);
-          return 1;
-	      }
-      }
 
 	    //No mana, try to get some
 	    SAFE_DELETE(potentialMana);
@@ -674,30 +664,26 @@ int AIPlayerBaka::computeActions(){
       if (!currentMana->getConvertedCost()){
         currentMana = getPotentialMana();
       }
-	    if (currentMana->getConvertedCost() > 0){
 
-
-	      //look for the most expensive creature we can afford
-	      nextCardToPlay = FindCardToPlay(currentMana, "creature");
-	      //Let's Try an enchantment maybe ?
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "artifact");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
-	      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
-	      if (nextCardToPlay){
+      nextCardToPlay = FindCardToPlay(currentMana, "land");
+      //look for the most expensive creature we can afford
+      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "creature");
+      //Let's Try an enchantment maybe ?
+      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
+      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "artifact");
+      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
+      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
+      if (nextCardToPlay){
 #if defined (WIN32) || defined (LINUX)
-          char buffe[4096];
-	  sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName().c_str());
-	  OutputDebugString(buffe);
+        char buffe[4096];
+  sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName().c_str());
+  OutputDebugString(buffe);
 #endif
 
-	        if (currentMana == potentialMana) tapLandsForMana(currentMana,nextCardToPlay->getManaCost());
-          AIAction * a = NEW AIAction(nextCardToPlay);
-	        clickstream.push(a);
-          return 1;
-        }else{
-          selectAbility();
-        }
+        if (currentMana == potentialMana) tapLandsForMana(currentMana,nextCardToPlay->getManaCost());
+        AIAction * a = NEW AIAction(nextCardToPlay);
+        clickstream.push(a);
+        return 1;
       }else{
         selectAbility();
       }

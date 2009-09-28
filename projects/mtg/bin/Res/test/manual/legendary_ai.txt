@@ -1,0 +1,19 @@
+#Bug:Does ai put 2 legends of same name in play ?
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:urborg
+hand:forest,urborg
+[PLAYER2]
+[DO]
+ai
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:17
+[END]

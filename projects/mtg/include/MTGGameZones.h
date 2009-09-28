@@ -79,6 +79,7 @@ class MTGGameZone {
    MTGCardInstance * hasCard(MTGCardInstance * card);
    void cleanupPhase();
    int countByType(const char * value);
+   MTGCardInstance * findByName(string name);
    int hasType(const char * value);
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;

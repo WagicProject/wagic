@@ -232,6 +232,15 @@ int MTGGameZone::countByType(const char * value){
 
 }
 
+MTGCardInstance * MTGGameZone::findByName(string name){
+  for (int i=0; i<(nb_cards); i++) {
+    if (cards[i]->name == name){
+      return cards[i];
+    }
+  }
+  return NULL;
+}
+
 int MTGGameZone::hasType(const char * value){
   for (int i=0; i<(nb_cards); i++) {
     if (cards[i]->hasType(value)){
