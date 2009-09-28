@@ -1,0 +1,20 @@
+#Bug:Does ai correctly cast Howl From Beyond on its creatures ?
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:grizzly bears,raging goblin,goblin king
+[PLAYER2]
+hand:howl from beyond
+inplay:air elemental,swamp,plains,swamp,mountain,forest
+[DO]
+ai
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:17
+[END]

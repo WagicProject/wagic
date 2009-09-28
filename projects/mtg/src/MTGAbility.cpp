@@ -699,10 +699,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
 
 //Returns the "X" cost that was paid for a spell
 int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
-  ManaCost * c = spell->cost->Diff(card->getManaCost());
-  int x = c->getCost(Constants::MTG_NB_COLORS);
-  delete c;
-  return x;
+  if (spell) return spell->computeX(card);
+  return 0;
 }
 
 //Some basic functionalities that can be added automatically in the text file

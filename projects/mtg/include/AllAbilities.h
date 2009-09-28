@@ -30,10 +30,8 @@ public:
   int intValue;
 
  int computeX(Spell * spell, MTGCardInstance * card){
-  ManaCost * c = spell->cost->Diff(card->getManaCost());
-  int x = c->getCost(Constants::MTG_NB_COLORS);
-  delete c;
-  return x;
+  if (spell) return spell->computeX(card);
+  return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
  }
  WParsedInt(int value = 0){
    intValue = value;

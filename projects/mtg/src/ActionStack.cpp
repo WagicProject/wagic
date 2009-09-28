@@ -121,6 +121,13 @@ Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _
   from = _source->getCurrentZone();
 }
 
+int Spell::computeX(MTGCardInstance * card){
+  ManaCost * c = cost->Diff(card->getManaCost());
+  int x = c->getCost(Constants::MTG_NB_COLORS);
+  delete c;
+  return x;
+}
+
 bool Spell::kickerWasPaid(){
   return (payResult == ManaCost::MANA_PAID_WITH_KICKER);
 }

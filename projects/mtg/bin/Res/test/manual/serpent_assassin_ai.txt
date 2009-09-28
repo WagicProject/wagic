@@ -1,0 +1,19 @@
+#Bug:Does ai correctly cast Serpent Assassin on opponent's creatures ?
+[INIT]
+SECONDMAIN
+[PLAYER1]
+[PLAYER2]
+hand:serpent assassin
+inplay:air elemental,swamp,plains,swamp,mountain,forest,raging goblin,goblin king
+[DO]
+ai
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:17
+[END]

@@ -80,6 +80,7 @@ class Spell: public Interruptible {
   TargetChooser * tc;
   ManaCost * cost;
   int payResult;
+  int computeX(MTGCardInstance * card);
   Spell(MTGCardInstance* _source);
   Spell(int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost, int payResult);
   ~Spell();
