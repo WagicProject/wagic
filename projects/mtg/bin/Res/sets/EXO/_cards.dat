@@ -62,7 +62,7 @@ name=City of Traitors
 type=Land
 text=When you play another land, sacrifice City of Traitors.  {T}: Add {2} to your mana pool.
 auto=@movedTo(land|mybattlefield):bury
-auto={T}:Add:2
+auto={T}:Add{2}
 rarity=R
 [/card]
 [card]
