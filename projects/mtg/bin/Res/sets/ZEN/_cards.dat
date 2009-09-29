@@ -116,7 +116,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text={3}, Sacrifice a creature: Darw a card.
+text={3}, Sacrifice a creature: Draw a card.
 id=193406
 name=Carnage Altar
 rarity=U
