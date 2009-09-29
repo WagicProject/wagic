@@ -18,14 +18,7 @@ type=Enchantment
 mana={U}
 subtype=Aura
 [/card]
-[card]
-text=As an additional cost to play Acceptable Losses, discard a card at random.     Acceptable Losses deals 5 damage to target creature.
-id=30692
-name=Acceptable Losses
-rarity=C
-type=Sorcery
-mana={3}{R}
-[/card]
+
 [card]
 text={1}: The next time an instant or sorcery spell would deal damage to you this turn, that spell deals that damage to its controller instead.
 id=29922
