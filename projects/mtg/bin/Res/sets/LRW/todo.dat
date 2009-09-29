@@ -1065,14 +1065,7 @@ subtype=Kithkin Cleric
 toughness=2
 [/card]
 
-[card]
-text=Target creature gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)  Draw a card.
-id=143376
-name=Lace with Moonglove
-rarity=C
-type=Instant
-mana={2}{G}
-[/card]
+
 [card]
 text=Lairwatch Giant can block an additional creature.     Whenever Lairwatch Giant blocks two or more creatures, it gains first strike until end of turn.
 id=143383
@@ -1229,17 +1222,7 @@ power=4
 subtype=Faerie Wizard
 toughness=4
 [/card]
-[card]
-text=Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
-id=139483
-name=Moonglove Winnower
-rarity=C
-type=Creature
-mana={3}{B}
-power=2
-subtype=Elf Rogue
-toughness=3
-[/card]
+
 [card]
 text=Hideaway (This land comes into play tapped. When it does, look at the top four cards of your library, remove one from the game face down, then put the rest on the bottom of your library.)  {T}: Add {G} to your mana pool.     {G}, {T}: You may play the removed card without paying its mana cost if creatures you control have total power 10 or greater.
 id=139515

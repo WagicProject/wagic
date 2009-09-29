@@ -1084,14 +1084,3 @@ type=Artifact
 text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Wildfield Borderpost's mana cost. Wildfield Borderpost comes into play tapped. {T}: Add {G} or {W} to your mana pool.
 rarity=C
 [/card]
-[card]
-id=179603
-name=Winged Coatl
-mana={1}{G}{U}
-type=Creature
-subtype=Snake
-power=1
-toughness=1
-text=Flash Flying Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
-rarity=C
-[/card]

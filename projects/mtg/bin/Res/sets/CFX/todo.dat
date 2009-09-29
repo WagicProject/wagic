@@ -542,17 +542,7 @@ rarity=U
 type=Instant
 mana={W}
 [/card]
-[card]
-text=Flying     Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)  {2}{R}: Pestilent Kathari gains first strike until end of turn.
-id=179518
-name=Pestilent Kathari
-rarity=C
-type=Creature
-mana={2}{B}
-power=1
-subtype=Bird Warrior
-toughness=1
-[/card]
+
 [card]
 text=Protection from everything     If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.  ##crazy bitch
 id=179496

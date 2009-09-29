@@ -1883,15 +1883,7 @@ rarity=C
 type=Enchantment
 mana={2}{U}
 [/card]
-[card]
-text=Enchant creature     Enchanted creature has deathtouch. (Whenever it deals damage to a creature, destroy that creature.)
-id=8908
-name=Venomous Fangs
-rarity=C
-type=Enchantment
-mana={2}{G}
-subtype=Aura
-[/card]
+
 [card]
 text=Whenever a Forest is tapped for mana, its controller adds {G} to his or her mana pool (in addition to the mana the land produces).
 id=5687

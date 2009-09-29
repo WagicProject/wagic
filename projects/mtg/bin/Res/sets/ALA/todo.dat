@@ -249,17 +249,7 @@ power=2
 subtype=Human Wizard
 toughness=2
 [/card]
-[card]
-text=Skeleton creatures you control and other Zombie creatures you control get +1/+1 and have deathtouch.
-id=176430
-name=Death Baron
-rarity=R
-type=Creature
-mana={1}{B}{B}
-power=2
-subtype=Zombie Wizard
-toughness=2
-[/card]
+
 
 [card]
 text={2}{B}, {T}, Sacrifice a blue creature, a black creature, and a red creature: Search your library for a card named Prince of Thralls and put it into play. Then shuffle your library.
@@ -1203,17 +1193,7 @@ power=2
 subtype=Zombie
 toughness=2
 [/card]
-[card]
-text=Flying     Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
-id=175015
-name=Tidehollow Strix
-rarity=C
-type=Artifact Creature
-mana={U}{B}
-power=2
-subtype=Bird
-toughness=1
-[/card]
+
 
 [card]
 text=Tap an untapped creature you control: Topan Ascetic gets +1/+1 until end of turn.
@@ -1238,17 +1218,7 @@ power=3
 subtype=Zombie Cat
 toughness=4
 [/card]
-[card]
-text={2}{B}: Vectis Silencers gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)
-id=175147
-name=Vectis Silencers
-rarity=C
-type=Artifact Creature
-mana={2}{U}
-power=1
-subtype=Human Rogue
-toughness=2
-[/card]
+
 [card]
 text=Flying     {R}, {T}: Vein Drinker deals damage equal to its power to target creature. That creature deals damage equal to its power to Vein Drinker.     Whenever a creature dealt damage by Vein Drinker this turn is put into a graveyard, put a +1/+1 counter on Vein Drinker.
 id=175004

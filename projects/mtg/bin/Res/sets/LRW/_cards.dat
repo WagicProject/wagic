@@ -597,6 +597,17 @@ subtype=Elf Druid
 toughness=1
 [/card]
 [card]
+text=Target creature gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)  Draw a card.
+id=143376
+name=Lace with Moonglove
+mana={2}{G}
+type=Instant
+target=creature
+auto=deathtouch
+auto=draw:1 controller
+rarity=C
+[/card]
+[card]
 text=Whenever you cast an Elf spell, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
 auto=@movedTo(elf|mystack):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
 id=139401
@@ -641,6 +652,18 @@ name=Moonglove Extract
 rarity=C
 mana={3}
 type=Artifact
+[/card]
+[card]
+text=Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
+id=139483
+name=Moonglove Winnower
+abilities=deathtouch
+type=Creature
+mana={3}{B}
+power=2
+subtype=Elf Rogue
+toughness=3
+rarity=C
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.

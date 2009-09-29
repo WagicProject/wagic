@@ -327,6 +327,18 @@ power=0
 toughness=1
 [/card]
 [card]
+text=Reach (This creature can block creatures with flying.) Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
+id=130630
+name=Thornweald Archer
+mana={1}{G}
+type=Creature
+subtype=Elf Archer
+power=2
+toughness=1
+abilities=reach,deathtouch
+rarity=C
+[/card]
+[card]
 text=Return target nonland permanent or suspended card to its owner's hand.
 target=*[-land]
 auto=moveTo(ownerhand)

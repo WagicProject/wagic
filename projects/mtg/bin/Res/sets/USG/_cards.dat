@@ -1231,6 +1231,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Enchant creature. Enchanted creature has deathtouch. (Whenever it deals damage to a creature, destroy that creature.)
+id=8908
+name=Venomous Fangs
+target=creature
+auto=deathtouch
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+rarity=C
+[/card]
+[card]
 text=Whenever Viashino Weaponsmith becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
 id=5590
 name=Viashino Weaponsmith
