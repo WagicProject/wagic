@@ -24,7 +24,7 @@ struct True : public Exp { static inline bool test(CardSelector::Target* ref, Ca
   { return true; } };
 
 template<>
-CardSelector::ObjectSelector(DuelLayers* duel) : active(NULL), bigMode(BIG_MODE_SHOW), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220) {}
+CardSelector::ObjectSelector(DuelLayers* duel) : active(NULL), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220), bigMode(BIG_MODE_SHOW) {}
 
 template<>
 void CardSelector::Add(CardSelector::Target* target)

@@ -137,8 +137,8 @@ void GameApp::Create()
   jq->SetHotSpot(12, 12);
   jq = resources.RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23,"DefenderIcon",RETRIEVE_MANAGE);
   jq->SetHotSpot(12, 12);
-  jq = resources.RetrieveQuad("shadow.png", 0, 0, 1, 1,"shadow",RETRIEVE_MANAGE);
-  jq->SetHotSpot(0.5, 0.5);
+  jq = resources.RetrieveQuad("shadow.png", 0, 0, 16, 16,"shadow",RETRIEVE_MANAGE);
+  jq->SetHotSpot(8, 8);
   
   collection = NEW MTGAllCards();
 

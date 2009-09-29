@@ -54,8 +54,8 @@ class ObjectSelector : public GuiLayer
  T* fetchMemory(SelectorMemory&);
 
  public:
- int bigMode;
  ObjectSelector(DuelLayers*);
+ int bigMode;
  void Add(T*);
  void Remove(T*);
  bool CheckUserInput(u32 key);

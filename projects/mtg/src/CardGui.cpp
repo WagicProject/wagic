@@ -59,8 +59,8 @@ void CardGui::Render()
   float scale = actZ * cardScale;
 
   JQuad* shadow = resources.GetQuad("shadow");
-  shadow->SetColor(ARGB(static_cast<unsigned char>(actA),128,255,255));
-  renderer->RenderQuad(shadow, actX + (actZ-1)*15, actY + (actZ-1)*15, actT, 28*actZ, 40*actZ); 
+  shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
+  renderer->RenderQuad(shadow, actX + (actZ-1)*15, actY + (actZ-1)*15, actT, 28*actZ/16, 40*actZ/16); 
 
   if (quad) {
     quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
@@ -105,9 +105,8 @@ void CardGui::Render()
   }
 
   if (tc && !tc->canTarget(card)) {
-    shadow->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-    renderer->RenderQuad(shadow, actX, actY, actT, 28*actZ + 1, 40*actZ);
-    renderer->RenderQuad(shadow, actX, actY, actT, 28*actZ + 1, 40*actZ); //Rendering it twice because shadow.png stupidly alreay has some transparency
+    shadow->SetColor(ARGB(200,255,255,255));
+    renderer->RenderQuad(shadow, actX, actY, actT, 28*actZ/16 + 1, 40*actZ/16);
   }
 
   PlayGuiObject::Render();
