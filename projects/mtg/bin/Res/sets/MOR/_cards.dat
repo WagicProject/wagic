@@ -98,7 +98,7 @@ name=Festercreep
 rarity=C
 mana={1}{B}
 auto=counter(1/1)
-auto={1}{B}:counter(1/1,-1) && lord(creature) -1/-1
+auto={1}{B}:counter(1/1,-1) && lord(creature) -1/-1 other
 type=Creature
 subtype=Elemental
 power=0
@@ -159,6 +159,19 @@ type=Creature
 subtype=Kithkin Knight
 power=2
 toughness=2
+[/card]
+[card]
+id=153462
+name=Lys Alana Bowmaster
+mana={2}{G}
+type=Creature
+subtype=Elf Archer
+power=2
+toughness=2
+text=Reach (This can block creatures with flying.) Whenever you cast an Elf spell, you may have Lys Alana Bowmaster deal 2 damage to target creature with flying.
+abilities=reach
+auto=@movedTo(Elf|mystack):may damage:2 target(creature[flying])
+rarity=C
 [/card]
 [card]
 text=Target player discards X cards at random.

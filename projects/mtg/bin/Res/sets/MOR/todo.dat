@@ -1,15 +1,4 @@
 [card]
-id=152998
-name=Ambassador Oak
-mana={3}{G}
-type=Creature
-subtype=Treefolk Warrior
-power=3
-toughness=3
-text=When Ambassador Oak enters the battlefield, put a 1/1 green Elf Warrior creature token onto the battlefield.
-rarity=C
-[/card]
-[card]
 id=153280
 name=Auntie's Snitch
 mana={2}{B}
@@ -42,26 +31,8 @@ toughness=4
 text=If a source would deal damage to a player, you may prevent X of that damage, where X is the number of Clerics you control.
 rarity=R
 [/card]
-[card]
-id=152648
-name=Bitterblossom
-mana={1}{B}
-type=Tribal Enchantment
-subtype=Faerie
-text=At the beginning of your upkeep, you lose 1 life and put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
-rarity=R
-[/card]
-[card]
-id=152705
-name=Blightsoil Druid
-mana={1}{B}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=2
-text={T}, Pay 1 life: Add {G} to your mana pool.
-rarity=C
-[/card]
+
+
 [card]
 id=153137
 name=Boldwyr Heavyweights
@@ -84,17 +55,7 @@ toughness=5
 text=Cowards can't block Warriors. {R}: Target creature becomes a Coward until end of turn. {2}{R}: Target creature becomes a Warrior until end of turn.
 rarity=U
 [/card]
-[card]
-id=153102
-name=Borderland Behemoth
-mana={5}{R}{R}
-type=Creature
-subtype=Giant Warrior
-power=4
-toughness=4
-text=Trample Borderland Behemoth gets +4/+4 for each other Giant you control.
-rarity=R
-[/card]
+
 [card]
 id=152557
 name=Bosk Banneret
@@ -219,15 +180,7 @@ type=Enchantment
 text=Whenever a creature enters the battlefield under your control, you may look at the top X cards of your library, where X is that creature's power. If you do, put one of those cards on top of your library and the rest on the bottom of your library in any order.
 rarity=R
 [/card]
-[card]
-id=152838
-name=Daily Regimen
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature {1}{W}: Put a +1/+1 counter on enchanted creature.
-rarity=U
-[/card]
+
 [card]
 id=153169
 name=Declaration of Naught
@@ -255,14 +208,7 @@ toughness=2
 text=Flash Flying When Dewdrop Spy enters the battlefield, look at the top card of target player's library.
 rarity=C
 [/card]
-[card]
-id=152727
-name=Disperse
-mana={1}{U}
-type=Instant
-text=Return target nonland permanent to its owner's hand.
-rarity=C
-[/card]
+
 [card]
 id=153133
 name=Distant Melody
@@ -307,16 +253,7 @@ toughness=3
 text=Prowl {2}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) When Earwig Squad enters the battlefield, if its prowl cost was paid, search target opponent's library for three cards and exile them. Then that player shuffles his or her library.
 rarity=R
 [/card]
-[card]
-id=153003
-name=Elvish Warrior
-mana={G}{G}
-type=Creature
-subtype=Elf Warrior
-power=2
-toughness=3
-rarity=C
-[/card]
+
 [card]
 id=152968
 name=Everbark Shaman
@@ -328,17 +265,7 @@ toughness=5
 text={T}, Exile a Treefolk card from your graveyard: Search your library for two Forest cards and put them onto the battlefield tapped. Then shuffle your library.
 rarity=C
 [/card]
-[card]
-id=157424
-name=Fencer Clique
-mana={2}{U}{U}
-type=Creature
-subtype=Faerie Soldier
-power=3
-toughness=2
-text=Flying {U}: Put Fencer Clique on top of its owner's library.
-rarity=C
-[/card]
+
 [card]
 id=152607
 name=Fendeep Summoner
@@ -361,17 +288,7 @@ toughness=0
 text=Fertilid enters the battlefield with two +1/+1 counters on it. {1}{G}, Remove a +1/+1 counter from Fertilid: Target player searches his or her library for a basic land card and puts it onto the battlefield tapped. Then that player shuffles his or her library.
 rarity=C
 [/card]
-[card]
-id=152944
-name=Festercreep
-mana={1}{B}
-type=Creature
-subtype=Elemental
-power=0
-toughness=0
-text=Festercreep enters the battlefield with a +1/+1 counter on it. {1}{B}, Remove a +1/+1 counter from Festercreep: All other creatures get -1/-1 until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=152649
 name=Feudkiller's Verdict
@@ -514,24 +431,8 @@ subtype=Elf
 text=Put three 1/1 green Elf Warrior creature tokens onto the battlefield. Reinforce 3—{3}{G} ({3}{G}, Discard this card: Put three +1/+1 counters on target creature.)
 rarity=U
 [/card]
-[card]
-id=152938
-name=Idyllic Tutor
-mana={2}{W}
-type=Sorcery
-text=Search your library for an enchantment card, reveal it, and put it into your hand. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=152967
-name=Indomitable Ancients
-mana={2}{W}{W}
-type=Creature
-subtype=Treefolk Warrior
-power=2
-toughness=10
-rarity=R
-[/card]
+
+
 [card]
 id=152736
 name=Ink Dissolver
@@ -543,17 +444,7 @@ toughness=1
 text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Ink Dissolver, you may reveal it. If you do, each opponent puts the top three cards of his or her library into his or her graveyard.
 rarity=C
 [/card]
-[card]
-id=152826
-name=Inspired Sprite
-mana={3}{U}
-type=Creature
-subtype=Faerie Wizard
-power=2
-toughness=2
-text=Flash Flying Whenever you cast a Wizard spell, you may untap Inspired Sprite. {T}: Draw a card, then discard a card.
-rarity=U
-[/card]
+
 
 [card]
 id=152977
@@ -566,17 +457,7 @@ toughness=1
 text=Kinsbaile Borderguard enters the battlefield with a +1/+1 counter on it for each other Kithkin you control. When Kinsbaile Borderguard is put into a graveyard from the battlefield, put a 1/1 white Kithkin Soldier creature token onto the battlefield for each counter on it.
 rarity=R
 [/card]
-[card]
-id=153279
-name=Kinsbaile Cavalier
-mana={3}{W}
-type=Creature
-subtype=Kithkin Knight
-power=2
-toughness=2
-text=Knight creatures you control have double strike.
-rarity=R
-[/card]
+
 [card]
 id=152858
 name=Kithkin Zephyrnaut
@@ -649,17 +530,7 @@ toughness=4
 text=Whenever Lunk Errant attacks alone, it gets +1/+1 and gains trample until end of turn.
 rarity=C
 [/card]
-[card]
-id=153462
-name=Lys Alana Bowmaster
-mana={2}{G}
-type=Creature
-subtype=Elf Archer
-power=2
-toughness=2
-text=Reach (This can block creatures with flying.) Whenever you cast an Elf spell, you may have Lys Alana Bowmaster deal 2 damage to target creature with flying.
-rarity=C
-[/card]
+
 [card]
 id=152546
 name=Maralen of the Mornsong
@@ -696,22 +567,7 @@ text=When Merrow Witsniper enters the battlefield, target player puts the top ca
 auto=deplete:1
 rarity=C
 [/card]
-[card]
-id=157422
-name=Mind Shatter
-mana={X}{B}{B}
-type=Sorcery
-text=Target player discards X cards at random.
-rarity=R
-[/card]
-[card]
-id=152628
-name=Mind Spring
-mana={X}{U}{U}
-type=Sorcery
-text=Draw X cards.
-rarity=R
-[/card]
+
 [card]
 id=143218
 name=Moonglove Changeling
@@ -782,14 +638,7 @@ type=Land
 text={T}: Add {1} to your mana pool. {1}: Mutavault becomes a 2/2 creature with all creature types until end of turn. It's still a land.
 rarity=R
 [/card]
-[card]
-id=152570
-name=Negate
-mana={1}{U}
-type=Instant
-text=Counter target noncreature spell.
-rarity=C
-[/card]
+
 [card]
 id=152934
 name=Nevermaker
@@ -902,17 +751,7 @@ toughness=2
 text=First strike Whenever Preeminent Captain attacks, you may put a Soldier creature card from your hand onto the battlefield tapped and attacking.
 rarity=R
 [/card]
-[card]
-id=152718
-name=Prickly Boggart
-mana={B}
-type=Creature
-subtype=Goblin Rogue
-power=1
-toughness=1
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
-rarity=C
-[/card]
+
 [card]
 id=153464
 name=Primal Beyond
@@ -1094,17 +933,7 @@ toughness=2
 text={T}, Exile an Assassin card from your graveyard: Destroy target creature.
 rarity=R
 [/card]
-[card]
-id=153101
-name=Seething Pathblazer
-mana={2}{R}
-type=Creature
-subtype=Elemental Warrior
-power=2
-toughness=2
-text=Sacrifice an Elemental: Seething Pathblazer gets +2/+0 and gains first strike until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=152539
 name=Sensation Gorger
@@ -1364,17 +1193,7 @@ toughness=1
 text=Flash Flying When Vendilion Clique enters the battlefield, look at target player's hand. You may choose a nonland card from it. If you do, that player reveals the chosen card, puts it on the bottom of his or her library, then draws a card.
 rarity=R
 [/card]
-[card]
-id=153153
-name=Vengeful Firebrand
-mana={3}{R}
-type=Creature
-subtype=Elemental Warrior
-power=5
-toughness=2
-text=Vengeful Firebrand has haste as long as a Warrior card is in your graveyard. {R}: Vengeful Firebrand gets +1/+0 until end of turn.
-rarity=R
-[/card]
+
 [card]
 id=153012
 name=Veteran's Armaments
@@ -1384,15 +1203,7 @@ subtype=Soldier Equipment
 text=Equipped creature has "Whenever this creature attacks or blocks, it gets +1/+1 until end of turn for each attacking creature." Whenever a Soldier creature enters the battlefield, you may attach Veteran's Armaments to it. Equip {2}
 rarity=U
 [/card]
-[card]
-id=157426
-name=Violet Pall
-mana={4}{B}
-type=Tribal Instant
-subtype=Faerie
-text=Destroy target nonblack creature. Put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
-rarity=C
-[/card]
+
 [card]
 id=152553
 name=Walker of the Grove
@@ -1466,17 +1277,7 @@ subtype=Aura
 text=Enchant creature Enchanted creature can't attack. Tap two untapped creatures you control that share a creature type: Exile enchanted creature.
 rarity=C
 [/card]
-[card]
-id=153011
-name=Weirding Shaman
-mana={1}{B}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=1
-text={3}{B}, Sacrifice a Goblin: Put two 1/1 black Goblin Rogue creature tokens onto the battlefield.
-rarity=R
-[/card]
+
 [card]
 id=152669
 name=Winnower Patrol
