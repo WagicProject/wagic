@@ -123,6 +123,7 @@ void GameObserver::nextGamePhase(){
     for (int i=0; i < 2; i++){
       delete (players[i]->game->garbage);
       players[i]->game->garbage = NEW MTGGameZone();
+      players[i]->game->garbage->setOwner(players[i]);
     }
     return nextGamePhase();
   }
