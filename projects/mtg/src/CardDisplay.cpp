@@ -9,8 +9,8 @@ CardDisplay::CardDisplay() : mId(0), game(GameObserver::GetInstance()) {
   listener = NULL;
   nb_displayed_items = 7;
   start_item = 0;
-  x= 0;
-  y= 0;
+  x = 0;
+  y = 0;
   zone = NULL;
 }
 
@@ -159,11 +159,29 @@ void CardDisplay::Render(){
     }
   }
 
+  //TODO: CardSelector should handle the graveyard and the library in the future...
   if (mCount && mObjects[mCurr] != NULL){
     mObjects[mCurr]->Render();
-    //TODO Put these two lines back!!!
-    // CardGui * cardg = ((CardGui *)mObjects[mCurr]);
-    //    cardg->RenderBig(-1,-1,showBigCards-1);
+    CardGui * cardg = ((CardGui *)mObjects[mCurr]);
+    Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
+    int showMode = BIG_MODE_SHOW;
+    if (game){
+      showMode = game->mLayers->cs->bigMode;
+      pos.actY = 150;
+      if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
+    }
+
+    switch(showMode){
+        case BIG_MODE_SHOW:
+          cardg->RenderBig(pos);
+          break;
+        case BIG_MODE_TEXT:
+          cardg->alternateRenderBig(pos);
+          break;
+        default:
+          break;
+    }
+
   }
 }
 

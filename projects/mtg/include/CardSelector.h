@@ -12,6 +12,13 @@ using std::vector;
 class PlayGuiObject;
 class DuelLayers;
 
+enum {
+  BIG_MODE_SHOW = 0,
+  BIG_MODE_TEXT = 1,
+  BIG_MODE_HIDE = 2,
+  NB_BIG_MODES = 3
+};
+
 template <typename T>
 struct LimitorFunctor
 {
@@ -38,7 +45,6 @@ class ObjectSelector : public GuiLayer
  protected:
  vector<T*> cards;
  T* active;
- int bigMode;
  DuelLayers* duel;
  LimitorFunctor<T>* limitor;
  Pos bigpos;
@@ -48,6 +54,7 @@ class ObjectSelector : public GuiLayer
  T* fetchMemory(SelectorMemory&);
 
  public:
+ int bigMode;
  ObjectSelector(DuelLayers*);
  void Add(T*);
  void Remove(T*);

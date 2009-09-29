@@ -301,10 +301,11 @@ void ShopItems::Render(){
   JGuiController::Render();
   JRenderer * r = JRenderer::GetInstance(); 
   
-  if (display) display->Render();
 
   if (mBgAA) 
     r->RenderQuad(mBgAA,0,SCREEN_HEIGHT-128);
+
+  if (display) display->Render();
 
   if (showPriceDialog==-1){
 

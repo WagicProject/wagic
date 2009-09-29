@@ -7,12 +7,7 @@
 
 using std::cout;
 
-enum {
-  BIG_MODE_SHOW = 0,
-  BIG_MODE_TEXT = 1,
-  BIG_MODE_HIDE = 2,
-  NB_BIG_MODES = 3
-};
+
 
 
 struct Left : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
