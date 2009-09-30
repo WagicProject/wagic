@@ -136,19 +136,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Inspired Sprite
-mana={U}{3}
-type=Creature
-subtype=Faerie Wizard
-text=Flash. Flying. Whenever you cast a Wizard spell, you may untap Inspired Sprite. {T}: Draw a card, then discard a card.
-abilities=flash,flying
-auto=@movedTo(wizard|mystack):may untap
-auto={T}:draw:1 && moveto(graveyard) target(*|myhand)
-power=2
-toughness=2
-rarity=U
-[/card]
-[card]
 text=Knight creatures you control have double strike.
 id=153279
 auto=lord(creature|mybattlefield) double strike

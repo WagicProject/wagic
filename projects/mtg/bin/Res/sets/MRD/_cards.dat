@@ -104,7 +104,7 @@ toughness=3
 [/card]
 [card]
 text=When Cathodion is put into a graveyard from the battlefield, add {3} to your mana pool.
-auto=@movedTo(this|graveyard):Add{3}
+auto=@movedTo(this|graveyard) from(battlefield):Add{3}
 id=48195
 name=Cathodion
 rarity=U

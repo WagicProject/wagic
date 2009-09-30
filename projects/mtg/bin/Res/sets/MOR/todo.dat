@@ -444,7 +444,20 @@ toughness=1
 text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Ink Dissolver, you may reveal it. If you do, each opponent puts the top three cards of his or her library into his or her graveyard.
 rarity=C
 [/card]
-
+[card]
+name=Inspired Sprite
+mana={U}{3}
+type=Creature
+subtype=Faerie Wizard
+text=Flash. Flying. Whenever you cast a Wizard spell, you may untap Inspired Sprite. {T}: Draw a card, then discard a card.
+abilities=flash,flying
+auto=@movedTo(wizard|mystack):may untap
+auto={T}:draw:1 && moveto(graveyard) target(*|myhand)
+#Draw a card, then discard a card works but discard happen first, which is incorrect
+power=2
+toughness=2
+rarity=U
+[/card]
 
 [card]
 id=152977
