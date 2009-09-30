@@ -1,0 +1,27 @@
+#Test: "Becomes" functionnality parser
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:the rack
+hand:animate artifact,disenchant
+manapool:{3}{U}{1}{W}
+[PLAYER2]
+[DO]
+animate artifact
+the rack
+disenchant
+animate artifact
+next
+#begin
+next
+#attackers
+the rack
+next
+#combat ends
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:the rack
+graveyard:animate artifact,disenchant
+[PLAYER2]
+[END]

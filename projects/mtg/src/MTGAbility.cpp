@@ -575,6 +575,39 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("ueot");
   if (found!= string::npos) forceUEOT = 1;
  
+
+  //Becomes... (animate artifact...: becomes(Creature, manacost/manacost)
+  found = s.find("becomes(");
+  if (found != string::npos){
+    size_t real_end = s.find(")", found);
+    size_t end = s.find(",", found);
+    if (end == string::npos) end = real_end;
+    string stypes  = s.substr(found + 8,end - found - 8);
+    WParsedPT * pt = NULL;
+    string sabilities;
+    if (end != real_end){
+      int previous = end+1;
+      end = s.find(",",previous);
+      if (end == string::npos) end = real_end;
+      string temp = s.substr(previous, end - previous);
+      pt = NEW WParsedPT(temp,spell,card);
+      if (!pt->ok){
+        SAFE_DELETE(pt);
+        sabilities = temp;
+      }
+    }
+    if (pt && end != real_end){
+      sabilities = s.substr(end+1, real_end - end);
+    }
+    MTGAbility * ab;
+    if (forceUEOT){
+      ab = NEW ABecomesUEOT(id,card,target,stypes,pt,sabilities);
+    }else{
+      ab = NEW ABecomes(id,card,target,stypes,pt,sabilities);
+    }
+    return ab;
+  }
+
   //Change Power/Toughness
   WParsedPT * wppt = NEW WParsedPT(s,spell,card);
   if (wppt->ok){
@@ -791,12 +824,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       AAladdinsLamp * ability = NEW AAladdinsLamp(_id, card);
       game->addObserver(ability);
-      break;
-    }
-  case 1190: //Animate Artifact
-    {
-      int x =  card->target->getManaCost()->getConvertedCost();
-      game->addObserver(NEW AConvertToCreatureAura(_id, card,card->target,x,x));
       break;
     }
   case 1095: //Armageddon clock

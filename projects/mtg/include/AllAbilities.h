@@ -38,6 +38,8 @@ public:
  }
 
   WParsedInt(string s, Spell * spell, MTGCardInstance * card){
+    MTGCardInstance * target = card->target;
+    if (!target) target = card;
     int multiplier = 1;
     if (s[0] == '-'){
       s = s.substr(1);
@@ -45,6 +47,12 @@ public:
     }
     if (s == "x" || s == "X"){
       intValue = computeX(spell,card);
+    }else if (s == "manacost"){
+      intValue = target->getManaCost()->getConvertedCost();
+    }else if (s == "p"){
+      intValue = target->power;
+    }else if (s == "t"){
+      intValue = target->toughness;
     }else{
       intValue = atoi(s.c_str());
     }
@@ -1989,35 +1997,131 @@ class AOldSchoolDeathtouch:public MTGAbility{
   }
 };
 
-//Converts a card to a creature (Aura)
-class AConvertToCreatureAura:public MTGAbility{
- public:
- AConvertToCreatureAura(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _power, int _toughness):MTGAbility(_id, _source, _target){
-    _target->setSubtype("creature");
-    _target->power = _power;
-    _target->toughness = _toughness;
-    _target->life = _toughness;
-    //_target->afterDamage();
-    _target->doDamageTest = 1;
+//Adds types/abilities/P/T to a card (aura)
+class ABecomes:public MTGAbility{
+public:
+  list<int>abilities;
+  list<int>types;
+  list<int>colors;
+  WParsedPT * wppt;
+  ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities):MTGAbility(id,source,target),wppt(wppt){
+    //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
+
+    for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+      unsigned int found = sabilities.find(Constants::MTGBasicAbilities[j]);
+      if (found != string::npos){
+        abilities.push_back(j);
+      }
+    }
+
+    for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+      unsigned int found = sabilities.find(Constants::MTGColorStrings[j]);
+      if (found != string::npos){
+        colors.push_back(j);
+      }
+    }
+
+    string s = stypes;
+    while (s.size()){
+      unsigned int found = s.find(" ");
+      if (found != string::npos){
+        int id = Subtypes::subtypesList->Add(s.substr(0,found));
+        types.push_back(id);
+        s = s.substr(found+1);
+      }else{
+        int id = Subtypes::subtypesList->Add(s);
+        types.push_back(id);
+        s = "";
+      }
+    }
   }
 
+ int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+      list<int>::iterator it;
+    for ( it=types.begin() ; it != types.end(); it++ ){
+      _target->addType(*it);
+    }
+    for ( it=colors.begin() ; it != colors.end(); it++ ){
+      _target->setColor(*it);
+    }
+    for ( it=abilities.begin() ; it != abilities.end(); it++ ){
+      _target->basicAbilities[*it]++;
+    }
+
+    if (wppt){
+      _target->power = wppt->power.getValue();
+      _target->toughness = wppt->toughness.getValue();
+      _target->life = _target->toughness;
+    }
+    return MTGAbility::addToGame();
+ }
+
   int destroy(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    _target->removeType("creature");
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+      list<int>::iterator it;
+    for ( it=types.begin() ; it != types.end(); it++ ){
+      _target->removeType(*it);
+    }
+    for ( it=colors.begin() ; it != colors.end(); it++ ){
+      _target->removeColor(*it);
+    }
+    for ( it=abilities.begin() ; it != abilities.end(); it++ ){
+      _target->basicAbilities[*it]--;
+    }
     return 1;
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AConvertToCreatureAura ::: (";
-    return MTGAbility::toString(out) << ")";
-  }
-  AConvertToCreatureAura * clone() const{
-    AConvertToCreatureAura * a =  NEW AConvertToCreatureAura(*this);
+  ABecomes * clone() const{
+    ABecomes * a =  NEW ABecomes(*this);
+    a->wppt = NEW WParsedPT(*(a->wppt));
     a->isClone = 1;
     return a;
   }
+
+  ~ABecomes(){
+    delete(wppt);
+  }
+
 };
+
+
+//Adds types/abilities/P/T to a card (until end of turn)
+class  ABecomesUEOT: public InstantAbility{
+public:
+  ABecomes * ability;
+   ABecomesUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, WParsedPT * wpt, string abilities):InstantAbility(id,source,target){
+     ability = NEW ABecomes(id,source,target,types,wpt,abilities);
+   }
+ 
+  int resolve(){
+    ability->addToGame();
+    return 1;
+  }
+
+  int destroy(){
+    ability->destroy();
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return ability->getMenuText();
+  }
+
+
+  ABecomesUEOT * clone() const{
+    ABecomesUEOT * a =  NEW ABecomesUEOT(*this);
+    a->ability = this->ability->clone();
+    a->isClone = 1;
+    return a;
+  }
+
+  ~ABecomesUEOT(){
+    delete ability;
+  }
+
+};
+
 
 /*
   Specific Classes

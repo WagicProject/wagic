@@ -33,6 +33,8 @@ akron_legionnaire.txt
 Amugaba.txt
 anarchy.txt
 ancestors_chosen.txt
+animate_artifact.txt
+animate_artifact2.txt
 animate_dead.txt
 animate_dead2.txt
 animate_dead3.txt

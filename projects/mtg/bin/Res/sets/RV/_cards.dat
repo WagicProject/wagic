@@ -30,6 +30,7 @@ mana={8}
 [card]
 text=Enchant artifact     Enchanted artifact is a creature with power and toughness each equal to its converted mana cost. It's still an artifact.
 target=artifact
+auto=becomes(Creature,manacost/manacost)
 id=1190
 name=Animate Artifact
 rarity=U

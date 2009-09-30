@@ -1,0 +1,29 @@
+#Test: "Becomes" functionnality parser
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:the rack
+hand:animate artifact
+manapool:{3}{U}
+[PLAYER2]
+[DO]
+animate artifact
+the rack
+next
+#begin
+next
+#attackers
+the rack
+next
+#blockers
+next
+#damage
+next
+#combat ends
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:the rack,animate artifact
+[PLAYER2]
+life:19
+[END]
