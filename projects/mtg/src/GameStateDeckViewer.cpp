@@ -103,11 +103,11 @@ void GameStateDeckViewer::Start()
   stw.needUpdate = true;
 
   menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
-  menu->Add(11,"Save");
-  menu->Add(12,"Save & Rename");
-  menu->Add(13,"Switch decks without saving");
-  menu->Add(14,"Back to main menu");
-  menu->Add(15,"Cancel");
+  menu->Add(0,"Save");
+  menu->Add(1,"Save & Rename");
+  menu->Add(2,"Switch decks without saving");
+  menu->Add(3,"Back to main menu");
+  menu->Add(4,"Cancel");
 
 
   //icon images
@@ -1191,7 +1191,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
 void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 {
   switch(controllerId){
-      case 10:
+      case 10:  //Deck menu
         if (controlId == -1){
           mParent->SetNextState(GAME_STATE_MENU);
           break;
@@ -1200,53 +1200,56 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
         mStage = STAGE_WAITING;
         deckNum = controlId;
         break;
-  }
-
-  switch (controlId)
-  {
-
-  case 11:
-    myDeck->save();
-    playerdata->save();
-    pricelist->save();
-    mStage =  STAGE_WAITING;
-    break;
-  case 12:
-    if(myDeck && myDeck->parent){
-    options.keypadStart(myDeck->parent->meta_name,&newDeckname);
-    options.keypadTitle("Rename deck");
+      case 11: //Save / exit menu
+        switch (controlId)
+        {
+        case 0:
+          myDeck->save();
+          playerdata->save();
+          pricelist->save();
+          mStage =  STAGE_WAITING;
+          break;
+        case 1:
+          if(myDeck && myDeck->parent){
+          options.keypadStart(myDeck->parent->meta_name,&newDeckname);
+          options.keypadTitle("Rename deck");
+          }
+          break;
+        case 2:
+          updateDecks();
+          mStage =  STAGE_WELCOME;
+          break;
+        case 3:
+          mParent->SetNextState(GAME_STATE_MENU);
+          break;
+        case 4:
+          mStage =  STAGE_WAITING;
+          break;
+        }
+      break;
+    case 2:
+    switch (controlId){
+      case 20:
+        {
+          MTGCard * card  = cardIndex[2];
+          if (card){
+            int rnd = (rand() % 25);
+            playerdata->credits += price;
+            price = price - (rnd * price)/100;
+            pricelist->setPrice(card->getMTGId(),price*2);
+    #if defined (WIN32) || defined (LINUX)
+            char buf[4096];
+            sprintf(buf, "CARD'S NAME : %s", card->getName().c_str());
+            OutputDebugString(buf);
+    #endif
+            playerdata->collection->remove(card->getMTGId());
+            Remove(card);
+          }
+        }
+      case 21:
+        delSellMenu = 1;
+        break;
     }
-    break;
-  case 13:
-    updateDecks();
-    mStage =  STAGE_WELCOME;
-    break;
-  case 14:
-    mParent->SetNextState(GAME_STATE_MENU);
-    break;
-  case 15:
-    mStage =  STAGE_WAITING;
-    break;
-  case 20:
-    {
-      MTGCard * card  = cardIndex[2];
-      if (card){
-        int rnd = (rand() % 25);
-        playerdata->credits += price;
-        price = price - (rnd * price)/100;
-        pricelist->setPrice(card->getMTGId(),price*2);
-#if defined (WIN32) || defined (LINUX)
-        char buf[4096];
-        sprintf(buf, "CARD'S NAME : %s", card->getName().c_str());
-        OutputDebugString(buf);
-#endif
-        playerdata->collection->remove(card->getMTGId());
-        Remove(card);
-      }
-    }
-  case 21:
-    delSellMenu = 1;
-    break;
   }
 }
 
