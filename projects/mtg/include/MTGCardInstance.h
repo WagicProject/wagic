@@ -128,6 +128,8 @@ class MTGCardInstance: public MTGCard, public Damageable {
   void resetAllDamage();
   JSample * getSample();
 
+  JQuad * getIcon();
+
   ostream& toString(ostream&) const;
 
   static MTGCardInstance AnyCard;

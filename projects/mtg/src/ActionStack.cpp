@@ -50,26 +50,58 @@ ostream& NextGamePhase::toString(ostream& out) const
   return out;
 }
 
+void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad){
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  mFont->SetBase(0);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->DrawString(_(action).c_str(), x + 30 , y, JGETEXT_LEFT);
+  JRenderer * renderer = JRenderer::GetInstance();
+  JQuad * quad = resources.RetrieveCard(source,CACHE_THUMB);
+  if (quad){
+    quad->SetColor(ARGB(255,255,255,255));
+    float scale = mHeight  / quad->mHeight;
+    renderer->RenderQuad(quad, x+10*scale  , y+15*scale , 0,scale,scale);
+  }else if (alt1.size()){
+    mFont->DrawString(_(alt1).c_str(),x,y-15);
+  }
+
+  if (bigQuad){
+    GameObserver * game = GameObserver::GetInstance();
+    int showMode = game->mLayers->cs->bigMode;
+    Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
+    switch(showMode){
+        case BIG_MODE_SHOW:
+          CardGui::RenderBig(source,pos);
+          break;
+        case BIG_MODE_TEXT:
+          CardGui::alternateRender(source, pos);
+          break;
+        default:
+          break;
+    }
+  }
+
+  if (targetQuad){
+    float backupX = targetQuad->mHotSpotX;
+    float backupY = targetQuad->mHotSpotY;
+    targetQuad->SetColor(ARGB(255,255,255,255));
+    targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
+    float scale = mHeight / targetQuad->mHeight;
+    renderer->RenderQuad(targetQuad, x + 150  , y+15*scale , 0,scale,scale);
+    targetQuad->SetHotSpot(backupX, backupY);
+  }else if (alt2.size()){
+    mFont->DrawString(_(alt2).c_str(),x+120,y);
+  }
+}
+
 /* Ability */
 int StackAbility::resolve(){
   return (ability->resolve());
 }
 void StackAbility::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-  mFont->SetBase(0);
-  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  char buffer[200];
-  sprintf(buffer, "%s", _(ability->getMenuText()).c_str());
-  mFont->DrawString(buffer, x + 30 , y, JGETEXT_LEFT);
-  JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = resources.RetrieveCard(ability->source,CACHE_THUMB);
-  if (quad){
-    quad->SetColor(ARGB(255,255,255,255));
-    float scale = 30 / quad->mHeight;
-    renderer->RenderQuad(quad, x  , y , 0,scale,scale);
-  }else{
-    mFont->DrawString(_(ability->source->getName()).c_str(),x,y-15);
-  }
+  string action = ability->getMenuText();
+  MTGCardInstance * source = ability->source;
+  string alt1 = source->getName();
 
   Targetable * _target = ability->target;
   if (ability->tc){
@@ -80,17 +112,17 @@ void StackAbility::Render(){
   if (_target!= ability->source && (_target->typeAsTarget() == TARGET_CARD || _target->typeAsTarget() == TARGET_PLAYER)){
     target = (Damageable *) _target;
   }
+
+  JQuad * quad = NULL;
+  string alt2 = "";
   if (target){
     quad = target->getIcon();
-    if (quad){
-      quad->SetColor(ARGB(255,255,255,255));
-      float scale = 30 / quad->mHeight;
-      renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
-    }else{
-      if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-        mFont->DrawString(_(((MTGCardInstance *)target)->name).c_str(),x+120,y);
+    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE) {
+        alt2 = ((MTGCardInstance *)target)->name;
     }
   }
+
+  Interruptible::Render(source,quad,alt1,alt2,action);
 }
 StackAbility::StackAbility(int id,MTGAbility * _ability): Interruptible(id),ability(_ability){
   type=ACTION_ABILITY;
@@ -202,63 +234,19 @@ MTGCardInstance * Spell::getNextCardTarget(MTGCardInstance * previous){
   }
 
 void Spell::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-  mFont->SetBase(0);
-  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  mFont->DrawString(_(source->name).c_str(), x + 30 , y, JGETEXT_LEFT);
-  JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * quad = resources.RetrieveCard(source,CACHE_THUMB);
-  if (quad){
-    quad->SetColor(ARGB(255,255,255,255));
-    float scale = mHeight  / quad->mHeight;
-    renderer->RenderQuad(quad, x+10*scale  , y+15*scale , 0,scale,scale);
-  }else{
-    //
-  }
-  // WALDORF - added these lines to render a big card as well as the small one
-  // in the interrupt window. A big card will be rendered no matter whether
-  // the user has been using big cards or not. However, I do take into which
-  // kind of big card they like.
-  // The card will be rendered in the same place as the GuiHand
-  // card. It doesn't attempt to hide the GUIHand card, it
-  // just overwrites it.
-  // I stole the render code from RenderBig() in CardGUI.cpp
+  string action = source->getName();
+  string alt1 = "";
 
-  quad = resources.RetrieveCard(source);
-  if (quad){
-      quad->SetColor(ARGB(220,255,255,255));
-      float scale = 257.f / quad->mHeight;
-      renderer->RenderQuad(quad, 10+100*scale , 20+145*scale , 0.0f,scale,scale);
-  }
-  else
-  {
-      MTGCard * mtgcard = source->model;
-      Pos pos = Pos(10 + 90, 20 + 130, 0.9f, 0.0, 255);
-      CardGui::alternateRender(mtgcard, pos);
-
-      quad = resources.RetrieveCard(source,CACHE_THUMB);
-      if (quad){
-          float scale = 250 / quad->mHeight;
-          quad->SetColor(ARGB(40,255,255,255));
-          renderer->RenderQuad(quad, 20+15*scale, 20+20*scale, 0.0f, scale, scale);
-      }
-  }
-
-  // WALDORF - end
-
-
+  JQuad * quad = NULL;
+  string alt2 = "";
   Damageable * target = getNextDamageableTarget();
   if (target){
     quad = target->getIcon();
-    if (quad){
-      quad->SetColor(ARGB(255,255,255,255));
-      float scale = 30 / quad->mHeight;
-      renderer->RenderQuad(quad, x + 150  , y , 0,scale,scale);
-    }else{
-      if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-        mFont->DrawString(_(((MTGCardInstance *)target)->name).c_str(),x+120,y);
+    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE) {
+      alt2 = ((MTGCardInstance *)target)->name;
     }
   }
+  Interruptible::Render(source,quad,alt1,alt2,action, true);
 }
 
 ostream& Spell::toString(ostream& out) const

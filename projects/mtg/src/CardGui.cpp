@@ -303,7 +303,7 @@ void CardGui::alternateRenderBig(const Pos& pos){
   alternateRender(card,pos);
 }
 
-void CardGui::RenderBig(const Pos& pos){
+void CardGui::RenderBig(MTGCard* card, const Pos& pos){
   JRenderer * renderer = JRenderer::GetInstance();
 
   JQuad * quad = resources.RetrieveCard(card);
@@ -325,6 +325,10 @@ void CardGui::RenderBig(const Pos& pos){
 
   // If we come here, we do not have the picture.
   alternateRender(card,pos);
+}
+
+void CardGui::RenderBig(const Pos& pos){
+  RenderBig(card,pos);
 }
 
 

@@ -372,6 +372,10 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   return 1;
 }
 
+JQuad * MTGCardInstance::getIcon(){
+ return resources.RetrieveCard(this,CACHE_THUMB);
+}
+
 MTGCardInstance * MTGCardInstance::getNextPartner(){
   MTGInPlay * inplay = controller()->game->inPlay;
   MTGCardInstance * bandingPartner = inplay->getNextAttacker(banding);
