@@ -502,6 +502,20 @@ subtype=Bolas
 toughness=5
 [/card]
 [card]
+text={1}{W}, {T}: You gain 5 life.     {1}{U}, {T}: Draw a card, then discard a card.     {1}{B}, {T}: Target creature gets -2/-2 until end of turn.     {1}{R}, {T}: Obelisk of Alara deals 3 damage to target player.     {1}{G}, {T}: Target creature gets +4/+4 until end of turn.
+auto={1}{W}{T}:life:5
+auto={1}{U}{T}:moveto(graveyard) target(*|myhand) && Draw:1
+#Draw a card, then discard a card works but discard happen first, which is incorrect
+auto={1}{B}{T}:-2/-2 target(creature)
+auto={1}{R}{T}:damage:3 target(player)
+auto={1}{G}{T}:4/4 target(creature)
+id=183018
+name=Obelisk of Alara
+rarity=R
+type=Artifact
+mana={6}
+[/card]
+[card]
 text=Whenever another creature with power 5 or greater comes into play under your control, you may return target creature card from your graveyard to your hand.
 id=189873
 name=Paleoloth
