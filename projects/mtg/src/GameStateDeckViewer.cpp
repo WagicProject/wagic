@@ -1018,7 +1018,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
         showName = 1;
       }
     }
-  
+  }
 
   if (quad){
     showName = 0;
@@ -1058,7 +1058,6 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
     font->DrawString(buffer, qtX+2, qtY + 2);
     font->SetColor(ARGB(255,255,255,255));
   }
-}
 }
 
 
