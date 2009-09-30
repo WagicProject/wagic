@@ -216,7 +216,18 @@ void CardSelector::Limit(LimitorFunctor<Target>* limitor, SelectorZone destzone)
               active = old;
           lasts[oldowner] = SelectorMemory(oldactive);
         }
-      if (limitor && !limitor->select(active)) active = NULL;
+
+      if (limitor && !limitor->select(active))
+        {
+          active = NULL;
+          for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
+	          if (limitor->select(*it))
+	            {
+	              active = *it;
+                break;
+	            }
+        }
+
       if (active != oldactive)
         {
           { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
