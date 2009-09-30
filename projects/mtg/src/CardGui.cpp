@@ -106,7 +106,7 @@ void CardGui::Render()
 
   if (tc && !tc->canTarget(card)) {
     shadow->SetColor(ARGB(200,255,255,255));
-    renderer->RenderQuad(shadow, actX, actY, actT, 28*actZ/16 + 1, 40*actZ/16);
+    renderer->RenderQuad(shadow, actX, actY, actT, (28*actZ + 1)/16 , 40*actZ/16);
   }
 
   PlayGuiObject::Render();
