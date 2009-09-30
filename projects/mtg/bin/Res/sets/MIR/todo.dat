@@ -29,9 +29,12 @@ mana={1}{G}
 text=Destroy target creature. It can't be regenerated. Its controller puts a 1/1 white Spirit creature token with flying into play.
 id=3476
 name=Afterlife
-rarity=U
+target=creature
+auto=bury
+auto=token(Spirit,creature spirit,1/1,flying white) targetcontroller
 type=Instant
 mana={2}{W}
+rarity=U
 [/card]
 [card]
 text=Enchanted creature gets +1/+1 and gains flanking (whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn).
@@ -45,14 +48,7 @@ subtype=Aura
 mana={1}{R}
 rarity=C
 [/card]
-[card]
-text=Untap target nonattacking creature. It gets +1/+3 until end of turn.
-id=3477
-name=Alarum
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
+
 [card]
 text=Play Aleatory only during combat after blockers are declared.     Flip a coin. If you win the flip, target creature gets +1/+1 until end of turn.     Draw a card at the beginning of the next turn's upkeep.
 id=3426
@@ -94,25 +90,8 @@ type=Enchantment
 mana={1}{G}
 subtype=Aura
 [/card]
-[card]
-text={B}, {T}: Target creature gets +1/+0 until end of turn.     {G}, {T}: Target creature gets +0/+1 until end of turn.
-id=3427
-name=Armorer Guildmage
-rarity=C
-type=Creature
-mana={R}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text=Put target creature card from an opponent's graveyard into play under your control.
-id=3273
-name=Ashen Powder
-rarity=R
-type=Sorcery
-mana={2}{B}{B}
-[/card]
+
+
 [card]
 text=Flying     At end of turn, put a +1/+1 counter on Asmira, Holy Avenger for each creature put into your graveyard from play this turn.
 id=3527
@@ -135,17 +114,7 @@ power=2
 subtype=Human Cleric
 toughness=3
 [/card]
-[card]
-text=Flying       {U}: Azimaet Drake gets +1/+0 until end of turn. Play this ability only once each turn.
-id=3324
-name=Azimaet Drake
-rarity=C
-type=Creature
-mana={2}{U}
-power=1
-subtype=Drake
-toughness=3
-[/card]
+
 
 [card]
 text=Whenever a creature attacks you, it loses flanking until end of turn.       Whenever a creature without flying attacks you, Barbed Foliage deals 1 damage to it.
@@ -185,17 +154,7 @@ power=2
 subtype=Golem
 toughness=4
 [/card]
-[card]
-text=Flying, vigilance
-id=3325
-name=Bay Falcon
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Bird
-toughness=1
-[/card]
+
 [card]
 text=When Bazaar of Wonders comes into play, remove all cards in all graveyards from the game.     Whenever a spell is played, counter it if a card with the same name is in a graveyard or a nontoken permanent with the same name is in play.
 id=3326
@@ -225,17 +184,7 @@ type=Enchantment
 mana={1}{B}
 subtype=Aura
 [/card]
-[card]
-text={T}, Sacrifice a Swamp: Target creature gets +1/+1 until end of turn.     {T}, Sacrifice a creature: Target creature gets +2/+2 until end of turn.
-id=3276
-name=Blighted Shaman
-rarity=U
-type=Creature
-mana={1}{B}
-power=1
-subtype=Human Cleric Shaman
-toughness=1
-[/card]
+
 [card]
 text=Play Blind Fury only before the combat damage step.     All creatures lose trample until end of turn. If a creature would deal combat damage to a creature this turn, it deals double that damage to that creature instead.
 id=3429
@@ -244,17 +193,7 @@ rarity=U
 type=Instant
 mana={2}{R}{R}
 [/card]
-[card]
-text=Defender (This creature can't attack.)
-id=3430
-name=Blistering Barrier
-rarity=C
-type=Creature
-mana={2}{R}
-power=5
-subtype=Wall
-toughness=2
-[/card]
+
 [card]
 text=Put any number of target creature cards from your graveyard on top of your library.     Draw a card at the beginning of the next turn's upkeep.
 id=3277
@@ -271,25 +210,8 @@ rarity=R
 type=Artifact
 mana={4}
 [/card]
-[card]
-text=Return target permanent to its owner's hand.
-id=3327
-name=Boomerang
-rarity=C
-type=Instant
-mana={U}{U}
-[/card]
-[card]
-text={B}: Breathstealer gets +1/-1 until end of turn.
-id=3278
-name=Breathstealer
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Nightstalker
-toughness=2
-[/card]
+
+
 [card]
 text=Whenever Brushwagg blocks or becomes blocked, it gets -2/+2 until end of turn.
 id=3377
@@ -309,17 +231,7 @@ rarity=C
 type=Sorcery
 mana={X}{X}{R}
 [/card]
-[card]
-text={1}{R}{R}: Burning Palm Efreet deals 2 damage to target creature with flying and that creature loses flying until end of turn.
-id=3432
-name=Burning Palm Efreet
-rarity=U
-type=Creature
-mana={2}{R}{R}
-power=2
-subtype=Efreet
-toughness=2
-[/card]
+
 [card]
 text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {R}{R}: First strike until end of turn
 id=3433 
@@ -354,17 +266,7 @@ power=2
 toughness=2
 rarity=C
 [/card]
-[card]
-text=Trample     {1}{G}: Canopy Dragon gains flying and loses trample until end of turn.
-id=3378
-name=Canopy Dragon
-rarity=R
-type=Creature
-mana={4}{G}{G}
-power=4
-subtype=Dragon
-toughness=4
-[/card]
+
 [card]
 text=As an additional cost to play Carrion, sacrifice a creature.     Put X 0/1 black Insect creature tokens into play, where X is the sacrificed creature's power.
 id=3280
@@ -392,17 +294,7 @@ rarity=R
 type=Enchantment
 mana={1}{W}{W}
 [/card]
-[card]
-text=Flying, protection from green
-id=3328
-name=Cerulean Wyvern
-rarity=U
-type=Creature
-mana={4}{U}
-power=3
-subtype=Drake
-toughness=3
-[/card]
+
 [card]
 text=Choose one - Destroy target Wall; or Chaos Charm deals 1 damage to target creature; or target creature gains haste until end of turn.
 id=3434
@@ -419,14 +311,7 @@ rarity=R
 type=World Enchantment
 mana={2}{R}
 [/card]
-[card]
-text=Charcoal Diamond comes into play tapped.       {T}: Add {B} to your mana pool.
-id=3244
-name=Charcoal Diamond
-rarity=U
-type=Artifact
-mana={2}
-[/card]
+
 [card]
 text={2}, {T}: Until end of turn, target creature you control gains flying and its toughness becomes 1.
 id=3245
@@ -489,17 +374,7 @@ power=1
 subtype=Merfolk Soldier
 toughness=1
 [/card]
-[card]
-text=Trample
-id=3379
-name=Crash of Rhinos
-rarity=C
-type=Creature
-mana={6}{G}{G}
-power=8
-subtype=Rhino
-toughness=4
-[/card]
+
 [card]
 text=Flying       {X}, {T}: Crimson Hellkite deals X damage to target creature. Spend only red mana this way.
 id=3438
@@ -544,13 +419,7 @@ power=3
 subtype=Golem
 toughness=3
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.       {T}, Sacrifice Crystal Vein: Add {2} to your mana pool.
-id=3571
-name=Crystal Vein
-rarity=U
-type=Land
-[/card]
+
 [card]
 text=Activated abilities of creatures can't be played.
 id=3247
@@ -568,22 +437,7 @@ type=Enchantment
 mana={1}{G}{G}
 [/card]
 
-[card]
-text=Destroy target nonblack creature. It can't be regenerated.
-id=3284
-name=Dark Banishing
-rarity=C
-type=Instant
-mana={2}{B}
-[/card]
-[card]
-text=Add {B}{B}{B} to your mana pool.
-id=3285
-name=Dark Ritual
-rarity=C
-type=Instant
-mana={B}
-[/card]
+
 [card]
 text=Play Dazzling Beauty only during the declare blockers step.     Target attacking unblocked creature becomes blocked.     Draw a card at the beginning of the next turn's upkeep.
 id=3483
@@ -609,17 +463,7 @@ rarity=U
 type=Instant
 mana={1}{B}{R}
 [/card]
-[card]
-text=Swampwalk       {B}: Dirtwater Wraith gets +1/+0 until end of turn.
-id=3286
-name=Dirtwater Wraith
-rarity=C
-type=Creature
-mana={3}{B}
-power=1
-subtype=Wraith
-toughness=3
-[/card]
+
 [card]
 text=At the end of each turn, if it was an opponent's turn, put a +1/+1 counter on Discordant Spirit for each 1 damage dealt to you that turn.     At the end of your turn, remove all +1/+1 counters on Discordant Spirit.
 id=3532
@@ -724,27 +568,10 @@ power=3
 subtype=Cyclops
 toughness=4
 [/card]
+
+
 [card]
-text=Flying, first strike
-id=3488
-name=Ekundu Griffin
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Griffin
-toughness=2
-[/card]
-[card]
-text=Elixir of Vitality comes into play tapped.       {T}, Sacrifice Elixir of Vitality: You gain 4 life.       {8}, {T}, Sacrifice Elixir of Vitality: You gain 8 life.
-id=3248
-name=Elixir of Vitality
-rarity=U
-type=Artifact
-mana={4}
-[/card]
-[card]
-text=Flying, trample       Emberwilde Caliph attacks each turn if able.       Whenever Emberwilde Caliph deals damage, you lose that much life.
+text=Flying, trample. Emberwilde Caliph attacks each turn if able. Whenever Emberwilde Caliph deals damage, you lose that much life.
 id=3533
 name=Emberwilde Caliph
 rarity=R
@@ -753,6 +580,7 @@ mana={2}{U}{R}
 power=4
 subtype=Djinn
 toughness=4
+abilities=mustattack,flying,trample
 [/card]
 [card]
 text=Flying       At the beginning of each player's upkeep, that player may pay {R}{R} or 2 life. If he or she does, the player gains control of Emberwilde Djinn.
@@ -781,19 +609,13 @@ rarity=R
 type=Enchantment
 mana={3}{U}{U}
 [/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets -2/-2.
-id=3290
-name=Enfeeblement
-rarity=C
-type=Enchantment
-mana={B}{B}
-subtype=Aura
-[/card]
+
 [card]
 text=Search your library for an artifact or enchantment card and reveal that card. Shuffle your library, then put the card on top of it.
 id=3489
 name=Enlightened Tutor
+target=artifact,enchantment|mylibrary
+auto=moveTo(
 rarity=U
 type=Instant
 mana={W}
@@ -838,17 +660,7 @@ type=Enchantment
 mana={1}{W}
 subtype=Aura
 [/card]
-[card]
-text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.
-id=3384
-name=Femeref Archers
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Human Archer
-toughness=2
-[/card]
+
 [card]
 text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
 id=3492
@@ -873,39 +685,11 @@ power=2
 toughness=2
 rarity=C
 [/card]
-[card]
-text=
-id=3494
-name=Femeref Scouts
-rarity=C
-type=Creature
-mana={2}{W}
-power=1
-subtype=Human Scout
-toughness=4
-[/card]
-[card]
-text=Flying
-id=3291
-name=Feral Shadow
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Nightstalker
-toughness=1
-[/card]
-[card]
-text={B}: Fetid Horror gets +1/+1 until end of turn.
-id=3292
-name=Fetid Horror
-rarity=C
-type=Creature
-mana={3}{B}
-power=1
-subtype=Shade Horror
-toughness=2
-[/card]
+
+
+
+
+
 [card]
 text=Take an extra turn after this one. At the end of that turn, you lose the game.
 id=3444
@@ -914,23 +698,8 @@ rarity=R
 type=Instant
 mana={R}{R}
 [/card]
-[card]
-text=Fire Diamond comes into play tapped.       {T}: Add {R} to your mana pool.
-id=3250
-name=Fire Diamond
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  {R}: Enchanted creature gets +1/+0 until end of turn.
-id=3445
-name=Firebreathing
-rarity=C
-type=Enchantment
-mana={R}
-subtype=Aura
-[/card]
+
+
 [card]
 text={R}, {T}, Sacrifice Flame Elemental: Flame Elemental deals damage equal to its power to target creature.
 id=3446
@@ -942,14 +711,7 @@ power=3
 subtype=Elemental
 toughness=2
 [/card]
-[card]
-text=Flare deals 1 damage to target creature or player.       Draw a card at the beginning of the next turn's upkeep.
-id=3447
-name=Flare
-rarity=C
-type=Instant
-mana={2}{R}
-[/card]
+
 [card]
 text=You may put a creature card from your hand into play. If you do, sacrifice it unless you pay its mana cost reduced by up to {2}.
 id=3337
@@ -978,17 +740,7 @@ rarity=C
 type=Instant
 mana={G}
 [/card]
-[card]
-text={G}, Sacrifice a Forest: Foratog gets +2/+2 until end of turn.
-id=3386
-name=Foratog
-rarity=U
-type=Creature
-mana={2}{G}
-power=1
-subtype=Atog
-toughness=2
-[/card]
+
 [card]
 text=If you would draw a card, return a card from your graveyard to your hand instead. If you can't, you lose the game.     If a card would be put into your graveyard from anywhere, remove that card from the game instead.
 id=3293
@@ -997,38 +749,7 @@ rarity=R
 type=Enchantment
 mana={3}{B}{B}
 [/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=3566
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=3568
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=3569
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=3567
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
+
 [card]
 text=Players can't gain life.     At the beginning of each player's upkeep, that player loses 1 life.     Whenever Forsaken Wastes becomes the target of a spell, that spell's controller loses 5 life.
 id=3294
@@ -1048,17 +769,7 @@ power=2
 subtype=Efreet
 toughness=1
 [/card]
-[card]
-text=Reach (This creature can block creatures with flying.)
-id=3387
-name=Giant Mantis
-rarity=C
-type=Creature
-mana={3}{G}
-power=2
-subtype=Insect
-toughness=4
-[/card]
+
 [card]
 text=Gibbering Hyenas can't block black creatures.
 id=3388
@@ -1081,17 +792,7 @@ power=2
 subtype=Goblin Warrior
 toughness=2
 [/card]
-[card]
-text={R}, {T}, Sacrifice a Goblin: Red creatures get +1/+1 until end of turn.
-id=3450
-name=Goblin Soothsayer
-rarity=U
-type=Creature
-mana={R}
-power=1
-subtype=Goblin Shaman
-toughness=1
-[/card]
+
 [card]
 text={R}, {T}: Destroy target artifact. That artifact deals damage equal to its converted mana cost to Goblin Tinkerer.
 id=3451
@@ -1103,17 +804,7 @@ power=1
 subtype=Goblin Artificer
 toughness=2
 [/card]
-[card]
-text={W}, {T}: Target creature gains first strike until end of turn.     {R}, {T}: Granger Guildmage deals 1 damage to target creature or player and 1 damage to you.
-id=3389
-name=Granger Guildmage
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
+
 
 [card]
 text=You may play Grave Servitude any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     Enchanted creature gets +3/-1 and is black.
@@ -1190,39 +881,9 @@ power=3
 subtype=Gargoyle
 toughness=4
 [/card]
-[card]
-text=Flying       {1}{U}{U}: Target creature gains flying until end of turn.
-id=3340
-name=Harmattan Efreet
-rarity=U
-type=Creature
-mana={2}{U}{U}
-power=2
-subtype=Efreet
-toughness=2
-[/card]
-[card]
-text=Flying     As Haunting Apparition comes into play, choose an opponent.     Haunting Apparition's power is equal to 1 plus the number of green creature cards in the chosen player's graveyard.
-id=3538
-name=Haunting Apparition
-rarity=U
-type=Creature
-mana={1}{U}{B}
-power=1+*
-subtype=Spirit
-toughness=2
-[/card]
-[card]
-text=Flying, protection from red
-id=3539
-name=Hazerider Drake
-rarity=U
-type=Creature
-mana={2}{W}{U}
-power=2
-subtype=Drake
-toughness=3
-[/card]
+
+
+
 [card]
 text=Choose one - Target player gains 3 life; or prevent the next 3 damage that would be dealt to target creature or player this turn.
 id=3495
@@ -1242,17 +903,7 @@ power=3
 subtype=Viashino Shaman
 toughness=4
 [/card]
-[card]
-text={2}: Igneous Golem gains trample until end of turn.
-id=3253
-name=Igneous Golem
-rarity=U
-type=Artifact Creature
-mana={5}
-power=3
-subtype=Golem
-toughness=4
-[/card]
+
 [card]
 text=Each player may bid life for control of target creature. You start the bidding with a bid of 0. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and gains control of the creature. (This effect doesn't end at end of turn.)
 id=3454
@@ -1288,49 +939,7 @@ rarity=R
 type=Sorcery
 mana={B}{B}{B}
 [/card]
-[card]
-text=Trample
-id=3497
-name=Iron Tusk Elephant
-rarity=U
-type=Creature
-mana={4}{W}
-power=3
-subtype=Elephant
-toughness=3
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=3582
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=3584
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=3583
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-id=3581
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
+
 [card]
 text=Choose one - All creatures get -2/-0 until end of turn; or tap target creature; or prevent the next 1 damage that would be dealt to target creature or player this turn.
 id=3498
@@ -1363,18 +972,12 @@ rarity=C
 text=You may tap or untap target artifact, creature, or land.     Draw a card at the beginning of the next turn's upkeep.
 id=3341
 name=Jolt
-rarity=C
+target=artifact,creature,land
 type=Instant
 mana={2}{U}
+rarity=C
 [/card]
-[card]
-text=Kaervek's Hex deals 1 damage to each nonblack creature and an additional 1 damage to each green creature.
-id=3299
-name=Kaervek's Hex
-rarity=U
-type=Sorcery
-mana={3}{B}
-[/card]
+
 [card]
 text=Destroy target creature with converted mana cost X. If that creature is put into a graveyard this way, Kaervek's Purge deals damage equal to the creature's power to the creature's controller.
 id=3541
@@ -1391,17 +994,7 @@ rarity=C
 type=Sorcery
 mana={X}{R}
 [/card]
-[card]
-text=Protection from blue
-id=3394
-name=Karoo Meerkat
-rarity=U
-type=Creature
-mana={1}{G}
-power=2
-subtype=Mongoose
-toughness=1
-[/card]
+
 [card]
 text=Whenever Kukemssa Pirates attacks and isn't blocked, you may gain control of target artifact defending player controls. If you do, Kukemssa Pirates deals no combat damage this turn.
 id=3342
@@ -1435,17 +1028,7 @@ power=3
 subtype=Golem
 toughness=5
 [/card]
-[card]
-text=Flying       {T}: Leering Gargoyle gets -2/+2 and loses flying until end of turn.
-id=3542
-name=Leering Gargoyle
-rarity=R
-type=Creature
-mana={1}{W}{U}
-power=2
-subtype=Gargoyle
-toughness=2
-[/card]
+
 [card]
 text=You may play Lightning Reflexes any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     Enchanted creature gets +1/+0 and has first strike.
 id=3457
@@ -1463,17 +1046,7 @@ rarity=R
 type=Artifact
 mana={0}
 [/card]
-[card]
-text=Flying     {G}: Regenerate Locust Swarm.     {G}: Untap Locust Swarm. Play this ability only once each turn.
-id=3395
-name=Locust Swarm
-rarity=U
-type=Creature
-mana={3}{G}
-power=1
-subtype=Insect
-toughness=1
-[/card]
+
 [card]
 text=Play Lure of Prey only if an opponent played a creature spell this turn.     You may put a green creature card from your hand into play.
 id=3396
@@ -1490,14 +1063,7 @@ rarity=R
 type=Enchantment
 mana={3}{G}{U}
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.       {1}, {T}: Add one mana of any color to your mana pool.
-id=3256
-name=Mana Prism
-rarity=U
-type=Artifact
-mana={3}
-[/card]
+
 [card]
 text=You gain 5 life.       When a spell or ability an opponent controls causes you to discard Mangara's Blessing from your hand, you gain 2 life, and you return Mangara's Blessing from your graveyard to your hand at end of turn.
 id=3500
@@ -1522,25 +1088,8 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-[card]
-text=Marble Diamond comes into play tapped.       {T}: Add {W} to your mana pool.
-id=3258
-name=Marble Diamond
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text=Maro's power and toughness are each equal to the number of cards in your hand.
-id=3397
-name=Maro
-rarity=R
-type=Creature
-mana={2}{G}{G}
-power=*
-subtype=Elemental
-toughness=*
-[/card]
+
+
 [card]
 text=If target spell has only one target and that target is a creature, change that spell's target to another creature.
 id=3344
@@ -1549,17 +1098,7 @@ rarity=U
 type=Instant
 mana={1}{U}
 [/card]
-[card]
-text=Flying, protection from black
-id=3502
-name=Melesse Spirit
-rarity=U
-type=Creature
-mana={3}{W}{W}
-power=3
-subtype=Angel Spirit
-toughness=3
-[/card]
+
 [card]
 text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
 id=3345
@@ -1648,14 +1187,7 @@ power=4
 subtype=Dragon
 toughness=4
 [/card]
-[card]
-text=Moss Diamond comes into play tapped.       {T}: Add {G} to your mana pool.
-id=3260
-name=Moss Diamond
-rarity=U
-type=Artifact
-mana={2}
-[/card]
+
 
 [card]
 text=Flying       {W}, {T}: Return Mtenda Griffin to its owner's hand and return target Griffin card in your graveyard to your hand. Play this ability only during your upkeep.
@@ -1707,17 +1239,7 @@ rarity=R
 type=Sorcery
 mana={2}{G}{G}
 [/card]
-[card]
-text=At the beginning of your upkeep, Nettletooth Djinn deals 1 damage to you.
-id=3401
-name=Nettletooth Djinn
-rarity=U
-type=Creature
-mana={3}{G}
-power=4
-subtype=Djinn
-toughness=4
-[/card]
+
 [card]
 text=Banding, trample
 #banding not suppoerted
@@ -1731,14 +1253,7 @@ power=2
 toughness=2
 rarity=C
 [/card]
-[card]
-text=Black creatures get +2/+0 until end of turn.
-id=3301
-name=Nocturnal Raid
-rarity=U
-type=Instant
-mana={2}{B}{B}
-[/card]
+
 [card]
 text=As Null Chamber comes into play, you and an opponent each name a card other than a basic land card.     The named cards can't be played.
 id=3506
@@ -1755,17 +1270,7 @@ rarity=U
 type=Sorcery
 mana={1}{B}
 [/card]
-[card]
-text={3}: Patagia Golem gains flying until end of turn.
-id=3261
-name=Patagia Golem
-rarity=U
-type=Artifact Creature
-mana={4}
-power=2
-subtype=Golem
-toughness=3
-[/card]
+
 [card]
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Paupers' Cage deals 2 damage to him or her.
 id=3262
@@ -1774,17 +1279,7 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-[card]
-text=Flying     {1}{W}: Pearl Dragon gets +0/+1 until end of turn.
-id=3508
-name=Pearl Dragon
-rarity=R
-type=Creature
-mana={4}{W}{W}
-power=4
-subtype=Dragon
-toughness=4
-[/card]
+
 [card]
 text=Trample     When Phyrexian Dreadnought comes into play, sacrifice it unless you sacrifice any number of creatures with total power 12 or greater.
 id=3263
@@ -1812,46 +1307,7 @@ rarity=R
 type=Sorcery
 mana={2}{B}
 [/card]
-[card]
-text={2}, {T}, Sacrifice a creature: Draw a card.
-id=3264
-name=Phyrexian Vault
-rarity=U
-type=Artifact
-mana={3}
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=3585
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=3586
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=3587
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-id=3588
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
+
 [card]
 text=Exchange control of target land you control and target land an opponent controls. (This effect doesn't end at end of turn.)
 id=3352
@@ -1935,17 +1391,7 @@ power=2
 subtype=Cat Warrior
 toughness=3
 [/card]
-[card]
-text={R}: Pyric Salamander gets +1/+0 until end of turn. Sacrifice Pyric Salamander at end of turn.
-id=3458
-name=Pyric Salamander
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Salamander
-toughness=1
-[/card]
+
 [card]
 text=As Quirion Elves comes into play, choose a color.     {T}: Add {G} to your mana pool.     {T}: Add one mana of the chosen color to your mana pool.
 id=3403
@@ -1957,17 +1403,7 @@ power=1
 subtype=Elf Druid
 toughness=1
 [/card]
-[card]
-text=Radiant Essence gets +1/+2 as long as an opponent controls a black permanent.
-id=3547
-name=Radiant Essence
-rarity=U
-type=Creature
-mana={1}{G}{W}
-power=2
-subtype=Spirit
-toughness=3
-[/card]
+
 [card]
 text={2}: Raging Spirit becomes colorless until end of turn.
 id=3459
@@ -1979,14 +1415,7 @@ power=3
 subtype=Spirit
 toughness=3
 [/card]
-[card]
-text=Search your library for a basic land card and put that card into play tapped. Then shuffle your library.
-id=3404
-name=Rampant Growth
-rarity=C
-type=Sorcery
-mana={1}{G}
-[/card]
+
 [card]
 text={T}: Destroy target attacking or blocking Dragon. It can't be regenerated. You gain life equal to its power.
 id=3510
@@ -2052,15 +1481,7 @@ rarity=R
 type=Instant
 mana={3}{R}{W}
 [/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-id=3405
-name=Regeneration
-rarity=C
-type=Enchantment
-mana={1}{G}
-subtype=Aura
-[/card]
+
 [card]
 text=Choose one - Destroy target Plains and target white creature; or destroy target Island and target blue creature.
 id=3461
@@ -2069,14 +1490,7 @@ rarity=U
 type=Sorcery
 mana={2}{R}{R}
 [/card]
-[card]
-text=Destroy all green creatures or all white creatures. They can't be regenerated. You lose 2 life for each creature put into a graveyard this way.
-id=3306
-name=Reign of Terror
-rarity=U
-type=Sorcery
-mana={3}{B}{B}
-[/card]
+
 [card]
 text=Whenever an opponent plays a spell that targets you or a creature you control, you may draw a card.
 id=3549
@@ -2085,37 +1499,9 @@ rarity=R
 type=Enchantment
 mana={1}{W}{U}
 [/card]
-[card]
-text={B}: Regenerate Restless Dead.
-id=3307
-name=Restless Dead
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Skeleton
-toughness=1
-[/card]
-[card]
-text=Enchant creature     When Ritual of Steel comes into play, draw a card at the beginning of the next turn's upkeep.     Enchanted creature gets +0/+2.
-id=3511
-name=Ritual of Steel
-rarity=C
-type=Enchantment
-mana={2}{W}
-subtype=Aura
-[/card]
-[card]
-text=Whenever Rock Basilisk blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
-id=3550
-name=Rock Basilisk
-rarity=R
-type=Creature
-mana={4}{R}{G}
-power=4
-subtype=Basilisk
-toughness=5
-[/card]
+
+
+
 
 [card]
 text=As Roots of Life comes into play, choose Islands or Swamps.     Whenever a land of the chosen type an opponent controls becomes tapped, you gain 1 life.
@@ -2166,14 +1552,7 @@ power=6
 subtype=Crocodile
 toughness=5
 [/card]
-[card]
-text=Sandstorm deals 1 damage to each attacking creature.
-id=3408
-name=Sandstorm
-rarity=C
-type=Instant
-mana={G}
-[/card]
+
 [card]
 text=Choose one - Target player draws a card at the beginning of the next turn's upkeep; or target creature an opponent controls phases out; or target creature gains flying until end of turn.
 id=3360
@@ -2201,17 +1580,7 @@ power=2
 subtype=Manticore
 toughness=4
 [/card]
-[card]
-text={T}: Add {1} to your mana pool.     {1}, {T}: Add {U} to your mana pool.
-id=3361
-name=Sea Scryer
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Merfolk Wizard
-toughness=1
-[/card]
+
 [card]
 text=Look at the top X cards of target opponent's library. Remove one of those cards from the game and put the rest back on top of that player's library in any order.
 id=3553
@@ -2239,17 +1608,7 @@ rarity=C
 type=Instant
 mana={G}
 [/card]
-[card]
-text={U}, {T}: Put target creature you control on top of its owner's library.     {R}, {T}: Shadow Guildmage deals 1 damage to target creature or player and 1 damage to you.
-id=3309
-name=Shadow Guildmage
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
+
 [card]
 text=The next time a source of your choice would deal damage to you or a creature you control this turn, prevent that damage. If damage from a black source is prevented this way, you gain that much life.
 id=3513
@@ -2266,17 +1625,7 @@ rarity=R
 type=Instant
 mana={1}{B}
 [/card]
-[card]
-text={W}, {T}: Target creature gains first strike until end of turn.     {B}, {T}: Target creature gets +1/+0 until end of turn.
-id=3362
-name=Shaper Guildmage
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
+
 [card]
 text=Flying     Shauku, Endbringer can't attack if there's another creature in play.     At the beginning of your upkeep, you lose 3 life.     {T}: Remove target creature from the game and put a +1/+1 counter on Shauku.
 id=3311
@@ -2288,17 +1637,7 @@ power=5
 subtype=Vampire
 toughness=5
 [/card]
-[card]
-text={B}{R}, {T}: Shauku's Minion deals 2 damage to target white creature.
-id=3554
-name=Shauku's Minion
-rarity=U
-type=Creature
-mana={1}{B}{R}
-power=2
-subtype=Human Minion
-toughness=2
-[/card]
+
 [card]
 text=As Shimmer comes into play, choose a land type.       All lands of the chosen type have phasing.
 id=3363
@@ -2337,14 +1676,7 @@ power=2
 subtype=Spirit
 toughness=1
 [/card]
-[card]
-text=Sky Diamond comes into play tapped.       {T}: Add {U} to your mana pool.
-id=3267
-name=Sky Diamond
-rarity=U
-type=Artifact
-mana={2}
-[/card]
+
 [card]
 text=You may play Soar any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     Enchanted creature gets +0/+1 and has flying.
 id=3364
@@ -2435,17 +1767,7 @@ rarity=U
 type=Sorcery
 mana={2}{B}
 [/card]
-[card]
-text=Protection from red     {T}: Subterranean Spirit deals 1 damage to each creature without flying.
-id=3466
-name=Subterranean Spirit
-rarity=R
-type=Creature
-mana={3}{R}{R}
-power=3
-subtype=Elemental Spirit
-toughness=3
-[/card]
+
 [card]
 text=Defender (This creature can't attack.)  Flying     Sunweb can't block creatures with power 2 or less.
 id=3517
@@ -2476,38 +1798,7 @@ power=0
 subtype=Human Wizard
 toughness=1
 [/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=3563
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=3562
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=3564
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-id=3565
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
+
 [card]
 text=Flying     {1}{B}{B}, {T}: Target player discards a card unless he or she puts a card from his or her hand on top of his or her library. If that player discards a card this way, Tainted Specter deals 1 damage to each creature and each player. Play this ability only any time you could play a sorcery.
 id=3317
@@ -2519,17 +1810,7 @@ power=2
 subtype=Specter
 toughness=2
 [/card]
-[card]
-text=Haste
-id=3467
-name=Talruum Minotaur
-rarity=C
-type=Creature
-mana={2}{R}{R}
-power=3
-subtype=Minotaur Berserker
-toughness=3
-[/card]
+
 [card]
 text=Phasing, trample     At the beginning of your upkeep, all lands you control phase out.
 id=3366
@@ -2590,22 +1871,8 @@ power=2
 subtype=Human Knight
 toughness=2
 [/card]
-[card]
-text={2}, {T}: Telim'Tor's Darts deals 1 damage to target player.
-id=3269
-name=Telim'Tor's Darts
-rarity=U
-type=Artifact
-mana={2}
-[/card]
-[card]
-text=Remove target permanent you own or control from the game.       Draw a card at the beginning of the next turn's upkeep.
-id=3469
-name=Telim'Tor's Edict
-rarity=R
-type=Instant
-mana={R}
-[/card]
+
+
 [card]
 text=Banding, flying
 #banding not supported
@@ -2660,28 +1927,8 @@ rarity=U
 type=Sorcery
 mana={X}{G}
 [/card]
-[card]
-text=Flying     {3}{G}, Sacrifice Uktabi Faerie: Destroy target artifact.
-id=3416
-name=Uktabi Faerie
-rarity=C
-type=Creature
-mana={1}{G}
-power=1
-subtype=Faerie
-toughness=1
-[/card]
-[card]
-text=Uktabi Wildcats's power and toughness are each equal to the number of Forests you control.     {G}, Sacrifice a Forest: Regenerate Uktabi Wildcats.
-id=3417
-name=Uktabi Wildcats
-rarity=R
-type=Creature
-mana={4}{G}
-power=*
-subtype=Cat
-toughness=*
-[/card]
+
+
 [card]
 text={3}, {T}, Tap an untapped creature you control: Unerring Sling deals damage equal to the tapped creature's power to target attacking or blocking creature with flying.
 id=3270
@@ -2698,36 +1945,9 @@ rarity=R
 type=Enchantment
 mana={1}{U}{B}
 [/card]
-[card]
-text=Forestwalk       {1}{G}{G}: Target creature gains forestwalk until end of turn.
-id=3418
-name=Unseen Walker
-rarity=U
-type=Creature
-mana={1}{G}
-power=1
-subtype=Dryad
-toughness=1
-[/card]
-[card]
-text=Unyaro Bee Sting deals 2 damage to target creature or player.
-id=3419
-name=Unyaro Bee Sting
-rarity=U
-type=Sorcery
-mana={3}{G}
-[/card]
-[card]
-text=Flying       Sacrifice Unyaro Griffin: Counter target red instant or sorcery spell.
-id=3519
-name=Unyaro Griffin
-rarity=U
-type=Creature
-mana={3}{W}
-power=2
-subtype=Griffin
-toughness=2
-[/card]
+
+
+
 [card]
 text={B}, Sacrifice Urborg Panther: Destroy target creature blocking Urborg Panther.     Sacrifice a creature named Feral Shadow, a creature named Breathstealer, and Urborg Panther: Search your library for a card named Spirit of the Night and put that card into play. Then shuffle your library.
 id=3319
@@ -2758,17 +1978,7 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-[card]
-text=
-id=3471
-name=Viashino Warrior
-rarity=C
-type=Creature
-mana={3}{R}
-power=4
-subtype=Viashino Warrior
-toughness=2
-[/card]
+
 [card]
 text=Sacrifice Vigilant Martyr: Regenerate target creature.     {W}{W}, {T}, Sacrifice Vigilant Martyr: Counter target spell that targets an enchantment.
 id=3520
@@ -2780,17 +1990,7 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-[card]
-text={G}, {T}, Sacrifice a Forest: Regenerate target creature.
-id=3420
-name=Village Elder
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Human Druid
-toughness=1
-[/card]
+
 [card]
 text=You gain X plus 3 life.
 id=3557
@@ -2799,17 +1999,7 @@ rarity=U
 type=Instant
 mana={X}{G}{W}
 [/card]
-[card]
-text=Flying, haste
-id=3472
-name=Volcanic Dragon
-rarity=R
-type=Creature
-mana={4}{R}{R}
-power=4
-subtype=Dragon
-toughness=4
-[/card]
+
 [card]
 text=Volcanic Geyser deals X damage to target creature or player.
 id=3473
@@ -2899,39 +2089,9 @@ type=Enchantment
 mana={1}{G}{W}
 subtype=Aura
 [/card]
-[card]
-text=Trample
-id=3423
-name=Wild Elephant
-rarity=C
-type=Creature
-mana={3}{G}
-power=3
-subtype=Elephant
-toughness=3
-[/card]
-[card]
-text=Protection from white     {1}{R}: Wildfire Emissary gets +1/+0 until end of turn.
-id=3474
-name=Wildfire Emissary
-rarity=U
-type=Creature
-mana={3}{R}
-power=2
-subtype=Efreet
-toughness=4
-[/card]
-[card]
-text=Flying, protection from blue
-id=3560
-name=Windreaper Falcon
-rarity=U
-type=Creature
-mana={1}{R}{G}
-power=1
-subtype=Bird
-toughness=1
-[/card]
+
+
+
 [card]
 text=Search your library for a creature card and reveal that card. Shuffle your library, then put the revealed card back on top of it.
 id=3424
@@ -2948,17 +2108,7 @@ rarity=R
 type=Instant
 mana={2}{W}
 [/card]
-[card]
-text=Lifelink (Whenever this creature deals damage, you gain that much life.)
-id=3561
-name=Zebra Unicorn
-rarity=U
-type=Creature
-mana={2}{G}{W}
-power=2
-subtype=Unicorn
-toughness=2
-[/card]
+
 [card]
 text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {1}{W}{W}: Target Knight creature gets +1/+1 until end of turn.
 id=3524 
@@ -3006,15 +2156,4 @@ mana={2}{B}{B}
 power=2
 subtype=Zombie
 toughness=0
-[/card]
-[card]
-text=Flying     Other Griffin creatures get +1/+1.
-id=3526
-name=Zuberi, Golden Feather
-rarity=R
-type=Legendary Creature
-mana={4}{W}
-power=3
-subtype=Griffin
-toughness=3
 [/card]
