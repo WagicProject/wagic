@@ -17,6 +17,16 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
+text=Acidic Soil deals damage to each player equal to the number of lands he or she controls.
+id=5722
+name=Acidic Soil
+auto=foreach(land|myinplay) damage:1 controller
+auto=foreach(land|opponentinplay) damage:1 opponent
+type=Sorcery
+mana={2}{R}
+rarity=U
+[/card]
+[card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
 id=5603
 name=Anaconda

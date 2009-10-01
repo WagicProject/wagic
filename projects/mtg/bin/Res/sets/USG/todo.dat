@@ -28,14 +28,7 @@ power=2
 subtype=Human Wizard
 toughness=2
 [/card]
-[card]
-text=Acidic Soil deals damage to each player equal to the number of lands he or she controls.
-id=5722
-name=Acidic Soil
-rarity=U
-type=Sorcery
-mana={2}{R}
-[/card]
+
 [card]
 text=Echo {1}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5865
@@ -549,9 +542,12 @@ toughness=1
 text=Whenever a creature is put into a graveyard from play, that creature's controller may draw a card.
 id=5604
 name=Fecundity
-rarity=U
+auto=@movedTo(creature|mygraveyard) from(inplay):may draw:1 controller
+auto=@movedTo(creature|opponentgraveyard) from(inplay):may draw:1 opponent
+#not tested
 type=Enchantment
 mana={2}{G}
+rarity=U
 [/card]
 [card]
 text=Enchant land     Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
@@ -601,7 +597,7 @@ mana={1}{U}
 power=0
 subtype=Wall
 toughness=2
-[/card]]
+[/card]
 [card]
 text=Enchant creature     When Fortitude is put into a graveyard from play, return Fortitude to its owner's hand.     Sacrifice a Forest: Regenerate enchanted creature.
 id=9850
