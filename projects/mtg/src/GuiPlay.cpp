@@ -59,6 +59,12 @@ void GuiPlay::VertStack::Enstack(CardView* card)
   y += 8;
 }
 
+void GuiPlay::VertStack::Render(CardView* card, iterator begin, iterator end)
+{
+  RenderSpell(card->card, begin, end, card->x + 5, card->y - 10);
+  card->Render();
+}
+
 inline float GuiPlay::VertStack::nextX() { return x + CARD_WIDTH; }
 
 GuiPlay::BattleField::BattleField(float width) : HorzStack(width), attackers(0), blockers(0), height(0.0), red(0), colorFlow(0) {}
@@ -152,20 +158,25 @@ void GuiPlay::Replace()
 void GuiPlay::Render()
 {
   battleField.Render();
-  for (iterator it = cards.begin(); it != end_spells; ++it)
-    if (!(*it)->card->target)
-      (*it)->Render();
-  for (iterator it = end_spells; it != cards.end(); ++it)
-    if ((*it)->card->isCreature())
+
+  for (iterator it = cards.begin(); it != cards.end(); ++it)
+    if ((*it)->card->isLand())
       {
-	if (game->players[0] == (*it)->card->controller()) selfCreatures.Render(*it, cards.begin(), end_spells);
-	else opponentCreatures.Render(*it, cards.begin(), end_spells);
+	      if (game->players[0] == (*it)->card->controller()) selfLands.Render(*it, cards.begin(), end_spells);
+	      else opponentLands.Render(*it, cards.begin(), end_spells);
       }
-    else if ((*it)->card->isLand())
+    else if ((*it)->card->isCreature())
       {
-	if (game->players[0] == (*it)->card->controller()) selfLands.Render(*it, cards.begin(), end_spells);
-	else opponentLands.Render(*it, cards.begin(), end_spells);
+	      if (game->players[0] == (*it)->card->controller()) selfCreatures.Render(*it, cards.begin(), end_spells);
+	      else opponentCreatures.Render(*it, cards.begin(), end_spells);
       }
+    else{
+      if (!(*it)->card->target) {
+        if (game->players[0] == (*it)->card->controller()) selfSpells.Render(*it, cards.begin(), end_spells);
+        else opponentSpells.Render(*it, cards.begin(), end_spells);
+      }
+    }
+
 }
 void GuiPlay::Update(float dt)
 {
@@ -214,9 +225,13 @@ int GuiPlay::receiveEventPlus(WEvent * e)
       return 1;
     }
   else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
-  {
-    if (Constants::MTG_PHASE_COMBATEND == event->to->id) battleField.colorFlow = -1;
-  }
+    {
+      if (Constants::MTG_PHASE_COMBATEND == event->to->id) battleField.colorFlow = -1;
+    }
+  else if (dynamic_cast<WEventCardChangeType*>(e))
+    {
+      Replace();
+    }
   return 0;
 }
 int GuiPlay::receiveEventMinus(WEvent * e)

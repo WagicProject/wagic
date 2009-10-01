@@ -38,6 +38,7 @@ class GuiPlay : public GuiLayer
     float maxHeight;
   public:
     VertStack(float height = VERTHEIGHT);
+    void Render(CardView*, iterator begin, iterator end);
     void Enstack(CardView*);
     inline float nextX();
   };

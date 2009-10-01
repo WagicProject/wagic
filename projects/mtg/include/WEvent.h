@@ -54,6 +54,14 @@ struct WEventCardUpdate : public WEvent {
   WEventCardUpdate(MTGCardInstance * card);
 };
 
+//Event when a card gains/looses types
+struct WEventCardChangeType : public WEventCardUpdate {
+  int type;
+  bool before;
+  bool after;
+  WEventCardChangeType(MTGCardInstance * card, int type, bool before, bool after);
+};
+
 //Event when a card is tapped/untapped
 struct WEventCardTap : public WEventCardUpdate {
   bool before;

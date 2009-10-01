@@ -217,7 +217,6 @@ void MTGCard::addType(char * _type_text){
 }
 
 void MTGCard::setSubtype( string value){
-
       int id = Subtypes::subtypesList->Add(value);
       addType(id);
 }
@@ -228,6 +227,7 @@ void MTGCard::addType(int id){
 }
 
 
+//TODO Definitely move some of these functions to MTGCardInstance. There is no reason to remove a type from an MTGCard since they represent the Database
 //Removes a type from the types of a given card
 //If removeAll is true, removes all occurences of this type, otherwise only removes the first occurence
 int MTGCard::removeType(string value, int removeAll){

@@ -63,10 +63,18 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int typeAsTarget(){return TARGET_CARD;}
   const string getDisplayName() const;
   MTGCardInstance * target;
-  void addType(int type);
-  bool blocked; //Blocked this turn or not?
+
+
+  //types
+  void addType(char * type_text);
+  virtual void addType(int id);
+  void setType(const char * type_text);
+  void setSubtype( string value);
+  int removeType(string value, int removeAll = 0);
+  int removeType(int value, int removeAll = 0);
 
   //Combat
+    bool blocked; //Blocked this turn or not?
   MTGCardInstance * defenser;
   list<MTGCardInstance *>blockers;
   int attacker;

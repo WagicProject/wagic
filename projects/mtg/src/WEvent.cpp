@@ -16,6 +16,8 @@ WEventPhaseChange::WEventPhaseChange(Phase * from, Phase * to) : WEvent(CHANGE_P
 
 WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after) : WEventCardUpdate(card), before(before), after(after){}
 
+WEventCardChangeType::WEventCardChangeType(MTGCardInstance * card, int type, bool before, bool after) : WEventCardUpdate(card), type(type), before(before), after(after){}
+
 WEventCreatureAttacker::WEventCreatureAttacker(MTGCardInstance * card, Targetable * before, Targetable * after) : WEventCardUpdate(card), before(before), after(after){}
 
 WEventCreatureBlocker::WEventCreatureBlocker(MTGCardInstance * card, MTGCardInstance * from,MTGCardInstance * to) : WEventCardUpdate(card), before(from), after(to){}

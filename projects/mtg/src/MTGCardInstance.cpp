@@ -114,8 +114,36 @@ const string MTGCardInstance::getDisplayName() const {
 }
 
 void MTGCardInstance::addType(int type){
-  types[nb_types] = type;
-  nb_types++;
+  bool before = hasType(type);
+  MTGCard::addType(type);
+  WEvent * e = NEW WEventCardChangeType(this,type,before,true);
+  GameObserver::GetInstance()->receiveEvent(e);
+}
+
+void MTGCardInstance::addType(char * type_text){
+  setSubtype(type_text);
+}
+
+void MTGCardInstance::setType(const char * type_text){
+  setSubtype(type_text);
+}
+
+void MTGCardInstance::setSubtype(string value){
+  int id = Subtypes::subtypesList->Add(value);
+  addType(id);
+}
+int MTGCardInstance::removeType(string value,int removeAll){
+  int id = Subtypes::subtypesList->Add(value);
+  return removeType(id,removeAll);
+}
+
+int MTGCardInstance::removeType(int id, int removeAll){
+  bool before = hasType(id);
+  int result = MTGCard::removeType(id,removeAll);
+  bool after = hasType(id);
+  WEvent * e = NEW WEventCardChangeType(this,id,before,after);
+  GameObserver::GetInstance()->receiveEvent(e);
+  return result;
 }
 
 UntapBlockers * MTGCardInstance::getUntapBlockers(){
