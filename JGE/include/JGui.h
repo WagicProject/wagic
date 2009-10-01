@@ -86,7 +86,7 @@ class JGuiController
   //int mKeyHoldTime;
 
  public:
-  JGuiObject* mObjects[MAX_GUIOBJECT];
+  vector<JGuiObject*> mObjects;
   int mCount;
 
   JGuiController(int id, JGuiListener* listener);
@@ -96,6 +96,7 @@ class JGuiController
   virtual void Update(float dt);
 
   void Add(JGuiObject* ctrl);
+  void RemoveAt(int i);
   void Remove(int id);
   void Remove(JGuiObject* ctrl);
 

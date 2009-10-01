@@ -89,17 +89,12 @@ JGuiController::~JGuiController()
     if (mObjects[i]!=NULL)
       delete mObjects[i];
 
-  //	JGERelease();
 }
 
 
 void JGuiController::Render()
 {
-  //	if (mShadingBg != NULL)
-  //		jge->Gfx_BlendRect(mShadingBg, mShadingColor);
 
-  //	if (mBg != NULL)
-  //		jge->Gfx_DrawImage(mBg, mBgX, mBgY);
 
   for (int i=0;i<mCount;i++)
     if (mObjects[i]!=NULL)
@@ -165,30 +160,28 @@ void JGuiController::Update(float dt)
 
 void JGuiController::Add(JGuiObject* ctrl)
 {
-  if (mCount<MAX_GUIOBJECT)
-    {
-      mObjects[mCount++] = ctrl;
-    }
+  mObjects.push_back(ctrl);
+  mCount++;
 }
 
+void JGuiController::RemoveAt(int i){
+    if (!mObjects[i]) return;
+    mObjects.erase(mObjects.begin()+i);
+	  delete mObjects[i];
+    mCount--;
+	  if (mCurr == mCount)
+	    mCurr = 0;
+	  return;
+}
 
 void JGuiController::Remove(int id)
 {
   for (int i=0;i<mCount;i++)
     {
-      if (mObjects[i] != NULL && mObjects[i]->GetId()==id)
-	{
-	  delete mObjects[i];
-	  for (int j=i;j<mCount-1;j++)
-	    {
-	      mObjects[j] = mObjects[j+1];
-	    }
-	  mObjects[mCount-1] = NULL;
-	  mCount--;
-	  if (mCurr == mCount)
-	    mCurr = 0;
-	  return;
-	}
+      if (mObjects[i] != NULL && mObjects[i]->GetId()==id) {
+        RemoveAt(i);
+        return;
+      }
     }
 }
 
@@ -197,19 +190,10 @@ void JGuiController::Remove(JGuiObject* ctrl)
 {
   for (int i=0;i<mCount;i++)
     {
-      if (mObjects[i] != NULL && mObjects[i]==ctrl)
-	{
-	  delete mObjects[i];
-	  for (int j=i;j<mCount-1;j++)
-	    {
-	      mObjects[j] = mObjects[j+1];
+      if (mObjects[i] != NULL && mObjects[i]==ctrl) {
+	      RemoveAt(i);
+        return;
 	    }
-	  mObjects[mCount-1] = NULL;
-	  mCount--;
-	  if (mCurr == mCount)
-	    mCurr = 0;
-	  return;
-	}
     }
 }
 
