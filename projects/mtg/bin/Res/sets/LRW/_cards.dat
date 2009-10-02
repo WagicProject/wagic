@@ -43,8 +43,8 @@ subtype=Aura
 [/card]
 [card]
 text=Whenever a Forest enters the battlefield under your control, Battlewand Oak gets +2/+2 until end of turn.     Whenever you cast a Treefolk spell, Battlewand Oak gets +2/+2 until end of turn.
-auto=@movedTo(forest|myBattlefield):2/2
-auto=@movedTo(treefolk|mystack):2/2
+auto=@movedTo(forest|myBattlefield):2/2 ueot
+auto=@movedTo(treefolk|mystack):2/2 ueot
 id=141857
 name=Battlewand Oak
 rarity=C

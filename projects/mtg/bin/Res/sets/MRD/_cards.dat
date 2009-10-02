@@ -1311,7 +1311,7 @@ toughness=2
 [/card]
 [card]
 text=Whenever an artifact enters the battlefield, Vermiculos gets +4/+4 until end of turn.
-auto=@movedTo(artifact|myBattlefield):4/4
+auto=@movedTo(artifact|myBattlefield):4/4 ueot
 id=47936
 name=Vermiculos
 rarity=R

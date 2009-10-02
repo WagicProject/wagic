@@ -435,7 +435,7 @@ subtype=Spirit
 power=2
 toughness=2
 text=Whenever you play a Spirit or Arcane spell, Kami of the Hunt gets +1/+1 until end of turn.
-auto=@movedTo(arcane,spirit|mystack):1/1
+auto=@movedTo(arcane,spirit|mystack):1/1 ueot
 rarity=C
 [/card]
 [card]
@@ -484,7 +484,8 @@ subtype=Spirit
 abilities=legendary
 power=4
 toughness=4
-auto=@movedTo(arcane,spirit|mystack):lord(creature|mybattlefield) 1/1 other  && lord(creature|mybattlefield) trample other 
+auto=@movedTo(arcane,spirit|mystack):lord(creature|mybattlefield) 1/1 other ueot
+auto=@movedTo(arcane,spirit|mystack):lord(creature|mybattlefield) trample other ueot
 rarity=R
 [/card]
 [card]
@@ -661,7 +662,7 @@ power=3
 toughness=4
 text=Reach (This creature can block creatures with flying.) Whenever you play a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
 abilities=reach
-auto=@movedTo(arcane,spirit|mystack):forestwalk
+auto=@movedTo(arcane,spirit|mystack):forestwalk ueot
 rarity=U
 [/card]
 [card]

@@ -385,7 +385,7 @@ toughness=2
 [card]
 text=Defender, flying. Whenever you play a white spell, Loyal Gyrfalcon loses defender until end of turn.
 abilities=defender,flying
-auto=@movedTo(*[white]|mystack):-defender
+auto=@movedTo(*[white]|mystack):-defender ueot
 id=151059
 name=Loyal Gyrfalcon
 rarity=U

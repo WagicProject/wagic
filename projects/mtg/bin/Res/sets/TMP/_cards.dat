@@ -996,7 +996,7 @@ toughness=2
 [card]
 text=Mogg Conscripts can't attack unless you've played a creature spell this turn.
 abilities=cantattack
-auto=@movedTo(creature|mystack):-cantattack
+auto=@movedTo(creature|mystack):-cantattack ueot
 id=4831
 name=Mogg Conscripts
 rarity=C

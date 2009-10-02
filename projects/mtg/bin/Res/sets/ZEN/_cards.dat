@@ -1,5 +1,5 @@
 [card]
-text=Kicker {3} (You may pay an additional {3} as you cast this spell.) AETher Figment is unblockable. If AETher Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) AEther Figment is unblockable. If AEther Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
 id=170993
 name=AEther Figment
 mana={1}{U}
@@ -39,7 +39,7 @@ rarity=U
 mana={4}{G}{G}
 type=Creature
 subtype=Beast
-auto=@movedTo(land|myBattlefield):4/4 && trample
+auto=@movedTo(land|myBattlefield):4/4 ueot && trample ueot
 power=4
 toughness=4
 [/card]
@@ -335,7 +335,7 @@ rarity=U
 mana={3}{R}{R}
 type=Creature
 subtype=Elemental Beast
-auto=@movedTo(land|myBattlefield):flying
+auto=@movedTo(land|myBattlefield):flying ueot
 power=4
 toughness=4
 [/card]
@@ -433,7 +433,7 @@ rarity=C
 mana={3}{B}
 type=Creature
 subtype=Crocodile
-auto=@movedTo(land|myBattlefield):2/2
+auto=@movedTo(land|myBattlefield):2/2 ueot
 power=3
 toughness=1
 abilities=cantblock
@@ -471,7 +471,7 @@ rarity=C
 mana={2}
 type=Artifact Creature
 subtype=Construct
-auto=@movedTo(land|myBattlefield):1/1
+auto=@movedTo(land|myBattlefield):1/1 ueot
 power=1
 toughness=1
 [/card]
@@ -1065,7 +1065,7 @@ rarity=C
 mana={1}{R}
 type=Creature
 subtype=Insect
-auto=@movedTo(land|myBattlefield):2/2
+auto=@movedTo(land|myBattlefield):2/2 ueot
 power=1
 toughness=1
 abilities=first strike
@@ -1235,7 +1235,7 @@ rarity=C
 mana={W}
 type=Creature
 subtype=Cat
-auto=@movedTo(land|myBattlefield):2/2
+auto=@movedTo(land|myBattlefield):2/2 ueot
 power=0
 toughness=1
 [/card]
@@ -1268,7 +1268,7 @@ rarity=C
 mana={1}{B}
 type=Creature
 subtype=Surrakar
-auto=@movedTo(land|myBattlefield):intimidate
+auto=@movedTo(land|myBattlefield):intimidate ueot
 power=2
 toughness=1
 [/card]
@@ -1365,7 +1365,7 @@ rarity=C
 mana={4}{G}
 type=Creature
 subtype=Beast
-auto=@movedTo(land|myBattlefield):2/2
+auto=@movedTo(land|myBattlefield):2/2 ueot
 power=4
 toughness=4
 [/card]
@@ -1495,7 +1495,7 @@ rarity=C
 mana={3}{U}
 type=Creature
 subtype=Fish
-auto=@movedTo(land|myBattlefield):2/2
+auto=@movedTo(land|myBattlefield):2/2 ueot
 power=2
 toughness=2
 abilities=flying
