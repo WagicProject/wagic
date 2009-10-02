@@ -46,7 +46,7 @@ abilities=flying
 [card]
 text=Creatures you control get +0/+1.   Sacrifice Angelic Shield: Return target creature to its owner's hand.
 auto=lord(creature|myBattlefield) 0/1
-auto={s}:moveTo(ownerhand) target(creature)
+auto={S}:moveTo(ownerhand) target(creature)
 id=23177
 name=Angelic Shield
 rarity=U
@@ -162,6 +162,20 @@ power=2
 toughness=4
 [/card]
 [card]
+text=Kicker {2}{W} (You may pay an additional {2}{W} as you play this spell.)  If the kicker cost was paid, Benalish Lancer comes into play with two +1/+1 counters on it and with first strike.
+id=22932
+name=Benalish Lancer
+rarity=C
+mana={2}{W}
+kicker={2}{W}
+auto=kicker counter(1/1,2)
+auto=kicker first strike
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
 text={W},{T}: Tap target creature.
 id=22937
 name=Benalish Trapper
@@ -205,17 +219,30 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Kicker {2} (You may pay an additional {2} as you play this spell.)    Breath of Darigaaz deals 1 damage to each creature without flying and each player. If the kicker cost was paid, Breath of Darigaaz deals 4 damage to each creature without flying and each player instead.
+id=23090
+name=Breath of Darigaaz
+rarity=U
+mana={1}{R}
+kicker={2}
+auto=damage:1 all(creature[-flying])
+auto=damage:1 all(player)
+auto=kicker damage:3 all(creature[-flying])
+auto=kicker damage:3 all(player)
+type=Sorcery
+[/card]
+[card]
 text=Kicker {2} (You may pay an additional {2} as you play this spell.)   Canopy Surge deals 1 damage to each creature with flying and each player. If the kicker cost was paid, Canopy Surge deals 4 damage to each creature with flying and each player instead.
 id=23134
 name=Canopy Surge
 rarity=U
-type=Sorcery
 mana={1}{G}
 kicker={2}
 auto=damage:1 all(creature[flying])
 auto=damage:1 all(player)
 auto=kicker damage:3 all(creature[flying])
 auto=kicker damage:3 all(player)
+type=Sorcery
 [/card]
 [card]
 text={1}{W}, {T}, Sacrifice Capashen Unicorn: Destroy target artifact or enchantment.
@@ -335,6 +362,17 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Enchant creature   {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
+id=23074
+auto={R}:1/0
+auto={R}:moveTo(ownerhand)
+name=Crown of Flames
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Protection from black   Crusading Knight gets +1/+1 for each Swamp your opponents control.
 id=22963
 auto=foreach(swamp|opponentBattlefield) 1/1
@@ -417,6 +455,20 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Kicker {3}{B} (You may pay an additional {3}{B} as you play this spell.)  If the kicker cost was paid, Duskwalker comes into play with two +1/+1 counters on it and with fear.
+id=23019
+name=Duskwalker
+rarity=C
+mana={B}
+kicker={3}{B}
+auto=kicker counter(1/1,2)
+auto=kicker fear
+type=Creature
+subtype=Human Minion
+power=1
+toughness=1
+[/card]
+[card]
 text=Elfhame Palace enters the battlefield tapped.   {T}: Add {G} or {W} to your mana pool.
 auto=tap
 auto={T}:Add{G}
@@ -483,12 +535,26 @@ text=Kicker {5} (You may pay an additional {5} as you play this spell.)   Target
 id=23120
 name=Explosive Growth
 target=creature
-type=Instant
+auto=2/2
 rarity=C
 mana={G}
 kicker={5}
-auto=2/2
-auto=3/3
+auto=kicker 3/3
+type=Instant
+[/card]
+[card]
+text=Kicker {3}{U} (You may pay an additional {3}{U} as you play this spell.)  If the kicker cost was paid, Faerie Squadron enters the battlefield with two +1/+1 counters on it and with flying.
+id=22975
+name=Faerie Squadron
+rarity=C
+mana={U}
+kicker={3}{U}
+auto=kicker counter(1/1,2)
+auto=kicker flying
+type=Creature
+subtype=Faerie
+power=1
+toughness=1
 [/card]
 [card]
 text=Creatures you control have haste.   Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
@@ -619,6 +685,16 @@ type=Creature
 subtype=Zombie Wizard
 power=2
 toughness=1
+[/card]
+[card]
+text=Target player gains 7 life.
+id=23183
+target=player
+auto=life:7
+name=Heroes' Reunion
+rarity=U
+mana={G}{W}
+type=Instant
 [/card]
 [card]
 text={B}: Hooded Kavu gains fear until end of turn.

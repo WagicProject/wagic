@@ -133,19 +133,6 @@ subtype=Human Wizard
 toughness=4
 [/card]
 [card]
-text=Kicker {2}{W} (You may pay an additional {2}{W} as you play this spell.)  If the kicker cost was paid, Benalish Lancer comes into play with two +1/+1 counters on it and with first strike.
-id=22932
-name=Benalish Lancer
-rarity=C
-type=Creature
-mana={2}{W}
-kicker={2}{W}
-auto=kicker counter(1/1,2) && first strike
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Each player separates all lands he or she controls into two piles. For each player, an opponent chooses a pile. Destroy all lands in the chosen piles. Tap all lands in the other piles.
 id=23099
 name=Bend or Break
@@ -194,7 +181,6 @@ power=2
 subtype=Mongoose
 toughness=1
 [/card]
-
 [card]
 text=You may play Breaking Wave any time you could play an instant if you pay {2} more to play it.       Simultaneously untap all tapped creatures and tap all untapped creatures.
 id=23012
@@ -202,14 +188,6 @@ name=Breaking Wave
 rarity=R
 type=Sorcery
 mana={2}{U}{U}
-[/card]
-[card]
-text=Kicker {2} (You may pay an additional {2} as you play this spell.)    Breath of Darigaaz deals 1 damage to each creature without flying and each player. If the kicker cost was paid, Breath of Darigaaz deals 4 damage to each creature without flying and each player instead.
-id=23090
-name=Breath of Darigaaz
-rarity=U
-type=Sorcery
-mana={1}{R}
 [/card]
 [card]
 text=If a source would deal 3 damage or less to Callous Giant, prevent that damage.
@@ -222,8 +200,6 @@ power=4
 subtype=Giant
 toughness=4
 [/card]
-
-
 [card]
 text=Play Cauldron Dance only during combat.     Return target creature card from your graveyard to play. That creature gains haste. Return it to your hand at end of turn.      You may put a creature card from your hand into play. That creature gains haste. Its controller sacrifices it at end of turn.
 id=23173
@@ -240,7 +216,6 @@ rarity=U
 type=Instant
 mana={1}{R}
 [/card]
-
 [card]
 text={B}: Cinder Shade gets +1/+1 until end of turn.     {R}, Sacrifice Cinder Shade: Cinder Shade deals damage equal to its power to target creature.
 id=23172
@@ -261,14 +236,6 @@ type=Sorcery
 mana={3}{W}{U}{B}{R}{G}
 [/card]
 [card]
-text=Domain - At the beginning of each player's upkeep, that player gains 1 life for each basic land type among lands he or she controls. Then Collapsing Borders deals 3 damage to him or her.
-id=23089
-name=Collapsing Borders
-rarity=R
-type=Enchantment
-mana={3}{R}
-[/card]
-[card]
 text=Domain - Creatures can't attack you unless their controller pays {X} for each creature he or she controls that's attacking you, where X is the number of basic land types among lands you control.
 id=23001
 name=Collective Restraint
@@ -276,7 +243,6 @@ rarity=R
 type=Enchantment
 mana={3}{U}
 [/card]
-
 [card]
 text=Flying     Whenever Crosis, the Purger deals combat damage to a player, you may pay {2}{B}. If you do, choose a color. That player reveals his or her hand and discards all cards of that color.
 id=23207
@@ -287,15 +253,6 @@ mana={3}{U}{B}{R}
 power=6
 subtype=Dragon
 toughness=6
-[/card]
-[card]
-text=Enchant creature     {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
-id=23074
-name=Crown of Flames
-rarity=C
-type=Enchantment
-mana={R}
-subtype=Aura
 [/card]
 [card]
 text=Flying, protection from white. When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
@@ -331,7 +288,6 @@ power=6
 subtype=Dragon
 toughness=6
 [/card]
-
 [card]
 text=Separate all creature cards in your graveyard into two piles. Remove the pile of an opponent's choice from the game and return the other to play.
 id=22956
@@ -367,7 +323,6 @@ power=9
 subtype=Horror
 toughness=9
 [/card]
-
 [card]
 text=Counter target instant or sorcery spell unless its controller pays {1}.       Draw a card.
 id=23000
@@ -411,7 +366,6 @@ power=1
 subtype=Bird
 toughness=1
 [/card]
-
 [card]
 text=Flying     Whenever Dromar, the Banisher deals combat damage to a player, you may pay {2}{U}. If you do, choose a color. Return all creatures of that color to their owners' hands.
 id=23206
@@ -432,19 +386,6 @@ type=Enchantment
 mana={1}{G}{W}
 [/card]
 [card]
-text=Kicker {3}{B} (You may pay an additional {3}{B} as you play this spell.)  If the kicker cost was paid, Duskwalker comes into play with two +1/+1 counters on it and with fear.
-id=23019
-name=Duskwalker
-rarity=C
-type=Creature
-mana={B}
-kicker={3}{B}
-auto=kicker counter(1/1,2) && fear
-power=1
-subtype=Human Minion
-toughness=1
-[/card]
-[card]
 text=At the beginning of your upkeep, you may search your library for a basic land card, reveal that card, and put it into your hand. If you do, you skip your draw step this turn and shuffle your library.
 id=23142
 name=Elfhame Sanctuary
@@ -452,7 +393,6 @@ rarity=U
 type=Enchantment
 mana={1}{G}
 [/card]
-
 [card]
 text=Enchant permanent     If enchanted permanent is red or green, it has "At the beginning of your upkeep, sacrifice this permanent unless you pay its mana cost."
 id=22997
@@ -462,8 +402,6 @@ type=Enchantment
 mana={U}
 subtype=Aura
 [/card]
-
-
 [card]
 text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
 id=22998
@@ -471,17 +409,6 @@ name=Fact or Fiction
 rarity=U
 type=Instant
 mana={3}{U}
-[/card]
-[card]
-text=Kicker {3}{U} (You may pay an additional {3}{U} as you play this spell.)  If the kicker cost was paid, Faerie Squadron comes into play with two +1/+1 counters on it and with flying.
-id=22975
-name=Faerie Squadron
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Faerie
-toughness=1
 [/card]
 [card]
 text=Enchant land     Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
@@ -572,15 +499,6 @@ name=Harsh Judgment
 rarity=R
 type=Enchantment
 mana={2}{W}{W}
-[/card]
-
-[card]
-text=Target player gains 7 life.
-id=23183
-name=Heroes' Reunion
-rarity=U
-type=Instant
-mana={G}{W}
 [/card]
 [card]
 text=Prevent all combat damage that would be dealt this turn.
