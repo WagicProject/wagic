@@ -10,7 +10,7 @@ mana={W}{U}{U}
 type=Instant
 [/card]
 [card]
-text=Target creature gets +1/+1 until end of turn.     Draw a card.
+text=Target creature gets +1/+1 until end of turn.   Draw a card.
 target=creature
 auto=1/1
 auto=draw:1
@@ -21,17 +21,17 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-text=Ancient Spring comes into play tapped.     {T}: Add {U} to your mana pool.    {T}, Sacrifice Ancient Spring: Add {W}{B} to your mana pool. 
+text=Ancient Spring enters the battlefield tapped.   {T}: Add {U} to your mana pool.   {T}, Sacrifice Ancient Spring: Add {W}{B} to your mana pool. 
 auto=tap
 auto={T}:Add{U}
-auto={T}{s}:Add{W}{B}
+auto={T}{S}:Add{W}{B}
 id=23236
 name=Ancient Spring
 rarity=C
 type=Land
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy comes into play, you gain 3 life.
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Angel of Mercy enters the battlefield, you gain 3 life.
 id=22952
 name=Angel of Mercy
 rarity=U
@@ -44,8 +44,8 @@ toughness=3
 abilities=flying
 [/card]
 [card]
-text=Creatures you control get +0/+1.     Sacrifice Angelic Shield: Return target creature to its owner's hand.
-auto=lord(creature|myinplay) 0/1
+text=Creatures you control get +0/+1.   Sacrifice Angelic Shield: Return target creature to its owner's hand.
+auto=lord(creature|myBattlefield) 0/1
 auto={s}:moveTo(ownerhand) target(creature)
 id=23177
 name=Angelic Shield
@@ -54,7 +54,7 @@ mana={W}{U}
 type=Enchantment
 [/card]
 [card]
-text=Destroy target nonblack creature. It can't be regenerated.      Draw a card.
+text=Destroy target nonblack creature. It can't be regenerated.   Draw a card.
 target=creature[-black]
 auto=bury
 auto=draw:1
@@ -65,34 +65,34 @@ mana={3}{B}{B}
 type=Instant
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.    {T}, Sacrifice Archaeological Dig: Add one mana of any color to your mana pool. 
+text={T}: Add {1} to your mana pool.   {T}, Sacrifice Archaeological Dig: Add one mana of any color to your mana pool. 
 auto={T}:Add{1}
-auto={T}{s}:Add{W}
-auto={T}{s}:Add{U}
-auto={T}{s}:Add{B}
-auto={T}{s}:Add{R}
-auto={T}{s}:Add{G}
+auto={T}{S}:Add{W}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{G}
 id=23245
 name=Archaeological Dig
 rarity=U
 type=Land
 [/card]
 [card]
-text=Kicker {2} (You may pay an additional {2} as you play this spell.)  Vigilance     If the kicker cost was paid, Ardent Soldier comes into play with a +1/+1 counter on it.
+text=Kicker {2} (You may pay an additional {2} as you play this spell.)  Vigilance   If the kicker cost was paid, Ardent Soldier enters the battlefield with a +1/+1 counter on it.
 id=22931
 name=Ardent Soldier
 rarity=C
 type=Creature
 mana={1}{W}
 kicker={2}
-auto=Vigilance
+auto=vigilance
 auto=kicker counter(1/1,1)
 power=1
 subtype=Human Soldier
 toughness=2
 [/card]
 [card]
-text=Enchant creature      Enchanted creature gets +2/+2 and has trample.     Whenever enchanted creature deals damage, you gain that much life.
+text=Enchant creature   Enchanted creature gets +2/+2 and has trample.   Whenever enchanted creature deals damage, you gain that much life.
 target=creature
 auto=2/2
 auto=trample
@@ -105,24 +105,24 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text={1}{W}{W}: Target creature you control gains protection from the color of your choice until end of turn.    {1}{U}{U}: Armored Guardian gains shroud until end of turn. (It can't be the target of spells or abilities.)
+text={1}{W}{W}: Target creature you control gains protection from the color of your choice until end of turn.   {1}{U}{U}: Armored Guardian gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=23197
 name=Armored Guardian
 rarity=R
 mana={3}{W}{U}
 type=Creature
 subtype=Cat Soldier
-auto={1}{W}{W}:protection from white target(creature|myinplay)
-auto={1}{W}{W}:protection from blue target(creature|myinplay)
-auto={1}{W}{W}:protection from black target(creature|myinplay)
-auto={1}{W}{W}:protection from red target(creature|myinplay)
-auto={1}{W}{W}:protection from green target(creature|myinplay)
+auto={1}{W}{W}:protection from white target(creature|myBattlefield)
+auto={1}{W}{W}:protection from blue target(creature|myBattlefield)
+auto={1}{W}{W}:protection from black target(creature|myBattlefield)
+auto={1}{W}{W}:protection from red target(creature|myBattlefield)
+auto={1}{W}{W}:protection from green target(creature|myBattlefield)
 auto={1}{U}{U}:shroud
 power=2
 toughness=5
 [/card]
 [card]
-text=Destroy target artifact. It can't be regenerated. Put X 1/1 green Saproling creature tokens into play, where X is its converted mana cost.
+text=Destroy target artifact. It can't be regenerated. Put X 1/1 green Saproling creature tokens onto the battlefield, where X is its converted mana cost.
 id=23195
 target=artifact
 name=Artifact Mutation
@@ -131,7 +131,7 @@ type=Instant
 mana={R}{G}
 [/card]
 [card]
-text=Destroy target enchantment. Put X 1/1 green Saproling creature tokens into play, where X is its converted mana cost.
+text=Destroy target enchantment. Put X 1/1 green Saproling creature tokens onto the battlefield, where X is its converted mana cost.
 id=23184
 target=aura
 alias=23195
@@ -141,7 +141,7 @@ type=Instant
 mana={G}{W}
 [/card]
 [card]
-text=Whenever a creature comes into play under your control, you may destroy target artifact or enchantment.
+text=Whenever a creature enters the battlefield under your control, you may destroy target artifact or enchantment.
 auto=@movedTo(creature|mybattlefield):may destroy target(artifact,enchantment)
 id=23152
 name=Aura Shards
@@ -188,8 +188,8 @@ id=23219
 name=Bloodstone Cameo
 rarity=U
 mana={3}
-auto={T}: Add {B}
-auto={T}: Add {R}
+auto={T}:Add {B}
+auto={T}:Add {R}
 type=Artifact
 [/card]
 [card]
@@ -200,12 +200,12 @@ rarity=C
 mana={1}{B}
 type=Creature
 subtype=Human Wizard
-auto={1}: Add {B}
+auto={1}:Add {B}
 power=1
 toughness=1
 [/card]
 [card]
-text=Kicker {2} (You may pay an additional {2} as you play this spell.)    Canopy Surge deals 1 damage to each creature with flying and each player. If the kicker cost was paid, Canopy Surge deals 4 damage to each creature with flying and each player instead.
+text=Kicker {2} (You may pay an additional {2} as you play this spell.)   Canopy Surge deals 1 damage to each creature with flying and each player. If the kicker cost was paid, Canopy Surge deals 4 damage to each creature with flying and each player instead.
 id=23134
 name=Canopy Surge
 rarity=U
@@ -225,25 +225,25 @@ rarity=C
 mana={1}{W}
 type=Creature
 subtype=Unicorn
-auto={1}{W}{T}{s}:Destroy target(enchantment,artifact)
+auto={1}{W}{T}{S}:Destroy target(enchantment,artifact)
 power=1
 toughness=2
 [/card]
 [card]
 text={T}: Search your library for a legendary card, reveal that card, and put it into your hand. Then shuffle your library.
-abilities=legendary
 auto={T}:moveTo(myHand) target(*[legendary]|myLibrary)
 id=25976
 name=Captain Sisay
 rarity=R
 type=Creature
+subtype=Human Soldier
 mana={2}{G}{W}
 power=2
-subtype=Human Soldier
 toughness=2
+abilities=legendary
 [/card]
 [card]
-text=Vigilance     {G}: Regenerate Charging Troll.
+text=Vigilance   {G}: Regenerate Charging Troll.
 id=23162
 name=Charging Troll
 rarity=U
@@ -269,7 +269,7 @@ type=Artifact
 mana={1}
 [/card]
 [card]
-text=Coastal Tower comes into play tapped.     {T}: Add {W} or {U} to your mana pool.
+text=Coastal Tower enters the battlefield tapped.   {T}: Add {W} or {U} to your mana pool.
 auto=tap
 auto={T}:Add{W}
 auto={T}:Add{U}
@@ -310,7 +310,7 @@ type=Instant
 mana={B}
 [/card]
 [card]
-text=Protection from red      {W}: Target creature gains protection from red until end of turn.
+text=Protection from red   {W}: Target creature gains protection from red until end of turn.
 id=22934
 name=Crimson Acolyte
 rarity=C
@@ -335,9 +335,9 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Protection from black       Crusading Knight gets +1/+1 for each Swamp your opponents control.
+text=Protection from black   Crusading Knight gets +1/+1 for each Swamp your opponents control.
 id=22963
-auto=foreach(swamp|opponentinplay) 1/1
+auto=foreach(swamp|opponentBattlefield) 1/1
 name=Crusading Knight
 rarity=R
 mana={2}{W}{W}
@@ -361,7 +361,7 @@ subtype=Aura
 [/card]
 [card]
 text={1},Sacrifice Darigaaz's Attendant: Add {B}{R}{G} to your mana pool.
-auto={1}{s}:Add {B}{R}{G}
+auto={1}{S}:Add {B}{R}{G}
 id=25838
 name=Darigaaz's Attendant
 rarity=U
@@ -374,13 +374,13 @@ toughness=3
 [card]
 text=Kicker {2}{U} (You may pay an additional {2}{U} as you play this spell.)    Destroy target artifact or enchantment.       If the kicker cost was paid, draw two cards.
 id=22946
+rarity=C
 mana={2}{W}
 kicker={2}{U}
 name=Dismantling Blow
 target=artifact,enchantment
 auto=destroy
 auto=kicker draw:2 controller
-rarity=C
 type=Instant
 [/card]
 [card]
@@ -389,24 +389,24 @@ id=23218
 name=Drake-Skull Cameo
 rarity=U
 mana={3}
-auto={T}: Add {U}
-auto={T}: Add {B}
+auto={T}:Add {U}
+auto={T}:Add {B}
 type=Artifact
 [/card]
 [card]
-text=Sacrifice a creature or land.       Draw a card.
+text=Sacrifice a creature or land.   Draw a card.
 target=creature,land|mybattlefield
 auto=bury
 auto=draw:1
 id=24124
 name=Dredge
 rarity=U
-type=Instant
 mana={B}
+type=Instant
 [/card]
 [card]
 text={1},Sacrifice Dromar's Attendant: Add {W}{U}{B} to your mana pool.
-auto={1}{s}:Add {W}{U}{B}
+auto={1}{S}:Add {W}{U}{B}
 id=25836
 name=Dromar's Attendant
 rarity=U
@@ -417,7 +417,7 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Elfhame Palace comes into play tapped.     {T}: Add {G} or {W} to your mana pool.
+text=Elfhame Palace enters the battlefield tapped.   {T}: Add {G} or {W} to your mana pool.
 auto=tap
 auto={T}:Add{G}
 auto={T}:Add{W}
@@ -433,10 +433,10 @@ name=Elvish Champion
 auto=lord(elf) 1/1 other
 auto=lord(elf) forestwalk other
 rarity=R
-type=Creature
 mana={1}{G}{G}
-power=2
+type=Creature
 subtype=Elf
+power=2
 toughness=2
 [/card]
 [card]
@@ -445,26 +445,26 @@ auto={U}{U}{T}:moveTo(myBattlefield) target(*[legendary])
 id=23007
 name=Empress Galina
 rarity=R
-type=Creature
-abilities=Legendary 
 mana={3}{U}{U}
-power=1
+type=Creature
 subtype=Merfolk
+power=1
 toughness=3
+abilities=legendary 
 [/card]
 [card]
-text=Counter target creature spell.       Draw a card.
+text=Counter target creature spell.   Draw a card.
 target=creature|stack
 auto=fizzle
 auto=draw:1
 id=22986
 name=Exclude
 rarity=C
-type=Instant
 mana={2}{U}
+type=Instant
 [/card]
 [card]
-text=Enchant creature     Domain - Enchanted creature gets -1/-1 for each basic land type among lands you control.
+text=Enchant creature   Domain - Enchanted creature gets -1/-1 for each basic land type among lands you control.
 target=creature
 auto=aslongas(forest|mybattlefield) -1/-1
 auto=aslongas(mountain|mybattlefield) -1/-1
@@ -474,25 +474,25 @@ auto=aslongas(island|mybattlefield) -1/-1
 id=23032
 name=Exotic Curse
 rarity=C
-type=Enchantment
 mana={2}{B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Kicker {5} (You may pay an additional {5} as you play this spell.)    Target creature gets +2/+2 until end of turn. If the kicker cost was paid, that creature gets +5/+5 until end of turn instead.
+text=Kicker {5} (You may pay an additional {5} as you play this spell.)   Target creature gets +2/+2 until end of turn. If the kicker cost was paid, that creature gets +5/+5 until end of turn instead.
 id=23120
 name=Explosive Growth
 target=creature
 type=Instant
+rarity=C
 mana={G}
 kicker={5}
 auto=2/2
 auto=3/3
-rarity=C
 [/card]
 [card]
-text=Creatures you control have haste.     Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
-auto=lord(creature|myinplay) haste
+text=Creatures you control have haste.   Sacrifice Fires of Yavimaya: Target creature gets +2/+2 until end of turn.
+auto=lord(creature|myBattlefield) haste
 auto={s}:2/2 target(creature)
 id=23180
 name=Fires of Yavimaya
@@ -501,15 +501,15 @@ mana={1}{R}{G}
 type=Enchantment
 [/card]
 [card]
-text={G}, {T}: You may put a basic land card from your hand into play.
+text={G}, {T}: You may put a basic land card from your hand onto the battlefield.
 auto={G}{T}:moveTo(myBattlefield) target(land|myhand)
 id=23083
 name=Firebrand Ranger
 rarity=U
-type=Creature
 mana={1}{R}
-power=2
+type=Creature
 subtype=Human Soldier
+power=2
 toughness=1
 [/card]
 [card]
@@ -526,7 +526,7 @@ toughness=2
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=26311
 name=Forest
 rarity=L
@@ -535,7 +535,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=26310
 name=Forest
 rarity=L
@@ -544,7 +544,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=26312
 name=Forest
 rarity=L
@@ -553,7 +553,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=25967
 name=Forest
 rarity=L
@@ -573,17 +573,17 @@ toughness=2
 abilities=protection from red
 [/card]
 [card]
-text=Geothermal Crevice comes into play tapped.     {T}: Add {R} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {B}{G} to your mana pool. 
+text=Geothermal Crevice enters the battlefield tapped.   {T}: Add {R} to your mana pool.   {T}, Sacrifice Geothermal Crevice: Add {B}{G} to your mana pool. 
 auto=tap
 auto={T}:Add{R}
-auto={T}{s}:Add{B}{G}
+auto={T}{s}:Add {B}{G}
 id=23238
 name=Geothermal Crevice
 rarity=C
 type=Land
 [/card]
 [card]
-text=Flying      {U}: Glimmering Angel gains shroud until end of turn. (It can't be the target of spells or abilities.)
+text=Flying   {U}: Glimmering Angel gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=22929
 auto={U}:shroud
 name=Glimmering Angel
@@ -596,7 +596,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Legendary      {1}{W}{U}, {T}: Return target artifact or enchantment card from your graveyard to your hand.
+text={1}{W}{U}, {T}: Return target artifact or enchantment card from your graveyard to your hand.
 auto={1}{W}{U}:moveTo(myhand) target(artifact,enchantment|mygraveyard)
 id=25977
 name=Hanna, Ship's Navigator
@@ -645,10 +645,10 @@ toughness=2
 abilities=lifelink
 [/card]
 [card]
-text=Irrigation Ditch comes into play tapped.     {T}: Add {W} to your mana pool.    {T}, Sacrifice Irrigation Ditch: Add {G}{U} to your mana pool. 
+text=Irrigation Ditch enters the battlefield tapped.   {T}: Add {W} to your mana pool.   {T}, Sacrifice Irrigation Ditch: Add {G}{U} to your mana pool. 
 auto=tap
-auto={T}:Add{W}
-auto={T}{s}:Add{G}{U}
+auto={T}:Add {W}
+auto={T}{S}:Add {G}{U}
 id=23235
 name=Irrigation Ditch
 rarity=C
@@ -656,7 +656,7 @@ type=Land
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=26301
 name=Island
 rarity=L
@@ -665,7 +665,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=25964
 name=Island
 rarity=L
@@ -674,7 +674,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=26302
 name=Island
 rarity=L
@@ -683,7 +683,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=26303
 name=Island
 rarity=L
@@ -695,17 +695,17 @@ text=Kicker {4} (You may pay an additional {4} as you play this spell.)  Kavu Ag
 id=23063
 name=Kavu Aggressor
 rarity=C
-type=Creature
 mana={2}{R}
 kicker={4}
 auto=kicker counter(1/1,1)
 power=3
-subtype=Kavu
 toughness=2
+type=Creature
+subtype=Kavu
 abilities=cantblock
 [/card]
 [card]
-text=When Kavu Climber comes into play, draw a card.
+text=When Kavu Climber enters the battlefield, draw a card.
 id=23109
 name=Kavu Climber
 auto=draw:1
@@ -717,16 +717,16 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Kavu creatures have trample.     Whenever another Kavu comes into play, put a +1/+1 counter on Kavu Monarch.
+text=Kavu creatures have trample.   Whenever another Kavu enters the battlefield, put a +1/+1 counter on Kavu Monarch.
 auto=lord(kavu) trample
-auto=@movedTo(other kavu|inplay):counter(1/1)
+auto=@movedTo(other kavu|battlefield):counter(1/1)
 id=23097
 name=Kavu Monarch
 rarity=R
-type=Creature
 mana={2}{R}{R}
-power=3
+type=Creature
 subtype=Kavu
+power=3
 toughness=3
 [/card]
 [card]
@@ -737,7 +737,7 @@ rarity=U
 mana={3}{R}
 type=Creature
 subtype=Kavu
-auto=aslongas(creature[blue;white]|opponentinplay) -haste
+auto=aslongas(creature[blue;white]|opponentBattlefield) -haste
 power=3
 toughness=3
 abilities=haste
@@ -750,18 +750,18 @@ rarity=C
 mana={2}{R}
 type=Creature
 subtype=Kavu
-auto=aslongas(forest|myinplay) 1/0
-auto=aslongas(island|myinplay) 1/0
-auto=aslongas(plains|myinplay) 1/0
-auto=aslongas(mountain|myinplay) 1/0
-auto=aslongas(swamp|myinplay) 1/0
+auto=aslongas(forest|myBattlefield) 1/0
+auto=aslongas(island|myBattlefield) 1/0
+auto=aslongas(plains|myBattlefield) 1/0
+auto=aslongas(mountain|myBattlefield) 1/0
+auto=aslongas(swamp|myBattlefield) 1/0
 power=0
 toughness=2
 [/card]
 [card]
-text=Legendary     {T}: Add {1} to your mana pool.    {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player. 
+text={T}: Add {1} to your mana pool.   {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player. 
 auto={T}:Add {1}
-auto={4}{R}{T}{S(creature|myinplay)}:Damage:2 target(creature,player)
+auto={4}{R}{T}{S(creature|myBattlefield)}:Damage:2 target(creature,player)
 id=25930
 name=Keldon Necropolis
 rarity=R
@@ -781,17 +781,17 @@ power=1
 toughness=4
 [/card]
 [card]
-text=Kicker {8} (You may pay an additional {8} as you play this spell.)    Trample       If the kicker cost was paid, Llanowar Elite comes into play with five +1/+1 counters on it.
+text=Kicker {8} (You may pay an additional {8} as you play this spell.)   Trample   If the kicker cost was paid, Llanowar Elite enters the battlefield with five +1/+1 counters on it.
 id=25363
 name=Llanowar Elite
 rarity=C
-type=Creature
 mana={G}
 kicker={8}
 abilities=trample
 auto=kicker counter(1/1,5)
-power=1
 subtype=Elf
+type=Creature
+power=1
 toughness=1
 [/card]
 [card]
@@ -819,7 +819,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Flying      {T}: Add one mana of any color to your mana pool.
+text=Flying   {T}: Add one mana of any color to your mana pool.
 id=23233
 name=Lotus Guardian
 rarity=R
@@ -836,21 +836,21 @@ toughness=4
 abilities=flying
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +2/+2 and can't block.
+text=Enchant creature   Enchanted creature gets +2/+2 and can't block.
 id=23072
 name=Maniacal Rage
 target=creature
 auto=2/2
 auto=cantblock
 rarity=C
-type=Enchantment
 mana={1}{R}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Protection from white       Marauding Knight gets +1/+1 for each Plains your opponents control.
+text=Protection from white   Marauding Knight gets +1/+1 for each Plains your opponents control.
 id=23053
-auto=foreach(Plains|opponentinplay) 1/1
+auto=foreach(Plains|opponentBattlefield) 1/1
 name=Marauding Knight
 rarity=R
 mana={2}{B}{B}
@@ -885,9 +885,9 @@ power=2
 toughness=1
 [/card]
 [card]
-text=Legendary   Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)     Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)     Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
 id=23138
-auto=foreach(land|myinplay) 1/1
+auto=foreach(land|myBattlefield) 1/1
 name=Molimo, Maro-Sorcerer
 rarity=R
 mana={4}{G}{G}{G}
@@ -899,7 +899,7 @@ abilities=legendary,trample
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=25966
 name=Mountain
 rarity=L
@@ -908,7 +908,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=26307
 name=Mountain
 rarity=L
@@ -917,7 +917,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=26309
 name=Mountain
 rarity=L
@@ -926,7 +926,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=26308
 name=Mountain
 rarity=L
@@ -934,20 +934,20 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
-text={U}, {T}: Put target creature you control on top of its owner's library.     {R}, {T}: Target creature gains first strike until end of turn.
-auto={U}{T}:moveTo(ownerLibrary) target(creature|myInPlay)
+text={U}, {T}: Put target creature you control on top of its owner's library.   {R}, {T}: Target creature gains first strike until end of turn.
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myBattlefield)
 auto={R}{T}:first strike target(creature)
 id=23016
 name=Nightscape Apprentice
 rarity=C
-type=Creature
 mana={B}
-power=1
+type=Creature
 subtype=Zombie Wizard
+power=1
 toughness=1
 [/card]
 [card]
-text={U}{U}, {T}: Return target creature to its owner's hand. .   {R}{R}, {T}: Nightscape Master deals 2 damage to target creature.
+text={U}{U}, {T}: Return target creature to its owner's hand.   {R}{R}, {T}: Nightscape Master deals 2 damage to target creature.
 id=23049
 name=Nightscape Master
 rarity=R
@@ -988,7 +988,7 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Protection from black      {W}: Target creature gains protection from black until end of turn.
+text=Protection from black   {W}: Target creature gains protection from black until end of turn.
 id=22935
 name=Obsidian Acolyte
 rarity=C
@@ -1001,12 +1001,12 @@ toughness=1
 abilities=protection from black
 [/card]
 [card]
-text=Domain - Put a 1/1 blue Bird creature token with flying into play for each basic land type among lands you control.
-auto=aslongas(forest|mybattlefield) token(Bird,Creature Bird,1/1,blue flying)
-auto=aslongas(mountain|mybattlefield) token(Bird,Creature Bird,1/1,blue flying)
-auto=aslongas(island|mybattlefield) token(Bird,Creature Bird,1/1,blue flying)
-auto=aslongas(swamp|mybattlefield) token(Bird,Creature Bird,1/1,blue flying)
-auto=aslongas(plains|mybattlefield) token(Bird,Creature Bird,1/1,blue flying)
+text=Domain - Put a 1/1 blue Bird creature token with flying onto the battlefield for each basic land type among lands you control.
+auto=aslongas(forest|myBattlefield) token(Bird,Creature Bird,1/1,blue flying)
+auto=aslongas(mountain|myBattlefield) token(Bird,Creature Bird,1/1,blue flying)
+auto=aslongas(island|myBattlefield) token(Bird,Creature Bird,1/1,blue flying)
+auto=aslongas(swamp|myBattlefield) token(Bird,Creature Bird,1/1,blue flying)
+auto=aslongas(plains|myBattlefield) token(Bird,Creature Bird,1/1,blue flying)
 id=23187
 name=Ordered Migration
 rarity=U
@@ -1014,7 +1014,7 @@ type=Sorcery
 mana={3}{W}{U}
 [/card]
 [card]
-text=Kicker {3} (You may pay an additional {3} as you play this spell.)  Reach (This creature can block creatures with flying.)  If the kicker cost was paid, Pincer Spider comes into play with a +1/+1 counter on it.
+text=Kicker {3} (You may pay an additional {3} as you play this spell.)  Reach (This creature can block creatures with flying.)  If the kicker cost was paid, Pincer Spider enters the battlefield with a +1/+1 counter on it.
 id=23107
 name=Pincer Spider
 rarity=C
@@ -1034,11 +1034,11 @@ name=Phyrexian Altar
 rarity=R
 mana={3}
 type=Artifact
-auto={S(creature|myinplay)}:Add {W}
-auto={S(creature|myinplay)}:Add {U} 
-auto={S(creature|myinplay)}:Add {B}
-auto={S(creature|myinplay)}:Add {R}
-auto={S(creature|myinplay)}:Add {G}
+auto={S(creature|myBattlefield)}:Add {W}
+auto={S(creature|myBattlefield)}:Add {U} 
+auto={S(creature|myBattlefield)}:Add {B}
+auto={S(creature|myBattlefield)}:Add {R}
+auto={S(creature|myBattlefield)}:Add {G}
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying.)  {B}: Phyrexian Battleflies gets +1/+0 until end of turn. Play this ability no more than twice each turn.
@@ -1056,32 +1056,32 @@ abilities=flying
 [card]
 text={T}, Pay 1 life: Add one mana of any color to your mana pool.
 id=23231
-auto={T}:add{B} && life:-1
-auto={T}:add{U} && life:-1
-auto={T}:add{G} && life:-1
-auto={T}:add{R} && life:-1
-auto={T}:add{W} && life:-1
+auto={T}:Add {B} && life:-1 controller
+auto={T}:Add {U} && life:-1 controller
+auto={T}:Add {G} && life:-1 controller
+auto={T}:Add {R} && life:-1 controller
+auto={T}:Add {W} && life:-1 controller
 name=Phyrexian Lens
 rarity=R
 type=Artifact
 mana={3}
 [/card]
 [card]
-text=At the beginning of your upkeep, Plague Spitter deals 1 damage to each creature and each player.       When Plague Spitter is put into a graveyard from play, Plague Spitter deals 1 damage to each creature and each player.
+text=At the beginning of your upkeep, Plague Spitter deals 1 damage to each creature and each player.   When Plague Spitter is put into a graveyard from the battlefield, Plague Spitter deals 1 damage to each creature and each player.
 auto=@each my upkeep:damage:1 all(creature,player)
 auto=@movedTo(this|graveyard):damage:1 all(creature,player)
 id=23021
 name=Plague Spitter
 rarity=U
-type=Creature
 mana={2}{B}
-power=2
+type=Creature
 subtype=Horror
+power=2
 toughness=2
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=26299
 name=Plains
 rarity=L
@@ -1090,7 +1090,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=25963
 name=Plains
 rarity=L
@@ -1099,7 +1099,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=26300
 name=Plains
 rarity=L
@@ -1108,7 +1108,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=26298
 name=Plains
 rarity=L
@@ -1121,11 +1121,11 @@ auto={6}{T}:moveTo(myHand) target(*|myLibrary)
 id=23234
 name=Planar Portal
 rarity=R
-type=Artifact
 mana={6}
+type=Artifact
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has protection from the colors of permanents you control. This effect doesn't remove Pledge of Loyalty.
+text=Enchant creature   Enchanted creature has protection from the colors of permanents you control. This effect doesn't remove Pledge of Loyalty.
 auto=aslongas(*[red]|mybattlefield) protection from red
 auto=aslongas(*[green]|mybattlefield) protection from green
 auto=aslongas(*[blue]|mybattlefield) protection from blue
@@ -1139,16 +1139,16 @@ mana={1}{W}
 subtype=Aura
 [/card]
 [card]
-text=When Quirion Trailblazer comes into play, you may search your library for a basic land card and put that card into play tapped. If you do, shuffle your library.
+text=When Quirion Trailblazer enters the battlefield, you may search your library for a basic land card and put that card into play tapped. If you do, shuffle your library.
 id=23110
 target=land[basic]
-auto=moveTo(myinplay) && tap
+auto=may moveTo(myBattlefield) && tap
 name=Quirion Trailblazer
 rarity=C
-type=Creature
 mana={3}{G}
-power=1
+type=Creature
 subtype=Elf Scout
+power=1
 toughness=2
 [/card]
 [card]
@@ -1189,12 +1189,12 @@ abilities=flying,first strike
 [/card]
 [card]
 text={1}, Pay 2 life: Reckless Assault deals 1 damage to target creature or player.
-auto={1}:life:-2 && damage:1 target(creature,player)
+auto={1}:damage:1 target(creature,player) && life:-2 controller
 id=23191
 name=Reckless Assault
 rarity=R
-type=Enchantment
 mana={2}{B}{R}
+type=Enchantment
 [/card]
 [card]
 text=Return target creature card from your graveyard to your hand.   Draw a card.
@@ -1208,7 +1208,7 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-text=Return target creature to its owner's hand.    Draw a card.
+text=Return target creature to its owner's hand.   Draw a card.
 target=creature
 auto=moveTo(ownerhand)
 id=22985
@@ -1219,7 +1219,7 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-text=You gain 3 life.     Draw a card.
+text=You gain 3 life.   Draw a card.
 id=22941
 auto=life:3
 auto=draw:1
@@ -1229,33 +1229,33 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard to play.
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  At the beginning of your upkeep, you may return target creature card from your graveyard onto the battlefield.
 auto=@each my upkeep:may moveTo(myBattlefield) target(creature|mygraveyard)
 id=22965
 name=Reya Dawnbringer
-abilities=legendary,flying
 rarity=R
-type=Creature
 mana={6}{W}{W}{W}
-power=4
+type=Creature
 subtype=Angel
+power=4
 toughness=6
+abilities=legendary,flying
 [/card]
 [card]
-text=Vigilance     When Riptide Crab is put into a graveyard from play, draw a card.
+text=Vigilance   When Riptide Crab is put into a graveyard from the battlefield, draw a card.
 auto=@movedTo(this|graveyard):draw:1
 id=23150
 name=Riptide Crab
 rarity=U
-type=Creature
 mana={1}{W}{U}
-power=1
+type=Creature
 subtype=Crab
+power=1
 toughness=3
 [/card]
 [card]
 text={1},Sacrifice Rith's Attendant: Add {R}{G}{W} to your mana pool.
-auto={1}{s}:Add {R}{G}{W}
+auto={1}{S}:Add {R}{G}{W}
 id=25839
 name=Rith's Attendant
 rarity=U
@@ -1278,29 +1278,28 @@ toughness=5
 abilities=trample,protection from blue,protection from red
 [/card]
 [card]
-text=Salt Marsh comes into play tapped.     {T}: Add {U} or {B} to your mana pool.
+text=Salt Marsh comes enters the battlefield tapped.   {T}: Add {U} or {B} to your mana pool.
 auto=tap
-auto={T}:Add{U}
-auto={T}:Add{B}
+auto={T}:Add {U}
+auto={T}:Add {B}
 id=23241
 name=Salt Marsh
 rarity=U
 type=Land
 [/card]
 [card]
-text=Kicker {G} (You may pay an additional {G} as you play this spell.)    Creatures you control gain first strike until end of turn. If the kicker cost was paid, they get +1/+1 until end of turn.
+text=Kicker {G} (You may pay an additional {G} as you play this spell.)   Creatures you control gain first strike until end of turn. If the kicker cost was paid, they get +1/+1 until end of turn.
 id=23078
 name=Savage Offensive
 type=Sorcery
-target=creature
+rarity=C
 mana={1}{R}
 kicker={G}
-auto=lord(creature|myinplay) first strike
-auto=kicker lord(creature|myinplay) 1/1
-rarity=C
+auto=lord(creature|myBattlefield) first strike
+auto=kicker lord(creature|myBattlefield) 1/1
 [/card]
 [card]
-text=Enchant creature      When Scavenged Weaponry comes into play, draw a card.    Enchanted creature gets +1/+1.
+text=Enchant creature   When Scavenged Weaponry enters the battlefield, draw a card.   Enchanted creature gets +1/+1.
 target=creature
 auto=1/1
 auto=draw:1
@@ -1343,10 +1342,10 @@ type=Enchantment
 mana={1}{R}
 [/card]
 [card]
-text=Shivan Oasis comes into play tapped.     {T}: Add {R} or {G} to your mana pool.
+text=Shivan Oasis enters the battlefield tapped.   {T}: Add {R} or {G} to your mana pool.
 auto=tap
-auto={T}:Add{R}
-auto={T}:Add{G}
+auto={T}:Add {R}
+auto={T}:Add {G}
 id=23243
 name=Shivan Oasis
 rarity=U
@@ -1366,12 +1365,12 @@ abilities=protection from white
 [/card]
 [card]
 text=Simoon deals 1 damage to each creature target opponent controls.
-auto=damage:1 all(creature|opponentbattlefield)
+auto=damage:1 all(creature|opponentBattlefield)
 id=23175
 name=Simoon
 rarity=U
-type=Instant
 mana={R}{G}
+type=Instant
 [/card]
 [card]
 text=Skittish Kavu gets +1/+1 as long as no opponent controls a white or blue creature.
@@ -1381,7 +1380,7 @@ rarity=U
 mana={1}{R}
 type=Creature
 subtype=Kavu
-auto=aslongas(creature[blue;white]|opponentinplay) -1/-1
+auto=aslongas(creature[blue;white]|opponentBattlefield) -1/-1
 power=2
 toughness=2
 [/card]
@@ -1391,10 +1390,10 @@ id=23225
 auto=rampage(1/1,0)
 name=Sparring Golem
 rarity=U
-type=Artifact Creature
 mana={3}
-power=2
+type=Artifact Creature
 subtype=Golem
+power=2
 toughness=2
 [/card]
 [card]
@@ -1434,7 +1433,7 @@ power=2
 toughness=1
 [/card]
 [card]
-text={3}{U}, {T}: Tap target creature.    {3}{B}, {T}: Destroy target tapped creature.
+text={3}{U}, {T}: Tap target creature.   {3}{B}, {T}: Destroy target tapped creature.
 id=25752
 name=Stalking Assassin
 rarity=R
@@ -1447,7 +1446,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Enchant creature       Domain - Enchanted creature gets +1/+1 for each basic land type among lands you control.
+text=Enchant creature   Domain - Enchanted creature gets +1/+1 for each basic land type among lands you control.
 id=22939
 name=Strength of Unity
 rarity=C
@@ -1455,62 +1454,62 @@ mana={3}{W}
 type=Enchantment
 target=creature
 subtype=Aura
-auto=aslongas(forest|myinplay) 1/1
-auto=aslongas(island|myinplay) 1/1
-auto=aslongas(plains|myinplay) 1/1
-auto=aslongas(mountain|myinplay) 1/1
-auto=aslongas(swamp|myinplay) 1/1
+auto=aslongas(forest|myBattlefield) 1/1
+auto=aslongas(island|myBattlefield) 1/1
+auto=aslongas(plains|myBattlefield) 1/1
+auto=aslongas(mountain|myBattlefield) 1/1
+auto=aslongas(swamp|myBattlefield) 1/1
 [/card]
 [card]
-text=Target creature can't block this turn.     Draw a card.
+text=Target creature can't block this turn.   Draw a card.
 id=23073
 name=Stun
 target=creature
 auto=cantattack
 auto=draw:1
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
-text=Sulfur Vent comes into play tapped.     {T}: Add {B} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {U}{R} to your mana pool. 
+text=Sulfur Vent enters the battlefield tapped.   {T}: Add {B} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {U}{R} to your mana pool. 
 auto=tap
-auto={T}:Add{B}
-auto={T}{s}:Add{U}{R}
+auto={T}:Add {B}
+auto={T}{S}:Add {U}{R}
 id=23237
 name=Sulfur Vent
 rarity=C
 type=Land
 [/card]
 [card]
-text={G}, {T}: Target creature gets +1/+1 until end of turn.     {U}, {T}: Put target creature you control on top of its owner's library.
+text={G}, {T}: Target creature gets +1/+1 until end of turn.   {U}, {T}: Put target creature you control on top of its owner's library.
 auto={G}{T}:1/1 target(creature)
-auto={U}{T}:moveTo(ownerLibrary) target(creature|myInplay)
+auto={U}{T}:moveTo(ownerLibrary) target(creature|myBattlefield)
 id=22928
 name=Sunscape Apprentice
 rarity=C
-type=Creature
 mana={W}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=1
 [/card]
 [card]
-text={G}{G}, {T}: Creatures you control get +2/+2 until end of turn.     {U}{U}, {T}: Return target creature to its owner's hand.
-auto={G}{G}{T}:lord(creature|myinplay) 2/2 
+text={G}{G}, {T}: Creatures you control get +2/+2 until end of turn.   {U}{U}, {T}: Return target creature to its owner's hand.
+auto={G}{G}{T}:lord(creature|myBattlefield) 2/2 
 auto={U}{U}{T}:moveTo(ownerhand) target(creature)
 id=22961
 name=Sunscape Master
 rarity=R
-type=Creature
 mana={2}{W}{W}
-power=2
+type=Creature
 subtype=Human Wizard
+power=2
 toughness=2
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=26305
 name=Swamp
 rarity=L
@@ -1519,7 +1518,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=26306
 name=Swamp
 rarity=L
@@ -1528,7 +1527,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=26304
 name=Swamp
 rarity=L
@@ -1537,7 +1536,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=25965
 name=Swamp
 rarity=L
@@ -1545,24 +1544,24 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
-text=Whenever a land comes into play, tap all lands its controller controls.
-auto=@movedTo(land|opponentinplay):tap all(land|opponentinplay)
-auto=@movedTo(land|myinplay):tap all(land|myinplay)
+text=Whenever a land enters the battlefield, tap all lands its controller controls.
+auto=@movedTo(land|opponentBattlefield):tap all(land|opponentBattlefield)
+auto=@movedTo(land|myBattlefield):tap all(land|myBattlefield)
 id=23100
 name=Tectonic Instability
 rarity=R
-type=Enchantment
 mana={2}{R}
+type=Enchantment
 [/card]
 [card]
-text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
+text={W}, Sacrifice an enchantment: Destroy target enchantment.   {3}{U}{U}: Counter target enchantment spell.
 auto={W}{S(enchantment|myBattlefield)}:destroy target(enchantment)
 auto={3}{U}{U}:fizzle target(enchantment|stack)
 id=22959
 name=Teferi's Care
 rarity=U
-type=Enchantment
 mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 text=Tek gets +0/+2 as long as you control a Plains, has flying as long as you control an Island, gets +2/+0 as long as you control a Swamp, has first strike as long as you control a Mountain, and has trample as long as you control a Forest.
@@ -1572,25 +1571,25 @@ rarity=R
 mana={5}
 type=Artifact Creature
 subtype=Dragon
-auto=aslongas(forest|myinplay) trample
-auto=aslongas(island|myinplay) flying
-auto=aslongas(plains|myinplay) 0/2
-auto=aslongas(mountain|myinplay) first strike
-auto=aslongas(swamp|myinplay) 2/0
+auto=aslongas(forest|myBattlefield) trample
+auto=aslongas(island|myBattlefield) flying
+auto=aslongas(plains|myBattlefield) 0/2
+auto=aslongas(mountain|myBattlefield) first strike
+auto=aslongas(swamp|myBattlefield) 2/0
 power=2
 toughness=2
 [/card]
 [card]
-text={W}, {T}: Tap target creature.     {R}, {T}: Target creature gains first strike until end of turn.
+text={W}, {T}: Tap target creature.   {R}, {T}: Target creature gains first strike until end of turn.
 auto={W}{T}:tap target(creature)
 auto={R}{T}:first strike target(creature)
 id=23104
 name=Thornscape Apprentice
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=1
 [/card]
 [card]
@@ -1616,22 +1615,22 @@ id=23221
 name=Tigereye Cameo
 rarity=U
 mana={3}
-auto={T}: Add {G}
-auto={T}: Add {W}
+auto={T}:Add {G}
+auto={T}:Add {W}
 type=Artifact
 [/card]
 [card]
-text=Tinder Farm comes into play tapped.     {T}: Add {G} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {R}{W} to your mana pool. 
+text=Tinder Farm enters the battlefield tapped.   {T}: Add {G} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {R}{W} to your mana pool. 
 auto=tap
-auto={T}:Add{G}
-auto={T}{s}:Add{R}{W}
+auto={T}:Add {G}
+auto={T}{S}:Add {R}{W}
 id=23239
 name=Tinder Farm
 rarity=C
 type=Land
 [/card]
 [card]
-text=Flying     {W}: Tower Drake gets +0/+1 until end of turn.
+text=Flying   {W}: Tower Drake gets +0/+1 until end of turn.
 id=22974
 name=Tower Drake
 rarity=C
@@ -1658,15 +1657,15 @@ id=23039
 auto={2}{R}{T}:destroy target(land[-basic])
 name=Trench Wurm
 rarity=U
-type=Creature
 mana={3}{B}
-power=3
+type=Creature
 subtype=Wurm
+power=3
 toughness=3
 [/card]
 [card]
 text={1},Sacrifice Treva's Attendant: Add {G}{W}{U} to your mana pool.
-auto={1}{s}:Add {G}{W}{U}
+auto={1}{S}:Add {G}{W}{U}
 id=25840
 name=Treva's Attendant
 rarity=U
@@ -1679,16 +1678,16 @@ toughness=3
 [card]
 text=Domain - Tribal Flames deals X damage to target creature or player, where X is the number of basic land types among lands you control.
 target=creature,player
-auto=aslongas(forest|myinplay):damage:1
-auto=aslongas(mountain|myinplay):damage:1
-auto=aslongas(plains|myinplay):damage:1
-auto=aslongas(island|myinplay):damage:1
-auto=aslongas(swamp|myinplay):damage:1
+auto=aslongas(forest|myBattlefield):damage:1
+auto=aslongas(mountain|myBattlefield):damage:1
+auto=aslongas(plains|myBattlefield):damage:1
+auto=aslongas(island|myBattlefield):damage:1
+auto=aslongas(swamp|myBattlefield):damage:1
 id=23076
 name=Tribal Flames
 rarity=C
-type=Sorcery
 mana={1}{R}
+type=Sorcery
 [/card]
 [card]
 text={T}: Add {R} or {G} to your mana pool.
@@ -1696,24 +1695,24 @@ id=23220
 name=Troll-Horn Cameo
 rarity=U
 mana={3}
-auto={T}: Add {R}
-auto={T}: Add {G}
+auto={T}:Add {R}
+auto={T}:Add {G}
 type=Artifact
 [/card]
 [card]
-text=Flying     Urborg Drake attacks each turn if able.
-abilities=flying,mustattack
+text=Flying   Urborg Drake attacks each turn if able.
 id=25975
 name=Urborg Drake
 rarity=U
-type=Creature
 mana={1}{U}{B}
-power=2
+type=Creature
 subtype=Drake
+power=2
 toughness=3
+abilities=flying,mustattack
 [/card]
 [card]
-text=Other black creatures get -1/-1
+text=Other black creatures get -1/-1.
 auto=lord(creature[black]) -1/-1 other
 id=23035
 name=Urborg Shambler
@@ -1725,24 +1724,24 @@ power=4
 toughness=3
 [/card]
 [card]
-text=Kicker {3} (You may pay an additional {3} as you play this spell.) {B}: Regenerate Urborg Skeleton. If the kicker cost was paid, Urborg Skeleton comes into play with a +1/+1 counter on it.
+text=Kicker {3} (You may pay an additional {3} as you play this spell.) {B}: Regenerate Urborg Skeleton. If the kicker cost was paid, Urborg Skeleton enters the battlefield with a +1/+1 counter on it.
 id=23020
 name=Urborg Skeleton
 rarity=C
-type=Creature
 mana={B}
 kicker={3}
 auto={B}:regenerate
 auto=kicker counter(1/1,1)
-power=0
+type=Creature
 subtype=Skeleton
+power=0
 toughness=1
 [/card]
 [card]
-text=Urborg Volcano comes into play tapped.     {T}: Add {B} or {R} to your mana pool.
+text=Urborg Volcano enters the battlefield tapped.   {T}: Add {B} or {R} to your mana pool.
 auto=tap
-auto={T}:Add{B}
-auto={T}:Add{R}
+auto={T}:Add {B}
+auto={T}:Add {R}
 id=23242
 name=Urborg Volcano
 rarity=U
@@ -1777,18 +1776,18 @@ power=3
 toughness=1
 [/card]
 [card]
-text=Kicker {2} (You may pay an additional {2} as you play this spell.) Vodalian Serpent can't attack unless defending player controls an Island. If the kicker cost was paid, Vodalian Serpent comes into play with four +1/+1 counters on it.
+text=Kicker {2} (You may pay an additional {2} as you play this spell.) Vodalian Serpent can't attack unless defending player controls an Island. If the kicker cost was paid, Vodalian Serpent enters the battlefield with four +1/+1 counters on it.
 id=22976
 name=Vodalian Serpent
 rarity=C
-type=Creature
 mana={3}{U}
 kicker={2}
 abilities=cantattack
-auto=aslongas(island|opponentinplay) -cantattack
+auto=aslongas(island|opponentBattlefield) -cantattack
 auto=kicker counter(1/1,4)
-power=2
+type=Creature
 subtype=Serpent
+power=2
 toughness=2
 [/card]
 [card]
@@ -1815,16 +1814,16 @@ type=Sorcery
 [/card]
 [card]
 text=Domain - You gain 2 life for each basic land type among lands you control.
-auto=aslongas(forest|myinplay) life:2
-auto=aslongas(mountain|myinplay) life:2
-auto=aslongas(swamp|myinplay) life:2
-auto=aslongas(island|myinplay) life:2
-auto=aslongas(plains|myinplay) life:2
+auto=aslongas(forest|myBattlefield) life:2
+auto=aslongas(mountain|myBattlefield) life:2
+auto=aslongas(swamp|myBattlefield) life:2
+auto=aslongas(island|myBattlefield) life:2
+auto=aslongas(plains|myBattlefield) life:2
 id=23119
 name=Wandering Stream
 rarity=C
-type=Sorcery
 mana={2}{G}
+type=Sorcery
 [/card]
 [card]
 text=Domain - Wayfaring Giant gets +1/+1 for each basic land type among lands you control.
@@ -1834,16 +1833,16 @@ rarity=U
 mana={5}{W}
 type=Creature
 subtype=Giant
-auto=aslongas(forest|myinplay) 1/1
-auto=aslongas(island|myinplay) 1/1
-auto=aslongas(plains|myinplay) 1/1
-auto=aslongas(mountain|myinplay) 1/1
-auto=aslongas(swamp|myinplay) 1/1
+auto=aslongas(forest|myBattlefield}) 1/1
+auto=aslongas(island|myBattlefield) 1/1
+auto=aslongas(plains|myBattlefield) 1/1
+auto=aslongas(mountain|myBattlefield) 1/1
+auto=aslongas(swamp|myBattlefield) 1/1
 power=1
 toughness=3
 [/card]
 [card]
-text=Enchant creature      Enchanted creature gets +1/+3 and has flying.
+text=Enchant creature   Enchanted creature gets +1/+3 and has flying.
 target=creature
 auto=1/3
 auto=flying
@@ -1867,10 +1866,10 @@ toughness=2
 abilities=protection from blue
 [/card]
 [card]
-text=Yavimaya Kavu's power is equal to the number of red creatures in play.    Yavimaya Kavu's toughness is equal to the number of green creatures in play.
+text=Yavimaya Kavu's power is equal to the number of red creatures on the battlefield.    Yavimaya Kavu's toughness is equal to the number of green creatures on the battlefield.
 id=23174
-auto=foreach(creature[red]|inplay) 1/0
-auto=foreach(creature[green]|inplay) 0/1
+auto=foreach(creature[red]|battlefield) 1/0
+auto=foreach(creature[green]|battlefield) 0/1
 name=Yavimaya Kavu
 rarity=U
 mana={2}{R}{G}
@@ -1880,7 +1879,7 @@ power=*
 toughness=*
 [/card]
 [card]
-text=Zap deals 1 damage to target creature or player.     Draw a card.
+text=Zap deals 1 damage to target creature or player.   Draw a card.
 target=creature,player
 auto=damage:1
 auto=draw:1 controller
