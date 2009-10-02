@@ -63,7 +63,6 @@ GameStateDuel::~GameStateDuel() {
 void GameStateDuel::Start()
 {
   JRenderer * renderer = JRenderer::GetInstance();
-  renderer->ResetPrivateVRAM();
   renderer->EnableVSync(true);
 
 

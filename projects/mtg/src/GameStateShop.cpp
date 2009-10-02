@@ -48,7 +48,6 @@ void GameStateShop::Start()
   menuFont = resources.GetJLBFont(Constants::MENU_FONT);
   itemFont = resources.GetJLBFont(Constants::MAIN_FONT);
 
-  JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
 
 

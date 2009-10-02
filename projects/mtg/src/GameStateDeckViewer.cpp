@@ -160,8 +160,7 @@ void GameStateDeckViewer::Start()
   mSlide = 0;
   mAlpha = 255;
   newDeckname = "";
-  //mEngine->ResetPrivateVRAM();
-  //mEngine->EnableVSync(true);
+
   currentCard = NULL;
   loadIndexes(currentCard);
   last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;

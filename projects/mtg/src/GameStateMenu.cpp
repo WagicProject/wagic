@@ -127,6 +127,7 @@ void GameStateMenu::Destroy()
 }
 
 void GameStateMenu::Start(){
+  JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
 
   if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
@@ -150,8 +151,7 @@ void GameStateMenu::Start(){
 
   mBg->SetHotSpot(105,50);
   mMovingW->SetHotSpot(72,16);
-  JRenderer::GetInstance()->ResetPrivateVRAM();
-  JRenderer::GetInstance()->EnableVSync(true);
+
 
   //How many cards total ?
   PlayerData * playerdata = NEW PlayerData(mParent->collection);

@@ -15,7 +15,7 @@ GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/tinyxml/tinystr.o src/tinyxml/tinyxml.o \
 	src/tinyxml/tinyxmlparser.o src/tinyxml/tinyxmlerror.o \
 	src/Encoding.o src/JTTFont.o \
-	src/JMD2Model.o src/JOBJModel.o src/vram.o
+	src/JMD2Model.o src/JOBJModel.o
 PSP_OBJS = src/JSocket.o src/JGfx.o src/JSfx.o src/JAudio.o src/JMP3.o src/decoder_prx.o src/main.o
 LINUX_OBJS = src/linux/JGfx.o src/linux/JSfx.o src/Xmain.o
 
@@ -76,7 +76,6 @@ TARGET_HGE = libhgetools.a
 INCDIR = include/psp include/psp/freetype2
 CXXFLAGS += -G0
 LIBDIR = lib/psp
-LIBS = -lgif -lfreetype -ljpeg -lpng -lz -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lm -lstdc++
 endif
 ifeq ($(TARGET_ARCHITECTURE),linux)
 OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
@@ -89,7 +88,6 @@ LIBDIR = lib/linux
 endif
 
 # Set definitive values for variables.
-LDFLAGS = $(LIBS)
 TARGET_LIB := $(LIBDIR)/$(TARGET_LIB)
 TARGET_HGE := $(LIBDIR)/$(TARGET_HGE)
 

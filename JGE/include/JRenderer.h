@@ -541,9 +541,7 @@ private:
 
 
 #else
-
-	u32 mVideoBufferStart;
-	//u32 mCurrentPointer;
+  void *fbp0, *fbp1, *zbp;
 	PIXEL_TYPE* mVRAM;
 	int mCurrentTex;
 	int mCurrentBlend;
@@ -558,7 +556,6 @@ private:
 	int mSwizzle;
 	int mTexCounter;
 
-	//int mTexFilter;
 
 	int mCurrentTextureFilter;
 

@@ -18,7 +18,8 @@
 #include <pspdebug.h>
 #include <pspdisplay.h>
 #include <png.h>
-
+#include <vram.h>
+#include <valloc.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,7 +34,6 @@ extern "C" {
 #include "../include/JGE.h"
 #include "../include/JRenderer.h"
 #include "../include/JFileSystem.h"
-#include "../include/vram.h"
 
 static unsigned int __attribute__((aligned(16))) list[262144];
 
@@ -81,13 +81,6 @@ void JQuad::SetColor(PIXEL_TYPE color)
 	for (int i=0;i<4;i++)
 		mColor[i] = color;
 }
-
-
-// void JQuad::SetColor(JColor color)
-// {
-// 	for (int i=0;i<4;i++)
-// 		mColor[i].color = color.color;
-// }
 
 
 void JQuad::SetHotSpot(float x, float y)
@@ -173,15 +166,13 @@ JRenderer::~JRenderer()
 
 void JRenderer::ResetPrivateVRAM()
 {
-	//mCurrentPointer = mVideoBufferStart;
 }
 
 
 void JRenderer::InitRenderer()
 {
 
-	if (m3DEnabled)
-		mCurrentRenderMode = MODE_2D;
+	mCurrentRenderMode = MODE_2D;
 
 #ifdef USING_MATH_TABLE
 	for (int i=0;i<360;i++)
@@ -190,6 +181,9 @@ void JRenderer::InitRenderer()
 		mCosTable[i] = cosf(i*DEG2RAD);
 	}
 #endif
+
+  mCurrTexBlendSrc = BLEND_SRC_ALPHA;
+  mCurrTexBlendDest = BLEND_ONE_MINUS_SRC_ALPHA;
 
 	mSwizzle = 1;
 	mVsync = false;
@@ -203,29 +197,25 @@ void JRenderer::InitRenderer()
 
 	mImageFilter = NULL;
 
-	//mTexFilter = GU_NEAREST;
 	mCurrentTextureFilter = TEX_FILTER_LINEAR;
 
 	sceGuInit();
 
+  fbp0 = ( u32* ) vrelptr ( valloc ( FRAME_BUFFER_SIZE ) );
+  fbp1 = ( u32* ) vrelptr ( valloc ( FRAME_BUFFER_SIZE ) );
+  zbp = NULL;
+
 	// setup GU
 	sceGuStart(GU_DIRECT,list);
-	mVideoBufferStart = 0;
-	sceGuDrawBuffer(BUFFER_FORMAT, (void *)mVideoBufferStart, FRAME_BUFFER_WIDTH);
-	mVideoBufferStart += FRAME_BUFFER_SIZE;
-	valloc(FRAME_BUFFER_SIZE);
-	sceGuDispBuffer(SCREEN_WIDTH, SCREEN_HEIGHT, (void *)mVideoBufferStart, FRAME_BUFFER_WIDTH);
-	mVideoBufferStart += FRAME_BUFFER_SIZE;
-	valloc(FRAME_BUFFER_SIZE);
+
+	sceGuDrawBuffer(BUFFER_FORMAT, fbp0, FRAME_BUFFER_WIDTH);
+	sceGuDispBuffer(SCREEN_WIDTH, SCREEN_HEIGHT, fbp1, FRAME_BUFFER_WIDTH);
 	if (m3DEnabled)
 	{
-		sceGuDepthBuffer((void *)mVideoBufferStart, FRAME_BUFFER_WIDTH);
-		mVideoBufferStart += (FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*2);				// 16bit depth buffer
-
-		valloc(FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*2);
+    zbp = ( u16* )  vrelptr ( valloc ( FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*2) );
+		sceGuDepthBuffer(zbp, FRAME_BUFFER_WIDTH);
 	}
 
-	//mCurrentPointer = mVideoBufferStart;
 
 	sceGuOffset(2048 - (SCREEN_WIDTH/2), 2048 - (SCREEN_HEIGHT/2));
 	sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -431,28 +421,7 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	vertices[3].x = x + width;
 	vertices[3].y = y + height;
 	vertices[3].z = 0.0f;
-/*
 
-	vertices[0].color = colors[0];
-	vertices[0].x = x;
-	vertices[0].y = y;
-	vertices[0].z = 0.0f;
-
-	vertices[1].color = colors[1];
-	vertices[1].x = x;
-	vertices[1].y = y + height;
-	vertices[1].z = 0.0f;
-
-	vertices[2].color = colors[2];
-	vertices[2].x = x + width;
-	vertices[2].y = y + height;
-	vertices[2].z = 0.0f;
-
-	vertices[3].color = colors[3];
-	vertices[3].x = x + width;
-	vertices[3].y = y;
-	vertices[3].z = 0.0f;
-*/
 	sceGuDisable(GU_TEXTURE_2D);
 	sceGuShadeModel(GU_SMOOTH);
 	sceGuAmbientColor(0xffffffff);

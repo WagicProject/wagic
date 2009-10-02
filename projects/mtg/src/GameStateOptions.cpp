@@ -22,7 +22,6 @@ void GameStateOptions::Start()
 {
   timer =  0;
   mState = SHOW_OPTIONS;
-  JRenderer::GetInstance()->ResetPrivateVRAM();
   JRenderer::GetInstance()->EnableVSync(true);
 
   OptionsList * optionsList;
