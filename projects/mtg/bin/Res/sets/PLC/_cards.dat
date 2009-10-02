@@ -3,38 +3,48 @@ text=All Sliver creatures have trample.
 id=126015
 name=Battering Sliver
 rarity=C
+mana={5}{R}
 type=Creature
 subtype=Sliver
-mana={5}{R}
+auto=lord(sliver) trample
 power=4
 toughness=4
-auto=lord(sliver) trample
-color=Red
 [/card]
 [card]
 text=First strike, protection from white
 id=130715
 name=Blood Knight
 rarity=U
-type=Creature
-subtype=human knight
 mana={R}{R}
+type=Creature
+subtype=Human knight
 power=2
 toughness=2
 abilities=first strike,protection from white
-color=Red
 [/card]
 [card]
+text=You may have Body Double enter the battlefield as a copy of any creature card in a graveyard.
+auto=may copy target(creature|graveyard)
 id=124443
 name=Body Double
+rarity=R
 mana={4}{U}
 type=Creature
 subtype=Shapeshifter
 power=0
 toughness=0
-text=You may have Body Double enter the battlefield as a copy of any creature card in a graveyard.
-auto=may copy target(creature|graveyard)
-rarity=R
+[/card]
+[card]
+text=Bog Serpent can't attack unless defending player controls a Swamp. When you control no Swamps, sacrifice Bog Serpent.
+id=122321
+name=Bog Serpent
+rarity=C
+mana={5}{B}
+type=Creature
+subtype=Serpent
+power=5
+toughness=5
+abilities=swamphome
 [/card]
 [card]
 text=Target creature gets +3/+3 until end of turn.
@@ -43,14 +53,14 @@ auto=3/3
 id=122373
 name=Brute Force
 rarity=C
-color=Red
-type=Instant
 mana={R}
+type=Instant
 [/card]
 [card]
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) When Citanul Woodreaders enters the battlefield, if it was kicked, draw two cards.
 id=122290
 name=Citanul Woodreaders
+rarity=C
 mana={2}{G}
 kicker={2}{G}
 auto=kicker draw:2
@@ -58,7 +68,6 @@ type=Creature
 subtype=Human Druid
 power=1
 toughness=4
-rarity=C
 [/card]
 [card]
 text=Destroy all creatures. They can't be regenerated.
@@ -66,69 +75,91 @@ auto=bury all(creature)
 id=122423
 name=Damnation
 rarity=R
-type=Sorcery
 mana={2}{B}{B}
-color=Black
+type=Sorcery
 [/card]
 [card]
+text=All Slivers have "Sacrifice this permanent: You gain 3 life."
 id=126012
 name=Darkheart Sliver
+rarity=U
 mana={B}{G}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) {S}:life:3
 power=2
 toughness=2
-text=All Slivers have "Sacrifice this permanent: You gain 3 life."
-auto=lord(sliver) {s}:life:3
-rarity=U
 [/card]
 [card]
+text=All Sliver creatures have defender. All Slivers have "When this permanent enters the battlefield, draw a card."
+id=126025
+name=Dormant Sliver
+rarity=U
+mana={2}{G}{U}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) defender
+auto=@movedTo(sliver|myBattlefield):draw:1 controller
+auto=@movedTo(sliver|opponentBattlefield):draw:1 opponent
+power=2
+toughness=2
+[/card]
+[card]
+text=Enchant creature You control enchanted creature. At the beginning of your upkeep, enchanted creature deals 1 damage to its owner.
+@each my upkeep:life:-1 opponent
+alias=1194
+id=122413
+name=Enslave
+rarity=U
+mana={4}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Whenever another creature enters the battlefield, you gain 1 life.
+auto=@movedTo(other creature|battlefield):life:1 controller
 id=122428
 name=Essence Warden
+rarity=C
 mana={G}
 type=Creature
 subtype=Elf Shaman
 power=1
 toughness=1
-text=Whenever another creature enters the battlefield, you gain 1 life.
-auto=@movedTo(other creature|battlefield):life:1 controller
-rarity=C
 [/card]
 [card]
 text=Creatures you control get +1/+1.
-auto=lord(creature|myinplay) 1/1
+auto=lord(creature|myBattlefield) 1/1
 id=122367
 name=Gaea's Anthem
 rarity=R
-type=Enchantment
 mana={1}{G}{G}
-color=Green
+type=Enchantment
 [/card]
 [card]
+text={W}, {T}, Discard a card: Creatures you control get +1/+0 until end of turn.
 id=126809
 name=Ghost Tactician
+rarity=C
 mana={4}{W}
 type=Creature
 subtype=Spirit Spellshaper
+auto={W}{T}{S(*|myhand)}:lord(creature|mybattlefield) 1/0
 power=2
 toughness=5
-text={W}, {T}, Discard a card: Creatures you control get +1/+0 until end of turn.
-auto={W}{T}{S(*|myhand)}:lord(creature|myinplay) 1/0
-rarity=C
 [/card]
 [card]
-text=Trample, haste     At end of turn, sacrifice Groundbreaker.
-abilities=trample,haste
+text=Trample, haste   At end of turn, sacrifice Groundbreaker.
 auto=@next endofturn:bury
 id=122429
 name=Groundbreaker
 rarity=R
-color=Green
-type=Creature
 mana={G}{G}{G}
-power=6
+type=Creature
 subtype=Elemental
+power=6
 toughness=1
+abilities=trample,haste
 [/card]
 [card]
 text=Draw three cards.
@@ -136,63 +167,62 @@ auto=draw:3
 id=122362
 name=Harmonize
 rarity=U
-color=Green
-type=Sorcery
 mana={2}{G}{G}
+type=Sorcery
 [/card]
 [card]
-text=Hedge Troll gets +1/+1 as long as you control a Plains.     {W}: Regenerate Hedge Troll.
-auto=aslongas(plains|myinplay) 1/1
+text=Hedge Troll gets +1/+1 as long as you control a Plains.   {W}: Regenerate Hedge Troll.
+auto=aslongas(plains|myBattlefield) 1/1
 auto={W}:regenerate
 id=122405
 name=Hedge Troll
 rarity=U
-color=Green
-type=Creature
 mana={2}{G}
-power=2
+type=Creature
 subtype=Troll Cleric
+power=2
 toughness=2
 [/card]
 [card]
+text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
+auto={2}{T}:foreach(swamp|myBattlefield) Add:{B}
 id=124507
 name=Magus of the Coffers
+rarity=R
 mana={4}{B}
 type=Creature
 subtype=Human Wizard
 power=4
 toughness=4
-text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
-auto={2}{T}:foreach(swamp|myinplay) add:{B}
-rarity=R
 [/card]
 [card]
-text=Flying     {W}{W}{W}: Regenerate Malach of the Dawn.
-abilities=flying
+text=Flying   {W}{W}{W}: Regenerate Malach of the Dawn.
 auto={W}{W}{W}:regenerate
 id=122481
 name=Malach of the Dawn
 rarity=U
-color=White
-type=Creature
 mana={2}{W}{W}
-power=2
+type=Creature
 subtype=Angel
+power=2
 toughness=4
+abilities=flying
 [/card]
 [card]
+text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature.    Whenever a creature enters the battlefield, enchanted creature gets +2/+2 until end of turn.
 id=122349
+target=Creature
 name=Mantle of Leadership
+rarity=U
 mana={1}{W}
-target=creature
 type=Enchantment
 subtype=Aura
-text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature. Whenever a creature enters the battlefield, enchanted creature gets +2/+2 until end of turn.
+auto=@movedTo(creature|myBattlefield):2/2 ueot
 abilities=flash
-auto=@movedTo(creature|myinplay):2/2 ueot
-rarity=U
 [/card]
 [card]
+text=Whenever you cast an enchantment spell, you may draw a card.
+auto=@movedTo(enchantment|mystack):may draw:1
 id=126214
 name=Mesa Enchantress
 mana={1}{W}{W}
@@ -200,26 +230,25 @@ type=Creature
 subtype=Human Druid
 power=0
 toughness=2
-text=Whenever you cast an enchantment spell, you may draw a card.
-auto=@movedTo(enchantment|mystack):may draw:1
 rarity=R
 [/card]
 [card]
+text=All Slivers have "{3}, Sacrifice this permanent: Destroy target permanent."
 id=126023
 name=Necrotic Sliver
+rarity=U
 mana={1}{W}{B}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) {3}{S}:destroy target(*)
 power=2
 toughness=2
-text=All Slivers have "{3}, Sacrifice this permanent: Destroy target permanent."
-auto=lord(sliver) {3}{S}:destroy target(*)
-rarity=U
 [/card]
 [card]
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) If Pouncing Wurm was kicked, it enters the battlefield with three +1/+1 counters on it and with haste.
 id=122323
 name=Pouncing Wurm
+rarity=U
 mana={3}{G}
 kicker={2}{G}
 auto=kicker haste
@@ -228,69 +257,66 @@ type=Creature
 subtype=Wurm
 power=3
 toughness=3
-rarity=U
 [/card]
 [card]
+text={1}{B}, {T}, Discard a card: Target creature gets +1/+0 and gains first strike until end of turn.
 id=130717
 name=Ridged Kusite
+rarity=C
 mana={B}
 type=Creature
 subtype=Horror Spellshaper
-power=1
-toughness=1
-text={1}{B}, {T}, Discard a card: Target creature gets +1/+0 and gains first strike until end of turn.
 auto={1}{B}{T}{S(*|myhand):1/0 && first strike target(creature)
-rarity=C
-[/card]
-[card]
-id=122442
-name=Serendib Sorcerer
-mana={1}{U}{U}
-type=Creature
-subtype=Human Wizard
 power=1
 toughness=1
-text={T}: Target creature other than Serendib Sorcerer becomes 0/2 until end of turn.
-auto={T}:0/2 target(other creature)
-rarity=R
 [/card]
 [card]
 text=All Sliver creatures get +1/+1.
 id=125879
 name=Sinew Sliver
 rarity=C
+mana={1}{W}
 type=Creature
 subtype=Sliver
-mana={1}{W}
+auto=lord(sliver) 1/1
 power=1
 toughness=1
-auto=lord(sliver) 1/1
-color=White
+[/card]
+[card]
+text=Skirk Shaman can't be blocked except by artifact creatures and/or red creatures.
+id=131011
+name=Skirk Shaman
+rarity=C
+mana={1}{R}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=2
+abilities=intimidate
 [/card]
 [card]
 text=All Sliver creatures have first strike.
 id=126022
 name=Spitting Sliver
 rarity=C
+mana={4}{B}
 type=Creature
 subtype=Sliver
-mana={4}{B}
+auto=lord(sliver) first strike
 power=3
 toughness=3
-auto=lord(sliver) first strike
-color=Black
 [/card]
 [card]
+text={2}{G}{G}, {T}, Discard a card: You gain 2 life for each card in your hand.
 id=124505
 name=Sophic Centaur
+rarity=U
 mana={3}{G}
 type=Creature
 subtype=Centaur Spellshaper
+auto={2}{G}{G}{T}{S(*|myhand)}:foreach(*|myhand) life:2 controller
 power=1
 toughness=1
-text={2}{G}{G}, {T}, Discard a card: You gain 2 life for each card in your hand.
-auto={2}{G}{G}{T}{S(*|myhand)}:foreach(*|myhand) life:2 controller
-rarity=U
 [/card]
 [card]
 text=Sunlance deals 3 damage to target nonwhite creature.
@@ -299,22 +325,20 @@ auto=Damage:3
 id=122355
 name=Sunlance
 rarity=C
-color=White
+mana={W}
 type=Sorcery
-mana={w}
 [/card]
 [card]
 text=All Sliver creatures have vigilance.
 id=124044
 name=Synchronous Sliver
 rarity=C
+mana={4}{U}
 type=Creature
 subtype=Sliver
-mana={4}{U}
+auto=lord(sliver) vigilance
 power=3
 toughness=3
-auto=lord(sliver) vigilance
-color=Blue
 [/card]
 [card]
 text=Flying, Vigilance
@@ -327,86 +351,79 @@ mana={3}{U}{U}
 power=4
 toughness=4
 abilities=vigilance,flying
-color=Blue
 [/card]
 [card]
-text=Swampwalk {G}: Regenerate Mire Boa.
+text=Swampwalk   {G}: Regenerate Mire Boa.
 id=122420
 name=Mire Boa
 rarity=C
+mana={1}{G}
 type=Creature
 subtype=Snake
-mana={1}{G}
+auto={G}:regenerate
 power=2
 toughness=1
-auto={G}:regenerate
 abilities=swampwalk
-color=Green
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
 id=122268
 name=Needlepeak Spider
 rarity=C
+mana={3}{R}
 type=Creature
 subtype=Spider
-mana={3}{R}
 power=4
 toughness=2
 abilities=reach
-color=Red
 [/card]
 [card]
 text={T}:Prodigal Pyromancer deals 1 damage to target creature or player.
 id=122338
 name=Prodigal Pyromancer
 rarity=C
+mana={2}{R}
 type=Creature
 subtype=Human Wizard
-mana={2}{R}
+auto={T}:damage:1 target(creature,player)
 power=1
 toughness=1
-auto={T}:damage:1 target(creature,player)
-color=Red
 [/card]
 [card]
-text={B}, {T}:Tap target creature.
+text={B}, {T}: Tap target creature.
 id=130718
 name=Rathi Trapper
 rarity=C
+mana={1}{B}
 type=Creature
 subtype=Human Rebel Rogue
-mana={1}{B}
+auto={B}{T}:tap target(creature)
 power=1
 toughness=2
-auto={B}{T}:tap target(creature)
-color=Black
 [/card]
 [card]
 text=All Sliver creatures have haste.
 id=126018
 name=Reflex Sliver
 rarity=C
+mana={3}{G}
 type=Creature
 subtype=Sliver
-mana={3}{G}
+auto=lord(sliver) haste
 power=2
 toughness=2
-auto=lord(sliver) haste
-color=Green
 [/card]
 [card]
 text={W}:Regenerate Revered Dead.
 id=122282
 name=Revered Dead
 rarity=C
+mana={1}{W}
 type=Creature
 subtype=Spirit Soldier
-mana={1}{W}
+auto={W}:regenerate
 power=1
 toughness=1
-auto={W}:regenerate
-color=White
 [/card]
 [card]
 text=Destroy target nonwhite permanent.
@@ -415,22 +432,20 @@ auto=destroy
 id=122435
 name=Saltblast
 rarity=U
-color=White
-type=Sorcery
 mana={3}{W}{W}
+type=Sorcery
 [/card]
 [card]
 text={T}:Target creature gets -2/-0 until end of turn. 
 id=124037
 name=Saltfield Recluse
 rarity=C
+mana={2}{W}
 type=Creature
 subtype=Human Rebel Cleric
-mana={2}{W}
+auto={T}:-2/-0 target(creature)
 power=1
 toughness=2
-auto={T}:-2/-0 target(creature)
-color=White
 [/card]
 [card]
 text=Sacrifice Seal of Primordium: Destroy target artifact or enchantment.
@@ -438,51 +453,34 @@ auto={S}:destroy target(artifact,enchantment)
 id=130816
 name=Seal of Primordium
 rarity=C
-type=Enchantment
 mana={1}{G}
-color=Green
+type=Enchantment
 [/card]
 [card]
-id=131004
-name=Utopia Vow
 text=Enchant creature. Enchanted creature can't attack or block. Enchanted creature has "{T}:Add one mana of any color to your mana pool."
+id=131004
+target=creature
+name=Utopia Vow
+rarity=C
+mana={1}{G}
 auto=cantattack
 auto=cantblock
-auto={T}:add:{W}
-auto={T}:add:{U}
-auto={T}:add:{B}
-auto={T}:add:{R}
-auto={T}:add:{G}
-target=creature
+auto={T}:Add: {W}
+auto={T}:Add: {U}
+auto={T}:Add: {B}
+auto={T}:Add: {R}
+auto={T}:Add: {G}
 type=Enchantment
-mana={1}{G}
-color=Green
 subtype=Aura
-rarity=C
 [/card]
 [card]
 text=Enchant creature. Enchanted creature has lifelink.
-auto=lifelink
 id=122366
+target=creature
 name=Vampiric link
 rarity=U
-target=creature
-type=Enchantment
 mana={B}
-color=Black
+auto=lifelink
+type=Enchantment
 subtype=Aura
-[/card]
-[card]
-id=122477
-name=Whitemane Lion
-mana={1}{W}
-type=Creature
-subtype=Cat
-power=2
-toughness=2
-text=Flash (You may cast this spell any time you could cast an instant.) When Whitemane Lion enters the battlefield, return a creature you control to its owner's hand.
-target=creature|myinplay
-auto=moveTo(ownerhand)
-abilities=flash
-rarity=C
 [/card]
