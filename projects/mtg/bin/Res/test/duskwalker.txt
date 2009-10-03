@@ -1,0 +1,39 @@
+#Testing Duskwalker and auto=kicker fear, to see if it losses fear at end of turn.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Duskwalker
+manapool:{3}{B}{B}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Duskwalker
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main 1
+next
+#cbt begins
+next
+#attackers
+Duskwalker
+next
+#defensers
+Grizzly Bears
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Duskwalker
+[PLAYER2]
+life:17
+inplay:Grizzly Bears
+[END]

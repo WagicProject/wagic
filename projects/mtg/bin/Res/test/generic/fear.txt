@@ -1,0 +1,22 @@
+#Testing Fear : Severed Legion against grizzly bears
+#grizzly bears should not be able to block
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Severed Legion
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Severed Legion
+next
+Grizzly Bears
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Severed Legion
+[PLAYER2]
+life:18
+inplay:Grizzly Bears
+[END]

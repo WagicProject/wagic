@@ -3,6 +3,7 @@
 ########################
 generic/attacks_each_turn.txt
 generic/deathtouch.txt
+generic/fear.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt
@@ -97,6 +98,7 @@ dragon_fodder.txt
 drain_life.txt
 drift_of_the_dead.txt
 dross_harvester.txt
+duskwalker.txt
 elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt
