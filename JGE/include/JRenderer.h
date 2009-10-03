@@ -161,12 +161,6 @@ public:
 	void EnableTextureFilter(bool flag);
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Remove all textures from VRAM (PSP only)
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void ResetPrivateVRAM();
-
-	//////////////////////////////////////////////////////////////////////////
 	/// Enable/disable swizzle optimization. (PSP only)
 	///
 	/// @param s - 1 to enable, 0 to disable.
@@ -546,15 +540,14 @@ private:
 	int mCurrentTex;
 	int mCurrentBlend;
   int mCurrentTextureFormat;
-
   int PixelSize(int textureMode);
-
 #endif
 
 	bool mVsync;
 
 	int mSwizzle;
 	int mTexCounter;
+  
 
 
 	int mCurrentTextureFilter;

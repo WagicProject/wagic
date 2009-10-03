@@ -435,31 +435,6 @@ void JMD2Model::Render()
 	if (mModel == NULL)
 		return;
 	
-// 	int startFrame = mAnimations[mState]->mStartFrame;
-// 	int endFrame = mAnimations[mState]->mEndFrame;
-// 
-// 	if ( (startFrame < 0) || (endFrame < 0) )
-// 		return;
-// 
-// 	if ( (startFrame >= mModel->numFrames) || (endFrame >= mModel->numFrames) )
-// 		return;
-
-// 	if (mModel->interpol >= 1.0)
-// 	{
-// 		mModel->interpol = 0.0f;
-// 		mModel->currentFrame++;
-// 		if (mModel->currentFrame >= endFrame)
-// 			mModel->currentFrame = startFrame;
-// 
-// 		mModel->nextFrame = mModel->currentFrame + 1;
-// 
-// 		if (mModel->nextFrame >= endFrame)
-// 		{
-// 			mModel->nextFrame = startFrame;
-// 			CheckNextState();
-// 		}
-// 	}
-
 	pointList = &mModel->pointList[mModel->numPoints*mModel->currentFrame];
 	nextPointList = &mModel->pointList[mModel->numPoints*mModel->nextFrame];
 	

@@ -1312,12 +1312,6 @@ void JRenderer::SetTexBlendDest(int dest)
 }
 
 
-void JRenderer::ResetPrivateVRAM()
-{
-
-}
-
-
 void JRenderer::Enable2D()
 {
 	if (mCurrentRenderMode == MODE_2D)

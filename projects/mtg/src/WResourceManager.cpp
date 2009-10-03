@@ -414,7 +414,6 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
 
   if(res){ //a non-null result will always be good.
     JTexture * t = res->Actual();
-    JRenderer::GetInstance()->BindTexture(t);
     return t;
   }
 #ifdef DEBUG_CACHE
@@ -864,7 +863,6 @@ void WResourceManager::Refresh(){
         newNames[oldtex] = mapping->first;
       else{
         newNames[newtex] = mapping->first;
-        JRenderer::GetInstance()->BindTexture(newtex);
       }
 
       oldTextures[oldtex] = newtex;

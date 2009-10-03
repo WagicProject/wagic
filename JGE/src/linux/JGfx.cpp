@@ -69,13 +69,6 @@ void JQuad::GetTextureRect(float *x, float *y, float *w, float *h)
 }
 
 
-// void JQuad::SetColor(JColor color)
-// {
-// 	for (int i=0;i<4;i++)
-// 		mColor[i].color = color.color;
-// }
-//
-
 void JQuad::SetColor(PIXEL_TYPE color)
 {
 	for (int i=0;i<4;i++)
@@ -254,22 +247,6 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	pt[1] = Vector2D(x+width, y-height);
 	pt[0] = Vector2D(x, y-height);
 
-// 	if (angle != 0.0f)
-// 	{
-// 		float xx, yy;
-// 		float cosAngle = cosf(angle);
-// 		float sinAngle = sinf(angle);
-// 		for (int i=0;i<4;i++)
-// 		{
-// 			xx = (cosAngle*(pt[i].x-xo) - sinAngle*(pt[i].y-yo) + xo);
-// 			yy = (sinAngle*(pt[i].x-xo) + cosAngle*(pt[i].y-yo) + yo);
-// 			pt[i].x = xx;
-// 			pt[i].y = yy;
-// 		}
-// 	}
-//
-// 	for (int i=0;i<4;i++)
-// 		pt[i].y = SCREEN_HEIGHT_F - pt[i].y;
 
 	Vector2D uv[4];
 	uv[0] = Vector2D(quad->mTX0, quad->mTY1);
@@ -1266,12 +1243,6 @@ void JRenderer::SetTexBlendDest(int dest)
 		mCurrTexBlendDest = dest;
 		glBlendFunc(mCurrTexBlendSrc, mCurrTexBlendDest);
 	}
-}
-
-
-void JRenderer::ResetPrivateVRAM()
-{
-
 }
 
 

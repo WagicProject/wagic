@@ -220,8 +220,6 @@ typedef uint32_t u32;
 	typedef struct
 	{
 		ScePspFVector2 texture;
-		//PIXEL_TYPE color;
-		//ScePspFVector3 normal;
 		ScePspFVector3 pos;
 	} PSPVertex3D;
 
@@ -244,7 +242,6 @@ struct Vertex
 struct Vertex3D
 {
 	float u, v;
-	//float nx, ny, nz;
 	float x, y, z;
 };
 

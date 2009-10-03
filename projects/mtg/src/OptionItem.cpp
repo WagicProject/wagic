@@ -218,7 +218,6 @@ void OptionProfile::updateValue(){
 }
 
 void OptionProfile::populate(){ 
- JRenderer * renderer = JRenderer::GetInstance();
  string temp = options[Options::ACTIVE_PROFILE].str;
  if (value >= selections.size()){ //TODO fail gracefully.
    return;
@@ -231,7 +230,6 @@ void OptionProfile::populate(){
  mAvatarTex = JRenderer::GetInstance()->LoadTexture(options.profileFile("avatar.jpg","",true,true).c_str(), false);  
  if (mAvatarTex){
    mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
-   renderer->BindTexture(mAvatarTex);
  }
 
  PlayerData * pdata = NEW PlayerData(app->collection);

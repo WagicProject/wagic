@@ -1,6 +1,3 @@
-
-
-
 #include <pspkernel.h>
 #include <pspdisplay.h>
 #include <pspdebug.h> 
@@ -17,8 +14,6 @@
 #include <unistd.h>
 #include <stdio.h>
 
-
-//#include <mikmod.h>
 
 #include "../../JGE/include/JGE.h"
 #include "../../JGE/include/JApp.h"
@@ -39,8 +34,8 @@
 #else
 
 	PSP_MODULE_INFO(JGEApp_Title, 0x1000, 1, 1);
-PSP_MAIN_THREAD_ATTR(0);
-//PSP_MAIN_THREAD_ATTR(THREAD_ATTR_USER);
+  PSP_MAIN_THREAD_ATTR(0);
+
 #endif
 
 
@@ -72,7 +67,6 @@ int power_callback(int unknown, int pwrflags, void *common)
 		if (engine != NULL)
 			engine->Pause();
 
-		//sceKernelDelayThread(1000000);
 	}
 	else if ((pwrflags & PSP_POWER_CB_RESUME_COMPLETE) > 0)	
 	{
@@ -82,35 +76,6 @@ int power_callback(int unknown, int pwrflags, void *common)
 			engine->Resume();
 	}
 
-//     /* check for power switch and suspending as one is manual and the other automatic */
-//     if (pwrflags & PSP_POWER_CB_POWER_SWITCH || pwrflags & PSP_POWER_CB_SUSPENDING) 
-// 	{
-// 		// suspending
-// 		if (engine != NULL)
-// 			engine->Pause();
-//     } 
-// 	else if (pwrflags & PSP_POWER_CB_RESUMING) 
-// 	{
-// 		// resuming from suspend mode
-// 
-//     } 
-// 	else if (pwrflags & PSP_POWER_CB_RESUME_COMPLETE) 
-// 	{
-// 		// resume complete
-// 		if (engine != NULL)
-// 			engine->Resume();
-//     } 
-// 	else if (pwrflags & PSP_POWER_CB_STANDBY)
-// 	{
-// 		// entering standby mode
-// 		if (engine != NULL)
-// 			engine->Pause();
-//     } 
-// 	else 
-// 	{
-// 		// unhandled power event
-//     }
-//     sceDisplayWaitVblankStart();
 
 	return 0;
 }
@@ -133,21 +98,6 @@ int CallbackThread(SceSize args, void *argp)
 	return 0;
 }
 
-//------------------------------------------------------------------------------------------------
-// static int AudioChannelThread(SceSize args, void *argp)
-// {
-// 	while (!done)
-// 	{
-// 		MikMod_Update();
-// 		// We have to sleep here to allow other threads a chance to process.
-// 		// with no sleep this thread will take over when the output is disabled via MikMod_DisableOutput()
-// 		// co-operative threading sucks bigtime...
-// 		sceKernelDelayThread(1);
-// 	}
-// 	return (0);
-// }
-
-//------------------------------------------------------------------------------------------------
 // Sets up the callback thread and returns its thread id
 int SetupCallbacks(void)
 {
