@@ -1,30 +1,30 @@
-#NAME:CD Prodigal Pyromancer
+#NAME: Pyromancer
 #
+#DESC: Creature's Decks 5:
 #DESC: "The deck that a Prodigal Pyromancer
 #DESC: would (and could) assemble"
-#DESC: (v1.0)
+#DESC: (v1.01)
 #DESC:
 #DESC: Well protected by solid stone
 #DESC: I scorch you with lances of fire
 #
 
 Prodigal Pyromancer (10E)   *1 # actually the deck evolved to a
-   # state where it would fare better
-   # without its main creature ...
+                               # state where it would fare better
+                               # without its main creature ...
 
-Wall of Diffusion (TMP) *4 # 12 walls for defense
-Wall of Earth (LEG) *4
-Wall of Stone (RV)  *4
+Wall of Diffusion (TMP)     *4 # 12 walls for defense
+Wall of Earth (LEG)         *4
+Wall of Stone (RV)          *4
 
 Beacon of Destruction (10E) *3 # 19 direct damage spells
-Flame Burst (ODY)   *4
-Lava Spike (CHK)*4
-Lightning Bolt (M10)*4
-Volcanic Hammer (POR)   *4 # weaker replacement for Kindle
-   # (which is buggy in 0.8.1)
+Flame Burst (ODY)           *4
+Kindle (TMP)                *4
+Lava Spike (CHK)            *4
+Lightning Bolt (M10)        *4
 
-Howling Mine (10E)  *4 # accelerates the game, makes more
-   # damage spells available
+Howling Mine (10E)          *4 # accelerates the game, makes more
+                               # damage spells available
 
 Mountain (10E)  *24
 
@@ -67,10 +67,12 @@ Mountain (10E)  *24
 #   that deck; Howling Mine serves the same purpose, and hopefully
 #   the opponent will be dead before he can make much use of the
 #   cards he draws.
+# Dancing Scimitar - Perhaps add as a defense against flyers as
+#   long as Aether Membrane isn't available?
 
 # Cards removed from the deck:
-# Kindle - buggy, cannot target player. Bug already fixed in SVN.
-#   Swap Kindle in for Volcanic Hammer for next Wagic release.
+# Volcanic Hammer - was a stand-in for Kindle as long is that was
+#   buggy.
 
 # Notes:
 #
@@ -83,4 +85,7 @@ Mountain (10E)  *24
 # battlefield. This could be useful in case the opponent has
 # creatures with Haste, but nevertheless the AI would fare better
 # if it prioritized other spells over wall summoning as long as no
-# enemy cretaures are out.
+# enemy creatures are out.
+#
+# The deck would profit massively from Mana Flare and Aether
+# Membrane, but neither card is currently implemented.

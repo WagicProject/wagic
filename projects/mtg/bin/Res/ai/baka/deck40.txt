@@ -1,8 +1,9 @@
-#NAME:CD Lord of the Undead
+#NAME:Undead Lord
 #
+#DESC: Creature's Decks 7:
 #DESC: "The deck that a Lord of the Undead
 #DESC: would (and could) assemble"
-#DESC: (v1.0)
+#DESC: (v1.01)
 #DESC:
 #DESC: Can you smell the sweet perfume
 #DESC: Of festering flesh and rotting bones?
@@ -13,22 +14,22 @@
 #
 
 Lord of the Undead (10E) *4  # strengthens and raises zombies
-Cemetery Reaper (M10)*4  # strengthens zombies
-Soulless One (ONS)   *4  # gets powerful with lots of zombies
+Cemetery Reaper (M10)    *4  # strengthens zombies
+Soulless One (ONS)       *4  # gets powerful with lots of zombies
 
-Walking Dead (LEG)   *4  # cheap early defense
+Walking Dead (LEG)       *4  # cheap early defense
 
-Zombie Master (RV)   *3  # for Swampwalk, zombie regeneration,
- # and 2/3 isn't bad either
-Severed Legion (10E) *1  # \
-Warpath Ghoul (M10)  *1  #  > some expensive zombies
-Mass of Ghouls (FUT) *1  # /
+Zombie Master (RV)       *3  # for Swampwalk, zombie regeneration,
+                             # and 2/3 isn't bad either
+Severed Legion (10E)     *1  # \
+Warpath Ghoul (M10)      *1  #  > some expensive zombies
+Mass of Ghouls (FUT)     *1  # /
 
-Dreadwing (CFX)  *3  # \  9 cheap zombies - neither can
-Hate Weaver (10E)*3  #  > use its abilities. These are
+Dreadwing (CFX)          *3  # \  9 cheap zombies - neither can
+Hate Weaver (10E)        *3  #  > use its abilities. These are
 Roofstalker Wight (RAV)  *3  # /  just temporary solutions to
- #rack zombie numbers up for the
- #Soulless One.
+                             #    rack zombie numbers up for the
+                             #    Soulless One.
 
 Beacon of Unrest (10E)   *1  # More raising of zombies
 
@@ -56,13 +57,16 @@ Swamp (10E)  *24
 # Phyrexian Ghoul - AI can't handle sacrifice decisions well
 # Nantuko Husk - dito
 # Recover - too expensive
-# Disentomb - the Lord of the Undead will do the Raising
+# Disentomb - the Lord of the Undead will do most of the Raising
 # Raise Undead - dito
+# Tortured Existence - dito
 # Dross Crocodile - too expensive
 # Gravedigger - too expensive
 # Spineless Thug - cheap, but can't block
 # Feeding Frenzy - nice but too expensive
 # Sadistic Glee - AI casts it on opponent's creatures
+# Unholy Grotto, Volrath's Stronghold - would weaken Soulless One
+# Haunted Crossroads - would weaken Soulless One
 
 # Cards removed from the deck:
 # Accursed Centaur - sacrifices itself

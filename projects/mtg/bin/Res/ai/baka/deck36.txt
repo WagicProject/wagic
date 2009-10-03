@@ -1,8 +1,9 @@
-#NAME:CD Master of Etherium
+#NAME:Master of Ether
 #
+#DESC: Creature's Decks 3:
 #DESC: "The deck that a Master of Etherium
 #DESC: would (and could) assemble"
-#DESC: (v1.0)
+#DESC: (v1.01)
 #DESC:
 #DESC: Surrounded by the things I built
 #DESC: my power will grow
@@ -13,50 +14,49 @@ Master of Etherium (ALA) *4  # gets stronger with every artifact
 
 Vedalken Archmage (MRD)  *2  # draws card when summoning artifact
 
-Ornithopter (10E)*4  # cheap artifact, later air defense
-Nuisance Engine (MRD)*4  # create more cheap artifacts
+Ornithopter (10E)        *4  # cheap artifact, later air defense
+Nuisance Engine (MRD)    *4  # create more cheap artifacts
 
-Cathodion (MRD)  *4  # 3-drop 3/3 creature without a down-
- # side since manaburn was abolished
+Cathodion (MRD)          *4  # 3-drop 3/3 creature without a down-
+                             # side since manaburn was abolished
 
-Sculpting Steel (10E)*4  # surprise element - might become
- # another Master of Etherium - or
- # just another pest ...
- 
-Steel Wall (MRD) *2  # mainly for defending
-Yotian Soldier (MRD) *2  # cheap defender
+Steel Wall (MRD)         *2  # mainly for defending
+Yotian Soldier (MRD)     *2  # cheap defender
 
-Coiled Tinviper (TMP)*1  # first strike attacker
+Coiled Tinviper (TMP)    *1  # first strike attacker
 
-Scarecrone (EVE) *2  # brings back artifacts
+Scarecrone (EVE)         *2  # brings back artifacts
 
-Salvage Slasher (CFX)*2  # grows stronger with artifacts in
- # graveyard - nice effect if opponent
- # has destroyed all artifacts
+Glaze Fiend (ALA)        *2  # temp. bonus for playing artifacts
 
-Silver Myr (MRD) *4  # artifact source of blue mana (which
- # is needed for the 6 Vedalken)
+Salvage Slasher (CFX)    *2  # grows stronger with artifacts in
+                             # graveyard - nice effect if opponent
+                             # has destroyed all artifacts
 
-Island (10E) *3  # more blue mana
- 
-Seat of the Synod (MRD)  *5  # 20 artifact lands for huge bonuses
-Vault of Whispers (MRD)  *5  # on Master of Etherium and Tolarian
-Great Furnace (MRD)  *5  # Academy.
-Tree of Tales (MRD)  *5  # Ancient Den temporarily removed due
-# Ancient Den (MRD)  *4  # to game bug.
+Silver Myr (MRD)         *4  # artifact source of blue mana (which
+                             # is needed for the 6 Vedalken)
 
-Academy Ruins (TSP)  *1  # brings back artifacts
+Akroma's Memorial (FUT)  *2  # massive bonuses incl. Trample
+
+
+Island (10E)             *3  # more blue mana
+
+Seat of the Synod (MRD)  *4  # 20 artifact lands for huge bonuses
+Vault of Whispers (MRD)  *4  # on Master of Etherium and Tolarian
+Great Furnace (MRD)      *4  # Academy.
+Tree of Tales (MRD)      *4
+Ancient Den (MRD)        *4
+
+Academy Ruins (TSP)      *1  # brings back artifacts
 
 Tolarian Academy (USG)   *1  # Generates massive amounts of mana
- # in this deck - which the AI usually
- # wastes.
+                             # in this deck - which the AI usually
+                             # wastes.
 
 
 # Cards considered, but not included:
-# Gaea's Cradle - would make the deck even strongerm but doesn't
+# Gaea's Cradle - would make the deck even stronger, but doesn't
 #   fit the theme.
-# Glaze Fiend - buggy in 0.8.1, bonuses aren't removed at end of
-#   turn
 #
 # Cards removed from the deck:
-# none
+# Sculpting Steel - reported to lead to crashes

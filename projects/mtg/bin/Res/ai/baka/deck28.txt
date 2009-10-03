@@ -14,22 +14,24 @@
 #2x Control Magic
 1194
 1194
-#2x Ray of Erasure
-2529
-2529
+#2x Tome Scour
+191598
+191598
 #4x Glimpse the Unthinkable
 83597
 83597
 83597
 83597
-#2x Psychic Drain
+#1x Psychic Drain
 89114
-89114
-#4x Howling Mine
+#1x Forced Fruition
+146166
+#2x Howling Mine
 129598
 129598
-129598
-129598
+#2x Memory Erosion
+175108
+175108
 #2x Mortivore
 129648
 129648
@@ -39,9 +41,9 @@
 #2x Dreamborn Muse
 135246
 135246
-#2x Unsummon
-136218
-136218
+#2x Traumatize
+129774
+129774
 #4x Oona's Gatewarden
 141975
 141975

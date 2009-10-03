@@ -1,61 +1,57 @@
-#NAME:CD Might Sliver
+#NAME:Might Sliver
 #
+#DESC: Creature's Decks 2:
 #DESC: "The deck that a Might Sliver
 #DESC: would (and could) assemble."
-#DESC: (v1.0)
+#DESC: (v1.01)
 #DESC:
 #DESC:The Hive reaches your doorstep ...
 #
 #
 
-Winged Sliver (TMP) *2
-# gives Flying
+Winged Sliver (TMP)  *2 # gives Flying
 
-Horned Sliver (TMP) *3
-# gives Trample, also 2/2 isn't bad for a 3-drop creature that
-# will be pumped by others
+Horned Sliver (TMP)  *3 # gives Trample, also 2/2 isn't bad for a
+                        # 3-drop creature that others will pump 
 
-Muscle Sliver (TMP) *4
-# cheap, and the +1/+1 bonus is cumulative and can't be misused
-# by the AI
+Muscle Sliver (TMP)  *4 # cheap and the +1/+1 bonus is cumulative
+                        # and can't be misused by the AI
 
-Heart Sliver (TMP) *3
-# gives Haste
+Heart Sliver (TMP)   *2 # gives Haste
 
-Talon Sliver (TMP) *3
-# gives First Strike
+Talon Sliver (TMP)   *3 # gives First Strike
 
-Watcher Sliver (TSP) *2
-# nice cumulative +0/+2 bonus, but too expensive to have more of
-# them, and we only have 3 plains in the deck
+Watcher Sliver (TSP) *1 # nice cumulative +0/+2 bonus, but too
+                        # expensive to have more of them, and we
+                        # only have 3 plains in the deck
 
-Shadow Sliver (TSP) *1
-# might be great or bad - thrown in as an element of surprise
+Shadow Sliver (TSP) *1  # might be great or bad - thrown in as
+                        # an element of surprise
 
-Bonesplitter Sliver (TSP) *4
-# nice cumulative +2/+0 bonus
+Crystalline Sliver (STH) *1 # Shroud is nice, especially in a
+                            # deck with no non-creature spells
 
-Fury Sliver (TSP) *2
-# gives double strike, only 2 because it's a 6-drop creature
+Bonesplitter Sliver (TSP) *4  # nice cumulative +2/+0 bonus
 
-Might Sliver (TSP) *4
-# nice cumulative +2/+2 bonus
+Fury Sliver (TSP) *2    # gives double strike, only 2 because
+                        # it's a 6-drop creature
 
-Spinneret Sliver (TSP) *4
-# 2/2 Sliver for only 2 mana, also gives Reach to all slivers,
-# which is good because we only have 2 Winged Slivers in the deck,
-# and those might not even be played because we have few Islands.
+Might Sliver (TSP) *4   # nice cumulative +2/+2 bonus
 
-Gemhide Sliver (TSP) *4
-# Additional mana source to get Might Slivers out faster
+Spined Sliver (STH) *2  # gives Rampage
 
-Forest (M10)   *12
-# (most slivers in the deck are green)
-Island (M10)   *3
-# only 3 blue creatures in the deck
+Spinneret Sliver (TSP) *3  # 2/2 Sliver for only 2 mana, also
+# gives Reach to all slivers, which is good because we only have
+# two Winged Slivers in the deck, and those might not even be
+# played because we have few Islands.
+
+Gemhide Sliver (TSP) *4 # Additional mana source to get Might
+                        # Slivers out faster
+                        
+Forest (M10)   *12      # (most slivers in the deck are green)
+Island (M10)   *3       # only 4 blue creatures in the deck
 Mountain (M10) *6
-Plains (M10)   *3
-# only 5 white creatures in the deck
+Plains (M10)   *3       # only 5 white creatures in the deck
 
 #
 # Cards considered, but not included:
@@ -74,6 +70,14 @@ Plains (M10)   *3
 # Sliversmith - doesn't profit from other slivers. Its tokens
 #   do, but the AI isn't smart in deciding which cards to discard
 # Metallic Sliver - is cheap, but doesn't strengthen other slivers
+# Victual Sliver - AI too eager to sacrifice
+# Battering Sliver - effect already provided by cheaper Horned Sl.
+# Sliver Queen - AI can't handle 5-color deck
+# Reflex Sliver - Heart Sliver has same effect for lower cost
+# Sinew Sliver - good +1/+1 bonus, but only few plains in this
+#   deck, and red/green slivers provide same or similar effects
+# Synchronous Sliver - Vigilance is nice, but sliver is blue and
+#   pretty expensive
 #
 # Cards removed from the deck:
 # 20 dual lands - AI only uses the first "auto" rule for each

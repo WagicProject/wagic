@@ -1,26 +1,29 @@
-#NAME:CD Ball Lightning
+#NAME:Ball Lightning
 #
+#DESC: Creature's Decks 6:
 #DESC: "The deck that a Ball Lightning
 #DESC: would (and could) assemble"
-#DESC: (v1.0)
+#DESC: (v1.01)
 #DESC:
-#DESC: Well protected by solid stone
-#DESC: I scorch you with lances of fire
+#DESC: You are nothing
+#DESC: But more fuel
+#DESC: For my insatiable
+#DESC: Rage
 #
 
-Ball Lightning (M10)*4
+Ball Lightning (M10)        *4
 
 Beacon of Destruction (10E) *2 # 28 direct damage spells
-Flame Burst (ODY)   *4
-Flame Javelin (SHM) *4
-Kindle (TMP)*4
-Lava Spike (CHK)*4
-Lightning Bolt (M10)*4
-Fire Tempest (POR)  *2
-Volcanic Hammer (POR)   *4
+Flame Burst (ODY)           *4
+Flame Javelin (SHM)         *4
+Kindle (TMP)                *4
+Lava Spike (CHK)            *4
+Lightning Bolt (M10)        *4
+Fire Tempest (POR)          *2
+Volcanic Hammer (POR)       *4
 
-Howling Mine (10E)  *4 # accelerates the game, makes more
-   # damage spells available
+Howling Mine (10E)          *4 # accelerates the game, makes more
+                               # damage spells available
 
 Mountain (10E)  *24
 
