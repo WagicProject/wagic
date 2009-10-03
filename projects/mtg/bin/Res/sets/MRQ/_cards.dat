@@ -296,6 +296,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature doesn't untap during its controller's untap step.
+id=19577
+name=Dehydration
+target=creature
+auto=doesnotuntap
+type=Enchantment
+mana={3}{U}
+subtype=Aura
+rarity=C
+[/card]
+[card]
 text=Destroy target permanent.
 id=19638
 target=*

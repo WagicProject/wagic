@@ -32,6 +32,7 @@ name=Afterlife
 target=creature
 auto=bury
 auto=token(Spirit,creature spirit,1/1,flying white) targetcontroller
+## token doesn't work with "targetcontroller"
 type=Instant
 mana={2}{W}
 rarity=U
@@ -530,17 +531,7 @@ subtype=Human Soldier
 toughness=1
 [/card]
 
-[card]
-text={T}: Target creature with power 2 or less is unblockable this turn.
-id=3441
-name=Dwarven Nomad
-rarity=C
-type=Creature
-mana={2}{R}
-power=1
-subtype=Dwarf Nomad
-toughness=1
-[/card]
+
 [card]
 text=Target player untaps all basic lands he or she controls.
 id=3382

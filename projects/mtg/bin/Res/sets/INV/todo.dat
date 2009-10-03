@@ -1629,12 +1629,18 @@ mana={2}{R}
 text=Kicker {X} (You may pay an additional {X} as you play this spell.)  Other Treefolk creatures and Saproling creatures get +1/+1.     When Verdeloth the Ancient comes into play, if the kicker cost was paid, put X 1/1 green Saproling creature tokens into play.
 id=23137
 name=Verdeloth the Ancient
-rarity=R
-type=Legendary Creature
 mana={4}{G}{G}
+kicker={X}
+type=Creature
+abilities=legendary
+auto=lord(treefolk) 1/1 other
+auto=lord(saproling) 1/1 other
+auto=kicker token(saproling,creature saproling,1/1,green)*x
+##doesn't yet work
 power=4
 subtype=Treefolk
 toughness=7
+rarity=R
 [/card]
 [card]
 text=Kicker {1}{R} (You may pay an additional {1}{R} as you play this spell.)  When Verduran Emissary comes into play, if the kicker cost was paid, destroy target artifact. It can't be regenerated.

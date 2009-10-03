@@ -561,7 +561,7 @@ mana={3}{G}
 type=Enchantment
 subtype=Aura
 text=Enchant tapped creature Enchanted creature doesn't untap during its controller's untap step.
-target=creature
+target=creature[tapped]
 auto=doesnotuntap
 rarity=C
 [/card]

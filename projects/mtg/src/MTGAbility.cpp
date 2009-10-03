@@ -1558,14 +1558,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		game->mLayers->stackLayer()->addDamage(card, target, damage);
 	break;
 	}
-
-  case 129521: //Dehydratation
-  // Don't understand why but target automatically untap when cast...
-    {
-			game->addObserver(NEW UntapBlocker(_id,card,card->target));
-      break;
-    }
-	
 	case 130369: // Soulblast
     {
 	    int damage = 0;

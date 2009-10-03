@@ -539,10 +539,11 @@ text=Enchant creature (Target a creature as you play this. This card comes into 
 id=129521
 target=creature
 name=Dehydration
-rarity=C
+auto=doesnotuntap
 type=Enchantment
 mana={3}{U}
 subtype=Aura
+rarity=C
 [/card]
 [card]
 text=Tap all creatures without flying.
@@ -818,15 +819,6 @@ type=Instant
 mana={1}{R}
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
-id=129562
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
 text={7}{R}: Flamewave Invoker deals 5 damage to target player.
 id=130378
 auto={7}{R}:Damage:5 target(player)
@@ -860,7 +852,7 @@ auto=lord(creature) x/-x
 [card]
 text={T}: Add {G} to your mana pool.
 auto={T}: Add {G}
-id=129561
+id=129559
 name=Forest
 rarity=L
 type=Basic Land
@@ -878,7 +870,16 @@ subtype=Forest
 [card]
 text={T}: Add {G} to your mana pool.
 auto={T}: Add {G}
-id=129559
+id=129561
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+id=129562
 name=Forest
 rarity=L
 type=Basic Land

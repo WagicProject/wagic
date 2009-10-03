@@ -121,6 +121,18 @@ auto=may copy target(creature)
 rarity=U
 [/card]
 [card]
+text={T}: Target creature with power 2 or less is unblockable this turn.
+id=40060
+alias=1285
+name=Crafty Pathmage
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
 text={3}{W}: Tap target creature. {3}{W}: Crowd Favorites gets +0/+5 until end of turn.
 id=40653
 name=Crowd Favorites

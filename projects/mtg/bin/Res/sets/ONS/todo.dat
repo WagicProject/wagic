@@ -494,17 +494,7 @@ type=Enchantment
 text=As Cover of Darkness comes into play, choose a creature type.  Creatures of the chosen type have fear.
 rarity=R
 [/card]
-[card]
-id=40060
-name=Crafty Pathmage
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={T}: Target creature with power 2 or less is unblockable this turn.
-rarity=C
-[/card]
+
 [card]
 id=39883
 name=Crown of Ascension
