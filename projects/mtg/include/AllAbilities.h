@@ -3235,53 +3235,6 @@ class APowerLeak:public TriggeredAbility{
   }
 };
 
-//Power Surge
-class APowerSurge:public TriggeredAbility{
- public:
-  int totalLands;
- APowerSurge(int _id, MTGCardInstance * _source):TriggeredAbility(_id,_source){
-    totalLands = 0;
-  }
-
-  int trigger(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_EOT){
-      //That's ugly but untapped land at the beginning of the turn are opponent's untapped lands at the end of the turn
-      totalLands = 0;
-      MTGInPlay * inPlay = game->opponent()->game->inPlay;
-      for (int i = 0; i < inPlay->nb_cards; i++){
-	MTGCardInstance * card = inPlay->cards[i];
-	if (!card->isTapped() && card->hasType("land")){
-	  totalLands++;
-	}
-      }
-    }
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && totalLands){
-      return 1;
-    }
-    return 0;
-  }
-
-  int resolve(){
-    if (totalLands) game->mLayers->stackLayer()->addDamage(source,game->currentPlayer,totalLands);
-    totalLands = 0;
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "APowerSurge ::: totalLands : " << totalLands
-	<< " (";
-    return TriggeredAbility::toString(out) << ")";
-  }
-  APowerSurge * clone() const{
-    APowerSurge * a =  NEW APowerSurge(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
-
 //1176 Sacrifice
 class ASacrifice:public InstantAbility{
  public:
@@ -3429,36 +3382,6 @@ class AAspectOfWolf:public ListMaintainerAbility{
     return a;
   }
 };
-
-//1276 Wanderlust, 1148 Cursed Lands
-class AWanderlust:public TriggeredAbility{
- public:
- AWanderlust(int _id, MTGCardInstance * _source, MTGCardInstance * _target):TriggeredAbility(_id,_source, _target){}
-
-  int trigger(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && ((MTGCardInstance *) target)->controller()==game->currentPlayer){
-      return 1;
-    }
-    return 0;
-  }
-
-  int resolve(){
-    game->mLayers->stackLayer()->addDamage(source,((MTGCardInstance *) target)->controller(),1);
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AWanderlust ::: (";
-    return TriggeredAbility::toString(out) << ")";
-  }
-  AWanderlust * clone() const{
-    AWanderlust * a =  NEW AWanderlust(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
 
 //1284 Dragon Whelp
 class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{

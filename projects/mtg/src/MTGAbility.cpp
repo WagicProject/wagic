@@ -1038,11 +1038,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW APowerLeak(_id ,card, card->target));
       break;
     }
-  case 1311: //Power Surge
-    {
-      game->addObserver( NEW APowerSurge(_id ,card));
-      break;
-    }
   case 1358: //Purelace
     {
       if (card->target){
@@ -1197,11 +1192,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1185: //Warp Artifact
-    {
-      game->addObserver(NEW ARegularLifeModifierAura(_id, card, card->target, Constants::MTG_PHASE_UPKEEP, -1));
-      break;
-    }
   case 1192:	//BrainGeyser
     {
       Player * player = spell->getNextPlayerTarget();
@@ -1214,11 +1204,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1194: //Control Magic
     {
       game->addObserver(NEW AControlStealAura(_id, card, card->target));
-      break;
-    }
-  case 1200 : //Feedback
-    {
-      game->addObserver(NEW AWanderlust(_id, card, card->target));
       break;
     }
   case 1218: //Psychic Venom
@@ -1330,19 +1315,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1243: //Fastbond
     {
       game->addObserver(NEW AFastbond(_id, card));
-      break;
-    }
-  case 1326: //Wheel of fortune
-    {
-      for (int i = 0; i < 2; i++){
-	MTGHand * hand = game->players[i]->game->hand;
-	for (int j = hand->nb_cards-1; j>=0; j--){
-	  game->players[i]->game->putInGraveyard(hand->cards[j]);
-	}
-	for(int j = 0; j < 7; j++){
-	  game->players[i]->game->drawFromLibrary();
-	}
-      }
       break;
     }
   case 1238: //Cockatrice

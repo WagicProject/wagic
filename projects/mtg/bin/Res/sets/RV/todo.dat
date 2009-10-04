@@ -105,18 +105,7 @@ color=Blue
 type=Sorcery
 mana={U}{U}
 [/card]
-[card]
-text={T}, Sacrifice an artifact: Put a +1/+1 counter on target creature. Play this ability only during your upkeep.
-id=1286
-name=Dwarven Weaponsmith
-rarity=U
-color=Red
-type=Creature
-mana={1}{R}
-power=1
-subtype=Dwarf
-toughness=1
-[/card]
+
 [card]
 text=All artifacts have "At the beginning of your upkeep, sacrifice this artifact unless you pay {2}."
 id=1199

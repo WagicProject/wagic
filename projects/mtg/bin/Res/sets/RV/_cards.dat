@@ -463,7 +463,7 @@ mana={1}
 text=Enchant land     At the beginning of the upkeep of enchanted land's controller, Cursed Land deals 1 damage to that player.
 target=land
 id=1148
-alias=1200
+auto=@each my upkeep:damage:1 controller
 name=Cursed Land
 rarity=U
 type=Enchantment
@@ -623,6 +623,19 @@ subtype=Dwarf
 toughness=1
 [/card]
 [card]
+text={T}, Sacrifice an artifact: Put a +1/+1 counter on target creature. Play this ability only during your upkeep.
+id=1286
+name=Dwarven Weaponsmith
+auto={T}{S(artifact|myinplay)}:counter(1/1,1) target(creature)
+color=Red
+type=Creature
+mana={1}{R}
+power=1
+subtype=Dwarf
+toughness=1
+rarity=U
+[/card]
+[card]
 text=
 id=1287
 name=Earth Elemental
@@ -734,6 +747,7 @@ subtype=Aura
 [card]
 text=Enchant enchantment     At the beginning of the upkeep of enchanted enchantment's controller, Feedback deals 1 damage to that player.
 target=enchantment
+auto=@each my upkeep:damage:1 controller
 id=1200
 name=Feedback
 rarity=U
@@ -1657,9 +1671,11 @@ subtype=Aura
 text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
 id=1311
 name=Power Surge
-rarity=R
+auto=@each my upkeep:foreach(land[-tapped]|myinplay) damage:1 controller
+auto=@each opponent upkeep:foreach(land[-tapped]|opponentinplay) damage:1 opponent
 type=Enchantment
 mana={R}{R}
+rarity=R
 [/card]
 [card]
 text={T}: Prodigal Sorcerer deals 1 damage to target creature or player.
@@ -1704,8 +1720,8 @@ mana={B}
 [card]
 text=Return target artifact card from your graveyard to your hand.
 target=artifact|myGraveyard
+auto=moveTo(myHand)
 id=1219
-alias=1174
 name=Reconstruction
 rarity=C
 type=Sorcery
@@ -2398,7 +2414,7 @@ toughness=3
 text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, Wanderlust deals 1 damage to that player.
 target=creature
 id=1276
-alias=1200
+auto=@each my upkeep:damage:1 controller
 name=Wanderlust
 rarity=U
 type=Enchantment
@@ -2420,6 +2436,7 @@ toughness=3
 [card]
 text=Enchant artifact     At the beginning of the upkeep of enchanted artifact's controller, Warp Artifact deals 1 damage to that player.
 target=artifact
+auto=@each my upkeep:damage:1 controller
 id=1185
 name=Warp Artifact
 rarity=R
@@ -2464,6 +2481,10 @@ subtype=Aura
 [card]
 text=Each player discards his or her hand and draws seven cards.
 id=1326
+auto=moveto(opponentgraveyard) all(*|opponenthand)
+auto=draw:7 opponent
+auto=moveto(mygraveyard) all(*|myhand)
+auto=draw:7 controller
 name=Wheel of Fortune
 rarity=R
 type=Sorcery
