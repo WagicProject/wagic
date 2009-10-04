@@ -108,7 +108,7 @@ void GuiHandSelf::Repos()
       if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
         {
           y = SCREEN_WIDTH - 30;
-          for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+          for (vector<CardView*>::reverse_iterator it = cards.rbegin(); it != cards.rend(); ++it)
             {
               (*it)->x = y;
               (*it)->y = SCREEN_HEIGHT - 30;
