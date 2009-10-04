@@ -835,6 +835,20 @@ power=0
 toughness=2
 [/card]
 [card]
+text=Kicker {2}{G} (You may pay an additional {2}{G} as you play this spell.)  If the kicker cost was paid, Kavu Titan comes into play with three +1/+1 counters on it and with trample.
+id=23106
+name=Kavu Titan
+rarity=R
+mana={1}{G}
+kicker={2}{G}
+auto=kicker counter(1/1,3)
+auto=kicker trample
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player. 
 auto={T}:Add {1}
 auto={4}{R}{T}{S(creature|myBattlefield)}:Damage:2 target(creature,player)
@@ -1010,6 +1024,18 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets -2/-0.   {B}: Return Mourning to its owner's hand.
+id=23031
+name=Mourning
+target=creature
+auto=-2/0
+auto={B}:moveTo(ownerhand)
+rarity=C
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={U}, {T}: Put target creature you control on top of its owner's library.   {R}, {T}: Target creature gains first strike until end of turn.
 auto={U}{T}:moveTo(ownerLibrary) target(creature|myBattlefield)
 auto={R}{T}:first strike target(creature)
@@ -1062,6 +1088,21 @@ auto={1}{G}:Add {R}
 auto={1}{G}:Add {G}
 power=2
 toughness=2
+[/card]
+[card]
+text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.) First strike. If the kicker cost was paid, Pouncing Kavu enters the battlefield with two +1/+1 counters on it and with haste.
+id=23064
+name=Pouncing Kavu
+rarity=C
+mana={1}{R}
+kicker={2}{R}
+auto=kicker counter(1/1,2)
+auto=kicker haste
+type=Creature
+subtype=Kavu
+power=1
+toughness=1
+abilities=first strike
 [/card]
 [card]
 text=Protection from black   {W}: Target creature gains protection from black until end of turn.
@@ -1375,6 +1416,20 @@ auto=lord(creature|myBattlefield) first strike
 auto=kicker lord(creature|myBattlefield) 1/1
 [/card]
 [card]
+text=Scarred Puma can't attack unless a black or green creature also attacks.
+id=23067
+name=Scarred Puma
+rarity=C
+mana={R}
+type=Creature
+subtype=Cat
+auto=aslongas(creature[green;attacking]|myBattlefield) -cantattack
+auto=aslongas(creature[black;attacking]|myBattlefield) -cantattack
+power=2
+toughness=1
+abilities=cantattack
+[/card]
+[card]
 text=Enchant creature   When Scavenged Weaponry enters the battlefield, draw a card.   Enchanted creature gets +1/+1.
 target=creature
 auto=1/1
@@ -1407,6 +1462,30 @@ subtype=Kavu
 auto={R}:haste
 power=4
 toughness=4
+[/card]
+[card]
+text=Enchant creature   Enchanted creature doesn't untap during its controller's untap step.   {W}: Return Shackles to its owner's hand.
+id=22942
+name=Shackles
+target=creature
+auto=doesnotuntap
+auto={W}:moveTo(ownerhand)
+rarity=C
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
+id=22981
+name=Shimmering Wings
+target=creature
+auto=flying
+auto={U}:moveTo(ownerhand)
+rarity=C
+mana={U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={1}{R}, Sacrifice a creature: Destroy target nonbasic land.
@@ -1520,6 +1599,36 @@ auto={3}{U}{T}:tap target(creature)
 auto={3}{B}{T}:destroy target(creature[tapped])
 power=1
 toughness=1
+[/card]
+[card]
+text={W}, {T}: Tap target creature.   {B}, {T}: Target player loses 1 life.
+id=22972
+name=Stormscape Apprentice
+rarity=C
+mana={U}
+type=Creature
+subtype=Human Wizard
+auto={W}{T}:Tap target(creature)
+auto={B}{T}:life:-1 target(player)
+power=1
+toughness=1
+[/card]
+[card]
+text={W}{W}, {T}: Target creature gains protection from the color of your choice until end of turn.     {B}{B}, {T}: Target player loses 2 life and you gain 2 life.
+id=23005
+name=Stormscape Master
+rarity=R
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+auto={W}{W}{T}:protection from white target(creature)
+auto={W}{W}{T}:protection from blue target(creature)
+auto={W}{W}{T}:protection from black target(creature)
+auto={W}{W}{T}:protection from red target(creature)
+auto={W}{W}{T}:protection from green target(creature)
+auto={B}{B}{T}:life:-2 target(player) && life:2 controller
+power=2
+toughness=2
 [/card]
 [card]
 text=Enchant creature   Domain - Enchanted creature gets +1/+1 for each basic land type among lands you control.
@@ -1686,6 +1795,32 @@ power=2
 toughness=2
 [/card]
 [card]
+text={B}, {T}: Target player loses 1 life.     {G}, {T}: Target creature gets +1/+1 until end of turn.
+id=23060
+name=Thunderscape Apprentice
+rarity=C
+mana={R}
+type=Creature
+subtype=Human Wizard
+auto={B}{T}:life:-1 target(player)
+auto={G}{T}:1/1 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text={B}{B}, {T}: Target player loses 2 life and you gain 2 life.     {G}{G}, {T}: Creatures you control get +2/+2 until end of turn.
+id=23093
+name=Thunderscape Master
+rarity=R
+mana={2}{R}{R}
+type=Creature
+subtype=Human Wizard
+auto={B}{B}{T}:life:-2 target(player) && life:2 controller
+auto={G}{G}{T}:lord(creature|myBattlefield) 2/2
+power=2
+toughness=2
+[/card]
+[card]
 text={T}: Add {G} or {W} to your mana pool.
 id=23221 
 name=Tigereye Cameo
@@ -1776,6 +1911,17 @@ auto={T}:Add {G}
 type=Artifact
 [/card]
 [card]
+text=Counter target spell. Its controller loses 3 life.
+id=23190
+name=Undermine
+target=*|stack
+auto=fizzle
+auto=life:-3 targetController
+rarity=R
+mana={U}{U}{B}
+type=Instant
+[/card]
+[card]
 text=Flying   Urborg Drake attacks each turn if able.
 id=25975
 name=Urborg Drake
@@ -1806,8 +1952,8 @@ name=Urborg Skeleton
 rarity=C
 mana={B}
 kicker={3}
-auto={B}:regenerate
 auto=kicker counter(1/1,1)
+auto={B}:regenerate
 type=Creature
 subtype=Skeleton
 power=0
@@ -1858,13 +2004,13 @@ name=Vodalian Serpent
 rarity=C
 mana={3}{U}
 kicker={2}
-abilities=cantattack
-auto=aslongas(island|opponentBattlefield) -cantattack
 auto=kicker counter(1/1,4)
+auto=aslongas(island|opponentBattlefield) -cantattack
 type=Creature
 subtype=Serpent
 power=2
 toughness=2
+abilities=cantattack
 [/card]
 [card]
 text=Protection from green
@@ -1916,6 +2062,17 @@ auto=aslongas(mountain|myBattlefield) 1/1
 auto=aslongas(swamp|myBattlefield) 1/1
 power=1
 toughness=3
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has reach. (It can block creatures with flying.)  {G}: Return Whip Silk to its owner's hand.
+id=23118
+name=Whip Silk
+rarity=C
+mana={G}
+auto=reach
+auto={G}:moveTo(ownerhand)
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +1/+3 and has flying.

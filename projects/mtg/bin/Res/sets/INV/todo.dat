@@ -66,8 +66,6 @@ power=2
 subtype=Leech
 toughness=2
 [/card]
-
-
 [card]
 text=Assault deals 2 damage to target creature or player.     //     Put a 3/3 green Elephant creature token into play.
 id=20579
@@ -95,8 +93,6 @@ power=2
 subtype=Human Cleric
 toughness=3
 [/card]
-
-
 [card]
 text=Tap target untapped creature. That creature deals damage equal to its power to its controller.
 id=23171
@@ -557,7 +553,6 @@ power=2
 subtype=Bird Wizard
 toughness=2
 [/card]
-
 [card]
 text=Kavu Chameleon can't be countered.     {G}: Kavu Chameleon becomes the color of your choice until end of turn.
 id=23125
@@ -577,20 +572,6 @@ rarity=R
 type=Enchantment
 mana={2}{G}
 [/card]
-
-[card]
-text=Kicker {2}{G} (You may pay an additional {2}{G} as you play this spell.)  If the kicker cost was paid, Kavu Titan comes into play with three +1/+1 counters on it and with trample.
-id=23106
-name=Kavu Titan
-rarity=R
-type=Creature
-mana={1}{G}
-kicker={2}{G}
-auto=kicker counter(1/1,3) && trample
-power=2
-subtype=Kavu
-toughness=2
-[/card]
 [card]
 text=Remove target creature you control from the game. Return that card to play under its owner's control at end of turn.
 id=22953
@@ -607,7 +588,6 @@ rarity=U
 type=Instant
 mana={1}{R}
 [/card]
-
 [card]
 text=Whenever Loafing Giant attacks or blocks, put the top card of your library into your graveyard. If that card is a land card, prevent all combat damage that Loafing Giant would deal this turn.
 id=23092
@@ -627,7 +607,6 @@ rarity=U
 type=Sorcery
 mana={2}{U}{B}
 [/card]
-
 [card]
 text=You and target spell's controller bid life. You start the bidding with a bid of 1. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid. If you win the bidding, counter that spell.
 id=23102
@@ -674,7 +653,6 @@ power=1
 subtype=Metathran
 toughness=3
 [/card]
-
 [card]
 text={2}{R}{G}, Discard two cards at random: Meteor Storm deals 4 damage to target creature or player.
 id=23193
@@ -683,17 +661,6 @@ rarity=R
 type=Enchantment
 mana={R}{G}
 [/card]
-[card]
-text=Enchant creature     Enchanted creature gets -2/-0.     {B}: Return Mourning to its owner's hand.
-id=23031
-name=Mourning
-rarity=C
-type=Enchantment
-mana={1}{B}
-subtype=Aura
-[/card]
-
-
 [card]
 text=Obliterate can't be countered. Destroy all artifacts, creatures, and lands. They can't be regenerated.
 id=23098
@@ -710,7 +677,6 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-
 [card]
 text=Kicker {1} (You may pay an additional {1} as you play this spell.)    Prevent the next 2 damage that would be dealt to target creature or player this turn. If the kicker cost was paid, prevent the next 4 damage that would be dealt to that creature or player this turn instead.
 id=22945
@@ -760,8 +726,6 @@ type=Enchantment
 mana={U}{U}
 subtype=Aura
 [/card]
-
-
 [card]
 text=When Phyrexian Delver comes into play, return target creature card from your graveyard to play. You lose life equal to that card's converted mana cost.
 id=23022
@@ -806,8 +770,6 @@ power=2
 subtype=Minion
 toughness=2
 [/card]
-
-
 [card]
 text=Destroy target nonblack creature and target land. They can't be regenerated.
 id=23153
@@ -815,22 +777,6 @@ name=Plague Spores
 rarity=C
 type=Sorcery
 mana={4}{B}{R}
-[/card]
-
-
-[card]
-text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.) First strike. If the kicker cost was paid, Pouncing Kavu comes into play with two +1/+1 counters on it and with haste.
-id=23064
-name=Pouncing Kavu
-rarity=C
-type=Creature
-mana={1}{R}
-kicker={2}{R}
-abilities=first strike
-auto=kicker counter(1/1,2)
-power=1
-subtype=Kavu
-toughness=1
 [/card]
 [card]
 text=Domain - {3}, {T}: Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
@@ -932,9 +878,6 @@ power=2
 subtype=Elf Druid
 toughness=1
 [/card]
-
-
-
 [card]
 text=Flying       {1}: Rainbow Crow becomes the color of your choice until end of turn.
 id=22994
@@ -968,8 +911,6 @@ power=1
 subtype=Rat
 toughness=1
 [/card]
-
-
 [card]
 text=Destroy two target nonblack creatures. You lose 5 life.
 id=23045
@@ -986,8 +927,6 @@ rarity=C
 type=Instant
 mana={1}{U}{B}
 [/card]
-
-
 [card]
 text=Return two target cards from your graveyard to your hand. Remove Restock from the game.
 id=23145
@@ -1004,7 +943,6 @@ rarity=C
 type=Instant
 mana={2}{W}
 [/card]
-
 [card]
 text=Reveal the top three cards of your library and put one of them into your hand. You gain life equal to that card's converted mana cost. Put all other cards revealed this way into your graveyard.
 id=23196
@@ -1021,8 +959,6 @@ rarity=U
 type=Enchantment
 mana={2}{W}
 [/card]
-
-
 [card]
 text=Flying     Whenever Rith, the Awakener deals combat damage to a player, you may pay {2}{G}. If you do, choose a color. Put a 1/1 green Saproling creature token into play for each permanent of that color.
 id=23209
@@ -1132,18 +1068,6 @@ rarity=R
 type=Sorcery
 mana={3}{G}
 [/card]
-
-[card]
-text=Scarred Puma can't attack unless a black or green creature also attacks.
-id=23067
-name=Scarred Puma
-rarity=C
-type=Creature
-mana={R}
-power=2
-subtype=Cat
-toughness=1
-[/card]
 [card]
 text=Kicker {R} (You may pay an additional {R} as you play this spell.)    Scorching Lava deals 2 damage to target creature or player. If the kicker cost was paid, that creature can't be regenerated this turn and if it would be put into a graveyard this turn, remove it from the game instead.
 id=23077
@@ -1177,24 +1101,6 @@ type=Enchantment
 mana={2}{U}{B}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature doesn't untap during its controller's untap step.     {W}: Return Shackles to its owner's hand.
-id=22942
-name=Shackles
-rarity=C
-type=Enchantment
-mana={2}{W}
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying or reach.)  {U}: Return Shimmering Wings to its owner's hand.
-id=22981
-name=Shimmering Wings
-rarity=C
-type=Enchantment
-mana={U}
-subtype=Aura
-[/card]
-[card]
 text=Kicker {1}{B} (You may pay an additional {1}{B} as you play this spell.)  When Shivan Emissary comes into play, if the kicker cost was paid, destroy target nonblack creature. It can't be regenerated.
 id=23084
 name=Shivan Emissary
@@ -1205,8 +1111,6 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
-
-
 [card]
 text=Protection from Kavu
 id=22978
@@ -1218,7 +1122,6 @@ power=2
 subtype=Merfolk
 toughness=2
 [/card]
-
 [card]
 text=Kicker {R} (You may pay an additional {R} as you play this spell.)  Trample, haste     At end of turn, sacrifice Skizzik unless the kicker cost was paid.
 id=23096
@@ -1230,7 +1133,6 @@ power=5
 subtype=Elemental
 toughness=3
 [/card]
-
 [card]
 text=Enchant creature     Enchanted creature has fear.     Whenever enchanted creature deals combat damage to an opponent, you may draw a card.
 id=23168
@@ -1251,7 +1153,6 @@ power=2
 subtype=Kavu
 toughness=2
 [/card]
-
 [card]
 text=At the beginning of your upkeep, target player loses 1 life.       Sacrifice Smoldering Tar: Smoldering Tar deals 4 damage to target creature. Play this ability only any time you could play a sorcery.
 id=23179
@@ -1284,7 +1185,6 @@ rarity=R
 type=Enchantment
 mana={2}{W}
 [/card]
-
 [card]
 text=Counter target noncreature spell.     //     Destroy target nonblack creature. It can't be regenerated.
 id=20576
@@ -1342,28 +1242,6 @@ type=Enchantment
 mana={G}{W}
 [/card]
 [card]
-text={W}, {T}: Tap target creature.     {B}, {T}: Target player loses 1 life.
-id=22972
-name=Stormscape Apprentice
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text={W}{W}, {T}: Target creature gains protection from the color of your choice until end of turn.     {B}{B}, {T}: Target player loses 2 life and you gain 2 life.
-id=23005
-name=Stormscape Master
-rarity=R
-type=Creature
-mana={2}{U}{U}
-power=2
-subtype=Human Wizard
-toughness=2
-[/card]
-[card]
 text=Trample     Sulam Djinn gets -2/-2 as long as green is the most common color among all permanents or is tied for most common.
 id=23126
 name=Sulam Djinn
@@ -1374,7 +1252,6 @@ power=6
 subtype=Djinn
 toughness=6
 [/card]
-
 [card]
 text=Any number of target creatures become the color of your choice until end of turn.       Draw a card.
 id=22999
@@ -1400,8 +1277,6 @@ rarity=U
 type=Instant
 mana={1}{G}
 [/card]
-
-
 [card]
 text=As Teferi's Moat comes into play, choose a color.     Creatures of the chosen color without flying can't attack you.
 id=23167
@@ -1418,7 +1293,6 @@ rarity=R
 type=Instant
 mana={1}{U}
 [/card]
-
 [card]
 text=Whenever a creature or land becomes tapped, put an hourglass counter on it.     Permanents with hourglass counters on them don't untap during their controllers' untap steps.     At the beginning of each player's upkeep, remove all hourglass counters from permanents that player controls.
 id=23212
@@ -1438,30 +1312,6 @@ power=4
 subtype=Elemental
 toughness=4
 [/card]
-
-
-[card]
-text={B}, {T}: Target player loses 1 life.     {G}, {T}: Target creature gets +1/+1 until end of turn.
-id=23060
-name=Thunderscape Apprentice
-rarity=C
-type=Creature
-mana={R}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text={B}{B}, {T}: Target player loses 2 life and you gain 2 life.     {G}{G}, {T}: Creatures you control get +2/+2 until end of turn.
-id=23093
-name=Thunderscape Master
-rarity=R
-type=Creature
-mana={2}{R}{R}
-power=2
-subtype=Human Wizard
-toughness=2
-[/card]
 [card]
 text={T}: Target creature becomes the color of your choice until end of turn.
 id=22977
@@ -1473,8 +1323,6 @@ power=1
 subtype=Merfolk Wizard
 toughness=1
 [/card]
-
-
 [card]
 text=Kicker {1}{W} (You may pay an additional {1}{W} as you play this spell.)    Flying       When Tolarian Emissary comes into play, if the kicker cost was paid, destroy target enchantment.
 id=22991
@@ -1486,7 +1334,6 @@ power=1
 subtype=Human Wizard
 toughness=2
 [/card]
-
 [card]
 text=Enchant creature     As Traveler's Cloak comes into play, choose a land type.     Enchanted creature has landwalk of the chosen type.     When Traveler's Cloak comes into play, draw a card.
 id=22987
@@ -1507,7 +1354,6 @@ power=2
 subtype=Treefolk Cleric
 toughness=3
 [/card]
-
 [card]
 text=Flying     Whenever Treva, the Renewer deals combat damage to a player, you may pay {2}{W}. If you do, choose a color. You gain 1 life for each permanent of that color.
 id=23210
@@ -1519,8 +1365,6 @@ power=6
 subtype=Dragon
 toughness=6
 [/card]
-
-
 [card]
 text=First strike, protection from legendary creatures     {B}{B}, {T}: Destroy target legendary creature. It can't be regenerated.
 id=23321
@@ -1576,15 +1420,6 @@ type=Sorcery
 mana={4}{B}{B}
 [/card]
 [card]
-text=Counter target spell. Its controller loses 3 life.
-id=23190
-name=Undermine
-rarity=R
-type=Instant
-mana={U}{U}{B}
-[/card]
-
-[card]
 text=Kicker {1}{U} (You may pay an additional {1}{U} as you play this spell.)  When Urborg Emissary comes into play, if the kicker cost was paid, return target permanent to its owner's hand.
 id=23038
 name=Urborg Emissary
@@ -1606,9 +1441,6 @@ power=3
 subtype=Spirit Minion
 toughness=1
 [/card]
-
-
-
 [card]
 text=Multicolored spells cost up to {2} less to play.
 id=23227
@@ -1702,8 +1534,6 @@ power=1
 subtype=Merfolk
 toughness=2
 [/card]
-
-
 [card]
 text=Choose a number. Destroy all artifacts and creatures with converted mana cost equal to that number. Then target player reveals his or her hand and discards all nonland cards with converted mana cost equal to the number.
 id=23200
@@ -1723,7 +1553,6 @@ power=2
 subtype=Snake
 toughness=2
 [/card]
-
 [card]
 text=Return all permanents of the color of your choice to their owners' hands.
 id=25320
@@ -1756,16 +1585,6 @@ rarity=R
 type=Enchantment
 mana={2}{U}
 [/card]
-[card]
-text=Enchant creature     Enchanted creature has reach. (It can block creatures with flying.)  {G}: Return Whip Silk to its owner's hand.
-id=23118
-name=Whip Silk
-rarity=C
-type=Enchantment
-mana={G}
-subtype=Aura
-[/card]
-
 [card]
 text=Destroy target nonland permanent if another permanent with the same name is in play.       Draw a card.
 id=22966
