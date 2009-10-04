@@ -173,6 +173,22 @@ void GuiHandSelf::Update(float dt)
 
 void GuiHandSelf::Render()
 {
+  //Empty hand
+  if (state == Open && cards.size() == 0){
+    JLBFont * mFont  = resources.GetJLBFont(Constants::MAIN_FONT);
+    mFont->SetColor(ARGB(255,255,0,0));
+    if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number){
+      back->SetColor(ARGB(255,255,0,0));
+      JRenderer::GetInstance()->RenderQuad(back,backpos.actX, backpos.actY, backpos.actT, backpos.actZ, backpos.actZ);
+      back->SetColor(ARGB(255,255,255,255));
+      mFont->DrawString("0",SCREEN_WIDTH - 10,backpos.actY);
+    }else{
+      backpos.Render(back);
+      mFont->DrawString("Empty",backpos.actX,backpos.actY);
+    }
+    return;
+  }
+
   backpos.Render(back);
   if (OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number || state == Open)
     for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
