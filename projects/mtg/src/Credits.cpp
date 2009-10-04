@@ -105,6 +105,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
           unlockedQuad = resources.RetrieveQuad("set_unlocked.png", 2, 2, 396, 96);
           options[Options::optionSet(unlocked - 1)] = GameOption(1);
           options.save();
+          unlockedString = MtgSets::SetsList->values[unlocked -1];
       }
       if (unlocked){
         JSample * sample = resources.RetrieveSample("bonus.wav");
@@ -234,7 +235,6 @@ int Credits::isRandomDeckUnlocked(){
 }
 
 int Credits::unlockRandomSet(){
-  if (rand() % 2) return 0;
   int setId = rand() % MtgSets::SetsList->nb_items;
 
   if (1 == options[Options::optionSet(setId)].number) 
