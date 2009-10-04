@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=190420
 name=Armament Master
 mana={W}{W}
@@ -523,8 +523,10 @@ name=Guul Draz Specter
 mana={2}{B}{B}
 type=Creature
 subtype=Specter
-power=2
-toughness=2
+power=5
+toughness=5
+auto=aslongas(*|opponenthand):-3/-3
+alias=1165
 text=Flying Guul Draz Specter gets +3/+3 as long as an opponent has no cards in hand. Whenever Guul Draz Specter deals combat damage to a player, that player discards a card.
 rarity=R
 [/card]

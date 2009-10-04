@@ -263,6 +263,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Whenever Fallowsage becomes tapped, you may draw a card.
+id=145803
+auto=@tapped(this):may draw:1 controller
+name=Fallowsage
+rarity=U
+type=Creature
+mana={3}{U}
+power=2
+subtype=Merfolk Wizard
+toughness=2
+[/card]
+[card]
 text={R}: Flamekin Brawler gets +1/+0 until end of turn.
 auto={R}:1/0
 id=139461
@@ -521,7 +533,18 @@ rarity=L
 type=Basic Land
 subtype=Island
 [/card]
-
+[card]
+text=Whenever a Merfolk you control becomes tapped, you may gain 1 life.
+id=139406
+name=Judge of Currents
+auto=@tapped(merfolk|mybattlefield):may life:1 controller
+rarity=C
+type=Creature
+mana={1}{W}
+power=1
+subtype=Merfolk Wizard
+toughness=1
+[/card]
 [card]
 text={G}, {T}: Target attacking creature gets +2/+2 until end of turn.
 auto={G}{T}:2/2 target(creature[attacking])
@@ -1120,6 +1143,18 @@ mana={1}{W}
 type=Enchantment
 subtype=Aura
 abilities=flash
+[/card]
+[card]
+text=Whenever Veteran of the Depths becomes tapped, you may put a +1/+1 counter on it.
+id=139669
+name=Veteran of the Depths
+auto=@tapped(this):may counter(1/1,1)
+rarity=U
+type=Creature
+mana={3}{W}
+power=2
+subtype=Merfolk Soldier
+toughness=2
 [/card]
 [card]
 text={1}, Sacrifice Wanderer's Twig: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.

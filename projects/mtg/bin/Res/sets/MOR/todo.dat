@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=153280
 name=Auntie's Snitch
 mana={2}{B}
@@ -1097,26 +1097,7 @@ toughness=1
 text=Islandwalk Merfolk spells and Wizard spells you cast cost {1} less to cast.
 rarity=C
 [/card]
-[card]
-id=153166
-name=Stonybrook Schoolmaster
-mana={2}{W}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=2
-text=Whenever Stonybrook Schoolmaster becomes tapped, you may put a 1/1 blue Merfolk Wizard creature token onto the battlefield.
-rarity=C
-[/card]
-[card]
-id=152720
-name=Stream of Unconsciousness
-mana={U}
-type=Tribal Instant
-subtype=Wizard
-text=Target creature gets -4/-0 until end of turn. If you control a Wizard, draw a card.
-rarity=C
-[/card]
+
 [card]
 id=153155
 name=Sunflare Shaman

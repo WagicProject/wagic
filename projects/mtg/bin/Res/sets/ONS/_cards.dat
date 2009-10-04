@@ -1001,6 +1001,16 @@ auto={T}:foreach(elf) life:1
 rarity=C
 [/card]
 [card]
+id=42184
+name=Wheel and Deal
+mana={3}{U}
+auto=moveto(graveyard) all(*|opponenthand)
+auto=draw:7 opponent
+type=Instant
+text=Any number of target opponents each discards his or her hand and draws seven cards.  Draw a card.
+rarity=R
+[/card]
+[card]
 text={T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card and put it onto the battlefield. Then shuffle your library.
 id=39507
 name=Windswept Heath
@@ -1018,6 +1028,18 @@ type=Creature
 subtype=Elf
 power=1
 toughness=2
+rarity=C
+[/card]
+[card]
+id=39907
+name=Wirewood Herald
+mana={1}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+text=When Wirewood Herald is put into a graveyard from play, you may search your library for an Elf card, reveal that card, put it into your hand, then shuffle your library.
+auto=@movedto(this|graveyard) from(inplay):may moveto(myhand) target(elf|mylibrary)
 rarity=C
 [/card]
 [card]

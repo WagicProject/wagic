@@ -103,6 +103,7 @@ toughness=2
 text=When Benthicore comes into play, put two 1/1 blue Merfolk Wizard creature tokens into play.     Tap two untapped Merfolk you control: Untap Benthicore. It gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=139696
 name=Benthicore
+auto=token(Merfolk Wizard,creature Merfolk Wizard,1/1,blue)*2
 rarity=U
 type=Creature
 mana={6}{U}
@@ -263,8 +264,8 @@ toughness=4
 text=Whenever Cenn's Heir attacks, it gets +1/+1 until end of turn for each other attacking Kithkin.
 id=142360
 name=Cenn's Heir
-auto=aslongas(Cenn's Heir[attacking])foreach(Kithkin[attacking]) 1/1
-auto=aslongas(Cenn's Heir[attacking]) -1/-1
+auto=aslongas(this[attacking])foreach(Kithkin[attacking] other) 1/1
+#"this is only compatible with @ auto line in WTH0.8.1
 rarity=C
 type=Creature
 mana={1}{W}
@@ -554,18 +555,6 @@ rarity=C
 type=Tribal Instant
 mana={1}{U}{U}
 subtype=Faerie
-[/card]
-[card]
-text=Whenever Fallowsage becomes tapped, you may draw a card.
-id=145803
-auto=aslongas(Fallowsage[tapped]) draw:1 controller
-name=Fallowsage
-rarity=U
-type=Creature
-mana={3}{U}
-power=2
-subtype=Merfolk Wizard
-toughness=2
 [/card]
 [card]
 text=As an additional cost to play Familiar's Ruse, return a creature you control to its owner's hand.     Counter target spell.
@@ -1003,19 +992,6 @@ mana={1}{G}{G}
 power=*
 subtype=Elf Archer
 toughness=*
-[/card]
-[card]
-###CODED WRONG! THIS CANNOT BE CODED RIGHT NOW!!!!
-text=Whenever a Merfolk you control becomes tapped, you may gain 1 life.
-id=139406
-name=Judge of Currents
-auto=aslongas(merfolk[tapped]|myinplay) may life:1 controller
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Merfolk Wizard
-toughness=1
 [/card]
 [card]
 text=Flying     Whenever Kinsbaile Balloonist attacks, you may have target creature gain flying until end of turn.
@@ -1680,6 +1656,7 @@ subtype=Merfolk
 text=Whenever Surgespanner becomes tapped, you may pay {1}{U}. If you do, return target permanent to its owner's hand.
 id=141828
 name=Surgespanner
+auto=@tapped(this):may {1}{U}:moveto(ownerhand) target(*)
 rarity=R
 type=Creature
 mana={2}{U}{U}
@@ -1795,17 +1772,7 @@ rarity=R
 type=Artifact
 mana={4}
 [/card]
-[card]
-text=Whenever Veteran of the Depths becomes tapped, you may put a +1/+1 counter on it.
-id=139669
-name=Veteran of the Depths
-rarity=U
-type=Creature
-mana={3}{W}
-power=2
-subtype=Merfolk Soldier
-toughness=2
-[/card]
+
 [card]
 text=Trample     If damage would be dealt to a creature you control other than Vigor, prevent that damage. Put a +1/+1 counter on that creature for each 1 damage prevented this way.     When Vigor is put into a graveyard from anywhere, shuffle it into its owner's library.
 id=140227

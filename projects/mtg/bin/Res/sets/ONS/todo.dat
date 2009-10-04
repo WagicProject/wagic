@@ -2341,14 +2341,6 @@ text=Each player may search his or her library for up to X creature cards, revea
 rarity=R
 [/card]
 [card]
-id=42184
-name=Wheel and Deal
-mana={3}{U}
-type=Instant
-text=Any number of target opponents each discards his or her hand and draws seven cards.  Draw a card.
-rarity=R
-[/card]
-[card]
 id=41024
 name=Whipcorder
 mana={W}{W}
@@ -2359,17 +2351,7 @@ toughness=2
 text={W}, {T}: Tap target creature. Morph {W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
 [/card]
-[card]
-id=39907
-name=Wirewood Herald
-mana={1}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text=When Wirewood Herald is put into a graveyard from play, you may search your library for an Elf card, reveal that card, put it into your hand, then shuffle your library.
-rarity=C
-[/card]
+
 
 [card]
 id=41150

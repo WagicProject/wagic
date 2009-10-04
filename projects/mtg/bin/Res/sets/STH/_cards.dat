@@ -210,7 +210,7 @@ toughness=5
 abilities=trample
 [/card]
 [card]
-text={R}: Flowstone Mauler gets +1/-1 until end of turn.
+text={R}: Flowstone Shambler gets +1/-1 until end of turn.
 id=5156
 name=Flowstone Shambler
 color=Red
@@ -251,7 +251,8 @@ toughness=1
 abilities=haste
 [/card]
 [card]
-text=Islandhome (It can't attack unless defending player controls an Island.)
+#Not islandhome, islandhome will cause the creature to be destroy if the controller does not control at least one island.
+text=Hammerhead Shark can't attack unless defending player controls an Island.
 id=5163
 name=Hammerhead Shark
 color=Blue
@@ -261,7 +262,8 @@ type=Creature
 subtype=Fish
 power=2
 toughness=3
-abilities=islandhome
+abilities=cantattack
+auto=aslongas(island|opponentbattlefield):-cantattack
 [/card]
 [card]
 text={W}: Honor Guard gets +0/+1 until end of turn.
@@ -356,7 +358,7 @@ rarity=U
 mana={2}{B}
 type=Creature
 subtype=Thrull
-auto={S}:deplete:3 target(controller)
+auto={S}:deplete:3 controller
 power=2
 toughness=2
 [/card]
@@ -503,7 +505,7 @@ type=Creature
 subtype=Sliver
 power=2
 toughness=2
-auto=lord(sliver) rampage(1/1,1)
+auto=lord(sliver) rampage(1/1,0)
 rarity=U
 [/card]
 [card]
