@@ -36,8 +36,9 @@ int AIMomirPlayer::momir(){
  int result = 0;
  int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES);
  int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES );
- getPotentialMana();
+ ManaCost * potentialMana = getPotentialMana();
  int converted = potentialMana->getConvertedCost();
+ SAFE_DELETE(potentialMana);
  int efficiency = 100;
  int chance = 1 + (rand() % 100);
  if (converted == 5 &&  myCreatures > opponentCreatures && game->hand->nb_cards<4) efficiency = 5 ; //Strategy: skip 5 drop
@@ -51,7 +52,7 @@ int AIMomirPlayer::momir(){
    MTGAbility * ability = getMomirAbility();
    MTGCardInstance * card = game->hand->cards[0];
    if (ability->isReactingToClick(card,cost)){
-     tapLandsForMana(potentialMana,cost);
+     tapLandsForMana(cost);
      AIAction * a = NEW AIAction(ability,card);
      clickstream.push(a);
     result = 1;
@@ -80,26 +81,30 @@ the general rule is this: if you want to get to Eight, you have to skip two drop
   }else if (p == this && g->mLayers->stackLayer()->count(0,NOT_RESOLVED) == 0){ //standard actions
     CardDescriptor cd;
     MTGCardInstance * card = NULL;
-    //No mana, try to get some
-    getPotentialMana();
+
 
     switch(currentGamePhase){
     case Constants::MTG_PHASE_FIRSTMAIN:
-      if (canPutLandsIntoPlay && (potentialMana->getConvertedCost() <8 || game->hand->nb_cards > 1) ){
-	//Attempt to put land into play
-	cd.init();
-	cd.setColor(Constants::MTG_COLOR_LAND);
-	card = cd.match(game->hand);
-	if (card){
-	  MTGAbility * putIntoPlay = g->mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
-	  AIAction * a = NEW AIAction(putIntoPlay,card); //TODO putinplay action
-	  clickstream.push(a);
-	  return 1;
-	}
+      {
+        ManaCost * potentialMana = getPotentialMana();
+        int converted = potentialMana->getConvertedCost();
+        SAFE_DELETE(potentialMana);
+        if (canPutLandsIntoPlay && ( converted <8 || game->hand->nb_cards > 1) ){
+	        //Attempt to put land into play
+	        cd.init();
+	        cd.setColor(Constants::MTG_COLOR_LAND);
+	        card = cd.match(game->hand);
+	        if (card){
+	          MTGAbility * putIntoPlay = g->mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
+	          AIAction * a = NEW AIAction(putIntoPlay,card); //TODO putinplay action
+	          clickstream.push(a);
+	          return 1;
+	        }
+        }
+        momir();
+        return 1;
+        break;
       }
-      momir();
-      return 1;
-      break;
     case Constants::MTG_PHASE_SECONDMAIN:
       selectAbility();
       return 1;

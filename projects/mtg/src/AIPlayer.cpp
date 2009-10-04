@@ -27,14 +27,12 @@ int AIAction::Act(){
 }
 
 AIPlayer::AIPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
-  potentialMana = NEW ManaCost();
   nextCardToPlay = NULL;
   stats = NULL;
   agressivity = 50;
 }
 
 AIPlayer::~AIPlayer(){
-  SAFE_DELETE(potentialMana);
   if (stats){
     stats->save();
     SAFE_DELETE(stats);
@@ -63,12 +61,14 @@ int AIPlayer::Act(float dt){
 }
 
 
-void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
+void AIPlayer::tapLandsForMana(ManaCost * cost,MTGCardInstance * target){
 #if defined (WIN32) || defined (LINUX)
   OutputDebugString("tapping land for mana\n");
 #endif
   if (!cost) return;
-  ManaCost * diff = potentialMana->Diff(cost);
+  ManaCost * pMana = getPotentialMana(target);
+  ManaCost * diff = pMana->Diff(cost);
+  delete(pMana);
   GameObserver * g = GameObserver::GetInstance();
 
   map<MTGCardInstance *,bool>used;
@@ -78,6 +78,7 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
     AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
     if (amp && canHandleCost(amp)){
       MTGCardInstance * card = amp->source;
+      if (card == target) used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
       if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
         used[card] = true;
         int doTap = 1;
@@ -99,9 +100,8 @@ void AIPlayer::tapLandsForMana(ManaCost * potentialMana, ManaCost * cost){
 
 }
 
-ManaCost * AIPlayer::getPotentialMana(){
-  SAFE_DELETE(potentialMana);
-  potentialMana = NEW ManaCost();
+ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target){
+  ManaCost * result = NEW ManaCost();
   GameObserver * g = GameObserver::GetInstance();
   map<MTGCardInstance *,bool>used;
   for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++){ //0 is not a mtgability...hackish
@@ -110,14 +110,15 @@ ManaCost * AIPlayer::getPotentialMana(){
     AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
     if (amp && canHandleCost(amp)){
       MTGCardInstance * card = amp->source;
+      if (card == target) used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
       if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost()==1){
-        potentialMana->add(amp->output);
+        result->add(amp->output);
         used[card] = true;
       }
     }
   }
 
-  return potentialMana;
+  return result;
 }
 
 
@@ -203,6 +204,7 @@ int AIAction::getEfficiency(){
       }
       break;
   }
+  if (p->game->hand->nb_cards == 0) efficiency *= 1.3; //increase chance of using ability if hand is empty
   return efficiency;
 }
 
@@ -237,18 +239,26 @@ int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAc
 int AIPlayer::selectAbility(){
   map<AIAction *, int,CmpAbilities>ranking;
   list<int>::iterator it;
-  ManaCost * pMana = getPotentialMana();
   GameObserver * g = GameObserver::GetInstance();
+  //This loop is extrmely inefficient. TODO: optimize!
+  ManaCost * totalPotentialMana = getPotentialMana();
   for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++){ //0 is not a mtgability...hackish
-    //Make sure we can use the ability
     MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
+    //Skip mana abilities for performance
+    if (dynamic_cast<AManaProducer*>(a)) continue;
+
+    //Make sure we can use the ability
     for (int j=0; j < game->inPlay->nb_cards; j++){
-      MTGCardInstance * card =  game->inPlay->cards[j];
-      if (a->isReactingToClick(card,pMana)){
-        createAbilityTargets(a, card, &ranking);
+      MTGCardInstance * card =  game->inPlay->cards[j];       
+      if (a->isReactingToClick(card,totalPotentialMana)){ //This test is to avod the huge call to getPotentialManaCost after that
+        ManaCost * pMana = getPotentialMana(card);
+        if (a->isReactingToClick(card,pMana))
+          createAbilityTargets(a, card, &ranking);
+        delete(pMana);
       }
     }
   }
+  delete totalPotentialMana;
 
   if (ranking.size()){
     AIAction * a = ranking.begin()->first;
@@ -257,7 +267,7 @@ int AIPlayer::selectAbility(){
       a = NULL;
     }else{
       OutputDebugString("AIPlayer:Using Activated ability\n");
-      tapLandsForMana(pMana, a->ability->cost);
+      tapLandsForMana(a->ability->cost,a->click);
       clickstream.push(a);
     }
     map<AIAction *, int, CmpAbilities>::iterator it2;
@@ -580,7 +590,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
 }
 
 
-MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const char * type){
+MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * type){
   int maxCost = -1;
   MTGCardInstance * nextCardToPlay = NULL;
   MTGCardInstance * card = NULL;
@@ -593,7 +603,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
     if (card->has(Constants::LEGENDARY) && game->inPlay->findByName(card->name)) continue;
     int currentCost = card->getManaCost()->getConvertedCost();
     int hasX = card->getManaCost()->hasX();
-    if ((currentCost > maxCost || hasX) && potentialMana->canAfford(card->getManaCost())){
+    if ((currentCost > maxCost || hasX) && pMana->canAfford(card->getManaCost())){
       TargetChooserFactory * tcf = NEW TargetChooserFactory();
       TargetChooser * tc = tcf->createTargetChooser(card);
       delete tcf;
@@ -613,7 +623,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
       }
       //Reduce the chances of playing a spell with X cost if available mana is low
       if (hasX){
-        int xDiff = potentialMana->getConvertedCost() - currentCost;
+        int xDiff = pMana->getConvertedCost() - currentCost;
         if (xDiff < 0) xDiff = 0;
         shouldPlayPercentage = shouldPlayPercentage - ((shouldPlayPercentage * 1.9) / (1 + xDiff));
       }
@@ -621,7 +631,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
       if (rand() % 100 > shouldPlayPercentage) continue;
       nextCardToPlay = card;
       maxCost = currentCost;
-      if(hasX) maxCost = potentialMana->getConvertedCost();
+      if(hasX) maxCost = pMana->getConvertedCost();
     }
   }
   return nextCardToPlay;
@@ -668,11 +678,11 @@ int AIPlayerBaka::computeActions(){
     case Constants::MTG_PHASE_SECONDMAIN:
     {
 
-	    //No mana, try to get some
-	    SAFE_DELETE(potentialMana);
+      bool potential = false;
       ManaCost * currentMana = manaPool;
       if (!currentMana->getConvertedCost()){
         currentMana = getPotentialMana();
+        potential = true;
       }
 
       nextCardToPlay = FindCardToPlay(currentMana, "land");
@@ -683,14 +693,11 @@ int AIPlayerBaka::computeActions(){
       if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "artifact");
       if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
       if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
+      if (potential) delete(currentMana);
       if (nextCardToPlay){
-#if defined (WIN32) || defined (LINUX)
-        char buffe[4096];
-  sprintf(buffe, "Putting Card Into Play: %s", nextCardToPlay->getName().c_str());
-  OutputDebugString(buffe);
-#endif
-
-        if (currentMana == potentialMana) tapLandsForMana(currentMana,nextCardToPlay->getManaCost());
+        if (potential){
+          tapLandsForMana(nextCardToPlay->getManaCost());  
+        }
         AIAction * a = NEW AIAction(nextCardToPlay);
         clickstream.push(a);
         return 1;

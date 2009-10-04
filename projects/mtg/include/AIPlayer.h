@@ -48,9 +48,8 @@ class AIPlayer: public Player{
  protected:
   MTGCardInstance * nextCardToPlay;
   int agressivity;
-  ManaCost * potentialMana;
   queue<AIAction *> clickstream;
-  void tapLandsForMana(ManaCost * potentialMana, ManaCost * cost);
+  void tapLandsForMana(ManaCost * cost, MTGCardInstance * card = NULL);
   int orderBlockers();
   int combatDamages();
   int interruptIfICan();
@@ -64,7 +63,7 @@ class AIPlayer: public Player{
   void End(){};
   virtual int displayStack() {return 0;};
   AIStats * stats;
-  ManaCost * getPotentialMana();
+  ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
   AIPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
   virtual ~AIPlayer();
   virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
