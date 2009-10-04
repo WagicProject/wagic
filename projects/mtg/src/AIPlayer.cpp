@@ -592,26 +592,36 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * potentialMana, const c
     if (card->hasType("land") && !this->canPutLandsIntoPlay) continue;
     if (card->has(Constants::LEGENDARY) && game->inPlay->findByName(card->name)) continue;
     int currentCost = card->getManaCost()->getConvertedCost();
-    if (currentCost > maxCost && potentialMana->canAfford(card->getManaCost())){
+    int hasX = card->getManaCost()->hasX();
+    if ((currentCost > maxCost || hasX) && potentialMana->canAfford(card->getManaCost())){
       TargetChooserFactory * tcf = NEW TargetChooserFactory();
       TargetChooser * tc = tcf->createTargetChooser(card);
       delete tcf;
+      int shouldPlayPercentage = 10;
       if (tc){
 	      int hasTarget = (chooseTarget(tc));
 	      delete tc;
 	      if (!hasTarget)continue;
+        shouldPlayPercentage = 90;
       }else{
-        int shouldPlayPercentage = 10;
         int shouldPlay = effectBadOrGood(card);
         if (shouldPlay == BAKA_EFFECT_GOOD){
           shouldPlayPercentage = 90;
         }else if(BAKA_EFFECT_DONTKNOW == shouldPlay){
           shouldPlayPercentage = 80;
         }
-        if (rand() % 100 > shouldPlayPercentage) continue;
       }
+      //Reduce the chances of playing a spell with X cost if available mana is low
+      if (hasX){
+        int xDiff = potentialMana->getConvertedCost() - currentCost;
+        if (xDiff < 0) xDiff = 0;
+        shouldPlayPercentage = shouldPlayPercentage - ((shouldPlayPercentage * 1.9) / (1 + xDiff));
+      }
+
+      if (rand() % 100 > shouldPlayPercentage) continue;
       nextCardToPlay = card;
       maxCost = currentCost;
+      if(hasX) maxCost = potentialMana->getConvertedCost();
     }
   }
   return nextCardToPlay;
@@ -671,8 +681,8 @@ int AIPlayerBaka::computeActions(){
       //Let's Try an enchantment maybe ?
       if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
       if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "artifact");
-      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
       if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
+      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
       if (nextCardToPlay){
 #if defined (WIN32) || defined (LINUX)
         char buffe[4096];

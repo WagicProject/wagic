@@ -136,6 +136,10 @@ void ManaCost::x(){
   cost[Constants::MTG_NB_COLORS] = 1;
 }
 
+int ManaCost::hasX(){
+  return cost[Constants::MTG_NB_COLORS];
+}
+
 void ManaCost::init(){
   int i;
   for (i=0; i<= Constants::MTG_NB_COLORS; i++){
@@ -379,7 +383,7 @@ ManaCost * ManaCost::Diff(ManaCost * _cost){
   }
 
   //Cost X
-  if (_cost->getCost(Constants::MTG_NB_COLORS)){
+  if (_cost->hasX()){
     diff[Constants::MTG_NB_COLORS * 2 + 1] = 0;
     for (int i=0; i < Constants::MTG_NB_COLORS; i++){
       if (diff[i*2 + 1] > 0){
