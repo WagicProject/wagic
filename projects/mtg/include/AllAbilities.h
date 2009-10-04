@@ -1218,6 +1218,29 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
 
 
 
+
+
+//Untap Blockers with simple Mana Mechanism
+class AUntapManaBlocker: public UntapBlocker{
+ public:
+ AUntapManaBlocker(int id, MTGCardInstance * card, ManaCost * _cost):UntapBlocker(id, card, _cost){
+  }
+
+ AUntapManaBlocker(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost):UntapBlocker(id, card,_target, _cost){
+  }
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AUntapManaBlocker ::: (";
+    return UntapBlocker::toString(out) << ")";
+  }
+  AUntapManaBlocker * clone() const{
+    AUntapManaBlocker * a =  NEW AUntapManaBlocker(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+
+
 //Circle of Protections
 class ACircleOfProtection: public TargetAbility{
 protected:
@@ -3874,6 +3897,7 @@ class AARandomDiscarder:public ActivatedAbilityTP{
     return a;
   }
 };
+
 
 
 //ShieldOfTheAge
