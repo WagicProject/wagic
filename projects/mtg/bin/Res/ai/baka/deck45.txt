@@ -1,8 +1,9 @@
-#NAME:CD Orochi Sustainer
+#NAME:Snake Shamans
 #
-#DESC: "The deck that a Orochi Sustainer
+#DESC: Creature's Decks 12:
+#DESC: "The deck that an Orochi Sustainer
 #DESC: would (and could) assemble"
-#DESC: (v1.0)
+#DESC: (v1.01)
 #DESC:
 #DESC: Salute our sinuosity
 #DESC: Love our litheness
@@ -11,24 +12,27 @@
 #DESC: Care for a kiss?
 #DESC: Soon you will sleep ...
 
-Orochi Sustainer (CHK)   *3 # Orochi Snake Shaman
-Orochi Leafcaller (CHK)  *3 # Orochi Snake Shaman
-Sachi, Daughter of Seshiro (CHK) *1 # toughness bonus to snakes
+Orochi Sustainer (CHK)           *3 # Orochi Snake Shaman
+Sachi, Daughter of Seshiro (CHK) *2 # toughness bonus to snakes
 
-Anaconda (POR)*2 # 18 snakes
-Anaconda (UZS)*2
-Hornet Cobra (LEG)*4
-Python (POR)  *4
-Skeletal Snake (POR)  *2
-Mold Adder (M10)  *2 # only good against 2 colors
-Boa Constrictor (MRQ) *1 # AI can't handle ability
-Serpent Warrior (POR) *1 # AI doesn't realize the life loss
+Anaconda (POR)         *1 # 18 snakes
+Anaconda (UZS)         *2
+River Boa (ZEN)        *3
+Hornet Cobra (LEG)     *3
+Python (POR)           *3
+Skeletal Snake (POR)   *1
+Mold Adder (M10)       *2 # only good against 2 colors
+Boa Constrictor (MRQ)  *1 # AI can't handle ability
+Serpent Warrior (POR)  *1 # AI doesn't realize the life loss
+Serpent Assassin (POR) *3
 
-Weakness (M10)*2 # 11 spells which simulate poison effects
-Paralyze (RV) *4
-Last Gasp (RAV)   *2
-Terror (10E)  *2
+Weakness (M10)         *2 # 10 spells to simulate poison effects
+Paralyze (RV)          *3
+Last Gasp (RAV)        *2
+Terror (10E)           *2
 Fevered Convulsions (TMP) *1
+
+Snake Pit (MRQ)        *1
 
 Forest (10E) *11
 Swamp (10E) *13

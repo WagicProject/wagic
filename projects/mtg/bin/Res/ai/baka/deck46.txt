@@ -1,0 +1,54 @@
+#NAME:AshenmoorCohort
+#
+#DESC: Creature's Decks 13:
+#DESC: "The deck that an Ashenmoor Cohort
+#DESC: would (and could) assemble"
+#DESC: (v1.01)
+#DESC:
+#DESC: How does it feel
+#DESC: to be dead
+#DESC: I hear you ask?
+#DESC: 
+#DESC: It hurts.
+#DESC: It burns.
+#DESC: 
+#DESC: It makes you ...
+#DESC: ... want to come back.
+
+Ashenmoor Cohort (SHM)   *2  # lots of Cinder creatures
+Ashenmoor Gouger (SHM)   *3
+Corrosive Mentor (SHM)   *3
+Crowd of Cinders (SHM)   *4
+Smoldering Butcher (CFX) *4
+Emberstrike Duo (SHM)    *3  # gets pumped by red or black spells
+Nyxathid (CFX)           *2
+Sickle Ripper (SHM)      *3
+Spiteflame Witch (SHM)   *2
+Soul Snuffers (EVE)      *2  # dangerous for the AI
+
+Scar (SHM)               *4  # cheap red/black damage spell
+Haunted Crossroads (MRQ) *2  # compensates for Soul Snuffers
+Raise Dead (RV)          *2  # compensates for Soul Snuffers
+
+
+Swamp (10E) *24
+
+
+# Cards considered, but not included:
+# Cinderbones: Expensive and weak in this deck
+# Sootstoke Kindler - AI can't choose target well
+# Fulminator Mage - most lands of player will be basic for a while
+# Midnight Covenant - buggy in 0.8.1
+
+# Cards removed from the deck:
+# none
+
+# Notes:
+# The Soul Snuffers may have to be removed since the AI often
+# hurts itself with them.
+#
+# This is a pure black deck, it doesn't explore most of the
+# potential red/black synergies. I'd like to do that as well, but
+# I'd want the Ashenmoor Liege as a central card in that deck, and
+# that card isn't implemented yet. Hence, the deck is black and
+# the central creature is a black creature.

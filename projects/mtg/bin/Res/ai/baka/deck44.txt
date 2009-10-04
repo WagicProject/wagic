@@ -1,8 +1,9 @@
-#NAME:CD Glen Elendra Archmage
+#NAME:Fairy Archmage
 #
+#DESC: Creature's Decks 11:
 #DESC: "The deck that a Glen Elendra Archmage
 #DESC: would (and could) assemble"
-#DESC: (v1.0)
+#DESC: (v1.01)
 #DESC:
 #DESC: Now we're here
 #DESC: Now we're there
@@ -13,20 +14,20 @@
 
 Glen Elendra Archmage (EVE) *4 # ability is currently buggy ...
 
-Heartmender (SHM) *4 # continuously removes -1/-1 counters
- # from all others
-Kitchen Finks (SHM)   *4 # brings 2 life everytime it persists
-Safehold Elite (SHM)  *4 # cheap early defense
+Heartmender (SHM)         *4 # continuously removes -1/-1 counters
+                             # from all others
+Kitchen Finks (SHM)       *4 # brings 2 life everytime it persists
+Safehold Elite (SHM)      *4 # cheap early defense
 Gravelgill Axeshark (SHM) *2 # 3/3 creature
 Kithkin Spellduster (EVE) *2 # Enchantment removal
 Restless Apparition (EVE) *4 # can get +3/+3 bonus
-River Kelpie (SHM)*2 # card drawer, only *2 to prevent the
- # AI from decking itself out
+River Kelpie (SHM)        *2 # card drawer, only *2 to prevent the
+                             # AI from decking itself out
 
 Oona's Gatewarden (SHM)   *4 # good cheap defense & fits the theme
-Plumeveil (SHM)   *2 # great defense & fits the theme
+Plumeveil (SHM)           *2 # great defense & fits the theme
 
-Wrath of God (10E)*4 # destroys all creatures
+Wrath of God (10E)        *4 # destroys all creatures
 
 Plains (10E) *14
 Island (10E) *10
