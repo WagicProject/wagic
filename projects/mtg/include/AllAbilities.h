@@ -1218,29 +1218,6 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
 
 
 
-
-
-//Untap Blockers with simple Mana Mechanism
-class AUntapManaBlocker: public UntapBlocker{
- public:
- AUntapManaBlocker(int id, MTGCardInstance * card, ManaCost * _cost):UntapBlocker(id, card, _cost){
-  }
-
- AUntapManaBlocker(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost):UntapBlocker(id, card,_target, _cost){
-  }
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AUntapManaBlocker ::: (";
-    return UntapBlocker::toString(out) << ")";
-  }
-  AUntapManaBlocker * clone() const{
-    AUntapManaBlocker * a =  NEW AUntapManaBlocker(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //Circle of Protections
 class ACircleOfProtection: public TargetAbility{
 protected:
@@ -3893,43 +3870,6 @@ class AARandomDiscarder:public ActivatedAbilityTP{
 
   AARandomDiscarder * clone() const{
     AARandomDiscarder * a =  NEW AARandomDiscarder(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
-// Dreamborn Muse
-class ADreambornMuse: public TriggeredAbility{
- public:
-	 int nbcards;
- ADreambornMuse(int _id, MTGCardInstance * _source):TriggeredAbility(_id, _source){
- }
-
-  int trigger(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP) return 1;
-    return 0;
-  }
-
-  int resolve(){
-    int nbcards = game->currentPlayer->game->hand->nb_cards;
-    MTGLibrary * library = game->currentPlayer->game->library;
-    for (int i = 0; i < nbcards; i++){
-      if (library->nb_cards)
-	game->currentPlayer->game->putInZone(library->cards[library->nb_cards-1],library,game->currentPlayer->game->graveyard);
-	}
-	return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADreambornMuse ::: nbcards : " << nbcards
-	<< " (";
-    return TriggeredAbility::toString(out) << ")";
-  }
-
-  ADreambornMuse * clone() const{
-    ADreambornMuse * a =  NEW ADreambornMuse(*this);
     a->isClone = 1;
     return a;
   }

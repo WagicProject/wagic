@@ -640,12 +640,14 @@ mana={2}
 text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
 id=135246
 name=Dreamborn Muse
-rarity=R
+auto=@each my upkeep:foreach(*|myhand) deplete:1 controller
+auto=@each opponent upkeep:foreach(*|opponenthand) deplete:1 opponent
 type=Creature
 mana={2}{U}{U}
 power=2
 subtype=Spirit
 toughness=2
+rarity=R
 [/card]
 [card]
 text=

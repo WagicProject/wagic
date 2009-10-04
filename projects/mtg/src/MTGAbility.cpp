@@ -1510,12 +1510,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ALavaborn(_id ,card, Constants::MTG_PHASE_UPKEEP, -3,-3));
       break;
     }
-  case 135246: //Dreamborn Muse
-    {
-      game->addObserver( NEW ADreambornMuse(_id ,card));
-      break;
-    }
-
   case 129774: // Traumatize
 	  {
 		  int nbcards;
