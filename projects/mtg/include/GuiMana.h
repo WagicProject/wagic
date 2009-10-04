@@ -9,9 +9,6 @@
 
 class ManaIcon : public Pos
 {
-  static const float DESTX;
-  static const float DESTY;
-
   hgeParticleSystem* particleSys;
   JQuad* icon;
 
@@ -20,6 +17,7 @@ class ManaIcon : public Pos
   float yP1, yP2, yP3;
   float tP1;
   float f;
+  float destx,desty;
  public:
   enum { ALIVE, WITHERING, DROPPING, DEAD } mode;
   int color;
@@ -27,7 +25,7 @@ class ManaIcon : public Pos
   void Update(float dt, float shift);
   void Wither();
   void Drop();
-  ManaIcon(int color, float x, float y);
+  ManaIcon(int color, float x, float y,float destx, float desty);
   ~ManaIcon();
 };
 
@@ -35,8 +33,11 @@ class GuiMana : public GuiLayer
 {
  protected:
   vector<ManaIcon*> manas;
+  float x, y;
+  Player * owner;
+  void RenderStatic();
  public:
-  GuiMana();
+  GuiMana(float x, float y, Player *p);
   ~GuiMana();
   virtual void Render();
   virtual void Update(float dt);

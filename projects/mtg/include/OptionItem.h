@@ -249,4 +249,17 @@ private:
   static EnumDefinition * definition;
 };
 
+class OptionManaDisplay : public OptionEnum {
+ public:
+   friend class GameSettings;
+  enum { DYNAMIC = 0, STATIC = 1, BOTH = 2};
+  OptionManaDisplay(int id, string displayValue);
+  
+  static EnumDefinition * getDefinition();
+  EnumDefinition * ourDefined() const { return getDefinition();};
+
+private:
+  static EnumDefinition * definition;
+};
+
 #endif

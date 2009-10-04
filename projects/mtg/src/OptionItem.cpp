@@ -903,3 +903,22 @@ OptionHandDirection::OptionHandDirection(int id, string displayName) : OptionEnu
   getDefinition();
   Reload();
 };
+
+EnumDefinition * OptionManaDisplay::definition = NULL;
+
+EnumDefinition * OptionManaDisplay::getDefinition(){
+ if(!definition){
+    definition = NEW EnumDefinition();
+    definition->values.push_back(EnumDefinition::assoc(STATIC, "simple"));
+    definition->values.push_back(EnumDefinition::assoc(DYNAMIC, "Eye candy"));
+    definition->values.push_back(EnumDefinition::assoc(BOTH, "Both"));
+  }
+ return definition;
+}
+
+OptionManaDisplay::OptionManaDisplay(int id, string displayName) : OptionEnum(id, displayName)
+{
+  getDefinition();
+  Reload();
+};
+

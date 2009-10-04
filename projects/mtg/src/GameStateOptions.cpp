@@ -44,6 +44,7 @@ void GameStateOptions::Start()
   optionsList = NEW OptionsList("Game");
   optionsList->Add(NEW OptionClosedHand(Options::CLOSEDHAND, "Closed hand"));
   optionsList->Add(NEW OptionHandDirection(Options::HANDDIRECTION, "Hand direction"));
+  optionsList->Add(NEW OptionManaDisplay(Options::MANADISPLAY, "Mana display"));
   optionsList->Add(NEW OptionInteger(Options::REVERSETRIGGERS, "Reverse left and right triggers"));
   optionsList->Add(NEW OptionInteger(Options::DISABLECARDS,"Disable card image loading"));
   optionsTabs->Add(optionsList);

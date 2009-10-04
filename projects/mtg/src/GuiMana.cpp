@@ -1,14 +1,13 @@
 #include <iostream>
 #include "../include/GuiMana.h"
+#include "../include/OptionItem.h"
+
 
 using std::cout;
 using std::endl;
 
 
-const float ManaIcon::DESTX = 440;
-const float ManaIcon::DESTY = 20;
-
-ManaIcon::ManaIcon(int color, float x, float y) : Pos(x, y, 0.5, 0.0, 255), f(-1), mode(ALIVE), color(color)
+ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) : Pos(x, y, 0.5, 0.0, 255), f(-1), destx(destx), desty(desty), mode(ALIVE), color(color)
 {
   hgeParticleSystemInfo * psi = NULL;
   JQuad * mq = resources.GetQuad("stars");
@@ -145,6 +144,9 @@ void ManaIcon::Update(float dt, float shift)
   zoomP3 += zoomP5 * dt;
   zoomP4 += zoomP6 * dt;
 
+  if (OptionManaDisplay::STATIC == options[Options::MANADISPLAY].number)
+    shift = 0;
+
   switch (mode)
     {
     case DROPPING :
@@ -162,33 +164,41 @@ void ManaIcon::Update(float dt, float shift)
       if (f < 0) mode = DEAD;
       break;
     case ALIVE :
-      x += 10 * dt * (DESTX - x);
-      y += 10 * dt * (DESTY + shift - y);
+      x += 10 * dt * (destx - x);
+      y += 10 * dt * (desty + shift - y);
       yP1 += yP3 * dt;
       actY = y + yP2 * sinf(M_PI * yP1);
+
+      if (particleSys && (fabs(destx - x) < 5) && (fabs(desty + shift - y) < 5)){
+        if (OptionManaDisplay::STATIC == options[Options::MANADISPLAY].number){
+          SAFE_DELETE(particleSys);       //Static Mana Only: avoid expensive particle processing
+        }
+      }
       break;
     case DEAD :
       break;
     }
 
-  particleSys->MoveTo(actX, actY);
-  particleSys->Update(dt);
+  if (particleSys){
+    particleSys->MoveTo(actX, actY);
+    particleSys->Update(dt);
+  }
 }
 
 void ManaIcon::Wither()
 {
   mode = WITHERING;
   f = 1.0;
-  particleSys->Stop();
+  if (particleSys) particleSys->Stop();
 }
 void ManaIcon::Drop()
 {
   mode = DROPPING;
   if (f < 0) f = 0;
-  particleSys->Stop();
+  if (particleSys) particleSys->Stop();
 }
 
-GuiMana::GuiMana()
+GuiMana::GuiMana(float x, float y, Player *p):x(x),y(y),owner(p)
 {
 }
 
@@ -198,11 +208,56 @@ GuiMana::~GuiMana(){
   }
 }
 
+
+void GuiMana::RenderStatic(){
+  int values[Constants::MTG_NB_COLORS];
+  int totalColors = 0;
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  JRenderer * r = JRenderer::GetInstance();
+  for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
+    values[i] = 0;
+  for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
+    if (ManaIcon::ALIVE == (*it)->mode) {
+      values[(*it)->color]++;
+      if (values[(*it)->color] == 1) totalColors++;
+    }
+
+  if (!totalColors) return;
+
+  float x0 = x - 20*totalColors;
+  if (x0 < 10) x0 = 10;
+  float xEnd = x0 + 20*totalColors;
+  r->FillRoundRect(x0,y - 5 ,20*totalColors + 5,20,2,ARGB(128,0,0,0));
+
+  int offset = 0;
+  for (int i = 0; i < Constants::MTG_NB_COLORS; ++i){
+    if (values[i]){
+      offset-=20;
+      r->RenderQuad(manaIcons[i],xEnd + 15 + offset, y + 5,0,0.7,0.7);
+    }
+  }
+  r->FillRoundRect(x0,y ,20*totalColors + 5,8,2,ARGB(100,0,0,0));
+  offset = 0;
+  for (int i = 0; i < Constants::MTG_NB_COLORS; ++i){
+    if (values[i]){
+      offset-=20;
+      char buf[4];
+      sprintf(buf,"%i",values[i]);
+      mFont->SetColor(ARGB(255,255,255,255));
+      mFont->DrawString(buf,xEnd+offset + 9, y);
+    }
+  }
+}
+
 void GuiMana::Render()
 {
-
+  
   for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
     (*it)->Render();
+
+  if (OptionManaDisplay::DYNAMIC != options[Options::MANADISPLAY].number)
+    RenderStatic();
+
 }
 bool remove_dead(ManaIcon* m) { return ManaIcon::DEAD != m->mode; }
 void GuiMana::Update(float dt)
@@ -225,10 +280,11 @@ int GuiMana::receiveEventPlus(WEvent* e)
 {
   if (WEventEngageMana *event = dynamic_cast<WEventEngageMana*>(e))
     {
+      if (event->destination != owner->getManaPool()) return 0;
       if (event->card && event->card->view)
-        manas.push_back(NEW ManaIcon(event->color, event->card->view->actX, event->card->view->actY));
+        manas.push_back(NEW ManaIcon(event->color, event->card->view->actX, event->card->view->actY, x, y));
       else
-        manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
+        manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, x, y));
       return 1;
     }
   else return 0;
@@ -238,14 +294,19 @@ int GuiMana::receiveEventMinus(WEvent* e)
 {
   if (WEventConsumeMana *event = dynamic_cast<WEventConsumeMana*>(e))
     {
+      if (event->source != owner->getManaPool()) return 0;
       for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
-	if ((event->color == (*it)->color) && (ManaIcon::ALIVE == (*it)->mode)) { (*it)->Wither(); return 1; }
+	      if ((event->color == (*it)->color) && (ManaIcon::ALIVE == (*it)->mode)) { 
+          (*it)->Wither(); 
+          return 1; 
+        }
       return 1;
     }
-  else if (dynamic_cast<WEventEmptyManaPool*>(e))
+  else if (WEventEmptyManaPool *event2 = dynamic_cast<WEventEmptyManaPool*>(e))
     {
+      if (event2->source != owner->getManaPool()) return 0;
       for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
-        (*it)->Drop(); //TODO: split according to which manapool was emptied...
+        (*it)->Drop();
       return 1;
     }
   return 0;

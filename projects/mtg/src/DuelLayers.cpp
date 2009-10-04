@@ -30,7 +30,8 @@ void DuelLayers::init(){
   //Other display elements
   action->Add(NEW HUDDisplay(-1));
 
-  Add(NEW GuiMana());
+  Add(NEW GuiMana(20,20,go->players[1]));
+  Add(NEW GuiMana(440,20,go->players[0]));
   Add(stack = NEW ActionStack(go));
   Add(combat = NEW GuiCombat(go));
   Add(action);

@@ -19,6 +19,7 @@ const char * Options::optionNames[] = {
   "displayOSD",
   "closed_hand",
   "hand_direction",
+  "mana_display",
   "reverse_triggers",
   "disable_cards",
   "interruptSeconds",
@@ -317,6 +318,8 @@ bool GameOptions::load_option(int id, string input){
      return read_enum(id, input, OptionHandDirection::getDefinition());
    case Options::CLOSEDHAND:
      return read_enum(id, input, OptionClosedHand::getDefinition());
+   case Options::MANADISPLAY:
+     return read_enum(id, input, OptionManaDisplay::getDefinition());
    default:
      return read_default(id, input);
   }
@@ -353,6 +356,8 @@ bool GameOptions::save_option(std::ofstream * file, int id, string name, GameOpt
      return write_enum(file, name, opt, OptionHandDirection::getDefinition());
    case Options::CLOSEDHAND:
      return write_enum(file, name, opt, OptionClosedHand::getDefinition());
+   case Options::MANADISPLAY:
+     return write_enum(file, name, opt, OptionManaDisplay::getDefinition());
    default:
      return write_default(file, name, opt);
   }
@@ -442,6 +447,7 @@ GameSettings::~GameSettings(){
   SAFE_DELETE(keypad);
   SAFE_DELETE(OptionHandDirection::definition);
   SAFE_DELETE(OptionClosedHand::definition);
+  SAFE_DELETE(OptionManaDisplay::definition);
 }
 
 GameOption GameSettings::invalid_option = GameOption(0);

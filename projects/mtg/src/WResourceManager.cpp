@@ -304,10 +304,8 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
 
   //No quad, but we have a managed texture for this!
   WCachedTexture * jtex = NULL;
-  if(style == RETRIEVE_MANAGE)
-    jtex = textureWCache.Retrieve(filename,RETRIEVE_MANAGE,submode);
-  else if(style == RETRIEVE_EXISTING)
-    jtex = textureWCache.Retrieve(filename,RETRIEVE_EXISTING,submode);
+  if(style == RETRIEVE_MANAGE || style == RETRIEVE_EXISTING)
+    jtex = textureWCache.Retrieve(filename,style,submode);
   else
     jtex = textureWCache.Retrieve(filename,RETRIEVE_NORMAL,submode);
 
@@ -1194,11 +1192,8 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
   string lookup = makeID(id,submode);  
 
   //Check for managed resources first. Always
-  it = managed.end();
-  for(it = managed.begin();it!=managed.end();it++){
-    if(it->first == lookup)
-      break;
-  }  
+  it = managed.find(lookup);
+
   //Something is managed.
   if(it != managed.end()) {
      if(!it->second && style == RETRIEVE_RESOURCE)
@@ -1214,11 +1209,7 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
 
   //Not managed, so look in cache.
   if(it == managed.end() && style != RETRIEVE_MANAGE && style != RETRIEVE_RESOURCE ){
-    it = cache.end();
-    for(it = cache.begin();it!=cache.end();it++){
-      if(it->first == lookup)
-        break;
-    }
+    it = cache.find(lookup);
     //Well, we've found something...
     if(it != cache.end()) {
       if(!it->second && (submode & CACHE_EXISTING)){

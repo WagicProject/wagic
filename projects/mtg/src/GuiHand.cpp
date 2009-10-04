@@ -164,6 +164,7 @@ bool GuiHandSelf::CheckUserInput(u32 key)
   return false;
 }
 
+
 void GuiHandSelf::Update(float dt)
 {
   backpos.Update(dt);
