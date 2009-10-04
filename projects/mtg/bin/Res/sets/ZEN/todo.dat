@@ -1132,6 +1132,20 @@ text=Whenever equipped creature attacks, look at the top card of your library. I
 rarity=C
 [/card]
 [card]
+text=Kicker {4} Enchant creature Enchanted creature is 8/8 and has trample. When Gigantiform enters the battlefield, if it was kicked, you may search your library for a card named Gigantiform, put it onto the battlefield, then shuffle your library.
+id=195627
+name=Gigantiform
+mana={3}{G}{G}
+kicker={4}
+target=creature
+auto=8/8
+auto=trample
+auto=kicker may moveTo(myBattlefield) target(Gigantiform|myLibrary)
+type=Enchantment
+subtype=Aura
+rarity=R
+[/card]
+[card]
 id=192220
 name=Grappling Hook
 mana={4}
