@@ -286,8 +286,8 @@ color=Artifact
 rarity=R
 mana={3}
 type=Artifact
-auto=@movedTo(land|myBattlefield) from(myhand):draw:1 controller
-auto=@movedTo(land|opponentBattlefield) from(opponenthand):draw:1 opponent
+auto=@movedTo(land|myBattlefield):draw:1 controller
+auto=@movedTo(land|opponentBattlefield):draw:1 opponent
 [/card]
 [card]
 text=Creatures don't untap during their controllers' untap steps.   Whenever a creature enters the battlefield, untap all creatures.

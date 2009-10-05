@@ -129,6 +129,20 @@ auto=fizzle
 rarity=C
 [/card]
 [card]
+id=118891
+name=Chromatic Star
+mana={1}
+type=Artifact
+text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. When Chromatic Star is put into a graveyard from play, draw a card.
+auto={1}{T}{S}:add{B}
+auto={1}{T}{S}:add{U}
+auto={1}{T}{S}:add{G}
+auto={1}{T}{S}:add{R}
+auto={1}{T}{S}:add{W}
+auto=@movedTo(this|graveyard) from(inplay):draw:1 controller
+rarity=U
+[/card]
+[card]
 id=108858
 name=Dream Stalker
 mana={1}{U}
@@ -531,6 +545,18 @@ subtype=Treefolk
 toughness=5
 [/card]
 [card]
+id=122387
+name=Screeching Sliver
+mana={U}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Slivers have "{T}: Target player puts the top card of his or her library into his or her graveyard."
+auto=lord(sliver) {T}:deplete:1 target(player)
+rarity=C
+[/card]
+[card]
 id=118917
 name=Sedge Sliver
 mana={2}{R}
@@ -783,6 +809,18 @@ mana={5}
 power=3
 subtype=Sliver
 toughness=3
+[/card]
+[card]
+id=109766
+name=Verdant Embrace
+mana={3}{G}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +3/+3 and has "At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control."
+target=creature
+auto=3/3
+auto=@each upkeep:token(Saproling,Creature Saproling,1/1,green)
+rarity=R
 [/card]
 [card]
 id=111069

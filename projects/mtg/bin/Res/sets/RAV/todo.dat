@@ -1,11 +1,13 @@
 [card]
+#Since it is a legendary creature should work fine... did not test it yet
 text=Whenever Agrus Kos, Wojek Veteran attacks, attacking red creatures get +2/+0 and attacking white creatures get +0/+2 until end of turn.
 id=89101
-auto=aslongas(Agrus Kos[attacking]) lord(creature[red;attacking]) 2/0
-auto=aslongas(Agrus Kos[attacking]) lord(creature[white;attacking]) 0/2
+auto=aslongas(Agrus Kos[attacking]|myinplay) lord(creature[red;attacking]) 2/0
+auto=aslongas(Agrus Kos[attacking]|myinplay) lord(creature[white;attacking]) 0/2
 name=Agrus Kos, Wojek Veteran
 rarity=R
-type=Legendary Creature
+type=Creature
+abilities=legendary
 mana={3}{R}{W}
 power=3
 subtype=Human Soldier

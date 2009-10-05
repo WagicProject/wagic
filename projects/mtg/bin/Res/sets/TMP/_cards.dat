@@ -467,6 +467,16 @@ toughness=2
 abilities=legendary
 [/card]
 [card]
+text=At the beginning of each player's precombat main phase, add {G}{G} to that player's mana pool.
+id=4758
+name=Eladamri's Vineyard
+auto=@each my combatbegins:add:{G}{G}
+auto=@each opponent combatbegins:add:{G}{G} opponent
+rarity=R
+type=Enchantment
+mana={G}
+[/card]
+[card]
 text={2}, {T}: Put a +1/+1 counter on Energizer.
 auto={2}{T}:counter(1/1)
 id=4605

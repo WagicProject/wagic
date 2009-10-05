@@ -546,6 +546,9 @@ rarity=C
 color=Green
 type=Creature
 mana={2}{G}
+kicker={1}{G}
+#does not work in WTH 0.8.1
+auto=kicker moveto(mybattlefield) target(Llanowar Sentinel|mylibrary)
 power=2
 subtype=Elf
 toughness=3
@@ -595,8 +598,9 @@ subtype=Aura
 text=Whenever a player taps a land for mana, Manabarbs deals 1 damage to that player.
 id=130367
 name=Manabarbs
-auto=foreach(land[tapped]|myinplay)damage:1 controller
-auto=foreach(land[tapped]|opponentinplay)damage:1 opponent
+#will also deal damage if land not tapped for mana
+auto=@tapped(land|opponentBattlefield):damage:1 opponent
+auto=@tapped(land|myBattlefield):damage:1 controller
 rarity=R
 color=Red
 type=Enchantment
@@ -828,6 +832,7 @@ toughness=5
 text=Artifacts and lands come into play tapped.
 id=135251
 name=Root Maze
+auto=lord(artifact,land) tap
 rarity=R
 color=Green
 type=Enchantment
@@ -926,7 +931,7 @@ mana={1}{R}{R}
 [card]
 text=Draw three cards, then discard a card.
 id=136217
-auto=draw:3 && moveto(graveyard) target(*|myhand)
+auto=draw:3 && moveto(mygraveyard) target(*|myhand)
 name=Sift
 rarity=C
 color=Blue
@@ -992,7 +997,6 @@ id=135264
 name=Stampeding Wildebeests
 auto=@my upkeep:moveto(myhand) target(creature[green]|myBattlefield)
 rarity=U
-color=Green
 type=Creature
 mana={2}{G}{G}
 power=5
@@ -1027,7 +1031,6 @@ name=Sunken Hope
 auto=@each my upkeep:moveto(ownerHand) target(creature|myinplay)
 auto=@each opponent upkeep:moveto(ownerHand) target(creature|Opponentinplay)
 rarity=R
-color=Blue
 type=Enchantment
 mana={3}{U}{U}
 [/card]
@@ -1195,12 +1198,12 @@ text=Equipped creature is unblockable and has shroud. (It can't be the target of
 id=135278
 name=Whispersilk Cloak
 rarity=U
-color=Artifact
 type=Artifact
 mana={3}
 subtype=Equipment
 [/card]
 [card]
+#Technically correct could be added to the card.dat but this card is too powerfull the AI does not understand and simply never attack... in WTH 0.8.1
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 id=130549
 name=Windborn Muse
@@ -1208,7 +1211,6 @@ auto=lord(creature|opponentinplay) cantattack
 auto=lord(creature|opponentinplay) {2}:-cantattack
 rarity=R
 abilities=flying
-color=White
 type=Creature
 mana={3}{W}
 power=2

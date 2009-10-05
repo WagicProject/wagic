@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=113619
 name=Amrou Scout
 mana={1}{W}
@@ -215,20 +215,6 @@ power=1
 toughness=1
 text=Sacrifice Children of Korlis: You gain life equal to the life you've lost this turn. (Damage causes loss of life.)
 rarity=C
-[/card]
-[card]
-id=118891
-name=Chromatic Star
-mana={1}
-type=Artifact
-text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. When Chromatic Star is put into a graveyard from play, draw a card.
-auto={1}{T}{S}:add{B}
-auto={1}{T}{S}:add{U}
-auto={1}{T}{S}:add{G}
-auto={1}{T}{S}:add{R}
-auto={1}{T}{S}:add{W}
-auto=@movedTo(...)
-rarity=U
 [/card]
 [card]
 id=106630
@@ -1481,6 +1467,7 @@ subtype=Sliver
 power=2
 toughness=2
 text=All Sliver creatures have "{T}: This creature deals 2 damage to target creature or player and 3 damage to itself."
+auto=lord(sliver) {T}:damage:2 target(creature,player) && damage:3
 rarity=R
 [/card]
 [card]
@@ -1624,18 +1611,6 @@ power=4
 toughness=4
 text=Flying {2}: Search your library for a Dragon permanent card and put it into your graveyard. If you do, Scion of the Ur-Dragon becomes a copy of that card until end of turn. Then shuffle your library.
 rarity=R
-[/card]
-[card]
-id=122387
-name=Screeching Sliver
-mana={U}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Slivers have "{T}: Target player puts the top card of his or her library into his or her graveyard."
-auto=lord(sliver) {T}:moveTo(graveyard) target(....)
-rarity=C
 [/card]
 [card]
 id=118924
@@ -2096,15 +2071,6 @@ toughness=3
 text=All Sliver creatures have "Whenever a creature dealt damage by this creature this turn is put into a graveyard, put a +1/+1 counter on this creature."
 auto=lord(sliver)
 rarity=U
-[/card]
-[card]
-id=109766
-name=Verdant Embrace
-mana={3}{G}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +3/+3 and has "At the beginning of each upkeep, put a 1/1 green Saproling creature token into play under your control."
-rarity=R
 [/card]
 [card]
 id=113543

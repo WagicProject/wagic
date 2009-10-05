@@ -54,6 +54,7 @@ toughness=4
 [/card]
 [card]
 text=Flying     When Avenging Angel is put into a graveyard from play, you may put Avenging Angel on top of its owner's library.
+auto=@movedTo(this|graveyard) from(inplay):may moveto(ownerlibrary)
 id=4863
 name=Avenging Angel
 rarity=R
@@ -352,14 +353,6 @@ name=Echo Chamber
 rarity=R
 type=Artifact
 mana={4}
-[/card]
-[card]
-text=At the beginning of each player's precombat main phase, add {G}{G} to that player's mana pool.
-id=4758
-name=Eladamri's Vineyard
-rarity=R
-type=Enchantment
-mana={G}
 [/card]
 [card]
 text=Whenever Elite Javelineer blocks, it deals 1 damage to target attacking creature.
@@ -867,7 +860,6 @@ rarity=U
 type=Artifact
 mana={2}
 [/card]
-
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {R} or {G} to your mana pool. Mogg Hollows doesn't untap during your next untap step.
 id=4934
@@ -877,7 +869,8 @@ type=Land
 [/card]
 [card]
 text=When Mongrel Pack is put into a graveyard from play during combat, put four 1/1 green Hound creature tokens into play.
-auto=@movedTo(this|graveyard):token(Hound,Creature Hound,1/1,green)*4
+# does not work in WTH 0.8.1
+auto=@movedTo(this[attacking]|graveyard) from(inplay):token(Hound,Creature Hound,1/1,green)*4
 id=4771
 name=Mongrel Pack
 rarity=R
@@ -1002,6 +995,8 @@ mana={4}{U}
 [card]
 text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 id=4718
+auto=lord(creature|opponentBattlefield) cantattack
+auto=lord(creature|opponentBattlefield) {2}:-cantattack
 name=Propaganda
 rarity=U
 type=Enchantment
@@ -1078,6 +1073,7 @@ type=Land
 text=First strike     Whenever Renegade Warlord attacks, each other attacking creature gets +1/+0 until end of turn.
 id=4839
 name=Renegade Warlord
+auto=aslongas(this[attacking]|myBattlefield):lord(creature[attacking]) 1/0 other
 rarity=U
 type=Creature
 mana={4}{R}
@@ -1112,6 +1108,7 @@ mana={X}{R}{R}
 [card]
 text=Artifacts and lands come into play tapped.
 id=4784
+auto=lord(artifact,land)tap
 name=Root Maze
 rarity=R
 type=Enchantment
@@ -1320,6 +1317,8 @@ toughness=2
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Soltari Lancer has first strike as long as it's attacking.
 id=4902
+auto=aslongas(this[attacking]|myinplay) first strike
+abilities=shadow
 name=Soltari Lancer
 rarity=C
 type=Creature
@@ -1331,6 +1330,8 @@ toughness=2
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever Soltari Trooper attacks, it gets +1/+1 until end of turn.
 id=4905
+auto=aslongas(this[attacking]|myinplay) 1/1
+abilities=shadow
 name=Soltari Trooper
 rarity=C
 type=Creature
