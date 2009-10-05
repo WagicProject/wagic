@@ -35,7 +35,7 @@ name=Ancient Den
 rarity=C
 auto={T}:Add {W}
 type=Land
-subtype=artifact
+subtype=Artifact
 [/card]
 [card]
 text=Counter target artifact or enchantment spell.
