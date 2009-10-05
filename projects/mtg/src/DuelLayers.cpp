@@ -37,10 +37,9 @@ void DuelLayers::init(){
   Add(action);
   Add(cs);
   Add(hand = NEW GuiHandSelf(cs, go->players[0]->game->hand));
+  Add(avatars = NEW GuiAvatars(cs));
   Add(NEW GuiHandOpponent(cs, go->players[1]->game->hand));
   Add(NEW GuiPlay(go, cs));
-
-  Add(avatars = NEW GuiAvatars(cs));
   Add(NEW GuiPhaseBar());
   Add(NEW GuiFrame());
   Add(NEW GuiBackground());

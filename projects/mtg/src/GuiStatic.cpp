@@ -32,7 +32,7 @@ void GuiAvatar::Render()
   }
   currentLife = life;
 
-  r->FillRect(actX+2, actY+2, Width, Height, ARGB((int)(actA / 2), 0, 0, 0));
+  r->FillRect(actX+2, actY+2, Width * actZ, Height *actZ, ARGB((int)(actA / 2), 0, 0, 0));
 
   JQuad * quad = player->mAvatar;
   if (quad)
@@ -44,6 +44,17 @@ void GuiAvatar::Render()
 	}
       quad->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
       r->RenderQuad(quad, actX, actY, actT, actZ, actZ);
+      if (mHasFocus){
+        switch (corner)
+	        {
+	        case TOP_LEFT : 
+            r->FillRect(actX,actY,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255));
+            break;
+	        case BOTTOM_RIGHT : 
+            r->FillRect(actX - quad->mWidth * actZ,actY - quad->mHeight  * actZ,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255)); 
+            break;
+	        }
+      }
     }
 
   if (avatarRed < 255){
@@ -52,11 +63,13 @@ void GuiAvatar::Render()
       avatarRed = 255;
   }
   if (game->currentPlayer == player)
-    r->DrawRect(actX-1, actY-1, 37, 52, ARGB((int)actA, 0, 255, 0));
+    r->DrawRect(actX-1, actY-1, 37 * actZ, 52*actZ, ARGB((int)actA, 0, 255, 0));
   else if (game->currentActionPlayer == player)
-    r->DrawRect(actX, actY, 35, 50, ARGB((int)actA, 0, 0, 255));
+    r->DrawRect(actX, actY, 35 *actZ, 50 * actZ, ARGB((int)actA, 0, 0, 255));
   if (game->isInterrupting == player)
-    r->DrawRect(actX, actY, 35, 50, ARGB((int)actA, 255, 0, 0));
+    r->DrawRect(actX, actY, 35 * actZ, 50*actZ, ARGB((int)actA, 255, 0, 0));
+
+
 
   //Life
   char buffer[5];
@@ -100,19 +113,29 @@ void GuiGameZone::Render(){
   //Texture
   JQuad * quad = resources.GetQuad("back_thumb");
   float scale = defaultHeight / quad->mHeight;
-  quad->SetColor(ARGB((int)(actA/2),255,255,255));
+  quad->SetColor(ARGB((int)(actA),255,255,255));
 
-  JRenderer::GetInstance()->RenderQuad(quad, actX, actY, 0.0, scale, scale);
+  JRenderer::GetInstance()->RenderQuad(quad, actX, actY, 0.0, scale * actZ, scale * actZ);
+
+  float x0 = actX;
+  if (x0 < SCREEN_WIDTH/2) {
+    x0+=7;
+  }
+
+  if (mHasFocus)
+    JRenderer::GetInstance()->FillRect(actX,actY,quad->mWidth * scale * actZ,quad->mHeight *scale * actZ, ARGB(abs(128 - wave),255,255,255));
 
   //Number of cards
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[11];
   sprintf(buffer,"%i", zone->nb_cards);
-  mFont->SetColor(ARGB((int)(actA/4),0,0,0));
-  mFont->DrawString(buffer, actX+1, actY+1);
-  mFont->SetColor(ARGB((int)actA,255,255,255));
-  mFont->DrawString(buffer, actX, actY);
+  mFont->SetColor(ARGB((int)(actA),0,0,0));
+  mFont->DrawString(buffer, x0+1, actY+1);
+  mFont->SetColor(ARGB(actA > 120 ? 255: (int)(actA),255,255,255));
+  mFont->DrawString(buffer, x0, actY);
+
+  
 
   if (showCards) cd->Render();
   for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)

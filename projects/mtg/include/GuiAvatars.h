@@ -22,6 +22,7 @@ class GuiAvatars : public GuiLayer
   ~GuiAvatars();
   //  virtual void Render();
   void Update(float dt);
+  void Render();
   void Activate(PlayGuiObject* c);
   void Deactivate(PlayGuiObject* c);
   int receiveEventPlus(WEvent*);
