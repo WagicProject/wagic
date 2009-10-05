@@ -388,7 +388,7 @@ name=Goblin Spelunkers
 mana={2}{R}
 rarity=C
 type=Creature
-subtype=Goblin warrior
+subtype=Goblin Warrior
 power=2
 toughness=2
 abilities=mountainwalk
@@ -916,7 +916,7 @@ rarity=C
 mana={4}{U}
 type=Creature
 subtype=Zombie Drake
-{B}:regenerate
+auto={B}:regenerate
 power=2
 toughness=2
 abilities=flying

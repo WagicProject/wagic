@@ -618,7 +618,8 @@ name=Intimidation
 rarity=U
 mana={2}{B}{B}{B}
 type=Enchantment
-[/card] [card]
+[/card]
+[card]
 text={3}, {T}: Target creature gains first strike until end of turn.
 id=19882
 name=Iron Lance

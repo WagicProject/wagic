@@ -926,7 +926,7 @@ auto={T}: Add {W}
 name=Plains
 rarity=L
 type=Basic Land
-subtype=plains
+subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -935,7 +935,7 @@ auto={T}: Add {W}
 name=Plains
 rarity=L
 type=Basic Land
-subtype=plains
+subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -944,7 +944,7 @@ auto={T}: Add {W}
 name=Plains
 rarity=L
 type=Basic Land
-subtype=plains
+subtype=Plains
 [/card]
 [card]
 text=Swampwalk

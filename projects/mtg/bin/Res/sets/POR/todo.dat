@@ -178,7 +178,7 @@ name=Fire Imp
 rarity=U
 mana={2}{R}
 type=Creature
-subytpe=Imp
+subtype=Imp
 power=2
 toughness=1
 [/card]

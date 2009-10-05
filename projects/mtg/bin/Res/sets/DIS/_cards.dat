@@ -109,7 +109,7 @@ name=Riot Spikes
 mana={BR}
 type=Enchantment
 subtype=Aura
-({(b/r)} can be paid with either {B} or {R}.) Enchant creature Enchanted creature gets +2/-1.
+text=({(b/r)} can be paid with either {B} or {R}.) Enchant creature Enchanted creature gets +2/-1.
 target=creature
 auto=2/-1
 rarity=C

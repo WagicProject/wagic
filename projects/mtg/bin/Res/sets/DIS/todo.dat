@@ -625,7 +625,7 @@ id=107387
 name=Hit // Run (Hit)
 mana={1}{B}{R}
 type=Instant
-Target player sacrifices an artifact or creature. Hit deals damage to that player equal to that permanent's converted mana cost. rarity=U
+text=Target player sacrifices an artifact or creature. Hit deals damage to that player equal to that permanent's converted mana cost. rarity=U
 [/card]
 [card]
 id=111281

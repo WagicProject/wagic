@@ -633,7 +633,7 @@ type=Instant
 text=Until end of turn, target creature gains trample and gets +X/+X, where X is the number of attacking creatures.
 target=creature
 auto=foreach(creature[attacking]) 1/1
-auto-trample
+auto=trample
 rarity=C
 [/card]
 [card]

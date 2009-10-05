@@ -176,7 +176,7 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=2
-Sacrifice Burr Grafter: Target creature gets +2/+2 until end of turn. Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+text=Sacrifice Burr Grafter: Target creature gets +2/+2 until end of turn. Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
 rarity=C
 [/card]
 [card]
@@ -1029,7 +1029,7 @@ type=Creature
 subtype=Fox Wizard
 power=2
 toughness=1
-Protection from Spirits and from Arcane
+text=Protection from Spirits and from Arcane
 rarity=C
 [/card]
 
@@ -1338,7 +1338,7 @@ type=Creature
 subtype=Rat Samurai
 power=3
 toughness=1
-Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
 rarity=C
 [/card]
 [card]
@@ -1356,7 +1356,7 @@ id=75334
 name=Night Dealings
 mana={2}{B}{B}
 type=Enchantment
-Whenever a source you control deals damage to another player, put that many theft counters on Night Dealings. {2}{B}{B}, Remove X theft counters from Night Dealings: Search your library for a nonland card with converted mana cost X, reveal it, and put it into your hand. Then shuffle your library.
+text=Whenever a source you control deals damage to another player, put that many theft counters on Night Dealings. {2}{B}{B}, Remove X theft counters from Night Dealings: Search your library for a nonland card with converted mana cost X, reveal it, and put it into your hand. Then shuffle your library.
 rarity=R
 [/card]
 
@@ -1433,7 +1433,7 @@ id=80241
 name=Orochi Hatchery
 mana={X}{X}
 type=Artifact
-Orochi Hatchery comes into play with X charge counters on it. {5}, {T}: Put a 1/1 green Snake creature token into play for each charge counter on Orochi Hatchery.
+text=Orochi Hatchery comes into play with X charge counters on it. {5}, {T}: Put a 1/1 green Snake creature token into play for each charge counter on Orochi Hatchery.
 rarity=R
 [/card]
 [card]

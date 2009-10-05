@@ -657,7 +657,7 @@ toughness=4
 [/card]
 [card]
 text=Flying     Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever Needle Specter deals combat damage to a player, that player discards that many cards.
-abilties=flying,wither
+abilities=flying,wither
 id=153474
 name=Needle Specter
 rarity=R

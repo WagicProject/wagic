@@ -17,7 +17,7 @@ name=Blood Knight
 rarity=U
 mana={R}{R}
 type=Creature
-subtype=Human knight
+subtype=Human Knight
 power=2
 toughness=2
 abilities=first strike,protection from white
@@ -106,7 +106,7 @@ toughness=2
 [/card]
 [card]
 text=Enchant creature You control enchanted creature. At the beginning of your upkeep, enchanted creature deals 1 damage to its owner.
-@each my upkeep:life:-1 opponent
+auto=@each my upkeep:life:-1 opponent
 alias=1194
 id=122413
 name=Enslave
