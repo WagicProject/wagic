@@ -543,6 +543,16 @@ mana={W}{R}
 type=Instant
 [/card]
 [card]
+text=Each player shuffles his or her graveyard into his or her library.
+id=88963
+name=Mnemonic Nexus
+auto=moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle opponent
+auto=moveto(mylibrary) all(*|mygraveyard) && shuffle controller
+rarity=U
+type=Instant
+mana={3}{U}
+[/card]
+[card]
 text=Flying. At the beginning of your upkeep, you lose 1 life.
 auto=@each my upkeep:life:-1
 id=83631

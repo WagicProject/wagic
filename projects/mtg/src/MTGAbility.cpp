@@ -501,6 +501,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+    //Shuffle
+  found = s.find("shuffle");
+  if (found != string::npos){
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextPlayerTarget();
+	MTGAbility * a = NEW AAShuffle(id,card,t,NULL,0,who);
+    a->oneShot = 1;
+    return a;
+    }
 
   /*
   //CannotBeBlockedBy

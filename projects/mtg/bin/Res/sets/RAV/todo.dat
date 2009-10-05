@@ -1138,15 +1138,6 @@ type=Enchantment
 mana={4}{R}
 [/card]
 [card]
-text=Each player shuffles his or her graveyard into his or her library.
-id=88963
-name=Mnemonic Nexus
-auto=moveto(library) all(*|graveyard)
-rarity=U
-type=Instant
-mana={3}{U}
-[/card]
-[card]
 text=Enchant creature     Enchanted creature gets +3/+3.     Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 id=89009
 name=Moldervine Cloak

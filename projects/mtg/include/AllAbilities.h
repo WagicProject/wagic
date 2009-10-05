@@ -3787,6 +3787,36 @@ class AADepleter:public ActivatedAbilityTP{
   }
 };
 
+//Shuffle
+class AAShuffle:public ActivatedAbilityTP{
+ public:
+   AAShuffle(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost=NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,card, _target,_cost,_tap,who){
+	  }
+  int resolve(){
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+      MTGLibrary * library = player->game->library;
+	  library->shuffle();
+    }
+    return 1;
+  }
+
+  const char * getMenuText(){
+  return "Shuffle";
+  }
+
+  AAShuffle * clone() const{
+    AAShuffle * a =  NEW AAShuffle(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 
 //Random Discard
 class AARandomDiscarder:public ActivatedAbilityTP{
