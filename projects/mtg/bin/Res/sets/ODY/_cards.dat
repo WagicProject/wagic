@@ -666,6 +666,29 @@ toughness=2
 rarity=R
 [/card]
 [card]
+text=Target player gains 4 life, then gains 4 life for each card named Life Burst in each graveyard.
+id=29704
+name=Life Burst
+target=player
+auto=life:4
+auto=foreach(Life Burst|graveyard) life:4
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+text={2}, Sacrifice Limestone Golem: Target player draws a card.
+id=29887
+name=Limestone Golem
+rarity=U
+auto={2}{S}:draw:1 target(player)
+type=Artifact Creature
+mana={6}
+power=3
+subtype=Golem
+toughness=4
+[/card]
+[card]
 text=Sacrifice an artifact: Lithatog gets +1/+1 until end of turn. Sacrifice a land: Lithatog gets +1/+1 until end of turn.
 id=31770
 name=Lithatog
@@ -708,6 +731,31 @@ mana={1}{B}{B}
 auto={1}{B}{B}{S(creature|myinplay)}:moveTo(myhand) target(creature|mygraveyard)
 type=Enchantment
 rarity=U
+[/card]
+[card]
+text={T}, Put the top card of your library into your graveyard: Add {1} to your mana pool.
+id=31830
+name=Millikin
+auto={T}:add:{1} && deplete:1 controller
+rarity=U
+type=Artifact Creature
+mana={2}
+power=0
+subtype=Construct
+toughness=1
+[/card]
+[card]
+text=When Mindslicer is put into a graveyard from play, each player discards his or her hand.
+id=29949
+name=Mindslicer
+auto=@movedto(this|graveyard) from(inplay):moveto(graveyard) all(*|myhand)
+auto=@movedto(this|graveyard) from(inplay):moveto(graveyard) all(*|opponenthand)
+rarity=R
+type=Creature
+mana={2}{B}{B}
+power=4
+subtype=Horror
+toughness=3
 [/card]
 [card]
 text=When Minotaur Explorer comes into play, sacrifice it unless you discard a card at random.
@@ -1320,6 +1368,16 @@ type=Sorcery
 rarity=C
 [/card]
 [card]
+text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
+id=30556
+name=Traumatize
+target=player
+alias=129774
+rarity=R
+type=Sorcery
+mana={3}{U}{U}
+[/card]
+[card]
 text=Flying, protection from green 
 id=31736
 name=Treetop Sentinel
@@ -1363,6 +1421,16 @@ subtype=Human Druid
 power=1
 toughness=2
 rarity=C
+[/card]
+[card]
+text=You draw two cards, then each other player draws a card.
+id=31779
+name=Words of Wisdom
+auto=draw:2
+auto=draw:1 opponent
+rarity=C
+type=Instant
+mana={1}{U}
 [/card]
 [card]
 text=Return target creature card from your graveyard to play.

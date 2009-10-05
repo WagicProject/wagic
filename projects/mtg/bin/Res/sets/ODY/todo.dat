@@ -991,25 +991,6 @@ type=Sorcery
 mana={1}{R}
 [/card]
 [card]
-text=Target player gains 4 life, then gains 4 life for each card named Life Burst in each graveyard.
-id=29704
-name=Life Burst
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
-text={2}, Sacrifice Limestone Golem: Target player draws a card.
-id=29887
-name=Limestone Golem
-rarity=U
-type=Artifact Creature
-mana={6}
-power=3
-subtype=Golem
-toughness=4
-[/card]
-[card]
 text=Liquid Fire deals 5 damage divided as you choose between target creature and that creature's controller.
 id=29866
 name=Liquid Fire
@@ -1062,34 +1043,12 @@ subtype=Elephant Wurm
 toughness=3
 [/card]
 [card]
-text={T}, Put the top card of your library into your graveyard: Add {1} to your mana pool.
-id=31830
-name=Millikin
-rarity=U
-type=Artifact Creature
-mana={2}
-power=0
-subtype=Construct
-toughness=1
-[/card]
-[card]
 text=Target player discards X cards, where X is one plus the number of cards named Mind Burst in all graveyards.
 id=29746
 name=Mind Burst
 rarity=C
 type=Sorcery
 mana={1}{B}
-[/card]
-[card]
-text=When Mindslicer is put into a graveyard from play, each player discards his or her hand.
-id=29949
-name=Mindslicer
-rarity=R
-type=Creature
-mana={2}{B}{B}
-power=4
-subtype=Horror
-toughness=3
 [/card]
 [card]
 text={1}{R}, {T}: Put a mine counter on target land.     Whenever a land with a mine counter on it becomes tapped, destroy it.     When Mine Layer leaves play, remove all mine counters from all lands.
@@ -1341,6 +1300,7 @@ toughness=1
 text={R}, Discard a card at random: Pardic Swordsmith gets +2/+0 until end of turn.
 id=29753
 name=Pardic Swordsmith
+auto={R}:2/0 && discard:1 controller
 rarity=C
 type=Creature
 mana={2}{R}
@@ -1400,7 +1360,9 @@ text=Whenever Pianna, Nomad Captain attacks, attacking creatures get +1/+1 until
 id=31790
 name=Pianna, Nomad Captain
 rarity=R
-type=Legendary Creature
+type=Creature
+abilities=Legendary
+auto=aslongas(Pianna, Nomad Captain[attacking]|myBattlefueld) lord(creature[attacking]) 1/1
 mana={1}{W}{W}
 power=2
 subtype=Human Nomad
@@ -1456,6 +1418,8 @@ mana={2}{R}
 text=Enchant creature     Enchanted creature has "{T}: This creature deals 1 damage to target creature or player."
 id=31791
 name=Psionic Gift
+target=creature
+auto={T}:damage:1 target(creature,player)
 rarity=C
 type=Enchantment
 mana={1}{U}
@@ -1594,6 +1558,8 @@ text=Trample     Savage Firecat comes into play with seven +1/+1 counters on it.
 id=29966
 name=Savage Firecat
 rarity=R
+auto=counter(1/1,7)
+auto=@tapped(land|myBattlefield):counter(1/1,-1)
 type=Creature
 mana={3}{R}{R}
 power=0
@@ -1785,6 +1751,8 @@ text=Enchant land     Enchanted land has "{T}: Put a 1/1 green Squirrel creature
 id=31836
 name=Squirrel Nest
 rarity=U
+target=land
+auto={T}:token(Squirrel,Creature Squirrel,1/1,green)
 type=Enchantment
 mana={1}{G}{G}
 subtype=Aura
@@ -1792,6 +1760,8 @@ subtype=Aura
 [card]
 text=When a player plays a spell, sacrifice Standstill. If you do, each of that player's opponents draws three cards.
 id=29936
+auto=@movedto(*|opponentBattlefield):draw:3 controller && destroy this
+auto=@movedto(*|myBattlefield):draw:3 opponent && destroy this
 name=Standstill
 rarity=U
 type=Enchantment
@@ -1932,14 +1902,6 @@ type=Sorcery
 mana={B}
 [/card]
 [card]
-text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
-id=30556
-name=Traumatize
-rarity=R
-type=Sorcery
-mana={3}{U}{U}
-[/card]
-[card]
 text=Enchant creature     At the beginning of each upkeep, put a plague counter on Traveling Plague.     Enchanted creature gets -1/-1 for each plague counter on Traveling Plague.     When enchanted creature leaves play, that creature's controller returns Traveling Plague from its owner's graveyard to play.
 id=31853
 name=Traveling Plague
@@ -2061,14 +2023,6 @@ mana={1}{G}
 power=2
 subtype=Hound
 toughness=2
-[/card]
-[card]
-text=You draw two cards, then each other player draws a card.
-id=31779
-name=Words of Wisdom
-rarity=C
-type=Instant
-mana={1}{U}
 [/card]
 [card]
 text={T}, Remove two cards in your graveyard and Zombie Assassin from the game: Destroy target nonblack creature. It can't be regenerated.
