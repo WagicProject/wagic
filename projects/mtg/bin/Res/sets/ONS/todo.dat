@@ -279,7 +279,6 @@ toughness=1
 text={T}: Choose a creature type. Reveal the top card of your library. If that card is a creature card of the chosen type, put it into your hand. Otherwise, put it into your graveyard.
 rarity=U
 [/card]
-
 [card]
 id=39547
 name=Boneknitter
@@ -320,17 +319,6 @@ power=6
 toughness=6
 text=You may divide Butcher Orgg's combat damage as you choose among defending player and/or any number of creatures he or she controls.
 rarity=R
-[/card]
-[card]
-id=39545
-name=Cabal Archon
-mana={2}{B}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
-text={B}, Sacrifice a Cleric: Target player loses 2 life and you gain 2 life.
-rarity=U
 [/card]
 [card]
 id=39851
@@ -754,16 +742,6 @@ subtype=Aura
 text=Enchant land. Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool for each Elf in play (in addition to the mana the land produces).
 rarity=C
 [/card]
-
-
-[card]
-id=35514
-name=Enchantress's Presence
-mana={2}{G}
-type=Enchantment
-text=Whenever you play an enchantment spell, draw a card.
-rarity=R
-[/card]
 [card]
 id=39612
 name=Endemic Plague
@@ -998,28 +976,6 @@ subtype=Goblin Warrior
 power=1
 toughness=2
 text=Protection from blue Whenever Goblin Piledriver attacks, it gets +2/+0 until end of turn for each other attacking Goblin.
-rarity=R
-[/card]
-[card]
-id=39840
-name=Goblin Pyromancer
-mana={3}{R}
-type=Creature
-subtype=Goblin Wizard
-power=2
-toughness=2
-text=When Goblin Pyromancer comes into play, Goblin creatures get +3/+0 until end of turn. At end of turn, destroy all Goblins.
-rarity=R
-[/card]
-[card]
-id=33695
-name=Goblin Sharpshooter
-mana={2}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text=Goblin Sharpshooter doesn't untap during your untap step. Whenever a creature is put into a graveyard from play, untap Goblin Sharpshooter. {T}: Goblin Sharpshooter deals 1 damage to target creature or player.
 rarity=R
 [/card]
 [card]
@@ -1520,6 +1476,18 @@ text={T}, Sacrifice Nosy Goblin: Destroy target face-down creature.
 rarity=C
 [/card]
 [card]
+id=39933
+name=Oblation
+mana={2}{W}
+type=Instant
+text=The owner of target nonland permanent shuffles it into his or her library, then draws two cards.
+target=(*[-land]|opponentbattlefield)
+###THIS WILL MOVE THE TARGET ON TOP OF THE LIBRARY AND WON'T SHUFFLE IT! 0.9.1
+auto=moveTo(ownerlibrary)
+auto=draw:2 targetcontroller
+rarity=R
+[/card]
+[card]
 id=33693
 name=Oversold Cemetery
 mana={1}{B}
@@ -1570,7 +1538,17 @@ type=Instant
 text=Choose one: Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
 rarity=C
 [/card]
-
+[card]
+text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
+###THIS CARD VERSION WON'T PREVENT THE CARD FROM BEING REGENERATED!!! 0.9.1
+id=40537
+name=Pinpoint Avalanche
+target=creature
+auto=damage:4
+mana={3}{R}{R}
+type=Instant 
+rarity=C
+[/card]
 [card]
 id=41145
 name=Primal Boost
@@ -1677,17 +1655,6 @@ name=Risky Move
 mana={3}{R}{R}{R}
 type=Enchantment
 text=At the beginning of each player's upkeep, that player gains control of Risky Move.  When you gain control of Risky Move from another player, choose a creature you control and an opponent. Flip a coin. If you lose the flip, that opponent gains control of that creature.
-rarity=R
-[/card]
-[card]
-id=39640
-name=Rotlung Reanimator
-mana={2}{B}
-type=Creature
-subtype=Zombie Cleric
-power=2
-toughness=2
-text=Whenever Rotlung Reanimator or another Cleric is put into a graveyard from play, put a 2/2 black Zombie creature token into play.
 rarity=R
 [/card]
 [card]
@@ -1869,7 +1836,6 @@ toughness=5
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, turn Skittish Valesk face down. Morph {5}{R} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
 [/card]
-
 [card]
 id=41171
 name=Slice and Dice
@@ -1928,17 +1894,6 @@ text=Solar Blast deals 3 damage to target creature or player. Cycling {1}{R}{R} 
 rarity=C
 [/card]
 [card]
-id=39476
-name=Sparksmith
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text={T}: Sparksmith deals X damage to target creature and X damage to you, where X is the number of Goblins in play.
-rarity=C
-[/card]
-[card]
 id=39725
 name=Spined Basher
 mana={2}{B}
@@ -1989,17 +1944,6 @@ mana={U}
 type=Instant
 text=Look at target player's hand, the top card of that player's library, and any face-down creatures he or she controls. Look at the top four cards of your library, then put them back in any order.
 rarity=C
-[/card]
-[card]
-id=39676
-name=Stag Beetle
-mana={3}{G}{G}
-type=Creature
-subtype=Insect
-power=0
-toughness=0
-text=Stag Beetle comes into play with X +1/+1 counters on it, where X is the number of other creatures in play.
-rarity=R
 [/card]
 [card]
 id=40205
@@ -2067,39 +2011,6 @@ mana={1}{B}{B}
 type=Instant
 text=Destroy target creature with power 2 or less. Cycling {2} ({2}, Discard this card: Draw a card.)
 rarity=C
-[/card]
-[card]
-id=39924
-name=Symbiotic Beast
-mana={4}{G}{G}
-type=Creature
-subtype=Insect Beast
-power=4
-toughness=4
-text=When Symbiotic Beast is put into a graveyard from play, put four 1/1 green Insect creature tokens into play.
-rarity=U
-[/card]
-[card]
-id=32216
-name=Symbiotic Elf
-mana={3}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
-text=When Symbiotic Elf is put into a graveyard from play, put two 1/1 green Insect creature tokens into play.
-rarity=C
-[/card]
-[card]
-id=39925
-name=Symbiotic Wurm
-mana={5}{G}{G}{G}
-type=Creature
-subtype=Wurm
-power=7
-toughness=7
-text=When Symbiotic Wurm is put into a graveyard from play, put seven 1/1 green Insect creature tokens into play.
-rarity=R
 [/card]
 [card]
 text=Each other player discards a card. You draw a card for each card discarded this way.
@@ -2203,17 +2114,6 @@ power=5
 toughness=4
 text=Morph {5}{G} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=C
-[/card]
-[card]
-id=30764
-name=Tribal Golem
-mana={6}
-type=Artifact Creature
-subtype=Golem
-power=4
-toughness=4
-text=Tribal Golem has trample as long as you control a Beast, haste as long as you control a Goblin, first strike as long as you control a Soldier, flying as long as you control a Wizard, and "{B}: Regenerate Tribal Golem" as long as you control a Zombie.
-rarity=R
 [/card]
 [card]
 id=39677
@@ -2351,8 +2251,6 @@ toughness=2
 text={W}, {T}: Tap target creature. Morph {W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
 [/card]
-
-
 [card]
 id=41150
 name=Withering Hex
@@ -2402,4 +2300,3 @@ type=Enchantment
 text={1}: The next time you would draw a card this turn, you gain 5 life instead.
 rarity=R
 [/card]
-
