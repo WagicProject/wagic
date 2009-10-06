@@ -99,7 +99,7 @@ type=Instant
 mana={U}
 [/card]
 [card]
-#Does not work in WTH 0.8.1....
+#Does not work in WTH 0.8.1....  ###ANSWER: IT DOES WORK! IT WAS ONLY CODED WRONG! ;)
 text=Counter target noncreature spell. Its controller loses 2 life. 
 target=*[-creature]|stack
 auto=fizzle && life:-2 targetController
@@ -538,35 +538,12 @@ subtype=Human Knight
 toughness=2
 [/card]
 [card]
-text=Flying     When Parasitic Strix comes into play, if you control a black permanent, target player loses 2 life and you gain 2 life.
-id=175021
-name=Parasitic Strix
-rarity=C
-type=Artifact Creature
-mana={2}{U}
-power=2
-subtype=Bird
-toughness=2
-[/card]
-[card]
 text=Remove target creature from the game. Its controller may search his or her library for a basic land card, put that card into play tapped, then shuffle his or her library.
 id=179235
 name=Path to Exile
 rarity=U
 type=Instant
 mana={W}
-[/card]
-
-[card]
-text=Protection from everything     If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.  ##crazy bitch
-id=179496
-name=Progenitus
-rarity=M
-type=Legendary Creature
-mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
-power=10
-subtype=Hydra Avatar
-toughness=10
 [/card]
 [card]
 text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
