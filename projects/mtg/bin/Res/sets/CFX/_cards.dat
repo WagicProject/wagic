@@ -497,8 +497,8 @@ toughness=1
 abilities=flying,deathtouch
 [/card]
 [card]
-text=Protection from everything   If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.  ##crazy bitch
-auto=@movedTo(this)|graveyard):moveTo(ownerlibrary) && shuffle
+text=Protection from everything   If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
+auto=@movedTo(this|graveyard):moveTo(ownerlibrary) && shuffle
 id=179496
 name=Progenitus
 rarity=M
