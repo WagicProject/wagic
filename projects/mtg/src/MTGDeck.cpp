@@ -43,7 +43,15 @@ int MtgSets::find(string name){
 
 int MTGAllCards::processConfLine(string s, MTGCard *card){
   unsigned int i = s.find_first_of("=");
-  if (i == string::npos) return 0;
+  if (i == string::npos){
+#if defined (_DEBUG)
+    if (s.size() && s[0] == '#') return 0;
+    char buffer[4096];
+    sprintf(buffer, "MTGDECK: Bad Line in %s/_cards.dat:\n    %s\n", MtgSets::SetsList->values[card->setId].c_str(), s.c_str());
+    OutputDebugString(buffer);
+#endif
+    return 0;
+  }
   string key = s.substr(0,i);
   string value = s.substr(i+1);
 
@@ -95,34 +103,46 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
   }else if(key.compare("type")==0){
     switch(value.c_str()[0]){
     case 'C':
+    case 'c':
       card->setType( "Creature");
       break;
     case 'A':
+    case 'a':
       card->setType( "Artifact");
       card->setColor(Constants::MTG_COLOR_ARTIFACT);
       if (value.c_str()[8] == ' ' && value.c_str()[9] == 'C')
 	      card->setSubtype("Creature");
       break;
     case 'E':
+    case 'e':
       card->setType( "Enchantment");
       break;
     case 'S':
+    case 's':
       card->setType( "Sorcery");
       break;
     case 'B'://Basic Land
+    case 'b':
       card->setColor(Constants::MTG_COLOR_LAND);
       card->setType("Land");
       card->setType("Basic");
       break;
     case 'L':
+    case 'l':
       card->setColor(Constants::MTG_COLOR_LAND);
       card->setType( "Land");
       break;
     case 'I':
+    case 'i':
       card->setType( "Instant");
       break;
     default:
       card->setType( "Error");
+#if defined (_DEBUG)
+    char buffer[4096];
+    sprintf(buffer, "MTGDECK: Bad Card Type in %s/_cards.dat:\n    %s\n", MtgSets::SetsList->values[card->setId].c_str(), s.c_str());
+    OutputDebugString(buffer);
+#endif
       break;
 
     }
@@ -167,6 +187,9 @@ void MTGAllCards::init(){
   total_cards = 0;
   initCounters();
   srand(time(0));  // initialize random
+#if defined (_DEBUG)
+  committed = true;
+#endif
 }
 
 
@@ -274,6 +297,14 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     switch(conf_read_mode) {
     case 0:
       if (s[0] == '['){
+#if defined (_DEBUG)
+        if (!committed){
+          OutputDebugString("MTGDECK: Card not committed before creating new one, Memory leak risk\n   ");
+          OutputDebugString(tempCard->getName().c_str());
+          OutputDebugString("\n");
+        }
+        committed = false;
+#endif
         tempCard = NEW MTGCard(set_id);
         conf_read_mode = 1;
       }
@@ -291,6 +322,9 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
           ids.push_back(newId);
           collection[newId] = tempCard;
 	        total_cards++;
+#if defined (_DEBUG)
+          committed = true;
+#endif
         }
       }else{
 	      processConfLine(s, tempCard);

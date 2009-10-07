@@ -39,6 +39,9 @@ class MtgSets{
 class MTGAllCards {
 private:
   MTGCard * tempCard;
+#if defined (_DEBUG)
+  bool committed;
+#endif
  protected:
   int conf_read_mode;
   int colorsCount[Constants::MTG_NB_COLORS];

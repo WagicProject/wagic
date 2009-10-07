@@ -793,7 +793,7 @@ text=All lands are 1/1 creatures that are still lands.
 id=1533
 name=Living Plane
 rarity=R
-type=World Enchantment
+type=Enchantment
 mana={2}{G}{G}
 [/card]
 [card]

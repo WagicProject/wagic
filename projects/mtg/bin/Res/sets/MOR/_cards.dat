@@ -228,8 +228,8 @@ rarity=C
 id=152720
 name=Stream of Unconsciousness
 mana={U}
-type=Tribal Instant
-subtype=Wizard
+type=Instant
+subtype=Wizard Tribal 
 text=Target creature gets -4/-0 until end of turn. If you control a Wizard, draw a card.
 target=creature
 auto=-4/0
@@ -258,8 +258,8 @@ auto=token(Faerie Rogue,Creature Faerie,1/1,flying black)
 name=Violet Pall
 rarity=C
 mana={4}{B}
-type=Tribal Instant
-subtype=Faerie
+type=Instant
+subtype=Faerie Tribal 
 [/card]
 [card]
 text={3}{B}, Sacrifice a Goblin: Put two 1/1 black Goblin Rogue creature tokens onto the battlefield.
