@@ -446,6 +446,7 @@ rarity=C
 [/card]
 [card]
 name=Inspired Sprite
+id=152826
 mana={U}{3}
 type=Creature
 subtype=Faerie Wizard

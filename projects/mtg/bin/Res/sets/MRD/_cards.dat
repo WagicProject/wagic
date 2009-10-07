@@ -1175,6 +1175,7 @@ name=Tanglebloom
 auto={1}{T}:life:1
 mana={1}
 type=Artifact
+rarity=C
 [/card]
 [card]
 text={1}{G}: Regenerate Tel-Jilad Exile.
@@ -1244,6 +1245,7 @@ name=Tower of Fortunes
 auto={8}{T}:Draw:4
 mana={4}
 type=Artifact
+rarity=R
 [/card]
 [card]
 text={8}, {T}: Target player puts the top eight cards of his or her library into his or her graveyard.
