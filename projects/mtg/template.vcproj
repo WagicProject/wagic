@@ -208,6 +208,105 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
+		<Configuration
+			Name="Profile|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Release/template.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="3"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="../../JGE/include;../../JGE/Dependencies/include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_SECURE_SCL=0;_HAS_ITERATOR_DEBBUGING=0"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				PrecompiledHeaderFile=".\Release/template.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="3081"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib libpng.lib fmodvc.lib zdll.lib jge.lib libjpeg-static-mt.lib freetype.lib"
+				OutputFile="bin/template.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="..\..\JGE\Dependencies\lib,..\..\JGE\lib\win"
+				IgnoreDefaultLibraryNames="LIBCD,LIBCMT"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\Release/template.pdb"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\Release/template.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -317,6 +416,15 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="src\GameLauncher.cpp"
@@ -332,6 +440,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -553,11 +670,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\WEvent.cpp"
+				RelativePath=".\src\WCachedResource.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\WCachedResource.cpp"
+				RelativePath=".\src\WEvent.cpp"
 				>
 			</File>
 			<File
@@ -906,15 +1023,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\WCachedResource.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\WEvent.h"
 				>
 			</File>
 			<File
 				RelativePath=".\include\WResourceManager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\WCachedResource.h"
 				>
 			</File>
 		</Filter>

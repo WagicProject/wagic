@@ -9,9 +9,9 @@ using std::map;
 
 class Subtypes{
  protected:
-  int nb_items;
   map<string,int> values;
-
+  map<int,string> valuesById;
+  int nb_items;
  public:
   static Subtypes * subtypesList;
   Subtypes();

@@ -106,6 +106,7 @@ void MTGCardInstance::initMTGCI(){
   lastController = NULL;
   regenerateTokens = 0;
   blocked = false;
+  currentZone = NULL;
 }
 
 
@@ -184,16 +185,7 @@ int MTGCardInstance::destroy(){
 }
 
 MTGGameZone * MTGCardInstance::getCurrentZone(){
-  GameObserver * game = GameObserver::GetInstance();
-  for (int i = 0; i < 2; i++){
-    MTGPlayerCards * g = game->players[i]->game;
-    MTGGameZone * zones[] = {g->inPlay,g->graveyard,g->hand, g->library, g->stack, g->temp};
-    for (int k = 0; k < 6; k++){
-      MTGGameZone * zone = zones[k];
-      if (zone->hasCard(this)) return zone;
-    }
-  }
-  return NULL;
+  return currentZone;
 }
 
 int MTGCardInstance::has(int basicAbility){
@@ -319,16 +311,6 @@ int MTGCardInstance::reset(){
 
 
 Player * MTGCardInstance::controller(){
-  GameObserver * game = GameObserver::GetInstance();
-  if (!game) return NULL;
-  for (int i = 0; i < 2; ++i){
-    if (game->players[i]->game->inPlay->hasCard(this)) return  game->players[i];
-    if (game->players[i]->game->stack->hasCard(this)) return  game->players[i];
-    if (game->players[i]->game->graveyard->hasCard(this)) return  game->players[i];
-    if (game->players[i]->game->hand->hasCard(this)) return  game->players[i];
-    if (game->players[i]->game->library->hasCard(this)) return  game->players[i];
-    if (game->players[i]->game->temp->hasCard(this)) return  game->players[i];
-  }
   return lastController;
 }
 

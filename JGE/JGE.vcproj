@@ -164,6 +164,83 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
+		<Configuration
+			Name="Profile|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="3"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="Dependencies/include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_SECURE_SCL=0;_HAS_ITERATOR_DEBBUGING=0"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\Release/JGE.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="3081"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="lib\win\jge.lib"
+				SuppressStartupBanner="true"
+				IgnoreDefaultLibraryNames="LIBCMT"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -204,6 +281,16 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="src\JDistortionMesh.cpp"
@@ -227,6 +314,16 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -254,6 +351,16 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="src\JGameObject.cpp"
@@ -277,6 +384,16 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -304,6 +421,16 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="src\JGE.cpp"
@@ -329,6 +456,16 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="src\JGui.cpp"
@@ -352,6 +489,16 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -381,6 +528,16 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -456,6 +613,16 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\src\JTTFont.cpp"
@@ -483,6 +650,16 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -743,6 +920,16 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="src\unzip\ioapi.h"
@@ -772,6 +959,16 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="src\unzip\mztools.h"
@@ -799,6 +996,16 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>

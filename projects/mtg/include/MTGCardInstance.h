@@ -43,6 +43,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int removeBlocker(MTGCardInstance * c);
   int setAttacker(int value);
  public:
+  MTGGameZone * currentZone;
   Pos* view;
   int regenerateTokens;
   bool isToken;

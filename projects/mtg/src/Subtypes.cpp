@@ -17,6 +17,7 @@ int Subtypes::Add(string value){
   std::transform( value.begin(), value.end(), value.begin(), ::tolower );
   nb_items++;
   values[value] = nb_items;
+  valuesById[nb_items] = value;
   return nb_items;
 }
 
@@ -39,11 +40,8 @@ int Subtypes::find(const char * subtype){
 
 }
 
-/*This will be slow... */
 string Subtypes::find(int id){
-  map<string,int>::iterator it;
-  for (it = values.begin(); it != values.end(); it++){
-    if (it->second == id) return it->first;
-  }
-  return NULL;
+  map<int,string>::iterator it=valuesById.find(id);;
+  if (it != valuesById.end()) return it->second;
+  return "";
 }
