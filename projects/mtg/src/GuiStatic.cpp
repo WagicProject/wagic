@@ -129,10 +129,13 @@ void GuiGameZone::Render(){
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[11];
+  int mAlpha = (int)(actA);
   sprintf(buffer,"%i", zone->nb_cards);
-  mFont->SetColor(ARGB((int)(actA),0,0,0));
+  mFont->SetColor(ARGB(mAlpha,0,0,0));
   mFont->DrawString(buffer, x0+1, actY+1);
-  mFont->SetColor(ARGB(actA > 120 ? 255: (int)(actA),255,255,255));
+  if (actA > 120) mAlpha = 255;
+  mFont->SetColor(ARGB(mAlpha,255,255,255));
+  fprintf(stderr, "%i\n", mAlpha);
   mFont->DrawString(buffer, x0, actY);
 
   
