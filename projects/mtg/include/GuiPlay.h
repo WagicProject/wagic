@@ -14,30 +14,29 @@ class GuiPlay : public GuiLayer
  protected:
   class CardStack {
   protected:
+    unsigned total;
     float baseX, baseY;
     float x, y;
 
   public:
-    void reset(float x, float y);
+    void reset(unsigned total, float x, float y);
     void Enstack(CardView*);
     void RenderSpell(MTGCardInstance*, iterator begin, iterator end, float x, float y);
   };
 
   class HorzStack : public CardStack {
-  protected:
-    const float maxWidth;
-    float maxHeight;
   public:
-    HorzStack(float width = HORZWIDTH);
-    void reset(float x, float y);
+    HorzStack();
+    void reset(unsigned total, float x, float y);
     void Render(CardView*, iterator begin, iterator end);
     void Enstack(CardView*);
   };
   class VertStack : public CardStack {
   protected:
-    float maxHeight;
+    unsigned count;
   public:
-    VertStack(float height = VERTHEIGHT);
+    VertStack();
+    void reset(unsigned total, float x, float y);
     void Render(CardView*, iterator begin, iterator end);
     void Enstack(CardView*);
     inline float nextX();
@@ -56,7 +55,7 @@ class GuiPlay : public GuiLayer
     void addAttacker(MTGCardInstance*);
     void removeAttacker(MTGCardInstance*);
     void reset(float x, float y);
-    BattleField(float width = HORZWIDTH);
+    BattleField();
     void EnstackAttacker(CardView*);
     void EnstackBlocker(CardView*);
     void Update(float dt);

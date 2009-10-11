@@ -184,7 +184,7 @@ void GuiHandSelf::Render()
       mFont->DrawString("0",SCREEN_WIDTH - 10,backpos.actY);
     }else{
       backpos.Render(back);
-      mFont->DrawString("Empty",backpos.actX,backpos.actY);
+      if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number) mFont->DrawString("Empty",backpos.actX,backpos.actY);
     }
     return;
   }

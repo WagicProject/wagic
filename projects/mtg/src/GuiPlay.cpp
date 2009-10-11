@@ -8,8 +8,9 @@
 const float GuiPlay::HORZWIDTH = 300.0f;
 const float GuiPlay::VERTHEIGHT = 80.0f;
 
-void GuiPlay::CardStack::reset(float x, float y)
+void GuiPlay::CardStack::reset(unsigned total, float x, float y)
 {
+  this->total = total;
   this->x = 0; baseX = x;
   this->y = 0; baseY = y;
 }
@@ -29,13 +30,19 @@ void GuiPlay::CardStack::RenderSpell(MTGCardInstance* card, iterator begin, iter
     }
 }
 
-GuiPlay::HorzStack::HorzStack(float width) : maxWidth(width) {}
-GuiPlay::VertStack::VertStack(float height) : maxHeight(height) {}
+GuiPlay::HorzStack::HorzStack() {}
+GuiPlay::VertStack::VertStack() {}
 
-void GuiPlay::HorzStack::reset(float x, float y)
+void GuiPlay::HorzStack::reset(unsigned total, float x, float y)
 {
-  GuiPlay::CardStack::reset(x, y);
-  maxHeight = 0;
+  GuiPlay::CardStack::reset(total, x, y);
+}
+
+void GuiPlay::VertStack::reset(unsigned total, float x, float y)
+{
+  GuiPlay::CardStack::reset(total, x - CARD_WIDTH, y);
+  count = 0;
+  cout << "reset" << endl;
 }
 
 void GuiPlay::HorzStack::Render(CardView* card, iterator begin, iterator end)
@@ -47,16 +54,18 @@ void GuiPlay::HorzStack::Render(CardView* card, iterator begin, iterator end)
 void GuiPlay::HorzStack::Enstack(CardView* card)
 {
   card->x = x + baseX; card->y = y + baseY;
-  x += CARD_WIDTH;
-  if (maxHeight < card->mHeight) maxHeight = card->mHeight;
-  if (x > maxWidth) { x = 0; y += maxHeight + 2; maxHeight = 0; }
+  if (total < 8) x += CARD_WIDTH;
+  else if (total < 16) x += (SCREEN_WIDTH - 200 - baseX) / total;
+  else x += (SCREEN_WIDTH - 50 - baseX) / total;
 }
 
 void GuiPlay::VertStack::Enstack(CardView* card)
 {
-  if (y > maxHeight) x += CARD_WIDTH;
+  if (0 == count % 3) { x += CARD_WIDTH; y = 0; }
   card->x = x + baseX; card->y = y + baseY;
-  y += 8;
+  y += 12;
+  if (++count == total-1 && y == 12) y += 12;
+  cerr << card->card->name << " " << card->x << "x" << card->y << " : " << nextX() << endl;
 }
 
 void GuiPlay::VertStack::Render(CardView* card, iterator begin, iterator end)
@@ -65,13 +74,13 @@ void GuiPlay::VertStack::Render(CardView* card, iterator begin, iterator end)
   card->Render();
 }
 
-inline float GuiPlay::VertStack::nextX() { return x + CARD_WIDTH; }
+inline float GuiPlay::VertStack::nextX() { if (0 == count) return x + CARD_WIDTH; else return x; }
 
-GuiPlay::BattleField::BattleField(float width) : HorzStack(width), attackers(0), blockers(0), height(0.0), red(0), colorFlow(0) {}
+GuiPlay::BattleField::BattleField() : attackers(0), blockers(0), height(0.0), red(0), colorFlow(0) {}
 const float GuiPlay::BattleField::HEIGHT = 80.0f;
 void GuiPlay::BattleField::addAttacker(MTGCardInstance*) { ++attackers; colorFlow = 1; }
 void GuiPlay::BattleField::removeAttacker(MTGCardInstance*) { --attackers; }
-void GuiPlay::BattleField::reset(float x, float y) { HorzStack::reset(x, y); currentAttacker = 1; }
+void GuiPlay::BattleField::reset(float x, float y) { HorzStack::reset(0, x, y); currentAttacker = 1; }
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
   GameObserver* game = GameObserver::GetInstance();
@@ -82,8 +91,8 @@ void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 void GuiPlay::BattleField::EnstackBlocker(CardView* card)
 {
   GameObserver* game = GameObserver::GetInstance();
-  if (card->card && card->card->defenser && card->card->defenser->view) 
-    card->x = card->card->defenser->view->x; 
+  if (card->card && card->card->defenser && card->card->defenser->view)
+    card->x = card->card->defenser->view->x;
   card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y : -20 - y);
 }
 void GuiPlay::BattleField::Update(float dt)
@@ -120,9 +129,35 @@ GuiPlay::~GuiPlay()
 bool isSpell(CardView* c) { return c->card->isSpell(); }
 void GuiPlay::Replace()
 {
-  opponentSpells.reset(18, 80);
-  selfSpells.reset(18, 200);
+  unsigned opponentSpellsN = 0, selfSpellsN = 0, opponentLandsN = 0, opponentCreaturesN = 0,
+    battleFieldAttackersN = 0, battleFieldBlockersN = 0, selfCreaturesN = 0, selfLandsN = 0;
+
   end_spells = stable_partition(cards.begin(), cards.end(), &isSpell);
+
+  for (iterator it = cards.begin(); it != end_spells; ++it)
+    if (!(*it)->card->target)
+      {
+	if (game->players[0] == (*it)->card->controller()) ++selfSpellsN;
+	else ++opponentSpellsN;
+      }
+  for (iterator it = end_spells; it != cards.end(); ++it)
+    {
+      if ((*it)->card->isCreature())
+	{
+	  if ((*it)->card->isAttacker()) ++battleFieldAttackersN;
+	  else if ((*it)->card->isDefenser()) ++battleFieldBlockersN;
+	  else if (game->players[0] == (*it)->card->controller()) ++selfCreaturesN;
+	  else ++opponentCreaturesN;
+	}
+      else if ((*it)->card->isLand())
+	{
+	  if (game->players[0] == (*it)->card->controller()) ++selfLandsN;
+	  else ++opponentLandsN;
+	}
+    }
+
+  opponentSpells.reset(opponentSpellsN, 18, 60);
+  selfSpells.reset(selfSpellsN, 18, 215);
 
   for (iterator it = cards.begin(); it != end_spells; ++it)
     if (!(*it)->card->target)
@@ -132,11 +167,11 @@ void GuiPlay::Replace()
       }
 
   float x = 24 + MAX(opponentSpells.nextX(), selfSpells.nextX());
-  opponentLands.reset(x, 50);
-  opponentCreatures.reset(x, 95);
+  opponentLands.reset(opponentLandsN, x, 50);
+  opponentCreatures.reset(opponentCreaturesN, x, 95);
   battleField.reset(x, 145);
-  selfCreatures.reset(x, 195);
-  selfLands.reset(x, 240);
+  selfCreatures.reset(selfCreaturesN, x, 195);
+  selfLands.reset(selfLandsN, x, 240);
 
   for (iterator it = end_spells; it != cards.end(); ++it)
     {
@@ -229,9 +264,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
       if (Constants::MTG_PHASE_COMBATEND == event->to->id) battleField.colorFlow = -1;
     }
   else if (dynamic_cast<WEventCardChangeType*>(e))
-    {
-      Replace();
-    }
+    Replace();
   return 0;
 }
 int GuiPlay::receiveEventMinus(WEvent * e)
@@ -243,8 +276,8 @@ int GuiPlay::receiveEventMinus(WEvent * e)
 	for (iterator it = cards.begin(); it != cards.end(); ++it)
 	  if (event->card->previous == (*it)->card || event->card == (*it)->card )
 	    {
-        if (event->card->previous && event->card->previous->attacker) battleField.removeAttacker(event->card->previous);
-        else if (event->card->attacker) battleField.removeAttacker(event->card);
+              if (event->card->previous && event->card->previous->attacker) battleField.removeAttacker(event->card->previous);
+              else if (event->card->attacker) battleField.removeAttacker(event->card);
 	      CardView* cv = *it;
 	      cs->Remove(cv);
 	      cards.erase(it);

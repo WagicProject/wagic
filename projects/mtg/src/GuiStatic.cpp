@@ -47,11 +47,11 @@ void GuiAvatar::Render()
       if (mHasFocus){
         switch (corner)
 	        {
-	        case TOP_LEFT : 
+	        case TOP_LEFT :
             r->FillRect(actX,actY,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255));
             break;
-	        case BOTTOM_RIGHT : 
-            r->FillRect(actX - quad->mWidth * actZ,actY - quad->mHeight  * actZ,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255)); 
+	        case BOTTOM_RIGHT :
+            r->FillRect(actX - quad->mWidth * actZ,actY - quad->mHeight  * actZ,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255));
             break;
 	        }
       }
@@ -135,10 +135,9 @@ void GuiGameZone::Render(){
   mFont->DrawString(buffer, x0+1, actY+1);
   if (actA > 120) mAlpha = 255;
   mFont->SetColor(ARGB(mAlpha,255,255,255));
-  fprintf(stderr, "%i\n", mAlpha);
   mFont->DrawString(buffer, x0, actY);
 
-  
+
 
   if (showCards) cd->Render();
   for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
