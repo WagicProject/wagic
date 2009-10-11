@@ -15,7 +15,7 @@ abilities=first strike
 text=Destroy target artifact, creature, or land. Aftershock deals 3 damage to you.
 target=artifact,creature,land
 auto=destroy
-auto=damage 3 controller
+auto=damage:3 controller
 id=4800
 name=Aftershock
 rarity=C
@@ -25,16 +25,16 @@ type=Sorcery
 [card]
 text=At the beginning of each player's upkeep, Ancient Runes deals damage to that player equal to the number of artifacts he or she controls.
 id=4801
-auto=@each my upkeep:foreach(artifact|myinplay) damage:1 controller
-auto=@each opponent upkeep:foreach(artifact|opponentinplay) damage:1 opponent
+auto=@each my upkeep:foreach(artifact|myBattlefield) damage:1 controller
+auto=@each opponent upkeep:foreach(artifact|opponentBattlefield) damage:1 opponent
 name=Ancient Runes
 rarity=U
-type=Enchantment
 mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 text={T}: Add {2} to your mana pool. Ancient Tomb deals 2 damage to you.
-auto={T}: Add {2} && Damage 2 controller
+auto={T}:Add {2} && Damage:2 controller
 id=4636
 name=Ancient Tomb
 rarity=U
@@ -47,7 +47,7 @@ name=Apocalypse
 rarity=R
 mana={2}{R}{R}{R}
 type=Sorcery
-auto=moveTo(Exile) all(*|battlefield)
+auto=moveTo(exile) all(*|battlefield)
 auto=moveTo(mygraveyard) all(*|myhand)
 [/card]
 [card]
@@ -130,8 +130,7 @@ rarity=C
 mana={B}
 type=Creature
 subtype=Thrull
-
-auto={S}: Add{B}
+auto={S}:Add{B}
 power=1
 toughness=1
 [/card]
@@ -161,9 +160,9 @@ text=Caldera Lake enters the battlefield tapped.   {T}: Add {1} to your mana poo
 id=4930
 name=Caldera Lake
 auto=tap
-auto={T}: Add{1}
-auto={T}: Add{U} && damage:1 controller
-auto={T}: Add{R} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{U} && damage:1 controller
+auto={T}:Add{R} && damage:1 controller
 rarity=R
 type=Land
 [/card]
@@ -177,7 +176,7 @@ type=Creature
 subtype=Spider
 power=1
 toughness=3
-abilities=Reach
+abilities=reach
 [/card]
 [card]
 text=Flying   {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
@@ -270,7 +269,6 @@ subtype=Sliver
 power=1
 toughness=1
 [/card]
-
 [card]
 text=First strike
 id=4599
@@ -282,20 +280,6 @@ subtype=Snake
 power=2
 toughness=1
 abilities=first strike
-[/card]
-[card]
-text=Fear   When Commander Greven il-Vec enters the battlefield, sacrifice a creature.
-id=4643
-name=Commander Greven il-Vec
-rarity=R
-mana={3}{B}{B}{B}
-type=Creature
-subtype=Human Warrior
-abilities=legendary,fear
-target=creature|myBattlefield
-auto=destroy
-power=7
-toughness=5
 [/card]
 [card]
 text=Counter target spell.
@@ -317,7 +301,7 @@ mana={R}
 type=Enchantment
 subtype=Aura
 auto={R}:1/0
-auto={R}:moveTo(myhand)
+auto={R}:moveTo(ownerhand)
 [/card]
 [card]
 text=Destroy target nonblack creature. It can't be regenerated.
@@ -361,17 +345,17 @@ mana={2}{B}
 type=Enchantment
 [/card]
 [card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever a creature with shadow is put into a graveyard from play, put a +1/+1 counter on Dauthi Ghoul.
-abilities=shadow
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever a creature with shadow is put into a graveyard from the battlefield, put a +1/+1 counter on Dauthi Ghoul.
 auto=@movedTo(creature[shadow]|graveyard) from(battlefield):counter(1/1)
 id=4649
 name=Dauthi Ghoul
 rarity=U
-type=Creature
 mana={1}{B}
-power=1
+type=Creature
 subtype=Dauthi Zombie
+power=1
 toughness=1
+abilities=shadow
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)
@@ -402,16 +386,16 @@ abilities=shadow
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Dauthi Slayer attacks each turn if able.
 id=4654
 name=Dauthi Slayer
-abilities=shadow,mustattack
 rarity=C
-type=Creature
 mana={B}{B}
-power=2
+type=Creature
 subtype=Dauthi Soldier
+power=2
 toughness=2
+abilities=shadow,mustattack
 [/card]
 [card]
-text=Whenever an opponent plays a land, put a +1/+1 counter on Dirtcowl Wurm.
+text=Whenever an opponent casts a land, put a +1/+1 counter on Dirtcowl Wurm.
 auto=@movedTo(land|opponentbattlefield):counter(1/1)
 id=4755
 name=Dirtcowl Wurm
@@ -473,8 +457,8 @@ name=Eladamri's Vineyard
 auto=@each my combatbegins:add:{G}{G}
 auto=@each opponent combatbegins:add:{G}{G} opponent
 rarity=R
-type=Enchantment
 mana={G}
+type=Enchantment
 [/card]
 [card]
 text={2}, {T}: Put a +1/+1 counter on Energizer.
@@ -506,6 +490,15 @@ auto={2}{B}{B}:counter(-1/-1) target(creature)
 name=Fevered Convulsions
 rarity=R
 mana={B}{B}
+type=Enchantment
+[/card]
+[card]
+text=Whenever a nontoken creature is put into your graveyard from the battlefield, put a 1/1 white Spirit creature token with flying onto the battlefield.
+auto=@movedTo(creature|mygraveyard) from(battlefield):token(Spirit,creature spirit, 1/1,flying white)
+id=4874
+name=Field of Souls
+rarity=R
+mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
@@ -572,7 +565,7 @@ abilities=flying
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=4927
 name=Forest
 rarity=L
@@ -581,7 +574,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=4928
 name=Forest
 rarity=L
@@ -590,7 +583,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=4929
 name=Forest
 rarity=L
@@ -599,7 +592,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=4926
 name=Forest
 rarity=L
@@ -607,7 +600,7 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
-text=Enchant creature   When Frog Tongue comes into play, draw a card.   Enchanted creature has reach. (It can block creatures with flying.)
+text=Enchant creature   When Frog Tongue enters the battlefield, draw a card.   Enchanted creature has reach. (It can block creatures with flying.)
 target=creature
 auto=reach
 auto=draw:1
@@ -665,7 +658,7 @@ subtype=Aura
 text=Sacrifice a creature: Goblin Bombardment deals 1 damage to target creature or player.
 id=4821
 name=Goblin Bombardment
-auto={s(creature|myBattlefield)}:damage:1 target(creature,player)
+auto={S(creature|myBattlefield)}:damage:1 target(creature,player)
 rarity=U
 type=Enchantment
 mana={1}{R}
@@ -697,8 +690,8 @@ auto=@movedTo(*[white]|opponentStack): life:-2 opponent
 id=4823
 name=Havoc
 rarity=U
-type=Enchantment
 mana={1}{R}
+type=Enchantment
 [/card]
 [card]
 text=All Sliver creatures have haste.
@@ -728,12 +721,12 @@ abilities=reachshadow
 text={T}, Sacrifice a Forest: Heartwood Giant deals 2 damage to target player.
 id=4766
 name=Heartwood Giant
+auto={T}{S(forest|myBattlefield)}:damage:2 target(player)
 rarity=R
-auto={T}{S(forest|myinplay)}:damage:2 target(player)
-type=Creature
 mana={3}{G}{G}
-power=4
+type=Creature
 subtype=Giant
+power=4
 toughness=4
 [/card]
 [card]
@@ -749,7 +742,7 @@ toughness=4
 abilities=forestwalk
 [/card]
 [card]
-text=Enchant creature      Enchanted creature gets +1/+5.
+text=Enchant creature   Enchanted creature gets +1/+5.
 target=creature
 auto=1/5
 id=4879
@@ -770,7 +763,6 @@ type=Creature
 subtype=Sliver
 power=2
 toughness=2
-abilities=trample
 [/card]
 [card]
 id=4704
@@ -783,17 +775,17 @@ power=1
 toughness=4
 [/card]
 [card]
-text=Whenever an opponent plays a green spell, you draw a card.
+text=Whenever an opponent casts a green spell, you draw a card.
 auto=@movedTo(*[green]|opponentstack):draw:1
 id=4705
 name=Insight
 rarity=U
-type=Enchantment
 mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:add {U}
+auto={T}:Add {U}
 id=4949
 name=Island
 rarity=L
@@ -802,7 +794,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:add {U}
+auto={T}:Add {U}
 id=4951
 name=Island
 rarity=L
@@ -811,7 +803,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:add {U}
+auto={T}:Add {U}
 id=4950
 name=Island
 rarity=L
@@ -820,7 +812,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:add {U}
+auto={T}:Add {U}
 id=4952
 name=Island
 rarity=L
@@ -834,8 +826,8 @@ auto={S(creature|mybattlefield)}:moveTo(opponentBattlefield)
 id=4613
 name=Jinxed Idol
 rarity=R
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text=Kindle deals X damage to target creature or player, where X is 2 plus the number of cards named Kindle in all graveyards.
@@ -872,8 +864,8 @@ name=Light of Day
 auto=lord(creature[black]) cantattack
 auto=lord(creature[black]) cantblock
 rarity=U
-type=Enchantment
 mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 text=Lightning Blast deals 4 damage to target creature or player.
@@ -922,7 +914,7 @@ toughness=3
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.
-auto={T}: Add {1} 
+auto={T}:Add {1} 
 id=4616
 name=Manakin
 rarity=C
@@ -1032,7 +1024,7 @@ toughness=1
 text=Sacrifice a Goblin: Target creature gets +1/+1 until end of turn.
 id=4833
 name=Mogg Raider
-auto={s(goblin|myBattlefield)}:1/1 target(creature)
+auto={S(goblin|myBattlefield)}:1/1 target(creature)
 rarity=C
 mana={R}
 type=Creature
@@ -1054,7 +1046,7 @@ toughness=3
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=4945
 name=Mountain
 rarity=L
@@ -1063,7 +1055,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=4946
 name=Mountain
 rarity=L
@@ -1072,7 +1064,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=4947
 name=Mountain
 rarity=L
@@ -1081,7 +1073,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=4948
 name=Mountain
 rarity=L
@@ -1130,8 +1122,8 @@ type=Sorcery
 [/card]
 [card]
 text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-auto=lord(creatures|myBattlefield) 3/3
-auto=lord(creatures|myBattlefield) trample
+auto=lord(creature|myBattlefield) 3/3
+auto=lord(creature|myBattlefield) trample
 id=4777
 name=Overrun
 rarity=U
@@ -1156,10 +1148,10 @@ id=4837
 name=Pallimud
 auto=foreach(land[tapped]|opponentBattlefield) 1/0
 rarity=R
-type=Creature
 mana={2}{R}
-power=*
+type=Creature
 subtype=Beast
+power=*
 toughness=3
 [/card]
 [card]
@@ -1260,7 +1252,7 @@ abilities=flying
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=4955
 name=Plains
 rarity=L
@@ -1269,7 +1261,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=4953
 name=Plains
 rarity=L
@@ -1278,7 +1270,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=4954
 name=Plains
 rarity=L
@@ -1287,7 +1279,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=4956
 name=Plains
 rarity=L
@@ -1438,9 +1430,9 @@ text=Scabland enters the battlefield tapped.   {T}: Add {1} to your mana pool.  
 id=4939
 name=Scabland
 auto=tap
-auto={T}: Add{1}
-auto={T}: Add{R} && damage:1 controller
-auto={T}: Add{W} && damage:1 controller
+auto={T}:Add {1}
+auto={T}:Add {R} && damage:1 controller
+auto={T}:Add {W} && damage:1 controller
 rarity=R
 type=Land
 [/card]
@@ -1493,7 +1485,7 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-text=Target creature gains shadow until end of turn.    Draw a card.
+text=Target creature gains shadow until end of turn.   Draw a card.
 target=creature
 auto=shadow
 auto=draw:1
@@ -1528,7 +1520,7 @@ id=4726
 name=Shimmering Wings
 target=creature
 auto=flying
-auto={U}:moveTo(hand)
+auto={U}:moveTo(ownerhand)
 rarity=C
 mana={U}
 type=Enchantment
@@ -1565,9 +1557,9 @@ text=Skyshroud Forest enters the battlefield tapped.   {T}: Add {1} to your mana
 id=4940
 name=Skyshroud Forest
 auto=tap
-auto={T}: Add {1}
-auto={T}: Add {U} && damage:1 controller
-auto={T}: Add {G} && damage:1 controller
+auto={T}:Add {1}
+auto={T}:Add {U} && damage:1 controller
+auto={T}:Add {G} && damage:1 controller
 rarity=R
 type=Land
 [/card]
@@ -1721,7 +1713,7 @@ mana={1}{R}
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=4925
 name=Swamp
 rarity=L
@@ -1730,7 +1722,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=4922
 name=Swamp
 rarity=L
@@ -1739,7 +1731,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=4923
 name=Swamp
 rarity=L
@@ -1748,7 +1740,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=4924
 name=Swamp
 rarity=L
@@ -1896,7 +1888,6 @@ subtype=Faerie
 auto={T}:flying target(creature)
 power=1
 toughness=1
-abilities=flying
 [/card]
 [card]
 text=Flying
