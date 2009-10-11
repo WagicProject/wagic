@@ -1117,7 +1117,6 @@ rarity=U
 type=Sorcery
 mana={2}{R}
 [/card]
-
 [card]
 text=Target player draws X cards.
 target=player

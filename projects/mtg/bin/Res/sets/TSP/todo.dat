@@ -10,17 +10,6 @@ text={4}, {T}: Search your library for a Rebel permanent card with converted man
 rarity=C
 [/card]
 [card]
-id=113509
-name=Amrou Seekers
-mana={2}{W}
-type=Creature
-subtype=Kithkin Rebel
-power=2
-toughness=2
-text=Amrou Seekers can't be blocked except by artifact creatures and/or white creatures.
-rarity=C
-[/card]
-[card]
 id=113505
 name=Ancestral Vision
 mana=
@@ -453,6 +442,19 @@ text={T}: Add {1} to your mana pool. {1}, {T}: Put a storage counter on Dreadshi
 rarity=U
 [/card]
 [card]
+####Removed because comes into play effects with a target and without "may" cannot work for now (0.8.1)!  
+text=When Dream Stalker enters the battlefield, return a permanent you control to its owner's hand.
+auto=moveTo(ownerhand) target(*|mybattlefield)
+id=108858
+name=Dream Stalker
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=5
+[/card]
+[card]
 id=108918
 name=Drifter il-Dal
 mana={U}
@@ -598,7 +600,19 @@ toughness=2
 text=Echo {5}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Firemaw Kavu comes into play, it deals 2 damage to target creature. When Firemaw Kavu leaves play, it deals 4 damage to target creature.
 rarity=U
 [/card]
-
+[card]
+#####
+#####REMOVED, because "@movedTo(this|graveyard):...target..."  does not work for now!!! (0.8.1) 
+#####
+text={T}: Add {W} to your mana pool. When Flagstones of Trokair is put into a graveyard from play, you may search your library for a Plains card and put it into play tapped. If you do, shuffle your library.
+id=116733
+name=Flagstones of Trokair
+type=Land
+rarity=R
+auto={T}:Add {W}
+auto=@movedTo(this|graveyard):may moveTo(myBattlefield) target(plains|mylibrary) && tap
+abilities=legendary
+[/card]
 [card]
 id=108870
 name=Flamecore Elemental
@@ -1360,17 +1374,6 @@ text=Enchant creature As Pentarch Ward comes into play, choose a color. When Pen
 rarity=C
 [/card]
 [card]
-id=118899
-name=Penumbra Spider
-mana={2}{G}{G}
-type=Creature
-subtype=Spider
-power=2
-toughness=4
-text=Reach (This creature can block creatures with flying.) When Penumbra Spider is put into a graveyard from play, put a 2/4 black Spider creature token with reach into play.
-rarity=C
-[/card]
-[card]
 id=118868
 name=Phantom Wurm
 mana={4}{G}{G}
@@ -1409,18 +1412,6 @@ text=When Pit Keeper comes into play, if you have four or more creature cards in
 rarity=C
 [/card]
 [card]
-id=116748
-name=Plague Sliver
-mana={2}{B}{B}
-type=Creature
-subtype=Sliver
-power=5
-toughness=5
-text=All Slivers have "At the beginning of your upkeep, this permanent deals 1 damage to you."
-rarity=R
-[/card]
-
-[card]
 id=110510
 name=Plated Pegasus
 mana={2}{W}
@@ -1457,18 +1448,6 @@ power=2
 toughness=2
 text=Whenever another creature comes into play under your control, that creature gets +3/+3 until end of turn.
 rarity=U
-[/card]
-[card]
-id=113559
-name=Psionic Sliver
-mana={4}{U}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Sliver creatures have "{T}: This creature deals 2 damage to target creature or player and 3 damage to itself."
-auto=lord(sliver) {T}:damage:2 target(creature,player) && damage:3
-rarity=R
 [/card]
 [card]
 id=116727
@@ -1600,7 +1579,6 @@ toughness=2
 text=At the beginning of your upkeep, put a spore counter on Savage Thallid. Remove three spore counters from Savage Thallid: Put a 1/1 green Saproling creature token into play. Sacrifice a Saproling: Regenerate target Fungus.
 rarity=C
 [/card]
-
 [card]
 id=116745
 name=Scion of the Ur-Dragon
@@ -1664,17 +1642,6 @@ toughness=1
 text=All Sliver creatures have flanking. (Whenever a creature without flanking blocks a Sliver, the blocking creature gets -1/-1 until end of turn.)
 auto=lord(sliver) flanking
 rarity=C
-[/card]
-[card]
-id=118878
-name=Skittering Monstrosity
-mana={3}{B}{B}
-type=Creature
-subtype=Horror
-power=5
-toughness=5
-text=When you play a creature spell, sacrifice Skittering Monstrosity.
-rarity=U
 [/card]
 [card]
 id=118898
@@ -1776,17 +1743,6 @@ text=At the beginning of your upkeep, put a spore counter on each Fungus you con
 rarity=U
 [/card]
 [card]
-id=118915
-name=Stonebrow, Krosan Hero
-mana={3}{R}{G}
-type=Legendary Creature
-subtype=Centaur Warrior
-power=4
-toughness=4
-text=Trample Whenever a creature you control with trample attacks, it gets +2/+2 until end of turn.
-rarity=R
-[/card]
-[card]
 id=118890
 name=Stonewood Invocation
 mana={3}{G}
@@ -1812,17 +1768,6 @@ mana={2}{B}
 type=Instant
 text=Destroy target creature with toughness 3 or less. Flashback {5}{R} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 rarity=C
-[/card]
-[card]
-id=109671
-name=Stronghold Overseer
-mana={3}{B}{B}{B}
-type=Creature
-subtype=Demon
-power=5
-toughness=5
-text=Flying Shadow (This creature can block or be blocked by only creatures with shadow.) {B}{B}: Creatures with shadow get +1/+0 until end of turn and creatures without shadow get -1/-0 until end of turn.
-rarity=R
 [/card]
 [card]
 id=116724
@@ -1909,7 +1854,6 @@ subtype=Aura
 text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature has shadow. (It can block or be blocked by only creatures with shadow.) Prevent all damage that would be dealt by enchanted creature.
 rarity=C
 [/card]
-
 [card]
 id=116381
 name=Thallid Germinator
@@ -2059,7 +2003,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature gets +2/+2 and can't block. When Undying Rage is put into a graveyard from play, return Undying Rage to its owner's hand.
 rarity=U
 [/card]
-
 [card]
 id=118900
 name=Vampiric Sliver
@@ -2073,14 +2016,6 @@ auto=lord(sliver)
 rarity=U
 [/card]
 [card]
-id=113543
-name=Vesuva
-mana=
-type=Land
-text=As Vesuva comes into play, you may choose a land in play. If you do, Vesuva comes into play tapped as a copy of the chosen land.
-rarity=R
-[/card]
-[card]
 id=109765
 name=Vesuvan Shapeshifter
 mana={3}{U}{U}
@@ -2090,6 +2025,22 @@ power=0
 toughness=0
 text=As Vesuvan Shapeshifter comes into play or is turned face up, you may choose another creature in play. If you do, until Vesuvan Shapeshifter is turned face down, it becomes a copy of that creature and gains "At the beginning of your upkeep, you may turn this creature face down." Morph {1}{U}
 rarity=R
+[/card]
+[card]
+####
+####Removed because comes into play effects with a target and without "may" cannot work for now (0.8.1)!
+####
+text=Flash (You may play this spell any time you could play an instant.) When Viashino Bladescout comes into play, target creature gains first strike until end of turn.
+id=111069
+name=Viashino Bladescout
+rarity=C
+mana={1}{R}{R}
+type=Creature
+subtype=Viashino Scout
+auto=first strike target(creature)
+power=2
+toughness=1
+abilities=flash
 [/card]
 [card]
 id=113615
@@ -2194,7 +2145,6 @@ type=Sorcery
 text=Buyback {2}{G} (You may pay an additional {2}{G} as you play this spell. If you do, put this card into your hand as it resolves.) Put an X/X green Wurm creature token into play.
 rarity=R
 [/card]
-
 [card]
 id=108898
 name=Zealot il-Vec
