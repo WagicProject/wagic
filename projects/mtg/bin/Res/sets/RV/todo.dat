@@ -398,6 +398,17 @@ type=Instant
 mana={X}{U}
 [/card]
 [card]
+####CANNOT WORK FOR NOW (0.9.1)!!!
+text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
+id=1311
+name=Power Surge
+auto=@each my upkeep:foreach(land[-tapped]|myinplay) damage:1 controller
+auto=@each opponent upkeep:foreach(land[-tapped]|opponentinplay) damage:1 opponent
+type=Enchantment
+mana={R}{R}
+rarity=R
+[/card]
+[card]
 text=Primal Clay comes into play as your choice of a 3/3 artifact creature; a 2/2 artifact creature with flying; or a 1/6 Wall artifact creature with defender.
 id=1132
 name=Primal Clay

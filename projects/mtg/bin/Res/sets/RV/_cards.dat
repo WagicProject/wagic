@@ -4,10 +4,10 @@ abilities=Flying
 id=1189
 name=Air Elemental
 rarity=U
-type=Creature
 mana={3}{U}{U}
-power=4
+type=Creature
 subtype=Elemental
+power=4
 toughness=4
 [/card]
 [card]
@@ -15,8 +15,8 @@ text={X}, {T}: The next time you would draw a card this turn, instead look at th
 id=1092
 name=Aladdin's Lamp
 rarity=R
-type=Artifact
 mana={10}
+type=Artifact
 [/card]
 [card]
 text={8}, {T}: Aladdin's Ring deals 4 damage to target creature or player.
@@ -24,49 +24,49 @@ auto={8}{T}:damage:4 target(creature,player)
 id=1093
 name=Aladdin's Ring
 rarity=R
-type=Artifact
 mana={8}
+type=Artifact
 [/card]
 [card]
-text=Enchant artifact     Enchanted artifact is a creature with power and toughness each equal to its converted mana cost. It's still an artifact.
+text=Enchant artifact   Enchanted artifact is a creature with power and toughness each equal to its converted mana cost. It's still an artifact.
 target=artifact
 auto=becomes(Creature,manacost/manacost)
 id=1190
 name=Animate Artifact
 rarity=U
-type=Enchantment
 mana={3}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=When Animate Dead comes into play, if it's in play, it becomes an Aura with enchant creature. Put target creature card from a graveyard into play under your control and attach Animate Dead to it.     Enchanted creature gets -1/-0.     When Animate Dead leaves play, destroy enchanted creature. It can't be regenerated.
+text=Enchant creature card in a graveyard   When Animate Dead enters the battlefield, if it's on the battlefield, it loses "enchant creature card in a graveyard" and gains "enchant creature put onto the battlefield with Animate Dead." Return enchanted creature card to the battlefield under your control and attach Animate Dead to it. When Animate Dead leaves the battlefield, that creature's controller sacrifices it.   Enchanted creature gets -1/-0.
 target=creature|graveyard
 id=1143
 name=Animate Dead
 rarity=U
-type=Enchantment
 mana={1}{B}
+type=Enchantment
 [/card]
 [card]
-text=Enchant creature     Enchanted creature can attack as though it didn't have defender.
+text=Enchant creature   Enchanted creature can attack as though it didn't have defender.
 target=creature
 auto=-defender
 id=1327
 name=Animate Wall
 rarity=R
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Whenever a land comes into play, Ankh of Mishra deals 2 damage to that land's controller.
-auto=@movedTo(land|opponentBattlefield): damage:2 opponent
-auto=@movedTo(land|myBattlefield): damage:2 controller
+text=Whenever a land enters the battlefield, Ankh of Mishra deals 2 damage to that land's controller.
+auto=@movedTo(land|opponentBattlefield):damage:2 opponent
+auto=@movedTo(land|myBattlefield):damage:2 controller
 id=1094
 name=Ankh of Mishra
 rarity=R
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text=Destroy all lands.
@@ -74,8 +74,8 @@ auto=destroy all(land)
 id=1328
 name=Armageddon
 rarity=R
-type=Sorcery
 mana={3}{W}
+type=Sorcery
 [/card]
 [card]
 text=At the beginning of your upkeep, put a doom counter on Armageddon Clock.     At the beginning of your draw step, Armageddon Clock deals damage to each player equal to the number of doom counters on it.     {4}: Remove a doom counter from Armageddon Clock. Any player may play this ability but only during any upkeep step.
@@ -86,25 +86,25 @@ type=Artifact
 mana={6}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +X/+Y, where X is equal to half the number of Forests you control, rounded down, and Y is equal to half the number of Forests you control, rounded up.
+text=Enchant creature   Enchanted creature gets +X/+Y, where X is equal to half the number of Forests you control, rounded down, and Y is equal to half the number of Forests you control, rounded up.
 target=creature
 id=1235
 name=Aspect of Wolf
 rarity=R
-type=Enchantment
 mana={1}{G}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
-auto={s(artifact|myinplay)}:2/2
+auto={S(artifact|myBattlefield)}:2/2
 id=1280
 name=Atog
 rarity=C
-type=Creature
 mana={1}{R}
-power=1
+type=Creature
 subtype=Atog
+power=1
 toughness=2
 [/card]
 [card]
@@ -113,8 +113,8 @@ auto=lord(creature[black]) 1/1
 id=1144
 name=Bad Moon
 rarity=R
-type=Enchantment
 mana={1}{B}
+type=Enchantment
 [/card]
 [card]
 text=
@@ -134,8 +134,8 @@ auto={3}:untap
 auto={T}:add:{3}
 name=Basalt Monolith
 rarity=U
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text=
@@ -149,35 +149,35 @@ subtype=Swamp Forest
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {T}: Add one mana of any color to your mana pool.
-abilities=Flying
-auto={T}:Add{G}
-auto={T}:Add{R}
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{W}
 id=1236
 name=Birds of Paradise
 rarity=R
-type=Creature
 mana={G}
-power=0
+type=Creature
 subtype=Bird
+auto={T}:Add {G}
+auto={T}:Add {R}
+auto={T}:Add {U}
+auto={T}:Add {B}
+auto={T}:Add {W}
+power=0
 toughness=1
+abilities=flying
 [/card]
 [card]
 text=First strike, protection from white
-abilities=First strike,protection from white
 id=1145
 name=Black Knight
 rarity=U
-type=Creature
 mana={B}{B}
-power=2
+type=Creature
 subtype=Human Knight
+power=2
 toughness=2
+abilities=first strike,protection from white
 [/card]
 [card]
-text=As Black Vise comes into play, choose an opponent.     At the beginning of the chosen player's upkeep, Black Vise deals X damage to that player, where X is the number of cards in his or her hand minus 4.
+text=As Black Vise enters the battlefield, choose an opponent.   At the beginning of the chosen player's upkeep, Black Vise deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 id=1097
 name=Black Vise
 rarity=U
@@ -185,25 +185,25 @@ type=Artifact
 mana={1}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has protection from black. This effect doesn't remove Black Ward.
+text=Enchant creature   Enchanted creature has protection from black. This effect doesn't remove Black Ward.
 target=creature
 auto=protection from black
 id=1331
 name=Black Ward
 rarity=U
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature     {W}: Enchanted creature gets +1/+1 until end of turn.
+text=Enchant creature   {W}: Enchanted creature gets +1/+1 until end of turn.
 target=creature
 auto={W}:1/1
 id=1332
 name=Blessing
 rarity=R
-type=Enchantment
 mana={W}{W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -211,31 +211,31 @@ text=Choose one - Counter target red spell; or destroy target red permanent.
 id=1191
 name=Blue Elemental Blast
 rarity=C
-type=Instant
 mana={U}
+type=Instant
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has protection from blue. This effect doesn't remove Blue Ward.
+text=Enchant creature   Enchanted creature has protection from blue. This effect doesn't remove Blue Ward.
 target=creature
 auto=protection from blue
 id=1333
 name=Blue Ward
 rarity=U
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
-abilities=Swampwalk
 id=1146
 name=Bog Wraith
 rarity=U
-type=Creature
 mana={3}{B}
-power=3
+type=Creature
 subtype=Wraith
+power=3
 toughness=3
+abilities=swampwalk
 [/card]
 [card]
 text=Target player draws X cards.
@@ -243,57 +243,57 @@ target=player
 id=1192
 name=Braingeyser
 rarity=R
-type=Sorcery
 mana={X}{U}{U}
+type=Sorcery
 [/card]
 [card]
-text=Brass Man doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Man.
+text=Brass Man doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Man.
 id=1099
-abilities=doesnotuntap
 auto={1}:untap
 name=Brass Man
 rarity=U
-type=Artifact Creature
 mana={1}
-power=1
+type=Artifact Creature
 subtype=Construct
+power=1
 toughness=3
+abilities=doesnotuntap
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has mountainwalk.
+text=Enchant creature   Enchanted creature has mountainwalk.
 target=creature
 auto=mountainwalk
 id=1281
 name=Burrowing
 rarity=U
-type=Enchantment
 mana={R}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Untapped creatures you control get +0/+2.
 id=1334
-auto=lord(creature[-tapped]|myinplay) 0/2
+auto=lord(creature[-tapped]|myBattlefield) 0/2
 name=Castle
 rarity=U
-type=Enchantment
 mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 text={2}, {T}: Add one mana of any color to your mana pool.
 id=1100
 name=Celestial Prism
-auto={2}{T}: add {B}
-auto={2}{T}: add {U}
-auto={2}{T}: add {G}
-auto={2}{T}: add {R}
-auto={2}{T}: add {W}
+auto={2}{T}:Add {B}
+auto={2}{T}:Add {U}
+auto={2}{T}:Add {G}
+auto={2}{T}:Add {R}
+auto={2}{T}:Add {W}
 rarity=U
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
-text=Until end of turn, any time you could play a mana ability you may pay 1 life. If you do, add {1} to your mana pool.
+text=Until end of turn, any time you could activate a mana ability you may pay 1 life. If you do, add {1} to your mana pool.
 id=1237
 name=Channel
 rarity=U
@@ -305,94 +305,94 @@ text=Target spell or permanent becomes red. (Its mana symbols remain unchanged.)
 id=1282
 name=Chaoslace
 rarity=R
-type=Instant
 mana={R}
+type=Instant
 [/card]
 [card]
 text={1}: The next time a black source of your choice would deal damage to you this turn, prevent that damage.
 id=1335
 name=Circle of Protection: Black
 rarity=C
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 text={1}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage.
 id=1336
 name=Circle of Protection: Blue
 rarity=C
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 text={1}: The next time a green source of your choice would deal damage to you this turn, prevent that damage.
 id=1337
 name=Circle of Protection: Green
 rarity=C
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 text={1}: The next time a red source of your choice would deal damage to you this turn, prevent that damage.
 id=1338
 name=Circle of Protection: Red
 rarity=C
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 text={1}: The next time a white source of your choice would deal damage to you this turn, prevent that damage.
 id=1339
 name=Circle of Protection: White
 rarity=C
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 [/card]
 [card]
-text=Clockwork Beast comes into play with seven +1/+0 counters on it.     Clockwork Beast can't have more than seven +1/+0 counters on it.     At end of combat, if Clockwork Beast attacked or blocked this turn, remove a +1/+0 counter from it.     {X}, {T}: Put X +1/+0 counters on Clockwork Beast. Play this ability only during your upkeep.
+text=Clockwork Beast enters the battlefield with seven +1/+0 counters on it.   At end of combat, if Clockwork Beast attacked or blocked this combat, remove a +1/+0 counter from it.   {X}, {T}: Put up to X +1/+0 counters on Clockwork Beast. This ability can't cause the total number of +1/+0 counters on Clockwork Beast to be greater than seven. Activate this ability only during your upkeep.
 id=1101
 name=Clockwork Beast
 rarity=R
+mana={6}
 type=Artifact Creature
 subtype=Beast
-mana={6}
 power=0
 toughness=4
 [/card]
 [card]
-text=As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
+text=You may have Clone enter the battlefield as a copy of any creature on the battlefield.
 auto=may copy target(creature)
 id=1193
 name=Clone
 rarity=U
-type=Creature
 mana={3}{U}
-power=0
+type=Creature
 subtype=Shapeshifter
+power=0
 toughness=0
 [/card]
 [card]
-text=Flying     Whenever Cockatrice blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
-abilities=Flying
+text=Flying   Whenever Cockatrice blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 id=1238
 name=Cockatrice
 rarity=R
-type=Creature
 mana={3}{G}{G}
-power=2
+type=Creature
 subtype=Cockatrice
+power=2
 toughness=4
+abilities=flying
 [/card]
 [card]
 text={3}, {T}: Prevent the next 2 damage that would be dealt to you this turn.
 id=1102
 name=Conservator
 rarity=U
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
-text=Enchant creature     You control enchanted creature.
+text=Enchant creature   You control enchanted creature.
 target=creature
 id=1194
 name=Control Magic
@@ -408,28 +408,27 @@ name=Counterspell
 target=*|stack
 auto=fizzle
 rarity=U
-type=Instant
 mana={U}{U}
+type=Instant
 [/card]
 [card]
-text=
 id=1239
 name=Craw Wurm
 rarity=C
-type=Creature
 mana={4}{G}{G}
-power=6
+type=Creature
 subtype=Wurm
+power=6
 toughness=4
 [/card]
 [card]
-text=Enchant creature     When enchanted creature is put into a graveyard, Creature Bond deals damage equal to that creature's toughness to the creature's controller.
+text=Enchant creature   When enchanted creature is put into a graveyard, Creature Bond deals damage equal to that creature's toughness to the creature's controller.
 target=creature
 id=1197
 name=Creature Bond
 rarity=C
-type=Enchantment
 mana={1}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -439,8 +438,8 @@ auto=bury
 id=1240
 name=Crumble
 rarity=U
-type=Instant
 mana={G}
+type=Instant
 [/card]
 [card]
 text=White creatures get +1/+1.
@@ -448,39 +447,39 @@ auto=lord(creature[white]) 1/1
 id=1341
 name=Crusade
 rarity=R
-type=Enchantment
 mana={W}{W}
+type=Enchantment
 [/card]
 [card]
-text=Whenever a player plays a blue spell, you may pay {1}. If you do, you gain 1 life.
+text=Whenever a player casts a blue spell, you may pay {1}. If you do, you gain 1 life.
 id=1103
 name=Crystal Rod
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
-text=Enchant land     At the beginning of the upkeep of enchanted land's controller, Cursed Land deals 1 damage to that player.
+text=Enchant land   At the beginning of the upkeep of enchanted land's controller, Cursed Land deals 1 damage to that player.
 target=land
 id=1148
-auto=@each my upkeep:damage:1 controller
+auto=@each my upkeep:damage:1 targetController
 name=Cursed Land
 rarity=U
-type=Enchantment
 mana={2}{B}{B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying.)
-abilities=Flying
 id=1104
 name=Dancing Scimitar
 rarity=R
-type=Artifact Creature
 mana={4}
-power=1
+type=Artifact Creature
 subtype=Spirit
+power=1
 toughness=5
+abilities=flying
 [/card]
 [card]
 text=Add {B}{B}{B} to your mana pool.
@@ -488,8 +487,8 @@ auto=Add{B}{B}{B}
 id=1149
 name=Dark Ritual
 rarity=C
-type=Instant
 mana={B}
+type=Instant
 [/card]
 [card]
 text=Regenerate target creature.
@@ -498,8 +497,8 @@ auto=regenerate
 id=1342
 name=Death Ward
 rarity=C
-type=Instant
 mana={W}
+type=Instant
 [/card]
 [card]
 text={B}{B}: Counter target green spell.
@@ -507,16 +506,16 @@ id=1151
 name=Deathgrip
 auto={B}{B}:fizzle target(*[green]|stack)
 rarity=U
-type=Enchantment
 mana={B}{B}
+type=Enchantment
 [/card]
 [card]
 text=Target spell or permanent becomes black. (Mana symbols on that permanent remain unchanged.)
 id=1152
 name=Deathlace
 rarity=R
-type=Instant
 mana={B}
+type=Instant
 [/card]
 [card]
 text=Search your library for a card and put that card into your hand. Then shuffle your library.
@@ -525,8 +524,8 @@ auto=moveTo(hand)
 id=1155
 name=Demonic Tutor
 rarity=U
-type=Sorcery
 mana={1}{B}
+type=Sorcery
 [/card]
 [card]
 text=Destroy target permanent.
@@ -535,13 +534,13 @@ auto=destroy
 id=1241
 name=Desert Twister
 rarity=U
-type=Sorcery
 mana={4}{G}{G}
+type=Sorcery
 [/card]
 [card]
-text=Whenever a land is put into a graveyard from play, Dingus Egg deals 2 damage to that land's controller.
-auto=@movedTo(land|opponentgraveyard) from(opponentinplay):damage:2 opponent
-auto=@movedTo(land|mygraveyard) from(myinplay):damage:2 controller
+text=Whenever a land is put into a graveyard from the battlefield, Dingus Egg deals 2 damage to that land's controller.
+auto=@movedTo(land|opponentgraveyard) from(opponentBattlefield):damage:2 opponent
+auto=@movedTo(land|mygraveyard) from(myBattlefield):damage:2 controller
 id=1105
 name=Dingus Egg
 rarity=R
@@ -555,11 +554,11 @@ auto=destroy
 id=1343
 name=Disenchant
 rarity=C
-type=Instant
 mana={1}{W}
+type=Instant
 [/card]
 [card]
-text={3}, {T}: Target player discards a card. Play this ability only during your turn.
+text={3}, {T}: Target player discards a card. Activate this ability only during your turn.
 id=1106
 name=Disrupting Scepter
 rarity=R
@@ -568,36 +567,36 @@ mana={3}
 [/card]
 [card]
 text={2}: Dragon Engine gets +1/+0 until end of turn.
-auto={2}:1/0
 id=1107
 name=Dragon Engine
 rarity=R
+mana={3}
 type=Artifact Creature
 subtype=Construct
-mana={3}
+auto={2}:1/0
 power=1
 toughness=3
 [/card]
 [card]
-text=Flying     {R}: Dragon Whelp gets +1/+0 until end of turn. At end of turn, if this ability has been played four or more times this turn, sacrifice Dragon Whelp.
-abilities=Flying
+text=Flying   {R}: Dragon Whelp gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice Dragon Whelp at the beginning of the next end step.
 id=1284
 name=Dragon Whelp
 rarity=U
-type=Creature
 mana={2}{R}{R}
+type=Creature
 power=2
 subtype=Dragon
 toughness=3
+abilities=flying
 [/card]
 [card]
-text=Spend only black mana on X.       Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
+text=Spend only black mana on X.   Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
 target=player,creature
 id=1156
 name=Drain Life
 rarity=C
-type=Sorcery
 mana={X}{1}{B}
+type=Sorcery
 [/card]
 [card]
 text={B}: Regenerate Drudge Skeletons. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -605,10 +604,10 @@ auto={B}:regenerate
 id=1157
 name=Drudge Skeletons
 rarity=C
-type=Creature
 mana={1}{B}
-power=1
+type=Creature
 subtype=Skeleton
+power=1
 toughness=1
 [/card]
 [card]
@@ -616,44 +615,42 @@ text={T}: Target creature with power 2 or less is unblockable this turn.
 id=1285
 name=Dwarven Warriors
 rarity=C
-type=Creature
 mana={2}{R}
-power=1
+type=Creature
 subtype=Dwarf
+power=1
 toughness=1
 [/card]
 [card]
 text={T}, Sacrifice an artifact: Put a +1/+1 counter on target creature. Play this ability only during your upkeep.
 id=1286
 name=Dwarven Weaponsmith
-auto={T}{S(artifact|myinplay)}:counter(1/1,1) target(creature)
-color=Red
-type=Creature
-mana={1}{R}
-power=1
-subtype=Dwarf
-toughness=1
+auto={T}{S(artifact|myBattlefield)}:counter(1/1,1) target(creature)
 rarity=U
+mana={1}{R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
 [/card]
 [card]
-text=
 id=1287
 name=Earth Elemental
 rarity=U
-type=Creature
 mana={3}{R}{R}
-power=4
+type=Creature
 subtype=Elemental
+power=4
 toughness=5
 [/card]
 [card]
-text=Enchant creature     When Earthbind comes into play, if enchanted creature has flying, Earthbind deals 2 damage to that creature and Earthbind gains "Enchanted creature loses flying."
+text=Enchant creature   When Earthbind enters the battlefield, if enchanted creature has flying, Earthbind deals 2 damage to that creature and Earthbind gains "Enchanted creature loses flying."
 target=creature
 id=1288
 name=Earthbind
 rarity=C
-type=Enchantment
 mana={R}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -661,98 +658,98 @@ text=Earthquake deals X damage to each creature without flying and each player.
 id=1289
 name=Earthquake
 rarity=R
-type=Sorcery
 mana={X}{R}
+type=Sorcery
 [/card]
 [card]
 text={2}, {T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 id=1108
 name=Ebony Horse
 rarity=R
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
-text=Lifelink (Whenever this creature deals damage, you gain that much life.)
-abilities=Lifelink
+text=Whenever this creature deals damage, you gain that much life.
 id=1158
 name=El-Hajjaj
 rarity=R
-type=Creature
 mana={1}{B}{B}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=1
+abilities=lifelink
 [/card]
 [card]
 text=First strike
-abilities=First strike
 id=1242
 name=Elvish Archers
 rarity=R
-type=Creature
 mana={1}{G}
-power=2
+type=Creature
 subtype=Elf Archer
+power=2
 toughness=1
+abilities=first strike
 [/card]
 [card]
-text=At the end of your turn, if Erg Raiders didn't attack this turn, Erg Raiders deals 2 damage to you unless it came under your control this turn.
+text=At the beginning of your end step, if Erg Raiders didn't attack this turn, Erg Raiders deals 2 damage to you unless it came under your control this turn.
 id=1159
 name=Erg Raiders
 rarity=C
-type=Creature
 mana={1}{B}
-power=2
+type=Creature
 subtype=Human Warrior
+power=2
 toughness=3
 [/card]
 [card]
-text=Eye for an Eye deals X damage to the controller of the source of your choice that dealt damage to you this turn, where X is the damage dealt to you by that source this turn.
+text=The next time a source of your choice would deal damage to you this turn, instead that source deals that much damage to you and Eye for an Eye deals that much damage to that source's controller.
 id=1344
 name=Eye for an Eye
 rarity=R
-type=Instant
 mana={W}{W}
+type=Instant
 [/card]
 [card]
-text=Enchant land     Enchanted land has "At the beginning of your upkeep, you may pay {W}{W}. If you do, you gain 1 life."
+text=Enchant land   Enchanted land has "At the beginning of your upkeep, you may pay {W}{W}. If you do, you gain 1 life."
 target=land
 id=1345
 name=Farmstead
 rarity=R
-type=Enchantment
 mana={W}{W}{W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=You may play as many lands as you choose on your turn.       Whenever you play a land other than the first land of the turn, Fastbond deals 1 damage to you.
+text=You may play any number of additional lands on each of your turns.   Whenever you play a land, if it wasn't the first land you played this turn, Fastbond deals 1 damage to you.
 id=1243
 name=Fastbond
 rarity=R
-type=Enchantment
 mana={G}
+type=Enchantment
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)  Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
 target=creature
 auto=fear
 id=1161
 name=Fear
 rarity=C
-type=Enchantment
 mana={B}{B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant enchantment     At the beginning of the upkeep of enchanted enchantment's controller, Feedback deals 1 damage to that player.
+text=Enchant enchantment   At the beginning of the upkeep of enchanted enchantment's controller, Feedback deals 1 damage to that player.
 target=enchantment
 auto=@each my upkeep:damage:1 controller
 id=1200
 name=Feedback
 rarity=U
-type=Enchantment
 mana={2}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -760,30 +757,30 @@ text=
 id=1290
 name=Fire Elemental
 rarity=U
-type=Creature
 mana={3}{R}{R}
-power=5
+type=Creature
 subtype=Elemental
+power=5
 toughness=4
 [/card]
 [card]
-text=Fireball deals X damage divided evenly, rounded down, among any number of target creatures and/or players.     As an additional cost to play Fireball, pay {1} for each target beyond the first.
+text=Fireball deals X damage divided evenly, rounded down, among any number of target creatures and/or players.   Fireball costs {1} more to cast for each target beyond the first.
 target=players,creatures
 id=1291
 name=Fireball
 rarity=C
-type=Sorcery
 mana={X}{R}
+type=Sorcery
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  {R}: Enchanted creature gets +1/+0 until end of turn.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)  {R}: Enchanted creature gets +1/+0 until end of turn.
 target=creature
 auto={R}:1/0
 id=1292
 name=Firebreathing
 rarity=C
-type=Enchantment
 mana={R}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -792,18 +789,18 @@ id=1293
 auto=destroy all(plains)
 name=Flashfires
 rarity=U
-type=Sorcery
 mana={3}{R}
+type=Sorcery
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying.)
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)  Enchanted creature has flying. (It can't be blocked except by creatures with flying.)
 target=creature
 auto=flying
 id=1201
 name=Flight
 rarity=C
-type=Enchantment
 mana={U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -812,26 +809,26 @@ id=1109
 auto={2}{T}:flying target(creature)
 name=Flying Carpet
 rarity=R
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
 text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, Force of Nature deals 8 damage to you unless you pay {G}{G}{G}{G}.
-abilities=Trample
 id=1245
 name=Force of Nature
 rarity=R
-type=Creature
 mana={2}{G}{G}{G}{G}
-power=8
+type=Creature
 subtype=Elemental
+power=8
 toughness=8
+abilities=trample
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
 id=1386
 name=Forest
-auto={T}:add{G}
+auto={T}:Add {G}
 rarity=L
 type=Basic Land
 subtype=Forest
@@ -840,7 +837,7 @@ subtype=Forest
 text={T}: Add {G} to your mana pool.
 id=1388
 name=Forest
-auto={T}:add{G}
+auto={T}:Add {G}
 rarity=L
 type=Basic Land
 subtype=Forest
@@ -849,7 +846,7 @@ subtype=Forest
 text={T}: Add {G} to your mana pool.
 id=1387
 name=Forest
-auto={T}:add{G}
+auto={T}:Add {G}
 rarity=L
 type=Basic Land
 subtype=Forest
@@ -860,10 +857,10 @@ auto={B}:1/1
 id=1162
 name=Frozen Shade
 rarity=C
-type=Creature
 mana={2}{B}
-power=0
+type=Creature
 subtype=Shade
+power=0
 toughness=1
 [/card]
 [card]
@@ -873,39 +870,39 @@ auto=3/3
 id=1248
 name=Giant Growth
 rarity=C
-type=Instant
 mana={G}
+type=Instant
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
-abilities=Reach
 id=1249
 name=Giant Spider
 rarity=C
-type=Creature
 mana={3}{G}
-power=2
+type=Creature
 subtype=Spider
+power=2
 toughness=4
+abilities=reach
 [/card]
 [card]
 text={T}: Look at target player's hand.
 id=1110
 name=Glasses of Urza
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text={R}: Goblin Balloon Brigade gains flying until end of turn. (It can't be blocked except by creatures with flying.)
-auto={R}:flying
 id=1295
 name=Goblin Balloon Brigade
 rarity=U
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Goblin Warrior
+auto={R}:flying
+power=1
 toughness=1
 [/card]
 [card]
@@ -915,90 +912,87 @@ auto=lord(goblin) 1/1 other
 auto=lord(goblin) mountainwalk other
 name=Goblin King
 rarity=R
-type=Creature
 mana={1}{R}{R}
-power=2
+type=Creature
 subtype=Goblin
+power=2
 toughness=2
 [/card]
 [card]
-text=Flying       {R}: Granite Gargoyle gets +0/+1 until end of turn.
-abilities=Flying
+text=Flying   {R}: Granite Gargoyle gets +0/+1 until end of turn.
 auto={R}:0/1
 id=1297
 name=Granite Gargoyle
 rarity=R
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Gargoyle
+power=2
 toughness=2
+abilities=flying
 [/card]
 [card]
-text=
 id=1298
 name=Gray Ogre
 rarity=C
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Ogre
+power=2
 toughness=2
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has protection from green. This effect doesn't remove Green Ward.
+text=Enchant creature   Enchanted creature has protection from green. This effect doesn't remove Green Ward.
 target=creature
 auto=protection from green
 id=1346
 name=Green Ward
 rarity=U
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=
 id=1250
 name=Grizzly Bears
 rarity=C
-type=Creature
 mana={1}{G}
-power=2
+type=Creature
 subtype=Bear
+power=2
 toughness=2
 [/card]
 [card]
-text=
 id=1299
 name=Hill Giant
 rarity=C
-type=Creature
 mana={3}{R}
+type=Creature
 power=3
-subtype=Giant
 toughness=3
+subtype=Giant
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +0/+2.     {W}: Enchanted creature gets +0/+1 until end of turn.
+text=Enchant creature   Enchanted creature gets +0/+2.   {W}: Enchanted creature gets +0/+1 until end of turn.
 target=creature
 auto={W}:0/1
 auto=0/2
 id=1349
 name=Holy Armor
 rarity=C
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+2.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)  Enchanted creature gets +1/+2.
 target=creature
 auto=1/2
 id=1350
 name=Holy Strength
 rarity=C
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1012,12 +1006,12 @@ mana={X}{B}
 auto=X/0
 [/card]
 [card]
-text=At the beginning of each player's draw step, if Howling Mine is untapped, that player draws a card.
+text=At the beginning of each player's draw step, if Howling Mine is untapped, that player draws an additional card.
 id=1112
 name=Howling Mine
 rarity=R
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text=Return all artifacts target player owns to his or her hand.
@@ -1025,18 +1019,17 @@ target=player
 id=1202
 name=Hurkyl's Recall
 rarity=R
-type=Instant
 mana={1}{U}
+type=Instant
 [/card]
 [card]
-text=
 id=1300
 name=Hurloon Minotaur
 rarity=C
-type=Creature
 mana={1}{R}{R}
-power=2
+type=Creature
 subtype=Minotaur
+power=2
 toughness=3
 [/card]
 [card]
@@ -1044,54 +1037,53 @@ text=Hurricane deals X damage to each creature with flying and each player.
 id=1251
 name=Hurricane
 rarity=U
-type=Sorcery
 mana={X}{G}
+type=Sorcery
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Hypnotic Specter deals damage to an opponent, that player discards a card at random.
-abilities=Flying
 id=1165
 name=Hypnotic Specter
 rarity=U
-type=Creature
 mana={1}{B}{B}
-power=2
+type=Creature
 subtype=Specter
+power=2
 toughness=2
+abilities=flying
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has haste.     {0}: Untap enchanted creature. Play this ability only during your turn and only once each turn.
+text=Enchant creature   Enchanted creature has haste.   {0}: Untap enchanted creature. Activate this ability only during your turn and only once each turn.
 target=creature
 auto=haste
 id=1252
 name=Instill Energy
 rarity=U
-type=Enchantment
 mana={G}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Whenever a player plays a red spell, you may pay {1}. If you do, you gain 1 life.
+text=Whenever a player casts a red spell, you may pay {1}. If you do, you gain 1 life.
 id=1113
 name=Iron Star
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
-text=
 id=1253
 name=Ironroot Treefolk
 rarity=C
-type=Creature
 mana={4}{G}
-power=3
+type=Creature
 subtype=Treefolk
+power=3
 toughness=5
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:add {U}
+auto={T}:Add {U}
 id=1393
 name=Island
 rarity=L
@@ -1100,7 +1092,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:add {U}
+auto={T}:Add {U}
 id=1392
 name=Island
 rarity=L
@@ -1109,7 +1101,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:add {U}
+auto={T}:Add {U}
 id=1394
 name=Island
 rarity=L
@@ -1117,49 +1109,49 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
-text=Island Fish Jasconius can't attack unless defending player controls an Island.     Jasconius doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Jasconius.     When you control no Islands, sacrifice Jasconius.
+text=Island Fish Jasconius can't attack unless defending player controls an Island.   Jasconius doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Jasconius.   When you control no Islands, sacrifice Island Fish Jasconius.
 id=1203
-abilities=islandhome,doesnotuntap
 auto={U}{U}{U}:untap
 name=Island Fish Jasconius
 rarity=R
-type=Creature
 mana={4}{U}{U}{U}
-power=6
+type=Creature
 subtype=Fish
+power=6
 toughness=8
+abilities=islandhome,doesnotuntap
 [/card]
 [card]
 text=If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.
 id=1351
 name=Island Sanctuary
 rarity=R
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 [/card]
 [card]
-text=Whenever a player plays a white spell, you may pay {1}. If you do, you gain 1 life.
+text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.
 id=1114
 name=Ivory Cup
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text=At the beginning of your upkeep, you gain X life, where X is the number of cards in your hand minus four.
 id=1115
 name=Ivory Tower
 rarity=R
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text={2}, {T}, Discard the last card you drew this turn: Draw a card.
 id=1117
 name=Jandor's Ring
 rarity=R
-type=Artifact
 mana={6}
+type=Artifact
 [/card]
 [card]
 text={3}, {T}: Untap target creature.
@@ -1167,8 +1159,8 @@ id=1118
 auto={3}{T}:untap target(creature)
 name=Jandor's Saddlebags
 rarity=R
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text={4}, {T}: Draw a card.
@@ -1176,8 +1168,8 @@ auto={4}{T}:Draw:1
 id=1119
 name=Jayemdae Tome
 rarity=R
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
 text=Target creature gains flying until end of turn.
@@ -1186,41 +1178,41 @@ auto=flying
 id=1204
 name=Jump
 rarity=C
-type=Instant
 mana={U}
+type=Instant
 [/card]
 [card]
 text=At the beginning of each player's upkeep, Karma deals damage to that player equal to the number of Swamps he or she controls.
 id=1352
-auto=@each upkeep:foreach(swamp|myinplay) damage:1 controller
-auto=@each upkeep:foreach(swamp|opponentinplay) damage:1 opponent
+auto=@each my upkeep:foreach(swamp|myBattlefield) damage:1 controller
+auto=@each opponent upkeep:foreach(swamp|opponentBattlefield) damage:1 opponent
 name=Karma
 rarity=U
-type=Enchantment
 mana={2}{W}{W}
+type=Enchantment
 [/card]
 [card]
 text=Keldon Warlord's power and toughness are each equal to the number of non-Wall creatures you control.
 id=1301
-auto=foreach(creature[-wall]|myinplay) 1/1
+auto=foreach(creature[-wall]|myBattlefield) 1/1
 name=Keldon Warlord
 rarity=U
-type=Creature
 mana={2}{R}{R}
-power=*
+type=Creature
 subtype=Human Barbarian
+power=*
 toughness=*
 [/card]
 [card]
 text=Kird Ape gets +1/+2 as long as you control a Forest.
-auto=aslongas(forest|myinplay) 1/2
+auto=aslongas(forest|myBattlefield) 1/2
 id=1302
 name=Kird Ape
 rarity=C
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Ape
+power=1
 toughness=1
 [/card]
 [card]
@@ -1228,28 +1220,28 @@ text=All Swamps are 1/1 creatures that are still lands.
 id=1121
 name=Kormus Bell
 rarity=R
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
-text=Enchant land     When enchanted land becomes tapped, destroy it. That land's controller attaches Kudzu to a land of his or her choice.
+text=Enchant land   When enchanted land becomes tapped, destroy it. That land's controller attaches Kudzu to a land of his or her choice.
 target=land
 id=1254
 name=Kudzu
 rarity=R
-type=Enchantment
 mana={1}{G}{G}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has first strike.
+text=Enchant creature   Enchanted creature has first strike.
 target=creature
 auto=first strike
 id=1353
 name=Lance
 rarity=U
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1258,10 +1250,10 @@ auto={T}:untap target(land)
 id=1255
 name=Ley Druid
 rarity=U
-type=Creature
 mana={2}{G}
-power=1
+type=Creature
 subtype=Human Druid
+power=1
 toughness=1
 [/card]
 [card]
@@ -1270,16 +1262,16 @@ id=1256
 name=Lifeforce
 auto={G}{G}:fizzle target(*[black]|stack)
 rarity=U
-type=Enchantment
 mana={G}{G}
+type=Enchantment
 [/card]
 [card]
 text=Target spell or permanent becomes green. (Mana symbols on that permanent remain unchanged.)
 id=1257
 name=Lifelace
 rarity=R
-type=Instant
 mana={G}
+type=Instant
 [/card]
 [card]
 text=Whenever a Forest an opponent controls becomes tapped, you gain 1 life.
@@ -1287,8 +1279,8 @@ auto=@tapped(forest|opponentBattlefield):life:1 controller
 id=1205
 name=Lifetap
 rarity=U
-type=Enchantment
 mana={U}{U}
+type=Enchantment
 [/card]
 [card]
 text=Lightning Bolt deals 3 damage to target creature or player.
@@ -1297,17 +1289,17 @@ auto=damage:3
 id=1303
 name=Lightning Bolt
 rarity=C
-type=Instant
 mana={R}
+type=Instant
 [/card]
 [card]
-text=Enchant artifact     Whenever you're dealt damage, put that many vitality counters on Living Artifact.     At the beginning of your upkeep, you may remove a vitality counter from Living Artifact. If you do, you gain 1 life.
+text=Enchant artifact   Whenever you're dealt damage, put that many vitality counters on Living Artifact.     At the beginning of your upkeep, you may remove a vitality counter from Living Artifact. If you do, you gain 1 life.
 target=artifact
 id=1258
 name=Living Artifact
 rarity=R
-type=Enchantment
 mana={G}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1315,32 +1307,32 @@ text=All Forests are 1/1 creatures that are still lands.
 id=1259
 name=Living Lands
 rarity=R
-type=Enchantment
 mana={3}{G}
+type=Enchantment
 [/card]
 [card]
 text=Defender (This creature can't attack.)  {1}: Regenerate Living Wall.
 auto={1}:regenerate
-abilities=Defender
 id=1123
 name=Living Wall
 rarity=U
-type=Artifact Creature
 mana={4}
-power=0
+type=Artifact Creature
 subtype=Wall
+power=0
 toughness=6
+abilities=defender
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=1260
 name=Llanowar Elves
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Elf Druid
+power=1
 toughness=1
 [/card]
 [card]
@@ -1350,35 +1342,35 @@ auto=lord(merfolk) islandwalk other
 id=1206
 name=Lord of Atlantis
 rarity=R
-type=Creature
 mana={U}{U}
-power=2
+type=Creature
 subtype=Merfolk
+power=2
 toughness=2
 [/card]
 [card]
 text=Flying, trample (This creature can't be blocked except by creatures with flying or reach. If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
-abilities=flying,trample
 id=1166
 name=Lord of the Pit
 rarity=R
-type=Creature
 mana={4}{B}{B}{B}
-power=7
+type=Creature
 subtype=Demon
+power=7
 toughness=7
+abilities=flying,trample
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-abilities=flying
 id=1208
 name=Mahamoti Djinn
 rarity=R
-type=Creature
 mana={4}{U}{U}
-power=5
+type=Creature
 subtype=Djinn
+power=5
 toughness=6
+abilities=flying
 [/card]
 [card]
 text=Tap all lands target player controls and empty his or her mana pool.
@@ -1386,26 +1378,25 @@ target=player
 id=1209
 name=Mana Short
 rarity=R
-type=Instant
 mana={2}{U}
+type=Instant
 [/card]
 [card]
-text=Mana Vault doesn't untap during your untap step.       At the beginning of your upkeep, you may pay {4}. If you do, untap Mana Vault.       At the beginning of your draw step, if Mana Vault is tapped, it deals 1 damage to you.       {T}: Add {3} to your mana pool.
+text=Mana Vault doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {4}. If you do, untap Mana Vault.   At the beginning of your draw step, if Mana Vault is tapped, it deals 1 damage to you.   {T}: Add {3} to your mana pool.
 id=1124
 name=Mana Vault
 rarity=R
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
-text=
 id=1210
 name=Merfolk of the Pearl Trident
 rarity=C
-type=Creature
 mana={U}
-power=1
+type=Creature
 subtype=Merfolk
+power=1
 toughness=1
 [/card]
 [card]
@@ -1414,8 +1405,8 @@ id=1126
 name=Millstone
 auto={2}{T}:deplete:2 target(player)
 rarity=R
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text=Target player discards X cards at random.
@@ -1423,23 +1414,22 @@ target=player
 id=1167
 name=Mind Twist
 rarity=R
-type=Sorcery
 mana={X}{B}
+type=Sorcery
 [/card]
 [card]
-text=
 id=1308
 name=Mons's Goblin Raiders
 rarity=C
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Goblin
+power=1
 toughness=1
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=1391
 name=Mountain
 rarity=L
@@ -1448,7 +1438,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=1390
 name=Mountain
 rarity=L
@@ -1457,7 +1447,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=1389
 name=Mountain
 rarity=L
@@ -1465,27 +1455,27 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
-text=Nevinyrral's Disk comes into play tapped.       {1}, {T}: Destroy all artifacts, creatures, and enchantments.
+text=Nevinyrral's Disk enters the battlefield tapped.   {1}, {T}: Destroy all artifacts, creatures, and enchantments.
 auto=tap
-auto={1},{T}:destroy all(artifact,creature,enchantment)
+auto={1}{T}:destroy all(artifact,creature,enchantment)
 id=1128
 name=Nevinyrral's Disk
 rarity=R
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Nightmare's power and toughness are each equal to the number of Swamps you control.
-abilities=flying
-auto=foreach(swamp|myinplay) 1/1
 id=1170
 name=Nightmare
 rarity=R
-type=Creature
 mana={5}{B}
-power=*
+type=Creature
 subtype=Nightmare Horse
+auto=foreach(swamp|myBattlefield) 1/1
+power=*
 toughness=*
+abilities=flying
 [/card]
 [card]
 text={W}{W}, {T}: Destroy target black permanent.
@@ -1493,10 +1483,10 @@ auto={W}{W}{T}:destroy target(*[black])
 id=1355
 name=Northern Paladin
 rarity=R
-type=Creature
 mana={2}{W}{W}
-power=3
+type=Creature
 subtype=Human Knight
+power=3
 toughness=3
 [/card]
 [card]
@@ -1504,20 +1494,20 @@ text=
 id=1129
 name=Obsianus Golem
 rarity=U
-type=Artifact Creature
 mana={6}
-power=4
+type=Artifact Creature
 subtype=Golem
+power=4
 toughness=6
 [/card]
 [card]
-text=When Onulet is put into a graveyard from play, you gain 2 life.
-auto=@movedTo(this|graveyard):life:2
+text=When Onulet is put into a graveyard from the battlefield, you gain 2 life.
+auto=@movedTo(this|graveyard) from(battlefield):life:2
 id=1130
 name=Onulet
 rarity=R
-type=Artifact Creature
 mana={3}
+type=Artifact Creature
 power=2
 toughness=2
 [/card]
@@ -1527,20 +1517,20 @@ id=1309
 name=Orcish Artillery
 auto={T}:damage:2 target(creature,player) && damage:3 controller
 rarity=U
-type=Creature
 mana={1}{R}{R}
-power=1
+type=Creature
 subtype=Orc Warrior
+power=1
 toughness=3
 [/card]
 [card]
 text=Attacking creatures you control get +1/+0.
 id=1310
 name=Orcish Oriflamme
-auto=lord(creature[attacking]|myinplay) 1/0
+auto=lord(creature[attacking]|myBattlefield) 1/0
 rarity=U
-type=Enchantment
 mana={3}{R}
+type=Enchantment
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
@@ -1555,13 +1545,13 @@ subtype=Thopter
 toughness=2
 [/card]
 [card]
-text=Enchant creature     When Paralyze comes into play, tap enchanted creature.     Enchanted creature doesn't untap during its controller's untap step.     Enchanted creature has "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
+text=Enchant creature   When Paralyze enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.   Enchanted creature has "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
 target=creature
 id=1171
 name=Paralyze
 rarity=C
-type=Enchantment
 mana={B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1569,48 +1559,60 @@ text=
 id=1356
 name=Pearled Unicorn
 rarity=C
-type=Creature
 mana={2}{W}
-power=2
+type=Creature
 subtype=Unicorn
+power=2
 toughness=2
 [/card]
 [card]
-text=At end of turn, if no creatures are in play, sacrifice Pestilence.       {B}: Pestilence deals 1 damage to each creature and each player.
+text=At end of turn, if no creatures are on the battlefield, sacrifice Pestilence.   {B}: Pestilence deals 1 damage to each creature and each player.
 id=1172
 name=Pestilence
 rarity=C
-type=Enchantment
 mana={2}{B}{B}
+type=Enchantment
 [/card]
 [card]
 text=Flying
-abilities=flying
 id=1213
 name=Phantom Monster
 rarity=U
-type=Creature
 mana={3}{U}
-power=3
+type=Creature
 subtype=Illusion
+power=3
 toughness=3
+abilities=flying
 [/card]
 [card]
-text=Pirate Ship can't attack unless defending player controls an Island.     {T}: Pirate Ship deals 1 damage to target creature or player.     When you control no Islands, sacrifice Pirate Ship.
+text=Pirate Ship can't attack unless defending player controls an Island.   {T}: Pirate Ship deals 1 damage to target creature or player.   When you control no Islands, sacrifice Pirate Ship.
 id=1214
 name=Pirate Ship
-abilities=islandhome
-auto={T}:damage:1 target(creature,player)
 rarity=R
-type=Creature
 mana={4}{U}
-power=4
+type=Creature
 subtype=Human Pirate
+auto={T}:damage:1 target(creature,player)
+power=4
 toughness=3
+abilities=islandhome
+[/card]
+[card]
+text=Plague Rats's power and toughness are each equal to the number of creatures named Plague Rats on the battlefield.
+id=1173
+name=Plague Rats
+auto=foreach(plague rats) 1/1
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Rat
+power=0
+toughness=0
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=1397
 name=Plains
 rarity=L
@@ -1619,7 +1621,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=1396
 name=Plains
 rarity=L
@@ -1628,7 +1630,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=1395
 name=Plains
 rarity=L
@@ -1646,36 +1648,14 @@ type=Land
 subtype=Plains Mountain
 [/card]
 [card]
-text=Plague Rats's power and toughness are each equal to the number of creatures named Plague Rats in play.
-id=1173
-name=Plague Rats
-auto=foreach(plague rats) 1/1
-rarity=C
-type=Creature
-mana={2}{B}
-power=0
-subtype=Rat
-toughness=0
-[/card]
-[card]
-text=Enchant enchantment     At the beginning of the upkeep of enchanted enchantment's controller, that player may pay up to {2}. For each one mana less than {2} he or she pays this way, Power Leak deals 1 damage to him or her.
+text=Enchant enchantment   At the beginning of the upkeep of enchanted enchantment's controller, that player may pay up to {2}. For each one mana less than {2} he or she pays this way, Power Leak deals 1 damage to him or her.
 target=enchantment
 id=1215
 name=Power Leak
 rarity=C
-type=Enchantment
 mana={1}{U}
-subtype=Aura
-[/card]
-[card]
-text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
-id=1311
-name=Power Surge
-auto=@each my upkeep:foreach(land[-tapped]|myinplay) damage:1 controller
-auto=@each opponent upkeep:foreach(land[-tapped]|opponentinplay) damage:1 opponent
 type=Enchantment
-mana={R}{R}
-rarity=R
+subtype=Aura
 [/card]
 [card]
 text={T}: Prodigal Sorcerer deals 1 damage to target creature or player.
@@ -1683,20 +1663,20 @@ id=1217
 name=Prodigal Sorcerer
 auto={T}:damage:1 target(creature,player)
 rarity=C
-type=Creature
 mana={2}{U}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=1
 [/card]
 [card]
-text=Enchant land     Whenever enchanted land becomes tapped, Psychic Venom deals 2 damage to that land's controller.
+text=Enchant land   Whenever enchanted land becomes tapped, Psychic Venom deals 2 damage to that land's controller.
 target=land
 id=1218
 name=Psychic Venom
 rarity=C
-type=Enchantment
 mana={1}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1704,8 +1684,8 @@ text=Target spell or permanent becomes white. (Mana symbols on that permanent re
 id=1358
 name=Purelace
 rarity=R
-type=Instant
 mana={W}
+type=Instant
 [/card]
 [card]
 text=Return target creature card from your graveyard to your hand.
@@ -1714,8 +1694,8 @@ auto=moveTo(myHand)
 id=1174
 name=Raise Dead
 rarity=C
-type=Sorcery
 mana={B}
+type=Sorcery
 [/card]
 [card]
 text=Return target artifact card from your graveyard to your hand.
@@ -1724,16 +1704,16 @@ auto=moveTo(myHand)
 id=1219
 name=Reconstruction
 rarity=C
-type=Sorcery
 mana={U}
+type=Sorcery
 [/card]
 [card]
 text=Choose one - Counter target blue spell; or destroy target blue permanent.
 id=1312
 name=Red Elemental Blast
 rarity=C
-type=Instant
 mana={R}
+type=Instant
 [/card]
 [card]
 text=Enchant creature     Enchanted creature has protection from red. This effect doesn't remove Red Ward.
@@ -1742,18 +1722,18 @@ auto=protection from red
 id=1359
 name=Red Ward
 rarity=U
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)  {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 target=creature
 id=1262
 name=Regeneration
 rarity=C
-type=Enchantment
 mana={1}{G}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1763,26 +1743,26 @@ auto=moveTo(myHand)
 id=1263
 name=Regrowth
 rarity=U
-type=Sorcery
 mana={1}{G}
+type=Sorcery
 [/card]
 [card]
-text=Return target creature card from your graveyard to play.
+text=Return target creature card from your graveyard to the battlefield.
 target=creature|myGraveyard
-auto=moveTo(myInPlay)
+auto=moveTo(myBattlefield)
 id=1360
 name=Resurrection
 rarity=U
-type=Sorcery
 mana={2}{W}{W}
+type=Sorcery
 [/card]
 [card]
 text=You gain X life, where X is twice the damage dealt to you so far this turn by artifacts.
 id=1362
 name=Reverse Polarity
 rarity=U
-type=Instant
 mana={W}{W}
+type=Instant
 [/card]
 [card]
 text=Target blocking creature gets +7/+7 until end of turn.
@@ -1791,20 +1771,20 @@ target=creature[blocking]
 id=1363
 name=Righteousness
 rarity=R
-type=Instant
 mana={W}
+type=Instant
 [/card]
 [card]
 text=Flying
-abilities=flying
 id=1313
 name=Roc of Kher Ridges
 rarity=R
-type=Creature
 mana={3}{R}
-power=3
+type=Creature
 subtype=Bird
+power=3
 toughness=3
+abilities=flying
 [/card]
 [card]
 text={3}, {T}: Rod of Ruin deals 1 damage to target creature or player.
@@ -1812,8 +1792,8 @@ id=1134
 name=Rod of Ruin
 auto={3}{T}:damage:1 target(creature,player)
 rarity=U
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
 text={T}: Destroy target tapped creature.
@@ -1821,23 +1801,22 @@ auto={T}:destroy target(creature[tapped])
 id=1175
 name=Royal Assassin
 rarity=R
-type=Creature
 mana={1}{B}{B}
-power=1
+type=Creature
 subtype=Human Assassin
+power=1
 toughness=1
 [/card]
 [card]
-text=As an additional cost to play Sacrifice, sacrifice a creature.       Add to your mana pool an amount of black mana equal to the sacrificed creature's converted mana cost.
+text=As an additional cost to cast Sacrifice, sacrifice a creature.   Add to your mana pool an amount of black mana equal to the sacrificed creature's converted mana cost.
 id=1176
-target=creature|myinplay
+target=creature|myBattlefield
 name=Sacrifice
 rarity=U
-type=Instant
 mana={B}
+type=Instant
 [/card]
 [card]
-text=
 auto={T}:Add {W}
 auto={T}:Add {G}
 id=1379
@@ -1851,25 +1830,23 @@ text=
 id=1365
 name=Savannah Lions
 rarity=R
-type=Creature
 mana={W}
-power=2
+type=Creature
 subtype=Cat
+power=2
 toughness=1
 [/card]
 [card]
-text=
 id=1177
 name=Scathe Zombies
 rarity=C
-type=Creature
 mana={2}{B}
-power=2
+type=Creature
 subtype=Zombie
+power=2
 toughness=2
 [/card]
 [card]
-text=
 auto={T}:Add {B}
 auto={T}:Add {W}
 id=1380
@@ -1880,77 +1857,77 @@ subtype=Plains Swamp
 [/card]
 [card]
 text=Flying
-abilities=flying
 id=1264
 name=Scryb Sprites
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Faerie
+power=1
 toughness=1
+abilities=flying
 [/card]
 [card]
-text=Sea Serpent can't attack unless defending player controls an Island.       When you control no Islands, sacrifice Sea Serpent.
+text=Sea Serpent can't attack unless defending player controls an Island.   When you control no Islands, sacrifice Sea Serpent.
 id=1220
-abilities=islandhome
 name=Sea Serpent
 rarity=C
-type=Creature
 mana={5}{U}
-power=5
+type=Creature
 subtype=Serpent
+power=5
 toughness=5
+abilities=islandhome
 [/card]
 [card]
-text=Sedge Troll gets +1/+1 as long as you control a Swamp.       {B}: Regenerate Sedge Troll.
-auto={B}:regenerate
-auto=aslongas(swamp|myinplay) 1/1
+text=Sedge Troll gets +1/+1 as long as you control a Swamp.   {B}: Regenerate Sedge Troll.
 id=1315
 name=Sedge Troll
 rarity=R
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Troll
+auto={B}:regenerate
+auto=aslongas(swamp|myBattlefield) 1/1
+power=2
 toughness=2
 [/card]
 [card]
 text=Flying. At the beginning of your upkeep, Serendib Efreet deals 1 damage to you.
 auto=@each my upkeep:life:-1
-abilities=Flying
 id=1221
 name=Serendib Efreet
 rarity=R
-type=Creature
 mana={2}{U}
-power=3
+type=Creature
 subtype=Efreet
+power=3
 toughness=4
+abilities=flying
 [/card]
 [card]
 text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
-abilities=flying,vigilance
 id=1366
 name=Serra Angel
 rarity=U
-type=Creature
 mana={3}{W}{W}
-power=4
+type=Creature
 subtype=Angel
+power=4
 toughness=4
+abilities=flying,vigilance
 [/card]
 [card]
 text=Forestwalk
-abilities=forestwalk
 id=1265
 name=Shanodin Dryads
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Dryad
+power=1
 toughness=1
+abilities=forestwalk
 [/card]
 [card]
 text=Destroy target artifact.
@@ -1959,8 +1936,8 @@ auto=destroy
 id=1316
 name=Shatter
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
 text=Destroy all artifacts. They can't be regenerated.
@@ -1968,72 +1945,72 @@ auto=bury all(artifact)
 id=1317
 name=Shatterstorm
 rarity=U
-type=Sorcery
 mana={2}{R}{R}
+type=Sorcery
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {R}: Shivan Dragon gets +1/+0 until end of turn.
 auto={R}:1/0
-abilities=flying
 id=1318
 name=Shivan Dragon
 rarity=R
-type=Creature
 mana={4}{R}{R}
-power=5
+type=Creature
 subtype=Dragon
+power=5
 toughness=5
+abilities=flying
 [/card]
 [card]
 text=You gain life equal to the damage dealt to you this turn. Simulacrum deals damage to target creature you control equal to the damage dealt to you this turn.
-target=creature|myinplay
+target=creature|myBattlefield
 id=1180
 name=Simulacrum
 rarity=U
-type=Instant
 mana={1}{B}
+type=Instant
 [/card]
 [card]
 text={T}: Add {2} to your mana pool.
-auto={T}: Add {2}
+auto={T}:Add {2}
 id=1135
 name=Sol Ring
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
-text=Whenever a creature is put into a graveyard from play, you may pay {1}. If you do, you gain 1 life.
+text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, you gain 1 life.
 id=1136
 name=Soul Net
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text=Counter target spell with converted mana cost X.
 id=1224
 name=Spell Blast
 rarity=C
-type=Instant
 mana={X}{U}
+type=Instant
 [/card]
 [card]
-text=Players skip their untap steps.       At the beginning of your upkeep, sacrifice Stasis unless you pay {U}.
+text=Players skip their untap steps.   At the beginning of your upkeep, sacrifice Stasis unless you pay {U}.
 id=1225
 name=Stasis
 rarity=R
-type=Enchantment
 mana={1}{U}
+type=Enchantment
 [/card]
 [card]
-text=Enchant artifact     You control enchanted artifact.
+text=Enchant artifact   You control enchanted artifact.
 target=artifact
 id=1226
 name=Steal Artifact
 rarity=U
-type=Enchantment
 mana={2}{U}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -2043,8 +2020,8 @@ auto=destroy
 id=1321
 name=Stone Rain
 rarity=C
-type=Sorcery
 mana={2}{R}
+type=Sorcery
 [/card]
 [card]
 text=Target player gains X life.
@@ -2052,21 +2029,21 @@ target=player
 id=1266
 name=Stream of Life
 rarity=C
-type=Sorcery
 mana={X}{G}
+type=Sorcery
 [/card]
 [card]
 text={W}: Add {R} to your mana pool.
 id=1137
 name=Sunglasses of Urza
-auto={W}: add {R}
+auto={W}:Add {R}
 rarity=R
 type=Artifact
 mana={3}
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=1375
 name=Swamp
 rarity=L
@@ -2075,7 +2052,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=1373
 name=Swamp
 rarity=L
@@ -2084,7 +2061,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=1374
 name=Swamp
 rarity=L
@@ -2092,16 +2069,15 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
-text=Remove target creature from the game. Its controller gains life equal to its power.
+text=Exile target creature. Its controller gains life equal to its power.
 target=creature
 id=1367
 name=Swords to Plowshares
 rarity=U
-type=Instant
 mana={W}
+type=Instant
 [/card]
 [card]
-text=
 auto={T}:Add {R}
 auto={T}:Add {G}
 id=1381
@@ -2117,35 +2093,35 @@ auto=bury
 id=1182
 name=Terror
 rarity=C
-type=Instant
 mana={1}{B}
+type=Instant
 [/card]
 [card]
-text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
+text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp onto the battlefield. (It can't be blocked except by creatures with flying or reach.)
 auto={5},{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
 id=1138
 name=The Hive
 rarity=R
-type=Artifact
 mana={5}
+type=Artifact
 [/card]
 [card]
-text=As The Rack comes into play, choose an opponent.     At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
+text=As The Rack enters the battlefield, choose an opponent.   At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
 id=1139
 name=The Rack
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text=Whenever Thicket Basilisk blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 id=1267
 name=Thicket Basilisk
 rarity=U
-type=Creature
 mana={3}{G}{G}
-power=2
+type=Creature
 subtype=Basilisk
+power=2
 toughness=4
 [/card]
 [card]
@@ -2153,16 +2129,16 @@ text=Target spell or permanent becomes blue. (Mana symbols on that permanent rem
 id=1227
 name=Thoughtlace
 rarity=R
-type=Instant
 mana={U}
+type=Instant
 [/card]
 [card]
-text=Whenever a player plays a black spell, you may pay {1}. If you do, you gain 1 life.
+text=Whenever a player casts a black spell, you may pay {1}. If you do, you gain 1 life.
 id=1140
 name=Throne of Bone
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text=Destroy all enchantments.
@@ -2170,11 +2146,10 @@ id=1270
 auto=destroy all(enchantment)
 name=Tranquility
 rarity=C
-type=Sorcery
 mana={2}{G}
+type=Sorcery
 [/card]
 [card]
-text=
 auto={T}:Add {U}
 auto={T}:Add {G}
 id=1382
@@ -2189,11 +2164,10 @@ id=1271
 auto=destroy all(island)
 name=Tsunami
 rarity=U
-type=Sorcery
 mana={3}{G}
+type=Sorcery
 [/card]
 [card]
-text=
 auto={T}:Add {U}
 auto={T}:Add {W}
 id=1383
@@ -2209,11 +2183,10 @@ auto=bury
 id=1322
 name=Tunnel
 rarity=U
-type=Instant
 mana={R}
+type=Instant
 [/card]
 [card]
-text=
 auto={T}:Add {B}
 auto={T}:Add {U}
 id=1384
@@ -2223,26 +2196,26 @@ type=Land
 subtype=Island Swamp
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +2/+1.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature gets +2/+1.
 target=creature
 auto=2/1
 id=1183
 name=Unholy Strength
 rarity=C
-type=Enchantment
 mana={B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +3/+3.     At the beginning of the upkeep of enchanted creature's controller, put a -1/-1 counter on that creature.
+text=Enchant creature   Enchanted creature gets +3/+3.   At the beginning of the upkeep of enchanted creature's controller, put a -1/-1 counter on that creature.
 target=creature
 auto=3/3
 auto=@each targetcontroller upkeep:counter(-1/-1)
 id=1228
 name=Unstable Mutation
 rarity=C
-type=Enchantment
 mana={U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -2252,8 +2225,8 @@ auto=moveTo(ownerHand)
 id=1229
 name=Unsummon
 rarity=C
-type=Instant
 mana={U}
+type=Instant
 [/card]
 [card]
 text={R}: Regenerate Uthden Troll.
@@ -2261,22 +2234,22 @@ auto={R}:Regenerate
 id=1323
 name=Uthden Troll
 rarity=U
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Troll
+power=2
 toughness=2
 [/card]
 [card]
-text=Whenever you play an enchantment spell, you may draw a card.
+text=Whenever you cast an enchantment spell, you may draw a card.
 auto=@movedTo(enchantment|mystack):may draw:1
 id=1272
 name=Verduran Enchantress
 rarity=R
-type=Creature
 mana={1}{G}{G}
-power=0
+type=Creature
 subtype=Human Druid
+power=0
 toughness=2
 [/card]
 [card]
@@ -2285,11 +2258,10 @@ target=mountains
 id=1231
 name=Volcanic Eruption
 rarity=R
-type=Sorcery
 mana={X}{U}{U}{U}
+type=Sorcery
 [/card]
 [card]
-text=
 auto={T}:Add {U}
 auto={T}:Add {R}
 id=1385
@@ -2300,54 +2272,54 @@ subtype=Island Mountain
 [/card]
 [card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
-abilities=Defender,flying
 id=1232
 name=Wall of Air
 rarity=U
-type=Creature
 mana={1}{U}{U}
-power=1
+type=Creature
 subtype=Wall
+power=1
 toughness=5
+abilities=defender,flying
 [/card]
 [card]
-text=Defender (This creature can't attack.)  {B}: Regenerate Wall of Bone.
-auto={B}:Regenerate
-abilities=Defender
+text=Defender (This creature can't attack.)   {B}: Regenerate Wall of Bone.
+auto={B}:regenerate
 id=1184
 name=Wall of Bone
 rarity=U
-type=Creature
 mana={2}{B}
-power=1
+type=Creature
 subtype=Wall
+power=1
 toughness=4
+abilities=defender
 [/card]
 [card]
-text=Defender (This creature can't attack.)  {G}: Regenerate Wall of Brambles.
-auto={G}:Regenerate
-abilities=Defender
+text=Defender (This creature can't attack.)   {G}: Regenerate Wall of Brambles.
 id=1273
 name=Wall of Brambles
 rarity=U
-type=Creature
 mana={2}{G}
-power=2
+type=Creature
 subtype=Wall
+auto={G}:regenerate
+power=2
 toughness=3
+abilities=defender
 [/card]
 [card]
-text=Defender (This creature can't attack.)  {R}: Wall of Fire gets +1/+0 until end of turn.
-auto={R}:1/0
-abilities=Defender
+text=Defender (This creature can't attack.)   {R}: Wall of Fire gets +1/+0 until end of turn.
 id=1324
 name=Wall of Fire
 rarity=U
-type=Creature
 mana={1}{R}{R}
-power=0
+type=Creature
 subtype=Wall
+auto={R}:1/0
+power=0
 toughness=5
+abilities=defender
 [/card]
 [card]
 text=Defender (This creature can't attack.)
@@ -2363,119 +2335,118 @@ toughness=7
 [/card]
 [card]
 text=Defender (This creature can't attack.)
-abilities=Defender
 id=1325
 name=Wall of Stone
 rarity=U
-type=Creature
 mana={1}{R}{R}
-power=0
+type=Creature
 subtype=Wall
+power=0
 toughness=8
+abilities=defender
 [/card]
 [card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
-abilities=Defender,flying
 id=1369
 name=Wall of Swords
 rarity=U
-type=Creature
 mana={3}{W}
-power=3
+type=Creature
 subtype=Wall
+power=3
 toughness=5
+abilities=defender,flying
 [/card]
 [card]
-text=Defender (This creature can't attack.)  {U}: Wall of Water gets +1/+0 until end of turn.
+text=Defender (This creature can't attack.)   {U}: Wall of Water gets +1/+0 until end of turn.
 auto={U}:1/0
-abilities=Defender
 id=1233
 name=Wall of Water
 rarity=U
-type=Creature
 mana={1}{U}{U}
-power=0
+type=Creature
 subtype=Wall
+power=0
 toughness=5
+abilities=defender
 [/card]
 [card]
 text=Defender (This creature can't attack.)
-abilities=Defender
 id=1275
 name=Wall of Wood
 rarity=C
-type=Creature
 mana={G}
-power=0
+type=Creature
 subtype=Wall
+power=0
 toughness=3
+abilities=defender
 [/card]
 [card]
-text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, Wanderlust deals 1 damage to that player.
+text=Enchant creature   At the beginning of the upkeep of enchanted creature's controller, Wanderlust deals 1 damage to that player.
 target=creature
 id=1276
-auto=@each my upkeep:damage:1 controller
+auto=@each my upkeep:damage:1 targetController
 name=Wanderlust
 rarity=U
-type=Enchantment
 mana={2}{G}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Trample
-abilities=Trample
 id=1277
 name=War Mammoth
 rarity=C
-type=Creature
 mana={3}{G}
-power=3
+type=Creature
 subtype=Elephant
+power=3
 toughness=3
+abilities=trample
 [/card]
 [card]
-text=Enchant artifact     At the beginning of the upkeep of enchanted artifact's controller, Warp Artifact deals 1 damage to that player.
+text=Enchant artifact   At the beginning of the upkeep of enchanted artifact's controller, Warp Artifact deals 1 damage to that player.
 target=artifact
-auto=@each my upkeep:damage:1 controller
+auto=@each targetController upkeep:damage:1 targetController
 id=1185
 name=Warp Artifact
 rarity=R
-type=Enchantment
 mana={B}{B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=
 id=1234
 name=Water Elemental
 rarity=U
-type=Creature
 mana={3}{U}{U}
-power=5
+type=Creature
 subtype=Elemental
+power=5
 toughness=4
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets -2/-1.
+text=Enchant creature   Enchanted creature gets -2/-1.
 target=creature
 auto=-2/-1
 id=1186
 name=Weakness
 rarity=C
-type=Enchantment
 mana={B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +0/+2 and has reach. (It can block creatures with flying.)
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature gets +0/+2 and has reach. (It can block creatures with flying.)
 target=creature
 auto=reach
 auto=0/2
 id=1278
 name=Web
 rarity=R
-type=Enchantment
 mana={G}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -2487,52 +2458,52 @@ auto=moveto(mygraveyard) all(*|myhand)
 auto=draw:7 controller
 name=Wheel of Fortune
 rarity=R
-type=Sorcery
 mana={2}{R}
+type=Sorcery
 [/card]
 [card]
 text=First strike, protection from black
-abilities=first strike,protection from black
 id=1370
 name=White Knight
 rarity=U
-type=Creature
 mana={W}{W}
-power=2
+type=Creature
 subtype=Human Knight
+power=2
 toughness=2
+abilities=first strike,protection from black
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has protection from white. This effect doesn't remove White Ward.
+text=Enchant creature   Enchanted creature has protection from white. This effect doesn't remove White Ward.
 target=creature
 auto=protection from white
 id=1371
 name=White Ward
 rarity=U
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying.)  {B}: Regenerate Will-o'-the-Wisp. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-auto={B}:Regenerate
-abilities=flying
 id=1187
 name=Will-o'-the-Wisp
 rarity=R
-type=Creature
 mana={B}
-power=0
+type=Creature
 subtype=Spirit
+auto={B}:regenerate
+power=0
 toughness=1
+abilities=flying
 [/card]
 [card]
-text=Whenever a player plays a green spell, you may pay {1}. If you do, you gain 1 life.
+text=Whenever a player casts a green spell, you may pay {1}. If you do, you gain 1 life.
 id=1142
 name=Wooden Sphere
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text=Destroy all creatures. They can't be regenerated.
@@ -2540,19 +2511,19 @@ auto=bury all(creature)
 id=1372
 name=Wrath of God
 rarity=R
-type=Sorcery
 mana={2}{W}{W}
+type=Sorcery
 [/card]
 [card]
-text=OTher Zombie creatures have swampwalk.     Other Zombies have "{B}: Regenerate this permanent."
+text=OTher Zombie creatures have swampwalk.   Other Zombies have "{B}: Regenerate this permanent."
 auto=lord(zombie) swampwalk other
-auto=lord(zombie)  {B}:regenerate other
+auto=lord(zombie) {B}:regenerate other
 id=1188
 name=Zombie Master
 rarity=R
-type=Creature
 mana={1}{B}{B}
-power=2
+type=Creature
 subtype=Zombie
+power=2
 toughness=3
 [/card]
