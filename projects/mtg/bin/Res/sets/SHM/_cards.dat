@@ -1,154 +1,154 @@
 [card]
-text=Whenever a player plays a white spell, you may pay {1}. If you do, you gain 1 life.
+text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.
 id=141929
 alias=1114
 name=Apothecary Initiate
 rarity=C
-type=Creature
 mana={W}
-power=1
+type=Creature
 subtype=Kithkin Cleric
+power=1
 toughness=1
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +1/+1 for each Plains you control and has flying.
+text=Enchant creature   Enchanted creature gets +1/+1 for each Plains you control and has flying.
 target=creature
-auto=foreach(plains|myinplay) 1/1
+auto=foreach(plains|myBattlefield) 1/1
 auto=flying
 id=146041
 name=Armored Ascension
 rarity=U
-type=Enchantment
 mana={3}{W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Ashenmoor Cohort gets +1/+1 as long as you control another black creature.
-auto=aslongas(creature[black]) 1/1 other
+auto=aslongas(other creature[black]|myBattlefield) 1/1
 id=142060
 name=Ashenmoor Cohort
 rarity=C
-type=Creature
 mana={5}{B}
-power=4
+type=Creature
 subtype=Elemental Warrior
+power=4
 toughness=3
 [/card]
 [card]
 text=Ashenmoor Gouger can't block.
-abilities=cantblock
 id=153981
 name=Ashenmoor Gouger
 rarity=U
-type=Creature
 mana={BR}{BR}{BR}
-power=4
+type=Creature
 subtype=Elemental Warrior
+power=4
 toughness=4
+abilities=cantblock
 [/card]
 [card]
-text=First strike     Ballynock Cohort gets +1/+1 as long as you control another white creature.
-abilities=first strike
-auto=aslongas(creature[white]|myinplay) 1/1 other
+text=First strike   Ballynock Cohort gets +1/+1 as long as you control another white creature.
+auto=aslongas(other creature[white]|myBattlefield) 1/1
 id=142045
 name=Ballynock Cohort
 rarity=C
-type=Creature
 mana={2}{W}
-power=2
+type=Creature
 subtype=Kithkin Soldier
+power=2
 toughness=2
+abilities=first strike
 [/card]
 [card]
-text=Enchant creature     You control enchanted creature.     At the beginning of your upkeep, put a -1/-1 counter on enchanted creature.
+text=Enchant creature   You control enchanted creature.   At the beginning of your upkeep, put a -1/-1 counter on enchanted creature.
 id=135485
 target=creature
 alias=1194
 auto=@each my upkeep:counter(-1/-1)
 name=Biting Tether
 rarity=U
-type=Enchantment
 mana={4}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Blazethorn Scarecrow has haste as long as you control a red creature.     Blazethorn Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)
+text=Blazethorn Scarecrow has haste as long as you control a red creature.   Blazethorn Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)
 id=151632
-auto=aslongas(creature[red]|myinplay) haste
-auto=aslongas(creature[green]|myinplay) wither
+auto=aslongas(creature[red]|myBattlefield) haste
+auto=aslongas(creature[green]|myBattlefield) wither
 name=Blazethorn Scarecrow
 rarity=C
-type=Artifact Creature
 mana={5}
-power=3
+type=Artifact Creature
 subtype=Scarecrow
+power=3
 toughness=3
 [/card]
 [card]
-text=Flying     {BR}: Blistering Dieflyn gets +1/+0 until end of turn.
-abilities=flying
-auto={BR}:1/0
+text=Flying   {BR}: Blistering Dieflyn gets +1/+0 until end of turn.
 id=141988
 name=Blistering Dieflyn
 rarity=C
-type=Creature
 mana={3}{R}
-power=0
+type=Creature
 subtype=Imp
+auto={BR}:1/0
+power=0
 toughness=1
+abilities=flying
 [/card]
 [card]
 text=Red creatures you control have first strike.
-auto=lord(creature[red]|myinplay) first strike 
+auto=lord(creature[red]|myBattlefield) first strike 
 id=142062
 name=Bloodmark Mentor
 rarity=U
-type=Creature
 mana={1}{R}
-power=1
+type=Creature
 subtype=Goblin Warrior
+power=1
 toughness=1
 [/card]
 [card]
-text=Enchant creature     Enchanted creature attacks each turn if able.
+text=Enchant creature   Enchanted creature attacks each turn if able.
 id=159395
 name=Bloodshed Fever
 target=creature
 auto=mustattack
 rarity=C
-type=Enchantment
 mana={R}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Trample     Other red creatures you control get +1/+1.     Other green creatures you control get +1/+1.
-abilities=trample
-auto=lord(creature[red]|myinplay) 1/1 other
-auto=lord(creature[green]|myinplay) 1/1 other
+text=Trample   Other red creatures you control get +1/+1.   Other green creatures you control get +1/+1.
+auto=lord(creature[red]|myBattlefield) 1/1 other
+auto=lord(creature[green]|myBattlefield) 1/1 other
 id=147428
 name=Boartusk Liege
 rarity=R
-type=Creature
 mana={1}{RG}{RG}{RG}
-power=3
+type=Creature
 subtype=Goblin Knight
+power=3
 toughness=4
+abilities=trample
 [/card]
 [card]
-text=Plainswalk     {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
-auto={2}{R}{S}:destroy target(scarecrow,plains)
-abilities=plainswalk
+text=Plainswalk   {2}{R}, Sacrifice Boggart Arsonists: Destroy target Scarecrow or Plains.
 id=158684
 name=Boggart Arsonists
 rarity=C
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Goblin Rogue
+auto={2}{R}{S}:destroy target(scarecrow,plains)
+power=2
 toughness=1
+abilities=plainswalk
 [/card]
 [card]
-text=Haste     Wither (This deals damage to creatures in the form of -1/-1 counters.)
+text=Haste   Wither (This deals damage to creatures in the form of -1/-1 counters.)
 abilities=haste,wither
 id=153970
 name=Boggart Ram-Gang
@@ -160,204 +160,204 @@ subtype=Goblin Warrior
 toughness=3
 [/card]
 [card]
-text=Flying     Briarberry Cohort gets +1/+1 as long as you control another blue creature.
-abilities=flying
-auto=aslongas(creature[blue]|myinplay) 1/1 other
+text=Flying   Briarberry Cohort gets +1/+1 as long as you control another blue creature.
+auto=aslongas(other creature[blue]|myBattlefield) 1/1
 id=146043
 name=Briarberry Cohort
 rarity=C
-type=Creature
 mana={1}{U}
-power=1
+type=Creature
 subtype=Faerie Soldier
+power=1
 toughness=1
+abilities=flying
 [/card]
 [card]
-text=Chainbreaker comes into play with two -1/-1 counters on it.     {3}, {T}: Remove a -1/-1 counter from target creature.
-auto=counter(-1/-1,2)
-auto={3}{T}:counter(-1/-1,-1) target(creature)
+text=Chainbreaker enters the battlefield with two -1/-1 counters on it.   {3}, {T}: Remove a -1/-1 counter from target creature.
 id=147419
 name=Chainbreaker
 rarity=C
-type=Artifact Creature
 mana={2}
-power=3
+type=Artifact Creature
 subtype=Scarecrow
+auto=counter(-1/-1,2)
+auto={3}{T}:counter(-1/-1,-1) target(creature)
+power=3
 toughness=3
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  {1}{B}: Regenerate Cinderbones.
-abilities=wither
-auto={1}{B}:regenerate
 id=142051
 name=Cinderbones
 rarity=C
-type=Creature
 mana={2}{B}
-power=1
+type=Creature
 subtype=Elemental Skeleton
+auto={1}{B}:regenerate
+power=1
 toughness=1
+abilities=wither
 [/card]
 [card]
 text=Black creatures you control have wither. (They deal damage to creatures in the form of -1/-1 counters.)
-auto=lord(creature[black]|myinplay) wither
 id=142034
 name=Corrosive Mentor
 rarity=U
-type=Creature
 mana={2}{B}
-power=1
+type=Creature
 subtype=Elemental Rogue
+auto=lord(creature[black]|myBattlefield) wither
+power=1
 toughness=3
 [/card]
 [card]
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
 target=creature,player
+auto=foreach(swamp|myBattlefield) damage:1
+auto=foreach(swamp|myBattlefield) life:1 controller
 id=146013
-auto=foreach(swamp|myinplay) damage:1
-auto=foreach(swamp|myinplay) life:1 controller
 name=Corrupt
 rarity=U
-type=Sorcery
 mana={5}{B}
+type=Sorcery
 [/card]
 [card]
 text=Crabapple Cohort gets +1/+1 as long as you control another green creature.
-auto=aslongas(creature[green]|myinplay) 1/1 other
+auto=aslongas(other creature[green]|myBattlefield) 1/1
 id=146009
 name=Crabapple Cohort
 rarity=C
-type=Creature
 mana={4}{G}
-power=4
+type=Creature
 subtype=Treefolk Warrior
+power=4
 toughness=4
 [/card]
 [card]
-text=Fear     Crowd of Cinders's power and toughness are each equal to the number of black permanents you control.
-abilities=fear
-auto=foreach(*[black]|myinplay) 1/1
+text=Fear   Crowd of Cinders's power and toughness are each equal to the number of black permanents you control.
+auto=foreach(*[black]|myBattlefield) 1/1
 id=146051
 name=Crowd of Cinders
 rarity=U
-type=Creature
 mana={3}{B}
-power=*
+type=Creature
 subtype=Elemental
+power=*
 toughness=*
+abilities=fear
 [/card]
 [card]
-text=Enchant creature     At the beginning of each upkeep, tap enchanted creature.
+text=Enchant creature   At the beginning of each upkeep, tap enchanted creature.
 id=146079
 target=creature
 auto=@each upkeep:tap
 name=Curse of Chains
 rarity=C
-type=Enchantment
 mana={1}{WU}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
 text=Blue creatures you control are unblockable.
-auto=lord(creature[blue]|myinplay) unblockable
+auto=lord(creature[blue]|myBattlefield) unblockable
 id=141981
 name=Deepchannel Mentor
 rarity=U
-type=Creature
 mana={5}{U}
-power=2
+type=Creature
 subtype=Merfolk Rogue
+power=2
 toughness=2
 [/card]
 [card]
-text=You may put a green creature card from your hand into play.
+text=You may put a green creature card from your hand onto the battlefield.
 id=154003
 target=creature[green]|myhand
-auto=moveto(myinplay)
+auto=moveto(myBattlefield)
 name=Dramatic Entrance
 rarity=R
-type=Instant
 mana={3}{G}{G}
+type=Instant
 [/card]
 [card]
-text=Drove of Elves's power and toughness are each equal to the number of green permanents you control.     Drove of Elves can't be the target of spells or abilities your opponents control.
+text=Drove of Elves's power and toughness are each equal to the number of green permanents you control.   Drove of Elves can't be the target of spells or abilities your opponents control.
 id=157878
 name=Drove of Elves
-auto=foreach(*[green]|myinplay) 1/1
-abilities=opponentshroud
 rarity=U
-type=Creature
 mana={3}{G}
-power=*
+type=Creature
 subtype=Elf
+auto=foreach(*[green]|myBattlefield) 1/1
+power=*
 toughness=*
+abilities=opponentshroud
 [/card]
 [card]
 text={GW}, {T}, Sacrifice Elvish Hexhunter: Destroy target enchantment.
-auto={GW}{T}{S}:destroy target(enchantment)
 id=141958
 name=Elvish Hexhunter
 rarity=C
-type=Creature
 mana={GW}
-power=1
+type=Creature
 subtype=Elf Shaman
+auto={GW}{T}{S}:destroy target(enchantment)
+power=1
 toughness=1
 [/card]
 [card]
 text=Creatures target player controls can't block this turn. Ember Gale deals 1 damage to each white and/or blue creature that player controls.
 id=158766
-auto=lord(creature|opponentinplay) cantblock
-auto=damage:1 all(creature[white;blue]|opponentinplay)
+auto=lord(creature|opponentBattlefield) cantblock
+auto=damage:1 all(creature[white;blue]|opponentBattlefield)
 name=Ember Gale
 rarity=C
-type=Sorcery
 mana={3}{R}
+type=Sorcery
 [/card]
 [card]
-text=Whenever you play a black spell, Emberstrike Duo gets +1/+1 until end of turn.     Whenever you play a red spell, Emberstrike Duo gains first strike until end of turn.
+text=Whenever you cast a black spell, Emberstrike Duo gets +1/+1 until end of turn.     Whenever you play a red spell, Emberstrike Duo gains first strike until end of turn.
 auto=@movedTo(*[black]|mystack):1/1 ueot
 auto=@movedTo(*[red]|mystack):first strike ueot
 id=153307
 name=Emberstrike Duo
 rarity=C
-type=Creature
 mana={1}{BR}
-power=1
+type=Creature
 subtype=Elemental Warrior Shaman
+power=1
 toughness=1
 [/card]
 [card]
-text=Flying     Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
-auto=foreach(*[blue]|myinplay) 1/1
-abilities=flying
+text=Flying   Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
+auto=foreach(*[blue]|myBattlefield) 1/1
 id=158685
 name=Faerie Swarm
 rarity=U
-type=Creature
 mana={3}{U}
-power=*
+type=Creature
 subtype=Faerie
+power=*
 toughness=*
+abilities=flying
 [/card]
 [card]
-text=When Farhaven Elf comes into play, you may search your library for a basic land card and put it into play tapped. If you do, shuffle your library.
+text=When Farhaven Elf enters the battlefield, you may search your library for a basic land card and put it onto the battlefield tapped. If you do, shuffle your library.
 auto=may moveTo(myBattlefield) target(basic|mylibrary) && tap
 id=153289
 name=Farhaven Elf
 rarity=C
-type=Creature
 mana={2}{G}
-power=1
+type=Creature
 subtype=Elf Druid
+power=1
 toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {RG}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
+text={T}: Add {1} to your mana pool.   {RG}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
 auto={T}:Add{1}
-auto={RG}{T}:Add{R}{R}
-auto={RG}{T}:Add{R}{G}
-auto={RG}{T}:Add{G}{G}
+auto={RG}{T}:Add {R}{R}
+auto={RG}{T}:Add {R}{G}
+auto={RG}{T}:Add {G}{G}
 id=146753
 name=Fire-Lit Thicket
 rarity=R
@@ -370,21 +370,21 @@ auto=damage:4
 id=146017
 name=Flame Javelin
 rarity=U
-type=Instant
 mana={2R}{2R}{2R}
+type=Instant
 [/card]
 [card]
 text=Draw a card for each Island you control.
 id=158692
-auto=foreach(island|myinplay)draw:1
+auto=foreach(island|mybattlefield) draw:1
 name=Flow of Ideas
 rarity=U
-type=Sorcery
 mana={5}{U}
+type=Sorcery
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}:Add{G}
+auto={T}:Add {G}
 id=157877
 name=Forest
 rarity=L
@@ -393,7 +393,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}:Add{G}
+auto={T}:Add {G}
 id=158241
 name=Forest
 rarity=L
@@ -402,7 +402,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}:Add{G}
+auto={T}:Add {G}
 id=157870
 name=Forest
 rarity=L
@@ -411,7 +411,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}:Add{G}
+auto={T}:Add {G}
 id=158242
 name=Forest
 rarity=L
@@ -420,14 +420,14 @@ subtype=Forest
 [/card]
 [card]
 text={RG}{RG}{RG}: Foxfire Oak gets +3/+0 until end of turn.
-auto={RG}{RG}{RG}:3/0
 id=141998
 name=Foxfire Oak
 rarity=C
-type=Creature
 mana={5}{G}
-power=3
+type=Creature
 subtype=Treefolk Shaman
+auto={RG}{RG}{RG}:3/0
+power=3
 toughness=6
 [/card]
 [card]
@@ -437,46 +437,46 @@ name=Fracturing Gust
 auto=foreach(artifact,enchantment) life:2
 auto=destroy all(artifact,enchantment)
 rarity=R
-type=Instant
 mana={2}{GW}{GW}{GW}
+type=Instant
 [/card]
 [card]
 text=Sacrifice Fulminator Mage: Destroy target nonbasic land.
-auto={S}:destroy target(land[-basic])
 id=142009
 name=Fulminator Mage
 rarity=R
-type=Creature
 mana={1}{BR}{BR}
-power=2
+type=Creature
 subtype=Elemental Shaman
+auto={S}:destroy target(land[-basic])
+power=2
 toughness=2
 [/card]
 [card]
-text=Flying     Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
-abilities=flying
+text=Flying   Other blue creatures you control get +1/+1.     Other black creatures you control get +1/+1.
 auto=lord(creature[blue]|myinplay) 1/1 other
 auto=lord(creature[black]|myinplay) 1/1 other
 id=146743
 name=Glen Elendra Liege
 rarity=R
-type=Creature
 mana={1}{UB}{UB}{UB}
-power=2
+type=Creature
 subtype=Faerie Knight
+power=2
 toughness=3
+abilities=flying
 [/card]
 [card]
-text=Reach     Gloomwidow can't block creatures without flying.
-abilities=reach,cloud
+text=Reach   Gloomwidow can't block creatures without flying.
 id=147375
 name=Gloomwidow
 rarity=U
-type=Creature
 mana={2}{G}
-power=3
+type=Creature
 subtype=Spider
+power=3
 toughness=3
+abilities=reach,cloud
 [/card]
 [card]
 text={4}, {T}: Put a -1/-1 counter on target creature.
@@ -484,40 +484,40 @@ auto={4}{T}:counter(-1/-1) target(creature)
 id=146015
 name=Gnarled Effigy
 rarity=U
-type=Artifact
 mana={4}
+type=Artifact
 [/card]
 [card]
-text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=persist
+text=Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 id=141935
 name=Gravelgill Axeshark
 rarity=C
-type=Creature
 mana={4}{UB}
-power=3
+type=Creature
 subtype=Merfolk Soldier
+power=3
 toughness=3
+abilities=persist
 [/card]
 [card]
-text=Whenever you play a blue spell, Gravelgill Duo gets +1/+1 until end of turn.     Whenever you play a black spell, Gravelgill Duo gains fear until end of turn.
+text=Whenever you cast a blue spell, Gravelgill Duo gets +1/+1 until end of turn.   Whenever you cast a black spell, Gravelgill Duo gains fear until end of turn.
 auto=@movedTo(*[blue]|mystack):1/1 ueot
 auto=@movedTo(*[blue]|mystack):fear ueot
 id=153308
 name=Gravelgill Duo
 rarity=C
-type=Creature
 mana={2}{UB}
-power=2
+type=Creature
 subtype=Merfolk Rogue Warrior
+power=2
 toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
-auto={T}:Add{1}
-auto={RB}{T}:Add{B}{B}
-auto={RB}{T}:Add{B}{R}
-auto={RB}{T}:Add{R}{R}
+text={T}: Add {1} to your mana pool.   {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
+auto={T}:Add {1}
+auto={RB}{T}:Add {B}{B}
+auto={RB}{T}:Add {B}{R}
+auto={RB}{T}:Add {R}{R}
 id=146764
 name=Graven Cairns
 rarity=R
@@ -530,8 +530,8 @@ auto=fizzle
 id=158773
 name=Guttural Response
 rarity=U
-type=Instant
 mana={RG}
+type=Instant
 [/card]
 [card]
 text=Sacrifice Heap Doll: Remove target card in a graveyard from the game.
@@ -539,27 +539,27 @@ auto={S}:moveTo(removedfromgame) target(*|graveyard)
 id=154395
 name=Heap Doll
 rarity=U
-type=Artifact Creature
 mana={1}
-power=1
+type=Artifact Creature
 subtype=Scarecrow
+power=1
 toughness=1
 [/card]
 [card]
-text=At the beginning of your upkeep, remove a -1/-1 counter from each creature you control.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=persist
+text=At the beginning of your upkeep, remove a -1/-1 counter from each creature you control.   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 auto=@each my upkeep:all(creature|mybattlefield) counter(-1/-1,-1)
 id=153312
 name=Heartmender
 rarity=R
-type=Creature
 mana={2}{GW}{GW}
-power=2
+type=Creature
 subtype=Elemental
+power=2
 toughness=2
+abilities=persist
 [/card]
 [card]
-text=At the beginning of your upkeep, if you have no cards in hand, each opponent loses 2 life.     At the beginning of each opponent's upkeep, if that player has no cards in hand, he or she loses 2 life.
+text=At the beginning of your upkeep, if you have no cards in hand, each opponent loses 2 life.   At the beginning of each opponent's upkeep, if that player has no cards in hand, he or she loses 2 life.
 id=146095
 auto=@each my upkeep:life:-2 opponent
 auto=@each my upkeep:aslongas(*|myhand):life:2 opponent
@@ -567,36 +567,36 @@ auto=@each opponent upkeep:life:-2 opponent
 auto=@each opponent upkeep:aslongas(*|opponenthand):life:2 opponent
 name=Hollowborn Barghest
 rarity=R
-type=Creature
 mana={5}{B}{B}
-power=7
+type=Creature
 subtype=Demon Hound
+power=7
 toughness=6
 [/card]
 [card]
-text=Put a 2/2 green Wolf creature token into play for each Forest you control.
+text=Put a 2/2 green Wolf creature token onto the battlefield for each Forest you control.
+auto=foreach(forest|myBattlefield)token(Wolf,creature wolf,2/2,green)
 id=153996
 name=Howl of the Night Pack
-auto=foreach(forest|myinplay)token(Wolf,creature wolf,2/2,green)
 rarity=U
-type=Sorcery
 mana={6}{G}
+type=Sorcery
 [/card]
 [card]
 text=Inkfathom Infiltrator can't block and is unblockable.
-abilities=unblockable,cantblock
 id=154401
 name=Inkfathom Infiltrator
 rarity=U
-type=Creature
 mana={UB}{UB}
-power=2
+type=Creature
 subtype=Merfolk Rogue
+power=2
 toughness=1
+abilities=unblockable,cantblock
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=158237
 name=Island
 rarity=L
@@ -605,7 +605,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=157875
 name=Island
 rarity=L
@@ -614,7 +614,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=157883
 name=Island
 rarity=L
@@ -623,7 +623,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=157874
 name=Island
 rarity=L
@@ -631,76 +631,75 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
-text=Reach (This can block creatures with flying.)  Wither (This deals damage to creatures in the form of -1/-1 counters.)
-abilities=reach,wither
+text=Reach (This can block creatures with flying.)   Wither (This deals damage to creatures in the form of -1/-1 counters.)
 id=153976
 name=Juvenile Gloomwidow
 rarity=C
-type=Creature
 mana={G}{G}
-power=1
+type=Creature
 subtype=Spider
+power=1
 toughness=3
+abilities=reach,wither
 [/card]
 [card]
-text=When Kitchen Finks comes into play, you gain 2 life.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=persist
-auto=life:2
+text=When Kitchen Finks enters the battlefield, you gain 2 life.   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 id=141976
 name=Kitchen Finks
 rarity=U
-type=Creature
 mana={1}{GW}{GW}
-power=3
+type=Creature
 subtype=Ouphe
+auto=life:2
+power=3
 toughness=2
+abilities=persist
 [/card]
 [card]
-text=Vigilance     Kithkin Rabble's power and toughness are each equal to the number of white permanents you control.
-auto=foreach(*[white]|myinplay) 1/1
-abilities=vigilance
+text=Vigilance   Kithkin Rabble's power and toughness are each equal to the number of white permanents you control.
+auto=foreach(*[white]|myBattlefield) 1/1
 id=158695
 name=Kithkin Rabble
 rarity=U
-type=Creature
 mana={3}{W}
-power=*
+type=Creature
 subtype=Kithkin
+power=*
 toughness=*
+abilities=vigilance
 [/card]
 [card]
 text={W}, {T}: Target blocking creature gets +2/+2 until end of turn.
-auto={W}{T}:2/2 target(creature[blocking])
 id=158238
 name=Kithkin Shielddare
 rarity=C
-type=Creature
 mana={1}{W}
-power=1
+type=Creature
 subtype=Kithkin Soldier
+auto={W}{T}:2/2 target(creature[blocking])
+power=1
 toughness=1
 [/card]
 [card]
-text=
 id=142001
 name=Loamdragger Giant
 rarity=C
-type=Creature
 mana={4}{RG}{RG}{RG}
-power=7
+type=Creature
 subtype=Giant Warrior
+power=7
 toughness=6
 [/card]
 [card]
 text={UB}: Loch Korrigan gets +1/+1 until end of turn.
-auto={UB}:1/1
 id=147414
 name=Loch Korrigan
 rarity=C
-type=Creature
 mana={3}{B}
-power=1
+type=Creature
 subtype=Spirit
+auto={UB}:1/1
+power=1
 toughness=1
 [/card]
 [card]
@@ -709,25 +708,25 @@ auto=destroy all(creature[-white])
 id=146053
 name=Mass Calcify
 rarity=R
-type=Sorcery
 mana={5}{W}{W}
+type=Sorcery
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  At the beginning of your upkeep, put a -1/-1 counter on each nonblack creature.
 auto=@each my upkeep:all(creature[-black]) counter(-1/-1)
-abilities=wither
 id=147431
 name=Midnight Banshee
 rarity=R
-type=Creature
 mana={3}{B}{B}{B}
-power=5
+type=Creature
 subtype=Spirit
+power=5
 toughness=5
+abilities=wither
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=157888
 name=Mountain
 rarity=L
@@ -736,7 +735,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=157885
 name=Mountain
 rarity=L
@@ -745,7 +744,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=157882
 name=Mountain
 rarity=L
@@ -754,7 +753,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=158240
 name=Mountain
 rarity=L
@@ -762,24 +761,24 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
-text=Haste     Mudbrawler Cohort gets +1/+1 as long as you control another red creature.
-abilities=haste
-auto=aslongas(creature[red]|myinplay) 1/1 other
+text=Haste   Mudbrawler Cohort gets +1/+1 as long as you control another red creature.
+auto=aslongas(other creature[red]|myBattlefield) 1/1
 id=146062
 name=Mudbrawler Cohort
 rarity=C
-type=Creature
 mana={1}{R}
-power=1
+type=Creature
 subtype=Goblin Warrior
+power=1
 toughness=1
+abilities=haste
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {WU}, {T}: Add {W}{W}, {W}{U}, or {U}{U} to your mana pool.
-auto={T}:Add{1}
-auto={WU}{T}:Add{W}{W}
-auto={WU}{T}:Add{W}{U}
-auto={WU}{T}:Add{U}{U}
+text={T}: Add {1} to your mana pool.   {WU}, {T}: Add {W}{W}, {W}{U}, or {U}{U} to your mana pool.
+auto={T}:Add {1}
+auto={WU}{T}:Add {W}{W}
+auto={WU}{T}:Add {W}{U}
+auto={WU}{T}:Add {U}{U}
 id=146746
 name=Mystic Gate
 rarity=R
@@ -790,23 +789,23 @@ text=
 id=142007
 name=Old Ghastbark
 rarity=C
-type=Creature
 mana={3}{GW}{GW}
-power=3
+type=Creature
 subtype=Treefolk Warrior
+power=3
 toughness=6
 [/card]
 [card]
-text=Flying, defender     Wither (This deals damage to creatures in the form of -1/-1 counters.)
-abilities=flying,defender,wither
+text=Flying, defender   Wither (This deals damage to creatures in the form of -1/-1 counters.)
 id=141975
 name=Oona's Gatewarden
 rarity=C
-type=Creature
 mana={UB}
-power=2
+type=Creature
 subtype=Faerie Soldier
+power=2
 toughness=1
+abilities=flying,defender,wither
 [/card]
 [card]
 text=Destroy target land. Poison the Well deals 2 damage to that land's controller.
@@ -816,17 +815,17 @@ auto=Damage:2 targetController
 auto=destroy
 name=Poison the Well
 rarity=C
-type=Sorcery
 mana={2}{BR}{BR}
+type=Sorcery
 [/card]
 [card]
-text=Whenever a land comes into play under an opponent's control, that player loses 2 life and you gain 2 life.
+text=Whenever a land enters the battlefield under an opponent's control, that player loses 2 life and you gain 2 life.
 auto=@movedTo(land|opponentBattlefield):life:-2 opponent && life:2 controller
 id=146766
 name=Polluted Bonds
 rarity=R
-type=Enchantment
 mana={3}{B}{B}
+type=Enchantment
 [/card]
 [card]
 text=Puncture Bolt deals 1 damage to target creature. Put a -1/-1 counter on that creature.
@@ -836,52 +835,52 @@ auto=counter(-1/-1)
 id=146071
 name=Puncture Bolt
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
 text=Creatures you control have double strike.
-auto=lord(creature|myinplay) double strike
+auto=lord(creature|myBattlefield) double strike
 id=146727
 name=Rage Reflection
 rarity=R
-type=Enchantment
 mana={4}{R}{R}
+type=Enchantment
 [/card]
 [card]
 text=Green creatures you control have trample.
-auto=lord(creature[green]|myinplay) trample
+auto=lord(creature[green]|myBattlefield) trample
 id=141972
 name=Roughshod Mentor
 rarity=U
-type=Creature
 mana={5}{G}
-power=5
+type=Creature
 subtype=Giant Warrior
+power=5
 toughness=4
 [/card]
 [card]
 text=Protection from blue, from black, and from red
-abilities=protection from blue,protection from black,protection from red
 id=146735
 name=Oversoul of Dusk
 rarity=R
-type=Creature
 mana={GW}{GW}{GW}{GW}{GW}
-power=5
+type=Creature
 subtype=Spirit Avatar
+power=5
 toughness=5
+abilities=protection from blue,protection from black,protection from red
 [/card]
 [card]
 text={WU}: Parapet Watchers gets +0/+1 until end of turn.
-auto={WU}:0/1
 id=152059
 name=Parapet Watchers
 rarity=C
-type=Creature
 mana={2}{U}
-power=2
+type=Creature
 subtype=Kithkin Soldier
+auto={WU}:0/1
+power=2
 toughness=2
 [/card]
 [card]
@@ -892,23 +891,23 @@ auto=damage:3 targetController
 auto=destroy
 name=Smash to Smithereens
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
 text={B}{R}: Each player loses 1 life.
 id=157880
-auto={B}{R}:life:-1 all(player)
 name=Spiteflame Witch
 rarity=U
-type=Creature
 mana={1}{BR}
-power=2
+type=Creature
 subtype=Elemental Shaman
+auto={B}{R}:life:-1 all(player)
+power=2
 toughness=1
 [/card]
 [card]
-text=At the beginning of each player's draw step, that player draws an additional card.     Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
+text=At the beginning of each player's draw step, that player draws an additional card.   Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
 id=146089
 auto=@each my upkeep:draw:1 controller
 auto=@each opponent upkeep:draw:1 opponent
@@ -916,12 +915,12 @@ auto=@movedTo(*|myhand) from(mylibrary):damage:1 controller
 auto=@movedTo(*|opponenthand) from(opponentlibrary):damage:1 opponent
 name=Spiteful Visions
 rarity=R
-type=Enchantment
 mana={2}{BR}{BR}
+type=Enchantment
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=158236
 name=Plains
 rarity=L
@@ -930,7 +929,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=157887
 name=Plains
 rarity=L
@@ -939,7 +938,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=157873
 name=Plains
 rarity=L
@@ -948,7 +947,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=158235
 name=Plains
 rarity=L
@@ -956,41 +955,41 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
-text=Flash     Flying, defender
-abilities=flash,flying,defender
+text=Flash   Flying, defender
 id=153980
 name=Plumeveil
 rarity=U
-type=Creature
 mana={WU}{WU}{WU}
-power=4
+type=Creature
 subtype=Elemental
+power=4
 toughness=4
+abilities=flash,flying,defender
 [/card]
 [card]
-text=Haste     {R}: Pyre Charger gets +1/+0 until end of turn.
-abilities=haste
+text=Haste   {R}: Pyre Charger gets +1/+0 until end of turn.
 auto={R}:1/0
 id=159399
 name=Pyre Charger
 rarity=U
-type=Creature
 mana={R}{R}
-power=1
 subtype=Elemental Warrior
+type=Creature
+power=1
 toughness=1
+abilities=haste
 [/card]
 [card]
 text=Rattleblaze Scarecrow has persist as long as you control a black creature. (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)  Rattleblaze Scarecrow has haste as long as you control a red creature.
-auto=aslongas(creature[black]|myinplay) persist
-auto=aslongas(creature[red]|myinplay) haste
+auto=aslongas(creature[black]|myBattlefield) persist
+auto=aslongas(creature[red]|myBattlefield) haste
 id=151631
 name=Rattleblaze Scarecrow
 rarity=C
-type=Artifact Creature
 mana={6}
-power=5
+type=Artifact Creature
 subtype=Scarecrow
+power=5
 toughness=3
 [/card]
 [card]
@@ -1005,79 +1004,79 @@ mana={1}{GW}
 [/card]
 [card]
 text=White creatures you control have "{T}: You gain 1 life."
-auto=lord(creature[white]|mybattlefield) {T}:life:1
+auto=lord(creature[white]|myBattlefield) {T}:life:1
 id=141930
 name=Resplendent Mentor
 rarity=U
-type=Creature
 mana={4}{W}
-power=2
+type=Creature
 subtype=Kithkin Cleric
+power=2
 toughness=2
 [/card]
 [card]
-text=Whenever River Kelpie or another permanent is put into play from a graveyard, draw a card.     Whenever a spell is played from a graveyard, draw a card.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-auto=@movedTo(*|graveyard) from(inPlay):draw:1
-auto=@movedTo(*|stack) from(graveyard):draw:1
-abilities=persist
+text=Whenever River Kelpie or another permanent is put onto the battlefield from a graveyard, draw a card.   Whenever a spell is cast from a graveyard, draw a card.   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+auto=@movedTo(creature,artifact,enchantment,land|battlefield) from(graveyard):draw:1
+auto=@movedTo(sorcery,instant|stack) from(graveyard):draw:1
 id=146094
 name=River Kelpie
 rarity=R
-type=Creature
 mana={3}{U}{U}
-power=3
+type=Creature
 subtype=Beast
+power=3
 toughness=3
+abilities=persist
 [/card]
 [card]
-text=Flying     {GW}{GW}: Rune-Cervin Rider gets +1/+1 until end of turn.
-abilities=flying
+text=Flying   {GW}{GW}: Rune-Cervin Rider gets +1/+1 until end of turn.
 auto={GW}{GW}:1/1
 id=142003
 name=Rune-Cervin Rider
 rarity=C
-type=Creature
 mana={3}{W}
-power=2
+type=Creature
 subtype=Elf Knight
+power=2
 toughness=2
+abilities=flying
 [/card]
 [card]
-text=First strike     Wither (This deals damage to creatures in the form of -1/-1 counters.)
-abilities=first strike,wither
+text=First strike   Wither (This deals damage to creatures in the form of -1/-1 counters.)
 id=147389
 name=Rustrazor Butcher
 rarity=C
-type=Creature
 mana={1}{R}
-power=1
+type=Creature
 subtype=Goblin Warrior
+power=1
 toughness=2
+abilities=first strike,wither
 [/card]
 [card]
-text=Whenever you play a green spell, Safehold Duo gets +1/+1 until end of turn.     Whenever you play a white spell, Safehold Duo gains vigilance until end of turn.
+text=Whenever you cast a green spell, Safehold Duo gets +1/+1 until end of turn.     Whenever you play a white spell, Safehold Duo gains vigilance until end of turn.
 auto=@movedTo(*[green]|mystack):1/1 ueot
 auto=@movedTo(*[white]|mystack):vigilance ueot
 id=153963
 name=Safehold Duo
 rarity=C
-type=Creature
 mana={3}{GW}
-power=2
+type=Creature
 subtype=Elf Warrior Shaman
+power=2
 toughness=4
 [/card]
 [card]
-text=Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=persist
+text=Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 id=146077
 name=Safehold Elite
 rarity=C
-type=Creature
 mana={1}{GW}
-power=2
+type=Creature
 subtype=Elf Scout
+power=2
 toughness=2
+abilities=persist
 [/card]
 [card]
 text=Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.
@@ -1086,8 +1085,8 @@ auto=moveTo(myHand)
 id=142038
 name=Safewright Quest
 rarity=C
-type=Sorcery
 mana={GW}
+type=Sorcery
 [/card]
 [card]
 text=Put a -1/-1 counter on target creature.
@@ -1096,19 +1095,19 @@ auto=counter(-1/-1)
 target=creature
 name=Scar
 rarity=C
-type=Instant
 mana={BR}
+type=Instant
 [/card]
 [card]
-text=As an additional cost to play Scarscale Ritual, put a -1/-1 counter on a creature you control.     Draw two cards.
-target=creature|mybattlefield
+text=As an additional cost to cast Scarscale Ritual, put a -1/-1 counter on a creature you control.   Draw two cards.
+target=creature|myBattlefield
 auto=draw:2
 auto=counter(-1/-1)
 id=154396
 name=Scarscale Ritual
 rarity=C
-type=Sorcery
 mana={1}{UB}
+type=Sorcery
 [/card]
 [card]
 text={2}{G}{W}: Target creature gets +3/+3 until end of turn. Untap that creature.
@@ -1116,88 +1115,88 @@ auto={2}{G}{W}:3/3 && untap target(creature)
 id=157872
 name=Seedcradle Witch
 rarity=U
-type=Creature
 mana={GW}
-power=1
+type=Creature
 subtype=Elf Shaman
+power=1
 toughness=1
 [/card]
 [card]
-text=Trample     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-abilities=trample,persist
+text=Trample   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 id=152078
 name=Scuzzback Marauders
 rarity=C
-type=Creature
 mana={4}{RG}
-power=5
+type=Creature
 subtype=Goblin Warrior
+power=5
 toughness=2
+abilities=trample,persist
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
-abilities=wither
 id=142052
 name=Scuzzback Scrapper
 rarity=C
-type=Creature
 mana={RG}
-power=1
+type=Creature
 subtype=Goblin Warrior
+power=1
 toughness=1
+abilities=wither
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
-abilities=wither
 id=154010
 name=Sickle Ripper
 rarity=C
-type=Creature
 mana={1}{B}
-power=2
+type=Creature
 subtype=Elemental Warrior
+power=2
 toughness=1
+abilities=wither
 [/card]
 [card]
-text=When Somnomancer comes into play, you may tap target creature.
+text=When Somnomancer enters the battlefield, you may tap target creature.
 auto=may tap target(creature)
 id=147399
 name=Somnomancer
 rarity=C
-type=Creature
 mana={1}{WU}
-power=2
+type=Creature
 subtype=Kithkin Wizard
+power=2
 toughness=1
 [/card]
 [card]
-text=Haste     {T}: Target black or red creature gains haste until end of turn.
-abilities=haste
+text=Haste   {T}: Target black or red creature gains haste until end of turn.
 auto={T}:haste target(creature[black;red])
 id=153989
 name=Sootstoke Kindler
 rarity=C
-type=Creature
 mana={1}{BR}
-power=1
+type=Creature
 subtype=Elemental Shaman
+power=1
 toughness=1
+abilities=haste
 [/card]
 [card]
-text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 6.)  Put three 1/1 white Spirit creature tokens with flying into play.
+text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 6.)  Put three 1/1 white Spirit creature tokens with flying onto the battlefield.
 auto=token(Spirit,creature spirit, 1/1,flying white)*3
 id=152070
 name=Spectral Procession
 rarity=U
-type=Sorcery
 mana={2W}{2W}{2W}
+type=Sorcery
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {UB}, {T}: Add {U}{U}, {U}{B}, or {B}{B} to your mana pool.
-auto={T}:Add{1}
-auto={UB}{T}:Add{U}{U}
-auto={UB}{T}:Add{U}{B}
-auto={UB}{T}:Add{B}{B}
+text={T}: Add {1} to your mana pool.   {UB}, {T}: Add {U}{U}, {U}{B}, or {B}{B} to your mana pool.
+auto={T}:Add {1}
+auto={UB}{T}:Add {U}{U}
+auto={UB}{T}:Add {U}{B}
+auto={UB}{T}:Add {B}{B}
 id=146729
 name=Sunken Ruins
 rarity=R
@@ -1205,7 +1204,7 @@ type=Land
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=157886
 name=Swamp
 rarity=L
@@ -1214,7 +1213,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=157871
 name=Swamp
 rarity=L
@@ -1223,7 +1222,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=158239
 name=Swamp
 rarity=L
@@ -1232,7 +1231,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=157889
 name=Swamp
 rarity=L
@@ -1240,29 +1239,29 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
-text=Whenever you play a red spell, Tattermunge Duo gets +1/+1 until end of turn. Whenever you play a green spell, Tattermunge Duo gains forestwalk until end of turn.
+text=Whenever you cast a red spell, Tattermunge Duo gets +1/+1 until end of turn.   Whenever you cast a green spell, Tattermunge Duo gains forestwalk until end of turn.
 auto=@movedTo(*[red]|mystack):1/1 ueot
 auto=@movedTo(*[green]|mystack):forestwalk ueot
 id=153282
 name=Tattermunge Duo
 rarity=C
-type=Creature
 mana={2}{RG}
-power=2
+type=Creature
 subtype=Goblin Warrior Shaman
+power=2
 toughness=3
 [/card]
 [card]
 text=Tattermunge Maniac attacks each turn if able.
 id=142013
 name=Tattermunge Maniac
-abilities=mustattack
 rarity=U
-type=Creature
 mana={RG}
-power=2
+type=Creature
 subtype=Goblin Warrior
+power=2
 toughness=1
+abilities=mustattack
 [/card]
 [card]
 text={R}{G}: Each blocked creature gets +1/+0 and gains trample until end of turn.
@@ -1270,107 +1269,107 @@ auto={R}{G}:lord(creature[blocked]) 1/0  && lord(creature[blocked]) trample
 id=157884
 name=Tattermunge Witch
 rarity=U
-type=Creature
 mana={1}{RG}
-power=2
+type=Creature
 subtype=Goblin Shaman
+power=2
 toughness=1
 [/card]
 [card]
-text=Whenever you play a white spell, Thistledown Duo gets +1/+1 until end of turn.     Whenever you play a blue spell, Thistledown Duo gains flying until end of turn.
+text=Whenever you cast a white spell, Thistledown Duo gets +1/+1 until end of turn.   Whenever you cast a blue spell, Thistledown Duo gains flying until end of turn.
 auto=@movedTo(*[white]|mystack):1/1 ueot
 auto=@movedTo(*[blue]|mystack):flying ueot
 id=153301
 name=Thistledown Duo
 rarity=C
-type=Creature
 mana={2}{WU}
-power=2
+type=Creature
 subtype=Kithkin Soldier Wizard
+power=2
 toughness=2
 [/card]
 [card]
-text=Flash     Other white creatures you control get +1/+1.     Other blue creatures you control get +1/+1.
-abilities=flash
-auto=lord(creature[white]|myinplay) 1/1 other
-auto=lord(creature[blue]|myinplay) 1/1 other
+text=Flash   Other white creatures you control get +1/+1.   Other blue creatures you control get +1/+1.
+auto=lord(creature[white]|myBattlefield) 1/1 other
+auto=lord(creature[blue]|myBattlefield) 1/1 other
 id=147409
 name=Thistledown Liege
 rarity=R
-type=Creature
 mana={1}{WU}{WU}{WU}
-power=1
+type=Creature
 subtype=Kithkin Knight
+power=1
 toughness=3
+abilities=flash
 [/card]
 [card]
 text=Thornwatch Scarecrow has wither as long as you control a green creature. (It deals damage to creatures in the form of -1/-1 counters.)  Thornwatch Scarecrow has vigilance as long as you control a white creature.
-auto=aslongas(creature[green]|myinplay) wither
-auto=aslongas(creature[white]|myinplay) vigilance
+auto=aslongas(creature[green]|myBattlefield) wither
+auto=aslongas(creature[white]|myBattlefield) vigilance
 id=151634
 name=Thornwatch Scarecrow
 rarity=C
-type=Artifact Creature
 mana={6}
-power=4
+type=Artifact Creature
 subtype=Scarecrow
+power=4
 toughness=4
 [/card]
 [card]
 text=Tap all creatures your opponents control and untap all creatures you control.
 id=146024
-auto=tap all(creature|opponentinplay)
-auto=untap all(creature|myinplay)
+auto=tap all(creature|opponentBattlefield)
+auto=untap all(creature|myBattlefield)
 name=Thoughtweft Gambit
 rarity=U
-type=Instant
 mana={4}{WU}{WU}
+type=Instant
 [/card]
 [card]
 text=You gain 1 life for each tapped artifact, creature, and land you control.
-auto=foreach(creature[tapped]|myinplay)life:1
-auto=foreach(artifact[tapped]|myinplay)life:1
-auto=foreach(land[tapped]|myinplay)life:1
+auto=foreach(creature[tapped]|myBattlefield) life:1
+auto=foreach(artifact[tapped]|myBattlefield) life:1
+auto=foreach(land[tapped]|myBattlefield) life:1
 id=159410
 name=Toil to Renown
 rarity=C
-type=Sorcery
 mana={1}{G}
+type=Sorcery
 [/card]
 [card]
-text=Flash     Enchant creature     Enchanted creature gets -3/-0.
-abilities=flash
+text=Flash   Enchant creature   Enchanted creature gets -3/-0.
 target=creature
 auto=-3/0
 id=142053
 name=Torpor Dust
 rarity=C
-type=Enchantment
 mana={2}{UB}
+type=Enchantment
 subtype=Aura
+abilities=flash
 [/card]
 [card]
-text=Enchant creature     {1}{B}: Put a -1/-1 counter on enchanted creature.
+text=Enchant creature   {1}{B}: Put a -1/-1 counter on enchanted creature.
 target=creature
 auto={1}{B}:counter(-1/-1)
 id=142070
 name=Torture
 rarity=C
-type=Enchantment
 mana={B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text={T}, Sacrifice a Mountain: Valleymaker deals 3 damage to target creature.     {T}, Sacrifice a Forest: Choose a player. That player adds {G}{G}{G} to his or her mana pool.
-auto={T}{S(mountain|myinplay)}:Damage:3 target(creature)
-auto={T}{S(forest|myinplay)}:Add{G}{G}{G}
+text={T}, Sacrifice a Mountain: Valleymaker deals 3 damage to target creature.   {T}, Sacrifice a Forest: Choose a player. That player adds {G}{G}{G} to his or her mana pool.
+auto={T}{S(mountain|myBattlefield)}:Damage:3 target(creature)
+auto={T}{S(forest|myBattlefield)}:Add {G}{G}{G}
 id=159397
 name=Valleymaker
 rarity=R
-type=Creature
 mana={5}{RG}
-power=5
+type=Creature
 subtype=Giant Shaman
+power=5
 toughness=5
 [/card]
 [card]
@@ -1379,8 +1378,8 @@ auto={2}{T}:tap target(creature)
 id=147420
 name=Trip Noose
 rarity=U
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text=Flying
@@ -1395,87 +1394,87 @@ subtype=Faerie Soldier
 toughness=2
 [/card]
 [card]
-text=Watchwing Scarecrow has vigilance as long as you control a white creature.     Watchwing Scarecrow has flying as long as you control a blue creature.
-auto=aslongas(creature[blue]|myinplay) flying
-auto=aslongas(creature[white]|myinplay) vigilance
+text=Watchwing Scarecrow has vigilance as long as you control a white creature.   Watchwing Scarecrow has flying as long as you control a blue creature.
+auto=aslongas(creature[blue]|myBattlefield) flying
+auto=aslongas(creature[white]|myBattlefield) vigilance
 id=151630
 name=Watchwing Scarecrow
 rarity=C
-type=Artifact Creature
 mana={4}
+type=Artifact Creature
 power=2
-subtype=Scarecrow
 toughness=4
+subtype=Scarecrow
 [/card]
 [card]
 text=Whimwader can't attack unless defending player controls a blue permanent.
 id=141957
 name=Whimwader
-abilities=cantattack
-auto=aslongas(*[blue]|opponentinplay) -cantattack
+auto=aslongas(*[blue]|opponentBattlefield) -cantattack
 rarity=C
-type=Creature
 mana={4}{U}
-power=6
+type=Creature
 subtype=Elemental
+power=6
 toughness=4
+abilities=cantattack
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
-abilities=wither
 id=135436
 name=Wildslayer Elves
 rarity=C
-type=Creature
 mana={3}{G}
-power=3
+type=Creature
 subtype=Elf Warrior
+power=3
 toughness=3
+abilities=wither
 [/card]
 [card]
 text=Vigilance
-abilities=vigilance
 id=153962
 name=Wilt-Leaf Cavaliers
 rarity=U
-type=Creature
 mana={GW}{GW}{GW}
-power=3
+type=Creature
 subtype=Elf Knight
+power=3
 toughness=4
+abilities=vigilance
 [/card]
 [card]
-text=Flying     Attacking creatures you control have lifelink.
+text=Flyin   Attacking creatures you control have lifelink.
 id=146090
-abilities=flying
-auto=lord(creature[attacking]|myinplay) lifelink
+auto=lord(creature[attacking]|myBattlefield) lifelink
 name=Windbrisk Raptor
 rarity=R
-type=Creature
 mana={5}{W}{W}
-power=5
+type=Creature
 subtype=Bird
+power=5
 toughness=7
+abilities=flying
 [/card]
 [card]
 text=Wingrattle Scarecrow has flying as long as you control a blue creature.     Wingrattle Scarecrow has persist as long as you control a black creature. (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-auto=aslongas(creature[blue]|myinplay) flying
-auto=aslongas(creature[black]|myinplay) persist
+auto=aslongas(creature[blue]|myBattlefield) flying
+auto=aslongas(creature[black]|myBattlefield) persist
 id=151633
 name=Wingrattle Scarecrow
 rarity=C
-type=Artifact Creature
 mana={3}
-power=2
+type=Artifact Creature
 subtype=Scarecrow
+power=2
 toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {GW}, {T}: Add {G}{G}, {G}{W}, or {W}{W} to your mana pool.
-auto={T}:Add{1}
-auto={GW}{T}:Add{G}{G}
-auto={GW}{T}:Add{G}{W}
-auto={GW}{T}:Add{W}{W}
+text={T}: Add {1} to your mana pool.   {GW}, {T}: Add {G}{G}, {G}{W}, or {W}{W} to your mana pool.
+auto={T}:Add {1}
+auto={GW}{T}:Add {G}{G}
+auto={GW}{T}:Add {G}{W}
+auto={GW}{T}:Add {W}{W}
 id=146747
 name=Wooded Bastion
 rarity=R
@@ -1483,25 +1482,25 @@ type=Land
 [/card]
 [card]
 text={W}, {T}: Remove a -1/-1 counter from target creature. If you do, you gain 2 life.
-auto={W}{T}:counter(-1/-1,-1) target(creature) && life:2
+auto={W}{T}:counter(-1/-1,-1) target(creature) && life:2 controller
 id=153985
 name=Woeleecher
 rarity=C
-type=Creature
 mana={5}{W}
-power=3
+type=Creature
 subtype=Elemental
+power=3
 toughness=5
 [/card]
 [card]
 text=Flash
-abilities=flash
 id=142028
 name=Zealous Guardian
 rarity=C
-type=Creature
 mana={WU}
-power=1
+type=Creature
 subtype=Kithkin Soldier
+power=1
 toughness=1
+abilities=flash
 [/card]
