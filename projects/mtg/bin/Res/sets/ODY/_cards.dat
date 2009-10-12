@@ -1,322 +1,336 @@
 [card]
-text=Abandoned Outpost comes into play tapped. Tap: Add W to your mana pool. Tap, Sacrifice Abandoned Outpost: Add one mana of any color to your mana pool.
+text=Abandoned Outpost enters the battlefield tapped.   {T}: Add {W} to your mana pool.   {T}, Sacrifice Abandoned Outpost: Add one mana of any color to your mana pool.
 id=31761
 auto=tap
-auto={T}:Add{W}
-auto={T}{S}:Add{B}
-auto={T}{S}:Add{G}
-auto={T}{S}:Add{R}
-auto={T}{S}:Add{U}
-auto={T}{S}:Add{W}
+auto={T}:Add {W}
+auto={T}{S}:Add {B}
+auto={T}{S}:Add {G}
+auto={T}{S}:Add {R}
+auto={T}{S}:Add {U}
+auto={T}{S}:Add {W}
 name=Abandoned Outpost
 type=Land
 rarity=C
 [/card]
 [card]
-text=As an additional cost to play Acceptable Losses, discard a card at random.     Acceptable Losses deals 5 damage to target creature.
+text=As an additional cost to cast Acceptable Losses, discard a card at random.   Acceptable Losses deals 5 damage to target creature.
 id=30692
-name=Acceptable Losses
-mana={3}{R}
-type=Sorcery
 target=creature
 auto=damage:5
 auto=discard:1 controller
+name=Acceptable Losses
 rarity=C
+mana={3}{R}
+type=Sorcery
 [/card]
 [card]
-text=Target creature gets -1/-1 until end of turn. Draw a card. 
+text=Target creature gets -1/-1 until end of turn.   Draw a card. 
 id=29740
 name=Afflict
 target=Creature
 auto=-1/-1
 auto=draw:1
+rarity=C
 mana={2}{B}
 type=Instant 
-rarity=C
 [/card]
 [card]
-text=Flying. {2}{U}, Discard a card from your hand: Return Amugaba to its owner's hand. 
+text=Flying.   {2}{U}, Discard a card from your hand: Return Amugaba to its owner's hand. 
 id=29929
 name=Amugaba
-abilities=flying
-auto={2}{U}{s(*|myhand)}:moveTo(ownerhand)
+rarity=R
 mana={5}{U}{U}
 type=Creature
 subtype=Illusion
+auto={2}{U}{S(*|myhand)}:moveTo(ownerhand)
 power=6
 toughness=6
-rarity=R
+abilities=flying
 [/card]
 [card]
-text=When Anarchist comes into play, you may return target sorcery card from your graveyard to your hand.
+text=When Anarchist enters the battlefield, you may return target sorcery card from your graveyard to your hand.
 id=29758
 name=Anarchist
 auto=may moveTo(myhand) target(sorcery|mygraveyard)
 rarity=C
-type=Creature
 mana={4}{R}
-power=2
+type=Creature
 subtype=Human Wizard
+power=2
 toughness=2
 [/card]
 [card]
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
 id=29699
 name=Angelic Wall
-abilities=flying,defender
+rarity=C
 mana={1}{W}
 type=Creature
 subtype=Wall
 power=0
 toughness=4
-rarity=C
+abilities=flying,defender
 [/card]
 [card]
 text={1}{R}: Ashen Firebeast deals 1 damage to each creature without flying.
 id=29965
 name=Ashen Firebeast
-auto={1}{R}:damage:1 all(creature[-flying])
 rarity=R
-type=Creature
 mana={6}{R}{R}
-power=6
+type=Creature
 subtype=Elemental Beast
+auto={1}{R}:damage:1 all(creature[-flying])
+power=6
 toughness=6
 [/card]
 [card]
-text=When Auramancer comes into play, you may return target enchantment card from your graveyard to your hand.
+text=When Auramancer enters the battlefield, you may return target enchantment card from your graveyard to your hand.
 id=29700
 name=Auramancer
 auto=may moveTo(myhand) target(enchantment|mygraveyard)
 rarity=C
-type=Creature
 mana={2}{W}
-power=2
+type=Creature
 subtype=Human Wizard
+power=2
 toughness=2
 [/card]
 [card]
 text=Flying. {2}{W}{T}: Aven Archer deals 2 damage to target attacking or blocking creature. 
-id=29691
-name=Aven Archer
-abilities=flying 
 auto={2}{W}{T}:damage:2 target(creature[attacking;blocking])
+id=29691
+name=Aven Archer 
+rarity=U
 mana={3}{W}{W}
 type=Creature
 subtype=Bird Soldier
 power=2
 toughness=2
-rarity=U
+abilities=flying
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Aven Fisher is put into a graveyard from play, you may draw a card.
-auto=@movedTo(this|graveyard) from(inplay):may draw:1
+auto=@movedTo(this|graveyard) from(battlefield):may draw:1
 id=31815
 name=Aven Fisher
 rarity=C
-type=Creature
 mana={3}{U}
-power=2
+type=Creature
 subtype=Bird Soldier
+power=2
 toughness=2
+abilities=flying
 [/card]
 [card]
-text=Flying. {W}: Aven Flock gets +0/+1 until end of turn. 
+text=Flying.   {W}: Aven Flock gets +0/+1 until end of turn. 
 id=31767
 name=Aven Flock
-abilities=flying
-auto={W}:0/1
+rarity=C
 mana={4}{W}
 type=Creature
 subtype=Bird Soldier
+auto={W}:0/1
 power=2
 toughness=3
-rarity=C
+abilities=flying
 [/card]
 [card]
 text=Flying, protection from red 
 id=29709
 name=Aven Smokeweaver
-abilities=flying,protection from red
+rarity=U
 mana={2}{U}{U}
 type=Creature
 subtype=Bird Soldier
 power=2
 toughness=3
-rarity=U
+abilities=flying,protection from red
 [/card]
 [card]
-text=Flying     {1}{U}, Discard a card: Return Balshan Griffin to its owner's hand.
+text=Flying   {1}{U}, Discard a card: Return Balshan Griffin to its owner's hand.
 id=29820
 name=Balshan Griffin
-abilities=flying
 auto={1}{U}{S(*|myhand)}:moveTo(hand)
 rarity=U
-type=Creature
 mana={3}{U}{U}
-power=3
+type=Creature
 subtype=Griffin
+power=3
 toughness=2
+abilities=flying
 [/card]
 [card]
 text={2}{R}, Sacrifice Barbarian Lunatic: Barbarian Lunatic deals 2 damage to target creature.
 id=29757
 name=Barbarian Lunatic
+rarity=C
 mana={2}{R}
 type=Creature
 subtype=Human Barbarian
 auto={2}{R}{S}:damage:2 target(creature)
 power=2
 toughness=1
-rarity=C
 [/card]
 [card]
 text=Other creatures you control get +0/+1. 
 id=29688
 name=Blessed Orator
+rarity=U
 mana={3}{W}
-auto=lord(creature|myinplay) 0/1 other
+auto=lord(creature|myBattlefield) 0/1 other
 type=Creature
 subtype=Human Cleric
 power=1
 toughness=4
-rarity=U
 [/card]
 [card]
-text=Bog Wreckage comes into play tapped. Tap: Add {B} to your mana pool. Tap, Sacrifice Bog Wreckage: Add one mana of any color to your mana pool.
+text=Bog Wreckage enters the battlefield tapped.   {T}: Add {B} to your mana pool.   {T}, Sacrifice Bog Wreckage: Add one mana of any color to your mana pool.
 id=31763
 auto=tap
-auto={T}:Add{B}
-auto={T}{S}:Add{B}
-auto={T}{S}:Add{G}
-auto={T}{S}:Add{R}
-auto={T}{S}:Add{U}
-auto={T}{S}:Add{W}
+auto={T}:Add {B}
+auto={T}{S}:Add {B}
+auto={T}{S}:Add {G}
+auto={T}{S}:Add {R}
+auto={T}{S}:Add {U}
+auto={T}{S}:Add {W}
 name=Bog Wreckage
 type=Land
 rarity=C
 [/card]
 [card]
-text=Vigilance. Cantivore's power and toughness are each equal to the number of enchantment cards in all graveyards.
+text=Vigilance   Cantivore's power and toughness are each equal to the number of enchantment cards in all graveyards.
 id=29914
 name=Cantivore
-abilities=vigilance
+rarity=R
 mana={1}{W}{W}
 type=Creature
 subtype=Lhurgoyf
 auto=foreach(enchantment|graveyard) 1/1
 power=*
 toughness=*
-rarity=R
+abilities=vigilance
 [/card]
 [card]
-text=When Cartographer comes into play, you may return target land card from your graveyard to your hand.
+text=When Cartographer enters the battlefield, you may return target land card from your graveyard to your hand.
 id=29783
 name=Cartographer
 auto=may moveTo(myhand) target(land|mygraveyard)
 rarity=C
-type=Creature
 mana={2}{G}
-power=2
+type=Creature
 subtype=Human
+power=2
 toughness=2
 [/card]
 [card]
 text={U}{U}: Tap target creature without flying. 
 id=31870
 name=Cephalid Retainer
+rarity=R
 mana={2}{U}{U}
 type=Creature
 subtype=Cephalid
 auto={U}{U}:tap target(creature[-flying])
 power=2
 toughness=3
-rarity=R
 [/card]
 [card]
-text=Flying {2}{U}, Sacrifice a land: Draw a card. 
+text=Flying   {2}{U}, Sacrifice a land: Draw a card. 
 id=29710
 name=Cephalid Scout
-abilities=flying
+rarity=C
 mana={1}{U}
 type=Creature
 subtype=Cephalid Wizard
-auto={2}{U}{S(land|myinplay)}:Draw:1
+auto={2}{U}{S(land|myBattlefield)}:draw:1
 power=1
 toughness=1
-rarity=C
+abilities=flying
 [/card]
 [card]
-text=Flying. Cognivore's power and toughness are each equal to the number of instant cards in all graveyards. 
+text=Flying   Cognivore's power and toughness are each equal to the number of instant cards in all graveyards. 
 id=29931
 name=Cognivore
-abilities=flying
-auto=foreach(instant|graveyard) 1/1
+rarity=R
 mana={6}{U}{U}
 type=Creature
 subtype=Lhurgoyf
+auto=foreach(instant|graveyard) 1/1
 power=*
 toughness=*
-rarity=R
+abilities=flying
 [/card]
 [card]
 text=Draw three cards. 
 id=30655
 name=Concentrate
 auto=draw:3
+rarity=U
 mana={2}{U}{U}
 type=Sorcery 
-rarity=U
 [/card]
 [card]
-text=Sacrifice Crypt Creeper: Remove target card in a graveyard from the game. 
+text=Whenever a player discards a card, you may gain 1 life.
+auto=@movedTo(*|mygraveyard) from(myhand):may life:1 controller
+auto=@movedTo(*|opponentgraveyard) from(opponenthand):may life:1 controller
+id=31769
+name=Confessor
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+text=Sacrifice Crypt Creeper: Exile target card in a graveyard. 
 id=29840
 name=Crypt Creeper
+rarity=C
 mana={1}{B}
 type=Creature
 subtype=Zombie
-auto={S}:moveTo(ownerremovedfromgame) target(*|graveyard)
+auto={S}:moveTo(exile) target(*|graveyard)
 power=2
 toughness=1
-rarity=C
 [/card]
 [card]
-text={T} Add {1} to your mana pool. {5}{T}: Add {W}{U}{B}{R}{G} to your mana pool.
+text={T} Add {1} to your mana pool.   {5}{T}: Add {W}{U}{B}{R}{G} to your mana pool.
 id=30012
 name=Crystal Quarry
-auto={T}:add {1}
-auto={5}{T}: Add {W}{U}{B}{R}{G}
-type=Land
+auto={T}:Add {1}
+auto={5}{T}:Add {W}{U}{B}{R}{G}
 rarity=R
+type=Land
 [/card]
 [card]
 text={1}{T}: Add {U}{B} to your mana pool.
 id=29793
 name=Darkwater Catacombs
-auto={1}{T}: Add {U}{B}
-type=Land
+auto={1}{T}:Add {U}{B}
 rarity=R
+type=Land
 [/card]
 [card]
 text={2}, {T}, Sacrifice Darkwater Egg: Add {U}{B} to your mana pool. Draw a card.
-auto={2}{T}{S}:Add{U}{B} && Draw:1
+auto={2}{T}{S}:Add {U}{B} && Draw:1
 id=30749
 name=Darkwater Egg
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text={W}, Sacrifice Dedicated Martyr: You gain 3 life. 
 id=31771
 name=Dedicated Martyr
+rarity=C
 mana={W}
 auto={W}{S}:life:3
 type=Creature
 subtype=Cleric
 power=1
 toughness=1
-rarity=C
 [/card]
 [card]
 text=Tap all creatures without flying.
@@ -324,8 +338,8 @@ auto=tap all(creature[-flying])
 id=31816
 name=Deluge
 rarity=U
-type=Instant
 mana={2}{U}
+type=Instant
 [/card]
 [card]
 text=Destroy target artifact or land.
@@ -333,15 +347,15 @@ id=29867
 name=Demolish
 target=artifact,land
 auto=destroy
+rarity=U
 mana={3}{R}
 type=Sorcery
-rarity=U
 [/card]
 [card]
-text={T}: Add one colorless mana to your mana pool. {1}{T}: Untap target land.
+text={T}: Add {1} to your mana pool.   {1}{T}: Untap target land.
 id=30013
 name=Deserted Temple
-auto={T}:add {1}
+auto={T}:Add {1}
 auto={1}{T}:Untap target(land)
 type=Land
 rarity=R
@@ -353,54 +367,79 @@ auto=moveTo(myHand)
 id=29954
 name=Diabolic Tutor
 rarity=U
-type=Sorcery
 mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text={1}{G}, Sacrifice Diligent Farmhand: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.   If Diligent Farmhand is in a graveyard, effects from spells named Muscle Burst count it as a card named Muscle Burst.
+auto={1}{G}{S}:moveTo(myBattlefield) target(land[basic]|myLibrary) && tap
+id=29773
+name=Diligent Farmhand
+rarity=C
+mana={G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
 [/card]
 [card]
 text={G},{T}, Sacrifice Druid Lyrist: Destroy target enchantment.
 id=29778
 name=Druid Lyrist
+rarity=C
 mana={G}
-auto={G}{T}{S}:destroy target(enchantment)
 type=Creature
 subtype=Human Druid
+auto={G}{T}{S}:destroy target(enchantment)
 power=1
 toughness=1
-rarity=C
 [/card]
 [card]
 text=Flying 
 id=31807
 name=Dusk Imp
-abilities=flying
+rarity=C
 mana={2}{B}
 type=Creature
 subtype=Imp
 power=2
 toughness=1
-rarity=C
+abilities=flying
 [/card]
 [card]
 text=Mountainwalk
 id=29760
 name=Dwarven Grunt
-abilities=mountainwalk
+rarity=C
 mana={R}
 type=Creature
 subtype=Dwarf
 power=1
 toughness=1
-rarity=C
+abilities=mountainwalk
+[/card]
+[card]
+text=Each creature has protection from its colors.
+id=29918
+name=Earnest Fellowship
+auto=lord(creature[white]) protection from white
+auto=lord(creature[blue]) protection from blue
+auto=lord(creature[black]) protection from black
+auto=lord(creature[red]) protection from red
+auto=lord(creature[green]) protection from green
+rarity=R
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 text=Ember Beast can't attack or block alone.
 id=29752
 name=Ember Beast
 rarity=C
-type=Creature
 mana={2}{R}
-power=3
+type=Creature
 subtype=Beast
+power=3
 toughness=4
 auto=aslongas(creature[attacking]|myBattlefield) -cantattack
 auto=aslongas(creature[blocking]|myBattlefield) -cantblock
@@ -413,83 +452,84 @@ auto=moveTo(myGraveyard)
 id=30552
 name=Entomb
 rarity=R
-type=Instant
 mana={B}
+type=Instant
 [/card]
 [card]
-text=Escape Artist is unblockable. {U}, Discard a card from your hand: Return Escape Artist to its owner's hand. 
+text=Escape Artist is unblockable.   {U}, Discard a card from your hand: Return Escape Artist to its owner's hand. 
 id=31813
 name=Escape Artist
+rarity=C
+mana={1}{U}
 type=Creature
 subtype=Wizard
-abilities=unblockable
 auto={U}{s(*|myhand)}:moveTo(ownerhand)
-mana={1}{U}
 power=1
 toughness=1
-rarity=C
+abilities=unblockable
 [/card]
 [card]
-text=Destroy target white creature. It can't be regenerated. Draw a card. 
+text=Destroy target white creature. It can't be regenerated.   Draw a card. 
 id=30558
 name=Execute
+rarity=U
 mana={2}{B}
 target=Creature[white]
 auto=bury
 auto=draw:1
 type=Instant 
-rarity=U
 [/card]
 [card]
-text=Search target player's library for a card and remove that card from the game. Then that player shuffles his or her library.
+text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
 target=*|library
-auto=moveTo(removedFromGame)
+auto=moveTo(exile)
 id=29849
 name=Extract
 rarity=R
-type=Sorcery
 mana={U}
+type=Sorcery
 [/card]
 [card]
 text={2}{B}, Discard a card from your hand: Face of Fear gains fear until end of turn.
 id=31738
 name=Face of Fear
-auto={2}{B}{S(*|myhand)}:fear
+rarity=U
 mana={5}{B}
 type=Creature
 subtype=Horror
+auto={2}{B}{S(*|myhand)}:fear
 power=3
 toughness=4
-rarity=U
 [/card]
 [card]
 text=Flame Burst deals X damage to target creature or player, where X is 2 plus the number of cards named Flame Burst in all graveyards.
 target=creature,player
 auto=Damage:2
 auto=foreach(Flame Burst|graveyard) Damage:1
+auto=foreach(Pardic Firecat|graveyard) Damage:1
 id=29767
 name=Flame Burst
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
 text={B}, Discard a card from your hand: Fledgling Imp gains flying until end of turn. 
 id=31777
 name=Fledgling Imp
+rarity=C
 mana={2}{B}
 type=Creature
 subtype=Imp
 auto={B}{S(*|myhand)}:flying
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
 text={G}
 id=31625
 name=Forest
-auto={T}:add {G}
+auto={T}:Add {G}
 type=Basic Land
 subtype=Forest
 rarity=L
@@ -498,7 +538,7 @@ rarity=L
 text={G}
 id=31626
 name=Forest
-auto={T}:add {G}
+auto={T}:Add {G}
 type=Basic Land
 subtype=Forest
 rarity=L
@@ -507,7 +547,7 @@ rarity=L
 text={G} 
 id=31627
 name=Forest
-auto={T}:add {G} 
+auto={T}:Add {G} 
 type=Basic Land 
 subtype=Forest
 rarity=L
@@ -516,13 +556,13 @@ rarity=L
 text={G} 
 id=31628
 name=Forest
-auto={T}:add {G} 
+auto={T}:Add {G} 
 type=Basic Land 
 subtype=Forest
 rarity=L
 [/card]
 [card]
-text=Target blocking Creature gets +4/+4 until end of turn. Draw a card. 
+text=Target blocking Creature gets +4/+4 until end of turn.   Draw a card. 
 id=28755
 name=Gallantry
 target=Creature[blocking]
@@ -533,56 +573,56 @@ type=Instant
 rarity=U
 [/card]
 [card]
-text=When Gravedigger comes into play, you may return target creature card from your graveyard to your hand.
+text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
 id=29741
 name=Gravedigger
 auto=may moveTo(myhand) target(creature|mygraveyard)
 rarity=C
-type=Creature
 mana={3}{B}
-power=2
+type=Creature
 subtype=Zombie
+power=2
 toughness=2
 [/card]
 [card]
-text=When Ground Seal comes into play, draw a card. Cards in graveyards can't be the targets of spells or abilities.
+text=When Ground Seal enters the battlefield, draw a card.   Cards in graveyards can't be the targets of spells or abilities.
 id=29991
 name=Ground Seal
-mana={1}{G}
-type=Enchantment
 auto=lord(*|graveyard) shroud
 auto=draw:1
 rarity=R
+mana={1}{G}
+type=Enchantment
 [/card]
 [card]
 text=First strike
 id=29751
 name=Halberdier
-abilities=first strike
+rarity=C
 mana={3}{R}
 type=Creature
 subtype=Human Barbarian
 power=3
 toughness=1
-rarity=C
+abilities=first strike
 [/card]
 [card]
 text=Flying, protection from all colors
 id=31799
 name=Iridescent Angel
-abilities=flying,protection from black,protection from blue,protection from green,protection from red,protection from white
+rarity=R
 mana={5}{W}{U}
 type=Creature
 subtype=Angel
 power=4
 toughness=4
-rarity=R
+abilities=flying,protection from black,protection from blue,protection from green,protection from red,protection from white
 [/card]
 [card]
 text={U}
 id=31613
 name=Island
-auto={T}:add {U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 rarity=L
@@ -591,7 +631,7 @@ rarity=L
 text={U}
 id=31614
 name=Island
-auto={T}:add {U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 rarity=L
@@ -600,7 +640,7 @@ rarity=L
 text={U}
 id=31615
 name=Island
-auto={T}:add {U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 rarity=L
@@ -609,61 +649,61 @@ rarity=L
 text={U}
 id=31616
 name=Island
-auto={T}:add {U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 rarity=L
 [/card]
 [card]
-text=Haste. {T}: Kamahl, Pit Fighter deals 3 damage to target creature or player.
+text=Haste   {T}: Kamahl, Pit Fighter deals 3 damage to target creature or player.
 id=29963
 name=Kamahl, Pit Fighter
-abilities=legendary,haste
-auto={T}:damage:3 target(creature,player)
+rarity=R
 mana={4}{R}{R}
 type=Creature
 subtype=Human Barbarian
+auto={T}:damage:3 target(creature,player)
 power=6
 toughness=1
-rarity=R
+abilities=legendary,haste
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)  {G}, Discard a card: Krosan Archer gets +0/+2 until end of turn.
+text=Reach (This creature can block creatures with flying.)   {G}, Discard a card: Krosan Archer gets +0/+2 until end of turn.
 id=29780
 name=Krosan Archer
-abilities=reach
-auto={G}{S(*|myhand)}:0/2
 rarity=C
-type=Creature
 mana={3}{G}
-power=2
+type=Creature
 subtype=Centaur Archer
+auto={G}{S(*|myhand)}:0/2
+power=2
 toughness=3
+abilities=reach
 [/card]
 [card]
 text=Forestwalk
 id=29782
 name=Leaf Dancer
-abilities=forestwalk
+rarity=C
 mana={1}{G}{G}
 type=Creature
 subtype=Centaur
 power=2
 toughness=2
-rarity=C
+abilities=forestwalk
 [/card]
 [card]
-text=Flying. {1}{W}, Sacrifice Lieutenant Kirtar: Remove target attacking creature from the game. 
+text=Flying   {1}{W}, Sacrifice Lieutenant Kirtar: Exile target attacking creature. 
 id=31820
 name=Lieutenant Kirtar
-abilities=legendary,flying
+rarity=R
 mana={1}{W}{W}
 type=Creature
 subtype=Bird Soldier
-auto={1}{W}{S}:moveTo(ownerremovedfromgame) target(creature[attacking])
+auto={1}{W}{S}:moveTo(exile) target(creature[attacking])
 power=2
 toughness=2
-rarity=R
+abilities=legendary,flying
 [/card]
 [card]
 text=Target player gains 4 life, then gains 4 life for each card named Life Burst in each graveyard.
@@ -673,114 +713,114 @@ target=player
 auto=life:4
 auto=foreach(Life Burst|graveyard) life:4
 rarity=C
-type=Instant
 mana={1}{W}
+type=Instant
 [/card]
 [card]
 text={2}, Sacrifice Limestone Golem: Target player draws a card.
 id=29887
 name=Limestone Golem
 rarity=U
+mana={6}
 auto={2}{S}:draw:1 target(player)
 type=Artifact Creature
-mana={6}
-power=3
 subtype=Golem
+power=3
 toughness=4
 [/card]
 [card]
-text=Sacrifice an artifact: Lithatog gets +1/+1 until end of turn. Sacrifice a land: Lithatog gets +1/+1 until end of turn.
+text=Sacrifice an artifact: Lithatog gets +1/+1 until end of turn.   Sacrifice a land: Lithatog gets +1/+1 until end of turn.
 id=31770
 name=Lithatog
+rarity=U
 mana={1}{R}{G}
 type=Creature
 subtype=Atog
-auto={s(artifact|myinplay)}:1/1
-auto={s(land|myinplay)}:1/1
+auto={S(artifact|myBattlefield)}:1/1
+auto={S(land|myBattlefield)}:1/1
 power=1
 toughness=2
-rarity=U
 [/card]
 [card]
 text={R}, Sacrifice a land: Magma Vein deals 1 damage to each creature without flying.
 id=29859
 name=Magma Vein
-auto={R}{S(land|myinplay)}:damage:1 all(creature[-flying])
+auto={R}{S(land|myBattlefield)}:damage:1 all(creature[-flying])
 rarity=U
-type=Enchantment
 mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 text=Haste (This creature can attack the turn it comes under your control.) Magnivore's power and toughness are each equal to the number of sorcery cards in all graveyards.
 id=30550
 name=Magnivore
-abilities=haste
-auto=foreach(sorcery|graveyard) 1/1
+rarity=R
 mana={2}{R}{R}
 type=Creature
 subtype=Lhurgoyf
+auto=foreach(sorcery|graveyard) 1/1
 power=*
 toughness=*
-rarity=R
+abilities=haste
 [/card]
 [card]
 text={1}{B}{B}, Sacrifice a creature: Return target creature card from your graveyard to your hand.
+auto={1}{B}{B}{S(creature|myBattlefield)}:moveTo(myhand) target(creature|mygraveyard)
 id=30560
 name=Malevolent Awakening
-mana={1}{B}{B}
-auto={1}{B}{B}{S(creature|myinplay)}:moveTo(myhand) target(creature|mygraveyard)
-type=Enchantment
 rarity=U
+mana={1}{B}{B}
+type=Enchantment
 [/card]
 [card]
 text={T}, Put the top card of your library into your graveyard: Add {1} to your mana pool.
 id=31830
 name=Millikin
-auto={T}:add:{1} && deplete:1 controller
 rarity=U
-type=Artifact Creature
 mana={2}
-power=0
+type=Artifact Creature
 subtype=Construct
+auto={T}:Add:{1} && deplete:1 controller
+power=0
 toughness=1
 [/card]
 [card]
-text=When Mindslicer is put into a graveyard from play, each player discards his or her hand.
+text=When Mindslicer is put into a graveyard the battlefield, each player discards his or her hand.
 id=29949
 name=Mindslicer
-auto=@movedto(this|graveyard) from(inplay):moveto(graveyard) all(*|myhand)
-auto=@movedto(this|graveyard) from(inplay):moveto(graveyard) all(*|opponenthand)
+auto=@movedto(this|graveyard) from(battlefield):moveto(graveyard) all(*|myhand)
+auto=@movedto(this|graveyard) from(battlefield):moveto(graveyard) all(*|opponenthand)
 rarity=R
-type=Creature
 mana={2}{B}{B}
-power=4
+type=Creature
 subtype=Horror
+power=4
 toughness=3
 [/card]
 [card]
-text=When Minotaur Explorer comes into play, sacrifice it unless you discard a card at random.
+text=When Minotaur Explorer enters the battlefield, sacrifice it unless you discard a card at random.
 id=31786
 auto=discard:1
 name=Minotaur Explorer
 rarity=U
-type=Creature
 mana={1}{R}
-power=3
+type=Creature
 subtype=Minotaur Scout
+power=3
 toughness=3
 [/card]
 [card]
 text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards. {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 id=29946
 name=Mortivore
-auto=foreach(creature|graveyard) 1/1
-auto={B}:regenerate
+rarity=R
 mana={2}{B}{B}
 type=Creature
 subtype=Lhurgoyf
+auto=foreach(creature|graveyard) 1/1
+auto={B}:regenerate
 power=*
 toughness=*
-rarity=R
 [/card]
 [card]
 text={2}, {T}, Sacrifice Mossfire Egg: Add {R}{G} to your mana pool. Draw a card.
@@ -795,15 +835,15 @@ mana={1}
 text={1}{T}: Add {R}{G} to your mana pool.
 id=29795
 name=Mossfire Valley
-auto={1}{T}: Add {R}{G}
-type=Land
+auto={1}{T}:Add {R}{G}
 rarity=R
+type=Land
 [/card]
 [card]
 text={R}
 id=31621
 name=Mountain
-auto={T}:add {R}
+auto={T}:Add {R}
 type=Basic Land
 subtype=Mountain
 rarity=L
@@ -812,7 +852,7 @@ rarity=L
 text={R}
 id=31622
 name=Mountain
-auto={T}:add {R}
+auto={T}:Add {R}
 type=Basic Land
 subtype=Mountain
 rarity=L
@@ -821,7 +861,7 @@ rarity=L
 text={R}
 id=31623
 name=Mountain
-auto={T}:add {R}
+auto={T}:Add {R}
 type=Basic Land
 subtype=Mountain
 rarity=L
@@ -830,7 +870,7 @@ rarity=L
 text={R}
 id=31624
 name=Mountain
-auto={T}:add {R}
+auto={T}:Add {R}
 type=Basic Land
 subtype=Mountain
 rarity=L
@@ -840,90 +880,103 @@ text=Target creature gets +X/+X until end of turn, where X is 3 plus the number 
 target=creature
 auto=3/3
 auto=foreach(Muscle Burst|graveyard) 1/1
+auto=foreach(Diligent Farmhand|graveyard) 1/1
 id=29788
 name=Muscle Burst
 rarity=C
-type=Instant
 mana={1}{G}
+type=Instant
 [/card]
 [card]
 text={G}{T}: Target creature gets +2/+2 until end of turn.
 id=29771
-name=Nantuko Disciple
-auto={G}{T}:2/2 target(creature) 
+name=Nantuko Disciple 
+rarity=C
 mana={3}{G}
 type=Creature
 subtype=Insect Druid
+auto={G}{T}:2/2 target(creature)
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
 text={T}: Add {1}{G} to your mana pool.
 id=29870
 name=Nantuko Elder
-auto={T}: add {1}{G}
+rarity=U
 mana={2}{G}
 type=Creature
 subtype=Insect Druid
+auto={T}:Add {1}{G}
 power=1
 toughness=2
-rarity=U
 [/card]
 [card]
 text=Sacrifice a land: Target creature gains haste until end of turn.
 id=29971
 name=Need for Speed
-mana={R}
-auto={S(land|myinplay)}:haste target(creature)
-type=Enchantment
 rarity=R
+mana={R}
+auto={S(land|myBattlefield)}:haste target(creature)
+type=Enchantment
 [/card]
 [card]
 text=Discard a card from your hand, Sacrifice Overeager Apprentice: Add {B}{B}{B} to your mana pool.
 id=29737
 name=Overeager Apprentice
+rarity=C
 mana={2}{B}
 type=Creature
 subtype=Human Minion
-auto={S}{S(*|myhand)}:add{B}{B}{B}
+auto={S}{S(*|myhand)}:Add {B}{B}{B}
 power=1
 toughness=2
-rarity=C
 [/card]
 [card]
 text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
 id=29996
 name=Overrun
-auto=lord(creature|myinplay) trample
-auto=lord(creature|myinplay) 3/3
+auto=lord(creature|myBattlefield) trample
+auto=lord(creature|myBattlefield) 3/3
 rarity=U
-type=Sorcery
 mana={2}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+text=Haste   If Pardic Firecat is in a graveyard, effects from spells named Flame Burst count it as a card named Flame Burst.
+id=29750
+name=Pardic Firecat
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Elemental Cat
+power=2
+toughness=3
+abilities=haste
 [/card]
 [card]
 text=Discard a card from your hand: Regenerate Patchwork Gnomes.
 id=31832
 name=Patchwork Gnomes
+rarity=U
 mana={3}
 type=Artifact Creature
-auto={s(*|myhand)}:Regenerate
 subtype=Gnome
+auto={S(*|myhand)}:regenerate
 power=2
 toughness=1
-rarity=U
 [/card]
 [card]
 text=Discard a card from your hand: Patrol Hound gains first strike until end of turn. 
 id=30654
 name=Patrol Hound
+rarity=C
 mana={1}{W}
 type=Creature
 subtype=Hound
 auto={S(*|myhand)}:first strike
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
 text=You control enchanted creature. 
@@ -931,38 +984,38 @@ id=29829
 alias=1194
 name=Persuasion
 target=Creature
+rarity=R
 mana={3}{U}{U}
 type=Enchantment
 subtype=Aura
-rarity=R
 [/card]
 [card]
-text=Tap: Add one colorless mana to your mana pool. Tap, Sacrifice Petrified Field: Return target land card from your graveyard to your hand.
+text=Tap: Add {1} mana to your mana pool.   {T}, Sacrifice Petrified Field: Return target land card from your graveyard to your hand.
 id=30014
-auto={T}:Add{1}
+auto={T}:Add {1}
 auto={T}{S}:moveTo(myhand) target(land|mygraveyard)
 name=Petrified Field
-type=Land
 rarity=R
+type=Land
 [/card]
 [card]
-text=Sacrifice an enchantment: Phantatog gets +1/+1 until end of turn. Discard a card from your hand: Phantatog gets +1/+1 until end of turn.
+text=Sacrifice an enchantment: Phantatog gets +1/+1 until end of turn.   Discard a card from your hand: Phantatog gets +1/+1 until end of turn.
 id=31792
 name=Phantatog
+rarity=U
 mana={1}{W}{U}
 type=Creature
 subtype=Atog
-auto={s(enchantment|myinplay)}:1/1
-auto={s(*|myhand)}:1/1
+auto={S(enchantment|myBattlefield)}:1/1
+auto={S(*|myhand)}:1/1
 power=1
 toughness=2
-rarity=U
 [/card]
 [card]
 text={W}
 id=31630
 name=Plains
-auto={T}:add {W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 rarity=L
@@ -971,7 +1024,7 @@ rarity=L
 text={W}
 id=31612
 name=Plains
-auto={T}:add {W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 rarity=L
@@ -980,7 +1033,7 @@ rarity=L
 text={W}
 id=31629
 name=Plains
-auto={T}:add {W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 rarity=L
@@ -989,7 +1042,7 @@ rarity=L
 text={W}
 id=31631
 name=Plains
-auto={T}:add {W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 rarity=L
@@ -1000,28 +1053,29 @@ id=31812
 name=Primal Frenzy
 target=Creature
 auto=trample
+rarity=C
 mana={G}
 type=Enchantment
 subtype=Aura
-rarity=C
 [/card]
 [card]
-text=Flying. Discard a card from your hand: Pulsating Illusion gets +4/+4 until end of turn. Play this ability only once each turn. 
+text=Flying   Discard a card from your hand: Pulsating Illusion gets +4/+4 until end of turn. Play this ability only once each turn. 
 id=31611
 name=Pulsating Illusion
-abilities=flying
-auto={S(*|myhand)}:4/4 limit:1
+rarity=U
 mana={4}{U}
 type=Creature
 subtype=Illusion
+auto={S(*|myhand)}:4/4 limit:1
 power=0
 toughness=1
-rarity=U
+abilities=flying
 [/card]
 [card]
 text={U},{T}: Tap or untap target creature. 
 id=29819
 name=Puppeteer
+rarity=U
 mana={2}{U}
 type=Creature
 subtype=Human Wizard
@@ -1029,7 +1083,6 @@ auto={U}{T}:tap target(creature)
 auto={U}{T}:untap target(creature)
 power=1
 toughness=2
-rarity=U
 [/card]
 [card]
 text=Whenever Rabid Elephant becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
@@ -1037,25 +1090,25 @@ id=29781
 auto=rampage(2/2,0)
 name=Rabid Elephant
 rarity=C
-type=Creature
 mana={4}{G}
-power=3
+type=Creature
 subtype=Elephant
+power=3
 toughness=4
 [/card]
 [card]
-text=Ravaged Highlands comes into play tapped. Tap: Add R to your mana pool. Tap, Sacrifice Ravaged Highlands: Add one mana of any color to your mana pool.
+text=Ravaged Highlands enters the battlefield tapped.   {T}: Add {R} to your mana pool.   {T}, Sacrifice Ravaged Highlands: Add one mana of any color to your mana pool.
 id=31764
 auto=tap
-auto={T}:add{R}
-auto={T}{S}:Add{B}
-auto={T}{S}:Add{G}
-auto={T}{S}:Add{R}
-auto={T}{S}:Add{U}
-auto={T}{S}:Add{W}
+auto={T}:Add {R}
+auto={T}{S}:Add {B}
+auto={T}{S}:Add {G}
+auto={T}{S}:Add {R}
+auto={T}{S}:Add {U}
+auto={T}{S}:Add {W}
 name=Ravaged Highlands
-type=Land
 rarity=C
+type=Land
 [/card]
 [card]
 text=Regenerate target creature. Draw a card.
@@ -1064,9 +1117,9 @@ name=Refresh
 target=creature
 auto=regenerate
 auto=draw:1
+rarity=C
 mana={2}{G}
 type=Instant
-rarity=C
 [/card]
 [card]
 text=Put target creature on top of its owner's library.
@@ -1075,191 +1128,191 @@ auto=moveTo(ownerLibrary)
 id=29723
 name=Repel
 rarity=C
-type=Instant
 mana={3}{U}
+type=Instant
 [/card]
 [card]
-text=First strike     Discard a card: Resilient Wanderer gains protection from the color of your choice until end of turn.
+text=First strike   Discard a card: Resilient Wanderer gains protection from the color of your choice until end of turn.
 id=29804
 name=Resilient Wanderer
-abilities=first strike
+rarity=U
+mana={2}{W}{W}
+type=Creature
+subtype=Human Nomad
 auto={S(*|myhand)}:protection from black
 auto={S(*|myhand)}:protection from green
 auto={S(*|myhand)}:protection from red
 auto={S(*|myhand)}:protection from blue
 auto={S(*|myhand)}:protection from white
-rarity=U
-type=Creature
-mana={2}{W}{W}
 power=2
-subtype=Human Nomad
 toughness=3
+abilities=first strike
 [/card]
 [card]
-text=When Scrivener comes into play, you may return target instant card from your graveyard to your hand.
+text=When Scrivener enters the battlefield, you may return target instant card from your graveyard to your hand.
 id=29712
 name=Scrivener
 auto=may moveTo(myhand) target(instant|mygraveyard)
 rarity=C
-type=Creature
 mana={4}{U}
-power=2
+type=Creature
 subtype=Human Wizard
+power=2
 toughness=2
 [/card]
 [card]
-text=Seafloor Debris comes into play tapped. Tap: Add U to your mana pool. Tap, Sacrifice Seafloor Debris: Add one mana of any color to your mana pool.
+text=Seafloor Debris enters the battlefield tapped.   {T}: Add U to your mana pool.   {T}, Sacrifice Seafloor Debris: Add one mana of any color to your mana pool.
 id=31762
 auto=tap
-auto={T}:add{U}
-auto={T}{S}:Add{B}
-auto={T}{S}:Add{G}
-auto={T}{S}:Add{R}
-auto={T}{S}:Add{U}
-auto={T}{S}:Add{W}
+auto={T}:Add {U}
+auto={T}{S}:Add {B}
+auto={T}{S}:Add {G}
+auto={T}{S}:Add {R}
+auto={T}{S}:Add {U}
+auto={T}{S}:Add {W}
 name=Seafloor Debris
-type=Land
 rarity=C
+type=Land
 [/card]
 [card]
-text=Remove target attacking creature from the game. Draw a card. 
+text=Exile target attacking creature. Draw a card. 
 id=29706
 name=Second Thoughts
+rarity=C
 mana={4}{W}
 target=creature[attacking]
 auto=moveTo(exile)
 auto=draw:1
 type=Instant 
-rarity=C
 [/card]
 [card]
 text={2}, {T}, Sacrifice Shadowblood Egg: Add {B}{R} to your mana pool. Draw a card.
-auto={2}{T}{S}:Add{B}{R} && draw:1
+auto={2}{T}{S}:Add {B}{R} && draw:1
 id=30553
 name=Shadowblood Egg
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text={1}{T}: Add {B}{R} to your mana pool.
 id=29794
 name=Shadowblood Ridge
-auto={1}{T}: Add {B}{R}
-type=Land
+auto={1}{T}:Add {B}{R}
 rarity=R
+type=Land
 [/card]
 [card]
 text={2}, {T}, Sacrifice Skycloud Egg: Add {W}{U} to your mana pool. Draw a card.
-auto={2}{T}{S}:Add{W}{U} && draw:1
+auto={2}{T}{S}:Add {W}{U} && draw:1
 id=29892
 name=Skycloud Egg
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text={1}{T}: Add {W}{U} to your mana pool.
 id=29792
 name=Skycloud Expanse
-auto={1}{T}: Add {W}{U}
-type=Land
+auto={1}{T}:Add {W}{U}
 rarity=R
+type=Land
 [/card]
 [card]
-text=Skyshooter may block as though it has flying. {T}, Sacrifice Skyshooter: Destroy target attacking or blocking Creature with flying.
+text=Skyshooter may block as though it has flying.   {T}, Sacrifice Skyshooter: Destroy target attacking or blocking creature with flying.
+auto={T}{S}:destroy target(creature[flying;attacking;blocking])
 id=30563
 name=Skyshooter
+rarity=U
 mana={1}{G}
 type=Creature
 subtype=Centaur Archer
 power=1
 toughness=2
 abilities=reach
-auto={T}{S}:destroy target(creature[flying;attacking;blocking])
-rarity=U
 [/card]
 [card]
-text=Flying     Whenever a creature with flying is put into a graveyard from play, put a +1/+1 counter on Soulcatcher.
-abilities=flying
+text=Flying   Whenever a creature with flying is put into a graveyard from the battlefield, put a +1/+1 counter on Soulcatcher.
 auto=@movedTo(creature[flying]|graveyard) from(battlefield):counter(1/1)
 id=31865
 name=Soulcatcher
 rarity=U
-type=Creature
 mana={1}{W}
-power=1
+type=Creature
 subtype=Bird Soldier
+power=1
 toughness=1
+abilities=flying
 [/card]
 [card]
-text=Until end of turn, whenever target creature deals damage, you gain that much life.  Draw a card. 
+text=Until end of turn, whenever target creature deals damage, you gain that much life. Draw a card. 
 id=29807
 name=Spiritualize
 target=creature
 auto=lifelink
 auto=draw:1
+rarity=U
 mana={2}{W}
 type=Instant 
-rarity=U
 [/card]
 [card]
-text=Squirrel Mob gets +1/+1 for each other Squirrel in play.
+text=Squirrel Mob gets +1/+1 for each other Squirrel on the battlefield.
 id=29979
 name=Squirrel Mob
+rarity=R
 mana={1}{G}{G}
 type=Creature
 subtype=Squirrel
-auto=foreach(Squirrel|inplay) 1/1
+auto=foreach(squirrel|battlefield) 1/1 other 
 power=1
 toughness=1
-rarity=R
 [/card]
 [card]
-text=Flying. {1}{B}, Discard a card from your hand: Stalking Bloodsucker gets +2/+2 until end of turn.
+text=Flying   {1}{B}, Discard a card from your hand: Stalking Bloodsucker gets +2/+2 until end of turn.
 id=29839
 name=Stalking Bloodsucker
-abilities=flying
+rarity=R
 mana={4}{B}{B}
 type=Creature
 subtype=Vampire
 auto={1}{B}{S(*|myhand)}:2/2
 power=4
 toughness=4
-rarity=R
+abilities=flying
 [/card]
 [card]
-text={3},{T}: Remove target card in a graveyard from the game.   {1}, Sacrifice Steamclaw: Remove target card in a graveyard from the game.
+text={3},{T}: Exile target card in a graveyard.   {1}, Sacrifice Steamclaw: Exile target card in a graveyard.
 id=29897
 name=Steamclaw
-mana={2}
-auto={3}{T}:moveTo(ownerremovedfromgame) target(*|graveyard)
-auto={1}{S}:moveTo(ownerremovedfromgame) target(*|graveyard)
-type=Artifact
 rarity=U
+mana={2}
+auto={3}{T}:moveTo(exile) target(*|graveyard)
+auto={1}{S}:moveTo(exile) target(*|graveyard)
+type=Artifact
 [/card]
 [card]
 text={2}, {T}, Sacrifice Sungrass Egg: Add {G}{W} to your mana pool. Draw a card.
-auto={2}{T}{S}:add{G}{W} && draw:1
+auto={2}{T}{S}:Add{G}{W} && draw:1
 id=30750
 name=Sungrass Egg
 rarity=U
-type=Artifact
 mana={1}
+type=Artifact
 [/card]
 [card]
 text={1}{T}: Add {G}{W} to your mana pool.
 id=29796
 name=Sungrass Prairie
-auto={1}{T}: Add {G}{W}
-type=Land
+auto={1}{T}:Add {G}{W}
 rarity=R
+type=Land
 [/card]
 [card]
 text={B}
 id=31617
 name=Swamp
-auto={T}:add {B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 rarity=L
@@ -1268,7 +1321,7 @@ rarity=L
 text={B}
 id=31618
 name=Swamp
-auto={T}:add {B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 rarity=L
@@ -1277,7 +1330,7 @@ rarity=L
 text={B}
 id=31619
 name=Swamp
-auto={T}:add {B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 rarity=L
@@ -1286,75 +1339,75 @@ rarity=L
 text={B}
 id=31620
 name=Swamp
-auto={T}:add {B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 rarity=L
 [/card]
 [card]
-text=Tap: Add one colorless mana to your mana pool. Tap: Add one mana of any color to your mana pool. Tarnished Citadel deals 3 damage to you.
+text={T}: Add {1} mana to your mana pool.   {T}: Add one mana of any color to your mana pool. Tarnished Citadel deals 3 damage to you.
 id=30015
-auto={T}:Add{1}
-auto={T}:Add{B} && Damage 3 controller
-auto={T}:Add{G} && Damage 3 controller
-auto={T}:Add{R} && Damage 3 controller
-auto={T}:Add{U} && Damage 3 controller
-auto={T}:Add{W} && Damage 3 controller
+auto={T}:Add {1}
+auto={T}:Add {B} && Damage:3 controller
+auto={T}:Add {G} && Damage:3 controller
+auto={T}:Add {R} && Damage:3 controller
+auto={T}:Add {U} && Damage:3 controller
+auto={T}:Add {W} && Damage:3 controller
 name=Tarnished Citadel
-type=Land
 rarity=R
+type=Land
 [/card]
 [card]
 text=Trample Terravore's power and toughness are each equal to the number of land cards in all graveyards.
 id=29982
 name=Terravore
-abilities=trample
+rarity=R
 mana={1}{G}{G}
 type=Creature
 subtype=Lhurgoyf
 auto=foreach(land|graveyard) 1/1
 power=*
 toughness=*
-rarity=R
+abilities=trample
 [/card]
 [card]
-text=Sacrifice a land: Thaumatog gets +1/+1 until end of turn. Sacrifice an enchantment: Thaumatog gets +1/+1 until end of turn.
+text=Sacrifice a land: Thaumatog gets +1/+1 until end of turn.   Sacrifice an enchantment: Thaumatog gets +1/+1 until end of turn.
 id=31835
 name=Thaumatog
+rarity=U
 mana={1}{G}{W}
 type=Creature
 subtype=Atog
-auto={s(land|myinplay)}:1/1
-auto={s(enchantment|myinplay)}:1/1
+auto={S(land|myBattlefield)}:1/1
+auto={S(enchantment|myBattlefield)}:1/1
 power=1
 toughness=2
-rarity=U
 [/card]
 [card]
-text=Timberland Ruins comes into play tapped. Tap: Add G to your mana pool. Tap, Sacrifice Timberland Ruins: Add one mana of any color to your mana pool.
+text=Timberland Ruins enters the battlefield tapped.   {T}: Add {G} to your mana pool.   {T}, Sacrifice Timberland Ruins: Add one mana of any color to your mana pool.
 id=31765
 auto=tap
-auto={T}:Add{G}
-auto={T}{S}:Add{B}
-auto={T}{S}:Add{G}
-auto={T}{S}:Add{R}
-auto={T}{S}:Add{U}
-auto={T}{S}:Add{W}
+auto={T}:Add {G}
+auto={T}{S}:Add {B}
+auto={T}{S}:Add {G}
+auto={T}{S}:Add {R}
+auto={T}{S}:Add {U}
+auto={T}{S}:Add {W}
 name=Timberland Ruins
-type=Land
 rarity=C
+type=Land
 [/card]
 [card]
 text=Discard a card from your hand: Tireless Tribe gets +0/+4 until end of turn. 
 id=29695
 name=Tireless Tribe
+rarity=C
 mana={W}
 type=Creature
-auto={s(*|myhand)}:0/4
+auto={S(*|myhand)}:0/4
 subtype=Human Nomad
 power=1
 toughness=1
-rarity=C
 [/card]
 [card]
 text=Target creature is unblockable this turn. Draw a card. 
@@ -1363,9 +1416,9 @@ name=Touch of Invisibility
 target=Creature
 auto=unblockable
 auto=draw:1
+rarity=C
 mana={3}{U}
 type=Sorcery 
-rarity=C
 [/card]
 [card]
 text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
@@ -1374,71 +1427,70 @@ name=Traumatize
 target=player
 alias=129774
 rarity=R
-type=Sorcery
 mana={3}{U}{U}
+type=Sorcery
 [/card]
 [card]
 text=Flying, protection from green 
 id=31736
 name=Treetop Sentinel
-abilities=flying,protection from green
+rarity=U
 mana={2}{U}{U}
 type=Creature
 subtype=Bird Soldier
 power=2
 toughness=3
-rarity=U
+abilities=flying,protection from green
 [/card]
 [card]
 text=Return all permanents to their owners' hands.
 id=31852
 name=Upheaval
-auto=moveTo(ownerhand) all(*|inplay)
+auto=moveTo(ownerhand) all(*|battlefield)
 rarity=R
-type=Sorcery
 mana={4}{U}{U}
+type=Sorcery
 [/card]
 [card]
-text=Swampwalk {B}: Whispering Shade gets +1/+1 until end of turn
+text=Swampwalk   {B}: Whispering Shade gets +1/+1 until end of turn
 id=29734
 name=Whispering Shade
-abilities=swampwalk
-auto={B}:1/1
+rarity=C
 mana={3}{B}
 type=Creature
 subtype=Shade
+auto={B}:1/1
 power=1
 toughness=1
-rarity=C
+abilities=swampwalk
 [/card]
 [card]
-text=
 id=29772
 name=Woodland Druid
+rarity=C
 mana={G}
 type=Creature
 subtype=Human Druid
 power=1
 toughness=2
-rarity=C
 [/card]
 [card]
 text=You draw two cards, then each other player draws a card.
 id=31779
 name=Words of Wisdom
-auto=draw:2
+auto=draw:2 controller
 auto=draw:1 opponent
 rarity=C
-type=Instant
 mana={1}{U}
+type=Instant
 [/card]
 [card]
-text=Return target creature card from your graveyard to play.
+text=Return target creature card from your graveyard to the battlefield.
 id=29847
 name=Zombify
 target=creature|mygraveyard
-auto=moveTo(myinplay)
+auto=moveTo(myBattlefield)
+rarity=U
 mana={3}{B}
 type=Sorcery
-rarity=U
 [/card]

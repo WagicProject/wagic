@@ -447,17 +447,6 @@ type=Instant
 mana={B}
 [/card]
 [card]
-text=Whenever a player discards a card, you may gain 1 life.
-id=31769
-name=Confessor
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Human Cleric
-toughness=1
-[/card]
-[card]
 text={G}, Discard a card: Crashing Centaur gains trample until end of turn.     Threshold - As long as seven or more cards are in your graveyard, Crashing Centaur gets +2/+2 and has shroud. (It can't be the target of spells or abilities.)
 id=29878
 name=Crashing Centaur
@@ -555,18 +544,6 @@ power=1
 subtype=Human Cleric
 toughness=2
 [/card]
-
-[card]
-text={1}{G}, Sacrifice Diligent Farmhand: Search your library for a basic land card and put that card into play tapped. Then shuffle your library.     If Diligent Farmhand is in a graveyard, effects from spells named Muscle Burst count it as a card named Muscle Burst.
-id=29773
-name=Diligent Farmhand
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Human Druid
-toughness=1
-[/card]
 [card]
 text={B}, Discard a card: Regenerate Dirty Wererat.     Threshold - As long as seven or more cards are in your graveyard, Dirty Wererat gets +2/+2 and can't block.
 id=29729
@@ -660,14 +637,6 @@ subtype=Dwarf Berserker
 toughness=3
 [/card]
 [card]
-text=Each creature has protection from its colors.
-id=29918
-name=Earnest Fellowship
-rarity=R
-type=Enchantment
-mana={1}{W}
-[/card]
-[card]
 text=Destroy target land.       Flashback {5}{R}{R} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=29769
 name=Earth Rift
@@ -683,7 +652,6 @@ rarity=C
 type=Instant
 mana={2}{G}{G}
 [/card]
-
 [card]
 text=Prevent the next 4 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.       Flashback {1}{W} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=29703
@@ -700,7 +668,6 @@ rarity=U
 type=Instant
 mana={R}
 [/card]
-
 [card]
 text=Target player sacrifices a land.     Threshold - All players sacrifice all lands instead if seven or more cards are in your graveyard.
 id=30547
@@ -709,7 +676,6 @@ rarity=R
 type=Sorcery
 mana={4}{R}
 [/card]
-
 [card]
 text={1}{B}, Sacrifice Famished Ghoul: Remove up to two target cards in a single graveyard from the game.
 id=29736
@@ -748,7 +714,6 @@ rarity=C
 type=Sorcery
 mana={R}
 [/card]
-
 [card]
 text={R}, Discard a card at random: Frenetic Ogre gets +3/+0 until end of turn.
 id=29855
@@ -1101,7 +1066,6 @@ rarity=C
 type=Sorcery
 mana={1}{B}
 [/card]
-
 [card]
 text=Target player removes all land cards in his or her graveyard from the game.
 id=31740
@@ -1110,7 +1074,6 @@ rarity=R
 type=Instant
 mana={2}{R}
 [/card]
-
 [card]
 text=Protection from black and from red     Threshold - Mystic Crusader gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
 id=29802
@@ -1273,17 +1236,6 @@ mana={2}{B}{B}
 power=1
 subtype=Human Minion
 toughness=1
-[/card]
-[card]
-text=Haste     If Pardic Firecat is in a graveyard, effects from spells named Flame Burst count it as a card named Flame Burst.
-id=29750
-name=Pardic Firecat
-rarity=C
-type=Creature
-mana={3}{R}
-power=2
-subtype=Elemental Cat
-toughness=3
 [/card]
 [card]
 text=Sacrifice Pardic Miner: Target player can't play lands this turn.
