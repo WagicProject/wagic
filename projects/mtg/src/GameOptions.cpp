@@ -414,7 +414,8 @@ int GameOptions::save(){
       //Save it.
       save_option(&file, it->first, name, &it->second);
     }
-      file.close();
+    
+    file.close();
   }
   return 1;
 }
@@ -430,13 +431,11 @@ GameSettings options;
 
 GameSettings::GameSettings()
 {
-  //Load global options
-  globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
-
-  //reloadProfile should be called for the rest.
+  globalOptions = NULL;
   theGame = NULL;
   profileOptions = NULL;
   themeOptions = NULL;
+  //reloadProfile should be before using options.
 }
 
 GameSettings::~GameSettings(){
@@ -551,6 +550,9 @@ void GameSettings::reloadProfile(bool images){
 
 void GameSettings::checkProfile(){
     char buf[512];
+
+    if(!globalOptions)
+      globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
     //If it doesn't exist, load current profile.
     if(!profileOptions)
