@@ -192,7 +192,7 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
-text=All Sliver creatures have haste. All Slivers have "{1}, Sacrifice this permanent: Target Sliver creature gets +2/+2 until end of turn."
+text=All Sliver creatures have haste.   All Slivers have "{1}, Sacrifice this permanent: Target Sliver creature gets +2/+2 until end of turn."
 id=109727
 name=Firewake Sliver
 rarity=U
@@ -203,6 +203,16 @@ auto=lord(sliver) haste
 auto=lord(sliver) {1}{S}:2/2 target(sliver)
 power=1
 toughness=1
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.   When Flagstones of Trokair is put into a graveyard from the battlefield, you may search your library for a Plains card and put it into onto the battlefield tapped. If you do, shuffle your library.
+id=116733
+name=Flagstones of Trokair
+type=Land
+rarity=R
+auto={T}:Add {W}
+auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myBattlefield) target(plains|mylibrary) && tap
+abilities=legendary
 [/card]
 [card]
 id=118906
@@ -269,7 +279,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature {R}: Enchanted creature gets +1/+0 until end of turn.   {R}: Return Ghitu Firebreathing to its owner's hand.
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   {R}: Enchanted creature gets +1/+0 until end of turn.   {R}: Return Ghitu Firebreathing to its owner's hand.
 id=108838
 target=creature
 name=Ghitu Firebreathing
@@ -379,7 +389,7 @@ toughness=5
 abilities=vigilance
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.  {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep onto the battlefield.
+text={T}: Add {1} to your mana pool.   {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep onto the battlefield.
 id=113553
 auto={T}:Add {1} 
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
@@ -389,7 +399,7 @@ type=Land
 abilities=legendary
 [/card]
 [card]
-text=Magus of the Disk enters the battlefield tapped. {1}, {T}: Destroy all artifacts, creatures, and enchantments.
+text=Magus of the Disk enters the battlefield tapped.   {1}, {T}: Destroy all artifacts, creatures, and enchantments.
 id=126298
 name=Magus of the Disk
 rarity=R
@@ -469,7 +479,7 @@ rarity=C
 mana={2}{G}{G}
 type=Creature
 subtype=Spider
-auto=@movedTo(this|graveyard) token(Spider,Creature spider,2/4,reach black)
+auto=@movedTo(this|graveyard):token(Spider,Creature spider,2/4,reach black)
 power=2
 toughness=4
 [/card]
@@ -634,7 +644,7 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Flying. Other creatures you control with flying get +0/+1. {T}: Other creatures you control with flying get +1/+0 until end of turn.
+text=Flying. Other creatures you control with flying get +0/+1.   {T}: Other creatures you control with flying get +1/+0 until end of turn.
 id=116386
 name=Sprite Noble
 rarity=R
@@ -793,6 +803,7 @@ rarity=C
 [/card]
 [card]
 text=Flying   {U}, {T}, Discard a card: Return target permanent you control to its owner's hand.
+auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(*|myBattlefield)
 id=108907
 name=Tolarian Sentinel
 rarity=C
@@ -801,7 +812,6 @@ type=Creature
 subtype=Human Spellshaper
 power=1
 toughness=3
-auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(*|myBattlefield)
 abilities=flying
 [/card]
 [card]

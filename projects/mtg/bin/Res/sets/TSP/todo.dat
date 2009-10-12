@@ -601,19 +601,6 @@ text=Echo {5}{R} (At the beginning of your upkeep, if this came under your contr
 rarity=U
 [/card]
 [card]
-#####
-#####REMOVED, because "@movedTo(this|graveyard):...target..."  does not work for now!!! (0.8.1) 
-#####
-text={T}: Add {W} to your mana pool. When Flagstones of Trokair is put into a graveyard from play, you may search your library for a Plains card and put it into play tapped. If you do, shuffle your library.
-id=116733
-name=Flagstones of Trokair
-type=Land
-rarity=R
-auto={T}:Add {W}
-auto=@movedTo(this|graveyard):may moveTo(myBattlefield) target(plains|mylibrary) && tap
-abilities=legendary
-[/card]
-[card]
 id=108870
 name=Flamecore Elemental
 mana={2}{R}{R}
