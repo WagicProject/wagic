@@ -247,6 +247,16 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
         renderer->RenderQuad(manaIcons[0], pos.actX + (- 12*j + 75)*pos.actZ, pos.actY +(yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
         float w = font->GetStringWidth(buffer);
         font->DrawString(buffer, pos.actX +(- 12*j + 76 - w/2)*pos.actZ, pos.actY + (yOffset - 5)*pos.actZ);
+        ++j;
+      }
+    //Has X?
+    if (int cost = manacost->hasX())
+      {
+        char buffer[10];
+        sprintf(buffer, "X");
+        renderer->RenderQuad(manaIcons[0], pos.actX + (- 12*j + 75)*pos.actZ, pos.actY +(yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+        float w = font->GetStringWidth(buffer);
+        font->DrawString(buffer, pos.actX +(- 12*j + 76 - w/2)*pos.actZ, pos.actY + (yOffset - 5)*pos.actZ);
       }
   }
 
