@@ -358,7 +358,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   //intimidate
   if (opponent->basicAbilities[Constants::INTIMIDATE] && !(hasColor(Constants::MTG_COLOR_ARTIFACT))){
     int canblock = 0;
-    for (int i = Constants::PROTECTIONGREEN; i <= Constants::PROTECTIONWHITE; ++i){
+    for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i){
       if(hasColor(i) && opponent->hasColor(i)){
         canblock = 1;
         break;
