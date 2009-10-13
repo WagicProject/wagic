@@ -128,15 +128,13 @@ bool WCachedTexture::ReleaseQuad(JQuad* quad){
 }
 
 WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float width, float height,string resname){
-  if(texture == NULL)
-    return NULL;
+  if(!texture) return NULL;
 
   bool allocated = false;
   WTrackedQuad * tq = NULL;
   JQuad * quad = NULL;
 
   vector<WTrackedQuad*>::iterator it;
-  std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
 
   if(width == 0.0f || width > texture->mWidth)
       width = texture->mWidth;
@@ -150,24 +148,15 @@ WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float widt
     }
   }
 
-  if(tq == NULL){
+  if(!tq){
     allocated = true;
-    vector<WTrackedQuad*>::iterator gtq = WCachedTexture::garbageTQs.begin();
-    if(gtq != WCachedTexture::garbageTQs.end())
-    {
-      tq = *gtq;
-      garbageTQs.erase(gtq);
-    }
-    else
-      tq = NEW WTrackedQuad(resname);
+    tq = NEW WTrackedQuad(resname);
+    if(!tq) return NULL;
   }
-
-  if(tq == NULL)
-    return NULL;
 
   quad = tq->quad;
 
-  if(quad == NULL){
+  if(!quad){
     quad = NEW JQuad(texture,offX,offY,width,height);
     if(!quad) {
       //Probably out of memory. Try again.
@@ -178,20 +167,19 @@ WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float widt
     if(!quad){
       if(allocated && tq)
         SAFE_DELETE(tq);
+      fprintf(stderr, "WCACHEDRESOURCE:GetTrackedQuad -  Quad is null\n");
       return NULL; //Probably a crash.
     }
 
     tq->quad = quad;
-    trackedQuads.push_back(tq);
-    return tq;
-  }
-  else{
-    //Update JQ's values to what we called this with.
-    quad->SetTextureRect(offX,offY,width,height);
+    if (allocated) trackedQuads.push_back(tq);
     return tq;
   }
 
-  return NULL;
+  //Update JQ's values to what we called this with.
+  quad->SetTextureRect(offX,offY,width,height);
+  return tq;
+
 }
 
 JQuad * WCachedTexture::GetQuad(float offX, float offY, float width, float height,string resname){
@@ -206,7 +194,6 @@ JQuad * WCachedTexture::GetQuad(float offX, float offY, float width, float heigh
 
 JQuad * WCachedTexture::GetQuad(string resname){
   vector<WTrackedQuad*>::iterator it;
-  std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
 
   for(it = trackedQuads.begin();it!=trackedQuads.end();it++){
     if((*it) && (*it)->resname == resname){
@@ -225,17 +212,20 @@ JQuad * WCachedTexture::GetCard(float offX, float offY, float width, float heigh
 }
 
 unsigned long WCachedTexture::size(){
-  if(!texture)
-    return 0;
-  return texture->mTexHeight*texture->mTexWidth;
+  if(!texture) return 0;
+
+  unsigned int pixel_size = 4;
+#if defined WIN32 || defined LINUX
+#else
+  pixel_size = JRenderer::GetInstance()->PixelSize(texture->mTextureFormat);
+#endif
+  return texture->mTexHeight*texture->mTexWidth*pixel_size;
 }
 
 bool WCachedTexture::isGood(){
-  if(!texture)
-    return false;
-
-  return true;
+  return (texture != NULL);
 }
+
 void WCachedTexture::Refresh(string filename){
   int error = 0;
   JTexture* old = texture;
@@ -287,12 +277,8 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   if(submode & TEXTURE_SUB_5551)
     format = GU_PSM_5551;
 
-  //Use Vram?
-  if(submode & TEXTURE_SUB_VRAM){
-    texture = JRenderer::GetInstance()->LoadTexture(realname.c_str(),TEX_TYPE_USE_VRAM,format);
-  }
-  else
-    texture = JRenderer::GetInstance()->LoadTexture(realname.c_str(),TEX_TYPE_NORMAL,format);
+
+  texture = JRenderer::GetInstance()->LoadTexture(realname.c_str(),TEX_TYPE_USE_VRAM,format);
   
   //Failure.
   if(!texture){

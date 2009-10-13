@@ -139,30 +139,11 @@ void ShopItem::Render(){
   }
 
   JRenderer * renderer = JRenderer::GetInstance();
-  //float x0 = mX;
-  //float y0 = mY - (mScale > 1 ? 4 : 0);
- /* if (GetId()%2){
-    float xs[] = {mX,   mX,   mX+230,mX+230};
-    float ys[] = {mY-5+17,mY-5+19,mY-5+35,mY-5}    ;
-
-    renderer->FillPolygon(xs,ys,4,ARGB(200,0,0,0));
-    x0 = mX + 230 -30;
-    mFont->DrawString(mText.c_str(), x0, mY + 8,JGETEXT_RIGHT);
-
-  }else{
-    float xs[] = {mX-5,   mX-5,   mX-5+230,mX-5+230,};
-    float ys[] = {mY-5,mY-5+35,mY-5+17,mY-5+19}    ;
-    renderer->FillPolygon(xs,ys,4,ARGB(128,0,0,0));
-     mFont->DrawString(mText.c_str(), mX + 30, mY + 8);
-  }*/
-  //renderer->FillRect(mX-5, mY-5,230,35, );
-
 
   if (mesh){
     mesh->Render(0,0);
-    //renderer->RenderQuad(thumb,x0,y0,0,mScale * 0.45,mScale * 0.45);
   }else{
-    //NOTHING
+    //ERROR Management
   }
   if (mHasFocus){
     if (card) quad = resources.RetrieveCard(card);

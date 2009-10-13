@@ -7,23 +7,19 @@
 #include "MTGCard.h"
 #include "WCachedResource.h"
 
-//Soft limits.
-#define HUGE_CACHE_LIMIT  10000000
-#define HUGE_CACHE_ITEMS  300
-
-#define LARGE_CACHE_LIMIT 5000000
-#define LARGE_CACHE_ITEMS 200
-
-#define SMALL_CACHE_LIMIT 3000000
-#define SMALL_CACHE_ITEMS 150
-
+#define HUGE_CACHE_LIMIT 6000000  // Size of the cache for Windows and Linux
+#define SAMPLES_CACHE_SIZE 1000000  // Size in bytes of the cached samples
+#define PSI_CACHE_SIZE 500000  // Size in bytes of the cahed particles
+#define TEXTURES_CACHE_MINSIZE 2000000  // Minimum size of the cache on the PSP. The program should complain if the cache ever gets smaller than this
+#define OPERATIONAL_SIZE 5000000 // Size required by Wagic for operational stuff. 3MB is not enough. The cache will usually try to take (Total Ram - Operational size)
 
 //Hard Limits.
-#define MAX_CACHE_OBJECTS HUGE_CACHE_ITEMS
+#define MAX_CACHE_OBJECTS 300
 #define MAX_CACHE_ATTEMPTS 10
 #define MAX_CACHE_MISSES 200
-#define MAX_CACHED_SAMPLES 4
+#define MAX_CACHED_SAMPLES 10
 #define MAX_CACHE_GARBAGE 10
+
 
 enum ENUM_WRES_INFO{
   WRES_UNLOCKED = 0,      //Resource is unlocked.
@@ -38,7 +34,6 @@ enum ENUM_RETRIEVE_STYLE{
   RETRIEVE_LOCK,      //As above, locks cached resource. Not for quads.
   RETRIEVE_UNLOCK,    //As above, unlocks cached resource. Not for quads.
   RETRIEVE_RESOURCE,  //Only retrieves a managed resource. Does not make a new one.
-  RETRIEVE_VRAM,      //Retrieve it, and use vram if have to we create it. Must still remove it.
   RETRIEVE_MANAGE,    //Makes resource permanent.
   RETRIEVE_THUMB,     //Retrieve it as a thumbnail.
   CACHE_THUMB = RETRIEVE_THUMB, //Backwords compatibility. 
@@ -51,10 +46,9 @@ enum ENUM_CACHE_SUBTYPE{
   //Because these bits only modify how a cached resource's Attempt() is called,
   //We can use them over and over for each resource type.
   TEXTURE_SUB_CARD = (1<<2), //Retrieve using cardFile, not graphicsFile.
-  TEXTURE_SUB_AVATAR = (1<<6), //Retrieve using avatarFile, not graphicsFile.
+  TEXTURE_SUB_AVATAR = (1<<5), //Retrieve using avatarFile, not graphicsFile.
   TEXTURE_SUB_THUMB = (1<<3),//Retrieve prepending "thumbnails\" to the filename.
-  TEXTURE_SUB_VRAM = (1<<4), //For textures. If we have to allocate, do it in VRAM.
-  TEXTURE_SUB_5551 = (1<<5), //For textures. If we have to allocate, use RGBA5551.
+  TEXTURE_SUB_5551 = (1<<4), //For textures. If we have to allocate, use RGBA5551.
 
 };
 
@@ -94,14 +88,12 @@ protected:
   bool Delete(cacheItem * item); //SAFE_DELETE and garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
   cacheItem* Get(string id, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve.
   cacheItem* AttemptNew(string filename, int submode);   //Attempts a new cache item, progressively clearing cache if it fails.
-  cacheItem* Recycle(); //Returns a cache item from the trash.
 
   string makeID(string filename, int submode);  //Makes an ID appropriate to the submode.
   string makeFilename(string id, int submode);  //Makes a filename from an ID.
 
   map<string,cacheItem*> cache; 
   map<string,cacheItem*> managed;  //Cache can be arbitrarily large, so managed items are seperate.
-  vector<cacheItem*> garbage;      //Garbage collection.
   unsigned long totalSize;
   unsigned long cacheSize;
   
@@ -126,7 +118,7 @@ public:
   WResourceManager();
   ~WResourceManager();
   
-  JQuad * RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //RetrieveCard is reversed to match current use.
+  JQuad * RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
   JSample * RetrieveSample(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   JTexture * RetrieveTexture(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   JQuad * RetrieveQuad(string filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f, string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL);
@@ -177,7 +169,7 @@ public:
   //Wrapped from JSoundSystem. TODO: Privatize.
   JMusic * ssLoadMusic(const char *fileName);
 
-  void CacheForState(int state);
+  void autoResize(); //Recreates the cache size.
 
   void DebugRender();
 

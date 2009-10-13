@@ -42,7 +42,6 @@ void GuiPlay::VertStack::reset(unsigned total, float x, float y)
 {
   GuiPlay::CardStack::reset(total, x - CARD_WIDTH, y);
   count = 0;
-  cout << "reset" << endl;
 }
 
 void GuiPlay::HorzStack::Render(CardView* card, iterator begin, iterator end)

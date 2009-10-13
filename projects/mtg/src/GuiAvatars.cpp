@@ -96,4 +96,5 @@ void GuiAvatars::Render()
     r->FillRect(self->actX - w * self->actZ, self->actY - h * self->actZ,  w * self->actZ , h * self->actZ, ARGB(200,0,0,0));
   }
   GuiLayer::Render();
+
 }

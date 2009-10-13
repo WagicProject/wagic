@@ -123,7 +123,7 @@ void GameStateDeckViewer::Start()
   }
 
   //Grab a texture in VRAM.
-  pspIconsTexture = resources.RetrieveTexture("iconspsp.png",RETRIEVE_VRAM);
+  pspIconsTexture = resources.RetrieveTexture("iconspsp.png");
 
   char buf[512];
   for (int i=0; i < 8; i++){
@@ -201,13 +201,11 @@ void GameStateDeckViewer::addRemove(MTGCard * card){
     }
   }
   stw.needUpdate = true;
-  //loadIndexes(cardIndex[0]);
 }
 
 int GameStateDeckViewer::Remove(MTGCard * card){
   if (!card) return 0;
   int result = displayed_deck->Remove(card);
-  //loadIndexes(currentCard);
   return result;
 }
 
@@ -233,7 +231,6 @@ void GameStateDeckViewer::Update(float dt)
     //Prevent screen from updating.
     return;    
   }
-  //    mParent->effect->UpdateBig(dt);
   hudAlpha = 255-(last_user_activity * 500);
   if (hudAlpha < 0) hudAlpha = 0;
   if (sellMenu){
@@ -419,9 +416,9 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
 
 void GameStateDeckViewer::renderSlideBar(){
   int total = displayed_deck->getCount(colorFilter);
-  int filler = 15;
-  int y = SCREEN_HEIGHT-25;
-  int bar_size  = SCREEN_WIDTH - 2*filler;
+  float filler = 15;
+  float y = SCREEN_HEIGHT_F-25;
+  float bar_size  = SCREEN_WIDTH_F - 2*filler;
   JRenderer * r = JRenderer::GetInstance();
   typedef map<MTGCard *,int,Cmp1>::reverse_iterator rit;
 
@@ -436,7 +433,7 @@ void GameStateDeckViewer::renderSlideBar(){
       for (; it != end; ++it)
         if (it->first->hasColor(colorFilter)) currentPos += it->second;
   }
-  int cursor_pos = bar_size * currentPos / total;
+  float cursor_pos = bar_size * currentPos / total;
 
   r->FillRoundRect(filler + 5,y+5,bar_size,0,3,ARGB(hudAlpha/2,0,0,0));
   r->DrawLine(filler+cursor_pos + 5 ,y+5,filler+cursor_pos + 5,y+10,ARGB(hudAlpha/2,0,0,0));
@@ -603,7 +600,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     font->DrawString(buffer, 10+leftTransition, 10);      
     
     int nb_letters = 0;
-    int posX, posY;
+    float posX, posY;
     DWORD graphColor;
     
     graphColor = ARGB(200, 155, 155, 155);

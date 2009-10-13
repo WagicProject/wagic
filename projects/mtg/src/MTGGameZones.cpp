@@ -4,6 +4,7 @@
 #include "../include/GameOptions.h"
 #include "../include/WEvent.h"
 #include "../include/MTGDeck.h"
+#include <assert.h>
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -192,6 +193,7 @@ void MTGGameZone::setOwner(Player * player){
 }
 
 MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy){
+  assert(nb_cards < 10000);
   int i;
   cardsMap.erase(card);
   for (i=0; i<(nb_cards); i++) {

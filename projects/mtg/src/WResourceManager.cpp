@@ -9,6 +9,7 @@
 #include <JFileSystem.h>
 #include "../include/WResourceManager.h"
 
+
 WResourceManager resources;
 unsigned int vTime = 0;
 int WResourceManager::RetrieveError(){
@@ -36,12 +37,8 @@ void WResourceManager::DebugRender(){
   
   font->SetScale(DEFAULT_MAIN_FONT_SCALE);
   renderer->FillRect(0,0,SCREEN_WIDTH,20,ARGB(128,155,0,0));
-#ifdef DEBUG_CACHE
-  if(debugMessage.size())
-    renderer->FillRect(0,SCREEN_HEIGHT-30,SCREEN_WIDTH,40,ARGB(128,155,0,0));
-  else
-#endif
-    renderer->FillRect(0,SCREEN_HEIGHT-20,SCREEN_WIDTH,40,ARGB(128,155,0,0));
+
+  renderer->FillRect(0,SCREEN_HEIGHT-20,SCREEN_WIDTH,40,ARGB(128,155,0,0));
   char buf[512];
 
   
@@ -167,9 +164,9 @@ WResourceManager::WResourceManager(){
 	mFontList.reserve(4);
 	mFontMap.clear();
 
-  psiWCache.Resize(SMALL_CACHE_LIMIT,6);      //Plenty of room for mana symbols, or whatever.
-  sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
-  textureWCache.Resize(LARGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
+  psiWCache.Resize(PSI_CACHE_SIZE,20);      
+  sampleWCache.Resize(SAMPLES_CACHE_SIZE,MAX_CACHED_SAMPLES);
+  textureWCache.Resize(TEXTURES_CACHE_MINSIZE,MAX_CACHE_OBJECTS);
   lastTime = 0;
   lastError = CACHE_ERROR_NONE;
 }
@@ -199,6 +196,7 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
 
   submode = submode | TEXTURE_SUB_CARD;
 
+
   string filename = card->getSetName();
   filename += "/";
   filename += card->getImageName();
@@ -208,16 +206,16 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
     jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);  
     return jq;
   }
-  
+ 
   return NULL;
 }
+
 
 int WResourceManager::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height){
   if(!quadName.size() || !textureName.size())
     return INVALID_ID;
   
   string resname = quadName;
-  std::transform(resname.begin(),resname.end(),resname.begin(),::tolower);
 
   vector<WManagedQuad*>::iterator it;
   int pos = 0;
@@ -253,7 +251,6 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
 
 JQuad * WResourceManager::GetQuad(const string &quadName){
   string lookup = quadName;
-  std::transform(lookup.begin(),lookup.end(),lookup.begin(),::tolower);
   
   for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
     if((*it)->resname == lookup)
@@ -289,11 +286,7 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
   }  
 
   //Aliases.
-  if(style == RETRIEVE_VRAM){
-    submode = submode | TEXTURE_SUB_VRAM;
-    style = RETRIEVE_LOCK;
-  } 
-  else if(style == RETRIEVE_THUMB){
+  if(style == RETRIEVE_THUMB){
     submode = submode | TEXTURE_SUB_THUMB;
     style = RETRIEVE_NORMAL;
   }
@@ -319,8 +312,7 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
   if(jtex){
      WTrackedQuad * tq = jtex->GetTrackedQuad(offX,offY,width,height,resname);  
 
-    if(tq == NULL)
-      return NULL;
+    if(!tq) return NULL;
 
     if(style == RETRIEVE_MANAGE && resname != ""){
       WManagedQuad * mq = NEW WManagedQuad();
@@ -398,11 +390,7 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
   WCachedTexture * res = NULL;
 
   //Aliases.
-  if(style == RETRIEVE_VRAM){
-    submode = submode | TEXTURE_SUB_VRAM;
-    style = RETRIEVE_LOCK;
-  } 
-  else if(style == RETRIEVE_THUMB){
+  if(style == RETRIEVE_THUMB){
     submode = submode | TEXTURE_SUB_THUMB;
     style = RETRIEVE_NORMAL;
   }
@@ -521,9 +509,8 @@ string WResourceManager::graphicsFile(const string filename, const string specif
 
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
-    std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" && theme != "default"){
+    if(theme != "" && theme != "Default"){
       sprintf(buf,"themes/%s/%s",theme.c_str(),filename.c_str());
      if(fileOK(buf,true))
         return buf;
@@ -531,9 +518,8 @@ string WResourceManager::graphicsFile(const string filename, const string specif
 
     //Failure. Check mode graphics     
     string mode = options[Options::ACTIVE_MODE].str;
-    std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
 
-    if(mode != "" && mode != "defualt"){
+    if(mode != "" && mode != "Default"){
       sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
       if(fileOK(buf,true))
         return buf;
@@ -567,8 +553,8 @@ string WResourceManager::avatarFile(const string filename, const string specific
   
     //Check the profile folder.
     string profile = options[Options::ACTIVE_PROFILE].str;
-    std::transform(profile.begin(), profile.end(), profile.begin(), ::tolower);
-    if(profile != "" && profile != "default"){
+
+    if(profile != "" && profile != "Default"){
       sprintf(buf,"profiles/%s/%s",profile.c_str(),filename.c_str());
      if(fileOK(buf,true))
         return buf;
@@ -580,9 +566,8 @@ string WResourceManager::avatarFile(const string filename, const string specific
 
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
-    std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" && theme != "default"){
+    if(theme != "" && theme != "Default"){
       sprintf(buf,"themes/%s/%s",theme.c_str(),filename.c_str());
      if(fileOK(buf,true))
         return buf;
@@ -590,9 +575,8 @@ string WResourceManager::avatarFile(const string filename, const string specific
 
     //Failure. Check mode graphics     
     string mode = options[Options::ACTIVE_MODE].str;
-    std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
 
-    if(mode != "" && mode != "defualt"){
+    if(mode != "" && mode != "Default"){
       sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
       if(fileOK(buf,true))
         return buf;
@@ -615,9 +599,12 @@ string WResourceManager::avatarFile(const string filename, const string specific
 
 string WResourceManager::cardFile(const string filename, const string specific){
     JFileSystem* fs = JFileSystem::GetInstance();
+
+
+    //PUT Back the following when we have an actual usage for it (theme, or whatever)
+    //Right now I'm removing this for performance
+/*
     char buf[512];
-
-
     //Check the specific location, if any.
     if(specific != ""){
       sprintf(buf,"%s/sets/%s",specific.c_str(),filename.c_str());
@@ -627,9 +614,8 @@ string WResourceManager::cardFile(const string filename, const string specific){
 
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
-    std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" && theme != "default"){
+    if(theme != "" && theme != "Default"){
        sprintf(buf,"themes/%s/sets/%s",theme.c_str(),filename.c_str());
        if(fileOK(buf,true))
          return buf;
@@ -637,14 +623,14 @@ string WResourceManager::cardFile(const string filename, const string specific){
 
     //Failure. Check mode     
     string mode = options[Options::ACTIVE_MODE].str;
-    std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
 
-    if(mode != "" && mode != "defualt"){
+    if(mode != "" && mode != "Default"){
       sprintf(buf,"modes/%s/sets/%s",mode.c_str(),filename.c_str());
-    if(fileOK(buf,true))
+      if(fileOK(buf,true))
        return buf;      
     }
-       
+      
+*/
      //Failure. Check sets       
      char defdir[512];
      sprintf(defdir,"sets/%s",filename.c_str());
@@ -687,9 +673,8 @@ string WResourceManager::musicFile(const string filename, const string specific)
 
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
-    std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" && theme != "default"){
+    if(theme != "" && theme != "Default"){
        sprintf(buf,"themes/%s/sound/%s",theme.c_str(),filename.c_str());
        if(fileOK(buf,true))
          return buf;
@@ -697,9 +682,8 @@ string WResourceManager::musicFile(const string filename, const string specific)
 
     //Failure. Check mode     
     string mode = options[Options::ACTIVE_MODE].str;
-    std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
 
-    if(mode != "" && mode != "defualt"){
+    if(mode != "" && mode != "Default"){
       sprintf(buf,"modes/%s/sound/%s",mode.c_str(),filename.c_str());
     if(fileOK(buf,true))
        return buf;      
@@ -727,9 +711,8 @@ string WResourceManager::sfxFile(const string filename, const string specific){
 
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
-    std::transform(theme.begin(), theme.end(), theme.begin(), ::tolower);
 
-    if(theme != "" && theme != "default"){
+    if(theme != "" && theme != "Default"){
        sprintf(buf,"themes/%s/sound/sfx/%s",theme.c_str(),filename.c_str());
        if(fileOK(buf,true))
          return buf;
@@ -737,8 +720,7 @@ string WResourceManager::sfxFile(const string filename, const string specific){
 
     //Failure. Check mode     
     string mode = options[Options::ACTIVE_MODE].str;
-    std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
-    if(mode != "" && mode != "defualt"){
+    if(mode != "" && mode != "Default"){
       sprintf(buf,"modes/%s/sound/sfx/%s",mode.c_str(),filename.c_str());
     if(fileOK(buf,true))
        return buf;      
@@ -793,40 +775,20 @@ int WResourceManager::LoadJLBFont(const string &fontName, int height){
 	else
 		return itr->second;
 }
-void WResourceManager::CacheForState(int state){
-#if (defined WIN32 || defined LINUX) && !defined DEBUG_CACHE
-  textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
-  return;
-#else 
 
-  switch(state){
-    //Default is not to change cache sizes.
-    case GAME_STATE_MENU:
-    case GAME_STATE_OPTIONS:
-      break;
-    //Duels use a smaller cache, so there's more room for game stuff.
-    case GAME_STATE_DUEL:
-      if (options[Options::CACHESIZE].number)
-        textureWCache.Resize(LARGE_CACHE_LIMIT,LARGE_CACHE_ITEMS);
-      else
-        textureWCache.Resize(SMALL_CACHE_LIMIT,SMALL_CACHE_ITEMS);
-      sampleWCache.Resize(SMALL_CACHE_LIMIT,MAX_CACHED_SAMPLES);
-      break;
-      //Deck editor and shop are entirely cache safe, so give it near infinite resources.
-    case GAME_STATE_SHOP:
-    case GAME_STATE_DECK_VIEWER:
-      textureWCache.Resize(HUGE_CACHE_LIMIT,HUGE_CACHE_ITEMS);
-      break;
-      //Anything unknown, use large cache.
-    default:
-      textureWCache.Resize(LARGE_CACHE_LIMIT,LARGE_CACHE_ITEMS);
-      break;
-  }
-  
-  //Switching game states clears the cache on PSP.
-  ClearUnlocked();
 
+void WResourceManager::autoResize(){
+#if defined WIN32 || defined LINUX
+    textureWCache.Resize(HUGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
+#else
+    unsigned int ram = ramAvailable();
+    unsigned int myNewSize = ram - OPERATIONAL_SIZE + textureWCache.totalSize;
+    if (myNewSize < TEXTURES_CACHE_MINSIZE){
+      fprintf(stderr, "Error, Not enough RAM for Cache: %i - total Ram: %i\n", myNewSize, ram);
+    }
+    textureWCache.Resize(myNewSize,MAX_CACHE_OBJECTS);
 #endif
+    return;
 }
 
 JMusic * WResourceManager::ssLoadMusic(const char *fileName){
@@ -993,17 +955,6 @@ void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items){
     maxCached = items;
 }
 
-template <class cacheItem, class cacheActual>
-cacheItem* WCache<cacheItem, cacheActual>::Recycle(){
-  typename vector<cacheItem*>::iterator it = garbage.begin();
-  if(it == garbage.end())
-    return NULL;
-
-  cacheItem * item = (*it);
-  garbage.erase(it);
-
-  return item;  
-}
 
 template <class cacheItem, class cacheActual>
 cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submode){
@@ -1012,70 +963,49 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
     return NULL;
   }
 
-  cacheItem* item = NULL;
-
-  item = Recycle();
-
-  //There was nothing to recycle. Make absolutely certain we have an item.
-  if(item == NULL){
-    item = NEW cacheItem;
-    if(item)
-      mError = CACHE_ERROR_NONE;
-    else{
-      //Try a few times to get an item.
-      for(int attempt=0;attempt<MAX_CACHE_ATTEMPTS;attempt++){
-        if(!RemoveOldest() || item)
-          break;
-         item = NEW cacheItem;
-      }
-
-      //We /really/ shouldn't get this far.
+  cacheItem* item = NEW cacheItem;
+  if(!item) {
+    //Try a few times to get an item.
+    for(int attempt=0;attempt<MAX_CACHE_ATTEMPTS;attempt++){
+      if(!RemoveOldest() || item)
+        break;
+      item = NEW cacheItem;
+    }
+    //We /really/ shouldn't get this far.
+    if(!item){
+      resources.ClearUnlocked();
+      item = NEW cacheItem;
       if(!item){
-        resources.ClearUnlocked();
-        item = NEW cacheItem;
-        if(!item){
-          //Nothing let us make an item. Failure.
-          mError = CACHE_ERROR_BAD_ALLOC;
-          return NULL;
-        }
+        //Nothing let us make an item. Failure.
+        mError = CACHE_ERROR_BAD_ALLOC;
+        return NULL;
       }
     }
   }
 
-  //Attempt to populate item. 
   mError = CACHE_ERROR_NONE;
+
   for(int attempts = 0; attempts < MAX_CACHE_ATTEMPTS;attempts++)
   {
     //We use try/catch so any memory alloc'd in Attempt isn't lost.
     try{
       //If we don't get a good item, remove oldest cache and continue trying.
-      if(!item->Attempt(filename,submode,mError) || !item->isGood())
+      if(!item->Attempt(filename,submode,mError) || !item->isGood()) {
+        //No such file. Fail on first try.
+        if(mError == CACHE_ERROR_404){
+          SAFE_DELETE(item); 
+          return NULL;
+        }
         throw std::bad_alloc();
+      }
     }
     catch(std::bad_alloc){
       RemoveOldest();
     }
 
-    //No such file. Fail on first try.
-    if(item && mError == CACHE_ERROR_404){
-      if(garbage.size() < MAX_CACHE_GARBAGE){
-        item->Trash();
-        garbage.push_back(item);
-      }
-      else
-        SAFE_DELETE(item);
-      
-      return NULL;
-    }
-
-    //Succeeded, so enforce limits and return.
-    if(item->isGood()){
-      mError = CACHE_ERROR_NONE;
-      item->lock();
-      Cleanup();  
-      item->unlock();
-      return item;
-    }
+    //Succeeded
+    if(item->isGood())
+      break;
   }
 
   //Still no result, so clear local cache, then try again.
@@ -1089,23 +1019,18 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
       //Failed, so clear every cache we've got in prep for the next try.
       resources.ClearUnlocked();
     }
- 
-    try{
-      if(!item->Attempt(filename,submode,mError) || !item->isGood())
-        throw std::bad_alloc();
-    }
-    catch(std::bad_alloc){
-      //Complete failure. Trash this object and return NULL.
-      if(item && !item->isGood()){
-        if(garbage.size() < MAX_CACHE_GARBAGE){
-          item->Trash();
-          garbage.push_back(item);
-        }
-        else
+    if(!item->isGood()){
+      try{
+        if(!item->Attempt(filename,submode,mError) || !item->isGood())
+          throw std::bad_alloc();
+      }
+      catch(std::bad_alloc){
+        //Complete failure. Trash this object and return NULL.
+        if(!item->isGood()){
           SAFE_DELETE(item);
-
-        mError = CACHE_ERROR_BAD;
-        return NULL;
+          mError = CACHE_ERROR_BAD;
+          return NULL;
+        }
       }
     }
   }
@@ -1136,15 +1061,19 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style,
   
   //Perform lock or unlock on entry.
   if(tc){
-    if(style == RETRIEVE_LOCK) tc->lock();
-    else if(style == RETRIEVE_UNLOCK) tc->unlock();
-    else if(style == RETRIEVE_MANAGE && !tc->isPermanent()) {
-      //Unlink the managed resource from the cache.
-      UnlinkCache(tc);
-      
-      //Post it in managed resources.
-      managed[makeID(filename,submode)] = tc;
-      tc->deadbolt();
+    switch(style){
+    case RETRIEVE_LOCK: tc->lock(); break;
+    case RETRIEVE_UNLOCK: tc->unlock(); break;
+    case RETRIEVE_MANAGE:
+      if (!tc->isPermanent()) {
+        //Unlink the managed resource from the cache.
+        UnlinkCache(tc);
+        
+        //Post it in managed resources.
+        managed[makeID(filename,submode)] = tc;
+        tc->deadbolt();
+      }
+      break;
     }
   }
 
@@ -1154,10 +1083,8 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style,
       tc->hit();    
       return tc;  //Everything fine.
     }
-    else{
-      //Something went wrong.
-      RemoveItem(tc);
-    }
+    //Something went wrong.
+    RemoveItem(tc);
   }
 
   //Record managed failure. Cache failure is recorded in Get().
@@ -1196,113 +1123,62 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
 
   //Something is managed.
   if(it != managed.end()) {
-     if(!it->second && style == RETRIEVE_RESOURCE)
-        return NULL;     //A miss. 
-     else
-        return it->second; //A hit.
+    return it->second; //A hit.
   }
+
   //Failed to find managed resource and won't create one. Record a miss.
-  else if(style == RETRIEVE_RESOURCE){
+  if(style == RETRIEVE_RESOURCE){
     managed[lookup] = NULL;
     return NULL;
   }
 
   //Not managed, so look in cache.
-  if(it == managed.end() && style != RETRIEVE_MANAGE && style != RETRIEVE_RESOURCE ){
+  if(style != RETRIEVE_MANAGE){
     it = cache.find(lookup);
     //Well, we've found something...
     if(it != cache.end()) {
       if(!it->second && (submode & CACHE_EXISTING)){
          mError = CACHE_ERROR_404;
-         return NULL;     //A miss.
       }
-       else
-         return it->second; //A hit.
+      return it->second; //A hit.
     }
   }  
 
-  cacheItem * item = NULL;
-  
-  if(style != RETRIEVE_MANAGE)
-    item = cache[lookup];   //We don't know about this one yet.
- 
-  //Found something.
-  if(item){
-     //Item went bad?
-    if(!item->isGood()){
-
-      //If we're allowed, attempt to revive it.
-      if(!(submode & CACHE_EXISTING))
-        item->Attempt(id,submode,mError);
-
-      //Still bad, so remove it and return NULL 
-      if(submode & CACHE_EXISTING || !item->isGood()){
-        if(!item->isLocked()){
-          RemoveItem(item);    //Delete it.
-          mError = CACHE_ERROR_BAD;
-        }
-        //Worst case scenerio. Hopefully never happens.... hasn't so far.
-        else{
-          item->Nullify();          //We're giving up on anything allocated here. 
-          mError = CACHE_ERROR_LOST; //This is a potential memory leak, but might prevent a crash. 
-        }
-        return NULL;
-      }
-    }
-
-    //Alright, everythings fine!
-    mError = CACHE_ERROR_NONE;  
-    return item;
-  }
-  
   //Didn't exist in cache.
   if(submode & CACHE_EXISTING ){  
-    RemoveMiss(lookup);
     mError = CACHE_ERROR_NOT_CACHED;
     return NULL;
   }
-  else{
-    //Space in cache, make new texture
-     item = AttemptNew(id,submode);       
 
-     //Couldn't make GOOD new item.
-     if(item && !item->isGood())
-     {
-      if(garbage.size() < MAX_CACHE_GARBAGE){
-        item->Trash();
-        garbage.push_back(item);
-      }
-      else
-        SAFE_DELETE(item);
-     }
-  }
-    
+  //Space in cache, make new texture
+  cacheItem * item = AttemptNew(id,submode);       
+  
   if(style == RETRIEVE_MANAGE){
-     managed[lookup] = item; //Record hit or miss
-     if(item)
+    if(item){
+      managed[lookup] = item; //Record a hit.
       item->deadbolt(); //Make permanent.
-   }
-   else{
-     //Record it, hit or miss.
-     cache[lookup] = item;
-   }
-
-   //Succeeded in making a new item.
-   if(item){
-    unsigned long isize = item->size();   
-    totalSize += isize;
-    
-    mError = CACHE_ERROR_NONE;
-    if(style != RETRIEVE_MANAGE){
-      cacheItems++;
-      cacheSize += isize;
     }
-
-    return item;
+    else if(mError == CACHE_ERROR_404)
+      managed[lookup] = NULL;  //File not found. Record a miss
+  } 
+  else {
+    if(item || mError == CACHE_ERROR_404)
+      cache[lookup] = item;
   }
 
-  //Failure.
-  return NULL;
+  if (!item) return NULL; //Failure
+
+  //Succeeded in making a new item.
+  unsigned long isize = item->size();   
+  totalSize += isize;
+    
+  mError = CACHE_ERROR_NONE;
+  if(style != RETRIEVE_MANAGE){
+    cacheItems++;
+    cacheSize += isize;
+  }
+
+  return item;
 }
 
 template <class cacheItem, class cacheActual>
@@ -1327,7 +1203,7 @@ WCache<cacheItem, cacheActual>::WCache(){
   cacheSize = 0;
   totalSize = 0;
 
-  maxCacheSize = SMALL_CACHE_LIMIT;
+  maxCacheSize = TEXTURES_CACHE_MINSIZE;
 
   maxCached = MAX_CACHE_OBJECTS;
   cacheItems = 0;
@@ -1340,24 +1216,13 @@ WCache<cacheItem, cacheActual>::~WCache(){
 
   //Delete from cache & managed
   for(it=cache.begin();it!=cache.end();it++){
-    if(!it->second)
-      continue;
-    
     SAFE_DELETE(it->second);
   }
 
   for(it=managed.begin();it!=managed.end();it++){
-    if(!it->second)
-      continue;
-
     SAFE_DELETE(it->second);
   }
 
-  //Clean up all the garbage
-  typename vector<cacheItem*>::iterator g;
-  for(g=garbage.begin();g!=garbage.end();g++){
-    SAFE_DELETE(*g);
-  }
 }
 
 
@@ -1462,24 +1327,17 @@ bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
   if(maxCached == 0)
     item->Nullify();
 
-    unsigned long isize = item->size();
-    totalSize -= isize;
-    cacheSize -= isize;
+  unsigned long isize = item->size();
+  totalSize -= isize;
+  cacheSize -= isize;
 #ifdef DEBUG_CACHE
-    if(cacheItems == 0)
-      OutputDebugString("cacheItems out of sync.\n");
+  if(cacheItems == 0)
+    OutputDebugString("cacheItems out of sync.\n");
 #endif
 
-    cacheItems--;
+  cacheItems--;
 
-    if(garbage.size() > MAX_CACHE_GARBAGE)
-      SAFE_DELETE(item);
-    else{
-      item->Trash();
-      item->lastTime = 0;
-      item->loadedMode = 0;
-      garbage.push_back(item);
-    }
+  SAFE_DELETE(item);
   return true;
 }
 

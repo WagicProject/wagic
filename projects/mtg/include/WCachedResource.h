@@ -52,9 +52,8 @@ public:
   ~WTrackedQuad();
   void Nullify();
   void Trash();
-  unsigned long size();
   bool isGood();
-
+  unsigned long size(); 
   string resname;
   JQuad * quad;
 };
@@ -100,7 +99,8 @@ public:
   void Nullify();
   void Trash();
   void Refresh(string filename);
-  unsigned long size();  
+   unsigned long size();
+   
   bool isGood();
   bool Attempt(string filename, int submode, int & error);
   bool compare(hgeParticleSystemInfo * p) {return (p == particles);};

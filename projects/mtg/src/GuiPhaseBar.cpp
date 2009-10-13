@@ -46,7 +46,7 @@ void GuiPhaseBar::Update(float dt)
 void GuiPhaseBar::Render()
 {
   static const float ICONSCALE = 1.5;
-  static const unsigned CENTER = SCREEN_HEIGHT / 2 + 10;
+  static const float CENTER = SCREEN_HEIGHT_F / 2 + 10;
   JRenderer* renderer = JRenderer::GetInstance();
   GameObserver * g = GameObserver::GetInstance();
   unsigned p = (phase->id + Phases - 4) * (Width+1);

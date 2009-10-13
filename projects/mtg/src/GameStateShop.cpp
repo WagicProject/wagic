@@ -30,7 +30,7 @@ void GameStateShop::Start()
 
   mStage = STAGE_SHOP_SHOP;
 
-  bgTexture = resources.RetrieveTexture("shop.jpg", RETRIEVE_VRAM);
+  bgTexture = resources.RetrieveTexture("shop.jpg");
   
   //alternateRender doesn't lock, so lock our thumbnails for hgeDistort.
   altThumb[0] = resources.RetrieveTexture("artifact_thumb.jpg", RETRIEVE_LOCK);

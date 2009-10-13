@@ -28,8 +28,10 @@ GuiCombat::GuiCombat(GameObserver* go) : GuiLayer(), go(go), active(false), acti
 
 GuiCombat::~GuiCombat()
 {
-  if(ok_tex)
+  if(ok_tex){
     resources.Release(ok_tex);
+    ok_tex = NULL;
+  }
 
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {

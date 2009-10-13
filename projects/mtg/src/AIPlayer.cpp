@@ -638,15 +638,15 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 }
 
 AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * deck, string file, string fileSmall, string avatarFile) : AIPlayer(deck, file, fileSmall) {
-  mAvatarTex = resources.RetrieveTexture(avatarFile,RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
+  mAvatarTex = resources.RetrieveTexture(avatarFile,RETRIEVE_LOCK,TEXTURE_SUB_AVATAR);
   
   if(!mAvatarTex){
     avatarFile = "baka.jpg";
-    mAvatarTex = resources.RetrieveTexture(avatarFile,RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
+    mAvatarTex = resources.RetrieveTexture(avatarFile,RETRIEVE_LOCK,TEXTURE_SUB_AVATAR);
   }
 
   if(mAvatarTex)
-    mAvatar = resources.RetrieveQuad(avatarFile, 0, 0, 35, 50,"bakaAvatar",RETRIEVE_VRAM,TEXTURE_SUB_AVATAR);
+    mAvatar = resources.RetrieveQuad(avatarFile, 0, 0, 35, 50,"bakaAvatar",RETRIEVE_NORMAL,TEXTURE_SUB_AVATAR);
   else 
     mAvatar = NULL;
 

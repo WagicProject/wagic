@@ -726,11 +726,11 @@ void ActionStack::Fizzle(Interruptible * action){
 }
 
 void ActionStack::Render(){
-  int x0 = 250;
-  int y0 = 30;
-  int width = 200;
-  int height = 90;
-  int currenty = y0 + 5 ;
+  float x0 = 250;
+  float y0 = 30;
+  float width = 200;
+  float height = 90;
+  float currenty = y0 + 5 ;
 
   if (mode == ACTIONSTACK_STANDARD){
     if (!askIfWishesToInterrupt || !askIfWishesToInterrupt->displayStack()) return;

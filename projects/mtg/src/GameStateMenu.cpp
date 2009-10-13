@@ -144,8 +144,8 @@ void GameStateMenu::Start(){
   if (options[Options::MOMIR_MODE_UNLOCKED].number) hasChosenGameType = 0;
   if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
   
-  bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_VRAM);
-  movingWTexture = resources.RetrieveTexture("movingW.png", RETRIEVE_VRAM);
+  bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
+  movingWTexture = resources.RetrieveTexture("movingW.png", RETRIEVE_LOCK);
   mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166);		// Create background quad for rendering.
   mMovingW = resources.RetrieveQuad("movingW.png", 2, 2, 84, 62);
 
@@ -162,20 +162,6 @@ void GameStateMenu::Start(){
 
   SAFE_DELETE(playerdata);
 
-#if defined DEBUG_CACHE
-  /*resources.ClearUnlocked();  //So we can tell if we've any extra locks.
-
-  if(!resources.menuCached)  
-    resources.menuCached = resources.CountCached();
-    
-  if(resources.CountCached() != resources.menuCached){
-    char buf[512];
-    unsigned int i = resources.CountCached()-resources.menuCached;
-    sprintf(buf,"Warning: %u leftover locked items.",i);
-    resources.debugMessage = buf;
-  }
-  */
-#endif
 }
 
 
@@ -336,6 +322,8 @@ void GameStateMenu::Update(float dt)
           sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
         SAFE_DELETE(playerdata);
         resetDirectory();
+        //All major things have been loaded, resize the cache to use it as efficiently as possible
+        resources.autoResize();
       }
       break;    
     case MENU_STATE_MAJOR_FIRST_TIME :

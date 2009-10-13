@@ -72,6 +72,11 @@ protected:
 
 public:
 
+#if defined (WIN32) || defined (LINUX)
+#else
+  int PixelSize(int textureMode);
+#endif
+
 	//////////////////////////////////////////////////////////////////////////
 	/// Get the singleton instance
 	///
@@ -540,7 +545,6 @@ private:
 	int mCurrentTex;
 	int mCurrentBlend;
   int mCurrentTextureFormat;
-  int PixelSize(int textureMode);
 #endif
 
 	bool mVsync;

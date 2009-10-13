@@ -46,7 +46,6 @@ const char * Options::optionNames[] = {
   "_gprx_rimom",
   "_gprx_eviltwin",
   "_gprx_rnddeck",
-  "_gcacheSize",
 //Theme metrics
   "_tLoadingTC",
   "_tStatsTC",
@@ -333,6 +332,8 @@ int GameOptions::load(){
   
   if(file){
     while(std::getline(file,s)){
+      if (!s.size()) continue;
+      if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
       int found =s.find("=");
       string name = s.substr(0,found);
       string val = s.substr(found+1);
