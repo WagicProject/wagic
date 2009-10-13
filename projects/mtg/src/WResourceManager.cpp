@@ -1277,18 +1277,13 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
      }
   }
     
-   if(style == RETRIEVE_MANAGE){
-     if(item){
-      managed[lookup] = item; //Record a hit.
+  if(style == RETRIEVE_MANAGE){
+     managed[lookup] = item; //Record hit or miss
+     if(item)
       item->deadbolt(); //Make permanent.
-     }
-     else if(mError == CACHE_ERROR_404)
-      managed[lookup] = item;  //File not found. Record a miss
    }
    else{
-    if(!item && mError != CACHE_ERROR_404)
-     RemoveMiss(lookup);
-    else
+     //Record it, hit or miss.
      cache[lookup] = item;
    }
 
