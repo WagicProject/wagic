@@ -901,6 +901,7 @@ subtype=Aura
 text=As Vesuva enters the battlefield, you may choose a land on the battlefield. If you do, Vesuva enters the battlefield tapped as a copy of the chosen land.
 id=113543
 name=Vesuva
+auto=tap
 auto=may copy target(land)
 rarity=R
 type=Land
