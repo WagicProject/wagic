@@ -58,9 +58,12 @@ void CardGui::Render()
   float cardScale = quad ? 40 / quad->mHeight : 1;
   float scale = actZ * cardScale;
 
-  JQuad* shadow = resources.GetQuad("shadow");
-  shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
-  renderer->RenderQuad(shadow, actX + (actZ-1)*15, actY + (actZ-1)*15, actT, 28*actZ/16, 40*actZ/16); 
+  JQuad* shadow = NULL;
+  if (actZ > 1) {
+    shadow = resources.GetQuad("shadow");
+    shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
+    renderer->RenderQuad(shadow, actX + (actZ-1)*15, actY + (actZ-1)*15, actT, 28*actZ/16, 40*actZ/16); 
+  }
 
   if (quad) {
     quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
@@ -105,6 +108,7 @@ void CardGui::Render()
   }
 
   if (tc && !tc->canTarget(card)) {
+    if (!shadow) shadow = resources.GetQuad("shadow");
     shadow->SetColor(ARGB(200,255,255,255));
     renderer->RenderQuad(shadow, actX, actY, actT, (28*actZ + 1)/16 , 40*actZ/16);
   }

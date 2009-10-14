@@ -965,22 +965,8 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
 
   cacheItem* item = NEW cacheItem;
   if(!item) {
-    //Try a few times to get an item.
-    for(int attempt=0;attempt<MAX_CACHE_ATTEMPTS;attempt++){
-      if(!RemoveOldest() || item)
-        break;
-      item = NEW cacheItem;
-    }
-    //We /really/ shouldn't get this far.
-    if(!item){
-      resources.ClearUnlocked();
-      item = NEW cacheItem;
-      if(!item){
-        //Nothing let us make an item. Failure.
-        mError = CACHE_ERROR_BAD_ALLOC;
-        return NULL;
-      }
-    }
+    mError = CACHE_ERROR_BAD_ALLOC;
+    return NULL;
   }
 
   mError = CACHE_ERROR_NONE;
@@ -1137,9 +1123,8 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
     it = cache.find(lookup);
     //Well, we've found something...
     if(it != cache.end()) {
-      if(!it->second && (submode & CACHE_EXISTING)){
-         mError = CACHE_ERROR_404;
-      }
+      if (!it->second)
+        mError = CACHE_ERROR_404;
       return it->second; //A hit.
     }
   }  
@@ -1154,15 +1139,12 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
   cacheItem * item = AttemptNew(id,submode);       
   
   if(style == RETRIEVE_MANAGE){
+    managed[lookup] = item; //Record a hit or miss.
     if(item){
-      managed[lookup] = item; //Record a hit.
       item->deadbolt(); //Make permanent.
     }
-    else if(mError == CACHE_ERROR_404)
-      managed[lookup] = NULL;  //File not found. Record a miss
   } 
   else {
-    if(item || mError == CACHE_ERROR_404)
       cache[lookup] = item;
   }
 

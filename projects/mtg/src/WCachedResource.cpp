@@ -8,6 +8,7 @@
 #include <JFileSystem.h>
 #include "../include/GameOptions.h"
 #include "../include/WResourceManager.h"
+#include <assert.h>
 
 
 //WResource
@@ -277,6 +278,10 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   if(submode & TEXTURE_SUB_5551)
     format = GU_PSM_5551;
 
+  if(!realname.size()){
+    error = CACHE_ERROR_404;
+    return false;
+  }
 
   texture = JRenderer::GetInstance()->LoadTexture(realname.c_str(),TEX_TYPE_USE_VRAM,format);
   
