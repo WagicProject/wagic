@@ -14,6 +14,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   scrollSpeed = MED_SPEED;
   nbDecks = 0;
   deckNum = 0;
+  mSwitching = false;
 }
 
 GameStateDeckViewer::~GameStateDeckViewer() {
@@ -88,6 +89,7 @@ void GameStateDeckViewer::Start()
 {
   newDeckname = "";
   hudAlpha = 0;
+  mSwitching = false;
   delSellMenu = 0;
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
   playerdata = NEW PlayerData(mParent->collection);
@@ -1033,7 +1035,8 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   }else{
     Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
     CardGui::alternateRender(card, pos);
-    quad = resources.RetrieveCard(card,CACHE_THUMB);
+    if(!options[Options::DISABLECARDS].number)
+      quad = resources.RetrieveCard(card,CACHE_THUMB);
     if (quad){
       float _scale = 285 * scale / quad->mHeight;
       quad->SetColor(ARGB(40,255,255,255));
@@ -1119,7 +1122,11 @@ void GameStateDeckViewer::Render()
 
 
 int GameStateDeckViewer::loadDeck(int deckid){
-  SAFE_DELETE(myCollection);
+  SAFE_DELETE(myCollection); 
+  stw.currentPage = 0;
+  stw.pageCount = 5;
+  stw.needUpdate = true;
+
   string profile = options[Options::ACTIVE_PROFILE].str;
   myCollection =    NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
   displayed_deck = myCollection;
@@ -1189,7 +1196,12 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
   switch(controllerId){
       case 10:  //Deck menu
         if (controlId == -1){
-          mParent->SetNextState(GAME_STATE_MENU);
+          if(!mSwitching)
+            mParent->SetNextState(GAME_STATE_MENU);
+          else
+            mStage = STAGE_WAITING;
+
+          mSwitching = false;
           break;
         }
         loadDeck(controlId);
@@ -1214,6 +1226,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
         case 2:
           updateDecks();
           mStage =  STAGE_WELCOME;
+          mSwitching = true;
           break;
         case 3:
           mParent->SetNextState(GAME_STATE_MENU);

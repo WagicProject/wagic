@@ -109,6 +109,7 @@ private:
   int delSellMenu;
   string newDeckname;
   StatsWrapper stw;
+  bool mSwitching;
 
 public:
   GameStateDeckViewer(GameApp* parent);
