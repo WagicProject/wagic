@@ -1,0 +1,21 @@
+#Bug: Threaten on own creature crashes the game
+# http://code.google.com/p/wagic/issues/detail?id=105
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears
+hand:threaten
+manapool:{2}{R}
+[PLAYER2]
+[DO]
+threaten
+grizzly bears
+eot
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:grizzly bears
+graveyard:threaten
+[PLAYER2]
+[END]
