@@ -287,6 +287,7 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   
   //Failure.
   if(!texture){
+    error = CACHE_ERROR_BAD;
     if(!fileExists(realname.c_str()))
       error = CACHE_ERROR_404;
     return false;

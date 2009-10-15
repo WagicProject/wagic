@@ -971,53 +971,18 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
 
   mError = CACHE_ERROR_NONE;
 
-  for(int attempts = 0; attempts < MAX_CACHE_ATTEMPTS;attempts++)
-  {
-    //We use try/catch so any memory alloc'd in Attempt isn't lost.
-    try{
-      //If we don't get a good item, remove oldest cache and continue trying.
-      if(!item->Attempt(filename,submode,mError) || !item->isGood()) {
-        //No such file. Fail on first try.
-        if(mError == CACHE_ERROR_404){
-          SAFE_DELETE(item); 
-          return NULL;
-        }
-        throw std::bad_alloc();
-      }
+  if(!item->Attempt(filename,submode,mError) || !item->isGood()) {
+    //No such file. Fail
+    if(mError == CACHE_ERROR_404){
+      SAFE_DELETE(item); 
+      return NULL;
     }
-    catch(std::bad_alloc){
-      RemoveOldest();
-    }
-
-    //Succeeded
-    if(item->isGood())
-      break;
-  }
-
-  //Still no result, so clear local cache, then try again.
-  if(!item->isGood()){
-    ClearUnlocked();
-    try{
-      if(!item->Attempt(filename,submode,mError) || !item->isGood())
-        throw std::bad_alloc();
-    }
-    catch(std::bad_alloc){
-      //Failed, so clear every cache we've got in prep for the next try.
-      resources.ClearUnlocked();
-    }
-    if(!item->isGood()){
-      try{
-        if(!item->Attempt(filename,submode,mError) || !item->isGood())
-          throw std::bad_alloc();
-      }
-      catch(std::bad_alloc){
-        //Complete failure. Trash this object and return NULL.
-        if(!item->isGood()){
-          SAFE_DELETE(item);
-          mError = CACHE_ERROR_BAD;
-          return NULL;
-        }
-      }
+    //Probably not enough memory: cleanup and try again
+    Cleanup();
+    if(!item->Attempt(filename,submode,mError) || !item->isGood()) {
+      SAFE_DELETE(item);
+      mError = CACHE_ERROR_BAD;
+      return NULL;
     }
   }
   
@@ -1214,7 +1179,12 @@ bool WCache<cacheItem, cacheActual>::Cleanup(){
     RemoveMiss();
   }
 
-  while (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize ){
+  while (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize
+#if defined WIN32 || defined LINUX
+#else
+  || ramAvailableLineareMax() < MIN_LINEAR_RAM   
+#endif
+    ){
     if (!RemoveOldest()) 
       return false;
   } 

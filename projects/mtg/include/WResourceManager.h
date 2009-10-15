@@ -12,7 +12,7 @@
 #define PSI_CACHE_SIZE 500000  // Size in bytes of the cahed particles
 #define TEXTURES_CACHE_MINSIZE 2000000  // Minimum size of the cache on the PSP. The program should complain if the cache ever gets smaller than this
 #define OPERATIONAL_SIZE 5000000 // Size required by Wagic for operational stuff. 3MB is not enough. The cache will usually try to take (Total Ram - Operational size)
-
+#define MIN_LINEAR_RAM 1000000
 //Hard Limits.
 #define MAX_CACHE_OBJECTS 300
 #define MAX_CACHE_ATTEMPTS 10

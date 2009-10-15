@@ -30,7 +30,7 @@ void GameStateShop::Start()
 
   mStage = STAGE_SHOP_SHOP;
 
-  bgTexture = resources.RetrieveTexture("shop.jpg");
+  bgTexture = resources.RetrieveTexture("shop.jpg",RETRIEVE_LOCK);
   
   //alternateRender doesn't lock, so lock our thumbnails for hgeDistort.
   altThumb[0] = resources.RetrieveTexture("artifact_thumb.jpg", RETRIEVE_LOCK);
@@ -125,7 +125,6 @@ void GameStateShop::load(){
 void GameStateShop::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
-  resources.Release(mBg);
   resources.Release(bgTexture);
 
   //Release alternate thumbnails.
