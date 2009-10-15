@@ -111,7 +111,7 @@ rarity=C
 mana={U}
 type=Creature
 subtype=Merfolk Wizard
-auto={T}:flying target(creature)
+auto={1}{U}{T}:flying target(creature)
 power=1
 toughness=1
 [/card]
@@ -615,7 +615,7 @@ auto=may counter(1/1)
 auto=@movedTo(other ally|myBattlefield):counter(1/1)
 power=1
 toughness=1
-abilities=first strike,vigilance 
+abilities=first strike,vigilance
 [/card]
 [card]
 text=Kazandu Refuge enters the battlefield tapped.   When Kazandu Refuge enters the battlefield, you gain 1 life.   {T}: Add {R} or {G} to your mana pool.

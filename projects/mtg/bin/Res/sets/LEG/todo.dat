@@ -322,6 +322,7 @@ toughness=7
 text=When Cyclopean Mummy is put into a graveyard from play, remove Cyclopean Mummy from the game.
 id=1433
 name=Cyclopean Mummy
+auto=@movedTo(this|graveyard) from(inplay):moveto(exile)
 rarity=C
 type=Creature
 mana={1}{B}
@@ -341,6 +342,8 @@ mana={B}
 text=Enchant creature     Enchanted creature can't attack.     Prevent all combat damage that would be dealt by enchanted creature.
 id=1435
 name=Demonic Torment
+target=creature
+auto=cantattack
 rarity=U
 type=Enchantment
 mana={2}{B}
@@ -349,6 +352,8 @@ subtype=Aura
 [card]
 text=Play Disharmony only during combat before blockers are declared.      Untap target attacking creature and remove it from combat. Gain control of that creature until end of turn.
 id=1568
+target=creature[attacking]
+alias=129767
 name=Disharmony
 rarity=R
 type=Instant
@@ -383,6 +388,8 @@ mana={R}
 text=Defender, trample     When Elder Land Wurm blocks, it loses defender.
 id=1609
 name=Elder Land Wurm
+abilities=defender,trample
+auto=aslongas(this[blocking]):-defender
 rarity=R
 type=Creature
 mana={4}{W}{W}{W}
@@ -486,6 +493,7 @@ mana={U}
 [card]
 text=Flying     If Firestorm Phoenix would be put into a graveyard from play, return Firestorm Phoenix to its owner's hand instead. It can't be played again until its owner's next turn.
 id=1573
+auto=@movedTo(this|graveyard) from(inplay):moveto(ownerhand)
 name=Firestorm Phoenix
 rarity=R
 type=Creature
@@ -544,6 +552,9 @@ type=Enchantment
 text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep.
 id=1652
 name=Gabriel Angelfire
+auto=@each my upkeep:may flying
+auto=@each my upkeep:may first strike
+auto=@each my upkeep:may rampage(3/3,1)
 rarity=R
 type=Legendary Creature
 mana={3}{G}{G}{W}{W}
@@ -662,6 +673,8 @@ toughness=3
 text=At the beginning of your upkeep, if Hazezon Tamar came into play since the beginning of your last upkeep, put a 1/1 red, green, and white Sand Warrior creature token into play for each land you control. Those creatures have "When a permanent named Hazezon Tamar isn't in play, remove this creature from the game."
 id=1656
 name=Hazezon Tamar
+auto=@next my upkeep:foreach(land|myinplay) token(Sand Warrior,Creature Sand Warrior,1/1,red green)
+auto=@movedTo(this|mygraveyard) from(myinplay):moveto(graveyard) all(Sand Warrior|myinplay)
 rarity=R
 type=Legendary Creature
 mana={4}{R}{G}{W}
@@ -760,14 +773,6 @@ subtype=Human Wizard
 toughness=4
 [/card]
 [card]
-text=Jovial Evil deals X damage to target opponent, where X is twice the number of white creatures that player controls.
-id=1449
-name=Jovial Evil
-rarity=R
-type=Sorcery
-mana={2}{B}
-[/card]
-[card]
 text=You and target player exchange control of the creature you each control with the highest converted mana cost. Then exchange control of artifacts the same way. If two or more permanents a player controls are tied for highest cost, their controller chooses one of them.
 id=1489
 name=Juxtapose
@@ -789,6 +794,7 @@ toughness=2
 [card]
 text=Artifacts, creatures, and lands your opponents control come into play tapped.
 id=1623
+auto=lord(artifact,creature,land|opponentinplay)tap
 name=Kismet
 rarity=U
 type=Enchantment
@@ -1065,6 +1071,7 @@ toughness=1
 text={T}: Psionic Entity deals 2 damage to target creature or player and 3 damage to itself.
 id=1493
 name=Psionic Entity
+auto={T}:damage:3 && damage:2 target(creature,player)
 rarity=R
 type=Creature
 mana={4}{U}
@@ -1352,14 +1359,6 @@ rarity=C
 type=Enchantment
 mana={B}{B}
 subtype=Aura
-[/card]
-[card]
-text=At the beginning of each player's upkeep, if that player controls a Plains, he or she gains 1 life.
-id=1636
-name=Spiritual Sanctuary
-rarity=R
-type=Enchantment
-mana={2}{W}{W}
 [/card]
 [card]
 text=When Stangg comes into play, if Stangg is in play, put a legendary 3/4 red and green Human Warrior creature token named Stangg Twin into play. When Stangg leaves play, remove that token from the game. When that token leaves play, sacrifice Stangg.

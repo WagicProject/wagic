@@ -1106,7 +1106,7 @@ mana={G}{W}
 [/card]
 [card]
 text=First strike     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=first strike, exalted
+abilities=first strike,exalted
 id=174958
 name=Sigiled Paladin
 rarity=U

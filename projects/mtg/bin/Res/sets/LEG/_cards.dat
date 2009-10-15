@@ -661,6 +661,15 @@ toughness=5
 abilities=legendary
 [/card]
 [card]
+text=Jovial Evil deals X damage to target opponent, where X is twice the number of white creatures that player controls.
+id=1449
+auto=foreach(creature[white]|opponentinplay):damage:2 opponent
+name=Jovial Evil
+rarity=R
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
 text=Legendary   {T}: Add {W} to your mana pool.   {W}, {T}: Return target legendary creature to its owner's hand.
 id=1701
 name=Karakas
@@ -1121,6 +1130,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=At the beginning of each player's upkeep, if that player controls a Plains, he or she gains 1 life.
+id=1636
+auto=@each my upkeep:aslongas(plains|myinplay) life:1 controller
+auto=@each opponent upkeep:aslongas(plains|opponentinplay) life:1 opponent
+name=Spiritual Sanctuary
+rarity=R
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
 text=Storm Seeker deals damage equal to the number of cards in target player's hand to that player.
 id=1545
 target=player
@@ -1146,8 +1165,7 @@ abilities=legendary
 [card]
 text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
 id=1458
-target=player
-auto=damage:2
+auto=damage:2 opponent
 auto=life:2 controller
 name=Syphon Soul
 rarity=C

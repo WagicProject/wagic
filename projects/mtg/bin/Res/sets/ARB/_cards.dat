@@ -110,7 +110,6 @@ text=Intimidation Bolt deals 3 damage to target creature. Other creatures can't 
 target=creature
 auto=damage:3
 auto=lord(creature) cantattack
-target=creature
 rarity=U
 [/card]
 [card]
@@ -119,7 +118,7 @@ name=Jenara, Asura of War
 mana={G}{W}{U}
 type=Creature
 subtype=Angel
-abilities=Legendary,Flying
+abilities=legendary,flying
 auto={1}{W}:counter(1/1)
 power=3
 toughness=3
@@ -409,7 +408,7 @@ type=Creature
 subtype=Illusion Wall
 power=0
 toughness=8
-abilities=Defender, flying, shroud
+abilities=defender,flying,shroud
 [/card]
 [card]
 text=Flash. Flying. Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)

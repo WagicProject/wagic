@@ -157,6 +157,35 @@ public:
   }
 };
 
+class TrDamaged:public TriggeredAbility{
+public:
+  TargetChooser * tc;
+  TargetChooser * fromTc;
+  TrDamaged (int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL):TriggeredAbility(id,source), tc(tc), fromTc(fromTc){}
+
+  int resolve(){
+    return 0; //This is a trigger, this function should not be called
+  }
+
+  int triggerOnEvent(WEvent * event){
+    WEventDamage * e = dynamic_cast<WEventDamage *>(event);
+    if (!e) return 0;
+	if(!tc->canTarget(e->damage->target)) return 0;
+	if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
+    return 1;
+  }
+
+  ~ TrDamaged (){
+    SAFE_DELETE(tc);
+	SAFE_DELETE(fromTc);
+  }
+
+  TrDamaged * clone() const{
+    TrDamaged * a =  NEW TrDamaged (*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 
 //counters
 class AACounter: public ActivatedAbility{

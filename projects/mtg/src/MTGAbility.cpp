@@ -108,6 +108,27 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     return NEW TrCardTapped(id,card,tc);
   }
 
+    //Card Damaging
+  found = s.find("damaged(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+8,end - found - 8);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    TargetChooser *fromTc = NULL;
+    found = s.find("from(");
+    if (found != string::npos){
+      end = s.find (")", found);
+      starget = s.substr(found+5,end - found - 5);
+      TargetChooser * fromTc = tcf.createTargetChooser(starget,card);
+      fromTc->targetter = NULL;
+    
+    return NEW TrDamaged(id,card,tc,fromTc);
+	}
+  }
+
   int who = 0;
   if (s.find("my") != string::npos) who = 1;
   if (s.find("opponent") != string::npos) who = -1;
@@ -1547,6 +1568,23 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	    game->mLayers->stackLayer()->addDamage(card, target, damage);
       break;
 	}
+
+	
+	case 129698: // Reminisce
+		{
+			int nbcards;
+			Player * player = spell->getNextPlayerTarget();
+			MTGLibrary * library = player->game->library;
+			MTGGraveyard * graveyard = player->game->graveyard;
+			nbcards = (graveyard->nb_cards);
+			for (int i = 0; i < nbcards; i++){
+				if (graveyard->nb_cards)
+					player->game->putInZone(graveyard->cards[graveyard->nb_cards-1],graveyard, library);
+			}
+			library->shuffle();
+			break;
+		}
+
 
 // --- addon Invasion---
    case 23195: //Artifact Mutation

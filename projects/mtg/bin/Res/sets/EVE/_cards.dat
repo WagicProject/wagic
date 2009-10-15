@@ -816,7 +816,6 @@ subtype=Elf Warrior
 toughness=1
 [/card]
 [card]
-target=creature
 text=Remove target creature from the game.
 target=creature
 auto=moveTo(removedfromGame)

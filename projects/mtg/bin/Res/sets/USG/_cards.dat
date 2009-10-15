@@ -814,7 +814,6 @@ id=5684
 target=creature
 auto=destroy
 auto=life:4 targetController
-target=creature
 name=Path of Peace
 rarity=C
 mana={3}{W}
@@ -1017,7 +1016,8 @@ auto={T}:foreach(enchantment|myBattlefield)add:{W}
 id=9674
 name=Serra's Sanctum
 rarity=R
-type=Legendary Land
+type=Land
+abilities=legendary
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{R}: Shivan Hellkite deals 1 damage to target creature or player.

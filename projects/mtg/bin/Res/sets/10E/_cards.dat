@@ -364,7 +364,7 @@ mana={1}{U}{U}
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
-abilities=Reach
+abilities=reach
 id=135185
 name=Canopy Spider
 rarity=C
@@ -1487,7 +1487,7 @@ mana={2}
 [/card]
 [card]
 text=First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
-abilities=first strike,forestwalk,vigilance,legendary 
+abilities=first strike,forestwalk,vigilance,legendary
 id=106405
 name=Mirri, Cat Warrior
 rarity=R
@@ -1951,6 +1951,16 @@ subtype=Rat
 toughness=2
 [/card]
 [card]
+text=Target player shuffles his or her graveyard into his or her library.
+id=129698
+target=player
+name=Reminisce
+rarity=U
+color=Blue
+type=Sorcery
+mana={2}{U}
+[/card]
+[card]
 text=Counter target creature spell.
 target=creature|stack
 auto=fizzle
@@ -2303,6 +2313,20 @@ mana={G}
 power=1
 subtype=Elf
 toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.
+id=129764
+abilities=flying
+name=Thieving Magpie
+auto=@damaged(opponent):draw:1 controller
+rarity=U
+color=Blue
+type=Creature
+mana={2}{U}{U}
+power=1
+subtype=Bird
+toughness=3
 [/card]
 [card]
 text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
