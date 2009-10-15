@@ -221,7 +221,6 @@ void GameStateDeckViewer::Update(float dt)
       newDeckname = options.keypadFinish();
 
       if(newDeckname != ""){    
-        loadDeck(deckNum);
         if(myDeck && myDeck->parent){
           myDeck->parent->meta_name = newDeckname;
           myDeck->save();
