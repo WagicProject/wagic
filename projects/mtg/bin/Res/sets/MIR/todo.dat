@@ -267,7 +267,6 @@ power=2
 toughness=2
 rarity=C
 [/card]
-
 [card]
 text=As an additional cost to play Carrion, sacrifice a creature.     Put X 0/1 black Insect creature tokens into play, where X is the sacrificed creature's power.
 id=3280
@@ -295,7 +294,6 @@ rarity=R
 type=Enchantment
 mana={1}{W}{W}
 [/card]
-
 [card]
 text=Choose one - Destroy target Wall; or Chaos Charm deals 1 damage to target creature; or target creature gains haste until end of turn.
 id=3434
@@ -312,7 +310,6 @@ rarity=R
 type=World Enchantment
 mana={2}{R}
 [/card]
-
 [card]
 text={2}, {T}: Until end of turn, target creature you control gains flying and its toughness becomes 1.
 id=3245
@@ -345,7 +342,6 @@ rarity=R
 type=Enchantment
 mana={1}{W}{B}
 [/card]
-
 [card]
 text=Enchant creature     Enchanted creature has phasing and can't be blocked except by Walls.
 id=3329
@@ -375,7 +371,6 @@ power=1
 subtype=Merfolk Soldier
 toughness=1
 [/card]
-
 [card]
 text=Flying       {X}, {T}: Crimson Hellkite deals X damage to target creature. Spend only red mana this way.
 id=3438
@@ -420,7 +415,6 @@ power=3
 subtype=Golem
 toughness=3
 [/card]
-
 [card]
 text=Activated abilities of creatures can't be played.
 id=3247
@@ -437,8 +431,6 @@ rarity=R
 type=Enchantment
 mana={1}{G}{G}
 [/card]
-
-
 [card]
 text=Play Dazzling Beauty only during the declare blockers step.     Target attacking unblocked creature becomes blocked.     Draw a card at the beginning of the next turn's upkeep.
 id=3483
@@ -464,7 +456,6 @@ rarity=U
 type=Instant
 mana={1}{B}{R}
 [/card]
-
 [card]
 text=At the end of each turn, if it was an opponent's turn, put a +1/+1 counter on Discordant Spirit for each 1 damage dealt to you that turn.     At the end of your turn, remove all +1/+1 counters on Discordant Spirit.
 id=3532
@@ -491,14 +482,6 @@ name=Divine Retribution
 rarity=R
 type=Instant
 mana={1}{W}
-[/card]
-[card]
-text=Spend only black mana on X.       Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
-id=3287
-name=Drain Life
-rarity=C
-type=Sorcery
-mana={X}{1}{B}
 [/card]
 [card]
 text=Whenever Dread Specter blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat.
@@ -530,8 +513,6 @@ power=1
 subtype=Human Soldier
 toughness=1
 [/card]
-
-
 [card]
 text=Target player untaps all basic lands he or she controls.
 id=3382
@@ -548,19 +529,6 @@ rarity=C
 type=Instant
 mana={B}
 [/card]
-[card]
-text=If a creature you control attacks, Ekundu Cyclops also attacks if able.
-id=3442
-name=Ekundu Cyclops
-rarity=C
-type=Creature
-mana={3}{R}
-power=3
-subtype=Cyclops
-toughness=4
-[/card]
-
-
 [card]
 text=Flying, trample. Emberwilde Caliph attacks each turn if able. Whenever Emberwilde Caliph deals damage, you lose that much life.
 id=3533
@@ -600,7 +568,6 @@ rarity=R
 type=Enchantment
 mana={3}{U}{U}
 [/card]
-
 [card]
 text=Search your library for an artifact or enchantment card and reveal that card. Shuffle your library, then put the card on top of it.
 id=3489
@@ -641,7 +608,6 @@ power=3
 subtype=Avatar
 toughness=4
 [/card]
-
 [card]
 text=Enchant creature     Enchanted creature gets +1/+2 as long as it's white.     Enchanted creature has shroud as long as its controller controls another creature. (It can't be the target of spells or abilities.)
 id=3491
@@ -651,7 +617,6 @@ type=Enchantment
 mana={1}{W}
 subtype=Aura
 [/card]
-
 [card]
 text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
 id=3492
@@ -676,11 +641,6 @@ power=2
 toughness=2
 rarity=C
 [/card]
-
-
-
-
-
 [card]
 text=Take an extra turn after this one. At the end of that turn, you lose the game.
 id=3444
@@ -689,8 +649,6 @@ rarity=R
 type=Instant
 mana={R}{R}
 [/card]
-
-
 [card]
 text={R}, {T}, Sacrifice Flame Elemental: Flame Elemental deals damage equal to its power to target creature.
 id=3446
@@ -702,7 +660,6 @@ power=3
 subtype=Elemental
 toughness=2
 [/card]
-
 [card]
 text=You may put a creature card from your hand into play. If you do, sacrifice it unless you pay its mana cost reduced by up to {2}.
 id=3337
@@ -711,7 +668,6 @@ rarity=R
 type=Instant
 mana={1}{U}
 [/card]
-
 [card]
 text=Defender (This creature can't attack.)  When Floodgate has flying, sacrifice it.     When Floodgate leaves play, it deals 1 damage for each two Islands you control to each nonblue creature without flying.
 id=3338
@@ -731,7 +687,6 @@ rarity=C
 type=Instant
 mana={G}
 [/card]
-
 [card]
 text=If you would draw a card, return a card from your graveyard to your hand instead. If you can't, you lose the game.     If a card would be put into your graveyard from anywhere, remove that card from the game instead.
 id=3293
@@ -740,7 +695,6 @@ rarity=R
 type=Enchantment
 mana={3}{B}{B}
 [/card]
-
 [card]
 text=Players can't gain life.     At the beginning of each player's upkeep, that player loses 1 life.     Whenever Forsaken Wastes becomes the target of a spell, that spell's controller loses 5 life.
 id=3294
@@ -760,7 +714,6 @@ power=2
 subtype=Efreet
 toughness=1
 [/card]
-
 [card]
 text=Gibbering Hyenas can't block black creatures.
 id=3388
@@ -783,7 +736,6 @@ power=2
 subtype=Goblin Warrior
 toughness=2
 [/card]
-
 [card]
 text={R}, {T}: Destroy target artifact. That artifact deals damage equal to its converted mana cost to Goblin Tinkerer.
 id=3451
@@ -795,8 +747,6 @@ power=1
 subtype=Goblin Artificer
 toughness=2
 [/card]
-
-
 [card]
 text=You may play Grave Servitude any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     Enchanted creature gets +3/-1 and is black.
 id=3295
@@ -860,7 +810,6 @@ rarity=R
 type=Sorcery
 mana={1}{R}{R}
 [/card]
-
 [card]
 text=Reach (This creature can block creatures with flying.)  Whenever Harbor Guardian attacks, defending player may draw a card.
 id=3537
@@ -872,9 +821,6 @@ power=3
 subtype=Gargoyle
 toughness=4
 [/card]
-
-
-
 [card]
 text=Choose one - Target player gains 3 life; or prevent the next 3 damage that would be dealt to target creature or player this turn.
 id=3495
@@ -894,7 +840,6 @@ power=3
 subtype=Viashino Shaman
 toughness=4
 [/card]
-
 [card]
 text=Each player may bid life for control of target creature. You start the bidding with a bid of 0. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and gains control of the creature. (This effect doesn't end at end of turn.)
 id=3454
@@ -930,7 +875,6 @@ rarity=R
 type=Sorcery
 mana={B}{B}{B}
 [/card]
-
 [card]
 text=Choose one - All creatures get -2/-0 until end of turn; or tap target creature; or prevent the next 1 damage that would be dealt to target creature or player this turn.
 id=3498
@@ -968,7 +912,6 @@ type=Instant
 mana={2}{U}
 rarity=C
 [/card]
-
 [card]
 text=Destroy target creature with converted mana cost X. If that creature is put into a graveyard this way, Kaervek's Purge deals damage equal to the creature's power to the creature's controller.
 id=3541
@@ -985,7 +928,6 @@ rarity=C
 type=Sorcery
 mana={X}{R}
 [/card]
-
 [card]
 text=Whenever Kukemssa Pirates attacks and isn't blocked, you may gain control of target artifact defending player controls. If you do, Kukemssa Pirates deals no combat damage this turn.
 id=3342
@@ -1019,7 +961,6 @@ power=3
 subtype=Golem
 toughness=5
 [/card]
-
 [card]
 text=You may play Lightning Reflexes any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     Enchanted creature gets +1/+0 and has first strike.
 id=3457
@@ -1034,10 +975,14 @@ text=Sacrifice Lion's Eye Diamond, Discard your hand: Add three mana of any one 
 id=3255
 name=Lion's Eye Diamond
 rarity=R
-type=Artifact
 mana={0}
+auto={S}:moveTo(mygraveyard) all(*|myhand) && add {W}{W}{W}
+auto={S}:moveTo(mygraveyard) all(*|myhand) && add {U}{U}{U}
+auto={S}:moveTo(mygraveyard) all(*|myhand) && add {B}{B}{B}
+auto={S}:moveTo(mygraveyard) all(*|myhand) && add {R}{R}{R}
+auto={S}:moveTo(mygraveyard) all(*|myhand) && add {G}{G}{G}
+type=Artifact
 [/card]
-
 [card]
 text=Play Lure of Prey only if an opponent played a creature spell this turn.     You may put a green creature card from your hand into play.
 id=3396
@@ -1054,7 +999,6 @@ rarity=R
 type=Enchantment
 mana={3}{G}{U}
 [/card]
-
 [card]
 text=You gain 5 life.       When a spell or ability an opponent controls causes you to discard Mangara's Blessing from your hand, you gain 2 life, and you return Mangara's Blessing from your graveyard to your hand at end of turn.
 id=3500
@@ -1079,8 +1023,6 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-
-
 [card]
 text=If target spell has only one target and that target is a creature, change that spell's target to another creature.
 id=3344
@@ -1089,7 +1031,6 @@ rarity=U
 type=Instant
 mana={1}{U}
 [/card]
-
 [card]
 text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
 id=3345
@@ -1178,8 +1119,6 @@ power=4
 subtype=Dragon
 toughness=4
 [/card]
-
-
 [card]
 text=Flying       {W}, {T}: Return Mtenda Griffin to its owner's hand and return target Griffin card in your graveyard to your hand. Play this ability only during your upkeep.
 id=3503
@@ -1230,7 +1169,6 @@ rarity=R
 type=Sorcery
 mana={2}{G}{G}
 [/card]
-
 [card]
 text=Banding, trample
 #banding not suppoerted
@@ -1244,7 +1182,6 @@ power=2
 toughness=2
 rarity=C
 [/card]
-
 [card]
 text=As Null Chamber comes into play, you and an opponent each name a card other than a basic land card.     The named cards can't be played.
 id=3506
@@ -1261,7 +1198,6 @@ rarity=U
 type=Sorcery
 mana={1}{B}
 [/card]
-
 [card]
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Paupers' Cage deals 2 damage to him or her.
 id=3262
@@ -1270,7 +1206,6 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
 [card]
 text=Trample     When Phyrexian Dreadnought comes into play, sacrifice it unless you sacrifice any number of creatures with total power 12 or greater.
 id=3263
@@ -1298,7 +1233,6 @@ rarity=R
 type=Sorcery
 mana={2}{B}
 [/card]
-
 [card]
 text=Exchange control of target land you control and target land an opponent controls. (This effect doesn't end at end of turn.)
 id=3352
@@ -1382,7 +1316,6 @@ power=2
 subtype=Cat Warrior
 toughness=3
 [/card]
-
 [card]
 text=As Quirion Elves comes into play, choose a color.     {T}: Add {G} to your mana pool.     {T}: Add one mana of the chosen color to your mana pool.
 id=3403
@@ -1394,7 +1327,6 @@ power=1
 subtype=Elf Druid
 toughness=1
 [/card]
-
 [card]
 text={2}: Raging Spirit becomes colorless until end of turn.
 id=3459
@@ -1406,7 +1338,6 @@ power=3
 subtype=Spirit
 toughness=3
 [/card]
-
 [card]
 text={T}: Destroy target attacking or blocking Dragon. It can't be regenerated. You gain life equal to its power.
 id=3510
@@ -1472,7 +1403,6 @@ rarity=R
 type=Instant
 mana={3}{R}{W}
 [/card]
-
 [card]
 text=Choose one - Destroy target Plains and target white creature; or destroy target Island and target blue creature.
 id=3461
@@ -1481,7 +1411,6 @@ rarity=U
 type=Sorcery
 mana={2}{R}{R}
 [/card]
-
 [card]
 text=Whenever an opponent plays a spell that targets you or a creature you control, you may draw a card.
 id=3549
@@ -1490,10 +1419,6 @@ rarity=R
 type=Enchantment
 mana={1}{W}{U}
 [/card]
-
-
-
-
 [card]
 text=As Roots of Life comes into play, choose Islands or Swamps.     Whenever a land of the chosen type an opponent controls becomes tapped, you gain 1 life.
 id=3406
@@ -1543,7 +1468,6 @@ power=6
 subtype=Crocodile
 toughness=5
 [/card]
-
 [card]
 text=Choose one - Target player draws a card at the beginning of the next turn's upkeep; or target creature an opponent controls phases out; or target creature gains flying until end of turn.
 id=3360
@@ -1571,7 +1495,6 @@ power=2
 subtype=Manticore
 toughness=4
 [/card]
-
 [card]
 text=Look at the top X cards of target opponent's library. Remove one of those cards from the game and put the rest back on top of that player's library in any order.
 id=3553
@@ -1599,7 +1522,6 @@ rarity=C
 type=Instant
 mana={G}
 [/card]
-
 [card]
 text=The next time a source of your choice would deal damage to you or a creature you control this turn, prevent that damage. If damage from a black source is prevented this way, you gain that much life.
 id=3513
@@ -1616,19 +1538,21 @@ rarity=R
 type=Instant
 mana={1}{B}
 [/card]
-
 [card]
-text=Flying     Shauku, Endbringer can't attack if there's another creature in play.     At the beginning of your upkeep, you lose 3 life.     {T}: Remove target creature from the game and put a +1/+1 counter on Shauku.
+text=Flying   Shauku, Endbringer can't attack if there's another creature on the battlefield.   At the beginning of your upkeep, you lose 3 life.   {T}: Remove target creature from the game and put a +1/+1 counter on Shauku.
+auto=@each my upkeep:life:-3
 id=3311
 name=Shauku, Endbringer
-rarity=R
-type=Legendary Creature
-mana={5}{B}{B}
-power=5
+type=Creature
 subtype=Vampire
+rarity=R
+mana={5}{B}{B}
+auto=aslongas(creature|battlefield) cantattack
+auto=
+power=5
 toughness=5
+abilities=legendary,flying
 [/card]
-
 [card]
 text=As Shimmer comes into play, choose a land type.       All lands of the chosen type have phasing.
 id=3363
@@ -1667,7 +1591,6 @@ power=2
 subtype=Spirit
 toughness=1
 [/card]
-
 [card]
 text=You may play Soar any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     Enchanted creature gets +0/+1 and has flying.
 id=3364
@@ -1721,17 +1644,6 @@ subtype=Spirit
 toughness=3
 [/card]
 [card]
-text=Flying, trample, haste, protection from black     Spirit of the Night has first strike as long as it's attacking.
-id=3315
-name=Spirit of the Night
-rarity=R
-type=Legendary Creature
-mana={6}{B}{B}{B}
-power=6
-subtype=Demon Spirit
-toughness=5
-[/card]
-[card]
 text=Stalking Tiger can't be blocked by more than one creature.
 id=3412
 name=Stalking Tiger
@@ -1758,7 +1670,6 @@ rarity=U
 type=Sorcery
 mana={2}{B}
 [/card]
-
 [card]
 text=Defender (This creature can't attack.)  Flying     Sunweb can't block creatures with power 2 or less.
 id=3517
@@ -1789,7 +1700,6 @@ power=0
 subtype=Human Wizard
 toughness=1
 [/card]
-
 [card]
 text=Flying     {1}{B}{B}, {T}: Target player discards a card unless he or she puts a card from his or her hand on top of his or her library. If that player discards a card this way, Tainted Specter deals 1 damage to each creature and each player. Play this ability only any time you could play a sorcery.
 id=3317
@@ -1801,7 +1711,6 @@ power=2
 subtype=Specter
 toughness=2
 [/card]
-
 [card]
 text=Phasing, trample     At the beginning of your upkeep, all lands you control phase out.
 id=3366
@@ -1862,8 +1771,6 @@ power=2
 subtype=Human Knight
 toughness=2
 [/card]
-
-
 [card]
 text=Banding, flying
 #banding not supported
@@ -1918,8 +1825,6 @@ rarity=U
 type=Sorcery
 mana={X}{G}
 [/card]
-
-
 [card]
 text={3}, {T}, Tap an untapped creature you control: Unerring Sling deals damage equal to the tapped creature's power to target attacking or blocking creature with flying.
 id=3270
@@ -1936,9 +1841,6 @@ rarity=R
 type=Enchantment
 mana={1}{U}{B}
 [/card]
-
-
-
 [card]
 text={B}, Sacrifice Urborg Panther: Destroy target creature blocking Urborg Panther.     Sacrifice a creature named Feral Shadow, a creature named Breathstealer, and Urborg Panther: Search your library for a card named Spirit of the Night and put that card into play. Then shuffle your library.
 id=3319
@@ -1969,7 +1871,6 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
 [card]
 text=Sacrifice Vigilant Martyr: Regenerate target creature.     {W}{W}, {T}, Sacrifice Vigilant Martyr: Counter target spell that targets an enchantment.
 id=3520
@@ -1981,7 +1882,6 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-
 [card]
 text=You gain X plus 3 life.
 id=3557
@@ -1990,7 +1890,6 @@ rarity=U
 type=Instant
 mana={X}{G}{W}
 [/card]
-
 [card]
 text=Volcanic Geyser deals X damage to target creature or player.
 id=3473
@@ -2080,9 +1979,6 @@ type=Enchantment
 mana={1}{G}{W}
 subtype=Aura
 [/card]
-
-
-
 [card]
 text=Search your library for a creature card and reveal that card. Shuffle your library, then put the revealed card back on top of it.
 id=3424
@@ -2099,7 +1995,6 @@ rarity=R
 type=Instant
 mana={2}{W}
 [/card]
-
 [card]
 text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {1}{W}{W}: Target Knight creature gets +1/+1 until end of turn.
 id=3524 
