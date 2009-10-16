@@ -13,7 +13,7 @@ const char* Constants::MTGBasicAbilities[] = {
 "islandwalk",
 "mountainwalk",
 "swampwalk",
-"plainwalk",
+"plainswalk",
 "flying",
 "first strike",
 "double strike",
