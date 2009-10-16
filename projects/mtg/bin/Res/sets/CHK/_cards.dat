@@ -856,7 +856,7 @@ id=78965
 name=Seizan, Perverter of Truth
 mana={3}{B}{B}
 type=Creature
-abilities=legendary 
+abilities=legendary
 auto=@each my upkeep:life:-2 controller && draw:2 controller
 auto=@each opponent upkeep:life:-2 opponent && draw:2 opponent
 subtype=Demon Spirit
@@ -877,6 +877,20 @@ target=creature
 auto=1/1
 auto={G}:regenerate
 rarity=C
+[/card]
+[card]
+id=80256
+name=Seshiro the Anointed
+mana={4}{G}{G}
+type=Creature
+abilities=legendary
+subtype=Snake Monk
+power=3
+toughness=4
+text=Other Snake creatures you control get +2/+2. Whenever a Snake you control deals combat damage to a player, you may draw a card.
+auto=lord(snake|myBattlefield)2/2
+auto=@damaged(player) from(snake|myBattlefield):may draw:1
+rarity=R
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.     {R}, {T}: Target legendary Creature gains first strike until end of turn.
@@ -988,6 +1002,19 @@ type=Basic Land
 subtype=Swamp
 text={B}
 rarity=L
+[/card]
+[card]
+id=78693
+name=The Unspeakable
+mana={6}{U}{U}{U}
+type=Creature
+subtype=Spirit
+abilities=legendary,flying,trample
+power=6
+toughness=7
+text=Flying, trample Whenever The Unspeakable deals combat damage to a player, you may return target Arcane card from your graveyard to your hand.
+auto=@damaged(player) from(this):may moveto(myhand) target(arcane|mygraveyard)
+rarity=R
 [/card]
 [card]
 text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.

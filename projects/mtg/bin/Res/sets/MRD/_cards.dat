@@ -949,6 +949,18 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+text=Whenever Rustmouth Ogre deals combat damage to a player, you may destroy target artifact that player controls.
+id=46118
+auto=@damaged(player) from(this):may destroy target(artifact|opponentBattlefield)
+name=Rustmouth Ogre
+rarity=U
+type=Creature
+mana={4}{R}{R}
+power=5
+subtype=Ogre
+toughness=4
+[/card]
+[card]
 text=As Sculpting Steel enters the battlefield, you may choose an artifact on the battlefield. If you do, Sculpting Steel enters the battlefield as a copy of that artifact.
 auto=may copy target(artifact)
 id=46720
@@ -1019,6 +1031,58 @@ power=2
 toughness=3
 abilities=flying,first strike
 [/card]
+[card]
+text=Flying Whenever Slith Ascendant deals combat damage to a player, put a +1/+1 counter on it.
+id=46069
+name=Slith Ascendant
+abilities=flying
+auto=@damaged(player) from(this):counter(1/1,1)
+rarity=U
+type=Creature
+mana={1}{W}{W}
+power=1
+subtype=Slith
+toughness=1
+[/card]
+[card]
+text=Whenever Slith Bloodletter deals combat damage to a player, put a +1/+1 counter on it.     {1}{B}: Regenerate Slith Bloodletter.
+id=46091
+name=Slith Bloodletter
+auto=@damaged(player) from(this):counter(1/1,1)
+rarity=U
+type=Creature
+mana={B}{B}
+power=1
+subtype=Slith
+toughness=1
+[/card]
+[card]
+text=Haste Whenever Slith Firewalker deals combat damage to a player, put a +1/+1 counter on it.
+id=46102
+name=Slith Firewalker
+abilities=haste
+auto=@damaged(player) from(this):counter(1/1,1)
+rarity=U
+type=Creature
+mana={R}{R}
+power=1
+subtype=Slith
+toughness=1
+[/card]
+[card]
+text=Trample     Whenever Slith Predator deals combat damage to a player, put a +1/+1 counter on it.
+id=46113
+name=Slith Predator
+abilities=trample
+auto=@damaged(player) from(this):counter(1/1,1)
+rarity=U
+type=Creature
+mana={G}{G}
+power=1
+subtype=Slith
+toughness=1
+[/card]
+
 [card]
 text={1}{W}, Sacrifice Soldier Replica: Soldier Replica deals 3 damage to target attacking or blocking creature.
 id=46025

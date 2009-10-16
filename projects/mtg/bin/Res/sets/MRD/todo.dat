@@ -362,11 +362,14 @@ mana={3}
 [card]
 text=Whenever a source an opponent controls deals damage to you, if Farsight Mask is untapped, you may draw a card.
 id=46135
+auto=@damaged(player) from(*|opponentBattlefield):aslongas(this[untapped]) may draw:1 controller
+auto=@damaged(player) from(*|opponentstack):aslongas(this[untapped]) may draw:1 controller
 name=Farsight Mask
 rarity=U
 type=Artifact
 mana={5}
 [/card]
+
 [card]
 text=At the beginning of each opponent's upkeep, that player chooses draw step, main phase, or combat phase. The player skips each instance of the chosen step or phase this turn.
 id=45970
@@ -1154,17 +1157,6 @@ subtype=Elemental
 toughness=4
 [/card]
 [card]
-text=Whenever Rustmouth Ogre deals combat damage to a player, you may destroy target artifact that player controls.
-id=46118
-name=Rustmouth Ogre
-rarity=U
-type=Creature
-mana={4}{R}{R}
-power=5
-subtype=Ogre
-toughness=4
-[/card]
-[card]
 text=When Rustspore Ram comes into play, destroy target Equipment.
 id=46138
 name=Rustspore Ram
@@ -1259,50 +1251,7 @@ type=Artifact
 mana={1}
 subtype=Equipment
 [/card]
-[card]
-text=Flying Whenever Slith Ascendant deals combat damage to a player, put a +1/+1 counter on it.
-id=46069
-name=Slith Ascendant
-rarity=U
-type=Creature
-mana={1}{W}{W}
-power=1
-subtype=Slith
-toughness=1
-[/card]
-[card]
-text=Whenever Slith Bloodletter deals combat damage to a player, put a +1/+1 counter on it.     {1}{B}: Regenerate Slith Bloodletter.
-id=46091
-name=Slith Bloodletter
-rarity=U
-type=Creature
-mana={B}{B}
-power=1
-subtype=Slith
-toughness=1
-[/card]
-[card]
-text=Haste Whenever Slith Firewalker deals combat damage to a player, put a +1/+1 counter on it.
-id=46102
-name=Slith Firewalker
-rarity=U
-type=Creature
-mana={R}{R}
-power=1
-subtype=Slith
-toughness=1
-[/card]
-[card]
-text=Trample     Whenever Slith Predator deals combat damage to a player, put a +1/+1 counter on it.
-id=46113
-name=Slith Predator
-rarity=U
-type=Creature
-mana={G}{G}
-power=1
-subtype=Slith
-toughness=1
-[/card]
+
 [card]
 text=Whenever Slith Strider becomes blocked, draw a card.     Whenever Slith Strider deals combat damage to a player, put a +1/+1 counter on it.
 id=46080
@@ -1694,17 +1643,6 @@ type=Artifact Creature
 mana={3}
 power=1
 subtype=Wizard
-toughness=3
-[/card]
-[card]
-text=Fear Whenever Woebearer deals combat damage to a player, you may return target creature card from your graveyard to your hand.
-id=46074
-name=Woebearer
-rarity=U
-type=Creature
-mana={4}{B}
-power=2
-subtype=Zombie
 toughness=3
 [/card]
 [card]

@@ -467,9 +467,14 @@ name=Forbidden Orchard
 mana=
 type=Land
 text={T}: Add one mana of any color to your mana pool. Whenever you tap Forbidden Orchard for mana, put a 1/1 colorless Spirit creature token into play under target opponent's control.
+#Not yet implemented
+auto={T}:add {G} && token(Spirit,Creature Spirit,1/1) opponent
+auto={T}:add {W} && token(Spirit,Creature Spirit,1/1) opponent
+auto={T}:add {U} && token(Spirit,Creature Spirit,1/1) opponent
+auto={T}:add {B} && token(Spirit,Creature Spirit,1/1) opponent
+auto={T}:add {R} && token(Spirit,Creature Spirit,1/1) opponent
 rarity=R
 [/card]
-
 [card]
 id=50285
 name=Frostwielder
@@ -481,7 +486,6 @@ toughness=2
 text={T}: Frostwielder deals 1 damage to target creature or player. If a creature dealt damage by Frostwielder this turn would be put into a graveyard, remove it from the game instead.
 rarity=C
 [/card]
-
 [card]
 id=79862
 name=General's Kabuto
@@ -1667,17 +1671,7 @@ text={1}: Look at the top three cards of your library, then put them back in any
 rarity=U
 [/card]
 
-[card]
-id=80256
-name=Seshiro the Anointed
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Snake Monk
-power=3
-toughness=4
-text=Other Snake creatures you control get +2/+2. Whenever a Snake you control deals combat damage to a player, you may draw a card.
-rarity=R
-[/card]
+
 [card]
 id=75278
 name=Shell of the Last Kappa
@@ -1963,17 +1957,6 @@ type=Sorcery
 subtype=Arcane
 text=Tap up to three target creatures.
 rarity=C
-[/card]
-[card]
-id=78693
-name=The Unspeakable
-mana={6}{U}{U}{U}
-type=Legendary Creature
-subtype=Spirit
-power=6
-toughness=7
-text=Flying, trample Whenever The Unspeakable deals combat damage to a player, you may return target Arcane card from your graveyard to your hand.
-rarity=R
 [/card]
 [card]
 id=77920
