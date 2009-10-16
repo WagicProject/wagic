@@ -149,15 +149,6 @@ type=Sorcery
 mana={3}{W}
 [/card]
 [card]
-text=Chaotic Backlash deals damage to target player equal to twice the number of white and/or blue permanents he or she controls.
-id=158903
-name=Chaotic Backlash
-rarity=U
-type=Instant
-mana={4}{R}
-[/card]
-
-[card]
 text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has shroud. (It can't be the target of spells or abilities.)  As long as enchanted creature is red, it gets +1/+1 and has haste.
 id=152092
 name=Clout of the Dominus
