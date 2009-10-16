@@ -31,8 +31,6 @@ toughness=4
 text=If a source would deal damage to a player, you may prevent X of that damage, where X is the number of Clerics you control.
 rarity=R
 [/card]
-
-
 [card]
 id=153137
 name=Boldwyr Heavyweights
@@ -55,7 +53,6 @@ toughness=5
 text=Cowards can't block Warriors. {R}: Target creature becomes a Coward until end of turn. {2}{R}: Target creature becomes a Warrior until end of turn.
 rarity=U
 [/card]
-
 [card]
 id=152557
 name=Bosk Banneret
@@ -180,7 +177,6 @@ type=Enchantment
 text=Whenever a creature enters the battlefield under your control, you may look at the top X cards of your library, where X is that creature's power. If you do, put one of those cards on top of your library and the rest on the bottom of your library in any order.
 rarity=R
 [/card]
-
 [card]
 id=153169
 name=Declaration of Naught

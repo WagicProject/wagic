@@ -1,5 +1,5 @@
 [card]
-text=When Ambassador Oak comes enters the battlefield, put a 1/1 green Elf Warrior creature token onto the battlefield.
+text=When Ambassador Oak enters the battlefield, put a 1/1 green Elf Warrior creature token onto the battlefield.
 id=152998
 name=Ambassador Oak
 auto=token(Elf Warrior,creature elf,1/1,green)
@@ -11,8 +11,8 @@ power=3
 toughness=3
 [/card]
 [card]
-text=At the beginning of your upkeep, you lose 1 life and put a 1/1 black Faerie Rogue creature token with flying into play.
-auto=@each my upkeep:life-1 controller
+text=At the beginning of your upkeep, you lose 1 life and put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
+auto=@each my upkeep:life:-1 controller
 auto=@each my upkeep:token(Faerie,creature faerie,1/1,flying black)
 id=152648
 name=Bitterblossom
@@ -47,7 +47,7 @@ toughness=4
 abilities=trample
 [/card]
 [card]
-text=Enchant creature {1}{W}: Put a +1/+1 counter on enchanted creature.
+text=Enchant creature   {1}{W}: Put a +1/+1 counter on enchanted creature.
 id=152838
 name=Daily Regimen
 target=creature
@@ -92,7 +92,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Festercreep comes into play with a +1/+1 counter on it. {1}{B}, Remove a +1/+1 counter from Festercreep: All other creatures get -1/-1 until end of turn.
+text=Festercreep enters the battlefield with a +1/+1 counter on it.   {1}{B}, Remove a +1/+1 counter from Festercreep: All other creatures get -1/-1 until end of turn.
 id=152944
 name=Festercreep
 rarity=C
@@ -114,7 +114,6 @@ auto=moveTo(myhand) target(enchantment|myLibrary)
 type=Sorcery
 [/card]
 [card]
-text=
 id=152967
 name=Indomitable Ancients
 rarity=R
@@ -148,17 +147,17 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Reach (This can block creatures with flying.)   Whenever you cast an Elf spell, you may have Lys Alana Bowmaster deal 2 damage to target creature with flying.
+auto=@movedTo(elf|mystack):may damage:2 target(creature[flying])
 id=153462
 name=Lys Alana Bowmaster
+rarity=C
 mana={2}{G}
 type=Creature
 subtype=Elf Archer
 power=2
 toughness=2
-text=Reach (This can block creatures with flying.) Whenever you cast an Elf spell, you may have Lys Alana Bowmaster deal 2 damage to target creature with flying.
 abilities=reach
-auto=@movedTo(Elf|mystack):may damage:2 target(creature[flying])
-rarity=C
 [/card]
 [card]
 text=Target player discards X cards at random.
@@ -213,44 +212,44 @@ power=2
 toughness=2
 [/card]
 [card]
+auto=@tapped(this):may token(Merfolk wizard,creature Merfolk Wizard,1/1,blue)
 id=153166
 name=Stonybrook Schoolmaster
+rarity=C
 mana={2}{W}
 type=Creature
 subtype=Merfolk Wizard
 power=1
 toughness=2
 text=Whenever Stonybrook Schoolmaster becomes tapped, you may put a 1/1 blue Merfolk Wizard creature token onto the battlefield.
-auto=@tapped(this):may token(Merfolk wizard,creature Merfolk Wizard,1/1,blue)
-rarity=C
 [/card]
 [card]
-id=152720
-name=Stream of Unconsciousness
-mana={U}
-type=Instant
-subtype=Wizard Tribal 
 text=Target creature gets -4/-0 until end of turn. If you control a Wizard, draw a card.
 target=creature
 auto=-4/0
-auto=aslongas(wizard|mybattlefield):draw:1 controller
+auto=aslongas(wizard|myBattlefield):draw:1 controller
+id=152720
+name=Stream of Unconsciousness
 rarity=C
+mana={U}
+type=Instant
+subtype=Wizard Tribal 
 [/card]
 [card]
-text=Vengeful Firebrand has haste as long as a Warrior card is in your graveyard. R: Vengeful Firebrand gets +1/+0 until end of turn.
+text=Vengeful Firebrand has haste as long as a Warrior card is in your graveyard.   {R}: Vengeful Firebrand gets +1/+0 until end of turn.
 id=153153
 name=Vengeful Firebrand
-auto=aslongas(warrior|mygraveyard) haste
-auto={R}:1/0
 rarity=R
 mana={3}{R}
 type=Creature
 subtype=Elemental Warrior
+auto=aslongas(warrior|mygraveyard) haste
+auto={R}:1/0
 power=5
 toughness=2
 [/card]
 [card]
-text=Destroy target nonblack creature. Put a 1/1 black Faerie Rogue creature token with flying into play.
+text=Destroy target nonblack creature. Put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
 id=157426
 target=creature[-black]
 auto=destroy
