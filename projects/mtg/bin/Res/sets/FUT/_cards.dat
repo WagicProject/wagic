@@ -5,13 +5,13 @@ name=Akroma's Memorial
 rarity=R
 mana={7}
 type=Artifact
-auto=lord(creature|myinplay) flying
-auto=lord(creature|myinplay) first strike
-auto=lord(creature|myinplay) vigilance
-auto=lord(creature|myinplay) trample
-auto=lord(creature|myinplay) haste
-auto=lord(creature|myinplay) protection from red
-auto=lord(creature|myinplay) protection from black
+auto=lord(creature|myBattlefield) flying
+auto=lord(creature|myBattlefield) first strike
+auto=lord(creature|myBattlefield) vigilance
+auto=lord(creature|myBattlefield) trample
+auto=lord(creature|myBattlefield) haste
+auto=lord(creature|myBattlefield) protection from red
+auto=lord(creature|myBattlefield) protection from black
 abilities=legendary
 [/card]
 [card]
@@ -35,19 +35,19 @@ power=2
 toughness=3
 [/card]
 [card]
+text=Enchant creature   Enchanted creature can't attack or block.
 id=130334
 name=Bound in Silence
+rarity=U
 mana={2}{W}
 target=creature
 auto=cantattack
 auto=cantblock
 type=Enchantment
 subtype=Tribal Rebel Aura
-text=Enchant creature Enchanted creature can't attack or block.
-rarity=U
 [/card]
 [card]
-text={R}: Char-Rumbler gets +1/+0 until end of turn.
+text=Double strike   {R}: Char-Rumbler gets +1/+0 until end of turn.
 id=130582
 name=Char-Rumbler
 rarity=U
@@ -60,7 +60,7 @@ toughness=3
 abilities=double strike
 [/card]
 [card]
-text={U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite into play with flying and "Cloud Sprite can block only creatures with flying."
+text={U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite onto the battlefield with flying and "Cloud Sprite can block only creatures with flying."
 id=130309
 name=Cloudseeder
 rarity=U
@@ -73,30 +73,30 @@ toughness=1
 abilities=flying
 [/card]
 [card]
-text=Enchant creature you control(Target a creature as you play this. This card comes into play attached to that creature.)    Creatures you control have haste.
+text=Enchant creature you control (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Creatures you control have haste.
 id=136215
 target=creature|myBattlefield
 name=Emblem of the Warmind
 rarity=U
 mana={1}{R}
-auto=lord(creature|myinplay) haste
+auto=lord(creature|myBattlefield) haste
 type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Enchant creature When Fatal Attraction enters the battlefield, it deals 2 damage to enchanted creature.   At the beginning of your upkeep, Fatal Attraction deals 4 damage to enchanted creature.
 id=130699
 name=Fatal Attraction
+rarity=C
 mana={2}{R}
 target=creature
 auto=damage:2
 auto=@each my upkeep:damage:4
 type=Enchantment
 subtype=Aura
-text=Enchant creature When Fatal Attraction comes into play, it deals 2 damage to enchanted creature. At the beginning of your upkeep, Fatal Attraction deals 4 damage to enchanted creature.
-rarity=C
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)    {T}: Enchanted creature gets +2/-2 until end of turn.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   {T}: Enchanted creature gets +2/-2 until end of turn.
 id=132227
 target=creature
 name=Flowstone Embrace
@@ -129,7 +129,7 @@ toughness=0
 abilities=trample
 [/card]
 [card]
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +0/+2.
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature gets +0/+2.
 id=136200
 target=creature
 name=Gift of Granite
@@ -141,28 +141,41 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
-auto={T}:Add{1}
-auto={RB}{T}:Add{B}{B}
-auto={RB}{T}:Add{B}{R}
-auto={RB}{T}:Add{R}{R}
+text={T}: Add {1} to your mana pool.   {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
+auto={T}:Add {1}
+auto={RB}{T}:Add {B}{B}
+auto={RB}{T}:Add {B}{R}
+auto={RB}{T}:Add {R}{R}
 id=130581
 name=Graven Cairns
 rarity=R
 type=Land
 [/card]
 [card]
+text={T}: Add {1} to your mana pool. {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
 id=130595
 name=Grove of the Burnwillows
+auto={T}:Add {1}
+auto={T}:Add {R} && life:1 opponent
+auto={T}:Add {G} && life:1 opponent
+rarity=R
 type=Land
-text={T}: Add {1} to your mana pool. {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
-auto={T}:add [1]
-auto={T}:add {R} && life:1 opponent
-auto={T}:add {G} && life:1 opponent
+[/card]
+[card]
+text=Whenever a player casts a noncreature spell, each of that player's opponents may draw a card.
+auto=@movedTo(*[-creature]|mystack):draw:1 opponent
+auto=@movedTo(*[-creature]|opponentstack):may draw:1 controller
+id=132216
+name=Heartwood Storyteller
+mana={1}{G}{G}
+type=Creature
+subtype=Treefolk
+power=2
+toughness=3
 rarity=R
 [/card]
 [card]
-text={T}: Pay 1 life: Add {G} or {W} to your mana pool.    {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
+text={T}: Pay 1 life: Add {G} or {W} to your mana pool.   {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
 auto={T}:Add {G} && life:-1
 auto={T}:Add {W} && life:-1
 auto={1}{T}{S}:Draw:1
@@ -172,28 +185,29 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
 id=126139
 name=Leaden Fists
+rarity=C
 mana={2}{U}
-type=Enchantment
-subtype=Aura
 target=creature
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
 abilities=flash
 auto=3/3
 auto=doesnotuntap
-rarity=C
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
+text=Flying
 id=130691
 name=Lucent Liminid
+rarity=C
 mana={3}{W}{W}
 type=Creature
 subtype=Elemental Enchantment
 power=3
 toughness=3
-text=Flying
-rarity=C
+abilities=flying
 [/card]
 [card]
 text=Creatures without flying can't attack.
@@ -218,14 +232,14 @@ power=5
 toughness=3
 [/card]
 [card]
+text=You draw X cards and you lose X life, where X is the number of creatures you control.
 id=130316
 name=Minions' Murmurs
+rarity=U
 mana={2}{B}{B}
 type=Sorcery
-text=You draw X cards and you lose X life, where X is the number of creatures you control.
-auto=foreach(creature|myinplay) draw:1
-auto=foreach(creature|myinplay) life:-1
-rarity=U
+auto=foreach(creature|myBattlefield) draw:1
+auto=foreach(creature|myBattlefield) life:-1
 [/card]
 [card]
 id=136138
@@ -238,17 +252,17 @@ power=3
 toughness=3
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.   {T}: Add {W} to your mana pool. Play this ability only if you control an Island.   {T}: Add {U} to your mana pool. Play this ability only if you control a Plains.
 id=136045
 name=Nimbus Maze
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Add {W} to your mana pool. Play this ability only if you control an Island. {T}: Add {U} to your mana pool. Play this ability only if you control a Plains.
-auto={T}:add{1}
-auto=aslongas(plains|myinplay) {T}:add{W}
-auto=aslongas(island|myinplay) {T}:add{U}
+auto={T}:Add {1}
+auto=aslongas(plains|myBattlefield) {T}:Add {W}
+auto=aslongas(island|myBattlefield) {T}:Add {U}
 rarity=R
+type=Land
 [/card]
 [card]
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
 id=132219
 target=creature
 name=Oblivion Crown
@@ -260,7 +274,7 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
-text={2}: Sarcomite Myr gains flying until end of turn. {2}, Sacrifice Sarcomite Myr: Draw a card.
+text={2}: Sarcomite Myr gains flying until end of turn.   {2}, Sacrifice Sarcomite Myr: Draw a card.
 id=136212
 name=Sarcomite Myr
 rarity=C
@@ -273,18 +287,18 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Flying   {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying.   {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
 id=136161
 name=Scourge of Kher Ridges
+rarity=R
 mana={6}{R}{R}
 type=Creature
 subtype=Dragon
 power=6
 toughness=6
-text=Flying {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying. {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
 auto={1}{R}:damage:2 all(creature[-flying])
 auto={5}{R}:damage:6 all(other creature[flying])
 abilities=flying
-rarity=R
 [/card]
 [card]
 id=126200
@@ -298,7 +312,7 @@ auto=draw:1
 rarity=R
 [/card]
 [card]
-text={1}, {T}, Discard a card: Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver into play.
+text={1}, {T}, Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver onto the battlefield.
 id=130329
 name=Sliversmith
 rarity=U
@@ -321,22 +335,32 @@ auto=aslongas(enchantment|graveyard) 1/1
 auto=aslongas(instant|graveyard) 1/1
 auto=aslongas(land|graveyard) 1/1
 auto=aslongas(sorcery|graveyard) 1/1
+auto=aslongas(tribal|graveyard) 1/1
 type=Creature
 subtype=Lhurgoyf
 power=0
 toughness=1
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.) Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
+text=Reach (This creature can block creatures with flying.)   Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
 id=130630
 name=Thornweald Archer
+rarity=C
 mana={1}{G}
 type=Creature
 subtype=Elf Archer
 power=2
 toughness=1
 abilities=reach,deathtouch
-rarity=C
+[/card]
+[card]
+text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
+auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot
+id=136149
+name=Veilstone Amulet
+rarity=R
+mana={3}
+type=Artifact
 [/card]
 [card]
 text=Return target nonland permanent or suspended card to its owner's hand.
@@ -345,6 +369,6 @@ auto=moveTo(ownerhand)
 id=136197
 name=Venser's Diffusion
 rarity=C
-type=Instant
 mana={2}{U}
+type=Instant
 [/card]

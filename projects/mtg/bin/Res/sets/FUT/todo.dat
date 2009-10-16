@@ -449,17 +449,6 @@ text=Buyback {2} (You may pay an additional {2} as you play this spell. If you d
 rarity=U
 [/card]
 [card]
-id=132216
-name=Heartwood Storyteller
-mana={1}{G}{G}
-type=Creature
-subtype=Treefolk
-power=2
-toughness=3
-text=Whenever a player plays a noncreature spell, each of that player's opponents may draw a card.
-rarity=R
-[/card]
-[card]
 id=130695
 name=Henchfiend of Ukor
 mana={3}{R}
@@ -1331,7 +1320,6 @@ toughness=3
 text=Flying, haste Grandeur — Discard another card named Tarox Bladewing: Tarox Bladewing gets +X/+X until end of turn, where X is its power.
 rarity=R
 [/card]
-
 [card]
 id=130338
 name=Thunderblade Charge
@@ -1393,15 +1381,6 @@ text=Flash (You may play this spell any time you could play an instant.) When Ve
 rarity=C
 [/card]
 [card]
-id=136149
-name=Veilstone Amulet
-mana={3}
-type=Artifact
-text=Whenever you play a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
-auto=@movedTo(*[-Land]|mystack):lord(creature|myinplay)opponentshroud
-rarity=R
-[/card]
-[card]
 id=136209
 name=Venser, Shaper Savant
 mana={2}{U}{U}
@@ -1411,14 +1390,6 @@ power=2
 toughness=2
 text=Flash (You may play this spell any time you could play an instant.) When Venser, Shaper Savant comes into play, return target spell or permanent to its owner's hand.
 rarity=R
-[/card]
-[card]
-id=136197
-name=Venser's Diffusion
-mana={2}{U}
-type=Instant
-text=Return target nonland permanent or suspended card to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=130644
