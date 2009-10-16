@@ -373,7 +373,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
     if (go->players[0]->game->inPlay == event->from || go->players[1]->game->inPlay == event->from)
       {
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-          if ((*it)->card == event->card->previous)
+          if ((*it)->card == event->card->previous || (*it)->card == event->card )
             {
               AttackerDamaged* d = *it;
               if (activeAtk == *it) activeAtk = NULL;
@@ -383,7 +383,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             }
           else
             for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
-              if ((*q)->card == event->card->previous)
+              if ((*q)->card == event->card->previous || (*q)->card == event->card)
                 {
                   DefenserDamaged* d = *q;
                   (*it)->blockers.erase(q);

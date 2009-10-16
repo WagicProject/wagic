@@ -1,0 +1,26 @@
+#Testing Combat Damage
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:mountain
+hand:shock
+[DO]
+grizzly bears
+next
+#blockers
+mountain
+shock
+grizzly bears
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:grizzly bears
+[PLAYER2]
+graveyard:shock
+inplay:mountain
+life:20
+[END]

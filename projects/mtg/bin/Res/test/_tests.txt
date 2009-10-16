@@ -95,6 +95,7 @@ deja_vu.txt
 dingus_egg.txt
 doomed_necromancer.txt
 dragon_fodder.txt
+dragon_fodder2.txt
 drain_life.txt
 drift_of_the_dead.txt
 dross_harvester.txt
@@ -205,6 +206,7 @@ siege_gang_commander.txt
 shepherd_of_rot.txt
 shivan_hellkite.txt
 shock.txt
+shock2.txt
 slate_of_ancestry.txt
 sleeper_agent.txt
 soulblast.txt

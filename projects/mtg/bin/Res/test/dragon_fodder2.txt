@@ -1,0 +1,43 @@
+#Testing Tokens
+# Dragon Fodder (ALA) 174936
+# text=Put two 1/1 red Goblin creature tokens into play.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:174936
+manapool:{R}{1}
+[PLAYER2]
+inplay:mountain
+hand:shock
+[DO]
+174936
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#begin
+next
+#attackers
+-174936
+next
+#blockers
+mountain
+shock
+-174936
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:174936
+inplay:-174936
+[PLAYER2]
+graveyard:shock
+inplay:mountain
+life:20
+[END]
