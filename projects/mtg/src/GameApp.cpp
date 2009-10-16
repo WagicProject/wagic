@@ -184,9 +184,6 @@ void GameApp::LoadGameStates()
 void GameApp::Destroy()
 {
   LOG("==Destroying GameApp==");
-  //Save game options before we destroy everything.
-  options.save();
-
   for (int i=GAME_STATE_MENU;i<=MAX_STATE-1;i++)
     {
       if (mGameStates[i]){
