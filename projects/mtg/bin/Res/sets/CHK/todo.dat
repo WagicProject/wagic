@@ -190,18 +190,6 @@ toughness=1
 text=When a creature dealt damage by Bushi Tenderfoot this turn is put into a graveyard, flip Bushi Tenderfoot. rarity=U
 [/card]
 [card]
-id=50233
-name=Cage of Hands
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-target=creature
-auto=cantattack,cantblock
-auto={1}{W}:moveto(ownerhand)
-text=Enchant creature Enchanted creature can't attack or block. {1}{W}: Return Cage of Hands to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=78190
 name=Callous Deceiver
 mana={2}{U}
@@ -534,14 +522,6 @@ text=Glacial Ray deals 2 damage to target creature or player. Splice onto Arcane
 rarity=C
 [/card]
 [card]
-id=75241
-name=Glimpse of Nature
-mana={G}
-type=Sorcery
-text=Whenever you play a creature spell this turn, draw a card.
-rarity=R
-[/card]
-[card]
 id=78192
 name=Godo, Bandit Warlord
 mana={5}{R}
@@ -709,7 +689,6 @@ toughness=3
 text={2}{U}, Discard a card: Counter target spell if it has the same converted mana cost as the discarded card.
 rarity=R
 [/card]
-
 [card]
 id=79149
 name=Hisoka's Guard
@@ -721,8 +700,6 @@ toughness=1
 text=You may choose not to untap Hisoka's Guard during your untap step. {1}{U}, {T}: As long as Hisoka's Guard remains tapped, target creature you control other than Hisoka's Guard has shroud. (It can't be the target of spells or abilities.)
 rarity=C
 [/card]
-
-
 [card]
 id=79110
 name=Honden of Infinite Rage
@@ -734,7 +711,6 @@ text=At the beginning of your upkeep, Honden of Infinite Rage deals damage to ta
 auto=@each my upkeep:foreach(shrine|myinplay) damage:1 target(creature,player)
 rarity=U
 [/card]
-
 [card]
 id=79098
 name=Honden of Night's Reach
@@ -744,7 +720,6 @@ subtype=Shrine
 text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
 rarity=U
 [/card]
-
 [card]
 id=77143
 name=Honor-Worn Shaku
@@ -826,9 +801,6 @@ power=2
 toughness=2
 text={T}: Initiate of Blood deals 1 damage to target creature that was dealt damage this turn. When that creature is put into a graveyard this turn, flip Initiate of Blood. rarity=U
 [/card]
-
-
-
 [card]
 id=80531
 name=Jade Idol
@@ -837,8 +809,6 @@ type=Artifact
 text=Whenever you play a Spirit or Arcane spell, Jade Idol becomes a 4/4 Spirit artifact creature until end of turn.
 rarity=U
 [/card]
-
-
 [card]
 id=50247
 name=Jugan, the Rising Star
@@ -1036,8 +1006,6 @@ toughness=1
 text=Protection from Spirits and from Arcane
 rarity=C
 [/card]
-
-
 [card]
 id=81702
 name=Kodama's Might
@@ -1055,17 +1023,6 @@ type=Sorcery
 subtype=Arcane
 text=Search your library for two basic land cards, reveal those cards, and put one into play tapped and the other into your hand. Then shuffle your library.
 rarity=C
-[/card]
-[card]
-id=178022
-name=Kokusho, the Evening Star
-mana={4}{B}{B}
-type=Legendary Creature
-subtype=Dragon Spirit
-power=5
-toughness=5
-text=Flying When Kokusho, the Evening Star is put into a graveyard from play, each opponent loses 5 life. You gain life equal to the life lost this way.
-rarity=R
 [/card]
 [card]
 id=78594
@@ -1606,17 +1563,6 @@ power=3
 toughness=3
 text={G}{G}, Sacrifice Rootrunner: Put target land on top of its owner's library. Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
 rarity=U
-[/card]
-[card]
-id=50510
-name=Sakura-Tribe Elder
-mana={1}{G}
-type=Creature
-subtype=Snake Shaman
-power=1
-toughness=1
-text=Sacrifice Sakura-Tribe Elder: Search your library for a basic land card, put that card into play tapped, then shuffle your library.
-rarity=C
 [/card]
 [card]
 id=50408

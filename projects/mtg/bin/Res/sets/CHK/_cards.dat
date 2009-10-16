@@ -1,95 +1,96 @@
 [card]
-text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Play this ability only once each turn.
-auto={s(land|myinplay)}:2/0 limit:1
+text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Activate this ability only once each turn.
 id=75277
 name=Akki Avalanchers
 rarity=C
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Goblin Warrior
+auto={S(land|myBattlefield)}:2/0 limit:1
+power=1
 toughness=1
 [/card]
 [card]
 text={R},{T}: Attacking creatures gain first strike until end of turn.
 id=50338
 name=Akki Coalflinger
-auto={R}{T}:lord(creature[attacking]) first strike 
 rarity=U
-type=Creature
 mana={1}{R}{R}
-power=2
+type=Creature
 subtype=Goblin Shaman
+auto={R}{T}:lord(creature[attacking]) first strike 
+power=2
 toughness=2
 [/card]
 [card]
+text=When Akki Rockspeaker enters the battlefield, add {R} to your mana pool.
 id=77919
 name=Akki Rockspeaker
+rarity=C
 mana={1}{R}
 type=Creature
 subtype=Goblin Shaman
+auto=Add{R}
 power=1
 toughness=1
-text=When Akki Rockspeaker comes into play, add {R} to your mana pool.
-auto=Add{R}
-rarity=C
 [/card]
 [card]
 text={T}: Ben-Ben, Akki Hermit deals damage to target attacking creature equal to the number of untapped Mountains you control.
+auto={T}:foreach(mountain[-tapped]|myBattlefield) damage:1 target(creature[attacking])
 id=79248
 name=Ben-Ben, Akki Hermit
+rarity=R
 mana={2}{R}{R}
 type=Creature
-abilities=legendary
 subtype=Goblin Shaman
 power=1
 toughness=1
-auto={T}:foreach(mountain|myinplay) damage:1 target(creature[attacking])
-rarity=R
+abilities=legendary
 [/card]
 [card]
+text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
 id=77925
 alias=129767
 target=creature[-legendary]
 auto=haste
 auto=untap
 name=Blind with Anger
+rarity=U
 mana={3}{R}
 type=Instant
 subtype=Arcane
-text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
-rarity=U
 [/card]
 [card]
-text={1}{R}, Sacrifice a creature: Blood Rites deals 2 damage to target Creature or player.
-auto={1}{R}{S(creature|myinplay)}:damage:2 target(creature,player)
+text={1}{R}, Sacrifice a creature: Blood Rites deals 2 damage to target creature or player.
+auto={1}{R}{S(creature|myBattlefield}:damage:2 target(creature,player)
 id=50509
 name=Blood Rites
 rarity=U
-type=Enchantment
 mana={3}{R}{R}
+type=Enchantment
 [/card]
 [card]
-text=Enchant creature     Enchanted creature canít attack or block.	{1}{W}: Return Cage of Hands to its ownerís hand.
-target=Creature
+text=Enchant creature   Enchanted creature canít attack or block.   {1}{W}: Return Cage of Hands to its ownerís hand.
+target=creature
 auto=cantattack
 auto=cantblock
 auto={1}{W}:moveTo(ownerhand)
 id=50233
 name=Cage of Hands
 rarity=C
+mana={2}{W}
 type=Enchantment
 subtype=Aura
-mana={2}{W}
 [/card]
 [card]
+text=Untap all creatures you control. Samurai creatures you control get +1/+1 until end of turn.
+auto=untap all(creature|myBattlefield)
+auto=lord(samurai|myBattlefield) 1/1
 id=77140
 name=Call to Glory
+rarity=C
 mana={1}{W}
 type=Instant
-text=Untap all creatures you control. Samurai creatures you control get +1/+1 until end of turn.
-auto=untap all(creature|myinplay) && lord(samurai|myinplay) 1/1
-rarity=C
 [/card]
 [card]
 text=Destroy all enchantments.
@@ -97,8 +98,8 @@ auto=destroy all(enchantment)
 id=80500
 name=Cleanfall
 rarity=U
-type=Sorcery
 mana={2}{W}
+type=Sorcery
 subtype=Arcane
 [/card]
 [card]
@@ -107,54 +108,54 @@ auto=draw:2
 id=50219
 name=Counsel of the Soratami
 rarity=C
-type=Sorcery
 mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 text=Creatures you control get +1/+0 and gain fear until end of turn.
-auto=lord(creature|myinplay) 1/0
-auto=lord(creature|myinplay) fear
+auto=lord(creature|myBattlefield) 1/0
+auto=lord(creature|myBattlefield) fear
 id=79094
 name=Dance of Shadows
 rarity=U
-type=Sorcery
 mana={3}{B}{B}
+type=Sorcery
 subtype=Arcane
 [/card]
 [card]
+text=When Deathcurse Ogre is put into a graveyard from the battlefield, each player loses 3 life.
+auto=@movedTo(this|graveyard) from(battlefield):life:-3 opponent && life:-3 controller
 id=80522
 name=Deathcurse Ogre
+rarity=C
 mana={5}{B}
 type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=3
-text=When Deathcurse Ogre is put into a graveyard from play, each player loses 3 life.
-auto=@movedTo(this|graveyard) from(inplay):life:-3 opponent && life:-3 controller
-rarity=C
 [/card]
 [card]
+text=Whenever you cast a Spirit or Arcane spell, Earthshaker deals 2 damage to each creature without flying.
+auto=@movedTo(arcane,spirit|mystack):damage:2 all(creature[-flying])
 id=79214
 name=Earthshaker
+rarity=U
 mana={4}{R}{R}
 type=Creature
 subtype=Spirit
 power=4
 toughness=5
-text=Whenever you play a Spirit or Arcane spell, Earthshaker deals 2 damage to each creature without flying.
-auto=@movedTo(arcane,spirit|mystack):damage:2 all(creature[-flying])
-rarity=U
 [/card]
 [card]
+text=Search your library for an Arcane card, reveal that card, and put it into your hand. Then shuffle your library.
 id=80243
 name=Eerie Procession
+target=arcane|mylibrary
+auto=moveto(myhand)
+rarity=U
 mana={2}{U}
 type=Sorcery
 subtype=Arcane
-target=arcane|mylibrary
-auto=moveto(myhand)
-text=Search your library for an Arcane card, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=U
 [/card]
 [card]
 text=Return target permanent to its owner's hand.
@@ -163,14 +164,14 @@ auto=moveTo(ownerhand)
 id=79155
 name=Eye of Nowhere
 rarity=C
-type=Sorcery
 mana={U}{U}
+type=Sorcery
 subtype=Arcane
 [/card]
 [card]
 id=79062
 name=Forest
-auto={T}:Add{G}
+auto={T}:Add {G}
 type=Basic Land
 subtype=Forest
 text={G}
@@ -179,7 +180,7 @@ rarity=L
 [card]
 id=79068
 name=Forest
-auto={T}:Add{G}
+auto={T}:Add {G}
 type=Basic Land
 subtype=Forest
 text={G}
@@ -188,7 +189,7 @@ rarity=L
 [card]
 id=79078
 name=Forest
-auto={T}:Add{G}
+auto={T}:Add {G}
 type=Basic Land
 subtype=Forest
 text={G}
@@ -197,7 +198,7 @@ rarity=L
 [card]
 id=79079
 name=Forest
-auto={T}:Add{G}
+auto={T}:Add {G}
 type=Basic Land
 subtype=Forest
 text={G}
@@ -209,8 +210,17 @@ auto=damage:5 all(creature[flying])
 id=79244
 name=Gale Force
 rarity=U
-type=Sorcery
 mana={4}{G}
+type=Sorcery
+[/card]
+[card]
+text=Whenever you cast a creature spell this turn, draw a card.
+auto=@movedTo(creature|mystack):draw:1 controller ueot
+id=75241
+name=Glimpse of Nature
+rarity=R
+mana={G}
+type=Sorcery
 [/card]
 [card]
 text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
@@ -218,116 +228,116 @@ auto={1}{G}{S}:moveTo(myhand) target(arcane|mygraveyard)
 id=77138
 name=Hana Kami
 rarity=U
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Spirit
+power=1
 toughness=1
 [/card]
 [card]
-id=50439
-name=Hisoka's Defiance
-mana={1}{U}
-type=Instant
 text=Counter target Spirit or Arcane spell.
 target=(spirit,arcane|stack)
 auto=fizzle
 rarity=C
+id=50439
+name=Hisoka's Defiance
+mana={1}{U}
+type=Instant
 [/card]
 [card]
-id=79144
-name=Hold the Line
-mana={1}{W}{W}
-type=Instant
 text=Blocking creatures get +7/+7 until end of turn.
 auto=lord(creature[blocking]) 7/7
+id=79144
+name=Hold the Line
 rarity=R
+mana={1}{W}{W}
+type=Instant
 [/card]
 [card]
+text=At the beginning of your upkeep, you gain 2 life for each Shrine you control.
+auto=@each my upkeep:foreach(shrine|myBattlefield) life:2
 id=79159
 name=Honden of Cleansing Fire
+rarity=U
 mana={3}{W}
 type=Enchantment
-abilities=legendary
 subtype=Shrine
-text=At the beginning of your upkeep, you gain 2 life for each Shrine you control.
-auto=@each my upkeep:foreach(shrine|myinplay) life:2
-rarity=U
+abilities=legendary
 [/card]
 [card]
+text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
+auto=@each my upkeep:foreach(shrine|myBattlefield) token(Spirit,Creature Spirit,1/1,artifact)
 id=79180
 name=Honden of Life's Web
+rarity=U
 mana={4}{G}
 type=Enchantment
-abilities=legendary
 subtype=Shrine
-text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token into play for each Shrine you control.
-auto=@each my upkeep:foreach(shrine|myinplay) token(Spirit,Creature Spirit,1/1,artifact)
-rarity=U
+abilities=legendary
 [/card]
 [card]
+text=At the beginning of your upkeep, draw a card for each Shrine you control.
+auto=@each my upkeep:foreach(shrine|myBattlefield) draw:1
 id=79176
 name=Honden of Seeing Winds
+rarity=U
 mana={4}{U}
 type=Enchantment
-abilities=legendary
 subtype=Shrine
-text=At the beginning of your upkeep, draw a card for each Shrine you control.
-auto=@each my upkeep:foreach(shrine|myinplay) draw:1
-rarity=U
+abilities=legendary
 [/card]
 [card]
 text=Shroud
-abilities=shroud
 id=78684
 name=Humble Budoka
 rarity=C
-type=Creature
 mana={1}{G}
-power=2
+type=Creature
 subtype=Human Monk
+power=2
 toughness=2
+abilities=shroud
 [/card]
 [card]
-text=Enchant Creature     Flash     Enchanted Creature gets +1/+2.
-abilities=flash
+text=Enchant Creature   Flash   Enchanted Creature gets +1/+2.
 target=creature
-auto=:1/2
+auto=1/2
 id=50499
 name=Indomitable Will
 rarity=C
+mana={1}{W}
 type=Enchantment
 subtype=Aura
-mana={1}{W}
+abilities=flash
 [/card]
 [card]
+text={W}, {T}: Tap target creature.   Whenever you cast a Spirit or Arcane spell, untap Innocence Kami.
 id=76636
 name=Innocence Kami
+rarity=U
 mana={3}{W}{W}
 type=Creature
 subtype=Spirit
-power=2
-toughness=3
-text={W}, {T}: Tap target creature. Whenever you play a Spirit or Arcane spell, untap Innocence Kami.
 auto={W}{T}:tap target(creature)
 auto=@movedTo(spirit,arcane|mystack):untap
-rarity=U
+power=2
+toughness=3
 [/card]
 [card]
-abilities=legendary
 id=79217
 name=Isamaru, Hound of Konda
 rarity=R
-type=Creature
 mana={W}
-power=2
+type=Creature
 subtype=Hound
+power=2
 toughness=2
+abilities=legendary
 [/card]
 [card]
 id=79074
 name=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 text={U}
@@ -336,7 +346,7 @@ rarity=L
 [card]
 id=79071
 name=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 text={U}
@@ -345,7 +355,7 @@ rarity=L
 [card]
 id=79061
 name=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 text={U}
@@ -354,222 +364,236 @@ rarity=L
 [card]
 id=79069
 name=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 text={U}
 rarity=L
 [/card]
 [card]
+text={3}, {T}: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
+auto={3}{T}:moveTo(myHand) target(land[basic]|mylibrary)
 id=79233
 name=Journeyer's Kite
+rarity=R
 mana={2}
 type=Artifact
-text={3}, {T}: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
-auto={3}{T}:moveTo(myHand) target(basic|mylibrary)
-rarity=R
 [/card]
 [card]
+text=You gain 1 life for each land you control.
+auto=foreach(land|myBattlefield):life:1
 id=78981
 name=Joyous Respite
+rarity=C
 mana={3}{G}
 type=Sorcery
 subtype=Arcane
-text=You gain 1 life for each land you control.
-auto=foreach(land|mybattlefield):life:1
-rarity=C
 [/card]
 [card]
 text=Forestwalk
-abilities=forestwalk
 id=80525
 name=Jukai Messenger
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Human Monk
+power=1
 toughness=1
+abilities=forestwalk
 [/card]
 [card]
-text=Flying. {T}:Target creature gets +1/+2 until end of turn.
-abilities=flying
+text=Flying   {T}:Target creature gets +1/+2 until end of turn.
 auto={T}:1/2 target(creature)
 id=79105
 name=Kabuto Moth
 rarity=C
-type=Creature
 mana={2}{W}
-power=1
+type=Creature
 subtype=Spirit
+power=1
 toughness=2
+abilities=flying
 [/card]
 [card]
 text=Sacrifice Kami of Ancient Law: Destroy target enchantment.
-auto={S}:destroy target(enchantment)
 id=50349
 name=Kami of Ancient Law
 rarity=C
-type=Creature
 mana={1}{W}
-power=2
+type=Creature
 subtype=Spirit
+auto={S}:destroy target(enchantment)
+power=2
 toughness=2
 [/card]
 [card]
 id=79236
 name=Kami of Old Stone
 rarity=U
-type=Creature
 mana={3}{W}
-power=1
+type=Creature
 subtype=Spirit
+power=1
 toughness=7
 [/card]
 [card]
+text=Whenever you cast a Spirit or Arcane spell, Kami of the Hunt gets +1/+1 until end of turn.
 id=79198
 name=Kami of the Hunt
+rarity=C
 mana={2}{G}
 type=Creature
 subtype=Spirit
+auto=@movedTo(arcane,spirit|mystack):1/1 ueot
 power=2
 toughness=2
-text=Whenever you play a Spirit or Arcane spell, Kami of the Hunt gets +1/+1 until end of turn.
-auto=@movedTo(arcane,spirit|mystack):1/1 ueot
-rarity=C
 [/card]
 [card]
 text=Sacrifice Kami of Twisted Reflection: Return target creature you control to its owner's hand.
-auto={S}:moveTo(ownerhand) target(creature|mybattlefield)
 id=50228
 name=Kami of Twisted Reflection
 rarity=C
-type=Creature
 mana={1}{U}{U}
-power=2
+type=Creature
 subtype=Spirit
+auto={S}:moveTo(ownerhand) target(creature|mybattlefield)
+power=2
 toughness=2
 [/card]
 [card]
 text={T}: Tap target Spirit.
-auto={T}:tap target(spirit)
 id=76652
 name=Kitsune Diviner
 rarity=C
-type=Creature
 mana={W}
-power=0
+type=Creature
 subtype=Fox Cleric
+auto={T}:tap target(spirit)
+power=0
 toughness=1
 [/card]
 [card]
 text=Shroud, trample
-abilities=shroud,trample,legendary
 id=50488
 name=Kodama of the North Tree
 rarity=R
-type=Creature
 mana={2}{G}{G}{G}
-power=6
+type=Creature
 subtype=Spirit
+power=6
 toughness=4
+abilities=shroud,trample,legendary
 [/card]
 [card]
-text=Whenever you play a Spirit or Arcane spell, each other creature you control gets +1/+1 and gains trample until end of turn.
+text=Whenever you cast a Spirit or Arcane spell, each other creature you control gets +1/+1 and gains trample until end of turn.
+auto=@movedTo(arcane,spirit|mystack):lord(creature|myBattlefield) 1/1 other ueot
+auto=@movedTo(arcane,spirit|mystack):lord(creature|myBattlefield) trample other ueot
 id=80288
 name=Kodama of the South Tree
+rarity=R
 mana={2}{G}{G}
 type=Creature
 subtype=Spirit
-abilities=legendary
 power=4
 toughness=4
-auto=@movedTo(arcane,spirit|mystack):lord(creature|mybattlefield) 1/1 other ueot
-auto=@movedTo(arcane,spirit|mystack):lord(creature|mybattlefield) trample other ueot
+abilities=legendary
+[/card]
+[card]
+text=Flying When Kokusho, the Evening Star is put into a graveyard from the battlefield, each opponent loses 5 life. You gain life equal to the life lost this way.
+id=178022
+name=Kokusho, the Evening Star
 rarity=R
+mana={4}{B}{B}
+type=Creature
+subtype=Dragon Spirit
+auto=@movedTo(this|graveyard) from(battlefield):life:5 controller
+auto=@movedTo(this|graveyard) from(battlefield):life:-5 opponent
+power=5
+toughness=5
+abilities=flying,legendary
 [/card]
 [card]
 text=Flying
-abilities=flying
 id=75319
 name=Lantern Kami
 rarity=C
-type=Creature
 mana={W}
-power=1
+type=Creature
 subtype=Spirit
+power=1
 toughness=1
+abilities=flying
 [/card]
 [card]
-text=Lava Spike deals 3 damage to target player
+text=Lava Spike deals 3 damage to target player.
 target=player
 auto=damage:3
 id=79084
 name=Lava Spike
 rarity=C
-type=Sorcery
 mana={R}
+type=Sorcery
 subtype=Arcane
 [/card]
 [card]
-text=Rat creatures have fear. {T}, Sacrifice a Rat: Put X 1/1 black Rat creature tokens into play, where X is the number of Rats you control.
+text=Rat creatures have fear.   {T}, Sacrifice a Rat: Put X 1/1 black Rat creature tokens onto the battlefield, where X is the number of Rats you control.
+auto={T}{S(rat|myBattlefield)}:foreach(rat|myBattlefield) token(Rat,Creature Rat,1/1,black)
 id=50253
 name=Marrow-Gnawer
+rarity=R
 mana={3}{B}{B}
 type=Creature
-abilities=legendary
 subtype=Rat Rogue
+auto=lord(rat) fear
 power=2
 toughness=3
-auto=lord(rat) fear
-auto={T}{S(rat|mybattlefield)}:foreach(rat|mybattlefield) token(Rat,Creature Rat,1/1,black)
-rarity=R
+abilities=legendary
 [/card]
 [card]
-text=Flying {1}, Return a land you control to its owner's hand: Put a 1/1 blue Illusion creature token with flying into play.
+text=Flying   {1}, Return a land you control to its owner's hand: Put a 1/1 blue Illusion creature token with flying onto the battlefield.
+auto={1}:moveTo(ownerhand) target(land|mybattlefield) && token(Illusion,Creature Illusion,1/1,blue flying)
 id=75268
 name=Meloku the Clouded Mirror
+rarity=R
 mana={4}{U}
 type=Creature
 subtype=Moonfolk Wizard
 power=2
 toughness=4
 abilities=flying,legendary
-auto={1}:moveTo(ownerhand) target(land|mybattlefield) && token(Illusion,Creature Illusion,1/1,blue flying)
-rarity=R
 [/card]
 [card]
-text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn.ÅE
+text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn.Å"
 target=creature
 auto={B}:1/1
 id=50449
 name=Midnight Covenant
 rarity=C
-type=Enchantment
 mana={1}{B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.     {U}, {T}: Untap target legendary permanent.
-abilities=legendary
-auto={T}:add{U}
-auto={U}{T}:untap target(*[legendary])
+text={T}: Add {U} to your mana pool.   {U}, {T}: Untap target legendary permanent.
+auto={T}:Add{U}
+auto={U}{T}:Untap target(*[legendary])
 id=79179
 name=Minamo, School at Water's Edge
 rarity=R
 type=Land
+abilities=legendary
 [/card]
 [card]
 text=Trample
-abilities=trample
 id=76641
 name=Moss Kami
 rarity=C
-type=Creature
 mana={5}{G}
-power=5
+type=Creature
 subtype=Spirit
+power=5
 toughness=5
+abilities=trample
 [/card]
 [card]
 id=79075
@@ -608,127 +632,127 @@ text={R}
 rarity=L
 [/card]
 [card]
-text=Flash   Enchant creature When Mystic Restraints comes into play, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step.
+text=Flash   Enchant creature When Mystic Restraints enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.
 id=79188
-name=Mystic Restraints
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
 target=creature
 auto=tap
 auto=doesnotuntap
-abilities=flash
+name=Mystic Restraints
 rarity=C
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
+abilities=flash
 [/card]
 [card]
 text=Nezumi Cutthroat can't block.
-abilities=cantblock
 id=80521
 name=Nezumi Cutthroat
 rarity=C
-type=Creature
 mana={1}{B}
-power=2
+type=Creature
 subtype=Rat Warrior
+power=2
 toughness=1
+abilities=cantblock
 [/card]
 [card]
 text=All Creatures get -1/-1.
-abilities=legendary
 auto=lord(creature) -1/-1
 id=78991
 name=Night of Souls' Betrayal
 rarity=R
-type=Enchantment
 mana={2}{B}{B}
+type=Enchantment
+abilities=legendary
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.     {G}, {T}: Target legendary Creature gets +1/+1 until end of turn.
-abilities=legendary
-auto={T}:add{G}
+text={T}: Add {G} to your mana pool.   {G}, {T}: Target legendary Creature gets +1/+1 until end of turn.
+auto={T}:Add {G}
 auto={G}{T}:1/1 target(creature[legendary])
 id=80251
 name=Okina, Temple to the Grandfathers
 rarity=R
 type=Land
+abilities=legendary
 [/card]
 [card]
+text=Reach (This creature can block creatures with flying.)   Whenever you cast a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
 id=50261
 name=Orbweaver Kumo
+rarity=U
 mana={4}{G}{G}
 type=Creature
 subtype=Spirit
+auto=@movedTo(arcane,spirit|mystack):forestwalk ueot
 power=3
 toughness=4
-text=Reach (This creature can block creatures with flying.) Whenever you play a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
 abilities=reach
-auto=@movedTo(arcane,spirit|mystack):forestwalk ueot
-rarity=U
 [/card]
 [card]
 id=50487
 name=Order of the Sacred Bell
 rarity=C
-type=Creature
 mana={3}{G}
-power=4
+type=Creature
 subtype=Human Monk
+power=4
 toughness=3
 [/card]
 [card]
-text=Whenever you play a Spirit or Arcane spell, you may destroy target nonbasic land.
+text=Whenever you cast a Spirit or Arcane spell, you may destroy target nonbasic land.
+auto=@movedTo(spirit,arcane|mystack):may destroy(land[-basic])
 id=78984
 name=Ore Gorger
+rarity=U
 mana={3}{R}{R}
 type=Creature
 subtype=Spirit
 power=3
 toughness=1
-auto=@movedTo(spirit,arcane|mystack):may destroy(land[-basic])
-rarity=U
 [/card]
 [card]
 text={G}: Add one mana of any color to your mana pool.
-auto={G}:add{W}
-auto={G}:add{U}
-auto={G}:add{B}
-auto={G}:add{R}
-auto={G}:add{G}
 id=50319
 name=Orochi Leafcaller
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Snake Shaman
+auto={G}:Add {W}
+auto={G}:Add {U}
+auto={G}:Add {B}
+auto={G}:Add {R}
+auto={G}:Add {G}
+power=1
 toughness=1
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}:add {G}
 id=75403
 name=Orochi Sustainer
 rarity=C
-type=Creature
 mana={1}{G}
-power=1
+type=Creature
 subtype=Snake Shaman
+auto={T}:Add {G}
+power=1
 toughness=2
 [/card]
 [card]
 text=Return all Creatures you control to their ownerís hand.
-auto=moveTo(ownerhand) all(creature|myinplay)
+auto=moveTo(ownerhand) all(creature|myBattlefield)
 id=80291
 name=Part the Veil
 rarity=R
-type=Instant
 mana={3}{U}
+type=Instant
 subtype=Arcane
 [/card]
 [card]
 id=79072
 name=Plains
-auto={T}:Add{W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 text={W}
@@ -737,7 +761,7 @@ rarity=L
 [card]
 id=79060
 name=Plains
-auto={T}:Add{W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 text={W}
@@ -746,7 +770,7 @@ rarity=L
 [card]
 id=79063
 name=Plains
-auto={T}:Add{W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 text={W}
@@ -755,7 +779,7 @@ rarity=L
 [card]
 id=79076
 name=Plains
-auto={T}:Add{W}
+auto={T}:Add {W}
 type=Basic Land
 subtype=Plains
 text={W}
@@ -768,8 +792,8 @@ auto=-5/-5
 id=78972
 name=Pull Under
 rarity=C
-type=Instant
 mana={5}{B}
+type=Instant
 subtype=Arcane
 [/card]
 [card]
@@ -779,8 +803,8 @@ auto=destroy
 id=50313
 name=Quiet Purity
 rarity=C
-type=Instant
 mana={W}
+type=Instant
 subtype=Arcane
 [/card]
 [card]
@@ -789,8 +813,8 @@ auto=draw:1
 id=79247
 name=Reach Through Mists
 rarity=C
-type=Instant
 mana={U}
+type=Instant
 subtype=Arcane
 [/card]
 [card]
@@ -800,19 +824,19 @@ target=creature[-spirit]
 id=75259
 name=Rend Flesh
 rarity=C
-type=Instant
 mana={2}{B}
+type=Instant
 subtype=Arcane
 [/card]
 [card]
 text=Destroy target Spirit.
-id=50293
-name=Rend Spirit
-mana={2}{B}
-type=Instant
 target=spirit
 auto=destroy
+id=50293
+name=Rend Spirit
 rarity=C
+mana={2}{B}
+type=Instant
 [/card]
 [card]
 id=78586
@@ -825,127 +849,140 @@ subtype=Spirit
 toughness=4
 [/card]
 [card]
-text=Flying   When Ryusei, the Falling Star is put into a graveyard from play, it deals 5 damage to each creature without flying.
+text=Flying   When Ryusei, the Falling Star is put into a graveyard from the battlefield, it deals 5 damage to each creature without flying.
+auto=@movedTo(this|graveyard) from(battlefield):damage:5 all(creature[-flying])
+
 id=79242
 name=Ryusei, the Falling Star
+rarity=R
 mana={5}{R}
 type=Creature
 subtype=Dragon Spirit
 power=5
 toughness=5
-auto=@movedTo(this|graveyard) from(inplay):damage:5 all(creature[-flying])
 abilities=flying,legendary
-rarity=R
 [/card]
 [card]
-text=Other Snake creatures you control get +0/+1. Shamans you control have "{T}: Add {G}{G} to your mana pool."
+text=Other Snake creatures you control get +0/+1.   Shamans you control have "{T}: Add {G}{G} to your mana pool."
 id=80254
 name=Sachi, Daughter of Seshiro
+rarity=U
 mana={2}{G}{G}
 type=Creature
-abilities=legendary
 subtype=Snake Shaman
-power=1
-toughness=3
 auto=lord(snake|mybattlefield) 0/1 other
 auto=lord(shaman|mybattlefield) {T}:Add{G}{G}
-rarity=U
+power=1
+toughness=3
+abilities=legendary
 [/card]
 [card]
-id=78965
-name=Seizan, Perverter of Truth
-mana={3}{B}{B}
+text=Sacrifice Sakura-Tribe Elder: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
+auto={S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+id=50510
+name=Sakura-Tribe Elder
+rarity=C
+mana={1}{G}
 type=Creature
-abilities=legendary
+subtype=Snake Shaman
+power=1
+toughness=1
+[/card]
+[card]
+text=At the beginning of each player's upkeep, that player loses 2 life and draws two cards.
 auto=@each my upkeep:life:-2 controller && draw:2 controller
 auto=@each opponent upkeep:life:-2 opponent && draw:2 opponent
+id=78965
+name=Seizan, Perverter of Truth
+rarity=R
+mana={3}{B}{B}
+type=Creature
 subtype=Demon Spirit
 power=6
 toughness=5
-text=At the beginning of each player's upkeep, that player loses 2 life and draws two cards.
-rarity=R
+abilities=legendary
 [/card]
 [card]
-text=Flash   Enchant creature Enchanted creature gets +1/+1. {G}: Regenerate enchanted creature.
+text=Flash   Enchant creature Enchanted creature gets +1/+1.   {G}: Regenerate enchanted creature.
+target=creature
+auto=1/1
+auto={G}:regenerate
 id=75404
 name=Serpent Skin
+rarity=C
 mana={2}{G}
 type=Enchantment
 subtype=Aura
 abilities=flash
-target=creature
-auto=1/1
-auto={G}:regenerate
-rarity=C
 [/card]
 [card]
+text=Other Snake creatures you control get +2/+2.   Whenever a Snake you control deals combat damage to a player, you may draw a card.
+auto=lord(snake|myBattlefield) 2/2 other
+auto=@damaged(player) from(snake|myBattlefield):may draw:1 controller
 id=80256
 name=Seshiro the Anointed
+rarity=R
 mana={4}{G}{G}
 type=Creature
-abilities=legendary
 subtype=Snake Monk
 power=3
 toughness=4
-text=Other Snake creatures you control get +2/+2. Whenever a Snake you control deals combat damage to a player, you may draw a card.
-auto=lord(snake|myBattlefield)2/2 other
-auto=@damaged(player) from(snake|myBattlefield):may draw:1 controller
-rarity=R
+abilities=legendary
 [/card]
 [card]
-text={T}: Add {R} to your mana pool.     {R}, {T}: Target legendary Creature gains first strike until end of turn.
-abilities=legendary
-auto={T}:add{R}
+text={T}: Add {R} to your mana pool.   {R}, {T}: Target legendary creature gains first strike until end of turn.
+auto={T}:Add {R}
 auto={R}{T}:first strike target(creature[legendary])
 id=79121
 name=Shinka, the Bloodsoaked Keep
 rarity=R
 type=Land
+abilities=legendary
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.     {B}, {T}: Target legendary Creature gains fear until end of turn.
-abilities=legendary
-auto={T}:add{B}
+text={T}: Add {B} to your mana pool.   {B}, {T}: Target legendary Creature gains fear until end of turn.
+auto={T}:Add {B}
 auto={B}{T}:fear target(creature[legendary])
 id=79186
 name=Shizo, Death's Storehouse
 rarity=R
 type=Land
+abilities=legendary
 [/card]
 [card]
-text=Flying   Whenever you play a Spirit or Arcane spell, you may draw a card.
+text=Flying   Whenever you cast a Spirit or Arcane spell, you may draw a card.
 id=50442
 name=Sire of the Storm
+rarity=U
 mana={4}{U}{U}
 type=Creature
 subtype=Spirit
+auto=@movedTo(arcane,spirit|mystack):may draw:1
 power=3
 toughness=3
 abilities=flying
-auto=@movedTo(arcane,spirit|mystack):may draw:1
-rarity=U
 [/card]
 [card]
 text=Mountainwalk
-abilities=mountainwalk
 id=79140
 name=Sokenzan Bruiser
 rarity=C
-type=Creature
 mana={4}{R}
-power=3
+type=Creature
 subtype=Ogre Warrior
+power=3
 toughness=3
+abilities=mountainwalk
 [/card]
 [card]
 text=As an additional cost to play Soulblast, sacrifice all creatures you control.  Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.
 id=80246
+alias=130369
 name=Soulblast
+rarity=R
 mana={3}{R}{R}{R}
 type=Instant
 target=creature,player
-alias=130369
-rarity=R
 [/card]
 [card]
 text=Destroy target land.
@@ -954,23 +991,24 @@ auto=destroy
 id=79223
 name=Stone Rain
 rarity=C
-type=Sorcery
 mana={2}{R}
+type=Sorcery
 [/card]
 [card]
 text=Target creature gets +X/+X until end of turn, where X is the number of lands you control.
+target=creature
+auto=foreach(land|myBattlefield) 1/1
 id=75366
 name=Strength of Cedars
+rarity=U
 mana={4}{G}
 type=Instant
 subtype=Arcane
-auto=foreach(land|mybattlefield) 1/1
-rarity=U
 [/card]
 [card]
 id=79073
 name=Swamp
-auto={T}:Add{B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text={B}
@@ -979,7 +1017,7 @@ rarity=L
 [card]
 id=79065
 name=Swamp
-auto={T}:Add{B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text={B}
@@ -988,7 +1026,7 @@ rarity=L
 [card]
 id=79066
 name=Swamp
-auto={T}:Add{B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text={B}
@@ -997,46 +1035,47 @@ rarity=L
 [card]
 id=79067
 name=Swamp
-auto={T}:Add{B}
+auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text={B}
 rarity=L
 [/card]
 [card]
+text=Flying, trample   Whenever The Unspeakable deals combat damage to a player, you may return target Arcane card from your graveyard to your hand.
+auto=@damaged(player) from(this):may moveto(myhand) target(arcane|mygraveyard)
 id=78693
 name=The Unspeakable
+rarity=R
 mana={6}{U}{U}{U}
 type=Creature
 subtype=Spirit
-abilities=legendary,flying,trample
 power=6
 toughness=7
-text=Flying, trample Whenever The Unspeakable deals combat damage to a player, you may return target Arcane card from your graveyard to your hand.
-auto=@damaged(player) from(this):may moveto(myhand) target(arcane|mygraveyard)
-rarity=R
+abilities=legendary,flying,trample
 [/card]
 [card]
 text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.
 id=78987
 name=Time of Need
+rarity=U
 mana={1}{G}
 type=Sorcery
 target=creature[legendary]|mylibrary
 auto=moveTo(myHand)
-rarity=U
 [/card]
 [card]
-text=Enchant Creature     Flash     Enchanted Creature gets +2/+2 and attacks each turn if able.
-abilities=flash
+text=Enchant Creature   Flash   Enchanted Creature gets +2/+2 and attacks each turn if able.
 target=creature
 auto=2/2
 auto=mustattack
 id=50315
 name=Uncontrollable Anger
 rarity=C
+mana={2}{R}{R}
 type=Enchantment
 subtype=Aura
+abilities=flash
 [/card]
 [card]
 text=Target Creature gains haste until end of turn.
@@ -1045,8 +1084,8 @@ auto=haste
 id=77926
 name=Unnatural Speed
 rarity=C
-type=Instant
 mana={R}
+type=Instant
 subtype=Arcane
 [/card]
 [card]
@@ -1056,44 +1095,44 @@ auto=vigilance
 id=50414
 name=Vigilance
 rarity=C
-type=Enchantment
 mana={W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Villainous Ogre can't block.     As long as you control a Demon, Villainous Ogre has "{B}: Regenerate Villainous Ogre."
-abilities=cantblock
-auto=aslongas(demon|myinplay) {B}:regenerate
+text=Villainous Ogre can't block.   As long as you control a Demon, Villainous Ogre has "{B}: Regenerate Villainous Ogre."
 id=80520
 name=Villanous Ogre
 rarity=C
-type=Creature
 mana={2}{B}
-power=3
+type=Creature
 subtype=Ogre Warrior
+auto=aslongas(demon|myBattlefield) {B}:regenerate
+power=3
 toughness=2
+abilities=cantblock
 [/card]
 [card]
 id=50345
 name=Wandering Ones
 rarity=C
-type=Creature
 mana={U}
-power=1
+type=Creature
 subtype=Spirit
+power=1
 toughness=1
 [/card]
 [card]
+text=Whenever a land enters the battlefield, Zo-Zu the Punisher deals 2 damage to that land's controller.
+auto=@movedTo(land|myBattlefield):damage:2 controller
+auto=@movedTo(land|opponentBattlefield):damage:2 opponent
 id=80274
 name=Zo-Zu the Punisher
+rarity=R
 mana={1}{R}{R}
 type=Creature
 subtype=Goblin Warrior
 power=2
 toughness=2
-text=Whenever a land comes into play, Zo-Zu the Punisher deals 2 damage to that land's controller.
-auto=@movedTo(land|myinplay):damage:2 controller
-auto=@movedTo(land|opponentinplay):damage:2 opponent
 abilities=legendary
-rarity=R
 [/card]
