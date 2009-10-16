@@ -20,6 +20,19 @@ auto={1}{T}:add{W}{U}
 rarity=C
 [/card]
 [card]
+id=111225
+name=Beacon Hawk
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying Whenever Beacon Hawk deals combat damage to a player, you may untap target creature. {W}: Beacon Hawk gets +0/+1 until end of turn.
+auto=@damaged(player) from(this):may untap target(creature)
+auto={W}:0/1
+rarity=C
+[/card]
+[card]
 id=107317
 name=Celestial Ancient
 mana={3}{W}{W}
@@ -31,6 +44,18 @@ text=Flying Whenever you cast an enchantment spell, put a +1/+1 counter on each 
 auto=@movedTo(enchantment|mystack):all(creature|mybattlefield) counter(1/1,1)
 abilities=flying
 rarity=R
+[/card]
+[card]
+id=107599
+name=Demon's Jester
+mana={3}{B}
+type=Creature
+subtype=Imp
+power=4
+toughness=3
+auto=aslongas(*|myhand)-2/-1
+text=Flying Hellbent - Demon's Jester gets +2/+1 as long as you have no cards in hand.
+rarity=C
 [/card]
 [card]
 id=107322
@@ -80,6 +105,21 @@ toughness=1
 text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
 auto={T}:damage:1 target(creature) && life:-1 targetcontroller
 rarity=C
+[/card]
+[card]
+id=111188
+name=Rakdos Pit Dragon
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=3
+toughness=3
+text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
+rarity=R
+auto={R}{R}:flying
+auto={R}:1/0
+abilities=double strike
+auto=aslongas(*|myHand)-double strike
 [/card]
 [card]
 id=97098
@@ -201,6 +241,19 @@ auto={T}{S(*|myhand)}:life:3
 rarity=U
 [/card]
 [card]
+id=111283
+name=Slithering Shade
+mana={B}
+type=Creature
+subtype=Shade
+power=0
+toughness=1
+text=Defender (This creature can't attack.) {B}: Slithering Shade gets +1/+1 until end of turn. Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
+auto=defender
+auto=aslongas(*|myHand)-defender
+rarity=U
+[/card]
+[card]
 id=107440
 name=Soulsworn Jury
 mana={2}{W}
@@ -222,6 +275,30 @@ text=Counter all other spells. Draw a card for each spell countered this way.
 auto=foreach(other *|stack) draw:1
 auto=fizzle all(other *|stack)
 rarity=R
+[/card]
+[card]
+id=107597
+name=Taste for Mayhem
+mana={R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/+0. Hellbent - Enchanted creature gets an additional +2/+0 as long as you have no cards in hand.
+rarity=C
+target=creature
+auto=4/0
+auto=aslongas(*|myhand)-2/0
+[/card]
+[card]
+id=97112
+name=Trygon Predator
+mana={1}{G}{U}
+type=Creature
+subtype=Beast
+power=2
+toughness=3
+text=Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
+auto=@damaged(player) from(this):may destroy target(artifact,enchantment)
+rarity=U
 [/card]
 [card]
 id=107276

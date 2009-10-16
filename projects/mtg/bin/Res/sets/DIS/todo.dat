@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=111192
 name=ÁEhermage's Touch
 mana={2}{W}{U}
@@ -108,18 +108,6 @@ type=Instant
 text=Prevent all combat damage target creature would deal this turn. Prevent all combat damage that would be dealt to target creature this turn.
 rarity=U
 [/card]
-
-[card]
-id=111225
-name=Beacon Hawk
-mana={1}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-text=Flying Whenever Beacon Hawk deals combat damage to a player, you may untap target creature. {W}: Beacon Hawk gets +0/+1 until end of turn.
-rarity=C
-[/card]
 [card]
 id=107277
 name=Biomantic Mastery
@@ -202,6 +190,8 @@ id=107258
 name=Cackling Flames
 mana={3}{R}
 type=Instant
+target=creature,player
+auto=aslongas(*|myHand)damage:3
 text=Cackling Flames deals 3 damage to target creature or player. Hellbent - Cackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
 rarity=C
 [/card]
@@ -328,17 +318,7 @@ type=Sorcery
 text=Demonfire deals X damage to target creature or player. If a creature dealt damage this way would be put into a graveyard this turn, exile it instead. Hellbent - If you have no cards in hand, Demonfire can't be countered by spells or abilities and the damage can't be prevented.
 rarity=R
 [/card]
-[card]
-id=107599
-name=Demon's Jester
-mana={3}{B}
-type=Creature
-subtype=Imp
-power=2
-toughness=2
-text=Flying Hellbent - Demon's Jester gets +2/+1 as long as you have no cards in hand.
-rarity=C
-[/card]
+
 [card]
 id=107373
 name=Bound // Determined (Determined)
@@ -723,11 +703,14 @@ rarity=R
 id=107363
 name=Lyzolda, the Blood Witch
 mana={1}{B}{R}
-type=Legendary Creature
+type=Creature
+abilities=legendary
 subtype=Human Cleric
 power=3
 toughness=1
 text={2}, Sacrifice a creature: Lyzolda, the Blood Witch deals 2 damage to target creature or player if the sacrificed creature was red. Draw a card if the sacrificed creature was black.
+auto={2}{S(creature[red]|myBattlefield)}:damage:2 target(creature,player)
+auto={2}{S(creature[black]|myBattlefield)}:draw: 1 controller
 rarity=R
 [/card]
 [card]
@@ -1084,18 +1067,6 @@ toughness=2
 text=({(b/r)} can be paid with either {B} or {R}.) {3}{B}, Discard a card: Target creature gets -2/-2 until end of turn. {3}{R}: Put a 2/1 red Goblin creature token with haste onto the battlefield. Exile it at the beginning of the next end step.
 rarity=U
 [/card]
-
-[card]
-id=111188
-name=Rakdos Pit Dragon
-mana={2}{R}{R}
-type=Creature
-subtype=Dragon
-power=3
-toughness=3
-text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
-rarity=R
-[/card]
 [card]
 id=97119
 name=Rakdos Riteknife
@@ -1261,18 +1232,6 @@ text=Hellbent - When Slaughterhouse Bouncer is put into a graveyard from the bat
 rarity=C
 [/card]
 [card]
-id=111283
-name=Slithering Shade
-mana={B}
-type=Creature
-subtype=Shade
-power=0
-toughness=1
-text=Defender (This creature can't attack.) {B}: Slithering Shade gets +1/+1 until end of turn. Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
-rarity=U
-[/card]
-
-[card]
 id=107281
 name=Spell Snare
 mana={U}
@@ -1300,6 +1259,8 @@ subtype=Plant Hydra
 power=0
 toughness=2
 text=Defender (This creature can't attack.) Whenever Sprouting Phytohydra is dealt damage, you may put a token that's a copy of Sprouting Phytohydra onto the battlefield.
+abilities=defender
+auto=@damaged(this):may token(Sprouting Phytohydra,Creature Plant Hydra,0/2,defender red)
 rarity=R
 [/card]
 [card]
@@ -1380,16 +1341,6 @@ mana={X}{G}{W}
 type=Sorcery
 text=Put X 1/1 green Saproling creature tokens onto the battlefield. rarity=U
 [/card]
-
-[card]
-id=107597
-name=Taste for Mayhem
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+0. Hellbent - Enchanted creature gets an additional +2/+0 as long as you have no cards in hand.
-rarity=C
-[/card]
 [card]
 id=107390
 name=Thrive
@@ -1426,17 +1377,6 @@ name=Trial // Error (Trial)
 mana={W}{U}
 type=Instant
 text=Return all creatures blocking or blocked by target creature to their owner's hand.
-rarity=U
-[/card]
-[card]
-id=97112
-name=Trygon Predator
-mana={1}{G}{U}
-type=Creature
-subtype=Beast
-power=2
-toughness=3
-text=Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
 rarity=U
 [/card]
 [card]

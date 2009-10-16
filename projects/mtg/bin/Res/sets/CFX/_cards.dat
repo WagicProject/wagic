@@ -796,7 +796,6 @@ id=185138
 name=Zombie Outlander
 rarity=C
 mana={U}{B}
-
 type=Creature
 subtype=Zombie Scout
 power=2

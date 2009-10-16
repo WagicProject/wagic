@@ -373,6 +373,7 @@ id=185701
 name=Goblin War Paint
 rarity=C
 mana={1}{R}
+target=creature
 type=Enchantment
 subtype=Aura
 [/card]

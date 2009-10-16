@@ -1,17 +1,4 @@
 [card]
-text=Flying . Whenever Abyssal Specter deals damage to a player, that player discards a card.
-id=2437
-alias=1165
-abilities=flying
-name=Abyssal Specter
-rarity=U
-type=Creature 
-mana={2}{B}{B}
-power=2
-subtype=Specter
-toughness=3
-[/card]
-[card]
 text={1}: Adarkar Sentinel gets +0/+1 until end of turn.
 id=2392
 auto={1}:0/1
@@ -49,6 +36,15 @@ name=Anarchy
 rarity=U
 type=Sorcery
 mana={2}{R}{R}
+[/card]
+[card]
+text={2}, {T}: Target creature gains vigilance until end of turn. Play this ability only during combat and only if defending player controls a snow land.
+id=2395
+name=Arcum's Sleigh
+auto=aslongas(land[snow]|opponentBattlefield){2}{T}:vigilance target(creature)
+rarity=U
+type=Artifact
+mana={1}
 [/card]
 [card]
 text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
@@ -268,11 +264,7 @@ text=Defender (This creature can't attack.)  Drift of the Dead's power and tough
 id=2447
 name=Drift of the Dead
 abilities=defender
-auto=foreach(snow-covered forest|myinplay) 1/1
-auto=foreach(snow-covered mountain|myinplay) 1/1
-auto=foreach(snow-covered plains|myinplay) 1/1
-auto=foreach(snow-covered swamp|myinplay) 1/1
-auto=foreach(snow-covered island|myinplay) 1/1
+auto=foreach(land[snow]|myinplay) 1/1
 rarity=U
 type=Creature
 mana={3}{B}
@@ -347,6 +339,16 @@ name=Flare
 rarity=C
 type=Instant
 mana={2}{R}
+[/card]
+[card]
+text=Green creatures have "This creature can't attack unless you sacrifice a land."
+id=2726
+auto=lord(creature[green])cantattack
+auto=lord(creature[green]) {S(land|myBattlefield):-cantattack
+name=Flooded Woodlands
+rarity=R
+type=Enchantment
+mana={2}{U}{B}
 [/card]
 [card]
 text={1}{G}: Folk of the Pines gets +1/+0 until end of turn.
@@ -656,7 +658,7 @@ toughness=4
 [card]
 text=Protection from white. {B}: Knight of Stromgald gains first strike until end of turn. {B}{B}: Knight of Stromgald gets +1/+0 until end of turn.
 id=2462
-abilities=Protection from white
+abilities=protection from white
 auto={B}:first strike
 auto={B}{B}:1/0
 name=Knight of Stromgald
@@ -678,6 +680,18 @@ rarity=C
 type=Enchantment 
 mana={2}{B}
 subtype=Aura
+[/card]
+[card]
+text=Snow swampwalk
+id=2466
+name=Legions of Lim-Dul
+auto=aslongas(swamp[snow]|opponentBattlefield)unblockable
+rarity=C
+type=Creature
+mana={1}{B}{B}
+power=2
+subtype=Zombie
+toughness=3
 [/card]
 [card]
 text=Enchant creature. Enchanted creature has swampwalk.
@@ -724,17 +738,6 @@ mana={2}{W}{W}
 power=1
 subtype=Human Knight
 toughness=1
-[/card]
-[card]
-text=Target player discards a card.     Draw a card at the beginning of the next turn's upkeep.
-id=2471
-target=player
-auto=discard:1
-auto=@next upkeep:draw:1 controller
-name=Mind Ravel
-rarity=C
-type=Sorcery
-mana={2}{B}
 [/card]
 [card]
 text=Protection from black. At the beginning of your upkeep, Minion of Leshrac deals 5 damage to you unless you sacrifice a creature other than Minion of Leshrac. If Minion of Leshrac deals damage to you this way, tap it. {T}: Destroy target creature or land.
@@ -815,7 +818,7 @@ toughness=1
 [card]
 text=Search your library for a Forest card and put that card into play. Then shuffle your library.
 target=forest|myLibrary
-auto=moveTo(myInPlay)
+auto=moveTo(myBattlefield)
 id=2579
 name=Nature's Lore
 rarity=U
@@ -1044,6 +1047,18 @@ mana={1}{G}
 subtype=Aura
 [/card]
 [card]
+text=Snow forestwalk
+id=2584
+name=Rime Dryad
+auto=aslongas(forest[snow]|opponentbattlefield)unblockable
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Dryad
+toughness=2
+[/card]
+[card]
 text=First strike
 abilities=first strike
 id=2651
@@ -1135,8 +1150,8 @@ id=2749
 auto={T}: Add {G}
 name=Snow-Covered Forest
 rarity=L
-type=Basic Snow Land
-subtype=Forest
+type=Basic Land
+subtype=Forest Snow
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -1144,8 +1159,8 @@ id=2770
 auto={T}: Add {U}
 name=Snow-Covered Island
 rarity=L
-type=Basic Snow Land
-subtype=Island
+type=Basic Land
+subtype=Island Snow
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -1153,8 +1168,8 @@ id=2766
 auto={T}: Add {R}
 name=Snow-Covered Mountain
 rarity=L
-type=Basic Snow Land
-subtype=Mountain
+type=Basic Land
+subtype=Mountain Snow
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -1162,8 +1177,8 @@ id=2774
 auto={T}: Add {W}
 name=Snow-Covered Plains
 rarity=L
-type=Basic Snow Land
-subtype=Plains
+type=Basic Land
+subtype=Plains Snow
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -1171,8 +1186,8 @@ id=2742
 auto={T}: Add {B}
 name=Snow-Covered Swamp
 rarity=L
-type=Basic Snow Land
-subtype=Swamp
+type=Basic Land
+subtype=Swamp Snow
 [/card]
 [card]
 text=Defender (This creature can't attack.) {1}: Snow Fortress gets +1/+0 until end of turn. {1}: Snow Fortress gets +0/+1 until end of turn. {3}: Snow Fortress deals 1 damage to target creature without flying that's attacking you.
@@ -1269,7 +1284,7 @@ toughness=3
 [card]
 text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
 id=2740
-auto={2}:damage:2 target(creature,player) && discard:1 controller
+auto=aslongas(*|myHand){2}:damage:2 target(creature,player) && discard:1 controller
 name=Stormbind
 rarity=R
 type=Enchantment
@@ -1516,7 +1531,7 @@ subtype=Aura
 [card]
 text=Woolly Mammoths has trample as long as you control a snow land.
 id=2602
-auto=aslongas(snow|myinplay) trample
+auto=aslongas(land[snow]|myinplay) trample
 name=Woolly Mammoths
 rarity=C
 type=Creature

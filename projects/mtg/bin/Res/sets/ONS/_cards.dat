@@ -216,7 +216,6 @@ text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from yo
 auto={B}{T}{S}:moveTo(myBattlefield) target(creature|mygraveyard)
 id=39549
 name=Doomed Necromancer
-rarity=R
 mana={2}{B}
 type=Creature
 subtype=Human Cleric Mercenary
@@ -1038,7 +1037,6 @@ id=43736
 name=Threaten
 target=creature
 alias=129767
-target=creature
 auto=haste
 auto=untap
 mana={2}{R}
@@ -1048,7 +1046,6 @@ type=Sorcery
 [card]
 text=Thunder of Hooves deals X damage to each creature without flying and each player, where X is the number of Beasts on the Battlefield.
 auto=foreach(beast) damage:1 all(player,creature[-flying])
-
 id=39847
 name=Thunder of Hooves
 rarity=U

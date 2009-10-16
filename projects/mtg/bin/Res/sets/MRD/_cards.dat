@@ -531,7 +531,6 @@ rarity=C
 mana={2}{R}
 type=Creature
 subtype=Goblin Warrior
-
 power=2
 toughness=2
 [/card]
