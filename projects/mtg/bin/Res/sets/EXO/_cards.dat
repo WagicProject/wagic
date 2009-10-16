@@ -1,5 +1,5 @@
 [card]
-text=When Anarchist comes into play, you may return target sorcery card from your graveyard to your hand.
+text=When Anarchist enters the battlefield, you may return target sorcery card from your graveyard to your hand.
 id=6110
 name=Anarchist
 rarity=U
@@ -22,7 +22,7 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
-text=When Cartographer comes into play, you may return target land card from your graveyard to your hand.
+text=When Cartographer enters the battlefield, you may return target land card from your graveyard to your hand.
 id=6144
 name=Cartographer
 rarity=U
@@ -34,8 +34,8 @@ power=2
 toughness=2
 [/card]
 [card]
-text=As an additional cost to play Culling the Weak, sacrifice a creature. Add {B}{B}{B}{B} to your mana pool.
-target=creature|myinplay
+text=As an additional cost to cast Culling the Weak, sacrifice a creature.   Add {B}{B}{B}{B} to your mana pool.
+target=creature|myBattlefield
 auto=bury
 auto=Add {B}{B}{B}{B}
 id=6085
@@ -45,7 +45,7 @@ mana={B}
 type=Instant
 [/card]
 [card]
-text=Enchant creature.   Enchanted creature gets -1/-1 and has fear.
+text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
 target=creature
 auto=-1/-1
 auto=fear
@@ -57,13 +57,24 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=When you play another land, sacrifice City of Traitors.   {T}: Add {2} to your mana pool.
 id=6168
 name=City of Traitors
-type=Land
-text=When you play another land, sacrifice City of Traitors.  {T}: Add {2} to your mana pool.
 auto=@movedTo(land|mybattlefield):bury
-auto={T}:Add{2}
+auto={T}:Add {2}
 rarity=R
+type=Land
+[/card]
+[card]
+text=Enchant creature   Whenever enchanted creature deals damage to an opponent, you may draw a card.
+id=6060
+target=creature
+auto=@damaged(player) from(this):draw:1 controller
+name=Curiosity
+rarity=U
+mana={U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)   {1}{B}, {T}: Destroy target creature with shadow.
@@ -137,7 +148,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Flying. Discard a card: Return Ephemeron to its owner's hand.
+text=Flying   Discard a card: Return Ephemeron to its owner's hand.
 id=6073
 name=Ephemeron
 rarity=R
@@ -163,29 +174,29 @@ toughness=1
 abilities=legendary
 [/card]
 [card]
-text=Flying. Exalted Dragon can't attack unless you sacrifice a land.
+text=Flying   Exalted Dragon can't attack unless you sacrifice a land.
 id=6053
 name=Exalted Dragon
 rarity=R
 mana={4}{W}{W}
 type=Creature
 subtype=Dragon
-auto={S(land|mybattlefield)}:-cantattack
+auto={S(land|myBattlefield)}:-cantattack
 power=5
 toughness=5
 abilities=flying,cantattack
 [/card]
 [card]
+text=When you cast a spell, return Jackalope Herd to its owner's hand.
 id=6138
 name=Jackalope Herd
+rarity=C
 mana={3}{G}
 type=Creature
 subtype=Rabbit Beast
+auto=@movedTo(*|mystack):moveTo(ownerHand)
 power=4
 toughness=5
-text=When you play a spell, return Jackalope Herd to its owner's hand.
-auto=@movedTo(*[-land]|mystack):moveTo(ownerHand)
-rarity=C
 [/card]
 [card]
 text={U}: Killer Whale gains flying until end of turn.
@@ -200,7 +211,28 @@ power=3
 toughness=5
 [/card]
 [card]
-text=Enchant creature.   Enchanted creature gets +2/+2 and can't block.
+text={T}, Discard a card at random: Mage il-Vec deals 1 damage to target creature or player.
+id=6111
+name=Mage il-Vec
+rarity=C
+mana={2}{R}
+auto={T}:damage:1 target(creature,player) && discard:1 controller
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+text=At the end of your turn, you may reveal your hand and put all land cards from it onto the battlefield. If you do, discard your hand.
+auto=@each my end:may moveTo(myBattlefield) all(land|myhand) && moveTo(mygraveyard) all(*[-land]|myhand)
+id=6154
+name=Manabond
+rarity=R
+mana={G}
+type=Enchantment
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +2/+2 and can't block.
 target=creature
 auto=2/2
 auto=cantblock
@@ -222,8 +254,8 @@ type=Artifact
 [/card]
 [card]
 text=Discard a card: You may tap or untap target artifact, creature, or land.
-auto={S(*|myhand)}:tap target(artifact,creature,land)
-auto={S(*|myhand)}:untap target(artifact,creature,land) 
+auto={S(*|myhand)}:may tap target(artifact,creature,land)
+auto={S(*|myhand)}:may untap target(artifact,creature,land) 
 id=6076
 name=Mind Over Matter
 rarity=R
@@ -231,7 +263,7 @@ mana={2}{U}{U}{U}{U}
 type=Enchantment
 [/card]
 [card]
-text=Legendary   First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
+text=First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
 id=6155
 name=Mirri, Cat Warrior
 rarity=R
@@ -252,25 +284,25 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
-id=5176
-name=Null Brooch
-mana={4}
-type=Artifact
 text={2}, {T}, Discard your hand: Counter target noncreature spell.
 auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
+id=5176
+name=Null Brooch
 rarity=R
+mana={4}
+type=Artifact
 [/card]
 [card]
+text={2}, Discard a card at random: Ogre Shaman deals 2 damage to target creature or player.
+auto={2}:damage:2 target(creature,player) && discard:1 controller
 id=6127
 name=Ogre Shaman
+rarity=R
 mana={3}{R}{R}
 type=Creature
 subtype=Ogre Shaman
 power=3
 toughness=3
-auto={2}:damage:2 target(creature,player) && discard:1 controller
-text={2}, Discard a card at random: Ogre Shaman deals 2 damage to target creature or player.
-rarity=R
 [/card]
 [card]
 text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
@@ -294,7 +326,7 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-text={2}{G}:Plated Rootwalla gets +3/+3 until end of turn. Play this ability only once each turn.
+text={2}{G}:Plated Rootwalla gets +3/+3 until end of turn. Activate this ability only once each turn.
 id=5201
 name=Plated Rootwalla
 rarity=C
@@ -306,25 +338,25 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Enchant creature Whenever an opponent casts a creature spell, put a +1/+1 counter on enchanted creature.
 id=6141
+target=creature
+auto=@movedTo(creature|opponentstack):counter(1/1)
 name=Predatory Hunger
+rarity=C
 mana={G}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Whenever an opponent plays a creature spell, put a +1/+1 counter on enchanted creature.
-target=creature
-auto=@movedTo(creature|opponentstack):counter(1/1)
-rarity=C
 [/card]
 [card]
+text=Price of Progress deals 2 damage to each player for each nonbasic land he or she controls.
+auto=foreach(land[-basic]|myBattlefield) damage:2 controller
+auto=foreach(land[-basic]|opponentBattlefield) damage:2 opponent
 id=6123
 name=Price of Progress
+rarity=U
 mana={1}{R}
 type=Instant
-text=Price of Progress deals 2 damage to each player for each nonbasic land he or she controls.
-auto=foreach(land[-basic]|myinplay) damage:2 controller
-auto=foreach(land[-basic]|opponentinplay) damage:2 opponent
-rarity=U
 [/card]
 [card]
 text=Whenever Pygmy Troll becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.   {G}: Regenerate Pygmy Troll.
@@ -363,7 +395,6 @@ power=1
 toughness=1
 abilities=haste
 [/card]
-
 [card]
 text=Put target card from your graveyard on top of your library.
 target=*|mygraveyard
@@ -375,16 +406,16 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
-id=6140
-name=Resuscitate
-mana={1}{G}
-type=Instant
 text=Until end of turn, creatures you control gain "{1}: Regenerate this creature."
 auto=lord(creature|mybattlefield) {1}:regenerate
+id=6140
+name=Resuscitate
 rarity=U
+mana={1}{G}
+type=Instant
 [/card]
 [card]
-text=Enchant creature. Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+text=Enchant creature   Enchanted creature has shroud. (It can't be the target of spells or abilities.)
 target=creature
 auto=shroud
 id=6059
@@ -428,7 +459,7 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
-text=When Scrivener comes into play, you may return target instant card from your graveyard to your hand.
+text=When Scrivener enters the battlefield, you may return target instant card from your graveyard to your hand.
 id=6067
 name=Scrivener
 rarity=U
@@ -449,16 +480,16 @@ mana={R}{R}{R}
 type=Enchantment
 [/card]
 [card]
-id=6038
-name=Shackles
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 text=Enchant creature. Enchanted creature doesn't untap during its controller's untap step. {W}: Return Shackles to its owner's hand.
+id=6038
 target=creature
 auto=doesnotuntap
 auto={W}:moveTo(ownerhand)
+name=Shackles
 rarity=C
+mana={2}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Sacrifice Shield Mate: Target creature gets +0/+4 until end of turn.
@@ -489,55 +520,68 @@ rarity=U
 mana={G}
 type=Creature
 subtype=Elf
-auto=aslongas(land[-basic]|opponentbattlefield) 1/2
+auto=aslongas(land[-basic]|opponentBattlefield) 1/2
 power=1
 toughness=1
 [/card]
 [card]
-text=Trample   As Skyshroud War Beast comes into play, choose an opponent.   Skyshroud War Beast's power and toughness are each equal to the number of nonbasic lands the chosen player controls.
+text=Trample   As Skyshroud War Beast enters the battlefield, choose an opponent.   Skyshroud War Beast's power and toughness are each equal to the number of nonbasic lands the chosen player controls.
 id=5231
 name=Skyshroud War Beast
 rarity=R
 mana={1}{G}
 type=Creature
 subtype=Beast
-auto=foreach(land[-basic]|opponentbattlefield) 1/1
-abilities=trample
+auto=foreach(land[-basic]|opponentBattlefield) 1/1
 power=*
 toughness=*
+abilities=trample
 [/card]
 [card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) Whenever Soltari Visionary deals damage to a player, destroy target enchantment that player controls.
+auto=@damaged(player) from(this):may destroy target(enchantment|opponentBattlefield)
+id=6031
+name=Soltari Visionary
+rarity=C
+mana={1}{W}{W}
+type=Creature
+subtype=Soltari Cleric
+power=2
+toughness=2
+abilities=shadow
+[/card]
+[card]
+text=As an additional cost to play Sonic Burst, discard a card at random. Sonic Burst deals 4 damage to target creature or player.
 id=6112
 name=Sonic Burst
 target=creature,player
 auto=damage:4
 auto=discard:1 controller
+rarity=C
 mana={1}{R}
 type=Instant
-text=As an additional cost to play Sonic Burst, discard a card at random. Sonic Burst deals 4 damage to target creature or player.
-rarity=C
 [/card]
 [card]
+text=Whenever another creature enters the battlefield, you gain 1 life.
 id=6033
 name=Soul Warden
+rarity=U
 mana={W}
 type=Creature
 subtype=Human Cleric
+auto=@movedTo(creature|battlefield):life:1
 power=1
 toughness=1
-text=Whenever another creature comes into play, you gain 1 life.
-auto=@movedTo(creature|battlefield):life:1
-rarity=U
 [/card]
 [card]
-id=6121
-name=Spellshock
-mana={2}{R}
-type=Enchantment
+text=Whenever a player casts a spell, Spellshock deals 2 damage to that player.
 auto=@movedTo(*|mystack):damage:2 controller
 auto=@movedTo(*|opponentstack):damage:2 opponent
-text=Whenever a player plays a spell, Spellshock deals 2 damage to that player.
+id=6121
+name=Spellshock
 rarity=U
+mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 text=Vigilance
@@ -586,16 +630,16 @@ toughness=1
 abilities=shadow
 [/card]
 [card]
+text=Draw a card for each tapped creature target opponent controls.
+auto=foreach(creature[-tapped]|opponentBattlefield) draw:1
 id=5254
 name=Theft of Dreams
+rarity=U
 mana={2}{U}
 type=Sorcery
-text=Draw a card for each tapped creature target opponent controls.
-auto=foreach(creature[-tapped]|opponentbattlefield) draw:1
-rarity=U
 [/card]
 [card]
-text=When Treasure Hunter comes into play, you may return target artifact card from your graveyard to your hand.
+text=When Treasure Hunter enters the battlefield, you may return target artifact card from your graveyard to your hand.
 id=6042
 name=Treasure Hunter
 rarity=U
@@ -641,16 +685,17 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Flying   When Welkin Hawk is put into a graveyard from the battlefield, you may search your library for a card named Welkin Hawk, reveal that card, put it into your hand, then shuffle your library.
+auto=@movedTo(this|graveyard):may moveTo(myHand) target(Welkin Hawk|mylibrary)
 id=6034
 name=Welkin Hawk
+rarity=C
 mana={1}{W}
 type=Creature
 subtype=Bird
 power=1
 toughness=1
-text=Flying When Welkin Hawk is put into a graveyard from play, you may search your library for a card named Welkin Hawk, reveal that card, put it into your hand, then shuffle your library.
-auto=@movedTo(this|graveyard):may moveTo(myHand) target(Welkin Hawk|mylibrary)
-rarity=C
+abilities=flying
 [/card]
 [card]
 text={U}: Whiptongue Frog gains flying until end of turn.
@@ -665,9 +710,8 @@ power=1
 toughness=3
 [/card]
 [card]
-text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-target=forest|myLibrary
-auto=moveTo(mybattlefield) 
+text=When Wood Elves enters the battlefield, search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
+auto=may moveTo(mybattlefield) target(forest|myLibrary)
 id=6135
 name=Wood Elves
 rarity=C

@@ -113,15 +113,6 @@ text=Enchant creature Enchanted creature gets +3/+3. When enchanted creature att
 rarity=C
 [/card]
 [card]
-id=6060
-name=Curiosity
-mana={U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature. Whenever enchanted creature deals damage to an opponent, you may draw a card.
-rarity=U
-[/card]
-[card]
 id=6087
 name=Death's Duet
 mana={2}{B}
@@ -245,7 +236,6 @@ type=Enchantment
 text=Each creature you control can block an additional creature.
 rarity=U
 [/card]
-
 [card]
 id=6142
 name=Keeper of the Beasts
@@ -318,31 +308,12 @@ text=When Limited Resources comes into play, each player chooses five lands he o
 rarity=R
 [/card]
 [card]
-id=6111
-name=Mage il-Vec
-mana={2}{R}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text={T}, Discard a card at random: Mage il-Vec deals 1 damage to target creature or player.
-rarity=C
-[/card]
-[card]
 id=6078
 name=Mana Breach
 mana={2}{U}
 type=Enchantment
 text=Whenever a player plays a spell, that player returns a land he or she controls to its owner's hand.
 rarity=U
-[/card]
-[card]
-id=6154
-name=Manabond
-mana={G}
-type=Enchantment
-text=At the end of your turn, you may reveal your hand and put all land cards from it into play. If you do, discard your hand.
-rarity=R
 [/card]
 [card]
 id=6167
@@ -426,7 +397,6 @@ type=Instant
 text=Play Necrologia only during your end of turn step.  As an additional cost to play Necrologia, pay any amount of life.  Draw cards equal to the life paid this way.
 rarity=U
 [/card]
-
 [card]
 id=6151
 name=Oath of Druids
@@ -632,18 +602,6 @@ text=Buyback?Pay 4 life. (You may pay 4 life in addition to any other costs as y
 rarity=U
 [/card]
 [card]
-id=6031
-name=Soltari Visionary
-mana={1}{W}{W}
-type=Creature
-subtype=Soltari Cleric
-power=2
-toughness=2
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) Whenever Soltari Visionary deals damage to a player, destroy target enchantment that player controls.
-abilities=shadow
-rarity=C
-[/card]
-[card]
 id=6149
 name=Song of Serenity
 mana={1}{G}
@@ -765,7 +723,6 @@ toughness=7
 text=Defender (This creature can't attack.) At end of combat, remove from the game all creatures blocked by Wall of Nets. When Wall of Nets leaves play, return to play under their owners' control all creatures removed from the game with Wall of Nets.
 rarity=R
 [/card]
-
 [card]
 id=6156
 name=Workhorse
