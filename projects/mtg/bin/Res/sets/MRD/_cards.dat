@@ -1409,6 +1409,19 @@ mana={0}
 type=Artifact
 [/card]
 [card]
+text=Fear Whenever Woebearer deals combat damage to a player, you may return target creature card from your graveyard to your hand.
+id=46074
+name=Woebearer
+abilities=fear
+auto=@damaged(player) from(this):may moveto(myhand) target(creature|myGraveyard)
+rarity=U
+type=Creature
+mana={4}{B}
+power=2
+subtype=Zombie
+toughness=3
+[/card] 
+[card]
 text=Vigilance
 id=46026
 name=Yotian Soldier

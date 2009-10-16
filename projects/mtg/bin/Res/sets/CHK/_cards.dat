@@ -889,7 +889,7 @@ power=3
 toughness=4
 text=Other Snake creatures you control get +2/+2. Whenever a Snake you control deals combat damage to a player, you may draw a card.
 auto=lord(snake|myBattlefield)2/2 other
-auto=@damaged(player) from(snake|myBattlefield):may draw:1
+auto=@damaged(player) from(snake|myBattlefield):may draw:1 controller
 rarity=R
 [/card]
 [card]
