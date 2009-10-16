@@ -225,18 +225,6 @@ power=5
 subtype=Horror Mercenary
 toughness=5
 [/card]
-
-[card]
-text=Flying     Whenever Caustic Wasps deals combat damage to a player, you may destroy target artifact that player controls.
-id=19865
-name=Caustic Wasps
-rarity=U
-type=Creature
-mana={2}{G}
-power=1
-subtype=Insect
-toughness=1
-[/card]
 [card]
 text=You may remove a red card in your hand from the game rather than pay Cave-In's mana cost.       Cave-In deals 2 damage to each creature and each player.
 id=19725
@@ -609,16 +597,6 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text=Nonland permanents don't untap during their controllers' untap steps.       At the beginning of your upkeep, you lose 2 life.
-id=19679
-name=Embargo
-auto=lord(-land)doesnotuntap
-auto=@each my upkeep:life:-2 controller
-rarity=R
-type=Enchantment
-mana={3}{U}
-[/card]
-[card]
 text=All artifacts have "At the beginning of your upkeep, sacrifice this artifact unless you pay {2}."
 id=19806
 name=Energy Flux
@@ -775,14 +753,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Target creature gets +X/+0 until end of turn, where X is the number of creature cards in your graveyard.
-id=19596
-name=Ghoul's Feast
-rarity=U
-type=Instant
-mana={1}{B}
-[/card]
-[card]
 text=You may return two Islands you control to their owner's hand rather than pay Gush's mana cost.       Draw two cards.
 id=20404
 name=Gush
@@ -801,7 +771,6 @@ power=1
 subtype=Human Spellshaper
 toughness=1
 [/card]
-
 [card]
 text=Hickory Woodlot comes into play tapped with two depletion counters on it.       {T}, Remove a depletion counter from Hickory Woodlot: Add {G}{G} to your mana pool. If there are no depletion counters on Hickory Woodlot, sacrifice it.
 id=19646
@@ -938,14 +907,6 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text=Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. (It retains its abilities.)
-id=19573
-name=Karn's Touch
-rarity=R
-type=Instant
-mana={U}{U}
-[/card]
-[card]
 text=At the beginning of your upkeep, you may remove the top card of your library from the game face down.     {5}, Discard your hand, Sacrifice Kyren Archive: Put all cards removed from the game with Kyren Archive into their owner's hand.
 id=19756
 name=Kyren Archive
@@ -972,7 +933,6 @@ rarity=U
 type=Enchantment
 mana={2}{R}{R}
 [/card]
-
 [card]
 text={1}, {T}: Put a charge counter on Kyren Toy.       {T}, Remove X charge counters from Kyren Toy: Add {1}{X} to your mana pool.
 id=19759
@@ -1024,8 +984,6 @@ rarity=U
 type=Enchantment
 mana={3}{G}
 [/card]
-
-
 [card]
 text=At the beginning of your upkeep, sacrifice Lithophage unless you sacrifice a Mountain.
 id=19731
@@ -1056,7 +1014,6 @@ type=Enchantment
 mana={1}{G}{G}
 subtype=Aura
 [/card]
-
 [card]
 text={4}, {T}: Put a charge counter on Magistrate's Scepter.     {T}, Remove three charge counters from Magistrate's Scepter: Take an extra turn after this one.
 id=19748
@@ -1065,7 +1022,6 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
 [card]
 text=Trample     When Megatherium comes into play, sacrifice it unless you pay {1} for each card in your hand.
 id=19733
@@ -1100,7 +1056,6 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-
 [card]
 text=Remove X target creature cards in your graveyard from the game. For each creature card removed this way, put a 2/2 black Zombie creature token into play.
 id=19707
@@ -1117,7 +1072,6 @@ rarity=R
 type=Instant
 mana={3}{U}{U}
 [/card]
-
 [card]
 text=Creatures target player controls don't untap during that player's next untap step.
 id=19568
@@ -1153,8 +1107,6 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-
-
 [card]
 text=Enchant creature     Prevent all damage that would be dealt by enchanted creature.
 id=20410
@@ -1220,25 +1172,12 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Whenever a player plays a land, return Pangosaur to its owner's hand.
-id=20788
-name=Pangosaur
-rarity=R
-type=Creature
-mana={2}{G}{G}
-power=6
-subtype=Lizard
-toughness=6
-[/card]
-[card]
 text=Peat Bog comes into play tapped with two depletion counters on it.       {T}, Remove a depletion counter from Peat Bog: Add {B}{B} to your mana pool. If there are no depletion counters on Peat Bog, sacrifice it.
 id=19644
 name=Peat Bog
 rarity=C
 type=Land
 [/card]
-
-
 [card]
 text=Whenever Port Inspector becomes blocked, you may look at defending player's hand.
 id=19562
@@ -1323,7 +1262,6 @@ power=1
 subtype=Fish
 toughness=1
 [/card]
-
 [card]
 text=First strike     {5}, {T}: Search your library for a Rebel permanent card with converted mana cost 4 or less and put that card into play. Then shuffle your library.
 id=19782
@@ -1397,17 +1335,6 @@ mana={B}
 power=1
 subtype=Lizard Mercenary
 toughness=1
-[/card]
-[card]
-text=Flying     {2}{W}: Rappelling Scouts gains protection from the color of your choice until end of turn.
-id=20412
-name=Rappelling Scouts
-rarity=R
-type=Creature
-mana={2}{W}{W}
-power=1
-subtype=Human Rebel Scout
-toughness=4
 [/card]
 [card]
 text=Remote Farm comes into play tapped with two depletion counters on it.       {T}, Remove a depletion counter from Remote Farm: Add {W}{W} to your mana pool. If there are no depletion counters on Remote Farm, sacrifice it.
@@ -1502,7 +1429,6 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-
 [card]
 text=Flying     Whenever Robber Fly becomes blocked, defending player discards all the cards in his or her hand, then draws that many cards.
 id=19719
@@ -1514,7 +1440,6 @@ power=1
 subtype=Insect
 toughness=1
 [/card]
-
 [card]
 text=If you control a Swamp, you may pay 2 life rather than pay Rouse's mana cost.       Target creature gets +2/+0 until end of turn.
 id=19700
@@ -1523,8 +1448,6 @@ rarity=C
 type=Instant
 mana={1}{B}
 [/card]
-
-
 [card]
 text=Rushwood Grove comes into play tapped.       {T}: Put a storage counter on Rushwood Grove.       {T}, Remove any number of storage counters from Rushwood Grove: Add {G} to your mana pool for each storage counter removed this way.
 id=19895
@@ -1532,7 +1455,6 @@ name=Rushwood Grove
 rarity=U
 type=Land
 [/card]
-
 [card]
 text=If an opponent controls an Island and you control a Forest, you may play Rushwood Legate without paying its mana cost.
 id=19864
@@ -1694,10 +1616,6 @@ rarity=R
 type=Enchantment
 mana={3}{W}
 [/card]
-
-
-
-
 [card]
 text={3}{B}: Destroy target blocking creature at end of combat.
 id=19692
@@ -1709,9 +1627,6 @@ power=2
 subtype=Human Mercenary Assassin
 toughness=1
 [/card]
-
-
-
 [card]
 text=When Skulking Fugitive becomes the target of a spell or ability, sacrifice it.
 id=19588
@@ -1723,8 +1638,6 @@ power=3
 subtype=Horror Mercenary
 toughness=4
 [/card]
-
-
 [card]
 text=Whenever Snorting Gahr becomes blocked, it gets +2/+2 until end of turn.
 id=19626
@@ -1761,8 +1674,6 @@ type=Enchantment
 mana={2}{B}
 subtype=Aura
 [/card]
-
-
 [card]
 text=Whenever a spell or ability an opponent controls causes you to discard a card, you gain 2 life and you may draw a card.
 id=19657
@@ -1821,9 +1732,6 @@ rarity=R
 type=Enchantment
 mana={3}{U}
 [/card]
-
-
-
 [card]
 text=As Story Circle comes into play, choose a color.     {W}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
 id=20173
@@ -1832,7 +1740,6 @@ rarity=U
 type=Enchantment
 mana={1}{W}{W}
 [/card]
-
 [card]
 text=Subterranean Hangar comes into play tapped.       {T}: Put a storage counter on Subterranean Hangar.       {T}, Remove any number of storage counters from Subterranean Hangar: Add {B} to your mana pool for each storage counter removed this way.
 id=19892
@@ -1840,8 +1747,6 @@ name=Subterranean Hangar
 rarity=U
 type=Land
 [/card]
-
-
 [card]
 text=Whenever Task Force becomes the target of a spell or ability, it gets +0/+3 until end of turn.
 id=19545
@@ -1869,7 +1774,6 @@ rarity=R
 type=Enchantment
 mana={4}{R}{R}
 [/card]
-
 [card]
 text=Set aside all nontoken permanents. Starting with you, each player chooses one of the cards set aside and puts it into play tapped under his or her control. Repeat this process until all those cards have been chosen.
 id=19722
@@ -1878,7 +1782,6 @@ rarity=R
 type=Sorcery
 mana={4}{R}{R}{R}
 [/card]
-
 [card]
 text=You may sacrifice a Mountain rather than pay Thunderclap's mana cost.       Thunderclap deals 3 damage to target creature.
 id=19615
@@ -1903,22 +1806,6 @@ rarity=C
 type=Instant
 mana={1}{U}
 [/card]
-
-
-[card]
-text=Flying     When another creature comes into play, return Timid Drake to its owner's hand.
-id=19560
-name=Timid Drake
-auto=@movedto(creature|inplay):moveto(ownerhand) all(Timid Drake)
-rarity=U
-type=Creature
-mana={2}{U}
-power=3
-subtype=Drake
-toughness=3
-[/card]
-
-
 [card]
 text={T}: Add {1} to your mana pool.       {1}, {T}: Target creature gains protection from artifacts until end of turn.
 id=19769
@@ -1937,8 +1824,6 @@ power=1
 subtype=Spellshaper
 toughness=1
 [/card]
-
-
 [card]
 text={T}: Target attacking unblocked creature becomes blocked. Play this ability only during the declare blockers step. (This ability works on unblockable creatures.)
 id=22288
@@ -2096,5 +1981,3 @@ power=3
 subtype=Unicorn Monger
 toughness=3
 [/card]
-
-

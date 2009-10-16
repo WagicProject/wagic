@@ -291,7 +291,7 @@ type=Instant
 [card]
 text=Spend only black mana on X.   Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
 id=3287
-id=1156
+alias=1156
 name=Drain Life
 rarity=C
 mana={X}{1}{B}
