@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=96953
 name=Absolver Thrull
 mana={3}{W}
@@ -9,7 +9,6 @@ toughness=3
 text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Absolver Thrull enters the battlefield or the creature it haunts is put into a graveyard, destroy target enchantment.
 rarity=C
 [/card]
-
 [card]
 id=96924
 name=AEtherplasm
@@ -37,7 +36,6 @@ power=5
 toughness=5
 abilities=flying
 [/card]
-
 [card]
 id=96964
 name=Battering Wurm
@@ -111,17 +109,6 @@ text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature ent
 rarity=C
 [/card]
 [card]
-id=97229
-name=Borborygmos
-mana={3}{R}{R}{G}{G}
-type=Legendary Creature
-subtype=Cyclops
-power=6
-toughness=7
-text=Trample Whenever Borborygmos deals combat damage to a player, put a +1/+1 counter on each creature you control.
-rarity=R
-[/card]
-[card]
 id=96898
 name=Burning-Tree Bloodscale
 mana={2}{R}{G}
@@ -151,7 +138,6 @@ type=Sorcery
 text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
 rarity=C
 [/card]
-
 [card]
 id=96907
 name=Cerebral Vortex
@@ -168,8 +154,6 @@ type=Sorcery
 text=Name a card. Until your next turn, the named card can't be played. Draw a card.
 rarity=U
 [/card]
-
-
 [card]
 id=96961
 name=Cry of Contrition
@@ -205,7 +189,6 @@ type=Sorcery
 text=Destroy each creature with converted mana cost 3 or less.
 rarity=R
 [/card]
-
 [card]
 text=({WB} can be paid with either White or Black.)   At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
 auto=@each my upkeep:moveTo(myBattlefield) target(creature|graveyard)
@@ -227,7 +210,6 @@ toughness=5
 text=({(u/r)} can be paid with either {U} or {R}.) Flying Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
 rarity=R
 [/card]
-
 [card]
 id=96929
 name=Droning Bureaucrats
@@ -249,18 +231,6 @@ power=1
 toughness=1
 text={U}, Sacrifice a creature: Discard a card, then draw a card.
 rarity=U
-[/card]
-
-[card]
-id=107091
-name=Dune-Brood Nephilim
-mana={B}{R}{G}{W}
-type=Creature
-subtype=Nephilim
-power=3
-toughness=3
-text=Whenever Dune-Brood Nephilim deals combat damage to a player, put a 1/1 colorless Sand creature token onto the battlefield for each land you control.
-rarity=R
 [/card]
 [card]
 id=97238
@@ -309,7 +279,6 @@ toughness=1
 text={3}: Feral Animist gets +X/+0 until end of turn, where X is its power.
 rarity=U
 [/card]
-
 [card]
 id=96877
 name=Gatherer of Graces
@@ -321,8 +290,6 @@ toughness=2
 text=Gatherer of Graces gets +1/+1 for each Aura attached to it. Sacrifice an Aura: Regenerate Gatherer of Graces.
 rarity=U
 [/card]
-
-
 [card]
 id=96849
 name=Ghor-Clan Savage
@@ -345,7 +312,6 @@ toughness=4
 text=When Ghost Council of Orzhova enters the battlefield, target opponent loses 1 life and you gain 1 life. {1}, Sacrifice a creature: Exile Ghost Council of Orzhova. Return it to the battlefield under its owner's control at the beginning of the next end step.
 rarity=R
 [/card]
-
 [card]
 id=96842
 name=Ghostway
@@ -354,7 +320,6 @@ type=Instant
 text=Exile each creature you control. Return those creatures to the battlefield under their owners' control at the beginning of the next end step.
 rarity=R
 [/card]
-
 [card]
 id=96864
 name=Gigadrowse
@@ -416,7 +381,6 @@ toughness=2
 text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) Sacrifice Gristleback: You gain life equal to Gristleback's power.
 rarity=U
 [/card]
-
 [card]
 id=107683
 name=Gruul Nodorog
@@ -439,7 +403,6 @@ toughness=2
 text=When Gruul Scrapper enters the battlefield, if {R} was spent to cast Gruul Scrapper, it gains haste until end of turn.
 rarity=C
 [/card]
-
 [card]
 id=97223
 name=Gruul Turf
@@ -476,7 +439,6 @@ toughness=3
 text=Flying At the beginning of your upkeep, tap target creature.
 rarity=U
 [/card]
-
 [card]
 id=96922
 name=Hissing Miasma
@@ -555,7 +517,6 @@ toughness=2
 text=({(u/r)} can be paid with either {U} or {R}.) {2}{U}: Copy target instant spell you control with converted mana cost 2 or less. You may choose new targets for the copy. {2}{R}: Copy target sorcery spell you control with converted mana cost 2 or less. You may choose new targets for the copy.
 rarity=U
 [/card]
-
 [card]
 id=97207
 name=Killer Instinct
@@ -612,7 +573,6 @@ type=Enchantment
 text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. If a card would be put into an opponent's graveyard from anywhere, exile it instead.
 rarity=R
 [/card]
-
 [card]
 id=96874
 name=Living Inferno
@@ -624,7 +584,6 @@ toughness=5
 text={T}: Living Inferno deals damage equal to its power divided as you choose among any number of target creatures. Each of those creatures deals damage equal to its power to Living Inferno.
 rarity=R
 [/card]
-
 [card]
 id=106568
 name=Mimeofacture
@@ -649,8 +608,6 @@ type=Artifact
 text={2}, {T}: Exile target card from a graveyard. {2}{W}{B}, {T}, Sacrifice Moratorium Stone: Exile target nonland card from a graveyard, all other cards from graveyards with the same name as that card, and all permanents with that name.
 rarity=R
 [/card]
-
-
 [card]
 id=107685
 name=Necromancer's Magemark
@@ -723,7 +680,6 @@ toughness=2
 text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Orzhov Euthanist enters the battlefield or the creature it haunts is put into a graveyard, destroy target creature that was dealt damage this turn.
 rarity=C
 [/card]
-
 [card]
 id=96844
 name=Orzhov Pontiff
@@ -735,9 +691,6 @@ toughness=1
 text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) When Orzhov Pontiff enters the battlefield or the creature it haunts is put into a graveyard, choose one  Ecreatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
 rarity=R
 [/card]
-
-
-
 [card]
 id=97217
 name=Parallectric Feedback
@@ -768,9 +721,6 @@ toughness=3
 text=Petrified Wood-Kin can't be countered. Bloodthirst X (This creature enters the battlefield with X +1/+1 counters on it, where X is the damage dealt to your opponents this turn.) Protection from instants
 rarity=R
 [/card]
-
-
-
 [card]
 id=96931
 name=Predatory Focus
@@ -822,7 +772,6 @@ type=Instant
 text=Return target nonland permanent with converted mana cost X to its owner's hand. Draw a card.
 rarity=C
 [/card]
-
 [card]
 id=96972
 name=Revenant Patriarch
@@ -834,7 +783,6 @@ toughness=3
 text=When Revenant Patriarch enters the battlefield, if {W} was spent to cast Revenant Patriarch, target player skips his or her next combat phase. Revenant Patriarch can't block.
 rarity=U
 [/card]
-
 [card]
 id=96916
 name=Runeboggle
@@ -881,7 +829,6 @@ type=Instant
 text=Target creature gets +4/+0 until end of turn. Another target creature gets -4/-0 until end of turn.
 rarity=U
 [/card]
-
 [card]
 id=96888
 name=Seize the Soul
@@ -890,7 +837,6 @@ type=Instant
 text=Destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield. Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) When the creature Seize the Soul haunts is put into a graveyard, destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield.
 rarity=R
 [/card]
-
 [card]
 id=97233
 name=Shattering Spree
@@ -949,7 +895,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature has "{T}: This creature deals damage equal to its power to target attacking or blocking creature."
 rarity=U
 [/card]
-
 [card]
 id=96957
 name=Skarrgan Firebird
@@ -983,7 +928,6 @@ toughness=3
 text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.) {1}, Sacrifice Skarrgan Skybreaker: Skarrgan Skybreaker deals damage equal to its power to target creature or player.
 rarity=U
 [/card]
-
 [card]
 id=96835
 name=Sky Swallower
@@ -1039,7 +983,6 @@ toughness=3
 text=Whenever an opponent casts a spell, that player sacrifices a permanent unless he or she pays {1}.
 rarity=R
 [/card]
-
 [card]
 id=96923
 name=Steam Vents
@@ -1085,8 +1028,6 @@ type=Sorcery
 text=Put X 1/1 white Pegasus creature tokens with flying onto the battlefield, where X is your life total.
 rarity=R
 [/card]
-
-
 [card]
 id=107095
 name=Sword of the Paruns
@@ -1115,7 +1056,23 @@ type=Instant
 text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) Put a 3/3 blue Weird creature token with defender and flying onto the battlefield. Exile it at the beginning of the next end step.
 rarity=U
 [/card]
-
+[card]
+####
+####The first ability cannot work for now because it has no may condition!! (0.9.1)
+####
+id=97208
+name=Tibor and Lumia
+mana={2}{U}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+text=Whenever you cast a blue spell, target creature gains flying until end of turn.   Whenever you cast a red spell, Tibor and Lumia deals 1 damage to each creature without flying.
+auto=@movedTo(*[blue]|mystack):flying target(creature) ueot
+auto=@movedTo(*[red]|mystack):damage:1 all(creature[-flying])
+abilities=legendary
+rarity=R
+[/card]
 [card]
 id=96960
 name=Tin Street Hooligan
@@ -1127,8 +1084,6 @@ toughness=1
 text=When Tin Street Hooligan enters the battlefield, if {G} was spent to cast Tin Street Hooligan, destroy target artifact.
 rarity=C
 [/card]
-
-
 [card]
 id=96906
 name=Train of Thought
@@ -1184,9 +1139,6 @@ toughness=3
 text=Defender (This creature can't attack.) Whenever Vertigo Spawn blocks a creature, tap that creature. That creature doesn't untap during its controller's next untap step.
 rarity=U
 [/card]
-
-
-
 [card]
 id=107090
 name=Witch-Maw Nephilim
@@ -1214,7 +1166,6 @@ type=Sorcery
 text=Wreak Havoc can't be countered by spells or abilities. Destroy target artifact or land.
 rarity=U
 [/card]
-
 [card]
 id=107093
 name=Yore-Tiller Nephilim
