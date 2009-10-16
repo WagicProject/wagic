@@ -1049,6 +1049,7 @@ text=Whenever Slith Bloodletter deals combat damage to a player, put a +1/+1 cou
 id=46091
 name=Slith Bloodletter
 auto=@damaged(player) from(this):counter(1/1,1)
+auto={1}{B}:regenerate
 rarity=U
 type=Creature
 mana={B}{B}
