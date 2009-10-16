@@ -61,6 +61,18 @@ subtype=Fox
 toughness=1
 [/card]
 [card]
+####
+####Aslongas-lines with activation costs don't work yet!! (0.9.1) 
+####
+text={2}, {T}: Target creature gains vigilance until end of turn. Play this ability only during combat and only if defending player controls a snow land.
+id=2395
+name=Arcum's Sleigh
+auto=aslongas(land[snow]|opponentBattlefield) {2}{T}:vigilance target(creature)
+rarity=U
+mana={1}
+type=Artifact
+[/card]
+[card]
 text={2}, {T}: Target snow land is no longer snow.     {2}, {T}: Target nonsnow basic land becomes snow.
 id=2396
 name=Arcum's Weathervane
@@ -76,7 +88,6 @@ rarity=U
 type=Artifact
 mana={3}
 [/card]
-
 [card]
 text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  {1}: Target creature gains flying until end of turn.
 id=2493
@@ -628,6 +639,19 @@ name=Fire Covenant
 rarity=U
 type=Instant
 mana={1}{B}{R}
+[/card]
+[card]
+####
+####Like Propaganda (TMP) and Ghostly Prison (CHK), this card is way too unfair because the AI cannot activate this cards ability! (0.9.1)
+####
+text=Green creatures have "This creature can't attack unless you sacrifice a land."
+id=2726
+auto=lord(creature[green])cantattack
+auto=lord(creature[green]) {S(land|myBattlefield)}:-cantattack
+name=Flooded Woodlands
+rarity=R
+type=Enchantment
+mana={2}{U}{B}
 [/card]
 [card]
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Flow of Maggots can't be blocked by non-Wall creatures.
@@ -1590,7 +1614,6 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-
 [card]
 text=Skip your draw step.     Whenever you discard a card, remove that card in your graveyard from the game.     Pay 1 life: Remove the top card of your library from the game face down. Put that card into your hand at the end of your turn.
 id=2478
@@ -1744,7 +1767,6 @@ type=Enchantment
 mana={1}{W}
 subtype=Aura
 [/card]
-
 [card]
 text=Cumulative upkeep {1}{U}{U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  If tapped for mana, Plains produce {R}, Swamps produce {G}, Mountains produce {W}, and Forests produce {B} instead of any other type.
 id=2530
@@ -1761,6 +1783,19 @@ rarity=U
 type=Enchantment
 mana={W}
 subtype=Aura
+[/card]
+[card]
+####
+####Like Propaganda (TMP) and Ghostly Prison (CHK), this card is way too unfair because the AI cannot activate this cards ability! (0.9.1)
+####
+text=Black creatures have "This creature can't attack unless you sacrifice a land."
+id=2736
+name=Reclamation
+auto=lord(creature[black]) cantattack
+auto=lord(creature[black]) {S(land|myinplay)}:-cantattack
+rarity=R
+type=Enchantment
+mana={2}{G}{W}
 [/card]
 [card]
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  If a land is tapped for mana, it produces colorless mana instead of any other type.
@@ -1964,6 +1999,21 @@ mana={2}{B}
 subtype=Aura
 [/card]
 [card]
+####
+####The target does not get shroud (Read its wording!)
+####
+text=Enchant creature   Enchanted creature gets +0/+2 and can't be the target of spells.
+id=2738
+target=creature
+auto=0/2
+auto=shroud
+name=Spectral Shield
+rarity=U
+type=Enchantment
+mana={1}{W}{U}
+subtype=Aura
+[/card]
+[card]
 text=X is the number of artifact and/or creature cards in an opponent's graveyard as you play Spoils of War.     Distribute X +1/+1 counters among any number of target creatures.
 id=2488
 name=Spoils of War
@@ -1999,6 +2049,18 @@ subtype=Elemental Spirit
 toughness=3
 [/card]
 [card]
+####
+####Aslongas-lines with activation costs don't work yet!! (0.9.1) 
+####
+text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
+id=2740
+auto=aslongas(*|myHand){2}:damage:2 target(creature,player) && discard:1 controller
+name=Stormbind
+rarity=R
+type=Enchantment
+mana={1}{R}{G}
+[/card]
+[card]
 text=Target player chooses three cards from his or her hand and puts them on top of his or her library in any order.
 id=2590
 name=Stunted Growth
@@ -2015,13 +2077,11 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-#to test
 text=Destroy target land. If that land was a snow land, you gain 1 life.
 id=2592
 name=Thermokarst
 target=land
 auto=destroy
-auto=@movedto(land[snow]|graveyard) from(Battlefield):life:1 controller
 rarity=U
 type=Sorcery
 mana={1}{G}{G}
