@@ -1262,7 +1262,7 @@ abilities=first strike
 [/card]
 [card]
 text=Typhoon deals damage to each opponent equal to the number of Islands that player controls.
-auo=foreach(island|opponentBattlefield) damage:1 opponent
+auto=foreach(island|opponentBattlefield) damage:1 opponent
 id=1549
 name=Typhoon
 rarity=R
