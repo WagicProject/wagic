@@ -1,12 +1,12 @@
 [card]
-text=Flying   {1}{G}{U}: Creatures you control gain shroud until end of turn.
-auto={1}{G}{U}:lord(creature|mybattlefield) shroud 
+text=Flying   {1}{G}{U}: Creatures you control gain shroud until end of turn. 
 id=153946
 name=Aerie Mystics
 rarity=U
 mana={4}{W}
 type=Creature
 subtype=Bird Wizard
+auto={1}{G}{U}:lord(creature|myBattlefield) shroud
 power=3
 toughness=3
 abilities=flying
@@ -44,19 +44,19 @@ rarity=C
 mana={2}{W}
 type=Creature
 subtype=Bird Soldier
-auto=aslongas(forest|myinplay) 0/1
-auto=aslongas(island|myinplay) 0/1
-auto=aslongas(plains|myinplay) 0/1
-auto=aslongas(mountain|myinplay) 0/1
-auto=aslongas(swamp|myinplay) 0/1
+auto=aslongas(forest|myBattlefield) 0/1
+auto=aslongas(island|myBattlefield) 0/1
+auto=aslongas(plains|myBattlefield) 0/1
+auto=aslongas(mountain|myBattlefield) 0/1
+auto=aslongas(swamp|myBattlefield) 0/1
 power=2
 toughness=*
 abilities=flying
 [/card]
 [card]
 text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze.   At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
-auto=@each my upkeep:aslongas(*[black]|mybattlefield) may counter(1/1)
-auto=@each my upkeep:aslongas(*[green]|mybattlefield) may counter(1/1)
+auto=@each my upkeep:aslongas(*[black]|myBattlefield) may counter(1/1)
+auto=@each my upkeep:aslongas(*[green]|myBattlefield) may counter(1/1)
 id=159610
 name=Bloodhall Ooze
 rarity=R
@@ -67,7 +67,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Flying, trample   At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way.     Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
+text=Flying, trample   At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way.   Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
 id=180267
 auto=@each my upkeep:life:-1 opponent && life:-1 controller
 auto=@each my upkeep:counter(1/1,2)
@@ -91,7 +91,7 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Exile target black or red permanent from the game.
+text=Exile target black or red permanent.
 target=*[black;red]
 auto=moveTo(exile)
 id=183055
@@ -101,6 +101,19 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Trample   Whenever Charnelhoard Wurm deals damage to an opponent, you may return target card from your graveyard to your hand.
+id=179438
+name=Charnelhoard Wurm
+rarity=R
+mana={4}{B}{R}{G}
+type=Creature
+subtype=Wurm
+auto=@damaged(player) from(this):may moveTo(myhand) target(*|mygraveyard)
+power=6
+toughness=6
+abilities=trample
+[/card]
+[card]
 text=Trample   When Child of Alara is put into a graveyard from the battlefield, destroy all nonland permanents. They can't be regenerated.
 id=180516
 name=Child of Alara
@@ -108,7 +121,7 @@ rarity=M
 mana={W}{U}{B}{R}{G}
 type=Creature
 subtype=Avatar
-auto=@movedTo(this|graveyard) from(battlefield):bury all(*[-land]|battlefield)
+auto=@movedTo(this|graveyard) from(Battlefield):bury all(*[-land]|battlefield)
 power=6
 toughness=6
 abilities=trample,legendary
@@ -331,7 +344,7 @@ toughness=1
 [card]
 text=Knight of the Reliquary gets +1/+1 for each land card in your graveyard.   {T}, Sacrifice a Forest or Plains: Search your library for a land card, put it onto the battlefield, then shuffle your library.
 auto=foreach(land|mygraveyard) 1/1
-auto={T}{S(forest,plains|mybattlefield)}:moveTo(myBattlefield) target(land|mylibrary)
+auto={T}{S(forest,plains|myBattlefield)}:moveTo(myBattlefield) target(land|mylibrary)
 id=189145
 name=Knight of the Reliquary
 rarity=R
@@ -497,20 +510,7 @@ toughness=1
 abilities=flying,deathtouch
 [/card]
 [card]
-text=Protection from everything   If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
-auto=@movedTo(this|graveyard):moveTo(ownerlibrary) && shuffle
-id=179496
-name=Progenitus
-rarity=M
-mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
-type=Creature
-subtype=Hydra Avatar
-power=10
-toughness=10
-abilities=legendary,shroud,unblockable,protection from white,protection from blue,protection from black,protection from red,protection from green
-[/card]
-[card]
-text=Haste   {R}, {T}: Put a 3/1 red Elemental creature token with haste into play. 
+text=Haste   {R}, {T}: Put a 3/1 red Elemental creature token with haste onto the battlefield. 
 auto={R}{T}:token(Elemental,creature, 3/1,haste red)
 id=185810
 name=Rakka Mar
@@ -573,7 +573,7 @@ toughness=1
 [/card]
 [card]
 text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
-auto={S(creature|myBattlfield)}:counter(1/1)
+auto={S(creature|myBattlefield)}:counter(1/1)
 id=183025
 name=Scarland Thrinax
 rarity=U
@@ -689,7 +689,7 @@ toughness=4
 text=Toxic Iguanar has deathtouch as long as you control a green permanent. (Whenever it deals damage to a creature, destroy that creature.)
 id=170956
 name=Toxic Iguanar
-auto=aslongas(*[green]|mybattlefield) deathtouch
+auto=aslongas(*[green]|myBattlefield) deathtouch
 rarity=C
 mana={R}
 type=Creature

@@ -72,17 +72,6 @@ subtype=Elemental
 toughness=4
 [/card]
 [card]
-text=Trample     Whenever Charnelhoard Wurm deals damage to an opponent, you may return target card from your graveyard to your hand.
-id=179438
-name=Charnelhoard Wurm
-rarity=R
-type=Creature
-mana={4}{B}{R}{G}
-power=6
-subtype=Wurm
-toughness=6
-[/card]
-[card]
 text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
 id=179437
 name=Conflux
@@ -97,17 +86,6 @@ name=Constricting Tendrils
 rarity=C
 type=Instant
 mana={U}
-[/card]
-[card]
-#Does not work in WTH 0.8.1....  ###ANSWER: IT DOES WORK! IT WAS ONLY CODED WRONG! ;)
-text=Counter target noncreature spell. Its controller loses 2 life. 
-target=*[-creature]|stack
-auto=fizzle && life:-2 targetController
-id=186327
-name=Countersquall
-rarity=U
-type=Instant
-mana={U}{B}
 [/card]
 [card]
 text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
@@ -544,6 +522,22 @@ name=Path to Exile
 rarity=U
 type=Instant
 mana={W}
+[/card]
+[card]
+####
+####The auto-line does not work for now! :( (0.9.1)
+####
+text=Protection from everything   If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
+auto=@movedTo(this|graveyard):moveTo(ownerlibrary) && shuffle
+id=179496
+name=Progenitus
+rarity=M
+mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
+type=Creature
+subtype=Hydra Avatar
+power=10
+toughness=10
+abilities=legendary,shroud,unblockable,protection from white,protection from blue,protection from black,protection from red,protection from green
 [/card]
 [card]
 text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
