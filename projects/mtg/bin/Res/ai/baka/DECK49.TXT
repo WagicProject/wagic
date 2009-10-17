@@ -1,0 +1,42 @@
+#NAME:Dragon
+#DESc:Dragon are rage
+#DESc:of power and wil
+#DESc:Dragon are artists 
+#DESC:with flames, 
+#DESC:painting the world 
+#DESC:with fire
+#Land
+Mountain (M10) *24
+
+#Direct Damage
+Lightning Bolt (M10) *4
+Soulblast (10E) *1
+Beacon of Destruction (10E) *1
+Spitting Earth (10E) *2
+
+#Generic booster
+Goblin War Paint (ZEN) *2
+
+#Dragon Generator
+Dragon Roost (10E) *1
+
+#Boost Dragon
+Crucible of Fire (ALA) *4
+
+#Small dragon (4)
+Rakdos Pit Dragon (DIS) *4
+Furnace Whelp (10E) *4
+
+#Heavy Dragon (6)
+Shivan Dragon (M10) *2
+
+#Legendary Dragon (6)
+Rorix Bladewing (ONS) *1
+Ryusei, the Falling Star (CHK) *1
+
+#Black Red small creatures
+Bloodhall Ooze (CFX) *2
+Ashenmoor Liege (SHM) *2
+Ashenmoor Gouger (SHM) *2
+Emberstrike Duo (SHM) *2
+Bloodmark Mentor (SHM) *4
