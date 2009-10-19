@@ -231,6 +231,21 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Whenever Dromad Purebred is dealt damage, you gain 1 life.
+id=87911
+name=Dromad Purebred
+rarity=C
+type=Creature
+auto=@damaged(this) from(*|myBattlefield):life:1 controller
+auto=@damaged(this) from(*|opponentBattlefield):life:1 controller
+auto=@damaged(this) from(*|mystack):life:1 controller
+auto=@damaged(this) from(*|opponentstack):life:1 controller
+mana={4}{W}
+power=1
+subtype=Camel Beast
+toughness=5
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {U}{B}, {T}: Target player puts the top card of his or her library into his or her graveyard.
 auto={T}:Add {1}
 auto={U}{B}{T}:deplete:1 target(player)

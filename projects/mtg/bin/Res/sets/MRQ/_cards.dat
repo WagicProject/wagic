@@ -229,6 +229,15 @@ mana={4}{G}{G}
 type=Sorcery
 [/card]
 [card]
+text=Whenever a creature you control deals combat damage to an opponent, you may draw a card.
+id=19805
+name=Coastal Piracy
+rarity=U
+auto=@damaged(player) from(creature|myBattlefield):may draw:1 controller
+type=Enchantment
+mana={2}{U}{U}
+[/card]
+[card]
 text=Counter target spell.
 target=*|stack
 auto=fizzle

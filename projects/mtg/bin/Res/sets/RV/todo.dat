@@ -147,8 +147,12 @@ mana={R}{R}
 text=Whenever Fungusaur is dealt damage, put a +1/+1 counter on it.
 id=1246
 name=Fungusaur
+#Don't work should work: since Dromad Purebred (RAV) works fine this one should work fine too... it work if the creature has first strike if you or you opponent cast a damage spell on fungusaur but not if is damage made by normal attacking or defending creature... make no sens
+auto=@damaged(this) from(*|myBattlefield):counter(1/1,1)
+auto=@damaged(this) from(*|opponentBattlefield):counter(1/1,1)
+auto=@damaged(this) from(*|mystack):counter(1/1,1)
+auto=@damaged(this) from(*|opponentstack):counter(1/1,1)
 rarity=R
-color=Green
 type=Creature
 mana={3}{G}
 power=2

@@ -66,6 +66,7 @@ subtype=Spirit
 toughness=4
 [/card]
 [card]
+#to test ?
 text={1}{R}, Sacrifice Blockbuster: Blockbuster deals 3 damage to each tapped creature and each player.
 id=87977
 auto={1}{R}{S}:damage:3 all(creature[tapped],player)
@@ -109,6 +110,9 @@ mana={2}{W}
 [card]
 text=Boros Garrison comes into play tapped.     When Boros Garrison comes into play, return a land you control to its owner's hand.     {T}: Add {R}{W} to your mana pool.
 id=83900
+auto=moveto(ownerhand) target(land|myBattlefield)
+auto=tap
+auto={T}: add {R}{W}
 name=Boros Garrison
 rarity=C
 type=Land
@@ -181,9 +185,11 @@ subtype=Zombie Wolf
 toughness=2
 [/card]
 [card]
+#To test
 text=Flying     {U}: Cerulean Sphinx's owner shuffles it into his or her library.
 id=89095
 name=Cerulean Sphinx
+auto={U}:moveto(mylibrary) && shuffle
 rarity=R
 type=Creature
 mana={4}{U}{U}
@@ -212,7 +218,8 @@ text=Forestwalk     As an additional cost to play creature spells, you may pay a
 id=89053
 name=Chorus of the Conclave
 rarity=R
-type=Legendary Creature
+type=Creature
+abilities=legendary
 mana={4}{G}{G}{W}{W}
 power=3
 subtype=Dryad
@@ -223,7 +230,8 @@ text=Whenever you play a blue spell, remove the top card of target library from 
 id=89111
 name=Circu, Dimir Lobotomist
 rarity=R
-type=Legendary Creature
+type=Creature
+abilities=legendary
 mana={2}{U}{B}
 power=2
 subtype=Human Wizard
@@ -250,6 +258,9 @@ text=Return target permanent to its owner's hand. Its controller loses 3 life.  
 id=89037
 name=Clutch of the Undercity
 rarity=U
+target=*
+auto=moveto(ownerhand)
+auto=life:-3 targetController
 type=Instant
 mana={1}{U}{U}{B}
 [/card]
@@ -512,17 +523,6 @@ subtype=Spirit
 toughness=5
 [/card]
 [card]
-text=Whenever Dromad Purebred is dealt damage, you gain 1 life.
-id=87911
-name=Dromad Purebred
-rarity=C
-type=Creature
-mana={4}{W}
-power=1
-subtype=Camel Beast
-toughness=5
-[/card]
-[card]
 text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
 id=87989
 name=Drooling Groodion
@@ -611,6 +611,8 @@ toughness=3
 [card]
 text=When Flame-Kin Zealot comes into play, creatures you control get +1/+1 and gain haste until end of turn.
 id=83562
+auto=1/1 all(creature|myBattlefield)
+auto=haste all(creature|myBattlefield)
 name=Flame-Kin Zealot
 rarity=U
 type=Creature
@@ -750,8 +752,11 @@ toughness=3
 [/card]
 
 [card]
+#to test
 text=Golgari Grave-Troll comes into play with a +1/+1 counter on it for each creature card in your graveyard.     {1}, Remove a +1/+1 counter from Golgari Grave-Troll: Regenerate Golgari Grave-Troll.     Dredge 6
 id=88960
+auto=foreach(creature|myGraveyard)counter(1/1,1)
+auto={1}:regenerate && counter(1/1,-1)
 name=Golgari Grave-Troll
 rarity=R
 type=Creature
@@ -839,6 +844,7 @@ rarity=U
 type=Enchantment
 mana={1}{U}{U}
 [/card]
+#to test again
 #Hammerfist giant requires a serious update of the targetChooser code before it can work.
 [card]
 text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
@@ -962,6 +968,7 @@ type=Instant
 mana={2}{U}{U}
 [/card]
 [card]
+#to test
 text=When Infectious Host is put into a graveyard from play, target player loses 2 life.
 id=87966
 auto=@movedto(this|graveyard):damage:2 target(player) #does not work yet
@@ -1067,6 +1074,7 @@ subtype=Elephant Soldier
 toughness=3
 [/card]
 [card]
+#to test
 text=When Loxodon Hierarch comes into play, you gain 4 life.     {G}{W}, Sacrifice Loxodon Hierarch: Regenerate each creature you control.
 auto=life:4
 auto={S}:regenerate all(creature|myinplay)
@@ -1257,8 +1265,13 @@ subtype=Minotaur Soldier
 toughness=1
 [/card]
 [card]
+#to test
 text=({T}: Add {B} or {G} to your mana pool.)  As Overgrown Tomb comes into play, you may pay 2 life. If you don't, Overgrown Tomb comes into play tapped.
 id=89072
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:add {G}
+auto={T}:add {B}
 name=Overgrown Tomb
 rarity=R
 type=Land
@@ -1425,8 +1438,13 @@ subtype=Cat
 toughness=1
 [/card]
 [card]
+#to test
 text=({T}: Add {R} or {W} to your mana pool.)  As Sacred Foundry comes into play, you may pay 2 life. If you don't, Sacred Foundry comes into play tapped.
 id=89066
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:add{R}
+auto={T}:add{W}
 name=Sacred Foundry
 rarity=R
 type=Land
@@ -1509,6 +1527,7 @@ type=Instant
 mana={G}{W}
 [/card]
 [card]
+#to test
 text={1}, {T}, Tap an untapped creature you control: Put a 1/1 green Saproling creature token into play.
 id=87936
 auto={1}{T}:tap (creature[-tapped]|myinplay) && token(Saproling,creature saproling, 1/1, green)
@@ -1687,6 +1706,7 @@ mana={3}
 subtype=Equipment
 [/card]
 [card]
+#lifelink ?
 text=Whenever Sunhome Enforcer deals combat damage, you gain that much life.     {1}{R}: Sunhome Enforcer gets +1/+0 until end of turn.
 id=89070
 name=Sunhome Enforcer
@@ -1779,9 +1799,11 @@ type=Sorcery
 mana={4}{W}
 [/card]
 [card]
+#to test
 text={T}: Target creature can't attack or block this turn.
 id=83611
 name=Thundersong Trumpeter
+auto={T}:cantattack && cantblock target(creature)
 rarity=C
 type=Creature
 mana={R}{W}
@@ -1888,6 +1910,7 @@ type=Sorcery
 mana={5}{R}{R}{R}
 [/card]
 [card]
+#to test
 text=({T}: Add {U} or {B} to your mana pool.)  As Watery Grave comes into play, you may pay 2 life. If you don't, Watery Grave comes into play tapped.
 id=83731
 name=Watery Grave
@@ -1948,6 +1971,7 @@ type=Instant
 mana={W}
 [/card]
 [card]
+#becomes to test
 text={1}{B}{G}, {T}: Target Forest becomes a 4/4 black and green Elemental Horror creature. It's still a land.
 id=83747
 name=Woodwraith Corrupter

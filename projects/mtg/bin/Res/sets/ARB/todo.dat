@@ -90,17 +90,6 @@ text=Cascade (When you play this spell, remove cards from the top of your librar
 rarity=U
 [/card]
 [card]
-id=179406
-name=Blitz Hellion
-mana={3}{R}{G}
-type=Creature
-subtype=Hellion
-power=7
-toughness=7
-text=Trample, haste At end of turn, Blitz Hellion's owner shuffles it into his or her library.
-rarity=R
-[/card]
-[card]
 id=185053
 name=Bloodbraid Elf
 mana={2}{R}{G}
@@ -117,15 +106,6 @@ name=Brainbite
 mana={2}{U}{B}
 type=Sorcery
 text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Draw a card.
-rarity=C
-[/card]
-[card]
-id=161291
-name=Breath of Malfegor
-mana={3}{B}{R}
-auto=damage:5 opponent
-type=Instant
-text=Breath of Malfegor deals 5 damage to each opponent.
 rarity=C
 [/card]
 [card]
@@ -153,7 +133,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature can't attack or block. When enchanted creature becomes the target of a spell or ability, remove that creature from the game.
 rarity=C
 [/card]
-
 [card]
 id=179543
 name=Deadshot Minotaur

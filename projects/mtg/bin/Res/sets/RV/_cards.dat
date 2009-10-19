@@ -1,6 +1,6 @@
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-abilities=Flying
+abilities=flying
 id=1189
 name=Air Elemental
 rarity=U
@@ -48,8 +48,8 @@ mana={1}{B}
 type=Enchantment
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can attack as though it didn't have defender.
-target=creature
+text=Enchant Wall Enchanted Wall can attack as though it didn't have defender.
+target=wall
 auto=-defender
 id=1327
 name=Animate Wall
@@ -2323,7 +2323,7 @@ abilities=defender
 [/card]
 [card]
 text=Defender (This creature can't attack.)
-abilities=Defender
+abilities=defender
 id=1274
 name=Wall of Ice
 rarity=U

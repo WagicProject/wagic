@@ -612,6 +612,7 @@ id=191076
 name=Fireball
 mana={X}{R}
 type=Sorcery
+target=creatures,players
 text=Fireball deals X damage divided evenly, rounded down, among any number of target creatures and/or players. Fireball costs {1} more to cast for each target beyond the first.
 rarity=U
 alias=1291

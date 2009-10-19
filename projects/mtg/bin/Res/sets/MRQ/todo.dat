@@ -378,14 +378,6 @@ type=Enchantment
 mana={2}{R}{R}
 [/card]
 [card]
-text=Whenever a creature you control deals combat damage to an opponent, you may draw a card.
-id=19805
-name=Coastal Piracy
-rarity=U
-type=Enchantment
-mana={2}{U}{U}
-[/card]
-[card]
 text=Nonartifact creatures get +2/+2 as long as they all share a color.
 id=19665
 name=Common Cause

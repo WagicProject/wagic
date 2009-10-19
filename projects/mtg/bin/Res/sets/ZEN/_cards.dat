@@ -222,7 +222,7 @@ mana={B}
 type=Instant
 [/card]
 [card]
-text=Flying   Landfall ÅEWhenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying into the battlefield.
+text=Flying   Landfall Whenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying into the battlefield.
 id=190399
 name=Emeria Angel
 rarity=R
