@@ -182,10 +182,9 @@ void GuiHandSelf::Render()
       JRenderer::GetInstance()->RenderQuad(back,backpos.actX, backpos.actY, backpos.actT, backpos.actZ, backpos.actZ);
       back->SetColor(ARGB(255,255,255,255));
       mFont->DrawString("0",SCREEN_WIDTH - 10,backpos.actY);
-    }else{
-      backpos.Render(back);
-      if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number) mFont->DrawString("Empty",backpos.actX,backpos.actY);
     }
+    else
+      backpos.Render(back);
     return;
   }
 

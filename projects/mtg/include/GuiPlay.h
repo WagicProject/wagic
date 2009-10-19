@@ -27,7 +27,6 @@ class GuiPlay : public GuiLayer
   class HorzStack : public CardStack {
   public:
     HorzStack();
-    void reset(unsigned total, float x, float y);
     void Render(CardView*, iterator begin, iterator end);
     void Enstack(CardView*);
   };

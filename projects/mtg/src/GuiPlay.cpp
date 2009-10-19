@@ -33,11 +33,6 @@ void GuiPlay::CardStack::RenderSpell(MTGCardInstance* card, iterator begin, iter
 GuiPlay::HorzStack::HorzStack() {}
 GuiPlay::VertStack::VertStack() {}
 
-void GuiPlay::HorzStack::reset(unsigned total, float x, float y)
-{
-  GuiPlay::CardStack::reset(total, x, y);
-}
-
 void GuiPlay::VertStack::reset(unsigned total, float x, float y)
 {
   GuiPlay::CardStack::reset(total, x - CARD_WIDTH, y);
@@ -124,7 +119,7 @@ GuiPlay::~GuiPlay()
   }
 }
 
-bool isSpell(CardView* c) { return c->card->isSpell(); }
+bool isSpell(CardView* c) { return c->card->isSpell() && !c->card->isCreature(); }
 void GuiPlay::Replace()
 {
   unsigned opponentSpellsN = 0, selfSpellsN = 0, opponentLandsN = 0, opponentCreaturesN = 0,
