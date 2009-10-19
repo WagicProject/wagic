@@ -32,8 +32,10 @@ GuiFrame::GuiFrame()
 
   step = 0.0;
 
-  gold2->SetColor(ARGB(127, 255, 255, 255));
-  gold2->SetHFlip(true);
+  if (gold2){
+    gold2->SetColor(ARGB(127, 255, 255, 255));
+    gold2->SetHFlip(true);
+  }
 }
 
 GuiFrame::~GuiFrame()

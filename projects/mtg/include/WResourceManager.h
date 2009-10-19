@@ -13,6 +13,10 @@
 #define TEXTURES_CACHE_MINSIZE 2000000  // Minimum size of the cache on the PSP. The program should complain if the cache ever gets smaller than this
 #define OPERATIONAL_SIZE 5000000 // Size required by Wagic for operational stuff. 3MB is not enough. The cache will usually try to take (Total Ram - Operational size)
 #define MIN_LINEAR_RAM 1000000
+
+#define THUMBNAILS_OFFSET 100000000
+#define OTHERS_OFFSET 2000000000
+
 //Hard Limits.
 #define MAX_CACHE_OBJECTS 300
 #define MAX_CACHE_ATTEMPTS 10
@@ -70,9 +74,9 @@ public:
   WCache();
   ~WCache();
   
-  cacheItem* Retrieve(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);  //Primary interface function.
+  cacheItem* Retrieve(int id, string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);  //Primary interface function.
   bool Release(cacheActual* actual);         //Releases an item, and deletes it if unlocked.
-  bool RemoveMiss(string id=""); //Removes a cache miss.
+  bool RemoveMiss(int id=0); //Removes a cache miss.
   bool RemoveOldest();    //Remove oldest unlocked item.
   bool Cleanup();         //Repeats RemoveOldest() until cache fits in size limits
   void Clear();           //Removes everything cached. Not lock safe, does not remove managed items.
@@ -86,14 +90,14 @@ protected:
   bool RemoveItem(cacheItem * item, bool force = true); //Removes an item, deleting it. if(force), ignores locks / permanent
   bool UnlinkCache(cacheItem * item); //Removes an item from our cache, does not delete it. Use with care.
   bool Delete(cacheItem * item); //SAFE_DELETE and garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
-  cacheItem* Get(string id, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve.
+  cacheItem* Get(int id, string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve.
   cacheItem* AttemptNew(string filename, int submode);   //Attempts a new cache item, progressively clearing cache if it fails.
 
-  string makeID(string filename, int submode);  //Makes an ID appropriate to the submode.
-  string makeFilename(string id, int submode);  //Makes a filename from an ID.
+  int makeID(int id, string filename, int submode);  //Makes an ID appropriate to the submode.
 
-  map<string,cacheItem*> cache; 
-  map<string,cacheItem*> managed;  //Cache can be arbitrarily large, so managed items are seperate.
+  map<string,int> ids;
+  map<int,cacheItem*> cache; 
+  map<int,cacheItem*> managed;  //Cache can be arbitrarily large, so managed items are seperate.
   unsigned long totalSize;
   unsigned long cacheSize;
   
@@ -104,7 +108,9 @@ protected:
   unsigned int cacheItems;
   int mError;
 
+
 };
+
 
 struct WManagedQuad {
   WCachedTexture * texture;
@@ -121,7 +127,7 @@ public:
   JQuad * RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
   JSample * RetrieveSample(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   JTexture * RetrieveTexture(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
-  JQuad * RetrieveQuad(string filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f, string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL);
+  JQuad * RetrieveQuad(string filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,  string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL, int id = 0);
   JQuad * RetrieveTempQuad(string filename);
   hgeParticleSystemInfo * RetrievePSI(string filename, JQuad * texture, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   int RetrieveError();

@@ -3,6 +3,7 @@
 #include "../include/GameObserver.h"
 #include "../include/Targetable.h"
 #include "../include/WEvent.h"
+#include <assert.h>
 
 MTGAbility* ActionLayer::getAbility(int type){
   for (int i = 1; i < mCount; i++){
@@ -17,6 +18,7 @@ MTGAbility* ActionLayer::getAbility(int type){
 int ActionLayer::moveToGarbage(ActionElement * e){
   int i = getIndexOf(e);
   if (i != -1){
+    if (isWaitingForAnswer() == e) setCurrentWaitingAction(NULL);
     e->destroy();
     mObjects.erase(mObjects.begin()+i);
     mCount--;
@@ -125,13 +127,19 @@ void ActionLayer::Render (){
 }
 
 
-
+void ActionLayer::setCurrentWaitingAction(ActionElement * ae){
+  assert(!ae || !currentWaitingAction);
+  currentWaitingAction = ae;
+}
 
 TargetChooser * ActionLayer::getCurrentTargetChooser(){
-  for (int i=0;i<mCount;i++){
+ /* for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
     if(currentAction->waitingForAnswer) return currentAction->tc;
   }
+  return NULL;*/
+  if (currentWaitingAction && currentWaitingAction->waitingForAnswer)
+     return currentWaitingAction->tc;
   return NULL;
 }
 
@@ -139,14 +147,13 @@ int ActionLayer::cancelCurrentAction(){
   ActionElement * ae = isWaitingForAnswer();
   if (!ae) return 0;
   ae->waitingForAnswer = 0; //TODO MOVE THIS IS ActionElement
+  setCurrentWaitingAction(NULL);
   return 1;
 }
 
 ActionElement * ActionLayer::isWaitingForAnswer(){
-  for (int i=0;i<mCount;i++){
-    ActionElement * currentAction = (ActionElement *)mObjects[i];
-    if(currentAction->waitingForAnswer) return currentAction;
-  }
+  if (currentWaitingAction && currentWaitingAction->waitingForAnswer)
+     return currentWaitingAction;
   return NULL;
 }
 
@@ -182,12 +189,8 @@ int ActionLayer::isReactingToTargetClick(Targetable * card){
 int ActionLayer::reactToTargetClick(Targetable * card){
   int result = 0;
 
-  for (int i=0;i<mCount;i++){
-    ActionElement * currentAction = (ActionElement *)mObjects[i];
-    if(currentAction->waitingForAnswer){
-      return reactToTargetClick(currentAction,card);
-    }
-  }
+  ActionElement * ae = isWaitingForAnswer();
+  if (ae) return reactToTargetClick(ae,card);
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
@@ -202,7 +205,6 @@ int ActionLayer::isReactingToClick(MTGCardInstance * card){
 
   if (isWaitingForAnswer()) return -1;
 
-
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
     result += currentAction->isReactingToClick(card);
@@ -214,12 +216,8 @@ int ActionLayer::isReactingToClick(MTGCardInstance * card){
 int ActionLayer::reactToClick(MTGCardInstance * card){
   int result = 0;
 
-  for (int i=0;i<mCount;i++){
-    ActionElement * currentAction = (ActionElement *)mObjects[i];
-    if(currentAction->waitingForAnswer){
-      return reactToClick(currentAction,card);
-    }
-  }
+  ActionElement * ae = isWaitingForAnswer();
+  if (ae) return reactToClick(ae,card);
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
@@ -271,6 +269,13 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid){
   }
   menuObject = 0;
 
+}
+
+ActionLayer::ActionLayer(){
+  menuObject = NULL; 
+  abilitiesMenu = NULL; 
+  stuffHappened = 0;
+  currentWaitingAction = NULL;
 }
 
 ActionLayer::~ActionLayer(){

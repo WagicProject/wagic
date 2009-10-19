@@ -10,6 +10,8 @@
 #include "../include/WResourceManager.h"
 
 
+int idCounter = OTHERS_OFFSET;
+
 WResourceManager resources;
 unsigned int vTime = 0;
 int WResourceManager::RetrieveError(){
@@ -196,11 +198,11 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
 
   submode = submode | TEXTURE_SUB_CARD;
 
-
   string filename = card->getSetName();
   filename += "/";
   filename += card->getImageName();
-  JQuad * jq = RetrieveQuad(filename,0,0,0,0,"",style,submode|TEXTURE_SUB_5551);
+  int id = card->getMTGId();
+  JQuad * jq = RetrieveQuad(filename,0,0,0,0, "",style,submode|TEXTURE_SUB_5551,id);
   lastError = textureWCache.mError;
   if(jq){
     jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);  
@@ -224,7 +226,7 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
       return pos;
   }
 
-  WCachedTexture * jtex = textureWCache.Retrieve(textureName,RETRIEVE_MANAGE);
+  WCachedTexture * jtex = textureWCache.Retrieve(0,textureName,RETRIEVE_MANAGE);
   lastError = textureWCache.mError;
   
   //Somehow, jtex wasn't promoted.
@@ -275,7 +277,7 @@ JQuad * WResourceManager::RetrieveTempQuad(string filename){
   return RetrieveQuad(filename,0,0,0,0,"temporary",RETRIEVE_NORMAL);
 }
 
-JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height, string resname, int style, int submode){
+JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height,  string resname, int style, int submode, int id){
   JQuad * jq = NULL;
 
   //Lookup managed resources, but only with a real resname.
@@ -298,9 +300,9 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
   //No quad, but we have a managed texture for this!
   WCachedTexture * jtex = NULL;
   if(style == RETRIEVE_MANAGE || style == RETRIEVE_EXISTING)
-    jtex = textureWCache.Retrieve(filename,style,submode);
+    jtex = textureWCache.Retrieve(id,filename,style,submode);
   else
-    jtex = textureWCache.Retrieve(filename,RETRIEVE_NORMAL,submode);
+    jtex = textureWCache.Retrieve(id, filename,RETRIEVE_NORMAL,submode);
 
   lastError = textureWCache.mError;
 
@@ -345,7 +347,7 @@ void WResourceManager::Release(JQuad * quad){
   if(!quad)
     return;
 
-  map<string,WCachedTexture*>::iterator it;
+  map<int,WCachedTexture*>::iterator it;
   for(it = textureWCache.cache.begin();it!=textureWCache.cache.end();it++){
     if(it->second && it->second->ReleaseQuad(quad))
       break;
@@ -395,7 +397,7 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
     style = RETRIEVE_NORMAL;
   }
 
-  res = textureWCache.Retrieve(filename,style,submode);
+  res = textureWCache.Retrieve(0,filename,style,submode);
   lastError = textureWCache.mError;
 
   if(res){ //a non-null result will always be good.
@@ -448,7 +450,7 @@ JTexture* WResourceManager::GetTexture(const string &textureName){
 }
 
 JTexture* WResourceManager::GetTexture(int id){
-  map<string,WCachedTexture*>::iterator it;
+  map<int,WCachedTexture*>::iterator it;
   JTexture *jtex = NULL;
 
   if(id == INVALID_ID)
@@ -470,7 +472,7 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * t
   if(!texture)
     return NULL;
 
-  WCachedParticles * res = psiWCache.Retrieve(filename,style,submode);
+  WCachedParticles * res = psiWCache.Retrieve(0,filename,style,submode);
   lastError = psiWCache.mError;
 
   if(res) //A non-null result will always be good.
@@ -485,7 +487,7 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * t
 
 JSample * WResourceManager::RetrieveSample(string filename, int style, int submode){
   WCachedSample * tc = NULL;
-  tc = sampleWCache.Retrieve(filename,style,submode);
+  tc = sampleWCache.Retrieve(0,filename,style,submode);
   lastError = sampleWCache.mError;
 
   //Sample exists! Get it.
@@ -870,9 +872,9 @@ void WResourceManager::Refresh(){
 //WCache
 template <class cacheItem,class cacheActual> 
 bool WCache<cacheItem, cacheActual>::RemoveOldest(){
-  typename map<string,cacheItem*> ::iterator oldest = cache.end();
+  typename map<int,cacheItem*> ::iterator oldest = cache.end();
 
-  for(typename map<string,cacheItem *>::iterator it = cache.begin();it!=cache.end();it++){
+  for(typename map<int,cacheItem *>::iterator it = cache.begin();it!=cache.end();it++){
     if(it->second && !it->second->isLocked() 
       && (oldest == cache.end() || it->second->lastTime < oldest->second->lastTime))
       oldest = it;
@@ -889,7 +891,7 @@ bool WCache<cacheItem, cacheActual>::RemoveOldest(){
 }
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::Clear(){
-  typename map<string,cacheItem*>::iterator it, next;
+  typename map<int,cacheItem*>::iterator it, next;
 
   for(it = cache.begin(); it != cache.end();it=next){
     next = it;
@@ -910,7 +912,7 @@ void WCache<cacheItem, cacheActual>::Clear(){
 
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::ClearUnlocked(){
-  typename map<string,cacheItem*>::iterator it, next;
+  typename map<int,cacheItem*>::iterator it, next;
 
   for(it = cache.begin(); it != cache.end();it=next){
     next = it;
@@ -928,7 +930,7 @@ void WCache<cacheItem, cacheActual>::ClearUnlocked(){
 
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::ClearMisses(){
-  typename map<string,cacheItem*>::iterator it, next;
+  typename map<int,cacheItem*>::iterator it, next;
 
   for(it = cache.begin(); it != cache.end();it=next){
     next = it;
@@ -995,14 +997,14 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
 }
 
 template <class cacheItem, class cacheActual>
-cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style, int submode){
+cacheItem * WCache<cacheItem, cacheActual>::Retrieve(int id, string filename, int style, int submode){
   //Check cache.
   cacheItem * tc = NULL;
 
   if(style == RETRIEVE_EXISTING || style == RETRIEVE_RESOURCE)
-    tc = Get(filename,style,submode|CACHE_EXISTING);
+    tc = Get(id,filename,style,submode|CACHE_EXISTING);
   else
-    tc = Get(filename,style,submode);
+    tc = Get(id, filename,style,submode);
 
   //Retrieve resource only works on permanent items.
   if(style == RETRIEVE_RESOURCE && tc && !tc->isPermanent()){
@@ -1021,7 +1023,7 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style,
         UnlinkCache(tc);
         
         //Post it in managed resources.
-        managed[makeID(filename,submode)] = tc;
+        managed[makeID(id,filename,submode)] = tc;
         tc->deadbolt();
       }
       break;
@@ -1040,34 +1042,35 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(string filename, int style,
 
   //Record managed failure. Cache failure is recorded in Get().
   if(style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE)
-   managed[makeID(filename,submode)] = NULL; 
+   managed[makeID(id,filename,submode)] = NULL; 
 
   return NULL;
 }
 template <class cacheItem, class cacheActual>
-string WCache<cacheItem, cacheActual>::makeID(string id, int submode){
-  string lookup = id;
+int WCache<cacheItem, cacheActual>::makeID(int id, string filename, int submode){
+  int mId = id;
+  if (!mId) {
+    mId = ids[filename];
+    if (!mId){
+      mId = idCounter++;
+      ids[filename] = mId;
+    }
+  }
   
   //To differentiate between cached thumbnails and the real thing.
-  if(submode & TEXTURE_SUB_THUMB)
-    lookup.insert(0,"T");
-  
-  return lookup;
+  if(submode & TEXTURE_SUB_THUMB){
+    if (mId < 0)
+      mId-=THUMBNAILS_OFFSET;
+    else
+      mId+=THUMBNAILS_OFFSET;
+  }
+  return mId;
 }
 
 template <class cacheItem, class cacheActual>
-string WCache<cacheItem, cacheActual>::makeFilename(string id, int submode){
-  //To differentiate between cached thumbnails and the real thing.
-  if(submode & TEXTURE_SUB_THUMB)
-    return id.substr(1);
-  
-  return id;
-}
-
-template <class cacheItem, class cacheActual>
-cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submode){
-  typename map<string,cacheItem*>::iterator it;
-  string lookup = makeID(id,submode);  
+cacheItem * WCache<cacheItem, cacheActual>::Get(int id, string filename, int style, int submode){
+  typename map<int,cacheItem*>::iterator it;
+  int lookup = makeID(id,filename, submode);  
 
   //Check for managed resources first. Always
   it = managed.find(lookup);
@@ -1101,7 +1104,7 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
   }
 
   //Space in cache, make new texture
-  cacheItem * item = AttemptNew(id,submode);       
+  cacheItem * item = AttemptNew(filename,submode);       
   
   if(style == RETRIEVE_MANAGE){
     managed[lookup] = item; //Record a hit or miss.
@@ -1130,17 +1133,17 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(string id, int style, int submod
 
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::Refresh(){
-  typename map<string,cacheItem*>::iterator it;
+  typename map<int,cacheItem*>::iterator it;
   ClearUnlocked();
 
   for(it = cache.begin();it!=cache.end();it++){
     if(it->second){
-      it->second->Refresh(makeFilename(it->first,it->second->loadedMode));
+      it->second->Refresh();
     }
   } 
   for(it = managed.begin();it!=managed.end();it++){
     if(it->second){
-      it->second->Refresh(makeFilename(it->first,it->second->loadedMode));
+      it->second->Refresh();
     }
   }
 }
@@ -1159,7 +1162,7 @@ WCache<cacheItem, cacheActual>::WCache(){
 
 template <class cacheItem, class cacheActual>
 WCache<cacheItem, cacheActual>::~WCache(){
-  typename map<string,cacheItem*>::iterator it;
+  typename map<int,cacheItem*>::iterator it;
 
   //Delete from cache & managed
   for(it=cache.begin();it!=cache.end();it++){
@@ -1196,13 +1199,13 @@ unsigned int WCache<cacheItem, cacheActual>::Flatten(){
   unsigned int youngest = 65535;
   unsigned int oldest = 0;
 
-  for (typename map<string,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
+  for (typename map<int,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
     if(!it->second) continue;
     if(it->second->lastTime < youngest) youngest = it->second->lastTime;
     if(it->second->lastTime > oldest) oldest = it->second->lastTime;
   }
 
-  for (typename map<string,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
+  for (typename map<int,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
     if(!it->second) continue;
       it->second->lastTime -= youngest;
   }
@@ -1211,11 +1214,11 @@ unsigned int WCache<cacheItem, cacheActual>::Flatten(){
 }
 
 template <class cacheItem, class cacheActual>
-bool WCache<cacheItem, cacheActual>::RemoveMiss(string id){
-  typename map<string,cacheItem*>::iterator it = cache.end();
+bool WCache<cacheItem, cacheActual>::RemoveMiss(int id){
+  typename map<int,cacheItem*>::iterator it = cache.end();
 
   for(it = cache.begin();it!=cache.end();it++){
-    if((id == "" || it->first == id) && it->second == NULL)
+    if((id == 0 || it->first == id) && it->second == NULL)
           break;
   }
 
@@ -1230,7 +1233,7 @@ bool WCache<cacheItem, cacheActual>::RemoveMiss(string id){
 
 template <class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem * item, bool force){
-  typename map<string,cacheItem*>::iterator it;
+  typename map<int,cacheItem*>::iterator it;
 
   if(item == NULL)
     return false;   //Use RemoveMiss to remove cache misses, not this.
@@ -1250,7 +1253,7 @@ bool WCache<cacheItem, cacheActual>::RemoveItem(cacheItem * item, bool force){
 
 template <class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::UnlinkCache(cacheItem * item){
-  typename map<string,cacheItem*>::iterator it = cache.end();
+  typename map<int,cacheItem*>::iterator it = cache.end();
 
   if(item == NULL)
     return false;   //Use RemoveMiss to remove cache misses, not this.
@@ -1298,7 +1301,7 @@ bool WCache<cacheItem, cacheActual>::Release(cacheActual* actual){
   if(!actual)
     return false;
 
-  typename map<string,cacheItem*>::iterator it;
+  typename map<int,cacheItem*>::iterator it;
   for(it=cache.begin();it!=cache.end();it++){    
     if(it->second && it->second->compare(actual))
       break;

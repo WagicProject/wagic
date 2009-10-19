@@ -176,7 +176,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
       typeName = typeName.substr(0,found);
     }
     //X targets allowed ?
-    if (typeName.at(typeName.length()-1) == 's' && !Subtypes::subtypesList->find(typeName) && typeName.compare("this")!=0){
+    if (typeName.at(typeName.length()-1) == 's' && !Subtypes::subtypesList->find(typeName,false) && typeName.compare("this")!=0){
       typeName = typeName.substr(0,typeName.length()-1);
       maxtargets = -1;
     }
@@ -358,7 +358,7 @@ bool CardTargetChooser::canTarget(Targetable * target ){
    Choose anything that has a given list of types
 **/
 TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card, int _maxtargets,bool other):TargetZoneChooser(card, _maxtargets,other){
-  int id = Subtypes::subtypesList->Add(_type);
+  int id = Subtypes::subtypesList->find(_type);
   nbtypes = 0;
   addType(id);
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
@@ -366,7 +366,7 @@ TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card,
 }
 
 TypeTargetChooser::TypeTargetChooser(const char * _type, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets,bool other):TargetZoneChooser(card, _maxtargets,other){
-  int id = Subtypes::subtypesList->Add(_type);
+  int id = Subtypes::subtypesList->find(_type);
   nbtypes = 0;
   addType(id);
   if (nbzones == 0){
@@ -378,7 +378,7 @@ TypeTargetChooser::TypeTargetChooser(const char * _type, int * _zones, int nbzon
 }
 
 void TypeTargetChooser::addType(const char * _type){
-  int id = Subtypes::subtypesList->Add(_type);
+  int id = Subtypes::subtypesList->find(_type);
   addType(id);
 }
 
@@ -393,7 +393,7 @@ bool TypeTargetChooser::canTarget(Targetable * target){
     MTGCardInstance * card = (MTGCardInstance *) target;
     for (int i= 0; i < nbtypes; i++){
       if (card->hasSubtype(types[i])) return true;
-      if (Subtypes::subtypesList->find(card->name) == types[i]) return true;
+      if (Subtypes::subtypesList->find(card->getLCName()) == types[i]) return true;
     }
     return false;
   }else if (target->typeAsTarget() == TARGET_STACKACTION){

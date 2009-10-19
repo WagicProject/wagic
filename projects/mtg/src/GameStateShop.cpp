@@ -29,8 +29,6 @@ void GameStateShop::Start()
 
 
   mStage = STAGE_SHOP_SHOP;
-
-  bgTexture = resources.RetrieveTexture("shop.jpg",RETRIEVE_LOCK);
   
   //alternateRender doesn't lock, so lock our thumbnails for hgeDistort.
   altThumb[0] = resources.RetrieveTexture("artifact_thumb.jpg", RETRIEVE_LOCK);
@@ -42,7 +40,7 @@ void GameStateShop::Start()
   altThumb[6] = resources.RetrieveTexture("land_thumb.jpg", RETRIEVE_LOCK);
   altThumb[7] = resources.RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
 
-  mBg = resources.RetrieveQuad("shop.jpg");
+  
   mBack = resources.GetQuad("back");
 
   menuFont = resources.GetJLBFont(Constants::MENU_FONT);
@@ -125,7 +123,6 @@ void GameStateShop::load(){
 void GameStateShop::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
-  resources.Release(bgTexture);
 
   //Release alternate thumbnails.
   for(int i=0;i<8;i++){
@@ -169,6 +166,7 @@ void GameStateShop::Render()
   //Erase
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
+  JQuad * mBg = resources.RetrieveQuad("shop.jpg");
   if (mBg) r->RenderQuad(mBg,0,0);
 
   if (shop)

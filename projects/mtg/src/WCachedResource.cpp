@@ -227,12 +227,12 @@ bool WCachedTexture::isGood(){
   return (texture != NULL);
 }
 
-void WCachedTexture::Refresh(string filename){
+void WCachedTexture::Refresh(){
   int error = 0;
   JTexture* old = texture;
   texture = NULL;
 
-  if(!Attempt(filename,loadedMode, error))
+  if(!Attempt(mFilename,loadedMode, error))
     SAFE_DELETE(texture);
 
   if(!texture)
@@ -247,6 +247,7 @@ void WCachedTexture::Refresh(string filename){
 }
 
 bool WCachedTexture::Attempt(string filename, int submode, int & error){
+  mFilename = filename;
   int format = TEXTURE_FORMAT;
   loadedMode = submode;
   string realname;  
@@ -366,7 +367,7 @@ bool WCachedSample::isGood(){
 
   return true;
 }
-void WCachedSample::Refresh(string filename){
+void WCachedSample::Refresh(){
   return;
 }
 
@@ -403,11 +404,11 @@ unsigned long WCachedParticles::size(){
 }
 
 //Only effects future particle systems, of course.
-void WCachedParticles::Refresh(string filename){ 
+void WCachedParticles::Refresh(){ 
   hgeParticleSystemInfo * old = particles;
 
   int error = 0;
-  Attempt(filename,loadedMode,error);
+  Attempt(mFilename,loadedMode,error);
 
   if(isGood())
     SAFE_DELETE(old);

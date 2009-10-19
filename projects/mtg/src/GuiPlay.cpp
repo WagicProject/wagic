@@ -64,7 +64,6 @@ void GuiPlay::VertStack::Enstack(CardView* card)
   card->x = x + baseX; card->y = y + baseY;
   y += 12;
   if (++count == total-1 && y == 12) y += 12;
-  cerr << card->card->name << " " << card->x << "x" << card->y << " : " << nextX() << endl;
 }
 
 void GuiPlay::VertStack::Render(CardView* card, iterator begin, iterator end)

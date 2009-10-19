@@ -50,6 +50,10 @@ class GameApp:	public JApp
 {
 
  private:
+#ifdef DEBUG
+   int nbUpdates;
+   float totalFPS;
+#endif
   bool mShowDebugInfo;
   int mScreenShotCount;
 

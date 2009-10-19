@@ -599,7 +599,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
   cd.setType(type);
   card = NULL;
   while((card = cd.nextmatch(game->hand, card))){
-    if (card->hasType("land") && !this->canPutLandsIntoPlay) continue;
+    if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay) continue;
     if (card->has(Constants::LEGENDARY) && game->inPlay->findByName(card->name)) continue;
     int currentCost = card->getManaCost()->getConvertedCost();
     int hasX = card->getManaCost()->hasX();

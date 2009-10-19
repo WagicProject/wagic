@@ -53,7 +53,7 @@ void MTGCardInstance::copy(MTGCardInstance * card){
   manaCost.copy(source->getManaCost());
 
   text = source->text;
-  name = source->name;
+  setName(source->name);
 
   power = source->power;
   toughness = source->toughness;
@@ -130,11 +130,11 @@ void MTGCardInstance::setType(const char * type_text){
 }
 
 void MTGCardInstance::setSubtype(string value){
-  int id = Subtypes::subtypesList->Add(value);
+  int id = Subtypes::subtypesList->find(value);
   addType(id);
 }
 int MTGCardInstance::removeType(string value,int removeAll){
-  int id = Subtypes::subtypesList->Add(value);
+  int id = Subtypes::subtypesList->find(value);
   return removeType(id,removeAll);
 }
 

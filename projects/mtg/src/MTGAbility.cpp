@@ -186,7 +186,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   MTGCardInstance * target = card->target;
   if (!target) target = card; 
 
-
   TriggeredAbility * trigger = NULL;
   trigger = parseTrigger(s,id,spell,card,target);
   //Dirty way to remove the trigger text (could get in the way)
@@ -1180,7 +1179,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	MTGInPlay * inplay = player->game->inPlay;
 	for (int i = 0; i < inplay->nb_cards; i++){
 	  MTGCardInstance * current = inplay->cards[i];
-	  if (current->hasType("land")) current->tap();
+    if (current->hasType(Subtypes::TYPE_LAND)) current->tap();
 	}
 	player->getManaPool()->init();
       }
@@ -1560,7 +1559,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	    Damageable * target = spell->getNextDamageableTarget();
 	    for (int j = card->controller()->game->inPlay->nb_cards-1; j >=0 ; --j){
 			  MTGCardInstance * current =  card->controller()->game->inPlay->cards[j];
-			  if (current->hasType("Creature")){
+        if (current->hasType(Subtypes::TYPE_CREATURE)){
 				  card->controller()->game->putInGraveyard(current);
 				  damage+= current->power;
 			  }
@@ -1822,6 +1821,7 @@ void TargetAbility::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
   if (waitingForAnswer){
     if(mEngine->GetButtonClick(PSP_CTRL_CROSS)){
+      game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
       waitingForAnswer = 0;
     }else if(tc->targetsReadyCheck() == TARGET_OK_FULL){
       //waitingForAnswer = 0;
@@ -1835,6 +1835,7 @@ int TargetAbility::reactToTargetClick(Targetable * object){
   if (waitingForAnswer){
       if (tc->toggleTarget(object) == TARGET_OK_FULL){
 	      waitingForAnswer = 0;
+        game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
 	      return ActivatedAbility::reactToClick(source);
       }
       return 1;
@@ -1847,18 +1848,23 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
   if (!waitingForAnswer) {
     if (isReactingToClick(card)){
       waitingForAnswer = 1;
+      game->mLayers->actionLayer()->setCurrentWaitingAction(this);
       tc->initTargets();
       return 1;
     }
   }else{
     if (card == source && (tc->targetsReadyCheck() == TARGET_OK || tc->targetsReadyCheck() == TARGET_OK_FULL)){
       waitingForAnswer = 0;
+      game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
       return ActivatedAbility::reactToClick(source);
     }else{
       if (tc->toggleTarget(card) == TARGET_OK_FULL){
 
 	      int result = ActivatedAbility::reactToClick(source);
-        if (result) waitingForAnswer = 0;
+        if (result) {
+          waitingForAnswer = 0;
+          game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
+        }
         return result;
       }
       return 1;
@@ -2198,7 +2204,7 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output,
   int AManaProducer::isReactingToClick(MTGCardInstance *  _card, ManaCost * mana){
     int result = 0;
     if (!mana) mana = game->currentlyActing()->getManaPool();
-    if (_card == source && (!tap || !source->isTapped())  && game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType("land") || !tap || !source->hasSummoningSickness()) ){
+    if (_card == source && (!tap || !source->isTapped())  && game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()) ){
       if (!cost || mana->canAfford(cost)) result =  1;
     }
     return result;

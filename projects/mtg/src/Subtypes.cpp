@@ -6,42 +6,34 @@
 Subtypes * Subtypes::subtypesList = NEW Subtypes();
 
 
-
 Subtypes::Subtypes(){
-  nb_items = 100;
+  //Add the more common types, so that they can be accessed through ints
+  //these should be added in the same order as the enum defined in subtypes.h!!!
+  find("Creature");
+  find("Enchantment");
+  find("Sorcery");
+  find("Instant");
+  find("Land");
+  find("Artifact");
 }
 
-int Subtypes::Add(string value){
-  int result = find(value);
-  if (result) return result;
-  std::transform( value.begin(), value.end(), value.begin(), ::tolower );
-  nb_items++;
-  values[value] = nb_items;
-  valuesById[nb_items] = value;
-  return nb_items;
-}
-
-int Subtypes::Add(const char * subtype){
-  string value = subtype;
-  return Add(value);
-
-}
-
-int Subtypes::find(string value){
-  std::transform( value.begin(), value.end(), value.begin(), ::tolower );
+int Subtypes::find(string value, bool forceAdd){
+  if (value[0]>=97 && value[0]<=122) value[0]-=32; //Poor man's camelcase. We assume strings we get are either Camelcased or lowercase
   map<string,int>::iterator it = values.find(value);
   if (it != values.end()) return it->second;
-  return 0;
+  if (!forceAdd) return 0;
+  int id = (int)(valuesById.size() + 1);
+  values[value] = id;
+  valuesById.push_back(value);
+  return id;
 }
 
-int Subtypes::find(const char * subtype){
+int Subtypes::find(const char * subtype, bool forceAdd){
   string value = subtype;
   return (find(value));
-
 }
 
-string Subtypes::find(int id){
-  map<int,string>::iterator it=valuesById.find(id);;
-  if (it != valuesById.end()) return it->second;
-  return "";
+string Subtypes::find(unsigned int id){
+  if (valuesById.size() < id || !id) return "";
+  return valuesById[id - 1];
 }

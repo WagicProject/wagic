@@ -4,22 +4,31 @@
 
 #include <string>
 #include <map>
-using std::string;
-using std::map;
+#include <vector>
+using namespace std;
+
 
 class Subtypes{
+public:
+  enum {
+    TYPE_CREATURE = 1,
+    TYPE_ENCHANTMENT = 2,
+    TYPE_SORCERY = 3,
+    TYPE_INSTANT = 4,
+    TYPE_LAND = 5,
+    TYPE_ARTIFACT = 6,
+  };
+
+
  protected:
   map<string,int> values;
-  map<int,string> valuesById;
-  int nb_items;
+  vector<string> valuesById;
  public:
   static Subtypes * subtypesList;
   Subtypes();
-  int Add(const char * subtype);
-  int find(const char * subtype);
-  int Add(string subtype);
-  int find(string subtype);
-  string find(int id);
+  int find(const char * subtype, bool forceAdd = true);
+  int find(string subtype, bool forceAdd = true);
+  string find(unsigned int id);
 };
 
 

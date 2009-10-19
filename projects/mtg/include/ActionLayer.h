@@ -26,7 +26,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   virtual void Update(float dt);
   int unstoppableRenderInProgress();
   bool CheckUserInput(u32 key);
-  ActionLayer(){ menuObject = NULL; abilitiesMenu = NULL; stuffHappened = 0;};
+  ActionLayer();
   ~ActionLayer();
   int cancelCurrentAction();
   ActionElement * isWaitingForAnswer();
@@ -42,9 +42,12 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   void ButtonPressed(int controllerid, int controlid);
   void doReactTo(int menuIndex);
   TargetChooser * getCurrentTargetChooser();
+  void setCurrentWaitingAction(ActionElement * ae);
   MTGAbility * getAbility(int type);
   int moveToGarbage(ActionElement * e);
   int cleanGarbage();
+protected:
+  ActionElement * currentWaitingAction;
 };
 
 

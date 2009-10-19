@@ -45,7 +45,7 @@ MTGCard::MTGCard(MTGCard * source){
   manaCost.copy(source->getManaCost());
 
   text = source->text;
-  name = source->name;
+  setName(source->name);
   strcpy(image_name, source->image_name);
 
   rarity = source->rarity;
@@ -120,10 +120,10 @@ const vector<string>& MTGCard::formattedText()
 
 
 bool MTGCard::isCreature(){
-  return hasSubtype("creature");
+  return hasSubtype(Subtypes::TYPE_CREATURE);
 }
 bool MTGCard::isLand(){
-  return hasSubtype("land");
+  return hasSubtype(Subtypes::TYPE_LAND);
 }
 bool MTGCard::isSpell(){
   return (!isCreature() && !isLand());
@@ -217,7 +217,7 @@ void MTGCard::addType(char * _type_text){
 }
 
 void MTGCard::setSubtype( string value){
-      int id = Subtypes::subtypesList->Add(value);
+      int id = Subtypes::subtypesList->find(value);
       addType(id);
 }
 
@@ -232,7 +232,7 @@ void MTGCard::addType(int id){
 //If removeAll is true, removes all occurences of this type, otherwise only removes the first occurence
 int MTGCard::removeType(string value, int removeAll){
 
-  int id = Subtypes::subtypesList->Add(value);
+  int id = Subtypes::subtypesList->find(value);
   return removeType(id, removeAll);
 }
 
@@ -271,14 +271,21 @@ void MTGCard::addMagicText(string value){
 
 void MTGCard::setName( string value){
   name = value;
+  lcname = value;
+  std::transform( lcname.begin(), lcname.end(),lcname.begin(),::tolower );
   //This is a bug fix for plague rats and the "foreach ability"
   //Right now we add names as types, so that they get recognized
-  if (value.at(value.length()-1) == 's') Subtypes::subtypesList->Add(value);
+  if (lcname.at(value.length()-1) == 's') Subtypes::subtypesList->find(lcname);
 }
 
 const string MTGCard::getName() const{
   return name;
 }
+
+const string MTGCard::getLCName() const{
+  return lcname;
+}
+
 
 
 ManaCost* MTGCard::getManaCost(){
@@ -299,18 +306,18 @@ bool MTGCard::hasSubtype(int _subtype){
 }
 
 bool MTGCard::hasType(const char * _type){
-  int id = Subtypes::subtypesList->Add(_type);
+  int id = Subtypes::subtypesList->find(_type);
   return hasType(id);
 }
 
 
 bool MTGCard::hasSubtype(const char * _subtype){
-  int id = Subtypes::subtypesList->Add(_subtype);
+  int id = Subtypes::subtypesList->find(_subtype);
   return hasType(id);
 }
 
 bool MTGCard::hasSubtype(string _subtype){
-  int id = Subtypes::subtypesList->Add(_subtype);
+  int id = Subtypes::subtypesList->find(_subtype);
   return hasType(id);
 }
 

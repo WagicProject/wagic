@@ -41,7 +41,8 @@ public:
 
   virtual ~WCachedResource() {};
 
-  virtual void Refresh(string filename)=0; //Basically calls Attempt(filename) and remaps in situ.
+  string mFilename;
+  virtual void Refresh()=0; //Basically calls Attempt(filename) and remaps in situ.
   virtual bool Attempt(string filename, int submode, int & error)=0;  //Returns true if we've loaded our data and isGood().
 };
 
@@ -65,7 +66,7 @@ public:
   WCachedTexture();
   ~WCachedTexture();
 
-  void Refresh(string filename);
+  void Refresh();
   unsigned long size();  
   bool isGood(); 
   bool isLocked();
@@ -98,7 +99,7 @@ public:
 
   void Nullify();
   void Trash();
-  void Refresh(string filename);
+  void Refresh();
    unsigned long size();
    
   bool isGood();
@@ -121,7 +122,7 @@ public:
   bool compare(JSample * s) {return (s == sample);};
   unsigned long size();  
   bool isGood();
-  void Refresh(string filename);
+  void Refresh();
   bool Attempt(string filename, int submode, int & error);
 
   JSample * Actual(); //Return this sample.

@@ -579,11 +579,11 @@ public:
     while (s.size()){
       unsigned int found = s.find(" ");
       if (found != string::npos){
-        int id = Subtypes::subtypesList->Add(s.substr(0,found));
+        int id = Subtypes::subtypesList->find(s.substr(0,found));
         types.push_back(id);
         s = s.substr(found+1);
       }else{
-        int id = Subtypes::subtypesList->Add(s);
+        int id = Subtypes::subtypesList->find(s);
         types.push_back(id);
         s = "";
       }
@@ -1502,7 +1502,7 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
   int type;
   int power, toughness;
  AConvertLandToCreatures(int _id, MTGCardInstance * _source, const char * _type, int _power = 1, int _toughness = 1):ListMaintainerAbility(_id, _source),power(_power),toughness(_toughness){
-    type = Subtypes::subtypesList->Add(_type);
+    type = Subtypes::subtypesList->find(_type);
   }
 
 
@@ -2054,11 +2054,11 @@ public:
     while (s.size()){
       unsigned int found = s.find(" ");
       if (found != string::npos){
-        int id = Subtypes::subtypesList->Add(s.substr(0,found));
+        int id = Subtypes::subtypesList->find(s.substr(0,found));
         types.push_back(id);
         s = s.substr(found+1);
       }else{
-        int id = Subtypes::subtypesList->Add(s);
+        int id = Subtypes::subtypesList->find(s);
         types.push_back(id);
         s = "";
       }
@@ -2243,7 +2243,7 @@ class AAnkhOfMishra: public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card->hasType("land") && game->isInPlay(card)) return 1;
+    if (card->hasType(Subtypes::TYPE_LAND) && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -2541,7 +2541,7 @@ class ADingusEgg: public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card->hasType("land") && game->isInPlay(card)) return 1;
+    if (card->hasType(Subtypes::TYPE_LAND) && game->isInPlay(card)) return 1;
     return 0;
   }
 
@@ -2581,9 +2581,12 @@ class ADisruptingScepter:public TargetAbility{
   void Update(float dt){
     if (game->opponent()->isAI()){
       if(waitingForAnswer){
-	MTGCardInstance * card = ((AIPlayer *)game->opponent())->chooseCard(tc, source);
-	if (card) tc->toggleTarget(card);
-	if (!card || tc->targetsReadyCheck() == TARGET_OK) waitingForAnswer = 0;
+	      MTGCardInstance * card = ((AIPlayer *)game->opponent())->chooseCard(tc, source);
+	      if (card) tc->toggleTarget(card);
+        if (!card || tc->targetsReadyCheck() == TARGET_OK) {
+          waitingForAnswer = 0;
+          game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
+        }
       }
       TargetAbility::Update(dt);
     }else{
@@ -3138,7 +3141,7 @@ class AKudzu: public TargetAbility{
   int testDestroy(){
     int stillLandsInPlay = 0;
     for (int i = 0; i < 2; i++){
-      if (game->players[i]->game->inPlay->hasType("land")) stillLandsInPlay = 1;
+      if (game->players[i]->game->inPlay->hasType("Land")) stillLandsInPlay = 1;
     }
     if (!stillLandsInPlay){
       source->controller()->game->putInGraveyard(source);
@@ -4051,7 +4054,7 @@ class AAngelicChorus: public ListMaintainerAbility{
   }
 
   int canBeInList(MTGCardInstance * card){
-    if (card->hasType("creature") && game->isInPlay(card)) return 1;
+    if (card->hasType(Subtypes::TYPE_CREATURE) && game->isInPlay(card)) return 1;
     return 0;
   }
 

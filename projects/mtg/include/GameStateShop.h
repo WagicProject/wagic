@@ -21,8 +21,6 @@ class GameStateShop: public GameState, public JGuiListener
   ShopItems * shop;
   JLBFont * menuFont;
   JLBFont * itemFont;
-  JQuad * mBg;
-  JTexture * bgTexture;
   JTexture * altThumb[8];
   JQuad * mBack;
   SimpleMenu * menu;

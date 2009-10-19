@@ -29,6 +29,7 @@ class MTGCard {
   char image_name[MTGCARD_NAME_SIZE];
   vector<string> ftdText;
   int init();
+  string lcname;
 
  public:
   string text;
@@ -77,6 +78,7 @@ class MTGCard {
 
   void setName(string value);
   const string getName() const;
+  const string getLCName() const;
 
   void addType(char * type_text);
   void addType(int id);

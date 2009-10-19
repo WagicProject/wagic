@@ -20,7 +20,7 @@ void CardDescriptor::unsecureSetTapped(int i){
 }
 
 void CardDescriptor::setNegativeSubtype( string value){
-  int id = Subtypes::subtypesList->Add(value);
+  int id = Subtypes::subtypesList->find(value);
   addType(-id);
 } 
 
@@ -30,12 +30,12 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
     found = 0;
     if (types[i] >= 0){
 
-      if (card->hasSubtype(types[i]) || (Subtypes::subtypesList->find(card->name) == types[i])){
+      if (card->hasSubtype(types[i]) || (Subtypes::subtypesList->find(card->getLCName(),false) == types[i])){
         found = 1;
         break;
       }
     }else{
-      if (!card->hasSubtype(-types[i]) && (Subtypes::subtypesList->find(card->name) != -types[i])){
+      if (!card->hasSubtype(-types[i]) && (Subtypes::subtypesList->find(card->getLCName(), false) != -types[i])){
         found = 1;
         break;
       }
@@ -67,11 +67,11 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
   MTGCardInstance * match = card;
   for (int i = 0; i< nb_types; i++){
     if (types[i] >= 0){
-      if (!card->hasSubtype(types[i]) && !(Subtypes::subtypesList->find(card->name) == types[i])){
+      if (!card->hasSubtype(types[i]) && !(Subtypes::subtypesList->find(card->getLCName(),false) == types[i])){
         match = NULL;
       }
     }else{
-      if(card->hasSubtype(-types[i]) || (Subtypes::subtypesList->find(card->name) == -types[i])){
+      if(card->hasSubtype(-types[i]) || (Subtypes::subtypesList->find(card->getLCName(),false) == -types[i])){
         match = NULL;
       }
     }

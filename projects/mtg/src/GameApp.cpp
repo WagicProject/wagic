@@ -32,6 +32,11 @@ GameState::GameState(GameApp* parent): mParent(parent)
 
 GameApp::GameApp(): JApp()
 {
+#ifdef DEBUG
+   nbUpdates = 0;
+   totalFPS = 0;
+#endif
+
   mScreenShotCount = 0;
 
   for (int i=0; i < MAX_STATE	; i++)
@@ -284,6 +289,20 @@ void GameApp::Render()
 
 #ifdef DEBUG_CACHE
   resources.DebugRender();
+#endif
+
+#ifdef DEBUG
+  JGE* mEngine = JGE::GetInstance();
+  float fps = mEngine->GetFPS();
+  totalFPS += fps;
+  nbUpdates+=1;
+  JLBFont * mFont= resources.GetJLBFont("simon");
+  char buf[512];
+  sprintf(buf, "avg:%f - %f fps",totalFPS/nbUpdates, fps);
+  if (mFont) {
+    mFont->SetColor(ARGB(255,255,255,255));
+    mFont->DrawString(buf,1,1);
+  }
 #endif
 
 }
