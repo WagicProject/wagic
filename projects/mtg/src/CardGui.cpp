@@ -6,6 +6,7 @@
 #include "../include/Translate.h"
 #include "../include/MTGDefinitions.h"
 #include <Vector2D.h>
+#include <assert.h>
 
 
 const float CardGui::Width = 28.0;
@@ -89,9 +90,9 @@ void CardGui::Render()
       icon = resources.GetQuad("c_blue");
 
     if (icon){
-      icon->SetHotSpot(16,16);
       icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255)); 
       renderer->RenderQuad(icon, actX, actY, 0); 
+      icon->SetColor(ARGB(255,255,255,255)); //Putting color back as this quad is shared
     }
     
   }
@@ -149,6 +150,11 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   // Draw the "unknown" card model
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * q;
+
+
+  float x = pos.actX;
+  if (x < BigWidth / 2) x = BigWidth / 2;
+
   int nb_colors = 0;
   for(int i=0;i<Constants::MTG_NB_COLORS;i++){
     if(card->colors[i])
@@ -176,7 +182,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 
     float scale = pos.actZ * 250 / q->mHeight;
     q->SetColor(ARGB((int)pos.actA,255,255,255));
-    renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
+    renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
   }
   // Write the title
   JLBFont * font = resources.GetJLBFont("magic");
@@ -190,7 +196,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     float w = font->GetStringWidth(name) * 0.8 * pos.actZ;
     if (w > BigWidth - 30)
       font->SetScale((BigWidth - 30) / w);
-    font->DrawString(name, pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (25 - BigHeight / 2)*pos.actZ);
+    font->DrawString(name, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (25 - BigHeight / 2)*pos.actZ);
   }
 
   // Write the description
@@ -199,7 +205,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     const std::vector<string> txt = card->formattedText();
     unsigned i = 0;
     for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
-      font->DrawString(it->c_str(), pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (-BigHeight/2 + 80 + 11 * i)*pos.actZ);
+      font->DrawString(it->c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (-BigHeight/2 + 80 + 11 * i)*pos.actZ);
   }
 
   // Write the strength
@@ -208,7 +214,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
       char buffer[32];
       sprintf(buffer, "%i/%i", card->power, card->toughness);
       float w = font->GetStringWidth(buffer) * 0.8;
-      font->DrawString(buffer, pos.actX + (65 - w / 2)*pos.actZ, pos.actY + (106)*pos.actZ);
+      font->DrawString(buffer, x + (65 - w / 2)*pos.actZ, pos.actY + (106)*pos.actZ);
   }
 
   // Mana
@@ -225,13 +231,13 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 
         if (scale < 0)
           {
-            renderer->RenderQuad(manaIcons[h->color1], pos.actX + (-12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(t-35))/256.0))*pos.actZ, 0, 0.4 + scale, 0.4 + scale);
-            renderer->RenderQuad(manaIcons[h->color2], pos.actX + (-12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(v-35))/256.0))*pos.actZ, 0, 0.4 - scale, 0.4 - scale);
+            renderer->RenderQuad(manaIcons[h->color1], x + (-12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(t-35))/256.0))*pos.actZ, 0, 0.4 + scale, 0.4 + scale);
+            renderer->RenderQuad(manaIcons[h->color2], x + (-12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(v-35))/256.0))*pos.actZ, 0, 0.4 - scale, 0.4 - scale);
           }
         else
           {
-            renderer->RenderQuad(manaIcons[h->color2], pos.actX + (- 12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(v-35))/256.0))*pos.actZ, 0, 0.4 - scale, 0.4 - scale);
-            renderer->RenderQuad(manaIcons[h->color1], pos.actX + (- 12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(t-35))/256.0))*pos.actZ, 0, 0.4 + scale, 0.4 + scale);
+            renderer->RenderQuad(manaIcons[h->color2], x + (- 12 * j + 75 + 3 * sinf(2*M_PI*((float)v)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(v-35))/256.0))*pos.actZ, 0, 0.4 - scale, 0.4 - scale);
+            renderer->RenderQuad(manaIcons[h->color1], x + (- 12 * j + 75 + 3 * sinf(2*M_PI*((float)t)/256.0))*pos.actZ, pos.actY + (yOffset + 3 * cosf(2*M_PI*((float)(t-35))/256.0))*pos.actZ, 0, 0.4 + scale, 0.4 + scale);
           }
         ++j;
       }
@@ -239,7 +245,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
       {
         for (int cost = manacost->getCost(i); cost > 0; --cost)
           {
-            renderer->RenderQuad(manaIcons[i], pos.actX + (-12*j + 75)*pos.actZ, pos.actY + (yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+            renderer->RenderQuad(manaIcons[i], x + (-12*j + 75)*pos.actZ, pos.actY + (yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
             ++j;
           }
       }
@@ -248,9 +254,9 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
       {
         char buffer[10];
         sprintf(buffer, "%d", cost);
-        renderer->RenderQuad(manaIcons[0], pos.actX + (- 12*j + 75)*pos.actZ, pos.actY +(yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+        renderer->RenderQuad(manaIcons[0], x + (- 12*j + 75)*pos.actZ, pos.actY +(yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
         float w = font->GetStringWidth(buffer);
-        font->DrawString(buffer, pos.actX +(- 12*j + 76 - w/2)*pos.actZ, pos.actY + (yOffset - 5)*pos.actZ);
+        font->DrawString(buffer, x +(- 12*j + 76 - w/2)*pos.actZ, pos.actY + (yOffset - 5)*pos.actZ);
         ++j;
       }
     //Has X?
@@ -258,9 +264,9 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
       {
         char buffer[10];
         sprintf(buffer, "X");
-        renderer->RenderQuad(manaIcons[0], pos.actX + (- 12*j + 75)*pos.actZ, pos.actY +(yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
+        renderer->RenderQuad(manaIcons[0], x + (- 12*j + 75)*pos.actZ, pos.actY +(yOffset)*pos.actZ, 0, 0.4 * pos.actZ, 0.4 * pos.actZ);
         float w = font->GetStringWidth(buffer);
-        font->DrawString(buffer, pos.actX +(- 12*j + 76 - w/2)*pos.actZ, pos.actY + (yOffset - 5)*pos.actZ);
+        font->DrawString(buffer, x +(- 12*j + 76 - w/2)*pos.actZ, pos.actY + (yOffset - 5)*pos.actZ);
       }
   }
 
@@ -273,7 +279,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
         s += " - ";
       }
     s += _(Subtypes::subtypesList->find(card->types[0]));
-    font->DrawString(s.c_str(), pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
+    font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
 
   //expansion and rarity
@@ -301,10 +307,10 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     case Constants::MTG_COLOR_BLACK: 
     case Constants::MTG_COLOR_LAND: 
       font->SetColor(ARGB((int)pos.actA,255,255,255));
-      font->DrawString(buf, pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+      font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
       break;
     default:
-      font->DrawString(buf, pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+      font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
       break; //Leave black
     }
     
@@ -320,11 +326,14 @@ void CardGui::alternateRenderBig(const Pos& pos){
 void CardGui::RenderBig(MTGCard* card, const Pos& pos){
   JRenderer * renderer = JRenderer::GetInstance();
 
+  float x = pos.actX;
+  if (x < BigWidth / 2) x = BigWidth / 2;
+
   JQuad * quad = resources.RetrieveCard(card);
   if (quad){
     quad->SetColor(ARGB((int)pos.actA,255,255,255));
     float scale = pos.actZ * 257.f / quad->mHeight;
-    renderer->RenderQuad(quad, pos.actX, pos.actY, pos.actT, scale, scale);
+    renderer->RenderQuad(quad, x, pos.actY, pos.actT, scale, scale);
     return;
   }
 
@@ -333,7 +342,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
     {
       float scale = pos.actZ * 250 / q->mHeight;
       q->SetColor(ARGB((int)pos.actA,255,255,255));
-      renderer->RenderQuad(q, pos.actX, pos.actY, pos.actT, scale, scale);
+      renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
       return;
     }
 

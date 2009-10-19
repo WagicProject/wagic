@@ -473,7 +473,9 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
 	    subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
 	    if (subMenuController){
 	      subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
-	      subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players");
+        // TODO Put 2 players mode back
+        // This requires to fix the hand (to accept 2 players) OR to implement network game
+	      //subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players"); 
 	      subMenuController->Add(SUBMENUITEM_DEMO,"Demo");
 	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 #ifdef TESTSUITE

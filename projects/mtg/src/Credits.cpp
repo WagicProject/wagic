@@ -140,8 +140,11 @@ void Credits::Render(){
   JLBFont * f2 = resources.GetJLBFont(Constants::MENU_FONT);
   JLBFont * f3 = resources.GetJLBFont(Constants::MAGIC_FONT);
   f->SetScale(1);
+  f->SetColor(ARGB(255,255,255,255));
   f2->SetScale(1);
+  f2->SetColor(ARGB(255,255,255,255));
   f3->SetScale(1);
+  f3->SetColor(ARGB(255,255,255,255));
   char buffer[512];
   if (!g->turn){
     sprintf(buffer, _("Please check your deck (not enough cards?)").c_str() );
