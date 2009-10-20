@@ -767,7 +767,6 @@ void WDecoConfirm::setData(){
   if(!it)
     return;
 
-  it->confirmChange(true);
   it->setData();
 }
 
@@ -1064,6 +1063,10 @@ void WGuiMenu::Render(){
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
     (*it)->Render();
 }
+void WGuiMenu::confirmChange(bool confirmed){
+  for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
+    (*it)->confirmChange(confirmed);
+}
 
 void WGuiMenu::ButtonPressed(int controllerId, int controlId){
   WGuiBase * it = Current();
@@ -1137,6 +1140,7 @@ void WGuiTabMenu::Render(){
 }
 
 void WGuiTabMenu::save(){
+  confirmChange(true);
   setData();  
   ::options.save();
 }

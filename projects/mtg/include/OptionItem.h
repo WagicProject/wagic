@@ -327,6 +327,7 @@ public:
   virtual void Update(float dt);
   virtual void ButtonPressed(int controllerId, int controlId);
   virtual void Add(WGuiBase* item);
+  virtual void confirmChange(bool confirmed);
   
   WGuiBase * Current();
   void nextItem();

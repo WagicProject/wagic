@@ -325,7 +325,7 @@ GameOption * GameOptions::get(int optionID) {
   values.reserve(optionID);
 
   while(x <= optionID){
-      switch(optionID){
+      switch(x){
         case Options::HANDDIRECTION:
           goEnum = NEW GameOptionEnum();
           goEnum->def = OptionHandDirection::getInstance();
@@ -633,7 +633,9 @@ bool GameOptionEnum::read(string input){
 
   vector<EnumDefinition::assoc>::iterator it;
   for(it=def->values.begin();it != def->values.end();it++){
-    if(it->second == input){
+    string v = it->second;
+    std::transform(v.begin(),v.end(),v.begin(),::tolower);
+    if(v == input){
       number = it->first;
       return true;
     }
@@ -654,8 +656,8 @@ OptionHandDirection::OptionHandDirection(){
 };
 OptionManaDisplay OptionManaDisplay::mDef;
 OptionManaDisplay::OptionManaDisplay(){  
-    mDef.values.push_back(EnumDefinition::assoc(STATIC, "Simple"));
     mDef.values.push_back(EnumDefinition::assoc(DYNAMIC, "Eye candy"));
+    mDef.values.push_back(EnumDefinition::assoc(STATIC, "Simple"));
     mDef.values.push_back(EnumDefinition::assoc(BOTH, "Both"));
 };
 OptionVolume OptionVolume::mDef;
@@ -666,7 +668,7 @@ OptionVolume::OptionVolume(){
 OptionDifficulty OptionDifficulty::mDef;
 OptionDifficulty::OptionDifficulty(){  
     mDef.values.push_back(EnumDefinition::assoc(NORMAL, "Normal"));
-    mDef.values.push_back(EnumDefinition::assoc(HARDER, "Harder"));
     mDef.values.push_back(EnumDefinition::assoc(HARD, "Hard"));
+    mDef.values.push_back(EnumDefinition::assoc(HARDER, "Harder"));
     mDef.values.push_back(EnumDefinition::assoc(EVIL, "Evil"));
 };
