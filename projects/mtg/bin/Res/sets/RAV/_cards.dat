@@ -235,14 +235,11 @@ text=Whenever Dromad Purebred is dealt damage, you gain 1 life.
 id=87911
 name=Dromad Purebred
 rarity=C
-type=Creature
-auto=@damaged(this) from(*|myBattlefield):life:1 controller
-auto=@damaged(this) from(*|opponentBattlefield):life:1 controller
-auto=@damaged(this) from(*|mystack):life:1 controller
-auto=@damaged(this) from(*|opponentstack):life:1 controller
 mana={4}{W}
-power=1
+type=Creature
 subtype=Camel Beast
+auto=@damaged(this):life:1 controller
+power=1
 toughness=5
 [/card]
 [card]
