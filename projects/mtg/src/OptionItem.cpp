@@ -201,6 +201,7 @@ void OptionProfile::Reload(){
   populate();
 }
 void OptionProfile::populate(){ 
+
  string temp = options[Options::ACTIVE_PROFILE].str;
  if (value >= selections.size()){ //TODO fail gracefully.
    return;
@@ -266,14 +267,12 @@ void OptionProfile::confirmChange(bool confirmed){
 
   int result;
 
-  if(confirmed)      
-    result = value;
+  if(confirmed)      result = value;
   else               result = initialValue;
 
   options[Options::ACTIVE_PROFILE] = selections[result];
   value = result;
 
-  options.reloadProfile(false);
   populate(); 
   if(listener && confirmed)
     listener->ButtonPressed(-102,5);

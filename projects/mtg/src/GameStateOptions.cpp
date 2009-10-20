@@ -116,6 +116,12 @@ void GameStateOptions::Update(float dt)
       optionsMenu->Update(dt);
     break;
   }
+  
+  if(mReload){
+    options.reloadProfile(false);
+    optionsTabs->Reload();    
+    mReload = false;
+  }
 }
 
 void GameStateOptions::Render()
@@ -162,11 +168,6 @@ void GameStateOptions::Render()
   mFont->SetScale(1.f);
 
   optionsTabs->Render();
-
-  if(mReload){
-    optionsTabs->Reload();
-    mReload = false;
-  }
 
   if(mState == SHOW_OPTIONS_MENU)    
       optionsMenu->Render();
