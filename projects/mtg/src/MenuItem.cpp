@@ -7,7 +7,7 @@ MenuItem::MenuItem(int id, JLBFont *font, string text, int x, int y, JQuad * _of
 {
   mText = _(text);
   updatedSinceLastRender = 1;
-  mParticleSys = NEW hgeParticleSystem(particle, particleTex);
+  mParticleSys = NEW hgeParticleSystem(resources.RetrievePSI(particle, particleTex));
   mParticleSys->MoveTo(mX, mY);
 
   mHasFocus = hasFocus;
@@ -27,14 +27,27 @@ void MenuItem::Render()
 {
   JRenderer * renderer = JRenderer::GetInstance();
 
+
   if (mHasFocus)
     {
+      PIXEL_TYPE start = ARGB(46,255,255,200);
+      if(mParticleSys)
+        start = mParticleSys->info.colColorStart.GetHWColor();
+
+      PIXEL_TYPE colors[] =
+      {
+        ARGB(0,0,0,0),
+        start,
+        ARGB(0,0,0,0),
+        start,
+      }; 
+      renderer->FillRect(255,0,SCREEN_WIDTH-155,SCREEN_HEIGHT,colors); 
       // set additive blending
       renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
       mParticleSys->Render();
       // set normal blending
       renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-      mFont->SetColor(options[Metrics::MAINMENU_TC].asColor());
+      mFont->SetColor(ARGB(255,255,255,255));
       onQuad->SetColor(ARGB(70,255,255,255));
       renderer->RenderQuad(onQuad, SCREEN_WIDTH  , SCREEN_HEIGHT/2 , 0,8,8);
       onQuad->SetColor(ARGB(255,255,255,255));

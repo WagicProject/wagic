@@ -18,10 +18,8 @@ class GameStateMenu: public GameState, public JGuiListener
   int hasChosenGameType;
   JQuad * mIcons[10];
   JTexture * bgTexture;
-  JTexture * movingWTexture;
   JQuad * mBg;
   JQuad * mSplash;
-  JQuad * mMovingW;
   float mCreditsYPos;
   int currentState;
   //JMusic * bgMusic;

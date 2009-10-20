@@ -6,10 +6,9 @@
 
 #define SHOW_OPTIONS 1
 #define SHOW_OPTIONS_MENU 2
-#define SHOW_OPTIONS_PROFILE 3
 
 class GameApp;
-class OptionsMenu;
+class WGuiTabMenu;
 class SimpleMenu;
 class SimplePad;
 
@@ -17,13 +16,13 @@ class GameStateOptions: public GameState, public JGuiListener
 {
 private:
   float timer;
+  bool mReload;
 
  public:
   SimpleMenu * optionsMenu;
-  SimpleMenu * confirmMenu;
-  OptionsMenu * optionsTabs;
-
+  WGuiTabMenu * optionsTabs;
   int mState;
+  
   GameStateOptions(GameApp* parent);
   virtual ~GameStateOptions();
 
@@ -33,8 +32,9 @@ private:
   virtual void Render();
   void ButtonPressed(int controllerId, int ControlId);
 
+  string newProfile;
+
 };
 
 
 #endif
-

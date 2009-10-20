@@ -253,7 +253,9 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   string realname;  
 
   //Form correct filename.
-  if(submode & TEXTURE_SUB_CARD){
+  if(submode & TEXTURE_SUB_EXACT)
+    realname = filename;
+  else if(submode & TEXTURE_SUB_CARD){
     if(submode & TEXTURE_SUB_THUMB){
       for(string::size_type i= 0;i < filename.size();i++){
         if(filename[i] == '\\' || filename[i] == '/'){

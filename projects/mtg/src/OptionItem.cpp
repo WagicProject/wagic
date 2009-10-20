@@ -7,52 +7,92 @@
 #include <stdlib.h>
 #include <algorithm>
 
-//Option Item
+//WGuiItem
+void WGuiItem::Entering(u32 key){
+  mFocus = true;
+}
 
-void OptionItem::Update(float dt){
+bool WGuiItem::Leaving(u32 key){
+  mFocus = false;
+  return true;
+}
+
+PIXEL_TYPE WGuiItem::getColor(int type){
+  switch(type){
+    case WGuiColor::TEXT_BODY:
+    case WGuiColor::SCROLLBUTTON:
+      return ARGB(255,255,255,255);
+    case WGuiColor::SCROLLBAR:
+      return ARGB(150,50,50,50);
+    case WGuiColor::BACK_HEADER:
+      return ARGB(150,80,80,80);
+    default:
+      if(type < WGuiColor::BACK){
+        if(hasFocus())
+          return ARGB(255,255,255,0);
+        else
+          return ARGB(255,255,255,255);
+      }
+      else
+        return ARGB(150,50,50,50);
+  }
+  return ARGB(150,50,50,50);
+}
+
+void WGuiItem::Render(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetColor(getColor(WGuiColor::TEXT));
+  JRenderer * renderer = JRenderer::GetInstance();
+  float fH = (height-mFont->GetHeight())/2;
+  mFont->DrawString(displayValue.c_str(),x+(width/2),y+fH,JGETEXT_CENTER);
+}
+
+WGuiItem::WGuiItem(string _display){
+ displayValue = _display;
+ mFocus = false;
+ width=SCREEN_WIDTH;
+ height=20;
+}
+
+void WGuiItem::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
-  if (hasFocus){
+  if (mFocus){
     if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) updateValue();
   }
 }
 
-void OptionItem::Entering(){
-  hasFocus = true;
+//WGuiHeader
+void WGuiHeader::Render(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetColor(getColor(WGuiColor::TEXT));
+ 
+  JRenderer * renderer = JRenderer::GetInstance();
+  mFont->DrawString(displayValue.c_str(),x+width/2,y,JGETEXT_CENTER);
 }
 
-bool OptionItem::Leaving(){
-  hasFocus = false;
-  return true;
+//WGuiText
+void WGuiText::Render(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetScale(.8);
+  mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
+ 
+  JRenderer * renderer = JRenderer::GetInstance();
+  mFont->DrawString(displayValue.c_str(),x,y,JGETEXT_LEFT); 
+  mFont->SetScale(1);
 }
 
-ostream& OptionItem::toString(ostream& out) const{
-return out << "OptionItem ::: displayValue : " << displayValue
-	     << " ; id : " << id
-	     << " ; hasFocus : " << hasFocus
-	     << " ; x,y : " << x << "," << y;
-}
-
-OptionItem::OptionItem( int _id,  string _displayValue) {
+//OptionItem
+OptionItem::OptionItem( int _id,  string _displayValue): WGuiItem(_displayValue) {
  id = _id;
- displayValue = _(_displayValue);
- canSelect=true;
- hasFocus=false;
- bHidden=false;
- width = SCREEN_WIDTH;
- height = 20;
+ mFocus=false;
 }
 
-//Option Integer 
-
+//OptionInteger 
 void OptionInteger::Render(){
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  if (hasFocus){
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
-  }else{
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TC].asColor());
-  }
+  mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
+
   mFont->DrawString(displayValue.c_str(),x,y);
   char buf[512];
   if (maxValue == 1){
@@ -76,7 +116,6 @@ OptionInteger::OptionInteger(int _id, string _displayValue, int _maxValue, int _
   maxValue = _maxValue;
   increment = _increment;
   value = ::options[id].number;
-  hasFocus = false;
   x = 0;
   y = 0;
 }
@@ -86,105 +125,58 @@ void OptionInteger::setData(){
     options[id] = GameOption(value);
 }
 
-
-ostream& OptionInteger::toString(ostream& out) const{
-  return out << "OptionItem ::: displayValue : " << displayValue
-	     << " ; id : " << id
-	     << " ; value : " << value
-	     << " ; hasFocus : " << hasFocus
-	     << " ; maxValue : " << maxValue
-	     << " ; increment : " << increment
-	     << " ; x,y : " << x << "," << y;
-}
-
 //Option Select
-
 void OptionSelect::initSelections(){
   //Find currently active bit in the list.
-    for(size_t i=0;i<selections.size();i++)
-    {
+    for(size_t i=0;i<selections.size();i++){
       if(selections[i] == options[id].str)
         value = i;
     }
 }
 
+void OptionSelect::Entering(u32 key){
+  OptionItem::Entering(key);
+  prior_value = value;
+}
+
 void OptionSelect::Render(){
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  if (hasFocus){
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
-  }else{
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TC].asColor());
-  }
+  mFont->SetColor(getColor(WGuiColor::TEXT));
 
   JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
   mFont->DrawString(displayValue.c_str(),x,y);
 
   if (value < selections.size())
-    mFont->DrawString(selections[value].c_str(),width-10,y,JGETEXT_RIGHT);
+    mFont->DrawString(selections[value].c_str(),x+width-10,y,JGETEXT_RIGHT);
   else
-   mFont->DrawString("Unset",width-10,y,JGETEXT_RIGHT);
+   mFont->DrawString("Unset",x+width-10,y,JGETEXT_RIGHT);
 }
 
-void OptionSelect::setData()
-{
+void OptionSelect::setData(){
   if(id == INVALID_OPTION) return;
 
   if (value < selections.size())
     options[id] = GameOption(selections[value]);
 }
+bool OptionSelect::Selectable(){
+  return (selections.size() > 1);
+}
 
-void OptionSelect::addSelection(string s)
-{
+void OptionSelect::addSelection(string s){
   selections.push_back(s);
 }
 
-
-ostream& OptionSelect::toString(ostream& out) const
-{
-  return out << "OptionItem ::: displayValue : " << displayValue
-	     << " ; id : " << id
-	     << " ; value : " << value
-	     << " ; hasFocus : " << hasFocus
-	     << " ; x,y : " << x << "," << y;
-}
-
-//OptionHeader
-
-void OptionHeader::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  mFont->SetColor(options[Metrics::OPTION_HEADER_TC].asColor());
- 
-  JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_HEADER_FC].asColor(ARGB(150,80,80,80)));
-  mFont->DrawString(displayValue.c_str(),width/2,y,JGETEXT_CENTER);
-}
-
-void OptionText::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  mFont->SetScale(.8);
-  mFont->SetColor(options[Metrics::OPTION_TEXT_TC].asColor());
- 
-  JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_TEXT_FC].asColor(ARGB(150,80,80,80)));
-  mFont->DrawString(displayValue.c_str(),x,y,JGETEXT_LEFT); 
-  mFont->SetScale(1);
-}
-
 //OptionProfile
-
-OptionProfile::~OptionProfile(){
-  SAFE_DELETE(mAvatarTex);
-  SAFE_DELETE(mAvatar);
-}
-
-int OptionProfile::Submode(){
-  if(value != initialValue && bCheck){
-     bCheck=false; //Just about to check it!
-     return OPTIONS_SUBMODE_PROFILE;
-  }  
-  return OPTIONS_SUBMODE_NORMAL;
-}
+OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl): OptionDirectory(RESPATH"/profiles",Options::ACTIVE_PROFILE, "Profile"){
+  app = _app;
+  listener = jgl;
+  height=60;
+  addSelection("Default");
+  sort(selections.begin(),selections.end());
+  mFocus = false;
+  populate();
+  initSelections();
+};
 
 void OptionProfile::addSelection(string s){
   OptionDirectory::addSelection(s);
@@ -194,21 +186,8 @@ void OptionProfile::addSelection(string s){
     canSelect = true;
   else
     canSelect = false;
+
 }
-
-OptionProfile::OptionProfile(GameApp * _app): OptionDirectory(RESPATH"/profiles",Options::ACTIVE_PROFILE, "Profile"){
-  app = _app;
-  height=100;
-  addSelection("Default");
-  sort(selections.begin(),selections.end());
-  initSelections();
-  mAvatarTex=NULL;
-  mAvatar=NULL;
-  hasFocus=false;
-  populate();
-  bCheck=false;
-};
-
 void OptionProfile::updateValue(){
  value++; 
  if (value > selections.size() - 1)
@@ -217,6 +196,10 @@ void OptionProfile::updateValue(){
   populate();
 }
 
+void OptionProfile::Reload(){
+  OptionDirectory::Reload();
+  populate();
+}
 void OptionProfile::populate(){ 
  string temp = options[Options::ACTIVE_PROFILE].str;
  if (value >= selections.size()){ //TODO fail gracefully.
@@ -224,22 +207,12 @@ void OptionProfile::populate(){
  }
  
  options[Options::ACTIVE_PROFILE].str = selections[value];
- 
- SAFE_DELETE(mAvatar); 
- SAFE_DELETE(mAvatarTex);
- mAvatarTex = JRenderer::GetInstance()->LoadTexture(options.profileFile("avatar.jpg","",true,true).c_str(), false);  
- if (mAvatarTex){
-   mAvatar = NEW JQuad(mAvatarTex, 0, 0, 35, 50);
- }
-
  PlayerData * pdata = NEW PlayerData(app->collection);
-
  options[Options::ACTIVE_PROFILE] = temp;
  
  char buf[512];
  sprintf(buf,"Credits: %i\nCards: %i",pdata->credits,pdata->collection->totalCards());
  preview = buf;
-
 
  SAFE_DELETE(pdata);
 }
@@ -250,79 +223,61 @@ void OptionProfile::Render(){
   mFont->SetScale(1);
   int spacing = 2+(int)mFont->GetHeight();
 
-  //Draw faux option. Not highlighted if we've only one.
-  if (hasFocus && selections.size() > 1){
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
-    renderer->FillRoundRect(x-5,y-2,width-x-5,20,2,options[Metrics::OPTION_HEADER_FC].asColor(ARGB(150,80,80,80)));
-    mFont->DrawString("Change Profile",SCREEN_WIDTH/2,y,JGETEXT_CENTER);
-  }else{
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TC].asColor());
-    renderer->FillRoundRect(x-5,y-2,width-x-5,20,2,options[Metrics::OPTION_HEADER_FC].asColor(ARGB(150,80,80,80)));
-    mFont->DrawString("Profile",SCREEN_WIDTH/2,y,JGETEXT_CENTER);
-  }
-
-
-  //Draw preview box.
-  renderer->FillRoundRect(x-5,y-2+25,width-x-5,height-25,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
-  
   int pX, pY;
   pX = x;
-  pY = y+30;
+  pY = y;
+  char buf[512];
+  if(selections[value] == "Default")
+    sprintf(buf,"player/avatar.jpg");
+  else
+    sprintf(buf,"profiles/%s/avatar.jpg",selections[value].c_str());
+
+  JQuad * mAvatar = resources.RetrieveQuad(buf,0,0,0,0,"temporary",RETRIEVE_NORMAL,TEXTURE_SUB_EXACT);
+
   if(mAvatar){
     renderer->RenderQuad(mAvatar,x,pY);
     pX += 40;
   }
 
-  mFont->SetColor(options[Metrics::OPTION_TEXT_TC].asColor()); 
+  mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
   mFont->DrawString(selections[value].c_str(),pX,pY,JGETEXT_LEFT);
   mFont->SetScale(.8);
+  mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
   mFont->DrawString(preview.c_str(),pX,pY+spacing,JGETEXT_LEFT); 
   mFont->SetScale(1);
+
 }
 void OptionProfile::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
-  if (hasFocus){
-    if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) updateValue();
+  
+  if (mFocus && mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){ 
+        updateValue();
+        mEngine->ReadButton();
   }
 }
-
-void OptionProfile::Entering(){
-  hasFocus = true;
-  bCheck = false; 
+void OptionProfile::Entering(u32 key){
+  mFocus = true;
   initialValue = value;
 }
-bool OptionProfile::Leaving(){
 
-  //Choice must be confirmed.
-  if(value != initialValue){
-    bCheck = true;
-    return false;
-  }  
-  hasFocus = false;
-  return true;
-}
-
-void OptionProfile::cancelSubmode()
-{
+void OptionProfile::confirmChange(bool confirmed){
   if (initialValue >= selections.size())
-    return;
+   return;
 
-    options[Options::ACTIVE_PROFILE] = selections[initialValue];
-    value = initialValue;
-    options.reloadProfile(false);
-    populate(); 
-    bCheck = false;
-}
-void OptionProfile::acceptSubmode()
-{
-  if (value >= selections.size())
-    return;
+  int result;
 
-    options[Options::ACTIVE_PROFILE] = selections[value];
-    initialValue = value;
-    options.reloadProfile();
-    populate(); 
-    bCheck = false;
+  if(confirmed)      
+    result = value;
+  else               result = initialValue;
+
+  options[Options::ACTIVE_PROFILE] = selections[result];
+  value = result;
+
+  options.reloadProfile(false);
+  populate(); 
+  if(listener && confirmed)
+    listener->ButtonPressed(-102,5);
+  return;
 }
 
 //OptionDirectory
@@ -380,51 +335,90 @@ OptionDirectory::OptionDirectory(string _root, int _id, string _displayValue): O
   initSelections();
 }
 
-OptionsList::OptionsList(string name){
-  sectionName = name;
+//WGuiList
+WGuiList::WGuiList(string name): WGuiItem(name){
   failMsg = "NO OPTIONS AVAILABLE";
   nbitems = 0;
   current = -1;
+  width = SCREEN_WIDTH-10;
+  y = 0;
+  x = 0;
+  mFocus = false;
 }
-OptionsList::~OptionsList(){
+WGuiList::~WGuiList(){
   for (int i = 0 ; i < nbitems; i++){
     SAFE_DELETE(listItems[i]);
   }
 }
-
-void OptionsList::Add(OptionItem * item){
+void WGuiList::setModal(bool val){
+  listItems[current]->setModal(val);
+}
+bool WGuiList::isModal(){
+  if(current >= 0 && current < nbitems)
+    if(listItems[current]->isModal())
+      return true;
+  return false;
+}
+void WGuiList::Add(WGuiBase * item){
   if (nbitems < MAX_OPTION_ITEMS){
     listItems[nbitems] = item;
     nbitems++;
   }
 }
-bool OptionsList::Leaving(){
-  if(current >= 0 && current < nbitems)
-    return listItems[current]->Leaving();
+bool WGuiList::Leaving(u32 key){
+  if(key == PSP_CTRL_DOWN && current < nbitems-1)
+    return false;
+  else if(key == PSP_CTRL_UP && current > 0)
+    return false;
 
+  if(current >= 0 && current < nbitems)
+    if(!listItems[current]->Leaving(key))
+      return false;
+
+  mFocus = false;
   return true;
 }
-void OptionsList::Entering(){  
+void WGuiList::Entering(u32 key){  
+  mFocus = true;
+
   //Try to force a selectable option.
   if(current == -1){
     for (int i = 0 ; i < nbitems; i++){
       if(listItems[i]->Selectable()) {
         current = i;
-        listItems[current]->Entering();
         break;
       }
     }
   }
 
   if(current >= 0 && current < nbitems)
-    listItems[current]->Entering();
+    listItems[current]->Entering(key);
+
 
   return;
 }
-void OptionsList::Render(){
+void WGuiList::renderBack(WGuiBase * it){
+  if(!it)
+    return;
+  WGuiHeader * header = dynamic_cast<WGuiHeader*>(it);
   JRenderer * renderer = JRenderer::GetInstance();
-
-  int width = SCREEN_WIDTH;
+  if(header)
+    renderer->FillRoundRect(it->getX()-5,it->getY()-2,it->getWidth()-5,it->getHeight(),2,it->getColor(WGuiColor::BACK_HEADER));
+  else{
+    WGuiSplit * split = dynamic_cast<WGuiSplit*>(it);
+    if(split && split->left->Visible() && split->right->Visible()){
+      if(split->left)
+        renderer->FillRoundRect(split->left->getX()-5,split->getY()-2,split->left->getWidth()-5,split->getHeight(),2,split->left->getColor(WGuiColor::BACK));
+      if(split->right)
+        renderer->FillRoundRect(split->right->getX()-5,split->getY()-2,split->right->getWidth()-5,split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
+    }
+    else
+      renderer->FillRoundRect(it->getX()-5,it->getY()-2,it->getWidth()-5,it->getHeight(),2,it->getColor(WGuiColor::BACK));
+    
+  }
+}
+void WGuiList::Render(){
+  JRenderer * renderer = JRenderer::GetInstance();
   int listHeight=40; 
   int listSelectable=0;
   int adjustedCurrent=0;
@@ -434,8 +428,8 @@ void OptionsList::Render(){
   //List is empty.
   if (!nbitems && failMsg != ""){
     JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-    mFont->SetColor(options[Metrics::MSG_FAIL_TC].asColor(ARGB(255,155,155,155)));
-    mFont->DrawString(failMsg.c_str(),SCREEN_WIDTH/2, 40, JGETEXT_RIGHT);
+    mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
+    mFont->DrawString(failMsg.c_str(),x+width/2, y, JGETEXT_RIGHT);
     return;
   }
 
@@ -444,14 +438,15 @@ void OptionsList::Render(){
     for (int i = 0 ; i < nbitems; i++){
       if(listItems[i]->Selectable()) {
         current = i;
-        listItems[current]->Entering();
+        if(hasFocus())
+          listItems[current]->Entering(0);
         break;
       }
     }
   }
   //Find out how large our list is.
   for (int pos=0;pos < nbitems; pos++){
-    listHeight+=listItems[pos]->height+5;
+    listHeight+=listItems[pos]->getHeight()+5;
     if(listItems[pos]->Selectable()){
       listSelectable++;
       if(pos < current) adjustedCurrent++;
@@ -460,46 +455,50 @@ void OptionsList::Render(){
 
   //Always fill screen
   if(listHeight > SCREEN_HEIGHT)
-  {
-    width -= 10;    
+  { 
     for (start=current;start > 0; start--){
-      if(listItems[start]->bHidden)
+      if(!listItems[start]->Visible())
         continue;
 
-      vHeight += listItems[start]->height+5;
+      vHeight += listItems[start]->getHeight()+5;
       if(vHeight >= (SCREEN_HEIGHT-60)/2)
         break;
     }
     vHeight = 0;
     for (nowPos=nbitems;nowPos > 1; nowPos--){
-       if(listItems[start]->bHidden)
+       if(!listItems[start]->Visible())
         continue;
-      vHeight += listItems[nowPos-1]->height+5;
+      vHeight += listItems[nowPos-1]->getHeight()+5;
     }
 
     if(vHeight <= SCREEN_HEIGHT-40 && nowPos < start)
       start = nowPos;
-
   }
 
   vHeight = 0;
-  nowPos = 40;
+  nowPos = 0;
 
   //Render items.
   if(start >= 0)
   {
     for (int pos=0;pos < nbitems; pos++){
-      if(listItems[pos]->bHidden)
+      if(!listItems[pos]->Visible())
         continue;
 
       if(pos < start){
-        vHeight += listItems[pos]->height + 5;
+        vHeight += listItems[pos]->getHeight() + 5;
         continue;
       }
-      listItems[pos]->x = 10; 
-      listItems[pos]->y = nowPos;
-      listItems[pos]->width = width;
-      nowPos += listItems[pos]->height + 5;
+      
+
+      listItems[pos]->setY(y+nowPos);
+      listItems[pos]->setX(x);
+      if(listHeight > SCREEN_HEIGHT && listSelectable > 1)
+        listItems[pos]->setWidth(width-10);
+      else
+        listItems[pos]->setWidth(width);
+      nowPos += listItems[pos]->getHeight() + 5;
+      renderBack(listItems[pos]);
       listItems[pos]->Render();
       if(nowPos > SCREEN_HEIGHT) 
         break;
@@ -510,225 +509,111 @@ void OptionsList::Render(){
       int barPosition = 35+((float)adjustedCurrent/listSelectable)*(SCREEN_HEIGHT-40);
       int barLength = (SCREEN_HEIGHT-40) / listSelectable;
       if(barLength < 4) barLength = 4;
-      width = (SCREEN_WIDTH-(width-5))/2; //Find center of blank space by options.
-      renderer->FillRect(SCREEN_WIDTH-width-1,39,2,SCREEN_HEIGHT-42,
-        options[Metrics::OPTION_SCROLLBAR_FC].asColor(ARGB(150,150,150,150)));
-      renderer->FillRoundRect(SCREEN_WIDTH-width-4,barPosition,5,barLength,2,
-        options[Metrics::OPTION_SCROLLBAR_FCH].asColor(ARGB(255,255,255,255)));
+      renderer->FillRect(x+width-8,39,2,SCREEN_HEIGHT-42,
+        getColor(WGuiColor::SCROLLBAR));
+      renderer->FillRoundRect(x+width-12,barPosition,5,barLength,2,
+        getColor(WGuiColor::SCROLLBUTTON));
     }
-  }
+
+    //Render current overlay.
+    if(current > 0 && current < nbitems && listItems[current]->Visible())
+      listItems[current]->Overlay();
+    }
 }
 
-void OptionsList::save(){
+void WGuiList::setData(){
   for (int i = 0; i < nbitems; i++){
     listItems[i]->setData();
   }
 }
 
-void OptionsList::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-  int potential = current;
+WGuiBase * WGuiList::Current(){
+  if(current >= 0 && current < nbitems)
+      return listItems[current];
   
-  if (mEngine->GetButtonClick(PSP_CTRL_UP))
-  {
-    if (potential > 0){
-      potential--;
-      while(potential > 0 && listItems[potential]->Selectable() == false)
-        potential--;
-      if(potential < 0 || !listItems[potential]->Selectable())
-        potential = -1;
-      else if(listItems[current]->Leaving()){
-          current = potential;
-          listItems[current]->Entering();
-      }
-    }
-  }
-  else if (mEngine->GetButtonClick(PSP_CTRL_DOWN))
-  { 
-    if (potential < nbitems-1){
+  return NULL;
+}
+
+void WGuiList::nextOption(){
+ int potential = current;
+
+  if (potential < nbitems-1){
+    potential++;
+    while(potential < nbitems-1 && listItems[potential]->Selectable() == false)
       potential++;
-      while(potential < nbitems-1 && listItems[potential]->Selectable() == false)
-        potential++;
-      if(potential == nbitems || !listItems[potential]->Selectable())
-        potential = -1;
-      else if(potential != current && listItems[current]->Leaving()){
-          current = potential;
-          listItems[current]->Entering();
-      }
+    if(potential == nbitems || !listItems[potential]->Selectable())
+      potential = -1;
+    else if(potential != current && listItems[current]->Leaving(PSP_CTRL_DOWN)){
+        current = potential;
+        listItems[current]->Entering(PSP_CTRL_DOWN);
     }
   }
-  for (int i = 0 ; i < nbitems; i++){
-    listItems[i]->Update(dt);
+}
+void WGuiList::prevOption(){
+ int potential = current;
+
+ if (potential > 0){
+    potential--;
+    while(potential > 0 && listItems[potential]->Selectable() == false)
+      potential--;
+    if(potential < 0 || !listItems[potential]->Selectable())
+      potential = -1;
+    else if(listItems[current]->Leaving(PSP_CTRL_UP)){
+        current = potential;
+        listItems[current]->Entering(PSP_CTRL_UP);
+    }
   }
 }
 
-
-void OptionsMenu::Add(OptionsList * tab){
-  if (nbitems < MAX_OPTION_TABS){
-    tabs[nbitems] = tab;
-    nbitems++;
-    if (current < 0){
-      current = 0;
-    }
-
-  }
-}
-
-void OptionsMenu::Render(){
-  if (nbitems == 0){
-    mFont->DrawString("NO OPTIONS AVAILABLE",SCREEN_WIDTH/2, 5, JGETEXT_RIGHT);
-    return;
-  }
-
-  JRenderer * renderer = JRenderer::GetInstance();
-
-  int offset = 0;
-  for(int i=0;i<nbitems;i++){
-    int w = mFont->GetStringWidth(tabs[i]->sectionName.c_str());
-    if(i == current){
-      mFont->SetColor(options[Metrics::OPTION_TAB_TCH].asColor());
-      renderer->FillRoundRect(offset+5,5,w + 5,25,2,options[Metrics::OPTION_TAB_FCH].asColor(ARGB(150,150,150,150)));
-    }
-    else{
-      mFont->SetColor(options[Metrics::OPTION_TAB_TC].asColor(ARGB(255,155,155,155)));
-      renderer->FillRoundRect(offset+5,5,w + 5,25,2,options[Metrics::OPTION_TAB_FC].asColor(ARGB(150,50,50,50)));
-    }
-    mFont->DrawString(tabs[i]->sectionName.c_str(),offset+10,10);
-    offset += w + 10 + 2;
-  }
-
-  if(current > -1 && current < nbitems && tabs[current])
-    tabs[current]->Render();
-}
-
-void OptionsMenu::Update(float dt){
+void WGuiList::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
-  if(current < 0 || current >= nbitems)   
+  bool kidModal = false;
+  
+  if(current >= 0 && current < nbitems)
+    kidModal = listItems[current]->isModal();
+   
+  if(!kidModal && hasFocus()){
+    if (mEngine->GetButtonClick(PSP_CTRL_UP))
+     prevOption();
+    else if (mEngine->GetButtonClick(PSP_CTRL_DOWN))
+     nextOption();
+  }
+
+  if(current >= 0 && current < nbitems)
+    listItems[current]->Update(dt);
+
+  for (int i = 0 ; i < nbitems; i++){
+    if(i != current)
+      listItems[i]->Update(dt);
+  }
+}
+
+void WGuiList::ButtonPressed(int controllerId, int controlId){
+  WGuiBase * it;
+
+  if(!(it = Current()))
     return;
-  
-  //We use the shoulder buttons to switch tabs, if we've got them.
-  if (mEngine->GetButtonClick(PSP_CTRL_LTRIGGER))
-    {
-      if (current > 0)
-      {
-        if(tabs[current]->Leaving()){
-          current--;
-          tabs[current]->Entering();
-        }
-      }
-    }
-  else if (mEngine->GetButtonClick(PSP_CTRL_RTRIGGER))
-    {
-      if (current < nbitems -1)
-      {
-        if(tabs[current]->Leaving()){
-	        current++;
-          tabs[current]->Entering();
-        }
-      }
-    }
-    
-  tabs[current]->Update(dt);
+
+  it->ButtonPressed(controllerId,controlId);
 }
 
-OptionsMenu::OptionsMenu(){
-  nbitems=0;
-  current=0;
-  mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  for(int x=0;x<MAX_OPTION_TABS;x++)
-    tabs[x] = NULL;
-}
-
-OptionsMenu::~OptionsMenu(){
-  for(int x=0;x<MAX_OPTION_TABS;x++)
-      SAFE_DELETE(tabs[x]);
-}
-
-void OptionsMenu::save(){
-  for(int x=0;x<MAX_OPTION_TABS;x++)
-    if(tabs[x] != NULL) 
-       tabs[x]->save();
-  
-  ::options.save();
-}
-
-bool OptionsMenu::isTab(string name){
-  if(current <0 || current >= nbitems)
-    return false;
-  else if(tabs[current]->sectionName == name)
-    return true;
-
-  return false;
-}
-
-int OptionsMenu::Submode()
-{
- if(current <0 || current >= nbitems)
-    return OPTIONS_SUBMODE_NORMAL;
-
- return tabs[current]->Submode();
-}
-
-void OptionsMenu::acceptSubmode()
-{
- if(current > -1 && current < nbitems)
-    tabs[current]->acceptSubmode();
-}
-void OptionsMenu::reloadValues()
-{
- for(int i=0;i<nbitems;i++)
-    tabs[i]->reloadValues();
-}
-
-void OptionsMenu::cancelSubmode()
-{
- if(current > -1 && current < nbitems)
-    tabs[current]->cancelSubmode();
-}
-
-
-int OptionsList::Submode()
-{
- if(current <0 || current >= nbitems)
-    return OPTIONS_SUBMODE_NORMAL;
-
- return listItems[current]->Submode();
-}
-
-void OptionsList::reloadValues()
+void WGuiList::Reload()
 {
  for(int i=0;i<nbitems;i++) {
    if(listItems[i] != NULL)
      listItems[i]->Reload();
  }
 }
-void OptionsList::acceptSubmode()
-{
- if(current > -1 && current < nbitems)
-    listItems[current]->acceptSubmode();
-}
-
-void OptionsList::cancelSubmode()
-{
- if(current > -1 && current < nbitems)
-    listItems[current]->cancelSubmode();
-}
-
 //OptionString
 
 void OptionString::Render(){
 
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  if (hasFocus){
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
-  }else{
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TC].asColor());
-  }
+  mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
 
   if(!bShowValue){
-   mFont->DrawString(displayValue.c_str(),(x+width)/2,y,JGETEXT_CENTER);
+   mFont->DrawString(displayValue.c_str(),x+(width/2),y,JGETEXT_CENTER);
   }
   else{
    mFont->DrawString(displayValue.c_str(),x,y);
@@ -746,37 +631,6 @@ void OptionString::updateValue(){
     options.keypadTitle(displayValue);
 }
 
-void OptionNewProfile::updateValue(){
-    options.keypadStart("",&value);
-    options.keypadTitle(displayValue);
-}
-
-void OptionNewProfile::Update(float dt){
-  if(value != ""){
-    string temp;
-    temp = options[Options::ACTIVE_PROFILE].str;
-    value = options.keypadFinish();
-    if(value == "")
-      return;
-    
-    if(temp != value){
-    options[Options::ACTIVE_PROFILE] = value;
-    options.reloadProfile(false);
-    }
-    value = "";
-    bChanged = true;
-  }
-  OptionItem::Update(dt);
-}
-
-int OptionNewProfile::Submode(){
-  if(bChanged){
-     bChanged=false; //Just about to check it!
-     return OPTIONS_SUBMODE_RELOAD;
-  }  
-  return OPTIONS_SUBMODE_NORMAL;
-}
-
 OptionString::OptionString(int _id, string _displayValue): OptionItem(_id, _displayValue)
 {
   bShowValue=true;
@@ -784,141 +638,507 @@ OptionString::OptionString(int _id, string _displayValue): OptionItem(_id, _disp
     value=options[_id].str;
 }
 
-ostream& OptionString::toString(ostream& out) const{
-return out << "OptionString ::: displayValue : " << displayValue
-	     << " ; id : " << id
-       << " ; value : " << value
-	     << " ; hasFocus : " << hasFocus
-	     << " ; x,y : " << x << "," << y;
-}
-
 OptionTheme::OptionTheme(): OptionDirectory(RESPATH"/themes",Options::ACTIVE_THEME, "Current Theme"){
   addSelection("Default");
   sort(selections.begin(),selections.end());
   initSelections();
-  hasFocus=false;
-  if(selections.size() == 1)
-    bHidden = true;
+  mFocus=false;
+}
+JQuad * OptionTheme::getImage(){
+  char buf[512];
+  string val = selections[value];
+  if(val == "Default")
+    sprintf(buf,"graphics/preview.png");
+  else
+    sprintf(buf,"themes/%s/preview.png",val.c_str());
+
+  return resources.RetrieveQuad(buf,0,0,0,0,"temporary",RETRIEVE_NORMAL,TEXTURE_SUB_EXACT);
 }
 
-void OptionVolume::updateValue(){
-  value+=increment; 
-  if (value>maxValue) 
-    value=0;
+float OptionTheme::getHeight(){
+  return 130;
+};
+void OptionTheme::Render(){
+  JRenderer * renderer = JRenderer::GetInstance();
+  JQuad * q = getImage();
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
+  char buf[512];
+  sprintf(buf,"Theme: %s",selections[value].c_str());
+
+  if(q){
+    float scale = 128 / q->mHeight;
+    renderer->RenderQuad(q,x, y,0,scale,scale);
+  }
+
+  mFont->DrawString(buf,x,y);
 }
 
-OptionVolume::OptionVolume(int id, string displayName, bool music): OptionInteger(id, displayName, 100, 10, 0, "Muted") {
-  bMusic = music;
+bool OptionTheme::Visible(){
+  if(selections.size() <= 1)
+    return false;
+
+  return true;
 }
 
-void OptionEnum::setData()
+void OptionTheme::confirmChange(bool confirmed){
+  if(!confirmed)   
+    value = prior_value;
+  else{
+    setData();
+    prior_value = value;
+    resources.Refresh(); //Update images
+    Reload();
+  }
+}
+string WDecoEnum::lookupVal(int value){
+
+  if(edef == NULL){
+    int id = getId();
+    if(id != INVALID_ID){
+      GameOptionEnum * goEnum = dynamic_cast<GameOptionEnum*>(options.get(getId()));
+      if(goEnum)
+        edef = goEnum->def;
+    }
+  }
+
+  if(edef){
+    int idx = edef->findIndex(value);
+    if(idx != INVALID_ID)
+      return edef->values[idx].second;
+  }
+
+  char buf[32];
+  sprintf(buf,"%d",value);
+  return buf;
+}
+
+void WDecoEnum::Render()
 {
-  EnumDefinition * def = ourDefined();
-  if(def)
-    options[id] = GameOption(def->values[index].first);
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetColor(getColor(WGuiColor::TEXT));
+  JRenderer * renderer = JRenderer::GetInstance();
+  mFont->DrawString(getDisplay().c_str(),getX(),getY());
+  OptionInteger* opt = dynamic_cast<OptionInteger*>(it);
+  if(opt)
+    mFont->DrawString(lookupVal(opt->value).c_str(), getWidth() -10, getY(), JGETEXT_RIGHT);
 }
 
-void OptionEnum::updateValue()
-{
-  EnumDefinition * def = ourDefined();
-  if(!def)
+WDecoEnum::WDecoEnum(WGuiBase * _it, EnumDefinition *_edef) : WGuiDeco(_it) {edef = _edef;}
+
+//WDecoConfirm
+
+WDecoConfirm::WDecoConfirm(JGuiListener * _listener, WGuiBase * _it): WGuiDeco(_it){
+  listener = _listener;
+  confirm = "Confirm";
+  cancel = "Cancel";
+  confirmMenu = NULL;
+  bModal = false;
+  mState = OP_CONFIRMED;
+}
+
+WDecoConfirm::~WDecoConfirm(){
+  SAFE_DELETE(confirmMenu);
+}
+
+void WDecoConfirm::Entering(u32 key){
+  setFocus(true);
+
+  if(it)
+    it->Entering(key);
+
+  SAFE_DELETE(confirmMenu);
+  mState = OP_CONFIRMED; 
+  JLBFont * mFont = resources.GetJLBFont("f3");
+  confirmMenu = NEW SimpleMenu(444, listener,mFont, 50,170);
+  confirmMenu->Add(1,confirm.c_str());
+  confirmMenu->Add(2,cancel.c_str());
+}
+
+bool WDecoConfirm::isModal(){
+  if(bModal || (it && it->isModal()))
+    return true;
+
+  return false;
+}
+
+void WDecoConfirm::setModal(bool val){
+  bModal = val;
+}
+void WDecoConfirm::setData(){
+  if(!it)
     return;
 
-  ++index;
-  if (index >= def->values.size()) index = 0;
+  it->confirmChange(true);
+  it->setData();
 }
 
-void OptionEnum::Render()
-{
-  EnumDefinition * def = ourDefined();
+bool WDecoConfirm::Leaving(u32 key){
+  if(!it)
+    return true;
 
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  if (hasFocus)
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TCH].asColor(ARGB(255,255,255,0)));
-  else
-    mFont->SetColor(options[Metrics::OPTION_ITEM_TC].asColor());
-  JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRoundRect(x-5,y-2,width-x-5,height,2,options[Metrics::OPTION_ITEM_FC].asColor(ARGB(150,50,50,50)));
-  mFont->DrawString(displayValue.c_str(),x,y);
+  //Choice must be confirmed.
+    if(mState == OP_UNCONFIRMED){
+        if(!isModal())
+          setModal(true); 
+        if(!it->Changed())
+          mState = OP_CONFIRMED;
+        else
+          mState = OP_CONFIRMING;
+    }
+    
+    if(mState == OP_CONFIRMED && it->Leaving(key)){
+      setFocus(false);
+      setModal(false);
+      SAFE_DELETE(confirmMenu);
+      return true;
+    }
   
-  if(def)
-    mFont->DrawString(def->values[index].second.c_str(), width -10, y, JGETEXT_RIGHT);
-  else
-    mFont->DrawString("Default", width -10, y, JGETEXT_RIGHT);
+  return false;
 }
-OptionEnum::OptionEnum(int id, string displayValue) : OptionItem(id, displayValue){
-  Reload();
-}
-void OptionEnum::Reload()
-{
-  EnumDefinition * def = ourDefined();
-  if(def != NULL)
-    index = def->findIndex(options[id].number);
+void WDecoConfirm::Update(float dt){
+  if (hasFocus()){
+      JGE * mEngine = JGE::GetInstance();
+      if (mState == OP_CONFIRMED && mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) mState = OP_UNCONFIRMED;
+  
+    if (it && mState != OP_CONFIRMING){
+      it->Update(dt);
+    }
+    else
+      confirmMenu->Update(dt);
+  }
 }
 
-EnumDefinition * OptionEnum::getDefinition(){
+void WDecoConfirm::Overlay(){
+  if (confirmMenu && mState == OP_CONFIRMING)
+    confirmMenu->Render();
+
+  if(it)
+    it->Overlay();
+}
+
+void WDecoConfirm::ButtonPressed(int controllerId, int controlId){
+  if(controllerId == 444){
+    setModal(false); 
+    switch(controlId){
+      case 1:
+        mState = OP_CONFIRMED;      
+        if(it)
+          it->confirmChange(true);
+        break;
+      case 2:
+        mState = OP_CONFIRMED;
+        if(it)
+          it->confirmChange(false);
+        break;
+    }
+  }
+  else
+    it->ButtonPressed(controllerId,controlId);
+}
+
+//WDecoImage
+WGuiImage::WGuiImage(string _file, int _w, int _h, int _margin): WGuiItem("") {
+  imgW = _w;
+  imgH = _h;
+  margin = _margin;
+  filename = _file;
+  exact = false;
+}
+
+float WGuiImage::getHeight(){
+  
+  if(imgH == 0 ){
+    JQuad * q = getImage();
+    if(q)
+      return MAX(height,q->mHeight+(2*margin));
+  }
+    
+  return MAX(height,imgH+(2*margin));
+}
+JQuad * WGuiImage::getImage(){
+  if(exact)
+    return resources.RetrieveQuad(filename,0,0,0,0,"temporary",RETRIEVE_NORMAL,TEXTURE_SUB_EXACT);
+  else
+    return resources.RetrieveTempQuad(filename);
+}
+
+void WGuiImage::Render(){
+  JRenderer * renderer = JRenderer::GetInstance();
+  JQuad * q = getImage();
+  if(q){
+    renderer->RenderQuad(q,x+margin, y+margin,0,1,1);
+  }
+}
+
+WGuiButton::WGuiButton( WGuiBase* _it, int _controller, int _control, JGuiListener * jgl): WGuiDeco(_it) {
+   control = _control;
+   controller = _controller;
+   mListener = jgl;
+}
+
+void WGuiButton::updateValue(){
+  if(mListener)
+    mListener->ButtonPressed(controller, control);
+}
+
+void WGuiButton::Update(float dt){
+  JGE * mEngine = JGE::GetInstance();
+  if (hasFocus()){
+    if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) updateValue();
+  }
+}
+
+PIXEL_TYPE WGuiButton::getColor(int type){
+  if(type == WGuiColor::BACK && hasFocus())
+    return it->getColor(WGuiColor::BACK_HEADER);
+  return it->getColor(type);
+};
+
+WGuiSplit::WGuiSplit(WGuiBase* _left, WGuiBase* _right) : WGuiItem("") {
+  right = _right;
+  left = _left;
+  bRight = false;
+  percentRight = 0.5f;
+  if(!left->Selectable())
+    bRight = true;
+}
+WGuiSplit::~WGuiSplit(){
+  SAFE_DELETE(left);
+  SAFE_DELETE(right);
+}
+
+void WGuiSplit::setData(){
+  left->setData();
+  right->setData();
+}
+void WGuiSplit::setX(float _x){
+  x = _x;
+  left->setX(x);
+  right->setX(x+(1-percentRight)*width);
+}
+void WGuiSplit::setY(float _y){
+  y = _y;
+  left->setY(y);
+  right->setY(y);
+}
+void WGuiSplit::setWidth(float _w){
+  width = _w;
+  if(right->Visible())
+    left->setWidth((1-percentRight)*width);
+  else
+    left->setWidth(width);
+
+  right->setWidth(percentRight*width);
+}
+void WGuiSplit::setHeight(float _h){
+  left->setHeight(_h);
+  right->setHeight(_h);
+  height = _h;
+}
+float WGuiSplit::getHeight(){
+  float lH, rH;
+  lH = left->getHeight();
+  rH = right->getHeight();
+  if(lH > rH)
+    return lH;
+
+  return rH;
+}
+
+void WGuiSplit::Render(){
+  if(right->Visible())
+    right->Render();
+  if(left->Visible())
+    left->Render();
+}
+
+bool WGuiSplit::isModal(){
+  if(bRight)
+    return right->isModal();
+  
+  return left->isModal();
+}
+void WGuiSplit::setModal(bool val){
+  if(bRight)
+    return right->setModal(val);
+  
+  return left->setModal(val);
+}
+
+void WGuiSplit::Update(float dt){
+  JGE * mEngine = JGE::GetInstance();
+
+  if(hasFocus() && !isModal()){
+    if (!bRight && mEngine->GetButtonClick(PSP_CTRL_RIGHT) && right->Selectable())
+      {
+        if(left->Leaving(PSP_CTRL_RIGHT)){
+          bRight = !bRight;
+          right->Entering(PSP_CTRL_RIGHT);
+        }
+      }
+    else if (bRight && mEngine->GetButtonClick(PSP_CTRL_LEFT) && left->Selectable())
+      {
+        if(right->Leaving(PSP_CTRL_LEFT)){
+          bRight = !bRight;
+          left->Entering(PSP_CTRL_LEFT);
+        }
+      }
+  }
+
+  if(bRight)
+    right->Update(dt);
+  else
+    left->Update(dt);
+}
+
+void WGuiSplit::Entering(u32 key){
+  mFocus = true;
+  if(bRight)
+    right->Entering(key);
+  else
+    left->Entering(key);
+}
+bool WGuiSplit::Leaving(u32 key){
+
+   if(bRight){
+     if(right->Leaving(key)){
+      mFocus = false;
+      return true;
+     }
+   }
+   else{
+     if(left->Leaving(key)){
+      mFocus = false;
+      return true;
+     }
+   }
+
+   return false;
+}
+void WGuiSplit::Overlay(){
+  if(bRight)
+    right->Overlay();
+  else
+    left->Overlay();
+}
+void WGuiSplit::ButtonPressed(int controllerId, int controlId)
+{
+  if(bRight)
+    right->ButtonPressed(controllerId, controlId);
+  else
+    left->ButtonPressed(controllerId, controlId);
+}
+void WGuiSplit::Reload(){
+  left->Reload();
+  right->Reload();
+}
+void WGuiSplit::confirmChange(bool confirmed){
+  if(bRight)
+    right->confirmChange(confirmed);
+  else
+    left->confirmChange(confirmed);
+}
+
+//WGuiMenu
+WGuiMenu::WGuiMenu(u32 next  = PSP_CTRL_RIGHT, u32 prev = PSP_CTRL_LEFT){
+  buttonNext = next;
+  buttonPrev = prev;
+  currentItem = 0;
+}
+WGuiMenu::~WGuiMenu(){
+  for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
+    SAFE_DELETE(*it);
+  items.clear();
+}
+
+void WGuiMenu::setData(){
+  for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
+    (*it)->setData();
+};
+
+void WGuiMenu::Reload(){
+ for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
+    (*it)->Reload();
+};
+
+void WGuiMenu::Render(){
+  for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
+    (*it)->Render();
+}
+
+void WGuiMenu::ButtonPressed(int controllerId, int controlId){
+  WGuiBase * it = Current();
+  if(!it) return;
+  it->ButtonPressed(controllerId,controlId);
+}
+
+WGuiBase * WGuiMenu::Current(){
+  if(currentItem >= 0 && currentItem < (int) items.size())
+    return items[currentItem];
   return NULL;
 }
-
-ostream& OptionEnum::toString(ostream& out) const
-{
-  EnumDefinition * def = ourDefined();
-
-  if(!def)
-    return (out << "OptionEnum ::: INVALID");
-
-  return (out << "OptionEnum ::: " << def->values[index].second);
+void WGuiMenu::Add(WGuiBase * it){
+  if(it)
+    items.push_back(it);
 }
 
-EnumDefinition * OptionClosedHand::definition = NULL;
-
-EnumDefinition * OptionClosedHand::getDefinition(){
- if(!definition){
-    definition = NEW EnumDefinition();
-    definition->values.push_back(EnumDefinition::assoc(INVISIBLE, "invisible"));
-    definition->values.push_back(EnumDefinition::assoc(VISIBLE, "visible"));
+//WGuiTabMenu
+void WGuiMenu::Update(float dt){
+  JGE * mEngine = JGE::GetInstance();
+  
+  WGuiBase * c = Current();
+  if(c && !c->isModal()){
+    if (mEngine->GetButtonClick(buttonPrev)){
+      if (currentItem > 0 && c->Leaving(buttonPrev)){
+          currentItem--;
+          c = Current();
+          c->Entering(buttonPrev);
+      }
+    }
+    else if (mEngine->GetButtonClick(buttonNext)){
+      if (currentItem < (int)items.size()-1 && c->Leaving(buttonNext)){
+          currentItem++;
+          c = Current();
+          c->Entering(buttonNext);
+        }
+    }
   }
- return definition;
+  if(c)
+    c->Update(dt);
 }
 
-OptionClosedHand::OptionClosedHand(int id, string displayName) : OptionEnum(id, displayName)
-{
-  getDefinition();
-  Reload();
-};
-
-EnumDefinition * OptionHandDirection::definition = NULL;
-
-EnumDefinition * OptionHandDirection::getDefinition(){
- if(!definition){
-    definition = NEW EnumDefinition();
-    definition->values.push_back(EnumDefinition::assoc(VERTICAL, "vertical"));
-    definition->values.push_back(EnumDefinition::assoc(HORIZONTAL, "horizontal"));
+void WGuiTabMenu::Add(WGuiBase * it){
+  if (it){
+    it->setY(40);
+    it->setX(10);
+    WGuiMenu::Add(it);
   }
- return definition;
 }
 
-OptionHandDirection::OptionHandDirection(int id, string displayName) : OptionEnum(id, displayName)
-{
-  getDefinition();
-  Reload();
-};
+void WGuiTabMenu::Render(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  JRenderer * renderer = JRenderer::GetInstance();
 
-EnumDefinition * OptionManaDisplay::definition = NULL;
+  if (!items.size())
+    return;
 
-EnumDefinition * OptionManaDisplay::getDefinition(){
- if(!definition){
-    definition = NEW EnumDefinition();
-    definition->values.push_back(EnumDefinition::assoc(STATIC, "simple"));
-    definition->values.push_back(EnumDefinition::assoc(DYNAMIC, "Eye candy"));
-    definition->values.push_back(EnumDefinition::assoc(BOTH, "Both"));
+  int offset = 0;
+  
+  for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++){
+    int w = mFont->GetStringWidth((*it)->getDisplay().c_str());
+    mFont->SetColor((*it)->getColor(WGuiColor::TEXT_TAB));
+    renderer->FillRoundRect(offset+5,5,w + 5,25,2,(*it)->getColor(WGuiColor::BACK_TAB));
+    mFont->DrawString((*it)->getDisplay().c_str(),offset+10,10);
+    offset += w + 10 + 2;
   }
- return definition;
+
+  WGuiBase * c = Current();
+  if(c)
+    c->Render();
 }
 
-OptionManaDisplay::OptionManaDisplay(int id, string displayName) : OptionEnum(id, displayName)
-{
-  getDefinition();
-  Reload();
-};
-
+void WGuiTabMenu::save(){
+  setData();  
+  ::options.save();
+}

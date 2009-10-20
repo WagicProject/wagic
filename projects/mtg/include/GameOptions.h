@@ -16,12 +16,17 @@ using std::string;
 
 #define INVALID_OPTION -1
 
-//Note to self-- provide some form of options initialization.
-
 class Options {
 public:
   friend class GameSettings;
   enum {
+    //Global settings
+    ACTIVE_PROFILE,
+    DIFFICULTY_MODE_UNLOCKED,
+    MOMIR_MODE_UNLOCKED,
+    EVILTWIN_MODE_UNLOCKED,
+    RANDOMDECK_MODE_UNLOCKED,    
+    LAST_GLOBAL = RANDOMDECK_MODE_UNLOCKED,
     //Values /must/ match ordering in optionNames, or everything loads wrong.
     //Profile settings    
     ACTIVE_THEME,
@@ -54,44 +59,6 @@ public:
     INTERRUPT_ENDTURN,
     INTERRUPT_CLEANUP,
     INTERRUPT_AFTEREND,
-    //Global settings
-    ACTIVE_PROFILE,
-    DIFFICULTY_MODE_UNLOCKED,
-    MOMIR_MODE_UNLOCKED,
-    EVILTWIN_MODE_UNLOCKED,
-    RANDOMDECK_MODE_UNLOCKED,    
-    //Theme metrics. These will be phased out fairly soon.
-    THEME_METRICS, //Start of theme metrics.
-    LOADING_TC = THEME_METRICS,
-    STATS_TC,
-    SCROLLER_TC,
-    SCROLLER_FC,
-    MAINMENU_TC,
-    POPUP_MENU_FC,
-    POPUP_MENU_TC,
-    POPUP_MENU_TCH,
-    MSG_FAIL_TC,
-    OPTION_ITEM_FC,
-    OPTION_ITEM_TC,
-    OPTION_ITEM_TCH,
-    OPTION_HEADER_FC,
-    OPTION_HEADER_TC,
-    OPTION_SCROLLBAR_FC,
-    OPTION_SCROLLBAR_FCH,  
-    OPTION_TAB_FC,
-    OPTION_TAB_FCH,  
-    OPTION_TAB_TC,
-    OPTION_TAB_TCH,  
-    OPTION_TEXT_TC,
-    OPTION_TEXT_FC,
-    KEY_TC,
-    KEY_TCH,  
-    KEY_FC,
-    KEY_FCH,
-    KEYPAD_FC, 
-    KEYPAD_FCH, 
-    KEYPAD_TC,
-
     LAST_NAMED, //Any option after this does not look up in optionNames.
     SET_UNLOCKS = LAST_NAMED + 1, //For sets.
   };
@@ -106,51 +73,19 @@ private:
   static const char* optionNames[];
 };
 
-struct Metrics {
-  //*_TC is text-color, *_TCH is highlighted text color
-  //*_FC is fill-color, *_FCH is highlighted fill color
-  //*_B and *_BH are for secondary text/fill colors, if needed
-  //*_X, *_Y, *_W, *_H are x, y, width and height.
-  enum {
-    LOADING_TC = Options::THEME_METRICS,
-    STATS_TC,
-    SCROLLER_TC,
-    SCROLLER_FC,
-    MAINMENU_TC,
-    POPUP_MENU_FC,
-    POPUP_MENU_TC,
-    POPUP_MENU_TCH,
-    MSG_FAIL_TC,
-    OPTION_ITEM_FC,
-    OPTION_ITEM_TC,
-    OPTION_ITEM_TCH,
-    OPTION_HEADER_FC,
-    OPTION_HEADER_TC,
-    OPTION_SCROLLBAR_FC,
-    OPTION_SCROLLBAR_FCH,  
-    OPTION_TAB_FC,
-    OPTION_TAB_FCH,  
-    OPTION_TAB_TC,
-    OPTION_TAB_TCH,  
-    OPTION_TEXT_TC,
-    OPTION_TEXT_FC,
-    KEY_TC,
-    KEY_TCH,  
-    KEY_FC,
-    KEY_FCH,
-    KEYPAD_FC, 
-    KEYPAD_FCH, 
-    KEYPAD_TC,
-  };
-};
-
 class GameOption {
 public:
+  virtual ~GameOption() {};
   int number;
   string str;
   //All calls to asColor should include a fallback color for people without a theme.
   PIXEL_TYPE asColor(PIXEL_TYPE fallback = ARGB(255,255,255,255));
-  bool isDefault(); //Returns true when  number is 0 abd string is "" or "Default"
+
+  virtual bool isDefault(); //Returns true when number is 0 and string is "" or "Default"
+  virtual string menuStr(); //The string we'll use for GameStateOptions.
+  virtual bool write(std::ofstream * file, string name);
+  virtual bool read(string input);
+
   GameOption(int value = 0);
   GameOption(string);
   GameOption(int, string);
@@ -163,26 +98,68 @@ struct EnumDefinition {
   vector<assoc> values;
 };
 
+class GameOptionEnum: public GameOption {
+public:
+  virtual string menuStr();
+  virtual bool write(std::ofstream * file, string name);
+  virtual bool read(string input);
+  EnumDefinition * def;
+};
+
+class OptionVolume: public EnumDefinition{
+public:
+  enum { MUTE = 0, MAX = 100 };
+  static EnumDefinition * getInstance() {return &mDef;};
+private:
+  OptionVolume();
+  static OptionVolume mDef;
+};
+class OptionClosedHand: public EnumDefinition {
+public:
+  enum { INVISIBLE = 0, VISIBLE = 1 };
+  static EnumDefinition * getInstance() {return &mDef;};
+private:  
+  OptionClosedHand();
+  static OptionClosedHand mDef;
+};
+class OptionHandDirection: public EnumDefinition {
+public:
+  enum { VERTICAL = 0, HORIZONTAL = 1};
+  static EnumDefinition * getInstance() {return &mDef;};
+private:
+  OptionHandDirection();
+  static OptionHandDirection mDef;
+};
+class OptionManaDisplay: public EnumDefinition {
+public:
+  enum { DYNAMIC = 0, STATIC = 1, BOTH = 2};
+  static EnumDefinition * getInstance() {return &mDef;};
+private:
+  OptionManaDisplay();
+  static OptionManaDisplay mDef;
+};
+class OptionDifficulty: public EnumDefinition {
+public:
+  enum { NORMAL = 0, HARD = 1, HARDER = 2, EVIL = 3};
+  static EnumDefinition * getInstance() {return &mDef;};
+private:
+  OptionDifficulty();
+  static OptionDifficulty mDef;
+};
+
 class GameOptions {
  public:
   string mFilename;
   int save();
   int load();
 
+  GameOption * get(int);
   GameOption& operator[](int);
   GameOptions(string filename);
   ~GameOptions();
 
  private:
-  bool load_option(int id, string input); //Sends an option to the proper reader.
-  bool read_default(int id, string input);
-  bool read_enum(int id, string input, EnumDefinition * def);
-
-  bool save_option(std::ofstream * file, int id, string name, GameOption * opt); //Sends an option to the proper writer.
-  bool write_default(std::ofstream * file, string name, GameOption * opt);
-  bool write_enum(std::ofstream * file, string name, GameOption * opt, EnumDefinition * def);
-
-  map<int,GameOption> values;
+  vector<GameOption*> values;
 };
 
 class GameSettings{
@@ -210,10 +187,11 @@ public:
   void checkProfile();  //Confirms that a profile is loaded and contains a collection.
   void createUsersFirstDeck(int setId); 
 
+  GameOption * get(int);
   GameOption& operator[](int);
+
   GameOptions* profileOptions;
   GameOptions* globalOptions;
-  GameOptions* themeOptions;
 
   static GameOption invalid_option;
 

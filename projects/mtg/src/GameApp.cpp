@@ -36,7 +36,6 @@ GameApp::GameApp(): JApp()
    nbUpdates = 0;
    totalFPS = 0;
 #endif
-
   mScreenShotCount = 0;
 
   for (int i=0; i < MAX_STATE	; i++)

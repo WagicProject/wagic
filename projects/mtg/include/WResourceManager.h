@@ -44,15 +44,16 @@ enum ENUM_RETRIEVE_STYLE{
 };
 
 enum ENUM_CACHE_SUBTYPE{
-  CACHE_NORMAL =  (1<<0),          //Use default values. Not really a flag.
+  CACHE_NORMAL =  (1<<0),    //Use default values. Not really a flag.
   CACHE_EXISTING = (1<<1),   //Retrieve it only if it already exists
   
   //Because these bits only modify how a cached resource's Attempt() is called,
   //We can use them over and over for each resource type.
-  TEXTURE_SUB_CARD = (1<<2), //Retrieve using cardFile, not graphicsFile.
-  TEXTURE_SUB_AVATAR = (1<<5), //Retrieve using avatarFile, not graphicsFile.
-  TEXTURE_SUB_THUMB = (1<<3),//Retrieve prepending "thumbnails\" to the filename.
-  TEXTURE_SUB_5551 = (1<<4), //For textures. If we have to allocate, use RGBA5551.
+  TEXTURE_SUB_EXACT = (1<<2),      //Don't do any fiddling with the filename.
+  TEXTURE_SUB_CARD = (1<<3), //Retrieve using cardFile, not graphicsFile.
+  TEXTURE_SUB_AVATAR = (1<<4), //Retrieve using avatarFile, not graphicsFile.
+  TEXTURE_SUB_THUMB = (1<<5),//Retrieve prepending "thumbnails\" to the filename.
+  TEXTURE_SUB_5551 = (1<<6), //For textures. If we have to allocate, use RGBA5551.
 
 };
 

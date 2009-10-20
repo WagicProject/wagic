@@ -319,10 +319,10 @@ void SimplePad::Render(){
   if(bShowNumpad)
     offY += kH+14;
   //Draw Keypad Background.
-  renderer->FillRoundRect(mX-kW,mY-kH,(kW+12)*11,(kH+14)*5+offY,2,options[Metrics::POPUP_MENU_FC].asColor(ARGB(180,0,0,0)));
+  renderer->FillRoundRect(mX-kW,mY-kH,(kW+12)*11,(kH+14)*5+offY,2,ARGB(180,0,0,0));
   offY = vSpacing;
   //Draw text entry bubble
-  renderer->FillRoundRect(mX-kW/2,mY+offY,(kW+12)*9+kW/2,kH,2,options[Metrics::KEYPAD_FCH].asColor(ARGB(255,255,255,255)));
+  renderer->FillRoundRect(mX-kW/2,mY+offY,(kW+12)*9+kW/2,kH,2,ARGB(255,255,255,255));
 
   //Draw text-entry title, if we've got one.
   if(title != ""){
@@ -335,16 +335,16 @@ void SimplePad::Render(){
   {
     kW = mFont->GetStringWidth(buffer.substr(cursor,1).c_str());
     renderer->FillRoundRect(mX+mFont->GetStringWidth(buffer.substr(0,cursor).c_str()),mY+kH-4,
-      kW,4,2,options[Metrics::KEY_FCH].asColor(ARGB(150,150,150,0)));    
+      kW,4,2,ARGB(150,150,150,0));    
   }
   else
   {
     cursor = buffer.size();
     renderer->FillRoundRect(mX+mFont->GetStringWidth(buffer.substr(0,cursor).c_str()),mY+kH-4,
-      kW,4,2,options[Metrics::KEY_FCH].asColor(ARGB(150,150,150,0)));    
+      kW,4,2,ARGB(150,150,150,0));    
   }
   
-  mFont->SetColor(options[Metrics::KEYPAD_TC].asColor(ARGB(255,0,0,0)));
+  mFont->SetColor(ARGB(255,0,0,0));
   mFont->DrawString(buffer.c_str(),mX,mY);
   offY += kH + 12;
 
@@ -399,12 +399,12 @@ void SimplePad::Render(){
       kW = mFont->GetStringWidth(keys[x]->displayValue.c_str());
       //Render a key.
       if(x != selected){
-        renderer->FillRoundRect(mX+offX-4,mY+offY-4,kW+8,kH+4,2,options[Metrics::POPUP_MENU_FC].asColor(ARGB(180,50,50,50)));
-        mFont->SetColor(options[Metrics::POPUP_MENU_TCH].asColor(ARGB(255,255,255,0)));
+        renderer->FillRoundRect(mX+offX-4,mY+offY-4,kW+8,kH+4,2,ARGB(180,50,50,50));
+        mFont->SetColor(ARGB(255,255,255,0));
       }
       else{
-        renderer->FillRoundRect(mX+offX-4,mY+offY-4,kW+8,kH+4,2,options[Metrics::POPUP_MENU_FC].asColor(ARGB(255,100,100,100)));
-        mFont->SetColor(options[Metrics::POPUP_MENU_TC].asColor(ARGB(255,255,255,255)));
+        renderer->FillRoundRect(mX+offX-4,mY+offY-4,kW+8,kH+4,2,ARGB(255,100,100,100));
+        mFont->SetColor(ARGB(255,255,255,255));
       }
 
       char vkey[2];

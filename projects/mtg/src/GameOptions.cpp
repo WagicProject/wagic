@@ -10,6 +10,12 @@
 #include <JGE.h>
 
 const char * Options::optionNames[] = {
+//Global options
+  "Profile",
+  "prx_handler",
+  "prx_rimom",
+  "prx_eviltwin",
+  "prx_rnddeck",
 //Options set on a per-profile basis
   "Theme",
   "Mode",
@@ -40,42 +46,6 @@ const char * Options::optionNames[] = {
   "interruptEndTurn",
   "interruptCleanup",
   "interruptAfterEnd",
-//Global options
-  "_gProfile",
-  "_gprx_handler",
-  "_gprx_rimom",
-  "_gprx_eviltwin",
-  "_gprx_rnddeck",
-//Theme metrics
-  "_tLoadingTC",
-  "_tStatsTC",
-  "_tScrollerTC",
-  "_tScrollerFC",
-  "_tMainMenuTC",
-  "_tPopupMenuFC",
-  "_tPopupMenuTC",
-  "_tPopupMenuTCH",
-  "_tMsgFailTC",
-  "_tOptionItemFC",
-  "_tOptionItemTC",
-  "_tOptionItemTCH",
-  "_tOptionHeaderFC",
-  "_tOptionHeaderTC",
-  "_tOptionScrollbarFC",
-  "_tOptionScrollbarFCH",  
-  "_tOptionHeaderFC",
-  "_tOptionHeaderFCH",  
-  "_tOptionTabTC",
-  "_tOptionHeaderTCH",  
-  "_tOptionTextTC",
-  "_tOptionTextFC",    
-  "_tKeyTC",
-  "_tKeyTCH",
-  "_tKeyFC",  
-  "_tKeyFCH", 
-  "_tKeypadFC",  
-  "_tKeypadFCH",  
-  "_tKeypadTC"
 };
 int Options::getID(string name){
   if(!name.size())
@@ -184,39 +154,6 @@ int Options::optionInterrupt(int gamePhase){
   return INVALID_OPTION;
 }
 
-//Theme metrics
-/*
-const string Metrics::LOADING_TC = "_tLoadingTC";
-const string Metrics::STATS_TC = "_tStatsTC";
-const string Metrics::SCROLLER_TC = "_tScrollerTC";
-const string Metrics::SCROLLER_FC = "_tScrollerFC";
-const string Metrics::MAINMENU_TC = "_tMainMenuTC";
-const string Metrics::POPUP_MENU_FC = "_tPopupMenuFC";
-const string Metrics::POPUP_MENU_TC = "_tPopupMenuTC";
-const string Metrics::POPUP_MENU_TCH = "_tPopupMenuTCH";
-const string Metrics::MSG_FAIL_TC = "_tMsgFailTC";
-const string Metrics::OPTION_ITEM_FC = "_tOptionItemFC";
-const string Metrics::OPTION_ITEM_TC = "_tOptionItemTC";
-const string Metrics::OPTION_ITEM_TCH = "_tOptionItemTCH";
-const string Metrics::OPTION_HEADER_FC = "_tOptionHeaderFC";
-const string Metrics::OPTION_HEADER_TC = "_tOptionHeaderTC";
-const string Metrics::OPTION_SCROLLBAR_FC = "_tOptionScrollbarFC";
-const string Metrics::OPTION_SCROLLBAR_FCH = "_tOptionScrollbarFCH";  
-const string Metrics::OPTION_TAB_FC = "_tOptionHeaderFC";
-const string Metrics::OPTION_TAB_FCH = "_tOptionHeaderFCH";  
-const string Metrics::OPTION_TAB_TC = "_tOptionTabTC";
-const string Metrics::OPTION_TAB_TCH = "_tOptionHeaderTCH";  
-const string Metrics::OPTION_TEXT_TC = "_tOptionTextTC";
-const string Metrics::OPTION_TEXT_FC = "_tOptionTextFC";    
-const string Metrics::KEY_TC = "_tKeyTC";
-const string Metrics::KEY_TCH = "_tKeyTCH";
-const string Metrics::KEY_FC = "_tKeyFC";  
-const string Metrics::KEY_FCH = "_tKeyFCH"; 
-const string Metrics::KEYPAD_FC = "_tKeypadFC";  
-const string Metrics::KEYPAD_FCH = "_tKeypadFCH";  
-const string Metrics::KEYPAD_TC = "_tKeypadTC";  */
-
-
 GameOption::GameOption(int value) : number(value){}
 GameOption::GameOption(string value) : number(0), str(value) {}
 GameOption::GameOption(int num, string str) : number(num), str(str) {}
@@ -267,16 +204,10 @@ PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback)
   return ARGB(color[3],color[0],color[1],color[2]);  
 }
 
-GameOptions::GameOptions(string filename){
-  mFilename = filename;
-  load();
-}
-
-bool GameOptions::read_default(int id, string input){
+bool GameOption::read(string input){
   bool bNumeric = true;
   
   if(!input.size()){
-    values[id] = GameOption(0);
     return true; //Default reader doesn't care about invalid formatting.
   }
 
@@ -289,41 +220,47 @@ bool GameOptions::read_default(int id, string input){
   }
 
   if(bNumeric)
-    values[id] = GameOption(atoi(input.c_str()));
+    number = atoi(input.c_str());
   else
-    values[id] = GameOption(input);
-
+    str = input;
   return true;
 }
-bool GameOptions::read_enum(int id, string input, EnumDefinition * def){
-  if(!def) 
+string GameOption::menuStr(){
+  if(number){
+    char buf[12];
+    sprintf(buf,"%d",number);
+  }
+
+  if(str.size())
+    return str;
+
+  return "0";
+}
+bool GameOption::write(std::ofstream * file, string name){
+  char writer[1024];
+
+  if(!file)
     return false;
 
-  std::transform(input.begin(),input.end(),input.begin(),::tolower);
+   if(str ==""){
+     	if(number == 0) //This is absolutely default. No need to write it.
+	      return true;
 
-  vector<EnumDefinition::assoc>::iterator it;
-  for(it=def->values.begin();it != def->values.end();it++){
-    if(it->second == input){
-      values[id] = GameOption(it->first);
-      return true;
-    }
-  }
+      //It's a number!
+      sprintf(writer,"%s=%d\n", name.c_str(), number);
+	  }
+	  else
+	    sprintf(writer,"%s=%s\n", name.c_str(), str.c_str());
   
-  return false;
+  (*file)<<writer;
+  return true;
 }
-bool GameOptions::load_option(int id, string input){
-  switch(id){
-   case Options::HANDDIRECTION:
-     return read_enum(id, input, OptionHandDirection::getDefinition());
-   case Options::CLOSEDHAND:
-     return read_enum(id, input, OptionClosedHand::getDefinition());
-   case Options::MANADISPLAY:
-     return read_enum(id, input, OptionManaDisplay::getDefinition());
-   default:
-     return read_default(id, input);
-  }
 
-  return false;
+
+GameOptions::GameOptions(string filename){
+  mFilename = filename;
+  values.reserve(Options::LAST_NAMED); //Reserve space for all named options.
+  load();
 }
 
 int GameOptions::load(){
@@ -341,79 +278,25 @@ int GameOptions::load(){
       if(id == INVALID_OPTION)
         continue;
 
-      load_option(id,val);
+      (*this)[id].read(val);
     }
     file.close();
   }
   return 1;
 }
-
-bool GameOptions::save_option(std::ofstream * file, int id, string name, GameOption * opt){
-  if(!opt)
-    return false;
-
-  switch(id){
-   case Options::HANDDIRECTION:
-     return write_enum(file, name, opt, OptionHandDirection::getDefinition());
-   case Options::CLOSEDHAND:
-     return write_enum(file, name, opt, OptionClosedHand::getDefinition());
-   case Options::MANADISPLAY:
-     return write_enum(file, name, opt, OptionManaDisplay::getDefinition());
-   default:
-     return write_default(file, name, opt);
-  }
-
-  return false;
-}
-
-bool GameOptions::write_default(std::ofstream * file, string name, GameOption * opt){
-  char writer[1024];
-
-  if(!file || !opt)
-    return false;
-
-   if(opt->str ==""){
-     	if(opt->number == 0) //This is absolutely default. No need to write it.
-	      return true;
-
-      //It's a number!
-      sprintf(writer,"%s=%d\n", name.c_str(), opt->number);
-	  }
-	  else
-	    sprintf(writer,"%s=%s\n", name.c_str(), opt->str.c_str());
-  
-  (*file)<<writer;
-  return true;
-}
-
-bool GameOptions::write_enum(std::ofstream * file, string name, GameOption * opt, EnumDefinition * def){
-
-  if(!file || !def || !opt)
-    return false;
-
-  if(opt->number < 0 || opt->number >= (int) def->values.size())
-    return false;
-
-  char writer[1024];
-  sprintf(writer,"%s=%s\n", name.c_str(), def->values[opt->number].second.c_str());
-
-  (*file)<<writer;
-  return true;
-}
-
 int GameOptions::save(){
   std::ofstream file(mFilename.c_str());
   if (file){
-    map<int, GameOption>::iterator it;
-    for ( it=values.begin() ; it != values.end(); it++ ){
+    for ( int x=0; x < (int) values.size(); x++ ){
       
       //Check that this is a valid option.
-      string name = Options::getName(it->first);
-      if(!name.size())
+      string name = Options::getName(x);
+      GameOption * opt = get(x);
+      if(!name.size() || !opt)
         continue;
 
       //Save it.
-      save_option(&file, it->first, name, &it->second);
+      opt->write(&file, name);
     }
     
     file.close();
@@ -421,11 +304,58 @@ int GameOptions::save(){
   return 1;
 }
 
-GameOption& GameOptions::operator[](int optionID) {
+GameOption& GameOptions::operator[](int optionID){
+  GameOption * go = get(optionID);
+  if(!go)
+    return GameSettings::invalid_option;
+
+  return *go;
+}
+
+GameOption * GameOptions::get(int optionID) {
+  GameOption * go = NULL;
+  GameOptionEnum * goEnum = NULL;
+
+  //Invalid options!
+  if(optionID < 0)
+    return NULL;
+
+  //Option doesn't exist, so build it
+  int x = (int) values.size();
+  values.reserve(optionID);
+
+  while(x <= optionID){
+      switch(optionID){
+        case Options::HANDDIRECTION:
+          goEnum = NEW GameOptionEnum();
+          goEnum->def = OptionHandDirection::getInstance();
+          go = goEnum;
+          break;
+        case Options::CLOSEDHAND:
+          goEnum = NEW GameOptionEnum();
+          goEnum->def = OptionClosedHand::getInstance();
+          go = goEnum;
+          break;
+        case Options::MANADISPLAY:
+          goEnum = NEW GameOptionEnum();
+          goEnum->def = OptionManaDisplay::getInstance();
+          go = goEnum;
+          break;
+       default:
+          go = NEW GameOption();
+          break;
+    }
+    values.push_back(go);
+    x++;
+  }
+
   return values[optionID];
 }
 
 GameOptions::~GameOptions(){
+  for(vector<GameOption*>::iterator it=values.begin();it!=values.end();it++)
+    SAFE_DELETE(*it);
+  values.clear();
 }
 
 GameSettings options;
@@ -435,7 +365,6 @@ GameSettings::GameSettings()
   globalOptions = NULL;
   theGame = NULL;
   profileOptions = NULL;
-  themeOptions = NULL;
   //reloadProfile should be before using options.
 }
 
@@ -443,41 +372,30 @@ GameSettings::~GameSettings(){
   //Destructor no longer saves, to prevent conflicts when MtgSets::SetsList == NULL
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
-  SAFE_DELETE(themeOptions);
   SAFE_DELETE(keypad);
-  SAFE_DELETE(OptionHandDirection::definition);
-  SAFE_DELETE(OptionClosedHand::definition);
-  SAFE_DELETE(OptionManaDisplay::definition);
 }
 
 GameOption GameSettings::invalid_option = GameOption(0);
 
 GameOption& GameSettings::operator[](int optionID){
+  GameOption * go = get(optionID);
+  if(!go)
+    return invalid_option;
+
+  return *go;
+}
+
+GameOption* GameSettings::get(int optionID){
   string option_name = Options::getName(optionID);
   
-  //Last chance sanity checking.
-  if(!option_name.size()){
-    OutputDebugString("Error: Accessing invalid option.\n");
-    invalid_option.number = 0;
-    invalid_option.str = "";
-    return invalid_option;  
-  }
+  if(optionID < 0)
+    return &invalid_option;
+  else if(globalOptions && optionID <= Options::LAST_GLOBAL)
+    return globalOptions->get(optionID);
+  else if(profileOptions)
+    return profileOptions->get(optionID);
 
-  if(option_name.size() > 2){
-   if(option_name[0] == '_' && option_name[1] == 't'){
-     if(themeOptions)
-      return (*themeOptions)[optionID];
-    }
-   else if(option_name[0] == '_' && option_name[1] == 'g'){
-    if(globalOptions)
-      return (*globalOptions)[optionID];
-   }
-  }
-
-  if(profileOptions)
-    return (*profileOptions)[optionID];
-
-  return invalid_option;
+  return &invalid_option;
 }
 
 
@@ -543,31 +461,18 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
 
 void GameSettings::reloadProfile(bool images){
     SAFE_DELETE(profileOptions);
-    SAFE_DELETE(themeOptions);
     checkProfile();
     if(images)
       resources.Refresh(); //Update images
 }
 
 void GameSettings::checkProfile(){
-    char buf[512];
-
     if(!globalOptions)
       globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
     //If it doesn't exist, load current profile.
     if(!profileOptions)
       profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS,"",false));
-    
-    //Load theme options
-    if(!themeOptions){
-      if(!profileOptions || (*profileOptions)[Options::ACTIVE_THEME].isDefault())
-       sprintf(buf,RESPATH"/graphics/metrics.txt");
-      else
-       sprintf(buf,RESPATH"/themes/%s/metrics.txt",(*profileOptions)[Options::ACTIVE_THEME].str.c_str());
-      
-      themeOptions = NEW GameOptions(buf); 
-    }
 
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
@@ -694,5 +599,74 @@ int EnumDefinition::findIndex(int value){
       return it - values.begin();
   }
 
-  return 0; //Default!
+  return INVALID_ID; //Failed!
 }
+
+string GameOptionEnum::menuStr(){
+  if(def){
+    int idx = def->findIndex(number);
+    if(idx != INVALID_ID)
+      return def->values[idx].second;
+  }
+
+  char buf[32];
+  sprintf(buf,"%d",number);
+  return buf;
+}
+
+bool GameOptionEnum::write(std::ofstream * file, string name){
+  if(!file || !def || number < 0 || number >= (int) def->values.size())
+   return false;
+
+  char writer[1024];
+  sprintf(writer,"%s=%s\n", name.c_str(), menuStr().c_str());
+
+  (*file)<<writer;
+  return true;
+}
+
+bool GameOptionEnum::read(string input){
+  if(!def) 
+    return false;
+
+  std::transform(input.begin(),input.end(),input.begin(),::tolower);
+
+  vector<EnumDefinition::assoc>::iterator it;
+  for(it=def->values.begin();it != def->values.end();it++){
+    if(it->second == input){
+      number = it->first;
+      return true;
+    }
+  }
+ 
+  return false;
+}
+OptionClosedHand OptionClosedHand::mDef;
+OptionClosedHand::OptionClosedHand(){  
+    mDef.values.push_back(EnumDefinition::assoc(INVISIBLE, "invisible"));
+    mDef.values.push_back(EnumDefinition::assoc(VISIBLE, "visible"));
+};
+
+OptionHandDirection OptionHandDirection::mDef;
+OptionHandDirection::OptionHandDirection(){      
+    mDef.values.push_back(EnumDefinition::assoc(VERTICAL, "vertical"));
+    mDef.values.push_back(EnumDefinition::assoc(HORIZONTAL, "horizontal"));
+};
+OptionManaDisplay OptionManaDisplay::mDef;
+OptionManaDisplay::OptionManaDisplay(){  
+    mDef.values.push_back(EnumDefinition::assoc(STATIC, "Simple"));
+    mDef.values.push_back(EnumDefinition::assoc(DYNAMIC, "Eye candy"));
+    mDef.values.push_back(EnumDefinition::assoc(BOTH, "Both"));
+};
+OptionVolume OptionVolume::mDef;
+OptionVolume::OptionVolume(){  
+    mDef.values.push_back(EnumDefinition::assoc(MUTE, "Mute"));
+    mDef.values.push_back(EnumDefinition::assoc(MAX, "Max"));
+};
+OptionDifficulty OptionDifficulty::mDef;
+OptionDifficulty::OptionDifficulty(){  
+    mDef.values.push_back(EnumDefinition::assoc(NORMAL, "Normal"));
+    mDef.values.push_back(EnumDefinition::assoc(HARDER, "Harder"));
+    mDef.values.push_back(EnumDefinition::assoc(HARD, "Hard"));
+    mDef.values.push_back(EnumDefinition::assoc(EVIL, "Evil"));
+};

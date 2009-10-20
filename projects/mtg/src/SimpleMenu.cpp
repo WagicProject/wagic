@@ -117,7 +117,7 @@ void SimpleMenu::Render() {
   float height = mHeight;
   if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
-  renderer->FillRect(mX, mY, mWidth, height, options[Metrics::POPUP_MENU_FC].asColor(ARGB(180,0,0,0)));
+  renderer->FillRect(mX, mY, mWidth, height, ARGB(180,0,0,0));
 
   drawVertPole(mX, mY - 16, height + 32);
   drawVertPole(mX + mWidth, mY - 16, height + 32);
@@ -135,9 +135,9 @@ void SimpleMenu::Render() {
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7) {
       if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
         resources.GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
-	      mFont->SetColor(options[Metrics::POPUP_MENU_TCH].asColor(ARGB(255,255,255,0)));
+	      mFont->SetColor(ARGB(255,255,255,0));
       } else {
-        mFont->SetColor(options[Metrics::POPUP_MENU_TC].asColor(ARGB(150,255,255,255)));
+        mFont->SetColor(ARGB(150,255,255,255));
       }
 	    (static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
     }

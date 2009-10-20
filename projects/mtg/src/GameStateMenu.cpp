@@ -66,7 +66,6 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
   gameTypeMenu = NULL;
   mSplash = NULL;
   mBg = NULL;
-  mMovingW = NULL;
   //bgMusic = NULL;
   timeIndex = 0;
   angleMultiplier = MIN_ANGLE_MULTIPLIER;
@@ -81,6 +80,7 @@ GameStateMenu::~GameStateMenu() {}
 void GameStateMenu::Create()
 {
   mDip = NULL;
+  mGuiController = NULL;
   mReadConf = 0;
   mCurrentSetName[0] = 0;
 
@@ -97,18 +97,6 @@ void GameStateMenu::Create()
 	  }
   }
 
-  JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
-  mFont->SetColor(options[Metrics::LOADING_TC].asColor());
-  mGuiController = NEW JGuiController(100, this);
-  if (mGuiController)
-    {
-      mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"graphics/particle1.psi",resources.GetQuad("particles"),  true));
-      mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"graphics/particle2.psi",resources.GetQuad("particles")));
-      mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"graphics/particle3.psi",resources.GetQuad("particles")));
-      mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"graphics/particle4.psi",resources.GetQuad("particles")));
-      mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"graphics/particle5.psi",resources.GetQuad("particles")));
-    }
-
   currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
   scroller = NEW TextScroller(resources.GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
   scrollerSet = 0;
@@ -122,13 +110,25 @@ void GameStateMenu::Destroy()
   SAFE_DELETE(subMenuController);
   SAFE_DELETE(gameTypeMenu);
   resources.Release(bgTexture);
-  resources.Release(movingWTexture);
   SAFE_DELETE(scroller);
 }
 
 void GameStateMenu::Start(){
   JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
+  SAFE_DELETE(mGuiController);
+  mGuiController = NEW JGuiController(100, this);
+  if (mGuiController)
+  {
+    JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+    mFont->SetColor(ARGB(255,255,255,255));
+    mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"particle1.psi",resources.GetQuad("particles"),  true));
+    mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"particle2.psi",resources.GetQuad("particles")));
+    mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"particle3.psi",resources.GetQuad("particles")));
+    mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"particle4.psi",resources.GetQuad("particles")));
+    mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"particle5.psi",resources.GetQuad("particles")));
+  }
+
 
   if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
     GameApp::music = resources.ssLoadMusic("Track0.mp3");
@@ -145,13 +145,9 @@ void GameStateMenu::Start(){
   if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
   
   bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
-  movingWTexture = resources.RetrieveTexture("movingW.png", RETRIEVE_LOCK);
   mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166);		// Create background quad for rendering.
-  mMovingW = resources.RetrieveQuad("movingW.png", 2, 2, 84, 62);
 
-  mBg->SetHotSpot(105,50);
-  mMovingW->SetHotSpot(72,16);
-
+  mBg->SetHotSpot(128,50);
 
   //How many cards total ?
   PlayerData * playerdata = NEW PlayerData(mParent->collection);
@@ -274,18 +270,14 @@ void GameStateMenu::End()
   JRenderer::GetInstance()->EnableVSync(false);
   
   resources.Release(bgTexture);
-  resources.Release(movingWTexture);
-
-  
   resources.Release(mBg);
-  resources.Release(mMovingW);
+  SAFE_DELETE(mGuiController);
 }
 
 
 
 void GameStateMenu::Update(float dt)
 {
-
   timeIndex += dt * 2;
   switch (MENU_STATE_MAJOR & currentState)
     {
@@ -376,6 +368,13 @@ void GameStateMenu::Update(float dt)
     case MENU_STATE_MINOR_NONE :
       ;// Nothing to do.
     }
+  
+  if(mEngine->GetButtonState(PSP_CTRL_LTRIGGER)) {
+    //Reset deck of cards
+    angleMultiplier = MIN_ANGLE_MULTIPLIER;
+    yW = 55;
+  }
+
   if (yW <= 55)
     {
       if (mEngine->GetButtonState(PSP_CTRL_SQUARE)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
@@ -386,7 +385,7 @@ void GameStateMenu::Update(float dt)
       if (mEngine->GetButtonState(PSP_CTRL_TRIANGLE) && (dt != 0))
 	{
 	  angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1 - angleW) / dt;
-	  yW = yW + 5*dt + (yW - 55) *5*  dt;
+	  yW = yW + 5*dt + (yW - 45) *5*  dt;
 	}
       else
 	angleW = cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1;
@@ -422,29 +421,29 @@ void GameStateMenu::Render()
   }else{
     mFont = resources.GetJLBFont(Constants::MAIN_FONT);
     PIXEL_TYPE colors[] =
-      {
-	      ARGB(255, 3, 2, 0),
-	      ARGB(255, 8, 3, 0),
-	      ARGB(255,21,12, 0),
-	      ARGB(255,50,34, 0)
-      };
+    {
+      
+      ARGB(255,3,3,0),
+      ARGB(255,8,8,0),
+      ARGB(255,21,21,10),
+      ARGB(255,50,50,30),
+    };
+    renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);  
 
-    renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);
-    renderer->RenderQuad(mBg, SCREEN_WIDTH/2, 50);
-    if (yW < 2*SCREEN_HEIGHT) renderer->RenderQuad(mMovingW, SCREEN_WIDTH/2 - 10, yW, angleW);
     if (mGuiController!=NULL)
       mGuiController->Render();
 
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-    mFont->SetColor(options[Metrics::STATS_TC].asColor(ARGB(128,255,255,255)));
+    mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,5,JGETEXT_RIGHT);
     mFont->DrawString(nbcardsStr,10, 5);
     mFont->SetScale(1.f);
-    mFont->SetColor(options[Metrics::SCROLLER_TC].asColor());
+    mFont->SetColor(ARGB(255,255,255,255));
 
-    renderer->FillRoundRect(SCREEN_WIDTH/2 - 100,SCREEN_HEIGHT-20, 191,6,5,options[Metrics::SCROLLER_FC].asColor(ARGB(100,10,5,0)));
+    renderer->FillRoundRect(SCREEN_WIDTH/2 - 100,SCREEN_HEIGHT-20, 191,6,5,ARGB(100,10,5,0));
     scroller->Render();
 
+    renderer->RenderQuad(mBg, SCREEN_WIDTH/2, 50);
     if (subMenuController){
       subMenuController->Render();
     }
@@ -569,9 +568,7 @@ ostream& GameStateMenu::toString(ostream& out) const
 	     << " ; hasChosenGameType : " << hasChosenGameType
 	     << " ; mIcons : " << mIcons
 	     << " ; bgTexture : " << bgTexture
-	     << " ; movingWTexture : " << movingWTexture
 	     << " ; mBg : " << mBg
-	     << " ; mMovingW : " << mMovingW
 	     << " ; mCreditsYPos : " << mCreditsYPos
 	     << " ; currentState : " << currentState
 	     << " ; mVolume : " << mVolume
