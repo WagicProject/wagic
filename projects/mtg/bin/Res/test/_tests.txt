@@ -98,6 +98,7 @@ dragon_fodder.txt
 dragon_fodder2.txt
 drain_life.txt
 drift_of_the_dead.txt
+dromad_purebred.txt
 dross_harvester.txt
 duskwalker.txt
 elvish_piper.txt

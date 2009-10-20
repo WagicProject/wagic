@@ -1,0 +1,24 @@
+#Test: @Damaged keyword
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:Dromad Purebred
+[DO]
+grizzly bears
+next
+#blockers
+Dromad Purebred
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:Dromad Purebred
+life:21
+[END]

@@ -124,9 +124,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
       starget = s.substr(found+5,end - found - 5);
       TargetChooser * fromTc = tcf.createTargetChooser(starget,card);
       fromTc->targetter = NULL;
-    
+    }
     return NEW TrDamaged(id,card,tc,fromTc);
-	}
   }
 
   int who = 0;
