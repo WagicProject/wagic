@@ -688,7 +688,6 @@ void OptionTheme::confirmChange(bool confirmed){
     setData();
     prior_value = value;
     resources.Refresh(); //Update images
-    Reload();
   }
 }
 string WDecoEnum::lookupVal(int value){
