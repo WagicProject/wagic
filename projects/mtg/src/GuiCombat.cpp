@@ -123,6 +123,7 @@ void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep step)
 }
 
 bool GuiCombat::clickOK(){
+  active = activeAtk = NULL;
   cursor_pos = NONE;
   switch (step)
     {

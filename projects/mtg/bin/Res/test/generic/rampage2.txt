@@ -1,0 +1,49 @@
+#Testing Rampage
+# issue #102: http://code.google.com/p/wagic/issues/detail?id=102
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Hunding Gjornersen
+[PLAYER2]
+inplay:black knight,grizzly bears
+[DO]
+Hunding Gjornersen
+next
+black knight
+grizzly bears
+next
+#blockers order
+next
+#damage first strike
+next
+#combat damage->Gui
+next
+#combat Damage
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#begin
+next
+#attackers
+Hunding Gjornersen
+next
+#blockers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Hunding Gjornersen
+[PLAYER2]
+graveyard:grizzly bears
+inplay:black knight
+life:15
+[END]

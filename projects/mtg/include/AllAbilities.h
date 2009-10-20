@@ -3980,11 +3980,12 @@ class ARampageAbility:public MTGAbility{
   int receiveEvent(WEvent * event) {
     if (dynamic_cast<WEventBlockersChosen*>(event)) {
       nbOpponents = source->blockers.size();
+      if (nbOpponents <= MaxOpponent) return 0;
       source->power += PowerModifier * (nbOpponents - MaxOpponent);
       source->addToToughness(ToughnessModifier * (nbOpponents - MaxOpponent));
     }
     else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event)) {
-      if (Constants::MTG_PHASE_AFTER_EOT == pe->to->id)
+      if (Constants::MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
         {
           source->power -= PowerModifier * (nbOpponents - MaxOpponent);
           source->addToToughness(-ToughnessModifier * (nbOpponents - MaxOpponent));

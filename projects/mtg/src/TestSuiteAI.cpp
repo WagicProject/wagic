@@ -118,7 +118,8 @@ int TestSuiteAI::Act(float dt){
   }
   else if (action.compare("next")==0){
     GuiCombat * gc = g->mLayers->combatLayer();
-    if (ORDER == g->combatStep || DAMAGE == g->combatStep) gc->clickOK();
+    if (ORDER == g->combatStep || DAMAGE == g->combatStep) 
+      gc->clickOK();
     else g->userRequestNextGamePhase();
   }
   else if (action.compare("yes")==0)

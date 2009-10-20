@@ -21,6 +21,7 @@ generic/persist2.txt
 generic/persist3.txt
 generic/phases.txt
 generic/rampage.txt
+generic/rampage2.txt
 generic/regenerate.txt
 generic/sacrifice.txt
 generic/summoning_sickness.txt
