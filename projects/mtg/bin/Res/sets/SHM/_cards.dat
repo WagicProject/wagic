@@ -884,41 +884,6 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Destroy target artifact. Smash to Smithereens deals 3 damage to that artifact's controller.
-id=158243
-target=Artifact
-auto=damage:3 targetController
-auto=destroy
-name=Smash to Smithereens
-rarity=C
-mana={1}{R}
-type=Instant
-[/card]
-[card]
-text={B}{R}: Each player loses 1 life.
-id=157880
-name=Spiteflame Witch
-rarity=U
-mana={1}{BR}
-type=Creature
-subtype=Elemental Shaman
-auto={B}{R}:life:-1 all(player)
-power=2
-toughness=1
-[/card]
-[card]
-text=At the beginning of each player's draw step, that player draws an additional card.   Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
-id=146089
-auto=@each my upkeep:draw:1 controller
-auto=@each opponent upkeep:draw:1 opponent
-auto=@movedTo(*|myhand) from(mylibrary):damage:1 controller
-auto=@movedTo(*|opponenthand) from(opponentlibrary):damage:1 opponent
-name=Spiteful Visions
-rarity=R
-mana={2}{BR}{BR}
-type=Enchantment
-[/card]
-[card]
 text={T}: Add {W} to your mana pool.
 auto={T}:Add {W}
 id=158236
@@ -1190,6 +1155,41 @@ name=Spectral Procession
 rarity=U
 mana={2W}{2W}{2W}
 type=Sorcery
+[/card]
+[card]
+text=Destroy target artifact. Smash to Smithereens deals 3 damage to that artifact's controller.
+id=158243
+target=Artifact
+auto=damage:3 targetController
+auto=destroy
+name=Smash to Smithereens
+rarity=C
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+text={B}{R}: Each player loses 1 life.
+id=157880
+name=Spiteflame Witch
+rarity=U
+mana={1}{BR}
+type=Creature
+subtype=Elemental Shaman
+auto={B}{R}:life:-1 all(player)
+power=2
+toughness=1
+[/card]
+[card]
+text=At the beginning of each player's draw step, that player draws an additional card.   Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
+id=146089
+auto=@each my draw:draw:1 controller
+auto=@each opponent draw:draw:1 opponent
+auto=@movedTo(*|myhand) from(mylibrary):damage:1 controller
+auto=@movedTo(*|opponenthand) from(opponentlibrary):damage:1 opponent
+name=Spiteful Visions
+rarity=R
+mana={2}{BR}{BR}
+type=Enchantment
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {UB}, {T}: Add {U}{U}, {U}{B}, or {B}{B} to your mana pool.
