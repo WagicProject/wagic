@@ -897,7 +897,7 @@ auto=flying
 id=180346
 name=Nimbus Wings
 rarity=C
-mana={W}
+mana={1}{W}
 type=Enchantment
 subtype=Aura
 [/card]
