@@ -70,7 +70,7 @@ mana={3}{R}{R}
 type=Enchantment
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can’t attack or block.   {1}{W}: Return Cage of Hands to its owner’s hand.
+text=Enchant creature   Enchanted creature can't attack or block.   {1}{W}: Return Cage of Hands to its owner's hand.
 target=creature
 auto=cantattack
 auto=cantblock
@@ -563,7 +563,7 @@ toughness=4
 abilities=flying,legendary
 [/card]
 [card]
-text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn."
+text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn.E
 target=creature
 auto={B}:1/1
 id=50449
