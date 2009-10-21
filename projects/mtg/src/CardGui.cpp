@@ -151,9 +151,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * q;
 
-
   float x = pos.actX;
-  if (x < BigWidth / 2) x = BigWidth / 2;
 
   int nb_colors = 0;
   for(int i=0;i<Constants::MTG_NB_COLORS;i++){
@@ -327,7 +325,6 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
   JRenderer * renderer = JRenderer::GetInstance();
 
   float x = pos.actX;
-  if (x < BigWidth / 2) x = BigWidth / 2;
 
   JQuad * quad = resources.RetrieveCard(card);
   if (quad){
