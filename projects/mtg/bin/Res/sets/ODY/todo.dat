@@ -18,7 +18,6 @@ type=Enchantment
 mana={U}
 subtype=Aura
 [/card]
-
 [card]
 text={1}: The next time an instant or sorcery spell would deal damage to you this turn, that spell deals that damage to its controller instead.
 id=29922
@@ -1563,17 +1562,6 @@ mana={2}{G}
 subtype=Aura
 [/card]
 [card]
-text=Fear     Whenever Shadowmage Infiltrator deals combat damage to a player, you may draw a card.
-id=33604
-name=Shadowmage Infiltrator
-rarity=R
-type=Creature
-mana={1}{U}{B}
-power=1
-subtype=Human Wizard
-toughness=3
-[/card]
-[card]
 text=Target creature you control gains protection from the color of your choice until end of turn.       Draw a card.
 id=30761
 name=Shelter
@@ -1623,18 +1611,6 @@ name=Skull Fracture
 rarity=U
 type=Sorcery
 mana={B}
-[/card]
-
-[card]
-text=Whenever Spark Mage deals combat damage to a player, you may have Spark Mage deal 1 damage to target creature that player controls.
-id=29854
-name=Spark Mage
-rarity=U
-type=Creature
-mana={R}
-power=1
-subtype=Dwarf Wizard
-toughness=1
 [/card]
 [card]
 text=Creatures you control can't be the targets of blue spells or abilities from blue sources.
@@ -1986,17 +1962,6 @@ mana={4}{B}
 power=3
 subtype=Zombie Assassin
 toughness=2
-[/card]
-[card]
-text=Whenever Zombie Cannibal deals combat damage to a player, you may remove target card in that player's graveyard from the game.
-id=29735
-name=Zombie Cannibal
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Zombie
-toughness=1
 [/card]
 [card]
 text=Discard two cards: Put a 2/2 black Zombie creature token into play.

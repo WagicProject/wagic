@@ -404,6 +404,18 @@ rarity=U
 mana={2}{W}{U}
 auto={T}:Untap target(other *)
 type=Artifact
+[/card]¨
+[card]
+id=180619
+name=Vedalken Heretic
+mana={G}{U}
+type=Creature
+subtype=Vedalken Rogue
+power=1
+toughness=1
+text=Whenever Vedalken Heretic deals damage to an opponent, you may draw a card.
+auto=@damaged(player) from(this):may draw:1 controller
+rarity=R
 [/card]
 [card]
 text=Defender, flying, shroud

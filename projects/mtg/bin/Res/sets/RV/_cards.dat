@@ -864,6 +864,18 @@ power=0
 toughness=1
 [/card]
 [card]
+text=Whenever Fungusaur is dealt damage, put a +1/+1 counter on it.
+id=1246
+name=Fungusaur
+auto=@damaged(this):counter(1/1,1)
+rarity=R
+type=Creature
+mana={3}{G}
+power=2
+subtype=Fungusaur
+toughness=2
+[/card
+[card]
 text=Target creature gets +3/+3 until end of turn.
 target=creature
 auto=3/3

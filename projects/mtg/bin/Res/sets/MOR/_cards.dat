@@ -110,6 +110,7 @@ id=152938
 name=Idyllic Tutor
 rarity=R
 mana={2}{W}
+target=enchantment|myLibrary
 auto=moveTo(myhand) target(enchantment|myLibrary)
 type=Sorcery
 [/card]

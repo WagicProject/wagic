@@ -1203,6 +1203,18 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Whenever Shadowmage Infiltrator deals combat damage to a player, you may draw a card.
+id=33604
+auto=@damaged(player) from(this):may draw:1 controller
+name=Shadowmage Infiltrator
+rarity=R
+type=Creature
+mana={1}{U}{B}
+power=1
+subtype=Human Wizard
+toughness=3
+[/card]
+[card]
 text={2}, {T}, Sacrifice Skycloud Egg: Add {W}{U} to your mana pool. Draw a card.
 auto={2}{T}{S}:Add {W}{U} && draw:1
 id=29892
@@ -1244,6 +1256,18 @@ subtype=Bird Soldier
 power=1
 toughness=1
 abilities=flying
+[/card]
+[card]
+text=Whenever Spark Mage deals combat damage to a player, you may have Spark Mage deal 1 damage to target creature that player controls.
+id=29854
+name=Spark Mage
+auto=@damaged(player) from(this):may damage:1 target(creature|opponentBattlefield)
+rarity=U
+type=Creature
+mana={R}
+power=1
+subtype=Dwarf Wizard
+toughness=1
 [/card]
 [card]
 text=Until end of turn, whenever target creature deals damage, you gain that much life. Draw a card. 
@@ -1483,6 +1507,18 @@ auto=draw:1 opponent
 rarity=C
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+text=Whenever Zombie Cannibal deals combat damage to a player, you may remove target card in that player's graveyard from the game.
+id=29735
+name=Zombie Cannibal
+auto=@damaged(player) from(this):may moveto(exile) target(*|opponentgraveyard)
+rarity=C
+type=Creature
+mana={B}
+power=1
+subtype=Zombie
+toughness=1
 [/card]
 [card]
 text=Return target creature card from your graveyard to the battlefield.
