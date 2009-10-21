@@ -313,8 +313,7 @@ int JGE::GetTime(void)
 
   u64 curr;
   sceRtcGetCurrentTick(&curr);
-
-  return (int)(curr / mTickFrequency);
+  return (int)((curr * 1000) / mTickFrequency);
 }
 
 

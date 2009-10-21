@@ -129,7 +129,7 @@ void GameStateOptions::Render()
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 
   const char * const CreditsText[] = {
-      "Wagic, The Homebrew?! by WilLoW",
+      "Wagic, The Homebrew?! by wololo",
       "",
       "updates, new cards, and more on http://wololo.net/wagic",
       "Many thanks to the devs and card creators who help this project",
