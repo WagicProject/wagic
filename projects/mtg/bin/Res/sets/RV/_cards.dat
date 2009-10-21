@@ -874,7 +874,7 @@ mana={3}{G}
 power=2
 subtype=Fungusaur
 toughness=2
-[/card
+[/card]
 [card]
 text=Target creature gets +3/+3 until end of turn.
 target=creature
