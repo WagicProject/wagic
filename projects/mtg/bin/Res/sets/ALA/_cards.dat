@@ -1,66 +1,66 @@
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=exalted
 id=174963
 name=Akrasan Squire
 rarity=C
-type=Creature
 mana={W}
-power=1
+type=Creature
 subtype=Human Soldier
+power=1
 toughness=1
+abilities=exalted
 [/card]
 [card]
-text=Shroud     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Algae Gharial.
-abilities=shroud
-auto=@movedTo(other creature|graveyard) from(inplay):may counter(1/1)
+text=Shroud   Whenever another creature is put into a graveyard from the battlefield, you may put a +1/+1 counter on Algae Gharial.
+auto=@movedTo(other creature|graveyard) from(battlefield):may counter(1/1)
 id=174986
 name=Algae Gharial
 rarity=U
-type=Creature
 mana={3}{G}
-power=1
+type=Creature
 subtype=Crocodile
+power=1
 toughness=1
+abilities=shroud
 [/card]
 [card]
-text=Arcane Sanctum comes into play tapped.     {T}: Add {W}, {U}, or {B} to your mana pool.
+text=Arcane Sanctum enters the battlefield tapped.   {T}: Add {W}, {U}, or {B} to your mana pool.
 auto=tap
-auto={T}:Add{W}
-auto={T}:Add{U}
-auto={T}:Add{B}
+auto={T}:Add {W}
+auto={T}:Add {U}
+auto={T}:Add {B}
 id=175128
 name=Arcane Sanctum
 rarity=U
 type=Land
 [/card]
 [card]
-text=Enchant creature     When enchanted creature is put into a graveyard, that creature's controller loses life equal to its toughness.
+text=Enchant creature   When enchanted creature is put into a graveyard, that creature's controller loses life equal to its toughness.
 id=174817
-target=creature
 alias=1197
+target=creature
 name=Banewasp Affliction
 rarity=C
-type=Enchantment
 mana={1}{B}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text={G}, {T}: Target creature gains trample until end of turn.     {U}, {T}: Target creature gains flying until end of turn.
-auto={G}{T}:trample target(creature)
-auto={U}{T}:flying target(creature)
+text={G}, {T}: Target creature gains trample until end of turn.   {U}, {T}: Target creature gains flying until end of turn.
 id=175123
 name=Bant Battlemage
 rarity=U
-type=Creature
 mana={2}{W}
-power=2
+type=Creature
 subtype=Human Wizard
+auto={G}{T}:trample target(creature)
+auto={U}{T}:flying target(creature)
+power=2
 toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Bant Panorama: Search your library for a basic Forest, Plains, or Island card and put it into play tapped. Then shuffle your library.
-auto={T}:Add{1}
+text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Bant Panorama: Search your library for a basic Forest, Plains, or Island card and put it onto the battlefield tapped. Then shuffle your library.
+auto={T}:Add {1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(forest,plains,island|mylibrary) && tap
 id=174842
 name=Bant Panorama
@@ -75,34 +75,33 @@ auto=damage:3
 auto=discard:2
 name=Blightning
 rarity=C
-type=Sorcery
 mana={1}{B}{R}
+type=Sorcery
 [/card]
-
 [card]
-text=Flying     When Broodmate Dragon comes into play, put a 4/4 red Dragon creature token with flying into play.
-abilities=flying
-auto=token(Dragon,creature dragon, 4/4,flying red)
+text=Flying     When Broodmate Dragon enters the battlefield, put a 4/4 red Dragon creature token with flying onto the battlefield.
 id=178101
 name=Broodmate Dragon
 rarity=R
-type=Creature
 mana={3}{B}{R}{G}
-power=4
+type=Creature
 subtype=Dragon
+auto=token(Dragon,creature dragon, 4/4,flying red)
+power=4
 toughness=4
+abilities=flying
 [/card]
 [card]
 text=Vigilance, haste
-abilities=vigilance,haste
 id=174952
 name=Bull Cerodon
 rarity=U
-type=Creature
 mana={4}{R}{W}
-power=5
+type=Creature
 subtype=Beast
+power=5
 toughness=5
+abilities=vigilance,haste
 [/card]
 [card]
 text=Counter target spell.
@@ -111,8 +110,8 @@ target=*|stack
 auto=fizzle
 name=Cancel
 rarity=C
-type=Instant
 mana={1}{U}{U}
+type=Instant
 [/card]
 [card]
 text=Return target creature to its owner's hand. Its controller draws a card.
@@ -121,8 +120,8 @@ target=creature
 auto=moveto(ownerhand) && draw:1 targetController
 name=Call to Heel
 rarity=C
-type=Instant
 mana={1}{U}
+type=Instant
 [/card]
 [card]
 text={T}: Target player puts the top card of his or her library into his or her graveyard.
@@ -130,46 +129,46 @@ auto={T}:deplete:1 target(player)
 id=176433
 name=Cathartic Adept
 rarity=C
-type=Creature
 mana={U}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=1
 [/card]
 [card]
 text={1}{R}: Cavern Thoctar gets +1/+0 until end of turn.
-auto={1}{R}:1/0
 id=174994
 name=Cavern Thoctar
 rarity=C
-type=Creature
 mana={5}{G}
-power=5
+type=Creature
 subtype=Beast
+auto={1}{R}:1/0
+power=5
 toughness=5
 [/card]
 [card]
-text=Flying     {1}{W}: Cloudheath Drake gains vigilance until end of turn.
-abilities=flying
-auto={1}{W}:vigilance
+text=Flying   {1}{W}: Cloudheath Drake gains vigilance until end of turn.
 id=174814
 name=Cloudheath Drake
 rarity=C
-type=Artifact Creature
 mana={4}{U}
-power=3
+type=Artifact Creature
 subtype=Drake
+auto={1}{W}:vigilance
+power=3
 toughness=3
+abilities=flying
 [/card]
 [card]
-text=Enchant artifact or creature. Enchanted permanent doesn't untap during its controller's untap step.
+text=Enchant artifact or creature.   Enchanted permanent doesn't untap during its controller's untap step.
 target=creature,artifact
 auto=doesnotuntap
 id=175042
 name=Coma Veil
 rarity=C
-type=Enchantment
 mana={4}{U}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -178,103 +177,102 @@ auto={1}{U}{T}{S}:Draw:2
 id=174800
 name=Courier's Capsule
 rarity=C
-type=Artifact
 mana={1}{U}
+type=Artifact
 [/card]
 [card]
-text=Reach (This can block creatures with flying.)  Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=reach,exalted
+text=Reach (This can block creatures with flying.)   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174960
 name=Court Archers
 rarity=C
-type=Creature
 mana={2}{G}
-power=1
+type=Creature
 subtype=Human Archer
+power=1
 toughness=3
+abilities=reach,exalted
 [/card]
 [card]
 text=Dragon creatures you control get +3/+3.
-auto=lord(dragon|myinplay) 3/3
+auto=lord(dragon|myBattlefield) 3/3
 id=179426
 name=Crucible of Fire
 rarity=R
-type=Enchantment
 mana={3}{R}
+type=Enchantment
 [/card]
 [card]
-text=Crumbling Necropolis comes into play tapped.     {T}: Add {U}, {B}, or {R} to your mana pool.
+text=Crumbling Necropolis enters the battlefield tapped.   {T}: Add {U}, {B}, or {R} to your mana pool.
 auto=tap
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{R}
+auto={T}:Add {U}
+auto={T}:Add {B}
+auto={T}:Add {R}
 id=175112
 name=Crumbling Necropolis
 rarity=U
 type=Land
 [/card]
 [card]
-text=
 id=174935
 name=Cylian Elf
 rarity=C
-type=Creature
 mana={1}{G}
-power=2
+type=Creature
 subtype=Elf Scout
+power=2
 toughness=2
 [/card]
 [card]
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {W}, {T}: Dawnray Archer deals 1 damage to target attacking or blocking creature.
-abilities=exalted
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)   {W}, {T}: Dawnray Archer deals 1 damage to target attacking or blocking creature.
 auto={W}{T}:damage:1 target(creature[attacking;blocking])
 id=175085
 name=Dawnray Archer
 rarity=U
-type=Creature
 mana={2}{U}
-power=1
+type=Creature
 subtype=Human Archer
+power=1
 toughness=1
+abilities=exalted
 [/card]
 [card]
 text=Skeleton creatures you control and other Zombie creatures you control get +1/+1 and have deathtouch.
 id=176430
 name=Death Baron
-auto=lord(skeleton|myinplay) 1/1
-auto=lord(skeleton|myinplay) deathtouch
-auto=lord(zombie|myinplay) 1/1 other
-auto=lord(zombie|myinplay) deathtouch other
-type=Creature
-mana={1}{B}{B}
-power=2
-subtype=Zombie Wizard
-toughness=2
 rarity=R
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie Wizard
+auto=lord(skeleton|myBattlefield) 1/1
+auto=lord(skeleton|myBattlefield) deathtouch
+auto=lord(zombie|myBattlefield) 1/1 other
+auto=lord(zombie|myBattlefield) deathtouch other
+power=2
+toughness=2
 [/card]
 [card]
-text=Whenever another creature is put into a graveyard from play, you may gain 1 life.
-auto=@movedTo(other creature|graveyard) from(inplay):may life:1
+text=Whenever another creature is put into a graveyard from the battlefield, you may gain 1 life.
+auto=@movedTo(other creature|graveyard) from(battlefield):may life:1
 id=175073
 name=Deathgreeter
 rarity=C
-type=Creature
 mana={B}
-power=1
+type=Creature
 subtype=Human Shaman
+power=1
 toughness=1
 [/card]
 [card]
-text=First strike     Shroud (This creature can't be the target of spells or abilities.)
-abilities=first strike,shroud
+text=First strike   Shroud (This creature can't be the target of spells or abilities.)
 id=175121
 name=Deft Duelist
 rarity=C
-type=Creature
 mana={W}{U}
-power=2
+type=Creature
 subtype=Human Rogue
+power=2
 toughness=1
+abilities=first strike,shroud
 [/card]
 [card]
 text={2}{W}, {T}, Sacrifice Dispeller's Capsule: Destroy target artifact or enchantment.
@@ -282,73 +280,72 @@ auto={2}{W}{T}{S}:destroy target(artifact,enchantment)
 id=174830
 name=Dispeller's Capsule
 rarity=C
-type=Artifact
 mana={W}
+type=Artifact
 [/card]
 [card]
-text=Put two 1/1 red Goblin creature tokens into play.
+text=Put two 1/1 red Goblin creature tokens onto the battlefield.
 auto=token(Goblin,creature goblin, 1/1,red)*2
 id=174936
 name=Dragon Fodder
 rarity=C
-type=Sorcery
 mana={1}{R}
+type=Sorcery
 [/card]
 [card]
-text=
 id=174848
 name=Dreg Reaver
 rarity=C
-type=Creature
 mana={4}{B}
-power=4
+type=Creature
 subtype=Zombie Beast
+power=4
 toughness=3
 [/card]
 [card]
 text={T}: Add {R}, {G}, or {W} to your mana pool.
-auto={T}:Add {R}
-auto={T}:Add {G}
-auto={T}:Add {W}
 id=174903
 name=Druid of the Anima
 rarity=C
-type=Creature
 mana={1}{G}
-power=1
+type=Creature
 subtype=Elf Druid
+auto={T}:Add {R}
+auto={T}:Add {G}
+auto={T}:Add {W}
+power=1
 toughness=1
 [/card]
 [card]
-text=When Elvish Visionary comes into play, draw a card.
+text=When Elvish Visionary enters the battlefield, draw a card.
 auto=draw:1
 id=175124
 name=Elvish Visionary
 rarity=C
-type=Creature
 mana={1}{G}
-power=1
+type=Creature
 subtype=Elf Shaman
+power=1
 toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Esper Panorama: Search your library for a basic Plains, Island, or Swamp card and put it into play tapped. Then shuffle your library.
+text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Esper Panorama: Search your library for a basic Plains, Island, or Swamp card and put it onto the battlefield tapped. Then shuffle your library.
 id=179431
-auto={T}:Add{1}
+auto={T}:Add {1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(plains,island,swamp|mylibrary) && tap
 name=Esper Panorama
 rarity=C
 type=Land
 [/card]
 [card]
-text=Flash     {B}, {T}, Sacrifice an artifact: Draw a card.
-abilities=flash
-auto={B}{T}{S(artifact|myinplay)}:draw:1
+text=Flash   {B}, {T}, Sacrifice an artifact: Draw a card.
+auto={B}{T}{S(artifact|myBattlefield)}:draw:1
 id=175138
 name=Etherium Astrolabe
 rarity=U
-type=Artifact
 mana={2}{U}
+type=Artifact
+abilities=flash
 [/card]
 [card]
 text=Put target creature on top of its owner's library.
@@ -357,8 +354,8 @@ auto=moveTo(ownerLibrary)
 id=180144
 name=Excommunicate
 rarity=C
-type=Sorcery
 mana={2}{W}
+type=Sorcery
 [/card]
 [card]
 text={1}{B}, {T}, Sacrifice Executioner's Capsule: Destroy target nonblack creature.
@@ -366,8 +363,8 @@ auto={1}{B}{T}{S}:destroy target(creature[-black])
 id=174895
 name=Executioner's Capsule
 rarity=C
-type=Artifact
 mana={B}
+type=Artifact
 [/card]
 [card]
 text={2}{U}: Untap target artifact.
@@ -375,10 +372,10 @@ auto={2}{U}:untap target(artifact)
 id=174888
 name=Filigree Sages
 rarity=U
-type=Artifact Creature
 mana={3}{U}
-power=2
+type=Artifact Creature
 subtype=Vedalken Wizard
+power=2
 toughness=3
 [/card]
 [card]
@@ -418,67 +415,67 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
-text=Flying. Whenever another artifact comes into play under your control, Glaze Fiend gets +2/+2 until end of turn.
-auto=@movedTo(other artifact|myinplay):2/2 ueot
-abilities=flying
+text=Flying   Whenever another artifact enters the battlefield under your control, Glaze Fiend gets +2/+2 until end of turn.
 id=174816
 name=Glaze Fiend
 rarity=C
-type=Artifact Creature
 mana={1}{B}
-power=0
+type=Artifact Creature
 subtype=Illusion
+auto=@movedTo(other artifact|myBattlefield):2/2 ueot
+power=0
 toughness=1
+abilities=flying
 [/card]
 [card]
-text=At the beginning of your upkeep, put a 1/1 red Goblin creature token with haste into play.     Goblin creatures attack each turn if able.
+text=At the beginning of your upkeep, put a 1/1 red Goblin creature token with haste onto the battlefield.   Goblin creatures attack each turn if able.
 auto=lord(goblin) mustattack
 auto=@each my upkeep:token(Goblin,Creature Goblin,1/1,haste red)
 id=174939
 name=Goblin Assault
 rarity=R
-type=Enchantment
 mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 text=Trample
-abilities=trample
 id=177596
 name=Goblin Deathraiders
 rarity=C
-type=Creature
 mana={B}{R}
-power=3
+type=Creature
 subtype=Goblin Warrior
+power=3
 toughness=1
+abilities=trample
 [/card]
 [card]
 text=Mountainwalk
-abilities=mountainwalk
 id=174938
 name=Goblin Mountaineer
 rarity=C
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Goblin Scout
+power=1
 toughness=1
+abilities=mountainwalk
 [/card]
 [card]
-text=Vigilance     {T}: Put an 8/8 Beast creature token into play that's red, green, and white.
-abilities=vigilance
+text=Vigilance   {T}: Put an 8/8 Beast creature token onto the battlefield that's red, green, and white.
 auto={T}:token(Beast,creature beast, 8/8,red green white)
 id=175105
 name=Godsire
 rarity=M
-type=Creature
 mana={4}{R}{G}{G}{W}
-power=8
+type=Creature
 subtype=Beast
+power=8
 toughness=8
+abilities=vigilance
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Grixis Panorama: Search your library for a basic Island, Swamp, or Mountain card and put it into play tapped. Then shuffle your library.
+text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Grixis Panorama: Search your library for a basic Island, Swamp, or Mountain card and put it onto the battlefield tapped. Then shuffle your library.
 auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(island,swamp,mountain|mylibrary) && tap
 id=179433
@@ -487,52 +484,51 @@ rarity=C
 type=Land
 [/card]
 [card]
-text=Defender     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=defender,exalted
+text=Defender   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=175103
 name=Guardians of Akrasa
 rarity=C
-type=Creature
 mana={2}{W}
-power=0
+type=Creature
 subtype=Human Soldier
+power=0
 toughness=4
+abilities=defender,exalted
 [/card]
 [card]
-text=Flying, trample, haste     {R}: Hellkite Overlord gets +1/+0 until end of turn.     {B}{G}: Regenerate Hellkite Overlord.
-abilities=flying,trample,haste
-auto={R}:1/0
-auto={B}{G}:regenerate
+text=Flying, trample, haste   {R}: Hellkite Overlord gets +1/+0 until end of turn.   {B}{G}: Regenerate Hellkite Overlord.
 id=175057
 name=Hellkite Overlord
 rarity=M
-type=Creature
 mana={4}{B}{R}{R}{G}
-power=8
+type=Creature
 subtype=Dragon
+auto={R}:1/0
+auto={B}{G}:regenerate
+power=8
 toughness=8
+abilities=flying,trample,haste
 [/card]
 [card]
-text=Whenever another creature is put into a graveyard from play, you may have Hissing Iguanar deal 1 damage to target player.
-auto=@movedTo(other creature|graveyard) from(inplay):may damage:1 target(player)
+text=Whenever another creature is put into a graveyard from the battlefield, you may have Hissing Iguanar deal 1 damage to target player.
+auto=@movedTo(other creature|graveyard) from(battlefield):may damage:1 target(player)
 id=174873
 name=Hissing Iguanar
 rarity=C
-type=Creature
 mana={2}{R}
-power=3
+type=Creature
 subtype=Lizard
+power=3
 toughness=1
 [/card]
 [card]
-text=
 id=174806
 name=Incurable Ogre
 rarity=C
-type=Creature
 mana={3}{R}
-power=5
+type=Creature
 subtype=Ogre Mutant
+power=5
 toughness=1
 [/card]
 [card]
@@ -541,12 +537,12 @@ auto=lord(creatures) -2/-2
 id=179424
 name=Infest
 rarity=U
-type=Sorcery
 mana={1}{B}{B}
+type=Sorcery
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=174979
 name=Island
 rarity=L
@@ -555,7 +551,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=174977
 name=Island
 rarity=L
@@ -564,7 +560,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=174980
 name=Island
 rarity=L
@@ -573,7 +569,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+auto={T}:Add {U}
 id=174978
 name=Island
 rarity=L
@@ -582,43 +578,42 @@ subtype=Island
 [/card]
 [card]
 text=Jhessian Infiltrator is unblockable.
-abilities=unblockable
 id=175392
 name=Jhessian Infiltrator
 rarity=U
-type=Creature
 mana={G}{U}
-power=2
+type=Creature
 subtype=Human Rogue
+power=2
 toughness=2
+abilities=unblockable
 [/card]
 [card]
-text=
 id=176428
 name=Jhessian Lookout
 rarity=C
-type=Creature
 mana={1}{U}
-power=2
+type=Creature
 subtype=Human Scout
+power=2
 toughness=1
 [/card]
 [card]
-text={B}, {T}: Target player loses 1 life.     {G}, {T}: Put a 1/1 green Saproling creature token into play.
-auto={B}{T}:life:-1 target(player)
-auto={G}{T}:token(Saproling,Creature Saproling,1/1,green)
+text={B}, {T}: Target player loses 1 life.   {G}, {T}: Put a 1/1 green Saproling creature token onto the battlefield.
 id=175050
 name=Jund Battlemage
 rarity=U
-type=Creature
 mana={2}{R}
-power=2
+type=Creature
 subtype=Human Shaman
+auto={B}{T}:life:-1 target(player)
+auto={G}{T}:token(Saproling,Creature Saproling,1/1,green)
+power=2
 toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it into play tapped. Then shuffle your library.
-auto={T}:Add{1}
+text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it onto the battlefield tapped. Then shuffle your library.
+auto={T}:Add {1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(swamp,mountain,forest|mylibrary) && tap
 id=179425
 name=Jund Panorama
@@ -626,11 +621,11 @@ rarity=C
 type=Land
 [/card]
 [card]
-text=Jungle Shrine comes into play tapped.     {T}: Add {R}, {G}, or {W} to your mana pool.
+text=Jungle Shrine enters the battlefield tapped.   {T}: Add {R}, {G}, or {W} to your mana pool.
 auto=tap
-auto={T}:Add{R}
-auto={T}:Add{G}
-auto={T}:Add{W}
+auto={T}:Add {R}
+auto={T}:Add {G}
+auto={T}:Add {W}
 id=175060
 name=Jungle Shrine
 rarity=U
@@ -644,31 +639,31 @@ auto=life:7
 auto=draw:2
 name=Kiss of the Amesha
 rarity=U
-type=Sorcery
 mana={4}{W}{U}
+type=Sorcery
 [/card]
 [card]
 text={3}{G}: Knight of the Skyward Eye gets +3/+3 until end of turn. Play this ability only once each turn.
-auto={3}{G}:3/3 limit:1
 id=175047
 name=Knight of the Skyward Eye
 rarity=C
-type=Creature
 mana={1}{W}
-power=2
+type=Creature
 subtype=Human Knight
+auto={3}{G}:3/3 limit:1
+power=2
 toughness=2
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +3/+0 and has first strike.
+text=Enchant creature   Enchanted creature gets +3/+0 and has first strike.
 target=creature
 auto=3/0
 auto=first strike
 id=176446
 name=Lightning Talons
 rarity=C
-type=Enchantment
 mana={2}{R}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -677,30 +672,30 @@ auto={T}:life:1
 id=175249
 name=Marble Chalice
 rarity=C
-type=Artifact
 mana={2}{W}
+type=Artifact
 [/card]
 [card]
 text=Master of Etherium's power and toughness are each equal to the number of artifacts you control.     Other artifact creatures you control get +1/+1.
 id=175114
-auto=lord(creature[artifact]|myinplay) 1/1 other
-auto=foreach(artifact|myinplay) 1/1
+auto=lord(creature[artifact]|myBattlefield) 1/1 other
+auto=foreach(artifact|myBattlefield) 1/1
 name=Master of Etherium
 rarity=R
-type=Artifact Creature
 mana={2}{U}
-power=*
+type=Artifact Creature
 subtype=Vedalken Wizard
+power=*
 toughness=*
 [/card]
 [card]
-text=Whenever an opponent plays a spell, that player puts the top two cards of his or her library into his or her graveyard.
+text=Whenever an opponent casts a spell, that player puts the top two cards of his or her library into his or her graveyard.
 auto=@movedTo(*|opponentstack):deplete:2 opponent
 id=175108
 name=Memory Erosion
 rarity=R
-type=Enchantment
 mana={1}{U}{U}
+type=Enchantment
 [/card]
 [card]
 text={W}, {T}: Regenerate target artifact.
@@ -708,15 +703,15 @@ id=175113
 auto={W}{T}:Regenerate target(artifact)
 name=Metallurgeon
 rarity=U
-type=Artifact Creature
 mana={1}{W}
+type=Artifact Creature
 power=1
 subtype=Human Artificer
 toughness=2
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=175018
 name=Mountain
 rarity=L
@@ -725,7 +720,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=175019
 name=Mountain
 rarity=L
@@ -734,7 +729,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=175017
 name=Mountain
 rarity=L
@@ -743,7 +738,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+auto={T}:Add {R}
 id=175020
 name=Mountain
 rarity=L
@@ -757,24 +752,24 @@ auto=destroy
 id=174890
 name=Naturalize
 rarity=C
-type=Instant
 mana={1}{G}
+type=Instant
 [/card]
 [card]
-text={R}, {T}: Target creature gets +2/+0 until end of turn.     {W}, {T}: Tap target creature.
-auto={R}{T}:2/0 target(creature)
-auto={W}{T}:tap target(creature)
+text={R}, {T}: Target creature gets +2/+0 until end of turn.   {W}, {T}: Tap target creature.
 id=174944
 name=Naya Battlemage
 rarity=U
-type=Creature
 mana={2}{G}
-power=2
+type=Creature
 subtype=Human Shaman
+auto={R}{T}:2/0 target(creature)
+auto={W}{T}:tap target(creature)
+power=2
 toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {1}, {T}, Sacrifice Naya Panorama: Search your library for a basic Mountain, Forest, or Plains card and put it into play tapped. Then shuffle your library.
+text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Naya Panorama: Search your library for a basic Mountain, Forest, or Plains card and put it onto the battlefield tapped. Then shuffle your library.
 auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(mountain,forest,plains|mylibrary) && tap
 id=179423
@@ -783,52 +778,52 @@ rarity=C
 type=Land
 [/card]
 [card]
-text={2}: Remove target creature card in a graveyard from the game. Put a 1/1 green Saproling creature token into play.
+text={2}: Exile target creature card in a graveyard. Put a 1/1 green Saproling creature token onto the battlefield.
 auto={2}:moveTo(exile) target(creature|graveyard) && token(Saproling,creature saproling, 1/1,green)
 id=175023
 name=Necrogenesis
 rarity=U
-type=Enchantment
 mana={B}{G}
+type=Enchantment
 [/card]
 [card]
 text={T}: Add {G}, {W}, or {U} to your mana pool.
-auto={T}:Add{G}
-auto={T}:Add{W}
-auto={T}:Add{U}
+auto={T}:Add {G}
+auto={T}:Add {W}
+auto={T}:Add {U}
 id=175102
 name=Obelisk of Bant
 rarity=C
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text={T}: Add {W}, {U}, or {B} to your mana pool.
-auto={T}:Add{W}
-auto={T}:Add{U}
-auto={T}:Add{B}
+auto={T}:Add {W}
+auto={T}:Add {U}
+auto={T}:Add {B}
 id=174906
 name=Obelisk of Esper
 rarity=C
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text={T}: Add {U}, {B}, or {R} to your mana pool.
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{R}
+auto={T}:Add {U}
+auto={T}:Add {B}
+auto={T}:Add {R}
 id=174887
 name=Obelisk of Grixis
 rarity=C
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text={T}: Add {B}, {R}, or {G} to your mana pool.
-auto={T}:Add{B}
-auto={T}:Add{R}
-auto={T}:Add{G}
+auto={T}:Add {B}
+auto={T}:Add {R}
+auto={T}:Add {G}
 id=174892
 name=Obelisk of Jund
 rarity=C
@@ -837,14 +832,14 @@ mana={3}
 [/card]
 [card]
 text={T}: Add {R}, {G}, or {W} to your mana pool.
-auto={T}:Add{R}
-auto={T}:Add{G}
-auto={T}:Add{W}
+auto={T}:Add {R}
+auto={T}:Add {G}
+auto={T}:Add {W}
 id=175061
 name=Obelisk of Naya
 rarity=C
-type=Artifact
 mana={3}
+type=Artifact
 [/card]
 [card]
 text={T}: Target player loses 1 life.
@@ -852,24 +847,24 @@ auto={T}:life:-1 target(player)
 id=174831
 name=Onyx Goblet
 rarity=C
-type=Artifact
 mana={2}{B}
+type=Artifact
 [/card]
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=exalted
 id=175252
 name=Outrider of Jhess
 rarity=C
-type=Creature
 mana={3}{U}
-power=2
+type=Creature
 subtype=Human Knight
+power=2
 toughness=2
+abilities=exalted
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=175029
 name=Plains
 rarity=L
@@ -878,7 +873,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=175032
 name=Plains
 rarity=L
@@ -887,7 +882,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=175031
 name=Plains
 rarity=L
@@ -896,7 +891,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:Add{W}
+auto={T}:Add {W}
 id=175030
 name=Plains
 rarity=L
@@ -904,8 +899,8 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
-text={4}{W}, {T}, Sacrifice Protomatter Powder: Return target artifact card from your graveyard to play.
-auto={4}{W}{T}{S}:moveTo(myInPlay) target(artifact|mygraveyard)
+text={4}{W}, {T}, Sacrifice Protomatter Powder: Return target artifact card from your graveyard to the battlefield.
+auto={4}{W}{T}{S}:moveTo(myBattlefield) target(artifact|mygraveyard)
 id=174833
 name=Protomatter Powder
 rarity=U
@@ -921,69 +916,69 @@ auto=life:3 controller
 id=176450
 name=Punish Ignorance
 rarity=R
-type=Instant
 mana={W}{U}{U}{B}
+type=Instant
 [/card]
 [card]
-text=Trample     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=trample,exalted
+text=Trample   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174959
 name=Rhox Charger
 rarity=U
-type=Creature
 mana={3}{G}
-power=3
+type=Creature
 subtype=Rhino Soldier
+power=3
 toughness=3
+abilities=trample,exalted
 [/card]
 [card]
 text=Lifelink
-abilities=lifelink
 id=174957
 name=Rhox War Monk
 rarity=U
-type=Creature
 mana={G}{W}{U}
-power=3
+type=Creature
 subtype=Rhino Monk
+power=3
 toughness=4
+abilities=lifelink
 [/card]
 [card]
 text=Haste
-abilities=haste
 id=177600
 name=Rip-Clan Crasher
 rarity=C
-type=Creature
 mana={R}{G}
-power=2
+type=Creature
 subtype=Human Warrior
+power=2
 toughness=2
+abilities=haste
 [/card]
 [card]
 text={4}{G}: Rockcaster Platoon deals 2 damage to each creature with flying and each player.
 id=175024
-auto={4}{G}:damage:4 all (creature[flying],player)
 name=Rockcaster Platoon
 rarity=U
-type=Creature
 mana={5}{W}{W}
-power=5
+type=Creature
 subtype=Rhino Soldier
+auto={4}{G}:damage:4 all (creature[flying],player)
+power=5
 toughness=7
 [/card]
 [card]
-text=First strike     Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Rockslide Elemental.
-abilities=first strike
-auto=@movedTo(other creature|graveyard) from(inplay):may counter(1/1)
+text=First strike   Whenever another creature is put into a graveyard from the battlefield, you may put a +1/+1 counter on Rockslide Elemental.
+auto=@movedTo(other creature|graveyard) from(battlefield):may counter(1/1)
 id=174988
 name=Rockslide Elemental
 rarity=U
-type=Creature
 mana={2}{R}
-power=1
+type=Creature
 subtype=Elemental
+power=1
 toughness=1
+abilities=first strike
 [/card]
 [card]
 text=Target creature gets +3/+3 and gains double strike until end of turn.
@@ -993,197 +988,197 @@ auto=double strike
 id=176438
 name=Sangrite Surge
 rarity=U
-type=Sorcery
 mana={4}{R}{G}
+type=Sorcery
 [/card]
 [card]
-text=Flying     When Sharuum the Hegemon comes into play, you may return target artifact card from your graveyard to play.
-abilities=flying
+text=Flying   When Sanctum Gargoyle enters the battlefield, you may return target artifact card from your graveyard to your hand.
 auto=may moveTo(myHand) target(artifact|mygraveyard)
 id=174925
 name=Sanctum Gargoyle
 rarity=C
-type=Artifact Creature
 mana={3}{W}
-power=2
+type=Artifact Creature
 subtype=Gargoyle
+power=2
 toughness=3
+abilities=flying
 [/card]
 [card]
-text=Savage Lands comes into play tapped.     {T}: Add {B}, {R}, or {G} to your mana pool.
+text=Savage Lands enters the battlefield tapped.   {T}: Add {B}, {R}, or {G} to your mana pool.
 auto=tap
-auto={T}:Add{B}
-auto={T}:Add{R}
-auto={T}:Add{G}
+auto={T}:Add {B}
+auto={T}:Add {R}
+auto={T}:Add {G}
 id=174877
 name=Savage Lands
 rarity=U
 type=Land
 [/card]
 [card]
-text=Flying. Whenever another creature is put into a graveyard from play, you may put a +1/+1 counter on Scavenger Drake.
-abilities=flying
-auto=@movedTo(other creature|graveyard) from(inplay):may counter(1/1)
+text=Flying   Whenever another creature is put into a graveyard from the battlefield, you may put a +1/+1 counter on Scavenger Drake.
+auto=@movedTo(other creature|graveyard) from(battlefield):may counter(1/1)
 id=174987
 name=Scavenger Drake
 rarity=U
-type=Creature
 mana={3}{B}
-power=1
+type=Creature
 subtype=Drake
+power=1
 toughness=1
+abilities=flying
 [/card]
 [card]
-text=Seaside Citadel comes into play tapped.     {T}: Add {G}, {W}, or {U} to your mana pool.
+text=Seaside Citadel enters the battlefield tapped.   {T}: Add {G}, {W}, or {U} to your mana pool.
 auto=tap
-auto={T}:Add{G}
-auto={T}:Add{W}
-auto={T}:Add{U}
+auto={T}:Add {G}
+auto={T}:Add {W}
+auto={T}:Add {U}
 id=174950
 name=Seaside Citadel
 rarity=U
 type=Land
 [/card]
 [card]
-text=Remove target card in a graveyard from the game. You gain 3 life.
+text=Exile target card in a graveyard. You gain 3 life.
 target=*|graveyard
-auto=moveto(removedfromgame)
+auto=moveto(exile)
 auto=life:3
 id=177473
 name=Shadowfeed
 rarity=C
-type=Instant
 mana={B}
+type=Instant
 [/card]
 [card]
-text=Flying     When Sanctum Gargoyle comes into play, you may return target artifact card from your graveyard to your hand.
-abilities=flying,legendary
-auto=may moveTo(myinplay) target(artifact|mygraveyard)
+text=Flying     When Sharuum the Hegemon enters the battlefield, you may return target artifact card from your graveyard to the battlefield.
+auto=may moveTo(myBattlefield) target(artifact|mygraveyard)
 id=175127
 name=Sharuum the Hegemon
 rarity=M
-type=Artifact Creature
 mana={3}{W}{U}{B}
-power=5
+type=Artifact Creature
 subtype=Sphinx
+power=5
 toughness=5
+abilities=flying,legendary
 [/card]
 [card]
 text={U}: Shore Snapper gains islandwalk until end of turn.
 id=175390
-auto={U}:islandwalk
 name=Shore Snapper
 rarity=C
-type=Creature
 mana={2}{B}
-power=2
+type=Creature
 subtype=Beast
+auto={U}:islandwalk
+power=2
 toughness=2
 [/card]
 [card]
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {U}: Sighted-Caste Sorcerer gains shroud until end of turn. (It can't be the target of spells or abilities.)
-abilities=exalted
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)   {U}: Sighted-Caste Sorcerer gains shroud until end of turn. (It can't be the target of spells or abilities.)
 auto={U}:shroud
 id=174956
 name=Sighted-Caste Sorcerer
 rarity=C
-type=Creature
 mana={1}{W}
-power=1
+type=Creature
 subtype=Human Wizard
+power=1
 toughness=1
+abilities=exalted
 [/card]
 [card]
 text=Until end of turn, target creature you control gets +3/+3 and other creatures you control get +1/+1.
-target=creature|myinplay
+target=creature|myBattlefield
 auto=2/2
-auto=lord(creatures|myinplay) 1/1
+auto=lord(creatures|myBattlefield) 1/1
 id=177597
 name=Sigil Blessing
 rarity=C
-type=Instant
 mana={G}{W}
+type=Instant
 [/card]
 [card]
-text=First strike     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=first strike,exalted
+text=First strike   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174958
 name=Sigiled Paladin
 rarity=U
-type=Creature
 mana={W}{W}
-power=2
+type=Creature
 subtype=Human Knight
+power=2
 toughness=2
+abilities=first strike,exalted
 [/card]
 [card]
-text=Flying     {B}, Sacrifice a creature: Regenerate Skeletal Kathari.
-abilities=flying
-auto={B}{S(creature|myinplay)}:regenerate
+text=Flying   {B}, Sacrifice a creature: Regenerate Skeletal Kathari.
 id=175119
 name=Skeletal Kathari
 rarity=C
-type=Creature
 mana={4}{B}
-power=3
+type=Creature
 subtype=Bird Skeleton
+auto={B}{S(creature|myBattlefield)}:regenerate
+power=3
 toughness=2
-[/card]
-[card]
-text=Flying     At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
-id=175107
-auto=@each my endofturn:aslongas(sphinx sovereign[-tapped]|myinplay) life:3 controller
-auto=@each my endofturn:aslongas(sphinx sovereign[tapped]|myinplay) life:-3 opponent
-name=Sphinx Sovereign
 abilities=flying
-rarity=M
-type=Artifact Creature
-mana={4}{W}{U}{U}{B}
-power=6
-subtype=Sphinx
-toughness=6
 [/card]
 [card]
-text=When Sprouting Thrinax is put into a graveyard from play, put three 1/1 green Saproling creature tokens into play.
+text=Flying   At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
+auto=@each my endofturn:aslongas(sphinx sovereign[-tapped]|myBattlefield) life:3 controller
+auto=@each my endofturn:aslongas(sphinx sovereign[tapped]|myBattlefield) life:-3 opponent
+id=175107
+name=Sphinx Sovereign
+rarity=M
+mana={4}{W}{U}{U}{B}
+type=Artifact Creature
+subtype=Sphinx
+power=6
+toughness=6
+abilities=flying
+[/card]
+[card]
+text=When Sprouting Thrinax is put into a graveyard from the battlefield, put three 1/1 green Saproling creature tokens onto the battlefield.
 auto=@movedTo(this|graveyard):token(Saproling,creature saproling, 1/1,green)*3
 id=174863
 name=Sprouting Thrinax
 rarity=U
-type=Creature
 mana={B}{R}{G}
-power=3
+type=Creature
 subtype=Lizard
+power=3
 toughness=3
 [/card]
 [card]
 text=Steelclad Serpent can't attack unless you control another artifact.
-abilities=cantattack
-auto=aslongas(artifact|myinplay) other -cantattack
+auto=aslongas(artifact|myBattlefield) other -cantattack
 id=175009
 name=Steelclad Serpent
 rarity=C
-type=Artifact Creature
 mana={5}{U}
-power=4
+type=Artifact Creature
 subtype=Serpent
+power=4
 toughness=5
+abilities=cantattack
 [/card]
 [card]
-text=Vigilance     {T}: Add {G} to your mana pool.
-abilities=vigilance
-auto={T}:Add{G}
+text=Vigilance   {T}: Add {G} to your mana pool.
 id=175134
 name=Steward of Valeron
 rarity=C
-type=Creature
 mana={G}{W}
-power=2
+type=Creature
 subtype=Human Druid Knight
+auto={T}:Add {G}
+power=2
 toughness=2
+abilities=vigilance
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=175089
 name=Swamp
 rarity=L
@@ -1192,7 +1187,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=175088
 name=Swamp
 rarity=L
@@ -1201,7 +1196,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=175091
 name=Swamp
 rarity=L
@@ -1210,7 +1205,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}:Add{B}
+auto={T}:Add {B}
 id=175090
 name=Swamp
 rarity=L
@@ -1218,120 +1213,119 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
-text=Flying. Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
+text=Flying   Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
 id=175015
 name=Tidehollow Strix
-abilities=flying,deathtouch
-type=Artifact Creature
-mana={U}{B}
-power=2
-subtype=Bird
-toughness=1
 rarity=C
+mana={U}{B}
+type=Artifact Creature
+subtype=Bird
+power=2
+toughness=1
+abilities=flying,deathtouch
 [/card]
 [card]
 text=Until end of turn, creatures you control get +5/+5 and gain first strike, lifelink, and trample.
-auto=lord(creatures|myinplay) 5/5
-auto=lord(creatures|myinplay) lifelink
-auto=lord(creatures|myinplay) first strike
-auto=lord(creatures|myinplay) trample
+auto=lord(creatures|myBattlefield) 5/5
+auto=lord(creatures|myBattlefield) lifelink
+auto=lord(creatures|myBattlefield) first strike
+auto=lord(creatures|myBattlefield) trample
 id=174839
 name=Titanic Ultimatum
 rarity=R
-type=Sorcery
 mana={R}{R}{G}{G}{G}{W}{W}
+type=Sorcery
 [/card]
 [card]
 text=Creatures you control gain shroud until end of turn. (They can't be the targets of spells or abilities.)
-auto=lord(creatures|myinplay) shroud
+auto=lord(creatures|myBattlefield) shroud
 id=179432
 name=Tortoise Formation
 rarity=C
-type=Instant
 mana={3}{U}
+type=Instant
 [/card]
 [card]
 text=Flying
-abilities=flying
 id=174924
 name=Tower Gargoyle
 rarity=U
-type=Artifact Creature
 mana={1}{W}{U}{B}
-power=4
+type=Artifact Creature
 subtype=Gargoyle
+power=4
 toughness=4
+abilities=flying
 [/card]
 [card]
 text={2}{B}: Vectis Silencers gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)
 id=175147
 name=Vectis Silencers
-auto={2}{B}:deathtouch
-type=Artifact Creature
-mana={2}{U}
-power=1
-subtype=Human Rogue
-toughness=2
 rarity=C
+mana={2}{U}
+type=Artifact Creature
+subtype=Human Rogue
+auto={2}{B}:deathtouch
+power=1
+toughness=2
 [/card]
 [card]
 text={1}{B}, Discard a card: Regenerate Viashino Skeleton.
 id=175097
 name=Viashino Skeleton
-auto={1}{B}{S(*|myhand)}:regenerate
 rarity=C
-type=Creature
 mana={3}{R}
-power=2
+type=Creature
 subtype=Viashino Skeleton
+auto={1}{B}{S(*|myhand)}:regenerate
+power=2
 toughness=1
 [/card]
 [card]
-text=Flying     Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-abilities=flying,exalted
+text=Flying   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174955
 name=Waveskimmer Aven
 rarity=C
-type=Creature
 mana={2}{G}{W}{U}
-power=2
+type=Creature
 subtype=Bird Soldier
+power=2
 toughness=4
+abilities=flying,exalted
 [/card]
 [card]
-text=Wild Nacatl gets +1/+1 as long as you control a Mountain.     Wild Nacatl gets +1/+1 as long as you control a Plains.
-auto=aslongas(mountain|myinplay) 1/1
-auto=aslongas(plains|myinplay) 1/1
+text=Wild Nacatl gets +1/+1 as long as you control a Mountain.   Wild Nacatl gets +1/+1 as long as you control a Plains.
 id=174989
 name=Wild Nacatl
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Cat Warrior
+auto=aslongas(mountain|myBattlefield 1/1
+auto=aslongas(plains|myBattlefield) 1/1
+power=1
 toughness=1
 [/card]
 [card]
 text=Lifelink (Whenever this creature deals damage, you gain that much life.)  Windwright Mage has flying as long as an artifact card is in your graveyard.
-abilities=lifelink
-auto=aslongas(artifact|mygraveyard) flying
 id=175014
 name=Windwright Mage
 rarity=C
-type=Artifact Creature
 mana={W}{U}{B}
-power=2
+type=Artifact Creature
 subtype=Human Wizard
+auto=aslongas(artifact|mygraveyard) flying
+power=2
 toughness=2
+abilities=lifelink
 [/card]
 [card]
-text=
 id=175062
 name=Woolly Thoctar
 rarity=U
-type=Creature
 mana={R}{G}{W}
-power=5
+type=Creature
 subtype=Beast
+power=5
 toughness=4
 [/card]
