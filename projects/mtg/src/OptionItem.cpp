@@ -174,8 +174,8 @@ OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl): OptionDirector
   addSelection("Default");
   sort(selections.begin(),selections.end());
   mFocus = false;
-  populate();
   initSelections();
+  populate();
 };
 
 void OptionProfile::addSelection(string s){
@@ -201,12 +201,10 @@ void OptionProfile::Reload(){
   populate();
 }
 void OptionProfile::populate(){ 
-
  string temp = options[Options::ACTIVE_PROFILE].str;
  if (value >= selections.size()){ //TODO fail gracefully.
    return;
  }
- 
  options[Options::ACTIVE_PROFILE].str = selections[value];
  PlayerData * pdata = NEW PlayerData(app->collection);
  options[Options::ACTIVE_PROFILE] = temp;
@@ -267,15 +265,17 @@ void OptionProfile::confirmChange(bool confirmed){
 
   int result;
 
-  if(confirmed)      result = value;
-  else               result = initialValue;
+  if(confirmed)    result = value;
+  else             result = initialValue;
 
   options[Options::ACTIVE_PROFILE] = selections[result];
   value = result;
 
   populate(); 
-  if(listener && confirmed)
+  if(listener && confirmed){
     listener->ButtonPressed(-102,5);
+    initialValue = value;
+  }
   return;
 }
 
@@ -414,6 +414,11 @@ void WGuiList::renderBack(WGuiBase * it){
     else
       renderer->FillRoundRect(it->getX()-5,it->getY()-2,it->getWidth()-5,it->getHeight(),2,it->getColor(WGuiColor::BACK));
     
+  }
+}
+void WGuiList::confirmChange(bool confirmed){
+  for(int x=0;x<nbitems;x++){
+    listItems[x]->confirmChange(confirmed);
   }
 }
 void WGuiList::Render(){
@@ -685,8 +690,8 @@ void OptionTheme::confirmChange(bool confirmed){
     value = prior_value;
   else{
     setData();
-    prior_value = value;
     resources.Refresh(); //Update images
+    prior_value = value;
   }
 }
 string WDecoEnum::lookupVal(int value){
@@ -1031,10 +1036,8 @@ void WGuiSplit::Reload(){
   right->Reload();
 }
 void WGuiSplit::confirmChange(bool confirmed){
-  if(bRight)
-    right->confirmChange(confirmed);
-  else
-    left->confirmChange(confirmed);
+  right->confirmChange(confirmed);
+  left->confirmChange(confirmed);
 }
 
 //WGuiMenu

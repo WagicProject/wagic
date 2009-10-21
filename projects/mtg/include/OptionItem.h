@@ -297,6 +297,7 @@ class WGuiList: public WGuiItem{
   virtual bool Leaving(u32 key);
   virtual void Entering(u32 key);
   virtual void Render();
+  virtual void confirmChange(bool confirmed);
   virtual void renderBack(WGuiBase * it);
   virtual void Reload();
   virtual void ButtonPressed(int controllerId, int controlId);

@@ -115,10 +115,9 @@ void GameStateOptions::Update(float dt)
     case SHOW_OPTIONS_MENU:
       optionsMenu->Update(dt);
     break;
-  }
-  
+  }  
   if(mReload){
-    options.reloadProfile(false);
+    options.reloadProfile(true);
     optionsTabs->Reload();    
     mReload = false;
   }
