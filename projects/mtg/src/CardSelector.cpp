@@ -175,6 +175,7 @@ void CardSelector::Update(float dt)
     if ((c->x + CardGui::Width / 2 > position - CardGui::BigWidth / 2) &&
 	(c->x - CardGui::Width / 2 < position + CardGui::BigWidth / 2))
       position = CardGui::BigWidth / 2 - 10;
+  if (position < CardGui::BigWidth / 2) position = CardGui::BigWidth / 2;
   bigpos.x = position;
   bigpos.Update(dt);
 }
