@@ -1,23 +1,23 @@
 [card]
+text=Trample, haste   At end of turn, Blitz Hellion's owner shuffles it into his or her library.
+auto=@next my endofturn:moveto(myLibrary) && shuffle
 id=179406
 name=Blitz Hellion
+rarity=R
 mana={3}{R}{G}
 type=Creature
 subtype=Hellion
 power=7
 toughness=7
-text=Trample, haste At end of turn, Blitz Hellion's owner shuffles it into his or her library.
-auto=@next my endofturn:moveto(myLibrary) && shuffle
-rarity=R
 [/card]
 [card]
+text=Breath of Malfegor deals 5 damage to each opponent.
 id=161291
 name=Breath of Malfegor
-mana={3}{B}{R}
 auto=damage:5 opponent
-type=Instant
-text=Breath of Malfegor deals 5 damage to each opponent.
 rarity=C
+mana={3}{B}{R}
+type=Instant
 [/card]
 [card]
 text=Vigilance, haste
@@ -43,16 +43,16 @@ mana={R}{G}
 type=Instant
 [/card]
 [card]
+text=Sacrifice Dauntless Escort: Creatures you control are indestructible this turn.
+auto={S}:all(creature|myBattlefield) indestructible
 id=180614
 name=Dauntless Escort
+rarity=R
 mana={1}{G}{W}
 type=Creature
 subtype=Rhino Soldier
 power=3
 toughness=3
-text=Sacrifice Dauntless Escort: Creatures you control are indestructible this turn.
-auto={S}:all(creature|mybattlefield) indestructible
-rarity=R
 [/card]
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
@@ -67,29 +67,28 @@ toughness=3
 abilities=exalted
 [/card]
 [card]
+text=Flying When Filigree Angel enters the battlefield, you gain 3 life for each artifact you control.
 id=188965
 name=Filigree Angel
+rarity=R
 mana={5}{W}{W}{U}
 type=Artifact Creature
 subtype=Angel
+auto=foreach(artifact|myBattlefield) life:3
 power=4
 toughness=4
-text=Flying When Filigree Angel comes into play, you gain 3 life for each artifact you control.
 abilities=flying
-auto=foreach(artifact|myinplay)life:3
-rarity=R
 [/card]
 [card]
+text=Put X 1/1 white Bird Soldier creature tokens with flying onto the battlefield, where X is the number of attacking creatures.
+auto=foreach(creature[attacking]) token(Bird Soldier,Creature Bird Soldier,1/1,white flying)
 id=179605
 name=Flurry of Wings
+rarity=U
 mana={G}{W}{U}
 type=Instant
-text=Put X 1/1 white Bird Soldier creature tokens with flying into play, where X is the number of attacking creatures.
-auto=foreach(creature[attacking]) token(Bird Soldier,Creature Bird Soldier,1/1,white flying)
-rarity=U
 [/card]
 [card]
-text=
 id=189647
 name=Grizzled Leotau
 rarity=C
@@ -100,91 +99,92 @@ power=1
 toughness=5
 [/card]
 [card]
+text=Exile all cards in target player's hand and graveyard.
 id=175109
-name=Identity Crisis
-mana={2}{W}{W}{B}{B}
-type=Sorcery
-text=Remove all cards in target player's hand and graveyard from the game.
 target=player
 auto=moveTo(removedfromgame) all(*|hand)
 auto=moveTo(removedfromgame) all(*|graveyard)
+name=Identity Crisis
 rarity=R
+mana={2}{W}{W}{B}{B}
+type=Sorcery
 [/card]
 [card]
+text=Flying   When you cast a spell, sacrifice Illusory Demon.
 id=179596
 name=Illusory Demon
+rarity=U
 mana={1}{U}{B}
 type=Creature
 subtype=Demon Illusion
+auto=@movedTo(*|mystack):bury
 power=4
 toughness=3
-text=Flying When you play a spell, sacrifice Illusory Demon.
-auto=@movedTo(*[-land]|mystack):bury
-rarity=U
+abilities=flying
 [/card]
 [card]
-id=179568
-name=Intimidation Bolt
-mana={1}{R}{W}
-type=Instant
 text=Intimidation Bolt deals 3 damage to target creature. Other creatures can't attack this turn.
+id=179568
 target=creature
 auto=damage:3
 auto=lord(creature) cantattack
+name=Intimidation Bolt
 rarity=U
+mana={1}{R}{W}
+type=Instant
 [/card]
 [card]
+text=Flying   {1}{W}: Put a +1/+1 counter on Jenara, Asura of War.
 id=180605
 name=Jenara, Asura of War
+rarity=M
 mana={G}{W}{U}
 type=Creature
 subtype=Angel
-abilities=legendary,flying
 auto={1}{W}:counter(1/1)
 power=3
 toughness=3
-text=Flying {1}{W}: Put a +1/+1 counter on Jenara, Asura of War.
-rarity=M
+abilities=legendary,flying
 [/card]
 [card]
+text=Flying, haste When Karrthus, Tyrant of Jund enters the battlefield, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
 id=180587
 name=Karrthus, Tyrant of Jund
+rarity=M
 mana={4}{B}{R}{G}
 type=Creature
 subtype=Dragon
+auto=moveTo(myBattlefield) all(dragon)
+auto=untap all(dragon)
+auto=lord(dragon|myBattlefield) haste other
 power=7
 toughness=7
-text=Flying, haste When Karrthus, Tyrant of Jund comes into play, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
 abilities=flying,haste,legendary
-auto=moveTo(myInPlay) all(dragon)
-auto=untap all(dragon)
-auto=lord(dragon|mybattlefield) haste other
-rarity=M
 [/card]
 [card]
+text=When Leonin Armorguard enters the battlefield, creatures you control get +1/+1 until end of turn.
 id=180606
 name=Leonin Armorguard
+rarity=C
 mana={2}{G}{W}
 type=Creature
 subtype=Cat Soldier
+auto=all(creature|myBattlefield) 1/1 ueot
 power=3
 toughness=3
-text=When Leonin Armorguard comes into play, creatures you control get +1/+1 until end of turn.
-auto=all(creature|myinplay) 1/1
-rarity=C
 [/card]
 [card]
+text={U}{B}, {T}: Put a 1/1 blue and black Zombie Wizard creature token onto the battlefield.   {U}{U}{B}{B}: Target player loses X life and puts the top X cards of his or her library into his or her graveyard, where X is the number of Zombies you control.
+auto={U}{B}{T}:token(Zombie Wizard,Creature Zombie Wizard,1/1,blue black)
+auto={U}{U}{B}{B}:foreach(zombie|myBattlefield) life:-1 && foreach(zombie|myBattlefield) deplete:1 target(player)
 id=179555
 name=Lich Lord of Unx
+rarity=R
 mana={1}{U}{B}
 type=Creature
 subtype=Zombie Wizard
 power=2
 toughness=2
-text={U}{B}, {T}: Put a 1/1 blue and black Zombie Wizard creature token into play. {U}{U}{B}{B}: Target player loses X life and puts the top X cards of his or her library into his or her graveyard, where X is the number of Zombies you control.
-auto={U}{B}{T}:token(Zombie Wizard,Creature Zombie Wizard,1/1,blue black)
-auto={U}{U}{B}{B}:foreach(zombie|myBattlefield) life:-1 && foreach(zombie|myBattlefield) deplete:1 target(player)
-rarity=R
 [/card]
 [card]
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
@@ -199,16 +199,16 @@ power=*
 toughness=*
 [/card]
 [card]
+text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
+auto=@movedTo(*|myhand) from(mylibrary):may counter(1/1)
 id=179633
 name=Lorescale Coatl
+rarity=U
 mana={1}{G}{U}
 type=Creature
 subtype=Snake
 power=2
 toughness=2
-text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
-auto=@movedTo(*|myhand) from(mylibrary):may counter(1/1)
-rarity=U
 [/card]
 [card]
 text=Creatures you control have haste.
@@ -218,7 +218,7 @@ rarity=R
 mana={1}{B}{R}{G}
 type=Creature
 subtype=Cyclops Warrior
-auto=lord(creature|myinplay) haste
+auto=lord(creature|myBattlefield) haste
 power=3
 toughness=4
 [/card]
@@ -247,7 +247,7 @@ toughness=4
 abilities=double strike
 [/card]
 [card]
-text=Flying     When Messenger Falcons comes into play, draw a card.
+text=Flying   When Messenger Falcons enters the battlefield, draw a card.
 id=189644
 name=Messenger Falcons
 rarity=U
@@ -260,30 +260,17 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Exile target creature card in a graveyard, then put X 1/1 green Saproling creature tokens onto the battlefield, where X is the removed card's toughness.
 id=179614
 name=Morbid Bloom
 target=creature|graveyard
 auto=moveto(exile)
+rarity=U
 mana={4}{B}{G}
 type=Sorcery
-text=Remove target creature card in a graveyard from the game, then put X 1/1 green Saproling creature tokens into play, where X is the removed card's toughness.
-rarity=U
 [/card]
 [card]
-id=179580
-name=Nulltread Gargantuan
-mana={1}{G}{U}
-type=Creature
-subtype=Beast
-text=When Nulltread Gargantuan comes into play, put a creature you control on top of its owner's library.
-target=creature|myinplay
-auto=moveTo(ownerlibrary)
-power=5
-toughness=6
-rarity=U
-[/card]
-[card]
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)   {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.
 id=179556
 name=Qasali Pridemage
 rarity=C
@@ -296,7 +283,6 @@ toughness=2
 abilities=exalted
 [/card]
 [card]
-text=
 id=189650
 name=Rhox Brute
 rarity=U
@@ -307,7 +293,7 @@ power=4
 toughness=4
 [/card]
 [card]
-text=Enchant creature    Enchanted creature gets +3/-3.
+text=Enchant creature   Enchanted creature gets +3/-3.
 id=179553
 target=creature
 auto=3/-3
@@ -342,27 +328,27 @@ toughness=4
 abilities=exalted
 [/card]
 [card]
-id=188971
-name=Slave of Bolas
-mana={3}{UR}{B}
-type=Sorcery
 text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
+id=188971
 target=creature
 auto=moveTo(myBattlefield)
 auto=@next end:bury
 auto=untap
 auto=haste
+name=Slave of Bolas
 rarity=U
+mana={3}{UR}{B}
+type=Sorcery
 [/card]
 [card]
+text=Return all creatures on the battlefield and all creature cards in graveyards to their owners' hands.
 id=179409
 name=Soulquake
+auto=moveto(ownerhand) all(creature|battlefield)
+auto=moveto(ownerhand) all(creature|graveyard)
+rarity=R
 mana={3}{U}{U}{B}{B}
 type=Sorcery
-auto=moveto(ownerhand) all(creature|inplay)
-auto=moveto(ownerhand) all(creature|graveyard)
-text=Return all creatures in play and all creature cards in graveyards to their owners' hands.
-rarity=R
 [/card]
 [card]
 text=Flying, first strike, vigilance, lifelink, protection from red and from green
@@ -377,16 +363,16 @@ toughness=6
 abilities=flying,first strike,vigilance,lifelink,protection from red,protection from green
 [/card]
 [card]
+text={1}, {T}: Stun Sniper deals 1 damage to target creature. Tap that creature.
 id=179589
 name=Stun Sniper
+rarity=U
 mana={R}{W}
+auto={1}{T}:damage:1 target(creature) && tap
 type=Creature
 subtype=Human Archer
 power=1
 toughness=1
-text={1}, {T}: Stun Sniper deals 1 damage to target creature. Tap that creature.
-auto={1}{T}:damage:1 target(creature) && tap
-rarity=U
 [/card]
 [card]
 text=Flying
@@ -416,7 +402,7 @@ id=138217
 name=Unbender Tine
 rarity=U
 mana={2}{W}{U}
-auto={T}:Untap target(*)
+auto={T}:Untap target(other *)
 type=Artifact
 [/card]
 [card]
@@ -435,21 +421,21 @@ abilities=defender,flying,shroud
 text=Flash. Flying. Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
 id=179603
 name=Winged Coatl
+rarity=C
 mana={1}{G}{U}
 type=Creature
 subtype=Snake
 power=1
 toughness=1
 abilities=flash,flying,deathtouch
-rarity=C
 [/card]
 [card]
+text=Until end of turn, creatures you control get +1/+1 and creatures your opponents control get -1/-1.
 id=179575
 name=Zealous Persecution
+rarity=U
 mana={W}{B}
 type=Instant
-text=Until end of turn, creatures you control get +1/+1 and creatures your opponents control get -1/-1.
-auto=lord(creature|myinplay) 1/1
-auto=lord(creature|opponentinplay) -1/-1
-rarity=U
+auto=lord(creature|myBattlefield) 1/1
+auto=lord(creature|opponentBattlefield) -1/-1
 [/card]
