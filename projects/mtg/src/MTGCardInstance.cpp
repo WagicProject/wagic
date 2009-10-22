@@ -529,20 +529,20 @@ MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous){
   GameObserver * game = GameObserver::GetInstance();
   int foundprevious = 0;
   if (!previous) foundprevious = 1;
-  if (attacker && game->currentPlayer->game->inPlay->hasCard(this)){
+  if (attacker){
     MTGInPlay * inPlay = game->opponent()->game->inPlay;
     for (int i = 0; i < inPlay->nb_cards; i ++){
       MTGCardInstance * current = inPlay->cards[i];
       if (current == previous){
-	foundprevious = 1;
+	      foundprevious = 1;
       }else if (foundprevious){
-	MTGCardInstance * defensersOpponent = current->isDefenser();
-	if (defensersOpponent && (defensersOpponent == this || (banding && defensersOpponent->banding == banding))){
-	  return current;
-	}
+	      MTGCardInstance * defensersOpponent = current->isDefenser();
+	      if (defensersOpponent && (defensersOpponent == this || (banding && defensersOpponent->banding == banding))){
+	        return current;
+	      }
       }
     }
-  }else if (defenser && game->opponent()->game->inPlay->hasCard(this)){
+  }else if (defenser){
     MTGInPlay * inPlay = game->currentPlayer->game->inPlay;
     for (int i = 0; i < inPlay->nb_cards; i ++){
       MTGCardInstance * current = inPlay->cards[i];

@@ -1,0 +1,24 @@
+#Bug:Cockatrice doesn't kill opponent
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:cockatrice
+[PLAYER2]
+inplay:Akroma's Memorial,air elemental
+[DO]
+cockatrice
+next
+#blockers
+air elemental
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:cockatrice
+[PLAYER2]
+inplay:Akroma's Memorial
+graveyard:air elemental
+[END]
