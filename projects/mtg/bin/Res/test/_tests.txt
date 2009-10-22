@@ -1,3 +1,5 @@
+ondu_cleric.txt
+/*
 ########################
 #Generic engine features
 ########################
@@ -174,6 +176,7 @@ nightmare.txt
 northern_paladin.txt
 northern_paladin2.txt
 Nyxathid.txt
+ondu_cleric.txt
 orcish_artillery.txt
 orcish_lumberjack.txt
 overrun.txt

@@ -1,0 +1,20 @@
+#Bug: Ondu Cleric doesn't give life
+#http://code.google.com/p/wagic/issues/detail?id=125
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:ondu cleric,stonework puma
+manapool:{4}{W}
+[PLAYER2]
+[DO]
+ondu cleric
+choice 0
+stonework puma
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:23
+inplay:ondu cleric,stonework puma
+[PLAYER2]
+[END]

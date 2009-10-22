@@ -273,6 +273,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       tc = tcf.createTargetChooser(starget, card);
     }
     if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
+    else a1 =  NEW GenericActivatedAbility(id, card, a1,NULL);
     return NEW MayAbility(id,a1,card);
   }
 
