@@ -439,18 +439,6 @@ power=3
 toughness=2
 [/card]
 [card]
-text=Landfall - Whenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
-id=180348
-auto=@movedTo(land|myBattlefield):deplete:3 target(player)
-name=Hedron Crab
-rarity=U
-mana={U}
-type=Creature
-subtype=Crab
-power=0
-toughness=2
-[/card]
-[card]
 text=Landfall - Whenever a land enters the battlefield under your control, Hedron Scrabbler gets +1/+1 until end of turn.
 id=193394
 name=Hedron Scrabbler
