@@ -832,7 +832,7 @@ type=Artifact
 [card]
 text=Kindle deals X damage to target creature or player, where X is 2 plus the number of cards named Kindle in all graveyards.
 target=creature,player
-auto=foreach(kindle|graveyard):damage:1
+auto=foreach(kindle|graveyard) damage:1
 auto=damage:2
 id=4826
 name=Kindle

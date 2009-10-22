@@ -650,7 +650,7 @@ abilities=legendary
 [card]
 text=Jovial Evil deals X damage to target opponent, where X is twice the number of white creatures that player controls.
 id=1449
-auto=foreach(creature[white]|opponentBattlefield):damage:2 opponent
+auto=foreach(creature[white]|opponentBattlefield) damage:2 opponent
 name=Jovial Evil
 rarity=R
 mana={2}{B}
