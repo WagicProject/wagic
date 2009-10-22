@@ -564,19 +564,6 @@ text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) Fl
 rarity=C
 [/card]
 [card]
-text=Landfall - Whenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
-id=180348
-#currently not support in 0.9.1. unless may is added#
-auto=@movedTo(land|myBattlefield):deplete:3 target(player)
-name=Hedron Crab
-rarity=U
-mana={U}
-type=Creature
-subtype=Crab
-power=0
-toughness=2
-[/card]
-[card]
 id=185704
 name=Kalitas, Bloodchief of Ghet
 mana={5}{B}{B}

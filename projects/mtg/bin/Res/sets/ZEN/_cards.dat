@@ -1,34 +1,34 @@
 [card]
-text=Kicker {3} (You may pay an additional {3} as you cast this spell.) AEther Figment is unblockable. If AEther Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.)   AEther Figment is unblockable. If AEther Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
 id=170993
 name=AEther Figment
+rarity=U
 mana={1}{U}
 kicker={3}
-abilities=unblockable
 auto=kicker counter(1/1,2)
 type=Creature
 subtype=Illusion
 power=1
 toughness=1
-rarity=U
+abilities=unblockable
 [/card]
 [card]
 text=Akoum Refuge enters the battlefield tapped.   When Akoum Refuge enters the battlefield, you gain 1 life.   {T}: Add {B} or {R} to your mana pool.
 id=189638
 name=Akoum Refuge
-rarity=U
 auto=tap
 auto=life:1
 auto={T}:Add {B}
 auto={T}:Add {R}
+rarity=U
 type=Land
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Arid Mesa: Search your library for a Mountain or Plains card and put it onto the battlefield. Then shuffle your library.
+auto={T}{S}:moveTo(myBattlefield) target(mountain,plains|mylibrary) && life:-1 controller
 id=177584
 name=Arid Mesa
 rarity=R
-auto={T}{S}:moveTo(myBattlefield) target(mountain,plains|mylibrary) && life:-1 controller
 type=Land
 [/card]
 [card]
@@ -80,28 +80,28 @@ toughness=2
 abilities=swampwalk
 [/card]
 [card]
-text=Kicker {3}{W} (You may pay an additional {3}{W} as you cast this spell.) Creatures you control get +1/+1 until end of turn. If Bold Defense was kicked, instead creatures you control get +2/+2 and gain first strike until end of turn.
+text=Kicker {3}{W} (You may pay an additional {3}{W} as you cast this spell.)   Creatures you control get +1/+1 until end of turn. If Bold Defense was kicked, instead creatures you control get +2/+2 and gain first strike until end of turn.
 id=180509
 name=Bold Defense
+rarity=C
 mana={2}{W}
 kicker={3}{W}
 auto=lord(creature|myBattlefield) 1/1
 auto=kicker lord(creature|myBattlefield) 1/1
 auto=kicker lord(creature|myBattlefield) first strike
 type=Instant
-rarity=C
 [/card]
 [card]
-text=Kicker {4} (You may pay an additional {4} as you cast this spell.) Burst Lightning deals 2 damage to target creature or player. If Burst Lightning was kicked, it deals 4 damage to that creature or player instead.
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.)   Burst Lightning deals 2 damage to target creature or player. If Burst Lightning was kicked, it deals 4 damage to that creature or player instead.
 id=177558
 name=Burst Lightning
+rarity=C
 mana={R}
 kicker={4}
 target=creature,player
 auto=damage:2
 auto=kicker damage:2
 type=Instant
-rarity=C
 [/card]
 [card]
 text={1}{U}{T}: Target creature gains flying until end of turn.
@@ -150,12 +150,12 @@ abilities=lifelink
 text=Kicker {6} (You may pay an additional {6} as you cast this spell.) Put six 1/1 white Kor Soldier creature tokens onto the battlefield. If Conqueror's Pledge was kicked, put twelve of those tokens onto the battlefield instead.
 id=195626
 name=Conqueror's Pledge
+rarity=R
 mana={2}{W}{W}{W}
 kicker={6}
 auto=token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
 auto=kicker token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
 type=Sorcery
-rarity=R
 [/card]
 [card]
 text=Haste {B}: Crypt Ripper gets +1/+1 until end of turn.
@@ -188,8 +188,8 @@ id=190394
 name=Crypt of Agadeem
 rarity=R
 auto=tap
-auto={T}:add{B}
-auto={2}{T}:foreach(creature[black]|mygraveyard) add{B}
+auto={T}:Add {B}
+auto={2}{T}:foreach(creature[black]|mygraveyard) Add {B}
 type=Land
 [/card]
 [card]
@@ -245,7 +245,7 @@ type=Artifact
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=195158
 name=Forest
 rarity=L
@@ -254,7 +254,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=195177
 name=Forest
 rarity=L
@@ -263,7 +263,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=195183
 name=Forest
 rarity=L
@@ -272,7 +272,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=195192
 name=Forest
 rarity=L
@@ -281,7 +281,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=201959
 name=Forest
 rarity=L
@@ -290,7 +290,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=201960
 name=Forest
 rarity=L
@@ -299,7 +299,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=201961
 name=Forest
 rarity=L
@@ -308,7 +308,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=201962
 name=Forest
 rarity=L
@@ -355,15 +355,15 @@ abilities=deathtouch
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) When Goblin Bushwhacker enters the battlefield, if it was kicked, creatures you control get +1/+0 and gain haste until end of turn.
 id=177501
 name=Goblin Bushwhacker
+rarity=C
 mana={R}
 kicker={R}
 type=Creature
 subtype=Goblin Warrior
 power=1
 toughness=1
-auto=kicker all(creature|myBattlefield) 1/0
-auto=kicker all(creature|myBattlefield) haste
-rarity=C
+auto=kicker all(creature|myBattlefield) 1/0 ueot
+auto=kicker all(creature|myBattlefield) haste ueot
 [/card]
 [card]
 text=Enchant creature Enchanted creature gets +2/+2 and has haste.
@@ -439,6 +439,18 @@ power=3
 toughness=2
 [/card]
 [card]
+text=Landfall - Whenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
+id=180348
+auto=@movedTo(land|myBattlefield):deplete:3 opponent
+name=Hedron Crab
+rarity=U
+mana={U}
+type=Creature
+subtype=Crab
+power=0
+toughness=2
+[/card]
+[card]
 text=Landfall - Whenever a land enters the battlefield under your control, Hedron Scrabbler gets +1/+1 until end of turn.
 id=193394
 name=Hedron Scrabbler
@@ -475,7 +487,7 @@ power=2
 toughness=1
 [/card]
 [card]
-text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) Return target nonland permanent to its owner's hand. If Into the Roil was kicked, draw a card.
+text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.)   Return target nonland permanent to its owner's hand. If Into the Roil was kicked, draw a card.
 id=178151
 name=Into the Roil
 mana={1}{U}
@@ -488,7 +500,7 @@ rarity=C
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=195161
 name=Island
 rarity=L
@@ -497,7 +509,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=195165
 name=Island
 rarity=L
@@ -506,7 +518,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=195170
 name=Island
 rarity=L
@@ -515,7 +527,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=195187
 name=Island
 rarity=L
@@ -524,7 +536,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=201963
 name=Island
 rarity=L
@@ -533,7 +545,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=201964
 name=Island
 rarity=L
@@ -542,7 +554,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=201965
 name=Island
 rarity=L
@@ -551,7 +563,7 @@ subtype=Island
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-auto={T}: Add {U}
+auto={T}:Add {U}
 id=201966
 name=Island
 rarity=L
@@ -631,19 +643,18 @@ power=3
 toughness=3
 [/card]
 [card]
+text=When Kor Cartographer enters the battlefield, you may search your library for a Plains card, put it onto the battlefield tapped, then shuffle your library.
+auto=may moveTo(myBattlefield) target(plains|mylibrary) && tap
 id=170991
 name=Kor Cartographer
+rarity=C
 mana={3}{W}
 type=Creature
 subtype=Kor Scout
 power=2
 toughness=2
-text=When Kor Cartographer enters the battlefield, you may search your library for a Plains card, put it onto the battlefield tapped, then shuffle your library.
-auto=may moveTo(myBattlefield) target(plains|mylibrary) && tap
-rarity=C
 [/card]
 [card]
-text=
 id=177585
 name=Kraken Hatchling
 rarity=C
@@ -658,7 +669,6 @@ text=You gain 2 life for each Plains you control.
 auto=foreach(plains|myBattlefield) life:2 controller
 id=188999
 name=Landbind Ritual
-color=White
 rarity=U
 mana={3}{W}{W}
 type=Sorcery
@@ -689,7 +699,7 @@ auto=foreach(vampire|myBattlefield) life:-1 opponent
 auto=foreach(vampire|myBattlefield) life:1 controller
 power=4
 toughness=4
-abilities=flying
+abilities=flying,protection from white
 [/card]
 [card]
 text=Gain control of target creature until end of turn. Put a +1/+1 counter on it and untap it. That creature gains haste until end of turn.
@@ -704,15 +714,15 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
-text=Kicker {3} (You may pay an additional {3} as you cast this spell.) Creatures target player controls get -1/-1 until end of turn. If Marsh Casualties was kicked, those creatures get -2/-2 until end of turn instead.
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.)   Creatures target player controls get -1/-1 until end of turn. If Marsh Casualties was kicked, those creatures get -2/-2 until end of turn instead.
 id=177543
 name=Marsh Casualties
+rarity=U
 mana={B}{B}
 kicker={3}
 auto=lord(creature|opponentBattlefield) -1/-1
 auto=kicker lord(creature|opponentBattlefield) -1/-1
 type=Sorcery
-rarity=U
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card and put it onto the battlefield. Then shuffle your library.
@@ -750,10 +760,10 @@ abilities=cantblock
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.
+auto={T}{S}:moveTo(myBattlefield) target(forest,island|mylibrary) && life:-1 controller
 id=190413
 name=Misty Rainforest
 rarity=R
-auto={T}{S}:moveTo(myBattlefield) target(forest,island|mylibrary) && life:-1 controller
 type=Land
 [/card]
 [card]
@@ -842,16 +852,16 @@ subtype=Mountain
 [/card]
 [card]
 text=Whenever Murasa Pyromancer or another Ally enters the battlefield under your control, you may have Murasa Pyromancer deal damage to target creature equal to the number of Allies you control.
+auto=may foreach(ally|mybattlefield) damage:1 target(creature)
+auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature)
 id=195634
 name=Murasa Pyromancer
+rarity=U
 mana={4}{R}{R}
 type=Creature
 subtype=Human Shaman Ally
 power=3
 toughness=2
-auto=may foreach(ally|mybattlefield) damage:1 target(creature)
-auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature)
-rarity=U
 [/card]
 [card]
 text=Return target permanent you control to its owner's hand. You gain 4 life.
@@ -951,7 +961,7 @@ power=2
 toughness=4
 [/card]
 [card]
-text=Piranha Marsh enters the battlefield tapped. When Piranha Marsh enters the battlefield, target player loses 1 life. {T}: Add {B} to your mana pool.
+text=Piranha Marsh enters the battlefield tapped.   When Piranha Marsh enters the battlefield, target player loses 1 life.   {T}: Add {B} to your mana pool.
 id=169975
 name=Piranha Marsh
 auto=tap
@@ -962,7 +972,7 @@ type=Land
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=195163
 name=Plains
 rarity=L
@@ -971,7 +981,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=195173
 name=Plains
 rarity=L
@@ -980,7 +990,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=195179
 name=Plains
 rarity=L
@@ -989,7 +999,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=195196
 name=Plains
 rarity=L
@@ -998,7 +1008,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=201971
 name=Plains
 rarity=L
@@ -1007,7 +1017,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=201972
 name=Plains
 rarity=L
@@ -1016,7 +1026,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=201973
 name=Plains
 rarity=L
@@ -1025,7 +1035,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}: Add {W}
+auto={T}:Add {W}
 id=201974
 name=Plains
 rarity=L
@@ -1082,7 +1092,7 @@ auto={G}:regenerate
 abilities=islandwalk
 [/card]
 [card]
-text=Enchant creature Enchanted creature gets +2/+2 and has "{1}{G}: Regenerate this creature."
+text=Enchant creature   Enchanted creature gets +2/+2 and has "{1}{G}: Regenerate this creature."
 target=creature
 auto=2/2
 auto={1}{G}:regenerate
@@ -1095,10 +1105,10 @@ subtype=Aura
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Scalding Tarn: Search your library for a Island or Mountain card and put it onto the battlefield. Then shuffle your library.
+auto={T}{S}:moveTo(myBattlefield) target(island,mountain|mylibrary) && life:-1 controller
 id=190393
 name=Scalding Tarn
 rarity=R
-auto={T}{S}:moveTo(myBattlefield) target(island,mountain|mylibrary) && life:-1 controller
 type=Land
 [/card]
 [card]
@@ -1165,7 +1175,7 @@ rarity=C
 mana={5}{U}
 type=Creature
 subtype=Serpent
-auto=@movedTo(land|myBattlefield):-defender
+auto=@movedTo(land|myBattlefield):-defender ueot
 power=5
 toughness=5
 abilities=defender
@@ -1199,9 +1209,9 @@ target=creature,player
 auto=foreach(mountain|myBattlefield) damage:1
 id=180495
 name=Spire Barrage
+rarity=C
 mana={4}{R}
 type=Sorcery
-rarity=C
 [/card]
 [card]
 text=Landfall - Whenever a land enters the battlefield under your control, Steppe Lynx gets +2/+2 until end of turn. 
@@ -1250,7 +1260,7 @@ toughness=1
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=195157
 name=Swamp
 rarity=L
@@ -1259,7 +1269,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=195159
 name=Swamp
 rarity=L
@@ -1268,7 +1278,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=195172
 name=Swamp
 rarity=L
@@ -1277,7 +1287,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=195194
 name=Swamp
 rarity=L
@@ -1286,7 +1296,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=201975
 name=Swamp
 rarity=L
@@ -1295,7 +1305,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=201976
 name=Swamp
 rarity=L
@@ -1304,7 +1314,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=201977
 name=Swamp
 rarity=L
@@ -1313,7 +1323,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=201978
 name=Swamp
 rarity=L
@@ -1322,16 +1332,16 @@ subtype=Swamp
 [/card]
 [card]
 text=Whenever Tajuru Archer or another Ally enters the battlefield under your control, you may have Tajuru Archer deal damage to target creature with flying equal to the number of Allies you control.
+auto=may foreach(ally|mybattlefield) damage:1 target(creature[flying])
+auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature[flying])
 id=180457
 name=Tajuru Archer
+rarity=U
 mana={2}{G}
 type=Creature
 subtype=Elf Archer Ally
 power=1
 toughness=2
-auto=may foreach(ally|mybattlefield) damage:1 target(creature[flying])
-auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature[flying])
-rarity=U
 [/card]
 [card]
 text=Landfall - Whenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
@@ -1348,12 +1358,12 @@ toughness=4
 [card]
 id=192223
 name=Trapmaker's Snare
+rarity=U
 mana={1}{U}
 type=Instant
 text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
 target=trap|mylibrary
 auto=moveTo(myhand)
-rarity=U
 [/card]
 [card]
 text=Haste   Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.
@@ -1410,7 +1420,7 @@ toughness=3
 abilities=flying,deathtouch,lifelink
 [/card]
 [card]
-text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) Target creature gets +3/+0 until end of turn. If Vampire's Bite was kicked, that creature gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
+text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.)   Target creature gets +3/+0 until end of turn. If Vampire's Bite was kicked, that creature gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
 id=178150
 name=Vampire's Bite
 mana={B}
@@ -1433,14 +1443,14 @@ toughness=6
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Verdant Catacombs: Search your library for a Swamp or Forest card and put it onto the battlefield. Then shuffle your library.
+auto={T}{S}:moveTo(myBattlefield) target(swamp,forest|mylibrary) && life:-1 controller
 id=193400
 name=Verdant Catacombs
 rarity=R
-auto={T}{S}:moveTo(myBattlefield) target(swamp,forest|mylibrary) && life:-1 controller
 type=Land
 [/card]
 [card]
-text=Kicker {G} (You may pay an additional {G} as you cast this spell.) Target creature can't be the target of spells or abilities your opponents control this turn. If Vines of Vastwood was kicked, that creature gets +4/+4 until end of turn.
+text=Kicker {G} (You may pay an additional {G} as you cast this spell.)   Target creature can't be the target of spells or abilities your opponents control this turn. If Vines of Vastwood was kicked, that creature gets +4/+4 until end of turn.
 id=177571
 target=creature
 name=Vines of Vastwood
