@@ -3,14 +3,15 @@
 #DESC: Creature's Decks 1:
 #DESC: "The deck that a Kobold Overlord
 #DESC: would (and could) assemble."
-#DESC: (v1.06)
+#DESC: (v1.07)
 #DESC:
 #DESC:You may think we are weak
 #DESC:But we are many
 #DESC:And sometimes we can hire
 #DESC:A powerful mercenary
 #
-Mountain (10E)              *22
+Mountain (10E)              *20
+Kher Keep (TSP)             *2 # produces kobold tokens
 Crimson Kobolds (LEG)       *4
 Crookshank Kobolds (LEG)    *4
 Kobold Drill Sergeant (LEG) *4
@@ -51,9 +52,3 @@ Mob Justice (STH)           *3  # finisher
 # for mana acceleration
 # Removed because the AI doesn't use the mana.
 # Also ... only works with goblins. Duh. *blush*
-#
-# 2 x Kher Keep (TSP) (ID 113553)
-# For bringing additional kobolds into play
-# AI taps Kher Keep for mana and then can't
-# use that mana to produce a kobold token.
-#

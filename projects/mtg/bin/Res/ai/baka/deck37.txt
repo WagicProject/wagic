@@ -1,48 +1,28 @@
-#NAME:TerravoreTurmoil
-#
-#DESC: Creature's Decks 4:
-#DESC: "The deck that a Terravore
-#DESC: would (and could) assemble."
-#DESC: (v1.01)
-#DESC:
-#DESC: Your homeland is my lunch.
-#
-
-Birds of Paradise (10E)       *4  # mana source
-Vine Trellis (MRQ)            *4  # mana source and defender
-
-Carven Caryatid (RAV)         *3  # card drawer and defender
-Collective Unconscious (MRQ)  *2  # card drawer
-
-Knight of the Reliquary (CFX) *4  # attacker
-Terravore (ODY)               *4  # attacker
-
-Armageddon (POR)              *4  # puts lands into graveyard
-Kudzu (RV)                    *1  # should be 4, but the AI puts
-                                  # several Kudzus on one land,
-                                  # which causes a crash
-Winter's Grasp (TMP)          *2  # weak replacement for Kudzu
-
-Nature's Lore (ICE)           *4  # land fetcher for fast buildup
-Rampant Growth (10E)          *4  # land fetcher for fast buildup
-
-Grasslands (MIR)              *4  # two land fetchers which put
-Mountain Valley (MIR)         *4  # themselves into the graveyard,
-                                  # feeding the Terravore and the
-                                  # Knight
-
-Forest (M10)  *8
-Plains (10E)  *6
-Flagstones of Trokair (TSP)   *2
-
-#
-# Cards considered, but not included:
-# Foratog - eats forests (which is good), but the AI doesn't use
-#   this ability.
-# Terramorphic Expanse - crashes game
-# Windswept Heath - crashes game
-# Elves - more mana sources not needed
-#
-# Cards removed from the deck:
-# 3 more Kudzu- game crashes when a land with two Kudzu on it is
-#   tapped
+#NAME:Kinsbaile Cavalier
+#DESC:The knights on their steeds
+#DESC:and the knights from the sky
+#DESC:unite
+#DESC:in their crusade for honor
+Blessing (RV)                * 2 #
+Crusade (RV)                 * 4 #
+Northern Paladin (RV)        * 1 #
+Lost Order of Jarkeld (ICE)  * 2 #
+Order of the Sacred Torch (ICE) * 1 #
+Soltari Crusader (TMP)       * 1 #
+Crusading Knight (INV)       * 1 #
+Leonin Skyhunter (MRD)       * 1 #
+Flagstones of Trokair (TSP)  * 2 #
+Paladin en-Vec (10E)         * 2 #
+Plains (10E)                 *16 #
+Skyhunter Patrol (10E)       * 1 #
+Skyhunter Prowler (10E)      * 2 #
+Plover Knights (LRW)         * 1 #
+Knight of Meadowgrain (LRW)  * 2 #
+Kinsbaile Cavalier (MOR)     * 3 #
+Wilt-Leaf Cavaliers (SHM)    * 3 #
+Kabira Crossroads (ZEN)      * 2 #
+Sigiled Paladin (ALA)        * 1 #
+White Knight (M10)           * 2 #
+Honor of the Pure (M10)      * 4 #
+Plains (M10)                 * 4 #
+Armored Ascension (M10)      * 2 #

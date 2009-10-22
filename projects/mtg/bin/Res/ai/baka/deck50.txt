@@ -1,0 +1,25 @@
+#NAME:Millage
+#DESC:More than one mage has been
+#DESC:driven insane by the sound 
+#DESC:of the millstone relentlessly
+#DESC:grinding away.
+#DESC:
+#DESC:v1.0 2009 10 01
+Wrath of God (10E) *4
+Damnation (PLC) *4
+Evacuation (10E) *3
+Moat (LEG) *2
+Tome Scour (M10) *4
+Howling Mine (M10) *4
+Glimpse the Unthinkable (RAV) *4
+Dream Fracture (EVE) *4
+Memory Erosion (ALA) *4
+Traumatize (M10) *2
+Forced Fruition (LRW) *1
+Island (RAV) *4
+Island (TSP) *4
+Island (LRW) *2
+Swamp (RAV) *4
+Swamp (TSP) *3
+Plains (RAV) *4
+Plains (TSP) *3
