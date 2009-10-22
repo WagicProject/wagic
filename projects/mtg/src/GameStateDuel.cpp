@@ -211,6 +211,7 @@ void GameStateDuel::End()
   if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();
   GameObserver::EndInstance();
   game = NULL;
+  premadeDeck = false;
 
   for (int i = 0; i < 2; i++){
     SAFE_DELETE(mPlayers[i]);
