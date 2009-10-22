@@ -381,7 +381,7 @@ type=Artifact
 [/card]
 [card]
 text=You gain 1 life for each land you control.
-auto=foreach(land|myBattlefield):life:1
+auto=foreach(land|myBattlefield) life:1
 id=78981
 name=Joyous Respite
 rarity=C
