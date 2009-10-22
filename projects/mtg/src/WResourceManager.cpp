@@ -1109,12 +1109,14 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(int id, string filename, int sty
   cacheItem * item = AttemptNew(filename,submode);       
   
   if(style == RETRIEVE_MANAGE){
-    managed[lookup] = item; //Record a hit or miss.
+    if(mError == CACHE_ERROR_404 || item)
+      managed[lookup] = item; //Record a hit or miss.
     if(item){
       item->deadbolt(); //Make permanent.
     }
   } 
   else {
+    if(mError == CACHE_ERROR_404 || item)
       cache[lookup] = item;
   }
 
