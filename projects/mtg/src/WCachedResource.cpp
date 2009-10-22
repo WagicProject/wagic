@@ -388,6 +388,7 @@ bool WCachedSample::Attempt(string filename, int submode, int & error){
     return false;
   }
 
+  error = CACHE_ERROR_NONE;
   return true;
 }
 
