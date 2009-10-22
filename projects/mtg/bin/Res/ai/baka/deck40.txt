@@ -20,7 +20,7 @@ Soulless One (ONS)       *4  # gets powerful with lots of zombies
 Walking Dead (LEG)       *4  # cheap early defense
 
 Zombie Master (RV)       *3  # for Swampwalk, zombie regeneration,
-                             # and 2/3 isn't bad either
+#                            # and 2/3 isn't bad either
 Severed Legion (10E)     *1  # \
 Warpath Ghoul (M10)      *1  #  > some expensive zombies
 Mass of Ghouls (FUT)     *1  # /
@@ -28,8 +28,8 @@ Mass of Ghouls (FUT)     *1  # /
 Dreadwing (CFX)          *3  # \  9 cheap zombies - neither can
 Hate Weaver (10E)        *3  #  > use its abilities. These are
 Roofstalker Wight (RAV)  *3  # /  just temporary solutions to
-                             #    rack zombie numbers up for the
-                             #    Soulless One.
+#                            #    rack zombie numbers up for the
+#                            #    Soulless One.
 
 Beacon of Unrest (10E)   *1  # More raising of zombies
 
@@ -39,7 +39,8 @@ Swamp (10E)  *24
 
 
 # Cards considered, but not included:
-# Shepherd of the Rot - *much* too dangerous for the AI in this #   deck
+# Shepherd of the Rot - *much* too dangerous for the AI in this
+#   deck
 # Graveborn Muse - dito
 # Empty the Catacombs - would weaken the Soulless One
 # Dauthi Ghoul - too expensive for a 1/1 creature in a

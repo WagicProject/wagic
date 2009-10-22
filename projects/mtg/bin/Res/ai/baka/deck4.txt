@@ -1,6 +1,6 @@
 #NAME:Plateau
 #DESC:In the highland of Borros
-#DESC:Angels,elementals and Goblin 
+#DESC:Angels, elementals and goblins 
 #DESC:are preparing for battle.
 #DESC:Beware, the crusade is coming...
 #4x Lightning Helix {W}{R} - does 3 damage and you gain 3 life replacement for #2x Black Vise (1097) and #2x The Rack (1139)
@@ -8,7 +8,9 @@
 87908
 87908
 87908
+# (PSY) added a third Bull Cerodon to bring the deck to 60 cards
 #2x Bull Cerodon replacement for #3x Earth Elementat {3}{R}{R} -4/5 (1287)
+174952
 174952
 174952
 #2x Fire Elemental {3}{R}{R} - 5/4

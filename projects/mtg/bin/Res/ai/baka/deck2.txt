@@ -1,5 +1,5 @@
 #NAME:Taiga
-#DESC:The most terrifying thing a
+#DESC:The most terrifying thing
 #DESC:is probably the horrible 
 #DESC:crashing sound. 
 #DESC:This noise is so loud 
@@ -55,8 +55,10 @@
 #2x Orcish Oriflamme 
 1310
 1310
+1310
+# (PSY) Power Surge not available any more, replaced with a third Orcish Oriflamme
 #1x Power Surge 
-1311
+#1311
 #1x Wheel of Fortune
 1326
 #1x White Ward 

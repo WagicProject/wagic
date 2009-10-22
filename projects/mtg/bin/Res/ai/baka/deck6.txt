@@ -47,10 +47,12 @@
 #Scryb Sprites
 1264
 1264
+1264
 #Thicket Basilisk
 1267
+# (PSY) Timber Wolves not available any more, replaced with Scryb Sprites
 #Timber Wolves
-1268
+#1268
 #Tsunami
 1271
 #Wall of Ice

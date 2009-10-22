@@ -22,17 +22,17 @@ Ekundu Griffin (MIR)      *2 # same as Razorfoot Griffin
 Spotted Griffin (POR)     *2 # defensive 4-drop flyer
 Divebomber Griffin (RAV)  *1 # only 1, AI doesn't use ability
 Windbrisk Raptor (SHM)    *1 # not a griffin, but a bird, and
-                             # fits well as an endgame surprise
+#                            # fits well as an endgame surprise
 
 Moat (LEG)                *4 # 4 because it's important for this
-                             # deck to keep strong attackers away
+#                            # deck to keep strong attackers away
 
 Blessing (RV)             *2 # \  6 enchantments to reinforce the
 Holy Strength (10E)       *2 #  > holy nature of the griffins -
 Honor of the Pure (M10)   *2 # /  and the creatures need buffs
 Swords to Plowshares (RV) *2 # reinforces the aggresiveness of
-                             # the griffin theme, and stalls the
-                             # the game until Moat comes in
+#                            # the griffin theme, and stalls the
+#                            # the game until Moat comes in
 
 Plains (10E) *24
 

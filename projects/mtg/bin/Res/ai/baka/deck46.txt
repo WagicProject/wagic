@@ -19,7 +19,7 @@ Ashenmoor Cohort (SHM)   *2  # lots of Cinder creatures
 Ashenmoor Gouger (SHM)   *3
 Corrosive Mentor (SHM)   *3
 Crowd of Cinders (SHM)   *4
-Smoldering Butcher (CFX) *4
+Smoldering Butcher (EVE) *4
 Emberstrike Duo (SHM)    *3  # gets pumped by red or black spells
 Nyxathid (CFX)           *2
 Sickle Ripper (SHM)      *3

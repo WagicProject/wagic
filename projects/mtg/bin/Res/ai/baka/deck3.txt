@@ -43,18 +43,20 @@
 1277
 #1x Armageddon
 1328
+# (PSY) 2x Benalish Hero not available any more, removed (deck has still >60 cards)
 #2x Benalish Hero
-1330
-1330
+#1330
+#1330
 #2x Castle
 1334
 1334
 #2x Crusade
 1341
 1341
+# (PSY) 2x Mesa Pegasus not available any more, removed (deck has still >60 cards)
 #2x Mesa Pegasus
-1354
-1354
+#1354
+#1354
 #2x Pearled Unicorn
 1356
 1356

@@ -1,7 +1,12 @@
-#NAME:Howlins
+#NAME:Howlings
 #DESC:High in Jund's mountains. 
 #DESC:They build up a head of steam 
 #DESC:before attacking prey down below.
+
+# (PSY) added 2 Mountains, 1 Black Vise, 1 Howling Mine
+# (would've been better to add creatures, but all creatures in the
+# deck were already at 4 pieces))
+
 #Spark Elemental
 129577
 129577
@@ -38,6 +43,7 @@
 #Black Vise
 1097
 1097
+1097
 #Hearthfire Hobgoblin
 157201
 157201
@@ -46,12 +52,15 @@
 #Howling Mine
 129598
 129598
+129598
 #Goblin Mountaineer
 174938
 174938
 174938
 174938
 #Mountain
+1390
+1390
 1390
 1390
 1390

@@ -1,4 +1,4 @@
-#NAME:Kinsbaile Cavalier
+#NAME:Kinsb. Cavalier
 #DESC:The knights on their steeds
 #DESC:and the knights from the sky
 #DESC:unite

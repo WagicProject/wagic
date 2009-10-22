@@ -6,6 +6,11 @@
 #DESC:and Mortivore's breath. 
 #DESC:Prepare to discover the truth
 #DESC:of the House Dimir.
+
+# (PSY) added 2x Swamp, 2x Island, 1x Psychic Drain,
+# 1x Forced Fruition, 1x Tome Scour, 1x Traumatize,
+# to bring card count to 60.
+
 #4x Animate Dead
 1143
 1143
@@ -14,7 +19,8 @@
 #2x Control Magic
 1194
 1194
-#2x Tome Scour
+#3x Tome Scour
+191598
 191598
 191598
 #4x Glimpse the Unthinkable
@@ -22,9 +28,11 @@
 83597
 83597
 83597
-#1x Psychic Drain
+#2x Psychic Drain
 89114
-#1x Forced Fruition
+89114
+#2x Forced Fruition
+146166
 146166
 #2x Howling Mine
 129598
@@ -41,7 +49,8 @@
 #2x Dreamborn Muse
 135246
 135246
-#2x Traumatize
+#3x Traumatize
+129774
 129774
 129774
 #4x Oona's Gatewarden
@@ -52,7 +61,7 @@
 #2x Glen Elendra Liege
 146743
 146743
-#10x Swamp
+#12x Swamp
 129754
 129754
 129754
@@ -63,13 +72,17 @@
 129755
 129757
 129757
-#10x Island
+129757
+129757
+#12x Island
 129607
 129607
 129608
 129608
 129608
 129608
+129609
+129609
 129609
 129609
 129609

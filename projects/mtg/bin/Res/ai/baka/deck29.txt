@@ -1,10 +1,10 @@
-#NAME:Soldiers
+#NAME:Vigilant Watch
 #DESC:Soldiers are prepared for war,
 #DESC:they are useful in their way, 
 #DESC:but they must be commanded 
 #DESC:as the builder commands the stone.
 #DESC:Disciplined and dedicated, 
-#DESC:they will held their ranks to the end, 
+#DESC:they will hold their ranks to the end, 
 #DESC:even in the face of tremendous losses.
 #4x Akrasan Squire - human soldier {W}, 1/1 exalted
 174963

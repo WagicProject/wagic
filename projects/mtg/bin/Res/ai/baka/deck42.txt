@@ -3,7 +3,7 @@
 #DESC: Creature's Decks :
 #DESC: "The deck that a Viashino Warrior
 #DESC: would (and could) assemble"
-#DESC: (v1.01)
+#DESC: (v1.02)
 #DESC:
 #DESC: With claws and swords and flames
 #DESC: we fiercely protect
@@ -11,25 +11,25 @@
 
 Viashino Slasher (RAV)         *4 # cheap Viashino
 Viashino Slaughtermaster (CFX) *4 # cheap Viashino
-Viashino Bladescout (TSP)      *1 # only 1, AI doesn't use Flash
+Viashino Sandscout (10E)       *1 # only 1, AI doesn't understand
 Viashino Spearhunter (M10)     *4 # first strike
 Viashino Grappler (INV)        *4 # high power but very vulnerable
 Viashino Warrior (MIR)         *2 # attacker
 Viashino Weaponsmith (USG)     *2 # attacker
 Viashino Fangtail (RAV)        *2 # attacker
 Furnace Whelp (10E)            *2 # not a Viashino, but having
-                                  # two flyers helps the deck
+#                                 # two flyers helps the deck
 
 Firebreathing (10E)            *4 # fiery breath for the dragons'
-                                  # descendants - also allows to
-                                  # use spare mana, although the
-                                  # AI rarely does that.
+#                                 # descendants - also allows to
+#                                 # use spare mana, although the
+#                                 # AI rarely does that.
 Flaming Sword (MRQ)            *2 # fiery weapons as well
 Emblem of the Warmind (FUT)    *2 # gives Haste
 Beacon of Destruction (10E)    *1 # repeated fire blasts
 Rage Reflection (SHM)          *1 # double strike
 Dragon Roost (10E)             *1 # endgame surprise - produces
-                                  # red dragons
+#                                 # red dragons
 
 Mountain (10E) *24
 
@@ -58,6 +58,7 @@ Mountain (10E) *24
 #   doesn't use the mana
 # Viashino Sandscout - AI doesn't understand that it will return
 #   to owner's hand, may enchant it
+# Viashino Bladescout - removed from Wagic
 
 # Notes:
 # Flavor deck.

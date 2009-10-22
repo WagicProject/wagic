@@ -12,32 +12,32 @@
 Winged Sliver (TMP)  *2 # gives Flying
 
 Horned Sliver (TMP)  *3 # gives Trample, also 2/2 isn't bad for a
-                        # 3-drop creature that others will pump 
+#                       # 3-drop creature that others will pump 
 
 Muscle Sliver (TMP)  *4 # cheap and the +1/+1 bonus is cumulative
-                        # and can't be misused by the AI
+#                       # and can't be misused by the AI
 
 Heart Sliver (TMP)   *2 # gives Haste
 
 Talon Sliver (TMP)   *3 # gives First Strike
 
 Watcher Sliver (TSP) *1 # nice cumulative +0/+2 bonus, but too
-                        # expensive to have more of them, and we
-                        # only have 3 plains in the deck
+#                       # expensive to have more of them, and we
+#                       # only have 3 plains in the deck
 
 Shadow Sliver (TSP) *1  # might be great or bad - thrown in as
-                        # an element of surprise
+#                       # an element of surprise
 
 Crystalline Sliver (STH) *1 # Shroud is nice, especially in a
-                            # deck with no non-creature spells
+#                           # deck with no non-creature spells
 
 Bonesplitter Sliver (TSP) *4  # nice cumulative +2/+0 bonus
 
 Fury Sliver (TSP) *2    # gives double strike, only 2 because
-                        # it's a 6-drop creature
+#                       # it's a 6-drop creature
 
 Might Sliver (TSP) *4   # nice cumulative +2/+2 bonus
-
+#
 Spined Sliver (STH) *2  # gives Rampage
 
 Spinneret Sliver (TSP) *3  # 2/2 Sliver for only 2 mana, also
@@ -46,8 +46,8 @@ Spinneret Sliver (TSP) *3  # 2/2 Sliver for only 2 mana, also
 # played because we have few Islands.
 
 Gemhide Sliver (TSP) *4 # Additional mana source to get Might
-                        # Slivers out faster
-                        
+#                       # Slivers out faster
+
 Forest (M10)   *12      # (most slivers in the deck are green)
 Island (M10)   *3       # only 4 blue creatures in the deck
 Mountain (M10) *6
@@ -57,7 +57,7 @@ Plains (M10)   *3       # only 5 white creatures in the deck
 # Cards considered, but not included:
 # Basal Sliver - AI too eager to sacrifice
 # Clot Sliver - would be the only black sliver left after Basal
-   Sliver was taken out; also: AI not too smart with regeneration
+#  Sliver was taken out; also: AI not too smart with regeneration
 # Sedge Sliver - no swamps in deck (since all black slivers were
 #   taken out)
 # Firewake Sliver - AI too eager to sacrifice

@@ -14,7 +14,7 @@
 #DESC: We heal.
 
 Heartmender (SHM)         *4 # continuously removes -1/-1 counters
-                             # from all others
+#                            # from all others
 Kitchen Finks (SHM)       *4 # brings 2 life everytime it persists
 Safehold Elite (SHM)      *4 # cheap early defense
 Lingering Tormentor (EVE) *4 # attacker with Fear
@@ -22,13 +22,13 @@ Rendclaw Trow (EVE)       *4 # has Wither
 Gravelgill Axeshark (SHM) *3 # 3/3 creature
 Scuzzback Marauders (SHM) *3 # 5/2 attacker
 Restless Apparition (EVE) *2 # can get +3/+3 bonus, but does the
-                             # AI use that ability?
+#                            # AI use that ability?
 
 Vine Trellis (MRQ)        *4 # cheap defender and mana source
 
 Animate Dead (RV)         *4 # to bring back creatures that were
-                             # killed before the Heartmenders came
-                             # online
+#                            # killed before the Heartmenders came
+#                            # online
 
 Forest (10E) *12
 Swamp (10E) *12

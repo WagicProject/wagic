@@ -7,7 +7,9 @@ Elite Vanguard *4
 Honor of the Pure *4
 Glorious Anthem *4
 Veteran Armorer *4
-Balefire Liege *4
+Thistledown Liege *4
+# (PSY) Balefire Liege not available any more, replaced with 4x Thistledown Liege
+# Balefire Liege *4
 #Plains
 191382
 191382

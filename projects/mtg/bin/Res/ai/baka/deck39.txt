@@ -23,7 +23,7 @@ Fire Tempest (POR)          *2
 Volcanic Hammer (POR)       *4
 
 Howling Mine (10E)          *4 # accelerates the game, makes more
-                               # damage spells available
+#                              # damage spells available
 
 Mountain (10E)  *24
 

@@ -18,7 +18,7 @@ Ornithopter (10E)        *4  # cheap artifact, later air defense
 Nuisance Engine (MRD)    *4  # create more cheap artifacts
 
 Cathodion (MRD)          *4  # 3-drop 3/3 creature without a down-
-                             # side since manaburn was abolished
+#                            # side since manaburn was abolished
 
 Steel Wall (MRD)         *2  # mainly for defending
 Yotian Soldier (MRD)     *2  # cheap defender
@@ -30,11 +30,11 @@ Scarecrone (EVE)         *2  # brings back artifacts
 Glaze Fiend (ALA)        *2  # temp. bonus for playing artifacts
 
 Salvage Slasher (CFX)    *2  # grows stronger with artifacts in
-                             # graveyard - nice effect if opponent
-                             # has destroyed all artifacts
+#                            # graveyard - nice effect if opponent
+#                            # has destroyed all artifacts
 
 Silver Myr (MRD)         *4  # artifact source of blue mana (which
-                             # is needed for the 6 Vedalken)
+#                            # is needed for the 6 Vedalken)
 
 Akroma's Memorial (FUT)  *2  # massive bonuses incl. Trample
 
@@ -50,8 +50,8 @@ Ancient Den (MRD)        *4
 Academy Ruins (TSP)      *1  # brings back artifacts
 
 Tolarian Academy (USG)   *1  # Generates massive amounts of mana
-                             # in this deck - which the AI usually
-                             # wastes.
+#                            # in this deck - which the AI usually
+#                            # wastes.
 
 
 # Cards considered, but not included:

@@ -1,14 +1,18 @@
-#NAME:Djungle
+#NAME:Jungle
 #DESC:Two glowing red eyes 
 #DESC:and the stench of foul breath 
 #DESC:are all the warning 
 #DESC:you're likely to get.
+
+# (PSY) added 1x Tundra Wolves, 1x Scryb Sprites, 1x Forest, 1x Mountain, to bring card count to 60
+
 #Spark Elemental
 129577
 129577
 129577
 129577
 #Tundra Wolves
+129604
 129604
 129604
 129604
@@ -23,6 +27,7 @@
 175062
 175062
 #Scryb Sprites
+1264
 1264
 1264
 1264
@@ -46,7 +51,8 @@
 1367
 1367
 1367
-#Forest5
+#Forest6
+1388
 1388
 1388
 1388
@@ -62,7 +68,8 @@
 1397
 1397
 1397
-#Mountain8
+#Mountain9
+1390
 1390
 1390
 1390
