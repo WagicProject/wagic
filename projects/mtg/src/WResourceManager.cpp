@@ -981,6 +981,7 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
     }
     //Probably not enough memory: cleanup and try again
     Cleanup();
+    mError = CACHE_ERROR_NONE;
     if(!item->Attempt(filename,submode,mError) || !item->isGood()) {
       SAFE_DELETE(item);
       mError = CACHE_ERROR_BAD;
@@ -1000,6 +1001,7 @@ template <class cacheItem, class cacheActual>
 cacheItem * WCache<cacheItem, cacheActual>::Retrieve(int id, string filename, int style, int submode){
   //Check cache.
   cacheItem * tc = NULL;
+  mError = CACHE_ERROR_NONE; //Reset error status.
 
   if(style == RETRIEVE_EXISTING || style == RETRIEVE_RESOURCE)
     tc = Get(id,filename,style,submode|CACHE_EXISTING);
@@ -1041,7 +1043,7 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(int id, string filename, in
   }
 
   //Record managed failure. Cache failure is recorded in Get().
-  if(style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE)
+  if((style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE) && mError == CACHE_ERROR_404)
    managed[makeID(id,filename,submode)] = NULL; 
 
   return NULL;
