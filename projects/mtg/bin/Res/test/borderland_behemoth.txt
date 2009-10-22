@@ -1,0 +1,22 @@
+#Bug: Borderland Behemoth
+# http://code.google.com/p/wagic/issues/detail?id=116
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:borderland behemoth,axegrinder giant
+[PLAYER2]
+[DO]
+borderland behemoth
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:borderland behemoth,axegrinder giant
+[PLAYER2]
+life:12
+[END]

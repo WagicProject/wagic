@@ -63,6 +63,7 @@ blessed_wine.txt
 bloodfire_colossus.txt
 bloodhall_ooze.txt
 body_double.txt
+borderland_behemoth.txt
 bottle_gnomes.txt
 bottle_gnomes2.txt
 boggart_arsonists.txt
