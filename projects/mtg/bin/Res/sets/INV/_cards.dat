@@ -502,7 +502,7 @@ type=Creature
 subtype=Merfolk
 power=1
 toughness=3
-abilities=legendary 
+abilities=legendary
 [/card]
 [card]
 text=Counter target creature spell.   Draw a card.

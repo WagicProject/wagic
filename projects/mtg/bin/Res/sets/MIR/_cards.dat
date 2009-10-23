@@ -327,7 +327,6 @@ id=3442
 name=Ekundu Cyclops
 rarity=C
 mana={3}{R}
-
 type=Creature
 subtype=Cyclops
 auto=aslongas(creature|myBattlefield) mustattack
