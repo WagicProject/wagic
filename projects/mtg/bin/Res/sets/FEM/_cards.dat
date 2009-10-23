@@ -391,7 +391,6 @@ text=Protection from black   {W}: Order of Leitbur gains first strike until end 
 id=2002
 name=Order of Leitbur
 rarity=C
-rarity=C
 mana={W}{W}
 type=Creature
 subtype=Human Cleric Knight

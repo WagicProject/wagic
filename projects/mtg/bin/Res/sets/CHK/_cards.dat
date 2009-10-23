@@ -851,7 +851,6 @@ toughness=4
 [card]
 text=Flying   When Ryusei, the Falling Star is put into a graveyard from the battlefield, it deals 5 damage to each creature without flying.
 auto=@movedTo(this|graveyard) from(battlefield):damage:5 all(creature[-flying])
-
 id=79242
 name=Ryusei, the Falling Star
 rarity=R
