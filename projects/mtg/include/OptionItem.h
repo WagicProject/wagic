@@ -408,11 +408,16 @@ private:
 class OptionTheme:public OptionDirectory{
  public:
   OptionTheme();
-  JQuad * getImage();
+  JQuad * getImage();   
+  virtual void updateValue();
   virtual float getHeight();
   virtual void Render();
   virtual void confirmChange(bool confirmed);
   virtual bool Visible();
+
+protected:
+  string author;
+  bool bChecked;
 };
 
 class OptionProfile:public OptionDirectory{

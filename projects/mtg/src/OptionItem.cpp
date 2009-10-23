@@ -646,7 +646,8 @@ OptionTheme::OptionTheme(): OptionDirectory(RESPATH"/themes",Options::ACTIVE_THE
   addSelection("Default");
   sort(selections.begin(),selections.end());
   initSelections();
-  mFocus=false;
+  mFocus=false; 
+  bChecked = false;
 }
 JQuad * OptionTheme::getImage(){
   char buf[512];
@@ -662,12 +663,31 @@ JQuad * OptionTheme::getImage(){
 float OptionTheme::getHeight(){
   return 130;
 };
+void OptionTheme::updateValue(){
+  OptionDirectory::updateValue();
+  bChecked = false;
+}
+
 void OptionTheme::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * q = getImage();
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
   char buf[512];
+  if(!bChecked){
+    author = "";
+    bChecked = true;
+    sprintf(buf,RESPATH"/themes/%s/themeinfo.txt",selections[value].c_str());
+    std::ifstream file(buf);
+    if(file){
+      string temp;
+      std::getline(file,temp);
+      for(unsigned int x=0;x<17,x<temp.size();x++){
+        if(isprint(temp[x])) //Clear stuff that breaks mFont->DrawString, cuts to 16 chars.
+          author += temp[x];
+      }
+    }
+  }
   sprintf(buf,"Theme: %s",selections[value].c_str());
 
   if(q){
@@ -676,6 +696,14 @@ void OptionTheme::Render(){
   }
 
   mFont->DrawString(buf,x,y);
+  if(bChecked && author.size()){
+    mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
+     mFont->SetScale(.8);
+    float hi = mFont->GetHeight();
+    sprintf(buf,"Artist: %s",author.c_str());
+    mFont->DrawString(buf,x,y+getHeight()-hi);
+    mFont->SetScale(1);
+  }
 }
 
 bool OptionTheme::Visible(){
@@ -686,6 +714,7 @@ bool OptionTheme::Visible(){
 }
 
 void OptionTheme::confirmChange(bool confirmed){
+  bChecked = false;
   if(!confirmed)   
     value = prior_value;
   else{
