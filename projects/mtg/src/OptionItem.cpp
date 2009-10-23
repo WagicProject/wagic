@@ -686,8 +686,8 @@ void OptionTheme::Render(){
         if(isprint(temp[x])) //Clear stuff that breaks mFont->DrawString, cuts to 16 chars.
           author += temp[x];
       }
+      file.close();
     }
-    file.close();
   }
   sprintf(buf,"Theme: %s",selections[value].c_str());
 
