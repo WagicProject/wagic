@@ -687,6 +687,7 @@ void OptionTheme::Render(){
           author += temp[x];
       }
     }
+    file.close();
   }
   sprintf(buf,"Theme: %s",selections[value].c_str());
 
