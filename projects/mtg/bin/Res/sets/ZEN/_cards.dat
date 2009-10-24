@@ -853,7 +853,7 @@ subtype=Mountain
 [card]
 text=Whenever Murasa Pyromancer or another Ally enters the battlefield under your control, you may have Murasa Pyromancer deal damage to target creature equal to the number of Allies you control.
 auto=may foreach(ally|mybattlefield) damage:1 target(creature)
-auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature)
+auto=@movedTo(ally|mybattlefield):may foreach(ally|mybattlefield) damage:1 target(creature)
 id=195634
 name=Murasa Pyromancer
 rarity=U
@@ -1333,7 +1333,7 @@ subtype=Swamp
 [card]
 text=Whenever Tajuru Archer or another Ally enters the battlefield under your control, you may have Tajuru Archer deal damage to target creature with flying equal to the number of Allies you control.
 auto=may foreach(ally|mybattlefield) damage:1 target(creature[flying])
-auto=@movedTo(ally|mybattlefield) may foreach(ally|mybattlefield) damage:1 target(creature[flying])
+auto=@movedTo(ally|mybattlefield):may foreach(ally|mybattlefield) damage:1 target(creature[flying])
 id=180457
 name=Tajuru Archer
 rarity=U
