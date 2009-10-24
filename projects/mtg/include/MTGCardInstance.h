@@ -82,6 +82,9 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int toggleDefenser(MTGCardInstance * opponent);
   int raiseBlockerRankOrder(MTGCardInstance * blocker);
   int bringBlockerToFrontOfOrder(MTGCardInstance * blocker);
+
+  //Returns rank of the card in blockers if it is a blocker of this (starting at 1), 0 otherwise
+  int getDefenserRank(MTGCardInstance * blocker);
   int toggleAttacker();
   MTGCardInstance * banding; // If belongs to a band when attacking
   int canBlock();

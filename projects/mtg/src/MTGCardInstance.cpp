@@ -512,6 +512,15 @@ int MTGCardInstance::bringBlockerToFrontOfOrder(MTGCardInstance * blocker){
   return 1;
 }
 
+int MTGCardInstance::getDefenserRank(MTGCardInstance * blocker){
+  int result = 0;
+  for(list<MTGCardInstance *>::iterator it1 = blockers.begin(); it1 != blockers.end(); ++it1){
+    result++;
+    if ((*it1) == blocker) return result;
+  }
+  return 0;
+};
+
 int MTGCardInstance::removeBlocker(MTGCardInstance * blocker){
   blockers.remove(blocker);
   if (!blockers.size()) blocked = false;
@@ -557,6 +566,8 @@ MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous){
   }
   return NULL;
 }
+
+
 
 int MTGCardInstance::setDefenser(MTGCardInstance * opponent){
   GameObserver * g = GameObserver::GetInstance();

@@ -84,9 +84,14 @@ void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 void GuiPlay::BattleField::EnstackBlocker(CardView* card)
 {
   GameObserver* game = GameObserver::GetInstance();
-  if (card->card && card->card->defenser && card->card->defenser->view)
-    card->x = card->card->defenser->view->x;
-  card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y : -20 - y);
+  MTGCardInstance * c = card->card;
+  if (!c) return;
+  int offset = 0;
+  if (c->defenser && c->defenser->view){
+    offset = c->defenser->getDefenserRank(c);
+    card->x = c->defenser->view->x + 5 * offset;
+  }
+  card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y + 6 * offset : -20 - y + 6 * offset);
 }
 void GuiPlay::BattleField::Update(float dt)
 {
