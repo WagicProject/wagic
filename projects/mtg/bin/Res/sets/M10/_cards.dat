@@ -571,7 +571,7 @@ name=Essence Scatter
 mana={1}{U}
 type=Instant
 text=Counter target creature spell.
-target=(creature|stack)
+target=creature|stack
 auto=fizzle
 rarity=C
 [/card]

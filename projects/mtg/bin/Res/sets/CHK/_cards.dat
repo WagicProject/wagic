@@ -236,7 +236,7 @@ toughness=1
 [/card]
 [card]
 text=Counter target Spirit or Arcane spell.
-target=(spirit,arcane|stack)
+target=spirit,arcane|stack
 auto=fizzle
 rarity=C
 id=50439
