@@ -733,8 +733,8 @@ abilities=protection from black
 [card]
 text=At the end of each player's turn, tap all untapped Islands that player controls and Monsoon deals X damage to the player, where X is the number of Islands tapped this way.
 id=2734
-auto=@each my endofturn:foreach(island[-tapped]|myBattlefield):damage:1 controller
-auto=@each opponent endofturn:foreach(island[-tapped]|opponentBattlefield):damage:1 opponent
+auto=@each my endofturn:foreach(island[-tapped]|myBattlefield) damage:1 controller
+auto=@each opponent endofturn:foreach(island[-tapped]|opponentBattlefield) damage:1 opponent
 auto=@each my cleanup:tap all(island[-tapped]|myBattlefield)
 auto=@each opponent cleanup:tap all(island[-tapped]|opponentBattlefield)
 name=Monsoon
