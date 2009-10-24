@@ -129,7 +129,7 @@ void GameStateOptions::Render()
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 
   const char * const CreditsText[] = {
-      "Wagic, The Homebrew?! by wololo",
+      "Wagic, The Homebrew?! by Wololo",
       "",
       "updates, new cards, and more on http://wololo.net/wagic",
       "Many thanks to the people who help this project",
@@ -140,9 +140,9 @@ void GameStateOptions::Render()
       "Dev Team: Abrasax, Daddy32, Dr.Solomat, J,", 
       "Jeck, Leungclj, Superhiro, Psyringe, Wololo",
       "",
-      "Thanks to everyone who contribute code/content on the forums!",
+      "Thanks to everyone who contributes code/content on the forums!",
       "",
-      "Developped with the JGE++ Library (http://jge.khors.com)",
+      "Developed with the JGE++ Library (http://jge.khors.com)",
       "Player's avatar from http://mathieuchoinet.blogspot.com, under CC License",
       "Background picture and some art from the KDE project, www.kde.org",
       "SFX From www.soundsnap.com",
