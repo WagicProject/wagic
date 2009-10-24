@@ -52,11 +52,13 @@ ostream& NextGamePhase::toString(ostream& out) const
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad){
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-  mFont->SetBase(0);
+  mFont->SetColor(ARGB(255,255,255,255));
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   mFont->DrawString(_(action).c_str(), x + 30 , y, JGETEXT_LEFT);
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = resources.RetrieveCard(source,CACHE_THUMB);
+  if (!quad)
+    quad = CardGui::alternateThumbQuad(source);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = mHeight  / quad->mHeight;
@@ -175,16 +177,12 @@ Spell::~Spell(){
 
 int Spell::resolve(){
   GameObserver * game = GameObserver::GetInstance();
-  //TODO Remove target if it's not targettable anymore
-  /* while (source->next){
-    source = source->next;
-  }*/
+
   if (!source->hasType("instant") &&  !source->hasType("sorcery")){
       Player * p = source->controller();
       source = p->game->putInZone(source,from,p->game->battlefield);
       from = p->game->battlefield;
   }
-
 
   //Play SFX
   if (options[Options::SFXVOLUME].number > 0){
@@ -537,7 +535,6 @@ void ActionStack::Update(float dt){
   //Select Stack's display mode
   if (mode==ACTIONSTACK_STANDARD && tc && !checked){
     checked = 1;
-    //unpackDamageStacks();
     for (int i = 0; i < mCount ; i++){
       Interruptible * current = (Interruptible *)mObjects[i];
       if (tc->canTarget(current)){
@@ -552,12 +549,10 @@ void ActionStack::Update(float dt){
       }
     }
     if (mode != ACTIONSTACK_TARGET){
-      //repackDamageStacks();
     }
   }else if (mode==ACTIONSTACK_TARGET && !tc){
     mode = ACTIONSTACK_STANDARD;
     checked = 0;
-    //repackDamageStacks();
   }
 
   if (mode == ACTIONSTACK_STANDARD){
@@ -798,8 +793,8 @@ void ActionStack::Render(){
     }
 
     JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-    mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    mFont->SetColor(ARGB(255,255,255,255));
 
     JRenderer * renderer = JRenderer::GetInstance();
     renderer->FillRect(x0 ,y0 , width ,height , ARGB(200,0,0,0));

@@ -1,5 +1,3 @@
-ondu_cleric.txt
-/*
 ########################
 #Generic engine features
 ########################
