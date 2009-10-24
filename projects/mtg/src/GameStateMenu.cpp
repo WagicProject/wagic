@@ -11,7 +11,7 @@
 #include "../include/utils.h"
 #include "../include/DeckDataWrapper.h"
 
-static const char* GAME_VERSION = "WTH?! 0.8.1 - by wololo";
+static const char* GAME_VERSION = "WTH?! 0.9.0 - by wololo";
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
@@ -194,7 +194,7 @@ void GameStateMenu::fillScroller(){
   if (!options[Options::MOMIR_MODE_UNLOCKED].number)
     scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));
   if (!options[Options::RANDOMDECK_MODE_UNLOCKED].number)
-    scroller->Add(_("You haven't locked the random deck mode yet"));
+    scroller->Add(_("You haven't unlocked the random deck mode yet"));
   if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)
     scroller->Add(_("You haven't unlocked the evil twin mode yet"));
   if (!options[Options::RANDOMDECK_MODE_UNLOCKED].number)
