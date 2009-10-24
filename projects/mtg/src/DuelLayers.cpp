@@ -51,9 +51,9 @@ void DuelLayers::CheckUserInput(int isAI){
     if ((!isAI) && (0 != key))
       {
 	if (stack->CheckUserInput(key)) break;
-        if (combat->CheckUserInput(key)) break;
+  if (combat->CheckUserInput(key)) break;
+  if (avatars->CheckUserInput(key)) break; //avatars need to check their input before action (CTRL_CROSS)
 	if (action->CheckUserInput(key)) break;
-  if (avatars->CheckUserInput(key)) break;
 	if (hand->CheckUserInput(key)) break;
 	if (cs->CheckUserInput(key)) break;
       }

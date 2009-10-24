@@ -146,7 +146,7 @@ TargetChooser * ActionLayer::getCurrentTargetChooser(){
 int ActionLayer::cancelCurrentAction(){
   ActionElement * ae = isWaitingForAnswer();
   if (!ae) return 0;
-  ae->waitingForAnswer = 0; //TODO MOVE THIS IS ActionElement
+  ae->waitingForAnswer = 0; //TODO MOVE THIS IN ActionElement
   setCurrentWaitingAction(NULL);
   return 1;
 }

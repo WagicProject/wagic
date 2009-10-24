@@ -116,7 +116,6 @@ class TargetAbility:public ActivatedAbility{
   MTGAbility * ability;
   TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
   TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
-  virtual void Update(float dt);
   virtual int reactToClick(MTGCardInstance * card);
   virtual int reactToTargetClick(Targetable * object);
   virtual TargetAbility* clone() const = 0;

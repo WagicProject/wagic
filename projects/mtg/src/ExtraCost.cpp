@@ -61,6 +61,7 @@ void SacrificeCost::Render(){
   //TODO : real stuff
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
   char buffer[200];
   sprintf(buffer, _("sacrifice").c_str());
   mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);

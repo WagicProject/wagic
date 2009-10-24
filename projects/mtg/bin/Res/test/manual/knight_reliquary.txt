@@ -1,0 +1,19 @@
+#Bug:Knight of the reliquary
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:knight of the reliquary,plains
+library:swamp
+[PLAYER2]
+[DO]
+human
+human
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:17
+[END]

@@ -1817,18 +1817,6 @@ TargetAbility::TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost, in
   ability = NULL;
 }
 
-void TargetAbility::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-  if (waitingForAnswer){
-    if(mEngine->GetButtonClick(PSP_CTRL_CROSS)){
-      game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
-      waitingForAnswer = 0;
-    }else if(tc->targetsReadyCheck() == TARGET_OK_FULL){
-      //waitingForAnswer = 0;
-      //ActivatedAbility::reactToClick(source);
-    }
-  }
-}
 
 int TargetAbility::reactToTargetClick(Targetable * object){
   if (object->typeAsTarget() == TARGET_CARD) return reactToClick((MTGCardInstance *)object);
@@ -1859,7 +1847,6 @@ int TargetAbility::reactToClick(MTGCardInstance * card){
       return ActivatedAbility::reactToClick(source);
     }else{
       if (tc->toggleTarget(card) == TARGET_OK_FULL){
-
 	      int result = ActivatedAbility::reactToClick(source);
         if (result) {
           waitingForAnswer = 0;
