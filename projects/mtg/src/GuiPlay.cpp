@@ -266,18 +266,18 @@ int GuiPlay::receiveEventMinus(WEvent * e)
     {
       if ((game->players[0]->inPlay() == event->from) ||
 	  (game->players[1]->inPlay() == event->from))
-	for (iterator it = cards.begin(); it != cards.end(); ++it)
-	  if (event->card->previous == (*it)->card || event->card == (*it)->card )
-	    {
+        for (iterator it = cards.begin(); it != cards.end(); ++it)
+          if (event->card->previous == (*it)->card || event->card == (*it)->card )
+            {
               if (event->card->previous && event->card->previous->attacker) battleField.removeAttacker(event->card->previous);
               else if (event->card->attacker) battleField.removeAttacker(event->card);
-	      CardView* cv = *it;
-	      cs->Remove(cv);
-	      cards.erase(it);
+              CardView* cv = *it;
+              cs->Remove(cv);
+              cards.erase(it);
               trash(cv);
-	      Replace();
-	      return 1;
-	    }
-    }
+              Replace();
+              return 1;
+            }
+          }
   return 0;
 }

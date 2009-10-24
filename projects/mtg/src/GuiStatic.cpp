@@ -155,10 +155,20 @@ bool GuiGameZone::CheckUserInput(u32 key){
 }
 
 void GuiGameZone::Update(float dt){
-  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
-    (*it)->Update(dt);
   if (showCards) cd->Update(dt);
   PlayGuiObject::Update(dt);
+
+  for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it){
+    CardView * c = (*it);
+    c->Update(dt);
+
+    //Dirty fix for http://code.google.com/p/wagic/issues/detail?id=113
+    if (fabs(c->actX - c->x) < 0.01 && fabs(c->actY - c->y)< 0.01){
+	    cards.erase(it);
+      trash(c);
+      return;
+    }
+  }
 }
 
 GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, GuiAvatars* parent): GuiStatic(GuiGameZone::Height, x, y, hasFocus, parent), zone(zone){
