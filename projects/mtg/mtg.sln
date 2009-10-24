@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C++ Express 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mtg", "template.vcproj", "{53024371-2293-4D40-8ECF-FCB470B50DA1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JGE", "..\..\JGE\JGE.vcproj", "{89159C26-2282-404A-A194-103B0A49DF7B}"

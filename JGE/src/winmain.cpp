@@ -112,7 +112,6 @@ bool SwapBuffers(HDC);
 
 #include <GL/gl.h>			// Header File For The OpenGL32 Library
 #include <GL/glu.h>			// Header File For The GLu32 Library
-#include <GL/glaux.h>		// Header File For The Glaux Library
 #include <queue>
 
 #include "../../JGE/include/JGE.h"
@@ -128,7 +127,6 @@ bool SwapBuffers(HDC);
 #ifdef WIN32
 #pragma comment( lib, "opengl32.lib" )	// Search For OpenGL32.lib While Linking
 #pragma comment( lib, "glu32.lib" )		// Search For GLu32.lib While Linking
-#pragma comment( lib, "glaux.lib" )		// Search For GLaux.lib While Linking
 #pragma comment( lib, "User32.lib" )
 #pragma comment( lib, "Gdi32.lib" )
 #pragma comment( lib, "Comdlg32.lib" )

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="big5"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9.00"
 	Name="JGE"
 	ProjectGUID="{89159C26-2282-404A-A194-103B0A49DF7B}"
 	RootNamespace="JGE"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
