@@ -107,7 +107,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
           options.save();
           unlockedString = MtgSets::SetsList->values[unlocked -1];
       }
-      if (unlocked){
+      if (unlocked && options[Options::SFXVOLUME].number > 0){
         JSample * sample = resources.RetrieveSample("bonus.wav");
         if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
       }
