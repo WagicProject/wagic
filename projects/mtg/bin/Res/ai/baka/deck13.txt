@@ -1,8 +1,7 @@
 #NAME:Jungle
-#DESC:Two glowing red eyes 
-#DESC:and the stench of foul breath 
-#DESC:are all the warning 
-#DESC:you're likely to get.
+#DESC:Creatures of the mountains,
+#DESC:forests, and plains,
+#DESC:are ready to take their revenge.
 
 # (PSY) added 1x Tundra Wolves, 1x Scryb Sprites, 1x Forest, 1x Mountain, to bring card count to 60
 

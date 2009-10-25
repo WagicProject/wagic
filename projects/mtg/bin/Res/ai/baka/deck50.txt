@@ -1,9 +1,4 @@
 #NAME:Millage
-#DESC:More than one mage has been
-#DESC:driven insane by the sound 
-#DESC:of the millstone relentlessly
-#DESC:grinding away.
-#DESC:
 #DESC:v1.0 2009 10 01
 Wrath of God (10E) *4
 Damnation (PLC) *4

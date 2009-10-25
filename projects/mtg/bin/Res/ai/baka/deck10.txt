@@ -1,7 +1,7 @@
 #NAME:Howlings
-#DESC:High in Jund's mountains. 
-#DESC:They build up a head of steam 
-#DESC:before attacking prey down below.
+#DESC:Supported by elemental rage
+#DESC:goblins descend from the mountains
+#DESC:to conquer the lands below.
 
 # (PSY) added 2 Mountains, 1 Black Vise, 1 Howling Mine
 # (would've been better to add creatures, but all creatures in the

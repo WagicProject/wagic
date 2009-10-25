@@ -1,9 +1,7 @@
 #NAME:Shatter
-#DESC:The scepter of power is fragile 
-#DESC:in a calloused hand.
-#DESC:See your effort reduced
-#DESC:to a smoking stack of scrap 
-#DESC:in one easy step.
+#DESC:See all your efforts shattered
+#DESC:by the all-consuming power
+#DESC:of righteous fury.
 #2x Shatter
 1316
 1316

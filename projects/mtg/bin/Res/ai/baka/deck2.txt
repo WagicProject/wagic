@@ -1,11 +1,7 @@
 #NAME:Taiga
-#DESC:The most terrifying thing
-#DESC:is probably the horrible 
-#DESC:crashing sound. 
-#DESC:This noise is so loud 
-#DESC:it echoes through the trees 
-#DESC:and seems to come 
-#DESC:from all directions at once.
+#DESC:The forces of fire and nature unite.
+#DESC:
+#DESC:Can you withstand their combined fervor?
 #2x Cockatrice
 1238
 1238

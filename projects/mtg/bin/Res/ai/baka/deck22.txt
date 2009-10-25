@@ -1,7 +1,8 @@
 #NAME:Giants!
-#DESC:A giant can brood 
-#DESC:over a grudge for decades, 
-#DESC:and woe to those who interrupt him. 
+#DESC:It's actually very hard to miss a giant.
+#DESC:you don't even have to aim your blow well.
+#DESC:The hard part
+#DESC:is to get into striking range.
 #Mogg Fanatic
 4832
 4832

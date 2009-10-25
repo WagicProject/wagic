@@ -1,4 +1,10 @@
 #NAME:Soldiers
+#DESC:We stand together
+#DESC:Man by man
+#DESC:A marching wall of swords and shields
+#DESC:We will not stop
+#DESC:We will not bend
+#DESC:And never, never will we yield.
 Rhox Pikemaster *4
 Veteran Armorsmith *4
 Veteran Swordsmith *4

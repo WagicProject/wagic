@@ -1,15 +1,10 @@
 #NAME:Tsabo
-#DESC:"Death is such an exquisite sensation.
-#DESC:Your life was meaningless, 
-#DESC:but your death will glorify Yawgmoth.
-#DESC:Rise, metathran. You shall serve
-#DESC:a nobler cause in death.
-#DESC:Every last one of you 
-#DESC:will become my servant. 
-#DESC:Do you think you can stop me? 
-#DESC:There's nothing I wouldn't give 
-#DESC:to achieve victory. 
-#DESC:Can you say the same?"
+#DESC:You may be prepared
+#DESC:for an army of zombies
+#DESC:rising from the graves.
+#DESC:But did also expect them
+#DESC:to crawl
+#DESC:out of the sea?
 #4x Glen Elendra Liege {1}{UB}{UB}{UB} - flying lord black/blue creature +1/+1
 146743
 146743

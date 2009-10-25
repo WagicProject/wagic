@@ -1,8 +1,8 @@
 #NAME:Nightmare
-#DESC:Of royal blood among the spirits
-#DESC:he rides on the wings of the winds. 
-#DESC:The thunder of its hooves 
-#DESC:beats dreams into despair
+#DESC:I had a terrible Nightmare once
+#DESC:and then a second
+#DESC:and a third
+#DESC:and then I won.
 #2x Obsianus Golem
 1129
 1129
