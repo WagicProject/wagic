@@ -1,4 +1,12 @@
 #NAME:Elfball
+#DESC:"Peace is not a relationship of nations.
+#DESC: It is a condition of mind brought about
+#DESC: by a serenity of soul. Peace is not
+#DESC: merely the absence of war. It is also
+#DESC: a state of mind. Lasting peace can come
+#DESC: only to peaceful people."
+#DESC:                                    (Jawaharlal Nehru)
+#DESC:
 #DESC:Green, aggro-combo deck
 #DESC:capable of generating huge amount
 #DESC:of mana and an endless stream

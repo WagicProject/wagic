@@ -1,4 +1,8 @@
 #NAME:Millage
+#DESC:"The distance between insanity
+#DESC: and genius is measured only
+#DESC: by success."  (Bruce Feirstein)
+#DESC:
 #DESC:v1.0 2009 10 01
 Wrath of God (10E) *4
 Damnation (PLC) *4

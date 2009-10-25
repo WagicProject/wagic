@@ -1,7 +1,7 @@
 #NAME:Dragons
-#DESc:Dragons are rage
-#DESc:of power and will
-#DESc:Dragons are artists 
+#DESC:Dragons are rage
+#DESC:of power and will
+#DESC:Dragons are artists 
 #DESC:with flames, 
 #DESC:painting the world 
 #DESC:with fire
