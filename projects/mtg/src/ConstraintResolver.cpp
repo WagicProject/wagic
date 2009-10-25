@@ -6,6 +6,7 @@ int ConstraintResolver::untap(GameObserver * game, MTGCardInstance * card){
   if (!card->isUntapping()){
     return 0;
   }
+  if (card->has(Constants::DOESNOTUNTAP)) return 0;
   int ok = 1;
   ManaCost * untapManaCost = NEW ManaCost();
   UntapBlockers * blockers = card->getUntapBlockers();

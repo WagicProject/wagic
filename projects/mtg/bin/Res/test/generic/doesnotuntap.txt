@@ -1,0 +1,39 @@
+#Bug doesnotuntap
+#issue http://code.google.com/p/wagic/issues/detail?id=107
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:icy manipulator
+hand:paralyzing grasp
+manapool:{3}{U}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+icy manipulator
+grizzly bears
+paralyzing grasp
+grizzly bears
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+grizzly bears
+next
+#begins
+next
+#attackers
+grizzly bears
+next
+#end of combat
+next
+#main phase 2
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:paralyzing grasp,icy manipulator
+[PLAYER2]
+inplay:grizzly bears
+[END]

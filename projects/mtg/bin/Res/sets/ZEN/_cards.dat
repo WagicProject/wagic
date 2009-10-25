@@ -940,8 +940,8 @@ power=1
 toughness=1 
 [/card]
 [card]
-text=Enchant tapped creature   Enchanted creature doesn't untap during its controller's untap step.   
-target=creature[tapped]
+text=Enchant creature   Enchanted creature doesn't untap during its controller's untap step.   
+target=creature
 auto=doesnotuntap
 id=178109
 name=Paralyzing Grasp

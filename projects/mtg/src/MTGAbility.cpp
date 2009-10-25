@@ -363,15 +363,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   }
            
 
-  //Untapper (Ley Druid...)
-  found = s.find("untap");
-  if (found != string::npos){
-    MTGAbility * a = NEW AAUntapper(id,card,target);
-    a->oneShot = 1;
-    return a;
-  }
-
-
   //Regeneration
   found = s.find("regenerate");
   if (found != string::npos){
@@ -677,6 +668,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       }
       return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);
     }
+  }
+
+  //Untapper (Ley Druid...)
+  found = s.find("untap");
+  if (found != string::npos){
+    MTGAbility * a = NEW AAUntapper(id,card,target);
+    a->oneShot = 1;
+    return a;
   }
 
   //Tapper (icy manipulator)
