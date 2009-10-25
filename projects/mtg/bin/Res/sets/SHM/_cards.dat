@@ -820,7 +820,8 @@ type=Sorcery
 [/card]
 [card]
 text=Whenever a land enters the battlefield under an opponent's control, that player loses 2 life and you gain 2 life.
-auto=@movedTo(land|opponentBattlefield):life:-2 opponent && life:2 controller
+auto=@movedTo(land|opponentBattlefield):life:-2 opponent
+auto=@movedTo(land|opponentBattlefield):life:2 controller
 id=146766
 name=Polluted Bonds
 rarity=R

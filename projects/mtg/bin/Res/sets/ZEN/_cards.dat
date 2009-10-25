@@ -39,7 +39,8 @@ rarity=U
 mana={4}{G}{G}
 type=Creature
 subtype=Beast
-auto=@movedTo(land|myBattlefield):4/4 ueot && trample ueot
+auto=@movedTo(land|myBattlefield):4/4 ueot
+auto=@movedTo(land|myBattlefield):trample ueot
 power=4
 toughness=4
 [/card]

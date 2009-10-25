@@ -1354,7 +1354,8 @@ type=Artifact
 [/card]
 [card]
 text=Whenever an opponent plays a white spell, that player loses 1 life and you gain 1 life.
-auto=@movedTo(*[white]|opponentStack): life:-1 opponent && life:1 controller
+auto=@movedTo(*[white]|opponentStack): life:-1 opponent
+auto=@movedTo(*[white]|opponentStack): life:1 controller
 id=5696
 name=Yawgmoth's Edict
 rarity=U
