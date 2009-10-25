@@ -677,7 +677,10 @@ void OptionTheme::Render(){
   if(!bChecked){
     author = "";
     bChecked = true;
-    sprintf(buf,RESPATH"/themes/%s/themeinfo.txt",selections[value].c_str());
+    if(selections[value] == "Default")
+      sprintf(buf,RESPATH"/graphics/themeinfo.txt");
+    else
+      sprintf(buf,RESPATH"/themes/%s/themeinfo.txt",selections[value].c_str());
     std::ifstream file(buf);
     if(file){
       string temp;

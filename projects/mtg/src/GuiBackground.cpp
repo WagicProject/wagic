@@ -6,7 +6,7 @@ GuiBackground::GuiBackground()
 {
   JTexture* texture = resources.GetTexture("backdrop.jpg");
   if (texture)
-    quad = NEW JQuad(texture, 0, 0, 480, 272);
+    quad = NEW JQuad(texture, 0, 0, 480, 255);
   else
     {
       quad = NULL;
@@ -22,5 +22,5 @@ GuiBackground::~GuiBackground()
 void GuiBackground::Render()
 {
   JRenderer* renderer = JRenderer::GetInstance();
-  renderer->RenderQuad(quad, 0, 0);
+  renderer->RenderQuad(quad, 0, 18);
 }

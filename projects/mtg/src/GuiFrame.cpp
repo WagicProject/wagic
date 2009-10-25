@@ -5,7 +5,7 @@
 GuiFrame::GuiFrame()
 {
   if (resources.GetTexture("wood.png"))
-    wood = resources.RetrieveQuad("wood.png", 0, 0, SCREEN_WIDTH, 16);
+    wood = resources.RetrieveQuad("wood.png", 0, 0, SCREEN_WIDTH, 28);
   else
     {
       wood = NULL;
