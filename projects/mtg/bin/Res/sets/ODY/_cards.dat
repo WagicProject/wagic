@@ -481,7 +481,7 @@ type=Instant
 [/card]
 [card]
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
-target=*|library
+target=*|myLibrary,opponentLibrary
 auto=moveTo(exile)
 id=29849
 name=Extract

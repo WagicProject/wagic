@@ -259,8 +259,7 @@ toughness=2
 [/card]
 [card]
 text=When Elvish Pioneer enters the battlefield, you may put a basic land card from your hand onto the battlefield tapped.
-target=land[basic]|myhand
-auto=moveTo(myBattlefield) && tap
+auto=may moveTo(myBattlefield) target(land[basic]|myhand) && tap
 id=12463
 name=Elvish Pioneer
 rarity=C
