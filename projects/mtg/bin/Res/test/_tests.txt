@@ -25,6 +25,7 @@ generic/rampage2.txt
 generic/regenerate.txt
 generic/sacrifice.txt
 generic/summoning_sickness.txt
+generic/tokens.txt
 generic/wither.txt
 ########################
 #Specific Cards

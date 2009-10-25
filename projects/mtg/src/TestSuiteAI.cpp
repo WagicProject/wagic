@@ -454,7 +454,10 @@ int TestSuite::phaseStrToInt(string s){
   if (s.compare("secondmain") == 0)return Constants::MTG_PHASE_SECONDMAIN;
   if (s.compare("endofturn") == 0)return Constants::MTG_PHASE_ENDOFTURN;
   if (s.compare("cleanup") == 0)return Constants::MTG_PHASE_CLEANUP;
-  return -1;
+  OutputDebugString("TESTSUITEAI: Unknown Phase name:");
+  OutputDebugString(s.c_str());
+  OutputDebugString("\n");
+  return Constants::MTG_PHASE_FIRSTMAIN;
 }
 
 void TestSuiteActions::cleanup(){

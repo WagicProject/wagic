@@ -1,0 +1,39 @@
+#Bug:Segfault in GuiPlay.cpp
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:1138
+manapool:{5}
+[PLAYER2]
+inplay:hypnotic specter
+[DO]
+1138
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#combat begins
+next
+#attackers
+-1138
+next
+#blockers
+hypnotic specter
+next
+#damage
+next
+#end combat
+eot
+next
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:the hive
+[PLAYER2]
+inplay:hypnotic specter
+[END]
