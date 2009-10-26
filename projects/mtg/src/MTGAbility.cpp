@@ -116,16 +116,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     TargetChooserFactory tcf;
     TargetChooser *tc = tcf.createTargetChooser(starget,card);
     tc->targetter = NULL;
-
-    TargetChooser *fromTc = NULL;
     found = s.find("from(");
-    if (found != string::npos){
+	
+	TargetChooser *fromTc = NULL;
+	if (found != string::npos){
       end = s.find (")", found);
       starget = s.substr(found+5,end - found - 5);
       TargetChooser * fromTc = tcf.createTargetChooser(starget,card);
       fromTc->targetter = NULL;
-    }
     return NEW TrDamaged(id,card,tc,fromTc);
+	}else{
+		return NEW TrDamaged(id,card,tc,fromTc);
+	}
   }
 
   int who = 0;
