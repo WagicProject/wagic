@@ -2912,7 +2912,7 @@ toughness=3
 [/card]
 [card]
 text=Creatures you control get +1/+1 until end of turn.
-auto=lord(creatures|myinplay) 1/1
+auto=lord(creature|myinplay) 1/1
 id=129797
 name=Warrior's Honor
 rarity=C
