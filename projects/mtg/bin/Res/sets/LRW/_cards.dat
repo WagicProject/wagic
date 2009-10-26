@@ -91,6 +91,20 @@ mana={B}
 type=Sorcery
 subtype=Tribal Goblin
 [/card]
+
+[card]
+text={R}, Sacrifice Boggart Forager: Target player shuffles his or her library.
+id=146168
+name=Boggart Forager
+rarity=C
+auto={R}{S}:shuffle target(player)
+type=Creature
+mana={R}
+power=1
+subtype=Goblin Rogue
+toughness=1
+[/card]
+
 [card]
 text=Forestwalk   {2}{B}, Sacrifice Boggart Loggers: Destroy target Treefolk or Forest.
 auto={2}{B}{S}:destroy target(treefolk,forest)

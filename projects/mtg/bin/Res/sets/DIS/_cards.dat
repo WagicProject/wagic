@@ -51,6 +51,7 @@ name=Demon's Jester
 mana={3}{B}
 type=Creature
 subtype=Imp
+abilities=flying
 power=4
 toughness=3
 auto=aslongas(*|myhand)-2/-1

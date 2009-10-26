@@ -132,17 +132,6 @@ subtype=Goblin Warrior
 toughness=1
 [/card]
 [card]
-text={R}, Sacrifice Boggart Forager: Target player shuffles his or her library.
-id=146168
-name=Boggart Forager
-rarity=C
-type=Creature
-mana={R}
-power=1
-subtype=Goblin Rogue
-toughness=1
-[/card]
-[card]
 text=When Boggart Harbinger comes into play, you may search your library for a Goblin card, reveal it, then shuffle your library and put that card on top of it.
 id=139441
 target=goblin|mylibrary

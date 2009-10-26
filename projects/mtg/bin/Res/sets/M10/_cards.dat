@@ -1248,8 +1248,8 @@ name=Overrun
 mana={2}{G}{G}{G}
 type=Sorcery
 text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
-auto=lord(creatures|myBattlefield) 3/3
-auto=lord(creatures|myBattlefield) trample
+auto=lord(creature|myBattlefield) 3/3
+auto=lord(creature|myBattlefield) trample
 rarity=U
 [/card]
 [card]

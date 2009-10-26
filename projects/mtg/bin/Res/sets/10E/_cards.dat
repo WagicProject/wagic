@@ -1652,8 +1652,8 @@ toughness=2
 [/card]
 [card]
 text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-auto=lord(creatures|myinplay) 3/3
-auto=lord(creatures|myinplay) trample
+auto=lord(creature|myBattlefield) 3/3
+auto=lord(creature|myBattlefield) trample
 id=130506
 name=Overrun
 rarity=U
