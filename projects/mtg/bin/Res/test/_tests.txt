@@ -217,6 +217,7 @@ shock.txt
 shock2.txt
 slate_of_ancestry.txt
 sleeper_agent.txt
+slith_bloodletter.txt
 soulblast.txt
 sphinx_summoner.txt
 spitting_earth.txt

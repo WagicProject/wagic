@@ -1,0 +1,40 @@
+#Bug: Slith bloodletter gets counters even when it doesn't attack
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears,slith bloodletter
+[PLAYER2]
+[DO]
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#begin
+next
+#attackers
+slith bloodletter
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears,slith bloodletter
+[PLAYER2]
+life:17
+[END]
