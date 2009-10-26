@@ -16,8 +16,6 @@ public:
   WResource();
   virtual ~WResource();
   
-  virtual void Trash()=0; //Delete the cacheActual.
-  virtual void Nullify()=0; //For when our size is 0, so we don't free anything by mistake.
   virtual unsigned long size()=0; //Size of cached item in bytes.
   virtual bool isGood()=0;  //Return true if this has data.
   virtual bool isLocked();    //Is the resource locked?
@@ -51,8 +49,6 @@ class WTrackedQuad: public WResource {
 public:
   WTrackedQuad(string _resname);
   ~WTrackedQuad();
-  void Nullify();
-  void Trash();
   bool isGood();
   unsigned long size(); 
   string resname;
@@ -72,9 +68,6 @@ public:
   bool isLocked();
   bool Attempt(string filename, int submode, int & error);
   bool compare(JTexture * t) {return (t == texture);};
-
-  void Nullify();
-  void Trash();
   JTexture * Actual(); //Return this texture as is. Does not make a new one.
   JQuad * GetQuad(string resname);
   
@@ -87,7 +80,6 @@ public:
 protected:  
   JTexture * texture;
   vector<WTrackedQuad*> trackedQuads;
-  static vector<WTrackedQuad*> garbageTQs;
 };
 
 class WCachedParticles: public WCachedResource{
@@ -96,11 +88,8 @@ public:
   template<class cacheItem,class cacheActual> friend class WCache;
   WCachedParticles();
   ~WCachedParticles();
-
-  void Nullify();
-  void Trash();
   void Refresh();
-   unsigned long size();
+  unsigned long size();
    
   bool isGood();
   bool Attempt(string filename, int submode, int & error);
@@ -117,8 +106,6 @@ public:
   template<class cacheItem,class cacheActual> friend class WCache;
   WCachedSample();
   ~WCachedSample();    
-  void Nullify();
-  void Trash();
   bool compare(JSample * s) {return (s == sample);};
   unsigned long size();  
   bool isGood();

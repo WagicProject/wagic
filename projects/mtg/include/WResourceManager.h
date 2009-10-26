@@ -80,9 +80,7 @@ public:
   bool RemoveMiss(int id=0); //Removes a cache miss.
   bool RemoveOldest();    //Remove oldest unlocked item.
   bool Cleanup();         //Repeats RemoveOldest() until cache fits in size limits
-  void Clear();           //Removes everything cached. Not lock safe, does not remove managed items.
   void ClearUnlocked();   //Remove all unlocked items.
-  void ClearMisses();     //Clear all cache misses.
   void Refresh();         //Refreshes all cache items.
   unsigned int Flatten(); //Ensures that the times don't loop. Returns new lastTime.
   void Resize(unsigned long size, int items); //Sets new limits, then enforces them. Lock safe, so not a "hard limit".
@@ -108,8 +106,6 @@ protected:
 
   unsigned int cacheItems;
   int mError;
-
-
 };
 
 
@@ -139,7 +135,6 @@ public:
   bool RemoveOldest();
   
   bool Cleanup();       //Force a cleanup. Return false if nothing removed.
-  void ClearMisses();   //Remove all cache misses.
   void ClearUnlocked(); //Remove unlocked items.
   void Refresh();       //Refreshes all files in cache, for when mode/profile changes.
 

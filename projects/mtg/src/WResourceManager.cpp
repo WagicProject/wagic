@@ -181,13 +181,6 @@ WResourceManager::~WResourceManager(){
     SAFE_DELETE(wm);
   }
   managedQuads.clear();
-
-  //Remove all our reserved WTrackedQuads from WCachedTexture
-  vector<WTrackedQuad*>::iterator g;
-  for(g=WCachedTexture::garbageTQs.begin();g!=WCachedTexture::garbageTQs.end();g++){
-    WTrackedQuad * tq = *g;
-    SAFE_DELETE(tq);
-  }
   LOG("==Successfully Destroyed WResourceManager==");
 }
 
@@ -356,13 +349,6 @@ void WResourceManager::Release(JQuad * quad){
   if(it != textureWCache.cache.end() && it->second)
    textureWCache.RemoveItem(it->second,false); //won't remove locked.
 }
-
-void WResourceManager::ClearMisses(){
-  textureWCache.ClearMisses();
-  sampleWCache.ClearMisses();
-  psiWCache.ClearMisses();
-}
-
 void WResourceManager::ClearUnlocked(){
   textureWCache.ClearUnlocked();
   sampleWCache.ClearUnlocked();
@@ -890,27 +876,6 @@ bool WCache<cacheItem, cacheActual>::RemoveOldest(){
 
 }
 template <class cacheItem, class cacheActual>
-void WCache<cacheItem, cacheActual>::Clear(){
-  typename map<int,cacheItem*>::iterator it, next;
-
-  for(it = cache.begin(); it != cache.end();it=next){
-    next = it;
-    next++;
-
-      if(it->second)
-        Delete(it->second);
-      cache.erase(it);
-  }
-  for(it = managed.begin(); it != managed.end();it=next){
-    next = it;
-    next++;
-
-    if(!it->second)
-      managed.erase(it);
-  }
-}
-
-template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::ClearUnlocked(){
   typename map<int,cacheItem*>::iterator it, next;
 
@@ -927,31 +892,11 @@ void WCache<cacheItem, cacheActual>::ClearUnlocked(){
       }
   }
 }
-
-template <class cacheItem, class cacheActual>
-void WCache<cacheItem, cacheActual>::ClearMisses(){
-  typename map<int,cacheItem*>::iterator it, next;
-
-  for(it = cache.begin(); it != cache.end();it=next){
-    next = it;
-    next++;
-
-    if(!it->second)
-      cache.erase(it);
-  }
-  for(it = managed.begin(); it != managed.end();it=next){
-    next = it;
-    next++;
-
-    if(!it->second)
-      managed.erase(it);
-  }
-}
 template <class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items){
     maxCacheSize = size;
 
-  if(items > MAX_CACHE_OBJECTS || items < 0)
+  if(items > MAX_CACHE_OBJECTS || items < 1)
     maxCached = MAX_CACHE_OBJECTS;
   else
     maxCached = items;
@@ -1200,7 +1145,7 @@ bool WCache<cacheItem, cacheActual>::Cleanup(){
 
 template <class cacheItem, class cacheActual>
 unsigned int WCache<cacheItem, cacheActual>::Flatten(){
-  unsigned int youngest = 65535;
+  unsigned int youngest = (unsigned int) 65535;
   unsigned int oldest = 0;
 
   for (typename map<int,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
@@ -1283,8 +1228,6 @@ template <class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
   if(!item)
     return false;
-  if(maxCached == 0)
-    item->Nullify();
 
   unsigned long isize = item->size();
   totalSize -= isize;

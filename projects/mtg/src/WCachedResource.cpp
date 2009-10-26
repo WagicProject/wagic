@@ -60,8 +60,6 @@ void WResource::hit(){
   lastTime = resources.nowTime();
 }
 //WCachedTexture
-vector<WTrackedQuad*> WCachedTexture::garbageTQs;
-
 WCachedTexture::WCachedTexture(){
   texture = NULL;
 }
@@ -112,14 +110,8 @@ bool WCachedTexture::ReleaseQuad(JQuad* quad){
      tq->unlock();
 
      if(!tq->isLocked()){
-      if(WCachedTexture::garbageTQs.size() < MAX_CACHE_GARBAGE){
-       tq->Trash();
-       garbageTQs.push_back(tq);
-      }
-      else
        SAFE_DELETE(tq);
-
-      trackedQuads.erase(it);
+       trackedQuads.erase(it);
      }
 
      return true; //Returns true when found.
@@ -307,39 +299,7 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   return true;    
 } 
 
-void WCachedTexture::Nullify(){
-  if(texture)
-    texture = NULL;
-}
-void WCachedTexture::Trash(){
-  SAFE_DELETE(texture);
-    
-  vector<WTrackedQuad*>::iterator it;
-  WTrackedQuad * tq = NULL;
-
-  for(it=trackedQuads.begin();it!=trackedQuads.end();it++){
-   tq = (*it);
-   if(WCachedTexture::garbageTQs.size() > MAX_CACHE_GARBAGE)
-    SAFE_DELETE(tq);
-   else{
-    tq->Trash();
-    WCachedTexture::garbageTQs.push_back(tq);
-   }
-  }
-  trackedQuads.clear();
-}
-
 //WCachedSample
-void WCachedSample::Nullify(){
-  if(sample){
-    sample = NULL;
-  }
-}
-
-void WCachedSample::Trash(){
-  SAFE_DELETE(sample);
-}
-
 WCachedSample::WCachedSample(){
   sample = NULL;
 }
@@ -454,25 +414,7 @@ WCachedParticles::~WCachedParticles(){
   SAFE_DELETE(particles);  
 }
 
-void WCachedParticles::Nullify(){
-  if(particles)
-    particles = NULL;
-}
-
-void WCachedParticles::Trash(){
-  SAFE_DELETE(particles);
-}
-
 //WTrackedQuad
-void WTrackedQuad::Nullify() {
-  quad = NULL;
-}
-
-void WTrackedQuad::Trash(){
-  resname.clear();
-  SAFE_DELETE(quad);
-}
-
 unsigned long WTrackedQuad::size() {
   return sizeof(JQuad);
 }
