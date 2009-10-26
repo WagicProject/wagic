@@ -221,7 +221,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add {G}
-rarity=C
+rarity=L
 [/card]
 [card]
 id=118927
@@ -230,7 +230,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add {G}
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122083
@@ -239,7 +239,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add {G}
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122088
@@ -248,7 +248,7 @@ type=Basic Land
 subtype=Forest
 text=G
 auto={T}:Add {G}
-rarity=C
+rarity=L
 [/card]
 [card]
 text=All Sliver creatures have double strike.
@@ -346,7 +346,7 @@ type=Basic Land
 subtype=Island
 auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122095
@@ -355,7 +355,7 @@ type=Basic Land
 subtype=Island
 auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122077
@@ -364,7 +364,7 @@ type=Basic Land
 subtype=Island
 auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 id=118905
@@ -373,7 +373,7 @@ type=Basic Land
 subtype=Island
 auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 [/card]
 [card]
 text=Vigilance   When Jedit's Dragoons enters the battlefield, you gain 4 life.
@@ -430,7 +430,7 @@ type=Basic Land
 subtype=Mountain
 auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 id=118926
@@ -439,7 +439,7 @@ type=Basic Land
 subtype=Mountain
 auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122080
@@ -448,7 +448,7 @@ type=Basic Land
 subtype=Mountain
 auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122090
@@ -457,7 +457,7 @@ type=Basic Land
 subtype=Mountain
 auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 [/card]
 [card]
 text=Orcish Cannonade deals 2 damage to target creature or player and 3 damage to you. Draw a card.
@@ -503,7 +503,7 @@ type=Basic Land
 subtype=Plains
 auto={T}:Add {W}
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122085
@@ -512,7 +512,7 @@ type=Basic Land
 subtype=Plains
 auto={T}:Add {W}
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122087
@@ -521,7 +521,7 @@ type=Basic Land
 subtype=Plains
 auto={T}:Add {W}
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122092
@@ -530,7 +530,7 @@ type=Basic Land
 subtype=Plains
 auto={T}:Add {W}
 text=W
-rarity=C
+rarity=L
 [/card]
 [card]
 text={T}: Add {1] to your mana pool.   {1}, {T}: Add one mana of any color to your mana pool.
@@ -719,7 +719,7 @@ auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=118904
@@ -728,7 +728,7 @@ auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122076
@@ -737,7 +737,7 @@ auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=122078
@@ -746,7 +746,7 @@ auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 text=B
-rarity=C
+rarity=L
 [/card]
 [card]
 id=114913
