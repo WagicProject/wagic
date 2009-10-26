@@ -248,17 +248,21 @@ void ShopItems::Update(float dt){
   }else{
     if (showPriceDialog!=-1){
       ShopItem * item =  ((ShopItem *)mObjects[showPriceDialog]);
-      int price = item->price;
-      char buffer[4096];
-      sprintf(buffer,"%s : %i credits",item->getText(),price);
-      if(!dialog){
-	      dialog = NEW SimpleMenu(1,this,resources.GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
-	      dialog->Add(1,"Yes");
-	      dialog->Add(2,"No");
+      if(item){
+        int price = item->price;
+        char buffer[4096];
+        sprintf(buffer,"%s : %i credits",item->getText(),price);
+        if(!dialog){
+	        dialog = NEW SimpleMenu(1,this,resources.GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+	        dialog->Add(1,"Yes");
+	        dialog->Add(2,"No");
+        }
+        else{
+	        dialog->Update(dt);
+        }
       }
-      else{
-	      dialog->Update(dt);
-      }
+      else
+        JGuiController::Update(dt);
     }else{
       u32 buttons[] = {PSP_CTRL_LEFT,PSP_CTRL_DOWN,PSP_CTRL_RIGHT,PSP_CTRL_UP,PSP_CTRL_CIRCLE};
       for (int i = 0; i < 5; ++i){
@@ -313,7 +317,8 @@ void ShopItems::Render(){
   if(mCurr >= 0){
     mFont->SetColor(ARGB(255,255,255,0));
     ShopItem * item = ((ShopItem *)mObjects[mCurr]);
-    mFont->DrawString(item->mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 14,JGETEXT_CENTER);
+    if(item)
+      mFont->DrawString(item->mText.c_str(),  SCREEN_WIDTH/2 - 50,  SCREEN_HEIGHT - 14,JGETEXT_CENTER);
     mFont->SetColor(ARGB(255,255,255,255));
   }
 
@@ -326,7 +331,7 @@ void ShopItems::Render(){
       if (i == mCurr)  mFont->SetColor(ARGB(255,255,255,0));
       else  mFont->SetColor(ARGB(255,255,255,255));
       char buffer[512];
-      sprintf(buffer, "%s", s->getText());
+      sprintf(buffer, "%s", s ? s->getText() : "error");
       float x = 300;
       float y = 10 + 20*i;
       mFont->DrawString(buffer,x,y);
