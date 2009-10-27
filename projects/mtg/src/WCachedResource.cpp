@@ -84,6 +84,18 @@ WCachedTexture::~WCachedTexture(){
 JTexture * WCachedTexture::Actual(){
   return texture;
 }
+bool WCachedTexture::isLocked(){
+  if(locks != WRES_UNLOCKED)
+    return true;
+
+  for(vector<WTrackedQuad*>::iterator it=trackedQuads.begin();it!=trackedQuads.end();it++){
+    if((*it)->isLocked())
+      return true;
+  }
+
+  return false;
+}
+
 bool WCachedTexture::ReleaseQuad(JQuad* quad){
   if(quad == NULL)
     return false;

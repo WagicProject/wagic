@@ -333,7 +333,25 @@ void WResourceManager::Release(JTexture * tex){
   if(!tex)
     return;
 
-  textureWCache.Release(tex);
+  //Copied direct from WCache::Release(). This is quick and dirty.
+  map<int,WCachedTexture*>::iterator it;
+  for(it=textureWCache.cache.begin();it!=textureWCache.cache.end();it++){    
+    if(it->second && it->second->compare(tex))
+      break;
+  }
+
+  if(it == textureWCache.cache.end())
+    return; //Not here, can't release.
+
+  if(it->second){
+    it->second->unlock(); //Release one lock.
+    if(it->second->locks != WRES_UNLOCKED) //Normally we'd call isLocked, but this way ignores quads.
+      return; //Locked
+  }
+
+  textureWCache.Delete(it->second);
+  textureWCache.cache.erase(it);
+  return; //Released!
 }
 
 void WResourceManager::Unmiss(string filename){
@@ -977,6 +995,7 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(int id, string filename, in
     }
     //Something went wrong.
     RemoveItem(tc);
+    mError = CACHE_ERROR_BAD;
   }
 
   //Record managed failure. Cache failure is recorded in Get().
@@ -1030,7 +1049,8 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(int id, string filename, int sty
     it = cache.find(lookup);
     //Well, we've found something...
     if(it != cache.end()){
-      mError = CACHE_ERROR_NONE; //We found an entry in cache, so not an error.
+      if(!it->second)
+        mError = CACHE_ERROR_404;
       return it->second; //A hit, or maybe a miss.
     }
   }  

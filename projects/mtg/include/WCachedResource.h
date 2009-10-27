@@ -66,6 +66,7 @@ public:
   void Refresh();
   unsigned long size();  
   bool isGood();
+  bool isLocked();    //Is the resource locked?
   bool Attempt(string filename, int submode, int & error);
   bool compare(JTexture * t) {return (t == texture);};
   JTexture * Actual(); //Return this texture as is. Does not make a new one.
