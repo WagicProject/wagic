@@ -42,7 +42,7 @@ void GameStateShop::Start()
   
   mBack = resources.GetQuad("back");
   resources.Unmiss("shop.jpg"); //Last resort.
-  mBgTex = resources.RetrieveTexture("shop.jpg",RETRIEVE_LOCK);
+  mBgTex = resources.RetrieveTexture("shop.jpg", RETRIEVE_LOCK, TEXTURE_SUB_5551);
   if(mBgTex)
     mBg = resources.RetrieveQuad("shop.jpg");  
   else
