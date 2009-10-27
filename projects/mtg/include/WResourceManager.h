@@ -13,6 +13,12 @@
 #define TEXTURES_CACHE_MINSIZE 2000000  // Minimum size of the cache on the PSP. The program should complain if the cache ever gets smaller than this
 #define OPERATIONAL_SIZE 5000000 // Size required by Wagic for operational stuff. 3MB is not enough. The cache will usually try to take (Total Ram - Operational size)
 #define MIN_LINEAR_RAM 1000000
+#ifdef DEBUG_CACHE
+#define MAX_CACHE_TIME 2000 //The threshold above which we try to prevent nowTime() from looping.
+#else
+#define MAX_CACHE_TIME 2000000000 
+#endif
+
 
 #define THUMBNAILS_OFFSET 100000000
 #define OTHERS_OFFSET 2000000000
@@ -67,6 +73,10 @@ enum ENUM_CACHE_ERROR{
   CACHE_ERROR_NOT_MANAGED,
 };
 
+struct WCacheSort{
+    bool operator()(const WResource * l, const WResource * r); //Predicate for use in sorting. See flatten().
+};
+
 template <class cacheItem, class cacheActual> 
 class WCache{
 public:
@@ -84,7 +94,6 @@ public:
   void Refresh();         //Refreshes all cache items.
   unsigned int Flatten(); //Ensures that the times don't loop. Returns new lastTime.
   void Resize(unsigned long size, int items); //Sets new limits, then enforces them. Lock safe, so not a "hard limit".
-
 protected:
   bool RemoveItem(cacheItem * item, bool force = true); //Removes an item, deleting it. if(force), ignores locks / permanent
   bool UnlinkCache(cacheItem * item); //Removes an item from our cache, does not delete it. Use with care.
@@ -121,6 +130,7 @@ public:
   WResourceManager();
   ~WResourceManager();
   
+  void Unmiss(string filename);
   JQuad * RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
   JSample * RetrieveSample(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   JTexture * RetrieveTexture(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
@@ -130,7 +140,6 @@ public:
   int RetrieveError();
 
   void Release(JTexture * tex);
-  void Release(JQuad * quad);
   void Release(JSample * sample);
   bool RemoveOldest();
   

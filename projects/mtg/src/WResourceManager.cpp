@@ -7,8 +7,8 @@
 #include <stdlib.h>
 #include <JGE.h>
 #include <JFileSystem.h>
+#include <assert.h>
 #include "../include/WResourceManager.h"
-
 
 int idCounter = OTHERS_OFFSET;
 
@@ -60,7 +60,7 @@ void WResourceManager::DebugRender(){
 
 
 
-  sprintf(buf,"Total Size: %lu (%lu cached, %lu managed)",Size(),SizeCached(),SizeManaged());
+  sprintf(buf,"Time: %u. Total Size: %lu (%lu cached, %lu managed). ",lastTime,Size(),SizeCached(),SizeManaged());
   font->DrawString(buf, SCREEN_WIDTH-10,SCREEN_HEIGHT-15,JGETEXT_RIGHT);
 
 #ifdef DEBUG_CACHE
@@ -125,7 +125,7 @@ unsigned int WResourceManager::CountManaged(){
 }
 
 unsigned int WResourceManager::nowTime(){
-  if(lastTime == 65535)
+  if(lastTime > MAX_CACHE_TIME)
     FlattenTimes();
   
   return ++lastTime;
@@ -336,25 +336,17 @@ void WResourceManager::Release(JTexture * tex){
   textureWCache.Release(tex);
 }
 
-void WResourceManager::Release(JQuad * quad){
-  if(!quad)
-    return;
-
+void WResourceManager::Unmiss(string filename){
   map<int,WCachedTexture*>::iterator it;
-  for(it = textureWCache.cache.begin();it!=textureWCache.cache.end();it++){
-    if(it->second && it->second->ReleaseQuad(quad))
-      break;
-  }
-
-  if(it != textureWCache.cache.end() && it->second)
-   textureWCache.RemoveItem(it->second,false); //won't remove locked.
+  int id = textureWCache.makeID(0,filename,CACHE_NORMAL);
+  textureWCache.RemoveMiss(id);
 }
+
 void WResourceManager::ClearUnlocked(){
   textureWCache.ClearUnlocked();
   sampleWCache.ClearUnlocked();
   psiWCache.ClearUnlocked();
 }
-
 bool WResourceManager::Cleanup(){
   int check = 0;
 
@@ -1037,10 +1029,9 @@ cacheItem * WCache<cacheItem, cacheActual>::Get(int id, string filename, int sty
   if(style != RETRIEVE_MANAGE){
     it = cache.find(lookup);
     //Well, we've found something...
-    if(it != cache.end()) {
-      if (!it->second)
-        mError = CACHE_ERROR_404;
-      return it->second; //A hit.
+    if(it != cache.end()){
+      mError = CACHE_ERROR_NONE; //We found an entry in cache, so not an error.
+      return it->second; //A hit, or maybe a miss.
     }
   }  
 
@@ -1143,23 +1134,35 @@ bool WCache<cacheItem, cacheActual>::Cleanup(){
   return true;
 }
 
+bool WCacheSort::operator()(const WResource * l, const WResource * r){
+  if(!l || !r)
+    return false;
+  return (l->lastTime < r->lastTime);
+}
+
 template <class cacheItem, class cacheActual>
 unsigned int WCache<cacheItem, cacheActual>::Flatten(){
-  unsigned int youngest = (unsigned int) 65535;
+  vector<cacheItem*> items;
   unsigned int oldest = 0;
+  unsigned int lastSet = 0;
+
+  if(!cache.size())
+    return 0;
 
   for (typename map<int,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
     if(!it->second) continue;
-    if(it->second->lastTime < youngest) youngest = it->second->lastTime;
-    if(it->second->lastTime > oldest) oldest = it->second->lastTime;
+    items.push_back(it->second);
   }
 
-  for (typename map<int,cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it){
-    if(!it->second) continue;
-      it->second->lastTime -= youngest;
+  sort(items.begin(), items.end(), WCacheSort());
+
+  for (typename vector<cacheItem*>::iterator it = items.begin(); it != items.end(); ++it){
+    assert((*it) && (*it)->lastTime > lastSet);
+    lastSet = (*it)->lastTime; 
+    (*it)->lastTime = ++oldest;
   }
 
-  return (oldest - youngest);
+  return oldest + 1;
 }
 
 template <class cacheItem, class cacheActual>

@@ -23,19 +23,19 @@ static int colors[] =
 
 GuiPhaseBar::GuiPhaseBar() : phase(GameObserver::GetInstance()->phaseRing->getCurrentPhase()), angle(0.0f)
 {
-  JTexture* texture = resources.GetTexture("phasebar.png");
-  if (texture)
-    quad = NEW JQuad(texture, 0, 0, Width, Height);
+  JQuad * quad;
+  if ((quad = resources.GetQuad("phasebar")) != NULL){
+    quad->mHeight = Height;
+    quad->mWidth = Width;
+  }
   else
-    {
-      quad = NULL;
-      GameApp::systemError = "Error loading phasebar texture : " __FILE__;
-    }
+  {
+    GameApp::systemError = "Error loading phasebar texture : " __FILE__;
+  }
 }
 
 GuiPhaseBar::~GuiPhaseBar()
 {
-  delete(quad);
 }
 
 void GuiPhaseBar::Update(float dt)
@@ -49,6 +49,7 @@ void GuiPhaseBar::Render()
   static const float CENTER = SCREEN_HEIGHT_F / 2 + 10;
   JRenderer* renderer = JRenderer::GetInstance();
   GameObserver * g = GameObserver::GetInstance();
+  JQuad * quad = resources.GetQuad("phasebar");
   unsigned p = (phase->id + Phases - 4) * (Width+1);
   float scale;
   float start = CENTER + (Width / 2) * angle * ICONSCALE / (M_PI / 6) - ICONSCALE * Width / 4;

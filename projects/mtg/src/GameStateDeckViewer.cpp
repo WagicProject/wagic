@@ -125,7 +125,7 @@ void GameStateDeckViewer::Start()
   }
 
   //Grab a texture in VRAM.
-  pspIconsTexture = resources.RetrieveTexture("iconspsp.png");
+  pspIconsTexture = resources.RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
 
   char buf[512];
   for (int i=0; i < 8; i++){
@@ -183,9 +183,6 @@ void GameStateDeckViewer::End()
   SAFE_DELETE(menu);
 
   resources.Release(pspIconsTexture);
-  for (int i=0; i < 8; i++){
-    resources.Release(pspIcons[i]);
-  }
   SAFE_DELETE(myCollection);
   SAFE_DELETE(myDeck);
   SAFE_DELETE(pricelist);

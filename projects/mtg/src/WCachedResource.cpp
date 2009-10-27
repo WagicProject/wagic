@@ -84,18 +84,6 @@ WCachedTexture::~WCachedTexture(){
 JTexture * WCachedTexture::Actual(){
   return texture;
 }
-bool WCachedTexture::isLocked(){
-  if(locks != WRES_UNLOCKED)
-    return true;
-
-  for(vector<WTrackedQuad*>::iterator it=trackedQuads.begin();it!=trackedQuads.end();it++){
-    if((*it)->isLocked())
-      return true;
-  }
-
-  return false;
-}
-
 bool WCachedTexture::ReleaseQuad(JQuad* quad){
   if(quad == NULL)
     return false;
@@ -273,8 +261,8 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   if(submode & TEXTURE_SUB_5551)
     format = GU_PSM_5551;
 
-  if(!realname.size()){
-    error = CACHE_ERROR_404;
+  if(!realname.size()){ //realname should not be empty, even if file 404s.
+    error = CACHE_ERROR_BAD;
     return false;
   }
 
@@ -344,7 +332,6 @@ bool WCachedSample::Attempt(string filename, int submode, int & error){
       error = CACHE_ERROR_404;
     else
       error = CACHE_ERROR_BAD;
-
     return false;
   }
 

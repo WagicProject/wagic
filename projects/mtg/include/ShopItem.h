@@ -59,6 +59,7 @@ class ShopItems:public JGuiController,public JGuiListener{
   PriceList * pricelist;
   int  mX, mY, mHeight;
   JLBFont* mFont;
+  JTexture * mBgAATex;
   JQuad * mBgAA;
   MTGAllCards * collection;
   SimpleMenu * dialog;

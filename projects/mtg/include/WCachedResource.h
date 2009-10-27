@@ -11,6 +11,7 @@
 class WResource{
 public:
   friend class WResourceManager;
+  friend struct WCacheSort;
   template<class cacheItem,class cacheActual> friend class WCache;
 
   WResource();
@@ -64,8 +65,7 @@ public:
 
   void Refresh();
   unsigned long size();  
-  bool isGood(); 
-  bool isLocked();
+  bool isGood();
   bool Attempt(string filename, int submode, int & error);
   bool compare(JTexture * t) {return (t == texture);};
   JTexture * Actual(); //Return this texture as is. Does not make a new one.

@@ -39,9 +39,14 @@ void GameStateShop::Start()
   altThumb[5] = resources.RetrieveTexture("white_thumb.jpg", RETRIEVE_LOCK);
   altThumb[6] = resources.RetrieveTexture("land_thumb.jpg", RETRIEVE_LOCK);
   altThumb[7] = resources.RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
-
   
   mBack = resources.GetQuad("back");
+  //resources.Unmiss("shop.jpg"); //Last resort.
+  mBgTex = resources.RetrieveTexture("shop.jpg",RETRIEVE_LOCK);
+  if(mBgTex)
+    mBg = resources.RetrieveQuad("shop.jpg");  
+  else
+    mBg = NULL;
 
   menuFont = resources.GetJLBFont(Constants::MENU_FONT);
   itemFont = resources.GetJLBFont(Constants::MAIN_FONT);
@@ -123,6 +128,9 @@ void GameStateShop::load(){
 void GameStateShop::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
+  resources.Release(mBgTex);
+  mBgTex = NULL;
+  mBg = NULL;
 
   //Release alternate thumbnails.
   for(int i=0;i<8;i++){
@@ -166,7 +174,7 @@ void GameStateShop::Render()
   //Erase
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
-  JQuad * mBg = resources.RetrieveQuad("shop.jpg");
+  
   if (mBg) r->RenderQuad(mBg,0,0);
 
   if (shop)

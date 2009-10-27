@@ -270,7 +270,6 @@ void GameStateMenu::End()
   JRenderer::GetInstance()->EnableVSync(false);
   
   resources.Release(bgTexture);
-  resources.Release(mBg);
   SAFE_DELETE(mGuiController);
 }
 
@@ -292,12 +291,16 @@ void GameStateMenu::Update(float dt)
         //Force default, if necessary.
         if(options[Options::ACTIVE_PROFILE].str == "") 
           options[Options::ACTIVE_PROFILE].str = "Default";
+        
+        //Release splash texture
+        resources.Release(splashTex);
+        splashTex = NULL;
+        mSplash = NULL;
 
         //check for deleted collection / first-timer
         std::ifstream file(options.profileFile(PLAYER_COLLECTION).c_str());
 	      if(file){
 	        file.close();
-          resources.Release(mSplash);
 	        currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
 	      }else{
   	      currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
@@ -409,8 +412,10 @@ void GameStateMenu::Render()
   renderer->ClearScreen(ARGB(0,0,0,0));
   JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
-    if(!mSplash)
-     mSplash = resources.RetrieveQuad("splash.jpg");
+    if(!splashTex){
+     splashTex = resources.RetrieveTexture("splash.jpg",RETRIEVE_LOCK);
+     mSplash = resources.RetrieveTempQuad("splash.jpg");
+    }
     if (mSplash){
       renderer->RenderQuad(mSplash,0,0);
     }else{

@@ -12,7 +12,6 @@ class GuiPhaseBar : public GuiLayer
   static const unsigned Phases = 12;
 
  protected:
-  JQuad* quad;
   Phase* phase;
   float angle;
 

@@ -184,12 +184,6 @@ void SimpleMenu::Close()
 }
 
 void SimpleMenu::destroy(){
-  resources.Release(SimpleMenu::spadeR);
-  resources.Release(SimpleMenu::spadeL);
-  resources.Release(SimpleMenu::side);
-  resources.Release(SimpleMenu::spadeRTex);
-  resources.Release(SimpleMenu::spadeLTex);
-  resources.Release(SimpleMenu::sideTex);
   SAFE_DELETE(SimpleMenu::jewel);
   SAFE_DELETE(SimpleMenu::stars);
   SAFE_DELETE(SimpleMenu::jewelTex);

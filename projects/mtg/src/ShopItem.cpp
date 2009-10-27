@@ -107,9 +107,8 @@ int ShopItem::updateCount(DeckDataWrapper * ddw){
 
 ShopItem::~ShopItem(){
   OutputDebugString("delete shopitem\n");
-  if(mRelease){
-    resources.Release(thumb);
-  }
+  if(thumb)
+    resources.Release(thumb->mTex);
   SAFE_DELETE(mesh);
 }
 
@@ -219,9 +218,12 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), _collection));
   showCardList = true;
 
-  mBgAA = resources.RetrieveQuad("shop_aliasing.png");
-  if(mBgAA)
+  mBgAA = NULL;
+  mBgAATex = resources.RetrieveTexture("shop_aliasing.png",RETRIEVE_LOCK);
+  if(mBgAATex){
+    mBgAA = resources.RetrieveQuad("shop_aliasing.png");
     mBgAA->SetTextureRect(0,0,250,120); 
+  }
 }
 
 
@@ -453,7 +455,7 @@ ShopItems::~ShopItems(){
   SAFE_DELETE(dialog);
   safeDeleteDisplay();
   SAFE_DELETE(myCollection);
-  resources.Release(mBgAA);
+  resources.Release(mBgAATex);
 }
 
 ostream& ShopItem::toString(ostream& out) const

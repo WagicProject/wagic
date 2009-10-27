@@ -143,6 +143,7 @@ void GameApp::Create()
   jq->SetHotSpot(12, 12);
   jq = resources.RetrieveQuad("shadow.png", 0, 0, 16, 16,"shadow",RETRIEVE_MANAGE);
   jq->SetHotSpot(8, 8);
+  jq = resources.RetrieveQuad("phasebar.png",0,0,0,0,"phasebar",RETRIEVE_MANAGE);
   
   collection = NEW MTGAllCards();
 
@@ -223,7 +224,6 @@ void GameApp::Destroy()
 
 void GameApp::Update()
 {
-
   if (systemError.size()) return;
   JGE* mEngine = JGE::GetInstance();
   if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonClick(PSP_CTRL_TRIANGLE))
