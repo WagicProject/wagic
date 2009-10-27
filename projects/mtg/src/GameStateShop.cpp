@@ -41,7 +41,7 @@ void GameStateShop::Start()
   altThumb[7] = resources.RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
   
   mBack = resources.GetQuad("back");
-  //resources.Unmiss("shop.jpg"); //Last resort.
+  resources.Unmiss("shop.jpg"); //Last resort.
   mBgTex = resources.RetrieveTexture("shop.jpg",RETRIEVE_LOCK);
   if(mBgTex)
     mBg = resources.RetrieveQuad("shop.jpg");  
