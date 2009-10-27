@@ -266,7 +266,7 @@ rarity=C
 mana={B}
 type=Creature
 subtype=Horror Spellshaper
-auto={1}{B}{T}{S(*|myhand):1/0 && first strike target(creature)
+auto={1}{B}{T}{S(*|myhand)}:1/0 && first strike target(creature)
 power=1
 toughness=1
 [/card]

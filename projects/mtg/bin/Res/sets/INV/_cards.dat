@@ -1889,11 +1889,11 @@ toughness=3
 [card]
 text=Domain - Tribal Flames deals X damage to target creature or player, where X is the number of basic land types among lands you control.
 target=creature,player
-auto=aslongas(forest|myBattlefield):damage:1
-auto=aslongas(mountain|myBattlefield):damage:1
-auto=aslongas(plains|myBattlefield):damage:1
-auto=aslongas(island|myBattlefield):damage:1
-auto=aslongas(swamp|myBattlefield):damage:1
+auto=aslongas(forest|myBattlefield) damage:1
+auto=aslongas(mountain|myBattlefield) damage:1
+auto=aslongas(plains|myBattlefield) damage:1
+auto=aslongas(island|myBattlefield) damage:1
+auto=aslongas(swamp|myBattlefield) damage:1
 id=23076
 name=Tribal Flames
 rarity=C
