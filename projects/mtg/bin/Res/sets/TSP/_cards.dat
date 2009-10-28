@@ -155,7 +155,7 @@ auto={1}{T}{S}:add{W}
 auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
 [/card]
 [card]
-text=text=Flash (You may cast this spell any time you could cast an instant.)  {B}: Regenerate Drudge Reavers. 
+text=Flash (You may cast this spell any time you could cast an instant.)  {B}: Regenerate Drudge Reavers. 
 id=108850
 name=Drudge Reavers
 rarity=C
