@@ -1170,7 +1170,8 @@ subtype=Swamp
 [/card]
 [card]
 text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
-auto=moveTo(myhand) target(land|mylibrary)
+target=land|mylibrary
+auto=moveTo(myhand)
 id=49529
 name=Sylvan Scrying
 rarity=U

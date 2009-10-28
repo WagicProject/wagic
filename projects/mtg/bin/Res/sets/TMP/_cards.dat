@@ -1783,6 +1783,7 @@ type=Creature
 subtype=Thalakos Wizard
 power=1
 toughness=1
+abilities=shadow
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow)
