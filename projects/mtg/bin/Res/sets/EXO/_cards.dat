@@ -455,7 +455,7 @@ id=6086
 auto=lord(creature) 1/0
 name=Scare Tactics
 rarity=C
-mana={1}{B}
+mana={B}
 type=Instant
 [/card]
 [card]
