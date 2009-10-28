@@ -639,7 +639,7 @@ mana={4}{R}
 type=Creature
 subtype=Minotaur Warrior Ally
 auto=may counter(1/1)
-auto=@movedTo(ally|myBattlefield):lord(ally|myBattlefield) counter(1/1)
+auto=@movedTo(ally|myBattlefield):all(ally|myBattlefield) counter(1/1)
 power=3
 toughness=3
 [/card]

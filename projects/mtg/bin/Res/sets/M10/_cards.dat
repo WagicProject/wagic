@@ -1408,7 +1408,7 @@ power=3
 toughness=3
 text=First strike (This creature deals combat damage before creatures without first strike.) Other Soldier creatures you control have first strike.
 abilities=first strike
-auto=lord(soldiers) first strike other
+auto=lord(soldiers|mybattlefield) first strike other
 rarity=U
 [/card]
 [card]
