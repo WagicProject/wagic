@@ -162,12 +162,13 @@ public:
 	JQuad* GetQuad(int id);
 
   //Our file redirect system.
-  string graphicsFile(const string filename, const string specific = "");
-  string avatarFile(const string filename, const string specific = "");
-  string cardFile(const string filename, const string specific = "");
-  string musicFile(const string filename, const string specific = "");
-  string sfxFile(const string filename, const string specific = "");
+  string graphicsFile(const string filename);
+  string avatarFile(const string filename);
+  string cardFile(const string filename);
+  string musicFile(const string filename);
+  string sfxFile(const string filename);
   int fileOK(string filename, bool relative = false);
+  int dirOK(string dirname);
 
   //For backwards compatibility with JResourceManager. Avoid using these, they're not optimal.
   int CreateTexture(const string &textureName);
@@ -190,6 +191,7 @@ public:
 #endif
 
 private:  
+  bool bThemedCards;  //Does the theme have a "sets" directory for overwriting cards?
   void FlattenTimes(); //To prevent bad cache timing on int overflow
 
   //For cached stuff

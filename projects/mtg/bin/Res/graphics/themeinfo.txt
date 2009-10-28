@@ -13,4 +13,4 @@ This is themeinfo.txt. The first line should contain theme authorship informatio
 
 To build a theme, copy any file from the res/graphics/ directory to a directory just like this one. Then comes the fun part... edit it, save it, and load it up in Wagic. Be sure to include a 227*128 pixel "preview.png" to show off your new theme in options menu!
 
-You can also replace card images! Just place your new card picture in the same place it would be under the sets directory. Be careful, though, as you can't use zipped card images in themes. For example, to replace 10th Edition's Demystify in "My Theme", use a file like this: "themes/my theme/sets/10E/129524.jpg"
+You can also replace card images! Just place your new card picture in the same place it would be under the sets directory. For example, to replace 10th Edition's Demystify in "My Theme", use a file like this: "themes/my theme/sets/10E/129524.jpg". You can also use zipped card images, just like with the normal sets directory!

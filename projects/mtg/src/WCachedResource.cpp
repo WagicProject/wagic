@@ -273,8 +273,8 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error){
   if(submode & TEXTURE_SUB_5551)
     format = GU_PSM_5551;
 
-  if(!realname.size()){ //realname should not be empty, even if file 404s.
-    error = CACHE_ERROR_BAD;
+  if(!realname.size()){
+    error = CACHE_ERROR_404;
     return false;
   }
 

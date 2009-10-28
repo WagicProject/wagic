@@ -9,6 +9,10 @@
 #include <JFileSystem.h>
 #include <assert.h>
 #include "../include/WResourceManager.h"
+#if defined (WIN32)
+#include <sys/types.h>
+#include <sys/stat.h>
+#endif
 
 int idCounter = OTHERS_OFFSET;
 
@@ -171,6 +175,8 @@ WResourceManager::WResourceManager(){
   textureWCache.Resize(TEXTURES_CACHE_MINSIZE,MAX_CACHE_OBJECTS);
   lastTime = 0;
   lastError = CACHE_ERROR_NONE;
+
+  bThemedCards = false;
 }
 WResourceManager::~WResourceManager(){
   LOG("==Destroying WResourceManager==");
@@ -495,16 +501,9 @@ JSample * WResourceManager::RetrieveSample(string filename, int style, int submo
   return NULL;
 }
 
-string WResourceManager::graphicsFile(const string filename, const string specific){
+string WResourceManager::graphicsFile(const string filename){
     char buf[512];
    
-    //Check the specific location, if any.
-    if(specific != ""){
-      sprintf(buf,"%s/%s",specific.c_str(),filename.c_str());
-      if(fileOK(buf,true))
-        return buf;
-    }
-
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
 
@@ -513,7 +512,8 @@ string WResourceManager::graphicsFile(const string filename, const string specif
      if(fileOK(buf,true))
         return buf;
     }
-
+/*
+    //FIXME Put back when we're using modes.
     //Failure. Check mode graphics     
     string mode = options[Options::ACTIVE_MODE].str;
 
@@ -522,7 +522,7 @@ string WResourceManager::graphicsFile(const string filename, const string specif
       if(fileOK(buf,true))
         return buf;
     }
-       
+*/       
      //Failure. Check graphics       
      char graphdir[512];
      sprintf(graphdir,"graphics/%s",filename.c_str());
@@ -539,16 +539,9 @@ string WResourceManager::graphicsFile(const string filename, const string specif
 }
 
 
-string WResourceManager::avatarFile(const string filename, const string specific){
+string WResourceManager::avatarFile(const string filename){
     char buf[512];
    
-    //Check the specific location, if any.
-    if(specific != ""){
-      sprintf(buf,"%s/%s",specific.c_str(),filename.c_str());
-      if(fileOK(buf,true))
-        return buf;
-    }
-  
     //Check the profile folder.
     string profile = options[Options::ACTIVE_PROFILE].str;
 
@@ -570,7 +563,8 @@ string WResourceManager::avatarFile(const string filename, const string specific
      if(fileOK(buf,true))
         return buf;
     }
-
+/*
+    //FIXME Put back when we're using modes. 
     //Failure. Check mode graphics     
     string mode = options[Options::ACTIVE_MODE].str;
 
@@ -579,6 +573,7 @@ string WResourceManager::avatarFile(const string filename, const string specific
       if(fileOK(buf,true))
         return buf;
     }
+*/
 
     //Failure. Check Baka
     sprintf(buf,"ai/baka/avatars/%s",filename.c_str());
@@ -595,30 +590,42 @@ string WResourceManager::avatarFile(const string filename, const string specific
      return graphdir;
 }
 
-string WResourceManager::cardFile(const string filename, const string specific){
-    JFileSystem* fs = JFileSystem::GetInstance();
-
-
-    //PUT Back the following when we have an actual usage for it (theme, or whatever)
-    //Right now I'm removing this for performance
-/*
+string WResourceManager::cardFile(const string filename){
     char buf[512];
-    //Check the specific location, if any.
-    if(specific != ""){
-      sprintf(buf,"%s/sets/%s",specific.c_str(),filename.c_str());
-      if(fileOK(buf,true))
-        return buf;
-    }
-
+    string::size_type i;
+    string set;
+    JFileSystem* fs = JFileSystem::GetInstance();
+  
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
 
     if(theme != "" && theme != "Default"){
-       sprintf(buf,"themes/%s/sets/%s",theme.c_str(),filename.c_str());
-       if(fileOK(buf,true))
-         return buf;
-    }
+       //Does this theme use custom cards?
+       if(bThemedCards){
+           //Check zipped first. Discover set name.
+           for(i = 0;i < filename.size();i++){
+            if(filename[i] == '\\' || filename[i] == '/')
+                break;
+           }
 
+           if(i != filename.size())
+             set = filename.substr(0,i);
+
+            if(set.size()){
+              char zipname[512];
+              sprintf(zipname, "Res/themes/%s/sets/%s/%s.zip", theme.c_str(), set.c_str(),set.c_str());
+              if (fs->AttachZipFile(zipname))
+                return filename.substr(i+1);
+            }
+
+         sprintf(buf,"themes/%s/sets/%s",theme.c_str(),filename.c_str());
+         if(fileOK(buf,true)) 
+           return buf; //Themed, unzipped.
+       }
+    }
+    
+//FIXME Put back when we're using modes.
+/*
     //Failure. Check mode     
     string mode = options[Options::ACTIVE_MODE].str;
 
@@ -627,47 +634,37 @@ string WResourceManager::cardFile(const string filename, const string specific){
       if(fileOK(buf,true))
        return buf;      
     }
-      
 */
-     //Failure. Check sets       
+     //Failure. Assume it's in a zip file?
+     if(!set.size()){ //Didn't fill "set" string, so do it now.
+       for(i = 0;i < filename.size();i++){
+        if(filename[i] == '\\' || filename[i] == '/')
+            break;
+       }
+
+       if(i != filename.size())
+         set = filename.substr(0,i);
+     }
+
+     if(set.size()){
+        char zipname[512];
+        sprintf(zipname, "Res/sets/%s/%s.zip", set.c_str(),set.c_str());
+        if (fs->AttachZipFile(zipname))
+          return filename.substr(i+1);
+     }
+
+     //Failure. Check for unzipped file in sets       
      char defdir[512];
      sprintf(defdir,"sets/%s",filename.c_str());
      if(fileOK(defdir,true))
        return defdir;      
 
-     //Failure. Assume it's in a zip file?
-     string::size_type i;
-     for(i = 0;i < filename.size();i++){
-      if(filename[i] == '\\' || filename[i] == '/')
-          break;
-     } 
-
-     if(i != filename.size()){
-       string set = filename.substr(0,i);
-
-       if(set.size()){
-          char zipname[512];
-          sprintf(zipname, "Res/sets/%s/%s.zip", set.c_str(),set.c_str());
-          if (fileOK(zipname)){
-            fs->AttachZipFile(zipname);
-            return filename.substr(i+1);
-          }
-       }
-     }
-
      //Complete failure.
      return "";
 }
 
-string WResourceManager::musicFile(const string filename, const string specific){
+string WResourceManager::musicFile(const string filename){
     char buf[512];
-
-    //Check the specific location, if any.
-    if(specific != ""){
-      sprintf(buf,"%s/%s",specific.c_str(),filename.c_str());
-      if(fileOK(buf,true))
-        return buf;
-    }
 
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
@@ -678,6 +675,8 @@ string WResourceManager::musicFile(const string filename, const string specific)
          return buf;
     }
 
+    /*
+    //FIXME Put back when we're using modes.
     //Failure. Check mode     
     string mode = options[Options::ACTIVE_MODE].str;
 
@@ -685,7 +684,7 @@ string WResourceManager::musicFile(const string filename, const string specific)
       sprintf(buf,"modes/%s/sound/%s",mode.c_str(),filename.c_str());
     if(fileOK(buf,true))
        return buf;      
-    }
+    }*/
        
      //Failure. Check sound       
      char defdir[512];
@@ -697,15 +696,8 @@ string WResourceManager::musicFile(const string filename, const string specific)
      return defdir;
 }
 
-string WResourceManager::sfxFile(const string filename, const string specific){
+string WResourceManager::sfxFile(const string filename){
     char buf[512];
-
-    //Check the specific location, if any.
-    if(specific != ""){
-      sprintf(buf,"%s/%s",specific.c_str(),filename.c_str());
-      if(fileOK(buf,true))
-        return buf;
-    }
 
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
@@ -716,6 +708,8 @@ string WResourceManager::sfxFile(const string filename, const string specific){
          return buf;
     }
 
+/*
+    //FIXME: Put back when we're using modes.
     //Failure. Check mode     
     string mode = options[Options::ACTIVE_MODE].str;
     if(mode != "" && mode != "Default"){
@@ -723,7 +717,7 @@ string WResourceManager::sfxFile(const string filename, const string specific){
     if(fileOK(buf,true))
        return buf;      
     }
-       
+*/       
      //Failure. Check sound       
      char defdir[512];
      sprintf(defdir,"sound/sfx/%s",filename.c_str());
@@ -733,6 +727,25 @@ string WResourceManager::sfxFile(const string filename, const string specific){
      //Complete abject failure. Probably a crash...
      return "";
 }
+
+int WResourceManager::dirOK(string dirname){
+char fname[512];
+
+#if defined (WIN32)
+  sprintf(fname,RESPATH"/%s",dirname.c_str());
+
+  struct _stat statBuffer;
+  return (_stat(fname, &statBuffer) >= 0 && // make sure it exists
+  statBuffer.st_mode & S_IFDIR); // and it's not a file
+#else
+  sprintf(fname,RESPATH"/%s",dirname.c_str());
+  struct stat st;
+  if(stat(fname,&st) == 0)
+    return 1;
+#endif
+  return 0;
+}
+
 
 int WResourceManager::fileOK(string filename, bool relative){
   char fname[512];
@@ -862,6 +875,16 @@ void WResourceManager::Refresh(){
       continue;
 
     SAFE_DELETE(oldtex);
+  }
+
+  //Check for card images in theme.
+  bThemedCards = false;
+  if(!options[Options::ACTIVE_THEME].isDefault()){
+    char buf[512];
+    sprintf(buf,"themes/%s/sets",options[Options::ACTIVE_THEME].str.c_str());
+    
+    if(dirOK(buf)) 
+      bThemedCards = true;
   }
 }
 
