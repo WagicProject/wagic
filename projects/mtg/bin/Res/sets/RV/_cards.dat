@@ -462,7 +462,7 @@ type=Artifact
 text=Enchant land   At the beginning of the upkeep of enchanted land's controller, Cursed Land deals 1 damage to that player.
 target=land
 id=1148
-auto=@each my upkeep:damage:1 targetController
+auto=@each opponent upkeep:damage:1 targetController
 name=Cursed Land
 rarity=U
 mana={2}{B}{B}
@@ -1323,7 +1323,7 @@ mana={3}{G}
 type=Enchantment
 [/card]
 [card]
-text=Defender (This creature can't attack.)  {1}: Regenerate Living Wall.
+text=Defender (This creature can't attack.)   {1}: Regenerate Living Wall.
 auto={1}:regenerate
 id=1123
 name=Living Wall
@@ -1546,15 +1546,15 @@ type=Enchantment
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-abilities=flying
 id=1131
 name=Ornithopter
 rarity=U
-type=Artifact Creature
 mana={0}
-power=0
+type=Artifact Creature
 subtype=Thopter
+power=0
 toughness=2
+abilities=flying
 [/card]
 [card]
 text=Enchant creature   When Paralyze enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.   Enchanted creature has "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
