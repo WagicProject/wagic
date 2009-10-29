@@ -131,7 +131,7 @@ void GameApp::Create()
   resources.RetrieveTexture("wood.png",RETRIEVE_MANAGE);
   resources.RetrieveTexture("gold.png",RETRIEVE_MANAGE);
   resources.RetrieveTexture("goldglow.png",RETRIEVE_MANAGE);
-  resources.RetrieveTexture("backdrop.jpg",RETRIEVE_MANAGE,TEXTURE_SUB_5551);
+  resources.RetrieveTexture("backdrop.jpg",RETRIEVE_MANAGE);
   resources.RetrieveTexture("handback.png",RETRIEVE_MANAGE);
   resources.RetrieveTexture("BattleIcon.png",RETRIEVE_MANAGE);
   resources.RetrieveTexture("DefenderIcon.png",RETRIEVE_MANAGE);

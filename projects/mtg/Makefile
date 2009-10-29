@@ -35,7 +35,7 @@ PSP_EBOOT_ICON = icon.png
 #PSP_EBOOT_ICON1 = icon1.pmf
 PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
-CFLAGS = -G0 -DPSPFW3XX -DDEVHOOK
+CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src
 LIBDIR = ../../JGE/lib/psp
 else

@@ -592,7 +592,7 @@ string WResourceManager::avatarFile(const string filename){
 
 string WResourceManager::cardFile(const string filename){
     char buf[512];
-    string::size_type i;
+    string::size_type i = 0;
     string set;
     JFileSystem* fs = JFileSystem::GetInstance();
   
