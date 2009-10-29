@@ -509,7 +509,7 @@ auto={T}:2/2 target(creature[legendary])
 id=5250
 name=Sword of the Chosen
 rarity=R
-mana={4}
+mana={2}
 type=Artifact
 abilities=legendary
 [/card]
