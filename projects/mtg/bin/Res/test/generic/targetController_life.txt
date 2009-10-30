@@ -1,0 +1,24 @@
+#Bug: targetController + life will not function if not followed by &&
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Hideous End,Hideous End
+inplay:Kraken Hatchling
+manapool:{B}{B}{B}{B}{B}{B}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Hideous End
+Grizzly Bears
+Hideous End
+Kraken Hatchling
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Hideous End,Hideous End,Kraken Hatchling
+manapool:{0}
+life:18
+[PLAYER2]
+graveyard:Grizzly Bears
+life:18
+[END]

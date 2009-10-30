@@ -1,0 +1,24 @@
+#Bug: targetController + life will not function if not followed by &&
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Path of Peace,Path of Peace
+inplay:Kraken Hatchling
+manapool:{W}{W}{W}{W}{W}{W}{W}{W}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Path of Peace
+Grizzly Bears
+Path of Peace
+Kraken Hatchling
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Path of Peace,Path of Peace,Kraken Hatchling
+manapool:{0}
+life:24
+[PLAYER2]
+graveyard:Grizzly Bears
+life:24
+[END]

@@ -1,0 +1,24 @@
+# Will targetController deal damage even not followed by &&?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Poison the Well,Poison the Well
+inplay:Island
+manapool:{B}{B}{B}{B}{B}{B}{B}{B}
+[PLAYER2]
+inplay:Forest
+[DO]
+Poison the Well
+Island
+Poison the Well
+Forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Poison the Well,Poison the Well,Island
+manapool:{0}
+life:18
+[PLAYER2]
+graveyard:Forest
+life:18
+[END]

@@ -466,8 +466,7 @@ toughness=1
 [card]
 text=Destroy target nonblack creature. Its controller loses 2 life.
 target=creature[-black]
-auto=destroy
-auto=life:-2 targetController
+auto=destroy && life:-2 targetController
 id=180435
 name=Hideous End
 rarity=C
