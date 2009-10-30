@@ -1910,7 +1910,7 @@ rarity=C
 mana={1}{U}
 type=Creature
 subtype=Sliver
-auto=lord(Sliver) flying
+auto=lord(sliver) flying
 power=1
 toughness=1
 [/card]
