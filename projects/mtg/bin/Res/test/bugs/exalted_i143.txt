@@ -1,0 +1,35 @@
+#NAME: Exalted i143
+#DESC: Tests whether exalted works correctly.
+#DESC: If Player1's life is 4 instead of 5,
+#DESC: then the exalted Outrider of Jhess
+#DESC: erroneously got the +1/+1 bonus although
+#DESC: it didn't attack alone. If the Qasali
+#DESC: Pridemage survives, then every attacker
+#DESC: erroneously got the exalted bonus.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:qasali pridemage,outrider of jhess
+graveyard:
+[PLAYER2]
+inplay:white knight
+graveyard:
+life:7
+[DO]
+qasali pridemage
+outrider of jhess
+next
+white knight
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:outrider of jhess
+graveyard:qasali pridemage
+[PLAYER2]
+inplay:white knight
+graveyard:
+life:5
+[END]

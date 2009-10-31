@@ -1,0 +1,17 @@
+#NAME: Kicker crash i149
+#DESC: The Game crashes when AI has Kavu Aggressor in hand
+[INIT]
+firstmain
+[PLAYER1]
+inplay:mountain,mountain,mountain
+hand:kavu aggressor
+[PLAYER2]
+[DO]
+ai
+[ASSERT]
+combatblockers
+[PLAYER1]
+inplay:mountain,mountain,mountain,kavu aggressor
+hand:
+[PLAYER2]
+[END]

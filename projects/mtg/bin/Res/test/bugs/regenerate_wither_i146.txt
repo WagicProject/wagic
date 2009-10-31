@@ -1,0 +1,39 @@
+#NAME: Regenerate Wither i146
+#DESC: You should not be able to regenerate
+#DESC: creatures that haven been dealt lethal
+#DESC: damage by -1/-1 counters (Wither).
+#DESC: The test checks regeneration of a
+#DESC: Drudge Skeletons killed by regular
+#DESC: damage (which should work) and a Walking
+#DESC: Dead killed by Wither damage (which
+#DESC: should not work).
+[INIT]
+combatbegin
+[PLAYER1]
+inplay:drudge skeletons,walking dead
+graveyard:
+manapool:{B}{B}
+[PLAYER2]
+inplay:boggart ram-gang,hill giant
+graveyard:
+[DO]
+drudge skeletons
+walking dead
+next
+drudge skeletons
+walking dead
+next
+boggart ram-gang
+boggart ram-gang
+hill giant
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:drudge skeletons
+graveyard:walking dead
+[PLAYER2]
+inplay:boggart ram-gang,hill giant
+graveyard:
+[END]

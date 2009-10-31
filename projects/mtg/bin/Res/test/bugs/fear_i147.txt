@@ -1,0 +1,41 @@
+#NAME: Fear i147
+#DESC: Creatures with fear should be
+#DESC: blockable by artifacts and black
+#DESC: creatures, but unblockable by others.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:prickly boggart,severed legion,gluttonous zombie,ratcatcher
+graveyard:
+[PLAYER2]
+inplay:scathe zombies,cathodion,gosta dirk,ant queen
+graveyard:
+life:20
+[DO]
+prickly boggart
+severed legion
+gluttonous zombie
+ratcatcher
+next
+scathe zombies
+cathodion
+cathodion
+gosta dirk
+gosta dirk
+gosta dirk
+ant queen
+ant queen
+ant queen
+ant queen
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:gluttonous zombie,ratcatcher
+graveyard:prickly boggart,severed legion
+[PLAYER2]
+inplay:scathe zombies,cathodion,gosta dirk,ant queen
+graveyard:
+life:13
+[END]
