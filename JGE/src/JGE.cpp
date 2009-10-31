@@ -91,12 +91,6 @@ JGE::JGE()
   mCurrentMusic = NULL;
   Init();
 
-  //	mResourceManager = new JResourceManager();
-  //	mFileSystem = new JFileSystem();
-
-  //	mParticleSystem = NULL;//new JParticleSystem(500);
-  //	mMotionSystem = NULL;//new JMotionSystem();
-
 }
 
 
@@ -105,22 +99,6 @@ JGE::~JGE()
   JRenderer::Destroy();
   JFileSystem::Destroy();
   JSoundSystem::Destroy();
-  //JParticleSystem::Destroy();
-
-  //DestroyGfx();
-  //DestroySfx();
-
-  //	if (mResourceManager != NULL)
-  //		delete mResourceManager;
-  //
-  // 	if (mFileSystem != NULL)
-  // 		delete mFileSystem;
-  //
-  // 	if (mParticleSystem != NULL)
-  // 		delete mParticleSystem;
-  //
-  // 	if (mMotionSystem != NULL)
-  // 		delete mMotionSystem;
 }
 
 
@@ -134,9 +112,6 @@ void JGE::Init()
   JRenderer::GetInstance();
   JFileSystem::GetInstance();
   JSoundSystem::GetInstance();
-  //JParticleSystem::GetInstance();
-
-  //InitSfx();
 }
 
 void JGE::Run()
@@ -191,9 +166,6 @@ void JGE::ResetInput()
 
 
 
-// include all the following so we only have one .o file
-//#include "../src/JGfx.cpp"
-//#include "../src/JSfx.cpp"
 #include <queue>
 static queue<u32> gKeyBuffer;
 static const int gKeyCodeList[] = {
@@ -231,11 +203,6 @@ JGE::JGE()
 
   Init();
 
-  //	mResourceManager = new JResourceManager();
-  //	mFileSystem = new JFileSystem();
-  //
-  //	mParticleSystem = new JParticleSystem(500);
-  //	mMotionSystem = new JMotionSystem();
 
 }
 
@@ -245,20 +212,6 @@ JGE::~JGE()
   JSoundSystem::Destroy();
   JFileSystem::Destroy();
 
-  //DestroyGfx();
-  //DestroySfx();
-
-  //	delete mResourceManager;
-  //	delete mFileSystem;
-  //	delete mParticleSystem;
-  //	delete mMotionSystem;
-
-  // 	if (mApp != NULL)
-  // 	{
-  // 		mApp->Destroy();
-  // 		delete mApp;
-  // 		mApp = NULL;
-  // 	}
 }
 
 
@@ -287,20 +240,6 @@ void JGE::Init()
   mPaused = false;
   mCriticalAssert = false;
   mOldButtons = mVeryOldButtons = 0;
-
-  //InitSfx();
-
-  //Create();
-
-  //	mCurrMS = 1.0f;
-  //	mFPSSlice = 0;
-
-  //struct timeval tp;
-  //gettimeofday(&tp, NULL);
-  //mTimeBase = tp.tv_sec;
-
-  //mLastTime = GetTime();
-
 
   mTickFrequency = sceRtcGetTickResolution();
   sceRtcGetCurrentTick(&mLastTime);
@@ -371,7 +310,7 @@ u8 JGE::GetAnalogY()
 void JGE::Run()
 {
   u64 curr;
-  long long int nextInput;
+  long long int nextInput = 0;
 
   const u32 ticksPerSecond = sceRtcGetTickResolution();
   const u64 repeatDelay = REPEAT_DELAY * ticksPerSecond;
@@ -503,10 +442,6 @@ void JGE::printf(const char *format, ...)
   va_start(list, format);
   vsprintf(mDebuggingMsg, format, list);
   va_end(list);
-
-  //	FILE *f = fopen("jge.log", "a+");
-  //	fprintf(f, "%s\n", mDebuggingMsg);
-  //	fclose(f);
 
 }
 

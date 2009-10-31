@@ -74,7 +74,7 @@ PSPDIR = $(shell psp-config --psp-prefix)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
 TARGET_HGE = libhgetools.a
 INCDIR = include/psp include/psp/freetype2
-CXXFLAGS += -G0
+CXXFLAGS += -O2 -G0
 LIBDIR = lib/psp
 endif
 ifeq ($(TARGET_ARCHITECTURE),linux)
