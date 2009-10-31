@@ -858,6 +858,8 @@ subtype=Goblin Berserker
 power=1
 toughness=1
 text=Double strike Whenever Warren Instigator deals damage to an opponent, you may put a Goblin creature card from your hand onto the battlefield.
+#The double strike abilities triggers 2 damage event, so the following allow you to put 2 cards each time it damaged an oppponent.
+auto=@damaged(player) from(this):may moveto(myBattlefield) target(goblin|myHand)
 rarity=M
 [/card]
 [card]

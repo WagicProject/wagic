@@ -1016,17 +1016,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Destroy all green creatures or all white creatures. They can't be regenerated. You lose 2 life for each creature put into a graveyard this way.
-id=3306
-name=Reign of Terror
-auto=foreach(creature[green]) life:-2 controller
-auto=foreach(creature[white]) life:-2 controller
-auto=bury all(creature[white,green])
-rarity=U
-mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
 text={B}: Regenerate Restless Dead.
 id=3307 
 name=Restless Dead
