@@ -28,6 +28,7 @@ PIXEL_TYPE SimpleMenu::jewelGraphics[9] = {0x3FFFFFFF,0x63645AEA,0x610D0D98,
 
 
 SimpleMenu::SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int y, const char * _title, int _maxItems): JGuiController(id, listener){
+  autoTranslate = true;
   mHeight = 2 * VMARGIN;
   mWidth = 0;
   mX = x;
@@ -166,7 +167,7 @@ void SimpleMenu::Update(float dt){
 }
 
 void SimpleMenu::Add(int id, const char * text,string desc, bool forceFocus){
-  SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, mFont, text, 0, mY + VMARGIN + mCount*LINE_HEIGHT, (mCount == 0));
+  SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, mFont, text, 0, mY + VMARGIN + mCount*LINE_HEIGHT, (mCount == 0),autoTranslate);
   smi->desc = desc;
   JGuiController::Add(smi);
   if (mCount <= maxItems) mHeight += LINE_HEIGHT;

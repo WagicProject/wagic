@@ -44,7 +44,7 @@ void WGuiItem::Render(){
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
   float fH = (height-mFont->GetHeight())/2;
-  mFont->DrawString(displayValue.c_str(),x+(width/2),y+fH,JGETEXT_CENTER);
+  mFont->DrawString(_(displayValue).c_str(),x+(width/2),y+fH,JGETEXT_CENTER);
 }
 
 WGuiItem::WGuiItem(string _display){
@@ -67,7 +67,7 @@ void WGuiHeader::Render(){
   mFont->SetColor(getColor(WGuiColor::TEXT));
  
   JRenderer * renderer = JRenderer::GetInstance();
-  mFont->DrawString(displayValue.c_str(),x+width/2,y,JGETEXT_CENTER);
+  mFont->DrawString(_(displayValue).c_str(),x+width/2,y,JGETEXT_CENTER);
 }
 
 //WGuiText
@@ -77,7 +77,7 @@ void WGuiText::Render(){
   mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
  
   JRenderer * renderer = JRenderer::GetInstance();
-  mFont->DrawString(displayValue.c_str(),x,y,JGETEXT_LEFT); 
+  mFont->DrawString(_(displayValue).c_str(),x,y,JGETEXT_LEFT); 
   mFont->SetScale(1);
 }
 
@@ -93,7 +93,7 @@ void OptionInteger::Render(){
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
 
-  mFont->DrawString(displayValue.c_str(),x,y);
+  mFont->DrawString(_(displayValue).c_str(),x,y);
   char buf[512];
   if (maxValue == 1){
     if (value){
@@ -103,7 +103,7 @@ void OptionInteger::Render(){
     }
   }else{
     if(value == defValue && strDefault.size())
-      sprintf(buf, "%s", strDefault.c_str());
+      sprintf(buf, "%s", _(strDefault).c_str());
     else
       sprintf(buf, "%i", value);
   }
@@ -144,12 +144,12 @@ void OptionSelect::Render(){
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
   JRenderer * renderer = JRenderer::GetInstance();
-  mFont->DrawString(displayValue.c_str(),x,y);
+  mFont->DrawString(_(displayValue).c_str(),x,y);
 
   if (value < selections.size())
-    mFont->DrawString(selections[value].c_str(),x+width-10,y,JGETEXT_RIGHT);
+    mFont->DrawString(_(selections[value]).c_str(),x+width-10,y,JGETEXT_RIGHT);
   else
-   mFont->DrawString("Unset",x+width-10,y,JGETEXT_RIGHT);
+    mFont->DrawString(_("Unset").c_str(),x+width-10,y,JGETEXT_RIGHT);
 }
 
 void OptionSelect::setData(){
@@ -433,7 +433,7 @@ void WGuiList::Render(){
   if (!nbitems && failMsg != ""){
     JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
-    mFont->DrawString(failMsg.c_str(),x+width/2, y, JGETEXT_RIGHT);
+    mFont->DrawString(_(failMsg).c_str(),x+width/2, y, JGETEXT_RIGHT);
     return;
   }
 
@@ -617,12 +617,12 @@ void OptionString::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
 
   if(!bShowValue){
-   mFont->DrawString(displayValue.c_str(),x+(width/2),y,JGETEXT_CENTER);
+   mFont->DrawString(_(displayValue).c_str(),x+(width/2),y,JGETEXT_CENTER);
   }
   else{
-   mFont->DrawString(displayValue.c_str(),x,y);
+   mFont->DrawString(_(displayValue).c_str(),x,y);
    int w = mFont->GetStringWidth(value.c_str()-10);
-   mFont->DrawString(value.c_str(),width - w,y,JGETEXT_RIGHT);
+   mFont->DrawString(_(value).c_str(),width - w,y,JGETEXT_RIGHT);
   }
 }
 
@@ -692,7 +692,7 @@ void OptionTheme::Render(){
       file.close();
     }
   }
-  sprintf(buf,"Theme: %s",selections[value].c_str());
+  sprintf(buf,_("Theme: %s").c_str(),selections[value].c_str());
 
   if(q){
     float scale = 128 / q->mHeight;
@@ -704,7 +704,7 @@ void OptionTheme::Render(){
     mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
      mFont->SetScale(.8);
     float hi = mFont->GetHeight();
-    sprintf(buf,"Artist: %s",author.c_str());
+    sprintf(buf,_("Artist: %s").c_str(),author.c_str());
     mFont->DrawString(buf,x,y+getHeight()-hi);
     mFont->SetScale(1);
   }
@@ -754,10 +754,10 @@ void WDecoEnum::Render()
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
-  mFont->DrawString(getDisplay().c_str(),getX(),getY());
+  mFont->DrawString(_(getDisplay()).c_str(),getX(),getY());
   OptionInteger* opt = dynamic_cast<OptionInteger*>(it);
   if(opt)
-    mFont->DrawString(lookupVal(opt->value).c_str(), getWidth() -10, getY(), JGETEXT_RIGHT);
+    mFont->DrawString(_(lookupVal(opt->value)).c_str(), getWidth() -10, getY(), JGETEXT_RIGHT);
 }
 
 WDecoEnum::WDecoEnum(WGuiBase * _it, EnumDefinition *_edef) : WGuiDeco(_it) {edef = _edef;}
@@ -1163,10 +1163,10 @@ void WGuiTabMenu::Render(){
   int offset = 0;
   
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++){
-    int w = mFont->GetStringWidth((*it)->getDisplay().c_str());
+    int w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
     mFont->SetColor((*it)->getColor(WGuiColor::TEXT_TAB));
     renderer->FillRoundRect(offset+5,5,w + 5,25,2,(*it)->getColor(WGuiColor::BACK_TAB));
-    mFont->DrawString((*it)->getDisplay().c_str(),offset+10,10);
+    mFont->DrawString(_((*it)->getDisplay()).c_str(),offset+10,10);
     offset += w + 10 + 2;
   }
 

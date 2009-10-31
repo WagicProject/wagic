@@ -7,6 +7,83 @@
 # If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
 #Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
 
+#
+#Added in 0.9.1
+#
+
+#Options
+Artist: %s=Artiste : %s
+Both=Les deux
+Closed hand=Main fermee
+Credits=Credits
+Default=Defaut
+Disable card image loading=Desactiver images des cartes
+Eye candy=Cool
+Game=Jeu
+General Options=Options generales
+Hand direction=Orientation main
+Interface Options=Options d'interface
+Interrupt my abilities=Interrompre mes abilites
+Interrupt my spells=Interrompre mes sorts
+Mana display=Affichage Mana
+Max=Max
+Mute=Silencieux
+New Profile=Nouveau Profil
+Options=Options
+Reverse left and right triggers=Inverser RTrigger et LTrigger
+Settings=Parametres
+Simple=Simple
+Theme: %s=Theme: %s
+Use this Theme=Utiliser ce theme
+User=Joueur
+User Options=Options Joueur
+horizontal=horizontal
+invisible=invisible
+vertical=vertical
+visible=visible
+
+# Deck Editor
+# - Total number of cards with given cost=# - Total de Cartes avec ce cout
+Average converted mana cost=Cout converti moyen de mana
+Average converted mana cost: %2.2f=Cout moyen de mana converti : %2.2f
+C - Converted mana cost. Cards with cost>%i are included in the last row.=C - Cout converti. Les cartes avec un cout >%i sont incluses dans la derniere ligne.
+Card counts per mana cost:=Nb de cartes par cout de mana
+Creatures=Creatures
+Enchantments=Enchantements
+Games played=Parties jouees
+Games played: %i=Parties jouees: %i
+Instants=Ephemeres
+Lands=Terrains
+No creatures in 1st hand=0 creature dans 1ere main
+No creatures in first n cards:=0 creature dans n 1eres cartes.
+No land in 1st hand=0 Terrain dans 1ere main
+No land in 9 cards=0 Terrain dans 1eres 9 cartes
+No lands in first n cards:=0 Terrain dans 1eres n cartes
+Playgame statistics=Statistiques de jeu
+Press L/R to cycle through=Appuyez sur L/R Pour naviguer dans
+deck statistics.=les stats du deck.
+Probabilities=Probabilites
+Save & Rename=Sauver & Renommer
+Sorceries=Rituels
+Spells=Sorts
+Switch decks without saving=Annuler & Changer de Deck
+Total colored manasymbols in cards' casting costs:=Total de symboles de mana dans le cout des cartes
+Total price (credits)=Prix total (credits)
+Victories against AI:=Victoires contre l'IA
+Victory ratio: %i%%=Victoires :%i%% 
+menu=menu
+statsPage#: %i=Stats, page #: %i
+
+#Other
+Attacker=Attaquant
+Demo=Demo
+Momir Basic=Momir Basic
+Test Suite=Suite de Tests
+
+
+#
+# Wagic 0.8.1 and below
+#
 
 #Game menus/texts
 LOADING SET: %s=CHARGEMENT SET: %s
@@ -130,7 +207,7 @@ Display collection=Afficher collection
 Your Deck: %i cards=Votre Deck: %i cartes
 You are currently viewing your=Vous etes sur votre
 collection. Press TRIANGLE=collection. Appuyez sur TRIANGLE
-to switch to your deck=pour voir votre deck
+to switch to your deck.=pour voir votre deck.
 deck. Press TRIANGLE to=deck. Appuyez sur TRIANGLE
 switch to your collection=pour voir votre collection
 Your Deck: %i cards=votre deck: %i cartes
@@ -139,39 +216,41 @@ No Card=Pas de carte
 Deck info=Info deck
 Sell card=Vendre carte
 #types
-artifact=artefact
-enchantment=enchantement
-sorcery=rituel
-instant=ephemere
-land=terrain
+Artifact=artefact
+Creature=Creature
+Enchantment=enchantement
+Sorcery=rituel
+Instant=ephemere
+Land=terrain
 
 #subtypes
 #please keep the english alphabetical order, makes it easier to update!
-angel=ange
-basic=basique
-bird=oiseau
-cat=chat
-centaur=centaure
-elf=elfe
-forest=foret
-goblin=gobelin
-hound=chien
-human=humain
-island=ile
-knight=chevalier
-minotaur=minotaure
-mountain=montagne
-plains=plaine
-sliver=slivoide
-sorcerer=sorcier
-soldier=soldat
-specter=spectre
-spider=araignee
-swamp=marais
-wall=mur
-warrior=guerrier
-wolf=loup
-wurm=guivre
+Angel=Ange
+Basic=Basique
+Bird=Oiseau
+Cat=Chat
+Centaur=Centaure
+Elf=Elfe
+Forest=Foret
+Goblin=Gobelin
+Hound=Chien
+Human=Humain
+Island=Ile
+Knight=Chevalier
+Minotaur=Minotaure
+Mountain=Montagne
+Plains=Plaine
+Sliver=Slivoide
+Sorcerer=Sorcier
+Soldier=Soldat
+Specter=Spectre
+Spider=Araignee
+Swamp=Marais
+Wall=Mur
+Wolf=Loup
+Wurm=Guivre
+Warrior=Guerrier
+Archer=Archer
 
 
 #card names

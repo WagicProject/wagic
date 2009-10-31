@@ -25,7 +25,7 @@ class SimpleMenuItem: public JGuiObject
 
  public:
   string desc;
-  SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, string text, int x, int y, bool hasFocus = false);
+  SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, string text, int x, int y, bool hasFocus = false, bool autoTranslate = false);
 
   int mX;
   int mY;

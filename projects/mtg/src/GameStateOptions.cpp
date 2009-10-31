@@ -165,7 +165,7 @@ void GameStateOptions::Render()
   for (int i = 0; i < size; i++){
     pos = startpos +20*i;
     if (pos > -20){
-      mFont->DrawString(_(CreditsText[i]).c_str(),SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
+      mFont->DrawString(CreditsText[i],SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
     }
   }
 

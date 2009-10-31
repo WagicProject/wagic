@@ -39,6 +39,7 @@ class SimpleMenu:public JGuiController{
   void drawVertPole(int x, int y, int height);
 
  public:
+  bool autoTranslate;
   SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int y, const char * _title = "", int _maxItems = 7);
   void Render();
   void Update(float dt);

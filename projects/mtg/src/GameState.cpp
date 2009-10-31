@@ -9,6 +9,7 @@
 int GameState::fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix, Player * statsPlayer){
   int found = 1;
   int nbDecks = 0;
+  _menu->autoTranslate = false;
   while (found){
     found = 0;
     char buffer[512];
