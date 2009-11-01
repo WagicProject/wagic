@@ -374,6 +374,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   if (opponent->basicAbilities[Constants::SHADOW] && !( basicAbilities[Constants::SHADOW] || basicAbilities[Constants::REACHSHADOW])) return 0;
   // If opponent does not have shadow and a creature has shadow it cannot be blocked
   if (!opponent->basicAbilities[Constants::SHADOW] && basicAbilities[Constants::SHADOW]) return 0;
+  if (opponent->basicAbilities[Constants::HORSEMANSHIP] && !basicAbilities[Constants::HORSEMANSHIP]) return 0;
   if (opponent->basicAbilities[Constants::SWAMPWALK] && controller()->game->inPlay->hasType("swamp")) return 0;
   if (opponent->basicAbilities[Constants::FORESTWALK] && controller()->game->inPlay->hasType("forest")) return 0;
   if (opponent->basicAbilities[Constants::ISLANDWALK] && controller()->game->inPlay->hasType("island")) return 0;

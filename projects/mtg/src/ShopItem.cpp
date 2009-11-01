@@ -404,14 +404,19 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         }
 
         int i = 0;
+        for(int cycle=0;cycle<3;cycle++)
         for (map<int,int>::iterator it = tempDeck->cards.begin(); it!=tempDeck->cards.end(); it++){
           MTGCard * c = tempDeck->getCardById(it->first);
-          for (int j = 0; j < it->second; j++){
-            MTGCardInstance * card = NEW MTGCardInstance(c, NULL);
-            displayCards[i] = card;
-	          display->AddCard(card);
-            i++;
-          }
+          char rarity = c->getRarity();
+          if((cycle == 0 && (rarity == Constants::RARITY_C || rarity == Constants::RARITY_L))
+            || (cycle == 1 && rarity == Constants::RARITY_U)
+            || (cycle == 2 && (rarity == Constants::RARITY_R || rarity == Constants::RARITY_M)))
+            for (int j = 0; j < it->second; j++){
+              MTGCardInstance * card = NEW MTGCardInstance(c, NULL);
+              displayCards[i] = card;
+	            display->AddCard(card);
+              i++;
+            }
         }
         delete tempDeck;
       }
