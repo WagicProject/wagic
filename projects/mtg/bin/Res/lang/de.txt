@@ -81,6 +81,37 @@ Main phase 2=2. Hauptphase
 End of turn=Endphase
 Cleanup=Aufraeumpahse
 
+#Options
+Cards: %i=Karten: %i
+Theme: %s=Thema: %s
+Artist: %s=Maler: %s
+Game=Spiel
+User=Spieler
+Settings=Optionen
+Credits=Abspann
+Interrupt my spells=Halten fuer meine Zaubersprueche
+Interrupt my abilities=Halten fuer meine Faehigkeiten
+Hard=Schwierig
+Harder=Schwierig
+Evil=Boese
+Display InGame extra information=Schauen mehr Information im Spielen
+New Profile=Neue Profil
+Closed hand=Geschlossen Hand
+visible=sichtbar
+invisible=unsichtbar
+Hand direction=Hand Richtung
+vertical=vertikal
+Mana display=Manavorrat Ausstellung
+Simple=einfach
+Eye candy=schoen
+Both=beides
+Mute=Gedaempft
+Max=sehr laut
+User Options=Profil Optionen
+Interface Options=Schnittstelle Optionen
+General options=allgemeines Optionen
+
+
 #Stack
 Deals %i damage to=Fuegt %i Schaden an
 
