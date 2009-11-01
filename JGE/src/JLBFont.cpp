@@ -99,6 +99,11 @@ JLBFont::~JLBFont()
 }
 
 
+void JLBFont::DrawString(std::string s, float x, float y, int align, float leftOffset, float displayWidth)
+{
+ return DrawString(s.c_str(), x, y, align, leftOffset, displayWidth);
+}
+
 void JLBFont::DrawString(const char *string, float x, float y, int align, float leftOffset, float displayWidth)
 {
 	char *p = (char*)string;

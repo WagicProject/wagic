@@ -16,7 +16,7 @@
 #define MAX_CHAR				256
 
 #include "JRenderer.h"
-
+#include <string>
 
 //////////////////////////////////////////////////////////////////////////
 ///	Bitmap font class for LMNOpc's Bitmap Font Builder:
@@ -54,6 +54,7 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void		DrawString(const char *string, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);
+  void		DrawString(std::string s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Rendering text to screen with syntax similar to printf of C/C++.

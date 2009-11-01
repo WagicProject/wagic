@@ -1,5 +1,6 @@
 #Translations that we don't need to have
-#Before you remove a text from this file, be sure to understand why it has been put here!
+#Before you Add/Remove a text from this file, be sure to understand why it has been put here!
+# For example, card names should not be in this file, BUT card names followed by a stupid space caracter should be
 =
 10=
 Alliance (***)=
@@ -53,4 +54,4 @@ Wrath (***)=
 Yavimaya (***)=
 Zuberi's Flock (=
 deck2=
-
+Reach (This creature can block creatures with flying.)   Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)=

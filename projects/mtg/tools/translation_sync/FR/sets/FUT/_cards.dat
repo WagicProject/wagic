@@ -2,11 +2,10 @@
 name=Flowstone Embrace
 mana={1}{R}
 subtype=Aura
-color=Red
 target=creature
 auto={T}:2/-2
 rarity=C
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)    {T}: Enchanted creature gets +2/-2 until end of turn.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   {T}: Enchanted creature gets +2/-2 until end of turn.
 id=132227
 type=Enchantment
 [/card]
@@ -15,13 +14,13 @@ toughness=1
 name=Tarmogoyf
 mana={1}{G}
 subtype=Lhurgoyf
-color=Green
 auto=aslongas(artifact|graveyard) 1/1
 auto=aslongas(creature|graveyard) 1/1
 auto=aslongas(enchantment|graveyard) 1/1
 auto=aslongas(instant|graveyard) 1/1
 auto=aslongas(land|graveyard) 1/1
 auto=aslongas(sorcery|graveyard) 1/1
+auto=aslongas(tribal|graveyard) 1/1
 rarity=R
 text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 power=0
@@ -32,11 +31,10 @@ type=Creature
 name=Gift of Granite
 mana={W}
 subtype=Aura
-color=White
 target=creature
 auto=0/2
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +0/+2.
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature gets +0/+2.
 id=136200
 type=Enchantment
 abilities=flash
@@ -46,10 +44,9 @@ toughness=1
 name=Cloudseeder
 mana={1}{U}
 subtype=Faerie Spellshaper
-color=Blue
 auto={U}{T}{S(*|myhand)}:token(Cloud Sprite,creature faerie, 1/1,flying,cloud blue)
 rarity=U
-text={U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite into play with flying and "Cloud Sprite can block only creatures with flying."
+text={U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite onto the battlefield with flying and "Cloud Sprite can block only creatures with flying."
 power=1
 id=130309
 type=Creature
@@ -58,13 +55,12 @@ abilities=flying
 [card]
 name=Venser's Diffusion
 mana={2}{U}
-color=Blue
 target=*[-land]
+auto=moveTo(ownerhand)
 rarity=C
 text=Return target nonland permanent or suspended card to its owner's hand.
 type=Instant
 id=136197
-alias=1229
 [/card]
 [card]
 name=Scout's Warning
@@ -82,31 +78,38 @@ toughness=1
 name=Sliversmith
 mana={2}
 subtype=Spellshaper
-color=Artifact
 auto={1}{T}{S(*|myhand)}:token(Metallic Sliver,creature sliver, 1/1)
 rarity=U
-text={1}, {T}, Discard a card: Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver into play.
+text={1}, {T}, Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver onto the battlefield.
 power=1
 id=130329
 type=Creature
+[/card]
+[card]
+auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot
+text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
+rarity=R
+name=Veilstone Amulet
+id=136149
+type=Artifact
+mana={3}
 [/card]
 [card]
 toughness=3
 name=Mass of Ghouls
 mana={3}{B}{B}
 subtype=Zombie Warrior
-color=Black
 rarity=C
 power=5
-id=126158
 type=Creature
+id=126158
 [/card]
 [card]
-auto={T}:Add{1}
-auto={RB}{T}:Add{B}{B}
-auto={RB}{T}:Add{B}{R}
-auto={RB}{T}:Add{R}{R}
-text={T}: Add {1} to your mana pool.     {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
+auto={T}:Add {1}
+auto={RB}{T}:Add {B}{B}
+auto={RB}{T}:Add {B}{R}
+auto={RB}{T}:Add {R}{R}
+text={T}: Add {1} to your mana pool.   {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
 rarity=R
 name=Graven Cairns
 id=130581
@@ -117,30 +120,52 @@ toughness=3
 name=Char-Rumbler
 mana={2}{R}{R}
 subtype=Elemental
-color=Red
+auto={R}:1/0
 rarity=U
-text={R}: Char-Rumbler gets +1/+0 until end of turn.
+text=Double strike   {R}: Char-Rumbler gets +1/+0 until end of turn.
 power=-1
 id=130582
 type=Creature
 abilities=double strike
 [/card]
 [card]
-name=136150
-mana={7}
-subtype=Akroma's Memorial
-color=Artifact
-auto=lord(creature|myinplay) flying
-auto=lord(creature|myinplay) first strike
-auto=lord(creature|myinplay) vigilance
-auto=lord(creature|myinplay) trample
-auto=lord(creature|myinplay) haste
-auto=lord(creature|myinplay) protection from red
-auto=lord(creature|myinplay) protection from black
+toughness=6
+name=Scourge of Kher Ridges
+mana={6}{R}{R}
+subtype=Dragon
+auto={1}{R}:damage:2 all(creature[-flying])
+auto={5}{R}:damage:6 all(other creature[flying])
 rarity=R
+text=Flying   {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying.   {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
+power=6
+id=136161
+type=Creature
+abilities=flying
+[/card]
+[card]
+auto={T}:Add {1}
+auto=aslongas(plains|myBattlefield) {T}:Add {W}
+auto=aslongas(island|myBattlefield) {T}:Add {U}
+text={T}: Add {1} to your mana pool.   {T}: Add {W} to your mana pool. Play this ability only if you control an Island.   {T}: Add {U} to your mana pool. Play this ability only if you control a Plains.
+rarity=R
+name=Nimbus Maze
+id=136045
+type=Land
+[/card]
+[card]
+auto=lord(creature|myBattlefield) flying
+auto=lord(creature|myBattlefield) first strike
+auto=lord(creature|myBattlefield) vigilance
+auto=lord(creature|myBattlefield) trample
+auto=lord(creature|myBattlefield) haste
+auto=lord(creature|myBattlefield) protection from red
+auto=lord(creature|myBattlefield) protection from black
 text=Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
+rarity=R
+name=Akroma's Memorial
 id=136150
 type=Artifact
+mana={7}
 abilities=legendary
 [/card]
 [card]
@@ -148,20 +173,31 @@ toughness=1
 name=Sarcomite Myr
 mana={2}{U}
 subtype=Myr
-color=Blue,Artifact
 auto={2}:flying
 auto={2}{S}:Draw:1
 rarity=C
-text={2}: Sarcomite Myr gains flying until end of turn. {2}, Sacrifice Sarcomite Myr: Draw a card.
+text={2}: Sarcomite Myr gains flying until end of turn.   {2}, Sacrifice Sarcomite Myr: Draw a card.
 power=2
 id=136212
 type=Artifact Creature
 [/card]
 [card]
+name=Fatal Attraction
+mana={2}{R}
+subtype=Aura
+target=creature
+auto=damage:2
+auto=@each my upkeep:damage:4
+rarity=C
+text=Enchant creature When Fatal Attraction enters the battlefield, it deals 2 damage to enchanted creature.   At the beginning of your upkeep, Fatal Attraction deals 4 damage to enchanted creature.
+id=130699
+type=Enchantment
+[/card]
+[card]
 auto={T}:Add {G} && life:-1
 auto={T}:Add {W} && life:-1
 auto={1}{T}{S}:Draw:1
-text={T}: Pay 1 life: Add {G} or {W} to your mana pool.    {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
+text={T}: Pay 1 life: Add {G} or {W} to your mana pool.   {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
 rarity=R
 name=Horizon Canopy
 id=130574
@@ -172,31 +208,40 @@ toughness=4
 name=Fomori Nomad
 mana={4}{R}
 subtype=Nomad Giant
-color=Red
 rarity=C
 power=4
-id=126149
 type=Creature
+id=126149
 [/card]
 [card]
 name=Oblivion Crown
 mana={1}{B}
 subtype=Aura
-color=Black
 target=creature
 auto={S(*|myhand)}:1/1
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
 id=132219
 type=Enchantment
 abilities=flash
+[/card]
+[card]
+toughness=3
+name=Lucent Liminid
+mana={3}{W}{W}
+subtype=Elemental Enchantment
+rarity=C
+text=Flying
+power=3
+id=130691
+type=Creature
+abilities=flying
 [/card]
 [card]
 toughness=0
 name=Force of Savagery
 mana={2}{G}
 subtype=Elemental
-color=Green
 rarity=R
 text=Trample
 power=8
@@ -205,12 +250,23 @@ type=Creature
 abilities=trample
 [/card]
 [card]
+name=Bound in Silence
+mana={2}{W}
+subtype=Tribal Rebel Aura
+target=creature
+auto=cantattack
+auto=cantblock
+rarity=U
+text=Enchant creature   Enchanted creature can't attack or block.
+id=130334
+type=Enchantment
+[/card]
+[card]
 toughness=3
 name=Magus of the Moat
 mana={2}{W}{W}
 subtype=Human Wizard
-color=White
-auto=lord(creature|inplay) cantattack
+auto=lord(creature[-flying]) cantattack
 rarity=R
 text=Creatures without flying can't attack.
 power=0
@@ -222,66 +278,97 @@ toughness=3
 name=Blind Phantasm
 mana={2}{U}
 subtype=Illusion
-color=Blue
 rarity=C
 power=2
-id=126143
 type=Creature
+id=126143
+[/card]
+[card]
+toughness=3
+name=Heartwood Storyteller
+mana={1}{G}{G}
+subtype=Treefolk
+auto=@movedTo(*[-creature]|mystack):draw:1 opponent
+auto=@movedTo(*[-creature]|opponentstack):may draw:1 controller
+rarity=R
+text=Whenever a player casts a noncreature spell, each of that player's opponents may draw a card.
+power=2
+id=132216
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Thornweald Archer
+mana={1}{G}
+subtype=Elf Archer
+rarity=C
+text=Reach (This creature can block creatures with flying.)   Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
+power=2
+id=130630
+type=Creature
+abilities=reach,deathtouch
+[/card]
+[card]
+name=Leaden Fists
+mana={2}{U}
+subtype=Aura
+target=creature
+auto=3/3
+auto=doesnotuntap
+rarity=C
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
+id=126139
+type=Enchantment
+abilities=flash
 [/card]
 [card]
 name=Emblem of the Warmind
 mana={1}{R}
 subtype=Aura
-color=Red
-target=creature
-auto=lord(creature|myinplay) haste
+target=creature|myBattlefield
+auto=lord(creature|myBattlefield) haste
 rarity=U
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)    Creatures you control have haste.
+text=Enchant creature you control (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Creatures you control have haste.
 id=136215
 type=Enchantment
-[/card]
-[card]
-name=Leaden Fists
-mana={2}{U}
-target=creature
-subtype=Aura
-auto=3/3
-auto=doesnotuntap
-rarity=C
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature. Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
-id=126139
-type=Enchantment
-abilities=flash
 [/card]
 [card]
 toughness=3
 name=Nessian Courser
 mana={2}{G}
 subtype=Centaur Warrior
-color=Green
 rarity=C
 power=3
+type=Creature
 id=136138
-type=Creature
 [/card]
 [card]
-toughness=1
-name=Blade of the Sixth Pride
-mana={1}{W}
-subtype=Cat Rebel
-color=White
-rarity=C
-power=3
-id=130676
-type=Creature
-[/card]
-[card]
-auto=foreach(creature|myinplay) draw:1
-auto=foreach(creature|myinplay) life:-1
+auto=foreach(creature|myBattlefield) draw:1
+auto=foreach(creature|myBattlefield) life:-1
 text=You draw X cards and you lose X life, where X is the number of creatures you control.
 rarity=U
 name=Minions' Murmurs
 id=130316
 type=Sorcery
 mana={2}{B}{B}
+[/card]
+[card]
+toughness=1
+name=Blade of the Sixth Pride
+mana={1}{W}
+subtype=Cat Rebel
+rarity=C
+power=3
+type=Creature
+id=130676
+[/card]
+[card]
+auto={T}:Add {1}
+auto={T}:Add {R} && life:1 opponent
+auto={T}:Add {G} && life:1 opponent
+text={T}: Add {1} to your mana pool. {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
+rarity=R
+name=Grove of the Burnwillows
+id=130595
+type=Land
 [/card]

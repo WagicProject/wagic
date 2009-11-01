@@ -8,7 +8,7 @@ rarity=U
 text={U}: L'Esprit marin gagne +1/+0 jusqu'a la fin du tour.
 power=2
 id=2531
-type=Creature 
+type=Creature
 [/card]
 [card]
 toughness=2
@@ -32,7 +32,7 @@ rarity=U
 text=Defensseur     {G}: Regenerez le Mur d'aiguilles de pin.
 power=3
 id=2598
-type=Creature 
+type=Creature
 abilities=defender
 [/card]
 [card]
@@ -44,7 +44,7 @@ rarity=C
 text=Initiative
 power=2
 id=2651
-type=Creature 
+type=Creature
 abilities=first strike
 [/card]
 [card]
@@ -57,7 +57,7 @@ rarity=U
 text={T}: L'Archer centaure inflige 1 blessure a la creature avec le vol ciblee.
 power=3
 id=2718
-type=Creature 
+type=Creature
 [/card]
 [card]
 toughness=1
@@ -69,11 +69,11 @@ rarity=C
 text={2}{G}, {T}: Degagez la creature ciblee.
 power=1
 id=2566
-type=Creature 
+type=Creature
 [/card]
 [card]
 subtype=Forest
-auto={T}: Add {G}
+auto={T}:Add {G}
 text={T}: Ajoutez {G} a votre reserve.
 rarity=L
 name=Forest
@@ -90,18 +90,6 @@ text=Jusqu'a la fin du tour, la creature ciblee acquiert la celerite et "{0}: De
 type=Instant
 id=2595
 alias=1252
-[/card]
-[card]
-toughness=2
-name=Dire Wolves
-mana={2}{G}
-subtype=Wolf
-auto=aslongas(plains|myinplay) banding
-rarity=C
-text=Les Loups funestes ont le regroupement tant que vous controlez une plaine.
-power=2
-id=2554
-type=Creature
 [/card]
 [card]
 name=Shatter
@@ -123,12 +111,12 @@ rarity=U
 text={R}: L'Esprit de flamme gagne +1/+0 jusqu'a la fin du tour.
 power=2
 id=2620
-type=Creature 
+type=Creature
 [/card]
 [card]
 name=Ray of Command
 mana={3}{U}
-target=creature|opponentinplay
+target=creature|opponentBattlefield
 auto=untap
 auto=haste
 auto=@next endofturn:tap
@@ -139,13 +127,13 @@ id=2528
 alias=129767
 [/card]
 [card]
-subtype=Plains
-auto={T}: Add {W}
+subtype=Plains Snow
+auto={T}:Add {W}
 text={T}: Ajoutez {W} a votre reserve.
 rarity=L
 name=Snow-Covered Plains
 id=2774
-type=Basic Snow Land
+type=Basic Land
 [/card]
 [card]
 toughness=1
@@ -157,11 +145,11 @@ rarity=U
 text={T}: Ajoutez {G}{G} a votre reserve.
 power=1
 id=2567
-type=Creature 
+type=Creature
 [/card]
 [card]
 subtype=Mountain
-auto={T}: Add {R}
+auto={T}:Add {R}
 text={T}: Ajoutez {R} a votre reserve.
 rarity=L
 name=Mountain
@@ -169,37 +157,13 @@ id=2765
 type=Basic Land
 [/card]
 [card]
-toughness=3
-name=Abyssal Specter
-mana={2}{B}{B}
-subtype=Specter
-rarity=U
-text=Vol.     A chaque fois que le Spectre des abysses inflige des blessures a un joueur, ce joueur se defausse d'une carte de sa main.
-power=2
-id=2437
-type=Creature 
-alias=1165
-abilities=flying
-[/card]
-[card]
+auto=@tapped(island|opponentBattlefield):may life:1 controller
 text=A chaque fois qu'une ile qu'un adversaire controle devient engagee, vous pouvez gagner 1 point de vie.
 rarity=U
 name=Thoughtleech
 id=2593
 type=Enchantment
 mana={G}{G}
-[/card]
-[card]
-toughness=4
-name=Wall of Shields
-mana={3}
-subtype=Wall
-rarity=U
-text=Defensseur, Regroupement
-power=0
-id=2433
-type=Artifact Creature
-abilities=banding,defender
 [/card]
 [card]
 toughness=3
@@ -211,7 +175,7 @@ rarity=R
 text=Vol. {T}: L'Esprit tempete inflige 2 blessures à la creature ciblee.
 power=3
 id=2739
-type=Creature 
+type=Creature
 abilities=flying
 [/card]
 [card]
@@ -238,7 +202,7 @@ type=Creature
 [/card]
 [card]
 subtype=Island
-auto={T}: Add {U}
+auto={T}:Add {U}
 text={T}: Ajoutez {U} a votre reserve.
 rarity=L
 name=Island
@@ -247,7 +211,7 @@ type=Basic Land
 [/card]
 [card]
 subtype=Mountain
-auto={T}: Add {R}
+auto={T}:Add {R}
 text={T}: Ajoutez {R} a votre reserve.
 rarity=L
 name=Mountain
@@ -263,13 +227,25 @@ rarity=U
 text=A chaque fois que la Sangivre kjeldorienne bloque ou devient bloquee par une creature, detruisez cette creature à la fin du combat.
 power=2
 id=2732
-type=Creature 
+type=Creature
 alias=1267
 [/card]
 [card]
-auto={T}:add {1}
-auto={T}:add {G} && Damage 1 controller
-auto={T}:add {W} && Damage 1 controller
+toughness=3
+name=Legions of Lim-Dul
+mana={1}{B}{B}
+subtype=Zombie
+auto=aslongas(swamp[snow]|opponentBattlefield) unblockable
+rarity=C
+text=Snow swampwalk
+power=2
+id=2466
+type=Creature
+[/card]
+[card]
+auto={T}:Add {1}
+auto={T}:Add {G} && damage:1 controller
+auto={T}:Add {W} && damage:1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {G} ou {W} a votre reserve. La Broussaille vous inflige 1 blessure..
 rarity=R
 name=Brushland
@@ -305,22 +281,21 @@ auto={G}:regenerate
 rarity=C
 text=Enchanter : creature    {G}: Regenerez la creature enchantee.
 id=2583
-type=Enchantment 
+type=Enchantment
 [/card]
 [card]
-name=Stampede
-mana={1}{G}{G}
-target=creature[attacking]
-auto=1/0
-auto=trample
-rarity=R
+auto=lord(creature|attacking) 1/0
+auto=lord(creature|attacking) trample
 text=Les creatures attaquantes gagnent +1/+0 et acquierent le pietinement jusqu'a la fin du tour.
-type=Instant
+rarity=R
+name=Stampede
 id=2589
+type=Instant
+mana={1}{G}{G}
 [/card]
 [card]
 subtype=Island
-auto={T}: Add {U}
+auto={T}:Add {U}
 text={T}: Ajoutez {U} a votre reserve.
 rarity=L
 name=Island
@@ -337,7 +312,7 @@ rarity=C
 text={R}{G}: L'Enjambeur escogriffe gagne +1/-1 jusqu'a la fin du tour.
 power=5
 id=2587
-type=Creature 
+type=Creature
 [/card]
 [card]
 text=1: La prochaine fois qu'une source rouge de votre choix devrait vous infliger des blessures ce tour-ci, prevenez ces blessures.
@@ -349,25 +324,13 @@ mana={1}{W}
 alias=1338
 [/card]
 [card]
-subtype=Swamp
-auto={T}: Add {B}
+subtype=Swamp Snow
+auto={T}:Add {B}
 text={T}: Ajoutez {B} a votre reserve.
 rarity=L
 name=Snow-Covered Swamp
 id=2742
-type=Basic Snow Land
-[/card]
-[card]
-toughness=2
-name=Kjeldoran Skycaptain
-mana={4}{W}
-subtype=Human Soldier
-rarity=U
-text=Regroupement, vol, initiative
-power=2
-id=2699
-type=Creature 
-abilities=banding,flying,first strike
+type=Basic Land
 [/card]
 [card]
 text=Choisissez l'un - Contrecarrez le sort cible s'il est rouge; ou detruisez le permanent cible s'il est rouge.
@@ -392,7 +355,7 @@ type=Artifact Creature
 [/card]
 [card]
 subtype=Forest
-auto={T}: Add {G}
+auto={T}:Add {G}
 text={T}: Ajoutez {G} a votre reserve.
 rarity=L
 name=Forest
@@ -404,27 +367,27 @@ name=Wings of Aesthir
 mana={W}{U}
 subtype=Aura
 target=creature
-auto=flying,first strike
+auto=flying
+auto=first strike
 auto=1/0
 rarity=U
 text=Enchanter : creature. La creature enchantee gagne +1/+0 et a le vol et l'initiative.
 id=2741
-type=Enchantment 
+type=Enchantment
 [/card]
 [card]
 toughness=7
 name=Glacial Wall
 mana={2}{U}
-subtype=Wall
 rarity=U
 text=Defensseur (Cette creature ne peut pas attaquer.)
 power=0
+type=Creature
 id=2507
-type=Creature 
 abilities=defender
 [/card]
 [card]
-auto={S(land|myinplay)}:life:2
+auto={S(land|myBattlefield)}:life:2
 text=Sacrifiez 1 terrain : Vous gagnez 2 points de vie.
 rarity=U
 name=Zuran Orb
@@ -444,15 +407,16 @@ type=Instant
 id=2648
 [/card]
 [card]
-name=Mind Ravel
-mana={2}{B}
-target=player
-auto=discard:1
-auto=@next upkeep:draw:1 controller
+toughness=2
+name=Rime Dryad
+mana={G}
+subtype=Dryad
+auto=aslongas(forest[snow]|opponentBattlefield) unblockable
 rarity=C
-text=Le joueur cible se defausse d'une carte.     Piochez une carte au debut de l'entretien du prochain tour.
-type=Sorcery
-id=2471
+text=Snow forestwalk
+power=1
+id=2584
+type=Creature
 [/card]
 [card]
 toughness=2
@@ -467,13 +431,26 @@ id=2455
 type=Creature 
 [/card]
 [card]
-subtype=plains
-auto={T}: Add {W}
+subtype=Plains
+auto={T}:Add {W}
 text={T}: Ajoutez {W} a votre reserve.
 rarity=L
 name=Plains
 id=2772
 type=Basic Land
+[/card]
+[card]
+toughness=*
+name=Drift of the Dead
+mana={3}{B}
+subtype=Wall
+auto=foreach(land[snow]|myBattlefield) 1/1
+rarity=U
+text=Defenseur (Cette creature ne peut pas attaquer.)      La Congere macabre a une force et une endurance chacune egale au nombre de terrains neigeux que vous controlez.
+power=*
+id=2447
+type=Creature
+abilities=defender
 [/card]
 [card]
 toughness=1
@@ -485,29 +462,12 @@ rarity=C
 text={1}{W}: La creature verte ciblee gagne l'initiative jusqu'a la fin du tour.
 power=1
 id=2693
-type=Creature 
-[/card]
-[card]
-toughness=*
-name=Drift of the Dead
-mana={3}{B}
-subtype=Wall
-auto=foreach(snow-covered forest|myinplay) 1/1
-auto=foreach(snow-covered mountain|myinplay) 1/1
-auto=foreach(snow-covered plains|myinplay) 1/1
-auto=foreach(snow-covered swamp|myinplay) 1/1
-auto=foreach(snow-covered island|myinplay) 1/1
-rarity=U
-text=Defenseur (Cette creature ne peut pas attaquer.)      La Congere macabre a une force et une endurance chacune egale au nombre de terrains neigeux que vous controlez.
-power=*
-id=2447
 type=Creature
-abilities=defender
 [/card]
 [card]
-auto={T}:add {1}
-auto={T}:add {R} && damage 1 controller
-auto={T}:add {G} && damage 1 controller
+auto={T}:Add {1}
+auto={T}:Add {R} && damage:1 controller
+auto={T}:Add {G} && damage:1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {R} ou {G} a votre reserve. La Foret de Karpluse vous inflige 1 blessure..
 rarity=R
 name=Karplusan Forest
@@ -515,9 +475,9 @@ id=2755
 type=Land
 [/card]
 [card]
-auto={T}:add {1}
-auto={T}:add {B} && damage 1 controller
-auto={T}:add {R} && damage 1 controller
+auto={T}:Add {1}
+auto={T}:Add {B} && damage:1 controller
+auto={T}:Add {R} && damage:1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {B} ou {R} a votre reserve. Les Sources sulfureuses vous infligent 1 blessure.
 rarity=R
 name=Sulfurous Springs
@@ -525,13 +485,13 @@ id=2759
 type=Land
 [/card]
 [card]
+auto=Add {B}{B}{B}
 text=Ajoutez {B}{B}{B} a votre reserve.
 rarity=C
 name=Dark Ritual
 id=2444
 type=Instant
 mana={B}
-alias=1149
 [/card]
 [card]
 name=Giant Growth
@@ -556,19 +516,10 @@ type=Sorcery
 id=2491
 [/card]
 [card]
-auto={2}:damage:2 target(creature,player) && discard:1 controller
-text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
-rarity=R
-name=Stormbind
-id=2740
-type=Enchantment
-mana={1}{R}{G}
-[/card]
-[card]
 name=Nature's Lore
 mana={1}{G}
 target=forest|myLibrary
-auto=moveTo(myInPlay)
+auto=moveTo(myBattlefield)
 rarity=U
 text=Chercher dans votre bibliotheque une carte de foret et mettez cette carte en jeu. Melangez ensuite votre bibliotheque.
 type=Sorcery
@@ -596,7 +547,7 @@ alias=1194
 [/card]
 [card]
 subtype=Swamp
-auto={T}: Add {B}
+auto={T}:Add {B}
 text={T}: Ajoutez {B} a votre reserve.
 rarity=L
 name=Swamp
@@ -604,9 +555,9 @@ id=2745
 type=Basic Land
 [/card]
 [card]
-auto={T}:add {1}
-auto={T}:add {W} && Damage 1 controller
-auto={T}:add {U} && Damage 1 controller
+auto={T}:Add {1}
+auto={T}:Add {W} && damage:1 controller
+auto={T}:Add {U} && damage:1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {W} ou {U} a votre reserve. Les Landes d'Adarkar vous infligent 1 blessure.
 rarity=R
 name=Adarkar Wastes
@@ -641,7 +592,7 @@ rarity=U
 text=Vol. {G}: Regenerez les Moucherons de la yavimaya.
 power=0
 id=2604
-type=Creature 
+type=Creature
 abilities=flying
 [/card]
 [card]
@@ -653,7 +604,7 @@ rarity=R
 text=Traversee des iles
 power=2
 id=2580
-type=Creature 
+type=Creature
 abilities=islandwalk
 [/card]
 [card]
@@ -661,9 +612,9 @@ toughness=1
 name=Foul Familiar
 mana={2}{B}
 subtype=Spirit
-auto={B}:moveto(ownerhand) && life:-1
+auto={B}:moveto(ownerhand) && life:-1 controller
 rarity=C
-text=Foul Familiar can't block.     {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
+text=Foul Familiar can't block.   {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
 power=3
 id=2450
 type=Creature
@@ -711,7 +662,7 @@ rarity=R
 text=Protection contre le noir
 power=5
 id=2474
-type=Creature 
+type=Creature
 abilities=protection from black
 [/card]
 [card]
@@ -724,7 +675,7 @@ mana={1}{W}
 alias=1336
 [/card]
 [card]
-auto={T}:bury target(*|myinplay)
+auto={T}:bury target(*|myBattlefield)
 text={T}: Detruisez le permanent cible que vous possedez. Il ne peut pas être regenere.
 rarity=R
 name=Despotic Scepter
@@ -737,15 +688,15 @@ toughness=1
 name=Orcish Lumberjack
 mana={R}
 subtype=Orc
-auto={T}{S(forest|myinplay)}: add {G}{G}{G}
-auto={T}{S(forest|myinplay)}: add {G}{G}{R}
-auto={T}{S(forest|myinplay)}: add {G}{R}{R}
-auto={T}{S(forest|myinplay)}: add {R}{R}{R}
+auto={T}{S(forest|myBattlefield)}:Add {G}{G}{G}
+auto={T}{S(forest|myBattlefield)}:Add {G}{G}{R}
+auto={T}{S(forest|myBattlefield)}:Add {G}{R}{R}
+auto={T}{S(forest|myBattlefield)}:Add {R}{R}{R}
 rarity=C
 text={T}, Sacrifiez une foret: Ajoutez trois manas de n'importe quelle combinaison de {R} et/ou {G} a votre reserve.
 power=1
 id=2646
-type=Creature 
+type=Creature
 [/card]
 [card]
 name=Counterspell
@@ -762,22 +713,22 @@ toughness=2
 name=Balduvian Bears
 mana={1}{G}
 subtype=Bear
-rarity=C
 text=
+rarity=C
 power=2
+type=Creature
 id=2550
-type=Creature 
 [/card]
 [card]
 name=Fear
 mana={B}{B}
 subtype=Aura
 target=creature
+auto=fear
 rarity=C
 text=Enchanter : creature        La creature enchantee a la peur. (Elle ne peut etre blocker exepter par des creatures noire ou artefact)
-type=Enchantment 
 id=2448
-alias=1161
+type=Enchantment 
 [/card]
 [card]
 toughness=1
@@ -789,20 +740,7 @@ rarity=C
 text={T}: Ajoutez {G} a votre reserve.
 power=1
 id=2568
-type=Creature 
-[/card]
-[card]
-toughness=2
-name=Thunder Wall
-mana={1}{U}{U}
-subtype=Wall
-auto={U}:1/1
-rarity=U
-text=Defensseur   Vol. {U}: Le Mur de tonnerre gagne +1/+1 jusqu'a la fin du tour.
-power=0
-id=2540
-type=Creature 
-abilities=defender,flying
+type=Creature
 [/card]
 [card]
 toughness=5
@@ -814,11 +752,24 @@ rarity=C
 text={1}{G}: Le Peuple des pinedes gagne +1/+0 jusqu'a la fin du tour.
 power=2
 id=2559
-type=Creature 
+type=Creature
 [/card]
 [card]
-subtype=plains
-auto={T}: Add {W}
+toughness=2
+name=Thunder Wall
+mana={1}{U}{U}
+subtype=Wall
+auto={U}:1/1
+rarity=U
+text=Defensseur   Vol. {U}: Le Mur de tonnerre gagne +1/+1 jusqu'a la fin du tour.
+power=0
+id=2540
+type=Creature
+abilities=defender,flying
+[/card]
+[card]
+subtype=Plains
+auto={T}:Add {W}
 text={T}: Ajoutez {W} a votre reserve.
 rarity=L
 name=Plains
@@ -826,23 +777,13 @@ id=2771
 type=Basic Land
 [/card]
 [card]
-auto=foreach(creature|mygraveyard)add:{B}
+auto=foreach(creature|mygraveyard) add:{B}
 text=Ajoutez {B} a votre reserve pour chaque carte de creature dans votre cimetiere.
 rarity=C
 name=Songs of the Damned
 id=2484
 type=Instant
 mana={B}
-[/card]
-[card]
-auto=lord(creature[black]) cantattack
-auto=lord(creature[black]) {S(land|myinplay)}:-cantattack
-text=Black creatures have "This creature can't attack unless you sacrifice a land."
-rarity=R
-name=Reclamation
-id=2736
-type=Enchantment
-mana={2}{G}{W}
 [/card]
 [card]
 auto=lord(creature[blocking]) 1/1
@@ -888,10 +829,9 @@ name=Scaled Wurm
 mana={7}{G}
 subtype=Wurm
 rarity=C
-text=
 power=7
+type=Creature
 id=2586
-type=Creature 
 [/card]
 [card]
 name=Trailblazer
@@ -902,15 +842,6 @@ rarity=R
 text=La creature ciblee est imblocable jusqu'a la fin du tour.
 type=Instant
 id=2596
-[/card]
-[card]
-subtype=Swamp
-auto={T}: Add {B}
-text={T}: Ajoutez {B} a votre reserve.
-rarity=L
-name=Swamp
-id=2743
-type=Basic Land
 [/card]
 [card]
 text=1: La prochaine fois qu'une source verte de votre choix devrait vous infliger des blessures ce tour-ci, prevenez ces blessures.
@@ -930,8 +861,17 @@ rarity=C
 text=Traversee des montagnes
 power=1
 id=2639
-type=Creature 
+type=Creature
 abilities=mountainwalk
+[/card]
+[card]
+subtype=Swamp
+auto={T}:Add {B}
+text={T}: Ajoutez {B} a votre reserve.
+rarity=L
+name=Swamp
+id=2743
+type=Basic Land
 [/card]
 [card]
 toughness=6
@@ -940,23 +880,11 @@ mana={4}
 subtype=Wall
 auto={3}:-defender && 3/-1 limit:1
 rarity=U
-text=Defender     {3}: Walking Wall gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
+text=Defender   {3}: Walking Wall gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Activate this ability only once each turn.
 power=0
 id=2432
 type=Artifact Creature
 abilities=defender
-[/card]
-[card]
-toughness=1
-name=Kjeldoran Skyknight
-mana={2}{W}
-subtype=Human Knight
-rarity=C
-text=Regroupement, vol, initiative
-power=1
-id=2700
-type=Creature 
-abilities=banding,flying,first strike
 [/card]
 [card]
 toughness=3
@@ -967,7 +895,7 @@ rarity=C
 text=La Harde de gorilles ne peut pas attaquer à moins que le joueur defenseur ne controle une foret.         Quand vous ne controlez pas de foret, sacrifiez la Harde de gorilles.
 power=3
 id=2571
-type=Creature 
+type=Creature
 abilities=foresthome
 [/card]
 [card]
@@ -1001,7 +929,7 @@ rarity=U
 text=Defensseur   {R}: Le mur de lave gagne +1/+1 jusqu'a la fin dutour .
 power=1
 id=2659
-type=Creature 
+type=Creature
 abilities=defender
 [/card]
 [card]
@@ -1014,9 +942,9 @@ mana={1}{W}
 alias=1339
 [/card]
 [card]
-auto={W}{S(Enchantment|myinplay)}:destroy target(enchantment)
+auto={W}{S(enchantment|myBattlefield)}:destroy target(enchantment)
 auto={3}{U}{U}:fizzle target(enchantment|stack)
-text={W}, Sacrifice an enchantment: Destroy target enchantment.       {3}{U}{U}: Counter target enchantment spell.
+text={W}, Sacrifice an enchantment: Destroy target enchantment.   {3}{U}{U}: Counter target enchantment spell.
 rarity=C
 name=Arenson's Aura
 id=2663
@@ -1052,7 +980,7 @@ rarity=C
 text=Traversee des marais
 power=3
 id=2477
-type=Creature 
+type=Creature
 abilities=swampwalk
 [/card]
 [card]
@@ -1069,16 +997,16 @@ toughness=2
 name=Balduvian Barbarians
 mana={1}{R}{R}
 subtype=Human Barbarian
-rarity=C
 text=
+rarity=C
 power=3
+type=Creature
 id=2608
-type=Creature 
 [/card]
 [card]
-auto={T}:add {1}
-auto={T}:add {U} && damage 1 controller
-auto={T}:add {B} && damage 1 controller
+auto={T}:Add {1}
+auto={T}:Add {U} && damage:1 controller
+auto={T}:Add {B} && damage:1 controller
 text={T}: Ajoutez {1} a votre reserve.     {T}: Ajoutez {U} ou {B} a votre reserve. La riviere souterraine vous inflige 1 blessure.
 rarity=R
 name=Underground River
@@ -1087,24 +1015,12 @@ type=Land
 [/card]
 [card]
 subtype=Mountain
-auto={T}: Add {R}
+auto={T}:Add {R}
 text={T}: Ajoutez {R} a votre reserve.
 rarity=L
 name=Mountain
 id=2764
 type=Basic Land
-[/card]
-[card]
-toughness=1
-name=Kjeldoran Warrior
-mana={W}
-subtype=Human Warrior
-rarity=C
-text=Regroupement
-power=1
-id=2701
-type=Creature 
-abilities=banding
 [/card]
 [card]
 toughness=1
@@ -1116,28 +1032,7 @@ rarity=R
 text=La force du Lhurgoyf est egale au nombre de cartes de creatures dans tous les cimetieres, et son endurance est egale à ce nombre plus 1.
 power=*
 id=2576
-type=Creature 
-[/card]
-[card]
-toughness=5
-name=Kjeldoran Phalanx
-mana={5}{W}
-subtype=Human Soldier
-rarity=R
-text=Regroupement, initiative
-power=2
-id=2697
-type=Creature 
-abilities=banding,first strike
-[/card]
-[card]
-auto={2}:banding target(creature)
-text={2}: La creature ciblee gagne le regroupement jusqu'a la fin du tour.
-rarity=U
-name=Baton of Morale
-id=2399
-type=Artifact
-mana={2}
+type=Creature
 [/card]
 [card]
 toughness=1
@@ -1149,16 +1044,16 @@ rarity=C
 text={T}: Degage le terrain cible.
 power=1
 id=2575
-type=Creature 
+type=Creature
 [/card]
 [card]
-subtype=Forest
-auto={T}: Add {G}
+subtype=Forest Snow
+auto={T}:Add {G}
 text={T}: Ajoutez {G} a votre reserve.
 rarity=L
 name=Snow-Covered Forest
 id=2749
-type=Basic Snow Land
+type=Basic Land
 [/card]
 [card]
 toughness=2
@@ -1215,13 +1110,13 @@ rarity=C
 text={T}: Le Lanceur de sort zuranien inflige 1 blessure à une cible, creature ou joueur.
 power=1
 id=2548
-type=Creature 
+type=Creature
 [/card]
 [card]
-auto=@each my endofturn:foreach(island[-tapped]|myinplay):damage:1 controller
-auto=@each opponent endofturn:foreach(island[-tapped]|opponentinplay):damage:1 opponent
-auto=@each my cleanup:tap all(island[-tapped]|myinplay)
-auto=@each opponent cleanup:tap all(island[-tapped]|opponentinplay)
+auto=@each my endofturn:foreach(island[-tapped]|myBattlefield) damage:1 controller
+auto=@each opponent endofturn:foreach(island[-tapped]|opponentBattlefield) damage:1 opponent
+auto=@each my cleanup:tap all(island[-tapped]|myBattlefield)
+auto=@each opponent cleanup:tap all(island[-tapped]|opponentBattlefield)
 text=At the end of each player's turn, tap all untapped Islands that player controls and Monsoon deals X damage to the player, where X is the number of Islands tapped this way.
 rarity=R
 name=Monsoon
@@ -1245,8 +1140,8 @@ type=Artifact Creature
 abilities=defender
 [/card]
 [card]
-auto=foreach(artifact,creature|opponentgraveyard)add:{1}
-auto=foreach(artifact,creature|opponentgraveyard)life:1
+auto=foreach(artifact,creature|opponentgraveyard) add:{1} controller
+auto=foreach(artifact,creature|opponentgraveyard) life:1 controller
 text=Pour chaque carte d'artefact ou de creature dans le cimetiere de l'adversaire cible, ajoutez 1 à votre reserve et vous gagnez 1 point de vie.
 rarity=R
 name=Spoils of Evil
@@ -1259,13 +1154,12 @@ toughness=1
 name=Pyknite
 mana={2}{G}
 subtype=Ouphe
-auto=draw:1
 auto=@next upkeep:draw:1
 rarity=C
 text=Quand le Pyknite arrive en jeu, piochez une carte au debut du prochain tour.
 power=1
 id=2582
-type=Creature 
+type=Creature
 [/card]
 [card]
 text={2}, {T}: La creature ciblee avec une force de 3 ou moins acquiert le vol jusqu'a la fin du tour.
@@ -1276,13 +1170,13 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-subtype=Mountain
-auto={T}: Add {R}
+subtype=Mountain Snow
+auto={T}:Add {R}
 text={T}: Ajoutez {R} a votre reserve.
 rarity=L
 name=Snow-Covered Mountain
 id=2766
-type=Basic Snow Land
+type=Basic Land
 [/card]
 [card]
 name=Flare
@@ -1323,14 +1217,14 @@ auto=swampwalk
 rarity=U
 text=Enchanter : creature. La creature enchantee a la traversee des marais.
 id=2467
-type=Enchantment 
+type=Enchantment
 [/card]
 [card]
 toughness=3
 name=Pestilence Rats
 mana={2}{B}
 subtype=Rat
-auto=foreach(rat) 1/0 other
+auto=foreach(other rat) 1/0
 rarity=C
 text=La force des Rats de la pestilence est égal au nombre d'autres rats en jeu. 
 power=*
@@ -1344,14 +1238,14 @@ mana={G}
 subtype=Horse
 auto=@movedTo(this|graveyard):life:1 controller
 rarity=C
-text=When Tarpan is put into a graveyard from play, you gain 1 life.
+text=When Tarpan is put into a graveyard from the battlefield, you gain 1 life.
 power=1
 id=2591
 type=Creature
 [/card]
 [card]
 subtype=Forest
-auto={T}: Add {G}
+auto={T}:Add {G}
 text={T}: Ajoutez {G} a votre reserve.
 rarity=L
 name=Forest
@@ -1367,20 +1261,8 @@ rarity=U
 text=Vol, pietinement
 power=2
 id=2534
-type=Creature 
+type=Creature
 abilities=flying,trample
-[/card]
-[card]
-name=Spectral Shield
-mana={1}{W}{U}
-subtype=Aura
-target=creature
-auto=0/2
-auto=shroud
-rarity=U
-text=Enchanter : creature     La creature enchantee gagne +0/+2 et ne peut etre la cible de sorts ou de capacitees.
-id=2738
-type=Enchantment
 [/card]
 [card]
 name=Word of Blasting
@@ -1397,12 +1279,12 @@ toughness=3
 name=Orcish Cannoneers
 mana={1}{R}{R}
 subtype=Orc Warrior
+auto={T}:damage:2 target(creature,player) && damage:3 controller
 rarity=U
 text={T}: Les Cannoniers orques infligent 2 blessures a une cible, creature ou joueur et vous infligent 3 blessures.
 power=1
 id=2641
-type=Creature 
-alias=1309
+type=Creature
 [/card]
 [card]
 auto=bury all(artifact,creature,land)
@@ -1414,20 +1296,20 @@ type=Sorcery
 mana={4}{R}{R}
 [/card]
 [card]
-subtype=Island
-auto={T}: Add {U}
+subtype=Island Snow
+auto={T}:Add {U}
 text={T}: Ajoutez {U} a votre reserve.
 rarity=L
 name=Snow-Covered Island
 id=2770
-type=Basic Snow Land
+type=Basic Land
 [/card]
 [card]
 toughness=2
 name=Woolly Mammoths
 mana={1}{G}{G}
 subtype=Elephant
-auto=aslongas(snow|myinplay) trample
+auto=aslongas(land[snow]|myBattlefield) trample
 rarity=C
 text=Woolly Mammoths has trample as long as you control a snow land.
 power=3
@@ -1436,26 +1318,12 @@ type=Creature
 [/card]
 [card]
 subtype=Swamp
-auto={T}: Add {B}
+auto={T}:Add {B}
 text={T}: Ajoutez {B} a votre reserve.
 rarity=L
 name=Swamp
 id=2744
 type=Basic Land
-[/card]
-[card]
-toughness=1
-name=Kjeldoran Knight
-mana={W}{W}
-subtype=Human Knight
-auto={1}{W}:1/0
-auto={W}{W}:0/2
-rarity=R
-text=Regroupement {1}{W}: +1/+0 jusqu'a la fin du tour   {W}{W}: +0/+2 jusqu'a la fin du tour
-power=1
-id=2696
-type=Creature 
-abilities=Banding
 [/card]
 [card]
 target=creature
@@ -1489,7 +1357,7 @@ rarity=U
 text=Protection contre le noir. {W}: L'Ordre du bouclier blanc acquiert l'initiative jusqu'a la fin du tour. {W}{W}: L'Ordre du bouclier blanc gagne +1/+0 jusqu'a la fin du tour.
 power=2
 id=2706
-type=Creature 
+type=Creature
 abilities=protection from black
 [/card]
 [card]
@@ -1502,23 +1370,13 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-auto={1}{T}{S(creature|myinplay)}:Damage:2 target(creature,player)
+auto={1}{T}{S(creature|myBattlefield)}:Damage:2 target(creature,player)
 text={1}, {T}, sacrifiez une creature : La Catapulte des cranes inflige 2 blessures a une cible, creature ou joueur.
 rarity=U
 name=Skull Catapult
 id=2422
 type=Artifact
 mana={4}
-[/card]
-[card]
-name=Hymn of Rebirth
-mana={3}{W}{G}
-target=creature|graveyard
-auto=moveTo(myinplay)
-rarity=U
-text=Mettez en jeu sous votre controle la carte de creature ciblee d'un cimetiere.
-type=Sorcery
-id=2731
 [/card]
 [card]
 name=Krovikan Fetish
@@ -1530,26 +1388,25 @@ auto=@next upkeep:draw:1
 rarity=C
 text=Enchanter : creature.   Quand le Fétiche Krovois arrive en jeu, piochez une carte au debut de l'entretien du prochain tour.   La creature enchantee gagne +1/+1.
 id=2464
-type=Enchantment 
+type=Enchantment
 [/card]
 [card]
-name=Formation
-mana={1}{W}
-target=creature
-auto=banding
-auto=@next upkeep:draw:1
-rarity=R
-text=La creature ciblee acquiert le regroupement jusqu'a la fin du tour.      Piochez une carte au debut du prochain tour.
-type=Instant
-id=2685
+name=Hymn of Rebirth
+mana={3}{W}{G}
+target=creature|graveyard
+auto=moveTo(myBattlefield)
+rarity=U
+text=Mettez en jeu sous votre controle la carte de creature ciblee d'un cimetiere.
+type=Sorcery
+id=2731
 [/card]
 [card]
 toughness=1
 name=Brine Shaman
 mana={1}{B}
 subtype=Human Cleric Shaman
-auto={T}{S(creature|myinplay)}:2/2 target(creature)
-auto={1}{U}{U}{S(creature|myinplay)}:fizzle target(creature|stack)
+auto={T}{S(creature|myBattlefield)}:2/2 target(creature)
+auto={1}{U}{U}{S(creature|myBattlefield)}:fizzle target(creature|stack)
 rarity=C
 text={T}, Sacrifice a creature: Target creature gets +2/+2 until end of turn.     {1}{U}{U}, Sacrifice a creature: Counter target creature spell.
 power=1
@@ -1557,18 +1414,18 @@ id=2439
 type=Creature
 [/card]
 [card]
-target=creature
-text=La creature ciblee gagne +X/+0 jusqu'a la fin du tour.
-rarity=C
 name=Howl from Beyond
-id=2456
-type=Instant
 mana={X}{B}
-alias=1164
+target=creature
+auto=X/0
+rarity=C
+text=La creature ciblee gagne +X/+0 jusqu'a la fin du tour.
+type=Instant
+id=2456
 [/card]
 [card]
 subtype=Island
-auto={T}: Add {U}
+auto={T}:Add {U}
 text={T}: Ajoutez {U} a votre reserve.
 rarity=L
 name=Island
@@ -1585,8 +1442,8 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-auto=lord(creature[green]|myinplay) 1/1
-auto=lord(creature[-green]|myinplay) 1/0  
+auto=lord(creature[green]|myBattlefield) 1/1
+auto=lord(creature[-green]|myBattlefield) 1/0  
 text=Les creatures verte que vous controlez gagnent +1/+1 jusqu'a la fin du tour.       Les creatures non-verte que vous controlez gagnent +1/+0 jusqu'a la fin du tour.
 rarity=C
 name=Battle Frenzy
@@ -1604,8 +1461,8 @@ mana={X}{G}
 alias=1251
 [/card]
 [card]
-subtype=plains
-auto={T}: Add {W}
+subtype=Plains
+auto={T}:Add {W}
 text={T}: Ajoutez {W} a votre reserve.
 rarity=L
 name=Plains
@@ -1621,20 +1478,8 @@ rarity=R
 text=Traversee des marais
 power=2
 id=2581
-type=Creature 
+type=Creature
 abilities=swampwalk
-[/card]
-[card]
-toughness=3
-name=Shield Bearer
-mana={1}{W}
-subtype=Human Soldier
-rarity=C
-text=Regroupement
-power=0
-id=2712
-type=Creature 
-abilities=banding
 [/card]
 [card]
 name=Stonehands
@@ -1646,7 +1491,7 @@ auto={R}:1/0
 rarity=C
 text=Enchanter : creature.   La creature enchantee gagne +0/+2. {R}: La creature enchantee gagne +1/+0 jusqu'a la fin du tour.
 id=2655
-type=Enchantment 
+type=Enchantment
 [/card]
 [card]
 toughness=1
@@ -1659,19 +1504,20 @@ rarity=U
 text=Protection contre le blanc. {B}: Le Chevalier de Stromgald acquiert l'initiative jusqu'a la fin du tour. {B}{B}: Le Chevalier de Stromgald gagne +1/+0 jusqu'a la fin du tour.
 power=2
 id=2462
-type=Creature 
-abilities=Protection from white
+type=Creature
+abilities=protection from white
 [/card]
 [card]
-name=Cooperation
-mana={2}{W}
-subtype=Aura
-target=creature
-auto=banding
-rarity=C
-text=Enchanter : creature.        La creature enchantee a le regroupement.
-id=2678
-type=Enchantment 
+toughness=1
+name=Lost Order of Jarkeld
+mana={2}{W}{W}
+subtype=Human Knight
+auto=foreach(creature|opponentbattlefield) 1/1
+rarity=R
+text=Quand il arrive un jeu, choisissez un adversaire.    Il a une force et une endurance chacune egale à 1 plus le nombre de creatures que ce joueur controle.
+power=1
+id=2703
+type=Creature
 [/card]
 [card]
 toughness=3
@@ -1679,20 +1525,7 @@ name=Tor Giant
 mana={3}{R}
 subtype=Giant
 rarity=C
-text=
 power=3
+type=Creature
 id=2656
-type=Creature 
-[/card]
-[card]
-toughness=1
-name=Lost Order of Jarkeld
-mana={2}{W}{W}
-subtype=Human Knight
-auto=foreach(creature|opponentinplay) 1/1
-rarity=R
-text=Quand il arrive un jeu, choisissez un adversaire.    Il a une force et une endurance chacune egale à 1 plus le nombre de creatures que ce joueur controle.
-power=1
-id=2703
-type=Creature 
 [/card]

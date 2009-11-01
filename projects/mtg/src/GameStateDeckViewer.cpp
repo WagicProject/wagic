@@ -50,20 +50,11 @@ void GameStateDeckViewer::loadIndexes(MTGCard * current){
   _current = displayed_deck->getNext(NULL,colorFilter);
   for (int i = 0; i < 7; i++){
     cardIndex[i] = _current;
-#if defined (WIN32) || defined (LINUX)
-    char buf[4096];
-    sprintf(buf,"Loadindexes[%i] is NULL\n", i);
-    if(_current) sprintf(buf, "LoadIndexes[%i]  : %s\n", i, _current->getName().c_str());
-    OutputDebugString(buf);
-#endif
     _current = displayed_deck->getNext(_current,colorFilter);
   }
 }
 
 void GameStateDeckViewer::switchDisplay(){
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("Switching display");
-#endif
   if (displayed_deck == myCollection){
     displayed_deck = myDeck;
   }else{
@@ -136,7 +127,6 @@ void GameStateDeckViewer::Start()
 
   backQuad = resources.GetQuad("back");
 
-  //menuFont = NEW JLBFont("graphics/f3",16);
   menuFont = resources.GetJLBFont("f3");
   welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
@@ -169,12 +159,13 @@ void GameStateDeckViewer::Start()
   onScreenTransition = 0;
 
   mEngine->ResetInput();
+  JRenderer::GetInstance()->EnableVSync(true);
 }
 
 
 void GameStateDeckViewer::End()
 {
-  //mEngine->EnableVSync(false);
+  JRenderer::GetInstance()->EnableVSync(false);
   if (GameApp::music){
     JSoundSystem::GetInstance()->StopMusic(GameApp::music);
     SAFE_DELETE(GameApp::music);
@@ -341,7 +332,6 @@ void GameStateDeckViewer::Update(float dt)
     }
 
   } if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT) {
-    //mAlpha = 128;
     if (mStage == STAGE_TRANSITION_RIGHT){
       mRotation -= dt * scrollSpeed;
       if (mRotation < -1.0f){
@@ -514,12 +504,12 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     r->RenderQuad(pspIcons[3],leftPspX + 20, leftPspY,0,pspIconsSize,pspIconsSize);
 
 
-    font->DrawString(_("Prev.").c_str(), leftPspX - 35, leftPspY-15);
-    font->DrawString(_("Next").c_str(), leftPspX + 15, leftPspY-15);
-    font->DrawString(_("card").c_str(), leftPspX - 35, leftPspY);
-    font->DrawString(_("card").c_str(), leftPspX + 15, leftPspY);
-    font->DrawString(_("Next color").c_str(), leftPspX - 33, leftPspY - 35);
-    font->DrawString(_("Prev. color").c_str(), leftPspX -33 , leftPspY +25);
+    font->DrawString(_("Prev."), leftPspX - 35, leftPspY-15);
+    font->DrawString(_("Next"), leftPspX + 15, leftPspY-15);
+    font->DrawString(_("card"), leftPspX - 35, leftPspY);
+    font->DrawString(_("card"), leftPspX + 15, leftPspY);
+    font->DrawString(_("Next color"), leftPspX - 33, leftPspY - 35);
+    font->DrawString(_("Prev. color"), leftPspX -33 , leftPspY +25);
 
     //RIGHT PSP CIRCLE render
     r->FillCircle(rightPspX+(onScreenTransition*204),rightPspY,40,ARGB(128,50,50,50));
@@ -529,16 +519,16 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     r->RenderQuad(pspIcons[7],rightPspX, rightPspY + 20,0,pspIconsSize,pspIconsSize);
 
     if (displayed_deck == myCollection){
-      font->DrawString(_("Add card").c_str(), rightPspX + 20, rightPspY-15);
-      font->DrawString(_("Display Deck").c_str(), rightPspX - 35, rightPspY - 40);
+      font->DrawString(_("Add card"), rightPspX + 20, rightPspY-15);
+      font->DrawString(_("Display Deck"), rightPspX - 35, rightPspY - 40);
     }else{
-      font->DrawString(_("Remove card").c_str(), rightPspX + 20, rightPspY-15);
-      font->DrawString(_("Display Collection").c_str(), rightPspX - 35, rightPspY - 40);
+      font->DrawString(_("Remove card"), rightPspX + 20, rightPspY-15);
+      font->DrawString(_("Display Collection"), rightPspX - 35, rightPspY - 40);
     }
-    font->DrawString(_("Deck info").c_str(), rightPspX - 70 , rightPspY-15);
-    font->DrawString(_("Sell card").c_str(), rightPspX - 30 , rightPspY+20);
+    font->DrawString(_("Deck info"), rightPspX - 70 , rightPspY-15);
+    font->DrawString(_("Sell card"), rightPspX - 30 , rightPspY+20);
     //Bottom menus
-    font->DrawString(_("menu").c_str(), SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
+    font->DrawString(_("menu"), SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
 
 
 
@@ -567,16 +557,16 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     */
 
 
-    font->DrawString(_("You are currently viewing your").c_str(),  SCREEN_WIDTH-200+rightTransition, 5);
+    font->DrawString(_("You are currently viewing your"),  SCREEN_WIDTH-200+rightTransition, 5);
     if (displayed_deck == myCollection){
-      font->DrawString(_("collection. Press TRIANGLE").c_str(),  SCREEN_WIDTH-200+rightTransition, 19);
-      font->DrawString(_("to switch to your deck.").c_str(),  SCREEN_WIDTH-200+rightTransition, 33);
+      font->DrawString(_("collection. Press TRIANGLE"),  SCREEN_WIDTH-200+rightTransition, 19);
+      font->DrawString(_("to switch to your deck."),  SCREEN_WIDTH-200+rightTransition, 33);
     }else{
-      font->DrawString(_("deck. Press TRIANGLE to").c_str(),  SCREEN_WIDTH-200+rightTransition, 19);
-      font->DrawString(_("switch to your collection.").c_str(),  SCREEN_WIDTH-200+rightTransition, 33);
+      font->DrawString(_("deck. Press TRIANGLE to"),  SCREEN_WIDTH-200+rightTransition, 19);
+      font->DrawString(_("switch to your collection."),  SCREEN_WIDTH-200+rightTransition, 33);
     }
-    font->DrawString(_("Press L/R to cycle through").c_str(),  SCREEN_WIDTH-200+rightTransition, 47);
-    font->DrawString(_("deck statistics.").c_str(),  SCREEN_WIDTH-200+rightTransition, 61);
+    font->DrawString(_("Press L/R to cycle through"),  SCREEN_WIDTH-200+rightTransition, 47);
+    font->DrawString(_("deck statistics."),  SCREEN_WIDTH-200+rightTransition, 61);
   } else {
     if (stw.needUpdate) {
       updateStats();
@@ -591,7 +581,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     r->FillRect(SCREEN_WIDTH/2+rightTransition,0,SCREEN_WIDTH/2,SCREEN_HEIGHT,ARGB(128,0,0,0));
     r->FillRect(10+leftTransition,10,SCREEN_WIDTH/2-10,SCREEN_HEIGHT-20,ARGB(128,0,0,0));
     r->FillRect(SCREEN_WIDTH/2+rightTransition,10,SCREEN_WIDTH/2-10,SCREEN_HEIGHT-20,ARGB(128,0,0,0));
-    font->DrawString(_("menu").c_str(), SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
+    font->DrawString(_("menu"), SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
     
     // Draw page id
     sprintf(buffer, _("statsPage#: %i").c_str(), stw.currentPage);
@@ -629,40 +619,34 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
 
-        sprintf(buffer, _("Lands").c_str());
-        mFont->DrawString(buffer, 20 + leftTransition, posY);
+        mFont->DrawString(_("Lands"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countLands);
         mFont->DrawString(buffer, posX + leftTransition, posY);
         
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-        sprintf(buffer, _("Creatures").c_str());
-        mFont->DrawString(buffer, 20 + leftTransition, posY);
+        mFont->DrawString( _("Creatures"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countCreatures);
         mFont->DrawString(buffer, posX + leftTransition, posY);
         
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-        sprintf(buffer, _("Spells").c_str());
-        mFont->DrawString(buffer, 20 + leftTransition, posY);
+        mFont->DrawString(_("Spells"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countSpells);
         mFont->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        sprintf(buffer, _("Instants").c_str());
-        mFont->DrawString(buffer, 30 + leftTransition, posY);
+        mFont->DrawString(_("Instants"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countInstants);
         mFont->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        sprintf(buffer, _("Enchantments").c_str());
-        mFont->DrawString(buffer, 30 + leftTransition, posY);
+        mFont->DrawString(_("Enchantments"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countEnchantments);
         mFont->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        sprintf(buffer, _("Sorceries").c_str());
-        mFont->DrawString(buffer, 30 + leftTransition, posY);
+        mFont->DrawString(_("Sorceries"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countSorceries);
         mFont->DrawString(buffer, posX + leftTransition, posY);
         //sprintf(buffer, "Artifacts: %i", stw.countArtifacts);
@@ -671,56 +655,47 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
 
-        sprintf(buffer, _("Average converted mana cost").c_str());
-        font->DrawString(buffer, 20 + leftTransition, posY);
+        font->DrawString(_("Average converted mana cost"), 20 + leftTransition, posY);
         sprintf(buffer, _("%2.2f").c_str(), stw.avgManaCost);
         font->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-        sprintf(buffer, _("Probabilities").c_str());
-        font->DrawString(buffer, 20 + leftTransition, posY);
+        font->DrawString(_("Probabilities"), 20 + leftTransition, posY);
         
         posY += 10;
-        sprintf(buffer, _("No land in 1st hand").c_str());
-        font->DrawString(buffer, 30 + leftTransition, posY);
+        font->DrawString(_("No land in 1st hand"), 30 + leftTransition, posY);
         sprintf(buffer, _("%2.2f%%").c_str(), stw.noLandsProbInTurn[0]);
         font->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        sprintf(buffer, _("No land in 9 cards").c_str());
-        font->DrawString(buffer, 30 + leftTransition, posY);
+        font->DrawString(_("No land in 9 cards"), 30 + leftTransition, posY);
         sprintf(buffer, _("%2.2f%%").c_str(), stw.noLandsProbInTurn[2]);
         font->DrawString(buffer, posX + leftTransition, posY);
                     
         posY += 10;
-        sprintf(buffer, _("No creatures in 1st hand").c_str());
-        font->DrawString(buffer, 30 + leftTransition, posY);
+        font->DrawString(_("No creatures in 1st hand"), 30 + leftTransition, posY);
         sprintf(buffer, _("%2.2f%%").c_str(), stw.noCreaturesProbInTurn[0]);
         font->DrawString(buffer, posX + leftTransition, posY);
 
         // Playgame Statistics
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-        sprintf(buffer, _("Playgame statistics").c_str());
-        font->DrawString(buffer, 20 + leftTransition, posY);
+        font->DrawString(_("Playgame statistics"), 20 + leftTransition, posY);
 
         posY += 10;
-        sprintf(buffer, _("Games played").c_str());
-        font->DrawString(buffer, 30 + leftTransition, posY);
+        font->DrawString(_("Games played"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.gamesPlayed);
         font->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        sprintf(buffer, _("Victory ratio").c_str());
-        font->DrawString(buffer, 30 + leftTransition, posY);
+        font->DrawString(_("Victory ratio"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i%%").c_str(), stw.percentVictories);
         font->DrawString(buffer, posX + leftTransition, posY);
         
         posY += 15;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-        sprintf(buffer, _("Total price (credits)").c_str(),  stw.totalPrice);
-        font->DrawString(buffer, 20 + leftTransition, posY);
+        font->DrawString(_("Total price (credits)"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i ").c_str(),  stw.totalPrice);
         font->DrawString(buffer, posX, posY);
         r->DrawLine(20 + leftTransition, posY + 13, posX + 40 + leftTransition, posY + 13, ARGB(128, 255, 255, 255));
@@ -728,8 +703,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         break;
         
       case 2: // Mana cost detail
-        sprintf(buffer, _("Card counts per mana cost:").c_str());
-        font->DrawString(buffer, 20 + leftTransition, 30);            
+        font->DrawString(_("Card counts per mana cost:"), 20 + leftTransition, 30);            
 
         posY = 70;
         
@@ -738,10 +712,8 @@ void GameStateDeckViewer::renderOnScreenMenu(){
           r->RenderQuad(mIcons[j], 67 + j*15 + leftTransition, posY - 11,0,0.5,0.5);
         }
         
-        sprintf(buffer, _("C").c_str());
-        font->DrawString(buffer, 30 + leftTransition, posY-16);              
-        sprintf(buffer, _("#").c_str());
-        font->DrawString(buffer, 45 + leftTransition, posY-16);              
+        font->DrawString(_("C"), 30 + leftTransition, posY-16);              
+        font->DrawString(_("#"), 45 + leftTransition, posY-16);              
 
         // Horizontal table lines
         r->DrawLine(27 + leftTransition, posY - 20, 75 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, posY - 20, ARGB(128, 255, 255, 255));
@@ -774,8 +746,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         sprintf(buffer, _("C - Converted mana cost. Cards with cost>%i are included in the last row.").c_str(), STATS_MAX_MANA_COST);
         font->DrawString(buffer, 20 + leftTransition, posY);
         posY += 10;
-        sprintf(buffer, _("# - Total number of cards with given cost").c_str());
-        font->DrawString(buffer, 20 + leftTransition, posY);
+        font->DrawString(_("# - Total number of cards with given cost"), 20 + leftTransition, posY);
         
         break;
 
@@ -783,9 +754,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         float graphScale, graphWidth;
         graphWidth = 100;
         graphScale = (stw.noLandsProbInTurn[0]==0) ? 0:(graphWidth/stw.noLandsProbInTurn[0]);
-
-        sprintf(buffer, _("No lands in first n cards:").c_str());
-        font->DrawString(buffer, 20 + leftTransition, 30);
+        font->DrawString( _("No lands in first n cards:"), 20 + leftTransition, 30);
 
         posY = 50;
         for (int i=0; i<STATS_FOR_TURNS; i++) {              
@@ -798,9 +767,8 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         }
         
         // No creatures probability detail
-        sprintf(buffer, _("No creatures in first n cards:").c_str());
         posY += 10;
-        font->DrawString(buffer, 20 + leftTransition, posY);
+        font->DrawString( _("No creatures in first n cards:"), 20 + leftTransition, posY);
         posY += 20;
         graphScale = (stw.noCreaturesProbInTurn[0]==0) ? 0:(graphWidth/stw.noCreaturesProbInTurn[0]);
         
@@ -816,8 +784,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         break;
 
       case 3: // Total mana cost per color
-        sprintf(buffer, _("Total colored manasymbols in cards' casting costs:").c_str());
-        font->DrawString(buffer, 20 + leftTransition, 30);
+        font->DrawString(_("Total colored manasymbols in cards' casting costs:"), 20 + leftTransition, 30);
         
         posY = 50;
         for (int i=1; i<Constants::MTG_NB_COLORS-1; i++) {
@@ -841,8 +808,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         break;
       
       case 5: // Victory statistics
-        sprintf(buffer, _("Victories against AI:").c_str());
-        font->DrawString(buffer, 20 + leftTransition, 30);            
+        font->DrawString(_("Victories against AI:"), 20 + leftTransition, 30);            
         
         sprintf(buffer, _("Games played: %i").c_str(), stw.gamesPlayed);
         font->DrawString(buffer, 20 + leftTransition, 45);
@@ -1095,7 +1061,7 @@ void GameStateDeckViewer::Render()
   if (displayed_deck->getCount(colorFilter)>0){
     renderSlideBar();
   }else{
-    mFont->DrawString(_("No Card").c_str(), SCREEN_WIDTH/2, SCREEN_HEIGHT/2,JGETEXT_CENTER);
+    mFont->DrawString(_("No Card"), SCREEN_WIDTH/2, SCREEN_HEIGHT/2,JGETEXT_CENTER);
   }
 
   if (mStage == STAGE_ONSCREEN_MENU){
@@ -1242,11 +1208,6 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             playerdata->credits += price;
             price = price - (rnd * price)/100;
             pricelist->setPrice(card->getMTGId(),price*2);
-    #if defined (WIN32) || defined (LINUX)
-            char buf[4096];
-            sprintf(buf, "CARD'S NAME : %s", card->getName().c_str());
-            OutputDebugString(buf);
-    #endif
             playerdata->collection->remove(card->getMTGId());
             Remove(card);
           }

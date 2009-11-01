@@ -1,20 +1,41 @@
 [card]
-name=Concordant Crossroads
-mana={G}
-color=Green
+name=Boomerang
+mana={U}{U}
+target=*
+auto=moveto(ownerhand)
+rarity=C
+text=Return target permanent to its owner's hand.
+type=Instant
+id=1474
+[/card]
+[card]
+toughness=3
+name=Ivory Guardians
+mana={4}{W}{W}
+subtype=Giant Cleric
+auto=aslongas(*[red]|opponentBattlefield) lord(Ivory Guardians) 1/1
+rarity=U
+text=Protection from red   Creatures named Ivory Guardians get +1/+1 as long as an opponent controls a red permanent.
+power=3
+id=1621
+type=Creature
+abilities=protection from red
+[/card]
+[card]
 auto=lord(creature) haste
-rarity=R
 text=All creatures have haste.
-type=Enchantment
+rarity=R
+name=Concordant Crossroads
 id=1519
+type=Enchantment
+mana={G}
 [/card]
 [card]
 toughness=2
 name=Kobold Overlord
 mana={1}{R}
 subtype=Kobold
-color=Red
-auto=lord(kobold|myinplay) first strike
+auto=lord(kobold|myBattlefield) first strike
 rarity=R
 text=Kobold creatures you control have first strike.
 power=1
@@ -22,26 +43,49 @@ id=1581
 type=Creature
 [/card]
 [card]
+toughness=4
+name=AErathi Berserker
+mana={2}{R}{R}{R}
+subtype=Human Berserker
+auto=rampage(3/3,1)
+rarity=U
+text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
+power=2
+id=1557
+type=Creature
+[/card]
+[card]
 toughness=1
 name=Pixie Queen
 mana={2}{G}{G}
 subtype=Faerie
-color=Green
 auto={G}{G}{G}{T}:flying target(creature)
 rarity=R
-text=Flying      {G}{G}{G}, {T}: Target creature gains flying until end of turn.
+text=Flying   {G}{G}{G}, {T}: Target creature gains flying until end of turn.
 power=1
 id=1536
 type=Creature
 abilities=flying
 [/card]
 [card]
+toughness=4
+name=Livonya Silone
+mana={2}{R}{R}{G}{G}
+subtype=Human Warrior
+auto=aslongas(land[legendary]|opponentBattlefield) unblockable
+rarity=R
+text=First strike, legendary landwalk
+power=4
+id=1668
+type=Creature
+abilities=legendary,first strike
+[/card]
+[card]
 toughness=2
 name=Kobold Taskmaster
 mana={1}{R}
 subtype=Kobold
-color=Red
-auto=lord(kobold|myinplay) 1/0 other
+auto=lord(kobold|myBattlefield) 1/0 other
 rarity=U
 text=Other Kobold creatures you control get +1/+0..
 power=1
@@ -49,25 +93,78 @@ id=1582
 type=Creature
 [/card]
 [card]
+toughness=3
+name=Tor Wauki
+mana={2}{B}{B}{R}
+subtype=Human Archer
+auto={T}:damage:2 target(creature[attacking;blocking])
+rarity=U
+text={T}: Tor Wauki deals 2 damage to target attacking or blocking creature.
+power=3
+id=1692
+type=Creature
+abilities=legendary
+[/card]
+[card]
+auto={S(swamp|myBattlefield)}:regenerate target(creature[black])
+text=Sacrifice a Swamp: Regenerate target black creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+rarity=U
+name=Horror of Horrors
+id=1446
+type=Enchantment
+mana={3}{B}{B}
+[/card]
+[card]
 toughness=2
 name=Crimson Manticore
 mana={2}{R}{R}
 subtype=Manticore
-color=Red
 auto={R}{T}:damage:1 target(creature[attacking;blocking])
 rarity=R
-text=Flying    {R}, {T}: Crimson Manticore deals 1 damage to target attacking or blocking creature.
+text=Flying   {R}, {T}: Crimson Manticore deals 1 damage to target attacking or blocking creature.
 power=2
 id=1566
 type=Creature
 abilities=flying
 [/card]
 [card]
+toughness=3
+name=Kasimir the Lone Wolf
+mana={4}{U}{W}
+subtype=Human Warrior
+rarity=U
+power=5
+type=Creature
+id=1663
+abilities=legendary
+[/card]
+[card]
+toughness=5
+name=Jerrard of the Closed Fist
+mana={3}{G}{G}{R}
+subtype=Human Knight
+rarity=U
+power=6
+type=Creature
+id=1661
+abilities=legendary
+[/card]
+[card]
+toughness=5
+name=Jedit Ojanen
+mana={4}{W}{W}{U}
+subtype=Cat Warrior
+rarity=U
+power=5
+type=Creature
+id=1660
+abilities=legendary
+[/card]
+[card]
 toughness=2
 name=D'Avenant Archer
 mana={2}{W}
 subtype=Human Soldier Archer
-color=White
 auto={T}:damage:1 target(creature[attacking;blocking])
 rarity=C
 text={T}: D'Avenant Archer deals 1 damage to target attacking or blocking creature.
@@ -76,23 +173,67 @@ id=1605
 type=Creature
 [/card]
 [card]
-color=Land
-auto={T}: Add {B}
+toughness=4
+name=Tobias Andrion
+mana={3}{W}{U}
+subtype=Human Advisor
+rarity=U
+power=4
+type=Creature
+id=1691
+abilities=legendary
+[/card]
+[card]
+auto=foreach(island|opponentBattlefield) damage:1 opponent
+text=Typhoon deals damage to each opponent equal to the number of Islands that player controls.
+rarity=R
+name=Typhoon
+id=1549
+type=Sorcery
+mana={2}{G}
+[/card]
+[card]
+toughness=2
+name=Cat Warriors
+mana={1}{G}{G}
+subtype=Cat Warrior
+rarity=C
+text=Forestwalk
+power=2
+id=1517
+type=Creature
+abilities=forestwalk
+[/card]
+[card]
+auto={T}:Add {B}
 auto={T}:-swampwalk target(creature)
 auto={T}:-first strike target(creature)
-text=Legendary. {T}: Add {B} to your mana pool. {T}: Target creature loses first strike or swampwalk until end of turn.
+text={T}: Add {B} to your mana pool. {T}: Target creature loses first strike or swampwalk until end of turn.
 rarity=U
-name=Tolaria
+name=Urborg
 id=1707
 type=Land
 abilities=legendary
+[/card]
+[card]
+toughness=3
+name=Lord Magnus
+mana={3}{G}{W}{W}
+subtype=Human Druid
+auto=lord(creature) -plainswalk
+auto=lord(creature) -forestwalk
+rarity=U
+text=First strike   Creatures with plainswalk can be blocked as though they didn't have plainswalk.   Creatures with forestwalk can be blocked as though they didn't have forestwalk.
+power=4
+id=1669
+type=Creature
+abilities=legendary,first strike
 [/card]
 [card]
 toughness=4
 name=Hunding Gjornersen
 mana={3}{W}{U}{U}
 subtype=Human Warrior
-color=White,Blue
 auto=rampage(1/1,1)
 rarity=U
 text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
@@ -102,11 +243,46 @@ type=Creature
 abilities=legendary
 [/card]
 [card]
+auto=@each my upkeep:aslongas(plains|myBattlefield) life:1 controller
+auto=@each opponent upkeep:aslongas(plains|opponentBattlefield) life:1 opponent
+text=At the beginning of each player's upkeep, if that player controls a Plains, he or she gains 1 life.
+rarity=R
+name=Spiritual Sanctuary
+id=1636
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+toughness=5
+name=Gwendlyn Di Corci
+mana={U}{B}{B}{R}
+subtype=Human Rogue
+auto={T}:discard:1 target(player)
+rarity=R
+text={T}: Target player discards a card at random. Play this ability only during your turn.
+power=3
+id=1654
+type=Creature
+abilities=legendary
+[/card]
+[card]
+toughness=1
+name=Killer Bees
+mana={1}{G}{G}
+subtype=Insect
+auto={G}:1/1
+rarity=R
+text=Flying    {G}: Killer Bees gets +1/+1 until end of turn.
+power=0
+id=1532
+type=Creature
+abilities=flying
+[/card]
+[card]
 toughness=2
 name=Ghosts of the Damned
 mana={1}{B}{B}
 subtype=Spirit
-color=Black
 auto={T}:-1/0 target(creature)
 rarity=C
 text={T}: Target creature gets -1/-0 until end of turn.
@@ -115,40 +291,159 @@ id=1438
 type=Creature
 [/card]
 [card]
+auto=lord(creature) -flying
+text=All creatures lose flying.
+rarity=R
+name=Gravity Sphere
+id=1577
+type=Enchantment
+mana={2}{R}
+[/card]
+[card]
 toughness=4
 name=Sunastian Falconer
 mana={3}{R}{G}
 subtype=Human Shaman
-color=Red,Green
 auto={T}:Add {2}
 rarity=U
-text=Legendary      {T}: Add {2} to your mana pool.
+text={T}: Add {2} to your mana pool.
 power=4
 id=1687
 type=Creature
 abilities=legendary
 [/card]
 [card]
+toughness=5
+name=Jasmine Boreal
+mana={3}{G}{W}
+subtype=Human
+rarity=U
+power=4
+type=Creature
+id=1659
+abilities=legendary
+[/card]
+[card]
+name=Giant Strength
+mana={R}{R}
+subtype=Aura
+target=creature
+auto=2/2
+rarity=C
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature gets +2/+2.
+id=1575
+type=Enchantment
+[/card]
+[card]
 toughness=4
 name=Sivitri Scarzam
 mana={5}{U}{B}
 subtype=Human
-color=Blue,Black
 rarity=U
-text=Legendary
 power=6
+type=Creature
 id=1684
+abilities=legendary
+[/card]
+[card]
+toughness=6
+name=Wall of Opposition
+mana={3}{R}{R}
+subtype=Wall
+auto={1}:1/0
+rarity=C
+text=Defender (This creature can't attack.)   {1}: Wall of Opposition gets +1/+0 until end of turn.
+power=0
+id=1597
+type=Creature
+abilities=defender
+[/card]
+[card]
+toughness=1
+name=Zephyr Falcon
+mana={1}{U}
+subtype=Bird
+rarity=C
+text=Flying, vigilance
+power=1
+id=1512
+type=Creature
+abilities=flying,vigilance
+[/card]
+[card]
+toughness=1
+name=Tundra Wolves
+mana={W}
+subtype=Wolf
+rarity=C
+text=First strike (This creature deals combat damage before creatures without first strike.)
+power=1
+id=1638
+type=Creature
+abilities=first strike
+[/card]
+[card]
+auto=lord(creature|myBattlefield) 0/2
+text=Creatures you control get +0/+2 until end of turn.
+rarity=U
+name=Shield Wall
+id=1634
+type=Instant
+mana={1}{W}
+[/card]
+[card]
+toughness=2
+name=Ragnar
+mana={W}{U}{G}
+subtype=Human Cleric
+auto={W}{U}{G}{T}:regenerate target(creature)
+rarity=R
+text={W}{U}{G}, {T}:  Regenerate target creature.
+power=2
+id=1676
 type=Creature
 abilities=legendary
+[/card]
+[card]
+toughness=5
+name=Barktooth Warbeard
+mana={4}{B}{R}{R}
+subtype=Human Warrior
+rarity=U
+power=6
+type=Creature
+id=1647
+abilities=legendary
+[/card]
+[card]
+toughness=*
+name=Dakkon Blackblade
+mana={2}{B}{U}{U}{W}
+subtype=Human Warrior
+auto=foreach(land|myBattlefield) 1/1
+rarity=R
+text=Dakkon Blackblade's power and toughness are each equal to the number of lands you control.
+power=*
+id=1651
+type=Creature
+abilities=legendary
+[/card]
+[card]
+auto=lord(creature) -forestwalk
+text=Creatures with forestwalk can be blocked as though they didn't have forestwalk.
+rarity=U
+name=Deadfall
+id=1521
+type=Enchantment
+mana={2}{G}
 [/card]
 [card]
 toughness=2
 name=Kobold Drill Sergeant
 mana={1}{R}
 subtype=Kobold Soldier
-color=Red
-auto=lord(kobold|myinplay) 0/1 other
-auto=lord(kobold|myinplay) trample other
+auto=lord(kobold|myBattlefield) 0/1 other
+auto=lord(kobold|myBattlefield) trample other
 rarity=R
 text=Other Kobold creatures you control get +0/+1 and have trample.
 power=1
@@ -172,31 +467,50 @@ toughness=2
 name=Xira Arien
 mana={B}{R}{G}
 subtype=Insect Wizard
-color=Black,Red,Green
 auto={B}{R}{G}{T}:draw:1
 rarity=R
-text=Legendary   Flying      {B}{R}{G}, {T}: Target player draws a card.
+text=Flying   {B}{R}{G}, {T}: Target player draws a card.
 power=1
 id=1697
 type=Creature
 abilities=legendary,flying
 [/card]
 [card]
-name=Crevasse
-mana={2}{R}
-color=Red
-auto=lord(creature) -mountainwalk
+auto={T}:Add {G}
+text={T}: Add {G} to your mana pool.   {T}: Target 1/1 creature gets +1/+2 until end of turn.
 rarity=U
+name=Pendelhaven
+id=1703
+type=Land
+abilities=legendary
+[/card]
+[card]
+toughness=7
+name=Riven Turnbull
+mana={5}{U}{B}
+subtype=Human Advisor
+auto={T}:Add {B}
+rarity=U
+text={T}: Add {B} to your mana pool.
+power=5
+id=1680
+type=Creature
+abilities=legendary
+[/card]
+[card]
+auto=lord(creature) -mountainwalk
 text=Creatures with mountainwalk can be blocked as though they didn't have mountainwalk.
-type=Enchantment
+rarity=U
+name=Crevasse
 id=1564
+type=Enchantment
+mana={2}{R}
 [/card]
 [card]
 toughness=2
 name=Devouring Deep
 mana={2}{U}
 subtype=Fish
-color=Blue
 rarity=C
 text=Islandwalk
 power=1
@@ -205,22 +519,39 @@ type=Creature
 abilities=islandwalk
 [/card]
 [card]
-color=Land
-auto={T}:Add {R}
-auto={T}:-plainswalk && -islandwalk && -swampwalk && -mountainwalk && -forestwalk target(creature)
-text=Legendary. {T}: Add {R} to your mana pool. {T}: Target creature loses all landwalk abilities until end of turn.
+auto=destroy all(forest)
+text=Destroy all forests.
+rarity=R
+name=Acid Rain
+id=1470
+type=Sorcery
+mana={3}{U}
+[/card]
+[card]
+auto=lord(creature|myBattlefield) 1/1
+auto=aslongas(creature[-artifact;-white]|myBattlefield) lord(creature|myBattlefield) -1/-1
+text=Creatures you control get +1/+1 as long as you control no nonartifact, nonwhite creatures.
+rarity=R
+name=Angelic Voices
+id=1602
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+name=Untamed Wilds
+mana={2}{G}
+target=basic|myLibrary
+auto=moveTo(myInPlay)
 rarity=U
-name=Hammerheim
-id=1700
-type=Land
-abilities=legendary
+text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
+type=Sorcery
+id=1550
 [/card]
 [card]
 toughness=2
 name=Spinal Villain
 mana={2}{R}
 subtype=Beast
-color=Red
 auto={T}:destroy target(creature[blue])
 rarity=R
 text={T}: Destroy target blue creature.
@@ -229,11 +560,32 @@ id=1590
 type=Creature
 [/card]
 [card]
+toughness=2
+name=Jacques le Vert
+mana={1}{R}{G}{W}
+subtype=Human Warrior
+auto=lord(creature[green]|myBattlefield) 0/2
+rarity=R
+text=Green creatures you control get +0/+2.
+power=3
+id=1658
+type=Creature
+abilities=legendary
+[/card]
+[card]
+auto=lord(creature) -1/0
+text=All creatures get -1/-0 until end of turn.
+rarity=C
+name=Hell Swarm
+id=1443
+type=Instant
+mana={B}
+[/card]
+[card]
 toughness=4
 name=Azure Drake
 mana={3}{U}
 subtype=Drake
-color=Blue
 rarity=U
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
 power=2
@@ -242,28 +594,77 @@ type=Creature
 abilities=flying
 [/card]
 [card]
+name=Teleport
+mana={U}{U}{U}
+target=creature
+auto=unblockable
+rarity=R
+text=Cast Teleport only after attackers are declared and before blockers are declared.     Target creature is unblockable this turn.
+type=Instant
+id=1506
+[/card]
+[card]
+auto=lord(creature) -plainswalk
+text=Creatures with plainswalk can be blocked as though they didn't have plainswalk.
+rarity=U
+name=Great Wall
+id=1615
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
 toughness=1
 name=Vampire Bats
 mana={B}
 subtype=Bat
-color=Black
-auto={B}:1/0 limit 2
+auto={B}:1/0 limit:2
 rarity=C
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {B}: Vampire Bats gets +1/+0 until end of turn. Play this ability no more than twice each turn.
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {B}: Vampire Bats gets +1/+0 until end of turn. Activate this ability no more than twice each turn.
 power=0
 id=1465
 type=Creature
 abilities=flying
 [/card]
 [card]
+auto={B}:draw:1 && life:-2
+text={B}, Pay 2 life: Draw a card.
+rarity=R
+name=Greed
+id=1441
+type=Enchantment
+mana={3}{B}
+[/card]
+[card]
+auto={T}:Add {W}
+auto={T}:moveTo(ownerhand) target(creature[legendary])
+text={T}: Add {W} to your mana pool.   {W}, {T}: Return target legendary creature to its owner's hand.
+rarity=R
+name=Karakas
+id=1701
+type=Land
+abilities=legendary
+[/card]
+[card]
+toughness=3
+name=Beasts of Bogardan
+mana={4}{R}
+subtype=Beast
+auto=aslongas(*[white]|opponentBattlefield) 1/1
+rarity=R
+text=Protection from red   Beasts of Bogardan gets +1/+1 as long as any opponent controls a white permanent.
+power=3
+id=1559
+type=Creature
+abilities=protection from red
+[/card]
+[card]
 name=Spirit Link
 mana={W}
 subtype=Aura
-color=White
 target=creature
 auto=lifelink
 rarity=U
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Whenever enchanted creature deals damage, you gain that much life.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Whenever enchanted creature deals damage, you gain that much life.
 id=1635
 type=Enchantment
 [/card]
@@ -272,24 +673,34 @@ toughness=2
 name=Boris Devilboon
 mana={3}{B}{R}
 subtype=Zombie Wizard
-color=Black,Red
 auto={2}{B}{R}{T}:token(Minor Demon,creature demon, 1/1,black red)
 rarity=R
-text=Legendary     {2}{B}{R}, {T}: Put a 1/1 black and red Demon creature token named Minor Demon into play.   
+text={2}{B}{R}, {T}: Put a 1/1 black and red Demon creature token named Minor Demon onto the battlefield.   
 power=2
 id=1649
 type=Creature
 abilities=legendary
 [/card]
 [card]
+toughness=6
+name=Wall of Heat
+mana={2}{R}
+subtype=Wall
+rarity=C
+text=Defender (This creature can't attack.)
+power=2
+id=1596
+type=Creature
+abilities=defender
+[/card]
+[card]
 toughness=1
 name=Fire Sprites
 mana={1}{G}
 subtype=Faerie
-color=Green
 auto={G}{T}:Add {R}
 rarity=C
-text=Flying      {G}, {T}: Add {R} to your mana pool.
+text=Flying   {G}, {T}: Add {R} to your mana pool.
 power=1
 id=1526
 type=Creature
@@ -300,19 +711,37 @@ toughness=3
 name=Keepers of the Faith
 mana={1}{W}{W}
 subtype=Human Cleric
-color=White
 rarity=C
 power=2
-id=1622
 type=Creature
+id=1622
+[/card]
+[card]
+name=Flash Counter
+mana={1}{U}
+target=instant|stack
+auto=fizzle
+rarity=C
+text=Counter target instant spell.
+type=Instant
+id=1482
+[/card]
+[card]
+auto={T}:tap target(artifact)
+text={T}: Tap target artifact.
+rarity=U
+name=Relic Barrier
+id=1419
+type=Artifact
+mana={2}
 [/card]
 [card]
 toughness=1
 name=Hornet Cobra
 mana={1}{G}{G}
 subtype=Snake
-color=Green
 rarity=C
+text=First strike
 power=2
 id=1530
 type=Creature
@@ -320,13 +749,24 @@ abilities=first strike
 [/card]
 [card]
 toughness=4
+name=Akron Legionnaire
+mana={6}{W}{W}
+subtype=Giant Soldier
+auto=lord(creature[-artifact;-Akron Legionnaire]|myBattlefield) cantattack
+rarity=R
+text=Except for creatures named Akron Legionnaire and artifact creatures, creatures you control can't attack.
+power=8
+id=1599
+type=Creature
+[/card]
+[card]
+toughness=4
 name=Gosta Dirk
 mana={3}{W}{W}{U}{U}
 subtype=Human Warrior
-color=White,Blue
 auto=lord(creature) -islandwalk
 rarity=R
-text=Legendary, First strike      Creatures with islandwalk can be blocked as though they didn't have islandwalk.
+text=First strike   Creatures with islandwalk can be blocked as though they didn't have islandwalk.
 power=4
 id=1653
 type=Creature
@@ -337,12 +777,23 @@ toughness=1
 name=Pradesh Gypsies
 mana={2}{G}
 subtype=Human Nomad
-color=Green
 auto={1}{G}{T}:-2/0 target(creature)
 rarity=U
 text={1}{G}, {T}: Target creature gets -2/-0 until end of turn.
 power=1
 id=1537
+type=Creature
+[/card]
+[card]
+toughness=1
+name=Carrion Ants
+mana={2}{B}{B}
+subtype=Insect
+auto={1}:1/1
+rarity=R
+text={1}: Carrion Ants gets +1/+1 until end of turn.
+power=0
+id=1430
 type=Creature
 [/card]
 [card]
@@ -360,7 +811,6 @@ toughness=2
 name=Mountain Yeti
 mana={2}{R}{R}
 subtype=Yeti
-color=Red
 rarity=U
 text=Mountainwalk, protection from white 
 power=3
@@ -378,22 +828,44 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-name=Fortified Area
-mana={1}{W}{W}
-color=White
-auto=lord(wall|myinplay) 1/0
-auto=lord(wall|myinplay) banding
+target=creature
+text=Target creature gets +0/+X until end of turn, where X is its converted mana cost.
 rarity=U
-text=Wall creatures you control get +1/+0 and have banding.
-type=Enchantment
-id=1612
+name=Great Defender
+id=1614
+type=Instant
+mana={W}
+[/card]
+[card]
+toughness=1
+name=Walking Dead
+mana={1}{B}
+subtype=Zombie
+auto={B}:regenerate
+rarity=C
+text={B}: Regenerate Walking Dead.
+power=1
+id=1466
+type=Creature
+[/card]
+[card]
+toughness=4
+name=Craw Giant
+mana={3}{G}{G}{G}{G}
+subtype=Giant
+auto=rampage(2/2,1)
+rarity=U
+text=Trample   Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+power=6
+id=1520
+type=Creature
+abilities=trample
 [/card]
 [card]
 toughness=1
 name=Lost Soul
 mana={1}{B}{B}
 subtype=Spirit Minion
-color=Black
 rarity=C
 text=Swampwalk
 power=2
@@ -402,27 +874,28 @@ type=Creature
 abilities=swampwalk
 [/card]
 [card]
-color=Land
-auto={T}: Add {U}
-auto={T}:-banding target(creature)
-text=Legendary. {T}: Add {U} to your mana pool. {T}: Target Target creature loses banding and all "bands with other" abilities until end of turn. Play this ability only during any upkeep step.
-rarity=U
-name=Tolaria
-id=1705
-type=Land
-abilities=legendary
+toughness=1
+name=Crookshank Kobolds
+mana={0}
+subtype=Kobold
+color=red
+rarity=C
+text=Crookshank Kobolds is red.
+power=0
+id=1567
+type=Creature
 [/card]
 [card]
-toughness=1
-name=Shelkin Brownie
-mana={1}{G}
-subtype=Ouphe
-color=Green
-auto={T}:-banding target(creature)
-rarity=C
-text={T}: Target creature loses all "bands with other" abilities until end of turn.
-power=1
-id=1544
+toughness=2
+name=Hyperion Blacksmith
+mana={1}{R}{R}
+subtype=Human Artificer
+auto={T}:tap target(artifact|opponentBattlefield)
+auto={T}:untap target(artifact|opponentBattlefield)
+rarity=U
+text={T}: You may tap or untap target artifact an opponent controls.
+power=2
+id=1578
 type=Creature
 [/card]
 [card]
@@ -430,7 +903,6 @@ toughness=6
 name=Marhault Elsdragon
 mana={3}{G}{R}{R}
 subtype=Elf Warrior
-color=Red,Green
 auto=rampage(1/1,1)
 rarity=U
 text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
@@ -440,15 +912,35 @@ type=Creature
 abilities=legendary
 [/card]
 [card]
+toughness=2
+name=Headless Horseman
+mana={2}{B}
+subtype=Zombie Knight
+rarity=C
+power=2
+type=Creature
+id=1442
+[/card]
+[card]
+auto=foreach(creature[-black]) damage:1 controller
+auto=damage:3 controller
+auto=destroy all(creature[-black]) 
+text=Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures put into all graveyards this way.
+rarity=R
+name=Hellfire
+id=1445
+type=Sorcery
+mana={2}{B}{B}{B}
+[/card]
+[card]
 toughness=7
 name=Sir Shandlar of Eberyn
 mana={4}{G}{W}
 subtype=Human Knight
 rarity=U
-text=
 power=4
-id=1683
 type=Creature
+id=1683
 abilities=legendary
 [/card]
 [card]
@@ -462,11 +954,33 @@ type=Instant
 id=1498
 [/card]
 [card]
+toughness=3
+name=Fallen Angel
+mana={3}{B}{B}
+subtype=Angel
+auto={S(creature|myBattlefield)}:2/1
+rarity=U
+text=Flying   Sacrifice a creature: Fallen Angel gets +2/+1 until end of turn.
+power=3
+id=1437
+type=Creature
+abilities=flying
+[/card]
+[card]
+auto=foreach(creature[white]|opponentBattlefield) damage:2 opponent
+text=Jovial Evil deals X damage to target opponent, where X is twice the number of white creatures that player controls.
+rarity=R
+name=Jovial Evil
+id=1449
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
 toughness=1
 name=Kobolds of Kher Keep
 mana={0}
 subtype=Kobold
-color=Red
+color=red
 rarity=C
 text=Kobolds of Kher Keep is red.
 power=0
@@ -474,51 +988,42 @@ id=1583
 type=Creature
 [/card]
 [card]
-toughness=3
-name=Fallen Angel
-mana={3}{B}{B}
-subtype=Angel
-color=Black
-auto={s(creature|myinplay)}:2/1
-rarity=U
-text=Flying       Sacrifice a creature: Fallen Angel gets +2/+1 until end of turn.
-power=3
-id=1437
-type=Creature
-abilities=flying
-[/card]
-[card]
-name=Cleanse
-mana={2}{W}{W}
-color=White
 auto=destroy all(creature[black])
-rarity=R
 text=Destroy all black creatures.
-type=Sorcery
+rarity=R
+name=Cleanse
 id=1603
+type=Sorcery
+mana={2}{W}{W}
 [/card]
 [card]
 toughness=4
 name=Ur-Drago
 mana={3}{U}{U}{B}{B}
 subtype=Elemental
-color=Blue,Black
-auto=Lord(creature) -swampwalk
+auto=lord(creature) -swampwalk
 rarity=R
-text=Legendary   First strike     Creatures with swampwalk can be blocked as though they didn't have swampwalk.
+text=First strike   Creatures with swampwalk can be blocked as though they didn't have swampwalk.
 power=4
 id=1695
 type=Creature
 abilities=legendary,first strike
 [/card]
 [card]
+text=All lands are 1/1 creatures that are still lands.
+rarity=R
+name=Living Plane
+id=1533
+type=Enchantment
+mana={2}{G}{G}
+[/card]
+[card]
 toughness=3
 name=Ramirez DePietro
 mana={3}{U}{B}{B}
 subtype=Human Pirate
-color=Blue,Black
 rarity=U
-text=Legendary, First strike
+text=First strike
 power=4
 id=1677
 type=Creature
@@ -529,9 +1034,9 @@ toughness=5
 name=Wall of Wonder
 mana={2}{U}{U}
 subtype=Wall
-auto={2}{U}{U}:4/4 && -defender
+auto={2}{U}{U}:4/-4 && -defender
 rarity=U
-text=Defender (This creature can't attack.)  {2}{U}{U}: Wall of Wonder gets +4/-4 until end of turn and can attack this turn as though it didn't have defender.
+text=Defender (This creature can't attack.)   {2}{U}{U}: Wall of Wonder gets +4/-4 until end of turn and can attack this turn as though it didn't have defender.
 power=1
 id=1511
 type=Creature
@@ -544,25 +1049,24 @@ mana={2}{U}{B}{R}
 subtype=Demon
 auto=@movedTo(*[black]|stack):life:1
 rarity=R
-text=Swampwalk,Legendary     Whenever a player plays a black spell, you gain 1 life.
+text=Swampwalk   Whenever a player casts a black spell, you gain 1 life.
 power=5
 id=1685
 type=Creature
-abilities=swampwalk,Legendary
+abilities=swampwalk,legendary
 [/card]
 [card]
 toughness=6
 name=Moss Monster
 mana={3}{G}{G}
 subtype=Elemental
-color=Green
 rarity=C
 power=3
-id=1535
 type=Creature
+id=1535
 [/card]
 [card]
-target=creature|myinplay
+target=creature|myBattlefield
 text=Tap target untapped creature you control. If you do, add {X} to your mana pool, where X is that creature's converted mana cost.
 rarity=C
 name=Energy Tap
@@ -571,25 +1075,77 @@ type=Sorcery
 mana={U}
 [/card]
 [card]
+auto=@tapped(mountain|opponentBattlefield):life:1 controller
+text=Whenever a Mountain an opponent controls becomes tapped, you gain 1 life.
+rarity=R
+name=Lifeblood
+id=1625
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+auto=lord(creature) -islandwalk
+text=Creatures with islandwalk can be blocked as though they didn't have islandwalk.
+rarity=U
+name=Undertow
+id=1508
+type=Enchantment
+mana={2}{U}
+[/card]
+[card]
+toughness=1
+name=Righteous Avengers
+mana={4}{W}
+subtype=Human Soldier
+rarity=U
+text=Plainswalk
+power=3
+id=1632
+type=Creature
+abilities=plainswalk
+[/card]
+[card]
+toughness=1
+name=Emerald Dragonfly
+mana={1}{G}
+subtype=Insect
+auto={G}{G}:first strike
+rarity=C
+text=Flying   {G}{G}: Emerald Dragonfly gains first strike until end of turn.
+power=1
+id=1524
+type=Creature
+abilities=flying
+[/card]
+[card]
 toughness=2
 name=Raging Bull
 mana={2}{R}
 subtype=Ox
-color=Red
 rarity=C
 power=2
-id=1589
 type=Creature
+id=1589
+[/card]
+[card]
+name=Immolation
+mana={R}
+subtype=Aura
+target=creature
+auto=2/-2
+rarity=C
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)     Enchanted creature gets +2/-2.
+id=1579
+type=Enchantment
 [/card]
 [card]
 name=Eternal Warrior
 mana={R}
 subtype=Aura
-color=Red
 target=creature
 auto=vigilance
 rarity=U
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature has vigilance.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature has vigilance.
 id=1570
 type=Enchantment
 [/card]
@@ -598,7 +1154,7 @@ toughness=1
 name=Crimson Kobolds
 mana={0}
 subtype=Kobold
-color=Red
+color=red
 rarity=C
 text=Crimson Kobolds is red.
 power=0
@@ -610,7 +1166,6 @@ toughness=4
 name=Infernal Medusa
 mana={3}{B}{B}
 subtype=Gorgon
-color=Black
 rarity=U
 text=Whenever Infernal Medusa blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 power=2
@@ -622,7 +1177,6 @@ alias=1267
 name=The Brute
 mana={R}
 subtype=Aura
-color=Red
 target=creature
 auto=1/0
 auto={R}{R}{R}:regenerate
@@ -636,7 +1190,6 @@ toughness=3
 name=Segovian Leviathan
 mana={4}{U}
 subtype=Leviathan
-color=Blue
 rarity=U
 text=Islandwalk
 power=3
@@ -645,26 +1198,115 @@ type=Creature
 abilities=islandwalk
 [/card]
 [card]
+toughness=3
+name=Pavel Maliki
+mana={4}{B}{R}
+subtype=Human
+auto={B}{R}:1/0
+rarity=U
+text={B}{R}: Pavel Maliki gets +1/+0 until end of turn.
+power=5
+id=1674
+type=Creature
+abilities=legendary
+[/card]
+[card]
+toughness=4
+name=Lady Orca
+mana={5}{B}{R}
+subtype=Demon
+rarity=U
+power=7
+type=Creature
+id=1667
+abilities=legendary
+[/card]
+[card]
 name=Divine Transformation
 mana={2}{W}{W}
 subtype=Aura
-color=White
 target=creature
 auto=3/3
 rarity=R
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +3/+3.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)  Enchanted creature gets +3/+3.
 id=1608
 type=Enchantment
 [/card]
 [card]
-name=Moat
-mana={2}{W}{W}
-color=White
+toughness=5
+name=The Lady of the Mountain
+mana={4}{R}{G}
+subtype=Giant
+rarity=U
+power=5
+type=Creature
+id=1689
+abilities=legendary
+[/card]
+[card]
 auto=lord(creature[-flying]) cantattack
-rarity=R
 text=Creatures without flying can't attack.
-type=Enchantment
+rarity=R
+name=Moat
 id=1626
+type=Enchantment
+mana={2}{W}{W}
+[/card]
+[card]
+auto=lord(creature) -swampwalk
+text=Creatures with swampwalk can be blocked as though they didn't have swampwalk.
+rarity=U
+name=Quagmire
+id=1455
+type=Enchantment
+mana={2}{B}
+[/card]
+[card]
+toughness=6
+name=Wall of Light
+mana={2}{W}
+subtype=Wall
+rarity=U
+text=Defender (This creature can't attack.)   Protection from black
+power=1
+id=1641
+type=Creature
+abilities=defender,protection from black
+[/card]
+[card]
+toughness=2
+name=Radjan Spirit
+mana={3}{G}
+subtype=Spirit
+auto={T}:-flying target(creature)
+rarity=U
+text={T}: Target creature loses flying until end of turn.
+power=3
+id=1539
+type=Creature
+[/card]
+[card]
+toughness=2
+name=Adun Oakenshield
+mana={B}{R}{G}
+subtype=Human Knight
+auto={B}{R}{G}{T}:moveTo(myhand) target(creature|mygraveyard)
+rarity=R
+text={B}{R}{G}, {T}: Return target creature card from your graveyard to your hand.
+power=1
+id=1642
+type=Creature
+abilities=legendary
+[/card]
+[card]
+auto=lord(creature[legendary]) doesnotuntap
+auto=tap all(creature[legendary]) 
+text=Legendary creatures don't untap during their controllers' untap steps. When Arena of the Ancients enters the battlefield, tap all legendary creatures.
+rarity=R
+name=Arena of the Ancients
+id=1400
+type=Artifact
+mana={3}
 [/card]
 [card]
 toughness=4
@@ -680,26 +1322,36 @@ type=Creature
 [/card]
 [card]
 toughness=2
+name=Tuknir Deathlock
+mana={R}{R}{G}{G}
+subtype=Human Wizard
+auto={R}{G}{T}:2/2 target(creature)
+rarity=R
+text=Flying   {R}{G}, {T}: Target creature gets +2/+2 until end of turn.
+power=2
+id=1694
+type=Creature
+abilities=legendary,flying
+[/card]
+[card]
+toughness=2
 name=Barbary Apes
 mana={1}{G}
 subtype=Ape
-color=Green
 rarity=C
 power=2
-id=1516
 type=Creature
+id=1516
 [/card]
 [card]
 toughness=5
 name=Torsten Von Ursus
 mana={3}{G}{G}{W}
 subtype=Human Soldier
-color=White,Green
 rarity=U
-text=Legendary
 power=5
-id=1693
 type=Creature
+id=1693
 abilities=legendary
 [/card]
 [card]
@@ -707,7 +1359,6 @@ toughness=2
 name=Thunder Spirit
 mana={1}{W}{W}
 subtype=Elemental Spirit
-color=White
 rarity=R
 text=Flying, first strike
 power=2
@@ -716,12 +1367,34 @@ type=Creature
 abilities=flying,first strike
 [/card]
 [card]
+auto=damage:2 opponent
+auto=life:2 controller
+text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
+rarity=C
+name=Syphon Soul
+id=1458
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+toughness=6
+name=Lady Caleria
+mana={3}{G}{G}{W}{W}
+subtype=Human Archer
+auto={T}:damage:3 target(creature[attacking;blocking])
+rarity=R
+text={T}: Lady Caleria deals 3 damage to target attacking or blocking creature.
+power=3
+id=1665
+type=Creature
+abilities=legendary
+[/card]
+[card]
 toughness=1
 name=Hell's Caretaker
 mana={3}{B}
 subtype=Horror
-color=Black
-auto={B},{T},{s(creature|myinplay)}:moveTo(myinplay) target(creature|mygraveyard)
+auto={B}{T}{S(creature|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard)
 rarity=R
 text={B}, {T}, Sacrifice a creature: Return target creature card from your graveyard to play. Play this ability only during your upkeep.
 power=1
@@ -733,10 +1406,9 @@ toughness=4
 name=Princess Lucrezia
 mana={3}{U}{U}{B}
 subtype=Human Wizard
-color=Blue,Black
 auto={T}:Add {U}
 rarity=U
-text=Legendary      {T}: Add {U} to your mana pool.
+text={T}: Add {U} to your mana pool.
 power=5
 id=1675
 type=Creature
@@ -747,812 +1419,20 @@ toughness=4
 name=Durkwood Boars
 mana={4}{G}
 subtype=Boar
-color=Green
 rarity=C
 power=4
-id=1522
 type=Creature
+id=1522
 [/card]
 [card]
 toughness=6
 name=Wall of Earth
 mana={1}{R}
 subtype=Wall
-color=Red
 rarity=C
 text=Defender (This creature can't attack.)
 power=0
 id=1595
 type=Creature
 abilities=defender
-[/card]
-[card]
-name=Boomerang
-mana={U}{U}
-color=Blue
-target=*
-auto=moveto(ownerhand)
-rarity=C
-text=Return target permanent to its owner's hand.
-id=1474
-type=Instant
-[/card]
-[card]
-toughness=3
-name=Ivory Guardians
-mana={4}{W}{W}
-subtype=Giant Cleric
-auto=aslongas(*[red]|opponentinplay) lord(Ivory Guardians) 1/1
-rarity=U
-text=Protection from red     Creatures named Ivory Guardians get +1/+1 as long as an opponent controls a red permanent.
-power=3
-id=1621
-type=Creature
-abilities=protection from red
-[/card]
-[card]
-toughness=4
-name=AErathi Berserker
-mana={2}{R}{R}{R}
-subtype=Human Berserker
-auto=rampage(3/3,1)
-rarity=U
-text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
-power=2
-id=1557
-type=Creature
-[/card]
-[card]
-toughness=4
-name=Livonya Silone
-mana={2}{R}{R}{G}{G}
-subtype=Human Warrior
-color=Red,Green
-auto=aslongas(land[legendary]|opponentinplay) unblockable
-rarity=R
-text=Legendary   First strike, legendary landwalk
-power=4
-id=1668
-type=Creature
-abilities=legendary,first strike
-[/card]
-[card]
-name=Horror of Horrors
-mana={3}{B}{B}
-color=Black
-auto={S(swamp|myinplay)}:regenerate target(creature[black])
-rarity=U
-text=Sacrifice a Swamp: Regenerate target black creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-type=Enchantment
-id=1446
-[/card]
-[card]
-toughness=3
-name=Tor Wauki
-mana={2}{B}{B}{R}
-subtype=Human Archer
-color=Black,Red
-auto={T}:damage:2 target(creaure[attacking;blocking])
-rarity=U
-text=Legendary   {T}: Tor Wauki deals 2 damage to target attacking or blocking creature.
-power=3
-id=1692
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=5
-name=Jedit Ojanen
-mana={4}{W}{W}{U}
-subtype=Cat Warrior
-color=Blue,White
-rarity=U
-text=Legendary  
-power=5
-id=1660
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=5
-name=Jerrard of the Closed Fist
-mana={3}{G}{G}{R}
-subtype=Human Knight
-color=Green,Red
-rarity=U
-text=Legendary  
-power=6
-id=1661
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=3
-name=Kasimir the Lone Wolf
-mana={4}{U}{W}
-subtype=Human Warrior
-color=Blue,White
-rarity=U
-text=Legendary  
-power=5
-id=1663
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=4
-name=Tobias Andrion
-mana={3}{W}{U}
-subtype=Human Advisor
-color=White,Blue
-rarity=U
-text=Legendary
-power=4
-id=1691
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=2
-name=Cat Warriors
-mana={1}{G}{G}
-subtype=Cat Warrior
-color=Green
-rarity=C
-text=Forestwalk
-power=2
-id=1517
-type=Creature
-abilities=forestwalk
-[/card]
-[card]
-toughness=3
-name=Lord Magnus
-mana={3}{G}{W}{W}
-subtype=Human Druid
-color=White,Green
-auto=lord(creature) -plainswalk
-auto=lord(creature) -forestwalk
-rarity=U
-text=Legendary, First strike    Creatures with plainswalk can be blocked as though they didn't have plainswalk.   Creatures with forestwalk can be blocked as though they didn't have forestwalk.
-power=4
-id=1669
-type=Creature
-abilities=legendary,first strike
-[/card]
-[card]
-toughness=5
-name=Gwendlyn Di Corci
-mana={U}{B}{B}{R}
-subtype=Human Rogue
-auto={T}:discard:1 target(player)
-rarity=R
-text={T}: Target player discards a card at random. Play this ability only during your turn.
-power=3
-id=1654
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=1
-name=Killer Bees
-mana={1}{G}{G}
-subtype=Insect
-color=Green
-auto={G}:1/1
-rarity=R
-text=Flying     {G}: Killer Bees gets +1/+1 until end of turn.
-power=0
-id=1532
-type=Creature
-abilities=flying
-[/card]
-[card]
-name=Gravity Sphere
-mana={2}{R}
-color=Red
-auto=lord(creature) -flying
-rarity=R
-text=All creatures lose flying.
-type=Enchantment
-id=1577
-[/card]
-[card]
-name=Giant Strength
-mana={R}{R}
-subtype=Aura
-color=Red
-target=creature
-auto=2/2
-rarity=C
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)     Enchanted creature gets +2/+2.
-id=1575
-type=Enchantment
-[/card]
-[card]
-toughness=5
-name=Jasmine Boreal
-mana={3}{G}{W}
-subtype=Human
-color=Green,White
-rarity=U
-text=Legendary  
-power=4
-id=1659
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=6
-name=Wall of Opposition
-mana={3}{R}{R}
-subtype=Wall
-color=Red
-auto={1}:1/0
-rarity=C
-text=Defender (This creature can't attack.)     {1}: Wall of Opposition gets +1/+0 until end of turn.
-power=0
-id=1597
-type=Creature
-abilities=defender
-[/card]
-[card]
-auto=lord(creature|myinplay) 0/2
-text=Creatures you control get +0/+2 until end of turn.
-rarity=U
-name=Shield Wall
-id=1634
-type=Instant
-mana={1}{W}
-[/card]
-[card]
-toughness=1
-name=Tundra Wolves
-mana={W}
-subtype=Wolf
-color=White
-rarity=C
-text=First strike (This creature deals combat damage before creatures without first strike.)
-power=1
-id=1638
-type=Creature
-abilities=first strike
-[/card]
-[card]
-toughness=1
-name=Zephyr Falcon
-mana={1}{U}
-subtype=Bird
-color=Blue
-rarity=C
-text=Flying, vigilance
-power=1
-id=1512
-type=Creature
-abilities=flying,vigilance
-[/card]
-[card]
-toughness=5
-name=Barktooth Warbeard
-mana={4}{B}{R}{R}
-subtype=Human Warrior
-color=Black,Red
-rarity=U
-text=Legendary
-power=6
-id=1647
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=2
-name=Ragnar
-mana={W}{U}{G}
-subtype=Human Cleric
-color=White,Blue,Green
-auto={W}{U}{G}{T}:regenerate target(creature)
-rarity=R
-text=Legendary      {W}{U}{G}, {T}:  Regenerate target creature.
-power=2
-id=1676
-type=Creature
-abilities=legendary
-[/card]
-[card]
-name=Deadfall
-mana={2}{G}
-color=Green
-auto=lord(creature) -forestwalk
-rarity=U
-text=Creatures with forestwalk can be blocked as though they didn't have forestwalk.
-type=Enchantment
-id=1521
-[/card]
-[card]
-toughness=*
-name=Dakkon Blackblade
-mana={2}{B}{U}{U}{W}
-subtype=Human Warrior
-color=White,Blue,Black
-auto=foreach(land|myinplay) 1/1
-rarity=R
-text=Legendary     Dakkon Blackblade's power and toughness are each equal to the number of lands you control.
-power=*
-id=1651
-type=Creature
-abilities=legendary
-[/card]
-[card]
-auto={T}:add {G}
-text={T}: Add {G} to your mana pool.     {T}: Target 1/1 creature gets +1/+2 until end of turn.
-rarity=U
-name=Pendelhaven
-id=1703
-type=Land
-abilities=legendary
-[/card]
-[card]
-toughness=7
-name=Riven Turnbull
-mana={5}{U}{B}
-subtype=Human Advisor
-color=Blue,Black
-auto={T}:Add {B}
-rarity=U
-text=Legendary      {T}: Add {B} to your mana pool.
-power=5
-id=1680
-type=Creature
-abilities=legendary
-[/card]
-[card]
-name=Acid Rain
-mana={3}{U}
-color=Blue
-auto=destroy all(forest)
-rarity=R
-text=Destroy all forests.
-type=Sorcery
-id=1470
-[/card]
-[card]
-auto=lord(creature|myinplay) 1/1
-auto=aslongas(creature[-artifact;-white]|myinplay) lord(creature|myinplay) 1/1
-text=Creatures you control get +1/+1 as long as you control no nonartifact, nonwhite creatures.
-rarity=R
-name=Angelic Voices
-id=1602
-type=Enchantment
-mana={2}{W}{W}
-[/card]
-[card]
-auto=moveTo(myInPlay) target(land[basic]|myLibrary)
-text=Search your library for a basic land card and put that card into play. Then shuffle your library.
-rarity=U
-name=Untamed Wilds
-id=1550
-type=Sorcery
-mana={2}{G}
-[/card]
-[card]
-toughness=2
-name=Jacques le Vert
-mana={1}{R}{G}{W}
-subtype=Human Warrior
-color=Red,Green,white
-auto=lord(creature[green]|myinplay) 0/2
-rarity=R
-text=Legendary      Green creatures you control get +0/+2.
-power=3
-id=1658
-type=Creature
-abilities=legendary
-[/card]
-[card]
-auto=lord(creature) -1/0
-text=All creatures get -1/-0 until end of turn.
-rarity=C
-name=Hell Swarm
-id=1443
-type=Instant
-mana={B}
-[/card]
-[card]
-name=Teleport
-mana={U}{U}{U}
-target=creature
-auto=unblockable
-rarity=R
-text=Play Teleport only after attackers are declared and before blockers are declared.     Target creature is unblockable this turn.
-type=Instant
-id=1506
-[/card]
-[card]
-name=Great Wall
-mana={2}{W}
-color=White
-auto=lord(creature) -plainswalk
-rarity=U
-text=Creatures with plainswalk can be blocked as though they didn't have plainswalk.
-type=Enchantment
-id=1615
-[/card]
-[card]
-auto={B}:draw:1 && life:-2
-text={B}, Pay 2 life: Draw a card.
-rarity=R
-name=Greed
-id=1441
-type=Enchantment
-mana={3}{B}
-[/card]
-[card]
-auto={T}:Add {W}
-auto={T}:moveTo(ownerhand) target(creature[legendary])
-text=Legendary   {T}: Add {W} to your mana pool.   {W}, {T}: Return target legendary creature to its owner's hand.
-rarity=R
-name=Karakas
-id=1701
-type=Land
-abilities=legendary
-[/card]
-[card]
-toughness=3
-name=Beasts of Bogardan
-mana={4}{R}
-subtype=Beast
-color=Red
-auto=aslongas(*[white]|opponentinplay) 1/1
-rarity=R
-text=Protection from red   Beasts of Bogardan gets +1/+1 as long as any opponent controls a white permanent.
-power=3
-id=1559
-type=Creature
-abilities=protection from red
-[/card]
-[card]
-toughness=6
-name=Wall of Heat
-mana={2}{R}
-subtype=Wall
-color=Red
-rarity=C
-text=Defender (This creature can't attack.)
-power=2
-id=1596
-type=Creature
-abilities=defender
-[/card]
-[card]
-name=Flash Counter
-mana={1}{U}
-target=instant|stack
-auto=fizzle
-rarity=C
-text=Counter target instant spell.
-type=Instant
-id=1482
-[/card]
-[card]
-name=Relic Barrier
-mana={2}
-color=Artifact
-auto={T}:tap target(artifact)
-rarity=U
-text={T}: Tap target artifact.
-type=Artifact
-id=1419
-[/card]
-[card]
-toughness=4
-name=Akron Legionnaire
-mana={6}{W}{W}
-subtype=Giant Soldier
-color=White
-auto=lord(creature[-artifact;-Akron Legionnaire]|myinplay) cantattack
-rarity=R
-text=Except for creatures named Akron Legionnaire and artifact creatures, creatures you control can't attack.
-power=8
-id=1599
-type=Creature
-[/card]
-[card]
-toughness=1
-name=Carrion Ants
-mana={2}{B}{B}
-subtype=Insect
-color=Black
-auto={1}:1/1
-rarity=R
-text={1}: Carrion Ants gets +1/+1 until end of turn.
-power=0
-id=1430
-type=Creature
-[/card]
-[card]
-target=creature
-text=Target creature gets +0/+X until end of turn, where X is its converted mana cost.
-rarity=U
-name=Great Defender
-id=1614
-type=Instant
-mana={W}
-[/card]
-[card]
-toughness=4
-name=Craw Giant
-mana={3}{G}{G}{G}{G}
-subtype=Giant
-auto=rampage(2/2,1)
-rarity=U
-text=Trample     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
-power=6
-id=1520
-type=Creature
-abilities=trample
-[/card]
-[card]
-toughness=1
-name=Walking Dead
-mana={1}{B}
-subtype=Zombie
-color=Black
-auto={B}:regenerate
-rarity=C
-text={B}: Regenerate Walking Dead.
-power=1
-id=1466
-type=Creature
-[/card]
-[card]
-toughness=1
-name=Crookshank Kobolds
-mana={0}
-subtype=Kobold
-color=Red
-rarity=C
-text=Crookshank Kobolds is red.
-power=0
-id=1567
-type=Creature
-[/card]
-[card]
-toughness=2
-name=Hyperion Blacksmith
-mana={1}{R}{R}
-subtype=Human Artificer
-color=Red
-auto={T}:tap target(artifact|opponentinplay)
-auto={T}:untap target(artifact|opponentinplay)
-rarity=U
-text={T}: You may tap or untap target artifact an opponent controls.
-power=2
-id=1578
-type=Creature
-[/card]
-[card]
-auto=foreach(creature[-black]) damage:1 controller
-auto=damage:3 controller
-auto=destroy all(creature[-black]) 
-text=Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures put into all graveyards this way.
-rarity=R
-name=Hellfire
-id=1445
-type=Sorcery
-mana={2}{B}{B}{B}
-[/card]
-[card]
-toughness=2
-name=Headless Horseman
-mana={2}{B}
-subtype=Zombie Knight
-color=Black
-rarity=C
-power=2
-id=1442
-type=Creature
-[/card]
-[card]
-text=All lands are 1/1 creatures that are still lands.
-rarity=R
-name=Living Plane
-id=1533
-type=World Enchantment
-mana={2}{G}{G}
-[/card]
-[card]
-text=Whenever a Mountain an opponent controls becomes tapped, you gain 1 life.
-rarity=R
-name=Lifeblood
-id=1625
-type=Enchantment
-mana={2}{W}{W}
-[/card]
-[card]
-name=Undertow
-mana={2}{U}
-color=Blue
-auto=lord(creature) -islandwalk
-rarity=U
-text=Creatures with islandwalk can be blocked as though they didn't have islandwalk.
-type=Enchantment
-id=1508
-[/card]
-[card]
-toughness=1
-name=Righteous Avengers
-mana={3}{U}
-subtype=Human Soldier
-color=White
-rarity=U
-text=Plainswalk
-power=3
-id=1632
-type=Creature
-abilities=plainswalk
-[/card]
-[card]
-toughness=1
-name=Emerald Dragonfly
-mana={1}{G}
-subtype=Insect
-color=Green
-auto={G}{G}:first strike
-rarity=C
-text=Flying      {G}{G}: Emerald Dragonfly gains first strike until end of turn.
-power=1
-id=1524
-type=Creature
-abilities=flying
-[/card]
-[card]
-name=Immolation
-mana={R}
-subtype=Aura
-color=Red
-target=creature
-auto=2/-2
-rarity=C
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)     Enchanted creature gets +2/-2.
-id=1579
-type=Enchantment
-[/card]
-[card]
-toughness=4
-name=Lady Orca
-mana={5}{B}{R}
-subtype=Demon
-color=Black,Red
-rarity=U
-text=Legendary
-power=7
-id=1667
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=3
-name=Pavel Maliki
-mana={4}{B}{R}
-subtype=Human
-color=Black,Red
-auto={B}{R}:1/0
-rarity=U
-text=Legendary    {B}{R}: Pavel Maliki gets +1/+0 until end of turn.
-power=5
-id=1674
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=5
-name=The Lady of the Mountain
-mana={4}{R}{G}
-subtype=Giant
-color=Red,Green
-rarity=U
-text=Legendary
-power=5
-id=1689
-type=Creature
-abilities=legendary
-[/card]
-[card]
-name=Quagmire
-mana={2}{B}
-color=Black
-auto=lord(creature) -swampwalk
-rarity=U
-text=Creatures with swampwalk can be blocked as though they didn't have swampwalk.
-type=Enchantment
-id=1455
-[/card]
-[card]
-toughness=2
-name=Radjan Spirit
-mana={3}{G}
-subtype=Spirit
-color=Green
-auto={T}:-flying target(creature)
-rarity=U
-text={T}: Target creature loses flying until end of turn.
-power=3
-id=1539
-type=Creature
-[/card]
-[card]
-toughness=6
-name=Wall of Light
-mana={2}{W}
-subtype=Wall
-color=White
-rarity=U
-text=Defender (This creature can't attack.)    Protection from black
-power=1
-id=1641
-type=Creature
-abilities=defender,protection from black
-[/card]
-[card]
-auto=lord(creature[legendary]) doesnotuntap
-auto=tap all(creature[legendary]) 
-text=Legendary creatures don't untap during their controllers' untap steps. When Arena of the Ancients comes into play, tap all legendary creatures.
-rarity=R
-name=Arena of the Ancients
-id=1400
-type=Artifact
-mana={3}
-[/card]
-[card]
-toughness=2
-name=Adun Oakenshield
-mana={B}{R}{G}
-subtype=Human Knight
-color=Black,Red,Green
-auto={B}{R}{G}{T}:moveTo(myhand) target(creature|mygraveyard)
-rarity=R
-text=Legendary   {B}{R}{G}, {T}: Return target creature card from your graveyard to your hand.
-power=1
-id=1642
-type=Creature
-abilities=legendary
-[/card]
-[card]
-toughness=2
-name=Tuknir Deathlock
-mana={R}{R}{G}{G}
-subtype=Human Wizard
-color=Red,Green
-auto={R}{G}{T}:2/2 target(creature)
-rarity=R
-text=Legendary   Flying      {R}{G}, {T}: Target creature gets +2/+2 until end of turn.
-power=2
-id=1694
-type=Creature
-abilities=legendary,flying
-[/card]
-[card]
-toughness=6
-name=Lady Caleria
-mana={3}{G}{G}{W}{W}
-subtype=Human Archer
-color=White,Green
-auto={T}:damage:3 target(creature[attacking;blocking])
-rarity=R
-text=Legendary   {T}: Lady Caleria deals 3 damage to target attacking or blocking creature.
-power=3
-id=1665
-type=Creature
-abilities=legendary
-[/card]
-[card]
-name=Syphon Soul
-mana={2}{B}
-target=player
-auto=damage:2
-auto=life:2 controller
-rarity=C
-text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
-type=Sorcery
-id=1458
 [/card]

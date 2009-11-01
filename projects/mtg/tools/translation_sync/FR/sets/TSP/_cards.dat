@@ -1,26 +1,12 @@
 [card]
-toughness=2
-name=Tivadar of Thorn
-mana={1}{W}{W}
-subtype=Human Knight
-auto=destroy target(goblin)
-rarity=R
-text=First strike, protection from red When Tivadar of Thorn comes into play, destroy target Goblin.
-power=2
-id=116736
-type=Creature
-abilities=first strike, protection from red, legendary
-[/card]
-[card]
 toughness=1
 name=Unyaro Bees
 mana={G}{G}{G}
 subtype=Insect
-color=Green
 auto={G}:1/1
-auto={3}{G}{S}:Damage:2 target(creature, player)
+auto={3}{G}{S}:Damage:2 target(creature,player)
 rarity=R
-text={G}: Unyaro Bees gets +1/+1 until end of turn.  {3}{G}Sacrifice Unyaro Bees: Unyaro Bees deals 2 damage to target creaturen or player.
+text={G}: Unyaro Bees gets +1/+1 until end of turn.   {3}{G}, Sacrifice Unyaro Bees: Unyaro Bees deals 2 damage to target creature or player.
 power=0
 id=113579
 type=Creature
@@ -30,12 +16,24 @@ abilities=flying
 name=Tendrils of Corruption
 mana={3}{B}
 target=creature
-auto=foreach(swamp|myinplay) damage:1 target(creature)
-auto=foreach(swamp|myinplay) life:1 controller
+auto=foreach(swamp|myBattlefield) damage:1
+auto=foreach(swamp|myBattlefield) life:1 controller
 rarity=C
 text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
 type=Instant
 id=106632
+[/card]
+[card]
+toughness=2
+name=Herd Gnarr
+mana={3}{G}
+subtype=Beast
+auto=@movedTo(other creature|myBattlefield):2/2 ueot
+rarity=C
+text=Whenever another creature enters the battlefield under your control, Herd Gnarr gets +2/+2 until end of turn.
+power=2
+id=118873
+type=Creature
 [/card]
 [card]
 toughness=5
@@ -44,7 +42,7 @@ mana={5}{W}
 subtype=Cat Soldier
 auto=life:4
 rarity=C
-text=Vigilance When Jedit's Dragoons comes into play, you gain 4 life.
+text=Vigilance   When Jedit's Dragoons enters the battlefield, you gain 4 life.
 power=2
 id=113571
 type=Creature
@@ -52,44 +50,43 @@ abilities=vigilance
 [/card]
 [card]
 subtype=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 name=Island
 id=122077
 type=Basic Land
 [/card]
 [card]
-toughness=4
-name=Bogardan Rager
-mana={5}{R}
-subtype=Elemental
-auto=4/0 target(creature)
-rarity=C
-text=Flash (You may play this spell any time you could play an instant.) When Bogardan Rager comes into play, target creature gets +4/+0 until end of turn.
-power=3
-id=108901
-type=Creature
-abilities=flash
-[/card]
-[card]
 subtype=Mountain
-auto={T}:Add{R}
+auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 name=Mountain
 id=122080
 type=Basic Land
+[/card]
+[card]
+toughness=4
+name=Stonebrow, Krosan Hero
+mana={3}{R}{G}
+subtype=Centaur Warrior
+auto=lord(creature[attacking,trample]|myBattlefield) 2/2
+rarity=R
+text=Trample   Whenever a creature you control with trample attacks, it gets +2/+2 until end of turn.
+power=4
+id=118915
+type=Creature
+abilities=legendary,trample
 [/card]
 [card]
 toughness=1
 name=Drudge Reavers
 mana={3}{B}
 subtype=Skeleton
-color=Black
 auto={B}:regenerate
 rarity=C
-text=text
+text=Flash (You may cast this spell any time you could cast an instant.)  {B}: Regenerate Drudge Reavers. 
 power=2
 id=108850
 type=Creature
@@ -97,9 +94,9 @@ abilities=flash
 [/card]
 [card]
 subtype=Forest
-auto={T}:add{G}
+auto={T}:Add {G}
 text=G
-rarity=C
+rarity=L
 name=Forest
 id=118906
 type=Basic Land
@@ -141,36 +138,47 @@ id=111051
 type=Creature
 [/card]
 [card]
-auto={T}:add{1}
+auto={T}:Add {1}
 auto={T}:regenerate target(insect)
 auto={T}:regenerate target(rat)
 auto={T}:regenerate target(spider)
 auto={T}:regenerate target(squirrel)
-text={T}: Add {1} to your mana pool. {T}: Regenerate target Insect, Rat, Spider, or Squirrel.
+text={T}: Add {1} to your mana pool.   {T}: Regenerate target Insect, Rat, Spider, or Squirrel.
 rarity=R
 name=Swarmyard
 id=114913
 type=Land
 [/card]
 [card]
-toughness=2
+toughness=2 
 name=Sprite Noble
 mana={1}{U}{U}
 subtype=Faerie
-auto=lord(creature[flying]|myinplay) 0/1 other
-auto={T}:lord(creature[flying]|myinplay) 1/0 other
+auto=lord(creature[flying]|myBattlefield) 0/1 other
+auto={T}:lord(creature[flying]|myBattlefield) 1/0 other
 rarity=R
-text=Flying. Other creatures you control with flying get +0/+1. {T}: Other creatures you control with flying get +1/+0 until end of turn.
+text=Flying. Other creatures you control with flying get +0/+1.   {T}: Other creatures you control with flying get +1/+0 until end of turn.
 power=2
 id=116386
 type=Creature
 abilities=flying
 [/card]
 [card]
-color=Land
+toughness=4
+name=Penumbra Spider
+mana={2}{G}{G}
+subtype=Spider
+auto=@movedTo(this|graveyard):token(Spider,Creature spider,2/4,reach black)
+rarity=C
+text=Reach (This creature can block creatures with flying.) When Penumbra Spider is put into a graveyard from play, put a 2/4 black Spider creature token with reach onto the battlefield.
+power=2
+id=118899
+type=Creature
+[/card]
+[card]
 auto={T}:Add {1} 
 auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
-text={T}: Add {1} to your mana pool.  {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token into play.
+text={T}: Add {1} to your mana pool.   {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token onto the battlefield.
 rarity=U
 name=Urza's Factory
 id=116384
@@ -178,9 +186,9 @@ type=Land
 [/card]
 [card]
 subtype=Swamp
-auto={T}:Add{B}
+auto={T}:Add {B}
 text=B
-rarity=C
+rarity=L
 name=Swamp
 id=118903
 type=Basic Land
@@ -209,38 +217,62 @@ type=Instant
 id=113523
 [/card]
 [card]
+toughness=2
+name=Psionic Sliver
+mana={4}{U}
+subtype=Sliver
+auto=lord(sliver) {T}:damage:2 target(creature,player) && damage:3 controller
+rarity=R
+text=All Sliver creatures have "{T}: This creature deals 2 damage to target creature or player and 3 damage to itself."
+power=2
+id=113559
+type=Creature
+[/card]
+[card]
 subtype=Plains
-auto={T}:Add{W}
+auto={T}:Add {W}
 text=W
-rarity=C
+rarity=L
 name=Plains
 id=122085
 type=Basic Land
 [/card]
 [card]
 subtype=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 name=Island
 id=118905
 type=Basic Land
 [/card]
 [card]
-name=Sprout
-mana={G}
-color=Green
+toughness=5
+name=Stronghold Overseer
+mana={3}{B}{B}{B}
+subtype=Demon
+auto={B}{B}:lord(creature[shadow]) 1/0 && lord(creature[-shadow]) -1/0
+rarity=R
+text=Flying   Shadow (This creature can block or be blocked by only creatures with shadow.) {B}{B}: Creatures with shadow get +1/+0 until end of turn and creatures without shadow get -1/-0 until end of turn.
+power=5
+id=109671
+type=Creature
+abilities=flying,shadow
+[/card]
+[card]
 auto=token(Saproling,Creature Saproling,1/1,green)
+text=Put a 1/1 green Saproling creature token onto the battlefield.
 rarity=C
-text=Put a 1/1 green Saproling creature token into play.
-type=Instant
+name=Sprout
 id=122079
+type=Instant
+mana={G}
 [/card]
 [card]
 subtype=Mountain
-auto={T}:Add{R}
+auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 name=Mountain
 id=122090
 type=Basic Land
@@ -253,7 +285,7 @@ subtype=Sliver
 auto=lord(sliver) haste
 auto=lord(sliver) {1}{S}:2/2 target(sliver)
 rarity=U
-text=All Sliver creatures have haste. All Slivers have "{1}, Sacrifice this permanent: Target Sliver creature gets +2/+2 until end of turn."
+text=All Sliver creatures have haste.   All Slivers have "{1}, Sacrifice this permanent: Target Sliver creature gets +2/+2 until end of turn."
 power=1
 id=109727
 type=Creature
@@ -275,18 +307,18 @@ toughness=1
 name=Icatian Crier
 mana={2}{W}
 subtype=Human Spellshaper
-auto={1}{W}{T}{S(*|myhand)}:token(Citizen,creature citizen, 1/1, white)*2
+auto={1}{W}{T}{S(*|myhand)}:token(Citizen,creature citizen, 1/1, white) && token(Citizen,creature citizen, 1/1, white)
 rarity=C
-text={1}{W}, {T}, Discard a card: Put two 1/1 white Citizen creature tokens into play.
+text={1}{W}, {T}, Discard a card: Put two 1/1 white Citizen creature tokens onto the battlefield.
 power=1
 id=108900
 type=Creature
 [/card]
 [card]
 subtype=Mountain
-auto={T}:Add{R}
+auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 name=Mountain
 id=118926
 type=Basic Land
@@ -299,16 +331,16 @@ subtype=Human Wizard
 auto=tap
 auto={1}{T}:destroy all(artifact,creature,enchantment)
 rarity=R
-text=Magus of the Disk comes into play tapped. {1}, {T}: Destroy all artifacts, creatures, and enchantments.
+text=Magus of the Disk enters the battlefield tapped.   {1}, {T}: Destroy all artifacts, creatures, and enchantments.
 power=2
 id=126298
 type=Creature
 [/card]
 [card]
 subtype=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 name=Island
 id=122095
 type=Basic Land
@@ -318,8 +350,8 @@ toughness=1
 name=Wormwood Dryad
 mana={2}{G}
 subtype=Dryad
-auto={G}:forestwalk && damage 1 controller
-auto={B}:swampwalk && damage 1 controller
+auto={G}:forestwalk && damage:1 controller
+auto={B}:swampwalk && damage:1 controller
 rarity=C
 text={G}: Wormwood Dryad gains forestwalk until end of turn and deals 1 damage to you. {B}: Wormwood Dryad gains swampwalk until end of turn and deals 1 damage to you.
 power=3
@@ -339,17 +371,17 @@ id=108792
 type=Creature
 [/card]
 [card]
-toughness=1
-name=Viashino Bladescout
-mana={1}{R}{R}
-subtype=Viashino Scout
-auto=first strike target(creature)
-rarity=C
-text=Flash (You may play this spell any time you could play an instant.) When Viashino Bladescout comes into play, target creature gains first strike until end of turn.
-power=2
-id=111069
+toughness=5
+name=Plague Sliver
+mana={2}{B}{B}
+subtype=Sliver
+auto=@each my upkeep:foreach(sliver|myBattlefield) life:-1 controller
+auto=@each opponent upkeep:foreach(sliver|opponentBattlefield) life:-1 opponent
+rarity=R
+text=All Slivers have "At the beginning of your upkeep, this permanent deals 1 damage to you."
+power=5
+id=116748
 type=Creature
-abilities=flash
 [/card]
 [card]
 toughness=2
@@ -368,9 +400,9 @@ toughness=3
 name=Tolarian Sentinel
 mana={3}{U}
 subtype=Human Spellshaper
-auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(*|myinplay)
+auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(*|myBattlefield)
 rarity=C
-text=Flying {U}, {T}, Discard a card: Return target permanent you control to its owner's hand.
+text=Flying   {U}, {T}, Discard a card: Return target permanent you control to its owner's hand.
 power=1
 id=108907
 type=Creature
@@ -382,7 +414,7 @@ name=Brass Gnat
 mana={1}
 subtype=Insect
 rarity=C
-text=Flying Brass Gnat doesn't untap during your untap step. At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Gnat.
+text=Flying   Brass Gnat doesn't untap during your untap step. At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Gnat.
 power=1
 id=118876
 type=Artifact Creature
@@ -394,13 +426,24 @@ toughness=2
 name=Ashcoat Bear
 mana={1}{G}
 subtype=Bear
-color=Green
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.)  
+text=Flash (You may cast this spell any time you could cast an instant.)  
 power=2
 id=114905
 type=Creature
 abilities=flash
+[/card]
+[card]
+toughness=5
+name=Skittering Monstrosity
+mana={3}{B}{B}
+subtype=Horror
+auto=@movedTo(creature|mystack):bury
+rarity=U
+text=When you cast a creature spell, sacrifice Skittering Monstrosity.
+power=5
+id=118878
+type=Creature
 [/card]
 [card]
 toughness=2
@@ -419,25 +462,23 @@ toughness=6
 name=Havenwood Wurm
 mana={6}{G}
 subtype=Wurm
-color=Green
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.) Trample. 
+text=Flash (You may cast this spell any time you could cast an instant.) Trample. 
 power=5
 id=108808
 type=Creature
-abilities=flash, trample
+abilities=flash,trample
 [/card]
 [card]
 subtype=Island
-auto={T}:Add{U}
+auto={T}:Add {U}
 text=U
-rarity=C
+rarity=L
 name=Island
 id=122089
 type=Basic Land
 [/card]
 [card]
-color=Green
 text=Squall Line deals X damage to each creature with flying and each player.
 rarity=R
 name=Squall Line
@@ -448,9 +489,9 @@ alias=1251
 [/card]
 [card]
 subtype=Swamp
-auto={T}:Add{B}
+auto={T}:Add {B}
 text=B
-rarity=C
+rarity=L
 name=Swamp
 id=122078
 type=Basic Land
@@ -460,38 +501,49 @@ toughness=5
 name=Scarwood Treefolk
 mana={3}{G}
 subtype=Treefolk
-color=Green
 auto=tap
 rarity=C
-text=Scarwood Treefolk comes into play tapped.
+text=Scarwood Treefolk enters the battlefield tapped.
 power=3
 id=110524
 type=Creature
 [/card]
 [card]
-subtype=Plains
-auto={T}:Add{W}
-text=W
+toughness=2
+name=Amrou Seekers
+mana={2}{W}
+subtype=Kithkin Rebel
 rarity=C
+text=Amrou Seekers can't be blocked except by artifact creatures and/or white creatures.
+power=2
+id=113509
+type=Creature
+abilities=intimidate
+[/card]
+[card]
+subtype=Plains
+auto={T}:Add {W}
+text=W
+rarity=L
 name=Plains
 id=122092
 type=Basic Land
 [/card]
 [card]
-auto={T}:Add{W}
-auto=@movedTo(this|graveyard):may moveTo(myBattlefield) target(plains|mylibrary) && tap
-text={T}: Add {W} to your mana pool. When Flagstones of Trokair is put into a graveyard from play, you may search your library for a Plains card and put it into play tapped. If you do, shuffle your library.
+auto={T}:Add {W}
+auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myBattlefield) target(plains|mylibrary) && tap
+text={T}: Add {W} to your mana pool.   When Flagstones of Trokair is put into a graveyard from the battlefield, you may search your library for a Plains card and put it into onto the battlefield tapped. If you do, shuffle your library.
 rarity=R
 name=Flagstones of Trokair
 id=116733
 type=Land
-abilities=Legendary
+abilities=legendary
 [/card]
 [card]
 subtype=Forest
-auto={T}:add{G}
+auto={T}:Add {G}
 text=G
-rarity=C
+rarity=L
 name=Forest
 id=118927
 type=Basic Land
@@ -511,10 +563,20 @@ name=Strength in Numbers
 mana={1}{G}
 target=creature
 auto=foreach(creature[attacking]) 1/1
+auto=trample
 rarity=C
 text=Until end of turn, target creature gains trample and gets +X/+X, where X is the number of attacking creatures.
 type=Instant
 id=116730
+[/card]
+[card]
+auto=tap
+auto=may copy target(land)
+text=As Vesuva enters the battlefield, you may choose a land on the battlefield. If you do, Vesuva enters the battlefield tapped as a copy of the chosen land.
+rarity=R
+name=Vesuva
+id=113543
+type=Land
 [/card]
 [card]
 toughness=3
@@ -529,14 +591,22 @@ id=109722
 type=Creature
 [/card]
 [card]
+auto={T}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
+rarity=C
+name=Terramorphic Expanse
+id=118874
+type=Land
+[/card]
+[card]
 name=Ghitu Firebreathing
 mana={1}{R}
-target=creature
 subtype=Aura
+target=creature
 auto={R}:1/0
 auto={R}:moveTo(ownerhand)
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature {R}: Enchanted creature gets +1/+0 until end of turn. {R}: Return Ghitu Firebreathing to its owner's hand.
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   {R}: Enchanted creature gets +1/+0 until end of turn.   {R}: Return Ghitu Firebreathing to its owner's hand.
 id=108838
 type=Enchantment
 abilities=flash
@@ -545,7 +615,8 @@ abilities=flash
 name=Orcish Cannonade
 mana={1}{R}{R}
 target=creature,player
-auto=damage:2 && damage:3 controller
+auto=damage:2
+auto=damage:3 controller
 auto=draw:1 controller
 rarity=C
 text=Orcish Cannonade deals 2 damage to target creature or player and 3 damage to you. Draw a card.
@@ -554,44 +625,48 @@ id=114902
 [/card]
 [card]
 subtype=Plains
-auto={T}:Add{W}
+auto={T}:Add {W}
 text=W
-rarity=C
+rarity=L
 name=Plains
 id=122084
 type=Basic Land
 [/card]
 [card]
-auto={T}{S}:moveTo(myinplay) target(basic|mylibrary) && tap
-text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
-rarity=C
-name=Terramorphic Expanse
-id=118874
-type=Land
-[/card]
-[card]
 subtype=Forest
-auto={T}:add{G}
+auto={T}:Add {G}
 text=G
-rarity=C
+rarity=L
 name=Forest
 id=122083
 type=Basic Land
 [/card]
 [card]
+name=Verdant Embrace
+mana={3}{G}{G}
+subtype=Aura
+target=creature
+auto=3/3
+auto=@each upkeep:token(Saproling,Creature Saproling,1/1,green)
+rarity=R
+text=Enchant creature Enchanted creature gets +3/+3 and has "At the beginning of each upkeep, put a 1/1 green Saproling creature token onto the battlefield under your control."
+id=109766
+type=Enchantment
+[/card]
+[card]
 subtype=Mountain
-auto={T}:Add{R}
+auto={T}:Add {R}
 text=R
-rarity=C
+rarity=L
 name=Mountain
 id=118921
 type=Basic Land
 [/card]
 [card]
 subtype=Forest
-auto={T}:add{G}
+auto={T}:Add {G}
 text=G
-rarity=C
+rarity=L
 name=Forest
 id=122088
 type=Basic Land
@@ -603,7 +678,7 @@ mana={1}{G}{G}
 subtype=Dryad
 auto=may moveTo(myBattlefield) target(forest|mylibrary) && tap
 rarity=U
-text=Forestwalk When Yavimaya Dryad comes into play, you may search your library for a Forest card and put it into play tapped under target player's control. If you do, shuffle your library.
+text=Forestwalk When Yavimaya Dryad enters the battlefield, you may search your library for a Forest card and put it onto the battlefield tapped under target player's control. If you do, shuffle your library.
 power=2
 id=118884
 type=Creature
@@ -612,35 +687,23 @@ type=Creature
 name=Feebleness
 mana={1}{B}
 subtype=Aura
-color=Black
 target=creature
-auto=:-2/-1
+auto=-2/-1
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.)  Enchant creature  Enchanted creature gets -2/-1.
+text=Flash (You may cast this spell any time you could cast an instant.)  Enchant creature     Enchanted creature gets -2/-1.
 id=108892
 type=Enchantment
+abilities=flash
 [/card]
 [card]
-toughness=5
-name=Dream Stalker
-mana={1}{U}
-subtype=Illusion
-auto=moveTo(ownerhand) target(*|myinplay)
-rarity=C
-text=When Dream Stalker comes into play, return a permanent you control to its owner's hand.
-power=1
-id=108858
-type=Creature
-[/card]
-[card]
-auto={T}:Add{1}
+auto={T}:Add {1}
 auto={1}{U}{T}:moveTo(mylibrary) target(artifact|mygraveyard)
 text={T}: Add {1} to your mana pool. {1}{U}, {T}: Put target artifact card in your graveyard on top of your library.
 rarity=R
 name=Academy Ruins
 id=116725
 type=Land
-abilities=Legendary
+abilities=legendary
 [/card]
 [card]
 name=Assassinate
@@ -653,30 +716,44 @@ type=Sorcery
 id=114918
 [/card]
 [card]
-color=Land
+auto={1}{T}{S}:add{B}
+auto={1}{T}{S}:add{U}
+auto={1}{T}{S}:add{G}
+auto={1}{T}{S}:add{R}
+auto={1}{T}{S}:add{W}
+auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
+text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. When Chromatic Star is put into a graveyard from the battlefield, draw a card.
+rarity=U
+name=Chromatic Star
+id=118891
+type=Artifact
+mana={1}
+[/card]
+[card]
+subtype=Swamp
+auto={T}:Add {B}
+text=B
+rarity=L
+name=Swamp
+id=122076
+type=Basic Land
+[/card]
+[card]
 auto={T}:Add {1} 
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
-text={T}: Add {1} to your mana pool.  {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep into play.
+text={T}: Add {1} to your mana pool.   {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep onto the battlefield.
 rarity=R
 name=Kher Keep
 id=113553
 type=Land
-[/card]
-[card]
-subtype=Swamp
-auto={T}:Add{B}
-text=B
-rarity=C
-name=Swamp
-id=122076
-type=Basic Land
+abilities=legendary
 [/card]
 [card]
 toughness=1
 name=Greenseeker
 mana={G}
 subtype=Elf Spellshaper
-auto={G}{T}{S:(*|myhand)}:moveTo(myHand) target(land[basic]|mylibrary)
+auto={G}{T}{S(*|myhand)}:moveTo(myHand) target(land[basic]|mylibrary)
 rarity=C
 text={G}, {T}, Discard a card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
 power=1
@@ -692,24 +769,36 @@ auto=1/1
 auto=reach
 auto=reachshadow
 rarity=C
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature Enchanted creature gets +1/+1, has reach, and can block creatures with shadow as though they didn't have shadow. (Creatures with reach can block creatures with flying.)
+text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature Enchanted creature gets +1/+1, has reach, and can block creatures with shadow as though they didn't have shadow. (Creatures with reach can block creatures with flying.)
 id=108852
 type=Enchantment
 abilities=flash
 [/card]
 [card]
-auto=aslongas(plains|myinplay) lord(creature|myinplay) 1/1
-auto=aslongas(forest|myinplay) lord(creature|myinplay) 1/1
-auto=aslongas(mountain|myinplay) lord(creature|myinplay) 1/1
-auto=aslongas(swamp|myinplay) lord(creature|myinplay) 1/1
-auto=aslongas(island|myinplay) lord(creature|myinplay) 1/1
-auto=lord(creature|myinplay) trample
+auto=aslongas(plains|myBattlefield) lord(creature|myBattlefield) 1/1
+auto=aslongas(forest|myBattlefield) lord(creature|myBattlefield) 1/1
+auto=aslongas(mountain|myBattlefield) lord(creature|myBattlefield) 1/1
+auto=aslongas(swamp|myBattlefield) lord(creature|myBattlefield) 1/1
+auto=aslongas(island|myBattlefield) lord(creature|myBattlefield) 1/1
+auto=lord(creature|myBattlefield) trample
 text=Domain - Until end of turn, creatures you control gain trample and get +1/+1 for each basic land type among lands you control.
 rarity=U
 name=Tromp the Domains
 id=116726
 type=Sorcery
 mana={5}{G}
+[/card]
+[card]
+toughness=1
+name=Screeching Sliver
+mana={U}
+subtype=Sliver
+auto=lord(sliver) {T}:deplete:1 target(player)
+rarity=C
+text=All Slivers have "{T}: Target player puts the top card of his or her library into his or her graveyard."
+power=1
+id=122387
+type=Creature
 [/card]
 [card]
 toughness=1
@@ -742,32 +831,31 @@ type=Creature
 [card]
 name=Bewilder
 mana={2}{U}
-color=Blue
 target=creature
 auto=-3/-0
 auto=draw:1
 rarity=C
-text=Target creature gets -3/-0 until end of turn.     Draw a card.
-id=118901
+text=Target creature gets -3/-0 until end of turn.   Draw a card.
 type=Instant
+id=118901
 [/card]
 [card]
 subtype=Plains
-auto={T}:Add{W}
+auto={T}:Add {W}
 text=W
-rarity=C
+rarity=L
 name=Plains
 id=122087
 type=Basic Land
 [/card]
 [card]
 auto={T}:Add {1} 
-auto={1},{T}: Add {G}
-auto={1},{T}: Add {R}
-auto={1},{T}: Add {B}
-auto={1},{T}: Add {U}
-auto={1},{T}: Add {W}
-text={T}: Add {1] to your mana pool.  {1}, {T}: Add one mana of any color to your mana pool.
+auto={1}{T}:Add {G}
+auto={1}{T}:Add {R}
+auto={1}{T}:Add {B}
+auto={1}{T}:Add {U}
+auto={1}{T}:Add {W}
+text={T}: Add {1] to your mana pool.   {1}, {T}: Add one mana of any color to your mana pool.
 rarity=C
 name=Prismatic Lens
 id=118880
@@ -776,9 +864,9 @@ mana={2}
 [/card]
 [card]
 subtype=Swamp
-auto={T}:Add{B}
+auto={T}:Add {B}
 text=B
-rarity=C
+rarity=L
 name=Swamp
 id=118904
 type=Basic Land
@@ -788,18 +876,17 @@ toughness=3
 name=Venser's Sliver
 mana={5}
 subtype=Sliver
-color=Artifact
 rarity=C
 power=3
-id=125866
 type=Artifact Creature
+id=125866
 [/card]
 [card]
 toughness=2
 name=Sedge Sliver
 mana={2}{R}
 subtype=Sliver
-auto=aslongas(swamp|myinplay) lord(sliver) 1/1
+auto=aslongas(swamp|myBattlefield) lord(sliver) 1/1
 auto=lord(sliver) {B}:regenerate
 rarity=R
 text=All Sliver creatures have "This creature gets +1/+1 as long as you control a Swamp." All Slivers have "{B}: Regenerate this permanent."
@@ -827,7 +914,7 @@ subtype=Aura
 auto=doesnotuntap
 auto=draw:1
 rarity=C
-text=Enchant creature. When Eternity Snare comes into play, draw a card. Enchanted creature doesn't untap during its controller's untap step.
+text=Enchant creature.   When Eternity Snare enters the battlefield, draw a card.   Enchanted creature doesn't untap during its controller's untap step.
 id=108788
 type=Enchantment
 [/card]

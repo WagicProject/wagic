@@ -3,7 +3,6 @@ toughness=1
 name=Order of the Ebon Hand
 mana={B}{B}
 subtype=Cleric Knight
-color=Black
 auto={B}:first strike
 auto={B}{B}:1/0
 rarity=C
@@ -14,10 +13,9 @@ type=Creature
 abilities=protection from white
 [/card]
 [card]
-color=Land
 auto=tap
-auto={T}:add {R}
-auto={T}{S}:add {R}{R}
+auto={T}:Add {R}
+auto={T}{S}:Add {R}{R}
 text=Les Ruines naines arrivent en jeu engagees.     {T}: Ajoutez {R} a votre reserve.     {T}, sacrifiez les Ruines naines : Ajoutez {R}{R} a votre reserve.
 rarity=U
 name=Dwarven Ruins
@@ -25,22 +23,20 @@ id=2005
 type=Land
 [/card]
 [card]
-name=Icatian Town
-mana={5}{W}
-color=White
 auto=token(Citizen,creature human,1/1,white)*4
-rarity=R
 text=Mettez en jeu quatre jetons de creature blanche 1/1 Citoyen.
-type=Sorcery
+rarity=R
+name=Icatian Town
 id=1999
+type=Sorcery
+mana={5}{W}
 [/card]
 [card]
-toughness=1
+toughness=1 
 name=Icatian Scout
 mana={W}
 subtype=Human Soldier Scout
-color=White
-auto={1}{T}:first strike target(creature) 
+auto={1}{T}:first strike target(creature)
 rarity=C
 text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
 power=1
@@ -48,10 +44,9 @@ id=1996
 type=Creature
 [/card]
 [card]
-color=Land
 auto=tap
-auto={T}:add {W}
-auto={T}{S}:add {W}{W}
+auto={T}:Add {W}
+auto={T}{S}:Add {W}{W}
 text=Les ruines de Trokair arrivent en jeu engagees.     {T}: Ajoutez {W} a votre reserve.     {T}, sacrifiez les Ruines de Trokair : Ajoutez  {W}{W} a votre reserve.
 rarity=U
 name=Ruins of Trokair
@@ -72,7 +67,7 @@ toughness=2
 name=Goblin Chirurgeon
 mana={R}
 subtype=Goblin Shaman
-auto={S(goblin|myinplay)}:regenerate target(creature)
+auto={S(goblin|myBattlefield)}:regenerate target(creature)
 rarity=C
 text=Sacrifice a Goblin: Regenerate target creature.
 power=0
@@ -84,7 +79,6 @@ toughness=1
 name=Icatian Scout
 mana={W}
 subtype=Human Soldier Scout
-color=White
 auto={1}{T}:first strike target(creature) 
 rarity=C
 text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
@@ -97,33 +91,29 @@ toughness=2
 name=Vodalian Soldiers
 mana={1}{U}
 subtype=Merfolk Soldier
-color=Blue
 rarity=C
-text= 
 power=1
-id=1900
 type=Creature
+id=1900
 [/card]
 [card]
-name=Elven Fortress
-mana={G}
-color=Green
 auto={1}{G}:0/1 target(creature[blocking])
-rarity=C
 text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
-type=Enchantment
+rarity=C
+name=Elven Fortress
 id=1905
+type=Enchantment
+mana={G}
 [/card]
 [card]
 name=Hymn to Tourach
 mana={B}{B}
 target=player
-color=Black
 auto=discard:2
 rarity=C
 text=Le joueur cible se defausse de 2 cartes au hazard.
-id=1851
 type=Sorcery
+id=1851
 [/card]
 [card]
 auto={2}{T}:regenerate target(creature) && discard:1
@@ -135,54 +125,11 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-toughness=1
-name=Icatian Infantry
-mana={W}
-subtype=Human Soldier
-color=White
-auto={1}:banding
-auto={1}:first strike
-rarity=C
-text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
-power=1
-id=1983
-type=Creature
-[/card]
-[card]
-toughness=1
-name=Icatian Infantry
-mana={W}
-subtype=Human Soldier
-color=White
-auto={1}:banding
-auto={1}:first strike
-rarity=C
-text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
-power=1
-id=1982
-type=Creature
-[/card]
-[card]
-toughness=1
-name=Icatian Infantry
-mana={W}
-subtype=Human Soldier
-color=White
-auto={1}:banding
-auto={1}:first strike
-rarity=C
-text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
-power=1
-id=1981
-type=Creature
-[/card]
-[card]
 toughness=2
 name=Basal Thrull
 mana={B}{B}
 subtype=Thrull
-color=Black
-auto={S}:add {B}{B}
+auto={S}:Add {B}{B}
 rarity=C
 text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
 power=1
@@ -194,30 +141,26 @@ toughness=2
 name=Vodalian Soldiers
 mana={1}{U}
 subtype=Merfolk Soldier
-color=Blue
 rarity=C
-text= 
 power=1
-id=1899
 type=Creature
+id=1899
 [/card]
 [card]
 name=Hymn to Tourach
 mana={B}{B}
 target=player
-color=Black
 auto=discard:2
 rarity=C
 text=Le joueur cible se defausse de 2 cartes au hazard.
-id=1849
 type=Sorcery
+id=1849
 [/card]
 [card]
 toughness=1
 name=Homarid Shaman
 mana={2}{U}{U}
 subtype=Homarid Shaman
-color=Blue
 auto={U}:tap target(creature[green])
 rarity=R
 text={U}: Engagez la creature verte ciblee.
@@ -230,7 +173,6 @@ toughness=1
 name=Order of Leitbur
 mana={W}{W}
 subtype=Human Cleric Knight
-color=White
 auto={W}:first strike
 auto={W}{W}:1/0
 rarity=C
@@ -245,7 +187,6 @@ toughness=1
 name=River Merfolk
 mana={U}{U}
 subtype=Merfolk
-color=Blue
 auto={U}:mountainwalk
 rarity=R
 text={U}: Le River Merfolk acquiert la traversee des montagnes jusqu'a la fin du tour.
@@ -258,7 +199,6 @@ toughness=1
 name=Order of Leitbur
 mana={W}{W}
 subtype=Human Cleric Knight
-color=White
 auto={W}:first strike
 auto={W}{W}:1/0
 rarity=C
@@ -273,7 +213,6 @@ toughness=2
 name=Vodalian Soldiers
 mana={1}{U}
 subtype=Merfolk Soldier
-color=Blue
 rarity=C
 text= 
 power=1
@@ -283,9 +222,8 @@ type=Creature
 [card]
 name=Thrull Retainer
 mana={B}
-target=creature
 subtype=Aura
-color=Black
+target=creature
 auto=1/1
 auto={S}:regenerate
 rarity=U
@@ -298,7 +236,6 @@ toughness=2
 name=Dwarven Lieutenant
 mana={R}{R}
 subtype=Dwarf Soldier
-color=Red
 auto={1}{R}:1/0 target(dwarf)
 rarity=U
 text={1}{R}: La creature nain ciblee gagne +1/+0 jusqu'a la fin du tour.
@@ -311,7 +248,6 @@ toughness=2
 name=Icatian Lieutenant
 mana={W}{W}
 subtype=Human Soldier
-color=White
 auto={1}{W}:target(soldier) 1/0
 rarity=R
 text={1}{W}: La creature soldat ciblee gagne +1/+0 jusqu'a la fin du tour.
@@ -333,12 +269,11 @@ type=Creature
 abilities=islandhome,first strike
 [/card]
 [card]
-toughness=1
+toughness=1 
 name=Icatian Scout
 mana={W}
 subtype=Human Soldier Scout
-color=White
-auto={1}{T}:first strike target(creature) 
+auto={1}{T}:first strike target(creature)
 rarity=C
 text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
 power=1
@@ -350,8 +285,7 @@ toughness=2
 name=Basal Thrull
 mana={B}{B}
 subtype=Thrull
-color=Black
-auto={S}:add {B}{B}
+auto={S}:Add {B}{B}
 rarity=C
 text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
 power=1
@@ -359,21 +293,19 @@ id=1842
 type=Creature
 [/card]
 [card]
-name=Aeolipile
-mana={2}
-color=Artifact
 auto={1}{T}{S}:damage:2 target(creature,player)
-rarity=R
 text={1}{T}, sacrifiez l'Aeolipile : L'Aeolipile inflige 2 blessures a une cible, creature ou joueur.
-type=Artifact
+rarity=R
+name=Aeolipile
 id=1827
+type=Artifact
+mana={2}
 [/card]
 [card]
 toughness=1
 name=Order of Leitbur
 mana={W}{W}
 subtype=Human Cleric Knight
-color=White
 auto={W}:first strike
 auto={W}{W}:1/0
 rarity=C
@@ -388,7 +320,7 @@ toughness=2
 name=Goblin Chirurgeon
 mana={R}
 subtype=Goblin Shaman
-auto={S(goblin|myinplay)}:regenerate target(creature)
+auto={S(goblin|myBattlefield)}:regenerate target(creature)
 rarity=C
 text=Sacrifice a Goblin: Regenerate target creature.
 power=0
@@ -396,12 +328,11 @@ id=1949
 type=Creature
 [/card]
 [card]
-toughness=1
+toughness=1 
 name=Icatian Scout
 mana={W}
 subtype=Human Soldier Scout
-color=White
-auto={1}{T}:first strike target(creature) 
+auto={1}{T}:first strike target(creature)
 rarity=C
 text={1}{T}: La creatue ciblee gagne l'initiative jusqu'a la fin du tour.
 power=1
@@ -412,12 +343,11 @@ type=Creature
 name=Hymn to Tourach
 mana={B}{B}
 target=player
-color=Black
 auto=discard:2
 rarity=C
 text=Le joueur cible se defausse de 2 cartes au hazard.
-id=1850
 type=Sorcery
+id=1850
 [/card]
 [card]
 toughness=2
@@ -433,31 +363,29 @@ id=1941
 type=Creature
 [/card]
 [card]
-name=Implements of Sacrifice
-mana={2}
-color=Artifact
-auto={1}{T}{S}:add {B}{B}
-auto={1}{T}{S}:add {U}{U}
-auto={1}{T}{S}:add {G}{G}
-auto={1}{T}{S}:add {R}{R}
-auto={1}{T}{S}:add {W}{W}
-rarity=R
-text={1}{T}, Sacrifiez Implement of sacrifice: Ajoutez a votre reserve 2 manas d'une couleur unique.
-type=Artifact
-id=1834
-[/card]
-[card]
 toughness=2
 name=Basal Thrull
 mana={B}{B}
 subtype=Thrull
-color=Black
 auto={S}:add {B}{B}
 rarity=C
 text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
 power=1
 id=1843
 type=Creature
+[/card]
+[card]
+auto={1}{T}{S}:Add {B}{B}
+auto={1}{T}{S}:Add {U}{U}
+auto={1}{T}{S}:Add {G}{G}
+auto={1}{T}{S}:Add {R}{R}
+auto={1}{T}{S}:Add {W}{W}
+text={1}{T}, Sacrifiez Implement of sacrifice: Ajoutez a votre reserve 2 manas d'une couleur unique.
+rarity=R
+name=Implements of Sacrifice
+id=1834
+type=Artifact
+mana={2}
 [/card]
 [card]
 auto={1}{T}{S}:2/2 target(creature)
@@ -469,21 +397,19 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-name=Elven Fortress
-mana={G}
-color=Green
 auto={1}{G}:0/1 target(creature[blocking])
-rarity=C
 text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
-type=Enchantment
+rarity=C
+name=Elven Fortress
 id=1906
+type=Enchantment
+mana={G}
 [/card]
 [card]
 toughness=1
 name=Order of the Ebon Hand
 mana={B}{B}
 subtype=Cleric Knight
-color=Black
 auto={B}:first strike
 auto={B}{B}:1/0
 rarity=C
@@ -497,28 +423,25 @@ abilities=protection from white
 name=Hymn to Tourach
 mana={B}{B}
 target=player
-color=Black
 auto=discard:2
 rarity=C
 text=Le joueur cible se defausse de 2 cartes au hazard.
-id=1852
 type=Sorcery
+id=1852
 [/card]
 [card]
-name=Elven Fortress
-mana={G}
-color=Green
 auto={1}{G}:0/1 target(creature[blocking])
-rarity=C
 text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
-type=Enchantment
+rarity=C
+name=Elven Fortress
 id=1907
+type=Enchantment
+mana={G}
 [/card]
 [card]
-color=Land
 auto=tap
-auto={T}:add {U}
-auto={T}{S}:add {U}{U}
+auto={T}:Add {U}
+auto={T}{S}:Add {U}{U}
 text=Le Temple Svyelunite arrive en jeu engage.     {T}: Ajoutez {U} a votre reserve.     {T}, sacrifiez le Temple Svyelunite : Ajoutez  {U}{U} a votre reserve.
 rarity=U
 name=Svyelunite Temple
@@ -530,7 +453,6 @@ toughness=1
 name=Order of the Ebon Hand
 mana={B}{B}
 subtype=Cleric Knight
-color=Black
 auto={B}:first strike
 auto={B}{B}:1/0
 rarity=C
@@ -545,7 +467,7 @@ toughness=2
 name=Goblin Chirurgeon
 mana={R}
 subtype=Goblin Shaman
-auto={S(goblin|myinplay)}:regenerate target(creature)
+auto={S(goblin|myBattlefield)}:regenerate target(creature)
 rarity=C
 text=Sacrifice a Goblin: Regenerate target creature.
 power=0
@@ -557,7 +479,6 @@ toughness=1
 name=Icatian Priest
 mana={W}
 subtype=Human Cleric
-color=White
 auto={1}{W}{W}:1/1 target(creature)
 rarity=U
 text={1}{W}{W}: La creature ciblee gagne +1/+1 jusqu'a la fin du tour.
@@ -566,10 +487,9 @@ id=1993
 type=Creature
 [/card]
 [card]
-color=Land
 auto=tap
-auto={T}:add {G}
-auto={T}{S}:add {G}{G}
+auto={T}:Add {G}
+auto={T}{S}:Add {G}{G}
 text=Le champ de bataille d'Havrebois arrive en jeu engage.     {T}: Ajoutez {G} a votre reserve.     {T}, sacrifiez le Champ de bataille d'Havrebois : Ajoutez {G}{G} a votre reserve.
 rarity=U
 name=Havenwood Battleground
@@ -577,10 +497,9 @@ id=2007
 type=Land
 [/card]
 [card]
-color=Land
 auto=tap
-auto={T}:add {B}
-auto={T}{S}:add {B}{B}
+auto={T}:Add {B}
+auto={T}{S}:Add {B}{B}
 text=La place forte d'Eben arrive en jeu engagee.     {T}: Ajoutez {B} a votre reserve.     {T}, sacrifiez la place forte d'Eben : Ajoutez  {B}{B} a votre reserve.
 rarity=U
 name=Ebon Stronghold
@@ -588,28 +507,13 @@ id=2006
 type=Land
 [/card]
 [card]
-toughness=1
-name=Icatian Infantry
-mana={W}
-subtype=Human Soldier
-color=White
-auto={1}:banding
-auto={1}:first strike
-rarity=C
-text={1}: L'Icatian infantry acquiert le regroupement jusqu'a la fin du tour.     {1}: L'Icatian infantry acquiert l'initiative jusqu'a la fin du tour.
-power=1
-id=1984
-type=Creature
-[/card]
-[card]
-name=Elven Fortress
-mana={G}
-color=Green
 auto={1}{G}:0/1 target(creature[blocking])
-rarity=C
 text={1}{G}: La creature bloqueuse ciblee gagne +0/+1 jusqu'a la fin du tour.
-type=Enchantment
+rarity=C
+name=Elven Fortress
 id=1904
+type=Enchantment
+mana={G}
 [/card]
 [card]
 toughness=3
@@ -624,25 +528,11 @@ id=1838
 type=Creature
 [/card]
 [card]
-toughness=4
-name=Icatian Phalanx
-mana={4}{W}
-subtype=Human Soldier
-color=White
-rarity=U
-text=Regroupement
-power=2
-id=1992
-type=Creature
-abilities=banding
-[/card]
-[card]
 toughness=2
 name=Basal Thrull
 mana={B}{B}
 subtype=Thrull
-color=Black
-auto={S}:add {B}{B}
+auto={S}:Add {B}{B}
 rarity=C
 text={T}, sacrifiez le Basal thrull : Ajoutez {B}{B} a votre reserve.
 power=1
@@ -654,10 +544,8 @@ toughness=2
 name=Vodalian Soldiers
 mana={1}{U}
 subtype=Merfolk Soldier
-color=Blue
 rarity=C
-text= 
 power=1
-id=1901
 type=Creature
+id=1901
 [/card]
