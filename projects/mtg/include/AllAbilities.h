@@ -3017,6 +3017,7 @@ class AHypnoticSpecter:public MTGAbility{
   Player * p = dynamic_cast<Player *>(e->damage->target);
   if (!p) return 0;
 	p->game->discardRandom(p->game->hand);
+  return 1; //is this meant to return 0 or 1?
  }
   
   AHypnoticSpecter * clone() const{
