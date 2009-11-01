@@ -221,8 +221,9 @@ void OptionProfile::populate(){
 
  options[Options::ACTIVE_PROFILE] = temp;
  
- char buf[512];
- sprintf(buf,_("Credits: %i\nCards: %i\nSets: %i (of %i)").c_str(),pdata->credits,pdata->collection->totalCards(),unlocked,sets);
+ char buf[512], format[512];
+ sprintf(format,"%s\n%s\n%s\n",_("Credits: %i").c_str(),_("Cards: %i").c_str(),_("Sets: %i (of %i)").c_str());
+ sprintf(buf,format,pdata->credits,pdata->collection->totalCards(),unlocked,sets);
  preview = buf;
 
  SAFE_DELETE(pdata);
