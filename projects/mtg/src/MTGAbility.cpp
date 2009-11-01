@@ -820,7 +820,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
       result++;
     }else{
       OutputDebugString("ABILITYFACTORY ERROR: Parser returned NULL\n");
-      //return result;
     }
   }
   return result;
@@ -1133,13 +1132,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
-  /*case 1164: //Howl from beyond
-    {
-      int x = computeX(spell,card);
-      AInstantPowerToughnessModifierUntilEOT * ability = NEW AInstantPowerToughnessModifierUntilEOT( _id, card, card->target, x, 0);
-      game->addObserver(ability);
-      break;
-    }*/
   case 1202: //Hurkyl's Recall
     {
       Player * player = spell->getNextPlayerTarget();

@@ -3006,52 +3006,19 @@ class AFastbond:public TriggeredAbility{
 //1165 Hypnotic Specter
 class AHypnoticSpecter:public MTGAbility{
  public:
-  int nbdamagesthisturn[2];
+
  AHypnoticSpecter(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-    currentPhase = -1;
-    for (int i = 0; i < 2; i++){
-      nbdamagesthisturn[i] = 0;
-    }
-  }
+ }
 
-  void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
-      for (int i = 0; i < 2; i++){
-	nbdamagesthisturn[i] = 0;
-      }
-    }
-
-    ActionStack * as = game->mLayers->stackLayer();
-    int nbdamages[2];
-    for (int i = 0; i < 2; i++){
-      nbdamages[i] = 0;
-    }
-
-    Damage * current = ((Damage *)as->getNext(NULL,ACTION_DAMAGE,RESOLVED_OK));
-    while(current){
-      if (current->source == source){
-	for (int j=0; j < 2; j++){
-	  if(current->target == game->players[j]) nbdamages[j]++;
-	}
-      }
-      current = ((Damage *)as->getNext(current,ACTION_DAMAGE,RESOLVED_OK));
-
-    }
-
-    for (int i = 0; i < 2; i++){
-      while(nbdamages[i] > nbdamagesthisturn[i]){
-	nbdamagesthisturn[i]++;
-	game->players[i]->game->discardRandom(game->players[i]->game->hand);
-      }
-    }
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AHypnoticSpecter ::: nbdamagesthisturn : " << nbdamagesthisturn
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
+ int receiveEvent(WEvent * event){
+  WEventDamage * e = dynamic_cast<WEventDamage *>(event);
+  if (!e) return 0;
+  if (e->damage->source != source) return 0;
+  Player * p = dynamic_cast<Player *>(e->damage->target);
+  if (!p) return 0;
+	p->game->discardRandom(p->game->hand);
+ }
+  
   AHypnoticSpecter * clone() const{
     AHypnoticSpecter * a =  NEW AHypnoticSpecter(*this);
     a->isClone = 1;

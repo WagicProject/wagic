@@ -145,6 +145,7 @@ hellfire.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
 hymn_of_rebirth.txt
+hypnotic_specter.txt
 icatian_priest.txt
 imaginary_pet.txt
 immaculate_magistrate.txt

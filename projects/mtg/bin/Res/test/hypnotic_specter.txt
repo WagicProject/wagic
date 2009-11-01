@@ -1,0 +1,24 @@
+#Bug: Hypnotic specter doesn't draw a card
+# http://code.google.com/p/wagic/issues/detail?id=150
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:hypnotic specter
+[PLAYER2]
+hand:swamp
+[DO]
+hypnotic specter
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:hypnotic specter
+[PLAYER2]
+graveyard:swamp
+life:18
+[END]
