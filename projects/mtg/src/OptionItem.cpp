@@ -207,10 +207,22 @@ void OptionProfile::populate(){
  }
  options[Options::ACTIVE_PROFILE].str = selections[value];
  PlayerData * pdata = NEW PlayerData(app->collection);
+ 
+ int unlocked = 0, sets = MtgSets::SetsList->nb_items;
+ std::ifstream file(options.profileFile(PLAYER_SETTINGS).c_str());
+ std::string s;
+  if(file){
+    while(std::getline(file,s)){
+      if(s.substr(0, 9) == "unlocked_")
+        unlocked++;
+    }
+    file.close();
+  }
+
  options[Options::ACTIVE_PROFILE] = temp;
  
  char buf[512];
- sprintf(buf,"Credits: %i\nCards: %i",pdata->credits,pdata->collection->totalCards());
+ sprintf(buf,_("Credits: %i\nCards: %i\nSets: %i (of %i)").c_str(),pdata->credits,pdata->collection->totalCards(),unlocked,sets);
  preview = buf;
 
  SAFE_DELETE(pdata);
