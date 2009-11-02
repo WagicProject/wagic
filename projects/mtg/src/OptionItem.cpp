@@ -774,7 +774,18 @@ void WDecoEnum::Render()
 }
 
 WDecoEnum::WDecoEnum(WGuiBase * _it, EnumDefinition *_edef) : WGuiDeco(_it) {edef = _edef;}
-
+//WDecoCheat
+WDecoCheat::WDecoCheat(WGuiBase * _it): WGuiDeco(_it){
+  bVisible = (options[Options::ACTIVE_PROFILE].str == SECRET_PROFILE);
+}
+void WDecoCheat::Reload(){
+  bVisible = (options[Options::ACTIVE_PROFILE].str == SECRET_PROFILE);
+}
+bool WDecoCheat::Visible(){
+  if(bVisible && it && it->Visible())
+    return true;
+  return false;
+}
 //WDecoConfirm
 
 WDecoConfirm::WDecoConfirm(JGuiListener * _listener, WGuiBase * _it): WGuiDeco(_it){

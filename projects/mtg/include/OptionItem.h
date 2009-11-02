@@ -239,6 +239,15 @@ class WDecoEnum : public WGuiDeco {
   EnumDefinition * edef;
 };
 
+class WDecoCheat: public WGuiDeco {
+ public:
+   WDecoCheat(WGuiBase * _it);
+   virtual bool Visible();
+   virtual void Reload();
+protected:
+  bool bVisible;
+};
+
 class WGuiButton: public WGuiDeco{
 public:
   WGuiButton( WGuiBase* _it, int _controller, int _control,  JGuiListener * jgl);

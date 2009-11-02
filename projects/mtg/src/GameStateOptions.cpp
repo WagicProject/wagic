@@ -36,8 +36,8 @@ void GameStateOptions::Start()
   optionsList->Add(NEW OptionInteger(Options::OSD, "Display InGame extra information"));
   if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::DIFFICULTY,"Difficulty",3,1,0),OptionDifficulty::getInstance()));
-  if(options[Options::ACTIVE_PROFILE].str == SECRET_PROFILE)
-    optionsList->Add(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode"));
+  
+  optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode")));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));  

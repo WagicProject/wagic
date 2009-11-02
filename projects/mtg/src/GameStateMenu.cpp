@@ -152,9 +152,9 @@ void GameStateMenu::Start(){
   //How many cards total ?
   PlayerData * playerdata = NEW PlayerData(mParent->collection);
   if(playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-    sprintf(nbcardsStr, "%s: %i cards (%i)", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
+    sprintf(nbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
   else
-    sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
+    sprintf(nbcardsStr, _("Database: %i cards").c_str(), mParent->collection->totalCards());
 
   SAFE_DELETE(playerdata);
 
@@ -312,9 +312,9 @@ void GameStateMenu::Update(float dt)
         //List active profile and database size.        
         PlayerData * playerdata = NEW PlayerData(mParent->collection);
         if(playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-          sprintf(nbcardsStr, "%s: %i cards (%i)", options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
+          sprintf(nbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
         else
-          sprintf(nbcardsStr, "Database: %i cards", mParent->collection->totalCards());
+          sprintf(nbcardsStr, _("Database: %i cards").c_str(), mParent->collection->totalCards());
         SAFE_DELETE(playerdata);
         resetDirectory();
         //All major things have been loaded, resize the cache to use it as efficiently as possible
