@@ -786,6 +786,11 @@ bool WDecoCheat::Visible(){
     return true;
   return false;
 }
+bool WDecoCheat::Selectable(){
+  if(!it || !Visible())
+    return false;
+  return it->Selectable();
+}
 //WDecoConfirm
 
 WDecoConfirm::WDecoConfirm(JGuiListener * _listener, WGuiBase * _it): WGuiDeco(_it){

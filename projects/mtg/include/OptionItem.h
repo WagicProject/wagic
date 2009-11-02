@@ -243,6 +243,7 @@ class WDecoCheat: public WGuiDeco {
  public:
    WDecoCheat(WGuiBase * _it);
    virtual bool Visible();
+   bool Selectable();
    virtual void Reload();
 protected:
   bool bVisible;
