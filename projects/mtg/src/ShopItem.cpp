@@ -257,6 +257,9 @@ void ShopItems::Update(float dt){
 	      dialog = NEW SimpleMenu(1,this,resources.GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
 	      dialog->Add(1,"Yes");
 	      dialog->Add(2,"No");
+        if(options[Options::CHEATMODE].number) {
+          dialog->Add(3,"Steal 1,000 credits (cheat)");
+        }
       }
       else{
 	      dialog->Update(dt);
@@ -432,6 +435,9 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
       pricelist->setPrice(item->card->getMTGId(),price);
     }
     showPriceDialog = -1;
+    break;
+  case 3:  // (PSY) Cheatmode: get free money
+    playerdata->credits += 1000;
     break;
   }
 }

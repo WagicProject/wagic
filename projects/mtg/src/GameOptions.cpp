@@ -22,6 +22,7 @@ const char * Options::optionNames[] = {
   "musicVolume",
   "sfxVolume",
   "difficulty",
+  "cheatmode",
   "displayOSD",
   "closed_hand",
   "hand_direction",
@@ -282,9 +283,18 @@ int GameOptions::load(){
     }
     file.close();
   }
+  // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
+  if(options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE) {
+    (*this)[Options::CHEATMODE].number = 0;
+  }
   return 1;
 }
 int GameOptions::save(){
+  // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
+  if(options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE) {
+    (*this)[Options::CHEATMODE].number = 0;
+  }
+
   std::ofstream file(mFilename.c_str());
   if (file){
     for ( int x=0; x < (int) values.size(); x++ ){

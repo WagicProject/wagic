@@ -13,6 +13,7 @@ using std::string;
 #define PLAYER_SAVEFILE "data.dat"
 #define PLAYER_SETTINGS "options.txt"
 #define PLAYER_COLLECTION "collection.dat"
+#define SECRET_PROFILE "Gleemax"
 
 #define INVALID_OPTION -1
 
@@ -34,6 +35,7 @@ public:
     MUSICVOLUME,
     SFXVOLUME,
     DIFFICULTY,
+    CHEATMODE,
     OSD,
     CLOSEDHAND,
     HANDDIRECTION,

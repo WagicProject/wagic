@@ -90,6 +90,7 @@ class MTGDeck{
   int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const char * subtype = NULL, int * colors = NULL, int nbcolors = 0);
   int add(int cardid);
   int add(MTGDeck * deck); // adds the contents of "deck" into myself
+  int complete();
   int remove(int cardid);
   int removeAll();
   int add(MTGCard * card);

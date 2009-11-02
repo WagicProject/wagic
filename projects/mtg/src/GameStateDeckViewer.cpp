@@ -95,10 +95,12 @@ void GameStateDeckViewer::Start()
   stw.pageCount = 5;
   stw.needUpdate = true;
 
-  menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
+  menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-150,20);
   menu->Add(0,"Save");
   menu->Add(1,"Save & Rename");
   menu->Add(2,"Switch decks without saving");
+  if(options[Options::CHEATMODE].number)
+      menu->Add(-1,"Complete collection & reset (cheat)");
   menu->Add(3,"Back to main menu");
   menu->Add(4,"Cancel");
 
@@ -1096,13 +1098,20 @@ int GameStateDeckViewer::loadDeck(int deckid){
   sprintf(deckname,"deck%i.txt",deckid);
   SAFE_DELETE(myDeck);
   myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname,"",false,false).c_str(), mParent->collection));
+  
+  // Check whether the cards in the deck are actually available in the player's collection:
   MTGCard * current = myDeck->getNext();
+  int cheatmode = options[Options::CHEATMODE].number;
   while (current){
     int howmanyinDeck = myDeck->cards[current];
     for (int i = 0; i < howmanyinDeck; i++){
       int deleted = myCollection->Remove(current);
-      if (!deleted){
-        myDeck->Remove(current);
+      if (!deleted){                             // Card was not present in the collection
+        if (cheatmode) {                         // (PSY) Are we in cheatmode?
+          playerdata->collection->add(current);  // (PSY) Yes - add the card to the collection
+        } else {
+          myDeck->Remove(current);               // No - remove the card from the deck
+        }
       }
     }
     current = myDeck->getNext(current);
@@ -1173,6 +1182,11 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
       case 11: //Save / exit menu
         switch (controlId)
         {
+        case -1:                               // (PSY) Cheatmode: Complete the collection
+          playerdata->collection->complete();  // Add the cards
+          playerdata->collection->save();      // Save the new collection
+          mStage =  STAGE_WELCOME;             // Reset the deck viewer, so that the new collection gets loaded
+          break;
         case 0:
           myDeck->save();
           playerdata->save();

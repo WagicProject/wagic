@@ -545,6 +545,27 @@ int MTGDeck::add(MTGCard * card){
   return (add(card->getId()));
 }
 
+int MTGDeck::complete() {
+  /* (PSY) adds cards to the deck/collection. Makes sure that the deck
+     or collection has at least 4 of every implemented card. Does not
+     change the number of cards of which already 4 or more are present. */
+  int id, n;
+  size_t databaseSize = database->ids.size();
+  for (size_t it = 0 ; it < databaseSize ; it++) {
+    id = database->ids[it];
+    if(cards.find(id) == cards.end()){
+      cards[id] = 4;
+      total_cards += 4;
+    } else {
+      n = cards[id];
+      if (n < 4) {
+        total_cards += 4 - n;
+        cards[id] = 4;
+      }
+    }    
+  }
+  return 1;
+}
 
 int MTGDeck::removeAll(){
   total_cards = 0;
