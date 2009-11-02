@@ -24,8 +24,12 @@ Image Cache Size=Bildspeicher Kapazitaet
 Save & Back to Main Menu=Speichern & ins Menue
 Back to Main Menu=Zurueck ins Menue
 Back to main menu=Zurueck ins Menue
+Random 1 Color=zufallig 1 Farbe
+Random 2 Colors=zufallig 2 Farben
 --NEW--=--Neu--
 Save=Speichern
+Save & Rename=Speichern & neu benennen
+Switch decks without saving=Waehle ein deck ohne Speichern
 Choose a Deck=Waehle ein Deck
 Choose Opponent=Gegner weahlen
 (easy)=(*)
@@ -49,6 +53,8 @@ Yes=Ja
 No=Nein
 NO DECK AVAILABLE,=Keine Decks vorhanden,
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=Druecke Kreis um in den Deckeditor zu gelangen !
+%s: %i cards (%i)=%s: %i Karten (%i)
+Database: %i cards=Datenbank: %i Karten
 
 #End of Match
 Difficulty Bonus=Schwierigkeits Bonus
@@ -109,8 +115,11 @@ Mute=Gedaempft
 Max=sehr laut
 User Options=Profil Optionen
 Interface Options=Schnittstelle Optionen
-General options=allgemeines Optionen
-
+General Options=allgemeines Optionen
+Disable card image loading=Kartenbilder sperren
+Reverse left and right triggers=L und R-Taste ersetzen
+Use this Theme=dies Thema benuetzen
+Use this Profile=dies Profil benuetzen
 
 #Stack
 Deals %i damage to=Fuegt %i Schaden an
