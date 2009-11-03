@@ -1,0 +1,15 @@
+#Bug: two akron legionnaires on your side, non can attack
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:symbiotic wurm
+manapool:{5}{G}{G}{G}
+[PLAYER2]
+[DO]
+symbiotic wurm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:symbiotic wurm
+[PLAYER2]
+[END]

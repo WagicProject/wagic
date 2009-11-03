@@ -235,6 +235,7 @@ steelclad_serpent2.txt
 stillmoon_cavalier.txt
 stronghold_discipline.txt
 sword_to_plowshares.txt
+symbiotic_wurm.txt
 telekinetic_sliver.txt
 terror.txt
 terror2.txt

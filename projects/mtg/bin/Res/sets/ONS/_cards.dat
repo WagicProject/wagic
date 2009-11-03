@@ -806,8 +806,8 @@ rarity=R
 mana={2}{B}
 type=Creature
 subtype=Zombie Cleric
-auto=@moved(this|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
-auto=@moved(other cleric|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
+auto=@movedTo(this|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
+auto=@movedTo(other cleric|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
 power=2
 toughness=2
 [/card]
@@ -991,7 +991,7 @@ rarity=U
 mana={4}{G}{G}
 type=Creature
 subtype=Insect Beast
-auto=@moved(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*4
+auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*4
 power=4
 toughness=4
 [/card]
@@ -1003,7 +1003,7 @@ rarity=C
 mana={3}{G}
 type=Creature
 subtype=Elf
-auto=@moved(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*2
+auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*2
 power=2
 toughness=2
 [/card]
@@ -1015,7 +1015,7 @@ rarity=R
 mana={5}{G}{G}{G}
 type=Creature
 subtype=Wurm
-auto=@moved(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*7
+auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*7
 power=7
 toughness=7
 [/card]
