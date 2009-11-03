@@ -164,6 +164,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
 
 //Parses a string and returns the corresponding MTGAbility object
 // Returns NULL if parsing failed
+//Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
 MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT){
   size_t found;
  
@@ -251,7 +252,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //kicker cost
   found = s.find("kicker ");
   if (found == 0){
-    if (spell->kickerWasPaid()){
+    if (spell && spell->kickerWasPaid()){
       string s1 = s.substr(found+7);
       return parseMagicLine(s1,id,spell, card);
     }

@@ -9,9 +9,8 @@ hand:kavu aggressor
 [DO]
 ai
 [ASSERT]
-combatblockers
+UNTAP
 [PLAYER1]
 inplay:mountain,mountain,mountain,kavu aggressor
-hand:
 [PLAYER2]
 [END]
