@@ -25,6 +25,7 @@ generic/phases.txt
 generic/rampage.txt
 generic/rampage2.txt
 generic/regenerate.txt
+generic/regenerate_wither_i146.txt
 generic/sacrifice.txt
 generic/summoning_sickness.txt
 generic/targetController_life.txt

@@ -245,6 +245,7 @@ int MTGCardInstance::triggerRegenerate(){
   tap();
   life = toughness;
   initAttackersDefensers();
+  if (life < 1) return 0;  //regeneration didn't work (wither ?)
   return 1;
 }
 
