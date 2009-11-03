@@ -286,14 +286,16 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     char buf[512];
     switch(card->getRarity()){
       case Constants::RARITY_M:
+        sprintf(buf,_("%s Mythic").c_str(),MtgSets::SetsList->values[card->setId].c_str());
+        break;
       case Constants::RARITY_R:
-        sprintf(buf,"%s Rare",MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,_("%s Rare").c_str(),MtgSets::SetsList->values[card->setId].c_str());
         break;
       case Constants::RARITY_U:
-        sprintf(buf,"%s Uncommon",MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,_("%s Uncommon").c_str(),MtgSets::SetsList->values[card->setId].c_str());
         break;
       case Constants::RARITY_C:
-        sprintf(buf,"%s Common",MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,_("%s Common").c_str(),MtgSets::SetsList->values[card->setId].c_str());
         break;
       default:
         sprintf(buf,"%s",MtgSets::SetsList->values[card->setId].c_str());
@@ -303,6 +305,8 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     switch(card->getColor())
     {
     case Constants::MTG_COLOR_BLACK: 
+    case Constants::MTG_COLOR_GREEN: 
+    case Constants::MTG_COLOR_BLUE: 
     case Constants::MTG_COLOR_LAND: 
       font->SetColor(ARGB((int)pos.actA,255,255,255));
       font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);

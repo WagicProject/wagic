@@ -93,10 +93,10 @@ void GuiPhaseBar::Render()
 
   //print phase name
   JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
-  string currentP = "your turn";
+  string currentP = _("your turn");
   string interrupt = "";
   if (g->currentPlayer == g->players[1]){
-    currentP = "opponent's turn";
+    currentP = _("opponent's turn");
   }
 	font->SetColor(ARGB(255, 255, 255, 255));
   if (g->currentlyActing()->isAI()){
@@ -104,9 +104,9 @@ void GuiPhaseBar::Render()
   }
   if (g->currentlyActing() != g->currentPlayer){
     if (g->currentPlayer == g->players[0]) {
-      interrupt = " - opponent plays";
+      interrupt = " - "+_("opponent plays");
     }else{
-      interrupt = " - you play";
+      interrupt = " - "+_("you play");
     }
   }
 

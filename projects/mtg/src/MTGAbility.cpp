@@ -8,6 +8,7 @@
 #include "../include/CardGui.h"
 #include "../include/MTGDeck.h"
 #include "../include/Blocker.h"
+#include "../include/Translate.h"
 
 
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
@@ -2223,38 +2224,38 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output,
 
   const char * AManaProducer::getMenuText(){
     if (menutext.size())return menutext.c_str();
-    menutext = "Add ";
+    menutext = _("Add ");
     char buffer[128];
     int alreadyHasOne = 0;
     for (int i= 0; i < 6; i++){
       int value = output->getCost(i);
       if (value){
-	if (alreadyHasOne) menutext.append(",");
-	sprintf(buffer, "%i ", value);
-	menutext.append(buffer);
-	switch (i){
-	case Constants::MTG_COLOR_RED:
-	  menutext.append("red");
-	  break;
-	case Constants::MTG_COLOR_BLUE:
-	  menutext.append("blue");
-	  break;
-	case Constants::MTG_COLOR_GREEN:
-	  menutext.append("green");
-	  break;
-	case Constants::MTG_COLOR_WHITE:
-	  menutext.append("white");
-	  break;
-	case Constants::MTG_COLOR_BLACK:
-	  menutext.append("black");
-	  break;
-	default:
-	  break;
-	}
-	alreadyHasOne = 1;
+        if (alreadyHasOne) menutext.append(",");
+        sprintf(buffer, "%i ", value);
+        menutext.append(buffer);
+        switch (i){
+        case Constants::MTG_COLOR_RED:
+          menutext.append(_("red"));
+          break;
+        case Constants::MTG_COLOR_BLUE:
+          menutext.append(_("blue"));
+          break;
+        case Constants::MTG_COLOR_GREEN:
+          menutext.append(_("green"));
+          break;
+        case Constants::MTG_COLOR_WHITE:
+          menutext.append(_("white"));
+          break;
+        case Constants::MTG_COLOR_BLACK:
+          menutext.append(_("black"));
+          break;
+        default:
+          break;
+        }
+        alreadyHasOne = 1;
       }
     }
-    menutext.append(" mana");
+    menutext.append(_(" mana"));
     return menutext.c_str();
   }
 

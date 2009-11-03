@@ -100,7 +100,7 @@ void GameStateDeckViewer::Start()
   menu->Add(1,"Save & Rename");
   menu->Add(2,"Switch decks without saving");
   if(options[Options::CHEATMODE].number)
-      menu->Add(-1,"Complete collection & reset (cheat)");
+      menu->Add(-1,"*Complete collection & reset*");
   menu->Add(3,"Back to main menu");
   menu->Add(4,"Cancel");
 
@@ -432,9 +432,9 @@ void GameStateDeckViewer::renderSlideBar(){
   //r->FillCircle(filler+cursor_pos + 3 ,SCREEN_HEIGHT - 15 + 3,6,ARGB(255,128,128,128));
   r->DrawLine(filler+cursor_pos,y,filler+cursor_pos,y+5,ARGB(hudAlpha,255,255,255));
   char buffer[256];
-  string deckname = "Collection";
+  string deckname = _("Collection");
   if (displayed_deck == myDeck){
-    deckname = "Deck";
+    deckname = _("Deck");
   }
   sprintf(buffer,"%s - %i/%i", deckname.c_str(),currentPos, total);
   mFont->SetColor(ARGB(hudAlpha,255,255,255));

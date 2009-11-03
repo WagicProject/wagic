@@ -70,28 +70,28 @@ SimplePad::SimplePad(){
       k->adjacency[KPD_DOWN] = idx+1+ALPHA_COLUMNS;
   }
 
-  Add("Spacebar",KPD_SPACE);
+  Add(_("Spacebar"),KPD_SPACE);
   
   for(int x=25-ALPHA_COLUMNS;x<26;x++)
     keys[x]->adjacency[KPD_DOWN] = KPD_SPACE;
 
-  k=Add("Confirm",KPD_OK);
+  k=Add(_("Confirm"),KPD_OK);
   keys[KPD_Z]->adjacency[KPD_RIGHT] = KPD_OK;
   k->adjacency[KPD_UP] = KPD_CAPS;
   k->adjacency[KPD_LEFT] = KPD_Z;
   k->adjacency[KPD_DOWN] = KPD_CANCEL;
 
-  k=Add("Cancel",KPD_CANCEL);
+  k=Add(_("Cancel"),KPD_CANCEL);
   k->adjacency[KPD_UP] = KPD_OK;
   k->adjacency[KPD_LEFT] = KPD_SPACE;
 
-  k=Add("Del",KPD_DEL);
+  k=Add(_("Del"),KPD_DEL);
   keys[KPD_I]->adjacency[KPD_RIGHT] = KPD_DEL;   
   k->adjacency[KPD_UP] = KPD_9;
   k->adjacency[KPD_DOWN] = KPD_CAPS;
   k->adjacency[KPD_LEFT] = KPD_I;
   
-  k=Add("Caps",KPD_CAPS);
+  k=Add(_("Caps"),KPD_CAPS);
   keys[KPD_R]->adjacency[KPD_RIGHT] = KPD_CAPS;
   keys[KPD_R]->adjacency[KPD_DOWN] = KPD_Z; 
   k->adjacency[KPD_UP] = KPD_DEL;
@@ -319,14 +319,14 @@ void SimplePad::Render(){
   if(bShowNumpad)
     offY += kH+14;
   //Draw Keypad Background.
-  renderer->FillRoundRect(mX-kW,mY-kH,(kW+12)*11,(kH+14)*5+offY,2,ARGB(180,0,0,0));
+  renderer->FillRoundRect(mX-kW,mY-kH,(kW+12)*13,(kH+14)*5+offY,2,ARGB(180,0,0,0));
   offY = vSpacing;
   //Draw text entry bubble
-  renderer->FillRoundRect(mX-kW/2,mY+offY,(kW+12)*9+kW/2,kH,2,ARGB(255,255,255,255));
+  renderer->FillRoundRect(mX-kW/2,mY+offY,(kW+12)*11+kW/2,kH,2,ARGB(255,255,255,255));
 
   //Draw text-entry title, if we've got one.
   if(title != ""){
-    mFont->DrawString(title.c_str(),mX,mY);
+    mFont->DrawString(_(title.c_str()),mX,mY);
   }
     mY+=kH+12;
 

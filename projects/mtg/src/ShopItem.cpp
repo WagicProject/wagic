@@ -261,7 +261,7 @@ void ShopItems::Update(float dt){
 	      dialog->Add(1,"Yes");
 	      dialog->Add(2,"No");
         if(options[Options::CHEATMODE].number) {
-          dialog->Add(3,"Steal 1,000 credits (cheat)");
+          dialog->Add(3,"*Steal 1,000 credits*");
         }
       }
       else{
