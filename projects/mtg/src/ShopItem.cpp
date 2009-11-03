@@ -224,6 +224,9 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
     mBgAA = resources.RetrieveQuad("shop_aliasing.png");
     mBgAA->SetTextureRect(0,0,250,120); 
   }
+  
+  lightAlpha = 0;
+  alphaChange = 0;
 }
 
 
@@ -280,6 +283,10 @@ void ShopItems::Update(float dt){
 
   }
 
+  alphaChange = (500 - (rand() % 1000)) * dt;
+  lightAlpha+= alphaChange;
+  if (lightAlpha < 0) lightAlpha = 0;
+  if (lightAlpha > 50) lightAlpha = 50;
 }
 
 
@@ -290,6 +297,14 @@ void ShopItems::Render(){
 
   if (mBgAA) 
     r->RenderQuad(mBgAA,0,SCREEN_HEIGHT-128);
+
+  JQuad * quad = resources.RetrieveTempQuad("shop_light.png"); 
+  if (quad){
+  r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
+  quad->SetColor(ARGB(lightAlpha,255,255,255));
+  r->RenderQuad(quad,0,0);
+  r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+  }
 
   if (display) display->Render();
 

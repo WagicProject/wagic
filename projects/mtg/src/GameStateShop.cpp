@@ -53,9 +53,6 @@ void GameStateShop::Start()
 
   JRenderer::GetInstance()->EnableVSync(true);
 
-  lightAlpha = 0;
-  alphaChange = 0;
-
   shop = NULL;
   load();
 
@@ -169,11 +166,6 @@ void GameStateShop::Update(float dt)
       shop->Update(dt);
   }
 
-  alphaChange = (500 - (rand() % 1000)) * dt;
-  lightAlpha+= alphaChange;
-  if (lightAlpha < 0) lightAlpha = 0;
-  if (lightAlpha > 50) lightAlpha = 50;
-
 }
 
 
@@ -185,16 +177,10 @@ void GameStateShop::Render()
   
   if (mBg) r->RenderQuad(mBg,0,0);
 
-  JQuad * quad = resources.RetrieveTempQuad("shop_light.png"); 
-  if (quad){
-  r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-  quad->SetColor(ARGB(lightAlpha,255,255,255));
-  r->RenderQuad(quad,0,0);
-  r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-  }
+
   if (shop)
     shop->Render();
-
+  
   if (mStage == STAGE_SHOP_MENU && menu){
     menu->Render();
   }

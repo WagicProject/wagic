@@ -69,6 +69,10 @@ class ShopItems:public JGuiController,public JGuiListener{
   CardDisplay * display;
   void safeDeleteDisplay();
     DeckDataWrapper * myCollection;
+    
+  int lightAlpha;
+  int alphaChange;
+
  public:
   bool showCardList;
   ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]);
