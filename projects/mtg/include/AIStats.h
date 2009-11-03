@@ -12,6 +12,7 @@ class Player;
 class MTGCardInstance;
 class MTGCard;
 class Damage;
+class WEvent;
 
 class AIStat{
  public:
@@ -31,12 +32,12 @@ class AIStats{
   list<AIStat *> stats;
   AIStats(Player * _player, char * filename);
   ~AIStats();
-  void updateStats();
   void load(char * filename);
   void save();
   AIStat * find(MTGCard * card);
   bool isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue = true );
   void updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, float multiplier = 1.0);
+  int receiveEvent(WEvent * event);
 };
 
 #endif

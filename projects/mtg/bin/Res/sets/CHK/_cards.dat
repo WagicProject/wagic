@@ -646,7 +646,7 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
-text=Nezumi Cutthroat can't block.
+text=Fear. Nezumi Cutthroat can't block.
 id=80521
 name=Nezumi Cutthroat
 rarity=C
@@ -655,7 +655,7 @@ type=Creature
 subtype=Rat Warrior
 power=2
 toughness=1
-abilities=cantblock
+abilities=cantblock,fear
 [/card]
 [card]
 text=All Creatures get -1/-1.

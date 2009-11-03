@@ -458,6 +458,9 @@ int GameObserver::receiveEvent(WEvent * e){
   while(eventsQueue.size()){
     WEvent * ev = eventsQueue.front();
     result +=  mLayers->receiveEvent(ev);
+    for (int i = 0; i < 2; ++i){
+      result += players[i]->receiveEvent(ev);
+    }
     SAFE_DELETE(ev);
     eventsQueue.pop();
   }

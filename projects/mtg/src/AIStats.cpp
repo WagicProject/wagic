@@ -3,6 +3,7 @@
 #include "../include/GameObserver.h"
 #include "../include/Player.h"
 #include "../include/MTGCardInstance.h"
+#include "../include/WEvent.h"
 
 bool compare_aistats(AIStat * first, AIStat * second){
   float damage1 = first->value / first->occurences;
@@ -42,25 +43,24 @@ void AIStats::updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, f
   }
 }
 
-void AIStats::updateStats(){
-  GameObserver * game = GameObserver::GetInstance();
-  ActionStack * as = game->mLayers->stackLayer();
-  Damage * damage = ((Damage * )as->getNext(NULL,ACTION_DAMAGE, RESOLVED_OK));
+int AIStats::receiveEvent(WEvent * event){
+  WEventDamage * e = dynamic_cast<WEventDamage *>(event);
+  if (!e) return 0; //we take only Damage events into accountright now
+  Damage * damage = e->damage;
   MTGGameZone * opponentZone = player->opponent()->game->inPlay;
-  while(damage){
-    MTGCardInstance * card = damage->source;
-    updateStatsCard(card,damage);
 
-    //Auras on damage source can be the cause
-    for (int i=0;  i < opponentZone->nb_cards; i++){
-      MTGCardInstance * aura = opponentZone->cards[i];
-      if (aura->target == card){
-	updateStatsCard(aura,damage, STATS_AURA_MULTIPLIER);
-      }
+  MTGCardInstance * card = damage->source;
+  updateStatsCard(card,damage);
+
+  //Auras on damage source can be the cause
+  for (int i = 0;  i < opponentZone->nb_cards; ++i){
+    MTGCardInstance * aura = opponentZone->cards[i];
+    if (aura->target == card){
+      updateStatsCard(aura,damage, STATS_AURA_MULTIPLIER);
     }
-    damage = ((Damage * )as->getNext(damage,ACTION_DAMAGE, RESOLVED_OK));
   }
-  stats.sort(compare_aistats);
+  stats.sort(compare_aistats); //this could be slow, if it is, let's run it only at the end of the turn
+  return 1; //is this meant to return 0 or 1?
 }
 
 bool AIStats::isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue ){

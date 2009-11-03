@@ -62,6 +62,7 @@ class AIPlayer: public Player{
  public:
   void End(){};
   virtual int displayStack() {return 0;};
+  int receiveEvent(WEvent * event);
   AIStats * stats;
   ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
   AIPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);

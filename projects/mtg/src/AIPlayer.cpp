@@ -727,6 +727,11 @@ int AIPlayerBaka::computeActions(){
   return 1;
 };
 
+int AIPlayer::receiveEvent(WEvent * event){
+ if (getStats()) return getStats()->receiveEvent(event);
+ return 0;
+}
+
 int AIPlayerBaka::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
 
@@ -736,9 +741,6 @@ int AIPlayerBaka::Act(float dt){
 
   int currentGamePhase = g->getCurrentGamePhase();
 
-  if (currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentGamePhase != oldGamePhase){
-    if (getStats()) getStats()->updateStats();
-  }
   oldGamePhase = currentGamePhase;
 
   timer-= dt;

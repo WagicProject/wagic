@@ -37,6 +37,8 @@ class Player: public Damageable{
   JQuad * getIcon();
   string deckFile;
   string deckFileSmall;
+
+  virtual int receiveEvent(WEvent * event){return 0;};
 };
 
 class HumanPlayer: public Player{
