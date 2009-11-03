@@ -74,6 +74,7 @@ bottle_gnomes.txt
 bottle_gnomes2.txt
 boggart_arsonists.txt
 brass_man.txt
+cage_of_hands.txt
 Call_to_Heel_1.txt
 Call_to_Heel_2.txt
 castle.txt

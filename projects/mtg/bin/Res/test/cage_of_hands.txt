@@ -1,0 +1,24 @@
+#Bug:Cage of hands doesn't return to its owner's hand
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:cage of hands
+manapool:{2}{W}
+inplay:swamp,plains
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+cage of hands
+grizzly bears
+plains
+swamp
+cage of hands
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:cage of hands
+inplay:swamp,plains
+manapool:{0}
+[PLAYER2]
+inplay:grizzly bears
+[END]

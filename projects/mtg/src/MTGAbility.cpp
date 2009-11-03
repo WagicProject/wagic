@@ -401,6 +401,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found != string::npos){
     int end = s.find(")",found+1);
     string szone = s.substr(found + 7,end - found - 7);
+
+    //hack for http://code.google.com/p/wagic/issues/detail?id=120
+    //We assume that auras don't move their own target...
+    if (card->hasType("aura")) target = card; 
+
     MTGAbility * a = NEW AAMover(id,card,target,szone);
     a->oneShot = 1;
     return a;
