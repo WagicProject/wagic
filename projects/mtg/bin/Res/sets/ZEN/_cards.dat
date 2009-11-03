@@ -706,6 +706,7 @@ text=Gain control of target creature until end of turn. Put a +1/+1 counter on i
 alias=129767
 id=186324
 name=Mark of Mutiny
+target=creature
 auto=untap
 auto=haste
 auto=counter(1/1)
