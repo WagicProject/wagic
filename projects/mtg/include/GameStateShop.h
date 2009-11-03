@@ -25,6 +25,10 @@ class GameStateShop: public GameState, public JGuiListener
   JQuad * mBack;
   JQuad * mBg;
   JTexture * mBgTex;
+
+  int lightAlpha;
+  int alphaChange;
+
   SimpleMenu * menu;
   int mStage;
   char starterBuffer[128], boosterBuffer[128];
