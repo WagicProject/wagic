@@ -222,7 +222,7 @@ ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y
   mBgAATex = resources.RetrieveTexture("shop_aliasing.png",RETRIEVE_LOCK);
   if(mBgAATex){
     mBgAA = resources.RetrieveQuad("shop_aliasing.png");
-    mBgAA->SetTextureRect(0,0,250,120); 
+    mBgAA->SetTextureRect(0,1,250,119); 
   }
   
   lightAlpha = 0;
@@ -294,17 +294,20 @@ void ShopItems::Render(){
   JGuiController::Render();
   JRenderer * r = JRenderer::GetInstance(); 
   
-
+  
   if (mBgAA) 
-    r->RenderQuad(mBgAA,0,SCREEN_HEIGHT-128);
+    r->RenderQuad(mBgAA,0,SCREEN_HEIGHT-127);
 
   JQuad * quad = resources.RetrieveTempQuad("shop_light.jpg",TEXTURE_SUB_5551); 
   if (quad){
-  r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-  quad->SetColor(ARGB(lightAlpha,255,255,255));
-  r->RenderQuad(quad,0,0);
-  r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+    r->EnableTextureFilter(false);
+    r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
+    quad->SetColor(ARGB(lightAlpha,255,255,255));
+    r->RenderQuad(quad,0,0);
+    r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+    r->EnableTextureFilter(true);
   }
+  
 
   if (display) display->Render();
 
