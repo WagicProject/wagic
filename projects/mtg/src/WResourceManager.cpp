@@ -272,8 +272,8 @@ JQuad * WResourceManager::GetQuad(int id){
   return jtex->GetQuad(managedQuads[id]->resname);
 }
 
-JQuad * WResourceManager::RetrieveTempQuad(string filename){
-  return RetrieveQuad(filename,0,0,0,0,"temporary",RETRIEVE_NORMAL);
+JQuad * WResourceManager::RetrieveTempQuad(string filename,int submode){
+  return RetrieveQuad(filename,0,0,0,0,"temporary",RETRIEVE_NORMAL,submode);
 }
 
 JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height,  string resname, int style, int submode, int id){

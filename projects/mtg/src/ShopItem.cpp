@@ -298,7 +298,7 @@ void ShopItems::Render(){
   if (mBgAA) 
     r->RenderQuad(mBgAA,0,SCREEN_HEIGHT-128);
 
-  JQuad * quad = resources.RetrieveTempQuad("shop_light.png"); 
+  JQuad * quad = resources.RetrieveTempQuad("shop_light.jpg",TEXTURE_SUB_5551); 
   if (quad){
   r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
   quad->SetColor(ARGB(lightAlpha,255,255,255));

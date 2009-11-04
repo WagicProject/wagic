@@ -135,7 +135,7 @@ public:
   JSample * RetrieveSample(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   JTexture * RetrieveTexture(string filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   JQuad * RetrieveQuad(string filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,  string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL, int id = 0);
-  JQuad * RetrieveTempQuad(string filename);
+  JQuad * RetrieveTempQuad(string filename, int submode = CACHE_NORMAL);
   hgeParticleSystemInfo * RetrievePSI(string filename, JQuad * texture, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
   int RetrieveError();
 
