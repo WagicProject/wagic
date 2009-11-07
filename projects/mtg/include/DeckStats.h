@@ -32,6 +32,7 @@ public:
   ~DeckStats();
   int percentVictories(string opponentsDeckFile);
   int percentVictories();
+  DeckStat * getDeckStat(string opponentsFile);
   int nbGames();
 };
 

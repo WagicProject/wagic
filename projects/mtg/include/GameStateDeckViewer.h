@@ -14,6 +14,7 @@
 #include "../include/PriceList.h"
 #include "../include/PlayerData.h"
 #include "../include/DeckDataWrapper.h"
+#include "../include/DeckStats.h"
 
 #define NO_USER_ACTIVITY_HELP_DELAY 10
 #define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
@@ -58,6 +59,10 @@ struct StatsWrapper {
   int totalPrice;
   int totalManaCost;
   float avgManaCost;
+  int totalCreatureCost;
+  float avgCreatureCost;
+  int totalSpellCost;
+  float avgSpellCost;
 
   int countCreatures, countSpells, countInstants, countEnchantments, countSorceries, countArtifacts;
 
@@ -66,11 +71,15 @@ struct StatsWrapper {
 
   int countCardsPerCost[STATS_MAX_MANA_COST+1];
   int countCardsPerCostAndColor[STATS_MAX_MANA_COST+1][Constants::MTG_NB_COLORS+1];
+  int countCreaturesPerCost[STATS_MAX_MANA_COST+1];
+  int countCreaturesPerCostAndColor[STATS_MAX_MANA_COST+1][Constants::MTG_NB_COLORS+1];
+  int countSpellsPerCost[STATS_MAX_MANA_COST+1];
+  int countSpellsPerCostAndColor[STATS_MAX_MANA_COST+1][Constants::MTG_NB_COLORS+1];
   int totalCostPerColor[Constants::MTG_NB_COLORS+1];
   int totalColoredSymbols;
 
-  vector<int> aiVictoryRatio;
   vector<string> aiDeckNames;
+  vector<DeckStat*> aiDeckStats;
 };
 
 class GameStateDeckViewer: public GameState, public JGuiListener

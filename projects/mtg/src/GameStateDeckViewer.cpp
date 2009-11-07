@@ -5,7 +5,6 @@
 #include "../include/config.h"
 #include "../include/GameStateDeckViewer.h"
 #include "../include/Translate.h"
-#include "../include/DeckStats.h"
 #include "../include/ManaCostHybrid.h"
 #include <vector>
 
@@ -90,10 +89,6 @@ void GameStateDeckViewer::Start()
   myDeck = NULL;
   menuFont = resources.GetJLBFont(Constants::MENU_FONT);
   mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-
-  stw.currentPage = 0;
-  stw.pageCount = 5;
-  stw.needUpdate = true;
 
   menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-150,20);
   menu->Add(0,"Save");
@@ -320,7 +315,6 @@ void GameStateDeckViewer::Update(float dt)
         if  (mStage != STAGE_ONSCREEN_MENU){
           mStage = STAGE_ONSCREEN_MENU;
           onScreenTransition = 1;
-        stw.currentPage = 0;
         }else{
           if (onScreenTransition >0){
             onScreenTransition-= 0.05f;
@@ -479,6 +473,7 @@ void GameStateDeckViewer::renderDeckBackground(){
 }
 
 void GameStateDeckViewer::renderOnScreenMenu(){
+
   JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
   font->SetColor(ARGB(255,255,255,255));
   JRenderer * r = JRenderer::GetInstance();
@@ -550,15 +545,6 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     sprintf(buffer, _("Your Deck: %i cards").c_str(),  value);
     font->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
 
-    //TODO, put back !
-    /*int nbCreatures = myDeck->countByType("Creature");
-    int nbSpells = myDeck->countByType("Instant") + myDeck->countByType("Enchantment") + myDeck->countByType("Sorcery");
-
-    sprintf(buffer, "Creatures: %i - Spells: %i", nbCreatures, nbSpells);
-    mFont->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 55);
-    */
-
-
     font->DrawString(_("You are currently viewing your"),  SCREEN_WIDTH-200+rightTransition, 5);
     if (displayed_deck == myCollection){
       font->DrawString(_("collection. Press TRIANGLE"),  SCREEN_WIDTH-200+rightTransition, 19);
@@ -585,18 +571,19 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     r->FillRect(SCREEN_WIDTH/2+rightTransition,10,SCREEN_WIDTH/2-10,SCREEN_HEIGHT-20,ARGB(128,0,0,0));
     font->DrawString(_("menu"), SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
     
-    // Draw page id
-    sprintf(buffer, _("statsPage#: %i").c_str(), stw.currentPage);
-    font->DrawString(buffer, 10+leftTransition, 10);      
-    
     int nb_letters = 0;
     float posX, posY;
     DWORD graphColor;
     
     graphColor = ARGB(200, 155, 155, 155);
+    string STATS_TITLE_FORMAT = _("%i: %s");
 
     switch (stw.currentPage) {
       case 1: // Counts, price
+        // Title
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Statistics Summary").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+        
         posY = 30;
         posX = 180;
         sprintf(buffer, _("Your Deck: %i cards").c_str(),  stw.cardCount);
@@ -705,7 +692,46 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         break;
         
       case 2: // Mana cost detail
-        font->DrawString(_("Card counts per mana cost:"), 20 + leftTransition, 30);            
+      case 3:
+      case 4:
+        int (*countPerCost)[STATS_MAX_MANA_COST+1];
+        int (*countPerCostAndColor)[STATS_MAX_MANA_COST+1][Constants::MTG_NB_COLORS+1];
+        float avgCost;
+
+        switch (stw.currentPage) { // Nested switch on the same variable. Oh yes.
+          case 2: // Total counts
+            // Title
+            sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail").c_str());
+            font->DrawString(buffer, 10+leftTransition, 10);
+            font->DrawString(_("Card counts per mana cost:"), 20 + leftTransition, 30);
+            avgCost = stw.avgManaCost;
+            countPerCost = &stw.countCardsPerCost;
+            countPerCostAndColor = &stw.countCardsPerCostAndColor;
+            break;
+          case 3: // Creature counts
+            // Title
+            sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail - Creatures").c_str());
+            font->DrawString(buffer, 10+leftTransition, 10);
+            font->DrawString(_("Creature counts per mana cost:"), 20 + leftTransition, 30);
+            avgCost = stw.avgCreatureCost;
+            countPerCost = &stw.countCreaturesPerCost;
+            countPerCostAndColor = &stw.countCreaturesPerCostAndColor;
+            break;
+          case 4: // Spell counts
+            // Title
+            sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail - Spells").c_str());
+            font->DrawString(buffer, 10+leftTransition, 10);
+            font->DrawString(_("Non-creature spell counts per mana cost:"), 20 + leftTransition, 30);
+            avgCost = stw.avgSpellCost;
+            countPerCost = &stw.countSpellsPerCost;
+            countPerCostAndColor = &stw.countSpellsPerCostAndColor;
+            break;
+          default:
+            countPerCost = NULL;
+            countPerCostAndColor = NULL;
+            avgCost = 0;
+            break;
+        }
 
         posY = 70;
         
@@ -731,18 +757,18 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         for (int i=0; i<=STATS_MAX_MANA_COST; i++) {              
           sprintf(buffer, _("%i").c_str(), i);
           font->DrawString(buffer, 30 + leftTransition, posY);              
-          sprintf(buffer, _("%i").c_str(), stw.countCardsPerCost[i]);
+          sprintf(buffer, _("%i").c_str(), (*countPerCost)[i]);
           font->DrawString(buffer, 45 + leftTransition, posY);              
           for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
-            sprintf(buffer, (stw.countCardsPerCostAndColor[i][j]>0)?_("%i").c_str():".", stw.countCardsPerCostAndColor[i][j]);
+            sprintf(buffer, ((*countPerCostAndColor)[i][j]>0)?_("%i").c_str():" ", (*countPerCostAndColor)[i][j]);
             font->DrawString(buffer, 64 + leftTransition + j*15, posY);
           }
-          r->FillRect(77 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, stw.countCardsPerCost[i]*5, 8, graphColor);
+          r->FillRect(77 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
           posY += 10;
         }
         
         posY += 10;
-        sprintf(buffer, _("Average converted mana cost: %2.2f").c_str(), stw.avgManaCost);
+        sprintf(buffer, _("Average converted mana cost: %2.2f").c_str(), avgCost);
         font->DrawString(buffer, 20 + leftTransition, posY);
         posY += 15;
         sprintf(buffer, _("C - Converted mana cost. Cards with cost>%i are included in the last row.").c_str(), STATS_MAX_MANA_COST);
@@ -752,7 +778,12 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         
         break;
 
-      case 4: // No lands detail
+      case 6: 
+        // Title
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Probabilities").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+
+        // No lands detail
         float graphScale, graphWidth;
         graphWidth = 100;
         graphScale = (stw.noLandsProbInTurn[0]==0) ? 0:(graphWidth/stw.noLandsProbInTurn[0]);
@@ -785,7 +816,11 @@ void GameStateDeckViewer::renderOnScreenMenu(){
 
         break;
 
-      case 3: // Total mana cost per color
+      case 5: // Total mana cost per color
+        // Title
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost per color").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+
         font->DrawString(_("Total colored manasymbols in cards' casting costs:"), 20 + leftTransition, 30);
         
         posY = 50;
@@ -809,7 +844,11 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         }
         break;
       
-      case 5: // Victory statistics
+      case 7: // Victory statistics
+        // Title
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Victory statistics").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+
         font->DrawString(_("Victories against AI:"), 20 + leftTransition, 30);            
         
         sprintf(buffer, _("Games played: %i").c_str(), stw.gamesPlayed);
@@ -821,12 +860,13 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         posX = 20;
 
         // ToDo: Multiple pages when too many AI decks are present
-        // ToDo: Don't display AI decks with zero games played
-        for (int i=0; i<(int)stw.aiVictoryRatio.size(); i++) {
-          sprintf(buffer, _("%.21s").c_str(), stw.aiDeckNames.at(i).c_str());
+        for (int i=0; i<(int)stw.aiDeckStats.size(); i++) {
+          sprintf(buffer, _("%.14s").c_str(), stw.aiDeckNames.at(i).c_str());
           font->DrawString(buffer, posX + leftTransition, posY);
-          sprintf(buffer, _("%i%%").c_str(), stw.aiVictoryRatio.at(i));
-          font->DrawString(buffer, posX + leftTransition+115, posY);
+          sprintf(buffer, _("%i/%i").c_str(), stw.aiDeckStats.at(i)->victories, stw.aiDeckStats.at(i)->nbgames);
+          font->DrawString(buffer, posX + leftTransition+80, posY);
+          sprintf(buffer, _("%i%%").c_str(), stw.aiDeckStats.at(i)->percentVictories());
+          font->DrawString(buffer, posX + leftTransition+110, posY);
           posY += 10;
           if (((i+1)%19)==0) {
             posY = 70;
@@ -834,8 +874,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
           }
         }
         break;
-
-      }
+    }
   }
 }
 
@@ -852,12 +891,16 @@ void GameStateDeckViewer::updateStats() {
   // Mana cost
   int currentCount, convertedCost;
   ManaCost * currentCost;
-  stw.totalManaCost = 0;    
+  stw.totalManaCost = 0;
+  stw.totalCreatureCost = 0;
+  stw.totalSpellCost = 0;
   MTGCard * current = myDeck->getNext();
 
   // Clearing arrays
   for (int i=0; i<=STATS_MAX_MANA_COST; i++) {
     stw.countCardsPerCost[i] = 0;
+    stw.countCreaturesPerCost[i] = 0;
+    stw.countSpellsPerCost[i] = 0;
   }
 
   for (int i=0; i<=Constants::MTG_NB_COLORS; i++) {
@@ -867,6 +910,8 @@ void GameStateDeckViewer::updateStats() {
   for (int i=0; i<=STATS_MAX_MANA_COST; i++) {
     for (int k=0; k<=Constants::MTG_NB_COLORS; k++) {
       stw.countCardsPerCostAndColor[i][k] = 0;
+      stw.countCreaturesPerCostAndColor[i][k] = 0;
+      stw.countSpellsPerCostAndColor[i][k] = 0;
     }
   }
 
@@ -881,14 +926,26 @@ void GameStateDeckViewer::updateStats() {
       convertedCost = STATS_MAX_MANA_COST;
     }
     stw.countCardsPerCost[convertedCost] += currentCount;
+    if (current->isCreature()) {
+      stw.countCreaturesPerCost[convertedCost] += currentCount;
+      stw.totalCreatureCost += convertedCost * currentCount;
+    } else if (current->isSpell()) {
+      stw.countSpellsPerCost[convertedCost] += currentCount;
+      stw.totalSpellCost += convertedCost * currentCount;
+    }
     
     // Add to the per color counters
     //  a. regular costs
     for (int j=0; j<Constants::MTG_NB_COLORS;j++){
       stw.totalCostPerColor[j] += currentCost->getCost(j)*currentCount;
-      if (current-> hasColor(j)) { 
+      if (current->hasColor(j)) { 
         // Add to the per cost and color counter
         stw.countCardsPerCostAndColor[convertedCost][j] += currentCount;
+        if (current->isCreature()) {
+          stw.countCreaturesPerCostAndColor[convertedCost][j] += currentCount;
+        } else if (current->isSpell()) {
+          stw.countSpellsPerCostAndColor[convertedCost][j] += currentCount;
+        }
       }
     }
     
@@ -913,8 +970,6 @@ void GameStateDeckViewer::updateStats() {
 
   stw.countCardsPerCost[0] -= stw.countLands; // Quick hack to exclude lands from zero costed card count
 
-  stw.avgManaCost = ((stw.cardCount - stw.countLands) <= 0)?0:(float)stw.totalManaCost / (stw.cardCount - stw.countLands);
-
   // Counts by type
   stw.countCreatures = countCardsByType("Creature");
   stw.countInstants = countCardsByType("Instant");
@@ -922,6 +977,11 @@ void GameStateDeckViewer::updateStats() {
   stw.countSorceries = countCardsByType("Sorcery");
   stw.countSpells = stw.countInstants + stw.countEnchantments + stw.countSorceries;
   //stw.countArtifacts = countCardsByType("Artifact");
+
+  // Average mana costs
+  stw.avgManaCost = ((stw.cardCount - stw.countLands) <= 0)?0:(float)stw.totalManaCost / (stw.cardCount - stw.countLands);
+  stw.avgCreatureCost = (stw.countCreatures <= 0)?0:(float)stw.totalCreatureCost / stw.countCreatures;
+  stw.avgSpellCost = (stw.countSpells <= 0)?0:(float)stw.totalSpellCost / stw.countSpells;
 
   // Probabilities
   // TODO: this could be optimized by reusing results
@@ -1088,7 +1148,7 @@ void GameStateDeckViewer::Render()
 int GameStateDeckViewer::loadDeck(int deckid){
   SAFE_DELETE(myCollection); 
   stw.currentPage = 0;
-  stw.pageCount = 5;
+  stw.pageCount = 7;
   stw.needUpdate = true;
 
   string profile = options[Options::ACTIVE_PROFILE].str;
@@ -1122,8 +1182,8 @@ int GameStateDeckViewer::loadDeck(int deckid){
     // TODO: Code cleanup (Copypasted with slight changes from GameStateMenu.cpp)
     char buffer[512];
     DeckStats * stats = DeckStats::GetInstance();
-    stw.aiVictoryRatio.clear();
     stw.aiDeckNames.clear();
+    stw.aiDeckStats.clear();
 
     sprintf(buffer, "stats/player_deck%i.txt", deckid);
     string deckstats = options.profileFile(buffer);
@@ -1134,7 +1194,6 @@ int GameStateDeckViewer::loadDeck(int deckid){
       stw.gamesPlayed = stats->nbGames();
       
       // Detailed deck statistics against AI
-      // Yet another copypaste (GameState.cpp)
       int found = 1;
       int nbDecks = 0;
       while (found){
@@ -1149,9 +1208,14 @@ int GameStateDeckViewer::loadDeck(int deckid){
           nbDecks++;
 
           sprintf(smallDeckName, "%s_deck%i","ai_baka",nbDecks);
-          int percentVictories = stats->percentVictories(string(smallDeckName));
-          stw.aiVictoryRatio.push_back(percentVictories);
-          stw.aiDeckNames.push_back(string(mtgd->meta_name));
+          DeckStat* deckStat = stats->getDeckStat(string(smallDeckName));
+          
+          if ((deckStat != NULL) && (deckStat->nbgames>0)) {
+            int percentVictories = stats->percentVictories(string(smallDeckName));
+            stw.aiDeckNames.push_back(string(mtgd->meta_name));
+            stw.aiDeckStats.push_back(deckStat);
+          }
+
           delete mtgd;
         }
       }

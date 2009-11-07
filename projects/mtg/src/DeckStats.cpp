@@ -39,6 +39,15 @@ int DeckStats::percentVictories(string opponentsFile){
   }
 }
 
+DeckStat* DeckStats::getDeckStat(string opponentsFile){
+  map<string,DeckStat *>::iterator it = stats.find(opponentsFile);
+  if (it == stats.end()){
+    return NULL;
+  }else{
+    return it->second;
+  }
+}
+
 int DeckStats::nbGames(){
   int nbgames = 0;
   map<string,DeckStat *>::iterator it;
