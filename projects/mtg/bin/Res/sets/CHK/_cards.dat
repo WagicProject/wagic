@@ -501,7 +501,7 @@ abilities=legendary
 [/card]
 [card]
 text=Flying When Kokusho, the Evening Star is put into a graveyard from the battlefield, each opponent loses 5 life. You gain life equal to the life lost this way.
-id=178022
+id=50445
 name=Kokusho, the Evening Star
 rarity=R
 mana={4}{B}{B}
