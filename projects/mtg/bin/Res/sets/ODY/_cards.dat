@@ -1288,9 +1288,9 @@ rarity=R
 mana={1}{G}{G}
 type=Creature
 subtype=Squirrel
-auto=foreach(squirrel|battlefield) 1/1 other 
-power=1
-toughness=1
+auto=foreach(squirrel|battlefield)1/1 other 
+power=2
+toughness=2
 [/card]
 [card]
 text=Flying   {1}{B}, Discard a card from your hand: Stalking Bloodsucker gets +2/+2 until end of turn.

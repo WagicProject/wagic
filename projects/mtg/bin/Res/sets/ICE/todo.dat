@@ -665,6 +665,18 @@ subtype=Insect
 toughness=2
 [/card]
 [card]
+text=Enchant land   Enchanted land has "{T}: Target creature gets +2/+1 until end of turn."
+id=2560
+target=land
+auto={T}:2/1 target(creature)
+#does not work as expected the land does not tap the aura does.
+name=Forbidden Lore
+rarity=R
+mana={2}{G}
+type=Enchantment 
+subtype=Aura
+[/card]
+[card]
 text=Counter target spell unless its controller pays {1}.       Draw a card at the beginning of the next turn's upkeep.
 id=2506
 name=Force Void
@@ -1300,6 +1312,19 @@ mana={B}{B}
 power=1
 subtype=Human Wizard
 toughness=1
+[/card]
+[card]
+text=Enchant creature   When Krovikan Fetish enters the battlefield, draw a card at the beginning of the next turn's upkeep.   Enchanted creature gets +1/+1.
+id=2464
+target=creature
+auto=1/1
+#Make you draw a card at each upkeep !!!
+auto=@next upkeep:draw:1
+name=Krovikan Fetish
+rarity=C
+mana={2}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={T}, Discard a nonblack card: Draw a card.     {T}, Discard a black card: Draw two cards, then discard one of them.

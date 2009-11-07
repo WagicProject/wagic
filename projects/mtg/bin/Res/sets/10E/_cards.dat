@@ -2739,6 +2739,7 @@ toughness=1
 [card]
 text=You may tap or untap target artifact, creature, or land.     Draw a card.
 auto=may untap target(artifact,creature,land)
+auto=may tap target(artifact,creature,land)
 auto=draw:1
 id=136286
 name=Twitch
