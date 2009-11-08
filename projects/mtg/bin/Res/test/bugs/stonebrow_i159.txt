@@ -1,0 +1,20 @@
+#NAME: Stonebrow crash
+#DESC: Summoning Stonebrow, Krosan Hero causes
+#DESC: an access violation.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=159
+[INIT]
+firstmain
+[PLAYER1]
+hand:118915
+manapool:{R}{R}{R}{R}{G}
+[PLAYER2]
+[DO]
+118915
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:118915
+hand:
+manapool:
+[PLAYER2]
+[END]

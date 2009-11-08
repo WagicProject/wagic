@@ -1,0 +1,44 @@
+#NAME: Blocking modifiers
+#DESC: When using cards like:
+#DESC: auto=target(creature[blocking]) 4/4
+#DESC: then you can put your creature into
+#DESC: "block mode", give it +4/+4, then
+#DESC: remove it from combat - and it will
+#DESC: still have the +4/+4 modifier.
+#DESC: This is tested here with Elven Fortress,
+#DESC: which gives a 0/+1 modifier to a
+#DESC: blocking Grizzly Bears, which is then
+#DESC: removed from blocking. It should go
+#DECK: back to 2/2 now and be killed by Shock.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Mountain,Raging Goblin
+hand:Shock
+[PLAYER2]
+inplay:Forest,Plains,Elven Fortress,Grizzly Bears
+life:20
+[DO]
+Raging Goblin
+next
+Grizzly Bears
+Forest
+Plains
+Elven Fortress
+Grizzly Bears
+Grizzly Bears
+next
+Mountain
+Shock
+Grizzly Bears
+[ASSERT]
+combatdamage
+[PLAYER1]
+inplay:Mountain,Raging Goblin
+hand:
+graveyard:Shock
+[PLAYER2]
+inplay:Forest,Plains,Elven Fortress
+graveyard:Grizzly Bears
+life:19
+[END]
