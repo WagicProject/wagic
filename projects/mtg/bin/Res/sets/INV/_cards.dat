@@ -133,7 +133,7 @@ mana={R}{G}
 [card]
 text=Destroy target enchantment. Put X 1/1 green Saproling creature tokens onto the battlefield, where X is its converted mana cost.
 id=23184
-target=aura
+target=enchantment
 alias=23195
 name=Aura Mutation
 rarity=R

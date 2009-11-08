@@ -59,6 +59,7 @@ ascendant_evincar2.txt
 ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
+aura_mutation.txt
 barbed_sliver.txt
 basal_sliver.txt
 beacon_of_unrest.txt

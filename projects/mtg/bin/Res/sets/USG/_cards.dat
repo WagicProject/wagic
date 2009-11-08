@@ -86,7 +86,7 @@ abilities=shroud
 [card]
 text=Trample
 id=5862
-name=Argothian swine
+name=Argothian Swine
 rarity=C
 mana={3}{G}
 type=Creature

@@ -1,0 +1,29 @@
+#NAME: Aura Mutation
+#DESC: Check targeting of Aura Mutation (id 23184)
+#DESC: (Card was reported of not being
+#DESC: able to target anything.)
+[INIT]
+firstmain
+[PLAYER1]
+inplay:
+hand:23184,23184,Holy Strength
+manapool:{W}{G}{W}{G}{W}
+[PLAYER2]
+inplay:Crusade,War Mammoth
+[DO]
+Holy Strength
+War Mammoth
+23184
+Holy Strength
+23184
+Crusade
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:-23184,-23184,-23184
+hand:
+graveyard:23184,23184,Holy Strength
+[PLAYER2]
+inplay:War Mammoth
+graveyard:Crusade
+[END]
