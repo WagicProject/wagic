@@ -33,7 +33,7 @@ next
 [ASSERT]
 UPKEEP
 [PLAYER1]
-inplay:the hive
+inplay:1138
 [PLAYER2]
 inplay:hypnotic specter
 [END]

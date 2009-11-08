@@ -1,0 +1,64 @@
+#NAME: Dauntless Escort
+#DESC: Dauntless Escort was reported to
+#DESC: give Indestructibility indefinitely,
+#DESC: but this has been fixed by now.
+#DESC: The script pits two white attackers
+#DESC: against stronger green defenders.
+#DESC: The attackers should survive the first
+#DESC: attack due to being indestructible this
+#DESC: turn. Later the green creatures attack,
+#DESC: the white creatures defend, an now the
+#DESC: the whites should die, because their
+#DESC: indestructibility lasted only one turn.
+[INIT]
+combatbegin
+[PLAYER1]
+inplay:Dauntless Escort,Tundra Wolves,Savannah Lions
+library:Plains
+life:20
+[PLAYER2]
+inplay:Watchwolf,Craw Wurm
+library:Forest,Forest
+[DO]
+Dauntless Escort
+next
+Tundra Wolves
+Savannah Lions
+next
+Watchwolf
+Craw Wurm
+Craw Wurm
+eot
+# 2nd player does nothing:
+eot
+# 1st player does nothing:
+eot
+next
+next
+next
+next
+next
+# Now in combatattackers phase
+Watchwolf
+Craw Wurm
+next
+Tundra Wolves
+Savannah Lions
+Savannah Lions
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:
+graveyard:Dauntless Escort,Tundra Wolves,Savannah Lions
+hand:Plains
+life:20
+[PLAYER2]
+inplay:Watchwolf,Craw Wurm
+hand:Forest,Forest
+library:
+graveyard:
+life:20
+[END]

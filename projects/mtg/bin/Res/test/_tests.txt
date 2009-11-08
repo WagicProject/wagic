@@ -6,6 +6,7 @@ generic/deathtouch.txt
 generic/doesnotuntap.txt
 generic/doesnotuntap2.txt
 generic/fear.txt
+generic/fear_i147.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt
@@ -101,6 +102,7 @@ counterspell3.txt
 counterspell4.txt
 crimson_kobolds.txt
 creature_bond.txt
+dauntless_escort.txt
 dauthi_embrace.txt
 death_ward.txt
 deja_vu.txt
@@ -156,6 +158,7 @@ jump.txt
 keldon_warlord.txt
 keldon_warlord2.txt
 kird_ape.txt
+kjeldoran_frostbeast1.txt
 kraken_eye.txt
 kraken_eye2.txt
 kraken_eye3.txt

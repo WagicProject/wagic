@@ -1,0 +1,24 @@
+#NAME: Kjeldoran Frostbeast
+#DESC: Kjeldoran Frostbeast should destroy
+#DESC: creatures that block it or are blocked by it.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Kjeldoran Frostbeast
+[PLAYER2]
+inplay:Giant Spider
+[DO]
+Kjeldoran Frostbeast
+next
+Giant Spider
+next
+next
+next
+[ASSERT]
+secondmain
+[PLAYER1]
+inplay:Kjeldoran Frostbeast
+[PLAYER2]
+inplay:
+graveyard:Giant Spider
+[END]

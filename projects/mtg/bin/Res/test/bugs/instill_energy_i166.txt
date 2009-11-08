@@ -1,0 +1,44 @@
+#NAME: Instill Energy
+#DESC: Instill Energy should allow
+#DESC: tapped creatures to untap.
+#DESC: See: http://code.google.com/p/wagic/issues/detail?id=166
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears,Swamp,Forest,Plains
+hand:Instill Energy,Assassinate
+manapool:{G}
+[PLAYER2]
+[DO]
+Instill Energy
+Grizzly Bears
+next
+next
+Grizzly Bears
+next
+next
+next
+next
+# Try to untap Grizzly Bears.
+# Not sure whether this is supposed to work by
+# clicking on the bears or on the aura, so we
+# do both:
+Instill Energy
+Grizzly Bears
+# Now try to cast Assassinate on them. This will
+# only have an effect if the untapping failed.
+Swamp
+Forest
+Plains
+Assassinate
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Swamp,Forest,Plains,Grizzly Bears,Instill Energy
+hand:Assassinate
+graveyard:
+manapool:{W}{B}{G}
+[PLAYER2]
+life:18
+[END]

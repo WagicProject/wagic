@@ -1,0 +1,23 @@
+#NAME: Drain Life and non-black mana
+#DESC: Drain Life can use non-black mana
+#DESC: for its effect.
+#DESC: See: http://code.google.com/p/wagic/issues/detail?id=164
+[INIT]
+firstmain
+[PLAYER1]
+hand:Drain Life
+manapool:{B}{B}{B}{W}{U}{U}{3}
+[PLAYER2]
+[DO]
+Drain Life
+p2
+[ASSERT]
+firstmain
+[PLAYER1]
+hand:
+graveyard:Drain Life
+life:22
+manapool:{W}{U}{U}{2}
+[PLAYER2]
+life:18
+[END]

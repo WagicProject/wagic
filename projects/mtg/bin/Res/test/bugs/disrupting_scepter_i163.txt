@@ -1,0 +1,27 @@
+#NAME: Disrupting Scepter
+#DESC: When Disrupting Scepter is activated,
+#DESC: it does not allow to choose a target.
+#DESC: Instead, a red rectangle flashes briefly
+#DESC: around the whole screen. No mana is used.
+#DESC: See: http://code.google.com/p/wagic/issues/detail?id=163
+[INIT]
+firstmain
+[PLAYER1]
+hand:Disrupting Scepter
+manapool:{6}
+[PLAYER2]
+hand:Forest,Forest
+[DO]
+Disrupting Scepter
+Disrupting Scepter
+p2
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Disrupting Scepter
+hand:
+manapool:
+[PLAYER2]
+hand:Forest
+graveyard:Forest
+[END]

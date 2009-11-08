@@ -1,0 +1,30 @@
+#NAME: Kjeldoran Frostbeast 2
+#DESC: Kjeldoran Frostbeast should only destroy
+#DESC: creatures that it actually is still
+#DESC: blocking at end of combat (unlike Basilisks
+#DESC: and Cockatrices). This means that a creature
+#DESC: that manages to destroy Kjeldoran Frostbeast
+#DESC: should not be destroyed at end of combat.
+#DESC: See: http://code.google.com/p/wagic/issues/detail?id=167
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Kjeldoran Frostbeast
+[PLAYER2]
+inplay:Earth Elemental
+[DO]
+Kjeldoran Frostbeast
+next
+Earth Elemental
+next
+next
+next
+[ASSERT]
+secondmain
+[PLAYER1]
+inplay:
+graveyard:Kjeldoran Frostbeast
+[PLAYER2]
+inplay:Earth Elemental
+graveyard:
+[END]
