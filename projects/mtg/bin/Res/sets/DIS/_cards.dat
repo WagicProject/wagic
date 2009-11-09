@@ -300,6 +300,7 @@ power=2
 toughness=3
 text=Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
 auto=@damaged(player) from(this):may destroy target(artifact,enchantment)
+abilities=Flying
 rarity=U
 [/card]
 [card]
@@ -311,7 +312,7 @@ subtype=Goblin Scout
 power=1
 toughness=2
 text=Flying Utvara Scalper attacks each turn if able.
-abilities=mustattack
+abilities=Flying,mustattack
 rarity=C
 [/card]
 [card]
