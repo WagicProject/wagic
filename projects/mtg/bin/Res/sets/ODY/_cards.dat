@@ -1205,6 +1205,7 @@ type=Land
 [card]
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Whenever Shadowmage Infiltrator deals combat damage to a player, you may draw a card.
 id=33604
+abilities=Fear
 auto=@damaged(player) from(this):may draw:1 controller
 name=Shadowmage Infiltrator
 rarity=R
