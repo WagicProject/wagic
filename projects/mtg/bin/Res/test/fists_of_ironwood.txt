@@ -15,7 +15,7 @@ no
 yes
 swords to plowshares
 grizzly bears
-endinterrupt
+endinterruption
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

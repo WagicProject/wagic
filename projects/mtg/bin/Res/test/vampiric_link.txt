@@ -1,0 +1,27 @@
+#NAME: Vampiric Link
+#DESC: Testing whether Vampiric Link
+#DESC: gives life.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Vampiric Link
+inplay:Grizzly Bears
+manapool:{B}
+[PLAYER2]
+[DO]
+Vampiric Link
+Grizzly Bears
+next
+next
+Grizzly Bears
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Grizzly Bears,Vampiric Link
+life:22
+[PLAYER2]
+life:18
+[END]

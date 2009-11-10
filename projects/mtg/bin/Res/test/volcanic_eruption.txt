@@ -1,4 +1,4 @@
-#Testing Volcanic Island
+#Testing Volcanic Eruption
 [INIT]
 FIRSTMAIN
 [PLAYER1]

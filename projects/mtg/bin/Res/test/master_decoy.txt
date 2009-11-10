@@ -1,0 +1,39 @@
+#NAME: Master Decoy
+#DESC: Master Decoy was reported to be unable
+#DESC: of tapping artifact creatures.
+#DESC: The script shows that Master Decoy
+#DESC: can tap an artifact.
+[INIT]
+combatbegin
+# combatattackers
+# combatblockers
+# combatdamage
+# combatend
+# secondmain
+# endofturn
+# cleanup
+[PLAYER1]
+inplay:Master Decoy,Tundra Wolves
+manapool:{W}
+[PLAYER2]
+inplay:Obsianus Golem
+[DO]
+Master Decoy
+Obsianus Golem
+next
+Tundra Wolves
+# 2nd player now tries to block with Obsianus Golem.
+# If Master Decoy worked correctly, then this should
+# not be possible.
+next
+Obsianus Golem
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Master Decoy,Tundra Wolves
+[PLAYER2]
+inplay:Obsianus Golem
+life:19
+[END]

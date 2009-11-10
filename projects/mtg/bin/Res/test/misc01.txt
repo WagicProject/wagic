@@ -1,0 +1,45 @@
+#NAME: Misc1
+#DESC: This script tests the following complex
+#DESC: bug report: "I attacked the AI with a
+#DESC: wilt-leaf cavaliers pumped with might of
+#DESC: oaks, and it blocked with a wall of bone
+#DESC: juiced with bad moon. It tapped black to
+#DESC: regenerate the wall (which was enchanted
+#DESC: with my psychic venom) and lost 2 life.
+#DESC: the wall never regenerated and the mana
+#DESC: burned the AI. After the damage resolved
+#DESC: The game went on to the AI's untap phase
+#DESC: and crashed the psp."
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Wilt-Leaf Cavaliers
+hand:Might of Oaks,Psychic Venom
+manapool:{G}{G}{G}{G}{U}{U}
+[PLAYER2]
+inplay:Wall of Bone,Bad Moon,Swamp
+[DO]
+Psychic Venom
+Swamp
+Might of Oaks
+Wilt-Leaf Cavaliers
+next
+next
+Wilt-Leaf Cavaliers
+next
+Swamp
+Wall of Bone
+choice 1
+Wall of Bone
+choice 0
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Wilt-Leaf Cavaliers,Psychic Venom
+graveyard:Might of Oaks
+[PLAYER2]
+inplay:Wall of Bone,Bad Moon,Swamp
+life:18
+[END]

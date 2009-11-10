@@ -1,0 +1,25 @@
+#NAME: Rampage vs First Strike
+#DESC: An attacking Elvish berserker (coded
+#DESC: with Rampage in Wagic) should survive
+#DESC: a First Strike attack from a blocking
+#DESC: Tundra Wolves.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Elvish Berserker
+[PLAYER2]
+inplay:Tundra Wolves
+[DO]
+Elvish Berserker
+next
+Tundra Wolves
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Elvish Berserker
+[PLAYER2]
+graveyard:Tundra Wolves
+[END]

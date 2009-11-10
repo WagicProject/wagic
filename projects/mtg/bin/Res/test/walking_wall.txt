@@ -1,0 +1,26 @@
+#NAME: Walking Wall
+#DESC: Walking Wall was reported to be
+#DESC: unable to attack even after its
+#DESC: abilit ywas used. The script shows
+#DESC: that this bug doesn't exist an more.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Walking Wall
+manapool:{3}
+[PLAYER2]
+[DO]
+Walking Wall
+next
+next
+Walking Wall
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Walking Wall
+[PLAYER2]
+life:17
+[END]

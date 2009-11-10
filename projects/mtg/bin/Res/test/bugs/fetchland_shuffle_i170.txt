@@ -1,0 +1,15 @@
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Windswept Heath,Wooded Foothills
+library:Forest,Island,Mountain,Plains,Swamp
+[PLAYER2]
+[DO]
+# human
+Windswept Heath
+Plains
+human
+[ASSERT]
+[PLAYER1]
+[PLAYER2]
+[END]

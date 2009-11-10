@@ -1,0 +1,26 @@
+#NAME: Crystal Rod
+#DESC: Checks whether Crystal Rod can
+#DESC: correctly give 1 life
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=172
+[INIT]
+firstmain
+[PLAYER1]
+hand:Air Elemental
+manapool:{U}{U}{U}{U}{U}
+[PLAYER2]
+inplay:Crystal Rod,Island
+[DO]
+Air Elemental
+no
+yes
+Island
+Crystal Rod
+endinterruption
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Air Elemental
+[PLAYER2]
+inplay:Crystal Rod,Island
+life:21
+[END]

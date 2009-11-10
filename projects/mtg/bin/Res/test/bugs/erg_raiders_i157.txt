@@ -1,0 +1,42 @@
+#NAME: Erg Raiders
+#DESC: Erg Raiders was reported not to deal
+#DESC: damage to its owner when it didn't attack.
+#DESC: See: http://code.google.com/p/wagic/issues/detail?id=157
+#DESC: 
+[INIT]
+firstmain
+[PLAYER1]
+library:Swamp,Mountain
+hand:Erg Raiders
+manapool:{1}{B}
+[PLAYER2]
+library:Plains,Island
+[DO]
+# Cast Erg Raiders. Should do NO damage since
+# it came under this player's control in this turn.
+Erg Raiders
+eot
+eot
+# Do nothing with Erg Raiders in turn 2. Now
+# it should deal damage to its controller.
+eot
+eot
+# Attack with Erg raiders in turn 3. Now it
+# should deal NO damage to its controller.
+next
+next
+next
+next
+next
+Erg Raiders
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Erg Raiders
+hand:Swamp,Mountain
+life:18
+[PLAYER2]
+hand:Plains,Island
+life:18
+[END]

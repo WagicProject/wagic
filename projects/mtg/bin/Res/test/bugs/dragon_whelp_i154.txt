@@ -1,0 +1,49 @@
+#NAME: Dragon Whelp
+#DESC: Dragon Whelp should be destroyed at
+#DESC: end of turn if its pumping ability was
+#DESC: used at least 4 times this turn, but
+#DESC: should survive otherwise
+#DESC: The script first tests "safe" pumping x3,
+#DESC: then tests "lethal" pumping x4.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Dragon Whelp,129649,129650,129651,129652
+library:Forest
+manapool:{R}{R}{R}
+[PLAYER2]
+library:Plains
+[DO]
+Dragon Whelp
+Dragon Whelp
+Dragon Whelp
+next
+next
+Dragon Whelp
+eot
+eot
+next
+next
+next
+129649
+129650
+129651
+129652
+Dragon Whelp
+Dragon Whelp
+Dragon Whelp
+Dragon Whelp
+next
+next
+Dragon Whelp
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:129649,129650,129651,129652
+hand:Forest
+graveyard:Dragon Whelp
+[PLAYER2]
+hand:Plains
+life:9
+[END]

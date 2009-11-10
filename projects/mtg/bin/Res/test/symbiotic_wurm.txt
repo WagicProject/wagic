@@ -1,15 +1,26 @@
-#Bug: two akron legionnaires on your side, non can attack
+#NAME: Symbiotic Wurm token production
+#DESC: Symbiotic Wurm weas reported to produce
+#DESC: its tokens when put into play, and not
+#DESC: when pit into a graveyard. This script
+#DESC: shows that Symbiotic Wurm currently works
+#DESC: correctly. It summons Symbiotic Wurm, then
+#DESC: removes all creatures with Wrath of God,
+#DESC: then checks whether the tokens have been
+#DESC: created.
 [INIT]
-FIRSTMAIN
+firstmain
 [PLAYER1]
-hand:symbiotic wurm
-manapool:{5}{G}{G}{G}
+# Symbiotic Wurm = ID 39925
+hand:39925,Wrath of God
+manapool:{W}{W}{W}{W}{G}{G}{G}{G}{G}{G}{G}{G}
 [PLAYER2]
 [DO]
-symbiotic wurm
+39925
+Wrath of God
 [ASSERT]
-FIRSTMAIN
+firstmain
 [PLAYER1]
-inplay:symbiotic wurm
+inplay:-39925,-39925,-39925,-39925,-39925,-39925,-39925
+graveyard:39925,Wrath of God
 [PLAYER2]
 [END]

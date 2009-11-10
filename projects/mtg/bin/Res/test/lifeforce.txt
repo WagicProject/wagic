@@ -13,7 +13,7 @@ no
 yes
 1256
 1144
-endinterrupt
+endinterruption
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

@@ -1,0 +1,41 @@
+#NAME: Unstable Mutation removal
+#DESC: When Unstable Mutation is removed
+#DESC: or destroyed, the -1/-1 counters
+#DESC: should stay on the enchanted creature.
+#DESC: The script tests this by casting
+#DESC: Unstable Mutation on a 1/1 creature,
+#DESC: waiting for one upkeep to give the
+#DESC: creature a -1/-1 counter, and then
+#DESC: removing Unstable Mutation. If the
+#DESC: counter remains (as it should), then
+#DESC: the creature will be reduced to 0/0
+#DESC: and will go to the graveyard.
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Merfolk of the Pearl Trident,Island,Plains
+hand:Unstable Mutation
+library:Disenchant
+manapool:{U}
+[PLAYER2]
+library:Swamp
+[DO]
+Unstable Mutation
+Merfolk of the Pearl Trident
+eot
+eot
+next
+next
+next
+Plains
+Island
+Disenchant
+Unstable Mutation
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Island,Plains
+graveyard:Merfolk of the Pearl Trident,Unstable Mutation,Disenchant
+[PLAYER2]
+hand:Swamp
+[END]

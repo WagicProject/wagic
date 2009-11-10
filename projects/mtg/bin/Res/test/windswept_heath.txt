@@ -1,0 +1,23 @@
+#NAME: Windswept Heath life cost
+#DESC: Onslaught lands were reported not to
+#DESC: collect on the "1 life" payment
+#DESC: The script shows that 1 life is
+#DESC: correctly deducted.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Windswept Heath
+library:Forest,Plains,Mountain,Swamp,Island
+[PLAYER2]
+[DO]
+Windswept Heath
+Plains
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Plains
+library:Forest,Mountain,Swamp,Island
+graveyard:Windswept Heath
+life:19
+[PLAYER2]
+[END]

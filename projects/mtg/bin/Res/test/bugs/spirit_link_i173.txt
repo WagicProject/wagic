@@ -1,0 +1,31 @@
+#NAME: Spirit Link on opponent's creatures
+#DESC: Spirit Link should give Life to the
+#DESC: controller of Spirit Link, not to the
+#DESC: controller of the enchanted creature.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=173
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Armored Pegasus
+hand:Spirit Link
+manapool:{W}
+[PLAYER2]
+inplay:Courier Hawk
+[DO]
+Spirit Link
+Courier Hawk
+next
+next
+Armored Pegasus
+next
+Courier Hawk
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Armored Pegasus,Spirit Link
+life:21
+[PLAYER2]
+inplay:Courier Hawk
+[END]

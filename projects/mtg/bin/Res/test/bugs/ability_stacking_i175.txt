@@ -1,0 +1,31 @@
+#NAME: Ability Stacking
+#DESC: Auras/effects that add an ability /
+#DESC: remove it don't correctly stack.
+#DESC: Example: casting Pacifism on a Blind-
+#DESC: Spot Giant, then having a giant coming
+#DESC: into play, will have the BSG ignore
+#DESC: the Pacifism.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=175
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Blind-Spot Giant
+hand:Pacifism,Axegrinder Giant
+manapool:{W}{W}{R}{R}{R}{R}{R}{R}
+[PLAYER2]
+[DO]
+Pacifism
+Blind-Spot Giant
+Axegrinder Giant
+next
+next
+Blind-Spot Giant
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Blind-Spot Giant,Pacifism,Axegrinder Giant
+[PLAYER2]
+[END]
