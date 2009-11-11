@@ -1,0 +1,27 @@
+#NAME: Gamble sequence test
+#DESC: Gamble lets you *first* search a card
+#DESC: from your library, and *then* you have
+#DESC: to discard a random card. This means
+#DESC: you may end up discarding the card you
+#DESC: just searched for. The script tests this
+#DESC: by using Gamble from an otherwise empty
+#DESC: hand. If the sequence of actions is
+#DESC: correct, then you will have to discard
+#DESC: the card you just searched for (a
+#DESC: Mountain om this case).
+[INIT]
+firstmain
+[PLAYER1]
+hand:Gamble
+library:Mountain
+manapool:{R}
+[PLAYER2]
+[DO]
+Gamble
+Mountain
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Gamble,Mountain
+[PLAYER2]
+[END]

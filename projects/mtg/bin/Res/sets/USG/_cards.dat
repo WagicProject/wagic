@@ -523,8 +523,8 @@ subtype=Aura
 [card]
 text=Search your library for a card, put that card into your hand, then discard a card at random. Then shuffle your library.
 target=*|myLibrary
-auto=discard:1
 auto=moveTo(myHand)
+auto=discard:1
 id=10654
 name=Gamble
 rarity=R
