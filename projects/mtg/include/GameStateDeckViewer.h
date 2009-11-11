@@ -63,6 +63,7 @@ struct StatsWrapper {
   float avgCreatureCost;
   int totalSpellCost;
   float avgSpellCost;
+  int countManaProducers;
 
   int countCreatures, countSpells, countInstants, countEnchantments, countSorceries, countArtifacts;
 
@@ -75,6 +76,9 @@ struct StatsWrapper {
   int countCreaturesPerCostAndColor[STATS_MAX_MANA_COST+1][Constants::MTG_NB_COLORS+1];
   int countSpellsPerCost[STATS_MAX_MANA_COST+1];
   int countSpellsPerCostAndColor[STATS_MAX_MANA_COST+1][Constants::MTG_NB_COLORS+1];
+  int countLandsPerColor[Constants::MTG_NB_COLORS+1];
+  int countBasicLandsPerColor[Constants::MTG_NB_COLORS+1];
+  int countNonLandProducersPerColor[Constants::MTG_NB_COLORS+1];
   int totalCostPerColor[Constants::MTG_NB_COLORS+1];
   int totalColoredSymbols;
 

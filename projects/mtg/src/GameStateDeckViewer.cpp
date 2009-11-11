@@ -6,7 +6,27 @@
 #include "../include/GameStateDeckViewer.h"
 #include "../include/Translate.h"
 #include "../include/ManaCostHybrid.h"
+#include "../include/MTGCardInstance.h"
+#include "../include/MTGCardInstance.h"
 #include <vector>
+
+
+//!! helper function; this is probably handled somewhere in the code already.
+// If not, should be placed in general library
+void StringExplode(string str, string separator, vector<string>* results){
+    int found;
+    found = str.find_first_of(separator);
+    while(found != (int)string::npos){
+        if(found > 0){
+            results->push_back(str.substr(0,found));
+        }
+        str = str.substr(found+1);
+        found = str.find_first_of(separator);
+    }
+    if(str.length() > 0){
+        results->push_back(str);
+    }
+}
 
 GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   bgMusic = NULL;
@@ -690,7 +710,103 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         r->DrawLine(20 + leftTransition, posY + 13, posX + 40 + leftTransition, posY + 13, ARGB(128, 255, 255, 255));
 
         break;
+
+      case 5: // Land statistics       
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana production").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+
+        font->DrawString(_("Counts of manasources per type and color:"), 20 + leftTransition, 30);
+
+        posY = 70;
         
+        // Column titles
+        for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
+          r->RenderQuad(mIcons[j], 52 + j*15 + leftTransition, posY - 10,0,0.5,0.5);
+        }
+        
+        //font->DrawString(_("C"), 30 + leftTransition, posY-16);              
+        //font->DrawString(_("Ty"), 27 + leftTransition, posY-16);              
+
+        // Horizontal table lines
+        r->DrawLine(27 + leftTransition, posY - 20, 60 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, posY - 20, ARGB(128, 255, 255, 255));
+        r->DrawLine(27 + leftTransition, posY - 1, 60 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+        r->DrawLine(27 + leftTransition, 2*10 + posY + 12, 60 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, 2*10 + posY + 12, ARGB(128, 255, 255, 255));
+        r->DrawLine(27 + leftTransition, 3*10 + posY + 14, 60 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, 3*10 + posY + 14, ARGB(128, 255, 255, 255));
+        
+        // Vertical table lines
+        r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, 3*10 + posY + 14, ARGB(128, 255, 255, 255));
+        r->DrawLine(43 + leftTransition, posY - 20, 43 + leftTransition, 3*10 + posY + 14, ARGB(128, 255, 255, 255));
+        r->DrawLine(60 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY - 20, 60 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, 3*10 + posY + 14, ARGB(128, 255, 255, 255));
+
+        font->DrawString(_("BL"), 27 + leftTransition, posY);
+        font->DrawString(_("NB"), 27 + leftTransition, posY+10);
+        font->DrawString(_("O"), 30 + leftTransition, posY+20);
+        font->DrawString(_("T"), 30 + leftTransition, posY+33);
+        
+        int curCount;
+
+        for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
+          curCount = stw.countBasicLandsPerColor[j];
+          sprintf(buffer, (curCount==0?".":"%i"), curCount); 
+          font->DrawString(buffer, 49 + leftTransition + j*15, posY);
+          
+          curCount = stw.countLandsPerColor[j];
+          sprintf(buffer, (curCount==0?".":"%i"), curCount); 
+          font->DrawString(buffer, 49 + leftTransition + j*15, posY+10);
+          
+          curCount = stw.countNonLandProducersPerColor[j];
+          sprintf(buffer, (curCount==0?".":"%i"), curCount); 
+          font->DrawString(buffer, 49 + leftTransition + j*15, posY+20);
+          
+          curCount = stw.countLandsPerColor[j] + stw.countBasicLandsPerColor[j] + stw.countNonLandProducersPerColor[j];
+          sprintf(buffer, (curCount==0?".":"%i"), curCount); 
+          font->DrawString(buffer, 49 + leftTransition + j*15, posY+33);          
+        }
+
+        posY += 55;
+        font->DrawString(_("BL - Basic lands"), 20 + leftTransition, posY);
+        posY += 10;
+        font->DrawString(_("NB - Non-basic lands"), 20 + leftTransition, posY);
+        posY += 10;
+        font->DrawString(_("O - Other (non-land) manasources"), 26 + leftTransition, posY);
+        posY += 10;
+        font->DrawString(_("T - Totals"), 26 + leftTransition, posY);
+
+        break;
+
+      case 6: // Land statistics - in symbols
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana production - in mana symbols").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+        font->DrawString(_("Total colored manasymbols in lands' production:"), 20 + leftTransition, 30);
+
+        int totalProducedSymbols;
+        totalProducedSymbols = 0;
+        for (int i=1; i<Constants::MTG_NB_COLORS-1; i++) {
+          totalProducedSymbols += stw.countLandsPerColor[i] + stw.countBasicLandsPerColor[i]; //!! Move to updatestats!
+        }
+
+        posY = 50;
+        for (int i=1; i<Constants::MTG_NB_COLORS-1; i++) {
+          if (stw.countLandsPerColor[i] + stw.countBasicLandsPerColor[i]>0) {
+            sprintf(buffer, _("%i").c_str(), stw.countLandsPerColor[i] + stw.countBasicLandsPerColor[i]);
+            font->DrawString(buffer, 20 + leftTransition, posY);
+            sprintf(buffer, _("(%i%%)").c_str(), (int)(100*(float)(stw.countLandsPerColor[i] + stw.countBasicLandsPerColor[i])/totalProducedSymbols));
+            font->DrawString(buffer, 33 + leftTransition, posY);
+            posX = 72;
+            for (int j=0; j<stw.countLandsPerColor[i] + stw.countBasicLandsPerColor[i]; j++) {
+              r->RenderQuad(mIcons[i], posX + leftTransition, posY+6, 0, 0.5, 0.5);
+              posX += ((j+1)%10==0)?17:13;
+              if ((((j+1)%30)==0) && (j<stw.countLandsPerColor[i] + stw.countBasicLandsPerColor[i]-1)) {
+                posX = 72;
+                posY += 15;
+              }
+            }
+            posY += 17;
+          }
+        }
+
+        break;
+
       case 2: // Mana cost detail
       case 3:
       case 4:
@@ -737,7 +853,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         
         // Column titles
         for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
-          r->RenderQuad(mIcons[j], 67 + j*15 + leftTransition, posY - 11,0,0.5,0.5);
+          r->RenderQuad(mIcons[j], 67 + j*15 + leftTransition, posY - 10,0,0.5,0.5);
         }
         
         font->DrawString(_("C"), 30 + leftTransition, posY-16);              
@@ -760,7 +876,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
           sprintf(buffer, _("%i").c_str(), (*countPerCost)[i]);
           font->DrawString(buffer, 45 + leftTransition, posY);              
           for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
-            sprintf(buffer, ((*countPerCostAndColor)[i][j]>0)?_("%i").c_str():" ", (*countPerCostAndColor)[i][j]);
+            sprintf(buffer, ((*countPerCostAndColor)[i][j]>0)?_("%i").c_str():".", (*countPerCostAndColor)[i][j]);
             font->DrawString(buffer, 64 + leftTransition + j*15, posY);
           }
           r->FillRect(77 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
@@ -778,7 +894,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         
         break;
 
-      case 6: 
+      case 8: 
         // Title
         sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Probabilities").c_str());
         font->DrawString(buffer, 10+leftTransition, 10);
@@ -816,7 +932,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
 
         break;
 
-      case 5: // Total mana cost per color
+      case 7: // Total mana cost per color
         // Title
         sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost per color").c_str());
         font->DrawString(buffer, 10+leftTransition, 10);
@@ -830,12 +946,12 @@ void GameStateDeckViewer::renderOnScreenMenu(){
             font->DrawString(buffer, 20 + leftTransition, posY);
             sprintf(buffer, _("(%i%%)").c_str(), (int)(100*(float)stw.totalCostPerColor[i]/stw.totalColoredSymbols));
             font->DrawString(buffer, 33 + leftTransition, posY);
-            posX = 70;
+            posX = 72;
             for (int j=0; j<stw.totalCostPerColor[i]; j++) {
               r->RenderQuad(mIcons[i], posX + leftTransition, posY+6, 0, 0.5, 0.5);
               posX += ((j+1)%10==0)?17:13;
               if ((((j+1)%30)==0) && (j<stw.totalCostPerColor[i]-1)) {
-                posX = 70;
+                posX = 72;
                 posY += 15;
               }
             }
@@ -844,7 +960,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         }
         break;
       
-      case 7: // Victory statistics
+      case 9: // Victory statistics
         // Title
         sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Victory statistics").c_str());
         font->DrawString(buffer, 10+leftTransition, 10);
@@ -882,12 +998,18 @@ void GameStateDeckViewer::updateStats() {
   if (!stw.needUpdate) {
     return;
   }
+
+  AbilityFactory * af;
+  af = NEW AbilityFactory();
+
   stw.needUpdate = false; 
 
   stw.cardCount = myDeck->getCount();
   stw.countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
   stw.totalPrice = myDeck->totalPrice();
 
+  stw.countManaProducers = 0;
+  stw.countManaProducers = 0;
   // Mana cost
   int currentCount, convertedCost;
   ManaCost * currentCost;
@@ -905,6 +1027,9 @@ void GameStateDeckViewer::updateStats() {
 
   for (int i=0; i<=Constants::MTG_NB_COLORS; i++) {
     stw.totalCostPerColor[i] = 0;
+    stw.countLandsPerColor[i] = 0;
+    stw.countBasicLandsPerColor[i] = 0;
+    stw.countNonLandProducersPerColor[i] = 0;
   }
 
   for (int i=0; i<=STATS_MAX_MANA_COST; i++) {
@@ -932,8 +1057,53 @@ void GameStateDeckViewer::updateStats() {
     } else if (current->isSpell()) {
       stw.countSpellsPerCost[convertedCost] += currentCount;
       stw.totalSpellCost += convertedCost * currentCount;
-    }
+    } 
     
+    //if (current->isLand()) {
+    // Lets look for mana producing abilities
+    MTGCardInstance * cin;
+    MTGAbility * ab = NULL;
+    int found;
+
+    // TODO: Creating card instance for the sole purpose of getting the card abilities is dirty. Do something about it.
+    cin = new MTGCardInstance(current, NULL);      
+
+    vector<string> abilityStrings;
+    string thisstring = current->magicText;
+    StringExplode(thisstring, "\n", &abilityStrings);
+
+    /*char buf[4096];
+    sprintf(buf, "Card: %s Ability count:%i Iterating....", (current->name).c_str(),(int)abilityStrings.size());
+    OutputDebugString(buf);*/
+
+    for (int i=0; i<(int)abilityStrings.size(); i++) {
+      found = abilityStrings.at(i).find("add");
+      if (found != (int)string::npos){ //Parse only mana abilities
+        ab = af->parseMagicLine(abilityStrings.at(i),0,0,cin);
+        AManaProducer * amp = dynamic_cast<AManaProducer*>(ab);
+        
+        if (amp){
+          //OutputDebugString("M ");
+          for (int j=0; j<Constants::MTG_NB_COLORS;j++){
+            if (amp->output->hasColor(j)) {
+              if (current->isLand()) {
+                if (current->hasType("Basic")) {
+                  stw.countBasicLandsPerColor[j] += currentCount;
+                } else {
+                  stw.countLandsPerColor[j] += currentCount;
+                }
+              } else {
+                stw.countNonLandProducersPerColor[j] += currentCount;
+              }
+            }
+          }
+        }
+        SAFE_DELETE(ab);
+      }
+    }
+    SAFE_DELETE(cin);
+    //OutputDebugString("...Done\n");
+    //}
     // Add to the per color counters
     //  a. regular costs
     for (int j=0; j<Constants::MTG_NB_COLORS;j++){
@@ -968,7 +1138,7 @@ void GameStateDeckViewer::updateStats() {
     stw.totalColoredSymbols += stw.totalCostPerColor[j];
   }
 
-  stw.countCardsPerCost[0] -= stw.countLands; // Quick hack to exclude lands from zero costed card count
+  stw.countCardsPerCost[0] -= stw.countLands;
 
   // Counts by type
   stw.countCreatures = countCardsByType("Creature");
@@ -990,6 +1160,7 @@ void GameStateDeckViewer::updateStats() {
     stw.noCreaturesProbInTurn[i] = noLuck(stw.cardCount, stw.countCreatures, 7+i)*100;
   }
 
+  SAFE_DELETE(af);
 }
 
 // This should probably be cached in DeckDataWrapper
@@ -1148,7 +1319,7 @@ void GameStateDeckViewer::Render()
 int GameStateDeckViewer::loadDeck(int deckid){
   SAFE_DELETE(myCollection); 
   stw.currentPage = 0;
-  stw.pageCount = 7;
+  stw.pageCount = 9;
   stw.needUpdate = true;
 
   string profile = options[Options::ACTIVE_PROFILE].str;
