@@ -694,7 +694,7 @@ type=Sorcery
 [card]
 text={T}: Add {U} to your mana pool.
 auto={T}:Add {U}
-id=4424
+id=4421
 name=Island
 rarity=L
 type=Basic Land
@@ -713,6 +713,15 @@ subtype=Island
 text={T}: Add {U} to your mana pool.
 auto={T}:Add {U}
 id=4423
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=4424
 name=Island
 rarity=L
 type=Basic Land
@@ -858,7 +867,7 @@ abilities=flying
 [card]
 text={T}: Add {R} to your mana pool.
 auto={T}:Add {R}
-id=4420
+id=4417
 name=Mountain
 rarity=L
 type=Basic Land
@@ -877,6 +886,15 @@ subtype=Mountain
 text={T}: Add {R} to your mana pool.
 auto={T}:Add {R}
 id=4419
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add {R}
+id=4420
 name=Mountain
 rarity=L
 type=Basic Land
@@ -1352,7 +1370,7 @@ abilities=flying
 [card]
 text={T}: Add {B} to your mana pool.
 auto={T}:Add {B}
-id=4411
+id=4409
 name=Swamp
 rarity=L
 type=Basic Land
@@ -1362,6 +1380,15 @@ subtype=Swamp
 text={T}: Add {B} to your mana pool.
 auto={T}:Add {B}
 id=4410
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add {B}
+id=4411
 name=Swamp
 rarity=L
 type=Basic Land
