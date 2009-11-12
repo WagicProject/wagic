@@ -204,8 +204,8 @@ class AbilityFactory{
   TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
  public:
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0);
-  int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY);
-  int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY);
+  int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL);
+  int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
   static int computeX(Spell * spell, MTGCardInstance * card);
   int destroyAllInPlay(TargetChooser * tc, int bury = 0);
   int moveAll(TargetChooser * tc, string destinationZone);

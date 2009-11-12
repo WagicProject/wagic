@@ -698,28 +698,28 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 }
 
 //Tells the AI if the ability should target itself or an ennemy
-int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
+int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, TargetChooser * tc){
   if (!a) return BAKA_EFFECT_DONTKNOW;
 
   if (GenericTargetAbility * abi = dynamic_cast<GenericTargetAbility*>(a)) {
     if (mode == MODE_PUTINTOPLAY) return BAKA_EFFECT_GOOD;
-    return abilityEfficiency(abi->ability,p, mode);
+    return abilityEfficiency(abi->ability,p, mode, abi->tc);
   }
   if (GenericActivatedAbility * abi = dynamic_cast<GenericActivatedAbility*>(a)) {
     if (mode == MODE_PUTINTOPLAY) return BAKA_EFFECT_GOOD;
-    return abilityEfficiency(abi->ability,p, mode);
+    return abilityEfficiency(abi->ability,p, mode,tc);
   }
-  if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a)) return abilityEfficiency(abi->abilities[0],p, mode);
-  if (MayAbility * abi = dynamic_cast<MayAbility*>(a)) return abilityEfficiency(abi->ability,p, mode);
+  if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a)) return abilityEfficiency(abi->abilities[0],p, mode,tc );
+  if (MayAbility * abi = dynamic_cast<MayAbility*>(a)) return abilityEfficiency(abi->ability,p, mode,tc);
   if (ALord * abi = dynamic_cast<ALord *>(a)) {
     int myCards = countCards(abi->tc, p);
     int theirCards = countCards(abi->tc, p->opponent());
-    int efficiency = abilityEfficiency(abi->ability,p, mode);
+    int efficiency = abilityEfficiency(abi->ability,p, mode,tc);
     if (myCards > theirCards) return efficiency;
     return -efficiency;
   }
-  if (AAsLongAs * abi = dynamic_cast<AAsLongAs *>(a)) return abilityEfficiency(abi->ability,p, mode);
-  if (AForeach * abi = dynamic_cast<AForeach *>(a)) return abilityEfficiency(abi->ability,p, mode);
+  if (AAsLongAs * abi = dynamic_cast<AAsLongAs *>(a)) return abilityEfficiency(abi->ability,p, mode,tc);
+  if (AForeach * abi = dynamic_cast<AForeach *>(a)) return abilityEfficiency(abi->ability,p, mode,tc);
   if (dynamic_cast<AAFizzler *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<AAUntapper *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AATapper *>(a)) return BAKA_EFFECT_BAD;
@@ -729,7 +729,15 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
     return BAKA_EFFECT_GOOD ;
   }
   if (dynamic_cast<ATokenCreator *>(a)) return BAKA_EFFECT_GOOD;
-  if (dynamic_cast<AAMover *>(a)) return BAKA_EFFECT_BAD; //TODO
+
+  if (AAMover * aam = dynamic_cast<AAMover *>(a)) {
+    MTGGameZone * z = aam->destinationZone();
+    if (tc && tc->targetsZone(p->game->library)){
+      if (z == p->game->hand || z == p->game->inPlay) return BAKA_EFFECT_GOOD;
+    }
+    return BAKA_EFFECT_BAD; //TODO
+  }
+
   if (dynamic_cast<AACopier *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AADestroyer *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<AStandardRegenerate *>(a)) return BAKA_EFFECT_GOOD;
@@ -741,7 +749,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode){
   if (dynamic_cast<ARampageAbility *>(a)) return BAKA_EFFECT_GOOD;
   if (AInstantPowerToughnessModifierUntilEOT * abi = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (APowerToughnessModifier * abi = dynamic_cast<APowerToughnessModifier *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
-  if (APowerToughnessModifierUntilEndOfTurn * abi = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a)) return abilityEfficiency(abi->ability, p, mode);
+  if (APowerToughnessModifierUntilEndOfTurn * abi = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a)) return abilityEfficiency(abi->ability, p, mode,tc);
 
   map<int,bool> badAbilities;
   badAbilities[Constants::CANTATTACK] = true;
@@ -780,7 +788,7 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
  *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
  *   - doTap (a dirty way to know if tapping is included in the cost...
  */
-int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int mode){
+int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int mode, TargetChooser * tc){
   int dryMode = 0;
   if (!spell) dryMode = 1;
 
@@ -791,7 +799,9 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
   string magicText = card->magicText;
   if (card->alias && magicText.size() == 0){
     //An awful way to get access to the aliasedcard
-    magicText = GameObserver::GetInstance()->players[0]->game->collection->getCardById(card->alias)->magicText;
+    MTGCard * c = GameObserver::GetInstance()->players[0]->game->collection->getCardById(card->alias);
+    if (!c) return 0;
+    magicText = c->magicText;
   }
   string line;
   int size = magicText.size();
@@ -812,7 +822,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
 
     MTGAbility * a = parseMagicLine(line, result, spell, card); 
     if (dryMode){
-      result = abilityEfficiency(a, card->controller(),mode);
+      result = abilityEfficiency(a, card->controller(),mode,tc);
       SAFE_DELETE(a);
       return result;
     }

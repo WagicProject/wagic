@@ -644,6 +644,11 @@ public:
     if (_target) target = _target; 
  }
 
+  MTGGameZone * destinationZone(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    return MTGGameZone::stringToZone(destination, source,_target);
+  }
+
   int resolve(){
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if(target){
@@ -651,7 +656,7 @@ public:
       if (p){
         GameObserver * g = GameObserver::GetInstance();
         MTGGameZone * fromZone = _target->getCurrentZone();
-        MTGGameZone * destZone = MTGGameZone::stringToZone(destination, source,_target);
+        MTGGameZone * destZone = destinationZone();
 
         //inplay is a special zone !
         for (int i=0; i < 2; i++){

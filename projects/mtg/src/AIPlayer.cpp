@@ -291,10 +291,10 @@ int AIPlayer::interruptIfICan(){
   return 0;
 }
 
-int AIPlayer::effectBadOrGood(MTGCardInstance * card, int mode){
+int AIPlayer::effectBadOrGood(MTGCardInstance * card, int mode, TargetChooser * tc){
   int id = card->getMTGId();
   AbilityFactory * af = NEW AbilityFactory();
-  int autoGuess = af->magicText(id,NULL,card, mode);
+  int autoGuess = af->magicText(id,NULL,card, mode, tc);
   delete af;
   if (autoGuess) return autoGuess;
   return BAKA_EFFECT_DONTKNOW;
@@ -315,7 +315,7 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
   if (!tc) return 0;
   if (!(gameObs->currentlyActing() == this)) return 0;
   Player * target = this;
-  int cardEffect = effectBadOrGood(tc->source, MODE_TARGET);
+  int cardEffect = effectBadOrGood(tc->source, MODE_TARGET, tc);
   if (cardEffect != BAKA_EFFECT_GOOD){
     target = this->opponent();
   }

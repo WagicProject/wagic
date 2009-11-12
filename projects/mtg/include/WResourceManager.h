@@ -8,7 +8,7 @@
 #include "WCachedResource.h"
 
 #define HUGE_CACHE_LIMIT 6000000  // Size of the cache for Windows and Linux
-#define SAMPLES_CACHE_SIZE 1000000  // Size in bytes of the cached samples
+#define SAMPLES_CACHE_SIZE 1500000  // Size in bytes of the cached samples
 #define PSI_CACHE_SIZE 500000  // Size in bytes of the cahed particles
 #define TEXTURES_CACHE_MINSIZE 2000000  // Minimum size of the cache on the PSP. The program should complain if the cache ever gets smaller than this
 #define OPERATIONAL_SIZE 5000000 // Size required by Wagic for operational stuff. 3MB is not enough. The cache will usually try to take (Total Ram - Operational size)
@@ -27,7 +27,7 @@
 #define MAX_CACHE_OBJECTS 300
 #define MAX_CACHE_ATTEMPTS 10
 #define MAX_CACHE_MISSES 200
-#define MAX_CACHED_SAMPLES 10
+#define MAX_CACHED_SAMPLES 50
 #define MAX_CACHE_GARBAGE 10
 
 

@@ -27,9 +27,9 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     case 0:
       start = s.find_first_of("{");
       if (start == string::npos){
-	return manaCost;
+	      return manaCost;
       }else{
-	state = 1;
+	      state = 1;
       }
       break;
     case 1:
