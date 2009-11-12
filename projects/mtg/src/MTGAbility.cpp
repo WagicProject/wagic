@@ -325,7 +325,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       TargetChooserFactory tcf;
       TargetChooser * lordTargets = tcf.createTargetChooser(lordTargetsString, card);
       
-      
+      if (!lordTargets){
+        OutputDebugString("MTGABILITY: Parsing Error:");
+        OutputDebugString(s.c_str());
+        OutputDebugString("\n");
+        return NULL;
+      }
+
       MTGAbility * a = parseMagicLine(s1,id,spell, card,0,activated); //activated lords usually force an end of turn ability
       if (!a){
         SAFE_DELETE(lordTargets);

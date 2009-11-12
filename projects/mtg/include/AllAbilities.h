@@ -990,6 +990,10 @@ class ASpellCastLife:public MTGAbility{
     return a;
   }
 
+  ~ASpellCastLife(){
+    SAFE_DELETE(cost);
+  }
+
 };
 
 //Allows to untap at any moment for an amount of mana
@@ -1212,7 +1216,7 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase ==Constants::MTG_PHASE_AFTER_EOT){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT){
       counters = 0;
     }
     ActivatedAbility::Update(dt);
@@ -2786,16 +2790,14 @@ class ALivingArtifact:public MTGAbility{
     latest = NULL;
   }
 
-  void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) usedThisTurn = 0;
-    Damage * damage = ((Damage *)game->mLayers->stackLayer()->getNext(latest,ACTION_DAMAGE,RESOLVED_OK));
-    while (damage){
-      if (damage->target == source->controller()){
-	counters += damage->damage;
-      }
-      latest = damage;
-      damage = ((Damage *)game->mLayers->stackLayer()->getNext(damage,ACTION_DAMAGE,RESOLVED_OK));
-    }
+  int receiveEvent(WEvent * event){
+    WEventDamage * e = dynamic_cast<WEventDamage *>(event);
+    if (!e) return 0;
+    Player * p = dynamic_cast<Player *>(e->damage->target);
+    if (!p) return 0;
+    if (p != source->controller()) return 0;
+    counters+=e->damage->damage;
+    return 1; //is this meant to return 0 or 1?
   }
 
   int isReactingtoclick(MTGCardInstance * card, ManaCost * mana = NULL){
@@ -2914,38 +2916,28 @@ class AAnimateDead:public MTGAbility{
 //1159 Erg Raiders
 class AErgRaiders:public MTGAbility{
  public:
-  int init;
-  int dealDamage;
+  int attackedThisTurn;
  AErgRaiders(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-    init = 0;
-    dealDamage = 0;
+    attackedThisTurn = 1;
   }
 
   void Update(float dt){
     if (newPhase != currentPhase){
       Player * controller =  source->controller();
       if (newPhase == Constants::MTG_PHASE_COMBATDAMAGE && game->currentPlayer == controller){
-	if (!source->isAttacker() && init){
-	  dealDamage = 1;
-	}
-      }else if (newPhase == Constants::MTG_PHASE_UNTAP && game->currentPlayer != controller){
-	if (dealDamage){
-	  game->mLayers->stackLayer()->addDamage(source, controller,2);
-	}
-	init = 1;
-	dealDamage = 0;
+	      if (source->isAttacker()){
+	        attackedThisTurn = 1;
+	      }
+      }else if (newPhase == Constants::MTG_PHASE_UNTAP){
+        if (game->currentPlayer != controller && !attackedThisTurn){
+	        game->mLayers->stackLayer()->addDamage(source, controller,2);
+        }else if (game->currentPlayer == controller) {
+          attackedThisTurn = 0;
+	      }
       }
     }
-
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AErgRaiders ::: init : " << init
-	<< " ; dealDamage : " << dealDamage
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
   AErgRaiders * clone() const{
     AErgRaiders * a =  NEW AErgRaiders(*this);
     a->isClone = 1;
@@ -3396,7 +3388,7 @@ class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
   }
 
   void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP && counters > 3){
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT && counters > 3){
       source->controller()->game->putInGraveyard(source);
     }
     APowerToughnessModifierUntilEndOfTurn::Update(dt);

@@ -1,0 +1,24 @@
+#NAME: Living Artifact
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=169
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Sol Ring
+hand:Living Artifact,shock
+manapool:{G}{R}
+[PLAYER2]
+[DO]
+Living Artifact
+Sol Ring
+shock
+p1
+Living Artifact
+Living Artifact
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Sol Ring,Living Artifact
+life:19
+graveyard:shock
+[PLAYER2]
+[END]

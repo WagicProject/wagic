@@ -111,6 +111,7 @@ dingus_egg.txt
 doomed_necromancer.txt
 dragon_fodder.txt
 dragon_fodder2.txt
+dragon_whelp_i154.txt
 drain_life.txt
 drift_of_the_dead.txt
 dromad_purebred.txt
@@ -119,6 +120,7 @@ duskwalker.txt
 elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt
+erg_raiders_i157.txt
 flagstones.txt
 farhaven_elf.txt
 fastbond.txt
@@ -172,6 +174,7 @@ lhurgoyf.txt
 liability.txt
 lifeforce.txt
 lifetap.txt
+living_artifact_i169.txt
 living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
@@ -243,6 +246,7 @@ stasis.txt
 steelclad_serpent1.txt
 steelclad_serpent2.txt
 stillmoon_cavalier.txt
+stonebrow_i159.txt
 stronghold_discipline.txt
 sword_to_plowshares.txt
 symbiotic_wurm.txt
