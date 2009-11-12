@@ -1,0 +1,32 @@
+#NAME: Vampire Bats
+#DESC: Vampire Bats should be pump-able,
+#DESC: but only twice per turn at max.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Vampire Bats,Swamp
+manapool:{B}{B}{B}
+[PLAYER2]
+[DO]
+# Pumping bats two times - this should work:
+Vampire Bats
+Vampire Bats
+# Pumping them a third time - this shouldn't work
+Vampire Bats
+next
+# Pumping them a third time in a different phase
+# - this shouldn't work either
+Swamp
+Vampire Bats
+next
+Vampire Bats
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Vampire Bats,Swamp
+[PLAYER2]
+life:18
+[END]

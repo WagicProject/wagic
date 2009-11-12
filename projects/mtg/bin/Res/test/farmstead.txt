@@ -1,0 +1,36 @@
+#NAME: Farmstead
+#DESC: Tests whether Farmstead correctly
+#DESC: gives its ability to the land it
+#DESC: enchants, and if it can be used
+#DESC: only once (as it should).
+[INIT]
+secondmain
+[PLAYER1]
+inplay:129680,129681,129682,1395,1396
+hand:Farmstead
+manapool:{W}{W}{W}
+[PLAYER2]
+library:Swamp
+[DO]
+Farmstead
+129680
+Farmstead
+eot
+eot
+next
+129681
+129682
+Farmstead
+1395
+1396
+Farmstead
+129680
+[ASSERT]
+upkeep
+[PLAYER1]
+inplay:129680,129681,129682,1395,1396,Farmstead
+manapool:{W}{W}{W}
+life:21
+[PLAYER2]
+hand:Swamp
+[END]

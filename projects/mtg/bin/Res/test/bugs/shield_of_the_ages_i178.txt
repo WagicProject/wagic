@@ -1,0 +1,28 @@
+#NAME: Shield of the Ages
+#DESC: Shield of the Ages was hardcoded and
+#DESC: probably depended on damage going on
+#DESC: the stack. Since this (correctly) doesn't
+#DESC: happen any more, SotA has no effect.
+#DESC: However, something else must also be
+#DESC: going wrong, since SotA wants me to
+#DESC: specify a target. It shouldn't.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Shield of the Ages
+hand:Shock
+manapool:{R}{R}{R}
+[PLAYER2]
+[DO]
+human
+Shield of the Ages
+Shock
+p1
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Shield of the Ages
+graveyard:Shock
+life:19
+[PLAYER2]
+[END]

@@ -1,0 +1,27 @@
+#NAME: Stonebrow bonus
+#DESC: Summoning was suspected to not work
+#DESC: correctly - but apparently he does.
+#DESC: In the test situation he should pump
+#DESC: himself and the War Mammoth, but not
+#DESC: the Grizzly Bears.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:118915,War Mammoth,Grizzly Bears
+[PLAYER2]
+[DO]
+118915
+War Mammoth
+Grizzly Bears
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:118915,War Mammoth,Grizzly Bears
+hand:
+manapool:
+[PLAYER2]
+life:7
+[END]

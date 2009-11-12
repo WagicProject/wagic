@@ -1,0 +1,25 @@
+#NAME: Ray of Command
+#DESC: Tests whether Ray of Command can
+#DESC: take control of an enemy creature,
+#DESC: use it to attack, and return it to
+#DESC: its controller at and of turn.
+[INIT]
+combatattackers
+[PLAYER1]
+hand:Ray of Command
+manapool:{U}{U}{U}{U}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Ray of Command
+Grizzly Bears
+Grizzly Bears
+eot
+[ASSERT]
+untap
+[PLAYER1]
+graveyard:Ray of Command
+[PLAYER2]
+inplay:Grizzly Bears
+life:18
+[END]

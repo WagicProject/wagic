@@ -1,0 +1,35 @@
+#NAME: Triggers at movedTo ...
+#DESC: Trigers like this one:
+#DESC: auto=@movedTo(creature|battlefield):life:1
+#DESC: should trigger when a creature gets summoned,
+#DESC: but not when its controller changes.
+#DESC: The script tests this on Soul Warden.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=179
+[INIT]
+firstmain
+[PLAYER1]
+hand:Soul Warden,Persuasion,Raging Goblin,Boomerang
+manapool:{W}{R}{U}{U}{U}{U}{U}{U}{U}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+# Soul Warden should NOT trigger upon itself:
+Soul Warden
+# Soul Warden SHOULD trigger upon summoning another creature:
+Raging Goblin
+# Soul Warden should NOT trigger upon controller change:
+Persuasion
+Grizzly Bears
+# Soul Warden should NOT trigger upon controller change:
+Boomerang
+Persuasion
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Soul Warden,Raging Goblin
+hand:Persuasion
+graveyard:Boomerang
+life:21
+[PLAYER2]
+inplay:Grizzly Bears
+[END]

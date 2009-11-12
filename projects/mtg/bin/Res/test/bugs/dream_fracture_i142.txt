@@ -1,0 +1,35 @@
+#NAME: Dream Fracture
+#DESC: Dream fracture has a Counterspell effect
+#DESC: and should also allow the caster and the
+#DESC: target controller to draw one card each.
+#DESC: Current bug: The caster draws two cards,
+#DESC: the target controller none.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=142
+[INIT]
+firstmain
+[PLAYER1]
+hand:Grizzly Bears
+library:Forest,Craw Wurm
+manapool:{G}{G}
+[PLAYER2]
+hand:Dream Fracture
+library:Swamp,Air Elemental
+manapool:{U}{U}{U}
+[DO]
+Grizzly Bears
+no
+yes
+Dream Fracture
+Grizzly Bears
+endinterruption
+[ASSERT]
+firstmain
+[PLAYER1]
+hand:Forest
+graveyard:Grizzly Bears
+library:Craw Wurm
+[PLAYER2]
+hand:Swamp
+graveyard:Dream Fracture
+library:Air Elemental
+[END]

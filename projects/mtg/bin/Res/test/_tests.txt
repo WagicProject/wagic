@@ -120,7 +120,9 @@ duskwalker.txt
 elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt
+enervate.txt
 erg_raiders_i157.txt
+farmstead.txt
 flagstones.txt
 farhaven_elf.txt
 fastbond.txt
@@ -209,6 +211,7 @@ prowess_of_the_fair3.txt
 pygmy_troll.txt
 pyroclasm.txt
 rampant_growth.txt
+ray_of_command.txt
 reclusive_wight.txt
 reclusive_wight2.txt
 recover.txt
@@ -247,6 +250,7 @@ steelclad_serpent1.txt
 steelclad_serpent2.txt
 stillmoon_cavalier.txt
 stonebrow_i159.txt
+stonebrow2.txt
 stronghold_discipline.txt
 sword_to_plowshares.txt
 symbiotic_wurm.txt
@@ -258,10 +262,12 @@ throne_of_bone.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt
+twitch.txt
 unstable_mutation2.txt
 unwilling_recruit.txt
 unstable_mutation.txt
 unstable_mutation2.txt
+vampire_bats.txt
 vampiric_link.txt
 volcanic_eruption.txt
 walking_wall.txt

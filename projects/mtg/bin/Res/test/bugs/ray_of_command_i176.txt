@@ -1,0 +1,37 @@
+#NAME: Ray of Command in opponent's turn
+#DESC: Bug report: Ray of command is unable
+#DESC: to take control of a creature if cast
+#DESC: in the opponent's turn.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=176
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Boa Constrictor
+hand:Lightning Elemental
+manapool:{R}{R}{R}{R}
+[PLAYER2]
+hand:Ray of Command
+manapool:{U}{U}{U}{U}
+[DO]
+Boa Constrictor
+Lightning Elemental
+no
+yes
+Ray of Command
+Boa Constrictor
+endinterruption
+next
+next
+Lightning Elemental
+next
+Boa Constrictor
+choice 0
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Boa Constrictor
+graveyard:Lightning Elemental
+[PLAYER2]
+graveyard:Ray of Command
+[END]

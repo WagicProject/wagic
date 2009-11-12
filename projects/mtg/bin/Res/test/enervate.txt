@@ -1,0 +1,32 @@
+#NAME: Enervate
+#DESC: Tests whether Enervate can tap a creature
+#DESC: (and whether the "draw card" aspect works).
+#DESC: If Enervate cannot target the Prodigal
+#DESC: Sorcerer, then PS will target itself and
+#DESC: go to the graveyard.
+#DESC: If Enervate can target but cannot tap the
+#DESC: PS, the the PS will do 1 damage to player 2.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Prodigal Sorcerer
+hand:Enervate
+library:Island
+manapool:{U}{U}
+[PLAYER2]
+[DO]
+Enervate
+Prodigal Sorcerer
+Prodigal Sorcerer
+p2
+eot
+next
+[ASSERT]
+upkeep
+[PLAYER1]
+inplay:Prodigal Sorcerer
+graveyard:Enervate
+hand:Island
+[PLAYER2]
+life:20
+[END]

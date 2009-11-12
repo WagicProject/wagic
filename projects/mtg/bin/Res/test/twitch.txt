@@ -1,0 +1,47 @@
+#NAME: Twitch
+#DESC: Tests the "Tap" and "Untap" ability
+#DESC: of Twitch.
+#DESC: Both players should suffer 1 damage.
+#DESC: If p1 suffers no damage, then Untap
+#DESC: hasn't worked.
+#DESC: If p2 suffers 2 damage, then Tap
+#DESC: hasn't worked.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Prodigal Sorcerer,Prodigal Pyromancer
+hand:Twitch,Twitch
+library:Island,Island
+manapool:{U}{U}{U}{U}{U}{U}
+[PLAYER2]
+[DO]
+# Use Twitch to tap one of the sorcerers, then try
+# to activate both and damage p2. Only one sorcerer
+# should be able to do damage.
+Twitch
+choice 1
+Prodigal Sorcerer
+Prodigal Sorcerer
+p2
+Prodigal Pyromancer
+p2
+# Use Twitch to untap a sorcerer, then try to activate
+# both and damage p1. Exactly one sorcerer should be
+# able to do damage.
+Twitch
+choice 0
+Prodigal Sorcerer
+Prodigal Sorcerer
+p1
+Prodigal Pyromancer
+p1
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Prodigal Sorcerer,Prodigal Pyromancer
+graveyard:Twitch,Twitch
+hand:Island,Island
+life:19
+[PLAYER2]
+life:19
+[END]
