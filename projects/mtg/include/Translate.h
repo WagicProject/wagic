@@ -14,8 +14,12 @@ using namespace std;
 class Translator{
  protected:
   static Translator * mInstance;
+  bool initDone;
+  
+  void load(string filename, map<string,string> * dictionary);
 public:
   map<string,string> values;
+  map<string,string> tempValues;
 #if defined DEBUG_TRANSLATE
   map<string,int> missingValues;
   map<string,int> dontCareValues;
@@ -25,6 +29,8 @@ public:
   Translator();
   ~Translator();
   int Add(string from, string to);
+  void initCards();
+  void init();
   static Translator * GetInstance();
   static void EndInstance();
 };

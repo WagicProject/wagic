@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/MTGDeck.h"
 #include "../include/utils.h"
+#include "../include/Translate.h"
 #include <algorithm>
 #include <string>
 using std::string;
@@ -320,6 +321,13 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
           SAFE_DELETE(tempCard);
         }else{
           ids.push_back(newId);
+          //translate cards text
+          Translator * t = Translator::GetInstance();
+          map<string,string>::iterator it = t->tempValues.find(tempCard->name);
+          if (it != t->tempValues.end()) {
+            tempCard->setText(it->second);
+          }
+
           collection[newId] = tempCard;
 	        total_cards++;
 #if defined (_DEBUG)

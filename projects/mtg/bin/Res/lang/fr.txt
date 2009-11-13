@@ -1,3 +1,4 @@
+#LANG:Francais
 #Fichier de traduction Francais pour Wagic The Homebrew
 #Placez ce fichier dans Res/lang.txt (renommez-le si necessaire), la traduction devrait etre automatique
 

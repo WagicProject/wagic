@@ -26,6 +26,7 @@ class GameStateMenu: public GameState, public JGuiListener
   //JMusic * bgMusic;
   int mVolume;
   char nbcardsStr[400];
+  vector<string> langs;
 
   DIR *mDip;
   struct dirent *mDit;
@@ -38,6 +39,11 @@ class GameStateMenu: public GameState, public JGuiListener
   float angleW;
   float yW;
   void fillScroller();
+
+  void setLang(int id);
+  string getLang(string s);
+  void loadLangMenu();
+
  public:
   GameStateMenu(GameApp* parent);
   virtual ~GameStateMenu();

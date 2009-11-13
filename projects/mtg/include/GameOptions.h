@@ -23,6 +23,7 @@ public:
   enum {
     //Global settings
     ACTIVE_PROFILE,
+    LANG,
     DIFFICULTY_MODE_UNLOCKED,
     MOMIR_MODE_UNLOCKED,
     EVILTWIN_MODE_UNLOCKED,

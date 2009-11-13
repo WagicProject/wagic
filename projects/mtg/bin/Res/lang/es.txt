@@ -1,3 +1,4 @@
+#LANG:Espanol
 #Traducción de Wagic The Homebrew 0.7.0 al Español
 #Renombra este archivo a "_lang.txt" o substituye spa por _lang en el nombre del archivo para disfrutar de Wagic en Español
 

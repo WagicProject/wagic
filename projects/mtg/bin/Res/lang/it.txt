@@ -1,3 +1,4 @@
+#LANG:Italiano
 #File di traduzione in Italiano per Wagic 0.8.1 - by Icarus
 #Metti questo file nella cartella WTH/Res e rinominalo come _lang.txt
 #Al prossimo avvio del gioco avrai il tutto tradotto
@@ -60,7 +61,7 @@ NO DECK AVAILABLE,=NESSUN DECK DISPONIBILE,
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=PREMI CERCHIO PER TORNARE AL DECK EDITOR!
 You haven't unlocked the random deck mode yet=Non hai ancora sbloccato la modalita' mazzo casuale
 You haven't locked the random deck mode yet=Non hai ancora bloccato la modalita' mazzo casuale
-You haven't unlocked the evil twin mode yet=Non hai ancora sbloccato la modalit‡ evil twin
+You haven't unlocked the evil twin mode yet=Non hai ancora sbloccato la modalitÅEevil twin
 You have unlocked %i expansions out of %i=Hai sbloccato %i espansioni su %i
 Premade G/R=Mazzo Iniziale V/R
 

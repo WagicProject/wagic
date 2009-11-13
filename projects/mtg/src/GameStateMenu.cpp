@@ -27,6 +27,7 @@ enum ENUM_MENU_STATE_MAJOR
     MENU_STATE_MAJOR_LOADING_CARDS = 0x04,
     MENU_STATE_MAJOR_FIRST_TIME = 0x05,
     MENU_STATE_MAJOR_DUEL = 0x06,
+    MENU_STATE_MAJOR_LANG = 0x07,
 
     MENU_STATE_MAJOR = 0xFF
   };
@@ -98,6 +99,15 @@ void GameStateMenu::Create()
   }
 
   currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
+  bool langChosen = false;
+  string lang = options[Options::LANG].str;
+  if (lang.size()){
+    lang = "Res/lang/" + lang +  ".txt";
+    if (fileExists(lang.c_str())) langChosen = true;
+  }
+  if (!langChosen){
+    currentState = MENU_STATE_MAJOR_LANG | MENU_STATE_MINOR_NONE;
+  }
   scroller = NEW TextScroller(resources.GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
   scrollerSet = 0;
 }
@@ -117,18 +127,6 @@ void GameStateMenu::Start(){
   JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
   SAFE_DELETE(mGuiController);
-  mGuiController = NEW JGuiController(100, this);
-  if (mGuiController)
-  {
-    JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
-    mFont->SetColor(ARGB(255,255,255,255));
-    mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"particle1.psi",resources.GetQuad("particles"),  true));
-    mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"particle2.psi",resources.GetQuad("particles")));
-    mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"particle3.psi",resources.GetQuad("particles")));
-    mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"particle4.psi",resources.GetQuad("particles")));
-    mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"particle5.psi",resources.GetQuad("particles")));
-  }
-
 
   if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
     GameApp::music = resources.ssLoadMusic("Track0.mp3");
@@ -258,10 +256,7 @@ int GameStateMenu::nextDirectory(const char * root, const char * file){
       found = 1;
     }
   }
-  if (!mDit) {
-    closedir(mDip);
-    mDip = NULL;
-  }
+  if (!found) resetDirectory();
   return found;
 }
 
@@ -273,20 +268,69 @@ void GameStateMenu::End()
   SAFE_DELETE(mGuiController);
 }
 
+string GameStateMenu::getLang(string s){
+    if (!s.size()) return "";
+    if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
+    size_t found = s.find("#LANG:");
+    if (found != 0) return "";
+    return s.substr(6);
+}
 
+void GameStateMenu::setLang(int id){
+ options[Options::LANG].str = langs[id-1];
+ options.save();
+}
+
+void GameStateMenu::loadLangMenu(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+  subMenuController = NEW SimpleMenu(103, this, mFont, 150,60);
+  if (!subMenuController) return;
+  resetDirectory();
+  if (!mDip){
+    mDip = opendir("Res/lang");
+  }
+
+  while (mDit = readdir(mDip)){
+    string filename = "Res/lang/";
+    filename += mDit->d_name;
+    std::ifstream file(filename.c_str());
+    string s;
+    string lang;
+    if(file){
+      if(std::getline(file,s)){
+        lang = getLang(s);
+      } 
+      file.close();
+    }
+    if (lang.size()){
+      string filen = mDit->d_name;
+      langs.push_back(filen.substr(0,filen.size()-4));
+      subMenuController->Add(langs.size(),lang.c_str());
+    }
+  }
+  resetDirectory();
+}
 
 void GameStateMenu::Update(float dt)
 {
   timeIndex += dt * 2;
-  switch (MENU_STATE_MAJOR & currentState)
-    {
+  switch (MENU_STATE_MAJOR & currentState) {
+    case MENU_STATE_MAJOR_LANG :
+        if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR)) {
+          if (!subMenuController) loadLangMenu();
+        }
+        subMenuController->Update(dt);
+    break;
     case MENU_STATE_MAJOR_LOADING_CARDS :
       if (mReadConf){
 	      mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
       }else{
 	      mReadConf = 1;
+        Translator::GetInstance()->init();
       }
       if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
+        //Remove temporary translations
+        Translator::GetInstance()->tempValues.clear();
 
         //Force default, if necessary.
         if(options[Options::ACTIVE_PROFILE].str == "") 
@@ -301,9 +345,9 @@ void GameStateMenu::Update(float dt)
         std::ifstream file(options.profileFile(PLAYER_COLLECTION).c_str());
 	      if(file){
 	        file.close();
-	        currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
+	        currentState = MENU_STATE_MAJOR_MAINMENU;
 	      }else{
-  	      currentState = MENU_STATE_MAJOR_FIRST_TIME | MENU_STATE_MINOR_NONE;
+  	      currentState = MENU_STATE_MAJOR_FIRST_TIME;
         }
 
         //Reload list of unlocked sets, now that we know about the sets.
@@ -322,12 +366,24 @@ void GameStateMenu::Update(float dt)
       }
       break;    
     case MENU_STATE_MAJOR_FIRST_TIME :
-      currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;
+      currentState &= MENU_STATE_MAJOR_MAINMENU;
       options.checkProfile(); //Handles building a new deck, if needed.
       break;
     case MENU_STATE_MAJOR_MAINMENU :
       if (!scrollerSet) fillScroller();
-      if (NULL != mGuiController)
+      if (!mGuiController) {
+        mGuiController = NEW JGuiController(100, this);
+        if (mGuiController) {
+          JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+          mFont->SetColor(ARGB(255,255,255,255));
+          mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"particle1.psi",resources.GetQuad("particles"),  true));
+          mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"particle2.psi",resources.GetQuad("particles")));
+          mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"particle3.psi",resources.GetQuad("particles")));
+          mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"particle4.psi",resources.GetQuad("particles")));
+          mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"particle5.psi",resources.GetQuad("particles")));
+        }
+      }
+      if (mGuiController)
 	      mGuiController->Update(dt);
       break;
     case MENU_STATE_MAJOR_SUBMENU :
@@ -335,38 +391,35 @@ void GameStateMenu::Update(float dt)
       mGuiController->Update(dt);
       break;
     case MENU_STATE_MAJOR_DUEL :
-      if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
-	{
-	  if (!hasChosenGameType){
-	    currentState = MENU_STATE_MAJOR_SUBMENU;
-	    JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
-	    subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
-	    if (subMenuController){
-	      subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
-	      if (options[Options::MOMIR_MODE_UNLOCKED].number)
-		subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
-	      if (options[Options::RANDOMDECK_MODE_UNLOCKED].number){
-		subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
-		subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
+      if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR)) {
+	      if (!hasChosenGameType){
+	        currentState = MENU_STATE_MAJOR_SUBMENU;
+	        JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+	        subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
+	        if (subMenuController){
+	          subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
+	          if (options[Options::MOMIR_MODE_UNLOCKED].number)
+		          subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
+	          if (options[Options::RANDOMDECK_MODE_UNLOCKED].number){
+		          subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
+		          subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
+	          }
+	          subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+	        }
+	      }else{
+	        mParent->SetNextState(GAME_STATE_DUEL);
+	        currentState = MENU_STATE_MAJOR_MAINMENU;
 	      }
-	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 	    }
-	  }else{
-	    mParent->SetNextState(GAME_STATE_DUEL);
-	    currentState = MENU_STATE_MAJOR_MAINMENU;
-	  }
-	}
-    }
-  switch (MENU_STATE_MINOR & currentState)
-    {
+  }
+
+  switch (MENU_STATE_MINOR & currentState){
     case MENU_STATE_MINOR_SUBMENU_CLOSING :
-      if (subMenuController->closed)
-	{
-	  SAFE_DELETE(subMenuController);
-	  currentState &= ~MENU_STATE_MINOR_SUBMENU_CLOSING;
-	}
-      else
-	subMenuController->Update(dt);
+      if (subMenuController->closed) {
+	      SAFE_DELETE(subMenuController);
+	      currentState &= ~MENU_STATE_MINOR_SUBMENU_CLOSING;
+	    } else
+	      subMenuController->Update(dt);
       break;
     case MENU_STATE_MINOR_NONE :
       ;// Nothing to do.
@@ -411,7 +464,8 @@ void GameStateMenu::Render()
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->ClearScreen(ARGB(0,0,0,0));
   JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
-  if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
+  if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LANG){
+  }else if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
     if(!splashTex){
      splashTex = resources.RetrieveTexture("splash.jpg",RETRIEVE_LOCK);
      mSplash = resources.RetrieveTempQuad("splash.jpg");
@@ -420,7 +474,12 @@ void GameStateMenu::Render()
       renderer->RenderQuad(mSplash,0,0);
     }else{
       char text[512];
-      sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
+      mFont->SetColor(ARGB(255,255,255,255));
+      if (mCurrentSetName[0]) {
+        sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
+      }else{
+        sprintf(text,"LOADING...");
+      }
       mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
     }
   }else{
@@ -449,10 +508,11 @@ void GameStateMenu::Render()
     scroller->Render();
 
     renderer->RenderQuad(mBg, SCREEN_WIDTH/2, 50);
-    if (subMenuController){
-      subMenuController->Render();
-    }
+
   }
+  if (subMenuController){
+    subMenuController->Render();
+  }  
 
 }
 
@@ -466,6 +526,11 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   OutputDebugString(buf);
 #endif
   switch (controllerId){
+  case 103:
+    setLang(controlId);
+    subMenuController->Close();
+    currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_SUBMENU_CLOSING;
+    break;
   case 101:
     options.createUsersFirstDeck(controlId);
     currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_NONE;

@@ -12,6 +12,7 @@
 const char * Options::optionNames[] = {
 //Global options
   "Profile",
+  "Lang",
   "prx_handler",
   "prx_rimom",
   "prx_eviltwin",

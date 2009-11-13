@@ -1,5 +1,6 @@
 #include "../include/Translate.h"
 #include "../include/config.h"
+#include "../include/GameOptions.h"
 #include <JGE.h>
 #include <fstream>
 #include <iostream>
@@ -21,6 +22,7 @@ int Translator::Add(string from, string to){
 }
 
 string Translator::translate(string value){
+  //if (!initDone) init();
   map<string,string>::iterator it = values.find(value);
   if (it != values.end()) return it->second;
 #if defined DEBUG_TRANSLATE
@@ -50,13 +52,16 @@ Translator::~Translator(){
 #endif
 }
 Translator::Translator(){
-#if defined DEBUG_TRANSLATE
-  checkMisses = 0;
-#endif
-  std::ifstream file("Res/lang/_lang.txt");
-  std::string s;
+  initDone = false;
+  //init();
+}
+
+void Translator::load(string filename, map<string,string> * dictionary) {
+  std::ifstream file(filename.c_str());
 
   if(file){
+    string s;
+    initDone = true;
 #if defined DEBUG_TRANSLATE
   checkMisses = 1;
 #endif
@@ -67,7 +72,7 @@ Translator::Translator(){
       if (found == string::npos) continue;
       string s1 = s.substr(0,found);
       string s2 = s.substr(found+1);
-      Add(s1,s2);
+      (*dictionary)[s1] = s2;
     }
     file.close();
   }
@@ -77,6 +82,7 @@ Translator::Translator(){
   std::ifstream file2("Res/lang/dontcare.txt");
 
   if(file2){
+    string s;
     while(std::getline(file2,s)){
       if (!s.size()) continue;
       if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
@@ -88,7 +94,30 @@ Translator::Translator(){
     file2.close();
   }
 #endif
+}
 
+void Translator::initCards(){
+  string lang = options[Options::LANG].str;
+  if (!lang.size()) return;
+  string cards_dict = "Res/lang/" + lang + "_cards.txt";
+  load(cards_dict,&tempValues);
+}
+
+void  Translator::init() {
+#if defined DEBUG_TRANSLATE
+  checkMisses = 0;
+#endif
+   string lang = options[Options::LANG].str;
+  if (!lang.size()) return;
+  string name = "Res/lang/" + lang + ".txt";
+
+  if (fileExists(name.c_str())){
+    initDone = true;
+    load(name,&values);
+  }
+
+  initCards();
+ 
 }
 
 string _(string toTranslate){
