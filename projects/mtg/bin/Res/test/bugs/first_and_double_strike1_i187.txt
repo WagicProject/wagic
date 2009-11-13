@@ -1,0 +1,26 @@
+#NAME: First Strike on Double Strike
+#DESC: Hearthfire Hobgoblin should keep his
+#DESC: Double Strike after Bloodmark Mentor
+#DESC: (which gives First Strike) has been
+#DESC: summoned.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=187
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Hearthfire Hobgoblin
+hand:Bloodmark Mentor
+manapool:{R}{R}
+[PLAYER2]
+[DO]
+Bloodmark Mentor
+next
+next
+Hearthfire Hobgoblin
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Hearthfire Hobgoblin,Bloodmark Mentor
+[PLAYER2]
+life:16
+[END]

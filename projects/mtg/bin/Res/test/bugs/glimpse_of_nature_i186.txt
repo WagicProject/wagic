@@ -1,0 +1,24 @@
+#NAME: Glimpse of Nature card drawing
+#DESC: Bug: Casting Glimpse of Nature (CHK)
+#DESC: doesn't let you draw cards when you
+#DESC: summon creatures this turn.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=186
+[INIT]
+firstmain
+[PLAYER1]
+hand:Glimpse of Nature,Grizzly Bears
+library:Forest,Swamp
+manapool:{G}{G}{G}
+[PLAYER2]
+[DO]
+Glimpse of Nature
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears
+hand:Forest
+library:Swamp
+graveyard:Glimpse of Nature
+[PLAYER2]
+[END]

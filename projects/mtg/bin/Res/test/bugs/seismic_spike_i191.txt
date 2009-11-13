@@ -1,0 +1,23 @@
+#NAME: Test Template
+#DESC: 
+#DESC: 
+#DESC: 
+#DESC: 
+[INIT]
+firstmain
+[PLAYER1]
+hand:Seismic Spike
+manapool:{R}{R}{R}{R}
+[PLAYER2]
+inplay:Plains
+[DO]
+Seismic Spike
+Plains
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Seismic Spike
+manapool:{R}{R}
+[PLAYER2]
+graveyard:Plains
+[END]

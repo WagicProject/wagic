@@ -1,0 +1,26 @@
+#NAME: Trample vs two blockers
+#DESC: Relies on Trample default damage as
+#DESC: calculated in the combatdamage step.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Crash of Rhinos
+[PLAYER2]
+inplay:Scryb Sprites,Grizzly Bears
+[DO]
+Crash of Rhinos
+next
+Scryb Sprites
+Grizzly Bears
+next
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Crash of Rhinos
+[PLAYER2]
+graveyard:Scryb Sprites,Grizzly Bears
+life:15
+[END]

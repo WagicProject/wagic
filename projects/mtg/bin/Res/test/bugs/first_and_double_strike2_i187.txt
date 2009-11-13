@@ -1,0 +1,25 @@
+#NAME: Double Strike on First Strike
+#DESC: White Knight (which has First Strike) should
+#DESC: gain Double Strike after Kinsbaile Cavalier
+#DESC: has been summoned.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=187
+[INIT]
+firstmain
+[PLAYER1]
+inplay:White Knight
+hand:Kinsbaile Cavalier
+manapool:{W}{W}{W}{W}
+[PLAYER2]
+[DO]
+Kinsbaile Cavalier
+next
+next
+White Knight
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:White Knight,Kinsbaile Cavalier
+[PLAYER2]
+life:16
+[END]

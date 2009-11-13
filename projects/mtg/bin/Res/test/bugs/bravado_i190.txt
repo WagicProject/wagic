@@ -1,0 +1,28 @@
+#NAME: Bravado on opponent's creature
+#DESC: Bug: Bravado works correctly when cast on
+#DESC: one's own creature, but incorrectly if cast
+#DESC: on an opponent's creature. Unfortunately
+#DESC: that's exactly what the AI does when it
+#DESC: gets the card in Random Deck mode.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=190
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Craw Wurm,Raging Goblin,Scryb Sprites
+hand:Bravado,Shock
+manapool:{R}{R}{R}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Bravado
+Grizzly Bears
+Shock
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Craw Wurm,Raging Goblin,Scryb Sprites,Bravado
+graveyard:Shock
+[PLAYER2]
+graveyard:Grizzly Bears
+[END]

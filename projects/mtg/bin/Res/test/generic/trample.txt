@@ -1,0 +1,25 @@
+#NAME: Trample
+#DESC: Simple Trample test.
+#DESC: Relies on Trample default damage as
+#DESC: calculated in the combatdamage step.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Crash of Rhinos
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Crash of Rhinos
+next
+Grizzly Bears
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Crash of Rhinos
+[PLAYER2]
+graveyard:Grizzly Bears
+life:14
+[END]

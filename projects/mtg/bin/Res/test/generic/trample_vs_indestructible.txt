@@ -1,0 +1,26 @@
+#NAME: Trample vs indestructible defender
+#DESC: Tests whether the attacker can correctly
+#DESC: trample over an indestructible defender.
+#DESC: Relies on Trample default damage as
+#DESC: calculated in the combatdamage step.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Crash of Rhinos
+[PLAYER2]
+inplay:Timber Protector,Timber Protector
+[DO]
+Crash of Rhinos
+next
+Timber Protector
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+graveyard:Crash of Rhinos
+[PLAYER2]
+inplay:Timber Protector,Timber Protector
+life:19
+[END]
