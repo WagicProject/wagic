@@ -233,7 +233,7 @@ abilities=trample
 [card]
 text=Whenever you cast a green spell, you may put a 2/2 green Wolf creature token onto the battlefield.   Whenever you cast a blue spell, you may put a 1/1 blue Bird creature token with flying onto the battlefield.
 auto=@movedTo(*[green]|mystack):may token(Wolf,creature wolf,2/2,green)
-auto=@movedTo(*[blue]|mystack):may token(Bird,creature bird,1/1,blue)
+auto=@movedTo(*[blue]|mystack):may token(Bird,creature bird,1/1,flying blue)
 id=152087
 name=Fable of Wolf and Owl
 rarity=R
