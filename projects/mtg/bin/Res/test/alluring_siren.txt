@@ -1,0 +1,23 @@
+#Bug: Alluring Siren's ability doesn't work
+# http://code.google.com/p/wagic/issues/detail?id=177
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:alluring siren
+[DO]
+next
+yes
+alluring siren
+grizzly bears
+endinterruption
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:alluring siren
+life:18
+[END]

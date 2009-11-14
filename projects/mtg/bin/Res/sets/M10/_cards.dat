@@ -43,7 +43,7 @@ subtype=Siren
 power=1
 toughness=1
 text={T}: Target creature an opponent controls attacks you this turn if able.
-auto={T}:target(creature|opponentinplay) mustattack
+auto={T}:mustattack target(creature|opponentinplay)
 rarity=U
 [/card]
 [card]

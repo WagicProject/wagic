@@ -45,6 +45,7 @@ generic/wither.txt
 act_of_treason.txt
 afflict.txt
 akron_legionnaire.txt
+alluring_siren.txt
 Amugaba.txt
 anarchy.txt
 ancestors_chosen.txt
