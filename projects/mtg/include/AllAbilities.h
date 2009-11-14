@@ -112,6 +112,13 @@ public:
     if (!e) return 0;
     if (!toTc->canTarget(e->card)) return 0;
     if (fromTc && !fromTc->targetsZone(e->from)) return 0;
+    
+    //Battlefield is a special case. We usually don't want to trigger when a card comes from battlefield to battlefield
+    // http://code.google.com/p/wagic/issues/detail?id=179
+    if ((e->from == game->players[0]->game->battlefield || e->from == game->players[1]->game->battlefield) && 
+      (e->to == game->players[0]->game->battlefield || e->to == game->players[1]->game->battlefield)) {
+        return 0;
+    }
     return 1;
   }
 
@@ -3954,7 +3961,7 @@ class AInstantControlSteal: public InstantAbility{
  AInstantControlSteal(int _id , MTGCardInstance * _source, MTGCardInstance * _target):InstantAbility(_id, _source, _target){
     TrueController = _target->controller();
  	  TheftController = source->controller();
-	  MTGCardInstance * copy = _target->changeController(game->currentlyActing());
+	  MTGCardInstance * copy = _target->changeController(TheftController);
     target = copy;
     source->target = copy;
     copy->summoningSickness = 0; 

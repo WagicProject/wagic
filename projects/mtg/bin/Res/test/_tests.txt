@@ -37,6 +37,7 @@ generic/tokens.txt
 generic/trample.txt
 generic/trample_vs_indestructible.txt
 generic/trample_vs_multiblock.txt
+generic/triggers_at_movedto_i179.txt
 generic/wither.txt
 ########################
 #Specific Cards
@@ -215,6 +216,7 @@ pygmy_troll.txt
 pyroclasm.txt
 rampant_growth.txt
 ray_of_command.txt
+ray_of_command_i176.txt
 reclusive_wight.txt
 reclusive_wight2.txt
 recover.txt
