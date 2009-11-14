@@ -522,6 +522,16 @@ text=Glacial Ray deals 2 damage to target creature or player. Splice onto Arcane
 rarity=C
 [/card]
 [card]
+#Glimpse of Nature can't be added in Wagic 0.9. "ueot" works only for some specific keywords, mostly abilities and P/T change
+text=Whenever you cast a creature spell this turn, draw a card.
+auto=@movedTo(creature|mystack):draw:1 controller ueot
+id=75241
+name=Glimpse of Nature
+rarity=R
+mana={G}
+type=Sorcery
+[/card]
+[card]
 id=78192
 name=Godo, Bandit Warlord
 mana={5}{R}

@@ -215,15 +215,6 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
-text=Whenever you cast a creature spell this turn, draw a card.
-auto=@movedTo(creature|mystack):draw:1 controller ueot
-id=75241
-name=Glimpse of Nature
-rarity=R
-mana={G}
-type=Sorcery
-[/card]
-[card]
 text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
 auto={1}{G}{S}:moveTo(myhand) target(arcane|mygraveyard)
 id=77138
