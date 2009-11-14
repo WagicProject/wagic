@@ -232,6 +232,7 @@ scourge_of_kher_ridges2.txt
 sedge_sliver.txt
 seedcradle_witch.txt
 seismic_assault.txt
+seismic_spike_i191.txt
 selesnya_guildmage.txt
 siege_gang_commander.txt
 shepherd_of_rot.txt

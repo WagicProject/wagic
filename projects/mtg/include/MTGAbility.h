@@ -8,7 +8,6 @@ class GameObserver;
 class Spell;
 class Damageable;
 class PlayGuiObject;
-class TargetChooser;
 class ManaCost;
 class MTGGameZone;
 class Player;
@@ -20,6 +19,7 @@ class WEvent;
 #include <map>
 #include <hge/hgeparticle.h>
 #include "../include/Damage.h"
+#include "../include/TargetChooser.h"
 using std::string;
 using std::map;
 
@@ -217,7 +217,14 @@ class AbilityFactory{
 };
 
 
-class AManaProducer: public MTGAbility{
+class ActivatedAbilityTP:public ActivatedAbility{
+public:
+  int who;
+  ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, ManaCost * cost=NULL, int doTap = 0, int who = TargetChooser::UNSET);
+  Targetable * getTarget();
+};
+
+class AManaProducer: public ActivatedAbilityTP{
  protected:
 
   
@@ -227,7 +234,7 @@ class AManaProducer: public MTGAbility{
  public:
    ManaCost * output;
    int tap;
-   AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1 );
+   AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1, int who = TargetChooser::UNSET );
    int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
   int resolve();
   int reactToClick(MTGCardInstance *  _card);

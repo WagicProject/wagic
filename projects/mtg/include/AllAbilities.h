@@ -454,28 +454,7 @@ public:
 
 };
 
-class ActivatedAbilityTP:public ActivatedAbility{
-public:
-  int who;
-  ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, ManaCost * cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbility(id,card,cost,0,doTap),who(who){
-    if (_target) target = _target;
-  }
 
-  Targetable * getTarget(){
-    switch(who){
-      case TargetChooser::TARGET_CONTROLLER:
-        if (target) return ((MTGCardInstance *)target)->controller();
-        return NULL;
-      case TargetChooser::CONTROLLER:
-        return source->controller();
-      case TargetChooser::OPPONENT:
-        return source->controller()->opponent();
-      default:
-        return target;
-    }
-   return NULL;
-  }
-};
 
 
 //Drawer, allows to draw a card for a cost:

@@ -2,7 +2,6 @@
 #define _MTGCARD_H_
 
 #define MTGCARD_NAME_SIZE 30
-#define MTGCARD_TEXT_SIZE 300
 
 #define MTG_IMAGE_WIDTH 200
 #define MTG_IMAGE_HEIGHT 285

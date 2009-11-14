@@ -661,7 +661,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("add");
   if (found != string::npos){
     ManaCost * output = ManaCost::parseManaCost(s.substr(found));
-    MTGAbility * a =  NEW AManaProducer(id, target, output);
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextPlayerTarget();
+    MTGAbility * a =  NEW AManaProducer(id, card, t, output, NULL, 1, who);
     a->oneShot = 1;
     return a;
   }
@@ -1077,7 +1079,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1124: //Mana Vault
     {
       int output[] = {Constants::MTG_COLOR_ARTIFACT, 3};
-      game->addObserver(NEW AManaProducer(_id,card,NEW ManaCost(output,1)));
+      game->addObserver(NEW AManaProducer(_id,card,card,NEW ManaCost(output,1)));
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
       game->addObserver(NEW AUntapManaBlocker(_id+1, card, NEW ManaCost(cost,1)));
       game->addObserver(NEW ARegularLifeModifierAura(_id+2, card, card, Constants::MTG_PHASE_DRAW, -1, 1));
@@ -2180,15 +2182,9 @@ GenericTriggeredAbility* GenericTriggeredAbility::clone() const{
 //That means the player has to choose one. although that is perfect for cards such as birds of paradise or badlands,
 other solutions need to be provided for abilities that add mana (ex: mana flare)
 */
-/*
-  Currently the mana is added to the pool AFTER the animation
-  This is VERY BAD, since we don't have any control on the duration of the animation. This can lead to bugs with
-  the AI, who is expecting to have the mana in its manapool right after clicking the land card !!!
-  The sum of "dt" has to be 0.25 for the mana to be in the manapool currently
-*/
 
 
-AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output, ManaCost * _cost , int doTap):MTGAbility(id, card), tap(doTap){
+AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost , int doTap, int who):ActivatedAbilityTP(id, card,t,_cost,doTap,who){
 
   LOG("==Creating ManaProducer Object");
   aType = MTGAbility::MANA_PRODUCER;
@@ -2212,9 +2208,18 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output,
   }
 
   int AManaProducer::resolve(){
-    controller = source->controller();
-    controller->getManaPool()->add(output,source);
-    return 1;
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+      player->getManaPool()->add(output,source);
+      return 1;
+    }
+    return 0;
   }
 
   int AManaProducer::reactToClick(MTGCardInstance *  _card){
@@ -2291,3 +2296,22 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, ManaCost * _output,
   }
 
 
+
+  ActivatedAbilityTP::ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target, ManaCost * cost, int doTap, int who):ActivatedAbility(id,card,cost,0,doTap),who(who){
+    if (_target) target = _target;
+  }
+
+  Targetable * ActivatedAbilityTP::getTarget(){
+    switch(who){
+      case TargetChooser::TARGET_CONTROLLER:
+        if (target) return ((MTGCardInstance *)target)->controller();
+        return NULL;
+      case TargetChooser::CONTROLLER:
+        return source->controller();
+      case TargetChooser::OPPONENT:
+        return source->controller()->opponent();
+      default:
+        return target;
+    }
+   return NULL;
+  }
