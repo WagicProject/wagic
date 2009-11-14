@@ -71,9 +71,7 @@ basal_sliver.txt
 beacon_of_unrest.txt
 belligerent_hatchling.txt
 benalish_knight.txt
-#befoul.txt
 blessed_wine.txt
-#blinking_spirit.txt
 bloodfire_colossus.txt
 bloodhall_ooze.txt
 body_double.txt
@@ -154,7 +152,6 @@ goblin_balloon_brigade2.txt
 goblin_king.txt
 goblin_offensive.txt
 gravedigger.txt
-#hammerfist_giant.txt
 hannas_custody.txt
 harpoon_sniper.txt
 hellfire.txt
@@ -190,7 +187,6 @@ master_of_etherium.txt
 memory_erosion.txt
 millstone.txt
 misc01.txt
-#mind_rot.txt
 moat.txt
 mobile_fort.txt
 nantuko_husk.txt
@@ -248,7 +244,6 @@ slith_bloodletter.txt
 soulblast.txt
 sphinx_summoner.txt
 spitting_earth.txt
-#spitting_hydra.txt #bug with taking away counter
 spark_elemental.txt
 spirit_link.txt
 spoils_of_evil.txt
