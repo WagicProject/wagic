@@ -119,13 +119,8 @@ void CardGui::Render()
 
 JQuad * CardGui::alternateThumbQuad(MTGCard * card){
   JQuad * q;
-  int nb_colors = 0;
-  for(int i=0;i<Constants::MTG_NB_COLORS;i++){
-    if(card->colors[i])
-      nb_colors++;
-  }
 
-  if(nb_colors > 1){
+  if(card->countColors() > 1){
     q = resources.RetrieveTempQuad("gold_thumb.jpg");
   }
   else{
@@ -153,16 +148,9 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 
   float x = pos.actX;
 
-  int nb_colors = 0;
-  for(int i=0;i<Constants::MTG_NB_COLORS;i++){
-    if(card->colors[i])
-      nb_colors++;
-  }
-
-  if(nb_colors > 1){
+  if(card->countColors() > 1) {
     q = resources.RetrieveTempQuad("gold.jpg");
-  }
-  else{
+  } else {
     switch(card->getColor())
       {
       case Constants::MTG_COLOR_ARTIFACT: q = resources.RetrieveTempQuad("artifact.jpg");break;

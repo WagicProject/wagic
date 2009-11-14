@@ -151,7 +151,7 @@ void MTGCard::removeColor(int _color){
 }
 
 int MTGCard::getColor(){
-  for (int i=0; i<Constants::MTG_NB_COLORS; i++){
+  for (int i=1; i<Constants::MTG_NB_COLORS; i++){
     if (colors[i]){
       return i;
     }
@@ -162,6 +162,14 @@ int MTGCard::getColor(){
 
 int MTGCard::hasColor(int color){
   return (colors[color]);
+}
+
+int MTGCard::countColors(){
+  int result = 0;
+  for(int i=Constants::MTG_COLOR_GREEN;i<=Constants::MTG_COLOR_WHITE;i++){
+    if (hasColor(i)) result++;
+  }
+  return result;
 }
 
 void MTGCard::setManaCost(string s){

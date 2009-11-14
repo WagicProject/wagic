@@ -54,6 +54,7 @@ class MTGCard {
   void removeColor(int color);
   int getColor();
   int hasColor(int _color);
+  int countColors();
   const char * colorToString();
 
   void setMTGId(int id);
