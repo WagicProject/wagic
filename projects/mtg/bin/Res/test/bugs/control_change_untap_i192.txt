@@ -1,0 +1,26 @@
+#NAME: Control change untap
+#DESC: Bug: After taking control of a tapped
+#DESC: enemy creature, the creature is displayed
+#DESC: as untapped (although the game correctly
+#DESC: treats it as tapped otherwise).
+#DESC: The script taps an enemy creature and
+#DESC: gives you control over it. It's displayed
+#DESC: as untapped - but it shoes up as a valid
+#DESC: target for Assassinate, so it must actually
+#DESC: be tapped. Dont cast Assasinate, instead
+#DESC: cast Twitch and untap the creature. The
+#DESC: display doesn't change, but Assassinate
+#DESC: cannot target it any more. Conclusion: The
+#DESC: game state is correct, but the display not.
+firstmain
+[PLAYER1]
+hand:Control Magic,Enervate,Assassinate,Twitch
+manapool:{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{B}{B}{B}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Enervate
+Grizzly Bears
+Control Magic
+Grizzly Bears
+human

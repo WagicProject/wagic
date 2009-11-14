@@ -551,17 +551,6 @@ toughness=2
 abilities=shadow
 [/card]
 [card]
-text=As an additional cost to play Sonic Burst, discard a card at random. Sonic Burst deals 4 damage to target creature or player.
-id=6112
-name=Sonic Burst
-target=creature,player
-auto=damage:4
-auto=discard:1 controller
-rarity=C
-mana={1}{R}
-type=Instant
-[/card]
-[card]
 text=Whenever another creature enters the battlefield, you gain 1 life.
 id=6033
 name=Soul Warden

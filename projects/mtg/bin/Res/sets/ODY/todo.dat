@@ -19,6 +19,18 @@ mana={U}
 subtype=Aura
 [/card]
 [card]
+#Removed: can be played from an empty hand without discarding a card
+text=As an additional cost to cast Acceptable Losses, discard a card at random.   Acceptable Losses deals 5 damage to target creature.
+id=30692
+target=creature
+auto=damage:5
+auto=discard:1 controller
+name=Acceptable Losses
+rarity=C
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 text={1}: The next time an instant or sorcery spell would deal damage to you this turn, that spell deals that damage to its controller instead.
 id=29922
 name=Aegis of Honor

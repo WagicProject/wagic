@@ -1,0 +1,25 @@
+#NAME: Mogg Flunkies
+#DESC: If you choose the Grizzly Bears as
+#DESC: attackers, then choose one Mogg
+#DESC: Flunkies as attacker, and then remove
+#DESC: the Grizzly Bears as attackers, then
+#DESC: the Mogg Flunkies shouldn't be able
+#DESC: to attack
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Mogg Flunkies,Grizzly Bears
+[PLAYER2]
+[DO]
+Grizzly Bears
+Mogg Flunkies
+Grizzly Bears
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Mogg Flunkies,Grizzly Bears
+[PLAYER2]
+[END]

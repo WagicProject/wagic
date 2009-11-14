@@ -1,0 +1,26 @@
+#NAME: Pillory of the Sleepless 3
+#DESC: Tests whether Pillory of the
+#DESC: Sleepless triggers correctly.
+#DESC: Third part: cast on one's own creature.
+#DESC: Verifies that Pillory of the Sleepless
+#DESC: does damage to correct player.
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Grizzly Bears
+hand:Pillory of the Sleepless
+manapool:{B}{B}{W}
+[PLAYER2]
+[DO]
+Pillory of the Sleepless
+Grizzly Bears
+eot
+eot
+next
+[ASSERT]
+upkeep
+[PLAYER1]
+inplay:Pillory of the Sleepless,Grizzly Bears
+life:19
+[PLAYER2]
+[END]

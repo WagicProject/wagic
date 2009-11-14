@@ -1,0 +1,23 @@
+#NAME: Cursed Land 4
+#DESC: Tests whether Cursed Land triggers correctly.
+#DESC: Fourth Part: Cast on one's own land.
+#DESC: Verifies that Cursed Land does *not* trigger
+#DESC: in opponent's turn.
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Plains
+hand:Cursed Land
+manapool:{B}{B}{B}{B}
+[PLAYER2]
+[DO]
+Cursed Land
+Plains
+eot
+next
+[ASSERT]
+upkeep
+[PLAYER1]
+inplay:Cursed Land,Plains
+[PLAYER2]
+[END]

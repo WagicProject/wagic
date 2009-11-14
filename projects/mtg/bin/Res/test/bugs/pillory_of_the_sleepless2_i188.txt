@@ -1,0 +1,26 @@
+#NAME: Pillory of the Sleepless 2
+#DESC: Tests whether Pillory of the
+#DESC: Sleepless triggers correctly.
+#DESC: Second Part: cast on an opponent's creature.
+#DESC: Verifies that Pillory of the Sleepless
+#DESC: does trigger in opponent's turn.
+[INIT]
+secondmain
+[PLAYER1]
+hand:Pillory of the Sleepless
+manapool:{B}{B}{W}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Pillory of the Sleepless
+Grizzly Bears
+eot
+next
+[ASSERT]
+upkeep
+[PLAYER1]
+inplay:Pillory of the Sleepless
+[PLAYER2]
+inplay:Grizzly Bears
+life:19
+[END]

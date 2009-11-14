@@ -1,0 +1,24 @@
+#NAME: Cursed Land 3
+#DESC: Tests whether Cursed Land triggers correctly.
+#DESC: Third part: Cast on one's own land. Verifies
+#DESC: that Cursed Land does damage to correct player.
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Plains
+hand:Cursed Land
+manapool:{B}{B}{B}{B}
+[PLAYER2]
+[DO]
+Cursed Land
+Plains
+eot
+eot
+next
+[ASSERT]
+upkeep
+[PLAYER1]
+inplay:Cursed Land,Plains
+life:19
+[PLAYER2]
+[END]

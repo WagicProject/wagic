@@ -13,17 +13,6 @@ type=Land
 rarity=C
 [/card]
 [card]
-text=As an additional cost to cast Acceptable Losses, discard a card at random.   Acceptable Losses deals 5 damage to target creature.
-id=30692
-target=creature
-auto=damage:5
-auto=discard:1 controller
-name=Acceptable Losses
-rarity=C
-mana={3}{R}
-type=Sorcery
-[/card]
-[card]
 text=Target creature gets -1/-1 until end of turn.   Draw a card. 
 id=29740
 name=Afflict

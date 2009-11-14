@@ -1,0 +1,24 @@
+#NAME: Pillory of the Sleepless 4
+#DESC: Tests whether Pillory of the
+#DESC: Sleepless triggers correctly.
+#DESC: Fourth part: cast on one's own creature.
+#DESC: Verifies that Pillory of the Sleepless
+#DESC: does *not* trigger in opponent's turn.
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Grizzly Bears
+hand:Pillory of the Sleepless
+manapool:{B}{B}{W}
+[PLAYER2]
+[DO]
+Pillory of the Sleepless
+Grizzly Bears
+eot
+next
+[ASSERT]
+upkeep
+[PLAYER1]
+inplay:Pillory of the Sleepless,Grizzly Bears
+[PLAYER2]
+[END]

@@ -612,6 +612,18 @@ auto=lord(creature[enchanted]) cantblock
 rarity=U
 [/card]
 [card]
+#Removed: can be played from an empty hand without discarding a card
+text=As an additional cost to play Sonic Burst, discard a card at random. Sonic Burst deals 4 damage to target creature or player.
+id=6112
+name=Sonic Burst
+target=creature,player
+auto=damage:4
+auto=discard:1 controller
+rarity=C
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 id=6158
 name=Spellbook
 mana={0}
