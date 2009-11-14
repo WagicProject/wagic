@@ -16,7 +16,7 @@ mountain
 swamp
 ebony horse
 grizzly bears
-endofinterruption
+endinterruption
 next
 [ASSERT]
 COMBATEND
