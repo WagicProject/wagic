@@ -13,6 +13,10 @@ class GameObserver;
 #define DAMAGEABLE_MTGCARDINSTANCE 0
 #define DAMAGEABLE_PLAYER 1
 
+#define DAMAGE_ALL_TYPES 0
+#define DAMAGE_COMBAT 1
+#define DAMAGE_OTHER 2
+
 class Damageable:public Targetable {
  protected:
 
@@ -28,13 +32,14 @@ class Damageable:public Targetable {
 
 class Damage: public Interruptible {
  protected:
-  void init(MTGCardInstance * source, Damageable * target, int damage);
+  void init(MTGCardInstance * source, Damageable * target, int damage, int typeOfDamage);
  public:
   Damageable * target;
+  int typeOfDamage;
   int damage;
   void Render();
   Damage(MTGCardInstance* source, Damageable * target);
-  Damage(MTGCardInstance* source, Damageable * target, int damage);
+  Damage(MTGCardInstance* source, Damageable * target, int damage, int typeOfDamage = DAMAGE_OTHER);
   int resolve();
   virtual ostream& toString(ostream& out) const;
 };

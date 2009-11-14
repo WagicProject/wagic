@@ -24,7 +24,7 @@ class PlayGuiObject: public JGuiObject, public JGuiListener, public Pos{
   float defaultHeight;
   bool mHasFocus;
   int type;
-  virtual void Entering(){mHasFocus = true; zoom = 1.4;};
+  virtual void Entering(){mHasFocus = true; zoom = 1.4f;};
   virtual bool Leaving(u32 key){mHasFocus = false; zoom = 1.0; return true;};
   virtual bool CheckUserInput(u32 key) {return false;};
   virtual bool ButtonPressed(){return true;};

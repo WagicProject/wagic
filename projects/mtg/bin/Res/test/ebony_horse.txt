@@ -1,0 +1,27 @@
+#2, Tap: Untap target attacking creature you control.
+#  Prevent all combat damage that would be dealt to and dealt by that creature this turn.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears,ebony horse,mountain,swamp
+[PLAYER2]
+inplay:hypnotic specter
+[DO]
+grizzly bears
+next
+hypnotic specter
+next
+yes
+mountain
+swamp
+ebony horse
+grizzly bears
+endofinterruption
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears,ebony horse,mountain,swamp
+[PLAYER2]
+inplay:hypnotic specter
+[END]

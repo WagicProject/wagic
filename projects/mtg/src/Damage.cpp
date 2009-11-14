@@ -7,14 +7,15 @@
 #include "../include/WResourceManager.h"
 
 Damage::Damage(MTGCardInstance * source, Damageable * target) {
-  init(source, target, source->getPower());
+  init(source, target, source->getPower(), DAMAGE_OTHER);
 }
 
-Damage::Damage(MTGCardInstance * source, Damageable * target, int damage) {
-  init(source, target, damage);
+Damage::Damage(MTGCardInstance * source, Damageable * target, int damage,int _typeOfDamage) {
+  init(source, target, damage, _typeOfDamage);
 }
 
-void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage){
+void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage, int _typeOfDamage){
+  typeOfDamage = _typeOfDamage;
   target = _target;
   source = _source;
 
@@ -70,7 +71,6 @@ int Damage::resolve(){
   //Send (Damage/Replaced effect) event to listeners
 
   g->receiveEvent(e);
-  //SAFE_DELETE(e);
 
   return a;
 }

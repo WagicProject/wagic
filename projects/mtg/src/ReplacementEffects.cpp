@@ -2,10 +2,10 @@
 #include "../include/ReplacementEffects.h"
 #include "../include/MTGCardInstance.h"
 #include "../include/TargetChooser.h"
-#include "../include/Damage.h"
 
 
-REDamagePrevention::REDamagePrevention(MTGAbility * source, TargetChooser *tcSource, TargetChooser *tcTarget, int damage, bool oneShot):source(source), tcSource(tcSource), tcTarget(tcTarget), damage(damage), oneShot(oneShot){
+
+REDamagePrevention::REDamagePrevention(MTGAbility * source, TargetChooser *tcSource, TargetChooser *tcTarget, int damage, bool oneShot, int typeOfDamage):source(source), tcSource(tcSource), tcTarget(tcTarget), damage(damage), oneShot(oneShot), typeOfDamage(typeOfDamage){
 }
 
 WEvent * REDamagePrevention::replace (WEvent *event){
@@ -14,6 +14,7 @@ WEvent * REDamagePrevention::replace (WEvent *event){
   WEventDamage * e = dynamic_cast<WEventDamage*>(event);
   if (!e) return event;
   Damage *d = e->damage;
+  if (d->typeOfDamage != typeOfDamage && typeOfDamage != DAMAGE_ALL_TYPES) return event;
   if ((!tcSource || tcSource->canTarget(d->source)) &&
       (!tcTarget || tcTarget->canTarget(d->target))
     ){

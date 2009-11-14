@@ -665,6 +665,7 @@ type=Sorcery
 text={2}, {T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 id=1108
 name=Ebony Horse
+auto={2}{T}:untap target(creature[attacking]|myBattlefield) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
 rarity=R
 mana={3}
 type=Artifact

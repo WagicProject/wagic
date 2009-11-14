@@ -58,7 +58,7 @@ class TargetChooser: public TargetsList {
 
 class TargetChooserFactory{
  public:
-  TargetChooser * createTargetChooser(string s, MTGCardInstance * card);
+  TargetChooser * createTargetChooser(string s, MTGCardInstance * card, MTGAbility * ability = NULL);
   TargetChooser * createTargetChooser(MTGCardInstance * card);
 };
 

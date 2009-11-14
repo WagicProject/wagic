@@ -314,7 +314,7 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
               stack->Add(NEW Damage(*d));
             dmg -= (*q)->sumDamages();
           }
-        if (dmg > 0) stack->Add(NEW Damage((*it)->card, go->opponent(), dmg));
+        if (dmg > 0) stack->Add(NEW Damage((*it)->card, go->opponent(), dmg, DAMAGE_COMBAT));
       for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
         stack->Add(NEW Damage(*d));
     }

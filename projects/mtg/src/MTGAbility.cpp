@@ -369,8 +369,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
-           
-
+    
   //Regeneration
   found = s.find("regenerate");
   if (found != string::npos){
@@ -446,6 +445,39 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (s.find(" controller") != string::npos) who=TargetChooser::CONTROLLER;
   if (s.find(" opponent") != string::npos) who=TargetChooser::OPPONENT;
   if (s.find(" targetcontroller") != string::npos) who=TargetChooser::TARGET_CONTROLLER;
+
+  found = s.find("ueot");
+  if (found!= string::npos) forceUEOT = 1;
+ 
+  //PreventCombat Damage
+  found = s.find("preventallcombatdamage");
+  if (found != string::npos){
+
+
+    string to = "";
+    string from = "";
+
+    found = s.find("to(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      to = s.substr(found+3,end - found - 3);
+    }
+
+    found = s.find("from(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      from = s.substr(found+5,end - found - 5);
+    }
+    
+    MTGAbility * ab;
+    if (forceUEOT){
+      ab = NEW APreventAllCombatDamageUEOT(id,card,to,from);
+    }else{
+      ab = NEW APreventAllCombatDamage(id,card,to,from);
+    }
+    return ab;
+  }
+
 
   //Damage
   found = s.find("damage");
@@ -605,9 +637,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   }
 
 
-  found = s.find("ueot");
-  if (found!= string::npos) forceUEOT = 1;
- 
+
 
   //Becomes... (animate artifact...: becomes(Creature, manacost/manacost)
   found = s.find("becomes(");
@@ -983,12 +1013,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW ADragonWhelp(_id,card));
       break;
     }
-  case 1108: //Ebony Horse
-    {
-      AEbonyHorse * ability = NEW AEbonyHorse(_id,card);
-      game->addObserver(ability);
-      break;
-    }
+
   case 1345: //Farmstead
     {
       game->addObserver(NEW AFarmstead(_id, card,card->target));

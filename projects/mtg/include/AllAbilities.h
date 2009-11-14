@@ -2147,6 +2147,82 @@ public:
 };
 
 
+class APreventAllCombatDamage:public MTGAbility{
+  public:
+  string to, from;
+  REDamagePrevention * re;
+
+  APreventAllCombatDamage(int id,MTGCardInstance *  source,string to,string from):MTGAbility(id,source),to(to),from(from){
+     re = NULL;
+  }
+
+  int addToGame(){  
+    if (re) {
+      OutputDebugString("FATAL:re shouldn't be already set in APreventAllCombatDAMAGE\n");
+      return 0;
+    }
+    TargetChooserFactory tcf;
+    TargetChooser *toTc = tcf.createTargetChooser(to,source,this);
+    if (toTc) toTc->targetter = NULL;
+    TargetChooser *fromTc = tcf.createTargetChooser(from,source,this);
+    if (fromTc) fromTc->targetter = NULL;
+    re = NEW REDamagePrevention (this, fromTc, toTc, -1, false, DAMAGE_COMBAT);
+    game->replacementEffects->add(re);
+    return 1;
+  }
+
+  int Destroy(){
+    game->replacementEffects->remove(re);
+    delete re;
+    return 1;
+  }
+
+  APreventAllCombatDamage * clone() const{
+    APreventAllCombatDamage * a =  NEW APreventAllCombatDamage(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+};
+
+//Adds types/abilities/P/T to a card (until end of turn)
+class  APreventAllCombatDamageUEOT: public InstantAbility{
+public:
+  APreventAllCombatDamage * ability;
+   APreventAllCombatDamageUEOT(int id,MTGCardInstance *  source,string to, string from):InstantAbility(id,source){
+     ability = NEW APreventAllCombatDamage(id,source,to, from);
+   }
+ 
+  int resolve(){
+    ability->target = this->target;
+    ability->addToGame();
+    return 1;
+  }
+
+  int destroy(){
+    ability->destroy();
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return ability->getMenuText();
+  }
+
+
+  APreventAllCombatDamageUEOT * clone() const{
+    APreventAllCombatDamageUEOT * a =  NEW APreventAllCombatDamageUEOT(*this);
+    a->ability = this->ability->clone();
+    a->isClone = 1;
+    return a;
+  }
+
+  ~APreventAllCombatDamageUEOT(){
+    delete ability;
+  }
+
+};
+
+
 /*
   Specific Classes
 */
@@ -2606,33 +2682,6 @@ class ADisruptingScepter:public TargetAbility{
   }
 };
 
-
-//1108 Ebony Horse
-class AEbonyHorse:public TargetAbility{
- public:
-
- AEbonyHorse(int _id, MTGCardInstance * _source):TargetAbility(_id,_source, NEW CreatureTargetChooser()){
-    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 2};
-    cost = NEW ManaCost(_cost,1);
-  }
-
-  int resolve(){
-    MTGCardInstance * _target = tc->getNextCardTarget();
-    if (_target->isAttacker()) _target->toggleAttacker();
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AEbonyHorse ::: (";
-    return TargetAbility::toString(out) << ")";
-  }
-  AEbonyHorse * clone() const{
-    AEbonyHorse * a =  NEW AEbonyHorse(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 //1345 Farmstead
 class AFarmstead:public ActivatedAbility{

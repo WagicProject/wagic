@@ -7,13 +7,20 @@
 
 
 
-TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInstance * card){
+TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInstance * card, MTGAbility * ability){
   if (!s.size()) return NULL;
 
   int zones[10];
   int nbzones = 0;
   size_t found;
   bool other = false;
+
+  found = s.find("mytgt");
+  if (found == 0){
+    MTGCardInstance * target = card->target;
+    if (ability) target = (MTGCardInstance *) (ability->target);
+    return NEW CardTargetChooser(target,card);
+  };
 
   found = s.find("other ");
   if (found == 0){

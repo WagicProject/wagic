@@ -3,6 +3,7 @@
 
 #include <list>
 using namespace std;
+#include "../include/Damage.h"
 #include "WEvent.h"
 
 class TargetChooser;
@@ -21,8 +22,9 @@ protected:
   TargetChooser * tcTarget;
   int damage;
   bool oneShot;
+  int typeOfDamage;
 public:
-  REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL,TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true);
+  REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL,TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true, int typeOfDamage = DAMAGE_ALL_TYPES);
   WEvent * replace (WEvent *e);
   ~REDamagePrevention();
 };
