@@ -20,11 +20,7 @@ next
 next
 next
 # Try to untap Grizzly Bears.
-# Not sure whether this is supposed to work by
-# clicking on the bears or on the aura, so we
-# do both:
 Instill Energy
-Grizzly Bears
 # Now try to cast Assassinate on them. This will
 # only have an effect if the untapping failed.
 Swamp
@@ -33,7 +29,7 @@ Plains
 Assassinate
 Grizzly Bears
 [ASSERT]
-firstmain
+secondmain
 [PLAYER1]
 inplay:Swamp,Forest,Plains,Grizzly Bears,Instill Energy
 hand:Assassinate

@@ -1069,6 +1069,7 @@ abilities=flying
 text=Enchant creature   Enchanted creature has haste.   {0}: Untap enchanted creature. Activate this ability only during your turn and only once each turn.
 target=creature
 auto=haste
+auto={0}:untap limit:1 myTurnOnly
 id=1252
 name=Instill Energy
 rarity=U

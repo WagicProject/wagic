@@ -204,11 +204,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   int doTap = 0; //Tap in the cost ?
   if (s.find("{t}") != string::npos) doTap = 1;
 
+  int myTurnOnly = 0;
+  if (s.find("myturnonly") != string::npos) myTurnOnly = 1;
+
   size_t delimiter = s.find("}:");
   size_t firstNonSpace = s.find_first_not_of(" ");
   if (delimiter!= string::npos && firstNonSpace !=string::npos && s[firstNonSpace] == '{'){
     ManaCost * cost  = ManaCost::parseManaCost(s.substr(0,delimiter+1),NULL,card);
-    if (doTap || (cost && !cost->isNull())){
+    if (doTap || cost){
       string s1 = s.substr(delimiter+2);
       
       MTGAbility * a = parseMagicLine(s1, id, spell, card, 1);
@@ -244,8 +247,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         tc = tcf.createTargetChooser(starget, card);
       }
 
-      if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit);
-      return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit);
+      if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit,myTurnOnly);
+      return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit,myTurnOnly);
     }
     SAFE_DELETE(cost);
   }
@@ -1039,11 +1042,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1112: //Howling Mine
     {
       game->addObserver(NEW AHowlingMine(_id, card));
-      break;
-    }
-  case 1252: //Instill Energy
-    {
-      game->addObserver(NEW AUntaperOnceDuringTurn(_id, card, card->target, NEW ManaCost()));
       break;
     }
   case 1113: //Iron Star

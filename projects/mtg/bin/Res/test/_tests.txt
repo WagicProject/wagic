@@ -163,6 +163,7 @@ hypnotic_specter.txt
 icatian_priest.txt
 imaginary_pet.txt
 immaculate_magistrate.txt
+instill_energy_i166.txt
 jump.txt
 keldon_warlord.txt
 keldon_warlord2.txt

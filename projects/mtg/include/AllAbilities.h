@@ -381,7 +381,7 @@ class GenericActivatedAbility:public ActivatedAbility{
   MTGAbility * ability;
   int limitPerTurn;
   int counters;
- GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0):ActivatedAbility(_id, card,_cost,0,_tap),ability(a),limitPerTurn(limit){
+ GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0, int myTurnOnly = 0):ActivatedAbility(_id, card,_cost,myTurnOnly,_tap),ability(a),limitPerTurn(limit){
    counters = 0;
    target = ability->target;
   }
@@ -430,7 +430,7 @@ class GenericTargetAbility:public TargetAbility{
 public:
   int limitPerTurn;
   int counters;
-   GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0):TargetAbility(_id,_source, _tc,_cost,0,_tap),limitPerTurn(limit){
+   GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int myTurnOnly = 0):TargetAbility(_id,_source, _tc,_cost,myTurnOnly,_tap),limitPerTurn(limit){
     ability = a;
     counters = 0;
   }
@@ -1015,48 +1015,6 @@ class AUnBlocker:public MTGAbility{
 
   AUnBlocker * clone() const{
     AUnBlocker * a =  NEW AUnBlocker(*this);
-    a->isClone = 1;
-    return a;
-  }
-
-};
-
-//Allows to untap target card once per turn for a manaCost
-class AUntaperOnceDuringTurn:public AUnBlocker{
- public:
-  int untappedThisTurn;
-  int onlyPlayerTurn;
- AUntaperOnceDuringTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _onlyPlayerTurn = 1):AUnBlocker(id, _source, _target, _cost){
-    onlyPlayerTurn = _onlyPlayerTurn;
-    untappedThisTurn = 0;
-  }
-
-  void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) untappedThisTurn = 0;
-    AUnBlocker::Update(dt);
-  }
-
-  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
-    if (onlyPlayerTurn && game->currentPlayer!=source->controller()) return 0;
-    if (untappedThisTurn) return 0;
-    return AUnBlocker::isReactingToClick(card,mana);
-  }
-
-  int reactToClick(MTGCardInstance * card){
-    untappedThisTurn = 1;
-    return AUnBlocker::reactToClick(card);
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AUntaperOnceDuringTurn ::: untappedThisTurn : " << untappedThisTurn
-	<< " ; onlyPlayerTurn : " << onlyPlayerTurn
-	<< " (";
-    return AUnBlocker::toString(out) << ")";
-  }
-
-  AUntaperOnceDuringTurn * clone() const{
-    AUntaperOnceDuringTurn * a =  NEW AUntaperOnceDuringTurn(*this);
     a->isClone = 1;
     return a;
   }
