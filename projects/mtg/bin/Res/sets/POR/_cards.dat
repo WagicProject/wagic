@@ -234,7 +234,7 @@ rarity=R
 mana={2}{U}
 type=Creature
 subtype=Human Wizard
-auto={T}:Damage:1 target(creature,player)
+auto={T}:Damage:1 target(creature,player) myTurnOnly
 power=1
 toughness=1
 [/card]
@@ -752,8 +752,8 @@ toughness=2
 abilities=reach
 [/card]
 [card]
-text={T}: Destroy target tapped creature.
-auto={T}:destroy target(creature[tapped])
+text={T}: Destroy target tapped creature. Activate this ability only during your turn, before attackers are declared.
+auto={T}:destroy target(creature[tapped]) myTurnOnly
 id=4227
 name=King's Assassin
 rarity=R
@@ -1334,14 +1334,14 @@ mana={1}{W}
 type=Sorcery
 [/card]
 [card]
-text={T}: Target creature gets +2/+2 until end of turn.
+text={T}: Target creature gets +2/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
 id=4400 
 name=Stern Marshal
 rarity=R
 mana={2}{W}
 type=Creature
 subtype=Human Soldier
-auto={T}:2/2 target(creature)
+auto={T}:2/2 target(creature) myTurnOnly
 power=2
 toughness=2
 [/card]

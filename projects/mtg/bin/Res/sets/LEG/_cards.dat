@@ -455,10 +455,10 @@ mana={3}{B}
 type=Enchantment
 [/card]
 [card]
-text={T}: Target player discards a card at random. Play this ability only during your turn.
+text={T}: Target player discards a card at random. Activate this ability only during your turn.
 id=1654
 name=Gwendlyn Di Corci
-auto={T}:discard:1 target(player)
+auto={T}:discard:1 target(player) myTurnOnly
 rarity=R
 mana={U}{B}{B}{R}
 type=Creature
