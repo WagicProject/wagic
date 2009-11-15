@@ -2,6 +2,7 @@
 #include <JGE.h>
 #include <JRenderer.h>
 #if defined (WIN32) || defined (LINUX)
+#include <time.h>
 #else
 #include <pspfpu.h>
 #endif
@@ -65,6 +66,7 @@ GameApp::~GameApp()
 
 void GameApp::Create()
 {
+   srand(time(0));  // initialize random
 #if defined (WIN32)
   _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #elif not defined (LINUX)

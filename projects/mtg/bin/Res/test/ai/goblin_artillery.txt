@@ -1,0 +1,22 @@
+#Bug:ai uses goblin artilery on own creature
+# http://code.google.com/p/wagic/issues/detail?id=194
+FORCEABILITY
+RValues:2
+AICALLS 10
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:,grizzly bears,goblin artillery
+[PLAYER2]
+inplay:raging goblin
+[DO]
+ai
+ai
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:17
+inplay:goblin artillery,grizzly bears
+[PLAYER2]
+graveyard:raging goblin
+[END]

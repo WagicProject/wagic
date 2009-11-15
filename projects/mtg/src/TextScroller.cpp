@@ -1,5 +1,5 @@
 #include "../include/TextScroller.h"
-
+#include "../include/utils.h"
 #include <JLBFont.h>
 
 TextScroller::TextScroller(JLBFont * font, float x, float y, float width, float speed):JGuiObject(0){

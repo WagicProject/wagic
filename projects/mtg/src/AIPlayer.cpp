@@ -8,6 +8,8 @@
 
 const char * const MTG_LAND_TEXTS[] = {"artifact","forest","island","mountain","swamp","plains","other lands"};
 
+int AIAction::currentId = 0;
+
 int AIAction::Act(){
   GameObserver * g = GameObserver::GetInstance();
   if (player){
@@ -30,6 +32,7 @@ AIPlayer::AIPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Playe
   nextCardToPlay = NULL;
   stats = NULL;
   agressivity = 50;
+  forceBestAbilityUse = false;
 }
 
 AIPlayer::~AIPlayer(){
@@ -139,6 +142,18 @@ int AIPlayer::canHandleCost(MTGAbility * ability){
   return 1;
 }
 
+MTGAbility * AIAction::getCoreAbility(MTGAbility * a){
+  GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
+  if (gta) return getCoreAbility(gta->ability);
+
+  GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
+  if (gaa) return getCoreAbility(gaa->ability);
+
+  if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a)) return getCoreAbility(abi->abilities[0]);
+
+  return a;
+}
+
 int AIAction::getEfficiency(){
   //TODO add multiplier according to what the player wants
   if (efficiency != -1) return efficiency;
@@ -148,12 +163,7 @@ int AIAction::getEfficiency(){
   Player * p = g->currentlyActing();
   if (s->has(ability)) return 0;
 
-  MTGAbility * a = ability;
-  GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
-  if (gta) a = gta->ability;
-
-  GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
-  if (gaa) a = gaa->ability;
+  MTGAbility * a = getCoreAbility(ability);
 
   if (!a){
     OutputDebugString("FATAL: Ability is NULL in AIAction::getEfficiency()");
@@ -197,10 +207,10 @@ int AIAction::getEfficiency(){
         if ((suggestion == BAKA_EFFECT_BAD && p==target->controller()) ||(suggestion == BAKA_EFFECT_GOOD && p!=target->controller())){
           efficiency =0;
         }else{
-          efficiency = rand() % 5; //Small percentage of chance for unknown abilities
+          efficiency = WRand() % 5; //Small percentage of chance for unknown abilities
         }
       }else{
-        efficiency = rand() % 10;
+        efficiency = WRand() % 10;
       }
       break;
   }
@@ -262,7 +272,8 @@ int AIPlayer::selectAbility(){
 
   if (ranking.size()){
     AIAction * a = ranking.begin()->first;
-    int chance = 1 + rand() % 100;
+    int chance = 1;
+    if (!forceBestAbilityUse) chance = 1 + WRand() % 100;
     if (getEfficiency(a) < chance){
       a = NULL;
     }else{
@@ -354,7 +365,7 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
     }
   }
   if (nbtargets){
-    int i = rand() % nbtargets;
+    int i = WRand() % nbtargets;
     int type = potentialTargets[i]->typeAsTarget();
     switch(type){
     case TARGET_CARD:
@@ -575,7 +586,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
         }
       }
       if (!nbdecks) return NULL;
-      deckid = 1 + rand() % (nbdecks);
+      deckid = 1 + WRand() % (nbdecks);
     }
     sprintf(deckFile, RESPATH"/ai/baka/deck%i.txt",deckid);
     sprintf(avatarFile, "avatar%i.jpg",deckid);
@@ -628,7 +639,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         shouldPlayPercentage = shouldPlayPercentage - ((shouldPlayPercentage * 1.9) / (1 + xDiff));
       }
 
-      if (rand() % 100 > shouldPlayPercentage) continue;
+      if (WRand() % 100 > shouldPlayPercentage) continue;
       nextCardToPlay = card;
       maxCost = currentCost;
       if(hasX) maxCost = pMana->getConvertedCost();

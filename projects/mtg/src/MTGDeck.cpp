@@ -187,7 +187,6 @@ void MTGAllCards::init(){
   tempCard = NULL;
   total_cards = 0;
   initCounters();
-  srand(time(0));  // initialize random
 #if defined (_DEBUG)
   committed = true;
 #endif

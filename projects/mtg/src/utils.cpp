@@ -1,9 +1,37 @@
 #include "../include/config.h"
 #include "../include/utils.h"
+#include <vector>
+using std::vector;
 
+int randValuesCursor = -1;
+vector<int>randValues;
 
+int loadRandValues(string s){
+  randValues.clear();
+  randValuesCursor = -1;
+    while (s.size()){
+      unsigned int value;
+      size_t limiter = s.find(",");
+      if (limiter != string::npos){
+	      value = atoi(s.substr(0,limiter).c_str());
+	      s = s.substr(limiter+1);
+      }else{
+	      value = atoi(s.c_str());
+	      s = "";
+      }
+      if (value) randValues.push_back(value);
+    }
+    if (randValues.size()) randValuesCursor = 0;
+    return 1;
+}
 
-
+int WRand(){
+  if (randValuesCursor == -1) return rand();
+  int result = randValues[randValuesCursor];
+  randValuesCursor++;
+  if ((size_t)randValuesCursor >= randValues.size()) randValuesCursor = 0;
+  return result;
+}
 
 int filesize(const char * filename){
   int file_size = 0;

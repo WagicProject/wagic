@@ -21,16 +21,20 @@ class AIStats;
 class AIAction{
 protected:
   int efficiency;
+  static int currentId;
+  static MTGAbility * getCoreAbility(MTGAbility * a);
 public:
   MTGAbility * ability;
   Player * player;
+  int id;
   MTGCardInstance * click;
   MTGCardInstance * target; // TODO Improve
-  AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL):ability(a),click(c),target(t){player = NULL; efficiency = -1;};
-  AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL):click(c),target(t){player = NULL; ability = NULL; efficiency = -1;};
+  AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL):ability(a),click(c),target(t){player = NULL; efficiency = -1; id = currentId++;};
+  AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL):click(c),target(t){player = NULL; ability = NULL; efficiency = -1; id = currentId++;};
   AIAction(Player * p):player(p){ability = NULL; target = NULL; click = NULL; efficiency = -1;};
   int getEfficiency();
   int Act();
+  
 
 };
 
@@ -39,7 +43,7 @@ class CmpAbilities { // compares Abilities efficiency
   bool operator()(AIAction * a1, AIAction * a2) const {
     int e1 = a1->getEfficiency();
     int e2 = a2->getEfficiency();
-    if (e1 == e2) return a1 > a2; //TODO improve
+    if (e1 == e2) return a1->id < a2->id;
     return (e1 > e2);
   }
 };
@@ -59,7 +63,9 @@ class AIPlayer: public Player{
   int effectBadOrGood(MTGCardInstance * card, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
   int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
   AIStats * getStats();
+  //Variables used by Test suite
  public:
+  bool forceBestAbilityUse;
   void End(){};
   virtual int displayStack() {return 0;};
   int receiveEvent(WEvent * event);

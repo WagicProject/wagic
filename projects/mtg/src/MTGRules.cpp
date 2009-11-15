@@ -304,7 +304,7 @@ int MTGMomirRule::genRandomCreatureId(int convertedCost){
     i--;
    }
    if (!total_cards) return 0;
-   int start = (rand() % total_cards);
+   int start = (WRand() % total_cards);
    return pool[convertedCost][start];
 }
 

@@ -290,7 +290,7 @@ void GameStateMenu::loadLangMenu(){
     mDip = opendir("Res/lang");
   }
 
-  while (mDit = readdir(mDip)){
+  while ((mDit = readdir(mDip))){
     string filename = "Res/lang/";
     filename += mDit->d_name;
     std::ifstream file(filename.c_str());

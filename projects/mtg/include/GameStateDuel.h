@@ -48,6 +48,7 @@ class GameStateDuel: public GameState, public JGuiListener
   virtual void End();
   virtual void Update(float dt);
   virtual void Render();
+  void initRand (unsigned seed = 0);
 
 };
 

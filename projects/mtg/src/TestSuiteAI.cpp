@@ -68,7 +68,11 @@ int TestSuiteAI::displayStack(){
 int TestSuiteAI::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
   g->gameOver = NULL; // Prevent draw rule from losing the game
-  if (playMode == MODE_AI) return AIPlayerBaka::Act(dt);
+  if (playMode == MODE_AI && suite->aiMaxCalls) {
+    suite->aiMaxCalls--;
+    suite->timerLimit = 40; //TODO Remove this limitation when AI is not using a stupid timer anymore...
+    AIPlayerBaka::Act(dt);
+  }
   if (playMode == MODE_HUMAN){
     g->mLayers->CheckUserInput(0);
     return 1;
@@ -95,7 +99,7 @@ int TestSuiteAI::Act(float dt){
     }
   }
 
-    if (action == ""){
+  if (action == ""){
     //end of game
     suite->assertGame();
     g->gameOver = g->players[0];
@@ -284,7 +288,8 @@ void TestSuite::initGame(){
   g->phaseRing->goToPhase(initState.phase, g->players[0]);
   g->currentGamePhase = initState.phase;
   for (int i = 0; i < 2; i++){
-    Player * p = g->players[i];
+    AIPlayer * p = (AIPlayer *) (g->players[i]);
+    p->forceBestAbilityUse = forceAbility;
     p->life = initState.playerData[i].life;
     p->getManaPool()->copy(initState.playerData[i].manapool);
     MTGGameZone * playerZones[] = {p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay};
@@ -335,6 +340,8 @@ int TestSuite::assertGame(){
   Log(result);
 
   int error = 0;
+  bool wasAI = false;
+
   GameObserver * g = GameObserver::GetInstance();
   if (g->currentGamePhase != endState.phase){
     sprintf(result, "<span class=\"error\">==phase problem. Expected %i, got %i==</span><br />",endState.phase, g->currentGamePhase);
@@ -342,7 +349,9 @@ int TestSuite::assertGame(){
     error++;
   }
   for (int i = 0; i < 2; i++){
-    Player * p = g->players[i];
+    TestSuiteAI * p = (TestSuiteAI *)(g->players[i]);
+    if (p->playMode == MODE_AI) wasAI = true;
+
     if (p->life != endState.playerData[i].life){
       sprintf(result, "<span class=\"error\">==life problem for player %i. Expected %i, got %i==</span><br />",i,endState.playerData[i].life, p->life);
       Log(result);
@@ -380,10 +389,18 @@ int TestSuite::assertGame(){
       }
     }
   }
-  nbTests++;
-  if (error) {
-    nbFailed++;
-    return 0;
+  if (wasAI) {
+    nbAITests++;
+    if (error) {
+      nbAIFailed++;
+      return 0;
+    }
+  } else {
+    nbTests++;
+    if (error) {
+      nbFailed++;
+      return 0;
+    }
   }
   Log("<span class=\"success\">==Test Succesful !==</span>");
   return 1;
@@ -398,7 +415,12 @@ TestSuite::TestSuite(const char * filename,MTGAllCards* _collection){
   currentfile = 0;
   nbFailed = 0;
   nbTests = 0;
+  nbAIFailed = 0;
+  nbAITests = 0;
   int comment = 0;
+  seed = 0;
+  forceAbility = false;
+  aiMaxCalls = -1;
   if(file){
     while(std::getline(file,s)){
       if (!s.size()) continue;
@@ -430,6 +452,8 @@ TestSuite::TestSuite(const char * filename,MTGAllCards* _collection){
 
 int TestSuite::loadNext(){
   summoningSickness = 0;
+  seed = 0;
+  aiMaxCalls = -1;
   if (!nbfiles) return 0;
   if (currentfile >= nbfiles) return 0;
   currentfile++;
@@ -489,15 +513,18 @@ void TestSuite::cleanup(){
   initState.cleanup();
   endState.cleanup();
   actions.cleanup();
+  loadRandValues("");
 }
 
 int TestSuite::load(const char * _filename){
   summoningSickness = 0;
+  forceAbility = false;
   gameType = GAME_TYPE_CLASSIC;
   char filename[4096];
   sprintf(filename, RESPATH"/test/%s", _filename);
   std::ifstream file(filename);
   std::string s;
+  loadRandValues("");
 
   int state = -1;
 
@@ -511,6 +538,22 @@ int TestSuite::load(const char * _filename){
       std::transform( s.begin(), s.end(), s.begin(),::tolower );
       if (s.compare("summoningsickness") == 0) {
         summoningSickness = 1;
+        continue;
+      }
+      if (s.compare("forceability") == 0) {
+        forceAbility = true;
+        continue;
+      }
+      if (s.find("seed ") == 0) {
+        seed = atoi(s.substr(5).c_str());
+        continue;
+      }
+      if (s.find("rvalues:") == 0) {
+        loadRandValues(s.substr(8).c_str());
+        continue;
+      }
+      if (s.find("aicalls ") == 0) {
+        aiMaxCalls = atoi(s.substr(8).c_str());
         continue;
       }
       if (s.compare("momir") == 0) {

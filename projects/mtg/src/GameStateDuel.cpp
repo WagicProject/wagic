@@ -14,6 +14,10 @@
 #include "../include/TestSuiteAI.h"
 #endif
 
+#if defined (WIN32) || defined (LINUX)
+#include <time.h>
+#endif
+
 enum ENUM_DUEL_STATE
   {
     DUEL_STATE_START,
@@ -103,8 +107,8 @@ void GameStateDuel::Start()
 }
 
 void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
-  int color1 = 1 + rand() % 5;
-  int color2 = 1 + rand() % 5;
+  int color1 = 1 + WRand() % 5;
+  int color2 = 1 + WRand() % 5;
   int color0 = Constants::MTG_COLOR_ARTIFACT;
   if (mode == GAME_TYPE_RANDOM1) color2 = color1;
   int colors[]={color1,color2,color0};
@@ -178,9 +182,15 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
   }
 }
 
+void GameStateDuel::initRand(unsigned int seed){
+  if (!seed) seed = time(0);
+  srand(seed);
+}
+
 #ifdef TESTSUITE
 void GameStateDuel::loadTestSuitePlayers(){
   if (!testSuite) return;
+  initRand(testSuite->seed);
   for (int i = 0; i < 2; i++){
     SAFE_DELETE(mPlayers[i]);
     SAFE_DELETE(deck[i]);
@@ -407,8 +417,15 @@ void GameStateDuel::Render()
           }else{
             sprintf(buf, "%i tests out of %i FAILED!", nbFailed, nbTests);
           }
-          
           mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
+          nbFailed = testSuite->nbAIFailed;
+          nbTests = testSuite->nbAITests;
+          if (!nbFailed){
+            sprintf(buf, "AI Tests: All %i tests successful!", nbTests);
+          }else{
+            sprintf(buf, "AI Tests: %i tests out of %i FAILED!", nbFailed, nbTests);
+          }
+          mFont->DrawString(buf,0,SCREEN_HEIGHT/2+20);
         }
 #endif
 	      break;

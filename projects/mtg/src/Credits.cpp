@@ -38,7 +38,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
   p1 = _p1;
   p2 = _p2;
   app = _app;
-  showMsg = (rand() % 5);
+  showMsg = (WRand() % 5);
   GameObserver * g = GameObserver::GetInstance();
   if (!g->turn) return;
   if (!p1->isAI() && p2->isAI() && p1!= g->gameOver){
@@ -238,7 +238,7 @@ int Credits::isRandomDeckUnlocked(){
 }
 
 int Credits::unlockRandomSet(){
-  int setId = rand() % MtgSets::SetsList->nb_items;
+  int setId = WRand() % MtgSets::SetsList->nb_items;
 
   if (1 == options[Options::optionSet(setId)].number) 
     return 0;

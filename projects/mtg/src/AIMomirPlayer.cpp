@@ -40,7 +40,7 @@ int AIMomirPlayer::momir(){
  int converted = potentialMana->getConvertedCost();
  SAFE_DELETE(potentialMana);
  int efficiency = 100;
- int chance = 1 + (rand() % 100);
+ int chance = 1 + (WRand() % 100);
  if (converted == 5 &&  myCreatures > opponentCreatures && game->hand->nb_cards<4) efficiency = 5 ; //Strategy: skip 5 drop
  if (converted == 7 &&  myCreatures > opponentCreatures && game->hand->nb_cards<2) efficiency = 50; //Strategy: 7 drops have bad upkeep costs and the AI doesn't handle those right now...
  if (converted > 8 ) converted = 8;

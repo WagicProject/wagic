@@ -160,7 +160,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 void MTGPlayerCards::discardRandom(MTGGameZone * from){
   if (!from->nb_cards)
     return;
-  int r = rand() % (from->nb_cards);
+  int r = WRand() % (from->nb_cards);
   putInZone(from->cards[r],from, graveyard);
 }
 
@@ -263,10 +263,9 @@ void MTGGameZone::cleanupPhase(){
 void MTGGameZone::shuffle(){
   int i;
   for (i=0; i<(nb_cards); i++) {
-    int r = i + (rand() % (nb_cards-i)); // Random remaining position.
+    int r = i + (WRand() % (nb_cards-i)); // Random remaining position.
     MTGCardInstance * temp = cards[i]; cards[i] = cards[r]; cards[r] = temp;
   }
-  //srand(time(0));  // initialize seed "randomly" TODO :improve
 }
 
 
@@ -365,7 +364,7 @@ void MTGLibrary::shuffleTopToBottom(int nbcards){
   if (nbcards>nb_cards) nbcards = nb_cards;
   MTGCardInstance * _cards[MTG_MAX_PLAYER_CARDS];
   for (int i= nb_cards-nbcards; i<(nb_cards); i++) {
-    int r = i + (rand() % (nbcards-i)); // Random remaining position.
+    int r = i + (WRand() % (nbcards-i)); // Random remaining position.
     MTGCardInstance * temp = cards[i]; cards[i] = cards[r]; cards[r] = temp;
   }
   for (int i= 0; i < nbcards; i++){

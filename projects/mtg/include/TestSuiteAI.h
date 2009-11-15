@@ -51,8 +51,11 @@ class TestSuite{
  public:
   MTGAllCards* collection;
   int summoningSickness;
+  bool forceAbility;
   int gameType;
   float timerLimit;
+  unsigned int seed;
+  int aiMaxCalls;
   int currentAction;
   TestSuiteState initState;
   TestSuiteState endState;
@@ -60,7 +63,7 @@ class TestSuite{
   string files[1024];
   int nbfiles;
   int currentfile;
-  int nbFailed, nbTests;
+  int nbFailed, nbTests, nbAIFailed, nbAITests;
   int load(const char * filename);
   TestSuite(const char * filename,MTGAllCards* _collection);
   void initGame();

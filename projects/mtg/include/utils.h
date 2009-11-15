@@ -24,6 +24,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <string>
+
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -34,8 +35,12 @@ using std::string;
 
 
 
+
+
+int loadRandValues(string s);
 int filesize(const char * filename);
 int fileExists(const char * filename);
+int WRand();
 
 #ifdef LINUX
 void dumpStack();
