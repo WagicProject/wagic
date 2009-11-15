@@ -186,7 +186,6 @@ type=Enchantment
 text=As Circle of Affliction enters the battlefield, choose a color. Whenever a source of the chosen color deals damage to you, you may pay {1}. If you do, target player loses 1 life and you gain 1 life.
 rarity=U
 [/card]
-
 [card]
 id=110536
 name=Cradle to Grave
@@ -195,25 +194,6 @@ type=Instant
 text=Destroy target nonblack creature that entered the battlefield this turn.
 rarity=C
 [/card]
-[card]
-text=Other white creatures get +1/+1. Nonwhite creatures get -1/-1. Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
-abilities=legendary
-auto=lord(creature[white]) 1/1 other
-auto=lord(creature[-white] -1/-1
-auto={0}life:-2:moveTo(ownerhand)
-#zero activation does not work yet
-id=122487
-name=Crovax, Ascendant Hero
-rarity=R
-color=White
-type=Creature
-mana={4}{W}{W}
-power=4
-subtype=Human Lord
-toughness=4
-[/card]
-
-
 [card]
 id=126812
 name=Dash Hopes

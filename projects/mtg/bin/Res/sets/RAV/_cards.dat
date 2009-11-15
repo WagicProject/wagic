@@ -87,6 +87,18 @@ toughness=2
 abilities=double strike
 [/card]
 [card]
+text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
+id=88974
+name=Carrion Howler
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Zombie Wolf
+auto={0}:2/1 && life:-1 controller
+power=2
+toughness=2
+[/card]
+[card]
 text=Defender (This creature can't attack.)  When Carven Caryatid comes into play, draw a card.
 id=89048
 auto=draw:1

@@ -1475,6 +1475,19 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Flying   Pay 2 life: Return Selenia, Dark Angel to its owner's hand.
+id=4916
+name=Selenia, Dark Angel
+rarity=R
+mana={3}{W}{B}
+type=Creature
+subtype=Angel
+auto={0}:moveTo(ownerhand) && life:-2 controller
+power=3
+toughness=3
+abilities=legendary,flying
+[/card]
+[card]
 text=Destroy target enchantment. You gain life equal to its converted mana cost.
 id=4898
 target=enchantment

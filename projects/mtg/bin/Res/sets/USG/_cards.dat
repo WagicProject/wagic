@@ -661,12 +661,12 @@ type=Instant
 text={0}: Hopping Automaton gets -1/-1 and gains flying until end of turn.
 id=5700
 name=Hopping Automaton
-auto={0}:-1/-1 && Flying
+auto={0}:-1/-1 && flying
 rarity=U
-type=Artifact Creature
 mana={3}
-power=2
+type=Artifact Creature
 subtype=Construct
+power=2
 toughness=2
 [/card]
 [card]
@@ -754,8 +754,6 @@ power=0
 toughness=6
 abilities=defender
 [/card]
-
-
 [card]
 text={U}: Untap Morphling.   {U}: Morphling gains flying until end of turn.   {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.   {1}: Morphling gets -1/+1 until end of turn.
 id=5863
@@ -774,7 +772,7 @@ toughness=3
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=8334
 name=Mountain
 rarity=L
@@ -783,7 +781,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=8337
 name=Mountain
 rarity=L
@@ -792,7 +790,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=8335
 name=Mountain
 rarity=L
@@ -801,7 +799,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=8336
 name=Mountain
 rarity=L
