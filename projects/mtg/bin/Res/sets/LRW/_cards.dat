@@ -3,8 +3,8 @@ text=As Ancient Amphitheater enters the battlefield, you may reveal a Giant card
 id=153454
 auto=tap
 auto=aslongas(giant|myHand) untap
-auto={T}:add{R}
-auto={T}:add{W}
+auto={T}:Add {R}
+auto={T}:Add {W}
 name=Ancient Amphitheater
 rarity=R
 type=Land
@@ -14,8 +14,8 @@ text=As Auntie's Hovel enters the battlefield, you may reveal a Goblin card from
 id=153457
 auto=tap
 auto=aslongas(goblin|myHand) untap
-auto={T}:add{B}
-auto={T}:add{R}
+auto={T}:Add {B}
+auto={T}:Add {R}
 name=Auntie's Hovel
 rarity=R
 type=Land
@@ -70,15 +70,15 @@ toughness=3
 text=Blind-Spot Giant can't attack or block unless you control another Giant.
 id=146597
 name=Blind-Spot Giant
-abilities=cantattack,cantblock
-auto=aslongas(other Giant|myBattlefield) -cantattack
-auto=aslongas(other Giant|myBattlefield) -cantblock
+auto=aslongas(other giant|myBattlefield) -cantattack
+auto=aslongas(other giant|myBattlefield) -cantblock
 rarity=C
 mana={2}{R}
 type=Creature
 subtype=Giant Warrior
 power=4
 toughness=3
+abilities=cantattack,cantblock
 [/card]
 [card]
 text=Return target Goblin card from your graveyard to your hand.
@@ -91,7 +91,6 @@ mana={B}
 type=Sorcery
 subtype=Tribal Goblin
 [/card]
-
 [card]
 text={R}, Sacrifice Boggart Forager: Target player shuffles his or her library.
 id=146168
@@ -104,7 +103,6 @@ power=1
 subtype=Goblin Rogue
 toughness=1
 [/card]
-
 [card]
 text=Forestwalk   {2}{B}, Sacrifice Boggart Loggers: Destroy target Treefolk or Forest.
 auto={2}{B}{S}:destroy target(treefolk,forest)
@@ -374,8 +372,8 @@ text=As Gilt-Leaf Palace enters the battlefield, you may reveal an Elf card from
 id=153455
 auto=tap
 auto=aslongas(elf|myHand) untap
-auto={T}:Add{B}
-auto={T}:Add{G}
+auto={T}:Add {B}
+auto={T}:Add {G}
 name=Gilt-Leaf Palace
 rarity=R
 type=Land
@@ -704,7 +702,7 @@ rarity=C
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=143626
 name=Mountain
 rarity=L
@@ -713,7 +711,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=143627
 name=Mountain
 rarity=L
@@ -722,7 +720,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=143631
 name=Mountain
 rarity=L
@@ -731,7 +729,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=143623
 name=Mountain
 rarity=L
@@ -813,7 +811,7 @@ subtype=Tribal Faerie
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:add{W}
+auto={T}:Add {W}
 id=143630
 name=Plains
 rarity=L
@@ -822,7 +820,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:add{W}
+auto={T}:Add {W}
 id=143620
 name=Plains
 rarity=L
@@ -831,7 +829,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:add{W}
+auto={T}:Add {W}
 id=143622
 name=Plains
 rarity=L
@@ -840,7 +838,7 @@ subtype=Plains
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-auto={T}:add{W}
+auto={T}:Add {W}
 id=143621
 name=Plains
 rarity=L
@@ -1045,7 +1043,7 @@ subtype=Tribal Kithkin
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=143629
 name=Swamp
 rarity=L
@@ -1054,7 +1052,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=143636
 name=Swamp
 rarity=L
@@ -1063,7 +1061,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=143635
 name=Swamp
 rarity=L
@@ -1072,7 +1070,7 @@ subtype=Swamp
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-auto={T}: Add {B}
+auto={T}:Add {B}
 id=143634
 name=Swamp
 rarity=L
