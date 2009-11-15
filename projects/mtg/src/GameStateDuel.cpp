@@ -420,12 +420,14 @@ void GameStateDuel::Render()
           mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
           nbFailed = testSuite->nbAIFailed;
           nbTests = testSuite->nbAITests;
-          if (!nbFailed){
-            sprintf(buf, "AI Tests: All %i tests successful!", nbTests);
-          }else{
-            sprintf(buf, "AI Tests: %i tests out of %i FAILED!", nbFailed, nbTests);
+          if (nbTests){
+            if (!nbFailed){
+              sprintf(buf, "AI Tests: All %i tests successful!", nbTests);
+            }else{
+              sprintf(buf, "AI Tests: %i tests out of %i FAILED!", nbFailed, nbTests);
+            }
+            mFont->DrawString(buf,0,SCREEN_HEIGHT/2+20);
           }
-          mFont->DrawString(buf,0,SCREEN_HEIGHT/2+20);
         }
 #endif
 	      break;

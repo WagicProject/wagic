@@ -680,7 +680,7 @@ int MTGCardInstance::stepPower(CombatStep step)
     case DAMAGE :
     case END_DAMAGE :
     default :
-      if (has(Constants::FIRSTSTRIKE)) return 0; else return MAX(0, power);
+      if (has(Constants::FIRSTSTRIKE) && !has(Constants::DOUBLESTRIKE)) return 0; else return MAX(0, power);
     }
 }
 

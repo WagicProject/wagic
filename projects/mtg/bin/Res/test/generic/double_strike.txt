@@ -1,0 +1,17 @@
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Hearthfire Hobgoblin
+[PLAYER2]
+[DO]
+next
+next
+Hearthfire Hobgoblin
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Hearthfire Hobgoblin
+[PLAYER2]
+life:16
+[END]

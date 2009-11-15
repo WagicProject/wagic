@@ -5,8 +5,11 @@ generic/attacks_each_turn.txt
 generic/deathtouch.txt
 generic/doesnotuntap.txt
 generic/doesnotuntap2.txt
+generic/double_strike.txt
 generic/fear.txt
 generic/fear_i147.txt
+generic/first_and_double_strike1_i187.txt
+generic/first_and_double_strike2_i187.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt
