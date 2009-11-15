@@ -109,6 +109,7 @@ counterspell3.txt
 counterspell4.txt
 crimson_kobolds.txt
 creature_bond.txt
+crystal_rod_i172.txt
 dauntless_escort.txt
 dauthi_embrace.txt
 death_ward.txt

@@ -990,8 +990,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
   case 1103: //Crystal Rod
     {
-      int cost[] = {Constants::MTG_COLOR_BLUE, 1};
-      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE,NEW ManaCost(cost,1) , 1);
+      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
+      ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLUE,NEW ManaCost(cost,1) , 1);
       game->addObserver(ability);
       break;
     }
