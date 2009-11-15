@@ -73,6 +73,7 @@ beacon_of_unrest.txt
 belligerent_hatchling.txt
 benalish_knight.txt
 blessed_wine.txt
+blinking_spirit.txt
 bloodfire_colossus.txt
 bloodhall_ooze.txt
 body_double.txt
@@ -136,6 +137,7 @@ flagstones.txt
 flare.txt
 fledgling_imp.txt
 fledgling_imp2.txt
+flowstone_hellion.txt
 flowstone_slide.txt
 foratog.txt
 force_of_nature.txt
@@ -158,12 +160,14 @@ harpoon_sniper.txt
 hellfire.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
+hyalopterous_lemure.txt
 hymn_of_rebirth.txt
 hypnotic_specter.txt
 icatian_priest.txt
 imaginary_pet.txt
 immaculate_magistrate.txt
 instill_energy_i166.txt
+jodahs_avenger.txt
 jump.txt
 keldon_warlord.txt
 keldon_warlord2.txt

@@ -1,0 +1,28 @@
+#NAME: Flowstone Hellion
+#DESC: {0}:Flowstone Hellion gets +1/-1 until end of turn.
+#DESC: Tests whether effect really ends at end of turn
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Flowstone Hellion
+[PLAYER2]
+inplay:Mountain
+hand:Shock
+[DO]
+Flowstone Hellion
+Flowstone Hellion
+eot
+next
+next
+next
+Mountain
+Shock
+Flowstone Hellion
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Flowstone Hellion
+[PLAYER2]
+inplay:Mountain
+graveyard:Shock
+[END]

@@ -182,6 +182,19 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Haste {0}: Flowstone Hellion gets +1/-1 until end of turn.
+auto={0}:1/-1
+abilities=Haste
+id=5153
+name=Flowstone Hellion
+mana={4}{R}
+type=Creature
+subtype=Hellion Beast
+power=3
+toughness=3
+rarity=U
+[/card]
+[card]
 text=Trample   {R}: Flowstone Mauler gets +1/-1 until end of turn.
 id=5154
 name=Flowstone Mauler

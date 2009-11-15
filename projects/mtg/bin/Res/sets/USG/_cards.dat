@@ -658,6 +658,18 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+text={0}: Hopping Automaton gets -1/-1 and gains flying until end of turn.
+id=5700
+name=Hopping Automaton
+auto={0}:-1/-1 && Flying
+rarity=U
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Construct
+toughness=2
+[/card]
+[card]
 text={U}: Untap Horseshoe Crab.
 id=9849
 name=Horseshoe Crab

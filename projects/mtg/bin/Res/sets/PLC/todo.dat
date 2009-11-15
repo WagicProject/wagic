@@ -522,17 +522,6 @@ text=Forestwalk Whenever Jedit Ojanen of Efrava attacks or blocks, put a 2/2 gre
 rarity=R
 [/card]
 [card]
-id=124482
-name=Jodah's Avenger
-mana={5}{U}
-type=Creature
-subtype=Shapeshifter
-power=4
-toughness=4
-text={0}: Until end of turn, Jodah's Avenger gets -1/-1 and gains your choice of double strike, protection from red, vigilance, or shadow. (A creature with shadow can block or be blocked by only creatures with shadow.)
-rarity=U
-[/card]
-[card]
 id=126813
 name=Kavu Predator
 mana={1}{G}

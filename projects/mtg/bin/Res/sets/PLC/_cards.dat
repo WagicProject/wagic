@@ -184,6 +184,21 @@ power=2
 toughness=2
 [/card]
 [card]
+text={0}: Until end of turn, Jodah's Avenger gets -1/-1 and gains your choice of double strike, protection from red, vigilance, or shadow. (A creature with shadow can block or be blocked by only creatures with shadow.)
+auto={0}: Double Strike && -1/-1
+auto={0}: Protection from Red && -1/-1
+auto={0}: Vigilance && -1/-1
+auto={0}: Shadow && -1/-1
+id=124482
+name=Jodah's Avenger
+mana={5}{U}
+type=Creature
+subtype=Shapeshifter
+power=4
+toughness=4
+rarity=U
+[/card]
+[card]
 text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
 auto={2}{T}:foreach(swamp|myBattlefield) Add:{B}
 id=124507

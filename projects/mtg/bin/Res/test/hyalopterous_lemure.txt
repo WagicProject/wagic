@@ -1,0 +1,25 @@
+#NAME: Hyalopterous Lemure
+#DESC: {0}: Hyalopterous Lemure gets -1/0
+#DESC: and gains flying until end of turn.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Air Elemental
+[PLAYER2]
+inplay:Hyalopterous Lemure
+[DO]
+Air Elemental
+next
+Hyalopterous Lemure
+choice 1
+Hyalopterous Lemure
+choice 0
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Air Elemental
+[PLAYER2]
+graveyard:Hyalopterous Lemure
+[END]

@@ -907,6 +907,18 @@ rarity=R
 type=Land
 [/card]
 [card]
+text={0}: Viscid Lemures gets -1/-0 and gains swampwalk until end of turn.
+id=111082
+name=Viscid Lemures
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=3
+auto={0}: -1/-0 && swampwalk
+rarity=C
+[/card]
+[card]
 text=All Sliver creatures get +0/+2.
 id=106648
 name=Watcher Sliver

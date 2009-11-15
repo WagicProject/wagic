@@ -198,22 +198,6 @@ type=Instant
 text=As an additional cost to cast Fling, sacrifice a creature. Fling deals damage equal to the sacrificed creature's power to target creature or player.
 rarity=C
 [/card]
-
-[card]
-id=5153
-name=Flowstone Hellion
-mana={4}{R}
-type=Creature
-subtype=Hellion Beast
-power=3
-toughness=3
-text=Haste {0}: Flowstone Hellion gets +1/-1 until end of turn.
-rarity=U
-[/card]
-
-
-
-
 [card]
 id=5162
 name=Gliding Licid

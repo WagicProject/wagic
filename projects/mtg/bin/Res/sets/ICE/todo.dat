@@ -227,19 +227,6 @@ mana={W}
 subtype=Aura
 [/card]
 [card]
-text={0}: Return Blinking Spirit to its owner's hand.
-id=2668
-name=Blinking Spirit
-auto={0}:moveto(ownerhand)
-#0 activation cost are not supported in WTH 0.9.1
-rarity=R
-type=Creature
-mana={3}{W}
-power=2
-subtype=Spirit
-toughness=2
-[/card]
-[card]
 text=Play Blizzard only if you control a snow land.     Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Creatures with flying don't untap during their controllers' untap steps.
 id=2551
 name=Blizzard
@@ -986,17 +973,6 @@ rarity=R
 type=Enchantment
 mana={1}{G}
 subtype=Aura
-[/card]
-[card]
-text={0}: Hyalopterous Lemure gets -1/-0 and gains flying until end of turn.
-id=2457
-name=Hyalopterous Lemure
-rarity=U
-type=Creature
-mana={4}{B}
-power=4
-subtype=Spirit
-toughness=3
 [/card]
 [card]
 text={X}, {T}: Put a charge counter on Ice Cauldron and remove a nonland card in your hand from the game. As long as that card remains removed from the game, you may play it. Note the type and amount of mana spent to pay this activation cost. Play this ability only if there are no charge counters on Ice Cauldron.     {T}, Remove a charge counter from Ice Cauldron: Add Ice Cauldron's last noted type and amount of mana to your mana pool. Spend this mana only to play the last card removed from the game with Ice Cauldron.

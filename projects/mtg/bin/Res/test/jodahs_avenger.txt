@@ -1,0 +1,44 @@
+#NAME: Jodah's Avenger
+#DESC: Test whether the abilities
+#DESC: can be chosen correctly
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Jodah's Avenger,Mountain
+hand:Shock
+[PLAYER2]
+inplay:Craw Wurm
+[DO]
+# Give Protection from Red
+Jodah's Avenger
+choice 1
+# Give Shadow
+Jodah's Avenger
+choice 3
+# Try to cast Shock on Jodah's Avenger
+# Shouldn't work if it gained Protection from Red
+Mountain
+Shock
+Jodah's Avenger
+# Cast Shock on Craw Wurm instead
+Craw Wurm
+next
+next
+# select attacker
+Jodah's Avenger
+choice 0
+next
+# Try to block with non-shadow creature
+# Shouldn't work if Avenger really gained Shadow
+Craw Wurm
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Jodah's Avenger,Mountain
+graveyard:Shock
+[PLAYER2]
+inplay:Craw Wurm
+life:18
+[END]

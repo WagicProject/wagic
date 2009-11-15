@@ -100,6 +100,18 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text={0}: Return Blinking Spirit to its owner's hand.
+id=2668
+name=Blinking Spirit
+auto={0}:moveto(ownerhand)
+rarity=R
+type=Creature
+mana={3}{W}
+power=2
+subtype=Spirit
+toughness=2
+[/card]
+[card]
 text={T}, Sacrifice a creature: Target creature gets +2/+2 until end of turn.     {1}{U}{U}, Sacrifice a creature: Counter target creature spell.
 id=2439
 auto={T}{S(creature|myBattlefield)}:2/2 target(creature)
@@ -490,6 +502,18 @@ name=Hurricane
 rarity=U
 mana={X}{G}
 type=Sorcery
+[/card]
+[card]
+text={0}: Hyalopterous Lemure gets -1/-0 and gains flying until end of turn.
+id=2457
+name=Hyalopterous Lemure
+auto={0}:-1/0 && Flying
+rarity=U
+type=Creature
+mana={4}{B}
+power=4
+subtype=Spirit
+toughness=3
 [/card]
 [card]
 text=Choose one - Counter target spell if it's red; or destroy target permanent if it's red.

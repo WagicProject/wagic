@@ -2041,18 +2041,6 @@ text={U}: Viscerid Deepwalker gets +1/+0 until end of turn. Suspend 4—{U} (Rat
 rarity=C
 [/card]
 [card]
-id=111082
-name=Viscid Lemures
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=4
-toughness=3
-text={0}: Viscid Lemures gets -1/-0 and gains swampwalk until end of turn.
-auto={0}: -1/-0 && swampwalk #{0}activation costs don't work
-rarity=C
-[/card]
-[card]
 id=111076
 name=Voidmage Husher
 mana={3}{U}
