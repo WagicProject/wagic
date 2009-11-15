@@ -270,6 +270,18 @@ mana={4}{B}{G}
 type=Sorcery
 [/card]
 [card]
+text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Play this ability only once each turn.
+id=179612
+name=Putrid Leech
+rarity=C
+mana={B}{G}
+type=Creature
+subtype=Zombie Leech
+auto={0}:2/2 && life:-2 limit:1
+power=2
+toughness=2
+[/card]
+[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)   {1}, Sacrifice Qasali Pridemage: Destroy target artifact or enchantment.
 id=179556
 name=Qasali Pridemage
@@ -404,18 +416,18 @@ rarity=U
 mana={2}{W}{U}
 auto={T}:Untap target(other *)
 type=Artifact
-[/card]¨
+[/card]
 [card]
+text=Whenever Vedalken Heretic deals damage to an opponent, you may draw a card.
+auto=@damaged(player) from(this):may draw:1 controller
 id=180619
 name=Vedalken Heretic
+rarity=R
 mana={G}{U}
 type=Creature
 subtype=Vedalken Rogue
 power=1
 toughness=1
-text=Whenever Vedalken Heretic deals damage to an opponent, you may draw a card.
-auto=@damaged(player) from(this):may draw:1 controller
-rarity=R
 [/card]
 [card]
 text=Defender, flying, shroud
