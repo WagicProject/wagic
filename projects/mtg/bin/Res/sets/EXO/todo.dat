@@ -346,17 +346,6 @@ text=When Mind Maggots comes into play, discard any number of creature cards. Fo
 rarity=U
 [/card]
 [card]
-id=5171
-name=Mindless Automaton
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=0
-toughness=0
-text=Mindless Automaton comes into play with two +1/+1 counters on it. {1}, Discard a card: Put a +1/+1 counter on Mindless Automaton. Remove two +1/+1 counters from Mindless Automaton: Draw a card.
-rarity=R
-[/card]
-[card]
 id=5189
 name=Mirozel
 mana={3}{U}
@@ -733,17 +722,6 @@ subtype=Wall
 power=0
 toughness=7
 text=Defender (This creature can't attack.) At end of combat, remove from the game all creatures blocked by Wall of Nets. When Wall of Nets leaves play, return to play under their owners' control all creatures removed from the game with Wall of Nets.
-rarity=R
-[/card]
-[card]
-id=6156
-name=Workhorse
-mana={6}
-type=Artifact Creature
-subtype=Horse
-power=0
-toughness=0
-text=Workhorse comes into play with four +1/+1 counters on it. Remove a +1/+1 counter from Workhorse: Add {1} to your mana pool.
 rarity=R
 [/card]
 [card]

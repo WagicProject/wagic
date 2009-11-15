@@ -263,6 +263,20 @@ mana={2}{U}{U}{U}{U}
 type=Enchantment
 [/card]
 [card]
+text=Mindless Automaton enters the battlefield with two +1/+1 counters on it.   {1}, Discard a card: Put a +1/+1 counter on Mindless Automaton.   Remove two +1/+1 counters from Mindless Automaton: Draw a card.
+auto=counter(1/1,2)
+auto={1}{S(*|myhand)}:counter(1/1)
+auto={0}:counter(1/1,-2) && draw:1 controller
+id=5171
+name=Mindless Automaton
+rarity=R
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=0
+[/card]
+[card]
 text=First strike, forestwalk, vigilance (This creature deals combat damage before creatures without first strike, it's unblockable as long as defending player controls a Forest, and attacking doesn't cause this creature to tap.)
 id=6155
 name=Mirri, Cat Warrior
@@ -709,4 +723,17 @@ type=Creature
 subtype=Elf Scout
 power=1
 toughness=1
+[/card]
+[card]
+text=Workhorse enters the battlefield with four +1/+1 counters on it. Remove a +1/+1 counter from Workhorse: Add {1} to your mana pool.
+id=6156
+name=Workhorse
+rarity=R
+mana={6}
+type=Artifact Creature
+subtype=Horse
+auto=counter(1/1,4)
+auto={0}:counter(1/1,-1) && add{1}
+power=0
+toughness=0
 [/card]
