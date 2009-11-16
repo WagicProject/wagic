@@ -54,17 +54,7 @@ toughness=2
 text={2}{R}, {T}, Discard a card: Arc Mage deals 2 damage divided as you choose among any number of target creatures and/or players.
 rarity=U
 [/card]
-[card]
-id=22897
-name=Ascendant Evincar
-mana={4}{B}{B}
-type=Legendary Creature
-subtype=Vampire
-power=3
-toughness=3
-text=Flying (This creature can't be blocked except by creatures with flying or reach.) Other black creatures get +1/+1.  Nonblack creatures get -1/-1.
-rarity=R
-[/card]
+
 [card]
 id=21263
 name=Avenger en-Dal
@@ -147,17 +137,7 @@ toughness=1
 text={R}, {T}, Discard a card: Target creature can't block this turn.
 rarity=C
 [/card]
-[card]
-id=21319
-name=Carrion Wall
-mana={1}{B}{B}
-type=Creature
-subtype=Wall
-power=3
-toughness=2
-text=Defender (This creature can't attack.) {1}{B}: Regenerate Carrion Wall.
-rarity=U
-[/card]
+
 [card]
 id=21264
 name=Chieftain en-Dal
@@ -180,17 +160,7 @@ toughness=2
 text=Flying Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 rarity=C
 [/card]
-[card]
-id=21364
-name=Coiling Woodworm
-mana={2}{G}
-type=Creature
-subtype=Insect Worm
-power=*
-toughness=1
-text=Coiling Woodworm's power is equal to the number of Forests on the battlefield.
-rarity=U
-[/card]
+
 [card]
 id=21395
 name=Complex Automaton
@@ -310,14 +280,7 @@ type=Enchantment
 text=Sacrifice a creature: Regenerate target creature.
 rarity=C
 [/card]
-[card]
-id=22290
-name=Flame Rift
-mana={1}{R}
-type=Sorcery
-text=Flame Rift deals 4 damage to each player.
-rarity=C
-[/card]
+
 [card]
 id=22284
 name=Flint Golem
@@ -337,28 +300,8 @@ type=Artifact
 text=You may choose not to untap Flowstone Armor during your untap step. {3}, {T}: Target creature gets +1/-1 for as long as Flowstone Armor remains tapped.
 rarity=U
 [/card]
-[card]
-id=21334
-name=Flowstone Crusher
-mana={3}{R}{R}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text={R}: Flowstone Crusher gets +1/-1 until end of turn.
-rarity=U
-[/card]
-[card]
-id=21351
-name=Flowstone Overseer
-mana={2}{R}{R}{R}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text={R}{R}: Target creature gets +1/-1 until end of turn.
-rarity=R
-[/card]
+
+
 [card]
 id=21355
 name=Flowstone Slide
@@ -367,44 +310,10 @@ type=Sorcery
 text=All creatures get +X/-X until end of turn.
 rarity=R
 [/card]
-[card]
-id=21341
-name=Flowstone Strike
-mana={1}{R}
-type=Instant
-text=Target creature gets +1/-1 and gains haste until end of turn.
-rarity=C
-[/card]
-[card]
-id=21348
-name=Flowstone Surge
-mana={1}{R}
-type=Enchantment
-text=Creatures you control get +1/-1.
-rarity=U
-[/card]
-[card]
-id=21398
-name=Flowstone Thopter
-mana={7}
-type=Artifact Creature
-subtype=Thopter
-power=4
-toughness=4
-text={1}: Flowstone Thopter gets +1/-1 and gains flying until end of turn.
-rarity=U
-[/card]
-[card]
-id=21336
-name=Flowstone Wall
-mana={2}{R}
-type=Creature
-subtype=Wall
-power=0
-toughness=6
-text=Defender (This creature can't attack.) {R}: Flowstone Wall gets +1/-1 until end of turn.
-rarity=C
-[/card]
+
+
+
+
 [card]
 id=21368
 name=Fog Patch
@@ -424,14 +333,7 @@ toughness=1
 text={G}, {T}, Discard a card: Until end of turn, if you tap a land for mana, it produces one mana of a color of your choice instead of any other type and amount.
 rarity=C
 [/card]
-[card]
-id=21286
-name=Infiltrate
-mana={U}
-type=Instant
-text=Target creature is unblockable this turn.
-rarity=C
-[/card]
+
 [card]
 id=21281
 name=Jolting Merfolk
@@ -454,7 +356,6 @@ rarity=R
 [card]
 id=21403
 name=Kor Haven
-mana=
 type=Legendary Land
 text={T}: Add {1} to your mana pool.  {1}{W}, {T}: Prevent all combat damage that would be dealt by target attacking creature this turn.
 rarity=R
@@ -521,28 +422,8 @@ subtype=Aura
 text=If you control a Plains, you may tap an untapped creature you control rather than pay Lashknife's mana cost. Enchant creature Enchanted creature has first strike.
 rarity=C
 [/card]
-[card]
-id=21255
-name=Lawbringer
-mana={2}{W}
-type=Creature
-subtype=Kor Rebel
-power=2
-toughness=2
-text={T}, Sacrifice Lawbringer: Exile target red creature.
-rarity=C
-[/card]
-[card]
-id=21256
-name=Lightbringer
-mana={2}{W}
-type=Creature
-subtype=Kor Rebel
-power=2
-toughness=2
-text={T}, Sacrifice Lightbringer: Exile target black creature.
-rarity=C
-[/card]
+
+
 [card]
 id=21271
 name=Lin Sivvi, Defiant Hero
@@ -613,17 +494,7 @@ toughness=2
 text=Mogg Toady can't attack unless you control more creatures than defending player. Mogg Toady can't block unless you control more creatures than attacking player.
 rarity=C
 [/card]
-[card]
-id=21350
-name=Moggcatcher
-mana={2}{R}{R}
-type=Creature
-subtype=Human Mercenary
-power=2
-toughness=2
-text={3}, {T}: Search your library for a Goblin permanent card and put that card onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
+
 [card]
 id=21290
 name=Mossdog
@@ -654,17 +525,7 @@ toughness=3
 text=Trample When Nesting Wurm enters the battlefield, you may search your library for up to three cards named Nesting Wurm, reveal them, and put them into your hand. If you do, shuffle your library.
 rarity=U
 [/card]
-[card]
-id=22027
-name=Netter en-Dal
-mana={W}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=1
-text={W}, {T}, Discard a card: Target creature can't attack this turn.
-rarity=C
-[/card]
+
 [card]
 id=21262
 name=Noble Stand
@@ -692,17 +553,7 @@ toughness=5
 text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
 rarity=R
 [/card]
-[card]
-id=22293
-name=Oraxid
-mana={3}{U}
-type=Creature
-subtype=Crab Beast
-power=2
-toughness=3
-text=Protection from red
-rarity=C
-[/card]
+
 [card]
 id=22061
 name=Overlaid Terrain
@@ -790,25 +641,8 @@ toughness=3
 text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) Remove a fade counter from Phyrexian Prowler: Phyrexian Prowler gets +1/+1 until end of turn.
 rarity=U
 [/card]
-[card]
-id=19579
-name=Plague Witch
-mana={1}{B}
-type=Creature
-subtype=Elf Spellshaper
-power=1
-toughness=1
-text={B}, {T}, Discard a card: Target creature gets -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=21400
-name=Predator, Flagship
-mana={5}
-type=Legendary Artifact
-text={2}: Target creature gains flying until end of turn.  {5}, {T}: Destroy target creature with flying.
-rarity=R
-[/card]
+
+
 [card]
 id=21396
 name=Rackling
@@ -853,14 +687,7 @@ toughness=1
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) {2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
 rarity=C
 [/card]
-[card]
-id=21402
-name=Rath's Edge
-mana=
-type=Legendary Land
-text={T}: Add {1} to your mana pool.  {4}, {T}, Sacrifice a land: Rath's Edge deals 1 damage to target creature or player.
-rarity=R
-[/card]
+
 [card]
 id=21378
 name=Refreshing Rain
@@ -904,17 +731,7 @@ type=Enchantment
 text=Lands don't untap during their controllers' untap steps.  At the beginning of each player's upkeep, that player untaps a land he or she controls.
 rarity=R
 [/card]
-[card]
-id=22292
-name=Rootwater Commando
-mana={2}{U}
-type=Creature
-subtype=Merfolk
-power=2
-toughness=2
-text=Islandwalk (This creature is unblockable as long as defending player controls an Island.)
-rarity=C
-[/card]
+
 [card]
 id=22889
 name=Rootwater Thief
@@ -961,68 +778,13 @@ type=Enchantment
 text={1}, Discard a card: Put a 1/1 green Saproling creature token onto the battlefield. Any player may activate this ability.
 rarity=R
 [/card]
-[card]
-id=21297
-name=Seahunter
-mana={2}{U}{U}
-type=Creature
-subtype=Human Mercenary
-power=2
-toughness=2
-text={3}, {T}: Search your library for a Merfolk permanent card and put that card onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=21259
-name=Seal of Cleansing
-mana={1}{W}
-type=Enchantment
-text=Sacrifice Seal of Cleansing: Destroy target artifact or enchantment.
-rarity=C
-[/card]
-[card]
-id=21316
-name=Seal of Doom
-mana={2}{B}
-type=Enchantment
-text=Sacrifice Seal of Doom: Destroy target nonblack creature. It can't be regenerated.
-rarity=C
-[/card]
-[card]
-id=21340
-name=Seal of Fire
-mana={R}
-type=Enchantment
-text=Sacrifice Seal of Fire: Seal of Fire deals 2 damage to target creature or player.
-rarity=C
-[/card]
-[card]
-id=21287
-name=Seal of Removal
-mana={U}
-type=Enchantment
-text=Sacrifice Seal of Removal: Return target creature to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=21366
-name=Seal of Strength
-mana={G}
-type=Enchantment
-text=Sacrifice Seal of Strength: Target creature gets +3/+3 until end of turn.
-rarity=C
-[/card]
-[card]
-id=21353
-name=Shrieking Mogg
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text=Haste When Shrieking Mogg enters the battlefield, tap all other creatures.
-rarity=R
-[/card]
+
+
+
+
+
+
+
 [card]
 id=22320
 name=Silkenfist Fighter
@@ -1091,17 +853,7 @@ toughness=2
 text=If you control a Forest, you may have each other player gain 5 life rather than pay Skyshroud Cutter's mana cost.
 rarity=C
 [/card]
-[card]
-id=21379
-name=Skyshroud Poacher
-mana={2}{G}{G}
-type=Creature
-subtype=Human Rebel
-power=2
-toughness=2
-text={3}, {T}: Search your library for an Elf permanent card and put that card onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
+
 [card]
 id=21360
 name=Skyshroud Ridgeback
@@ -1124,17 +876,7 @@ toughness=1
 text=When Skyshroud Sentinel enters the battlefield, you may search your library for up to three cards named Skyshroud Sentinel, reveal them, and put them into your hand. If you do, shuffle your library.
 rarity=C
 [/card]
-[card]
-id=21283
-name=Sliptide Serpent
-mana={4}{U}{U}
-type=Creature
-subtype=Serpent
-power=4
-toughness=4
-text={3}{U}: Return Sliptide Serpent to its owner's hand.
-rarity=R
-[/card]
+
 [card]
 id=21282
 name=Sneaky Homunculus
@@ -1146,17 +888,7 @@ toughness=1
 text=Sneaky Homunculus can't block or be blocked by creatures with power 2 or greater.
 rarity=C
 [/card]
-[card]
-id=21310
-name=Spineless Thug
-mana={1}{B}
-type=Creature
-subtype=Zombie Mercenary
-power=2
-toughness=2
-text=Spineless Thug can't block.
-rarity=C
-[/card]
+
 [card]
 id=21277
 name=Spiritual Asylum
@@ -1176,36 +908,9 @@ toughness=3
 text=At the beginning of your upkeep, Spiteful Bully deals 3 damage to target creature you control.
 rarity=C
 [/card]
-[card]
-id=21359
-name=Stampede Driver
-mana={G}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=1
-text={1}{G}, {T}, Discard a card: Creatures you control get +1/+1 and gain trample until end of turn.
-rarity=U
-[/card]
-[card]
-id=21298
-name=Stronghold Biologist
-mana={2}{U}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=1
-text={U}{U}, {T}, Discard a card: Counter target creature spell.
-rarity=U
-[/card]
-[card]
-id=22374
-name=Stronghold Discipline
-mana={2}{B}{B}
-type=Sorcery
-text=Each player loses 1 life for each creature he or she controls.
-rarity=U
-[/card]
+
+
+
 [card]
 id=21357
 name=Stronghold Gambit
@@ -1214,17 +919,7 @@ type=Sorcery
 text=Each player chooses a card in his or her hand. Then each player reveals his or her chosen card. The owner of the creature card revealed this way with the lowest converted mana cost puts that card onto the battlefield. If two or more creature cards are tied for lowest cost, those cards are put onto the battlefield.
 rarity=R
 [/card]
-[card]
-id=22033
-name=Stronghold Machinist
-mana={2}{U}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=1
-text={U}{U}, {T}, Discard a card: Counter target noncreature spell.
-rarity=U
-[/card]
+
 [card]
 id=22880
 name=Stronghold Zeppelin
@@ -1252,14 +947,7 @@ type=Artifact
 text=Fading 4 (This artifact enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) At the beginning of each player's upkeep, that player taps an untapped artifact, creature, or land he or she controls for each fade counter on Tangle Wire.
 rarity=R
 [/card]
-[card]
-id=21394
-name=Terrain Generator
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {2}, {T}: You may put a basic land card from your hand onto the battlefield tapped.
-rarity=U
-[/card]
+
 [card]
 id=21268
 name=Topple
@@ -1277,25 +965,8 @@ subtype=Aura
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
 rarity=C
 [/card]
-[card]
-id=21278
-name=Trickster Mage
-mana={U}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=1
-text={U}, {T}, Discard a card: You may tap or untap target artifact, creature, or land.
-rarity=C
-[/card]
-[card]
-id=21317
-name=Vicious Hunger
-mana={B}{B}
-type=Sorcery
-text=Vicious Hunger deals 2 damage to target creature and you gain 2 life.
-rarity=C
-[/card]
+
+
 [card]
 id=21397
 name=Viseling
@@ -1307,17 +978,7 @@ toughness=2
 text=At the beginning of each opponent's upkeep, Viseling deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 rarity=U
 [/card]
-[card]
-id=21265
-name=Voice of Truth
-mana={3}{W}
-type=Creature
-subtype=Angel
-power=2
-toughness=2
-text=Flying, protection from white
-rarity=U
-[/card]
+
 [card]
 id=21328
 name=Volrath the Fallen
