@@ -1,0 +1,12 @@
+[card]
+id=3010
+name=Abbey Gargoyles
+mana={2}{W}{W}{W}
+type=Creature
+subtype=Gargoyle
+power=3
+toughness=4
+text=Flying, protection from red
+abilities=Flying, protection from red
+rarity=U
+[/card]

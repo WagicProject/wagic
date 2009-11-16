@@ -1,0 +1,1579 @@
+[card]
+id=4476
+name=Abduction
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature When Abduction enters the battlefield, untap enchanted creature. You control enchanted creature. When enchanted creature is put into a graveyard, return that card to the battlefield under its owner's control.
+rarity=U
+[/card]
+[card]
+id=4563
+name=Abeyance
+mana={1}{W}
+type=Instant
+text=Until end of turn, target player can't cast instant or sorcery spells, and that player can't activate abilities that aren't mana abilities. Draw a card.
+rarity=R
+[/card]
+[card]
+id=4477
+name=Abjure
+mana={U}
+type=Instant
+text=As an additional cost to cast Abjure, sacrifice a blue permanent. Counter target spell.
+rarity=C
+[/card]
+[card]
+id=4505
+name=Aboroth
+mana={4}{G}{G}
+type=Creature
+subtype=Elemental
+power=9
+toughness=9
+text=Cumulative upkeep—Put a -1/-1 counter on Aboroth. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=R
+[/card]
+[card]
+id=4447
+name=Abyssal Gatekeeper
+mana={1}{B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
+text=When Abyssal Gatekeeper is put into a graveyard from the battlefield, each player sacrifices a creature.
+rarity=C
+[/card]
+[card]
+id=4534
+name=ÁEher Flash
+mana={2}{R}{R}
+type=Enchantment
+text=Whenever a creature enters the battlefield, ÁEher Flash deals 2 damage to it.
+rarity=U
+[/card]
+[card]
+id=4448
+name=Agonizing Memories
+mana={2}{B}{B}
+type=Sorcery
+text=Look at target player's hand and choose two cards from it. Put them on top of that player's library in any order.
+rarity=U
+[/card]
+[card]
+id=4564
+name=Alabaster Dragon
+mana={4}{W}{W}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+text=Flying When Alabaster Dragon is put into a graveyard from the battlefield, shuffle Alabaster Dragon into its owner's library.
+rarity=R
+[/card]
+[card]
+id=4565
+name=Alms
+mana={W}
+type=Enchantment
+text={1}, Exile the top card of your graveyard: Prevent the next 1 damage that would be dealt to target creature this turn.
+rarity=C
+[/card]
+[card]
+id=4478
+name=Ancestral Knowledge
+mana={1}{U}
+type=Enchantment
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Ancestral Knowledge enters the battlefield, look at the top ten cards of your library, then exile any number of them and put the rest back on top of your library in any order. When Ancestral Knowledge leaves the battlefield, shuffle your library.
+rarity=R
+[/card]
+[card]
+id=4566
+name=Angelic Renewal
+mana={1}{W}
+type=Enchantment
+text=Whenever a creature is put into your graveyard from the battlefield, you may sacrifice Angelic Renewal. If you do, return that card to the battlefield.
+rarity=C
+[/card]
+[card]
+id=4479
+name=Apathy
+mana={U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. At the beginning of the upkeep of enchanted creature's controller, that player may discard a card at random. If he or she does, untap that creature.
+rarity=C
+[/card]
+[card]
+id=4506
+name=Arctic Wolves
+mana={3}{G}{G}
+type=Creature
+subtype=Wolf
+power=4
+toughness=5
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Arctic Wolves enters the battlefield, draw a card.
+rarity=U
+[/card]
+
+[card]
+id=4568
+name=Argivian Find
+mana={W}
+type=Instant
+text=Return target artifact or enchantment card from your graveyard to your hand.
+rarity=U
+[/card]
+[card]
+id=4480
+name=Argivian Restoration
+mana={2}{U}{U}
+type=Sorcery
+text=Return target artifact card from your graveyard to the battlefield.
+rarity=U
+[/card]
+[card]
+id=4569
+name=Aura of Silence
+mana={1}{W}{W}
+type=Enchantment
+text=Artifact and enchantment spells your opponents cast cost {2} more to cast. Sacrifice Aura of Silence: Destroy target artifact or enchantment.
+rarity=U
+[/card]
+[card]
+id=4481
+name=Avizoa
+mana={3}{U}
+type=Creature
+subtype=Jellyfish
+power=2
+toughness=2
+text=Flying {0}: Avizoa gets +2/+2 until end of turn. You skip your next untap step. Activate this ability only once each turn.
+rarity=R
+[/card]
+[card]
+id=4507
+name=Barishi
+mana={2}{G}{G}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
+text=When Barishi is put into a graveyard from the battlefield, exile Barishi, then shuffle all creature cards from your graveyard into your library.
+rarity=U
+[/card]
+[card]
+id=4449
+name=Barrow Ghoul
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=4
+toughness=4
+text=At the beginning of your upkeep, sacrifice Barrow Ghoul unless you exile the top creature card of your graveyard.
+rarity=C
+[/card]
+[card]
+id=4570
+name=Benalish Infantry
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=3
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+rarity=C
+[/card]
+[card]
+id=4571
+name=Benalish Knight
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text=Flash (You may cast this spell any time you could cast an instant.) First strike (This creature deals combat damage before creatures without first strike.)
+rarity=C
+[/card]
+[card]
+id=4572
+name=Benalish Missionary
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={1}{W}, {T}: Prevent all combat damage that would be dealt by target blocked creature this turn.
+rarity=C
+[/card]
+[card]
+id=4535
+name=Betrothed of Fire
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Sacrifice an untapped creature: Enchanted creature gets +2/+0 until end of turn. Sacrifice enchanted creature: Creatures you control get +2/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=4536
+name=Bloodrock Cyclops
+mana={2}{R}
+type=Creature
+subtype=Cyclops
+power=3
+toughness=3
+text=Bloodrock Cyclops attacks each turn if able.
+rarity=C
+[/card]
+[card]
+id=4508
+name=Blossoming Wreath
+mana={G}
+type=Instant
+text=You gain life equal to the number of creature cards in your graveyard.
+rarity=C
+[/card]
+[card]
+id=4537
+name=Bogardan Firefiend
+mana={2}{R}
+type=Creature
+subtype=Elemental Spirit
+power=2
+toughness=1
+text=When Bogardan Firefiend is put into a graveyard from the battlefield, it deals 2 damage to target creature.
+rarity=C
+[/card]
+[card]
+id=4538
+name=Boiling Blood
+mana={2}{R}
+type=Instant
+text=Target creature attacks this turn if able. Draw a card.
+rarity=C
+[/card]
+[card]
+id=4450
+name=Bone Dancer
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+text=Whenever Bone Dancer attacks and isn't blocked, you may put the top creature card of defending player's graveyard onto the battlefield under your control. If you do, Bone Dancer assigns no combat damage this turn.
+rarity=R
+[/card]
+[card]
+id=4429
+name=Bösium Strip
+mana={3}
+type=Artifact
+text={3}, {T}: Until end of turn, if the top card of your graveyard is an instant or sorcery card, you may cast that card. If a card cast this way would be put into a graveyard this turn, exile it instead.
+rarity=R
+[/card]
+[card]
+id=4509
+name=Briar Shield
+mana={G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+1. Sacrifice Briar Shield: Enchanted creature gets +3/+3 until end of turn.
+rarity=C
+[/card]
+[card]
+id=4430
+name=Bubble Matrix
+mana={4}
+type=Artifact
+text=Prevent all damage that would be dealt to creatures.
+rarity=R
+[/card]
+[card]
+id=4451
+name=Buried Alive
+mana={2}{B}
+type=Sorcery
+text=Search your library for up to three creature cards and put them into your graveyard. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=4510
+name=Call of the Wild
+mana={2}{G}{G}
+type=Enchantment
+text={2}{G}{G}: Reveal the top card of your library. If it's a creature card, put it onto the battlefield. Otherwise, put it into your graveyard.
+rarity=R
+[/card]
+[card]
+id=4431
+name=Chimeric Sphere
+mana={3}
+type=Artifact
+text={2}: Until end of turn, Chimeric Sphere becomes a 2/1 Construct artifact creature with flying. {2}: Until end of turn, Chimeric Sphere becomes a 3/2 Construct artifact creature without flying.
+rarity=U
+[/card]
+[card]
+id=4511
+name=Choking Vines
+mana={X}{G}
+type=Instant
+text=Cast Choking Vines only during the declare blockers step. X target attacking creatures become blocked. Choking Vines deals 1 damage to each of those creatures. (This spell works on unblockable creatures.)
+rarity=C
+[/card]
+[card]
+id=4539
+name=Cinder Giant
+mana={3}{R}
+type=Creature
+subtype=Giant
+power=5
+toughness=3
+text=At the beginning of your upkeep, Cinder Giant deals 2 damage to each other creature you control.
+rarity=U
+[/card]
+[card]
+id=4540
+name=Cinder Wall
+mana={R}
+type=Creature
+subtype=Wall
+power=3
+toughness=3
+text=Defender (This creature can't attack.) When Cinder Wall blocks, destroy it at end of combat.
+rarity=C
+[/card]
+[card]
+id=4452
+name=Circling Vultures
+mana={B}
+type=Creature
+subtype=Bird
+power=3
+toughness=2
+text=Flying You may discard Circling Vultures any time you could cast an instant. At the beginning of your upkeep, sacrifice Circling Vultures unless you exile the top creature card of your graveyard.
+rarity=U
+[/card]
+[card]
+id=4482
+name=Cloud Djinn
+mana={5}{U}
+type=Creature
+subtype=Djinn
+power=5
+toughness=4
+text=Flying Cloud Djinn can block only creatures with flying.
+rarity=U
+[/card]
+[card]
+id=4453
+name=Coils of the Medusa
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/-1. Sacrifice Coils of the Medusa: Destroy all non-Wall creatures blocking enchanted creature.
+rarity=C
+[/card]
+[card]
+id=4541
+name=Cone of Flame
+mana={3}{R}{R}
+type=Sorcery
+text=Cone of Flame deals 1 damage to target creature or player, 2 damage to another target creature or player, and 3 damage to a third target creature or player.
+rarity=U
+[/card]
+[card]
+id=4573
+name=Debt of Loyalty
+mana={1}{W}{W}
+type=Instant
+text=Regenerate target creature. You gain control of that creature if it regenerates this way.
+rarity=R
+[/card]
+[card]
+id=4512
+name=Dense Foliage
+mana={2}{G}
+type=Enchantment
+text=Creatures can't be the targets of spells.
+rarity=R
+[/card]
+[card]
+id=4542
+name=Desperate Gambit
+mana={R}
+type=Instant
+text=Choose a source you control and flip a coin. If you win the flip, the next time that source would deal damage this turn, it deals double that damage instead. If you lose the flip, the next time it would deal damage this turn, prevent that damage.
+rarity=U
+[/card]
+[card]
+id=4432
+name=Dingus Staff
+mana={4}
+type=Artifact
+text=Whenever a creature is put into a graveyard from the battlefield, Dingus Staff deals 2 damage to that creature's controller.
+rarity=U
+[/card]
+[card]
+id=4483
+name=Disrupt
+mana={U}
+type=Instant
+text=Counter target instant or sorcery spell unless its controller pays {1}.  Draw a card.
+rarity=U
+[/card]
+[card]
+id=4454
+name=Doomsday
+mana={B}{B}{B}
+type=Sorcery
+text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
+rarity=R
+[/card]
+[card]
+id=4513
+name=Downdraft
+mana={2}{G}
+type=Enchantment
+text={G}: Target creature loses flying until end of turn.  Sacrifice Downdraft: Downdraft deals 2 damage to each creature with flying.
+rarity=U
+[/card]
+[card]
+id=4574
+name=Duskrider Falcon
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying, protection from black
+rarity=C
+[/card]
+[card]
+id=4543
+name=Dwarven Berserker
+mana={1}{R}
+type=Creature
+subtype=Dwarf Berserker
+power=1
+toughness=1
+text=Whenever Dwarven Berserker becomes blocked, it gets +3/+0 and gains trample until end of turn.
+rarity=C
+[/card]
+[card]
+id=4544
+name=Dwarven Thaumaturgist
+mana={2}{R}
+type=Creature
+subtype=Dwarf Shaman
+power=1
+toughness=2
+text={T}: Switch target creature's power and toughness until end of turn.
+rarity=R
+[/card]
+[card]
+id=4575
+name=Empyrial Armor
+mana={1}{W}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+1 for each card in your hand.
+rarity=C
+[/card]
+[card]
+id=4484
+name=Ertai's Familiar
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=2
+text=Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) When Ertai's Familiar phases out or leaves the battlefield, put the top three cards of your library into your graveyard. {U}: Until your next upkeep, Ertai's Familiar can't phase out.
+rarity=R
+[/card]
+[card]
+id=4514
+name=Fallow Wurm
+mana={2}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+text=When Fallow Wurm enters the battlefield, sacrifice it unless you discard a land card.
+rarity=U
+[/card]
+[card]
+id=4515
+name=Familiar Ground
+mana={2}{G}
+type=Enchantment
+text=Each creature you control can't be blocked by more than one creature.
+rarity=U
+[/card]
+[card]
+id=4455
+name=Fatal Blow
+mana={B}
+type=Instant
+text=Destroy target creature that was dealt damage this turn. It can't be regenerated.
+rarity=C
+[/card]
+[card]
+id=4545
+name=Fervor
+mana={2}{R}
+type=Enchantment
+text=Creatures you control have haste.
+rarity=R
+[/card]
+[card]
+id=4456
+name=Festering Evil
+mana={3}{B}{B}
+type=Enchantment
+text=At the beginning of your upkeep, Festering Evil deals 1 damage to each creature and each player.  {B}{B}, Sacrifice Festering Evil: Festering Evil deals 3 damage to each creature and each player.
+rarity=U
+[/card]
+[card]
+id=4546
+name=Fire Whip
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature you control Enchanted creature has "{T}: This creature deals 1 damage to target creature or player." Sacrifice Fire Whip: Fire Whip deals 1 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=4547
+name=Firestorm
+mana={R}
+type=Instant
+text=As an additional cost to cast Firestorm, discard X cards. Firestorm deals X damage to each of X target creatures and/or players.
+rarity=R
+[/card]
+[card]
+id=4548
+name=Fit of Rage
+mana={1}{R}
+type=Sorcery
+text=Target creature gets +3/+3 and gains first strike until end of turn.
+rarity=C
+[/card]
+[card]
+id=4457
+name=Fledgling Djinn
+mana={1}{B}
+type=Creature
+subtype=Djinn
+power=2
+toughness=2
+text=Flying At the beginning of your upkeep, Fledgling Djinn deals 1 damage to you.
+rarity=C
+[/card]
+[card]
+id=4485
+name=Flux
+mana={2}{U}
+type=Sorcery
+text=Each player discards any number of cards, then draws that many cards. Draw a card.
+rarity=U
+[/card]
+[card]
+id=4486
+name=Fog Elemental
+mana={2}{U}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) When Fog Elemental attacks or blocks, sacrifice it at end of combat.
+rarity=U
+[/card]
+[card]
+id=4576
+name=Foriysian Brigade
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+text=Foriysian Brigade can block an additional creature.
+rarity=U
+[/card]
+[card]
+id=4516
+name=Fungus Elemental
+mana={3}{G}
+type=Creature
+subtype=Fungus Elemental
+power=3
+toughness=3
+text={G}, Sacrifice a Forest: Put a +2/+2 counter on Fungus Elemental. Activate this ability only if Fungus Elemental entered the battlefield this turn.
+rarity=R
+[/card]
+[card]
+id=4517
+name=Gaea's Blessing
+mana={1}{G}
+type=Sorcery
+text=Target player shuffles up to three target cards from his or her graveyard into his or her library. Draw a card. When Gaea's Blessing is put into your graveyard from your library, shuffle your graveyard into your library.
+rarity=U
+[/card]
+[card]
+id=4458
+name=Gallowbraid
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Horror
+power=5
+toughness=5
+text=Trample Cumulative upkeep—Pay 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=R
+[/card]
+[card]
+id=4592
+name=Gemstone Mine
+mana=
+type=Land
+text=Gemstone Mine enters the battlefield with three mining counters on it. {T}, Remove a mining counter from Gemstone Mine: Add one mana of any color to your mana pool. If there are no mining counters on Gemstone Mine, sacrifice it.
+rarity=U
+[/card]
+[card]
+id=4577
+name=Gerrard's Wisdom
+mana={2}{W}{W}
+type=Sorcery
+text=You gain 2 life for each card in your hand.
+rarity=U
+[/card]
+[card]
+id=4549
+name=Goblin Bomb
+mana={1}{R}
+type=Enchantment
+text=At the beginning of your upkeep, you may flip a coin. If you win the flip, put a fuse counter on Goblin Bomb. If you lose the flip, remove a fuse counter from Goblin Bomb. Remove five fuse counters from Goblin Bomb, Sacrifice Goblin Bomb: Goblin Bomb deals 20 damage to target player.
+rarity=R
+[/card]
+[card]
+id=4550
+name=Goblin Grenadiers
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+text=Whenever Goblin Grenadiers attacks and isn't blocked, you may sacrifice it. If you do, destroy target creature and target land.
+rarity=U
+[/card]
+[card]
+id=4551
+name=Goblin Vandal
+mana={R}
+type=Creature
+subtype=Goblin Rogue
+power=1
+toughness=1
+text=Whenever Goblin Vandal attacks and isn't blocked, you may pay {R}. If you do, destroy target artifact defending player controls and Goblin Vandal assigns no combat damage this turn.
+rarity=C
+[/card]
+[card]
+id=4578
+name=Guided Strike
+mana={1}{W}
+type=Instant
+text=Target creature gets +1/+0 and gains first strike until end of turn.  Draw a card.
+rarity=C
+[/card]
+[card]
+id=4518
+name=Harvest Wurm
+mana={1}{G}
+type=Creature
+subtype=Wurm
+power=3
+toughness=2
+text=When Harvest Wurm enters the battlefield, sacrifice it unless you return a basic land card from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=4459
+name=Haunting Misery
+mana={1}{B}{B}
+type=Sorcery
+text=As an additional cost to cast Haunting Misery, exile X creature cards from your graveyard. Haunting Misery deals X damage to target player.
+rarity=C
+[/card]
+[card]
+id=4552
+name=Heart of Bogardan
+mana={2}{R}{R}
+type=Enchantment
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Heart of Bogardan's cumulative upkeep isn't paid, it deals X damage to target player and each creature he or she controls, where X is twice the number of age counters on Heart of Bogardan minus two.
+rarity=R
+[/card]
+[card]
+id=4553
+name=Heat Stroke
+mana={2}{R}
+type=Enchantment
+text=At end of combat, destroy each creature that blocked or was blocked this turn.
+rarity=R
+[/card]
+[card]
+id=4579
+name=Heavy Ballista
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+text={T}: Heavy Ballista deals 2 damage to target attacking or blocking creature.
+rarity=U
+[/card]
+[card]
+id=4460
+name=Hidden Horror
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=4
+text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
+rarity=U
+[/card]
+[card]
+id=4554
+name=Hurloon Shaman
+mana={1}{R}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=2
+toughness=3
+text=When Hurloon Shaman is put into a graveyard from the battlefield, each player sacrifices a land.
+rarity=U
+[/card]
+[card]
+id=4461
+name=Infernal Tribute
+mana={B}{B}{B}
+type=Enchantment
+text={2}, Sacrifice a nontoken permanent: Draw a card.
+rarity=R
+[/card]
+[card]
+id=4580
+name=Inner Sanctum
+mana={1}{W}{W}
+type=Enchantment
+text=Cumulative upkeep—Pay 2 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Prevent all damage that would be dealt to creatures you control.
+rarity=R
+[/card]
+[card]
+id=4433
+name=Jabari's Banner
+mana={2}
+type=Artifact
+text={1}, {T}: Target creature gains flanking until end of turn. (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
+rarity=U
+[/card]
+[card]
+id=4434
+name=Jangling Automaton
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=2
+text=Whenever Jangling Automaton attacks, untap all creatures defending player controls.
+rarity=C
+[/card]
+[card]
+id=4581
+name=Kithkin Armor
+mana={W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature can't be blocked by creatures with power 3 or greater. Sacrifice Kithkin Armor: The next time a source of your choice would deal damage to enchanted creature this turn, prevent that damage.
+rarity=C
+[/card]
+[card]
+id=4555
+name=Lava Hounds
+mana={2}{R}{R}
+type=Creature
+subtype=Hound
+power=4
+toughness=4
+text=Haste When Lava Hounds enters the battlefield, it deals 4 damage to you.
+rarity=U
+[/card]
+[card]
+id=4556
+name=Lava Storm
+mana={3}{R}{R}
+type=Instant
+text=Lava Storm deals 2 damage to each attacking creature or Lava Storm deals 2 damage to each blocking creature.
+rarity=C
+[/card]
+[card]
+id=4519
+name=Liege of the Hollows
+mana={2}{G}{G}
+type=Creature
+subtype=Spirit
+power=3
+toughness=4
+text=When Liege of the Hollows is put into a graveyard from the battlefield, each player may pay any amount of mana. Then each player who paid mana this way puts that many 1/1 green Squirrel creature tokens onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=4520
+name=Llanowar Behemoth
+mana={3}{G}{G}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+text=Tap an untapped creature you control: Llanowar Behemoth gets +1/+1 until end of turn.
+rarity=U
+[/card]
+[card]
+id=4521
+name=Llanowar Druid
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=2
+text={T}, Sacrifice Llanowar Druid: Untap all Forests.
+rarity=C
+[/card]
+[card]
+id=4522
+name=Llanowar Sentinel
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=3
+text=When Llanowar Sentinel enters the battlefield, you may pay {1}{G}. If you do, search your library for a card named Llanowar Sentinel and put that card onto the battlefield. Then shuffle your library.
+rarity=C
+[/card]
+[card]
+id=4593
+name=Lotus Vale
+mana=
+type=Land
+text=If Lotus Vale would enter the battlefield, sacrifice two untapped lands instead. If you do, put Lotus Vale onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add three mana of any one color to your mana pool.
+rarity=R
+[/card]
+[card]
+id=4487
+name=Mana Chains
+mana={U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has "Cumulative upkeep {1}." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.)
+rarity=C
+[/card]
+[card]
+id=4435
+name=Mana Web
+mana={3}
+type=Artifact
+text=Whenever a land an opponent controls is tapped for mana, tap all lands that player controls that could produce any type of mana that land could produce.
+rarity=R
+[/card]
+[card]
+id=4488
+name=Manta Ray
+mana={1}{U}{U}
+type=Creature
+subtype=Fish
+power=3
+toughness=3
+text=Manta Ray can't attack unless defending player controls an Island. Manta Ray can't be blocked except by blue creatures. When you control no Islands, sacrifice Manta Ray.
+rarity=C
+[/card]
+[card]
+id=4557
+name=Maraxus of Keld
+mana={4}{R}{R}
+type=Legendary Creature
+subtype=Human Warrior
+power=*
+toughness=*
+text=Maraxus of Keld's power and toughness are each equal to the number of untapped artifacts, creatures, and lands you control.
+rarity=R
+[/card]
+[card]
+id=4582
+name=Master of Arms
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=First strike {1}{W}: Tap target creature blocking Master of Arms. Prevent all combat damage that creature would deal this turn.
+rarity=U
+[/card]
+[card]
+id=4489
+name=Merfolk Traders
+mana={1}{U}
+type=Creature
+subtype=Merfolk
+power=1
+toughness=2
+text=When Merfolk Traders enters the battlefield, draw a card, then discard a card.
+rarity=C
+[/card]
+[card]
+id=4436
+name=Mind Stone
+mana={2}
+type=Artifact
+text={T}: Add {1} to your mana pool. {1}, {T}, Sacrifice Mind Stone: Draw a card.
+rarity=U
+[/card]
+[card]
+id=4462
+name=Mischievous Poltergeist
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text=Flying Pay 1 life: Regenerate Mischievous Poltergeist.
+rarity=U
+[/card]
+[card]
+id=4583
+name=Mistmoon Griffin
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+text=Flying When Mistmoon Griffin is put into a graveyard from the battlefield, exile Mistmoon Griffin, then return the top creature card of your graveyard to the battlefield.
+rarity=U
+[/card]
+[card]
+id=4463
+name=Morinfen
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Horror
+power=5
+toughness=4
+text=Flying Cumulative upkeep—Pay 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=R
+[/card]
+[card]
+id=4523
+name=Mwonvuli Ooze
+mana={G}
+type=Creature
+subtype=Ooze
+power=1+*
+toughness=1+*
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay {2} for each age counter on it.) Mwonvuli Ooze's power and toughness are each equal to 1 plus twice the number of age counters on it.
+rarity=R
+[/card]
+[card]
+id=4524
+name=Nature's Kiss
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature {1}, Exile the top card of your graveyard: Enchanted creature gets +1/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=4525
+name=Nature's Resurgence
+mana={2}{G}{G}
+type=Sorcery
+text=Each player draws a card for each creature card in his or her graveyard.
+rarity=R
+[/card]
+[card]
+id=4464
+name=Necratog
+mana={1}{B}{B}
+type=Creature
+subtype=Atog
+power=1
+toughness=2
+text=Exile the top creature card of your graveyard: Necratog gets +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=4490
+name=Noble Benefactor
+mana={2}{U}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+text=When Noble Benefactor is put into a graveyard from the battlefield, each player may search his or her library for a card and put that card into his or her hand. Then each player who searched his or her library this way shuffles it.
+rarity=U
+[/card]
+[card]
+id=4437
+name=Null Rod
+mana={2}
+type=Artifact
+text=Activated abilities of artifacts can't be activated.
+rarity=R
+[/card]
+[card]
+id=4465
+name=Odylic Wraith
+mana={3}{B}
+type=Creature
+subtype=Wraith
+power=2
+toughness=2
+text=Swampwalk Whenever Odylic Wraith deals damage to a player, that player discards a card.
+rarity=U
+[/card]
+[card]
+id=4491
+name=Ophidian
+mana={2}{U}
+type=Creature
+subtype=Snake
+power=1
+toughness=3
+text=Whenever Ophidian attacks and isn't blocked, you may draw a card. If you do, Ophidian assigns no combat damage this turn.
+rarity=C
+[/card]
+[card]
+id=4558
+name=Orcish Settlers
+mana={1}{R}
+type=Creature
+subtype=Orc
+power=1
+toughness=1
+text={X}{X}{R}, {T}, Sacrifice Orcish Settlers: Destroy X target lands.
+rarity=U
+[/card]
+[card]
+id=4492
+name=Paradigm Shift
+mana={1}{U}
+type=Sorcery
+text=Exile all cards from your library. Then shuffle your graveyard into your library.
+rarity=R
+[/card]
+[card]
+id=4584
+name=Peacekeeper
+mana={2}{W}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+text=At the beginning of your upkeep, sacrifice Peacekeeper unless you pay {1}{W}. Creatures can't attack.
+rarity=R
+[/card]
+[card]
+id=4493
+name=Pendrell Mists
+mana={3}{U}
+type=Enchantment
+text=All creatures have "At the beginning of your upkeep, sacrifice this creature unless you pay {1}."
+rarity=R
+[/card]
+[card]
+id=4494
+name=Phantom Warrior
+mana={1}{U}{U}
+type=Creature
+subtype=Illusion Warrior
+power=2
+toughness=2
+text=Phantom Warrior is unblockable.
+rarity=U
+[/card]
+[card]
+id=4495
+name=Phantom Wings
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has flying. Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=4438
+name=Phyrexian Furnace
+mana={1}
+type=Artifact
+text={T}: Exile the bottom card of target player's graveyard. {1}, Sacrifice Phyrexian Furnace: Exile target card from a graveyard. Draw a card.
+rarity=U
+[/card]
+[card]
+id=4496
+name=Psychic Vortex
+mana={2}{U}{U}
+type=Enchantment
+text=Cumulative upkeep—Draw a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) At the beginning of your end step, sacrifice a land and discard your hand.
+rarity=R
+[/card]
+[card]
+id=4466
+name=Razortooth Rats
+mana={2}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+rarity=C
+[/card]
+[card]
+id=4526
+name=Redwood Treefolk
+mana={4}{G}
+type=Creature
+subtype=Treefolk
+power=3
+toughness=6
+rarity=C
+[/card]
+[card]
+id=4497
+name=Relearn
+mana={1}{U}{U}
+type=Sorcery
+text=Return target instant or sorcery card from your graveyard to your hand.
+rarity=U
+[/card]
+[card]
+id=4585
+name=Revered Unicorn
+mana={1}{W}
+type=Creature
+subtype=Unicorn
+power=2
+toughness=3
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Revered Unicorn leaves the battlefield, you gain life equal to the number of age counters on it.
+rarity=U
+[/card]
+[card]
+id=4559
+name=Roc Hatchling
+mana={R}
+type=Creature
+subtype=Bird
+power=0
+toughness=1
+text=Roc Hatchling enters the battlefield with four shell counters on it. At the beginning of your upkeep, remove a shell counter from Roc Hatchling. As long as Roc Hatchling has no shell counters on it, it gets +3/+2 and has flying.
+rarity=U
+[/card]
+[card]
+id=4527
+name=Rogue Elephant
+mana={G}
+type=Creature
+subtype=Elephant
+power=3
+toughness=3
+text=When Rogue Elephant enters the battlefield, sacrifice it unless you sacrifice a Forest.
+rarity=C
+[/card]
+[card]
+id=4498
+name=Sage Owl
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying When Sage Owl enters the battlefield, look at the top four cards of your library, then put them back in any order.
+rarity=C
+[/card]
+[card]
+id=4560
+name=Sawtooth Ogre
+mana={2}{R}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=3
+text=Whenever Sawtooth Ogre blocks or becomes blocked by a creature, Sawtooth Ogre deals 1 damage to that creature at end of combat.
+rarity=C
+[/card]
+[card]
+id=4594
+name=Scorched Ruins
+mana=
+type=Land
+text=If Scorched Ruins would enter the battlefield, sacrifice two untapped lands instead. If you do, put Scorched Ruins onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {4} to your mana pool.
+rarity=R
+[/card]
+[card]
+id=4586
+name=Serenity
+mana={1}{W}
+type=Enchantment
+text=At the beginning of your upkeep, destroy all artifacts and enchantments. They can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=4587
+name=Serra's Blessing
+mana={1}{W}
+type=Enchantment
+text=Creatures you control have vigilance. (Attacking doesn't cause them to tap.)
+rarity=U
+[/card]
+[card]
+id=4439
+name=Serrated Biskelion
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+text={T}: Put a -1/-1 counter on Serrated Biskelion and a -1/-1 counter on target creature.
+rarity=U
+[/card]
+[card]
+id=4467
+name=Shadow Rider
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Knight
+power=3
+toughness=3
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
+rarity=C
+[/card]
+[card]
+id=4468
+name=Shattered Crypt
+mana={X}{B}{B}
+type=Sorcery
+text=Return X target creature cards from your graveyard to your hand. You lose X life.
+rarity=C
+[/card]
+[card]
+id=4588
+name=Soul Shepherd
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=1
+text={W}, Exile a creature card from your graveyard: You gain 1 life.
+rarity=C
+[/card]
+[card]
+id=4589
+name=Southern Paladin
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+text={W}{W}, {T}: Destroy target red permanent.
+rarity=R
+[/card]
+[card]
+id=4469
+name=Spinning Darkness
+mana={4}{B}{B}
+type=Instant
+text=You may exile the top three black cards of your graveyard rather than pay Spinning Darkness's mana cost. Spinning Darkness deals 3 damage to target nonblack creature. You gain 3 life.
+rarity=C
+[/card]
+[card]
+id=4440
+name=Steel Golem
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=4
+text=You can't cast creature spells.
+rarity=U
+[/card]
+[card]
+id=4470
+name=Strands of Night
+mana={2}{B}{B}
+type=Enchantment
+text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
+rarity=U
+[/card]
+[card]
+id=4441
+name=Straw Golem
+mana={1}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=3
+text=When an opponent casts a creature spell, sacrifice Straw Golem.
+rarity=U
+[/card]
+[card]
+id=4528
+name=Striped Bears
+mana={3}{G}
+type=Creature
+subtype=Bear
+power=2
+toughness=2
+text=When Striped Bears enters the battlefield, draw a card.
+rarity=C
+[/card]
+[card]
+id=4529
+name=Sylvan Hierophant
+mana={1}{G}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+text=When Sylvan Hierophant is put into a graveyard from the battlefield, exile Sylvan Hierophant, then return another target creature card from your graveyard to your hand.
+rarity=U
+[/card]
+[card]
+id=4590
+name=Tariff
+mana={1}{W}
+type=Sorcery
+text=Each player sacrifices the creature he or she controls with the highest converted mana cost unless he or she pays that creature's mana cost. If two creatures a player controls are tied for highest cost, that player chooses one.
+rarity=R
+[/card]
+[card]
+id=4499
+name=Teferi's Veil
+mana={1}{U}
+type=Enchantment
+text=Whenever a creature you control attacks, it phases out at end of combat. (While it's phased out, it's treated as though it doesn't exist. It phases in before you untap during your next untap step. )
+rarity=U
+[/card]
+[card]
+id=4471
+name=Tendrils of Despair
+mana={B}
+type=Sorcery
+text=As an additional cost to cast Tendrils of Despair, sacrifice a creature. Target opponent discards two cards.
+rarity=C
+[/card]
+[card]
+id=4442
+name=Thran Forge
+mana={3}
+type=Artifact
+text={2}: Until end of turn, target nonartifact creature gets +1/+0 and becomes an artifact in addition to its other types.
+rarity=U
+[/card]
+[card]
+id=4443
+name=Thran Tome
+mana={4}
+type=Artifact
+text={5}, {T}: Reveal the top three cards of your library. Target opponent chooses one of those cards. Put that card into your graveyard, then draw two cards.
+rarity=R
+[/card]
+[card]
+id=4561
+name=Thunderbolt
+mana={1}{R}
+type=Instant
+text=Choose one  EThunderbolt deals 3 damage to target player; or Thunderbolt deals 4 damage to target creature with flying.
+rarity=C
+[/card]
+[card]
+id=4562
+name=Thundermare
+mana={5}{R}
+type=Creature
+subtype=Elemental Horse
+power=5
+toughness=5
+text=Haste (This creature can attack the turn it comes under your control.) When Thundermare enters the battlefield, tap all other creatures.
+rarity=R
+[/card]
+[card]
+id=4500
+name=Timid Drake
+mana={2}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=3
+text=Flying When another creature enters the battlefield, return Timid Drake to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=4501
+name=Tolarian Drake
+mana={2}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=4
+text=Flying Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.)
+rarity=C
+[/card]
+[card]
+id=4502
+name=Tolarian Entrancer
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text=Whenever Tolarian Entrancer becomes blocked by a creature, gain control of that creature at end of combat.
+rarity=R
+[/card]
+[card]
+id=4503
+name=Tolarian Serpent
+mana={5}{U}{U}
+type=Creature
+subtype=Serpent
+power=7
+toughness=7
+text=At the beginning of your upkeep, put the top seven cards of your library into your graveyard.
+rarity=R
+[/card]
+[card]
+id=4444
+name=Touchstone
+mana={2}
+type=Artifact
+text={T}: Tap target artifact you don't control.
+rarity=U
+[/card]
+[card]
+id=4530
+name=Tranquil Grove
+mana={1}{G}
+type=Enchantment
+text={1}{G}{G}: Destroy all other enchantments.
+rarity=R
+[/card]
+[card]
+id=4531
+name=Uktabi Efreet
+mana={2}{G}{G}
+type=Creature
+subtype=Efreet
+power=5
+toughness=4
+text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=C
+[/card]
+[card]
+id=4472
+name=Urborg Justice
+mana={B}{B}
+type=Instant
+text=Target opponent sacrifices a creature for each creature put into your graveyard from the battlefield this turn.
+rarity=R
+[/card]
+[card]
+id=4473
+name=Urborg Stalker
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=2
+toughness=4
+text=At the beginning of each player's upkeep, if that player controls a nonblack, nonland permanent, Urborg Stalker deals 1 damage to that player.
+rarity=R
+[/card]
+[card]
+id=4532
+name=Veteran Explorer
+mana={G}
+type=Creature
+subtype=Human Soldier Scout
+power=1
+toughness=1
+text=When Veteran Explorer is put into a graveyard from the battlefield, each player may search his or her library for up to two basic land cards and put them onto the battlefield. Then each player who searched his or her library this way shuffles it.
+rarity=U
+[/card]
+[card]
+id=4533
+name=Vitalize
+mana={G}
+type=Instant
+text=Untap all creatures you control.
+rarity=C
+[/card]
+[card]
+id=4504
+name=Vodalian Illusionist
+mana={2}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+text={U}{U}, {T}: Target creature phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step. )
+rarity=U
+[/card]
+[card]
+id=4591
+name=Volunteer Reserves
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=U
+[/card]
+[card]
+id=4474
+name=Wave of Terror
+mana={2}{B}
+type=Enchantment
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) At the beginning of your draw step, destroy each creature with converted mana cost equal to the number of age counters on Wave of Terror. They can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=4445
+name=Well of Knowledge
+mana={3}
+type=Artifact
+text={2}: Draw a card. Any player may activate this ability but only during his or her draw step.
+rarity=R
+[/card]
+[card]
+id=4595
+name=Winding Canyons
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. {2}, {T}: Until end of turn, you may play creature cards as though they had flash.
+rarity=R
+[/card]
+[card]
+id=4446
+name=Xanthic Statue
+mana={8}
+type=Artifact
+text={5}: Until end of turn, Xanthic Statue becomes an 8/8 Golem artifact creature with trample.
+rarity=R
+[/card]
+[card]
+id=4475
+name=Zombie Scavengers
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=1
+text=Exile the top creature card of your graveyard: Regenerate Zombie Scavengers.
+rarity=C
+[/card]

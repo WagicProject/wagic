@@ -1,0 +1,1583 @@
+
+[card]
+id=44747
+name=Akroma's Devoted
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=4
+text=Cleric creatures have vigilance.
+rarity=U
+[/card]
+[card]
+id=42060
+name=Aphetto Exterminator
+mana={2}{B}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=1
+text=Morph {3}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Aphetto Exterminator is turned face up, target creature gets -3/-3 until end of turn.
+rarity=U
+[/card]
+[card]
+id=44325
+name=Aven Envoy
+mana={U}
+type=Creature
+subtype=Bird Soldier
+power=0
+toughness=2
+text=Flying
+rarity=C
+[/card]
+[card]
+id=43497
+name=Aven Redeemer
+mana={3}{W}
+type=Creature
+subtype=Bird Cleric
+power=2
+toughness=2
+text=Flying {T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
+rarity=C
+[/card]
+[card]
+id=45838
+name=Aven Warhawk
+mana={4}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it for each Bird and/or Soldier card you reveal in your hand.) Flying
+rarity=U
+[/card]
+[card]
+id=44493
+name=Bane of the Living
+mana={2}{B}{B}
+type=Creature
+subtype=Insect
+power=4
+toughness=3
+text=Morph {X}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Bane of the Living is turned face up, all creatures get -X/-X until end of turn.
+rarity=R
+[/card]
+[card]
+id=44496
+name=Beacon of Destiny
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+text={T}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to Beacon of Destiny instead.
+rarity=R
+[/card]
+[card]
+id=44334
+name=Berserk Murlodont
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+text=Whenever a Beast becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+rarity=C
+[/card]
+[card]
+id=42016
+name=Blade Sliver
+mana={2}{R}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=All Sliver creatures get +1/+0.
+rarity=U
+[/card]
+[card]
+id=44206
+name=Blood Celebrant
+mana={B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={B}, Pay 1 life: Add one mana of any color to your mana pool.
+rarity=C
+[/card]
+[card]
+id=44209
+name=Bloodstoke Howler
+mana={5}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=4
+text=Morph {6}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Bloodstoke Howler is turned face up, Beast creatures you control get +3/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=37909
+name=Branchsnap Lorian
+mana={1}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=1
+text=Trample Morph {G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+rarity=U
+[/card]
+[card]
+id=45133
+name=Brontotherium
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=3
+text=Trample Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+rarity=U
+[/card]
+[card]
+id=39738
+name=Brood Sliver
+mana={4}{G}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+text=Whenever a Sliver deals combat damage to a player, its controller may put a 1/1 colorless Sliver creature token onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=42187
+name=Caller of the Claw
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=2
+text=Flash When Caller of the Claw enters the battlefield, put a 2/2 green Bear creature token onto the battlefield for each nontoken creature put into your graveyard from the battlefield this turn.
+rarity=R
+[/card]
+[card]
+id=45849
+name=Canopy Crawler
+mana={3}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it for each Beast card you reveal in your hand.) {T}: Target creature gets +1/+1 until end of turn for each +1/+1 counter on Canopy Crawler.
+rarity=U
+[/card]
+[card]
+id=42271
+name=Celestial Gatekeeper
+mana={3}{W}{W}
+type=Creature
+subtype=Bird Cleric
+power=2
+toughness=2
+text=Flying When Celestial Gatekeeper is put into a graveyard from the battlefield, exile it, then return up to two target Bird and/or Cleric permanent cards from your graveyard to the battlefield.
+rarity=R
+[/card]
+[card]
+id=29717
+name=Cephalid Pathmage
+mana={2}{U}
+type=Creature
+subtype=Cephalid Wizard
+power=1
+toughness=2
+text=Cephalid Pathmage is unblockable. {T}, Sacrifice Cephalid Pathmage: Target creature is unblockable this turn.
+rarity=C
+[/card]
+[card]
+id=44205
+name=Chromeshell Crab
+mana={4}{U}
+type=Creature
+subtype=Crab Beast
+power=3
+toughness=3
+text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Chromeshell Crab is turned face up, you may exchange control of target creature you control and target creature an opponent controls.
+rarity=R
+[/card]
+[card]
+id=42277
+name=Clickslither
+mana={1}{R}{R}{R}
+type=Creature
+subtype=Insect
+power=3
+toughness=3
+text=Haste Sacrifice a Goblin: Clickslither gets +2/+2 and gains trample until end of turn.
+rarity=R
+[/card]
+[card]
+id=45839
+name=Cloudreach Cavalry
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text=As long as you control a Bird, Cloudreach Cavalry gets +2/+2 and has flying.
+rarity=U
+[/card]
+[card]
+id=44279
+name=Corpse Harvester
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie Wizard
+power=3
+toughness=3
+text={1}{B}, {T}, Sacrifice a creature: Search your library for a Zombie card and a Swamp card, reveal them, and put them into your hand. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=30659
+name=Covert Operative
+mana={4}{U}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+text=Covert Operative is unblockable.
+rarity=C
+[/card]
+[card]
+id=45127
+name=Crested Craghorn
+mana={4}{R}
+type=Creature
+subtype=Goat Beast
+power=4
+toughness=1
+text=Haste Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+rarity=C
+[/card]
+[card]
+id=42172
+name=Crookclaw Elder
+mana={5}{U}
+type=Creature
+subtype=Bird Wizard
+power=3
+toughness=2
+text=Flying Tap two untapped Birds you control: Draw a card. Tap two untapped Wizards you control: Target creature gains flying until end of turn.
+rarity=U
+[/card]
+[card]
+id=42033
+name=Crypt Sliver
+mana={1}{B}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Slivers have "{T}: Regenerate target Sliver."
+rarity=C
+[/card]
+[card]
+id=42077
+name=Dark Supplicant
+mana={B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={T}, Sacrifice three Clerics: Search your graveyard, hand, and/or library for a card named Scion of Darkness and put it onto the battlefield. If you search your library this way, shuffle it.
+rarity=U
+[/card]
+[card]
+id=42053
+name=Daru Mender
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text=Morph {W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Daru Mender is turned face up, regenerate target creature.
+rarity=U
+[/card]
+[card]
+id=44504
+name=Daru Sanctifier
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=4
+text=Morph {1}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Daru Sanctifier is turned face up, destroy target enchantment.
+rarity=C
+[/card]
+[card]
+id=42278
+name=Daru Stinger
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it for each Human and/or Soldier card you reveal in your hand.) {T}: Daru Stinger deals damage equal to the number of +1/+1 counters on it to target attacking or blocking creature.
+rarity=C
+[/card]
+[card]
+id=35249
+name=Deathmark Prelate
+mana={3}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=3
+text={2}{B}, {T}, Sacrifice a Zombie: Destroy target non-Zombie creature. It can't be regenerated. Activate this ability only any time you could cast a sorcery.
+rarity=U
+[/card]
+[card]
+id=44329
+name=Defender of the Order
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=4
+text=Morph {W}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Defender of the Order is turned face up, creatures you control get +0/+2 until end of turn.
+rarity=R
+[/card]
+[card]
+id=39707
+name=Defiant Elf
+mana={G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+text=Trample
+rarity=C
+[/card]
+[card]
+id=45132
+name=Deftblade Elite
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) {1}{W}: Prevent all combat damage that would be dealt to and dealt by Deftblade Elite this turn.
+rarity=C
+[/card]
+[card]
+id=44300
+name=Dermoplasm
+mana={2}{U}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+text=Flying Morph {2}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Dermoplasm is turned face up, you may put a creature card with morph from your hand onto the battlefield face up. If you do, return Dermoplasm to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=44840
+name=Dreamborn Muse
+mana={2}{U}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
+rarity=R
+[/card]
+[card]
+id=44492
+name=Drinker of Sorrow
+mana={2}{B}
+type=Creature
+subtype=Horror
+power=5
+toughness=3
+text=Drinker of Sorrow can't block. Whenever Drinker of Sorrow deals combat damage, sacrifice a permanent.
+rarity=R
+[/card]
+[card]
+id=44316
+name=Dripping Dead
+mana={4}{B}{B}
+type=Creature
+subtype=Zombie
+power=4
+toughness=1
+text=Dripping Dead can't block. Whenever Dripping Dead deals combat damage to a creature, destroy that creature. It can't be regenerated.
+rarity=C
+[/card]
+[card]
+id=42171
+name=Earthblighter
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={2}{B}, {T}, Sacrifice a Goblin: Destroy target land.
+rarity=U
+[/card]
+[card]
+id=42059
+name=Echo Tracer
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Echo Tracer is turned face up, return target creature to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=42083
+name=Elvish Soultiller
+mana={3}{G}{G}
+type=Creature
+subtype=Elf Mutant
+power=5
+toughness=4
+text=When Elvish Soultiller is put into a graveyard from the battlefield, choose a creature type. Shuffle all creature cards of that type from your graveyard into your library.
+rarity=R
+[/card]
+[card]
+id=43724
+name=Embalmed Brawler
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it for each Zombie card you reveal in your hand.) Whenever Embalmed Brawler attacks or blocks, you lose 1 life for each +1/+1 counter on it.
+rarity=C
+[/card]
+[card]
+id=44500
+name=Enormous Baloth
+mana={6}{G}
+type=Creature
+subtype=Beast
+power=7
+toughness=7
+rarity=U
+[/card]
+[card]
+id=42025
+name=Essence Sliver
+mana={3}{W}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+text=Whenever a Sliver deals damage, its controller gains that much life.
+rarity=R
+[/card]
+[card]
+id=34263
+name=Feral Throwback
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+text=Amplify 2 (As this card enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+rarity=R
+[/card]
+[card]
+id=43523
+name=Flamewave Invoker
+mana={2}{R}
+type=Creature
+subtype=Goblin Mutant
+power=2
+toughness=2
+text={7}{R}: Flamewave Invoker deals 5 damage to target player.
+rarity=U
+[/card]
+[card]
+id=42028
+name=Frenetic Raptor
+mana={5}{R}
+type=Creature
+subtype=Lizard Beast
+power=6
+toughness=6
+text=Beasts can't block.
+rarity=U
+[/card]
+[card]
+id=42160
+name=Fugitive Wizard
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+id=43791
+name=Gempalm Avenger
+mana={5}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=5
+text=Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) When you cycle Gempalm Avenger, Soldier creatures get +1/+1 and gain first strike until end of turn.
+rarity=C
+[/card]
+[card]
+id=42066
+name=Gempalm Incinerator
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=1
+text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
+rarity=U
+[/card]
+[card]
+id=42065
+name=Gempalm Polluter
+mana={5}{B}
+type=Creature
+subtype=Zombie
+power=4
+toughness=3
+text=Cycling {B}{B} ({B}{B}, Discard this card: Draw a card.) When you cycle Gempalm Polluter, you may have target player lose 1 life for each Zombie on the battlefield.
+rarity=C
+[/card]
+[card]
+id=42064
+name=Gempalm Sorcerer
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) When you cycle Gempalm Sorcerer, Wizard creatures gain flying until end of turn.
+rarity=U
+[/card]
+[card]
+id=42067
+name=Gempalm Strider
+mana={1}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=2
+text=Cycling {2}{G}{G} ({2}{G}{G}, Discard this card: Draw a card.) When you cycle Gempalm Strider, Elf creatures get +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=42178
+name=Ghastly Remains
+mana={B}{B}{B}
+type=Creature
+subtype=Zombie
+power=0
+toughness=0
+text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it for each Zombie card you reveal in your hand.) At the beginning of your upkeep, if Ghastly Remains is in your graveyard, you may pay {B}{B}{B}. If you do, return Ghastly Remains to your hand.
+rarity=R
+[/card]
+[card]
+id=44204
+name=Glintwing Invoker
+mana={4}{U}
+type=Creature
+subtype=Human Wizard Mutant
+power=3
+toughness=3
+text={7}{U}: Glintwing Invoker gets +3/+3 and gains flying until end of turn.
+rarity=C
+[/card]
+[card]
+id=43723
+name=Glowering Rogon
+mana={5}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it for each Beast card you reveal in your hand.)
+rarity=C
+[/card]
+[card]
+id=42073
+name=Glowrider
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=1
+text=Noncreature spells cost {1} more to cast.
+rarity=R
+[/card]
+[card]
+id=44656
+name=Goblin Assassin
+mana={3}{R}{R}
+type=Creature
+subtype=Goblin Assassin
+power=2
+toughness=2
+text=Whenever Goblin Assassin or another Goblin enters the battlefield, each player flips a coin. Each player whose coin comes up tails sacrifices a creature.
+rarity=U
+[/card]
+[card]
+id=44317
+name=Goblin Clearcutter
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=3
+text={T}, Sacrifice a Forest: Add three mana in any combination of {R} and/or {G} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=42274
+name=Goblin Dynamo
+mana={5}{R}{R}
+type=Creature
+subtype=Goblin Mutant
+power=4
+toughness=4
+text={T}: Goblin Dynamo deals 1 damage to target creature or player. {X}{R}, {T}, Sacrifice Goblin Dynamo: Goblin Dynamo deals X damage to target creature or player.
+rarity=U
+[/card]
+[card]
+id=44286
+name=Goblin Firebug
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+text=When Goblin Firebug leaves the battlefield, sacrifice a land.
+rarity=C
+[/card]
+[card]
+id=39888
+name=Goblin Goon
+mana={3}{R}
+type=Creature
+subtype=Goblin Mutant
+power=6
+toughness=6
+text=Goblin Goon can't attack unless you control more creatures than defending player. Goblin Goon can't block unless you control more creatures than attacking player.
+rarity=R
+[/card]
+[card]
+id=45125
+name=Goblin Grappler
+mana={R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+rarity=C
+[/card]
+[card]
+id=45123
+name=Goblin Lookout
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=2
+text={T}, Sacrifice a Goblin: Goblin creatures get +2/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=44294
+name=Goblin Turncoat
+mana={1}{B}
+type=Creature
+subtype=Goblin Mercenary
+power=2
+toughness=1
+text=Sacrifice a Goblin: Regenerate Goblin Turncoat.
+rarity=C
+[/card]
+[card]
+id=44841
+name=Graveborn Muse
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Spirit
+power=3
+toughness=3
+text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
+rarity=R
+[/card]
+[card]
+id=44299
+name=Havoc Demon
+mana={5}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=5
+text=Flying When Havoc Demon is put into a graveyard from the battlefield, all creatures get -5/-5 until end of turn.
+rarity=R
+[/card]
+[card]
+id=8829
+name=Hollow Specter
+mana={1}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+text=Flying Whenever Hollow Specter deals combat damage to a player, you may pay {X}. If you do, that player reveals X cards from his or her hand and you choose one of them. That player discards that card.
+rarity=R
+[/card]
+[card]
+id=42249
+name=Hundroog
+mana={6}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=7
+text=Cycling {3} ({3}, Discard this card: Draw a card.)
+rarity=C
+[/card]
+[card]
+id=44772
+name=Hunter Sliver
+mana={1}{R}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Sliver creatures have provoke. (When a Sliver attacks, its controller may have target creature defending player controls untap and block it if able.)
+rarity=C
+[/card]
+[card]
+id=44623
+name=Imperial Hellkite
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=6
+text=Flying Morph {6}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Imperial Hellkite is turned face up, you may search your library for a Dragon card, reveal it, and put it into your hand. If you do, shuffle your library.
+rarity=R
+[/card]
+[card]
+id=44411
+name=Infernal Caretaker
+mana={3}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+text=Morph {3}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Infernal Caretaker is turned face up, return all Zombie cards from all graveyards to their owners' hands.
+rarity=C
+[/card]
+[card]
+id=35335
+name=Keeneye Aven
+mana={3}{U}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=3
+text=Flying Cycling {2} ({2}, Discard this card: Draw a card.)
+rarity=C
+[/card]
+[card]
+id=44626
+name=Keeper of the Nine Gales
+mana={2}{U}
+type=Creature
+subtype=Bird Wizard
+power=1
+toughness=2
+text=Flying {T}, Tap two untapped Birds you control: Return target permanent to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=39653
+name=Kilnmouth Dragon
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+text=Amplify 3 (As this card enters the battlefield, put three +1/+1 counters on it for each Dragon card you reveal in your hand.) Flying {T}: Kilnmouth Dragon deals damage equal to the number of +1/+1 counters on it to target creature or player.
+rarity=R
+[/card]
+[card]
+id=35166
+name=Krosan Cloudscraper
+mana={7}{G}{G}{G}
+type=Creature
+subtype=Beast Mutant
+power=13
+toughness=13
+text=At the beginning of your upkeep, sacrifice Krosan Cloudscraper unless you pay {G}{G}. Morph {7}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+rarity=R
+[/card]
+[card]
+id=45134
+name=Krosan Vorine
+mana={3}{G}
+type=Creature
+subtype=Cat Beast
+power=3
+toughness=2
+text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) Krosan Vorine can't be blocked by more than one creature.
+rarity=C
+[/card]
+[card]
+id=44842
+name=Lavaborn Muse
+mana={3}{R}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
+rarity=R
+[/card]
+[card]
+id=39603
+name=Liege of the Axe
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+text=Vigilance Morph {1}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Liege of the Axe is turned face up, untap it.
+rarity=U
+[/card]
+[card]
+id=45131
+name=Lowland Tracker
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=First strike Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+rarity=C
+[/card]
+[card]
+id=42440
+name=Macetail Hystrodon
+mana={6}{R}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=First strike, haste Cycling {3} ({3}, Discard this card: Draw a card.)
+rarity=C
+[/card]
+[card]
+id=42041
+name=Magma Sliver
+mana={3}{R}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+text=All Slivers have "{T}: Target Sliver creature gets +X/+0 until end of turn, where X is the number of Slivers on the battlefield."
+rarity=R
+[/card]
+[card]
+id=42068
+name=Master of the Veil
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+text=Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Master of the Veil is turned face up, you may turn target creature with morph face down.
+rarity=U
+[/card]
+[card]
+id=44501
+name=Merchant of Secrets
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text=When Merchant of Secrets enters the battlefield, draw a card.
+rarity=C
+[/card]
+[card]
+id=43721
+name=Mistform Seaswift
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=3
+toughness=1
+text=Flying {1}: Mistform Seaswift becomes the creature type of your choice until end of turn. Morph {1}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+rarity=C
+[/card]
+[card]
+id=42037
+name=Mistform Sliver
+mana={1}{U}
+type=Creature
+subtype=Illusion Sliver
+power=1
+toughness=1
+text=All Slivers have "{1}: This permanent becomes the creature type of your choice in addition to its other types until end of turn."
+rarity=C
+[/card]
+[card]
+id=45840
+name=Mistform Ultimus
+mana={3}{U}
+type=Legendary Creature
+subtype=Illusion
+power=3
+toughness=3
+text=Mistform Ultimus is every creature type (even if this card isn't on the battlefield).
+rarity=R
+[/card]
+[card]
+id=42165
+name=Mistform Wakecaster
+mana={4}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=3
+text=Flying {1}: Mistform Wakecaster becomes the creature type of your choice until end of turn. {2}{U}{U}, {T}: Choose a creature type. Each creature you control becomes that type until end of turn.
+rarity=U
+[/card]
+[card]
+id=44210
+name=Nantuko Vigilante
+mana={3}{G}
+type=Creature
+subtype=Insect Druid Mutant
+power=3
+toughness=2
+text=Morph {1}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Nantuko Vigilante is turned face up, destroy target artifact or enchantment.
+rarity=C
+[/card]
+[card]
+id=42039
+name=Needleshot Gourna
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=6
+text=Reach (This creature can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=44276
+name=Noxious Ghoul
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+text=Whenever Noxious Ghoul or another Zombie enters the battlefield, all non-Zombie creatures get -1/-1 until end of turn.
+rarity=U
+[/card]
+[card]
+id=42057
+name=Patron of the Wild
+mana={G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+text=Morph {2}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Patron of the Wild is turned face up, target creature gets +3/+3 until end of turn.
+rarity=C
+[/card]
+[card]
+id=40545
+name=Phage the Untouchable
+mana={3}{B}{B}{B}{B}
+type=Legendary Creature
+subtype=Zombie Minion
+power=4
+toughness=4
+text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game.  Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated.  Whenever Phage deals combat damage to a player, that player loses the game.
+rarity=R
+[/card]
+[card]
+id=44323
+name=Planar Guide
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={3}{W}, Exile Planar Guide: Exile all creatures. At the beginning of the next end step, return those cards to the battlefield under their owners' control.
+rarity=R
+[/card]
+[card]
+id=42017
+name=Plated Sliver
+mana={W}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=All Sliver creatures get +0/+1.
+rarity=C
+[/card]
+[card]
+id=42272
+name=Primal Whisperer
+mana={4}{G}
+type=Creature
+subtype=Elf Soldier
+power=2
+toughness=2
+text=Primal Whisperer gets +2/+2 for each face-down creature on the battlefield. Morph {3}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+rarity=R
+[/card]
+[card]
+id=42437
+name=Primoc Escapee
+mana={6}{U}
+type=Creature
+subtype=Bird Beast
+power=4
+toughness=4
+text=Flying Cycling {2} ({2}, Discard this card: Draw a card.)
+rarity=U
+[/card]
+[card]
+id=42029
+name=Quick Sliver
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+text=Flash Any player may play Sliver cards as though they had flash.
+rarity=C
+[/card]
+[card]
+id=39566
+name=Ridgetop Raptor
+mana={3}{R}
+type=Creature
+subtype=Lizard Beast
+power=2
+toughness=1
+text=Double strike (This creature deals both first-strike and regular combat damage.)
+rarity=U
+[/card]
+[card]
+id=39733
+name=Riptide Director
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+text={2}{U}{U}, {T}: Draw a card for each Wizard you control.
+rarity=R
+[/card]
+[card]
+id=39914
+name=Riptide Mangler
+mana={1}{U}
+type=Creature
+subtype=Beast
+power=0
+toughness=3
+text={1}{U}: Change Riptide Mangler's power to target creature's power. (This effect lasts indefinitely.)
+rarity=R
+[/card]
+[card]
+id=39736
+name=Rockshard Elemental
+mana={5}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
+text=Double strike (This creature deals both first-strike and regular combat damage.) Morph {4}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+rarity=R
+[/card]
+[card]
+id=44271
+name=Root Sliver
+mana={3}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=Root Sliver can't be countered. Sliver spells can't be countered by spells or abilities.
+rarity=U
+[/card]
+[card]
+id=42050
+name=Scion of Darkness
+mana={5}{B}{B}{B}
+type=Creature
+subtype=Avatar
+power=6
+toughness=6
+text=Trample Whenever Scion of Darkness deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. Cycling {3} ({3}, Discard this card: Draw a card.)
+rarity=R
+[/card]
+[card]
+id=43607
+name=Seedborn Muse
+mana={3}{G}{G}
+type=Creature
+subtype=Spirit
+power=2
+toughness=4
+text=Untap all permanents you control during each other player's untap step.
+rarity=R
+[/card]
+[card]
+id=44282
+name=Shaleskin Plower
+mana={3}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=2
+text=Morph {4}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Shaleskin Plower is turned face up, destroy target land.
+rarity=C
+[/card]
+[card]
+id=42078
+name=Shifting Sliver
+mana={3}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=Slivers can't be blocked except by Slivers.
+rarity=U
+[/card]
+[card]
+id=42055
+name=Skinthinner
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=1
+text=Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Skinthinner is turned face up, destroy target nonblack creature. It can't be regenerated.
+rarity=C
+[/card]
+[card]
+id=44306
+name=Skirk Alarmist
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+text=Haste {T}: Turn target face-down creature you control face up. At the beginning of the next end step, sacrifice it.
+rarity=R
+[/card]
+[card]
+id=46457
+name=Skirk Drill Sergeant
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=1
+text=Whenever Skirk Drill Sergeant or another Goblin is put into a graveyard from the battlefield, you may pay {2}{R}. If you do, reveal the top card of your library. If it's a Goblin permanent card, put it onto the battlefield. Otherwise, put it into your graveyard.
+rarity=U
+[/card]
+[card]
+id=42056
+name=Skirk Marauder
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=1
+text=Morph {2}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Skirk Marauder is turned face up, it deals 2 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=42082
+name=Skirk Outrider
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+text=As long as you control a Beast, Skirk Outrider gets +2/+2 and has trample.
+rarity=C
+[/card]
+[card]
+id=43714
+name=Smokespew Invoker
+mana={2}{B}
+type=Creature
+subtype=Zombie Mutant
+power=3
+toughness=1
+text={7}{B}: Target creature gets -3/-3 until end of turn.
+rarity=C
+[/card]
+[card]
+id=44207
+name=Sootfeather Flock
+mana={4}{B}
+type=Creature
+subtype=Bird
+power=3
+toughness=2
+text=Flying Morph {3}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+rarity=C
+[/card]
+[card]
+id=44277
+name=Spectral Sliver
+mana={2}{B}
+type=Creature
+subtype=Sliver Spirit
+power=2
+toughness=2
+text=All Sliver creatures have "{2}: This creature gets +1/+1 until end of turn."
+rarity=U
+[/card]
+[card]
+id=43792
+name=Starlight Invoker
+mana={1}{W}
+type=Creature
+subtype=Human Cleric Mutant
+power=1
+toughness=3
+text={7}{W}: You gain 5 life.
+rarity=U
+[/card]
+[card]
+id=42265
+name=Stoic Champion
+mana={W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=Whenever a player cycles a card, Stoic Champion gets +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=43534
+name=Stonewood Invoker
+mana={1}{G}
+type=Creature
+subtype=Elf Mutant
+power=2
+toughness=2
+text={7}{G}: Stonewood Invoker gets +5/+5 until end of turn.
+rarity=C
+[/card]
+[card]
+id=44328
+name=Sunstrike Legionnaire
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+text=Sunstrike Legionnaire doesn't untap during your untap step. Whenever another creature enters the battlefield, untap Sunstrike Legionnaire. {T}: Tap target creature with converted mana cost 3 or less.
+rarity=R
+[/card]
+[card]
+id=45126
+name=Swooping Talon
+mana={4}{W}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=6
+text=Flying {1}: Swooping Talon loses flying until end of turn. Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+rarity=U
+[/card]
+[card]
+id=42026
+name=Synapse Sliver
+mana={4}{U}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+text=Whenever a Sliver deals combat damage to a player, its controller may draw a card.
+rarity=R
+[/card]
+[card]
+id=45121
+name=Timberwatch Elf
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=2
+text={T}: Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
+rarity=C
+[/card]
+[card]
+id=45124
+name=Totem Speaker
+mana={4}{G}
+type=Creature
+subtype=Elf Druid
+power=3
+toughness=3
+text=Whenever a Beast enters the battlefield, you may gain 3 life.
+rarity=U
+[/card]
+[card]
+id=42038
+name=Toxin Sliver
+mana={3}{B}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+text=Whenever a Sliver deals combat damage to a creature, destroy that creature. It can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=42170
+name=Tribal Forcemage
+mana={1}{G}
+type=Creature
+subtype=Elf Wizard
+power=1
+toughness=1
+text=Morph {1}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Tribal Forcemage is turned face up, creatures of the creature type of your choice get +2/+2 and gain trample until end of turn.
+rarity=R
+[/card]
+[card]
+id=44405
+name=Unstable Hulk
+mana={1}{R}{R}
+type=Creature
+subtype=Goblin Mutant
+power=2
+toughness=2
+text=Morph {3}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Unstable Hulk is turned face up, it gets +6/+6 and gains trample until end of turn. You skip your next turn.
+rarity=R
+[/card]
+[card]
+id=44327
+name=Vexing Beetle
+mana={4}{G}
+type=Creature
+subtype=Insect
+power=3
+toughness=3
+text=Vexing Beetle can't be countered. Vexing Beetle gets +3/+3 as long as no opponent controls a creature.
+rarity=R
+[/card]
+[card]
+id=45150
+name=Vile Deacon
+mana={2}{B}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+text=Whenever Vile Deacon attacks, it gets +X/+X until end of turn, where X is the number of Clerics on the battlefield.
+rarity=C
+[/card]
+[card]
+id=42069
+name=Voidmage Apprentice
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text=Morph {2}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Voidmage Apprentice is turned face up, counter target spell.
+rarity=C
+[/card]
+[card]
+id=39850
+name=Wall of Deceit
+mana={1}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
+text=Defender (This creature can't attack.) {3}: Turn Wall of Deceit face down. Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+rarity=U
+[/card]
+[card]
+id=44324
+name=Wall of Hope
+mana={W}
+type=Creature
+subtype=Wall
+power=0
+toughness=3
+text=Defender (This creature can't attack.) Whenever Wall of Hope is dealt damage, you gain that much life.
+rarity=C
+[/card]
+[card]
+id=45130
+name=Warbreak Trumpeter
+mana={R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+text=Morph {X}{X}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Warbreak Trumpeter is turned face up, put X 1/1 red Goblin creature tokens onto the battlefield.
+rarity=U
+[/card]
+[card]
+id=44296
+name=Ward Sliver
+mana={4}{W}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+text=As Ward Sliver enters the battlefield, choose a color. All Slivers have protection from the chosen color.
+rarity=U
+[/card]
+[card]
+id=44274
+name=Warped Researcher
+mana={4}{U}
+type=Creature
+subtype=Human Wizard Mutant
+power=3
+toughness=4
+text=Whenever a player cycles a card, Warped Researcher gains flying and shroud until end of turn. (It can't be the target of spells or abilities.)
+rarity=U
+[/card]
+[card]
+id=42156
+name=Weaver of Lies
+mana={5}{U}{U}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Weaver of Lies is turned face up, turn any number of target creatures with morph other than Weaver of Lies face down.
+rarity=R
+[/card]
+[card]
+id=45122
+name=Whipgrass Entangler
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+text={1}{W}: Until end of turn, target creature gains "This creature can't attack or block unless its controller pays {1} for each Cleric on the battlefield."
+rarity=C
+[/card]
+[card]
+id=44212
+name=White Knight
+mana={W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text=First strike (This creature deals combat damage before creatures without first strike.) Protection from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything black.)
+rarity=U
+[/card]
+[card]
+id=42054
+name=Willbender
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+text=Morph {1}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Willbender is turned face up, change the target of target spell or ability with a single target.
+rarity=U
+[/card]
+[card]
+id=44837
+name=Windborn Muse
+mana={3}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=3
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+rarity=R
+[/card]
+[card]
+id=42058
+name=Wingbeat Warrior
+mana={2}{W}
+type=Creature
+subtype=Bird Soldier Warrior
+power=2
+toughness=1
+text=Flying Morph {2}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Wingbeat Warrior is turned face up, target creature gains first strike until end of turn.
+rarity=C
+[/card]
+[card]
+id=35299
+name=Wirewood Channeler
+mana={3}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=2
+text={T}: Add X mana of any one color to your mana pool, where X is the number of Elves on the battlefield.
+rarity=U
+[/card]
+[card]
+id=43794
+name=Wirewood Hivemaster
+mana={1}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+text=Whenever another nontoken Elf enters the battlefield, you may put a 1/1 green Insect creature token onto the battlefield.
+rarity=U
+[/card]
+[card]
+id=46510
+name=Withered Wretch
+mana={B}{B}
+type=Creature
+subtype=Zombie Cleric
+power=2
+toughness=2
+text={1}: Exile target card from a graveyard.
+rarity=U
+[/card]
+[card]
+id=42270
+name=Zombie Brute
+mana={6}{B}
+type=Creature
+subtype=Zombie
+power=5
+toughness=4
+text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it for each Zombie card you reveal in your hand.) Trample
+rarity=U
+[/card]

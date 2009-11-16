@@ -1,0 +1,12 @@
+[card]
+id=1064
+name=Argivian Archaeologist
+mana={1}{W}{W}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=1
+text={W}{W}, {T}: Return target artifact card from your graveyard to your hand.
+auto={W}{W}{T}:moveTo(myHand) target(artifact|mygraveyard)
+rarity=R
+[/card]

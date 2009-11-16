@@ -1,0 +1,9 @@
+[card]
+id=72686
+name=Angel's Feather
+mana={2}
+type=Artifact
+text=Whenever a player casts a white spell, you may gain 1 life.
+auto=@movedTo(*[white]|stack):may life:1 controller
+rarity=U
+[/card]

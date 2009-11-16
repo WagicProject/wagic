@@ -1,0 +1,12 @@
+[card]
+id=3041
+name=Aesthir Glider
+mana={3}
+type=Artifact Creature
+subtype=Bird
+power=2
+toughness=1
+text=Flying Aesthir Glider can't block.
+abilities=flying,cantblock
+rarity=C
+[/card]

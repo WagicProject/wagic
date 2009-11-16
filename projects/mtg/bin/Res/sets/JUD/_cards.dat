@@ -1,0 +1,13 @@
+[card]
+id=34243
+name=Ancestor's Chosen
+mana={5}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=4
+toughness=4
+text=First strike (This creature deals combat damage before creatures without first strike.) When Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.
+abilities=first strike
+auto=foreach(*|mygraveyard) life:1
+rarity=U
+[/card]

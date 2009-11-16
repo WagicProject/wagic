@@ -1,0 +1,13 @@
+[card]
+id=74187
+name=Adamaro, First to Desire
+mana={1}{R}{R}
+type=Creature
+subtype=Spirit
+power=*
+toughness=*
+auto=foreach(*|opponenthand) 1/1
+text=Adamaro, First to Desire's power and toughness are each equal to the number of cards in the hand of the opponent with the most cards in hand.
+rarity=R
+abilities=Legendary
+[/card]

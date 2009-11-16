@@ -1,0 +1,9 @@
+[card]
+id=12612
+name=AEther Sting
+mana={3}{R}
+type=Enchantment
+text=Whenever an opponent casts a creature spell, AEther Sting deals 1 damage to that player.
+auto=@movedTo(creature|opponentstack) damage:1 opponent
+rarity=U
+[/card]

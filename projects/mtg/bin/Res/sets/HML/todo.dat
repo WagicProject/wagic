@@ -1,0 +1,1119 @@
+
+[card]
+id=3012
+name=Abbey Matron
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+text={W}, {T}: Abbey Matron gets +0/+3 until end of turn.
+rarity=C
+[/card]
+[card]
+id=2935
+name=ÁEher Storm
+mana={3}{U}
+type=Enchantment
+text=Creature spells can't be cast. Pay 4 life: Destroy ÁEher Storm. It can't be regenerated. Any player may activate this ability.
+rarity=U
+[/card]
+[card]
+id=2986
+name=Aliban's Tower
+mana={1}{R}
+type=Instant
+text=Target blocking creature gets +3/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=2987
+name=Ambush
+mana={3}{R}
+type=Instant
+text=Blocking creatures gain first strike until end of turn.
+rarity=C
+[/card]
+[card]
+id=2989
+name=Ambush Party
+mana={4}{R}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=1
+text=First strike, haste
+rarity=C
+[/card]
+[card]
+id=2991
+name=Anaba Ancestor
+mana={1}{R}
+type=Creature
+subtype=Minotaur Spirit
+power=1
+toughness=1
+text={T}: Another target Minotaur creature gets +1/+1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=2993
+name=Anaba Bodyguard
+mana={3}{R}
+type=Creature
+subtype=Minotaur
+power=2
+toughness=3
+text=First strike (This creature deals combat damage before creatures without first strike.)
+rarity=C
+[/card]
+[card]
+id=2995
+name=Anaba Shaman
+mana={3}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=2
+toughness=2
+text={R}, {T}: Anaba Shaman deals 1 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=2996
+name=Anaba Spirit Crafter
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=1
+toughness=3
+text=Minotaur creatures get +1/+0.
+rarity=R
+[/card]
+[card]
+id=2960
+name=An-Havva Constable
+mana={1}{G}{G}
+type=Creature
+subtype=Human
+power=2
+toughness=1+*
+text=An-Havva Constable's toughness is equal to 1 plus the number of green creatures on the battlefield.
+rarity=R
+[/card]
+[card]
+id=2961
+name=An-Havva Inn
+mana={1}{G}{G}
+type=Sorcery
+text=You gain X plus 1 life, where X is the number of green creatures on the battlefield.
+rarity=U
+[/card]
+[card]
+id=3035
+name=An-Havva Township
+mana=
+type=Land
+text={T}: Add {1} to your mana pool.  {1}, {T}: Add {G} to your mana pool.  {2}, {T}: Add {R} or {W} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=2990
+name=An-Zerrin Ruins
+mana={2}{R}{R}
+type=Enchantment
+text=As An-Zerrin Ruins enters the battlefield, choose a creature type. Creatures of the chosen type don't untap during their controllers' untap steps.
+rarity=R
+[/card]
+[card]
+id=2900
+name=Apocalypse Chime
+mana={2}
+type=Artifact
+text={2}, {T}, Sacrifice Apocalypse Chime: Destroy all nontoken permanents from the Homelands expansion. They can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=2962
+name=Autumn Willow
+mana={4}{G}{G}
+type=Legendary Creature
+subtype=Avatar
+power=4
+toughness=4
+text=Shroud {G}: Until end of turn, Autumn Willow can be the target of spells and abilities controlled by target player as though it didn't have shroud.
+rarity=R
+[/card]
+[card]
+id=3036
+name=Aysen Abbey
+mana=
+type=Land
+text={T}: Add {1} to your mana pool.  {1}, {T}: Add {W} to your mana pool.  {2}, {T}: Add {G} or {U} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=3014
+name=Aysen Bureaucrats
+mana={1}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+text={T}: Tap target creature with power 2 or less.
+rarity=C
+[/card]
+[card]
+id=3015
+name=Aysen Crusader
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2+*
+toughness=2+*
+text=Aysen Crusader's power and toughness are each equal to 2 plus the number of Soldiers and Warriors you control.
+rarity=U
+[/card]
+[card]
+id=3016
+name=Aysen Highway
+mana={3}{W}{W}{W}
+type=Enchantment
+text=White creatures have plainswalk.
+rarity=R
+[/card]
+[card]
+id=2936
+name=Baki's Curse
+mana={2}{U}{U}
+type=Sorcery
+text=Baki's Curse deals 2 damage to each creature for each Aura attached to that creature.
+rarity=R
+[/card]
+[card]
+id=2910
+name=Baron Sengir
+mana={5}{B}{B}{B}
+type=Legendary Creature
+subtype=Vampire
+power=5
+toughness=5
+text=Flying Whenever a creature dealt damage by Baron Sengir this turn is put into a graveyard, put a +2/+2 counter on Baron Sengir. {T}: Regenerate another target Vampire.
+rarity=R
+[/card]
+[card]
+id=3017
+name=Beast Walkers
+mana={1}{W}{W}
+type=Creature
+subtype=Human Beast Soldier
+power=2
+toughness=2
+text={G}: Beast Walkers gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+rarity=R
+[/card]
+[card]
+id=2911
+name=Black Carriage
+mana={3}{B}{B}
+type=Creature
+subtype=Horse
+power=4
+toughness=4
+text=Trample Black Carriage doesn't untap during your untap step. Sacrifice a creature: Untap Black Carriage. Activate this ability only during your upkeep.
+rarity=R
+[/card]
+[card]
+id=2912
+name=Broken Visage
+mana={4}{B}
+type=Instant
+text=Destroy target nonartifact attacking creature. It can't be regenerated. Put a black Spirit creature token with that creature's power and toughness onto the battlefield. Sacrifice the token at the beginning of the next end step.
+rarity=U
+[/card]
+[card]
+id=2964
+name=Carapace
+mana={G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +0/+2. Sacrifice Carapace: Regenerate enchanted creature.
+rarity=C
+[/card]
+[card]
+id=3037
+name=Castle Sengir
+mana=
+type=Land
+text={T}: Add {1} to your mana pool.  {1}, {T}: Add {B} to your mana pool.  {2}, {T}: Add {U} or {R} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=2914
+name=Cemetery Gate
+mana={2}{B}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
+text=Defender (This creature can't attack.) Protection from black
+rarity=C
+[/card]
+[card]
+id=2937
+name=Chain Stasis
+mana={U}
+type=Instant
+text=You may tap or untap target creature. Then that creature's controller may pay {2}{U}. If the player does, he or she may copy this spell and may choose a new target for that copy.
+rarity=R
+[/card]
+[card]
+id=2997
+name=Chandler
+mana={4}{R}
+type=Legendary Creature
+subtype=Human Rogue
+power=3
+toughness=3
+text={R}{R}{R}, {T}: Destroy target artifact creature.
+rarity=C
+[/card]
+[card]
+id=2901
+name=Clockwork Gnomes
+mana={4}
+type=Artifact Creature
+subtype=Gnome
+power=2
+toughness=2
+text={3}, {T}: Regenerate target artifact creature.
+rarity=C
+[/card]
+[card]
+id=2902
+name=Clockwork Steed
+mana={4}
+type=Artifact Creature
+subtype=Horse
+power=0
+toughness=3
+text=Clockwork Steed enters the battlefield with four +1/+0 counters on it. Clockwork Steed can't be blocked by artifact creatures. At end of combat, if Clockwork Steed attacked or blocked this combat, remove a +1/+0 counter from it. {X}, {T}: Put up to X +1/+0 counters on Clockwork Steed. This ability can't cause the total number of +1/+0 counters on Clockwork Steed to be greater than four. Activate this ability only during your upkeep.
+rarity=U
+[/card]
+[card]
+id=2903
+name=Clockwork Swarm
+mana={4}
+type=Artifact Creature
+subtype=Insect
+power=0
+toughness=3
+text=Clockwork Swarm enters the battlefield with four +1/+0 counters on it. Clockwork Swarm can't be blocked by Walls. At end of combat, if Clockwork Swarm attacked or blocked this combat, remove a +1/+0 counter from it. {X}, {T}: Put up to X +1/+0 counters on Clockwork Swarm. This ability can't cause the total number of +1/+0 counters on Clockwork Swarm to be greater than four. Activate this ability only during your upkeep.
+rarity=C
+[/card]
+[card]
+id=2938
+name=Coral Reef
+mana={U}{U}
+type=Enchantment
+text=Coral Reef enters the battlefield with four polyp counters on it. Sacrifice an Island: Put two polyp counters on Coral Reef. {U}, Tap an untapped blue creature you control, Remove a polyp counter from Coral Reef: Put a +0/+1 counter on target creature.
+rarity=C
+[/card]
+[card]
+id=2940
+name=Dark Maze
+mana={4}{U}
+type=Creature
+subtype=Wall
+power=4
+toughness=5
+text=Defender (This creature can't attack.) {0}: Dark Maze can attack this turn as though it didn't have defender.  Exile it at the beginning of the next end step.
+rarity=C
+[/card]
+[card]
+id=2965
+name=Daughter of Autumn
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Avatar
+power=2
+toughness=4
+text={W}: The next 1 damage that would be dealt to target white creature this turn is dealt to Daughter of Autumn instead.
+rarity=R
+[/card]
+[card]
+id=3018
+name=Death Speakers
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text=Protection from black
+rarity=U
+[/card]
+[card]
+id=2904
+name=Didgeridoo
+mana={1}
+type=Artifact
+text={3}: You may put a Minotaur permanent card from your hand onto the battlefield.
+rarity=U
+[/card]
+[card]
+id=2915
+name=Drudge Spell
+mana={B}{B}
+type=Enchantment
+text={B}, Exile two creature cards from your graveyard: Put a 1/1 black Skeleton creature token onto the battlefield. It has "{B}: Regenerate this creature." When Drudge Spell leaves the battlefield, destroy all Skeleton tokens. They can't be regenerated.
+rarity=U
+[/card]
+[card]
+id=2917
+name=Dry Spell
+mana={1}{B}
+type=Sorcery
+text=Dry Spell deals 1 damage to each creature and each player.
+rarity=U
+[/card]
+[card]
+id=2998
+name=Dwarven Pony
+mana={R}
+type=Creature
+subtype=Horse
+power=1
+toughness=1
+text={1}{R}, {T}: Target Dwarf creature gains mountainwalk until end of turn.
+rarity=R
+[/card]
+[card]
+id=2999
+name=Dwarven Sea Clan
+mana={2}{R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+text={T}: Choose target attacking or blocking creature whose controller controls an Island. Dwarven Sea Clan deals 2 damage to that creature at end of combat. Activate this ability only before the end of combat step.
+rarity=R
+[/card]
+[card]
+id=3001
+name=Dwarven Trader
+mana={R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+id=2905
+name=Ebony Rhino
+mana={7}
+type=Artifact Creature
+subtype=Rhino
+power=4
+toughness=5
+text=Trample
+rarity=C
+[/card]
+[card]
+id=3002
+name=Eron the Relentless
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Human Rogue
+power=5
+toughness=2
+text=Haste {R}{R}{R}: Regenerate Eron the Relentless.
+rarity=U
+[/card]
+[card]
+id=3003
+name=Evaporate
+mana={2}{R}
+type=Sorcery
+text=Evaporate deals 1 damage to each creature that's white or blue.
+rarity=U
+[/card]
+[card]
+id=2966
+name=Faerie Noble
+mana={2}{G}
+type=Creature
+subtype=Faerie
+power=1
+toughness=2
+text=Flying Other Faerie creatures you control get +0/+1. {T}: Other Faerie creatures you control get +1/+0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=2919
+name=Feast of the Unicorn
+mana={3}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +4/+0.
+rarity=C
+[/card]
+[card]
+id=2906
+name=Feroz's Ban
+mana={6}
+type=Artifact
+text=Creature spells cost {2} more to cast.
+rarity=R
+[/card]
+[card]
+id=2968
+name=Folk of An-Havva
+mana={G}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+text=Whenever Folk of An-Havva blocks, it gets +2/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=2941
+name=Forget
+mana={U}{U}
+type=Sorcery
+text=Target player discards two cards, then draws as many cards as he or she discarded this way.
+rarity=R
+[/card]
+[card]
+id=2920
+name=Funeral March
+mana={1}{B}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature When enchanted creature leaves the battlefield, its controller sacrifices a creature.
+rarity=C
+[/card]
+[card]
+id=2921
+name=Ghost Hounds
+mana={1}{B}
+type=Creature
+subtype=Hound Spirit
+power=1
+toughness=1
+text=Vigilance Whenever Ghost Hounds blocks or becomes blocked by a white creature, Ghost Hounds gains first strike until end of turn.
+rarity=U
+[/card]
+[card]
+id=2943
+name=Giant Albatross
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying When Giant Albatross is put into a graveyard from the battlefield, you may pay {1}{U}. If you do, for each creature that dealt damage to Giant Albatross this turn, destroy that creature unless its controller pays 2 life. A creature destroyed this way can't be regenerated.
+rarity=C
+[/card]
+[card]
+id=2944
+name=Giant Oyster
+mana={2}{U}{U}
+type=Creature
+subtype=Oyster
+power=0
+toughness=3
+text=You may choose not to untap Giant Oyster during your untap step. {T}: For as long as Giant Oyster remains tapped, target tapped creature doesn't untap during its controller's untap step, and at the beginning of each of your draw steps, put a -1/-1 counter on that creature. When Giant Oyster leaves the battlefield or becomes untapped, remove all -1/-1 counters from the creature.
+rarity=U
+[/card]
+[card]
+id=2922
+name=Grandmother Sengir
+mana={4}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+text={1}{B}, {T}: Target creature gets -1/-1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=2923
+name=Greater Werewolf
+mana={4}{B}
+type=Creature
+subtype=Human Wolf
+power=2
+toughness=4
+text=At end of combat, put a -0/-2 counter on all creatures blocking or blocked by Greater Werewolf.
+rarity=U
+[/card]
+[card]
+id=3019
+name=Hazduhr the Abbot
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=5
+text={X}, {T}: The next X damage that would be dealt this turn to target white creature you control is dealt to Hazduhr the Abbot instead.
+rarity=R
+[/card]
+[card]
+id=2924
+name=Headstone
+mana={1}{B}
+type=Instant
+text=Exile target card from a graveyard. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3004
+name=Heart Wolf
+mana={3}{R}
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+text=First strike {T}: Target Dwarf creature gets +2/+0 and gains first strike until end of turn. When that creature leaves the battlefield this turn, sacrifice Heart Wolf. Activate this ability only during combat.
+rarity=R
+[/card]
+[card]
+id=2970
+name=Hungry Mist
+mana={2}{G}{G}
+type=Creature
+subtype=Elemental
+power=6
+toughness=2
+text=At the beginning of your upkeep, sacrifice Hungry Mist unless you pay {G}{G}.
+rarity=C
+[/card]
+[card]
+id=2925
+name=Ihsan's Shade
+mana={3}{B}{B}{B}
+type=Legendary Creature
+subtype=Shade Knight
+power=5
+toughness=5
+text=Protection from white
+rarity=U
+[/card]
+[card]
+id=2926
+name=Irini Sengir
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Vampire Dwarf
+power=2
+toughness=2
+text=White enchantment spells and green enchantment spells cost {2} more to cast.
+rarity=U
+[/card]
+[card]
+id=3005
+name=Ironclaw Curse
+mana={R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets -0/-1. Enchanted creature can't block creatures with power equal to or greater than the enchanted creature's toughness.
+rarity=R
+[/card]
+[card]
+id=2945
+name=Jinx
+mana={1}{U}
+type=Instant
+text=Target land becomes the basic land type of your choice until end of turn. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3006
+name=Joven
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Human Rogue
+power=3
+toughness=3
+text={R}{R}{R}, {T}: Destroy target noncreature artifact.
+rarity=C
+[/card]
+[card]
+id=2971
+name=Joven's Ferrets
+mana={G}
+type=Creature
+subtype=Ferret
+power=1
+toughness=1
+text=Whenever Joven's Ferrets attacks, it gets +0/+2 until end of turn. At end of combat, tap all creatures that blocked Joven's Ferrets this turn. They don't untap during their controller's next untap step.
+rarity=U
+[/card]
+[card]
+id=2907
+name=Joven's Tools
+mana={6}
+type=Artifact
+text={4}, {T}: Target creature can't be blocked this turn except by Walls.
+rarity=U
+[/card]
+[card]
+id=2927
+name=Koskun Falls
+mana={2}{B}{B}
+type=World Enchantment
+text=At the beginning of your upkeep, sacrifice Koskun Falls unless you tap an untapped creature you control. Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+rarity=R
+[/card]
+[card]
+id=3038
+name=Koskun Keep
+mana=
+type=Land
+text={T}: Add {1} to your mana pool.  {1}, {T}: Add {R} to your mana pool.  {2}, {T}: Add {B} or {G} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=2947
+name=Labyrinth Minotaur
+mana={3}{U}
+type=Creature
+subtype=Minotaur
+power=1
+toughness=4
+text=Whenever Labyrinth Minotaur blocks a creature, that creature doesn't untap during its controller's next untap step.
+rarity=C
+[/card]
+[card]
+id=2972
+name=Leaping Lizard
+mana={1}{G}{G}
+type=Creature
+subtype=Lizard
+power=2
+toughness=3
+text={1}{G}: Leaping Lizard gains flying and gets -0/-1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=3020
+name=Leeches
+mana={1}{W}{W}
+type=Sorcery
+text=Target player loses all poison counters. Leeches deals that much damage to that player.
+rarity=R
+[/card]
+[card]
+id=2973
+name=Mammoth Harness
+mana={3}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature loses flying. Whenever enchanted creature blocks or becomes blocked by a creature, the other creature gains first strike until end of turn.
+rarity=R
+[/card]
+[card]
+id=2948
+name=Marjhan
+mana={5}{U}{U}
+type=Creature
+subtype=Leviathan
+power=8
+toughness=8
+text=Marjhan doesn't untap during your untap step. Marjhan can't attack unless defending player controls an Island. When you control no Islands, sacrifice Marjhan. {U}{U}, Sacrifice a creature: Untap Marjhan. Activate this ability only during your upkeep. {U}{U}: Marjhan gets -1/-0 until end of turn and deals 1 damage to target attacking creature without flying.
+rarity=R
+[/card]
+[card]
+id=2950
+name=Memory Lapse
+mana={1}{U}
+type=Instant
+text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
+rarity=C
+[/card]
+[card]
+id=2951
+name=Merchant Scroll
+mana={1}{U}
+type=Sorcery
+text=Search your library for a blue instant card, reveal that card, and put it into your hand. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=3022
+name=Mesa Falcon
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying {1}{W}: Mesa Falcon gets +0/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=2952
+name=Mystic Decree
+mana={2}{U}{U}
+type=World Enchantment
+text=All creatures lose flying and islandwalk.
+rarity=R
+[/card]
+[card]
+id=2953
+name=Narwhal
+mana={2}{U}{U}
+type=Creature
+subtype=Whale
+power=2
+toughness=2
+text=First strike, protection from red
+rarity=U
+[/card]
+[card]
+id=3007
+name=Orcish Mine
+mana={1}{R}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant land Orcish Mine enters the battlefield with three ore counters on it. At the beginning of your upkeep and whenever enchanted land becomes tapped, remove an ore counter from Orcish Mine. If there are no ore counters on Orcish Mine, destroy that land and Orcish Mine deals 2 damage to its controller.
+rarity=U
+[/card]
+[card]
+id=2974
+name=Primal Order
+mana={2}{G}{G}
+type=Enchantment
+text=At the beginning of each player's upkeep, Primal Order deals damage to that player equal to the number of nonbasic lands he or she controls.
+rarity=R
+[/card]
+[card]
+id=3023
+name=Prophecy
+mana={W}
+type=Sorcery
+text=Reveal the top card of target opponent's library. If it's a land, you gain 1 life. That player then shuffles his or her library.  Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3024
+name=Rashka the Slayer
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Archer
+power=3
+toughness=3
+text=Reach (This creature can block creatures with flying.) Whenever Rashka blocks one or more black creatures, Rashka gets +1/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=2955
+name=Reef Pirates
+mana={1}{U}{U}
+type=Creature
+subtype=Zombie Pirate
+power=2
+toughness=2
+text=Whenever Reef Pirates deals damage to an opponent, that player puts the top card of his or her library into his or her graveyard.
+rarity=C
+[/card]
+[card]
+id=2975
+name=Renewal
+mana={2}{G}
+type=Sorcery
+text=As an additional cost to cast Renewal, sacrifice a land. Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3008
+name=Retribution
+mana={2}{R}{R}
+type=Sorcery
+text=Choose two target creatures an opponent controls. That player chooses and sacrifices one of those creatures. Put a -1/-1 counter on the other.
+rarity=U
+[/card]
+[card]
+id=2956
+name=Reveka, Wizard Savant
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Dwarf Wizard
+power=0
+toughness=1
+text={T}: Reveka, Wizard Savant deals 2 damage to target creature or player and doesn't untap during your next untap step.
+rarity=U
+[/card]
+[card]
+id=2976
+name=Root Spider
+mana={3}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=2
+text=Whenever Root Spider blocks, it gets +1/+0 and gains first strike until end of turn.
+rarity=U
+[/card]
+[card]
+id=2977
+name=Roots
+mana={3}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature without flying When Roots enters the battlefield, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step.
+rarity=U
+[/card]
+[card]
+id=2908
+name=Roterothopter
+mana={1}
+type=Artifact Creature
+subtype=Thopter
+power=0
+toughness=2
+text=Flying {2}: Roterothopter gets +1/+0 until end of turn. Activate this ability no more than twice each turn.
+rarity=C
+[/card]
+[card]
+id=2978
+name=Rysorian Badger
+mana={2}{G}
+type=Creature
+subtype=Badger
+power=2
+toughness=2
+text=Whenever Rysorian Badger attacks and isn't blocked, you may exile up to two target creature cards from defending player's graveyard. If you do, you gain 1 life for each card exiled this way and Rysorian Badger assigns no combat damage this turn.
+rarity=R
+[/card]
+[card]
+id=3026
+name=Samite Alchemist
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=2
+text={W}{W}, {T}: Prevent the next 4 damage that would be dealt this turn to target creature you control. Tap that creature. It doesn't untap during your next untap step.
+rarity=C
+[/card]
+[card]
+id=2957
+name=Sea Sprite
+mana={1}{U}
+type=Creature
+subtype=Faerie
+power=1
+toughness=1
+text=Flying, protection from red
+rarity=U
+[/card]
+[card]
+id=2958
+name=Sea Troll
+mana={2}{U}
+type=Creature
+subtype=Troll
+power=2
+toughness=1
+text={U}: Regenerate Sea Troll. Activate this ability only if Sea Troll blocked or was blocked by a blue creature this turn.
+rarity=U
+[/card]
+[card]
+id=2928
+name=Sengir Autocrat
+mana={3}{B}
+type=Creature
+subtype=Human
+power=2
+toughness=2
+text=When Sengir Autocrat enters the battlefield, put three 0/1 black Serf creature tokens onto the battlefield. When Sengir Autocrat leaves the battlefield, exile all Serf tokens.
+rarity=U
+[/card]
+[card]
+id=2930
+name=Sengir Bats
+mana={1}{B}{B}
+type=Creature
+subtype=Bat
+power=1
+toughness=2
+text=Flying Whenever a creature dealt damage by Sengir Bats this turn is put into a graveyard, put a +1/+1 counter on Sengir Bats.
+rarity=C
+[/card]
+[card]
+id=3027
+name=Serra Aviary
+mana={3}{W}
+type=World Enchantment
+text=Creatures with flying get +1/+1.
+rarity=R
+[/card]
+[card]
+id=3028
+name=Serra Bestiary
+mana={W}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature At the beginning of your upkeep, sacrifice Serra Bestiary unless you pay {W}{W}. Enchanted creature can't attack or block and its activated abilities with {T} in their costs can't be activated.
+rarity=U
+[/card]
+[card]
+id=3029
+name=Serra Inquisitors
+mana={4}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=3
+text=Whenever Serra Inquisitors blocks or becomes blocked by one or more black creatures, Serra Inquisitors gets +2/+0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=3030
+name=Serra Paladin
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. {1}{W}{W}, {T}: Target creature gains vigilance until end of turn.
+rarity=U
+[/card]
+[card]
+id=2909
+name=Serrated Arrows
+mana={4}
+type=Artifact
+text=Serrated Arrows enters the battlefield with three arrowhead counters on it. At the beginning of your upkeep, if there are no arrowhead counters on Serrated Arrows, sacrifice it. {T}, Remove an arrowhead counter from Serrated Arrows: Put a -1/-1 counter on target creature.
+rarity=C
+[/card]
+[card]
+id=2980
+name=Shrink
+mana={G}
+type=Instant
+text=Target creature gets -5/-0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=3031
+name=Soraya the Falconer
+mana={1}{W}{W}
+type=Legendary Creature
+subtype=Human
+power=2
+toughness=2
+text=Bird creatures get +1/+1. {1}{W}: Target Bird creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+rarity=R
+[/card]
+[card]
+id=2981
+name=Spectral Bears
+mana={1}{G}
+type=Creature
+subtype=Bear Spirit
+power=3
+toughness=3
+text=Whenever Spectral Bears attacks, if defending player controls no black nontoken permanents, it doesn't untap during your next untap step.
+rarity=U
+[/card]
+[card]
+id=2931
+name=Timmerian Fiends
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
+text=Remove Timmerian Fiends from your deck before playing if you're not playing for ante. {B}{B}{B}, Sacrifice Timmerian Fiends: The owner of target artifact may ante the top card of his or her library. If that player doesn't, exchange ownership of that artifact and Timmerian Fiends. Put the artifact card into your graveyard and Timmerian Fiends from anywhere into that player's graveyard. This change in ownership is permanent.
+rarity=R
+[/card]
+[card]
+id=2933
+name=Torture
+mana={B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature {1}{B}: Put a -1/-1 counter on enchanted creature.
+rarity=C
+[/card]
+[card]
+id=3033
+name=Trade Caravan
+mana={W}
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=1
+text=At the beginning of your upkeep, put a currency counter on Trade Caravan. Remove two currency counters from Trade Caravan: Untap target basic land. Activate this ability only during an opponent's upkeep.
+rarity=C
+[/card]
+[card]
+id=3034
+name=Truce
+mana={2}{W}
+type=Instant
+text=Each player may draw up to two cards. For each card less than two a player draws this way, that player gains 2 life.
+rarity=R
+[/card]
+[card]
+id=2934
+name=Veldrane of Sengir
+mana={5}{B}{B}
+type=Legendary Creature
+subtype=Human Rogue
+power=5
+toughness=5
+text={1}{B}{B}: Veldrane of Sengir gets -3/-0 and gains forestwalk until end of turn.
+rarity=R
+[/card]
+[card]
+id=2959
+name=Wall of Kelp
+mana={U}{U}
+type=Creature
+subtype=Plant Wall
+power=0
+toughness=3
+text=Defender (This creature can't attack.) {U}{U}, {T}: Put a 0/1 blue Plant Wall creature token with defender named Kelp onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=2983
+name=Willow Faerie
+mana={1}{G}
+type=Creature
+subtype=Faerie
+power=1
+toughness=2
+text=Flying
+rarity=C
+[/card]
+[card]
+id=2984
+name=Willow Priestess
+mana={2}{G}{G}
+type=Creature
+subtype=Faerie Druid
+power=2
+toughness=2
+text={T}: You may put a Faerie permanent card from your hand onto the battlefield. {2}{G}: Target green creature gains protection from black until end of turn.
+rarity=U
+[/card]
+[card]
+id=3009
+name=Winter Sky
+mana={R}
+type=Sorcery
+text=Flip a coin. If you win the flip, Winter Sky deals 1 damage to each creature and each player. If you lose the flip, each player draws a card.
+rarity=R
+[/card]
+[card]
+id=3039
+name=Wizards' School
+mana=
+type=Land
+text={T}: Add {1} to your mana pool.  {1}, {T}: Add {U} to your mana pool.  {2}, {T}: Add {W} or {B} to your mana pool.
+rarity=U
+[/card]

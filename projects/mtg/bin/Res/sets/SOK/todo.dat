@@ -1,0 +1,1658 @@
+
+[card]
+id=74208
+name=ÁEher Shockwave
+mana={3}{W}
+type=Instant
+text=Choose one  ETap all Spirits; or tap all non-Spirit creatures.
+rarity=U
+[/card]
+[card]
+id=74393
+name=Akki Drillmaster
+mana={2}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=2
+text={T}: Target creature gains haste until end of turn.
+rarity=C
+[/card]
+[card]
+id=79164
+name=Akki Underling
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=1
+text=As long as you have seven or more cards in hand, Akki Underling gets +2/+1 and has first strike.
+rarity=C
+[/card]
+[card]
+id=74148
+name=Akuta, Born of Ash
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Spirit
+power=3
+toughness=2
+text=Haste At the beginning of your upkeep, if you have more cards in hand than each opponent, you may sacrifice a Swamp. If you do, return Akuta, Born of Ash from your graveyard to the battlefield.
+rarity=R
+[/card]
+[card]
+id=74050
+name=Araba Mothrider
+mana={1}{W}
+type=Creature
+subtype=Human Samurai
+power=1
+toughness=1
+text=Flying Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+rarity=C
+[/card]
+[card]
+id=87333
+name=Arashi, the Sky Asunder
+mana={3}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=5
+toughness=5
+text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. Channel  E{X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
+rarity=R
+[/card]
+[card]
+id=87334
+name=Ashes of the Fallen
+mana={2}
+type=Artifact
+text=As Ashes of the Fallen enters the battlefield, choose a creature type. Each creature card in your graveyard has the chosen creature type in addition to its other types.
+rarity=R
+[/card]
+[card]
+id=84370
+name=Ayumi, the Last Visitor
+mana={3}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=7
+toughness=3
+text=Legendary landwalk
+rarity=R
+[/card]
+[card]
+id=74201
+name=Barrel Down Sokenzan
+mana={2}{R}
+type=Instant
+subtype=Arcane
+text=Sweep  EReturn any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
+rarity=C
+[/card]
+[card]
+id=84709
+name=Blood Clock
+mana={4}
+type=Artifact
+text=At the beginning of each player's upkeep, that player returns a permanent he or she controls to its owner's hand unless he or she pays 2 life.
+rarity=R
+[/card]
+[card]
+id=78585
+name=Bounteous Kirin
+mana={5}{G}{G}
+type=Legendary Creature
+subtype=Kirin Spirit
+power=4
+toughness=4
+text=Flying Whenever you cast a Spirit or Arcane spell, you may gain life equal to that spell's converted mana cost.
+rarity=R
+[/card]
+[card]
+id=74163
+name=Briarknit Kami
+mana={3}{G}{G}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=Whenever you cast a Spirit or Arcane spell, put a +1/+1 counter on target creature.
+rarity=U
+[/card]
+[card]
+id=50234
+name=Burning-Eye Zubera
+mana={2}{R}{R}
+type=Creature
+subtype=Zubera Spirit
+power=3
+toughness=3
+text=When Burning-Eye Zubera is put into a graveyard from the battlefield, if 4 or more damage was dealt to it this turn, Burning-Eye Zubera deals 3 damage to target creature or player.
+rarity=U
+[/card]
+[card]
+id=88810
+name=Captive Flame
+mana={2}{R}
+type=Enchantment
+text={R}: Target creature gets +1/+0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=84380
+name=Celestial Kirin
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Kirin Spirit
+power=3
+toughness=3
+text=Flying Whenever you cast a Spirit or Arcane spell, destroy all permanents with that spell's converted mana cost.
+rarity=R
+[/card]
+[card]
+id=74186
+name=Charge Across the Araba
+mana={4}{W}
+type=Instant
+subtype=Arcane
+text=Sweep  EReturn any number of Plains you control to their owner's hand. Creatures you control get +1/+1 until end of turn for each Plains returned this way.
+rarity=U
+[/card]
+[card]
+id=88803
+name=Choice of Damnations
+mana={5}{B}
+type=Sorcery
+subtype=Arcane
+text=Target opponent chooses a number. You may have that player lose that much life. If you don't, that player sacrifices all but that many permanents.
+rarity=R
+[/card]
+[card]
+id=89399
+name=Cloudhoof Kirin
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Kirin Spirit
+power=4
+toughness=4
+text=Flying Whenever you cast a Spirit or Arcane spell, you may put the top X cards of target player's library into his or her graveyard, where X is that spell's converted mana cost.
+rarity=R
+[/card]
+[card]
+id=74132
+name=Cowed by Wisdom
+mana={W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature can't attack or block unless its controller pays {1} for each card in your hand.
+rarity=C
+[/card]
+[card]
+id=87329
+name=Curtain of Light
+mana={1}{W}
+type=Instant
+text=Target attacking unblocked creature becomes blocked. Draw a card.
+rarity=C
+[/card]
+[card]
+id=88786
+name=Cut the Earthly Bond
+mana={U}
+type=Instant
+subtype=Arcane
+text=Return target enchanted permanent to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=87337
+name=Death Denied
+mana={X}{B}{B}
+type=Instant
+subtype=Arcane
+text=Return X target creature cards from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=74202
+name=Death of a Thousand Stings
+mana={4}{B}
+type=Instant
+subtype=Arcane
+text=Target player loses 1 life and you gain 1 life. At the beginning of your upkeep, if you have more cards in hand than each opponent, you may return Death of a Thousand Stings from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=74003
+name=Deathknell Kami
+mana={1}{B}
+type=Creature
+subtype=Spirit
+power=0
+toughness=1
+text=Flying {2}: Deathknell Kami gets +1/+1 until end of turn. Sacrifice it at the beginning of the next end step. Soulshift 1 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 1 or less from your graveyard to your hand.)
+rarity=C
+[/card]
+[card]
+id=84703
+name=Deathmask Nezumi
+mana={2}{B}
+type=Creature
+subtype=Rat Shaman
+power=2
+toughness=2
+text=As long as you have seven or more cards in hand, Deathmask Nezumi gets +2/+1 and has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
+rarity=C
+[/card]
+[card]
+id=88816
+name=Dense Canopy
+mana={1}{G}
+type=Enchantment
+text=Creatures with flying can block only creatures with flying.
+rarity=U
+[/card]
+[card]
+id=89400
+name=Descendant of Kiyomaro
+mana={1}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+text=As long as you have more cards in hand than each opponent, Descendant of Kiyomaro gets +1/+2 and has "Whenever this creature deals combat damage, you gain 3 life."
+rarity=U
+[/card]
+[card]
+id=74119
+name=Descendant of Masumaro
+mana={2}{G}
+type=Creature
+subtype=Human Monk
+power=1
+toughness=1
+text=At the beginning of your upkeep, put a +1/+1 counter on Descendant of Masumaro for each card in your hand, then remove a +1/+1 counter from Descendant of Masumaro for each card in target opponent's hand.
+rarity=U
+[/card]
+[card]
+id=84648
+name=Descendant of Soramaro
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+text={1}{U}: Look at the top X cards of your library, where X is the number of cards in your hand, then put them back in any order.
+rarity=C
+[/card]
+[card]
+id=87332
+name=Dosan's Oldest Chant
+mana={4}{G}
+type=Sorcery
+text=You gain 6 life. Draw a card.
+rarity=C
+[/card]
+[card]
+id=73988
+name=Dreamcatcher
+mana={U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text=Whenever you cast a Spirit or Arcane spell, you may sacrifice Dreamcatcher. If you do, draw a card.
+rarity=C
+[/card]
+[card]
+id=88799
+name=Ebony Owl Netsuke
+mana={2}
+type=Artifact
+text=At the beginning of each opponent's upkeep, if that player has seven or more cards in hand, Ebony Owl Netsuke deals 4 damage to him or her.
+rarity=U
+[/card]
+[card]
+id=74373
+name=Eiganjo Free-Riders
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=4
+text=Flying At the beginning of your upkeep, return a white creature you control to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=74204
+name=Elder Pine of Jukai
+mana={2}{G}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text=Whenever you cast a Spirit or Arcane spell, reveal the top three cards of your library. Put all land cards revealed this way into your hand and the rest on the bottom of your library in any order. Soulshift 2 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
+rarity=C
+[/card]
+[card]
+id=87594
+name=Endless Swarm
+mana={5}{G}{G}{G}
+type=Sorcery
+text=Put a 1/1 green Snake creature token onto the battlefield for each card in your hand. Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
+rarity=R
+[/card]
+[card]
+id=87598
+name=Enduring Ideal
+mana={5}{W}{W}
+type=Sorcery
+text=Search your library for an enchantment card and put it onto the battlefield. Then shuffle your library. Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
+rarity=R
+[/card]
+[card]
+id=87599
+name=Erayo, Soratami Ascendant
+mana={1}{U}
+type=Legendary Creature
+subtype=Moonfolk Monk
+power=1
+toughness=1
+text=Flying Whenever the fourth spell of a turn is cast, flip Erayo, Soratami Ascendant. rarity=R
+[/card]
+[card]
+id=87599
+name=Erayo, Soratami Ascendant (Erayo's Essence)
+mana={1}{U}
+type=Legendary Enchantment
+Whenever an opponent casts a spell for the first time in a turn, counter that spell.
+rarity=R
+[/card]
+[card]
+id=87593
+name=Eternal Dominion
+mana={7}{U}{U}{U}
+type=Sorcery
+text=Search target opponent's library for an artifact, creature, enchantment, or land card. Put that card onto the battlefield under your control. Then that player shuffles his or her library. Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
+rarity=R
+[/card]
+[card]
+id=74144
+name=Evermind
+mana=
+type=Instant
+subtype=Arcane
+text=(Nonexistent mana costs can't be paid.) Draw a card. Evermind is blue. Splice onto Arcane {1}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+rarity=U
+[/card]
+[card]
+id=74399
+name=Exile into Darkness
+mana={4}{B}
+type=Sorcery
+text=Target player sacrifices a creature with converted mana cost 3 or less. At the beginning of your upkeep, if you have more cards in hand than each opponent, you may return Exile into Darkness from your graveyard to your hand.
+rarity=U
+[/card]
+[card]
+id=84373
+name=Feral Lightning
+mana={3}{R}{R}{R}
+type=Sorcery
+text=Put three 3/1 red Elemental creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step.
+rarity=U
+[/card]
+[card]
+id=74166
+name=Fiddlehead Kami
+mana={4}{G}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=Whenever you cast a Spirit or Arcane spell, regenerate Fiddlehead Kami.
+rarity=C
+[/card]
+[card]
+id=74400
+name=Footsteps of the Goryo
+mana={2}{B}
+type=Sorcery
+subtype=Arcane
+text=Return target creature card from your graveyard to the battlefield. Sacrifice that creature at the beginning of the next end step.
+rarity=U
+[/card]
+[card]
+id=87336
+name=Freed from the Real
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature {U}: Tap enchanted creature. {U}: Untap enchanted creature.
+rarity=C
+[/card]
+[card]
+id=89401
+name=Gaze of Adamaro
+mana={2}{R}{R}
+type=Instant
+subtype=Arcane
+text=Gaze of Adamaro deals damage equal to the number of cards in target player's hand to that player.
+rarity=U
+[/card]
+[card]
+id=74068
+name=Ghost-Lit Nourisher
+mana={2}{G}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text={2}{G}, {T}: Target creature gets +2/+2 until end of turn. Channel  E{3}{G}, Discard Ghost-Lit Nourisher: Target creature gets +4/+4 until end of turn.
+rarity=U
+[/card]
+[card]
+id=87341
+name=Ghost-Lit Raider
+mana={2}{R}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text={2}{R}, {T}: Ghost-Lit Raider deals 2 damage to target creature. Channel  E{3}{R}, Discard Ghost-Lit Raider: Ghost-Lit Raider deals 4 damage to target creature.
+rarity=U
+[/card]
+[card]
+id=74082
+name=Ghost-Lit Redeemer
+mana={W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={W}, {T}: You gain 2 life. Channel  E{1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
+rarity=U
+[/card]
+[card]
+id=74401
+name=Ghost-Lit Stalker
+mana={B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. Channel  E{5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
+rarity=U
+[/card]
+[card]
+id=73996
+name=Ghost-Lit Warder
+mana={1}{U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={3}{U}, {T}: Counter target spell unless its controller pays {2}. Channel  E{3}{U}, Discard Ghost-Lit Warder: Counter target spell unless its controller pays {4}.
+rarity=U
+[/card]
+[card]
+id=89402
+name=Glitterfang
+mana={R}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text=Haste At the beginning of the end step, return Glitterfang to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=88794
+name=Gnat Miser
+mana={B}
+type=Creature
+subtype=Rat Shaman
+power=1
+toughness=1
+text=Each opponent's maximum hand size is reduced by one.
+rarity=C
+[/card]
+[card]
+id=74015
+name=Godo's Irregulars
+mana={R}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
+text={R}: Godo's Irregulars deals 1 damage to target creature blocking it.
+rarity=U
+[/card]
+[card]
+id=74137
+name=Hail of Arrows
+mana={X}{W}
+type=Instant
+text=Hail of Arrows deals X damage divided as you choose among any number of target attacking creatures.
+rarity=U
+[/card]
+[card]
+id=74063
+name=Hand of Cruelty
+mana={B}{B}
+type=Creature
+subtype=Human Samurai
+power=2
+toughness=2
+text=Protection from white Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+rarity=U
+[/card]
+[card]
+id=74173
+name=Hand of Honor
+mana={W}{W}
+type=Creature
+subtype=Human Samurai
+power=2
+toughness=2
+text=Protection from black Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+rarity=U
+[/card]
+[card]
+id=74062
+name=Haru-Onna
+mana={3}{G}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text=When Haru-Onna enters the battlefield, draw a card. Whenever you cast a Spirit or Arcane spell, you may return Haru-Onna to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=88818
+name=Hidetsugu's Second Rite
+mana={3}{R}
+type=Instant
+text=If target player has exactly 10 life, Hidetsugu's Second Rite deals 10 damage to that player.
+rarity=R
+[/card]
+[card]
+id=84716
+name=Homura, Human Ascendant
+mana={4}{R}{R}
+type=Legendary Creature
+subtype=Human Monk
+power=4
+toughness=4
+text=Homura, Human Ascendant can't block. When Homura is put into a graveyard from the battlefield, return it to the battlefield flipped. rarity=R
+[/card]
+[card]
+id=84716
+name=Homura, Human Ascendant (Homura's Essence)
+mana={4}{R}{R}
+type=Legendary Enchantment
+power=2
+toughness=2
+rarity=R
+[/card]
+[card]
+id=88789
+name=Ideas Unbound
+mana={U}{U}
+type=Sorcery
+subtype=Arcane
+Draw three cards. Discard three cards at the beginning of the next end step.
+rarity=C
+[/card]
+[card]
+id=79860
+name=Iizuka the Ruthless
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Human Samurai
+power=3
+toughness=3
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) {2}{R}, Sacrifice a Samurai: Samurai creatures you control gain double strike until end of turn.
+rarity=R
+[/card]
+[card]
+id=74618
+name=Iname as One
+mana={8}{B}{B}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=8
+toughness=8
+text=When Iname as One enters the battlefield, if you cast it from your hand, you may search your library for a Spirit permanent card, put it onto the battlefield, then shuffle your library. When Iname as One is put into a graveyard from the battlefield, you may exile it. If you do, return target Spirit permanent card from your graveyard to the battlefield.
+rarity=R
+[/card]
+[card]
+id=74377
+name=Infernal Kirin
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Kirin Spirit
+power=3
+toughness=3
+text=Flying Whenever you cast a Spirit or Arcane spell, target player reveals his or her hand and discards all cards with that spell's converted mana cost.
+rarity=R
+[/card]
+[card]
+id=74049
+name=Inner Calm, Outer Strength
+mana={2}{G}
+type=Instant
+subtype=Arcane
+text=Target creature gets +X/+X until end of turn, where X is the number of cards in your hand.
+rarity=C
+[/card]
+[card]
+id=84711
+name=Inner Fire
+mana={3}{R}
+type=Sorcery
+text=Add {R} to your mana pool for each card in your hand.
+rarity=C
+[/card]
+[card]
+id=74002
+name=Inner-Chamber Guard
+mana={1}{W}
+type=Creature
+subtype=Human Samurai
+power=0
+toughness=2
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
+rarity=U
+[/card]
+[card]
+id=88813
+name=Into the Fray
+mana={R}
+type=Instant
+subtype=Arcane
+text=Target creature attacks this turn if able. Splice onto Arcane {R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+rarity=C
+[/card]
+[card]
+id=88796
+name=Ivory Crane Netsuke
+mana={2}
+type=Artifact
+text=At the beginning of your upkeep, if you have seven or more cards in hand, you gain 4 life.
+rarity=U
+[/card]
+[card]
+id=74047
+name=Jiwari, the Earth Aflame
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Spirit
+power=3
+toughness=3
+text={X}{R}, {T}: Jiwari, the Earth Aflame deals X damage to target creature without flying. Channel  E{X}{R}{R}{R}, Discard Jiwari: Jiwari deals X damage to each creature without flying.
+rarity=R
+[/card]
+[card]
+id=74016
+name=Kagemaro, First to Suffer
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Demon Spirit
+power=*
+toughness=*
+text=Kagemaro, First to Suffer's power and toughness are each equal to the number of cards in your hand. {B}, Sacrifice Kagemaro: All creatures get -X/-X until end of turn, where X is the number of cards in your hand.
+rarity=R
+[/card]
+[card]
+id=74560
+name=Kagemaro's Clutch
+mana={3}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets -X/-X, where X is the number of cards in your hand.
+rarity=C
+[/card]
+[card]
+id=74055
+name=Kaho, Minamo Historian
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=When Kaho, Minamo Historian enters the battlefield, search your library for up to three instant cards and exile them. Then shuffle your library. {X}, {T}: You may cast a card with converted mana cost X exiled with Kaho without paying its mana cost.
+rarity=R
+[/card]
+[card]
+id=87335
+name=Kami of Empty Graves
+mana={3}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=1
+text=Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+rarity=C
+[/card]
+[card]
+id=84364
+name=Kami of the Crescent Moon
+mana={U}{U}
+type=Legendary Creature
+subtype=Spirit
+power=1
+toughness=3
+text=At the beginning of each player's draw step, that player draws an additional card.
+rarity=R
+[/card]
+[card]
+id=74217
+name=Kami of the Tended Garden
+mana={3}{G}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+text=At the beginning of your upkeep, sacrifice Kami of the Tended Garden unless you pay {G}. Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+rarity=U
+[/card]
+[card]
+id=74195
+name=Kashi-Tribe Elite
+mana={1}{G}{G}
+type=Creature
+subtype=Snake Warrior
+power=2
+toughness=3
+text=Legendary Snakes you control have shroud. (They can't be the targets of spells or abilities.) Whenever Kashi-Tribe Elite deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
+rarity=U
+[/card]
+[card]
+id=74190
+name=Kataki, War's Wage
+mana={1}{W}
+type=Legendary Creature
+subtype=Spirit
+power=2
+toughness=1
+text=All artifacts have "At the beginning of your upkeep, sacrifice this artifact unless you pay {1}."
+rarity=R
+[/card]
+[card]
+id=84705
+name=Kemuri-Onna
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=When Kemuri-Onna enters the battlefield, target player discards a card. Whenever you cast a Spirit or Arcane spell, you may return Kemuri-Onna to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=74157
+name=Kiku's Shadow
+mana={B}{B}
+type=Sorcery
+text=Target creature deals damage to itself equal to its power.
+rarity=U
+[/card]
+[card]
+id=84704
+name=Kiri-Onna
+mana={4}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text=When Kiri-Onna enters the battlefield, return target creature to its owner's hand. Whenever you cast a Spirit or Arcane spell, you may return Kiri-Onna to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=74046
+name=Kitsune Bonesetter
+mana={2}{W}
+type=Creature
+subtype=Fox Cleric
+power=0
+toughness=1
+text={T}: Prevent the next 3 damage that would be dealt to target creature this turn. Activate this ability only if you have more cards in hand than each opponent.
+rarity=C
+[/card]
+[card]
+id=80530
+name=Kitsune Dawnblade
+mana={4}{W}
+type=Creature
+subtype=Fox Samurai
+power=2
+toughness=3
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) When Kitsune Dawnblade enters the battlefield, you may tap target creature.
+rarity=C
+[/card]
+[card]
+id=74213
+name=Kitsune Loreweaver
+mana={1}{W}
+type=Creature
+subtype=Fox Cleric
+power=2
+toughness=1
+text={1}{W}: Kitsune Loreweaver gets +0/+X until end of turn, where X is the number of cards in your hand.
+rarity=C
+[/card]
+[card]
+id=74054
+name=Kiyomaro, First to Stand
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Spirit
+power=*
+toughness=*
+text=Kiyomaro, First to Stand's power and toughness are each equal to the number of cards in your hand. As long as you have four or more cards in hand, Kiyomaro has vigilance. Whenever Kiyomaro deals damage, if you have seven or more cards in hand, you gain 7 life.
+rarity=R
+[/card]
+[card]
+id=87596
+name=Kuon, Ogre Ascendant
+mana={B}{B}{B}
+type=Legendary Creature
+subtype=Ogre Monk
+power=2
+toughness=4
+text=At the beginning of the end step, if three or more creatures were put into graveyards from the battlefield this turn, flip Kuon, Ogre Ascendant. rarity=R
+[/card]
+[card]
+id=87596
+name=Kuon, Ogre Ascendant (Kuon's Essence)
+mana={B}{B}{B}
+type=Legendary Enchantment
+At the beginning of each player's upkeep, that player sacrifices a creature.
+rarity=R
+[/card]
+[card]
+id=74065
+name=Kuro's Taken
+mana={1}{B}
+type=Creature
+subtype=Rat Samurai
+power=1
+toughness=1
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) {1}{B}: Regenerate Kuro's Taken.
+rarity=C
+[/card]
+[card]
+id=74394
+name=Locust Miser
+mana={2}{B}{B}
+type=Creature
+subtype=Rat Shaman
+power=2
+toughness=2
+text=Each opponent's maximum hand size is reduced by two.
+rarity=U
+[/card]
+[card]
+id=88802
+name=Maga, Traitor to Mortals
+mana={X}{B}{B}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=0
+toughness=0
+text=Maga, Traitor to Mortals enters the battlefield with X +1/+1 counters on it. When Maga enters the battlefield, target player loses life equal to the number of +1/+1 counters on it.
+rarity=R
+[/card]
+[card]
+id=74158
+name=Manriki-Gusari
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+2 and has "{T}: Destroy target Equipment." Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+rarity=U
+[/card]
+[card]
+id=74184
+name=Masumaro, First to Live
+mana={3}{G}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=*
+toughness=*
+text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
+rarity=R
+[/card]
+[card]
+id=73991
+name=Matsu-Tribe Birdstalker
+mana={2}{G}{G}
+type=Creature
+subtype=Snake Warrior Archer
+power=2
+toughness=2
+text=Whenever Matsu-Tribe Birdstalker deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. {G}: Matsu-Tribe Birdstalker gains reach until end of turn. (It can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=88821
+name=Measure of Wickedness
+mana={3}{B}
+type=Enchantment
+text=At the beginning of your end step, sacrifice Measure of Wickedness and you lose 8 life. Whenever another card is put into your graveyard from anywhere, target opponent gains control of Measure of Wickedness.
+rarity=U
+[/card]
+[card]
+id=89406
+name=Meishin, the Mind Cage
+mana={4}{U}{U}{U}
+type=Legendary Enchantment
+text=All creatures get -X/-0, where X is the number of cards in your hand.
+rarity=R
+[/card]
+[card]
+id=84359
+name=Michiko Konda, Truth Seeker
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Advisor
+power=2
+toughness=2
+text=Whenever a source an opponent controls deals damage to you, that player sacrifices a permanent.
+rarity=R
+[/card]
+[card]
+id=74388
+name=Mikokoro, Center of the Sea
+mana=
+type=Legendary Land
+text={T}: Add {1} to your mana pool. {2}, {T}: Each player draws a card.
+rarity=R
+[/card]
+[card]
+id=88791
+name=Minamo Scrollkeeper
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+text=Defender (This creature can't attack.) Your maximum hand size is increased by one.
+rarity=C
+[/card]
+[card]
+id=88807
+name=Miren, the Moaning Well
+mana=
+type=Legendary Land
+text={T}: Add {1} to your mana pool. {3}, {T}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
+rarity=R
+[/card]
+[card]
+id=87331
+name=Molting Skin
+mana={2}{G}
+type=Enchantment
+text=Return Molting Skin to its owner's hand: Regenerate target creature.
+rarity=U
+[/card]
+[card]
+id=74198
+name=Moonbow Illusionist
+mana={2}{U}
+type=Creature
+subtype=Moonfolk Wizard
+power=2
+toughness=1
+text=Flying {2}, Return a land you control to its owner's hand: Target land becomes the basic land type of your choice until end of turn.
+rarity=C
+[/card]
+[card]
+id=84643
+name=Moonwing Moth
+mana={1}{W}{W}
+type=Creature
+subtype=Insect
+power=2
+toughness=1
+text=Flying {W}: Moonwing Moth gets +0/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=87330
+name=Murmurs from Beyond
+mana={2}{U}
+type=Instant
+subtype=Arcane
+text=Reveal the top three cards of your library. An opponent chooses one of them. Put that card into your graveyard and the rest into your hand.
+rarity=C
+[/card]
+[card]
+id=87601
+name=Neverending Torment
+mana={4}{B}{B}
+type=Sorcery
+text=Search target player's library for X cards, where X is the number of cards in your hand, and exile them. Then that player shuffles his or her library. Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
+rarity=R
+[/card]
+[card]
+id=88815
+name=Nightsoil Kami
+mana={4}{G}{G}
+type=Creature
+subtype=Spirit
+power=6
+toughness=4
+text=Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
+rarity=C
+[/card]
+[card]
+id=84639
+name=Nikko-Onna
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text=When Nikko-Onna enters the battlefield, destroy target enchantment. Whenever you cast a Spirit or Arcane spell, you may return Nikko-Onna to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=88784
+name=Oboro Breezecaller
+mana={1}{U}
+type=Creature
+subtype=Moonfolk Wizard
+power=1
+toughness=1
+text=Flying {2}, Return a land you control to its owner's hand: Untap target land.
+rarity=C
+[/card]
+[card]
+id=74211
+name=Oboro Envoy
+mana={3}{U}
+type=Creature
+subtype=Moonfolk Wizard
+power=1
+toughness=3
+text=Flying {2}, Return a land you control to its owner's hand: Target creature gets -X/-0 until end of turn, where X is the number of cards in your hand.
+rarity=U
+[/card]
+[card]
+id=74206
+name=Oboro, Palace in the Clouds
+mana=
+type=Legendary Land
+text={T}: Add {U} to your mana pool. {1}: Return Oboro, Palace in the Clouds to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=74196
+name=Okina Nightwatch
+mana={4}{G}
+type=Creature
+subtype=Human Monk
+power=4
+toughness=3
+text=As long as you have more cards in hand than each opponent, Okina Nightwatch gets +3/+3.
+rarity=C
+[/card]
+[card]
+id=74146
+name=O-Naginata
+mana={1}
+type=Artifact
+subtype=Equipment
+text=O-Naginata can be attached only to a creature with 3 or more power. Equipped creature gets +3/+0 and has trample. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+rarity=U
+[/card]
+[card]
+id=88817
+name=One with Nothing
+mana={B}
+type=Instant
+text=Discard your hand.
+rarity=R
+[/card]
+[card]
+id=74048
+name=Oni of Wild Places
+mana={5}{R}
+type=Creature
+subtype=Demon Spirit
+power=6
+toughness=5
+text=Haste At the beginning of your upkeep, return a red creature you control to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=74423
+name=Oppressive Will
+mana={2}{U}
+type=Instant
+text=Counter target spell unless its controller pays {1} for each card in your hand.
+rarity=C
+[/card]
+[card]
+id=89403
+name=Overwhelming Intellect
+mana={4}{U}{U}
+type=Instant
+text=Counter target creature spell. Draw cards equal to that spell's converted mana cost.
+rarity=U
+[/card]
+[card]
+id=75340
+name=Pain's Reward
+mana={2}{B}
+type=Sorcery
+text=Each player may bid life. You start the bidding with a bid of any number. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and draws four cards.
+rarity=R
+[/card]
+[card]
+id=74179
+name=Path of Anger's Flame
+mana={2}{R}
+type=Instant
+subtype=Arcane
+text=Creatures you control get +2/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=74207
+name=Pithing Needle
+mana={1}
+type=Artifact
+text=As Pithing Needle enters the battlefield, name a card. Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
+rarity=R
+[/card]
+[card]
+id=89397
+name=Plow Through Reito
+mana={1}{W}
+type=Instant
+subtype=Arcane
+text=Sweep  EReturn any number of Plains you control to their owner's hand. Target creature gets +1/+1 until end of turn for each Plains returned this way.
+rarity=C
+[/card]
+[card]
+id=74216
+name=Presence of the Wise
+mana={2}{W}{W}
+type=Sorcery
+text=You gain 2 life for each card in your hand.
+rarity=U
+[/card]
+[card]
+id=84376
+name=Promise of Bunrei
+mana={2}{W}
+type=Enchantment
+text=When a creature you control is put into a graveyard from the battlefield, sacrifice Promise of Bunrei. If you do, put four 1/1 colorless Spirit creature tokens onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=74018
+name=Promised Kannushi
+mana={G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+text=Soulshift 7 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 7 or less from your graveyard to your hand.)
+rarity=C
+[/card]
+[card]
+id=88785
+name=Pure Intentions
+mana={W}
+type=Instant
+subtype=Arcane
+text=Whenever a spell or ability an opponent controls causes you to discard cards this turn, return those cards from your graveyard to your hand. Whenever a spell or ability an opponent controls causes you to discard Pure Intentions, return Pure Intentions from your graveyard to your hand at the beginning of the next end step.
+rarity=R
+[/card]
+[card]
+id=74411
+name=Rally the Horde
+mana={5}{R}
+type=Sorcery
+text=Exile the top three cards of your library. If the last card exiled isn't a land, repeat this process until the last card exiled is a land. Put a 1/1 red Warrior creature token onto the battlefield for each nonland card exiled this way.
+rarity=R
+[/card]
+[card]
+id=88787
+name=Raving Oni-Slave
+mana={1}{B}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
+text=When Raving Oni-Slave enters the battlefield, you lose 3 life if you don't control a Demon. When Raving Oni-Slave leaves the battlefield, you lose 3 life if you don't control a Demon.
+rarity=C
+[/card]
+[card]
+id=74396
+name=Razorjaw Oni
+mana={3}{B}
+type=Creature
+subtype=Demon Spirit
+power=4
+toughness=5
+text=Black creatures can't block.
+rarity=U
+[/card]
+[card]
+id=74604
+name=Reki, the History of Kamigawa
+mana={2}{G}
+type=Legendary Creature
+subtype=Human Shaman
+power=1
+toughness=2
+text=Whenever you cast a legendary spell, draw a card.
+rarity=R
+[/card]
+[card]
+id=74189
+name=Rending Vines
+mana={1}{G}{G}
+type=Instant
+subtype=Arcane
+text=Destroy target artifact or enchantment if its converted mana cost is less than or equal to the number of cards in your hand. Draw a card.
+rarity=C
+[/card]
+[card]
+id=84371
+name=Reverence
+mana={2}{W}{W}
+type=Enchantment
+text=Creatures with power 2 or less can't attack you.
+rarity=R
+[/card]
+[card]
+id=74199
+name=Ronin Cavekeeper
+mana={5}{R}
+type=Creature
+subtype=Human Samurai
+power=4
+toughness=3
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
+rarity=C
+[/card]
+[card]
+id=87600
+name=Rune-Tail, Kitsune Ascendant
+mana={2}{W}
+type=Legendary Creature
+subtype=Fox Monk
+power=2
+toughness=2
+text=When you have 30 or more life, flip Rune-Tail, Kitsune Ascendant. rarity=R
+[/card]
+[card]
+id=87600
+name=Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
+mana={2}{W}
+type=Legendary Enchantment
+Prevent all damage that would be dealt to creatures you control.
+rarity=R
+[/card]
+[card]
+id=50430
+name=Rushing-Tide Zubera
+mana={2}{U}{U}
+type=Creature
+subtype=Zubera Spirit
+power=3
+toughness=3
+text=When Rushing-Tide Zubera is put into a graveyard from the battlefield, if 4 or more damage was dealt to it this turn, draw three cards.
+rarity=U
+[/card]
+[card]
+id=74509
+name=Sakashima the Impostor
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Rogue
+power=3
+toughness=1
+text=You may have Sakashima the Impostor enter the battlefield as a copy of any creature on the battlefield, except its name is still Sakashima the Impostor, it's still legendary, and it gains "{2}{U}{U}: Return Sakashima the Impostor to its owner's hand at the beginning of the next end step."
+rarity=R
+[/card]
+[card]
+id=74210
+name=Sakura-Tribe Scout
+mana={G}
+type=Creature
+subtype=Snake Shaman Scout
+power=1
+toughness=1
+text={T}: You may put a land card from your hand onto the battlefield.
+rarity=C
+[/card]
+[card]
+id=87595
+name=Sasaya, Orochi Ascendant
+mana={1}{G}{G}
+type=Legendary Creature
+subtype=Snake Monk
+power=2
+toughness=3
+text=Reveal your hand: If you have seven or more land cards in your hand, flip Sasaya, Orochi Ascendant. rarity=R
+[/card]
+[card]
+id=87595
+name=Sasaya, Orochi Ascendant (Sasaya's Essence)
+mana={1}{G}{G}
+type=Legendary Enchantment
+Whenever a land you control is tapped for mana, for each other land you control with the same name, add one mana to your mana pool of any type that land produced.
+rarity=R
+[/card]
+[card]
+id=88811
+name=Scroll of Origins
+mana={2}
+type=Artifact
+text={2}, {T}: Draw a card if you have seven or more cards in hand.
+rarity=R
+[/card]
+[card]
+id=89398
+name=Secretkeeper
+mana={3}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+text=As long as you have more cards in hand than each opponent, Secretkeeper gets +2/+2 and has flying.
+rarity=U
+[/card]
+[card]
+id=74168
+name=Seed the Land
+mana={2}{G}{G}
+type=Enchantment
+text=Whenever a land enters the battlefield, its controller puts a 1/1 green Snake creature token onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=74056
+name=Seek the Horizon
+mana={3}{G}
+type=Sorcery
+text=Search your library for up to three basic land cards, reveal them, and put them into your hand. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=74471
+name=Sekki, Seasons' Guide
+mana={5}{G}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=0
+toughness=0
+text=Sekki, Seasons' Guide enters the battlefield with eight +1/+1 counters on it. If damage would be dealt to Sekki, prevent that damage, remove that many +1/+1 counters from Sekki, and put that many 1/1 colorless Spirit creature tokens onto the battlefield. Sacrifice eight Spirits: Return Sekki from your graveyard to the battlefield.
+rarity=R
+[/card]
+[card]
+id=88823
+name=Shape Stealer
+mana={U}{U}
+type=Creature
+subtype=Shapeshifter Spirit
+power=1
+toughness=1
+text=Whenever Shape Stealer blocks or becomes blocked by a creature, change Shape Stealer's power and toughness to that creature's power and toughness until end of turn.
+rarity=U
+[/card]
+[card]
+id=74191
+name=Shifting Borders
+mana={3}{U}
+type=Instant
+subtype=Arcane
+text=Exchange control of two target lands. Splice onto Arcane {3}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+rarity=U
+[/card]
+[card]
+id=88812
+name=Shinen of Fear's Chill
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=2
+text=Shinen of Fear's Chill can't block. Channel  E{1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
+rarity=C
+[/card]
+[card]
+id=74088
+name=Shinen of Flight's Wings
+mana={4}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=Flying Channel  E{U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
+rarity=C
+[/card]
+[card]
+id=87339
+name=Shinen of Fury's Fire
+mana={2}{R}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text=Haste Channel  E{R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
+rarity=C
+[/card]
+[card]
+id=74017
+name=Shinen of Life's Roar
+mana={1}{G}
+type=Creature
+subtype=Spirit
+power=1
+toughness=2
+text=All creatures able to block Shinen of Life's Roar do so. Channel  E{2}{G}{G}, Discard Shinen of Life's Roar: All creatures able to block target creature this turn do so.
+rarity=C
+[/card]
+[card]
+id=74361
+name=Shinen of Stars' Light
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text=First strike Channel  E{1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
+rarity=C
+[/card]
+[card]
+id=84717
+name=Sink into Takenuma
+mana={3}{B}
+type=Sorcery
+subtype=Arcane
+text=Sweep  EReturn any number of Swamps you control to their owner's hand. Target player discards a card for each Swamp returned this way.
+rarity=C
+[/card]
+[card]
+id=88797
+name=Skull Collector
+mana={1}{B}{B}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
+text=At the beginning of your upkeep, return a black creature you control to its owner's hand. {1}{B}: Regenerate Skull Collector.
+rarity=U
+[/card]
+[card]
+id=88793
+name=Skyfire Kirin
+mana={2}{R}{R}
+type=Legendary Creature
+subtype=Kirin Spirit
+power=3
+toughness=3
+text=Flying Whenever you cast a Spirit or Arcane spell, you may gain control of target creature with that spell's converted mana cost until end of turn.
+rarity=R
+[/card]
+[card]
+id=74133
+name=Sokenzan Renegade
+mana={2}{R}
+type=Creature
+subtype=Ogre Samurai Mercenary
+power=3
+toughness=3
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) At the beginning of your upkeep, if a player has more cards in hand than any other, the player with the most cards in hand gains control of Sokenzan Renegade.
+rarity=U
+[/card]
+[card]
+id=74398
+name=Sokenzan Spellblade
+mana={4}{R}
+type=Creature
+subtype=Ogre Samurai Shaman
+power=2
+toughness=3
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) {1}{R}: Sokenzan Spellblade gets +X/+0 until end of turn, where X is the number of cards in your hand.
+rarity=C
+[/card]
+[card]
+id=74170
+name=Soramaro, First to Dream
+mana={4}{U}{U}
+type=Legendary Creature
+subtype=Spirit
+power=*
+toughness=*
+text=Flying Soramaro, First to Dream's power and toughness are each equal to the number of cards in your hand. {4}, Return a land you control to its owner's hand: Draw a card.
+rarity=R
+[/card]
+[card]
+id=74174
+name=Soratami Cloud Chariot
+mana={5}
+type=Artifact
+text={2}: Target creature you control gains flying until end of turn. {2}: Prevent all combat damage that would be dealt to and dealt by target creature you control this turn.
+rarity=U
+[/card]
+[card]
+id=74503
+name=Spiraling Embers
+mana={3}{R}
+type=Sorcery
+subtype=Arcane
+text=Spiraling Embers deals damage to target creature or player equal to the number of cards in your hand.
+rarity=C
+[/card]
+[card]
+id=74372
+name=Spiritual Visit
+mana={W}
+type=Instant
+subtype=Arcane
+text=Put a 1/1 colorless Spirit creature token onto the battlefield. Splice onto Arcane {W} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+rarity=C
+[/card]
+[card]
+id=74407
+name=Stampeding Serow
+mana={2}{G}{G}
+type=Creature
+subtype=Antelope Beast
+power=5
+toughness=4
+text=Trample At the beginning of your upkeep, return a green creature you control to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=88808
+name=Sunder from Within
+mana={2}{R}{R}
+type=Sorcery
+subtype=Arcane
+text=Destroy target artifact or land.
+rarity=U
+[/card]
+[card]
+id=74374
+name=Thoughts of Ruin
+mana={2}{R}{R}
+type=Sorcery
+text=Each player sacrifices a land for each card in your hand.
+rarity=R
+[/card]
+[card]
+id=74492
+name=Tomb of Urami
+mana=
+type=Legendary Land
+text={T}: Add {B} to your mana pool. Tomb of Urami deals 1 damage to you if you don't control an Ogre. {2}{B}{B}, {T}, Sacrifice all lands you control: Put a legendary 5/5 black Demon Spirit creature token with flying named Urami onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=87342
+name=Torii Watchward
+mana={4}{W}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=Vigilance (Attacking doesn't cause this creature to tap.) Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+rarity=C
+[/card]
+[card]
+id=88804
+name=Trusted Advisor
+mana={U}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=2
+text=Your maximum hand size is increased by two. At the beginning of your upkeep, return a blue creature you control to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=80412
+name=Twincast
+mana={U}{U}
+type=Instant
+text=Copy target instant or sorcery spell. You may choose new targets for the copy.
+rarity=R
+[/card]
+[card]
+id=87602
+name=Undying Flames
+mana={4}{R}{R}
+type=Sorcery
+text=Exile cards from the top of your library until you exile a nonland card. Undying Flames deals damage to target creature or player equal to that card's converted mana cost. Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
+rarity=R
+[/card]
+[card]
+id=74130
+name=Wine of Blood and Iron
+mana={3}
+type=Artifact
+text={4}: Target creature gets +X/+0 until end of turn, where X is its power. Sacrifice Wine of Blood and Iron at the beginning of the next end step.
+rarity=R
+[/card]
+[card]
+id=84712
+name=Yuki-Onna
+mana={3}{R}
+type=Creature
+subtype=Spirit
+power=3
+toughness=1
+text=When Yuki-Onna enters the battlefield, destroy target artifact. Whenever you cast a Spirit or Arcane spell, you may return Yuki-Onna to its owner's hand.
+rarity=U
+[/card]

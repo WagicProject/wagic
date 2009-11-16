@@ -1,0 +1,10 @@
+[card]
+id=21285
+name=Accumulated Knowledge
+mana={1}{U}
+type=Instant
+text=Draw a card, then draw cards equal to the number of cards named Accumulated Knowledge in all graveyards.
+auto=draw:1
+auto=foreach(Accumulated Knowledge|graveyard) draw:1
+rarity=C
+[/card]

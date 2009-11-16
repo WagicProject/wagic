@@ -1,0 +1,9 @@
+[card]
+id=47281
+name=Ark of Blight
+mana={2}
+type=Artifact
+text={3}, {T}, Sacrifice Ark of Blight: Destroy target land.
+auto={3}{T}{S}:destroy target(land)
+rarity=U
+[/card]

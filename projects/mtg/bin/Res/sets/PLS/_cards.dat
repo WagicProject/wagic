@@ -1,0 +1,12 @@
+[card]
+id=27613
+name=Alpha Kavu
+mana={2}{G}
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+text={1}{G}: Target Kavu creature gets -1/+1 until end of turn.
+auto={1}{G}:-1/1 target(kavu)
+rarity=U
+[/card]

@@ -1,0 +1,1363 @@
+
+[card]
+id=33717
+name=Anger
+mana={3}{R}
+type=Creature
+subtype=Incarnation
+power=2
+toughness=2
+text=Haste As long as Anger is in your graveyard and you control a Mountain, creatures you control have haste.
+rarity=U
+[/card]
+[card]
+id=36039
+name=Anurid Barkripper
+mana={1}{G}{G}
+type=Creature
+subtype=Frog Beast
+power=2
+toughness=2
+text=Threshold  EAnurid Barkripper gets +2/+2 as long as seven or more cards are in your graveyard.
+rarity=C
+[/card]
+[card]
+id=35059
+name=Anurid Brushhopper
+mana={1}{G}{W}
+type=Creature
+subtype=Frog Beast
+power=3
+toughness=4
+text=Discard two cards: Exile Anurid Brushhopper. Return it to the battlefield under its owner's control at the beginning of the next end step.
+rarity=R
+[/card]
+[card]
+id=36453
+name=Anurid Swarmsnapper
+mana={2}{G}
+type=Creature
+subtype=Frog Beast
+power=1
+toughness=4
+text=Reach (This creature can block creatures with flying.) {1}{G}: Anurid Swarmsnapper can block an additional creature this turn.
+rarity=U
+[/card]
+[card]
+id=36430
+name=Arcane Teachings
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) Enchanted creature gets +2/+2 and has "{T}: This creature deals 1 damage to target creature or player."
+rarity=U
+[/card]
+[card]
+id=21275
+name=Aven Fogbringer
+mana={3}{U}
+type=Creature
+subtype=Bird Wizard
+power=2
+toughness=1
+text=Flying When Aven Fogbringer enters the battlefield, return target land to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=34865
+name=Aven Warcraft
+mana={2}{W}
+type=Instant
+text=Creatures you control get +0/+2 until end of turn. Threshold  EIf seven or more cards are in your graveyard, creatures you control also gain protection from the color of your choice until end of turn.
+rarity=U
+[/card]
+[card]
+id=20842
+name=Balthor the Defiled
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Zombie Dwarf
+power=2
+toughness=2
+text=Minion creatures get +1/+1. {B}{B}{B}, Exile Balthor the Defiled: Each player returns all black and all red creature cards from his or her graveyard to the battlefield.
+rarity=R
+[/card]
+[card]
+id=34818
+name=Barbarian Bully
+mana={2}{R}
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
+text=Discard a card at random: Barbarian Bully gets +2/+2 until end of turn unless a player has Barbarian Bully deal 4 damage to him or her. Activate this ability only once each turn.
+rarity=C
+[/card]
+[card]
+id=35079
+name=Battle Screech
+mana={2}{W}{W}
+type=Sorcery
+text=Put two 1/1 white Bird creature tokens with flying onto the battlefield. Flashback—Tap three untapped white creatures you control. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=U
+[/card]
+[card]
+id=36040
+name=Battlefield Scrounger
+mana={3}{G}{G}
+type=Creature
+subtype=Centaur
+power=3
+toughness=3
+text=Threshold  EPut three cards from your graveyard on the bottom of your library: Battlefield Scrounger gets +3/+3 until end of turn. Activate this ability only once each turn, and only if seven or more cards are in your graveyard.
+rarity=C
+[/card]
+[card]
+id=34464
+name=Battlewise Aven
+mana={3}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+text=Flying Threshold  EAs long as seven or more cards are in your graveyard, Battlewise Aven gets +1/+1 and has first strike.
+rarity=C
+[/card]
+[card]
+id=36118
+name=Benevolent Bodyguard
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text=Sacrifice Benevolent Bodyguard: Target creature you control gains protection from the color of your choice until end of turn.
+rarity=C
+[/card]
+[card]
+id=35891
+name=Book Burning
+mana={1}{R}
+type=Sorcery
+text=Any player may have Book Burning deal 6 damage to him or her. If no one does, put the top six cards of target player's library into his or her graveyard.
+rarity=C
+[/card]
+[card]
+id=34201
+name=Border Patrol
+mana={4}{W}
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=6
+text=Vigilance
+rarity=C
+[/card]
+[card]
+id=33721
+name=Brawn
+mana={3}{G}
+type=Creature
+subtype=Incarnation
+power=3
+toughness=3
+text=Trample As long as Brawn is in your graveyard and you control a Forest, creatures you control have trample.
+rarity=U
+[/card]
+[card]
+id=29856
+name=Breaking Point
+mana={1}{R}{R}
+type=Sorcery
+text=Any player may have Breaking Point deal 6 damage to him or her. If no one does, destroy all creatures and they can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=36038
+name=Browbeat
+mana={2}{R}
+type=Sorcery
+text=Any player may have Browbeat deal 5 damage to him or her. If no one does, target player draws three cards.
+rarity=U
+[/card]
+[card]
+id=34403
+name=Burning Wish
+mana={1}{R}
+type=Sorcery
+text=You may choose a sorcery card you own from outside the game, reveal that card, and put it into your hand. Exile Burning Wish.
+rarity=R
+[/card]
+[card]
+id=34789
+name=Cabal Therapy
+mana={B}
+type=Sorcery
+text=Name a nonland card. Target player reveals his or her hand and discards all cards with that name. Flashback—Sacrifice a creature. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=U
+[/card]
+[card]
+id=36117
+name=Cabal Trainee
+mana={B}
+type=Creature
+subtype=Human Minion
+power=1
+toughness=1
+text=Sacrifice Cabal Trainee: Target creature gets -2/-0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=36429
+name=Cagemail
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/+2 and can't attack.
+rarity=C
+[/card]
+[card]
+id=36410
+name=Canopy Claws
+mana={G}
+type=Instant
+text=Target creature loses flying until end of turn. Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=C
+[/card]
+[card]
+id=37120
+name=Centaur Rootcaster
+mana={3}{G}
+type=Creature
+subtype=Centaur Druid
+power=2
+toughness=2
+text=Whenever Centaur Rootcaster deals combat damage to a player, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
+rarity=C
+[/card]
+[card]
+id=26728
+name=Cephalid Constable
+mana={1}{U}{U}
+type=Creature
+subtype=Cephalid Wizard
+power=1
+toughness=1
+text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
+rarity=R
+[/card]
+[card]
+id=34784
+name=Cephalid Inkshrouder
+mana={2}{U}
+type=Creature
+subtype=Cephalid
+power=2
+toughness=1
+text=Discard a card: Cephalid Inkshrouder gains shroud until end of turn and is unblockable this turn. (A permanent with shroud can't be the target of spells or abilities.)
+rarity=U
+[/card]
+[card]
+id=34958
+name=Chastise
+mana={3}{W}
+type=Instant
+text=Destroy target attacking creature. You gain life equal to its power.
+rarity=U
+[/card]
+[card]
+id=35893
+name=Commander Eesha
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Bird Soldier
+power=2
+toughness=4
+text=Flying, protection from creatures
+rarity=R
+[/card]
+[card]
+id=35170
+name=Crush of Wurms
+mana={6}{G}{G}{G}
+type=Sorcery
+text=Put three 6/6 green Wurm creature tokens onto the battlefield. Flashback {9}{G}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=R
+[/card]
+[card]
+id=34400
+name=Cunning Wish
+mana={2}{U}
+type=Instant
+text=You may choose an instant card you own from outside the game, reveal that card, and put it into your hand. Exile Cunning Wish.
+rarity=R
+[/card]
+[card]
+id=34402
+name=Death Wish
+mana={1}{B}{B}
+type=Sorcery
+text=You may choose a card you own from outside the game and put it into your hand. You lose half your life, rounded up. Exile Death Wish.
+rarity=R
+[/card]
+[card]
+id=35076
+name=Defy Gravity
+mana={U}
+type=Instant
+text=Target creature gains flying until end of turn. Flashback {U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=C
+[/card]
+[card]
+id=35074
+name=Dwarven Bloodboiler
+mana={R}{R}{R}
+type=Creature
+subtype=Dwarf
+power=2
+toughness=2
+text=Tap an untapped Dwarf you control: Target creature gets +2/+0 until end of turn.
+rarity=R
+[/card]
+[card]
+id=34950
+name=Dwarven Driller
+mana={3}{R}
+type=Creature
+subtype=Dwarf
+power=2
+toughness=2
+text={T}: Destroy target land unless its controller has Dwarven Driller deal 2 damage to him or her.
+rarity=U
+[/card]
+[card]
+id=36116
+name=Dwarven Scorcher
+mana={R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+text=Sacrifice Dwarven Scorcher: Dwarven Scorcher deals 1 damage to target creature unless that creature's controller has Dwarven Scorcher deal 2 damage to him or her.
+rarity=C
+[/card]
+[card]
+id=35080
+name=Earsplitting Rats
+mana={3}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+text=When Earsplitting Rats enters the battlefield, each player discards a card. Discard a card: Regenerate Earsplitting Rats.
+rarity=C
+[/card]
+[card]
+id=12692
+name=Elephant Guide
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +3/+3. When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
+rarity=U
+[/card]
+[card]
+id=29862
+name=Ember Shot
+mana={6}{R}
+type=Instant
+text=Ember Shot deals 3 damage to target creature or player.  Draw a card.
+rarity=C
+[/card]
+[card]
+id=36414
+name=Envelop
+mana={U}
+type=Instant
+text=Counter target sorcery spell.
+rarity=C
+[/card]
+[card]
+id=33697
+name=Epic Struggle
+mana={2}{G}{G}
+type=Enchantment
+text=At the beginning of your upkeep, if you control twenty or more creatures, you win the game.
+rarity=R
+[/card]
+[card]
+id=35553
+name=Erhnam Djinn
+mana={3}{G}
+type=Creature
+subtype=Djinn
+power=4
+toughness=5
+text=At the beginning of your upkeep, target non-Wall creature an opponent controls gains forestwalk until your next upkeep.
+rarity=U
+[/card]
+[card]
+id=29885
+name=Exoskeletal Armor
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +X/+X, where X is the number of creature cards in all graveyards.
+rarity=U
+[/card]
+[card]
+id=33722
+name=Filth
+mana={3}{B}
+type=Creature
+subtype=Incarnation
+power=2
+toughness=2
+text=Swampwalk As long as Filth is in your graveyard and you control a Swamp, creatures you control have swampwalk.
+rarity=U
+[/card]
+[card]
+id=34929
+name=Firecat Blitz
+mana={X}{R}{R}
+type=Sorcery
+text=Put X 1/1 red Elemental Cat creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step. Flashback—{R}{R}, Sacrifice X Mountains. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=U
+[/card]
+[card]
+id=34214
+name=Flaring Pain
+mana={1}{R}
+type=Instant
+text=Damage can't be prevented this turn. Flashback {R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=C
+[/card]
+[card]
+id=29831
+name=Flash of Insight
+mana={X}{1}{U}
+type=Instant
+text=Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library. Flashback—{1}{U}, Exile X blue cards from your graveyard. (You may cast this card from your graveyard for its flashback cost, then exile it. You can't exile Flash of Insight to pay for its own flashback cost.)
+rarity=U
+[/card]
+[card]
+id=34930
+name=Fledgling Dragon
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=2
+toughness=2
+text=Flying Threshold  EAs long as seven or more cards are in your graveyard, Fledgling Dragon gets +3/+3 and has "{R}: Fledgling Dragon gets +1/+0 until end of turn."
+rarity=R
+[/card]
+[card]
+id=35071
+name=Folk Medicine
+mana={2}{G}
+type=Instant
+text=You gain 1 life for each creature you control. Flashback {1}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=C
+[/card]
+[card]
+id=34244
+name=Forcemage Advocate
+mana={1}{G}
+type=Creature
+subtype=Centaur Shaman
+power=2
+toughness=1
+text={T}: Return target card in an opponent's graveyard to his or her hand. Put a +1/+1 counter on target creature.
+rarity=U
+[/card]
+[card]
+id=34889
+name=Funeral Pyre
+mana={W}
+type=Instant
+text=Exile target card from a graveyard. Its owner puts a 1/1 white Spirit creature token with flying onto the battlefield.
+rarity=C
+[/card]
+[card]
+id=34833
+name=Genesis
+mana={4}{G}
+type=Creature
+subtype=Incarnation
+power=4
+toughness=4
+text=At the beginning of your upkeep, if Genesis is in your graveyard, you may pay {2}{G}. If you do, return target creature card from your graveyard to your hand.
+rarity=R
+[/card]
+[card]
+id=36112
+name=Giant Warthog
+mana={5}{G}
+type=Creature
+subtype=Boar Beast
+power=5
+toughness=5
+text=Trample
+rarity=C
+[/card]
+[card]
+id=34822
+name=Glory
+mana={3}{W}{W}
+type=Creature
+subtype=Incarnation
+power=3
+toughness=3
+text=Flying {2}{W}: Creatures you control gain protection from the color of your choice until end of turn. Activate this ability only if Glory is in your graveyard.
+rarity=R
+[/card]
+[card]
+id=34399
+name=Golden Wish
+mana={3}{W}{W}
+type=Sorcery
+text=You may choose an artifact or enchantment card you own from outside the game, reveal that card, and put it into your hand. Exile Golden Wish.
+rarity=R
+[/card]
+[card]
+id=34917
+name=Goretusk Firebeast
+mana={5}{R}
+type=Creature
+subtype=Elemental Boar Beast
+power=2
+toughness=2
+text=When Goretusk Firebeast enters the battlefield, it deals 4 damage to target player.
+rarity=C
+[/card]
+[card]
+id=35161
+name=Grave Consequences
+mana={1}{B}
+type=Instant
+text=Each player may exile any number of cards from his or her graveyard. Then each player loses 1 life for each card in his or her graveyard. Draw a card.
+rarity=U
+[/card]
+[card]
+id=34808
+name=Grip of Amnesia
+mana={1}{U}
+type=Instant
+text=Counter target spell unless its controller exiles all cards from his or her graveyard. Draw a card.
+rarity=C
+[/card]
+[card]
+id=34209
+name=Grizzly Fate
+mana={3}{G}{G}
+type=Sorcery
+text=Put two 2/2 green Bear creature tokens onto the battlefield. Threshold  EPut four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. Flashback {5}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=U
+[/card]
+[card]
+id=36431
+name=Guided Strike
+mana={1}{W}
+type=Instant
+text=Target creature gets +1/+0 and gains first strike until end of turn.  Draw a card.
+rarity=C
+[/card]
+[card]
+id=29890
+name=Guiltfeeder
+mana={3}{B}{B}
+type=Creature
+subtype=Horror
+power=0
+toughness=4
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Whenever Guiltfeeder attacks and isn't blocked, defending player loses 1 life for each card in his or her graveyard.
+rarity=R
+[/card]
+[card]
+id=36115
+name=Hapless Researcher
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text=Sacrifice Hapless Researcher: Draw a card, then discard a card.
+rarity=C
+[/card]
+[card]
+id=36411
+name=Harvester Druid
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+text={T}: Add to your mana pool one mana of any color that a land you control could produce.
+rarity=C
+[/card]
+[card]
+id=35167
+name=Hunting Grounds
+mana={G}{W}
+type=Enchantment
+text=Threshold  EAs long as seven or more cards are in your graveyard, Hunting Grounds has "Whenever an opponent casts a spell, you may put a creature card from your hand onto the battlefield."
+rarity=R
+[/card]
+[card]
+id=35087
+name=Infectious Rage
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/-1. When enchanted creature is put into a graveyard, choose a creature at random Infectious Rage can enchant. Return Infectious Rage to the battlefield attached to that creature.
+rarity=U
+[/card]
+[card]
+id=34758
+name=Ironshell Beetle
+mana={1}{G}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+text=When Ironshell Beetle enters the battlefield, put a +1/+1 counter on target creature.
+rarity=C
+[/card]
+[card]
+id=36451
+name=Jeska, Warrior Adept
+mana={2}{R}{R}
+type=Legendary Creature
+subtype=Human Barbarian Warrior
+power=3
+toughness=1
+text=First strike, haste {T}: Jeska, Warrior Adept deals 1 damage to target creature or player.
+rarity=R
+[/card]
+[card]
+id=35168
+name=Keep Watch
+mana={2}{U}
+type=Instant
+text=Draw a card for each attacking creature.
+rarity=C
+[/card]
+[card]
+id=36113
+name=Krosan Reclamation
+mana={1}{G}
+type=Instant
+text=Target player shuffles up to two target cards from his or her graveyard into his or her library. Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=U
+[/card]
+[card]
+id=30657
+name=Krosan Verge
+mana=
+type=Land
+text=Krosan Verge enters the battlefield tapped. {T}: Add {1} to your mana pool. {2}, {T}, Sacrifice Krosan Verge: Search your library for a Forest card and a Plains card and put them onto the battlefield tapped. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=35069
+name=Krosan Wayfarer
+mana={G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+text=Sacrifice Krosan Wayfarer: You may put a land card from your hand onto the battlefield.
+rarity=C
+[/card]
+[card]
+id=27145
+name=Laquatus's Disdain
+mana={1}{U}
+type=Instant
+text=Counter target spell cast from a graveyard. Draw a card.
+rarity=U
+[/card]
+[card]
+id=29766
+name=Lava Dart
+mana={R}
+type=Instant
+text=Lava Dart deals 1 damage to target creature or player. Flashback—Sacrifice a Mountain. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=C
+[/card]
+[card]
+id=34768
+name=Lead Astray
+mana={1}{W}
+type=Instant
+text=Tap up to two target creatures.
+rarity=C
+[/card]
+[card]
+id=35083
+name=Liberated Dwarf
+mana={R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+text={R}, Sacrifice Liberated Dwarf: Target green creature gets +1/+0 and gains first strike until end of turn.
+rarity=C
+[/card]
+[card]
+id=34208
+name=Lightning Surge
+mana={3}{R}{R}
+type=Sorcery
+text=Lightning Surge deals 4 damage to target creature or player. Threshold  EIf seven or more cards are in your graveyard, instead Lightning Surge deals 6 damage to that creature or player and the damage can't be prevented. Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=R
+[/card]
+[card]
+id=34405
+name=Living Wish
+mana={1}{G}
+type=Sorcery
+text=You may choose a creature or land card you own from outside the game, reveal that card, and put it into your hand. Exile Living Wish.
+rarity=R
+[/card]
+[card]
+id=34775
+name=Lost in Thought
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature can't attack or block and its activated abilities can't be activated. Its controller may exile three cards from his or her graveyard to ignore this effect until end of turn.
+rarity=C
+[/card]
+[card]
+id=34480
+name=Masked Gorgon
+mana={4}{B}
+type=Creature
+subtype=Gorgon
+power=5
+toughness=5
+text=Green creatures and white creatures have protection from Gorgons. Threshold  EMasked Gorgon has protection from green and from white as long as seven or more cards are in your graveyard.
+rarity=R
+[/card]
+[card]
+id=36114
+name=Mental Note
+mana={U}
+type=Instant
+text=Put the top two cards of your library into your graveyard.  Draw a card.
+rarity=C
+[/card]
+[card]
+id=35057
+name=Mirari's Wake
+mana={3}{G}{W}
+type=Enchantment
+text=Creatures you control get +1/+1.  Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced.
+rarity=R
+[/card]
+[card]
+id=36413
+name=Mirror Wall
+mana={3}{U}
+type=Creature
+subtype=Wall
+power=3
+toughness=4
+text=Defender (This creature can't attack.) {W}: Mirror Wall can attack this turn as though it didn't have defender.
+rarity=C
+[/card]
+[card]
+id=34777
+name=Mist of Stagnation
+mana={3}{U}{U}
+type=Enchantment
+text=Permanents don't untap during their controllers' untap steps. At the beginning of each player's upkeep, that player chooses a permanent for each card in his or her graveyard, then untaps those permanents.
+rarity=R
+[/card]
+[card]
+id=35171
+name=Morality Shift
+mana={5}{B}{B}
+type=Sorcery
+text=Exchange your graveyard and library. Then shuffle your library.
+rarity=R
+[/card]
+[card]
+id=34401
+name=Nantuko Monastery
+mana=
+type=Land
+text={T}: Add {1} to your mana pool. Threshold  E{G}{W}: Nantuko Monastery becomes a 4/4 green and white Insect Monk creature with first strike until end of turn. It's still a land. Activate this ability only if seven or more cards are in your graveyard.
+rarity=U
+[/card]
+[card]
+id=36526
+name=Nantuko Tracer
+mana={1}{G}
+type=Creature
+subtype=Insect Druid
+power=2
+toughness=1
+text=When Nantuko Tracer enters the battlefield, you may put target card from a graveyard on the bottom of its owner's library.
+rarity=C
+[/card]
+[card]
+id=34241
+name=Nomad Mythmaker
+mana={2}{W}
+type=Creature
+subtype=Human Nomad Cleric
+power=2
+toughness=2
+text={W}, {T}: Put target Aura card in a graveyard onto the battlefield attached to a creature you control. (You control that Aura.)
+rarity=R
+[/card]
+[card]
+id=34245
+name=Nullmage Advocate
+mana={2}{G}
+type=Creature
+subtype=Insect Druid
+power=2
+toughness=3
+text={T}: Return two target cards in an opponent's graveyard to his or her hand. Destroy target artifact or enchantment.
+rarity=C
+[/card]
+[card]
+id=35073
+name=Phantom Centaur
+mana={2}{G}{G}
+type=Creature
+subtype=Centaur Spirit
+power=2
+toughness=0
+text=Protection from black Phantom Centaur enters the battlefield with three +1/+1 counters on it. If damage would be dealt to Phantom Centaur, prevent that damage. Remove a +1/+1 counter from Phantom Centaur.
+rarity=U
+[/card]
+[card]
+id=34932
+name=Phantom Flock
+mana={3}{W}{W}
+type=Creature
+subtype=Bird Soldier Spirit
+power=0
+toughness=0
+text=Flying Phantom Flock enters the battlefield with three +1/+1 counters on it. If damage would be dealt to Phantom Flock, prevent that damage. Remove a +1/+1 counter from Phantom Flock.
+rarity=U
+[/card]
+[card]
+id=34948
+name=Phantom Nantuko
+mana={2}{G}
+type=Creature
+subtype=Insect Spirit
+power=0
+toughness=0
+text=Trample Phantom Nantuko enters the battlefield with two +1/+1 counters on it. If damage would be dealt to Phantom Nantuko, prevent that damage. Remove a +1/+1 counter from Phantom Nantuko. {T}: Put a +1/+1 counter on Phantom Nantuko.
+rarity=R
+[/card]
+[card]
+id=37113
+name=Phantom Nishoba
+mana={5}{G}{W}
+type=Creature
+subtype=Cat Beast Spirit
+power=0
+toughness=0
+text=Trample Phantom Nishoba enters the battlefield with seven +1/+1 counters on it. Whenever Phantom Nishoba deals damage, you gain that much life. If damage would be dealt to Phantom Nishoba, prevent that damage. Remove a +1/+1 counter from Phantom Nishoba.
+rarity=R
+[/card]
+[card]
+id=34890
+name=Phantom Nomad
+mana={1}{W}
+type=Creature
+subtype=Spirit Nomad
+power=0
+toughness=0
+text=Phantom Nomad enters the battlefield with two +1/+1 counters on it. If damage would be dealt to Phantom Nomad, prevent that damage. Remove a +1/+1 counter from Phantom Nomad.
+rarity=C
+[/card]
+[card]
+id=34934
+name=Phantom Tiger
+mana={2}{G}
+type=Creature
+subtype=Cat Spirit
+power=1
+toughness=0
+text=Phantom Tiger enters the battlefield with two +1/+1 counters on it. If damage would be dealt to Phantom Tiger, prevent that damage. Remove a +1/+1 counter from Phantom Tiger.
+rarity=C
+[/card]
+[card]
+id=35088
+name=Planar Chaos
+mana={2}{R}
+type=Enchantment
+text=At the beginning of your upkeep, flip a coin. If you lose the flip, sacrifice Planar Chaos. Whenever a player casts a spell, that player flips a coin. If he or she loses the flip, counter that spell.
+rarity=U
+[/card]
+[card]
+id=34233
+name=Prismatic Strands
+mana={2}{W}
+type=Instant
+text=Prevent all damage that sources of the color of your choice would deal this turn. Flashback—Tap an untapped white creature you control. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=C
+[/card]
+[card]
+id=35575
+name=Pulsemage Advocate
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+text={T}: Return three target cards in an opponent's graveyard to his or her hand. Return target creature card from your graveyard to the battlefield.
+rarity=R
+[/card]
+[card]
+id=20431
+name=Quiet Speculation
+mana={1}{U}
+type=Sorcery
+text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
+rarity=U
+[/card]
+[card]
+id=36412
+name=Rats' Feast
+mana={X}{B}
+type=Sorcery
+text=Exile X target cards from a single graveyard.
+rarity=C
+[/card]
+[card]
+id=34199
+name=Ray of Revelation
+mana={1}{W}
+type=Instant
+text=Destroy target enchantment. Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+rarity=C
+[/card]
+[card]
+id=34398
+name=Riftstone Portal
+mana=
+type=Land
+text={T}: Add {1} to your mana pool.  As long as Riftstone Portal is in your graveyard, lands you control have "{T}: Add {G} or {W} to your mana pool."
+rarity=U
+[/card]
+[card]
+id=29928
+name=Scalpelexis
+mana={4}{U}
+type=Creature
+subtype=Beast
+power=1
+toughness=5
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) Whenever Scalpelexis deals combat damage to a player, that player exiles the top four cards of his or her library. If two or more of those cards have the same name, repeat this process.
+rarity=R
+[/card]
+[card]
+id=34205
+name=Seedtime
+mana={1}{G}
+type=Instant
+text=Cast Seedtime only during your turn. Take an extra turn after this one if an opponent cast a blue spell this turn.
+rarity=R
+[/card]
+[card]
+id=34891
+name=Selfless Exorcist
+mana={3}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=4
+text={T}: Exile target creature card from a graveyard. That card deals damage equal to its power to Selfless Exorcist.
+rarity=R
+[/card]
+[card]
+id=36454
+name=Serene Sunset
+mana={X}{G}
+type=Instant
+text=Prevent all combat damage X target creatures would deal this turn.
+rarity=U
+[/card]
+[card]
+id=34795
+name=Shaman's Trance
+mana={2}{R}
+type=Instant
+text=Until end of turn, other players can't play cards from their graveyards, and you may play cards from other players' graveyards as though they were in your graveyard.
+rarity=R
+[/card]
+[card]
+id=35067
+name=Shieldmage Advocate
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+text={T}: Return target card in an opponent's graveyard to his or her hand. Prevent all damage that would be dealt to target creature or player this turn by a source of your choice.
+rarity=C
+[/card]
+[card]
+id=36036
+name=Silver Seraph
+mana={5}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=6
+toughness=6
+text=Flying Threshold  EOther creatures you control get +2/+2 as long as seven or more cards are in your graveyard.
+rarity=R
+[/card]
+[card]
+id=34769
+name=Solitary Confinement
+mana={2}{W}
+type=Enchantment
+text=At the beginning of your upkeep, sacrifice Solitary Confinement unless you discard a card. Skip your draw step. You have shroud. (You can't be the target of spells or abilities.) Prevent all damage that would be dealt to you.
+rarity=R
+[/card]
+[card]
+id=35095
+name=Soulcatchers' Aerie
+mana={1}{W}
+type=Enchantment
+text=Whenever a Bird is put into your graveyard from the battlefield, put a feather counter on Soulcatchers' Aerie. Bird creatures get +1/+1 for each feather counter on Soulcatchers' Aerie.
+rarity=U
+[/card]
+[card]
+id=34942
+name=Soulgorger Orgg
+mana={3}{R}{R}
+type=Creature
+subtype=Nightmare Orgg
+power=6
+toughness=6
+text=Trample When Soulgorger Orgg enters the battlefield, you lose all but 1 life. When Soulgorger Orgg leaves the battlefield, you gain life equal to the life you lost when it entered the battlefield.
+rarity=U
+[/card]
+[card]
+id=25805
+name=Spellgorger Barbarian
+mana={3}{R}
+type=Creature
+subtype=Human Nightmare Barbarian
+power=3
+toughness=1
+text=When Spellgorger Barbarian enters the battlefield, discard a card at random. When Spellgorger Barbarian leaves the battlefield, draw a card.
+rarity=C
+[/card]
+[card]
+id=35169
+name=Spelljack
+mana={3}{U}{U}{U}
+type=Instant
+text=Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. You may play it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.)
+rarity=R
+[/card]
+[card]
+id=34897
+name=Spirit Cairn
+mana={2}{W}
+type=Enchantment
+text=Whenever a player discards a card, you may pay {W}. If you do, put a 1/1 white Spirit creature token with flying onto the battlefield.
+rarity=U
+[/card]
+[card]
+id=34242
+name=Spurnmage Advocate
+mana={W}
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=1
+text={T}: Return two target cards in an opponent's graveyard to his or her hand. Destroy target attacking creature.
+rarity=U
+[/card]
+[card]
+id=32209
+name=Stitch Together
+mana={B}{B}
+type=Sorcery
+text=Return target creature card from your graveyard to your hand. Threshold  EReturn that card from your graveyard to the battlefield instead if seven or more cards are in your graveyard.
+rarity=U
+[/card]
+[card]
+id=35114
+name=Sudden Strength
+mana={3}{G}
+type=Instant
+text=Target creature gets +3/+3 until end of turn.  Draw a card.
+rarity=C
+[/card]
+[card]
+id=34207
+name=Suntail Hawk
+mana={W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+rarity=C
+[/card]
+[card]
+id=29944
+name=Sutured Ghoul
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Zombie
+power=*
+toughness=*
+text=Trample As Sutured Ghoul enters the battlefield, exile any number of creature cards from your graveyard. Sutured Ghoul's power is equal to the total power of the exiled cards and its toughness is equal to their total toughness.
+rarity=R
+[/card]
+[card]
+id=36119
+name=Swelter
+mana={3}{R}
+type=Sorcery
+text=Swelter deals 2 damage to each of two target creatures.
+rarity=U
+[/card]
+[card]
+id=29762
+name=Swirling Sandstorm
+mana={3}{R}
+type=Sorcery
+text=Threshold  ESwirling Sandstorm deals 5 damage to each creature without flying if seven or more cards are in your graveyard.
+rarity=C
+[/card]
+[card]
+id=35062
+name=Sylvan Safekeeper
+mana={G}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text=Sacrifice a land: Target creature you control gains shroud until end of turn. (It can't be the target of spells or abilities.)
+rarity=R
+[/card]
+[card]
+id=5589
+name=Telekinetic Bonds
+mana={2}{U}{U}{U}
+type=Enchantment
+text=Whenever a player discards a card, you may pay {1}{U}. If you do, you may tap or untap target permanent.
+rarity=R
+[/card]
+[card]
+id=29924
+name=Test of Endurance
+mana={2}{W}{W}
+type=Enchantment
+text=At the beginning of your upkeep, if you have 50 or more life, you win the game.
+rarity=R
+[/card]
+[card]
+id=36525
+name=Thriss, Nantuko Primus
+mana={5}{G}{G}
+type=Legendary Creature
+subtype=Insect Druid
+power=5
+toughness=5
+text={G}, {T}: Target creature gets +5/+5 until end of turn.
+rarity=R
+[/card]
+[card]
+id=36416
+name=Toxic Stench
+mana={1}{B}
+type=Instant
+text=Target nonblack creature gets -1/-1 until end of turn. Threshold  EIf seven or more cards are in your graveyard, instead destroy that creature. It can't be regenerated.
+rarity=C
+[/card]
+[card]
+id=35068
+name=Trained Pronghorn
+mana={1}{W}
+type=Creature
+subtype=Antelope
+power=1
+toughness=1
+text=Discard a card: Prevent all damage that would be dealt to Trained Pronghorn this turn.
+rarity=C
+[/card]
+[card]
+id=34788
+name=Treacherous Vampire
+mana={4}{B}
+type=Creature
+subtype=Vampire
+power=4
+toughness=4
+text=Flying Whenever Treacherous Vampire attacks or blocks, sacrifice it unless you exile a card from your graveyard. Threshold  EAs long as seven or more cards are in your graveyard, Treacherous Vampire gets +2/+2 and has "When Treacherous Vampire is put into a graveyard from the battlefield, you lose 6 life."
+rarity=U
+[/card]
+[card]
+id=36037
+name=Treacherous Werewolf
+mana={2}{B}
+type=Creature
+subtype=Human Wolf Minion
+power=2
+toughness=2
+text=Threshold  EAs long as seven or more cards are in your graveyard, Treacherous Werewolf gets +2/+2 and has "When Treacherous Werewolf is put into a graveyard from the battlefield, you lose 4 life."
+rarity=C
+[/card]
+[card]
+id=26370
+name=Tunneler Wurm
+mana={6}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
+text=Discard a card: Regenerate Tunneler Wurm.
+rarity=U
+[/card]
+[card]
+id=24541
+name=Unquestioned Authority
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature When Unquestioned Authority enters the battlefield, draw a card. Enchanted creature has protection from creatures.
+rarity=U
+[/card]
+[card]
+id=33719
+name=XXValor (Valor)
+mana={3}{W}
+type=Creature
+subtype=Incarnation
+power=2
+toughness=2
+text=First strike As long as Valor is in your graveyard and you control a Plains, creatures you control have first strike.
+rarity=U
+[/card]
+[card]
+id=36409
+name=Venomous Vines
+mana={2}{G}{G}
+type=Sorcery
+text=Destroy target enchanted permanent.
+rarity=C
+[/card]
+[card]
+id=36035
+name=Vigilant Sentry
+mana={1}{W}{W}
+type=Creature
+subtype=Human Nomad
+power=2
+toughness=2
+text=Threshold  EAs long as seven or more cards are in your graveyard, Vigilant Sentry gets +1/+1 and has "{T}: Target attacking or blocking creature gets +3/+3 until end of turn."
+rarity=C
+[/card]
+[card]
+id=34823
+name=Web of Inertia
+mana={2}{U}
+type=Enchantment
+text=At the beginning of each opponent's combat phase, that player may exile a card from his or her graveyard. If the player doesn't, creatures he or she controls can't attack you this turn.
+rarity=U
+[/card]
+[card]
+id=33720
+name=Wonder
+mana={3}{U}
+type=Creature
+subtype=Incarnation
+power=2
+toughness=2
+text=Flying As long as Wonder is in your graveyard and you control an Island, creatures you control have flying.
+rarity=U
+[/card]
+[card]
+id=35056
+name=Worldgorger Dragon
+mana={3}{R}{R}{R}
+type=Creature
+subtype=Nightmare Dragon
+power=7
+toughness=7
+text=Flying, trample When Worldgorger Dragon enters the battlefield, exile all other permanents you control. When Worldgorger Dragon leaves the battlefield, return the exiled cards to the battlefield under their owners' control.
+rarity=R
+[/card]
+[card]
+id=34811
+name=Wormfang Behemoth
+mana={3}{U}{U}
+type=Creature
+subtype=Nightmare Fish Beast
+power=5
+toughness=5
+text=When Wormfang Behemoth enters the battlefield, exile all cards from your hand. When Wormfang Behemoth leaves the battlefield, return the exiled cards to their owner's hand.
+rarity=R
+[/card]
+[card]
+id=34927
+name=Wormfang Crab
+mana={3}{U}
+type=Creature
+subtype=Nightmare Crab
+power=3
+toughness=6
+text=Wormfang Crab is unblockable. When Wormfang Crab enters the battlefield, an opponent chooses a permanent you control other than Wormfang Crab and exiles it. When Wormfang Crab leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+rarity=U
+[/card]
+[card]
+id=25974
+name=Wormfang Drake
+mana={2}{U}
+type=Creature
+subtype=Nightmare Drake
+power=3
+toughness=4
+text=Flying When Wormfang Drake enters the battlefield, sacrifice it unless you exile a creature you control other than Wormfang Drake. When Wormfang Drake leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+rarity=C
+[/card]
+[card]
+id=34939
+name=Wormfang Manta
+mana={5}{U}{U}
+type=Creature
+subtype=Nightmare Fish Beast
+power=6
+toughness=1
+text=Flying When Wormfang Manta enters the battlefield, you skip your next turn. When Wormfang Manta leaves the battlefield, you take an extra turn after this one.
+rarity=R
+[/card]
+[card]
+id=34809
+name=Wormfang Newt
+mana={1}{U}
+type=Creature
+subtype=Nightmare Salamander Beast
+power=2
+toughness=2
+text=When Wormfang Newt enters the battlefield, exile a land you control. When Wormfang Newt leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+rarity=C
+[/card]
+[card]
+id=34954
+name=Wormfang Turtle
+mana={2}{U}
+type=Creature
+subtype=Nightmare Turtle Beast
+power=2
+toughness=4
+text=When Wormfang Turtle enters the battlefield, exile a land you control. When Wormfang Turtle leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+rarity=U
+[/card]

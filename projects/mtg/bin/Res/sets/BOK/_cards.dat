@@ -1,0 +1,12 @@
+[card]
+id=74596
+name=Akki Raider
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=1
+text=Whenever a land is put into a graveyard from the battlefield, Akki Raider gets +1/+0 until end of turn.
+auto=@movedTo(land|graveyard) from(inplay):1/0 ueot
+rarity=U
+[/card]

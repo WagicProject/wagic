@@ -1,0 +1,13 @@
+[card]
+id=3608
+name=Aku Djinn
+mana={3}{B}{B}
+type=Creature
+subtype=Djinn
+power=5
+toughness=6
+text=Trample At the beginning of your upkeep, put a +1/+1 counter on each creature each opponent controls.
+abilities=trample
+auto=@each my upkeep:all(creature|opponentBattlefield) counter(1/1,1)
+rarity=R
+[/card]

@@ -1,0 +1,1368 @@
+[card]
+id=24561
+name=Abolish
+mana={1}{W}{W}
+type=Instant
+text=You may discard a Plains card rather than pay Abolish's mana cost. Destroy target artifact or enchantment.
+rarity=U
+[/card]
+
+[card]
+id=24591
+name=Alexi, Zephyr Mage
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Spellshaper
+power=3
+toughness=3
+text={X}{U}, {T}, Discard two cards: Return X target creatures to their owners' hands.
+rarity=R
+[/card]
+[card]
+id=24579
+name=Alexi's Cloak
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+text=Flash Enchant creature Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+rarity=C
+[/card]
+[card]
+id=24560
+name=Aura Fracture
+mana={2}{W}
+type=Enchantment
+text=Sacrifice a land: Destroy target enchantment.
+rarity=C
+[/card]
+[card]
+id=24644
+name=Avatar of Fury
+mana={6}{R}{R}
+type=Creature
+subtype=Avatar
+power=6
+toughness=6
+text=If an opponent controls seven or more lands, Avatar of Fury costs {6} less to cast. Flying {R}: Avatar of Fury gets +1/+0 until end of turn.
+rarity=R
+[/card]
+[card]
+id=24564
+name=Avatar of Hope
+mana={6}{W}{W}
+type=Creature
+subtype=Avatar
+power=4
+toughness=9
+text=If you have 3 or less life, Avatar of Hope costs {6} less to cast. Flying Avatar of Hope can block any number of creatures.
+rarity=R
+[/card]
+[card]
+id=24671
+name=Avatar of Might
+mana={6}{G}{G}
+type=Creature
+subtype=Avatar
+power=8
+toughness=8
+text=If an opponent controls at least four more creatures than you, Avatar of Might costs {6} less to cast. Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
+rarity=R
+[/card]
+[card]
+id=24590
+name=Avatar of Will
+mana={6}{U}{U}
+type=Creature
+subtype=Avatar
+power=5
+toughness=6
+text=If an opponent has no cards in hand, Avatar of Will costs {6} less to cast. Flying
+rarity=R
+[/card]
+[card]
+id=24621
+name=Avatar of Woe
+mana={6}{B}{B}
+type=Creature
+subtype=Avatar
+power=6
+toughness=5
+text=If there are ten or more creature cards total in all graveyards, Avatar of Woe costs {6} less to cast. Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) {T}: Destroy target creature. It can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=24634
+name=Barbed Field
+mana={2}{R}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant land Enchanted land has "{T}: This land deals 1 damage to target creature or player."
+rarity=U
+[/card]
+[card]
+id=24569
+name=Blessed Wind
+mana={7}{W}{W}
+type=Sorcery
+text=Target player's life total becomes 20.
+rarity=R
+[/card]
+[card]
+id=24620
+name=Bog Elemental
+mana={3}{B}{B}
+type=Creature
+subtype=Elemental
+power=5
+toughness=4
+text=Protection from white At the beginning of your upkeep, sacrifice Bog Elemental unless you sacrifice a land.
+rarity=R
+[/card]
+[card]
+id=24600
+name=Bog Glider
+mana={2}{B}
+type=Creature
+subtype=Human Mercenary
+power=1
+toughness=1
+text=Flying {T}, Sacrifice a land: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
+rarity=C
+[/card]
+[card]
+id=24638
+name=Branded Brawlers
+mana={R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=Branded Brawlers can't attack if defending player controls an untapped land. Branded Brawlers can't block if you control an untapped land.
+rarity=C
+[/card]
+[card]
+id=24635
+name=Brutal Suppression
+mana={R}
+type=Enchantment
+text=Activated abilities of nontoken Rebels cost an additional "Sacrifice a land" to activate.
+rarity=U
+[/card]
+[card]
+id=24659
+name=Calming Verse
+mana={3}{G}
+type=Sorcery
+text=Destroy all enchantments you don't control. Then, if you control an untapped land, destroy all enchantments you control.
+rarity=C
+[/card]
+[card]
+id=24567
+name=Celestial Convergence
+mana={2}{W}{W}
+type=Enchantment
+text=Celestial Convergence enters the battlefield with seven omen counters on it. At the beginning of your upkeep, remove an omen counter from Celestial Convergence. If there are no omen counters on Celestial Convergence, the player with the highest life total wins the game. If two or more players are tied for highest life total, the game is a draw.
+rarity=R
+[/card]
+[card]
+id=25362
+name=Chilling Apparition
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+text={B}: Regenerate Chilling Apparition. Whenever Chilling Apparition deals combat damage to a player, that player discards a card.
+rarity=U
+[/card]
+[card]
+id=24680
+name=Chimeric Idol
+mana={3}
+type=Artifact
+text={0}: Tap all lands you control. Chimeric Idol becomes a 3/3 Turtle artifact creature until end of turn.
+rarity=U
+[/card]
+[card]
+id=24643
+name=Citadel of Pain
+mana={2}{R}
+type=Enchantment
+text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
+rarity=U
+[/card]
+[card]
+id=24574
+name=Coastal Hornclaw
+mana={4}{U}
+type=Creature
+subtype=Bird
+power=3
+toughness=3
+text=Sacrifice a land: Coastal Hornclaw gains flying until end of turn.
+rarity=C
+[/card]
+[card]
+id=24618
+name=Coffin Puppets
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+text=Sacrifice two lands: Return Coffin Puppets from your graveyard to the battlefield. Activate this ability only during your upkeep and only if you control a Swamp.
+rarity=R
+[/card]
+[card]
+id=24682
+name=Copper-Leaf Angel
+mana={5}
+type=Artifact Creature
+subtype=Angel
+power=2
+toughness=2
+text=Flying {T}, Sacrifice X lands: Put X +1/+1 counters on Copper-Leaf Angel.
+rarity=R
+[/card]
+[card]
+id=24657
+name=Darba
+mana={3}{G}
+type=Creature
+subtype=Bird Beast
+power=5
+toughness=4
+text=At the beginning of your upkeep, sacrifice Darba unless you pay {G}{G}.
+rarity=U
+[/card]
+[card]
+id=24599
+name=Death Charmer
+mana={2}{B}
+type=Creature
+subtype=Worm Mercenary
+power=2
+toughness=2
+text=Whenever Death Charmer deals combat damage to a creature, that creature's controller loses 2 life unless he or she pays {2}.
+rarity=C
+[/card]
+[card]
+id=24596
+name=Denying Wind
+mana={7}{U}{U}
+type=Sorcery
+text=Search target player's library for up to seven cards and exile them. Then that player shuffles his or her library.
+rarity=R
+[/card]
+[card]
+id=24615
+name=Despoil
+mana={3}{B}
+type=Sorcery
+text=Destroy target land. Its controller loses 2 life.
+rarity=C
+[/card]
+[card]
+id=24631
+name=Devastate
+mana={3}{R}{R}
+type=Sorcery
+text=Destroy target land. Devastate deals 1 damage to each creature and each player.
+rarity=C
+[/card]
+[card]
+id=24548
+name=Diving Griffin
+mana={1}{W}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+text=Flying, vigilance
+rarity=C
+[/card]
+[card]
+id=24678
+name=Dual Nature
+mana={4}{G}{G}
+type=Enchantment
+text=Whenever a nontoken creature enters the battlefield, its controller puts a token that's a copy of that creature onto the battlefield. Whenever a nontoken creature leaves the battlefield, exile all tokens with the same name as that creature. When Dual Nature leaves the battlefield, exile all tokens put onto the battlefield with Dual Nature.
+rarity=R
+[/card]
+[card]
+id=21382
+name=Elephant Resurgence
+mana={1}{G}
+type=Sorcery
+text=Each player puts a green Elephant creature token onto the battlefield. Those creatures have "This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard."
+rarity=R
+[/card]
+[card]
+id=24616
+name=Endbringer's Revel
+mana={2}{B}
+type=Enchantment
+text={4}: Return target creature card from a graveyard to its owner's hand. Any player may activate this ability but only any time he or she could cast a sorcery.
+rarity=U
+[/card]
+[card]
+id=24557
+name=Entangler
+mana={2}{W}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature can block any number of creatures.
+rarity=U
+[/card]
+[card]
+id=24586
+name=Excavation
+mana={1}{U}
+type=Enchantment
+text={1}, Sacrifice a land: Draw a card. Any player may activate this ability.
+rarity=U
+[/card]
+[card]
+id=24553
+name=Excise
+mana={X}{W}
+type=Instant
+text=Exile target attacking creature unless its controller pays {X}.
+rarity=C
+[/card]
+[card]
+id=24626
+name=Fault Riders
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=Sacrifice a land: Fault Riders gets +2/+0 and gains first strike until end of turn. Activate this ability only once each turn.
+rarity=C
+[/card]
+[card]
+id=24602
+name=Fen Stalker
+mana={3}{B}
+type=Creature
+subtype=Nightstalker
+power=3
+toughness=2
+text=Fen Stalker has fear as long as you control no untapped lands. (It can't be blocked except by artifact creatures and/or black creatures.)
+rarity=C
+[/card]
+[card]
+id=24649
+name=Fickle Efreet
+mana={3}{R}
+type=Creature
+subtype=Efreet
+power=5
+toughness=2
+text=Whenever Fickle Efreet attacks or blocks, flip a coin at end of combat. If you lose the flip, an opponent gains control of Fickle Efreet.
+rarity=R
+[/card]
+[card]
+id=24642
+name=Flameshot
+mana={3}{R}
+type=Sorcery
+text=You may discard a Mountain card rather than pay Flameshot's mana cost. Flameshot deals 3 damage divided as you choose among any number of target creatures.
+rarity=U
+[/card]
+[card]
+id=24606
+name=Flay
+mana={3}{B}
+type=Sorcery
+text=Target player discards a card at random. Then that player discards another card at random unless he or she pays {1}.
+rarity=C
+[/card]
+[card]
+id=24552
+name=Flowering Field
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant land Enchanted land has "{T}: Prevent the next 1 damage that would be dealt to target creature or player this turn."
+rarity=U
+[/card]
+[card]
+id=24587
+name=Foil
+mana={2}{U}{U}
+type=Instant
+text=You may discard an Island card and another card rather than pay Foil's mana cost. Counter target spell.
+rarity=U
+[/card]
+[card]
+id=24676
+name=Forgotten Harvest
+mana={1}{G}
+type=Enchantment
+text=At the beginning of your upkeep, you may exile a land card from your graveyard. If you do, put a +1/+1 counter on target creature.
+rarity=R
+[/card]
+[card]
+id=24558
+name=Glittering Lion
+mana={2}{W}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+text=Prevent all damage that would be dealt to Glittering Lion. {3}: Until end of turn, Glittering Lion loses "Prevent all damage that would be dealt to Glittering Lion." Any player may activate this ability.
+rarity=U
+[/card]
+[card]
+id=24549
+name=Glittering Lynx
+mana={W}
+type=Creature
+subtype=Cat
+power=1
+toughness=1
+text=Prevent all damage that would be dealt to Glittering Lynx. {2}: Until end of turn, Glittering Lynx loses "Prevent all damage that would be dealt to Glittering Lynx." Any player may activate this ability.
+rarity=C
+[/card]
+[card]
+id=24619
+name=Greel, Mind Raker
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Horror Spellshaper
+power=3
+toughness=3
+text={X}{B}, {T}, Discard two cards: Target player discards X cards at random.
+rarity=R
+[/card]
+[card]
+id=24604
+name=Greel's Caress
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+text=Flash Enchant creature Enchanted creature gets -3/-0.
+rarity=C
+[/card]
+[card]
+id=24573
+name=Gulf Squid
+mana={3}{U}
+type=Creature
+subtype=Squid Beast
+power=2
+toughness=2
+text=When Gulf Squid enters the battlefield, tap all lands target player controls.
+rarity=C
+[/card]
+[card]
+id=24572
+name=Hazy Homunculus
+mana={1}{U}
+type=Creature
+subtype=Homunculus Illusion
+power=1
+toughness=1
+text=Hazy Homunculus is unblockable as long as defending player controls an untapped land.
+rarity=C
+[/card]
+[card]
+id=24594
+name=Heightened Awareness
+mana={3}{U}{U}
+type=Enchantment
+text=As Heightened Awareness enters the battlefield, discard your hand. At the beginning of your draw step, draw an additional card.
+rarity=R
+[/card]
+[card]
+id=24679
+name=Hollow Warrior
+mana={4}
+type=Artifact Creature
+subtype=Golem Warrior
+power=4
+toughness=4
+text=Hollow Warrior can't attack or block unless you tap an untapped creature you control not declared as an attacking or blocking creature this turn.
+rarity=U
+[/card]
+[card]
+id=24624
+name=Infernal Genesis
+mana={4}{B}{B}
+type=Enchantment
+text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard. He or she then puts X 1/1 black Minion creature tokens onto the battlefield, where X is that card's converted mana cost.
+rarity=R
+[/card]
+[card]
+id=24640
+name=Inflame
+mana={R}
+type=Instant
+text=Inflame deals 2 damage to each creature dealt damage this turn.
+rarity=C
+[/card]
+[card]
+id=24566
+name=Jeweled Spirit
+mana={3}{W}{W}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+text=Flying Sacrifice two lands: Jeweled Spirit gains protection from artifacts or from the color of your choice until end of turn.
+rarity=R
+[/card]
+[card]
+id=24673
+name=Jolrael, Empress of Beasts
+mana={3}{G}{G}
+type=Legendary Creature
+subtype=Human Spellshaper
+power=3
+toughness=3
+text={2}{G}, {T}, Discard two cards: All lands target player controls become 3/3 creatures until end of turn. They're still lands.
+rarity=R
+[/card]
+[card]
+id=24660
+name=Jolrael's Favor
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+text=Flash Enchant creature {1}{G}: Regenerate enchanted creature.
+rarity=C
+[/card]
+[card]
+id=24637
+name=Keldon Arsonist
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text={1}, Sacrifice two lands: Destroy target land.
+rarity=U
+[/card]
+[card]
+id=24683
+name=Keldon Battlewagon
+mana={5}
+type=Artifact Creature
+subtype=Juggernaut
+power=0
+toughness=3
+text=Trample Keldon Battlewagon can't block. When Keldon Battlewagon attacks, sacrifice it at end of combat. Tap an untapped creature you control: Keldon Battlewagon gets +X/+0 until end of turn, where X is the power of the creature tapped this way.
+rarity=R
+[/card]
+[card]
+id=24629
+name=Keldon Berserker
+mana={3}{R}
+type=Creature
+subtype=Human Soldier Berserker
+power=2
+toughness=3
+text=Whenever Keldon Berserker attacks, if you control no untapped lands, it gets +3/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=24648
+name=Keldon Firebombers
+mana={3}{R}{R}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+text=When Keldon Firebombers enters the battlefield, each player sacrifices all lands he or she controls except for three.
+rarity=R
+[/card]
+[card]
+id=24646
+name=Latulla, Keldon Overseer
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Human Spellshaper
+power=3
+toughness=3
+text={X}{R}, {T}, Discard two cards: Latulla, Keldon Overseer deals X damage to target creature or player.
+rarity=R
+[/card]
+[card]
+id=24632
+name=Latulla's Orders
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+text=Flash Enchant creature Whenever enchanted creature deals combat damage to defending player, you may destroy target artifact that player controls.
+rarity=C
+[/card]
+[card]
+id=24647
+name=Lesser Gargadon
+mana={2}{R}{R}
+type=Creature
+subtype=Beast
+power=6
+toughness=4
+text=Whenever Lesser Gargadon attacks or blocks, sacrifice a land.
+rarity=U
+[/card]
+[card]
+id=24667
+name=Living Terrain
+mana={2}{G}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant land Enchanted land is a 5/6 green Treefolk creature that's still a land.
+rarity=U
+[/card]
+[card]
+id=24565
+name=Mageta the Lion
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Spellshaper
+power=3
+toughness=3
+text={2}{W}{W}, {T}, Discard two cards: Destroy all creatures except for Mageta the Lion. Those creatures can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=24550
+name=Mageta's Boon
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+text=Flash Enchant creature Enchanted creature gets +1/+2.
+rarity=C
+[/card]
+[card]
+id=24578
+name=Mana Vapors
+mana={1}{U}
+type=Sorcery
+text=Lands target player controls don't untap during his or her next untap step.
+rarity=U
+[/card]
+[card]
+id=24664
+name=Marsh Boa
+mana={G}
+type=Creature
+subtype=Snake
+power=1
+toughness=1
+text=Swampwalk
+rarity=C
+[/card]
+[card]
+id=24563
+name=Mercenary Informer
+mana={2}{W}
+type=Creature
+subtype=Human Rebel Mercenary
+power=2
+toughness=1
+text=Mercenary Informer can't be the target of black spells or abilities from black sources. {2}{W}: Put target Mercenary on the bottom of its owner's library.
+rarity=R
+[/card]
+[card]
+id=24555
+name=Mine Bearer
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text={T}, Sacrifice Mine Bearer: Destroy target attacking creature.
+rarity=C
+[/card]
+[card]
+id=24554
+name=Mirror Strike
+mana={3}{W}
+type=Instant
+text=All combat damage that would be dealt to you this turn by target unblocked creature is dealt to its controller instead.
+rarity=U
+[/card]
+[card]
+id=24675
+name=Mungha Wurm
+mana={2}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=5
+text=You can't untap more than one land during your untap step.
+rarity=R
+[/card]
+[card]
+id=24598
+name=Nakaya Shade
+mana={1}{B}
+type=Creature
+subtype=Shade
+power=1
+toughness=1
+text={B}: Nakaya Shade gets +1/+1 until end of turn unless any player pays {2}.
+rarity=U
+[/card]
+[card]
+id=24686
+name=Noxious Field
+mana={1}{B}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant land Enchanted land has "{T}: This land deals 1 damage to each creature and each player."
+rarity=U
+[/card]
+[card]
+id=24613
+name=Outbreak
+mana={3}{B}
+type=Sorcery
+text=You may discard a Swamp card rather than pay Outbreak's mana cost. Choose a creature type. All creatures of that type get -1/-1 until end of turn.
+rarity=U
+[/card]
+[card]
+id=24597
+name=Overburden
+mana={1}{U}
+type=Enchantment
+text=Whenever a player puts a nontoken creature onto the battlefield, that player returns a land he or she controls to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=24639
+name=Panic Attack
+mana={2}{R}
+type=Sorcery
+text=Up to three target creatures can't block this turn.
+rarity=C
+[/card]
+[card]
+id=24612
+name=Pit Raptor
+mana={2}{B}{B}
+type=Creature
+subtype=Bird Mercenary
+power=4
+toughness=3
+text=Flying, first strike At the beginning of your upkeep, sacrifice Pit Raptor unless you pay {2}{B}{B}.
+rarity=U
+[/card]
+[card]
+id=24610
+name=Plague Fiend
+mana={1}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+text=Whenever Plague Fiend deals combat damage to a creature, destroy that creature unless its controller pays {2}.
+rarity=C
+[/card]
+[card]
+id=24622
+name=Plague Wind
+mana={7}{B}{B}
+type=Sorcery
+text=Destroy all creatures you don't control. They can't be regenerated.
+rarity=R
+[/card]
+[card]
+id=24593
+name=Psychic Theft
+mana={1}{U}
+type=Sorcery
+text=Target player reveals his or her hand. You choose an instant or sorcery card from it and exile that card. You may cast that card for as long as it remains exiled. At the beginning of the next end step, if you haven't cast the card, return it to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=24663
+name=Pygmy Razorback
+mana={1}{G}
+type=Creature
+subtype=Boar
+power=2
+toughness=1
+text=Trample
+rarity=C
+[/card]
+[card]
+id=24582
+name=Quicksilver Wall
+mana={2}{U}
+type=Creature
+subtype=Wall
+power=1
+toughness=6
+text=Defender (This creature can't attack.) {4}: Return Quicksilver Wall to its owner's hand. Any player may activate this ability.
+rarity=U
+[/card]
+[card]
+id=24617
+name=Rebel Informer
+mana={2}{B}
+type=Creature
+subtype=Human Mercenary Rebel
+power=1
+toughness=2
+text=Rebel Informer can't be the target of white spells or abilities from white sources. {3}: Put target Rebel on the bottom of its owner's library.
+rarity=R
+[/card]
+[card]
+id=24588
+name=Rethink
+mana={2}{U}
+type=Instant
+text=Counter target spell unless its controller pays {X}, where X is its converted mana cost.
+rarity=C
+[/card]
+[card]
+id=24559
+name=Reveille Squad
+mana={2}{W}{W}
+type=Creature
+subtype=Human Rebel
+power=3
+toughness=3
+text=Whenever one or more creatures attack you, if Reveille Squad is untapped, you may untap all creatures you control.
+rarity=U
+[/card]
+[card]
+id=24685
+name=Rhystic Cave
+mana=
+type=Land
+text={T}: Choose a color. Add one mana of that color to your mana pool unless any player pays {1}. Activate this ability only any time you could cast an instant.
+rarity=U
+[/card]
+[card]
+id=24562
+name=Rhystic Circle
+mana={2}{W}{W}
+type=Enchantment
+text={1}: Any player may pay {1}. If no one does, the next time a source of your choice would deal damage to you this turn, prevent that damage.
+rarity=C
+[/card]
+[card]
+id=24576
+name=Rhystic Deluge
+mana={2}{U}
+type=Enchantment
+text={U}: Tap target creature unless its controller pays {1}.
+rarity=C
+[/card]
+[card]
+id=24633
+name=Rhystic Lightning
+mana={2}{R}
+type=Instant
+text=Rhystic Lightning deals 4 damage to target creature or player unless that creature's controller or that player pays {2}. If he or she does, Rhystic Lightning deals 2 damage to the creature or player.
+rarity=C
+[/card]
+[card]
+id=24577
+name=Rhystic Scrying
+mana={2}{U}{U}
+type=Sorcery
+text=Draw three cards. Then, if any player pays {2}, discard three cards.
+rarity=U
+[/card]
+[card]
+id=24551
+name=Rhystic Shield
+mana={1}{W}
+type=Instant
+text=Creatures you control get +0/+1 until end of turn. They get an additional +0/+2 until end of turn unless any player pays {2}.
+rarity=C
+[/card]
+[card]
+id=24589
+name=Rhystic Study
+mana={2}{U}
+type=Enchantment
+text=Whenever an opponent casts a spell, you may draw a card unless that player pays {1}.
+rarity=C
+[/card]
+[card]
+id=24623
+name=Rhystic Syphon
+mana={3}{B}{B}
+type=Sorcery
+text=Unless target player pays {3}, he or she loses 5 life and you gain 5 life.
+rarity=U
+[/card]
+[card]
+id=24614
+name=Rhystic Tutor
+mana={2}{B}
+type=Sorcery
+text=Unless any player pays {2}, search your library for a card, put that card into your hand, then shuffle your library.
+rarity=R
+[/card]
+[card]
+id=24653
+name=Rib Cage Spider
+mana={2}{G}
+type=Creature
+subtype=Spider
+power=1
+toughness=4
+text=Reach (This creature can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=24571
+name=Ribbon Snake
+mana={1}{U}{U}
+type=Creature
+subtype=Snake
+power=2
+toughness=3
+text=Flying {2}: Ribbon Snake loses flying until end of turn. Any player may activate this ability.
+rarity=C
+[/card]
+[card]
+id=24627
+name=Ridgeline Rager
+mana={2}{R}
+type=Creature
+subtype=Beast
+power=1
+toughness=2
+text={R}: Ridgeline Rager gets +1/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=24665
+name=Root Cage
+mana={1}{G}
+type=Enchantment
+text=Mercenaries don't untap during their controllers' untap steps.
+rarity=U
+[/card]
+[card]
+id=24570
+name=Samite Sanctuary
+mana={2}{W}
+type=Enchantment
+text={2}: Prevent the next 1 damage that would be dealt to target creature this turn. Any player may activate this ability.
+rarity=R
+[/card]
+[card]
+id=24636
+name=Scoria Cat
+mana={3}{R}{R}
+type=Creature
+subtype=Cat
+power=3
+toughness=3
+text=Scoria Cat gets +3/+3 as long as you control no untapped lands.
+rarity=U
+[/card]
+[card]
+id=24641
+name=Search for Survivors
+mana={2}{R}
+type=Sorcery
+text=Reorder your graveyard at random. An opponent chooses a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, exile it.
+rarity=R
+[/card]
+[card]
+id=24650
+name=Searing Wind
+mana={8}{R}
+type=Instant
+text=Searing Wind deals 10 damage to target creature or player.
+rarity=R
+[/card]
+[card]
+id=24568
+name=Sheltering Prayers
+mana={W}
+type=Enchantment
+text=Basic lands each player controls have shroud as long as that player controls three or fewer lands. (They can't be the targets of spells or abilities.)
+rarity=R
+[/card]
+[card]
+id=24556
+name=Shield Dancer
+mana={2}{W}
+type=Creature
+subtype=Human Rebel
+power=1
+toughness=3
+text={2}{W}: The next time target attacking creature would deal combat damage to Shield Dancer this turn, that creature deals that damage to itself instead.
+rarity=U
+[/card]
+[card]
+id=24595
+name=Shrouded Serpent
+mana={4}{U}{U}{U}
+type=Creature
+subtype=Serpent
+power=4
+toughness=4
+text=Whenever Shrouded Serpent attacks, defending player may pay {4}. If he or she doesn't, Shrouded Serpent is unblockable this turn.
+rarity=R
+[/card]
+[card]
+id=24655
+name=Silt Crawler
+mana={2}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+text=When Silt Crawler enters the battlefield, tap all lands you control.
+rarity=C
+[/card]
+[card]
+id=24668
+name=Snag
+mana={3}{G}
+type=Instant
+text=You may discard a Forest card rather than pay Snag's mana cost. Prevent all combat damage that would be dealt by unblocked creatures this turn.
+rarity=U
+[/card]
+[card]
+id=24611
+name=Soul Charmer
+mana={2}{W}
+type=Creature
+subtype=Human Rebel
+power=2
+toughness=2
+text=Whenever Soul Charmer deals combat damage to a creature, you gain 2 life unless that creature's controller pays {2}.
+rarity=C
+[/card]
+[card]
+id=24605
+name=Soul Strings
+mana={X}{B}
+type=Sorcery
+text=Return two target creature cards from your graveyard to your hand unless any player pays {X}.
+rarity=C
+[/card]
+[card]
+id=24592
+name=Spiketail Drake
+mana={3}{U}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=3
+text=Flying Sacrifice Spiketail Drake: Counter target spell unless its controller pays {3}.
+rarity=U
+[/card]
+[card]
+id=24581
+name=Spiketail Hatchling
+mana={1}{U}
+type=Creature
+subtype=Drake
+power=1
+toughness=1
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) Sacrifice Spiketail Hatchling: Counter target spell unless its controller pays {1}.
+rarity=U
+[/card]
+[card]
+id=24666
+name=Spitting Spider
+mana={3}{G}{G}
+type=Creature
+subtype=Spider
+power=3
+toughness=5
+text=Reach (This creature can block creatures with flying.) Sacrifice a land: Spitting Spider deals 1 damage to each creature with flying.
+rarity=U
+[/card]
+[card]
+id=24654
+name=Spore Frog
+mana={G}
+type=Creature
+subtype=Frog
+power=1
+toughness=1
+text=Sacrifice Spore Frog: Prevent all combat damage that would be dealt this turn.
+rarity=C
+[/card]
+[card]
+id=24625
+name=Spur Grappler
+mana={2}{R}
+type=Creature
+subtype=Beast
+power=2
+toughness=1
+text=Spur Grappler gets +2/+1 as long as you control no untapped lands.
+rarity=C
+[/card]
+[card]
+id=24672
+name=Squirrel Wrangler
+mana={2}{G}{G}
+type=Creature
+subtype=Human Druid
+power=2
+toughness=2
+text={1}{G}, Sacrifice a land: Put two 1/1 green Squirrel creature tokens onto the battlefield. {1}{G}, Sacrifice a land: Squirrel creatures get +1/+1 until end of turn.
+rarity=R
+[/card]
+[card]
+id=24608
+name=Steal Strength
+mana={1}{B}
+type=Instant
+text=Target creature gets +1/+1 until end of turn. Another target creature gets -1/-1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=24583
+name=Stormwatch Eagle
+mana={3}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=1
+text=Flying Sacrifice a land: Return Stormwatch Eagle to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=24575
+name=Sunken Field
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant land Enchanted land has "{T}: Counter target spell unless its controller pays {1}."
+rarity=U
+[/card]
+[card]
+id=24544
+name=Sword Dancer
+mana={1}{W}
+type=Creature
+subtype=Human Rebel
+power=1
+toughness=2
+text={W}{W}: Target attacking creature gets -1/-0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=24651
+name=Task Mage Assembly
+mana={2}{R}
+type=Enchantment
+text=When there are no creatures on the battlefield, sacrifice Task Mage Assembly. {2}: Task Mage Assembly deals 1 damage to target creature. Any player may activate this ability but only any time he or she could cast a sorcery.
+rarity=R
+[/card]
+[card]
+id=24658
+name=Thresher Beast
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+text=Whenever Thresher Beast becomes blocked, defending player sacrifices a land.
+rarity=C
+[/card]
+[card]
+id=24669
+name=Thrive
+mana={X}{G}
+type=Sorcery
+text=Put a +1/+1 counter on each of X target creatures.
+rarity=C
+[/card]
+[card]
+id=24546
+name=Trenching Steed
+mana={3}{W}
+type=Creature
+subtype=Horse Rebel
+power=2
+toughness=3
+text=Sacrifice a land: Trenching Steed gets +0/+3 until end of turn.
+rarity=C
+[/card]
+[card]
+id=24547
+name=Troubled Healer
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+text=Sacrifice a land: Prevent the next 2 damage that would be dealt to target creature or player this turn.
+rarity=C
+[/card]
+[card]
+id=24584
+name=Troublesome Spirit
+mana={2}{U}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=4
+text=Flying At the beginning of your end step, tap all lands you control.
+rarity=R
+[/card]
+[card]
+id=24662
+name=Verdant Field
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant land Enchanted land has "{T}: Target creature gets +1/+1 until end of turn."
+rarity=U
+[/card]
+[card]
+id=24645
+name=Veteran Brawlers
+mana={1}{R}
+type=Creature
+subtype=Human Soldier
+power=4
+toughness=4
+text=Veteran Brawlers can't attack if defending player controls an untapped land. Veteran Brawlers can't block if you control an untapped land.
+rarity=R
+[/card]
+[card]
+id=24652
+name=Vintara Elephant
+mana={4}{G}
+type=Creature
+subtype=Elephant
+power=4
+toughness=3
+text=Trample {3}: Vintara Elephant loses trample until end of turn. Any player may activate this ability.
+rarity=C
+[/card]
+[card]
+id=24656
+name=Vintara Snapper
+mana={G}{G}
+type=Creature
+subtype=Turtle
+power=2
+toughness=2
+text=Vintara Snapper has shroud as long as you control no untapped lands. (It can't be the target of spells or abilities.)
+rarity=U
+[/card]
+[card]
+id=24677
+name=Vitalizing Wind
+mana={8}{G}
+type=Instant
+text=Creatures you control get +7/+7 until end of turn.
+rarity=R
+[/card]
+[card]
+id=24609
+name=Wall of Vipers
+mana={2}{B}
+type=Creature
+subtype=Snake Wall
+power=2
+toughness=4
+text=Defender (This creature can't attack.) {3}: Destroy Wall of Vipers and target creature it's blocking. Any player may activate this ability.
+rarity=U
+[/card]
+[card]
+id=24684
+name=Well of Discovery
+mana={6}
+type=Artifact
+text=At the beginning of your end step, if you control no untapped lands, draw a card.
+rarity=R
+[/card]
+[card]
+id=24681
+name=Well of Life
+mana={4}
+type=Artifact
+text=At the beginning of your end step, if you control no untapped lands, you gain 2 life.
+rarity=U
+[/card]
+[card]
+id=24628
+name=Whip Sergeant
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+text={R}: Target creature gains haste until end of turn. (It can attack this turn.)
+rarity=U
+[/card]
+[card]
+id=24603
+name=Whipstitched Zombie
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+text=At the beginning of your upkeep, sacrifice Whipstitched Zombie unless you pay {B}.
+rarity=C
+[/card]
+[card]
+id=24661
+name=Wild Might
+mana={1}{G}
+type=Instant
+text=Target creature gets +1/+1 until end of turn. That creature gets an additional +4/+4 until end of turn unless any player pays {2}.
+rarity=C
+[/card]
+[card]
+id=24585
+name=Windscouter
+mana={3}{U}
+type=Creature
+subtype=Human Scout
+power=3
+toughness=3
+text=Flying Whenever Windscouter attacks or blocks, return it to its owner's hand at end of combat.
+rarity=U
+[/card]
+[card]
+id=25523
+name=Wing Storm
+mana={2}{G}
+type=Sorcery
+text=Wing Storm deals damage to each player equal to twice the number of creatures with flying that player controls.
+rarity=U
+[/card]
+[card]
+id=23318
+name=Wintermoon Mesa
+mana=
+type=Land
+text=Wintermoon Mesa enters the battlefield tapped. {T}: Add {1} to your mana pool. {2}, {T}, Sacrifice Wintermoon Mesa: Tap two target lands.
+rarity=R
+[/card]
+[card]
+id=24580
+name=Withdraw
+mana={U}{U}
+type=Instant
+text=Return target creature to its owner's hand. Then return another target creature to its owner's hand unless its controller pays {1}.
+rarity=C
+[/card]
+[card]
+id=24630
+name=Zerapa Minotaur
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur
+power=3
+toughness=3
+text=First strike {2}: Zerapa Minotaur loses first strike until end of turn. Any player may activate this ability.
+rarity=C
+[/card]

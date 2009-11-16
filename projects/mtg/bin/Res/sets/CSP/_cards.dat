@@ -1,0 +1,12 @@
+[card]
+id=121193
+name=Boreal Druid
+mana={G}
+type=Snow Creature
+subtype=Elf Druid
+power=1
+toughness=1
+text={T}: Add {1} to your mana pool.
+auto={T}:Add{1}
+rarity=C
+[/card]

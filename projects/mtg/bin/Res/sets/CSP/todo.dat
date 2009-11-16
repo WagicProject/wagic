@@ -1,0 +1,1520 @@
+[card]
+id=121196
+name=Adarkar Valkyrie
+mana={4}{W}{W}
+type=Snow Creature
+subtype=Angel
+power=4
+toughness=5
+text=Flying, vigilance {T}: When target creature other than Adarkar Valkyrie is put into a graveyard this turn, return that card to the battlefield under your control.
+rarity=R
+[/card]
+[card]
+id=121268
+name=Adarkar Windform
+mana={4}{U}
+type=Snow Creature
+subtype=Illusion
+power=3
+toughness=3
+text=Flying {1}{S}i}: Target creature loses flying until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=U
+[/card]
+[card]
+id=121157
+name=Allosaurus Rider
+mana={5}{G}{G}
+type=Creature
+subtype=Elf Warrior
+power=1+*
+toughness=1+*
+text=You may exile two green cards from your hand rather than pay Allosaurus Rider's mana cost. Allosaurus Rider's power and toughness are each equal to 1 plus the number of lands you control.
+rarity=R
+[/card]
+[card]
+id=121158
+name=Arctic Flats
+mana=
+type=Snow Land
+text=Arctic Flats enters the battlefield tapped. {T}: Add {G} or {W} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=121229
+name=Arctic Nishoba
+mana={5}{G}
+type=Creature
+subtype=Cat Warrior
+power=6
+toughness=6
+text=Trample Cumulative upkeep {G} or {W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Arctic Nishoba is put into a graveyard from the battlefield, you gain 2 life for each age counter on it.
+rarity=U
+[/card]
+[card]
+id=122124
+name=Arcum Dagsson
+mana={3}{U}
+type=Legendary Creature
+subtype=Human Artificer
+power=2
+toughness=2
+text={T}: Target artifact creature's controller sacrifices it. That player may search his or her library for a noncreature artifact card, put it onto the battlefield, then shuffle his or her library.
+rarity=R
+[/card]
+[card]
+id=121260
+name=Aurochs Herd
+mana={5}{G}
+type=Creature
+subtype=Aurochs
+power=4
+toughness=4
+text=Trample When Aurochs Herd enters the battlefield, you may search your library for an Aurochs card, reveal it, and put it into your hand. If you do, shuffle your library. Whenever Aurochs Herd attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
+abilities=trample
+auto=may moveTo(myHand) target(Aurochs|mylibrary)
+auto=foreach(other Aurochs[attacking]|myBattlefield) 1/0
+rarity=C
+[/card]
+[card]
+id=121272
+name=Balduvian Fallen
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=5
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Whenever Balduvian Fallen's cumulative upkeep is paid, it gets +1/+0 until end of turn for each {B} or {R} spent this way.
+rarity=U
+[/card]
+[card]
+id=121175
+name=Balduvian Frostwaker
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={U}, {T}: Target snow land becomes a 2/2 blue Elemental creature with flying. It's still a land.
+rarity=U
+[/card]
+[card]
+id=121248
+name=Balduvian Rage
+mana={X}{R}
+type=Instant
+text=Target attacking creature gets +X/+0 until end of turn. Draw a card at the beginning of the next turn's upkeep.
+rarity=U
+[/card]
+[card]
+id=122056
+name=Balduvian Warlord
+mana={3}{R}
+type=Creature
+subtype=Human Barbarian
+power=3
+toughness=2
+text={T}: Remove target blocking creature from combat. Creatures it was blocking that hadn't become blocked by another creature this combat become unblocked, then it blocks an attacking creature of your choice. Activate this ability only during the declare blockers step.
+rarity=U
+[/card]
+[card]
+id=121151
+name=Blizzard Specter
+mana={2}{U}{B}
+type=Snow Creature
+subtype=Specter
+power=2
+toughness=3
+text=Flying Whenever Blizzard Specter deals combat damage to a player, choose one  EThat player returns a permanent he or she controls to its owner's hand; or that player discards a card.
+rarity=U
+[/card]
+[card]
+id=121200
+name=Boreal Centaur
+mana={1}{G}
+type=Snow Creature
+subtype=Centaur Warrior
+power=2
+toughness=2
+text={S}i}: Boreal Centaur gets +1/+1 until end of turn. Activate this ability only once each turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+
+[card]
+id=121244
+name=Boreal Griffin
+mana={3}{W}{W}
+type=Snow Creature
+subtype=Griffin
+power=3
+toughness=2
+text=Flying {S}i}: Boreal Griffin gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=121189
+name=Boreal Shelf
+mana=
+type=Snow Land
+text=Boreal Shelf enters the battlefield tapped. {T}: Add {W} or {U} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=122123
+name=Braid of Fire
+mana={1}{R}
+type=Enchantment
+text=Cumulative upkeep—Add {R} to your mana pool. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=R
+[/card]
+[card]
+id=122055
+name=Brooding Saurian
+mana={2}{G}{G}
+type=Creature
+subtype=Lizard
+power=4
+toughness=4
+text=At the beginning of the end step, each player gains control of all nontoken permanents he or she owns.
+rarity=R
+[/card]
+[card]
+id=121152
+name=Bull Aurochs
+mana={1}{G}
+type=Creature
+subtype=Aurochs
+power=2
+toughness=1
+text=Trample Whenever Bull Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
+rarity=C
+[/card]
+[card]
+id=121190
+name=Chill to the Bone
+mana={3}{B}
+type=Instant
+text=Destroy target nonsnow creature.
+rarity=C
+[/card]
+[card]
+id=121258
+name=Chilling Shade
+mana={2}{B}
+type=Snow Creature
+subtype=Shade
+power=1
+toughness=1
+text=Flying {S}i}: Chilling Shade gets +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=121123
+name=Coldsteel Heart
+mana={2}
+type=Snow Artifact
+text=Coldsteel Heart enters the battlefield tapped. As Coldsteel Heart enters the battlefield, choose a color. {T}: Add one mana of the chosen color to your mana pool.
+rarity=U
+[/card]
+[card]
+id=121243
+name=Commandeer
+mana={5}{U}{U}
+type=Instant
+text=You may exile two blue cards from your hand rather than pay Commandeer's mana cost. Gain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters the battlefield under your control.)
+rarity=R
+[/card]
+[card]
+id=122121
+name=Controvert
+mana={2}{U}{U}
+type=Instant
+text=Counter target spell. Recover {2}{U}{U} (When a creature is put into your graveyard from the battlefield, you may pay {2}{U}{U}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+rarity=U
+[/card]
+[card]
+id=121159
+name=Counterbalance
+mana={U}{U}
+type=Enchantment
+text=Whenever an opponent casts a spell, you may reveal the top card of your library. If you do, counter that spell if it has the same converted mana cost as the revealed card.
+rarity=U
+[/card]
+[card]
+id=121140
+name=Cover of Winter
+mana={2}{W}
+type=Snow Enchantment
+text=Cumulative upkeep {S}i} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S}i} can be paid with one mana from a snow permanent.) If a creature would deal combat damage to you and/or one or more creatures you control, prevent X of that damage, where X is the number of age counters on Cover of Winter. {S}i}: Put an age counter on Cover of Winter.
+rarity=R
+[/card]
+[card]
+id=121169
+name=Cryoclasm
+mana={2}{R}
+type=Sorcery
+text=Destroy target Plains or Island. Cryoclasm deals 3 damage to that land's controller.
+rarity=U
+[/card]
+[card]
+id=122049
+name=Darien, King of Kjeldor
+mana={4}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+text=Whenever you're dealt damage, you may put that many 1/1 white Soldier creature tokens onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=121155
+name=Dark Depths
+mana=
+type=Legendary Snow Land
+text=Dark Depths enters the battlefield with ten ice counters on it. {3}: Remove an ice counter from Dark Depths. When Dark Depths has no ice counters on it, sacrifice it. If you do, put an indestructible legendary 20/20 black Avatar creature token with flying named Marit Lage onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=121119
+name=Deathmark
+mana={B}
+type=Sorcery
+text=Destroy target green or white creature.
+rarity=U
+[/card]
+[card]
+id=122057
+name=Deepfire Elemental
+mana={4}{B}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+text={X}{X}{1}: Destroy target artifact or creature with converted mana cost X.
+rarity=U
+[/card]
+[card]
+id=121138
+name=Diamond Faerie
+mana={2}{G}{W}{U}
+type=Snow Creature
+subtype=Faerie
+power=3
+toughness=3
+text=Flying {1}{S}i}: Snow creatures you control get +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=R
+[/card]
+[card]
+id=121222
+name=Disciple of Tevesh Szat
+mana={2}{B}{B}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=1
+text={T}: Target creature gets -1/-1 until end of turn. {4}{B}{B}, {T}, Sacrifice Disciple of Tevesh Szat: Target creature gets -6/-6 until end of turn.
+rarity=C
+[/card]
+[card]
+id=121174
+name=Drelnoch
+mana={4}{U}
+type=Creature
+subtype=Yeti Mutant
+power=3
+toughness=3
+text=Whenever Drelnoch becomes blocked, you may draw two cards.
+rarity=C
+[/card]
+[card]
+id=121254
+name=Earthen Goo
+mana={2}{R}
+type=Creature
+subtype=Ooze
+power=2
+toughness=2
+text=Trample Cumulative upkeep {R} or {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Earthen Goo gets +1/+1 for each age counter on it.
+rarity=U
+[/card]
+[card]
+id=121137
+name=Feast of Flesh
+mana={B}
+type=Sorcery
+text=Feast of Flesh deals X damage to target creature and you gain X life, where X is 1 plus the number of cards named Feast of Flesh in all graveyards.
+rarity=C
+[/card]
+[card]
+id=121265
+name=Field Marshal
+mana={1}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
+rarity=R
+[/card]
+[card]
+id=121218
+name=Flashfreeze
+mana={1}{U}
+type=Instant
+text=Counter target red or green spell.
+rarity=U
+[/card]
+[card]
+id=122059
+name=Freyalise's Radiance
+mana={1}{G}
+type=Enchantment
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Snow permanents don't untap during their controllers' untap steps.
+rarity=U
+[/card]
+[card]
+id=121212
+name=Frost Marsh
+mana=
+type=Snow Land
+text=Frost Marsh enters the battlefield tapped. {T}: Add {U} or {B} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=121132
+name=Frost Raptor
+mana={2}{U}
+type=Snow Creature
+subtype=Bird
+power=2
+toughness=2
+text=Flying {S}i{S}i}: Frost Raptor gains shroud until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=121197
+name=Frostweb Spider
+mana={2}{G}
+type=Snow Creature
+subtype=Spider
+power=1
+toughness=3
+text=Reach (This creature can block creatures with flying.) Whenever Frostweb Spider blocks a creature with flying, put a +1/+1 counter on Frostweb Spider at end of combat.
+rarity=C
+[/card]
+[card]
+id=121228
+name=Frozen Solid
+mana={1}{U}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature  Enchanted creature doesn't untap during its controller's untap step.  When enchanted creature is dealt damage, destroy it.
+rarity=C
+[/card]
+[card]
+id=121181
+name=Fury of the Horde
+mana={5}{R}{R}
+type=Sorcery
+text=You may exile two red cards from your hand rather than pay Fury of the Horde's mana cost. Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase.
+rarity=R
+[/card]
+[card]
+id=121126
+name=Garza Zol, Plague Queen
+mana={4}{U}{B}{R}
+type=Legendary Creature
+subtype=Vampire
+power=5
+toughness=5
+text=Flying, haste Whenever a creature dealt damage by Garza Zol, Plague Queen this turn is put into a graveyard, put a +1/+1 counter on Garza Zol. Whenever Garza Zol deals combat damage to a player, you may draw a card.
+rarity=R
+[/card]
+[card]
+id=122051
+name=Garza's Assassin
+mana={B}{B}{B}
+type=Creature
+subtype=Human Assassin
+power=2
+toughness=2
+text=Sacrifice Garza's Assassin: Destroy target nonblack creature. Recover—Pay half your life, rounded up. (When another creature is put into your graveyard from the battlefield, you may pay half your life, rounded up. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+rarity=R
+[/card]
+[card]
+id=121213
+name=Gelid Shackles
+mana={W}
+type=Snow Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature can't block and its activated abilities can't be activated. {S}i}: Enchanted creature gains defender until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=121211
+name=Glacial Plating
+mana={2}{W}{W}
+type=Snow Enchantment
+subtype=Aura
+text=Enchant creature Cumulative upkeep {S}i} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S}i} can be paid with one mana from a snow permanent.) Enchanted creature gets +3/+3 for each age counter on Glacial Plating.
+rarity=U
+[/card]
+[card]
+id=121185
+name=Goblin Furrier
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+text=Prevent all damage that Goblin Furrier would deal to snow creatures.
+rarity=C
+[/card]
+[card]
+id=121219
+name=Goblin Rimerunner
+mana={2}{R}
+type=Snow Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+text={T}: Target creature can't block this turn. {S}i}: Goblin Rimerunner gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=121208
+name=Greater Stone Spirit
+mana={4}{R}{R}
+type=Creature
+subtype=Elemental Spirit
+power=4
+toughness=4
+text=Greater Stone Spirit can't be blocked by creatures with flying. {2}{R}: Until end of turn, target creature gets +0/+2 and gains "{R}: This creature gets +1/+0 until end of turn."
+rarity=U
+[/card]
+[card]
+id=122114
+name=Grim Harvest
+mana={1}{B}
+type=Instant
+text=Return target creature card from your graveyard to your hand. Recover {2}{B} (When a creature is put into your graveyard from the battlefield, you may pay {2}{B}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+rarity=C
+[/card]
+[card]
+id=121133
+name=Gristle Grinner
+mana={4}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+text=Whenever a creature is put into a graveyard from the battlefield, Gristle Grinner gets +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=121194
+name=Gutless Ghoul
+mana={2}{B}
+type=Snow Creature
+subtype=Zombie
+power=2
+toughness=2
+text={1}, Sacrifice a creature: You gain 2 life.
+rarity=C
+[/card]
+[card]
+id=122045
+name=Haakon, Stromgald Scourge
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Zombie Knight
+power=3
+toughness=3
+text=You may cast Haakon, Stromgald Scourge from your graveyard, but not from anywhere else. As long as Haakon is on the battlefield, you may play Knight cards from your graveyard. When Haakon is put into a graveyard from the battlefield, you lose 2 life.
+rarity=R
+[/card]
+[card]
+id=121147
+name=Heidar, Rimewind Master
+mana={4}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+text={2}, {T}: Return target permanent to its owner's hand. Activate this ability only if you control four or more snow permanents.
+rarity=R
+[/card]
+[card]
+id=121250
+name=Herald of Leshrac
+mana={6}{B}
+type=Creature
+subtype=Avatar
+power=2
+toughness=4
+text=Flying Cumulative upkeep—Gain control of a land you don't control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Herald of Leshrac gets +1/+1 for each land you control but don't own. When Herald of Leshrac leaves the battlefield, each player gains control of each land he or she owns that you control.
+rarity=R
+[/card]
+[card]
+id=121139
+name=Hibernation's End
+mana={4}{G}
+type=Enchantment
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Whenever you pay Hibernation's End's cumulative upkeep, you may search your library for a creature card with converted mana cost equal to the number of age counters on Hibernation's End and put it onto the battlefield. If you do, shuffle your library.
+rarity=R
+[/card]
+[card]
+id=121259
+name=Highland Weald
+mana=
+type=Snow Land
+text=Highland Weald enters the battlefield tapped. {T}: Add {R} or {G} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=121143
+name=Icefall
+mana={2}{R}{R}
+type=Sorcery
+text=Destroy target artifact or land. Recover {R}{R} (When a creature is put into your graveyard from the battlefield, you may pay {R}{R}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+rarity=C
+[/card]
+[card]
+id=121199
+name=Into the North
+mana={1}{G}
+type=Sorcery
+text=Search your library for a snow land card and put it onto the battlefield tapped. Then shuffle your library.
+rarity=C
+[/card]
+[card]
+id=122066
+name=Jester's Scepter
+mana={3}
+type=Artifact
+text=When Jester's Scepter enters the battlefield, exile the top five cards of target player's library face down. You may look at those cards for as long as they remain exiled. {2}, {T}, Put a card exiled with Jester's Scepter into its owner's graveyard: Counter target spell if it has the same name as that card.
+rarity=R
+[/card]
+[card]
+id=121198
+name=Jokulmorder
+mana={4}{U}{U}{U}
+type=Creature
+subtype=Leviathan
+power=12
+toughness=12
+text=Trample Jokulmorder enters the battlefield tapped. When Jokulmorder enters the battlefield, sacrifice it unless you sacrifice five lands. Jokulmorder doesn't untap during your untap step. Whenever you play an Island, you may untap Jokulmorder.
+rarity=R
+[/card]
+[card]
+id=122075
+name=Jötun Grunt
+mana={1}{W}
+type=Creature
+subtype=Giant Soldier
+power=4
+toughness=4
+text=Cumulative upkeep—Put two cards in a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=U
+[/card]
+[card]
+id=121236
+name=Jötun Owl Keeper
+mana={2}{W}
+type=Creature
+subtype=Giant
+power=3
+toughness=3
+text=Cumulative upkeep {W} or {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Jötun Owl Keeper is put into a graveyard from the battlefield, put a 1/1 white Bird creature token with flying onto the battlefield for each age counter on it.
+rarity=U
+[/card]
+[card]
+id=121172
+name=Juniper Order Ranger
+mana={3}{G}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=4
+text=Whenever another creature enters the battlefield under your control, put a +1/+1 counter on that creature and a +1/+1 counter on Juniper Order Ranger.
+rarity=U
+[/card]
+[card]
+id=122070
+name=Karplusan Minotaur
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=3
+toughness=3
+text=Cumulative upkeep—Flip a coin. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Whenever you win a coin flip, Karplusan Minotaur deals 1 damage to target creature or player. Whenever you lose a coin flip, Karplusan Minotaur deals 1 damage to target creature or player of an opponent's choice.
+rarity=R
+[/card]
+[card]
+id=121214
+name=Karplusan Strider
+mana={3}{G}
+type=Creature
+subtype=Yeti
+power=3
+toughness=4
+text=Karplusan Strider can't be the target of blue or black spells.
+rarity=U
+[/card]
+[card]
+id=121179
+name=Karplusan Wolverine
+mana={R}
+type=Snow Creature
+subtype=Wolverine Beast
+power=1
+toughness=1
+text=Whenever Karplusan Wolverine becomes blocked, you may have it deal 1 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=121207
+name=Kjeldoran Gargoyle
+mana={5}{W}
+type=Creature
+subtype=Gargoyle
+power=3
+toughness=3
+text=Flying, first strike Whenever Kjeldoran Gargoyle deals damage, you gain that much life.
+rarity=U
+[/card]
+[card]
+id=121235
+name=Kjeldoran Javelineer
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) {T}: Kjeldoran Javelineer deals damage to target attacking or blocking creature equal to the number of age counters on Kjeldoran Javelineer.
+rarity=C
+[/card]
+[card]
+id=121188
+name=Kjeldoran Outrider
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text={W}: Kjeldoran Outrider gets +0/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=121148
+name=Kjeldoran War Cry
+mana={1}{W}
+type=Instant
+text=Creatures you control get +X/+X until end of turn, where X is 1 plus the number of cards named Kjeldoran War Cry in all graveyards.
+rarity=C
+[/card]
+[card]
+id=122047
+name=Krovikan Mist
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=*
+toughness=*
+text=Flying Krovikan Mist's power and toughness are each equal to the number of Illusions on the battlefield.
+rarity=C
+[/card]
+[card]
+id=122050
+name=Krovikan Rot
+mana={2}{B}
+type=Instant
+text=Destroy target creature with power 2 or less. Recover {1}{B}{B} (When a creature is put into your graveyard from the battlefield, you may pay {1}{B}{B}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+rarity=U
+[/card]
+[card]
+id=121226
+name=Krovikan Scoundrel
+mana={1}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+id=121493
+name=Krovikan Whispers
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Cumulative upkeep {U} or {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) You control enchanted creature. When Krovikan Whispers is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
+rarity=U
+[/card]
+[card]
+id=121220
+name=Lightning Serpent
+mana={X}{R}
+type=Creature
+subtype=Elemental Serpent
+power=2
+toughness=1
+text=Trample, haste Lightning Serpent enters the battlefield with X +1/+0 counters on it. At the beginning of the end step, sacrifice Lightning Serpent.
+rarity=R
+[/card]
+[card]
+id=121495
+name=Lightning Storm
+mana={1}{R}{R}
+type=Instant
+text=Lightning Storm deals X damage to target creature or player, where X is 3 plus the number of charge counters on it. Discard a land card: Put two charge counters on Lightning Storm. You may choose a new target for it. Any player may activate this ability but only if Lightning Storm is on the stack.
+rarity=U
+[/card]
+[card]
+id=113542
+name=Lovisa Coldeyes
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Human Barbarian
+power=3
+toughness=3
+text=Warrior, Berserker, and/or other Barbarian creatures get +2/+2 and have haste.
+rarity=R
+[/card]
+[card]
+id=121153
+name=Luminesce
+mana={W}
+type=Instant
+text=Prevent all damage that black sources and red sources would deal this turn.
+rarity=U
+[/card]
+[card]
+id=121163
+name=Magmatic Core
+mana={2}{R}{R}
+type=Enchantment
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) At the beginning of your end step, Magmatic Core deals X damage divided as you choose among any number of target creatures, where X is the number of age counters on it.
+rarity=U
+[/card]
+[card]
+id=121170
+name=Martyr of Ashes
+mana={R}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+text={2}, Reveal X red cards from your hand, Sacrifice Martyr of Ashes: Martyr of Ashes deals X damage to each creature without flying.
+rarity=C
+[/card]
+[card]
+id=121131
+name=Martyr of Bones
+mana={B}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={1}, Reveal X black cards from your hand, Sacrifice Martyr of Bones: Exile up to X target cards from a single graveyard.
+rarity=C
+[/card]
+[card]
+id=121164
+name=Martyr of Frost
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={2}, Reveal X blue cards from your hand, Sacrifice Martyr of Frost: Counter target spell unless its controller pays {X}.
+rarity=C
+[/card]
+[card]
+id=121263
+name=Martyr of Sands
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={1}, Reveal X white cards from your hand, Sacrifice Martyr of Sands: You gain three times X life.
+rarity=C
+[/card]
+[card]
+id=121145
+name=Martyr of Spores
+mana={G}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+text={1}, Reveal X green cards from your hand, Sacrifice Martyr of Spores: Target creature gets +X/+X until end of turn.
+rarity=C
+[/card]
+[card]
+id=122122
+name=Mishra's Bauble
+mana={0}
+type=Artifact
+text={T}, Sacrifice Mishra's Bauble: Look at the top card of target player's library. Draw a card at the beginning of the next turn's upkeep.
+rarity=U
+[/card]
+[card]
+id=121234
+name=Mouth of Ronom
+mana=
+type=Snow Land
+text={T}: Add {1} to your mana pool. {4}{S}i}, {T}, Sacrifice Mouth of Ronom: Mouth of Ronom deals 4 damage to target creature. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=U
+[/card]
+[card]
+id=121141
+name=Mystic Melting
+mana={3}{G}
+type=Instant
+text=Destroy target artifact or enchantment. Draw a card at the beginning of the next turn's upkeep.
+rarity=U
+[/card]
+[card]
+id=121266
+name=Ohran Viper
+mana={1}{G}{G}
+type=Snow Creature
+subtype=Snake
+power=1
+toughness=3
+text=Whenever Ohran Viper deals combat damage to a creature, destroy that creature at end of combat. Whenever Ohran Viper deals combat damage to a player, you may draw a card.
+rarity=R
+[/card]
+[card]
+id=121144
+name=Ohran Yeti
+mana={3}{R}
+type=Snow Creature
+subtype=Yeti
+power=3
+toughness=3
+text={2}{S}i}: Target snow creature gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=121232
+name=Orcish Bloodpainter
+mana={2}{R}
+type=Creature
+subtype=Orc Shaman
+power=2
+toughness=1
+text={T}, Sacrifice a creature: Orcish Bloodpainter deals 1 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=121264
+name=Panglacial Wurm
+mana={5}{G}{G}
+type=Creature
+subtype=Wurm
+power=9
+toughness=5
+text=Trample While you're searching your library, you may cast Panglacial Wurm from your library.
+rarity=R
+[/card]
+[card]
+id=121238
+name=Perilous Research
+mana={1}{U}
+type=Instant
+text=Draw two cards, then sacrifice a permanent.
+rarity=U
+[/card]
+[card]
+id=121146
+name=Phobian Phantasm
+mana={1}{B}{B}
+type=Creature
+subtype=Illusion
+power=3
+toughness=3
+text=Flying; fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=U
+[/card]
+[card]
+id=121121
+name=Phyrexian Etchings
+mana={B}{B}{B}
+type=Enchantment
+text=Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) At the beginning of your end step, draw a card for each age counter on Phyrexian Etchings. When Phyrexian Etchings is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
+rarity=R
+[/card]
+[card]
+id=121127
+name=Phyrexian Ironfoot
+mana={3}
+type=Snow Artifact Creature
+subtype=Construct
+power=3
+toughness=4
+text=Phyrexian Ironfoot doesn't untap during your untap step. {1}{S}i}: Untap Phyrexian Ironfoot. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=U
+[/card]
+[card]
+id=121142
+name=Phyrexian Snowcrusher
+mana={6}
+type=Snow Artifact Creature
+subtype=Juggernaut
+power=6
+toughness=5
+text=Phyrexian Snowcrusher attacks each turn if able. {1}{S}i}: Phyrexian Snowcrusher gets +1/+0 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=U
+[/card]
+[card]
+id=121160
+name=Phyrexian Soulgorger
+mana={3}
+type=Snow Artifact Creature
+subtype=Construct
+power=8
+toughness=8
+text=Cumulative upkeep—Sacrifice a creature. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=R
+[/card]
+[card]
+id=121223
+name=Resize
+mana={1}{G}
+type=Instant
+text=Target creature gets +3/+3 until end of turn. Recover {1}{G} (When a creature is put into your graveyard from the battlefield, you may pay {1}{G}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+rarity=U
+[/card]
+[card]
+id=121257
+name=Rime Transfusion
+mana={1}{B}
+type=Snow Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/+1 and has "{S}i}: This creature can't be blocked this turn except by snow creatures." ({S}i} can be paid with one mana from a snow permanent.)
+rarity=U
+[/card]
+[card]
+id=121136
+name=Rimebound Dead
+mana={B}
+type=Snow Creature
+subtype=Skeleton
+power=1
+toughness=1
+text={S}i}: Regenerate Rimebound Dead. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=122116
+name=Rimefeather Owl
+mana={5}{U}{U}
+type=Snow Creature
+subtype=Bird
+power=*
+toughness=*
+text=Flying Rimefeather Owl's power and toughness are each equal to the number of snow permanents on the battlefield. {1}{S}i}: Put an ice counter on target permanent. Permanents with ice counters on them are snow.
+rarity=R
+[/card]
+[card]
+id=121210
+name=Rimehorn Aurochs
+mana={4}{G}
+type=Snow Creature
+subtype=Aurochs
+power=3
+toughness=3
+text=Trample Whenever Rimehorn Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs. {2}{S}i}: Target creature blocks target creature this turn if able. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=U
+[/card]
+[card]
+id=121184
+name=Rimescale Dragon
+mana={5}{R}{R}
+type=Snow Creature
+subtype=Dragon
+power=5
+toughness=5
+text=Flying {2}{S}i}: Tap target creature and put an ice counter on it. ({S}i} can be paid with one mana from a snow permanent.) Creatures with ice counters on them don't untap during their controllers' untap steps.
+rarity=R
+[/card]
+[card]
+id=121215
+name=Rimewind Cryomancer
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+text={1}, {T}: Counter target activated ability. Activate this ability only if you control four or more snow permanents. (Mana abilities can't be targeted.)
+rarity=U
+[/card]
+[card]
+id=121239
+name=Rimewind Taskmage
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+text={1}, {T}: You may tap or untap target permanent. Activate this ability only if you control four or more snow permanents.
+rarity=C
+[/card]
+[card]
+id=121217
+name=Rite of Flame
+mana={R}
+type=Sorcery
+text=Add {R}{R} to your mana pool, then add {R} to your mana pool for each card named Rite of Flame in each graveyard.
+rarity=C
+[/card]
+[card]
+id=121270
+name=Ronom Hulk
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=6
+text=Protection from snow Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=C
+[/card]
+[card]
+id=121176
+name=Ronom Serpent
+mana={5}{U}
+type=Snow Creature
+subtype=Serpent
+power=5
+toughness=6
+text=Ronom Serpent can't attack unless defending player controls a snow land. When you control no snow lands, sacrifice Ronom Serpent.
+rarity=C
+[/card]
+[card]
+id=121237
+name=Ronom Unicorn
+mana={1}{W}
+type=Creature
+subtype=Unicorn
+power=2
+toughness=2
+text=Sacrifice Ronom Unicorn: Destroy target enchantment.
+rarity=C
+[/card]
+[card]
+id=121247
+name=Rune Snag
+mana={1}{U}
+type=Instant
+text=Counter target spell unless its controller pays {2} plus an additional {2} for each card named Rune Snag in each graveyard.
+rarity=C
+[/card]
+[card]
+id=121204
+name=Scrying Sheets
+mana=
+type=Snow Land
+text={T}: Add {1} to your mana pool. {1}{S}i}, {T}: Look at the top card of your library. If that card is snow, you may reveal it and put it into your hand. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=R
+[/card]
+[card]
+id=121261
+name=Sek'Kuar, Deathkeeper
+mana={2}{B}{R}{G}
+type=Legendary Creature
+subtype=Orc Shaman
+power=4
+toughness=3
+text=Whenever another nontoken creature you control is put into a graveyard from the battlefield, put a 3/1 black and red Graveborn creature token with haste onto the battlefield.
+rarity=R
+[/card]
+[card]
+id=122073
+name=Shape of the Wiitigo
+mana={3}{G}{G}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature When Shape of the Wiitigo enters the battlefield, put six +1/+1 counters on enchanted creature. At the beginning of your upkeep, put a +1/+1 counter on enchanted creature if it attacked or blocked since your last upkeep. Otherwise, remove a +1/+1 counter from it.
+rarity=R
+[/card]
+[card]
+id=122069
+name=Sheltering Ancient
+mana={1}{G}
+type=Creature
+subtype=Treefolk
+power=5
+toughness=5
+text=Trample Cumulative upkeep—Put a +1/+1 counter on a creature an opponent controls. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=U
+[/card]
+[card]
+id=121183
+name=Simian Brawler
+mana={3}{G}
+type=Creature
+subtype=Ape Warrior
+power=3
+toughness=3
+text=Discard a land card: Simian Brawler gets +1/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=122120
+name=Skred
+mana={R}
+type=Instant
+text=Skred deals damage to target creature equal to the number of snow permanents you control.
+rarity=C
+[/card]
+[card]
+id=121192
+name=Snow-Covered Forest
+mana=
+type=Basic Snow Land
+subtype=Forest
+text=G
+rarity=C
+[/card]
+[card]
+id=121130
+name=Snow-Covered Island
+mana=
+type=Basic Snow Land
+subtype=Island
+text=U
+rarity=C
+[/card]
+[card]
+id=121233
+name=Snow-Covered Mountain
+mana=
+type=Basic Snow Land
+subtype=Mountain
+text=R
+rarity=C
+[/card]
+[card]
+id=121267
+name=Snow-Covered Plains
+mana=
+type=Basic Snow Land
+subtype=Plains
+text=W
+rarity=C
+[/card]
+[card]
+id=121256
+name=Snow-Covered Swamp
+mana=
+type=Basic Snow Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
+id=121165
+name=Soul Spike
+mana={5}{B}{B}
+type=Instant
+text=You may exile two black cards from your hand rather than pay Soul Spike's mana cost. Soul Spike deals 4 damage to target creature or player and you gain 4 life.
+rarity=R
+[/card]
+[card]
+id=121156
+name=Sound the Call
+mana={2}{G}
+type=Sorcery
+text=Put a 1/1 green Wolf creature token onto the battlefield. It has "This creature gets +1/+1 for each card named Sound the Call in each graveyard."
+rarity=C
+[/card]
+[card]
+id=121273
+name=Squall Drifter
+mana={1}{W}
+type=Snow Creature
+subtype=Elemental
+power=1
+toughness=1
+text=Flying {W}, {T}: Tap target creature.
+rarity=C
+[/card]
+[card]
+id=122046
+name=Stalking Yeti
+mana={2}{R}{R}
+type=Snow Creature
+subtype=Yeti
+power=3
+toughness=3
+text=When Stalking Yeti enters the battlefield, if it's on the battlefield, it deals damage equal to its power to target creature an opponent controls and that creature deals damage equal to its power to Stalking Yeti. {2}{S}i}: Return Stalking Yeti to its owner's hand. Activate this ability only any time you could cast a sorcery. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=U
+[/card]
+[card]
+id=121240
+name=Steam Spitter
+mana={4}{G}
+type=Creature
+subtype=Spider
+power=1
+toughness=5
+text=Reach (This creature can block creatures with flying.) {R}: Steam Spitter gets +1/+0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=121253
+name=Stromgald Crusader
+mana={B}{B}
+type=Creature
+subtype=Zombie Knight
+power=2
+toughness=1
+text=Protection from white {B}: Stromgald Crusader gains flying until end of turn. {B}{B}: Stromgald Crusader gets +1/+0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=121494
+name=Sun's Bounty
+mana={1}{W}
+type=Instant
+text=You gain 4 life. Recover {1}{W} (When a creature is put into your graveyard from the battlefield, you may pay {1}{W}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+rarity=C
+[/card]
+[card]
+id=121251
+name=Sunscour
+mana={5}{W}{W}
+type=Sorcery
+text=You may exile two white cards from your hand rather than pay Sunscour's mana cost. Destroy all creatures.
+rarity=R
+[/card]
+[card]
+id=122052
+name=Surging ÁEher
+mana={3}{U}
+type=Instant
+text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) Return target permanent to its owner's hand.
+rarity=C
+[/card]
+[card]
+id=122053
+name=Surging Dementia
+mana={1}{B}
+type=Sorcery
+text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) Target player discards a card.
+rarity=C
+[/card]
+[card]
+id=121269
+name=Surging Flame
+mana={1}{R}
+type=Instant
+text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) Surging Flame deals 2 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=121205
+name=Surging Might
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/+2. Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.)
+rarity=C
+[/card]
+[card]
+id=122118
+name=Surging Sentinels
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+text=First strike Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.)
+rarity=C
+[/card]
+[card]
+id=121224
+name=Survivor of the Unseen
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) {T}: Draw two cards, then put a card from your hand on top of your library.
+rarity=C
+[/card]
+[card]
+id=121255
+name=Swift Maneuver
+mana={1}{W}
+type=Instant
+text=Prevent the next 2 damage that would be dealt to target creature or player this turn. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=121262
+name=Tamanoa
+mana={R}{G}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=4
+text=Whenever a noncreature source you control deals damage, you gain that much life.
+rarity=R
+[/card]
+[card]
+id=122119
+name=Thermal Flux
+mana={U}
+type=Instant
+text=Choose one  ETarget nonsnow permanent becomes snow until end of turn; or target snow permanent isn't snow until end of turn. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=121173
+name=Thermopod
+mana={4}{R}
+type=Snow Creature
+subtype=Slug
+power=4
+toughness=3
+text={S}i}: Thermopod gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.) Sacrifice a creature: Add {R} to your mana pool.
+rarity=C
+[/card]
+[card]
+id=124451
+name=Thrumming Stone
+mana={5}
+type=Legendary Artifact
+text=Spells you cast have ripple 4. (Whenever you cast a spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as the spell without paying their mana costs. Put the rest on the bottom of your library.)
+rarity=R
+[/card]
+[card]
+id=121125
+name=Tresserhorn Sinks
+mana=
+type=Snow Land
+text=Tresserhorn Sinks enters the battlefield tapped. {T}: Add {B} or {R} to your mana pool.
+rarity=U
+[/card]
+[card]
+id=121195
+name=Tresserhorn Skyknight
+mana={5}{B}{B}
+type=Creature
+subtype=Zombie Knight
+power=5
+toughness=3
+text=Flying Prevent all damage that would be dealt to Tresserhorn Skyknight by creatures with first strike.
+rarity=U
+[/card]
+[card]
+id=121150
+name=Ursine Fylgja
+mana={4}{W}
+type=Creature
+subtype=Spirit Bear
+power=3
+toughness=3
+text=Ursine Fylgja enters the battlefield with four healing counters on it. Remove a healing counter from Ursine Fylgja: Prevent the next 1 damage that would be dealt to Ursine Fylgja this turn. {2}{W}: Put a healing counter on Ursine Fylgja.
+rarity=U
+[/card]
+[card]
+id=121187
+name=Vanish into Memory
+mana={2}{W}{U}
+type=Instant
+text=Exile target creature. You draw cards equal to that creature's power. At the beginning of your next upkeep, return that card to the battlefield under its owner's control. If you do, discard cards equal to its toughness.
+rarity=U
+[/card]
+[card]
+id=122071
+name=Vexing Sphinx
+mana={1}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
+text=Flying Cumulative upkeep—Discard a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Vexing Sphinx is put into a graveyard from the battlefield, draw a card for each age counter on it.
+rarity=R
+[/card]
+[card]
+id=121129
+name=Void Maw
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=5
+text=Trample If another creature would be put into a graveyard from the battlefield, exile it instead. Put a card exiled with Void Maw into its owner's graveyard: Void Maw gets +2/+2 until end of turn.
+rarity=R
+[/card]
+[card]
+id=121225
+name=Wall of Shards
+mana={1}{W}
+type=Snow Creature
+subtype=Wall
+power=1
+toughness=8
+text=Defender, flying Cumulative upkeep—An opponent gains 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+rarity=U
+[/card]
+[card]
+id=121216
+name=White Shield Crusader
+mana={W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=1
+text=Protection from black {W}: White Shield Crusader gains flying until end of turn. {W}{W}: White Shield Crusader gets +1/+0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=121191
+name=Wilderness Elemental
+mana={1}{R}{G}
+type=Creature
+subtype=Elemental
+power=*
+toughness=3
+text=Trample Wilderness Elemental's power is equal to the number of nonbasic lands your opponents control.
+rarity=U
+[/card]
+[card]
+id=121230
+name=Woolly Razorback
+mana={2}{W}{W}
+type=Creature
+subtype=Boar Beast
+power=7
+toughness=7
+text=Woolly Razorback enters the battlefield with three ice counters on it. As long as Woolly Razorback has an ice counter on it, it has defender and any combat damage it would deal is prevented. Whenever Woolly Razorback blocks, remove an ice counter from it.
+rarity=R
+[/card]
+[card]
+id=121154
+name=Zombie Musher
+mana={3}{B}
+type=Snow Creature
+subtype=Zombie
+power=2
+toughness=3
+text=Snow landwalk {S}i}: Regenerate Zombie Musher. ({S}i} can be paid with one mana from a snow permanent.)
+rarity=C
+[/card]
+[card]
+id=121162
+name=Zur the Enchanter
+mana={1}{W}{U}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=1
+toughness=4
+text=Flying Whenever Zur the Enchanter attacks, you may search your library for an enchantment card with converted mana cost 3 or less and put it onto the battlefield. If you do, shuffle your library.
+rarity=R
+[/card]

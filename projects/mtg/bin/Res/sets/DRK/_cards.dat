@@ -1,0 +1,12 @@
+[card]
+id=1747
+name=Apprentice Wizard
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=1
+text={U}, {T}: Add {3} to your mana pool.
+auto={U}{T}:Add{3}
+rarity=R
+[/card]

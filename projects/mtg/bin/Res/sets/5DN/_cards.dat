@@ -1,0 +1,13 @@
+[card]
+id=50144
+name=Advanced Hoverguard
+mana={3}{U}
+type=Creature
+subtype=Drone
+power=2
+toughness=2
+text=Flying {U}: Advanced Hoverguard gains shroud until end of turn. (It can't be the target of spells or abilities.)
+abilities=flying
+auto={U}:shroud
+rarity=C
+[/card]

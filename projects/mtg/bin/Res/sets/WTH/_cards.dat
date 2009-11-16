@@ -1,0 +1,12 @@
+[card]
+id=4567
+name=Ardent Militia
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=5
+text=Vigilance
+abilities=vigilance
+rarity=U
+[/card]

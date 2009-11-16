@@ -1,0 +1,12 @@
+[card]
+id=12390
+name=Archivist
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={T}: Draw a card.
+auto={T}:Draw:1
+rarity=R
+[/card]

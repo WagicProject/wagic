@@ -1,0 +1,12 @@
+[card]
+id=24601
+name=Agent of Shauku
+mana={1}{B}
+type=Creature
+subtype=Human Mercenary
+power=1
+toughness=1
+text={1}{B}, Sacrifice a land: Target creature gets +2/+0 until end of turn.
+auto={1}{B}{S(land|myBattlefield)}:2/0 target(creature)
+rarity=C
+[/card]
