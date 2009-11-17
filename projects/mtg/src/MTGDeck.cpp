@@ -298,7 +298,7 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     case 0:
       if (s[0] == '['){
 #if defined (_DEBUG)
-        if (!committed){
+        if (tempCard && !committed){
           OutputDebugString("MTGDECK: Card not committed before creating new one, Memory leak risk\n   ");
           OutputDebugString(tempCard->getName().c_str());
           OutputDebugString("\n");
