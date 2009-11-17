@@ -365,7 +365,8 @@ rarity=R
 mana={1}{R}{G}{G}
 type=Creature
 subtype=Elemental
-auto=@each my upkeep:damage:1 all(player)
+auto=@each my upkeep:damage:1 opponent
+auto=@each my upkeep:damage:1 controller
 power=5
 toughness=5
 [/card]

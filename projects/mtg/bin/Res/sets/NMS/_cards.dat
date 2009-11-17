@@ -19,7 +19,7 @@ toughness=3
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) Other black creatures get +1/+1.  Nonblack creatures get -1/-1.
 abilities=legendary,flying
 auto=lord(creature[black]) 1/1 other
-auto=lord(creature[-black]) 1/1
+auto=lord(creature[-black]) -1/-1
 rarity=R
 [/card]
 [card]
@@ -53,7 +53,8 @@ name=Flame Rift
 mana={1}{R}
 type=Sorcery
 text=Flame Rift deals 4 damage to each player.
-auto=damage:4 all(player)
+auto=damage:4 opponent
+auto=damage:4 controller
 rarity=C
 [/card]
 [card]
@@ -168,7 +169,7 @@ subtype=Human Mercenary
 power=2
 toughness=2
 text={3}, {T}: Search your library for a Goblin permanent card and put that card onto the battlefield. Then shuffle your library.
-auto={3}{T}:moveTo(myinplay) target(Goblin|mylibrary)
+auto={3}{T}:moveTo(myinplay) target(Goblin[-instant;-sorcery]|mylibrary)
 rarity=R
 [/card]
 [card]
@@ -221,10 +222,11 @@ rarity=R
 [card]
 id=21402
 name=Rath's Edge
-type=Legendary Land
+type=Land
 text={T}: Add {1} to your mana pool.  {4}, {T}, Sacrifice a land: Rath's Edge deals 1 damage to target creature or player.
 auto={T}:Add {1}
 auto={4}{T}{S(land|myinplay)}:damage:1 target(creature,player)
+abilities=legendary
 rarity=R
 [/card]
 [card]
@@ -248,7 +250,7 @@ subtype=Human Mercenary
 power=2
 toughness=2
 text={3}, {T}: Search your library for a Merfolk permanent card and put that card onto the battlefield. Then shuffle your library.
-auto={3}{T}:moveTo(myinplay) target(Merfolk|mylibrary)
+auto={3}{T}:moveTo(myinplay) target(Merfolk[-sorcery;-instant]|mylibrary)
 rarity=R
 [/card]
 [card]
@@ -318,7 +320,7 @@ subtype=Human Rebel
 power=2
 toughness=2
 text={3}, {T}: Search your library for an Elf permanent card and put that card onto the battlefield. Then shuffle your library.
-auto={3}{T}:moveTo(myinplay) target(elf|mylibrary)
+auto={3}{T}:moveTo(myinplay) target(elf[-sorcery;-instant]|mylibrary)
 rarity=R
 [/card]
 [card]

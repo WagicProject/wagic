@@ -1176,7 +1176,7 @@ rarity=U
 mana={1}{BR}
 type=Creature
 subtype=Elemental Shaman
-auto={B}{R}:life:-1 all(player)
+auto={B}{R}:life:-1 opponent && life:-1 player
 power=2
 toughness=1
 [/card]

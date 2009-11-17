@@ -226,9 +226,11 @@ rarity=U
 mana={1}{R}
 kicker={2}
 auto=damage:1 all(creature[-flying])
-auto=damage:1 all(player)
+auto=damage:1 opponent
+auto=damage:1 controller
 auto=kicker damage:3 all(creature[-flying])
-auto=kicker damage:3 all(player)
+auto=kicker damage:3 opponent
+auto=kicker damage:3 controller
 type=Sorcery
 [/card]
 [card]
