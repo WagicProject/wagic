@@ -1,9 +1,638 @@
 [card]
+text=Whenever an opponent casts a creature spell, AEther Sting deals 1 damage to that player.
+auto=@movedTo(creature|opponentstack):life:-1 opponent
 id=12612
 name=AEther Sting
+rarity=U
 mana={3}{R}
 type=Enchantment
-text=Whenever an opponent casts a creature spell, AEther Sting deals 1 damage to that player.
-auto=@movedTo(creature|opponentstack) damage:1 opponent
+[/card]
+[card]
+text={G}: Regenerate Ancient Silverback. 
+id=16424
+name=Ancient Silverback
+rarity=R
+mana={4}{G}{G}
+type=Creature
+subtype=Ape
+auto={G}:regenerate
+power=6
+toughness=5
+[/card]
+[card]
+text={B}, Sacrifice a creature: Destroy target nonblack creature.
+auto={B}{S(creature|myBattlefield)}:destroy target(creature[-black])
+id=15191
+name=Attrition
+rarity=R
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+text={3}{U}: Untap Blizzard Elemental 
+id=15146
+name=Blizzard Elemental 
+rarity=R
+mana={5}{U}{U}
+type=Creature
+subtype=Elemental
+auto={3}{U}:untap
+power=5
+toughness=5
+abilities=flying
+[/card]
+[card]
+text={T}: You gain 1 life.
+auto={T}:life:1 
+id=15249
+name=Braidwood Cup
 rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+text={2}, {T}, Sacrifice Braidwood Sextant: Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library.
+auto={2}{T}{S}:moveTo(myHand) target(land[basic]|myLibrary)
+id=15251
+name=Braidwood Sextant
+rarity=U
+mana={1}
+type=Artifact
+[/card]
+[card]
+text={2}, Sacrifice Brass Secretary: Draw a card.
+auto={2}{S}:draw:1
+id=15245
+name=Brass Secretary
+rarity=U
+type=Artifact Creature
+mana={3}
+power=2
+subtype=Construct
+toughness=1
+[/card]
+[card]
+text=Bubbling Beebles is unblockable as long as defending player controls an enchantment.
+id=15783
+name=Bubbling Beebles
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Beeble
+auto=aslongas(enchantment|opponentBattlefield) unblockable
+power=3
+toughness=3
+[/card]
+[card]
+text=First strike   {1}{W}: Capashen Knight gets +1/+0 until end of turn.
+auto={1}{W}:1/0
+id=15125
+name=Capashen Knight
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+abilities=first strike
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+2.   {2}, Sacrifice Capashen Standard: Draw a card.
+target=creature
+auto=1/2
+auto={2}{S}:draw:1
+id=19095
+name=Capashen Standard
+rarity=C
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={W}: Capashen Templar gets +0/+1 until end of turn.
+auto={W}:0/1
+id=15762
+name=Capashen Templar
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+text=Whenever a creature enters the battlefield, you lose 1 life and add {B} to your mana pool.
+auto=@movedTo(creature|battlefield):life:-1 controller
+auto=@movedTo(creature|battlefield):add{B} controller
+id=19115
+name=Carnival of Souls
+rarity=R
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+text=Mountainwalk   {G}: Colos Yearling gets +1/+0 until end of turn.
+auto={G}:1/0
+id=15195
+name=Colos Yearling
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goat Beast
+power=2
+toughness=2
+abilities=mountainwalk
+[/card]
+[card]
+text=Whenever a black card is put into an opponent's graveyard from anywhere, you may draw a card.
+auto=@movedTo(*[black]|opponentgraveyard):may draw:1 controller
+id=15878
+name=Compost
+rarity=U
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+text=Flying   When you control no artifacts, sacrifice Covetous Dragon.
+id=15770
+name=Covetous Dragon
+rarity=R
+mana={4}{R}
+type=Creature
+subtype=Dragon
+auto=aslongas(artifact|myBattlefield) 96/95
+power=-90
+toughness=-90
+abilities=flying
+[/card]
+[card]
+text=Target player gains control of target permanent you control.
+target=*|myBattlefield
+auto=moveTo(opponentBattlefield)
+id=15168
+name=Donate
+rarity=R
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+text=Shroud
+id=19109
+name=Elvish Lookout
+rarity=C
+type=Creature
+mana={G}
+power=1
+subtype=Elf
+toughness=1
+abilities=shroud
+[/card]
+[card]
+text={G}, {T}: You may put a creature card from your hand onto the battlefield.
+auto={G}{T}:moveTo(myBattlefield) target(creature|myhand)
+id=15241
+name=Elvish Piper
+rarity=R
+type=Creature
+mana={3}{G}
+power=1
+subtype=Elf Shaman
+toughness=1
+[/card]
+[card]
+text=When you control no other creatures, sacrifice Emperor Crocodile.
+id=15773
+name=Emperor Crocodile
+rarity=R
+mana={3}{G}
+type=Creature
+subtype=Crocodile
+auto=aslongas(other creature|myBattlefield) 95/95
+power=-90
+toughness=-90
+[/card]
+[card]
+text=When False Prophet is put into a graveyard from the battlefield, exile all creatures.
+id=15765
+name=False Prophet
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Human Cleric
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(exile) all(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text={4}, {T}, Sacrifice a creature: Fodder Cannon deals 4 damage to target creature.
+auto={4}{T}{s(creature|myBattlefield)}:Damage:4 target(creature)
+id=15250
+name=Fodder Cannon
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+[card]
+text=First strike, haste
+id=15876
+name=Goblin Berserker
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Goblin Berserker
+power=2
+toughness=2
+abilities=first strike,haste
+[/card]
+[card]
+text=Trample
+id=15223
+name=Goliath Beetle
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Insect
+power=3
+toughness=1
+abilities=trample
+[/card]
+[card]
+text={2}, Sacrifice Brass Secretary: Draw a card.   {T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+auto={2}{S}:draw:1
+id=15220
+name=Heart Warden
+rarity=C
+type=Creature
+mana={1}{G}
+power=1
+subtype=Elf Druid
+toughness=1
+[/card]
+[card]
+text=Hulking Ogre can't block.
+id=15196
+name=Hulking Ogre
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=3
+abilities=cantblock
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has flying.   {2}, Sacrifice Illuminated Wings: Draw a card.
+target=creature
+auto=flying
+auto={2}{S}:draw:1
+id=19097
+name=Illuminated Wings
+rarity=C
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Flying   When Kingfisher is put into a graveyard from the battlefield, draw a card.
+id=15147
+name=Kingfisher
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Bird
+auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=All creatures get +1/+1 until end of turn.
+auto=lord(creature) 1/1
+id=15819
+name=Magnify
+rarity=C
+mana={G}
+type=Instant
+[/card]
+[card]
+text={2}: Mantis Engine gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)   {2}: Mantis Engine gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
+auto={2}:flying
+auto={2}:first strike
+id=15247
+name=Mantis Engine
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Insect
+power=3
+toughness=3
+[/card]
+[card]
+text={1}, Discard a card: Draw a card.
+id=15158
+name=Mental Discipline
+rarity=C
+mana={1}{U}{U}
+auto={1}{S(*|myhand)}:draw:1
+type=Enchantment
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has protection from black and from red.
+target=creature
+auto=protection from black
+auto=protection from red
+id=15129
+name=Mask of Law and Grace
+rarity=C
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Metathran Soldier is unblockable.
+id=19096
+name=Metathran Soldier
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Metathran Soldier
+power=1
+toughness=1
+abilities=unblockable
+[/card]
+[card]
+text={B}: Regenerate Phyrexian Monitor.
+id=19113
+name=Phyrexian Monitor
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Skeleton
+auto={B}:regenerate
+power=2
+toughness=2
+[/card]
+[card]
+text=When Plague Dogs is put into a graveyard from the battlefield, all creatures get -1/-1 until end of turn.   {2}, Sacrifice Plague Dogs: Draw a card.
+id=15180
+name=Plague Dogs
+rarity=U
+mana={4}{B}
+type=Creature
+subtype=Zombie Hound
+auto={2}{S}:draw:1
+auto=@movedTo(this|mygraveyard) from(battlefield):lord(creature) -1/-1 ueot
+power=3
+toughness=3
+[/card]
+[card]
+text=Reach
+id=19239
+name=Plated Spider
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Spider
+power=4
+toughness=4
+abilities=reach
+[/card]
+[card]
+text=Return all enchantment cards from your graveyard to the battlefield. (Auras with nothing to enchant remain in your graveyard.)
+id=15143
+name=Replenish
+auto=moveTo(mybattlefield) all(enchantment|mygraveyard)
+rarity=R
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
+text=Return target permanent you control to its owner's hand.
+target=*|myBattlefield
+auto=moveTo(myhand)
+id=15154
+name=Rescue
+rarity=C
+mana={U}
+type=Instant
+[/card]
+[card]
+text={T}: Add {G} to your mana pool for each Forest you control.
+id=15237
+name=Rofellos, Llanowar Emissary
+rarity=R
+mana={G}{G}
+type=Creature
+subtype=Elf Druid
+auto={T}:foreach(forest|myBattlefield) add:{G}
+power=2
+toughness=1
+abilities=legendary
+[/card]
+[card]
+text=Flying   {T}: Target attacking or blocking creature gets +2/+2 until end of turn.
+id=14485
+name=Serra Advocate
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Angel
+auto={T}:2/2 target(creature[attacking;blocking])
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=When you play a creature spell, sacrifice Skittering Horror.
+auto=@movedTo(creature|mystack):bury
+id=15787
+name=Skittering Horror
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=3
+[/card]
+[card]
+text=Flying   {2}, Sacrifice Slinking Skirge: Draw a card.
+auto={2}{S}:draw:1
+id=15786
+name=Slinking Skirge
+rarity=C
+type=Creature
+mana={3}{B}
+power=2
+subtype=Imp
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Creatures you control get +0/+5 until end of turn.
+auto=lord(creature|myBattlefield) 0/5
+id=15764
+name=Solidarity
+rarity=C
+type=Instant
+mana={3}{W}
+[/card]
+[card]
+text=Target player loses 4 life and you gain 4 life.
+target=player
+auto=damage:4
+auto=life:4 controller
+id=15767
+name=Soul Feast
+rarity=U
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Fear
+id=15170
+name=Squirming Mass
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
+abilities=fear
+[/card]
+[card]
+text={U}{U}{U}, {T}: Return target permanent to its owner's hand.
+auto={U}{U}{U}{T}:moveTo(ownerhand) target(*)
+id=15875
+name=Temporal Adept
+rarity=R
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying   When you control no enchantments, sacrifice Tethered Griffin.
+id=15769
+name=Tethered Griffin
+rarity=R
+mana={W}
+type=Creature
+subtype=Griffin
+auto=aslongas(enchantment|myBattlefield) 92/93
+power=-90
+toughness=-90
+abilities=flying
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.
+id=129764
+name=Thieving Magpie
+rarity=U
+mana={2}{U}{U}
+type=Creature
+subtype=Bird
+auto=@damaged(player) from(this):draw:1 controller
+power=1
+toughness=3
+abilities=flying
+[/card]
+[card]
+text={T}: Add 3 Mana to your mana pool.
+auto={T}:Add {3}
+id=15248
+name=Thran Dynamo
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+[card]
+text=Flying
+id=18287
+name=Tormented Angel
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Angel
+power=1
+toughness=5
+abilities=flying
+[/card]
+[card]
+text=Attacking creatures get +2/+0 until end of turn.
+auto=lord(creature[attacking]) 2/0
+id=15200
+name=Trumpet Blast
+rarity=C
+type=Instant
+mana={2}{R}
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +3/-1.
+id=19114
+target=creature
+auto=3/-1
+name=Twisted Experiment
+rarity=C
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+text=Flying, protection from green
+id=15132
+name=Voice of Duty
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=2
+abilities=flying,protection from green
+[/card]
+[card]
+text=Flying, protection from blue
+id=15131
+name=Voice of Reason
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=2
+abilities=flying,protection from blue
+[/card]
+[card]
+text=haste
+id=15198
+name=Wild Colos
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goat Beast
+power=2
+toughness=2
+abilities=haste
+[/card]
+[card]
+text=Yavimaya Enchantress gets +1/+1 for each enchantment on the battlefield.
+id=15236
+auto=foreach(enchantment|battlefield) 1/1 
+name=Yavimaya Enchantress
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Human Druid
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {G}, {T}: Regenerate target creature.
+id=15772
+name=Yavimaya Hollow
+auto={T}:Add {1}
+auto={G}{T}:regenerate target(creature)
+rarity=R
+type=Land
+abilities=legendary
 [/card]

@@ -9,18 +9,6 @@ toughness=2
 text=When Academy Rector is put into a graveyard from the battlefield, you may exile it. If you do, search your library for an enchantment card and put that card onto the battlefield. Then shuffle your library.
 rarity=R
 [/card]
-
-[card]
-id=16424
-name=Ancient Silverback
-mana={4}{G}{G}
-type=Creature
-subtype=Ape
-power=6
-toughness=5
-text={G}: Regenerate Ancient Silverback. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-rarity=R
-[/card]
 [card]
 id=14442
 name=Apprentice Necromancer
@@ -42,14 +30,6 @@ text=Enchant creature At the beginning of your upkeep, you may put an arrow coun
 rarity=U
 [/card]
 [card]
-id=15191
-name=Attrition
-mana={1}{B}{B}
-type=Enchantment
-text={B}, Sacrifice a creature: Destroy target nonblack creature.
-rarity=R
-[/card]
-[card]
 id=15261
 name=Aura Thief
 mana={3}{U}
@@ -58,17 +38,6 @@ subtype=Illusion
 power=2
 toughness=2
 text=Flying When Aura Thief is put into a graveyard from the battlefield, you gain control of all enchantments. (You don't get to move Auras.)
-rarity=R
-[/card]
-[card]
-id=15146
-name=Blizzard Elemental
-mana={5}{U}{U}
-type=Creature
-subtype=Elemental
-power=5
-toughness=5
-text=Flying {3}{U}: Untap Blizzard Elemental.
 rarity=R
 [/card]
 [card]
@@ -94,33 +63,6 @@ text=When Body Snatcher enters the battlefield, you may discard a creature card.
 rarity=R
 [/card]
 [card]
-id=15249
-name=Braidwood Cup
-mana={3}
-type=Artifact
-text={T}: You gain 1 life.
-rarity=U
-[/card]
-[card]
-id=15251
-name=Braidwood Sextant
-mana={1}
-type=Artifact
-text={2}, {T}, Sacrifice Braidwood Sextant: Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=U
-[/card]
-[card]
-id=15245
-name=Brass Secretary
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=2
-toughness=1
-text={2}, Sacrifice Brass Secretary: Draw a card.
-rarity=U
-[/card]
-[card]
 id=15148
 name=Brine Seer
 mana={3}{U}
@@ -130,17 +72,6 @@ power=1
 toughness=1
 text={2}{U}, {T}: Reveal any number of blue cards in your hand. Counter target spell unless its controller pays {1} for each card revealed this way.
 rarity=U
-[/card]
-[card]
-id=15783
-name=Bubbling Beebles
-mana={4}{U}
-type=Creature
-subtype=Beeble
-power=3
-toughness=3
-text=Bubbling Beebles is unblockable as long as defending player controls an enchantment.
-rarity=C
 [/card]
 [card]
 id=15179
@@ -157,45 +88,6 @@ mana={3}
 type=Artifact
 text=Whenever a creature attacks, Caltrops deals 1 damage to it.
 rarity=U
-[/card]
-[card]
-id=15125
-name=Capashen Knight
-mana={1}{W}
-type=Creature
-subtype=Human Knight
-power=1
-toughness=1
-text=First strike {1}{W}: Capashen Knight gets +1/+0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=19095
-name=Capashen Standard
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1. {2}, Sacrifice Capashen Standard: Draw a card.
-rarity=C
-[/card]
-[card]
-id=15762
-name=Capashen Templar
-mana={2}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text={W}: Capashen Templar gets +0/+1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=19115
-name=Carnival of Souls
-mana={1}{B}
-type=Enchantment
-text=Whenever a creature enters the battlefield, you lose 1 life and add {B} to your mana pool.
-rarity=R
 [/card]
 [card]
 id=15768
@@ -216,36 +108,6 @@ power=1
 toughness=1
 text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
 rarity=U
-[/card]
-[card]
-id=15195
-name=Colos Yearling
-mana={2}{R}
-type=Creature
-subtype=Goat Beast
-power=1
-toughness=1
-text=Mountainwalk {R}: Colos Yearling gets +1/+0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=15878
-name=Compost
-mana={1}{G}
-type=Enchantment
-text=Whenever a black card is put into an opponent's graveyard from anywhere, you may draw a card.
-rarity=U
-[/card]
-[card]
-id=15770
-name=Covetous Dragon
-mana={4}{R}
-type=Creature
-subtype=Dragon
-power=6
-toughness=5
-text=Flying When you control no artifacts, sacrifice Covetous Dragon.
-rarity=R
 [/card]
 [card]
 id=15151
@@ -285,39 +147,6 @@ text=Enchant creature When enchanted creature is put into a graveyard, target pl
 rarity=C
 [/card]
 [card]
-id=19109
-name=Elvish Lookout
-mana={G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text=Shroud (This permanent can't be the target of spells or abilities.)
-rarity=C
-[/card]
-[card]
-id=15241
-name=Elvish Piper
-mana={3}{G}
-type=Creature
-subtype=Elf Shaman
-power=1
-toughness=1
-text={G}, {T}: You may put a creature card from your hand onto the battlefield.
-rarity=R
-[/card]
-[card]
-id=15773
-name=Emperor Crocodile
-mana={3}{G}
-type=Creature
-subtype=Crocodile
-power=5
-toughness=5
-text=When you control no other creatures, sacrifice Emperor Crocodile.
-rarity=R
-[/card]
-[card]
 id=15175
 name=Encroach
 mana={B}
@@ -343,17 +172,6 @@ power=4
 toughness=3
 text=Echo {4} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) Sacrifice an artifact: Put a +1/+1 counter on target creature.
 rarity=U
-[/card]
-[card]
-id=15765
-name=False Prophet
-mana={2}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
-text=When False Prophet is put into a graveyard from the battlefield, exile all creatures.
-rarity=R
 [/card]
 [card]
 id=19098
@@ -419,14 +237,6 @@ text=Exile target nontoken permanent, then return it to the battlefield under it
 rarity=R
 [/card]
 [card]
-id=15250
-name=Fodder Cannon
-mana={4}
-type=Artifact
-text={4}, {T}, Sacrifice a creature: Fodder Cannon deals 4 damage to target creature.
-rarity=U
-[/card]
-[card]
 id=15230
 name=Gamekeeper
 mana={3}{G}
@@ -435,17 +245,6 @@ subtype=Elf
 power=2
 toughness=2
 text=When Gamekeeper is put into a graveyard from the battlefield, you may exile it. If you do, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield and put all other cards revealed this way into your graveyard.
-rarity=U
-[/card]
-[card]
-id=15876
-name=Goblin Berserker
-mana={3}{R}
-type=Creature
-subtype=Goblin Berserker
-power=2
-toughness=2
-text=First strike, haste
 rarity=U
 [/card]
 [card]
@@ -490,39 +289,6 @@ text=When Goblin Masons is put into a graveyard from the battlefield, destroy ta
 rarity=C
 [/card]
 [card]
-id=15223
-name=Goliath Beetle
-mana={2}{G}
-type=Creature
-subtype=Insect
-power=3
-toughness=1
-text=Trample
-rarity=C
-[/card]
-[card]
-id=15220
-name=Heart Warden
-mana={1}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-text={T}: Add {G} to your mana pool. {2}, Sacrifice Heart Warden: Draw a card.
-rarity=C
-[/card]
-[card]
-id=15196
-name=Hulking Ogre
-mana={2}{R}
-type=Creature
-subtype=Ogre
-power=3
-toughness=3
-text=Hulking Ogre can't block.
-rarity=U
-[/card]
-[card]
 id=15219
 name=Hunting Moa
 mana={2}{G}
@@ -532,15 +298,6 @@ power=3
 toughness=2
 text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Hunting Moa enters the battlefield or is put into a graveyard from the battlefield, put a +1/+1 counter on target creature.
 rarity=U
-[/card]
-[card]
-id=19097
-name=Illuminated Wings
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has flying. {2}, Sacrifice Illuminated Wings: Draw a card.
-rarity=C
 [/card]
 [card]
 id=15217
@@ -626,17 +383,6 @@ text=Echo {2}{R} (At the beginning of your upkeep, if this came under your contr
 rarity=C
 [/card]
 [card]
-id=15147
-name=Kingfisher
-mana={3}{U}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
-text=Flying When Kingfisher is put into a graveyard from the battlefield, draw a card.
-rarity=C
-[/card]
-[card]
 id=13821
 name=Landslide
 mana={R}
@@ -650,25 +396,6 @@ name=Lurking Jackals
 mana={B}
 type=Enchantment
 text=When an opponent has 10 or less life, if Lurking Jackals is an enchantment, it becomes a 3/2 Hound creature.
-rarity=U
-[/card]
-[card]
-id=15819
-name=Magnify
-mana={G}
-type=Instant
-text=All creatures get +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=15247
-name=Mantis Engine
-mana={5}
-type=Artifact Creature
-subtype=Insect
-power=3
-toughness=3
-text={2}: Mantis Engine gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.) {2}: Mantis Engine gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
 rarity=U
 [/card]
 [card]
@@ -689,15 +416,6 @@ subtype=Insect
 power=2
 toughness=3
 text=When Marker Beetles is put into a graveyard from the battlefield, target creature gets +1/+1 until end of turn. {2}, Sacrifice Marker Beetles: Draw a card.
-rarity=C
-[/card]
-[card]
-id=15129
-name=Mask of Law and Grace
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has protection from black and from red.
 rarity=C
 [/card]
 [card]
@@ -723,14 +441,6 @@ text=At the beginning of your upkeep, you may discard a card. If you don't, sacr
 rarity=R
 [/card]
 [card]
-id=15158
-name=Mental Discipline
-mana={1}{U}{U}
-type=Enchantment
-text={1}{U}, Discard a card: Draw a card.
-rarity=C
-[/card]
-[card]
 id=15246
 name=Metalworker
 mana={3}
@@ -751,17 +461,6 @@ power=2
 toughness=3
 text=Metathran Elite is unblockable as long as it's enchanted.
 rarity=U
-[/card]
-[card]
-id=19096
-name=Metathran Soldier
-mana={1}{U}
-type=Creature
-subtype=Metathran Soldier
-power=1
-toughness=1
-text=Metathran Soldier is unblockable.
-rarity=C
 [/card]
 [card]
 id=15235
@@ -817,17 +516,6 @@ text=Enchant creature When enchanted creature is put into a graveyard, that crea
 rarity=R
 [/card]
 [card]
-id=19113
-name=Phyrexian Monitor
-mana={3}{B}
-type=Creature
-subtype=Skeleton
-power=2
-toughness=2
-text={B}: Regenerate Phyrexian Monitor.
-rarity=C
-[/card]
-[card]
 id=5559
 name=Phyrexian Negator
 mana={2}{B}
@@ -837,28 +525,6 @@ power=5
 toughness=5
 text=Trample Whenever Phyrexian Negator is dealt damage, sacrifice that many permanents.
 rarity=R
-[/card]
-[card]
-id=15180
-name=Plague Dogs
-mana={4}{B}
-type=Creature
-subtype=Zombie Hound
-power=3
-toughness=3
-text=When Plague Dogs is put into a graveyard from the battlefield, all creatures get -1/-1 until end of turn. {2}, Sacrifice Plague Dogs: Draw a card.
-rarity=U
-[/card]
-[card]
-id=19239
-name=Plated Spider
-mana={4}{G}
-type=Creature
-subtype=Spider
-power=4
-toughness=4
-text=Reach (This creature can block creatures with flying.)
-rarity=C
 [/card]
 [card]
 id=12628
@@ -951,31 +617,12 @@ text=Whenever a creature is dealt damage, Repercussion deals that much damage to
 rarity=R
 [/card]
 [card]
-id=15143
-name=Replenish
-mana={3}{W}
-type=Sorcery
-text=Return all enchantment cards from your graveyard to the battlefield. (Auras with nothing to enchant remain in your graveyard.)
-rarity=R
-[/card]
-[card]
 id=15154
 name=Rescue
 mana={U}
 type=Instant
 text=Return target permanent you control to its owner's hand.
 rarity=C
-[/card]
-[card]
-id=15237
-name=Rofellos, Llanowar Emissary
-mana={G}{G}
-type=Legendary Creature
-subtype=Elf Druid
-power=2
-toughness=1
-text={T}: Add {G} to your mana pool for each Forest you control.
-rarity=R
 [/card]
 [card]
 id=15877
@@ -1050,17 +697,6 @@ text={3}, {T}: Choose a number greater than 0 and a color. Target opponent revea
 rarity=R
 [/card]
 [card]
-id=14485
-name=Serra Advocate
-mana={3}{W}
-type=Creature
-subtype=Angel
-power=2
-toughness=2
-text=Flying {T}: Target attacking or blocking creature gets +2/+2 until end of turn.
-rarity=U
-[/card]
-[card]
 id=15784
 name=Sigil of Sleep
 mana={U}
@@ -1068,44 +704,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Whenever enchanted creature deals damage to a player, return target creature that player controls to its owner's hand.
 rarity=C
-[/card]
-[card]
-id=15787
-name=Skittering Horror
-mana={2}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=3
-text=When you cast a creature spell, sacrifice Skittering Horror.
-rarity=C
-[/card]
-[card]
-id=15786
-name=Slinking Skirge
-mana={3}{B}
-type=Creature
-subtype=Imp
-power=2
-toughness=1
-text=Flying {2}, Sacrifice Slinking Skirge: Draw a card.
-rarity=C
-[/card]
-[card]
-id=15764
-name=Solidarity
-mana={3}{W}
-type=Instant
-text=Creatures you control get +0/+5 until end of turn.
-rarity=C
-[/card]
-[card]
-id=15767
-name=Soul Feast
-mana={3}{B}{B}
-type=Sorcery
-text=Target player loses 4 life and you gain 4 life.
-rarity=U
 [/card]
 [card]
 id=19534
@@ -1165,39 +763,6 @@ text=When Telepathic Spies enters the battlefield, look at target opponent's han
 rarity=C
 [/card]
 [card]
-id=15875
-name=Temporal Adept
-mana={1}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={U}{U}{U}, {T}: Return target permanent to its owner's hand.
-rarity=R
-[/card]
-[card]
-id=15769
-name=Tethered Griffin
-mana={W}
-type=Creature
-subtype=Griffin
-power=2
-toughness=3
-text=Flying  When you control no enchantments, sacrifice Tethered Griffin.
-rarity=R
-[/card]
-[card]
-id=15156
-name=Thieving Magpie
-mana={2}{U}{U}
-type=Creature
-subtype=Bird
-power=1
-toughness=3
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.
-rarity=U
-[/card]
-[card]
 id=15240
 name=Thorn Elemental
 mana={5}{G}{G}
@@ -1207,14 +772,6 @@ power=7
 toughness=7
 text=You may have Thorn Elemental assign its combat damage as though it weren't blocked.
 rarity=R
-[/card]
-[card]
-id=15248
-name=Thran Dynamo
-mana={4}
-type=Artifact
-text={T}: Add {3} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=19111
@@ -1236,17 +793,6 @@ text=As long as Thran Golem is enchanted, it gets +2/+2 and has flying, first st
 rarity=R
 [/card]
 [card]
-id=18287
-name=Tormented Angel
-mana={3}{W}
-type=Creature
-subtype=Angel
-power=1
-toughness=5
-text=Flying
-rarity=C
-[/card]
-[card]
 id=12148
 name=Treachery
 mana={3}{U}{U}
@@ -1256,51 +802,12 @@ text=Enchant creature When Treachery enters the battlefield, untap up to five la
 rarity=R
 [/card]
 [card]
-id=15200
-name=Trumpet Blast
-mana={2}{R}
-type=Instant
-text=Attacking creatures get +2/+0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=19114
-name=Twisted Experiment
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +3/-1.
-rarity=C
-[/card]
-[card]
 id=15257
 name=Urza's Incubator
 mana={3}
 type=Artifact
 text=As Urza's Incubator enters the battlefield, choose a creature type. Creature spells of the chosen type cost {2} less to cast.
 rarity=R
-[/card]
-[card]
-id=15132
-name=Voice of Duty
-mana={3}{W}
-type=Creature
-subtype=Angel
-power=2
-toughness=2
-text=Flying, protection from green
-rarity=U
-[/card]
-[card]
-id=15131
-name=Voice of Reason
-mana={3}{W}
-type=Creature
-subtype=Angel
-power=2
-toughness=2
-text=Flying, protection from blue
-rarity=U
 [/card]
 [card]
 id=15218
@@ -1322,17 +829,6 @@ text=Defender (This creature can't attack.) Wall of Glare can block any number o
 rarity=C
 [/card]
 [card]
-id=15198
-name=Wild Colos
-mana={2}{R}
-type=Creature
-subtype=Goat Beast
-power=2
-toughness=2
-text=Haste
-rarity=C
-[/card]
-[card]
 id=15225
 name=Yavimaya Elder
 mana={1}{G}{G}
@@ -1342,25 +838,6 @@ power=2
 toughness=1
 text=When Yavimaya Elder is put into a graveyard from the battlefield, you may search your library for up to two basic land cards, reveal them, and put them into your hand. If you do, shuffle your library. {2}, Sacrifice Yavimaya Elder: Draw a card.
 rarity=C
-[/card]
-[card]
-id=15236
-name=Yavimaya Enchantress
-mana={2}{G}
-type=Creature
-subtype=Human Druid
-power=2
-toughness=2
-text=Yavimaya Enchantress gets +1/+1 for each enchantment on the battlefield.
-rarity=U
-[/card]
-[card]
-id=15772
-name=Yavimaya Hollow
-mana=
-type=Legendary Land
-text={T}: Add {1} to your mana pool.  {G}, {T}: Regenerate target creature.
-rarity=R
 [/card]
 [card]
 id=15193
