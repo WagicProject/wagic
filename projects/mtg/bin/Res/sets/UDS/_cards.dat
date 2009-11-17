@@ -527,7 +527,7 @@ abilities=flying
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever Thieving Magpie deals damage to an opponent, you draw a card.
-id=129764
+id=15156
 name=Thieving Magpie
 rarity=U
 mana={2}{U}{U}
