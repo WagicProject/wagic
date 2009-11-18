@@ -13,7 +13,7 @@ using std::string;
 #define PLAYER_SAVEFILE "data.dat"
 #define PLAYER_SETTINGS "options.txt"
 #define PLAYER_COLLECTION "collection.dat"
-#define SECRET_PROFILE "Gleemax"
+#define SECRET_PROFILE "Maxglee"
 
 #define INVALID_OPTION -1
 
