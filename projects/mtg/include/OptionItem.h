@@ -270,6 +270,7 @@ public:
   virtual void Render();
   virtual float getHeight();
 
+  virtual void imageScale(float w, float h);
 protected:
   bool exact;
   int margin;
@@ -337,7 +338,7 @@ public:
   virtual void Reload();
   virtual void Update(float dt);
   virtual void ButtonPressed(int controllerId, int controlId);
-  virtual void Add(WGuiBase* item);
+  virtual void Add(WGuiBase* item); //Remember, does not set X & Y of items automatically.
   virtual void confirmChange(bool confirmed);
   
   WGuiBase * Current();

@@ -395,10 +395,12 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         int rnd = rand() % 8;
         if (rnd == 0) rare_or_mythic = Constants::RARITY_M;
         int sets[] = {setIds[showPriceDialog]};
+        MTGSetInfo* si = setlist.getInfo(setIds[showPriceDialog]);
 
-        tempDeck->addRandomCards(1, sets,1,rare_or_mythic);
-        tempDeck->addRandomCards(3, sets,1,Constants::RARITY_U);
-        tempDeck->addRandomCards(11, sets,1,Constants::RARITY_C);
+        tempDeck->addRandomCards(si->booster[MTGSetInfo::RARE], sets,1,rare_or_mythic);
+        tempDeck->addRandomCards(si->booster[MTGSetInfo::UNCOMMON], sets,1,Constants::RARITY_U);
+        tempDeck->addRandomCards(si->booster[MTGSetInfo::COMMON], sets,1,Constants::RARITY_C);
+        tempDeck->addRandomCards(si->booster[MTGSetInfo::LAND], sets,1,Constants::RARITY_L);
 
         //Check for duplicates. Does not guarentee none, just makes them extremely unlikely.
         //Code is kind of inefficient, but shouldn't be used often enough to matter.
@@ -425,13 +427,14 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         }
 
         int i = 0;
-        for(int cycle=0;cycle<3;cycle++)
+        for(int cycle=0;cycle<4;cycle++)
         for (map<int,int>::iterator it = tempDeck->cards.begin(); it!=tempDeck->cards.end(); it++){
           MTGCard * c = tempDeck->getCardById(it->first);
           char rarity = c->getRarity();
-          if((cycle == 0 && (rarity == Constants::RARITY_C || rarity == Constants::RARITY_L))
-            || (cycle == 1 && rarity == Constants::RARITY_U)
-            || (cycle == 2 && (rarity == Constants::RARITY_R || rarity == Constants::RARITY_M)))
+          if((cycle == 0 && rarity == Constants::RARITY_L)
+            || (cycle == 1 && rarity == Constants::RARITY_C)
+            || (cycle == 2 && rarity == Constants::RARITY_U)
+            || (cycle == 3 && (rarity == Constants::RARITY_R || rarity == Constants::RARITY_M)))
             for (int j = 0; j < it->second; j++){
               MTGCardInstance * card = NEW MTGCardInstance(c, NULL);
               displayCards[i] = card;

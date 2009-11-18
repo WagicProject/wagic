@@ -16,25 +16,66 @@ using std::string;
 class GameApp;
 class MTGCard;
 
+#define SET_METADATA "setinfo.txt"
 
-#define MAX_SETS 100
+class MTGSetInfo{
+public:
+  MTGSetInfo(string _id);
+  string id;      //Short name: 10E, RAV, etc. Automatic from folder.
+  string author;  //Author of set, for crediting mod makers, etc.
+  string name;    //Long name: Tenth Edition
+  int block;      //For future use by tournament mode, etc.
+  int year;       //The year the set was released.
+  //TODO Way to group cards by name, rather than mtgid.
 
+  void count(MTGCard * c);
 
+  int totalCards();
+  string getName();
+  string getBlock();
+  int boosterCost();
+  int boosterSize();
 
-class MtgSets{
- protected:
- public:
-  int nb_items;
-  string values[MAX_SETS];
+  enum {
+    //For memoized counts
+    LAND = 0,
+    COMMON = 1,
+    UNCOMMON = 2,
+    RARE = 3, 
+    MAX_RARITY = 4, //For boosters, mythic is part of rare... always.
+    MYTHIC = 4,
+    TOTAL_CARDS = 5,
+    MAX_COUNT = 6
+  };
 
- public:
-  static MtgSets * SetsList;
-  MtgSets();
-  int Add(const char * subtype);
-  int find(string value);
-
+  bool bZipped;       //Is this set's images present as a zip file?
+  bool bThemeZipped;  //[...] in the theme?
+  int counts[MTGSetInfo::MAX_COUNT];   
+  int booster[MAX_RARITY];
 };
 
+class MTGSets{
+public:
+  friend class MTGSetInfo;
+  MTGSets();
+  
+  int Add(const char * subtype);
+  int findSet(string value);
+  int findBlock(string s);
+
+  int size();
+
+  int operator[](string id); //Returns set id index, -1 for failure.
+  string operator[](int id); //Returns set id name, "" for failure.
+    
+  MTGSetInfo* getInfo(int setID); 
+  
+protected:
+  vector<string> blocks;
+  vector<MTGSetInfo*> setinfo;
+};
+
+extern MTGSets setlist;
 
 class MTGAllCards {
 private:

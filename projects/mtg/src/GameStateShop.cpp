@@ -71,9 +71,10 @@ void GameStateShop::load(){
   //Unlock a default set if no set is unlocked
   int ok = 0;
   int defaultSet = 0;
-  for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
-    string s = MtgSets::SetsList->values[i];
-    if (s.compare("10E") == 0) defaultSet = i;
+  
+  for (int i = 0; i < setlist.size(); i++){
+    
+    if (setlist[i].compare("10E") == 0) defaultSet = i;    
     
     unlocked[i] = options[Options::optionSet(i)].number;
     if (unlocked[i])
@@ -85,7 +86,7 @@ void GameStateShop::load(){
     options.save();
   }
 
-  for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
+  for (int i = 0; i < setlist.size(); i++){
     if (unlocked[i]){
       sets[nbsets] = i;
       nbsets++;
@@ -101,7 +102,7 @@ void GameStateShop::load(){
     } 
   }else{
     for (int i = 0; i < SHOP_BOOSTERS; i++){
-      setIds[i] = (rand() % MtgSets::SetsList->nb_items);
+      setIds[i] = (rand() % setlist.size());
     }
   }
   JQuad * mBackThumb = resources.GetQuad("back_thumb");
@@ -109,9 +110,14 @@ void GameStateShop::load(){
   
 
   shop = NEW ShopItems(10, this, itemFont, 10, 0, mParent->collection, setIds);
+  MTGSetInfo * si = NULL;
   for (int i = 0; i < SHOP_BOOSTERS; i++){
-    sprintf(setNames[i], "%s Booster (15 %s)",MtgSets::SetsList->values[setIds[i]].c_str(), _("cards").c_str());
-    shop->Add(setNames[i],mBack,mBackThumb, 700);
+    si = setlist.getInfo(setIds[i]);
+    if(!si)
+      continue;
+
+    sprintf(setNames[i], "%s %s (%i %s)", si->id.c_str(), _("Booster").c_str(), si->boosterSize(), _("Cards").c_str());
+    shop->Add(setNames[i],mBack,mBackThumb, si->boosterCost());
   }
   
   MTGDeck * tempDeck = NEW MTGDeck(mParent->collection);

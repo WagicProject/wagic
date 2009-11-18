@@ -111,6 +111,19 @@ class Constants
     RARITY_C = 'C',
     RARITY_L = 'L',
 
+    //Price for singles
+    PRICE_1M = 3000,
+    PRICE_1R = 500,
+    PRICE_1U = 100,
+    PRICE_1C = 20,
+    PRICE_1L = 5,
+
+    //Price in booster
+    PRICE_XM = 2500,
+    PRICE_XR = 355,
+    PRICE_XU = 88,
+    PRICE_XC = 8,
+    PRICE_XL = 1,
 
     MAIN_FONT = 0,
     MENU_FONT = 1,

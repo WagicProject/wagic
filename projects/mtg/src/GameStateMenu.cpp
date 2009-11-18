@@ -202,10 +202,10 @@ void GameStateMenu::fillScroller(){
 
   //Unlocked sets
   int nbunlocked = 0;
-  for (int i = 0; i < MtgSets::SetsList->nb_items; i++){
+  for (int i = 0; i < setlist.size(); i++){
     if (1 == options[Options::optionSet(i)].number) nbunlocked++;
   }
-  sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, MtgSets::SetsList->nb_items);
+  sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, setlist.size());
   scroller->Add(buff2);
 
   DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));

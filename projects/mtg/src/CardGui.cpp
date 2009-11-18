@@ -274,19 +274,19 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     char buf[512];
     switch(card->getRarity()){
       case Constants::RARITY_M:
-        sprintf(buf,_("%s Mythic").c_str(),MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,_("%s Mythic").c_str(),setlist[card->setId].c_str());
         break;
       case Constants::RARITY_R:
-        sprintf(buf,_("%s Rare").c_str(),MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,_("%s Rare").c_str(),setlist[card->setId].c_str());
         break;
       case Constants::RARITY_U:
-        sprintf(buf,_("%s Uncommon").c_str(),MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,_("%s Uncommon").c_str(),setlist[card->setId].c_str());
         break;
       case Constants::RARITY_C:
-        sprintf(buf,_("%s Common").c_str(),MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,_("%s Common").c_str(),setlist[card->setId].c_str());
         break;
       default:
-        sprintf(buf,"%s",MtgSets::SetsList->values[card->setId].c_str());
+        sprintf(buf,"%s",setlist[card->setId].c_str());
         break;
     }
     

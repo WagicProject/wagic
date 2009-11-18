@@ -208,7 +208,7 @@ void OptionProfile::populate(){
  options[Options::ACTIVE_PROFILE].str = selections[value];
  PlayerData * pdata = NEW PlayerData(app->collection);
  
- int unlocked = 0, sets = MtgSets::SetsList->nb_items;
+ int unlocked = 0, sets = setlist.size();
  std::ifstream file(options.profileFile(PLAYER_SETTINGS).c_str());
  std::string s;
   if(file){
@@ -903,11 +903,16 @@ void WDecoConfirm::ButtonPressed(int controllerId, int controlId){
 
 //WDecoImage
 WGuiImage::WGuiImage(string _file, int _w, int _h, int _margin): WGuiItem("") {
-  imgW = _w;
-  imgH = _h;
+  imgW = 0;
+  imgH = 0;
   margin = _margin;
   filename = _file;
   exact = false;
+}
+
+void WGuiImage::imageScale(float w, float h){
+  imgH = h;
+  imgW = w;
 }
 
 float WGuiImage::getHeight(){
@@ -920,6 +925,7 @@ float WGuiImage::getHeight(){
     
   return MAX(height,imgH+(2*margin));
 }
+
 JQuad * WGuiImage::getImage(){
   if(exact)
     return resources.RetrieveQuad(filename,0,0,0,0,"temporary",RETRIEVE_NORMAL,TEXTURE_SUB_EXACT);
@@ -931,7 +937,13 @@ void WGuiImage::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * q = getImage();
   if(q){
-    renderer->RenderQuad(q,x+margin, y+margin,0,1,1);
+    float xS = 1, yS = 1;
+    if(imgH != 0 && q->mHeight != 0)
+      yS = imgH / q->mHeight;
+    if(imgW != 0 && q->mWidth != 0)
+      xS = imgW / q->mWidth;
+
+    renderer->RenderQuad(q,x+margin, y+margin,0,xS,yS);
   }
 }
 

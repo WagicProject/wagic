@@ -12,43 +12,14 @@ using std::string;
 #include <time.h>
 #endif
 
-
-
-
-
-MtgSets * MtgSets::SetsList = NEW MtgSets();
-
-
-
-MtgSets::MtgSets(){
-  nb_items = 0;
-}
-
-int MtgSets::Add(const char * name){
-  string value = name;
-  values[nb_items] = value;
-  nb_items++;
-  return nb_items - 1;
-}
-
-int MtgSets::find(string name){
-  std::transform(name.begin(), name.end(), name.begin(),::tolower );
-  for (int i = 0; i < nb_items; i++){
-    string set = values[i];
-    std::transform(set.begin(), set.end(), set.begin(),::tolower );;
-    if (set.compare(name) == 0) return i;
-  }
-  return -1;
-}
-
-
+//MTGAllCards
 int MTGAllCards::processConfLine(string s, MTGCard *card){
   unsigned int i = s.find_first_of("=");
   if (i == string::npos){
 #if defined (_DEBUG)
     if (s.size() && s[0] == '#') return 0;
     char buffer[4096];
-    sprintf(buffer, "MTGDECK: Bad Line in %s/_cards.dat:\n    %s\n", MtgSets::SetsList->values[card->setId].c_str(), s.c_str());
+    sprintf(buffer, "MTGDECK: Bad Line in %s/_cards.dat:\n    %s\n", setlist[card->setId], s.c_str());
     OutputDebugString(buffer);
 #endif
     return 0;
@@ -141,7 +112,7 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
       card->setType( "Error");
 #if defined (_DEBUG)
     char buffer[4096];
-    sprintf(buffer, "MTGDECK: Bad Card Type in %s/_cards.dat:\n    %s\n", MtgSets::SetsList->values[card->setId].c_str(), s.c_str());
+    sprintf(buffer, "MTGDECK: Bad Card Type in %s/_cards.dat:\n    %s\n", setlist[card->setId], s.c_str());
     OutputDebugString(buffer);
 #endif
       break;
@@ -196,7 +167,7 @@ void MTGAllCards::init(){
 
 int MTGAllCards::load(const char * config_file, const char * set_name,int autoload){
   conf_read_mode = 0;
-  int set_id = MtgSets::SetsList->Add(set_name);
+  int set_id = setlist.Add(set_name);
 
   std::ifstream setFile(config_file);
 
@@ -326,8 +297,11 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
           if (it != t->tempValues.end()) {
             tempCard->setText(it->second);
           }
+          collection[newId] = tempCard; //Push card into collection.
+          MTGSetInfo * si = setlist.getInfo(set_id);
+          if(si)
+            si->count(tempCard);  //Count card in set info
 
-          collection[newId] = tempCard;
 	        total_cards++;
 #if defined (_DEBUG)
           committed = true;
@@ -371,7 +345,7 @@ MTGCard * MTGAllCards::getCardByName(string name){
     size_t end = name.find(")");
     string setName = name.substr(found+2,end-found-2);
     name = name.substr(0,found);
-    setId = MtgSets::SetsList->find(setName);
+    setId = setlist[setName];
   }
   map<int,MTGCard *>::iterator it;
   for (it = collection.begin(); it!=collection.end(); it++){
@@ -385,8 +359,7 @@ MTGCard * MTGAllCards::getCardByName(string name){
   return NULL;
 }
 
-
-
+//MTGDeck
 MTGDeck::MTGDeck(MTGAllCards * _allcards){
   total_cards = 0;
   database = _allcards;
@@ -460,6 +433,9 @@ MTGCard * MTGDeck::getCardById(int mtgId){
 
 
 int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const char * _subtype, int * colors, int nbcolors){
+  if(howmany <= 0)
+    return 1;
+
   int unallowedColors[Constants::MTG_NB_COLORS+1];
   for (int i=0; i < Constants::MTG_NB_COLORS; ++i){
     if (nbcolors) unallowedColors[i] = 1;
@@ -630,4 +606,191 @@ int MTGDeck::save(){
   return 1;
 }
 
+//MTGSets
+MTGSets setlist; //Our global.
 
+MTGSets::MTGSets(){
+}
+
+MTGSetInfo* MTGSets::getInfo(int setID){
+  if(setID < 0 || setID >= (int) setinfo.size())
+    return NULL;
+
+  return setinfo[setID];
+}
+
+int MTGSets::Add(const char * name){
+  int setid = findSet(name);
+  if(setid != -1)
+    return setid;
+
+  MTGSetInfo* s = NEW MTGSetInfo(name);
+  setinfo.push_back(s);
+  setid = (int) setinfo.size();
+  
+  return setid - 1;
+}
+
+int MTGSets::findSet(string name){
+  std::transform(name.begin(), name.end(), name.begin(),::tolower );
+
+  for (int i = 0; i < (int) setinfo.size(); i++){
+    MTGSetInfo* s = setinfo[i];
+    if(!s) continue;
+    string set = s->id;
+    std::transform(set.begin(), set.end(), set.begin(),::tolower);
+    if (set.compare(name) == 0) return i;
+  }
+  return -1;
+}
+
+int MTGSets::findBlock(string s){
+  if(!s.size())
+    return -1;
+
+  string comp = s;
+  std::transform(comp.begin(), comp.end(), comp.begin(),::tolower);
+  for(int i=0;i<(int)blocks.size();i++){
+    string b = blocks[i];
+    std::transform(b.begin(), b.end(), b.begin(),::tolower);
+    if(b.compare(comp) == 0) return i;
+  }
+
+  blocks.push_back(s); 
+  return ((int) blocks.size()) -1;
+}
+
+int MTGSets::operator[](string id){
+  return findSet(id);
+}
+string MTGSets::operator[](int id){
+  if(id < 0 || id >= (int) setinfo.size())
+    return "";
+
+  MTGSetInfo * si = setinfo[id];
+  if(!si)
+    return "";
+
+  return si->id;
+}
+
+int MTGSets::size(){
+  return (int) setinfo.size();
+}
+
+
+//MTGSetInfo
+MTGSetInfo::MTGSetInfo(string _id) {
+  id = _id;
+  block = -1;
+  year = -1;
+  for(int i=0;i<MTGSetInfo::MAX_COUNT;i++)
+    counts[i] = 0;
+
+  booster[MTGSetInfo::LAND] = 1;
+  booster[MTGSetInfo::COMMON] = 10;
+  booster[MTGSetInfo::UNCOMMON] = 3;
+  booster[MTGSetInfo::RARE] = 1;
+
+  //Load metadata.
+  char buf[512];
+  sprintf(buf,RESPATH"/sets/%s/"SET_METADATA,id.c_str());
+  ifstream file(buf);
+  if(file){
+    string s;
+    while(std::getline(file,s)){
+      unsigned int i = s.find_first_of("=");
+      if (i == string::npos)
+        continue;
+
+      string key = s.substr(0,i);
+      string value = s.substr(i+1);
+
+      if(key.compare("name") == 0)
+        name = value;
+      else if(key.compare("author") == 0)
+        author = value;
+      else if(key.compare("block") == 0)
+        block = setlist.findBlock(value.c_str());
+      else if(key.compare("year") == 0)
+        year = atoi(value.c_str());
+      else if(key.compare("booster_r") == 0)
+        booster[MTGSetInfo::RARE] = atoi(value.c_str());
+      else if(key.compare("booster_u") == 0)
+        booster[MTGSetInfo::UNCOMMON] = atoi(value.c_str());
+      else if(key.compare("booster_c") == 0)
+        booster[MTGSetInfo::COMMON] = atoi(value.c_str());
+      else if(key.compare("booster_l") == 0)
+        booster[MTGSetInfo::LAND] = atoi(value.c_str());
+    }
+    file.close();  
+  }
+  
+}
+
+void MTGSetInfo::count(MTGCard*c){
+  if(!c)
+    return;
+
+  switch(c->getRarity()){
+    case Constants::RARITY_M:
+      counts[MTGSetInfo::MYTHIC]++;
+      break;
+    case Constants::RARITY_R:
+      counts[MTGSetInfo::RARE]++;
+      break;
+    case Constants::RARITY_U:
+      counts[MTGSetInfo::UNCOMMON]++;
+      break;
+    case Constants::RARITY_C:
+      counts[MTGSetInfo::COMMON]++;
+      break;
+    default:
+    case Constants::RARITY_L:
+      counts[MTGSetInfo::LAND]++;
+      break;
+  }
+  
+  counts[MTGSetInfo::TOTAL_CARDS]++;
+}
+
+int MTGSetInfo::totalCards(){
+  return counts[MTGSetInfo::TOTAL_CARDS];
+}
+
+int MTGSetInfo::boosterSize(){
+  int size = 0;
+
+  for(int i = 0; i<MTGSetInfo::MAX_RARITY;i++)
+    size += booster[i];
+
+  return size;
+}
+
+int MTGSetInfo::boosterCost(){
+  int price = 0;
+  for(int i = 0; i<MTGSetInfo::MAX_RARITY;i++){
+      if(i == MTGSetInfo::LAND)
+        price += booster[i] * Constants::PRICE_XL;
+      else if(i == MTGSetInfo::COMMON)
+        price += booster[i] * Constants::PRICE_XC;
+      else if(i == MTGSetInfo::UNCOMMON)
+        price += booster[i] * Constants::PRICE_XU;
+      else
+        price += booster[i] * Constants::PRICE_XR;
+  }
+
+  return price;
+}
+
+string MTGSetInfo::getName(){
+  if(name.size()) 
+    return _(name); //Pretty name is translated.
+  return id;  //Ugly name is not.
+}
+string MTGSetInfo::getBlock(){
+  if(block < 0 || block >= (int) setlist.blocks.size())
+    return "None";
+
+  return setlist.blocks[block];
+}

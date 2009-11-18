@@ -66,8 +66,8 @@ int Options::getID(string name){
 
   //Is it an unlocked set?
   string setname = name.substr(strlen("unlocked_"));
-  if(MtgSets::SetsList && MtgSets::SetsList->nb_items){
-    int unlocked = MtgSets::SetsList->find(setname);
+  if(setlist.size()){
+    int unlocked = setlist[setname];
     if(unlocked != -1)
       return Options::optionSet(unlocked);  
   }
@@ -86,14 +86,10 @@ string Options::getName(int option){
     return optionNames[option];
   
   //Unlocked sets.
-  if(MtgSets::SetsList){
-    int setID = option - SET_UNLOCKS;
-    if(setID >= 0 && setID < MtgSets::SetsList->nb_items){
-      char buf[512];
-      sprintf(buf,"unlocked_%s",MtgSets::SetsList->values[setID].c_str());
-      return buf;
-    }
-  }
+  int setID = option - SET_UNLOCKS;
+  char buf[512];
+  sprintf(buf,"unlocked_%s",setlist[setID].c_str());
+  return buf;
 
   //Failed.
   return "";
@@ -101,7 +97,7 @@ string Options::getName(int option){
 
 int Options::optionSet(int setID){
   //Sanity check if possible
-  if(setID < 0 || (MtgSets::SetsList && setID > MtgSets::SetsList->nb_items))
+  if(setID < 0 || (setID > setlist.size()))
     return INVALID_OPTION;
 
   return SET_UNLOCKS + setID;  
@@ -380,7 +376,6 @@ GameSettings::GameSettings()
 }
 
 GameSettings::~GameSettings(){
-  //Destructor no longer saves, to prevent conflicts when MtgSets::SetsList == NULL
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(keypad);
@@ -497,7 +492,7 @@ void GameSettings::checkProfile(){
       //Find the set for which we have the most variety
       int setId = 0;
       int maxcards = 0;
-      for (int i=0; i< MtgSets::SetsList->nb_items; i++){
+      for (int i=0; i< setlist.size(); i++){
         int value = theGame->collection->countBySet(i);
         if (value > maxcards){
           maxcards = value;

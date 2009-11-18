@@ -197,7 +197,7 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
 
   submode = submode | TEXTURE_SUB_CARD;
 
-  string filename = card->getSetName();
+  string filename = setlist[card->setId];
   filename += "/";
   filename += card->getImageName();
   int id = card->getMTGId();
@@ -650,13 +650,7 @@ string WResourceManager::cardFile(const string filename){
         char zipname[512];
         sprintf(zipname, "Res/sets/%s/%s.zip", set.c_str(),set.c_str());
         if (fs->AttachZipFile(zipname))
-          {
-            for(i = 0;i < filename.size();i++){
-              if(filename[i] == '\\' || filename[i] == '/')
-                break;
-            }
             return filename.substr(i+1);
-          }
      }
 
      //Failure. Check for unzipped file in sets       

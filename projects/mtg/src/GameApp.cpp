@@ -210,7 +210,6 @@ void GameApp::Destroy()
   delete(DeckStats::GetInstance());
 
   SAFE_DELETE(Subtypes::subtypesList);
-  SAFE_DELETE(MtgSets::SetsList);
 
   SAFE_DELETE(music);
   Translator::EndInstance();

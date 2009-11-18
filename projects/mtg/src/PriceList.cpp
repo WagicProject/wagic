@@ -43,22 +43,22 @@ int PriceList::getPrice(int cardId){
   char rarity = collection->getCardById(cardId)->getRarity();
   switch(rarity){
   case Constants::RARITY_M:
-    return 3000;
+    return Constants::PRICE_1M;
     break;
   case Constants::RARITY_R:
-    return 500;
+    return Constants::PRICE_1R;
     break;
   case Constants::RARITY_U:
-    return 100;
+    return Constants::PRICE_1U;
     break;
   case Constants::RARITY_C:
-    return 20;
+    return Constants::PRICE_1C;
     break;
   case Constants::RARITY_L:
-    return 5;
+    return Constants::PRICE_1L;
     break;
   default:
-    return 20;
+    return Constants::PRICE_1C;
     break;
 
   }

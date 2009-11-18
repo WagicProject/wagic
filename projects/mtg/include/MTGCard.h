@@ -66,8 +66,6 @@ class MTGCard {
   char getRarity();
   void setRarity(char _rarity);
 
-  const	char * getSetName();
-
   //void setImageName( char * value);
   char * getImageName ();
 

@@ -25,11 +25,6 @@ MTGCard::MTGCard(int set_id){
   init();
   setId = set_id;
 }
-
-const char * MTGCard::getSetName(){
-  return MtgSets::SetsList->values[setId].c_str();
-}
-
 MTGCard::MTGCard(MTGCard * source){
   for(map<int,int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it){
     basicAbilities[it->first] = source->basicAbilities[it->first];
