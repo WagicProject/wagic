@@ -1,12 +1,594 @@
 [card]
+text={T}: Draw a card.
 id=12390
 name=Archivist
+rarity=R
 mana={2}{U}{U}
 type=Creature
 subtype=Human Wizard
+auto={T}:draw:1
 power=1
 toughness=1
-text={T}: Draw a card.
-auto={T}:Draw:1
+[/card]
+[card]
+text=Beast of Burden's power and toughness are each equal to the number of creatures on the battlefield.
+id=12504
+auto=foreach(creature|Battlefield) 1/1
+name=Beast of Burden
 rarity=R
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=*
+toughness=*
+[/card]
+[card]
+text=You gain 3 life for each creature attacking you.
+auto=foreach(creature[attacking]|opponentBattlefield) life:3
+id=12366
+name=Blessed Reversal
+rarity=R
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text=Bouncing Beebles is unblockable as long as defending player controls an artifact.
+id=12372
+name=Bouncing Beebles
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Beeble
+auto=aslongas(artifact|opponentBattlefield) unblockable
+power=2
+toughness=2
+[/card]
+[card]
+text=Untap target permanent.
+target=*
+auto=untap
+id=13806
+name=Burst of Energy
+rarity=C
+mana={W}
+type=Instant
+[/card]
+[card]
+text=Flash   Protection from white
+id=12411
+name=Defender of Chaos
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=1
+abilities=flash,protection from white
+[/card]
+[card]
+text=Flash   Protection from red
+id=12353
+name=Defender of Law
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=1
+abilities=flash,protection from red
+[/card]
+[card]
+text=When Delusions of Mediocrity enters the battlefield, you gain 10 life.   When Delusions of Mediocrity leaves the battlefield, you lose 10 life.
+id=12349
+name=Delusions of Mediocrity
+auto=life:10
+auto=@movedTo(this|graveyard):life:-10 controller 
+rarity=R
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
+text=Exile target enchantment.
+target=enchantment
+auto=moveTo(exile)
+id=12941
+name=Erase
+rarity=C
+type=Instant
+mana={W}
+[/card]
+[card]
+text=Protection from white   When Eviscerator enters the battlefield, you lose 5 life.
+id=12404
+name=Eviscerator
+rarity=R
+mana={3}{B}{B}
+type=Creature
+subtype=Horror
+auto=life:-5 controller
+power=5
+toughness=5
+abilities=protection from white
+[/card]
+[card]
+text={T}, Sacrifice Expendable Troops: Expendable Troops deals 2 damage to target attacking or blocking creature.
+id=12356
+name=Expendable Troops
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+auto={T}{S}:damage:2 target(creature[attacking;blocking])
+power=2
+toughness=1
+[/card]
+[card]
+text={1}{U}: Return Fleeting Image to its owner's hand.
+auto={1}{U}:moveTo(myhand)
+id=12389
+name=Fleeting Image
+rarity=R
+mana={2}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Flying   {B}: Regenerate Fog of Gnats.
+id=9699
+name=Fog of Gnats
+rarity=C
+mana={B}{B}
+type=Creature
+subtype=Insect
+auto={B}:regenerate
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Whenever Gang of Elk becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
+id=12950
+auto=rampage(2/2,0)
+name=Gang of Elk
+rarity=U
+mana={5}{G}
+type=Creature
+subtype=Elk Beast
+power=5
+toughness=4
+[/card]
+[card]
+text={R}: Target creature gets +1/+0 until end of turn.
+auto={R}:1/0 target(creature)
+id=13810
+name=Ghitu War Cry
+rarity=U
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+id=12946
+name=Giant Cockroach
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Insect
+power=4
+toughness=2
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +1/+0 for each Mountain you control.
+target=creature
+auto=foreach(mountain|myBattlefield) 1/0
+id=5682
+name=Granite Grip
+rarity=C
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Grim Monolith doesn't untap during your untap step.   {T}: Add 3 to your mana pool.   {4}: Untap Grim Monolith.
+id=12626
+auto={4}:untap
+auto={T}:add:{3}
+name=Grim Monolith
+rarity=U
+mana={2}
+type=Artifact
+abilities=doesnotuntap
+[/card]
+[card]
+text=Put all enchantments on top of their owners' libraries.
+id=12437
+auto=moveTo(ownerLibrary) all(enchantment)
+name=Harmonic Convergence
+rarity=U
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+text={2}: Regenerate target artifact creature.
+id=8896
+auto={2}:regenerate target(creature[artifact])
+name=Jhoira's Toolbox
+rarity=U
+mana={2}
+type=Artifact Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{U}{T}: Put target green creature on top of its owner's library.
+id=12382
+name=King Crab
+rarity=U
+mana={4}{U}{U}
+type=Creature
+subtype=Crab
+auto={1}{U}{T}:moveTo(ownerlibrary) target(creature[green])
+power=4
+toughness=5
+[/card]
+[card]
+text=Creatures you control have first strike.
+auto=lord(creature|myBattlefield) first strike
+id=5709
+name=Knighthood
+rarity=U
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+text=Lava Axe deals 5 damage to target player.
+target=player
+auto=damage:5
+id=12947
+name=Lava Axe
+rarity=C
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+text=Creatures you control have flying.
+auto=lord(creature|myBattlefield) flying
+id=12388
+name=Levitation
+rarity=U
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+text=Target creature gets +7/+7 until end of turn.
+target=creature
+auto=7/7
+id=8822
+name=Might of Oaks
+rarity=R
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+text=Shroud (This permanent can't be the target of spells or abilities.)      Multani's power and toughness are each equal to the total number of cards in all players' hands.
+id=12440
+auto=foreach(*|myhand) 1/1
+auto=foreach(*|opponenthand) 1/1
+name=Multani, Maro-Sorcerer
+rarity=R
+mana={4}{G}{G}
+type=Creature
+subtype=Elemental
+power=*
+toughness=*
+abilities=legendary,shroud
+[/card]
+[card]
+text={T}: Target creature you control gains protection from the color of your choice until end of turn.
+id=5704
+name=Mother of Runes
+rarity=U
+mana={W}
+type=Creature
+subtype=Human Cleric
+auto={T}:protection from white target(creature|myBattlefield)
+auto={T}:protection from blue target(creature|myBattlefield)
+auto={T}:protection from black target(creature|myBattlefield)
+auto={T}:protection from red target(creature|myBattlefield)
+auto={T}:protection from green target(creature|myBattlefield)
+power=1
+toughness=1
+[/card]
+[card]
+text=Target player draws four cards.
+auto=draw:4
+id=12822
+name=Opportunity
+rarity=U
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+text={1}, Sacrifice a creature: Put a +1/+1 counter on Phyrexian Broodlings.
+id=12392
+name=Phyrexian Broodlings
+rarity=C
+mana={1}{B}{B}
+type=Creature
+subtype=Minion
+auto={1}{S(creature|myBattlefield)}:counter(1/1)
+power=2
+toughness=2
+[/card]
+[card]
+text=Flying   {T}, Sacrifice Phyrexian Debaser: Target creature gets -2/-2 until end of turn.
+id=12697
+name=Phyrexian Debaser
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Carrier
+auto={T}{S}:-2/-2 target(creature)
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text={T}, Sacrifice Phyrexian Defiler: Target creature gets -4/-4 until end of turn.
+id=12696
+name=Phyrexian Defiler
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Carrier
+auto={T}{S}:-3/-3 target(creature)
+power=3
+toughness=3
+[/card]
+[card]
+text={T}, Sacrifice Phyrexian Denouncer: Target creature gets -1/-1 until end of turn.
+id=12614
+name=Phyrexian Denouncer
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Carrier
+auto={T}{S}:-1/-1 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text={T}, Sacrifice Phyrexian Plaguelord: Target creature gets -4/-4 until end of turn.    Sacrifice a creature: Target creature gets -1/-1 until end of turn.
+id=12940
+name=Phyrexian Plaguelord
+rarity=R
+mana={3}{B}{B}
+type=Creature
+subtype=Carrier
+auto={T}{S}:-4/-4 target(creature)
+auto={S(creature|myBattlefield)}:-1/-1 target(creature)
+power=4
+toughness=4
+[/card]
+[card]
+text={1}{B}, Pay 2 life: Return target creature card from your graveyard to your hand.
+id=12945
+name=Phyrexian Reclamation
+rarity=U
+mana={B}
+type=Enchantment
+auto={1}{B}:moveTo(myhand) target(creature|mygraveyard) && life:-2 controller
+[/card]
+[card]
+text=Pygmy Pyrosaur can't block.   {R}: Pygmy Pyrosaur gets +1/+0 until end of turn.
+id=12412
+name=Pygmy Pyrosaur
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Lizard
+auto={R}:1/0
+power=1
+toughness=1
+abilities=cantblock
+[/card]
+[card]
+text={4}, {T}: You may put a creature card from your hand into play.
+id=8831
+auto={4}{T}:moveTo(myBattlefield) target(creature|myhand)
+name=Quicksilver Amulet
+rarity=R
+mana={4}
+type=Artifact
+[/card]
+[card]
+text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+id=12393
+name=Plague Beetle
+rarity=C
+mana={B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+abilities=swampwalk
+[/card]
+[card]
+text=Destroy all artifacts and enchantments.
+auto=destroy all(artifact,enchantment)
+id=12367
+name=Purify
+rarity=R
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+text=Flying, vigilance   Radiant, Archangel gets +1/+1 for each other creature with flying on the battlefield.
+id=12368
+auto=foreach(other creature[flying]) 1/1
+name=Radiant, Archangel
+rarity=R
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+abilities=legendary,flying,vigilance
+[/card]
+[card]
+text=Whenever an artifact or enchantment is put into your graveyard from the battlefield, you gain 1 life.
+id=8830
+auto=@movedTo(artifact,enchantment|mygraveyard) from(Battlefield):life:1
+name=Scrapheap
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Target creature gets +1/+1 and gains reach until end of turn. (It can block creatures with flying.)
+target=creature
+auto=1/1
+auto=reach
+id=12949
+name=Silk Net
+rarity=C
+mana={G}
+type=Instant
+[/card]
+[card]
+text=At the beginning of your upkeep, each opponent loses 1 life. You gain life equal to the life lost this way.
+auto=@each my upkeep:life:1 controller
+auto=@each my upkeep:life:-1 opponent
+id=12407
+name=Subversion
+rarity=R
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
+text=Flying   {T}: Thornwind Faeries deals 1 damage to target creature or player.
+id=12369
+name=Thornwind Faeries
+rarity=C
+mana={1}{U}{U}
+type=Creature
+subtype=Faerie
+auto={T}:damage:1 target(creature,player) 
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={T}, Sacrifice Tragic Poet: Return target enchantment card from your graveyard to your hand.
+auto={T}{S}:moveTo(myhand) target(enchantment|mygraveyard)
+id=12355
+name=Tragic Poet
+rarity=C
+mana={W}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+text=Haste   At the beginning of the end step, return Viashino Cutthroat to its owner's hand.
+id=12419
+name=Viashino Cutthroat
+rarity=U
+mana={2}{R}{R}
+type=Creature
+subtype=Viashino
+power=5
+toughness=3
+auto=@each my end:moveTo(myhand)
+abilities=haste
+[/card]
+[card]
+text=Haste (This creature can attack and Tap as soon as it comes under your control.)   At the beginning of the end step, return Viashino Sandscout to its owner's hand. (Return it only if it's on the battlefield.)
+id=12410
+name=Viashino Sandscout
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Viashino Scout
+power=2
+toughness=1
+auto=@each my end:moveTo(myhand)
+abilities=haste
+[/card]
+[card]
+text=Flying   {2}{U}: Untap Vigilant Drake.
+id=12371
+name=Vigilant Drake
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Drake 
+auto={2}{U}:untap
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text={T}: Target creature loses flying, first strike, or trample until end of turn.
+id=12380
+name=Walking Sponge
+rarity=U
+mana={1}{U}
+type=Creature
+subtype=Sponge 
+auto={T}:-flying target(creature)
+auto={T}:-first strike target(creature)
+auto={T}:-trample target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Target creature gains forestwalk until end of turn.
+id=12430
+name=Weatherseed Elf
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf
+auto={T}:forestwalk target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying, protection from red
+id=12370
+name=Weatherseed Faeries
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Faerie 
+power=2
+toughness=1
+abilities=flying,protection from red
+[/card]
+[card]
+text=Destroy target creature with flying.
+target=creature[flying]
+auto=destroy
+id=5675
+name=Wing Snare
+rarity=U
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+text=Trample
+id=5571
+name=Yavimaya Wurm
+rarity=C
+mana={4}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=4
+abilities=trample
 [/card]

@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=12414
 name=About Face
 mana={R}
@@ -36,7 +36,6 @@ toughness=0
 text=Anthroplasm enters the battlefield with two +1/+1 counters on it. {X}, {T}: Remove all +1/+1 counters from Anthroplasm and put X +1/+1 counters on it.
 rarity=R
 [/card]
-
 [card]
 id=12943
 name=Aura Flux
@@ -55,25 +54,6 @@ power=2
 toughness=2
 text=Haste Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Avalanche Riders enters the battlefield, destroy target land.
 rarity=U
-[/card]
-[card]
-id=12504
-name=Beast of Burden
-mana={6}
-type=Artifact Creature
-subtype=Golem
-power=*
-toughness=*
-text=Beast of Burden's power and toughness are each equal to the number of creatures on the battlefield.
-rarity=R
-[/card]
-[card]
-id=12366
-name=Blessed Reversal
-mana={1}{W}
-type=Instant
-text=You gain 3 life for each creature attacking you.
-rarity=R
 [/card]
 [card]
 id=12462
@@ -98,31 +78,12 @@ text=Flying Echo {2}{B} (At the beginning of your upkeep, if this came under you
 rarity=U
 [/card]
 [card]
-id=12372
-name=Bouncing Beebles
-mana={2}{U}
-type=Creature
-subtype=Beeble
-power=2
-toughness=2
-text=Bouncing Beebles is unblockable as long as defending player controls an artifact.
-rarity=C
-[/card]
-[card]
 id=12406
 name=Brink of Madness
 mana={2}{B}{B}
 type=Enchantment
 text=At the beginning of your upkeep, if you have no cards in hand, sacrifice Brink of Madness. If you do, target opponent discards his or her hand.
 rarity=R
-[/card]
-[card]
-id=13806
-name=Burst of Energy
-mana={W}
-type=Instant
-text=Untap target permanent.
-rarity=C
 [/card]
 [card]
 id=12359
@@ -180,28 +141,6 @@ text=Protection from black Cycling {2} ({2}, Discard this card: Draw a card.)
 rarity=U
 [/card]
 [card]
-id=12411
-name=Defender of Chaos
-mana={2}{R}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=1
-text=Flash Protection from white
-rarity=C
-[/card]
-[card]
-id=12353
-name=Defender of Law
-mana={2}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=1
-text=Flash Protection from red
-rarity=C
-[/card]
-[card]
 id=8897
 name=Defense Grid
 mana={2}
@@ -218,14 +157,6 @@ text=At the beginning of your upkeep, if an opponent controls three or more crea
 rarity=R
 [/card]
 [card]
-id=12349
-name=Delusions of Mediocrity
-mana={3}{U}
-type=Enchantment
-text=When Delusions of Mediocrity enters the battlefield, you gain 10 life. When Delusions of Mediocrity leaves the battlefield, you lose 10 life.
-rarity=R
-[/card]
-[card]
 id=12458
 name=Deranged Hermit
 mana={3}{G}{G}
@@ -237,17 +168,6 @@ text=Echo {3}{G}{G} (At the beginning of your upkeep, if this came under your co
 rarity=R
 [/card]
 [card]
-id=12813
-name=Devout Harpist
-mana={W}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-text={T}: Destroy target Aura attached to a creature.
-rarity=C
-[/card]
-[card]
 id=12944
 name=Engineered Plague
 mana={2}{B}
@@ -256,64 +176,12 @@ text=As Engineered Plague enters the battlefield, choose a creature type.  All c
 rarity=U
 [/card]
 [card]
-id=12941
-name=Erase
-mana={W}
-type=Instant
-text=Exile target enchantment.
-rarity=C
-[/card]
-[card]
-id=12404
-name=Eviscerator
-mana={3}{B}{B}
-type=Creature
-subtype=Horror
-power=5
-toughness=5
-text=Protection from white When Eviscerator enters the battlefield, you lose 5 life.
-rarity=R
-[/card]
-[card]
-id=12356
-name=Expendable Troops
-mana={1}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
-text={T}, Sacrifice Expendable Troops: Expendable Troops deals 2 damage to target attacking or blocking creature.
-rarity=C
-[/card]
-[card]
 id=12495
 name=Faerie Conclave
 mana=
 type=Land
 text=Faerie Conclave enters the battlefield tapped. {T}: Add {U} to your mana pool. {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
 rarity=U
-[/card]
-[card]
-id=12389
-name=Fleeting Image
-mana={2}{U}
-type=Creature
-subtype=Illusion
-power=2
-toughness=1
-text=Flying (This creature can't be blocked except by creatures with flying or reach.) {1}{U}: Return Fleeting Image to its owner's hand.
-rarity=R
-[/card]
-[card]
-id=9699
-name=Fog of Gnats
-mana={B}{B}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-text=Flying {B}: Regenerate Fog of Gnats.
-rarity=C
 [/card]
 [card]
 id=12494
@@ -330,17 +198,6 @@ mana={2}{U}
 type=Instant
 text=Draw two cards, then discard two cards. Untap up to three lands.
 rarity=C
-[/card]
-[card]
-id=12950
-name=Gang of Elk
-mana={5}{G}
-type=Creature
-subtype=Elk Beast
-power=5
-toughness=4
-text=Whenever Gang of Elk becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
-rarity=U
 [/card]
 [card]
 id=12497
@@ -373,24 +230,6 @@ text=Echo {2}{R} (At the beginning of your upkeep, if this came under your contr
 rarity=C
 [/card]
 [card]
-id=13810
-name=Ghitu War Cry
-mana={2}{R}
-type=Enchantment
-text={R}: Target creature gets +1/+0 until end of turn.
-rarity=U
-[/card]
-[card]
-id=12946
-name=Giant Cockroach
-mana={3}{B}
-type=Creature
-subtype=Insect
-power=4
-toughness=2
-rarity=C
-[/card]
-[card]
 id=12643
 name=Goblin Medics
 mana={2}{R}
@@ -411,31 +250,6 @@ power=1
 toughness=1
 text={T}: Choose target artifact a player controls and target artifact card in that player's graveyard. If both targets are still legal as this ability resolves, that player simultaneously sacrifices the artifact and returns the artifact card to the battlefield.
 rarity=R
-[/card]
-[card]
-id=5682
-name=Granite Grip
-mana={2}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+0 for each Mountain you control.
-rarity=C
-[/card]
-[card]
-id=12626
-name=Grim Monolith
-mana={2}
-type=Artifact
-text=Grim Monolith doesn't untap during your untap step.  {T}: Add {3} to your mana pool.  {4}: Untap Grim Monolith.
-rarity=R
-[/card]
-[card]
-id=12437
-name=Harmonic Convergence
-mana={2}{G}
-type=Instant
-text=Put all enchantments on top of their owners' libraries.
-rarity=U
 [/card]
 [card]
 id=12441
@@ -486,17 +300,6 @@ text=Target creature gets +0/+4 until end of turn. Cycling {2} ({2}, Discard thi
 rarity=C
 [/card]
 [card]
-id=8896
-name=Jhoira's Toolbox
-mana={2}
-type=Artifact Creature
-subtype=Insect
-power=1
-toughness=1
-text={2}: Regenerate target artifact creature.
-rarity=U
-[/card]
-[card]
 id=12955
 name=Karmic Guide
 mana={3}{W}{W}
@@ -508,46 +311,11 @@ text=Flying, protection from black Echo {3}{W}{W} (At the beginning of your upke
 rarity=R
 [/card]
 [card]
-id=12382
-name=King Crab
-mana={4}{U}{U}
-type=Creature
-subtype=Crab
-power=4
-toughness=5
-text={1}{U}, {T}: Put target green creature on top of its owner's library.
-rarity=U
-[/card]
-[card]
-id=5709
-name=Knighthood
-mana={2}{W}
-type=Enchantment
-text=Creatures you control have first strike.
-rarity=U
-[/card]
-[card]
 id=13812
 name=Last-Ditch Effort
 mana={R}
 type=Instant
 text=Sacrifice any number of creatures. Last-Ditch Effort deals X damage to target creature or player, where X is the number of creatures sacrificed this way.
-rarity=U
-[/card]
-[card]
-id=12947
-name=Lava Axe
-mana={4}{R}
-type=Sorcery
-text=Lava Axe deals 5 damage to target player.
-rarity=C
-[/card]
-[card]
-id=12388
-name=Levitation
-mana={2}{U}{U}
-type=Enchantment
-text=Creatures you control have flying.
 rarity=U
 [/card]
 [card]
@@ -586,14 +354,6 @@ text={T}, Sacrifice Memory Jar: Each player exiles all cards from his or her han
 rarity=R
 [/card]
 [card]
-id=8822
-name=Might of Oaks
-mana={3}{G}
-type=Instant
-text=Target creature gets +7/+7 until end of turn.
-rarity=R
-[/card]
-[card]
 id=12376
 name=Miscalculation
 mana={1}{U}
@@ -610,28 +370,6 @@ subtype=Hydra
 power=1
 toughness=1
 text={1}{R}{R}: Put a +1/+1 counter on Molten Hydra. {T}, Remove all +1/+1 counters from Molten Hydra: Molten Hydra deals X damage to target creature or player, where X is the number of counters removed this way.
-rarity=R
-[/card]
-[card]
-id=5704
-name=Mother of Runes
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text={T}: Target creature you control gains protection from the color of your choice until end of turn.
-rarity=U
-[/card]
-[card]
-id=12440
-name=Multani, Maro-Sorcerer
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Elemental
-power=*
-toughness=*
-text=Shroud (This permanent can't be the target of spells or abilities.) Multani's power and toughness are each equal to the total number of cards in all players' hands.
 rarity=R
 [/card]
 [card]
@@ -678,14 +416,6 @@ text=When an opponent casts a creature spell, if Opal Champion is an enchantment
 rarity=C
 [/card]
 [card]
-id=12822
-name=Opportunity
-mana={4}{U}{U}
-type=Instant
-text=Target player draws four cards.
-rarity=U
-[/card]
-[card]
 id=8786
 name=Ostracize
 mana={B}
@@ -721,105 +451,12 @@ text=Destroy two target enchantments.
 rarity=U
 [/card]
 [card]
-id=12392
-name=Phyrexian Broodlings
-mana={1}{B}{B}
-type=Creature
-subtype=Minion
-power=2
-toughness=2
-text={1}, Sacrifice a creature: Put a +1/+1 counter on Phyrexian Broodlings.
-rarity=C
-[/card]
-[card]
-id=12697
-name=Phyrexian Debaser
-mana={3}{B}
-type=Creature
-subtype=Carrier
-power=2
-toughness=2
-text=Flying  {T}, Sacrifice Phyrexian Debaser: Target creature gets -2/-2 until end of turn.
-rarity=C
-[/card]
-[card]
-id=12696
-name=Phyrexian Defiler
-mana={2}{B}{B}
-type=Creature
-subtype=Carrier
-power=3
-toughness=3
-text={T}, Sacrifice Phyrexian Defiler: Target creature gets -3/-3 until end of turn.
-rarity=U
-[/card]
-[card]
-id=12614
-name=Phyrexian Denouncer
-mana={1}{B}
-type=Creature
-subtype=Carrier
-power=1
-toughness=1
-text={T}, Sacrifice Phyrexian Denouncer: Target creature gets -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=12940
-name=Phyrexian Plaguelord
-mana={3}{B}{B}
-type=Creature
-subtype=Carrier
-power=4
-toughness=4
-text={T}, Sacrifice Phyrexian Plaguelord: Target creature gets -4/-4 until end of turn. Sacrifice a creature: Target creature gets -1/-1 until end of turn.
-rarity=R
-[/card]
-[card]
-id=12945
-name=Phyrexian Reclamation
-mana={B}
-type=Enchantment
-text={1}{B}, Pay 2 life: Return target creature card from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=12393
-name=Plague Beetle
-mana={B}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
-rarity=C
-[/card]
-[card]
 id=12365
 name=Planar Collapse
 mana={1}{W}
 type=Enchantment
 text=At the beginning of your upkeep, if there are four or more creatures on the battlefield, sacrifice Planar Collapse. If you do, destroy all creatures. They can't be regenerated.
 rarity=R
-[/card]
-[card]
-id=12367
-name=Purify
-mana={3}{W}{W}
-type=Sorcery
-text=Destroy all artifacts and enchantments.
-rarity=R
-[/card]
-[card]
-id=12412
-name=Pygmy Pyrosaur
-mana={1}{R}
-type=Creature
-subtype=Lizard
-power=1
-toughness=1
-text=Pygmy Pyrosaur can't block.  {R}: Pygmy Pyrosaur gets +1/+0 until end of turn.
-rarity=C
 [/card]
 [card]
 id=12668
@@ -844,17 +481,6 @@ mana={2}{R}
 type=Instant
 text=Destroy two target artifacts.
 rarity=U
-[/card]
-[card]
-id=12368
-name=Radiant, Archangel
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Angel
-power=3
-toughness=3
-text=Flying, vigilance Radiant, Archangel gets +1/+1 for each other creature with flying on the battlefield.
-rarity=R
 [/card]
 [card]
 id=12364
@@ -939,14 +565,6 @@ text=At the beginning of each player's upkeep, if that player controls more land
 rarity=R
 [/card]
 [card]
-id=8830
-name=Scrapheap
-mana={3}
-type=Artifact
-text=Whenever an artifact or enchantment is put into your graveyard from the battlefield, you gain 1 life.
-rarity=R
-[/card]
-[card]
 id=12391
 name=Second Chance
 mana={2}{U}
@@ -971,14 +589,6 @@ name=Sick and Tired
 mana={2}{B}
 type=Instant
 text=Two target creatures each get -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=12949
-name=Silk Net
-mana={G}
-type=Instant
-text=Target creature gets +1/+1 and gains reach until end of turn. (It can block creatures with flying.)
 rarity=C
 [/card]
 [card]
@@ -1036,14 +646,6 @@ text=Spawning Pool enters the battlefield tapped. {T}: Add {B} to your mana pool
 rarity=U
 [/card]
 [card]
-id=12407
-name=Subversion
-mana={3}{B}{B}
-type=Enchantment
-text=At the beginning of your upkeep, each opponent loses 1 life. You gain life equal to the life lost this way.
-rarity=R
-[/card]
-[card]
 id=12814
 name=Sustainer of the Realm
 mana={2}{W}{W}
@@ -1072,17 +674,6 @@ power=2
 toughness=2
 text=Flying Whenever Tethered Skirge becomes the target of a spell or ability, you lose 1 life.
 rarity=U
-[/card]
-[card]
-id=12369
-name=Thornwind Faeries
-mana={1}{U}{U}
-type=Creature
-subtype=Faerie
-power=1
-toughness=1
-text=Flying {T}: Thornwind Faeries deals 1 damage to target creature or player.
-rarity=C
 [/card]
 [card]
 id=8852
@@ -1129,17 +720,6 @@ mana={2}{U}
 type=Sorcery
 text=As an additional cost to cast Tinker, sacrifice an artifact. Search your library for an artifact card and put that card onto the battlefield. Then shuffle your library.
 rarity=U
-[/card]
-[card]
-id=12355
-name=Tragic Poet
-mana={W}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-text={T}, Sacrifice Tragic Poet: Return target enchantment card from your graveyard to your hand.
-rarity=C
 [/card]
 [card]
 id=12403
@@ -1197,17 +777,6 @@ text=If Viashino Bey attacks, all creatures you control attack if able.
 rarity=C
 [/card]
 [card]
-id=12419
-name=Viashino Cutthroat
-mana={2}{R}{R}
-type=Creature
-subtype=Viashino
-power=5
-toughness=3
-text=Haste At the beginning of the end step, return Viashino Cutthroat to its owner's hand.
-rarity=U
-[/card]
-[card]
 id=12424
 name=Viashino Heretic
 mana={2}{R}
@@ -1217,61 +786,6 @@ power=1
 toughness=3
 text={1}{R}, {T}: Destroy target artifact. Viashino Heretic deals damage to that artifact's controller equal to the artifact's converted mana cost.
 rarity=U
-[/card]
-[card]
-id=12410
-name=Viashino Sandscout
-mana={1}{R}
-type=Creature
-subtype=Viashino Scout
-power=2
-toughness=1
-text=Haste (This creature can attack and {T} as soon as it comes under your control.) At the beginning of the end step, return Viashino Sandscout to its owner's hand. (Return it only if it's on the battlefield.)
-rarity=C
-[/card]
-[card]
-id=12371
-name=Vigilant Drake
-mana={4}{U}
-type=Creature
-subtype=Drake
-power=3
-toughness=3
-text=Flying  {2}{U}: Untap Vigilant Drake.
-rarity=C
-[/card]
-[card]
-id=12380
-name=Walking Sponge
-mana={1}{U}
-type=Creature
-subtype=Sponge
-power=1
-toughness=1
-text={T}: Target creature loses flying, first strike, or trample until end of turn.
-rarity=U
-[/card]
-[card]
-id=12430
-name=Weatherseed Elf
-mana={G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text={T}: Target creature gains forestwalk until end of turn.
-rarity=C
-[/card]
-[card]
-id=12370
-name=Weatherseed Faeries
-mana={2}{U}
-type=Creature
-subtype=Faerie
-power=2
-toughness=1
-text=Flying, protection from red
-rarity=C
 [/card]
 [card]
 id=12438
@@ -1320,16 +834,5 @@ subtype=Treefolk
 power=4
 toughness=4
 text=Protection from artifacts
-rarity=C
-[/card]
-[card]
-id=5571
-name=Yavimaya Wurm
-mana={4}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=4
-text=Trample
 rarity=C
 [/card]
