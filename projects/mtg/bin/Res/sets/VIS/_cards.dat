@@ -1,13 +1,518 @@
 [card]
+text=Trample   At the beginning of your upkeep, put a +1/+1 counter on each creature each opponent controls.
+auto=@each my upkeep:lord(creature|opponentBattlefield) counter(1/1)
 id=3608
 name=Aku Djinn
+rarity=R
 mana={3}{B}{B}
 type=Creature
 subtype=Djinn
 power=5
 toughness=6
-text=Trample At the beginning of your upkeep, put a +1/+1 counter on each creature each opponent controls.
 abilities=trample
-auto=@each my upkeep:all(creature|opponentBattlefield) counter(1/1,1)
+[/card]
+[card]
+text=Flying, vigilance
+id=3708
+name=Archangel
 rarity=R
+mana={5}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+abilities=flying,vigilance
+[/card]
+[card]
+text={T}, Sacrifice a land: Destroy target land.
+auto={T}{s(land|myBattlefield)}:destroy target(land)
+id=3733
+name=Army Ants
+rarity=U
+mana={1}{B}{R}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying   Cloud Spirit can block only creatures with flying.
+id=3636
+name=Cloud Elemental
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Elemental
+power=2
+toughness=3
+abilities=cloud,flying
+[/card]
+[card]
+text=Destroy target artifact, land or enchantment.
+id=3660
+name=Creeping Mold
+rarity=U
+mana={2}{G}{G}
+type=Sorcery
+target=artifact,land,enchantment
+auto=destroy
+[/card]
+[card]
+text=Flying   Sacrifice Daraja Griffin: Destroy target black creature.
+auto={S}:destroy target(creature[black])
+id=3709
+name=Daraja Griffin
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +1/+1.   Sacrifice a creature: Regenerate enchanted creature.
+target=creature
+auto=1/1
+auto={S(creature|myBattlefield)}:regenerate
+id=3613
+name=Dark Privilege
+rarity=C
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text={3},{T}: Put a 0/1 Prism artifact creature token into play.   Sacrifice a Prism token: Add one mana of any color to your mana pool.
+id=3591
+auto={3}{T}:token(Prism,creature artifact prism, 0/1, artifact)
+auto={S(prism|myBattlefield)}:Add {W}
+auto={S(prism|myBattlefield)}:Add {U} 
+auto={S(prism|myBattlefield)}:Add {B} 
+auto={S(prism|myBattlefield)}:Add {R} 
+auto={S(prism|myBattlefield)}:Add {G}  
+name=Diamond Kaleidoscope
+rarity=R
+mana={4}
+type=Artifact
+[/card]
+[card]
+text=Return target card from your graveyard to your hand.
+id=3662
+target=*|myGraveyard
+auto=moveTo(myhand)
+name=Elven Cache
+rarity=U
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+[card]
+text=Whenever an enchantment is put into a graveyard from the battlefield, draw a card.
+auto=@movedTo(enchantment|graveyard) from(battlefield):draw:1 controller
+id=3736
+name=Femeref Enchantress
+rarity=R
+mana={G}{W}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=2
+[/card]
+[card]
+text=Target creature gets +1/+1 until end of turn.   Draw a card at the beginning of the next turn's upkeep.
+id=3664
+target=creature
+name=Feral Instinct
+rarity=C
+mana={1}{G}
+type=Instant
+auto=1/1
+auto=@next upkeep:draw:1
+[/card]
+[card]
+text=Flying, protection from red
+id=3712
+name=Freewind Falcon
+rarity=C
+mana={1}{W}
+type=creature
+subtype=bird
+power=1
+toughness=1
+abilities=flying,protection from red
+[/card]
+[card]
+text={G}, Sacrifice Giant Caterpillar: Put a 1/1 green Insect creature token with flying named Butterfly into play at end of turn.
+id=3665
+auto={G}{s}:token(Butterfly,creature insect, 1/1,flying green)
+name=Giant Caterpillar
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Insect
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} Mana to your mana pool.   {T}: Untap target Griffin. If it's a creature, it gets +1/+1 until end of turn.
+id=3751
+name=Griffin Canyon        
+rarity=R
+type=Land
+auto={T}:Add {1}
+auto={T}:1/1 target(griffin) && untap
+[/card]
+[card]
+text=Hulking Cyclops can't block.
+id=3691
+name=Hulking Cyclops
+rarity=U
+mana={3}{R}{R}
+type=Creature
+subtype=Cyclops
+power=5
+toughness=5
+abilities=cantblock
+[/card]
+[card]
+text={T}: Target attacking creature gets +1/+1 until end of turn.
+id=3716
+name=Infantry Veteran
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+auto={T}:1/1 target(creature[attacking])
+[/card]
+[card]
+text=Target player draws two cards.
+id=3642
+target=player
+auto=draw:2
+name=Inspiration
+rarity=C
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+text={W}, {T}: Target creature can't block this turn.
+id=3717
+name=Jamuraan Lion
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Cat
+auto={W}{T}:cantblock target(creature)
+power=3
+toughness=1
+[/card]
+[card]
+text={R}: Keeper of Kookus gains protection from red until end of turn.
+id=3692
+name=Keeper of Kookus
+rarity=C
+mana={R}
+type=Creature
+subtype=Goblin
+auto={R}:protection from red
+power=1
+toughness=1
+[/card]
+[card]
+text=flash
+id=3667
+name=King Cheetah
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Cat
+power=3
+toughness=2
+abilities=shroud
+[/card]
+[card]
+text=Trample   At the beginning of your upkeep, if you don't control a creature named Keeper of Kookus, Kookus deals 3 damage to you and attacks this turn if able.   {R}: Kookus gets +1/+0 until end of turn.
+auto=@each my upkeep:damage:3 controller
+auto=@each my upkeep:aslongas(Keeper of Kookus|myBattlefield) life:3 controller
+auto=@each my upkeep:aslongas(Keeper of Kookus|myBattlefield) -mustattack ueot
+id=3693
+name=Kookus
+rarity=R
+mana={3}{R}{R}
+type=Creature
+subtype=Djinn
+auto={R}:1/0
+power=3
+toughness=5
+abilities=trample,mustattack
+[/card]
+[card]
+text=First strike, reach (This creature can block creatures with flying.)
+id=3719
+name=Longbow Archer
+rarity=U
+mana={W}{W}
+type=Creature
+subtype=Human Soldier Archer
+power=2
+toughness=2
+abilities=first strike,reach
+[/card]
+[card]
+text={1}: Regenerate Matopi Golem. When it regenerates this way, put a -1/-1 counter on it.
+id=3598
+name=Matopi Golem
+rarity=U
+mana={5}
+autO={1}:regenerate && counter(-1/-1)
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
+target=creature|mygraveyard
+auto=moveTo(mybattlefield)
+auto=counter(1/1)
+id=3720
+name=Miraculous Recovery
+rarity=U
+mana={4}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+id=3672
+name=Panther Warriors
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Cat Warrior
+power=6
+toughness=3
+[/card]
+[card]
+id=3600
+name=Phyrexian Walker
+rarity=C
+mana={0}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=3
+[/card]
+[card]
+id=3625
+name=Python
+rarity=C
+mana={1}{B}{B}
+type=Creature
+subtype=Snake
+power=3
+toughness=2
+[/card]
+[card]
+text={T}: Add 1 Mana to your mana pool.   {T}, Sacrifice Quicksand: Target attacking creature without flying gets -1/-2 until end of turn.
+id=3754
+name=Quicksand       
+rarity=U
+type=Land
+auto={T}:Add {1}
+auto={T}{S}:-1/-2 target(creature[attacking;-flying])
+[/card]
+[card]
+text=Sacrifice Resistance Fighter: Prevent all combat damage target creature would deal this turn.
+id=3725
+name=Resistance Fighter
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Soldier
+auto={S}:-99/0 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=White creatures you control have protection from black.   Black creatures you control have protection from white.
+id=3741
+auto=lord(creature[white]|myBattlefield) protection from black
+auto=lord(creature[black]|myBattlefield) protection from white
+name=Righteous War
+rarity=R
+mana={1}{W}{B}
+type=Enchantment
+[/card]
+[card]
+text=Islandwalk   {G}: Regenerate River Boa.
+id=3675
+name=River Boa
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=1
+auto={G}:regenerate
+abilities=islandwalk
+[/card]
+[card]
+text=Protection from black
+id=3742
+name=Scalebane's Elite
+rarity=U
+mana={3}{W}{G}
+type=Creature
+subtype=Human Soldier
+power=4
+toughness=4
+abilities=protection from black
+[/card]
+[card]
+text=Simoon deals 1 damage to each creature target opponent controls.
+auto=damage:1 all(creature|opponentBattlefield)
+id=3743
+name=Simoon
+rarity=U
+mana={R}{G}
+type=Instant
+[/card]
+[card]
+text={T}: Add {2} to your mana pool.
+id=3602
+name=Sisay's Ring
+rarity=C
+mana={4}
+type=Artifact
+auto={T}:Add {2}
+[/card]
+[card]
+text=Flying   {R}: Spitting Drake gets +1/+0 until end of turn. Play this ability only once each turn.
+id=3702
+auto={R}:1/0 limit:1
+name=Spitting Drake
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=When Suleiman's Legacy enters the battlefield, destroy all Djinns and Efreets. They can't be regenerated.   Whenever a Djinn or Efreet comes into play, destroy it. It can't be regenerated.
+id=3745
+auto=lord(djinn) -99/-99
+auto=lord(efreet) -99/-99
+name=Suleiman's Legacy
+rarity=R
+mana={R}{W}
+type=Enchantment
+[/card]
+[card]
+text=Flying, vigilance
+id=3746
+name=Tempest Drake
+rarity=U
+mana={1}{W}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+abilities=flying,vigilance
+[/card]
+[card]
+text=Tremor deals 1 damage to each creature without flying.
+auto=damage:1 all(creature[-flying])
+id=3706
+name=Tremor
+rarity=C
+mana={R}
+type=Sorcery
+[/card]
+[card]
+text=Enchant creature   When Vampirism enters the battlefield, draw a card at the beginning of the next turn's upkeep.   Enchanted creature gets +1/+1 for each other creature you control.   Other creatures you control get -1/-1.
+target=creature
+auto=foreach(other creature|myBattlefield) 1/1
+auto=lord(other creature|myBattlefield) -1/-1
+auto=@next upkeep:draw:1
+id=3630
+name=Vampirism
+rarity=U
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Haste (This creature can attack the turn it comes under your control.)   At the beginning of the end step, return Viashino Sandstalker to its owner's hand. (Return it only if it's on the battlefield.)
+id=3707
+name=Viashino Sandstalker
+rarity=C
+mana={1}{R}{R}
+type=Creature
+subtype=Viashino Warrior
+auto=@each my end:moveTo(myhand)
+power=4
+toughness=2
+abilities=haste
+[/card]
+[card]
+text=Flying   {R}: Viashivan Dragon gets +1/+0 until end of turn.   {G}: Viashivan Dragon gets +0/+1 until end of turn.
+id=3747
+name=Viashivan Dragon
+rarity=R
+mana={2}{R}{R}{G}{G}
+type=Creature
+subtype=Dragon
+auto={R}:1/0
+auto={G}:0/1
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
+text={1}{B}, Sacrifice a creature: Regenerate Wake of Vultures.
+id=3631
+name=Wake of Vultures
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Bird
+auto={1}{B}{S(creature|myBattlefield)}:regenerate
+power=3
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+auto=lord(creatures|myBattlefield) 1/1
+id=3731
+name=Warrior's Honor
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=Swampwalk
+id=3681
+name=Warthog
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Boar
+power=3
+toughness=2
+abilities=swampwalk
+[/card]
+[card]
+text=Attacking creatures with flying get -2/-2 and lose flying until end of turn.
+auto=lord(creature[attacking;flying]) -2/-2
+auto=lord(creature[attacking;flying]) -flying
+id=3682
+name=Wind Shear
+rarity=U
+type=Instant
+mana={2}{G}
 [/card]

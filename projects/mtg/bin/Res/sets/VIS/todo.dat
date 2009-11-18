@@ -1,33 +1,10 @@
-
-[card]
+﻿[card]
 id=3589
 name=Anvil of Bogardan
 mana={2}
 type=Artifact
 text=Players have no maximum hand size. At the beginning of each player's draw step, that player draws an additional card, then discards a card.
 rarity=R
-[/card]
-[card]
-id=3708
-name=Archangel
-mana={5}{W}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-text=Flying, vigilance
-rarity=R
-[/card]
-[card]
-id=3733
-name=Army Ants
-mana={1}{B}{R}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-text={T}, Sacrifice a land: Destroy target land.
-rarity=U
 [/card]
 [card]
 id=3633
@@ -129,17 +106,6 @@ text=Players can cast spells and activate abilities only during their own turns.
 rarity=R
 [/card]
 [card]
-id=3636
-name=Cloud Elemental
-mana={2}{U}
-type=Creature
-subtype=Elemental
-power=2
-toughness=3
-text=Flying (This creature can't be blocked except by creatures with flying or reach.) Cloud Elemental can block only creatures with flying.
-rarity=C
-[/card]
-[card]
 id=3611
 name=Coercion
 mana={2}{B}
@@ -164,14 +130,6 @@ text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter 
 rarity=R
 [/card]
 [card]
-id=3660
-name=Creeping Mold
-mana={2}{G}{G}
-type=Sorcery
-text=Destroy target artifact, enchantment, or land.
-rarity=U
-[/card]
-[card]
 id=3612
 name=Crypt Rats
 mana={2}{B}
@@ -180,17 +138,6 @@ subtype=Rat
 power=1
 toughness=1
 text={X}: Crypt Rats deals X damage to each creature and each player. Spend only black mana this way.
-rarity=U
-[/card]
-[card]
-id=3709
-name=Daraja Griffin
-mana={3}{W}
-type=Creature
-subtype=Griffin
-power=2
-toughness=2
-text=Flying Sacrifice Daraja Griffin: Destroy target black creature.
 rarity=U
 [/card]
 [card]
@@ -226,14 +173,6 @@ mana={1}{B}{B}
 type=Enchantment
 text=At the beginning of the end step, each player who tapped a land for mana this turn sacrifices a land. If a Plains is sacrificed this way, Desolation deals 2 damage to that Plains's controller.
 rarity=U
-[/card]
-[card]
-id=3591
-name=Diamond Kaleidoscope
-mana={4}
-type=Artifact
-text={3}, {T}: Put a 0/1 colorless Prism artifact creature token onto the battlefield. Sacrifice a Prism token: Add one mana of any color to your mana pool.
-rarity=R
 [/card]
 [card]
 id=3749
@@ -287,14 +226,6 @@ text=At the beginning of each player's upkeep, that player exiles a card at rand
 rarity=R
 [/card]
 [card]
-id=3662
-name=Elven Cache
-mana={2}{G}{G}
-type=Sorcery
-text=Return target card from your graveyard to your hand.
-rarity=C
-[/card]
-[card]
 id=3663
 name=Emerald Charm
 mana={G}
@@ -335,25 +266,6 @@ subtype=Human Knight
 power=2
 toughness=2
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) Fallen Askari can't block.
-rarity=C
-[/card]
-[card]
-id=3736
-name=Femeref Enchantress
-mana={G}{W}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=2
-text=Whenever an enchantment is put into a graveyard from the battlefield, draw a card.
-rarity=R
-[/card]
-[card]
-id=3664
-name=Feral Instinct
-mana={1}{G}
-type=Instant
-text=Target creature gets +1/+1 until end of turn. Draw a card at the beginning of the next turn's upkeep.
 rarity=C
 [/card]
 [card]
@@ -400,33 +312,11 @@ text=Name a card, then put the top card of target opponent's library into his or
 rarity=U
 [/card]
 [card]
-id=3712
-name=Freewind Falcon
-mana={1}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-text=Flying, protection from red
-rarity=C
-[/card]
-[card]
 id=3618
 name=Funeral Charm
 mana={B}
 type=Instant
 text=Choose one  ETarget player discards a card; or target creature gets +2/-1 until end of turn; or target creature gains swampwalk until end of turn.
-rarity=C
-[/card]
-[card]
-id=3665
-name=Giant Caterpillar
-mana={3}{G}
-type=Creature
-subtype=Insect
-power=3
-toughness=3
-text={G}, Sacrifice Giant Caterpillar: Put a 1/1 green Insect creature token with flying named Butterfly onto the battlefield at the beginning of the next end step.
 rarity=C
 [/card]
 [card]
@@ -458,14 +348,6 @@ mana={W}{W}
 type=Enchantment
 text=Return Gossamer Chains to its owner's hand: Prevent all combat damage that would be dealt by target unblocked creature this turn.
 rarity=C
-[/card]
-[card]
-id=3751
-name=Griffin Canyon
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Untap target Griffin. If it's a creature, it gets +1/+1 until end of turn.
-rarity=R
 [/card]
 [card]
 id=3738
@@ -519,17 +401,6 @@ text=Choose one  ETarget creature gains first strike until end of turn; or tar
 rarity=C
 [/card]
 [card]
-id=3691
-name=Hulking Cyclops
-mana={3}{R}{R}
-type=Creature
-subtype=Cyclops
-power=5
-toughness=5
-text=Hulking Cyclops can't block.
-rarity=U
-[/card]
-[card]
 id=3641
 name=Impulse
 mana={1}{U}
@@ -538,30 +409,11 @@ text=Look at the top four cards of your library. Put one of them into your hand 
 rarity=C
 [/card]
 [card]
-id=3716
-name=Infantry Veteran
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text={T}: Target attacking creature gets +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=3619
 name=Infernal Harvest
 mana={1}{B}
 type=Sorcery
 text=As an additional cost to cast Infernal Harvest, return X Swamps you control to their owner's hand. Infernal Harvest deals X damage divided as you choose among any number of target creatures.
-rarity=C
-[/card]
-[card]
-id=3642
-name=Inspiration
-mana={3}{U}
-type=Instant
-text=Target player draws two cards.
 rarity=C
 [/card]
 [card]
@@ -574,17 +426,6 @@ power=2
 toughness=2
 text=Vigilance Sacrifice Iron-Heart Chimera: Put a +2/+2 counter on target Chimera creature. It gains vigilance. (This effect lasts indefinitely.)
 rarity=U
-[/card]
-[card]
-id=3717
-name=Jamuraan Lion
-mana={2}{W}
-type=Creature
-subtype=Cat
-power=3
-toughness=1
-text={W}, {T}: Target creature can't block this turn.
-rarity=C
 [/card]
 [card]
 id=3595
@@ -627,28 +468,6 @@ text=Phasing (This phases in or out before you untap during each of your untap s
 rarity=R
 [/card]
 [card]
-id=3692
-name=Keeper of Kookus
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text={R}: Keeper of Kookus gains protection from red until end of turn.
-rarity=C
-[/card]
-[card]
-id=3667
-name=King Cheetah
-mana={3}{G}
-type=Creature
-subtype=Cat
-power=3
-toughness=2
-text=Flash
-rarity=U
-[/card]
-[card]
 id=3643
 name=Knight of the Mists
 mana={2}{U}
@@ -669,17 +488,6 @@ power=2
 toughness=2
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) {1}{W}: Each creature without flanking blocking Knight of Valor gets -1/-1 until end of turn. Activate this ability only once each turn.
 rarity=C
-[/card]
-[card]
-id=3693
-name=Kookus
-mana={3}{R}{R}
-type=Creature
-subtype=Djinn
-power=3
-toughness=5
-text=Trample At the beginning of your upkeep, if you don't control a creature named Keeper of Kookus, Kookus deals 3 damage to you and attacks this turn if able. {R}: Kookus gets +1/+0 until end of turn.
-rarity=R
 [/card]
 [card]
 id=3668
@@ -723,17 +531,6 @@ text=Whenever a player casts a red spell, you may pay {R}. If you do, Lightning 
 rarity=R
 [/card]
 [card]
-id=3719
-name=Longbow Archer
-mana={W}{W}
-type=Creature
-subtype=Human Soldier Archer
-power=2
-toughness=2
-text=First strike; reach (This creature can block creatures with flying.)
-rarity=U
-[/card]
-[card]
 id=3597
 name=Magma Mine
 mana={1}
@@ -761,14 +558,6 @@ subtype=Golem
 power=3
 toughness=3
 text={1}: Regenerate Matopi Golem. When it regenerates this way, put a -1/-1 counter on it.
-rarity=U
-[/card]
-[card]
-id=3720
-name=Miraculous Recovery
-mana={4}{W}
-type=Instant
-text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
 rarity=U
 [/card]
 [card]
@@ -870,16 +659,6 @@ text=When Ovinomancer enters the battlefield, sacrifice it unless you return thr
 rarity=U
 [/card]
 [card]
-id=3672
-name=Panther Warriors
-mana={4}{G}
-type=Creature
-subtype=Cat Warrior
-power=6
-toughness=3
-rarity=C
-[/card]
-[card]
 id=3721
 name=Parapet
 mana={1}{W}
@@ -907,16 +686,6 @@ text=Phyrexian Marauder enters the battlefield with X +1/+1 counters on it. Phyr
 rarity=R
 [/card]
 [card]
-id=3600
-name=Phyrexian Walker
-mana={0}
-type=Artifact Creature
-subtype=Construct
-power=0
-toughness=3
-rarity=C
-[/card]
-[card]
 id=3624
 name=Pillar Tombs of Aku
 mana={2}{B}{B}
@@ -942,24 +711,6 @@ power=2
 toughness=2
 text=Whenever Pygmy Hippo attacks and isn't blocked, you may have defending player activate a mana ability of each land he or she controls and empty his or her mana pool. If you do, Pygmy Hippo assigns no combat damage this turn and at the beginning of your postcombat main phase, you add {X} to your mana pool, where X is the amount of mana emptied from defending player's mana pool this way.
 rarity=R
-[/card]
-[card]
-id=3625
-name=Python
-mana={1}{B}{B}
-type=Creature
-subtype=Snake
-power=3
-toughness=2
-rarity=C
-[/card]
-[card]
-id=3754
-name=Quicksand
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}, Sacrifice Quicksand: Target attacking creature without flying gets -1/-2 until end of turn.
-rarity=U
 [/card]
 [card]
 id=3673
@@ -1058,25 +809,6 @@ text={W}, Pay 2 life: The next time a source of your choice would deal damage to
 rarity=U
 [/card]
 [card]
-id=3741
-name=Righteous War
-mana={1}{W}{B}
-type=Enchantment
-text=White creatures you control have protection from black. Black creatures you control have protection from white.
-rarity=R
-[/card]
-[card]
-id=3675
-name=River Boa
-mana={1}{G}
-type=Creature
-subtype=Snake
-power=2
-toughness=1
-text=Islandwalk {G}: Regenerate River Boa.
-rarity=U
-[/card]
-[card]
 id=3699
 name=Rock Slide
 mana={X}{R}
@@ -1101,17 +833,6 @@ text=Each player skips his or her untap step. At the beginning of each player's 
 rarity=R
 [/card]
 [card]
-id=3742
-name=Scalebane's Elite
-mana={3}{G}{W}
-type=Creature
-subtype=Human Soldier
-power=4
-toughness=4
-text=Protection from black
-rarity=U
-[/card]
-[card]
 id=3649
 name=Shimmering Efreet
 mana={2}{U}
@@ -1132,22 +853,6 @@ power=1
 toughness=1
 text=Flying When Shrieking Drake enters the battlefield, return a creature you control to its owner's hand.
 rarity=C
-[/card]
-[card]
-id=3743
-name=Simoon
-mana={R}{G}
-type=Instant
-text=Simoon deals 1 damage to each creature target opponent controls.
-rarity=U
-[/card]
-[card]
-id=3602
-name=Sisay's Ring
-mana={4}
-type=Artifact
-text={T}: Add {2} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=3603
@@ -1183,17 +888,6 @@ text=You may cast Spider Climb as though it had flash. If you cast it any time a
 rarity=C
 [/card]
 [card]
-id=3702
-name=Spitting Drake
-mana={3}{R}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-text=Flying {R}: Spitting Drake gets +1/+0 until end of turn. Activate this ability only once each turn.
-rarity=U
-[/card]
-[card]
 id=3744
 name=Squandered Resources
 mana={B}{G}
@@ -1213,29 +907,12 @@ text=Trample (If this creature would deal enough damage to its blockers to destr
 rarity=U
 [/card]
 [card]
-id=3745
-name=Suleiman's Legacy
-mana={R}{W}
-type=Enchantment
-text=When Suleiman's Legacy enters the battlefield, destroy all Djinns and Efreets. They can't be regenerated. Whenever a Djinn or Efreet enters the battlefield, destroy it. It can't be regenerated.
-rarity=R
-[/card]
-[card]
 id=3679
 name=Summer Bloom
 mana={1}{G}
 type=Sorcery
 text=You may play up to three additional lands this turn.
 rarity=U
-[/card]
-[card]
-id=3728
-name=Sun Clasp
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+3. {W}: Return enchanted creature to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=3626
@@ -1320,17 +997,6 @@ text=At the beginning of each player's upkeep, that player chooses artifact, cre
 rarity=R
 [/card]
 [card]
-id=3746
-name=Tempest Drake
-mana={1}{W}{U}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-text=Flying, vigilance
-rarity=U
-[/card]
-[card]
 id=3652
 name=Three Wishes
 mana={1}{U}{U}
@@ -1364,14 +1030,6 @@ mana={W}
 type=Instant
 text=Search your library for a Plains card. If you control fewer lands than an opponent, you may search your library for an additional Plains card. Reveal those cards and put them into your hand. Then shuffle your library.
 rarity=R
-[/card]
-[card]
-id=3706
-name=Tremor
-mana={R}
-type=Sorcery
-text=Tremor deals 1 damage to each creature without flying.
-rarity=C
 [/card]
 [card]
 id=3606
@@ -1428,15 +1086,6 @@ text=Search your library for a card, then shuffle your library and put that card
 rarity=R
 [/card]
 [card]
-id=3630
-name=Vampirism
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature When Vampirism enters the battlefield, draw a card at the beginning of the next turn's upkeep. Enchanted creature gets +1/+1 for each other creature you control. Other creatures you control get -1/-1.
-rarity=U
-[/card]
-[card]
 id=3655
 name=Vanishing
 mana={U}
@@ -1444,28 +1093,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature {U}{U}: Enchanted creature phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step. )
 rarity=C
-[/card]
-[card]
-id=3707
-name=Viashino Sandstalker
-mana={1}{R}{R}
-type=Creature
-subtype=Viashino Warrior
-power=4
-toughness=2
-text=Haste (This creature can attack the turn it comes under your control.) At the beginning of the end step, return Viashino Sandstalker to its owner's hand. (Return it only if it's on the battlefield.)
-rarity=U
-[/card]
-[card]
-id=3747
-name=Viashivan Dragon
-mana={2}{R}{R}{G}{G}
-type=Creature
-subtype=Dragon
-power=4
-toughness=4
-text=Flying {R}: Viashivan Dragon gets +1/+0 until end of turn. {G}: Viashivan Dragon gets +0/+1 until end of turn.
-rarity=R
 [/card]
 [card]
 id=3656
@@ -1476,42 +1103,12 @@ text=Choose one  ETarget player puts the top four cards of his or her library 
 rarity=C
 [/card]
 [card]
-id=3631
-name=Wake of Vultures
-mana={3}{B}
-type=Creature
-subtype=Bird
-power=3
-toughness=1
-text=Flying {1}{B}, Sacrifice a creature: Regenerate Wake of Vultures.
-rarity=C
-[/card]
-[card]
 id=3607
 name=Wand of Denial
 mana={2}
 type=Artifact
 text={T}: Look at the top card of target player's library. If it's a nonland card, you may pay 2 life. If you do, put it into that player's graveyard.
 rarity=R
-[/card]
-[card]
-id=3731
-name=Warrior's Honor
-mana={2}{W}
-type=Instant
-text=Creatures you control get +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=3681
-name=Warthog
-mana={1}{G}{G}
-type=Creature
-subtype=Boar
-power=3
-toughness=2
-text=Swampwalk
-rarity=U
 [/card]
 [card]
 id=3657
