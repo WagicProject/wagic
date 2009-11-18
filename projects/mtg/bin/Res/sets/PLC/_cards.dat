@@ -121,6 +121,7 @@ toughness=2
 [/card]
 [card]
 text=Enchant creature You control enchanted creature. At the beginning of your upkeep, enchanted creature deals 1 damage to its owner.
+target=creature
 auto=@each my upkeep:life:-1 opponent
 alias=1194
 id=122413
