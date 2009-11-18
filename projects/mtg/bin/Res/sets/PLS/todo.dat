@@ -1,15 +1,4 @@
-[card]
-id=26383
-name=Allied Strategies
-mana={4}{U}
-type=Sorcery
-target=player
-text=Domain: Target player draws a card for each basic land type among lands he or she controls.
-auto=aslongas
-rarity=U
-[/card]
-
-[card]
+﻿[card]
 id=26409
 name=Amphibious Kavu
 mana={2}{G}
@@ -21,17 +10,6 @@ text=Whenever Amphibious Kavu blocks or becomes blocked by one or more blue and/
 rarity=C
 [/card]
 [card]
-id=19149
-name=Ancient Spider
-mana={2}{G}{W}
-type=Creature
-subtype=Spider
-power=2
-toughness=5
-text=First strike; reach (This creature can block creatures with flying.)
-rarity=R
-[/card]
-[card]
 id=26360
 name=Arctic Merfolk
 mana={1}{U}
@@ -40,14 +18,6 @@ subtype=Merfolk
 power=1
 toughness=1
 text=Kicker—Return a creature you control to its owner's hand. (You may return a creature you control to its owner's hand in addition to any other costs as you cast this spell.) If Arctic Merfolk was kicked, it enters the battlefield with a +1/+1 counter on it.
-rarity=C
-[/card]
-[card]
-id=26382
-name=Aura Blast
-mana={1}{W}
-type=Instant
-text=Destroy target enchantment. Draw a card.
 rarity=C
 [/card]
 [card]
@@ -67,17 +37,6 @@ name=Bog Down
 mana={2}{B}
 type=Sorcery
 text=Kicker—Sacrifice two lands. (You may sacrifice two lands in addition to any other costs as you cast this spell.) Target player discards two cards. If Bog Down was kicked, that player discards three cards instead.
-rarity=C
-[/card]
-[card]
-id=26437
-name=Caldera Kavu
-mana={2}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-text={1}{B}: Caldera Kavu gets +1/+1 until end of turn. {G}: Caldera Kavu becomes the color of your choice until end of turn.
 rarity=C
 [/card]
 [card]
@@ -142,27 +101,11 @@ text=Choose one  EReturn target creature card from your graveyard to your hand
 rarity=U
 [/card]
 [card]
-id=25822
-name=Daring Leap
-mana={1}{W}{U}
-type=Instant
-text=Target creature gets +1/+1 and gains flying and first strike until end of turn.
-rarity=C
-[/card]
-[card]
 id=26414
 name=Dark Suspicions
 mana={2}{B}{B}
 type=Enchantment
 text=At the beginning of each opponent's upkeep, that player loses 1 life for each card in his or her hand more than you have in your hand.
-rarity=R
-[/card]
-[card]
-id=26837
-name=Deadapult
-mana={2}{R}
-type=Enchantment
-text={R}, Sacrifice a Zombie: Deadapult deals 2 damage to target creature or player.
 rarity=R
 [/card]
 [card]
@@ -199,14 +142,6 @@ power=2
 toughness=2
 text={U}, {T}: Target creature gains flying and becomes blue until end of turn.
 rarity=C
-[/card]
-[card]
-id=26423
-name=Dominaria's Judgment
-mana={2}{W}
-type=Instant
-text=Until end of turn, creatures you control gain protection from white if you control a Plains, from blue if you control an Island, from black if you control a Swamp, from red if you control a Mountain, and from green if you control a Forest.
-rarity=R
 [/card]
 [card]
 id=23051
@@ -267,46 +202,11 @@ text=Choose one  EYou gain 5 life; or counter target spell; or target creature
 rarity=U
 [/card]
 [card]
-id=25646
-name=Eladamri's Call
-mana={G}{W}
-type=Instant
-text=Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=29292
-name=Ertai, the Corrupted
-mana={2}{W}{U}{B}
-type=Legendary Creature
-subtype=Human Wizard
-power=3
-toughness=4
-text={U}, {T}, Sacrifice a creature or enchantment: Counter target spell.
-rarity=R
-[/card]
-[card]
 id=26590
 name=Ertai's Trickery
 mana={U}
 type=Instant
 text=Counter target spell if it was kicked.
-rarity=U
-[/card]
-[card]
-id=21276
-name=Escape Routes
-mana={2}{U}
-type=Enchantment
-text={2}{U}: Return target white or black creature you control to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=25931
-name=Exotic Disease
-mana={4}{B}
-type=Sorcery
-text=Domain  ETarget player loses X life and you gain X life, where X is the number of basic land types among lands you control.
 rarity=U
 [/card]
 [card]
@@ -359,30 +259,6 @@ text=Creature spells can't be countered.
 rarity=R
 [/card]
 [card]
-id=26838
-name=Gaea's Might
-mana={G}
-type=Instant
-text=Domain  ETarget creature gets +1/+1 until end of turn for each basic land type among lands you control.
-rarity=C
-[/card]
-[card]
-id=27189
-name=Gainsay
-mana={1}{U}
-type=Instant
-text=Counter target blue spell.
-rarity=U
-[/card]
-[card]
-id=25873
-name=Gerrard's Command
-mana={G}{W}
-type=Instant
-text=Untap target creature. It gets +3/+3 until end of turn.
-rarity=C
-[/card]
-[card]
 id=8902
 name=Goblin Game
 mana={5}{R}{R}
@@ -420,17 +296,6 @@ text=Enchant creature When Hobble enters the battlefield, draw a card. Enchanted
 rarity=C
 [/card]
 [card]
-id=26263
-name=Honorable Scout
-mana={W}
-type=Creature
-subtype=Human Soldier Scout
-power=1
-toughness=1
-text=When Honorable Scout enters the battlefield, you gain 2 life for each black and/or red creature target opponent controls.
-rarity=C
-[/card]
-[card]
 id=25928
 name=Horned Kavu
 mana={R}{G}
@@ -461,23 +326,6 @@ text=Flying When Hunting Drake enters the battlefield, put target red or green c
 rarity=C
 [/card]
 [card]
-id=26260
-name=Implode
-mana={4}{R}
-type=Sorcery
-text=Destroy target land.  Draw a card.
-rarity=U
-[/card]
-[card]
-id=26415
-name=Insolence
-mana={2}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Whenever enchanted creature becomes tapped, Insolence deals 2 damage to that creature's controller.
-rarity=C
-[/card]
-[card]
 id=26268
 name=Kavu Recluse
 mana={2}{R}
@@ -486,15 +334,6 @@ subtype=Kavu
 power=2
 toughness=2
 text={T}: Target land becomes a Forest until end of turn.
-rarity=C
-[/card]
-[card]
-id=19358
-name=Keldon Mantle
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature {B}: Regenerate enchanted creature. {R}: Enchanted creature gets +1/+0 until end of turn. {G}: Enchanted creature gains trample until end of turn.
 rarity=C
 [/card]
 [card]
@@ -525,28 +364,6 @@ text=When Lava Zombie enters the battlefield, return a black or red creature you
 rarity=C
 [/card]
 [card]
-id=10742
-name=Lord of the Undead
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-text=Other Zombie creatures get +1/+1. {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
-rarity=R
-[/card]
-[card]
-id=26266
-name=Maggot Carrier
-mana={B}
-type=Creature
-subtype=Zombie
-power=1
-toughness=1
-text=When Maggot Carrier enters the battlefield, each player loses 1 life.
-rarity=C
-[/card]
-[card]
 id=25944
 name=Magma Burst
 mana={3}{R}
@@ -572,14 +389,6 @@ mana={X}{U}{B}
 type=Instant
 text=Tap X target artifacts, creatures, and/or lands. You lose X life.
 rarity=C
-[/card]
-[card]
-id=26381
-name=Mana Cylix
-mana={1}
-type=Artifact
-text={1}, {T}: Add one mana of any color to your mana pool.
-rarity=U
 [/card]
 [card]
 id=26277
@@ -612,25 +421,6 @@ text=As Meddling Mage enters the battlefield, name a nonland card. The named car
 rarity=R
 [/card]
 [card]
-id=25979
-name=Meteor Crater
-mana=
-type=Land
-text={T}: Choose a color of a permanent you control. Add one mana of that color to your mana pool.
-rarity=R
-[/card]
-[card]
-id=26363
-name=Mire Kavu
-mana={3}{R}
-type=Creature
-subtype=Kavu
-power=3
-toughness=2
-text=Mire Kavu gets +1/+1 as long as you control a Swamp.
-rarity=C
-[/card]
-[card]
 id=26839
 name=Mirrorwood Treefolk
 mana={3}{G}
@@ -653,28 +443,6 @@ text=Mogg Jailer can't attack if defending player controls an untapped creature 
 rarity=U
 [/card]
 [card]
-id=26269
-name=Mogg Sentry
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-text=Whenever an opponent casts a spell, Mogg Sentry gets +2/+2 until end of turn.
-rarity=R
-[/card]
-[card]
-id=27589
-name=Morgue Toad
-mana={2}{B}
-type=Creature
-subtype=Frog
-power=2
-toughness=2
-text=Sacrifice Morgue Toad: Add {U}{R} to your mana pool.
-rarity=C
-[/card]
-[card]
 id=22298
 name=Multani's Harmony
 mana={G}
@@ -689,17 +457,6 @@ name=Natural Emergence
 mana={2}{R}{G}
 type=Enchantment
 text=When Natural Emergence enters the battlefield, return a red or green enchantment you control to its owner's hand. Lands you control are 2/2 creatures with first strike. They're still lands.
-rarity=R
-[/card]
-[card]
-id=26412
-name=Nemata, Grove Guardian
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Treefolk
-power=4
-toughness=5
-text={2}{G}: Put a 1/1 green Saproling creature token onto the battlefield. Sacrifice a Saproling: Saproling creatures get +1/+1 until end of turn.
 rarity=R
 [/card]
 [card]
@@ -835,17 +592,6 @@ text=Kicker—Sacrifice a creature. (You may sacrifice a creature in addition to
 rarity=C
 [/card]
 [card]
-id=23113
-name=Pygmy Kavu
-mana={3}{G}
-type=Creature
-subtype=Kavu
-power=1
-toughness=2
-text=When Pygmy Kavu enters the battlefield, draw a card for each black creature your opponents control.
-rarity=C
-[/card]
-[card]
 id=27634
 name=Questing Phelddagrif
 mana={1}{G}{W}{U}
@@ -854,17 +600,6 @@ subtype=Phelddagrif
 power=4
 toughness=4
 text={G}: Questing Phelddagrif gets +1/+1 until end of turn. Target opponent puts a 1/1 green Hippo creature token onto the battlefield. {W}: Questing Phelddagrif gains protection from black and from red until end of turn. Target opponent gains 2 life. {U}: Questing Phelddagrif gains flying until end of turn. Target opponent may draw a card.
-rarity=R
-[/card]
-[card]
-id=26286
-name=Quirion Dryad
-mana={1}{G}
-type=Creature
-subtype=Dryad
-power=1
-toughness=1
-text=Whenever you cast a white, blue, black, or red spell, put a +1/+1 counter on Quirion Dryad.
 rarity=R
 [/card]
 [card]
@@ -916,17 +651,6 @@ type=Land
 subtype=Lair
 text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {R}, {G}, or {W} to your mana pool.
 rarity=U
-[/card]
-[card]
-id=8827
-name=Root Greevil
-mana={3}{G}
-type=Creature
-subtype=Beast
-power=2
-toughness=3
-text={2}{G}, {T}, Sacrifice Root Greevil: Destroy all enchantments of the color of your choice.
-rarity=C
 [/card]
 [card]
 id=25942
@@ -1000,14 +724,6 @@ text=Trample When Shivan Wurm enters the battlefield, return a red or green crea
 rarity=R
 [/card]
 [card]
-id=27229
-name=Shriek of Dread
-mana={1}{B}
-type=Instant
-text=Target creature gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
-rarity=C
-[/card]
-[card]
 id=25925
 name=Silver Drake
 mana={1}{W}{U}
@@ -1053,39 +769,12 @@ text=When Skyship Weatherlight enters the battlefield, search your library for a
 rarity=R
 [/card]
 [card]
-id=26402
-name=Skyshroud Blessing
-mana={1}{G}
-type=Instant
-text=Lands gain shroud until end of turn. (They can't be the targets of spells or abilities.) Draw a card.
-rarity=U
-[/card]
-[card]
-id=15137
-name=Slay
-mana={2}{B}
-type=Instant
-text=Destroy target green creature. It can't be regenerated. Draw a card.
-rarity=U
-[/card]
-[card]
 id=26781
 name=Sleeping Potion
 mana={1}{U}
 type=Enchantment
 subtype=Aura
 text=Enchant creature When Sleeping Potion enters the battlefield, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step. When enchanted creature becomes the target of a spell or ability, sacrifice Sleeping Potion.
-rarity=C
-[/card]
-[card]
-id=22025
-name=Slingshot Goblin
-mana={2}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-text={R}, {T}: Slingshot Goblin deals 2 damage to target blue creature.
 rarity=C
 [/card]
 [card]
@@ -1119,17 +808,6 @@ text=First strike When Steel Leaf Paladin enters the battlefield, return a green
 rarity=C
 [/card]
 [card]
-id=26377
-name=Stone Kavu
-mana={4}{G}
-type=Creature
-subtype=Kavu
-power=3
-toughness=3
-text={R}: Stone Kavu gets +1/+0 until end of turn. {W}: Stone Kavu gets +0/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=25913
 name=Stormscape Battlemage
 mana={2}{U}
@@ -1150,14 +828,6 @@ power=1
 toughness=1
 text=Flying White spells and black spells you cast cost {1} less to cast.
 rarity=C
-[/card]
-[card]
-id=26288
-name=Strafe
-mana={R}
-type=Sorcery
-text=Strafe deals 3 damage to target nonred creature.
-rarity=U
 [/card]
 [card]
 id=25869
@@ -1218,22 +888,6 @@ power=4
 toughness=4
 text=Vigilance {1}{R}, {T}: Tahngarth, Talruum Hero deals damage equal to its power to target creature. That creature deals damage equal to its power to Tahngarth.
 rarity=R
-[/card]
-[card]
-id=25980
-name=Terminal Moraine
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {2}, {T}, Sacrifice Terminal Moraine: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
-rarity=U
-[/card]
-[card]
-id=25871
-name=Terminate
-mana={B}{R}
-type=Instant
-text=Destroy target creature. It can't be regenerated.
-rarity=C
 [/card]
 [card]
 id=25916
@@ -1314,17 +968,6 @@ power=2
 toughness=2
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) As Voice of All enters the battlefield, choose a color.  Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
 rarity=U
-[/card]
-[card]
-id=26368
-name=Volcano Imp
-mana={3}{B}
-type=Creature
-subtype=Imp
-power=2
-toughness=2
-text=Flying  {1}{R}: Volcano Imp gains first strike until end of turn.
-rarity=C
 [/card]
 [card]
 id=26836
