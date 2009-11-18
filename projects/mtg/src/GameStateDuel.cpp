@@ -143,7 +143,13 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
 void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
   string deckFileSmall = "momir";
   char empty[] = "";
-  MTGDeck * tempDeck = NEW MTGDeck(options.profileFile("momir.txt","",true).c_str(), mParent->collection);
+  MTGDeck * tempDeck = NEW MTGDeck(mParent->collection); //Autogenerate a momir deck. Leave the "momir.txt" bits below for stats.
+  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Forest");
+  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Plains");
+  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Swamp");
+  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Mountain");
+  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Island");
+
   deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
   if (!isAI) // Human Player
     mPlayers[playerId] = NEW HumanPlayer(deck[playerId], options.profileFile("momir.txt","",true).c_str(), deckFileSmall);

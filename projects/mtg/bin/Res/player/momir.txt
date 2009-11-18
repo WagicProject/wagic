@@ -1,5 +1,0 @@
-Swamp *12
-Island *12
-Plains *12
-Mountain *12
-Forest *12
