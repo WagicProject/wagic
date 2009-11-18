@@ -932,17 +932,6 @@ subtype=Human Druid
 toughness=1
 [/card]
 [card]
-text=Threshold - Krosan Beast gets +7/+7 as long as seven or more cards are in your graveyard.
-id=30549
-name=Krosan Beast
-rarity=R
-type=Creature
-mana={3}{G}
-power=1
-subtype=Squirrel Beast
-toughness=1
-[/card]
-[card]
 text=Target player draws cards equal to the number of cards in his or her hand, then discards that many cards.
 id=29937
 name=Laquatus's Creativity

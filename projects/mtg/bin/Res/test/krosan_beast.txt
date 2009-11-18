@@ -1,0 +1,23 @@
+#Test Threshold
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+graveyard:island,swamp,mountain,plains,forest,grizzly bears,raging goblin
+inplay:krosan beast
+[PLAYER2]
+[DO]
+krosan beast
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:island,swamp,mountain,plains,forest,grizzly bears,raging goblin
+inplay:krosan beast
+[PLAYER2]
+life:12
+[END]

@@ -1,0 +1,19 @@
+#Test ">" symbol in foreach
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:black vise
+[PLAYER2]
+hand:act of treason,mountain,plains,swamp,forest,island
+[DO]
+eot
+next
+#upkeep
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:black vise
+[PLAYER2]
+hand:act of treason,mountain,plains,swamp,forest,island
+life:18
+[END]

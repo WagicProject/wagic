@@ -670,6 +670,18 @@ toughness=3
 abilities=reach
 [/card]
 [card]
+text=Threshold - Krosan Beast gets +7/+7 as long as seven or more cards are in your graveyard.
+auto=aslongas(*|mygraveyard) 7/7 >6
+id=30549
+name=Krosan Beast
+rarity=R
+type=Creature
+mana={3}{G}
+power=1
+subtype=Squirrel Beast
+toughness=1
+[/card]
+[card]
 text=Forestwalk
 id=29782
 name=Leaf Dancer

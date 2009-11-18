@@ -183,6 +183,7 @@ name=Black Vise
 rarity=U
 type=Artifact
 mana={1}
+auto=@each opponent upkeep:foreach(*|opponenthand) damage:1 opponent >4
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has protection from black. This effect doesn't remove Black Ward.

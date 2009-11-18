@@ -347,12 +347,19 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       if (i == 3) oneShot = 1;
       if (a->oneShot) oneShot = 1;
       Damageable * _target = NULL;
-	  if (spell) _target = spell->getNextDamageableTarget();
+	    if (spell) _target = spell->getNextDamageableTarget();
       if (!_target) _target = target;
+
+      int mini = 0;
+      int maxi = 0;
+      found = s.find(">");
+      if (found !=string::npos) mini = atoi(s.substr(found+1,1).c_str());
+      found = s.find("<");
+      if (found !=string::npos) maxi = atoi(s.substr(found+1,1).c_str());
       switch(i){
         case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
-        case 1: result =  NEW AForeach(id, card, _target,lordTargets, lordIncludeSelf, a); break;
-        case 2: result =  NEW AAsLongAs(id, card, _target,lordTargets, lordIncludeSelf, a); break;
+        case 1: result =  NEW AForeach(id, card, _target,lordTargets, lordIncludeSelf, a,mini,maxi); break;
+        case 2: result =  NEW AAsLongAs(id, card, _target,lordTargets, lordIncludeSelf, a,mini,maxi); break;
         case 3: result =  NEW ALord(id, card, lordTargets,  lordIncludeSelf, a); break;
         default: result =  NULL;
       }
@@ -927,11 +934,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(ability);
       break;
     }
-  case 1097: //Black Vise
-    {
-      game->addObserver( NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, 4));
-      break;
-    }
+
   case 1191: //Blue Elemental Blast
     {
       if (card->target){
@@ -1148,11 +1151,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver( NEW ASoulNet(_id ,card));
       break;
     }
+
   case 1139: //The Rack
     {
       game->addObserver( NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, -3));
       break;
     }
+   
   case 1140: //Throne of Bone
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};

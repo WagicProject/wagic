@@ -1510,7 +1510,8 @@ class AAsLongAs:public ListMaintainerAbility{
    MTGAbility * ability;
    MTGAbility * a;
   int includeSelf;
- AAsLongAs(int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id, _source,_target),ability(a){
+  int mini,maxi;
+ AAsLongAs(int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * ability,int mini = 0, int maxi = 0):ListMaintainerAbility(_id, _source,_target),ability(ability),mini(mini),maxi(maxi){
     tc = _tc;
     includeSelf = _includeSelf;
     tc->targetter  = NULL;
@@ -1532,19 +1533,31 @@ class AAsLongAs:public ListMaintainerAbility{
     return 1;
   }
 
+  int addAbilityToGame(){
+    if (a) return 0;
+    a = ability->clone();
+    if (a->oneShot){
+      a->resolve();
+      SAFE_DELETE(a);
+    }else{
+      a->addToGame();
+    }
+    return 1;    
+  }
+
+  int removeAbilityFromGame(){
+     if (!a) return 0;
+     game->removeObserver(a);
+     a = NULL;
+     return 1;
+  }
 
   int _added(Damageable * d){
-    if (cards.size()== 1){
-      a = ability->clone();
-      if (a->oneShot){
-        a->resolve();
-        SAFE_DELETE(a);
-      }else{
-        a->addToGame();
-      }
-      return 1;
-    }
-    return 0;
+    size_t size = cards.size();
+    if (mini && (int)size <= mini) return 0;
+    if (maxi && (int)size >= maxi) return removeAbilityFromGame();
+    if (!mini && !maxi && size !=1) return 0;
+    return addAbilityToGame();
   }
 
   int added(MTGCardInstance * card){
@@ -1557,12 +1570,11 @@ class AAsLongAs:public ListMaintainerAbility{
 
 
  int removed(MTGCardInstance * card){
-   if (cards.size()== 0 && a){
-     game->removeObserver(a);
-     a = NULL;
-     return 1;
-   }
-   return 0;
+   size_t size = cards.size();
+  if (mini && (int)size <= mini) return removeAbilityFromGame();
+  if (maxi && (int)size == maxi-1) return addAbilityToGame();
+  if (!mini && !maxi && size !=0) return 0;
+  return removeAbilityFromGame();
  }
 
   ~AAsLongAs(){
@@ -1583,6 +1595,7 @@ class ALord:public ListMaintainerAbility{
    MTGAbility * ability;
   int includeSelf;
   map<Damageable *, MTGAbility *> abilities;
+
  ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card), ability(a){
     tc = _tc;
     tc->targetter = NULL;
@@ -1656,8 +1669,10 @@ class AForeach:public ListMaintainerAbility{
  public:
    MTGAbility * ability;
   int includeSelf;
+  int mini;
+  int maxi;
   map<Damageable *, MTGAbility *> abilities;
- AForeach(int _id, MTGCardInstance * card,Damageable  * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card,_target), ability(a){
+ AForeach(int _id, MTGCardInstance * card,Damageable  * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a, int mini = 0, int maxi = 0):ListMaintainerAbility(_id,card,_target), ability(a),mini(mini),maxi(maxi){
     tc = _tc;
     tc->targetter = NULL;
     includeSelf = _includeSelf;
@@ -1670,6 +1685,9 @@ class AForeach:public ListMaintainerAbility{
   }
 
   int added(MTGCardInstance * card){
+      if (mini && cards.size() <= (size_t)mini) return 0;
+      if (maxi && cards.size() >= (size_t)maxi) return 0;
+
       MTGAbility * a = ability->clone();
       a->target = target;
       if (a->oneShot){

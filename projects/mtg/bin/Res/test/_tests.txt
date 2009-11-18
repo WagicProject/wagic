@@ -76,6 +76,7 @@ basal_sliver.txt
 beacon_of_unrest.txt
 belligerent_hatchling.txt
 benalish_knight.txt
+black_vise.txt
 blessed_wine.txt
 blinking_spirit.txt
 bloodfire_colossus.txt
@@ -180,6 +181,8 @@ keldon_warlord.txt
 keldon_warlord2.txt
 kird_ape.txt
 kjeldoran_frostbeast1.txt
+krosan_beast.txt
+krosan_beast2.txt
 kraken_eye.txt
 kraken_eye2.txt
 kraken_eye3.txt
