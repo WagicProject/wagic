@@ -1,0 +1,11 @@
+[card]
+id=6536
+name=Air Elemental
+mana={3}{U}{U}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+text=Flying
+rarity=U
+[/card]

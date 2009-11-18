@@ -447,12 +447,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
 
   int collectionTotal = database->totalCards();
   if (!collectionTotal) return 0;
-  if (nbSets == 0 && rarity == -1 && !_subtype && !nbcolors){
-    for (int i = 0; i < howmany; i++){
-      add(database->randomCardId());
-    }
-    return 1;
-  }
+
   char subtype[4096];
   if (_subtype)
     sprintf(subtype, _subtype);
@@ -462,7 +457,8 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
   int subtotal = 0;
   for (int i = 0; i < collectionTotal; i++){
     MTGCard * card = database->_(i);
-    if ((rarity == -1 || card->getRarity()==rarity) &&
+    int r = card->getRarity();
+    if (r != Constants::RARITY_T && (rarity == -1 || r==rarity) &&
 	(!_subtype || card->hasSubtype(subtype))
 	){
       int ok = 0;
@@ -610,6 +606,12 @@ int MTGDeck::save(){
 MTGSets setlist; //Our global.
 
 MTGSets::MTGSets(){
+}
+
+MTGSets::~MTGSets(){
+  for (size_t i = 0; i < setinfo.size(); ++i){
+    delete (setinfo[i]);
+  }
 }
 
 MTGSetInfo* MTGSets::getInfo(int setID){

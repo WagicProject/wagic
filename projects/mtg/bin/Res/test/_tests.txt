@@ -37,6 +37,7 @@ generic/targetController_life.txt
 generic/targetController_life2.txt
 generic/targetController_damage.txt
 generic/tokens.txt
+generic/tokens2.txt
 generic/trample.txt
 generic/trample_vs_indestructible.txt
 generic/trample_vs_multiblock.txt

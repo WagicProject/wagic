@@ -1,0 +1,1485 @@
+[card]
+id=6567
+name=Abyssal Nightstalker
+mana={3}{B}
+type=Creature
+subtype=Nightstalker
+power=2
+toughness=2
+text=Whenever Abyssal Nightstalker attacks and isn't blocked, defending player discards a card.
+rarity=U
+[/card]
+[card]
+id=6536
+name=Air Elemental
+mana={3}{U}{U}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+text=Flying
+rarity=U
+[/card]
+[card]
+id=6506
+name=Alaborn Cavalier
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text=Whenever Alaborn Cavalier attacks, you may tap target creature.
+rarity=U
+[/card]
+[card]
+id=6508
+name=Alaborn Grenadier
+mana={W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=Vigilance
+rarity=C
+[/card]
+[card]
+id=6499
+name=Alaborn Musketeer
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+text=Reach (This creature can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=6493
+name=Alaborn Trooper
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+rarity=C
+[/card]
+[card]
+id=6516
+name=Alaborn Veteran
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text={T}: Target creature gets +2/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
+rarity=R
+[/card]
+[card]
+id=6492
+name=Alaborn Zealot
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+text=When Alaborn Zealot blocks a creature, destroy that creature and Alaborn Zealot.
+rarity=U
+[/card]
+[card]
+id=6639
+name=Alluring Scent
+mana={1}{G}{G}
+type=Sorcery
+text=All creatures able to block target creature this turn do so.
+rarity=R
+[/card]
+[card]
+id=6579
+name=Ancient Craving
+mana={3}{B}
+type=Sorcery
+text=You draw three cards and you lose 3 life.
+rarity=R
+[/card]
+[card]
+id=6515
+name=Angel of Fury
+mana={4}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=5
+text=Flying When Angel of Fury is put into your graveyard from the battlefield, you may shuffle it into your library.
+rarity=R
+[/card]
+[card]
+id=6505
+name=Angel of Mercy
+mana={4}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+text=Flying When Angel of Mercy enters the battlefield, you gain 3 life.
+rarity=U
+[/card]
+[card]
+id=6500
+name=Angelic Blessing
+mana={2}{W}
+type=Sorcery
+text=Target creature gets +3/+3 and gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
+rarity=C
+[/card]
+[card]
+id=6498
+name=Angelic Wall
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=6535
+name=Apprentice Sorcerer
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={T}: Apprentice Sorcerer deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
+rarity=U
+[/card]
+[card]
+id=6514
+name=Archangel
+mana={5}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+text=Flying, vigilance
+rarity=R
+[/card]
+[card]
+id=6520
+name=Armageddon
+mana={3}{W}
+type=Sorcery
+text=Destroy all lands.
+rarity=R
+[/card]
+[card]
+id=6537
+name=Armored Galleon
+mana={4}{U}
+type=Creature
+subtype=Human Pirate
+power=5
+toughness=4
+text=Armored Galleon can't attack unless defending player controls an Island.
+rarity=U
+[/card]
+[card]
+id=6509
+name=Armored Griffin
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=3
+text=Flying, vigilance
+rarity=U
+[/card]
+[card]
+id=6627
+name=Barbtooth Wurm
+mana={5}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=4
+rarity=C
+[/card]
+[card]
+id=6510
+name=Bargain
+mana={2}{W}
+type=Sorcery
+text=Target opponent draws a card. You gain 7 life.
+rarity=U
+[/card]
+[card]
+id=6613
+name=Bear Cub
+mana={1}{G}
+type=Creature
+subtype=Bear
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+id=6633
+name=Bee Sting
+mana={3}{G}
+type=Sorcery
+text=Bee Sting deals 2 damage to target creature or player.
+rarity=U
+[/card]
+[card]
+id=6600
+name=Blaze
+mana={X}{R}
+type=Sorcery
+text=Blaze deals X damage to target creature or player.
+rarity=U
+[/card]
+[card]
+id=6573
+name=Bloodcurdling Scream
+mana={X}{B}
+type=Sorcery
+text=Target creature gets +X/+0 until end of turn.
+rarity=U
+[/card]
+[card]
+id=6501
+name=Breath of Life
+mana={3}{W}
+type=Sorcery
+text=Return target creature card from your graveyard to the battlefield.
+rarity=U
+[/card]
+[card]
+id=6605
+name=Brimstone Dragon
+mana={6}{R}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=6
+text=Flying, haste
+rarity=R
+[/card]
+[card]
+id=6566
+name=Brutal Nightstalker
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=3
+toughness=2
+text=When Brutal Nightstalker enters the battlefield, you may have target opponent discard a card.
+rarity=U
+[/card]
+[card]
+id=6564
+name=Chorus of Woe
+mana={B}
+type=Sorcery
+text=Creatures you control get +1/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=6544
+name=Coastal Wizard
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={T}: Return Coastal Wizard and another target creature to their owners' hands. Activate this ability only during your turn, before attackers are declared.
+rarity=R
+[/card]
+[card]
+id=6570
+name=Coercion
+mana={2}{B}
+type=Sorcery
+text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card.
+rarity=U
+[/card]
+[card]
+id=6561
+name=Cruel Edict
+mana={1}{B}
+type=Sorcery
+text=Target opponent sacrifices a creature.
+rarity=U
+[/card]
+[card]
+id=6606
+name=Cunning Giant
+mana={5}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=4
+text=If Cunning Giant is unblocked, you may have it assign its combat damage to a creature defending player controls.
+rarity=R
+[/card]
+[card]
+id=6553
+name=Dakmor Bat
+mana={1}{B}
+type=Creature
+subtype=Bat
+power=1
+toughness=1
+text=Flying
+rarity=C
+[/card]
+[card]
+id=6571
+name=Dakmor Plague
+mana={3}{B}{B}
+type=Sorcery
+text=Dakmor Plague deals 3 damage to each creature and each player.
+rarity=U
+[/card]
+[card]
+id=6552
+name=Dakmor Scorpion
+mana={1}{B}
+type=Creature
+subtype=Scorpion
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+id=6576
+name=Dakmor Sorceress
+mana={5}{B}
+type=Creature
+subtype=Human Wizard
+power=*
+toughness=4
+text=Dakmor Sorceress's power is equal to the number of Swamps you control.
+rarity=R
+[/card]
+[card]
+id=6569
+name=Dark Offering
+mana={4}{B}{B}
+type=Sorcery
+text=Destroy target nonblack creature. You gain 3 life.
+rarity=U
+[/card]
+[card]
+id=6637
+name=Deathcoil Wurm
+mana={6}{G}{G}
+type=Creature
+subtype=Wurm
+power=7
+toughness=6
+text=You may have Deathcoil Wurm assign its combat damage as though it weren't blocked.
+rarity=R
+[/card]
+[card]
+id=6631
+name=Deep Wood
+mana={1}{G}
+type=Instant
+text=Cast Deep Wood only during the declare attackers step and only if you've been attacked this step. Prevent all damage that would be dealt to you this turn by attacking creatures.
+rarity=U
+[/card]
+[card]
+id=6528
+name=Déjà Vu
+mana={2}{U}
+type=Sorcery
+text=Return target sorcery card from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=6546
+name=Denizen of the Deep
+mana={6}{U}{U}
+type=Creature
+subtype=Serpent
+power=11
+toughness=11
+text=When Denizen of the Deep enters the battlefield, return each other creature you control to its owner's hand.
+rarity=R
+[/card]
+[card]
+id=6609
+name=Earthquake
+mana={X}{R}
+type=Sorcery
+text=Earthquake deals X damage to each creature without flying and each player.
+rarity=R
+[/card]
+[card]
+id=6549
+name=Exhaustion
+mana={2}{U}
+type=Sorcery
+text=Creatures and lands target opponent controls don't untap during his or her next untap step.
+rarity=U
+[/card]
+[card]
+id=6534
+name=Extinguish
+mana={1}{U}
+type=Instant
+text=Counter target sorcery spell.
+rarity=C
+[/card]
+[card]
+id=6538
+name=Eye Spy
+mana={U}
+type=Sorcery
+text=Look at the top card of target player's library. You may put that card into his or her graveyard.
+rarity=U
+[/card]
+[card]
+id=6533
+name=False Summoning
+mana={1}{U}
+type=Instant
+text=Counter target creature spell.
+rarity=C
+[/card]
+[card]
+id=6504
+name=Festival of Trokin
+mana={W}
+type=Sorcery
+text=You gain 2 life for each creature you control.
+rarity=C
+[/card]
+[card]
+id=8409
+name=Forest
+mana=
+type=Basic Land
+subtype=Forest
+text=G
+rarity=C
+[/card]
+[card]
+id=6568
+name=Foul Spirit
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=2
+text=Flying When Foul Spirit enters the battlefield, sacrifice a land.
+rarity=U
+[/card]
+[card]
+id=6587
+name=Goblin Cavaliers
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=2
+rarity=C
+[/card]
+[card]
+id=6598
+name=Goblin Firestarter
+mana={R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+text=Sacrifice Goblin Firestarter: Goblin Firestarter deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
+rarity=U
+[/card]
+[card]
+id=6604
+name=Goblin General
+mana={1}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=1
+toughness=1
+text=Whenever Goblin General attacks, Goblin creatures you control get +1/+1 until end of turn.
+rarity=U
+[/card]
+[card]
+id=6584
+name=Goblin Glider
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+text=Flying Goblin Glider can't block.
+rarity=U
+[/card]
+[card]
+id=6602
+name=Goblin Lore
+mana={1}{R}
+type=Sorcery
+text=Draw four cards, then discard three cards at random.
+rarity=U
+[/card]
+[card]
+id=6596
+name=Goblin Matron
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+text=When Goblin Matron enters the battlefield, you may search your library for a Goblin card, reveal that card, and put it into your hand. If you do, shuffle your library.
+rarity=U
+[/card]
+[card]
+id=6585
+name=Goblin Mountaineer
+mana={R}
+type=Creature
+subtype=Goblin Scout
+power=1
+toughness=1
+text=Mountainwalk
+rarity=C
+[/card]
+[card]
+id=6582
+name=Goblin Piker
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+id=6583
+name=Goblin Raider
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+text=Goblin Raider can't block.
+rarity=C
+[/card]
+[card]
+id=6603
+name=Goblin War Cry
+mana={2}{R}
+type=Sorcery
+text=Target opponent chooses a creature he or she controls. Other creatures he or she controls can't block this turn.
+rarity=U
+[/card]
+[card]
+id=6594
+name=Goblin War Strike
+mana={R}
+type=Sorcery
+text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
+rarity=C
+[/card]
+[card]
+id=6616
+name=Golden Bear
+mana={3}{G}
+type=Creature
+subtype=Bear
+power=4
+toughness=3
+rarity=C
+[/card]
+[card]
+id=6563
+name=Hand of Death
+mana={2}{B}
+type=Sorcery
+text=Destroy target nonblack creature.
+rarity=C
+[/card]
+[card]
+id=6632
+name=Harmony of Nature
+mana={2}{G}
+type=Sorcery
+text=Tap any number of untapped creatures you control. You gain 4 life for each creature tapped this way.
+rarity=U
+[/card]
+[card]
+id=6574
+name=Hidden Horror
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=4
+text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
+rarity=U
+[/card]
+[card]
+id=6640
+name=Hurricane
+mana={X}{G}
+type=Sorcery
+text=Hurricane deals X damage to each creature with flying and each player.
+rarity=U
+[/card]
+[card]
+id=6628
+name=Ironhoof Ox
+mana={3}{G}{G}
+type=Creature
+subtype=Ox
+power=4
+toughness=4
+text=Ironhoof Ox can't be blocked by more than one creature.
+rarity=U
+[/card]
+[card]
+id=8390
+name=Island
+mana=
+type=Basic Land
+subtype=Island
+text=U
+rarity=C
+[/card]
+[card]
+id=6601
+name=Jagged Lightning
+mana={3}{R}{R}
+type=Sorcery
+text=Jagged Lightning deals 3 damage to target creature and 3 damage to another target creature.
+rarity=U
+[/card]
+[card]
+id=6519
+name=Just Fate
+mana={2}{W}
+type=Instant
+text=Cast Just Fate only during the declare attackers step and only if you've been attacked this step. Destroy target attacking creature.
+rarity=R
+[/card]
+[card]
+id=6572
+name=Kiss of Death
+mana={4}{B}{B}
+type=Sorcery
+text=Kiss of Death deals 4 damage to target opponent. You gain 4 life.
+rarity=U
+[/card]
+[card]
+id=6591
+name=Lava Axe
+mana={4}{R}
+type=Sorcery
+text=Lava Axe deals 5 damage to target player.
+rarity=C
+[/card]
+[card]
+id=6614
+name=Lone Wolf
+mana={2}{G}
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+text=You may have Lone Wolf assign its combat damage as though it weren't blocked.
+rarity=U
+[/card]
+[card]
+id=6557
+name=Lurking Nightstalker
+mana={B}{B}
+type=Creature
+subtype=Nightstalker
+power=1
+toughness=1
+text=Whenever Lurking Nightstalker attacks, it gets +2/+0 until end of turn.
+rarity=C
+[/card]
+[card]
+id=6611
+name=Lynx
+mana={1}{G}
+type=Creature
+subtype=Cat
+power=2
+toughness=1
+text=Forestwalk
+rarity=U
+[/card]
+[card]
+id=6607
+name=Magma Giant
+mana={5}{R}{R}
+type=Creature
+subtype=Giant
+power=5
+toughness=5
+text=When Magma Giant enters the battlefield, it deals 2 damage to each creature and each player.
+rarity=R
+[/card]
+[card]
+id=6562
+name=Mind Rot
+mana={2}{B}
+type=Sorcery
+text=Target player discards two cards.
+rarity=C
+[/card]
+[card]
+id=6554
+name=Moaning Spirit
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+text=Flying
+rarity=C
+[/card]
+[card]
+id=6621
+name=Monstrous Growth
+mana={1}{G}
+type=Sorcery
+text=Target creature gets +4/+4 until end of turn.
+rarity=C
+[/card]
+[card]
+id=8406
+name=Mountain
+mana=
+type=Basic Land
+subtype=Mountain
+text=R
+rarity=C
+[/card]
+[card]
+id=6551
+name=Muck Rats
+mana={B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+id=6542
+name=Mystic Denial
+mana={1}{U}{U}
+type=Instant
+text=Counter target creature or sorcery spell.
+rarity=U
+[/card]
+[card]
+id=6624
+name=Natural Spring
+mana={3}{G}{G}
+type=Sorcery
+text=Target player gains 8 life.
+rarity=U
+[/card]
+[card]
+id=6623
+name=Nature's Lore
+mana={1}{G}
+type=Sorcery
+text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=6577
+name=Nightstalker Engine
+mana={4}{B}
+type=Creature
+subtype=Nightstalker
+power=*
+toughness=3
+text=Nightstalker Engine's power is equal to the number of creature cards in your graveyard.
+rarity=R
+[/card]
+[card]
+id=6618
+name=Norwood Archers
+mana={3}{G}
+type=Creature
+subtype=Elf Archer
+power=3
+toughness=3
+text=Reach (This creature can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=6634
+name=Norwood Priestess
+mana={2}{G}{G}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=1
+text={T}: You may put a green creature card from your hand onto the battlefield. Activate this ability only during your turn, before attackers are declared.
+rarity=R
+[/card]
+[card]
+id=6636
+name=Norwood Ranger
+mana={G}
+type=Creature
+subtype=Elf Scout
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+id=6615
+name=Norwood Riders
+mana={3}{G}
+type=Creature
+subtype=Elf
+power=3
+toughness=3
+text=Norwood Riders can't be blocked by more than one creature.
+rarity=C
+[/card]
+[card]
+id=6620
+name=Norwood Warrior
+mana={2}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=2
+text=Whenever Norwood Warrior becomes blocked, it gets +1/+1 until end of turn.
+rarity=C
+[/card]
+[card]
+id=6599
+name=Obsidian Giant
+mana={4}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=4
+rarity=U
+[/card]
+[card]
+id=6595
+name=Ogre Arsonist
+mana={4}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=3
+text=When Ogre Arsonist enters the battlefield, destroy target land.
+rarity=U
+[/card]
+[card]
+id=6586
+name=Ogre Berserker
+mana={4}{R}
+type=Creature
+subtype=Ogre Berserker
+power=4
+toughness=2
+text=Haste
+rarity=C
+[/card]
+[card]
+id=6588
+name=Ogre Taskmaster
+mana={3}{R}
+type=Creature
+subtype=Ogre
+power=4
+toughness=3
+text=Ogre Taskmaster can't block.
+rarity=U
+[/card]
+[card]
+id=6597
+name=Ogre Warrior
+mana={3}{R}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+id=6502
+name=Path of Peace
+mana={3}{W}
+type=Sorcery
+text=Destroy target creature. Its owner gains 4 life.
+rarity=C
+[/card]
+[card]
+id=6550
+name=Piracy
+mana={U}{U}
+type=Sorcery
+text=Until end of turn, you may tap lands you don't control for mana. Spend this mana only to cast spells.
+rarity=R
+[/card]
+[card]
+id=8374
+name=Plains
+mana=
+type=Basic Land
+subtype=Plains
+text=W
+rarity=C
+[/card]
+[card]
+id=6617
+name=Plated Wurm
+mana={4}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=5
+rarity=C
+[/card]
+[card]
+id=6565
+name=Predatory Nightstalker
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=3
+toughness=2
+text=When Predatory Nightstalker enters the battlefield, you may have target opponent sacrifice a creature.
+rarity=U
+[/card]
+[card]
+id=6556
+name=Prowling Nightstalker
+mana={3}{B}
+type=Creature
+subtype=Nightstalker
+power=2
+toughness=2
+text=Prowling Nightstalker can't be blocked except by black creatures.
+rarity=C
+[/card]
+[card]
+id=6581
+name=Raging Goblin
+mana={R}
+type=Creature
+subtype=Goblin Berserker
+power=1
+toughness=1
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+rarity=C
+[/card]
+[card]
+id=6558
+name=Raiding Nightstalker
+mana={2}{B}
+type=Creature
+subtype=Nightstalker
+power=2
+toughness=2
+text=Swampwalk
+rarity=C
+[/card]
+[card]
+id=6580
+name=Rain of Daggers
+mana={4}{B}{B}
+type=Sorcery
+text=Destroy all creatures target opponent controls. You lose 2 life for each creature destroyed this way.
+rarity=R
+[/card]
+[card]
+id=6560
+name=Raise Dead
+mana={B}
+type=Sorcery
+text=Return target creature card from your graveyard to your hand.
+rarity=C
+[/card]
+[card]
+id=6511
+name=Rally the Troops
+mana={W}
+type=Instant
+text=Cast Rally the Troops only during the declare attackers step and only if you've been attacked this step. Untap all creatures you control.
+rarity=U
+[/card]
+[card]
+id=6559
+name=Ravenous Rats
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+text=When Ravenous Rats enters the battlefield, target opponent discards a card.
+rarity=U
+[/card]
+[card]
+id=6638
+name=Razorclaw Bear
+mana={2}{G}{G}
+type=Creature
+subtype=Bear
+power=3
+toughness=3
+text=Whenever Razorclaw Bear becomes blocked, it gets +2/+2 until end of turn.
+rarity=R
+[/card]
+[card]
+id=6608
+name=Relentless Assault
+mana={2}{R}{R}
+type=Sorcery
+text=Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase.
+rarity=R
+[/card]
+[card]
+id=6541
+name=Remove
+mana={U}
+type=Instant
+text=Cast Remove only during the declare attackers step and only if you've been attacked this step. Return target attacking creature to its owner's hand.
+rarity=U
+[/card]
+[card]
+id=6629
+name=Renewing Touch
+mana={G}
+type=Sorcery
+text=Shuffle any number of target creature cards from your graveyard into your library.
+rarity=U
+[/card]
+[card]
+id=6578
+name=Return of the Nightstalkers
+mana={5}{B}{B}
+type=Sorcery
+text=Return all Nightstalker permanent cards from your graveyard to the battlefield. Then destroy all Swamps you control.
+rarity=R
+[/card]
+[card]
+id=6503
+name=Righteous Charge
+mana={1}{W}{W}
+type=Sorcery
+text=Creatures you control get +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=6518
+name=Righteous Fury
+mana={4}{W}{W}
+type=Sorcery
+text=Destroy all tapped creatures. You gain 2 life for each creature destroyed this way.
+rarity=R
+[/card]
+[card]
+id=6626
+name=River Bear
+mana={3}{G}
+type=Creature
+subtype=Bear
+power=3
+toughness=3
+text=Islandwalk (This creature is unblockable as long as defending player controls an Island.)
+rarity=U
+[/card]
+[card]
+id=6622
+name=Salvage
+mana={G}
+type=Sorcery
+text=Put target card from your graveyard on top of your library.
+rarity=C
+[/card]
+[card]
+id=6523
+name=Screeching Drake
+mana={3}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+text=Flying When Screeching Drake enters the battlefield, draw a card, then discard a card.
+rarity=C
+[/card]
+[card]
+id=6539
+name=Sea Drake
+mana={2}{U}
+type=Creature
+subtype=Drake
+power=4
+toughness=3
+text=Flying When Sea Drake enters the battlefield, return two target lands you control to their owner's hand.
+rarity=U
+[/card]
+[card]
+id=6529
+name=Sleight of Hand
+mana={U}
+type=Sorcery
+text=Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library.
+rarity=C
+[/card]
+[card]
+id=6589
+name=Spitting Earth
+mana={1}{R}
+type=Sorcery
+text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
+rarity=U
+[/card]
+[card]
+id=6517
+name=Steam Catapult
+mana={3}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+text={T}: Destroy target tapped creature. Activate this ability only during your turn, before attackers are declared.
+rarity=R
+[/card]
+[card]
+id=6526
+name=Steam Frigate
+mana={2}{U}
+type=Creature
+subtype=Human Pirate
+power=3
+toughness=3
+text=Steam Frigate can't attack unless defending player controls an Island.
+rarity=C
+[/card]
+[card]
+id=6590
+name=Stone Rain
+mana={2}{R}
+type=Sorcery
+text=Destroy target land.
+rarity=C
+[/card]
+[card]
+id=8393
+name=Swamp
+mana=
+type=Basic Land
+subtype=Swamp
+text=B
+rarity=C
+[/card]
+[card]
+id=6555
+name=Swarm of Rats
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=*
+toughness=1
+text=Swarm of Rats's power is equal to the number of Rats you control.
+rarity=U
+[/card]
+[card]
+id=8905
+name=Sylvan Basilisk
+mana={3}{G}{G}
+type=Creature
+subtype=Basilisk
+power=2
+toughness=4
+text=Whenever Sylvan Basilisk becomes blocked by a creature, destroy that creature.
+rarity=U
+[/card]
+[card]
+id=6635
+name=Sylvan Yeti
+mana={2}{G}{G}
+type=Creature
+subtype=Yeti
+power=*
+toughness=4
+text=Sylvan Yeti's power is equal to the number of cards in your hand.
+rarity=R
+[/card]
+[card]
+id=6524
+name=Talas Air Ship
+mana={3}{U}
+type=Creature
+subtype=Human Pirate
+power=3
+toughness=2
+text=Flying
+rarity=C
+[/card]
+[card]
+id=6522
+name=Talas Explorer
+mana={1}{U}
+type=Creature
+subtype=Human Pirate Scout
+power=1
+toughness=1
+text=Flying When Talas Explorer enters the battlefield, look at target opponent's hand.
+rarity=C
+[/card]
+[card]
+id=6525
+name=Talas Merchant
+mana={1}{U}
+type=Creature
+subtype=Human Pirate
+power=1
+toughness=3
+rarity=C
+[/card]
+[card]
+id=6547
+name=Talas Researcher
+mana={4}{U}
+type=Creature
+subtype=Human Pirate Wizard
+power=1
+toughness=1
+text={T}: Draw a card. Activate this ability only during your turn, before attackers are declared.
+rarity=R
+[/card]
+[card]
+id=6521
+name=Talas Scout
+mana={1}{U}
+type=Creature
+subtype=Human Pirate Scout
+power=1
+toughness=2
+text=Flying
+rarity=C
+[/card]
+[card]
+id=6545
+name=Talas Warrior
+mana={1}{U}{U}
+type=Creature
+subtype=Human Pirate Warrior
+power=2
+toughness=2
+text=Talas Warrior is unblockable.
+rarity=R
+[/card]
+[card]
+id=6495
+name=Temple Acolyte
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+text=When Temple Acolyte enters the battlefield, you gain 3 life.
+rarity=C
+[/card]
+[card]
+id=6507
+name=Temple Elder
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+text={T}: You gain 1 life. Activate this ability only during your turn, before attackers are declared.
+rarity=U
+[/card]
+[card]
+id=6548
+name=Temporal Manipulation
+mana={3}{U}{U}
+type=Sorcery
+text=Take an extra turn after this one.
+rarity=R
+[/card]
+[card]
+id=6543
+name=Theft of Dreams
+mana={2}{U}
+type=Sorcery
+text=Draw a card for each tapped creature target opponent controls.
+rarity=U
+[/card]
+[card]
+id=6531
+name=Tidal Surge
+mana={1}{U}
+type=Sorcery
+text=Tap up to three target creatures without flying.
+rarity=C
+[/card]
+[card]
+id=6532
+name=Time Ebb
+mana={2}{U}
+type=Sorcery
+text=Put target creature on top of its owner's library.
+rarity=C
+[/card]
+[card]
+id=6527
+name=Touch of Brilliance
+mana={3}{U}
+type=Sorcery
+text=Draw two cards.
+rarity=C
+[/card]
+[card]
+id=6494
+name=Town Sentry
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=Whenever Town Sentry blocks, it gets +0/+2 until end of turn.
+rarity=C
+[/card]
+[card]
+id=6619
+name=Tree Monkey
+mana={G}
+type=Creature
+subtype=Ape
+power=1
+toughness=1
+text=Reach (This creature can block creatures with flying.)
+rarity=C
+[/card]
+[card]
+id=6592
+name=Tremor
+mana={R}
+type=Sorcery
+text=Tremor deals 1 damage to each creature without flying.
+rarity=C
+[/card]
+[card]
+id=6496
+name=Trokin High Guard
+mana={3}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+id=6540
+name=Undo
+mana={1}{U}{U}
+type=Sorcery
+text=Return two target creatures to their owners' hands.
+rarity=U
+[/card]
+[card]
+id=6630
+name=Untamed Wilds
+mana={2}{G}
+type=Sorcery
+text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
+rarity=U
+[/card]
+[card]
+id=6575
+name=Vampiric Spirit
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=3
+text=Flying When Vampiric Spirit enters the battlefield, you lose 4 life.
+rarity=R
+[/card]
+[card]
+id=6513
+name=Vengeance
+mana={3}{W}
+type=Sorcery
+text=Destroy target tapped creature.
+rarity=U
+[/card]
+[card]
+id=6593
+name=Volcanic Hammer
+mana={1}{R}
+type=Sorcery
+text=Volcanic Hammer deals 3 damage to target creature or player.
+rarity=C
+[/card]
+[card]
+id=6491
+name=Volunteer Militia
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+rarity=C
+[/card]
+[card]
+id=6512
+name=Warrior's Stand
+mana={1}{W}
+type=Instant
+text=Cast Warrior's Stand only during the declare attackers step and only if you've been attacked this step. Creatures you control get +2/+2 until end of turn.
+rarity=U
+[/card]
+[card]
+id=6497
+name=Wild Griffin
+mana={2}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+rarity=C
+[/card]
+[card]
+id=6625
+name=Wild Ox
+mana={3}{G}
+type=Creature
+subtype=Ox
+power=3
+toughness=3
+text=Swampwalk
+rarity=U
+[/card]
+[card]
+id=6610
+name=Wildfire
+mana={4}{R}{R}
+type=Sorcery
+text=Each player sacrifices four lands. Wildfire deals 4 damage to each creature.
+rarity=R
+[/card]
+[card]
+id=6530
+name=Wind Sail
+mana={1}{U}
+type=Sorcery
+text=One or two target creatures gain flying until end of turn.
+rarity=U
+[/card]

@@ -530,10 +530,10 @@ OutputDebugString ("CHECKING INTERRUPTIBLE\n");
 }
 
 
-int TargetZoneChooser::targetsZone(MTGGameZone * z){
+bool TargetZoneChooser::targetsZone(MTGGameZone * z){
   for (int i = 0; i < nbzones; i++)
-    if (MTGGameZone::intToZone(zones[i],source) == z) return 1;
-  return 0;
+    if (MTGGameZone::intToZone(zones[i],source) == z) return true;
+  return false;
 }
 
 /* Player Target */

@@ -110,6 +110,7 @@ class Constants
     RARITY_U = 'U',
     RARITY_C = 'C',
     RARITY_L = 'L',
+    RARITY_T = 'T', //Tokens
 
     //Price for singles
     PRICE_1M = 3000,

@@ -1,0 +1,12 @@
+[card]
+id=10487
+name=Alert Shu Infantry
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+text=Vigilance
+abilities=vigilance
+rarity=U
+[/card]

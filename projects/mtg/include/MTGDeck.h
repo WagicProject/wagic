@@ -58,6 +58,7 @@ class MTGSets{
 public:
   friend class MTGSetInfo;
   MTGSets();
+  ~MTGSets();
   
   int Add(const char * subtype);
   int findSet(string value);

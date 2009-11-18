@@ -63,7 +63,7 @@ class GameApp:	public JApp
 
  public:
   int players[2];
-  MTGAllCards * collection;
+  
   int gameType;
   CardEffect *effect;
 
@@ -84,6 +84,7 @@ class GameApp:	public JApp
   static int HasMusic;
   static string systemError;
   static JMusic* music;
+  static MTGAllCards * collection;
 
 };
 

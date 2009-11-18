@@ -385,9 +385,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //Token creator. Name, type, p/t, abilities
   found = s.find("token(");
   if (found != string::npos){
-    int end = s.find(",", found);
+    WParsedInt * multiplier = NULL; 
+    size_t star = s.find("*");
+    if (star != string::npos) multiplier = NEW WParsedInt(s.substr(star+1),spell,card);
+
+    size_t end = s.find(")", found);
+    int tokenId = atoi(s.substr(found + 6,end - found - 6).c_str());
+    if (tokenId){
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,tokenId,0, multiplier);
+      tok->oneShot = 1;
+      return tok;
+    }
+
+    end = s.find(",", found);
     string sname = s.substr(found + 6,end - found - 6);
-    int previous = end+1;
+    size_t previous = end+1;
     end = s.find(",",previous);
     string stypes = s.substr(previous,end - previous);
     previous = end+1;
@@ -396,9 +408,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     int power, toughness;
     parsePowerToughness(spt,&power, &toughness);
     string sabilities = s.substr(end+1);
-    WParsedInt * multiplier = NULL; 
-    found = s.find("*");
-    if (found != string::npos)multiplier = NEW WParsedInt(s.substr(found+1),spell,card);
+
     ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power,toughness,sabilities,0, multiplier);
     tok->oneShot = 1;
     return tok;

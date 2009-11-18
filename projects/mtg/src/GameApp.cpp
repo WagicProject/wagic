@@ -19,6 +19,7 @@
 #include "../include/Translate.h"
 
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
+MTGAllCards * GameApp::collection = NULL;
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;
 string GameApp::systemError = "";
@@ -66,7 +67,7 @@ GameApp::~GameApp()
 
 void GameApp::Create()
 {
-   srand(time(0));  // initialize random
+   srand((unsigned int)time(0));  // initialize random
 #if defined (WIN32)
   _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #elif not defined (LINUX)

@@ -537,12 +537,18 @@ public:
   list<int>types;
   list<int>colors;
   int power, toughness;
+  int tokenId;
   string name;
   WParsedInt * multiplier;
+  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, int tokenId, int _doTap, WParsedInt * multiplier = NULL):ActivatedAbility(_id,_source,_cost,0,_doTap), multiplier(multiplier), tokenId(tokenId){
+    if(!multiplier) this->multiplier = NEW WParsedInt(1);
+  }
+
   ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap, WParsedInt * multiplier = NULL):ActivatedAbility(_id,_source,_cost,0,_doTap), multiplier(multiplier){
     power = _power;
     toughness = _toughness;
     name = sname;
+    tokenId = 0;
     if(!multiplier) this->multiplier = NEW WParsedInt(1);
 
 //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
@@ -578,20 +584,27 @@ public:
 
   int resolve(){
     for (int i = 0; i < multiplier->getValue(); ++i){
-      Token * myToken = NEW Token(name,source,power,toughness);
-      list<int>::iterator it;
-      for ( it=types.begin() ; it != types.end(); it++ ){
-        myToken->addType(*it);
-      }
-      for ( it=colors.begin() ; it != colors.end(); it++ ){
-        myToken->setColor(*it);
-      }
-      for ( it=abilities.begin() ; it != abilities.end(); it++ ){
-        myToken->basicAbilities[*it] = 1;
+      MTGCardInstance * myToken;
+      if (tokenId){
+        MTGCard * card = GameApp::collection->getCardById(tokenId);
+          myToken = NEW MTGCardInstance(card,source->controller()->game);       
+      } else {
+        myToken = NEW Token(name,source,power,toughness);
+        list<int>::iterator it;
+        for ( it=types.begin() ; it != types.end(); it++ ){
+          myToken->addType(*it);
+        }
+        for ( it=colors.begin() ; it != colors.end(); it++ ){
+          myToken->setColor(*it);
+        }
+        for ( it=abilities.begin() ; it != abilities.end(); it++ ){
+          myToken->basicAbilities[*it] = 1;
+        }
       }
       source->controller()->game->temp->addCard(myToken);
       Spell * spell = NEW Spell(myToken);
       spell->resolve();
+      spell->source->isToken = 1;
       delete spell;
     }
     return 1;
