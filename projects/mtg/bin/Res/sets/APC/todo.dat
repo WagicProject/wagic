@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=28669
 name=AEther Mutation
 mana={3}{G}{U}
@@ -6,7 +6,6 @@ type=Sorcery
 text=Return target creature to its owner's hand. Put X 1/1 green Saproling creature tokens onto the battlefield, where X is that creature's converted mana cost.
 rarity=U
 [/card]
-
 [card]
 id=26830
 name=Ana Sanctuary
@@ -27,75 +26,12 @@ text=Kicker {1}{U} and/or {B} (You may pay an additional {1}{U} and/or {B} as yo
 rarity=R
 [/card]
 [card]
-id=21253
-name=Angelfire Crusader
-mana={3}{W}
-type=Creature
-subtype=Human Soldier Knight
-power=2
-toughness=3
-text={R}: Angelfire Crusader gets +1/+0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=23247
-name=Battlefield Forge
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Add {R} or {W} to your mana pool. Battlefield Forge deals 1 damage to you.
-rarity=R
-[/card]
-[card]
-id=28807
-name=Bloodfire Colossus
-mana={6}{R}{R}
-type=Creature
-subtype=Giant
-power=6
-toughness=6
-text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
-rarity=R
-[/card]
-[card]
-id=26806
-name=Bloodfire Dwarf
-mana={R}
-type=Creature
-subtype=Dwarf
-power=1
-toughness=1
-text={R}, Sacrifice Bloodfire Dwarf: Bloodfire Dwarf deals 1 damage to each creature without flying.
-rarity=C
-[/card]
-[card]
 id=29303
 name=Bloodfire Infusion
 mana={2}{R}
 type=Enchantment
 subtype=Aura
 text=Enchant creature you control {R}, Sacrifice enchanted creature: Bloodfire Infusion deals damage equal to the sacrificed creature's power to each creature.
-rarity=C
-[/card]
-[card]
-id=28806
-name=Bloodfire Kavu
-mana={2}{R}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-text={R}, Sacrifice Bloodfire Kavu: Bloodfire Kavu deals 2 damage to each creature.
-rarity=U
-[/card]
-[card]
-id=27153
-name=Bog Gnarr
-mana={4}{G}
-type=Creature
-subtype=Beast
-power=2
-toughness=2
-text=Whenever a player casts a black spell, Bog Gnarr gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -116,25 +52,6 @@ mana={X}{R}{W}
 type=Instant
 text=The next X damage that would be dealt to target creature or player this turn is dealt to another target creature or player instead.
 rarity=U
-[/card]
-[card]
-id=23246
-name=Caves of Koilos
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Add {W} or {B} to your mana pool. Caves of Koilos deals 1 damage to you.
-rarity=R
-[/card]
-[card]
-id=25853
-name=Ceta Disciple
-mana={U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
-text={R}, {T}: Target creature gets +2/+0 until end of turn. {G}, {T}: Add one mana of any color to your mana pool.
-rarity=C
 [/card]
 [card]
 id=27173
@@ -181,17 +98,6 @@ subtype=Human Flagbearer
 power=2
 toughness=4
 text=While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
-rarity=C
-[/card]
-[card]
-id=28754
-name=Coastal Drake
-mana={2}{U}
-type=Creature
-subtype=Drake
-power=2
-toughness=1
-text=Flying {1}{U}, {T}: Return target Kavu to its owner's hand.
 rarity=C
 [/card]
 [card]
@@ -254,17 +160,6 @@ text=Destroy target nonblack creature. It can't be regenerated. Put X 1/1 green 
 rarity=U
 [/card]
 [card]
-id=25852
-name=Dega Disciple
-mana={W}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={B}, {T}: Target creature gets -2/-0 until end of turn. {R}, {T}: Target creature gets +2/+0 until end of turn.
-rarity=C
-[/card]
-[card]
 id=27178
 name=Dega Sanctuary
 mana={2}{W}
@@ -281,28 +176,6 @@ subtype=Volver
 power=1
 toughness=1
 text=Kicker {1}{B} and/or {R} (You may pay an additional {1}{B} and/or {R} as you cast this spell.) If Degavolver was kicked with its {1}{B} kicker, Degavolver enters the battlefield with two +1/+1 counters on it and with "Pay 3 life: Regenerate Degavolver." If Degavolver was kicked with its {R} kicker, Degavolver enters the battlefield with a +1/+1 counter on it and with first strike.
-rarity=R
-[/card]
-[card]
-id=26259
-name=Desolation Angel
-mana={3}{B}{B}
-type=Creature
-subtype=Angel
-power=5
-toughness=4
-text=Kicker {W}{W} (You may pay an additional {W}{W} as you cast this spell.) Flying When Desolation Angel enters the battlefield, destroy all lands you control. If it was kicked, destroy all lands instead.
-rarity=R
-[/card]
-[card]
-id=29414
-name=Desolation Giant
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=3
-text=Kicker {W}{W} (You may pay an additional {W}{W} as you cast this spell.) When Desolation Giant enters the battlefield, destroy all other creatures you control. If it was kicked, destroy all other creatures instead.
 rarity=R
 [/card]
 [card]
@@ -349,28 +222,6 @@ text=Kicker—{2}{R}, Sacrifice a land. (You may pay {2}{R} and sacrifice a land
 rarity=C
 [/card]
 [card]
-id=26672
-name=Dwarven Patrol
-mana={2}{R}
-type=Creature
-subtype=Dwarf
-power=4
-toughness=2
-text=Dwarven Patrol doesn't untap during your untap step. Whenever you cast a nonred spell, untap Dwarven Patrol.
-rarity=U
-[/card]
-[card]
-id=29450
-name=Ebony Treefolk
-mana={1}{B}{G}
-type=Creature
-subtype=Treefolk
-power=3
-toughness=3
-text={B}{G}: Ebony Treefolk gets +1/+1 until end of turn.
-rarity=U
-[/card]
-[card]
 id=26264
 name=Emblazoned Golem
 mana={2}
@@ -406,14 +257,6 @@ name=False Dawn
 mana={1}{W}
 type=Sorcery
 text=Until end of turn, spells and abilities you control that would add colored mana to your mana pool add that much white mana instead. Until end of turn, you may spend white mana as though it were mana of any color.  Draw a card.
-rarity=R
-[/card]
-[card]
-id=28011
-name=Fervent Charge
-mana={1}{W}{B}{R}
-type=Enchantment
-text=Whenever a creature you control attacks, it gets +2/+2 until end of turn.
 rarity=R
 [/card]
 [card]
@@ -463,17 +306,6 @@ text=As an additional cost to cast Gaea's Balance, sacrifice five lands. Search 
 rarity=U
 [/card]
 [card]
-id=26757
-name=Gaea's Skyfolk
-mana={G}{U}
-type=Creature
-subtype=Elf Merfolk
-power=2
-toughness=2
-text=Flying
-rarity=C
-[/card]
-[card]
 id=26793
 name=Gerrard Capashen
 mana={3}{W}{W}
@@ -491,17 +323,6 @@ mana={W}{B}
 type=Sorcery
 text=Target player discards two cards. You gain 3 life for each land card discarded this way.
 rarity=U
-[/card]
-[card]
-id=27154
-name=Glade Gnarr
-mana={5}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=Whenever a player casts a blue spell, Glade Gnarr gets +2/+2 until end of turn.
-rarity=C
 [/card]
 [card]
 id=26760
@@ -524,14 +345,6 @@ power=2
 toughness=2
 text=Haste When Goblin Ringleader enters the battlefield, reveal the top four cards of your library. Put all Goblin cards revealed this way into your hand and the rest on the bottom of your library.
 rarity=U
-[/card]
-[card]
-id=29417
-name=Goblin Trenches
-mana={1}{R}{W}
-type=Enchantment
-text={2}, Sacrifice a land: Put two 1/1 red and white Goblin Soldier creature tokens onto the battlefield.
-rarity=R
 [/card]
 [card]
 id=27662
@@ -562,17 +375,6 @@ power=3
 toughness=3
 text=Flying When Haunted Angel is put into a graveyard from the battlefield, exile Haunted Angel and each other player puts a 3/3 black Angel creature token with flying onto the battlefield.
 rarity=U
-[/card]
-[card]
-id=26854
-name=Helionaut
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
-text=Flying {1}, {T}: Add one mana of any color to your mana pool.
-rarity=C
 [/card]
 [card]
 id=27166
@@ -630,28 +432,6 @@ text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) Re
 rarity=C
 [/card]
 [card]
-id=29304
-name=Jungle Barrier
-mana={2}{G}{U}
-type=Creature
-subtype=Plant Wall
-power=2
-toughness=6
-text=Defender (This creature can't attack.) When Jungle Barrier enters the battlefield, draw a card.
-rarity=U
-[/card]
-[card]
-id=26809
-name=Kavu Glider
-mana={2}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=1
-text={W}: Kavu Glider gets +0/+1 until end of turn. {U}: Kavu Glider gains flying until end of turn.
-rarity=C
-[/card]
-[card]
 id=28750
 name=Kavu Howler
 mana={4}{G}{G}
@@ -674,30 +454,6 @@ text=Trample Whenever Kavu Mauler attacks, it gets +1/+1 until end of turn for e
 rarity=R
 [/card]
 [card]
-id=27591
-name=Last Caress
-mana={2}{B}
-type=Sorcery
-text=Target player loses 1 life and you gain 1 life.  Draw a card.
-rarity=C
-[/card]
-[card]
-id=27231
-name=Last Stand
-mana={W}{U}{B}{R}{G}
-type=Sorcery
-text=Target opponent loses 2 life for each Swamp you control. Last Stand deals damage equal to the number of Mountains you control to target creature. Put a 1/1 green Saproling creature token onto the battlefield for each Forest you control. You gain 2 life for each Plains you control. Draw a card for each Island you control, then discard that many cards.
-rarity=R
-[/card]
-[card]
-id=26816
-name=Lay of the Land
-mana={G}
-type=Sorcery
-text=Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=C
-[/card]
-[card]
 id=26424
 name=Legacy Weapon
 mana={7}
@@ -711,47 +467,6 @@ name=Life // Death (Life)
 mana={G}
 type=Sorcery
 text=All lands you control become 1/1 creatures until end of turn. They're still lands. rarity=U
-[/card]
-[card]
-id=27650
-name=Lightning Angel
-mana={1}{R}{W}{U}
-type=Creature
-subtype=Angel
-power=3
-toughness=4
-Flying, vigilance, haste
-rarity=R
-[/card]
-[card]
-id=26795
-name=Living Airship
-mana={3}{U}
-type=Creature
-subtype=Metathran
-power=2
-toughness=3
-text=Flying {2}{G}: Regenerate Living Airship.
-rarity=C
-[/card]
-[card]
-id=26759
-name=Llanowar Dead
-mana={B}{G}
-type=Creature
-subtype=Zombie Elf
-power=2
-toughness=2
-text={T}: Add {B} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=23248
-name=Llanowar Wastes
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Add {B} or {G} to your mana pool. Llanowar Wastes deals 1 damage to you.
-rarity=R
 [/card]
 [card]
 id=26788
@@ -798,50 +513,6 @@ text={1}{U}: Minotaur Illusionist gains shroud until end of turn. (It can't be t
 rarity=U
 [/card]
 [card]
-id=26849
-name=Minotaur Tactician
-mana={3}{R}
-type=Creature
-subtype=Minotaur
-power=1
-toughness=1
-text=Haste Minotaur Tactician gets +1/+1 as long as you control a white creature. Minotaur Tactician gets +1/+1 as long as you control a blue creature.
-rarity=C
-[/card]
-[card]
-id=26800
-name=Mournful Zombie
-mana={2}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=1
-text={W}, {T}: Target player gains 1 life.
-rarity=C
-[/card]
-[card]
-id=26421
-name=Mystic Snake
-mana={1}{G}{U}{U}
-type=Creature
-subtype=Snake
-power=2
-toughness=2
-text=Flash (You may cast this spell any time you could cast an instant.) When Mystic Snake enters the battlefield, counter target spell.
-rarity=R
-[/card]
-[card]
-id=25854
-name=Necra Disciple
-mana={B}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={G}, {T}: Add one mana of any color to your mana pool. {W}, {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-rarity=C
-[/card]
-[card]
 id=27136
 name=Necra Sanctuary
 mana={2}{B}
@@ -883,90 +554,11 @@ Kicker {R} (You may pay an additional {R} as you cast this spell.) Destroy targe
 rarity=C
 [/card]
 [card]
-id=25816
-name=Overgrown Estate
-mana={B}{G}{W}
-type=Enchantment
-text=Sacrifice a land: You gain 3 life.
-rarity=R
-[/card]
-[card]
-id=26815
-name=Penumbra Bobcat
-mana={2}{G}
-type=Creature
-subtype=Cat
-power=2
-toughness=1
-text=When Penumbra Bobcat is put into a graveyard from the battlefield, put a 2/1 black Cat creature token onto the battlefield.
-rarity=C
-[/card]
-[card]
-id=25956
-name=Penumbra Kavu
-mana={4}{G}
-type=Creature
-subtype=Kavu
-power=3
-toughness=3
-text=When Penumbra Kavu is put into a graveyard from the battlefield, put a 3/3 black Kavu creature token onto the battlefield.
-rarity=U
-[/card]
-[card]
-id=27669
-name=Penumbra Wurm
-mana={5}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=6
-text=Trample When Penumbra Wurm is put into a graveyard from the battlefield, put a 6/6 black Wurm creature token with trample onto the battlefield.
-rarity=R
-[/card]
-[card]
 id=25953
 name=Pernicious Deed
 mana={1}{B}{G}
 type=Enchantment
 text={X}, Sacrifice Pernicious Deed: Destroy each artifact, creature, and enchantment with converted mana cost X or less.
-rarity=R
-[/card]
-[card]
-id=27663
-name=Phyrexian Arena
-mana={1}{B}{B}
-type=Enchantment
-text=At the beginning of your upkeep, you draw a card and you lose 1 life.
-rarity=R
-[/card]
-[card]
-id=26699
-name=Phyrexian Gargantua
-mana={4}{B}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=4
-text=When Phyrexian Gargantua enters the battlefield, you draw two cards and you lose 2 life.
-rarity=U
-[/card]
-[card]
-id=27660
-name=Phyrexian Rager
-mana={2}{B}
-type=Creature
-subtype=Horror
-power=2
-toughness=2
-text=When Phyrexian Rager enters the battlefield, you draw a card and you lose 1 life.
-rarity=C
-[/card]
-[card]
-id=25859
-name=Planar Despair
-mana={3}{B}{B}
-type=Sorcery
-text=Domain  EAll creatures get -1/-1 until end of turn for each basic land type among lands you control.
 rarity=R
 [/card]
 [card]
@@ -994,17 +586,6 @@ subtype=Zombie Soldier Warrior
 power=2
 toughness=2
 text=Whenever Putrid Warrior deals damage, choose one  Eeach player loses 1 life; or each player gains 1 life.
-rarity=C
-[/card]
-[card]
-id=27188
-name=Quagmire Druid
-mana={2}{B}
-type=Creature
-subtype=Zombie Druid
-power=2
-toughness=2
-text={G}, {T}, Sacrifice a creature: Destroy target enchantment.
 rarity=C
 [/card]
 [card]
@@ -1047,17 +628,6 @@ text=Kicker {1}{W} and/or {U} (You may pay an additional {1}{W} and/or {U} as yo
 rarity=R
 [/card]
 [card]
-id=26756
-name=Razorfin Hunter
-mana={U}{R}
-type=Creature
-subtype=Merfolk Goblin
-power=1
-toughness=1
-text={T}: Razorfin Hunter deals 1 damage to target creature or player.
-rarity=C
-[/card]
-[card]
 id=27164
 name=Illusion // Reality (Reality)
 mana={2}{G}
@@ -1077,47 +647,11 @@ text={T}: Target land becomes the basic land type of your choice until end of tu
 rarity=C
 [/card]
 [card]
-id=25971
-name=Savage Gorilla
-mana={4}{G}
-type=Creature
-subtype=Ape
-power=3
-toughness=3
-text={U}{B}, {T}, Sacrifice Savage Gorilla: Target creature gets -3/-3 until end of turn. Draw a card.
-rarity=C
-[/card]
-[card]
-id=27674
-name=Shield of Duty and Reason
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has protection from green and from blue.
-rarity=C
-[/card]
-[card]
 id=28753
 name=Shimmering Mirage
 mana={1}{U}
 type=Instant
 text=Target land becomes the basic land type of your choice until end of turn. Draw a card.
-rarity=C
-[/card]
-[card]
-id=23250
-name=Shivan Reef
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Add {U} or {R} to your mana pool. Shivan Reef deals 1 damage to you.
-rarity=R
-[/card]
-[card]
-id=29605
-name=Smash
-mana={2}{R}
-type=Instant
-text=Destroy target artifact. Draw a card.
 rarity=C
 [/card]
 [card]
@@ -1128,17 +662,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Whenever enchanted creature deals damage, you gain that much life.  Whenever enchanted creature is dealt damage, you gain that much life.
 rarity=C
-[/card]
-[card]
-id=26663
-name=Spectral Lynx
-mana={1}{W}
-type=Creature
-subtype=Cat Spirit
-power=2
-toughness=1
-text=Protection from green {B}: Regenerate Spectral Lynx.
-rarity=R
 [/card]
 [card]
 id=28009
@@ -1231,14 +754,6 @@ text=Look at the top three cards of target opponent's library, then put them bac
 rarity=C
 [/card]
 [card]
-id=25832
-name=Temporal Spring
-mana={1}{G}{U}
-type=Sorcery
-text=Put target permanent on top of its owner's library.
-rarity=C
-[/card]
-[card]
 id=27659
 name=Tidal Courier
 mana={3}{U}
@@ -1248,14 +763,6 @@ power=1
 toughness=2
 text=When Tidal Courier enters the battlefield, reveal the top four cards of your library. Put all Merfolk cards revealed this way into your hand and the rest on the bottom of your library. {3}{U}: Tidal Courier gains flying until end of turn.
 rarity=U
-[/card]
-[card]
-id=26720
-name=Tranquil Path
-mana={4}{G}
-type=Sorcery
-text=Destroy all enchantments.  Draw a card.
-rarity=C
 [/card]
 [card]
 id=26805
@@ -1277,31 +784,12 @@ text={1}: Choose a creature type other than Wall. Target creature becomes that t
 rarity=R
 [/card]
 [card]
-id=26717
-name=Urborg Elf
-mana={1}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-text={T}: Add {G}, {U}, or {B} to your mana pool.
-rarity=C
-[/card]
-[card]
 id=26802
 name=Urborg Uprising
 mana={4}{B}
 type=Sorcery
 text=Return up to two target creature cards from your graveyard to your hand.  Draw a card.
 rarity=C
-[/card]
-[card]
-id=19135
-name=Vindicate
-mana={1}{W}{B}
-type=Sorcery
-text=Destroy target permanent.
-rarity=R
 [/card]
 [card]
 id=26855
@@ -1345,31 +833,6 @@ subtype=Merfolk Warrior
 power=2
 toughness=2
 text=When Whirlpool Warrior enters the battlefield, shuffle the cards from your hand into your library, then draw that many cards. {R}, Sacrifice Whirlpool Warrior: Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
-rarity=R
-[/card]
-[card]
-id=23056
-name=Wild Research
-mana={2}{R}
-type=Enchantment
-text={1}{W}: Search your library for an enchantment card and reveal that card. Put it into your hand, then discard a card at random. Then shuffle your library. {1}{U}: Search your library for an instant card and reveal that card. Put it into your hand, then discard a card at random. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=23249
-name=Yavimaya Coast
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Add {G} or {U} to your mana pool. Yavimaya Coast deals 1 damage to you.
-rarity=R
-[/card]
-[card]
-id=19132
-name=Yavimaya's Embrace
-mana={5}{G}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature You control enchanted creature. Enchanted creature gets +2/+2 and has trample.
 rarity=R
 [/card]
 [card]
