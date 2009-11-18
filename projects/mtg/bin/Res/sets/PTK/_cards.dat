@@ -1,12 +1,1066 @@
 [card]
+text=Vigilance (Attacking doesn't cause this creature to tap.)
 id=10487
 name=Alert Shu Infantry
+rarity=U
 mana={2}{W}
 type=Creature
 subtype=Human Soldier
 power=2
 toughness=2
-text=Vigilance
 abilities=vigilance
+[/card]
+[card]
+text=You draw three cards and you lose 3 life.
+id=10493
+auto=draw:3
+auto=life:-3
+name=Ambition's Cost
 rarity=U
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+id=10578
+name=Barbarian Horde
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Human Barbarian Soldier
+power=3
+toughness=3
+[/card]
+[card]
+text=Blaze deals X damage to target creature or player.
+target=creature,player
+alias=1291
+id=10507
+name=Blaze
+rarity=U
+type=Sorcery
+mana={X}{R}
+[/card]
+[card]
+text=Draw a card for each tapped creature target opponent controls.
+auto=foreach(creature[tapped]|opponentBattlefield) draw:1 controller
+id=10620
+auto=draw:3
+name=Borrowing 100,000 Arrows
+rarity=U
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+text=Draw three cards.
+id=10623
+auto=draw:3
+name=Brilliant Plan
+rarity=U
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+text=Burning Fields deals 5 damage to target opponent.
+id=10555
+auto=Damage:5 opponent
+name=Burning Fields
+rarity=U
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+text=Play Champion's Victory only during the declare attackers step and only if you are the defending player.   Return target attacking creature to its owner's hand.
+id=10593
+target=creature[attacking]|opponentBattlefield
+auto=moveTo(ownerhand)
+name=Champion's Victory
+rarity=U
+mana={U}
+type=Instant
+[/card]
+[card]
+text=When Council of Advisors enters the battlefield, draw a card.
+id=10601
+auto=draw:1
+name=Council of Advisors
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+[/card]
+[card]
+text=Desert Sandstorm deals 1 damage to each creature.
+auto=damage:1 all(creature)
+id=10626
+name=Desert Sandstorm
+rarity=U
+type=Sorcery
+mana={2}{R}
+[/card]
+[card]
+text=Creatures you control get +2/+0 until end of turn.
+auto=lord(creature|myBattlefield) 2/0
+id=10512
+name=Desperate Charge
+rarity=U
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Play Eightfold Maze only during the declare attackers step and only if you are the defending player.        Destroy target attacking creature.
+id=10553
+target=creature[attacking]|opponentBattlefield
+auto=destroy
+name=Eightfold Maze
+rarity=R
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=Counter target sorcery spell.
+id=10528
+target=sorcery|stack
+auto=fizzle
+name=Extinguish
+rarity=C
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+text=Return target creature card from your graveyard to the battlefield.
+id=10509
+target=creature|mygraveyard
+auto=moveTo(myBattlefield)
+name=False Defeat
+rarity=C
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
+text=Put target card from your graveyard on top of your library.
+id=10599
+target=creature|mygraveyard
+auto=moveTo(mylibrary)
+name=False Mourning
+rarity=U
+mana={G}
+type=Sorcery
+[/card]
+[card]
+text=Famine deals 3 damage to each creature and each player.
+auto=damage:3 all(creature,player)
+id=10518
+name=Famine
+rarity=U
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text=Fire Ambush deals 3 damage to target creature or player.
+id=10632
+target=creature;player
+auto=Damage:3
+name=Fire Ambush
+rarity=C
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+text=Put target creature on top of its owner's library.
+id=10622
+target=creature|battlefield
+auto=moveTo(ownerlibrary)
+name=Forced Retreat
+rarity=C
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=10640
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=10639
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.
+auto={T}:Add {G}
+id=10532
+name=Forest
+rarity=L
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+id=10505
+name=Forest Bear
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Bear
+power=2
+toughness=2
+[/card]
+[card]
+text=Destroy target nonblack creature.
+id=10546
+target=creature[-black]
+auto=destroy
+name=Ghostly Visit
+rarity=C
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+text=Destroy all tapped creatures.
+id=10597
+auto=destroy all(creature[tapped])
+name=Guan Yu's 1,000-Li March
+rarity=R
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+[card]
+text={T}: Put target creature card from your graveyard on top of your library. Activate this ability only during your turn, before attackers are declared.
+id=10570
+name=Hua Tuo, Honored Physician
+rarity=R
+mana={1}{G}{G}
+type=Creature
+subtype=Human
+auto={T}:moveTo(mylibrary) target(creature|mygraveyard)
+power=1
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text=Whenever Hunting Cheetah deals damage to an opponent, you may search your library for a Forest card, reveal that card, put it into your hand, then shuffle your library.
+auto=@damaged(player) from(this):may moveTo(myHand) target(forest|mylibrary)
+id=10572
+name=Hunting Cheetah
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Cat
+power=2
+toughness=3
+[/card]
+[card]
+id=10541
+name=Independent Troops
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=10551
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=10641
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text={T}: Add {U} to your mana pool.
+auto={T}:Add {U}
+id=10642
+name=Island
+rarity=L
+type=Basic Land
+subtype=Island
+[/card]
+[card]
+text=Other creatures you control get +1/+1.
+id=10490
+name=Kongming, "Sleeping Dragon"
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Human Advisor
+auto=lord(creature|myBattlefield) 1/1 other
+power=2
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text={T}: Kongming's Contraptions deals 2 damage to target attacking creature. Play this ability only during the declare attackers step, and only on an opponent's turn.
+id=10495
+name=Kongming's Contraptions
+rarity=R
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+auto={T}:damage:2 target(creature[attacking]|opponentBattlefield)
+power=2
+toughness=4
+[/card]
+[card]
+text=Sacrifice Loyal Retainers: Return target legendary creature card from your graveyard onto the battlefield. Play this ability only during your turn, before attackers are declared.
+auto={S}:moveTo(myBattlefield) target(creature[legendary]|mygraveyard)
+id=10491
+name=Loyal Retainers
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Draw a card. Activate this ability only during your turn, before attackers are declared.
+id=10490
+name=Lu Su, Wu Advisor
+rarity=R
+mana={3}{U}{U}
+type=Creature
+subtype=Human Advisor
+auto={T}:Draw:1
+power=1
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text=Other green creatures you control get +1/+1.
+id=10732
+name=Meng Huo, Barbarian King
+rarity=R
+mana={3}{G}{G}
+type=Creature
+subtype=Human Barbarian Soldier
+auto=lord(creature[green]|myBattlefield) 1/1 other
+power=4
+toughness=4
+abilities=legendary
+[/card]
+[card]
+id=10503
+name=Meng Huo's Horde
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Human Soldier
+power=4
+toughness=5
+[/card]
+[card]
+text=Destroy target creature. Its owner gains 4 life.
+id=10579
+target=creature
+auto=destroy && life:4 targetController
+name=Misfortune's Gain
+rarity=C
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add {R}
+id=10644
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add {R}
+id=10643
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+auto={T}:Add {R}
+id=10563
+name=Mountain
+rarity=L
+type=Basic Land
+subtype=Mountain
+[/card]
+[card]
+text=Haste
+id=10585
+name=Mountain Bandit
+rarity=C
+mana={G}
+type=Creature
+subtype=Human Soldier Rogue
+power=1
+toughness=1
+abilities=haste
+[/card]
+[card]
+text=Counter target creature or sorcery spell.
+id=10565
+target=sorcery,creature|stack
+auto=fizzle
+name=Mystic Denial
+rarity=U
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+text={T}: Target creature gets +0/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
+id=10732
+name=Pang Tong, "Young Phoenix"
+rarity=R
+mana={1}{W}{W}
+type=Creature
+subtype=Human Advisor
+auto={T}:0/2 target(creature)
+power=1
+toughness=2
+abilities=legendary
+[/card]
+[card]
+text=You gain 2 life for each creature you control.
+id=10531
+auto=foreach(creature|myBattlefield) life:2 controller
+name=Peach Garden Oath
+rarity=U
+mana={W}
+type=Sorcery
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:Add {W}
+id=10645
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:Add {W}
+id=10646
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text={T}: Add {W} to your mana pool.
+auto={T}:Add {W}
+id=10581
+name=Plains
+rarity=L
+type=Basic Land
+subtype=Plains
+[/card]
+[card]
+text=Destroy target nonblack creature. You gain 3 life.
+id=10587
+target=creature[-black]
+auto=destroy
+auto=life:3 controller
+name=Poison Arrow
+rarity=U
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Counter target creature spell.
+id=10530
+target=creature|stack
+auto=fizzle
+name=Preemptive Strike
+rarity=C
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+text=Destroy all lands.
+id=10500
+auto=destroy all(land)
+name=Ravages of War
+rarity=R
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
+text=Red Cliffs Armada can't attack unless defending player controls an Island.
+id=10501
+name=Red Cliffs Armada
+rarity=U
+mana={4}{U}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(island|opponentBattlefield) -cantattack
+power=5
+toughness=4
+abilities=cantattack
+[/card]
+[card]
+text=Haste
+id=10576
+name=Renegade Troops
+rarity=U
+mana={4}{R}
+type=Creature
+subtype=Human Soldier
+power=4
+toughness=2
+abilities=haste
+[/card]
+[card]
+text=Return target creature card from your graveyard to your hand.
+id=10588
+target=creature|mygraveyard
+auto=moveTo(myhand)
+name=Return to Battle
+rarity=C
+mana={B}
+type=Sorcery
+[/card]
+[card]
+text=Rockslide Ambush deals damage equal to the number of Mountains you control to target creature.
+id=10603
+target=creature
+auto=foreach(mountain|myBattlefield) damage:1
+name=Rockslide Ambush
+rarity=U
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+text=Return target sorcery card from your graveyard to your hand.
+id=10524
+target=sorcery|mygraveyard
+auto=moveTo(myhand)
+name=Sage's Knowledge
+rarity=C
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+id=10627
+name=Shu Elite Infantry
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: You gain 1 life. Activate this ability only during your turn, before attackers are declared.
+id=10618
+name=Shu Farmer
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human
+auto={T}:life:1
+power=1
+toughness=1
+[/card]
+[card]
+id=10489
+name=Shu Foot Soldiers
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+[/card]
+[card]
+text=When Shu Grain Caravan enters the battlefield, you gain 2 life.
+id=10617
+name=Shu Grain Caravan
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+auto=life:2
+power=2
+toughness=2
+[/card]
+[card]
+text=When Shu Soldier-Farmers enters the battlefield, you gain 4 life.
+id=10488
+name=Shu Soldier-Farmers
+rarity=U
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+auto=life:4
+power=2
+toughness=4
+[/card]
+[card]
+text=Sima Yi, Wei Field Marshal's power is equal to the number of Swamps you control.
+id=10630
+name=Sima Yi, Wei Field Marshal
+rarity=R
+mana={5}{B}
+type=Creature
+subtype=Human Soldier
+auto=foreach(swamp|myBattlefield) 1/0
+power=*
+toughness=4
+abilities=legendary
+[/card]
+[card]
+id=10545
+name=Southern Elephant
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Elephant
+power=3
+toughness=4
+[/card]
+[card]
+text=Search your library for a Plains, Island, Swamp, Mountain, or Forest card and put that card onto the battlefield. Then shuffle your library.
+id=10629
+target=plains,island,swamp,mountain,forest|mylibrary
+auto=moveTo|myBattlefield
+name=Spoils of Victory
+rarity=U
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+text=You gain 8 life.
+id=10566
+auto=life:8
+name=Spring of Eternal Peace
+rarity=C
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+text=Stolen Grain deals 5 damage to target opponent. You gain 5 life.
+id=10554
+auto=Damage:5 opponent
+auto=life:5 controller
+name=Stolen Grain
+rarity=U
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Destroy target land.
+id=10606
+target=land
+auto=Destroy
+name=Stone Rain
+rarity=C
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+id=10613
+name=Straw Soldiers
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Scarecrow Soldier
+power=1
+toughness=3
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add {B}
+id=10647
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add {B}
+id=10648
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text={T}: Add {B} to your mana pool.
+auto={T}:Add {B}
+id=10607
+name=Swamp
+rarity=L
+type=Basic Land
+subtype=Swamp
+[/card]
+[card]
+text=Taoist Hermit can't be the target of spells or abilities your opponents control.
+id=10569
+name=Taoist Hermit
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Human Mystic
+power=2
+toughness=2
+abilities=opponentshroud
+[/card]
+[card]
+text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
+id=10567
+target=forest|mylibrary
+auto=moveTo|myBattlefield
+name=Three Visits
+rarity=U
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+id=10571
+name=Trained Jackal
+rarity=C
+mana={G}
+type=Creature
+subtype=Hound
+power=1
+toughness=2
+[/card]
+[card]
+text=Destroy target tapped creature.
+id=10631
+target=creature[tapped]
+auto=Destroy
+name=Vengeance
+rarity=U
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+auto=lord(creature|myBattlefield) 1/1
+id=10596
+name=Virtuous Charge
+rarity=C
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
+id=10483
+name=Volunteer Militia
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+[card]
+id=10519
+name=Wei Infantry
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+[/card]
+[card]
+text=Target creature gets +4/+4 until end of turn.
+id=10562
+target=creature
+auto=4/4
+name=Wielding the Green Dragon
+rarity=U
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+text=Wu Admiral gets +1/+1 as long as an opponent controls an Island.
+id=10485
+name=Wu Admiral
+rarity=U
+mana={4}{U}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(island|opponentBattlefield) 1/1
+power=3
+toughness=3
+[/card]
+[card]
+id=10600
+name=Wu Infantry
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+[/card]
+[card]
+text={T}: Wu Longbowman deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
+id=10498
+name=Wu Longbowman
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Human Soldier
+auto={T}:damage:1 target(creature,player)
+power=1
+toughness=1
+[/card]
+[card]
+text=Wu Warship can't attack unless defending player controls an Island.
+id=10605
+name=Wu Warship
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(island|opponentBattlefield) -cantattack
+power=3
+toughness=3
+abilities=cantattack
+[/card]
+[card]
+text={T}: Target creature gets +2/+0 until end of turn. Activate this ability only during your turn, before attackers are declared.
+id=13831
+name=Xun Yu, Wei Advisor 
+rarity=R
+mana={1}{B}{B}
+type=Creature
+subtype=Human Advisor
+auto={T}:2/0 target(creature|myBattlefield)
+power=1
+toughness=1
+abilities=legendary
+[/card]
+[card]
+text=Yellow Scarves Troops can't block.
+id=10542
+name=Yellow Scarves Troops
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+abilities=cantblock
+[/card]
+[card]
+text=Young Wei Recruits can't block.
+id=10584
+name=Young Wei Recruits
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+abilities=cantblock
+[/card]
+[card]
+text=Whenever Yuan Shao's Infantry attacks alone, Yuan Shao's Infantry is unblockable this combat.
+id=10559
+name=Yuan Shao's Infantry
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(other creature[attacking](creature|myBattlefield) -unblockable
+power=2
+toughness=2
+abilities=unblockable
+[/card]
+[card]
+text=Zhou Yu, Chief Commander can't attack unless defending player controls an Island.
+id=10525
+name=Zhou Yu, Chief Commander
+rarity=R
+mana={5}{U}{U}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(island|opponentBattlefield) -cantattack
+power=8
+toughness=8
+abilities=cantattack
+[/card]
+[card]
+text={T}: Target creature is unblockable this turn. Activate this ability only during your turn, before attackers are declared.
+id=10711
+name=Zhuge Jin, Wu Strategist
+rarity=R
+mana={1}{U}{U}
+type=Creature
+subtype=Human Advisor
+auto={T}:unblockable target(creature)
+power=1
+toughness=1
+abilities=legendary
+[/card]
+[card]
+text=Mountainwalk
+id=10534
+name=Zodiac Dog
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Hound
+power=2
+toughness=2
+abilities=mountainwalk
+[/card]
+[card]
+text=When Zodiac Dragon is put into your graveyard from the battlefield, you may return it to your hand.
+auto=@movedTo(this|mygraveyard) from(mybattlefield):may moveTo(ownerhand)
+id=10510
+name=Zodiac Dragon
+rarity=R
+mana={7}{R}{R}
+type=Creature
+subtype=Dragon
+power=8
+toughness=8
+[/card]
+[card]
+text=Mountainwalk
+id=10540
+name=Zodiac Goat
+rarity=C
+mana={R}
+type=Creature
+subtype=Goat
+power=1
+toughness=1
+abilities=mountainwalk
+[/card]
+[card]
+text=Islandwalk
+id=10598
+name=Zodiac Horse
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Horse
+power=3
+toughness=3
+abilities=islandwalk
+[/card]
+[card]
+text=Forestwalk
+id=10558
+name=Zodiac Monkey
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Ape
+power=2
+toughness=1
+abilities=forestwalk
+[/card]
+[card]
+text=Swampwalk
+id=10636
+name=Zodiac Ox
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Ox
+power=3
+toughness=3
+abilities=swampwalk
+[/card]
+[card]
+text=Swampwalk
+id=10586
+name=Zodiac Pig
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Boar
+power=3
+toughness=3
+abilities=swampwalk
+[/card]
+[card]
+text=Forestwalk
+id=10582
+name=Zodiac Rabbit 
+rarity=C
+mana={G}
+type=Creature
+subtype=Rabbit
+power=1
+toughness=1
+abilities=forestwalk
+[/card]
+[card]
+text=Swampwalk
+id=10564
+name=Zodiac Rat 
+rarity=C
+mana={B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+abilities=swampwalk
+[/card]
+[card]
+text=Plainswalk
+id=10506
+name=Zodiac Rooster 
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Bird
+power=2
+toughness=1
+abilities=plainswalk
+[/card]
+[card]
+text=Swampwalk
+id=10608
+name=Zodiac Snake
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Snake
+power=2
+toughness=2
+abilities=swampwalk
+[/card]
+[card]
+text=Forestwalk
+id=10594
+name=Zodiac Tiger 
+rarity=U
+mana={2}{G}{G}
+type=Creature
+subtype=Tiger 
+power=3
+toughness=4
+abilities=forestwalk
 [/card]
