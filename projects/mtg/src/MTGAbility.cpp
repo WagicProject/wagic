@@ -2096,8 +2096,10 @@ ostream& ListMaintainerAbility::toString(ostream& out) const
 
 TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who):TriggeredAbility(id, source,target),phaseId(_phaseId),who(who){
   GameObserver * g = GameObserver::GetInstance();
-  newPhase = g->getCurrentGamePhase();
-  currentPhase = newPhase;
+  if (g) {
+    newPhase = g->getCurrentGamePhase();
+    currentPhase = newPhase;
+  }
 }
 
 int TriggerAtPhase::trigger(){

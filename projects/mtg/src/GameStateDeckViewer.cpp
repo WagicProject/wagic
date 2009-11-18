@@ -7,7 +7,6 @@
 #include "../include/Translate.h"
 #include "../include/ManaCostHybrid.h"
 #include "../include/MTGCardInstance.h"
-#include "../include/MTGCardInstance.h"
 #include <vector>
 
 
@@ -1008,7 +1007,6 @@ void GameStateDeckViewer::updateStats() {
   stw.countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
   stw.totalPrice = myDeck->totalPrice();
 
-  stw.countManaProducers = 0;
   stw.countManaProducers = 0;
   // Mana cost
   int currentCount, convertedCost;
