@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=4476
 name=Abduction
 mana={2}{U}{U}
@@ -116,23 +116,6 @@ toughness=5
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Arctic Wolves enters the battlefield, draw a card.
 rarity=U
 [/card]
-
-[card]
-id=4568
-name=Argivian Find
-mana={W}
-type=Instant
-text=Return target artifact or enchantment card from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=4480
-name=Argivian Restoration
-mana={2}{U}{U}
-type=Sorcery
-text=Return target artifact card from your graveyard to the battlefield.
-rarity=U
-[/card]
 [card]
 id=4569
 name=Aura of Silence
@@ -186,17 +169,6 @@ text=Banding (Any creatures with banding, and up to one without, can attack in a
 rarity=C
 [/card]
 [card]
-id=4571
-name=Benalish Knight
-mana={2}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=Flash (You may cast this spell any time you could cast an instant.) First strike (This creature deals combat damage before creatures without first strike.)
-rarity=C
-[/card]
-[card]
 id=4572
 name=Benalish Missionary
 mana={W}
@@ -217,25 +189,6 @@ text=Enchant creature Sacrifice an untapped creature: Enchanted creature gets +2
 rarity=C
 [/card]
 [card]
-id=4536
-name=Bloodrock Cyclops
-mana={2}{R}
-type=Creature
-subtype=Cyclops
-power=3
-toughness=3
-text=Bloodrock Cyclops attacks each turn if able.
-rarity=C
-[/card]
-[card]
-id=4508
-name=Blossoming Wreath
-mana={G}
-type=Instant
-text=You gain life equal to the number of creature cards in your graveyard.
-rarity=C
-[/card]
-[card]
 id=4537
 name=Bogardan Firefiend
 mana={2}{R}
@@ -244,14 +197,6 @@ subtype=Elemental Spirit
 power=2
 toughness=1
 text=When Bogardan Firefiend is put into a graveyard from the battlefield, it deals 2 damage to target creature.
-rarity=C
-[/card]
-[card]
-id=4538
-name=Boiling Blood
-mana={2}{R}
-type=Instant
-text=Target creature attacks this turn if able. Draw a card.
 rarity=C
 [/card]
 [card]
@@ -272,15 +217,6 @@ mana={3}
 type=Artifact
 text={3}, {T}: Until end of turn, if the top card of your graveyard is an instant or sorcery card, you may cast that card. If a card cast this way would be put into a graveyard this turn, exile it instead.
 rarity=R
-[/card]
-[card]
-id=4509
-name=Briar Shield
-mana={G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1. Sacrifice Briar Shield: Enchanted creature gets +3/+3 until end of turn.
-rarity=C
 [/card]
 [card]
 id=4430
@@ -323,17 +259,6 @@ text=Cast Choking Vines only during the declare blockers step. X target attackin
 rarity=C
 [/card]
 [card]
-id=4539
-name=Cinder Giant
-mana={3}{R}
-type=Creature
-subtype=Giant
-power=5
-toughness=3
-text=At the beginning of your upkeep, Cinder Giant deals 2 damage to each other creature you control.
-rarity=U
-[/card]
-[card]
 id=4540
 name=Cinder Wall
 mana={R}
@@ -353,17 +278,6 @@ subtype=Bird
 power=3
 toughness=2
 text=Flying You may discard Circling Vultures any time you could cast an instant. At the beginning of your upkeep, sacrifice Circling Vultures unless you exile the top creature card of your graveyard.
-rarity=U
-[/card]
-[card]
-id=4482
-name=Cloud Djinn
-mana={5}{U}
-type=Creature
-subtype=Djinn
-power=5
-toughness=4
-text=Flying Cloud Djinn can block only creatures with flying.
 rarity=U
 [/card]
 [card]
@@ -408,14 +322,6 @@ text=Choose a source you control and flip a coin. If you win the flip, the next 
 rarity=U
 [/card]
 [card]
-id=4432
-name=Dingus Staff
-mana={4}
-type=Artifact
-text=Whenever a creature is put into a graveyard from the battlefield, Dingus Staff deals 2 damage to that creature's controller.
-rarity=U
-[/card]
-[card]
 id=4483
 name=Disrupt
 mana={U}
@@ -430,25 +336,6 @@ mana={B}{B}{B}
 type=Sorcery
 text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
 rarity=R
-[/card]
-[card]
-id=4513
-name=Downdraft
-mana={2}{G}
-type=Enchantment
-text={G}: Target creature loses flying until end of turn.  Sacrifice Downdraft: Downdraft deals 2 damage to each creature with flying.
-rarity=U
-[/card]
-[card]
-id=4574
-name=Duskrider Falcon
-mana={1}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-text=Flying, protection from black
-rarity=C
 [/card]
 [card]
 id=4543
@@ -471,15 +358,6 @@ power=1
 toughness=2
 text={T}: Switch target creature's power and toughness until end of turn.
 rarity=R
-[/card]
-[card]
-id=4575
-name=Empyrial Armor
-mana={1}{W}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1 for each card in your hand.
-rarity=C
 [/card]
 [card]
 id=4484
@@ -520,22 +398,6 @@ text=Destroy target creature that was dealt damage this turn. It can't be regene
 rarity=C
 [/card]
 [card]
-id=4545
-name=Fervor
-mana={2}{R}
-type=Enchantment
-text=Creatures you control have haste.
-rarity=R
-[/card]
-[card]
-id=4456
-name=Festering Evil
-mana={3}{B}{B}
-type=Enchantment
-text=At the beginning of your upkeep, Festering Evil deals 1 damage to each creature and each player.  {B}{B}, Sacrifice Festering Evil: Festering Evil deals 3 damage to each creature and each player.
-rarity=U
-[/card]
-[card]
 id=4546
 name=Fire Whip
 mana={1}{R}
@@ -551,25 +413,6 @@ mana={R}
 type=Instant
 text=As an additional cost to cast Firestorm, discard X cards. Firestorm deals X damage to each of X target creatures and/or players.
 rarity=R
-[/card]
-[card]
-id=4548
-name=Fit of Rage
-mana={1}{R}
-type=Sorcery
-text=Target creature gets +3/+3 and gains first strike until end of turn.
-rarity=C
-[/card]
-[card]
-id=4457
-name=Fledgling Djinn
-mana={1}{B}
-type=Creature
-subtype=Djinn
-power=2
-toughness=2
-text=Flying At the beginning of your upkeep, Fledgling Djinn deals 1 damage to you.
-rarity=C
 [/card]
 [card]
 id=4485
@@ -640,14 +483,6 @@ text=Gemstone Mine enters the battlefield with three mining counters on it. {T},
 rarity=U
 [/card]
 [card]
-id=4577
-name=Gerrard's Wisdom
-mana={2}{W}{W}
-type=Sorcery
-text=You gain 2 life for each card in your hand.
-rarity=U
-[/card]
-[card]
 id=4549
 name=Goblin Bomb
 mana={1}{R}
@@ -675,14 +510,6 @@ subtype=Goblin Rogue
 power=1
 toughness=1
 text=Whenever Goblin Vandal attacks and isn't blocked, you may pay {R}. If you do, destroy target artifact defending player controls and Goblin Vandal assigns no combat damage this turn.
-rarity=C
-[/card]
-[card]
-id=4578
-name=Guided Strike
-mana={1}{W}
-type=Instant
-text=Target creature gets +1/+0 and gains first strike until end of turn.  Draw a card.
 rarity=C
 [/card]
 [card]
@@ -721,17 +548,6 @@ text=At end of combat, destroy each creature that blocked or was blocked this tu
 rarity=R
 [/card]
 [card]
-id=4579
-name=Heavy Ballista
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=3
-text={T}: Heavy Ballista deals 2 damage to target attacking or blocking creature.
-rarity=U
-[/card]
-[card]
 id=4460
 name=Hidden Horror
 mana={1}{B}{B}
@@ -752,14 +568,6 @@ power=2
 toughness=3
 text=When Hurloon Shaman is put into a graveyard from the battlefield, each player sacrifices a land.
 rarity=U
-[/card]
-[card]
-id=4461
-name=Infernal Tribute
-mana={B}{B}{B}
-type=Enchantment
-text={2}, Sacrifice a nontoken permanent: Draw a card.
-rarity=R
 [/card]
 [card]
 id=4580
@@ -798,17 +606,6 @@ text=Enchant creature Enchanted creature can't be blocked by creatures with powe
 rarity=C
 [/card]
 [card]
-id=4555
-name=Lava Hounds
-mana={2}{R}{R}
-type=Creature
-subtype=Hound
-power=4
-toughness=4
-text=Haste When Lava Hounds enters the battlefield, it deals 4 damage to you.
-rarity=U
-[/card]
-[card]
 id=4556
 name=Lava Storm
 mana={3}{R}{R}
@@ -837,17 +634,6 @@ power=4
 toughness=4
 text=Tap an untapped creature you control: Llanowar Behemoth gets +1/+1 until end of turn.
 rarity=U
-[/card]
-[card]
-id=4521
-name=Llanowar Druid
-mana={1}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=2
-text={T}, Sacrifice Llanowar Druid: Untap all Forests.
-rarity=C
 [/card]
 [card]
 id=4522
@@ -897,17 +683,6 @@ text=Manta Ray can't attack unless defending player controls an Island. Manta Ra
 rarity=C
 [/card]
 [card]
-id=4557
-name=Maraxus of Keld
-mana={4}{R}{R}
-type=Legendary Creature
-subtype=Human Warrior
-power=*
-toughness=*
-text=Maraxus of Keld's power and toughness are each equal to the number of untapped artifacts, creatures, and lands you control.
-rarity=R
-[/card]
-[card]
 id=4582
 name=Master of Arms
 mana={2}{W}
@@ -928,14 +703,6 @@ power=1
 toughness=2
 text=When Merfolk Traders enters the battlefield, draw a card, then discard a card.
 rarity=C
-[/card]
-[card]
-id=4436
-name=Mind Stone
-mana={2}
-type=Artifact
-text={T}: Add {1} to your mana pool. {1}, {T}, Sacrifice Mind Stone: Draw a card.
-rarity=U
 [/card]
 [card]
 id=4462
@@ -989,14 +756,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature {1}, Exile the top card of your graveyard: Enchanted creature gets +1/+1 until end of turn.
 rarity=C
-[/card]
-[card]
-id=4525
-name=Nature's Resurgence
-mana={2}{G}{G}
-type=Sorcery
-text=Each player draws a card for each creature card in his or her graveyard.
-rarity=R
 [/card]
 [card]
 id=4464
@@ -1089,17 +848,6 @@ text=All creatures have "At the beginning of your upkeep, sacrifice this creatur
 rarity=R
 [/card]
 [card]
-id=4494
-name=Phantom Warrior
-mana={1}{U}{U}
-type=Creature
-subtype=Illusion Warrior
-power=2
-toughness=2
-text=Phantom Warrior is unblockable.
-rarity=U
-[/card]
-[card]
 id=4495
 name=Phantom Wings
 mana={1}{U}
@@ -1123,35 +871,6 @@ mana={2}{U}{U}
 type=Enchantment
 text=Cumulative upkeep—Draw a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) At the beginning of your end step, sacrifice a land and discard your hand.
 rarity=R
-[/card]
-[card]
-id=4466
-name=Razortooth Rats
-mana={2}{B}
-type=Creature
-subtype=Rat
-power=2
-toughness=1
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
-rarity=C
-[/card]
-[card]
-id=4526
-name=Redwood Treefolk
-mana={4}{G}
-type=Creature
-subtype=Treefolk
-power=3
-toughness=6
-rarity=C
-[/card]
-[card]
-id=4497
-name=Relearn
-mana={1}{U}{U}
-type=Sorcery
-text=Return target instant or sorcery card from your graveyard to your hand.
-rarity=U
 [/card]
 [card]
 id=4585
@@ -1217,22 +936,6 @@ text=If Scorched Ruins would enter the battlefield, sacrifice two untapped lands
 rarity=R
 [/card]
 [card]
-id=4586
-name=Serenity
-mana={1}{W}
-type=Enchantment
-text=At the beginning of your upkeep, destroy all artifacts and enchantments. They can't be regenerated.
-rarity=R
-[/card]
-[card]
-id=4587
-name=Serra's Blessing
-mana={1}{W}
-type=Enchantment
-text=Creatures you control have vigilance. (Attacking doesn't cause them to tap.)
-rarity=U
-[/card]
-[card]
 id=4439
 name=Serrated Biskelion
 mana={3}
@@ -1263,28 +966,6 @@ text=Return X target creature cards from your graveyard to your hand. You lose X
 rarity=C
 [/card]
 [card]
-id=4588
-name=Soul Shepherd
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=1
-text={W}, Exile a creature card from your graveyard: You gain 1 life.
-rarity=C
-[/card]
-[card]
-id=4589
-name=Southern Paladin
-mana={2}{W}{W}
-type=Creature
-subtype=Human Knight
-power=3
-toughness=3
-text={W}{W}, {T}: Destroy target red permanent.
-rarity=R
-[/card]
-[card]
 id=4469
 name=Spinning Darkness
 mana={4}{B}{B}
@@ -1302,36 +983,6 @@ power=3
 toughness=4
 text=You can't cast creature spells.
 rarity=U
-[/card]
-[card]
-id=4470
-name=Strands of Night
-mana={2}{B}{B}
-type=Enchantment
-text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
-rarity=U
-[/card]
-[card]
-id=4441
-name=Straw Golem
-mana={1}
-type=Artifact Creature
-subtype=Golem
-power=2
-toughness=3
-text=When an opponent casts a creature spell, sacrifice Straw Golem.
-rarity=U
-[/card]
-[card]
-id=4528
-name=Striped Bears
-mana={3}{G}
-type=Creature
-subtype=Bear
-power=2
-toughness=2
-text=When Striped Bears enters the battlefield, draw a card.
-rarity=C
 [/card]
 [card]
 id=4529
@@ -1393,28 +1044,6 @@ text=Choose one  EThunderbolt deals 3 damage to target player; or Thunderbolt 
 rarity=C
 [/card]
 [card]
-id=4562
-name=Thundermare
-mana={5}{R}
-type=Creature
-subtype=Elemental Horse
-power=5
-toughness=5
-text=Haste (This creature can attack the turn it comes under your control.) When Thundermare enters the battlefield, tap all other creatures.
-rarity=R
-[/card]
-[card]
-id=4500
-name=Timid Drake
-mana={2}{U}
-type=Creature
-subtype=Drake
-power=3
-toughness=3
-text=Flying When another creature enters the battlefield, return Timid Drake to its owner's hand.
-rarity=U
-[/card]
-[card]
 id=4501
 name=Tolarian Drake
 mana={2}{U}
@@ -1434,33 +1063,6 @@ subtype=Human Wizard
 power=1
 toughness=1
 text=Whenever Tolarian Entrancer becomes blocked by a creature, gain control of that creature at end of combat.
-rarity=R
-[/card]
-[card]
-id=4503
-name=Tolarian Serpent
-mana={5}{U}{U}
-type=Creature
-subtype=Serpent
-power=7
-toughness=7
-text=At the beginning of your upkeep, put the top seven cards of your library into your graveyard.
-rarity=R
-[/card]
-[card]
-id=4444
-name=Touchstone
-mana={2}
-type=Artifact
-text={T}: Tap target artifact you don't control.
-rarity=U
-[/card]
-[card]
-id=4530
-name=Tranquil Grove
-mana={1}{G}
-type=Enchantment
-text={1}{G}{G}: Destroy all other enchantments.
 rarity=R
 [/card]
 [card]
@@ -1503,14 +1105,6 @@ power=1
 toughness=1
 text=When Veteran Explorer is put into a graveyard from the battlefield, each player may search his or her library for up to two basic land cards and put them onto the battlefield. Then each player who searched his or her library this way shuffles it.
 rarity=U
-[/card]
-[card]
-id=4533
-name=Vitalize
-mana={G}
-type=Instant
-text=Untap all creatures you control.
-rarity=C
 [/card]
 [card]
 id=4504

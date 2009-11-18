@@ -1,12 +1,485 @@
 [card]
+text=Vigilance
 id=4567
 name=Ardent Militia
+rarity=C
 mana={4}{W}
 type=Creature
 subtype=Human Soldier
 power=2
 toughness=5
-text=Vigilance
 abilities=vigilance
+[/card]
+[card]
+text=Return target artifact or enchantment card from your graveyard to your hand.
+target=artifact,enchantment|mygraveyard
+auto=moveTo(myhand)
+id=4568
+name=Argivian Find
 rarity=U
+mana={W}
+type=Instant
+[/card]
+[card]
+text=Return target artifact card from your graveyard to the battlefield.
+target=artifact|mygraveyard
+auto=moveTo(myBattlefield)
+id=4480
+name=Argivian Restoration
+rarity=U
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+text=Flash (You may cast this spell any time you could cast an instant.)     First strike (This creature deals combat damage before creatures without first strike.)
+id=4571
+name=Benalish Knight
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+abilities=flash,first strike
+[/card]
+[card]
+text=Bloodrock Cyclops attacks each turn if able.
+id=4536
+name=Bloodrock Cyclops
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Cyclops
+power=3
+toughness=3
+abilities=mustattack
+[/card]
+[card]
+text=You gain life equal to the number of creature cards in your graveyard.
+auto=foreach(creature|mygraveyard) life:1 controller
+id=4508
+name=Blossoming Wreath
+rarity=C
+mana={G}
+type=Instant
+[/card]
+[card]
+text=Target creature attacks this turn if able.   Draw a card.
+target=creature
+auto=mustattack
+auto=draw:1
+id=4538
+name=Boiling Blood
+rarity=C
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +1/+1.   Sacrifice Briar Shield: Enchanted creature gets +3/+3 until end of turn.
+id=4509
+target=creature
+auto=1/1
+auto={S}:3/3
+name=Briar Shield
+rarity=C
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=At the beginning of your upkeep, Cinder Giant deals 2 damage to each other creature you control.
+auto=@each my upkeep:damage:2 all(other creature|myBattlefield)
+id=4539
+name=Cinder Giant
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Giant
+power=5
+toughness=3
+[/card]
+[card]
+text=Flying   Cloud Djinn can block only creatures with flying.
+id=4482
+name=Cloud Djinn
+rarity=U
+mana={5}{U}
+type=Creature
+subtype=Djinn
+power=5
+toughness=4
+abilities=flying,cloud
+[/card]
+[card]
+text=Whenever a creature is put into a graveyard from the battlefield, Dingus Staff deals 2 damage to that creature's controller.
+id=4432
+auto=@movedTo(creature|mygraveyard) from(myBattlefield):life:-2 controller
+auto=@movedTo(creature|opponentgraveyard) from(opponentBattlefield):life:-2 opponent
+name=Dingus Staff
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+[card]
+text={G}: Target creature loses flying until end of turn.   Sacrifice Downdraft: Downdraft deals 2 damage to each creature with flying.
+id=4513
+auto={G}:-flying target(creature)
+auto={S}:Damage:2 all(creature[flying]) 
+name=Downdraft
+rarity=U
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+text=Flying, protection from black
+id=4574
+name=Duskrider Falcon
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+abilities=flying,protection from black
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +1/+1 for each card in your hand.
+id=4575
+target=creature
+auto=foreach(*|myhand) 1/1
+name=Empyrial Armor
+rarity=C
+mana={1}{W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Creatures you control have haste.
+id=4545
+auto=lord(creature|myBattlefield) haste
+name=Fervor
+rarity=R
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+text=At the beginning of your upkeep, Festering Evil deals 1 damage to each creature and each player.   {B}{B}, Sacrifice Festering Evil: Festering Evil deals 3 damage to each creature and each player.
+id=4456
+auto=@each my upkeep:damage:1 all(creature,player)
+auto={B}{B}{S}:damage:3 all(creature,player)
+name=Festering Evil
+rarity=U
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
+text=Target creature gets +3/+3 and gains first strike until end of turn.
+target=creature
+auto=3/3
+auto=first strike
+id=4548
+name=Fit of Rage
+rarity=C
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+text=Flying    At the beginning of your upkeep, Fledgling Djinn deals 1 damage to you.
+auto=@each my upkeep:damage:1 controller
+id=4457
+name=Fledgling Djinn
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Djinn
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=You gain 2 life for each card in your hand.
+auto=foreach(*|myhand) life:2 controller
+id=4577
+name=Gerrard's Wisdom
+rarity=U
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+text=Target creature gets +1/+0 and gains first strike until end of turn.   Draw a card.
+target=creature
+auto=1/0
+auto=first strike
+auto=draw:1
+id=4578
+name=Guided Strike
+rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text={T}: Heavy Ballista deals 2 damage to target attacking or blocking creature.
+id=4579
+name=Heavy Ballista
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+auto={T}:Damage:2 target(creature[attacking;blocking])
+power=2
+toughness=3
+[/card]
+[card]
+text={2}, Sacrifice a nontoken permanent: Draw a card.
+id=4461
+auto={2}{S(*[-token]|myBattlefield)}:draw:1
+name=Infernal Tribute
+rarity=R
+mana={B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+text=Haste   When Lava Hounds enters the battlefield, it deals 4 damage to you.
+id=4555
+name=Lava Hounds
+rarity=U
+mana={2}{R}{R}
+auto=damage:4 controller
+type=Creature
+subtype=Hound
+power=4
+toughness=4
+abilities=haste
+[/card]
+[card]
+text={T}, Sacrifice Llanowar Druid: Untap all Forests.
+id=4521
+name=Llanowar Druid
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+auto={T}{S}:untap all(forest)
+power=1
+toughness=2
+[/card]
+[card]
+text=Maraxus of Keld's power and toughness are each equal to the number of untapped artifacts, creatures, and lands you control.
+id=4557
+name=Maraxus of Keld
+rarity=R
+mana={4}{R}{R}
+auto=foreach(artifact[-tapped]|myBattlefield) 1/1
+auto=foreach(creature[-tapped]|myBattlefield) 1/1
+auto=foreach(land[-tapped]|myBattlefield) 1/1
+type=Creature
+subtype=Human Warrior
+power=*
+toughness=*
+abilities=legendary
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Mind Stone: Draw a card.
+id=4436
+auto={T}:Add {1}
+auto={1}{T}{S}:draw:1
+name=Mind Stone
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Each player draws a card for each creature card in his or her graveyard.
+auto=foreach(creature|mygraveyard) draw:1 controller
+auto=foreach(creature|opponentgraveyard) draw:1 opponent
+id=4525
+name=Nature's Resurgence
+rarity=R
+mana={2}{G}{G}
+type=Instant
+[/card]
+[card]
+text=Phantom Warrior is unblockable.
+id=4494
+name=Phantom Warrior
+rarity=U
+mana={1}{U}{U}
+type=Creature
+subtype=Illusion Warrior
+power=2
+toughness=2
+abilities=unblockable
+[/card]
+[card]
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+id=4466
+name=Razortooth Rats
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+abilities=fear
+[/card]
+[card]
+text=
+id=4526
+name=Redwood Treefolk
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Treefolk
+power=3
+toughness=6
+[/card]
+[card]
+text=Return target instant or sorcery card from your graveyard to your hand.
+target=instant,sorcery|mygraveyard
+auto=moveTo(myhand)
+id=4497
+name=Relearn
+rarity=U
+mana={1}{U}{U}
+type=Sorcery
+[/card]
+[card]
+text=At the beginning of your upkeep, destroy all artifacts and enchantments. They can't be regenerated.
+auto=@each my upkeep:bury all(artifact,enchantment)
+id=4586
+name=Serenity
+rarity=R
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text=Creatures you control have vigilance. (Attacking doesn't cause them to tap.)
+id=4587
+auto=lord(creature|myBattlefield) vigilance
+name=Serra's Blessing
+rarity=U
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+text={T}, Exile a creature card from your graveyard: You gain 1 life.
+id=4588
+name=Soul Shepherd
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+auto={W}:Exile target(creature|mygraveyard) && life:1 controller
+power=2
+toughness=1
+[/card]
+[card]
+text={W}{W}, {T}: Destroy target red permanent.
+id=4589
+name=Southern Paladin
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+auto={W}{W}{T}:destroy target(*[red])
+power=3
+toughness=3
+[/card]
+[card]
+text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
+id=4470
+auto={B}{B}{S(swamp|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard) && life:-2 controller
+name=Strands of Night
+rarity=U
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+text=When an opponent casts a creature spell, sacrifice Straw Golem.
+auto=@movedto(creature|opponentstack):bury
+id=4441
+name=Straw Golem
+rarity=U
+mana={1}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=3
+[/card]
+[card]
+text=When Striped Bears enters the battlefield, draw a card.
+id=4528
+name=Striped Bears
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Bear
+auto=draw:1
+power=2
+toughness=2
+[/card]
+[card]
+text=Haste (This creature can attack the turn it comes under your control.)  When Thundermare comes into play, tap all other creatures.
+auto=tap all(other creature)
+id=4562
+name=Thundermare
+rarity=R
+mana={5}{R}
+type=Creature
+subtype=Elemental Horse
+power=5
+toughness=5
+abilities=haste
+[/card]
+[card]
+text=Flying   When another creature enters the battlefield, return Timid Drake to its owner's hand.
+auto=@movedTo(creature|battlefield):moveTo(ownerHand)
+id=4500
+name=Timid Drake
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=At the beginning of your upkeep, put the top seven cards of your library into your graveyard.
+auto=@each my upkeep:deplete:7 controller
+id=4503
+name=Tolarian Serpent
+rarity=R
+mana={5}{U}{U}
+type=Creature
+subtype=Serpent
+power=7
+toughness=7
+[/card]
+[card]
+text={T}: Tap target artifact you don't control.
+id=4444
+auto={T}:tap target(artifact|opponentBattlefield)
+name=Touchstone
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
+text={1}{G}{G}: Destroy all other enchantments.
+auto={1}{G}{G}:Destroy all(other enchantment)
+id=4530
+name=Tranquil Grove
+rarity=R
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+text=Untap all creatures you control.
+auto=untap all(creature|myBattlefield)
+id=4533
+name=Vitalize
+rarity=C
+mana={G}
+type=Instant
 [/card]
