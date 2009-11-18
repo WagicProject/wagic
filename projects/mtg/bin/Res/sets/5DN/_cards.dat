@@ -1,13 +1,623 @@
 [card]
+text=Search target opponent's library for an artifact card and put that card ontto the battlefield under your control. Then that player shuffles his or her library.
+target=artifact|opponentLibrary
+auto=moveTo(myBattlefield)
+id=51088
+name=Acquire
+rarity=R
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+[card]
+text={U}: Advanced Hoverguard gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=50144
 name=Advanced Hoverguard
+rarity=C
 mana={3}{U}
 type=Creature
 subtype=Drone
+auto={U}:shroud
 power=2
 toughness=2
-text=Flying {U}: Advanced Hoverguard gains shroud until end of turn. (It can't be the target of spells or abilities.)
 abilities=flying
-auto={U}:shroud
+[/card]
+[card]
+text=When Anodet Lurker is put into a graveyard from the battlefield, you gain 3 life.
+auto=@movedTo(this|graveyard) from(battlefield):life:3 controller
+id=51119
+name=Anodet Lurker
 rarity=C
+mana={5}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=3
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=51230
+name=Arachnoid
+rarity=U
+mana={6}
+type=Artifact Creature
+subtype=Spider
+power=2
+toughness=6
+[/card]
+[card]
+text=Protection from black and from red   Whenever another creature enters the battlefield, you may gain 1 life.
+id=72921
+auto=@movedTo(creature|battlefield):may life:1
+name=Auriok Champion
+rarity=R
+mana={W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+abilities=protection from black,protecion from red
+[/card]
+[card]
+text=Battered Golem doesn't untap during your untap step.   Whenever an artifact enters the battlefield, you may untap Battered Golem.
+auto=@movedTo(creature|battlefield):untap
+id=73932
+name=Battered Golem
+rarity=C
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=2
+abilities=doesnotuntap
+[/card]
+[card]
+text=Put a 1/1 green Insect creature token onto the battlefield for each Forest you control. Shuffle Beacon of Creation into its owner's library.
+alias=135262
+id=51613
+name=Beacon of Creation
+auto=foreach(forest|mybattlefield) token(Insect,Creature insect,1/1,green)
+rarity=R
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+text=Beacon of Destruction deals 5 damage to target creature or player. Shuffle Beacon of Destruction into its owner's library.
+id=51612
+name=Beacon of Destruction
+target=creature,player
+auto=damage:5
+rarity=R
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
+text=Double target player's life total. Shuffle Beacon of Immortality into its owner's library.
+id=50141
+target=player
+name=Beacon of Immortality
+rarity=R
+type=Instant
+mana={5}{W}
+[/card]
+[card]
+text=Put target artifact or creature card in a graveyard onto the battlefield under your control. Shuffle Beacon of Unrest into its owner's library.
+id=51611
+target=creature,artifact|graveyard
+auto=moveto(myBattlefield)
+alias=135262
+name=Beacon of Unrest
+rarity=R
+type=Sorcery
+mana={3}{B}{B}
+[/card]
+[card]
+text={T}, Sacrifice a creature: Blasting Station deals 1 damage to target creature or player.   Whenever a creature enters the battlefield, you may untap Blasting Station.
+auto=@movedTo(creature|battlefield):may untap
+auto={T}{S(creature|myBattlefield)}:damage:1 target(creature,player)
+id=51131
+name=Blasting Station
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Whenever a player casts a spell, Blind Creeper gets -1/-1 until end of turn.
+id=50212
+auto=@movedTo(*|stack):-1/-1 ueot
+name=Blind Creeper
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Zombie Beast
+power=3
+toughness=3
+[/card]
+[card]
+text={T}: Target player loses 1 life.
+id=73597
+auto={T}:life-1 controller
+auto={T}:life-1 opponent
+name=Cackling Imp
+rarity=C
+mana={2}{B}{B}
+type=Creature
+subtype=Imp
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Add {W}{U}{B}{R}{G} to your mana pool.
+id=73565
+auto=Add{W}{U}{B}{R}{G}
+name=Channel the Suns
+rarity=U
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+text=Sacrifice Composite Golem: Add {W}{U}{B}{R}{G} to your mana pool.
+auto={S}:Add {W}{U}{B}{R}{G}
+id=73557
+name=Composite Golem
+rarity=U
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=4
+toughness=4
+[/card]
+[card]
+text=
+id=51189
+name=Dross Crocodile
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Zombie Crocodile
+power=5
+toughness=1
+[/card]
+[card]
+text=Flying   Whenever a player casts a spell, you lose 1 life.
+id=51095
+auto=@movedTo(*|stack):life:-1 controller
+name=Ebon Drake
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Drake
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=When Eternal Witness enters the battlefield, you may return target card from your graveyard to your hand.
+id=51628
+auto=may moveTo(myhand) target(*|mygraveyard)
+name=Eternal Witness
+rarity=U
+mana={1}{G}{G}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=1
+[/card]
+[card]
+text=Feedback Bolt deals damage to target player equal to the number of artifacts you control.
+id=46108
+name=Feedback Bolt
+target=player
+auto=foreach(artifact|myBattlefield) damage:1
+rarity=U
+mana={4}{R}
+type=Instant
+[/card]
+[card]
+text=Discard an artifact card: Fleshgrafter gets +2/+2 until end of turn.
+id=50209
+auto={S(artifact|myhand)}:2/2
+name=Fleshgrafter
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=2
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {R}: Furnace Whelp gets +1/+0 until end of turn.
+id=73578
+name=Furnace Whelp
+rarity=U
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+auto={R}:1/0
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=First strike   Goblin Brawler can't be equipped.
+id=51170
+name=Goblin Brawler
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
+text={T}, Sacrifice an artifact: Target player puts the top three cards of his or her library into his or her graveyard.   Whenever an artifact enters the battlefield, you may untap Grinding Station
+auto=@movedTo(artifact|battlefield):may untap
+auto={T}{S(artifact|myBattlefield)}:deplete:3 target(player)
+id=51229
+name=Grinding Station
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Haste   Iron-Barb Hellion can't block.
+id=44608
+name=Iron-Barb Hellion
+rarity=U
+mana={5}{R}
+type=Creature
+subtype=Hellion Beast
+power=5
+toughness=4
+abilities=haste,cantblock
+[/card]
+[card]
+text=Lands you control have "{T}: Add one mana of any color to your mana pool."
+auto=lord(land|myBattlefield) {T}: add{G}
+auto=lord(land|myBattlefield) {T}: add{R}
+auto=lord(land|myBattlefield) {T}: add{U}
+auto=lord(land|myBattlefield) {T}: add{B}
+auto=lord(land|myBattlefield) {T}: add{W}
+id=72928
+name=Joiner Adept
+rarity=R
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=1
+[/card]
+[card]
+text=Sacrifice an artifact: Add {2} to your mana pool.
+auto={T}{S(artifact|myBattlefield)}:Add:{2}
+id=51633
+name=Krark-Clan Ironworks
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+[card]
+text={R}, Sacrifice an artifact: Target creature can't block this turn.
+id=51097
+name=Krark-Clan Ogre
+rarity=C
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre
+auto={T}{S(artifact|myBattlefield)}:cantblock target(creature) 
+power=3
+toughness=3
+[/card]
+[card]
+text=Vigilance   {W}: Loxodon Stalwart gets +0/+1 until end of turn.
+id=73567
+name=Loxodon Stalwart
+rarity=U
+mana={3}{W}{W}
+type=Creature
+subtype=Elephant Soldier
+auto={W}:0/1
+power=3
+toughness=3
+[/card]
+[card]
+text=When Magma Giant enters the battlefield, it deals 2 damage to each creature and each player.
+id=51102
+name=Magma Giant
+rarity=R
+mana={5}{R}{R}
+type=Creature
+subtype=Giant
+auto=damage:2 all(creature,player) 
+power=5
+toughness=5
+[/card]
+[card]
+text=Add {R} to your mana pool for each tapped land your opponents control.
+id=72727
+name=Mana Geyser
+auto=foreach(land[tapped]|opponentBattlefield) add:{R}
+rarity=C
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text=Whenever an artifact is put into a graveyard from the battlefield, you may put a +1/+1 counter on Moriok Rigger.
+id=51091
+auto=@movedTo(artifact|graveyard) from(battlefield):may counter(1/1)
+name=Moriok Rigger
+rarity=R
+mana={2}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+[card]
+text=At the beginning of your upkeep, if Myr Servitor is on the battlefield, each player returns all cards named Myr Servitor from his or her graveyard to the battlefield.
+auto=@each my upkeep:moveTo(myhand) all(myr servitor|mygraveyard) 
+auto=@each my upkeep:moveTo(opponenthand) all(myr servitor|opponentgraveyard) 
+id=50179
+name=Myr Servitor
+rarity=C
+mana={1}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=1
+[/card]
+[card]
+text=You draw two cards and you lose 2 life.
+id=51178
+name=Night's Whisper
+auto=draw:2
+auto=life:-2 controller
+rarity=U
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+text=Nim Grotesque gets +1/+0 for each artifact you control.
+id=73574
+auto=foreach(artifact|myBattlefield) 1/0
+name=Nim Grotesque
+rarity=U
+mana={6}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=6
+[/card]
+[card]
+text=Plasma Elemental is unblockable.
+id=73562
+name=Plasma Elemental
+rarity=U
+mana={5}{U}
+type=Creature
+subtype=Elemental
+power=4
+toughness=1
+abilities=unblockable
+[/card]
+[card]
+text=Vigilance   As long as Raksha Golden Cub is equipped, Cat creatures you control get +2/+2 and have double strike.
+id=73569
+name=Raksha Golden Cub
+rarity=R
+mana={5}{W}{W}
+type=Creature
+subtype=Cat Soldier
+power=3
+toughness=4
+abilities=vigilance,legendary
+[/card]
+[card]
+text=Relentless Rats gets +1/+1 for each other creature on the battlefield named Relentless Rats.   A deck can have any number of cards named Relentless Rats.
+id=73573
+auto=foreach(relentless rats) 1/1 other
+name=Relentless Rats
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Tap target artifact.
+auto={T}:tap target(artifact)
+id=43574
+name=Relic Barrier
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
+text=Each player returns all artifact cards from his or her graveyard to the battlefield.
+id=51080
+name=Roar of Reclamation
+auto=moveTo(mybattlefield) all(artifact|mygraveyard)
+auto=moveTo(opponentbattlefield) all(artifact|opponentgraveyard)
+rarity=R
+mana={5}{W}{W}
+type=Sorcery
+[/card]
+[card]
+text=Target creature gets +5/+0 and gains haste until end of turn.
+id=51148
+name=Screaming Fury
+auto=5/0
+auto=haste
+rarity=C
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
+id=50136
+name=Skyhunter Prowler
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Cat Knight
+power=1
+toughness=3
+abilities=flying,vigilance
+[/card]
+[card]
+text=Flying, double strike (This creature can't be blocked except by creatures with flying or reach, and it deals both first-strike and regular combat damage.)
+id=51220
+name=Skyhunter Skirmisher
+rarity=U
+mana={1}{W}{W}
+type=Creature
+subtype=Cat Knight
+power=1
+toughness=1
+abilities=flying,doublestrike
+[/card]
+[card]
+text=Trample, haste (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player. This creature can attack and {T} as soon as it comes under your control.)  At end of turn, sacrifice Spark Elemental.
+auto=@next endofturn:bury
+id=129577
+name=Spark Elemental
+rarity=C
+mana={R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=1
+abilities=trample,haste
+[/card]
+[card]
+text={1}: Untap Staff of Domination.   {2}, {T}: You gain 1 life.   {3}, {T}: Untap target creatur   {4}, {T}: Tap target creature.   {5}, {T}: Draw a card.
+auto={1}:untap
+auto={2}{T}:life:1 controller
+auto={3}{T}:untap target(creature)
+auto={4}{T}:tap target(creature)
+auto={5}{T}:draw:1 controller
+id=50162
+name=Staff of Domination
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
+text={T}, Put a 2/2 colorless Pincher creature token onto the battlefield.   Whenever an artifact is put into a graveyard from the battlefield, you may untap Summoning Station.
+auto=@movedTo(artifact|graveyard) from(battlefield):may untap
+auto={T}:token(Pincher,creature artifact pincher, 2/2, artifact)
+id=72858
+name=Summoning Station
+rarity=R
+mana={7}
+type=Artifact
+[/card]
+[card]
+text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
+alias=1238
+id=50203
+name=Tangle Asp
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Snake
+power=1
+toughness=2
+[/card]
+[card]
+text={G}, {T}, Sacrifice a Forest: Regenerate target creature.
+id=73582
+name=Tel-Jilad Lifebreather
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Troll Shaman
+auto={G}{T}{S(forest|myBattlefield)}:regenerate target(creature)
+power=3
+toughness=2
+[/card]
+[card]
+text=Sacrifice an artifact: Thermal Navigator gains flying until end of turn.
+auto={S(artifact|myBattlefield)}:flying
+id=50177
+name=Thermal Navigator
+rarity=C
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+[card]
+text={1}{G}: Tyrranax gets -1/+1 until end of turn.
+id=50191
+name=Tyrranax
+rarity=C
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+auto={1}{G}:-1/1
+power=5
+toughness=4
+[/card]
+[card]
+text=Destroy target blocking creature.
+id=51147
+name=Vanquish
+target=creature[blocking]
+auto=destroy
+rarity=U
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text={U}, {T}: Return target permanent you control to its owner's hand.
+auto={U}{T}:moveTo(ownerhand) target(*|myBattlefield)
+id=50834
+name=Vedalken Mastermind
+rarity=U
+mana={U}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=2
+[/card]
+[card]
+text={3}{G}, {T}, Target creature gets +X/+X until end of turn, where X is the number of artifacts your opponents control.
+id=50188
+name=Viridian Lorebearers
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Elf Shaman
+auto={3}{G}{T}:foreach(artifact|opponentBattlefield) 1/1 target(creature)
+power=3
+toughness=3
+[/card]
+[card]
+text={2}{G}, Sacrifice Viridian Scout: Viridian Scout deals 2 damage to target creature with flying.
+id=73583
+name=Viridian Scout
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Elf Warrior Scout
+auto={2}{G}{S}:damage:2 target(creature[flying])
+power=1
+toughness=2
+[/card]
+[card]
+text=Haste   {T}: Vulshok Sorcerer deals 1 damage to target creature or player.
+id=51177
+name=Vulshok Sorcerer
+rarity=C
+mana={1}{R}{R}
+type=Creature
+subtype=Human Shaman
+auto={T}:damage:1 target(creature,player)
+power=1
+toughness=1
+abilities=haste
 [/card]
