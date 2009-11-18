@@ -1,0 +1,23 @@
+#NAME: Sylvan Scrying
+#DESC: Bug report: Sylvan Scrying uses
+#DESC: the mana but does nothing else.
+#DESC: This couldn't be reproduced, the
+#DESC: test script succeeds.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=195
+[INIT]
+firstmain
+[PLAYER1]
+hand:Sylvan Scrying
+library:Plains
+manapool:{1}{G}
+[PLAYER2]
+[DO]
+Sylvan Scrying
+Plains
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Sylvan Scrying
+hand:Plains
+[PLAYER2]
+[END]

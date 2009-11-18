@@ -1,0 +1,42 @@
+#NAME: Colossus of Sardia cost-free untap?
+#DESC: User bug report: Colossus of Sardia
+#DESC: can be untapped without paying its cost.
+#DESC: Bug could not be reproduced.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Colossus of Sardia,1373,1374,1375,3562,3563,3564,3565,4409,4410,4411,4412,4922
+hand:Assassinate
+[PLAYER2]
+[DO]
+Colossus of Sardia
+eot
+eot
+next
+3562
+3563
+3564
+3565
+4409
+4410
+4411
+4412
+4922
+Colossus of Sardia
+next
+next
+# cast Assassinate on CoS - will only work if it's still tapped
+1373
+1374
+1375
+Assassinate
+Colossus of Sardia
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Colossus of Sardia,1373,1374,1375,3562,3563,3564,3565,4409,4410,4411,4412,4922
+hand:Assassinate
+manapool:{B}{B}{B}
+[PLAYER2]
+life:11
+[END]

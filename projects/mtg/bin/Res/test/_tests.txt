@@ -97,6 +97,8 @@ civic_wayfinder.txt
 clone.txt
 clone2.txt
 cockatrice.txt
+colossus_of_sardia1.txt
+colossus_of_sardia2.txt
 composite_golem.txt
 control_magic.txt
 control_magic2.txt
@@ -265,6 +267,7 @@ stonebrow2.txt
 stonebrow_i159.txt
 stronghold_discipline.txt
 sword_to_plowshares.txt
+sylvan_scrying_i195.txt
 symbiotic_wurm.txt
 telekinetic_sliver.txt
 terror.txt
