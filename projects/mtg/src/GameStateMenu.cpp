@@ -73,6 +73,7 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
   yW = 55;
   mVolume = 0;
   scroller = NULL;
+  langChoices = false;
 }
 
 GameStateMenu::~GameStateMenu() {}
@@ -303,6 +304,7 @@ void GameStateMenu::loadLangMenu(){
       file.close();
     }
     if (lang.size()){
+      langChoices = true;
       string filen = mDit->d_name;
       langs.push_back(filen.substr(0,filen.size()-4));
       subMenuController->Add(langs.size(),lang.c_str());
@@ -319,7 +321,12 @@ void GameStateMenu::Update(float dt)
         if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR)) {
           if (!subMenuController) loadLangMenu();
         }
-        subMenuController->Update(dt);
+        if(!langChoices){
+          currentState = MENU_STATE_MAJOR_LOADING_CARDS;
+          SAFE_DELETE(subMenuController);
+        }
+        else
+          subMenuController->Update(dt);
     break;
     case MENU_STATE_MAJOR_LOADING_CARDS :
       if (mReadConf){

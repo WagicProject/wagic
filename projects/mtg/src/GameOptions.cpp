@@ -12,12 +12,12 @@
 const char * Options::optionNames[] = {
 //Global options
   "Profile",
-  "Lang",
   "prx_handler",
   "prx_rimom",
   "prx_eviltwin",
   "prx_rnddeck",
 //Options set on a per-profile basis
+  "Lang",
   "Theme",
   "Mode",
   "musicVolume",

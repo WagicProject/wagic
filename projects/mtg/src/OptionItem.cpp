@@ -291,7 +291,91 @@ void OptionProfile::confirmChange(bool confirmed){
   }
   return;
 }
+//OptionLanguage
+OptionLanguage::OptionLanguage(string _displayValue) : OptionSelect(Options::LANG,_displayValue)
+{
+  Reload();
+  initSelections();
+};
 
+void OptionLanguage::setData(){
+  if(id == INVALID_OPTION) return;
+
+  if (value < selections.size()){
+    options[id] = GameOption(actual_data[value]);
+    Translator::EndInstance();
+    Translator::GetInstance()->init();
+  }
+}
+void OptionLanguage::confirmChange(bool confirmed){
+  if(!confirmed)   
+    value = prior_value;
+  else{
+    setData();
+    if(Changed()){
+      options[id] = GameOption(actual_data[value]);
+      Translator::EndInstance();
+      Translator::GetInstance()->init();
+    }
+    prior_value = value;
+  }
+}
+void OptionLanguage::Reload(){  
+  struct dirent *mDit;
+  DIR *mDip;
+
+  mDip = opendir("Res/lang"); 
+
+  while ((mDit = readdir(mDip))){
+    string filename = "Res/lang/";
+    filename += mDit->d_name;
+    std::ifstream file(filename.c_str());
+    string s;
+    string lang;
+    if(file){
+      if(std::getline(file,s)){
+        if (!s.size()){
+          lang = "";
+        }else{
+          if (s[s.size()-1] == '\r') 
+            s.erase(s.size()-1); //Handle DOS files
+          size_t found = s.find("#LANG:");
+          if (found != 0) lang = "";
+          else lang = s.substr(6);
+        }
+      } 
+      file.close();
+    }
+
+    if (lang.size()){
+      string filen = mDit->d_name;
+      addSelection(filen.substr(0,filen.size()-4),lang);
+    }
+  }
+  closedir(mDip);
+  initSelections();
+}
+void OptionLanguage::addSelection(string s,string show){
+  selections.push_back(show);
+  actual_data.push_back(s);
+}
+void OptionLanguage::initSelections(){
+  //Find currently active bit in the list.
+    for(size_t i=0;i<actual_data.size();i++){
+      if(actual_data[i] == options[id].str)
+        value = i;
+    }
+}
+bool OptionLanguage::Visible(){
+  if(selections.size() > 1)
+    return true;
+  return false;
+}
+bool OptionLanguage::Selectable(){
+  if(selections.size() > 1)
+    return true;
+  return false;
+}
 //OptionDirectory
 void OptionDirectory::Reload(){
   DIR *mDip;

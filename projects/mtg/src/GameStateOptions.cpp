@@ -46,6 +46,9 @@ void GameStateOptions::Start()
 
   optionsList = NEW WGuiList("Game");
   optionsList->Add(NEW WGuiHeader("Interface Options"));
+  WDecoConfirm * cLang = NEW WDecoConfirm(this,NEW OptionLanguage("Language"));
+  cLang->confirm = "Use this Language";
+  optionsList->Add(cLang);
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::CLOSEDHAND,"Closed hand",1,1,0)));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::HANDDIRECTION,"Hand direction",1,1,0)));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MANADISPLAY,"Mana display",2,1,0)));
@@ -120,6 +123,8 @@ void GameStateOptions::Update(float dt)
   }  
   if(mReload){
     options.reloadProfile(true);
+    Translator::EndInstance();
+    Translator::GetInstance()->init();
     optionsTabs->Reload();    
     mReload = false;
   }

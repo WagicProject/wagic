@@ -408,11 +408,28 @@ class OptionSelect:public OptionItem{
    size_t prior_value;
 };
 
+class OptionLanguage: public OptionSelect{
+ public:
+  OptionLanguage(string _displayValue);
+  
+  virtual void addSelection(string s) {addSelection(s,s);};
+  virtual void addSelection(string s,string show);
+  virtual void initSelections();
+  virtual void confirmChange(bool confirmed);
+  virtual void Reload();
+  virtual bool Visible();
+  virtual bool Selectable();
+  virtual void setData();
+protected:
+  vector<string> actual_data;
+};
+
+
 class OptionDirectory:public OptionSelect{
  public:
   virtual void Reload();
   OptionDirectory(string _root, int _id, string _displayValue);
-private:
+ protected:
   string root;
 };
 

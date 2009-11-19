@@ -23,7 +23,6 @@ public:
   enum {
     //Global settings
     ACTIVE_PROFILE,
-    LANG,
     DIFFICULTY_MODE_UNLOCKED,
     MOMIR_MODE_UNLOCKED,
     EVILTWIN_MODE_UNLOCKED,
@@ -31,6 +30,7 @@ public:
     LAST_GLOBAL = RANDOMDECK_MODE_UNLOCKED,
     //Values /must/ match ordering in optionNames, or everything loads wrong.
     //Profile settings    
+    LANG,
     ACTIVE_THEME,
     ACTIVE_MODE,
     MUSICVOLUME,
