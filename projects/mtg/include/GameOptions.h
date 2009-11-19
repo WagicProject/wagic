@@ -27,10 +27,10 @@ public:
     MOMIR_MODE_UNLOCKED,
     EVILTWIN_MODE_UNLOCKED,
     RANDOMDECK_MODE_UNLOCKED,    
+    LANG,
     LAST_GLOBAL = RANDOMDECK_MODE_UNLOCKED,
     //Values /must/ match ordering in optionNames, or everything loads wrong.
     //Profile settings    
-    LANG,
     ACTIVE_THEME,
     ACTIVE_MODE,
     MUSICVOLUME,

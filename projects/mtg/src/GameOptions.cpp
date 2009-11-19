@@ -16,8 +16,8 @@ const char * Options::optionNames[] = {
   "prx_rimom",
   "prx_eviltwin",
   "prx_rnddeck",
-//Options set on a per-profile basis
   "Lang",
+//Options set on a per-profile basis
   "Theme",
   "Mode",
   "musicVolume",
