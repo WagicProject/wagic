@@ -7,17 +7,6 @@ text=If target opponent has more cards in hand than you, draw cards equal to the
 rarity=R
 [/card]
 [card]
-id=10574
-name=Barbarian General
-mana={4}{R}
-type=Creature
-subtype=Human Barbarian Soldier
-power=3
-toughness=2
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=U
-[/card]
-[card]
 id=10549
 name=Borrowing the East Wind
 mana={X}{G}{G}
@@ -50,17 +39,6 @@ subtype=Human Soldier
 power=3
 toughness=3
 text={T}: Target opponent discards two cards. Activate this ability only during your turn, before attackers are declared.
-rarity=R
-[/card]
-[card]
-id=10712
-name=Cao Ren, Wei Commander
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=3
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) When Cao Ren, Wei Commander enters the battlefield, you lose 3 life.
 rarity=R
 [/card]
 [card]
@@ -259,17 +237,6 @@ text={T}: Return Lady Sun and another target creature to their owners' hands. Ac
 rarity=R
 [/card]
 [card]
-id=10609
-name=Lady Zhurong, Warrior Queen
-mana={4}{G}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=4
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=R
-[/card]
-[card]
 id=10499
 name=Liu Bei, Lord of Shu
 mana={3}{W}{W}
@@ -289,39 +256,6 @@ subtype=Wolf
 power=2
 toughness=2
 text=You may have Lone Wolf assign its combat damage as though it weren't blocked.
-rarity=U
-[/card]
-[card]
-id=10536
-name=Lu Bu, Master-at-Arms
-mana={5}{R}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=4
-toughness=3
-text=Haste; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=R
-[/card]
-[card]
-id=10710
-name=Lu Meng, Wu General
-mana={3}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=4
-toughness=4
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=U
-[/card]
-[card]
-id=10616
-name=Lu Xun, Scholar General
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=1
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Whenever Lu Xun, Scholar General deals damage to an opponent, you may draw a card.
 rarity=U
 [/card]
 [card]
@@ -379,31 +313,12 @@ text=Untap all creatures that attacked this turn. After this main phase, there i
 rarity=R
 [/card]
 [card]
-id=10496
-name=Riding Red Hare
-mana={2}{W}
-type=Sorcery
-text=Target creature gets +3/+3 and gains horsemanship until end of turn. (It can't be blocked except by creatures with horsemanship.)
-rarity=C
-[/card]
-[card]
 id=10731
 name=Riding the Dilu Horse
 mana={2}{G}
 type=Sorcery
 text=Target creature gets +2/+2 and gains horsemanship. (It can't be blocked except by creatures with horsemanship. This effect lasts indefinitely.)
 rarity=U
-[/card]
-[card]
-id=10635
-name=Shu Cavalry
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=C
 [/card]
 [card]
 id=10624
@@ -415,28 +330,6 @@ power=2
 toughness=2
 text=Whenever Shu Defender blocks, it gets +0/+2 until end of turn.
 rarity=C
-[/card]
-[card]
-id=10497
-name=Shu Elite Companions
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=U
-[/card]
-[card]
-id=10502
-name=Shu General
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Vigilance; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=U
 [/card]
 [card]
 id=10591
@@ -469,28 +362,6 @@ text=Look at the top three cards of your library. Put one of them into your hand
 rarity=U
 [/card]
 [card]
-id=10709
-name=Sun Ce, Young Conquerer
-mana={3}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=3
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) When Sun Ce, Young Conquerer enters the battlefield, you may return target creature to its owner's hand.
-rarity=U
-[/card]
-[card]
-id=10513
-name=Sun Quan, Lord of Wu
-mana={4}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=4
-toughness=4
-text=Creatures you control have horsemanship. (They can't be blocked except by creatures with horsemanship.)
-rarity=R
-[/card]
-[card]
 id=10733
 name=Taoist Mystic
 mana={2}{G}
@@ -510,14 +381,6 @@ text=All creatures able to block target creature this turn do so.
 rarity=R
 [/card]
 [card]
-id=10567
-name=Three Visits
-mana={1}{G}
-type=Sorcery
-text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
-rarity=C
-[/card]
-[card]
 id=10573
 name=Trained Cheetah
 mana={2}{G}
@@ -526,14 +389,6 @@ subtype=Cat
 power=2
 toughness=2
 text=Whenever Trained Cheetah becomes blocked, it gets +1/+1 until end of turn.
-rarity=U
-[/card]
-[card]
-id=10625
-name=Trip Wire
-mana={2}{G}
-type=Sorcery
-text=Destroy target creature with horsemanship.
 rarity=U
 [/card]
 [card]
@@ -575,17 +430,6 @@ text=When Wei Assassins enters the battlefield, target opponent chooses a creatu
 rarity=U
 [/card]
 [card]
-id=10511
-name=Wei Elite Companions
-mana={4}{B}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=U
-[/card]
-[card]
 id=10484
 name=Wei Night Raiders
 mana={2}{B}{B}
@@ -597,28 +441,6 @@ text=Horsemanship (This creature can't be blocked except by creatures with horse
 rarity=U
 [/card]
 [card]
-id=10517
-name=Wei Scout
-mana={1}{B}
-type=Creature
-subtype=Human Soldier Scout
-power=1
-toughness=1
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=C
-[/card]
-[card]
-id=10561
-name=Wei Strike Force
-mana={2}{B}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=C
-[/card]
-[card]
 id=10522
 name=Wolf Pack
 mana={6}{G}{G}
@@ -628,28 +450,6 @@ power=7
 toughness=6
 text=You may have Wolf Pack assign its combat damage as though it weren't blocked.
 rarity=R
-[/card]
-[card]
-id=10611
-name=Wu Elite Cavalry
-mana={3}{U}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=C
-[/card]
-[card]
-id=10615
-name=Wu Light Cavalry
-mana={1}{U}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=C
 [/card]
 [card]
 id=10612
@@ -674,39 +474,6 @@ text=When Wu Spy enters the battlefield, look at the top two cards of target pla
 rarity=U
 [/card]
 [card]
-id=10590
-name=Xiahou Dun, the One-Eyed
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Human Soldier
-power=3
-toughness=2
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Sacrifice Xiahou Dun, the One-Eyed: Return target black card from your graveyard to your hand. Activate this ability only during your turn, before attackers are declared.
-rarity=U
-[/card]
-[card]
-id=10537
-name=Yellow Scarves Cavalry
-mana={1}{R}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Yellow Scarves Cavalry can't block.
-rarity=C
-[/card]
-[card]
-id=10577
-name=Yellow Scarves General
-mana={3}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Yellow Scarves General can't block.
-rarity=R
-[/card]
-[card]
 id=10516
 name=Yuan Shao, the Indecisive
 mana={4}{R}
@@ -716,28 +483,6 @@ power=2
 toughness=3
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Each creature you control can't be blocked by more than one creature.
 rarity=R
-[/card]
-[card]
-id=10559
-name=Yuan Shao's Infantry
-mana={3}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Whenever Yuan Shao's Infantry attacks alone, Yuan Shao's Infantry is unblockable this combat.
-rarity=U
-[/card]
-[card]
-id=10604
-name=Zhang Fei, Fierce Warrior
-mana={4}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=4
-toughness=4
-text=Vigilance; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
-rarity=U
 [/card]
 [card]
 id=10520

@@ -21,6 +21,18 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10574
+name=Barbarian General
+rarity=U
+mana={4}{R}
+type=Creature
+subtype=Human Barbarian Soldier
+power=3
+toughness=2
+abilities=horsemanship
+[/card]
+[card]
 id=10578
 name=Barbarian Horde
 rarity=C
@@ -77,6 +89,19 @@ name=Champion's Victory
 rarity=U
 mana={U}
 type=Instant
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   When Cao Ren, Wei Commander enters the battlefield, you lose 3 life.
+id=10712
+name=Cao Ren, Wei Commander
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Human Soldier Warrior
+auto=life:-3
+power=3
+toughness=3
+abilities=legendary,horsemanship
 [/card]
 [card]
 text=When Council of Advisors enters the battlefield, draw a card.
@@ -321,6 +346,18 @@ power=2
 toughness=4
 [/card]
 [card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10609
+name=Lady Zhurong, Warrior Queen
+rarity=R
+mana={4}{G}
+type=Creature
+subtype=Human Soldier Warrior
+power=4
+toughness=3
+abilities=legendary,horsemanship
+[/card]
+[card]
 text=Sacrifice Loyal Retainers: Return target legendary creature card from your graveyard onto the battlefield. Play this ability only during your turn, before attackers are declared.
 auto={S}:moveTo(myBattlefield) target(creature[legendary]|mygraveyard) myTurnOnly
 id=10491
@@ -331,6 +368,30 @@ type=Creature
 subtype=Human Advisor
 power=1
 toughness=1
+[/card]
+[card]
+text=Haste; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10536
+name=Lu Bu, Master-at-Arms
+rarity=R
+mana={5}{R}
+type=Creature
+subtype=Human Soldier Warrior
+power=4
+toughness=3
+abilities=legendary,horsemanship,haste
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10710
+name=Lu Meng, Wu General
+rarity=U
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Soldier
+power=4
+toughness=4
+abilities=legendary,horsemanship
 [/card]
 [card]
 text={T}: Draw a card. Activate this ability only during your turn, before attackers are declared.
@@ -344,6 +405,19 @@ auto={T}:Draw:1 myTurnOnly
 power=1
 toughness=2
 abilities=legendary
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Lu Xun, Scholar General deals damage to an opponent, you may draw a card.
+auto=@damaged(player) from(this):may draw:1 controller
+id=10616
+name=Lu Xun, Scholar General
+rarity=U
+mana={2}{U}{U}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=3
+abilities=legendary,horsemanship
 [/card]
 [card]
 text=Other green creatures you control get +1/+1.
@@ -542,6 +616,17 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+text=Target creature gets +3/+3 and gains horsemanship until end of turn. (It can't be blocked except by creatures with horsemanship.)
+id=10496
+target=creature
+auto=3/3
+auto=horsemanship
+name=Riding Red Hare
+rarity=C
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
 text=Rockslide Ambush deals damage equal to the number of Mountains you control to target creature.
 id=10603
 target=creature
@@ -560,6 +645,30 @@ name=Sage's Knowledge
 rarity=C
 mana={2}{U}
 type=Sorcery
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10635
+name=Shu Cavalry
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+abilities=horsemanship
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10497
+name=Shu Elite Companions
+rarity=U
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+abilities=horsemanship
 [/card]
 [card]
 id=10627
@@ -592,6 +701,18 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=3
+[/card]
+[card]
+text=Vigilance; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10502
+name=Shu General
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+abilities=horsemanship,vigilance
 [/card]
 [card]
 text=When Shu Grain Caravan enters the battlefield, you gain 2 life.
@@ -690,6 +811,32 @@ power=1
 toughness=3
 [/card]
 [card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   When Sun Ce, Young Conquerer enters the battlefield, you may return target creature to its owner's hand.
+id=10709
+name=Sun Ce, Young Conquerer
+rarity=U
+mana={3}{U}{U}
+type=Creature
+subtype=Human Soldier
+auto=may moveto(ownerhand) target(creature|battlefield)
+power=3
+toughness=3
+abilities=legendary,horsemanship
+[/card]
+[card]
+text=Creatures you control have horsemanship. (They can't be blocked except by creatures with horsemanship.)
+id=10513
+name=Sun Quan, Lord of Wu
+rarity=R
+mana={4}{U}{U}
+type=Creature
+subtype=Human Soldier
+auto=lord(creature|battlefield) horsemanship
+power=4
+toughness=4
+abilities=legendary
+[/card]
+[card]
 text={T}: Add {B} to your mana pool.
 auto={T}:Add {B}
 id=10647
@@ -749,6 +896,16 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Destroy target creature with horsemanship.
+id=10625
+target=creature(horsemanship)
+auto=destroy
+name=Trip Wire
+rarity=U
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
 text=Destroy target tapped creature.
 id=10631
 target=creature[tapped]
@@ -778,6 +935,18 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10511
+name=Wei Elite Companions
+rarity=U
+mana={4}{B}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+abilities=horsemanship
+[/card]
+[card]
 id=10519
 name=Wei Infantry
 rarity=C
@@ -786,6 +955,30 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=1
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10517
+name=Wei Scout
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Human Soldier Scout
+power=1
+toughness=1
+abilities=horsemanship
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10561
+name=Wei Strike Force
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+abilities=horsemanship
 [/card]
 [card]
 text=Target creature gets +4/+4 until end of turn.
@@ -810,6 +1003,18 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10611
+name=Wu Elite Cavalry
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+abilities=horsemanship
+[/card]
+[card]
 id=10600
 name=Wu Infantry
 rarity=C
@@ -818,6 +1023,18 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=1
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10615
+name=Wu Light Cavalry
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+abilities=horsemanship
 [/card]
 [card]
 text={T}: Wu Longbowman deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
@@ -845,6 +1062,19 @@ toughness=3
 abilities=cantattack
 [/card]
 [card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Sacrifice Xiahou Dun, the One-Eyed: Return target black card from your graveyard to your hand. Activate this ability only during your turn, before attackers are declared.
+id=10590
+name=Xiahou Dun, the One-Eyed
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Human Soldier
+auto={S}:moveTo(ownerhand) target(*[black]|mygraveyard) myTurnOnly
+power=3
+toughness=2
+abilities=legendary,horsemanship
+[/card]
+[card]
 text={T}: Target creature gets +2/+0 until end of turn. Activate this ability only during your turn, before attackers are declared.
 id=13831
 name=Xun Yu, Wei Advisor 
@@ -856,6 +1086,30 @@ auto={T}:2/0 target(creature|myBattlefield) myTurnOnly
 power=1
 toughness=1
 abilities=legendary
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Yellow Scarves Cavalry can't block.
+id=10537
+name=Yellow Scarves Cavalry
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+abilities=horsemanship,cantblock
+[/card]
+[card]
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Yellow Scarves General can't block.
+id=10577
+name=Yellow Scarves General
+rarity=R
+mana={3}{R}
+type=Creature
+subtype=Human Soldier
+power=
+toughness=2
+abilities=horsemanship,cantblock
 [/card]
 [card]
 text=Yellow Scarves Troops can't block.
@@ -893,6 +1147,18 @@ auto=aslongas(other creature[attacking](creature|myBattlefield) -unblockable
 power=2
 toughness=2
 abilities=unblockable
+[/card]
+[card]
+text=Vigilance; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+id=10604
+name=Zhang Fei, Fierce Warrior
+rarity=U
+mana={4}{W}{W}
+type=Creature
+subtype=Human Soldier Warrior
+power=4
+toughness=4
+abilities=legendary,horsemanship,vigilance
 [/card]
 [card]
 text=Zhou Yu, Chief Commander can't attack unless defending player controls an Island.
