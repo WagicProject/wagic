@@ -305,6 +305,7 @@ void OptionLanguage::setData(){
     options[id] = GameOption(actual_data[value]);
     Translator::EndInstance();
     Translator::GetInstance()->init();
+    Translator::GetInstance()->tempValues.clear();
   }
 }
 void OptionLanguage::confirmChange(bool confirmed){
@@ -316,6 +317,7 @@ void OptionLanguage::confirmChange(bool confirmed){
       options[id] = GameOption(actual_data[value]);
       Translator::EndInstance();
       Translator::GetInstance()->init();
+      Translator::GetInstance()->tempValues.clear();
     }
     prior_value = value;
   }
