@@ -163,6 +163,7 @@ abilities=reach
 [card]
 text=Target player discards X cards at random.
 id=157422
+target=player
 name=Mind Shatter
 alias=1167
 rarity=R
