@@ -163,6 +163,7 @@ class GameOptions {
 
  private:
   vector<GameOption*> values;
+  vector<string> unknown;
 };
 
 class GameSettings{

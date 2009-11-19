@@ -273,8 +273,10 @@ int GameOptions::load(){
       string name = s.substr(0,found);
       string val = s.substr(found+1);
       int id = Options::getID(name);      
-      if(id == INVALID_OPTION)
+      if(id == INVALID_OPTION){
+        unknown.push_back(s);
         continue;
+      }
 
       (*this)[id].read(val);
     }
@@ -306,6 +308,9 @@ int GameOptions::save(){
       opt->write(&file, name);
     }
     
+    for(vector<string>::size_type t=0;t<unknown.size();t++){
+      file<<unknown[t]<<"\n";
+    }
     file.close();
   }
   return 1;
