@@ -395,7 +395,7 @@ abilities=legendary,horsemanship
 [/card]
 [card]
 text={T}: Draw a card. Activate this ability only during your turn, before attackers are declared.
-id=10490
+id=10614
 name=Lu Su, Wu Advisor
 rarity=R
 mana={3}{U}{U}
@@ -503,7 +503,7 @@ type=Instant
 [/card]
 [card]
 text={T}: Target creature gets +0/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
-id=10732
+id=10713
 name=Pang Tong, "Young Phoenix"
 rarity=R
 mana={1}{W}{W}

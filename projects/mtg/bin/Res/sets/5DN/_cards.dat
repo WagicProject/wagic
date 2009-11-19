@@ -489,7 +489,7 @@ abilities=flying,doublestrike
 [card]
 text=Trample, haste (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player. This creature can attack and {T} as soon as it comes under your control.)  At end of turn, sacrifice Spark Elemental.
 auto=@next endofturn:bury
-id=129577
+id=73579
 name=Spark Elemental
 rarity=C
 mana={R}
