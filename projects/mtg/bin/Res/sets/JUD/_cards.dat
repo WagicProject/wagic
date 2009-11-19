@@ -1,13 +1,365 @@
 [card]
+text=First strike (This creature deals combat damage before creatures without first strike.)   When Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.
 id=34243
+
 name=Ancestor's Chosen
+rarity=U
 mana={5}{W}{W}
 type=Creature
 subtype=Human Cleric
+auto=foreach(*|mygraveyard) life:1
 power=4
 toughness=4
-text=First strike (This creature deals combat damage before creatures without first strike.) When Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.
 abilities=first strike
-auto=foreach(*|mygraveyard) life:1
+[/card]
+[card]
+text=Threshold - Anurid Barkripper gets +2/+2 as long as seven or more cards are in your graveyard.
+id=36039
+name=Anurid Barkripper
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Frog Beast
+auto=aslongas(*|mygraveyard) 2/2 >6
+power=2
+toughness=2
+[/card]
+[card]
+text=Flying Threshold - As long as seven or more cards are in your graveyard, Battlewise Aven gets +1/+1 and has first strike.
+id=34464
+name=Battlewise Aven
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Bird Soldier
+auto=aslongas(*|mygraveyard) 1/1 >6
+auto=aslongas(*|mygraveyard) first strike >6
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Sacrifice Benevolent Bodyguard: Target creature you control gains protection from the color of your choice until end of turn.
+id=36118
+name=Benevolent Bodyguard
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Cleric
+auto={S}:protection from green target(creature|mybattlefield)
+auto={S}:protection from black target(creature|mybattlefield)
+auto={S}:protection from white target(creature|mybattlefield)
+auto={S}:protection from red target(creature|mybattlefield)
+auto={S}:protection from blue target(creature|mybattlefield)
+power=1
+toughness=1
+[/card]
+[card]
+text=Vigilance
+id=34201
+name=Border Patrol
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=6
+abilities=vigilance
+[/card]
+[card]
+text=Sacrifice Cabal Trainee: Target creature gets -2/-0 until end of turn.
+id=36117
+name=Cabal Trainee
+rarity=C
+mana={B}
+type=Creature
+subtype=Human Minion
+auto={S}:-2/0 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Enchant creature.   Enchanted creature gets +2/+2 and can't attack.
+id=36429
+target=creature
+auto=2/2
+auto=cantattack
+name=Cagemail
+id=36429
+rarity=C
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Whenever Centaur Rootcaster deals combat damage to a player, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
+auto=@damaged(player) from(this):may moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
+id=37120
+name=Centaur Rootcaster
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Centaur Druid
+power=2
+toughness=2
+[/card]
+[card]
+text=Discard a card: Cephalid Inkshrouder gains shroud until end of turn and is unblockable this turn. (A permanent with shroud can't be the target of spells or abilities.)
+id=34784
+name=Cephalid Inkshrouder
 rarity=U
+mana={2}{U}
+type=Creature
+subtype=Cephalid
+auto={S(*|myHand)}:shroud && unblockable
+power=2
+toughness=1
+[/card]
+[card]
+text=Enchant creature.   Enchanted creature gets +3/+3.   When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
+id=12692
+name=Elephant Guide
+target=creature
+auto=3/3
+auto=@movedto(this|graveyard):token(Elephant,Creature Elephant,3/3,green)
+rarity=U
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Ember Shot deals 3 damage to target creature or player.   Draw a card.
+id=29862
+target=creature,player
+auto=damage:3
+auto=draw:1 controller
+name=Ember Shot
+rarity=C
+mana={6}{R}
+type=Instant
+[/card]
+[card]
+text=Counter target sorcery spell.
+id=36414
+target=sorcery|stack
+auto=fizzle
+name=Envelop
+rarity=C
+mana={U}
+type=Instant
+[/card]
+[card]
+text=Enchant creature.   Enchanted creature gets +X/+X, where X is the number of creature cards in all graveyards.
+id=29885
+target=creature
+auto=foreach(creature|graveyard) 1/1
+name=Exoskeletal Armor
+rarity=U
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Flying   Threshold - As long as seven or more cards are in your graveyard, Fledgling Dragon gets +3/+3 and has "{R}: Fledgling Dragon gets +1/+0 until end of turn."
+id=34930
+name=Fledgling Dragon
+rarity=R
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+auto=aslongas(*|mygraveyard) 3/3 >6
+auto=aslongas(*|mygraveyard) {R}:1/0 >6
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Trample
+id=36112
+name=Giant Warthog
+rarity=C
+mana={5}{G}
+type=Creature
+subtype=Boar Beast
+power=5
+toughness=5
+abilities=trample
+[/card]
+[card]
+text=Target creature gets +1/+0 and gains first strike until end of turn.   Draw a card.
+id=36431
+target=creature
+auto=1/0
+auto=first strike
+auto=draw:1 controller
+name=Guided Strike
+rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text=First strike, haste.   {T}: Jeska, Warrior Adept deals 1 damage to target creature or player.
+id=36451
+name=Jeska, Warrior Adept
+rarity=R
+mana={2}{R}{R}
+type=Creature
+subtype=Human Barbarian Warrior
+auto={T}:damage:1 target(creature,player)
+power=3
+toughness=1
+abilities=legendary,first strike,haste
+[/card]
+[card]
+text=Draw a card for each attacking creature.
+auto=foreach(creature[attacking]):draw:1 controller
+id=35168
+name=Keep Watch
+rarity=C
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+text=Sacrifice Krosan Wayfarer: You may put a land card from your hand onto the battlefield.
+id=35069
+name=Krosan Wayfarer
+rarity=C
+mana={G}
+type=Creature
+subtype=Human Druid
+auto={S}:may moveto(myBattlefield) target(land|myhand)
+power=1
+toughness=1
+[/card]
+[card]
+text={R}, Sacrifice Liberated Dwarf: Target green creature gets +1/+0 and gains first strike until end of turn.
+id=35083
+name=Liberated Dwarf
+rarity=C
+mana={R}
+type=Creature
+subtype=Dwarf
+auto={S}:1/0 && first strike target(creature[green])
+power=1
+toughness=1
+[/card]
+[card]
+text=Put the top two cards of your library into your graveyard.   Draw a card.
+id=36114
+auto=deplete:2 controller
+auto=draw:1 controller
+name=Mental Note
+rarity=C
+mana={U}
+type=Instant
+[/card]
+[card]
+text=Defender (This creature can't attack.).   {W}: Mirror Wall can attack this turn as though it didn't have defender.
+id=36413
+name=Mirror Wall
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Wall
+auto={W}:-defender
+power=3
+toughness=4
+abilities=defender
+[/card]
+[card]
+text=Flying   Threshold - Other creatures you control get +2/+2 as long as seven or more cards are in your graveyard.
+id=36036
+name=Silver Seraph
+rarity=R
+mana={5}{W}{W}{W}
+type=Creature
+subtype=Angel
+auto=aslongas(*|mygraveyard) lord(creature other|myBattlefield) 2/2 >6
+power=6
+toughness=6
+abilities=flying
+[/card]
+[card]
+text=When Spellgorger Barbarian enters the battlefield, discard a card at random.   When Spellgorger Barbarian leaves the battlefield, draw a card.
+id=25805
+name=Spellgorger Barbarian
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Human Nightmare Barbarian
+auto=discard:1 controller
+auto=@movedTo(this|graveyard):draw:1 controller
+power=3
+toughness=1
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=34207
+name=Suntail Hawk
+rarity=C
+mana={W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Threshold - Swirling Sandstorm deals 5 damage to each creature without flying if seven or more cards are in your graveyard.
+id=29762
+name=Swirling Sandstorm
+auto=aslongas(*|mygraveyard) damage:5 all(creature[-flying]) >6
+rarity=C
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+text=Sacrifice a land: Target creature you control gains shroud until end of turn. (It can't be the target of spells or abilities.)
+id=35062
+name=Sylvan Safekeeper
+rarity=R
+mana={G}
+auto={S(land|myBattlefield)}:shroud target(creature)
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+text={G}, {T}: Target creature gets +5/+5 until end of turn.
+id=36525
+name=Thriss, Nantuko Primus
+rarity=R
+mana={5}{G}{G}
+type=Creature
+subtype=Insect Druid
+auto={G}{T}:5/5 target(creature)
+power=5
+toughness=5
+abilities=legendary
+[/card]
+[card]
+text=Discard a card: Regenerate Tunneler Wurm.
+id=26370
+name=Tunneler Wurm
+rarity=U
+mana={6}{G}{G}
+auto={S(*|myhand)}:regenerate
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
+[/card]
+[card]
+text=Threshold - As long as seven or more cards are in your graveyard, Vigilant Sentry gets +1/+1 and has "{T}: Target attacking or blocking creature gets +3/+3 until end of turn."
+id=36035
+name=Vigilant Sentry
+rarity=C
+mana={1}{W}{W}
+type=Creature
+subtype=Human Nomad
+auto=aslongas(*|mygraveyard) 1/1 >6
+auto=aslongas(*|mygraveyard) {T}:3/3 target(creature[attacking;blocking]) >6
+power=2
+toughness=2
 [/card]

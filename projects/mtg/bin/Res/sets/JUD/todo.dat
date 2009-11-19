@@ -1,5 +1,4 @@
-
-[card]
+﻿[card]
 id=33717
 name=Anger
 mana={3}{R}
@@ -9,17 +8,6 @@ power=2
 toughness=2
 text=Haste As long as Anger is in your graveyard and you control a Mountain, creatures you control have haste.
 rarity=U
-[/card]
-[card]
-id=36039
-name=Anurid Barkripper
-mana={1}{G}{G}
-type=Creature
-subtype=Frog Beast
-power=2
-toughness=2
-text=Threshold  EAnurid Barkripper gets +2/+2 as long as seven or more cards are in your graveyard.
-rarity=C
 [/card]
 [card]
 id=35059
@@ -113,44 +101,11 @@ text=Threshold  EPut three cards from your graveyard on the bottom of your lib
 rarity=C
 [/card]
 [card]
-id=34464
-name=Battlewise Aven
-mana={3}{W}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=2
-text=Flying Threshold  EAs long as seven or more cards are in your graveyard, Battlewise Aven gets +1/+1 and has first strike.
-rarity=C
-[/card]
-[card]
-id=36118
-name=Benevolent Bodyguard
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text=Sacrifice Benevolent Bodyguard: Target creature you control gains protection from the color of your choice until end of turn.
-rarity=C
-[/card]
-[card]
 id=35891
 name=Book Burning
 mana={1}{R}
 type=Sorcery
 text=Any player may have Book Burning deal 6 damage to him or her. If no one does, put the top six cards of target player's library into his or her graveyard.
-rarity=C
-[/card]
-[card]
-id=34201
-name=Border Patrol
-mana={4}{W}
-type=Creature
-subtype=Human Nomad
-power=1
-toughness=6
-text=Vigilance
 rarity=C
 [/card]
 [card]
@@ -197,42 +152,11 @@ text=Name a nonland card. Target player reveals his or her hand and discards all
 rarity=U
 [/card]
 [card]
-id=36117
-name=Cabal Trainee
-mana={B}
-type=Creature
-subtype=Human Minion
-power=1
-toughness=1
-text=Sacrifice Cabal Trainee: Target creature gets -2/-0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=36429
-name=Cagemail
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+2 and can't attack.
-rarity=C
-[/card]
-[card]
 id=36410
 name=Canopy Claws
 mana={G}
 type=Instant
 text=Target creature loses flying until end of turn. Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-rarity=C
-[/card]
-[card]
-id=37120
-name=Centaur Rootcaster
-mana={3}{G}
-type=Creature
-subtype=Centaur Druid
-power=2
-toughness=2
-text=Whenever Centaur Rootcaster deals combat damage to a player, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
 rarity=C
 [/card]
 [card]
@@ -245,17 +169,6 @@ power=1
 toughness=1
 text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
 rarity=R
-[/card]
-[card]
-id=34784
-name=Cephalid Inkshrouder
-mana={2}{U}
-type=Creature
-subtype=Cephalid
-power=2
-toughness=1
-text=Discard a card: Cephalid Inkshrouder gains shroud until end of turn and is unblockable this turn. (A permanent with shroud can't be the target of spells or abilities.)
-rarity=U
 [/card]
 [card]
 id=34958
@@ -353,31 +266,6 @@ text=When Earsplitting Rats enters the battlefield, each player discards a card.
 rarity=C
 [/card]
 [card]
-id=12692
-name=Elephant Guide
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +3/+3. When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
-rarity=U
-[/card]
-[card]
-id=29862
-name=Ember Shot
-mana={6}{R}
-type=Instant
-text=Ember Shot deals 3 damage to target creature or player.  Draw a card.
-rarity=C
-[/card]
-[card]
-id=36414
-name=Envelop
-mana={U}
-type=Instant
-text=Counter target sorcery spell.
-rarity=C
-[/card]
-[card]
 id=33697
 name=Epic Struggle
 mana={2}{G}{G}
@@ -394,15 +282,6 @@ subtype=Djinn
 power=4
 toughness=5
 text=At the beginning of your upkeep, target non-Wall creature an opponent controls gains forestwalk until your next upkeep.
-rarity=U
-[/card]
-[card]
-id=29885
-name=Exoskeletal Armor
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +X/+X, where X is the number of creature cards in all graveyards.
 rarity=U
 [/card]
 [card]
@@ -441,17 +320,6 @@ text=Look at the top X cards of your library. Put one of them into your hand and
 rarity=U
 [/card]
 [card]
-id=34930
-name=Fledgling Dragon
-mana={2}{R}{R}
-type=Creature
-subtype=Dragon
-power=2
-toughness=2
-text=Flying Threshold  EAs long as seven or more cards are in your graveyard, Fledgling Dragon gets +3/+3 and has "{R}: Fledgling Dragon gets +1/+0 until end of turn."
-rarity=R
-[/card]
-[card]
 id=35071
 name=Folk Medicine
 mana={2}{G}
@@ -488,17 +356,6 @@ power=4
 toughness=4
 text=At the beginning of your upkeep, if Genesis is in your graveyard, you may pay {2}{G}. If you do, return target creature card from your graveyard to your hand.
 rarity=R
-[/card]
-[card]
-id=36112
-name=Giant Warthog
-mana={5}{G}
-type=Creature
-subtype=Boar Beast
-power=5
-toughness=5
-text=Trample
-rarity=C
 [/card]
 [card]
 id=34822
@@ -553,14 +410,6 @@ mana={3}{G}{G}
 type=Sorcery
 text=Put two 2/2 green Bear creature tokens onto the battlefield. Threshold  EPut four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. Flashback {5}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 rarity=U
-[/card]
-[card]
-id=36431
-name=Guided Strike
-mana={1}{W}
-type=Instant
-text=Target creature gets +1/+0 and gains first strike until end of turn.  Draw a card.
-rarity=C
 [/card]
 [card]
 id=29890
@@ -624,25 +473,6 @@ text=When Ironshell Beetle enters the battlefield, put a +1/+1 counter on target
 rarity=C
 [/card]
 [card]
-id=36451
-name=Jeska, Warrior Adept
-mana={2}{R}{R}
-type=Legendary Creature
-subtype=Human Barbarian Warrior
-power=3
-toughness=1
-text=First strike, haste {T}: Jeska, Warrior Adept deals 1 damage to target creature or player.
-rarity=R
-[/card]
-[card]
-id=35168
-name=Keep Watch
-mana={2}{U}
-type=Instant
-text=Draw a card for each attacking creature.
-rarity=C
-[/card]
-[card]
 id=36113
 name=Krosan Reclamation
 mana={1}{G}
@@ -657,17 +487,6 @@ mana=
 type=Land
 text=Krosan Verge enters the battlefield tapped. {T}: Add {1} to your mana pool. {2}, {T}, Sacrifice Krosan Verge: Search your library for a Forest card and a Plains card and put them onto the battlefield tapped. Then shuffle your library.
 rarity=U
-[/card]
-[card]
-id=35069
-name=Krosan Wayfarer
-mana={G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
-text=Sacrifice Krosan Wayfarer: You may put a land card from your hand onto the battlefield.
-rarity=C
 [/card]
 [card]
 id=27145
@@ -691,17 +510,6 @@ name=Lead Astray
 mana={1}{W}
 type=Instant
 text=Tap up to two target creatures.
-rarity=C
-[/card]
-[card]
-id=35083
-name=Liberated Dwarf
-mana={R}
-type=Creature
-subtype=Dwarf
-power=1
-toughness=1
-text={R}, Sacrifice Liberated Dwarf: Target green creature gets +1/+0 and gains first strike until end of turn.
 rarity=C
 [/card]
 [card]
@@ -741,31 +549,12 @@ text=Green creatures and white creatures have protection from Gorgons. Threshold
 rarity=R
 [/card]
 [card]
-id=36114
-name=Mental Note
-mana={U}
-type=Instant
-text=Put the top two cards of your library into your graveyard.  Draw a card.
-rarity=C
-[/card]
-[card]
 id=35057
 name=Mirari's Wake
 mana={3}{G}{W}
 type=Enchantment
 text=Creatures you control get +1/+1.  Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced.
 rarity=R
-[/card]
-[card]
-id=36413
-name=Mirror Wall
-mana={3}{U}
-type=Creature
-subtype=Wall
-power=3
-toughness=4
-text=Defender (This creature can't attack.) {W}: Mirror Wall can attack this turn as though it didn't have defender.
-rarity=C
 [/card]
 [card]
 id=34777
@@ -1007,17 +796,6 @@ text={T}: Return target card in an opponent's graveyard to his or her hand. Prev
 rarity=C
 [/card]
 [card]
-id=36036
-name=Silver Seraph
-mana={5}{W}{W}{W}
-type=Creature
-subtype=Angel
-power=6
-toughness=6
-text=Flying Threshold  EOther creatures you control get +2/+2 as long as seven or more cards are in your graveyard.
-rarity=R
-[/card]
-[card]
 id=34769
 name=Solitary Confinement
 mana={2}{W}
@@ -1043,17 +821,6 @@ power=6
 toughness=6
 text=Trample When Soulgorger Orgg enters the battlefield, you lose all but 1 life. When Soulgorger Orgg leaves the battlefield, you gain life equal to the life you lost when it entered the battlefield.
 rarity=U
-[/card]
-[card]
-id=25805
-name=Spellgorger Barbarian
-mana={3}{R}
-type=Creature
-subtype=Human Nightmare Barbarian
-power=3
-toughness=1
-text=When Spellgorger Barbarian enters the battlefield, discard a card at random. When Spellgorger Barbarian leaves the battlefield, draw a card.
-rarity=C
 [/card]
 [card]
 id=35169
@@ -1091,25 +858,6 @@ text=Return target creature card from your graveyard to your hand. Threshold  
 rarity=U
 [/card]
 [card]
-id=35114
-name=Sudden Strength
-mana={3}{G}
-type=Instant
-text=Target creature gets +3/+3 until end of turn.  Draw a card.
-rarity=C
-[/card]
-[card]
-id=34207
-name=Suntail Hawk
-mana={W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-rarity=C
-[/card]
-[card]
 id=29944
 name=Sutured Ghoul
 mana={4}{B}{B}{B}
@@ -1129,25 +877,6 @@ text=Swelter deals 2 damage to each of two target creatures.
 rarity=U
 [/card]
 [card]
-id=29762
-name=Swirling Sandstorm
-mana={3}{R}
-type=Sorcery
-text=Threshold  ESwirling Sandstorm deals 5 damage to each creature without flying if seven or more cards are in your graveyard.
-rarity=C
-[/card]
-[card]
-id=35062
-name=Sylvan Safekeeper
-mana={G}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text=Sacrifice a land: Target creature you control gains shroud until end of turn. (It can't be the target of spells or abilities.)
-rarity=R
-[/card]
-[card]
 id=5589
 name=Telekinetic Bonds
 mana={2}{U}{U}{U}
@@ -1161,17 +890,6 @@ name=Test of Endurance
 mana={2}{W}{W}
 type=Enchantment
 text=At the beginning of your upkeep, if you have 50 or more life, you win the game.
-rarity=R
-[/card]
-[card]
-id=36525
-name=Thriss, Nantuko Primus
-mana={5}{G}{G}
-type=Legendary Creature
-subtype=Insect Druid
-power=5
-toughness=5
-text={G}, {T}: Target creature gets +5/+5 until end of turn.
 rarity=R
 [/card]
 [card]
@@ -1216,17 +934,6 @@ text=Threshold  EAs long as seven or more cards are in your graveyard, Treache
 rarity=C
 [/card]
 [card]
-id=26370
-name=Tunneler Wurm
-mana={6}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=6
-text=Discard a card: Regenerate Tunneler Wurm.
-rarity=U
-[/card]
-[card]
 id=24541
 name=Unquestioned Authority
 mana={2}{W}
@@ -1252,17 +959,6 @@ name=Venomous Vines
 mana={2}{G}{G}
 type=Sorcery
 text=Destroy target enchanted permanent.
-rarity=C
-[/card]
-[card]
-id=36035
-name=Vigilant Sentry
-mana={1}{W}{W}
-type=Creature
-subtype=Human Nomad
-power=2
-toughness=2
-text=Threshold  EAs long as seven or more cards are in your graveyard, Vigilant Sentry gets +1/+1 and has "{T}: Target attacking or blocking creature gets +3/+3 until end of turn."
 rarity=C
 [/card]
 [card]
