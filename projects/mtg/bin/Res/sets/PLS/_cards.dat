@@ -418,8 +418,8 @@ mana={2}
 type=Artifact
 auto=tap
 auto=aslongas(plains|myBattlefield) {T}:Add {W}
-auto=aslongas(swamp|myBattlefield) {T}:Add {B} 
-auto=aslongas(island|myBattlefield) {T}:Add {U}
+auto=aslongas(island|myBattlefield) {T}:Add {U} 
+auto=aslongas(swamp|myBattlefield) {T}:Add {B}
 auto=aslongas(mountain|myBattlefield) {T}:Add {R}
 auto=aslongas(forest|myBattlefield) {T}:Add {G}
 [/card]
