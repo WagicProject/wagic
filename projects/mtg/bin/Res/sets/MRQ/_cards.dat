@@ -1229,7 +1229,7 @@ type=Enchantment
 [/card]
 [card]
 text=Put a 1/1 green Saproling creature token onto the battlefield for each card in your hand.
-auto=foreach(*|myhand) token(Saproling,Creature Saproling,1/1,green)
+auto=foreach(*|myhand) token(Saproling,creature saproling, 1/1,green)
 id=19871
 name=Spontaneous Generation
 rarity=R
