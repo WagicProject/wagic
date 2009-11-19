@@ -540,7 +540,7 @@ public:
   int tokenId;
   string name;
   WParsedInt * multiplier;
-  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, int tokenId, int _doTap, WParsedInt * multiplier = NULL):ActivatedAbility(_id,_source,_cost,0,_doTap), multiplier(multiplier), tokenId(tokenId){
+  ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, int tokenId, int _doTap, WParsedInt * multiplier = NULL):ActivatedAbility(_id,_source,_cost,0,_doTap), tokenId(tokenId), multiplier(multiplier){
     if(!multiplier) this->multiplier = NEW WParsedInt(1);
   }
 
