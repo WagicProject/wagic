@@ -160,9 +160,9 @@ rarity=R
 mana={4}{R}
 type=Creature
 subtype=Dragon
-auto=aslongas(artifact|myBattlefield) 96/95
-power=-90
-toughness=-90
+auto=aslongas(artifact|myBattlefield) -99/-99 <1
+power=6
+toughness=5
 abilities=flying
 [/card]
 [card]
@@ -207,9 +207,9 @@ rarity=R
 mana={3}{G}
 type=Creature
 subtype=Crocodile
-auto=aslongas(other creature|myBattlefield) 95/95
-power=-90
-toughness=-90
+auto=aslongas(other creature|myBattlefield) -99/-99 <1
+power=5
+toughness=5
 [/card]
 [card]
 text=When False Prophet is put into a graveyard from the battlefield, exile all creatures.
@@ -520,9 +520,9 @@ rarity=R
 mana={W}
 type=Creature
 subtype=Griffin
-auto=aslongas(enchantment|myBattlefield) 92/93
-power=-90
-toughness=-90
+auto=aslongas(enchantment|myBattlefield) -99/-99 <1
+power=2
+toughness=3
 abilities=flying
 [/card]
 [card]
