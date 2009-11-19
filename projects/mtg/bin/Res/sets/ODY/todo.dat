@@ -10,15 +10,6 @@ subtype=Cephalid
 toughness=3
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has flying.     Threshold - Enchanted creature has shroud as long as seven or more cards are in your graveyard. (It can't be the target of spells or abilities.)
-id=29728
-name=Aboshan's Desire
-rarity=C
-type=Enchantment
-mana={U}
-subtype=Aura
-[/card]
-[card]
 #Removed: can be played from an empty hand without discarding a card
 text=As an additional cost to cast Acceptable Losses, discard a card at random.   Acceptable Losses deals 5 damage to target creature.
 id=30692
@@ -143,13 +134,6 @@ name=Bamboozle
 rarity=U
 type=Sorcery
 mana={2}{U}
-[/card]
-[card]
-text={T}: Add {R} to your mana pool. Barbarian Ring deals 1 damage to you.     Threshold - {R}, {T}, Sacrifice Barbarian Ring: Barbarian Ring deals 2 damage to target creature or player. Play this ability only if seven or more cards are in your graveyard.
-id=29906
-name=Barbarian Ring
-rarity=U
-type=Land
 [/card]
 [card]
 text=Destroy target artifact.       Flashback {4}{R}{R} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
@@ -284,13 +268,6 @@ subtype=Human Wizard
 toughness=5
 [/card]
 [card]
-text={T}: Add {B} to your mana pool. Cabal Pit deals 1 damage to you.     Threshold - {B}, {T}, Sacrifice Cabal Pit: Target creature gets -2/-2 until end of turn. Play this ability only if seven or more cards are in your graveyard.
-id=29904
-name=Cabal Pit
-rarity=U
-type=Land
-[/card]
-[card]
 text=Whenever a player plays a spell, that player discards X cards, where X is the number of cards in all graveyards with the same name as that spell.
 id=29959
 name=Cabal Shrine
@@ -340,13 +317,6 @@ type=Instant
 mana={2}{W}
 [/card]
 [card]
-text={T}: Add {G} to your mana pool. Centaur Garden deals 1 damage to you.     Threshold - {G}, {T}, Sacrifice Centaur Garden: Target creature gets +3/+3 until end of turn. Play this ability only if seven or more cards are in your graveyard.
-id=29905
-name=Centaur Garden
-rarity=U
-type=Land
-[/card]
-[card]
 text={T}: Target player draws two cards, then discards two cards.
 id=29711
 name=Cephalid Broker
@@ -384,17 +354,6 @@ type=Enchantment
 mana={1}{U}{U}
 [/card]
 [card]
-text={1}{R}, {T}: Chainflinger deals 1 damage to target creature or player.     Threshold - {2}{R}, {T}: Chainflinger deals 2 damage to target creature or player. Play this ability only if seven or more cards are in your graveyard.
-id=29755
-name=Chainflinger
-rarity=C
-type=Creature
-mana={3}{R}
-power=2
-subtype=Beast
-toughness=2
-[/card]
-[card]
 text=Enchant land     Enchanted land has "{T}, Discard a card: Gain control of target creature until end of turn."
 id=31868
 name=Chamber of Manipulation
@@ -428,17 +387,6 @@ type=Sorcery
 mana={G}
 [/card]
 [card]
-text=Flying     Threshold - As long as seven or more cards are in your graveyard, Childhood Horror gets +2/+2 and can't block.
-id=29836
-name=Childhood Horror
-rarity=U
-type=Creature
-mana={3}{B}
-power=2
-subtype=Horror
-toughness=2
-[/card]
-[card]
 text=At the beginning of your upkeep, you may put a +1/+1 counter on Chlorophant.     Threshold - As long as seven or more cards are in your graveyard, Chlorophant has "At the beginning of your upkeep, you may put another +1/+1 counter on Chlorophant."
 id=29986
 name=Chlorophant
@@ -456,17 +404,6 @@ name=Coffin Purge
 rarity=C
 type=Instant
 mana={B}
-[/card]
-[card]
-text={G}, Discard a card: Crashing Centaur gains trample until end of turn.     Threshold - As long as seven or more cards are in your graveyard, Crashing Centaur gets +2/+2 and has shroud. (It can't be the target of spells or abilities.)
-id=29878
-name=Crashing Centaur
-rarity=U
-type=Creature
-mana={4}{G}{G}
-power=3
-subtype=Centaur
-toughness=4
 [/card]
 [card]
 text=Choose any number of creatures target player controls. Choose the same number of creatures another target player controls. Those players exchange control of those creatures. (This effect doesn't end at end of turn.)
@@ -527,7 +464,6 @@ rarity=R
 type=Enchantment
 mana={3}{W}
 [/card]
-
 [card]
 text=Return target permanent to its owner's hand.       Flashback {5}{U}{U} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=29826
@@ -554,17 +490,6 @@ mana={W}
 power=1
 subtype=Human Cleric
 toughness=2
-[/card]
-[card]
-text={B}, Discard a card: Regenerate Dirty Wererat.     Threshold - As long as seven or more cards are in your graveyard, Dirty Wererat gets +2/+2 and can't block.
-id=29729
-name=Dirty Wererat
-rarity=C
-type=Creature
-mana={3}{B}
-power=2
-subtype=Human Rat Minion
-toughness=3
 [/card]
 [card]
 text=Change the target of target spell with a single target unless that spell's controller pays {2}.
@@ -730,22 +655,12 @@ text={R}, Discard a card at random: Frenetic Ogre gets +3/+0 until end of turn.
 id=29855
 name=Frenetic Ogre
 rarity=U
-type=Creature
 mana={4}{R}
-power=2
-subtype=Ogre
-toughness=3
-[/card]
-[card]
-text=Fear     Threshold - As long as seven or more cards are in your graveyard, Frightcrawler gets +2/+2 and can't block.
-id=29733
-name=Frightcrawler
-rarity=C
 type=Creature
-mana={1}{B}
-power=1
-subtype=Horror
-toughness=1
+subtype=Ogre
+auto={R}:3/0 && discard:1 controller
+power=2
+toughness=3
 [/card]
 [card]
 text=Destroy target nonblack creature if its toughness is less than or equal to the number of cards in your graveyard.
@@ -754,17 +669,6 @@ name=Ghastly Demise
 rarity=C
 type=Instant
 mana={B}
-[/card]
-[card]
-text=Trample     Gorilla Titan gets +4/+4 as long as there are no cards in your graveyard.
-id=29980
-name=Gorilla Titan
-rarity=U
-type=Creature
-mana={3}{G}{G}
-power=4
-subtype=Ape
-toughness=4
 [/card]
 [card]
 text=Plainswalk     Whenever Graceful Antelope deals combat damage to a player, you may have target land become a Plains until Graceful Antelope leaves play.
@@ -846,17 +750,6 @@ type=Enchantment
 mana={2}{R}{R}
 [/card]
 [card]
-text={2}{B}: Infected Vermin deals 1 damage to each creature and each player.     Threshold - {3}{B}: Infected Vermin deals 3 damage to each creature and each player. Play this ability only if seven or more cards are in your graveyard.
-id=31808
-name=Infected Vermin
-rarity=U
-type=Creature
-mana={2}{B}
-power=1
-subtype=Rat
-toughness=1
-[/card]
-[card]
 text=Each player sacrifices a creature.
 id=29818
 name=Innocent Blood
@@ -887,49 +780,12 @@ subtype=Golem
 toughness=0
 [/card]
 [card]
-text=Enchant creature     Enchanted creature has first strike.     Threshold - Enchanted creature gets +3/+0 as long as seven or more cards are in your graveyard.
-id=29761
-name=Kamahl's Desire
-rarity=C
-type=Enchantment
-mana={1}{R}
-subtype=Aura
-[/card]
-[card]
 text=Whenever a spell or ability an opponent controls destroys a noncreature permanent you control, you may destroy target permanent that opponent controls.
 id=31872
 name=Karmic Justice
 rarity=R
 type=Enchantment
 mana={2}{W}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature can't attack.     Threshold - Enchanted creature can't block as long as seven or more cards are in your graveyard.
-id=29707
-name=Kirtar's Desire
-rarity=C
-type=Enchantment
-mana={W}
-subtype=Aura
-[/card]
-[card]
-text=Destroy all creatures. They can't be regenerated.     Threshold - If seven or more cards are in your graveyard, instead destroy all creatures, then put two 1/1 white Spirit creature tokens with flying into play. Creatures destroyed this way can't be regenerated.
-id=29921
-name=Kirtar's Wrath
-rarity=R
-type=Sorcery
-mana={4}{W}{W}
-[/card]
-[card]
-text=Trample     Threshold - {1}{G}: Regenerate Krosan Avenger. Play this ability only if seven or more cards are in your graveyard.
-id=29775
-name=Krosan Avenger
-rarity=C
-type=Creature
-mana={2}{G}
-power=3
-subtype=Human Druid
-toughness=1
 [/card]
 [card]
 text=Target player draws cards equal to the number of cards in his or her hand, then discards that many cards.
@@ -995,17 +851,6 @@ mana={W}{W}{W}
 power=2
 subtype=Human Cleric
 toughness=2
-[/card]
-[card]
-text=Threshold - Metamorphic Wurm gets +4/+4 as long as seven or more cards are in your graveyard.
-id=29774
-name=Metamorphic Wurm
-rarity=U
-type=Creature
-mana={3}{G}{G}
-power=3
-subtype=Elephant Wurm
-toughness=3
 [/card]
 [card]
 text=Target player discards X cards, where X is one plus the number of cards named Mind Burst in all graveyards.
@@ -1075,39 +920,6 @@ type=Instant
 mana={2}{R}
 [/card]
 [card]
-text=Protection from black and from red     Threshold - Mystic Crusader gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
-id=29802
-name=Mystic Crusader
-rarity=R
-type=Creature
-mana={1}{W}{W}
-power=2
-subtype=Human Nomad Mystic
-toughness=1
-[/card]
-[card]
-text=Protection from black     Threshold - Mystic Enforcer gets +3/+3 and has flying as long as seven or more cards are in your graveyard.
-id=31772
-name=Mystic Enforcer
-rarity=R
-type=Creature
-mana={2}{G}{W}
-power=3
-subtype=Human Nomad Mystic
-toughness=3
-[/card]
-[card]
-text=Vigilance     Threshold - Mystic Penitent gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
-id=31766
-name=Mystic Penitent
-rarity=U
-type=Creature
-mana={W}
-power=1
-subtype=Human Nomad Mystic
-toughness=1
-[/card]
-[card]
 text=Threshold - Mystic Visionary has flying as long as seven or more cards are in your graveyard.
 id=29697
 name=Mystic Visionary
@@ -1117,17 +929,6 @@ mana={1}{W}
 power=2
 subtype=Human Nomad Mystic
 toughness=1
-[/card]
-[card]
-text=Threshold - Mystic Zealot gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
-id=29801
-name=Mystic Zealot
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Human Nomad Mystic
-toughness=4
 [/card]
 [card]
 text={2}{G}, {T}: Target creature gets +X/+X until end of turn, where X is that creature's power.
@@ -1165,17 +966,6 @@ type=Sorcery
 mana={X}{G}
 [/card]
 [card]
-text=Shroud (This permanent can't be the target of spells or abilities.)  Threshold - Nimble Mongoose gets +2/+2 as long as seven or more cards are in your graveyard.
-id=29784
-name=Nimble Mongoose
-rarity=U
-type=Creature
-mana={G}
-power=1
-subtype=Mongoose
-toughness=1
-[/card]
-[card]
 text={W}, {T}: Tap target creature.     Threshold - {W}{W}, {T}: Tap two target creatures. Play this ability only if seven or more cards are in your graveyard.
 id=29805
 name=Nomad Decoy
@@ -1185,13 +975,6 @@ mana={2}{W}
 power=1
 subtype=Human Nomad
 toughness=2
-[/card]
-[card]
-text={T}: Add {W} to your mana pool. Nomad Stadium deals 1 damage to you.     Threshold - {W}, {T}, Sacrifice Nomad Stadium: You gain 4 life. Play this ability only if seven or more cards are in your graveyard.
-id=29902
-name=Nomad Stadium
-rarity=U
-type=Land
 [/card]
 [card]
 text=At the beginning of your upkeep, you may put a 1/1 green Squirrel creature token into play.     Threshold - Squirrel creatures get +2/+2 as long as seven or more cards are in your graveyard.
@@ -1259,15 +1042,6 @@ mana={2}{R}
 power=1
 subtype=Dwarf
 toughness=1
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets +2/-2.     Threshold - Enchanted creature gets an additional +2/-2 as long as seven or more cards are in your graveyard.
-id=29749
-name=Patriarch's Desire
-rarity=C
-type=Enchantment
-mana={3}{B}
-subtype=Aura
 [/card]
 [card]
 text=Tap an untapped Wizard you control: Counter target spell unless its controller pays {1}.
@@ -1412,7 +1186,6 @@ rarity=U
 type=Sorcery
 mana={1}{R}
 [/card]
-
 [card]
 text=Flying     Whenever a creature dealt damage by Repentant Vampire this turn is put into a graveyard, put a +1/+1 counter on Repentant Vampire.     Threshold - As long as seven or more cards are in your graveyard, Repentant Vampire is white and has "{T}: Destroy target black creature."
 id=29945
@@ -1527,31 +1300,12 @@ type=Sorcery
 mana={3}{R}
 [/card]
 [card]
-text={1}{B}, Remove a card in your graveyard from the game: Screams of the Damned deals 1 damage to each creature and each player.
-id=29845
-name=Screams of the Damned
-rarity=U
-type=Enchantment
-mana={3}{B}{B}
-[/card]
-[card]
 text=Untap target creature. After this main phase, there is an additional combat phase followed by an additional main phase.       Flashback {2}{R} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=30573
 name=Seize the Day
 rarity=R
 type=Sorcery
 mana={3}{R}
-[/card]
-[card]
-text=Tap an untapped Druid you control: Add {G} to your mana pool.
-id=29985
-name=Seton, Krosan Protector
-rarity=R
-type=Legendary Creature
-mana={G}{G}{G}
-power=2
-subtype=Centaur Druid
-toughness=2
 [/card]
 [card]
 text=Enchant creature     Enchanted creature gets +2/+2.     Threshold - As long as seven or more cards are in your graveyard, all creatures able to block enchanted creature do so.
@@ -1665,17 +1419,6 @@ type=Enchantment
 mana={3}{W}
 [/card]
 [card]
-text=Threshold - Springing Tiger gets +2/+2 as long as seven or more cards are in your graveyard.
-id=29877
-name=Springing Tiger
-rarity=C
-type=Creature
-mana={3}{G}
-power=3
-subtype=Cat
-toughness=3
-[/card]
-[card]
 text=Enchant land     Enchanted land has "{T}: Put a 1/1 green Squirrel creature token into play."
 id=31836
 name=Squirrel Nest
@@ -1687,10 +1430,13 @@ mana={1}{G}{G}
 subtype=Aura
 [/card]
 [card]
-text=When a player plays a spell, sacrifice Standstill. If you do, each of that player's opponents draws three cards.
+#####
+#####Codable, but way too unfair against the AI!!!
+#####
+text=When a player casts a spell, sacrifice Standstill. If you do, each of that player's opponents draws three cards.
 id=29936
-auto=@movedto(*|opponentBattlefield):draw:3 controller && destroy this
-auto=@movedto(*|myBattlefield):draw:3 opponent && destroy this
+auto=@movedto(*|opponentstack):draw:3 controller && bury
+auto=@movedto(*|mystack):draw:3 opponent && bury
 name=Standstill
 rarity=U
 type=Enchantment
@@ -1764,14 +1510,6 @@ name=Testament of Faith
 rarity=U
 type=Enchantment
 mana={W}
-[/card]
-[card]
-text=Thermal Blast deals 3 damage to target creature.     Threshold - Thermal Blast deals 5 damage to that creature instead if seven or more cards are in your graveyard.
-id=29759
-name=Thermal Blast
-rarity=C
-type=Instant
-mana={4}{R}
 [/card]
 [card]
 text=At the beginning of your upkeep, look at the top card of your library. You may put that card into your graveyard.
@@ -1919,17 +1657,6 @@ mana={4}{W}{W}
 power=4
 subtype=Angel Horror
 toughness=4
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.     Threshold - Werebear gets +3/+3 as long as seven or more cards are in your graveyard.
-id=29785
-name=Werebear
-rarity=C
-type=Creature
-mana={1}{G}
-power=1
-subtype=Human Bear Druid
-toughness=1
 [/card]
 [card]
 text={T}: Whipkeeper deals damage to target creature equal to the damage already dealt to it this turn.

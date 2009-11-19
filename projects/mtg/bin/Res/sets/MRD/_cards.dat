@@ -625,7 +625,6 @@ subtype=Juggernaut
 power=10
 toughness=10
 [/card]
-
 [card]
 text={W}, {T}: Regenerate target artifact.
 auto={W}{T}:regenerate target(artifact)

@@ -13,6 +13,18 @@ type=Land
 rarity=C
 [/card]
 [card]
+text=Enchant creature   Enchanted creature has flying.   Threshold - Enchanted creature has shroud as long as seven or more cards are in your graveyard. (It can't be the target of spells or abilities.)
+id=29728
+target=creature
+auto=flying
+auto=aslongas(*|mygraveyard) shroud >6
+name=Aboshan's Desire
+rarity=C
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Target creature gets -1/-1 until end of turn.   Draw a card. 
 id=29740
 name=Afflict
@@ -161,6 +173,15 @@ power=2
 toughness=1
 [/card]
 [card]
+text={T}: Add {R} to your mana pool. Barbarian Ring deals 1 damage to you.   Threshold - {R}, {T}, Sacrifice Barbarian Ring: Barbarian Ring deals 2 damage to target creature or player. Play this ability only if seven or more cards are in your graveyard.
+id=29906
+auto={T}:Add {R} && damage:1 controller
+auto=aslongas(*|mygraveyard) {R}{T}{S}:damage:2 target(creature,player) >6 
+name=Barbarian Ring
+rarity=U
+type=Land
+[/card]
+[card]
 text=Other creatures you control get +0/+1. 
 id=29688
 name=Blessed Orator
@@ -185,6 +206,15 @@ auto={T}{S}:Add {W}
 name=Bog Wreckage
 type=Land
 rarity=C
+[/card]
+[card]
+text={T}: Add {B} to your mana pool. Cabal Pit deals 1 damage to you.   Threshold - {B}, {T}, Sacrifice Cabal Pit: Target creature gets -2/-2 until end of turn. Play this ability only if seven or more cards are in your graveyard.
+id=29904
+auto={T}:Add {B} && damage:1 controller
+auto=aslongas(*|mygraveyard) {B}{T}{S}:-2/-2 target(creature) >6 
+name=Cabal Pit
+rarity=U
+type=Land
 [/card]
 [card]
 text=Vigilance   Cantivore's power and toughness are each equal to the number of enchantment cards in all graveyards.
@@ -212,6 +242,15 @@ power=2
 toughness=2
 [/card]
 [card]
+text={T}: Add {G} to your mana pool. Centaur Garden deals 1 damage to you.     Threshold - {G}, {T}, Sacrifice Centaur Garden: Target creature gets +3/+3 until end of turn. Play this ability only if seven or more cards are in your graveyard.
+id=29905
+auto={T}:Add {G} && damage:1 controller
+auto=aslongas(*|mygraveyard) {G}{T}{S}:3/3 target(creature) >6 
+name=Centaur Garden
+rarity=U
+type=Land
+[/card]
+[card]
 text={U}{U}: Tap target creature without flying. 
 id=31870
 name=Cephalid Retainer
@@ -234,6 +273,33 @@ subtype=Cephalid Wizard
 auto={2}{U}{S(land|myBattlefield)}:draw:1
 power=1
 toughness=1
+abilities=flying
+[/card]
+[card]
+text={1}{R}, {T}: Chainflinger deals 1 damage to target creature or player.   Threshold - {2}{R}, {T}: Chainflinger deals 2 damage to target creature or player. Play this ability only if seven or more cards are in your graveyard.
+id=29755
+name=Chainflinger
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Beast
+auto={1}{R}{T}:damage:1 target(creature,player)
+auto=aslongas(*|mygraveyard) {1}{R}{T}:damage:2 target(creature,player) >6 
+power=2
+toughness=2
+[/card]
+[card]
+text=Flying   Threshold - As long as seven or more cards are in your graveyard, Childhood Horror gets +2/+2 and can't block.
+id=29836
+name=Childhood Horror
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Horror
+auto=aslongas(*|mygraveyard) 2/2 >6
+auto=aslongas(*|mygraveyard) cantblock >6
+power=2
+toughness=2
 abilities=flying
 [/card]
 [card]
@@ -270,6 +336,20 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
+[/card]
+[card]
+text={G}, Discard a card: Crashing Centaur gains trample until end of turn.   Threshold - As long as seven or more cards are in your graveyard, Crashing Centaur gets +2/+2 and has shroud. (It can't be the target of spells or abilities.)
+id=29878
+name=Crashing Centaur
+rarity=U
+mana={4}{G}{G}
+type=Creature
+subtype=Centaur
+auto={G}{S(*|myhand)}:trample
+auto=aslongas(*|mygraveyard) 2/2 >6
+auto=aslongas(*|mygraveyard) shroud >6
+power=3
+toughness=4
 [/card]
 [card]
 text=Sacrifice Crypt Creeper: Exile target card in a graveyard. 
@@ -370,6 +450,20 @@ type=Creature
 subtype=Human Druid
 power=1
 toughness=1
+[/card]
+[card]
+text={B}, Discard a card: Regenerate Dirty Wererat.   Threshold - As long as seven or more cards are in your graveyard, Dirty Wererat gets +2/+2 and can't block.
+id=29729
+name=Dirty Wererat
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Human Rat Minion
+auto={B}{S(*|myhand)}:regenerate
+auto=aslongas(*|mygraveyard) 2/2 >6
+auto=aslongas(*|mygraveyard) cantblock >6
+power=2
+toughness=3
 [/card]
 [card]
 text={G},{T}, Sacrifice Druid Lyrist: Destroy target enchantment.
@@ -551,6 +645,20 @@ subtype=Forest
 rarity=L
 [/card]
 [card]
+text=Fear   Threshold - As long as seven or more cards are in your graveyard, Frightcrawler gets +2/+2 and can't block.
+id=29733
+name=Frightcrawler
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Horror
+auto=aslongas(*|mygraveyard) 2/2 >6
+auto=aslongas(*|mygraveyard) cantblock >6
+power=1
+toughness=1
+abilities=fear
+[/card]
+[card]
 text=Target blocking Creature gets +4/+4 until end of turn.   Draw a card. 
 id=28755
 name=Gallantry
@@ -560,6 +668,19 @@ auto=draw:1
 mana={1}{W}
 type=Instant 
 rarity=U
+[/card]
+[card]
+text=Trample   Gorilla Titan gets +4/+4 as long as there are no cards in your graveyard.
+id=29980
+name=Gorilla Titan
+rarity=U
+mana={3}{G}{G}
+type=Creature
+subtype=Ape
+auto=aslongas(*|mygraveyard) 4/4 <1
+power=4
+toughness=4
+abilities=trample
 [/card]
 [card]
 text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
@@ -594,6 +715,19 @@ subtype=Human Barbarian
 power=3
 toughness=1
 abilities=first strike
+[/card]
+[card]
+text={2}{B}: Infected Vermin deals 1 damage to each creature and each player.   Threshold - {3}{B}: Infected Vermin deals 3 damage to each creature and each player. Play this ability only if seven or more cards are in your graveyard.
+id=31808
+name=Infected Vermin
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Rat
+auto=aslongas(*|mygraveyard) {2}{B}:damage:1 all(creature,player) >6
+auto=aslongas(*|mygraveyard) {3}{B}:damage:3 all(creature,player) >6
+power=1
+toughness=1
 [/card]
 [card]
 text=Flying, protection from all colors
@@ -644,6 +778,18 @@ subtype=Island
 rarity=L
 [/card]
 [card]
+text=Enchant creature   Enchanted creature has first strike.   Threshold - Enchanted creature gets +3/+0 as long as seven or more cards are in your graveyard.
+id=29761
+target=creature
+auto=first strike
+auto=aslongas(*|mygraveyard) 3/0 >6
+name=Kamahl's Desire
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Haste   {T}: Kamahl, Pit Fighter deals 3 damage to target creature or player.
 id=29963
 name=Kamahl, Pit Fighter
@@ -655,6 +801,28 @@ auto={T}:damage:3 target(creature,player)
 power=6
 toughness=1
 abilities=legendary,haste
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't attack.   Threshold - Enchanted creature can't block as long as seven or more cards are in your graveyard.
+id=29707
+target=creature
+auto=cantattack
+auto=aslongas(*|mygraveyard) cantblock >6
+name=Kirtar's Desire
+rarity=C
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Destroy all creatures. They can't be regenerated.   Threshold - If seven or more cards are in your graveyard, instead destroy all creatures, then put two 1/1 white Spirit creature tokens with flying into play. Creatures destroyed this way can't be regenerated.
+id=29921
+auto=destroy all(creature)
+auto=aslongas(*|mygraveyard) token(Spirit,creature token spirit, 1/1,white)*2 >6
+name=Kirtar's Wrath
+rarity=R
+mana={4}{W}{W}
+type=Sorcery
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)   {G}, Discard a card: Krosan Archer gets +0/+2 until end of turn.
@@ -670,15 +838,28 @@ toughness=3
 abilities=reach
 [/card]
 [card]
+text=Trample   Threshold - {1}{G}: Regenerate Krosan Avenger. Play this ability only if seven or more cards are in your graveyard.
+id=29775
+name=Krosan Avenger
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Human Druid
+auto=aslongas(*|mygraveyard) {1}{G}:regenerate >6
+power=3
+toughness=1
+abilities=trample
+[/card]
+[card]
 text=Threshold - Krosan Beast gets +7/+7 as long as seven or more cards are in your graveyard.
-auto=aslongas(*|mygraveyard) 7/7 >6
 id=30549
 name=Krosan Beast
 rarity=R
-type=Creature
 mana={3}{G}
-power=1
+type=Creature
 subtype=Squirrel Beast
+auto=aslongas(*|mygraveyard) 7/7 >6
+power=1
 toughness=1
 [/card]
 [card]
@@ -772,6 +953,18 @@ name=Malevolent Awakening
 rarity=U
 mana={1}{B}{B}
 type=Enchantment
+[/card]
+[card]
+text=Threshold - Metamorphic Wurm gets +4/+4 as long as seven or more cards are in your graveyard.
+id=29774
+name=Metamorphic Wurm
+rarity=U
+mana={3}{G}{G}
+type=Creature
+subtype=Elephant Wurm
+auto=aslongas(*|mygraveyard) 4/4 >6
+power=3
+toughness=3
 [/card]
 [card]
 text={T}, Put the top card of your library into your graveyard: Add {1} to your mana pool.
@@ -889,6 +1082,61 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+text=Protection from black and from red   Threshold - Mystic Crusader gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
+id=29802
+name=Mystic Crusader
+rarity=R
+mana={1}{W}{W}
+type=Creature
+subtype=Human Nomad Mystic
+auto=aslongas(*|mygraveyard) 1/1 >6
+auto=aslongas(*|mygraveyard) flying >6
+power=2
+toughness=1
+abilities=protection from black,protection from red
+[/card]
+[card]
+text=Protection from black   Threshold - Mystic Enforcer gets +3/+3 and has flying as long as seven or more cards are in your graveyard.
+id=31772
+name=Mystic Enforcer
+rarity=R
+mana={2}{G}{W}
+type=Creature
+subtype=Human Nomad Mystic
+auto=aslongas(*|mygraveyard) 3/3 >6
+auto=aslongas(*|mygraveyard) flying >6
+power=3
+toughness=3
+abilities=protection from black
+[/card]
+[card]
+text=Vigilance   Threshold - Mystic Penitent gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
+id=31766
+name=Mystic Penitent
+rarity=U
+mana={W}
+type=Creature
+subtype=Human Nomad Mystic
+auto=aslongas(*|mygraveyard) 1/1 >6
+auto=aslongas(*|mygraveyard) flying >6
+power=1
+toughness=1
+abilities=vigilance
+[/card]
+[card]
+text=Threshold - Mystic Zealot gets +1/+1 and has flying as long as seven or more cards are in your graveyard.
+id=29801
+name=Mystic Zealot
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Human Nomad Mystic
+auto=aslongas(*|mygraveyard) 1/1 >6
+auto=aslongas(*|mygraveyard) flying >6
+power=2
+toughness=4
+[/card]
+[card]
 text={G}{T}: Target creature gets +2/+2 until end of turn.
 id=29771
 name=Nantuko Disciple 
@@ -920,6 +1168,28 @@ rarity=R
 mana={R}
 auto={S(land|myBattlefield)}:haste target(creature)
 type=Enchantment
+[/card]
+[card]
+text=Shroud (This permanent can't be the target of spells or abilities.)   Threshold - Nimble Mongoose gets +2/+2 as long as seven or more cards are in your graveyard.
+id=29784
+name=Nimble Mongoose
+rarity=U
+mana={G}
+type=Creature
+subtype=Mongoose
+auto=aslongas(*|mygraveyard) 2/2 >6
+power=1
+toughness=1
+abilities=shroud
+[/card]
+[card]
+text={T}: Add {W} to your mana pool. Nomad Stadium deals 1 damage to you.   Threshold - {W}, {T}, Sacrifice Nomad Stadium: You gain 4 life. Play this ability only if seven or more cards are in your graveyard.
+id=29902
+auto={T}:Add {W} && damage:1 controller
+auto=aslongas(*|mygraveyard) {W}{T}{S}:life:4 >6
+name=Nomad Stadium
+rarity=U
+type=Land
 [/card]
 [card]
 text=Discard a card from your hand, Sacrifice Overeager Apprentice: Add {B}{B}{B} to your mana pool.
@@ -966,6 +1236,18 @@ subtype=Gnome
 auto={S(*|myhand)}:regenerate
 power=2
 toughness=1
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +2/-2.   Threshold - Enchanted creature gets an additional +2/-2 as long as seven or more cards are in your graveyard.
+id=29749
+target=creature
+auto=2/-2
+auto=aslongas(*|mygraveyard) 2/-2 >6
+name=Patriarch's Desire
+rarity=C
+mana={3}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Discard a card from your hand: Patrol Hound gains first strike until end of turn. 
@@ -1150,6 +1432,15 @@ toughness=3
 abilities=first strike
 [/card]
 [card]
+text={1}{B}, Exile a card in your graveyard: Screams of the Damned deals 1 damage to each creature and each player.
+auto={1}{B}:exile target(*|mygraveyard) && damage:1 all(creature,player)
+id=29845
+name=Screams of the Damned
+rarity=U
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
 text=When Scrivener enters the battlefield, you may return target instant card from your graveyard to your hand.
 id=29712
 name=Scrivener
@@ -1185,6 +1476,19 @@ target=creature[attacking]
 auto=moveTo(exile)
 auto=draw:1
 type=Instant 
+[/card]
+[card]
+text=Tap an untapped Druid you control: Add {G} to your mana pool.
+id=29985
+name=Seton, Krosan Protector
+rarity=R
+mana={G}{G}{G}
+type=Creature
+subtype=Centaur Druid
+auto={0}:tap target(druid[-tapped]|myBattlefield) && add{G}
+power=2
+toughness=2
+abilities=legendary
 [/card]
 [card]
 text={2}, {T}, Sacrifice Shadowblood Egg: Add {B}{R} to your mana pool. Draw a card.
@@ -1281,6 +1585,18 @@ auto=draw:1
 rarity=U
 mana={2}{W}
 type=Instant 
+[/card]
+[card]
+text=Threshold - Springing Tiger gets +2/+2 as long as seven or more cards are in your graveyard.
+id=29877
+name=Springing Tiger
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Cat
+auto=aslongas(*|mygraveyard) 2/2 >6
+power=3
+toughness=3
 [/card]
 [card]
 text=Squirrel Mob gets +1/+1 for each other Squirrel on the battlefield.
@@ -1410,6 +1726,17 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Thermal Blast deals 3 damage to target creature.   Threshold - Thermal Blast deals 5 damage to that creature instead if seven or more cards are in your graveyard.
+id=29759
+target=creature
+auto=damage:3
+auto=aslongas(*|mygraveyard) damage:2 >6
+name=Thermal Blast
+rarity=C
+mana={4}{R}
+type=Instant
+[/card]
+[card]
 text=Timberland Ruins enters the battlefield tapped.   {T}: Add {G} to your mana pool.   {T}, Sacrifice Timberland Ruins: Add one mana of any color to your mana pool.
 id=31765
 auto=tap
@@ -1476,6 +1803,19 @@ auto=moveTo(ownerhand) all(*|battlefield)
 rarity=R
 mana={4}{U}{U}
 type=Sorcery
+[/card]
+[card]
+text={T}: Add {G} to your mana pool.   Threshold - Werebear gets +3/+3 as long as seven or more cards are in your graveyard.
+id=29785
+name=Werebear
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Human Bear Druid
+auto={T}:Add {G}
+auto=auto=aslongas(*|mygraveyard) 3/3 >6
+power=1
+toughness=1
 [/card]
 [card]
 text=Swampwalk   {B}: Whispering Shade gets +1/+1 until end of turn
