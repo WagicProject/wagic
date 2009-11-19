@@ -168,7 +168,15 @@ power=4
 toughness=4
 [/card]
 [card]
-text=
+text=You may play land cards from your graveyard.
+auto={0}:may moveTo(myBattlefield) target(land|mygraveyard) limit:1 myTurnOnly
+id=51133
+name=Crucible of Worlds
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
 id=51189
 name=Dross Crocodile
 rarity=C
@@ -515,6 +523,18 @@ mana={7}
 type=Artifact
 [/card]
 [card]
+text=When you control no other artifacts, sacrifice Synod Centurion.
+id=73929
+name=Synod Centurion
+rarity=U
+mana={4}
+type=Artifact Creature
+subtype=Construct
+auto=aslongas(artifact other|myBattlefield) -99/-99 <1
+power=4
+toughness=4
+[/card]
+[card]
 text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
 alias=1238
 id=50203
@@ -620,4 +640,13 @@ auto={T}:damage:1 target(creature,player)
 power=1
 toughness=1
 abilities=haste
+[/card]
+[card]
+text={2}, {T}, Sacrifice Wayfarer's Bauble: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
+auto={2}{T}:moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
+id=51110
+name=Wayfarer's Bauble
+rarity=C
+mana={1}
+type=Artifact
 [/card]

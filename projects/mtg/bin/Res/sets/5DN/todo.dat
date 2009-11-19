@@ -235,14 +235,6 @@ text=Equipped creature gets +1/+0 for each artifact you control. {B}{B}: Attach 
 rarity=C
 [/card]
 [card]
-id=51133
-name=Crucible of Worlds
-mana={3}
-type=Artifact
-text=You may play land cards from your graveyard.
-rarity=R
-[/card]
-[card]
 id=51222
 name=Dawn's Reflection
 mana={3}{G}
@@ -449,14 +441,6 @@ mana={2}{R}{R}
 type=Sorcery
 text=Destroy each nonland artifact with converted mana cost 4 or less.
 rarity=R
-[/card]
-[card]
-id=51229
-name=Grinding Station
-mana={2}
-type=Artifact
-text={T}, Sacrifice an artifact: Target player puts the top three cards of his or her library into his or her graveyard. Whenever an artifact enters the battlefield, you may untap Grinding Station.
-rarity=U
 [/card]
 [card]
 id=51138
@@ -984,17 +968,6 @@ text={T}: Add to your mana pool one mana of any color that a land an opponent co
 rarity=C
 [/card]
 [card]
-id=73929
-name=Synod Centurion
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=4
-toughness=4
-text=When you control no other artifacts, sacrifice Synod Centurion.
-rarity=U
-[/card]
-[card]
 id=50190
 name=Tel-Jilad Justice
 mana={1}{G}
@@ -1057,13 +1030,5 @@ name=Vicious Betrayal
 mana={3}{B}{B}
 type=Sorcery
 text=As an additional cost to cast Vicious Betrayal, sacrifice any number of creatures. Target creature gets +2/+2 until end of turn for each creature sacrificed this way.
-rarity=C
-[/card]
-[card]
-id=51110
-name=Wayfarer's Bauble
-mana={1}
-type=Artifact
-text={2}, {T}, Sacrifice Wayfarer's Bauble: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 rarity=C
 [/card]
