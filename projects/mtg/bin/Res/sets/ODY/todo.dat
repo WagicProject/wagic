@@ -176,17 +176,6 @@ type=Instant
 mana={2}{G}{G}{G}
 [/card]
 [card]
-text=Protection from creatures
-id=29798
-name=Beloved Chaplain
-rarity=U
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Cleric
-toughness=1
-[/card]
-[card]
 text=Blazing Salvo deals 3 damage to target creature unless that creature's controller has Blazing Salvo deal 5 damage to him or her.
 id=29858
 name=Blazing Salvo

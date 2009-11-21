@@ -459,17 +459,6 @@ subtype=Cat Warrior
 toughness=4
 [/card]
 [card]
-text=Protection from artifacts
-id=183022
-name=Nacatl Savage
-rarity=C
-type=Creature
-mana={1}{G}
-power=2
-subtype=Cat Warrior
-toughness=1
-[/card]
-[card]
 text=+3: Destroy target noncreature permanent.     -2: Gain control of target creature.     -9: Nicol Bolas, Planeswalker deals 7 damage to target player. That player discards seven cards, then sacrifices seven permanents.
 id=179441
 name=Nicol Bolas, Planeswalker

@@ -1240,17 +1240,6 @@ mana={1}{B}
 subtype=Shapeshifter
 [/card]
 [card]
-text=Protection from Elves
-id=139446
-name=Nath's Buffoon
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Goblin Rogue
-toughness=1
-[/card]
-[card]
 text=All creatures able to block Nath's Elite do so.     When Nath's Elite comes into play, clash with an opponent. If you win, put a +1/+1 counter on Nath's Elite. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 id=145990
 name=Nath's Elite
@@ -1829,17 +1818,6 @@ mana={4}{B}
 power=3
 subtype=Goblin Rogue
 toughness=3
-[/card]
-[card]
-text=Protection from Goblins
-id=139450
-name=Warren-Scourge Elf
-rarity=C
-type=Creature
-mana={1}{G}
-power=1
-subtype=Elf Warrior
-toughness=1
 [/card]
 [card]
 text=Destroy target creature. Clash with an opponent. If you win, you gain life equal to that creature's toughness. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)

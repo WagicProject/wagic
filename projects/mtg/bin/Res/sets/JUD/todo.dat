@@ -179,17 +179,6 @@ text=Destroy target attacking creature. You gain life equal to its power.
 rarity=U
 [/card]
 [card]
-id=35893
-name=Commander Eesha
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=Bird Soldier
-power=2
-toughness=4
-text=Flying, protection from creatures
-rarity=R
-[/card]
-[card]
 id=35170
 name=Crush of Wurms
 mana={6}{G}{G}{G}
@@ -538,15 +527,15 @@ text=Enchant creature Enchanted creature can't attack or block and its activated
 rarity=C
 [/card]
 [card]
+text=Green creatures and white creatures have protection from Gorgons.   Threshold - Masked Gorgon has protection from green and from white as long as seven or more cards are in your graveyard.
 id=34480
 name=Masked Gorgon
+rarity=R
 mana={4}{B}
 type=Creature
 subtype=Gorgon
 power=5
 toughness=5
-text=Green creatures and white creatures have protection from Gorgons. Threshold  EMasked Gorgon has protection from green and from white as long as seven or more cards are in your graveyard.
-rarity=R
 [/card]
 [card]
 id=35057

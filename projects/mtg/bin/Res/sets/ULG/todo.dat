@@ -7,17 +7,6 @@ text=Switch target creature's power and toughness until end of turn.
 rarity=C
 [/card]
 [card]
-id=12354
-name=Angelic Curator
-mana={1}{W}
-type=Creature
-subtype=Angel Spirit
-power=1
-toughness=1
-text=Flying, protection from artifacts
-rarity=C
-[/card]
-[card]
 id=8832
 name=Angel's Trumpet
 mana={3}
@@ -823,16 +812,5 @@ subtype=Elf
 power=2
 toughness=2
 text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Yavimaya Granger enters the battlefield, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
-rarity=C
-[/card]
-[card]
-id=12429
-name=Yavimaya Scion
-mana={4}{G}
-type=Creature
-subtype=Treefolk
-power=4
-toughness=4
-text=Protection from artifacts
 rarity=C
 [/card]

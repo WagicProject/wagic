@@ -7,3 +7,29 @@ text=Whenever a player casts a white spell, you may gain 1 life.
 auto=@movedTo(*[white]|stack):may life:1 controller
 rarity=U
 [/card]
+[card]
+text=Defender (This creature can't attack.)   Protection from artifacts   Whenever an opponent casts an artifact spell, you may put a 1/1 green Insect creature token onto the battlefield.
+auto=@movedTo(artifact|opponentstack):tokentoken(Insect,creature token insect, 1/1,green)
+id=48598
+name=Infested Roothold
+rarity=U
+mana={4}{G}
+type=Creature
+subtype=Wall
+auto=protection from(artifact)
+power=0
+toughness=3
+abilities=defender
+[/card]
+[card]
+text=Protection from artifacts
+id=46002
+name=Tel-Jilad Outrider
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Elf Warrior
+auto=protection from(artifact)
+power=3
+toughness=1
+[/card]

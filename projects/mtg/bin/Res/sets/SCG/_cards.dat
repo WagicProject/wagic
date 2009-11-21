@@ -1,23 +1,36 @@
 [card]
-id=47281
-name=Ark of Blight
-mana={2}
-type=Artifact
 text={3}, {T}, Sacrifice Ark of Blight: Destroy target land.
 auto={3}{T}{S}:destroy target(land)
+id=47281
+name=Ark of Blight
 rarity=U
+mana={2}
+type=Artifact
 [/card]
 [card]
+text=Flying   When Bladewing the Risen enters the battlefield, you may return target Dragon permanent card from your graveyard to the battlefield.   {B}{R}: Dragon creatures get +1/+1 until end of turn.
+auto=may moveTo(myBattlefield) target(dragon[-instant;-sorcery]|mygraveyard)
 id=42024
 name=Bladewing the Risen
+rarity=R
 mana={3}{B}{B}{R}{R}
 type=Creature
 subtype=Zombie Dragon
+auto={B}{R}:lord(dragon) 1/1
 power=4
 toughness=4
-text=Flying When Bladewing the Risen enters the battlefield, you may return target Dragon permanent card from your graveyard to the battlefield. {B}{R}: Dragon creatures get +1/+1 until end of turn.
-abilities=Legendary,Flying
-auto=may moveTo(myBattlefield) target(dragon[-instant;-sorcery]|mygraveyard)
-auto={B}{R}:lord(dragon) 1/1
-rarity=R
+abilities=legendary,flying
+[/card]
+[card]
+text=Flying, protection from Dragons
+id=39714
+name=Dragonstalker
+rarity=U
+mana={4}{W}
+type=Creature
+subtype=Bird Soldier
+auto=protection from(dragon)
+power=3
+toughness=3
+abilities=flying
 [/card]

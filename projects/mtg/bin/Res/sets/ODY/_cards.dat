@@ -182,6 +182,18 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Protection from creatures
+id=29798
+name=Beloved Chaplain
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+auto=protection from(creature)
+power=1
+toughness=1
+[/card]
+[card]
 text=Other creatures you control get +0/+1. 
 id=29688
 name=Blessed Orator

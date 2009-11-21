@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=43539
 name=Accelerated Mutation
 mana={3}{G}{G}
@@ -425,17 +425,6 @@ subtype=Human Barbarian Shaman
 power=2
 toughness=2
 text=Dragon spells you cast cost {2} less to cast.
-rarity=U
-[/card]
-[card]
-id=39714
-name=Dragonstalker
-mana={4}{W}
-type=Creature
-subtype=Bird Soldier
-power=3
-toughness=3
-text=Flying, protection from Dragons
 rarity=U
 [/card]
 [card]

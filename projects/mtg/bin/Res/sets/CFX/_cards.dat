@@ -456,6 +456,18 @@ toughness=2
 abilities=protection from blue
 [/card]
 [card]
+text=Protection from artifacts
+id=183022
+name=Nacatl Savage
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Cat Warrior
+auto=protection from artifact
+power=2
+toughness=1
+[/card]
+[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {T}: Add {G}, {W}, or {U} to your mana pool.
 id=179434
 name=Noble Hierarch

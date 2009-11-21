@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=49075
 name=AEther Snap
 mana={3}{B}{B}
@@ -622,17 +622,6 @@ mana={1}{B}
 type=Sorcery
 text=Target creature gets +1/+0 until end of turn for each artifact you control.
 rarity=C
-[/card]
-[card]
-id=48598
-name=Infested Roothold
-mana={4}{G}
-type=Creature
-subtype=Wall
-power=0
-toughness=3
-text=Defender (This creature can't attack.) Protection from artifacts Whenever an opponent casts an artifact spell, you may put a 1/1 green Insect creature token onto the battlefield.
-rarity=U
 [/card]
 [card]
 id=48120
@@ -1347,17 +1336,6 @@ mana={2}{R}{R}
 type=Instant
 text=Cast Tears of Rage only during the declare attackers step. Attacking creatures you control get +X/+0 until end of turn, where X is the number of attacking creatures. Sacrifice those creatures at the beginning of the next end step.
 rarity=U
-[/card]
-[card]
-id=46002
-name=Tel-Jilad Outrider
-mana={3}{G}
-type=Creature
-subtype=Elf Warrior
-power=3
-toughness=1
-text=Protection from artifacts
-rarity=C
 [/card]
 [card]
 id=46008

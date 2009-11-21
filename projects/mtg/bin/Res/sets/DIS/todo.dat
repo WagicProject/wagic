@@ -25,7 +25,6 @@ toughness=0
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {G}: Target creature with a +1/+1 counter on it gains reach until end of turn. (It can block creatures with flying.)
 rarity=C
 [/card]
-
 [card]
 id=110639
 name=Aurora Eidolon
@@ -65,17 +64,6 @@ name=Azorius Chancery
 mana=
 type=Land
 text=Azorius Chancery enters the battlefield tapped. When Azorius Chancery enters the battlefield, return a land you control to its owner's hand. {T}: Add {W}{U} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=97101
-name=Azorius First-Wing
-mana={W}{U}
-type=Creature
-subtype=Griffin
-power=2
-toughness=2
-text=Flying, protection from enchantments
 rarity=C
 [/card]
 [card]

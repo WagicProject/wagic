@@ -1006,17 +1006,6 @@ toughness=3
 text=At end of turn, if Kitsune Mystic is enchanted by two or more Auras, flip it. rarity=R
 [/card]
 [card]
-id=50412
-name=Kitsune Riftwalker
-mana={1}{W}{W}
-type=Creature
-subtype=Fox Wizard
-power=2
-toughness=1
-text=Protection from Spirits and from Arcane
-rarity=C
-[/card]
-[card]
 id=81702
 name=Kodama's Might
 mana={G}

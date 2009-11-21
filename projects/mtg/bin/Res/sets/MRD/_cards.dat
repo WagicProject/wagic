@@ -755,6 +755,19 @@ rarity=L
 subtype=Mountain
 [/card]
 [card]
+text=Flash   Protection from artifacts
+id=48930
+name=Needlebug
+rarity=U
+mana={4}
+type=Artifact Creature
+subtype=Insect
+auto=protection from(artifact)
+power=2
+toughness=2
+abilities=flash
+[/card]
+[card]
 text=Neurok Spy is unblockable as long as defending player controls an artifact.
 id=45974
 name=Neurok Spy
@@ -1240,6 +1253,31 @@ auto={1}{T}:life:1
 mana={1}
 type=Artifact
 rarity=C
+[/card]
+[card]
+text=Protection from artifacts; reach (This creature can block creatures with flying.)
+id=46004
+name=Tel-Jilad Archers
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Elf Archer
+auto=protection from(artifact)
+power=2
+toughness=4
+abilities=reach
+[/card]
+[card]
+text=Protection from artifacts
+id=46003
+name=Tel-Jilad Chosen
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf Warrior
+auto=protection from(artifact)
+power=2
+toughness=1
 [/card]
 [card]
 text={1}{G}: Regenerate Tel-Jilad Exile.

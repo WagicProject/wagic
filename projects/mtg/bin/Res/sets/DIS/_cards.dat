@@ -1,366 +1,380 @@
 [card]
+text=Flying, trample
 id=97107
 name=Assault Zeppelid
-abilities=flying,trample
+rarity=C
 mana={2}{G}{U}
 type=Creature
 subtype=Beast
 power=3
 toughness=3
-text=Flying, trample
-rarity=C
+abilities=flying,trample
 [/card]
 [card]
+text=Flying, protection from enchantments
+id=97101
+name=Azorius First-Wing
+rarity=C
+mana={W}{U}
+type=Creature
+subtype=Griffin
+auto=protection from(enchantment)
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text={1}, {T}: Add {W}{U} to your mana pool.
 id=97085
 name=Azorius Signet
+auto={1}{T}:Add {W}{U}
+rarity=C
 mana={2}
 type=Artifact
-text={1}, {T}: Add {W}{U} to your mana pool.
-auto={1}{T}:add{W}{U}
-rarity=C
 [/card]
 [card]
+text=Flying Whenever Beacon Hawk deals combat damage to a player, you may untap target creature. {W}: Beacon Hawk gets +0/+1 until end of turn.
+auto=@damaged(player) from(this):may untap target(creature)
 id=111225
 name=Beacon Hawk
+rarity=C
 mana={1}{W}
 type=Creature
 subtype=Bird
+auto={W}:0/1
 power=1
 toughness=1
 abilities=flying
-text=Flying Whenever Beacon Hawk deals combat damage to a player, you may untap target creature. {W}: Beacon Hawk gets +0/+1 until end of turn.
-auto=@damaged(player) from(this):may untap target(creature)
-auto={W}:0/1
-rarity=C
 [/card]
 [card]
+text=Flying Whenever you cast an enchantment spell, put a +1/+1 counter on each creature you control.
+auto=@movedTo(enchantment|mystack):all(creature|mybattlefield) counter(1/1,1)
 id=107317
 name=Celestial Ancient
+rarity=R
 mana={3}{W}{W}
 type=Creature
 subtype=Elemental
 power=3
 toughness=3
-text=Flying Whenever you cast an enchantment spell, put a +1/+1 counter on each creature you control.
-auto=@movedTo(enchantment|mystack):all(creature|mybattlefield) counter(1/1,1)
 abilities=flying
-rarity=R
 [/card]
 [card]
+text=Flying Hellbent - Demon's Jester gets +2/+1 as long as you have no cards in hand.
 id=107599
 name=Demon's Jester
+rarity=C
 mana={3}{B}
 type=Creature
 subtype=Imp
-abilities=flying
+auto=aslongas(*|myhand)-2/-1
 power=4
 toughness=3
-auto=aslongas(*|myhand)-2/-1
-text=Flying Hellbent - Demon's Jester gets +2/+1 as long as you have no cards in hand.
-rarity=C
+abilities=flying
 [/card]
 [card]
+text=Trample   Dread Slag gets -4/-4 for each card in your hand.
 id=107322
 name=Dread Slag
+rarity=R
 mana={3}{B}{R}
 type=Creature
 subtype=Horror
+auto=foreach(*|myhand) -4/-4
 power=9
 toughness=9
-text=Trample Dread Slag gets -4/-4 for each card in your hand.
 abilities=trample
-auto=foreach(*|myhand) -4/-4
-rarity=R
 [/card]
 [card]
+text={T}, Sacrifice Haazda Exonerator: Destroy target Aura.
 id=107467
 name=Haazda Exonerator
+rarity=C
 mana={W}
 type=Creature
 subtype=Human Cleric
+auto={T}{S}:destroy target(aura)
 power=1
 toughness=1
-text={T}, Sacrifice Haazda Exonerator: Destroy target Aura.
-auto={T}{S}:destroy target(aura)
-rarity=C
 [/card]
 [card]
+text=Flying
 id=107260
 name=Mistral Charger
+rarity=U
 mana={1}{W}
 type=Creature
 subtype=Pegasus
 power=2
 toughness=1
-text=Flying
 abilities=flying
-rarity=U
 [/card]
 [card]
+text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
+auto={T}:damage:1 target(creature) && life:-1 targetcontroller
 id=97074
 name=Rakdos Ickspitter
+rarity=C
 mana={1}{B}{R}
 type=Creature
 subtype=Thrull
 power=1
 toughness=1
-text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
-auto={T}:damage:1 target(creature) && life:-1 targetcontroller
-rarity=C
 [/card]
 [card]
+text={R}{R}: Rakdos Pit Dragon gains flying until end of turn.   {R}: Rakdos Pit Dragon gets +1/+0 until end of turn.   Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
 id=111188
 name=Rakdos Pit Dragon
+rarity=R
 mana={2}{R}{R}
 type=Creature
 subtype=Dragon
-power=3
-toughness=3
-text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
-rarity=R
+auto=aslongas(*|myHand) -double strike
 auto={R}{R}:flying
 auto={R}:1/0
+power=3
+toughness=3
 abilities=double strike
-auto=aslongas(*|myHand)-double strike
 [/card]
 [card]
+text={1}, {T}: Add {B}{R} to your mana pool.
 id=97098
+auto={1}{T}:Add {B}{R}
 name=Rakdos Signet
+rarity=C
 mana={2}
 type=Artifact
-text={1}, {T}: Add {B}{R} to your mana pool.
-auto={1}{T}:add{B}{R}
-rarity=C
 [/card]
 [card]
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)   At the beginning of your upkeep, you may search your library for a Rat card, reveal it, and put it into your hand. If you do, shuffle your library.
+auto=@each my upkeep:may moveTo(myHand) target(rat|mylibrary)
 id=107273
 name=Ratcatcher
+rarity=R
 mana={4}{B}{B}
 type=Creature
 subtype=Ogre Rogue
 power=4
 toughness=4
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) At the beginning of your upkeep, you may search your library for a Rat card, reveal it, and put it into your hand. If you do, shuffle your library.
-auto=@each my upkeep:may moveTo(myHand) target(rat|mylibrary)
 abilities=fear
-rarity=R
 [/card]
 [card]
+text=({(b/r)} can be paid with either {B} or {R}.)   Enchant creature   Enchanted creature gets +2/-1.
 id=97076
+target=creature
+auto=2/-1
 name=Riot Spikes
+rarity=C
 mana={BR}
 type=Enchantment
 subtype=Aura
-text=({(b/r)} can be paid with either {B} or {R}.) Enchant creature Enchanted creature gets +2/-1.
-target=creature
-auto=2/-1
-rarity=C
 [/card]
 [card]
-id=107534
-name=Seal of Doom
-mana={2}{B}
-type=Enchantment
 text=Sacrifice Seal of Doom: Destroy target nonblack creature. It can't be regenerated.
 auto={S}:bury target(creature[-black])
+id=107534
+name=Seal of Doom
 rarity=C
+mana={2}{B}
+type=Enchantment
 [/card]
 [card]
-id=107531
-name=Seal of Fire
-mana={R}
-type=Enchantment
 text=Sacrifice Seal of Fire: Seal of Fire deals 2 damage to target creature or player.
 auto={S}:damage:2 target(creature,player)
+id=107531
+name=Seal of Fire
 rarity=C
+mana={R}
+type=Enchantment
 [/card]
 [card]
+text=({GU} can be paid with either {G} or {U}.)   Enchant creature.   When Shielding Plax enters the battlefield, draw a card. Enchanted creature can't be the target of spells or abilities your opponents control.
 id=97084
-name=Shielding Plax
-mana={2}{GU}
-type=Enchantment
-subtype=Aura
-text=({GU} can be paid with either {G} or {U}.) Enchant creature. When Shielding Plax enters the battlefield, draw a card. Enchanted creature can't be the target of spells or abilities your opponents control.
 target=creature
 auto=opponentshroud
 auto=draw:1
+name=Shielding Plax
 rarity=C
+mana={2}{GU}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
+text=Flying   {G}, Sacrifice Silkwing Scout: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
+auto={G}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
 id=107313
 name=Silkwing Scout
+rarity=C
 mana={2}{U}
 type=Creature
 subtype=Faerie Scout
 power=2
 toughness=1
-text=Flying {G}, Sacrifice Silkwing Scout: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
-auto={G}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
 abilities=flying
-rarity=C
 [/card]
 [card]
+text={U}: Untap Simic Ragworm.
 id=107565
 name=Simic Ragworm
+rarity=C
 mana={3}{G}
 type=Creature
 subtype=Worm
+auto={U}:untap
 power=3
 toughness=3
-text={U}: Untap Simic Ragworm.
-auto={U}:untap
-rarity=C
 [/card]
 [card]
+text={1}, {T}: Add {G}{U} to your mana pool.
 id=97079
+auto={1}{T}:Add{G}{U}
 name=Simic Signet
+rarity=C
 mana={2}
 type=Artifact
-text={1}, {T}: Add {G}{U} to your mana pool.
-auto={1}{T}:Add{G}{U}
-rarity=C
 [/card]
 [card]
+text=Flying; trample; shroud (This permanent can't be the target of spells or abilities.)
 id=111204
 name=Simic Sky Swallower
+rarity=R
 mana={5}{G}{U}
 type=Creature
 subtype=Leviathan
 power=6
 toughness=6
-text=Flying; trample; shroud (This permanent can't be the target of spells or abilities.)
 abilities=flying,trample,shroud
-rarity=R
 [/card]
 [card]
+text={T}: You gain 1 life.   {T}, Discard a card: You gain 3 life.
 id=107326
-name=Skullmead Cauldron
-mana={4}
-type=Artifact
-text={T}: You gain 1 life. {T}, Discard a card: You gain 3 life.
 auto={T}:life:1
 auto={T}{S(*|myhand)}:life:3
+name=Skullmead Cauldron
 rarity=U
+mana={4}
+type=Artifact
 [/card]
 [card]
+text=Defender (This creature can't attack.)   {B}: Slithering Shade gets +1/+1 until end of turn.   Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
 id=111283
 name=Slithering Shade
+rarity=U
 mana={B}
 type=Creature
 subtype=Shade
+auto={B}:1/1
+auto=defender
+auto=aslongas(*|myHand) -defender
 power=0
 toughness=1
-text=Defender (This creature can't attack.) {B}: Slithering Shade gets +1/+1 until end of turn. Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
-auto=defender
-auto=aslongas(*|myHand)-defender
-rarity=U
 [/card]
 [card]
+text=Defender (This creature can't attack.)   {1}{U}, Sacrifice Soulsworn Jury: Counter target creature spell.
 id=107440
 name=Soulsworn Jury
+rarity=C
 mana={2}{W}
 type=Creature
 subtype=Spirit
+auto={1}{U}{S}:fizzle target(creature|stack)
 power=1
 toughness=4
-text=Defender (This creature can't attack.) {1}{U}, Sacrifice Soulsworn Jury: Counter target creature spell.
 abilities=defender
-auto={1}{U}{S}:fizzle target(creature|stack)
-rarity=C
 [/card]
 [card]
+text=Counter all other spells. Draw a card for each spell countered this way.
 id=107284
 name=Swift Silence
-mana={2}{W}{U}{U}
-type=Instant
-text=Counter all other spells. Draw a card for each spell countered this way.
 auto=foreach(other *|stack) draw:1
 auto=fizzle all(other *|stack)
 rarity=R
+mana={2}{W}{U}{U}
+type=Instant
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +2/+0.   Hellbent - Enchanted creature gets an additional +2/+0 as long as you have no cards in hand.
 id=107597
-name=Taste for Mayhem
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+0. Hellbent - Enchanted creature gets an additional +2/+0 as long as you have no cards in hand.
-rarity=C
 target=creature
 auto=4/0
 auto=aslongas(*|myhand)-2/0
+name=Taste for Mayhem
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
+text=Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
+auto=@damaged(player) from(this):may destroy target(artifact,enchantment)
 id=97112
 name=Trygon Predator
+rarity=U
 mana={1}{G}{U}
 type=Creature
 subtype=Beast
 power=2
 toughness=3
-text=Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
-auto=@damaged(player) from(this):may destroy target(artifact,enchantment)
-abilities=Flying
-rarity=U
+abilities=flying
 [/card]
 [card]
+text=Flying   Utvara Scalper attacks each turn if able.
 id=107276
 name=Utvara Scalper
+rarity=C
 mana={1}{R}
 type=Creature
 subtype=Goblin Scout
 power=1
 toughness=2
-text=Flying Utvara Scalper attacks each turn if able.
 abilities=Flying,mustattack
-rarity=C
 [/card]
 [card]
+text={T}, Pay 1 life: Add one mana of any color to your mana pool.
 id=107477
 name=Vesper Ghoul
+rarity=C
 mana={2}{B}
 type=Creature
 subtype=Zombie Druid
+auto={T}:Add{G} && life:-1 controller
+auto={T}:Add{W} && life:-1 controller
+auto={T}:Add{R} && life:-1 controller
+auto={T}:Add{B} && life:-1 controller
+auto={T}:Add{U} && life:-1 controller
 power=1
 toughness=1
-text={T}, Pay 1 life: Add one mana of any color to your mana pool.
-auto={T}:add{G} && life:-1
-auto={T}:add{W} && life:-1
-auto={T}:add{R} && life:-1
-auto={T}:add{B} && life:-1
-auto={T}:add{U} && life:-1
-rarity=C
 [/card]
 [card]
+text=Each player draws two cards.
 id=107397
 name=Vision Skeins
-mana={1}{U}
-type=Instant
-text=Each player draws two cards.
 auto=draw:2 opponent
 auto=draw:2 controller
 rarity=C
+mana={1}{U}
+type=Instant
 [/card]
 [card]
+text=Defender (This creature can't attack.)   Flying   {1}{W}: Creatures you control with defender can attack this turn as though they didn't have defender.
 id=111226
 name=Wakestone Gargoyle
+rarity=R
 mana={3}{W}
 type=Creature
 subtype=Gargoyle
+auto={1}{W}:lord(creature[defender]|myBattlefield) -defender
 power=3
 toughness=4
-text=Defender (This creature can't attack.) Flying {1}{W}: Creatures you control with defender can attack this turn as though they didn't have defender.
 abilities=defender,flying
-auto={1}{W}:lord(creature|mybattlefield) -defender
-rarity=R
 [/card]
 [card]
-id=111202
-name=Wrecking Ball
-mana={2}{B}{R}
-type=Instant
 text=Destroy target creature or land.
+id=111202
 target=creature,land
 auto=destroy
+name=Wrecking Ball
 rarity=C
+mana={2}{B}{R}
+type=Instant
 [/card]

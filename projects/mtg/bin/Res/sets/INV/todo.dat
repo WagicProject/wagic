@@ -1112,17 +1112,6 @@ subtype=Human Wizard
 toughness=1
 [/card]
 [card]
-text=Protection from Kavu
-id=22978
-name=Shoreline Raider
-rarity=C
-type=Creature
-mana={2}{U}
-power=2
-subtype=Merfolk
-toughness=2
-[/card]
-[card]
 text=Kicker {R} (You may pay an additional {R} as you play this spell.)  Trample, haste     At end of turn, sacrifice Skizzik unless the kicker cost was paid.
 id=23096
 name=Skizzik
@@ -1364,17 +1353,6 @@ mana={3}{G}{W}{U}
 power=6
 subtype=Dragon
 toughness=6
-[/card]
-[card]
-text=First strike, protection from legendary creatures     {B}{B}, {T}: Destroy target legendary creature. It can't be regenerated.
-id=23321
-name=Tsabo Tavoc
-rarity=R
-type=Legendary Creature
-mana={5}{B}{R}
-power=7
-subtype=Horror
-toughness=4
 [/card]
 [card]
 text={T}: Destroy target creature if it shares a color with the most common color among all permanents or a color tied for most common. A creature destroyed this way can't be regenerated.

@@ -465,6 +465,18 @@ power=0
 toughness=1
 [/card]
 [card]
+text=Protection from Spirits and from Arcane
+id=50412
+name=Kitsune Riftwalker
+rarity=C
+mana={1}{W}{W}
+type=Creature
+subtype=Fox Wizard
+auto=protection from(spirit,arcane)
+power=2
+toughness=1
+[/card]
+[card]
 text=Shroud, trample
 id=50488
 name=Kodama of the North Tree

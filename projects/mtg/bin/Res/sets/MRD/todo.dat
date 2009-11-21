@@ -917,17 +917,6 @@ type=Artifact
 mana={1}
 [/card]
 [card]
-text=Flash     Protection from artifacts
-id=48930
-name=Needlebug
-rarity=U
-type=Artifact Creature
-mana={4}
-power=2
-subtype=Insect
-toughness=2
-[/card]
-[card]
 text=Flying When Neurok Familiar comes into play, reveal the top card of your library. If it's an artifact card, put it into your hand. Otherwise, put it into your graveyard.
 id=46082
 name=Neurok Familiar
@@ -1390,29 +1379,6 @@ name=Tangleroot
 rarity=R
 type=Artifact
 mana={3}
-[/card]
-[card]
-text=Protection from artifacts; reach (This creature can block creatures with flying.)
-id=46004
-name=Tel-Jilad Archers
-rarity=C
-type=Creature
-abilities=reach,protection from artifact
-mana={4}{G}
-power=2
-subtype=Elf Archer
-toughness=4
-[/card]
-[card]
-text=Protection from artifacts
-id=46003
-name=Tel-Jilad Chosen
-rarity=C
-type=Creature
-mana={1}{G}
-power=2
-subtype=Elf Warrior
-toughness=1
 [/card]
 
 [card]

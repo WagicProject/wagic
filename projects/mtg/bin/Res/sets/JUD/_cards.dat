@@ -116,6 +116,19 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Flying, protection from creatures
+id=35893
+name=Commander Eesha
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Bird Soldier
+auto=protection from(creature)
+power=2
+toughness=4
+abilities=legendary,flying
+[/card]
+[card]
 text=Enchant creature.   Enchanted creature gets +3/+3.   When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
 id=12692
 name=Elephant Guide

@@ -1523,6 +1523,18 @@ toughness=2
 abilities=protection from white
 [/card]
 [card]
+text=Protection from Kavu
+id=22978
+name=Shoreline Raider
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Merfolk
+auto=protection from(kavu)
+power=2
+toughness=2
+[/card]
+[card]
 text=Simoon deals 1 damage to each creature target opponent controls.
 auto=damage:1 all(creature|opponentBattlefield)
 id=23175
@@ -1913,6 +1925,20 @@ mana={3}
 auto={T}:Add {R}
 auto={T}:Add {G}
 type=Artifact
+[/card]
+[card]
+text=First strike, protection from legendary creatures   {B}{B}, {T}: Destroy target legendary creature. It can't be regenerated.
+id=23321
+name=Tsabo Tavoc
+rarity=R
+mana={5}{B}{R}
+type=Creature
+subtype=Horror
+auto=protection from(creature[legendary])
+auto={B}{B}:bury target(creature[legendary])
+power=7
+toughness=4
+abilities=legendary,first strike
 [/card]
 [card]
 text=Counter target spell. Its controller loses 3 life.

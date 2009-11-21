@@ -1,4 +1,17 @@
 [card]
+text=Flying, protection from artifacts
+id=12354
+name=Angelic Curator
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Angel Spirit
+auto=protection from(artifact)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text={T}: Draw a card.
 id=12390
 name=Archivist
@@ -579,6 +592,18 @@ name=Wing Snare
 rarity=U
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+text=Protection from artifacts
+id=12429
+name=Yavimaya Scion
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Treefolk
+auto=protection from(artifact)
+power=4
+toughness=4
 [/card]
 [card]
 text=Trample
