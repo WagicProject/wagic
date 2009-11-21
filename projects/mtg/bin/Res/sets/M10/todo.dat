@@ -30,17 +30,7 @@ toughness=1
 text=When Awakener Druid enters the battlefield, target Forest becomes a 4/5 green Treefolk creature for as long as Awakener Druid is on the battlefield. It's still a land.
 rarity=U
 [/card]
-[card]
-id=191065
-name=Baneslayer Angel
-mana={3}{W}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-text=Flying, first strike, lifelink, protection from Demons and from Dragons
-rarity=M
-[/card]
+
 [card]
 id=191340
 name=Bogardan Hellkite

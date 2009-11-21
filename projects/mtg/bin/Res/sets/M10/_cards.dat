@@ -112,6 +112,19 @@ auto=@next end:bury
 abilities=trample,haste
 [/card]
 [card]
+id=191065
+name=Baneslayer Angel
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+text=Flying, first strike, lifelink, protection from Demons and from Dragons
+abilities=flying,first strike,lifelink
+auto=protection from(demon,dragon)
+rarity=M
+[/card]
+[card]
 id=191071
 name=Berserkers of Blood Ridge
 mana={4}{R}

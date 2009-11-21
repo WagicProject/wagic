@@ -261,23 +261,6 @@ protected:
   JGuiListener * mListener;
 };
 
-
-class WGuiImage: public WGuiItem{
-public:
-  WGuiImage(string _file, int _w, int _h, int _margin);
-  virtual bool Selectable() {return false;};
-  virtual JQuad * getImage();
-  virtual void Render();
-  virtual float getHeight();
-
-  virtual void imageScale(float w, float h);
-protected:
-  bool exact;
-  int margin;
-  int imgW, imgH;
-  string filename;
-};
-
 class WGuiText:public WGuiItem {
  public:
   WGuiText(string _displayValue): WGuiItem(_displayValue) {};
@@ -374,19 +357,6 @@ class OptionInteger:public OptionItem{
   virtual void Render();
   virtual void setData();
   virtual void updateValue(){value+=increment; if (value>maxValue) value=0;};
-};
-
-class OptionString:public OptionItem{
- public:
-  string value;
-  OptionString(int _id, string _displayValue);
-
-  virtual void Render();
-  virtual void setData();
-  virtual void updateValue();
-  virtual bool Changed() {return value != options[id].str;};
-  virtual void Reload() {if(id != INVALID_OPTION) value = options[id].str;};
-  bool bShowValue;
 };
 
 class OptionSelect:public OptionItem{

@@ -35,7 +35,6 @@ class MTGCardInstance: public MTGCard, public Damageable {
   UntapBlockers * untapBlockers;
   MTGPlayerCards * belongs_to;
   MTGAbility * untapBlockerAbilities[10];
-  void unband();
   MTGCardInstance * getNextPartner();
   void initMTGCI();
   int setDefenser(MTGCardInstance * c);
@@ -81,7 +80,6 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int attacker;
   int toggleDefenser(MTGCardInstance * opponent);
   int raiseBlockerRankOrder(MTGCardInstance * blocker);
-  int bringBlockerToFrontOfOrder(MTGCardInstance * blocker);
 
   //Returns rank of the card in blockers if it is a blocker of this (starting at 1), 0 otherwise
   int getDefenserRank(MTGCardInstance * blocker);
@@ -94,7 +92,6 @@ class MTGCardInstance: public MTGCard, public Damageable {
   MTGCardInstance * isDefenser();
   int initAttackersDefensers();
   MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
-  MTGCardInstance * getNextDefenser(MTGCardInstance * previous=NULL);
   int nbOpponents();
   int stepPower(CombatStep step);
 
@@ -102,8 +99,6 @@ class MTGCardInstance: public MTGCard, public Damageable {
 
   int has(int ability);
   int cleanup();
-  int reset();
-
 
   MTGCard * model;
   MTGCardInstance();
@@ -121,13 +116,12 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int addToToughness(int value);
   int setToughness(int value);
 
-  CardDescriptor * protections[10];
-  int nbprotections;
-  int addProtection(CardDescriptor * cd);
-  int removeProtection(CardDescriptor *cd, int erase = 0);
+  vector<TargetChooser *>protections;
+  int addProtection(TargetChooser * tc);
+  int removeProtection(TargetChooser *tc, int erase = 0);
   int protectedAgainst(MTGCardInstance * card);
+
   void copy(MTGCardInstance * card);
-  // in game
 
   void setUntapping();
   int isUntapping();
@@ -137,7 +131,6 @@ class MTGCardInstance: public MTGCard, public Damageable {
   void attemptUntap();
 
   int isInPlay();
-  void resetAllDamage();
   JSample * getSample();
 
   JQuad * getIcon();

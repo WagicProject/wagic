@@ -45,7 +45,6 @@ class GameObserver{
   ReplacementEffects *replacementEffects;
   Player * gameOver;
   Player * players[2]; //created outside
-  MTGGamePhase * gamePhaseManager; //Created Outside ?
 
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
@@ -67,7 +66,6 @@ class GameObserver{
   Player * currentlyActing();
   GameObserver(Player * _players[], int _nbplayers);
   ~GameObserver();
-  void setGamePhaseManager(MTGGamePhase * _phases);
   void stateEffects();
   void eventOccured();
   void addObserver(MTGAbility * observer);
@@ -76,7 +74,6 @@ class GameObserver{
   void untapPhase();
   void draw();
   int isInPlay(MTGCardInstance *  card);
-  bool isCreature(MTGCardInstance *  card);
 
   void Update(float dt);
   void Render();

@@ -14,9 +14,6 @@
 
 using std::string;
 
-
-const char * const MTGCard::Colors_To_Text[] = {"Artifact", "Green", "Blue", "Red", "Black", "White", "Land"};
-
 MTGCard::MTGCard(){
   init();
 }
@@ -176,16 +173,6 @@ void MTGCard::setManaCost(string s){
   }
 
 }
-
-
-const char * MTGCard::colorToString(){
-  int color = getColor();
-  if (color>=0 && color <=5){
-    return Colors_To_Text[color];
-  }
-  return "Unknown";
-}
-
 
 void MTGCard::setMTGId(int id){
   mtgid = id;

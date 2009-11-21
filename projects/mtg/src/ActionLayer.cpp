@@ -50,20 +50,6 @@ int ActionLayer::reactToTargetClick(ActionElement* ability, Targetable * card){
   return result;
 }
 
-int ActionLayer::unstoppableRenderInProgress(){
-
-  for (int i=0;i<mCount;i++){
-    if (mObjects[i]!=NULL){
-      ActionElement * currentAction = (ActionElement *)mObjects[i];
-      if (currentAction->getActivity() > 0){
-	return 1;
-      }
-    }
-  }
-  return 0;
-}
-
-
 bool ActionLayer::CheckUserInput(u32 key){
   GameObserver * g = GameObserver::GetInstance();
   if (g->waitForExtraPayment && key == PSP_CTRL_CROSS){

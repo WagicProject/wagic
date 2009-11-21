@@ -1,0 +1,26 @@
+#Test: prtection from(
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Denizen of the deep
+[PLAYER2]
+inplay:baneslayer angel
+[DO]
+Denizen of the deep
+next
+#blockers
+baneslayer angel
+next
+#damage 1st strike
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Denizen of the deep
+[PLAYER2]
+graveyard:baneslayer angel
+life:25
+[END]

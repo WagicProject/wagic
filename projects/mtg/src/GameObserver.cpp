@@ -52,10 +52,6 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   combatStep = BLOCKERS;
 }
 
-void GameObserver::setGamePhaseManager(MTGGamePhase * _phases){
-  gamePhaseManager = _phases;
-}
-
 int GameObserver::getCurrentGamePhase(){
   return currentGamePhase;
 }
@@ -466,12 +462,6 @@ int GameObserver::receiveEvent(WEvent * e){
   }
   return result;
 }
-
-
-bool GameObserver::isCreature(MTGCardInstance * card){
-  return card->isCreature();
-}
-
 
 Player * GameObserver::currentlyActing(){
   if (isInterrupting) return isInterrupting;

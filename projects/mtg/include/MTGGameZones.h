@@ -93,7 +93,6 @@ class MTGGameZone {
 
 class MTGLibrary: public MTGGameZone {
  public:
-  //  MTGLibrary();
   void shuffleTopToBottom(int nbcards);
   MTGCardInstance * draw();
   virtual ostream& toString(ostream&) const;
@@ -102,7 +101,6 @@ class MTGLibrary: public MTGGameZone {
 
 class MTGGraveyard: public MTGGameZone {
  public:
-  // MTGGraveyard();
   virtual ostream& toString(ostream&) const;
   const char * getName(){return "graveyard";}
 };
@@ -127,12 +125,8 @@ class MTGStack: public MTGGameZone {
 
 class MTGInPlay: public MTGGameZone {
  public:
-  //MTGInPlay();
   void untapAll();
   MTGCardInstance * getNextAttacker(MTGCardInstance * previous);
-  MTGCardInstance * getNextDefenser(MTGCardInstance * previous, MTGCardInstance * attacker);
-  int nbDefensers( MTGCardInstance * attacker);
-  int nbPartners(MTGCardInstance * attacker);
   virtual ostream& toString(ostream&) const;
   const char * getName(){return "battlefield";}
 };

@@ -36,22 +36,6 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
   return result;
 }
 
-
-
-int AbilityFactory::CantBlock(TargetChooser * tc){
-  GameObserver * g = GameObserver::GetInstance();
-  MTGCardInstance * source = tc->source;
-    for (int j = g->opponent()->game->inPlay->nb_cards-1; j >=0 ; j--){
-      MTGCardInstance * current =  g->opponent()->game->inPlay->cards[j];	  
-		  if (tc->canTarget(current)){
-			  current->canBlock(source);
-			  return 0;
-		  }
-	}
-  return 1;
-}
-
-
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
     size_t found = s.find("/");
     if (found != string::npos){
@@ -587,18 +571,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
     }
 
-  /*
-  //CannotBeBlockedBy
-  found = s.find("cantbeblockedby(");
-  if (found != string::npos){
-    int end = s.find(")",found);
-    string starget = s.substr(16, end - 16);
-    TargetChooserFactory tcf;
-    tc = tcf.createTargetChooser(starget,card);
-    return NULL; //NEW ACantBlock(tc); //hu ? CantBlock(tc);
-  }
-	   
-*/
   //Discard
   found = s.find("discard:");
   if (found != string::npos){
@@ -707,6 +679,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
 
 
+
+
   //Mana Producer
   found = s.find("add");
   if (found != string::npos){
@@ -733,6 +707,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       }
       return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);
     }
+  }
+
+  //Protection from...
+  found = s.find("protection from(");
+  if (found == 0){
+    size_t end = s.find (")", found);
+    string targets = s.substr(found+16,end - found - 16);
+    TargetChooserFactory tcf;
+    TargetChooser * fromTc = tcf.createTargetChooser(targets, card);
+    if (!fromTc) return NULL;
+    fromTc->setAllZones();
+    if (!activated){
+      if(card->hasType("instant") || card->hasType("sorcery")  || forceUEOT){ 
+         return NULL; //TODO
+      }
+      return NEW AProtectionFrom(id, card,target,fromTc);
+    }
+    return NULL; //TODO
   }
 
   //Untapper (Ley Druid...)

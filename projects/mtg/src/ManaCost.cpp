@@ -187,13 +187,6 @@ ManaCostHybrid * ManaCost::getHybridCost(unsigned int i){
   return hybrids[i];
 }
 
-int ManaCost::getMainColor(){
-  for (int i=0; i< Constants::MTG_NB_COLORS; i++){
-    if (cost[i]) return i;
-  }
-  return 0;
-}
-
 int ManaCost::hasColor(int color){
   if (cost[color]) return 1;
   for (unsigned int i = 0; i < nbhybrids; i++){
@@ -265,11 +258,6 @@ int ManaCost::isExtraPaymentSet(){
   if (!extraCosts) return 1;
   OutputDebugString("Checking costs\n");
   return extraCosts->isPaymentSet();
-}
-
-int ManaCost::resetExtraPayment(){
-  if (!extraCosts) return 1;
-  return extraCosts->reset();
 }
 
 int ManaCost::doPayExtra(){

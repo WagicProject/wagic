@@ -1034,6 +1034,38 @@ class AUnBlocker:public MTGAbility{
 
 };
 
+//Protection From (creature/aura)
+class AProtectionFrom: public MTGAbility{
+ public:
+  TargetChooser * fromTc;
+  AProtectionFrom(int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc):MTGAbility(id,_source,_target),fromTc(fromTc){
+
+  }
+
+ int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+   _target->addProtection(fromTc);
+   return MTGAbility::addToGame();
+ }
+
+  int destroy(){
+    ((MTGCardInstance *)target)->removeProtection(fromTc);
+    return 1;
+  }
+
+  AProtectionFrom * clone() const{
+    AProtectionFrom * a =  NEW AProtectionFrom(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  ~AProtectionFrom(){
+    SAFE_DELETE(fromTc);
+  }
+
+};
+
+
 //Alteration of Power and Toughness  (enchantments)
 class APowerToughnessModifier: public MTGAbility{
  public:

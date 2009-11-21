@@ -28,13 +28,6 @@ class CardDisplay:public PlayGuiObjectController{
 };
 
 
-
-class DefaultTargetDisplay:CardDisplay{
- public:
-  DefaultTargetDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener, int nb_displayed_items );
-  ~DefaultTargetDisplay();
-};
-
 std::ostream& operator<<(std::ostream& out, const CardDisplay& m);
 
 #endif

@@ -296,20 +296,12 @@ bool TargetChooser::canTarget(Targetable * target){
 
 
 int TargetChooser::addTarget(Targetable * target){
-  if (canTarget(target) && TargetsList::addTarget(target)){
+  if (canTarget(target)){
+    TargetsList::addTarget(target);
   }
 
-#if defined (WIN32) || defined (LINUX)
-  char buf[4096];
-  sprintf(buf, "TARGETCHOOSER Nb targets : %i\n", cursor);
-  OutputDebugString(buf);
-#endif
   return targetsReadyCheck();
-
-
-
 }
-
 
 
 int TargetChooser::ForceTargetListReady(){
@@ -510,6 +502,27 @@ int TargetZoneChooser::init(int * _zones, int _nbzones){
   return nbzones;
 }
 
+int TargetZoneChooser::setAllZones(){
+    int zones[] = {
+      MTGGameZone::MY_BATTLEFIELD, 
+      MTGGameZone::MY_EXILE,
+      MTGGameZone::MY_GRAVEYARD,
+      MTGGameZone::MY_HAND,
+      MTGGameZone::MY_LIBRARY,
+      MTGGameZone::MY_STACK,
+      MTGGameZone::OPPONENT_BATTLEFIELD, 
+      MTGGameZone::OPPONENT_EXILE,
+      MTGGameZone::OPPONENT_GRAVEYARD,
+      MTGGameZone::OPPONENT_HAND,
+      MTGGameZone::OPPONENT_LIBRARY,
+      MTGGameZone::OPPONENT_STACK
+    };
+
+    init(zones,12);
+  return 1;
+} 
+
+
 bool TargetZoneChooser::canTarget(Targetable * target){
   if (!TargetChooser::canTarget(target)) return false;
   if (target->typeAsTarget() == TARGET_CARD){
@@ -612,30 +625,6 @@ bool DamageTargetChooser::canTarget(Targetable * target){
   if (target->typeAsTarget() == TARGET_STACKACTION){
     Interruptible * action = (Interruptible *) target;
     if (action->type == ACTION_DAMAGE && (action->state == state || state == -1)){
-      Damage * damage = (Damage *) action;
-      card = damage->source;
-      if (card && (color == -1 || card->hasColor(color))) return true;
-    }
-  }
-  return false;
-}
-
-
-/*Damage or Permanent */
-DamageOrPermanentTargetChooser::DamageOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
-  int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
-  init(default_zones,2);
-  color = _color;
-}
-
-bool DamageOrPermanentTargetChooser::canTarget(Targetable * target){
-  MTGCardInstance * card = NULL;
-  if (target->typeAsTarget() == TARGET_CARD){
-    card = (MTGCardInstance *) target;
-    if (color == -1 || card->hasColor(color)) return TargetZoneChooser::canTarget(target);
-  }else if (target->typeAsTarget() == TARGET_STACKACTION){
-    Interruptible * action = (Interruptible *) target;
-    if (action->type == ACTION_DAMAGE){
       Damage * damage = (Damage *) action;
       card = damage->source;
       if (card && (color == -1 || card->hasColor(color))) return true;

@@ -306,31 +306,6 @@ void MTGGameZone::debugPrint(){
 
 
 //------------------------------
-int MTGInPlay::nbDefensers( MTGCardInstance * attacker){
-  int result = 0;
-  MTGCardInstance * defenser = getNextDefenser(NULL, attacker);
-  while (defenser){
-    result++;
-    defenser = getNextDefenser(defenser, attacker);
-  }
-  return result;
-}
-
-//Return the number of creatures this card is banded with
-//Number of creatures in the band is n+1 !!!
-int MTGInPlay::nbPartners(MTGCardInstance * attacker){
-  int result = 0;
-  if (!attacker->banding) return 0;
-  for (int i = 0; i < nb_cards; i ++){
-    if (cards[i]->banding == attacker->banding) result++;
-  }
-  return result;
-}
-
-MTGCardInstance *  MTGInPlay::getNextDefenser(MTGCardInstance * previous, MTGCardInstance * attacker){
-  return attacker->getNextDefenser(previous);
-}
-
 MTGCardInstance *  MTGInPlay::getNextAttacker(MTGCardInstance * previous){
   int foundprevious = 0;
   if (previous == NULL){

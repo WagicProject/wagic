@@ -998,8 +998,7 @@ void GameStateDeckViewer::updateStats() {
     return;
   }
 
-  AbilityFactory * af;
-  af = NEW AbilityFactory();
+  AbilityFactory * af = NEW AbilityFactory();
 
   stw.needUpdate = false; 
 
@@ -1180,7 +1179,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   MTGCard * card = cardIndex[id];
 
 
-  float max_scale = 0.96;
+  float max_scale = 0.96f;
   float x_center_0 = 180;
   float right_border = SCREEN_WIDTH - 20 ;
 

@@ -25,13 +25,10 @@ class GuiLayer{
   bool hasFocus;
   virtual void resetObjects();
   int getMaxId();
-  void RenderMessageBackground(float x0, float y0, float width, int height);
-  void RenderMessageBackground(float y0, int height);
   GuiLayer();
   virtual ~GuiLayer();
   virtual void Update(float dt);
   virtual bool CheckUserInput(u32 key){ return false; };
-  virtual int unstoppableRenderInProgress(){return 0;};
   int getIndexOf(JGuiObject * object);
   JGuiObject * getByIndex (int index);
   virtual void Render();

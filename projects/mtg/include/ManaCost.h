@@ -41,7 +41,6 @@ class ManaCost{
   int getCost(int color);
   //Returns NULL if i is greater than nbhybrids
   ManaCostHybrid * getHybridCost(unsigned int i);
-  int getMainColor();
   int hasColor(int color);
   int remove (int color, int value);
   int add(int color, int value);
@@ -52,7 +51,6 @@ class ManaCost{
   int addExtraCost(ExtraCost * _cost);
   int setExtraCostsAction(MTGAbility * action, MTGCardInstance * card);
   int isExtraPaymentSet();
-  int resetExtraPayment();
   int doPayExtra();
 
   int addHybrid(int c1, int v1, int c2, int v2);

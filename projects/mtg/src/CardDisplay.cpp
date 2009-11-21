@@ -190,13 +190,6 @@ ostream& CardDisplay::toString(ostream& out) const
   return (out << "CardDisplay ::: x,y : " << x << "," << y << " ; start_item : " << start_item << " ; nb_displayed_items " << nb_displayed_items << " ; tc : " << tc << " ; listener : " << listener);
 }
 
-DefaultTargetDisplay::DefaultTargetDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener, int nb_displayed_items ):CardDisplay(id, game, x,  y, listener, NULL, nb_displayed_items ){
-  tc = NEW TargetChooser();
-}
-
-DefaultTargetDisplay::~DefaultTargetDisplay(){
-  SAFE_DELETE(tc);
-}
 
 std::ostream& operator<<(std::ostream& out, const CardDisplay& m)
 {

@@ -9,3 +9,15 @@ toughness=4
 text=Flying
 rarity=U
 [/card]
+[card]
+id=6605
+name=Brimstone Dragon
+mana={6}{R}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=6
+text=Flying, haste
+abilities=flying,haste
+rarity=R
+[/card]

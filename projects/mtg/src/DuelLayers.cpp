@@ -90,13 +90,6 @@ DuelLayers::~DuelLayers(){
   Trash::cleanup();
 }
 
-int DuelLayers::unstoppableRenderInProgress(){
-  for (int i = 0; i < nbitems; ++i)
-    if (objects[i]->unstoppableRenderInProgress())
-      return 1;
-  return 0;
-}
-
 void DuelLayers::Add(GuiLayer * layer){
   objects.push_back(layer);
   nbitems++;

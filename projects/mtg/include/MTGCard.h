@@ -42,7 +42,6 @@ class MTGCard {
   int power;
   int toughness;
   int setId;
-  static const char * const Colors_To_Text[];
   int nb_types;
   int types[MAX_TYPES_PER_CARD];
   MTGCard();
@@ -55,7 +54,6 @@ class MTGCard {
   int getColor();
   int hasColor(int _color);
   int countColors();
-  const char * colorToString();
 
   void setMTGId(int id);
   int getMTGId();

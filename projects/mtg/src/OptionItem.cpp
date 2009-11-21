@@ -707,39 +707,6 @@ void WGuiList::Reload()
      listItems[i]->Reload();
  }
 }
-//OptionString
-
-void OptionString::Render(){
-
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  mFont->SetColor(getColor(WGuiColor::TEXT));
-  JRenderer * renderer = JRenderer::GetInstance();
-
-  if(!bShowValue){
-   mFont->DrawString(_(displayValue).c_str(),x+(width/2),y,JGETEXT_CENTER);
-  }
-  else{
-   mFont->DrawString(_(displayValue).c_str(),x,y);
-   int w = mFont->GetStringWidth(value.c_str()-10);
-   mFont->DrawString(_(value).c_str(),width - w,y,JGETEXT_RIGHT);
-  }
-}
-
-void OptionString::setData(){
-  if(id != INVALID_OPTION) 
-    options[id] = GameOption(value);
-}
-void OptionString::updateValue(){
-    options.keypadStart(value,&value);
-    options.keypadTitle(displayValue);
-}
-
-OptionString::OptionString(int _id, string _displayValue): OptionItem(_id, _displayValue)
-{
-  bShowValue=true;
-  if(id != INVALID_OPTION) 
-    value=options[_id].str;
-}
 
 OptionTheme::OptionTheme(): OptionDirectory(RESPATH"/themes",Options::ACTIVE_THEME, "Current Theme"){
   addSelection("Default");
@@ -985,52 +952,6 @@ void WDecoConfirm::ButtonPressed(int controllerId, int controlId){
   }
   else
     it->ButtonPressed(controllerId,controlId);
-}
-
-//WDecoImage
-WGuiImage::WGuiImage(string _file, int _w, int _h, int _margin): WGuiItem("") {
-  imgW = 0;
-  imgH = 0;
-  margin = _margin;
-  filename = _file;
-  exact = false;
-}
-
-void WGuiImage::imageScale(float w, float h){
-  imgH = h;
-  imgW = w;
-}
-
-float WGuiImage::getHeight(){
-  
-  if(imgH == 0 ){
-    JQuad * q = getImage();
-    if(q)
-      return MAX(height,q->mHeight+(2*margin));
-  }
-    
-  return MAX(height,imgH+(2*margin));
-}
-
-JQuad * WGuiImage::getImage(){
-  if(exact)
-    return resources.RetrieveQuad(filename,0,0,0,0,"temporary",RETRIEVE_NORMAL,TEXTURE_SUB_EXACT);
-  else
-    return resources.RetrieveTempQuad(filename);
-}
-
-void WGuiImage::Render(){
-  JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * q = getImage();
-  if(q){
-    float xS = 1, yS = 1;
-    if(imgH != 0 && q->mHeight != 0)
-      yS = imgH / q->mHeight;
-    if(imgW != 0 && q->mWidth != 0)
-      xS = imgW / q->mWidth;
-
-    renderer->RenderQuad(q,x+margin, y+margin,0,xS,yS);
-  }
 }
 
 WGuiButton::WGuiButton( WGuiBase* _it, int _controller, int _control, JGuiListener * jgl): WGuiDeco(_it) {

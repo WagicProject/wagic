@@ -39,7 +39,6 @@ public:
   void Render();
   void Add(GuiLayer * layer);
   void Remove();
-  int unstoppableRenderInProgress();
   int receiveEvent(WEvent * e);
   float RightBoundary();
 

@@ -59,36 +59,6 @@ void GuiLayer::resetObjects(){
   mCurr = 0;
 }
 
-void GuiLayer::RenderMessageBackground(float x0, float y0, float width, int height){
-  PIXEL_TYPE colors_up[] =
-    {
-      ARGB(0,255,255,255),
-      ARGB(0,255,255,255),
-      ARGB(128,255,255,255),
-      ARGB(128,255,255,255)
-    };
-
-  PIXEL_TYPE colors_down[] =
-    {
-      ARGB(128,255,255,255),
-      ARGB(128,255,255,255),
-      ARGB(0,255,255,255),
-      ARGB(0,255,255,255)
-    };
-
-  JRenderer * renderer = JRenderer::GetInstance();
-  renderer->FillRect(x0,y0,width,height/2,colors_up);
-  renderer->FillRect(x0,y0+height/2,width,height/2,colors_down);
-
-  //  mEngine->DrawLine(0,y0,SCREEN_WIDTH,y0,ARGB(128,255,255,255));
-  //  mEngine->DrawLine(0,y0+height,SCREEN_WIDTH,y0+height,ARGB(128,255,255,255));
-}
-
-void GuiLayer::RenderMessageBackground(float y0, int height){
-  RenderMessageBackground(0,y0,SCREEN_WIDTH, height);
-
-}
-
 int GuiLayer::getIndexOf(JGuiObject * object){
   for (int i=0; i<mCount; i++){
     if (mObjects[i] == object)

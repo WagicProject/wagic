@@ -94,7 +94,6 @@ void MTGCardInstance::initMTGCI(){
   untapping = 0;
   summoningSickness = 1;
   target = NULL;
-  nbprotections = 0;
   type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;
   banding = NULL;
   owner = NULL;
@@ -231,10 +230,6 @@ int MTGCardInstance::isTapped(){
   return tapped;
 }
 
-void MTGCardInstance::resetAllDamage(){
-  nb_damages = 0;
-}
-
 int MTGCardInstance::regenerate(){
   return ++regenerateTokens;
 }
@@ -300,16 +295,6 @@ MTGCardInstance * MTGCardInstance::changeController(Player * newController){
   copy->summoningSickness = 1;
   return copy;
 }
-
-//Reset the card parameters
-int MTGCardInstance::reset(){
-  cleanup();
-  untap();
-  SAFE_DELETE(counters);
-  counters = NEW Counters(this);
-  return 1;
-}
-
 
 Player * MTGCardInstance::controller(){
   return lastController;
@@ -398,32 +383,6 @@ MTGCardInstance * MTGCardInstance::getNextPartner(){
   return NULL;
 }
 
-void MTGCardInstance::unband(){
-  if (!banding) return;
-
-  MTGCardInstance * _banding = banding;
-  banding = NULL;
-  MTGCardInstance * newbanding = NULL;
-  MTGInPlay * inplay = controller()->game->inPlay;
-  int nbpartners = inplay->nbPartners(this);
-  MTGCardInstance * card = inplay->getNextAttacker(NULL);
-  while(card){
-    if (card != this){
-      if (card->banding == _banding){
-	if (nbpartners == 1){
-	  card->banding = NULL;
-	  return;
-	}else{
-	  if (!newbanding) newbanding = card;
-	  card->banding = newbanding;
-	}
-      }
-    }
-    card = inplay->getNextAttacker(card);
-  }
-  return ;
-}
-
 int MTGCardInstance::setAttacker(int value){
   Targetable * previousTarget = NULL;
   Targetable * target = NULL;
@@ -477,18 +436,6 @@ int MTGCardInstance::nbOpponents(){
   return result;
 }
 
-MTGCardInstance * MTGCardInstance::getNextDefenser(MTGCardInstance * previous){
-  int found_previous = 0;
-  if (!previous) found_previous = 1;
-  list<MTGCardInstance *>::iterator it;
-  for (it= blockers.begin(); it != blockers.end(); ++it){
-    MTGCardInstance * c = *it;
-    if (found_previous && c->isInPlay()) return c;
-    if (c == previous) found_previous = 1;
-  }
-  return NULL;
-}
-
 int MTGCardInstance::raiseBlockerRankOrder(MTGCardInstance * blocker){
   list<MTGCardInstance *>::iterator it1 = find(blockers.begin(), blockers.end(), blocker);
   list<MTGCardInstance *>::iterator it2 = it1;
@@ -498,19 +445,6 @@ int MTGCardInstance::raiseBlockerRankOrder(MTGCardInstance * blocker){
   WEvent* e = NEW WEventCreatureBlockerRank(*it1,*it2,this);
   GameObserver::GetInstance()->receiveEvent(e);
   //delete(e);
-  return 1;
-}
-
-int MTGCardInstance::bringBlockerToFrontOfOrder(MTGCardInstance * blocker){
-  list<MTGCardInstance *>::iterator it1 = find(blockers.begin(), blockers.end(), blocker);
-  list<MTGCardInstance *>::iterator it2 = blockers.begin();
-  if (it2 != it1)
-    {
-      std::iter_swap(it1,it2);
-      WEvent* e = NEW WEventCreatureBlockerRank(blocker,*it2,this);
-      GameObserver::GetInstance()->receiveEvent(e);
-      //delete(e);
-    }
   return 1;
 }
 
@@ -598,19 +532,17 @@ int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent){
 }
 
 
-int MTGCardInstance::addProtection(CardDescriptor * cd){
-  protections[nbprotections] = cd;
-  nbprotections++;
-  return nbprotections;
+int MTGCardInstance::addProtection(TargetChooser * tc){
+  tc->targetter = NULL;
+  protections.push_back(tc);
+  return protections.size();
 }
 
-int MTGCardInstance::removeProtection(CardDescriptor * cd, int erase){
-  for (int i = 0; i < nbprotections ; i++){
-    if (protections[i] == cd){
+int MTGCardInstance::removeProtection(TargetChooser * tc, int erase){
+  for (size_t i = 0; i < protections.size() ; i++){
+    if (protections[i] == tc){
       if (erase) delete (protections[i]);
-      protections[i] = protections[nbprotections -1];
-      protections[nbprotections -1] = NULL;
-      nbprotections--;
+      protections.erase(protections.begin()+i);
       return 1;
     }
   }
@@ -624,8 +556,9 @@ int MTGCardInstance::protectedAgainst(MTGCardInstance * card){
   }
 
   //General protections
-  for (int i = 0; i < nbprotections ; i++){
-    if (protections[i]->match(card)) return 1;
+  for (size_t i = 0; i < protections.size() ; i++){
+    if (protections[i]->canTarget(card)) 
+      return 1;
   }
   return 0;
 }
