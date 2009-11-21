@@ -178,10 +178,10 @@ int AIAction::getEfficiency(){
         AADamager * aad = (AADamager *) a;
         if ( p == target->controller()){
           efficiency = 0;
-        }else if (aad->damage >= target->toughness){
+        }else if (aad->damage->getValue() >= target->toughness){
           efficiency = 100;
         }else if (target->toughness){
-          efficiency = (50 * aad->damage) / target->toughness;
+          efficiency = (50 * aad->damage->getValue()) / target->toughness;
         }else{
           efficiency = 0;
         }

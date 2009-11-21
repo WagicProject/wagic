@@ -101,8 +101,9 @@ class Constants
     INTIMIDATE = 43,
     DEATHTOUCH = 44,
     HORSEMANSHIP = 45,
+    CANTREGENERATE = 46,
 
-    NB_BASIC_ABILITIES = 46,
+    NB_BASIC_ABILITIES = 47,
 
 
     RARITY_M = 'M',

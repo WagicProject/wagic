@@ -436,6 +436,7 @@ subtype=Aura
 text=Destroy target artifact. It can't be regenerated. That artifact's controller gains life equal to its converted mana cost.
 target=artifact
 auto=bury
+auto=life:manacost targetcontroller
 id=1240
 name=Crumble
 rarity=U
@@ -656,6 +657,8 @@ subtype=Aura
 [/card]
 [card]
 text=Earthquake deals X damage to each creature without flying and each player.
+auto=damage:X all(player)
+auto=damage:X all(creature[-flying])
 id=1289
 name=Earthquake
 rarity=R
@@ -1052,6 +1055,8 @@ id=1251
 name=Hurricane
 rarity=U
 mana={X}{G}
+auto=damage:X all(player)
+auto=damage:X all(creature[flying])
 type=Sorcery
 [/card]
 [card]

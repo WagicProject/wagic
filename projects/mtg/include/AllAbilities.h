@@ -182,9 +182,9 @@ public:
     return 1;
   }
 
-  ~ TrDamaged (){
+  ~TrDamaged (){
     SAFE_DELETE(tc);
-	SAFE_DELETE(fromTc);
+	  SAFE_DELETE(fromTc);
   }
 
   TrDamaged * clone() const{
@@ -502,8 +502,8 @@ class AADrawer:public ActivatedAbilityTP{
 /*Gives life to target controller*/
 class AALifer:public ActivatedAbilityTP{
  public:
-  int life;
-  AALifer(int _id, MTGCardInstance * card, Targetable * _target, int life, ManaCost * _cost = NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),life(life){
+  WParsedInt *life;
+  AALifer(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * life, ManaCost * _cost = NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),life(life){
   }
 
   int resolve(){
@@ -512,7 +512,7 @@ class AALifer:public ActivatedAbilityTP{
       if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
         _target = ((MTGCardInstance *)_target)->controller();
       }
-      _target->life+=life;
+      _target->life+=life->getValue();
     }
     return 1;
   }
@@ -523,8 +523,13 @@ class AALifer:public ActivatedAbilityTP{
 
   AALifer * clone() const{
     AALifer * a =  NEW AALifer(*this);
+    a->life = NEW WParsedInt(*(a->life));
     a->isClone = 1;
     return a;
+  }
+
+  ~AALifer(){
+    SAFE_DELETE(life);
   }
 
 };
@@ -1767,15 +1772,15 @@ class AForeach:public ListMaintainerAbility{
 
 class AADamager:public ActivatedAbilityTP{
 public:
-  int damage;
-AADamager(int _id, MTGCardInstance * _source, Targetable * _target, int _damage = 0, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),damage(_damage){
+  WParsedInt * damage;
+AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * damage, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),damage(damage){
     aType = MTGAbility::DAMAGER;
  }
 
   int resolve(){
     if(target){
       Damageable * _target = (Damageable *) getTarget();     
-      game->mLayers->stackLayer()->addDamage(source,_target, damage);
+      game->mLayers->stackLayer()->addDamage(source,_target, damage->getValue());
       game->mLayers->stackLayer()->resolve();
       return 1;
     }
@@ -1786,11 +1791,15 @@ AADamager(int _id, MTGCardInstance * _source, Targetable * _target, int _damage 
     return "Damage";
   }
 
-
   AADamager * clone() const{
     AADamager * a =  NEW AADamager(*this);
+    a->damage = NEW WParsedInt(*(a->damage));
     a->isClone = 1;
     return a;
+  }
+
+  ~AADamager(){
+    SAFE_DELETE(damage);
   }
 
 
@@ -1799,8 +1808,8 @@ AADamager(int _id, MTGCardInstance * _source, Targetable * _target, int _damage 
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager:public TargetAbility{
  public:
-  int damage;
- TADamager(int id, MTGCardInstance * card, ManaCost * _cost, int _damage, TargetChooser * _tc = NULL, int _tap = 0):TargetAbility(id,card, _tc, _cost,0,_tap),damage(_damage){
+
+ TADamager(int id, MTGCardInstance * card, ManaCost * _cost, WParsedInt * damage, TargetChooser * _tc = NULL, int _tap = 0):TargetAbility(id,card, _tc, _cost,0,_tap){
     if (!tc) tc = NEW DamageableTargetChooser(card);
     ability = NEW AADamager(id,card,NULL,damage);
   }

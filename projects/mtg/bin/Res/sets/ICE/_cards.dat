@@ -1490,6 +1490,7 @@ text=Destroy target Wall. It can't be regenerated. Word of Blasting deals damage
 id=2660
 target=Wall
 auto=bury
+auto=damage:manacost targetcontroller
 name=Word of Blasting
 rarity=U
 mana={1}{R}

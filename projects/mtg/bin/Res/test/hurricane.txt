@@ -1,0 +1,21 @@
+#Test Hurricane
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:hurricane
+inplay:grizzly bears,air elemental
+manapool:{4}{G}
+[PLAYER2]
+inplay:serra angel
+[DO]
+hurricane
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:16
+inplay:grizzly bears
+graveyard:air elemental,hurricane
+[PLAYER2]
+graveyard:serra angel
+life:16
+[END]

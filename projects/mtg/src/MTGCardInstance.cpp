@@ -231,11 +231,13 @@ int MTGCardInstance::isTapped(){
 }
 
 int MTGCardInstance::regenerate(){
+  if (has(Constants::CANTREGENERATE)) return 0;
   return ++regenerateTokens;
 }
 
 int MTGCardInstance::triggerRegenerate(){
   if (! regenerateTokens) return 0;
+  if (has(Constants::CANTREGENERATE)) return 0;
   regenerateTokens--;
   tap();
   life = toughness;
@@ -401,18 +403,9 @@ int MTGCardInstance::toggleAttacker(){
     setAttacker(1);
     return 1;
   }else{
-    //Banding needs to be debugged...
-    /*MTGCardInstance * bandingPartner = getNextPartner();
-    if (bandingPartner){
-      if (banding) unband();
-      if (!bandingPartner->banding) bandingPartner->banding = bandingPartner;
-      banding = bandingPartner->banding;
-      return 1;
-    }else{*/
       untap();
       setAttacker(0);
       return 1;
-    //}
   }
   return 0;
 }

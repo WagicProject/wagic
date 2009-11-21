@@ -116,6 +116,7 @@ counterspell3.txt
 counterspell4.txt
 creature_bond.txt
 crimson_kobolds.txt
+crumble.txt
 crystal_rod_i172.txt
 dauntless_escort.txt
 dauthi_embrace.txt
@@ -170,6 +171,7 @@ harpoon_sniper.txt
 hellfire.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
+hurricane.txt
 hyalopterous_lemure.txt
 hymn_of_rebirth.txt
 hypnotic_specter.txt

@@ -489,16 +489,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     unsigned int start = s.find(":",found);
     if (start == string::npos) start = s.find(" ",found);
     unsigned int end = s.find(" ",start);
-    int damage;
+    string d;
     if (end != string::npos){
-      damage = atoi(s.substr(start+1,end-start-1).c_str());
+      d = s.substr(start+1,end-start-1);
     }else{
-      damage = atoi(s.substr(start+1).c_str());
+      d = s.substr(start+1);
     }
-
-    Damageable * d = NULL;
-    if (spell) d = spell->getNextDamageableTarget();
-    MTGAbility * a =  NEW AADamager(id,card,d, damage, NULL, 0, who);
+    WParsedInt * damage = NEW WParsedInt(d,spell,card);
+    Damageable * t = NULL;
+    if (spell) t = spell->getNextDamageableTarget();
+    MTGAbility * a =  NEW AADamager(id,card,t, damage, NULL, 0, who);
     a->oneShot = 1;
     return a;
   }
@@ -509,15 +509,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found != string::npos){
     unsigned int start = found+4;
     unsigned int end = s.find(" ",start);
-    int life;
+    string life_s;
     if (end != string::npos){
-      life = atoi(s.substr(start+1,end-start-1).c_str());
+      life_s = s.substr(start+1,end-start-1);
     }else{
-      life = atoi(s.substr(start+1).c_str());
+      life_s = s.substr(start+1);
     }
-
+    WParsedInt * life = NEW WParsedInt(life_s,spell,card);
     Damageable * d = NULL;
-    if (spell) d = spell->getNextPlayerTarget();
+    if (spell) d = spell->getNextDamageableTarget();
     MTGAbility * a =  NEW AALifer(id,card,d,life,NULL,0,who);
     a->oneShot = 1;
     return a;
@@ -536,7 +536,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     Targetable * t = NULL;
-    if (spell) t = spell->getNextPlayerTarget();
+    if (spell) t = spell->getNextTarget();
     MTGAbility * a = NEW AADrawer(id,card,t,NULL,nbcards,0,who);
     a->oneShot = 1;
     return a;
@@ -555,7 +555,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     Targetable * t = NULL;
-    if (spell) t = spell->getNextPlayerTarget();
+    if (spell) t = spell->getNextTarget();
     MTGAbility * a = NEW AADepleter(id,card,t,nbcards,NULL,0,who);
     a->oneShot = 1;
     return a;
@@ -565,7 +565,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("shuffle");
   if (found != string::npos){
     Targetable * t = NULL;
-    if (spell) t = spell->getNextPlayerTarget();
+    if (spell) t = spell->getNextTarget();
 	MTGAbility * a = NEW AAShuffle(id,card,t,NULL,0,who);
     a->oneShot = 1;
     return a;
@@ -677,10 +677,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     delete wppt;
   }
 
-
-
-
-
   //Mana Producer
   found = s.find("add");
   if (found != string::npos){
@@ -691,7 +687,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
-
 
   //Gain/loose Ability
   for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
@@ -808,6 +803,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   badAbilities[Constants::DEFENDER] = true;
   badAbilities[Constants::DOESNOTUNTAP] = true;
   badAbilities[Constants::MUSTATTACK] = true;
+  badAbilities[Constants::CANTREGENERATE] = true;
 
   if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a)) {
       int result = badAbilities[abi->ability] ? BAKA_EFFECT_BAD : BAKA_EFFECT_GOOD;
@@ -1296,26 +1292,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AAspectOfWolf(_id, card, card->target));
       break;
     }
-  case 1240: //Crumble
-    {
-      card->target->controller()->life+= card->target->getManaCost()->getConvertedCost();
-      break;
-    }
-  case 1251: //Hurricane
-    {
-      int x = spell->cost->getConvertedCost() - 1;
-      for (int i = 0; i < 2 ; i++){
-	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
-	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (current->basicAbilities[Constants::FLYING] && current->isCreature()){
-	    game->mLayers->stackLayer()->addDamage(card, current, x);
-	  }
-	}
-      }
-      break;
-    }
-  case 1262: //Regeneration
+    case 1262: //Regeneration
     {
       int cost[] = {Constants::MTG_COLOR_GREEN, 1};
       game->addObserver(NEW AStandardRegenerate(_id,card,card->target,NEW ManaCost(cost,1)));
@@ -1363,20 +1340,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1288: //EarthBind
     {
       game->addObserver(NEW AEarthbind(_id, card, card->target));
-      break;
-    }
-  case 1289: //earthquake
-    {
-      int x = computeX(spell,card);
-      for (int i = 0; i < 2 ; i++){
-	game->mLayers->stackLayer()->addDamage(card, game->players[i], x);
-	for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++){
-	  MTGCardInstance * current =  game->players[i]->game->inPlay->cards[j];
-	  if (!current->basicAbilities[Constants::FLYING] && current->isCreature()){
-	    game->mLayers->stackLayer()->addDamage(card, current, x);
-	  }
-	}
-      }
       break;
     }
   case 1344: //Eye for an Eye
@@ -1450,12 +1413,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AConvertLandToCreatures(id, card, "land"));
       break;
     }
-  case 1607: //Divine Offering
-    {
-      card->target->controller()->game->putInGraveyard(card->target);
-      game->currentlyActing()->life+= card->target->getManaCost()->getConvertedCost();
-      break;
-    }
   case 1480: //Energy Tap
 	{
 	card->target->tap();
@@ -1481,11 +1438,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
     //Addons ICE-AGE Cards
 
-  case 2660: //Word of Blasting
-    {
-      card->target->controller()->life-= card->target->getManaCost()->getConvertedCost();
-      break;
-    }
   case 2474: //Minion of Leshrac
     {
       game->addObserver(NEW AMinionofLeshrac( _id, card));
@@ -1631,19 +1583,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 		}
 
 
-// --- addon Invasion---
-   case 23195: //Artifact Mutation
-    {
-      card->target->controller()->game->putInGraveyard(card->target);
-      int x = card->target->getManaCost()->getConvertedCost();
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling",1,1,"green",0);
-      for (int i=0; i < x; i++){
-        tok->resolve();
-      }
-      delete(tok);
-      break;
-    }
-
 // --- addon Ravnica---
   
 	case 89114:	//Psychic Drain
@@ -1656,18 +1595,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 				player->game->putInZone(library->cards[library->nb_cards-1],library, player->game->graveyard);
 	}
 	game->currentlyActing()->life+= x;
-      break;
-    }
-
-	// --- addon ARB---
-    case 179614: // Morbid Bloom
-    {
-      int x = card->target->toughness;
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NEW ManaCost(),"Saproling","creature Saproling",1,1,"green",0);
-      for (int i=0; i < x; i++){
-        tok->resolve();
-      }
-      delete(tok);
       break;
     }
 

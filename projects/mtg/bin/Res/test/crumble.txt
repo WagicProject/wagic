@@ -1,0 +1,19 @@
+#Test Crumble life
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:crumble
+manapool:{G}
+[PLAYER2]
+inplay:colossus of Sardia
+[DO]
+crumble
+colossus of sardia
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:crumble
+[PLAYER2]
+graveyard:colossus of sardia
+life:29
+[END]
