@@ -682,7 +682,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found != string::npos){
     ManaCost * output = ManaCost::parseManaCost(s.substr(found));
     Targetable * t = NULL;
-    if (spell) t = spell->getNextPlayerTarget();
+    if (spell) t = spell->getNextTarget();
     MTGAbility * a =  NEW AManaProducer(id, card, t, output, NULL, 1, who);
     a->oneShot = 1;
     return a;

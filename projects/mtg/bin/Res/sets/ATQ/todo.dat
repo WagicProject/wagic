@@ -40,22 +40,8 @@ toughness=5
 text=Prevent all damage that would be dealt to Argothian Treefolk by artifacts.
 rarity=C
 [/card]
-[card]
-id=993
-name=Armageddon Clock
-mana={6}
-type=Artifact
-text=At the beginning of your upkeep, put a doom counter on Armageddon Clock. At the beginning of your draw step, Armageddon Clock deals damage to each player equal to the number of doom counters on it. {4}: Remove a doom counter from Armageddon Clock. Any player may activate this ability but only during any upkeep step.
-rarity=U
-[/card]
-[card]
-id=1057
-name=Artifact Blast
-mana={R}
-type=Instant
-text=Counter target artifact spell.
-rarity=C
-[/card]
+
+
 [card]
 id=1036
 name=Artifact Possession
@@ -65,23 +51,8 @@ subtype=Aura
 text=Enchant artifact Whenever enchanted artifact becomes tapped or a player activates an ability of enchanted artifact without {T} in its activation cost, Artifact Possession deals 2 damage to that artifact's controller.
 rarity=C
 [/card]
-[card]
-id=1066
-name=Artifact Ward
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has protection from artifacts. This effect doesn't remove Artifact Ward.
-rarity=C
-[/card]
-[card]
-id=994
-name=Ashnod's Altar
-mana={3}
-type=Artifact
-text=Sacrifice a creature: Add {2} to your mana pool.
-rarity=U
-[/card]
+
+
 [card]
 id=995
 name=Ashnod's Battle Gear
@@ -98,17 +69,7 @@ type=Artifact
 text={T}, Sacrifice Ashnod's Transmogrant: Put a +1/+1 counter on target nonartifact creature. That creature becomes an artifact in addition to its other types.
 rarity=U
 [/card]
-[card]
-id=1058
-name=Atog
-mana={1}{R}
-type=Creature
-subtype=Atog
-power=1
-toughness=2
-text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
-rarity=U
-[/card]
+
 [card]
 id=997
 name=Battering Ram
@@ -117,6 +78,7 @@ type=Artifact Creature
 subtype=Construct
 power=1
 toughness=1
+#Banding unsupported
 text=At the beginning of your combat phase, Battering Ram gains banding until end of combat. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's blocking.) Whenever Battering Ram becomes blocked by a Wall, destroy that Wall at end of combat.
 rarity=C
 [/card]
@@ -125,6 +87,7 @@ id=998
 name=Bronze Tablet
 mana={6}
 type=Artifact
+#No ante in Wagic
 text=Remove Bronze Tablet from your deck before playing if you're not playing for ante. Bronze Tablet enters the battlefield tapped. {4}, {T}: Exile Bronze Tablet and target nontoken permanent an opponent owns. That player may pay 10 life. If he or she does, put Bronze Tablet into its owner's graveyard. Otherwise, that player owns Bronze Tablet and you own the other exiled card.
 rarity=R
 [/card]
@@ -133,6 +96,7 @@ id=999
 name=Candelabra of Tawnos
 mana={1}
 type=Artifact
+#X cost can't be coded in wagic now...
 text={X}, {T}: Untap X target lands.
 rarity=R
 [/card]
@@ -144,28 +108,8 @@ type=Enchantment
 text={2}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage.
 rarity=U
 [/card]
-[card]
-id=1052
-name=Citanul Druid
-mana={1}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
-text=Whenever an opponent casts an artifact spell, put a +1/+1 counter on Citanul Druid.
-rarity=U
-[/card]
-[card]
-id=1000
-name=Clay Statue
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=1
-text={2}: Regenerate Clay Statue.
-rarity=C
-[/card]
+
+
 [card]
 id=1001
 name=Clockwork Avian
@@ -177,33 +121,17 @@ toughness=4
 text=Flying Clockwork Avian enters the battlefield with four +1/+0 counters on it. At end of combat, if Clockwork Avian attacked or blocked this combat, remove a +1/+0 counter from it. {X}, {T}: Put up to X +1/+0 counters on Clockwork Avian. This ability can't cause the total number of +1/+0 counters on Clockwork Avian to be greater than four. Activate this ability only during your upkeep.
 rarity=R
 [/card]
-[card]
-id=1002
-name=Colossus of Sardia
-mana={9}
-type=Artifact Creature
-subtype=Golem
-power=9
-toughness=9
-text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) Colossus of Sardia doesn't untap during your untap step. {9}: Untap Colossus of Sardia. Activate this ability only during your upkeep.
-rarity=R
-[/card]
+
 [card]
 id=1003
 name=Coral Helm
 mana={3}
 type=Artifact
+#No random discard as a cost in 0.9
 text={3}, Discard a card at random: Target creature gets +2/+2 until end of turn.
 rarity=R
 [/card]
-[card]
-id=1053
-name=Crumble
-mana={G}
-type=Instant
-text=Destroy target artifact. It can't be regenerated. That artifact's controller gains life equal to its converted mana cost.
-rarity=U
-[/card]
+
 [card]
 id=1004
 name=Cursed Rack

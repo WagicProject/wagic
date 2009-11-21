@@ -1,0 +1,21 @@
+#Bug: Rain of filth crashes the game
+# http://code.google.com/p/wagic/issues/detail?id=206
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:metallic sliver
+hand:psionic sliver
+manapool:{4}{U}
+[PLAYER2]
+[DO]
+psionic sliver
+metallic sliver
+p2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:psionic sliver
+graveyard:metallic sliver
+[PLAYER2]
+life:18
+[END]

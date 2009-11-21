@@ -10,3 +10,102 @@ text={W}{W}, {T}: Return target artifact card from your graveyard to your hand.
 auto={W}{W}{T}:moveTo(myHand) target(artifact|mygraveyard)
 rarity=R
 [/card]
+[card]
+id=993
+alias=1095
+name=Armageddon Clock
+mana={6}
+type=Artifact
+text=At the beginning of your upkeep, put a doom counter on Armageddon Clock. At the beginning of your draw step, Armageddon Clock deals damage to each player equal to the number of doom counters on it. {4}: Remove a doom counter from Armageddon Clock. Any player may activate this ability but only during any upkeep step.
+rarity=U
+[/card]
+[card]
+id=1057
+name=Artifact Blast
+mana={R}
+type=Instant
+text=Counter target artifact spell.
+target=artifact|stack
+auto=fizzle
+rarity=C
+[/card]
+[card]
+id=1066
+name=Artifact Ward
+mana={W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature has protection from artifacts. This effect doesn't remove Artifact Ward.
+auto=protection from(artifact)
+rarity=C
+[/card]
+[card]
+id=994
+name=Ashnod's Altar
+mana={3}
+type=Artifact
+text=Sacrifice a creature: Add {2} to your mana pool.
+auto={S(creature|mybattlefield)}:Add{2}
+rarity=U
+[/card]
+[card]
+id=1058
+name=Atog
+mana={1}{R}
+type=Creature
+subtype=Atog
+power=1
+toughness=2
+text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
+auto={S(artifact|myBattlefield)}:2/2
+rarity=U
+[/card]
+[card]
+id=1052
+name=Citanul Druid
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+text=Whenever an opponent casts an artifact spell, put a +1/+1 counter on Citanul Druid.
+auto=@movedTo(artifact|opponentstack):counter(1/1)
+rarity=U
+[/card]
+[card]
+id=1000
+name=Clay Statue
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=1
+text={2}: Regenerate Clay Statue.
+auto={2}:regenerate
+rarity=C
+[/card]
+[card]
+id=1002
+name=Colossus of Sardia
+mana={9}
+type=Artifact Creature
+subtype=Golem
+power=9
+toughness=9
+text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) Colossus of Sardia doesn't untap during your untap step. {9}: Untap Colossus of Sardia. Activate this ability only during your upkeep.
+rarity=R
+abilities=trample,doesnotuntap
+auto={9}:untap
+[/card]
+[card]
+id=1053
+name=Crumble
+mana={G}
+type=Instant
+target=artifact
+text=Destroy target artifact. It can't be regenerated. That artifact's controller gains life equal to its converted mana cost.
+auto=bury
+auto=life:manacost targetcontroller
+rarity=U
+[/card]
+

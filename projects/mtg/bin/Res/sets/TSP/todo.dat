@@ -1,4 +1,4 @@
-﻿[card]
+[card]
 id=113619
 name=Amrou Scout
 mana={1}{W}
@@ -14,7 +14,7 @@ id=113505
 name=Ancestral Vision
 mana=
 type=Sorcery
-text=Ancestral Vision is blue. Suspend 4—{U} (Rather than play this card from your hand, pay {U} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.) Target player draws three cards.
+text=Ancestral Vision is blue. Suspend 4?{U} (Rather than play this card from your hand, pay {U} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.) Target player draws three cards.
 rarity=R
 [/card]
 [card]
@@ -271,7 +271,7 @@ id=114909
 name=Conflagrate
 mana={X}{X}{R}
 type=Sorcery
-text=Conflagrate deals X damage divided as you choose among any number of target creatures and/or players. Flashback—{R}{R}, Discard X cards. (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
+text=Conflagrate deals X damage divided as you choose among any number of target creatures and/or players. Flashback?{R}{R}, Discard X cards. (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 rarity=U
 [/card]
 [card]
@@ -293,7 +293,7 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=3
-text=Fear Suspend 5—{B} (Rather than play this card from your hand, you may pay {B} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=Fear Suspend 5?{B} (Rather than play this card from your hand, you may pay {B} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
 [/card]
 [card]
@@ -312,7 +312,7 @@ id=111049
 name=Curse of the Cabal
 mana={9}{B}
 type=Sorcery
-text=Target player sacrifices half the permanents he or she controls, rounded down. Suspend 2—{2}{B}{B} At the beginning of each player's upkeep, if Curse of the Cabal is suspended, that player may sacrifice a permanent. If he or she does, put two time counters on Curse of the Cabal.
+text=Target player sacrifices half the permanents he or she controls, rounded down. Suspend 2?{2}{B}{B} At the beginning of each player's upkeep, if Curse of the Cabal is suspended, that player may sacrifice a permanent. If he or she does, put two time counters on Curse of the Cabal.
 rarity=R
 [/card]
 [card]
@@ -364,7 +364,7 @@ type=Creature
 subtype=Kraken
 power=6
 toughness=6
-text=Deep-Sea Kraken is unblockable. Suspend 9—{2}{U} Whenever an opponent plays a spell, if Deep-Sea Kraken is suspended, remove a time counter from it.
+text=Deep-Sea Kraken is unblockable. Suspend 9?{2}{U} Whenever an opponent plays a spell, if Deep-Sea Kraken is suspended, remove a time counter from it.
 rarity=R
 [/card]
 [card]
@@ -383,7 +383,7 @@ id=118872
 name=Demonic Collusion
 mana={3}{B}{B}
 type=Sorcery
-text=Buyback—Discard two cards. (You may discard two cards in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Search your library for a card and put that card into your hand. Then shuffle your library.
+text=Buyback?Discard two cards. (You may discard two cards in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Search your library for a card and put that card into your hand. Then shuffle your library.
 rarity=R
 [/card]
 [card]
@@ -400,7 +400,7 @@ id=108814
 name=Divine Congregation
 mana={3}{W}
 type=Sorcery
-text=You gain 2 life for each creature target player controls. Suspend 5—{1}{W} (Rather than play this card from your hand, you may pay {1}{W} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
+text=You gain 2 life for each creature target player controls. Suspend 5?{1}{W} (Rather than play this card from your hand, you may pay {1}{W} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 rarity=C
 [/card]
 [card]
@@ -430,7 +430,7 @@ id=116721
 name=Dread Return
 mana={2}{B}{B}
 type=Sorcery
-text=Return target creature card from your graveyard to play. Flashback—Sacrifice three creatures. (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
+text=Return target creature card from your graveyard to play. Flashback?Sacrifice three creatures. (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 rarity=U
 [/card]
 [card]
@@ -473,7 +473,7 @@ type=Creature
 subtype=Beast
 power=5
 toughness=5
-text=Suspend 5—{G} (Rather than play this card from your hand, you may pay {G} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=Suspend 5?{G} (Rather than play this card from your hand, you may pay {G} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
 [/card]
 [card]
@@ -495,7 +495,7 @@ type=Creature
 subtype=Bird
 power=3
 toughness=3
-text=Flying, protection from black Suspend 3—{1}{W} (Rather than play this card from your hand, you may pay {1}{W} and remove it from the game with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=Flying, protection from black Suspend 3?{1}{W} (Rather than play this card from your hand, you may pay {1}{W} and remove it from the game with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=U
 [/card]
 [card]
@@ -536,7 +536,7 @@ type=Creature
 subtype=Illusion
 power=4
 toughness=4
-text=Flying Suspend 4—{1}{U} (Rather than play this card from your hand, you may pay {1}{U} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=Flying Suspend 4?{1}{U} (Rather than play this card from your hand, you may pay {1}{U} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
 [/card]
 [card]
@@ -586,7 +586,7 @@ type=Creature
 subtype=Illusion
 power=1
 toughness=3
-text=Morph—Return two Islands you control to their owner's hand. (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Fathom Seer is turned face up, draw two cards.
+text=Morph?Return two Islands you control to their owner's hand. (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Fathom Seer is turned face up, draw two cards.
 rarity=C
 [/card]
 [card]
@@ -796,7 +796,7 @@ type=Creature
 subtype=Beast
 power=9
 toughness=7
-text=Suspend 10—{R} Sacrifice an artifact, creature, or land: Remove a time counter from Greater Gargadon. Play this ability only if Greater Gargadon is suspended.
+text=Suspend 10?{R} Sacrifice an artifact, creature, or land: Remove a time counter from Greater Gargadon. Play this ability only if Greater Gargadon is suspended.
 rarity=R
 [/card]
 [card]
@@ -861,7 +861,7 @@ id=113533
 name=Hypergenesis
 mana={0}
 type=Sorcery
-text=Hypergenesis is green. Suspend 3—{1}{G}{G} Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand into play. Repeat this process until no one puts a card into play.
+text=Hypergenesis is green. Suspend 3?{1}{G}{G} Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand into play. Repeat this process until no one puts a card into play.
 rarity=R
 [/card]
 [card]
@@ -902,7 +902,7 @@ type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=5
-text=Vigilance {T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn. Suspend 4—{W}{U}
+text=Vigilance {T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn. Suspend 4?{W}{U}
 rarity=R
 [/card]
 [card]
@@ -913,7 +913,7 @@ type=Creature
 subtype=Giant
 power=3
 toughness=4
-text=When Ivory Giant comes into play, tap all nonwhite creatures. Suspend 5—{W} (Rather than play this card from your hand, you may pay {W} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=When Ivory Giant comes into play, tap all nonwhite creatures. Suspend 5?{W} (Rather than play this card from your hand, you may pay {W} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
 [/card]
 [card]
@@ -968,7 +968,7 @@ type=Creature
 subtype=Human Warrior
 power=4
 toughness=1
-text=First strike Suspend 4—{R} (Rather than play this card from your hand, you may pay {R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=First strike Suspend 4?{R} (Rather than play this card from your hand, you may pay {R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
 [/card]
 [card]
@@ -1011,7 +1011,7 @@ rarity=C
 [/card]
 [card]
 id=113522
-name=Lim-Dûl the Necromancer
+name=Lim-D?l the Necromancer
 mana={5}{B}{B}
 type=Legendary Creature
 subtype=Human Wizard
@@ -1025,7 +1025,7 @@ id=113521
 name=Living End
 mana=
 type=Sorcery
-text=Living End is black. Suspend 3—{2}{B}{B} Each player removes all creature cards in his or her graveyard from the game, then sacrifices all creatures he or she controls, then puts into play all cards he or she removed this way.
+text=Living End is black. Suspend 3?{2}{B}{B} Each player removes all creature cards in his or her graveyard from the game, then sacrifices all creatures he or she controls, then puts into play all cards he or she removed this way.
 rarity=R
 [/card]
 [card]
@@ -1052,7 +1052,7 @@ id=114904
 name=Lotus Bloom
 mana=
 type=Artifact
-text=Suspend 3—{0} (Rather than play this card from your hand, pay {0} and remove it from the game with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.) {T}, Sacrifice Lotus Bloom: Add three mana of any one color to your mana pool.
+text=Suspend 3?{0} (Rather than play this card from your hand, pay {0} and remove it from the game with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.) {T}, Sacrifice Lotus Bloom: Add three mana of any one color to your mana pool.
 rarity=R
 [/card]
 [card]
@@ -1145,7 +1145,7 @@ id=108894
 name=Mindstab
 mana={5}{B}
 type=Sorcery
-text=Target player discards three cards. Suspend 4—{B} (Rather than play this card from your hand, you may pay {B} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
+text=Target player discards three cards. Suspend 4?{B} (Rather than play this card from your hand, you may pay {B} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 rarity=C
 [/card]
 [card]
@@ -1226,7 +1226,7 @@ type=Creature
 subtype=Insect Shaman
 power=3
 toughness=2
-text=When Nantuko Shaman comes into play, if you control no tapped lands, draw a card. Suspend 1—{2}{G}{G} (Rather than play this card from your hand, you may pay {2}{G}{G} and remove it from the game with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=When Nantuko Shaman comes into play, if you control no tapped lands, draw a card. Suspend 1?{2}{G}{G} (Rather than play this card from your hand, you may pay {2}{G}{G} and remove it from the game with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
 [/card]
 [card]
@@ -1326,7 +1326,7 @@ type=Creature
 subtype=Dragon
 power=4
 toughness=4
-text=Flying {R}: Pardic Dragon gets +1/+0 until end of turn. Suspend 2—{R}{R} Whenever an opponent plays a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
+text=Flying {R}: Pardic Dragon gets +1/+0 until end of turn. Suspend 2?{R}{R} Whenever an opponent plays a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
 rarity=R
 [/card]
 [card]
@@ -1376,7 +1376,7 @@ id=109758
 name=Phthisis
 mana={3}{B}{B}{B}{B}
 type=Sorcery
-text=Destroy target creature. Its controller loses life equal to its power plus its toughness. Suspend 5—{1}{B} (Rather than play this card from your hand, you may pay {1}{B} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
+text=Destroy target creature. Its controller loses life equal to its power plus its toughness. Suspend 5?{1}{B} (Rather than play this card from your hand, you may pay {1}{B} and remove it from the game with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 rarity=U
 [/card]
 [card]
@@ -1414,7 +1414,7 @@ id=108926
 name=Plunder
 mana={4}{R}
 type=Sorcery
-text=Destroy target artifact or land. Suspend 4—{1}{R} (Rather than play this card from your hand, you may pay {1}{R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
+text=Destroy target artifact or land. Suspend 4?{1}{R} (Rather than play this card from your hand, you may pay {1}{R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 rarity=C
 [/card]
 [card]
@@ -1443,6 +1443,19 @@ mana={1}{B}{B}
 type=Sorcery
 text=Target player reveals his or her hand and the top card of his or her library. You choose a card revealed this way. That player puts the chosen card on the bottom of his or her library. Madness {1}{B} (If you discard this card, you may play it for its madness cost instead of putting it into your graveyard.)
 rarity=C
+[/card]
+[card]
+#"&&" has higher priority than "lord" in Wagic 0.9, so this card cannot be coded right now
+text=All Sliver creatures have "{T}: This creature deals 2 damage to target creature or player and 3 damage to itself."
+auto=lord(sliver) {T}:damage:2 target(creature,player) && damage:3 controller
+id=113559
+name=Psionic Sliver
+rarity=R
+mana={4}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
 [/card]
 [card]
 id=106657
@@ -1476,7 +1489,7 @@ id=113520
 name=Restore Balance
 mana=
 type=Sorcery
-text=Restore Balance is white. Suspend 6—{W} Each player chooses a number of lands he or she controls equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players sacrifice creatures and discard cards the same way.
+text=Restore Balance is white. Suspend 6?{W} Each player chooses a number of lands he or she controls equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players sacrifice creatures and discard cards the same way.
 rarity=R
 [/card]
 [card]
@@ -1492,7 +1505,7 @@ id=108915
 name=Rift Bolt
 mana={2}{R}
 type=Sorcery
-text=Rift Bolt deals 3 damage to target creature or player. Suspend 1—{R} (Rather than play this card from your hand, you may pay {R} and remove it from the game with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
+text=Rift Bolt deals 3 damage to target creature or player. Suspend 1?{R} (Rather than play this card from your hand, you may pay {R} and remove it from the game with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 rarity=C
 [/card]
 [card]
@@ -1503,7 +1516,7 @@ type=Creature
 subtype=Illusion
 power=2
 toughness=2
-text=Flying When Riftwing Cloudskate comes into play, return target permanent to its owner's hand. Suspend 3—{1}{U} (Rather than play this card from your hand, you may pay {1}{U} and remove it from the game with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text=Flying When Riftwing Cloudskate comes into play, return target permanent to its owner's hand. Suspend 3?{1}{U} (Rather than play this card from your hand, you may pay {1}{U} and remove it from the game with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=U
 [/card]
 [card]
@@ -1593,7 +1606,7 @@ id=108802
 name=Search for Tomorrow
 mana={2}{G}
 type=Sorcery
-text=Search your library for a basic land card and put it into play. Then shuffle your library. Suspend 2—{G} (Rather than play this card from your hand, you may pay {G} and remove it from the game with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
+text=Search your library for a basic land card and put it into play. Then shuffle your library. Suspend 2?{G} (Rather than play this card from your hand, you may pay {G} and remove it from the game with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 rarity=C
 [/card]
 [card]
@@ -2037,7 +2050,7 @@ type=Creature
 subtype=Homarid Warrior
 power=2
 toughness=3
-text={U}: Viscerid Deepwalker gets +1/+0 until end of turn. Suspend 4—{U} (Rather than play this card from your hand, you may pay {U} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
+text={U}: Viscerid Deepwalker gets +1/+0 until end of turn. Suspend 4?{U} (Rather than play this card from your hand, you may pay {U} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost. It has haste.)
 rarity=C
 [/card]
 [card]
@@ -2066,7 +2079,7 @@ id=110517
 name=Walk the Aeons
 mana={4}{U}{U}
 type=Sorcery
-text=Buyback—Sacrifice three Islands. (You may sacrifice three Islands in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Target player takes an extra turn after this one.
+text=Buyback?Sacrifice three Islands. (You may sacrifice three Islands in addition to any other costs as you play this spell. If you do, put this card into your hand as it resolves.) Target player takes an extra turn after this one.
 rarity=R
 [/card]
 [card]
@@ -2093,7 +2106,7 @@ id=113528
 name=Wheel of Fate
 mana=
 type=Sorcery
-text=Wheel of Fate is red. Suspend 4—{1}{R} (Rather than play this card from your hand, pay {1}{R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.) Each player discards his or her hand, then draws seven cards.
+text=Wheel of Fate is red. Suspend 4?{1}{R} (Rather than play this card from your hand, pay {1}{R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.) Each player discards his or her hand, then draws seven cards.
 rarity=R
 [/card]
 [card]
