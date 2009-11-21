@@ -1,0 +1,20 @@
+#Bug: Rain of filth crashes the game
+# http://code.google.com/p/wagic/issues/detail?id=206
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:forest
+hand:rain of filth
+manapool:{B}
+[PLAYER2]
+[DO]
+rain of filth
+forest
+choice 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{B}
+graveyard:forest,rain of filth
+[PLAYER2]
+[END]
