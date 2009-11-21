@@ -2287,51 +2287,6 @@ class AAladdinsLamp: public TargetAbility{
 };
 
 
-
-
-//Ankh of Mishra
-class AAnkhOfMishra: public ListMaintainerAbility{
- public:
-  int init;
- AAnkhOfMishra(int id, MTGCardInstance * _source):ListMaintainerAbility(id, _source){
-    init = 0;
-  }
-
-  void Update(float dt){
-    ListMaintainerAbility::Update(dt);
-    init = 1;
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (card->hasType(Subtypes::TYPE_LAND) && game->isInPlay(card)) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    if (!init) return 0;
-    game->mLayers->stackLayer()->addDamage(source,card->controller(), 2);
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AAnkhOfMishra ::: init : " << init
-	<< " (";
-    return ListMaintainerAbility::toString(out) << ")";
-  }
-  AAnkhOfMishra * clone() const{
-    AAnkhOfMishra * a =  NEW AAnkhOfMishra(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
-
 // Armageddon Clock
 class AArmageddonClock:public MTGAbility{
  public:
@@ -2593,39 +2548,6 @@ class ACreatureBond:public MTGAbility{
     return a;
   }
 };
-
-//1105: Dingus Egg
-class ADingusEgg: public ListMaintainerAbility{
- public:
- ADingusEgg(int id, MTGCardInstance * _source):ListMaintainerAbility(id, _source){
-  }
-
-  int canBeInList(MTGCardInstance * card){
-    if (card->hasType(Subtypes::TYPE_LAND) && game->isInPlay(card)) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    game->mLayers->stackLayer()->addDamage(source,card->controller(), 2);
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADingusEgg ::: (";
-    return ListMaintainerAbility::toString(out) << ")";
-  }
-  ADingusEgg * clone() const{
-    ADingusEgg * a =  NEW ADingusEgg(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
 
 
 //1106 DisruptingScepter

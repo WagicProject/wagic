@@ -90,17 +90,7 @@ toughness=3
 text=Flying Morph {3}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Aven Liberator is turned face up, target creature you control gains protection from the color of your choice until end of turn.
 rarity=C
 [/card]
-[card]
-id=42024
-name=Bladewing the Risen
-mana={3}{B}{B}{R}{R}
-type=Legendary Creature
-subtype=Zombie Dragon
-power=4
-toughness=4
-text=Flying When Bladewing the Risen enters the battlefield, you may return target Dragon permanent card from your graveyard to the battlefield. {B}{R}: Dragon creatures get +1/+1 until end of turn.
-rarity=R
-[/card]
+
 [card]
 id=47224
 name=Bladewing's Thrall
