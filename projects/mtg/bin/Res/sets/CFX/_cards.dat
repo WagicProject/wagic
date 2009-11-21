@@ -463,7 +463,7 @@ rarity=C
 mana={1}{G}
 type=Creature
 subtype=Cat Warrior
-auto=protection from artifact
+auto=protection from(artifact)
 power=2
 toughness=1
 [/card]
