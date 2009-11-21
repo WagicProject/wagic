@@ -128,6 +128,7 @@ dragon_fodder.txt
 dragon_fodder2.txt
 dragon_whelp_i154.txt
 drain_life.txt
+dream_fracture_i142.txt
 drift_of_the_dead.txt
 dromad_purebred.txt
 dross_harvester.txt

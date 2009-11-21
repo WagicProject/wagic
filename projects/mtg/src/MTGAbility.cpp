@@ -2263,7 +2263,16 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
   Targetable * ActivatedAbilityTP::getTarget(){
     switch(who){
       case TargetChooser::TARGET_CONTROLLER:
-        if (target) return ((MTGCardInstance *)target)->controller();
+        if (target){
+          switch(target->typeAsTarget()) {
+            case TARGET_CARD:
+              return ((MTGCardInstance *)target)->controller();
+            case TARGET_STACKACTION:
+              return((Interruptible *)target)->source->controller();
+            default:
+              return (Player *)target;
+          }
+        }
         return NULL;
       case TargetChooser::CONTROLLER:
         return source->controller();

@@ -25,11 +25,11 @@ endinterruption
 [ASSERT]
 firstmain
 [PLAYER1]
-hand:Forest
+library:Forest
 graveyard:Grizzly Bears
-library:Craw Wurm
+hand:Craw Wurm
 [PLAYER2]
-hand:Swamp
+library:Swamp
 graveyard:Dream Fracture
-library:Air Elemental
+hand:Air Elemental
 [END]
