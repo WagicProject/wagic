@@ -28,7 +28,7 @@ public:
     EVILTWIN_MODE_UNLOCKED,
     RANDOMDECK_MODE_UNLOCKED,    
     LANG,
-    LAST_GLOBAL = RANDOMDECK_MODE_UNLOCKED,
+    LAST_GLOBAL = LANG, //This must be the value above, to keep ordering.
     //Values /must/ match ordering in optionNames, or everything loads wrong.
     //Profile settings    
     ACTIVE_THEME,
