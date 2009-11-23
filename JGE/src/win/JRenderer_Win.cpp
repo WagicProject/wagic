@@ -76,21 +76,11 @@ void JQuad::GetTextureRect(float *x, float *y, float *w, float *h)
 	*x=mX; *y=mY; *w=mWidth; *h=mHeight; 
 }
 
-
-// void JQuad::SetColor(JColor color)
-// {
-// 	for (int i=0;i<4;i++)
-// 		mColor[i].color = color.color;
-// }
-// 
-
 void JQuad::SetColor(PIXEL_TYPE color)
 {
 	for (int i=0;i<4;i++)
 		mColor[i].color = color;
 }
-
-
 
 void JQuad::SetHotSpot(float x, float y)
 {

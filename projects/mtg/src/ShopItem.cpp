@@ -257,7 +257,7 @@ void ShopItems::Update(float dt){
       char buffer[4096];
       sprintf(buffer,"%s : %i credits",item->getText(),price);
       if(!dialog){
-	      dialog = NEW SimpleMenu(1,this,resources.GetJLBFont(Constants::MENU_FONT),SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+	      dialog = NEW SimpleMenu(1,this,Constants::MENU_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
 	      dialog->Add(1,"Yes");
 	      dialog->Add(2,"No");
         if(options[Options::CHEATMODE].number) {

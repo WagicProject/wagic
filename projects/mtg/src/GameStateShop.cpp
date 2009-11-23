@@ -48,9 +48,6 @@ void GameStateShop::Start()
   else
     mBg = NULL;
 
-  menuFont = resources.GetJLBFont(Constants::MENU_FONT);
-  itemFont = resources.GetJLBFont(Constants::MAIN_FONT);
-
   JRenderer::GetInstance()->EnableVSync(true);
 
   shop = NULL;
@@ -109,7 +106,7 @@ void GameStateShop::load(){
 
   
 
-  shop = NEW ShopItems(10, this, itemFont, 10, 0, mParent->collection, setIds);
+  shop = NEW ShopItems(10, this, resources.GetJLBFont(Constants::MAIN_FONT), 10, 0, mParent->collection, setIds);
   MTGSetInfo * si = NULL;
   for (int i = 0; i < SHOP_BOOSTERS; i++){
     si = setlist.getInfo(setIds[i]);
@@ -157,7 +154,7 @@ void GameStateShop::Update(float dt)
     if (menu){
       menu->Update(dt);
     }else{
-      menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-100,20);
+      menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-100,20);
       menu->Add(12,"Save & Back to Main Menu");
       menu->Add(13, "Cancel");
     }

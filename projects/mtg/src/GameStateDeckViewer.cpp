@@ -85,7 +85,7 @@ void GameStateDeckViewer::switchDisplay(){
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
 
-  welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
+  welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
   deckNum = 0;
   newDeckname = "";
@@ -106,10 +106,8 @@ void GameStateDeckViewer::Start()
   myCollection =    NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
   displayed_deck =  myCollection;
   myDeck = NULL;
-  menuFont = resources.GetJLBFont(Constants::MENU_FONT);
-  mFont = resources.GetJLBFont(Constants::MAIN_FONT);
 
-  menu = NEW SimpleMenu(11,this,menuFont,SCREEN_WIDTH/2-150,20);
+  menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
   menu->Add(0,"Save");
   menu->Add(1,"Save & Rename");
   menu->Add(2,"Switch decks without saving");
@@ -143,8 +141,7 @@ void GameStateDeckViewer::Start()
 
   backQuad = resources.GetQuad("back");
 
-  menuFont = resources.GetJLBFont("f3");
-  welcome_menu = NEW SimpleMenu(10,this,menuFont,20,20);
+  welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
   deckNum = 0;
   welcome_menu->Add(nbDecks+1, "--NEW--");
@@ -293,7 +290,7 @@ void GameStateDeckViewer::Update(float dt)
           price = pricelist->getPrice(card->getMTGId()) / 2;
           price = price - price * (rnd -10)/100;
           sprintf(buffer,"%s : %i %s",_(card->getName()).c_str(),price,_("credits").c_str());
-          sellMenu = NEW SimpleMenu(2,this,mFont,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+          sellMenu = NEW SimpleMenu(2,this,Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
           sellMenu->Add(20,"Yes");
           sellMenu->Add(21,"No","",true);
         }
@@ -401,6 +398,7 @@ void GameStateDeckViewer::Update(float dt)
 
 
 void GameStateDeckViewer::renderOnScreenBasicInfo(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   char buffer[30], buffer2[30];
 
   float y = 0;
@@ -418,6 +416,8 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
 
 
 void GameStateDeckViewer::renderSlideBar(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+
   int total = displayed_deck->getCount(colorFilter);
   float filler = 15;
   float y = SCREEN_HEIGHT_F-25;
@@ -627,36 +627,36 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
 
-        mFont->DrawString(_("Lands"), 20 + leftTransition, posY);
+        font->DrawString(_("Lands"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countLands);
-        mFont->DrawString(buffer, posX + leftTransition, posY);
+        font->DrawString(buffer, posX + leftTransition, posY);
         
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-        mFont->DrawString( _("Creatures"), 20 + leftTransition, posY);
+        font->DrawString( _("Creatures"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countCreatures);
-        mFont->DrawString(buffer, posX + leftTransition, posY);
+        font->DrawString(buffer, posX + leftTransition, posY);
         
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-        mFont->DrawString(_("Spells"), 20 + leftTransition, posY);
+        font->DrawString(_("Spells"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countSpells);
-        mFont->DrawString(buffer, posX + leftTransition, posY);
+        font->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        mFont->DrawString(_("Instants"), 30 + leftTransition, posY);
+        font->DrawString(_("Instants"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countInstants);
-        mFont->DrawString(buffer, posX + leftTransition, posY);
+        font->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        mFont->DrawString(_("Enchantments"), 30 + leftTransition, posY);
+        font->DrawString(_("Enchantments"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countEnchantments);
-        mFont->DrawString(buffer, posX + leftTransition, posY);
+        font->DrawString(buffer, posX + leftTransition, posY);
 
         posY += 10;
-        mFont->DrawString(_("Sorceries"), 30 + leftTransition, posY);
+        font->DrawString(_("Sorceries"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countSorceries);
-        mFont->DrawString(buffer, posX + leftTransition, posY);
+        font->DrawString(buffer, posX + leftTransition, posY);
         //sprintf(buffer, "Artifacts: %i", stw.countArtifacts);
         //mFont->DrawString(buffer, 20, 123);            
         
@@ -1176,8 +1176,8 @@ int GameStateDeckViewer::countCardsByType(const char * _type) {
 }
 
 void GameStateDeckViewer::renderCard(int id, float rotation){
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   MTGCard * card = cardIndex[id];
-
 
   float max_scale = 0.96f;
   float x_center_0 = 180;
@@ -1256,9 +1256,10 @@ void GameStateDeckViewer::renderCard (int id){
   renderCard(id, 0);
 }
 
-void GameStateDeckViewer::Render()
-{
-  //  void RenderQuad(JQuad* quad, float xo, float yo, float angle=0.0f, float xScale=1.0f, float yScale=1.0f);
+void GameStateDeckViewer::Render() {
+
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
 

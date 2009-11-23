@@ -767,24 +767,38 @@ int WResourceManager::fileOK(string filename, bool relative){
   return result;
 }
 
-int WResourceManager::LoadJLBFont(const string &fontName, int height){
+int WResourceManager::reloadJLBFonts(){
+  vector<string> fontNames;
+  vector<float> fontSizes;
+  fontNames.resize(mFontList.size());
+  fontSizes.resize(mFontList.size());
+  for ( map<string, int>::iterator itr = mFontMap.begin(); itr != mFontMap.end(); ++itr){
+    fontNames[itr->second] = itr->first;
+    fontSizes[itr->second] = mFontList[itr->second]->GetHeight();
+  }
+  
+  RemoveJLBFonts();
+
+  for(size_t i = 0; i < fontNames.size(); ++i){
+    LoadJLBFont(fontNames[i],fontSizes[i]);
+  }
+  return 1;
+}
+
+
+JLBFont * WResourceManager::LoadJLBFont(const string &fontName, int height){
   map<string, int>::iterator itr = mFontMap.find(fontName);
 
-	if (itr == mFontMap.end())
-	{
-		string path = graphicsFile(fontName);
+	if (itr != mFontMap.end()) return mFontList[itr->second];
 
-		printf("creating font:%s\n", path.c_str());
+  string mFontName = fontName + ".png";
+	string path = graphicsFile(mFontName);
+  if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way JLBFont works in JGE
+	int id = mFontList.size();
+	mFontList.push_back(NEW JLBFont(path.c_str(), height, true));
+	mFontMap[fontName] = id;
 
-		int id = mFontList.size();
-		mFontList.push_back(NEW JLBFont(path.c_str(), height, true));
-
-		mFontMap[fontName] = id;
-
-		return id;
-	}
-	else
-		return itr->second;
+	return mFontList[id];
 }
 
 
@@ -809,6 +823,7 @@ JMusic * WResourceManager::ssLoadMusic(const char *fileName){
 
 void WResourceManager::Refresh(){
   //Really easy cache relinking.
+  reloadJLBFonts();
   sampleWCache.Refresh();
   textureWCache.Refresh();
   psiWCache.Refresh();

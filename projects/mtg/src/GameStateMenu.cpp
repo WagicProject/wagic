@@ -109,8 +109,9 @@ void GameStateMenu::Create()
   if (!langChosen){
     currentState = MENU_STATE_MAJOR_LANG | MENU_STATE_MINOR_NONE;
   }
-  scroller = NEW TextScroller(resources.GetJLBFont(Constants::MAIN_FONT), SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
+  scroller = NEW TextScroller(Constants::MAIN_FONT, SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
   scrollerSet = 0;
+
 }
 
 
@@ -283,8 +284,7 @@ void GameStateMenu::setLang(int id){
 }
 
 void GameStateMenu::loadLangMenu(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
-  subMenuController = NEW SimpleMenu(103, this, mFont, 150,60);
+  subMenuController = NEW SimpleMenu(103, this, Constants::MENU_FONT, 150,60);
   if (!subMenuController) return;
   resetDirectory();
   if (!mDip){
@@ -401,8 +401,7 @@ void GameStateMenu::Update(float dt)
       if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR)) {
 	      if (!hasChosenGameType){
 	        currentState = MENU_STATE_MAJOR_SUBMENU;
-	        JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
-	        subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
+	        subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
 	        if (subMenuController){
 	          subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
 	          if (options[Options::MOMIR_MODE_UNLOCKED].number)
@@ -546,7 +545,7 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
     switch (controlId)
       {
       case MENUITEM_PLAY:
-	    subMenuController = NEW SimpleMenu(102, this, mFont, 150,60);
+	    subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
 	    if (subMenuController){
 	      subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
         // TODO Put 2 players mode back

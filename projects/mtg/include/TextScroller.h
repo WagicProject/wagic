@@ -11,7 +11,7 @@ class TextScroller: public JGuiObject{
 protected:
   string mText;
   string tempText;
-  JLBFont * mFont;
+  int fontId;
   float mWidth;
   float mSpeed;
   float mX;
@@ -25,7 +25,7 @@ public:
   void Add(string text);
   void Reset();
   void setRandom(int mode = 1);
-  TextScroller(JLBFont * font, float x, float y, float width, float speed = 30);
+  TextScroller(int fontId, float x, float y, float width, float speed = 30);
   void Render();
   void Update(float dt);
   virtual ostream& toString(ostream& out) const;

@@ -55,6 +55,13 @@ JResourceManager::~JResourceManager()
 	RemoveAll();
 }
 
+void JResourceManager::RemoveJLBFonts(){
+	for (vector<JLBFont *>::iterator font = mFontList.begin(); font != mFontList.end(); ++font)
+		delete *font;
+
+	mFontList.clear();
+	mFontMap.clear();
+}
 
 void JResourceManager::RemoveAll()
 {
@@ -70,21 +77,13 @@ void JResourceManager::RemoveAll()
 	mQuadList.clear();
 	mQuadMap.clear();
 
-	for (vector<JLBFont *>::iterator font = mFontList.begin(); font != mFontList.end(); ++font)
-		delete *font;
-
-	mFontList.clear();
-	mFontMap.clear();
+  RemoveJLBFonts();
 }
 
 
 bool JResourceManager::LoadResource(const string& resourceName)
 {
 	string path = /*mResourceRoot + */resourceName;
-
-//	TiXmlDocument doc(path.c_str());
-//
-//	if (!doc.LoadFile()) return false;
 
 
 	JGE *engine = JGE::GetInstance();
@@ -164,11 +163,6 @@ bool JResourceManager::LoadResource(const string& resourceName)
 					else
 						hotspotY = height/2;
 
-// 					if (element->QueryFloatAttribute("regx", &value) == TIXML_SUCCESS)
-// 						hotspotX = width/2;
-//
-// 					if (element->QueryFloatAttribute("regy", &value) == TIXML_SUCCESS)
-// 						hotspotY = height/2;
 
 					int id = CreateQuad(quadName, textureName, x, y, width, height);
 					if (id != INVALID_ID)
@@ -179,14 +173,7 @@ bool JResourceManager::LoadResource(const string& resourceName)
 				else if (strcmp(element->Value(), "font")==0)
 				{
 				}
-// 				else if (strcmp(element->Value(), "effect")==0)
-// 				{
-// 					RegisterParticleEffect(element->Attribute("name"));
-// 				}
-// 				else if (strcmp(element->Value(), "motion_emitter")==0)
-// 				{
-// 					RegisterMotionEmitter(element->Attribute("name"));
-// 				}
+
 			}
 		}
 
@@ -297,26 +284,22 @@ JQuad *JResourceManager::GetQuad(int id)
 }
 
 
-int JResourceManager::LoadJLBFont(const string &fontName, int height)
+JLBFont * JResourceManager::LoadJLBFont(const string &fontName, int height)
 {
 	map<string, int>::iterator itr = mFontMap.find(fontName);
 
-	if (itr == mFontMap.end())
-	{
-		string path = /*mResourceRoot + */fontName;
+	if (itr != mFontMap.end()) return mFontList[itr->second];
 
-		printf("creating font:%s\n", path.c_str());
+	string path = fontName;
 
-		int id = mFontList.size();
-		///////////////////////////////////////
-		mFontList.push_back(NEW JLBFont(path.c_str(), height, true));
+	int id = mFontList.size();
 
-		mFontMap[fontName] = id;
+	mFontList.push_back(NEW JLBFont(path.c_str(), height, true));
 
-		return id;
-	}
-	else
-		return itr->second;
+	mFontMap[fontName] = id;
+
+	return mFontList[id];
+
 }
 
 

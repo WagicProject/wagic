@@ -867,8 +867,7 @@ void WDecoConfirm::Entering(u32 key){
 
   SAFE_DELETE(confirmMenu);
   mState = OP_CONFIRMED; 
-  JLBFont * mFont = resources.GetJLBFont("f3");
-  confirmMenu = NEW SimpleMenu(444, listener,mFont, 50,170);
+  confirmMenu = NEW SimpleMenu(444, listener,Constants::MENU_FONT, 50,170);
   confirmMenu->Add(1,confirm.c_str());
   confirmMenu->Add(2,cancel.c_str());
 }

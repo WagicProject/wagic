@@ -51,7 +51,6 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
   game = NULL;
   deckmenu = NULL;
   opponentMenu = NULL;
-  opponentMenuFont = NULL;
   menu = NULL;
 #ifdef TESTSUITE
   testSuite = NULL;
@@ -77,11 +76,8 @@ void GameStateDuel::Start()
 
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
   credits = NEW Credits();
-  mFont = resources.GetJLBFont(Constants::MENU_FONT);
-  mFont->SetBase(0);
-  opponentMenuFont = mFont;
 
-  menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, mFont, SCREEN_WIDTH/2-100, 25);
+  menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Constants::MENU_FONT, SCREEN_WIDTH/2-100, 25);
   menu->Add(12,"Back to main menu");
   menu->Add(13, "Cancel");
 
@@ -91,7 +87,7 @@ void GameStateDuel::Start()
   for (int i = 0; i<2; i ++){
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
-      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, mFont, 35, 25, "Choose a Deck");
+      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, Constants::MENU_FONT, 35, 25, "Choose a Deck");
       int nbDecks = fillDeckMenu(deckmenu,options.profileFile());
       if (nbDecks) decksneeded = 0;
       break;
@@ -306,7 +302,7 @@ void GameStateDuel::Update(float dt)
       else{
 	if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
 	  if (!opponentMenu){
-	    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, opponentMenuFont, 35, 25, "Choose Opponent");
+	    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Constants::MENU_FONT, 35, 25, "Choose Opponent");
 	    opponentMenu->Add(0,"Random");
 	    if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
 	      opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
@@ -367,7 +363,6 @@ void GameStateDuel::Update(float dt)
 	    End();
 	    Start();
 	  }
-	mFont->SetColor(ARGB(255,255,255,255));
       }
       if (mEngine->GetButtonClick(PSP_CTRL_START)){
 	mGamePhase = DUEL_STATE_MENU;
@@ -399,6 +394,7 @@ void GameStateDuel::Update(float dt)
 
 void GameStateDuel::Render()
 {
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   //Erase
   LOG("Start Render\n");
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));

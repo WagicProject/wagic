@@ -128,6 +128,7 @@ void GameApp::Create()
   resources.GetJLBFont("simon")->SetTracking(-1);
   resources.LoadJLBFont("f3",16);
   resources.LoadJLBFont("magic",16);
+  resources.LoadJLBFont("smallface", 7);
 
 
   resources.RetrieveTexture("phasebar.png",RETRIEVE_MANAGE);
@@ -277,6 +278,7 @@ void GameApp::Update()
 
 void GameApp::Render()
 {
+  JRenderer::GetInstance()->FillRect(0,0,10,10,ARGB(255,255,255,255)); //This is an attempt at getting rif of the purple screen bug. If you ever get a purple screen while this line is here, just delete it.
   if (systemError.size()){
     fprintf(stderr, systemError.c_str());
     JLBFont * mFont= resources.GetJLBFont("simon");

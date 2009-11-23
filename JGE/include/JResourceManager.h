@@ -42,6 +42,7 @@ public:
 	bool LoadResource(const string& resourceName);
 
 	virtual void RemoveAll();
+  virtual void RemoveJLBFonts();
 	
 	virtual int CreateTexture(const string &textureName);
 	virtual JTexture* GetTexture(const string &textureName);
@@ -51,35 +52,18 @@ public:
 	virtual JQuad* GetQuad(const string &quadName);
 	virtual JQuad* GetQuad(int id);
 
-	virtual int LoadJLBFont(const string &fontName, int height);
+	virtual JLBFont * LoadJLBFont(const string &fontName, int height);
 	virtual JLBFont* GetJLBFont(const string &fontName);
 	virtual JLBFont* GetJLBFont(int id);
 
-// 	int RegisterParticleEffect(const string &effectName);
-// 	JParticleEffect* GetParticleEffect(const string &effectName);
-// 	JParticleEffect* GetParticleEffect(int id);
-// 
-// 	int RegisterMotionEmitter(const string &emitterName);
-// 	JMotionEmitter* GetMotionEmitter(const string &emitterName);
-// 	JMotionEmitter* GetMotionEmitter(int id);
 
 protected:
-
-	//JRenderer *mRenderer;
-	
-	//string mResourceRoot;
 
 	vector<JTexture *> mTextureList;
 	map<string, int> mTextureMap;
 
 	vector<JQuad *> mQuadList;
 	map<string, int> mQuadMap;
-
-// 	vector<JParticleEffect *> mParticleEffectList;
-// 	map<string, int> mParticleEffectMap;
-// 
-// 	vector<JMotionEmitter *> mMotionEmitterList;
-// 	map<string, int> mMotionEmitterMap;
 
 	vector<JLBFont *> mFontList;
 	map<string, int> mFontMap;

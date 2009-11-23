@@ -19,7 +19,7 @@ class SimpleMenu:public JGuiController{
 
  private:
   int mHeight, mWidth, mX, mY;
-  JLBFont* mFont;
+  int fontId;
   std::string title;
   int displaytitle;
   int maxItems,startId;
@@ -40,7 +40,7 @@ class SimpleMenu:public JGuiController{
 
  public:
   bool autoTranslate;
-  SimpleMenu(int id, JGuiListener* listener, JLBFont* font, int x, int y, const char * _title = "", int _maxItems = 7);
+  SimpleMenu(int id, JGuiListener* listener, int fontId, int x, int y, const char * _title = "", int _maxItems = 7);
   void Render();
   void Update(float dt);
   void Add(int id, const char * Text,string desc = "", bool forceFocus = false);

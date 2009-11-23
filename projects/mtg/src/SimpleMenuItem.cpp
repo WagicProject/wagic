@@ -1,8 +1,9 @@
 #include "../include/config.h"
 #include "../include/SimpleMenuItem.h"
 #include "../include/Translate.h"
+#include "../include/WResourceManager.h"
 
-SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, string text, int x, int y, bool hasFocus, bool autoTranslate): JGuiObject(id), parent(_parent), mFont(font), mX(x), mY(y)
+SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, int x, int y, bool hasFocus, bool autoTranslate): JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
   if (autoTranslate) mText = _(text);
   else mText = text;
@@ -18,6 +19,7 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, strin
 
 void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
+  JLBFont * mFont = resources.GetJLBFont(fontId);
   //mFont->SetColor(ARGB(255,255,255,255));
   mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
@@ -71,6 +73,7 @@ void SimpleMenuItem::Relocate(int x, int y)
 
 int SimpleMenuItem::GetWidth()
 {
+  JLBFont * mFont = resources.GetJLBFont(fontId);
   mFont->SetScale(1.0);
   return mFont->GetStringWidth(mText.c_str());
 }
@@ -84,7 +87,6 @@ ostream& SimpleMenuItem::toString(ostream& out) const
 {
   return out << "SimpleMenuItem ::: mHasFocus : " << mHasFocus
 	     << " ; parent : " << parent
-	     << " ; mFont : " << mFont
 	     << " ; mText : " << mText
 	     << " ; mScale : " << mScale
 	     << " ; mTargetScale : " << mTargetScale

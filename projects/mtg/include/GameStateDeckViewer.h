@@ -104,9 +104,7 @@ private:
   JMusic * bgMusic;
   JQuad * backQuad;
   SimpleMenu * welcome_menu;
-  JLBFont * mFont;
   bool showing_user_deck;
-  JLBFont * menuFont;
   SimpleMenu * menu;
   SimpleMenu * sellMenu;
   PriceList* pricelist;

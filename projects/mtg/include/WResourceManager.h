@@ -175,8 +175,9 @@ public:
  	JTexture* GetTexture(const string &textureName);
 	JTexture* GetTexture(int id);
 
+  int reloadJLBFonts();
   //Wrapped from JResourceManger. TODO: Privatize
-  int LoadJLBFont(const string &fontName, int height);
+  JLBFont * LoadJLBFont(const string &fontName, int height);
  
   //Wrapped from JSoundSystem. TODO: Privatize.
   JMusic * ssLoadMusic(const char *fileName);

@@ -18,14 +18,14 @@ class SimpleMenuItem: public JGuiObject
  private:
   bool mHasFocus;
   SimpleMenu* parent;
-  JLBFont *mFont;
+  int fontId;
   string mText;
   float mScale;
   float mTargetScale;
 
  public:
   string desc;
-  SimpleMenuItem(SimpleMenu* _parent, int id, JLBFont *font, string text, int x, int y, bool hasFocus = false, bool autoTranslate = false);
+  SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, int x, int y, bool hasFocus = false, bool autoTranslate = false);
 
   int mX;
   int mY;
