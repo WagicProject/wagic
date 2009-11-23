@@ -1,0 +1,153 @@
+#LANG:Portugues
+#TraduÁ„o de Wagic The Homebrew 0.9.1 em PortuguÍs BR
+#traduzido por Shinoobi
+#Renomeie este arquivo para "_lang.txt ou substitua pt por _lang no nome do arquivo para jogar Wagic em portuguÍs
+
+#Note to translators:
+#If you want to translate cards, I suggest you translate their text (the "text=" line) directly in _cards.dat,
+# BUT DO NOT TOUCH ANYTHING ELSE in the _cards.dat files (names and types of creatures are used by the game!)
+# If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
+#Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
+
+#Game menus/texts
+Play=Jogar
+Deck Editor=Editar Deck
+Shop=Loja
+Exit=Sair
+1 Player=1 Jogador
+2 Players=2 Jogadores
+Player=Jogador
+Cancel=Cancelar
+Classic=Classico
+Music Volume=Volume da Musica
+SFX Volume=Efeitos Sonoros
+Seconds to pause for an Interrupt=Segundos pausados para InterrupÁ„o
+Difficulty=Dificuldade
+Image Cache Size=Cache de Imagem
+Save & Back to Main Menu=Salvar & Voltar ao Menu Principal
+Back to Main Menu=Voltar ao Menu Principal
+Back to main menu=Voltar ao menu principal
+--NEW--=--NOVO--
+Save=Salvar
+Choose a Deck=Escolha um Deck
+Choose Opponent=Escolha um Advers·rio
+(easy)=(*)
+(hard)=(***)
+Random=AleatÛrio
+Interrupt?=Interromper?
+X Interrupt - 0 No - [] No to All=X Interromper - 0 Nao - [] Nao a Todos
+X Interrupt - 0 No=X Interromper - 0 Nao
+You have a %i%% victory ratio with Deck%i=VocÅEtem %i%% vitorias com o Deck %i
+You have played %i games with Deck%i=VocÅEJogou %i Partidas com o Deck %i
+You have played a total of %i games=VocÅEjugou um total de %i partidas
+Unlock the difficult mode for more challenging duels!=Desbloqueado o modo Dificuldade para Duelos Mais Competitivos
+Interested in playing Momir Basic? You'll have to unlock it first :)=Esta Interessado em jogar o Momir Basic? Primeiro terÅEque desbloquea-lo :)
+You have a total of %i cards in your collection=VocÅEtem um Total de %i cartas em sua coleÁ„o
+The cards in your collection have an average value of %i credits=As Cartas de sua ColeÁ„o Tem um Valor MÈdio de %i creditos
+The shopkeeper would buy your entire collection for around %i credits=O Lojista compraria a sua ColeÁ„o inteira por aproximadamente %i creditos
+You currently have %i credits=Atualmente vocÅEPossui %i creditos
+More cards and mods at http://wololo.net/wagic=Mais cartas e mods em http://wololo.net/wagic
+These stats will be updated next time you run Wagic=Esta configuracion serÅEaplicada na proxima vez que iniciar Wagic
+Yes=Sim
+No=Nao
+NO DECK AVAILABLE,=N√O H¡ DECK DISPONIVEL,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=PRESSIONE CIRCULO PARA IR AO EDITOR DE DECK !
+
+#End of Match
+Difficulty Bonus=Dificuldade Bonus
+'Live dangerously and you live right' Bonus=Bonus 'Viva Perigosamente e VocÅEViverÅECorretamente' 
+Life Delta Bonus=Bonus por DiferenÁa de pontos de Vida
+'Decree of Theophilus' Bonus=Bonus 'Decreto de Teophile'
+'Fast and Furious' Bonus=Bonus 'Velozes e Furiosos'
+Victory=Vitoria
+Congratulations! You earn %i credits=ParabÈns VocÅEGanhou %i creditos
+You have been defeated=VocÅEFoi Derrotado
+Player %i wins (%i)=O Jogador %i Vence (%i)
+Please support this project !=Por favor Apoie este Projeto!
+Wagic is free, open source, and developed on the little free time I have=Wagic ÅEgratuito, open source, e foi desenvolvido em meu tempo livre
+If you enjoy this game, please consider donating a few bucks=Se Gostou deste jogo, por favor considere fazer uma doaÁ„o e ajudar me
+(Seriously, donate or I'll kill this cute little bunny)=(… Serio, Contribua ou matarei estes pequenos Coelhinhos)
+Thanks in advance for your support.=Obrigado pela sua Ajuda.
+
+
+#Fases
+Untap=Desvirar
+Upkeep=ManutenÁ„o
+Draw=Sacar
+Main phase 1=Fase Principal 1
+Combat begins=Inicio do Combate
+Attackers=Atacantes
+Blockers=Bloqueadores
+Combat damage=Dano de Combate
+Combat ends=Fim do Combate
+Main phase 2=Fase Principal 2
+End of turn=Fim do turno
+Cleanup=Limpar
+
+#Stack
+Deals %i damage to=Causa dano %i a
+goes to graveyard=vai para o CemitÈrio
+is exiled=ÅEexilado
+Player %i draws %i card=Jogador %i Sacou %i Carta
+%s goes to graveyard=%s vai para o CemitÈrio
+
+#inGame
+Attacking Player=Jogador Atacando
+Blocking Player=Jogador Bloqueando
+Current Damager:=Dano Atual:
+Damages Assigned, Click Square to Continue=Dano Atribuido, Pressione [] para Continuar
+Order blockers, then Click Square to Continue=Ordem de Bloqueadores Pressione [] para Continuar
+sacrifice=Sacrificio
+
+#Editor de Deck
+Prev.=Prev.
+card=Carta
+cards=Cartas
+Next=Proximo
+Next color=Cor Seguinte
+Prev. color=Cor Anterior
+Add card=Add Carta
+Display Deck=Mostrar Deck
+Remove Card=Remover carta
+Display collection=Mostrar coleÁ„o
+Your Deck: %i cards=Seu Deck: %i Cartas
+You are currently viewing your=Atualmente esta vendo sua
+collection. Press TRIANGLE=ColeÁ„o. Pressione TRIANGULO
+to switch to your deck=para trocar seu
+deck. Press TRIANGLE to=deck. Pressione TRIANGLE
+switch to your collection=para trocar sua coleÁ„o
+
+Deck info=InformaÁ„o do Deck
+Sell card=Vender Carta
+#types
+artifact=Artefato
+enchantment=Encantamento
+sorcery=conjuro
+instant=Instante
+land=Terreno
+
+#Subtipos
+#Por Favor Mantenha a ordem alfabÈtica inglesa, para facilitar com as atualizaÁıes!
+angel=Anjo
+basic=Basico
+bird=Passaro
+cat=Gato
+centaur=Centauro
+elf=Elfo
+forest=Bosque
+human=Humano
+island=Ilha
+knight=Cavaleiro
+mountain=Montanha
+plains=Plan˙Äie
+sorcerer=Feiticeiro
+soldier=Soldado
+specter=Espectro
+spider=Aranha
+swamp=Pantano
+warrior=Guerreiro
+wolf=Lobo
+
+
+#card names
+#please keep this alphabetized
