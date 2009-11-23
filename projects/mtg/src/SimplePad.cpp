@@ -290,7 +290,15 @@ string SimplePad::Finish() {
   if(bCanceled){
     dest = NULL;
     return original;
+  }else{ //Strip trailing spaces.
+    string whitespaces (" \t\f\v\n\r");
+    size_t found=buffer.find_last_not_of(whitespaces);
+    if (found!=string::npos)
+      buffer.erase(found+1);
+    else
+      buffer = "";
   }
+
   if(dest != NULL){
     dest->clear(); dest->insert(0,buffer);
     dest = NULL;
