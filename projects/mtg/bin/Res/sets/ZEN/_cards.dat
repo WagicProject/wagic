@@ -208,7 +208,7 @@ id=190406
 name=Demolish
 target=artifact,land
 auto=destroy
-rarity=U
+rarity=C
 mana={3}{R}
 type=Sorcery
 [/card]
