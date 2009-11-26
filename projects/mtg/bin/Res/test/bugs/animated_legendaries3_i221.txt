@@ -1,0 +1,22 @@
+#NAME: Animated Legendaries 3
+#DESC: Legendary creatures with "Animate Dead" cast
+#DESC: on them don't get buried ny the Legendary rule.
+#DESC: This script just tests whether the same legendary
+#DESC: (with different IDs) is correctly affected by
+#DESC: the Legendary rule if no Animate Dead is involved.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=221
+[INIT]
+firstmain
+[PLAYER1]
+inplay:106426
+hand:39932
+manapool:{U}{U}{U}{U}{U}{U}
+[PLAYER2]
+[DO]
+39932
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:39932,106426
+[PLAYER2]
+[END]

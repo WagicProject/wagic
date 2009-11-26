@@ -1,0 +1,37 @@
+#NAME: Animated Legendaries 1
+#DESC: Legendary creatures with "Animate Dead" cast
+#DESC: on them don't get buried ny the Legendary rule.
+#DESC: The script animates a legend, afterwards the
+#DESC: opponent plays the same legend.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=221
+[INIT]
+secondmain
+[PLAYER1]
+hand:Animate Dead
+manapool:{B}{B}
+[PLAYER2]
+inplay:2743,2744,2745,1392,1393,1394
+graveyard:106426
+hand:39932
+[DO]
+Animate Dead
+106426
+eot
+next
+next
+next
+2743
+2744
+2745
+1392
+1393
+1394
+39932
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Animate Dead
+[PLAYER2]
+inplay:2743,2744,2745,1392,1393,1394
+graveyard:39932,106426
+[END]
