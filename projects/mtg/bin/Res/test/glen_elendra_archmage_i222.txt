@@ -5,21 +5,22 @@
 [INIT]
 firstmain
 [PLAYER1]
-hand:Grizzly Bears
-manapool:{G}{G}
+hand:Honor of the pure
+manapool:{1}{W}
 [PLAYER2]
 inplay:Glen Elendra Archmage,Island
 [DO]
-Grizzly Bears
+Honor of the pure
 no
 yes
 Island
 Glen Elendra Archmage
+honor of the pure
 endinterruption
 [ASSERT]
 firstmain
 [PLAYER1]
-graveyard:Grizzly Bears
+graveyard:honor of the pure
 [PLAYER2]
 inplay:Glen Elendra Archmage,Island
 [END]
