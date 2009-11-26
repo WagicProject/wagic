@@ -1,0 +1,25 @@
+#NAME:Glen Elendra Archmage crash
+#DESC: Using Glen Elendra Archmage's "Fizzle"
+#DESC: ability crashes the game.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=222
+[INIT]
+firstmain
+[PLAYER1]
+hand:Grizzly Bears
+manapool:{G}{G}
+[PLAYER2]
+inplay:Glen Elendra Archmage,Island
+[DO]
+Grizzly Bears
+no
+yes
+Island
+Glen Elendra Archmage
+endinterruption
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Grizzly Bears
+[PLAYER2]
+inplay:Glen Elendra Archmage,Island
+[END]
