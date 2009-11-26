@@ -1,0 +1,22 @@
+#NAME: Resuscitate
+#DESC: Bug: Casting Resuscitate, and then
+#DESC: trying to use the Regenerate ability
+#DESC: (which Resuscitate grants) on a
+#DESC: creature crashes the game.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears
+hand:Resuscitate
+manapool:{G}{G}{G}
+[PLAYER2]
+[DO]
+Resuscitate
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears
+graveyard:Resuscitate
+[PLAYER2]
+[END]
