@@ -1,0 +1,30 @@
+#NAME: Curiosity 1
+#DESC: Bug: does not make the player draw
+#DESC: a card when it damages the opponent
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=217
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Craw Wurm
+hand:Curiosity
+library:Forest
+manapool:{U}
+[PLAYER2]
+[DO]
+Curiosity
+Craw Wurm
+next
+next
+Craw Wurm
+next
+next
+choice 0
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Craw Wurm,Curiosity
+hand:Forest
+[PLAYER2]
+life:14
+[END]

@@ -1,0 +1,38 @@
+#NAME: Curiosity 2
+#DESC: Tests whether Curiosity works correctly
+#DESC: when cast on an opponent's creature
+#DESC: http://code.google.com/p/wagic/issues/detail?id=217
+[INIT]
+firstmain
+[PLAYER1]
+hand:Curiosity
+library:Island
+manapool:{U}
+[PLAYER2]
+inplay:Craw Wurm
+library:Forest,Plains
+[DO]
+Curiosity
+Craw Wurm
+eot
+next
+next
+next
+next
+next
+Craw Wurm
+next
+next
+choice 0
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Curiosity
+hand:Island
+life:14
+[PLAYER2]
+inplay:Craw Wurm
+hand:Plains
+library:Forest
+[END]

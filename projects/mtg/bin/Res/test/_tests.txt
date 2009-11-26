@@ -115,6 +115,8 @@ counterspell2.txt
 counterspell3.txt
 counterspell4.txt
 creature_bond.txt
+curiosity1_i217.txt
+curiosity2_i217.txt
 crimson_kobolds.txt
 crumble.txt
 crystal_rod_i172.txt
