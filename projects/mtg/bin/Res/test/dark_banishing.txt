@@ -1,0 +1,20 @@
+#NAME: Dark Banishing
+#DESC: Bug: Dark Banishing (MIR) goes directly
+#DESC: to the graveyard, you cannot choose a
+#DESC: target.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears
+hand:3284
+manapool:{B}{B}{B}
+[PLAYER2]
+[DO]
+3284
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:3284,Grizzly Bears
+[PLAYER2]
+[END]

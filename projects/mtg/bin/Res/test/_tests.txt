@@ -118,6 +118,7 @@ creature_bond.txt
 crimson_kobolds.txt
 crumble.txt
 crystal_rod_i172.txt
+dark_banishing.txt
 dauntless_escort.txt
 dauthi_embrace.txt
 death_ward.txt
