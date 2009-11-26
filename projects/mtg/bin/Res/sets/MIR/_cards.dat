@@ -330,7 +330,7 @@ rarity=C
 mana={3}{R}
 type=Creature
 subtype=Cyclops
-auto=aslongas(creature|myBattlefield) mustattack
+auto=aslongas(creature[attacking]|myBattlefield) mustattack
 power=3
 toughness=4
 [/card]

@@ -135,6 +135,8 @@ dromad_purebred.txt
 dross_harvester.txt
 duskwalker.txt
 ebony_horse.txt
+ekundu_cyclops1_i218.txt
+ekundu_cyclops2_i218.txt
 elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt

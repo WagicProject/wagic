@@ -1,0 +1,21 @@
+#NAME: Ekundu Cyclops 2
+#DESC: Verifies that Ekundu Cyclops
+#DESC: doesn't already attack when
+#DESC: another creature of its controller
+#DESC: is merely present
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Ekundu Cyclops,Grizzly Bears
+[PLAYER2]
+[DO]
+next
+next
+next
+[ASSERT]
+endofturn
+[PLAYER1]
+inplay:Ekundu Cyclops,Grizzly Bears
+[PLAYER2]
+life:20
+[END]

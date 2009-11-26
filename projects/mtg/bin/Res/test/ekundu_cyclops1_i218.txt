@@ -1,0 +1,22 @@
+#NAME: Ekundu Cyclops 1
+#DESC: Tests whether Ekundu Cyclops
+#DESC: automatically attacks when
+#DESC: another creature of its controller
+#DESC: is attacking
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Ekundu Cyclops,Grizzly Bears
+[PLAYER2]
+[DO]
+Grizzly Bears
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Ekundu Cyclops,Grizzly Bears
+[PLAYER2]
+life:15
+[END]
