@@ -898,7 +898,7 @@ toughness=2
 [card]
 text=Destroy target creature with horsemanship.
 id=10625
-target=creature(horsemanship)
+target=creature[horsemanship]
 auto=destroy
 name=Trip Wire
 rarity=U
