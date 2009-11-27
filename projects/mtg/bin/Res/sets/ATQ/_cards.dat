@@ -1,111 +1,387 @@
 [card]
-id=1064
-name=Argivian Archaeologist
-mana={1}{W}{W}
-type=Creature
-subtype=Human Artificer
-power=1
-toughness=1
-text={W}{W}, {T}: Return target artifact card from your graveyard to your hand.
-auto={W}{W}{T}:moveTo(myHand) target(artifact|mygraveyard)
-rarity=R
-[/card]
-[card]
+text=At the beginning of your upkeep, put a doom counter on Armageddon Clock. At the beginning of your draw step, Armageddon Clock deals damage to each player equal to the number of doom counters on it. {4}: Remove a doom counter from Armageddon Clock. Any player may activate this ability but only during any upkeep step.
 id=993
 alias=1095
 name=Armageddon Clock
+rarity=U
 mana={6}
 type=Artifact
-text=At the beginning of your upkeep, put a doom counter on Armageddon Clock. At the beginning of your draw step, Armageddon Clock deals damage to each player equal to the number of doom counters on it. {4}: Remove a doom counter from Armageddon Clock. Any player may activate this ability but only during any upkeep step.
-rarity=U
 [/card]
 [card]
-id=1057
-name=Artifact Blast
-mana={R}
-type=Instant
-text=Counter target artifact spell.
-target=artifact|stack
-auto=fizzle
-rarity=C
+text={W}{W}{T}: Return target artifact card from your graveyard to your hand.
+id=1064
+name=Argivian Archaeologist
+rarity=R
+mana={1}{W}{W}
+type=Creature
+subtype=Human Artificer
+auto={T}{W}{W}:moveto(myhand) target(artifact|mygraveyard)
+power=1
+toughness=1
 [/card]
 [card]
-id=1066
-name=Artifact Ward
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has protection from artifacts. This effect doesn't remove Artifact Ward.
-auto=protection from(artifact)
-rarity=C
-[/card]
-[card]
+text=Sacrifice a creature: Add {2} to your mana pool.
 id=994
+auto={S(creature|myBattlefield)}:Add {2}
 name=Ashnod's Altar
+rarity=U
 mana={3}
 type=Artifact
-text=Sacrifice a creature: Add {2} to your mana pool.
-auto={S(creature|mybattlefield)}:Add{2}
-rarity=U
 [/card]
 [card]
+text=Counter target artifact spell.
+id=1057
+target=artifact|stack
+auto=fizzle
+name=Artifact Blast
+rarity=C
+mana={R}
+type=Instant
+[/card]
+[card]
+text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
+auto={S(artifact|myBattlefield)}:2/2
 id=1058
 name=Atog
+rarity=C
 mana={1}{R}
 type=Creature
 subtype=Atog
 power=1
 toughness=2
-text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
-auto={S(artifact|myBattlefield)}:2/2
-rarity=U
 [/card]
 [card]
+text=Whenever an opponent casts an artifact spell, put a +1/+1 counter on Citanul Druid.
 id=1052
 name=Citanul Druid
+auto=@movedTo(artifact|opponentBattlefield):counter(1/1,1)
+rarity=U
 mana={1}{G}
 type=Creature
 subtype=Human Druid
 power=1
 toughness=1
-text=Whenever an opponent casts an artifact spell, put a +1/+1 counter on Citanul Druid.
-auto=@movedTo(artifact|opponentstack):counter(1/1)
-rarity=U
 [/card]
 [card]
+text={2}:Regenerate Clay Statue.
 id=1000
 name=Clay Statue
+rarity=C
 mana={4}
 type=Artifact Creature
 subtype=Golem
+auto={2}:regenerate 
 power=3
 toughness=1
-text={2}: Regenerate Clay Statue.
-auto={2}:regenerate
-rarity=C
 [/card]
 [card]
+text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)   Colossus of Sardia doesn't untap during your untap step.   {9}: Untap Colossus of Sardia. Activate this ability only during your upkeep.
 id=1002
 name=Colossus of Sardia
+rarity=R
 mana={9}
 type=Artifact Creature
 subtype=Golem
+auto={9}:untap
 power=9
 toughness=9
-text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) Colossus of Sardia doesn't untap during your untap step. {9}: Untap Colossus of Sardia. Activate this ability only during your upkeep.
-rarity=R
-abilities=trample,doesnotuntap
-auto={9}:untap
+abilities=doesnotuntap,trample
 [/card]
 [card]
+text={3}, Discard a card at random: Target creature gets +2/+2 until end of turn.
+id=1003
+auto={3}:2/2 target(creature) && discard:1 controller
+name=Coral Helm
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Destroy target artifact. It can't be regenerated.   That artifact's controller gains life equal to its converted mana cost.
 id=1053
-name=Crumble
-mana={G}
-type=Instant
 target=artifact
-text=Destroy target artifact. It can't be regenerated. That artifact's controller gains life equal to its converted mana cost.
 auto=bury
 auto=life:manacost targetcontroller
-rarity=U
+name=Crumble
+rarity=C
+mana={G}
+type=Instant
 [/card]
-
+[card]
+text={2}: Dragon Engine gets +1/+0 until end of turn.
+id=1005
+name=Dragon Engine
+rarity=C
+mana={3}
+type=Artifact Creature
+subtype=Construct
+auto={2}:1/0
+power=1
+toughness=3
+[/card]
+[card]
+text=Sacrifice an artifact: Put a +1/+1 counter on target creature. Activate this ability only during your upkeep.
+id=1060
+name=Dwarven Weaponsmith
+auto={T}{S(artifact|myBattlefield)}:counter(1/1,1) target(creature) myTurnOnly
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Dwarf Artificer
+power=1
+toughness=1
+[/card]
+[card]
+text=Gaea's Avenger's power and toughness are each equal to 1 plus the number of artifacts your opponents control.
+id=1054
+name=Gaea's Avenger
+auto=foreach(artifact|opponentBattlefield) 1/1
+rarity=R
+mana={1}{G}{G}
+type=Creature
+subtype=Treefolk
+power=1
+toughness=1
+[/card]
+[card]
+text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
+auto={S(creature|myBattlefield)}:destroy target(artifact) limit:1 myTurnOnly
+id=1039
+name=Gate to Phyrexia
+rarity=U
+mana={B}{B}
+type=Enchantment
+[/card]
+[card]
+text={T}:Grapeshot Catapult deals 1 damage to target creature with flying.
+id=1008
+name=Grapeshot Catapult
+rarity=C
+mana={4}
+type=Artifact Creature
+subtype=Construct
+auto={T}:Damage:1 target(creature[flying])
+power=2
+toughness=3
+[/card]
+[card]
+text=Return all artifacts target player owns to his or her hand.
+id=1041
+alias=1202
+name=Hurkyl's Recall
+target=player
+rarity=R
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+text=During your upkeep phase, gain 1 life for each card in your hand above four.
+id=1009
+alias=1115
+name=Ivory Tower
+rarity=U
+mana={1}
+type=Artifact
+[/card]
+[card]
+text=Attacking creatures get +1/+0.
+id=1011
+name=Mightstone
+auto=lord(creature[attacking]) 1/0
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+[card]
+text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
+id=1012
+auto={2}{T}:deplete:2 target(player)
+name=Millstone
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
+text={6}, {T}: Return target permanent you own and control to your hand.
+id=1014
+auto={6}{T}:moveto(myhand) target(*|myBattlefield)
+name=Obelisk of Undoing
+rarity=R
+mana={1}
+type=Artifact
+[/card]
+[card]
+text=When Onulet is put into a graveyard from the battlefield, you gain 2 life.
+id=1015
+name=Onulet
+auto=@movedTo(this|graveyard):life:2 controller
+rarity=U
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+[card]
+text={T}, Sacrifice an artifact: Orcish Mechanics deals 2 damage to target creature or player.
+id=1062
+name=Orcish Mechanics
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto={T}{S(artifact|myBattlefield)}:damage:2 target(creature,player)
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying
+id=1016
+name=Ornithopter
+rarity=C
+mana={0}
+type=Artifact Creature
+subtype=Thopter
+power=0
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Return target artifact card from your graveyard to your hand.
+id=1045
+target=artifact|myGraveyard
+auto=moveTo(myHand)
+name=Reconstruction
+rarity=C
+mana={U}
+type=Sorcery
+[/card]
+[card]
+text={T}: Sacrifice an artifact: Draw a card.
+id=1046
+name=Sage of Lat-Nam
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Human Artificer
+auto={T}{S(artifact|myBattlefield)}:draw:1
+power=1
+toughness=2
+[/card]
+[card]
+text=Destroy all artifacts. They can't be regenerated.
+id=1063
+auto=bury all(artifact)
+name=Shatterstorm
+rarity=R
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text={3}{T}:Target creature gets -2/-0 until end of turn
+id=1021
+name=Staff of Zegon
+auto={3}{T}:-2/0 target(creature)
+rarity=C
+mana={4}
+type=Artifact
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
+id=1076
+auto={T}:Add {1}
+auto={T}{S}:destroy target(land)
+name=Strip Mine
+rarity=R
+type=Land
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
+id=1077
+auto={T}:Add {1}
+auto={T}{S}:destroy target(land)
+name=Strip Mine
+rarity=R
+type=Land
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
+id=1078
+auto={T}:Add {1}
+auto={T}{S}:destroy target(land)
+name=Strip Mine
+rarity=R
+type=Land
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
+id=1079
+auto={T}:Add {1}
+auto={T}{S}:destroy target(land)
+name=Strip Mine
+rarity=R
+type=Land
+[/card]
+[card]
+text=When Su-Chi is put into a graveyard from the battlefield, add {4} to your mana pool.
+id=1022
+name=Su-Chi
+rarity=U
+mana={4}
+type=Artifact Creature
+subtype=Construct
+auto=@movedTo(this|graveyard):add {4}
+power=4
+toughness=4
+[/card]
+[card]
+text={2}, {T}:Target creature with power 2 or less is unblockable this turn.
+id=1025
+alias=1285
+name=Tawnos's Wand
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+[card]
+text=As The Rack enters the battlefield, choose an opponent. At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand
+id=1028
+alias=1139
+name=The Rack
+rarity=U
+mana={1}
+type=Artifact
+[/card]
+[card]
+text=Defender (This creature can't attack.)   First strike
+id=1033
+name=Wall of Spears
+rarity=U
+mana={3}
+type=Artifact Creature
+subtype=Wall
+power=2
+toughness=3
+abilities=first strike,defender
+[/card]
+[card]
+text=Attacking creatures get -1/-0.
+id=1034
+auto=lord(creature[attacking]) -1/0
+name=Weakstone
+rarity=U
+mana={4}
+type=Artifact
+[/card]
+[card]
+text=Vigilance
+id=1035
+name=Yotian Soldier
+rarity=C
+mana={3}
+type=Artifact Creature
+subtype=Soldier
+power=1
+toughness=4
+abilities=vigilance
+[/card]

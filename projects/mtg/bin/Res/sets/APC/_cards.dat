@@ -1,4 +1,15 @@
 [card]
+text=Return target creature to its owner's hand.   Put X 1/1 green Saproling creature tokens onto the battlefield, where X is that creature's converted mana cost.
+id=28669
+name=AEther Mutation
+target=creature
+auto=moveTo(ownerhand)
+auto=token(Saproling,Creature Saproling,1/1,green)*manacost
+rarity=U
+mana={3}{G}{U}
+type=Sorcery
+[/card]
+[card]
 text={U},{T}: Target creature gains flying until end of turn.  {B},{T}: Target creature gets -2/-0 until end of turn.
 id=25856
 name=Ana Disciple
@@ -109,7 +120,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Flying      {1}{U}, {T}: Return target kavu to its owner's hand.
+text=Flying   {1}{U}, {T}: Return target kavu to its owner's hand.
 auto={1}{U}{T}:moveTo(ownerhand) target(kavu)
 id=28754
 name=Coastal Drake
@@ -120,6 +131,28 @@ subtype=Drake
 power=2
 toughness=1
 abilities=flying
+[/card]
+[card]
+text=Death Grasp deals X damage to target creature or player.   You gain X life.
+id=29415
+target=creature,player
+auto=damage:X
+auto=life:X controller
+name=Death Grasp
+rarity=R
+mana={X}{W}{B}
+type=Sorcery
+[/card]
+[card]
+text=Destroy target nonblack creature. It can't be regenerated. Put X 1/1 green Saproling creature tokens onto the battlefield, where X is that creature's converted mana cost.
+id=25833
+target=creature[-black]
+auto=bury
+auto=token(Saproling,Creature Saproling,1/1,green)*manacost
+name=Death Mutation
+rarity=U
+mana={6}{B}{G}
+type=Sorcery
 [/card]
 [card]
 text={B}{T}: Target creature gets -2/-0 until end of turn.   {R}{T}: Target creature gets +2/+0 until end of turn.

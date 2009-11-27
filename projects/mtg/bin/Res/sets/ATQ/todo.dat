@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=992
 name=Amulet of Kroog
 mana={2}
@@ -6,7 +6,6 @@ type=Artifact
 text={2}, {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
 rarity=C
 [/card]
-
 [card]
 id=1065
 name=Argivian Blacksmith
@@ -40,8 +39,6 @@ toughness=5
 text=Prevent all damage that would be dealt to Argothian Treefolk by artifacts.
 rarity=C
 [/card]
-
-
 [card]
 id=1036
 name=Artifact Possession
@@ -51,8 +48,6 @@ subtype=Aura
 text=Enchant artifact Whenever enchanted artifact becomes tapped or a player activates an ability of enchanted artifact without {T} in its activation cost, Artifact Possession deals 2 damage to that artifact's controller.
 rarity=C
 [/card]
-
-
 [card]
 id=995
 name=Ashnod's Battle Gear
@@ -69,7 +64,6 @@ type=Artifact
 text={T}, Sacrifice Ashnod's Transmogrant: Put a +1/+1 counter on target nonartifact creature. That creature becomes an artifact in addition to its other types.
 rarity=U
 [/card]
-
 [card]
 id=997
 name=Battering Ram
@@ -108,8 +102,6 @@ type=Enchantment
 text={2}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage.
 rarity=U
 [/card]
-
-
 [card]
 id=1001
 name=Clockwork Avian
@@ -121,17 +113,6 @@ toughness=4
 text=Flying Clockwork Avian enters the battlefield with four +1/+0 counters on it. At end of combat, if Clockwork Avian attacked or blocked this combat, remove a +1/+0 counter from it. {X}, {T}: Put up to X +1/+0 counters on Clockwork Avian. This ability can't cause the total number of +1/+0 counters on Clockwork Avian to be greater than four. Activate this ability only during your upkeep.
 rarity=R
 [/card]
-
-[card]
-id=1003
-name=Coral Helm
-mana={3}
-type=Artifact
-#No random discard as a cost in 0.9
-text={3}, Discard a card at random: Target creature gets +2/+2 until end of turn.
-rarity=R
-[/card]
-
 [card]
 id=1004
 name=Cursed Rack
@@ -165,28 +146,6 @@ text=Return any number of target artifact cards from target player's graveyard t
 rarity=C
 [/card]
 [card]
-id=1005
-name=Dragon Engine
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=3
-text={2}: Dragon Engine gets +1/+0 until end of turn.
-rarity=R
-[/card]
-[card]
-id=1060
-name=Dwarven Weaponsmith
-mana={1}{R}
-type=Creature
-subtype=Dwarf Artificer
-power=1
-toughness=1
-text={T}, Sacrifice an artifact: Put a +1/+1 counter on target creature. Activate this ability only during your upkeep.
-rarity=U
-[/card]
-[card]
 id=1038
 name=Energy Flux
 mana={2}{U}
@@ -201,17 +160,6 @@ mana={1}
 type=Artifact
 text={T}, Exile Feldon's Cane: Shuffle your graveyard into your library.
 rarity=U
-[/card]
-[card]
-id=1054
-name=Gaea's Avenger
-mana={1}{G}{G}
-type=Creature
-subtype=Treefolk
-power=1+*
-toughness=1+*
-text=Gaea's Avenger's power and toughness are each equal to 1 plus the number of artifacts your opponents control.
-rarity=R
 [/card]
 [card]
 id=1039
@@ -241,38 +189,11 @@ text={1}, {T}: Each nontoken permanent from the Antiquities expansion is sacrifi
 rarity=R
 [/card]
 [card]
-id=1008
-name=Grapeshot Catapult
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=2
-toughness=3
-text={T}: Grapeshot Catapult deals 1 damage to target creature with flying.
-rarity=U
-[/card]
-[card]
 id=1040
 name=Haunting Wind
 mana={3}{B}
 type=Enchantment
 text=Whenever an artifact becomes tapped or a player activates an artifact's ability without {T} in its activation cost, Haunting Wind deals 1 damage to that artifact's controller.
-rarity=U
-[/card]
-[card]
-id=1041
-name=Hurkyl's Recall
-mana={1}{U}
-type=Instant
-text=Return all artifacts target player owns to his or her hand.
-rarity=R
-[/card]
-[card]
-id=1009
-name=Ivory Tower
-mana={1}
-type=Artifact
-text=At the beginning of your upkeep, you gain X life, where X is the number of cards in your hand minus four.
 rarity=U
 [/card]
 [card]
@@ -292,22 +213,6 @@ subtype=Human
 power=1
 toughness=6
 text=As long as Martyrs of Korlis is untapped, all damage that would be dealt to you by artifacts is dealt to Martyrs of Korlis instead.
-rarity=U
-[/card]
-[card]
-id=1011
-name=Mightstone
-mana={4}
-type=Artifact
-text=Attacking creatures get +1/+0.
-rarity=U
-[/card]
-[card]
-id=1012
-name=Millstone
-mana={2}
-type=Artifact
-text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
 rarity=U
 [/card]
 [card]
@@ -336,47 +241,6 @@ mana=
 type=Land
 text={T}: Add {3} to your mana pool. Spend this mana only to cast artifact spells.
 rarity=R
-[/card]
-[card]
-id=1014
-name=Obelisk of Undoing
-mana={1}
-type=Artifact
-text={6}, {T}: Return target permanent you own and control to your hand.
-rarity=R
-[/card]
-[card]
-id=1015
-name=Onulet
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=2
-toughness=2
-text=When Onulet is put into a graveyard from the battlefield, you gain 2 life.
-rarity=U
-[/card]
-[card]
-id=1062
-name=Orcish Mechanics
-mana={2}{R}
-type=Creature
-subtype=Orc
-power=1
-toughness=1
-text={T}, Sacrifice an artifact: Orcish Mechanics deals 2 damage to target creature or player.
-rarity=U
-[/card]
-[card]
-id=1016
-name=Ornithopter
-mana={0}
-type=Artifact Creature
-subtype=Thopter
-power=0
-toughness=2
-text=Flying
-rarity=U
 [/card]
 [card]
 id=1042
@@ -437,14 +301,6 @@ text={2}: Prevent the next 1 damage that would be dealt to target creature or pl
 rarity=U
 [/card]
 [card]
-id=1045
-name=Reconstruction
-mana={U}
-type=Sorcery
-text=Return target artifact card from your graveyard to your hand.
-rarity=C
-[/card]
-[card]
 id=1070
 name=Reverse Polarity
 mana={W}{W}
@@ -461,17 +317,6 @@ text={2}: Rocket Launcher deals 1 damage to target creature or player. Destroy R
 rarity=U
 [/card]
 [card]
-id=1046
-name=Sage of Lat-Nam
-mana={1}{U}
-type=Creature
-subtype=Human Artificer
-power=1
-toughness=2
-text={T}, Sacrifice an artifact: Draw a card.
-rarity=R
-[/card]
-[card]
 id=1020
 name=Shapeshifter
 mana={6}
@@ -480,41 +325,6 @@ subtype=Shapeshifter
 power=*
 toughness=7-*
 text=As Shapeshifter enters the battlefield, choose a number between 0 and 7. At the beginning of your upkeep, you may choose a number between 0 and 7. Shapeshifter's power is equal to the last chosen number and its toughness is equal to 7 minus that number.
-rarity=U
-[/card]
-[card]
-id=1063
-name=Shatterstorm
-mana={2}{R}{R}
-type=Sorcery
-text=Destroy all artifacts. They can't be regenerated.
-rarity=U
-[/card]
-[card]
-id=1021
-name=Staff of Zegon
-mana={4}
-type=Artifact
-text={3}, {T}: Target creature gets -2/-0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=1078
-name=Strip Mine
-mana=
-type=Land
-text={T}: Add {1} to your mana pool.  {T}, Sacrifice Strip Mine: Destroy target land.
-rarity=U
-[/card]
-[card]
-id=1022
-name=Su-Chi
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=4
-toughness=4
-text=When Su-Chi is put into a graveyard from the battlefield, add {4} to your mana pool.
 rarity=U
 [/card]
 [card]
@@ -534,14 +344,6 @@ text=You may choose not to untap Tawnos's Coffin during your untap step. {3}, {T
 rarity=R
 [/card]
 [card]
-id=1025
-name=Tawnos's Wand
-mana={4}
-type=Artifact
-text={2}, {T}: Target creature with power 2 or less is unblockable this turn.
-rarity=U
-[/card]
-[card]
 id=1026
 name=Tawnos's Weaponry
 mana={2}
@@ -559,14 +361,6 @@ power=1
 toughness=1
 text=Flying Tetravus enters the battlefield with three +1/+1 counters on it.  At the beginning of your upkeep, you may remove any number of +1/+1 counters from Tetravus. If you do, put that many 1/1 colorless Tetravite artifact creature tokens onto the battlefield. They each have flying and "This creature can't be enchanted." At the beginning of your upkeep, you may exile any number of tokens put onto the battlefield with Tetravus. If you do, put that many +1/+1 counters on Tetravus.
 rarity=R
-[/card]
-[card]
-id=1028
-name=The Rack
-mana={1}
-type=Artifact
-text=As The Rack enters the battlefield, choose an opponent. At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
-rarity=U
 [/card]
 [card]
 id=1056
@@ -650,25 +444,6 @@ text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's
 rarity=U
 [/card]
 [card]
-id=1033
-name=Wall of Spears
-mana={3}
-type=Artifact Creature
-subtype=Wall
-power=2
-toughness=3
-text=Defender (This creature can't attack.) First strike
-rarity=U
-[/card]
-[card]
-id=1034
-name=Weakstone
-mana={4}
-type=Artifact
-text=Attacking creatures get -1/-0.
-rarity=U
-[/card]
-[card]
 id=1048
 name=Xenic Poltergeist
 mana={1}{B}{B}
@@ -689,15 +464,4 @@ power=6
 toughness=6
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) First strike (This creature deals combat damage before creatures without first strike.) At the beginning of your upkeep, you may sacrifice an artifact. If you don't, tap Yawgmoth Demon and it deals 2 damage to you.
 rarity=R
-[/card]
-[card]
-id=1035
-name=Yotian Soldier
-mana={3}
-type=Artifact Creature
-subtype=Soldier
-power=1
-toughness=4
-text=Vigilance
-rarity=C
 [/card]

@@ -3,7 +3,6 @@ text=Except the player who controls the fewest lands, each player sacrifices lan
 id=1329
 name=Balance
 rarity=R
-color=White
 type=Sorcery
 mana={1}{W}
 [/card]
@@ -25,7 +24,6 @@ text={1}, Sacrifice Bottle of Suleiman: Flip a coin. If you lose the flip, Bottl
 id=1098
 name=Bottle of Suleiman
 rarity=R
-color=Artifact
 type=Artifact
 mana={4}
 [/card]
@@ -34,7 +32,6 @@ text=Remove Contract from Below from your deck before playing if you're not play
 id=1147
 name=Contract from Below
 rarity=R
-color=Black
 type=Sorcery
 mana={B}
 [/card]
@@ -43,7 +40,6 @@ text=All Mountains are Plains.       At the beginning of your upkeep, sacrifice 
 id=1340
 name=Conversion
 rarity=U
-color=White
 type=Enchantment
 mana={2}{W}{W}
 [/card]
@@ -52,7 +48,6 @@ text=As Copy Artifact comes into play, you may choose an artifact in play. If yo
 id=1195
 name=Copy Artifact
 rarity=R
-color=Blue
 type=Enchantment
 mana={1}{U}
 [/card]
@@ -61,7 +56,6 @@ text=Remove Darkpact from your deck before playing if you're not playing for ant
 id=1150
 name=Darkpact
 rarity=R
-color=Black
 type=Sorcery
 mana={B}{B}{B}
 [/card]
@@ -70,7 +64,6 @@ text=Remove Demonic Attorney from your deck before playing if you're not playing
 id=1153
 name=Demonic Attorney
 rarity=R
-color=Black
 type=Sorcery
 mana={1}{B}{B}
 [/card]
@@ -79,14 +72,12 @@ text={T}: Destroy target land.       At the beginning of your upkeep, unless you
 id=1154
 name=Demonic Hordes
 rarity=R
-color=Black
 type=Creature
 mana={3}{B}{B}{B}
 power=5
 subtype=Demon
 toughness=5
 [/card]
-
 [card]
 text=Disintegrate deals X damage to target creature or player. That creature can't be regenerated this turn. If the creature would be put into a graveyard this turn, remove it from the game instead.
 id=1283
@@ -101,17 +92,14 @@ text=Target player plays a mana ability of each land he or she controls, then em
 id=1198
 name=Drain Power
 rarity=R
-color=Blue
 type=Sorcery
 mana={U}{U}
 [/card]
-
 [card]
 text=All artifacts have "At the beginning of your upkeep, sacrifice this artifact unless you pay {2}."
 id=1199
 name=Energy Flux
 rarity=U
-color=Blue
 type=Enchantment
 mana={2}{U}
 [/card]
@@ -120,7 +108,6 @@ text=Enchant land     Enchanted land is a Swamp.
 id=1160
 name=Evil Presence
 rarity=U
-color=Black
 type=Enchantment
 mana={B}
 subtype=Aura
