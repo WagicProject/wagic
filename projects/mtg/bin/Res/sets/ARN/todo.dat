@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=968
 name=Abu Ja'far
 mana={W}
@@ -21,26 +21,6 @@ text={1}{R}{R}, {T}: Gain control of target artifact for as long as you control 
 rarity=U
 [/card]
 [card]
-id=900
-name=Aladdin's Lamp
-mana={1}{0}
-type=Artifact
-text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, shuffle all but one of them, put the shuffled cards on the bottom of your library, then draw a card. X can't be 0.
-rarity=R
-[/card]
-
-[card]
-id=956
-name=Ali Baba
-mana={R}
-type=Creature
-subtype=Human Rogue
-power=1
-toughness=1
-text={R}: Tap target Wall.
-rarity=U
-[/card]
-[card]
 id=957
 name=Ali from Cairo
 mana={2}{R}{R}
@@ -52,14 +32,6 @@ text=Damage that would reduce your life total to less than 1 reduces it to 1 ins
 rarity=R
 [/card]
 [card]
-id=970
-name=Army of Allah
-mana={1}{W}{W}
-type=Instant
-text=Attacking creatures get +2/+0 until end of turn.
-rarity=C
-[/card]
-[card]
 id=984
 name=Bazaar of Baghdad
 mana=
@@ -68,34 +40,12 @@ text={T}: Draw two cards, then discard three cards.
 rarity=U
 [/card]
 [card]
-id=959
-name=Bird Maiden
-mana={2}{R}
-type=Creature
-subtype=Human Bird
-power=1
-toughness=2
-text=Flying
-rarity=C
-[/card]
-[card]
 id=902
 name=Bottle of Suleiman
 mana={4}
 type=Artifact
 text={1}, Sacrifice Bottle of Suleiman: Flip a coin. If you lose the flip, Bottle of Suleiman deals 5 damage to you. If you win the flip, put a 5/5 colorless Djinn artifact creature token with flying onto the battlefield.
 rarity=R
-[/card]
-[card]
-id=903
-name=Brass Man
-mana={1}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=3
-text=Brass Man doesn't untap during your untap step. At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Man.
-rarity=U
 [/card]
 [card]
 id=971
@@ -117,14 +67,6 @@ text=Whenever a nontoken permanent from the Arabian Nights expansion other than 
 rarity=R
 [/card]
 [card]
-id=985
-name=City of Brass
-mana=
-type=Land
-text=Whenever City of Brass becomes tapped, it deals 1 damage to you. {T}: Add one mana of any color to your mana pool.
-rarity=U
-[/card]
-[card]
 id=914
 name=Cuombajj Witches
 mana={B}{B}
@@ -144,56 +86,6 @@ text=At the beginning of your upkeep, put a wind counter on Cyclone, then sacrif
 rarity=U
 [/card]
 [card]
-id=905
-name=Dancing Scimitar
-mana={4}
-type=Artifact Creature
-subtype=Spirit
-power=1
-toughness=5
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-rarity=U
-[/card]
-[card]
-id=929
-name=Dandân
-mana={U}{U}
-type=Creature
-subtype=Fish
-power=4
-toughness=1
-text=Dandân can't attack unless defending player controls an Island. When you control no Islands, sacrifice Dandân.
-rarity=C
-[/card]
-[card]
-id=986
-name=Desert
-mana=
-type=Land
-subtype=Desert
-text={T}: Add {1} to your mana pool. {T}: Desert deals 1 damage to target attacking creature. Activate this ability only during the end of combat step.
-rarity=C
-[/card]
-[card]
-id=960
-name=Desert Nomads
-mana={2}{R}
-type=Creature
-subtype=Human Nomad
-power=2
-toughness=2
-text=Desertwalk Prevent all damage that would be dealt to Desert Nomads by Deserts.
-rarity=C
-[/card]
-[card]
-id=943
-name=Desert Twister
-mana={4}{G}{G}
-type=Sorcery
-text=Destroy target permanent.
-rarity=U
-[/card]
-[card]
 id=987
 name=Diamond Valley
 mana=
@@ -210,44 +102,6 @@ text=At the beginning of your upkeep, destroy the creature with the least power.
 rarity=R
 [/card]
 [card]
-id=906
-name=Ebony Horse
-mana={3}
-type=Artifact
-text={2}, {T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
-rarity=R
-[/card]
-[card]
-id=988
-name=Elephant Graveyard
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Regenerate target Elephant.
-rarity=R
-[/card]
-[card]
-id=915
-name=El-Hajjâj
-mana={1}{B}{B}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text=Whenever El-Hajjâj deals damage, you gain that much life.
-rarity=R
-[/card]
-[card]
-id=917
-name=Erg Raiders
-mana={1}{B}
-type=Creature
-subtype=Human Warrior
-power=2
-toughness=3
-text=At the beginning of your end step, if Erg Raiders didn't attack this turn, Erg Raiders deals 2 damage to you unless it came under your control this turn.
-rarity=C
-[/card]
-[card]
 id=945
 name=Erhnam Djinn
 mana={3}{G}
@@ -257,42 +111,6 @@ power=4
 toughness=5
 text=At the beginning of your upkeep, target non-Wall creature an opponent controls gains forestwalk until your next upkeep.
 rarity=U
-[/card]
-[card]
-id=972
-name=Eye for an Eye
-mana={W}{W}
-type=Instant
-text=The next time a source of your choice would deal damage to you this turn, instead that source deals that much damage to you and Eye for an Eye deals that much damage to that source's controller.
-rarity=U
-[/card]
-[card]
-id=931
-name=Fishliver Oil
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) Enchanted creature has islandwalk. (This creature is unblockable as long as defending player controls an Island.)
-rarity=C
-[/card]
-[card]
-id=907
-name=Flying Carpet
-mana={4}
-type=Artifact
-text={2}, {T}: Target creature gains flying until end of turn.
-rarity=U
-[/card]
-[card]
-id=932
-name=Flying Men
-mana={U}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-text=Flying
-rarity=C
 [/card]
 [card]
 id=946
@@ -339,17 +157,6 @@ text=Whenever Hasran Ogress attacks, it deals 3 damage to you unless you pay {2}
 rarity=C
 [/card]
 [card]
-id=961
-name=Hurr Jackal
-mana={R}
-type=Creature
-subtype=Hound
-power=1
-toughness=1
-text={T}: Target creature can't be regenerated this turn.
-rarity=R
-[/card]
-[card]
 id=947
 name=Ifh-Bíff Efreet
 mana={2}{G}{G}
@@ -361,38 +168,11 @@ text=Flying {G}: Ifh-Bíff Efreet deals 1 damage to each creature with flying an
 rarity=R
 [/card]
 [card]
-id=935
-name=Island Fish Jasconius
-mana={4}{U}{U}{U}
-type=Creature
-subtype=Fish
-power=6
-toughness=8
-text=Island Fish Jasconius can't attack unless defending player controls an Island. Island Fish Jasconius doesn't untap during your untap step. At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Island Fish Jasconius. When you control no Islands, sacrifice Island Fish Jasconius.
-rarity=R
-[/card]
-[card]
 id=989
 name=Island of Wak-Wak
 mana=
 type=Land
 text={T}: The power of target creature with flying becomes 0 until end of turn.
-rarity=R
-[/card]
-[card]
-id=908
-name=Jandor's Ring
-mana={6}
-type=Artifact
-text={2}, {T}, Discard the last card you drew this turn: Draw a card.
-rarity=R
-[/card]
-[card]
-id=909
-name=Jandor's Saddlebags
-mana={2}
-type=Artifact
-text={3}, {T}: Untap target creature.
 rarity=R
 [/card]
 [card]
@@ -423,17 +203,6 @@ text=Flying At the beginning of your upkeep, sacrifice Junún Efreet unless you 
 rarity=U
 [/card]
 [card]
-id=922
-name=Juzám Djinn
-mana={2}{B}{B}
-type=Creature
-subtype=Djinn
-power=5
-toughness=5
-text=At the beginning of your upkeep, Juzám Djinn deals 1 damage to you.
-rarity=R
-[/card]
-[card]
 id=923
 name=Khabál Ghoul
 mana={2}{B}
@@ -442,28 +211,6 @@ subtype=Zombie
 power=1
 toughness=1
 text=At the beginning of the end step, put a +1/+1 counter on Khabál Ghoul for each creature put into a graveyard from the battlefield this turn.
-rarity=U
-[/card]
-[card]
-id=974
-name=King Suleiman
-mana={1}{W}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-text={T}: Destroy target Djinn or Efreet.
-rarity=R
-[/card]
-[card]
-id=962
-name=Kird Ape
-mana={R}
-type=Creature
-subtype=Ape
-power=1
-toughness=1
-text=Kird Ape gets +1/+2 as long as you control a Forest.
 rarity=U
 [/card]
 [card]
@@ -513,26 +260,6 @@ text=Whenever Mijae Djinn attacks, flip a coin. If you lose the flip, remove Mij
 rarity=R
 [/card]
 [card]
-id=976
-name=Moorish Cavalry
-mana={2}{W}{W}
-type=Creature
-subtype=Human Knight
-power=3
-toughness=3
-text=Trample
-rarity=C
-[/card]
-[card]
-id=983
-name=Mountain
-mana=
-type=Basic Land
-subtype=Mountain
-text=R
-rarity=C
-[/card]
-[card]
 id=950
 name=Nafs Asp
 mana={G}
@@ -571,30 +298,11 @@ text=When Oubliette enters the battlefield, exile target creature and all Auras 
 rarity=C
 [/card]
 [card]
-id=978
-name=Piety
-mana={2}{W}
-type=Instant
-text=Blocking creatures get +0/+3 until end of turn.
-rarity=C
-[/card]
-[card]
 id=911
 name=Pyramids
 mana={6}
 type=Artifact
 text={2}: Choose one  EDestroy target Aura attached to a land; or the next time target land would be destroyed this turn, remove all damage from it instead.
-rarity=R
-[/card]
-[card]
-id=979
-name=Repentant Blacksmith
-mana={1}{W}
-type=Creature
-subtype=Human
-power=1
-toughness=2
-text=Protection from red
 rarity=R
 [/card]
 [card]
@@ -625,14 +333,6 @@ text={2}, {T}: Target creature gains islandwalk until end of turn. When that cre
 rarity=U
 [/card]
 [card]
-id=951
-name=Sandstorm
-mana={G}
-type=Instant
-text=Sandstorm deals 1 damage to each attacking creature.
-rarity=C
-[/card]
-[card]
 id=938
 name=Serendib Djinn
 mana={2}{U}{U}
@@ -642,17 +342,6 @@ power=5
 toughness=6
 text=Flying At the beginning of your upkeep, sacrifice a land. If you sacrifice an Island this way, Serendib Djinn deals 3 damage to you. When you control no lands, sacrifice Serendib Djinn.
 rarity=R
-[/card]
-[card]
-id=939
-name=Serendib Efreet
-mana={2}{U}
-type=Creature
-subtype=Efreet
-power=3
-toughness=4
-text=Flying At the beginning of your upkeep, Serendib Efreet deals 1 damage to you.
-rarity=M
 [/card]
 [card]
 id=980
@@ -696,26 +385,6 @@ text={T}: Target creature other than Sorceress Queen becomes 0/2 until end of tu
 rarity=U
 [/card]
 [card]
-id=928
-name=Stone-Throwing Devils
-mana={B}
-type=Creature
-subtype=Devil
-power=1
-toughness=1
-text=First strike
-rarity=C
-[/card]
-[card]
-id=941
-name=Unstable Mutation
-mana={U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +3/+3. At the beginning of the upkeep of enchanted creature's controller, put a -1/-1 counter on that creature.
-rarity=C
-[/card]
-[card]
 id=982
 name=War Elephant
 mana={3}{W}
@@ -725,17 +394,6 @@ power=2
 toughness=2
 text=Trample; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 rarity=C
-[/card]
-[card]
-id=954
-name=Wyluli Wolf
-mana={1}{G}
-type=Creature
-subtype=Wolf
-power=1
-toughness=1
-text={T}: Target creature gets +1/+1 until end of turn.
-rarity=R
 [/card]
 [card]
 id=967
