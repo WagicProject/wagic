@@ -523,18 +523,6 @@ mana={7}
 type=Artifact
 [/card]
 [card]
-text=When you control no other artifacts, sacrifice Synod Centurion.
-id=73929
-name=Synod Centurion
-rarity=U
-mana={4}
-type=Artifact Creature
-subtype=Construct
-auto=aslongas(artifact other|myBattlefield) -99/-99 <1
-power=4
-toughness=4
-[/card]
-[card]
 text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
 alias=1238
 id=50203
