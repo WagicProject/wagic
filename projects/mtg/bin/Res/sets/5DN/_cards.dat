@@ -55,7 +55,7 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
-abilities=protection from black,protecion from red
+abilities=protection from black,protection from red
 [/card]
 [card]
 text=Battered Golem doesn't untap during your untap step.   Whenever an artifact enters the battlefield, you may untap Battered Golem.
@@ -643,7 +643,7 @@ abilities=haste
 [/card]
 [card]
 text={2}, {T}, Sacrifice Wayfarer's Bauble: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
-auto={2}{T}:moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
+auto={2}{T}{S}:moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
 id=51110
 name=Wayfarer's Bauble
 rarity=C
