@@ -1,0 +1,342 @@
+[card]
+text=Target creature gains haste until end of turn. Draw a card.
+name=Accelerate
+id=29857
+mana={1}{R}
+type=Instant
+target=creature
+auto=haste
+auto=draw:1 controller
+rarity=C
+[/card]
+[card]
+text={3}: Target player puts the top three cards of his or her library into his or her graveyard.
+name=Ambassador Laquatus
+id=34378
+mana={1}{U}{U}
+auto={3}:deplete:3 target(player)
+abilities=Legendary
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=3
+rarity=R
+[/card]
+[card]
+text=Flying, first strike
+name=Angel of Retribution
+id=32233
+mana={6}{W}
+abilities=Flying,First strike
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+rarity=R
+[/card]
+[card]
+text=Flying {2}{W}, Discard a card: Aven Trooper gets +1/+2 until end of turn.
+name=Aven Trooper
+id=5584
+mana={3}{W}
+abilities=Flying
+auto={2}{W}{S(*|myHand):1/2
+type=Creature
+subtype=Bird Soldier
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=Flying {B}: Balshan Collaborator gets +1/+1 until end of turn.
+name=Balshan Collaborator
+id=32915
+mana={3}{U}
+abilities=Flying
+auto={B}:1/1
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Other Barbarian creatures get +1/+1. {R}: Another target Barbarian creature gets +1/+0 until end of turn.
+name=Balthor the Stout
+id=19553
+mana={1}{R}{R}
+abilities=Legendary
+auto=lord(barbarian)1/1 other
+auto={R}:1/0 target(barbarian other)
+type=Creature
+subtype=Dwarf Barbarian
+power=2
+toughness=2
+rarity=R
+[/card]
+[card]
+text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
+name=Cabal Coffers
+id=29896
+auto={2}{T}:foreach(swamp|myBattlefield)add:{B}
+type=Land
+rarity=U
+[/card]
+[card]
+text=Trample {G}, Discard a card: Regenerate Centaur Veteran.
+name=Centaur Veteran
+abilities=Trample
+auto={G}{S(*|myhand)}:regeneratre
+id=29800
+mana={5}{G}
+type=Creature
+subtype=Centaur
+power=3
+toughness=3
+rarity=C
+[/card]
+[card]
+text=Sacrifice Cephalid Snitch: Target creature loses protection from black until end of turn.
+name=Cephalid Snitch
+id=31840
+mana={1}{U}
+auto={S}:-protection from black target(creature)
+type=Creature
+subtype=Cephalid Wizard
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text={1}{U}, Discard a card: Draw a card. {1}{U}, Sacrifice Compulsion: Draw a card.
+name=Compulsion
+id=34473
+mana={1}{U}
+type=Enchantment
+auto={1}{U}{S(*|myhand)}:draw:1 controller
+auto={1}{U}{S}:draw:1 controller
+rarity=U
+[/card]
+[card]
+text=Enchant creature Enchanted creature gets +1/+0. Sacrifice Crackling Club: Crackling Club deals 1 damage to target creature.
+name=Crackling Club
+id=34278
+mana={R}
+type=Enchantment
+subtype=Aura
+target=creature
+auto=1/0
+auto={S}:damage:1 target(creature)
+rarity=C
+[/card]
+[card]
+text={R}, Sacrifice Enslaved Dwarf: Target black creature gets +1/+0 and gains first strike until end of turn.
+name=Enslaved Dwarf
+id=32917
+mana={R}
+auto={R}{S}:1/0 && first strike target(creature)
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+text=First strike, haste Discard a card at random: Hell-Bent Raider gains protection from white until end of turn.
+name=Hell-Bent Raider
+id=34384
+mana={1}{R}{R}
+auto=first strike,haste
+auto={S(*|myHand)}:protection from white
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
+rarity=R
+[/card]
+[card]
+text=You gain life equal to the number of creature cards in all graveyards.
+name=Invigorating Falls
+id=29907
+mana={2}{G}{G}
+type=Sorcery
+auto=foreach(creature|myGraveyard)life:1 controller
+auto=foreach(creature|opponentGraveyard)life:1 controller
+rarity=C
+[/card]
+[card]
+text=Swampwalk {T}: Target black creature gets -2/-0 until end of turn.
+name=Krosan Constrictor
+id=29715
+mana={3}{G}
+abilities=Swampwalk
+auto={T}:-2/0 target(creature[black])
+type=Creature
+subtype=Snake
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
+text=Flying {3}{W}{W}, Sacrifice Major Teroh: Exile all black creatures.
+name=Major Teroh
+id=29912
+mana={3}{W}
+abilities=Flying,Legendary
+auto={3}{W}{W}{S}:moveto(exile) all(creature[black])
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=3
+rarity=R
+[/card]
+[card]
+text=Exile all cards from all graveyards.
+name=Morningtide
+id=34234
+mana={1}{W}
+type=Sorcery
+auto=moveto(exile) all(*|graveyard)
+rarity=R
+[/card]
+[card]
+text={1}{B}, Discard a card: Exile target card from a graveyard. {1}{B}, Sacrifice Mortiphobia: Exile target card from a graveyard.
+name=Mortiphobia
+id=36433
+mana={1}{B}{B}
+auto={1}{B}{S(*|myHand)}:moveto(exile) target(*|graveyard)
+auto={G}{S}:moveto(exile) target(*|graveyard)
+type=Enchantment
+rarity=U
+[/card]
+[card]
+text=All creatures get -1/-1 until end of turn for each Swamp you control.
+name=Mutilate
+id=35194
+mana={2}{B}{B}
+type=Sorcery
+auto=foreach(swamp|myBattlefield)-1/-1 all(creature)
+rarity=R
+[/card]
+[card]
+text={B}: Nantuko Shade gets +1/+1 until end of turn.
+name=Nantuko Shade
+id=35053
+mana={B}{B}
+auto={B}:1/1
+type=Creature
+subtype=Insect Shade
+power=2
+toughness=1
+rarity=R
+[/card]
+[card]
+text={G}, Discard a card: Target creature gets +2/+2 until end of turn. {G}, Sacrifice Narcissism: Target creature gets +2/+2 until end of turn.
+name=Narcissism
+id=5663
+mana={2}{G}
+auto={G}{S(*|myHand)}:2/2 target(creature)
+auto={G}{S}:2/2 target(creature)
+type=Enchantment
+rarity=U
+[/card]
+[card]
+text=First strike {B}: Pardic Collaborator gets +1/+1 until end of turn.
+name=Pardic Collaborator
+id=35054
+mana={3}{R}
+abilities=First strike
+auto={B}:1/1
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text=Flying Discard a card: Return Skywing Aven to its owner's hand.
+name=Skywing Aven
+id=29713
+mana={2}{U}
+auto={S(*|myHand)}:moveto(ownerhand)
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=1
+rarity=C
+[/card]
+[card]
+text=As an additional cost to cast Sonic Seizure, discard a card at random. Sonic Seizure deals 3 damage to target creature or player.
+name=Sonic Seizure
+id=35165
+mana={R}
+type=Instant
+auto=discard:1 controller
+target=creature,player
+auto=damage:3
+rarity=C
+[/card]
+[card]
+text={T}: Each player loses 1 life for each Swamp he or she controls.
+name=Stern Judge
+id=35082
+mana={2}{W}
+auto={T}:foreach(swamp|mybattlefield)damage:1 controller && foreach(swamp|opponentBattlefield)damage:1 opponent
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
+text={T}: Add {1} to your mana pool. {T}: Add {W} or {B} to your mana pool. Activate this ability only if you control a Swamp.
+name=Tainted Field
+id=31757
+type=Land
+auto={T}:add{1}
+auto={T}:aslongas(swamp|myBattlefield)add{B}
+auto={T}:aslongas(swamp|myBattlefield)add{W}
+rarity=U
+[/card]
+[card]
+text={T}: Add {1} to your mana pool. {T}: Add {U} or {B} to your mana pool. Activate this ability only if you control a Swamp.
+name=Tainted Isle
+id=31758
+type=Land
+auto={T}:add{1}
+auto={T}:aslongas(swamp|myBattlefield)add{B}
+auto={T}:aslongas(swamp|myBattlefield)add{U}
+rarity=U
+[/card]
+[card]
+text={T}: Add {1} to your mana pool. {T}: Add {B} or {R} to your mana pool. Activate this ability only if you control a Swamp.
+name=Tainted Peak
+id=31759
+type=Land
+auto={T}:add{1}
+auto={T}:aslongas(swamp|myBattlefield)add{B}
+auto={T}:aslongas(swamp|myBattlefield)add{R}
+rarity=U
+[/card]
+[card]
+text={T}: Add {1} to your mana pool. {T}: Add {B} or {G} to your mana pool. Activate this ability only if you control a Swamp.
+name=Tainted Wood
+id=31760
+type=Land
+auto={T}:add{1}
+auto={T}:aslongas(swamp|myBattlefield)add{B}
+auto={T}:aslongas(swamp|myBattlefield)add{G}
+rarity=U
+[/card]
+[card]
+text=When Teroh's Faithful enters the battlefield, you gain 4 life.
+name=Teroh's Faithful
+id=12345
+mana={3}{W}
+auto=life:4 controller
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=4
+rarity=C
+[/card]
