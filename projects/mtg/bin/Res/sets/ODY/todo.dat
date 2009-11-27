@@ -671,6 +671,21 @@ subtype=Antelope
 toughness=4
 [/card]
 [card]
+####
+####"<" doesn't work for now!
+text=Trample   Gorilla Titan gets +4/+4 as long as there are no cards in your graveyard.
+id=29980
+name=Gorilla Titan
+rarity=U
+mana={3}{G}{G}
+type=Creature
+subtype=Ape
+auto=aslongas(*|mygraveyard) 4/4 <1
+power=4
+toughness=4
+abilities=trample
+[/card]
+[card]
 text=At the beginning of your upkeep, target opponent may remove a card in his or her graveyard from the game. If that player doesn't, you may draw a card.
 id=29935
 name=Gravestorm

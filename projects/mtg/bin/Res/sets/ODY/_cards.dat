@@ -682,19 +682,6 @@ type=Instant
 rarity=U
 [/card]
 [card]
-text=Trample   Gorilla Titan gets +4/+4 as long as there are no cards in your graveyard.
-id=29980
-name=Gorilla Titan
-rarity=U
-mana={3}{G}{G}
-type=Creature
-subtype=Ape
-auto=aslongas(*|mygraveyard) 4/4 <1
-power=4
-toughness=4
-abilities=trample
-[/card]
-[card]
 text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
 id=29741
 name=Gravedigger
