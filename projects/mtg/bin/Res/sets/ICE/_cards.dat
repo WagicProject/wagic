@@ -473,6 +473,17 @@ toughness=3
 abilities=foresthome
 [/card]
 [card]
+text=Target creature can't be regenerated this turn.   Draw a card at the beginning of the next turn's upkeep.
+id=2453
+target=creature
+auto=cantregenerate
+auto=@next upkeep:draw:1 controller
+name=Gravebind
+rarity=R
+mana={B}
+type=Instant
+[/card]
+[card]
 text={B}: Hoar Shade gets +1/+1 until end of turn.
 id=2455
 name=Hoar Shade
@@ -816,6 +827,20 @@ type=Creature
 power=1
 subtype=Orc Warrior
 toughness=3
+[/card]
+[card]
+text={R}{R}, {T}: Target creature can't be regenerated this turn.   {B}{B}{R}, {T}: Regenerate target black or green creature.   {R}{G}{G}, {T}: Regenerate target black or green creature.
+id=2644
+name=Orcish Healer
+rarity=U
+mana={R}{R}
+type=Creature
+subtype=Orc Cleric
+auto={R}{R}{T}:cantregenerate target(creature)
+auto={B}{B}{R}{T}:regenerate target(creature[black;green])
+auto={R}{G}{G}{T}:regenerate target(creature[black;green])
+power=1
+toughness=1
 [/card]
 [card]
 text={T}, Sacrifice a Forest: Add three mana in any combination of {R} and/or {G} to your mana pool.

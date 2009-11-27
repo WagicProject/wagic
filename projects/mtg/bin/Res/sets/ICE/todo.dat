@@ -888,14 +888,6 @@ subtype=Goblin
 toughness=1
 [/card]
 [card]
-text=Target creature can't be regenerated this turn.       Draw a card at the beginning of the next turn's upkeep.
-id=2453
-name=Gravebind
-rarity=R
-type=Instant
-mana={B}
-[/card]
-[card]
 text=Enchant creature     Enchanted creature can't be blocked by green creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a green permanent.
 id=2688
 name=Green Scarab
@@ -1671,17 +1663,6 @@ mana={1}{R}{R}
 power=2
 subtype=Orc
 toughness=2
-[/card]
-[card]
-text={R}{R}, {T}: Target creature can't be regenerated this turn.     {B}{B}{R}, {T}: Regenerate target black or green creature.     {R}{G}{G}, {T}: Regenerate target black or green creature.
-id=2644
-name=Orcish Healer
-rarity=U
-type=Creature
-mana={R}{R}
-power=1
-subtype=Orc Cleric
-toughness=1
 [/card]
 [card]
 text={R}, {T}: Look at the top eight cards of your library. Remove four of them at random from the game, then put the rest on top of your library in any order.

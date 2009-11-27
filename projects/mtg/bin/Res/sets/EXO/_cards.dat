@@ -187,6 +187,18 @@ toughness=5
 abilities=flying,cantattack
 [/card]
 [card]
+text={R}: Target creature can't be regenerated this turn.
+id=6107
+name=Furnace Brood
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Elemental
+auto={R}:cantregenerate target(creature)
+power=3
+toughness=3
+[/card]
+[card]
 text=When you cast a spell, return Jackalope Herd to its owner's hand.
 id=6138
 name=Jackalope Herd

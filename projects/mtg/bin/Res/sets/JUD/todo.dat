@@ -882,14 +882,6 @@ text=At the beginning of your upkeep, if you have 50 or more life, you win the g
 rarity=R
 [/card]
 [card]
-id=36416
-name=Toxic Stench
-mana={1}{B}
-type=Instant
-text=Target nonblack creature gets -1/-1 until end of turn. Threshold  EIf seven or more cards are in your graveyard, instead destroy that creature. It can't be regenerated.
-rarity=C
-[/card]
-[card]
 id=35068
 name=Trained Pronghorn
 mana={1}{W}

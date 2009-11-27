@@ -376,6 +376,23 @@ text=U
 rarity=L
 [/card]
 [card]
+text={R}, {T}, Discard a card: Destroy target blue permanent.   {1}{R}, {T}, Discard a card: Jaya Ballard, Task Mage deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn.   {5}{R}{R}, {T}, Discard a card: Jaya Ballard deals 6 damage to each creature and each player.
+id=109752
+name=Jaya Ballard, Task Mage
+rarity=R
+
+mana={1}{R}{R}
+type=Creature
+subtype=Human Spellshaper
+auto={R}{T}{S(*|myHand)}:destroy target(*[blue])
+auto={1}{R}{T}{S(*|myHand)}:cantregenerate && damage:3 target(creature)
+auto={1}{R}{T}{S(*|myHand)}:damage:3 target(player)
+auto={5}{R}{R}{S(*|myHand)}:damage:6 all(creature,player)
+power=2
+toughness=2
+abilities=legendary
+[/card]
+[card]
 text=Vigilance   When Jedit's Dragoons enters the battlefield, you gain 4 life.
 id=113571
 name=Jedit's Dragoons

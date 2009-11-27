@@ -330,15 +330,16 @@ text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it f
 rarity=C
 [/card]
 [card]
+text={2}{B}, {T}, Sacrifice a Zombie: Destroy target non-Zombie creature. It can't be regenerated. Activate this ability only any time you could cast a sorcery.
 id=35249
 name=Deathmark Prelate
+rarity=U
 mana={3}{B}
 type=Creature
 subtype=Human Cleric
+auto={2}{B}{T}{S(zombie[-attacking;-blocking]|myBattlefield)}:destroy target(creature[-zombie]) myTurnOnly
 power=2
 toughness=3
-text={2}{B}, {T}, Sacrifice a Zombie: Destroy target non-Zombie creature. It can't be regenerated. Activate this ability only any time you could cast a sorcery.
-rarity=U
 [/card]
 [card]
 id=44329

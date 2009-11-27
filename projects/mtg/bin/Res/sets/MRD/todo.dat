@@ -1095,18 +1095,6 @@ rarity=C
 type=Instant
 mana={1}{W}
 [/card]
-
-[card]
-text=Flying When Reiver Demon comes into play, if you played it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
-id=48427
-name=Reiver Demon
-rarity=R
-type=Creature
-mana={4}{B}{B}{B}{B}
-power=6
-subtype=Demon
-toughness=6
-[/card]
 [card]
 text=Enchant artifact     Enchanted artifact has "At the beginning of your upkeep, you lose 2 life."
 target=artifact

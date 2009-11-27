@@ -928,17 +928,6 @@ text=As Ixidron comes into play, turn all other nontoken creatures in play face 
 rarity=R
 [/card]
 [card]
-id=109752
-name=Jaya Ballard, Task Mage
-mana={1}{R}{R}
-type=Legendary Creature
-subtype=Human Spellshaper
-power=2
-toughness=2
-text={R}, {T}, Discard a card: Destroy target blue permanent. {1}{R}, {T}, Discard a card: Jaya Ballard, Task Mage deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn. {5}{R}{R}, {T}, Discard a card: Jaya Ballard deals 6 damage to each creature and each player.
-rarity=R
-[/card]
-[card]
 id=118879
 name=Jhoira's Timebug
 mana={2}

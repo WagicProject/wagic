@@ -199,17 +199,6 @@ text=Target player discards three cards.
 rarity=U
 [/card]
 [card]
-id=6107
-name=Furnace Brood
-mana={3}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-text={R}: Target creature can't be regenerated this turn.
-rarity=C
-[/card]
-[card]
 id=6083
 name=Grollub
 mana={2}{B}

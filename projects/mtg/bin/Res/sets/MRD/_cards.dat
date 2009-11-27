@@ -961,6 +961,19 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+text=Flying   When Reiver Demon enters the battlefield, if you played it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
+id=48427
+name=Reiver Demon
+rarity=R
+mana={4}{B}{B}{B}{B}
+type=Creature
+subtype=Demon
+auto=@movedTo(myBattlefield) from(myhand):destroy all(creature[-black;-artifact])
+power=6
+toughness=6
+abilities=flying
+[/card]
+[card]
 text=Whenever Rustmouth Ogre deals combat damage to a player, you may destroy target artifact that player controls.
 id=46118
 auto=@damaged(player) from(this):may destroy target(artifact|opponentBattlefield)
