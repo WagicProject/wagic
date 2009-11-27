@@ -1,0 +1,23 @@
+#NAME: Goblin Lackey 2
+#DESC: Verifies that Goblin Lackey can
+#DESC: put a goblin artifact from your
+#DESC: hand into play.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Goblin Lackey
+hand:Goblin Replica
+[PLAYER2]
+[DO]
+Goblin Lackey
+next
+next
+choice 0
+Goblin Replica
+[ASSERT]
+combatdamage
+[PLAYER1]
+inplay:Goblin Lackey,Goblin Replica
+[PLAYER2]
+life:19
+[END]

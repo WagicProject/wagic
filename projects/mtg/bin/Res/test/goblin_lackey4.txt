@@ -1,0 +1,25 @@
+#NAME: Goblin Lackey 2
+#DESC: Verifies that Goblin Lackey can
+#DESC: *not* put a non-permanent goblin
+#DESC: card into play (tested with Tarfire,
+#DESC: a Goblin Tribal Instant).
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Goblin Lackey
+hand:Tarfire
+[PLAYER2]
+[DO]
+Goblin Lackey
+next
+next
+choice 0
+Tarfire
+[ASSERT]
+combatdamage
+[PLAYER1]
+inplay:Goblin Lackey
+hand:Tarfire
+[PLAYER2]
+life:19
+[END]

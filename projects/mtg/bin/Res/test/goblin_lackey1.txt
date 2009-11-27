@@ -1,0 +1,23 @@
+#NAME: Goblin Lackey 1
+#DESC: Verifies that Goblin Lackey can
+#DESC: put a goblin from your hand into
+#DESC: play (after damaging a player).
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Goblin Lackey
+hand:Raging Goblin
+[PLAYER2]
+[DO]
+Goblin Lackey
+next
+next
+choice 0
+Raging Goblin
+[ASSERT]
+combatdamage
+[PLAYER1]
+inplay:Goblin Lackey,Raging Goblin
+[PLAYER2]
+life:19
+[END]

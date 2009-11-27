@@ -1,0 +1,24 @@
+#NAME: Goblin Lackey 1
+#DESC: Verifies that Goblin Lackey can
+#DESC: *not* put a non-goblin card into
+#DESC: play.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Goblin Lackey
+hand:Grizzly Bears
+[PLAYER2]
+[DO]
+Goblin Lackey
+next
+next
+choice 0
+Grizzly Bears
+[ASSERT]
+combatdamage
+[PLAYER1]
+inplay:Goblin Lackey
+hand:Grizzly Bears
+[PLAYER2]
+life:19
+[END]

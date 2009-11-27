@@ -638,17 +638,6 @@ subtype=Goblin
 toughness=1
 [/card]
 [card]
-text=Whenever Goblin Lackey deals damage to a player, you may put a Goblin permanent card from your hand into play.
-id=9851
-name=Goblin Lackey
-rarity=U
-type=Creature
-mana={R}
-power=1
-subtype=Goblin
-toughness=1
-[/card]
-[card]
 text=Echo {R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5653
 name=Goblin Patrol

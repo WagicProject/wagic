@@ -541,6 +541,18 @@ type=Enchantment
 mana={1}{W}{W}
 [/card]
 [card]
+text=Whenever Goblin Lackey deals damage to a player, you may put a Goblin permanent card from your hand into play.
+auto=@damaged(player) from(this):may moveTo(myBattlefield) target(goblin[-instant;-sorcery]|myHand)
+id=9851
+name=Goblin Lackey
+rarity=U
+type=Creature
+mana={R}
+power=1
+subtype=Goblin
+toughness=1
+[/card]
+[card]
 text=When Goblin Matron enters the battlefield, you may search your library for a Goblin card, reveal that card, and put it into your hand. If you do, shuffle your library.
 auto=may moveTo(myHand) target(goblin|myLibrary)
 id=8824

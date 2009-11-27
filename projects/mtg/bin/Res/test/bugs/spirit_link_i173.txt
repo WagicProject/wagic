@@ -6,26 +6,26 @@
 [INIT]
 firstmain
 [PLAYER1]
-inplay:Armored Pegasus
+inplay:Giant Spider
 hand:Spirit Link
 manapool:{W}
 [PLAYER2]
-inplay:Courier Hawk
+inplay:Giant Mantis
 [DO]
 Spirit Link
-Courier Hawk
+Giant Mantis
 next
 next
-Armored Pegasus
+Giant Spider
 next
-Courier Hawk
+Giant Mantis
 next
 next
 [ASSERT]
 combatend
 [PLAYER1]
-inplay:Armored Pegasus,Spirit Link
-life:21
+inplay:Giant Spider,Spirit Link
+life:22
 [PLAYER2]
-inplay:Courier Hawk
+inplay:Giant Mantis
 [END]
