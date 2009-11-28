@@ -149,6 +149,7 @@ farmstead.txt
 fastbond.txt
 fastbond2.txt
 fault_line.txt
+fire_tempest.txt
 fists_of_ironwood.txt
 flagstones.txt
 flare.txt

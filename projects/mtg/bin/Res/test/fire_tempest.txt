@@ -1,0 +1,19 @@
+#Testing Fire Tempest
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:4339
+manapool:{5}{R}{R}
+life:20
+[PLAYER2]
+life:20
+[DO]
+4339
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:14
+graveyard:4339
+[PLAYER2]
+life:14
+[END]
