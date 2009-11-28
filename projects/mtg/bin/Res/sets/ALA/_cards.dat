@@ -963,7 +963,7 @@ rarity=U
 mana={5}{W}{W}
 type=Creature
 subtype=Rhino Soldier
-auto={4}{G}:damage:4 all (creature[flying],player)
+auto={4}{G}:damage:4 all(creature[flying],player)
 power=5
 toughness=7
 [/card]

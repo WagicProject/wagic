@@ -367,7 +367,7 @@ abilities=flying
 [/card]
 [card]
 text=Destroy all creatures and lands.
-auto=destroy all (creature,land)
+auto=destroy all(creature,land)
 id=4334
 name=Devastation
 rarity=R

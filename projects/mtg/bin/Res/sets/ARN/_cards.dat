@@ -374,7 +374,7 @@ abilities=protection from red
 [card]
 text=Sandstorm deals 1 damage to each attacking creature.
 id=951
-auto=damage:1 all (creature[attacking])
+auto=damage:1 all(creature[attacking])
 name=Sandstorm
 rarity=C
 mana={G}
