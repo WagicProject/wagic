@@ -179,6 +179,7 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/template.pdb"
 				SubSystem="2"
+				OptimizeReferences="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
