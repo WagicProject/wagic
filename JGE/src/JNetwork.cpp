@@ -4,6 +4,7 @@
 
 */
 
+
 #if defined (WIN32) || defined (LINUX)
 #else
 #include <pspkernel.h>
@@ -12,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <psputility.h> 
 #include <pspnet.h>
 #include <pspnet_inet.h>
 #include <pspnet_apctl.h>
@@ -22,11 +24,13 @@
 #include <errno.h>
 #endif
 
+
 #include "../include/JNetwork.h"
 #include "../include/JSocket.h"
 
 JNetwork* JNetwork::mInstance = NULL;
 string JNetwork::serverIP = "";
+string JNetwork::error = "";
 
 JNetwork * JNetwork::GetInstance(){
   if (!mInstance) mInstance = new JNetwork();
@@ -157,9 +161,17 @@ int net_thread(SceSize args, void *argp)
 
 int JNetwork::connect(string serverIP){
   int err;
+  char buffer[4096];
   if(netthread) return 0;
+
+
+	sceUtilityLoadNetModule(1);
+sceUtilityLoadNetModule(3);
+
 	if((err = pspSdkInetInit())){
-		printf("JGE Error, could not initialise the network %08X\n", err);
+		sprintf(buffer, "JGE Error, could not initialise the network %08X", err);
+    printf(buffer); printf("\n");
+    error = buffer;
 		return err;
 	}
 
@@ -187,28 +199,37 @@ int JNetwork::connect_to_apctl(int config)
 {
 	int err;
 	int stateLast = -1;
+  char buffer[4096];
 
 	/* Connect using the first profile */
 	err = sceNetApctlConnect(config);
 	if (err != 0)
 	{
-		printf("JGE: sceNetApctlConnect returns %08X\n", err);
+		sprintf(buffer, "JGE: sceNetApctlConnect returns %08X", err);
+    printf(buffer);printf("\n");
+    error = buffer;
 		return 0;
 	}
 
-	printf("JGE: Connecting...\n");
+	sprintf(buffer,"JGE: Connecting...");
+  printf(buffer);printf("\n");
+  error = buffer;
 	while (1)
 	{
 		int state;
 		err = sceNetApctlGetState(&state);
 		if (err != 0)
 		{
-			printf("JGE: sceNetApctlGetState returns $%x\n", err);
+			sprintf(buffer,"JGE: sceNetApctlGetState returns $%x", err);
+        printf(buffer);printf("\n");
+      error = buffer;
 			break;
 		}
 		if (state > stateLast)
 		{
-			printf("  connection state %d of 4\n", state);
+			sprintf(buffer, "  connection state %d of 4", state);
+        printf(buffer);printf("\n");
+        error = buffer;
 			stateLast = state;
 		}
     if (state == 4){

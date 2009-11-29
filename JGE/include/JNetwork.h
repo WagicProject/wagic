@@ -1,10 +1,7 @@
 #ifndef _JNETWORK_H_
 #define _JNETWORK_H_
 
-#ifdef WIN32
-#elif defined (LINUX)
-#else
-#endif
+
 
 #include "JGE.h"
 #include <string>
@@ -14,7 +11,9 @@ class JNetwork{
 private:
   static JNetwork * mInstance;
   static int connected_to_ap;
+  
 public:
+  static  string error;
   JNetwork();
   static JNetwork * GetInstance();
   static void EndInstance();
@@ -28,7 +27,6 @@ public:
 #elif defined (LINUX)
   static void* net_thread(void* param);
 #else
-  static int net_thread(SceSize args, void *argp);
   static int connect_to_apctl(int config);
 #endif
 
@@ -39,9 +37,15 @@ private:
 #elif defined (LINUX)
   static pthread_t netthread;
 #else
-  static int netthread;
+    static int netthread;
 #endif
 
 };
+
+#if defined (WIN32)
+#elif defined (LINUX)
+#else
+  static int net_thread(SceSize args, void *argp);
+#endif
 
 #endif

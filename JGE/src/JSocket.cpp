@@ -22,6 +22,8 @@ JSocket * JSocket::mInstance = NULL;
 
 #define SERVER_PORT 20666
 
+int JSocket::connected = 0;
+
 void JSocket::init(){
 	sceUtilityLoadNetModule(1);
 	sceUtilityLoadNetModule(3);
@@ -118,6 +120,8 @@ int JSocket::start_client(const char *szIpAddr){
    sceKernelDelayThread(500*1000);
    return err;
  }
+
+ connected = 1;
 
  while(1){
    readWrite(sock);
