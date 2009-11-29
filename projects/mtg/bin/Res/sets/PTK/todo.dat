@@ -7,14 +7,6 @@ text=If target opponent has more cards in hand than you, draw cards equal to the
 rarity=R
 [/card]
 [card]
-id=10549
-name=Borrowing the East Wind
-mana={X}{G}{G}
-type=Sorcery
-text=Borrowing the East Wind deals X damage to each creature with horsemanship and each player.
-rarity=R
-[/card]
-[card]
 id=10621
 name=Broken Dam
 mana={U}

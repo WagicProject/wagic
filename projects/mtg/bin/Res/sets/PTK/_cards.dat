@@ -63,6 +63,16 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+text=Borrowing the East Wind deals X damage to each creature with horsemanship and each player.
+id=10549
+auto=damage:X all(player)
+auto=damage:X all(creature[horsemanship])
+name=Borrowing the East Wind
+rarity=R
+mana={X}{G}{G}
+type=Sorcery
+[/card]
+[card]
 text=Draw three cards.
 id=10623
 auto=draw:3
