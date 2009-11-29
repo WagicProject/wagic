@@ -308,7 +308,7 @@ rarity=R
 [card]
 text=Counter target creature spell. Draw cards equal to that spell's converted mana cost.
 id=89403
-target=creature
+target=creature|stack
 auto=fizzle
 auto=draw:manacost controller
 name=Overwhelming Intellect
