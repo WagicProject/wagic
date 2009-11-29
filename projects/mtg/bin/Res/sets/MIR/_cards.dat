@@ -391,13 +391,13 @@ toughness=4
 text=Flying 
 id=3291 
 name=Feral Shadow
-abilities=flying
+rarity=C
+mana={2}{B}
 type=Creature
 subtype=Nightstalker
-mana={2}{B}
 power=2
 toughness=1
-rarity=C
+abilities=flying
 [/card]
 [card]
 text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.

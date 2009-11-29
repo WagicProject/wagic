@@ -1332,10 +1332,20 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt this turn.   You gain 1 life for each attacking creature.
+auto=preventAllcombatDamage ueot
+auto=foreach(creature[attacking]) life:1 controller
+id=4783
+name=Respite
+rarity=C
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 text=Target creature loses shadow until end of turn.   Draw a card.
 target=creature
 auto=-shadow
-auto=draw:1
+auto=draw:1 controller
 id=4780
 name=Reality Anchor
 rarity=C
@@ -1453,7 +1463,6 @@ abilities=flying
 text=Sea Monster can't attack unless defending player controls an Island.
 id=4724
 name=Sea Monster
-abilities=cantattack
 auto=aslongas(Island|opponentbattlefield) -cantattack
 rarity=C
 mana={4}{U}{U}
@@ -1461,6 +1470,7 @@ type=Creature
 subtype=Serpent
 power=6
 toughness=6
+abilities=cantattack
 [/card]
 [card]
 text={T}: Untap target creature.
@@ -1501,7 +1511,7 @@ type=Instant
 text=Target creature gains shadow until end of turn.   Draw a card.
 target=creature
 auto=shadow
-auto=draw:1
+auto=draw:1 controller
 id=4725
 name=Shadow Rift
 rarity=C
@@ -1719,7 +1729,7 @@ id=4851
 name=Stun
 target=creature
 auto=cantblock
-auto=draw:1
+auto=draw:1 controller
 rarity=C
 type=Instant
 mana={1}{R}

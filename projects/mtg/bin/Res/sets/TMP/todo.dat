@@ -1096,14 +1096,6 @@ type=Sorcery
 mana={2}{W}
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt this turn. You gain 1 life for each attacking creature.
-id=4783
-name=Respite
-rarity=C
-type=Instant
-mana={1}{G}
-[/card]
-[card]
 text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
 id=4840
 name=Rolling Thunder
