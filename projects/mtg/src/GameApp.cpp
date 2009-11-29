@@ -278,7 +278,6 @@ void GameApp::Update()
 
 void GameApp::Render()
 {
-  JRenderer::GetInstance()->FillRect(0,0,10,10,ARGB(255,255,255,255)); //This is an attempt at getting rif of the purple screen bug. If you ever get a purple screen while this line is here, just delete it.
   if (systemError.size()){
     fprintf(stderr, systemError.c_str());
     JLBFont * mFont= resources.GetJLBFont("simon");

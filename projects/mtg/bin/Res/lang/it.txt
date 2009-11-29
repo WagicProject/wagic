@@ -1,5 +1,5 @@
 #LANG:Italiano
-#File di traduzione in Italiano per Wagic 0.8.1 - by Icarus
+#File di traduzione in Italiano per Wagic 0.9.2 - by Icarus
 #Metti questo file nella cartella WTH/Res e rinominalo come _lang.txt
 #Al prossimo avvio del gioco avrai il tutto tradotto
 #Buon divertimento
@@ -217,36 +217,35 @@ your turn=tuo turno
 opponent's turn=turno avversario
 opponent's turn - you play=turno avvers. - tocca a te
 
+# new lines - abilities - why did i forget these before? u.U
+trample=travolgere
+first strike=attacco improvv.
+flying=volare
+vigilance=vigilanza
+double strike=doppio attacco
+shadow=ombra
+shroud=velo
+haste=rapidita'
+scry=profetizzare
+regeneration=rigenerazione
+
 #Others
 
 Add %i=Aggiungi %i
-
 Add %i mana=Aggiungi %i mana
 
 #Shop
 press [] to refresh=premi [] per cambiare
-
 credits: %i=crediti: %i
 
-
-
-
-
-#Not Working Lines - maybe not yet implemented for translation
-
-#Linee non funzionanti - probabilmente non sono ancora state implementate per essere tradotte
-
-#Your Deck:=Mazzo:
-
-#Your Deck=Mazzo
-
-#Database: %i cards=Database: %i carte
-
+# Not Working Lines - maybe not yet implemented for translation
+# Linee non funzionanti - probabilmente non sono ancora state implementate per essere tradotte
+Your Deck:=Mazzo:
+Your Deck=Mazzo
+Database: %i cards=Database: %i carte
 Collection=Collezione
 Collection - %i/%i=Collezione - %i/%i
-
 DECK: %i=MAZZO: %i
-
 DECK:%i=MAZZO:%i
 
 
