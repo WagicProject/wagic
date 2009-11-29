@@ -43,7 +43,7 @@ enum ENUM_DUEL_MENUS
 
 
 GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
-  for (int i = 0; i<2; i ++){
+	for (int i = 0; i<2; i ++){
     deck[i]=NULL;
     mPlayers[i]=NULL;
   }
@@ -67,7 +67,12 @@ void GameStateDuel::Start()
 {
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->EnableVSync(true);
-
+  OpponentsDeckid=0;
+   //stop menu music
+  if (GameApp::music){
+	      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+	      SAFE_DELETE(GameApp::music);
+      }
 
 #ifdef TESTSUITE
   SAFE_DELETE(testSuite);
@@ -100,6 +105,7 @@ void GameStateDuel::Start()
     fillDeckMenu(deckmenu,RESPATH"/player/premade");
   }
     //mGamePhase = DUEL_STATE_ERROR_NO_DECK;
+    
 }
 
 void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
@@ -219,6 +225,11 @@ void GameStateDuel::End()
   OutputDebugString("Ending GamestateDuel\n");
 #endif
   SAFE_DELETE(deckmenu);
+  //stop game music
+  if (GameApp::music){
+	      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+	      SAFE_DELETE(GameApp::music);
+      }
   JRenderer::GetInstance()->EnableVSync(false);
   if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();
   GameObserver::EndInstance();
@@ -322,16 +333,35 @@ void GameStateDuel::Update(float dt)
       }
       else
 	{
-	  if (opponentMenu->closed) mGamePhase = DUEL_STATE_PLAY;
-	  else opponentMenu->Update(dt);
+    if (opponentMenu->closed) mGamePhase = DUEL_STATE_PLAY;
+    else opponentMenu->Update(dt);
 	}
       break;
-    case DUEL_STATE_PLAY:
-    //Stop the music before starting the game
-      if (GameApp::music){
-	      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-	      SAFE_DELETE(GameApp::music);
-      }
+    case DUEL_STATE_PLAY:	
+      //start of in game music code
+	 musictrack = "";
+	 //check opponent id and choose the music track based on it
+	 if(OpponentsDeckid) {
+	  char temp[4096];
+	  sprintf(temp,"ai_baka_music%i.mp3",OpponentsDeckid);
+	  musictrack.assign(temp);
+	 }
+	 else if(mParent->gameType == GAME_TYPE_CLASSIC)
+	  musictrack = "ai_baka_music.mp3";
+	 else if(mParent->gameType == GAME_TYPE_MOMIR)
+	  musictrack = "ai_baka_music_momir.mp3";
+	 else if(mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2)
+	  musictrack = "ai_baka_music_random.mp3";
+
+	 if(!MusicExist(musictrack))
+	  musictrack = "ai_baka_music.mp3";
+
+    //play the music
+	if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0 && MusicExist(musictrack)){
+	 GameApp::music = resources.ssLoadMusic(musictrack.c_str());
+	 JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
+  }
+    //end of music code
       if (!game){
 	      GameObserver::Init(mPlayers, 2);
 	      game = GameObserver::GetInstance();
@@ -480,6 +510,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             break;
           default:
             loadPlayer(1,controlId,1);
+			OpponentsDeckid=controlId;
 	          opponentMenu->Close();
 	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
