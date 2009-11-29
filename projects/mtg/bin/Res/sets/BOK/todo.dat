@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=74428
 name=Akki Blizzard-Herder
 mana={1}{R}
@@ -8,18 +8,6 @@ power=1
 toughness=1
 text=When Akki Blizzard-Herder is put into a graveyard from the battlefield, each player sacrifices a land.
 rarity=C
-[/card]
-
-[card]
-id=74469
-name=Ashen Monstrosity
-mana={5}{R}{R}
-type=Creature
-subtype=Spirit
-power=7
-toughness=4
-text=Haste Ashen Monstrosity attacks each turn if able.
-rarity=U
 [/card]
 [card]
 id=74522
@@ -37,17 +25,6 @@ mana={2}
 type=Artifact
 text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Baku Altar. {2}, {T}, Remove a ki counter from Baku Altar: Put a 1/1 colorless Spirit creature token onto the battlefield.
 rarity=R
-[/card]
-[card]
-id=74427
-name=Bile Urchin
-mana={B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Sacrifice Bile Urchin: Target player loses 1 life.
-rarity=C
 [/card]
 [card]
 id=74535
@@ -68,15 +45,6 @@ type=Instant
 subtype=Arcane
 text=You may exile a red card with converted mana cost X from your hand rather than pay Blazing Shoal's mana cost. Target creature gets +X/+0 until end of turn.
 rarity=R
-[/card]
-[card]
-id=74417
-name=Blessing of Leeches
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature At the beginning of your upkeep, you lose 1 life. {0}: Regenerate enchanted creature.
-rarity=C
 [/card]
 [card]
 id=81989
@@ -130,17 +98,6 @@ text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Cal
 rarity=U
 [/card]
 [card]
-id=74461
-name=Child of Thorns
-mana={G}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Sacrifice Child of Thorns: Target creature gets +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=74096
 name=Chisei, Heart of Oceans
 mana={2}{U}{U}
@@ -191,14 +148,6 @@ text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Cun
 rarity=U
 [/card]
 [card]
-id=74517
-name=Day of Destiny
-mana={3}{W}
-type=Legendary Enchantment
-text=Legendary creatures you control get +2/+2.
-rarity=R
-[/card]
-[card]
 id=74128
 name=Disrupting Shoal
 mana={X}{U}{U}
@@ -206,17 +155,6 @@ type=Instant
 subtype=Arcane
 text=You may exile a blue card with converted mana cost X from your hand rather than pay Disrupting Shoal's mana cost. Counter target spell if its converted mana cost is X.
 rarity=R
-[/card]
-[card]
-id=74513
-name=Empty-Shrine Kannushi
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text=Empty-Shrine Kannushi has protection from the colors of permanents you control.
-rarity=U
 [/card]
 [card]
 id=81998
@@ -243,23 +181,6 @@ subtype=Human Soldier
 power=2
 toughness=2
 text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Faithful Squire. At the beginning of the end step, if there are two or more ki counters on Faithful Squire, you may flip it. rarity=U
-[/card]
-[card]
-id=81991
-name=Final Judgment
-mana={4}{W}{W}
-type=Sorcery
-Exile all creatures.
-rarity=R
-[/card]
-[card]
-id=74451
-name=First Volley
-mana={1}{R}
-type=Instant
-subtype=Arcane
-text=First Volley deals 1 damage to target creature and 1 damage to that creature's controller.
-rarity=C
 [/card]
 [card]
 id=74625
@@ -290,27 +211,6 @@ power=4
 toughness=4
 text=Soulshift 4, soulshift 4 (When this is put into a graveyard from the battlefield, you may return up to two target Spirit cards with converted mana cost 4 or less from your graveyard to your hand.)
 rarity=U
-[/card]
-[card]
-id=74589
-name=Frost Ogre
-mana={3}{R}{R}
-type=Creature
-subtype=Ogre Warrior
-power=5
-toughness=3
-rarity=C
-[/card]
-[card]
-id=74621
-name=Frostling
-mana={R}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Sacrifice Frostling: Frostling deals 1 damage to target creature.
-rarity=C
 [/card]
 [card]
 id=74534
@@ -378,35 +278,6 @@ text=Enchant Mountain {2}: Enchanted Mountain becomes a 6/1 red Spirit creature 
 rarity=U
 [/card]
 [card]
-id=74435
-name=Gnarled Mass
-mana={1}{G}{G}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-rarity=C
-[/card]
-[card]
-id=74433
-name=Goblin Cohort
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
-text=Goblin Cohort can't attack unless you've cast a creature spell this turn.
-rarity=C
-[/card]
-[card]
-id=74668
-name=Gods' Eye, Gate to the Reikai
-mana=
-type=Legendary Land
-text={T}: Add {1} to your mana pool. When Gods' Eye, Gate to the Reikai is put into a graveyard from the battlefield, put a 1/1 colorless Spirit creature token onto the battlefield.
-rarity=U
-[/card]
-[card]
 id=74475
 name=Goryo's Vengeance
 mana={1}{B}
@@ -454,14 +325,6 @@ type=Sorcery
 subtype=Arcane
 text=Put the top card of your library into your graveyard, then draw cards equal to that card's converted mana cost.
 rarity=U
-[/card]
-[card]
-id=74465
-name=Hero's Demise
-mana={1}{B}
-type=Instant
-text=Destroy target legendary creature.
-rarity=R
 [/card]
 [card]
 id=74448
@@ -545,15 +408,6 @@ text=Ninjutsu {3}{B}{B} ({3}{B}{B}, Return an unblocked attacker you control to 
 rarity=R
 [/card]
 [card]
-id=74609
-name=Ire of Kaminari
-mana={3}{R}
-type=Instant
-subtype=Arcane
-text=Ire of Kaminari deals damage to target creature or player equal to the number of Arcane cards in your graveyard.
-rarity=C
-[/card]
-[card]
 id=74039
 name=Isao, Enlightened Bushi
 mana={2}{G}
@@ -562,17 +416,6 @@ subtype=Human Samurai
 power=2
 toughness=1
 text=Isao, Enlightened Bushi can't be countered. Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) {2}: Regenerate target Samurai.
-rarity=R
-[/card]
-[card]
-id=74636
-name=Ishi-Ishi, Akki Crackshot
-mana={1}{R}
-type=Legendary Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-text=Whenever an opponent casts a Spirit or Arcane spell, Ishi-Ishi, Akki Crackshot deals 2 damage to that player.
 rarity=R
 [/card]
 [card]
@@ -627,17 +470,6 @@ subtype=Spirit
 power=1
 toughness=1
 text=Sacrifice Kami of False Hope: Prevent all combat damage that would be dealt this turn.
-rarity=C
-[/card]
-[card]
-id=74460
-name=Kami of Tattered Shoji
-mana={4}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=5
-text=Whenever you cast a Spirit or Arcane spell, Kami of Tattered Shoji gains flying until end of turn.
 rarity=C
 [/card]
 [card]
@@ -716,14 +548,6 @@ text=Whenever you cast a Spirit or Arcane spell, target opponent exiles a card f
 rarity=R
 [/card]
 [card]
-id=74571
-name=Lifegift
-mana={2}{G}
-type=Enchantment
-text=Whenever a land enters the battlefield, you may gain 1 life.
-rarity=R
-[/card]
-[card]
 id=74642
 name=Lifespinner
 mana={3}{G}
@@ -732,17 +556,6 @@ subtype=Spirit
 power=3
 toughness=3
 text={T}, Sacrifice three Spirits: Search your library for a legendary Spirit permanent card and put it onto the battlefield. Then shuffle your library.
-rarity=U
-[/card]
-[card]
-id=74584
-name=Loam Dweller
-mana={1}{G}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Whenever you cast a Spirit or Arcane spell, you may put a land card from your hand onto the battlefield tapped.
 rarity=U
 [/card]
 [card]
@@ -852,17 +665,6 @@ text=Whenever equipped creature deals damage to a creature, tap that creature. T
 rarity=R
 [/card]
 [card]
-id=74467
-name=Nezumi Shadow-Watcher
-mana={B}
-type=Creature
-subtype=Rat Warrior
-power=1
-toughness=1
-text=Sacrifice Nezumi Shadow-Watcher: Destroy target Ninja.
-rarity=U
-[/card]
-[card]
 id=74587
 name=Ninja of the Deep Hours
 mana={3}{U}
@@ -891,17 +693,6 @@ subtype=Ogre Warrior
 power=3
 toughness=1
 text=Whenever Ogre Marauder attacks, it gains "Ogre Marauder can't be blocked" until end of turn unless defending player sacrifices a creature.
-rarity=U
-[/card]
-[card]
-id=74645
-name=Ogre Recluse
-mana={3}{R}
-type=Creature
-subtype=Ogre Warrior
-power=5
-toughness=4
-text=Whenever a player casts a spell, tap Ogre Recluse.
 rarity=U
 [/card]
 [card]
@@ -950,17 +741,6 @@ type=Instant
 subtype=Arcane
 text=Each time target permanent would deal damage to a creature or player this turn, it deals double that damage to that creature or player instead. Splice onto Arcane {2}{R}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 rarity=U
-[/card]
-[card]
-id=74027
-name=Oyobi, Who Split the Heavens
-mana={6}{W}
-type=Legendary Creature
-subtype=Spirit
-power=3
-toughness=6
-text=Flying Whenever you cast a Spirit or Arcane spell, put a 3/3 white Spirit creature token with flying onto the battlefield.
-rarity=R
 [/card]
 [card]
 id=74109
@@ -1029,15 +809,6 @@ text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Pet
 rarity=C
 [/card]
 [card]
-id=74496
-name=Phantom Wings
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has flying. Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=74554
 name=Psychic Spear
 mana={B}
@@ -1073,23 +844,6 @@ subtype=Spirit
 power=3
 toughness=3
 text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Quillmane Baku. {1}, {T}, Remove X ki counters from Quillmane Baku: Return target creature with converted mana cost X or less to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=74110
-name=Reduce to Dreams
-mana={3}{U}{U}
-type=Sorcery
-text=Return all artifacts and enchantments to their owners' hands.
-rarity=R
-[/card]
-[card]
-id=74532
-name=Ribbons of the Reikai
-mana={4}{U}
-type=Sorcery
-subtype=Arcane
-text=Draw a card for each Spirit you control.
 rarity=C
 [/card]
 [card]
@@ -1141,17 +895,6 @@ subtype=Snake Shaman
 power=2
 toughness=4
 text=At the beginning of your upkeep, add {G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps or phases end.
-rarity=C
-[/card]
-[card]
-id=74541
-name=Scaled Hulk
-mana={5}{G}
-type=Creature
-subtype=Spirit
-power=4
-toughness=4
-text=Whenever you cast a Spirit or Arcane spell, Scaled Hulk gets +2/+2 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -1388,43 +1131,12 @@ text=Whenever Takenuma Bleeder attacks or blocks, you lose 1 life if you don't c
 rarity=C
 [/card]
 [card]
-id=74412
-name=Tallowisp
-mana={1}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=3
-text=Whenever you cast a Spirit or Arcane spell, you may search your library for an Aura card with enchant creature, reveal it, and put it into your hand. If you do, shuffle your library.
-rarity=U
-[/card]
-[card]
-id=74458
-name=Teardrop Kami
-mana={U}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Sacrifice Teardrop Kami: You may tap or untap target creature.
-rarity=C
-[/card]
-[card]
 id=74487
 name=Tendo Ice Bridge
 mana=
 type=Land
 text=Tendo Ice Bridge enters the battlefield with a charge counter on it. {T}: Add {1} to your mana pool. {T}, Remove a charge counter from Tendo Ice Bridge: Add one mana of any color to your mana pool.
 rarity=R
-[/card]
-[card]
-id=74585
-name=Terashi's Grasp
-mana={2}{W}
-type=Sorcery
-subtype=Arcane
-text=Destroy target artifact or enchantment. You gain life equal to its converted mana cost.
-rarity=C
 [/card]
 [card]
 id=74481
@@ -1513,17 +1225,6 @@ text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of 
 rarity=R
 [/card]
 [card]
-id=74627
-name=Traproot Kami
-mana={G}
-type=Creature
-subtype=Spirit
-power=0
-toughness=*
-text=Defender; reach (This creature can block creatures with flying.) Traproot Kami's toughness is equal to the number of Forests on the battlefield.
-rarity=C
-[/card]
-[card]
 id=74023
 name=Twist Allegiance
 mana={6}{R}
@@ -1548,15 +1249,6 @@ type=Instant
 subtype=Arcane
 text=Target creature gets +4/+4 until end of turn. If it's a Spirit, it gains trample until end of turn.
 rarity=U
-[/card]
-[card]
-id=74568
-name=Uproot
-mana={3}{G}
-type=Sorcery
-subtype=Arcane
-text=Put target land on top of its owner's library.
-rarity=C
 [/card]
 [card]
 id=74515
@@ -1616,16 +1308,5 @@ subtype=Spirit
 power=4
 toughness=4
 text=Whenever a legendary permanent other than Yomiji, Who Bars the Way is put into a graveyard from the battlefield, return that card to its owner's hand.
-rarity=R
-[/card]
-[card]
-id=74510
-name=Yukora, the Prisoner
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Demon Spirit
-power=5
-toughness=5
-text=When Yukora, the Prisoner leaves the battlefield, sacrifice all non-Ogre creatures you control.
 rarity=R
 [/card]
