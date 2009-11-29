@@ -32,6 +32,7 @@ protected:
   bool m_loop;
   int m_lastDecoded;
   int m_playTime;
+  int GetID3TagSize(char *fname);
 public:
   int m_paused;
   int m_channel;

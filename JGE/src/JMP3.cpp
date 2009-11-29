@@ -74,6 +74,35 @@ bool JMP3::fillBuffers() {
 
    return true;
 }
+int JMP3::GetID3TagSize(char *fname) 
+{ 
+    SceUID fd; 
+    char header[10]; 
+    int size = 0; 
+    fd = sceIoOpen(fname, PSP_O_RDONLY, 0777); 
+    if (fd < 0) 
+        return 0; 
+
+    sceIoRead(fd, header, sizeof(header)); 
+    sceIoClose(fd); 
+
+    if (!strncmp((char*)header, "ea3", 3) || !strncmp((char*)header, "EA3", 3) 
+      ||!strncmp((char*)header, "ID3", 3)) 
+    { 
+        //get the real size from the syncsafe int 
+        size = header[6]; 
+        size = (size<<7) | header[7]; 
+        size = (size<<7) | header[8]; 
+        size = (size<<7) | header[9]; 
+
+        size += 10; 
+
+        if (header[5] & 0x10) //has footer 
+            size += 10; 
+         return size; 
+    } 
+    return 0; 
+}
 
 bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize) {
       m_inBufferSize = inBufferSize;
@@ -110,11 +139,11 @@ bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize
       int fileSize = sceIoLseek32(m_fileHandle, 0, SEEK_END);
       sceIoLseek32(m_fileHandle, 0, SEEK_SET);
 	  m_fileSize = fileSize;
-
+    int id3tagsize = GetID3TagSize((char*)filename.c_str());
       initArgs.unk1 = 0;
       initArgs.unk2 = 0;
-      initArgs.mp3StreamStart = 0;
-      initArgs.mp3StreamEnd = fileSize;
+      initArgs.mp3StreamStart = id3tagsize;
+      initArgs.mp3StreamEnd = fileSize-(id3tagsize);
       initArgs.mp3BufSize = m_inBufferSize;
       initArgs.mp3Buf = (SceVoid*) m_inBuffer;
       initArgs.pcmBufSize = m_outBufferSize;
