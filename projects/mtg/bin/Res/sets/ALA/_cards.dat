@@ -1125,6 +1125,16 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=You gain life equal to target creature's power.
+id=174813
+target=creature
+auto=life:p controller
+name=Soul's Grace
+rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 text=Flying   At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
 auto=@each my endofturn:aslongas(sphinx sovereign[-tapped]|myBattlefield) life:3 controller
 auto=@each my endofturn:aslongas(sphinx sovereign[tapped]|myBattlefield) life:-3 opponent

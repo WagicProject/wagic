@@ -692,14 +692,6 @@ text=Haunt (When this card is put into a graveyard from the battlefield, exile i
 rarity=R
 [/card]
 [card]
-id=97217
-name=Parallectric Feedback
-mana={3}{R}
-type=Instant
-text=Parallectric Feedback deals damage to target spell's controller equal to that spell's converted mana cost.
-rarity=R
-[/card]
-[card]
 id=96897
 name=Petrahydrox
 mana={3}{(}{U}{/}{R}{)}

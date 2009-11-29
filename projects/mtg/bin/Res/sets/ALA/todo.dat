@@ -1040,14 +1040,6 @@ type=Instant
 mana={2}{R}
 [/card]
 [card]
-text=You gain life equal to target creature's power.
-id=174813
-name=Soul's Grace
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=Put X +1/+1 counters on target creature, where X is that creature's power.
 id=174808
 name=Soul's Might

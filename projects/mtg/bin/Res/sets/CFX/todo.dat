@@ -623,14 +623,6 @@ subtype=Insect
 toughness=3
 [/card]
 [card]
-text=Draw cards equal to the power of target creature you control.
-id=185137
-name=Soul's Majesty
-rarity=R
-type=Sorcery
-mana={4}{G}
-[/card]
-[card]
 text=Target player gains 8 life.     Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 id=179523
 name=Sylvan Bounty

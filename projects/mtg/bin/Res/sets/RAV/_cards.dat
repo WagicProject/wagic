@@ -159,8 +159,7 @@ subtype=Aura
 [/card]
 [card]
 text=As Copy Enchantment enters the battlefield, you may choose an enchantment on the battlefield. If you do, Copy Enchantment enters the battlefield as a copy of that enchantment.
-target=enchantment
-auto=may copy
+auto=may copy target(enchantment)
 id=83807
 name=Copy Enchantment
 rarity=R

@@ -307,6 +307,16 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Parallectric Feedback deals damage to target spell's controller equal to that spell's converted mana cost.
+id=97217
+target=*|stack
+auto=damage:manacost targetcontroller
+name=Parallectric Feedback
+rarity=R
+mana={3}{R}
+type=Instant
+[/card]
+[card]
 text=Enchant creature   Enchanted creature can't attack or block.   Enchanted creature has "At the beginning of your upkeep, you lose 1 life."
 target=creature
 auto=cantattack

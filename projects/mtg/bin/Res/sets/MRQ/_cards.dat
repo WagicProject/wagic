@@ -1118,7 +1118,7 @@ text=Destroy target nonblack creature. It can't be regenerated. You gain life eq
 id=19591
 target=creature[-black]
 auto=bury
-alias=3194
+auto=life:t controller
 name=Sever Soul
 rarity=C
 mana={3}{B}{B}
@@ -1462,6 +1462,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Destroy target nonblack creature. It can't be regenerated. You lose life equal to that creature's toughness.
+id=19589
+target=creature[-black]
+auto=bury
+auto=damage:t controller
+name=Vendetta
+rarity=C
+mana={B}
+type=Instant
+[/card]
+[card]
 text=Flying   Whenever Venomous Dragonfly blocks or becomes blocked by a creature, destroy that creature at end of combat.
 id=19625
 alias=1267
@@ -1514,11 +1525,11 @@ text=Destroy target Wall. It can't be regenerated. Word of Blasting deals damage
 id=19852
 target=wall
 auto=bury
-alias=2660
+auto=damage:manacost targetcontroller
 name=Word of Blasting
 rarity=U
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
 text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard.

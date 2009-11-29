@@ -209,6 +209,16 @@ toughness=3
 rarity=R
 [/card]
 [card]
+text=Target creature deals damage to itself equal to its power.
+id=74157
+target=creature
+auto=damage:p
+name=Kiku's Shadow
+rarity=U
+mana={B}{B}
+type=Sorcery
+[/card]
+[card]
 text={1}{W}: Kitsune Loreweaver gets +0/+X until end of turn, where X is the number of cards in your hand.
 name=Kitsune Loreweaver
 id=74213
@@ -294,6 +304,17 @@ mana={B}
 type=Instant
 auto=moveto(mygraveyard) all(*|myhand)
 rarity=R
+[/card]
+[card]
+text=Counter target creature spell. Draw cards equal to that spell's converted mana cost.
+id=89403
+target=creature
+auto=fizzle
+auto=draw:manacost controller
+name=Overwhelming Intellect
+rarity=U
+mana={4}{U}{U}
+type=Instant
 [/card]
 [card]
 text=Creatures you control get +2/+0 until end of turn.

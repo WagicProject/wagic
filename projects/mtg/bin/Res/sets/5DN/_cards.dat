@@ -177,6 +177,17 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+text=Destroy target creature. It can't be regenerated. You lose life equal to that creature's toughness.
+id=50210
+target=creature
+auto=destroy
+auto=damage:t controller
+name=Devour in Shadow
+rarity=U
+mana={B}{B}
+type=Instant
+[/card]
+[card]
 id=51189
 name=Dross Crocodile
 rarity=C

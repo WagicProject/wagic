@@ -1034,16 +1034,6 @@ power=5
 subtype=Dragon
 toughness=5
 [/card]
-
-
-[card]
-text=Put target creature card from a graveyard into play under your control. You lose life equal to its converted mana cost.
-id=4680
-name=Reanimate
-rarity=U
-type=Sorcery
-mana={B}
-[/card]
 [card]
 text=Return up to X target cards from your graveyard to your hand, where X is the number of black permanents target opponent controls as you play Reap.
 id=4781
@@ -1086,14 +1076,6 @@ mana={4}{R}
 power=3
 subtype=Human Warrior
 toughness=3
-[/card]
-[card]
-text=Target creature deals damage to itself equal to its power.
-id=4895
-name=Repentance
-rarity=U
-type=Sorcery
-mana={2}{W}
 [/card]
 [card]
 text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
@@ -1323,17 +1305,6 @@ mana={1}{W}
 power=1
 subtype=Soltari Soldier
 toughness=1
-[/card]
-[card]
-text=Pay 3 life: Put a +1/+1 counter on Souldrinker.
-id=4687
-name=Souldrinker
-rarity=U
-type=Creature
-mana={3}{B}
-power=2
-subtype=Spirit
-toughness=2
 [/card]
 [card]
 text=Spike Drone comes into play with a +1/+1 counter on it.     {2}, Remove a +1/+1 counter from Spike Drone: Put a +1/+1 counter on target creature.

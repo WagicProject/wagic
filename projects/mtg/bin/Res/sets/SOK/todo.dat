@@ -640,14 +640,6 @@ toughness=3
 rarity=U
 [/card]
 [card]
-text=Target creature deals damage to itself equal to its power.
-name=Kiku's Shadow
-id=74157
-mana={B}{B}
-type=Sorcery
-rarity=U
-[/card]
-[card]
 text=When Kiri-Onna enters the battlefield, return target creature to its owner's hand. Whenever you cast a Spirit or Arcane spell, you may return Kiri-Onna to its owner's hand.
 name=Kiri-Onna
 id=84704
@@ -916,17 +908,6 @@ id=74423
 mana={2}{U}
 type=Instant
 rarity=C
-[/card]
-[card]
-#Would be easy to hardcode
-text=Counter target creature spell. Draw cards equal to that spell's converted mana cost.
-name=Overwhelming Intellect
-id=89403
-mana={4}{U}{U}
-type=Instant
-target=creature
-auto=fizzle
-rarity=U
 [/card]
 [card]
 text=Each player may bid life. You start the bidding with a bid of any number. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and draws four cards.

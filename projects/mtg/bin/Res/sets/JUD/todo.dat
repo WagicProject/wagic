@@ -171,14 +171,6 @@ text=Whenever Cephalid Constable deals combat damage to a player, return up to t
 rarity=R
 [/card]
 [card]
-id=34958
-name=Chastise
-mana={3}{W}
-type=Instant
-text=Destroy target attacking creature. You gain life equal to its power.
-rarity=U
-[/card]
-[card]
 id=35170
 name=Crush of Wurms
 mana={6}{G}{G}{G}

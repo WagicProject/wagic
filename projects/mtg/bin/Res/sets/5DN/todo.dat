@@ -255,14 +255,6 @@ text=Fear (This creature can't be blocked except by artifact creatures and/or bl
 rarity=R
 [/card]
 [card]
-id=50210
-name=Devour in Shadow
-mana={B}{B}
-type=Instant
-text=Destroy target creature. It can't be regenerated. You lose life equal to that creature's toughness.
-rarity=U
-[/card]
-[card]
 id=76971
 name=Disruption Aura
 mana={2}{U}

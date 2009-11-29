@@ -148,6 +148,16 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Remove a card in your hand from the game: Add {B}{B} or {G}{G} to your mana pool.
+auto={0}:moveTo(exile) target(*|myhand) && add{B}{B} controller
+auto={0}:moveTo(exile) target(*|myhand) && add{G}{G} controller
+id=3529
+name=Cadaverous Bloom
+rarity=R
+mana={3}{B}{G}
+type=Enchantment
+[/card]
+[card]
 text=Trample   {1}{G}: Canopy Dragon gains flying and loses trample until end of turn.
 id=3378
 name=Canopy Dragon
@@ -286,6 +296,16 @@ target=artifact
 alias=1607
 name=Divine Offering
 rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text=Divine Retribution deals damage to target attacking creature equal to the number of attacking creatures.
+id=3487
+target=creature[attacking]
+auto=foreach(creature[attacking]) damage:1
+name=Divine Retribution
+rarity=R
 mana={1}{W}
 type=Instant
 [/card]
@@ -648,6 +668,17 @@ subtype=Golem
 auto={2}:trample
 power=3
 toughness=4
+[/card]
+[card]
+text=Counter target artifact or enchantment spell. Its controller gains life equal to its converted mana cost.
+id=3496
+target=artifact,enchantment|stack
+auto=fizzle
+auto=life:manacost targetcontroller
+name=Illumination
+rarity=U
+mana={W}{W}
+type=Instant
 [/card]
 [card]
 text=Trample

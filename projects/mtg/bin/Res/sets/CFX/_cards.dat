@@ -647,6 +647,16 @@ mana={3}{W}{W}
 type=Enchantment
 [/card]
 [card]
+text=Draw cards equal to the power of target creature you control.
+id=185137
+target=creature
+auto=draw:p controller
+name=Soul's Majesty
+rarity=R
+mana={4}{G}
+type=Sorcery
+[/card]
+[card]
 text=Flying   When Sphinx Summoner enters the battlefield, you may search your library for an artifact creature card, reveal it, and put it into your hand. If you do, shuffle your library.
 auto=may moveTo(myHand) target(creature[artifact]|myLibrary)
 id=189079

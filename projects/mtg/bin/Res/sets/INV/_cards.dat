@@ -21,6 +21,18 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.)   Destroy target nonblack creature. It can't be regenerated.   If the kicker cost was paid, Agonizing Demise deals damage equal to that creature's power to the creature's controller.
+id=23034
+target=creature
+name=Agonizing Demise
+rarity=C
+mana={3}{B}
+kicker={1}{R}
+auto=bury
+auto=kicker damage:p targetcontroller
+type=Instant
+[/card]
+[card]
 text=Ancient Spring enters the battlefield tapped.   {T}: Add {U} to your mana pool.   {T}, Sacrifice Ancient Spring: Add {W}{B} to your mana pool. 
 auto=tap
 auto={T}:Add{U}
@@ -150,6 +162,17 @@ name=Aura Shards
 rarity=U
 type=Enchantment
 mana={1}{G}{W}
+[/card]
+[card]
+text=Tap target untapped creature. That creature deals damage equal to its power to its controller.
+id=23171
+target=creature[-tapped]
+auto=tap
+auto=damage:p targetcontroller
+name=Backlash
+rarity=U
+mana={1}{B}{R}
+type=Instant
 [/card]
 [card]
 text={3}{U},{T}: Draw a card.

@@ -116,6 +116,17 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Destroy target attacking creature. You gain life equal to its power.
+id=34958
+target=creature[attacking]
+auto=destroy
+auto=life:p controller
+name=Chastise
+rarity=U
+mana={3}{W}
+type=Instant
+[/card]
+[card]
 text=Flying, protection from creatures
 id=35893
 name=Commander Eesha
