@@ -7,35 +7,12 @@ text=Target player reveals his or her hand and discards all nonland cards.
 rarity=U
 [/card]
 [card]
-id=1801
-name=Angry Mob
-mana={2}{W}{W}
-type=Creature
-subtype=Human
-power=2+*
-toughness=2+*
-text=Trample As long as it's your turn, Angry Mob's power and toughness are each equal to 2 plus the number of Swamps your opponents control. As long as it's not your turn, Angry Mob's power and toughness are each 2.
-rarity=U
-[/card]
-
-[card]
 id=1728
 name=Ashes to Ashes
 mana={1}{B}{B}
 type=Sorcery
 text=Exile two target nonartifact creatures. Ashes to Ashes deals 5 damage to you.
 rarity=U
-[/card]
-[card]
-id=1783
-name=Ball Lightning
-mana={R}{R}{R}
-type=Creature
-subtype=Elemental
-power=6
-toughness=1
-text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) Haste (This creature can attack and {T} as soon as it comes under your control.) At the beginning of the end step, sacrifice Ball Lightning.
-rarity=R
 [/card]
 [card]
 id=1729
@@ -73,17 +50,6 @@ text=Until end of turn, if damage would be dealt to any creature, you may have t
 rarity=U
 [/card]
 [card]
-id=1730
-name=Bog Imp
-mana={1}{B}
-type=Creature
-subtype=Imp
-power=1
-toughness=1
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-rarity=C
-[/card]
-[card]
 id=1731
 name=Bog Rats
 mana={B}
@@ -95,22 +61,6 @@ text=Bog Rats can't be blocked by Walls.
 rarity=C
 [/card]
 [card]
-id=1709
-name=Bone Flute
-mana={3}
-type=Artifact
-text={2}, {T}: All creatures get -1/-0 until end of turn.
-rarity=U
-[/card]
-[card]
-id=1710
-name=Book of Rass
-mana={6}
-type=Artifact
-text={2}, Pay 2 life: Draw a card.
-rarity=U
-[/card]
-[card]
 id=1803
 name=Brainwash
 mana={W}
@@ -118,28 +68,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature can't attack unless its controller pays {3}.
 rarity=C
-[/card]
-[card]
-id=1785
-name=Brothers of Fire
-mana={1}{R}{R}
-type=Creature
-subtype=Human Shaman
-power=2
-toughness=2
-text={1}{R}{R}: Brothers of Fire deals 1 damage to target creature or player and 1 damage to you.
-rarity=U
-[/card]
-[card]
-id=1765
-name=Carnivorous Plant
-mana={3}{G}
-type=Creature
-subtype=Plant Wall
-power=4
-toughness=5
-text=Defender
-rarity=U
 [/card]
 [card]
 id=1786
@@ -169,17 +97,6 @@ text=For each land, destroy that land unless any player pays 1 life.
 rarity=R
 [/card]
 [card]
-id=1711
-name=Coal Golem
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
-text={3}, Sacrifice Coal Golem: Add {R}{R}{R} to your mana pool.
-rarity=U
-[/card]
-[card]
 id=1732
 name=Curse Artifact
 mana={2}{B}{B}
@@ -197,14 +114,6 @@ text=When Dance of Many enters the battlefield, put a token that's a copy of tar
 rarity=U
 [/card]
 [card]
-id=1820
-name=Dark Heart of the Wood
-mana={B}{G}
-type=Enchantment
-text=Sacrifice a Forest: You gain 3 life.
-rarity=U
-[/card]
-[card]
 id=1712
 name=Dark Sphere
 mana={0}
@@ -218,28 +127,6 @@ name=Deep Water
 mana={U}{U}
 type=Enchantment
 text={U}: Until end of turn, if you tap a land you control for mana, it produces {U} instead of any other type.
-rarity=C
-[/card]
-[card]
-id=1713
-name=Diabolic Machine
-mana={7}
-type=Artifact Creature
-subtype=Construct
-power=4
-toughness=4
-text={3}: Regenerate Diabolic Machine.
-rarity=U
-[/card]
-[card]
-id=1750
-name=Drowned
-mana={1}{U}
-type=Creature
-subtype=Zombie
-power=1
-toughness=1
-text={B}: Regenerate Drowned.
 rarity=C
 [/card]
 [card]
@@ -262,28 +149,6 @@ text={0}: If Eater of the Dead is tapped, untap it and exile target creature car
 rarity=U
 [/card]
 [card]
-id=1751
-name=Electric Eel
-mana={U}
-type=Creature
-subtype=Fish
-power=1
-toughness=1
-text=When Electric Eel enters the battlefield, it deals 1 damage to you. {R}{R}: Electric Eel gets +2/+0 until end of turn and deals 1 damage to you.
-rarity=U
-[/card]
-[card]
-id=1766
-name=Elves of Deep Shadow
-mana={G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-text={T}: Add {B} to your mana pool. Elves of Deep Shadow deals 1 damage to you.
-rarity=U
-[/card]
-[card]
 id=1752
 name=Erosion
 mana={U}{U}{U}
@@ -299,17 +164,6 @@ mana={2}{R}{R}
 type=Sorcery
 text=Eternal Flame deals X damage to target opponent, where X is the number of Mountains you control. It deals half X damage, rounded up, to you.
 rarity=R
-[/card]
-[card]
-id=1806
-name=Exorcist
-mana={W}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text={1}{W}, {T}: Destroy target black creature.
-rarity=U
 [/card]
 [card]
 id=1807
@@ -344,41 +198,6 @@ text=Fire and Brimstone deals 4 damage to target player who declared an attackin
 rarity=U
 [/card]
 [card]
-id=1788
-name=Fire Drake
-mana={1}{R}{R}
-type=Creature
-subtype=Drake
-power=1
-toughness=2
-text=Flying {R}: Fire Drake gets +1/+0 until end of turn. Activate this ability only once each turn.
-rarity=U
-[/card]
-[card]
-id=1789
-name=Fissure
-mana={3}{R}{R}
-type=Instant
-text=Destroy target creature or land. It can't be regenerated.
-rarity=C
-[/card]
-[card]
-id=1753
-name=Flood
-mana={U}
-type=Enchantment
-text={U}{U}: Tap target creature without flying.
-rarity=U
-[/card]
-[card]
-id=1715
-name=Fountain of Youth
-mana={0}
-type=Artifact
-text={2}, {T}: You gain 1 life.
-rarity=U
-[/card]
-[card]
 id=1734
 name=Frankenstein's Monster
 mana={X}{B}{B}
@@ -395,17 +214,6 @@ name=Gaea's Touch
 mana={G}{G}
 type=Enchantment
 text=You may play an additional land during your turn if that land is a basic Forest.  Sacrifice Gaea's Touch: Add {G}{G} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=1754
-name=Ghost Ship
-mana={2}{U}{U}
-type=Creature
-subtype=Spirit
-power=2
-toughness=4
-text=Flying {U}{U}{U}: Regenerate Ghost Ship.
 rarity=U
 [/card]
 [card]
@@ -429,27 +237,6 @@ text=Enchant land If enchanted land is a basic Mountain, Goblin creatures get +0
 rarity=C
 [/card]
 [card]
-id=1791
-name=Goblin Digging Team
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text={T}, Sacrifice Goblin Digging Team: Destroy target Wall.
-rarity=C
-[/card]
-[card]
-id=1792
-name=Goblin Hero
-mana={2}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-rarity=R
-[/card]
-[card]
 id=1793
 name=Goblin Rock Sled
 mana={1}{R}
@@ -470,63 +257,6 @@ text=Enchant land If enchanted land is a Mountain, Goblin creatures get +1/+0. W
 rarity=C
 [/card]
 [card]
-id=1795
-name=Goblin Wizard
-mana={2}{R}{R}
-type=Creature
-subtype=Goblin Wizard
-power=1
-toughness=1
-text={T}: You may put a Goblin permanent card from your hand onto the battlefield. {R}: Target Goblin gains protection from white until end of turn.
-rarity=R
-[/card]
-[card]
-id=1796
-name=Goblins of the Flarg
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-text=Mountainwalk When you control a Dwarf, sacrifice Goblins of the Flarg.
-rarity=C
-[/card]
-[card]
-id=1735
-name=Grave Robbers
-mana={1}{B}{B}
-type=Creature
-subtype=Human Rogue
-power=1
-toughness=1
-text={B}, {T}: Exile target artifact card from a graveyard. You gain 2 life.
-rarity=R
-[/card]
-[card]
-id=1768
-name=Hidden Path
-mana={2}{G}{G}{G}{G}
-type=Enchantment
-text=Green creatures have forestwalk.
-rarity=R
-[/card]
-[card]
-id=1810
-name=Holy Light
-mana={2}{W}
-type=Instant
-text=Nonwhite creatures get -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=1797
-name=Inferno
-mana={5}{R}{R}
-type=Instant
-text=Inferno deals 6 damage to each creature and each player.
-rarity=R
-[/card]
-[card]
 id=1736
 name=Inquisition
 mana={2}{B}
@@ -544,17 +274,6 @@ power=2
 toughness=2
 text=Protection from red; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 rarity=R
-[/card]
-[card]
-id=1769
-name=Land Leeches
-mana={1}{G}{G}
-type=Creature
-subtype=Leech
-power=2
-toughness=2
-text=First strike
-rarity=C
 [/card]
 [card]
 id=1756
@@ -603,25 +322,6 @@ text=When you cast Mana Vortex, you may sacrifice a land. If you don't, counter 
 rarity=R
 [/card]
 [card]
-id=1737
-name=Marsh Gas
-mana={B}
-type=Instant
-text=All creatures get -2/-0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=1821
-name=Marsh Goblins
-mana={B}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text=Swampwalk
-rarity=C
-[/card]
-[card]
 id=1771
 name=Marsh Viper
 mana={3}{G}
@@ -649,17 +349,6 @@ text={T}: Untap target attacking creature. Prevent all combat damage that would 
 rarity=U
 [/card]
 [card]
-id=1758
-name=Merfolk Assassin
-mana={U}{U}
-type=Creature
-subtype=Merfolk Assassin
-power=1
-toughness=2
-text={T}: Destroy target creature with islandwalk.
-rarity=U
-[/card]
-[card]
 id=1759
 name=Mind Bomb
 mana={U}
@@ -676,14 +365,6 @@ subtype=Human Cleric
 power=1
 toughness=1
 text={T}: Destroy target Aura attached to a creature you control.
-rarity=C
-[/card]
-[card]
-id=1814
-name=Morale
-mana={1}{W}{W}
-type=Instant
-text=Attacking creatures get +1/+1 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -716,39 +397,6 @@ subtype=Wall
 power=0
 toughness=1
 text=Defender (This creature can't attack.) Exile a creature card from your graveyard: Put X +0/+1 counters on Necropolis, where X is the exiled card's converted mana cost.
-rarity=U
-[/card]
-[card]
-id=1772
-name=Niall Silvain
-mana={G}{G}{G}
-type=Creature
-subtype=Ouphe
-power=2
-toughness=2
-text={G}{G}{G}{G}, {T}: Regenerate target creature.
-rarity=R
-[/card]
-[card]
-id=1799
-name=Orc General
-mana={2}{R}
-type=Creature
-subtype=Orc Warrior
-power=2
-toughness=2
-text={T}, Sacrifice another Orc or Goblin: Other Orc creatures get +1/+1 until end of turn.
-rarity=U
-[/card]
-[card]
-id=1773
-name=People of the Woods
-mana={G}{G}
-type=Creature
-subtype=Human
-power=1
-toughness=*
-text=People of the Woods's toughness is equal to the number of Forests you control.
 rarity=U
 [/card]
 [card]
@@ -801,14 +449,6 @@ text={X}, {T}: Change the target of target spell with a single target if that ta
 rarity=U
 [/card]
 [card]
-id=1761
-name=Riptide
-mana={U}
-type=Instant
-text=Tap all blue creatures.
-rarity=C
-[/card]
-[card]
 id=1719
 name=Runesword
 mana={6}
@@ -858,63 +498,12 @@ text=Forestwalk {2}{G}, {T}: Unless target artifact's controller pays {2}, gain 
 rarity=R
 [/card]
 [card]
-id=1822
-name=Scarwood Goblins
-mana={R}{G}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-rarity=C
-[/card]
-[card]
-id=1776
-name=Scarwood Hag
-mana={1}{G}
-type=Creature
-subtype=Hag
-power=1
-toughness=1
-text={G}{G}{G}{G}, {T}: Target creature gains forestwalk until end of turn. {T}: Target creature loses forestwalk until end of turn.
-rarity=U
-[/card]
-[card]
-id=1777
-name=Scavenger Folk
-mana={G}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-text={G}, {T}, Sacrifice Scavenger Folk: Destroy target artifact.
-rarity=U
-[/card]
-[card]
 id=1741
 name=Season of the Witch
 mana={B}{B}{B}
 type=Enchantment
 text=At the beginning of your upkeep, sacrifice Season of the Witch unless you pay 2 life. At the beginning of the end step, destroy all untapped creatures that didn't attack this turn, except for creatures that couldn't attack.
 rarity=R
-[/card]
-[card]
-id=1800
-name=Sisters of the Flame
-mana={1}{R}{R}
-type=Creature
-subtype=Human Shaman
-power=2
-toughness=2
-text={T}: Add {R} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=1721
-name=Skull of Orm
-mana={3}
-type=Artifact
-text={5}, {T}: Return target enchantment card from your graveyard to your hand.
-rarity=U
 [/card]
 [card]
 id=1826
@@ -933,24 +522,6 @@ subtype=Slug
 power=2
 toughness=4
 text=Whenever Spitting Slug blocks or becomes blocked, you may pay {1}{G}. If you do, Spitting Slug gains first strike until end of turn. Otherwise, each creature blocking or blocked by Spitting Slug gains first strike until end of turn.
-rarity=U
-[/card]
-[card]
-id=1817
-name=Squire
-mana={1}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
-rarity=C
-[/card]
-[card]
-id=1722
-name=Standing Stones
-mana={3}
-type=Artifact
-text={1}, {T}, Pay 1 life: Add one mana of any color to your mana pool.
 rarity=U
 [/card]
 [card]
@@ -987,22 +558,6 @@ subtype=Zombie
 power=2
 toughness=3
 text=At the beginning of your upkeep, The Fallen deals 1 damage to each opponent it has dealt damage to this game.
-rarity=U
-[/card]
-[card]
-id=1818
-name=Tivadar's Crusade
-mana={1}{W}{W}
-type=Sorcery
-text=Destroy all Goblins.
-rarity=U
-[/card]
-[card]
-id=1724
-name=Tormod's Crypt
-mana={0}
-type=Artifact
-text={T}, Sacrifice Tormod's Crypt: Exile all cards from target player's graveyard.
 rarity=U
 [/card]
 [card]
@@ -1061,17 +616,6 @@ text={3}: Target creature gains islandwalk until end of turn. When War Barge lea
 rarity=U
 [/card]
 [card]
-id=1764
-name=Water Wurm
-mana={U}
-type=Creature
-subtype=Wurm
-power=1
-toughness=1
-text=Water Wurm gets +0/+1 as long as an opponent controls an Island.
-rarity=C
-[/card]
-[card]
 id=1781
 name=Whippoorwill
 mana={G}
@@ -1080,17 +624,6 @@ subtype=Bird
 power=1
 toughness=1
 text={G}{G}, {T}: Target creature can't be regenerated this turn. Damage that would be dealt to that creature this turn can't be prevented or dealt instead to another creature or player. When the creature is put into a graveyard this turn, exile the creature.
-rarity=U
-[/card]
-[card]
-id=1819
-name=Witch Hunter
-mana={2}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text={T}: Witch Hunter deals 1 damage to target player. {1}{W}{W}, {T}: Return target creature an opponent controls to its owner's hand.
 rarity=U
 [/card]
 [card]
@@ -1108,15 +641,4 @@ mana={2}{B}{B}{B}
 type=Enchantment
 text=Players can't play lands. If a land would enter the battlefield, instead it doesn't. At the beginning of each upkeep, any player may sacrifice two lands or pay 5 life. If a player does either, destroy Worms of the Earth.
 rarity=R
-[/card]
-[card]
-id=1782
-name=Wormwood Treefolk
-mana={3}{G}{G}
-type=Creature
-subtype=Treefolk
-power=4
-toughness=4
-text={G}{G}: Wormwood Treefolk gains forestwalk until end of turn and deals 2 damage to you. {B}{B}: Wormwood Treefolk gains swampwalk until end of turn and deals 2 damage to you.
-rarity=U
 [/card]

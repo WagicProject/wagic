@@ -1,12 +1,552 @@
 [card]
+text=Trample   As long as it's your turn, Angry Mob's power and toughness are each equal to 2 plus the number of Swamps your opponents control.   As long as it's not your turn, Angry Mob's power and toughness are each 2.
+auto=@each my beginofturn:foreach(swamp|opponentBattlefield) 1/1 ueot
+id=1801
+name=Angry Mob
+rarity=U
+mana={2}{W}{W}
+type=Creature
+subtype=Human
+power=2
+toughness=2
+abilities=trample
+[/card]
+[card]
+text={U}{T}: Add {3} to your mana pool.
 id=1747
 name=Apprentice Wizard
+rarity=U
 mana={1}{U}{U}
 type=Creature
-subtype=Human Wizard
+subtype=Wizard
+auto={U}{T}:Add {3}
 power=0
 toughness=1
-text={U}, {T}: Add {3} to your mana pool.
-auto={U}{T}:Add{3}
+[/card]
+[card]
+text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)   Haste (This creature can attack and  as soon as it comes under your control.)   At the beginning of the end step, sacrifice Ball Lightning.
+id=1783
+name=Ball Lightning
 rarity=R
+mana={R}{R}{R}
+type=Creature
+subtype=Elemental
+auto=@next endofturn:bury
+power=6
+toughness=1
+abilities=trample,haste
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+id=1730
+name=Bog Imp
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Imp
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={2}{T}: All creatures get -1/-0 until end of turn. 
+id=1709
+auto={2}{T}:lord(creature) -1/0 ueot
+rarity=U
+mana={3}
+name=Bone Flute
+type=Artifact
+[/card]
+[card]
+text={2}, Pay 2 life: Draw a card. 
+id=1710
+auto={2}:draw:2 && life:-2
+name=Book of Rass
+rarity=U
+mana={6}
+type=Artifact
+[/card]
+[card]
+text={1}{R}{R}: Brothers of Fire deals 1 damage to target creature or player and 1 damage to you. 
+auto={1}{R}{R}:damage:1 target(creature,player) && damage:1 controller
+id=1785
+name=Brothers of Fire
+rarity=U
+mana={1}{R}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
+text=Defender
+id=1765
+name=Carnivorous Plant
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Wall Plant
+power=4
+toughness=5
+abilities=defender
+[/card]
+[card]
+text={3}, Sacrifice Coal Golem: Add {R}{R}{R} to your mana pool. 
+id=1711
+name=Coal Golem
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Golem
+auto={3}{S}:Add {R}{R}{R}
+power=3
+toughness=3
+[/card]
+[card]
+text=Sacrifice a Forest: You gain 3 life.
+auto={S(forest|myBattlefield)}:life:3
+id=1820
+name=Dark Heart of the Wood
+rarity=C
+mana={B}{G}
+type=Enchantment
+[/card]
+[card]
+text={3}: Regenerate Diabolic Machine. 
+id=1713
+name=Diabolic Machine
+rarity=U
+mana={7}
+type=Artifact Creature
+subtype=Construct
+auto={3}:regenerate
+power=4
+toughness=4
+[/card]
+[card]
+text={B}: Regenerate Drowned.
+id=1750
+name=Drowned
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Zombie
+auto={B}:regenerate
+power=1
+toughness=1
+[/card]
+[card]
+text=When Electric Eel enters the battlefield, it deals 1 damage to you.   {R}{R}: Electric Eel gets +2/+0 until end of turn and deals 1 damage to you.
+id=1751
+name=Electric Eel
+rarity=U
+mana={U}
+type=Creature
+subtype=Fish
+auto=damage:1 controller
+auto={R}{R}:2/0 && damage:1 controller
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Add {B} to your mana pool. Elves of Deep Shadow deals 1 damage to you.
+id=1766
+name=Elves of Deep Shadow
+rarity=U
+mana={G}
+type=Creature
+subtype=Elf Druid
+auto={T}:Add {B} && damage:1 controller
+power=1
+toughness=1
+[/card]
+[card]
+text={1}{W}{T}: Destroy target black creature.
+id=1806
+name=Exorcist
+rarity=U
+mana={W}{W}
+type=Creature
+subtype=Human Cleric
+auto={1}{W}{T}:destroy target(creature[black])
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying   {R}: Fire Drake gets +1/+0 until end of turn. Activate this ability only once each turn.
+id=1788
+name=Fire Drake
+rarity=U
+mana={1}{R}{R}
+type=Creature
+subtype=Drake
+auto={R}:1/0 limit:1
+power=1
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Destroy target creature or land. It can't be regenerated. 
+id=1789
+name=Fissure
+target=creature,land
+auto=bury
+rarity=C
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
+text={U}{U}: Tap target creature without flying.
+id=1753
+auto={U}{U}:tap target(creature[-flying])
+name=Flood
+rarity=U
+mana={U}
+type=Enchantment
+[/card]
+[card]
+text={2}{T}: You gain 1 life.
+id=1715
+auto={2}{T}:life:1
+name=Fountain of Youth
+rarity=U
+mana={0}
+type=Artifact
+[/card]
+[card]
+text=Flying   {U}{U}{U}: Regenerate Ghost Ship.
+id=1754
+name=Ghost Ship
+rarity=C
+mana={2}{U}{U}
+type=Creature
+subtype=Spirit
+auto={U}{U}{U}:regenerate
+power=2
+toughness=4
+rarity=C
+abilities=flying
+[/card]
+[card]
+text={T}, Sacrifice Goblin Digging Team: Destroy target Wall.
+id=1791
+auto={T}{S}:destroy target(wall)
+name=Goblin Digging Team
+type=Creature
+subtype=Goblin
+mana={R}
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
+id=1792
+name=Goblin Hero
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: You may put a Goblin permanent card from your hand onto the battlefield.   {R}: Target Goblin gains protection from white until end of turn.
+id=1795
+name=Goblin Wizard
+rarity=U
+mana={2}{R}{R}
+type=Creature
+subtype=Goblin Wizard
+auto={T}:may moveto(myBattlefield) target(goblin|myhand)
+auto={R}:protection from white target(goblin)
+power=1
+toughness=1
+[/card]
+[card]
+text=Mountainwalk   When you control a Dwarf, sacrifice Goblins of the Flarg.
+id=1796
+name=Goblins of the Flarg
+rarity=C
+mana={R}
+type=Creature
+subtype=Goblin Warrior
+auto=aslongas(dwarf|myBattlefield) -99/-99
+power=1
+toughness=1
+abilities=mountainwalk
+[/card]
+[card]
+text={B}{T}: Exile target artifact card from a graveyard. You gain 2 life.
+id=1735
+name=Grave Robbers
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Human Rogue
+auto={B}{T}:moveto(exile) target(artifact|graveyard) && life:2 controller
+power=1
+toughness=1 
+[/card]
+[card]
+text=Green creatures have forestwalk.
+id=1768
+auto=lord(creature[green]) forestwalk
+name=Hidden Path
+rarity=U
+mana={2}{G}{G}{G}{G}
+type=Enchantment
+[/card]
+[card]
+text=Nonwhite creatures get -1/-1 until end of turn.
+id=1810
+auto=lord(creature[-white]) -1/-1
+name=Holy Light
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=Inferno deals 6 damage to each creature and each player.
+id=1797
+auto=damage:6 all(player,creature)
+name=Inferno
+rarity=U
+mana={5}{R}{R}
+type=Instant
+[/card]
+[card]
+text=First strike
+id=1769
+name=Land Leeches
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Leech
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
+text=All creatures get -2/-0 until end of turn. 
+id=1737
+auto=lord(creature) -2/-0
+name=Marsh Gas
+rarity=C
+mana={B}
+type=Instant
+[/card]
+[card]
+text=Swampwalk
+id=1821
+name=Marsh Goblins
+rarity=C
+mana={B}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+abilities=swampwalk
+[/card]
+[card]
+text={T}: Destroy target creature with islandwalk.
+id=1758
+name=Merfolk Assassin
+rarity=U
+mana={U}{U}
+type=Creature
+subtype=Merfolk
+auto={T}:destroy target(creature[islandwalk])
+power=1
+toughness=2
+[/card]
+[card]
+text=Attacking creatures get +1/+1 until end of turn.
+id=1814
+auto=lord(creature[attacking]) 1/1
+name=Morale
+rarity=C
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+text={G}{G}{G}{G}, {T}: Regenerate target creature.
+id=1772
+name=Niall Silvain
+rarity=U
+mana={G}{G}{G}
+type=Creature
+subtype=Ouphe
+auto={G}{G}{G}{G}{T}:regenerate target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+text={T}, Sacrifice another Orc or Goblin: Other Orc creatures get +1/+1 until end of turn. 
+id=1799
+name=Orc General
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Orc Warrior
+auto={T}{S(orc other|myBattlefield)}:lord(orc) 1/1 other
+auto={T}{S(goblin|myBattlefield)}:lord(orc) 1/1 other
+power=2
+toughness=2
+[/card]
+[card]
+text=People of the Woods's toughness is equal to the number of Forests you control. 
+id=1773
+name=People of the Woods
+rarity=U
+mana={G}{G}
+type=Creature
+subtype=Human
+auto=foreach(forest|myBattlefield) 0/1
+power=1
+toughness=*
+[/card]
+[card]
+text=Tap all blue creatures.
+auto=tap all(creature[blue])
+id=1761
+name=Riptide
+rarity=C
+mana={U}
+type=Instant
+[/card]
+[card]
+id=1822
+name=Scarwood Goblins
+rarity=C
+mana={G}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
+text={G}{G}{G}{G}, {T}: Target creature gains forestwalk until end of turn.   {T}: Target creature loses forestwalk until end of turn.
+id=1776
+name=Scarwood Hag
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Hag
+auto={G}{G}{G}{G}{T}:forestwalk target(creature)
+auto={T}:-forestwalk target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text={G}{T}, Sacrifice Scavenger Folk: Destroy target artifact.
+id=1777
+name=Scavenger Folk
+rarity=C
+mana={G}
+type=Creature
+subtype=Human
+auto={G}{T}{S}:destroy target(artifact)
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Add {R} to your mana pool.
+id=1800
+name=Sisters of the Flame
+rarity=U
+mana={1}{R}{R}
+type=Creature
+subtype=Human Shaman
+auto={T}:Add {R}
+power=2
+toughness=2
+[/card]
+[card]
+text={5}{T}: Return target enchantment card from your graveyard to your hand.
+id=1721
+auto={5}{T}:MoveTo(myHand) target(enchantment|myGraveyard)
+name=Skull of Orm
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+id=1817
+name=Squire
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+[card]
+text={1}{T}, Pay 1 life: Add one mana of any color to your mana pool.
+id=1722
+name=Standing Stones
+auto={T}:Add {W} && life:-1 controller
+auto={T}:Add {U} && life:-1 controller
+auto={T}:Add {B} && life:-1 controller
+auto={T}:Add {R} && life:-1 controller
+auto={T}:Add {G} && life:-1 controller
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
+text=Destroy all Goblins.
+id=1818
+auto=destroy all(goblin)
+name=Tivadar's Crusade
+rarity=U
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+text={T}, Sacrifice Tormod's Crypt: Exile all cards from target player's graveyard.
+auto={T}{S}:moveTo(exile) all(*|opponentgraveyard)
+auto={T}{S}:moveTo(exile) all(*|mygraveyard)
+id=1724
+name=Tormod's Crypt
+rarity=U
+mana={0}
+type=Artifact
+[/card]
+[card]
+text=Water Wurm gets +0/+1 as long as an opponent controls an Island.
+id=1764
+name=Water Wurm
+rarity=C
+mana={U}
+type=Creature
+subtype=Wurm
+auto=aslongas (island|opponentBattlefield) 0/1
+power=1
+toughness=1
+[/card]
+[card]
+text={T}: Witch Hunter deals 1 damage to target player.   {1}{W}{W}, {T}: Return target creature an opponent controls to its owner's hand.
+id=1819
+name=Witch Hunter
+rarity=U
+mana={2}{W}{W}
+type=Creature
+subtype=Human Cleric
+auto={T}:damage:1 target(player)
+auto={1}{W}{W}{T}:moveto(ownerHand) target(creature|opponentBattlefield)
+power=1
+toughness=1
+[/card]
+[card]
+text={G}{G}: Wormwood Treefolk gains forestwalk until end of turn and deals 2 damage to you.   {B}{B}: Wormwood Treefolk gains swampwalk until end of turn and deals 2 damage to you.
+id=1782
+name=Wormwood Treefolk
+rarity=U
+mana={3}{G}{G}
+type=Creature
+subtype=Treefolk
+auto={G}{G}:forestwalk && damage:2 controller
+auto={G}{G}:swampwalk && damage:2 controller
+power=4
+toughness=4
 [/card]
