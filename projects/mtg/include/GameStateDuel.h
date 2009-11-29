@@ -34,17 +34,7 @@ class GameStateDuel: public GameState, public JGuiListener
   int OpponentsDeckid;
   string musictrack;
   
-  bool MusicExist(string FileName){
-  string filepath = RESPATH;
-  filepath = filepath + "/" + resources.musicFile(FileName);
-  std::ifstream file(filepath.c_str());
-  if (file) {
-    file.close();
-    return true;
-  }
-  else
-    return false;
-  }
+  bool MusicExist(string FileName);
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
   void loadPlayerMomir(int playerId, int isAI);
   void loadPlayerRandom(int playerId, int isAI, int mode);

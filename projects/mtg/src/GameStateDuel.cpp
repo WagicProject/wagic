@@ -68,11 +68,7 @@ void GameStateDuel::Start()
   JRenderer * renderer = JRenderer::GetInstance();
   renderer->EnableVSync(true);
   OpponentsDeckid=0;
-   //stop menu music
-  if (GameApp::music){
-	      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-	      SAFE_DELETE(GameApp::music);
-      }
+
 
 #ifdef TESTSUITE
   SAFE_DELETE(testSuite);
@@ -251,7 +247,18 @@ void GameStateDuel::End()
 }
 
 
-
+//TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
+bool GameStateDuel::MusicExist(string FileName){
+  string filepath = RESPATH;
+  filepath = filepath + "/" + resources.musicFile(FileName);
+  std::ifstream file(filepath.c_str());
+  if (file) {
+    file.close();
+    return true;
+  }
+  else
+    return false;
+}
 
 void GameStateDuel::Update(float dt)
 {
@@ -338,30 +345,6 @@ void GameStateDuel::Update(float dt)
 	}
       break;
     case DUEL_STATE_PLAY:	
-      //start of in game music code
-	 musictrack = "";
-	 //check opponent id and choose the music track based on it
-	 if(OpponentsDeckid) {
-	  char temp[4096];
-	  sprintf(temp,"ai_baka_music%i.mp3",OpponentsDeckid);
-	  musictrack.assign(temp);
-	 }
-	 else if(mParent->gameType == GAME_TYPE_CLASSIC)
-	  musictrack = "ai_baka_music.mp3";
-	 else if(mParent->gameType == GAME_TYPE_MOMIR)
-	  musictrack = "ai_baka_music_momir.mp3";
-	 else if(mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2)
-	  musictrack = "ai_baka_music_random.mp3";
-
-	 if(!MusicExist(musictrack))
-	  musictrack = "ai_baka_music.mp3";
-
-    //play the music
-	if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0 && MusicExist(musictrack)){
-	 GameApp::music = resources.ssLoadMusic(musictrack.c_str());
-	 JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
-  }
-    //end of music code
       if (!game){
 	      GameObserver::Init(mPlayers, 2);
 	      game = GameObserver::GetInstance();
@@ -372,6 +355,36 @@ void GameStateDuel::Update(float dt)
             game->players[i]->life+=4;
           }
         }
+        //stop menu music
+        if (GameApp::music){
+          JSoundSystem::GetInstance()->StopMusic(GameApp::music);
+          SAFE_DELETE(GameApp::music);
+        }
+        //start of in game music code
+        if (GameApp::HasMusic && options[Options::MUSICVOLUME].number > 0){
+	         musictrack = "";
+	         //check opponent id and choose the music track based on it
+	         if(OpponentsDeckid) {
+	          char temp[4096];
+	          sprintf(temp,"ai_baka_music%i.mp3",OpponentsDeckid);
+	          musictrack.assign(temp);
+	         }
+	         else if(mParent->gameType == GAME_TYPE_CLASSIC)
+	          musictrack = "ai_baka_music.mp3";
+	         else if(mParent->gameType == GAME_TYPE_MOMIR)
+	          musictrack = "ai_baka_music_momir.mp3";
+	         else if(mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2)
+	          musictrack = "ai_baka_music_random.mp3";
+
+          if(!MusicExist(musictrack))
+	          musictrack = "ai_baka_music.mp3";
+
+	        if (MusicExist(musictrack)){
+	          GameApp::music = resources.ssLoadMusic(musictrack.c_str());
+	          JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
+          }
+        }
+        //end of music code
       }
       //      mParent->effect->UpdateSmall(dt);
       game->Update(dt);
