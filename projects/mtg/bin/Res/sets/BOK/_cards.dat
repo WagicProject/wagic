@@ -1,12 +1,386 @@
 [card]
+text=Whenever a land is put into a graveyard from the battlefield, Akki Raider gets +1/+0 until end of turn.
+auto=@movedto(land|myGraveyard) from(Battlefield):1/0 ueot
+auto=@movedto(land|opponentGraveyard) from(Battlefield):1/0 ueot
 id=74596
 name=Akki Raider
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior 
+power=2
+toughness=1 
+[/card]
+[card]
+text=Haste Ashen Monstrosity attacks each turn if able.
+id=74469
+name=Ashen Monstrosity 
+rarity=U
+mana={5}{R}{R}
+type=Creature
+subtype=Spirit 
+power=7
+toughness=4 
+abilities=haste,mustattack
+[/card]
+[card]
+text=Sacrifice Bile Urchin: Target player loses 1 life.
+id=74427
+name=Bile Urchin
+rarity=C
+mana={B}
+type=Creature
+subtype=Spirit
+auto={S}:life:-1 target(player)
+power=1
+toughness=1 
+[/card]
+[card]
+text=Flash   Enchant creature   At the beginning of your upkeep, you lose 1 life.   {0}: Regenerate enchanted creature.
+target=creature
+auto=@each my upkeep:life:-1 controller
+auto={0}:regenerate
+id=74417
+name=Blessing of Leeches
+rarity=C
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
+text=Sacrifice Child of Thorns: Target creature gets +1/+1 until end of turn.
+id=74461
+name=Child of Thorns
+rarity=C
+mana={G}
+type=Creature
+subtype=Spirit
+auto={S}:1/1 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Legendary creatures you control get +2/+2.
+id=74517
+name=Day of Destiny
+rarity=R
+mana={3}{W}
+type=Enchantment
+auto=lord(creature[legendary]|myBattlefield) 2/2
+abilities=legendary
+[/card]
+[card]
+text=Empty-Shrine Kannushi has protection from the colors of permanents you control.
+id=74513
+name=Empty-Shrine Kannushi
+rarity=U
+mana={W}
+auto=aslongas(*[red]|myBattlefield) protection from red
+auto=aslongas(*[blue]|myBattlefield) protection from blue
+auto=aslongas(*[green]|myBattlefield) protection from green
+auto=aslongas(*[black]|myBattlefield) protection from black
+auto=aslongas(*[white]|myBattlefield) protection from white
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+text=Exile all creatures.
+auto=moveto(exile) all(creature)
+id=81991
+name=Final Judgment
+rarity=R
+mana={4}{W}{W}
+type=Sorcery 
+[/card]
+[card]
+text=First Volley deals 1 damage to target creature and 1 damage to that creature's controller.
+id=74451
+name=First Volley
+target=creature
+auto=damage:1
+auto=damage:1 targetController
+rarity=C
+mana={1}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+id=74589
+name=Frost Ogre
+rarity=C
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre Warrior
+power=5
+toughness=3
+[/card]
+[card]
+text=Sacrifice Frostling: Frostling deals 1 damage to target creature.
+id=74621
+name=Frostling
+rarity=C
+mana={R}
+auto={S}:damage:1 target(creature)
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+id=74435
+name=Gnarled Mass
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
+text=Goblin Cohort can't attack unless you've cast a creature spell this turn.
+id=74433
+name=Goblin Cohort
+rarity=C
+mana={R}
+type=Creature
+subtype=Goblin Warrior
+auto=@movedTo(creature|mystack):-cantattack ueot
+power=2
+toughness=2
+abilities=cantattack
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   When Gods' Eye, Gate to the Reikai is put into a graveyard from the battlefield, put a 1/1 colorless Spirit creature token onto the battlefield.
+id=74668
+name=Gods' Eye, Gate to the Reikai
+rarity=U
+type=Land
+auto={T}:Add {1}
+auto=@movedto(this|mygraveyard) from(Battlefield):token(Spirit,Creature Spirit,1/1)
+abilities=legendary
+[/card]
+[card]
+text=Destroy target legendary creature.
+id=74465
+target=creature[legendary]
+auto=destroy
+name=Hero's Demise
+rarity=R 
+mana={1}{B} 
+type=Instant
+[/card]
+[card]
+text=Ire of Kaminari deals damage to target creature or player equal to the number of Arcane cards in your graveyard.
+id=74609
+target=creature,player
+auto=foreach(arcane|myGraveyard) damage:1
+name=Ire of Kaminari
+rarity=C
+mana={3}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+text=Whenever an opponent casts a Spirit or Arcane spell, Ishi-Ishi, Akki Crackshot deals 2 damage to that player.
+auto=@movedto(spirit,arcane|opponentstack):damage:2 opponent
+id=74636
+name=Ishi-Ishi, Akki Crackshot
+rarity=R
 mana={1}{R}
 type=Creature
 subtype=Goblin Warrior
-power=2
+power=1
 toughness=1
-text=Whenever a land is put into a graveyard from the battlefield, Akki Raider gets +1/+0 until end of turn.
-auto=@movedTo(land|graveyard) from(inplay):1/0 ueot
+abilities=legendary
+[/card]
+[card]
+text=Whenever you cast a Spirit or Arcane spell, Kami of Tattered Shoji gains flying until end of turn.
+id=74460
+name=Kami of Tattered Shoji
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Spirit
+auto=@movedto(arcane,spirit|mystack):flying ueot
+power=2
+toughness=5
+[/card]
+[card]
+text=Whenever a land enters the battlefield, you may gain 1 life.
+auto=@movedto(land|battlefield):may life:1 controller
+id=74571
+name=Lifegift
+rarity=R
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+text=Whenever you cast a Spirit or Arcane spell, you may put a land card from your hand onto the battlefield tapped.
+auto=@movedto(arcane,spirit|mystack):may moveto(myBattlefield) target(land|myhand) && tap
+id=74584
+name=Loam Dweller
 rarity=U
+mana={1}{G}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+[card]
+text=Sacrifice Nezumi Shadow-Watcher: Destroy target Ninja.
+id=74467
+name=Nezumi Shadow-Watcher
+rarity=U
+mana={B}
+type=Creature
+subtype=Rat Warrior
+auto={S}:destroy target(ninja)
+power=1
+toughness=1
+[/card]
+[card]
+text=Whenever a player casts a spell, tap Ogre Recluse.
+id=74645
+name=Ogre Recluse
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Ogre Warrior
+auto=@movedto(*|mystack):tap
+auto=@movedto(*|opponentstack):tap
+power=5
+toughness=4
+[/card]
+[card]
+text=Flying   Whenever you cast a Spirit or Arcane spell, put a 3/3 white Spirit creature token with flying onto the battlefield.
+auto=@movedto(arcane,spirit|mystack):token(Spirit,Creature Spirit,3/3,flying white)
+id=74027
+name=Oyobi, Who Split the Heavens
+rarity=R 
+mana={6}{W}
+type=Creature
+subtype=Spirit
+power=3
+toughness=6
+abilities=legendary,flying
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has flying.   Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
+id=74496
+target=creature
+auto=flying
+auto={S}:moveTo(ownerhand)
+name=Phantom Wings
+rarity=C
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Return all artifacts and enchantments to their owners' hands.
+auto=moveto(ownerhand) all(artifact,enchantment)
+id=74110
+name=Reduce to Dreams
+rarity=R
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+[card]
+text=Draw a card for each Spirit you control.
+auto=foreach(spirit|myBattlefield):draw:1 controller
+id=74532
+name=Ribbons of the Reikai
+rarity=C
+mana={4}{U}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
+text=Whenever you cast a Spirit or Arcane spell, Scaled Hulk gets +2/+2 until end of turn.
+id=74541
+name=Scaled Hulk
+rarity=C
+mana={5}{G}
+auto=@movedto(spirit,arcane|myStack):2/2 ueot
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
+text=Whenever you cast a Spirit or Arcane spell, you may search your library for an Aura card with enchant creature, reveal it, and put it into your hand. If you do, shuffle your library.
+id=74412
+name=Tallowisp
+rarity=U
+mana={1}{W}
+auto=@movedto(spirit,arcane|mystack):may moveto(myhand) target(aura|myLibrary)
+type=Creature
+subtype=Spirit
+power=1
+toughness=3
+[/card]
+[card]
+name=Teardrop Kami
+text=Sacrifice Teardrop Kami: You may tap or untap target creature. 
+id=74458
+rarity=C
+mana={U}
+type=Creature
+subtype=Spirit
+auto={S}:tap target(creature)
+auto={S}:untap target(creature)
+power=1
+toughness=1
+[/card]
+[card]
+text=Destroy target artifact or enchantment. You gain life equal to its converted mana cost. 
+id=74585
+target=artifact,enchantment
+auto=destroy
+auto=life:manacost controller
+name=Terashi's Grasp
+rarity=C
+mana={2}{W}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
+text=Defender; reach (This creature can block creatures with flying.)   Traproot Kami's toughness is equal to the number of Forests on the battlefield.
+id=74627
+name=Traproot Kami
+rarity=C
+mana={G}
+type=Creature
+subtype=Spirit
+auto=foreach(forest|Battlefield) 0/1
+power=0
+toughness=*
+abilities=defender,reach
+[/card]
+[card]
+text=Put target land on top of its owner's library.
+id=74568
+target=land
+auto=moveto(ownerlibrary)
+name=Uproot
+rarity=C
+mana={3}{G}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
+text=When Yukora, the Prisoner leaves the battlefield, sacrifice all non-Ogre creatures you control.
+id=74510
+name=Yukora, the Prisoner
+rarity=R
+mana={2}{B}{B}
+auto=@movedto(this|mygraveyard):bury all(creature[-ogre]|myBattlefield)
+type=Creature
+subtype=Demon Spirit
+power=5
+toughness=5
+abilities=legendary
 [/card]
