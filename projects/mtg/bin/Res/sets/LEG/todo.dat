@@ -329,14 +329,6 @@ subtype=Zombie
 toughness=1
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt this turn.
-id=1434
-name=Darkness
-rarity=C
-type=Instant
-mana={B}
-[/card]
-[card]
 text=Enchant creature     Enchanted creature can't attack.     Prevent all combat damage that would be dealt by enchanted creature.
 id=1435
 name=Demonic Torment
@@ -695,15 +687,6 @@ text=Any number of target creatures become white until end of turn.
 id=1617
 name=Heaven's Gate
 rarity=U
-type=Instant
-mana={W}
-[/card]
-
-[card]
-text=Prevent all combat damage that would be dealt this turn.
-id=1618
-name=Holy Day
-rarity=C
 type=Instant
 mana={W}
 [/card]

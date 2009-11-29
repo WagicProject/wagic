@@ -701,6 +701,15 @@ mana={G}{W}
 type=Instant
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt this turn.
+auto=preventAllcombatDamage ueot
+id=22940
+name=Holy Day
+rarity=C
+mana={W}
+type=Instant
+[/card]
+[card]
 text={B}: Hooded Kavu gains fear until end of turn.
 id=23061
 name=Hooded Kavu

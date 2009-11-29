@@ -150,14 +150,6 @@ text=Target opponent reveals his or her hand. You choose a noncreature, nonland 
 rarity=C
 [/card]
 [card]
-id=189919
-name=Fog
-mana={G}
-type=Instant
-text=Prevent all combat damage that would be dealt this turn.
-rarity=C
-[/card]
-[card]
 id=191243
 name=Garruk Wildspeaker
 mana={2}{G}{G}

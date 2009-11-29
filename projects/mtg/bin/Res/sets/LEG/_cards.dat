@@ -248,6 +248,15 @@ toughness=*
 abilities=legendary
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt this turn.
+auto=preventAllcombatDamage ueot
+id=1434
+name=Darkness
+rarity=C
+mana={B}
+type=Instant
+[/card]
+[card]
 text={T}: D'Avenant Archer deals 1 damage to target attacking or blocking creature.
 id=1605
 name=D'Avenant Archer
@@ -519,6 +528,15 @@ name=Hellfire
 rarity=R
 mana={2}{B}{B}{B}
 type=Sorcery
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt this turn.
+auto=preventAllcombatDamage ueot
+id=1618
+name=Holy Day
+rarity=C
+mana={W}
+type=Instant
 [/card]
 [card]
 text=First strike

@@ -680,14 +680,6 @@ subtype=Wall
 toughness=5
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt this turn.
-id=3385
-name=Fog
-rarity=C
-type=Instant
-mana={G}
-[/card]
-[card]
 text=If you would draw a card, return a card from your graveyard to your hand instead. If you can't, you lose the game.     If a card would be put into your graveyard from anywhere, remove that card from the game instead.
 id=3293
 name=Forbidden Crypt

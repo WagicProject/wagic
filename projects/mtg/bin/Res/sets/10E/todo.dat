@@ -463,15 +463,6 @@ type=Enchantment
 mana={W}
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt this turn.
-id=129593
-name=Holy Day
-rarity=C
-color=White
-type=Instant
-mana={W}
-[/card]
-[card]
 text=When Hunted Wumpus comes into play, each other player may put a creature card from his or her hand into play.
 id=129599
 name=Hunted Wumpus

@@ -1082,6 +1082,15 @@ subtype=Giant
 toughness=3
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt this turn.
+auto=preventAllcombatDamage ueot
+id=129593
+name=Holy Day
+rarity=C
+mana={W}
+type=Instant
+[/card]
+[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+2.
 target=creature
 auto=1/2

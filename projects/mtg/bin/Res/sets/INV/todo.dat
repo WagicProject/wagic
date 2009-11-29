@@ -497,14 +497,6 @@ type=Enchantment
 mana={2}{W}{W}
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt this turn.
-id=22940
-name=Holy Day
-rarity=C
-type=Instant
-mana={W}
-[/card]
-[card]
 text={1}{R}{G}, {T}: Remove from the game Hunting Kavu and target creature without flying that's attacking you.
 id=23176
 name=Hunting Kavu

@@ -464,6 +464,15 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt this turn.
+auto=preventAllcombatDamage ueot
+id=3385
+name=Fog
+rarity=C
+mana={G}
+type=Instant
+[/card]
+[card]
 text={G}, Sacrifice a Forest: Foratog gets +2/+2 until end of turn.
 id=3386 
 name=Foratog
