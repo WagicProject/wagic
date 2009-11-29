@@ -113,15 +113,6 @@ mana={B}
 subtype=Aura
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt this turn.
-id=1244
-name=Fog
-rarity=C
-color=Green
-type=Instant
-mana={G}
-[/card]
-[card]
 text=Copy target instant or sorcery spell, except that it copies Fork's color. You may choose new targets for the copy.
 id=1294
 name=Fork

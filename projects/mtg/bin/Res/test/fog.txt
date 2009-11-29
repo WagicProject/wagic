@@ -1,0 +1,34 @@
+#Test:prevent all combat damage
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:fog
+inplay:prodigal sorcerer,raging goblin
+manapool:{G}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+fog
+prodigal sorcerer
+p2
+next
+#begin
+next
+#attackers
+raging goblin
+next
+#blockers
+grizzly bears
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:fog
+inplay:prodigal sorcerer,raging goblin
+[PLAYER2]
+inplay:grizzly bears
+life:19
+[END]

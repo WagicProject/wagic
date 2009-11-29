@@ -818,6 +818,15 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt this turn.
+auto=preventAllcombatDamage ueot
+id=1244
+name=Fog
+rarity=C
+type=Instant
+mana={G}
+[/card]
+[card]
 text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  At the beginning of your upkeep, Force of Nature deals 8 damage to you unless you pay {G}{G}{G}{G}.
 id=1245
 name=Force of Nature

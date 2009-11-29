@@ -157,6 +157,7 @@ fledgling_imp.txt
 fledgling_imp2.txt
 flowstone_hellion.txt
 flowstone_slide.txt
+fog.txt
 foratog.txt
 force_of_nature.txt
 force_of_nature2.txt
