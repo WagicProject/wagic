@@ -1,1519 +1,1062 @@
-Ôªø[card]
-id=49075
+[card]
+text=Remove all counters from all permanents and exile all tokens.
 name=AEther Snap
 mana={3}{B}{B}
 type=Sorcery
-text=Remove all counters from all permanents and exile all tokens.
 rarity=R
 [/card]
 [card]
-id=48146
+text=At the beginning of your upkeep, you may put a charge counter on ∆ther Vial. {T}: You may put a creature card with converted mana cost equal to the number of charge counters on ∆ther Vial from your hand onto the battlefield.
 name=AEther Vial
 mana={1}
 type=Artifact
-text=At the beginning of your upkeep, you may put a charge counter on AEther Vial. {T}: You may put a creature card with converted mana cost equal to the number of charge counters on √ÅEher Vial from your hand onto the battlefield.
 rarity=U
 [/card]
 [card]
-id=46148
+text=Whenever you gain life, put that many +1/+1 counters on Ageless Entity.
 name=Ageless Entity
 mana={3}{G}{G}
 type=Creature
 subtype=Elemental
 power=4
 toughness=4
-text=Whenever you gain life, put that many +1/+1 counters on Ageless Entity.
 rarity=R
 [/card]
-
 [card]
-id=10670
+text={2}, {T}, Sacrifice a land: Draw a card and put a charge counter on Arcane Spyglass. Remove three charge counters from Arcane Spyglass: Draw a card.
 name=Arcane Spyglass
 mana={4}
 type=Artifact
-text={2}, {T}, Sacrifice a land: Draw a card and put a charge counter on Arcane Spyglass. Remove three charge counters from Arcane Spyglass: Draw a card.
 rarity=C
 [/card]
 [card]
-id=46129
+text=Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Bruiser
 mana={5}
+auto=counter(1/1,3)
+auto=@movedto(this|graveyard):may counter(1/1,3) target(creature[artifact])
 type=Artifact Creature
 subtype=Golem
 power=0
 toughness=0
-text=Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=C
 [/card]
 [card]
-id=50937
+text=Trample. Whenever another artifact enters the battlefield, put a +1/+1 counter on Arcbound Crusher. Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Crusher
 mana={4}
+abilities=trample
+auto=@movedto(artifact|myBattlefield):counter(1/1,1)
+auto=@movedto(artifact|opponentBattlefield):counter(1/1,1)
+auto=counter(1/1,1)
+auto=@movedto(this|graveyard):may counter(1/1,1) target(creature)
 type=Artifact Creature
 subtype=Juggernaut
 power=0
 toughness=0
-text=Trample Whenever another artifact enters the battlefield, put a +1/+1 counter on Arcbound Crusher. Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=U
 [/card]
 [card]
-id=50938
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) At the beginning of your upkeep, you may move a +1/+1 counter from target creature onto Arcbound Fiend. Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Fiend
 mana={6}
+abilities=fear
+auto=counter(1/1,3)
+auto=@movedto(this|graveyard):may counter(1/1,3) target(creature)
 type=Artifact Creature
 subtype=Horror
 power=0
 toughness=0
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) At the beginning of your upkeep, you may move a +1/+1 counter from target creature onto Arcbound Fiend. Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=U
 [/card]
 [card]
-id=46101
+text=Haste. Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Hybrid
 mana={4}
+abilities=haste
+auto=counter(1/1,2)
+auto=@movedto(this|graveyard):may counter(1/1,2) target(creature)
 type=Artifact Creature
 subtype=Beast
 power=0
 toughness=0
-text=Haste Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=C
 [/card]
 [card]
-id=46130
+text=First strike. Modular 4 (This enters the battlefield with four +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Lancer
 mana={7}
+abilities=first strike
+auto=counter(1/1,4)
+auto=@movedto(this|graveyard):may counter(1/1,4) target(creature)
 type=Artifact Creature
 subtype=Beast
 power=0
 toughness=0
-text=First strike Modular 4 (This enters the battlefield with four +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=U
 [/card]
 [card]
-id=39639
+text=At the beginning of your upkeep, put a +1/+1 counter on each creature with modular you control. Modular 6 (This enters the battlefield with six +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Overseer
 mana={8}
+auto=counter(1/1,6)
+auto=@movedto(this|graveyard):may counter(1/1,6) target(creature)
 type=Artifact Creature
 subtype=Golem
 power=0
 toughness=0
-text=At the beginning of your upkeep, put a +1/+1 counter on each creature with modular you control. Modular 6 (This enters the battlefield with six +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=R
 [/card]
 [card]
-id=50943
+text=Sacrifice an artifact: Put a +1/+1 counter on Arcbound Ravager. Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Ravager
 mana={2}
+auto={S(artifact|myBattlefield)}:counter(1/1,1)
+auto=counter(1/1,1)
+auto=@movedto(this|graveyard):may counter(1/1,1) target(creature)
 type=Artifact Creature
 subtype=Beast
 power=0
 toughness=0
-text=Sacrifice an artifact: Put a +1/+1 counter on Arcbound Ravager. Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=R
 [/card]
 [card]
-id=50528
+text=Remove a +1/+1 counter from Arcbound Reclaimer: Put target artifact card from your graveyard on top of your library. Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Reclaimer
 mana={4}
+auto=counter(1/1,2)
+auto=@movedto(this|graveyard):may counter(1/1,2) target(creature)
 type=Artifact Creature
 subtype=Golem
 power=0
 toughness=0
-text=Remove a +1/+1 counter from Arcbound Reclaimer: Put target artifact card from your graveyard on top of your library. Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=R
 [/card]
 [card]
-id=50939
+text=Whenever Arcbound Slith deals combat damage to a player, put a +1/+1 counter on it. Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Slith
 mana={2}
+auto=counter(1/1,1)
+auto=@movedto(this|graveyard):may counter(1/1,1) target(creature)
 type=Artifact Creature
 subtype=Slith
 power=0
 toughness=0
-text=Whenever Arcbound Slith deals combat damage to a player, put a +1/+1 counter on it. Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=U
 [/card]
 [card]
-id=46131
+text=Flying. Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Stinger
 mana={2}
+auto=counter(1/1,1)
+auto=@movedto(this|graveyard):may counter(1/1,1) target(creature)
+abilities=flying
 type=Artifact Creature
 subtype=Insect
 power=0
 toughness=0
-text=Flying Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=C
 [/card]
 [card]
-id=48604
+text=Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 name=Arcbound Worker
 mana={1}
+auto=counter(1/1,1)
+auto=@movedto(this|graveyard):may counter(1/1,1) target(creature)
 type=Artifact Creature
 subtype=Construct
 power=0
 toughness=0
-text=Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=C
 [/card]
 [card]
-id=48988
+text=As long as Auriok Glaivemaster is equipped, it gets +1/+1 and has first strike.
 name=Auriok Glaivemaster
 mana={W}
 type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
-text=As long as Auriok Glaivemaster is equipped, it gets +1/+1 and has first strike.
 rarity=C
 [/card]
 [card]
-id=43556
+text={1}: Target artifact creature blocks Auriok Siege Sled this turn if able. {1}: Target artifact creature can't block Auriok Siege Sled this turn.
 name=Auriok Siege Sled
 mana={6}
 type=Artifact Creature
 subtype=Juggernaut
 power=3
 toughness=5
-text={1}: Target artifact creature blocks Auriok Siege Sled this turn if able. {1}: Target artifact creature can't block Auriok Siege Sled this turn.
 rarity=U
 [/card]
 [card]
-id=49012
+text=Choose one ó Barbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. Entwine {2} (Choose both if you pay the entwine cost.)
 name=Barbed Lightning
 mana={2}{R}
 type=Instant
-text=Choose one ‚ÄÅEBarbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. Entwine {2} (Choose both if you pay the entwine cost.)
 rarity=C
 [/card]
 [card]
-id=39439
-name=Blinkmoth Nexus
-mana=
-type=Land
 text={T}: Add {1} to your mana pool. {1}: Blinkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying until end of turn. It's still a land. {1}, {T}: Target Blinkmoth creature gets +1/+1 until end of turn.
+name=Blinkmoth Nexus
+#require testing
+auto={T}:add{1}
+auto={1}:becomes(Blinkmoth artifact creature,1/1,flying)
+auto={1}{T}:1/1 target (Blinkmoth)
+type=Land
 rarity=R
 [/card]
 [card]
-id=43557
-name=Burden of Greed
-mana={3}{B}
-type=Instant
-text=Target player loses 1 life for each tapped artifact he or she controls.
-rarity=C
-[/card]
-[card]
-id=48572
+text=Enchant Equipment When Carry Away enters the battlefield, unattach enchanted Equipment. You control enchanted Equipment.
 name=Carry Away
 mana={U}{U}
 type=Enchantment
 subtype=Aura
-text=Enchant Equipment When Carry Away enters the battlefield, unattach enchanted Equipment. You control enchanted Equipment.
 rarity=U
 [/card]
 [card]
-id=49097
+text=Whenever an opponent casts a nonartifact spell, put a charge counter on Chimeric Egg. Remove three charge counters from Chimeric Egg: Chimeric Egg becomes a 6/6 Construct artifact creature with trample until end of turn.
 name=Chimeric Egg
 mana={3}
 type=Artifact
-text=Whenever an opponent casts a nonartifact spell, put a charge counter on Chimeric Egg. Remove three charge counters from Chimeric Egg: Chimeric Egg becomes a 6/6 Construct artifact creature with trample until end of turn.
 rarity=U
 [/card]
 [card]
-id=46096
+text=When Chittering Rats enters the battlefield, target opponent puts a card from his or her hand on top of his or her library.
 name=Chittering Rats
 mana={1}{B}{B}
 type=Creature
 subtype=Rat
 power=2
 toughness=2
-text=When Chittering Rats enters the battlefield, target opponent puts a card from his or her hand on top of his or her library.
 rarity=C
 [/card]
 [card]
-id=48127
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) Flying When Chromescale Drake enters the battlefield, reveal the top three cards of your library. Put all artifact cards revealed this way into your hand and the rest into your graveyard.
 name=Chromescale Drake
 mana={6}{U}{U}{U}
 type=Creature
 subtype=Drake
 power=3
 toughness=4
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) Flying When Chromescale Drake enters the battlefield, reveal the top three cards of your library. Put all artifact cards revealed this way into your hand and the rest into your graveyard.
 rarity=R
 [/card]
 [card]
-id=49016
+text={T}: Put a charge counter on target artifact. Sacrifice Coretapper: Put two charge counters on target artifact.
 name=Coretapper
 mana={2}
 type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
-text={T}: Put a charge counter on target artifact. Sacrifice Coretapper: Put two charge counters on target artifact.
 rarity=U
 [/card]
 [card]
-id=46078
-name=Crazed Goblin
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-text=Crazed Goblin attacks each turn if able.
-rarity=C
-[/card]
-[card]
-id=43563
+text=Darksteel Brute is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {3}: Darksteel Brute becomes a 2/2 Beast artifact creature until end of turn.
 name=Darksteel Brute
+#require testing
 mana={2}
 type=Artifact
-text=Darksteel Brute is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {3}: Darksteel Brute becomes a 2/2 Beast artifact creature until end of turn.
+auto={3}:become(Beast artifact creature,2/2)
+abilities=indestructible
 rarity=U
 [/card]
 [card]
-id=45415
-name=Darksteel Citadel
-mana=
-type=Artifact Land
-text=Darksteel Citadel is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {T}: Add {1} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=48158
+text=Trample. Darksteel Colossus is indestructible. If Darksteel Colossus would be put into a graveyard from anywhere, reveal Darksteel Colossus and shuffle it into its owner's library instead.
 name=Darksteel Colossus
-mana={1}{1}
+abilities=indestructible,trample
+#Does not work
+auto=@movedto(this|graveyard):moveto(mylibrary) && shuffle
+mana={{1}{1}}
 type=Artifact Creature
 subtype=Golem
 power=11
 toughness=11
-text=Trample Darksteel Colossus is indestructible. If Darksteel Colossus would be put into a graveyard from anywhere, reveal Darksteel Colossus and shuffle it into its owner's library instead.
-rarity=M
-[/card]
-[card]
-id=48072
-name=Darksteel Forge
-mana={9}
-type=Artifact
-text=Artifacts you control are indestructible. ("Destroy" effects and lethal damage don't destroy them.)
 rarity=R
 [/card]
 [card]
-id=46136
-name=Darksteel Gargoyle
-mana={7}
-type=Artifact Creature
-subtype=Gargoyle
-power=3
-toughness=3
-text=Flying Darksteel Gargoyle is indestructible. ("Destroy" effects and lethal damage don't destroy it.)
-rarity=U
-[/card]
-[card]
-id=48048
-name=Darksteel Ingot
-mana={3}
-type=Artifact
-text=Darksteel Ingot is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {T}: Add one mana of any color to your mana pool.
-rarity=C
-[/card]
-[card]
-id=39485
+text=Darksteel Pendant is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {1}, {T}: Look at the top card of your library. You may put that card on the bottom of your library.
 name=Darksteel Pendant
 mana={2}
 type=Artifact
-text=Darksteel Pendant is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {1}, {T}: Look at the top card of your library. You may put that card on the bottom of your library.
+abilities=indestructible
 rarity=C
 [/card]
 [card]
-id=43548
+text=Darksteel Reactor is indestructible. ("Destroy" effects and lethal damage don't destroy it.). At the beginning of your upkeep, you may put a charge counter on Darksteel Reactor. When Darksteel Reactor has twenty or more charge counters on it, you win the game.
 name=Darksteel Reactor
 mana={4}
 type=Artifact
-text=Darksteel Reactor is indestructible. ("Destroy" effects and lethal damage don't destroy it.) At the beginning of your upkeep, you may put a charge counter on Darksteel Reactor. When Darksteel Reactor has twenty or more charge counters on it, you win the game.
+abilities=indestructible
 rarity=R
 [/card]
 [card]
-id=50647
+text=Each player loses X life, then discards X cards, then sacrifices X creatures, then sacrifices X lands.
 name=Death Cloud
 mana={X}{B}{B}{B}
 type=Sorcery
-text=Each player loses X life, then discards X cards, then sacrifices X creatures, then sacrifices X lands.
 rarity=R
 [/card]
 [card]
-id=46023
+text=Imprint ó {1}: Exile target creature card from your graveyard. As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
 name=Death-Mask Duplicant
 mana={7}
 type=Artifact Creature
 subtype=Shapeshifter
 power=5
 toughness=5
-text=Imprint ‚ÄÅE{1}: Exile target creature card from your graveyard. As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
 rarity=U
 [/card]
 [card]
-id=72682
-name=Demon's Horn
-mana={2}
-type=Artifact
-text=Whenever a player casts a black spell, you may gain 1 life.
-rarity=U
-[/card]
-[card]
-id=43540
+text=Destroy target artifact. If that artifact had counters on it, put that many +1/+1 counters or charge counters on an artifact you control.
 name=Dismantle
 mana={2}{R}
 type=Sorcery
-text=Destroy target artifact. If that artifact had counters on it, put that many +1/+1 counters or charge counters on an artifact you control.
+target=artifact
+auto=destroy
 rarity=U
 [/card]
 [card]
-id=72683
-name=Dragon's Claw
-mana={2}
-type=Artifact
-text=Whenever a player casts a red spell, you may gain 1 life.
-rarity=U
-[/card]
-[card]
-id=51056
-name=Drill-Skimmer
-mana={4}
-type=Artifact Creature
-subtype=Thopter
-power=2
-toughness=1
-text=Flying Drill-Skimmer has shroud as long as you control another artifact creature. (It can't be the target of spells or abilities.)
-rarity=C
-[/card]
-[card]
-id=49089
-name=Drooling Ogre
-mana={1}{R}
-type=Creature
-subtype=Ogre
-power=3
-toughness=3
-text=Whenever a player casts an artifact spell, that player gains control of Drooling Ogre. (This effect lasts indefinitely.)
-rarity=C
-[/card]
-[card]
-id=46157
+text=Affinity for Swamps (This spell costs {1} less to cast for each Swamp you control.) Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
 name=Dross Golem
 mana={5}
+abilities=fear
 type=Artifact Creature
 subtype=Golem
 power=3
 toughness=2
-text=Affinity for Swamps (This spell costs {1} less to cast for each Swamp you control.) Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
 rarity=C
 [/card]
 [card]
-id=46165
+text=Flying, trample When Eater of Days enters the battlefield, you skip your next two turns.
 name=Eater of Days
 mana={4}
+abilities=flying,trample
 type=Artifact Creature
 subtype=Leviathan
 power=9
 toughness=8
-text=Flying, trample When Eater of Days enters the battlefield, you skip your next two turns.
 rarity=R
 [/card]
 [card]
-id=43592
+text=Destroy target enchantment and all other enchantments with the same name as that enchantment.
 name=Echoing Calm
 mana={1}{W}
 type=Instant
-text=Destroy target enchantment and all other enchantments with the same name as that enchantment.
+target=enchantment
+auto=destroy
 rarity=C
 [/card]
 [card]
-id=46169
+text=Target creature and all other creatures with the same name as that creature get +2/+2 until end of turn.
 name=Echoing Courage
 mana={1}{G}
 type=Instant
-text=Target creature and all other creatures with the same name as that creature get +2/+2 until end of turn.
+target=creature
+auto=2/2
 rarity=C
 [/card]
 [card]
-id=46176
+text=Target creature and all other creatures with the same name as that creature get -2/-2 until end of turn.
 name=Echoing Decay
 mana={1}{B}
 type=Instant
-text=Target creature and all other creatures with the same name as that creature get -2/-2 until end of turn.
+target=creature
+auto=-2/-2
 rarity=C
 [/card]
 [card]
-id=46155
+text=Destroy target artifact and all other artifacts with the same name as that artifact.
 name=Echoing Ruin
 mana={1}{R}
 type=Sorcery
-text=Destroy target artifact and all other artifacts with the same name as that artifact.
+target=artifact
+auto=destroy
 rarity=C
 [/card]
 [card]
-id=46162
+text=Return target nonland permanent and all other permanents with the same name as that permanent to their owners' hands.
 name=Echoing Truth
 mana={1}{U}
 type=Instant
-text=Return target nonland permanent and all other permanents with the same name as that permanent to their owners' hands.
+target=*[-land]
+auto=moveto(ownerhand)
 rarity=C
 [/card]
+
 [card]
-id=45469
-name=Emissary of Despair
-mana={1}{B}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-text=Flying Whenever Emissary of Despair deals combat damage to a player, that player loses 1 life for each artifact he or she controls.
-rarity=U
-[/card]
-[card]
-id=48153
-name=Emissary of Hope
-mana={1}{W}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-text=Flying Whenever Emissary of Hope deals combat damage to a player, you gain 1 life for each artifact that player controls.
-rarity=U
-[/card]
-[card]
-id=50536
-name=Essence Drain
-mana={4}{B}
-type=Sorcery
-text=Essence Drain deals 3 damage to target creature or player and you gain 3 life.
-rarity=C
-[/card]
-[card]
-id=46058
+text=Whenever Fangren Firstborn attacks, put a +1/+1 counter on each attacking creature.
 name=Fangren Firstborn
 mana={1}{G}{G}{G}
+auto=aslongas(this[attacking])counter(1/1,1) all(creature[attacking])
 type=Creature
 subtype=Beast
 power=4
 toughness=2
-text=Whenever Fangren Firstborn attacks, put a +1/+1 counter on each attacking creature.
 rarity=R
 [/card]
 [card]
-id=46768
-name=Fireball
-mana={X}{R}
-type=Sorcery
-text=Fireball deals X damage divided evenly, rounded down, among any number of target creatures and/or players. Fireball costs {1} more to cast for each target beyond the first.
-rarity=U
-[/card]
-[card]
-id=50539
+text=Flamebreak deals 3 damage to each creature without flying and each player. Creatures dealt damage this way can't be regenerated this turn.
 name=Flamebreak
 mana={R}{R}{R}
 type=Sorcery
-text=Flamebreak deals 3 damage to each creature without flying and each player. Creatures dealt damage this way can't be regenerated this turn.
+auto=damage:3 all(creature[-flying],player)
 rarity=R
 [/card]
 [card]
-id=46060
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.). Flying When Furnace Dragon enters the battlefield, if you cast it from your hand, exile all artifacts.
 name=Furnace Dragon
 mana={6}{R}{R}{R}
 type=Creature
 subtype=Dragon
 power=5
 toughness=5
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) Flying When Furnace Dragon enters the battlefield, if you cast it from your hand, exile all artifacts.
 rarity=R
 [/card]
 [card]
-id=46168
+text=Whenever Gemini Engine attacks, put a colorless Construct artifact creature token named Twin onto the battlefield attacking. Its power is equal to Gemini Engine's power and its toughness is equal to Gemini Engine's toughness. Sacrifice the token at end of combat.
 name=Gemini Engine
 mana={6}
 type=Artifact Creature
 subtype=Construct
 power=3
 toughness=4
-text=Whenever Gemini Engine attacks, put a colorless Construct artifact creature token named Twin onto the battlefield attacking. Its power is equal to Gemini Engine's power and its toughness is equal to Gemini Engine's toughness. Sacrifice the token at end of combat.
 rarity=R
 [/card]
 [card]
-id=46160
+text=Whenever a nontoken creature enters the battlefield, if Genesis Chamber is untapped, that creature's controller puts a 1/1 colorless Myr artifact creature token onto the battlefield.
 name=Genesis Chamber
 mana={2}
 type=Artifact
-text=Whenever a nontoken creature enters the battlefield, if Genesis Chamber is untapped, that creature's controller puts a 1/1 colorless Myr artifact creature token onto the battlefield.
+auto=@movedto(creature|myBattlefield):aslongas(Genesis Chamber[-tapped]|myBattlefield) token(Myr,Myr Artifact Creature,1/1,artifact) controller
+auto=@movedto(creature|opponentBattlefield):aslongas(Genesis Chamber[-tapped]|myBattlefield) token(Myr,Myr Artifact Creature,1/1,artifact) opponent
 rarity=U
 [/card]
 [card]
-id=51070
-name=Geth's Grimoire
-mana={4}
-type=Artifact
-text=Whenever an opponent discards a card, you may draw a card.
-rarity=U
-[/card]
-[card]
-id=46735
+text={R}, {T}: Flip a coin. If you win the flip, destroy target artifact and untap Goblin Archaeologist. If you lose the flip, sacrifice Goblin Archaeologist.
 name=Goblin Archaeologist
 mana={1}{R}
 type=Creature
 subtype=Goblin Artificer
 power=1
 toughness=2
-text={R}, {T}: Flip a coin. If you win the flip, destroy target artifact and untap Goblin Archaeologist. If you lose the flip, sacrifice Goblin Archaeologist.
 rarity=U
 [/card]
 [card]
-id=49837
+text=At the beginning of your upkeep, sacrifice a permanent. Whenever Greater Harvester deals combat damage to a player, that player sacrifices two permanents.
 name=Greater Harvester
 mana={2}{B}{B}{B}
 type=Creature
 subtype=Horror
 power=5
 toughness=6
-text=At the beginning of your upkeep, sacrifice a permanent. Whenever Greater Harvester deals combat damage to a player, that player sacrifices two permanents.
 rarity=R
 [/card]
 [card]
-id=46100
-name=Grimclaw Bats
-mana={1}{B}
-type=Creature
-subtype=Bat
-power=1
-toughness=1
-text=Flying {B}, Pay 1 life: Grimclaw Bats gets +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=29513
+text=Prevent all damage target spell would deal this turn. You gain life equal to the damage prevented this way.
 name=Hallow
 mana={W}
 type=Instant
-text=Prevent all damage target spell would deal this turn. You gain life equal to the damage prevented this way.
 rarity=C
 [/card]
 [card]
-id=51074
+text=Equipped creature gets +2/+1 and has "{T}, Unattach Heartseeker: Destroy target creature." Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 name=Heartseeker
 mana={4}
 type=Artifact
 subtype=Equipment
-text=Equipped creature gets +2/+1 and has "{T}, Unattach Heartseeker: Destroy target creature." Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 rarity=R
 [/card]
 [card]
-id=49020
-name=Hoverguard Observer
-mana={2}{U}{U}
-type=Creature
-subtype=Drone
-power=3
-toughness=3
-text=Flying Hoverguard Observer can block only creatures with flying.
-rarity=U
-[/card]
-[card]
-id=46088
-name=Hunger of the Nim
-mana={1}{B}
-type=Sorcery
-text=Target creature gets +1/+0 until end of turn for each artifact you control.
-rarity=C
-[/card]
-[card]
-id=48120
+text=Inflame deals 2 damage to each creature dealt damage this turn.
 name=Inflame
 mana={R}
 type=Instant
-text=Inflame deals 2 damage to each creature dealt damage this turn.
 rarity=C
 [/card]
 [card]
-id=43579
+text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
 name=Juggernaut
 mana={4}
+abilities=mustattack
 type=Artifact Creature
 subtype=Juggernaut
 power=5
 toughness=3
-text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
 rarity=U
 [/card]
 [card]
-id=39478
-name=Karstoderm
-mana={2}{G}{G}
-type=Creature
-subtype=Beast
-power=0
-toughness=0
-text=Karstoderm enters the battlefield with five +1/+1 counters on it. Whenever an artifact enters the battlefield, remove a +1/+1 counter from Karstoderm.
-rarity=U
-[/card]
-[card]
-id=49049
-name=Kraken's Eye
-mana={2}
-type=Artifact
-text=Whenever a player casts a blue spell, you may gain 1 life.
-rarity=U
-[/card]
-[card]
-id=43491
-name=Krark-Clan Stoker
-mana={2}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=2
-text={T}, Sacrifice an artifact: Add {R}{R} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=50929
-name=Last Word
-mana={2}{U}{U}
-type=Instant
-text=Last Word can't be countered by spells or abilities. Counter target spell.
-rarity=R
-[/card]
-[card]
-id=44307
-name=Leonin Battlemage
-mana={3}{W}
-type=Creature
-subtype=Cat Wizard
-power=2
-toughness=3
-text={T}: Target creature gets +1/+1 until end of turn.  Whenever you cast a spell, you may untap Leonin Battlemage.
-rarity=U
-[/card]
-[card]
-id=46142
+text=Equipped creature has "{T}, Unattach Leonin Bola: Tap target creature." Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 name=Leonin Bola
 mana={1}
 type=Artifact
 subtype=Equipment
-text=Equipped creature has "{T}, Unattach Leonin Bola: Tap target creature." Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 rarity=C
 [/card]
 [card]
-id=48579
+text=You may activate equip abilities any time you could cast an instant.
 name=Leonin Shikari
 mana={1}{W}
 type=Creature
 subtype=Cat Soldier
 power=2
 toughness=2
-text=You may activate equip abilities any time you could cast an instant.
 rarity=R
 [/card]
 [card]
-id=46134
+text=You don't lose the game for having 0 or less life. Whenever you lose life, sacrifice a permanent for each 1 life you lost. (Damage causes loss of life.)
 name=Lich's Tomb
 mana={4}
 type=Artifact
-text=You don't lose the game for having 0 or less life. Whenever you lose life, sacrifice a permanent for each 1 life you lost. (Damage causes loss of life.)
 rarity=R
 [/card]
 [card]
-id=39562
-name=Loxodon Mystic
-mana={3}{W}{W}
-type=Creature
-subtype=Elephant Cleric
-power=3
-toughness=3
-text={W}, {T}: Tap target creature.
-rarity=C
-[/card]
-[card]
-id=49829
+text=Look at the top X cards of your library, where X is the number of artifacts you control. Put one of those cards into your hand and the rest on the bottom of your library in any order.
 name=Machinate
 mana={1}{U}{U}
 type=Instant
-text=Look at the top X cards of your library, where X is the number of artifacts you control. Put one of those cards into your hand and the rest on the bottom of your library in any order.
 rarity=C
 [/card]
 [card]
-id=43559
-name=Magnetic Flux
-mana={2}{U}
-type=Instant
-text=Artifact creatures you control gain flying until end of turn.
-rarity=C
-[/card]
-[card]
-id=51054
+text={1}{U}{U}: Target permanent becomes an artifact in addition to its other types. (This effect lasts indefinitely.) {3}{U}: Gain control of target artifact. (This effect lasts indefinitely.)
 name=Memnarch
 mana={7}
 type=Legendary Artifact Creature
 subtype=Wizard
 power=4
 toughness=5
-text={1}{U}{U}: Target permanent becomes an artifact in addition to its other types. (This effect lasts indefinitely.) {3}{U}: Gain control of target artifact. (This effect lasts indefinitely.)
 rarity=R
 [/card]
 [card]
-id=46154
-name=Mephitic Ooze
-mana={4}{B}
-type=Creature
-subtype=Ooze
-power=0
-toughness=5
-text=Mephitic Ooze gets +1/+0 for each artifact you control. Whenever Mephitic Ooze deals combat damage to a creature, destroy that creature. The creature can't be regenerated.
-rarity=R
-[/card]
-[card]
-id=45191
-name=Metal Fatigue
-mana={2}{W}
-type=Instant
-text=Tap all artifacts.
-rarity=C
-[/card]
-[card]
-id=39421
-name=Mirrodin's Core
-mana=
-type=Land
 text={T}: Add {1} to your mana pool. {T}: Put a charge counter on Mirrodin's Core. {T}, Remove a charge counter from Mirrodin's Core: Add one mana of any color to your mana pool.
+name=Mirrodin's Core
+auto={T}:add{1}
+type=Land
 rarity=U
 [/card]
 [card]
-id=39377
+text=Destroy target nonblack creature. It can't be regenerated. You gain control of all Equipment that was attached to it. (This effect lasts indefinitely.)
 name=Murderous Spoils
 mana={5}{B}
 type=Instant
-text=Destroy target nonblack creature. It can't be regenerated. You gain control of all Equipment that was attached to it. (This effect lasts indefinitely.)
+target=creature[-black]
+auto=bury
 rarity=U
 [/card]
 [card]
-id=50527
+text=All permanents are artifacts in addition to their other types. All cards that aren't on the battlefield, spells, and permanents are colorless. Players may spend mana as though it were mana of any color.
 name=Mycosynth Lattice
 mana={6}
 type=Artifact
-text=All permanents are artifacts in addition to their other types. All cards that aren't on the battlefield, spells, and permanents are colorless. Players may spend mana as though it were mana of any color.
 rarity=R
 [/card]
 [card]
-id=45428
+text={T}: Target land becomes an artifact in addition to its other types until end of turn.
 name=Myr Landshaper
 mana={3}
 type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
-text={T}: Target land becomes an artifact in addition to its other types until end of turn.
 rarity=C
 [/card]
 [card]
-id=48049
-name=Myr Matrix
-mana={5}
-type=Artifact
-text=Myr Matrix is indestructible. ("Destroy" effects and lethal damage don't destroy it.) Myr creatures get +1/+1. {5}: Put a 1/1 colorless Myr artifact creature token onto the battlefield.
-rarity=R
-[/card]
-[card]
-id=46112
-name=Myr Moonvessel
-mana={1}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
-text=When Myr Moonvessel is put into a graveyard from the battlefield, add {1} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=46172
+text=All creatures able to block equipped creature do so. Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 name=Nemesis Mask
 mana={3}
 type=Artifact
 subtype=Equipment
-text=All creatures able to block equipped creature do so. Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 rarity=U
 [/card]
 [card]
-id=46116
-name=Neurok Prodigy
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=1
-text=Flying Discard an artifact card: Return Neurok Prodigy to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=49839
+text={U}: Target creature becomes an artifact in addition to its other types until end of turn. {U}: Until end of turn, target artifact creature becomes blue and isn't an artifact.
 name=Neurok Transmuter
 mana={2}{U}
 type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-text={U}: Target creature becomes an artifact in addition to its other types until end of turn. {U}: Until end of turn, target artifact creature becomes blue and isn't an artifact.
 rarity=U
 [/card]
 [card]
-id=43502
+text=At the beginning of your end step, if Nim Abomination is untapped, you lose 3 life.
 name=Nim Abomination
 mana={2}{B}
+auto=@each my end:aslongas(this[-tapped]) life:-3 controller
 type=Creature
 subtype=Zombie
 power=3
 toughness=4
-text=At the beginning of your end step, if Nim Abomination is untapped, you lose 3 life.
 rarity=U
 [/card]
 [card]
-id=46076
-name=Nourish
-mana={G}{G}
-type=Instant
-text=You gain 6 life.
-rarity=C
-[/card]
-[card]
-id=46164
+text=Affinity for Mountains (This spell costs {1} less to cast for each Mountain you control.). Haste
 name=Oxidda Golem
 mana={6}
+abilities=haste
 type=Artifact Creature
 subtype=Golem
 power=3
 toughness=2
-text=Affinity for Mountains (This spell costs {1} less to cast for each Mountain you control.) Haste
 rarity=C
 [/card]
 [card]
-id=46012
-name=Oxidize
-mana={G}
-type=Instant
-text=Destroy target artifact. It can't be regenerated.
-rarity=U
-[/card]
-[card]
-id=47930
+text=Imprint ó {X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
 name=Panoptic Mirror
 mana={5}
 type=Artifact
-text=Imprint ‚ÄÅE{X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
 rarity=R
 [/card]
 [card]
-id=47587
+text=Flying. As long as Pristine Angel is untapped, it has protection from artifacts and from all colors. Whenever you cast a spell, you may untap Pristine Angel.
 name=Pristine Angel
 mana={4}{W}{W}
 type=Creature
+abilities=flying
+auto=aslongas(this[-tapped])protection from (artifact)
+auto=aslongas(this[-tapped])protection from green
+auto=aslongas(this[-tapped])protection from white
+auto=aslongas(this[-tapped])protection from blue
+auto=aslongas(this[-tapped])protection from black
+auto=aslongas(this[-tapped])protection from white
+auto=@movedto(*[-land]|myBattlefield):may untap
+auto=@movedto(*|mystack):may untap
 subtype=Angel
 power=4
 toughness=4
-text=Flying As long as Pristine Angel is untapped, it has protection from artifacts and from all colors. Whenever you cast a spell, you may untap Pristine Angel.
 rarity=R
 [/card]
 [card]
-id=48163
+text=Enchant permanent. When Psychic Overload enters the battlefield, tap enchanted permanent. Enchanted permanent doesn't untap during its controller's untap step. Enchanted permanent has "Discard two artifact cards: Untap this permanent."
 name=Psychic Overload
 mana={3}{U}
 type=Enchantment
 subtype=Aura
-text=Enchant permanent When Psychic Overload enters the battlefield, tap enchanted permanent. Enchanted permanent doesn't untap during its controller's untap step. Enchanted permanent has "Discard two artifact cards: Untap this permanent."
+target=*
+auto=tap
+abilities=doesnotuntap
+auto={S(artifact|myHand)}:untap
 rarity=U
 [/card]
 [card]
-id=49035
-name=Pteron Ghost
-mana={1}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Flying Sacrifice Pteron Ghost: Regenerate target artifact.
-rarity=C
-[/card]
-[card]
-id=39692
+text=Target player reveals three cards from his or her hand and you choose one of them. That player discards that card. Then if that player has more cards in hand than you, return Pulse of the Dross to its owner's hand.
 name=Pulse of the Dross
 mana={1}{B}{B}
 type=Sorcery
-text=Target player reveals three cards from his or her hand and you choose one of them. That player discards that card. Then if that player has more cards in hand than you, return Pulse of the Dross to its owner's hand.
 rarity=R
 [/card]
 [card]
-id=39697
+text=You gain 4 life. Then if an opponent has more life than you, return Pulse of the Fields to its owner's hand.
 name=Pulse of the Fields
 mana={1}{W}{W}
 type=Instant
-text=You gain 4 life. Then if an opponent has more life than you, return Pulse of the Fields to its owner's hand.
+auto=life:4 controller
 rarity=R
 [/card]
 [card]
-id=39410
+text=Pulse of the Forge deals 4 damage to target player. Then if that player has more life than you, return Pulse of the Forge to its owner's hand.
 name=Pulse of the Forge
 mana={1}{R}{R}
 type=Instant
-text=Pulse of the Forge deals 4 damage to target player. Then if that player has more life than you, return Pulse of the Forge to its owner's hand.
+target=player
+auto=damage:4
 rarity=R
 [/card]
 [card]
-id=45975
+text=Draw two cards, then discard a card. Then if an opponent has more cards in hand than you, return Pulse of the Grid to its owner's hand.
 name=Pulse of the Grid
 mana={1}{U}{U}
 type=Instant
-text=Draw two cards, then discard a card. Then if an opponent has more cards in hand than you, return Pulse of the Grid to its owner's hand.
+auto=draw:2 controller
+auto=moveto(graveyard) target(*|myhand)
 rarity=R
 [/card]
 [card]
-id=39690
+text=Put a 3/3 green Beast creature token onto the battlefield. Then if an opponent controls more creatures than you, return Pulse of the Tangle to its owner's hand.
 name=Pulse of the Tangle
 mana={1}{G}{G}
 type=Sorcery
-text=Put a 3/3 green Beast creature token onto the battlefield. Then if an opponent controls more creatures than you, return Pulse of the Tangle to its owner's hand.
+auto=token(Beast,Creature Beast,3/3,green)
 rarity=R
 [/card]
 [card]
-id=34479
-name=Purge
-mana={1}{W}
-type=Instant
-text=Destroy target artifact creature or black creature. It can't be regenerated.
-rarity=U
-[/card]
-[card]
-id=47799
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) When Quicksilver Behemoth attacks or blocks, return it to its owner's hand at end of combat. (Return it only if it's on the battlefield.)
 name=Quicksilver Behemoth
 mana={6}{U}
 type=Creature
 subtype=Beast
 power=4
 toughness=5
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) When Quicksilver Behemoth attacks or blocks, return it to its owner's hand at end of combat. (Return it only if it's on the battlefield.)
 rarity=C
 [/card]
 [card]
-id=46143
+text=Affinity for Plains (This spell costs {1} less to cast for each Plains you control.). Vigilance
 name=Razor Golem
 mana={6}
+abilities=vigilance
 type=Artifact Creature
 subtype=Golem
 power=3
 toughness=4
-text=Affinity for Plains (This spell costs {1} less to cast for each Plains you control.) Vigilance
 rarity=C
 [/card]
 [card]
-id=43503
+text=Choose one ó Destroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. Entwine {1}{G} (Choose both if you pay the entwine cost.)
 name=Reap and Sow
 mana={3}{G}
 type=Sorcery
-text=Choose one ‚ÄÅEDestroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. Entwine {1}{G} (Choose both if you pay the entwine cost.)
 rarity=C
 [/card]
 [card]
-id=50533
+text=Put two target artifacts on top of their owners' libraries.
 name=Rebuking Ceremony
 mana={3}{G}{G}
 type=Sorcery
-text=Put two target artifacts on top of their owners' libraries.
 rarity=R
 [/card]
 [card]
-id=48147
+text=As an additional cost to cast Reshape, sacrifice an artifact. Search your library for an artifact card with converted mana cost X or less and put it onto the battlefield. Then shuffle your library.
 name=Reshape
 mana={X}{U}{U}
 type=Sorcery
-text=As an additional cost to cast Reshape, sacrifice an artifact. Search your library for an artifact card with converted mana cost X or less and put it onto the battlefield. Then shuffle your library.
 rarity=R
 [/card]
 [card]
-id=48573
-name=Retract
-mana={U}
-type=Instant
-text=Return all artifacts you control to their owner's hand.
-rarity=R
-[/card]
-[card]
-id=48576
-name=Ritual of Restoration
-mana={W}
-type=Sorcery
-text=Return target artifact card from your graveyard to your hand.
-rarity=C
-[/card]
-[card]
-id=46083
+text=Whenever Roaring Slagwurm attacks, tap all artifacts.
 name=Roaring Slagwurm
 mana={5}{G}{G}
+auto=aslongas(this[attacking])tap all(artifact)
 type=Creature
 subtype=Wurm
 power=6
 toughness=4
-text=Whenever Roaring Slagwurm attacks, tap all artifacts.
 rarity=R
 [/card]
 [card]
-id=43506
+text=Cast Savage Beating only during your turn and only during combat. Choose one ó Creatures you control gain double strike until end of turn; or untap all creatures you control and after this phase, there is an additional combat phase. Entwine {1}{R} (Choose both if you pay the entwine cost.)
 name=Savage Beating
 mana={3}{R}{R}
 type=Instant
-text=Cast Savage Beating only during your turn and only during combat. Choose one ‚ÄÅECreatures you control gain double strike until end of turn; or untap all creatures you control and after this phase, there is an additional combat phase. Entwine {1}{R} (Choose both if you pay the entwine cost.)
 rarity=R
 [/card]
 [card]
-id=46093
-name=Scavenging Scarab
-mana={3}{B}
-type=Creature
-subtype=Insect
-power=3
-toughness=3
-text=Scavenging Scarab can't block.
-rarity=C
-[/card]
-[card]
-id=43517
+text=Enchant creature. Enchanted creature gets -1/-1. When enchanted creature is put into a graveyard, return Screams from Within from your graveyard to the battlefield.
 name=Screams from Within
 mana={1}{B}{B}
 type=Enchantment
 subtype=Aura
-text=Enchant creature Enchanted creature gets -1/-1. When enchanted creature is put into a graveyard, return Screams from Within from your graveyard to the battlefield.
+target=creature
+auto=-1/0
+auto=@moved(this|graveyard):moveto(myBattlefield)
 rarity=U
 [/card]
 [card]
-id=46568
+text=Target opponent chooses an artifact card in his or her graveyard. Put that card onto the battlefield under your control.
 name=Scrounge
 mana={2}{B}
 type=Sorcery
-text=Target opponent chooses an artifact card in his or her graveyard. Put that card onto the battlefield under your control.
+target=artifact|opponentgraveyard
+auto=moveto(myBattlefield)
 rarity=U
-[/card]
+[/card] 
 [card]
-id=43510
+text=Choose one ó Look at the top five cards of target opponent's library, then put them back in any order; or look at the top five cards of your library, then put them back in any order. Entwine {U} (Choose both if you pay the entwine cost.)
 name=Second Sight
 mana={2}{U}
 type=Instant
-text=Choose one ‚ÄÅELook at the top five cards of target opponent's library, then put them back in any order; or look at the top five cards of your library, then put them back in any order. Entwine {U} (Choose both if you pay the entwine cost.)
 rarity=U
 [/card]
 [card]
-id=48920
+text={T}: Add {1} to your mana pool. Any time you could mulligan and Serum Powder is in your hand, you may exile all the cards from your hand, then draw that many cards. (You can do this in addition to taking mulligans.)
 name=Serum Powder
 mana={3}
 type=Artifact
-text={T}: Add {1} to your mana pool. Any time you could mulligan and Serum Powder is in your hand, you may exile all the cards from your hand, then draw that many cards. (You can do this in addition to taking mulligans.)
+auto={T}:add{1}
 rarity=R
 [/card]
 [card]
-id=48582
+text=Equipment named Sword of Kaldra, Shield of Kaldra, and Helm of Kaldra are indestructible. Equipped creature is indestructible. ("Destroy" effects and lethal damage don't destroy it.) Equip {4}
 name=Shield of Kaldra
 mana={4}
 type=Legendary Artifact
 subtype=Equipment
-text=Equipment named Sword of Kaldra, Shield of Kaldra, and Helm of Kaldra are indestructible. Equipped creature is indestructible. ("Destroy" effects and lethal damage don't destroy it.) Equip {4}
 rarity=R
 [/card]
 [card]
-id=47792
+text=Choose one ó Until end of turn, whenever a creature is dealt damage, destroy it; or until end of turn, whenever a creature is put into a graveyard from the battlefield, that creature's controller loses life equal to its toughness. Entwine {2}{B} (Choose both if you pay the entwine cost.)
 name=Shriveling Rot
 mana={2}{B}{B}
 type=Instant
-text=Choose one ‚ÄÅEUntil end of turn, whenever a creature is dealt damage, destroy it; or until end of turn, whenever a creature is put into a graveyard from the battlefield, that creature's controller loses life equal to its toughness. Entwine {2}{B} (Choose both if you pay the entwine cost.)
 rarity=R
 [/card]
 [card]
-id=49836
+text=Change the target of target spell with a single target.
 name=Shunt
 mana={1}{R}{R}
 type=Instant
-text=Change the target of target spell with a single target.
 rarity=R
 [/card]
 [card]
-id=48197
+text=Equipped creature gets +1/-1. When equipped creature is put into a graveyard, draw two cards. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 name=Skullclamp
 mana={1}
 type=Artifact
 subtype=Equipment
-text=Equipped creature gets +1/-1. When equipped creature is put into a graveyard, draw two cards. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 rarity=U
 [/card]
+
 [card]
-id=51055
-name=Slobad, Goblin Tinkerer
-mana={1}{R}
-type=Legendary Creature
-subtype=Goblin Artificer
-power=1
-toughness=2
-text=Sacrifice an artifact: Target artifact is indestructible this turn. ("Destroy" effects and lethal damage don't destroy that artifact.)
-rarity=R
-[/card]
-[card]
-id=43511
-name=Soulscour
-mana={7}{W}{W}{W}
-type=Sorcery
-text=Destroy all nonartifact permanents.
-rarity=R
-[/card]
-[card]
-id=26732
+text=Sacrifice a creature: Put a charge counter on Spawning Pit. {1}, Remove two charge counters from Spawning Pit: Put a 2/2 colorless Spawn artifact creature token onto the battlefield.
 name=Spawning Pit
 mana={2}
 type=Artifact
-text=Sacrifice a creature: Put a charge counter on Spawning Pit. {1}, Remove two charge counters from Spawning Pit: Put a 2/2 colorless Spawn artifact creature token onto the battlefield.
 rarity=U
 [/card]
 [card]
-id=49094
+text=Equipped creature gets +1/+0. Whenever equipped creature deals combat damage to a player, that player discards a card. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 name=Specter's Shroud
 mana={2}
 type=Artifact
 subtype=Equipment
-text=Equipped creature gets +1/+0. Whenever equipped creature deals combat damage to a player, that player discards a card. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 rarity=U
 [/card]
 [card]
-id=50540
+text=Imprint ó When Spellbinder enters the battlefield, you may exile an instant card from your hand. Whenever equipped creature deals combat damage to a player, you may copy the exiled card. If you do, you may cast the copy without paying its mana cost. Equip {4}
 name=Spellbinder
 mana={3}
 type=Artifact
 subtype=Equipment
-text=Imprint ‚ÄÅEWhen Spellbinder enters the battlefield, you may exile an instant card from your hand. Whenever equipped creature deals combat damage to a player, you may copy the exiled card. If you do, you may cast the copy without paying its mana cost. Equip {4}
 rarity=R
 [/card]
 [card]
-id=50529
+text=Whenever Spincrusher blocks, put a +1/+1 counter on it.  Remove a +1/+1 counter from Spincrusher: Spincrusher is unblockable this turn.
 name=Spincrusher
 mana={2}
 type=Artifact Creature
 subtype=Construct
 power=0
 toughness=2
-text=Whenever Spincrusher blocks, put a +1/+1 counter on it.  Remove a +1/+1 counter from Spincrusher: Spincrusher is unblockable this turn.
 rarity=U
 [/card]
 [card]
-id=46150
+text=Affinity for Islands (This spell costs {1} less to cast for each Island you control.) Flying
 name=Spire Golem
 mana={6}
+abilities=flying
 type=Artifact Creature
 subtype=Golem
 power=2
 toughness=4
-text=Affinity for Islands (This spell costs {1} less to cast for each Island you control.) Flying
 rarity=C
 [/card]
 [card]
-id=49438
+text=Put two +1/+1 counters on target creature and two +1/+1 counters on another target creature.
 name=Stand Together
 mana={3}{G}{G}
 type=Instant
-text=Put two +1/+1 counters on target creature and two +1/+1 counters on another target creature.
+target=creatures limit:2
+auto=counter(1/1,2)
 rarity=U
 [/card]
 [card]
-id=49078
+text={W}, {T}, Return Steelshaper Apprentice to its owner's hand: Search your library for an Equipment card, reveal that card, and put it into your hand. Then shuffle your library.
 name=Steelshaper Apprentice
 mana={2}{W}{W}
 type=Creature
 subtype=Human Soldier
 power=1
 toughness=3
-text={W}, {T}, Return Steelshaper Apprentice to its owner's hand: Search your library for an Equipment card, reveal that card, and put it into your hand. Then shuffle your library.
 rarity=R
 [/card]
 [card]
-id=45961
+text=Choose one ó Creatures you control get +2/+2 until end of turn; or until end of turn, creatures you control gain "Whenever this creature deals damage, you gain that much life." Entwine {1}{W} (Choose both if you pay the entwine cost.)
 name=Stir the Pride
 mana={4}{W}
 type=Instant
-text=Choose one ‚ÄÅECreatures you control get +2/+2 until end of turn; or until end of turn, creatures you control gain "Whenever this creature deals damage, you gain that much life." Entwine {1}{W} (Choose both if you pay the entwine cost.)
 rarity=U
 [/card]
 [card]
-id=42084
+text=When Sundering Titan enters the battlefield, choose a land of each basic land type, then destroy those lands. When Sundering Titan leaves the battlefield, choose a land of each basic land type, then destroy those lands.
 name=Sundering Titan
 mana={8}
 type=Artifact Creature
 subtype=Golem
 power=7
 toughness=10
-text=When Sundering Titan enters the battlefield, choose a land of each basic land type, then destroy those lands. When Sundering Titan leaves the battlefield, choose a land of each basic land type, then destroy those lands.
 rarity=R
 [/card]
 [card]
-id=46158
+text=Equipped creature has first strike and "{T}, Unattach Surestrike Trident: This creature deals damage equal to its power to target player." Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 name=Surestrike Trident
 mana={2}
 type=Artifact
 subtype=Equipment
-text=Equipped creature has first strike and "{T}, Unattach Surestrike Trident: This creature deals damage equal to its power to target player." Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 rarity=U
 [/card]
 [card]
-id=46429
+text=Equipped creature gets +2/+2 and has protection from red and from blue. Whenever equipped creature deals combat damage to a player, Sword of Fire and Ice deals 2 damage to target creature or player and you draw a card. Equip {2}
 name=Sword of Fire and Ice
 mana={3}
 type=Artifact
 subtype=Equipment
-text=Equipped creature gets +2/+2 and has protection from red and from blue. Whenever equipped creature deals combat damage to a player, Sword of Fire and Ice deals 2 damage to target creature or player and you draw a card. Equip {2}
 rarity=R
 [/card]
 [card]
-id=47453
+text=Equipped creature gets +2/+2 and has protection from white and from black. Whenever equipped creature deals combat damage to a player, you gain 3 life and you may return up to one target creature card from your graveyard to your hand. Equip {2}
 name=Sword of Light and Shadow
 mana={3}
 type=Artifact
 subtype=Equipment
-text=Equipped creature gets +2/+2 and has protection from white and from black. Whenever equipped creature deals combat damage to a player, you gain 3 life and you may return up to one target creature card from your graveyard to your hand. Equip {2}
 rarity=R
 [/card]
 [card]
-id=49021
+text={X}, {T}: Tap X target noncreature artifacts. {X}, {T}: Untap X target noncreature artifacts.
 name=Synod Artificer
 mana={2}{U}
 type=Creature
 subtype=Vedalken Artificer
 power=1
 toughness=2
-text={X}, {T}: Tap X target noncreature artifacts. {X}, {T}: Untap X target noncreature artifacts.
 rarity=R
 [/card]
 [card]
-id=46111
+text=Whenever a source you control other than Talon of Pain deals damage to an opponent, put a charge counter on Talon of Pain. {X}, {T}, Remove X charge counters from Talon of Pain: Talon of Pain deals X damage to target creature or player.
 name=Talon of Pain
 mana={4}
 type=Artifact
-text=Whenever a source you control other than Talon of Pain deals damage to an opponent, put a charge counter on Talon of Pain. {X}, {T}, Remove X charge counters from Talon of Pain: Talon of Pain deals X damage to target creature or player.
 rarity=U
 [/card]
 [card]
-id=46171
+text=Affinity for Forests (This spell costs {1} less to cast for each Forest you control.)
 name=Tangle Golem
 mana={7}
 type=Artifact Creature
 subtype=Golem
 power=5
 toughness=4
-text=Affinity for Forests (This spell costs {1} less to cast for each Forest you control.)
 rarity=C
 [/card]
 [card]
-id=46548
-name=Tangle Spider
-mana={4}{G}{G}
-type=Creature
-subtype=Spider
-power=3
-toughness=4
-text=Flash (You may cast this spell any time you could cast an instant.) Reach (This creature can block creatures with flying.)
-rarity=U
-[/card]
-[card]
-id=43547
-name=Tanglewalker
-mana={2}{G}
-type=Creature
-subtype=Dryad
-power=2
-toughness=2
-text=Creatures you control are unblockable as long as defending player controls an artifact land.
-rarity=U
-[/card]
-[card]
-id=21293
+text=Cast Tears of Rage only during the declare attackers step. Attacking creatures you control get +X/+0 until end of turn, where X is the number of attacking creatures. Sacrifice those creatures at the beginning of the next end step.
 name=Tears of Rage
 mana={2}{R}{R}
 type=Instant
-text=Cast Tears of Rage only during the declare attackers step. Attacking creatures you control get +X/+0 until end of turn, where X is the number of attacking creatures. Sacrifice those creatures at the beginning of the next end step.
+auto=lord(creature[attacking]|myBattlefield)foreach(creature[attacking]|myBattlefield)1/0
 rarity=U
 [/card]
 [card]
-id=46008
+text=Whenever Tel-Jilad Wolf becomes blocked by an artifact creature, Tel-Jilad Wolf gets +3/+3 until end of turn.
 name=Tel-Jilad Wolf
 mana={2}{G}
 type=Creature
 subtype=Wolf
 power=2
 toughness=2
-text=Whenever Tel-Jilad Wolf becomes blocked by an artifact creature, Tel-Jilad Wolf gets +3/+3 until end of turn.
 rarity=C
 [/card]
 [card]
-id=43587
+text=Prevent the next 3 damage that would be dealt to target creature this turn, and put a +1/+1 counter on that creature for each 1 damage prevented this way.
 name=Test of Faith
 mana={1}{W}
 type=Instant
-text=Prevent the next 3 damage that would be dealt to target creature this turn, and put a +1/+1 counter on that creature for each 1 damage prevented this way.
 rarity=U
 [/card]
 [card]
-id=50521
+text={X}, {T}: Target opponent reveals cards from the top of his or her library until an artifact card or X cards are revealed, whichever comes first. If an artifact card is revealed this way, put it onto the battlefield under your control and sacrifice Thought Dissector. Put the rest of the revealed cards into that player's graveyard.
 name=Thought Dissector
 mana={4}
 type=Artifact
-text={X}, {T}: Target opponent reveals cards from the top of his or her library until an artifact card or X cards are revealed, whichever comes first. If an artifact card is revealed this way, put it onto the battlefield under your control and sacrifice Thought Dissector. Put the rest of the revealed cards into that player's graveyard.
 rarity=R
 [/card]
 [card]
-id=50530
+text=If Thunderstaff is untapped and a creature would deal combat damage to you, prevent 1 of that damage. {2}, {T}: Attacking creatures get +1/+0 until end of turn.
 name=Thunderstaff
 mana={3}
 type=Artifact
-text=If Thunderstaff is untapped and a creature would deal combat damage to you, prevent 1 of that damage. {2}, {T}: Attacking creatures get +1/+0 until end of turn.
+auto={2}{T}:1/0 target(creature[attacking])
 rarity=U
 [/card]
 [card]
-id=43545
+text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
 name=Trinisphere
 mana={3}
 type=Artifact
-text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
-rarity=M
-[/card]
-[card]
-id=49033
-name=Turn the Tables
-mana={3}{W}{W}
-type=Instant
-text=All combat damage that would be dealt to you this turn is dealt to target attacking creature instead.
 rarity=R
 [/card]
 [card]
-id=51616
+text=All combat damage that would be dealt to you this turn is dealt to target attacking creature instead.
+name=Turn the Tables
+mana={3}{W}{W}
+type=Instant
+rarity=R
+[/card]
+[card]
+text=Destroy target Equipment. If that Equipment was attached to a creature, Unforge deals 2 damage to that creature.
 name=Unforge
 mana={2}{R}
 type=Instant
-text=Destroy target Equipment. If that Equipment was attached to a creature, Unforge deals 2 damage to that creature.
+target=equipment
+auto=destroy
 rarity=C
 [/card]
 [card]
-id=49110
-name=Ur-Golem's Eye
-mana={4}
-type=Artifact
-text={T}: Add {2} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=48148
+text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
 name=Vedalken Engineer
 mana={1}{U}
 type=Creature
 subtype=Vedalken Artificer
 power=1
 toughness=1
-text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
 rarity=C
 [/card]
 [card]
+text=Counter target spell. That spell's controller may draw a card.
 id=49085
 name=Vex
 mana={2}{U}
 type=Instant
-text=Counter target spell. That spell's controller may draw a card.
+auto=fizzle
+target=*|stack
+auto=may draw:1 targetController
 rarity=C
 [/card]
 [card]
-id=15190
-name=Viridian Acolyte
-mana={G}
-type=Creature
-subtype=Elf Shaman
-power=1
-toughness=1
-text={1}, {T}: Add one mana of any color to your mana pool.
-rarity=C
-[/card]
-[card]
-id=46547
-name=Viridian Zealot
-mana={G}{G}
-type=Creature
-subtype=Elf Warrior
-power=2
-toughness=1
-text={1}{G}, Sacrifice Viridian Zealot: Destroy target artifact or enchantment.
-rarity=R
-[/card]
-[card]
-id=48141
-name=Voltaic Construct
-mana={4}
-type=Artifact Creature
-subtype=Golem Construct
-power=2
-toughness=2
-text={2}: Untap target artifact creature.
-rarity=U
-[/card]
-[card]
-id=49758
+text=Equipped creature gets +2/+2. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 name=Vulshok Morningstar
 mana={2}
 type=Artifact
 subtype=Equipment
-text=Equipped creature gets +2/+2. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
+rarity=C
 [/card]
 [card]
-id=45455
+text=When Vulshok War Boar enters the battlefield, sacrifice it unless you sacrifice an artifact.
 name=Vulshok War Boar
 mana={2}{R}{R}
 type=Creature
 subtype=Boar Beast
 power=5
 toughness=5
-text=When Vulshok War Boar enters the battlefield, sacrifice it unless you sacrifice an artifact.
 rarity=U
 [/card]
 [card]
-id=49775
-name=Wand of the Elements
-mana={4}
-type=Artifact
-text={T}, Sacrifice an Island: Put a 2/2 blue Elemental creature token with flying onto the battlefield. {T}, Sacrifice a Mountain: Put a 3/3 red Elemental creature token onto the battlefield.
-rarity=R
-[/card]
-[card]
-id=48993
+text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
 name=Well of Lost Dreams
 mana={4}
 type=Artifact
-text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
 rarity=R
 [/card]
 [card]
-id=46030
+text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 name=Whispersilk Cloak
 mana={3}
 type=Artifact
 subtype=Equipment
-text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
+rarity=C
 [/card]
 [card]
-id=49026
+text={3}, {T}: Flip a coin. If you win the flip, put a 2/2 colorless Insect artifact creature token with flying named Wirefly onto the battlefield. If you lose the flip, destroy all permanents named Wirefly.
 name=Wirefly Hive
 mana={3}
 type=Artifact
-text={3}, {T}: Flip a coin. If you win the flip, put a 2/2 colorless Insect artifact creature token with flying named Wirefly onto the battlefield. If you lose the flip, destroy all permanents named Wirefly.
-rarity=U
-[/card]
-[card]
-id=72684
-name=Wurm's Tooth
-mana={2}
-type=Artifact
-text=Whenever a player casts a green spell, you may gain 1 life.
 rarity=U
 [/card]
