@@ -257,6 +257,15 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
+id=1070
+alias=1362
+name=Reverse Polarity
+mana={W}{W}
+type=Instant
+text=You gain X life, where X is twice the damage dealt to you so far this turn by artifacts.
+rarity=U
+[/card]
+[card]
 text={T}: Sacrifice an artifact: Draw a card.
 id=1046
 name=Sage of Lat-Nam
@@ -351,6 +360,126 @@ name=The Rack
 rarity=U
 mana={1}
 type=Artifact
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
+id=1080
+name=Urza's Mine
+rarity=C
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay){T}:add{2}
+subtype=Urza's Mine
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
+id=1081
+name=Urza's Mine
+rarity=U
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay){T}:add{2}
+subtype=Urza's Mine
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
+id=1082
+name=Urza's Mine
+rarity=C
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay){T}:add{2}
+subtype=Urza's Mine
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
+id=1083
+name=Urza's Mine
+rarity=U
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay){T}:add{2}
+subtype=Urza's Mine
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
+id=1084
+name=Urza's Power Plant
+rarity=U
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power Plant
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
+id=1085
+name=Urza's Power Plant
+rarity=C
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power Plant
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
+id=1086
+name=Urza's Power Plant
+rarity=C
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power Plant
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
+id=1087
+name=Urza's Power Plant
+rarity=U
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power Plant
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+id=1088
+name=Urza's Tower
+rarity=U
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{2}
+subtype=Urza's Tower
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+id=1089
+name=Urza's Tower
+rarity=U
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{2}
+subtype=Urza's Tower
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+id=1090
+name=Urza's Tower
+rarity=C
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{2}
+subtype=Urza's Tower
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+id=1091
+name=Urza's Tower
+rarity=U
+type=Land
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{2}
+subtype=Urza's Tower
 [/card]
 [card]
 text=Defender (This creature can't attack.)   First strike

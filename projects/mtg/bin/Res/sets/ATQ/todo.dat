@@ -301,14 +301,6 @@ text={2}: Prevent the next 1 damage that would be dealt to target creature or pl
 rarity=U
 [/card]
 [card]
-id=1070
-name=Reverse Polarity
-mana={W}{W}
-type=Instant
-text=You gain X life, where X is twice the damage dealt to you so far this turn by artifacts.
-rarity=U
-[/card]
-[card]
 id=1019
 name=Rocket Launcher
 mana={4}
@@ -409,39 +401,12 @@ text=Whenever a player casts an artifact spell, you may pay {1}. If you do, you 
 rarity=C
 [/card]
 [card]
-id=1082
-name=Urza's Mine
-mana=
-type=Land
-subtype=Urza’s Mine
-text={T}: Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
-rarity=U
-[/card]
-[card]
 id=1032
 name=Urza's Miter
 mana={3}
 type=Artifact
 text=Whenever an artifact you control is put into a graveyard from the battlefield, if it wasn't sacrificed, you may pay {3}. If you do, draw a card.
 rarity=R
-[/card]
-[card]
-id=1086
-name=Urza's Power Plant
-mana=
-type=Land
-subtype=Urza’s Power-Plant
-text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
-rarity=U
-[/card]
-[card]
-id=1090
-name=Urza's Tower
-mana=
-type=Land
-subtype=Urza’s Tower
-text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
-rarity=U
 [/card]
 [card]
 id=1048
