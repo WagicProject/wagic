@@ -481,6 +481,7 @@ rarity=U
 [card]
 text=Protection from artifacts
 name=Tel-Jilad Outrider
+id=46002
 mana={3}{G}
 auto=protection from (artifact)
 type=Creature
