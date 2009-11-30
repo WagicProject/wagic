@@ -102,6 +102,7 @@ toughness=3
 [/card]
 [card]
 text={X}{W}, {T}: Ballista Squad deals X damage to target attacking or blocking creature.
+#X cost doesn't work for abilities yet :(
 id=129477
 name=Ballista Squad
 auto={X}{W}{T}:damage:x target(creature[attacking;blocking])
@@ -153,6 +154,7 @@ toughness=1
 [/card]
 [card]
 text={X}: Chimeric Staff becomes an X/X Construct artifact creature until end of turn.
+#X cannot be used in abilities yet
 id=135254
 name=Chimeric Staff
 auto={X}:becomes(Artifact Creature Construct,x/x)
