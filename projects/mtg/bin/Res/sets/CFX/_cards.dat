@@ -649,7 +649,7 @@ type=Enchantment
 [card]
 text=Draw cards equal to the power of target creature you control.
 id=185137
-target=creature
+target=creature|myBattlefield
 auto=draw:p controller
 name=Soul's Majesty
 rarity=R

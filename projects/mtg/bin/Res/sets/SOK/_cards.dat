@@ -59,6 +59,19 @@ auto={R}:1/0 target(creature)
 rarity=U
 [/card]
 [card]
+text=As long as you have seven or more cards in hand, Deathmask Nezumi gets +2/+1 and has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
+name=Deathmask Nezumi
+id=84703
+mana={2}{B}
+auto=aslongas(*|myHand) 2/1 >6
+auto=aslongas(*|myHand) fear >6
+type=Creature
+subtype=Rat Shaman
+power=2
+toughness=2
+rarity=C
+[/card]
+[card]
 text=Creatures with flying can block only creatures with flying.
 name=Dense Canopy
 id=88816
