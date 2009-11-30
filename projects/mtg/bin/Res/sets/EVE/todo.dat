@@ -47,22 +47,7 @@ power=4
 subtype=Elemental Shaman
 toughness=4
 [/card]
-[card]
-text=Other red creatures you control get +1/+1.     Other white creatures you control get +1/+1.     Whenever you play a red spell, Balefire Liege deals 3 damage to target player.     Whenever you play a white spell, you gain 3 life.
-id=158104
-auto=lord(creature[red]|myinplay) 1/1 other
-auto=lord(creature[white]|myinplay) 1/1 other
-auto=@movedto(*[red]|mystack):damage:3 target(player)
-#can't be coded in 0.8: movedTo doe not work with target unless there is a "may"
-auto=@movedto(*[white]|mystack):life:3
-name=Balefire Liege
-rarity=R
-type=Creature
-mana={2}{RW}{RW}{RW}
-power=2
-subtype=Spirit Horror
-toughness=4
-[/card]
+
 [card]
 text=Until end of turn, target creature gains "{T}: Return target nonland permanent to its owner's hand."
 id=154350

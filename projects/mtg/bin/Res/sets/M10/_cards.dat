@@ -1743,6 +1743,15 @@ auto={W}{T}:moveTo(Exile) target(Skeleton,Vampire,Zombie)
 rarity=U
 [/card]
 [card]
+id=191343
+name=Underworld Dreams
+mana={B}{B}{B}
+type=Enchantment
+text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
+auto=@movedTo(opponentHand) from(opponentLibrary):damage:1 opponent
+rarity=U
+[/card]
+[card]
 id=190546
 name=Unholy Strength
 mana={B}
@@ -1894,6 +1903,15 @@ toughness=2
 text=Flying
 abilities=flying
 rarity=C
+[/card]
+[card]
+id=191596
+name=Windstorm
+mana={X}{G}
+type=Instant
+text=Windstorm deals X damage to each creature with flying.
+auto=damage:X all(creature[flying])
+rarity=U
 [/card]
 [card]
 id=191248

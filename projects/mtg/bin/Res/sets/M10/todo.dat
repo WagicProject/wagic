@@ -600,14 +600,7 @@ text=Copy target instant or sorcery spell. You may choose new targets for the co
 rarity=R
 [/card]
 
-[card]
-id=191343
-name=Underworld Dreams
-mana={B}{B}{B}
-type=Enchantment
-text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
-rarity=U
-[/card]
+
 
 [card]
 id=191384
@@ -649,14 +642,7 @@ subtype=Equipment
 text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 rarity=U
 [/card]
-[card]
-id=191596
-name=Windstorm
-mana={X}{G}
-type=Instant
-text=Windstorm deals X damage to each creature with flying.
-rarity=U
-[/card]
+
 [card]
 id=189885
 name=Xathrid Demon
