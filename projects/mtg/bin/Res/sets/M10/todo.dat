@@ -176,17 +176,6 @@ text=Equipped creature gets +1/+1 and has deathtouch. (Creatures dealt damage by
 rarity=U
 [/card]
 [card]
-id=193759
-name=Great Sable Stag
-mana={1}{G}{G}
-type=Creature
-subtype=Elk
-power=3
-toughness=3
-text=Great Sable Stag can't be countered. Protection from blue and from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything blue or black.)
-rarity=R
-[/card]
-[card]
 id=193766
 name=Guardian Seraph
 mana={2}{W}{W}

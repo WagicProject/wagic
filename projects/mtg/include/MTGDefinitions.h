@@ -102,16 +102,17 @@ class Constants
     DEATHTOUCH = 44,
     HORSEMANSHIP = 45,
     CANTREGENERATE = 46,
+    NOFIZZLE = 47,
 
-    NB_BASIC_ABILITIES = 47,
+    NB_BASIC_ABILITIES = 48,
 
 
-    RARITY_M = 'M',
-    RARITY_R = 'R',
-    RARITY_U = 'U',
-    RARITY_C = 'C',
-    RARITY_L = 'L',
-    RARITY_T = 'T', //Tokens
+    RARITY_M = 'M',   //Mythics
+    RARITY_R = 'R',   //Rares
+    RARITY_U = 'U',   //Uncommons
+    RARITY_C = 'C',   //Commons
+    RARITY_L = 'L',   //Lands
+    RARITY_T = '~',   //Tokens, reserved for internal logic.
 
     //Price for singles
     PRICE_1M = 3000,

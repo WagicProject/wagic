@@ -786,6 +786,18 @@ auto=may moveTo(myHand) target(creature|myGraveyard)
 rarity=U
 [/card]
 [card]
+id=193759
+name=Great Sable Stag
+mana={1}{G}{G}
+type=Creature
+subtype=Elk
+power=3
+toughness=3
+abilities=nofizzle,protection from black,protection from red
+text=Great Sable Stag can't be countered. Protection from blue and from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything blue or black.)
+rarity=R
+[/card]
+[card]
 id=190170
 name=Griffin Sentinel
 mana={2}{W}
