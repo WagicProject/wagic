@@ -211,6 +211,13 @@ void JRenderer::InitRenderer()
 		sceGuDepthBuffer(zbp, FRAME_BUFFER_WIDTH);
 	}
 
+  FILE * pFile;
+  pFile = fopen ("graphiclog.txt","w");
+  char temp[600];
+  sprintf(temp,"fbp0:%p\nfbp1:%p\nBuffer Format:%d\nFrame Buffer Width:%d\nScreen Width:%d\nScreen Height:%d\n",fbp0,fbp1,BUFFER_FORMAT,FRAME_BUFFER_WIDTH,SCREEN_WIDTH,SCREEN_HEIGHT);
+  fputs(temp,pFile);
+  fclose (pFile);
+
 
 	sceGuOffset(2048 - (SCREEN_WIDTH/2), 2048 - (SCREEN_HEIGHT/2));
 	sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);

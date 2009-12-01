@@ -1,4 +1,4 @@
-﻿[card]
+[card]
 id=3589
 name=Anvil of Bogardan
 mana={2}
@@ -230,7 +230,7 @@ id=3663
 name=Emerald Charm
 mana={G}
 type=Instant
-text=Choose one  EUntap target permanent; or destroy target non-Aura enchantment; or target creature loses flying until end of turn.
+text=Choose one ?EUntap target permanent; or destroy target non-Aura enchantment; or target creature loses flying until end of turn.
 rarity=C
 [/card]
 [card]
@@ -316,7 +316,7 @@ id=3618
 name=Funeral Charm
 mana={B}
 type=Instant
-text=Choose one  ETarget player discards a card; or target creature gets +2/-1 until end of turn; or target creature gains swampwalk until end of turn.
+text=Choose one ?ETarget player discards a card; or target creature gets +2/-1 until end of turn; or target creature gains swampwalk until end of turn.
 rarity=C
 [/card]
 [card]
@@ -365,7 +365,7 @@ id=3689
 name=Hearth Charm
 mana={R}
 type=Instant
-text=Choose one  EDestroy target artifact creature; or attacking creatures get +1/+0 until end of turn; or target creature with power 2 or less is unblockable this turn.
+text=Choose one ?EDestroy target artifact creature; or attacking creatures get +1/+0 until end of turn; or target creature with power 2 or less is unblockable this turn.
 rarity=C
 [/card]
 [card]
@@ -397,7 +397,7 @@ id=3715
 name=Hope Charm
 mana={W}
 type=Instant
-text=Choose one  ETarget creature gains first strike until end of turn; or target player gains 2 life; or destroy target Aura.
+text=Choose one ?ETarget creature gains first strike until end of turn; or target player gains 2 life; or destroy target Aura.
 rarity=C
 [/card]
 [card]
@@ -693,14 +693,7 @@ type=World Enchantment
 text=At the beginning of each player's upkeep, that player may sacrifice a creature. If that player doesn't, he or she loses 5 life and you sacrifice Pillar Tombs of Aku.
 rarity=R
 [/card]
-[card]
-id=3647
-name=Prosperity
-mana={X}{U}
-type=Sorcery
-text=Each player draws X cards.
-rarity=U
-[/card]
+
 [card]
 id=3740
 name=Pygmy Hippo
@@ -1099,7 +1092,7 @@ id=3656
 name=Vision Charm
 mana={U}
 type=Instant
-text=Choose one  ETarget player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step. )
+text=Choose one ?ETarget player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step. )
 rarity=C
 [/card]
 [card]
