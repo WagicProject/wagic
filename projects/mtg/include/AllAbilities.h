@@ -470,8 +470,8 @@ public:
 
 class AADrawer:public ActivatedAbilityTP{
  public:
-  int nbcards;
-  AADrawer(int _id, MTGCardInstance * card,Targetable * _target,ManaCost * _cost, int _nbcards = 1, int _tap = 0, int who=TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),nbcards(_nbcards){
+  WParsedInt *nbcards;
+  AADrawer(int _id, MTGCardInstance * card,Targetable * _target,ManaCost * _cost, WParsedInt * _nbcards, int _tap = 0, int who=TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),nbcards(_nbcards){
   }
 
   int resolve(){
@@ -483,7 +483,7 @@ class AADrawer:public ActivatedAbilityTP{
       }else{
         player = (Player *) _target;
       }
-      game->mLayers->stackLayer()->addDraw(player,nbcards);
+      game->mLayers->stackLayer()->addDraw(player,nbcards->getValue());
       game->mLayers->stackLayer()->resolve();
     }
     return 1;
@@ -495,8 +495,13 @@ class AADrawer:public ActivatedAbilityTP{
 
   AADrawer * clone() const{
     AADrawer * a =  NEW AADrawer(*this);
+    a->nbcards = NEW WParsedInt(*(a->nbcards));
     a->isClone = 1;
     return a;
+  }
+
+  ~AADrawer(){
+    SAFE_DELETE(nbcards);
   }
 
 };

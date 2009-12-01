@@ -528,13 +528,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found != string::npos){
     unsigned int start = s.find(":",found);
     unsigned int end = s.find(" ",start);
-    int nbcards;
+    string nbcardsStr;
     if (end != string::npos){
-      nbcards = atoi(s.substr(start+1,end-start-1).c_str());
+      nbcardsStr = s.substr(start+1,end-start-1);
     }else{
-      nbcards = atoi(s.substr(start+1).c_str());
+      nbcardsStr = s.substr(start+1);
     }
-
+    WParsedInt * nbcards = NEW WParsedInt(nbcardsStr,spell,card);
     Targetable * t = NULL;
     if (spell) t = spell->getNextTarget();
     MTGAbility * a = NEW AADrawer(id,card,t,NULL,nbcards,0,who);

@@ -238,6 +238,7 @@ paralysis.txt
 paralysis2.txt
 persuasion.txt
 plague_rats.txt
+prosperity.txt
 protomatter_powder.txt
 prowess_of_the_fair.txt
 prowess_of_the_fair2.txt

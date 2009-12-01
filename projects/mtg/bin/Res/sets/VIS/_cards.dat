@@ -305,6 +305,16 @@ power=0
 toughness=3
 [/card]
 [card]
+id=3647
+name=Prosperity
+mana={X}{U}
+type=Sorcery
+text=Each player draws X cards.
+auto=Draw:X controller
+auto=Draw:X opponent
+rarity=U
+[/card]
+[card]
 id=3625
 name=Python
 rarity=C

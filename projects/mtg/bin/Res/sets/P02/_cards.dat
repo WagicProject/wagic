@@ -310,7 +310,7 @@ subtype=Serpent
 power=11
 toughness=11
 text=When Denizen of the Deep enters the battlefield, return each other creature you control to its owner's hand.
-auto=moveTo(ownerHand) all(creature|myBattlefield)
+auto=moveTo(ownerHand) all(other creature|myBattlefield)
 rarity=R
 [/card]
 [card]
