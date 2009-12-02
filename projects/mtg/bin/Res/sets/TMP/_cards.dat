@@ -626,7 +626,6 @@ type=Instant
 text=Enchant creature   Prevent all combat damage that would be dealt to and dealt by enchanted creature.
 id=4702
 target=creature
-auto=cantattack
 auto=preventAllCombatDamage from(mytgt)
 auto=preventAllCombatDamage to(mytgt)
 name=Gaseous Form
@@ -991,7 +990,7 @@ text={T}: Add {1} to your mana pool.   {T}: Untap target attacking creature with
 id=4933
 name=Maze of Shadows
 auto={T}:Add {1}
-auto=untap target(creature[attacking;shadow]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+auto={T}:untap target(creature[attacking;shadow]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
 rarity=U
 type=Land
 [/card]
