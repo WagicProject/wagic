@@ -643,6 +643,19 @@ mana={4}{W}{U}
 type=Sorcery
 [/card]
 [card]
+text=When Knight-Captain of Eos enters the battlefield, put two 1/1 white Soldier creature tokens onto the battlefield.   {W}, Sacrifice a Soldier: Prevent all combat damage that would be dealt this turn.
+id=179421
+name=Knight-Captain of Eos
+rarity=R
+mana={4}{W}
+type=Creature
+subtype=Human Knight
+auto=token(Spirit,creature spirit, 1/1,flying white)*2
+auto={W}{S(soldier|myBattlefield)}:preventAllcombatDamage ueot
+power=2
+toughness=2
+[/card]
+[card]
 text={3}{G}: Knight of the Skyward Eye gets +3/+3 until end of turn. Play this ability only once each turn.
 id=175047
 name=Knight of the Skyward Eye

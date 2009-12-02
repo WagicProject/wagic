@@ -1082,17 +1082,6 @@ text=Reach (This creature can block creatures with flying.) Sacrifice a land: Sp
 rarity=U
 [/card]
 [card]
-id=24654
-name=Spore Frog
-mana={G}
-type=Creature
-subtype=Frog
-power=1
-toughness=1
-text=Sacrifice Spore Frog: Prevent all combat damage that would be dealt this turn.
-rarity=C
-[/card]
-[card]
 id=24625
 name=Spur Grappler
 mana={2}{R}

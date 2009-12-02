@@ -137,6 +137,16 @@ auto=unblockable
 rarity=C
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.  {1}{W}, {T}: Prevent all combat damage that would be dealt by target attacking creature this turn.
+id=21403
+name=Kor Haven
+auto={T}:Add {1}
+auto={1}{W}{T}:preventAllCombatDamage from target(creature[attacking]) ueot
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
 id=21255
 name=Lawbringer
 mana={2}{W}

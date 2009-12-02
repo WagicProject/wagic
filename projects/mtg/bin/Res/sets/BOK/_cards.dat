@@ -197,6 +197,18 @@ toughness=1
 abilities=legendary
 [/card]
 [card]
+text=Sacrifice Kami of False Hope: Prevent all combat damage that would be dealt this turn.
+id=74097
+name=Kami of False Hope
+rarity=C
+mana={W}
+type=Creature
+subtype=Spirit
+auto={S}:preventAllcombatDamage ueot
+power=1
+toughness=1
+[/card]
+[card]
 text=Whenever you cast a Spirit or Arcane spell, Kami of Tattered Shoji gains flying until end of turn.
 id=74460
 name=Kami of Tattered Shoji

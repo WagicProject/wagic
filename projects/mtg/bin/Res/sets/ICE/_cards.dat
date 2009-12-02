@@ -395,6 +395,19 @@ toughness=1
 abilities=cantblock
 [/card]
 [card]
+text=Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.   Draw a card at the beginning of the next turn's upkeep.
+id=2562
+target=creature[attacking]
+auto=untap
+auto=preventAllCombatDamage to(mytgt) ueot
+auto=preventAllCombatDamage from(mytgt) ueot
+auto=@next upkeep:draw:1 controller
+name=Foxfire
+rarity=C
+mana={2}{G}
+type=Instant
+[/card]
+[card]
 text={3}, {T}: Target creature gains first strike until end of turn.
 id=2404
 name=Fyndhorn Bow
@@ -446,8 +459,17 @@ target=creature
 auto=3/3
 name=Giant Growth
 rarity=C
-type=Instant
 mana={G}
+type=Instant
+[/card]
+[card]
+text=Sacrifice a snow Mountain: Prevent all combat damage that would be dealt this turn.
+id=2623
+auto={S(mountain[snow])}:preventAllcombatDamage ueot
+name=Glacial Crevasses
+rarity=R
+mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 text=Defender (This creature can't attack.)
@@ -1284,6 +1306,15 @@ rarity=R
 type=Land
 [/card]
 [card]
+text={2}, Sacrifice a snow land: Prevent all combat damage that would be dealt this turn.
+auto={2}{S(land[snow])}:preventAllcombatDamage ueot
+id=2427
+name=Sunstone
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
 text={T}: Add {B} to your mana pool.
 id=2743
 auto={T}:Add {B}
@@ -1476,6 +1507,16 @@ name=War Chariot
 rarity=U
 mana={3}
 type=Artifact
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt by target attacking creature this turn.
+id=2715
+target=creature[attacking]
+auto=preventAllCombatDamage from(mytgt) ueot
+name=Warning
+rarity=C
+mana={W}
+type=Instant
 [/card]
 [card]
 text={2}, {T}: Target creature with power 3 or less gains flying until end of turn.

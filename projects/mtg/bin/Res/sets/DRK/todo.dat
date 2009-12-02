@@ -341,14 +341,6 @@ text=Exile all white creatures. For each creature exiled this way, its controlle
 rarity=R
 [/card]
 [card]
-id=1824
-name=Maze of Ith
-mana=
-type=Land
-text={T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
-rarity=U
-[/card]
-[card]
 id=1759
 name=Mind Bomb
 mana={U}

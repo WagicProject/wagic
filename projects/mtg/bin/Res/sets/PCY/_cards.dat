@@ -10,3 +10,15 @@ text={1}{B}, Sacrifice a land: Target creature gets +2/+0 until end of turn.
 auto={1}{B}{S(land|myBattlefield)}:2/0 target(creature)
 rarity=C
 [/card]
+[card]
+text=Sacrifice Spore Frog: Prevent all combat damage that would be dealt this turn.
+id=24654
+name=Spore Frog
+rarity=C
+mana={G}
+type=Creature
+subtype=Frog
+auto={S}:preventAllcombatDamage ueot
+power=1
+toughness=1
+[/card]

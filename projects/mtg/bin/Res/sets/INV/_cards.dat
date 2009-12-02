@@ -3,7 +3,7 @@ text=Counter target spell.   You gain 3 life.
 id=23155
 target=*|stack
 auto=fizzle
-auto=life:3
+auto=life:3 controller
 name=Absorb
 rarity=R
 mana={W}{U}{U}
@@ -1372,6 +1372,17 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt by target attacking creature this turn.       Draw a card.
+id=22943
+target=creature
+auto=preventAllCombatDamage from(mytgt) ueot
+auto=draw:1 controller
+name=Restrain
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 text=You gain 3 life.   Draw a card.
 id=22941
 auto=life:3
@@ -1610,6 +1621,18 @@ subtype=Metathran Wizard
 auto={2}:flying target(creature[white;black])
 power=2
 toughness=1
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has fear.   Whenever enchanted creature deals combat damage to an opponent, you may draw a card.
+id=23168
+target=creature
+auto=fear
+auto=@damaged(player) from(mytgt):may draw:1 controller
+name=Sleeper's Robe
+rarity=U
+mana={U}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Forestwalk

@@ -197,14 +197,14 @@ type=Instant
 mana={X}{U}
 [/card]
 [card]
-text=Protection from red     Sacrifice Burrenton Forge-Tender: Prevent all damage a red source of your choice would deal this turn.
+text=Protection from red   Sacrifice Burrenton Forge-Tender: Prevent all damage a red source of your choice would deal this turn.
 id=139395
 name=Burrenton Forge-Tender
 rarity=U
-type=Creature
 mana={W}
-power=1
+type=Creature
 subtype=Kithkin Wizard
+power=1
 toughness=1
 [/card]
 [card]

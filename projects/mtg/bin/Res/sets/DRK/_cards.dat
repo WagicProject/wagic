@@ -349,6 +349,14 @@ toughness=1
 abilities=swampwalk
 [/card]
 [card]
+text={T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
+auto={2}{T}:untap target(creature[attacking]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+id=1824
+name=Maze of Ith
+rarity=U
+type=Land
+[/card]
+[card]
 text={T}: Destroy target creature with islandwalk.
 id=1758
 name=Merfolk Assassin

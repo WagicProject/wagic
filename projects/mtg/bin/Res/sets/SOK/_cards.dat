@@ -425,6 +425,16 @@ toughness=*
 rarity=R
 [/card]
 [card]
+text={2}: Target creature you control gains flying until end of turn.   {2}: Prevent all combat damage that would be dealt to and dealt by target creature you control this turn.
+id=74174
+name=Soratami Cloud Chariot
+auto={2}:flying target(creature|myBattlefield)
+auto={2}:preventAllCombatDamage from target(creature|myBattlefield) ueot && preventAllCombatDamage to(mytgt) ueot
+rarity=U
+mana={5}
+type=Artifact
+[/card]
+[card]
 text=Spiraling Embers deals damage to target creature or player equal to the number of cards in your hand.
 name=Spiraling Embers
 id=74503

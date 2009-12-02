@@ -153,17 +153,6 @@ auto={1}{G}:doesnotuntap target(creature)
 rarity=C
 [/card]
 [card]
-id=1914
-name=Elvish Scout
-mana={G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=1
-text={G}, {T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by it this turn.
-rarity=C
-[/card]
-[card]
 id=1978
 name=Farrelite Priest
 mana={1}{W}{W}

@@ -692,14 +692,6 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-text=Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.     Draw a card at the beginning of the next turn's upkeep.
-id=2562
-name=Foxfire
-rarity=C
-type=Instant
-mana={2}{G}
-[/card]
-[card]
 text={T}, Sacrifice a red or white creature: Freyalise Supplicant deals damage to target creature or player equal to half the sacrificed creature's power, rounded down.
 id=2563
 name=Freyalise Supplicant
@@ -818,14 +810,6 @@ id=2752
 name=Glacial Chasm
 rarity=U
 type=Land
-[/card]
-[card]
-text=Sacrifice a snow Mountain: Prevent all combat damage that would be dealt this turn.
-id=2623
-name=Glacial Crevasses
-rarity=R
-type=Enchantment
-mana={2}{R}
 [/card]
 [card]
 text=At the beginning of your upkeep, sacrifice Glaciers unless you pay {W}{U}.       All Mountains are Plains.
@@ -2051,14 +2035,6 @@ type=Sorcery
 mana={3}{G}{G}
 [/card]
 [card]
-text={2}, Sacrifice a snow land: Prevent all combat damage that would be dealt this turn.
-id=2427
-name=Sunstone
-rarity=U
-type=Artifact
-mana={3}
-[/card]
-[card]
 text=Destroy target land. If that land was a snow land, you gain 1 life.
 id=2592
 name=Thermokarst
@@ -2152,14 +2128,6 @@ mana={3}
 power=0
 toughness=4
 subtype=Wall
-[/card]
-[card]
-text=Prevent all combat damage that would be dealt by target attacking creature this turn.
-id=2715
-name=Warning
-rarity=C
-type=Instant
-mana={W}
 [/card]
 [card]
 text=Enchant creature     Enchanted creature can't be blocked by white creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a white permanent.

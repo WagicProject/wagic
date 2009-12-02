@@ -480,17 +480,6 @@ type=Enchantment
 mana={1}{U}
 [/card]
 [card]
-text={G}, {T}, Discard a card: Prevent all combat damage that would be dealt this turn.
-id=19855
-name=Dawnstrider
-rarity=R
-type=Creature
-mana={1}{G}
-power=1
-subtype=Dryad Spellshaper
-toughness=1
-[/card]
-[card]
 text=Whenever Deathgazer blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat.
 id=19820
 name=Deathgazer
@@ -511,17 +500,6 @@ mana={G}{G}
 power=2
 subtype=Dryad Spellshaper
 toughness=2
-[/card]
-[card]
-text=Pay 2 life: Regenerate Deepwood Ghoul.
-id=19587
-name=Deepwood Ghoul
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Zombie
-toughness=1
 [/card]
 [card]
 text=If an opponent controls a Forest and you control a Swamp, you may play Deepwood Legate without paying its mana cost.     {B}: Deepwood Legate gets +1/+1 until end of turn.

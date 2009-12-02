@@ -588,17 +588,6 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-text=Defender (This creature can't attack.)  Flying     Prevent all combat damage that would be dealt to and dealt by Fog Bank.
-id=5753
-name=Fog Bank
-rarity=U
-type=Creature
-mana={1}{U}
-power=0
-subtype=Wall
-toughness=2
-[/card]
-[card]
 text=Enchant creature     When Fortitude is put into a graveyard from play, return Fortitude to its owner's hand.     Sacrifice a Forest: Regenerate enchanted creature.
 id=9850
 name=Fortitude
@@ -1508,16 +1497,6 @@ subtype=Wall
 toughness=3
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.       {2}{R}, {T}: Shivan Gorge deals 1 damage to each opponent.
-id=10482
-name=Shivan Gorge
-rarity=R
-type=Land
-abilities=Legendary
-auto={T}:add {1}
-auto={2}{R}{T}:damage:1 target(opponent)
-[/card]
-[card]
 text=First strike, haste     Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5562
 name=Shivan Raptor
@@ -1597,17 +1576,6 @@ mana={2}{U}{U}
 power=2
 subtype=Illusion
 toughness=2
-[/card]
-[card]
-text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
-id=5669
-name=Songstitcher
-rarity=U
-type=Creature
-mana={W}
-power=1
-subtype=Human Cleric
-toughness=1
 [/card]
 [card]
 text={1}{W}, {T}: Target creature becomes an enchantment and loses all abilities until a player plays a creature spell.

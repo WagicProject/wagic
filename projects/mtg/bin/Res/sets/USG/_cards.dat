@@ -112,7 +112,7 @@ rarity=R
 mana={1}{U}{U}
 type=Creature
 subtype=Human Wizard
-auto={s(*|myBattlefield)}:moveTo(ownerhand) target(creature)
+auto={2}{S(*|myBattlefield)}:moveTo(ownerhand) target(creature)
 power=1
 toughness=1
 abilities=legendary
@@ -443,8 +443,9 @@ type=Instant
 [/card]
 [card]
 text=Fault Line deals X damage to each creature without flying and each player.
-alias=1289
 id=8867
+auto=damage:X all(creature[-flying])
+auto=damage:X all(player)
 name=Fault Line
 rarity=R
 mana={X}{R}{R}
@@ -463,8 +464,22 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Defender (This creature can't attack.)   Flying   Prevent all combat damage that would be dealt to and dealt by Fog Bank
+auto=preventAllCombatDamage to(this)
+auto=preventAllCombatDamage from(this)
+id=5753
+name=Fog Bank
+rarity=U
+mana={1}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=1
+abilities=flying,defender
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=8340
 name=Forest
 rarity=L
@@ -473,7 +488,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=8341
 name=Forest
 rarity=L
@@ -482,7 +497,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=8338
 name=Forest
 rarity=L
@@ -491,7 +506,7 @@ subtype=Forest
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
+auto={T}:Add {G}
 id=8339
 name=Forest
 rarity=L
@@ -501,7 +516,7 @@ subtype=Forest
 [card]
 text={T}: Add {G} to your mana pool for each creature you control.
 id=10422
-auto={T}:foreach(creature|myBattlefield)add:{G}
+auto={T}:foreach(creature|myBattlefield) add:{G}
 name=Gaea's Cradle
 rarity=R
 type=Land
@@ -1067,6 +1082,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.   {2}{R}, {T}: Shivan Gorge deals 1 damage to each opponent.
+id=10482
+name=Shivan Gorge
+auto={T}:Add {1}
+auto={2}{R}{T}:damage:1 opponent
+rarity=R
+type=Land
+abilities=legendary
+[/card]
+[card]
 text={T}: You gain 1 life.
 auto={T}:life:1
 id=5651
@@ -1119,7 +1144,7 @@ toughness=3
 [/card]
 [card]
 text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
-auto={1}{W}:-99/0 target(creature[attacking;flying])
+auto={1}{W}:preventAllCombatDamage from target(creature[attacking;flying]) ueot
 id=5669
 name=Songstitcher
 rarity=U

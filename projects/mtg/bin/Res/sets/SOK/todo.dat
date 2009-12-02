@@ -1228,14 +1228,6 @@ toughness=3
 rarity=C
 [/card]
 [card]
-text={2}: Target creature you control gains flying until end of turn. {2}: Prevent all combat damage that would be dealt to and dealt by target creature you control this turn.
-name=Soratami Cloud Chariot
-id=74174
-mana={5}
-type=Artifact
-rarity=U
-[/card]
-[card]
 text=Put a 1/1 colorless Spirit creature token onto the battlefield. Splice onto Arcane {W} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 name=Spiritual Visit
 id=74372

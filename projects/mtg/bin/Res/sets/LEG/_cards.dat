@@ -278,6 +278,18 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
+text=Enchant creature   Enchanted creature can't attack.   Prevent all combat damage that would be dealt by enchanted creature.
+id=1435
+target=creature
+auto=cantattack
+auto=preventAllCombatDamage from(mytgt)
+name=Demonic Torment
+rarity=U
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Islandwalk
 id=1476
 name=Devouring Deep
@@ -539,6 +551,15 @@ mana={W}
 type=Instant
 [/card]
 [card]
+text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
+auto={2}{T}:preventAllCombatDamage from target(creature)
+id=1407
+name=Horn of Deafening
+rarity=R
+mana={4}
+type=Artifact
+[/card]
+[card]
 text=First strike
 id=1530
 name=Hornet Cobra
@@ -780,6 +801,19 @@ subtype=Human Archer
 auto={T}:damage:3 target(creature[attacking;blocking])
 power=3
 toughness=6
+abilities=legendary
+[/card]
+[card]
+text={W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
+id=1666
+name=Lady Evangela
+rarity=R
+mana={W}{U}{B}
+type=Creature
+subtype=Human Cleric
+auto={W}{B}{T}:preventAllCombatDamage from target(creature) ueot
+power=1
+toughness=2
 abilities=legendary
 [/card]
 [card]

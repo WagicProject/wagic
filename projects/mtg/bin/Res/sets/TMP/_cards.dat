@@ -1,5 +1,5 @@
 [card]
-text=First strike    {W}: Target creature gains first strike until end of turn.
+text=First strike   {W}: Target creature gains first strike until end of turn.
 auto={W}:first strike target(creature)
 id=4857
 name=Advance Scout
@@ -623,6 +623,19 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   Prevent all combat damage that would be dealt to and dealt by enchanted creature.
+id=4702
+target=creature
+auto=cantattack
+auto=preventAllCombatDamage from(mytgt)
+auto=preventAllCombatDamage to(mytgt)
+name=Gaseous Form
+rarity=C
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={2}{W}: Creatures you control get +1/+1 until end of turn.
 auto={2}{W}:lord(creature|mybattlefield) 1/1
 id=4877
@@ -974,6 +987,15 @@ toughness=3
 abilities=flying
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.   {T}: Untap target attacking creature with shadow. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
+id=4933
+name=Maze of Shadows
+auto={T}:Add {1}
+auto=untap target(creature[attacking;shadow]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+rarity=U
+type=Land
+[/card]
+[card]
 id=4617
 name=Metallic Sliver
 rarity=C
@@ -1236,6 +1258,15 @@ name=Repentance
 rarity=U
 mana={2}{W}
 type=Sorcery
+[/card]
+[card]
+text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
+id=4897
+name=Safeguard
+auto={2}{W}:preventAllCombatDamage from target(creature) ueot
+rarity=R
+mana={3}{W}{W}
+type=Enchantment
 [/card]
 [card]
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.

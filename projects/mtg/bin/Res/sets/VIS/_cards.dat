@@ -341,7 +341,7 @@ rarity=C
 mana={W}
 type=Creature
 subtype=Human Soldier
-auto={S}:-99/0 target(creature)
+auto={S}:preventAllCombatDamage from target(creature) ueot
 power=1
 toughness=1
 [/card]

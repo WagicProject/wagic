@@ -329,17 +329,6 @@ subtype=Zombie
 toughness=1
 [/card]
 [card]
-text=Enchant creature     Enchanted creature can't attack.     Prevent all combat damage that would be dealt by enchanted creature.
-id=1435
-name=Demonic Torment
-target=creature
-auto=cantattack
-rarity=U
-type=Enchantment
-mana={2}{B}
-subtype=Aura
-[/card]
-[card]
 text=Play Disharmony only during combat before blockers are declared.      Untap target attacking creature and remove it from combat. Gain control of that creature until end of turn.
 id=1568
 target=creature[attacking]
@@ -600,14 +589,6 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Target blocking Wall you control gets +10/+0 until end of combat. Prevent all damage that would be dealt to it this turn. Destroy it at end of turn.
-id=1576
-name=Glyph of Destruction
-rarity=C
-type=Instant
-mana={R}
-[/card]
-[card]
 text=At end of combat, destroy all creatures that were blocked by target Wall this turn.
 id=1440
 name=Glyph of Doom
@@ -689,14 +670,6 @@ name=Heaven's Gate
 rarity=U
 type=Instant
 mana={W}
-[/card]
-[card]
-text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
-id=1407
-name=Horn of Deafening
-rarity=R
-type=Artifact
-mana={4}
 [/card]
 [card]
 text=Whenever an opponent plays an instant spell other than the first instant spell that player plays each turn, Ichneumon Druid deals 4 damage to him or her.
@@ -805,17 +778,6 @@ name=Kry Shield
 rarity=U
 type=Artifact
 mana={2}
-[/card]
-[card]
-text={W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
-id=1666
-name=Lady Evangela
-rarity=R
-type=Legendary Creature
-mana={W}{U}{B}
-power=1
-subtype=Human Cleric
-toughness=2
 [/card]
 [card]
 text=If an opponent who controls at least as many lands as you do would put a land into play, that player instead puts that land into play then sacrifices a land.

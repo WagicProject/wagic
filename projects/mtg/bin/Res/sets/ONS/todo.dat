@@ -1689,15 +1689,6 @@ text=Flying (This creature can't be blocked except by creatures with flying or r
 rarity=C
 [/card]
 [card]
-id=41170
-name=Sandskin
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Prevent all combat damage that would be dealt to and dealt by enchanted creature.
-rarity=C
-[/card]
-[card]
 id=39455
 name=Screeching Buzzard
 mana={3}{B}

@@ -294,6 +294,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text={G}, {T}, Discard a card: Prevent all combat damage that would be dealt this turn.
+auto={G}{T}{S(*|myhand)}:preventAllCombatDamage ueot
+id=19855
+name=Dawnstrider
+rarity=R
+mana={1}{G}
+type=Creature
+subtype=Dryad Spellshaper
+power=1
+toughness=1
+[/card]
+[card]
 text=Shroud (This permanent can't be the target of spells or abilities.)
 id=19628
 name=Deadly Insect
@@ -315,6 +327,18 @@ type=Creature
 subtype=Human Spellshaper
 auto={G}{T}{S(*|myhand)}:2/2 target(creature)
 power=1
+toughness=1
+[/card]
+[card]
+text=Pay 2 life: Regenerate Deepwood Ghoul.
+id=19587
+name=Deepwood Ghoul
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Zombie
+auto={0}:regenerate && life:-2 controller
+power=2
 toughness=1
 [/card]
 [card]

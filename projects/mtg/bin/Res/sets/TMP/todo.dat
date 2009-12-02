@@ -576,15 +576,6 @@ power=1
 subtype=Squid Beast
 toughness=3
 [/card]
-[card]
-text=Enchant creature     Prevent all combat damage that would be dealt to and dealt by enchanted creature.
-id=4702
-name=Gaseous Form
-rarity=C
-type=Enchantment
-mana={2}{U}
-subtype=Aura
-[/card]
 
 [card]
 text={T}: Add {1} to your mana pool.     {0}: Return Ghost Town to its owner's hand. Play this ability only if it's not your turn.
@@ -812,13 +803,6 @@ mana={3}{W}
 power=3
 subtype=Giant
 toughness=3
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.       {T}: Untap target attacking creature with shadow. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
-id=4933
-name=Maze of Shadows
-rarity=U
-type=Land
 [/card]
 [card]
 text=Draw four cards. You skip your next turn.
@@ -1147,14 +1131,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 
-[card]
-text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
-id=4897
-name=Safeguard
-rarity=R
-type=Enchantment
-mana={3}{W}{W}
-[/card]
 [card]
 text=Blue spells you play cost {1} less to play.
 id=4626

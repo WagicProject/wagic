@@ -595,17 +595,6 @@ subtype=Human Knight
 toughness=2
 [/card]
 [card]
-text=When Knight-Captain of Eos comes into play, put two 1/1 white Soldier creature tokens into play.     {W}, Sacrifice a Soldier: Prevent all combat damage that would be dealt this turn.
-id=179421
-name=Knight-Captain of Eos
-rarity=R
-type=Creature
-mana={4}{W}
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Whenever another creature is put into a graveyard from play, you may put X +1/+1 counters on Kresh the Bloodbraided, where X is that creature's power.
 id=174876
 name=Kresh the Bloodbraided

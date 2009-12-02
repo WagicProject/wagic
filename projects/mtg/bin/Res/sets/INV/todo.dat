@@ -912,14 +912,6 @@ type=Sorcery
 mana={3}{G}{G}
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt by target attacking creature this turn.       Draw a card.
-id=22943
-name=Restrain
-rarity=C
-type=Instant
-mana={2}{W}
-[/card]
-[card]
 text=Reveal the top three cards of your library and put one of them into your hand. You gain life equal to that card's converted mana cost. Put all other cards revealed this way into your graveyard.
 id=23196
 name=Reviving Vapors
@@ -1097,15 +1089,6 @@ mana={3}{R}
 power=5
 subtype=Elemental
 toughness=3
-[/card]
-[card]
-text=Enchant creature     Enchanted creature has fear.     Whenever enchanted creature deals combat damage to an opponent, you may draw a card.
-id=23168
-name=Sleeper's Robe
-rarity=U
-type=Enchantment
-mana={U}{B}
-subtype=Aura
 [/card]
 [card]
 text={T}: Target land becomes a Swamp until end of turn.
