@@ -118,8 +118,8 @@ void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
   MTGDeck * tempDeck = NEW MTGDeck(mParent->collection);
   tempDeck->addRandomCards(9,0,0,-1,lands[color1].c_str());
   tempDeck->addRandomCards(9,0,0,-1,lands[color2].c_str());
-  tempDeck->addRandomCards(1,0,0,'U',"land",colors,nbcolors);
-  tempDeck->addRandomCards(1,0,0,'R',"land",colors,nbcolors);
+  tempDeck->addRandomCards(1,0,0,'U',"land");
+  tempDeck->addRandomCards(1,0,0,'R',"land");
   tempDeck->addRandomCards(12,0,0,-1,"creature",colors,nbcolors);
   tempDeck->addRandomCards(2,0,0,-1,"sorcery",colors,nbcolors);
   tempDeck->addRandomCards(2,0,0,-1,"enchantment",colors,nbcolors);

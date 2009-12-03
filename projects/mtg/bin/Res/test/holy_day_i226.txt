@@ -1,0 +1,43 @@
+#Bug: Holy day lasts after end of turn
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:holy day
+manapool:{W}
+inplay:grizzly bears
+[PLAYER2]
+[DO]
+holy day
+next
+#begin
+next
+#attackers
+grizzly bears
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+graveyard:holy day
+inplay:grizzly bears
+[PLAYER2]
+life:18
+[END]

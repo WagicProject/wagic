@@ -2208,7 +2208,7 @@ class APreventAllCombatDamage:public MTGAbility{
     return 1;
   }
 
-  int Destroy(){
+  int destroy(){
     game->replacementEffects->remove(re);
     delete re;
     return 1;

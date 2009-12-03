@@ -182,6 +182,7 @@ gravedigger.txt
 hannas_custody.txt
 harpoon_sniper.txt
 hellfire.txt
+holy_day_i226.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
 hurricane.txt
