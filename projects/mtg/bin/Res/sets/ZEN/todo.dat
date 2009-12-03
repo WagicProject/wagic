@@ -155,7 +155,7 @@ power=2
 toughness=3
 text=Flying When Kor Skyfisher enters the battlefield, return a permanent you control to its owner's hand.
 rarity=C
-[/card
+[/card]
 [card]
 id=197889
 name=Luminarch Ascension
@@ -205,7 +205,7 @@ id=177551
 name=Sunspring Expedition
 mana={W}
 type=Enchantment
-text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
+text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
 rarity=C
 [/card]
 [card]
@@ -273,7 +273,7 @@ id=185711
 name=Ior Ruin Expedition
 mana={1}{U}
 type=Enchantment
-text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
+text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
 rarity=C
 [/card]
 [card]
@@ -373,7 +373,7 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=2
-text=Flying Landfall  EWhenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
+text=Flying Landfall - Whenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
 rarity=R
 [/card]
 [card]
@@ -479,7 +479,7 @@ type=Creature
 subtype=Vampire Spirit
 power=2
 toughness=1
-text=Bloodghast can't block. Bloodghast has haste as long as an opponent has 10 or less life. Landfall  EWhenever a land enters the battlefield under your control, you may return Bloodghast from your graveyard to the battlefield.
+text=Bloodghast can't block. Bloodghast has haste as long as an opponent has 10 or less life. Landfall - Whenever a land enters the battlefield under your control, you may return Bloodghast from your graveyard to the battlefield.
 rarity=R
 [/card]
 [card]
@@ -514,7 +514,7 @@ id=180127
 name=Grim Discovery
 mana={1}{B}
 type=Sorcery
-text=Choose one or both  EReturn target creature card from your graveyard to your hand; and/or return target land card from your graveyard to your hand.
+text=Choose one or both - Return target creature card from your graveyard to your hand; and/or return target land card from your graveyard to your hand.
 rarity=C
 [/card]
 [card]
@@ -640,7 +640,7 @@ id=177586
 name=Soul Stair Expedition
 mana={B}
 type=Enchantment
-text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Soul Stair Expedition. Remove three quest counters from Soul Stair Expedition and sacrifice it: Return up to two target creature cards from your graveyard to your hand.
+text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Soul Stair Expedition. Remove three quest counters from Soul Stair Expedition and sacrifice it: Return up to two target creature cards from your graveyard to your hand.
 rarity=C
 [/card]
 [card]
@@ -867,7 +867,7 @@ id=183403
 name=Zektar Shrine Expedition
 mana={1}{R}
 type=Enchantment
-text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
+text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
 rarity=C
 [/card]
 [card]
@@ -918,7 +918,7 @@ id=186320
 name=Khalni Heart Expedition
 mana={1}{G}
 type=Enchantment
-text=Landfall  EWhenever a land enters the battlefield under your control, you may put a quest counter on Khalni Heart Expedition. Remove three quest counters from Khalni Heart Expedition and sacrifice it: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
+text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Khalni Heart Expedition. Remove three quest counters from Khalni Heart Expedition and sacrifice it: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
 rarity=C
 [/card]
 [card]
@@ -929,7 +929,7 @@ type=Creature
 subtype=Snake
 power=2
 toughness=1
-text=Landfall  EWhenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
+text=Landfall - Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
 rarity=M
 [/card]
 [card]
@@ -1073,7 +1073,7 @@ type=Creature
 subtype=Basilisk
 power=2
 toughness=1
-text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) Landfall  EWhenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
+text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) Landfall - Whenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
 rarity=U
 [/card]
 [card]
@@ -1082,7 +1082,7 @@ name=Adventuring Gear
 mana={1}
 type=Artifact
 subtype=Equipment
-text=Landfall  EWhenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+text=Landfall - Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 rarity=C
 [/card]
 [card]
@@ -1116,7 +1116,7 @@ id=189006
 name=Eternity Vessel
 mana={6}
 type=Artifact
-text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall  EWhenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
+text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall - Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
 rarity=M
 [/card]
 [card]
@@ -1241,13 +1241,4 @@ mana=
 type=Land
 text=Valakut, the Molten Pinnacle enters the battlefield tapped. Whenever a Mountain enters the battlefield under your control, if you control at least five other Mountains, you may have Valakut, the Molten Pinnacle deal 3 damage to target creature or player. {T}: Add {R} to your mana pool.
 rarity=R
-[/card]
-[card]
-id=201972
-name=Plains
-mana=
-type=Basic Land
-subtype=Plains
-text=W
-rarity=C
 [/card]

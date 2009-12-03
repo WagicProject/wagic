@@ -1227,7 +1227,7 @@ name=Umezawa's Jitte
 mana={2}
 type=Legendary Artifact
 subtype=Equipment
-text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. Remove a charge counter from Umezawa's Jitte: Choose one  E Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. Equip {2}
+text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. Remove a charge counter from Umezawa's Jitte: Choose one - Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. Equip {2}
 rarity=R
 [/card]
 [card]

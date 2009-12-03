@@ -679,7 +679,7 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
-text=Domain  E{T}: Prevent the next X damage that would be dealt to target creature this turn, where X is the number of basic land types among lands you control.
+text=Domain - {T}: Prevent the next X damage that would be dealt to target creature this turn, where X is the number of basic land types among lands you control.
 rarity=C
 [/card]
 [card]

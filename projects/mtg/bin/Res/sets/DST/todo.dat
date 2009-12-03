@@ -293,7 +293,7 @@ type=Artifact Creature
 subtype=Shapeshifter
 power=5
 toughness=5
-text=Imprint  E{1}: Exile target creature card from your graveyard. As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
+text=Imprint - {1}: Exile target creature card from your graveyard. As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
 rarity=U
 [/card]
 [card]
@@ -610,7 +610,7 @@ id=47930
 name=Panoptic Mirror
 mana={5}
 type=Artifact
-text=Imprint  E{X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
+text=Imprint - {X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
 rarity=R
 [/card]
 [card]
