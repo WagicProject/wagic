@@ -7,6 +7,7 @@ Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness)
   toughness = _toughness;
   life=toughness;
   lifeOrig = life;
+  rarity = Constants::RARITY_T;
   name = _name;
   setMTGId(- source->getMTGId());
   setId = source->setId;

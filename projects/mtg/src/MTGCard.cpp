@@ -65,6 +65,7 @@ int MTGCard::init(){
   magicText = "";
   spellTargetType = "";
   alias = 0;
+  rarity = Constants::RARITY_C;
   return 1;
 }
 
