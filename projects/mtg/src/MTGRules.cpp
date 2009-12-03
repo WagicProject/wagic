@@ -501,8 +501,8 @@ HUDDisplay::~HUDDisplay(){
     for ( it=cards.begin() ; it != cards.end(); it++ ){
       MTGCardInstance * comparison = (*it).first;
       if (comparison != card && !(comparison->getName().compare(card->getName()))){
-	comparison->owner->game->putInGraveyard(comparison);
-	destroy = 1;
+	      comparison->controller()->game->putInGraveyard(comparison);
+	      destroy = 1;
       }
     }
     if (destroy){
