@@ -1,0 +1,27 @@
+#Testing circle of protection (black) with a Black Knight attack
+#see http://code.google.com/p/wagic/issues/detail?id=211
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Black Knight
+[PLAYER2]
+inplay:1335,plains
+[DO]
+Black Knight
+next
+#blockers
+plains
+1335
+Black Knight
+next
+#damage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Black Knight
+[PLAYER2]
+inplay:1335,plains
+life:20
+[END]

@@ -1287,6 +1287,7 @@ protected:
  public:
  ACircleOfProtection(int _id, MTGCardInstance * source, int _color):TargetAbility(_id,source,NEW SpellOrPermanentTargetChooser(source,_color),NEW ManaCost(),0,0){
     cost->add(Constants::MTG_COLOR_ARTIFACT,1);
+    tc->targetter = NULL; //Circle of Protection doesn't use the word "source"
   }
 
   int resolve(){

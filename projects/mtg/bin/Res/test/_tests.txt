@@ -100,6 +100,7 @@ cathodion.txt
 celestial_purge.txt
 chainbreaker.txt
 circle_of_protection.txt
+circle_of_protection_i211.txt
 civic_wayfinder.txt
 clone.txt
 clone2.txt
