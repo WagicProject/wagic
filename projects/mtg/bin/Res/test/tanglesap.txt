@@ -28,7 +28,7 @@ next
 COMBATEND
 [PLAYER1]
 graveyard:Tanglesap
-inplay:Baloth Woodcrasher,Runeclaw Bear
+inplay:Baloth Woodcrasher,Runeclaw Bear,195158
 [PLAYER2]
 inplay:grizzly bears
 life:12
