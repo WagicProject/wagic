@@ -1,6 +1,7 @@
 [card]
 text=Trample   As long as it's your turn, Angry Mob's power and toughness are each equal to 2 plus the number of Swamps your opponents control.   As long as it's not your turn, Angry Mob's power and toughness are each 2.
 auto=foreach(swamp|opponentBattlefield) 1/1 ueot
+auto=@movedto(swamp|opponentBattlefield):-1/-1 ueot
 auto=@each my beginofturn:foreach(swamp|opponentBattlefield) 1/1 ueot
 id=1801
 name=Angry Mob
