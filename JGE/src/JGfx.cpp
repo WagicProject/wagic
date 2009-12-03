@@ -40,6 +40,56 @@ static unsigned int __attribute__((aligned(16))) list[262144];
 
 extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width);
 
+//START PurpleScreen Debug
+int JRenderer::debugged = 0;
+typedef struct
+{
+        unsigned int* start;
+        unsigned int* current;
+        int parent_context;
+} GuDisplayList;
+
+typedef struct
+{
+        GuDisplayList list;
+        int scissor_enable;
+        int scissor_start[2];
+        int scissor_end[2];
+        int near_plane;
+        int far_plane;
+        int depth_offset;
+        int fragment_2x;
+        int texture_function;
+        int texture_proj_map_mode;
+        int texture_map_mode;
+        int sprite_mode[4];
+        unsigned int clear_color;
+        unsigned int clear_stencil;
+        unsigned int clear_depth;
+        int texture_mode;
+} GuContext;
+
+typedef struct
+{
+        int pixel_size;
+        int frame_width;
+        void* frame_buffer;
+        void* disp_buffer;
+        void* depth_buffer;
+       int depth_width;
+         int width;
+        int height;
+ } GuDrawBuffer;
+
+extern int gu_curr_context;
+extern GuDrawBuffer gu_draw_buffer;
+extern GuContext gu_contexts[3];
+extern GuDisplayList* gu_list;
+
+
+//END PurpleScreen Debug
+
+
 
 void Swap(float *a, float *b)
 {
@@ -211,14 +261,6 @@ void JRenderer::InitRenderer()
 		sceGuDepthBuffer(zbp, FRAME_BUFFER_WIDTH);
 	}
 
-  FILE * pFile;
-  pFile = fopen ("graphiclog.txt","w");
-  char temp[600];
-  sprintf(temp,"fbp0:%p\nfbp1:%p\nBuffer Format:%d\nFrame Buffer Width:%d\nScreen Width:%d\nScreen Height:%d\n",fbp0,fbp1,BUFFER_FORMAT,FRAME_BUFFER_WIDTH,SCREEN_WIDTH,SCREEN_HEIGHT);
-  fputs(temp,pFile);
-  fclose (pFile);
-
-
 	sceGuOffset(2048 - (SCREEN_WIDTH/2), 2048 - (SCREEN_HEIGHT/2));
 	sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
 	sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -352,6 +394,28 @@ void JRenderer::EndScene()
 
 	mCurrentTex = -1;
 	mCurrentBlend = -1;
+
+//START PurpleScreen Debug
+  if (!debugged){
+    debugged = 1;
+  FILE * pFile;
+  pFile = fopen ("graphiclog.txt","w");
+  char temp[4096];
+  sprintf(temp,"fbp0:%p\nfbp1:%p\nBuffer Format:%d\nFrame Buffer Width:%d\nScreen Width:%d\nScreen Height:%d\n",fbp0,fbp1,BUFFER_FORMAT,FRAME_BUFFER_WIDTH,SCREEN_WIDTH,SCREEN_HEIGHT);
+  fputs(temp,pFile);
+  sprintf(temp,"\nDRAW BUFFER:\npixel_size:%d\nframe_width:%d\nframe_buffer:%p\n",gu_draw_buffer.pixel_size,gu_draw_buffer.frame_width,gu_draw_buffer.frame_buffer);
+  fputs(temp,pFile);
+  sprintf(temp,"disp_buffer:%p\ndepth_buffer:%p\ndepth_width:%d\nwidth:%d\nheight:%d\n",gu_draw_buffer.disp_buffer,gu_draw_buffer.depth_buffer,gu_draw_buffer.depth_width,gu_draw_buffer.width,gu_draw_buffer.height);
+  fputs(temp,pFile);
+  
+  GuContext gc = gu_contexts[gu_curr_context];
+
+  sprintf(temp,"\nGU CONTEXT:\nscissor_enable:%d\ndepth_offset:%d\nfragment_2x:%d\ntexture_function:%d\ntexture_mode:%d\n",gc.scissor_enable,gc.depth_offset,gc.fragment_2x,gc.texture_function,gc.texture_mode);
+  fputs(temp,pFile);
+  fclose (pFile);
+  }
+//END PurpleScreen Debug
+
 }
 
 
