@@ -1,0 +1,31 @@
+#NAME: Angry Mob 5
+#DESC: Tests whether Angry Mob's bonus gets
+#DESC: correctly set at the beginning of the
+#DESC: player's turn.
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Plains
+hand:Angry Mob,Swords to Plowshares
+manapool:{W}{W}{2}
+[PLAYER2]
+inplay:1373,1374,1375
+[DO]
+Angry Mob
+eot
+eot
+next
+next
+next
+Plains
+Swords to Plowshares
+Angry Mob
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Plains
+graveyard:Swords to Plowshares
+life:25
+[PLAYER2]
+inplay:1373,1374,1375
+[END]

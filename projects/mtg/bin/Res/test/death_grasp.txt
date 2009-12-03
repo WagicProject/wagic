@@ -1,0 +1,21 @@
+#NAME: Death Grasp
+#DESC: Verifies that Death Grasp
+#DESC: takes and gives the correct
+#DESC: amount (X) of life.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Death Grasp
+manapool:{W}{B}{10}
+[PLAYER2]
+[DO]
+Death Grasp
+p2
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Death Grasp
+life:30
+[PLAYER2]
+life:10
+[END]

@@ -1,0 +1,22 @@
+#NAME: Aether Mutation
+#DESC: Verifies that Aether Mutation
+#DESC: produces the correct amount
+#DESC: of Saproling Tokens
+[INIT]
+firstmain
+[PLAYER1]
+hand:28669
+manapool:{3}{G}{U}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+28669
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:-28669,-28669
+graveyard:28669
+[PLAYER2]
+hand:Grizzly Bears
+[END]

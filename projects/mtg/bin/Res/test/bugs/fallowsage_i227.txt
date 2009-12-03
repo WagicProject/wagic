@@ -1,0 +1,24 @@
+#NAME: Fallowsage
+#DESC: Bug: Fallowsage allows
+#DESC: multiple drawing of cards.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=227
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Fallowsage
+library:Plains,Swamp,Mountain,Forest,Island
+[PLAYER2]
+[DO]
+Fallowsage
+choice 1
+Fallowsage
+Fallowsage
+choice 1
+[ASSERT]
+combatattackers
+[PLAYER1]
+inplay:Fallowsage
+library:Plains,Swamp,Mountain,Forest
+hand:Island
+[PLAYER2]
+[END]

@@ -1,0 +1,28 @@
+#NAME: Nofizzle
+#DESC: Verifiues that the nofizzle keyword
+#DESC: works as expected: spells with nofizzle
+#DESC: can't be countered, but other effects
+#DESC: of the countering spell take effect.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Great Sable Stag
+manapool:{G}{G}{G}
+[PLAYER2]
+hand:Absorb
+manapool:{W}{U}{U}
+[DO]
+Great Sable Stag
+no
+yes
+Absorb
+Great Sable Stag
+endinterruption
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Great Sable Stag
+[PLAYER2]
+graveyard:Absorb
+life:23
+[END]

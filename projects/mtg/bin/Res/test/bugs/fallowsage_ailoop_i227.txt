@@ -1,0 +1,22 @@
+#NAME: Fallowsage
+#DESC: Bug: AI is caught in an endless
+#DESC: loop if it tries to attack with
+#DESC: Fallowsage.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=227
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Fallowsage
+library:Island,Plains,Swamp,Mountain,Forest
+[PLAYER2]
+[DO]
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai

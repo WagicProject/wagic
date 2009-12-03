@@ -1,0 +1,32 @@
+#NAME: Angry Mob 4
+#DESC: Tests whether Angry Mob's bonus gets
+#DESC: correctly removed during the opponent's
+#DESC: turn, and not influenced if the
+#DESC: opponent's number of swamps increases
+#DESC: during his turn.
+[INIT]
+secondmain
+[PLAYER1]
+hand:Angry Mob
+manapool:{W}{W}{2}
+[PLAYER2]
+inplay:1373,1374,Plains
+hand:Swords to Plowshares,1375
+[DO]
+Angry Mob
+eot
+next
+next
+next
+1375
+Plains
+Swords to Plowshares
+Angry Mob
+[ASSERT]
+firstmain
+[PLAYER1]
+life:22
+[PLAYER2]
+inplay:1373,1374,1375,Plains
+graveyard:Swords to Plowshares
+[END]

@@ -1,0 +1,22 @@
+#NAME: Angry Mob 1
+#DESC: Tests whether Angry Mob gets
+#DESC: its bonus when put into play.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Angry Mob,Swords to Plowshares
+manapool:{W}{W}{W}{W}{W}
+[PLAYER2]
+inplay:1373,1374,1375
+[DO]
+Angry Mob
+Swords to Plowshares
+Angry Mob
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Swords to Plowshares
+life:25
+[PLAYER2]
+inplay:1373,1374,1375
+[END]

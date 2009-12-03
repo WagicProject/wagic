@@ -22,6 +22,7 @@ generic/legendary.txt
 generic/lifelink.txt
 generic/m10_blockers.txt
 generic/m10_blockers2.txt
+generic/nofizzle.txt
 generic/persist.txt
 generic/persist2.txt
 generic/persist3.txt
@@ -47,12 +48,21 @@ generic/wither.txt
 #Specific Cards
 ########################
 act_of_treason.txt
+aether_mutation.txt
 afflict.txt
 akron_legionnaire.txt
 alluring_siren.txt
 Amugaba.txt
 anarchy.txt
 ancestors_chosen.txt
+angry_mob1.txt
+angry_mob2.txt
+angry_mob3.txt
+angry_mob4.txt
+angry_mob4b.txt
+angry_mob5.txt
+angry_mob6.txt
+angry_mob7.txt
 animate_artifact.txt
 animate_artifact2.txt
 animate_dead.txt
@@ -127,6 +137,7 @@ crystal_rod_i172.txt
 dark_banishing.txt
 dauntless_escort.txt
 dauthi_embrace.txt
+death_grasp.txt
 death_ward.txt
 deja_vu.txt
 dingus_egg.txt
@@ -312,6 +323,7 @@ twitch.txt
 unstable_mutation.txt
 unstable_mutation2.txt
 unwilling_recruit.txt
+urzas_lands.txt
 vampire_bats.txt
 vampiric_link.txt
 volcanic_eruption.txt

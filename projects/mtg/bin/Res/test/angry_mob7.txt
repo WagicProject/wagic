@@ -1,0 +1,28 @@
+#NAME: Angry Mob 7
+#DESC: Tests whether Angry Mob's bonus gets
+#DESC: correctly updated when a swamp is
+#DESC: returned to the oppoenent's control
+#DESC: during the player's turn.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Angry Mob,Swords to Plowshares,Annex,Demystify
+manapool:{W}{W}{4}{W}{W}{U}{U}
+[PLAYER2]
+inplay:1373,1374,1375
+[DO]
+Annex
+1373
+Angry Mob
+Demystify
+Annex
+Swords to Plowshares
+Angry Mob
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Swords to Plowshares,Annex,Demystify
+life:25
+[PLAYER2]
+inplay:1373,1374,1375
+[END]

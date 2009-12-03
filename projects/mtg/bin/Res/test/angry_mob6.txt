@@ -1,0 +1,38 @@
+#NAME: Angry Mob 6
+#DESC: Tests whether Angry Mob's bonus gets
+#DESC: correctly set at the beginning of the
+#DESC: player's turn, and correctly updated
+#DESC: if the number of the opponent's swamps
+#DESC: changes during the player's turn.
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Plains,1392,1393
+hand:Angry Mob,Swords to Plowshares,Boomerang
+manapool:{W}{W}{2}
+[PLAYER2]
+inplay:1373,1374,1375
+[DO]
+Angry Mob
+eot
+eot
+next
+next
+next
+1392
+1393
+Boomerang
+1375
+Plains
+Swords to Plowshares
+Angry Mob
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Plains,1392,1393
+graveyard:Swords to Plowshares,Boomerang
+life:24
+[PLAYER2]
+inplay:1373,1374
+hand:1375
+[END]

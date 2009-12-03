@@ -1,0 +1,29 @@
+#NAME: Angry Mob 3
+#DESC: Tests whether Angry Mob's bonus gets
+#DESC: correctly removed during the opponent's
+#DESC: turn.
+[INIT]
+secondmain
+[PLAYER1]
+hand:Angry Mob
+manapool:{W}{W}{2}
+[PLAYER2]
+inplay:1373,1374,1375,Plains
+hand:Swords to Plowshares
+[DO]
+Angry Mob
+eot
+next
+next
+next
+Plains
+Swords to Plowshares
+Angry Mob
+[ASSERT]
+firstmain
+[PLAYER1]
+life:22
+[PLAYER2]
+inplay:1373,1374,1375,Plains
+graveyard:Swords to Plowshares
+[END]
