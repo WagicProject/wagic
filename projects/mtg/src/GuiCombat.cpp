@@ -307,14 +307,16 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
   DamageStack* stack = NEW DamageStack();
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
-      signed dmg = (*it)->card->stepPower(step);
+      MTGCardInstance * attacker = (*it)->card;
+      signed dmg = attacker->stepPower(step);
         for (vector<DefenserDamaged*>::iterator q = (*it)->blockers.begin(); q != (*it)->blockers.end(); ++q)
           {
             for (vector<Damage>::iterator d = (*q)->damages.begin(); d != (*q)->damages.end(); ++d)
               stack->Add(NEW Damage(*d));
             dmg -= (*q)->sumDamages();
           }
-        if (dmg > 0) stack->Add(NEW Damage((*it)->card, go->opponent(), dmg, DAMAGE_COMBAT));
+         
+        if (dmg > 0 && ( (!attacker->blocked) || attacker->has(Constants::TRAMPLE)) ) stack->Add(NEW Damage((*it)->card, go->opponent(), dmg, DAMAGE_COMBAT));
       for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
         stack->Add(NEW Damage(*d));
     }

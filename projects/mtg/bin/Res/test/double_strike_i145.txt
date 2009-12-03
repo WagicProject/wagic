@@ -1,0 +1,29 @@
+#NAME: Double Strike i145
+#Testing double strike + trample
+# see http://code.google.com/p/wagic/issues/detail?id=145
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:fangren hunter,rage reflection
+graveyard:
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+fangren hunter
+next
+grizzly bears
+next
+#choose trample
+next
+#damage 1
+next
+#damage 2
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:fangren hunter,rage reflection
+[PLAYER2]
+graveyard:grizzly bears
+life:14
+[END]

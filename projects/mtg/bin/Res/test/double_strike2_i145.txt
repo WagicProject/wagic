@@ -1,0 +1,22 @@
+#NAME: Double Strike i145
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Hearthfire Hobgoblin
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+Hearthfire Hobgoblin
+next
+grizzly bears
+next
+#damage 1
+next
+#end
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Hearthfire Hobgoblin
+[PLAYER2]
+graveyard:grizzly bears
+[END]

@@ -131,6 +131,8 @@ death_ward.txt
 deja_vu.txt
 dingus_egg.txt
 doomed_necromancer.txt
+double_strike_i145.txt
+double_strike2_i145.txt
 dragon_fodder.txt
 dragon_fodder2.txt
 dragon_whelp_i154.txt
