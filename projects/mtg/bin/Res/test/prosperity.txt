@@ -1,0 +1,21 @@
+#Test: Draw X
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+library:grizzly bears,raging goblin,swamp
+hand:prosperity
+manapool:{2}{U}
+[PLAYER2]
+library:plains,forest,mountain
+[DO]
+prosperity
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:prosperity
+hand:raging goblin,swamp
+library:grizzly bears
+[PLAYER2]
+hand:mountain,forest
+library:plains
+[END]
