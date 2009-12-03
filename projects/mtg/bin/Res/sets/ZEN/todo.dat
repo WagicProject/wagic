@@ -1042,14 +1042,7 @@ text=If a creature spell you cast this turn was countered by a spell or ability 
 rarity=R
 [/card]
 
-[card]
-id=191355
-name=Tanglesap
-mana={1}{G}
-type=Instant
-text=Prevent all combat damage that would be dealt this turn by creatures without trample.
-rarity=C
-[/card]
+
 [card]
 id=186321
 name=Terra Stomper
