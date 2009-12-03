@@ -583,15 +583,7 @@ type=Sorcery
 text=Target player discards a card for each Swamp you control.
 rarity=U
 [/card]
-[card]
-id=190401
-name=Mire Blight
-mana={B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature When enchanted creature is dealt damage, destroy it.
-rarity=C
-[/card]
+
 [card]
 id=197529
 name=Needlebite Trap

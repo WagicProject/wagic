@@ -760,6 +760,17 @@ toughness=2
 abilities=cantblock
 [/card]
 [card]
+id=190401
+name=Mire Blight
+mana={B}
+target=creature
+type=Enchantment
+subtype=Aura
+text=Enchant creature When enchanted creature is dealt damage, destroy it.
+auto=@damaged(mytgt):destroy(mytgt)
+rarity=C
+[/card]
+[card]
 text={T}, Pay 1 Life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.
 auto={T}{S}:moveTo(myBattlefield) target(forest,island|mylibrary) && life:-1 controller
 id=190413
