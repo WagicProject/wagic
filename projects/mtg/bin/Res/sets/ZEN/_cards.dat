@@ -1350,7 +1350,7 @@ name=Tanglesap
 mana={1}{G}
 type=Instant
 text=Prevent all combat damage that would be dealt this turn by creatures without trample.
-auto=preventAllCombatDamage from all(creature[-trample]) ueot
+auto=preventAllCombatDamage from(creature[-trample]) ueot
 rarity=C
 [/card]
 [card]

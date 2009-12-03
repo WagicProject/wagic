@@ -299,6 +299,7 @@ stronghold_discipline.txt
 sword_to_plowshares.txt
 sylvan_scrying_i195.txt
 symbiotic_wurm.txt
+tanglesap.txt
 telekinetic_sliver.txt
 terror.txt
 terror2.txt

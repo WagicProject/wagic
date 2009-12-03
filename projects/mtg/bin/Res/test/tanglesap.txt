@@ -1,0 +1,35 @@
+#Test:Prevent all combat damage that would be dealt by creatures without trample.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Tanglesap,195158
+inplay:Runeclaw Bear,Baloth Woodcrasher
+manapool:{G}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+195158
+195158
+Tanglesap
+next
+#begin
+next
+#attackers
+Runeclaw Bear
+Baloth Woodcrasher
+next
+#blockers
+grizzly bears
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:Tanglesap
+inplay:Baloth Woodcrasher,Runeclaw Bear
+[PLAYER2]
+inplay:grizzly bears
+life:12
+[END]
