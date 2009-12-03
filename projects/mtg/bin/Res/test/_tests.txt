@@ -250,6 +250,7 @@ prowess_of_the_fair2.txt
 prowess_of_the_fair3.txt
 pygmy_troll.txt
 pyroclasm.txt
+quilled_sliver.txt
 rampant_growth.txt
 ray_of_command.txt
 ray_of_command_i176.txt

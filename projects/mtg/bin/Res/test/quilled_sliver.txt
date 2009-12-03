@@ -1,0 +1,28 @@
+#Testing Quilled sliver's ability
+#see http://code.google.com/p/wagic/issues/detail?id=207
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears
+[PLAYER2]
+inplay:quilled sliver,metallic sliver,raging goblin
+[DO]
+grizzly bears
+next
+#blockers
+metallic sliver
+choice 1
+grizzly bears
+raging goblin
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:grizzly bears
+[PLAYER2]
+inplay:quilled sliver,metallic sliver
+graveyard:raging goblin
+[END]
