@@ -4,6 +4,7 @@
 #include "../include/Player.h"
 #include "../include/MTGCardInstance.h"
 #include "../include/WEvent.h"
+#include "../include/AllAbilities.h"
 
 bool compare_aistats(AIStat * first, AIStat * second){
   float damage1 = first->value / first->occurences;
@@ -59,6 +60,24 @@ int AIStats::receiveEvent(WEvent * event){
       updateStatsCard(aura,damage, STATS_AURA_MULTIPLIER);
     }
   }
+
+  GameObserver * g = GameObserver::GetInstance();
+  //Lords
+  map<MTGCardInstance *, int> lords;
+  for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++){ //0 is not a mtgability...hackish
+    MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
+    if (ALord * al = dynamic_cast<ALord*>(a)) {
+      if (al->cards.find(card)!= al->cards.end() && opponentZone->hasCard(al->source)){
+        lords[al->source] = 1;
+      }
+    }
+  }
+  if (size_t nb = lords.size()){
+    for (map<MTGCardInstance *, int>::iterator it = lords.begin();it !=lords.end();++it){
+      updateStatsCard(it->first,damage, STATS_LORD_MULTIPLIER/nb);
+    }
+  }
+
   stats.sort(compare_aistats); //this could be slow, if it is, let's run it only at the end of the turn
   return 1; //is this meant to return 0 or 1?
 }
@@ -125,4 +144,28 @@ void AIStats::save(){
     file.close();
   }
 
+}
+
+void AIStats::Render(){
+  GameObserver * g = GameObserver::GetInstance();
+  float x0 = 10;
+  if (player == g->players[1]) x0 = 280;
+  JRenderer::GetInstance()->FillRoundRect(x0,10,200,180,5,ARGB(50,0,0,0));
+
+  JLBFont * f = resources.GetJLBFont("simon");
+  int i = 0;
+  char buffer[512];
+  list<AIStat *>::iterator it;
+  for (it = stats.begin(); it !=stats.end(); ++it){
+    if (i>10) break;
+    AIStat * stat = *it;
+    if (stat->value > 0){
+      MTGCard * card = GameApp::collection->getCardById(stat->source);
+      if (card) {
+        sprintf(buffer, "%s %i", card->getName().c_str(), stat->value);
+        f->DrawString(buffer,x0+5,10 + 16 *i);
+        i++;
+      }
+    }
+  }
 }

@@ -743,6 +743,12 @@ int AIPlayer::receiveEvent(WEvent * event){
  return 0;
 }
 
+void AIPlayer::Render(){
+#ifdef RENDER_AI_STATS
+  if (getStats()) getStats()->Render();
+#endif
+}
+
 int AIPlayerBaka::Act(float dt){
   GameObserver * g = GameObserver::GetInstance();
 

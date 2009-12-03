@@ -39,6 +39,7 @@ class Player: public Damageable{
   string deckFileSmall;
 
   virtual int receiveEvent(WEvent * event){return 0;};
+  virtual void Render(){};
 };
 
 class HumanPlayer: public Player{

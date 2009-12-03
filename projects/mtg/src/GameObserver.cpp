@@ -298,6 +298,9 @@ void GameObserver::Render()
     JRenderer::GetInstance()->DrawRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(255,255,0,0));
   if (waitForExtraPayment)
     waitForExtraPayment->Render();
+  for (int i = 0; i < nbPlayers; ++i){
+    players[i]->Render();
+  }
 }
 
 

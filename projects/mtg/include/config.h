@@ -37,4 +37,9 @@
 #define MIN(a,b) (((a) < (b)) ? (a) : (b))
 #endif
 
+// Debug options - comment/uncomment as needed
+#ifdef _DEBUG
+//#define RENDER_AI_STATS
+#endif
+
 #endif

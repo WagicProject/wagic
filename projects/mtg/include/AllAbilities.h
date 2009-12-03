@@ -238,7 +238,7 @@ class AAFizzler:public ActivatedAbility{
 
   int resolve(){
     Spell * _target = (Spell *) target;
-    if(_target->source->has(Constants::NOFIZZLE))
+    if(target && _target->source->has(Constants::NOFIZZLE))
       return 0;
     game->mLayers->stackLayer()->Fizzle(_target);
     return 1;

@@ -3,7 +3,11 @@
 
 #define STATS_PLAYER_MULTIPLIER 15
 #define STATS_CREATURE_MULTIPLIER 10
-#define STATS_AURA_MULTIPLIER 9
+
+//floats
+#define STATS_AURA_MULTIPLIER 0.9
+#define STATS_LORD_MULTIPLIER 0.5
+
 #include <list>
 #include <string>
 using std::list;
@@ -38,6 +42,7 @@ class AIStats{
   bool isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue = true );
   void updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, float multiplier = 1.0);
   int receiveEvent(WEvent * event);
+  void Render();
 };
 
 #endif
