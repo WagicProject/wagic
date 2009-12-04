@@ -151,17 +151,6 @@ subtype=Human Wizard
 toughness=3
 [/card]
 [card]
-text=Shroud (This permanent can't be the target of spells or abilities.)  Blurred Mongoose can't be countered.
-id=23139
-name=Blurred Mongoose
-rarity=R
-type=Creature
-mana={1}{G}
-power=2
-subtype=Mongoose
-toughness=1
-[/card]
-[card]
 text=You may play Breaking Wave any time you could play an instant if you pay {2} more to play it.       Simultaneously untap all tapped creatures and tap all untapped creatures.
 id=23012
 name=Breaking Wave
@@ -636,14 +625,6 @@ name=Meteor Storm
 rarity=R
 type=Enchantment
 mana={R}{G}
-[/card]
-[card]
-text=Obliterate can't be countered. Destroy all artifacts, creatures, and lands. They can't be regenerated.
-id=23098
-name=Obliterate
-rarity=R
-type=Sorcery
-mana={6}{R}{R}
 [/card]
 [card]
 text=Look at the top card of your library. You may put that card on the bottom of your library.       Draw a card.

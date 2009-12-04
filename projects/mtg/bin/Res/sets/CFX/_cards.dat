@@ -802,6 +802,16 @@ toughness=1
 abilities=double strike
 [/card]
 [card]
+text=Volcanic Fallout can't be countered.     Volcanic Fallout deals 2 damage to each creature and each player.
+auto=damage:2 all(creature,player)
+id=180274
+name=Volcanic Fallout
+rarity=U
+type=Instant
+mana={1}{R}{R}
+abilities=nofizzle
+[/card]
+[card]
 text=Enchant creature   When a creature is put into a graveyard from the battlefield, destroy enchanted creature.
 target=creature
 auto=@movedTo(creature|graveyard) from(battlefield):destroy

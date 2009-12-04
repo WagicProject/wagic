@@ -1498,6 +1498,18 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Scragnoth can't be countered.     Protection from blue
+id=4787
+name=Scragnoth
+rarity=U
+type=Creature
+mana={4}{G}
+power=3
+subtype=Beast
+toughness=4
+abilities=nofizzle,protection from blue
+[/card]
+[card]
 text=Flying   {1}{B}: Regenerate Screeching Harpy.
 id=4684
 name=Screeching Harpy

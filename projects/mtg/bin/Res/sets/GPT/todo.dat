@@ -1151,14 +1151,6 @@ text=Prevent the next 3 damage that would be dealt to target creature or player 
 rarity=C
 [/card]
 [card]
-id=107693
-name=Wreak Havoc
-mana={2}{R}{G}
-type=Sorcery
-text=Wreak Havoc can't be countered by spells or abilities. Destroy target artifact or land.
-rarity=U
-[/card]
-[card]
 id=107093
 name=Yore-Tiller Nephilim
 mana={W}{U}{B}{R}

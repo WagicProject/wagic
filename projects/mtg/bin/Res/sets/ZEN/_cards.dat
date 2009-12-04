@@ -1365,6 +1365,18 @@ auto=preventAllCombatDamage from(creature[-trample]) ueot
 rarity=C
 [/card]
 [card]
+id=186321
+name=Terra Stomper
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Beast
+power=8
+toughness=8
+text=Terra Stomper can't be countered. Trample
+abilities=nofizzle,trample
+rarity=R
+[/card]
+[card]
 text=Landfall - Whenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
 id=170971
 name=Territorial Baloth

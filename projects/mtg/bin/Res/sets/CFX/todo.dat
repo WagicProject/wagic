@@ -683,14 +683,6 @@ type=Sorcery
 mana={4}{B}
 [/card]
 [card]
-text=Volcanic Fallout can't be countered.     Volcanic Fallout deals 2 damage to each creature and each player.
-id=180274
-name=Volcanic Fallout
-rarity=U
-type=Instant
-mana={1}{R}{R}
-[/card]
-[card]
 text=Flying     Devour 1 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with that many +1/+1 counters on it.)  When Voracious Dragon comes into play, it deals damage to target creature or player equal to twice the number of Goblins it devoured.
 id=186329
 name=Voracious Dragon

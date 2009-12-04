@@ -232,6 +232,18 @@ auto={T}:Add {R}
 type=Artifact
 [/card]
 [card]
+text=Shroud (This permanent can't be the target of spells or abilities.)  Blurred Mongoose can't be countered.
+id=23139
+name=Blurred Mongoose
+rarity=R
+type=Creature
+mana={1}{G}
+power=2
+subtype=Mongoose
+toughness=1
+abilities=shroud,nofizzle
+[/card]
+[card]
 text={1}: Add {B} to your mana pool.
 id=23024
 name=Bog Initiate
@@ -1124,6 +1136,16 @@ auto={1}{G}:Add {R}
 auto={1}{G}:Add {G}
 power=2
 toughness=2
+[/card]
+[card]
+text=Obliterate can't be countered. Destroy all artifacts, creatures, and lands. They can't be regenerated.
+auto=bury all(artifact,creature,land)
+id=23098
+name=Obliterate
+rarity=R
+type=Sorcery
+mana={6}{R}{R}
+abilities=nofizzle
 [/card]
 [card]
 text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.) First strike. If the kicker cost was paid, Pouncing Kavu enters the battlefield with two +1/+1 counters on it and with haste.

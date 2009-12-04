@@ -1,0 +1,27 @@
+#NAME: Wreak Havoc
+#DESC: Verifies that Wreak Havoc can't
+#DESC: be countered.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Wreak Havoc
+manapool:{R}{G}{2}
+[PLAYER2]
+inplay:Island
+hand:Counterspell
+manapool:{U}{U}
+[DO]
+Wreak Havoc
+Island
+no
+yes
+Counterspell
+Wreak Havoc
+endinterruption
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Wreak Havoc
+[PLAYER2]
+graveyard:Counterspell,Island
+[END]

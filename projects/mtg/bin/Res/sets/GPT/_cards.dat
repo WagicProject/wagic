@@ -527,6 +527,17 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
+id=107693
+name=Wreak Havoc
+mana={2}{R}{G}
+type=Sorcery
+text=Wreak Havoc can't be countered by spells or abilities. Destroy target artifact or land.
+target=artifact,land
+auto=destroy
+rarity=U
+abilities=nofizzle
+[/card]
+[card]
 text=Enchant green creature   Enchanted creature gets +6/+6.   {G}{G}{G}, Sacrifice Wurmweaver Coil: Put a 6/6 green Wurm creature token onto the battlefield.           
 target=creature[green]
 auto=6/6

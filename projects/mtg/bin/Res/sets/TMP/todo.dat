@@ -1164,17 +1164,6 @@ type=Sorcery
 mana={X}{R}
 [/card]
 [card]
-text=Scragnoth can't be countered.     Protection from blue
-id=4787
-name=Scragnoth
-rarity=U
-type=Creature
-mana={4}{G}
-power=3
-subtype=Beast
-toughness=4
-[/card]
-[card]
 text={1}, {T}: Remove any number of cards in your hand from the game face down. Put that many cards from the top of your library into your hand. Then look at the removed cards and put them on top of your library in any order.
 id=4628
 name=Scroll Rack
