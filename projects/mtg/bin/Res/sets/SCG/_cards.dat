@@ -1,4 +1,17 @@
 [card]
+id=43599
+name=Ambush Commander
+mana={3}{G}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=2
+text=Forests you control are 1/1 green Elf creatures that are still lands. {1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.
+auto=becomes(Elf Creature,1/1,Green) all(forest|myBattlefield)
+auto={1}{G}{S(elf|myBattlefield)}:3/3 target(creature)
+rarity=R
+[/card]
+[card]
 text={3}, {T}, Sacrifice Ark of Blight: Destroy target land.
 auto={3}{T}{S}:destroy target(land)
 id=47281
@@ -22,6 +35,69 @@ toughness=4
 abilities=legendary,flying
 [/card]
 [card]
+id=43512
+name=Carrion Feeder
+mana={B}
+type=Creature
+subtype=Zombie
+abilities=cantblock
+auto={S(creature|myBattlefield)}:counter(1/1,1)
+power=1
+toughness=1
+text=Carrion Feeder can't block. Sacrifice a creature: Put a +1/+1 counter on Carrion Feeder.
+rarity=C
+[/card]
+[card]
+id=47228
+name=Coast Watcher
+mana={1}{U}
+type=Creature
+subtype=Bird Soldier
+power=1
+toughness=1
+text=Flying, protection from green
+abilities=Flying,protection from green
+rarity=C
+[/card]
+[card]
+id=47029
+name=Consumptive Goo
+mana={B}{B}
+type=Creature
+subtype=Ooze
+power=1
+toughness=1
+text={2}{B}{B}: Target creature gets -1/-1 until end of turn. Put a +1/+1 counter on Consumptive Goo.
+auto={2}{B}{B}:-1/-1 target(creature) && counter(1/1,1)
+rarity=R
+[/card]
+[card]
+id=47223
+name=Death's-Head Buzzard
+mana={1}{B}{B}
+type=Creature
+subtype=Bird
+power=2
+toughness=1
+text=Flying When Death's-Head Buzzard is put into a graveyard from the battlefield, all creatures get -1/-1 until end of turn.
+abilities=flying
+auto=@movedto(this|graveyard):-1/-1 all(creature|Battlefield) ueot
+rarity=C
+[/card]
+[card]
+id=45864
+name=Divergent Growth
+mana={G}
+type=Instant
+text=Until end of turn, lands you control gain "{T}: Add one mana of any color to your mana pool."
+auto=lord(land|myinplay) {T}:add {G}
+auto=lord(land|myinplay) {T}:add {W}
+auto=lord(land|myinplay) {T}:add {B}
+auto=lord(land|myinplay) {T}:add {U}
+auto=lord(land|myinplay) {T}:add {R}
+rarity=C
+[/card]
+[card]
 text=Flying, protection from Dragons
 id=39714
 name=Dragonstalker
@@ -33,4 +109,36 @@ auto=protection from(dragon)
 power=3
 toughness=3
 abilities=flying
+[/card]
+[card]
+id=45844
+name=Enrage
+mana={X}{R}
+type=Instant
+text=Target creature gets +X/+0 until end of turn.
+target=creature
+auto=X/0
+rarity=U
+[/card]
+[card]
+id=43525
+name=Goblin Brigand
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+text=Goblin Brigand attacks each turn if able.
+abilities=mustattack
+rarity=C
+[/card]
+[card]
+id=44292
+name=Goblin War Strike
+mana={R}
+type=Sorcery
+text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
+target=player
+auto=foreach(goblin|myBattlefield)damage:1
+rarity=C
 [/card]

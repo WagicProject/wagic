@@ -15,6 +15,7 @@ subtype=Wall
 power=4
 toughness=4
 text=Defender (This creature can't attack.) Flying When Ageless Sentinels blocks, it becomes a Bird Giant, and it loses defender. (It's no longer a Wall. This effect lasts indefinitely.)
+abilities=defender
 rarity=R
 [/card]
 [card]
@@ -25,17 +26,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +2/+2 for each other creature on the battlefield that shares a creature type with it.
 rarity=U
-[/card]
-[card]
-id=43599
-name=Ambush Commander
-mana={3}{G}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
-text=Forests you control are 1/1 green Elf creatures that are still lands. {1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.
-rarity=R
 [/card]
 [card]
 id=45164
@@ -59,7 +49,6 @@ toughness=3
 text=Whenever a permanent is turned face up, you may draw a card.
 rarity=U
 [/card]
-
 [card]
 id=45833
 name=Astral Steel
@@ -90,7 +79,6 @@ toughness=3
 text=Flying Morph {3}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Aven Liberator is turned face up, target creature you control gains protection from the color of your choice until end of turn.
 rarity=C
 [/card]
-
 [card]
 id=47224
 name=Bladewing's Thrall
@@ -100,6 +88,8 @@ subtype=Zombie
 power=3
 toughness=3
 text=Bladewing's Thrall has flying as long as you control a Dragon. When a Dragon enters the battlefield, you may return Bladewing's Thrall from your graveyard to the battlefield.
+auto=aslongas(dragon|myBattlefield)flying
+auto=@movedto(dragon|battlefield):may moveto(battlefield) from(graveyard)
 rarity=U
 [/card]
 [card]
@@ -119,6 +109,8 @@ name=Brain Freeze
 mana={1}{U}
 type=Instant
 text=Target player puts the top three cards of his or her library into his or her graveyard. Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+target=player
+auto=deplete:3
 rarity=U
 [/card]
 [card]
@@ -127,6 +119,8 @@ name=Break Asunder
 mana={2}{G}{G}
 type=Sorcery
 text=Destroy target artifact or enchantment. Cycling {2} ({2}, Discard this card: Draw a card.)
+target=artifact,enchantment
+auto=Destroy
 rarity=C
 [/card]
 [card]
@@ -162,18 +156,10 @@ name=Carbonize
 mana={2}{R}
 type=Instant
 text=Carbonize deals 3 damage to target creature or player. That creature can't be regenerated this turn. If the creature would be put into a graveyard this turn, exile it instead.
+target=creature,player
+auto=damage:3 && cantregenerate
+auto=@movedto(mytgt|graveyard):moveto(exile) target(mytgt) #not target possible with @
 rarity=U
-[/card]
-[card]
-id=43512
-name=Carrion Feeder
-mana={B}
-type=Creature
-subtype=Zombie
-power=1
-toughness=1
-text=Carrion Feeder can't block. Sacrifice a creature: Put a +1/+1 counter on Carrion Feeder.
-rarity=C
 [/card]
 [card]
 id=44281
@@ -184,6 +170,7 @@ subtype=Cat Beast
 power=4
 toughness=4
 text={R}: Chartooth Cougar gets +1/+0 until end of turn. Mountaincycling {2} ({2}, Discard this card: Search your library for a Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
+auto={R}:1/0
 rarity=C
 [/card]
 [card]
@@ -200,6 +187,7 @@ name=Claws of Wirewood
 mana={3}{G}
 type=Sorcery
 text=Claws of Wirewood deals 3 damage to each creature with flying and each player. Cycling {2} ({2}, Discard this card: Draw a card.)
+auto=damage:3 all(creature[flying],player)
 rarity=U
 [/card]
 [card]
@@ -210,28 +198,9 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +3/+3 as long as it's a Zombie. Otherwise, it gets -3/-3.
 rarity=C
-[/card]
-[card]
-id=47228
-name=Coast Watcher
-mana={1}{U}
-type=Creature
-subtype=Bird Soldier
-power=1
-toughness=1
-text=Flying, protection from green
-rarity=C
-[/card]
-[card]
-id=47029
-name=Consumptive Goo
-mana={B}{B}
-type=Creature
-subtype=Ooze
-power=1
-toughness=1
-text={2}{B}{B}: Target creature gets -1/-1 until end of turn. Put a +1/+1 counter on Consumptive Goo.
-rarity=R
+target=creature
+auto=aslongas(mytgt[black])3/3
+auto=aslongas(mytgt[-black])-3/-3
 [/card]
 [card]
 id=45139
@@ -273,17 +242,6 @@ mana={4}{U}{U}{U}
 type=Enchantment
 text=When Day of the Dragons enters the battlefield, exile all creatures you control. Then put that many 5/5 red Dragon creature tokens with flying onto the battlefield. When Day of the Dragons leaves the battlefield, sacrifice all Dragons you control. Then return the exiled cards to the battlefield under your control.
 rarity=R
-[/card]
-[card]
-id=47223
-name=Death's-Head Buzzard
-mana={1}{B}{B}
-type=Creature
-subtype=Bird
-power=2
-toughness=1
-text=Flying When Death's-Head Buzzard is put into a graveyard from the battlefield, all creatures get -1/-1 until end of turn.
-rarity=C
 [/card]
 [card]
 id=44335
@@ -342,14 +300,6 @@ text=Counter target spell if its converted mana cost is less than or equal to th
 rarity=C
 [/card]
 [card]
-id=45864
-name=Divergent Growth
-mana={G}
-type=Instant
-text=Until end of turn, lands you control gain "{T}: Add one mana of any color to your mana pool."
-rarity=C
-[/card]
-[card]
 id=43533
 name=Dragon Breath
 mana={1}{R}
@@ -376,6 +326,8 @@ subtype=Dragon Wizard
 power=5
 toughness=5
 text=Flying Whenever Dragon Mage deals combat damage to a player, each player discards his or her hand and draws seven cards.
+auto=@damaged(player) from(this):moveto(graveyard) all(*|myhand) && draw:7 controller
+auto=@damaged(player) from(this):moveto(graveyard) all(*|opponenthand) && draw:7 opponent
 rarity=R
 [/card]
 [card]
@@ -433,6 +385,8 @@ name=Dragonstorm
 mana={8}{R}
 type=Sorcery
 text=Search your library for a Dragon permanent card and put it onto the battlefield. Then shuffle your library. Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+target=dragon|myLibrabry
+auto=moveto(myBattlefield)
 rarity=R
 [/card]
 [card]
@@ -455,14 +409,7 @@ subtype=Elf Mutant
 power=4
 toughness=5
 text={T}: Add {G}{G}{G} to your mana pool. Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=U
-[/card]
-[card]
-id=45844
-name=Enrage
-mana={X}{R}
-type=Instant
-text=Target creature gets +X/+0 until end of turn.
+auto={T}:add{G}{G}{G}
 rarity=U
 [/card]
 [card]
@@ -577,6 +524,9 @@ mana={1}{U}{U}
 type=Enchantment
 subtype=Aura
 text=Enchant creature  Enchanted creature doesn't untap during its controller's untap step.  When enchanted creature is dealt damage, destroy it.
+target=creature
+auto=doesnotuntap
+auto=@damaged(mytgt):destroy
 rarity=C
 [/card]
 [card]
@@ -588,17 +538,6 @@ text=You gain shroud until end of turn. (You can't be the target of spells or ab
 rarity=U
 [/card]
 [card]
-id=43525
-name=Goblin Brigand
-mana={1}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
-text=Goblin Brigand attacks each turn if able.
-rarity=C
-[/card]
-[card]
 id=43567
 name=Goblin Psychopath
 mana={3}{R}
@@ -608,14 +547,6 @@ power=5
 toughness=5
 text=Whenever Goblin Psychopath attacks or blocks, flip a coin. If you lose the flip, the next time it would deal combat damage this turn, it deals that damage to you instead.
 rarity=U
-[/card]
-[card]
-id=44292
-name=Goblin War Strike
-mana={R}
-type=Sorcery
-text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
-rarity=C
 [/card]
 [card]
 id=43591
@@ -659,19 +590,27 @@ name=Hunting Pack
 mana={5}{G}{G}
 type=Instant
 text=Put a 4/4 green Beast creature token onto the battlefield. Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+auto=token(Beast,Creature Beast,4/4,green)
 rarity=U
 [/card]
 [card]
 id=44263
 name=Karona, False God
 mana={1}{W}{U}{B}{R}{G}
-type=Legendary Creature
+type=Creature
+abilities=Legendary,haste
 subtype=Avatar
 power=5
 toughness=5
 text=Haste At the beginning of each player's upkeep, that player untaps Karona, False God and gains control of it. Whenever Karona attacks, creatures of the creature type of your choice get +3/+3 until end of turn.
+auto=@each my upkeep:moveto(myBattlefield)
+auto=@each opponent upkeep:moveto(opponentBattlefield)
 rarity=R
 [/card]
+
+>>>>>>>>>
+
+
 [card]
 id=45858
 name=Karona's Zealot
