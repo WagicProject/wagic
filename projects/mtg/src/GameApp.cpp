@@ -241,6 +241,11 @@ void GameApp::Update()
     return;
   }
 
+  //Restart Rendering engine when START and TRIANGLE ARE PRESSED SIMULTANEOUSLY
+  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_TRIANGLE)){
+    JRenderer::Destroy();
+  }
+
   float dt = mEngine->GetDelta();
   if (dt > 35.0f)		// min 30 FPS ;)
     dt = 35.0f;

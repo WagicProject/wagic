@@ -356,7 +356,12 @@ void JRenderer::EnableTextureFilter(bool flag)
 
 void JRenderer::DestroyRenderer()
 {
+  sceGuDisplay(GU_FALSE);
 	sceGuTerm();
+  vfree(fbp0);
+  vfree(fbp1);
+  debugged = 0;
+  if (zbp) vfree(zbp);
 }
 
 
