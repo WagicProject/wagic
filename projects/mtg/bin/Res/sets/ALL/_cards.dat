@@ -1,4 +1,16 @@
 [card]
+id=3040
+name=Aesthir Glider
+mana={3}
+type=Artifact Creature
+subtype=Bird
+power=2
+toughness=1
+text=Flying Aesthir Glider can't block.
+abilities=flying,cantblock
+rarity=C
+[/card]
+[card]
 id=3041
 name=Aesthir Glider
 mana={3}
@@ -9,4 +21,476 @@ toughness=1
 text=Flying Aesthir Glider can't block.
 abilities=flying,cantblock
 rarity=C
+[/card]
+[card]
+id=3159
+name=Agent of Stromgald
+mana={R}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+text={R}: Add {B} to your mana pool.
+auto={R}:add {B}
+rarity=C
+[/card]
+[card]
+id=3160
+name=Agent of Stromgald
+mana={R}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+text={R}: Add {B} to your mana pool.
+auto={R}:add {B}
+rarity=C
+[/card]
+[card]
+id=3162
+name=Balduvian War-Makers
+mana={4}{R}
+type=Creature
+subtype=Human Barbarian
+abilities=haste
+auto=rampage(1/1,1)
+power=3
+toughness=3
+text=Haste Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
+rarity=C
+[/card]
+[card]
+id=3163
+name=Balduvian War-Makers
+mana={4}{R}
+type=Creature
+subtype=Human Barbarian
+abilities=haste
+auto=rampage(1/1,1)
+power=3
+toughness=3
+text=Haste Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
+rarity=C
+[/card]
+[card]
+id=3190
+name=Carrier Pigeons
+mana={3}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+abilities=flying
+auto=@next upkeep:draw:1
+text=Flying When Carrier Pigeons enters the battlefield, draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3191
+name=Carrier Pigeons
+mana={3}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+abilities=flying
+auto=@next upkeep:draw:1
+text=Flying When Carrier Pigeons enters the battlefield, draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3129
+name=Deadly Insect
+mana={4}{G}
+type=Creature
+subtype=Insect
+abilities=shroud
+power=6
+toughness=1
+text=Shroud (This permanent can't be the target of spells or abilities.)
+rarity=C
+[/card]
+[card]
+id=3130
+name=Deadly Insect
+mana={4}{G}
+type=Creature
+subtype=Insect
+abilities=shroud
+power=6
+toughness=1
+text=Shroud (This permanent can't be the target of spells or abilities.)
+rarity=C
+[/card]
+[card]
+id=3132
+name=Elvish Ranger
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=4
+toughness=1
+rarity=C
+[/card]
+[card]
+id=3133
+name=Elvish Ranger
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=4
+toughness=1
+rarity=C
+[/card]
+[card]
+id=3170
+name=Enslaved Scout
+mana={2}{R}
+type=Creature
+subtype=Goblin Scout
+power=2
+toughness=2
+text={2}: Enslaved Scout gains mountainwalk until end of turn.
+auto={2}:mountainwalk
+rarity=C
+[/card]
+[card]
+id=3194
+name=Exile
+mana={2}{W}
+type=Instant
+text=Exile target nonwhite attacking creature. You gain life equal to its toughness.
+rarity=R
+target=creature[-white;attacking]
+#Hardcoded could be softcoded and removed from code
+[/card]
+[card]
+id=3075
+name=Fevered Strength
+mana={2}{B}
+type=Instant
+target=Creature
+auto=2/0
+auto=@next upkeep:draw:1 controller
+text=Target creature gets +2/+0 until end of turn.  Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3076
+name=Fevered Strength
+mana={2}{B}
+type=Instant
+target=Creature
+auto=2/0
+auto=@next upkeep:draw:1 controller
+text=Target creature gets +2/+0 until end of turn.  Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3142
+name=Gorilla Chieftain
+mana={2}{G}{G}
+type=Creature
+subtype=Ape
+power=3
+toughness=3
+text={1}{G}: Regenerate Gorilla Chieftain.
+auto={1}G}:regenerate
+rarity=C
+[/card]
+[card]
+id=3143
+name=Gorilla Chieftain
+mana={2}{G}{G}
+type=Creature
+subtype=Ape
+power=3
+toughness=3
+text={1}{G}: Regenerate Gorilla Chieftain.
+auto={1}G}:regenerate
+rarity=C
+[/card]
+[card]
+id=3144
+name=Hail Storm
+mana={1}{G}{G}
+type=Instant
+text=Hail Storm deals 2 damage to each attacking creature and 1 damage to you and each creature you control.
+auto=damage:2 all(Creature[attacking])
+auto=life:-1
+auto=damage:1 all(Creature|MyInplay)
+rarity=U
+[/card]
+[card]
+id=184553
+name=Kaysa
+mana={3}{G}{G}
+type=Creature
+abilities=Legendary
+subtype=Elf Druid
+power=2
+toughness=3
+text=Green creatures you control get +1/+1.
+auto=lord(creature[green]|myBattlefier)1/1
+rarity=R
+[/card]
+[card]
+id=3110
+name=Lat-Nam's Legacy
+mana={1}{U}
+type=Instant
+text=Shuffle a card from your hand into your library. If you do, draw two cards at the beginning of the next turn's upkeep.
+target=*|MyHand
+auto=moveto(mylibrary) && shuffle
+auto=@next upkeep:draw:1 controller
+rarity=C
+[/card]
+[card]
+id=3111
+name=Lat-Nam's Legacy
+mana={1}{U}
+type=Instant
+text=Shuffle a card from your hand into your library. If you do, draw two cards at the beginning of the next turn's upkeep.
+target=*|MyHand
+auto=moveto(mylibrary) && shuffle
+auto=@next upkeep:draw:1 controller
+rarity=C
+[/card]
+[card]
+id=3082
+name=Lim-Dul's High Guard
+mana={1}{B}{B}
+type=Creature
+subtype=Skeleton
+power=2
+toughness=1
+text=First strike {1}{B}: Regenerate Lim-Dûl's High Guard.
+abilities=first strike
+auto={1}{B}:regenerate
+rarity=U
+[/card]
+[card]
+id=3083
+name=Lim-Dul's High Guard
+mana={1}{B}{B}
+type=Creature
+subtype=Skeleton
+power=2
+toughness=1
+text=First strike {1}{B}: Regenerate Lim-Dûl's High Guard.
+abilities=first strike
+auto={1}{B}:regenerate
+rarity=U
+[/card]
+[card]
+id=3205
+name=Noble Steeds
+mana={2}{W}
+type=Enchantment
+text={1}{W}: Target creature gains first strike until end of turn.
+auto={1}{W}:first strike target(creature)
+rarity=C
+[/card]
+[card]
+id=3178
+name=Pillage
+mana={1}{R}{R}
+type=Sorcery
+text=Destroy target artifact or land. It can't be regenerated.
+target=artifact,land
+auto=bury
+rarity=U
+[/card]
+[card]
+id=3206
+name=Noble Steeds
+mana={2}{W}
+type=Enchantment
+text={1}{W}: Target creature gains first strike until end of turn.
+auto={1}{W}:first strike target(creature)
+rarity=C
+[/card]
+[card]
+id=3235
+name=School of the Unseen
+type=Land
+text={T}: Add {1} to your mana pool.  {2}, {T}: Add one mana of any color to your mana pool.
+auto={T}: add {1}
+auto={2}{T}: add {G}
+auto={2}{T}: add {R}
+auto={2}{T}: add {W}
+auto={2}{T}: add {B}
+auto={2}{T}: add {U}
+rarity=U
+[/card]
+[card]
+id=3061
+name=Soldevi Steam Beast
+mana={5}
+type=Artifact Creature
+subtype=Beast
+power=4
+toughness=2
+text=Whenever Soldevi Steam Beast becomes tapped, target opponent gains 2 life. {2}: Regenerate Soldevi Steam Beast.
+auto={2}:regenerate
+auto=@tapped(this):life:2 opponent
+rarity=C
+[/card]
+[card]
+id=3062
+name=Soldevi Steam Beast
+mana={5}
+type=Artifact Creature
+subtype=Beast
+power=4
+toughness=2
+text=Whenever Soldevi Steam Beast becomes tapped, target opponent gains 2 life. {2}: Regenerate Soldevi Steam Beast.
+auto={2}:regenerate
+auto=@tapped(this):life:2 opponent
+rarity=C
+[/card]
+[card]
+id=3092
+name=Stench of Decay
+mana={1}{B}{B}
+type=Instant
+text=Nonartifact creatures get -1/-1 until end of turn.
+auto=lord(creature[-artifact])-1/-1
+rarity=C
+[/card]
+[card]
+id=3093
+name=Stench of Decay
+mana={1}{B}{B}
+type=Instant
+text=Nonartifact creatures get -1/-1 until end of turn.
+auto=lord(creature[-artifact])-1/-1
+rarity=C
+[/card]
+[card]
+id=3199
+name=Storm Crow
+mana={1}{U}
+type=Creature
+subtype=Bird
+abilities=flying
+power=1
+toughness=2
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+rarity=C
+[/card]
+[card]
+id=3120
+name=Storm Crow
+mana={1}{U}
+type=Creature
+subtype=Bird
+abilities=flying
+power=1
+toughness=2
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+rarity=C
+[/card]
+[card]
+id=3183
+name=Storm Shaman
+mana={2}{R}
+type=Creature
+subtype=Human Cleric Shaman
+power=0
+toughness=4
+text={R}: Storm Shaman gets +1/+0 until end of turn.
+auto={R}:1/0
+rarity=U
+[/card]
+[card]
+id=3184
+name=Storm Shaman
+mana={2}{R}
+type=Creature
+subtype=Human Cleric Shaman
+power=0
+toughness=4
+text={R}: Storm Shaman gets +1/+0 until end of turn.
+auto={R}:1/0
+rarity=U
+[/card]
+[card]
+id=3218
+name=Unlikely Alliance
+mana={1}{W}
+type=Enchantment
+text={1}{W}: Target nonattacking, nonblocking creature gets +0/+2 until end of turn.
+auto={1}{W}:0/2 target(creature[-attacking;-blocking])
+rarity=U
+[/card]
+[card]
+id=3125
+name=Viscerid Armor
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+1. {1}{U}: Return Viscerid Armor to its owner's hand.
+auto={1}{U}:moveto(ownerhand)
+rarity=C
+[/card]
+[card]
+id=3126
+name=Viscerid Armor
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+1. {1}{U}: Return Viscerid Armor to its owner's hand.
+auto={1}{U}:moveto(ownerhand)
+rarity=C
+[/card]
+[card]
+id=3219
+name=Wild Aesthir
+mana={2}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying, first strike {W}{W}: Wild Aesthir gets +2/+0 until end of turn. Activate this ability only once each turn.
+abilities=flying,first strike
+auto={W}{W}:2/0 limit:1
+rarity=C
+[/card]
+[card]
+id=3220
+name=Wild Aesthir
+mana={2}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+text=Flying, first strike {W}{W}: Wild Aesthir gets +2/+0 until end of turn. Activate this ability only once each turn.
+abilities=flying,first strike
+auto={W}{W}:2/0 limit:1
+rarity=C
+[/card]
+[card]
+id=3156
+name=Yavimaya Ancients
+mana={3}{G}{G}
+type=Creature
+subtype=Treefolk
+power=2
+toughness=7
+text={G}: Yavimaya Ancients gets +1/-2 until end of turn.
+auto={G}:1/-2
+rarity=U
+[/card]
+[card]
+id=3157
+name=Yavimaya Ancients
+mana={3}{G}{G}
+type=Creature
+subtype=Treefolk
+power=2
+toughness=7
+text={G}: Yavimaya Ancients gets +1/-2 until end of turn.
+auto={G}:1/-2
+rarity=U
 [/card]

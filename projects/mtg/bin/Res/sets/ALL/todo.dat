@@ -1,25 +1,30 @@
-
-[card]
-id=3160
-name=Agent of Stromgald
-mana={R}
-type=Creature
-subtype=Human Knight
-power=1
-toughness=1
-text={R}: Add {B} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=159084
+﻿[card]
+id=3097
 name=Arcane Denial
 mana={1}{U}
+target=*|stack
+auto=fizzle
+auto=@next upkeep:may draw:2 targetController #Does not work as you can cancel this action
+auto=@next upkeep:draw:1
 type=Instant
 text=Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep. You draw a card at the beginning of the next turn's upkeep.
 rarity=C
 [/card]
 [card]
-id=184760
+id=3098
+name=Arcane Denial
+mana={1}{U}
+target=*|stack
+auto=fizzle
+auto=@next upkeep:may draw:2 targetController #Does not work as you can cancel this action
+auto=@next upkeep:draw:1
+type=Instant
+text=Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep. You draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+
+[card]
+id=3042
 name=Ashnod's Cylix
 mana={2}
 type=Artifact
@@ -27,11 +32,40 @@ text={3}, {T}: Target player looks at the top three cards of his or her library,
 rarity=R
 [/card]
 [card]
-id=201218
+id=3043
 name=Astrolabe
 mana={3}
 type=Artifact
 text={1}, {T}, Sacrifice Astrolabe: Add two mana of any one color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
+auto={1}{T}{S}: add {G}{G}
+auto={1}{T}{S}: add {R}{R}
+auto={1}{T}{S}: add {W}{W}
+auto={1}{T}{S}: add {B}{B}
+auto={1}{T}{S}: add {U}{U}
+auto=@movedTo(this|graveyard) from(myBattlefield):draw:1 #Could be seen as borderline and added
+rarity=C
+[/card]
+[card]
+id=3044
+name=Astrolabe
+mana={3}
+type=Artifact
+text={1}, {T}, Sacrifice Astrolabe: Add two mana of any one color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
+auto={1}{T}{S}: add {G}{G}
+auto={1}{T}{S}: add {R}{R}
+auto={1}{T}{S}: add {W}{W}
+auto={1}{T}{S}: add {B}{B}
+auto={1}{T}{S}: add {U}{U}
+auto=@movedTo(this|graveyard) from(myBattlefield):draw:1 #Could be seen as borderline and added
+rarity=C
+[/card]
+[card]
+id=3099
+name=Awesome Presence
+mana={U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature can't be blocked unless defending player pays {3} for each creature he or she controls that's blocking it.
 rarity=C
 [/card]
 [card]
@@ -44,7 +78,7 @@ text=Enchant creature Enchanted creature can't be blocked unless defending playe
 rarity=C
 [/card]
 [card]
-id=184735
+id=3066
 name=Balduvian Dead
 mana={3}{B}
 type=Creature
@@ -52,12 +86,18 @@ subtype=Zombie
 power=2
 toughness=3
 text={2}{R}, Exile a creature card from your graveyard: Put a 3/1 black and red Graveborn creature token with haste onto the battlefield. Sacrifice it at the beginning of the next end step.
+auto={2}{R}:moveto(exile) target(creature|graveyard) && token(Graveborn,Creature Graveborn grezurtzug,3/1,haste black red)
+auto=@next end:bury all(grezurtzug)
+#Not sure it would work
 rarity=U
 [/card]
 [card]
-id=159086
+id=3161
 name=Balduvian Horde
 mana={2}{R}{R}
+auto=@movedTo(this|myBattlefield):aslongas(*|myHand) bury <1
+#Tentative to correctly add this one... not sure it would work, require testing
+auto=discard:1 controller
 type=Creature
 subtype=Human Barbarian
 power=5
@@ -66,26 +106,16 @@ text=When Balduvian Horde enters the battlefield, sacrifice it unless you discar
 rarity=R
 [/card]
 [card]
-id=184533
+id=3231
 name=Balduvian Trading Post
-mana=
 type=Land
 text=If Balduvian Trading Post would enter the battlefield, sacrifice an untapped Mountain instead. If you do, put Balduvian Trading Post onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {1}{R} to your mana pool. {1}, {T}: Balduvian Trading Post deals 1 damage to target attacking creature.
+auto={T}: add {1}{R}
+auto={1}{T}:damage:1 target(creature[attacking])
 rarity=R
 [/card]
 [card]
-id=3163
-name=Balduvian War-Makers
-mana={4}{R}
-type=Creature
-subtype=Human Barbarian
-power=3
-toughness=3
-text=Haste Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
-rarity=C
-[/card]
-[card]
-id=201159
+id=3101
 name=Benthic Explorers
 mana={3}{U}
 type=Creature
@@ -96,7 +126,18 @@ text={T}, Untap a tapped land an opponent controls: Add one mana of any type tha
 rarity=C
 [/card]
 [card]
-id=159736
+id=3102
+name=Benthic Explorers
+mana={3}{U}
+type=Creature
+subtype=Merfolk Scout
+power=2
+toughness=4
+text={T}, Untap a tapped land an opponent controls: Add one mana of any type that land could produce to your mana pool.
+rarity=C
+[/card]
+[card]
+id=3164
 name=Bestial Fury
 mana={2}{R}
 type=Enchantment
@@ -105,7 +146,16 @@ text=Enchant creature When Bestial Fury enters the battlefield, draw a card at t
 rarity=C
 [/card]
 [card]
-id=184534
+id=3165
+name=Bestial Fury
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature When Bestial Fury enters the battlefield, draw a card at the beginning of the next turn's upkeep. Whenever enchanted creature becomes blocked, it gets +4/+0 and gains trample until end of turn.
+rarity=C
+[/card]
+[card]
+id=3128
 name=Bounty of the Hunt
 mana={3}{G}{G}
 type=Instant
@@ -113,7 +163,7 @@ text=You may exile a green card from your hand rather than pay Bounty of the Hun
 rarity=U
 [/card]
 [card]
-id=184761
+id=3103
 name=Browse
 mana={2}{U}{U}
 type=Enchantment
@@ -121,22 +171,28 @@ text={2}{U}{U}: Look at the top five cards of your library, put one of them into
 rarity=U
 [/card]
 [card]
-id=184762
+id=3166
 name=Burnout
 mana={1}{R}
+target=instant[blue]|stack
+#Not 100% correct as it should target all instant and counter only if blue
+auto=fizzle
+auto=@next upkeep:draw:1
 type=Instant
 text=Counter target instant spell if it's blue. Draw a card at the beginning of the next turn's upkeep.
 rarity=U
 [/card]
 [card]
-id=3191
-name=Carrier Pigeons
-mana={3}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-text=Flying When Carrier Pigeons enters the battlefield, draw a card at the beginning of the next turn's upkeep.
+id=3067
+name=Casting of Bones
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature When enchanted creature is put into a graveyard, draw three cards, then discard one of them.
+target=Creature
+auto=@movedTo(mytgt|graveyard):draw:3 controller
+auto=@movedTo(mytgt|graveyard):moveto(graveyard) target(*|myhand)
+#target not possible unless there is a may
 rarity=C
 [/card]
 [card]
@@ -146,6 +202,10 @@ mana={2}{B}
 type=Enchantment
 subtype=Aura
 text=Enchant creature When enchanted creature is put into a graveyard, draw three cards, then discard one of them.
+target=Creature
+auto=@movedTo(mytgt|graveyard):draw:3 controller
+auto=@movedTo(mytgt|graveyard):moveto(graveyard) target(*|myhand)
+#target not possible unless there is a may
 rarity=C
 [/card]
 [card]
@@ -160,7 +220,7 @@ text={R}: Exile the top card of your library. If that card is a land card, Chaos
 rarity=R
 [/card]
 [card]
-id=159089
+id=3069
 name=Contagion
 mana={3}{B}{B}
 type=Instant
@@ -168,30 +228,28 @@ text=You may pay 1 life and exile a black card from your hand rather than pay Co
 rarity=U
 [/card]
 [card]
-id=27250
-name=Deadly Insect
-mana={4}{G}
-type=Creature
-subtype=Insect
-power=6
-toughness=1
-text=Shroud (This permanent can't be the target of spells or abilities.)
-rarity=C
-[/card]
-[card]
-id=184537
+id=3168
 name=Death Spark
 mana={R}
 type=Instant
 text=Death Spark deals 1 damage to target creature or player. At the beginning of your upkeep, if Death Spark is in your graveyard with a creature card directly above it, you may pay {1}. If you do, return Death Spark to your hand.
+target=creature,player
+auto=damage:1
 rarity=U
 [/card]
 [card]
-id=159090
+id=3104
 name=Diminishing Returns
 mana={2}{U}{U}
 type=Sorcery
 text=Each player shuffles his or her hand and graveyard into his or her library. You exile the top ten cards of your library. Then each player draws up to seven cards.
+auto=moveto(library) all(*|graveyard) && shuffle
+auto=deplete:10 controller
+auto=deplete:10 opponent
+auto=moveto(exile) all(*|graveyard)
+auto=draw:7 controller
+auto=draw:7 opponent
+#Will probably not work
 rarity=R
 [/card]
 [card]
@@ -206,7 +264,7 @@ text=Whenever Diseased Vermin deals combat damage to a player, put an infection 
 rarity=U
 [/card]
 [card]
-id=184538
+id=3071
 name=Dystopia
 mana={1}{B}{B}
 type=Enchantment
@@ -214,7 +272,7 @@ text=Cumulative upkeep—Pay 1 life. (At the beginning of your upkeep, put an ag
 rarity=R
 [/card]
 [card]
-id=82960
+id=3131
 name=Elvish Bard
 mana={3}{G}{G}
 type=Creature
@@ -225,17 +283,7 @@ text=All creatures able to block Elvish Bard do so.
 rarity=U
 [/card]
 [card]
-id=184691
-name=Elvish Ranger
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=4
-toughness=1
-rarity=C
-[/card]
-[card]
-id=184542
+id=3134
 name=Elvish Spirit Guide
 mana={2}{G}
 type=Creature
@@ -243,45 +291,49 @@ subtype=Elf Spirit
 power=2
 toughness=2
 text=Exile Elvish Spirit Guide from your hand: Add {G} to your mana pool.
+auto=aslongas(this|myhand){0}:moveto(exile) && add {G} #Cannot work aslong don't work with activation cost
 rarity=U
 [/card]
 [card]
-id=159830
+id=3221
 name=Energy Arc
 mana={W}{U}
 type=Instant
 text=Untap any number of target creatures. Prevent all combat damage that would be dealt to and dealt by those creatures this turn.
+target=creatures
 rarity=U
 [/card]
 [card]
-id=3170
-name=Enslaved Scout
-mana={2}{R}
-type=Creature
-subtype=Goblin Scout
-power=2
-toughness=2
-text={2}: Enslaved Scout gains mountainwalk until end of turn.
-rarity=C
-[/card]
-[card]
-id=184730
+id=3192
 name=Errand of Duty
 mana={1}{W}
 type=Instant
 text=Put a 1/1 white Knight creature token with banding onto the battlefield. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+auto=token(Knight,Creature Knight,1/1,banding white)
+#banding no longer supported in WTH 0.9.1
 rarity=U
 [/card]
 [card]
-id=159091
-name=Exile
-mana={2}{W}
+id=3193
+name=Errand of Duty
+mana={1}{W}
 type=Instant
-text=Exile target nonwhite attacking creature. You gain life equal to its toughness.
-rarity=R
+text=Put a 1/1 white Knight creature token with banding onto the battlefield. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+auto=token(Knight,Creature Knight,1/1,banding white)
+#banding no longer supported in WTH 0.9.1
+rarity=U
 [/card]
 [card]
-id=19812
+id=3105
+name=False Demise
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature When enchanted creature is put into a graveyard, return that card to the battlefield under your control.
+rarity=U
+[/card]
+[card]
+id=3106
 name=False Demise
 mana={2}{U}
 type=Enchantment
@@ -298,19 +350,25 @@ text=An opponent chooses one  EYou draw three cards; or you destroy up to two 
 rarity=R
 [/card]
 [card]
-id=159739
+id=3073
 name=Feast or Famine
 mana={3}{B}
 type=Instant
 text=Choose one  EPut a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
+auto=may token(Zombie,Creature Zombie,2/2,black)
+auto=may bury target(creature[-black;-artifact])
+#Not sure this would work need to retest this one
 rarity=C
 [/card]
 [card]
-id=201169
-name=Fevered Strength
-mana={2}{B}
+id=3074
+name=Feast or Famine
+mana={3}{B}
 type=Instant
-text=Target creature gets +2/+0 until end of turn.  Draw a card at the beginning of the next turn's upkeep.
+text=Choose one  EPut a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
+auto=may token(Zombie,Creature Zombie,2/2,black)
+auto=may bury target(creature[-black;-artifact])
+#Not sure this would work need to retest this one
 rarity=C
 [/card]
 [card]
@@ -319,15 +377,27 @@ name=Floodwater Dam
 mana={3}
 type=Artifact
 text={X}{X}{1}, {T}: Tap X target lands.
+auto={X}{X}{1}{T}:tap target(land)*x
 rarity=R
 [/card]
 [card]
-id=159092
+id=3107
 name=Force of Will
 mana={3}{U}{U}
 type=Instant
+target=*|stack
+auto=fizzle
+auto={0}:fizzle target(*|stack) && moveto(graveyard) && life:-1
 text=You may pay 1 life and exile a blue card from your hand rather than pay Force of Will's mana cost. Counter target spell.
 rarity=U
+[/card]
+[card]
+id=3108
+name=Foresight
+mana={1}{U}
+type=Sorcery
+text=Search your library for three cards, exile them, then shuffle your library. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
 [/card]
 [card]
 id=3109
@@ -335,6 +405,18 @@ name=Foresight
 mana={1}{U}
 type=Sorcery
 text=Search your library for three cards, exile them, then shuffle your library. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
+id=3135
+name=Fyndhorn Druid
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=2
+text=When Fyndhorn Druid is put into a graveyard from the battlefield, if it was blocked this turn, you gain 4 life.
+auto=@movedto(this|graveyard) from(myBattlefield):life:4 controller
 rarity=C
 [/card]
 [card]
@@ -346,10 +428,11 @@ subtype=Elf Druid
 power=2
 toughness=2
 text=When Fyndhorn Druid is put into a graveyard from the battlefield, if it was blocked this turn, you gain 4 life.
+auto=@movedto(this|graveyard) from(myBattlefield):life:4 controller
 rarity=C
 [/card]
 [card]
-id=159093
+id=3137
 name=Gargantuan Gorilla
 mana={4}{G}{G}{G}
 type=Creature
@@ -358,6 +441,15 @@ power=7
 toughness=7
 text=At the beginning of your upkeep, sacrifice Gargantuan Gorilla unless you sacrifice a Forest. If you sacrifice Gargantuan Gorilla this way, it deals 7 damage to you. If you sacrifice a snow Forest this way, Gargantuan Gorilla gains trample until end of turn. {T}: Gargantuan Gorilla deals damage equal to its power to target creature. That creature deals damage equal to its power to Gargantuan Gorilla.
 rarity=R
+[/card]
+[card]
+id=3138
+name=Gift of the Woods
+mana={G}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Whenever enchanted creature blocks or becomes blocked, it gets +0/+3 until end of turn and you gain 1 life.
+rarity=C
 [/card]
 [card]
 id=3139
@@ -369,6 +461,19 @@ text=Enchant creature Whenever enchanted creature blocks or becomes blocked, it 
 rarity=C
 [/card]
 [card]
+id=3140
+name=Gorilla Berserkers
+mana={3}{G}{G}
+type=Creature
+subtype=Ape Berserker
+power=2
+toughness=3
+text=Trample; rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) Gorilla Berserkers can't be blocked except by three or more creatures.
+auto=rampage(2/2,1)
+abilities=trample
+rarity=C
+[/card]
+[card]
 id=3141
 name=Gorilla Berserkers
 mana={3}{G}{G}
@@ -377,21 +482,12 @@ subtype=Ape Berserker
 power=2
 toughness=3
 text=Trample; rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) Gorilla Berserkers can't be blocked except by three or more creatures.
+auto=rampage(2/2,1)
+abilities=trample
 rarity=C
 [/card]
 [card]
-id=13047
-name=Gorilla Chieftain
-mana={2}{G}{G}
-type=Creature
-subtype=Ape
-power=3
-toughness=3
-text={1}{G}: Regenerate Gorilla Chieftain.
-rarity=C
-[/card]
-[card]
-id=184693
+id=3171
 name=Gorilla Shaman
 mana={R}
 type=Creature
@@ -402,6 +498,25 @@ text={X}{X}{1}: Destroy target noncreature artifact with converted mana cost X.
 rarity=U
 [/card]
 [card]
+id=3172
+name=Gorilla Shaman
+mana={R}
+type=Creature
+subtype=Ape Shaman
+power=1
+toughness=1
+text={X}{X}{1}: Destroy target noncreature artifact with converted mana cost X.
+rarity=U
+[/card]
+[card]
+id=3173
+name=Gorilla War Cry
+mana={1}{R}
+type=Instant
+text=Cast Gorilla War Cry only during combat before blockers are declared. Attacking creatures can't be blocked this turn except by two or more creatures. Draw a card at the beginning of the next turn's upkeep.
+rarity=C
+[/card]
+[card]
 id=3174
 name=Gorilla War Cry
 mana={1}{R}
@@ -410,15 +525,29 @@ text=Cast Gorilla War Cry only during combat before blockers are declared. Attac
 rarity=C
 [/card]
 [card]
-id=129588
+id=3175
 name=Guerrilla Tactics
 mana={1}{R}
 type=Instant
 text=Guerrilla Tactics deals 2 damage to target creature or player. When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
+target=creature,player
+auto=damage:2
+auto=@movedto(graveyard) from(myhand):damage:4 target(creature,player) #Target does not work with @ unless there is a may
 rarity=U
 [/card]
 [card]
-id=184548
+id=3176
+name=Guerrilla Tactics
+mana={1}{R}
+type=Instant
+text=Guerrilla Tactics deals 2 damage to target creature or player. When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
+target=creature,player
+auto=damage:2
+auto=@movedto(graveyard) from(myhand):damage:4 target(creature,player) #Target does not work with @ unless there is a may
+rarity=U
+[/card]
+[card]
+id=3046
 name=Gustha's Scepter
 mana={0}
 type=Artifact
@@ -426,23 +555,16 @@ text={T}: Exile a card from your hand face down. You may look at it for as long 
 rarity=R
 [/card]
 [card]
-id=107296
-name=Hail Storm
-mana={1}{G}{G}
-type=Instant
-text=Hail Storm deals 2 damage to each attacking creature and 1 damage to you and each creature you control.
-rarity=U
-[/card]
-[card]
-id=184549
+id=3232
 name=Heart of Yavimaya
-mana=
 type=Land
 text=If Heart of Yavimaya would enter the battlefield, sacrifice a Forest instead. If you do, put Heart of Yavimaya onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {G} to your mana pool. {T}: Target creature gets +1/+1 until end of turn.
+auto={T}: add {G}
+auto={T}:1/1 target(Creature)
 rarity=R
 [/card]
 [card]
-id=184550
+id=3047
 name=Helm of Obedience
 mana={4}
 type=Artifact
@@ -450,12 +572,25 @@ text={X}, {T}: Target opponent puts cards from the top of his or her library int
 rarity=R
 [/card]
 [card]
-id=184635
+id=3195
 name=Inheritance
 mana={W}
 type=Enchantment
 text=Whenever a creature is put into a graveyard from the battlefield, you may pay {3}. If you do, draw a card.
+auto=@movedto(creature|graveyard) from(Battlefield):may {3}:draw:1 controller #hardcodable similar to RV cards (when put in play you may pay {1} type)
 rarity=U
+[/card]
+[card]
+id=3077
+name=Insidious Bookworms
+mana={B}
+type=Creature
+subtype=Worm
+power=1
+toughness=1
+text=When Insidious Bookworms is put into a graveyard from the battlefield, you may pay {1}{B}. If you do, target player discards a card at random.
+auto=@movedto(this|graveyard) from(inplay): may {1}{B}:discard:1 target(player)
+rarity=C
 [/card]
 [card]
 id=3078
@@ -466,10 +601,11 @@ subtype=Worm
 power=1
 toughness=1
 text=When Insidious Bookworms is put into a graveyard from the battlefield, you may pay {1}{B}. If you do, target player discards a card at random.
+auto=@movedto(this|graveyard) from(inplay): may {1}{B}:discard:1 target(player)
 rarity=C
 [/card]
 [card]
-id=184551
+id=3196
 name=Ivory Gargoyle
 mana={4}{W}
 type=Creature
@@ -480,26 +616,16 @@ text=Flying When Ivory Gargoyle is put into a graveyard from the battlefield, re
 rarity=R
 [/card]
 [card]
-id=184552
+id=3197
 name=Juniper Order Advocate
 mana={2}{W}
 type=Creature
 subtype=Human Knight
+auto=aslongas(this[-tapped]) lord(creature[green]|myinplay)1/1 #Aslongas does work with "this" keyword
 power=1
 toughness=2
 text=Green creatures you control get +1/+1 as long as Juniper Order Advocate is untapped.
 rarity=U
-[/card]
-[card]
-id=184553
-name=Kaysa
-mana={3}{G}{G}
-type=Legendary Creature
-subtype=Elf Druid
-power=2
-toughness=3
-text=Green creatures you control get +1/+1.
-rarity=R
 [/card]
 [card]
 id=3079
@@ -513,6 +639,17 @@ text=Whenever Keeper of Tresserhorn attacks and isn't blocked, it assigns no com
 rarity=R
 [/card]
 [card]
+id=3198
+name=Kjeldoran Escort
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+rarity=C
+[/card]
+[card]
 id=3199
 name=Kjeldoran Escort
 mana={2}{W}{W}
@@ -524,7 +661,7 @@ text=Banding (Any creatures with banding, and up to one without, can attack in a
 rarity=C
 [/card]
 [card]
-id=184554
+id=3200
 name=Kjeldoran Home Guard
 mana={3}{W}
 type=Creature
@@ -532,15 +669,30 @@ subtype=Human Soldier
 power=1
 toughness=6
 text=At end of combat, if Kjeldoran Home Guard attacked or blocked this combat, put a -0/-1 counter on Kjeldoran Home Guard and put a 0/1 white Deserter creature token onto the battlefield.
+auto=aslongas(this[attacking,blocking]|myinplay):counter(0/-1,1)
+auto=aslongas(this[attacking,blocking]|myinplay):token(Deserter,Creature Deserter,0/1,white)
 rarity=U
 [/card]
 [card]
-id=184555
+id=3233
 name=Kjeldoran Outpost
-mana=
 type=Land
 text=If Kjeldoran Outpost would enter the battlefield, sacrifice a Plains instead. If you do, put Kjeldoran Outpost onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {W} to your mana pool. {1}{W}, {T}: Put a 1/1 white Soldier creature token onto the battlefield.
+auto={T}: add {W}
+auto={1}{W}{T}:token(soldier,creature solder,1/1,white)
 rarity=R
+[/card]
+[card]
+id=3201
+name=Kjeldoran Pride
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+2. {2}{U}: Attach Kjeldoran Pride to target creature other than enchanted creature.
+target=Creature
+auto=:1/2
+auto={2}{U}:moveto(creature|myinplay)
+rarity=C
 [/card]
 [card]
 id=3202
@@ -549,10 +701,13 @@ mana={1}{W}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+2. {2}{U}: Attach Kjeldoran Pride to target creature other than enchanted creature.
+target=Creature
+auto=:1/2
+auto={2}{U}:moveto(creature|myinplay)
 rarity=C
 [/card]
 [card]
-id=184556
+id=3080
 name=Krovikan Horror
 mana={3}{B}
 type=Creature
@@ -569,64 +724,52 @@ mana={2}{B}
 type=Enchantment
 subtype=Aura
 text=Enchant non-Wall creature you control When Krovikan Plague enters the battlefield, draw a card at the beginning of the next turn's upkeep. Enchanted creature has "{T}: Put a -0/-1 counter on this creature, and Krovikan Plague deals 1 damage to target creature or player."
+target=creature[-Wall]|myBattlefield
+auto=@next upkeep:draw:1 controller
+auto=lord(mytgt) {T}:damage:1 target(creature,player) && counter(0/-1,1)
+#Wonder if this could work... ;)
 rarity=U
 [/card]
 [card]
-id=159095
+id=3234
 name=Lake of the Dead
 mana=
 type=Land
 text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {B} to your mana pool. {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
 rarity=R
+auto={T}: add {B}
+auto={T}{S(swamp|myinplay)}: add {B}{B}{B}{B}
 [/card]
 [card]
-id=184697
-name=Lat-Nam's Legacy
-mana={1}{U}
-type=Instant
-text=Shuffle a card from your hand into your library. If you do, draw two cards at the beginning of the next turn's upkeep.
-rarity=C
-[/card]
-[card]
-id=15364
+id=3112
 name=Library of Lat-Nam
 mana={4}{U}
 type=Sorcery
-text=An opponent chooses one  EYou draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
+text=An opponent chooses one : You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
 rarity=R
 [/card]
 [card]
-id=184714
-name=Lim-Dûl's High Guard
-mana={1}{B}{B}
-type=Creature
-subtype=Skeleton
-power=2
-toughness=1
-text=First strike {1}{B}: Regenerate Lim-Dûl's High Guard.
-rarity=U
-[/card]
-[card]
 id=3222
-name=Lim-Dûl's Paladin
+name=Lim-Dul's Paladin
 mana={2}{B}{R}
 type=Creature
 subtype=Human Knight
 power=0
 toughness=3
 text=Trample At the beginning of your upkeep, sacrifice Lim-Dûl's Paladin unless you discard a card. If you sacrifice it this way, draw a card. Whenever Lim-Dûl's Paladin becomes blocked, it gets +6/+3 until end of turn. Whenever Lim-Dûl's Paladin attacks and isn't blocked, it assigns no combat damage this turn and defending player loses 4 life.
+abilities=trample
 rarity=U
 [/card]
 [card]
-id=159832
-name=Lim-Dûl's Vault
+id=3223
+name=Lim-Dul's Vault
 mana={U}{B}
 type=Instant
 text=Look at the top five cards of your library. As many times as you choose, you may pay 1 life, put those cards on the bottom of your library, then look at the top five cards of your library. Then shuffle your library and put the last cards you looked at this way on top of it in any order.
 rarity=U
 [/card]
 [card]
-id=184559
+id=3048
 name=Lodestone Bauble
 mana={0}
 type=Artifact
@@ -634,15 +777,24 @@ text={1}, {T}, Sacrifice Lodestone Bauble: Put up to four target basic land card
 rarity=R
 [/card]
 [card]
-id=159096
+id=3224
 name=Lord of Tresserhorn
 mana={1}{U}{B}{R}
-type=Legendary Creature
+type=Creature
+abilities=legendary
 subtype=Zombie
 power=10
 toughness=4
 text=When Lord of Tresserhorn enters the battlefield, you lose 2 life and sacrifice two creatures, and an opponent draws two cards. {B}: Regenerate Lord of Tresserhorn.
 rarity=R
+[/card]
+[card]
+id=3203
+name=Martyrdom
+mana={1}{W}{W}
+type=Instant
+text=Until end of turn, target creature you control gains "{0}: The next 1 damage that would be dealt to target creature or player this turn is dealt to this creature instead." Only you may activate this ability.
+rarity=C
 [/card]
 [card]
 id=3204
@@ -657,7 +809,7 @@ id=3225
 name=Misfortune
 mana={1}{B}{R}{G}
 type=Sorcery
-text=An opponent chooses one  EYou put a +1/+1 counter on each creature you control and gain 4 life; or you put a -1/-1 counter on each creature that player controls and Misfortune deals 4 damage to him or her.
+text=An opponent chooses one - You put a +1/+1 counter on each creature you control and gain 4 life; or you put a -1/-1 counter on each creature that player controls and Misfortune deals 4 damage to him or her.
 rarity=R
 [/card]
 [card]
@@ -666,10 +818,11 @@ name=Mishra's Groundbreaker
 mana={4}
 type=Artifact
 text={T}, Sacrifice Mishra's Groundbreaker: Target land becomes a 3/3 artifact creature that's still a land. (This effect lasts indefinitely.)
+auto={T}{S}:becomes(Artifact Creature Land,3/3) target(land|myBattlefield) #becomes does not work with activation cost
 rarity=U
 [/card]
 [card]
-id=184698
+id=3084
 name=Misinformation
 mana={B}
 type=Instant
@@ -677,7 +830,7 @@ text=Put up to three target cards from an opponent's graveyard on top of his or 
 rarity=U
 [/card]
 [card]
-id=15435
+id=3050
 name=Mystic Compass
 mana={2}
 type=Artifact
@@ -685,12 +838,13 @@ text={1}, {T}: Target land becomes the basic land type of your choice until end 
 rarity=U
 [/card]
 [card]
-id=184779
+id=3226
 name=Nature's Blessing
 mana={2}{G}{W}
 type=Enchantment
 text={G}{W}, Discard a card: Put a +1/+1 counter on target creature or that creature gains banding, first strike, or trample. (This effect lasts indefinitely. Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 rarity=U
+auto={G}{W}{S(*|myHand)}:counter(1/1,1) target(creature)
 [/card]
 [card]
 id=3146
@@ -700,22 +854,17 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature you control Enchanted creature has "{0}: Untap this creature. Activate this ability only during your turn and only once each turn." As long as enchanted creature is white, it has "{T}: Untap target artifact, creature, or land. Activate this ability only once each turn."
 rarity=U
+target=creature|myBattlefield
+auto=lord(mytgt) {0}:untap limit:1 myturnonly
+auto=aslongas(mytgt[white])lord(mytgt){T}:untap target(artifact,creature,land) limit:1
 [/card]
 [card]
-id=184561
+id=3147
 name=Nature's Wrath
 mana={4}{G}{G}
 type=Enchantment
 text=At the beginning of your upkeep, sacrifice Nature's Wrath unless you pay {G}. Whenever a player puts an Island or blue permanent onto the battlefield, he or she sacrifices an Island or blue permanent. Whenever a player puts a Swamp or black permanent onto the battlefield, he or she sacrifices a Swamp or black permanent.
 rarity=R
-[/card]
-[card]
-id=3206
-name=Noble Steeds
-mana={2}{W}
-type=Enchantment
-text={1}{W}: Target creature gains first strike until end of turn.
-rarity=C
 [/card]
 [card]
 id=3177
@@ -726,7 +875,18 @@ text=Return all Islands to their owners' hands.  Each player sacrifices a Plains
 rarity=R
 [/card]
 [card]
-id=190426
+id=3085
+name=Phantasmal Fiend
+mana={3}{B}
+type=Creature
+subtype=Illusion
+power=1
+toughness=5
+text={B}: Phantasmal Fiend gets +1/-1 until end of turn. {1}{U}: Switch Phantasmal Fiend's power and toughness until end of turn.
+rarity=C
+[/card]
+[card]
+id=3086
 name=Phantasmal Fiend
 mana={3}{B}
 type=Creature
@@ -748,7 +908,7 @@ text=Flying At the beginning of your upkeep, put a +1/+1 counter on Phantasmal S
 rarity=R
 [/card]
 [card]
-id=159097
+id=3227
 name=Phelddagrif
 mana={1}{G}{W}{U}
 type=Legendary Creature
@@ -759,16 +919,31 @@ text={G}: Phelddagrif gains trample until end of turn. Target opponent puts a 1/
 rarity=R
 [/card]
 [card]
-id=159741
+id=3087
 name=Phyrexian Boon
 mana={2}{B}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +2/+1 as long as it's black. Otherwise, it gets -1/-2.
+target=creature
+auto=aslongas(mytgt[black]) 2/1
+auto=aslongas(mytgt[-black]) -1/-2
 rarity=C
 [/card]
 [card]
-id=184563
+id=3088
+name=Phyrexian Boon
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/+1 as long as it's black. Otherwise, it gets -1/-2.
+target=creature
+auto=aslongas(mytgt[black]) 2/1
+auto=aslongas(mytgt[-black]) -1/-2
+rarity=C
+[/card]
+[card]
+id=3051
 name=Phyrexian Devourer
 mana={6}
 type=Artifact Creature
@@ -779,7 +954,7 @@ text=When Phyrexian Devourer's power is 7 or greater, sacrifice it. Exile the to
 rarity=U
 [/card]
 [card]
-id=184564
+id=3052
 name=Phyrexian Portal
 mana={3}
 type=Artifact
@@ -787,7 +962,7 @@ text={3}: Target opponent looks at the top ten cards of your library and separat
 rarity=R
 [/card]
 [card]
-id=159098
+id=3053
 name=Phyrexian War Beast
 mana={3}
 type=Artifact Creature
@@ -798,11 +973,14 @@ text=When Phyrexian War Beast leaves the battlefield, sacrifice a land and Phyre
 rarity=U
 [/card]
 [card]
-id=184567
-name=Pillage
-mana={1}{R}{R}
-type=Sorcery
-text=Destroy target artifact or land. It can't be regenerated.
+id=3054
+name=Phyrexian War Beast
+mana={3}
+type=Artifact Creature
+subtype=Beast
+power=3
+toughness=4
+text=When Phyrexian War Beast leaves the battlefield, sacrifice a land and Phyrexian War Beast deals 1 damage to you.
 rarity=U
 [/card]
 [card]
@@ -811,10 +989,14 @@ name=Primitive Justice
 mana={1}{R}
 type=Sorcery
 text=As an additional cost to cast Primitive Justice, you may pay {1}{R} and/or {1}{G} any number of times. Destroy target artifact. For each additional {1}{R} you paid, destroy another target artifact. For each additional {1}{G} you paid, destroy another target artifact, and you gain 1 life.
+kicker={1}{RG}
+target=artifact
+auto=destroy
+auto=kicker destroy target(artifact)
 rarity=U
 [/card]
 [card]
-id=184763
+id=3180
 name=Pyrokinesis
 mana={4}{R}{R}
 type=Instant
@@ -822,7 +1004,7 @@ text=You may exile a red card from your hand rather than pay Pyrokinesis's mana 
 rarity=U
 [/card]
 [card]
-id=184597
+id=3207
 name=Reinforcements
 mana={W}
 type=Instant
@@ -830,7 +1012,15 @@ text=Put up to three target creature cards from your graveyard on top of your li
 rarity=C
 [/card]
 [card]
-id=184707
+id=3208
+name=Reinforcements
+mana={W}
+type=Instant
+text=Put up to three target creature cards from your graveyard on top of your library.
+rarity=C
+[/card]
+[card]
+id=3209
 name=Reprisal
 mana={1}{W}
 type=Instant
@@ -838,15 +1028,25 @@ text=Destroy target creature with power 4 or greater. It can't be regenerated.
 rarity=U
 [/card]
 [card]
-id=184570
+id=3210
+name=Reprisal
+mana={1}{W}
+type=Instant
+text=Destroy target creature with power 4 or greater. It can't be regenerated.
+rarity=U
+[/card]
+[card]
+id=3089
 name=Ritual of the Machine
 mana={2}{B}{B}
 type=Sorcery
 text=As an additional cost to cast Ritual of the Machine, sacrifice a creature. Gain control of target nonblack, nonartifact creature.
+target=(creature[-black;-artifact])
+alias=1194
 rarity=R
 [/card]
 [card]
-id=184571
+id=3181
 name=Rogue Skycaptain
 mana={2}{R}
 type=Creature
@@ -857,7 +1057,7 @@ text=Flying At the beginning of your upkeep, put a wage counter on Rogue Skycapt
 rarity=R
 [/card]
 [card]
-id=184715
+id=3211
 name=Royal Decree
 mana={2}{W}{W}
 type=Enchantment
@@ -865,11 +1065,24 @@ text=Cumulative upkeep {W} (At the beginning of your upkeep, put an age counter 
 rarity=R
 [/card]
 [card]
+id=3212
+name=Royal Herbalist
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text={2}, Exile the top card of your library: You gain 1 life.
+auto=moveto(exile) target(*[top]|library) && life:1 controller
+rarity=C
+[/card]
+[card]
 id=3213
 name=Royal Herbalist
 mana={W}
 type=Creature
 subtype=Human Cleric
+auto=moveto(exile) target(*[top]|library) && life:1 controller
 power=1
 toughness=1
 text={2}, Exile the top card of your library: You gain 1 life.
@@ -884,19 +1097,11 @@ text={T}, Sacrifice Scarab of the Unseen: Return all Auras attached to target pe
 rarity=U
 [/card]
 [card]
-id=184572
+id=3214
 name=Scars of the Veteran
 mana={4}{W}
 type=Instant
 text=You may exile a white card from your hand rather than pay Scars of the Veteran's mana cost. Prevent the next 7 damage that would be dealt to target creature or player this turn. At the beginning of the next end step, put a +0/+1 counter on that creature for each 1 damage prevented this way.
-rarity=U
-[/card]
-[card]
-id=3235
-name=School of the Unseen
-mana=
-type=Land
-text={T}: Add {1} to your mana pool.  {2}, {T}: Add one mana of any color to your mana pool.
 rarity=U
 [/card]
 [card]
@@ -913,13 +1118,13 @@ rarity=U
 [card]
 id=3236
 name=Sheltered Valley
-mana=
-type=Land
+type=land
+auto={T}: add {1}
 text=If Sheltered Valley would enter the battlefield, instead sacrifice each other permanent named Sheltered Valley you control, then put Sheltered Valley onto the battlefield. At the beginning of your upkeep, if you control three or fewer lands, you gain 1 life. {T}: Add {1} to your mana pool.
 rarity=R
 [/card]
 [card]
-id=159103
+id=3056
 name=Shield Sphere
 mana={0}
 type=Artifact Creature
@@ -930,12 +1135,23 @@ text=Defender Whenever Shield Sphere blocks, put a -0/-1 counter on it.
 rarity=U
 [/card]
 [card]
-id=201183
+id=3057
 name=Sol Grail
 mana={3}
 type=Artifact
 text=As Sol Grail enters the battlefield, choose a color. {T}: Add one mana of the chosen color to your mana pool.
 rarity=U
+[/card]
+[card]
+id=3090
+name=Soldevi Adnate
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+text={T}, Sacrifice a black or artifact creature: Add an amount of black mana equal to the sacrificed creature's converted mana cost to your mana pool.
+rarity=C
 [/card]
 [card]
 id=3091
@@ -949,7 +1165,7 @@ text={T}, Sacrifice a black or artifact creature: Add an amount of black mana eq
 rarity=C
 [/card]
 [card]
-id=184574
+id=3058
 name=Soldevi Digger
 mana={2}
 type=Artifact
@@ -957,12 +1173,22 @@ text={2}: Put the top card of your graveyard on the bottom of your library.
 rarity=U
 [/card]
 [card]
-id=184575
+id=3237
 name=Soldevi Excavations
-mana=
 type=Land
 text=If Soldevi Excavations would enter the battlefield, sacrifice an untapped Island instead. If you do, put Soldevi Excavations onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {1}{U} to your mana pool. {1}, {T}: Look at the top card of your library. You may put that card on the bottom of your library.
 rarity=R
+[/card]
+[card]
+id=3114
+name=Soldevi Heretic
+mana={2}{U}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+text={W}, {T}: Prevent the next 2 damage that would be dealt to target creature this turn. Target opponent may draw a card.
+rarity=C
 [/card]
 [card]
 id=3115
@@ -976,7 +1202,7 @@ text={W}, {T}: Prevent the next 2 damage that would be dealt to target creature 
 rarity=C
 [/card]
 [card]
-id=16436
+id=3116
 name=Soldevi Sage
 mana={1}{U}
 type=Creature
@@ -987,6 +1213,29 @@ text={T}, Sacrifice two lands: Draw three cards, then discard one of them.
 rarity=U
 [/card]
 [card]
+id=3117
+name=Soldevi Sage
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={T}, Sacrifice two lands: Draw three cards, then discard one of them.
+rarity=U
+[/card]
+[card]
+id=3059
+name=Soldevi Sentry
+mana={1}
+type=Artifact Creature
+subtype=Soldier
+power=1
+toughness=1
+text={1}: Choose target opponent. Regenerate Soldevi Sentry. When it regenerates this way, that player may draw a card.
+auto={1}:regenerate && may draw:1 opponent
+rarity=C
+[/card]
+[card]
 id=3060
 name=Soldevi Sentry
 mana={1}
@@ -995,17 +1244,7 @@ subtype=Soldier
 power=1
 toughness=1
 text={1}: Choose target opponent. Regenerate Soldevi Sentry. When it regenerates this way, that player may draw a card.
-rarity=C
-[/card]
-[card]
-id=3062
-name=Soldevi Steam Beast
-mana={5}
-type=Artifact Creature
-subtype=Beast
-power=4
-toughness=2
-text=Whenever Soldevi Steam Beast becomes tapped, target opponent gains 2 life. {2}: Regenerate Soldevi Steam Beast.
+auto={1}:regenerate && may draw:1 opponent
 rarity=C
 [/card]
 [card]
@@ -1017,10 +1256,11 @@ subtype=Human Mercenary
 power=1
 toughness=1
 text={R}, {T}: Target player shuffles his or her library.
+auto={R}{T}:shuffle target(library)
 rarity=U
 [/card]
 [card]
-id=201124
+id=3118
 name=Spiny Starfish
 mana={2}{U}
 type=Creature
@@ -1028,6 +1268,7 @@ subtype=Starfish
 power=0
 toughness=1
 text={U}: Regenerate Spiny Starfish. At the beginning of the end step, if Spiny Starfish regenerated this turn, put a 0/1 blue Starfish creature token onto the battlefield for each time it regenerated this turn.
+auto={U}:regenerate && token(Starfish,creature Starfish,0/1,blue)
 rarity=U
 [/card]
 [card]
@@ -1040,14 +1281,6 @@ rarity=R
 [/card]
 [card]
 id=3093
-name=Stench of Decay
-mana={1}{B}{B}
-type=Instant
-text=Nonartifact creatures get -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=25663
 name=Storm Cauldron
 mana={5}
 type=Artifact
@@ -1055,18 +1288,7 @@ text=Each player may play an additional land during each of his or her turns. Wh
 rarity=R
 [/card]
 [card]
-id=83282
-name=Storm Crow
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=1
-toughness=2
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-rarity=C
-[/card]
-[card]
-id=184581
+id=3121
 name=Storm Elemental
 mana={5}{U}
 type=Creature
@@ -1074,17 +1296,7 @@ subtype=Elemental
 power=3
 toughness=4
 text=Flying {U}, Exile the top card of your library: Tap target creature with flying. {U}, Exile the top card of your library: If the exiled card is a snow land, Storm Elemental gets +1/+1 until end of turn.
-rarity=U
-[/card]
-[card]
-id=15834
-name=Storm Shaman
-mana={2}{R}
-type=Creature
-subtype=Human Cleric Shaman
-power=0
-toughness=4
-text={R}: Storm Shaman gets +1/+0 until end of turn.
+abilities=flying
 rarity=U
 [/card]
 [card]
@@ -1115,7 +1327,7 @@ text=As an additional cost to cast Surge of Strength, discard a red or green car
 rarity=U
 [/card]
 [card]
-id=184744
+id=3216
 name=Sustaining Spirit
 mana={1}{W}
 type=Creature
@@ -1126,7 +1338,7 @@ text=Cumulative upkeep {1}{W} (At the beginning of your upkeep, put an age count
 rarity=R
 [/card]
 [card]
-id=106656
+id=3095
 name=Swamp Mosquito
 mana={1}{B}
 type=Creature
@@ -1134,6 +1346,19 @@ subtype=Insect
 power=0
 toughness=1
 text=Flying Whenever Swamp Mosquito attacks and isn't blocked, defending player gets a poison counter. (A player with ten or more poison counters loses the game.)
+abilities=flying
+rarity=C
+[/card]
+[card]
+id=3096
+name=Swamp Mosquito
+mana={1}{B}
+type=Creature
+subtype=Insect
+power=0
+toughness=1
+text=Flying Whenever Swamp Mosquito attacks and isn't blocked, defending player gets a poison counter. (A player with ten or more poison counters loses the game.)
+abilities=flying
 rarity=C
 [/card]
 [card]
@@ -1148,23 +1373,40 @@ text={1}: Sworn Defender's power becomes the toughness of target creature blocki
 rarity=R
 [/card]
 [card]
+id=3149
+name=Taste of Paradise
+mana={3}{G}
+type=Sorcery
+text=As an additional cost to cast Taste of Paradise, you may pay {1}{G} any number of times. You gain 3 life plus an additional 3 life for each additional {1}{G} you paid.
+rarity=C
+kicker={1}{G}
+auto=life:3
+auto=kicker:life:3
+[/card]
+[card]
 id=3150
 name=Taste of Paradise
 mana={3}{G}
 type=Sorcery
 text=As an additional cost to cast Taste of Paradise, you may pay {1}{G} any number of times. You gain 3 life plus an additional 3 life for each additional {1}{G} you paid.
 rarity=C
+kicker={1}{G}
+auto=life:3
+auto=kicker:life:3
 [/card]
 [card]
-id=159106
+id=3238
 name=Thawing Glaciers
-mana=
 type=Land
 text=Thawing Glaciers enters the battlefield tapped. {1}, {T}: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library. Return Thawing Glaciers to its owner's hand at the beginning of the next cleanup step.
+auto=tap
+auto={1}{T}:moveto(myBattlefield) target(land[basic]|myLibrary) && tap && token(grrrt)
+auto=@next cleanup:aslongas(grrt|myBattlefield) moveto(myHand)
+auto=@next cleanup:aslongas(grrt|myBattlefield) destroy all(grrrt)
 rarity=R
 [/card]
 [card]
-id=184582
+id=3123
 name=Thought Lash
 mana={2}{U}{U}
 type=Enchantment
@@ -1180,12 +1422,20 @@ text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter 
 rarity=R
 [/card]
 [card]
-id=159833
+id=3151
 name=Tornado
 mana={4}{G}
 type=Enchantment
 text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) {2}{G}, Pay 3 life for each velocity counter on Tornado: Destroy target permanent and put a velocity counter on Tornado. Activate this ability only once each turn.
 rarity=R
+[/card]
+[card]
+id=3152
+name=Undergrowth
+mana={G}
+type=Instant
+text=As an additional cost to cast Undergrowth, you may pay {2}{R}. Prevent all combat damage that would be dealt this turn. If its additional cost was paid, Undergrowth doesn't affect combat damage that would be dealt by red creatures.
+rarity=C
 [/card]
 [card]
 id=3153
@@ -1196,14 +1446,6 @@ text=As an additional cost to cast Undergrowth, you may pay {2}{R}. Prevent all 
 rarity=C
 [/card]
 [card]
-id=3218
-name=Unlikely Alliance
-mana={1}{W}
-type=Enchantment
-text={1}{W}: Target nonattacking, nonblocking creature gets +0/+2 until end of turn.
-rarity=U
-[/card]
-[card]
 id=3064
 name=Urza's Engine
 mana={5}
@@ -1212,10 +1454,12 @@ subtype=Juggernaut
 power=1
 toughness=5
 text=Trample {3}: Urza's Engine gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) {3}: Attacking creatures banded with Urza's Engine gain trample until end of turn.
+abilities=trample
+auto={3}:banding
 rarity=U
 [/card]
 [card]
-id=184720
+id=3184
 name=Varchild's Crusader
 mana={3}{R}
 type=Creature
@@ -1226,7 +1470,18 @@ text={0}: Varchild's Crusader can't be blocked this turn except by Walls. Sacrif
 rarity=C
 [/card]
 [card]
-id=159742
+id=3185
+name=Varchild's Crusader
+mana={3}{R}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=2
+text={0}: Varchild's Crusader can't be blocked this turn except by Walls. Sacrifice Varchild's Crusader at the beginning of the next end step.
+rarity=C
+[/card]
+[card]
+id=3187
 name=Varchild's War-Riders
 mana={1}{R}
 type=Creature
@@ -1234,7 +1489,20 @@ subtype=Human Warrior
 power=3
 toughness=4
 text=Cumulative upkeep—Put a 1/1 red Survivor creature token onto the battlefield under an opponent's control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) Trample; rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
+abilities=trample
+auto=rampage(1/1,1)
 rarity=R
+[/card]
+[card]
+id=3188
+name=Veteran's Voice
+mana={R}
+type=Enchantment
+subtype=Aura
+text=Enchant creature you control Enchanted creature has "{T}: Target creature other than this creature gets +2/+1 until end of turn."
+target=creature|mybattlefield
+auto=lord(mytgt) {T}:2/1 target(creature other)
+rarity=C
 [/card]
 [card]
 id=3189
@@ -1243,19 +1511,12 @@ mana={R}
 type=Enchantment
 subtype=Aura
 text=Enchant creature you control Enchanted creature has "{T}: Target creature other than this creature gets +2/+1 until end of turn."
+target=creature|mybattlefield
+auto=lord(mytgt) {T}:2/1 target(creature other)
 rarity=C
 [/card]
 [card]
-id=184706
-name=Viscerid Armor
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1. {1}{U}: Return Viscerid Armor to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=184764
+id=3127
 name=Viscerid Drone
 mana={1}{U}
 type=Creature
@@ -1266,7 +1527,7 @@ text={T}, Sacrifice a creature and a Swamp: Destroy target nonartifact creature.
 rarity=U
 [/card]
 [card]
-id=201179
+id=3229
 name=Wandering Mage
 mana={W}{U}{B}
 type=Creature
@@ -1275,6 +1536,17 @@ power=0
 toughness=3
 text={W}, Pay 1 life: Prevent the next 2 damage that would be dealt to target creature this turn. {U}: Prevent the next 1 damage that would be dealt to target Cleric or Wizard creature this turn. {B}, Put a -1/-1 counter on a creature you control: Prevent the next 2 damage that would be dealt to target player this turn.
 rarity=R
+[/card]
+[card]
+id=3154
+name=Whip Vine
+mana={2}{G}
+type=Creature
+subtype=Plant Wall
+power=1
+toughness=4
+text=Defender; reach (This creature can block creatures with flying.) You may choose not to untap Whip Vine during your untap step. {T}: Tap target creature with flying blocked by Whip Vine. That creature doesn't untap during its controller's untap step for as long as Whip Vine remains tapped.
+rarity=C
 [/card]
 [card]
 id=3155
@@ -1288,7 +1560,7 @@ text=Defender; reach (This creature can block creatures with flying.) You may ch
 rarity=C
 [/card]
 [card]
-id=184583
+id=3065
 name=Whirling Catapult
 mana={4}
 type=Artifact
@@ -1296,18 +1568,7 @@ text={2}, Exile the top two cards of your library: Whirling Catapult deals 1 dam
 rarity=U
 [/card]
 [card]
-id=3220
-name=Wild Aesthir
-mana={2}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-text=Flying, first strike {W}{W}: Wild Aesthir gets +2/+0 until end of turn. Activate this ability only once each turn.
-rarity=C
-[/card]
-[card]
-id=184584
+id=3230
 name=Winter's Night
 mana={R}{G}{W}
 type=World Enchantment
@@ -1315,18 +1576,7 @@ text=Whenever a player taps a snow land for mana, that player adds one mana to h
 rarity=R
 [/card]
 [card]
-id=184765
-name=Yavimaya Ancients
-mana={3}{G}{G}
-type=Creature
-subtype=Treefolk
-power=2
-toughness=7
-text={G}: Yavimaya Ancients gets +1/-2 until end of turn.
-rarity=U
-[/card]
-[card]
-id=159109
+id=3158
 name=Yavimaya Ants
 mana={2}{G}{G}
 type=Creature
@@ -1334,5 +1584,6 @@ subtype=Insect
 power=5
 toughness=1
 text=Trample, haste Cumulative upkeep {G}{G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+abilities=trample,haste
 rarity=U
 [/card]
