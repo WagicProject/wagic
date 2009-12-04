@@ -19,7 +19,6 @@ hand:Urza's Tower
 Urza's Mine
 Urza's Tower
 Urza's Tower
-choice 1
 [ASSERT]
 firstmain
 [PLAYER1]
