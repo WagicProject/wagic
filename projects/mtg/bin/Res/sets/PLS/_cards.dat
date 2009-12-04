@@ -180,7 +180,6 @@ auto=destroy
 auto=draw:1 controller
 id=26260
 name=Implode
-color=Red
 rarity=U
 mana={4}{R}
 type=Sorcery

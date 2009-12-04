@@ -151,7 +151,6 @@ type=Sorcery
 text=Flying. {B}: Dungeon Shade gets +1/+1 until end of turn.
 id=5142
 name=Dungeon Shade
-color=Black
 rarity=C
 mana={3}{B}
 type=Creature
