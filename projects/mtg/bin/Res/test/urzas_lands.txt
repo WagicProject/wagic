@@ -3,12 +3,6 @@
 #DESC: give 2 mana if you have all
 #DESC: three in play, and 1 if you
 #DESC: don't.
-#DESC:
-#DESC: NOTE: The cards currently don't work exactly
-#DESC: as they should. They give you a choice that
-#DESC: you shouldn't have. Once this is fixed, the
-#DESC: line "choice 1" needs to be removed from this
-#DESC: script (along with this notice).
 [INIT]
 firstmain
 [PLAYER1]
