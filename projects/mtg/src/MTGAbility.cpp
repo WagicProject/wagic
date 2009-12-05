@@ -1263,15 +1263,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1192:	//BrainGeyser
-    {
-      Player * player = spell->getNextPlayerTarget();
-      int x = spell->cost->getConvertedCost() - 2;
-      for (int i = 0; i < x ; i++){
-	player->game->drawFromLibrary();
-      }
-      break;
-    }
   case 1194: //Control Magic
     {
       game->addObserver(NEW AControlStealAura(_id, card, card->target));

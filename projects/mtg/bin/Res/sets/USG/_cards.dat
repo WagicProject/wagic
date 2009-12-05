@@ -1166,7 +1166,7 @@ mana={2}{R}
 [card]
 text=Target player draws X cards.
 target=player
-alias=1192
+auto=draw:X
 id=5677
 name=Stroke of Genius
 rarity=R

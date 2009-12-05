@@ -241,6 +241,7 @@ abilities=swampwalk
 [card]
 text=Target player draws X cards.
 target=player
+auto=draw:X
 id=1192
 name=Braingeyser
 rarity=R

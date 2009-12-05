@@ -172,9 +172,9 @@ type=Sorcery
 [/card]
 [card]
 text=Draw X cards.
+auto=draw:X controller
 id=152628
 name=Mind Spring
-alias=1192
 rarity=R
 mana={X}{U}{U}
 type=Sorcery
