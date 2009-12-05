@@ -1,0 +1,25 @@
+#NAME: Karn's Touch
+#DESC: Bug: Karn's Touch either has no
+#DESC: effect, or the effect is gets
+#DESC: reverted immediately.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=233
+[INIT]
+firstmain
+[PLAYER1]
+hand:Karn's Touch,Swords to Plowshares
+inplay:Jayemdae Tome
+manapool:{U}{U}{W}
+[PLAYER2]
+[DO]
+human
+Karn's Touch
+Jayemdae Tome
+Swords to Plowshares
+Jayemdae Tome
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Karn's Touch,Swords to Plowshares,Jayemdae Tome
+life:24
+[PLAYER2]
+[END]

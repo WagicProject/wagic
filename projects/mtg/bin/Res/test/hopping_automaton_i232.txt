@@ -1,0 +1,27 @@
+#NAME: Hopping Automaton
+#DESC: Hopping Automaton was reported
+#DESC: to crash the game.
+#DESC: Crash could not be reproduced.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=232
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Suntail Hawk
+[PLAYER2]
+inplay:Hopping Automaton
+[DO]
+Suntail Hawk
+next
+Hopping Automaton
+choice 1
+Hopping Automaton
+choice 0
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+graveyard:Suntail Hawk
+[PLAYER2]
+graveyard:Hopping Automaton
+[END]
