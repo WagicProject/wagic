@@ -431,6 +431,8 @@ mana={1}{U}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+1. {1}{U}: Return Viscerid Armor to its owner's hand.
+target=creature
+auto=1/1
 auto={1}{U}:moveto(ownerhand)
 rarity=C
 [/card]
