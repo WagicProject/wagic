@@ -18,8 +18,7 @@
 #include <pspdebug.h>
 #include <pspdisplay.h>
 #include <png.h>
-#include <vram.h>
-#include <valloc.h>
+#include "../include/valloc.h"
 
 #ifdef __cplusplus
 extern "C" {
