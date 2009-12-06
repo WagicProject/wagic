@@ -243,7 +243,7 @@ void GameApp::Update()
   }
 
   //Restart Rendering engine when START and TRIANGLE ARE PRESSED SIMULTANEOUSLY
-  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_TRIANGLE)){
+  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_SQUARE)){
     JRenderer::Destroy();
   }
 
