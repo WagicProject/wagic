@@ -1,0 +1,7 @@
+[INIT]
+mode=mtg
+[PLAYERS]
+life:20
+auto=shuffle
+auto=draw:7
+auto=@each my draw:draw:1

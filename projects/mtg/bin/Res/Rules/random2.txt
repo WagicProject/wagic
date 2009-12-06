@@ -1,0 +1,3 @@
+include mtg.txt
+[INIT]
+mode=random2

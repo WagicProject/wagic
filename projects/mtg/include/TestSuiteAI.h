@@ -41,7 +41,7 @@ class TestSuite;
 class TestSuiteState{
  public:
   int phase;
-  void parsePlayerState(int playerId, string s,TestSuite * suite);
+  void parsePlayerState(int playerId, string s);
   TestSuiteState();
   TestSuitePlayerData playerData[2];
   void cleanup();
@@ -70,13 +70,10 @@ class TestSuite{
   int assertGame();
   MTGPlayerCards * buildDeck(int playerId);
   string getNextAction();
-  int phaseStrToInt(string s);
-  MTGCardInstance * getCardByMTGId(int mtgid);
   Interruptible * getActionByMTGId(int mtgid);
   int loadNext();
   void cleanup();
   int Log(const char * text);
-  int getMTGId(string name);
 
 };
 

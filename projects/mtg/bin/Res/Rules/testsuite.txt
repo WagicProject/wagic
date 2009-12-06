@@ -1,0 +1,6 @@
+#make sure this file always looks like mtg.txt, minus the initial shuffle and draw
+[INIT]
+mode=mtg
+[PLAYERS]
+life:20
+auto=@each my draw:draw:1

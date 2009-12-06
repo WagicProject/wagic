@@ -2,7 +2,8 @@
 #define _PHASERING_H_
 
 #include <list>
-using std::list;
+#include <string>
+using namespace std;
 
 /*
   The class that handles the phases of a turn
@@ -33,6 +34,7 @@ private:
   int addPhaseBefore(int id, Player* player,int after_id, Player * after_player, int allOccurences = 1);
   int removePhase (int id, Player * player, int allOccurences = 1);
   static const char *  phaseName(int id);
+  static int phaseStrToInt(string s);
   
 };
 

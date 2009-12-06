@@ -844,8 +844,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
   if (!target) target = card;
   string magicText = card->magicText;
   if (card->alias && magicText.size() == 0){
-    //An awful way to get access to the aliasedcard
-    MTGCard * c = GameObserver::GetInstance()->players[0]->game->collection->getCardById(card->alias);
+    MTGCard * c = GameApp::collection->getCardById(card->alias);
     if (!c) return 0;
     magicText = c->magicText;
   }

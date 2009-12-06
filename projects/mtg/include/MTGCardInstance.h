@@ -140,6 +140,8 @@ class MTGCardInstance: public MTGCard, public Damageable {
   static MTGCardInstance AnyCard;
   static MTGCardInstance NoCard;
 
+  static MTGCardInstance ExtraRules[2];
+
 };
 
 ostream& operator<<(ostream&, const MTGCardInstance&);

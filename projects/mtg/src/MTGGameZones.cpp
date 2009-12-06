@@ -14,12 +14,11 @@
 //Players Game
 //------------------------------
 
-MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idListSize){
+MTGPlayerCards::MTGPlayerCards(int * idList, int idListSize){
   init();
   int i;
-  collection = _collection;
   for (i=0;i<idListSize;i++){
-    MTGCard * card =  collection->getCardById(idList[i]);
+    MTGCard * card =  GameApp::collection->getCardById(idList[i]);
     if (card){
       MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
       library->addCard(newCard);
@@ -27,9 +26,14 @@ MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, int * idList, int idLi
   }
 }
 
-MTGPlayerCards::MTGPlayerCards(MTGAllCards * _collection, MTGDeck * deck){
+MTGPlayerCards::MTGPlayerCards(MTGDeck * deck){
   init();
-  collection = _collection;
+  initDeck(deck);
+}
+
+
+void MTGPlayerCards::initDeck(MTGDeck * deck){
+  resetLibrary();
   map<int,int>::iterator it;
   for (it = deck->cards.begin(); it!=deck->cards.end(); it++){
     MTGCard * card = deck->getCardById(it->first);
@@ -81,6 +85,11 @@ void MTGPlayerCards::drawFromLibrary(){
     WEvent * e = NEW WEventZoneChange(drawnCard,library,hand);
     g->receiveEvent(e);
   }
+}
+
+void MTGPlayerCards::resetLibrary(){
+  SAFE_DELETE(library);
+  library = NEW MTGLibrary();
 }
 
 void MTGPlayerCards::init(){

@@ -149,16 +149,16 @@ class MTGPlayerCards {
   MTGGameZone * garbage;
   MTGGameZone * temp;
 
-  MTGAllCards * collection;
-
-  MTGPlayerCards(MTGAllCards * _collection, int * idList, int idListSize);
-  MTGPlayerCards(MTGAllCards * _collection, MTGDeck * deck);
+  MTGPlayerCards(int * idList, int idListSize);
+  MTGPlayerCards(MTGDeck * deck);
   ~MTGPlayerCards();
   void initGame(int shuffle = 1, int draw = 1);
   void setOwner(Player * player);
   void discardRandom(MTGGameZone * from);
   void drawFromLibrary();
   void showHand();
+  void resetLibrary();
+  void initDeck(MTGDeck * deck); 
   MTGCardInstance * putInGraveyard(MTGCardInstance * card);
   MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
   int isInPlay(MTGCardInstance * card);

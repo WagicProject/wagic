@@ -20,6 +20,7 @@
 
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 MTGAllCards * GameApp::collection = NULL;
+int GameApp::players[] = {0,0};
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;
 string GameApp::systemError = "";

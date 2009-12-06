@@ -4,6 +4,7 @@
 #include "../include/ConstraintResolver.h"
 #include "../include/CardGui.h"
 #include "../include/Damage.h"
+#include "../include/Rules.h"
 #include "../include/ExtraCost.h"
 
 #include <JRenderer.h>
@@ -25,19 +26,15 @@ void GameObserver::EndInstance()
 
 void GameObserver::Init(Player * _players[], int _nbplayers){
   mInstance = NEW GameObserver(_players, _nbplayers);
-  mInstance->mLayers = NEW DuelLayers();
-  mInstance->mLayers->init();
 }
 
 
 GameObserver::GameObserver(Player * _players[], int _nb_players){
-  int i;
-
-  for (i =0; i < _nb_players;i ++){
+  for (int i = 0; i < _nb_players;i ++){
     players[i] = _players[i];
   }
-  currentPlayer = players[0];
-  currentActionPlayer = currentPlayer;
+  currentPlayer = NULL;
+  currentActionPlayer = NULL;
   isInterrupting = NULL;
   currentPlayerId = 0;
   nbPlayers = _nb_players;
@@ -47,7 +44,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   waitForExtraPayment = NULL;
   reaction = 0;
   gameOver = NULL;
-  phaseRing = NEW PhaseRing(_players,_nb_players);
+  phaseRing = NULL;
   replacementEffects = NEW ReplacementEffects();
   combatStep = BLOCKERS;
 }
@@ -130,7 +127,7 @@ void GameObserver::nextGamePhase(){
     untapPhase();
     break;
   case Constants::MTG_PHASE_DRAW:
-    mLayers->stackLayer()->addDraw(currentPlayer,1);
+    //mLayers->stackLayer()->addDraw(currentPlayer,1);
     break;
   default:
     break;
@@ -190,21 +187,27 @@ int GameObserver::forceShuffleLibraries(){
   return result;
 }
 
-void GameObserver::startGame(int shuffle, int draw){
-  int i;
-  for (i=0; i<nbPlayers; i++)
-    players[i]->game->initGame(shuffle, draw);
+void GameObserver::startGame(Rules * rules){
+  turn = 0;
+  if (rules) 
+    rules->initPlayers();
+  
+  mLayers = NEW DuelLayers();
+  mLayers->init();
+
+  currentPlayer = players[0];
+  currentActionPlayer = currentPlayer;
+  phaseRing = NEW PhaseRing(players,nbPlayers);
+  if (rules) 
+    rules->initGame();
 
   //Preload images from hand
   if (!players[0]->isAI()){
-    for (i=0; i< players[0]->game->hand->nb_cards; i++){
+    for (int i=0; i< players[0]->game->hand->nb_cards; i++){
       resources.RetrieveCard(players[0]->game->hand->cards[i],CACHE_THUMB);
       resources.RetrieveCard(players[0]->game->hand->cards[i]);
     }
   }
-  turn = 0;
-  phaseRing->goToPhase(Constants::MTG_PHASE_FIRSTMAIN, players[0]);
-  currentGamePhase = Constants::MTG_PHASE_FIRSTMAIN;
 
   //Difficult mode special stuff
   if (!players[0]->isAI() && players[1]->isAI()){
@@ -250,6 +253,10 @@ GameObserver::~GameObserver(){
   SAFE_DELETE(mLayers);
   SAFE_DELETE(phaseRing);
   SAFE_DELETE(replacementEffects);
+  for (int i = 0; i < nbPlayers; ++i){
+    SAFE_DELETE(players[i]->game);
+    SAFE_DELETE(players[i]);
+  }
   LOG("==GameObserver Destroyed==");
 }
 

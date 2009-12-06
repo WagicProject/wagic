@@ -21,7 +21,7 @@ static int colors[] =
   };
 */
 
-GuiPhaseBar::GuiPhaseBar() : phase(GameObserver::GetInstance()->phaseRing->getCurrentPhase()), angle(0.0f)
+GuiPhaseBar::GuiPhaseBar() : phase(NULL), angle(0.0f)
 {
   JQuad * quad;
   if ((quad = resources.GetQuad("phasebar")) != NULL){

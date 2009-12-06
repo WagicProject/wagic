@@ -15,6 +15,10 @@ using namespace std;
 MTGCardInstance MTGCardInstance::AnyCard = MTGCardInstance();
 MTGCardInstance MTGCardInstance::NoCard = MTGCardInstance();
 
+MTGCardInstance MTGCardInstance::ExtraRules[] = {MTGCardInstance(), MTGCardInstance()};
+
+
+
 MTGCardInstance::MTGCardInstance(): MTGCard(), Damageable(0), view(NULL){
   LOG("==Creating MTGCardInstance==");
   initMTGCI();

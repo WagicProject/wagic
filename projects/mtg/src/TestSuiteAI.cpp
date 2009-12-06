@@ -4,6 +4,7 @@
 #include "../include/MTGRules.h"
 #include "../include/ActionLayer.h"
 #include "../include/GuiCombat.h"
+#include "../include/Rules.h"
 
 #include <string>
 using std::string;
@@ -23,31 +24,6 @@ TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayerBaka(_suite->
 
 }
 
-int TestSuite::getMTGId(string cardName){
-  int cardnb = atoi(cardName.c_str());
-  if (cardnb) return cardnb;
-  if (cardName.compare("*") == 0) return -1; //Any card
-  MTGCard * card = collection->getCardByName(cardName);
-  if (card) return card->getMTGId();
-  return 0;
-}
-
-MTGCardInstance * TestSuite::getCardByMTGId(int mtgid){
-  GameObserver * g = GameObserver::GetInstance();
-  for (int i = 0; i < 2; i++){
-    Player * p = g->players[i];
-    MTGGameZone * zones[] = {p->game->library,p->game->hand,  p->game->inPlay, p->game->graveyard};
-    for (int j = 0; j < 4; j++){
-      MTGGameZone * zone = zones[j];
-      for (int k = 0; k < zone->nb_cards; k++){
-	      MTGCardInstance * card = zone->cards[k];
-	      if (!card) return NULL;
-	      if (card->getMTGId() == mtgid) return card;
-      }
-    }
-  }
-  return NULL;
-}
 
 Interruptible * TestSuite::getActionByMTGId(int mtgid){
   ActionStack * as= GameObserver::GetInstance()->mLayers->stackLayer();
@@ -139,10 +115,10 @@ int TestSuiteAI::Act(float dt){
     g->mLayers->actionLayer()->doReactTo(choice);
   }else if(action.find(" -momir- ")!=string::npos){
     int start = action.find(" -momir- ");
-    int cardId = suite->getMTGId(action.substr(start + 9).c_str());
-    int cardIdHand = suite->getMTGId(action.substr(0,start).c_str());
+    int cardId = Rules::getMTGId(action.substr(start + 9).c_str());
+    int cardIdHand = Rules::getMTGId(action.substr(0,start).c_str());
     MTGMomirRule * a = ((MTGMomirRule *)g->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR));
-    a->reactToClick(suite->getCardByMTGId(cardIdHand), cardId);
+    a->reactToClick(Rules::getCardByMTGId(cardIdHand), cardId);
     g->mLayers->actionLayer()->stuffHappened = 1;
   }else if(action.find("p1")!=string::npos || action.find("p2")!=string::npos){
     Player * p = g->players[1];
@@ -150,7 +126,7 @@ int TestSuiteAI::Act(float dt){
     if (start != string::npos) p = g->players[0];
     g->cardClick(NULL, p);
   }else{
-    int mtgid = suite->getMTGId(action);
+    int mtgid = Rules::getMTGId(action);
     if (mtgid){
       char buffe[512];
       sprintf(buffe, "TESTSUITE CARD ID : %i\n", mtgid);
@@ -159,7 +135,7 @@ int TestSuiteAI::Act(float dt){
       if (toInterrupt)
         g->stackObjectClicked(toInterrupt);
       else{
-        MTGCardInstance * card = suite->getCardByMTGId(mtgid);
+        MTGCardInstance * card = Rules::getCardByMTGId(mtgid);
         if (card) {
           OutputDebugString("TESTSUITE Clicking ON: ");
           OutputDebugString(card->name.c_str());
@@ -206,7 +182,7 @@ TestSuiteState::TestSuiteState(){
 
 }
 
-void TestSuiteState::parsePlayerState(int playerId, string s, TestSuite * suite){
+void TestSuiteState::parsePlayerState(int playerId, string s){
   unsigned int limiter = s.find(":");
   string areaS;
   int area;
@@ -235,10 +211,10 @@ void TestSuiteState::parsePlayerState(int playerId, string s, TestSuite * suite)
       unsigned int value;
       limiter = s.find(",");
       if (limiter != string::npos){
-	      value = suite->getMTGId(s.substr(0,limiter));
+        value = Rules::getMTGId(s.substr(0,limiter));
 	      s = s.substr(limiter+1);
       }else{
-	      value = suite->getMTGId(s);
+	      value = Rules::getMTGId(s);
 	      s = "";
       }
       if (value) playerData[playerId].zones[area].add(value);
@@ -268,7 +244,7 @@ MTGPlayerCards * TestSuite::buildDeck( int playerId){
       nbcards++;
     }
   }
-  MTGPlayerCards * deck = NEW MTGPlayerCards(collection, list, nbcards);
+  MTGPlayerCards * deck = NEW MTGPlayerCards(list, nbcards);
   return deck;
 }
 
@@ -296,7 +272,7 @@ void TestSuite::initGame(){
     for (int j = 0; j < 4; j++){
       MTGGameZone * zone = playerZones[j];
       for (int k = 0; k < initState.playerData[i].zones[j].nbitems; k++){
-	      MTGCardInstance * card = getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
+        MTGCardInstance * card = Rules::getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
 	      if (card && zone != p->game->library){
 	        if (zone == p->game->inPlay){
 	          MTGCardInstance * copy = p->game->putInZone(card,  p->game->library, p->game->stack);
@@ -379,7 +355,7 @@ int TestSuite::assertGame(){
       for (int k = 0; k < endState.playerData[i].zones[j].nbitems; k++){
 	      int cardid = endState.playerData[i].zones[j].cards[k];
         if (cardid != -1){
-	        MTGCardInstance * card = getCardByMTGId(cardid);
+          MTGCardInstance * card = Rules::getCardByMTGId(cardid);
           if (!card || !zone->hasCard(card)){
 	          sprintf(result, "<span class=\"error\">==Card ID not the same. Didn't find %i</span><br />", cardid);
 	          Log(result);
@@ -464,25 +440,6 @@ int TestSuite::loadNext(){
   return currentfile;
 }
 
-//TODO PArses a string and gives phase numer
-int TestSuite::phaseStrToInt(string s){
-  if (s.compare("untap") == 0) return Constants::MTG_PHASE_UNTAP;
-  if (s.compare("upkeep") == 0)return Constants::MTG_PHASE_UPKEEP;
-  if (s.compare("draw") == 0)return Constants::MTG_PHASE_DRAW;
-  if (s.compare("firstmain") == 0)return Constants::MTG_PHASE_FIRSTMAIN;
-  if (s.compare("combatbegin") == 0)return Constants::MTG_PHASE_COMBATBEGIN;
-  if (s.compare("combatattackers") == 0)return Constants::MTG_PHASE_COMBATATTACKERS;
-  if (s.compare("combatblockers") == 0)return Constants::MTG_PHASE_COMBATBLOCKERS;
-  if (s.compare("combatdamage") == 0)return Constants::MTG_PHASE_COMBATDAMAGE;
-  if (s.compare("combatend") == 0)return Constants::MTG_PHASE_COMBATEND;
-  if (s.compare("secondmain") == 0)return Constants::MTG_PHASE_SECONDMAIN;
-  if (s.compare("endofturn") == 0)return Constants::MTG_PHASE_ENDOFTURN;
-  if (s.compare("cleanup") == 0)return Constants::MTG_PHASE_CLEANUP;
-  OutputDebugString("TESTSUITEAI: Unknown Phase name:");
-  OutputDebugString(s.c_str());
-  OutputDebugString("\n");
-  return Constants::MTG_PHASE_FIRSTMAIN;
-}
 
 void TestSuiteActions::cleanup(){
   nbitems = 0;
@@ -568,21 +525,21 @@ int TestSuite::load(const char * _filename){
 	if (s.compare("[player1]") == 0){
 	  state++;
 	}else{
-	  initState.phase = phaseStrToInt(s);
+    initState.phase = PhaseRing::phaseStrToInt(s);
 	}
 	break;
       case 1:
 	if (s.compare("[player2]") == 0){
 	  state++;
 	}else{
-	  initState.parsePlayerState(0, s,this);
+	  initState.parsePlayerState(0, s);
 	}
 	break;
       case 2:
 	if (s.compare("[do]") == 0){
 	  state++;
 	}else{
-	  initState.parsePlayerState(1, s,this);
+	  initState.parsePlayerState(1, s);
 	}
 	break;
       case 3:
@@ -596,21 +553,21 @@ int TestSuite::load(const char * _filename){
 	if (s.compare("[player1]") == 0){
 	  state++;
 	}else{
-	  endState.phase = phaseStrToInt(s);
+    endState.phase = PhaseRing::phaseStrToInt(s);
 	}
 	break;
       case 5:
 	if (s.compare("[player2]") == 0){
 	  state++;
 	}else{
-	  endState.parsePlayerState(0, s,this);
+	  endState.parsePlayerState(0, s);
 	}
 	break;
       case 6:
 	if (s.compare("[end]") == 0){
 	  state++;
 	}else{
-	  endState.parsePlayerState(1, s,this);
+	  endState.parsePlayerState(1, s);
 	}
 	break;
       }

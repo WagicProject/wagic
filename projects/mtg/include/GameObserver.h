@@ -18,6 +18,7 @@ class MTGCardInstance;
 struct CardGui;
 class Player;
 class TargetChooser;
+class Rules;
 using namespace std;
 
 class GameObserver{
@@ -70,7 +71,7 @@ class GameObserver{
   void eventOccured();
   void addObserver(MTGAbility * observer);
   void removeObserver(ActionElement * observer);
-  void startGame(int shuffle = 1, int draw = 1);
+  void startGame(Rules * rules);
   void untapPhase();
   void draw();
   int isInPlay(MTGCardInstance *  card);

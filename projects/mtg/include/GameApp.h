@@ -62,7 +62,7 @@ class GameApp:	public JApp
   GameState* mGameStates[MAX_STATE];
 
  public:
-  int players[2];
+
   
   int gameType;
   CardEffect *effect;
@@ -85,6 +85,7 @@ class GameApp:	public JApp
   static string systemError;
   static JMusic* music;
   static MTGAllCards * collection;
+    static int players[2];
 
 };
 

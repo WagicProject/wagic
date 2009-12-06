@@ -9,6 +9,7 @@
 #include "../include/MTGRules.h"
 #include "../include/Credits.h"
 #include "../include/Translate.h"
+#include "../include/Rules.h"
 
 #ifdef TESTSUITE
 #include "../include/TestSuiteAI.h"
@@ -57,6 +58,7 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
 #endif
 
   credits = NULL;
+  rules = NULL;
 }
 
 GameStateDuel::~GameStateDuel() {
@@ -100,60 +102,11 @@ void GameStateDuel::Start()
     premadeDeck = true;
     fillDeckMenu(deckmenu,RESPATH"/player/premade");
   }
-    //mGamePhase = DUEL_STATE_ERROR_NO_DECK;
+  
+  for (int i = 0; i < 2; ++i){
+    mPlayers[i] = NULL;
+  }
     
-}
-
-void GameStateDuel::loadPlayerRandom(int playerId, int isAI, int mode){
-  int color1 = 1 + WRand() % 5;
-  int color2 = 1 + WRand() % 5;
-  int color0 = Constants::MTG_COLOR_ARTIFACT;
-  if (mode == GAME_TYPE_RANDOM1) color2 = color1;
-  int colors[]={color1,color2,color0};
-  int nbcolors = 3;
-
-  string lands[] = {"forest", "forest", "island", "mountain", "swamp", "plains", "forest"};
-
-
-  MTGDeck * tempDeck = NEW MTGDeck(mParent->collection);
-  tempDeck->addRandomCards(9,0,0,-1,lands[color1].c_str());
-  tempDeck->addRandomCards(9,0,0,-1,lands[color2].c_str());
-  tempDeck->addRandomCards(1,0,0,'U',"land");
-  tempDeck->addRandomCards(1,0,0,'R',"land");
-  tempDeck->addRandomCards(12,0,0,-1,"creature",colors,nbcolors);
-  tempDeck->addRandomCards(2,0,0,-1,"sorcery",colors,nbcolors);
-  tempDeck->addRandomCards(2,0,0,-1,"enchantment",colors,nbcolors);
-  tempDeck->addRandomCards(2,0,0,-1,"instant",colors,nbcolors);
-  tempDeck->addRandomCards(2,0,0,-1,"artifact",colors,nbcolors);
-
-  string deckFile = "random";
-  string deckFileSmall = "random";
-
-  deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
-  if (!isAI) // Human Player
-    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], deckFile, deckFileSmall);
-  else
-    mPlayers[playerId] = NEW AIPlayerBaka(deck[playerId],deckFile, deckFileSmall, "");
-  delete tempDeck;
-}
-
-
-void GameStateDuel::loadPlayerMomir(int playerId, int isAI){
-  string deckFileSmall = "momir";
-  char empty[] = "";
-  MTGDeck * tempDeck = NEW MTGDeck(mParent->collection); //Autogenerate a momir deck. Leave the "momir.txt" bits below for stats.
-  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Forest");
-  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Plains");
-  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Swamp");
-  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Mountain");
-  tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Island");
-
-  deck[playerId] = NEW MTGPlayerCards(mParent->collection, tempDeck);
-  if (!isAI) // Human Player
-    mPlayers[playerId] = NEW HumanPlayer(deck[playerId], options.profileFile("momir.txt","",true).c_str(), deckFileSmall);
-  else
-    mPlayers[playerId] = NEW AIMomirPlayer(deck[playerId], options.profileFile("momir.txt","",true).c_str(), deckFileSmall, empty);
-  delete tempDeck;
 }
 
 void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
@@ -167,7 +120,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
       MTGDeck * tempDeck = NEW MTGDeck(deckFile, mParent->collection);
-      deck[playerId] = NEW MTGPlayerCards(mParent->collection,tempDeck);
+      deck[playerId] = NEW MTGPlayerCards(tempDeck);
       delete tempDeck;
       mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
     }else{ //AI Player, chose deck
@@ -195,22 +148,18 @@ void GameStateDuel::initRand(unsigned int seed){
 void GameStateDuel::loadTestSuitePlayers(){
   if (!testSuite) return;
   initRand(testSuite->seed);
+  SAFE_DELETE(game);
   for (int i = 0; i < 2; i++){
-    SAFE_DELETE(mPlayers[i]);
-    SAFE_DELETE(deck[i]);
     mPlayers[i] = NEW TestSuiteAI(testSuite, i);
     deck[i] = mPlayers[i]->game;
   }
   mParent->gameType = testSuite->gameType;
-  SAFE_DELETE(game);
+
   GameObserver::Init(mPlayers, 2);
   game = GameObserver::GetInstance();
-  game->startGame(0,0);
+  game->startGame(rules);
   if (mParent->gameType == GAME_TYPE_MOMIR){
     game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
-    for (int i = 0; i < 2; i++){
-      game->players[i]->life+=4;
-    }
   }
 }
 #endif
@@ -233,11 +182,12 @@ void GameStateDuel::End()
   premadeDeck = false;
 
   for (int i = 0; i < 2; i++){
-    SAFE_DELETE(mPlayers[i]);
-    SAFE_DELETE(deck[i]);
+    mPlayers[i] = NULL;
+    deck[i] = NULL;
   }
 
   SAFE_DELETE(credits);
+  SAFE_DELETE(rules);
 
   SAFE_DELETE(menu);
   SAFE_DELETE(opponentMenu);
@@ -270,27 +220,21 @@ void GameStateDuel::Update(float dt)
       break;
     case DUEL_STATE_CHOOSE_DECK1:
       if (mParent->gameType == GAME_TYPE_MOMIR){
-        for (int i = 0; i < 2; i++){
-          int isAI = 1;
-          if (mParent->players[i] ==  PLAYER_TYPE_HUMAN) isAI = 0;
-          loadPlayerMomir(i, isAI);
-        }
+        rules = NEW Rules("momir.txt");
         mGamePhase = DUEL_STATE_PLAY;
-      } else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2){
-        for (int i = 0; i < 2; i++){
-          int isAI = 1;
-          if (mParent->players[i] ==  PLAYER_TYPE_HUMAN) isAI = 0;
-          loadPlayerRandom(i, isAI, mParent->gameType);
-        }
+      } else if (mParent->gameType == GAME_TYPE_RANDOM1){
+        rules = NEW Rules ("random1.txt");
         mGamePhase = DUEL_STATE_PLAY;
-      }else if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
-	      deckmenu->Update(dt);
+      }else if (mParent->gameType == GAME_TYPE_RANDOM2) {
+        rules = NEW Rules ("random2.txt");
+        mGamePhase = DUEL_STATE_PLAY;
+      }
 #ifdef TESTSUITE
       else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
 	      if (testSuite && testSuite->loadNext()){
 
 	        loadTestSuitePlayers();
-
+          rules = NEW Rules("testsuite.txt");
 	        mGamePhase = DUEL_STATE_PLAY;
 	        testSuite->initGame();
 	        char buf[4096];
@@ -306,8 +250,13 @@ void GameStateDuel::Update(float dt)
       }
 #endif
       else{
-	      loadPlayer(0);
-	      mGamePhase = DUEL_STATE_CHOOSE_DECK2;
+        if (!rules) rules = NEW Rules("mtg.txt");
+        if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
+	        deckmenu->Update(dt);
+        else{
+	        loadPlayer(0);
+	        mGamePhase = DUEL_STATE_CHOOSE_DECK2;
+        }
       }
       break;
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
@@ -348,12 +297,9 @@ void GameStateDuel::Update(float dt)
       if (!game){
 	      GameObserver::Init(mPlayers, 2);
 	      game = GameObserver::GetInstance();
-	      game->startGame();
+	      game->startGame(rules);
         if (mParent->gameType == GAME_TYPE_MOMIR){
           game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
-          for (int i = 0; i < 2; i++){
-            game->players[i]->life+=4;
-          }
         }
         //stop menu music
         if (GameApp::music){
@@ -389,7 +335,7 @@ void GameStateDuel::Update(float dt)
       //      mParent->effect->UpdateSmall(dt);
       game->Update(dt);
       if (game->gameOver){
-        credits->compute(mPlayers[0],mPlayers[1], mParent);
+        credits->compute(game->players[0],game->players[1], mParent);
 	      mGamePhase = DUEL_STATE_END;
 #ifdef TESTSUITE
 	if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){

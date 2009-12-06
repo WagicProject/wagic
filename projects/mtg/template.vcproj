@@ -617,6 +617,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Rules.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\ShopItem.cpp"
 				>
 			</File>
@@ -963,6 +967,10 @@
 			</File>
 			<File
 				RelativePath=".\include\ReplacementEffects.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Rules.h"
 				>
 			</File>
 			<File
