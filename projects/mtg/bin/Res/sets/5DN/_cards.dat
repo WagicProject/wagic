@@ -332,6 +332,7 @@ toughness=3
 text=Vigilance   {W}: Loxodon Stalwart gets +0/+1 until end of turn.
 id=73567
 name=Loxodon Stalwart
+abilities=vigilance
 rarity=U
 mana={3}{W}{W}
 type=Creature
