@@ -18,7 +18,7 @@
 #include <pspdebug.h>
 #include <pspdisplay.h>
 #include <png.h>
-#include "../include/valloc.h"
+#include "../include/vram.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,6 +39,7 @@ static unsigned int __attribute__((aligned(16))) list[262144];
 
 extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width);
 
+/*
 //START PurpleScreen Debug
 int JRenderer::debugged = 0;
 typedef struct
@@ -88,7 +89,7 @@ extern GuDisplayList* gu_list;
 
 //END PurpleScreen Debug
 
-
+*/
 
 void Swap(float *a, float *b)
 {
@@ -245,19 +246,19 @@ void JRenderer::InitRenderer()
 
 	sceGuInit();
 
-  fbp0 = ( u32* ) vrelptr ( valloc ( FRAME_BUFFER_SIZE ) );
-  fbp1 = ( u32* ) vrelptr ( valloc ( FRAME_BUFFER_SIZE ) );
+  fbp0 = ( u32* ) valloc ( FRAME_BUFFER_SIZE ) ;
+  fbp1 = ( u32* ) valloc ( FRAME_BUFFER_SIZE );
   zbp = NULL;
 
 	// setup GU
 	sceGuStart(GU_DIRECT,list);
 
-	sceGuDrawBuffer(BUFFER_FORMAT, fbp0, FRAME_BUFFER_WIDTH);
-	sceGuDispBuffer(SCREEN_WIDTH, SCREEN_HEIGHT, fbp1, FRAME_BUFFER_WIDTH);
+	sceGuDrawBuffer(BUFFER_FORMAT, vrelptr (fbp0), FRAME_BUFFER_WIDTH);
+	sceGuDispBuffer(SCREEN_WIDTH, SCREEN_HEIGHT, vrelptr (fbp1), FRAME_BUFFER_WIDTH);
 	if (m3DEnabled)
 	{
-    zbp = ( u16* )  vrelptr ( valloc ( FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*2) );
-		sceGuDepthBuffer(zbp, FRAME_BUFFER_WIDTH);
+    zbp = ( u16* )  valloc ( FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*2);
+		sceGuDepthBuffer(vrelptr (zbp), FRAME_BUFFER_WIDTH);
 	}
 
 	sceGuOffset(2048 - (SCREEN_WIDTH/2), 2048 - (SCREEN_HEIGHT/2));
@@ -359,7 +360,7 @@ void JRenderer::DestroyRenderer()
 	sceGuTerm();
   vfree(fbp0);
   vfree(fbp1);
-  debugged = 0;
+  //debugged = 0;
   if (zbp) vfree(zbp);
 }
 
@@ -382,6 +383,9 @@ void JRenderer::BeginScene()
 	else
 		sceGuTexFilter(GU_LINEAR, GU_LINEAR);				// GU_LINEAR good for scaling
 
+  //Keep this until we get rev 2489 (or better) of the SDK
+  //See http://code.google.com/p/wagic/issues/detail?id=92
+  sceGuSendCommandi(210,BUFFER_FORMAT); 
 }
 
 
@@ -399,6 +403,7 @@ void JRenderer::EndScene()
 	mCurrentTex = -1;
 	mCurrentBlend = -1;
 
+  /*
 //START PurpleScreen Debug
   if (!debugged){
     debugged = 1;
@@ -419,6 +424,7 @@ void JRenderer::EndScene()
   fclose (pFile);
   }
 //END PurpleScreen Debug
+*/
 
 }
 
