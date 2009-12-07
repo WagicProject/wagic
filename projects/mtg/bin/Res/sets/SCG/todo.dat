@@ -28,6 +28,24 @@ text=Enchant creature Enchanted creature gets +2/+2 for each other creature on t
 rarity=U
 [/card]
 [card]
+id=43599
+name=Ambush Commander
+mana={3}{G}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=2
+text=Forests you control are 1/1 green Elf creatures that are still lands. {1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.
+auto=becomes(Elf Creature,1/1,Green) all(forest|myBattlefield)
+# Only works for the forest currently in play
+auto=@movedto(forest|myBattlefield):becomes(Elf Creature,1/1,Green) all(forest|myBattlefield)
+# Will give the bonus to new coming forest but the forest stay 1/1 creature even if the card leaves play
+auto=@movedto(this|Graveyard):becomes(Land) all(forest|myBattlefield)
+# Attempt to correct the fact that the bonus stays even if the card leaves play... crash the game.
+auto={1}{G}{S(elf|myBattlefield)}:3/3 target(creature)
+rarity=R
+[/card]
+[card]
 id=45164
 name=Ancient Ooze
 mana={5}{G}{G}
@@ -607,10 +625,6 @@ auto=@each my upkeep:moveto(myBattlefield)
 auto=@each opponent upkeep:moveto(opponentBattlefield)
 rarity=R
 [/card]
-
->>>>>>>>>
-
-
 [card]
 id=45858
 name=Karona's Zealot
@@ -670,6 +684,8 @@ mana={1}{B}
 type=Enchantment
 subtype=Aura
 text=Enchant creature At the beginning of the end step of enchanted creature's controller, that player sacrifices that creature.
+target=creature
+auto=@next targetController end:bury(mytgt) #not supported yet WTH 0.9.3
 rarity=C
 [/card]
 [card]
@@ -678,6 +694,7 @@ name=Long-Term Plans
 mana={2}{U}
 type=Instant
 text=Search your library for a card, shuffle your library, then put that card third from the top.
+target=*|myLibrary
 rarity=U
 [/card]
 [card]
@@ -689,6 +706,8 @@ subtype=Bird
 power=2
 toughness=2
 text=Flying Whenever Mercurial Kite deals combat damage to a creature, tap that creature. That creature doesn't untap during its controller's next untap step.
+abilities=flying
+auto=@damaged(creature) from(this):tap
 rarity=C
 [/card]
 [card]
@@ -697,6 +716,8 @@ name=Metamorphose
 mana={1}{U}
 type=Instant
 text=Put target permanent an opponent controls on top of its owner's library. That opponent may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield.
+target=*|opponentBattlefield
+auto=moveto(library)
 rarity=U
 [/card]
 [card]
@@ -705,6 +726,7 @@ name=Mind's Desire
 mana={4}{U}{U}
 type=Sorcery
 text=Shuffle your library. Then exile the top card of your library. Until end of turn, you may play that card without paying its mana cost. (If it has X in its mana cost, X is 0.) Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+auto=shuffle
 rarity=R
 [/card]
 [card]
@@ -757,6 +779,7 @@ subtype=Human Cleric Soldier
 power=3
 toughness=6
 text=Vigilance Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
+abilities=vigilance
 rarity=C
 [/card]
 [card]
@@ -766,6 +789,12 @@ mana={G}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Whenever enchanted creature deals combat damage to a player, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
+target=creature
+auto=@damaged(player) from(mytgt):may moveto(myBattlefield) target(land[basic]|myLibrary) && tap
+# Well this one works fine only the "tap" does not work tryed all kind of combination including 
+# "may tap && moveto(myBattlefield) target(land[basic]|myLibrary)" 
+# and "may tap target(land[basic]|myLibrary) && moveto(myBattlefield)" 
+# all combinations move the cards to battlefield but does not tap it ?? any thoughts ?
 rarity=U
 [/card]
 [card]
@@ -775,15 +804,6 @@ mana={3}{U}{U}
 type=Enchantment
 text=When Parallel Thoughts enters the battlefield, search your library for seven cards, exile them in a face-down pile, and shuffle that pile. Then shuffle your library. If you would draw a card, you may instead put the top card of the pile you exiled into your hand.
 rarity=R
-[/card]
-[card]
-id=43581
-name=Pemmin's Aura
-mana={1}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature {U}: Untap enchanted creature. {U}: Enchanted creature gains flying until end of turn. {U}: Enchanted creature gains shroud until end of turn. (It can't be the target of spells or abilities.) {1}: Enchanted creature gets +1/-1 or -1/+1 until end of turn.
-rarity=U
 [/card]
 [card]
 id=46465
@@ -824,14 +844,6 @@ text=Whenever a player casts a spell with converted mana cost 3 or less, Pyrosta
 rarity=U
 [/card]
 [card]
-id=43622
-name=Rain of Blades
-mana={W}
-type=Instant
-text=Rain of Blades deals 1 damage to each attacking creature.
-rarity=U
-[/card]
-[card]
 id=44337
 name=Raven Guild Initiate
 mana={2}{U}
@@ -851,6 +863,7 @@ subtype=Human Wizard Mutant
 power=1
 toughness=1
 text=Whenever Raven Guild Master deals combat damage to a player, that player exiles the top ten cards of his or her library. Morph {2}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+auto=@damaged(player) from(this):moveto(exile) target(*|opponentlibrary)
 rarity=R
 [/card]
 [card]
@@ -859,6 +872,8 @@ name=Reaping the Graves
 mana={2}{B}
 type=Instant
 text=Return target creature card from your graveyard to your hand. Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+target=creature|myGraveyard
+auto=moveto(myHand)
 rarity=C
 [/card]
 [card]
@@ -866,7 +881,7 @@ id=47590
 name=Recuperate
 mana={3}{W}
 type=Instant
-text=Choose one  EYou gain 6 life; or prevent the next 6 damage that would be dealt to target creature this turn.
+text=Choose one - You gain 6 life; or prevent the next 6 damage that would be dealt to target creature this turn.
 rarity=C
 [/card]
 [card]
@@ -924,6 +939,8 @@ name=Scattershot
 mana={2}{R}
 type=Instant
 text=Scattershot deals 1 damage to target creature. Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+target=creature
+auto=damage:1
 rarity=C
 [/card]
 [card]
@@ -946,29 +963,8 @@ subtype=Bird Soldier
 power=3
 toughness=4
 text=Flying Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
+abilities=flying
 rarity=C
-[/card]
-[card]
-id=43552
-name=Siege-Gang Commander
-mana={3}{R}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-text=When Siege-Gang Commander enters the battlefield, put three 1/1 red Goblin creature tokens onto the battlefield. {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
-rarity=R
-[/card]
-[card]
-id=44313
-name=Silver Knight
-mana={W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=First strike, protection from red
-rarity=U
 [/card]
 [card]
 id=43590
@@ -980,25 +976,6 @@ power=3
 toughness=1
 text=Morph—Sacrifice two Mountains. (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Skirk Volcanist is turned face up, it deals 3 damage divided as you choose among any number of target creatures.
 rarity=U
-[/card]
-[card]
-id=43734
-name=Skulltap
-mana={1}{B}
-type=Sorcery
-text=As an additional cost to cast Skulltap, sacrifice a creature. Draw two cards.
-rarity=C
-[/card]
-[card]
-id=45166
-name=Sliver Overlord
-mana={W}{U}{B}{R}{G}
-type=Legendary Creature
-subtype=Sliver Mutant
-power=7
-toughness=7
-text={3}: Search your library for a Sliver card, reveal that card, and put it into your hand. Then shuffle your library. {3}: Gain control of target Sliver. (This effect lasts indefinitely.)
-rarity=R
 [/card]
 [card]
 id=43615
@@ -1017,6 +994,8 @@ name=Spark Spray
 mana={R}
 type=Instant
 text=Spark Spray deals 1 damage to target creature or player. Cycling {R} ({R}, Discard this card: Draw a card.)
+target=creature,player
+auto=damage:1
 rarity=C
 [/card]
 [card]
@@ -1025,6 +1004,8 @@ name=Sprouting Vines
 mana={2}{G}
 type=Instant
 text=Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library. Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+target=land[basic]|myLibrary
+auto=moveto(myHand)
 rarity=C
 [/card]
 [card]
@@ -1052,19 +1033,13 @@ text=At the beginning of each player's upkeep, Sulfuric Vortex deals 2 damage to
 rarity=R
 [/card]
 [card]
-id=44336
-name=Temple of the False God
-mana=
-type=Land
-text={T}: Add {2} to your mana pool. Activate this ability only if you control five or more lands.
-rarity=U
-[/card]
-[card]
 id=45836
 name=Temporal Fissure
 mana={4}{U}
 type=Sorcery
 text=Return target permanent to its owner's hand. Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+target=*
+auto=moveto(ownerHand)
 rarity=C
 [/card]
 [card]
@@ -1073,6 +1048,9 @@ name=Tendrils of Agony
 mana={2}{B}{B}
 type=Sorcery
 text=Target player loses 2 life and you gain 2 life. Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+target=player
+auto=damage:2
+auto=life:2 controller
 rarity=U
 [/card]
 [card]
@@ -1095,6 +1073,7 @@ subtype=Beast
 power=7
 toughness=4
 text=Trample Morph {4}{G}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+abilities=trample
 rarity=C
 [/card]
 [card]
@@ -1167,31 +1146,12 @@ text=Zombie spells you cast cost {1} less to cast. Zombie creatures you control 
 rarity=U
 [/card]
 [card]
-id=46418
-name=Unspeakable Symbol
-mana={1}{B}{B}
-type=Enchantment
-text=Pay 3 life: Put a +1/+1 counter on target creature.
-rarity=U
-[/card]
-[card]
 id=43558
 name=Upwelling
 mana={3}{G}
 type=Enchantment
 text=Mana pools don't empty as steps, phases, or turns end.
 rarity=R
-[/card]
-[card]
-id=45862
-name=Vengeful Dead
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=2
-text=Whenever Vengeful Dead or another Zombie is put into a graveyard from the battlefield, each opponent loses 1 life.
-rarity=C
 [/card]
 [card]
 id=45835
@@ -1207,6 +1167,8 @@ name=Wipe Clean
 mana={1}{W}
 type=Instant
 text=Exile target enchantment. Cycling {3} ({3}, Discard this card: Draw a card.)
+target=enchantment
+auto=moveto(exile)
 rarity=C
 [/card]
 [card]
@@ -1229,6 +1191,7 @@ subtype=Insect
 power=1
 toughness=1
 text=Return an Elf you control to its owner's hand: Untap target creature. Activate this ability only once each turn.
+auto=aslongas(elf|myBattlefield){0}:moveto(ownerhand) target(elf|myBattlefield) && untap target(creature) limit:1
 rarity=U
 [/card]
 [card]

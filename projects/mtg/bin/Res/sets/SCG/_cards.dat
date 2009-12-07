@@ -1,17 +1,4 @@
 [card]
-id=43599
-name=Ambush Commander
-mana={3}{G}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
-text=Forests you control are 1/1 green Elf creatures that are still lands. {1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.
-auto=becomes(Elf Creature,1/1,Green) all(forest|myBattlefield)
-auto={1}{G}{S(elf|myBattlefield)}:3/3 target(creature)
-rarity=R
-[/card]
-[card]
 text={3}, {T}, Sacrifice Ark of Blight: Destroy target land.
 auto={3}{T}{S}:destroy target(land)
 id=47281
@@ -140,5 +127,110 @@ type=Sorcery
 text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
 target=player
 auto=foreach(goblin|myBattlefield)damage:1
+rarity=C
+[/card]
+[card]
+id=43581
+name=Pemmin's Aura
+mana={1}{U}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature {U}: Untap enchanted creature. {U}: Enchanted creature gains flying until end of turn. {U}: Enchanted creature gains shroud until end of turn. (It can't be the target of spells or abilities.) {1}: Enchanted creature gets +1/-1 or -1/+1 until end of turn.
+target=creature
+auto={U}:untap mytgt
+auto={U}:flying mytgt
+auto={U}:shroud mytgt
+auto={1}:+1/-1 mytgt
+auto={1}:-1/+1 mytgt
+rarity=U
+[/card]
+[card]
+id=43622
+name=Rain of Blades
+mana={W}
+type=Instant
+text=Rain of Blades deals 1 damage to each attacking creature.
+auto=damage:1 all(creature[attacking])
+rarity=U
+[/card]
+[card]
+id=43552
+name=Siege-Gang Commander
+mana={3}{R}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+text=When Siege-Gang Commander enters the battlefield, put three 1/1 red Goblin creature tokens onto the battlefield. {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
+auto=token(Goblin,creature goblin, 1/1,red)*3
+auto={1}{R}{S(goblin|myinplay)}:Damage:2 target(creature,player)
+rarity=R
+[/card]
+[card]
+id=44313
+name=Silver Knight
+mana={W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+text=First strike, protection from red
+abilities=First strike,protection from red
+rarity=U
+[/card]
+[card]
+id=43734
+name=Skulltap
+mana={1}{B}
+type=Sorcery
+text=As an additional cost to cast Skulltap, sacrifice a creature. Draw two cards.
+target=creature|myBattlefield
+auto=bury
+auto=draw:2 controller
+rarity=C
+[/card]
+[card]
+id=45166
+name=Sliver Overlord
+mana={W}{U}{B}{R}{G}
+type=Creature
+abilities=Legendary
+subtype=Sliver Mutant
+power=7
+toughness=7
+text={3}: Search your library for a Sliver card, reveal that card, and put it into your hand. Then shuffle your library. {3}: Gain control of target Sliver. (This effect lasts indefinitely.)
+auto={3}:moveto(hand) target(sliver|myLibrary)
+auto={3}:moveto(myBattlefield) target(sliver|battlefield)
+rarity=R
+[/card]
+[card]
+id=44336
+name=Temple of the False God
+type=Land
+text={T}: Add {2} to your mana pool. Activate this ability only if you control five or more lands.
+rarity=U
+auto=aslongas(land|myBattlefield){T}:add{2} >4
+#Tested works fine you only need to have four land and temple of the false god as this card is also a land... wonder if this is correct.. if not can simply change the 4 by a 5.
+[/card]
+[card]
+id=46418
+name=Unspeakable Symbol
+mana={1}{B}{B}
+type=Enchantment
+text=Pay 3 life: Put a +1/+1 counter on target creature.
+auto={0}:counter(1/1,1) target(creature) && life:-3 controller
+rarity=U
+[/card]
+[card]
+id=45862
+name=Vengeful Dead
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=2
+text=Whenever Vengeful Dead or another Zombie is put into a graveyard from the battlefield, each opponent loses 1 life.
+auto=@movedto(zombie other|graveyard) from(battlefield):life:-1 controller && life:-1 opponent
+auto=@movedto(this|graveyard) from(battlefield):life:-1 controller && life:-1 opponent
 rarity=C
 [/card]
