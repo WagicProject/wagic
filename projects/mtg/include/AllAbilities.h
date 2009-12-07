@@ -2559,46 +2559,6 @@ class AConservator: public MTGAbility{
 };
 
 
-//Creature bond
-class ACreatureBond:public MTGAbility{
- public:
-  int resolved;
- ACreatureBond(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id,_source,_target){
-    resolved = 0;
-  }
-
- int receiveEvent(WEvent * event){
-   MTGCardInstance * _target = (MTGCardInstance *) target;
-   if (event->type == WEvent::CHANGE_ZONE){
-      WEventZoneChange * e = (WEventZoneChange *) event;
-      MTGCardInstance * card = e->card->previous;
-      if (card == _target){
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-          if (e->to == p->game->graveyard){
-            game->mLayers->stackLayer()->addDamage(source,_target->controller(),_target->toughness);
-            return 1;
-          }
-        }
-      }
-   }
-    return 0;
- }
-
- virtual ostream& toString(ostream& out) const
- {
-   out << "ACreatureBond ::: resolved : " << resolved
-       << " (";
-   return MTGAbility::toString(out) << ")";
- }
-   ACreatureBond * clone() const{
-    ACreatureBond * a =  NEW ACreatureBond(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //1106 DisruptingScepter
 class ADisruptingScepter:public TargetAbility{
  public:
@@ -3291,36 +3251,6 @@ class AScavengingGhoul:public MTGAbility{
   }
   AScavengingGhoul * clone() const{
     AScavengingGhoul * a =  NEW AScavengingGhoul(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-//1218 Psychic Venom
-class APsychicVenom:public MTGAbility{
- public:
-  int tapped;
- APsychicVenom(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id, _source,_target){
-    tapped = _target->isTapped();
-  }
-
-  void Update(float dt){
-    MTGCardInstance*  _target = (MTGCardInstance* )target;
-    int newState = _target->isTapped();
-    if (newState != tapped && newState == 1){
-      game->mLayers->stackLayer()->addDamage(source,_target->controller(),2);
-    }
-    tapped = newState;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "APsychicVenom ::: tapped : " << tapped
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-  APsychicVenom * clone() const{
-    APsychicVenom * a =  NEW APsychicVenom(*this);
     a->isClone = 1;
     return a;
   }
@@ -4040,62 +3970,6 @@ class AAngelicChorus: public ListMaintainerAbility{
 
   AAngelicChorus * clone() const{
     AAngelicChorus * a =  NEW AAngelicChorus(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
-/// Work in Progress also from no on all code could be removed...
-
-
-
-///// Not working need to work on this one 
-///Abomination Kill blocking creature if white or green
-class AAbomination :public MTGAbility{
- public:
-  MTGCardInstance * opponents[20];
-  int nbOpponents;
-  AAbomination (int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
-    nbOpponents = 0;
-  }
-
-  void Update(float dt){
-    if (newPhase != currentPhase){
-      if( newPhase == Constants::MTG_PHASE_COMBATDAMAGE){
-	nbOpponents = 0;
-	MTGCardInstance * opponent = source->getNextOpponent();
-	while ((opponent && opponent->hasColor(Constants::MTG_COLOR_GREEN)) || opponent->hasColor(Constants::MTG_COLOR_WHITE)){
-	  opponents[nbOpponents] = opponent;
-	  nbOpponents ++;
-	  opponent = source->getNextOpponent(opponent);
-	}
-      }else if (newPhase == Constants::MTG_PHASE_COMBATEND){
-	for (int i = 0; i < nbOpponents ; i++){
-	  game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
-	}
-      }
-    }
-  }
-
-  int testDestroy(){
-    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
-      return 0;
-    }else{
-      return MTGAbility::testDestroy();
-    }
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AAbomination ::: opponents : " << opponents
-	<< " ; nbOpponents : " << nbOpponents
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-
-  AAbomination * clone() const{
-    AAbomination * a =  NEW AAbomination(*this);
     a->isClone = 1;
     return a;
   }

@@ -162,7 +162,8 @@ type=Instant
 text=Exile target nonwhite attacking creature. You gain life equal to its toughness.
 rarity=R
 target=creature[-white;attacking]
-#Hardcoded could be softcoded and removed from code
+auto=moveto(exile)
+auto=life:t controller
 [/card]
 [card]
 id=3075

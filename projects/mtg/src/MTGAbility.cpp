@@ -983,11 +983,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
-  case 1197: //Creature Bond
-    {
-      game->addObserver(NEW ACreatureBond(_id,card, card->target));
-      break;
-    }
   case 1103: //Crystal Rod
     {
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
@@ -1061,11 +1056,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       int cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
       ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE,NEW ManaCost(cost,1) , 1);
       game->addObserver(ability);
-      break;
-    }
-  case 1115: //Ivory Tower
-    {
-      game->addObserver(NEW ALifeZoneLink(_id ,card, Constants::MTG_PHASE_UPKEEP, 4, 1, 1));
       break;
     }
   case 1117: //Jandors Ring
@@ -1267,36 +1257,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AControlStealAura(_id, card, card->target));
       break;
     }
-  case 1218: //Psychic Venom
-    {
-      game->addObserver(NEW APsychicVenom(_id, card, card->target));
-      break;
-    }
-   case 1226: //Steal Artifact
-    {
-      game->addObserver( NEW AControlStealAura(_id, card, card->target));
-      break;
-    }
   case 1235: //Aspect of Wolf
     {
       game->addObserver(NEW AAspectOfWolf(_id, card, card->target));
       break;
     }
-    case 1262: //Regeneration
-    {
-      int cost[] = {Constants::MTG_COLOR_GREEN, 1};
-      game->addObserver(NEW AStandardRegenerate(_id,card,card->target,NEW ManaCost(cost,1)));
-      break;
-    }
-
-  case 1266: //stream of life
-    {
-      int x = computeX(spell,card);
-      spell->getNextPlayerTarget()->life += x;
-      break;
-    }
-
-
   case 1231: //Volcanic Eruption
     {
       int x = computeX(spell,card);
@@ -1319,7 +1284,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-
   case 1285: //Dwarven Warriors
     {
       CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
@@ -1368,14 +1332,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AStasis(_id, card));
       break;
     }
-
-  case 1367: //Swords to Plowshares
-    {
-      Player * p = card->target->controller();
-      p->life+= card->target->power;
-      p->game->putInZone(card->target,p->game->inPlay,card->owner->game->removedFromGame);
-      break;
-    }
   case 1267: //Thicket Basilic
     {
       game->addObserver(NEW AOldSchoolDeathtouch(_id,card));
@@ -1393,11 +1349,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     }
 
     //Addons Legends
-  case 1427: //Abomination (does not work make the game crash)
-    {
-      game->addObserver(NEW AAbomination(_id,card));
-      break;
-    }
   case 1533: //Livingplane
     {
       game->addObserver(NEW AConvertLandToCreatures(id, card, "land"));
@@ -1454,14 +1405,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       tc->maxtoughness =1;
       game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, NEW WParsedPT(1,2), NEW ManaCost(cost,1),tc));
       break;
-    }
-
-//---addon Alliance---
-	
-    case 3194: // Exile
-    {
-	game->currentlyActing()->life+=card->target->toughness;
-	  break;
     }
 
 // --- addon Mirage ---
