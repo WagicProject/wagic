@@ -1,0 +1,26 @@
+#NAME: Skull Cage 2
+#DESC: "At the beginning of each opponent's upkeep,
+#DESC: Skullcage deals 2 damage to that player
+#DESC: unless he or she has exactly three or
+#DESC: exactly four cards in hand."
+#DESC: This script tests whether the player will
+#DESC: correctly suffer 2 damage if he has 2 cards
+#DESC: in hand.
+#DESC: http://code.google.com/p/wagic/issues/detail?id=239
+[INIT]
+untap
+[PLAYER1]
+hand:Forest,Island
+[PLAYER2]
+inplay:Skullcage
+[DO]
+next
+next
+[ASSERT]
+draw
+[PLAYER1]
+hand:Forest,Island
+life:18
+[PLAYER2]
+inplay:Skullcage
+[END]

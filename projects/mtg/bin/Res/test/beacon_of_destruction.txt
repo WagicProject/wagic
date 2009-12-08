@@ -1,0 +1,21 @@
+#NAME: Beacon of Destruction
+#DESC: "deals 5 damage to target creature
+#DESC: or player. Shuffle Beacon of
+#DESC: Destruction into its owner's library."
+[INIT]
+firstmain
+[PLAYER1]
+hand:51612
+manapool:{3}{R}{R}
+[PLAYER2]
+inplay:Earth Elemental
+[DO]
+51612
+Earth Elemental
+[ASSERT]
+firstmain
+[PLAYER1]
+library:51612
+[PLAYER2]
+graveyard:Earth Elemental
+[END]

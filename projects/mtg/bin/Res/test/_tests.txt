@@ -84,10 +84,13 @@ ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
 aura_mutation.txt
+avarice_totem.txt
 baneslayer_angel.txt
 baneslayer_angel2.txt
 barbed_sliver.txt
 basal_sliver.txt
+beacon_of_creation.txt
+beacon_of_destruction.txt
 beacon_of_unrest.txt
 belligerent_hatchling.txt
 benalish_knight.txt
@@ -161,6 +164,7 @@ elvish_promenade.txt
 emblem_of_the_warmind.txt
 enervate.txt
 erg_raiders_i157.txt
+fangren_pathcutter.txt
 farhaven_elf.txt
 farmstead.txt
 fastbond.txt
@@ -292,6 +296,7 @@ shivan_hellkite.txt
 shock.txt
 shock2.txt
 siege_gang_commander.txt
+silent_arbiter.txt
 slate_of_ancestry.txt
 sleeper_agent.txt
 slith_bloodletter.txt
@@ -317,6 +322,7 @@ terror.txt
 terror2.txt
 threaten.txt
 throne_of_bone.txt
+thought_courier.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt

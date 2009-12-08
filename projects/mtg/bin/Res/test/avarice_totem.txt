@@ -1,0 +1,20 @@
+#NAME: Avarice Totem
+#DESC: {5}: Exchange control of Avarice Totem
+#DESC: and target nonland permanent.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Avarice Totem
+manapool:{5}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Avarice Totem
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears
+[PLAYER2]
+inplay:Avarice Totem
+[END]

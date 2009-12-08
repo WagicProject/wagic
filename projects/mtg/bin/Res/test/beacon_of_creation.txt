@@ -1,0 +1,21 @@
+#NAME: Beacon of Creation
+#DESC: "Put a 1/1 green Insect creature token
+#DESC: onto the battlefield for each Forest
+#DESC: you control. Shuffle Beacon of Creation
+#DESC: into its owner's library"
+[INIT]
+firstmain
+[PLAYER1]
+inplay:1386,1387
+hand:51613
+manapool:{3}{G}
+[PLAYER2]
+[DO]
+51613
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:1386,1387,-51613,-51613
+library:51613
+[PLAYER2]
+[END]

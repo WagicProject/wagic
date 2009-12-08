@@ -3,16 +3,8 @@ id=50164
 name=Abuna's Chant
 mana={3}{W}
 type=Instant
-text=Choose one :�EYou gain 5 life; or prevent the next 5 damage that would be dealt to target creature this turn. Entwine {2} (Choose both if you pay the entwine cost.)
+text=Choose one: You gain 5 life; or prevent the next 5 damage that would be dealt to target creature this turn. Entwine {2} (Choose both if you pay the entwine cost.)
 rarity=C
-[/card]
-[card]
-id=51088
-name=Acquire
-mana={3}{U}{U}
-type=Sorcery
-text=Search target opponent's library for an artifact card and put that card onto the battlefield under your control. Then that player shuffles his or her library.
-rarity=R
 [/card]
 [card]
 id=51221
@@ -30,7 +22,7 @@ type=Artifact Creature
 subtype=Golem
 power=0
 toughness=0
-text=Modular—Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+text=Modular -- Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 rarity=U
 [/card]
 [card]
@@ -72,28 +64,12 @@ text=Flying {T}: Attach target Equipment you control to target creature you cont
 rarity=R
 [/card]
 [card]
-id=39667
-name=Avarice Totem
-mana={1}
-type=Artifact
-text={5}: Exchange control of Avarice Totem and target nonland permanent.
-rarity=U
-[/card]
-[card]
 id=51375
 name=Baton of Courage
 mana={3}
 type=Artifact
 text=Flash Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) Remove a charge counter from Baton of Courage: Target creature gets +1/+1 until end of turn.
 rarity=C
-[/card]
-[card]
-id=50141
-name=Beacon of Immortality
-mana={5}{W}
-type=Instant
-text=Double target player's life total. Shuffle Beacon of Immortality into its owner's library.
-rarity=R
 [/card]
 [card]
 id=51610
@@ -172,6 +148,12 @@ name=Chimeric Coils
 mana={1}
 type=Artifact
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
+# Following line does not work: card does not become a creature
+auto={X}{1}:becomes(construct artifact Creature,X/X)
+# Following line does not work: we cannot chain triggers to paid abilities
+auto={X}{1}:becomes(construct artifact Creature,X/X) && @next endofturn:bury
+# Following line would be a very dirty & hackish replacement for the line above:
+auto=@each endofturn:bury all(chimeric coils[construct])
 rarity=U
 [/card]
 [card]
@@ -196,6 +178,10 @@ name=Clock of Omens
 mana={4}
 type=Artifact
 text=Tap two untapped artifacts you control: Untap target artifact.
+# Following line does not work: Can't have several singular targets in one auto line
+##auto={0}:tap target(artifact[-tapped]|myinplay) && tap target(artifact[-tapped]|myinplay) && untap target(artifact[tapped])
+# Following line does not work: Can't specify tap targets in cost segment
+auto={T(artifact[-tapped]|myinplay)}{T(artifact[-tapped]|myinplay)}:untap target(artifact[tapped])
 rarity=U
 [/card]
 [card]
@@ -212,6 +198,8 @@ name=Conjurer's Bauble
 mana={1}
 type=Artifact
 text={T}, Sacrifice Conjurer's Bauble: Put up to one target card from your graveyard on the bottom of your library. Draw a card.
+# Following line does not work: Cards added to library are always added on top
+auto={T}{S}:moveto(ownerlibrary) target(*|mygraveyard) && draw:1 controller
 rarity=C
 [/card]
 [card]
@@ -235,6 +223,21 @@ text=Equipped creature gets +1/+0 for each artifact you control. {B}{B}: Attach 
 rarity=C
 [/card]
 [card]
+text=You may play land cards from your graveyard.
+# Following line does not work: "May moveto" from graveyards does
+# not work due to interface issues. The "limit:1" doesn't work
+# here either. Even if both worked, then the card would allow
+# you to play lands *in addition* to the 1 land you can play per
+# turn. Instead it should just give you the option to play this
+# 1 land from your hand or your graveyard.
+auto={0}:may moveTo(myBattlefield) target(land|mygraveyard) limit:1 myTurnOnly
+id=51133
+name=Crucible of Worlds
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
 id=51222
 name=Dawn's Reflection
 mana={3}{G}
@@ -252,6 +255,10 @@ subtype=Elemental
 power=8
 toughness=8
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Whenever a player casts a spell, sacrifice a creature.
+# Following line does not work: triggered effects can't choose
+# targets. (Also the effect could probably be canceled.)
+auto=@movedto(*|stack):bury target(creature|mybattlefield)
+abilities=Fear
 rarity=R
 [/card]
 [card]
@@ -348,17 +355,6 @@ text=Whenever you cast an instant or sorcery spell, you may pay {1}. If you do, 
 rarity=U
 [/card]
 [card]
-id=50171
-name=Fangren Pathcutter
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=6
-text=Whenever Fangren Pathcutter attacks, attacking creatures gain trample until end of turn.
-rarity=U
-[/card]
-[card]
 id=51617
 name=Ferocious Charge
 mana={2}{G}
@@ -395,7 +391,7 @@ rarity=R
 [/card]
 [card]
 id=51631
-name=Fold into ÁEher
+name=Fold into AEther
 mana={2}{U}{U}
 type=Instant
 text=Counter target spell. If that spell is countered this way, its controller may put a creature card from his or her hand onto the battlefield.
@@ -407,14 +403,6 @@ name=Gemstone Array
 mana={4}
 type=Artifact
 text={2}: Put a charge counter on Gemstone Array. Remove a charge counter from Gemstone Array: Add one mana of any color to your mana pool.
-rarity=U
-[/card]
-[card]
-id=48215
-name=Goblin Cannon
-mana={4}
-type=Artifact
-text={2}: Goblin Cannon deals 1 damage to target creature or player. Sacrifice Goblin Cannon.
 rarity=U
 [/card]
 [card]
@@ -521,6 +509,12 @@ subtype=Goblin Artificer
 power=2
 toughness=2
 text={R}, Sacrifice two artifacts: Destroy target artifact.
+# Following line doesn't work, or expects an extremely unintuitive
+# input sequence. It would work with *one* sacrifice, the user
+# then has to click on Engineers -> then target to destroy ->
+# then artifavt to sacrifice. However I can't find a way to
+# sacrifice *two* artifacts.
+auto={R}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}:destroy target(artifact)
 rarity=U
 [/card]
 [card]
@@ -622,17 +616,6 @@ text={3}: Switch Myr Quadropod's power and toughness until end of turn.
 rarity=C
 [/card]
 [card]
-id=50179
-name=Myr Servitor
-mana={1}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
-text=At the beginning of your upkeep, if Myr Servitor is on the battlefield, each player returns all cards named Myr Servitor from his or her graveyard to the battlefield.
-rarity=C
-[/card]
-[card]
 id=51183
 name=Neurok Stealthsuit
 mana={2}
@@ -710,10 +693,12 @@ id=51190
 name=Rain of Rust
 mana={3}{R}{R}
 type=Instant
-text=Choose one  EDestroy target artifact; or destroy target land. Entwine {3}{R} (Choose both if you pay the entwine cost.)
+text=Choose one: Destroy target artifact; or destroy target land. Entwine {3}{R} (Choose both if you pay the entwine cost.)
 rarity=C
 [/card]
 [card]
+# Note: Following card is currently implemented in _cards.dat,
+# but will need to be updated once Equipment is implemented.
 id=73569
 name=Raksha Golden Cub
 mana={5}{W}{W}
@@ -768,14 +753,9 @@ name=Rite of Passage
 mana={2}{G}
 type=Enchantment
 text=Whenever a creature you control is dealt damage, put a +1/+1 counter on it. (The damage is dealt before the counter is put on.)
-rarity=R
-[/card]
-[card]
-id=51080
-name=Roar of Reclamation
-mana={5}{W}{W}
-type=Sorcery
-text=Each player returns all artifact cards from his or her graveyard to the battlefield.
+# Following line doesn't work: game tries to put the counter on
+# Rite of Passage, not on the damaged creature.
+auto=@damaged(creature|mybattlefield):counter(1/1)
 rarity=R
 [/card]
 [card]
@@ -819,25 +799,6 @@ name=Shattered Dreams
 mana={B}
 type=Sorcery
 text=Target opponent reveals his or her hand. You choose an artifact card from it. That player discards that card.
-rarity=U
-[/card]
-[card]
-id=73598
-name=Silent Arbiter
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=5
-text=No more than one creature can attack each combat. No more than one creature can block each combat.
-rarity=R
-[/card]
-[card]
-id=73926
-name=Skullcage
-mana={4}
-type=Artifact
-text=At the beginning of each opponent's upkeep, Skullcage deals 2 damage to that player unless he or she has exactly three or exactly four cards in hand.
 rarity=U
 [/card]
 [card]
@@ -983,17 +944,6 @@ text=Destroy target artifact. Scry 2. (To scry 2, look at the top two cards of y
 rarity=U
 [/card]
 [card]
-id=73570
-name=Thought Courier
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={T}: Draw a card, then discard a card.
-rarity=U
-[/card]
-[card]
 id=51161
 name=Tornado Elemental
 mana={5}{G}{G}
@@ -1021,6 +971,8 @@ name=Vedalken Orrery
 mana={4}
 type=Artifact
 text=You may cast nonland cards as though they had flash.
+# Following line does not work: Lords cannot affect hand/stack?
+auto=lord(-land|myhand) Flash
 rarity=R
 [/card]
 [card]

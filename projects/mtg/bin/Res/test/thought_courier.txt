@@ -1,0 +1,23 @@
+#NAME: Thought Courier
+#DESC: Verifies that Thought Courier
+#DESC: can draw and discard a card.
+#DESC: Does not check whether it can
+#DESC: discard the card it just drew.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Thought Courier
+hand:Island
+library:Plains
+[PLAYER2]
+[DO]
+Thought Courier
+Island
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Thought Courier
+hand:Plains
+graveyard:Island
+[PLAYER2]
+[END]

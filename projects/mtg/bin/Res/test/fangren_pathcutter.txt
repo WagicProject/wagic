@@ -1,0 +1,28 @@
+#NAME: Fangren Pathcutter 1
+#DESC: Verifies that Fangren Pathcutter
+#DESC: gives Trample to itself and
+#DESC: other attacking creatures.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Fangren Pathcutter,Craw Wurm
+[PLAYER2]
+inplay:Grizzly Bears,Raging Goblin
+[DO]
+Fangren Pathcutter
+Craw Wurm
+next
+Grizzly Bears
+Raging Goblin
+Raging Goblin
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Fangren Pathcutter,Craw Wurm
+[PLAYER2]
+graveyard:Grizzly Bears,Raging Goblin
+life:13
+[END]

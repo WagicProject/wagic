@@ -1,0 +1,25 @@
+#NAME: Silent Arbiter
+#DESC: "No more than one creature can attack each combat.
+#DESC: No more than one creature can block each combat."
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Silent Arbiter,Grizzly Bears
+[PLAYER2]
+inplay:Raging Goblin,Earth Elemental
+[DO]
+Grizzly Bears
+Silent Arbiter
+next
+Raging Goblin
+Earth Elemental
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Silent Arbiter,Grizzly Bears
+[PLAYER2]
+inplay:Earth Elemental
+graveyard:Raging Goblin
+[END]

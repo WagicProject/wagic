@@ -9,7 +9,7 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
-text={U}: Advanced Hoverguard gains shroud until end of turn. (It can't be the target of spells or abilities.)
+text=Flying -- {U}: Advanced Hoverguard gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=50144
 name=Advanced Hoverguard
 rarity=C
@@ -35,6 +35,7 @@ toughness=3
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
+abilities=reach
 id=51230
 name=Arachnoid
 rarity=U
@@ -47,7 +48,7 @@ toughness=6
 [card]
 text=Protection from black and from red   Whenever another creature enters the battlefield, you may gain 1 life.
 id=72921
-auto=@movedTo(creature|battlefield):may life:1
+auto=@movedTo(creature|battlefield):may life:1 controller
 name=Auriok Champion
 rarity=R
 mana={W}{W}
@@ -58,8 +59,21 @@ toughness=1
 abilities=protection from black,protection from red
 [/card]
 [card]
+id=39667
+name=Avarice Totem
+mana={1}
+type=Artifact
+text={5}: Exchange control of Avarice Totem and target nonland permanent.
+# Note: The term all(this) is a workaround for a current parser
+# limitation. We cannot chain effects on a target card to effects
+# on "this" - if we do it, the the parser confuses and ignores
+# targets. But we CAN chain "target"ed effects to "all()" effects.
+auto={5}:moveto(mybattlefield) target(*[-land]|opponentbattlefield) && moveto(opponentbattlefield) all(this)
+rarity=U
+[/card]
+[card]
 text=Battered Golem doesn't untap during your untap step.   Whenever an artifact enters the battlefield, you may untap Battered Golem.
-auto=@movedTo(creature|battlefield):untap
+auto=@movedTo(artifact|battlefield):may untap
 id=73932
 name=Battered Golem
 rarity=C
@@ -72,10 +86,10 @@ abilities=doesnotuntap
 [/card]
 [card]
 text=Put a 1/1 green Insect creature token onto the battlefield for each Forest you control. Shuffle Beacon of Creation into its owner's library.
-alias=135262
 id=51613
 name=Beacon of Creation
 auto=foreach(forest|mybattlefield) token(Insect,Creature insect,1/1,green)
+auto=moveto(mylibrary) && shuffle
 rarity=R
 mana={3}{G}
 type=Sorcery
@@ -86,6 +100,7 @@ id=51612
 name=Beacon of Destruction
 target=creature,player
 auto=damage:5
+alias=135262
 rarity=R
 mana={3}{R}{R}
 type=Instant
@@ -93,6 +108,7 @@ type=Instant
 [card]
 text=Double target player's life total. Shuffle Beacon of Immortality into its owner's library.
 id=50141
+alias=130553
 target=player
 name=Beacon of Immortality
 rarity=R
@@ -133,10 +149,9 @@ power=3
 toughness=3
 [/card]
 [card]
-text={T}: Target player loses 1 life.
+text=Flying -- {T}: Target player loses 1 life.
 id=73597
-auto={T}:life-1 controller
-auto={T}:life-1 opponent
+auto={T}:life:-1 target(player)
 name=Cackling Imp
 rarity=C
 mana={2}{B}{B}
@@ -166,15 +181,6 @@ type=Artifact Creature
 subtype=Golem
 power=4
 toughness=4
-[/card]
-[card]
-text=You may play land cards from your graveyard.
-auto={0}:may moveTo(myBattlefield) target(land|mygraveyard) limit:1 myTurnOnly
-id=51133
-name=Crucible of Worlds
-rarity=R
-mana={3}
-type=Artifact
 [/card]
 [card]
 text=Destroy target creature. It can't be regenerated. You lose life equal to that creature's toughness.
@@ -221,6 +227,23 @@ type=Creature
 subtype=Human Shaman
 power=2
 toughness=1
+[/card]
+[card]
+id=50171
+name=Fangren Pathcutter
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=6
+text=Whenever Fangren Pathcutter attacks, attacking creatures gain trample until end of turn.
+# Note: Coded as a triggered conditional "all" effect. This
+# makes sure that the effect doesn't get removed if Fangren
+# Pathcutter leaves play.
+auto=@each combatblockers:aslongas(Fangren Pathcutter[attacking]) all(creature[attacking]) Trample ueot
+# Note: above line does not give the Trample bonus when Fangren
+# Pathcutter leaves play before the combatblockers step starts.
+rarity=U
 [/card]
 [card]
 text=Feedback Bolt deals damage to target player equal to the number of artifacts you control.
@@ -270,6 +293,15 @@ toughness=2
 abilities=first strike
 [/card]
 [card]
+id=48215
+name=Goblin Cannon
+mana={4}
+type=Artifact
+text={2}: Goblin Cannon deals 1 damage to target creature or player. Sacrifice Goblin Cannon.
+auto={2}{S}:damage:1 target(creature,player)
+rarity=U
+[/card]
+[card]
 text={T}, Sacrifice an artifact: Target player puts the top three cards of his or her library into his or her graveyard.   Whenever an artifact enters the battlefield, you may untap Grinding Station
 auto=@movedTo(artifact|battlefield):may untap
 auto={T}{S(artifact|myBattlefield)}:deplete:3 target(player)
@@ -309,7 +341,7 @@ toughness=1
 [/card]
 [card]
 text=Sacrifice an artifact: Add {2} to your mana pool.
-auto={T}{S(artifact|myBattlefield)}:Add:{2}
+auto={S(artifact|myBattlefield)}:Add:{2}
 id=51633
 name=Krark-Clan Ironworks
 rarity=U
@@ -324,7 +356,7 @@ rarity=C
 mana={3}{R}{R}
 type=Creature
 subtype=Ogre
-auto={T}{S(artifact|myBattlefield)}:cantblock target(creature) 
+auto={R}{S(artifact|myBattlefield)}:cantblock target(creature) 
 power=3
 toughness=3
 [/card]
@@ -332,7 +364,7 @@ toughness=3
 text=Vigilance   {W}: Loxodon Stalwart gets +0/+1 until end of turn.
 id=73567
 name=Loxodon Stalwart
-abilities=vigilance
+abilities=Vigilance
 rarity=U
 mana={3}{W}{W}
 type=Creature
@@ -391,7 +423,7 @@ toughness=1
 text=You draw two cards and you lose 2 life.
 id=51178
 name=Night's Whisper
-auto=draw:2
+auto=draw:2 controller
 auto=life:-2 controller
 rarity=U
 mana={1}{B}
@@ -468,11 +500,35 @@ type=Sorcery
 text=Target creature gets +5/+0 and gains haste until end of turn.
 id=51148
 name=Screaming Fury
+target=creature
 auto=5/0
 auto=haste
 rarity=C
 mana={2}{R}
 type=Sorcery
+[/card]
+[card]
+id=73598
+name=Silent Arbiter
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=5
+text=No more than one creature can attack each combat. No more than one creature can block each combat.
+auto=aslongas(creature[attacking]|battlefield) lord(creature[-attacking]|battlefield) cantattack
+auto=aslongas(creature[blocking]|battlefield) lord(creature[-blocking]|battlefield) cantblock
+rarity=R
+[/card]
+[card]
+id=73926
+name=Skullcage
+mana={4}
+type=Artifact
+text=At the beginning of each opponent's upkeep, Skullcage deals 2 damage to that player unless he or she has exactly three or exactly four cards in hand.
+auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent >4
+auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent <3
+rarity=U
 [/card]
 [card]
 text=Flying, vigilance (This creature can't be blocked except by creatures with flying or reach, and attacking doesn't cause this creature to tap.)
@@ -496,7 +552,7 @@ type=Creature
 subtype=Cat Knight
 power=1
 toughness=1
-abilities=flying,doublestrike
+abilities=flying,double strike
 [/card]
 [card]
 text=Trample, haste (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player. This creature can attack and {T} as soon as it comes under your control.)  At end of turn, sacrifice Spark Elemental.
@@ -512,7 +568,7 @@ toughness=1
 abilities=trample,haste
 [/card]
 [card]
-text={1}: Untap Staff of Domination.   {2}, {T}: You gain 1 life.   {3}, {T}: Untap target creatur   {4}, {T}: Tap target creature.   {5}, {T}: Draw a card.
+text={1}: Untap Staff of Domination.   {2}, {T}: You gain 1 life.   {3}, {T}: Untap target creature   {4}, {T}: Tap target creature.   {5}, {T}: Draw a card.
 auto={1}:untap
 auto={2}{T}:life:1 controller
 auto={3}{T}:untap target(creature)
@@ -527,7 +583,7 @@ type=Artifact
 [card]
 text={T}, Put a 2/2 colorless Pincher creature token onto the battlefield.   Whenever an artifact is put into a graveyard from the battlefield, you may untap Summoning Station.
 auto=@movedTo(artifact|graveyard) from(battlefield):may untap
-auto={T}:token(Pincher,creature artifact pincher, 2/2, artifact)
+auto={T}:token(Pincher,creature artifact pincher,2/2,artifact)
 id=72858
 name=Summoning Station
 rarity=R
@@ -536,6 +592,8 @@ type=Artifact
 [/card]
 [card]
 text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
+# Note: The alias isn't entirely correct since the Cockatrice's
+# ability doesn't affect walls, but Tangle Asp's should.
 alias=1238
 id=50203
 name=Tangle Asp
@@ -569,6 +627,21 @@ type=Artifact Creature
 subtype=Construct
 power=2
 toughness=2
+[/card]
+[card]
+id=73570
+name=Thought Courier
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={T}: Draw a card, then discard a card.
+# Note: Following line is not entirely correct. The game
+# requires you to discard a card *before* you can draw
+# then new one.
+auto={T}:draw:1 controller && moveto(mygraveyard) target(*|myhand)
+rarity=U
 [/card]
 [card]
 text={1}{G}: Tyrranax gets -1/+1 until end of turn.
