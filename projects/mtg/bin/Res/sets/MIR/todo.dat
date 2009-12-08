@@ -282,14 +282,6 @@ type=Enchantment
 mana={1}{W}{W}
 [/card]
 [card]
-text=Choose one - Destroy target Wall; or Chaos Charm deals 1 damage to target creature; or target creature gains haste until end of turn.
-id=3434
-name=Chaos Charm
-rarity=C
-type=Instant
-mana={R}
-[/card]
-[card]
 text=Creatures with flying have "This creature can't block creatures without flying."     Creatures without flying have reach. (They can block creatures with flying.)
 id=3435
 name=Chaosphere

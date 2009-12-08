@@ -183,6 +183,17 @@ toughness=3
 abilities=flying,protection from green
 [/card]
 [card]
+text=Choose one - Destroy target Wall; or Chaos Charm deals 1 damage to target creature; or target creature gains haste until end of turn.
+auto=may destroy target(wall)
+auto=may damage:1 target(creature)
+auto=may haste target(creature)
+id=3434
+name=Chaos Charm
+rarity=C
+type=Instant
+mana={R}
+[/card]
+[card]
 text=Charcoal Diamond enters the battlefield tapped.   {T}: Add {B} to your mana pool.
 id=3244 
 name=Charcoal Diamond
