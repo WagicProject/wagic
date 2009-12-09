@@ -351,15 +351,6 @@ text=Sacrifice Goblin Flectomancer: You may change the targets of target instant
 rarity=U
 [/card]
 [card]
-id=96935
-name=Godless Shrine
-mana=
-type=Land
-subtype=Plains Swamp
-text=({T}: Add {W} or {B} to your mana pool.) As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
-rarity=R
-[/card]
-[card]
 id=97228
 name=Graven Dominator
 mana={4}{W}{W}
@@ -976,15 +967,6 @@ text=Whenever an opponent casts a spell, that player sacrifices a permanent unle
 rarity=R
 [/card]
 [card]
-id=96923
-name=Steam Vents
-mana=
-type=Land
-subtype=Island Mountain
-text=({T}: Add {U} or {R} to your mana pool.) As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
-rarity=R
-[/card]
-[card]
 id=97201
 name=Steamcore Weird
 mana={3}{U}
@@ -1001,15 +983,6 @@ name=Stitch in Time
 mana={1}{U}{R}
 type=Sorcery
 text=Flip a coin. If you win the flip, take an extra turn after this one.
-rarity=R
-[/card]
-[card]
-id=96896
-name=Stomping Ground
-mana=
-type=Land
-subtype=Mountain Forest
-text=({T}: Add {R} or {G} to your mana pool.) As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
 rarity=R
 [/card]
 [card]

@@ -47,6 +47,30 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=({T}: Add {B} or {R} to your mana pool.)   As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
+id=97102
+name=Blood Crypt
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {B}
+auto={T}:Add {R}
+type=Land
+subtype=Swamp Mountain
+[/card]
+[card]
+text=({T}: Add {G} or {U} to your mana pool.)   As Breeding Pool enters the battlefield, you may pay 2 life. If you don't, Breeding Pool enters the battlefield tapped.
+id=97088
+name=Breeding Pool
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {G}
+auto={T}:Add {U}
+type=Land
+subtype=Forest Island
+[/card]
+[card]
 text=Flying Whenever you cast an enchantment spell, put a +1/+1 counter on each creature you control.
 auto=@movedTo(enchantment|mystack):all(creature|mybattlefield) counter(1/1,1)
 id=107317
@@ -96,6 +120,18 @@ subtype=Human Cleric
 auto={T}{S}:destroy target(aura)
 power=1
 toughness=1
+[/card]
+[card]
+text=({T}: Add {W} or {U} to your mana pool.)   As Hallowed Fountain enters the battlefield, you may pay 2 life. If you don't, Hallowed Fountain enters the battlefield tapped.
+id=97071
+name=Hallowed Fountain
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {W}
+auto={T}:Add {U}
+type=Land
+subtype=Plains Island
 [/card]
 [card]
 text=Flying
@@ -192,7 +228,7 @@ text=({GU} can be paid with either {G} or {U}.)   Enchant creature.   When Shiel
 id=97084
 target=creature
 auto=opponentshroud
-auto=draw:1
+auto=draw:1 controller
 name=Shielding Plax
 rarity=C
 mana={2}{GU}

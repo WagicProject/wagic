@@ -474,6 +474,18 @@ toughness=6
 abilities=reach
 [/card]
 [card]
+text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
+id=83712
+auto={T}:damage:4 all(creature[-flying]) && damage:4 all(player)
+name=Hammerfist Giant
+rarity=R
+type=Creature
+mana={4}{R}{R}
+power=5
+subtype=Giant Warrior
+toughness=4
+[/card]
+[card]
 text=Islandwalk
 id=87914
 name=Grayscaled Gharial
@@ -652,6 +664,18 @@ toughness=4
 abilities=vigilance
 [/card]
 [card]
+text=({T}: Add {B} or {G} to your mana pool.)  As Overgrown Tomb comes into play, you may pay 2 life. If you don't, Overgrown Tomb comes into play tapped.
+id=89072
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {G}
+auto={T}:Add {B}
+name=Overgrown Tomb
+rarity=R
+type=Land
+subtype=Swamp Forest
+[/card]
+[card]
 text={1}, Sacrifice a creature: Search your library for a land card with a basic land type and put it onto the battlefield tapped. Then shuffle your library.
 auto={1}{S(creature|mybattlefield)}:moveTo(myBattlefield) target(basic|mylibrary) && tap
 id=83744
@@ -765,6 +789,18 @@ subtype=Zombie
 auto={1}{U}:flying
 power=2
 toughness=1
+[/card]
+[card]
+text=({T}: Add {R} or {W} to your mana pool.)  As Sacred Foundry comes into play, you may pay 2 life. If you don't, Sacred Foundry comes into play tapped.
+id=89066
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {R}
+auto={T}:Add {W}
+name=Sacred Foundry
+rarity=R
+type=Land
+subtype=Mountain Plains
 [/card]
 [card]
 text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
@@ -954,6 +990,18 @@ auto={B}:regenerate
 power=2
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=({T}: Add {G} or {W} to your mana pool.)   As Temple Garden comes into play, you may pay 2 life. If you don't, Temple Garden comes into play tapped.
+id=89093
+name=Temple Garden
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {G}
+auto={T}:Add {W}
+type=Land
+subtype=Forest Plains
 [/card]
 [card]
 text=Terrarion enters the battlefield tapped.   {2}, {T}, Sacrifice Terrarion: Add two mana in any combination of colors to your mana pool.     When Terrarion is put into a graveyard from the battlefield, draw a card.
@@ -1161,4 +1209,16 @@ type=Creature
 subtype=Wolf
 power=3
 toughness=3
+[/card]
+[card]
+text=({T}: Add {U} or {B} to your mana pool.)  As Watery Grave comes into play, you may pay 2 life. If you don't, Watery Grave comes into play tapped.
+id=83731
+name=Watery Grave
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {U}
+auto={T}:Add {B}
+type=Land
+subtype=Island Swamp
 [/card]

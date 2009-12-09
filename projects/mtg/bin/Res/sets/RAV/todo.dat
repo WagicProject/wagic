@@ -832,20 +832,6 @@ rarity=U
 type=Enchantment
 mana={1}{U}{U}
 [/card]
-#to test again
-#Hammerfist giant requires a serious update of the targetChooser code before it can work.
-[card]
-text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
-id=83712
-auto={T}:damage:4 all(creature[-flying],player)
-name=Hammerfist Giant
-rarity=R
-type=Creature
-mana={4}{R}{R}
-power=5
-subtype=Giant Warrior
-toughness=4
-[/card]
 [card]
 text={B}{B}{B}, {T}: Destroy target land. If that land was nonbasic, untap Helldozer.
 id=88990
@@ -1253,19 +1239,6 @@ subtype=Minotaur Soldier
 toughness=1
 [/card]
 [card]
-#to test
-text=({T}: Add {B} or {G} to your mana pool.)  As Overgrown Tomb comes into play, you may pay 2 life. If you don't, Overgrown Tomb comes into play tapped.
-id=89072
-auto=tap
-auto=may untap && life:-2 controller
-auto={T}:add {G}
-auto={T}:add {B}
-name=Overgrown Tomb
-rarity=R
-type=Land
-subtype=Swamp Forest
-[/card]
-[card]
 text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Creatures you control get +3/+3 until end of turn.
 id=89044
 name=Overwhelm
@@ -1424,19 +1397,6 @@ mana={1}{R}{R}
 power=2
 subtype=Cat
 toughness=1
-[/card]
-[card]
-#to test
-text=({T}: Add {R} or {W} to your mana pool.)  As Sacred Foundry comes into play, you may pay 2 life. If you don't, Sacred Foundry comes into play tapped.
-id=89066
-auto=tap
-auto=may untap && life:-2 controller
-auto={T}:add{R}
-auto={T}:add{W}
-name=Sacred Foundry
-rarity=R
-type=Land
-subtype=Mountain Plains
 [/card]
 [card]
 text=When Sadistic Augermage is put into a graveyard from play, each player puts a card from his or her hand on top of his or her library.
@@ -1748,14 +1708,6 @@ type=Instant
 mana={1}{U}
 [/card]
 [card]
-text=({T}: Add {G} or {W} to your mana pool.)  As Temple Garden comes into play, you may pay 2 life. If you don't, Temple Garden comes into play tapped.
-id=89093
-name=Temple Garden
-rarity=R
-type=Land
-subtype=Forest Plains
-[/card]
-[card]
 text={1}: Choose a basic land type. Each land you control becomes that type until end of turn.
 id=87905
 name=Terraformer
@@ -1896,15 +1848,6 @@ name=Warp World
 rarity=R
 type=Sorcery
 mana={5}{R}{R}{R}
-[/card]
-[card]
-#to test
-text=({T}: Add {U} or {B} to your mana pool.)  As Watery Grave comes into play, you may pay 2 life. If you don't, Watery Grave comes into play tapped.
-id=83731
-name=Watery Grave
-rarity=R
-type=Land
-subtype=Island Swamp
 [/card]
 [card]
 text=Flying     Players play with the top card of their libraries revealed.

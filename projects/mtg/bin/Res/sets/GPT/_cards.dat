@@ -177,6 +177,18 @@ toughness=1
 abilities=trample,haste,shroud
 [/card]
 [card]
+text=({T}: Add {W} or {B} to your mana pool.)   As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
+id=96935
+name=Godless Shrine
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {W}
+auto={T}:Add {B}
+type=Land
+subtype=Plains Swamp
+[/card]
+[card]
 text={3}{R}, Sacrifice a land: Gruul Guildmage deals 2 damage to target player.   {3}{G}: Target creature gets +2/+2 until end of turn.
 id=96837
 name=Gruul Guildmage
@@ -439,6 +451,31 @@ subtype=Spirit
 auto={G}{S(creature|myBattlefield)}:life:1
 power=1
 toughness=1
+[/card]
+[card]
+text=({T}: Add {U} or {R} to your mana pool.)   As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
+id=96923
+name=Steam Vents
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {U}
+auto={T}:Add {R}
+type=Land
+subtype=Island Mountain
+[/card]
+[card]
+text=({T}: Add {R} or {G} to your mana pool.)   As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
+id=96896
+name=Stomping Ground
+rarity=R
+rarity=R
+auto=tap
+auto=may untap && life:-2 controller
+auto={T}:Add {U}
+auto={T}:Add {R}
+type=Land
+subtype=Mountain Forest
 [/card]
 [card]
 text=Flying   Stratozeppelid can block only creatures with flying.

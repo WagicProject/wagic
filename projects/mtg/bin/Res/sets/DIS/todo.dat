@@ -114,15 +114,6 @@ text=Enchant creature Enchanted creature gets +1/+1 for each of its colors.
 rarity=U
 [/card]
 [card]
-id=97102
-name=Blood Crypt
-mana=
-type=Land
-subtype=Swamp Mountain
-text=({T}: Add {B} or {R} to your mana pool.) As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
-rarity=R
-[/card]
-[card]
 id=107306
 name=Bond of Agony
 mana={X}{B}
@@ -152,15 +143,6 @@ mana={1}{B}
 type=Sorcery
 text=Name a nonland card. Target player reveals his or her hand. That player discards a card with that name. If he or she can't, you draw a card.
 rarity=U
-[/card]
-[card]
-id=97088
-name=Breeding Pool
-mana=
-type=Land
-subtype=Forest Island
-text=({T}: Add {G} or {U} to your mana pool.) As Breeding Pool enters the battlefield, you may pay 2 life. If you don't, Breeding Pool enters the battlefield tapped.
-rarity=R
 [/card]
 [card]
 id=107327
@@ -547,15 +529,6 @@ subtype=Human Soldier
 power=1
 toughness=1
 text=At the beginning of your upkeep, sacrifice Haazda Shield Mate unless you pay {W}{W}. {W}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
-rarity=R
-[/card]
-[card]
-id=97071
-name=Hallowed Fountain
-mana=
-type=Land
-subtype=Plains Island
-text=({T}: Add {W} or {U} to your mana pool.) As Hallowed Fountain enters the battlefield, you may pay 2 life. If you don't, Hallowed Fountain enters the battlefield tapped.
 rarity=R
 [/card]
 [card]
