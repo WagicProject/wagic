@@ -47,6 +47,28 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Choose one - Return target permanent to its owner's hand; or destroy target nonblack creature, and it can't be regenerated; or destroy target artifact.
+id=25863
+name=Crosis's Charm
+auto=may moveTo(ownerhand) target(*)
+auto=may bury target(creature[black])
+auto=may destroy target(artifact)
+rarity=U
+mana={U}{B}{R}
+type=Instant
+[/card]
+[card]
+text=Choose one - Return target creature card from your graveyard to your hand; or Darigaaz's Charm deals 3 damage to target creature or player; or target creature gets +3/+3 until end of turn.
+id=25864
+name=Darigaaz's Charm
+auto=may moveTo(myhand) target(creature|mygraveyard)
+auto=may damage:3 target(creature,player)
+auto=may 3/3 target(creature)
+rarity=U
+mana={B}{R}{G}
+type=Instant
+[/card]
+[card]
 text=Target creature gets +1/+1 and gains flying and first strike until end of turn.
 target=creature
 auto=1/1
@@ -78,6 +100,17 @@ id=26423
 name=Dominaria's Judgment
 rarity=R
 mana={2}{W}
+type=Instant
+[/card]
+[card]
+text=Choose one - You gain 5 life; or counter target spell; or target creature gets -2/-2 until end of turn.
+id=25862
+name=Dromar's Charm
+auto=may life:5 controller
+auto=may fizzle target(*|stack)
+auto=may -2/-2 target(creature)
+rarity=U
+mana={W}{U}{B}
 type=Instant
 [/card]
 [card]

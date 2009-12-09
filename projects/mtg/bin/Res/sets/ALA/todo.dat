@@ -521,14 +521,6 @@ mana={6}{W}{W}
 [/card]
 
 [card]
-text=Choose one - Remove target player's graveyard from the game; or Jund Charm deals 2 damage to each creature; or put two +1/+1 counters on target creature.
-id=137900
-name=Jund Charm
-rarity=U
-type=Instant
-mana={B}{R}{G}
-[/card]
-[card]
 text=Reach (This can block creatures with flying.)  Cycling {2} ({2}, Discard this card: Draw a card.)
 id=175262
 name=Jungle Weaver
@@ -699,16 +691,6 @@ power=4
 subtype=Fungus
 toughness=4
 [/card]
-
-[card]
-text=Choose one - Naya Charm deals 3 damage to target creature; or return target card in a graveyard to its owner's hand; or tap all creatures target player controls.
-id=137905
-name=Naya Charm
-rarity=U
-type=Instant
-mana={R}{G}{W}
-[/card]
-
 
 [card]
 text=When Oblivion Ring comes into play, remove another target nonland permanent from the game.      When Oblivion Ring leaves play, return the removed card to play under its owner's control.

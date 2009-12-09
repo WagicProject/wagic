@@ -76,28 +76,12 @@ text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you ret
 rarity=U
 [/card]
 [card]
-id=25863
-name=Crosis's Charm
-mana={U}{B}{R}
-type=Instant
-text=Choose one  EReturn target permanent to its owner's hand; or destroy target nonblack creature, and it can't be regenerated; or destroy target artifact.
-rarity=U
-[/card]
-[card]
 id=25938
 name=Darigaaz's Caldera
 mana=
 type=Land
 subtype=Lair
 text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {B}, {R}, or {G} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=25864
-name=Darigaaz's Charm
-mana={B}{R}{G}
-type=Instant
-text=Choose one  EReturn target creature card from your graveyard to your hand; or Darigaaz's Charm deals 3 damage to target creature or player; or target creature gets +3/+3 until end of turn.
 rarity=U
 [/card]
 [card]
@@ -191,14 +175,6 @@ mana=
 type=Land
 subtype=Lair
 text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {W}, {U}, or {B} to your mana pool.
-rarity=U
-[/card]
-[card]
-id=25862
-name=Dromar's Charm
-mana={W}{U}{B}
-type=Instant
-text=Choose one  EYou gain 5 life; or counter target spell; or target creature gets -2/-2 until end of turn.
 rarity=U
 [/card]
 [card]
@@ -370,17 +346,6 @@ mana={3}{R}
 type=Instant
 text=Kicker—Sacrifice two lands. (You may sacrifice two lands in addition to any other costs as you cast this spell.) Magma Burst deals 3 damage to target creature or player. If Magma Burst was kicked, it deals 3 damage to another target creature or player.
 rarity=C
-[/card]
-[card]
-id=26397
-name=Magnigoth Treefolk
-mana={4}{G}
-type=Creature
-subtype=Treefolk
-power=2
-toughness=6
-text=Domain  EFor each basic land type among lands you control, Magnigoth Treefolk has landwalk of that type.
-rarity=R
 [/card]
 [card]
 id=25870
@@ -636,12 +601,15 @@ text=When Razing Snidd enters the battlefield, return a black or red creature yo
 rarity=U
 [/card]
 [card]
+####NOT 100% CODABLE YET!!
+text=Choose one - Destroy target nonbasic land; or put three 1/1 green Saproling creature tokens onto the battlefield; or prevent all damage a source of your choice would deal this turn.
 id=25865
 name=Rith's Charm
+auto=may destroy target(land[-basic])
+auto=may token(Saproling,creature saproling,1/1,green)*3
+rarity=U
 mana={R}{G}{W}
 type=Instant
-text=Choose one  EDestroy target nonbasic land; or put three 1/1 green Saproling creature tokens onto the battlefield; or prevent all damage a source of your choice would deal this turn.
-rarity=U
 [/card]
 [card]
 id=25939

@@ -209,15 +209,6 @@ type=Instant
 mana={2}{U}
 [/card]
 [card]
-text=Destroy all lands or all creatures. Creatures destroyed this way can't be regenerated.
-id=5637
-name=Catastrophe
-rarity=R
-type=Sorcery
-mana={4}{W}{W}
-[/card]
-
-[card]
 text=Trample     At the beginning of your upkeep, sacrifice Child of Gaea unless you pay {G}{G}.     {1}{G}: Regenerate Child of Gaea.
 id=9678
 name=Child of Gaea

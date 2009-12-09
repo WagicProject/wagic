@@ -207,6 +207,16 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
+text=Destroy all lands or all creatures. Creatures destroyed this way can't be regenerated.
+id=5637
+name=Catastrophe
+auto=may bury all(creature)
+auto=may destroy all(land)
+rarity=R
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+[card]
 text=When Cathodion is put into a graveyard from the battlefield, add {3} to your mana pool.
 auto=@movedTo(this|graveyard) from(battlefield):Add{3}
 id=10659

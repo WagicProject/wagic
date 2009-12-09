@@ -496,6 +496,18 @@ toughness=4
 abilities=defender,exalted
 [/card]
 [card]
+text=Choose one - Remove target player's graveyard from the game; or Jund Charm deals 2 damage to each creature; or put two +1/+1 counters on target creature.
+id=137900
+name=Jund Charm
+auto=may moveTo(exile) all(*|opponentgraveyard)
+auto=may moveTo(exile) all(*|mygraveyard)
+auto=may damage:2 all(creature)
+auto=may counter(1/1,2) target(creature)
+rarity=U
+mana={B}{R}{G}
+type=Instant
+[/card]
+[card]
 text=Flying, trample, haste   {R}: Hellkite Overlord gets +1/+0 until end of turn.   {B}{G}: Regenerate Hellkite Overlord.
 id=175057
 name=Hellkite Overlord
@@ -780,6 +792,17 @@ auto={R}{T}:2/0 target(creature)
 auto={W}{T}:tap target(creature)
 power=2
 toughness=2
+[/card]
+[card]
+text=Choose one - Naya Charm deals 3 damage to target creature; or return target card in a graveyard to its owner's hand; or tap all creatures target player controls.
+id=137905
+name=Naya Charm
+auto=may damage:3 target(creature)
+auto=may moveTo(ownerhand) target(*|graveyard)
+auto=may tap all(creature|opponentBattlefield)
+rarity=U
+mana={R}{G}{W}
+type=Instant
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Naya Panorama: Search your library for a basic Mountain, Forest, or Plains card and put it onto the battlefield tapped. Then shuffle your library.
