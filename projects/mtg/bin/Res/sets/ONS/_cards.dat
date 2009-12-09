@@ -566,6 +566,17 @@ power=6
 toughness=6
 [/card]
 [card]
+id=39466
+name=Misery Charm
+mana={B}
+type=Instant
+text=Choose one: Destroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
+auto=may destroy target(cleric)
+auto=may moveTo(myHand) target(cleric|myGraveyard)
+auto=may life:-2 opponent
+rarity=C
+[/card]
+[card]
 text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.) {2}{W}: Put a 1/1 white Soldier creature token onto the battlefield.
 id=39699
 name=Mobilization

@@ -1370,14 +1370,7 @@ toughness=3
 text=Trample, haste. When Menacing Ogre comes into play, each player secretly chooses a number. Then those numbers are revealed. Each player with the highest number loses that much life. If you are one of those players, put two +1/+1 counters on Menacing Ogre.
 rarity=R
 [/card]
-[card]
-id=39466
-name=Misery Charm
-mana={B}
-type=Instant
-text=Choose one: Destroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
-rarity=C
-[/card]
+
 [card]
 id=39436
 name=Mistform Dreamer
