@@ -1,0 +1,32 @@
+#NAME: Rampage 3
+#DESC: tests Frost Giant: Rampage(2/2,1)
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Frost Giant,Plains
+hand:Swords to Plowshares
+[PLAYER2]
+inplay:Suntail Hawk,Scryb Sprites,Raging Goblin
+[DO]
+Frost Giant
+next
+Suntail Hawk
+Scryb Sprites
+Raging Goblin
+next
+next
+next
+next
+next
+Plains
+Swords to Plowshares
+Frost Giant
+[ASSERT]
+secondmain
+[PLAYER1]
+inplay:Plains
+graveyard:Swords to Plowshares
+life:28
+[PLAYER2]
+graveyard:Suntail Hawk,Scryb Sprites,Raging Goblin
+[END]

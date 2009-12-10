@@ -29,6 +29,7 @@ generic/persist3.txt
 generic/phases.txt
 generic/rampage.txt
 generic/rampage2.txt
+generic/rampage3.txt
 generic/rampage_vs_first_strike.txt
 generic/regenerate.txt
 generic/regenerate_wither_i146.txt
