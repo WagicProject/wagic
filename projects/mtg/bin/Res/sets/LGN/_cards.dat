@@ -7,7 +7,7 @@ mana={5}{W}{W}{W}
 type=Creature
 subtype=Angel
 power=6
-thougness=6
+toughness=6
 abilities=flying,first strike,trample,haste,protection from black,protection from red,vigilance,legendary
 [/card]
 [card]
@@ -20,7 +20,7 @@ type=Creature
 subtype=Human Cleric
 auto=lord(cleric) vigilance
 power=2
-thougness=4
+toughness=4
 [/card]
 [card]
 text=Flying
@@ -31,7 +31,7 @@ mana={U}
 type=Creature
 subtype=Bird Soldier
 power=0
-thougness=2
+toughness=2
 abilities=flying
 [/card]
 [card]
@@ -44,7 +44,7 @@ type=Creature
 subtype=Beast
 auto=rampage(1/1,0)
 power=3
-thougness=3
+toughness=3
 [/card]
 [card]
 text=All Sliver creatures get +1/+0.
@@ -56,7 +56,7 @@ type=Creature
 subtype=Sliver
 auto=lord(sliver) 1/0
 power=2
-thougness=2
+toughness=2
 [/card]
 [card]
 text={B}, Pay 1 life: Add one mana of any color to your mana pool.
@@ -72,7 +72,7 @@ auto={B}:Add {B} && life:-1 controller
 auto={B}:Add {R} && life:-1 controller
 auto={B}:Add {G} && life:-1 controller
 power=1
-thougness=1
+toughness=1
 [/card]
 [card]
 text=Cephalid Pathmage is unblockable.   {T}, Sacrifice Cephalid Pathmage: Target creature is unblockable this turn.
@@ -84,7 +84,7 @@ type=Creature
 subtype=Cephalid Wizard
 auto={T}{S}:unblockable target(creature)
 power=1
-thougness=2
+toughness=2
 abilities=unblockable
 [/card]
 [card]
@@ -97,7 +97,7 @@ type=Creature
 subtype=Insect
 auto={S(goblin|myBattlefield)}:2/2 && trample
 power=3
-thougness=3
+toughness=3
 abilities=haste
 [/card]
 [card]
@@ -111,7 +111,7 @@ subtype=Human Soldier
 auto=aslongas(bird|myBattlefield) 2/2
 auto=aslongas(bird|myBattlefield) flying
 power=1
-thougness=1
+toughness=1
 [/card]
 [card]
 text=Covert Operative is unblockable.
@@ -122,7 +122,7 @@ mana={4}{U}
 type=Creature
 subtype=Human Wizard
 power=3
-thougness=2
+toughness=2
 abilities=unblockable
 [/card]
 [card]
@@ -135,7 +135,7 @@ type=Creature
 subtype=Sliver
 auto=lord(sliver) {T}:regenerate target(sliver)
 power=1
-thougness=1
+toughness=1
 [/card]
 [card]
 text=Trample
@@ -146,7 +146,7 @@ mana={G}
 type=Creature
 subtype=Elf
 power=1
-thougness=1
+toughness=1
 abilities=trample
 [/card]
 [card]
@@ -171,7 +171,7 @@ type=Creature
 subtype=Human Cleric
 auto={2}{B}{T}{S(goblin|myBattlefield)}:destroy target(land)
 power=1
-thougness=1
+toughness=1
 [/card]
 [card]
 text=
@@ -182,7 +182,7 @@ mana={6}{G}
 type=Creature
 subtype=Beast
 power=7
-thougness=7
+toughness=7
 [/card]
 [card]
 text=Whenever a Sliver creature deals damage, its controller gains that much life.
@@ -194,7 +194,7 @@ type=Creature
 subtype=Sliver
 auto=lord(sliver) lifelink
 power=3
-thougness=3
+toughness=3
 [/card]
 [card]
 text={7}{R}: Flamewave Invoker deals 5 damage to target player.
@@ -206,7 +206,7 @@ type=Creature
 subtype=Goblin Mutant
 auto={7}{R}:damage:5 target(player)
 power=2
-thougness=2
+toughness=2
 [/card]
 [card]
 text=Beasts can't block.
@@ -218,7 +218,7 @@ type=Creature
 subtype=Lizard Beast
 auto=lord(beast) cantblock
 power=6
-thougness=6
+toughness=6
 [/card]
 [card]
 id=42160
@@ -228,7 +228,7 @@ mana={U}
 type=Creature
 subtype=Human Wizard
 power=1
-thougness=1
+toughness=1
 [/card]
 [card]
 text={7}{U}: Glintwing Invoker gets +3/+3 and gains flying until end of turn.
@@ -240,7 +240,7 @@ type=Creature
 subtype=Wizard Mutant
 auto={7}{U}:3/3 && flying
 power=3
-thougness=3
+toughness=3
 [/card]
 [card]
 text={T}, Sacrifice a forest: Add three mana in any combination of red and/or green to your mana pool.
@@ -255,7 +255,7 @@ auto={T}{S(forest|myBattlefield)}:Add {R}{R}{G}
 auto={T}{S(forest|myBattlefield)}:Add {R}{G}{G}
 auto={T}{S(forest|myBattlefield)}:Add {G}{G}{G}
 power=3
-thougness=3
+toughness=3
 [/card]
 [card]
 text={T}, Sacrifice a Goblin: All Goblin creatures get +2/+0 until end of turn.
@@ -267,7 +267,7 @@ type=Creature
 subtype=Goblin
 auto={T}{S(goblin|myBattlefield)}:lord(goblin) 2/0 ueot
 power=1
-thougness=2
+toughness=2
 [/card]
 [card]
 text=Sacrifice a Goblin: Regenerate Goblin Turncoat.
@@ -279,13 +279,13 @@ type=Creature
 subtype=Goblin Mercenary
 auto={S(goblin|myBattlefield)}:regenerate
 power=2
-thougness=1
+toughness=1
 [/card]
 [card]
 text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
 auto=@each my upkeep:foreach(zombie|myBattlefield) draw:1
 auto=@each my upkeep:foreach(zombie|myBattlefield) life:-1
-id=135256
+id=44841
 name=Graveborn Muse
 rarity=R
 mana={2}{B}{B}
@@ -304,7 +304,7 @@ type=Creature
 subtype=Demon
 auto=@movedTo(this|graveyard) from(battlefield):lord(creature) -5/-5 ueot
 power=5
-thougness=5
+toughness=5
 abilities=flying
 [/card]
 [card]
@@ -329,7 +329,7 @@ type=Creature
 subtype=Wizard
 auto=draw:1
 power=1
-thougness=1
+toughness=1
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
@@ -340,7 +340,7 @@ mana={4}{G}{G}
 type=Creature
 subtype=Beast
 power=3
-thougness=6
+toughness=6
 abilities=reach
 [/card]
 [card]
@@ -366,7 +366,7 @@ type=Creature
 subtype=Sliver
 auto=lord(sliver) 0/1
 power=1
-thougness=1
+toughness=1
 [/card]
 [card]
 text=Double strike (This creature deals both first-strike and regular combat damage)
@@ -377,7 +377,7 @@ mana={3}{R}
 type=Creature
 subtype=Lizard Beast
 power=2
-thougness=1
+toughness=1
 abilities=double strike
 [/card]
 [card]
@@ -390,11 +390,11 @@ type=Creature
 subtype=Human Wizard
 auto={2}{U}{U}{T}:foreach(wizard|myBattlefield) draw:1
 power=2
-thougness=3
+toughness=3
 [/card]
 [card]
 text=Untap all permanents you control during each other player's untap step.
-id=129722
+id=43607
 name=Seedborn Muse
 rarity=R
 mana={3}{G}{G}
@@ -415,7 +415,7 @@ subtype=Goblin
 auto=aslongas(beast|myBattlefield) 2/2
 auto=aslongas(beast|myBattlefield) trample
 power=2
-thougness=2
+toughness=2
 [/card]
 [card]
 text={7}{B}: Target creature gets -3/-3 until end of turn.
@@ -427,7 +427,7 @@ type=Creature
 subtype=Zombie Mutant
 auto={7}{B}:-3/-3 target(creature)
 power=3
-thougness=1
+toughness=1
 [/card]
 [card]
 text=All Sliver creatures have "2: This creature gets +1/+1 until end of turn."
@@ -439,7 +439,7 @@ type=Creature
 subtype=Sliver Spirit
 auto=lord(sliver) {2}:1/1
 power=2
-thougness=2
+toughness=2
 [/card]
 [card]
 text={7}{W}: You gain 5 life.
@@ -451,7 +451,7 @@ type=Creature
 subtype=Cleric Mutant
 auto={7}{W}:life:5 controller
 power=1
-thougness=3
+toughness=3
 [/card]
 [card]
 text={7}{G}: Stonewood Invoker gets +5/+5 until end of turn.
@@ -463,7 +463,7 @@ type=Creature
 subtype=Elf Mutant
 auto={7}{G}:5/5
 power=2
-thougness=2
+toughness=2
 [/card]
 [card]
 text={T}: Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
@@ -475,7 +475,7 @@ type=Creature
 subtype=Elf
 auto={T}:foreach(elf) 1/1 target(creature)
 power=1
-thougness=2
+toughness=2
 [/card]
 [card]
 text=Whenever a Beast enters the battlefield, you may gain 3 life.
@@ -487,7 +487,7 @@ type=Creature
 subtype=Elf Druid
 auto=@movedTo(beast|battlefield):may life:3 controller
 power=3
-thougness=3
+toughness=3
 [/card]
 [card]
 text=First strike, protection from black
@@ -498,7 +498,7 @@ mana={W}{W}
 type=Creature
 subtype=Human Knight
 power=2
-thougness=2
+toughness=2
 abilities=first strike,protection from black
 [/card]
 [card]
@@ -515,7 +515,7 @@ auto={T}:foreach(elf|myBattlefield) add:{B}
 auto={T}:foreach(elf|myBattlefield) add:{R}
 auto={T}:foreach(elf|myBattlefield) add:{G}
 power=2
-thougness=2
+toughness=2
 [/card]
 [card]
 text=Whenever another nontoken Elf enters the battlefield, you may put a 1/1 green Insect creature token onto the battlefield.
@@ -539,5 +539,5 @@ type=Creature
 subtype=Zombie Cleric
 auto={1}:moveTo(exile) target(*|graveyard)
 power=2
-thougness=2
+toughness=2
 [/card]
