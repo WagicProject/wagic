@@ -2115,8 +2115,7 @@ toughness=*
 [/card]
 [card]
 text=As Sculpting Steel comes into play, you may choose an artifact in play. If you do, Sculpting Steel comes into play as a copy of that artifact.
-target=artifact
-auto=may copy
+auto=may copy target(artifact)
 id=135241
 name=Sculpting Steel
 rarity=R

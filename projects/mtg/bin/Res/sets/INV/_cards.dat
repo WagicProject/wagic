@@ -2176,6 +2176,7 @@ id=23118
 name=Whip Silk
 rarity=C
 mana={G}
+target=creature
 auto=reach
 auto={G}:moveTo(ownerhand)
 type=Enchantment

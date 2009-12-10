@@ -87,6 +87,7 @@ id=5127
 name=Conviction
 rarity=C
 mana={1}{W}
+target=creature
 auto=1/3
 auto={W}:moveTo(ownerhand)
 type=Enchantment
