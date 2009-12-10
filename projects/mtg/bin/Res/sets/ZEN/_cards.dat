@@ -6,7 +6,7 @@ type=Artifact
 subtype=Equipment
 text=Landfall - Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 auto={1}:equip
-auto=@movedTo(land|myBattlefield):2/2
+auto=@movedTo(land|myBattlefield):2/2 ueot
 rarity=C
 [/card]
 [card]
