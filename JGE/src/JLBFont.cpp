@@ -132,7 +132,14 @@ void JLBFont::DrawString(const char *string, float x, float y, int align, float 
       continue;
     }
 
-		index = (*p - 32)+mBase;
+    //Skip characters with no encoding.
+    if((*p - 32) < 0 || (*p - 32) > 127){
+      p++;
+      continue;
+    }
+
+    index = (*p - 32)+mBase;
+    
     float charWidth = mCharWidth[index];
     float delta = (charWidth + mTracking) * mScale;
     float xPos =  mXPos[index];
