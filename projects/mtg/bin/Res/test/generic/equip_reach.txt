@@ -1,0 +1,41 @@
+#Test:equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Spidersilk Net
+manapool:{2}
+inplay:Runeclaw Bear
+[PLAYER2]
+inplay:Welkin Tern
+[DO]
+Spidersilk Net
+Spidersilk Net
+Runeclaw Bear
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+Welkin Tern
+next
+#blocker
+Runeclaw Bear
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+inplay:Runeclaw Bear,Spidersilk Net
+[PLAYER2]
+graveyard:Welkin Tern
+life:20
+[END]

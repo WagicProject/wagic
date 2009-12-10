@@ -1,4 +1,15 @@
 [card]
+id=178135
+name=Adventuring Gear
+mana={1}
+type=Artifact
+subtype=Equipment
+text=Landfall - Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+auto={1}:equip
+auto=@movedTo(land|myBattlefield):2/2
+rarity=C
+[/card]
+[card]
 text=Kicker {3} (You may pay an additional {3} as you cast this spell.)   AEther Figment is unblockable. If AEther Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
 id=170993
 name=AEther Figment
@@ -1216,6 +1227,18 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+id=178134
+name=Spidersilk Net
+mana={0}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +0/+2 and has reach. (It can block creatures with flying.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+auto={2}:equip
+auto=reach
+auto=0/2
+rarity=C
+[/card]
+[card]
 text=Spire Barrage deals damage to target creature or player equal to the number of Mountains you control.
 target=creature,player
 auto=foreach(mountain|myBattlefield) damage:1
@@ -1397,6 +1420,17 @@ type=Instant
 text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
 target=trap|mylibrary
 auto=moveTo(myhand)
+[/card]
+[card]
+id=193396
+name=Trusty Machete
+mana={1}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +2/+1. Equip {2}
+auto={2}:equip
+auto=2/1
+rarity=U
 [/card]
 [card]
 text=Haste   Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.

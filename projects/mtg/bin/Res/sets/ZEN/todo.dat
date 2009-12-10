@@ -7,6 +7,8 @@ subtype=Kor Soldier
 power=2
 toughness=2
 text=Other Kor creatures you control get +2/+2 for each Equipment attached to Armament Master.
+auto=foreach(this[equipment]) lord(other Kor|myBattlefield) 2/2
+##not codeable, the above its a concept
 rarity=R
 [/card]
 [card]
@@ -1055,15 +1057,7 @@ toughness=1
 text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) Landfall - Whenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
 rarity=U
 [/card]
-[card]
-id=178135
-name=Adventuring Gear
-mana={1}
-type=Artifact
-subtype=Equipment
-text=Landfall - Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=C
-[/card]
+
 [card]
 id=193397
 name=Blade of the Bloodchief
@@ -1071,6 +1065,10 @@ mana={1}
 type=Artifact
 subtype=Equipment
 text=Whenever a creature is put into a graveyard from the battlefield, put a +1/+1 counter on equipped creature. If equipped creature is a Vampire, put two +1/+1 counters on it instead. Equip {1}
+auto={1}:equip
+auto=@movedTo(creature|graveyard) from(battlefield):counter(1/1)
+auto=@movedTo(creature|graveyard) from(battlefield):aslongas(mytgt[vampire]) counter(1/1)
+##until mytgt is "upgraded" this will not work yet....
 rarity=R
 [/card]
 [card]
@@ -1138,15 +1136,7 @@ type=Artifact
 text=When Khalni Gem enters the battlefield, return two lands you control to their owner's hand. {T}: Add two mana of any one color to your mana pool.
 rarity=U
 [/card]
-[card]
-id=178134
-name=Spidersilk Net
-mana={0}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +0/+2 and has reach. (It can block creatures with flying.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=C
-[/card]
+
 [card]
 id=190410
 name=Trailblazer's Boots
@@ -1156,15 +1146,7 @@ subtype=Equipment
 text=Equipped creature has nonbasic landwalk. (It's unblockable as long as defending player controls a nonbasic land.) Equip {2}
 rarity=U
 [/card]
-[card]
-id=193396
-name=Trusty Machete
-mana={1}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+1. Equip {2}
-rarity=U
-[/card]
+
 [card]
 id=190414
 name=Emeria, the Sky Ruin

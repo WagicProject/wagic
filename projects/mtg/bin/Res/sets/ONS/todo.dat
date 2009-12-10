@@ -1523,14 +1523,7 @@ type=Sorcery
 text=Choose a creature type. If you control more creatures of that type than any other player, you gain control of all creatures of that type. (This effect doesn't end at end of turn.)
 rarity=R
 [/card]
-[card]
-id=39433
-name=Piety Charm
-mana={W}
-type=Instant
-text=Choose one: Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
-rarity=C
-[/card]
+
 [card]
 text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
 ###THIS CARD VERSION WON'T PREVENT THE CARD FROM BEING REGENERATED!!! 0.9.1
