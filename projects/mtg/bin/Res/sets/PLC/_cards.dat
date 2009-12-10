@@ -144,6 +144,17 @@ power=1
 toughness=1
 [/card]
 [card]
+id=124047
+name=Evolution Charm
+mana={1}{G}
+type=Instant
+text=Choose one - Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library; or return target creature card from your graveyard to your hand; or target creature gains flying until end of turn.
+auto=may moveTo(myhand) target(land[basic]|mylibrary)
+auto=may moveTo(myhand) target(land[basic]|mygraveyard)
+auto=may flying target(creature)
+rarity=C
+[/card]
+[card]
 text=Creatures you control get +1/+1.
 auto=lord(creature|myBattlefield) 1/1
 id=122367
@@ -262,6 +273,17 @@ subtype=Human Druid
 power=0
 toughness=2
 rarity=R
+[/card]
+[card]
+id=124034
+name=Midnight Charm
+mana={B}
+type=Instant
+text=Choose one - Midnight Charm deals 1 damage to target creature and you gain 1 life; or target creature gains first strike until end of turn; or tap target creature.
+auto=may damage:1 target(creature) && life:1 controller
+auto=may first strike target(creature)
+auto=may tap target(creature)
+rarity=C
 [/card]
 [card]
 text=All Slivers have "{3}, Sacrifice this permanent: Destroy target permanent."

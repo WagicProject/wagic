@@ -673,14 +673,7 @@ type=Artifact
 text={T}: Add {R} to your mana pool. {4}{R}: Foriysian Totem becomes a 4/4 red Giant artifact creature with trample until end of turn. As long as Foriysian Totem is a creature, it can block an additional creature.
 rarity=U
 [/card]
-[card]
-id=116732
-name=Fortify
-mana={2}{W}
-type=Instant
-text=Choose one: Creatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=126289
 name=Fortune Thief

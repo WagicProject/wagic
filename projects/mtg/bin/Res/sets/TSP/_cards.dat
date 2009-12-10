@@ -251,6 +251,16 @@ auto={T}:Add {G}
 rarity=L
 [/card]
 [card]
+id=116732
+name=Fortify
+mana={2}{W}
+type=Instant
+text=Choose one - Creatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
+auto=may lord(creature|myinplay) 2/0
+auto=may lord(creature|myinplay) 0/2
+rarity=C
+[/card]
+[card]
 text=All Sliver creatures have double strike.
 id=109722
 name=Fury Sliver

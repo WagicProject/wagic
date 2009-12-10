@@ -1035,14 +1035,7 @@ type=Artifact
 text={5}, {T}: Reveal the top three cards of your library. Target opponent chooses one of those cards. Put that card into your graveyard, then draw two cards.
 rarity=R
 [/card]
-[card]
-id=4561
-name=Thunderbolt
-mana={1}{R}
-type=Instant
-text=Choose one  EThunderbolt deals 3 damage to target player; or Thunderbolt deals 4 damage to target creature with flying.
-rarity=C
-[/card]
+
 [card]
 id=4501
 name=Tolarian Drake

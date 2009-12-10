@@ -325,6 +325,16 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
+id=12415
+name=Parch
+mana={1}{R}
+type=Instant
+text=Choose one - Parch deals 2 damage to target creature or player; or Parch deals 4 damage to target blue creature.
+auto=may damage:2 target(creature,player)
+auto=may damage:4 target(creature[blue])
+rarity=C
+[/card]
+[card]
 text={1}, Sacrifice a creature: Put a +1/+1 counter on Phyrexian Broodlings.
 id=12392
 name=Phyrexian Broodlings

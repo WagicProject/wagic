@@ -287,7 +287,7 @@ id=25872
 name=Hull Breach
 mana={R}{G}
 type=Sorcery
-text=Choose one  EDestroy target artifact; or destroy target enchantment; or destroy target artifact and target enchantment.
+text=Choose one - Destroy target artifact; or destroy target enchantment; or destroy target artifact and target enchantment.
 rarity=C
 [/card]
 [card]
@@ -906,7 +906,7 @@ id=25866
 name=Treva's Charm
 mana={G}{W}{U}
 type=Instant
-text=Choose one  EDestroy target enchantment; or exile target attacking creature; or draw a card, then discard a card.
+text=Choose one - Destroy target enchantment; or exile target attacking creature; or draw a card, then discard a card.
 rarity=U
 [/card]
 [card]

@@ -12,6 +12,16 @@ toughness=*
 rarity=R
 [/card]
 [card]
+text=Choose one — Tap all Spirits; or tap all non-Spirit creatures.
+name=Aether Shockwave
+id=74208
+mana={3}{W}
+type=Instant
+auto=may tap all(spirit)
+auto=may tap all(creature[-spirit])
+rarity=U
+[/card]
+[card]
 text={T}: Target creature gains haste until end of turn.
 name=Akki Drillmaster
 id=74393

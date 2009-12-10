@@ -107,6 +107,17 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
+id=3663
+name=Emerald Charm
+mana={G}
+type=Instant
+text=Choose one - Untap target permanent; or destroy target non-Aura enchantment; or target creature loses flying until end of turn.
+auto=may untap target(*)
+auto=may destroy target(enchantment[-aura])
+auto=may -flying target(creature)
+rarity=C
+[/card]
+[card]
 text=Whenever an enchantment is put into a graveyard from the battlefield, draw a card.
 auto=@movedTo(enchantment|graveyard) from(battlefield):draw:1 controller
 id=3736
@@ -161,6 +172,17 @@ rarity=R
 type=Land
 auto={T}:Add {1}
 auto={T}:1/1 target(griffin) && untap
+[/card]
+[card]
+id=3715
+name=Hope Charm
+mana={W}
+type=Instant
+text=Choose one - Target creature gains first strike until end of turn; or target player gains 2 life; or destroy target Aura.
+auto=may first strike target(creature)
+auto=may life:2 target(player)
+auto=may destroy target(aura)
+rarity=C
 [/card]
 [card]
 text=Hulking Cyclops can't block.

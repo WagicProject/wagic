@@ -423,14 +423,7 @@ toughness=5
 text=Flying When Palinchron enters the battlefield, untap up to seven lands. {2}{U}{U}: Return Palinchron to its owner's hand.
 rarity=R
 [/card]
-[card]
-id=12415
-name=Parch
-mana={1}{R}
-type=Instant
-text=Choose one  EParch deals 2 damage to target creature or player; or Parch deals 4 damage to target blue creature.
-rarity=C
-[/card]
+
 [card]
 id=9709
 name=Peace and Quiet
