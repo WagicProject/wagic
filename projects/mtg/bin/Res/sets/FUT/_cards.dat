@@ -256,8 +256,8 @@ text={T}: Add {1} to your mana pool.   {T}: Add {W} to your mana pool. Play this
 id=136045
 name=Nimbus Maze
 auto={T}:Add {1}
-auto=aslongas(plains|myBattlefield) {T}:Add {W}
-auto=aslongas(island|myBattlefield) {T}:Add {U}
+auto=aslongas(island|myBattlefield) {T}:Add {W}
+auto=aslongas(plains|myBattlefield) {T}:Add {U}
 rarity=R
 type=Land
 [/card]
@@ -319,7 +319,7 @@ rarity=U
 mana={2}
 type=Creature
 subtype=Spellshaper
-auto={1}{T}{S(*|myhand)}:token(Metallic Sliver,creature sliver, 1/1)
+auto={1}{T}{S(*|myhand)}:token(Metallic Sliver,artifact creature sliver, 1/1)
 power=1
 toughness=1
 [/card]
