@@ -6,7 +6,6 @@ type=Instant
 text=You may discard a Plains card rather than pay Abolish's mana cost. Destroy target artifact or enchantment.
 rarity=U
 [/card]
-
 [card]
 id=24591
 name=Alexi, Zephyr Mage
@@ -17,23 +16,6 @@ power=3
 toughness=3
 text={X}{U}, {T}, Discard two cards: Return X target creatures to their owners' hands.
 rarity=R
-[/card]
-[card]
-id=24579
-name=Alexi's Cloak
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature Enchanted creature has shroud. (It can't be the target of spells or abilities.)
-rarity=C
-[/card]
-[card]
-id=24560
-name=Aura Fracture
-mana={2}{W}
-type=Enchantment
-text=Sacrifice a land: Destroy target enchantment.
-rarity=C
 [/card]
 [card]
 id=24644
@@ -130,17 +112,6 @@ text=Flying {T}, Sacrifice a land: Search your library for a Mercenary permanent
 rarity=C
 [/card]
 [card]
-id=24638
-name=Branded Brawlers
-mana={R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Branded Brawlers can't attack if defending player controls an untapped land. Branded Brawlers can't block if you control an untapped land.
-rarity=C
-[/card]
-[card]
 id=24635
 name=Brutal Suppression
 mana={R}
@@ -182,25 +153,6 @@ mana={3}
 type=Artifact
 text={0}: Tap all lands you control. Chimeric Idol becomes a 3/3 Turtle artifact creature until end of turn.
 rarity=U
-[/card]
-[card]
-id=24643
-name=Citadel of Pain
-mana={2}{R}
-type=Enchantment
-text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
-rarity=U
-[/card]
-[card]
-id=24574
-name=Coastal Hornclaw
-mana={4}{U}
-type=Creature
-subtype=Bird
-power=3
-toughness=3
-text=Sacrifice a land: Coastal Hornclaw gains flying until end of turn.
-rarity=C
 [/card]
 [card]
 id=24618
@@ -255,33 +207,6 @@ text=Search target player's library for up to seven cards and exile them. Then t
 rarity=R
 [/card]
 [card]
-id=24615
-name=Despoil
-mana={3}{B}
-type=Sorcery
-text=Destroy target land. Its controller loses 2 life.
-rarity=C
-[/card]
-[card]
-id=24631
-name=Devastate
-mana={3}{R}{R}
-type=Sorcery
-text=Destroy target land. Devastate deals 1 damage to each creature and each player.
-rarity=C
-[/card]
-[card]
-id=24548
-name=Diving Griffin
-mana={1}{W}{W}
-type=Creature
-subtype=Griffin
-power=2
-toughness=2
-text=Flying, vigilance
-rarity=C
-[/card]
-[card]
 id=24678
 name=Dual Nature
 mana={4}{G}{G}
@@ -328,28 +253,6 @@ name=Excise
 mana={X}{W}
 type=Instant
 text=Exile target attacking creature unless its controller pays {X}.
-rarity=C
-[/card]
-[card]
-id=24626
-name=Fault Riders
-mana={2}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Sacrifice a land: Fault Riders gets +2/+0 and gains first strike until end of turn. Activate this ability only once each turn.
-rarity=C
-[/card]
-[card]
-id=24602
-name=Fen Stalker
-mana={3}{B}
-type=Creature
-subtype=Nightstalker
-power=3
-toughness=2
-text=Fen Stalker has fear as long as you control no untapped lands. (It can't be blocked except by artifact creatures and/or black creatures.)
 rarity=C
 [/card]
 [card]
@@ -438,15 +341,6 @@ text={X}{B}, {T}, Discard two cards: Target player discards X cards at random.
 rarity=R
 [/card]
 [card]
-id=24604
-name=Greel's Caress
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature Enchanted creature gets -3/-0.
-rarity=C
-[/card]
-[card]
 id=24573
 name=Gulf Squid
 mana={3}{U}
@@ -455,17 +349,6 @@ subtype=Squid Beast
 power=2
 toughness=2
 text=When Gulf Squid enters the battlefield, tap all lands target player controls.
-rarity=C
-[/card]
-[card]
-id=24572
-name=Hazy Homunculus
-mana={1}{U}
-type=Creature
-subtype=Homunculus Illusion
-power=1
-toughness=1
-text=Hazy Homunculus is unblockable as long as defending player controls an untapped land.
 rarity=C
 [/card]
 [card]
@@ -526,15 +409,6 @@ text={2}{G}, {T}, Discard two cards: All lands target player controls become 3/3
 rarity=R
 [/card]
 [card]
-id=24660
-name=Jolrael's Favor
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature {1}{G}: Regenerate enchanted creature.
-rarity=C
-[/card]
-[card]
 id=24637
 name=Keldon Arsonist
 mana={2}{R}
@@ -590,15 +464,6 @@ text={X}{R}, {T}, Discard two cards: Latulla, Keldon Overseer deals X damage to 
 rarity=R
 [/card]
 [card]
-id=24632
-name=Latulla's Orders
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature Whenever enchanted creature deals combat damage to defending player, you may destroy target artifact that player controls.
-rarity=C
-[/card]
-[card]
 id=24647
 name=Lesser Gargadon
 mana={2}{R}{R}
@@ -630,32 +495,12 @@ text={2}{W}{W}, {T}, Discard two cards: Destroy all creatures except for Mageta 
 rarity=R
 [/card]
 [card]
-id=24550
-name=Mageta's Boon
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-text=Flash Enchant creature Enchanted creature gets +1/+2.
-rarity=C
-[/card]
-[card]
 id=24578
 name=Mana Vapors
 mana={1}{U}
 type=Sorcery
 text=Lands target player controls don't untap during his or her next untap step.
 rarity=U
-[/card]
-[card]
-id=24664
-name=Marsh Boa
-mana={G}
-type=Creature
-subtype=Snake
-power=1
-toughness=1
-text=Swampwalk
-rarity=C
 [/card]
 [card]
 id=24563
@@ -667,17 +512,6 @@ power=2
 toughness=1
 text=Mercenary Informer can't be the target of black spells or abilities from black sources. {2}{W}: Put target Mercenary on the bottom of its owner's library.
 rarity=R
-[/card]
-[card]
-id=24555
-name=Mine Bearer
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text={T}, Sacrifice Mine Bearer: Destroy target attacking creature.
-rarity=C
 [/card]
 [card]
 id=24554
@@ -765,31 +599,12 @@ text=Whenever Plague Fiend deals combat damage to a creature, destroy that creat
 rarity=C
 [/card]
 [card]
-id=24622
-name=Plague Wind
-mana={7}{B}{B}
-type=Sorcery
-text=Destroy all creatures you don't control. They can't be regenerated.
-rarity=R
-[/card]
-[card]
 id=24593
 name=Psychic Theft
 mana={1}{U}
 type=Sorcery
 text=Target player reveals his or her hand. You choose an instant or sorcery card from it and exile that card. You may cast that card for as long as it remains exiled. At the beginning of the next end step, if you haven't cast the card, return it to its owner's hand.
 rarity=R
-[/card]
-[card]
-id=24663
-name=Pygmy Razorback
-mana={1}{G}
-type=Creature
-subtype=Boar
-power=2
-toughness=1
-text=Trample
-rarity=C
 [/card]
 [card]
 id=24582
@@ -905,17 +720,6 @@ text=Unless any player pays {2}, search your library for a card, put that card i
 rarity=R
 [/card]
 [card]
-id=24653
-name=Rib Cage Spider
-mana={2}{G}
-type=Creature
-subtype=Spider
-power=1
-toughness=4
-text=Reach (This creature can block creatures with flying.)
-rarity=C
-[/card]
-[card]
 id=24571
 name=Ribbon Snake
 mana={1}{U}{U}
@@ -924,17 +728,6 @@ subtype=Snake
 power=2
 toughness=3
 text=Flying {2}: Ribbon Snake loses flying until end of turn. Any player may activate this ability.
-rarity=C
-[/card]
-[card]
-id=24627
-name=Ridgeline Rager
-mana={2}{R}
-type=Creature
-subtype=Beast
-power=1
-toughness=2
-text={R}: Ridgeline Rager gets +1/+0 until end of turn.
 rarity=C
 [/card]
 [card]
@@ -954,30 +747,11 @@ text={2}: Prevent the next 1 damage that would be dealt to target creature this 
 rarity=R
 [/card]
 [card]
-id=24636
-name=Scoria Cat
-mana={3}{R}{R}
-type=Creature
-subtype=Cat
-power=3
-toughness=3
-text=Scoria Cat gets +3/+3 as long as you control no untapped lands.
-rarity=U
-[/card]
-[card]
 id=24641
 name=Search for Survivors
 mana={2}{R}
 type=Sorcery
 text=Reorder your graveyard at random. An opponent chooses a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, exile it.
-rarity=R
-[/card]
-[card]
-id=24650
-name=Searing Wind
-mana={8}{R}
-type=Instant
-text=Searing Wind deals 10 damage to target creature or player.
 rarity=R
 [/card]
 [card]
@@ -1009,17 +783,6 @@ power=4
 toughness=4
 text=Whenever Shrouded Serpent attacks, defending player may pay {4}. If he or she doesn't, Shrouded Serpent is unblockable this turn.
 rarity=R
-[/card]
-[card]
-id=24655
-name=Silt Crawler
-mana={2}{G}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-text=When Silt Crawler enters the battlefield, tap all lands you control.
-rarity=C
 [/card]
 [card]
 id=24668
@@ -1071,55 +834,11 @@ text=Flying (This creature can't be blocked except by creatures with flying or r
 rarity=U
 [/card]
 [card]
-id=24666
-name=Spitting Spider
-mana={3}{G}{G}
-type=Creature
-subtype=Spider
-power=3
-toughness=5
-text=Reach (This creature can block creatures with flying.) Sacrifice a land: Spitting Spider deals 1 damage to each creature with flying.
-rarity=U
-[/card]
-[card]
-id=24625
-name=Spur Grappler
-mana={2}{R}
-type=Creature
-subtype=Beast
-power=2
-toughness=1
-text=Spur Grappler gets +2/+1 as long as you control no untapped lands.
-rarity=C
-[/card]
-[card]
-id=24672
-name=Squirrel Wrangler
-mana={2}{G}{G}
-type=Creature
-subtype=Human Druid
-power=2
-toughness=2
-text={1}{G}, Sacrifice a land: Put two 1/1 green Squirrel creature tokens onto the battlefield. {1}{G}, Sacrifice a land: Squirrel creatures get +1/+1 until end of turn.
-rarity=R
-[/card]
-[card]
 id=24608
 name=Steal Strength
 mana={1}{B}
 type=Instant
 text=Target creature gets +1/+1 until end of turn. Another target creature gets -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=24583
-name=Stormwatch Eagle
-mana={3}{U}
-type=Creature
-subtype=Bird
-power=2
-toughness=1
-text=Flying Sacrifice a land: Return Stormwatch Eagle to its owner's hand.
 rarity=C
 [/card]
 [card]
@@ -1129,17 +848,6 @@ mana={1}{U}
 type=Enchantment
 subtype=Aura
 text=Enchant land Enchanted land has "{T}: Counter target spell unless its controller pays {1}."
-rarity=U
-[/card]
-[card]
-id=24544
-name=Sword Dancer
-mana={1}{W}
-type=Creature
-subtype=Human Rebel
-power=1
-toughness=2
-text={W}{W}: Target attacking creature gets -1/-0 until end of turn.
 rarity=U
 [/card]
 [card]
@@ -1170,17 +878,6 @@ text=Put a +1/+1 counter on each of X target creatures.
 rarity=C
 [/card]
 [card]
-id=24546
-name=Trenching Steed
-mana={3}{W}
-type=Creature
-subtype=Horse Rebel
-power=2
-toughness=3
-text=Sacrifice a land: Trenching Steed gets +0/+3 until end of turn.
-rarity=C
-[/card]
-[card]
 id=24547
 name=Troubled Healer
 mana={2}{W}
@@ -1192,17 +889,6 @@ text=Sacrifice a land: Prevent the next 2 damage that would be dealt to target c
 rarity=C
 [/card]
 [card]
-id=24584
-name=Troublesome Spirit
-mana={2}{U}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=4
-text=Flying At the beginning of your end step, tap all lands you control.
-rarity=R
-[/card]
-[card]
 id=24662
 name=Verdant Field
 mana={2}{G}
@@ -1210,17 +896,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant land Enchanted land has "{T}: Target creature gets +1/+1 until end of turn."
 rarity=U
-[/card]
-[card]
-id=24645
-name=Veteran Brawlers
-mana={1}{R}
-type=Creature
-subtype=Human Soldier
-power=4
-toughness=4
-text=Veteran Brawlers can't attack if defending player controls an untapped land. Veteran Brawlers can't block if you control an untapped land.
-rarity=R
 [/card]
 [card]
 id=24652
@@ -1232,25 +907,6 @@ power=4
 toughness=3
 text=Trample {3}: Vintara Elephant loses trample until end of turn. Any player may activate this ability.
 rarity=C
-[/card]
-[card]
-id=24656
-name=Vintara Snapper
-mana={G}{G}
-type=Creature
-subtype=Turtle
-power=2
-toughness=2
-text=Vintara Snapper has shroud as long as you control no untapped lands. (It can't be the target of spells or abilities.)
-rarity=U
-[/card]
-[card]
-id=24677
-name=Vitalizing Wind
-mana={8}{G}
-type=Instant
-text=Creatures you control get +7/+7 until end of turn.
-rarity=R
 [/card]
 [card]
 id=24609
@@ -1277,17 +933,6 @@ name=Well of Life
 mana={4}
 type=Artifact
 text=At the beginning of your end step, if you control no untapped lands, you gain 2 life.
-rarity=U
-[/card]
-[card]
-id=24628
-name=Whip Sergeant
-mana={2}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
-text={R}: Target creature gains haste until end of turn. (It can attack this turn.)
 rarity=U
 [/card]
 [card]
@@ -1318,14 +963,6 @@ subtype=Human Scout
 power=3
 toughness=3
 text=Flying Whenever Windscouter attacks or blocks, return it to its owner's hand at end of combat.
-rarity=U
-[/card]
-[card]
-id=25523
-name=Wing Storm
-mana={2}{G}
-type=Sorcery
-text=Wing Storm deals damage to each player equal to twice the number of creatures with flying that player controls.
 rarity=U
 [/card]
 [card]

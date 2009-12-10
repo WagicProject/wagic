@@ -1,14 +1,305 @@
 [card]
+text={1}{B}, Sacrifice a land: Target creature gets +2/+0 until end of turn.
 id=24601
 name=Agent of Shauku
+rarity=C
 mana={1}{B}
 type=Creature
 subtype=Human Mercenary
+auto={S(land|myBattlefield)}:2/0 target(creature)
 power=1
 toughness=1
-text={1}{B}, Sacrifice a land: Target creature gets +2/+0 until end of turn.
-auto={1}{B}{S(land|myBattlefield)}:2/0 target(creature)
+[/card]
+[card]
+text=Flash   Enchant creature   Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+target=creature
+auto=shroud
+id=24579
+name=Alexi's Cloak
 rarity=C
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
+text=Sacrifice a land: Destroy target enchantment.
+auto={S(land|myBattlefield)}:destroy target(enchantment)
+id=24560
+name=Aura Fracture
+rarity=C
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+text=Branded Brawlers can't attack if defending player controls an untapped land.   Branded Brawlers can't block if you control an untapped land.
+id=24638
+name=Branded Brawlers
+rarity=C
+mana={R}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(land[-tapped]|opponentBattlefield) cantattack
+auto=aslongas(land[-tapped]|myBattlefield) cantblock
+power=2
+toughness=2
+[/card]
+[card]
+text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
+auto=@each my end:foreach(land[-tapped]|myBattlefield) damage:1 controller
+auto=@each opponent end:foreach(land[-tapped]|opponentBattlefield) damage:1 opponent
+id=24643
+name=Citadel of Pain
+rarity=U
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+text=Sacrifice a land: Coastal Hornclaw gains flying until end of turn.
+id=24574
+name=Coastal Hornclaw
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Bird
+auto={S(land|myBattlefield)}:flying
+power=3
+toughness=3
+[/card]
+[card]
+text=Destroy target land. Its controller loses 2 life.
+id=24615
+target=land
+auto=destroy
+auto=life:-2 targetcontroller
+name=Despoil
+rarity=C
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+text=Destroy target land. Devastate deals 1 damage to each creature and each player.
+id=24631
+target=land
+auto=destroy
+auto=damage:1 all(creature,player)
+name=Devastate
+rarity=C
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text=Flying, vigilance
+id=24548
+name=Diving Griffin
+rarity=C
+mana={1}{W}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+abilities=flying,vigilance
+[/card]
+[card]
+text=Sacrifice a land: Fault Riders gets +2/+0 and gains first strike until end of turn. Activate this ability only once each turn.
+id=24626
+name=Fault Riders
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+auo={S(land|myBattlefield):2/0 && first strike limit:1
+power=2
+toughness=2
+[/card]
+[card]
+text=Fen Stalker has fear as long as you control no untapped lands.
+auto=aslongas(land[-tapped]|myBattlefield) -fear
+id=24602
+name=Fen Stalker
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Nightstalker
+power=3
+toughness=2
+abilities=fear
+[/card]
+[card]
+text=Flash   Enchant creature   Enchanted creature -3/-0.
+target=creature
+auto=-3/-0
+id=24604
+name=Greel's Caress
+rarity=C
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
+text=Hazy Homunculus is unblockable as long as defending player controls an untapped land.
+auto=aslongas(land[-tapped]|opponentBattlefield) -unblockable
+id=24572
+name=Hazy Homunculus
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Homunculus Illusion
+power=1
+toughness=1
+abilities=unblockable
+[/card]
+[card]
+text=Flash   Enchant creature   
+target=creature
+auto={1}{G}:regenerate
+id=24660
+name=Jolrael's Favor
+rarity=C
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
+text=Flash   Enchant creature   Whenever enchanted creature deals combat damage to defending player, you may destroy target artifact that player controls.
+target=creature
+auto==@damaged(player) from(mytgt):may destroy target(artifact|opponentBattlefield)
+id=24632
+name=Latulla's Orders
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
+text=Flash   Enchant creature   Enchanted creature gets +1/+2.
+target=creature
+auto=1/2
+id=24550
+name=Mageta's Boon
+rarity=C
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
+text=Swampwalk
+id=24664
+name=Marsh Boa
+rarity=C
+mana={G}
+type=Creature
+subtype=Snake
+power=1
+toughness=1
+abilities=swampwalk
+[/card]
+[card]
+text={T}, Sacrifice Mine Bearer: Destroy target attacking creature.
+id=24555
+name=Mine Bearer
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+auto={T}{S}:destroy target(creature[attacking])
+power=1
+toughness=1
+[/card]
+[card]
+text=Destroy all creatures you don't control. They can't be regenerated.
+auto=bury all(creature|opponentBattlefield)
+id=24622
+name=Plague Wind
+rarity=R
+mana={7}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Trample
+id=24663
+name=Pygmy Razorback
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Boar
+power=2
+toughness=1
+abilities=trample
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=24653
+name=Rib Cage Spider
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Spider
+power=1
+toughness=4
+abilities=reach
+[/card]
+[card]
+text={R}: Ridgeline Rager gets +1/+0 until end of turn.
+id=24627
+name=Ridgeline Rager
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Beast
+auto={R}:1/0
+power=1
+toughness=2
+[/card]
+[card]
+text=Scoria Cat gets +3/+3 as long as you control no untapped lands.
+id=24636
+name=Scoria Cat
+rarity=U
+mana={3}{R}{R}
+type=Creature
+subtype=Cat
+auto=aslongas(land[-tapped]|myBattlefield) -3/-3
+power=6
+toughness=6
+[/card]
+[card]
+text=Searing Wind deals 10 damage to target creature or player.
+target=creature,player
+auto=damage:10
+id=24650
+name=Searing Wind
+rarity=R
+mana={8}{R}
+type=Instant
+[/card]
+[card]
+text=When Silt Crawler enters the battlefield, tap all lands you control.
+id=24655
+name=Silt Crawler
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Beast
+auto=tap all(land|myBattlefield)
+power=3
+toughness=3
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.) Sacrifice a land: Spitting Spider deals 1 damage to each creature with flying.
+id=24666
+name=Spitting Spider
+rarity=U
+mana={3}{G}{G}
+type=Creature
+subtype=Spider
+auto={S(land|myBattlefield)}:damage:1 all(creature[flying])
+power=3
+toughness=5
 [/card]
 [card]
 text=Sacrifice Spore Frog: Prevent all combat damage that would be dealt this turn.
@@ -21,4 +312,136 @@ subtype=Frog
 auto={S}:preventAllcombatDamage ueot
 power=1
 toughness=1
+[/card]
+[card]
+text=Spur Grappler gets +2/+1 as long as you control no untapped lands.
+id=24625
+name=Spur Grappler
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Beast
+auto=aslongas(land[-tapped]|myBattlefield) -2/-1
+power=4
+toughness=2
+[/card]
+[card]
+text={1}{G}, Sacrifice a land: Put two 1/1 green Squirrel creature tokens onto the battlefield.   {1}{G}, Sacrifice a land: Squirrel creatures get +1/+1 until end of turn.
+id=24672
+name=Squirrel Wrangler
+rarity=R
+mana={2}{G}{G}
+type=Creature
+subtype=Human Druid
+auto={1}{G}{S(land|myBattlefield)}:(Squirrel,creature squirrel token,1/1,green)*2
+auto={1}{G}{S(land|myBattlefield)}:lord(squirrel) 1/1 ueot
+power=2
+toughness=2
+[/card]
+[card]
+text=Flying   Sacrifice a land: Return Stormwatch Eagle to its owner's hand.
+id=24583
+name=Stormwatch Eagle
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Bird
+auto={S(land|myBattlefield)}:moveTo(ownerhand)
+power=2
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={W}{W}: Target attacking creature gets -1/-0 until end of turn.
+id=24544
+name=Sword Dancer
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Human Rebel
+auto={W}{W}:-1/0 target(creature[attacking])
+power=1
+toughness=2
+[/card]
+[card]
+text=Sacrifice a land: Trenching Steed gets +0/+3 until end of turn.
+id=24546
+name=Trenching Steed
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Horse Rebel
+auto={S(land|myBattlefield)}:0/3
+power=2
+toughness=3
+[/card]
+[card]
+text=Flying   At the beginning of your end step, tap all lands you control.
+auto=@each my end:tap all(land|myBattlefield)
+id=24584
+name=Troublesome Spirit
+rarity=R
+mana={2}{U}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=4
+abilities=flying
+[/card]
+[card]
+text=Veteran Brawlers can't attack if defending player controls an untapped land.   Veteran Brawlers can't block if you control an untapped land.
+id=24645
+name=Veteran Brawlers
+rarity=R
+mana={1}{R}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(land[-tapped]|opponentBattlefield) cantattack
+auto=aslongas(land[-tapped]|myBattlefield) cantblock
+power=4
+toughness=4
+[/card]
+[card]
+text=Vintara Snapper has shroud as long as you control no untapped lands. (It can't be the target of spells or abilities.)
+id=24656
+name=Vintara Snapper
+rarity=U
+mana={G}{G}
+type=Creature
+subtype=Turtle
+auto=aslongas(land[-tapped]|myBattlefield) -shroud
+power=2
+toughness=2
+abilities=shroud
+[/card]
+[card]
+text=Creatures you control get +7/+7 until end of turn.
+id=24677
+name=Vitalizing Wind
+auto=lord(creature|myBattlefield) 7/7 ueot
+rarity=R
+mana={8}{G}
+type=Instant
+[/card]
+[card]
+text={R}: Target creature gains haste until end of turn. (It can attack this turn.)
+id=24628
+name=Whip Sergeant
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+auto={R}:haste target(creature)
+power=2
+toughness=1
+[/card]
+[card]
+text=Wing Storm deals damage to each player equal to twice the number of creatures with flying that player controls.
+auto=foreach(creature[flying]|myBattlefield) damage:2 controller
+auto=foreach(creature[flying]|opponentBattlefield) damage:2 opponent
+id=25523
+name=Wing Storm
+rarity=U
+mana={2}{G}
+type=Sorcery
 [/card]

@@ -45,7 +45,7 @@ auto={2}{U}{U}:moveTo(myhand)
 abilities=legendary
 [/card]
 [card]
-text=Haste.   When Avarax enters the battlefield, you may search your library for a card named Avarax, reveal it, and put it into your hand. If you do, shuffle your library. {1}{R}: Avarax gets +1/+0 until end of turn.
+text=Haste   When Avarax enters the battlefield, you may search your library for a card named Avarax, reveal it, and put it into your hand. If you do, shuffle your library. {1}{R}: Avarax gets +1/+0 until end of turn.
 id=43331
 name=Avarax
 rarity=U
@@ -59,7 +59,7 @@ toughness=3
 abilities=haste
 [/card]
 [card]
-text=Flying. All other Birds get +1/+1. All other Soldiers get +1/+1.
+text=Flying   All other Birds get +1/+1.   All other Soldiers get +1/+1.
 id=40131
 name=Aven Brigadier
 rarity=R
@@ -91,7 +91,7 @@ type=Land
 auto={T}{S}:moveTo(myBattlefield) target(swamp,mountain|mylibrary) && life:-1 controller
 [/card]
 [card]
-text=Add {R} to your mana pool for each Goblin on the Battlefield.
+text=Add {R} to your mana pool for each Goblin on the battlefield.
 id=39846
 name=Brightstone Ritual
 mana={R}
