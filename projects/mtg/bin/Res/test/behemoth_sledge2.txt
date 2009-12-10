@@ -1,0 +1,34 @@
+#Test:equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:behemoth sledge
+manapool:{7}{G}{W}
+inplay:grizzly bears,raging goblin
+[PLAYER2]
+[DO]
+behemoth sledge
+behemoth sledge
+grizzly bears
+behemoth sledge
+raging goblin
+next
+#begin
+next
+#attackers
+grizzly bears
+raging goblin
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:23
+inplay:grizzly bears,raging goblin,behemoth sledge
+[PLAYER2]
+life:15
+[END]

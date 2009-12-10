@@ -215,6 +215,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return amp;
       }
 
+      AEquip *ae = dynamic_cast<AEquip*>(a);
+      if (ae){
+        ae->cost = cost;
+        TargetChooserFactory tcf;
+        ae->tc = tcf.createTargetChooser("creature|myBattlefield", card);
+        return ae;
+      }
+
+
       int limit = 0;
       unsigned int limit_str = s.find("limit:");
       if (limit_str != string::npos){
@@ -403,6 +412,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power,toughness,sabilities,0, multiplier);
     tok->oneShot = 1;
     return tok;
+  }
+
+  //Equipment
+  found = s.find("equip");
+  if (found != string::npos){
+    MTGAbility * a = NEW AEquip(id,card);
+    return a;
   }
 
 
@@ -825,19 +841,9 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
   return 0;
 }
 
-//Some basic functionalities that can be added automatically in the text file
-/*
- * Several objects are computed from the text string, and have a direct influence on what action we should take
- * (direct impact on the game such as draw a card immediately, or create a New GameObserver and add it to the Abilities,etc..)
- * These objects are:
- *   - trigger (if there is an "@" in the string, this is a triggered ability)
- *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
- *   - doTap (a dirty way to know if tapping is included in the cost...
- */
-int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int mode, TargetChooser * tc){
-  int dryMode = 0;
-  if (!spell) dryMode = 1;
 
+int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card, int id){
+ 
   if (!card && spell) card = spell->source;
   if (!card) return 0;
   MTGCardInstance * target = card->target;
@@ -854,7 +860,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
   unsigned int found;
   int result = id;
 
-  
   while (magicText.size()){
     found = magicText.find("\n");
     if (found != string::npos){
@@ -866,6 +871,34 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
     }
 
     MTGAbility * a = parseMagicLine(line, result, spell, card); 
+    if (a){
+      v->push_back(a);
+      result++;
+    }else{
+      OutputDebugString("ABILITYFACTORY ERROR: Parser returned NULL\n");
+    }
+  }
+  return result;
+}
+
+//Some basic functionalities that can be added automatically in the text file
+/*
+ * Several objects are computed from the text string, and have a direct influence on what action we should take
+ * (direct impact on the game such as draw a card immediately, or create a New GameObserver and add it to the Abilities,etc..)
+ * These objects are:
+ *   - trigger (if there is an "@" in the string, this is a triggered ability)
+ *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
+ *   - doTap (a dirty way to know if tapping is included in the cost...
+ */
+int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int mode, TargetChooser * tc){
+  int dryMode = 0;
+  if (!spell) dryMode = 1;
+
+  vector<MTGAbility *> v;
+  int result = getAbilities(&v,spell,card,id);
+
+  for (size_t i = 0; i < v.size(); ++i){
+    MTGAbility * a = v[i];
     if (dryMode){
       result = abilityEfficiency(a, card->controller(),mode,tc);
       SAFE_DELETE(a);
@@ -879,7 +912,6 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
       }else{
         a->addToGame();
       }
-      result++;
     }else{
       OutputDebugString("ABILITYFACTORY ERROR: Parser returned NULL\n");
     }

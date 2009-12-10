@@ -1,0 +1,33 @@
+#Test:equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:behemoth sledge
+manapool:{4}{G}{W}
+inplay:raging goblin
+[PLAYER2]
+inplay:mountain
+hand:lightning bolt
+[DO]
+behemoth sledge
+behemoth sledge
+raging goblin
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+mountain
+lightning bolt
+raging goblin
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:behemoth sledge
+graveyard:raging goblin
+[PLAYER2]
+inplay:mountain
+graveyard:lightning bolt
+[END]

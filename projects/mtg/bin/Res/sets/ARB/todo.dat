@@ -72,15 +72,7 @@ toughness=1
 text=As long as you control another multicolored permanent, Bant Sureblade gets +1/+1 and has first strike.
 rarity=C
 [/card]
-[card]
-id=179545
-name=Behemoth Sledge
-mana={1}{G}{W}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+2 and has lifelink and trample. Equip {3}
-rarity=U
-[/card]
+
 [card]
 id=185057
 name=Bituminous Blast

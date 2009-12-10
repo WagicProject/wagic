@@ -1,4 +1,17 @@
 [card]
+id=179545
+name=Behemoth Sledge
+mana={1}{G}{W}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +2/+2 and has lifelink and trample. Equip {3}
+auto={3}:equip
+auto=2/2
+auto=lifelink
+auto=trample
+rarity=U
+[/card]
+[card]
 text=Trample, haste   At end of turn, Blitz Hellion's owner shuffles it into his or her library.
 auto=@next my endofturn:moveto(myLibrary) && shuffle
 id=179406

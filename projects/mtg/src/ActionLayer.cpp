@@ -264,6 +264,9 @@ ActionLayer::ActionLayer(){
 }
 
 ActionLayer::~ActionLayer(){
+  for (int i=mCount-1;i>=0;i--){
+    moveToGarbage((ActionElement *)mObjects[i]);
+  }
   SAFE_DELETE(abilitiesMenu);
   cleanGarbage();
 }

@@ -1,0 +1,54 @@
+#Test:equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:behemoth sledge
+manapool:{4}{G}{W}
+inplay:raging goblin
+[PLAYER2]
+inplay:mountain,island,forest
+hand:smash
+[DO]
+behemoth sledge
+behemoth sledge
+raging goblin
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+mountain
+island
+forest
+smash
+behemoth sledge
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+raging goblin
+next
+#blocker
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:behemoth sledge
+inplay:raging goblin
+[PLAYER2]
+inplay:mountain,island,forest
+graveyard:smash
+life:19
+[END]

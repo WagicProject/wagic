@@ -93,6 +93,10 @@ basal_sliver.txt
 beacon_of_creation.txt
 beacon_of_destruction.txt
 beacon_of_unrest.txt
+behemoth_sledge.txt
+behemoth_sledge2.txt
+behemoth_sledge3.txt
+behemoth_sledge4.txt
 belligerent_hatchling.txt
 benalish_knight.txt
 black_vise.txt
@@ -355,4 +359,5 @@ momir/overcost.txt
 ########################
 #AI Tests
 ########################
-ai/goblin_artillery.txt
+#Removed until we can have these tests work on all machines :(
+#ai/goblin_artillery.txt

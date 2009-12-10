@@ -203,6 +203,7 @@ class AbilityFactory{
   int parsePowerToughness(string s, int *power, int *toughness);
   TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
  public:
+  int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0);
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0);
   int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL);
   int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);

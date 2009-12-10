@@ -1,0 +1,31 @@
+#Test:equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:behemoth sledge
+manapool:{4}{G}{W}
+inplay:grizzly bears
+[PLAYER2]
+[DO]
+behemoth sledge
+behemoth sledge
+grizzly bears
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:24
+inplay:grizzly bears,behemoth sledge
+[PLAYER2]
+life:16
+[END]

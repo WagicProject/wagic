@@ -945,6 +945,76 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
 };
 
 
+class AEquip:public TargetAbility{
+public:
+  vector<MTGAbility *> currentAbilities; 
+  AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int myturnOnly = 1):TargetAbility(_id,_source,NULL,_cost,myturnOnly,doTap){
+    
+ }
+
+  int unequip(){
+    source->target = NULL;
+    for (size_t i = 0; i < currentAbilities.size(); ++i){
+      MTGAbility * a = currentAbilities[i];
+      if(dynamic_cast<AEquip *>(a)){
+        SAFE_DELETE(a);
+        continue;
+      }
+      GameObserver::GetInstance()->removeObserver(currentAbilities[i]);
+    }
+    currentAbilities.clear();
+    return 1;
+  }
+
+
+  int equip(MTGCardInstance * equipped){
+    source->target = equipped;
+    AbilityFactory af;
+    af.getAbilities(&currentAbilities,NULL,source);
+    for (size_t i = 0; i < currentAbilities.size(); ++i){
+      MTGAbility * a = currentAbilities[i];
+      if(dynamic_cast<AEquip *>(a)) continue;
+      a->addToGame();
+    }
+    return 1;
+
+  }
+
+
+  int resolve(){
+    MTGCardInstance * mTarget = tc->getNextCardTarget();
+    if (!mTarget) return 0;
+    if (mTarget == source) return 0;
+    unequip();
+    equip(mTarget);
+ 
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Equip";
+  }
+
+
+  int testDestroy(){
+    if (source->target && !game->isInPlay(source->target)) 
+      unequip();
+    return TargetAbility::testDestroy();
+  }
+
+  int destroy(){
+    unequip();
+    return TargetAbility::destroy();
+  }
+
+  AEquip * clone() const{
+    AEquip * a =  NEW AEquip(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+};
+
 
 /*Gives life each time a spell matching CardDescriptor's criteria are match . Optionnal manacost*/
 class ASpellCastLife:public MTGAbility{
