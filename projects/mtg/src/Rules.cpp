@@ -1,7 +1,7 @@
 #include "../include/Rules.h"
-#include "../include/mtgdefinitions.h"
+#include "../include/MTGDefinitions.h"
 #include "../include/config.h"
-#include "../include/Manacost.h"
+#include "../include/ManaCost.h"
 #include "../include/Player.h"
 #include "../include/AIMomirPlayer.h"
 
