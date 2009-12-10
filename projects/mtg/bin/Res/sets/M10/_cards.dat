@@ -1141,6 +1141,16 @@ text=Target player discards X cards at random.
 rarity=R
 [/card]
 [card]
+id=191323
+alias=1192
+name=Mind Spring
+mana={X}{U}{U}
+type=Sorcery
+text=Draw X cards.
+auto=Draw:X
+rarity=R
+[/card]
+[card]
 id=189921
 name=Mist Leopard
 mana={3}{G}
