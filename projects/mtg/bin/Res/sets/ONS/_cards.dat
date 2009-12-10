@@ -687,7 +687,7 @@ mana={W}
 type=Instant
 text=Choose one: Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
 auto=may destroy target(aura)
-auto=may target(creature) 2/2
+auto=may target(creature[soldier]) 2/2
 auto=may lord(creature|myBattlefield) vigilance ueot
 rarity=C
 [/card]
