@@ -1,12 +1,543 @@
 [card]
+text=Flying, first strike, vigilance, trample, haste, protection from black and from red
 id=42049
 name=Akroma, Angel of Wrath
+rarity=R
 mana={5}{W}{W}{W}
 type=Creature
 subtype=Angel
 power=6
-toughness=6
-text=Flying, first strike, vigilance, trample, haste, protection from black and from red
-abilities=Legendary,Flying,first strike,vigilance,trample,haste,protection from black,protection from red
+thougness=6
+abilities=flying,first strike,trample,haste,protection from black,protection from red,vigilance,legendary
+[/card]
+[card]
+text=Cleric creatures have vigilance.
+id=44747
+name=Akroma's Devoted
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+auto=lord(cleric) vigilance
+power=2
+thougness=4
+[/card]
+[card]
+text=Flying
+id=44325
+name=Aven Envoy
+rarity=C
+mana={U}
+type=Creature
+subtype=Bird Soldier
+power=0
+thougness=2
+abilities=flying
+[/card]
+[card]
+text=Whenever a Beast becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=44334
+name=Berserk Murlodont
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Beast
+auto=rampage(1/1,0)
+power=3
+thougness=3
+[/card]
+[card]
+text=All Sliver creatures get +1/+0.
+id=42016
+name=Blade Sliver
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) 1/0
+power=2
+thougness=2
+[/card]
+[card]
+text={B}, Pay 1 life: Add one mana of any color to your mana pool.
+id=44206
+name=Blood Celebrant
+rarity=C
+mana={B}
+type=Creature
+subtype=Human Cleric
+auto={B}:Add {W} && life:-1 controller
+auto={B}:Add {U} && life:-1 controller
+auto={B}:Add {B} && life:-1 controller
+auto={B}:Add {R} && life:-1 controller
+auto={B}:Add {G} && life:-1 controller
+power=1
+thougness=1
+[/card]
+[card]
+text=Cephalid Pathmage is unblockable.   {T}, Sacrifice Cephalid Pathmage: Target creature is unblockable this turn.
+id=29717
+name=Cephalid Pathmage
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Cephalid Wizard
+auto={T}{S}:unblockable target(creature)
+power=1
+thougness=2
+abilities=unblockable
+[/card]
+[card]
+text=Haste   Sacrifice a Goblin: Clickslither gets +2/+2 and gains trample until end of turn.
+id=42277
+name=Clickslither
 rarity=R
+mana={1}{R}{R}{R}
+type=Creature
+subtype=Insect
+auto={S(goblin|myBattlefield)}:2/2 && trample
+power=3
+thougness=3
+abilities=haste
+[/card]
+[card]
+text=Cloudreach Cavalry gets +2/+2 and has flying as long as you control a Bird.
+id=45839
+name=Cloudreach Cavalry
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+auto=aslongas(bird|myBattlefield) 2/2
+auto=aslongas(bird|myBattlefield) flying
+power=1
+thougness=1
+[/card]
+[card]
+text=Covert Operative is unblockable.
+id=30659
+name=Covert Operative
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Human Wizard
+power=3
+thougness=2
+abilities=unblockable
+[/card]
+[card]
+text=All Sliver creatures have "{T}: Regenerate target Sliver."
+id=42033
+name=Crypt Sliver
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) {T}:regenerate target(sliver)
+power=1
+thougness=1
+[/card]
+[card]
+text=Trample
+id=39707
+name=Defiant Elf
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf
+power=1
+thougness=1
+abilities=trample
+[/card]
+[card]
+text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
+id=44840
+alias=135246
+name=Dreamborn Muse
+rarity=R
+mana={2}{U}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+[card]
+text={2}{B}, {T}, Sacrifice a Goblin: Destroy target land.
+id=42171
+name=Earthblighter
+rarity=U
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+auto={2}{B}{T}{S(goblin|myBattlefield)}:destroy target(land)
+power=1
+thougness=1
+[/card]
+[card]
+text=
+id=44500
+name=Enormous Baloth
+rarity=U
+mana={6}{G}
+type=Creature
+subtype=Beast
+power=7
+thougness=7
+[/card]
+[card]
+text=Whenever a Sliver creature deals damage, its controller gains that much life.
+id=42025
+name=Essence Sliver
+rarity=R
+mana={3}{W}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) lifelink
+power=3
+thougness=3
+[/card]
+[card]
+text={7}{R}: Flamewave Invoker deals 5 damage to target player.
+id=43523
+name=Flamewave Invoker
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goblin Mutant
+auto={7}{R}:damage:5 target(player)
+power=2
+thougness=2
+[/card]
+[card]
+text=Beasts can't block.
+id=42028
+name=Frenetic Raptor
+rarity=U
+mana={5}{R}
+type=Creature
+subtype=Lizard Beast
+auto=lord(beast) cantblock
+power=6
+thougness=6
+[/card]
+[card]
+id=42160
+name=Fugitive Wizard
+rarity=C
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+thougness=1
+[/card]
+[card]
+text={7}{U}: Glintwing Invoker gets +3/+3 and gains flying until end of turn.
+id=44204
+name=Glintwing Invoker
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Wizard Mutant
+auto={7}{U}:3/3 && flying
+power=3
+thougness=3
+[/card]
+[card]
+text={T}, Sacrifice a forest: Add three mana in any combination of red and/or green to your mana pool.
+id=44317
+name=Goblin Clearcutter
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Goblin
+auto={T}{S(forest|myBattlefield)}:Add {R}{R}{R}
+auto={T}{S(forest|myBattlefield)}:Add {R}{R}{G}
+auto={T}{S(forest|myBattlefield)}:Add {R}{G}{G}
+auto={T}{S(forest|myBattlefield)}:Add {G}{G}{G}
+power=3
+thougness=3
+[/card]
+[card]
+text={T}, Sacrifice a Goblin: All Goblin creatures get +2/+0 until end of turn.
+id=45123
+name=Goblin Lookout
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Goblin
+auto={T}{S(goblin|myBattlefield)}:lord(goblin) 2/0 ueot
+power=1
+thougness=2
+[/card]
+[card]
+text=Sacrifice a Goblin: Regenerate Goblin Turncoat.
+id=44294
+name=Goblin Turncoat
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Goblin Mercenary
+auto={S(goblin|myBattlefield)}:regenerate
+power=2
+thougness=1
+[/card]
+[card]
+text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
+auto=@each my upkeep:foreach(zombie|myBattlefield) draw:1
+auto=@each my upkeep:foreach(zombie|myBattlefield) life:-1
+id=135256
+name=Graveborn Muse
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Spirit
+power=3
+toughness=3
+[/card]
+[card]
+text=Flying.   When Havoc Demon is put into a graveyard from the battlefield, all creatures get -5/-5 until end of turn.
+id=44299
+name=Havoc Demon
+rarity=R
+mana={5}{B}{B}
+type=Creature
+subtype=Demon
+auto=@movedTo(this|graveyard) from(battlefield):lord(creature) -5/-5 ueot
+power=5
+thougness=5
+abilities=flying
+[/card]
+[card]
+text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
+id=44842
+alias=130373
+name=Lavaborn Muse
+rarity=R
+mana={3}{R}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
+text=When Merchant of Secrets enters the battlefield, draw a card.
+id=44501
+name=Merchant of Secrets
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Wizard
+auto=draw:1
+power=1
+thougness=1
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)
+id=42039
+name=Needleshot Gourna
+rarity=C
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=3
+thougness=6
+abilities=reach
+[/card]
+[card]
+text=Whenever Noxious Ghoul or another Zombie enters the battlefield, all non-Zombie creatures get -1/-1 until end of turn.
+id=44276
+name=Noxious Ghoul
+rarity=U
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie
+auto=lord(creature[-zombie]) -1/-1 ueot
+auto=@movedTo(other creature[zombie]|battlefield):lord(creature[-zombie]) -1/-1 ueot
+power=3
+toughness=3
+[/card]
+[card]
+text=All Sliver creatures get +0/+1.
+id=42017
+name=Plated Sliver
+rarity=C
+mana={W}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) 0/1
+power=1
+thougness=1
+[/card]
+[card]
+text=Double strike (This creature deals both first-strike and regular combat damage)
+id=39566
+name=Ridgetop Raptor
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Lizard Beast
+power=2
+thougness=1
+abilities=double strike
+[/card]
+[card]
+text={2}{U}{U}, {T}: Draw a card for each Wizard you control.
+id=39733
+name=Riptide Director
+rarity=R
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+auto={2}{U}{U}{T}:foreach(wizard|myBattlefield) draw:1
+power=2
+thougness=3
+[/card]
+[card]
+text=Untap all permanents you control during each other player's untap step.
+id=129722
+name=Seedborn Muse
+rarity=R
+mana={3}{G}{G}
+type=Creature
+subtype=Spirit
+auto=@each opponent untap:untap all(*|myBattlefield)
+power=2
+toughness=4
+[/card]
+[card]
+text=Skirk Outrider gets +2/+2 and has trample as long as you control a Beast.
+id=42082
+name=Skirk Outrider
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Goblin
+auto=aslongas(beast|myBattlefield) 2/2
+auto=aslongas(beast|myBattlefield) trample
+power=2
+thougness=2
+[/card]
+[card]
+text={7}{B}: Target creature gets -3/-3 until end of turn.
+id=43714
+name=Smokespew Invoker
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Zombie Mutant
+auto={7}{B}:-3/-3 target(creature)
+power=3
+thougness=1
+[/card]
+[card]
+text=All Sliver creatures have "2: This creature gets +1/+1 until end of turn."
+id=44277
+name=Spectral Sliver
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Sliver Spirit
+auto=lord(sliver) {2}:1/1
+power=2
+thougness=2
+[/card]
+[card]
+text={7}{W}: You gain 5 life.
+id=43792
+name=Starlight Invoker
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Cleric Mutant
+auto={7}{W}:life:5 controller
+power=1
+thougness=3
+[/card]
+[card]
+text={7}{G}: Stonewood Invoker gets +5/+5 until end of turn.
+id=43534
+name=Stonewood Invoker
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf Mutant
+auto={7}{G}:5/5
+power=2
+thougness=2
+[/card]
+[card]
+text={T}: Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
+id=45121
+name=Timberwatch Elf
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Elf
+auto={T}:foreach(elf) 1/1 target(creature)
+power=1
+thougness=2
+[/card]
+[card]
+text=Whenever a Beast enters the battlefield, you may gain 3 life.
+id=45124
+name=Totem Speaker
+rarity=U
+mana={4}{G}
+type=Creature
+subtype=Elf Druid
+auto=@movedTo(beast|battlefield):may life:3 controller
+power=3
+thougness=3
+[/card]
+[card]
+text=First strike, protection from black
+id=44212
+name=White Knight
+rarity=U
+mana={W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+thougness=2
+abilities=first strike,protection from black
+[/card]
+[card]
+text={T}: Add X mana of any one color to your mana pool, where X is the number of Elves on the battlefield.
+id=35299
+name=Wirewood Channeler
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Elf
+auto={T}:foreach(elf|myBattlefield) add:{W}
+auto={T}:foreach(elf|myBattlefield) add:{U}
+auto={T}:foreach(elf|myBattlefield) add:{B}
+auto={T}:foreach(elf|myBattlefield) add:{R}
+auto={T}:foreach(elf|myBattlefield) add:{G}
+power=2
+thougness=2
+[/card]
+[card]
+text=Whenever another nontoken Elf enters the battlefield, you may put a 1/1 green Insect creature token onto the battlefield.
+auto=@movedTo(elf[-token]|battlefield):may token(Insect,creature token insect, 1/1,green)
+id=43794
+name=Wirewood Hivemaster
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+[/card]
+[card]
+text={1}: Exile target card in a graveyard.
+id=46510
+name=Withered Wretch
+rarity=U
+mana={B}{B}
+type=Creature
+subtype=Zombie Cleric
+auto={1}:moveTo(exile) target(*|graveyard)
+power=2
+thougness=2
 [/card]

@@ -1,15 +1,3 @@
-
-[card]
-id=44747
-name=Akroma's Devoted
-mana={3}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=4
-text=Cleric creatures have vigilance.
-rarity=U
-[/card]
 [card]
 id=42060
 name=Aphetto Exterminator
@@ -20,17 +8,6 @@ power=3
 toughness=1
 text=Morph {3}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Aphetto Exterminator is turned face up, target creature gets -3/-3 until end of turn.
 rarity=U
-[/card]
-[card]
-id=44325
-name=Aven Envoy
-mana={U}
-type=Creature
-subtype=Bird Soldier
-power=0
-toughness=2
-text=Flying
-rarity=C
 [/card]
 [card]
 id=43497
@@ -75,39 +52,6 @@ power=1
 toughness=3
 text={T}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to Beacon of Destiny instead.
 rarity=R
-[/card]
-[card]
-id=44334
-name=Berserk Murlodont
-mana={4}{G}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-text=Whenever a Beast becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
-rarity=C
-[/card]
-[card]
-id=42016
-name=Blade Sliver
-mana={2}{R}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Sliver creatures get +1/+0.
-rarity=U
-[/card]
-[card]
-id=44206
-name=Blood Celebrant
-mana={B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text={B}, Pay 1 life: Add one mana of any color to your mana pool.
-rarity=C
 [/card]
 [card]
 id=44209
@@ -187,17 +131,6 @@ text=Flying When Celestial Gatekeeper is put into a graveyard from the battlefie
 rarity=R
 [/card]
 [card]
-id=29717
-name=Cephalid Pathmage
-mana={2}{U}
-type=Creature
-subtype=Cephalid Wizard
-power=1
-toughness=2
-text=Cephalid Pathmage is unblockable. {T}, Sacrifice Cephalid Pathmage: Target creature is unblockable this turn.
-rarity=C
-[/card]
-[card]
 id=44205
 name=Chromeshell Crab
 mana={4}{U}
@@ -209,28 +142,6 @@ text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn i
 rarity=R
 [/card]
 [card]
-id=42277
-name=Clickslither
-mana={1}{R}{R}{R}
-type=Creature
-subtype=Insect
-power=3
-toughness=3
-text=Haste Sacrifice a Goblin: Clickslither gets +2/+2 and gains trample until end of turn.
-rarity=R
-[/card]
-[card]
-id=45839
-name=Cloudreach Cavalry
-mana={1}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text=As long as you control a Bird, Cloudreach Cavalry gets +2/+2 and has flying.
-rarity=U
-[/card]
-[card]
 id=44279
 name=Corpse Harvester
 mana={3}{B}{B}
@@ -240,17 +151,6 @@ power=3
 toughness=3
 text={1}{B}, {T}, Sacrifice a creature: Search your library for a Zombie card and a Swamp card, reveal them, and put them into your hand. Then shuffle your library.
 rarity=U
-[/card]
-[card]
-id=30659
-name=Covert Operative
-mana={4}{U}
-type=Creature
-subtype=Human Wizard
-power=3
-toughness=2
-text=Covert Operative is unblockable.
-rarity=C
 [/card]
 [card]
 id=45127
@@ -273,17 +173,6 @@ power=3
 toughness=2
 text=Flying Tap two untapped Birds you control: Draw a card. Tap two untapped Wizards you control: Target creature gains flying until end of turn.
 rarity=U
-[/card]
-[card]
-id=42033
-name=Crypt Sliver
-mana={1}{B}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Slivers have "{T}: Regenerate target Sliver."
-rarity=C
 [/card]
 [card]
 id=42077
@@ -353,17 +242,6 @@ text=Morph {W}{W} (You may cast this face down as a 2/2 creature for {3}. Turn i
 rarity=R
 [/card]
 [card]
-id=39707
-name=Defiant Elf
-mana={G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text=Trample
-rarity=C
-[/card]
-[card]
 id=45132
 name=Deftblade Elite
 mana={W}
@@ -383,17 +261,6 @@ subtype=Shapeshifter
 power=1
 toughness=1
 text=Flying Morph {2}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Dermoplasm is turned face up, you may put a creature card with morph from your hand onto the battlefield face up. If you do, return Dermoplasm to its owner's hand.
-rarity=R
-[/card]
-[card]
-id=44840
-name=Dreamborn Muse
-mana={2}{U}{U}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
 rarity=R
 [/card]
 [card]
@@ -417,17 +284,6 @@ power=4
 toughness=1
 text=Dripping Dead can't block. Whenever Dripping Dead deals combat damage to a creature, destroy that creature. It can't be regenerated.
 rarity=C
-[/card]
-[card]
-id=42171
-name=Earthblighter
-mana={1}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text={2}{B}, {T}, Sacrifice a Goblin: Destroy target land.
-rarity=U
 [/card]
 [card]
 id=42059
@@ -463,27 +319,6 @@ text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it f
 rarity=C
 [/card]
 [card]
-id=44500
-name=Enormous Baloth
-mana={6}{G}
-type=Creature
-subtype=Beast
-power=7
-toughness=7
-rarity=U
-[/card]
-[card]
-id=42025
-name=Essence Sliver
-mana={3}{W}
-type=Creature
-subtype=Sliver
-power=3
-toughness=3
-text=Whenever a Sliver deals damage, its controller gains that much life.
-rarity=R
-[/card]
-[card]
 id=34263
 name=Feral Throwback
 mana={4}{G}{G}
@@ -493,38 +328,6 @@ power=3
 toughness=3
 text=Amplify 2 (As this card enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
 rarity=R
-[/card]
-[card]
-id=43523
-name=Flamewave Invoker
-mana={2}{R}
-type=Creature
-subtype=Goblin Mutant
-power=2
-toughness=2
-text={7}{R}: Flamewave Invoker deals 5 damage to target player.
-rarity=U
-[/card]
-[card]
-id=42028
-name=Frenetic Raptor
-mana={5}{R}
-type=Creature
-subtype=Lizard Beast
-power=6
-toughness=6
-text=Beasts can't block.
-rarity=U
-[/card]
-[card]
-id=42160
-name=Fugitive Wizard
-mana={U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-rarity=C
 [/card]
 [card]
 id=43791
@@ -593,17 +396,6 @@ text=Amplify 1 (As this card enters the battlefield, put a +1/+1 counter on it f
 rarity=R
 [/card]
 [card]
-id=44204
-name=Glintwing Invoker
-mana={4}{U}
-type=Creature
-subtype=Human Wizard Mutant
-power=3
-toughness=3
-text={7}{U}: Glintwing Invoker gets +3/+3 and gains flying until end of turn.
-rarity=C
-[/card]
-[card]
 id=43723
 name=Glowering Rogon
 mana={5}{G}
@@ -634,17 +426,6 @@ subtype=Goblin Assassin
 power=2
 toughness=2
 text=Whenever Goblin Assassin or another Goblin enters the battlefield, each player flips a coin. Each player whose coin comes up tails sacrifices a creature.
-rarity=U
-[/card]
-[card]
-id=44317
-name=Goblin Clearcutter
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=3
-toughness=3
-text={T}, Sacrifice a Forest: Add three mana in any combination of {R} and/or {G} to your mana pool.
 rarity=U
 [/card]
 [card]
@@ -690,50 +471,6 @@ power=1
 toughness=1
 text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
 rarity=C
-[/card]
-[card]
-id=45123
-name=Goblin Lookout
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=2
-text={T}, Sacrifice a Goblin: Goblin creatures get +2/+0 until end of turn.
-rarity=C
-[/card]
-[card]
-id=44294
-name=Goblin Turncoat
-mana={1}{B}
-type=Creature
-subtype=Goblin Mercenary
-power=2
-toughness=1
-text=Sacrifice a Goblin: Regenerate Goblin Turncoat.
-rarity=C
-[/card]
-[card]
-id=44841
-name=Graveborn Muse
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie Spirit
-power=3
-toughness=3
-text=At the beginning of your upkeep, you draw X cards and you lose X life, where X is the number of Zombies you control.
-rarity=R
-[/card]
-[card]
-id=44299
-name=Havoc Demon
-mana={5}{B}{B}
-type=Creature
-subtype=Demon
-power=5
-toughness=5
-text=Flying When Havoc Demon is put into a graveyard from the battlefield, all creatures get -5/-5 until end of turn.
-rarity=R
 [/card]
 [card]
 id=8829
@@ -846,17 +583,6 @@ text=Provoke (When this attacks, you may have target creature defending player c
 rarity=C
 [/card]
 [card]
-id=44842
-name=Lavaborn Muse
-mana={3}{R}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
-rarity=R
-[/card]
-[card]
 id=39603
 name=Liege of the Axe
 mana={3}{W}
@@ -910,17 +636,6 @@ power=2
 toughness=3
 text=Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Master of the Veil is turned face up, you may turn target creature with morph face down.
 rarity=U
-[/card]
-[card]
-id=44501
-name=Merchant of Secrets
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text=When Merchant of Secrets enters the battlefield, draw a card.
-rarity=C
 [/card]
 [card]
 id=43721
@@ -978,28 +693,6 @@ text=Morph {1}{G} (You may cast this face down as a 2/2 creature for {3}. Turn i
 rarity=C
 [/card]
 [card]
-id=42039
-name=Needleshot Gourna
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=3
-toughness=6
-text=Reach (This creature can block creatures with flying.)
-rarity=C
-[/card]
-[card]
-id=44276
-name=Noxious Ghoul
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-text=Whenever Noxious Ghoul or another Zombie enters the battlefield, all non-Zombie creatures get -1/-1 until end of turn.
-rarity=U
-[/card]
-[card]
 id=42057
 name=Patron of the Wild
 mana={G}
@@ -1033,17 +726,6 @@ text={3}{W}, Exile Planar Guide: Exile all creatures. At the beginning of the ne
 rarity=R
 [/card]
 [card]
-id=42017
-name=Plated Sliver
-mana={W}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-text=All Sliver creatures get +0/+1.
-rarity=C
-[/card]
-[card]
 id=42272
 name=Primal Whisperer
 mana={4}{G}
@@ -1075,28 +757,6 @@ power=1
 toughness=1
 text=Flash Any player may play Sliver cards as though they had flash.
 rarity=C
-[/card]
-[card]
-id=39566
-name=Ridgetop Raptor
-mana={3}{R}
-type=Creature
-subtype=Lizard Beast
-power=2
-toughness=1
-text=Double strike (This creature deals both first-strike and regular combat damage.)
-rarity=U
-[/card]
-[card]
-id=39733
-name=Riptide Director
-mana={2}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=3
-text={2}{U}{U}, {T}: Draw a card for each Wizard you control.
-rarity=R
 [/card]
 [card]
 id=39914
@@ -1140,17 +800,6 @@ subtype=Avatar
 power=6
 toughness=6
 text=Trample Whenever Scion of Darkness deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. Cycling {3} ({3}, Discard this card: Draw a card.)
-rarity=R
-[/card]
-[card]
-id=43607
-name=Seedborn Muse
-mana={3}{G}{G}
-type=Creature
-subtype=Spirit
-power=2
-toughness=4
-text=Untap all permanents you control during each other player's untap step.
 rarity=R
 [/card]
 [card]
@@ -1220,28 +869,6 @@ text=Morph {2}{R} (You may cast this face down as a 2/2 creature for {3}. Turn i
 rarity=C
 [/card]
 [card]
-id=42082
-name=Skirk Outrider
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-text=As long as you control a Beast, Skirk Outrider gets +2/+2 and has trample.
-rarity=C
-[/card]
-[card]
-id=43714
-name=Smokespew Invoker
-mana={2}{B}
-type=Creature
-subtype=Zombie Mutant
-power=3
-toughness=1
-text={7}{B}: Target creature gets -3/-3 until end of turn.
-rarity=C
-[/card]
-[card]
 id=44207
 name=Sootfeather Flock
 mana={4}{B}
@@ -1253,28 +880,6 @@ text=Flying Morph {3}{B} (You may cast this face down as a 2/2 creature for {3}.
 rarity=C
 [/card]
 [card]
-id=44277
-name=Spectral Sliver
-mana={2}{B}
-type=Creature
-subtype=Sliver Spirit
-power=2
-toughness=2
-text=All Sliver creatures have "{2}: This creature gets +1/+1 until end of turn."
-rarity=U
-[/card]
-[card]
-id=43792
-name=Starlight Invoker
-mana={1}{W}
-type=Creature
-subtype=Human Cleric Mutant
-power=1
-toughness=3
-text={7}{W}: You gain 5 life.
-rarity=U
-[/card]
-[card]
 id=42265
 name=Stoic Champion
 mana={W}{W}
@@ -1284,17 +889,6 @@ power=2
 toughness=2
 text=Whenever a player cycles a card, Stoic Champion gets +2/+2 until end of turn.
 rarity=U
-[/card]
-[card]
-id=43534
-name=Stonewood Invoker
-mana={1}{G}
-type=Creature
-subtype=Elf Mutant
-power=2
-toughness=2
-text={7}{G}: Stonewood Invoker gets +5/+5 until end of turn.
-rarity=C
 [/card]
 [card]
 id=44328
@@ -1328,28 +922,6 @@ power=3
 toughness=3
 text=Whenever a Sliver deals combat damage to a player, its controller may draw a card.
 rarity=R
-[/card]
-[card]
-id=45121
-name=Timberwatch Elf
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=2
-text={T}: Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
-rarity=C
-[/card]
-[card]
-id=45124
-name=Totem Speaker
-mana={4}{G}
-type=Creature
-subtype=Elf Druid
-power=3
-toughness=3
-text=Whenever a Beast enters the battlefield, you may gain 3 life.
-rarity=U
 [/card]
 [card]
 id=42038
@@ -1495,17 +1067,6 @@ text={1}{W}: Until end of turn, target creature gains "This creature can't attac
 rarity=C
 [/card]
 [card]
-id=44212
-name=White Knight
-mana={W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=First strike (This creature deals combat damage before creatures without first strike.) Protection from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything black.)
-rarity=U
-[/card]
-[card]
 id=42054
 name=Willbender
 mana={1}{U}
@@ -1537,39 +1098,6 @@ power=2
 toughness=1
 text=Flying Morph {2}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Wingbeat Warrior is turned face up, target creature gains first strike until end of turn.
 rarity=C
-[/card]
-[card]
-id=35299
-name=Wirewood Channeler
-mana={3}{G}
-type=Creature
-subtype=Elf Druid
-power=2
-toughness=2
-text={T}: Add X mana of any one color to your mana pool, where X is the number of Elves on the battlefield.
-rarity=U
-[/card]
-[card]
-id=43794
-name=Wirewood Hivemaster
-mana={1}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-text=Whenever another nontoken Elf enters the battlefield, you may put a 1/1 green Insect creature token onto the battlefield.
-rarity=U
-[/card]
-[card]
-id=46510
-name=Withered Wretch
-mana={B}{B}
-type=Creature
-subtype=Zombie Cleric
-power=2
-toughness=2
-text={1}: Exile target card from a graveyard.
-rarity=U
 [/card]
 [card]
 id=42270
