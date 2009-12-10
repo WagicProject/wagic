@@ -1,0 +1,28 @@
+#NAME: Scout's Warning
+#DESC: "The next creature card you play this turn
+#DESC: can be played as though it had flash.
+#DESC: Draw a card."
+#DESC: Note: Card isn't currently coded entirely correct,
+#DESC: it requires you to target a creature in your hand,
+#DESC: which then gains Flash. Once the card is coded
+#DESC: correctly, the first "Savannah Lions" line in the
+#DESC: DO stage should be removed.
+[INIT]
+combatattackers
+[PLAYER1]
+hand:Scout's Warning,Savannah Lions
+library:Plains
+manapool:{W}{W}
+[PLAYER2]
+[DO]
+Scout's Warning
+Savannah Lions
+Savannah Lions
+[ASSERT]
+combatattackers
+[PLAYER1]
+inplay:Savannah Lions
+graveyard:Scout's Warning
+hand:Plains
+[PLAYER2]
+[END]
