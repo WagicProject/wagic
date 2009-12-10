@@ -606,14 +606,6 @@ text=Enchant creature Enchanted creature can't be blocked by creatures with powe
 rarity=C
 [/card]
 [card]
-id=4556
-name=Lava Storm
-mana={3}{R}{R}
-type=Instant
-text=Lava Storm deals 2 damage to each attacking creature or Lava Storm deals 2 damage to each blocking creature.
-rarity=C
-[/card]
-[card]
 id=4519
 name=Liege of the Hollows
 mana={2}{G}{G}
@@ -703,17 +695,6 @@ power=1
 toughness=2
 text=When Merfolk Traders enters the battlefield, draw a card, then discard a card.
 rarity=C
-[/card]
-[card]
-id=4462
-name=Mischievous Poltergeist
-mana={2}{B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Flying Pay 1 life: Regenerate Mischievous Poltergeist.
-rarity=U
 [/card]
 [card]
 id=4583
@@ -846,15 +827,6 @@ mana={3}{U}
 type=Enchantment
 text=All creatures have "At the beginning of your upkeep, sacrifice this creature unless you pay {1}."
 rarity=R
-[/card]
-[card]
-id=4495
-name=Phantom Wings
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has flying. Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=4438
@@ -1035,7 +1007,6 @@ type=Artifact
 text={5}, {T}: Reveal the top three cards of your library. Target opponent chooses one of those cards. Put that card into your graveyard, then draw two cards.
 rarity=R
 [/card]
-
 [card]
 id=4501
 name=Tolarian Drake
