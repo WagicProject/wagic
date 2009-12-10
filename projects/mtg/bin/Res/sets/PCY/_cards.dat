@@ -108,7 +108,7 @@ rarity=C
 mana={2}{R}
 type=Creature
 subtype=Human Soldier
-auo={S(land|myBattlefield):2/0 && first strike limit:1
+auto={S(land|myBattlefield)}:2/0 && first strike limit:1
 power=2
 toughness=2
 [/card]
