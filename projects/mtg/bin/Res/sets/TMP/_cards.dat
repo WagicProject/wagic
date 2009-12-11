@@ -1925,6 +1925,17 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+text=You may tap or untap target artifact, creature, or land.   Draw a card.
+id=4739
+name=Twitch
+auto=may tap target(artifact,creature,land)
+auto=may untap target(artifact,creature,land)
+auto=draw:1 controller
+rarity=C
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 text=At the beginning of each upkeep, put a 1/1 green Saproling creature token onto the battlefield under your control.
 auto=@each upkeep:token(Saproling,Creature Saproling,1/1,green)
 id=4797

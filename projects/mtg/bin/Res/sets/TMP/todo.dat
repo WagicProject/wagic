@@ -1451,16 +1451,7 @@ power=3
 subtype=Elephant
 toughness=3
 [/card]
-[card]
-text=You may tap or untap target artifact, creature, or land.   Draw a card.
-id=4739
-name=Twitch
-auto=may tap target(artifact,creature,land)
-auto=draw:1
-rarity=C
-mana={2}{U}
-type=Instant
-[/card]
+
 [card]
 text=Whenever a creature comes into play, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
 id=4740
