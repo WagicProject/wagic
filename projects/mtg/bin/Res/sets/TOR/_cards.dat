@@ -1,342 +1,408 @@
 [card]
-text=Target creature gains haste until end of turn. Draw a card.
-name=Accelerate
-id=29857
-mana={1}{R}
-type=Instant
+text=Target creature gains haste until end of turn.   Draw a card.
 target=creature
 auto=haste
 auto=draw:1 controller
+id=29857
+name=Accelerate
 rarity=C
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 text={3}: Target player puts the top three cards of his or her library into his or her graveyard.
-name=Ambassador Laquatus
 id=34378
+name=Ambassador Laquatus
+rarity=R
 mana={1}{U}{U}
 auto={3}:deplete:3 target(player)
-abilities=Legendary
 type=Creature
 subtype=Merfolk Wizard
 power=1
 toughness=3
-rarity=R
+abilities=legendary
 [/card]
 [card]
 text=Flying, first strike
-name=Angel of Retribution
 id=32233
+name=Angel of Retribution
+rarity=R
 mana={6}{W}
-abilities=Flying,First strike
 type=Creature
 subtype=Angel
 power=5
 toughness=5
-rarity=R
+abilities=flying,first strike
 [/card]
 [card]
-text=Flying {2}{W}, Discard a card: Aven Trooper gets +1/+2 until end of turn.
-name=Aven Trooper
+text=Flying   {2}{W}, Discard a card: Aven Trooper gets +1/+2 until end of turn.
 id=5584
+name=Aven Trooper
+rarity=C
 mana={3}{W}
-abilities=Flying
-auto={2}{W}{S(*|myHand):1/2
 type=Creature
 subtype=Bird Soldier
+auto={2}{W}{S(*|myHand)}:1/2
 power=1
 toughness=1
-rarity=C
+abilities=flying
 [/card]
 [card]
-text=Flying {B}: Balshan Collaborator gets +1/+1 until end of turn.
-name=Balshan Collaborator
+text=Flying   {B}: Balshan Collaborator gets +1/+1 until end of turn.
 id=32915
+name=Balshan Collaborator
+rarity=U
 mana={3}{U}
-abilities=Flying
-auto={B}:1/1
 type=Creature
 subtype=Bird Soldier
+auto={B}:1/1
 power=2
 toughness=2
-rarity=U
+abilities=flying
 [/card]
 [card]
-text=Other Barbarian creatures get +1/+1. {R}: Another target Barbarian creature gets +1/+0 until end of turn.
+text=Other Barbarian creatures get +1/+1.   {R}: Another target Barbarian creature gets +1/+0 until end of turn.
 name=Balthor the Stout
 id=19553
+rarity=R
 mana={1}{R}{R}
-abilities=Legendary
-auto=lord(barbarian)1/1 other
-auto={R}:1/0 target(barbarian other)
 type=Creature
 subtype=Dwarf Barbarian
+auto=lord(barbarian)1/1 other
+auto={R}:1/0 target(barbarian other)
 power=2
 toughness=2
-rarity=R
+abilities=legendary
 [/card]
 [card]
 text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
 name=Cabal Coffers
 id=29896
-auto={2}{T}:foreach(swamp|myBattlefield)add:{B}
-type=Land
+auto={2}{T}:foreach(swamp|myBattlefield) add:{B}
 rarity=U
+type=Land
 [/card]
 [card]
-text=Trample {G}, Discard a card: Regenerate Centaur Veteran.
+text=Trample   {G}, Discard a card: Regenerate Centaur Veteran.
 name=Centaur Veteran
-abilities=Trample
-auto={G}{S(*|myhand)}:regeneratre
 id=29800
+rarity=C
 mana={5}{G}
 type=Creature
 subtype=Centaur
+auto={G}{S(*|myhand)}:regenerate
 power=3
 toughness=3
-rarity=C
+abilities=trample
 [/card]
 [card]
 text=Sacrifice Cephalid Snitch: Target creature loses protection from black until end of turn.
 name=Cephalid Snitch
 id=31840
+rarity=C
 mana={1}{U}
-auto={S}:-protection from black target(creature)
 type=Creature
 subtype=Cephalid Wizard
+auto={S}:-protection from black target(creature)
 power=1
 toughness=1
-rarity=C
 [/card]
 [card]
-text={1}{U}, Discard a card: Draw a card. {1}{U}, Sacrifice Compulsion: Draw a card.
-name=Compulsion
-id=34473
-mana={1}{U}
-type=Enchantment
+text={1}{U}, Discard a card: Draw a card.   {1}{U}, Sacrifice Compulsion: Draw a card.
 auto={1}{U}{S(*|myhand)}:draw:1 controller
 auto={1}{U}{S}:draw:1 controller
+name=Compulsion
+id=34473
 rarity=U
+mana={1}{U}
+type=Enchantment
 [/card]
 [card]
-text=Enchant creature Enchanted creature gets +1/+0. Sacrifice Crackling Club: Crackling Club deals 1 damage to target creature.
-name=Crackling Club
+text=Enchant creature   Enchanted creature gets +1/+0.   Sacrifice Crackling Club: Crackling Club deals 1 damage to target creature.
 id=34278
-mana={R}
-type=Enchantment
-subtype=Aura
+name=Crackling Club
 target=creature
 auto=1/0
 auto={S}:damage:1 target(creature)
 rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={R}, Sacrifice Enslaved Dwarf: Target black creature gets +1/+0 and gains first strike until end of turn.
-name=Enslaved Dwarf
 id=32917
+name=Enslaved Dwarf
+rarity=C
 mana={R}
-auto={R}{S}:1/0 && first strike target(creature)
 type=Creature
 subtype=Dwarf
+auto={R}{S}:1/0 && first strike target(creature[black])
 power=1
 toughness=1
-rarity=C
-[/card]
-[card]
-text=First strike, haste Discard a card at random: Hell-Bent Raider gains protection from white until end of turn.
-name=Hell-Bent Raider
-id=34384
-mana={1}{R}{R}
-auto=first strike,haste
-auto={S(*|myHand)}:protection from white
-type=Creature
-subtype=Human Barbarian
-power=2
-toughness=2
-rarity=R
 [/card]
 [card]
 text=You gain life equal to the number of creature cards in all graveyards.
-name=Invigorating Falls
-id=29907
-mana={2}{G}{G}
-type=Sorcery
 auto=foreach(creature|myGraveyard)life:1 controller
 auto=foreach(creature|opponentGraveyard)life:1 controller
+id=29907
+name=Invigorating Falls
 rarity=C
+mana={2}{G}{G}
+type=Sorcery
 [/card]
 [card]
-text=Swampwalk {T}: Target black creature gets -2/-0 until end of turn.
-name=Krosan Constrictor
+text=Kamahl's Sledge deals 4 damage to target creature.   Threshold — If seven or more cards are in your graveyard, instead Kamahl's Sledge deals 4 damage to that creature and 4 damage to that creature's controller.
+id=32229
+target=creature
+auto=damage:4
+auto=aslongas(*|mygraveyard) damage:4 targetcontroller >6
+name=Kamahl's Sledge
+rarity=C
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text=Swampwalk   {T}: Target black creature gets -2/-0 until end of turn.
 id=29715
+name=Krosan Constrictor
+rarity=C
 mana={3}{G}
-abilities=Swampwalk
-auto={T}:-2/0 target(creature[black])
 type=Creature
 subtype=Snake
+auto={T}:-2/0 target(creature[black])
 power=2
 toughness=2
-rarity=C
+abilities=swampwalk
 [/card]
 [card]
-text=Flying {3}{W}{W}, Sacrifice Major Teroh: Exile all black creatures.
-name=Major Teroh
+text=Flying   {3}{W}{W}, Sacrifice Major Teroh: Exile all black creatures.
 id=29912
+name=Major Teroh
+rarity=R
 mana={3}{W}
-abilities=Flying,Legendary
-auto={3}{W}{W}{S}:moveto(exile) all(creature[black])
 type=Creature
 subtype=Bird Soldier
+auto={3}{W}{W}{S}:moveto(exile) all(creature[black])
 power=2
 toughness=3
-rarity=R
+abilities=flying,legendary
 [/card]
 [card]
 text=Exile all cards from all graveyards.
-name=Morningtide
+auto=moveto(exile) all(*|graveyard)
 id=34234
+name=Morningtide
+rarity=R
 mana={1}{W}
 type=Sorcery
-auto=moveto(exile) all(*|graveyard)
-rarity=R
 [/card]
 [card]
-text={1}{B}, Discard a card: Exile target card from a graveyard. {1}{B}, Sacrifice Mortiphobia: Exile target card from a graveyard.
-name=Mortiphobia
-id=36433
-mana={1}{B}{B}
+text={1}{B}, Discard a card: Exile target card from a graveyard.   {1}{B}, Sacrifice Mortiphobia: Exile target card from a graveyard.
 auto={1}{B}{S(*|myHand)}:moveto(exile) target(*|graveyard)
-auto={G}{S}:moveto(exile) target(*|graveyard)
-type=Enchantment
+auto={1}{B}{S}:moveto(exile) target(*|graveyard)
+id=36433
+name=Mortiphobia
 rarity=U
+mana={1}{B}{B}
+type=Enchantment
 [/card]
 [card]
 text=All creatures get -1/-1 until end of turn for each Swamp you control.
-name=Mutilate
+auto=foreach(swamp|myBattlefield)-1/-1 all(creature)
 id=35194
+name=Mutilate
+rarity=R
 mana={2}{B}{B}
 type=Sorcery
-auto=foreach(swamp|myBattlefield)-1/-1 all(creature)
+[/card]
+[card]
+text=Flying   Threshold — As long as seven or more cards are in your graveyard, Mystic Familiar gets +1/+1 and has protection from black.
+id=30607
+name=Mystic Familiar
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Bird
+auto=aslongas(*|mygraveyard) 1/1 >6
+auto=aslongas(*|mygraveyard) protection from black >6
+power=1
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Protection from black   Threshold — Nantuko Blightcutter gets +1/+1 for each black permanent your opponents control as long as seven or more cards are in your graveyard.
+id=32243
+name=Nantuko Blightcutter
 rarity=R
+mana={2}{G}
+type=Creature
+subtype=Insect Druid
+auto=aslongas(*|mygraveyard) foreach(*[black]|opponentBattlefield) 1/1 >6
+power=2
+toughness=2
+abilities=protection from black
+[/card]
+[card]
+text={G}, {T}, Sacrifice Nantuko Calmer: Destroy target enchantment.   Threshold — Nantuko Calmer gets +1/+1 as long as seven or more cards are in your graveyard.
+id=31851
+name=Nantuko Calmer
+rarity=C
+mana={2}{G}{G}
+type=Creature
+subtype=Insect Druid
+auto={G}{T}{S}:destroy target(enchantment)
+auto=aslongas(*|mygraveyard) 1/1 >6
+power=2
+toughness=3
 [/card]
 [card]
 text={B}: Nantuko Shade gets +1/+1 until end of turn.
-name=Nantuko Shade
 id=35053
+name=Nantuko Shade
+rarity=R
 mana={B}{B}
-auto={B}:1/1
 type=Creature
 subtype=Insect Shade
+auto={B}:1/1
 power=2
 toughness=1
-rarity=R
 [/card]
 [card]
-text={G}, Discard a card: Target creature gets +2/+2 until end of turn. {G}, Sacrifice Narcissism: Target creature gets +2/+2 until end of turn.
-name=Narcissism
-id=5663
-mana={2}{G}
+text={G}, Discard a card: Target creature gets +2/+2 until end of turn.   {G}, Sacrifice Narcissism: Target creature gets +2/+2 until end of turn.
 auto={G}{S(*|myHand)}:2/2 target(creature)
 auto={G}{S}:2/2 target(creature)
-type=Enchantment
+id=5663
+name=Narcissism
 rarity=U
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
-text=First strike {B}: Pardic Collaborator gets +1/+1 until end of turn.
-name=Pardic Collaborator
+text=First strike   {B}: Pardic Collaborator gets +1/+1 until end of turn.
 id=35054
+name=Pardic Collaborator
+rarity=U
 mana={3}{R}
-abilities=First strike
-auto={B}:1/1
 type=Creature
 subtype=Human Barbarian
+auto={B}:1/1
 power=2
 toughness=2
-rarity=U
+abilities=first strike
 [/card]
 [card]
-text=Flying Discard a card: Return Skywing Aven to its owner's hand.
-name=Skywing Aven
-id=29713
-mana={2}{U}
-auto={S(*|myHand)}:moveto(ownerhand)
+text=Discard a card: Putrid Imp gains flying until end of turn.   Threshold — As long as seven or more cards are in your graveyard, Putrid Imp gets +1/+1 and can't block.
+id=34470
+name=Putrid Imp
+rarity=C
+mana={B}
 type=Creature
-subtype=Bird Soldier
+subtype=Zombie Imp
+auto={S(*|myHand)}:flying
+auto=aslongas(*|mygraveyard) 1/1 >6
+auto=aslongas(*|mygraveyard) cantblock >6
+power=1
+toughness=1
+[/card]
+[card]
+text=Destroy target land.   Threshold — If seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
+id=31598
+target=land
+auto=destroy
+auto=aslongas(*|mygraveyard) damage:1 all(creature,player) >6
+name=Rancid Earth
+rarity=C
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)   Threshold — Seton's Scout gets +2/+2 as long as seven or more cards are in your graveyard.
+id=32244
+name=Seton's Scout
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Centaur Druid Scout Archer
+auto=aslongas(*|mygraveyard) 2/2 >6
 power=2
 toughness=1
-rarity=C
+abilities=reach
 [/card]
 [card]
-text=As an additional cost to cast Sonic Seizure, discard a card at random. Sonic Seizure deals 3 damage to target creature or player.
-name=Sonic Seizure
-id=35165
-mana={R}
-type=Instant
-auto=discard:1 controller
-target=creature,player
-auto=damage:3
+text=Flying   Discard a card: Return Skywing Aven to its owner's hand.
+id=29713
+name=Skywing Aven
 rarity=C
+mana={2}{U}
+type=Creature
+subtype=Bird Soldier
+auto={S(*|myHand)}:moveto(ownerhand)
+power=2
+toughness=1
+abilities=flying
 [/card]
 [card]
 text={T}: Each player loses 1 life for each Swamp he or she controls.
-name=Stern Judge
 id=35082
+name=Stern Judge
+rarity=U
 mana={2}{W}
-auto={T}:foreach(swamp|mybattlefield)damage:1 controller && foreach(swamp|opponentBattlefield)damage:1 opponent
 type=Creature
 subtype=Human Cleric
+auto={T}:foreach(swamp|mybattlefield) damage:1 controller && foreach(swamp|opponentBattlefield) damage:1 opponent
 power=2
 toughness=2
-rarity=U
 [/card]
 [card]
-text={T}: Add {1} to your mana pool. {T}: Add {W} or {B} to your mana pool. Activate this ability only if you control a Swamp.
-name=Tainted Field
+text={T}: Add {1} to your mana pool.   {T}: Add {W} or {B} to your mana pool. Activate this ability only if you control a Swamp.
 id=31757
-type=Land
-auto={T}:add{1}
-auto={T}:aslongas(swamp|myBattlefield)add{B}
-auto={T}:aslongas(swamp|myBattlefield)add{W}
+name=Tainted Field
 rarity=U
+type=Land
+auto={T}:Add {1}
+auto={T}:aslongas(swamp|myBattlefield) add{B}
+auto={T}:aslongas(swamp|myBattlefield) add{W}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool. {T}: Add {U} or {B} to your mana pool. Activate this ability only if you control a Swamp.
-name=Tainted Isle
+text={T}: Add {1} to your mana pool.   {T}: Add {U} or {B} to your mana pool. Activate this ability only if you control a Swamp.
 id=31758
-type=Land
-auto={T}:add{1}
-auto={T}:aslongas(swamp|myBattlefield)add{B}
-auto={T}:aslongas(swamp|myBattlefield)add{U}
+name=Tainted Isle
 rarity=U
+type=Land
+auto={T}:Add {1}
+auto={T}:aslongas(swamp|myBattlefield) add{B}
+auto={T}:aslongas(swamp|myBattlefield) add{U}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool. {T}: Add {B} or {R} to your mana pool. Activate this ability only if you control a Swamp.
-name=Tainted Peak
+text={T}: Add {1} to your mana pool.   {T}: Add {B} or {R} to your mana pool. Activate this ability only if you control a Swamp.
 id=31759
-type=Land
-auto={T}:add{1}
-auto={T}:aslongas(swamp|myBattlefield)add{B}
-auto={T}:aslongas(swamp|myBattlefield)add{R}
+name=Tainted Peak
 rarity=U
+type=Land
+auto={T}:Add {1}
+auto={T}:aslongas(swamp|myBattlefield) add{B}
+auto={T}:aslongas(swamp|myBattlefield) add{R}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool. {T}: Add {B} or {G} to your mana pool. Activate this ability only if you control a Swamp.
-name=Tainted Wood
+text={T}: Add {1} to your mana pool.   {T}: Add {B} or {G} to your mana pool. Activate this ability only if you control a Swamp.
 id=31760
-type=Land
-auto={T}:add{1}
-auto={T}:aslongas(swamp|myBattlefield)add{B}
-auto={T}:aslongas(swamp|myBattlefield)add{G}
+name=Tainted Wood
 rarity=U
+type=Land
+auto={T}:Add {1}
+auto={T}:aslongas(swamp|myBattlefield) add{B}
+auto={T}:aslongas(swamp|myBattlefield) add{G}
 [/card]
 [card]
 text=When Teroh's Faithful enters the battlefield, you gain 4 life.
-name=Teroh's Faithful
 id=12345
+name=Teroh's Faithful
+rarity=C
 mana={3}{W}
-auto=life:4 controller
 type=Creature
 subtype=Human Cleric
+auto=life:4 controller
 power=1
 toughness=4
-rarity=C
 [/card]

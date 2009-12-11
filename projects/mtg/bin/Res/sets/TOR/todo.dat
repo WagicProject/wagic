@@ -439,6 +439,19 @@ toughness=8
 rarity=R
 [/card]
 [card]
+text=First strike, haste   Discard a card at random: Hell-Bent Raider gains protection from white until end of turn.
+name=Hell-Bent Raider
+id=34384
+mana={1}{R}{R}
+auto=first strike,haste
+auto={S(*|myHand)}:protection from white ####this is not what the wording says!
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
+rarity=R
+[/card]
+[card]
 text={U}, Sacrifice Hydromorph Guardian: Counter target spell that targets one or more creatures you control.
 name=Hydromorph Guardian
 id=33627
@@ -505,14 +518,6 @@ id=29886
 mana={G}
 type=Sorcery
 rarity=R
-[/card]
-[card]
-text=Kamahl's Sledge deals 4 damage to target creature. Threshold — If seven or more cards are in your graveyard, instead Kamahl's Sledge deals 4 damage to that creature and 4 damage to that creature's controller.
-name=Kamahl's Sledge
-id=32229
-mana={5}{R}{R}
-type=Sorcery
-rarity=C
 [/card]
 [card]
 text={T}: Untap target land. Threshold — {T}: Untap up to three target lands. Activate this ability only if seven or more cards are in your graveyard.
@@ -611,39 +616,6 @@ id=29960
 mana={2}{B}{B}
 type=Enchantment
 rarity=R
-[/card]
-[card]
-text=Flying Threshold — As long as seven or more cards are in your graveyard, Mystic Familiar gets +1/+1 and has protection from black.
-name=Mystic Familiar
-id=30607
-mana={1}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=2
-rarity=C
-[/card]
-[card]
-text=Protection from black Threshold — Nantuko Blightcutter gets +1/+1 for each black permanent your opponents control as long as seven or more cards are in your graveyard.
-name=Nantuko Blightcutter
-id=32243
-mana={2}{G}
-type=Creature
-subtype=Insect Druid
-power=2
-toughness=2
-rarity=R
-[/card]
-[card]
-text={G}, {T}, Sacrifice Nantuko Calmer: Destroy target enchantment. Threshold — Nantuko Calmer gets +1/+1 as long as seven or more cards are in your graveyard.
-name=Nantuko Calmer
-id=31851
-mana={2}{G}{G}
-type=Creature
-subtype=Insect Druid
-power=2
-toughness=3
-rarity=C
 [/card]
 [card]
 text=When Nantuko Cultivator enters the battlefield, you may discard any number of land cards. Put that many +1/+1 counters on Nantuko Cultivator and draw that many cards.
@@ -823,17 +795,6 @@ type=Instant
 rarity=C
 [/card]
 [card]
-text=Discard a card: Putrid Imp gains flying until end of turn. Threshold — As long as seven or more cards are in your graveyard, Putrid Imp gets +1/+1 and can't block.
-name=Putrid Imp
-id=34470
-mana={B}
-type=Creature
-subtype=Zombie Imp
-power=1
-toughness=1
-rarity=C
-[/card]
-[card]
 text={1}{R}, Discard a card at random: Pyromania deals 1 damage to target creature or player. {1}{R}, Sacrifice Pyromania: Pyromania deals 1 damage to target creature or player.
 name=Pyromania
 id=34390
@@ -848,14 +809,6 @@ id=34250
 mana={3}{R}{R}
 type=Instant
 rarity=R
-[/card]
-[card]
-text=Destroy target land. Threshold — If seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
-name=Rancid Earth
-id=31598
-mana={1}{B}{B}
-type=Sorcery
-rarity=C
 [/card]
 [card]
 text=Vigilance Threshold — As long as seven or more cards are in your graveyard, Reborn Hero has «When Reborn Hero is put into a graveyard from the battlefield, you may pay {W}{W}. If you do, return Reborn Hero to the battlefield under your control.»
@@ -894,17 +847,6 @@ subtype=Vampire
 power=4
 toughness=4
 rarity=R
-[/card]
-[card]
-text=Reach (This creature can block creatures with flying.) Threshold — Seton's Scout gets +2/+2 as long as seven or more cards are in your graveyard.
-name=Seton's Scout
-id=32244
-mana={1}{G}
-type=Creature
-subtype=Centaur Druid Scout Archer
-power=2
-toughness=1
-rarity=U
 [/card]
 [card]
 text=Enchant creature Enchanted creature has «{B}: This creature gets +1/+1 until end of turn.» When enchanted creature is put into a graveyard, return that card to the battlefield under your control.
@@ -954,6 +896,18 @@ subtype=Nightmare Horror
 power=1
 toughness=1
 rarity=U
+[/card]
+[card]
+####This card can be played without having a card in hand when coded this way!!!
+text=As an additional cost to cast Sonic Seizure, discard a card at random. Sonic Seizure deals 3 damage to target creature or player.
+name=Sonic Seizure
+id=35165
+rarity=C
+mana={R}
+type=Instant
+auto=discard:1 controller
+target=creature,player
+auto=damage:3
 [/card]
 [card]
 text=Flying When Soul Scourge enters the battlefield, target player loses 3 life. When Soul Scourge leaves the battlefield, that player gains 3 life.
