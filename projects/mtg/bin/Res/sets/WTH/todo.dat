@@ -829,6 +829,18 @@ text=All creatures have "At the beginning of your upkeep, sacrifice this creatur
 rarity=R
 [/card]
 [card]
+text=Enchant creature   Enchanted creature has flying.   Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
+id=4495
+target=creature
+auto=flying
+auto={S}:moveTo(ownerhand)
+name=Phantom Wings
+rarity=C
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 id=4438
 name=Phyrexian Furnace
 mana={1}

@@ -334,18 +334,6 @@ toughness=2
 abilities=unblockable
 [/card]
 [card]
-text=Enchant creature   Enchanted creature has flying.   Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
-id=4495
-target=creature
-auto=flying
-auto={S}:moveTo(ownerhand)
-name=Phantom Wings
-rarity=C
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
 id=4466
 name=Razortooth Rats

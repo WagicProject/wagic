@@ -761,17 +761,6 @@ text=Prevent the next 5 damage that would be dealt this turn to any number of ta
 rarity=C
 [/card]
 [card]
-id=3725
-name=Resistance Fighter
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text=Sacrifice Resistance Fighter: Prevent all combat damage target creature would deal this turn.
-rarity=C
-[/card]
-[card]
 id=3726
 name=Retribution of the Meek
 mana={2}{W}
@@ -1107,14 +1096,6 @@ mana={1}{B}
 type=Instant
 text=As an additional cost to cast Wicked Reward, sacrifice a creature. Target creature gets +4/+2 until end of turn.
 rarity=C
-[/card]
-[card]
-id=3682
-name=Wind Shear
-mana={2}{G}
-type=Instant
-text=Attacking creatures with flying get -2/-2 and lose flying until end of turn.
-rarity=U
 [/card]
 [card]
 id=3732
