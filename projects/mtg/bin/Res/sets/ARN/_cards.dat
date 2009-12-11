@@ -151,7 +151,6 @@ auto=destroy
 name=Desert Twister
 rarity=U
 mana={4}{G}{G}
-
 type=Sorcery
 [/card]
 [card]
@@ -159,7 +158,6 @@ text={T}: Untap target attacking creature you control. Prevent all combat damage
 alias=1108
 id=906
 name=Ebony horse
-rarity=R
 mana={3}
 rarity=R
 type=Artifact

@@ -469,7 +469,6 @@ text=({T}: Add {R} or {G} to your mana pool.)   As Stomping Ground enters the ba
 id=96896
 name=Stomping Ground
 rarity=R
-rarity=R
 auto=tap
 auto=may untap && life:-2 controller
 auto={T}:Add {U}

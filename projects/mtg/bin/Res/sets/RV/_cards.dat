@@ -2152,7 +2152,6 @@ type=Artifact Creature
 rarity=T
 power=1
 toughness=1
-type=Artifact
 [/card]
 [card]
 text=As The Rack enters the battlefield, choose an opponent.   At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand.

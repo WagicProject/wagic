@@ -219,7 +219,6 @@ type=Artifact
 text=Flying   {U}{U}{U}: Regenerate Ghost Ship.
 id=1754
 name=Ghost Ship
-rarity=C
 mana={2}{U}{U}
 type=Creature
 subtype=Spirit

@@ -210,6 +210,7 @@ rarity=C
 [/card]
 [card]
 text=Defender (This creature can't attack.) Protection from artifacts Whenever an opponent casts an artifact spell, you may put a 1/1 green Insect creature token onto the battlefield.
+id=48598
 name=Infested Roothold
 mana={4}{G}
 abilities=Defender
