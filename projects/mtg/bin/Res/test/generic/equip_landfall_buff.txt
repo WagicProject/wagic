@@ -22,11 +22,30 @@ next
 #damage
 next
 #end combat
+eot
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+Runeclaw Bear
+next
+#blocker
+next
+#damage
+next
+#end
 [ASSERT]
 COMBATEND
 [PLAYER1]
 life:20
 inplay:Runeclaw Bear,Adventuring Gear,195161
 [PLAYER2]
-life:16
+life:14
 [END]
