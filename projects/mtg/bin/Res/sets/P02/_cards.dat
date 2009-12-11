@@ -703,6 +703,17 @@ toughness=3
 rarity=C
 [/card]
 [card]
+text=Destroy target creature. Its owner gains 4 life.
+id=6502
+target=creature
+auto=destroy
+auto=life:4 targetController
+name=Path of Peace
+rarity=C
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
 id=8374
 name=Plains
 auto={T}:Add{W}

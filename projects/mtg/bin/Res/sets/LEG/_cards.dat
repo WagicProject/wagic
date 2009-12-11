@@ -8,6 +8,16 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
+text=Choose one - Destroy target blue permanent; or return target Island to its owner's hand.
+id=1556
+auto=may destroy target(*[blue])
+auto=may moveTo(ownerhand) target(island)
+name=Active Volcano
+rarity=C
+mana={R}
+type=Instant
+[/card]
+[card]
 text={B}{R}{G}, {T}: Return target creature card from your graveyard to your hand.
 auto={B}{R}{G}{T}:moveTo(myhand) target(creature|mygraveyard)
 id=1642
@@ -400,6 +410,16 @@ auto=fizzle
 name=Flash Counter
 rarity=C
 mana={1}{U}
+type=Instant
+[/card]
+[card]
+text=Choose one - Destroy target red permanent; or return target Mountain to its owner's hand.
+id=1483
+auto=may destroy target(*[red])
+auto=may moveTo(ownerhand) target(mountain)
+name=Flash Flood
+rarity=C
+mana={U}
 type=Instant
 [/card]
 [card]

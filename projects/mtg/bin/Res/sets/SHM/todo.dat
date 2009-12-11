@@ -263,17 +263,6 @@ subtype=Spirit Avatar
 toughness=6
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.     Put a -1/-1 counter on Devoted Druid: Untap Devoted Druid.
-id=135500
-name=Devoted Druid
-rarity=C
-type=Creature
-mana={1}{G}
-power=0
-subtype=Elf Druid
-toughness=2
-[/card]
-[card]
 text=Put a 5/5 black and red Elemental creature token into play. Target opponent sacrifices a creature for each black creature you control, then sacrifices a land for each red creature you control.
 id=146733
 name=Din of the Fireherd
@@ -930,17 +919,6 @@ name=Moonring Island
 rarity=U
 type=Land
 subtype=Island
-[/card]
-[card]
-text=Morselhoarder comes into play with two -1/-1 counters on it.     Remove a -1/-1 counter from Morselhoarder: Add one mana of any color to your mana pool.
-id=159407
-name=Morselhoarder
-rarity=C
-type=Creature
-mana={4}{RG}{RG}
-power=6
-subtype=Elemental
-toughness=4
 [/card]
 [card]
 text=If Mossbridge Troll would be destroyed, regenerate it.     Tap any number of untapped creatures you control other than Mossbridge Troll with total power 10 or greater: Mossbridge Troll gets +20/+20 until end of turn.

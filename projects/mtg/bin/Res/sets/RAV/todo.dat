@@ -66,16 +66,6 @@ subtype=Spirit
 toughness=4
 [/card]
 [card]
-#to test ?
-text={1}{R}, Sacrifice Blockbuster: Blockbuster deals 3 damage to each tapped creature and each player.
-id=87977
-auto={1}{R}{S}:damage:3 all(creature[tapped],player)
-name=Blockbuster
-rarity=U
-type=Enchantment
-mana={3}{R}{R}
-[/card]
-[card]
 text=Noncreature spells you play cost {2} less to play.     Whenever you play a noncreature spell, counter that spell unless you sacrifice a creature.
 id=89102
 name=Blood Funnel

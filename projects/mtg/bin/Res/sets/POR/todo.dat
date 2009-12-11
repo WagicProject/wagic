@@ -360,14 +360,6 @@ subtype=Elemental
 toughness=8
 [/card]
 [card]
-text=Each player draws X cards.
-id=4273
-name=Prosperity
-rarity=R
-type=Sorcery
-mana={X}{U}
-[/card]
-[card]
 text=Destroy two target lands.
 id=4359
 name=Rain of Salt

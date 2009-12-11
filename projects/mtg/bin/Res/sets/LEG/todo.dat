@@ -10,14 +10,6 @@ subtype=Horror
 toughness=6
 [/card]
 [card]
-text=Choose one - Destroy target blue permanent; or return target Island to its owner's hand.
-id=1556
-name=Active Volcano
-rarity=C
-type=Instant
-mana={R}
-[/card]
-[card]
 text=Green legendary creatures you control have "bands with other legendary creatures."
 id=1698
 name=Adventurers' Guildhouse
@@ -480,14 +472,6 @@ mana={4}{R}{R}
 power=3
 subtype=Phoenix
 toughness=2
-[/card]
-[card]
-text=Choose one - Destroy target red permanent; or return target Mountain to its owner's hand.
-id=1483
-name=Flash Flood
-rarity=C
-type=Instant
-mana={U}
 [/card]
 [card]
 text=Whenever Floral Spuzzem attacks and isn't blocked, you may destroy target artifact defending player controls. If you do, Floral Spuzzem deals no combat damage this turn.

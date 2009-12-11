@@ -9,7 +9,6 @@ toughness=2
 text=Whenever Abyssal Nightstalker attacks and isn't blocked, defending player discards a card.
 rarity=U
 [/card]
-
 [card]
 id=6506
 name=Alaborn Cavalier
@@ -21,9 +20,6 @@ toughness=2
 text=Whenever Alaborn Cavalier attacks, you may tap target creature.
 rarity=U
 [/card]
-
-
-
 [card]
 id=6516
 name=Alaborn Veteran
@@ -54,7 +50,6 @@ type=Sorcery
 text=All creatures able to block target creature this turn do so.
 rarity=R
 [/card]
-
 [card]
 id=6515
 name=Angel of Fury
@@ -66,7 +61,6 @@ toughness=5
 text=Flying When Angel of Fury is put into your graveyard from the battlefield, you may shuffle it into your library.
 rarity=R
 [/card]
-
 [card]
 id=6535
 name=Apprentice Sorcerer
@@ -78,20 +72,6 @@ toughness=1
 text={T}: Apprentice Sorcerer deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
 rarity=U
 [/card]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [card]
 id=6544
 name=Coastal Wizard
@@ -130,11 +110,6 @@ toughness=4
 text=If Cunning Giant is unblocked, you may have it assign its combat damage to a creature defending player controls.
 rarity=R
 [/card]
-
-
-
-
-
 [card]
 id=6637
 name=Deathcoil Wurm
@@ -154,9 +129,6 @@ type=Instant
 text=Cast Deep Wood only during the declare attackers step and only if you've been attacked this step. Prevent all damage that would be dealt to you this turn by attacking creatures.
 rarity=U
 [/card]
-
-
-
 [card]
 id=6549
 name=Exhaustion
@@ -165,7 +137,6 @@ type=Sorcery
 text=Creatures and lands target opponent controls don't untap during his or her next untap step.
 rarity=U
 [/card]
-
 [card]
 id=6538
 name=Eye Spy
@@ -174,9 +145,6 @@ type=Sorcery
 text=Look at the top card of target player's library. You may put that card into his or her graveyard.
 rarity=U
 [/card]
-
-
-
 [card]
 id=6568
 name=Foul Spirit
@@ -188,7 +156,6 @@ toughness=2
 text=Flying When Foul Spirit enters the battlefield, sacrifice a land.
 rarity=U
 [/card]
-
 [card]
 id=6598
 name=Goblin Firestarter
@@ -211,12 +178,6 @@ toughness=1
 text=Whenever Goblin General attacks, Goblin creatures you control get +1/+1 until end of turn.
 rarity=U
 [/card]
-
-
-
-
-
-
 [card]
 id=6603
 name=Goblin War Cry
@@ -225,9 +186,6 @@ type=Sorcery
 text=Target opponent chooses a creature he or she controls. Other creatures he or she controls can't block this turn.
 rarity=U
 [/card]
-
-
-
 [card]
 id=6632
 name=Harmony of Nature
@@ -247,7 +205,6 @@ toughness=4
 text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
 rarity=U
 [/card]
-
 [card]
 id=6628
 name=Ironhoof Ox
@@ -259,7 +216,6 @@ toughness=4
 text=Ironhoof Ox can't be blocked by more than one creature.
 rarity=U
 [/card]
-
 [card]
 id=6601
 name=Jagged Lightning
@@ -268,9 +224,6 @@ type=Sorcery
 text=Jagged Lightning deals 3 damage to target creature and 3 damage to another target creature.
 rarity=U
 [/card]
-
-
-
 [card]
 id=6614
 name=Lone Wolf
@@ -293,8 +246,6 @@ toughness=1
 text=Whenever Lurking Nightstalker attacks, it gets +2/+0 until end of turn.
 rarity=C
 [/card]
-
-
 [card]
 id=6562
 #No Discard unless random
@@ -304,17 +255,6 @@ type=Sorcery
 text=Target player discards two cards.
 rarity=C
 [/card]
-
-
-
-
-
-
-
-
-
-
-
 [card]
 id=6615
 name=Norwood Riders
@@ -337,7 +277,6 @@ toughness=2
 text=Whenever Norwood Warrior becomes blocked, it gets +1/+1 until end of turn.
 rarity=C
 [/card]
-
 [card]
 id=6595
 name=Ogre Arsonist
@@ -349,18 +288,6 @@ toughness=3
 text=When Ogre Arsonist enters the battlefield, destroy target land.
 rarity=U
 [/card]
-
-
-
-[card]
-id=6502
-name=Path of Peace
-mana={3}{W}
-type=Sorcery
-text=Destroy target creature. Its owner gains 4 life.
-#cant target owner right now...
-rarity=C
-[/card]
 [card]
 id=6550
 name=Piracy
@@ -369,8 +296,6 @@ type=Sorcery
 text=Until end of turn, you may tap lands you don't control for mana. Spend this mana only to cast spells.
 rarity=R
 [/card]
-
-
 [card]
 id=6565
 name=Predatory Nightstalker
@@ -393,10 +318,6 @@ toughness=2
 text=Prowling Nightstalker can't be blocked except by black creatures.
 rarity=C
 [/card]
-
-
-
-
 [card]
 id=6511
 name=Rally the Troops
@@ -435,7 +356,6 @@ type=Sorcery
 text=Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase.
 rarity=R
 [/card]
-
 [card]
 id=6629
 name=Renewing Touch
@@ -444,11 +364,6 @@ type=Sorcery
 text=Shuffle any number of target creature cards from your graveyard into your library.
 rarity=U
 [/card]
-
-
-
-
-
 [card]
 id=6523
 name=Screeching Drake
@@ -479,12 +394,6 @@ type=Sorcery
 text=Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library.
 rarity=C
 [/card]
-
-
-
-
-
-
 [card]
 id=8905
 name=Sylvan Basilisk
@@ -496,8 +405,6 @@ toughness=4
 text=Whenever Sylvan Basilisk becomes blocked by a creature, destroy that creature.
 rarity=U
 [/card]
-
-
 [card]
 id=6522
 name=Talas Explorer
@@ -509,12 +416,6 @@ toughness=1
 text=Flying When Talas Explorer enters the battlefield, look at target opponent's hand.
 rarity=C
 [/card]
-
-
-
-
-
-
 [card]
 id=6548
 name=Temporal Manipulation
@@ -523,7 +424,6 @@ type=Sorcery
 text=Take an extra turn after this one.
 rarity=R
 [/card]
-
 [card]
 id=6531
 name=Tidal Surge
@@ -532,8 +432,6 @@ type=Sorcery
 text=Tap up to three target creatures without flying.
 rarity=C
 [/card]
-
-
 [card]
 id=6494
 name=Town Sentry
@@ -545,9 +443,6 @@ toughness=2
 text=Whenever Town Sentry blocks, it gets +0/+2 until end of turn.
 rarity=C
 [/card]
-
-
-
 [card]
 id=6540
 name=Undo
@@ -556,11 +451,6 @@ type=Sorcery
 text=Return two target creatures to their owners' hands.
 rarity=U
 [/card]
-
-
-
-
-
 [card]
 id=6512
 name=Warrior's Stand
@@ -569,8 +459,6 @@ type=Instant
 text=Cast Warrior's Stand only during the declare attackers step and only if you've been attacked this step. Creatures you control get +2/+2 until end of turn.
 rarity=U
 [/card]
-
-
 [card]
 id=6610
 name=Wildfire

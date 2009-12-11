@@ -41,6 +41,15 @@ toughness=6
 abilities=flying
 [/card]
 [card]
+text={1}{R}, Sacrifice Blockbuster: Blockbuster deals 3 damage to each tapped creature and each player.
+auto={1}{R}{S}:damage:3 all(creature[tapped]) && damage:3 all(player)
+id=87977
+name=Blockbuster
+rarity=U
+mana={3}{R}{R}
+type=Enchantment
+[/card]
+[card]
 text=({RW} can be paid with either {R} or {W}.) {1}{R}: Target creature gains haste until end of turn.   {1}{W}: Target creature gains first strike until end of turn.
 id=87918
 name=Boros Guildmage

@@ -1060,6 +1060,16 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text=Each player draws X cards.
+id=4273
+auto=Draw:X controller
+auto=Draw:X opponent
+name=Prosperity
+rarity=R
+mana={X}{U}
+type=Sorcery
+[/card]
+[card]
 text=Pyroclasm deals 2 damage to each creature.
 id=4354
 auto=damage:2 all(creature)
