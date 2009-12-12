@@ -56,6 +56,7 @@ public:
   virtual void ButtonPressed(int controllerId, int controlId){};
   virtual void Reload(){};
   virtual void Overlay(){};
+  virtual void Underlay(){};
 
   virtual bool hasFocus()=0;
   virtual void setFocus(bool bFocus)=0;
@@ -140,6 +141,7 @@ public:
   virtual bool setPos(int pos) {return false;};
   virtual bool next() {return false;};
   virtual bool prev() {return false;};
+  virtual void Update(float dt) {};
 };
 
 class WSrcImage: public WDataSource{
@@ -153,7 +155,7 @@ private:
 
 class WSrcMTGSet: public WDataSource{
 public:
-  WSrcMTGSet(int setid);
+  WSrcMTGSet(int setid, float mDelay=0.1);
   
   virtual JQuad * getImage();
   virtual MTGCard * getCard();
@@ -163,10 +165,13 @@ public:
   virtual bool prev();
   virtual int getPos() {return currentCard;};
   virtual bool setPos(int pos);
+  virtual void Update(float dt);
 
 protected:
   vector<MTGCard*> cards;
   int currentCard;
+  float mDelay;
+  float mLastInput;
 };
 
 class WGuiImage: public WGuiItem{
@@ -207,6 +212,7 @@ public:
   virtual void updateValue()    {it->updateValue();};
   virtual void Reload()         {it->Reload();};
   virtual void Overlay()        {it->Overlay();};
+  virtual void Underlay()        {it->Underlay();};
   virtual void Render()         {it->Render();};
   virtual void setData()        {it->setData();};
 
@@ -242,7 +248,7 @@ public:
   virtual bool Selectable() {return Visible();};
   virtual bool Visible();  
   virtual int getId() {return id;};
-  virtual void Overlay();
+  virtual void Underlay();
 protected:
   int id;
   string text;
@@ -255,6 +261,7 @@ public:
 
   virtual void Reload();
   virtual void Overlay();
+  virtual void Underlay();
   virtual void setData();
   virtual bool isModal();
   virtual void setModal(bool val);

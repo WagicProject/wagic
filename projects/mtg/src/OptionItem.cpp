@@ -557,6 +557,10 @@ void WGuiList::Render(){
   //Render items.
   if(start >= 0)
   {
+    //Render current underlay.
+    if(currentItem >= 0 && currentItem < nbitems && items[currentItem]->Visible())
+      items[currentItem]->Underlay();
+
     for (int pos=0;pos < nbitems; pos++){
       if(!items[pos]->Visible())
         continue;
@@ -1018,6 +1022,12 @@ void WGuiSplit::Overlay(){
   else
     left->Overlay();
 }
+void WGuiSplit::Underlay(){
+  if(bRight)
+    right->Underlay();
+  else
+    left->Underlay();
+}
 void WGuiSplit::ButtonPressed(int controllerId, int controlId)
 {
   if(bRight)
@@ -1234,7 +1244,7 @@ void WGuiTabMenu::save(){
 
 
 //WGuiAward
-void WGuiAward::Overlay(){
+void WGuiAward::Underlay(){
   char buf[1024];
   JRenderer * r = JRenderer::GetInstance();
   JQuad * trophy = NULL;
@@ -1252,8 +1262,9 @@ void WGuiAward::Overlay(){
   if(!trophy) //Fallback to basic trophy image.
    trophy = resources.RetrieveTempQuad("trophy.png");
   
-  if(trophy)
-  r->RenderQuad(trophy, 0, SCREEN_HEIGHT-256);
+  if(trophy){
+      r->RenderQuad(trophy, 0, SCREEN_HEIGHT-trophy->mHeight);
+  }
 
 }
 void WGuiAward::Render(){
@@ -1394,9 +1405,11 @@ WSrcImage::WSrcImage(string s){
 }
 
 //WSrcMTGSet
-WSrcMTGSet::WSrcMTGSet(int setid){
+WSrcMTGSet::WSrcMTGSet(int setid, float delay){
   MTGAllCards * ac = GameApp::collection;
   map<int,MTGCard*>::iterator it;
+  mDelay = delay;
+  mLastInput = 0;
 
   for(it = ac->collection.begin();it != ac->collection.end();it++){
     if(it->second->setId == setid)
@@ -1408,10 +1421,13 @@ WSrcMTGSet::WSrcMTGSet(int setid){
     currentCard = 0;
 }
 JQuad * WSrcMTGSet::getImage(){
-  MTGCard * c = getCard();
-  if(c)
-    return resources.RetrieveCard(c);
-  return NULL;
+  if(mDelay && mLastInput < mDelay)
+    return NULL;
+  
+  return resources.RetrieveCard(getCard());
+}
+void WSrcMTGSet::Update(float dt){
+  mLastInput += dt;
 }
 MTGCard * WSrcMTGSet::getCard(){
   int size = (int) cards.size();
@@ -1427,7 +1443,8 @@ bool WSrcMTGSet::next(){
   else
     return false;
 
- return true;
+  mLastInput = 0;
+  return true;
 }
 
 bool WSrcMTGSet::prev(){
@@ -1436,7 +1453,8 @@ bool WSrcMTGSet::prev(){
   else
     return false;
 
- return true;
+  mLastInput = 0;
+  return true;
 }
 
 bool WSrcMTGSet::setPos(int pos){
@@ -1444,6 +1462,7 @@ bool WSrcMTGSet::setPos(int pos){
     return false;
 
   currentCard = pos;
+  mLastInput = 0;
   return true;
 }
 
