@@ -1,0 +1,17 @@
+#Testing Cycling
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Akroma's Vengeance
+library:forest
+manapool:{3}
+[PLAYER2]
+[DO]
+Akroma's Vengeance
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Akroma's Vengeance
+hand:forest
+[PLAYER2]
+[END]

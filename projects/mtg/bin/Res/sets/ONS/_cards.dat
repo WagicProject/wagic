@@ -8,6 +8,16 @@ type=Sorcery
 auto=foreach(bird|myBattlefield) draw:1
 [/card]
 [card]
+id=41168
+name=Akroma's Vengeance
+mana={4}{W}{W}
+type=Sorcery
+autohand={3}:cycling
+auto=destroy all(artifact,creature,enchantment)
+text=Destroy all artifacts, creatures, and enchantments. Cycling {3} ({3}, Discard this card: Draw a card.)
+rarity=R
+[/card]
+[card]
 text=Enchant land (Target a land as you play this. This card enters the battlefield attached to that land.) You control enchanted land.
 id=41463
 alias=1194

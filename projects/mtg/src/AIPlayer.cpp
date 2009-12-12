@@ -214,7 +214,7 @@ int AIAction::getEfficiency(){
       }
       break;
   }
-  if (p->game->hand->nb_cards == 0) efficiency *= 1.3; //increase chance of using ability if hand is empty
+  if (p->game->hand->nb_cards == 0) efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
   return efficiency;
 }
 

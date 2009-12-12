@@ -36,6 +36,7 @@ class MTGCard {
 
   int colors[Constants::MTG_NB_COLORS];
   map<int,int> basicAbilities;
+  map<string,string> magicTexts;
   string magicText;
   int alias;
   string spellTargetType;
@@ -71,6 +72,7 @@ class MTGCard {
   const char * getText();
 
   void addMagicText(string value);
+  void addMagicText(string value, string zone);
 
   void setName(string value);
   const string getName() const;

@@ -47,14 +47,6 @@ text=Creatures you control gain protection from the color of your choice until e
 rarity=U
 [/card]
 [card]
-id=41168
-name=Akroma's Vengeance
-mana={4}{W}{W}
-type=Sorcery
-text=Destroy all artifacts, creatures, and enchantments. Cycling {3} ({3}, Discard this card: Draw a card.)
-rarity=R
-[/card]
-[card]
 id=39882
 name=Ancestor's Prophet
 mana={4}{W}

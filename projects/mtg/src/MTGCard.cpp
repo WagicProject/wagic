@@ -46,6 +46,9 @@ MTGCard::MTGCard(MTGCard * source){
   mtgid = source->mtgid;
   setId = source->setId;
   magicText = source->magicText;
+  for(map<string,string>::const_iterator it = source->magicTexts.begin(); it != source->magicTexts.end(); ++it){
+    magicTexts[it->first] = source->magicTexts[it->first];
+  }
   spellTargetType = source->spellTargetType;
   alias = source->alias;
 }
@@ -63,6 +66,7 @@ int MTGCard::init(){
   setId = 0;
   mtgid = 0;
   magicText = "";
+  magicTexts.clear();
   spellTargetType = "";
   alias = 0;
   rarity = Constants::RARITY_C;
@@ -258,6 +262,12 @@ void MTGCard::addMagicText(string value){
   std::transform( value.begin(), value.end(), value.begin(),::tolower );
   if (magicText.size()) magicText.append("\n");
   magicText.append(value);
+}
+
+void MTGCard::addMagicText(string value, string key){
+  std::transform( value.begin(), value.end(), value.begin(),::tolower );
+  if (magicTexts[key].size()) magicTexts[key].append("\n");
+  magicTexts[key].append(value);
 }
 
 void MTGCard::setName( string value){

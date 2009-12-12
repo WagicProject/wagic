@@ -383,7 +383,8 @@ class GenericActivatedAbility:public ActivatedAbility{
   MTGAbility * ability;
   int limitPerTurn;
   int counters;
- GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0, int myTurnOnly = 0):ActivatedAbility(_id, card,_cost,myTurnOnly,_tap),ability(a),limitPerTurn(limit){
+  MTGGameZone * activeZone;
+ GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0, int myTurnOnly = 0, MTGGameZone * dest = NULL):ActivatedAbility(_id, card,_cost,myTurnOnly,_tap),ability(a),limitPerTurn(limit),activeZone(dest){
    counters = 0;
    target = ability->target;
   }
@@ -424,6 +425,13 @@ class GenericActivatedAbility:public ActivatedAbility{
     }
   }
 
+  int testDestroy(){
+    if (!activeZone) return ActivatedAbility::testDestroy();
+    if (activeZone->hasCard(source)) return 0;
+    return 1;
+    
+  }
+
 };
 
 /* Generic TargetAbility */
@@ -432,7 +440,8 @@ class GenericTargetAbility:public TargetAbility{
 public:
   int limitPerTurn;
   int counters;
-   GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int myTurnOnly = 0):TargetAbility(_id,_source, _tc,_cost,myTurnOnly,_tap),limitPerTurn(limit){
+  MTGGameZone * activeZone;
+   GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int myTurnOnly = 0, MTGGameZone * dest = NULL):TargetAbility(_id,_source, _tc,_cost,myTurnOnly,_tap),limitPerTurn(limit), activeZone(dest){
     ability = a;
     counters = 0;
   }
@@ -460,10 +469,41 @@ public:
     TargetAbility::Update(dt);
   }
 
+  int testDestroy(){
+    if (!activeZone) return TargetAbility::testDestroy();
+    if (activeZone->hasCard(source)) return 0;
+    return 1;
+    
+  }
 
 };
 
+//Cycling
 
+class ACycle:public ActivatedAbility{
+ public:
+  ACycle(int _id, MTGCardInstance * card,Targetable * _target):ActivatedAbility(_id, card){
+    target = _target;
+  }
+
+  int resolve(){
+    source->controller()->game->putInGraveyard(source);
+    source->controller()->game->drawFromLibrary();
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Cycling";
+  }
+
+  ACycle * clone() const{
+    ACycle * a =  NEW ACycle(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+
+};
 
 
 //Drawer, allows to draw a card for a cost:

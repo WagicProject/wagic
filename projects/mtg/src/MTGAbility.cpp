@@ -145,12 +145,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
 
 
 
-
-
 //Parses a string and returns the corresponding MTGAbility object
 // Returns NULL if parsing failed
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
-MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT){
+MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, MTGGameZone * dest){
   size_t found;
  
   string whitespaces (" \t\f\v\n\r");
@@ -240,8 +238,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         tc = tcf.createTargetChooser(starget, card);
       }
 
-      if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit,myTurnOnly);
-      return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit,myTurnOnly);
+      if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit,myTurnOnly,dest);
+      return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit,myTurnOnly,dest);
     }
     SAFE_DELETE(cost);
   }
@@ -362,6 +360,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NULL;
   }
 
+   //Cycling
+  found = s.find("cycling");
+  if (found != string::npos){
+    MTGAbility * a =  NEW ACycle(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
 
   //Fizzle (counterspell...)
   found = s.find("fizzle");
@@ -842,14 +847,32 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
 }
 
 
-int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card, int id){
+int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card, int id, MTGGameZone * dest){
  
   if (!card && spell) card = spell->source;
   if (!card) return 0;
   MTGCardInstance * target = card->target;
   if (!target) target = card;
-  string magicText = card->magicText;
-  if (card->alias && magicText.size() == 0){
+  string magicText;
+  if (dest) {
+    GameObserver * g = GameObserver::GetInstance();
+    for (int i = 0; i < 2 ; ++i){
+      MTGPlayerCards * zones = g->players[i]->game;
+      if (dest == zones->hand){
+        magicText = card->magicTexts["hand"];
+        break;
+      }
+      if (dest == zones->graveyard){
+        magicText = card->magicTexts["graveyard"];
+        break;
+      }
+      //Other zones needed ?
+      return 0;
+    }
+  }else{
+    magicText = card->magicText;
+  }
+  if (card->alias && magicText.size() == 0 && !dest){
     MTGCard * c = GameApp::collection->getCardById(card->alias);
     if (!c) return 0;
     magicText = c->magicText;
@@ -870,7 +893,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
       magicText = "";
     }
 
-    MTGAbility * a = parseMagicLine(line, result, spell, card); 
+    MTGAbility * a = parseMagicLine(line, result, spell, card,0,0,dest); 
     if (a){
       v->push_back(a);
       result++;
@@ -890,12 +913,12 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
  *   - target (if there ie a "target(" in the string, then this is a TargetAbility)
  *   - doTap (a dirty way to know if tapping is included in the cost...
  */
-int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int mode, TargetChooser * tc){
+int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int mode, TargetChooser * tc,MTGGameZone * dest){
   int dryMode = 0;
-  if (!spell) dryMode = 1;
+  if (!spell && !dest) dryMode = 1;
 
   vector<MTGAbility *> v;
-  int result = getAbilities(&v,spell,card,id);
+  int result = getAbilities(&v,spell,card,id,dest);
 
   for (size_t i = 0; i < v.size(); ++i){
     MTGAbility * a = v[i];

@@ -30,6 +30,9 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
   if(key.compare( "auto")==0){
     card->addMagicText(value);
   }
+  else if(key.find("auto") == 0){
+    card->addMagicText(value,key.substr(4));
+  }
   else if(key.compare( "alias")==0){
     card->alias=atoi(value.c_str());
   }

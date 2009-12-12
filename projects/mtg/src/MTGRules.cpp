@@ -164,6 +164,36 @@ ostream& MTGAttackRule::toString(ostream& out) const
   }
 
 
+OtherAbilitiesEventReceiver::OtherAbilitiesEventReceiver(int _id):MTGAbility(_id,NULL){
+}
+
+
+int OtherAbilitiesEventReceiver::receiveEvent(WEvent *e){
+  if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e)) {
+    if (event->to && (event->to != event->from)){
+      GameObserver * g = GameObserver::GetInstance();
+      for (int i = 0; i < 2; ++i){
+        if (event->to == g->players[i]->game->inPlay) return 0;
+      }
+      AbilityFactory af;
+      af.magicText(g->mLayers->actionLayer()->getMaxId(), NULL, event->card, 1, 0,event->to);
+      return 1;
+    }
+  }
+  return 0;
+}
+
+int OtherAbilitiesEventReceiver::testDestroy(){
+  return 0;
+}
+
+ OtherAbilitiesEventReceiver * OtherAbilitiesEventReceiver::clone() const{
+    OtherAbilitiesEventReceiver * a =  NEW OtherAbilitiesEventReceiver(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+
 MTGBlockRule::MTGBlockRule(int _id):MTGAbility(_id,NULL){
   aType=MTGAbility::MTG_BLOCK_RULE;
 }

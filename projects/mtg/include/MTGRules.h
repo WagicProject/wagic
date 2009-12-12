@@ -8,6 +8,14 @@
 #include "../include/Counters.h"
 #include "../include/WEvent.h"
 
+class OtherAbilitiesEventReceiver:public MTGAbility{
+public:
+  int testDestroy();
+  int receiveEvent(WEvent * event);
+  OtherAbilitiesEventReceiver(int _id);
+  OtherAbilitiesEventReceiver * clone() const;
+};
+
 class MTGPutInPlayRule:public MTGAbility{
  public:
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
