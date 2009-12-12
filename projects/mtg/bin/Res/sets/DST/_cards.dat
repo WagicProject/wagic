@@ -466,7 +466,8 @@ auto={2}:equip
 auto=protection from white
 auto=protection from black
 auto=2/2
-auto=@damaged(player) from(mytgt):may moveTo(myhand) target(creature|mygraveyard) && life:3
+auto=@damaged(player) from(mytgt):life:3
+auto=@damaged(player) from(mytgt):may moveTo(myhand) target(creature|mygraveyard)
 rarity=R
 [/card]
 [card]

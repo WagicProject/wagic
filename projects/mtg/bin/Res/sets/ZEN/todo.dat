@@ -482,6 +482,7 @@ subtype=Vampire Spirit
 power=2
 toughness=1
 text=Bloodghast can't block. Bloodghast has haste as long as an opponent has 10 or less life. Landfall - Whenever a land enters the battlefield under your control, you may return Bloodghast from your graveyard to the battlefield.
+autograveyard=@movedTo(land|myBattlefield):may moveTo(myhand)
 rarity=R
 [/card]
 [card]

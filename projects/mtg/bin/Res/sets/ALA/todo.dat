@@ -44,14 +44,7 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-[card]
-text=Prevent all combat damage that would be dealt this turn.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=175000
-name=Angelsong
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
+
 [card]
 text=Flying, trample     At the beginning of your upkeep, sacrifice a non-Zombie creature, then put a 2/2 black Zombie creature token into play.
 id=174847
@@ -520,17 +513,7 @@ type=Sorcery
 mana={6}{W}{W}
 [/card]
 
-[card]
-text=Reach (This can block creatures with flying.)  Cycling {2} ({2}, Discard this card: Draw a card.)
-id=175262
-name=Jungle Weaver
-rarity=C
-type=Creature
-mana={5}{G}{G}
-power=5
-subtype=Spider
-toughness=6
-[/card]
+
 [card]
 text=Flying     Unearth {2}{U} ({2}{U}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=174837
@@ -818,14 +801,7 @@ rarity=C
 type=Artifact
 mana={1}
 [/card]
-[card]
-text=Target creature gets +3/+3 until end of turn.     Cycling {5}{R}{G}{W} ({5}{R}{G}{W}, Discard this card: Draw a card.)  When you cycle Resounding Roar, target creature gets +6/+6 until end of turn.
-id=174901
-name=Resounding Roar
-rarity=C
-type=Instant
-mana={1}{G}
-[/card]
+
 [card]
 text=Target player discards a card at random.     Cycling {5}{U}{B}{R} ({5}{U}{B}{R}, Discard this card: Draw a card.)  When you cycle Resounding Scream, target player discards two cards at random.
 id=176444
@@ -909,6 +885,10 @@ rarity=C
 type=Enchantment
 mana={2}{G}
 subtype=Aura
+target=creature
+auto=1/0
+auto=trample
+autohand={2}:cycling
 [/card]
 
 [card]
@@ -1219,6 +1199,8 @@ name=Viscera Dragger
 rarity=C
 type=Creature
 mana={3}{B}
+autohand={2}:cycling
+autograveyard={1}{B}:moveTo(myhand) && haste && @end of turn:moveto(removedfromgame) ## ar... too bad it is 100% correct
 power=3
 subtype=Zombie Ogre Warrior
 toughness=3
@@ -1234,14 +1216,7 @@ power=0
 subtype=Human Shaman
 toughness=1
 [/card]
-[card]
-text=Destroy target artifact or land.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=174889
-name=Volcanic Submersion
-rarity=C
-type=Sorcery
-mana={4}{R}
-[/card]
+
 [card]
 text=Flying. When Welkin Guide comes into play, target creature gets +2/+2 and gains flying until end of turn.
 #"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
@@ -1265,17 +1240,4 @@ name=Where Ancients Tread
 rarity=R
 type=Enchantment
 mana={4}{R}
-[/card]
-
-
-[card]
-text=Cycling {2} ({2}, Discard this card: Draw a card.)
-id=175078
-name=Yoked Plowbeast
-rarity=C
-type=Creature
-mana={5}{W}{W}
-power=5
-subtype=Beast
-toughness=5
 [/card]

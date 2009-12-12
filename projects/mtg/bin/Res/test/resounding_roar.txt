@@ -1,0 +1,28 @@
+#Testing Cycling
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Resounding Roar
+inplay:Runeclaw Bear
+library:forest
+manapool:{5}{R}{G}{W}
+[PLAYER2]
+[DO]
+Resounding Roar
+choice 1
+Runeclaw Bear
+next
+next
+Runeclaw Bear
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Runeclaw Bear
+graveyard:Resounding Roar
+hand:forest
+[PLAYER2]
+life:12
+[END]

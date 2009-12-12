@@ -24,6 +24,16 @@ toughness=1
 abilities=shroud
 [/card]
 [card]
+text=Prevent all combat damage that would be dealt this turn.     Cycling {2} ({2}, Discard this card: Draw a card.)
+id=175000
+name=Angelsong
+auto=preventAllcombatDamage ueot
+autohand={2}:cycling
+rarity=C
+type=Instant
+mana={1}{W}
+[/card]
+[card]
 text=Arcane Sanctum enters the battlefield tapped.   {T}: Add {W}, {U}, or {B} to your mana pool.
 auto=tap
 auto={T}:Add {W}
@@ -508,6 +518,19 @@ mana={B}{R}{G}
 type=Instant
 [/card]
 [card]
+text=Reach (This can block creatures with flying.)  Cycling {2} ({2}, Discard this card: Draw a card.)
+id=175262
+name=Jungle Weaver
+rarity=C
+type=Creature
+mana={5}{G}{G}
+autohand={2}:cycling
+abilities=reach
+power=5
+subtype=Spider
+toughness=6
+[/card]
+[card]
 text=Flying, trample, haste   {R}: Hellkite Overlord gets +1/+0 until end of turn.   {B}{G}: Regenerate Hellkite Overlord.
 id=175057
 name=Hellkite Overlord
@@ -956,6 +979,17 @@ mana={W}{U}{U}{B}
 type=Instant
 [/card]
 [card]
+text=Target creature gets +3/+3 until end of turn.     Cycling {5}{R}{G}{W} ({5}{R}{G}{W}, Discard this card: Draw a card.)  When you cycle Resounding Roar, target creature gets +6/+6 until end of turn.
+id=174901
+name=Resounding Roar
+target=creature
+auto=3/3
+autohand={5}{R}{G}{W}:cycling && 6/6 target(creature)
+rarity=C
+type=Instant
+mana={1}{G}
+[/card]
+[card]
 text=Trample   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174959
 name=Rhox Charger
@@ -1328,6 +1362,16 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Destroy target artifact or land.     Cycling {2} ({2}, Discard this card: Draw a card.)
+id=174889
+name=Volcanic Submersion
+target=artifact,land
+autohand={2}:cycling
+rarity=C
+type=Sorcery
+mana={4}{R}
+[/card]
+[card]
 text=Flying   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174955
 name=Waveskimmer Aven
@@ -1374,4 +1418,16 @@ type=Creature
 subtype=Beast
 power=5
 toughness=4
+[/card]
+[card]
+text=Cycling {2} ({2}, Discard this card: Draw a card.)
+id=175078
+name=Yoked Plowbeast
+rarity=C
+type=Creature
+mana={5}{W}{W}
+power=5
+subtype=Beast
+toughness=5
+autohand={2}:cycling
 [/card]
