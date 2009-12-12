@@ -299,7 +299,6 @@ auto=foreach(*|myhand) 1/1
 rarity=R
 [/card]
 [card]
-[card]
 text=Search your library for an artifact card, reveal it, and put it into your hand. Then shuffle your library.
 target=artifact|mylibrary
 auto=moveTo(myhand)
@@ -342,7 +341,6 @@ auto={2}:equip
 auto=double strike
 rarity=U
 [/card]
-[card]
 [card]
 text={G}
 id=48421
@@ -629,10 +627,9 @@ toughness=1
 [/card]
 [card]
 text=Equipped creature gets +1/+1.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-id=135277
+id=46029
 name=Leonin Scimitar
 rarity=C
-color=Artifact
 type=Artifact
 mana={1}
 auto={1}:equip
@@ -673,12 +670,10 @@ power=10
 toughness=10
 [/card]
 [card]
-text=Equipped creature has haste and shroud. (It can't be the target of spells or abilities.)
-Equip 0 ({0}: Attach to target creature you control. Equip only as a sorcery.)
+text=Equipped creature has haste and shroud. (It can't be the target of spells or abilities.) -- Equip 0 ({0}: Attach to target creature you control. Equip only as a sorcery.)
 id=46021
 name=Lightning Greaves
 rarity=U
-color=Artifact
 type=Artifact
 mana={2}
 auto={0}:equip
@@ -686,7 +681,6 @@ auto=shroud
 auto=haste
 subtype=Equipment
 [/card]
-[card]
 [card]
 text={W}, {T}: Regenerate target artifact.
 auto={W}{T}:regenerate target(artifact)
@@ -704,7 +698,6 @@ text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals d
 id=49759
 name=Loxodon Warhammer
 rarity=U
-color=Artifact
 type=Artifact
 mana={3}
 auto={3}:equip
@@ -848,7 +841,6 @@ text=Equipped creature has flying.  Equip {2} ({2}: Attach to target creature yo
 id=46037
 name=Neurok Hoversail
 rarity=C
-color=Artifact
 type=Artifact
 mana={1}
 auto={2}:equip
@@ -1149,7 +1141,6 @@ text=Equipped creature gets +0/+6.     Equip {3} ({3}: Attach to target creature
 id=46028
 name=Slagwurm Armor
 rarity=C
-color=Artifact
 type=Artifact
 mana={1}
 auto={3}:equip
@@ -1562,7 +1553,6 @@ text=Equipped creature gets +2/+2.     Equip {2} ({2}: Attach to target creature
 id=83447
 name=Vulshok Morningstar
 rarity=C
-color=Artifact
 type=Artifact
 mana={2}
 auto={2}:equip
