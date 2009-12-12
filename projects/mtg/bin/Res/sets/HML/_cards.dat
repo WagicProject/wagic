@@ -96,7 +96,7 @@ subtype=Minotaur Spirit
 power=1
 toughness=1
 text={T}: Another target Minotaur creature gets +1/+1 until end of turn.
-auto={T}:1/1 target(minotaur other)
+auto={T}:1/1 target(other minotaur)
 rarity=R
 [/card]
 [card]

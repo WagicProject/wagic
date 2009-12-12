@@ -253,7 +253,7 @@ toughness=4
 text=Whenever Cenn's Heir attacks, it gets +1/+1 until end of turn for each other attacking Kithkin.
 id=142360
 name=Cenn's Heir
-auto=aslongas(this[attacking])foreach(Kithkin[attacking] other) 1/1
+auto=aslongas(this[attacking])foreach(other Kithkin[attacking]) 1/1
 #"this is only compatible with @ auto line in WTH0.8.1
 rarity=C
 type=Creature
