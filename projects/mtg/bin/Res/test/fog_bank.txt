@@ -1,0 +1,22 @@
+#NAME: Fog Bank
+#DESC: Verifies that Fog Bank takes
+#DESC: no damage when blocking
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Grizzly Bears
+[PLAYER2]
+inplay:Fog Bank
+[DO]
+Grizzly Bears
+next
+Fog Bank
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Grizzly Bears
+[PLAYER2]
+inplay:Fog Bank
+[END]

@@ -9,6 +9,9 @@ generic/doesnotuntap2.txt
 generic/double_strike.txt
 generic/equip_landfall_buff.txt
 generic/equip_reach.txt
+generic/equip_shroud.txt
+generic/equip_shroud2.txt
+generic/equip_wither.txt
 generic/fear.txt
 generic/fear_i147.txt
 generic/first_and_double_strike1_i187.txt
@@ -65,7 +68,6 @@ angry_mob3.txt
 angry_mob4.txt
 angry_mob4b.txt
 angry_mob5.txt
-angry_mob6.txt
 angry_mob7.txt
 animate_artifact.txt
 animate_artifact2.txt
@@ -188,6 +190,7 @@ fledgling_imp2.txt
 flowstone_hellion.txt
 flowstone_slide.txt
 fog.txt
+fog_bank.txt
 foratog.txt
 force_of_nature.txt
 force_of_nature2.txt
@@ -347,6 +350,7 @@ volcanic_eruption.txt
 walking_wall.txt
 wall_of_diffusion.txt
 wall_of_diffusion2.txt
+warren_instigator.txt
 welkin_hawk.txt
 whispersilk_cloak.txt
 whispersilk_cloak2.txt

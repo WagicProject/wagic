@@ -1529,6 +1529,19 @@ type=Instant
 rarity=C
 [/card]
 [card]
+id=191368
+name=Warren Instigator
+mana={R}{R}
+type=Creature
+subtype=Goblin Berserker
+power=1
+toughness=1
+text=Double strike -- Whenever Warren Instigator deals damage to an opponent, you may put a Goblin creature card from your hand onto the battlefield.
+auto=@damaged(player) from(this):may moveto(myBattlefield) target(creature[goblin]|myHand)
+abilities=double strike
+rarity=M
+[/card]
+[card]
 text=Flying   Welkin Tern can block only creatures with flying.
 id=191353
 name=Welkin Tern

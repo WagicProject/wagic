@@ -1572,17 +1572,6 @@ mana={0}
 type=Artifact
 [/card]
 [card]
-text=Equipped creature gets +2/+2.     Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-id=83447
-name=Vulshok Morningstar
-rarity=C
-type=Artifact
-mana={2}
-auto={2}:equip
-auto=2/2
-subtype=Equipment
-[/card]
-[card]
 text=Fear Whenever Woebearer deals combat damage to a player, you may return target creature card from your graveyard to your hand.
 id=46074
 name=Woebearer

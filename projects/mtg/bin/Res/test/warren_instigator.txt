@@ -1,0 +1,27 @@
+#NAME: Warren Instigator
+#DESC: verifies that Warren Instigator's
+#DESC: ability correctly can be used
+#DESC: twice due to double strike
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Warren Instigator
+hand:Raging Goblin,Goblin King
+[PLAYER2]
+[DO]
+Warren Instigator
+next
+next
+choice 0
+Raging Goblin
+next
+choice 0
+Goblin King
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Warren Instigator,Raging Goblin,Goblin King
+[PLAYER2]
+life:18
+[END]
