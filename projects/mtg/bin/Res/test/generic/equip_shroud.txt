@@ -4,7 +4,7 @@ FIRSTMAIN
 [PLAYER1]
 hand:Whispersilk Cloak
 manapool:{5}
-inplay:Runeclaw Bear
+inplay:Runeclaw Bear,Caravan Hurda
 [PLAYER2]
 hand:Hideous End
 inplay:129754,129756,129755
@@ -24,14 +24,15 @@ next
 129755
 Hideous End
 Runeclaw Bear
+Caravan Hurda
 [ASSERT]
 firstmain
 [PLAYER1]
-life:20
+life:18
 inplay:Runeclaw Bear,Whispersilk Cloak
+graveyard:Caravan Hurda
 [PLAYER2]
-hand:Hideous End
-manapool:{B}{B}{B}
+graveyard:Hideous End
 inplay:129754,129756,129755
 life:20
 [END]

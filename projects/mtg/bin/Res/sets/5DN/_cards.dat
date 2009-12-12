@@ -454,18 +454,6 @@ toughness=1
 abilities=unblockable
 [/card]
 [card]
-text=Vigilance   As long as Raksha Golden Cub is equipped, Cat creatures you control get +2/+2 and have double strike.
-id=73569
-name=Raksha Golden Cub
-rarity=R
-mana={5}{W}{W}
-type=Creature
-subtype=Cat Soldier
-power=3
-toughness=4
-abilities=vigilance,legendary
-[/card]
-[card]
 text=Relentless Rats gets +1/+1 for each other creature on the battlefield named Relentless Rats.   A deck can have any number of cards named Relentless Rats.
 id=73573
 auto=foreach(relentless rats) 1/1 other
@@ -579,6 +567,15 @@ name=Staff of Domination
 rarity=R
 mana={3}
 type=Artifact
+[/card]
+[card]
+id=51078
+name=Steelshaper's Gift
+mana={W}
+type=Sorcery
+text=Search your library for an Equipment card, reveal that card, and put it into your hand. Then shuffle your library.
+auto=moveTo(myhand) target(equipment|mylibrary)
+rarity=U
 [/card]
 [card]
 text={T}, Put a 2/2 colorless Pincher creature token onto the battlefield.   Whenever an artifact is put into a graveyard from the battlefield, you may untap Summoning Station.

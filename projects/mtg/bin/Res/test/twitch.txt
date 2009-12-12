@@ -19,7 +19,7 @@ manapool:{U}{U}{U}{U}{U}{U}
 # to activate both and damage p2. Only one sorcerer
 # should be able to do damage.
 Twitch
-choice 1
+choice 0
 Prodigal Sorcerer
 Prodigal Sorcerer
 p2
@@ -29,7 +29,7 @@ p2
 # both and damage p1. Exactly one sorcerer should be
 # able to do damage.
 Twitch
-choice 0
+choice 1
 Prodigal Sorcerer
 Prodigal Sorcerer
 p1
