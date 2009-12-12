@@ -1558,6 +1558,7 @@ rarity=C
 type=Artifact
 mana={2}
 auto={3}
+auto=4/2
 auto=doesnotuntap
 subtype=Equipment
 [/card]
