@@ -561,15 +561,7 @@ toughness=3
 text=Devour 2 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with twice that many +1/+1 counters on it.) When Marrow Chomper comes into play, you gain 2 life for each creature it devoured.
 rarity=U
 [/card]
-[card]
-id=179584
-name=Mask of Riddles
-mana={U}{B}
-type=Artifact
-subtype=Equipment
-text=Equipped creature has fear. Whenever equipped creature deals combat damage to a player, you may draw a card. Equip {2}
-rarity=U
-[/card]
+
 [card]
 id=180620
 name=Mayael's Aria
@@ -944,9 +936,13 @@ rarity=C
 id=189651
 name=Unscythe, Killer of Kings
 mana={U}{B}{B}{R}
-type=Legendary Artifact
+type=Artifact
+abilities=Legendary
 subtype=Equipment
 text=Equipped creature gets +3/+3 and has first strike. Whenever a creature dealt damage by equipped creature this turn is put into a graveyard, you may remove that card from the game. If you do, put a 2/2 black Zombie creature token into play. Equip {2}
+auto={2}:equip
+auto=first strike
+auto=@damaged(creature) from(mytgt):may moveTo(removedfromgame) ### erm... so close....!!!
 rarity=R
 [/card]
 [card]

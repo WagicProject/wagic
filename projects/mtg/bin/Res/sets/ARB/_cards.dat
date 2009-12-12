@@ -260,6 +260,18 @@ toughness=4
 abilities=double strike
 [/card]
 [card]
+id=179584
+name=Mask of Riddles
+mana={U}{B}
+type=Artifact
+subtype=Equipment
+text=Equipped creature has fear. Whenever equipped creature deals combat damage to a player, you may draw a card. Equip {2}
+auto={2}:equip
+auto=fear
+auto=@damaged(player) from(mytgt):may draw:1 controller
+rarity=U
+[/card]
+[card]
 text=Flying   When Messenger Falcons enters the battlefield, draw a card.
 id=189644
 name=Messenger Falcons
