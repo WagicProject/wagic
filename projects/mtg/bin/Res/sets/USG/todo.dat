@@ -28,7 +28,6 @@ power=2
 subtype=Human Wizard
 toughness=2
 [/card]
-
 [card]
 text=Echo {1}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5865
@@ -51,7 +50,6 @@ power=3
 subtype=Troll
 toughness=3
 [/card]
-
 [card]
 text=At the end of each player's turn, Antagonism deals 2 damage to that player unless one of his or her opponents was dealt damage that turn.
 id=5572
@@ -87,7 +85,6 @@ power=2
 subtype=Elf Druid
 toughness=2
 [/card]
-
 [card]
 text=Trample     When Argothian Wurm comes into play, any player may sacrifice a land. If a player does, put Argothian Wurm on top of its owner's library.
 id=5769
@@ -107,7 +104,6 @@ rarity=R
 type=Enchantment
 mana={2}{U}
 [/card]
-
 [card]
 text=At the beginning of your upkeep, you may put a page counter on Barrin's Codex.     {4}, {T}, Sacrifice Barrin's Codex: Draw X cards, where X is the number of page counters on Barrin's Codex.
 id=5735
@@ -135,14 +131,6 @@ name=Bereavement
 rarity=U
 type=Enchantment
 mana={1}{B}
-[/card]
-
-[card]
-text={T}: Add {1} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5612
-name=Blasted Landscape
-rarity=U
-type=Land
 [/card]
 [card]
 text=Gain control of all permanents you own. (This effect doesn't end at end of turn.)  Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -246,16 +234,6 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-
-[card]
-text=Destroy target enchantment.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5692
-name=Clear
-rarity=U
-type=Instant
-mana={1}{W}
-[/card]
-
 [card]
 text=At the beginning of your upkeep, sacrifice Contamination unless you sacrifice a creature.     If a land is tapped for mana, it produces {B} instead of any other type and amount.
 id=5768
@@ -286,7 +264,6 @@ power=6
 subtype=Hellion Beast
 toughness=6
 [/card]
-
 [card]
 text=Each player returns a creature he or she controls to its owner's hand.
 id=7817
@@ -354,28 +331,6 @@ type=Enchantment
 mana={3}{B}
 [/card]
 [card]
-text=Protection from black     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5634
-name=Disciple of Grace
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Cleric
-toughness=2
-[/card]
-[card]
-text=Protection from red     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5672
-name=Disciple of Law
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Cleric
-toughness=2
-[/card]
-[card]
 text=At the beginning of your upkeep, you may put a verse counter on Discordant Dirge.       {B}, Sacrifice Discordant Dirge: Look at target opponent's hand and choose up to X cards from it, where X is the number of verse counters on Discordant Dirge. That player discards those cards.
 id=8446
 name=Discordant Dirge
@@ -402,7 +357,6 @@ power=1
 subtype=Human Wizard
 toughness=1
 [/card]
-
 [card]
 text=Flying     At the beginning of your upkeep, sacrifice Drifting Djinn unless you pay {1}{U}.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5719
@@ -413,13 +367,6 @@ mana={4}{U}{U}
 power=5
 subtype=Djinn
 toughness=5
-[/card]
-[card]
-text=Drifting Meadow comes into play tapped.     {T}: Add {W} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5805
-name=Drifting Meadow
-rarity=C
-type=Land
 [/card]
 [card]
 text=Whenever Dromosaur blocks or becomes blocked, it gets +2/-2 until end of turn.
@@ -511,14 +458,6 @@ type=Enchantment
 mana={G}
 [/card]
 [card]
-text=Destroy target nonartifact, nonblack creature. It can't be regenerated.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5819
-name=Expunge
-rarity=C
-type=Instant
-mana={2}{B}
-[/card]
-[card]
 text=Sacrifice an enchantment: You gain life equal to the sacrificed enchantment's converted mana cost.
 id=5829
 name=Faith Healer
@@ -558,7 +497,6 @@ type=Enchantment
 mana={1}{R}
 subtype=Aura
 [/card]
-
 [card]
 text=Whenever Flesh Reaver deals damage to a creature or opponent, Flesh Reaver deals that much damage to you.
 id=5654
@@ -639,7 +577,6 @@ power=2
 subtype=Goblin
 toughness=2
 [/card]
-
 [card]
 text=When Great Whale comes into play, untap up to seven lands.
 id=10682
@@ -763,14 +700,6 @@ type=Instant
 mana={1}{W}
 [/card]
 [card]
-text=Destroy all enchantments.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5820
-name=Hush
-rarity=C
-type=Sorcery
-mana={3}{G}
-[/card]
-[card]
 text=Each player discards his or her hand, then returns up to three cards from his or her graveyard to his or her hand.     Remove Ill-Gotten Gains from the game.
 id=5570
 name=Ill-Gotten Gains
@@ -778,7 +707,6 @@ rarity=R
 type=Sorcery
 mana={2}{B}{B}
 [/card]
-
 [card]
 text={T}: Destroy target creature with power 4 or greater.
 id=5678
@@ -817,14 +745,6 @@ rarity=C
 type=Enchantment
 mana={1}{U}
 subtype=Aura
-[/card]
-[card]
-text=Destroy target land.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5817
-name=Lay Waste
-rarity=C
-type=Sorcery
-mana={3}{R}
 [/card]
 [card]
 text=Whenever a creature is put into a graveyard from play and another creature is in play, return the first creature from that graveyard to play under its owner's control at end of turn.
@@ -869,14 +789,6 @@ name=Lotus Blossom
 rarity=R
 type=Artifact
 mana={2}
-[/card]
-[card]
-text=Prevent all combat damage that would be dealt this turn.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5756
-name=Lull
-rarity=C
-type=Instant
-mana={1}{G}
 [/card]
 [card]
 text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
@@ -1072,17 +984,6 @@ mana={2}{W}
 subtype=Aura
 [/card]
 [card]
-text=Flying     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5575
-name=Pendrell Drake
-rarity=C
-type=Creature
-mana={3}{U}
-power=2
-subtype=Drake
-toughness=3
-[/card]
-[card]
 text=Enchant creature     Enchanted creature has "At the beginning of your upkeep, sacrifice this creature unless you pay its mana cost."
 id=5614
 name=Pendrell Flux
@@ -1147,13 +1048,6 @@ type=Enchantment
 mana={B}
 [/card]
 [card]
-text=Polluted Mire comes into play tapped.     {T}: Add {B} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5808
-name=Polluted Mire
-rarity=C
-type=Land
-[/card]
-[card]
 text=Echo {G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5664
 name=Pouncing Jaguar
@@ -1181,8 +1075,6 @@ type=Enchantment
 mana={1}{U}
 subtype=Aura
 [/card]
-
-
 [card]
 text=At the beginning of your upkeep, Purging Scythe deals 2 damage to the creature with the least toughness. If two or more creatures are tied for least toughness, you choose one.
 id=10649
@@ -1191,7 +1083,6 @@ rarity=R
 type=Artifact
 mana={5}
 [/card]
-
 [card]
 text=Destroy two target lands.
 id=5761
@@ -1227,7 +1118,6 @@ rarity=R
 type=Enchantment
 mana={3}{U}{U}
 [/card]
-
 [card]
 text=Prevent all damage that would be dealt this turn to up to two target creatures.
 id=9716
@@ -1235,14 +1125,6 @@ name=Redeem
 rarity=U
 type=Instant
 mana={1}{W}
-[/card]
-[card]
-text=You gain 6 life.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5818
-name=Rejuvenate
-rarity=C
-type=Sorcery
-mana={3}{G}
 [/card]
 [card]
 text=Whenever a nontoken creature you control is put into a graveyard from play, you may search your library for a creature card with the same name as that creature, reveal the card and put it into your hand. If you do, shuffle your library.
@@ -1253,27 +1135,12 @@ type=Enchantment
 mana={3}{W}
 [/card]
 [card]
-text=Remote Isle comes into play tapped.     {T}: Add {U} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5807
-name=Remote Isle
-rarity=C
-type=Land
-[/card]
-[card]
 text=Sacrifice any number of artifacts, creatures, and/or lands. Draw a card for each permanent sacrificed this way.
 id=5558
 name=Reprocess
 rarity=R
 type=Sorcery
 mana={2}{B}{B}
-[/card]
-[card]
-text=Return target permanent to its owner's hand.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5809
-name=Rescind
-rarity=C
-type=Instant
-mana={1}{U}{U}
 [/card]
 [card]
 text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
@@ -1390,28 +1257,6 @@ subtype=Human Cleric
 toughness=4
 [/card]
 [card]
-text=Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5815
-name=Sandbar Merfolk
-rarity=C
-type=Creature
-mana={U}
-power=1
-subtype=Merfolk
-toughness=1
-[/card]
-[card]
-text=Cycling {2} ({2}, Discard this card: Draw a card.)
-id=9722
-name=Sandbar Serpent
-rarity=U
-type=Creature
-mana={4}{U}
-power=3
-subtype=Serpent
-toughness=4
-[/card]
-[card]
 text=Whenever a player taps an Island for mana, Scald deals 1 damage to that player.
 id=10657
 name=Scald
@@ -1429,14 +1274,6 @@ mana={4}{R}
 power=7
 subtype=Wurm
 toughness=7
-[/card]
-[card]
-text=Destroy target artifact.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5816
-name=Scrap
-rarity=C
-type=Instant
-mana={2}{R}
 [/card]
 [card]
 text=Whenever Seasoned Marshal attacks, you may tap target creature.
@@ -1477,17 +1314,6 @@ type=Enchantment
 mana={2}{W}{W}
 [/card]
 [card]
-text=Defender (This creature can't attack.)  First strike     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5743
-name=Shimmering Barrier
-rarity=U
-type=Creature
-mana={1}{W}
-power=1
-subtype=Wall
-toughness=3
-[/card]
-[card]
 text=First strike, haste     Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 id=5562
 name=Shivan Raptor
@@ -1515,39 +1341,12 @@ type=Instant
 mana={R}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets -1/-1.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5553
-name=Sicken
-rarity=C
-type=Enchantment
-mana={B}
-subtype=Aura
-[/card]
-
-
-[card]
-text=Slippery Karst comes into play tapped.     {T}: Add {G} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5803
-auto=tap
-auto={T}:add {G}
-name=Slippery Karst
-rarity=C
-type=Land
-[/card]
-[card]
 text=At the beginning of your upkeep, you may put a soot counter on Smokestack.       At the beginning of each player's upkeep, that player sacrifices a permanent for each soot counter on Smokestack.
 id=5730
 name=Smokestack
 rarity=R
 type=Artifact
 mana={4}
-[/card]
-[card]
-text=Smoldering Crater comes into play tapped.     {T}: Add {R} to your mana pool.     Cycling {2} ({2}, Discard this card: Draw a card.)
-id=5804
-name=Smoldering Crater
-rarity=C
-type=Land
 [/card]
 [card]
 text={R}: You may put a creature card from your hand into play. That creature gains haste until end of turn. Sacrifice the creature at end of turn.
@@ -1695,8 +1494,6 @@ rarity=R
 type=Sorcery
 mana={4}{U}{U}
 [/card]
-
-
 [card]
 text=Discard all the cards in your hand, then draw that many cards.
 id=5834
@@ -1816,7 +1613,6 @@ rarity=C
 type=Enchantment
 mana={2}{U}
 [/card]
-
 [card]
 text=Whenever a Forest is tapped for mana, its controller adds {G} to his or her mana pool (in addition to the mana the land produces).
 id=5687
@@ -1958,7 +1754,6 @@ power=6
 subtype=Wurm
 toughness=6
 [/card]
-
 [card]
 text={T}: Return Wizard Mentor and target creature you control to their owner's hand.
 id=8907
@@ -1978,7 +1773,6 @@ rarity=R
 type=Enchantment
 mana={3}{W}
 [/card]
-
 [card]
 text=Until end of turn, you may play cards in your graveyard.     If a card would be put into your graveyard this turn, remove that card from the game instead.
 id=5629

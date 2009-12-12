@@ -148,6 +148,15 @@ power=4
 toughness=5
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5612
+name=Blasted Landscape
+auto={T}:Add {1}
+autohand={2}:cycling
+rarity=U
+type=Land
+[/card]
+[card]
 text=Sacrifice Blood Vassal: Add {B}{B} to your mana pool.
 id=5737
 name=Blood Vassal
@@ -262,6 +271,17 @@ mana={0}
 type=Artifact
 [/card]
 [card]
+text=Destroy target enchantment.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5692
+target=enchantment
+auto=destroy
+autohand={2}:cycling
+name=Clear
+rarity=U
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 text=Enchant creature   Enchanted creature is unblockable.
 target=creature
 auto=unblockable
@@ -356,7 +376,6 @@ rarity=U
 mana={2}{G}
 type=Enchantment
 [/card]
-
 [card]
 text=Add {B}{B}{B} to your mana pool.
 auto=Add {B}{B}{B}
@@ -365,6 +384,32 @@ name=Dark Ritual
 rarity=C
 mana={B}
 type=Instant
+[/card]
+[card]
+text=Protection from black   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5634
+name=Disciple of Grace
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+autohand={2}:cycling
+power=1
+toughness=2
+auto=protection from black
+[/card]
+[card]
+text=Protection from red   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5672
+name=Disciple of Law
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+autohand={2}:cycling
+power=1
+toughness=2
+auto=protection from red
 [/card]
 [card]
 text=destroy target artifact or enchantment
@@ -393,6 +438,16 @@ name=Dragon Blood
 rarity=U
 mana={3}
 type=Artifact
+[/card]
+[card]
+text=Drifting Meadow enters the battlefield tapped.   {T}: Add {W} to your mana pool.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5805
+name=Drifting Meadow
+auto=tap
+auto={T}:Add {W}
+autohand={2}:cycling
+rarity=C
+type=Land
 [/card]
 [card]
 text={B}{B}, {T}: Destroy target green creature. 
@@ -432,15 +487,26 @@ toughness=1
 [/card]
 [card]
 text={G}, {T}, Sacrifice Elvish Lyrist: Destroy target enchantment.
-auto={G}{T}{S}:destroy target(enchantment)
 id=5774
 name=Elvish Lyrist
 rarity=C
-type=Creature
 mana={G}
-power=1
+type=Creature
 subtype=Elf
+auto={G}{T}{S}:destroy target(enchantment)
+power=1
 toughness=1
+[/card]
+[card]
+text=Destroy target nonartifact, nonblack creature. It can't be regenerated.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5819
+target=creature[-back;-artifact]
+auto=bury
+autohand={2}:cycling
+name=Expunge
+rarity=C
+mana={2}{B}
+type=Instant
 [/card]
 [card]
 text=Creatures without flying can't block this turn.
@@ -719,6 +785,16 @@ power=1
 toughness=3
 [/card]
 [card]
+text=Destroy all enchantments.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5820
+auto=destroy all(enchantment)
+autohand={2}:cycling
+name=Hush
+rarity=C
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 text=At the beginning of your upkeep, if you have a card in hand, return Imaginary Pet to its owner's hand.
 auto=@each my upkeep:aslongas(*|myhand) moveTo(myHand)
 id=5772
@@ -767,6 +843,17 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
+text=Destroy target land.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5817
+target=land
+auto=destroy
+autohand={2}:cycling
+name=Lay Waste
+rarity=C
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 text={B}: Looming Shade gets +1/+1 until end of turn.
 auto={B}:1/1
 id=5591
@@ -777,6 +864,16 @@ type=Creature
 subtype=Shade
 power=1
 toughness=1
+[/card]
+[card]
+text=Prevent all combat damage that would be dealt this turn.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5756
+auto=preventAllcombatDamage ueot
+autohand={2}:cycling
+name=Lull
+rarity=C
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 text=Defender (This creature can't attack.)  {3}: Mobile Fort gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
@@ -878,6 +975,19 @@ toughness=1
 abilities=flying,first strike
 [/card]
 [card]
+text=Flying   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5575
+name=Pendrell Drake
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Drake
+autohand={2}:cycling
+power=2
+toughness=3
+auto=flying
+[/card]
+[card]
 text=At end of turn, if no creatures are on the battlefield, sacrifice Pestilence.   {B}: Pestilence deals 1 damage to each creature and each player.
 alias=1172
 id=5619
@@ -954,6 +1064,16 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text=Polluted Mire enters the battlefield tapped.   {T}: Add {B} to your mana pool.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5808
+name=Polluted Mire
+auto=tap
+auto={T}:Add {B}
+autohand={2}:cycling
+rarity=C
+type=Land
+[/card]
+[card]
 text=Whenever a player plays an enchantment spell, counter it.
 auto=@movedTo(enchantment|stack):fizzle all(enchantment|stack)
 id=8811
@@ -1019,6 +1139,61 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=You gain 6 life.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5818
+auto=life:6
+authand={2}:cycling
+name=Rejuvenate
+rarity=C
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+text=Remote Isle enters the battlefield tapped.   {T}: Add {U} to your mana pool.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5807
+name=Remote Isle
+auto=tap
+auto={T}:Add {U}
+autohand={2}:cycling
+rarity=C
+type=Land
+[/card]
+[card]
+text=Return target permanent to its owner's hand.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5809
+target=*
+auto=moveTo(ownerhand)
+autohand={2}:cycling
+name=Rescind
+rarity=C
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+text=Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5815
+name=Sandbar Merfolk
+rarity=C
+mana={U}
+type=Creature
+subtype=Merfolk
+autohand={2}:cycling
+power=1
+toughness=1
+[/card]
+[card]
+text=Cycling {2} ({2}, Discard this card: Draw a card.)
+id=9722
+name=Sandbar Serpent
+rarity=U
+mana={4}{U}
+type=Creature
+subtype=Serpent
+autohand={2}:cycling
+power=3
+toughness=4
+[/card]
+[card]
 text=First strike   {1}{B}: Regenerate Sanguine Guard.
 auto={1}{B}:regenerate
 id=5627
@@ -1030,6 +1205,17 @@ subtype=Zombie Knight
 power=2
 toughness=2
 abilities=first strike
+[/card]
+[card]
+text=Destroy target artifact.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5816
+target=artifact
+auto=destroy
+autohand={2}:cycling
+name=Scrap
+rarity=C
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 text=First strike
@@ -1066,6 +1252,19 @@ type=Land
 abilities=legendary
 [/card]
 [card]
+text=Defender (This creature can't attack.)   First strike   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5743
+name=Shimmering Barrier
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Wall
+autohand={2}:cycling
+power=1
+toughness=3
+auto=defender,first strike
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{R}: Shivan Hellkite deals 1 damage to target creature or player.
 auto={1}{R}:damage:1 target(creature,player)
 id=5660
@@ -1100,6 +1299,18 @@ auto={2}{R}{T}:damage:1 opponent
 rarity=R
 type=Land
 abilities=legendary
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets -1/-1.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5553
+target=creature
+auto=-1/-1
+autohand={2}:cycling
+name=Sicken
+rarity=C
+mana={B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={T}: You gain 1 life.
@@ -1140,17 +1351,37 @@ subtype=Imp
 toughness=2
 [/card]
 [card]
-text=When Sleeper Agent comes into play, target opponent gains control of it.      At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
-auto=moveTo(opponentBattlefield)
-auto=@each my upkeep:Damage:2 controller
+text=When Sleeper Agent enters the battlefield, target opponent gains control of it.   At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
 id=5751
 name=Sleeper Agent
 rarity=R
-type=Creature
 mana={B}
-power=3
+type=Creature
 subtype=Minion
+auto=moveTo(opponentBattlefield)
+auto=@each my upkeep:Damage:2 controller
+power=3
 toughness=3
+[/card]
+[card]
+text=Slippery Karst enters the battlefield tapped.   {T}: Add {G} to your mana pool.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5803
+auto=tap
+auto={T}:Add {G}
+autohand={2}:cycling
+name=Slippery Karst
+rarity=C
+type=Land
+[/card]
+[card]
+text=Smoldering Crater enters the battlefield tapped.   {T}: Add {R} to your mana pool.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=5804
+name=Smoldering Crater
+auto=tap
+auto={T}:Add {R}
+autohand={2}:cycling
+rarity=C
+type=Land
 [/card]
 [card]
 text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
