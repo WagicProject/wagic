@@ -145,9 +145,11 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
-
 	if (music->mTrack)
 		PlayMP3(music->mTrack, looping);
+  JMP3 * mp3 = JMP3::mInstance;
+	if (mp3) mp3->setVolume((mMusicVolume * .01) *0x8000);
+
 }
 
 
@@ -157,11 +159,22 @@ void JSoundSystem::PlaySample(JSample *sample)
 	playWaveMem(sample->mSample, 0);
 }
 
+void JSoundSystem::SetVolume(int volume){
+  SetMusicVolume(volume);
+  SetSfxVolume(volume);
+}
 
-void JSoundSystem::SetVolume(int volume)
+void JSoundSystem::SetMusicVolume(int volume)
 {
+  mMusicVolume = volume;
   JMP3 * mp3 = JMP3::mInstance;
-	if (mp3) mp3->setVolume(volume);
+	if (mp3) mp3->setVolume((mMusicVolume * .01) *0x8000);
+}
+
+void JSoundSystem::SetSfxVolume(int volume)
+{
+  setPspVolume((volume * .01) *0x8000);
+
 }
 
 

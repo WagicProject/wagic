@@ -172,7 +172,11 @@ public:
 	/// @param volume - New volume.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	void SetVolume(int volume);
+  void SetVolume(int volume);
+
+	void SetMusicVolume(int volume);
+
+  void SetSfxVolume(int volume);
 
   	int mChannel;
 protected:
@@ -191,6 +195,7 @@ private:
 #endif
 
 	int mVolume;
+  int mMusicVolume;
 
 
 	static JSoundSystem* mInstance;

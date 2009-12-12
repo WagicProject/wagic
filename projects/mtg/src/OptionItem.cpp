@@ -1090,31 +1090,6 @@ void WGuiMenu::Add(WGuiBase * it){
     items.push_back(it);
 }
 
-//WGuiMenu
-/*
-void WGuiMenu::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-  
-  WGuiBase * c = Current();
-  if(c && !c->isModal()){
-    if (mEngine->GetButtonClick(buttonPrev)){
-      if (currentItem > 0 && c->Leaving(buttonPrev)){
-          currentItem--;
-          c = Current();
-          c->Entering(buttonPrev);
-      }
-    }
-    else if (mEngine->GetButtonClick(buttonNext)){
-      if (currentItem < (int)items.size()-1 && c->Leaving(buttonNext)){
-          currentItem++;
-          c = Current();
-          c->Entering(buttonNext);
-        }
-    }
-  }
-  if(c)
-    c->Update(dt);
-}*/
 
 
 void WGuiMenu::Update(float dt){
@@ -1238,7 +1213,7 @@ void WGuiTabMenu::Render(){
 
 void WGuiTabMenu::save(){
   confirmChange(true);
-  setData();  
+  setData();
   ::options.save();
 }
 

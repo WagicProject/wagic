@@ -129,23 +129,6 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 	return music;
 }
 
-// void JSoundSystem::FreeMusic(JMusic *music)
-// {
-// 	if (music)
-// 	{
-// 		// 		if (music->mTrack)
-// 		// 			FMUSIC_FreeSong(music->mTrack);
-// 		// 		delete music;
-// 		// 		music = NULL;
-//
-// 		if (music->mTrack)
-// 			FSOUND_Sample_Free(music->mTrack);
-//
-// 		//delete music;
-// 		//music = NULL;
-// 	}
-// }
-
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
 	// 	if (music && music->mTrack)
@@ -176,14 +159,22 @@ void JSoundSystem::StopMusic(JMusic *music __attribute__((unused)))
 }
 
 
-void JSoundSystem::SetVolume(int volume)
+void JSoundSystem::SetVolume(int volume){
+  SetMusicVolume(volume);
+  SetSfxVolume(volume);
+}
+
+void JSoundSystem::SetMusicVolume(int volume)
 {
+  //TODO Fix to affect only mp3 playback...
 		FSOUND_SetSFXMasterVolume(volume);
 
 	mVolume = volume;
 }
 
-
+void JSoundSystem::SetSfxVolume(int volume){
+  //TODO
+}
 
 
 JSample *JSoundSystem::LoadSample(const char *fileName)

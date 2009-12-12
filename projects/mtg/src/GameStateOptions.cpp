@@ -195,6 +195,9 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
   switch (controlId){
   case 1:
     optionsTabs->save();
+    //Set Audio volume
+    JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);
+    JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
   case 2:
     mParent->SetNextState(GAME_STATE_MENU);
     break;

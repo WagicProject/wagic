@@ -38,6 +38,13 @@ WAVDATA currentWav[NUMBER_WAV_CHANNELS];		// 各通道当前的播放
 
 
 ///////////////////////////////////////////////////////////////////
+void setPspVolume(int volume)
+{
+  pspAudioSetVolume(0, volume, volume); 
+  pspAudioSetVolume(1, volume, volume); 
+  pspAudioSetVolume(2, volume, volume);
+}
+
 char loadWaveData(WAVDATA* p_wav, char* fileName, char memLoad)  // WAVE加载, memLoad-是否加载至内磥E
 {
 

@@ -65,6 +65,7 @@ void stopWaveMem(int channel);
 void audioInit();
 void audioDestroy();
 void setChannelFlag(int channel, int flag);
+void setPspVolume(int volume);
 
 //////////////////////////////////////////////////////////////////////////
 

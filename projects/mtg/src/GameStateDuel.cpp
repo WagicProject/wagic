@@ -327,7 +327,7 @@ void GameStateDuel::Update(float dt)
 
 	        if (MusicExist(musictrack)){
 	          GameApp::music = resources.ssLoadMusic(musictrack.c_str());
-	          JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
+            JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
           }
         }
         //end of music code

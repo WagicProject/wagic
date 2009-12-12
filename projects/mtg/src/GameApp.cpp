@@ -181,7 +181,9 @@ void GameApp::Create()
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
 
-  //  effect = NEW CardEffect();
+  //Set Audio volume
+  JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);
+  JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
 
   char buf[512];
   sprintf(buf, "size of MTGCard : %i\n" , sizeof(MTGCard));
@@ -246,7 +248,7 @@ void GameApp::Update()
     return;
   }
 
-  //Restart Rendering engine when START and TRIANGLE ARE PRESSED SIMULTANEOUSLY
+  //Restart Rendering engine when START and SQUARE ARE PRESSED SIMULTANEOUSLY
   if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_SQUARE)){
     JRenderer::Destroy();
   }

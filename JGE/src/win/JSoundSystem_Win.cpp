@@ -136,22 +136,6 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 	return music;
 }
 
-// void JSoundSystem::FreeMusic(JMusic *music)
-// {
-// 	if (music)
-// 	{
-// 		// 		if (music->mTrack)
-// 		// 			FMUSIC_FreeSong(music->mTrack);
-// 		// 		delete music;
-// 		// 		music = NULL;
-// 
-// 		if (music->mTrack)
-// 			FSOUND_Sample_Free(music->mTrack);
-// 
-// 		//delete music;
-// 		//music = NULL;
-// 	}
-// }
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
@@ -171,22 +155,27 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 
 void JSoundSystem::StopMusic(JMusic *music)
 {
-	// 	if (music && music->mTrack)
-	// 		FMUSIC_StopSong(music->mTrack);
-
  	FSOUND_StopSound(mChannel);
 }
 
 
 void JSoundSystem::SetVolume(int volume)
 {
+		SetMusicVolume(volume);
+    SetSfxVolume(volume);
+}
+
+void JSoundSystem::SetMusicVolume(int volume)
+{
+  //TODO This function needs to be redone
 		FSOUND_SetSFXMasterVolume(volume);
 	
 	mVolume = volume;
 }
 
-
-
+void JSoundSystem::SetSfxVolume(int volume){
+  //TODO
+}
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {

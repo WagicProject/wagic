@@ -116,7 +116,9 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
       }
       if (unlocked && options[Options::SFXVOLUME].number > 0){
         JSample * sample = resources.RetrieveSample("bonus.wav");
-        if (sample) JSoundSystem::GetInstance()->PlaySample(sample);
+        if (sample){
+          JSoundSystem::GetInstance()->PlaySample(sample);
+        }
       }
     }
 
