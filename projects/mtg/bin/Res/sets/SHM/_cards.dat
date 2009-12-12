@@ -85,6 +85,18 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Equipped creature gets +1/+0 and has wither. (It deals damage to creatures in the form of -1/-1 counters.)  Equip {2}
+id=129135
+name=Blight Sickle
+rarity=C
+type=Artifact
+mana={2}
+auto={2}:equip
+auto=wither
+auto=1/0
+subtype=Equipment
+[/card]
+[card]
 text=Flying   {BR}: Blistering Dieflyn gets +1/+0 until end of turn.
 id=141988
 name=Blistering Dieflyn

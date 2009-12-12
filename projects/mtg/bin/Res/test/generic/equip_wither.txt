@@ -1,0 +1,71 @@
+#Test:equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{2}
+inplay:Runeclaw Bear,Blight Sickle
+[PLAYER2]
+inplay:kraken Hatchling,157888,157885,157882,195157
+hand:Slaughter Cry,Vampire's Bite
+[DO]
+Blight Sickle
+Runeclaw Bear
+next
+#begin
+next
+#attackers
+Runeclaw Bear
+next
+#blocker
+kraken Hatchling
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+157888
+157885
+157882
+Slaughter Cry
+kraken Hatchling
+195157
+Vampire's Bite
+kraken Hatchling
+next
+#begin
+next
+#attackers
+kraken Hatchling
+eot
+eot
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+Runeclaw Bear
+next
+#blocker
+kraken Hatchling
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:17
+inplay:Runeclaw Bear,Blight Sickle
+[PLAYER2]
+graveyard:Slaughter Cry,Vampire's Bite,kraken Hatchling
+inplay:157888,157885,157882,195157
+life:20
+[END]

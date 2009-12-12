@@ -729,7 +729,7 @@ toughness=0
 rarity=R
 [/card]
 [card]
-text=Equipped creature gets +1/+2 and has «{T}: Destroy target Equipment.» Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+text=Equipped creature gets +1/+2 and has "{T}: Destroy target Equipment." Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 name=Manriki-Gusari
 id=74158
 mana={2}

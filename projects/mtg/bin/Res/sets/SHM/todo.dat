@@ -85,15 +85,7 @@ rarity=U
 type=Sorcery
 mana={2B}{2B}{2B}
 [/card]
-[card]
-text=Equipped creature gets +1/+0 and has wither. (It deals damage to creatures in the form of -1/-1 counters.)  Equip {2}
-id=129135
-name=Blight Sickle
-rarity=C
-type=Artifact
-mana={2}
-subtype=Equipment
-[/card]
+
 [card]
 text=Whenever a creature is put into a graveyard from play, if it had a -1/-1 counter on it, put a -1/-1 counter on target creature.
 id=135429

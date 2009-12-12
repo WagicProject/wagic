@@ -550,15 +550,7 @@ rarity=U
 type=Instant
 mana={3}{GU}
 [/card]
-[card]
-text=Whenever you play a spell, equipped creature gets +2/+2 until end of turn.     Equip {2}
-id=157971
-name=Leering Emblem
-rarity=R
-type=Artifact
-mana={2}
-subtype=Equipment
-[/card]
+
 [card]
 text=Chroma - Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
 id=151139

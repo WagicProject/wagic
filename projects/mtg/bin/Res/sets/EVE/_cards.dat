@@ -397,6 +397,17 @@ power=1
 toughness=3
 [/card]
 [card]
+text=Whenever you play a spell, equipped creature gets +2/+2 until end of turn.     Equip {2}
+id=157971
+name=Leering Emblem
+rarity=R
+type=Artifact
+mana={2}
+subtype=Equipment
+auto={2}:equip
+auto=@movedTo(*|mystack):2/2 ueot
+[/card]
+[card]
 text=Fear   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 id=147437
 name=Lingering Tormentor
