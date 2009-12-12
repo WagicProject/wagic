@@ -547,16 +547,7 @@ abilities=legendary
 type=Artifact
 mana={7}
 [/card]
-[card]
-text=Equipped creature gets +1/+1.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-id=135277
-name=Leonin Scimitar
-rarity=U
-color=Artifact
-type=Artifact
-mana={1}
-subtype=Equipment
-[/card]
+
 [card]
 text=When Llanowar Sentinel comes into play, you may pay {1}{G}. If you do, search your library for a card named Llanowar Sentinel and put that card into play. Then shuffle your library.
 id=129536
@@ -572,16 +563,7 @@ power=2
 subtype=Elf
 toughness=3
 [/card]
-[card]
-text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals damage, you gain that much life. If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
-id=129630
-name=Loxodon Warhammer
-rarity=R
-color=Artifact
-type=Artifact
-mana={3}
-subtype=Equipment
-[/card]
+
 [card]
 text=When Loyal Sentry blocks a creature, destroy that creature and Loyal Sentry.
 id=129798
@@ -1205,15 +1187,7 @@ color=Red
 type=Sorcery
 mana={5}{R}{R}{R}
 [/card]
-[card]
-text=Equipped creature is unblockable and has shroud. (It can't be the target of spells or abilities.)  Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-id=135278
-name=Whispersilk Cloak
-rarity=U
-type=Artifact
-mana={3}
-subtype=Equipment
-[/card]
+
 [card]
 #Technically correct could be added to the card.dat but this card is too powerfull the AI does not understand and simply never attack... in WTH 0.8.1
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.

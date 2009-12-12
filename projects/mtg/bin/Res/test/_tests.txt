@@ -8,6 +8,8 @@ generic/doesnotuntap2.txt
 generic/double_strike.txt
 generic/equip_landfall_buff.txt
 generic/equip_reach.txt
+generic/equip_shroud.txt
+generic/equip_shroud2.txt
 generic/fear.txt
 generic/fear_i147.txt
 generic/first_and_double_strike1_i187.txt

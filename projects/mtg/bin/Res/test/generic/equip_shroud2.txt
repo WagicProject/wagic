@@ -1,0 +1,37 @@
+#Test:testing to see if shroud creature can can targeted of equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Whispersilk Cloak,Adventuring Gear,195161
+manapool:{7}
+inplay:Runeclaw Bear,Vampire Nighthawk
+[PLAYER2]
+[DO]
+Whispersilk Cloak
+Whispersilk Cloak
+Runeclaw Bear
+Adventuring Gear
+Adventuring Gear
+Runeclaw Bear
+Vampire Nighthawk
+195161
+next
+#begin
+next
+#attackers
+Runeclaw Bear
+Vampire Nighthawk
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:24
+inplay:Whispersilk Cloak,Adventuring Gear,195161,Runeclaw Bear,Vampire Nighthawk
+[PLAYER2]
+life:14
+[END]

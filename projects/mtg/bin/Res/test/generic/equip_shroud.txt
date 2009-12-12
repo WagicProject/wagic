@@ -1,0 +1,37 @@
+#Test:equipment
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Whispersilk Cloak
+manapool:{5}
+inplay:Runeclaw Bear
+[PLAYER2]
+hand:Hideous End
+inplay:129754,129756,129755
+[DO]
+Whispersilk Cloak
+Whispersilk Cloak
+Runeclaw Bear
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+129754
+129756
+129755
+Hideous End
+Runeclaw Bear
+[ASSERT]
+firstmain
+[PLAYER1]
+life:20
+inplay:Runeclaw Bear,Whispersilk Cloak
+[PLAYER2]
+hand:Hideous End
+manapool:{B}{B}{B}
+inplay:129754,129756,129755
+life:20
+[END]

@@ -1313,6 +1313,18 @@ subtype=Spirit
 toughness=3
 [/card]
 [card]
+text=Equipped creature gets +1/+1.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+id=135277
+name=Leonin Scimitar
+rarity=U
+color=Artifact
+type=Artifact
+mana={1}
+auto={1}:equip
+auto=1/1
+subtype=Equipment
+[/card]
+[card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
 abilities=haste
 id=129624
@@ -1395,6 +1407,20 @@ mana={3}{W}{W}
 power=3
 subtype=Elephant Cleric
 toughness=3
+[/card]
+[card]
+text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals damage, you gain that much life. If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+id=129630
+name=Loxodon Warhammer
+rarity=R
+color=Artifact
+type=Artifact
+mana={3}
+auto={3}:equip
+auto=3/0
+auto=lifelink
+auto=trample
+subtype=Equipment
 [/card]
 [card]
 text=
@@ -2925,6 +2951,18 @@ name=Warrior's Honor
 rarity=C
 type=Instant
 mana={2}{W}
+[/card]
+[card]
+text=Equipped creature is unblockable and has shroud. (It can't be the target of spells or abilities.)  Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+id=135278
+name=Whispersilk Cloak
+rarity=U
+type=Artifact
+mana={3}
+auto={2}:equip
+auto=unblockable
+auto=shroud
+subtype=Equipment
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
