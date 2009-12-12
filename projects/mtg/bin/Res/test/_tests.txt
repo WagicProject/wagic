@@ -104,6 +104,7 @@ belligerent_hatchling.txt
 benalish_knight.txt
 black_vise.txt
 blessed_wine.txt
+blight_sickle.txt
 blinking_spirit.txt
 bloodfire_colossus.txt
 bloodhall_ooze.txt
@@ -347,6 +348,8 @@ walking_wall.txt
 wall_of_diffusion.txt
 wall_of_diffusion2.txt
 welkin_hawk.txt
+whispersilk_cloak.txt
+whispersilk_cloak2.txt
 white_knight1.txt
 windswept_heath.txt
 wrath_of_god.txt

@@ -676,6 +676,19 @@ type=Land
 subtype=Swamp Forest
 [/card]
 [card]
+text=Equipped creature has defender, flying, and first strike.     Equip {2}
+id=89090
+name=Peregrine Mask
+rarity=U
+type=Artifact
+mana={1}
+auto={2}:equip
+auto=defender
+auto=first strike
+auto=flying
+subtype=Equipment
+[/card]
+[card]
 text={1}, Sacrifice a creature: Search your library for a land card with a basic land type and put it onto the battlefield tapped. Then shuffle your library.
 auto={1}{S(creature|mybattlefield)}:moveTo(myBattlefield) target(basic|mylibrary) && tap
 id=83744

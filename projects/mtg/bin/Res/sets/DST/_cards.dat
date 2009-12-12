@@ -456,6 +456,20 @@ auto=destroy all(*[-artifact])
 rarity=R
 [/card]
 [card]
+id=47453
+name=Sword of Light and Shadow
+mana={3}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +2/+2 and has protection from white and from black. Whenever equipped creature deals combat damage to a player, you gain 3 life and you may return up to one target creature card from your graveyard to your hand. Equip {2}
+auto={2}:equip
+auto=protection from white
+auto=protection from black
+auto=2/2
+auto=@damaged(player) from(mytgt):may moveTo(myhand) target(creature|mygraveyard) && life:3
+rarity=R
+[/card]
+[card]
 text=Flash (You may cast this spell any time you could cast an instant.) Reach (This creature can block creatures with flying.)
 id=46548
 name=Tangle Spider
@@ -541,6 +555,17 @@ toughness=2
 rarity=U
 [/card]
 [card]
+id=49758
+name=Vulshok Morningstar
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +2/+2. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+auto={2}:equip
+auto=2/2
+rarity=U
+[/card]
+[card]
 text={T}, Sacrifice an Island: Put a 2/2 blue Elemental creature token with flying onto the battlefield. {T}, Sacrifice a Mountain: Put a 3/3 red Elemental creature token onto the battlefield.
 id=49775
 name=Wand of the Elements
@@ -549,6 +574,18 @@ type=Artifact
 auto={T}{S(island|myBattlefield)}:token(Elemental,Creature Elemental,2/2,flying blue)
 auto={T}{S(mountain|myBattlefield)}:token(Elemental,Creature Elemental,3/3,red)
 rarity=R
+[/card]
+[card]
+id=46030
+name=Whispersilk Cloak
+mana={3}
+type=Artifact
+subtype=Equipment
+text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+auto={2}:equip
+auto=unblockable
+auto=shroud
+rarity=U
 [/card]
 [card]
 text=Whenever a player casts a green spell, you may gain 1 life.

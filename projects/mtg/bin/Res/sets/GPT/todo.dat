@@ -1000,6 +1000,11 @@ mana={4}
 type=Artifact
 subtype=Equipment
 text=As long as equipped creature is tapped, tapped creatures you control get +2/+0. As long as equipped creature is untapped, untapped creatures you control get +0/+2. {3}: You may tap or untap equipped creature. Equip {3}
+auto={3}:equip
+auto=aslongas(mytgt[tapped]) lord(creature[tapped]|myinplay) 2/0
+auto=aslongas(mytgt[-tapped]) lord(creature[-tapped]|myinplay) 0/2
+auto={3}:tap(mytgt)
+auto={3}:untap(mytgt)
 rarity=R
 [/card]
 [card]

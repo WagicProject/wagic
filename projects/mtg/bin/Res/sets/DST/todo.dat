@@ -909,15 +909,7 @@ subtype=Equipment
 text=Equipped creature gets +2/+2 and has protection from red and from blue. Whenever equipped creature deals combat damage to a player, Sword of Fire and Ice deals 2 damage to target creature or player and you draw a card. Equip {2}
 rarity=R
 [/card]
-[card]
-id=47453
-name=Sword of Light and Shadow
-mana={3}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+2 and has protection from white and from black. Whenever equipped creature deals combat damage to a player, you gain 3 life and you may return up to one target creature card from your graveyard to your hand. Equip {2}
-rarity=R
-[/card]
+
 [card]
 id=49021
 name=Synod Artificer
@@ -1034,15 +1026,7 @@ type=Instant
 text=Counter target spell. That spell's controller may draw a card.
 rarity=C
 [/card]
-[card]
-id=49758
-name=Vulshok Morningstar
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+2. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
-[/card]
+
 [card]
 id=45455
 name=Vulshok War Boar
@@ -1062,15 +1046,7 @@ type=Artifact
 text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
 rarity=R
 [/card]
-[card]
-id=46030
-name=Whispersilk Cloak
-mana={3}
-type=Artifact
-subtype=Equipment
-text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
-[/card]
+
 [card]
 id=49026
 name=Wirefly Hive

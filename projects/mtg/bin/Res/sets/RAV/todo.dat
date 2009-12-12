@@ -1264,15 +1264,7 @@ rarity=C
 type=Instant
 mana={1}{U}
 [/card]
-[card]
-text=Equipped creature has defender, flying, and first strike.     Equip {2}
-id=89090
-name=Peregrine Mask
-rarity=U
-type=Artifact
-mana={1}
-subtype=Equipment
-[/card]
+
 
 [card]
 text=Counter target spell unless its controller discards his or her hand.     Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
