@@ -15,6 +15,7 @@
 #include "../include/GameStateDuel.h"
 #include "../include/GameStateOptions.h"
 #include "../include/GameStateShop.h"
+#include "../include/GameStateAwards.h"
 #include "../include/DeckStats.h"
 #include "../include/Translate.h"
 
@@ -41,7 +42,7 @@ GameApp::GameApp(): JApp()
 #endif
   mScreenShotCount = 0;
 
-  for (int i=0; i < MAX_STATE	; i++)
+  for (int i=0; i < GAME_STATE_MAX	; i++)
     mGameStates[i] = NULL;
 
   mShowDebugInfo = false;
@@ -174,6 +175,9 @@ void GameApp::Create()
   mGameStates[GAME_STATE_OPTIONS] = NEW GameStateOptions(this);
   mGameStates[GAME_STATE_OPTIONS]->Create();
 
+  mGameStates[GAME_STATE_AWARDS] = NEW GameStateAwards(this);
+  mGameStates[GAME_STATE_AWARDS]->Create();
+
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
 
@@ -194,7 +198,7 @@ void GameApp::LoadGameStates()
 void GameApp::Destroy()
 {
   LOG("==Destroying GameApp==");
-  for (int i=GAME_STATE_MENU;i<=MAX_STATE-1;i++)
+  for (int i=GAME_STATE_MENU;i<=GAME_STATE_MAX-1;i++)
     {
       if (mGameStates[i]){
 	mGameStates[i]->Destroy();

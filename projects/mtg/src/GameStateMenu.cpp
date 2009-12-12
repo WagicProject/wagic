@@ -392,6 +392,8 @@ void GameStateMenu::Update(float dt)
       }
       if (mGuiController)
 	      mGuiController->Update(dt);
+      if(mEngine->GetButtonState(PSP_CTRL_RTRIGGER)) //Hook for GameStateAward state
+      	mParent->SetNextState(GAME_STATE_AWARDS);
       break;
     case MENU_STATE_MAJOR_SUBMENU :
       subMenuController->Update(dt);
@@ -505,16 +507,27 @@ void GameStateMenu::Render()
 
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(128,255,255,255));
-    mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-10,5,JGETEXT_RIGHT);
+    mFont->DrawString(GAME_VERSION, SCREEN_WIDTH-74,5,JGETEXT_RIGHT);
     mFont->DrawString(nbcardsStr,10, 5);
     mFont->SetScale(1.f);
     mFont->SetColor(ARGB(255,255,255,255));
 
-    renderer->FillRoundRect(SCREEN_WIDTH/2 - 100,SCREEN_HEIGHT-20, 191,6,5,ARGB(100,10,5,0));
+    renderer->FillRoundRect(SCREEN_WIDTH/2 - 100,SCREEN_HEIGHT, 191,6,5,ARGB(100,10,5,0));
     scroller->Render();
 
-    renderer->RenderQuad(mBg, SCREEN_WIDTH/2, 50);
+    
+    if(mBg)
+      renderer->RenderQuad(mBg,SCREEN_WIDTH/2,50);
 
+    JQuad * jq = resources.RetrieveTempQuad("button_trophy.png");
+    if(jq){
+      int alp = 255;
+      if(options.newAward())
+        alp = (int) (sin(timeIndex) * 255);
+
+      jq->SetColor(ARGB(abs(alp),255,255,255));        
+      renderer->RenderQuad(jq, SCREEN_WIDTH-64, 0);
+    }
   }
   if (subMenuController){
     subMenuController->Render();

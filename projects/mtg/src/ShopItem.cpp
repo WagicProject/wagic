@@ -274,7 +274,11 @@ void ShopItems::Update(float dt){
           showCardList = false;
         }
       }
-      if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_TRIANGLE)){
+      
+      if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_TRIANGLE)){
+          options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
+      }
+      if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_CROSS)){
           showCardList = !showCardList;
       }
       SAFE_DELETE(dialog);

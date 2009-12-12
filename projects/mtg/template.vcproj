@@ -469,6 +469,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GameStateAwards.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GameStateDeckViewer.cpp"
 				>
 			</File>
@@ -815,6 +819,10 @@
 			</File>
 			<File
 				RelativePath=".\include\GameState.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\GameStateAwards.h"
 				>
 			</File>
 			<File

@@ -78,32 +78,38 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
       bonus.push_back(b);
     }
 
+    GameOptionAward * goa = NULL;
     if (unlocked == -1){
       unlocked = isDifficultyUnlocked();
       if (unlocked){
         unlockedTex = resources.RetrieveTexture("unlocked.png");
         unlockedQuad = resources.RetrieveQuad("unlocked.png", 2, 2, 396, 96);
-        options[Options::DIFFICULTY_MODE_UNLOCKED] = GameOption(1);
+        goa = (GameOptionAward*) &options[Options::DIFFICULTY_MODE_UNLOCKED];
+        goa->giveAward();
         options.save();
       } else if ((unlocked = isMomirUnlocked())) {
           unlockedTex = resources.RetrieveTexture("momir_unlocked.png");
           unlockedQuad = resources.RetrieveQuad("momir_unlocked.png", 2, 2, 396, 96);
-          options[Options::MOMIR_MODE_UNLOCKED] = GameOption(1);
+          goa = (GameOptionAward*) &options[Options::MOMIR_MODE_UNLOCKED];
+          goa->giveAward();
           options.save();
       } else if ((unlocked = isEvilTwinUnlocked())) {
           unlockedTex = resources.RetrieveTexture("eviltwin_unlocked.png");
           unlockedQuad = resources.RetrieveQuad("eviltwin_unlocked.png", 2, 2, 396, 96);
-          options[Options::EVILTWIN_MODE_UNLOCKED] = GameOption(1);
+          goa = (GameOptionAward*) &options[Options::EVILTWIN_MODE_UNLOCKED];
+          goa->giveAward();
           options.save();
       }else if((unlocked = isRandomDeckUnlocked())) {
           unlockedTex = resources.RetrieveTexture("randomdeck_unlocked.png");
           unlockedQuad = resources.RetrieveQuad("randomdeck_unlocked.png", 2, 2, 396, 96);
-          options[Options::RANDOMDECK_MODE_UNLOCKED] = GameOption(1);
+          goa = (GameOptionAward*) &options[Options::RANDOMDECK_MODE_UNLOCKED];
+          goa->giveAward();
           options.save();
       }else if((unlocked = unlockRandomSet())) {
           unlockedTex = resources.RetrieveTexture("set_unlocked.png");
           unlockedQuad = resources.RetrieveQuad("set_unlocked.png", 2, 2, 396, 96);
-          options[Options::optionSet(unlocked - 1)] = GameOption(1);
+          goa = (GameOptionAward*) &options[Options::optionSet(unlocked - 1)];
+          goa->giveAward();
           options.save();
           MTGSetInfo * si = setlist.getInfo(unlocked - 1);
           if(si) unlockedString = si->getName(); //Show the set's pretty name for unlocks.

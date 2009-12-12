@@ -52,6 +52,8 @@ WGuiItem::WGuiItem(string _display){
  mFocus = false;
  width=SCREEN_WIDTH;
  height=20;
+ x=0;
+ y=0;
 }
 
 void WGuiItem::Update(float dt){
@@ -68,17 +70,6 @@ void WGuiHeader::Render(){
  
   JRenderer * renderer = JRenderer::GetInstance();
   mFont->DrawString(_(displayValue).c_str(),x+width/2,y,JGETEXT_CENTER);
-}
-
-//WGuiText
-void WGuiText::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  mFont->SetScale(.8);
-  mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
- 
-  JRenderer * renderer = JRenderer::GetInstance();
-  mFont->DrawString(_(displayValue).c_str(),x,y,JGETEXT_LEFT); 
-  mFont->SetScale(1);
 }
 
 //OptionItem
@@ -433,91 +424,73 @@ OptionDirectory::OptionDirectory(string _root, int _id, string _displayValue): O
   initSelections();
 }
 
-//WGuiList
-WGuiList::WGuiList(string name): WGuiItem(name){
-  failMsg = "NO OPTIONS AVAILABLE";
-  nbitems = 0;
-  current = -1;
-  width = SCREEN_WIDTH-10;
-  y = 0;
-  x = 0;
-  mFocus = false;
-}
-WGuiList::~WGuiList(){
-  for (int i = 0 ; i < nbitems; i++){
-    SAFE_DELETE(listItems[i]);
-  }
-}
-void WGuiList::setModal(bool val){
-  listItems[current]->setModal(val);
-}
-bool WGuiList::isModal(){
-  if(current >= 0 && current < nbitems)
-    if(listItems[current]->isModal())
-      return true;
-  return false;
-}
-void WGuiList::Add(WGuiBase * item){
-  if (nbitems < MAX_OPTION_ITEMS){
-    listItems[nbitems] = item;
-    nbitems++;
-  }
-}
-bool WGuiList::Leaving(u32 key){
-  if(key == PSP_CTRL_DOWN && current < nbitems-1)
+bool WGuiMenu::Leaving(u32 key){
+  int nbitems = (int) items.size();
+  if(key == buttonNext && currentItem < nbitems-1)
     return false;
-  else if(key == PSP_CTRL_UP && current > 0)
+  else if(key == buttonPrev && currentItem > 0)
     return false;
 
-  if(current >= 0 && current < nbitems)
-    if(!listItems[current]->Leaving(key))
+  if(currentItem >= 0 && currentItem < nbitems)
+    if(!items[currentItem]->Leaving(key))
       return false;
 
   mFocus = false;
   return true;
 }
-void WGuiList::Entering(u32 key){  
+void WGuiMenu::Entering(u32 key){  
   mFocus = true;
 
   //Try to force a selectable option.
-  if(current == -1){
-    for (int i = 0 ; i < nbitems; i++){
-      if(listItems[i]->Selectable()) {
-        current = i;
+  if(currentItem == -1){
+    for (size_t i = 0 ; i < items.size(); i++){
+      if(items[i]->Selectable()) {
+        currentItem = i;
         break;
       }
     }
   }
 
-  if(current >= 0 && current < nbitems)
-    listItems[current]->Entering(key);
-
-
+  if(currentItem >= 0 && currentItem < (int) items.size())
+    items[currentItem]->Entering(key);
   return;
 }
-void WGuiList::renderBack(WGuiBase * it){
+void WGuiMenu::renderBack(WGuiBase * it){
   if(!it)
     return;
   WGuiHeader * header = dynamic_cast<WGuiHeader*>(it);
   JRenderer * renderer = JRenderer::GetInstance();
   if(header)
-    renderer->FillRoundRect(it->getX()-5,it->getY()-2,it->getWidth()-5,it->getHeight(),2,it->getColor(WGuiColor::BACK_HEADER));
+    renderer->FillRoundRect(it->getX()-2,it->getY()-2,it->getWidth(),it->getHeight(),2,it->getColor(WGuiColor::BACK_HEADER));
   else{
     WGuiSplit * split = dynamic_cast<WGuiSplit*>(it);
     if(split && split->left->Visible() && split->right->Visible()){
       if(split->left)
-        renderer->FillRoundRect(split->left->getX()-5,split->getY()-2,split->left->getWidth()-5,split->getHeight(),2,split->left->getColor(WGuiColor::BACK));
+        renderer->FillRoundRect(split->left->getX()-2,split->getY()-2,split->left->getWidth()-6,split->getHeight(),2,split->left->getColor(WGuiColor::BACK));
       if(split->right)
-        renderer->FillRoundRect(split->right->getX()-5,split->getY()-2,split->right->getWidth()-5,split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
+        renderer->FillRoundRect(split->right->getX()-2,split->getY()-2,split->right->getWidth(),split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
     }
     else
-      renderer->FillRoundRect(it->getX()-5,it->getY()-2,it->getWidth()-5,it->getHeight(),2,it->getColor(WGuiColor::BACK));
+      renderer->FillRoundRect(it->getX()-2,it->getY()-2,it->getWidth(),it->getHeight(),2,it->getColor(WGuiColor::BACK));
     
   }
 }
+//WGuiList
+WGuiList::WGuiList(string name, WDataSource * syncme): WGuiMenu(PSP_CTRL_DOWN,PSP_CTRL_UP){
+  failMsg = "NO OPTIONS AVAILABLE";
+  width = SCREEN_WIDTH-10;
+  height = SCREEN_HEIGHT-10;
+  y = 5;
+  x = 5;
+  mFocus = false;
+  sync = syncme;
+  displayValue = name;
+}
 void WGuiList::confirmChange(bool confirmed){
-  for(int x=0;x<nbitems;x++){
-    listItems[x]->confirmChange(confirmed);
+  for(size_t x=0;x<items.size();x++){
+    if(!items[x])
+      continue;
+    items[x]->confirmChange(confirmed);
   }
 }
 void WGuiList::Render(){
@@ -526,10 +499,10 @@ void WGuiList::Render(){
   int listSelectable=0;
   int adjustedCurrent=0;
   int start = 0, nowPos = 0, vHeight=0;
+  int nbitems = (int) items.size();
 
-  
   //List is empty.
-  if (!nbitems && failMsg != ""){
+  if (!items.size() && failMsg != ""){
     JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
     mFont->DrawString(_(failMsg).c_str(),x+width/2, y, JGETEXT_RIGHT);
@@ -537,41 +510,41 @@ void WGuiList::Render(){
   }
 
   //Force a selectable option.
-  if(current == -1){
+  if(currentItem == -1){
     for (int i = 0 ; i < nbitems; i++){
-      if(listItems[i]->Selectable()) {
-        current = i;
+      if(items[i]->Selectable()) {
+        currentItem = i;
         if(hasFocus())
-          listItems[current]->Entering(0);
+          items[currentItem]->Entering(0);
         break;
       }
     }
   }
   //Find out how large our list is.
   for (int pos=0;pos < nbitems; pos++){
-    listHeight+=listItems[pos]->getHeight()+5;
-    if(listItems[pos]->Selectable()){
+    listHeight+=items[pos]->getHeight()+5;
+    if(items[pos]->Selectable()){
       listSelectable++;
-      if(pos < current) adjustedCurrent++;
+      if(pos < currentItem) adjustedCurrent++;
     }
   }
 
   //Always fill screen
   if(listHeight > SCREEN_HEIGHT)
   { 
-    for (start=current;start > 0; start--){
-      if(!listItems[start]->Visible())
+    for (start=currentItem;start > 0; start--){
+      if(!items[start]->Visible())
         continue;
 
-      vHeight += listItems[start]->getHeight()+5;
+      vHeight += items[start]->getHeight()+5;
       if(vHeight >= (SCREEN_HEIGHT-60)/2)
         break;
     }
     vHeight = 0;
     for (nowPos=nbitems;nowPos > 1; nowPos--){
-       if(!listItems[start]->Visible())
+       if(!items[start]->Visible())
         continue;
-      vHeight += listItems[nowPos-1]->getHeight()+5;
+      vHeight += items[nowPos-1]->getHeight()+5;
     }
 
     if(vHeight <= SCREEN_HEIGHT-40 && nowPos < start)
@@ -585,110 +558,59 @@ void WGuiList::Render(){
   if(start >= 0)
   {
     for (int pos=0;pos < nbitems; pos++){
-      if(!listItems[pos]->Visible())
+      if(!items[pos]->Visible())
         continue;
 
       if(pos < start){
-        vHeight += listItems[pos]->getHeight() + 5;
+        vHeight += items[pos]->getHeight() + 5;
         continue;
       }
-      
 
-      listItems[pos]->setY(y+nowPos);
-      listItems[pos]->setX(x);
+      items[pos]->setY(y+nowPos);
+      items[pos]->setX(x);
       if(listHeight > SCREEN_HEIGHT && listSelectable > 1)
-        listItems[pos]->setWidth(width-10);
+        items[pos]->setWidth(width-10);
       else
-        listItems[pos]->setWidth(width);
-      nowPos += listItems[pos]->getHeight() + 5;
-      renderBack(listItems[pos]);
-      listItems[pos]->Render();
+        items[pos]->setWidth(width);
+      nowPos += items[pos]->getHeight() + 5;
+      renderBack(items[pos]);
+      items[pos]->Render();
       if(nowPos > SCREEN_HEIGHT) 
         break;
     }
 
     //Draw scrollbar
     if(listHeight > SCREEN_HEIGHT && listSelectable > 1){
-      int barPosition = 35+((float)adjustedCurrent/listSelectable)*(SCREEN_HEIGHT-40);
-      int barLength = (SCREEN_HEIGHT-40) / listSelectable;
+      int barPosition = y-5+((float)adjustedCurrent/listSelectable)*(SCREEN_HEIGHT-y);
+      int barLength = (SCREEN_HEIGHT-y) / listSelectable;
       if(barLength < 4) barLength = 4;
-      renderer->FillRect(x+width-8,39,2,SCREEN_HEIGHT-42,
+      renderer->FillRect(x+width-2,y-1,2,SCREEN_HEIGHT-y,
         getColor(WGuiColor::SCROLLBAR));
-      renderer->FillRoundRect(x+width-12,barPosition,5,barLength,2,
+      renderer->FillRoundRect(x+width-5,barPosition,5,barLength,2,
         getColor(WGuiColor::SCROLLBUTTON));
     }
 
     //Render current overlay.
-    if(current > 0 && current < nbitems && listItems[current]->Visible())
-      listItems[current]->Overlay();
+    if(currentItem >= 0 && currentItem < nbitems && items[currentItem]->Visible())
+      items[currentItem]->Overlay();
     }
 }
 
 void WGuiList::setData(){
-  for (int i = 0; i < nbitems; i++){
-    listItems[i]->setData();
+  for (size_t i = 0; i < items.size(); i++){
+    items[i]->setData();
   }
 }
 
-WGuiBase * WGuiList::Current(){
-  if(current >= 0 && current < nbitems)
-      return listItems[current];
-  
-  return NULL;
+void WGuiList::nextItem(){
+  WGuiMenu::nextItem();
+  if(sync)
+    sync->setPos(currentItem);
 }
-
-void WGuiList::nextOption(){
- int potential = current;
-
-  if (potential < nbitems-1){
-    potential++;
-    while(potential < nbitems-1 && listItems[potential]->Selectable() == false)
-      potential++;
-    if(potential == nbitems || !listItems[potential]->Selectable())
-      potential = -1;
-    else if(potential != current && listItems[current]->Leaving(PSP_CTRL_DOWN)){
-        current = potential;
-        listItems[current]->Entering(PSP_CTRL_DOWN);
-    }
-  }
-}
-void WGuiList::prevOption(){
- int potential = current;
-
- if (potential > 0){
-    potential--;
-    while(potential > 0 && listItems[potential]->Selectable() == false)
-      potential--;
-    if(potential < 0 || !listItems[potential]->Selectable())
-      potential = -1;
-    else if(listItems[current]->Leaving(PSP_CTRL_UP)){
-        current = potential;
-        listItems[current]->Entering(PSP_CTRL_UP);
-    }
-  }
-}
-
-void WGuiList::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-  bool kidModal = false;
-  
-  if(current >= 0 && current < nbitems)
-    kidModal = listItems[current]->isModal();
-   
-  if(!kidModal && hasFocus()){
-    if (mEngine->GetButtonClick(PSP_CTRL_UP))
-     prevOption();
-    else if (mEngine->GetButtonClick(PSP_CTRL_DOWN))
-     nextOption();
-  }
-
-  if(current >= 0 && current < nbitems)
-    listItems[current]->Update(dt);
-
-  for (int i = 0 ; i < nbitems; i++){
-    if(i != current)
-      listItems[i]->Update(dt);
-  }
+void WGuiList::prevItem(){
+  WGuiMenu::prevItem();
+  if(sync)
+    sync->setPos(currentItem);
 }
 
 void WGuiList::ButtonPressed(int controllerId, int controlId){
@@ -698,14 +620,6 @@ void WGuiList::ButtonPressed(int controllerId, int controlId){
     return;
 
   it->ButtonPressed(controllerId,controlId);
-}
-
-void WGuiList::Reload()
-{
- for(int i=0;i<nbitems;i++) {
-   if(listItems[i] != NULL)
-     listItems[i]->Reload();
- }
 }
 
 OptionTheme::OptionTheme(): OptionDirectory(RESPATH"/themes",Options::ACTIVE_THEME, "Current Theme"){
@@ -1121,17 +1035,16 @@ void WGuiSplit::confirmChange(bool confirmed){
 }
 
 //WGuiMenu
-WGuiMenu::WGuiMenu(u32 next  = PSP_CTRL_RIGHT, u32 prev = PSP_CTRL_LEFT){
+WGuiMenu::WGuiMenu(u32 next  = PSP_CTRL_RIGHT, u32 prev = PSP_CTRL_LEFT): WGuiItem(""){
   buttonNext = next;
   buttonPrev = prev;
-  currentItem = 0;
+  currentItem = -1;
 }
 WGuiMenu::~WGuiMenu(){
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
     SAFE_DELETE(*it);
   items.clear();
 }
-
 void WGuiMenu::setData(){
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
     (*it)->setData();
@@ -1167,7 +1080,8 @@ void WGuiMenu::Add(WGuiBase * it){
     items.push_back(it);
 }
 
-//WGuiTabMenu
+//WGuiMenu
+/*
 void WGuiMenu::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
   
@@ -1190,12 +1104,102 @@ void WGuiMenu::Update(float dt){
   }
   if(c)
     c->Update(dt);
+}*/
+
+
+void WGuiMenu::Update(float dt){
+  int nbitems = (int) items.size();
+  JGE * mEngine = JGE::GetInstance();
+  bool kidModal = false;
+
+  if(!mEngine->GetButtonState(held))
+    held = 0;
+  else
+    duration += dt;
+  
+  if(currentItem >= 0 && currentItem < nbitems)
+    kidModal = items[currentItem]->isModal();
+   
+  if(!kidModal && hasFocus()){
+    if (mEngine->GetButtonClick(buttonPrev)){
+     prevItem();
+     held = buttonPrev;
+     duration = 0;
+    }
+    else if(held == buttonPrev && duration > 1){
+     prevItem();
+     duration = .92;
+    }
+    else if (mEngine->GetButtonClick(buttonNext)){
+     nextItem();
+     held = buttonNext;
+     duration = 0;
+    }
+    else if(held == buttonNext && duration > 1){
+      nextItem();
+      duration = .92;
+    }
+  }
+
+  if(currentItem >= 0 && currentItem < nbitems)
+    items[currentItem]->Update(dt);
+
+  for (int i = 0 ; i < nbitems; i++){
+    if(i != currentItem)
+      items[i]->Update(dt);
+  }
 }
 
+void WGuiMenu::nextItem(){
+ int potential = currentItem;
+ int nbitems = (int) items.size();
+
+  if (potential < nbitems-1){
+    potential++;
+    while(potential < nbitems-1 && items[potential]->Selectable() == false)
+      potential++;
+    if(potential == nbitems || !items[potential]->Selectable())
+      potential = -1;
+    else if(potential != currentItem && items[currentItem]->Leaving(buttonNext)){
+        currentItem = potential;
+        items[currentItem]->Entering(buttonNext);
+    }
+  }
+}
+
+void WGuiMenu::prevItem(){
+ int potential = currentItem;
+
+ if (potential > 0){
+    potential--;
+    while(potential > 0 && items[potential]->Selectable() == false)
+      potential--;
+    if(potential < 0 || !items[potential]->Selectable())
+      potential = -1;
+    else if(items[currentItem]->Leaving(buttonPrev)){
+        currentItem = potential;
+        items[currentItem]->Entering(buttonPrev);
+    }
+ }
+}
+
+void WGuiMenu::setModal(bool val){
+  WGuiBase* c = Current();
+  if(c)
+    c->setModal(val);
+}
+bool WGuiMenu::isModal(){
+  WGuiBase* c = Current();
+  if(c)
+    return c->isModal();
+
+  return false;
+}
+//WGuiTabMenu
 void WGuiTabMenu::Add(WGuiBase * it){
   if (it){
-    it->setY(40);
-    it->setX(10);
+    it->setY(it->getY()+35);
+    it->setHeight(it->getHeight()-35);
     WGuiMenu::Add(it);
   }
 }
@@ -1207,7 +1211,7 @@ void WGuiTabMenu::Render(){
   if (!items.size())
     return;
 
-  int offset = 0;
+  int offset = x;
   
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++){
     int w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
@@ -1226,4 +1230,229 @@ void WGuiTabMenu::save(){
   confirmChange(true);
   setData();  
   ::options.save();
+}
+
+
+//WGuiAward
+void WGuiAward::Overlay(){
+  char buf[1024];
+  JRenderer * r = JRenderer::GetInstance();
+  JQuad * trophy = NULL;
+
+  string n = Options::getName(id);
+  if(n.size()){
+    sprintf(buf,"trophy_%s.png",n.c_str()); //Trophy specific to the award
+    trophy = resources.RetrieveTempQuad(buf); //Themed version...
+  }
+  
+  if(!trophy && id >= Options::SET_UNLOCKS){
+    trophy = resources.RetrieveTempQuad("trophy_set.png");  //TODO FIXME: Should look in set dir too.
+  }
+
+  if(!trophy) //Fallback to basic trophy image.
+   trophy = resources.RetrieveTempQuad("trophy.png");
+  
+  if(trophy)
+  r->RenderQuad(trophy, 0, SCREEN_HEIGHT-256);
+
+}
+void WGuiAward::Render(){
+  GameOptionAward * goa = dynamic_cast<GameOptionAward*>(&options[id]);
+  
+  if(!goa)
+    return;
+
+  JRenderer * renderer = JRenderer::GetInstance();
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetScale(1);
+  mFont->SetColor(getColor(WGuiColor::TEXT));
+
+  float myX = x;
+  float myY = y;
+  float fH = mFont->GetHeight();
+  float fM = fH / 5; //Font Margin is 20% font height
+
+  renderer->FillRoundRect(x-fM/2,y-fM,getWidth()-fM,fH-fM,fM,getColor(WGuiColor::BACK_TAB));
+  myX += fM;
+
+  mFont->DrawString(_(displayValue).c_str(),myX,myY,JGETEXT_LEFT);
+  myY += fH + 3*fM;
+
+  mFont->SetScale(.75);
+  fH = mFont->GetHeight();
+  if(text.size()){
+    mFont->DrawString(_(text).c_str(),myX,myY,JGETEXT_LEFT);
+    myY+=fH + fM;
+  }
+  string s = goa->menuStr();
+  if(s.size()){
+    mFont->DrawString(s.c_str(),myX,myY,JGETEXT_LEFT);
+    myY+=fH + fM;
+  }
+  setHeight(myY-y);
+  mFont->SetScale(1);
+}
+
+WGuiAward::WGuiAward(int _id, string name, string _text): WGuiItem(name){
+  id = _id;
+  text = _text;
+  height = 60;
+
+}
+WGuiAward::~WGuiAward(){
+  GameOptionAward * goa = dynamic_cast<GameOptionAward*>(&options[id]);
+  if(goa) 
+    goa->setViewed(true); //FIXME: This removes "New" status even if the award hasn't been selected.
+}
+bool WGuiAward::Visible(){
+  //WGuiAward is only visible when it's tied to an already acchieved award.
+  GameOptionAward * goa = dynamic_cast<GameOptionAward*>(&options[id]);
+  if(!goa || !goa->number)
+    return false; 
+  return true;
+}
+
+//WGuiImage
+WGuiImage::WGuiImage(WDataSource * wds, float _w, float _h, int _margin): WGuiItem("") {
+  imgW = _w;
+  imgH = _h;
+  margin = _margin;
+  source = wds;
+}
+
+void WGuiImage::imageScale(float _w, float _h){
+  imgH = _h;
+  imgW = _w;
+}
+
+float WGuiImage::getHeight(){
+  JQuad * q = NULL;
+
+  if(imgH == 0 ){
+    if(source && (q = source->getImage())) //Intentional assignment.
+      return MAX(height,q->mHeight+(2*margin));
+  }
+    
+  return MAX(height,imgH+(2*margin));
+}
+
+void WGuiImage::Render(){
+  if(!source)
+    return;
+
+  JRenderer * renderer = JRenderer::GetInstance();
+  JQuad * q = source->getImage();
+  if(q){
+    float xS = 1, yS = 1;
+    if(imgH != 0 && q->mHeight != 0)
+      yS = imgH / q->mHeight;
+    if(imgW != 0 && q->mWidth != 0)
+      xS = imgW / q->mWidth;
+
+    renderer->RenderQuad(q,x+margin, y+margin,0,xS,yS);
+  }
+}
+
+WGuiCardImage::WGuiCardImage(WDataSource * wds, int _offset) : WGuiImage(wds){
+  offset = _offset;
+};
+
+void WGuiCardImage::Render(){
+  if(!source)
+    return;
+  
+  JRenderer * renderer = JRenderer::GetInstance();
+  MTGCard * c = source->getCard();
+  if(!c)
+    return;
+
+  Pos p(x+margin, y+margin, 1,0,255);
+
+  int oldpos = source->getPos();
+  
+  if(offset){
+    source->setPos(oldpos+offset);   
+    c = source->getCard();
+  }
+
+  JQuad * q = source->getImage();
+  if(!q || options[Options::DISABLECARDS].number)
+    CardGui::alternateRender(c,p);
+  else
+    CardGui::RenderBig(c,p);
+
+  if(offset)
+    source->setPos(oldpos);
+}
+//WSrcImage
+JQuad * WSrcImage::getImage(){
+  return resources.RetrieveTempQuad(filename);
+}
+
+WSrcImage::WSrcImage(string s){
+  filename = s;
+}
+
+//WSrcMTGSet
+WSrcMTGSet::WSrcMTGSet(int setid){
+  MTGAllCards * ac = GameApp::collection;
+  map<int,MTGCard*>::iterator it;
+
+  for(it = ac->collection.begin();it != ac->collection.end();it++){
+    if(it->second->setId == setid)
+      cards.push_back(it->second);
+  }
+
+  currentCard = -1;
+  if(cards.size())
+    currentCard = 0;
+}
+JQuad * WSrcMTGSet::getImage(){
+  MTGCard * c = getCard();
+  if(c)
+    return resources.RetrieveCard(c);
+  return NULL;
+}
+MTGCard * WSrcMTGSet::getCard(){
+  int size = (int) cards.size();
+  if(!size || currentCard < 0 || currentCard >= size)
+   return NULL;
+
+ return cards[currentCard];
+}
+
+bool WSrcMTGSet::next(){
+  if(currentCard < (int) cards.size())
+    currentCard++;
+  else
+    return false;
+
+ return true;
+}
+
+bool WSrcMTGSet::prev(){
+  if(currentCard > 0)
+    currentCard--;
+  else
+    return false;
+
+ return true;
+}
+
+bool WSrcMTGSet::setPos(int pos){
+  if(pos < 0 || pos >= (int) cards.size())
+    return false;
+
+  currentCard = pos;
+  return true;
+}
+
+bool WSrcMTGSet::thisCard(int mtgid){
+  for(size_t t=0;t<cards.size();t++){
+    if(cards[t] && cards[t]->getId() == mtgid){
+      currentCard = (int) t;
+      return true;
+    }
+  }
+  return false;
 }

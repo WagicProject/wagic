@@ -2,6 +2,7 @@
 #include "../include/utils.h"
 #include "../include/MTGDeck.h"
 #include "../include/GameOptions.h"
+#include "../include/Translate.h"
 #include "../include/OptionItem.h"
 #include <iostream>
 #include <fstream>
@@ -12,10 +13,6 @@
 const char * Options::optionNames[] = {
 //Global options
   "Profile",
-  "prx_handler",
-  "prx_rimom",
-  "prx_eviltwin",
-  "prx_rnddeck",
   "Lang",
 //Options set on a per-profile basis
   "Theme",
@@ -48,6 +45,11 @@ const char * Options::optionNames[] = {
   "interruptEndTurn",
   "interruptCleanup",
   "interruptAfterEnd",
+//Unlocked modes
+  "prx_handler",
+  "prx_rimom",
+  "prx_eviltwin",
+  "prx_rnddeck",
 };
 int Options::getID(string name){
   if(!name.size())
@@ -166,8 +168,7 @@ bool GameOption::isDefault(){
   return false;
 }
 
-PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback)
-{
+PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback){
   unsigned char color[4];
   string temp;
   int subpixel=0;
@@ -257,7 +258,6 @@ bool GameOption::write(std::ofstream * file, string name){
 
 GameOptions::GameOptions(string filename){
   mFilename = filename;
-  values.reserve(Options::LAST_NAMED); //Reserve space for all named options.
   load();
 }
 
@@ -338,6 +338,7 @@ GameOption * GameOptions::get(int optionID) {
 
   while(x <= optionID){
       switch(x){
+        //Enum options
         case Options::HANDDIRECTION:
           goEnum = NEW GameOptionEnum();
           goEnum->def = OptionHandDirection::getInstance();
@@ -354,7 +355,10 @@ GameOption * GameOptions::get(int optionID) {
           go = goEnum;
           break;
        default:
-          go = NEW GameOption();
+         if(x >= Options::BEGIN_AWARDS)
+           go = NEW GameOptionAward();
+         else
+           go = NEW GameOption();
           break;
     }
     values.push_back(go);
@@ -384,6 +388,20 @@ GameSettings::~GameSettings(){
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(keypad);
+}
+
+bool GameSettings::newAward(){
+  if(!profileOptions)
+    return false;
+
+  for(int x=Options::BEGIN_AWARDS;x < Options::SET_UNLOCKS + setlist.size();x++){
+    GameOptionAward * goa = dynamic_cast<GameOptionAward *>(profileOptions->get(x));
+    if(!goa)
+      continue;
+    if(!goa->isViewed())
+      return true;
+  }
+  return false;
 }
 
 GameOption GameSettings::invalid_option = GameOption(0);
@@ -482,8 +500,17 @@ void GameSettings::checkProfile(){
       globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
     //If it doesn't exist, load current profile.
-    if(!profileOptions)
+    if(!profileOptions){
       profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS,"",false));
+      //Backwards compatability hack for unlocked modes.
+      for(int x=Options::BEGIN_AWARDS;x<Options::LAST_NAMED;x++){
+        GameOptionAward * goa = dynamic_cast<GameOptionAward *>(globalOptions->get(x));
+        if(goa){
+          GameOptionAward * dupe = dynamic_cast<GameOptionAward *>(profileOptions->get(x));
+          if(dupe && !dupe->number) dupe->giveAward();
+        }
+      }
+    }
 
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
@@ -603,6 +630,7 @@ void GameSettings::keypadShutdown(){
   SAFE_DELETE(keypad);
 }
 
+//EnumDefinition
 int EnumDefinition::findIndex(int value){
   vector<assoc>::iterator it;
   for(it = values.begin();it!=values.end();it++){
@@ -613,6 +641,7 @@ int EnumDefinition::findIndex(int value){
   return INVALID_ID; //Failed!
 }
 
+//GameOptionEnum
 string GameOptionEnum::menuStr(){
   if(def){
     int idx = def->findIndex(number);
@@ -626,7 +655,7 @@ string GameOptionEnum::menuStr(){
 }
 
 bool GameOptionEnum::write(std::ofstream * file, string name){
-  if(!file || !def || number < 0 || number >= (int) def->values.size())
+  if(!file || !def || number <= 0 || number >= (int) def->values.size())
    return false;
 
   char writer[1024];
@@ -640,6 +669,7 @@ bool GameOptionEnum::read(string input){
   if(!def) 
     return false;
 
+  number = 0; 
   std::transform(input.begin(),input.end(),input.begin(),::tolower);
 
   vector<EnumDefinition::assoc>::iterator it;
@@ -654,6 +684,8 @@ bool GameOptionEnum::read(string input){
  
   return false;
 }
+
+//Enum Definitions
 OptionClosedHand OptionClosedHand::mDef;
 OptionClosedHand::OptionClosedHand(){  
     mDef.values.push_back(EnumDefinition::assoc(INVISIBLE, "invisible"));
@@ -683,3 +715,106 @@ OptionDifficulty::OptionDifficulty(){
     mDef.values.push_back(EnumDefinition::assoc(HARDER, "Harder"));
     mDef.values.push_back(EnumDefinition::assoc(EVIL, "Evil"));
 };
+
+//GameOptionAward
+bool GameOptionAward::read(string input){
+  //This is quick and dirty. 
+  bool bNumeric = true;
+  achieved = time(NULL);
+  tm * at = localtime(&achieved);
+  viewed = false;
+
+  size_t inlen = input.size();
+  if(!inlen){
+    return true; //Default reader doesn't care about invalid formatting.
+  }else if(inlen < 8 || input != "0"){ //Regardless of what garbage this is fed, a non-zero value is "Awarded"
+    number = 1;
+  }
+
+  size_t w = input.find("V");
+  
+  if(w != string::npos)
+    viewed = true;
+
+  //TODO: Something cleaner.
+  int tvals[5];
+  int i;
+  for(i=0;i<5;i++) 
+    tvals[i] = 0;
+
+  string buf;
+  for(size_t t=0,i=0;;t++){
+    if(!isdigit(input[t])){
+      if(!isspace(input[t]) && buf.size()){
+        tvals[i] = atoi(buf.c_str());
+        if(tvals[i] < 0)
+          tvals[i] = 0;
+        buf.clear();
+        i++; //Advance through input.
+      }
+    }else{
+      buf+= input[t];
+    }
+
+    if(t >= input.size() || i >= 5)
+      break;
+  }
+
+  if(tvals[0] >= 1900)
+    tvals[0] -= 1900;
+  if(tvals[1] > 0)
+    tvals[1]--;
+  at->tm_year = tvals[0];
+  at->tm_mon = tvals[1];
+  at->tm_mday = tvals[2];
+  if(tvals[3])
+    at->tm_hour = tvals[3];
+  if(tvals[4])
+    at->tm_min = tvals[4];
+  at->tm_isdst = -1;
+
+  achieved = mktime(at);
+  if(achieved == -1) 
+    achieved = time(NULL);
+  return true;
+}
+
+bool GameOptionAward::write(std::ofstream * file, string name){
+  char writer[1024];
+
+  if(!file)
+    return false;
+
+	if(number == 0) //Is not unlocked. Don't write.
+    return true;
+
+  tm * at = localtime(&achieved);
+  if(!at)    return false; //Hurrah for paranoia.
+
+  
+  sprintf(writer,"%s=%d/%d/%d@%d:%d %s\n", name.c_str(), 
+    at->tm_year + 1900, at->tm_mon + 1, at->tm_mday, at->tm_hour, at->tm_min, (viewed ? "V" : ""));
+  (*file)<<writer;
+  return true;
+}
+bool GameOptionAward::giveAward(){
+  if(number)
+    return false;
+
+  achieved = time(NULL);
+  viewed = false;
+  number = 1;
+  return true;
+}
+string GameOptionAward::menuStr(){
+  if(!number)
+    return _("Not unlocked.");
+  else if(achieved == 1){
+    return _("Unlocked.");
+  }
+
+  char buf[256];
+  Translator * t = Translator::GetInstance();
+  strftime(buf,255,_("%B %d, %I:%M%p %Y").c_str(),localtime(&achieved));
+  return buf;
+}

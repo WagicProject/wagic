@@ -31,9 +31,6 @@
 
 #include "../include/CardEffect.h"
 
-#define MAX_STATE			6
-
-
 #define PLAYER_TYPE_CPU 0
 #define PLAYER_TYPE_HUMAN 1
 #define PLAYER_TYPE_TESTSUITE 2
@@ -59,7 +56,7 @@ class GameApp:	public JApp
 
   GameState* mCurrentState;
   GameState* mNextState;
-  GameState* mGameStates[MAX_STATE];
+  GameState* mGameStates[GAME_STATE_MAX];
 
  public:
 

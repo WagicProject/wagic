@@ -78,7 +78,7 @@ void GameStateOptions::Start()
   optionsMenu->Add(2, "Back to Main Menu");
   optionsMenu->Add(3, "Cancel");
 
-  optionsTabs->Current()->Entering(0);
+  optionsTabs->Entering(0);
 }
 
 
@@ -91,7 +91,7 @@ void GameStateOptions::End()
 
 
 void GameStateOptions::Update(float dt)
-{
+{ 
   timer += dt;
 
   if(options.keypadActive()){
@@ -160,7 +160,7 @@ void GameStateOptions::Render()
       "Please support this project with donations at http://wololo.net/wagic",
     };
 
-  JLBFont * mFont = resources.GetJLBFont("magic");
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAGIC_FONT);
   mFont->SetColor(ARGB(255,200,200,200));
   mFont->SetScale(1.0);
   float startpos = 272 - timer * 10;

@@ -10,7 +10,6 @@
 using std::string;
 
 #define MAX_OPTION_TABS 5
-#define MAX_OPTION_ITEMS 20
 #define MAX_ONSCREEN_OPTIONS 8
 #define OPTION_CENTER 4
 
@@ -130,6 +129,67 @@ protected:
   int id;
 };
 
+class WDataSource{
+public:
+  WDataSource() {};
+  virtual JQuad * getImage() {return NULL;};
+  virtual MTGCard * getCard() {return NULL;};
+  virtual bool thisCard(int mtgid) {return false;};
+  
+  virtual int getPos() {return -1;};
+  virtual bool setPos(int pos) {return false;};
+  virtual bool next() {return false;};
+  virtual bool prev() {return false;};
+};
+
+class WSrcImage: public WDataSource{
+public:
+  virtual JQuad * getImage();
+  WSrcImage(string s);
+
+private:
+  string filename;
+};
+
+class WSrcMTGSet: public WDataSource{
+public:
+  WSrcMTGSet(int setid);
+  
+  virtual JQuad * getImage();
+  virtual MTGCard * getCard();
+
+  virtual bool thisCard(int mtgid);  
+  virtual bool next();
+  virtual bool prev();
+  virtual int getPos() {return currentCard;};
+  virtual bool setPos(int pos);
+
+protected:
+  vector<MTGCard*> cards;
+  int currentCard;
+};
+
+class WGuiImage: public WGuiItem{
+public:
+  WGuiImage(WDataSource * wds, float _w = 0, float _h = 0, int _margin = 0);
+  virtual bool Selectable() {return false;};
+  virtual void Render();
+  virtual float getHeight();
+  virtual void imageScale(float _w, float _h);
+protected:
+  int margin;
+  float imgW, imgH;
+  WDataSource * source;
+};
+
+class WGuiCardImage: public WGuiImage{
+public:
+  WGuiCardImage(WDataSource * wds, int _offset=0);
+  virtual void Render();
+protected:
+  int offset;
+};
+
 //This is our base class for decorators. It wraps everything about WGuiBase.
 class WGuiDeco: public WGuiBase{
 public:
@@ -174,10 +234,24 @@ protected:
   WGuiBase * it;
 };
 
+class WGuiAward: public WGuiItem{
+public:
+  WGuiAward(int _id, string name, string _text);
+  virtual ~WGuiAward();
+  virtual void Render();
+  virtual bool Selectable() {return Visible();};
+  virtual bool Visible();  
+  virtual int getId() {return id;};
+  virtual void Overlay();
+protected:
+  int id;
+  string text;
+};
+
 class WGuiSplit: public WGuiItem{
 public:
   WGuiSplit(WGuiBase* _left,WGuiBase* _right);
-  ~WGuiSplit();
+  virtual ~WGuiSplit();
 
   virtual void Reload();
   virtual void Overlay();
@@ -206,7 +280,7 @@ public:
 class WDecoConfirm: public WGuiDeco{
 public:
   WDecoConfirm(JGuiListener * _listener, WGuiBase * it);
-  ~WDecoConfirm();
+  virtual ~WDecoConfirm();
 
   virtual bool isModal();
   virtual void setData();
@@ -261,13 +335,6 @@ protected:
   JGuiListener * mListener;
 };
 
-class WGuiText:public WGuiItem {
- public:
-  WGuiText(string _displayValue): WGuiItem(_displayValue) {};
-  virtual bool Selectable() {return false;};
-  virtual void Render();
-};
-
 class WGuiHeader:public WGuiItem{
  public:
   WGuiHeader(string _displayValue): WGuiItem(_displayValue) {};
@@ -277,41 +344,7 @@ class WGuiHeader:public WGuiItem{
 };
 
 
-class WGuiList: public WGuiItem{
- public:
-  WGuiList(string name);
-  ~WGuiList();
-
-  string failMsg;
-  int nbitems;
-  int current;
-
-  virtual bool hasFocus() {return mFocus;};
-  virtual void setFocus(bool bFocus) {mFocus = bFocus;};
-  virtual bool Leaving(u32 key);
-  virtual void Entering(u32 key);
-  virtual void Render();
-  virtual void confirmChange(bool confirmed);
-  virtual void renderBack(WGuiBase * it);
-  virtual void Reload();
-  virtual void ButtonPressed(int controllerId, int controlId);
-  virtual void Update(float dt);
-  virtual void setData(); 
-  virtual bool isModal();
-  virtual void setModal(bool val);
-  
-  void Add(WGuiBase * item);
-  WGuiBase * Current();
-  void nextOption();
-  void prevOption();
-
-  WGuiBase * operator[](int);
-protected:
-  bool mFocus;
-  WGuiBase * listItems[MAX_OPTION_ITEMS];
-};
-
-class WGuiMenu{
+class WGuiMenu: public WGuiItem{
 public:
 
   virtual ~WGuiMenu();
@@ -323,16 +356,49 @@ public:
   virtual void ButtonPressed(int controllerId, int controlId);
   virtual void Add(WGuiBase* item); //Remember, does not set X & Y of items automatically.
   virtual void confirmChange(bool confirmed);
+  virtual bool Leaving(u32 key);
+  virtual void Entering(u32 key);
+  virtual void renderBack(WGuiBase * it);
   
   WGuiBase * Current();
-  void nextItem();
-  void prevItem();
+  virtual void nextItem(); 
+  virtual void prevItem();
+  virtual bool isModal();
+  virtual void setModal(bool val);
+
   void setData();
   
 protected:
   u32 buttonNext, buttonPrev;
   vector<WGuiBase*> items;
   int currentItem;
+  u32 held;
+  float duration;
+};
+
+class WGuiFlow: public WGuiMenu{
+public:
+  WGuiFlow();
+};
+
+class WGuiList: public WGuiMenu{
+ public:
+  WGuiList(string name, WDataSource * syncme = NULL);
+
+  string failMsg;
+
+  virtual void Render();
+  virtual void confirmChange(bool confirmed);
+  virtual void ButtonPressed(int controllerId, int controlId);
+  virtual void setData(); 
+  
+  virtual void nextItem(); 
+  virtual void prevItem();
+
+  WGuiBase * operator[](int);
+protected:
+  WDataSource * sync;
+  bool mFocus;
 };
 
 class WGuiTabMenu: public WGuiMenu {

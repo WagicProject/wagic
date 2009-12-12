@@ -683,6 +683,7 @@ int MTGSets::size(){
 
 //MTGSetInfo
 MTGSetInfo::MTGSetInfo(string _id) {
+  string whitespaces (" \t\f\v\n\r");
   id = _id;
   block = -1;
   year = -1;
@@ -706,7 +707,7 @@ MTGSetInfo::MTGSetInfo(string _id) {
         continue;
 
       string key = s.substr(0,i);
-      string value = s.substr(i+1);
+      string value = s.substr(i+1,i+1-s.find_last_not_of(whitespaces));
 
       if(key.compare("name") == 0)
         name = value;

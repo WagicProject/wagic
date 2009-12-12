@@ -138,7 +138,11 @@ bool CardSelector::CheckUserInput(u32 key)
       active = closest<Down>(cards, limitor, active);
       break;
     case PSP_CTRL_TRIANGLE:
-      bigMode = (bigMode+1) % NB_BIG_MODES;
+      bigMode = (bigMode+1) % NB_BIG_MODES; 
+      if(bigMode == BIG_MODE_TEXT)
+        options[Options::DISABLECARDS].number = 1;
+      else
+        options[Options::DISABLECARDS].number = 0;
       return true;
     default:
       return false;

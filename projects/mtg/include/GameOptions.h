@@ -6,6 +6,7 @@
 using std::map;
 using std::string;
 #include <JGE.h>
+#include <time.h>
 #include "../include/SimplePad.h"
 #include "../include/GameApp.h"
 
@@ -23,14 +24,10 @@ public:
   enum {
     //Global settings
     ACTIVE_PROFILE,
-    DIFFICULTY_MODE_UNLOCKED,
-    MOMIR_MODE_UNLOCKED,
-    EVILTWIN_MODE_UNLOCKED,
-    RANDOMDECK_MODE_UNLOCKED,    
     LANG,
     LAST_GLOBAL = LANG, //This must be the value above, to keep ordering.
     //Values /must/ match ordering in optionNames, or everything loads wrong.
-    //Profile settings    
+    //Profile settings        
     ACTIVE_THEME,
     ACTIVE_MODE,
     MUSICVOLUME,
@@ -62,6 +59,11 @@ public:
     INTERRUPT_ENDTURN,
     INTERRUPT_CLEANUP,
     INTERRUPT_AFTEREND,
+    BEGIN_AWARDS, //Options after this use the GameOptionAward struct, which includes a timestamp.
+    DIFFICULTY_MODE_UNLOCKED = BEGIN_AWARDS,
+    MOMIR_MODE_UNLOCKED,
+    EVILTWIN_MODE_UNLOCKED,
+    RANDOMDECK_MODE_UNLOCKED,    
     LAST_NAMED, //Any option after this does not look up in optionNames.
     SET_UNLOCKS = LAST_NAMED + 1, //For sets.
   };
@@ -107,6 +109,19 @@ public:
   virtual bool write(std::ofstream * file, string name);
   virtual bool read(string input);
   EnumDefinition * def;
+};
+
+class GameOptionAward: public GameOption {
+public:
+  virtual string menuStr();
+  virtual bool write(std::ofstream * file, string name);
+  virtual bool read(string input);
+  virtual bool giveAward(); //Returns false if already awarded
+  virtual bool isViewed() {return viewed;};
+  virtual void setViewed(bool v = true) {viewed = v;};
+private:
+  time_t achieved; //When was it awarded?
+  bool viewed;     //Flag it as "New!" or not.  
 };
 
 class OptionVolume: public EnumDefinition{
@@ -181,6 +196,7 @@ public:
   void keypadUpdate(float dt) {if(keypad) keypad->Update(dt);};
   void keypadRender() {if(keypad) keypad->Render();};
   
+  bool newAward();
 
   //These return a filepath accurate to the current mode/profile/theme, and can
   //optionally fallback to a file within a certain directory. 
