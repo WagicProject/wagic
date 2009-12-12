@@ -45,6 +45,19 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Protection from blue Cycling {2} ({2}, Discard this card: Draw a card.)
+id=12462
+name=Bloated Toad
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Frog
+autohand={2}:cycling
+power=2
+toughness=2
+abilities=protection from blue
+[/card]
+[card]
 text=Bouncing Beebles is unblockable as long as defending player controls an artifact.
 id=12372
 name=Bouncing Beebles
@@ -65,6 +78,19 @@ name=Burst of Energy
 rarity=C
 mana={W}
 type=Instant
+[/card]
+[card]
+text=Protection from black   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=12435
+name=Darkwatch Elves
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Elf
+autohand={2}:cycling
+power=2
+toughness=2
+abilities=protection from black
 [/card]
 [card]
 text=Flash   Protection from white
@@ -221,6 +247,17 @@ auto=moveTo(ownerLibrary) all(enchantment)
 name=Harmonic Convergence
 rarity=U
 mana={2}{G}
+type=Instant
+[/card]
+[card]
+text=Target creature gets +0/+4 until end of turn.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=12358
+target=creature
+auto=0/4
+autohand={2}:cycling
+name=Iron Will
+rarity=C
+mana={W}
 type=Instant
 [/card]
 [card]
@@ -460,6 +497,16 @@ subtype=Angel
 power=3
 toughness=3
 abilities=legendary,flying,vigilance
+[/card]
+[card]
+text=Return all artifacts to their owners' hands.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=12385
+auto=moveTo(ownerhand) all(artifact)
+autohand={2}:cycling
+name=Rebuild
+rarity=U
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 text=Whenever an artifact or enchantment is put into your graveyard from the battlefield, you gain 1 life.

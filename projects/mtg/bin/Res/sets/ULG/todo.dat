@@ -45,17 +45,6 @@ text=Haste Echo {3}{R} (At the beginning of your upkeep, if this came under your
 rarity=U
 [/card]
 [card]
-id=12462
-name=Bloated Toad
-mana={2}{G}
-type=Creature
-subtype=Frog
-power=2
-toughness=2
-text=Protection from blue Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=U
-[/card]
-[card]
 id=12400
 name=Bone Shredder
 mana={2}{B}
@@ -117,17 +106,6 @@ mana={4}
 type=Artifact
 text=A player who controls more permanents than any other can't play lands or cast artifact, creature, or enchantment spells. That player may sacrifice a permanent to ignore this effect until end of turn.
 rarity=R
-[/card]
-[card]
-id=12435
-name=Darkwatch Elves
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
-text=Protection from black Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=U
 [/card]
 [card]
 id=8897
@@ -279,14 +257,6 @@ mana={3}
 type=Artifact
 text=At the beginning of each opponent's upkeep, Iron Maiden deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 rarity=R
-[/card]
-[card]
-id=12358
-name=Iron Will
-mana={W}
-type=Instant
-text=Target creature gets +0/+4 until end of turn. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
 [/card]
 [card]
 id=12955
@@ -512,14 +482,6 @@ subtype=Bird
 power=1
 toughness=2
 text=Flying Echo {2}{U} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Raven Familiar enters the battlefield, look at the top three cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.
-rarity=U
-[/card]
-[card]
-id=12385
-name=Rebuild
-mana={2}{U}
-type=Instant
-text=Return all artifacts to their owners' hands. Cycling {2} ({2}, Discard this card: Draw a card.)
 rarity=U
 [/card]
 [card]

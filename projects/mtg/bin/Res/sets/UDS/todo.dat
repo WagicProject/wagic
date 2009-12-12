@@ -210,14 +210,6 @@ text=Tap an untapped creature you control: Prevent the next 1 damage that would 
 rarity=C
 [/card]
 [card]
-id=15201
-name=Flame Jet
-mana={1}{R}
-type=Sorcery
-text=Flame Jet deals 3 damage to target player. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
 id=15145
 name=Fledgling Osprey
 mana={U}

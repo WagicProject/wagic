@@ -224,6 +224,17 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Flame Jet deals 3 damage to target player.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=15201
+target=player
+auto=damage:3
+autohand={2}:cycling
+name=Flame Jet
+rarity=C
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
 text={4}, {T}, Sacrifice a creature: Fodder Cannon deals 4 damage to target creature.
 auto={4}{T}{s(creature|myBattlefield)}:Damage:4 target(creature)
 id=15250
