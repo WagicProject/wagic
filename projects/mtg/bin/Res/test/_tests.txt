@@ -293,6 +293,7 @@ recover.txt
 regal_force.txt
 resounding_roar.txt
 resurrection.txt
+resuscitate_i210.txt
 rhox_meditant.txt
 rhox_meditant2.txt
 righteous_cause.txt

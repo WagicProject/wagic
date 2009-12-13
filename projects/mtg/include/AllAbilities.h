@@ -415,14 +415,14 @@ class GenericActivatedAbility:public ActivatedAbility{
 
   GenericActivatedAbility * clone() const{
     GenericActivatedAbility * a =  NEW GenericActivatedAbility(*this);
-    a->isClone = 1;
+    a->cost = NEW ManaCost();
+    a->cost->copy(cost);
+    a->ability = ability->clone();
     return a;
   }
 
   ~GenericActivatedAbility(){
-    if (!isClone){
-      SAFE_DELETE(ability);
-    }
+    SAFE_DELETE(ability);
   }
 
   int testDestroy(){
