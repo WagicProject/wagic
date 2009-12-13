@@ -2,6 +2,7 @@
 #include "../include/TargetChooser.h"
 #include "../include/MTGCardInstance.h"
 #include "../include/Translate.h"
+#include "../include/config.h"
 #include <JGE.h>
 
 ExtraCost::ExtraCost( TargetChooser *_tc):tc(_tc){
@@ -12,12 +13,18 @@ ExtraCost::~ExtraCost(){
   SAFE_DELETE(tc);
 }
 
-
 int ExtraCost::setSource(MTGCardInstance * _source){
   source=_source;
   if (tc){ tc->source = _source; tc->targetter = _source;}
   return 1;
 }
+
+SacrificeCost *  SacrificeCost::clone() const{
+  SacrificeCost * ec =  NEW SacrificeCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+
 
 SacrificeCost::SacrificeCost(TargetChooser *_tc):ExtraCost(_tc){
   if (tc) tc->targetter = NULL; //Sacrificing is not targetting, protections do not apply
@@ -73,6 +80,15 @@ void SacrificeCost::Render(){
 ExtraCosts::ExtraCosts(){
   action = NULL;
   source = NULL;
+}
+
+ExtraCosts * ExtraCosts::clone() const{
+  ExtraCosts * ec =  NEW ExtraCosts(*this);
+  ec->costs.clear();
+  for (size_t i = 0; i < costs.size(); i++){
+    ec->costs.push_back(costs[i]->clone());
+  }
+  return ec;
 }
 
 void ExtraCosts::Render(){

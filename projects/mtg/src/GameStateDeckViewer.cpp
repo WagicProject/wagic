@@ -135,7 +135,7 @@ void GameStateDeckViewer::Start()
   char buf[512];
   for (int i=0; i < 8; i++){
     sprintf(buf,"iconspsp%d",i);
-    pspIcons[i] = resources.RetrieveQuad("iconspsp.png", i*32, 0, 32, 32,buf);
+    pspIcons[i] = resources.RetrieveQuad("iconspsp.png", (float)i*32, 0, 32, 32,buf);
     pspIcons[i]->SetHotSpot(16,16);
   }
 
@@ -233,7 +233,7 @@ void GameStateDeckViewer::Update(float dt)
     //Prevent screen from updating.
     return;    
   }
-  hudAlpha = 255-(last_user_activity * 500);
+  hudAlpha = (float) 255-(last_user_activity * 500);
   if (hudAlpha < 0) hudAlpha = 0;
   if (sellMenu){
     sellMenu->Update(dt);
@@ -889,7 +889,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
             sprintf(buffer, ((*countPerCostAndColor)[i][j]>0)?_("%i").c_str():".", (*countPerCostAndColor)[i][j]);
             font->DrawString(buffer, 64 + leftTransition + j*15, posY);
           }
-          r->FillRect(77 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
+          r->FillRect((float)77 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
           posY += 10;
         }
         

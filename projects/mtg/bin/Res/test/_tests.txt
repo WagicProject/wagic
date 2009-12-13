@@ -284,6 +284,7 @@ prowess_of_the_fair3.txt
 pygmy_troll.txt
 pyroclasm.txt
 quilled_sliver.txt
+rain_of_filth_i206.txt
 rampant_growth.txt
 ray_of_command.txt
 ray_of_command_i176.txt

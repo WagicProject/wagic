@@ -125,9 +125,8 @@ ManaCost::~ManaCost(){
   for (unsigned int i = 0;  i < nbhybrids ; i++){
     SAFE_DELETE(hybrids[i]);
   }
-  if (!extraCostsIsCopy) {
-    SAFE_DELETE(extraCosts);
-  }
+
+  SAFE_DELETE(extraCosts);
 
   SAFE_DELETE(kicker);
 }
@@ -165,11 +164,9 @@ void ManaCost::copy(ManaCost * _manaCost){
   }
   nbhybrids = _manaCost->nbhybrids;
 
+  SAFE_DELETE(extraCosts);
   if (_manaCost->extraCosts){
-    //TODO Deep copy ?
-    if(!extraCostsIsCopy) SAFE_DELETE(extraCosts);
-    extraCosts = _manaCost->extraCosts;
-    extraCostsIsCopy = 1;
+    extraCosts = _manaCost->extraCosts->clone();
   }
 
   SAFE_DELETE(kicker);

@@ -183,7 +183,6 @@ void GameStateAwards::Update(float dt)
 
 bool GameStateAwards::enterSet(int setid){
   MTGSetInfo * si = setlist.getInfo(setid);
-  char buf[1024];
   map<int, MTGCard *>::iterator it;
 
   if(!si)

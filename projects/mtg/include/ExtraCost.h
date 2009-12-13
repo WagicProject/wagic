@@ -19,6 +19,7 @@ public:
   virtual int doPay() = 0;
   virtual void Render(){};
   virtual int setSource(MTGCardInstance * _source);
+  virtual ExtraCost* clone() const = 0;
 };
 
 class ExtraCosts{
@@ -35,6 +36,7 @@ public:
   int reset();
   int setAction(MTGAbility * _action, MTGCardInstance * _source);
   void Dump();
+  ExtraCosts * clone() const;
 };
 
 class SacrificeCost: public ExtraCost{
@@ -46,6 +48,7 @@ public:
   virtual int doPay();
   virtual void Render();
   virtual int setSource(MTGCardInstance * _source);
+  virtual SacrificeCost * clone() const;
 };
 
 #endif

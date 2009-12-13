@@ -17,17 +17,10 @@ void MTGGamePhase::Update(float dt){
     activeState = ACTIVE;
     animation = 4;
     currentState = newState;
-
-    switch (currentState){
-
-    default: break;
-    }
-
   }
 
 
   if (animation > 0){
-    //    fprintf(stderr, "animation = %f", animation);
     animation -- ;
   }else{
     activeState = INACTIVE;

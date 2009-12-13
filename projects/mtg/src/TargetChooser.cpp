@@ -353,6 +353,11 @@ bool CardTargetChooser::canTarget(Targetable * target ){
   return false;
 }
 
+  CardTargetChooser * CardTargetChooser::clone() const{
+    CardTargetChooser * a =  NEW CardTargetChooser(*this);
+    return a;
+  }
+
 /**
    Choose anything that has a given list of types
 **/
@@ -410,6 +415,11 @@ bool TypeTargetChooser::canTarget(Targetable * target){
   return false;
 }
 
+  TypeTargetChooser *  TypeTargetChooser::clone() const{
+     TypeTargetChooser * a =  NEW  TypeTargetChooser(*this);
+    return a;
+  }
+
 
 /**
     A Target Chooser associated to a Card Descriptor object, for fine tuning of targets description
@@ -450,6 +460,13 @@ DescriptorTargetChooser::~DescriptorTargetChooser(){
   SAFE_DELETE(cd);
 }
 
+ DescriptorTargetChooser *  DescriptorTargetChooser ::clone() const{
+     DescriptorTargetChooser  * a =  NEW  DescriptorTargetChooser (*this);
+     a->cd = NEW CardDescriptor(*cd);
+    return a;
+  }
+
+
 /**
    Choose a creature
 **/
@@ -483,6 +500,11 @@ bool CreatureTargetChooser::canTarget(Targetable * target){
   }
   return false;
 }
+
+   CreatureTargetChooser *   CreatureTargetChooser::clone() const{
+      CreatureTargetChooser * a =  NEW  CreatureTargetChooser(*this);
+    return a;
+  }
 
 
 /* TargetzoneChooser targets everything in a given zone */
@@ -549,6 +571,11 @@ bool TargetZoneChooser::targetsZone(MTGGameZone * z){
   return false;
 }
 
+    TargetZoneChooser *    TargetZoneChooser::clone() const{
+      TargetZoneChooser * a =  NEW   TargetZoneChooser(*this);
+    return a;
+  }
+
 /* Player Target */
 PlayerTargetChooser::PlayerTargetChooser(MTGCardInstance * card, int _maxtargets, Player *p):TargetChooser(card, _maxtargets), p(p){
 }
@@ -556,6 +583,12 @@ PlayerTargetChooser::PlayerTargetChooser(MTGCardInstance * card, int _maxtargets
 bool PlayerTargetChooser::canTarget(Targetable * target){
   return (target->typeAsTarget() == TARGET_PLAYER) && (!p || p == (Player*)target);
 }
+
+    PlayerTargetChooser*   PlayerTargetChooser::clone() const{
+      PlayerTargetChooser * a =  NEW   PlayerTargetChooser(*this);
+    return a;
+  }
+
 
 /*Damageable Target */
 bool DamageableTargetChooser::canTarget(Targetable * target){
@@ -565,6 +598,10 @@ bool DamageableTargetChooser::canTarget(Targetable * target){
   return CreatureTargetChooser::canTarget(target);
 }
 
+    DamageableTargetChooser*   DamageableTargetChooser::clone() const{
+      DamageableTargetChooser * a =  NEW   DamageableTargetChooser(*this);
+    return a;
+  }
 
 /*Spell */
 
@@ -588,6 +625,10 @@ bool SpellTargetChooser::canTarget(Targetable * target){
   return false;
 }
 
+    SpellTargetChooser*   SpellTargetChooser::clone() const{
+      SpellTargetChooser * a =  NEW   SpellTargetChooser(*this);
+    return a;
+  }
 
 /*Spell or Permanent */
 SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * card,int _color, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
@@ -612,7 +653,10 @@ bool SpellOrPermanentTargetChooser::canTarget(Targetable * target){
   return false;
 }
 
-
+    SpellOrPermanentTargetChooser*   SpellOrPermanentTargetChooser::clone() const{
+      SpellOrPermanentTargetChooser * a =  NEW   SpellOrPermanentTargetChooser(*this);
+    return a;
+  }
 
 /*Damage */
 DamageTargetChooser::DamageTargetChooser(MTGCardInstance * card,int _color, int _maxtargets, int _state):TargetChooser(card, _maxtargets){
@@ -632,3 +676,8 @@ bool DamageTargetChooser::canTarget(Targetable * target){
   }
   return false;
 }
+
+    DamageTargetChooser*   DamageTargetChooser::clone() const{
+     DamageTargetChooser * a =  NEW   DamageTargetChooser(*this);
+    return a;
+  }
