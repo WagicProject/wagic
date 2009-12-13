@@ -135,7 +135,6 @@ type=Enchantment
 text=Whenever a player cycles a card, you may remove target creature from the game. If you do, return the removed card to play under its owner's control at end of turn.
 rarity=U
 [/card]
-
 [card]
 id=39900
 name=Aurification
@@ -174,8 +173,6 @@ type=Instant
 text=Turn target creature with morph face down. Cycling {U} ({U}, Discard this card: Draw a card.)
 rarity=C
 [/card]
-
-
 [card]
 id=39486
 name=Battering Craghorn
@@ -588,7 +585,6 @@ type=Enchantment
 text=Whenever a creature comes into play, that creature's controller may have target creature of his or her choice get -3/-3 until end of turn.
 rarity=R
 [/card]
-
 [card]
 id=39822
 name=Defensive Maneuvers
@@ -597,9 +593,6 @@ type=Instant
 text=Creatures of the creature type of your choice get +0/+4 until end of turn.
 rarity=C
 [/card]
-
-
-
 [card]
 id=39442
 name=Discombobulate
@@ -742,7 +735,6 @@ type=Sorcery
 text=Search your library for up to two basic land cards and put them into play tapped. Then shuffle your library.
 rarity=U
 [/card]
-
 [card]
 id=39849
 name=Fallen Cleric
@@ -752,7 +744,6 @@ subtype=Zombie Cleric
 power=4
 toughness=2
 text=Protection from Clerics Morph {4}{B} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-auto=protection from(cleric)
 rarity=C
 [/card]
 [card]
@@ -772,14 +763,6 @@ subtype=Zombie Goblin
 power=1
 toughness=1
 text=When Festering Goblin is put into a graveyard from play, target creature gets -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
-id=39484
-name=Fever Charm
-mana={R}
-type=Instant
-text=Choose one: Target creature gains haste until end of turn; or target creature gets +2/+0 until end of turn; or Fever Charm deals 3 damage to target Wizard creature.
 rarity=C
 [/card]
 [card]
@@ -815,7 +798,6 @@ toughness=1
 text=Protection from Goblins Morph {W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=C
 [/card]
-
 [card]
 id=39594
 name=Frightshroud Courier
@@ -858,15 +840,17 @@ text=You may choose not to untap Ghosthelm Courier during your untap step. {2}{U
 rarity=U
 [/card]
 [card]
+text=Shroud (This permanent can't be the target of spells or abilities.)   At the beginning of your upkeep, if Gigapede is in your graveyard, you may discard a card. If you do, return Gigapede to your hand.
+autograveyard={S(*|myhand)}:may moveTo(myhand) from(mygraveyard) myUpkeepOnly limit:1
 id=39578
 name=Gigapede
+rarity=R
 mana={3}{G}{G}
 type=Creature
 subtype=Insect
 power=6
 toughness=1
-text=Shroud (This permanent can't be the target of spells or abilities.) At the beginning of your upkeep, if Gigapede is in your graveyard, you may discard a card. If you do, return Gigapede to your hand.
-rarity=R
+abilities=shroud
 [/card]
 [card]
 id=39423
@@ -1089,7 +1073,6 @@ toughness=1
 text={T}: Choose a creature type other than Wall. Target creature becomes that type until end of turn.
 rarity=C
 [/card]
-
 [card]
 id=39437
 name=Information Dealer
@@ -1196,7 +1179,6 @@ toughness=9
 text=Morph {6}{G}{G} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=R
 [/card]
-
 [card]
 id=39479
 name=Lavamancer's Skill
@@ -1206,7 +1188,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature has "{T}: This creature deals 1 damage to target creature." If enchanted creature is a Wizard, it has "{T}: This creature deals 2 damage to target creature."
 rarity=C
 [/card]
-
 [card]
 id=39675
 name=Leery Fogbeast
@@ -1226,8 +1207,6 @@ type=Enchantment
 text=Whenever a player cycles a card, you may pay {1}. If you do, Lightning Rift deals 2 damage to target creature or player.
 rarity=U
 [/card]
-
-
 [card]
 id=39571
 name=Mana Echoes
@@ -1255,7 +1234,6 @@ toughness=3
 text=Trample, haste. When Menacing Ogre comes into play, each player secretly chooses a number. Then those numbers are revealed. Each player with the highest number loses that much life. If you are one of those players, put two +1/+1 counters on Menacing Ogre.
 rarity=R
 [/card]
-
 [card]
 id=39436
 name=Mistform Dreamer
@@ -1408,7 +1386,6 @@ type=Sorcery
 text=Choose a creature type. If you control more creatures of that type than any other player, you gain control of all creatures of that type. (This effect doesn't end at end of turn.)
 rarity=R
 [/card]
-
 [card]
 text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
 ###THIS CARD VERSION WON'T PREVENT THE CARD FROM BEING REGENERATED!!! 0.9.1
@@ -1420,7 +1397,6 @@ mana={3}{R}{R}
 type=Instant 
 rarity=C
 [/card]
-
 [card]
 id=26428
 name=Prowling Pangolin
@@ -1432,7 +1408,6 @@ toughness=5
 text=When Prowling Pangolin comes into play, any player may sacrifice two creatures. If a player does, sacrifice Prowling Pangolin.
 rarity=U
 [/card]
-
 [card]
 id=39539
 name=Quicksilver Dragon
@@ -1452,8 +1427,6 @@ type=Instant
 text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
 rarity=R
 [/card]
-
-
 [card]
 id=39848
 name=Riptide Biologist
@@ -1565,7 +1538,6 @@ subtype=Aura
 text=Enchant land (Target a land as you play this. This card comes into play attached to that land.) Enchanted land is an Island.
 rarity=C
 [/card]
-
 [card]
 id=39731
 name=Serpentine Basilisk
@@ -1678,8 +1650,6 @@ toughness=5
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, turn Skittish Valesk face down. Morph {5}{R} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
 [/card]
-
-
 [card]
 id=41023
 name=Smother
@@ -1710,7 +1680,6 @@ toughness=3
 text={2}{G}: Target Beast creature gets +1/+1 until end of turn. Morph {1}{G}{G} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=C
 [/card]
-
 [card]
 id=39725
 name=Spined Basher
@@ -1779,7 +1748,6 @@ type=Land
 text={T}: Add {1} to your mana pool. {W}, {T}, Sacrifice a Cleric creature: You gain life equal to the sacrificed creature's toughness. {B}, {T}, Sacrifice a Cleric creature: Target player loses life equal to the sacrificed creature's power.
 rarity=U
 [/card]
-
 [card]
 id=40130
 name=Steely Resolve
@@ -1907,7 +1875,6 @@ type=Sorcery
 text=Target opponent draws two cards, then you draw up to four cards. That opponent may repeat this process as many times as he or she chooses.
 rarity=R
 [/card]
-
 [card]
 id=39721
 name=Treespring Lorian
@@ -1955,8 +1922,6 @@ subtype=Zombie Barbarian
 power=3
 toughness=1
 text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Play this ability only during your upkeep. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
-autograveyard={1}{B}{s(*|myhand)}:moveTo(myhand) myUpkeepOnly
-autohand={1}{B}:cycling
 rarity=R
 [/card]
 [card]
@@ -1977,14 +1942,6 @@ power=5
 toughness=5
 text={1}{G}, {T}: Venomspout Brackus deals 5 damage to target attacking or blocking creature with flying. Morph {3}{G}{G} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
-[/card]
-[card]
-id=39501
-name=Vitality Charm
-mana={G}
-type=Instant
-text=Choose one: Put a 1/1 green Insect creature token into play; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
-rarity=C
 [/card]
 [card]
 id=40174

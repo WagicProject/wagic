@@ -8,6 +8,20 @@ type=Sorcery
 auto=foreach(bird|myBattlefield) draw:1
 [/card]
 [card]
+text=Creatures you control gain protection from the color of your choice until end of turn.   Cycling {W} ({W}, Discard this card: Draw a card.)
+id=41162
+name=Akroma's Blessing
+auto=may lord(creature|myBattlefield) protection from white
+auto=may lord(creature|myBattlefield) protection from blue
+auto=may lord(creature|myBattlefield) protection from black
+auto=may lord(creature|myBattlefield) protection from red
+auto=may lord(creature|myBattlefield) protection from green
+auto={W}:cycling
+rarity=U
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 id=41168
 name=Akroma's Vengeance
 mana={4}{W}{W}
@@ -55,15 +69,15 @@ auto={2}{U}{U}:moveTo(myhand)
 abilities=legendary
 [/card]
 [card]
+text=Put target enchantment on top of its owner's library.   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=35326
+target=enchantment
+auto=moveTo(ownerhand)
+autohand={2}:cycling
 name=Aura Extraction
+rarity=U
 mana={1}{W}
 type=Instant
-target=enchantment
-auto=moveTo(library)
-text=Put target enchantment on top of its owner's library. Cycling {2} ({2}, Discard this card: Draw a card.)
-autohand={2}:cycling
-rarity=U
 [/card]
 [card]
 text=Haste   When Avarax enters the battlefield, you may search your library for a card named Avarax, reveal it, and put it into your hand. If you do, shuffle your library. {1}{R}: Avarax gets +1/+0 until end of turn.
@@ -94,16 +108,26 @@ toughness=5
 abilities=flying
 [/card]
 [card]
+text=Cycling {2} ({2}, Discard this card: Draw a card.)
 id=34196
 name=Barkhide Mauler
+rarity=C
 mana={4}{G}
 type=Creature
 subtype=Beast
 autohand={2}:cycling
 power=4
 toughness=4
-text=Cycling {2} ({2}, Discard this card: Draw a card.)
+[/card]
+[card]
+text=Barren Moor enters the battlefield tapped.   {T}: Add {B} to your mana pool.   Cycling {B} ({B}, Discard this card: Draw a card.)
+id=41139
+name=Barren Moor
+auto=tap
+auto={T}:Add {B}
+autohand={B}:cycling
 rarity=C
+type=Land
 [/card]
 [card]
 text=For each opponent, gain control of target permanent that player controls. (This effect doesn't end at end of turn.)
@@ -154,7 +178,7 @@ mana={3}{G}{G}
 type=Enchantment
 [/card]
 [card]
-text=As Clone enters the battlefield, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
+text=As Clone enters the battlefield, you may choose a creature on the battlefield. If you do, Clone comes into play as a copy of that creature.
 id=39533
 name=Clone
 rarity=U
@@ -213,15 +237,16 @@ auto={W}{T}:1/1 target(Soldier)
 type=Land 
 [/card]
 [card]
+text=Target creature gets -4/-4 until end of turn.   Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.)   When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
 id=41142
+target=creature
+auto=-4/-4
+autohand={1}{B}{B}:cycling
+autohand={1}{B}{B}:-1/-1 target(creature) && cycling
 name=Death Pulse
+rarity=U
 mana={2}{B}{B}
 type=Instant
-target=creature
-text=Target creature gets -4/-4 until end of turn. Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.) When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
-auto=-4/-4
-autohand={1}{B}{B}:cycling && may -1/-1 target(creature)
-rarity=U
 [/card]
 [card]
 text=Destroy target enchantment.
@@ -234,40 +259,41 @@ type=Instant
 rarity=C
 [/card]
 [card]
+text=All creatures gain fear until end of turn.   Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)   When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
 id=41157
+auto=lord(creature) fear
+autohand={1}{B}:cycling
+autohand={1}{B}:fear target(creature) && cycling
 name=Dirge of Dread
+rarity=C
 mana={2}{B}
 type=Sorcery
-text=All creatures gain fear until end of turn. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.) When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
-auto=lord(creature) fear
-autohand={1}{B}:cycling && may fear target(creature)
-rarity=C
 [/card]
 [card]
+text=Protection from black   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=41133
 name=Disciple of Grace
+rarity=C
 mana={1}{W}
 type=Creature
 subtype=Human Cleric
+autohand={2}:cycling
 power=1
 toughness=2
-text=Protection from black. Cycling {2} ({2}, Discard this card: Draw a card.)
-abilities=Protection from black
-autohand={2}:cycling
-rarity=C
+auto=protection from black
 [/card]
 [card]
+text=Protection from white   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=41134
 name=Disciple of Malice
+rarity=C
 mana={1}{B}
 type=Creature
 subtype=Human Cleric
+autohand={2}:cycling
 power=1
 toughness=2
-text=Protection from white. Cycling {2} ({2}, Discard this card: Draw a card.)
-abilities=Protection from white
-autohand={2}:cycling
-rarity=C
+auto=protection from white
 [/card]
 [card]
 text={3}{U}, Sacrifice a permanent: Return target permanent to its owner's hand.
@@ -406,14 +432,15 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
+text=Exile target card in a graveyard.   Cycling {B} ({B}, Discard this card: Draw a card.)
 id=41165
+target=*|graveyard
+auto=moveTo(exile)
+autohand={B}:cycling
 name=Fade from Memory
+rarity=U
 mana={B}
 type=Instant
-text=Remove target card in a graveyard from the game. Cycling {B} ({B}, Discard this card: Draw a card.)
-auto=moveTo(removedfromgame) target(*|graveyard)
-autohand={B}:cycling
-rarity=U
 [/card]
 [card]
 text=Target creature gets -X/-X until end of turn, where X is the number of Zombies on the battlefield.
@@ -423,6 +450,17 @@ id=41169
 name=Feeding Frenzy
 rarity=U
 mana={2}{B}
+type=Instant
+[/card]
+[card]
+text=Choose one: Target creature gains haste until end of turn; or target creature gets +2/+0 until end of turn; or Fever Charm deals 3 damage to target Wizard creature.
+id=39484
+auto=may haste target(creature)
+auto=may 2/0 target(creature)
+auto=may damage:3 target(creature[wizard])
+name=Fever Charm
+rarity=C
+mana={R}
 type=Instant
 [/card]
 [card]
@@ -466,14 +504,14 @@ type=Basic Land
 rarity=L
 [/card]
 [card]
+text=Forgotten Cave enters the battlefield tapped.   {T}: Add {R} to your mana pool.   Cycling {R} ({R}, Discard this card: Draw a card.)
 id=41140
 name=Forgotten Cave
-type=Land
-text=Forgotten Cave comes into play tapped. {T}: Add {R} to your mana pool. Cycling {R} ({R}, Discard this card: Draw a card.)
 auto=tap
-auto={T}:add {R}
+auto={T}:Add {R}
 autohand={R}:cycling
 rarity=C
+type=Land
 [/card]
 [card]
 text=
@@ -598,16 +636,16 @@ auto=foreach(elf) 1/1
 abilities=trample
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +2/+5.   Cycling {3} ({3}, Discard this card: Draw a card.)
 id=41163
-name=Improvised Armor
-mana={3}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+5. Cycling {3} ({3}, Discard this card: Draw a card.)
 target=creature
 auto=2/5
 autohand={3}:cycling
+name=Improvised Armor
 rarity=U
+mana={3}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=All creatures get -2/-2 until end of turn.
@@ -678,48 +716,49 @@ power=6
 toughness=6
 [/card]
 [card]
+text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
 id=43479
 name=Krosan Tusker
+rarity=C
 mana={5}{G}{G}
 type=Creature
 subtype=Boar Beast
+autohand={2}{G}:cycling
+autohand={2}{G}:moveTo(myhand) target(land[basic]|myLibrary) && cycling
 power=6
 toughness=5
-text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
-autohand={2}{G}:cycling && may moveTo(myhand) target(land[basic]|mylibrary)
-rarity=C
 [/card]
 [card]
+text=Destroy target land.   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=41158
-name=Lay Waste
-mana={3}{R}
-type=Sorcery
-text=Destroy target land. Cycling {2} ({2}, Discard this card: Draw a card.)
 target=land
 auto=destroy
 autohand={2}:cycling
+name=Lay Waste
 rarity=C
+mana={3}{R}
+type=Sorcery
 [/card]
 [card]
+text=Lonely Sandbar enters the battlefield tapped.   {T}: Add {U} to your mana pool.   Cycling {U} ({U}, Discard this card: Draw a card.)
 id=41138
 name=Lonely Sandbar
-type=Land
-text=Lonely Sandbar comes into play tapped. {T}: Add {U} to your mana pool. Cycling {U} ({U}, Discard this card: Draw a card.)
 auto=tap
-auto={T}:add {U}
+auto={T}:Add {U}
 autohand={U}:cycling
 rarity=C
+type=Land
 [/card]
 [card]
+text=Target creature gains shroud until end of turn. (It can't be the target of spells or abilities.)   Cycling {U} ({U}, Discard this card: Draw a card.)
 id=41155
-name=Mage's Guile
-mana={1}{U}
-type=Instant
-text=Target creature gains shroud until end of turn. (It can't be the target of spells or abilities.) Cycling {U} ({U}, Discard this card: Draw a card.)
 target=creature
 auto=shroud
 autohand={U}:cycling
+name=Mage's Guile
 rarity=C
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 id=39466
@@ -825,27 +864,27 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Enchant creature   Enchanted creature can't attack or block.
 id=19729
+target=creature
+auto=cantattack
+auto=cantblock
 name=Pacifism
 rarity=C
 mana={1}{W}
 type=Enchantment
 subtype=Aura
-text=Enchant creature. Enchanted creature can't attack or block.
-target=creature
-auto=cantattack
-auto=cantblock
 [/card]
 [card]
-id=39433
-name=Piety Charm
-mana={W}
-type=Instant
 text=Choose one: Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
+id=39433
 auto=may destroy target(aura)
 auto=may target(creature[soldier]) 2/2
 auto=may lord(creature|myBattlefield) vigilance ueot
+name=Piety Charm
 rarity=C
+mana={W}
+type=Instant
 [/card]
 [card]
 text={W}
@@ -888,19 +927,20 @@ text={T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Islan
 auto={T}{S}:moveTo(myBattlefield) target(island,swamp|mylibrary) && life:-1 controller
 id=39504
 name=Polluted Delta
-type=Land
 rarity=R
+type=Land
 [/card]
 [card]
+text=Target creature gets +4/+4 until end of turn.   Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)   When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
 id=41145
-name=Primal Boost
-mana={2}{G}
-type=Instant
-text=Target creature gets +4/+4 until end of turn. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
 target=creature
 auto=4/4
-autohand={2}{G}:cycling && may 1/1 target(creature)
+autohand={2}{G}:cycling
+autohand={2}{G}:1/1 target(creature) && cycling
+name=Primal Boost
 rarity=U
+mana={2}{G}
+type=Instant
 [/card]
 [card]
 text=Profane Prayers deals X damage to target creature or player and you gain X life, where X is the number of Clerics on the battlefield.
@@ -958,14 +998,15 @@ target=player
 auto=moveTo(ownerlibrary) all(*|ownergraveyard)
 [/card]
 [card]
+text=You gain 6 life.   Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.)   When you cycle Renewed Faith, you may gain 2 life.
 id=41153
+auto=life:6
+autohand={1}{W}:cycling
+autohand={1}{W}:life:2 && cycling
 name=Renewed Faith
+rarity=C
 mana={2}{W}
 type=Instant
-text=You gain 6 life. Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) When you cycle Renewed Faith, you may gain 2 life.
-auto=life:6
-autohand={1}{W}:cycling && may life:2
-rarity=C
 [/card]
 [card]
 text=Whenever a creature attacks, you gain 1 life.
@@ -1023,16 +1064,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-id=41167
-name=Starstorm
-mana={X}{R}{R}
-type=Instant
-text=Starstorm deals X damage to each creature. Cycling {3} ({3}, Discard this card: Draw a card.)
-auto=damage:X all(creature)
-autohand={3}:cycling
-rarity=R
-[/card]
-[card]
 text=Flying   When Screaming Seahawk enters the battlefield, you may search your library for a card named Screaming Seahawk, reveal it, and put it into your hand. If you do, shuffle your library.
 id=39445
 name=Screaming Seahawk
@@ -1064,14 +1095,14 @@ auto={W}{U}{T}{S(bird|myBattlefield)}:draw:1
 type=Basic Land 
 [/card]
 [card]
+text=Secluded Steppe enters the battlefield tapped.   {T}: Add {W} to your mana pool.   Cycling {W} ({W}, Discard this card: Draw a card.)
 id=41137
 name=Secluded Steppe
-type=Land
-text=Secluded Steppe comes into play tapped. {T}: Add {W} to your mana pool. Cycling {W} ({W}, Discard this card: Draw a card.)
 auto=tap
-auto={T}:add {W}
+auto={T}:Add {W}
 autohand={W}:cycling
 rarity=C
+type=Land
 [/card]
 [card]
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
@@ -1142,39 +1173,41 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+text=Slice and Dice deals 4 damage to each creature.   Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
 id=41171
+auto=damage:4 all(creature)
+autohand={2}{R}:cycling
+autohand={2}{R}:damage:1 all(creature) && cycling
 name=Slice and Dice
+rarity=U
 mana={4}{R}{R}
 type=Sorcery
-text=Slice and Dice deals 4 damage to each creature. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
-auto=damage:4 all(creature)
-autohand={2}{R}:cycling && may damage:1 all(creature)
-rarity=U
 [/card]
 [card]
+text=Slipstream Eel can't attack unless defending player controls an Island.   Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.)
 id=39706
 name=Slipstream Eel
+rarity=C
 mana={5}{U}{U}
 type=Creature
 subtype=Fish Beast
+auto=aslongas(island|opponentbattlefield) -cantattack
+autohand={1}{U}:cycling
 power=6
 toughness=6
-text=Slipstream Eel can't attack unless defending player controls an Island. Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.)
-auto=aslongas(island|opponentinplay) -defender
-abilities=defender
-autohand={1}{U}:cycling
-rarity=C
+abilities=cantattack
 [/card]
 [card]
+text=Solar Blast deals 3 damage to target creature or player.   Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.)   When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
 id=41143
-name=Solar Blast
-mana={3}{R}
-type=Instant
-text=Solar Blast deals 3 damage to target creature or player. Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.) When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
 target=creature,player
 auto=damage:3
-autohand={1}{R}{R}:cycling && may damage:1 target(creature,player)
+autohand={1}{R}{R}:cycling
+autohand={1}{R}{R}:damage:1 target(creature,player) && cycling
+name=Solar Blast
 rarity=C
+mana={3}{R}
+type=Instant
 [/card]
 [card]
 text=Soulless One's power and toughness are each equal to the number of Zombies on the battlefield plus the number of Zombie cards in all graveyards.
@@ -1212,6 +1245,16 @@ type=Creature
 subtype=Insect
 power=0
 toughness=0
+[/card]
+[card]
+text=Starstorm deals X damage to each creature.   Cycling {3} ({3}, Discard this card: Draw a card.)
+id=41167
+auto=damage:X all(creature)
+autohand={3}:cycling
+name=Starstorm
+rarity=R
+mana={X}{R}{R}
+type=Instant
 [/card]
 [card]
 text={B}
@@ -1317,15 +1360,14 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+text=Tranquil Thicket enters the battlefield tapped.   {T}: Add {G} to your mana pool.   Cycling {G} ({G}, Discard this card: Draw a card.)
 id=41141
 name=Tranquil Thicket
-mana=
-type=Land
-text=Tranquil Thicket comes into play tapped. {T}: Add {G} to your mana pool. Cycling {G} ({G}, Discard this card: Draw a card.)
 auto=tap
-auto={T}:add {G}
+auto={T}:Add {G}
 autohand={G}:cycling
 rarity=C
+type=Land
 [/card]
 [card]
 text=Tribal Golem has trample as long as you control a Beast, haste as long as you control a Goblin, first strike as long as you control a Soldier, flying as long as you control a Wizard, and "{B}: Regenerate Tribal Golem" as long as you control a Zombie.
@@ -1364,6 +1406,17 @@ auto={T}:bury target(creature)
 power=5
 toughness=5
 abilities=flying,legendary
+[/card]
+[card]
+text=Choose one: Put a 1/1 green Insect creature token onto the battlefield; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
+id=39501
+auto=may token(Insect,creature token insect, 1/1,green)
+auto=may 1/1 && trample target(creature)
+auto=may regenerate target(beast)
+name=Vitality Charm
+rarity=C
+mana={G}
+type=Instant
 [/card]
 [card]
 text=(Walls can't attack.) {G}, Sacrifice a Wall: Draw a card.
