@@ -1,41 +1,29 @@
 [card]
+text=When you cycle Bant Sojourners or it's put into a graveyard from the battlefield, you may put a 1/1 white Soldier creature token onto the battlefield.   Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.)
+auto=@movedTo(this|graveyard) from(battlefield):may token(Soldier,Creature Soldier,1/1,white)
+autohand={2}{W}:cycling
+autohand={2}{W}:token(Soldier,Creature Soldier,1/1,white) && cycling
 id=188963
 name=Bant Sojourners
+rarity=C
 mana={1}{G}{W}{U}
 type=Creature
 subtype=Human Soldier
 power=2
 toughness=4
-text=When you cycle Bant Sojourners or it's put into a graveyard from play, you may put a 1/1 white Soldier creature token into play. Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.)
-auto=@movedTo(graveyard) from(battlefield):may token(Soldier,Creature Soldier,1/1,white)
-autohand={2}{W}:cycling
-autohand={2}{W}:token(Soldier,Creature Soldier,1/1,white) && cycling
-rarity=C
 [/card]
 [card]
-id=179545
-name=Behemoth Sledge
-mana={1}{G}{W}
-type=Artifact
-subtype=Equipment
 text=Equipped creature gets +2/+2 and has lifelink and trample. Equip {3}
+id=179545
 auto={3}:equip
 auto=2/2
 auto=lifelink
 auto=trample
+name=Behemoth Sledge
 rarity=U
-[/card]
-[card]
-text=Trample, haste   At end of turn, Blitz Hellion's owner shuffles it into his or her library.
-auto=@next my endofturn:moveto(myLibrary) && shuffle
-id=179406
-name=Blitz Hellion
-rarity=R
-mana={3}{R}{G}
-type=Creature
-subtype=Hellion
-power=7
-toughness=7
+mana={1}{G}{W}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 text=Breath of Malfegor deals 5 damage to each opponent.
@@ -116,32 +104,32 @@ mana={G}{W}{U}
 type=Instant
 [/card]
 [card]
+text=Whenever another artifact enters the battlefield under your control, Glassdust Hulk gets +1/+1 until end of turn and is unblockable this turn.   Cycling {(WU)} ({(WU)}, Discard this card: Draw a card.)
+auto=@moveTo(other artifact|myBattlefield):1/1 ueot
+auto=@moveTo(other artifact|myBattlefield):unblockable ueot
+autohand={WU}:cycling
 id=179576
 name=Glassdust Hulk
+rarity=C
 mana={3}{W}{U}
 type=Artifact Creature
 subtype=Golem
 power=3
 toughness=4
-text=Whenever another artifact comes into play under your control, Glassdust Hulk gets +1/+1 until end of turn and is unblockable this turn. Cycling {(WU)} ({(WU)}, Discard this card: Draw a card.)
-auto=@moveTo(other artifact|myBattlefield): 1/1 ueot
-auto=@moveTo(other artifact|myBattlefield): unblockable ueot
-autohand={WU}:cycling
-rarity=C
 [/card]
 [card]
+text=When you cycle Grixis Sojourners or it's put into a graveyard from the battlefield, you may exile target card in a graveyard.   Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
+auto=@movedTo(this|graveyard) from(battlefield):may moveTo(exile) target(*|graveyard)
+autohand={2}{B}:cycling
+autohand={2}{B}:moveTo(exile) target(*|graveyard) && cycling
 id=188972
 name=Grixis Sojourners
+rarity=C
 mana={1}{U}{B}{R}
 type=Creature
 subtype=Zombie Ogre
 power=4
 toughness=3
-text=When you cycle Grixis Sojourners or it's put into a graveyard from play, you may remove target card in a graveyard from the game. Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
-auto=@movedTo(graveyard) from(battlefield):may moveTo(removedfromgame) target(*|graveyard)
-autohand={2}{B}:cycling
-autohand={2}{B}:moveTo(removedfromgame) target(*|graveyard) && cycling
-rarity=C
 [/card]
 [card]
 id=189647
@@ -157,25 +145,26 @@ toughness=5
 text=Exile all cards in target player's hand and graveyard.
 id=175109
 target=player
-auto=moveTo(removedfromgame) all(*|hand)
-auto=moveTo(removedfromgame) all(*|graveyard)
+auto=moveTo(exile) all(*|hand)
+auto=moveTo(exile) all(*|graveyard)
 name=Identity Crisis
 rarity=R
 mana={2}{W}{W}{B}{B}
 type=Sorcery
 [/card]
 [card]
+text=Haste   Swampcycling {2}, mountaincycling {2} ({2}, Discard this card: Search your library for a Swamp or Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary)
+
 id=144276
 name=Igneous Pouncer
+rarity=C
 mana={4}{B}{R}
 type=Creature
 subtype=Elemental
 power=5
 toughness=1
-text=Haste Swampcycling {2}, mountaincycling {2} ({2}, Discard this card: Search your library for a Swamp or Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
 abilities=haste
-auto={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary)
-rarity=C
 [/card]
 [card]
 text=Flying   When you cast a spell, sacrifice Illusory Demon.
@@ -215,33 +204,34 @@ toughness=3
 abilities=legendary,flying
 [/card]
 [card]
+text=Fear   Islandcycling {2}, swampcycling {2} ({2}, Discard this card: Search your library for an Island or Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myhand) target(island,swamp|mylibrary)
 id=144286
 name=Jhessian Zombies
+rarity=C
 mana={4}{U}{B}
 type=Creature
 subtype=Zombie
 power=2
 toughness=4
-text=Fear Islandcycling {2}, swampcycling {2} ({2}, Discard this card: Search your library for an Island or Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
 abilities=fear
-autohand={2}{S}:moveTo(myhand) target(island,swamp|mylibrary)
-rarity=C
 [/card]
 [card]
+text=When you cycle Jund Sojourners or it's put into a graveyard from the battlefield, you may have it deal 1 damage to target creature or player.   Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.)
+auto=@movedTo(this|graveyard) from(battlefield):may damage:1 target(creature,player)
+autohand={2}{R}:cycling
+autohand={2}{R}:damage:1 target(creature,player) && cycling
 id=188966
 name=Jund Sojourners
+rarity=C
 mana={B}{R}{G}
 type=Creature
 subtype=Viashino Shaman
 power=3
 toughness=2
-text=When you cycle Jund Sojourners or it's put into a graveyard from play, you may have it deal 1 damage to target creature or player. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.)
-auto=@movedTo(graveyard) from(battlefield):may damage:1 target(creature,player)
-autohand={2}{R}:cycling
-rarity=C
 [/card]
 [card]
-text=Flying, haste When Karrthus, Tyrant of Jund enters the battlefield, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
+text=Flying, haste   When Karrthus, Tyrant of Jund enters the battlefield, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
 id=180587
 name=Karrthus, Tyrant of Jund
 rarity=M
@@ -317,7 +307,7 @@ power=3
 toughness=4
 [/card]
 [card]
-text=Enchant creature    Enchanted creature gets +2/+0 and has flying.
+text=Enchant creature   Enchanted creature gets +2/+0 and has flying.
 id=179591
 target=creature
 auto=2/0
@@ -341,16 +331,16 @@ toughness=4
 abilities=double strike
 [/card]
 [card]
-id=179584
-name=Mask of Riddles
-mana={U}{B}
-type=Artifact
-subtype=Equipment
 text=Equipped creature has fear. Whenever equipped creature deals combat damage to a player, you may draw a card. Equip {2}
 auto={2}:equip
 auto=fear
 auto=@damaged(player) from(mytgt):may draw:1 controller
+id=179584
+name=Mask of Riddles
 rarity=U
+mana={U}{B}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 text=Flying   When Messenger Falcons enters the battlefield, draw a card.
@@ -366,17 +356,17 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Monstrous Carabid attacks each turn if able.   Cycling {BR} ({BR}, Discard this card: Draw a card.)
 id=185051
 name=Monstrous Carabid
+rarity=C
 mana={3}{B}{R}
 type=Creature
 subtype=Insect
+autohand={BR}:cycling
 power=4
 toughness=4
-text=Monstrous Carabid attacks each turn if able. Cycling {BR} ({BR}, Discard this card: Draw a card.)
 abilities=mustattack
-autohand={BR}:cycling
-rarity=C
 [/card]
 [card]
 text=Exile target creature card in a graveyard, then put X 1/1 green Saproling creature tokens onto the battlefield, where X is the removed card's toughness.
@@ -390,30 +380,31 @@ mana={4}{B}{G}
 type=Sorcery
 [/card]
 [card]
+text=When you cycle Naya Sojourners or it's put into a graveyard from the battlefield, you may put a +1/+1 counter on target creature.   Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)
+auto=@movedTo(this|graveyard) from(battlefield):may counter(1/1) target(creature)
+autohand={2}{G}:cycling
+autohand={2}{G}:counter(1/1) target(creature) && cycling
 id=188970
 name=Naya Sojourners
+rarity=C
 mana={2}{R}{G}{W}
 type=Creature
 subtype=Elf Shaman
 power=5
 toughness=3
-text=When you cycle Naya Sojourners or it's put into a graveyard from play, you may put a +1/+1 counter on target creature. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)
-auto=@movedTo(graveyard) from(battlefield):may counter(1/1) target(creature)
-autohand={2}{G}:cycling
-rarity=C
 [/card]
 [card]
+text=Reach (This can block creatures with flying.)   Forestcycling {2}, plainscycling {2} ({2}, Discard this card: Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myhand) target(plains,forest|mylibrary)
 id=144249
 name=Pale Recluse
+rarity=C
 mana={4}{G}{W}
 type=Creature
 subtype=Spider
 power=4
 toughness=5
-text=Reach (This can block creatures with flying.) Forestcycling {2}, plainscycling {2} ({2}, Discard this card: Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.)
-autohand={2}{S}:moveTo(myhand) target(plains,forest|mylibrary)
 abilities=reach
-rarity=C
 [/card]
 [card]
 text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Play this ability only once each turn.
@@ -451,16 +442,17 @@ power=4
 toughness=4
 [/card]
 [card]
+text=Defender   Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Search your library for a Plains or Island card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myhand) target(plains,island|mylibrary)
 id=144282
 name=Sanctum Plowbeast
+rarity=C
 mana={4}{W}{U}
 type=Artifact Creature
 subtype=Beast
 power=3
 toughness=6
-text=Defender Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Search your library for a Plains or Island card, reveal it, and put it into your hand. Then shuffle your library.)
-autohand={2}{S}:moveTo(myhand) target(plains,island|mylibrary)
-rarity=C
+abilities=defender
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +3/-3.
@@ -498,16 +490,16 @@ toughness=4
 abilities=exalted
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +1/+1 for each creature you control.   Cycling {GW} ({GW}, Discard this card: Draw a card.)
 id=179630
-name=Sigil of the Nayan Gods
-mana={1}{G}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1 for each creature you control. Cycling {GW} ({GW}, Discard this card: Draw a card.)
 target=creature
 auto=foreach(creature|mybattlefield) 1/1
 autohand={GW}:cycling
+name=Sigil of the Nayan Gods
 rarity=C
+mana={1}{G}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
@@ -588,16 +580,16 @@ auto={T}:Untap target(other *)
 type=Artifact
 [/card]
 [card]
+text=Mountaincycling {2}, forestcycling {2} ({2}, Discard this card: Search your library for a Mountain or Forest card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myhand) target(mountain,forest|mylibrary)
 id=144260
 name=Valley Rannet
+rarity=C
 mana={4}{R}{G}
 type=Creature
 subtype=Beast
 power=6
 toughness=3
-text=Mountaincycling {2}, forestcycling {2} ({2}, Discard this card: Search your library for a Mountain or Forest card, reveal it, and put it into your hand. Then shuffle your library.)
-autohand={2}{S}:moveTo(myhand) target(mountain,forest|mylibrary)
-rarity=C
 [/card]
 [card]
 text=Whenever Vedalken Heretic deals damage to an opponent, you may draw a card.
@@ -638,10 +630,10 @@ abilities=flash,flying,deathtouch
 [card]
 text=Until end of turn, creatures you control get +1/+1 and creatures your opponents control get -1/-1.
 id=179575
+auto=lord(creature|myBattlefield) 1/1
+auto=lord(creature|opponentBattlefield) -1/-1
 name=Zealous Persecution
 rarity=U
 mana={W}{B}
 type=Instant
-auto=lord(creature|myBattlefield) 1/1
-auto=lord(creature|opponentBattlefield) -1/-1
 [/card]

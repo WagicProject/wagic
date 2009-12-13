@@ -50,7 +50,6 @@ toughness=1
 text=Flying At the beginning of your upkeep, you may put a feather counter on target creature. If you do, that creature is 3/1 and has flying as long as it has a feather counter on it.
 rarity=R
 [/card]
-
 [card]
 id=188975
 name=Bant Sureblade
@@ -70,6 +69,19 @@ mana={3}{B}{R}
 type=Instant
 text=Cascade (When you play this spell, remove cards from the top of your library from the game until you remove a nonland card that costs less. You may play it without paying its mana cost. Put the removed cards on the bottom in a random order.) Bituminous Blast deals 4 damage to target creature.
 rarity=U
+[/card]
+[card]
+#####That does not work yet!
+text=Trample, haste   At end of turn, Blitz Hellion's owner shuffles it into his or her library.
+auto=@next my endofturn:moveto(myLibrary) && shuffle
+id=179406
+name=Blitz Hellion
+rarity=R
+mana={3}{R}{G}
+type=Creature
+subtype=Hellion
+power=7
+toughness=7
 [/card]
 [card]
 id=185053
@@ -695,7 +707,15 @@ toughness=3
 text=Whenever a creature comes into play under your control, if that creature is 1/1, put two +1/+1 counters on it.
 rarity=U
 [/card]
-
+[card]
+id=179630
+name=Sigil of the Nayan Gods
+mana={1}{G}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+1 for each creature you control. Cycling {(g/w)} ({(g/w)}, Discard this card: Draw a card.)
+rarity=C
+[/card]
 [card]
 id=179574
 name=Singe-Mind Ogre
