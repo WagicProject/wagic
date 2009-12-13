@@ -1194,11 +1194,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	  }
 	  break;
     }
-  case 1136: //Soul Net
-    {
-      game->addObserver( NEW ASoulNet(_id ,card));
-      break;
-    }
 
   case 1139: //The Rack
     {

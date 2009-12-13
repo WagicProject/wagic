@@ -487,6 +487,14 @@ type=Instant
 mana={U}
 [/card]
 [card]
+text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, you gain 1 life.
+id=1136
+name=Soul Net
+rarity=U
+mana={1}
+type=Artifact
+[/card]
+[card]
 text=Players can't untap more than one creature during their untap steps.
 id=1319
 name=Smoke

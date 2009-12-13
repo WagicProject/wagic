@@ -1998,14 +1998,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, you gain 1 life.
-id=1136
-name=Soul Net
-rarity=U
-mana={1}
-type=Artifact
-[/card]
-[card]
 text=Counter target spell with converted mana cost X.
 id=1224
 name=Spell Blast

@@ -3500,45 +3500,6 @@ class AIslandSanctuary:public MTGAbility{
 };
 
 
-//Soul Net
-class ASoulNet:public ActivatedAbility{
- public:
-  PutInGraveyard * latest;
-  PutInGraveyard * newDead;
- ASoulNet(int _id, MTGCardInstance * card):ActivatedAbility(_id, card,0,0,0){
-    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 1};
-    cost = NEW ManaCost(_cost,1);
-    latest = ((PutInGraveyard *) GameObserver::GetInstance()->mLayers->stackLayer()->getPrevious(NULL,ACTION_PUTINGRAVEYARD,RESOLVED_OK));
-    newDead = latest;
-  }
-
-  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
-    newDead = ((PutInGraveyard *) GameObserver::GetInstance()->mLayers->stackLayer()->getPrevious(NULL,ACTION_PUTINGRAVEYARD,RESOLVED_OK));
-    if (newDead && newDead != latest && newDead->card->isCreature())
-      return ActivatedAbility::isReactingToClick(card,mana);
-    return 0;
-  }
-  int resolve(){
-    latest = newDead;
-    source->controller()->life++;
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ASoulNet ::: latest : " << latest
-	<< " ; newDead : " << newDead
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
-  }
-  ASoulNet * clone() const{
-    ASoulNet * a =  NEW ASoulNet(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //Stasis
 class AStasis:public ActivatedAbility{
  public:
