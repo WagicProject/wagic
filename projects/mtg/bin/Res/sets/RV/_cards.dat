@@ -906,14 +906,6 @@ toughness=4
 abilities=reach
 [/card]
 [card]
-text={T}: Look at target player's hand.
-id=1110
-name=Glasses of Urza
-rarity=U
-mana={1}
-type=Artifact
-[/card]
-[card]
 text={R}: Goblin Balloon Brigade gains flying until end of turn. (It can't be blocked except by creatures with flying.)
 id=1295
 name=Goblin Balloon Brigade

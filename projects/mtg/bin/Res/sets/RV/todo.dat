@@ -142,6 +142,14 @@ subtype=Avatar
 toughness=*
 [/card]
 [card]
+text={T}: Look at target player's hand.
+id=1110
+name=Glasses of Urza
+rarity=U
+mana={1}
+type=Artifact
+[/card]
+[card]
 text=White spells and activated abilities of white enchantments cost {3} more to play.
 id=1163
 name=Gloom

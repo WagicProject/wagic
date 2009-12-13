@@ -1092,12 +1092,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AForceOfNature(_id,card));
       break;
     }
-  case 1110: //Glasses Of Urza
-    {
-      AGlassesOfUrza * ability = NEW AGlassesOfUrza(_id,card);
-      game->addObserver(ability);
-      break;
-    }
   case 1112: //Howling Mine
     {
       game->addObserver(NEW AHowlingMine(_id, card));

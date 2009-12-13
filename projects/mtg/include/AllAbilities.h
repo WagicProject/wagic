@@ -2748,67 +2748,6 @@ class AFarmstead:public ActivatedAbility{
   }
 };
 
-//1110 Glasses of Urza
-class AGlassesOfUrza:public MTGAbility{
- public:
-  CardDisplay * display;
-  bool isActive;
- AGlassesOfUrza(int _id, MTGCardInstance * _source):MTGAbility(_id, _source),isActive(false){
-    display = NEW CardDisplay(0, game, SCREEN_WIDTH/2, SCREEN_HEIGHT/2,NULL);
-  }
-
-  void Update(float dt){
-    if(isActive){
-      display->Update(dt);
-    }
-  }
-
-  bool CheckUserInput(u32 key){
-    if (isActive){
-      if (display->CheckUserInput(key)) return true;
-      if (PSP_CTRL_CROSS == key){
-	isActive = false;
-	return true;
-      }
-    }
-    return false;
-  }
-
-  void Render(float dt){
-    if (isActive){
-      display->Render();
-    }
-
-  }
-  int isReactingToClick(MTGCardInstance *  card, ManaCost * mana = NULL){
-    if ( card == source){
-      if (game->currentlyActing()->game->isInPlay(card) && !source->isTapped()){
-	return 1;
-      }
-    }
-    return 0;
-  }
-
-  int reactToClick(MTGCardInstance * card){
-    if (!isReactingToClick(card)) return 0;
-    source->tap();
-    isActive = true;
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AGlassesOfUrza ::: display : " << display
-	<< " ; isActive : " << isActive
-	<< " (";
-    return MTGAbility::toString(out) << ")";
-  }
-  AGlassesOfUrza * clone() const{
-    AGlassesOfUrza * a =  NEW AGlassesOfUrza(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 //1112 Howling Mine
 class AHowlingMine:public MTGAbility{
