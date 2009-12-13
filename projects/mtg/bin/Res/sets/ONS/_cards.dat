@@ -213,6 +213,17 @@ auto={W}{T}:1/1 target(Soldier)
 type=Land 
 [/card]
 [card]
+id=41142
+name=Death Pulse
+mana={2}{B}{B}
+type=Instant
+target=creature
+text=Target creature gets -4/-4 until end of turn. Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.) When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
+auto=-4/-4
+autohand={1}{B}{B}:cycling && -1/-1 target(creature)
+rarity=U
+[/card]
+[card]
 text=Destroy target enchantment.
 id=41152
 name=Demystify
@@ -220,6 +231,42 @@ target=Enchantment
 auto=destroy
 mana={W}
 type=Instant 
+rarity=C
+[/card]
+[card]
+id=41157
+name=Dirge of Dread
+mana={2}{B}
+type=Sorcery
+text=All creatures gain fear until end of turn. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.) When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
+auto=lord(creature) fear
+autohand={1}{B}:cycling && fear target(creature)
+rarity=C
+[/card]
+[card]
+id=41133
+name=Disciple of Grace
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+text=Protection from black. Cycling {2} ({2}, Discard this card: Draw a card.)
+abilities=Protection from black
+autohand={2}:cycling
+rarity=C
+[/card]
+[card]
+id=41134
+name=Disciple of Malice
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+text=Protection from white. Cycling {2} ({2}, Discard this card: Draw a card.)
+abilities=Protection from white
+autohand={2}:cycling
 rarity=C
 [/card]
 [card]
@@ -359,6 +406,16 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
+id=41165
+name=Fade from Memory
+mana={B}
+type=Instant
+text=Remove target card in a graveyard from the game. Cycling {B} ({B}, Discard this card: Draw a card.)
+auto=moveTo(removedfromgame) target(*|graveyard)
+autohand={B}:cycling
+rarity=U
+[/card]
+[card]
 text=Target creature gets -X/-X until end of turn, where X is the number of Zombies on the battlefield.
 target=creature
 auto=foreach(zombie) -1/-1
@@ -407,6 +464,16 @@ name=Forest
 auto={T}:Add {G}
 type=Basic Land 
 rarity=L
+[/card]
+[card]
+id=41140
+name=Forgotten Cave
+type=Land
+text=Forgotten Cave comes into play tapped. {T}: Add {R} to your mana pool. Cycling {R} ({R}, Discard this card: Draw a card.)
+auto=tap
+auto={T}:add {R}
+autohand={R}:cycling
+rarity=C
 [/card]
 [card]
 text=
@@ -531,6 +598,18 @@ auto=foreach(elf) 1/1
 abilities=trample
 [/card]
 [card]
+id=41163
+name=Improvised Armor
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +2/+5. Cycling {3} ({3}, Discard this card: Draw a card.)
+target=creature
+auto=2/5
+autohand={3}:cycling
+rarity=U
+[/card]
+[card]
 text=All creatures get -2/-2 until end of turn.
 auto=lord(creature) -2/-2
 id=23280
@@ -597,6 +676,50 @@ subtype=Beast
 auto={G}:trample target(beast)
 power=6
 toughness=6
+[/card]
+[card]
+id=43479
+name=Krosan Tusker
+mana={5}{G}{G}
+type=Creature
+subtype=Boar Beast
+power=6
+toughness=5
+text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
+autohand={2}{G}:cycling && moveTo(myhand) target(land[basic]|mylibrary)
+rarity=C
+[/card]
+[card]
+id=41158
+name=Lay Waste
+mana={3}{R}
+type=Sorcery
+text=Destroy target land. Cycling {2} ({2}, Discard this card: Draw a card.)
+target=land
+auto=destroy
+autohand={2}:cycling
+rarity=C
+[/card]
+[card]
+id=41138
+name=Lonely Sandbar
+type=Land
+text=Lonely Sandbar comes into play tapped. {T}: Add {U} to your mana pool. Cycling {U} ({U}, Discard this card: Draw a card.)
+auto=tap
+auto={T}:add {U}
+autohand={U}:cycling
+rarity=C
+[/card]
+[card]
+id=41155
+name=Mage's Guile
+mana={1}{U}
+type=Instant
+text=Target creature gains shroud until end of turn. (It can't be the target of spells or abilities.) Cycling {U} ({U}, Discard this card: Draw a card.)
+target=creature
+auto=shroud
+autohand={U}:cycling
+rarity=C
 [/card]
 [card]
 id=39466
@@ -769,6 +892,17 @@ type=Land
 rarity=R
 [/card]
 [card]
+id=41145
+name=Primal Boost
+mana={2}{G}
+type=Instant
+text=Target creature gets +4/+4 until end of turn. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
+target=creature
+auto=4/4
+autohand={2}{G}:cycling && 1/1 target(creature)
+rarity=U
+[/card]
+[card]
 text=Profane Prayers deals X damage to target creature or player and you gain X life, where X is the number of Clerics on the battlefield.
 target=creature,player
 auto=foreach(cleric) damage:1
@@ -822,6 +956,16 @@ mana={2}{U}
 type=Sorcery
 target=player
 auto=moveTo(ownerlibrary) all(*|ownergraveyard)
+[/card]
+[card]
+id=41153
+name=Renewed Faith
+mana={2}{W}
+type=Instant
+text=You gain 6 life. Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) When you cycle Renewed Faith, you may gain 2 life.
+auto=life:6
+autohand={1}{W}:cycling && life:2
+rarity=C
 [/card]
 [card]
 text=Whenever a creature attacks, you gain 1 life.
@@ -910,6 +1054,16 @@ auto={W}{U}{T}{S(bird|myBattlefield)}:draw:1
 type=Basic Land 
 [/card]
 [card]
+id=41137
+name=Secluded Steppe
+type=Land
+text=Secluded Steppe comes into play tapped. {T}: Add {W} to your mana pool. Cycling {W} ({W}, Discard this card: Draw a card.)
+auto=tap
+auto={T}:add {W}
+autohand={W}:cycling
+rarity=C
+[/card]
+[card]
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
 id=13204
 name=Severed Legion
@@ -976,6 +1130,41 @@ name=Slate of Ancestry
 rarity=R
 mana={4}
 type=Artifact
+[/card]
+[card]
+id=41171
+name=Slice and Dice
+mana={4}{R}{R}
+type=Sorcery
+text=Slice and Dice deals 4 damage to each creature. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
+auto=damage:4 all(creature)
+autohand={2}{R}:cycling && damage:1 all(creature)
+rarity=U
+[/card]
+[card]
+id=39706
+name=Slipstream Eel
+mana={5}{U}{U}
+type=Creature
+subtype=Fish Beast
+power=6
+toughness=6
+text=Slipstream Eel can't attack unless defending player controls an Island. Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.)
+auto=aslongas(island|opponentinplay) -defender
+abilities=defender
+autohand={1}{U}:cycling
+rarity=C
+[/card]
+[card]
+id=41143
+name=Solar Blast
+mana={3}{R}
+type=Instant
+text=Solar Blast deals 3 damage to target creature or player. Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.) When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
+target=creature,player
+auto=damage:3
+autohand={1}{R}{R}:cycling && damage:1 target(creature,player)
+rarity=C
 [/card]
 [card]
 text=Soulless One's power and toughness are each equal to the number of Zombies on the battlefield plus the number of Zombie cards in all graveyards.
@@ -1118,6 +1307,17 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+id=41141
+name=Tranquil Thicket
+mana=
+type=Land
+text=Tranquil Thicket comes into play tapped. {T}: Add {G} to your mana pool. Cycling {G} ({G}, Discard this card: Draw a card.)
+auto=tap
+auto={T}:add {G}
+autohand={G}:cycling
+rarity=C
+[/card]
+[card]
 text=Tribal Golem has trample as long as you control a Beast, haste as long as you control a Goblin, first strike as long as you control a Soldier, flying as long as you control a Wizard, and "{B}: Regenerate Tribal Golem" as long as you control a Zombie.
 id=30764
 name=Tribal Golem
@@ -1132,6 +1332,19 @@ auto=aslongas(wizard|myBattlefield) flying
 auto=aslongas(zombie|myBattlefield) {B}:regenerate
 power=4
 toughness=4
+[/card]
+[card]
+id=41166
+name=Undead Gladiator
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie Barbarian
+power=3
+toughness=1
+text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Play this ability only during your upkeep. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
+autograveyard={1}{B}{s(*|myhand)}:moveTo(myhand) myUpkeepOnly
+autohand={1}{B}:cycling
+rarity=R
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {B}, {T}: Put target Zombie card from your graveyard on top of your library.

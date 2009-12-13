@@ -1207,6 +1207,16 @@ toughness=2
 abilities=first strike
 [/card]
 [card]
+id=41167
+name=Starstorm
+mana={X}{R}{R}
+type=Instant
+text=Starstorm deals X damage to each creature. Cycling {3} ({3}, Discard this card: Draw a card.)
+auto=damage:X all(creature)
+autohand={3}:cycling
+rarity=R
+[/card]
+[card]
 text=Destroy target artifact.   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5816
 target=artifact

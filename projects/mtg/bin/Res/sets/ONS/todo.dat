@@ -588,17 +588,7 @@ type=Enchantment
 text=Whenever a creature comes into play, that creature's controller may have target creature of his or her choice get -3/-3 until end of turn.
 rarity=R
 [/card]
-[card]
-id=41142
-name=Death Pulse
-mana={2}{B}{B}
-type=Instant
-target=creature
-text=Target creature gets -4/-4 until end of turn. Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.) When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
-auto=-4/-4
-auto={1}{B}{B}:cycibgmay -1/-1 target(creature)
-rarity=U
-[/card]
+
 [card]
 id=39822
 name=Defensive Maneuvers
@@ -607,36 +597,9 @@ type=Instant
 text=Creatures of the creature type of your choice get +0/+4 until end of turn.
 rarity=C
 [/card]
-[card]
-id=41157
-name=Dirge of Dread
-mana={2}{B}
-type=Sorcery
-text=All creatures gain fear until end of turn. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.) When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
-rarity=C
-[/card]
-[card]
-id=41133
-name=Disciple of Grace
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
-text=Protection from black. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
-id=41134
-name=Disciple of Malice
-mana={1}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
-text=Protection from white. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
+
+
 [card]
 id=39442
 name=Discombobulate
@@ -779,14 +742,7 @@ type=Sorcery
 text=Search your library for up to two basic land cards and put them into play tapped. Then shuffle your library.
 rarity=U
 [/card]
-[card]
-id=41165
-name=Fade from Memory
-mana={B}
-type=Instant
-text=Remove target card in a graveyard from the game. Cycling {B} ({B}, Discard this card: Draw a card.)
-rarity=U
-[/card]
+
 [card]
 id=39849
 name=Fallen Cleric
@@ -796,6 +752,7 @@ subtype=Zombie Cleric
 power=4
 toughness=2
 text=Protection from Clerics Morph {4}{B} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+auto=protection from(cleric)
 rarity=C
 [/card]
 [card]
@@ -858,13 +815,7 @@ toughness=1
 text=Protection from Goblins Morph {W} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=C
 [/card]
-[card]
-id=41140
-name=Forgotten Cave
-type=Land
-text=Forgotten Cave comes into play tapped. {T}: Add {R} to your mana pool. Cycling {R} ({R}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=39594
 name=Frightshroud Courier
@@ -1138,15 +1089,7 @@ toughness=1
 text={T}: Choose a creature type other than Wall. Target creature becomes that type until end of turn.
 rarity=C
 [/card]
-[card]
-id=41163
-name=Improvised Armor
-mana={3}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+5. Cycling {3} ({3}, Discard this card: Draw a card.)
-rarity=U
-[/card]
+
 [card]
 id=39437
 name=Information Dealer
@@ -1253,17 +1196,7 @@ toughness=9
 text=Morph {6}{G}{G} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=R
 [/card]
-[card]
-id=43479
-name=Krosan Tusker
-mana={5}{G}{G}
-type=Creature
-subtype=Boar Beast
-power=6
-toughness=5
-text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
-rarity=C
-[/card]
+
 [card]
 id=39479
 name=Lavamancer's Skill
@@ -1273,14 +1206,7 @@ subtype=Aura
 text=Enchant creature Enchanted creature has "{T}: This creature deals 1 damage to target creature." If enchanted creature is a Wizard, it has "{T}: This creature deals 2 damage to target creature."
 rarity=C
 [/card]
-[card]
-id=41158
-name=Lay Waste
-mana={3}{R}
-type=Sorcery
-text=Destroy target land. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=39675
 name=Leery Fogbeast
@@ -1300,21 +1226,8 @@ type=Enchantment
 text=Whenever a player cycles a card, you may pay {1}. If you do, Lightning Rift deals 2 damage to target creature or player.
 rarity=U
 [/card]
-[card]
-id=41138
-name=Lonely Sandbar
-type=Land
-text=Lonely Sandbar comes into play tapped. {T}: Add {U} to your mana pool. Cycling {U} ({U}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
-id=41155
-name=Mage's Guile
-mana={1}{U}
-type=Instant
-text=Target creature gains shroud until end of turn. (It can't be the target of spells or abilities.) Cycling {U} ({U}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
+
 [card]
 id=39571
 name=Mana Echoes
@@ -1507,14 +1420,7 @@ mana={3}{R}{R}
 type=Instant 
 rarity=C
 [/card]
-[card]
-id=41145
-name=Primal Boost
-mana={2}{G}
-type=Instant
-text=Target creature gets +4/+4 until end of turn. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
-rarity=U
-[/card]
+
 [card]
 id=26428
 name=Prowling Pangolin
@@ -1546,14 +1452,7 @@ type=Instant
 text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
 rarity=R
 [/card]
-[card]
-id=41153
-name=Renewed Faith
-mana={2}{W}
-type=Instant
-text=You gain 6 life. Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) When you cycle Renewed Faith, you may gain 2 life.
-rarity=C
-[/card]
+
 
 [card]
 id=39848
@@ -1666,13 +1565,7 @@ subtype=Aura
 text=Enchant land (Target a land as you play this. This card comes into play attached to that land.) Enchanted land is an Island.
 rarity=C
 [/card]
-[card]
-id=41137
-name=Secluded Steppe
-type=Land
-text=Secluded Steppe comes into play tapped. {T}: Add {W} to your mana pool. Cycling {W} ({W}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=39731
 name=Serpentine Basilisk
@@ -1785,25 +1678,8 @@ toughness=5
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, turn Skittish Valesk face down. Morph {5}{R} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=U
 [/card]
-[card]
-id=41171
-name=Slice and Dice
-mana={4}{R}{R}
-type=Sorcery
-text=Slice and Dice deals 4 damage to each creature. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
-rarity=U
-[/card]
-[card]
-id=39706
-name=Slipstream Eel
-mana={5}{U}{U}
-type=Creature
-subtype=Fish Beast
-power=6
-toughness=6
-text=Slipstream Eel can't attack unless defending player controls an Island. Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
+
 [card]
 id=41023
 name=Smother
@@ -1834,14 +1710,7 @@ toughness=3
 text={2}{G}: Target Beast creature gets +1/+1 until end of turn. Morph {1}{G}{G} (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=C
 [/card]
-[card]
-id=41143
-name=Solar Blast
-mana={3}{R}
-type=Instant
-text=Solar Blast deals 3 damage to target creature or player. Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.) When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
-rarity=C
-[/card]
+
 [card]
 id=39725
 name=Spined Basher
@@ -1910,14 +1779,7 @@ type=Land
 text={T}: Add {1} to your mana pool. {W}, {T}, Sacrifice a Cleric creature: You gain life equal to the sacrificed creature's toughness. {B}, {T}, Sacrifice a Cleric creature: Target player loses life equal to the sacrificed creature's power.
 rarity=U
 [/card]
-[card]
-id=41167
-name=Starstorm
-mana={X}{R}{R}
-type=Instant
-text=Starstorm deals X damage to each creature. Cycling {3} ({3}, Discard this card: Draw a card.)
-rarity=R
-[/card]
+
 [card]
 id=40130
 name=Steely Resolve
@@ -2045,14 +1907,7 @@ type=Sorcery
 text=Target opponent draws two cards, then you draw up to four cards. That opponent may repeat this process as many times as he or she chooses.
 rarity=R
 [/card]
-[card]
-id=41141
-name=Tranquil Thicket
-mana=
-type=Land
-text=Tranquil Thicket comes into play tapped. {T}: Add {G} to your mana pool. Cycling {G} ({G}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=39721
 name=Treespring Lorian
@@ -2091,17 +1946,7 @@ toughness=2
 text=You have shroud. (You can't be the target of spells or abilities.)
 rarity=R
 [/card]
-[card]
-id=41166
-name=Undead Gladiator
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie Barbarian
-power=3
-toughness=1
-text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Play this ability only during your upkeep. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
-rarity=R
-[/card]
+
 [card]
 id=39427
 name=Unified Strike
