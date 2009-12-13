@@ -328,7 +328,7 @@ rarity=C
 [card]
 id=179598
 name=Giant Ambush Beetle
-mana={3}{(}{B}{/}{G}{)}{R}
+mana={3}{BG}{R}
 type=Creature
 subtype=Insect
 power=4
@@ -336,17 +336,7 @@ toughness=3
 text=Haste When Giant Ambush Beetle comes into play, you may have target creature block it this turn if able.
 rarity=U
 [/card]
-[card]
-id=179576
-name=Glassdust Hulk
-mana={3}{W}{U}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=4
-text=Whenever another artifact comes into play under your control, Glassdust Hulk gets +1/+1 until end of turn and is unblockable this turn. Cycling {(w/u)} ({(w/u)}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=179611
 name=Glory of Warfare
@@ -399,17 +389,7 @@ toughness=1
 text=As long as you control another multicolored permanent, Grixis Grimblade gets +1/+1 and has deathtouch. (Whenever it deals damage to a creature, destroy that creature.)
 rarity=C
 [/card]
-[card]
-id=188972
-name=Grixis Sojourners
-mana={1}{U}{B}{R}
-type=Creature
-subtype=Zombie Ogre
-power=4
-toughness=3
-text=When you cycle Grixis Sojourners or it's put into a graveyard from play, you may remove target card in a graveyard from the game. Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=180624
 name=Knotvine Paladin
@@ -421,32 +401,10 @@ toughness=2
 text=Whenever Knotvine Paladin attacks, it gets +1/+1 until end of turn for each untapped creature you control.
 rarity=R
 [/card]
-[card]
-id=144276
-name=Igneous Pouncer
-mana={4}{B}{R}
-type=Creature
-subtype=Elemental
-power=5
-toughness=1
-text=Haste Swampcycling {2}, mountaincycling {2} ({2}, Discard this card: Search your library for a Swamp or Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
-abilities=haste
-auto={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary) #Not quite right :(
-rarity=C
-[/card]
 
 
-[card]
-id=144286
-name=Jhessian Zombies
-mana={4}{U}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=4
-text=Fear Islandcycling {2}, swampcycling {2} ({2}, Discard this card: Search your library for an Island or Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=C
-[/card]
+
+
 [card]
 id=188973
 name=Jund Hackblade
@@ -458,17 +416,7 @@ toughness=1
 text=As long as you control another multicolored permanent, Jund Hackblade gets +1/+1 and has haste.
 rarity=C
 [/card]
-[card]
-id=188966
-name=Jund Sojourners
-mana={B}{R}{G}
-type=Creature
-subtype=Viashino Shaman
-power=3
-toughness=2
-text=When you cycle Jund Sojourners or it's put into a graveyard from play, you may have it deal 1 damage to target creature or player. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 
 [card]
 id=179602
@@ -597,17 +545,7 @@ type=Artifact
 text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Mistvein Borderpost's mana cost. Mistvein Borderpost comes into play tapped. {T}: Add {U} or {B} to your mana pool.
 rarity=C
 [/card]
-[card]
-id=185051
-name=Monstrous Carabid
-mana={3}{B}{R}
-type=Creature
-subtype=Insect
-power=4
-toughness=4
-text=Monstrous Carabid attacks each turn if able. Cycling {BR} ({BR}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=179614
 name=Morbid Bloom
@@ -638,17 +576,7 @@ toughness=1
 text=As long as you control another multicolored permanent, Naya Hushblade gets +1/+1 and has shroud. (It can't be the target of spells or abilities.)
 rarity=C
 [/card]
-[card]
-id=188970
-name=Naya Sojourners
-mana={2}{R}{G}{W}
-type=Creature
-subtype=Elf Shaman
-power=5
-toughness=3
-text=When you cycle Naya Sojourners or it's put into a graveyard from play, you may put a +1/+1 counter on target creature. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=183011
 name=Necromancer's Covenant
@@ -694,17 +622,7 @@ type=Instant
 text=Counter target spell unless its controller pays {4}. You gain 4 life.
 rarity=C
 [/card]
-[card]
-id=144249
-name=Pale Recluse
-mana={4}{G}{W}
-type=Creature
-subtype=Spider
-power=4
-toughness=5
-text=Reach (This can block creatures with flying.) Forestcycling {2}, plainscycling {2} ({2}, Discard this card: Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=C
-[/card]
+
 [card]
 id=180602
 name=Predatory Advantage
@@ -743,17 +661,7 @@ toughness=4
 text=If you would draw a card, instead reveal the top three cards of your library. Put all creature cards revealed this way into your hand and the rest on the bottom of your library in any order.
 rarity=R
 [/card]
-[card]
-id=144282
-name=Sanctum Plowbeast
-mana={4}{W}{U}
-type=Artifact Creature
-subtype=Beast
-power=3
-toughness=6
-text=Defender Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Search your library for a Plains or Island card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=C
-[/card]
+
 [card]
 id=179623
 name=Sanity Gnawers
@@ -956,17 +864,7 @@ toughness=5
 text=Uril, the Miststalker can't be the target of spells or abilities your opponents control. Uril gets +2/+2 for each Aura attached to it.
 rarity=M
 [/card]
-[card]
-id=144260
-name=Valley Rannet
-mana={4}{R}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=3
-text=Mountaincycling {2}, forestcycling {2} ({2}, Discard this card: Search your library for a Mountain or Forest card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=C
-[/card]
+
 [card]
 id=179592
 name=Vectis Dominator

@@ -102,6 +102,33 @@ mana={G}{W}{U}
 type=Instant
 [/card]
 [card]
+id=179576
+name=Glassdust Hulk
+mana={3}{W}{U}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=4
+text=Whenever another artifact comes into play under your control, Glassdust Hulk gets +1/+1 until end of turn and is unblockable this turn. Cycling {(WU)} ({(WU)}, Discard this card: Draw a card.)
+auto=@moveTo(other artifact|myBattlefield): 1/1 ueot
+auto=@moveTo(other artifact|myBattlefield): unblockable ueot
+autohand={WU}:cycling
+rarity=C
+[/card]
+[card]
+id=188972
+name=Grixis Sojourners
+mana={1}{U}{B}{R}
+type=Creature
+subtype=Zombie Ogre
+power=4
+toughness=3
+text=When you cycle Grixis Sojourners or it's put into a graveyard from play, you may remove target card in a graveyard from the game. Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
+auto=@movedTo(graveyard) from(battlefield):may moveTo(removedfromgame) target(*|graveyard)
+autohand={2}{B}:cycling
+rarity=C
+[/card]
+[card]
 id=189647
 name=Grizzled Leotau
 rarity=C
@@ -121,6 +148,19 @@ name=Identity Crisis
 rarity=R
 mana={2}{W}{W}{B}{B}
 type=Sorcery
+[/card]
+[card]
+id=144276
+name=Igneous Pouncer
+mana={4}{B}{R}
+type=Creature
+subtype=Elemental
+power=5
+toughness=1
+text=Haste Swampcycling {2}, mountaincycling {2} ({2}, Discard this card: Search your library for a Swamp or Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
+abilities=haste
+auto={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary)
+rarity=C
 [/card]
 [card]
 text=Flying   When you cast a spell, sacrifice Illusory Demon.
@@ -158,6 +198,32 @@ auto={1}{W}:counter(1/1)
 power=3
 toughness=3
 abilities=legendary,flying
+[/card]
+[card]
+id=144286
+name=Jhessian Zombies
+mana={4}{U}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=4
+text=Fear Islandcycling {2}, swampcycling {2} ({2}, Discard this card: Search your library for an Island or Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
+abilities=fear
+autohand={2}{S}:moveTo(myhand) target(island,swamp|mylibrary)
+rarity=C
+[/card]
+[card]
+id=188966
+name=Jund Sojourners
+mana={B}{R}{G}
+type=Creature
+subtype=Viashino Shaman
+power=3
+toughness=2
+text=When you cycle Jund Sojourners or it's put into a graveyard from play, you may have it deal 1 damage to target creature or player. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.)
+auto=@movedTo(graveyard) from(battlefield):may damage:1 target(creature,player)
+autohand={2}{R}:cycling
+rarity=C
 [/card]
 [card]
 text=Flying, haste When Karrthus, Tyrant of Jund enters the battlefield, gain control of all Dragons, then untap all Dragons. Other Dragon creatures you control have haste.
@@ -285,6 +351,19 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+id=185051
+name=Monstrous Carabid
+mana={3}{B}{R}
+type=Creature
+subtype=Insect
+power=4
+toughness=4
+text=Monstrous Carabid attacks each turn if able. Cycling {BR} ({BR}, Discard this card: Draw a card.)
+abilities=mustattack
+autohand={BR}:cycling
+rarity=C
+[/card]
+[card]
 text=Exile target creature card in a graveyard, then put X 1/1 green Saproling creature tokens onto the battlefield, where X is the removed card's toughness.
 id=179614
 name=Morbid Bloom
@@ -294,6 +373,32 @@ auto=token(Saproling,Creature Saproling,1/1,green)*t
 rarity=U
 mana={4}{B}{G}
 type=Sorcery
+[/card]
+[card]
+id=188970
+name=Naya Sojourners
+mana={2}{R}{G}{W}
+type=Creature
+subtype=Elf Shaman
+power=5
+toughness=3
+text=When you cycle Naya Sojourners or it's put into a graveyard from play, you may put a +1/+1 counter on target creature. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)
+auto=@movedTo(graveyard) from(battlefield):may counter(1/1) target(creature)
+autohand={2}{G}:cycling
+rarity=C
+[/card]
+[card]
+id=144249
+name=Pale Recluse
+mana={4}{G}{W}
+type=Creature
+subtype=Spider
+power=4
+toughness=5
+text=Reach (This can block creatures with flying.) Forestcycling {2}, plainscycling {2} ({2}, Discard this card: Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myhand) target(plains,forest|mylibrary)
+abilities=reach
+rarity=C
 [/card]
 [card]
 text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Play this ability only once each turn.
@@ -329,6 +434,18 @@ type=Creature
 subtype=Rhino
 power=4
 toughness=4
+[/card]
+[card]
+id=144282
+name=Sanctum Plowbeast
+mana={4}{W}{U}
+type=Artifact Creature
+subtype=Beast
+power=3
+toughness=6
+text=Defender Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Search your library for a Plains or Island card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myhand) target(plains,island|mylibrary)
+rarity=C
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +3/-3.
@@ -442,6 +559,18 @@ rarity=U
 mana={2}{W}{U}
 auto={T}:Untap target(other *)
 type=Artifact
+[/card]
+[card]
+id=144260
+name=Valley Rannet
+mana={4}{R}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=3
+text=Mountaincycling {2}, forestcycling {2} ({2}, Discard this card: Search your library for a Mountain or Forest card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={2}{S}:moveTo(myhand) target(mountain,forest|mylibrary)
+rarity=C
 [/card]
 [card]
 text=Whenever Vedalken Heretic deals damage to an opponent, you may draw a card.
