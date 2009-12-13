@@ -4,28 +4,47 @@ FIRSTMAIN
 [PLAYER1]
 hand:Gempalm Avenger
 library:forest
-inplay:Ondu Cleric
+inplay:Infantry Veteran
 manapool:{2}{W}
 [PLAYER2]
 inplay:Grizzly Bears
 [DO]
-choice 1
 Gempalm Avenger
 next
 next
-Ondu Cleric
+Infantry Veteran
+choice 0
 next
 Grizzly Bears
 next
 #damage
+eot
+eot
 next
-#end combat
+#upkeeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+Infantry Veteran
+choice 0
+next
+#blocker
+next
+#damage
+next
+#end
 [ASSERT]
 COMBATEND
 [PLAYER1]
-inplay:Ondu Cleric
+inplay:Infantry Veteran
 graveyard:Gempalm Avenger
 hand:forest
 [PLAYER2]
 graveyard:Grizzly Bears
+life:19
 [END]

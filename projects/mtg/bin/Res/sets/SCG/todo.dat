@@ -230,14 +230,7 @@ type=Enchantment
 text=When Day of the Dragons enters the battlefield, exile all creatures you control. Then put that many 5/5 red Dragon creature tokens with flying onto the battlefield. When Day of the Dragons leaves the battlefield, sacrifice all Dragons you control. Then return the exiled cards to the battlefield under your control.
 rarity=R
 [/card]
-[card]
-id=44335
-name=Decree of Annihilation
-mana={8}{R}{R}
-type=Sorcery
-text=Exile all artifacts, creatures, and lands from the battlefield, all cards from all graveyards, and all cards from all hands. Cycling {5}{R}{R} ({5}{R}{R}, Discard this card: Draw a card.) When you cycle Decree of Annihilation, destroy all lands.
-rarity=R
-[/card]
+
 [card]
 id=45141
 name=Decree of Justice
