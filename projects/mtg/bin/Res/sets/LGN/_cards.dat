@@ -239,7 +239,7 @@ subtype=Human Soldier
 power=3
 toughness=5
 text=Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) When you cycle Gempalm Avenger, Soldier creatures get +1/+1 and gain first strike until end of turn.
-autohand={2}{W}:lord(creature|myinplay) 1/1 && lord(creature|myinplay) first strike && cycling
+autohand={2}{W}:lord(soldier|myinplay) 1/1 && lord(soldier|myinplay) first strike && cycling
 rarity=C
 [/card]
 [card]
