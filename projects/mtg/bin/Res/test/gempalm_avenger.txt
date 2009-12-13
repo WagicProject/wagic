@@ -1,0 +1,31 @@
+#Testing Cycling + 2 lord effect + cycling
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Gempalm Avenger
+library:forest
+inplay:Ondu Cleric
+manapool:{2}{W}
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+choice 1
+Gempalm Avenger
+next
+next
+Ondu Cleric
+next
+Grizzly Bears
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Ondu Cleric
+graveyard:Gempalm Avenger
+hand:forest
+[PLAYER2]
+graveyard:Grizzly Bears
+[END]

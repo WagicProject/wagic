@@ -1359,7 +1359,19 @@ toughness=2
 text=At the beginning of your upkeep, put a spore counter on Utopia Mycon. Remove three spore counters from Utopia Mycon: Put a 1/1 green Saproling creature token into play. Sacrifice a Saproling: Add one mana of any color to your mana pool.
 rarity=U
 [/card]
-
+[card]
+id=130325
+name=Vedalken AEthermage
+mana={1}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=2
+text=Flash (You may play this spell any time you could play an instant.) When Vedalken AEthermage comes into play, return target Sliver to its owner's hand. Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
+abilities=flash
+autohand={3}{S}:moveTo(myhand) target(wizard|mylibrary)
+rarity=C
+[/card]
 [card]
 id=136209
 name=Venser, Shaper Savant

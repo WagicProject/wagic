@@ -331,7 +331,7 @@ type=Creature
 subtype=Wraith
 power=3
 toughness=4
-text=Swampwalk Cycling—Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
+text=Swampwalk Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
 abilities=swampwalk
 autohand={S}:life:-2 && draw:1
 rarity=U
@@ -366,19 +366,7 @@ power=2
 toughness=1
 abilities=reach,deathtouch
 [/card]
-[card]
-id=130325
-name=Vedalken AEthermage
-mana={1}{U}
-type=Creature
-subtype=Vedalken Wizard
-power=1
-toughness=2
-text=Flash (You may play this spell any time you could play an instant.) When Vedalken AEthermage comes into play, return target Sliver to its owner's hand. Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
-abilities=flash
-autohand={3}{S}:moveTo(myhand) target(wizard|mylibrary)
-rarity=C
-[/card]
+
 [card]
 text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
 auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot

@@ -231,6 +231,18 @@ power=1
 toughness=1
 [/card]
 [card]
+id=43791
+name=Gempalm Avenger
+mana={5}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=5
+text=Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) When you cycle Gempalm Avenger, Soldier creatures get +1/+1 and gain first strike until end of turn.
+autohand={2}{W}:lord(creature|myinplay) 1/1 && lord(creature|myinplay) first strike && cycling
+rarity=C
+[/card]
+[card]
 text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
 id=42066
 name=Gempalm Incinerator

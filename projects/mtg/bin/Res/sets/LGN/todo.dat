@@ -329,17 +329,7 @@ toughness=3
 text=Amplify 2 (As this card enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
 rarity=R
 [/card]
-[card]
-id=43791
-name=Gempalm Avenger
-mana={5}{W}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=5
-text=Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) When you cycle Gempalm Avenger, Soldier creatures get +1/+1 and gain first strike until end of turn.
-rarity=C
-[/card]
+
 [card]
 id=42178
 name=Ghastly Remains
