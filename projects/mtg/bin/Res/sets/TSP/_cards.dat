@@ -916,7 +916,7 @@ text=As Vesuva enters the battlefield, you may choose a land on the battlefield.
 id=113543
 name=Vesuva
 auto=tap
-auto=may copy target(land)
+auto=may copy notatarget(land)
 rarity=R
 type=Land
 [/card]

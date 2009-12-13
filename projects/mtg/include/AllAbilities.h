@@ -3159,29 +3159,24 @@ class AJandorsRing:public ActivatedAbility{
 //What happens when there are no targets ???
 class AKudzu: public TargetAbility{
  public:
-  int previouslyTapped;
  AKudzu(int _id, MTGCardInstance * card, MTGCardInstance * _target):TargetAbility(_id,card, NEW TypeTargetChooser("land",card)){
     tc->toggleTarget(_target);
     target = _target;
-    previouslyTapped = 0;
-    if (_target->isTapped()) previouslyTapped = 1;
   }
 
+ int receiveEvent(WEvent * event){
+   if (WEventCardTap* wect =  dynamic_cast<WEventCardTap*>(event)) {
+     if (wect->before == false && wect->after == true){
+       MTGCardInstance * _target = (MTGCardInstance *)target;
+       if (!_target->isInPlay()) return 0;
+       target = _target->controller()->game->putInGraveyard(_target);
+       reactToClick(source);
+       return 1;
+     }
+   }
+   return 0;
 
-  void Update(float dt){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    if (_target && !_target->isTapped()){
-      previouslyTapped = 0;
-    }else if (!previouslyTapped){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Kudzu Strikes !\n");
-#endif
-      MTGCardInstance * _target = (MTGCardInstance *)target;
-      target = _target->controller()->game->putInGraveyard(_target);
-      reactToClick(source); // ????
-    }
-    TargetAbility::Update(dt);
-  }
+ }
 
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     MTGCardInstance * _target = (MTGCardInstance *)target;
@@ -3198,8 +3193,6 @@ class AKudzu: public TargetAbility{
   int resolve(){
     target = tc->getNextCardTarget();
     source->target = (MTGCardInstance *) target;
-    previouslyTapped = 0;
-    if (source->target && source->target->isTapped()) previouslyTapped = 1;
     return 1;
   }
 
@@ -3220,12 +3213,6 @@ class AKudzu: public TargetAbility{
     return 0;
   }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AKudzu ::: previouslyTapped : " << previouslyTapped
-	<< " (";
-    return TargetAbility::toString(out) << ")";
-  }
   AKudzu * clone() const{
     AKudzu * a =  NEW AKudzu(*this);
     a->isClone = 1;

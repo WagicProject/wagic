@@ -402,7 +402,7 @@ toughness=2
 [/card]
 [card]
 text=As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
-auto=may copy target(creature)
+auto=may copy NotATarget(creature)
 id=129501
 name=Clone
 rarity=R
@@ -2141,7 +2141,7 @@ toughness=*
 [/card]
 [card]
 text=As Sculpting Steel comes into play, you may choose an artifact in play. If you do, Sculpting Steel comes into play as a copy of that artifact.
-auto=may copy target(artifact)
+auto=may copy notatarget(artifact)
 id=135241
 name=Sculpting Steel
 rarity=R

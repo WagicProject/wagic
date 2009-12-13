@@ -138,7 +138,7 @@ rarity=U
 mana={3}{U}
 type=Creature
 subtype=Shapeshifter
-auto=may copy target(creature)
+auto=may copy notatarget(creature)
 power=0
 toughness=0
 [/card]

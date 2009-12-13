@@ -231,6 +231,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string starget = s.substr(found + 7,end - found - 7);
         TargetChooserFactory tcf;
         tc = tcf.createTargetChooser(starget, card);
+        if (tc && s.find("notatarget(") != string::npos) tc->targetter = NULL;
       }
 
       AEquip *ae = dynamic_cast<AEquip*>(a);
@@ -273,6 +274,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       string starget = s.substr(found + 7,end - found - 7);
       TargetChooserFactory tcf;
       tc = tcf.createTargetChooser(starget, card);
+      if (tc && s.find("notatarget(") != string::npos) tc->targetter = NULL;
     }
     if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
     else a1 =  NEW GenericActivatedAbility(id, card, a1,NULL);

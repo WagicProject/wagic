@@ -1,0 +1,22 @@
+# As Clone comes into play, you may choose a creature in play. If you do, Clone comes into play as a copy of that creature.
+#Bug: impossible to copy permanents with shroud
+#see: http://code.google.com/p/wagic/issues/detail?id=162
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:clone
+manapool:{3}{U}
+inplay:Deft Duelist
+[PLAYER2]
+[DO]
+clone
+choice 0
+deft duelist
+next
+[ASSERT]
+COMBATBEGIN
+[PLAYER1]
+inplay:*,*
+manapool:{0}
+[PLAYER2]
+[END]

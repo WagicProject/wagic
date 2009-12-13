@@ -128,6 +128,7 @@ circle_of_protection_i211.txt
 civic_wayfinder.txt
 clone.txt
 clone2.txt
+clone3.txt
 cockatrice.txt
 colossus_of_sardia1.txt
 colossus_of_sardia2.txt
@@ -242,6 +243,7 @@ kraken_eye3.txt
 kraken_eye4.txt
 kudzu.txt
 kudzu2.txt
+kudzu_i168.txt
 leveler.txt
 lhurgoyf.txt
 liability.txt

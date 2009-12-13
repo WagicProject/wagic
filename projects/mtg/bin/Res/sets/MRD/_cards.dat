@@ -1067,7 +1067,7 @@ toughness=4
 [/card]
 [card]
 text=As Sculpting Steel enters the battlefield, you may choose an artifact on the battlefield. If you do, Sculpting Steel enters the battlefield as a copy of that artifact.
-auto=may copy target(artifact)
+auto=may copy notatarget(artifact)
 id=46720
 name=Sculpting Steel
 rarity=R

@@ -24,7 +24,7 @@ abilities=first strike,protection from white
 [/card]
 [card]
 text=You may have Body Double enter the battlefield as a copy of any creature card in a graveyard.
-auto=may copy target(creature|graveyard)
+auto=may copy notatarget(creature|graveyard)
 id=124443
 name=Body Double
 rarity=R

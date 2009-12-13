@@ -2,6 +2,7 @@
 #DESC: Bug: Game crashes if a land with
 #DESC: two Kudzus in it is tapped.
 #DESC: See: http://code.google.com/p/wagic/issues/detail?id=168
+#TODO Update this code with 2 different kudzus to make the test more reliable
 [INIT]
 firstmain
 [PLAYER1]
@@ -17,13 +18,12 @@ Kudzu
 Swamp
 Swamp
 Mountain
-Mountain
 [ASSERT]
 firstmain
 [PLAYER1]
-inplay:
-graveyard:Swamp
-manapool:
+inplay:*
+graveyard:Swamp,*
+manapool:{B}
 [PLAYER2]
-inplay:Mountain,Kudzu,Kudzu
+inplay:Mountain
 [END]
